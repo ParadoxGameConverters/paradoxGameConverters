@@ -424,4 +424,250 @@ link = { eu4 = 729 v2 = 1083 }	# Wusuli -> Boli
 link = { eu4 = 1049 v2 = 2617 }	# Saghalian Oula -> Saghalian Oula
 link = { eu4 = 1048 v2 = 1084 }	# Udskoye -> Utchan
 link = { eu4 = 1057 v2 = 1078 }	# Udinsky -> Chita
+# Europe
+# Portugal
+link = { eu4 = 230 v2 = 527 }	# Algarve -> Faro
+link = { eu4 = 229 v2 = 526 v2 = 525 v2 = 524 }	# Alentejo -> Beja, Évora, Setubal
+link = { eu4 = 227 v2 = 521 v2 = 523 }	# Lisboa -> Lisbon, Abrantes
+link = { eu4 = 1851 v2 = 522 }	# Ribatejo -> Coimbra
+link = { eu4 = 231 v2 = 518 }	# Porto -> Oporto
+link = { eu4 = 228 v2 = 520 }	# Beira -> Covilhã
+link = { eu4 = 232 v2 = 519 }	# Bragança -> Vila Real
+# Spain
+link = { eu4 = 206 v2 = 474 v2 = 476 }	# Galicia -> La Coruña, Vigo
+link = { eu4 = 207 v2 = 475 }	# Asturias -> Oviedo
+link = { eu4 = 208 v2 = 477 v2 = 480 }	# León -> León, Valladolid
+link = { eu4 = 1745 v2 = 478 }	# Cantabria -> Santander
+link = { eu4 = 209 v2 = 492 }	# Vizcaya -> Bilbao
+link = { eu4 = 1746 v2 = 479 v2 = 494 }	# Burgos -> Burgos, Logroño
+link = { eu4 = 210 v2 = 493 }	# Navarra -> Pamplona
+link = { eu4 = 211 v2 = 496 }	# Pirineo -> Huesca
+link = { eu4 = 212 v2 = 500 v2 = 499 }	# Girona -> Lérida, Gerona
+link = { eu4 = 213 v2 = 498 v2 = 501 }	# Barcelona -> Barcelona, Tarragona
+link = { eu4 = 1749 v2 = 512 }	# Cadiz -> Cádiz
+link = { eu4 = 224 v2 = 511 v2 = 509 }	# Andalucía -> Huelva, Seville
+link = { eu4 = 226 v2 = 517 }	# Gibraltar -> Gibraltar
+link = { eu4 = 223 v2 = 514 v2 = 513 }	# Granada -> Málaga, Granada
+link = { eu4 = 222 v2 = 515 }	# Almería -> Almería
+link = { eu4 = 221 v2 = 506 v2 = 507 }	# Murcia -> Cartagena, Murcia
+link = { eu4 = 1750 v2 = 505 }	# Alicante -> Alicante
+link = { eu4 = 220 v2 = 503 v2 = 504 }	# València -> Valencia, Castellón
+link = { eu4 = 218 v2 = 484 v2 = 485 }	# Badajoz -> Badajoz, Almendralejo
+link = { eu4 = 1747 v2 = 486 }	# Caceres -> Cáceres
+link = { eu4 = 216 v2 = 482 }	# Salamanca -> Salamanca
+link = { eu4 = 225 v2 = 510 }	# Córdoba -> Córdoba
+link = { eu4 = 1748 v2 = 516 }	# La Mancha -> Jaén
+link = { eu4 = 219 v2 = 491 v2 = 508 v2 = 489 }	# Toledo -> Ciudad Real, Albacete, Toledo
+link = { eu4 = 214 v2 = 495 v2 = 497 }	# Aragón -> Zaragoza, Teruel
+link = { eu4 = 217 v2 = 490 v2 = 488 v2 = 487 }	# Madrid -> Cuenca, Sigüenza, Madrid
+link = { eu4 = 215 v2 = 483 v2 = 481 }	# Castilla La Vieja -> Ávila, Soria
+link = { eu4 = 333 v2 = 502 }	# The Baleares -> Balearic Islands
+# France
+link = { eu4 = 173 v2 = 460 }	# Labourd -> Pau
+link = { eu4 = 174 v2 = 458 }	# Gascogne -> Bordeaux
+link = { eu4 = 180 v2 = 442 v2 = 437 v2 = 443 }	# Poitou -> La Rochelle, La Roche, Poitiers
+link = { eu4 = 172 v2 = 423 }	# Vendée -> Nantes
+link = { eu4 = 171 v2 = 422 }	# Morbihan -> Vannes
+link = { eu4 = 170 v2 = 420 }	# Finistère -> Brest
+link = { eu4 = 169 v2 = 421 v2 = 424 }	# Armor -> St Brieuc, Rennes
+link = { eu4 = 168 v2 = 418 v2 = 419 v2 = 417 }	# Normandie -> Caen, Channel Islands, Alençon
+link = { eu4 = 1879 v2 = 426 }	# Alencon -> Chartres
+link = { eu4 = 176 v2 = 457 }	# Béarn -> Foix
+link = { eu4 = 197 v2 = 464 }	# Roussillon -> Perpignan
+link = { eu4 = 196 v2 = 455 v2 = 456 }	# Toulouse -> Toulouse, Montauban
+link = { eu4 = 175 v2 = 459 }	# Armagnac -> Mont de Marsan
+link = { eu4 = 200 v2 = 463 v2 = 461 }	# Languedoc -> Carcassonne, Montpellier
+link = { eu4 = 201 v2 = 471 v2 = 469 v2 = 470 v2 = 467 }	# Provence -> Frejus, Digne, Toulon, Marseilles
+link = { eu4 = 202 v2 = 468 }	# Avignon -> Avignon
+link = { eu4 = 204 v2 = 454 v2 = 453 }	# Dauphiné -> Grenoble, Valence
+link = { eu4 = 203 v2 = 451 }	# Lyonnais -> Lyon
+link = { eu4 = 102 v2 = 472 }	# Nice -> Nice
+link = { eu4 = 205 v2 = 465 v2 = 466 }	# Savoie -> Annecy, Chambéry
+link = { eu4 = 193 v2 = 433 v2 = 432 }	# Franche-Comté -> Lons, Besançon
+link = { eu4 = 167 v2 = 415 v2 = 416 }	# Caux -> Rouen, Évreux
+link = { eu4 = 89 v2 = 402 }	# Picardie -> Amiens
+link = { eu4 = 87 v2 = 400 }	# Calais -> Dunkirk
+link = { eu4 = 88 v2 = 399 v2 = 401 }	# Artois -> Lille, Arras
+link = { eu4 = 1743 v2 = 404 }	# Cambray -> Cambrai
+link = { eu4 = 181 v2 = 405 v2 = 413 }	# Valenciennes -> Charleville, Verdun
+link = { eu4 = 187 v2 = 411 v2 = 407 }	# Barrois -> Nancy, Chaumont
+link = { eu4 = 188 v2 = 412 }	# Metz -> Metz
+link = { eu4 = 189 v2 = 414 }	# Lothringen -> Épinal
+link = { eu4 = 183 v2 = 2570 v2 = 425 v2 = 427 }	# Île-de-France -> Beauvais, Paris, Melun
+link = { eu4 = 182 v2 = 403 }	# Vermandois -> Laon
+link = { eu4 = 184 v2 = 438 v2 = 440 }	# Orléannais -> Orléans, Blois
+link = { eu4 = 177 v2 = 435 v2 = 436 }	# Maine -> Laval, Le Mans
+link = { eu4 = 178 v2 = 434 v2 = 441 }	# Anjou -> Angers, Tours
+link = { eu4 = 199 v2 = 452 v2 = 448 v2 = 449 }	# Auvergne -> St Étienne, Clermont-Ferrand, Aurillac
+link = { eu4 = 198 v2 = 462 v2 = 450 }	# Rouergue -> Rodez, Cahors
+link = { eu4 = 194 v2 = 447 v2 = 444 }	# Périgord -> Tulle, Angoulême
+link = { eu4 = 195 v2 = 445 }	# Limousin -> Limoges
+link = { eu4 = 1877 v2 = 431 }	# Charolais -> Macon
+link = { eu4 = 186 v2 = 408 v2 = 406 }	# Champagne -> Chalons, Troyes
+link = { eu4 = 192 v2 = 428 }	# Bourgogne -> Dijon
+link = { eu4 = 190 v2 = 439 }	# Bourbon -> Bourges
+link = { eu4 = 191 v2 = 430 }	# Nevers -> Moulins
+link = { eu4 = 179 v2 = 446 }	# Berry -> Châteauroux
+link = { eu4 = 185 v2 = 429 }	# Nemours -> Auxerre
+link = { eu4 = 75 v2 = 409 v2 = 410 }	# Elsass -> Strasbourg, Colmar
+link = { eu4 = 1247 v2 = 473 }	# Corsica -> Corsica
+# Luxemburg
+link = { eu4 = 94 v2 = 397 }	# Luxemburg -> Luxembourg
+# Netherlands & Belgium
+link = { eu4 = 97 v2 = 375 v2 = 376 }	# Holland -> Amsterdam, Rotterdam
+link = { eu4 = 96 v2 = 378 }	# Zeeland -> Middelburg
+link = { eu4 = 1744 v2 = 390 }	# Antwerpen -> Antwerp
+link = { eu4 = 100 v2 = 385 v2 = 383 v2 = 386 }	# Friesland -> Leeuwarden, Groningen, Assen
+link = { eu4 = 99 v2 = 384 v2 = 382 }	# Gelre -> Zwolle, Arnhem
+link = { eu4 = 98 v2 = 377 }	# Utrecht -> Utrecht
+link = { eu4 = 95 v2 = 380 v2 = 379 }	# Noord -> Breda, Eindhoven
+link = { eu4 = 90 v2 = 388 }	# Vlaanderen -> Bruges
+link = { eu4 = 1865 v2 = 389 }	# Ghent -> Ghent
+link = { eu4 = 91 v2 = 393 v2 = 394 }	# Hainault -> Tournai, Charleroi
+link = { eu4 = 92 v2 = 387 v2 = 391 }	# Brabant -> Brussels, Hasselt
+link = { eu4 = 1866 v2 = 392 }	# Namur  -> Namur
+link = { eu4 = 93 v2 = 395 v2 = 398 }	# Liège -> Liège, Arlon
+# Switzerland
+link = { eu4 = 1870 v2 = 603 }	# S:t Gallen -> Zurich
+link = { eu4 = 1873 v2 = 611 }	# Chur -> Chur
+link = { eu4 = 1871 v2 = 609 }	# Wallis -> Sitten
+link = { eu4 = 1867 v2 = 607 v2 = 608 }	# Freiburg -> Geneva, Neuchâtel
+link = { eu4 = 165 v2 = 605 }	# Bern -> Bern
+link = { eu4 = 1880 v2 = 604 }	# Sundgau -> Basel
+link = { eu4 = 1869 v2 = 606 }	# Zürich -> Lucerne
+link = { eu4 = 166 v2 = 2568 }	# Schwyz -> Lugano
+# Italy
+link = { eu4 = 101 v2 = 724 v2 = 725 v2 = 723 }	# Liguria -> Genoa, Savona, Alessandria
+link = { eu4 = 105 v2 = 740 v2 = 738 }	# Parma -> Massa, Parma
+link = { eu4 = 115 v2 = 745 }	# Pisa -> Leghorn
+link = { eu4 = 127 v2 = 766 v2 = 765 }	# Sardinia -> Sassari, Cagliari
+link = { eu4 = 125 v2 = 762 }	# Palermo -> Palermo
+link = { eu4 = 124 v2 = 763 v2 = 764 }	# Messina -> Messina, Catania
+link = { eu4 = 123 v2 = 759 v2 = 760 }	# Calabria -> Reggio di Calabria, Catanzaro
+link = { eu4 = 126 v2 = 854 }	# Malta -> Malta
+link = { eu4 = 122 v2 = 758 }	# Apulia -> Brindisi
+link = { eu4 = 1934 v2 = 761 }	# Lucania -> Potenza
+link = { eu4 = 1933 v2 = 757 v2 = 756 }	# Bari -> Foggia, Bari
+link = { eu4 = 121 v2 = 755 v2 = 754 v2 = 2567 }	# Napoli -> Salerno, Naples, Gaeta
+link = { eu4 = 120 v2 = 753 }	# Abbruzzi -> Aquila
+link = { eu4 = 118 v2 = 749 v2 = 750 v2 = 751 }	# Roma -> Rome, Viterbo, Perugia
+link = { eu4 = 119 v2 = 752 }	# Ancona -> Ancona
+link = { eu4 = 117 v2 = 748 v2 = 747 }	# Siena -> Grosetto, Siena
+link = { eu4 = 106 v2 = 746 v2 = 739 }	# Modena -> Lucca, Modena
+link = { eu4 = 113 v2 = 742 }	# Ferrara -> Ferrara
+link = { eu4 = 116 v2 = 744 }	# Firenze -> Florence
+link = { eu4 = 114 v2 = 743 v2 = 741 }	# Romagna -> Ravenna, Bologna
+link = { eu4 = 112 v2 = 729 }	# Venezia -> Venice
+link = { eu4 = 1774 v2 = 732 }	# Treviso -> Treviso
+link = { eu4 = 111 v2 = 733 }	# Friuli -> Udine
+link = { eu4 = 108 v2 = 731 v2 = 730 }	# Verona -> Padua, Verona
+link = { eu4 = 107 v2 = 727 }	# Brescia -> Bergamo
+link = { eu4 = 110 v2 = 734 }	# Trent -> Trent
+link = { eu4 = 104 v2 = 722 }	# Lombardia -> Novara
+link = { eu4 = 1862 v2 = 726 }	# Cremona -> Milan
+link = { eu4 = 1875 v2 = 720 }	# Turin -> Turin
+link = { eu4 = 103 v2 = 721 }	# Niklas -> Aosta
+link = { eu4 = 109 v2 = 728 }	# Mantua -> Brescia
+# Austria
+link = { eu4 = 73 v2 = 612 v2 = 735 v2 = 614 }	# Tirol -> Innsbruck, Bozen, Bregenz
+link = { eu4 = 1768 v2 = 615 }	# Lienz -> Lienz
+link = { eu4 = 134 v2 = 619 v2 = 620 }	# Wien -> Vienna, Sankt Pölten
+link = { eu4 = 133 v2 = 622 }	# Linz -> Linz
+link = { eu4 = 1863 v2 = 616 }	# Graz -> Graz
+link = { eu4 = 132 v2 = 617 }	# Steiermark -> Judenburg
+link = { eu4 = 128 v2 = 618 }	# Kärnten -> Klagenfurt
+link = { eu4 = 76 v2 = 613 }	# Salzburg -> Salzburg
+link = { eu4 = 1770 v2 = 621 }	# Ostmarch -> Krems
+# Slovakia & Croatia
+link = { eu4 = 1769 v2 = 737 v2 = 736 }	# Görz -> Gorizia, Trieste
+link = { eu4 = 130 v2 = 770 v2 = 778 v2 = 769 }	# Istria -> Pola, Fiume, Postojna
+link = { eu4 = 129 v2 = 768 v2 = 767 }	# Krain -> Ljubljana, Maribor
+link = { eu4 = 1826 v2 = 774 v2 = 773 }	# Lika -> Senj, Karlovac
+link = { eu4 = 136 v2 = 781 v2 = 780 }	# Dalmatia -> Zadar, Split
+link = { eu4 = 137 v2 = 782 }	# Ragusa -> Dubrovnik
+link = { eu4 = 152 v2 = 775 }	# Slavonia -> Varadin
+link = { eu4 = 131 v2 = 771 v2 = 772 }	# Croatia -> Zagreb, Sisak
+link = { eu4 = 1767 v2 = 776 v2 = 779 v2 = 777 v2 = 793 }	# Osijek -> Bjelovar, Osijek, Poega, Vukovar
+# Bosnia & Serbia
+link = { eu4 = 1828 v2 = 784 v2 = 789 }	# Soli -> Bihac, Livno
+link = { eu4 = 139 v2 = 783 v2 = 787 }	# Hum -> Sarajevo, Foca
+link = { eu4 = 138 v2 = 2583 v2 = 800 v2 = 2582 v2 = 2569 }	# Zeta -> Cetinje, Ulcinj, Kotor, Niksic
+link = { eu4 = 1831 v2 = 788 }	# Travunia -> Mostar
+link = { eu4 = 143 v2 = 851 v2 = 850 v2 = 849 v2 = 852 }	# Albania -> Durres, Shkoder, Tirana, Vlore
+link = { eu4 = 140 v2 = 786 v2 = 785 }	# Bosnia -> Tuzla, Banja Luka
+link = { eu4 = 141 v2 = 794 v2 = 797 v2 = 796 v2 = 795 }	# Serbia -> Belgrade, Uice, Kragujevac, Bor
+link = { eu4 = 1827 v2 = 804 v2 = 2577 }	# Raska -> Novi Pazar, Pljevlja
+link = { eu4 = 1765 v2 = 798 v2 = 799 v2 = 809 }	# Nis -> Niš, Leskovac, Sofia
+link = { eu4 = 1766 v2 = 803 v2 = 802 }	# Kosovo -> Prizren, Pristina
+# Ottomans
+link = { eu4 = 144 v2 = 824 v2 = 853 v2 = 825 v2 = 837 v2 = 827 }	# Janina -> Janina, Gjirokaster, Arta, Missolonghi, Zante
+link = { eu4 = 142 v2 = 826 }	# Corfu -> Corfu
+link = { eu4 = 164 v2 = 845 }	# Naxos -> Cyclades
+link = { eu4 = 146 v2 = 838 v2 = 834 v2 = 835 v2 = 836 }	# Athens -> Khalkis, Athens, Amfissa, Lamia
+link = { eu4 = 147 v2 = 831 v2 = 832 v2 = 833 }	# Salonica -> Larissa, Volos, Trikkala
+link = { eu4 = 148 v2 = 822 v2 = 821 v2 = 805 v2 = 806 v2 = 823 v2 = 808 }	# Macedonia -> Polygyros, Edessa, Salonika, Skopje, Kavala, Petrich
+link = { eu4 = 1853 v2 = 807 v2 = 819 v2 = 820 }	# Kozani -> Bitola, Florina, Grevena
+link = { eu4 = 1773 v2 = 842 v2 = 841 v2 = 840 }	# Achaea -> Patras, Kalamata, Corinth
+link = { eu4 = 145 v2 = 839 }	# Morea -> Nafplion
+link = { eu4 = 163 v2 = 848 v2 = 847 }	# Crete -> Iraklion, Chania
+link = { eu4 = 320 v2 = 846 }	# Rhodes -> Dodecanese
+link = { eu4 = 321 v2 = 856 v2 = 855 v2 = 857 }	# Cyprus -> Limassol, Nicosia, Famagusta
+link = { eu4 = 316 v2 = 861 v2 = 862 }	# Bithynia -> Üsküdar, Izmit
+link = { eu4 = 317 v2 = 863 v2 = 864 v2 = 865 v2 = 844 }	# Bursa -> Bursa, Balikesir, Canakkale, Myteline
+link = { eu4 = 151 v2 = 860 v2 = 858 }	# Thrace -> Istanbul, Kirklareli
+link = { eu4 = 149 v2 = 859 v2 = 828 v2 = 830 v2 = 829 v2 = 815 }	# Edirne -> Gallipoli, Edirne, Dedeagatch, Xanthe, Plovdiv
+link = { eu4 = 1764 v2 = 817 v2 = 814 }	# Burgas -> Burgas, Varna
+link = { eu4 = 159 v2 = 674 v2 = 818 }	# Silistria -> Constanta, Silistre
+link = { eu4 = 150 v2 = 816 v2 = 813 v2 = 812 v2 = 811 }	# Bulgaria -> Stara Zagora, Shumen, Pleven, Ruse
+link = { eu4 = 161 v2 = 669 v2 = 668 v2 = 664 v2 = 667 }	# Wallachia -> Calarasi, Braila, Bucharest, Tirgoviste
+link = { eu4 = 160 v2 = 810 v2 = 666 }	# Oltenia -> Vidin, Craiova
+link = { eu4 = 325 v2 = 881 v2 = 880 }	# Kastamon -> Bolu, Kastamonu
+link = { eu4 = 318 v2 = 869 v2 = 870 v2 = 843 v2 = 871 }	# Smyrna -> Izmir, Manisa, Chios, Denizli
+link = { eu4 = 319 v2 = 872 v2 = 875 }	# Antalya -> Mugla, Antalya
+link = { eu4 = 324 v2 = 895 }	# Karaman -> Mersin
+link = { eu4 = 327 v2 = 894 v2 = 878 }	# Adana -> Adana, Kayseri
+link = { eu4 = 323 v2 = 873 }	# Konya -> Konya
+link = { eu4 = 326 v2 = 876 }	# Angora -> Ankara
+link = { eu4 = 328 v2 = 883 v2 = 884 }	# Sinope -> Sinop, Giresun
+link = { eu4 = 330 v2 = 882 }	# Trebizon -> Trabzon
+link = { eu4 = 1846 v2 = 877 }	# Yozgat -> Amasya
+link = { eu4 = 329 v2 = 879 }	# Sivas -> Sivas
+link = { eu4 = 331 v2 = 888 v2 = 887 }	# Erserum -> Erzincan, Erzurum
+link = { eu4 = 332 v2 = 896 v2 = 889 }	# Mus -> Marash, Malatya
+link = { eu4 = 418 v2 = 891 v2 = 890 }	# Van -> Bitlis, Van
+link = { eu4 = 322 v2 = 868 v2 = 867 }	# Anatolia -> Eskishehir, Kütahya
+link = { eu4 = 1848 v2 = 866 v2 = 874 }	# Hamid -> Afyon, Burdur
+# Central America
+# Carribean
+link = { eu4 = 484 v2 = 2209 }	# Havana -> Havana
+link = { eu4 = 485 v2 = 2210 v2 = 2218 }	# Moron -> Jagua, Cayman Islands
+link = { eu4 = 486 v2 = 2212 v2 = 2211 }	# Guantamano -> Santiago de Cuba, Camagüey
+link = { eu4 = 487 v2 = 2217 }	# Jamaica -> Jamaica
+link = { eu4 = 489 v2 = 2215 }	# Tortuga -> Cap Haitien
+link = { eu4 = 488 v2 = 2213 }	# Les Cayes -> Port Au Prince
+link = { eu4 = 490 v2 = 2214 v2 = 2216 }	# Barahonas -> Santo Domingo, La Vega
+link = { eu4 = 482 v2 = 2219 }	# Bahamas -> Bahamas
+link = { eu4 = 483 v2 = 2220 }	# Turks Islands -> Turks And Caicos
+link = { eu4 = 492 v2 = 2222 }	# Puerto Rico -> Puerto Rico
+link = { eu4 = 493 v2 = 2223 v2 = 2226 }	# St. Thomas -> Saint Thomas, Tortola
+link = { eu4 = 1881 v2 = 2236 }	# St. Barthélemy -> Saint Martin
+link = { eu4 = 494 v2 = 2227 }	# St. Martin -> Saint Kitts
+link = { eu4 = 495 v2 = 2225 v2 = 2224 }	# St. Kitts -> Montserrat, Antigua
+link = { eu4 = 496 v2 = 2230 }	# Antigua -> Guadeloupe
+link = { eu4 = 497 v2 = 2232 }	# Guadelopue -> Dominica
+link = { eu4 = 498 v2 = 2228 }	# Dominica -> Martinique
+link = { eu4 = 499 v2 = 2231 }	# Martinique -> Saint Lucia
+link = { eu4 = 500 v2 = 2409 }	# St. Lucia -> Saint Vincent
+link = { eu4 = 501 v2 = 2229 }	# Barbados -> Barbados
+link = { eu4 = 741 v2 = 2233 v2 = 2269 v2 = 2276 v2 = 2267 }	# Cumana -> Grenada, Güiria, Curiapo, Cumaná
+link = { eu4 = 502 v2 = 2237 v2 = 2238 }	# Trinidad -> Trinidad, Tobago
+link = { eu4 = 481 v2 = 203 }	# Bermuda -> Bermuda
+# South America
+# Venezuela
+link = { eu4 = 491 v2 = 2235 }	# Curacao -> Aruba
+link = { eu4 = 831 v2 = 2272 v2 = 2234 v2 = 2273 v2 = 2265 v2 = 2268 v2 = 2264 v2 = 2266 }	# Caracas -> Coro, Curacao, Barquisimeto, Guanare, San Felipe, Caracas, Calabozo
+link = { eu4 = 830 v2 = 2270 v2 = 2271 }	# Maracaibo -> Maracaibo, Valera
+link = { eu4 = 834 v2 = 2274 }	# Barinas -> Barinas
+
+
 }
