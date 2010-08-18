@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.PrintStream;
+import java.util.Date;
 
 import savefileconverter.ConversionStatus;
 import eu3tovic2.ConversionState;
@@ -42,11 +43,32 @@ public class SaveVic2 implements Runnable {
 	}
 	
 	private void writeWorld(World world) {
+		writeHeader(world);
+		
 		for (Province p : world.getProvinces()) {
 			writeProvince(p);
 		}
 	}
 	
+	private void writeHeader(World world) {
+		stream.print("date = \"");
+		printDate(world.getDate());
+		stream.println("\"");
+		stream.println("player = \"" + world.getPlayer() + "\"");
+		stream.print("start_date = \"");
+		printDate(world.getDate());
+		stream.println("\"");
+	}
+	
+	@SuppressWarnings("deprecation")
+	private void printDate(Date date) {
+		stream.print(date.getYear());
+		stream.print('.');
+		stream.print(date.getMonth());
+		stream.print('.');
+		stream.print(date.getDate());
+	}
+
 	private void writeProvince(Province province) {
 		stream.print(province.getTag());
 		stream.println(" = {");

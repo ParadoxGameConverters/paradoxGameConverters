@@ -17,7 +17,7 @@ public class EU3Vic2Conversion implements Runnable {
 		this.status = status;
 		
 		tasks.add(new LoadEu3(state, status));
-		tasks.add(new BuildVic2Provinces(state, status));
+		tasks.add(new BuildVic2Model(state, status));
 		tasks.add(new SaveVic2(state, status));
 	}
 	

@@ -23,7 +23,13 @@ public class CountryTags {
 	}
 	
 	public String convertTag(String tag) {
-		return ids.get(tag);
+		String convTag = ids.get(tag);
+		//if tag not found default to eu3 tag
+		if (convTag == null) {
+			return tag;
+		}
+		
+		return convTag;
 	}
 	
 	//singleton stuff
