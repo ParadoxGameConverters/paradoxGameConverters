@@ -1,0 +1,76 @@
+// ****************************************************************************
+// *                                                                          *
+// *		     EU3 to Victoria 2 conversion project                     *
+// *                                                                          *
+// ****************************************************************************
+
+// standard includes
+#include "stdafx.h"
+#include "World.h"
+
+void World::Init(Object* obj) 
+{
+   ObjectHandler::Init(obj);
+
+   // Now assign and identify provinces
+   std::string key;   
+   std::vector<Object*> leaves = m_source->getLeaves();
+
+   for (int i = 0; i < leaves.size(); i++)
+   {
+      key = leaves[i]->getKey();
+      // Is this a numeric value? If so, must be a province
+      if (atoi(key.c_str()) > 0)
+      {
+	 Province province;
+	 province.Init(leaves[i]);
+	 m_provinces.insert(std::make_pair<std::string, Province>(key, province));
+      }
+      else if ((key.size() == 3) && 
+	       (key.c_str()[0] >= 'A') && (key.c_str()[0] <= 'Z') && 
+	       (key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') && 
+	       (key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z')
+	       )
+      {
+	 // Countries are three uppercase characters
+	 Country country;
+	 country.Init(leaves[i]);
+	 m_countries.insert(std::make_pair<std::string, Country>(key, country));
+      }
+   }
+};
+
+
+Province* World::GetProvince(std::string name)
+{
+   std::map<std::string, Province>::iterator iter = m_provinces.find(name);
+
+   if (iter == m_provinces.end())
+      return NULL;
+
+   return &(*iter).second;
+}
+
+Country* World::GetCountry(std::string name)
+{
+   std::map<std::string, Country>::iterator iter = m_countries.find(name);
+
+   if (iter == m_countries.end())
+      return NULL;
+
+   return &(*iter).second;
+}
+
+std::vector<Province*> World::GetAllProvinces()
+{
+   std::vector<Province*> allProvinces;
+
+   std::map<std::string, Province>::iterator iter;
+   
+   for (iter = m_provinces.begin(); iter != m_provinces.end(); iter++)
+   {
+      allProvinces.push_back(&(*iter).second);
+   }   
+
+   return allProvinces;
+}
