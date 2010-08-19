@@ -1,0 +1,8 @@
+link = { eu3 = 231 vic = 518 } # Porto -> Oporto 
+link = { eu3 = 232 vic = 519 } # Braganca -> Vila Real
+link = { eu3 = 227 vic = 521 vic = 522 vic = 523} # Lisboa -> Lisbon Coimbra Abrantes
+link = { eu3 = 228 vic = 520 } # Beira -> Covilha
+link = { eu3 = 229 vic = 524 vic = 525} # Alentejo -> Setubal Evora
+link = { eu3 = 230 vic = 526 vic = 527} # Algarve -> Beja Faro
+link = { eu3 = 367 vic = 2134 } # The Azores -> Azores
+link = { eu3 = 368 vic = 2135 } # Madeira -> Madeira

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import eug.parser.EUGFileIO;
-import eug.shared.GenericList;
 import eug.shared.GenericObject;
 import eug.shared.ObjectVariable;
 
