@@ -1,3 +1,6 @@
+#One to many mapping of province IDs.
+#Format: link = { eu3 = _eu3id_ ( vic = _vicid_ )+ }
+
 link = { eu3 = 231 vic = 518 } # Porto -> Oporto 
 link = { eu3 = 232 vic = 519 } # Braganca -> Vila Real
 link = { eu3 = 227 vic = 521 vic = 522 vic = 523} # Lisboa -> Lisbon Coimbra Abrantes

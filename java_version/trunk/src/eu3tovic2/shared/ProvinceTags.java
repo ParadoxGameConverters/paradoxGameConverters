@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 
 import eug.parser.EUGFileIO;
 import eug.shared.GenericObject;
@@ -18,39 +19,56 @@ public class ProvinceTags {
 			throw new IOException("Failure to load province tag file " + file.getName());
 		}
 		
-		ArrayList<Integer> source = new ArrayList<Integer>();
+		HashSet<Integer> destSet = new HashSet<Integer>(); //for error checking
 		
 		for (GenericObject link : root.children) {
-			if (!link.contains("eu3") || !link.contains("vic") ||
-					!link.name.equals("link")) {
-				System.out.println(link.name);
-				System.out.println(link.contains("eu3"));
-				System.out.println(link.contains("vic"));
+			if (!link.name.equals("link")) {
+				throw new IOException("Node which was not a link called " + link.name);
+			}
+			
+			if (!link.contains("eu3") || !link.contains("vic")) {
 				continue;
 			}
 			
-			source.clear();
+			Integer sourceTag = null;
 			ArrayList<Integer> dest = new ArrayList<Integer>();
+			
 			for (ObjectVariable value : link.values) {
 				if (value.varname.equals("eu3")) {
-					source.add(Integer.parseInt(value.getValue()));
+					if (sourceTag == null) {
+						sourceTag = Integer.parseInt(value.getValue());
+					}
+					else {
+						System.err.println("Warning: Multiple source province IDs in same link: " +
+								sourceTag + " is prioritized instead of " + value.getValue());
+					}
 				}
 				else if (value.varname.equals("vic")) {
-					dest.add(Integer.parseInt(value.getValue()));
+					Integer destTag = Integer.parseInt(value.getValue());
+					
+					if (destSet.contains(destTag)) {
+						System.err.println("Warning: Same destination province ID in multiple links: " +
+								destTag);
+					}
+					else {
+						dest.add(destTag);
+						destSet.add(destTag);
+					}
 				}
 				else {
-					throw new IOException("Bad value type in link");
-				}
-			}
-			
-			if (source.size() > 1) {
-				System.err.println("Warning: Multiple source IDs in same link, all but first will be disregarded:");
-				for (Integer id : source) {
-					System.err.println(id);
+					throw new IOException("Bad value in province link");
 				}
 			}
 
-			ids.put(source.get(0), dest);
+			if (sourceTag != null) {
+				if (ids.containsKey(sourceTag)) {
+					System.err.println("Warning: Same source province ID in multiple links: " +
+							sourceTag);
+				}
+				else {
+					ids.put(sourceTag, dest);
+				}
+			}
 		}
 	}
 	
