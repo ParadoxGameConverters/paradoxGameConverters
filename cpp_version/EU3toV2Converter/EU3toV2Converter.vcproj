@@ -233,6 +233,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\Parsers\InstructionsParser.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\Parsers\InstructionsParser.h"
+				>
+			</File>
+			<File
 				RelativePath=".\Parsers\Object.cpp"
 				>
 			</File>

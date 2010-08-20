@@ -1,0 +1,232 @@
+mappings={
+
+## Italy ##
+
+link = { eu3=110 vic=734 }                                          # Trent -> Trent
+link = { eu3=111 vic=733 }                                          # Friuli -> Udine
+link = { eu3=1774 vic=732 }                                         # Treviso -> Treviso
+link = { eu3=112 vic=729 }                                          # Venice -> Venice
+link = { eu3=108 vic=730 }                                          # Verona -> Verona
+link = { eu3=107 vic=727 }                                          # Brescia -> Bergamo
+link = { eu3=109 vic=728 }                                          # Mantua -> Brescia
+link = { eu3=104 vic=726 }                                          # Lombardia -> Milan
+link = { eu3=103 vic=720 vic=722 vic=723 }                              # Piedmont -> Turin Novara Alessandria
+link = { eu3=205 vic=466 vic=465 vic=721 }                              # Savoy -> Chambery Annecy Aosta
+link = { eu3=102 vic=472 }                                          # Nice -> Nice
+link = { eu3=101 vic=724 vic=725 }                                        # Liguria -> Genoa Savonna
+link = { eu3=105 vic=738 }                                          # Parma -> Parma
+link = { eu3=106 vic=739 vic=740 }                                        # Modena -> Modena Massa
+link = { eu3=113 vic=742 vic=731 }                                        # Ferrara -> Ferrara Padua
+link = { eu3=114 vic=743 vic=741 }                                        # Romagna -> Ravenna Bologna
+link = { eu3=116 vic=744 }                                          # Firenze -> Florence
+link = { eu3=115 vic=745 vic=746 }                                        # Pisa -> Leghorn Lucca
+link = { eu3=117 vic=747 vic=748 }                                        # Siena -> Siena Grosetto
+link = { eu3=119 vic=752 vic=751 }                                        # Ancona -> Ancona Perugia
+link = { eu3=118 vic=749 vic=750 }                                        # Roma -> Rome Viterbo
+link = { eu3=120 vic=753 }                                          # Abruzzi -> Aquila
+link = { eu3=121 vic=754 vic=2567 }                                       # Napoli -> Naples Gaeta
+link = { eu3=122 vic=756 vic=757 vic=758 }                              # Apulia -> Bari Foggia Brindisi
+link = { eu3=123 vic=760 vic=761 vic=755 }                              # Calabria -> Catanzaro Potenza Salerno
+link = { eu3=124 vic=763 vic=764 }                                        # Messina -> Messina Catania
+link = { eu3=125 vic=762 }                                          # Palermo -> Palermo
+link = { eu3=127 vic=765 vic=766 }                                        # Sardinia -> Cagliari Sassari
+
+## Malta ##
+link = { eu3=126 vic=854 }                                          # Malta -> Malta
+
+## Corsica ##
+link = { eu3=1247 vic=473 }                                         # Corsica -> Corsica
+
+## Great Britain ##
+
+link = { eu3=252 eu3=253 eu3=369 vic=267 }						# Highlands Western Isles Orkney -> Inverness 
+link = { eu3=251 vic=266 }						# Aberdeen -> Aberdeen 
+link = { eu3=250 vic=268 vic=270 }					# Fife -> Dundee Stirling
+link = { eu3=248 vic=269 }						# Lothian -> Edinburgh 
+link = { eu3=249 vic=271 vic=272 }						# Ayrshire -> Glasgow Dumfries 
+link = { eu3=246 vic=280 }						# Northumberland -> Newcastle-upon-Tyne
+link = { eu3=247 vic=279 }						# Cumbria -> Carlisle 
+link = { eu3=245 vic=281 vic=282 vic=283 }					# Yorkshire -> Hull Leeds Sheffield 
+link = { eu3=244 vic=278 vic=277 vic=285 }					# Lancashire -> Manchester Liverpool Chester
+link = { eu3=243 vic=290 vic=288 vic=289 }					# Lincoln -> Lincoln Nottingham Leicester
+link = { eu3=240 vic=284 vic=287 vic=286 }					# Marches -> Birmingham Coventry Shrewsbury 
+link = { eu3=242 vic=276 vic=275 }					# Gwynedd -> Holyhead Llandrindod 
+link = { eu3=241 vic=273 vic=274 }					# Glamorgan -> Cardiff Cardigan 
+link = { eu3=238 vic=291 vic=292 vic=293 }					# East Anglia -> Cambridge Ipswich Chelmsford
+link = { eu3=237 vic=294 vic=295 }				# Oxfordshire -> Oxford St ALbans
+link = { eu3=239 vic=296 vic=298 }					# Gloucestershire -> Bristol Bath
+link = { eu3=236 vic=300 }						# London -> London 
+link = { eu3=235 vic=301 vic=302 }					# Kent -> Canterbury Brighton 
+link = { eu3=234 vic=303 vic=297 }					# Wessex -> Southhampton Salisbury 
+link = { eu3=233 vic=299 }					# Cornwall -> Plymouth 
+
+
+## Ireland ##
+
+link = { eu3=372 vic=254 vic=255 vic=256 vic=257 }					# Ulster -> Belfast Londonderry Armagh Donegal
+link = { eu3=376 vic=258 vic=259 }					# Connaught -> Galway Sligo
+link = { eu3=374 vic=264 vic=265 }					# Leinster -> Kildare Wexford 
+link = { eu3=373 vic=263 }						# Meath -> Dublin 
+link = { eu3=375 vic=260 vic=261 vic=262 }
+
+## Japan ##
+
+link = { eu3=1015 vic=1678 vic=1679 }			# Okinawa -> Okinawa Amari
+link = { eu3=1031 vic=1642 vic=1644 vic=1643 }		# Hokkaido -> Hakodate Nemuro Ishikara 
+link = { eu3=1025 vic=1671 vic=1673 }			# Dewa -> Akita Yamagata
+link = { eu3=1026 vic=1668 vic=1669 vic=1670 vic=1672 }		# Mutsu -> Sendai Fukushima Morioka Aomori
+link = { eu3=1027 vic=1650 vic=1653 }			# Hitachi -> Chiba Mito
+link = { eu3=1028 vic=1649 vic=1651 vic=1652 vic=1674 }			# Musashi -> Edo Yokohama Urawa Utsunomiya
+link = { eu3=1024 vic=1645 }		# Echigo -> Niigata
+link = { eu3=1030 vic=1676 }				# Owari -> Shizuoka
+link = { eu3=1029 vic=1675 vic=1677 }			# Shinano -> Nagoya Nagano 
+link = { eu3=1023 vic=1646 vic=1648 vic=1647 }		# Echizen -> Kanazawa Toyama Fukui 
+link = { eu3=1022 vic=1656 vic=1658 }				# Kii -> Wakayama Nara
+link = { eu3=1020 vic=1657 }				# Yamashiro -> Kyoto 
+link = { eu3=1021 vic=1655 vic=1659 }			# Settsu -> Osaka Kobe
+link = { eu3=1018 vic=1641 }				# Izumo -> Matsue 
+link = { eu3=1019 vic=1638 vic=1639 }				# Harima -> Hiroshima Okayama 
+link = { eu3=1017 vic=1640 }				# Nagato -> Yamaguchi 
+
+link = { eu3=1016 vic=1665 vic=1666 vic=1667 }		# Shikoku -> Kochi Matsuyama Tokushima
+
+link = { eu3=1013 vic=1661 vic=1660 }		# Hizen -> Nagasaki Fukuoka
+link = { eu3=1014 vic=1664 }				# Bungo -> Kumamoto
+link = { eu3=1012 vic=1662 vic=1663 }		# Satsuma -> Kagoshima Miyazaki
+	
+	
+
+## Korea ##
+
+link = { eu3=732 vic=1621 vic=1622 vic=1623 vic=1629 }		# Hamgyeong -> Hamhung Chongjin Kimchaek Wonsan
+link = { eu3=733 vic=1619 vic=1620 vic=1627 vic=1626 vic=1625 }	# Pyeongan -> Pyongyang Chonchon Sariwon Haeju Kaesong
+link = { eu3=735 vic=1624 vic=1628 vic=1636 }		# Chungcheong -> Seoul Inchon Taejon 
+link = { eu3=734 vic=1630 vic=1631 }			# Gangwon -> Kangnung Wonju 
+link = { eu3=736 vic=1632 vic=1633 vic=1634 }		# Gyeongsang -> Pusan Taegu Pohang
+link = { eu3=737 vic=1635 vic=1637 }			# Jeolla -> Kwangju Cheju 
+
+#Scandinavia
+# Sweden & Norway
+link = { eu3=24 vic=310 vic=311 } # Agder
+link = { eu3=17 vic=312 vic=313 vic=316 } # Akershus
+link = { eu3=16 vic=329 } # Bohuslan
+link = { eu3=22 vic=315 vic=314 } # Eidsiva
+link = { eu3=23 vic=309 vic=308 } # Bergenhus
+link = { eu3=20 vic=305 } # Tonderlag
+link = { eu3=10 vic=319 } # Jamtland
+link = { eu3=21 vic=306 } # Halogaland
+link = { eu3=315 vic=307 } # Finnmark
+link = { eu3=18 vic=321 } # Lappland
+link = { eu3=11 vic=320 } # Vasterbotten
+link = { eu3=8 vic=323 } # Dalaskogen
+link = { eu3=5 vic=328 } # Varmland
+link = { eu3=9 vic=317 vic=318 } # Halsingland
+link = { eu3=1 vic=324 vic=322 vic=348 } # Stockholm/Uppland
+link = { eu3=4 vic=327 vic=348 } # Bergenslagen
+link = { eu3=2 vic=325 } # Ostergotland
+link = { eu3=7 vic=330 } # Vastergotland
+link = { eu3=26 vic=334 } # Halland
+link = { eu3=3 vic=333 vic=332 } # Smaland
+link = { eu3=6 vic=335 vic=374 } # Skane
+link = { eu3=25 vic=331 vic= } # Gotland
+
+# Denmark & Holstein
+link = { eu3=15 vic=367 vic=366 vic=368 vic=2557 } # Jylland
+link = { eu3=14 vic=373 } # Fyn
+link = { eu3=12 vic=372 } # Sjaelland
+link = { eu3=13 vic=371 vic=370 } # Slesvig
+link = { eu3=1775 vic=369 } # Holstein
+
+# Finland
+link = { eu3=27 vic=345 vic=347 } # Finland
+link = { eu3=28 vic=340 vic=343 } # Nyland
+link = { eu3=30 vic=339 } # Viborg
+link = { eu3=29 vic=344 vic=341 } # Tavastland
+link = { eu3=19 vic=338 vic=336 vic=338 } # Osterbotten
+link = { eu3=31 vic=341 vic=342 } # Savolax
+link = { eu3=32 vic=995 vic= } # Kexholm
+link = { eu3=1777 vic=982 vic=2587 vic=983 } # Kola
+link = { eu3=1776 vic=984 } # Karelia
+link = { eu3=33 vic=994 } # Neva
+
+## Spain, Gibraltar and Islands 29 Provinces to 45 Provinces
+
+link = { eu3=206 vic=474 vic=476 } # Galicia -> La Coruna Vigo
+link = { eu3=207 vic=475 } # Asturias -> Oviedo
+link = { eu3=208 vic=2509 vic=477 } # Leon -> Leon
+link = { eu3=1745 vic=478 } # Cantabria -> Santander
+link = { eu3=209 vic=492 } # Vizcaya -> Bilbao
+link = { eu3=210 vic=493 } # Navarra -> Pamplona
+link = { eu3=333 vic=502 } # The Baleares -> Balearic Islands
+link = { eu3=216 vic=482 } # Salamanca -> Salamanca
+link = { eu3=1747 vic=486 } # Caceres -> Caceres
+link = { eu3=366 vic=2136 } # The Canarias -> Canary Islands
+link = { eu3=221 vic=507 vic=506 } # Murcia -> Murcia Cartagena
+link = { eu3=226 vic=517 } # Gibraltar -> Gibraltar
+link = { eu3=211 vic=496 vic=500 } # Pirineo -> Huesca Lerida
+link = { eu3=212 vic=499 } # Girona -> Gerona
+link = { eu3=213 vic=501 vic=498 } # Barcelona -> Terragona Barcelona
+link = { eu3=220 vic=504 vic=503 vic=490 } # Valencia -> Castellon Valencia Cuenca
+link = { eu3=1750 vic=505 } # Alicante -> Alicante
+link = { eu3=217 vic=483 vic=487 vic=488 } # Madrid -> Avila Madrid Siguenza
+link = { eu3=215 vic=480 vic=481 } # Castilla La Vieja -> Valladolid Soria
+link = { eu3=1746 vic=479 vic=494 } # Burgos -> Burgos Logrono
+link = { eu3=214 vic=495 vic=497 } # Aragon -> Zaragoza Teruel
+link = { eu3=1749 vic=512 } # Cadiz -> Cadiz
+link = { eu3=224 vic=511 vic=509 } # Andalucia -> Huelva Seville
+link = { eu3=218 vic=484 vic=485 } # Badajoz -> Badajoz Almendalejo
+link = { eu3=223 vic=513 vic=514 } # Granada -> Granada Malaga
+link = { eu3=225 vic=510 } # Cordoba -> Cordoba
+link = { eu3=222 vic=515 } # Almeria -> Almeria
+link = { eu3=1748 vic=516 } # La Mancha -> Jaen
+link = { eu3=219 vic=489 vic=491 vic=508 } # Toledo -> Toledo Ciudad Real Albacete
+
+## Portugal and Atlantic Islands
+
+link = { eu3=231 vic=518 } # Porto -> Oporto 
+link = { eu3=232 vic=519 } # Braganca -> Vila Real
+link = { eu3=227 vic=521 vic=522 vic=523} # Lisboa -> Lisbon Coimbra Abrantes
+link = { eu3=228 vic=520 } # Beira -> Covilha
+link = { eu3=229 vic=524 vic=525} # Alentejo -> Setubal Evora
+link = { eu3=230 vic=526 vic=527} # Algarve -> Beja Faro
+link = { eu3=367 vic=2134 } # The Azores -> Azores
+link = { eu3=368 vic=2135 } # Madeira -> Madeira
+
+## Australia and New Zealand ## 
+
+link = { eu3=1106 vic=2509 vic=2571 } # Whangarei -> Auckland Tauranga 
+link = { eu3=1107 vic=2512 vic=2510 } # Taranaki -> Wellington New Plymouth 
+link = { eu3=1108 vic=2511 } # Wairoa -> Napier 
+link = { eu3=1109 vic=2516 } # Timaru -> Nelson 
+link = { eu3=1246 vic=2513 vic=2515 vic=2514 } # Aorangi -> Dunedin Christchurch Hokitika
+
+link = { eu3=1094 vic=2483 vic=2484 vic=2485 vic=2486 } # Gubbi Gubbi -> Brisbane Gladstone Clermont Toowoomba 
+link = { eu3=1093 vic=2489 vic=2490 } # Barunggam -> Longreach Charleville 
+link = { eu3=1088 vic=2478 vic=2480 vic=2481 } # Wergaia -> Ballarat Beechworth Swan Hill 
+link = { eu3=1092 vic=2469 vic=2470 } # Bundjalung -> Newcastle Port Macquarie 
+link = { eu3=1085 vic=2482 } # Paredarerme -> Tasmania 
+link = { eu3=1086 vic=2491 vic=2493 vic=2494 vic=2492 } # Kaurna -> Adelaide Robe Port Augusta Port Lincoln 
+link = { eu3=1090 vic=2468 vic=2471 vic=2472 } # Eora -> Sydney Ophir Eden 
+link = { eu3=1089 vic=2473 } # Wiradjuri -> Wagga Wagga 
+link = { eu3=1091 vic=2474 vic=2475 } # Kamilaroi -> Moree Broken Hill 
+link = { eu3=1087 vic=2476 vic=2479 vic=2477 } # Woiworung -> Melbourne Sale Warmaambool 
+link = { eu3=1084 vic=2497 vic=2498 vic=2499 } # Wadjuk -> Perth Geraldton Kojonup
+
+## Papua New Guinea and the Soloman Islands ##
+
+link = { eu3=1236 vic=2531 vic=2530 vic=2537 vic=1531 } # Rabbaul -> Madang Lae New Britain New Ireland 
+link = { eu3=1237 vic=2528 vic=2529 } # Papua -> Port Moresby Kerema 
+link = { eu3=1245 vic=1453 } # Irian -> Sorong 
+link = { eu3=1238 vic=2534 vic=2539 } # Solomon Islands -> Soloman Islands Bougainville
+
+## Pacific Islands ##
+
+link = { eu3=1239 vic=1097 vic=2535 vic=2536 } # Vanuatu -> New Caledonia New Hebrides Santa Cruz Islands 
+link = { eu3=1240 vic=658 } # Hawaii -> Hawaii 
+link = { eu3=1241 vic=2541 } # Kiribati -> Ellice Islands 
+link = { eu3=1242 vic=2454 vic=2520 } # Fiji -> Fiji Taveuni 
+link = { eu3=1243 vic=2543 vic=2544 } # Samoa -> Samoa Pago Pago 
+link = { eu3=1244 vic=801 vic=2553 } # Tahiti -> Tahiti
+
+
+}

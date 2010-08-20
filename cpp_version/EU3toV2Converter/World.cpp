@@ -16,7 +16,7 @@ void World::Init(Object* obj)
    std::string key;   
    std::vector<Object*> leaves = m_source->getLeaves();
 
-   for (int i = 0; i < leaves.size(); i++)
+   for (unsigned int i = 0; i < leaves.size(); i++)
    {
       key = leaves[i]->getKey();
       // Is this a numeric value? If so, must be a province
@@ -35,6 +35,7 @@ void World::Init(Object* obj)
 	 // Countries are three uppercase characters
 	 Country country;
 	 country.Init(leaves[i]);
+	 country.SetName(key);
 	 m_countries.insert(std::make_pair<std::string, Country>(key, country));
       }
    }

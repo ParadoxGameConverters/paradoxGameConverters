@@ -19,7 +19,7 @@ void Country::Init(Object* obj)
    // Add a flag that will be present in all countries
    m_flags.SetFlag(std::string("ALL"), std::string("1"));
 
-   for (int i = 0; i < leaves.size(); i++)
+   for (unsigned int i = 0; i < leaves.size(); i++)
    {
       key = leaves[i]->getKey();
       strVal = obj->safeGetString(key);
@@ -32,7 +32,7 @@ void Country::Init(Object* obj)
       {
 	 // Retrieve individual tech values
 	 std::vector<Object*> techs = leaves[i]->getLeaves();
-	 for (int j = 0; j < techs.size(); j++)
+	 for (unsigned int j = 0; j < techs.size(); j++)
 	 {
 	    key = techs[j]->getKey();
 	    strVal = techs[j]->getToken(0);
@@ -42,7 +42,7 @@ void Country::Init(Object* obj)
       else if (key.compare("flags") == 0)
       {
 	 std::vector<Object*> flags = leaves[i]->getLeaves();
-	 for (int j = 0; j < flags.size(); j++)
+	 for (unsigned int j = 0; j < flags.size(); j++)
 	 {
 	    key = flags[j]->getKey();
 	    strVal = leaves[i]->safeGetString(key);
@@ -51,3 +51,13 @@ void Country::Init(Object* obj)
       }
    }
 };
+
+void Country::SetSourceCountries(std::vector<Country*> sourceCountries)
+{ 
+   m_sources = sourceCountries; 
+
+   for (unsigned int i = 0; i < m_sources.size(); i++)
+   {
+      m_sources[i]->SetDestCountry(this);
+   }
+}

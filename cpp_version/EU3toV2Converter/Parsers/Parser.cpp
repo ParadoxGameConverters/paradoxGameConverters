@@ -58,9 +58,10 @@ void readFile (std::ifstream& read) {
   std::string currObject;  
   bool topLevel = true; 
 
-  while (!read.eof()) {
+  while (read.good()) {
     std::string buffer;
     std::getline(read, buffer);
+
     count++;
     int currBraces = trim(buffer); 
     openBraces += currBraces; 

@@ -1,218 +1,169 @@
-#include "Parser.h"
-#include "Object.h"
+#include "InstructionsParser.h"
 
-Object* Parser::topLevel = NULL;  
-std::vector<Object*> stack; 
-std::vector<Object*> objstack; 
+static varDefinition	curVar;
+static ruleset		curRules;
+static bool		processingVar;
 
-void initParser()
+static std::vector<varDefinition>   processedVars;
+static std::vector<ruleset>	    processedRulesets;
+
+const static std::string COUNTRYVAR = "COUNTRYVAR";
+const static std::string PROVINCEVAR = "PROVINCEVAR";
+const static std::string WORLDVAR = "WORLDVAR";
+const static std::string RULESET = "RULESET";
+
+void newVarOrRule (char const* first, char const* last)
 {
-   Parser::topLevel = new Object("topLevel");
+   std::string key(first, last);
+
+   // First, move current variable and ruleset to processed status
+   if (curVar.name.size() > 0)
+   {
+      std::vector<instruction> blanks;
+
+      processedVars.push_back(curVar);
+
+      curVar.name = "";
+      curVar.type = VAR_ILLEGAL;
+      curVar.instructions = blanks;
+   }
+
+   if (curRules.rules.size() > 0)
+   {
+      processedRulesets.push_back(curRules);
+      curRules.name = "";
+      curRules.rules.empty();
+   }
+
+   if (key.compare(COUNTRYVAR) == 0)
+   {
+      processingVar = TRUE;
+      curVar.type = VAR_COUNTRY;
+   }
+   else if (key.compare(PROVINCEVAR) == 0)
+   {
+      processingVar = TRUE;
+      curVar.type = VAR_PROVINCE;
+   }
+   else if (key.compare(WORLDVAR) == 0)
+   {
+      processingVar = TRUE;
+      curVar.type = VAR_WORLD;
+   }
+   else if (key.compare(RULESET) == 0)
+   {
+      processingVar = FALSE;      
+   }
+   else
+   {
+      // TODO: Error!
+   }
 }
 
-int trim (std::string& str) {
-  // Returns net number of braces opened by str, and trims leading and trailing whitespace.
+void getVarRuleName (char const* first, char const* last)
+{
+   std::string key(first, last);
 
-  const char* s = str.c_str();
-  int ret = 0; 
-  unsigned int strSize = str.size();
-  if (0 == strSize) return 0;
-  bool isInLiteral = false; 
-  for (unsigned int i = 0; i < strSize; ++i) {
-    if ('"' == s[i]) isInLiteral = !isInLiteral; 
-    if (isInLiteral) continue; 
-    if ('{' == s[i]) ++ret; 
-    else if ('}' == s[i]) --ret;
-  }
-
-  unsigned int first = 0;
-  for (; first < strSize; ++first) {
-    if (s[first] == ' ') continue;
-    if (13 == (int) s[first]) continue; // Carriage return
-    break;
-  }
-
-  unsigned int last = strSize - 1; 
-  for (; last > first; --last) {
-    if (' ' == s[last]) continue;
-    if (13 == (int) s[last]) continue; 
-    break;
-  }
-
-  unsigned int fcomment = 0;
-  for (; fcomment < strSize; ++fcomment) {
-    if (s[fcomment] != '#') continue; 
-    break;
-  }
-  if (fcomment < last) last = fcomment-1; 
-
-  str = str.substr(first, last - first + 1); 
-  return ret; 
-}
-
-void readFile (std::ifstream& read) {
-  clearStack(); 
-  int count = 0; 
-  int prevCount = 0; 
-  int openBraces = 0;
-  std::string currObject;  
-  bool topLevel = true; 
-
-  while (!read.eof()) {
-    std::string buffer;
-    std::getline(read, buffer);
-    count++;
-    int currBraces = trim(buffer); 
-    openBraces += currBraces; 
-    currObject += " " + buffer; 
-
-    if (openBraces > 0) {
-      topLevel = false;
-      continue; 
-    }
-    if (currObject == "") continue; 
-
-    // Don't try to end an object that hasn't started properly;
-    // accounts for such constructions as
-    // object = 
-    // { 
-    // where openBraces is zero after the first line of the object. 
-    // Not a problem for non-top-level objects since these will have
-    // nonzero openBraces anyway. 
-    if (topLevel) continue; 
-
-    openBraces = 0; 
-    if (count - prevCount > 50000) {
-      std::cout << "Parsed to line " << count << "\n";
-      prevCount = count; 
-    }
-    makeObject(currObject);
-    currObject.clear(); 
-    topLevel = true; 
-  }
-
-  trim(currObject); 
-  // MAX: Ignore this 
-  /*
-  if (currObject.size() > 0) {
-    std::cout << "Warning: Unable to parse file; problem is with \"" << currObject << "\"" << std::endl; 
-    std::cout << "Aborting, unable to parse file" << std::endl; 
-    abort();
-  }
-  */
+   if (processingVar)
+   {
+      curVar.name = key;
+   }
+   else
+   {
+      curRules.name = key;
+   }
 }
 
 
-void clearStack () {
-  if (0 < stack.size()) std::cout << "Warning: Clearing stack size " 
-				  << stack.size() 
-				  << ". This should not happen in normal operation." 
-				  << std::endl; 
-  for (std::vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i) {
-    //std::cout << (*i)->getKey() << std::endl; 
-    std::cout << (*(*i)) << std::endl; 
-  }
-  stack.clear();
-}
+void parseInstruction (char const* first, char const* last)
+{
+   instruction instr;
+   std::string key(first, last);
+   std::vector<std::string> tokens = tokenize_str(key);
 
-void setLHS (char const* first, char const* last) {
-  std::string key(first, last); 
-  //std::cout << "Setting lefthand side " << key << std::endl; 
-  Object* p = new Object(key); 
-  if (0 == stack.size()) {
-    Parser::topLevel->setValue(p);
-  }
-  stack.push_back(p); 
-}
+   // Skip empty strings
+   if (tokens.size() < 1)
+      return;
 
-void pushObj (char const* first, char const* last) {
-  std::string key("objlist");
-  Object* p = new Object(key); 
-  p->setObjList(); 
-  objstack.push_back(p); 
-}
+   // The first token is the type of action we want to do
+   if (tokens[0].compare("=") == 0)
+   {
+      // Set the value from either flag or numeric constant
+      // Is second token starting with $?            
+      if ((tokens.size()>1) && (tokens[1].at(0) == '$'))
+      {
+	 // Add flag
+	 instr.type = INS_SET_FLAG;
+	 instr.strVal = tokens[1].substr(1);
+	 instr.dblVal = 1.0;
 
-
-void setRHSleaf (char const* first, char const* last) {
-  std::string val(first, last); 
-  Object* l = stack.back();
-  stack.pop_back(); 
-  l->setValue(val); 
-  if (0 < stack.size()) {
-    Object* p = stack.back(); 
-    p->setValue(l); 
-  }
-}
-
-void setRHStaglist (char const* first, char const* last) {
-  Object* l = stack.back();
-  stack.pop_back(); 
-
-  std::string val(first, last); 
-  std::string tag;
-  bool stringmode = false; 
-  for (unsigned int i = (val[0] == '{') ? 1 : 0; i < val.size(); ++i) {
-    if ((val[i] == ' ') && (0 == tag.size())) continue; 
-    if (val[i] == '"') {
-      tag.push_back(val[i]); 
-      if (stringmode) {
-	l->addToList(tag); 
-	tag.clear(); 
+	 if ((tokens.size()>2) && (atof(tokens[2].c_str()) != 0.0))
+	    instr.dblVal = atof(tokens[2].c_str());
       }
-      stringmode = !stringmode;
-      continue;
-    }
-    if (((val[i] == ' ') && (!stringmode)) || (val[i] == '}')) {
-      if (tag.size() > 0) l->addToList(tag); 
-      tag.clear(); 
-      continue;
-    }
-    tag.push_back(val[i]); 
-  }
+      else if ((tokens.size()>1) && (atof(tokens[1].c_str()) != 0.0))
+      {
+	 // Add value
+	 instr.type = INS_SET_VALUE;
+	 instr.strVal = "";
+	 instr.dblVal = atof(tokens[1].c_str());
+      }
+   }
+   else if ((tokens[0].compare("+=") == 0) || (tokens[0].compare("+") == 0))
+   {
+      // Is second token starting with $?            
+      if ((tokens.size()>1) && (tokens[1].at(0) == '$'))
+      {
+	 // Add flag
+	 instr.type = INS_ADD_FLAG;
+	 instr.strVal = tokens[1].substr(1);
+	 instr.dblVal = 1.0;
 
-  if (0 < stack.size()) {
-    Object* p = stack.back(); 
-    p->setValue(l); 
-  }
+	 if ((tokens.size()>2) && (atof(tokens[2].c_str()) != 0.0))
+	    instr.dblVal = atof(tokens[2].c_str());
+      }
+      else if ((tokens.size()>1) && (atof(tokens[1].c_str()) != 0.0))
+      {
+	 // Add value
+	 instr.type = INS_ADD_VALUE;
+	 instr.strVal = "";
+	 instr.dblVal = atof(tokens[1].c_str());
+      }
+   }
+
+   curVar.instructions.push_back(instr);
 }
 
-void setRHSobject (char const* first, char const* last) {
-  // No value is set, a bunch of leaves have been defined. 
-  Object* l = stack.back();
-  stack.pop_back(); 
-  if (0 < stack.size()) {
-    Object* p = stack.back(); 
-    p->setValue(l); 
-  }
+void finish()
+{
+   processedVars.push_back(curVar);
+   processedRulesets.push_back(curRules);
 }
 
-void setRHSobjlist (char const* first, char const* last) {
-  if (0 < stack.size()) {
-    Object* p = stack.back(); 
-    p->setValue(objstack); 
-  }
-  stack.pop_back(); 
-  objstack.clear(); 
+void readInsFile (std::ifstream& read)
+{
+   std::ostringstream data;
+
+   while (read.good())
+   {
+      std::string buffer;
+      std::getline(read, buffer);   
+
+      string::size_type endPos = buffer.find_first_of("#", 0);
+
+      if (string::npos != endPos)
+      {
+	 buffer = buffer.substr(0, endPos);	 
+	 if (buffer.size() < 1)
+	    continue;
+      }
+
+      data << buffer << "\n";
+   }
+   
+   InstructionsParser p;
+   BOOST_SPIRIT_DEBUG_GRAMMAR(p);
+   boost::spirit::parse_info<> result = boost::spirit::parse(data.str().c_str(), p, boost::spirit::nothing_p);
+
+   finish();
 }
-
-
-bool makeObject (std::string& command) {
-  //std::cout << "Entering makeObject with " << command << std::endl; 
-  static Parser p;
-  //BOOST_SPIRIT_DEBUG_GRAMMAR(p);
-  boost::spirit::parse_info<> result = boost::spirit::parse(command.c_str(), p, boost::spirit::nothing_p);
-  if (result.full) {
-    //std::cout << "Matched " << command << std::endl; 
-    // Do stuff with full command
-
-    //command.clear(); 
-    return true; 
-  }
-
-  //std::cout << "No match in " << command << " stopped at \"" << result.stop << "\"" << std::endl;
-  return false; 
-}
-
-
-
 

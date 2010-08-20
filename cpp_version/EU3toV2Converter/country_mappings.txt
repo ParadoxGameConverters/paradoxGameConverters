@@ -1,0 +1,5 @@
+mappings={
+
+link = { eu3=SAV vic=FRA }
+
+}
