@@ -26,6 +26,10 @@ void readInsFile (std::ifstream& read);
 
 struct InstructionsParser : public boost::spirit::grammar<InstructionsParser> {
 
+  static std::vector<varDefinition> GetProcessedVars();
+  static std::vector<ruleset> GetProcessedRulesets();
+  static void Refresh();
+
   static const unsigned int PROCESS = 1;
   static const unsigned int STR     = 2;  
   static const unsigned int VARDEF  = 3;  

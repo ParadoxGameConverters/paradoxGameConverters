@@ -54,6 +54,12 @@ void Country::Init(Object* obj)
 
 void Country::SetSourceCountries(std::vector<Country*> sourceCountries)
 { 
+   // Add source country flags - just a hack for now; later need to decide how to add flags based on PowerLevel
+   if ((m_sources.size() < 1) && (sourceCountries.size() > 0))
+   {
+      m_flags.AddFlagSet(sourceCountries[0]->m_flags);
+   }
+
    m_sources = sourceCountries; 
 
    for (unsigned int i = 0; i < m_sources.size(); i++)

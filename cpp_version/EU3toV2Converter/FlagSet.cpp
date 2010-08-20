@@ -84,3 +84,13 @@ bool FlagSet::IsPresent(std::string flagName)
 
    return (iter != m_flags.end());
 }
+
+void FlagSet::AddFlagSet(FlagSet& other)
+{
+   std::map<std::string, flagValue>::iterator iter;
+
+   for (iter = other.m_flags.begin(); iter != other.m_flags.end(); iter++)
+   {
+      m_flags.insert(std::make_pair<std::string, flagValue>( (*iter).first, (*iter).second ));
+   }   
+}

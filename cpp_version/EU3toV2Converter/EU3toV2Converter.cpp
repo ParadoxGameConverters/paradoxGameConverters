@@ -8,6 +8,7 @@
 #include "World.h"
 #include "Mapper.h"
 #include "Logger.h"
+#include "VariableCalculator.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -20,7 +21,7 @@ int _tmain(int argc, _TCHAR* argv[])
   // std::vector<oneToMany> result = parser.ProcessFile(std::string("C:\\Documents and Settings\\mstseglo\\My Documents\\Visual Studio 2005\\Projects\\EU3toV2Converter\\Supplementary\\EU3_to_V2\\Book1.csv"));
    std::vector<oneToMany> provinceIDMap = parser.ProcessFile(std::string("1.csv"));
 
-   std::ifstream read, read2, read3, read4;
+   std::ifstream read, read2, read3, read4, read5;
    std::ostringstream stream;
 
    stream.str("");
@@ -81,12 +82,17 @@ int _tmain(int argc, _TCHAR* argv[])
    write << *(vickyWorld.GetSource()); 
    write.close(); 
 
-   /*
+   
    InstructionsParser insParser;
-   read3.open(std::string("ins.txt").c_str());   
-   readInsFile(read3);   
-   read3.close();
-*/
+   InstructionsParser::Refresh();
+   read5.open(std::string("ins.txt").c_str());   
+   readInsFile(read5);   
+   read5.close();
+
+   VariableCalculator::Instance()->SetWorlds(&euWorld, &vickyWorld);
+   VariableCalculator::Instance()->ProcessVariables(InstructionsParser::GetProcessedVars());
+   VariableCalculator::Instance()->ProcessRules(InstructionsParser::GetProcessedRulesets());
+   InstructionsParser::Refresh();
 
    int bob = 0;
 }

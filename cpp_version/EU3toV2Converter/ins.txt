@@ -1,0 +1,33 @@
+# Order! 
+[ COUNTRYVAR NationalIdeaOrderRating ] 
++= $offensive_defensive 1 # -5 to 5 
++= $innovative_narrowminded 1 # -5 to 5 
++= $quality_quantity 1 # -5 to 5 
++= $deus_vult 2 
++= $church_attendance_duty 2 
++= $divine_supremacy 2 
++= $national_conscripts 2 
++= $press_gangs 1 
++= $military_drill 1 
++= $bureaucracy 1 
+
+# Liberte! 
+[ COUNTRYVAR NationalIdeaLibertyRating ] 
++= $centralization_decentralization 1 # -5 to 5 
++= $serfdom_freesubjects 1 # -5 to 5 
++= $mercantilism_freetrade 1 # -5 to 5 
++= $liberty_egalite_fraternity 4 
++= $smithian_economics 2 
++= $bill_of_rights 2 
++= $scientific_revolution 1 
++= $ecumenism 1 
+
+# Egalite! 
+[ COUNTRYVAR NationalIdeaEqualityRating ] 
++= $aristocracy_plutocracy 1 # -5 to 5 
++= $serfdom_freesubjects 1 # -5 to 5 
++= $liberty_egalite_fraternity 4 
++= $humanist_tolerance 2 
++= $bill_of_rights 2 
++= $ecumenism 1 
+

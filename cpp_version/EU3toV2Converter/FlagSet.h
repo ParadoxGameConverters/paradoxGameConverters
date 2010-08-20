@@ -30,6 +30,8 @@ public:
    void SetFlag(std::string flagName, int newValue);
    void SetFlag(std::string flagName, double newValue);
 
+   void AddFlagSet(FlagSet& other);
+
    std::string GetFlag(std::string flagName);   
    double GetFlagDouble(std::string flagName);
 

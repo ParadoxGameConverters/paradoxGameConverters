@@ -12,6 +12,30 @@ const static std::string PROVINCEVAR = "PROVINCEVAR";
 const static std::string WORLDVAR = "WORLDVAR";
 const static std::string RULESET = "RULESET";
 
+const static std::string EUCOUNTRYVAR = "EUCOUNTRYVAR";
+const static std::string EUPROVINCEVAR = "EUPROVINCEVAR";
+const static std::string EUWORLDVAR = "EUWORLDVAR";
+const static std::string EURULESET = "EURULESET";
+
+std::vector<varDefinition> InstructionsParser::GetProcessedVars() 
+{ 
+   return processedVars; 
+}
+
+std::vector<ruleset> InstructionsParser::GetProcessedRulesets() 
+{ 
+   return processedRulesets; 
+}
+
+void InstructionsParser::Refresh()
+{
+   std::vector<varDefinition>	 blankVars;
+   std::vector<ruleset>		 blankRules;
+
+   processedVars = blankVars;
+   processedRulesets = blankRules;
+}
+
 void newVarOrRule (char const* first, char const* last)
 {
    std::string key(first, last);
@@ -25,6 +49,7 @@ void newVarOrRule (char const* first, char const* last)
 
       curVar.name = "";
       curVar.type = VAR_ILLEGAL;
+      curVar.world = WORLD_ILLEGAL;
       curVar.instructions = blanks;
    }
 
@@ -39,20 +64,44 @@ void newVarOrRule (char const* first, char const* last)
    {
       processingVar = TRUE;
       curVar.type = VAR_COUNTRY;
+      curVar.world = WORLD_VICKY;
    }
    else if (key.compare(PROVINCEVAR) == 0)
    {
       processingVar = TRUE;
       curVar.type = VAR_PROVINCE;
+      curVar.world = WORLD_VICKY;
    }
    else if (key.compare(WORLDVAR) == 0)
    {
       processingVar = TRUE;
       curVar.type = VAR_WORLD;
+      curVar.world = WORLD_VICKY;
    }
    else if (key.compare(RULESET) == 0)
    {
       processingVar = FALSE;      
+   }
+   else if (key.compare(EUCOUNTRYVAR) == 0)
+   {
+      processingVar = TRUE;
+      curVar.type = VAR_COUNTRY;
+      curVar.world = WORLD_EU;
+   }
+   else if (key.compare(EUPROVINCEVAR) == 0)
+   {
+      processingVar = TRUE;
+      curVar.type = VAR_PROVINCE;
+      curVar.world = WORLD_EU;
+   }
+   else if (key.compare(EUWORLDVAR) == 0)
+   {
+      processingVar = TRUE;
+      curVar.type = VAR_WORLD;
+   }
+   else if (key.compare(EURULESET) == 0)
+   {
+      processingVar = FALSE;     
    }
    else
    {
@@ -97,8 +146,22 @@ void parseInstruction (char const* first, char const* last)
 	 instr.strVal = tokens[1].substr(1);
 	 instr.dblVal = 1.0;
 
-	 if ((tokens.size()>2) && (atof(tokens[2].c_str()) != 0.0))
-	    instr.dblVal = atof(tokens[2].c_str());
+	 // We could also have a '+ $FLAG 2' or '+ $FLAG * 2' here
+	 if (tokens.size()>2)
+	 {
+	    if ((tokens[2].at(0) == '*') && (tokens.size() > 3))
+	    {
+	       instr.dblVal = atof(tokens[3].c_str());
+	    }
+	    else if ((tokens[2].at(0) == '/') && (tokens.size() > 3))
+	    {
+	       instr.dblVal = atof(tokens[3].c_str());
+	    }
+	    else if (atof(tokens[2].c_str()) != 0.0)
+	    {
+	       instr.dblVal = atof(tokens[2].c_str());
+	    }	    	       
+	 }	
       }
       else if ((tokens.size()>1) && (atof(tokens[1].c_str()) != 0.0))
       {
@@ -108,8 +171,9 @@ void parseInstruction (char const* first, char const* last)
 	 instr.dblVal = atof(tokens[1].c_str());
       }
    }
-   else if ((tokens[0].compare("+=") == 0) || (tokens[0].compare("+") == 0))
+   else if ((tokens[0].compare("+=") == 0) || (tokens[0].compare("+") == 0) || (tokens[0].compare("-=") == 0) || (tokens[0].compare("-") == 0))
    {
+      bool isPositive = (tokens[0].at(0) == '+');
       // Is second token starting with $?            
       if ((tokens.size()>1) && (tokens[1].at(0) == '$'))
       {
@@ -118,8 +182,22 @@ void parseInstruction (char const* first, char const* last)
 	 instr.strVal = tokens[1].substr(1);
 	 instr.dblVal = 1.0;
 
-	 if ((tokens.size()>2) && (atof(tokens[2].c_str()) != 0.0))
-	    instr.dblVal = atof(tokens[2].c_str());
+	 // We could also have a '+ $FLAG 2' or '+ $FLAG * 2' here
+	 if (tokens.size()>2)
+	 {
+	    if ((tokens[2].at(0) == '*') && (tokens.size() > 3))
+	    {
+	       instr.dblVal = atof(tokens[3].c_str());
+	    }
+	    else if ((tokens[2].at(0) == '/') && (tokens.size() > 3))
+	    {
+	       instr.dblVal = atof(tokens[3].c_str());
+	    }
+	    else if (atof(tokens[2].c_str()) != 0.0)
+	    {
+	       instr.dblVal = atof(tokens[2].c_str());
+	    }	    	       
+	 }	    
       }
       else if ((tokens.size()>1) && (atof(tokens[1].c_str()) != 0.0))
       {
@@ -128,6 +206,10 @@ void parseInstruction (char const* first, char const* last)
 	 instr.strVal = "";
 	 instr.dblVal = atof(tokens[1].c_str());
       }
+
+      // Switch sign on negatives
+      if (!isPositive)
+	 instr.dblVal *= -1;
    }
 
    curVar.instructions.push_back(instr);

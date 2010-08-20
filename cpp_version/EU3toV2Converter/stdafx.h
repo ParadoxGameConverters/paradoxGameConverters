@@ -38,11 +38,19 @@ typedef enum
    INS_DO_NOTHING = 0,
    INS_SET_VALUE,	// Sets value specified by dblVal
    INS_ADD_VALUE,	// Adds value specified by dblVal
-   INS_ADD_FLAG,	// Adds value specified by strVal's flag, multiplied by dblVal
    INS_SET_FLAG,	// Sets value specified by strVal's flag, multiplied by dblVal
+   INS_ADD_FLAG,	// Adds value specified by strVal's flag, multiplied by dblVal
    INS_SUM_PROVINCES,	// Returns the total of all provinces where a 'strVal' flag is set - in either the world or country
    INS_SUM_COUNTRIES	// Returns the total of all countries where a 'strVal' flag is set
 } instructionType;
+
+typedef enum
+{
+   WORLD_ILLEGAL = 0,
+   WORLD_EU,
+   WORLD_VICKY,
+   WORLD_HOI
+} worldType;
 
 typedef enum
 {
@@ -62,6 +70,7 @@ typedef struct
 typedef struct  
 {
    varType	     type;
+   worldType	     world;
    std::string	     name;
 
    std::vector<instruction> instructions;
