@@ -6,41 +6,29 @@
 
 #pragma once
 
-#ifndef FLAGSET_H
-#define FLAGSET_H
+#ifndef RULESETHANDLER_H
+#define RULESETHANDLER_H
 
 #include "stdafx.h"
-
-typedef struct
-{
-   std::string strVal;
-   double      dblVal;
-} flagValue;
+#include "World.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class Definition
 ///////////////////////////////////////////////////////////////////////////////
-class FlagSet
+class RulesetHandler
 {
 public:
-   FlagSet() {};
-   ~FlagSet() {};
+   static RulesetHandler* Instance();
 
-   void SetFlag(std::string flagName, std::string newValue);
-   void SetFlag(std::string flagName, int newValue);
-   void SetFlag(std::string flagName, double newValue);
-
-   void AddFlagSet(FlagSet& other);
-
-   std::string GetFlag(std::string flagName);   
-   double GetFlagDouble(std::string flagName);
-   int GetFlagInt(std::string flagName);
-
-   bool IsPresent(std::string);
-
+   void ProcessOrderLibertyEquality(World* world, std::map<std::string, std::string>& rules);
 protected:   
+   RulesetHandler();
+   ~RulesetHandler();
 
-   std::map<std::string, flagValue> m_flags;
+
+   /// Singleton instance of the processor
+   static RulesetHandler* s_calculator;
+
 };
 
-#endif // ndef EUWORLD_H
+#endif // ndef VARIABLECALCULATOR_H

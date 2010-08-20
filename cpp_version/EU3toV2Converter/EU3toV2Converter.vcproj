@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\RulesetHandler.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\stdafx.cpp"
 				>
 			</File>
@@ -212,6 +216,10 @@
 			</File>
 			<File
 				RelativePath=".\Mapper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\RulesetHandler.h"
 				>
 			</File>
 			<File
@@ -316,10 +324,6 @@
 				RelativePath=".\World.h"
 				>
 			</File>
-		</Filter>
-		<Filter
-			Name="VickyWorld"
-			>
 		</Filter>
 		<File
 			RelativePath=".\ReadMe.txt"

@@ -249,3 +249,21 @@ void readInsFile (std::ifstream& read)
    finish();
 }
 
+void parseRuleParam(char const* first, char const* last)
+{
+   std::string key(first, last);
+   std::vector<std::string> tokens = tokenize_str(key, "= ");
+
+   if (key.size() < 1)
+      return;
+
+   if (tokens.size() != 2)
+   {
+      // Error?
+      return;
+   }   
+
+   curRules.rules.insert(std::make_pair<std::string, std::string>(tokens[0], tokens[1]));
+}
+
+

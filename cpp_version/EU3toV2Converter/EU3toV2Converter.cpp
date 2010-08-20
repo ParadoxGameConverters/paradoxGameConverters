@@ -81,7 +81,6 @@ int _tmain(int argc, _TCHAR* argv[])
    write.open(std::string("output.v2").c_str());   
    write << *(vickyWorld.GetSource()); 
    write.close(); 
-
    
    InstructionsParser insParser;
    InstructionsParser::Refresh();

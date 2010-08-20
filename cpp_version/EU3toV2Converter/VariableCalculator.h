@@ -6,41 +6,36 @@
 
 #pragma once
 
-#ifndef FLAGSET_H
-#define FLAGSET_H
+#ifndef VARIABLECALCULATOR_H
+#define VARIABLECALCULATOR_H
 
 #include "stdafx.h"
-
-typedef struct
-{
-   std::string strVal;
-   double      dblVal;
-} flagValue;
+#include "World.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class Definition
 ///////////////////////////////////////////////////////////////////////////////
-class FlagSet
+class VariableCalculator
 {
 public:
-   FlagSet() {};
-   ~FlagSet() {};
+   static VariableCalculator* Instance();
 
-   void SetFlag(std::string flagName, std::string newValue);
-   void SetFlag(std::string flagName, int newValue);
-   void SetFlag(std::string flagName, double newValue);
-
-   void AddFlagSet(FlagSet& other);
-
-   std::string GetFlag(std::string flagName);   
-   double GetFlagDouble(std::string flagName);
-   int GetFlagInt(std::string flagName);
-
-   bool IsPresent(std::string);
+   void SetWorlds(World* euWorld, World* vickyWorld);
+      
+   void ProcessVariables(std::vector<varDefinition> vars);
+   void ProcessRules(std::vector<ruleset> vars);
 
 protected:   
+   VariableCalculator();
+   ~VariableCalculator();
 
-   std::map<std::string, flagValue> m_flags;
+   void ProcessCountryVariable(Country* country, varDefinition& varDef);
+
+   /// Singleton instance of the processor
+   static VariableCalculator* s_calculator;
+
+   World* m_euWorld;
+   World* m_vickyWorld;
 };
 
-#endif // ndef EUWORLD_H
+#endif // ndef VARIABLECALCULATOR_H

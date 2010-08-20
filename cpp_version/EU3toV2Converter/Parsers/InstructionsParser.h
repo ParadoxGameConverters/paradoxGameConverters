@@ -21,6 +21,7 @@ void setVarName (char const* first, char const* last);
 void newVarOrRule (char const* first, char const* last);
 void getVarRuleName (char const* first, char const* last);
 void parseInstruction(char const* first, char const* last);
+void parseRuleParam(char const* first, char const* last);
 
 void readInsFile (std::ifstream& read);
 
@@ -34,7 +35,7 @@ struct InstructionsParser : public boost::spirit::grammar<InstructionsParser> {
   static const unsigned int STR     = 2;  
   static const unsigned int VARDEF  = 3;  
   static const unsigned int RULEDEF  = 4;  
-  static const unsigned int INSTR     = 5;  
+  static const unsigned int INSTR     = 5;
 
   template<typename ScannerT> struct definition {
     boost::spirit::rule<ScannerT, parser_context<>, parser_tag<PROCESS> >  process;
@@ -49,7 +50,7 @@ struct InstructionsParser : public boost::spirit::grammar<InstructionsParser> {
       varDef = ch_p('[') >> *(blank_p) >> str[&newVarOrRule] >> *(blank_p) >> str[&getVarRuleName] >> *(blank_p) >> ch_p(']') >> *(blank_p) >> ch_p('\n');      
       ruleDef = ch_p('[') >> ch_p('[') >> *(blank_p) >> str[&newVarOrRule] >> *(blank_p) >> str[&getVarRuleName] >> *(blank_p) >> ch_p(']') >> ch_p(']') >> *(blank_p) >> ch_p('\n');
       // process = *( varDef >> *(instr[&parseInstruction] >> ch_p('\n')) );
-      process = *( varDef >> *( instr[&parseInstruction] >> ch_p('\n') ) );
+      process = *( varDef >> *( instr[&parseInstruction] >> ch_p('\n') ) ) >> *( ruleDef >> *( instr[&parseRuleParam] >> ch_p('\n') ) );
 
       BOOST_SPIRIT_DEBUG_RULE(process);
     }

@@ -31,3 +31,23 @@
 += $bill_of_rights 2 
 += $ecumenism 1 
 
+# How much do we lean towards equality, compared to order? 
+[ COUNTRYVAR NationalIdeaEqualityBonus ]
+= $NationalIdeaEqualityRating
+-= NationalIdeaOrderRating 
+
+# How much do we lean towards liberty, compared to order?
+[ COUNTRYVAR NationalIdeaLibertyBonus ]
+= $NationalIdeaLibertyRating
+-= NationalIdeaOrderRating
+
+[[ RULESET OrderLibertyEquality ]]
+
+equality_bonus=$NationalIdeaEqualityBonus
+liberty_bonus=$NationalIdeaLibertyBonus
+
+min_equality_bonus=1 # Minimum level before a country can have Equality as NV
+min_liberty_bonus=1 # Minimum level before a country can have Liberty as NV
+
+max_equality_countries=5 # Maximum countries with Equality as NV
+max_liberty_countries=60 # Maximum countries with Liberty as NV

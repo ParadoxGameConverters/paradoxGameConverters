@@ -78,6 +78,11 @@ double FlagSet::GetFlagDouble(std::string flagName)
    }
 }
 
+int FlagSet::GetFlagInt(std::string flagName)
+{   
+   return int (GetFlagDouble(flagName));
+}
+
 bool FlagSet::IsPresent(std::string flagName)
 {
    std::map<std::string, flagValue>::iterator iter = m_flags.find(flagName);
