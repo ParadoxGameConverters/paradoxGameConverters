@@ -7,6 +7,7 @@
 #include "Parsers\InstructionsParser.h"
 #include "World.h"
 #include "Mapper.h"
+#include "Logger.h"
 
 int _tmain(int argc, _TCHAR* argv[])
 {
@@ -20,7 +21,11 @@ int _tmain(int argc, _TCHAR* argv[])
    std::vector<oneToMany> provinceIDMap = parser.ProcessFile(std::string("1.csv"));
 
    std::ifstream read, read2, read3, read4;
+   std::ostringstream stream;
 
+   stream.str("");
+   stream << "Main parsing EU World.";
+   Logger::WriteLine(stream.str());
    
    initParser();
    obj = Parser::topLevel;
@@ -29,12 +34,20 @@ int _tmain(int argc, _TCHAR* argv[])
    euWorld.Init(obj);
    read.close();
 
+   stream.str("");
+   stream << "Main parsing Vicky World.";
+   Logger::WriteLine(stream.str());
+
    initParser();
    obj = Parser::topLevel;
    read2.open(std::string("1.v2").c_str());   
    readFile(read2);
    vickyWorld.Init(obj);
    read2.close(); 
+
+   stream.str("");
+   stream << "Main parsing Province Mappings.";
+   Logger::WriteLine(stream.str());
 
    initParser();
    obj = Parser::topLevel;
@@ -44,6 +57,10 @@ int _tmain(int argc, _TCHAR* argv[])
 
    Mapper mapper;
    std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = mapper.InitEUToVickyMap(obj);
+
+   stream.str("");
+   stream << "Main parsing Country Mappings.";
+   Logger::WriteLine(stream.str());
 
    initParser();
    obj = Parser::topLevel;

@@ -7,9 +7,11 @@
 // standard includes
 #include "stdafx.h"
 #include "Mapper.h"
+#include "Logger.h"
 
 void Mapper::MapProvinces(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld)
 {
+   std::ostringstream stream;
    std::map<std::string, std::set<std::string> >::iterator mapIter;
    std::set<std::string>::iterator setIter;
 
@@ -33,10 +35,45 @@ void Mapper::MapProvinces(std::map<std::string, std::set<std::string> > mapping,
 
       destProvince->SetSourceProvinces(sourceProvinces);
    }
+
+   // Now output information on which provinces remain unmapped
+   stream.str("");
+   stream << "Mapper::MapProvinces finished mapping provinces.";
+   Logger::WriteLine(stream.str());
+
+   int totalUnmatched = 0;
+   std::vector<Province*> provinces = destWorld.GetAllProvinces();
+
+   stream.str("");
+   for (unsigned int i = 0; i < provinces.size(); i++)
+   {
+      if (provinces[i]->GetSourceProvinces().size() < 1)
+      {	 
+	 if (stream.str().size() < 1)
+	 {
+	    stream << "Mapper::MapProvinces found destination province(s) with no source: ";
+	 }
+	 else
+	 {
+	    stream << ", ";
+	 }
+	 stream << provinces[i]->GetName();	 	 
+	 totalUnmatched++;
+      }
+   }
+   if (totalUnmatched > 0)
+   {
+      Logger::WriteLine(stream.str());
+
+      stream.str("");
+      stream << "Mapper::MapProvinces found " << totalUnmatched << " unmatched provinces.";
+      Logger::WriteLine(stream.str());
+   }   
 }
 
 void Mapper::MapCountries(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld)
 {
+   std::ostringstream stream;
    std::map<std::string, std::set<std::string> >::iterator mapIter;
    std::set<std::string>::iterator setIter;
 
@@ -60,6 +97,41 @@ void Mapper::MapCountries(std::map<std::string, std::set<std::string> > mapping,
 
       dest->SetSourceCountries(sources);
    }
+
+   // Now output information on which countries remain unmapped
+   stream.str("");
+   stream << "Mapper::MapCountries finished mapping countries.";
+   Logger::WriteLine(stream.str());
+
+   int totalUnmatched = 0;
+   std::vector<Country*> countries = origWorld.GetAllCountries();
+
+   stream.str("");
+   for (unsigned int i = 0; i < countries.size(); i++)
+   {
+      if (countries[i]->GetDestCountry() == NULL)
+      {
+	 if (stream.str().size() < 1)
+	 {
+	    stream << "Mapper::MapCountries found countries with no destination: ";
+	 }
+	 else
+	 {
+	    stream << ", ";
+	 }
+	 stream << countries[i]->GetName();	 	 
+	 totalUnmatched++; 
+      }
+   }
+
+   if (totalUnmatched > 0)
+   {
+      Logger::WriteLine(stream.str());
+
+      stream.str("");
+      stream << "Mapper::MapCountries found " << totalUnmatched << " unmatched countries.";
+      Logger::WriteLine(stream.str());
+   }
 }
 
 
@@ -67,7 +139,7 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld)
 {
    std::vector<Province*> allProvinces = destWorld.GetAllProvinces();
 
-   for (int i = 0; i < allProvinces.size(); i++)
+   for (unsigned int i = 0; i < allProvinces.size(); i++)
    {
       const std::vector<Province*> sourceProvinces = allProvinces[i]->GetSourceProvinces();
 
@@ -125,14 +197,14 @@ std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyMap(Object* o
   
    std::vector<Object*> data = leaves[0]->getLeaves();
 
-   for (int i = 0; i < data.size(); i++)
+   for (unsigned int i = 0; i < data.size(); i++)
    {
       std::string euID;
       std::vector<std::string> vickyIDs;
 
       std::vector<Object*> euMaps = data[i]->getLeaves();
 
-      for (int j = 0; j < euMaps.size(); j++)
+      for (unsigned int j = 0; j < euMaps.size(); j++)
       {
 	 if (euMaps[j]->getKey().compare("eu3") == 0)
 	 {
@@ -149,7 +221,7 @@ std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyMap(Object* o
       }
 
       // Now convert to final result
-      for (int j = 0; j < vickyIDs.size(); j++)
+      for (unsigned int j = 0; j < vickyIDs.size(); j++)
       {
 	 mapIter = mapping.find(vickyIDs[j]);
 	 if (mapIter == mapping.end())

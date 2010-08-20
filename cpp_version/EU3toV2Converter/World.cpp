@@ -7,12 +7,14 @@
 // standard includes
 #include "stdafx.h"
 #include "World.h"
+#include "Logger.h"
 
 void World::Init(Object* obj) 
 {
    ObjectHandler::Init(obj);
 
    // Now assign and identify provinces
+   std::ostringstream stream;
    std::string key;   
    std::vector<Object*> leaves = m_source->getLeaves();
 
@@ -24,6 +26,7 @@ void World::Init(Object* obj)
       {
 	 Province province;
 	 province.Init(leaves[i]);
+	 province.SetName(key);
 	 m_provinces.insert(std::make_pair<std::string, Province>(key, province));
       }
       else if ((key.size() == 3) && 
@@ -39,6 +42,14 @@ void World::Init(Object* obj)
 	 m_countries.insert(std::make_pair<std::string, Country>(key, country));
       }
    }
+
+   stream.str("");
+   stream << "World::Init identified " << m_provinces.size() << " provinces.";
+   Logger::WriteLine(stream.str());
+
+   stream.str("");
+   stream << "World::Init identified " << m_countries.size() << " countries.";
+   Logger::WriteLine(stream.str());
 };
 
 
@@ -74,4 +85,18 @@ std::vector<Province*> World::GetAllProvinces()
    }   
 
    return allProvinces;
+}
+
+std::vector<Country*> World::GetAllCountries()
+{
+   std::vector<Country*> all;
+
+   std::map<std::string, Country>::iterator iter;
+
+   for (iter = m_countries.begin(); iter != m_countries.end(); iter++)
+   {
+      all.push_back(&(*iter).second);
+   }   
+
+   return all;
 }

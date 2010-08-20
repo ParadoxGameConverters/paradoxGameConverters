@@ -47,7 +47,7 @@ link = { eu3=249 vic=271 vic=272 }						# Ayrshire -> Glasgow Dumfries
 link = { eu3=246 vic=280 }						# Northumberland -> Newcastle-upon-Tyne
 link = { eu3=247 vic=279 }						# Cumbria -> Carlisle 
 link = { eu3=245 vic=281 vic=282 vic=283 }					# Yorkshire -> Hull Leeds Sheffield 
-link = { eu3=244 vic=278 vic=277 vic=285 }					# Lancashire -> Manchester Liverpool Chester
+link = { eu3=244 vic=278 vic=277 vic=285 vic=304 }					# Lancashire -> Manchester Liverpool Chester
 link = { eu3=243 vic=290 vic=288 vic=289 }					# Lincoln -> Lincoln Nottingham Leicester
 link = { eu3=240 vic=284 vic=287 vic=286 }					# Marches -> Birmingham Coventry Shrewsbury 
 link = { eu3=242 vic=276 vic=275 }					# Gwynedd -> Holyhead Llandrindod 

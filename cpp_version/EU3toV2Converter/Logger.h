@@ -6,34 +6,29 @@
 
 #pragma once
 
-#ifndef EUWORLD_H
-#define EUWORLD_H
+#ifndef LOGGER_H
+#define LOGGER_H
 
-#include "Parsers\ObjectHandler.h"
-#include "Province.h"
-#include "Country.h"
+#include "stdafx.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class Definition
 ///////////////////////////////////////////////////////////////////////////////
-class World : public ObjectHandler
+class Logger
 {
 public:
-   World() {};
-   ~World() {};
+   static Logger* Instance();
 
-   virtual void Init(Object* obj);
-
-   Province* GetProvince(std::string name);
-   Country* GetCountry(std::string name);
-
-   std::vector<Province*> GetAllProvinces();
-   std::vector<Country*> GetAllCountries();
+   static void WriteLine(std::string text);
 
 protected:   
+   Logger();
+   ~Logger();
 
-   std::map<std::string, Province>   m_provinces;
-   std::map<std::string, Country>    m_countries;
+   /// Singleton instance of the processor
+   static Logger* s_logger;
+
+   std::ofstream m_stream;
 };
 
-#endif // ndef EUWORLD_H
+#endif // ndef LOGGER_H
