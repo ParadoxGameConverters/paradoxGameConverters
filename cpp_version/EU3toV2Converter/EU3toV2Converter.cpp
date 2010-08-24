@@ -74,13 +74,7 @@ int _tmain(int argc, _TCHAR* argv[])
    mapper.MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
    mapper.MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);
    mapper.AssignProvinceOwnership(euWorld, vickyWorld);
-   
-   std::ofstream write;
-   char fname[200];
-   Parser::topLevel = vickyWorld.GetSource();
-   write.open(std::string("output.v2").c_str());   
-   write << *(vickyWorld.GetSource()); 
-   write.close(); 
+  
    
    InstructionsParser insParser;
    InstructionsParser::Refresh();
@@ -92,6 +86,12 @@ int _tmain(int argc, _TCHAR* argv[])
    VariableCalculator::Instance()->ProcessVariables(InstructionsParser::GetProcessedVars());
    VariableCalculator::Instance()->ProcessRules(InstructionsParser::GetProcessedRulesets());
    InstructionsParser::Refresh();
+
+   std::ofstream write;
+   Parser::topLevel = vickyWorld.GetSource();
+   write.open(std::string("output.v2").c_str());   
+   write << *(vickyWorld.GetSource()); 
+   write.close(); 
 
    int bob = 0;
 }

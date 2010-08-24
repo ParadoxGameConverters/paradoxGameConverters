@@ -82,7 +82,7 @@ void RulesetHandler::ProcessOrderLibertyEquality(World* world, std::map<std::str
 
    for (unsigned int i = 0; i < countries.size(); i++)
    {
-      ideas.push_back("order");
+      ideas.push_back("\"nv_order\"");
 
       if (countries[i]->m_flags.GetFlagInt(eqBonusName) >= 0)
 	 eqCountryMap.insert(std::make_pair<int, int>(countries[i]->m_flags.GetFlagInt(eqBonusName), i));
@@ -92,7 +92,7 @@ void RulesetHandler::ProcessOrderLibertyEquality(World* world, std::map<std::str
 
    for (mapIter = eqCountryMap.rbegin(); mapIter != eqCountryMap.rend(); mapIter++)
    {
-      ideas[(*mapIter).second] = "equality";
+      ideas[(*mapIter).second] = "\"nv_equality\"";
       curEqCountries++;
    
       stream.str("");
@@ -109,7 +109,7 @@ void RulesetHandler::ProcessOrderLibertyEquality(World* world, std::map<std::str
       if (ideas[(*mapIter).second].compare("order") != 0)
 	 continue;
 
-      ideas[(*mapIter).second] = "liberty";
+      ideas[(*mapIter).second] = "\"nv_liberty\"";
       curLibCountries++;
 
       stream.str("");
@@ -121,7 +121,11 @@ void RulesetHandler::ProcessOrderLibertyEquality(World* world, std::map<std::str
    }
 
    for (unsigned int i = 0; i < countries.size(); i++)
-   {
-      // TODO: Set the appropriate NV
+   {      
+      countries[i]->SetProperty("nationalvalue", ideas[i]);
+
+      stream.str("");
+      stream << "Country " << countries[i]->GetName() << " now has national value: " << ideas[i];
+      Logger::WriteLine(stream.str());
    }
 }

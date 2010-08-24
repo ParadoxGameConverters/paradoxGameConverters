@@ -35,13 +35,13 @@
 # This value needs to be at least zero for the country to have Equality as its national value
 [ COUNTRYVAR NationalIdeaEqualityBonus ]
 = $NationalIdeaEqualityRating
--= NationalIdeaOrderRating 
+-= $NationalIdeaOrderRating 
 
 # How much do we lean towards liberty, compared to order?
 # This value needs to be at least zero for the country to have Liberty as its national value
 [ COUNTRYVAR NationalIdeaLibertyBonus ]
 = $NationalIdeaLibertyRating
--= NationalIdeaOrderRating
+-= $NationalIdeaOrderRating
 
 [[ RULESET OrderLibertyEquality ]]
 
