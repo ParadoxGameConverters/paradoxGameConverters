@@ -66,11 +66,32 @@ std::string FlagSet::GetFlag(std::string flagName)
 
 double FlagSet::GetFlagDouble(std::string flagName)
 {
-   std::map<std::string, flagValue>::iterator iter = m_flags.find(flagName);
+   std::vector<std::string> tokens = tokenize_str(flagName, "=");
+
+   if (tokens.size() < 1)
+      return 0.0;
+
+   std::map<std::string, flagValue>::iterator iter = m_flags.find(tokens[0]);
 
    if (iter != m_flags.end())
    {
-      return (*iter).second.dblVal;
+      if (tokens.size() < 2)
+      {
+	 return (*iter).second.dblVal;
+      }
+      else
+      {
+	 // This is a request for religion=protestant or suchlike
+	 // If strVal matches second token, return 1 else 0
+	 if ((*iter).second.strVal.compare(tokens[1]) == 0)
+	 {
+	    return 1.0;
+	 }
+	 else 
+	 {
+	    return 0.0;
+	 }
+      }
    }
    else
    {

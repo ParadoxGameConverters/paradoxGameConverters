@@ -105,12 +105,31 @@ void VariableCalculator::ProcessCountryVariable(Country* country, varDefinition&
 	 break;
       case(INS_SET_VALUE):
 	 myVal = instr.dblVal;
+	 break;
       case(INS_ADD_VALUE):
 	 myVal += instr.dblVal;
+	 break;
+      case(INS_MUL_VALUE):
+	 myVal *= instr.dblVal;
+	 break;
       case(INS_SET_FLAG):
 	 myVal = country->m_flags.GetFlagDouble(instr.strVal) * instr.dblVal;
+	 break;
       case(INS_ADD_FLAG):
 	 myVal += country->m_flags.GetFlagDouble(instr.strVal) * instr.dblVal;
+	 break;
+      case(INS_MUL_FLAG):
+	 myVal += country->m_flags.GetFlagDouble(instr.strVal) * instr.dblVal;
+	 break;
+      case(INS_SET_MAX_VALUE):
+	 myVal = std::min(instr.dblVal, myVal); // By setting a max value, we are forcing a minimum of the value and threshold
+	 break;
+      case(INS_SET_MIN_VALUE):
+	 myVal = std::max(instr.dblVal, myVal); // By setting a min value, we are forcing a maximum of the value and threshold
+	 break;
+      default:
+	 // TODO: error
+	 break;
       }
    }
 

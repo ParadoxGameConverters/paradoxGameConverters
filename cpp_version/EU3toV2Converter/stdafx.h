@@ -38,10 +38,14 @@ typedef enum
    INS_DO_NOTHING = 0,
    INS_SET_VALUE,	// Sets value specified by dblVal
    INS_ADD_VALUE,	// Adds value specified by dblVal
+   INS_MUL_VALUE,	// Adds value specified by dblVal
    INS_SET_FLAG,	// Sets value specified by strVal's flag, multiplied by dblVal
    INS_ADD_FLAG,	// Adds value specified by strVal's flag, multiplied by dblVal
+   INS_MUL_FLAG,	// Adds value specified by strVal's flag, multiplied by dblVal
    INS_SUM_PROVINCES,	// Returns the total of all provinces where a 'strVal' flag is set - in either the world or country
-   INS_SUM_COUNTRIES	// Returns the total of all countries where a 'strVal' flag is set
+   INS_SUM_COUNTRIES,	// Returns the total of all countries where a 'strVal' flag is set
+   INS_SET_MAX_VALUE,	// Forces a maximum value on variable
+   INS_SET_MIN_VALUE	// Forces a minimum value on variable
 } instructionType;
 
 typedef enum

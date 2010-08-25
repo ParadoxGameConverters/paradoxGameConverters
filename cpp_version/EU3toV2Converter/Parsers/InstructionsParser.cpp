@@ -211,6 +211,58 @@ void parseInstruction (char const* first, char const* last)
       if (!isPositive)
 	 instr.dblVal *= -1;
    }
+   else if ((tokens[0].compare("*=") == 0) || (tokens[0].compare("*") == 0) || (tokens[0].compare("/=") == 0) || (tokens[0].compare("/") == 0))
+   {
+      bool isMulti = (tokens[0].at(0) == '*');
+      // Is second token starting with $?            
+      if ((tokens.size()>1) && (tokens[1].at(0) == '$'))
+      {
+	 // Add flag
+	 instr.type = INS_MUL_FLAG;
+	 instr.strVal = tokens[1].substr(1);
+	 instr.dblVal = 1.0;
+
+	 // We could also have a '+ $FLAG 2' or '+ $FLAG * 2' here
+	 if (tokens.size()>2)
+	 {
+	    if ((tokens[2].at(0) == '*') && (tokens.size() > 3))
+	    {
+	       instr.dblVal = atof(tokens[3].c_str());
+	    }
+	    else if ((tokens[2].at(0) == '/') && (tokens.size() > 3))
+	    {
+	       instr.dblVal = atof(tokens[3].c_str());
+	    }
+	    else if (atof(tokens[2].c_str()) != 0.0)
+	    {
+	       instr.dblVal = atof(tokens[2].c_str());
+	    }	    	       
+	 }	    
+      }
+      else if ((tokens.size()>1) && (atof(tokens[1].c_str()) != 0.0))
+      {
+	 // Add value
+	 instr.type = INS_MUL_VALUE;
+	 instr.strVal = "";
+	 instr.dblVal = atof(tokens[1].c_str());
+      }
+
+      // Switch sign on divisions
+      if (!isMulti)
+	 instr.dblVal = 1 / instr.dblVal;
+   }
+   else if (tokens[0].compare("MAXIMUM") == 0)
+   {
+      instr.type = INS_SET_MAX_VALUE;
+      instr.strVal = "";
+      instr.dblVal = atof(tokens[1].c_str());
+   }
+   else if (tokens[0].compare("MINIMUM") == 0)
+   {
+      instr.type = INS_SET_MIN_VALUE;
+      instr.strVal = "";
+      instr.dblVal = atof(tokens[1].c_str());
+   }
 
    curVar.instructions.push_back(instr);
 }
