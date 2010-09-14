@@ -43,6 +43,29 @@ void World::Init(Object* obj)
       }
    }
 
+   // Now remove all state information - we will rebuild from scratch
+   std::vector<Country*> allCountries = GetAllCountries();
+   for (unsigned int i = 0; i < allCountries.size(); i++)
+   {
+      std::vector<Object*> countryData = allCountries[i]->GetSource()->getLeaves();
+
+      for (unsigned int j = 0; j < countryData.size(); j++)
+      {
+	 if (countryData[j]->getKey().compare("state") == 0)
+	 {
+	    // allCountries[i]->GetSource()->removeObject(countryData[j]);
+	 }
+	 else if (countryData[j]->getKey().compare("army") == 0)
+	 {
+	    allCountries[i]->GetSource()->removeObject(countryData[j]);
+	 }
+	 else if (countryData[j]->getKey().compare("navy") == 0)
+	 {
+	    allCountries[i]->GetSource()->removeObject(countryData[j]);
+	 }
+      }
+   }
+
    stream.str("");
    stream << "World::Init identified " << m_provinces.size() << " provinces.";
    Logger::WriteLine(stream.str());

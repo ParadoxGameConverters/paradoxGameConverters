@@ -32,6 +32,7 @@ public:
   void keyCount (std::map<std::string, int>& counter);
   void setObjList (bool l = true) {isObjList = l;}
   std::string getToken (int index); 
+  std::vector<std::string> getTokens() { return tokens; }
   int numTokens (); 
   void addToList (std::string val); 
   void printTopLevel ();

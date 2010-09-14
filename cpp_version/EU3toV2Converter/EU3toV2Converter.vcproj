@@ -189,6 +189,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\RegionListing.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\RulesetHandler.cpp"
 				>
 			</File>
@@ -216,6 +220,10 @@
 			</File>
 			<File
 				RelativePath=".\Mapper.h"
+				>
+			</File>
+			<File
+				RelativePath=".\RegionListing.h"
 				>
 			</File>
 			<File

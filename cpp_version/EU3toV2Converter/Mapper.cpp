@@ -9,6 +9,8 @@
 #include "Mapper.h"
 #include "Logger.h"
 
+#include <algorithm>
+
 void Mapper::MapProvinces(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld)
 {
    std::ostringstream stream;
@@ -135,8 +137,9 @@ void Mapper::MapCountries(std::map<std::string, std::set<std::string> > mapping,
 }
 
 
-void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld)
+void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionListing& regionListing)
 {
+   std::vector<Object*> ownerVal;
    std::vector<Province*> allProvinces = destWorld.GetAllProvinces();
 
    for (unsigned int i = 0; i < allProvinces.size(); i++)
@@ -176,6 +179,54 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld)
 	 if (newOwnerVal.size() > 0)
 	 {
 	    newOwnerVal[0]->setValue(ownerStr);
+	 }
+      }
+
+      // Now, re-identify the current owner, and assign a member variable
+      ownerVal = allProvinces[i]->GetSource()->getValue("owner");
+      if (ownerVal.size() > 0)
+      {
+	 std::string ownerStr = ownerVal[0]->getLeaf().substr(1, 3);
+	 Country* owner = destWorld.GetCountry(ownerStr);
+	 owner->AddProvince(allProvinces[i]);
+      }
+   }
+}
+
+void Mapper::SetupStates(World& destWorld, RegionListing& regionListing)
+{
+   int startState = 590;
+   std::vector<Country*> allCountries = destWorld.GetAllCountries();
+
+   for (unsigned int i = 0; i < allCountries.size(); i++)
+   {
+      Country* country = allCountries[i];
+      std::vector<Province*> provinces = country->GetProvinces();
+      std::vector<std::string> provinceIDs;
+
+      for (unsigned int i = 0; i < provinces.size(); i++)
+      {
+	 provinceIDs.push_back(provinces[i]->GetName());
+      }
+
+      while (provinceIDs.size() > 0)
+      {	 
+	 std::vector<std::string>::iterator iter = provinceIDs.begin();
+	 std::vector<std::string> state;
+
+	 state.push_back((*iter));
+	 provinceIDs.erase(iter);
+
+	 std::vector<std::string> neighbours = regionListing.GetProvincesInSameState(state[0]);
+
+	 for (unsigned int i = 0; i < neighbours.size(); i++)
+	 {
+	    iter = std::find(provinceIDs.begin(), provinceIDs.end(), neighbours[i]);
+	    if (iter != provinceIDs.end())
+	    {
+	       state.push_back(*iter);
+	       provinceIDs.erase(iter);
+	    }
 	 }
       }
    }

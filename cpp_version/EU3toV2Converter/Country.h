@@ -10,6 +10,7 @@
 #define EUCOUNTRY_H
 
 #include "Parsers\ObjectHandler.h"
+#include "Province.h"
 #include "FlagSet.h"
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -32,11 +33,15 @@ public:
    void SetName(std::string name) { m_name = name; };
    std::string GetName() { return m_name; };
 
+   void AddProvince(Province* province) { m_provinces.push_back(province); }
+   std::vector<Province*> GetProvinces() { return m_provinces; }
+
    FlagSet m_flags;
 private:   
-   std::vector<Country*> m_sources;
-   Country*		 m_dest;
-   std::string		 m_name;
+   std::vector<Country*>   m_sources;
+   Country*		   m_dest;
+   std::string		   m_name;
+   std::vector<Province*>  m_provinces;
 };
 
 #endif // ndef EUWORLD_H

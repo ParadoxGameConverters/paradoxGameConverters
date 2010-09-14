@@ -6,28 +6,23 @@
 
 #pragma once
 
-#ifndef MAPPER_H
-#define MAPPER_H
+#ifndef REGIONLISTING_H
+#define REGIONLISTING_H
 
 #include "stdafx.h"
 #include "World.h"
-#include "RegionListing.h"
 #include "Parsers\Object.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class Definition
 ///////////////////////////////////////////////////////////////////////////////
-class Mapper
+class RegionListing
 {
 public:
-   std::map<std::string, std::set<std::string> > InitEUToVickyMap(Object* obj);
-   void MapProvinces(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld);
-   void MapCountries(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld);
-
-   void AssignProvinceOwnership(World& origWorld, World& destWorld, RegionListing& regionListing);
-   void SetupStates(World& destWorld, RegionListing& regionListing);
+   void Init(Object* obj);
+   std::vector<std::string> GetProvincesInSameState(std::string provinceId);
 private:   
-
+   std::map<std::string, std::vector<std::string> > m_regionMap;
 };
 
 #endif // ndef MAPPER_H
