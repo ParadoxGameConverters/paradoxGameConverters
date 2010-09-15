@@ -211,6 +211,7 @@ void Mapper::SetupStates(World& destWorld, RegionListing& regionListing)
 
       while (provinceIDs.size() > 0)
       {	 
+	 std::ostringstream stateID;
 	 std::vector<std::string>::iterator iter = provinceIDs.begin();
 	 std::vector<std::string> state;
 
@@ -228,8 +229,46 @@ void Mapper::SetupStates(World& destWorld, RegionListing& regionListing)
 	       provinceIDs.erase(iter);
 	    }
 	 }
+   
+	 stateID << "" << startState;
+	 CreateState(stateID.str(), country, state);
+	 startState++;
       }
    }
+}
+
+void Mapper::CreateState(std::string stateID, Country* country, std::vector<std::string>& provinces)
+{
+   std::vector<Object*> stateVal, stateIDVal;
+
+   Object* state = new Object("state");
+   Object* stateIDObj = new Object("id");
+   Object* stateProvinces = new Object("provinces");   
+
+   stateVal.push_back(stateIDObj);
+   stateVal.push_back(stateProvinces);
+
+   state->setValue(stateVal);
+
+   // Set id tag
+   Object* stateID_ID = new Object("id");
+   Object* stateID_Type = new Object("type");
+   
+   stateID_ID->setValue(stateID);
+   stateID_Type->setValue("47");
+
+   stateIDVal.push_back(stateID_ID);
+   stateIDVal.push_back(stateID_Type);
+
+   stateIDObj->setValue(stateIDVal);
+
+   // Set provinces flag
+   for (unsigned int i = 0; i < provinces.size(); i++)
+   {      
+      stateProvinces->addToList(provinces[i]);
+   }
+
+   country->GetSource()->addObject(state);
 }
 
 std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyMap(Object* obj)
@@ -281,6 +320,61 @@ std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyMap(Object* o
 	    mapIter = mapping.find(vickyIDs[j]);
 	 }
 	 (*mapIter).second.insert(euID);
+      }
+   }
+
+   return mapping;
+}
+
+std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyCountryMap(Object* obj)
+{
+   std::map<std::string, std::set<std::string> > mapping;
+   std::map<std::string, std::set<std::string> >::iterator mapIter;
+   std::set<std::string> blanks;
+
+   std::vector<Object*> leaves = obj->getLeaves();
+
+   if (leaves.size() < 1)
+   {
+      // TODO: Error
+      return mapping;
+   }
+
+   std::vector<Object*> data = leaves[0]->getLeaves();
+
+   for (unsigned int i = 0; i < data.size(); i++)
+   {
+      std::vector<std::string> euIDs;
+      std::string vickyID;
+
+      std::vector<Object*> euMaps = data[i]->getLeaves();
+
+      for (unsigned int j = 0; j < euMaps.size(); j++)
+      {
+	 if (euMaps[j]->getKey().compare("eu3") == 0)
+	 {	    
+	    euIDs.push_back(euMaps[j]->getLeaf());
+	 }
+	 else if (euMaps[j]->getKey().compare("vic") == 0)
+	 {
+	    vickyID = euMaps[j]->getLeaf();
+	 }
+	 else
+	 {
+	    // Error
+	 }
+      }
+
+      // Now convert to final result
+      for (unsigned int j = 0; j < euIDs.size(); j++)
+      {
+	 mapIter = mapping.find(euIDs[j]);
+	 if (mapIter == mapping.end())
+	 {
+	    mapping.insert(std::make_pair<std::string, std::set<std::string> >(euIDs[j], blanks));
+	    mapIter = mapping.find(euIDs[j]);
+	 }
+	 (*mapIter).second.insert(vickyID);
       }
    }
 

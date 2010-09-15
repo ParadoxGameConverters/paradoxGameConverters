@@ -63,6 +63,8 @@ int _tmain(int argc, _TCHAR* argv[])
    
    std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = mapper.InitEUToVickyMap(obj);
 
+
+   // Parsing country mappings
    stream.str("");
    stream << "Main parsing Country Mappings.";
    Logger::WriteLine(stream.str());
@@ -73,7 +75,7 @@ int _tmain(int argc, _TCHAR* argv[])
    readFile(read4);  
    read4.close();
 
-   std::map<std::string, std::set<std::string> > vicFromEuCountryMap = mapper.InitEUToVickyMap(obj);
+   std::map<std::string, std::set<std::string> > vicFromEuCountryMap = mapper.InitEUToVickyCountryMap(obj);
 
    // Generate region mapping
 
@@ -87,7 +89,13 @@ int _tmain(int argc, _TCHAR* argv[])
    readFile(read6);  
    read6.close();
 
-   regionListing.Init(obj);
+   if (obj->getLeaves().size() < 1)
+   {
+      // TODO: error;
+      return 1;
+   }
+   regionListing.Init(obj->getLeaves()[0]);
+
 
    mapper.MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
    mapper.MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);

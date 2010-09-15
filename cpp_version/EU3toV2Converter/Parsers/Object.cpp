@@ -192,6 +192,11 @@ void Object::removeObject (Object* target) {
   objects.erase(pos); 
 }
 
+void Object::addObject (Object* target) {
+   objects.push_back(target); 
+}
+
+
 Object* br = 0;
 void setVal (std::string name, std::string val, Object* branch) {
   if ((branch) && (br != branch)) br = branch; 
