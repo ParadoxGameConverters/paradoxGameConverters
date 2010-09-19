@@ -50,6 +50,8 @@ int _tmain(int argc, _TCHAR* argv[])
    vickyWorld.Init(obj);
    read2.close(); 
 
+
+   // Parsing province mappings
    stream.str("");
    stream << "Main parsing Province Mappings.";
    Logger::WriteLine(stream.str());
@@ -60,9 +62,7 @@ int _tmain(int argc, _TCHAR* argv[])
    readFile(read3);  
    read3.close();
 
-   
    std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = mapper.InitEUToVickyMap(obj);
-
 
    // Parsing country mappings
    stream.str("");
@@ -100,6 +100,7 @@ int _tmain(int argc, _TCHAR* argv[])
    mapper.MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
    mapper.MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);
    mapper.AssignProvinceOwnership(euWorld, vickyWorld, regionListing);
+   mapper.AssignCountryCapitals(euWorld, vickyWorld);
    mapper.SetupStates(vickyWorld, regionListing);
      
    InstructionsParser insParser;

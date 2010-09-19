@@ -102,7 +102,7 @@ link = { eu3 = MAI eu3 = TRI eu3 = KOL vic = NAS } #Nassau <= Mainz, Trier, Kolo
 link = { eu3 = NAJ eu3 = SHR vic = NEJ } #Nejd <= Najd, Sharjah 
 link = { eu3 = NPL vic = NEP } #Nepal <= Nepal 
 link = { eu3 = WES vic = NGF } #North eu3 = German eu3 = Fed <= Westfalia 
-link = { eu3 = JAP vic = NIP } #Japan <= Japan 
+link = { eu3 = JAP vic = JAP } #Japan <= Japan 
 link = { eu3 = NOR vic = NOR } #Norway <= Norway 
 link = { eu3 = OLD vic = OLD } #Oldenburg <= Oldenburg 
 link = { eu3 = OMA vic = OMA } #Oman <= Oman 

@@ -26,6 +26,7 @@ public:
    void MapCountries(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld);
 
    void AssignProvinceOwnership(World& origWorld, World& destWorld, RegionListing& regionListing);
+   void AssignCountryCapitals(World& origWorld, World& destWorld);
    void SetupStates(World& destWorld, RegionListing& regionListing);
 private:   
    void CreateState(std::string stateID, Country* country, std::vector<std::string>& provinces);

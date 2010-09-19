@@ -159,26 +159,26 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 	 ownerStr = ownerStr.substr(1, 3); // This was stored with quotes around it
 	 Country* origCountry = origWorld.GetCountry(ownerStr);
 
-	 if (origCountry == NULL)
-	    continue;
-
-	 Country* destCountry = origCountry->GetDestCountry();
-
-	 if (destCountry == NULL)
-	    continue;
-
-	 ownerStr = "\"" + destCountry->GetName() + "\"";
-
-	 newOwnerVal = allProvinces[i]->GetSource()->getValue("owner");
-	 if (newOwnerVal.size() > 0)
-	 {	    
-	    newOwnerVal[0]->setValue(ownerStr);
-	 }
-
-	 newOwnerVal = allProvinces[i]->GetSource()->getValue("controller");
-	 if (newOwnerVal.size() > 0)
+	 if (origCountry != NULL)
 	 {
-	    newOwnerVal[0]->setValue(ownerStr);
+	    Country* destCountry = origCountry->GetDestCountry();
+
+	    if (destCountry != NULL)
+	    {
+	       ownerStr = "\"" + destCountry->GetName() + "\"";
+
+	       newOwnerVal = allProvinces[i]->GetSource()->getValue("owner");
+	       if (newOwnerVal.size() > 0)
+	       {	    
+		  newOwnerVal[0]->setValue(ownerStr);
+	       }
+
+	       newOwnerVal = allProvinces[i]->GetSource()->getValue("controller");
+	       if (newOwnerVal.size() > 0)
+	       {
+		  newOwnerVal[0]->setValue(ownerStr);
+	       }
+	    }
 	 }
       }
 
@@ -192,6 +192,49 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
       }
    }
 }
+
+void Mapper::AssignCountryCapitals(World& origWorld, World& destWorld)
+{
+   std::vector<Object*> ownerVal;
+   std::vector<Country*> allCountries = destWorld.GetAllCountries();
+
+   for (unsigned int i = 0; i < allCountries.size(); i++)
+   {
+      bool capitalFound = false;
+      Country* country = allCountries[i];
+      const std::vector<Province*> myProvinces = country->GetProvinces();
+
+      if (myProvinces.size() < 1)
+      {
+	 // Ignore non-existent countries - doesn't matter where their capital is
+	 continue;
+      }
+
+      std::string capitalLocation = country->GetSource()->getLeaf("capital");
+
+      if (atoi(capitalLocation.c_str()) < 1)
+      {
+	 // Rebels have this - ignore
+	 continue;
+      }
+
+      for (unsigned int j = 0; j < myProvinces.size(); j++)
+      {
+	 if (myProvinces[j]->GetName().compare(capitalLocation) == 0)
+	 {
+	    capitalFound = true;
+	    break;
+	 }
+      }
+
+      if (!capitalFound)
+      {
+	 // HACK: Set capital to be first province found 
+	 country->GetSource()->setLeaf("capital", myProvinces[0]->GetName());
+      }
+   }
+}
+
 
 void Mapper::SetupStates(World& destWorld, RegionListing& regionListing)
 {
@@ -344,7 +387,7 @@ std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyCountryMap(Ob
 
    for (unsigned int i = 0; i < data.size(); i++)
    {
-      std::vector<std::string> euIDs;
+      std::set<std::string> euIDs;
       std::string vickyID;
 
       std::vector<Object*> euMaps = data[i]->getLeaves();
@@ -353,7 +396,7 @@ std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyCountryMap(Ob
       {
 	 if (euMaps[j]->getKey().compare("eu3") == 0)
 	 {	    
-	    euIDs.push_back(euMaps[j]->getLeaf());
+	    euIDs.insert(euMaps[j]->getLeaf());
 	 }
 	 else if (euMaps[j]->getKey().compare("vic") == 0)
 	 {
@@ -365,17 +408,7 @@ std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyCountryMap(Ob
 	 }
       }
 
-      // Now convert to final result
-      for (unsigned int j = 0; j < euIDs.size(); j++)
-      {
-	 mapIter = mapping.find(euIDs[j]);
-	 if (mapIter == mapping.end())
-	 {
-	    mapping.insert(std::make_pair<std::string, std::set<std::string> >(euIDs[j], blanks));
-	    mapIter = mapping.find(euIDs[j]);
-	 }
-	 (*mapIter).second.insert(vickyID);
-      }
+      mapping.insert(std::make_pair<std::string, std::set<std::string> >(vickyID, euIDs));
    }
 
    return mapping;
