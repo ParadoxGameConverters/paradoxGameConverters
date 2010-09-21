@@ -30,6 +30,9 @@ public:
    std::vector<Province*> GetAllProvinces();
    std::vector<Country*> GetAllCountries();
 
+   // Returns a list of countries that will own at least one province
+   std::vector<Country*> GetAllExistingCountries();
+
 protected:   
 
    std::map<std::string, Province>   m_provinces;

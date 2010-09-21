@@ -77,7 +77,7 @@ void RulesetHandler::ProcessOrderLibertyEquality(World* world, std::map<std::str
       maxLibCountries = atoi((*iter).second.c_str());
    }
 
-   std::vector<Country*> countries = world->GetAllCountries();
+   std::vector<Country*> countries = world->GetAllExistingCountries();
    std::vector<std::string> ideas;
 
    for (unsigned int i = 0; i < countries.size(); i++)

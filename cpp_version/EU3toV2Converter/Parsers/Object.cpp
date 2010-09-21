@@ -196,6 +196,26 @@ void Object::addObject (Object* target) {
    objects.push_back(target); 
 }
 
+void Object::addObjectAfter(Object* target, std::string key) 
+{   
+   std::vector<Object*>::iterator i;
+
+   for (i = objects.begin(); i != objects.end(); ++i) 
+   {
+      if ((*i)->getKey() == key)
+      {
+	 objects.insert(i, target);
+	 break;
+      }           
+   }
+
+   if (i == objects.end())
+   {
+      objects.push_back(target); 
+   }
+}
+
+
 
 Object* br = 0;
 void setVal (std::string name, std::string val, Object* branch) {

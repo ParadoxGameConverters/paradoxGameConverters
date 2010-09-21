@@ -21,7 +21,6 @@ int _tmain(int argc, _TCHAR* argv[])
    RegionListing regionListing;
    Object* obj;
 
-  // std::vector<oneToMany> result = parser.ProcessFile(std::string("C:\\Documents and Settings\\mstseglo\\My Documents\\Visual Studio 2005\\Projects\\EU3toV2Converter\\Supplementary\\EU3_to_V2\\Book1.csv"));
    std::vector<oneToMany> provinceIDMap = parser.ProcessFile(std::string("1.csv"));
 
    std::ifstream read, read2, read3, read4, read5, read6;

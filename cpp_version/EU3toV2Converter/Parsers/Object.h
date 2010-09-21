@@ -27,6 +27,7 @@ public:
   std::vector<Object*> getLeaves () {return objects;}
   void removeObject (Object* target); 
   void addObject (Object* target); 
+  void addObjectAfter(Object* target, std::string key);
   void setLeaf (std::string k, std::string value); 
   void unsetValue (std::string val);
   void keyCount ();

@@ -148,8 +148,10 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 
       if (sourceProvinces.size() > 0)
       {
-	 std::string ownerStr;
-	 std::vector<Object*> oldOwnerVal, newOwnerVal; 
+	 std::string ownerStr, coreStr;
+	 std::vector<Object*> oldOwnerVal, newOwnerVal, oldCoreVal, provinceData;
+	 std::set<std::string> cores;
+	 Country  *origCountry, *destCountry;	
 	 
 	 oldOwnerVal = sourceProvinces[0]->GetSource()->getValue("owner");	 
 	 if (oldOwnerVal.size() < 1)
@@ -157,11 +159,11 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 	 
 	 ownerStr = oldOwnerVal[0]->getLeaf();
 	 ownerStr = ownerStr.substr(1, 3); // This was stored with quotes around it
-	 Country* origCountry = origWorld.GetCountry(ownerStr);
+	 origCountry = origWorld.GetCountry(ownerStr);
 
 	 if (origCountry != NULL)
 	 {
-	    Country* destCountry = origCountry->GetDestCountry();
+	    destCountry = origCountry->GetDestCountry();
 
 	    if (destCountry != NULL)
 	    {
@@ -179,6 +181,47 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 		  newOwnerVal[0]->setValue(ownerStr);
 	       }
 	    }
+	 }
+   
+	 // So, who had cores on this province?
+	 oldCoreVal = sourceProvinces[0]->GetSource()->getValue("core");
+
+	 for (unsigned int j = 0; j < oldCoreVal.size(); j++)
+	 {
+	    coreStr = oldCoreVal[j]->getLeaf();
+	    coreStr = coreStr.substr(1, 3); // This was stored with quotes around it	
+
+	    origCountry = origWorld.GetCountry(coreStr);
+
+	    if (origCountry != NULL)
+	    {
+	       destCountry = origCountry->GetDestCountry();
+	       if (destCountry != NULL)
+	       {
+		  coreStr = "\"" + destCountry->GetName() + "\"";
+		  cores.insert(coreStr);
+	       }
+	    }
+	 }
+
+	 // We have converted the list of old countries with a core on the province to new world
+	 // Now remove cores and insert them
+	 provinceData = allProvinces[i]->GetSource()->getLeaves();
+/*
+	 for (unsigned int j = 0; j < provinceData.size(); j++)
+	 {
+	    if (provinceData[j]->getKey().compare("core") == 0)
+	    {
+	       allProvinces[i]->GetSource()->removeObject(provinceData[j]);
+	    }	    
+	 }
+*/
+	 for (std::set<std::string>::iterator setIter = cores.begin(); setIter != cores.end(); setIter++)
+	 {
+	    // Insert the 'core' value just before 'garrison'
+	    Object* newCore = new Object("core");
+	    newCore->setValue(*setIter);
+	    allProvinces[i]->GetSource()->addObjectAfter(newCore, "garrison");
 	 }
       }
 

@@ -53,7 +53,7 @@ void World::Init(Object* obj)
       {
 	 if (countryData[j]->getKey().compare("state") == 0)
 	 {
-	    // allCountries[i]->GetSource()->removeObject(countryData[j]);
+	    allCountries[i]->GetSource()->removeObject(countryData[j]);
 	 }
 	 else if (countryData[j]->getKey().compare("army") == 0)
 	 {
@@ -119,6 +119,24 @@ std::vector<Country*> World::GetAllCountries()
    for (iter = m_countries.begin(); iter != m_countries.end(); iter++)
    {
       all.push_back(&(*iter).second);
+   }   
+
+   return all;
+}
+
+std::vector<Country*> World::GetAllExistingCountries()
+{
+   std::vector<Country*> all;
+
+   std::map<std::string, Country>::iterator iter;
+
+   for (iter = m_countries.begin(); iter != m_countries.end(); iter++)
+   {
+      // Do I have any provinces?
+      if ((*iter).second.GetProvinces().size() > 0)
+      {
+	 all.push_back(&(*iter).second);
+      }      
    }   
 
    return all;

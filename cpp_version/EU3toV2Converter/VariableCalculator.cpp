@@ -65,7 +65,8 @@ void VariableCalculator::ProcessVariables(std::vector<varDefinition> vars)
       switch(vars[i].type)
       {
       case VAR_COUNTRY:
-	 countries = world->GetAllCountries();
+	 // I'm only interested in existing countries' variables
+	 countries = world->GetAllExistingCountries();
 	 for (unsigned int j = 0; j < countries.size(); j++)
 	 {
 	    ProcessCountryVariable(countries[j], vars[i]);
@@ -80,7 +81,7 @@ void VariableCalculator::ProcessVariables(std::vector<varDefinition> vars)
 
 void VariableCalculator::ProcessRules(std::vector<ruleset> vars)
 {
-   // TODO - Move this to a new class/classes
+   // TODO - Move this to a new class/classes?
    for (unsigned int i = 0; i < vars.size(); i++)
    {
       if (vars[i].name.compare("OrderLibertyEquality") == 0)
