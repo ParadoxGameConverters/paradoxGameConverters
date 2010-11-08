@@ -282,9 +282,9 @@ void readInsFile (std::ifstream& read)
       std::string buffer;
       std::getline(read, buffer);   
 
-      string::size_type endPos = buffer.find_first_of("#", 0);
+      std::string::size_type endPos = buffer.find_first_of("#", 0);
 
-      if (string::npos != endPos)
+      if (std::string::npos != endPos)
       {
 	 buffer = buffer.substr(0, endPos);	 
 	 if (buffer.size() < 1)
