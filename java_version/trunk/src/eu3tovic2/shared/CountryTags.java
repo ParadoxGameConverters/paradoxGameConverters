@@ -22,7 +22,7 @@ public class CountryTags {
 		ArrayList<String> source = new ArrayList<String>();
 		HashSet<String> destSet = new HashSet<String>(); //for error checking
 		
-		for (GenericObject link : root.children) {
+		for (GenericObject link : root.getChild("mappings").children) {
 			if (!link.name.equals("link")) {
 				throw new IOException("Node which was not a link called " + link.name);
 			}
@@ -87,7 +87,7 @@ public class CountryTags {
 	static public CountryTags getInstance() {
 		if (instance == null) {
 			try {
-				instance = new CountryTags(new File("data/CountryTags.txt"));
+				instance = new CountryTags(new File("data/country_mappings.txt"));
 			}
 			catch (IOException e) {
 				System.err.println(e.getMessage());

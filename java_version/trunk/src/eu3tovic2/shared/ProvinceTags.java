@@ -21,7 +21,7 @@ public class ProvinceTags {
 		
 		HashSet<Integer> destSet = new HashSet<Integer>(); //for error checking
 		
-		for (GenericObject link : root.children) {
+		for (GenericObject link : root.getChild("mappings").children) {
 			if (!link.name.equals("link")) {
 				throw new IOException("Node which was not a link called " + link.name);
 			}
@@ -81,7 +81,7 @@ public class ProvinceTags {
 	static public ProvinceTags getInstance() {
 		if (instance == null) {
 			try {
-				instance = new ProvinceTags(new File("data/ProvinceTags.txt"));
+				instance = new ProvinceTags(new File("data/province_mappings.txt"));
 			}
 			catch (IOException e) {
 				System.err.println(e.getMessage());
