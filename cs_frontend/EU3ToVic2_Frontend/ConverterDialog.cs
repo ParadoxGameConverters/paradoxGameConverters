@@ -68,5 +68,10 @@ namespace EU3ToVic2_Frontend
         {
             conversionProcess.Kill();
         }
+
+        private void ConverterDialog_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
