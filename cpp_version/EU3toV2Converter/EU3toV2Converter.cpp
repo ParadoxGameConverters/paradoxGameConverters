@@ -11,7 +11,7 @@
 #include "Logger.h"
 #include "VariableCalculator.h"
 
-int _tmain(int argc, _TCHAR* argv[])
+int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
 {
    std::string filename;
    CSVOneToManyParser parser;
@@ -26,6 +26,14 @@ int _tmain(int argc, _TCHAR* argv[])
    std::ifstream read, read2, read3, read4, read5, read6;
    std::ostringstream stream;
 
+   std::string inputFilename("input.eu3");
+   if (argc >= 2) {
+       inputFilename = argv[1];
+   }
+   else {
+       std::cout << "No input file given, defaulting to input.eu3" << std::endl;
+   }
+
    // Parsing EU World
    stream.str("");
    stream << "Main parsing EU World.";
@@ -33,7 +41,7 @@ int _tmain(int argc, _TCHAR* argv[])
    
    initParser();
    obj = Parser::topLevel;
-   read.open(std::string("input.eu3").c_str());   
+   read.open(inputFilename.c_str());   
    readFile(read);
    euWorld.Init(obj);
    read.close();
@@ -115,7 +123,7 @@ int _tmain(int argc, _TCHAR* argv[])
 
    std::ofstream write;
    Parser::topLevel = vickyWorld.GetSource();
-   write.open(std::string("output.v2").c_str());   
+   write.open((inputFilename + ".v2").c_str());   
    write << *(vickyWorld.GetSource()); 
    write.close(); 
 
