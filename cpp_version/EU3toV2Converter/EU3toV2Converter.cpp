@@ -41,7 +41,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
    
    initParser();
    obj = Parser::topLevel;
-   read.open(inputFilename.c_str());   
+   read.open(inputFilename.c_str());
+   if (!read.is_open())
+   {
+	   std::cout << "Could not open EU3 save." << std::endl;
+   }
    readFile(read);
    euWorld.Init(obj);
    read.close();
@@ -52,7 +56,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
    initParser();
    obj = Parser::topLevel;
-   read2.open(std::string("input.v2").c_str());   
+   read2.open(std::string("input.v2").c_str());
+	if (!read2.is_open())
+	{
+		std::cout << "Could not open input.v2" << std::endl;
+	}
    readFile(read2);
    vickyWorld.Init(obj);
    read2.close(); 
@@ -65,7 +73,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
    initParser();
    obj = Parser::topLevel;
-   read3.open(std::string("province_mappings.txt").c_str());   
+   read3.open(std::string("province_mappings.txt").c_str()); 
+	if (!read3.is_open())
+	{
+		std::cout << "Could not open province_mappings.txt" << std::endl;
+	}
    readFile(read3);  
    read3.close();
 
@@ -79,6 +91,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
    initParser();
    obj = Parser::topLevel;
    read4.open(std::string("country_mappings.txt").c_str());   
+	if (!read4.is_open())
+	{
+		std::cout << "Could not open country_mappings.txt" << std::endl;
+	}
    readFile(read4);  
    read4.close();
 
@@ -92,7 +108,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
    initParser();
    obj = Parser::topLevel;
-   read6.open(std::string("region.txt").c_str());   
+   read6.open(std::string("region.txt").c_str());
+	if (!read6.is_open())
+	{
+		std::cout << "Could not open region.txt" << std::endl;
+	}
    readFile(read6);  
    read6.close();
 
@@ -112,7 +132,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
      
    InstructionsParser insParser;
    InstructionsParser::Refresh();
-   read5.open(std::string("ins.txt").c_str());   
+   read5.open(std::string("ins.txt").c_str());
+	if (!read5.is_open())
+	{
+		std::cout << "Could not open ins.txt" << std::endl;
+	}
    readInsFile(read5);   
    read5.close();
 
@@ -123,7 +147,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
    std::ofstream write;
    Parser::topLevel = vickyWorld.GetSource();
-   write.open((inputFilename + ".v2").c_str());   
+   write.open((inputFilename + ".v2").c_str());
+	if (!write.is_open())
+	{
+		std::cout << "Could not open " << (inputFilename + ".v2").c_str() << std::endl;
+	}
    write << *(vickyWorld.GetSource()); 
    write.close(); 
 
