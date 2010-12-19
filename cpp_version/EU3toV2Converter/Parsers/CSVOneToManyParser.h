@@ -1,28 +1,19 @@
 // ****************************************************************************
-// *                                                                          *
-// *		     EU3 to Victoria 2 conversion project                     *
-// *                                                                          *
+// *																								  *
+// *			  EU3 to Victoria 2 conversion project							*
+// *																								  *
 // ****************************************************************************
 
+#include <vector>
+#include <string>
+using namespace std;
 
-#pragma once
 
 #ifndef CSV_ONETOMANY_PARSER_H
 #define CSV_ONETOMANY_PARSER_H
 
-///////////////////////////////////////////////////////////////////////////////
-// Class Definition
-///////////////////////////////////////////////////////////////////////////////
-class CSVOneToManyParser
-{
-public:
-   CSVOneToManyParser() {};
-   ~CSVOneToManyParser() {};
 
-   std::vector<oneToMany> ProcessFile(std::string& filename);
+//vector<oneToMany> ProcessCSVFile(string& filename);
 
-private:   
 
-};
-
-#endif // ndef CSV_ONETOMANY_PARSER_H
+#endif	// CSV_ONETOMANY_PARSER_H
