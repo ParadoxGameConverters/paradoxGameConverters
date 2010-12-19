@@ -24,9 +24,6 @@
     <ClCompile Include="EU3toV2Converter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Mapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -44,9 +41,6 @@
     </ClCompile>
     <ClCompile Include="VariableCalculator.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Parsers\CSVOneToManyParser.cpp">
-      <Filter>Parsers</Filter>
     </ClCompile>
     <ClCompile Include="Parsers\DateParser.cpp">
       <Filter>Parsers</Filter>
@@ -75,11 +69,11 @@
     <ClCompile Include="World.cpp">
       <Filter>World</Filter>
     </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Mapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -94,9 +88,6 @@
     </ClInclude>
     <ClInclude Include="VariableCalculator.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Parsers\CSVOneToManyParser.h">
-      <Filter>Parsers</Filter>
     </ClInclude>
     <ClInclude Include="Parsers\DateParser.h">
       <Filter>Parsers</Filter>
@@ -124,6 +115,9 @@
     </ClInclude>
     <ClInclude Include="World.h">
       <Filter>World</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

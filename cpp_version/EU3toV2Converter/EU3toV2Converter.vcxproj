@@ -67,7 +67,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <AdditionalIncludeDirectories>C:\dev\boost\include\boost_1_33_1;C:\dev\boost\include\boost_1_33_1\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\dev\boost\include\boost_1_44;C:\dev\boost\include\boost_1_44\boost;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <PrecompiledHeader>
@@ -85,14 +85,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EU3toV2Converter.cpp" />
-    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="RegionListing.cpp" />
     <ClCompile Include="RulesetHandler.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Supplementary.cpp" />
     <ClCompile Include="VariableCalculator.cpp" />
-    <ClCompile Include="Parsers\CSVOneToManyParser.cpp" />
     <ClCompile Include="Parsers\DateParser.cpp" />
     <ClCompile Include="Parsers\InstructionsParser.cpp" />
     <ClCompile Include="Parsers\Object.cpp" />
@@ -104,13 +103,12 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="Mapper.h" />
     <ClInclude Include="RegionListing.h" />
     <ClInclude Include="RulesetHandler.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="VariableCalculator.h" />
-    <ClInclude Include="Parsers\CSVOneToManyParser.h" />
     <ClInclude Include="Parsers\DateParser.h" />
     <ClInclude Include="Parsers\InstructionsParser.h" />
     <ClInclude Include="Parsers\Object.h" />
