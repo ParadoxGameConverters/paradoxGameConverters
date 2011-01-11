@@ -23,8 +23,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	string inputFilename("input.eu3");
 	if (argc >= 2) {
 		inputFilename = argv[1];
-		log("Using input file %s.\n", inputFilename);
-		printf("Using input file %s.\n", inputFilename);
+		log("Using input file %s.\n", inputFilename.c_str());
+		printf("Using input file %s.\n", inputFilename.c_str());
 	}
 	else {
 		log("No input file given, defaulting to input.eu3\n");
