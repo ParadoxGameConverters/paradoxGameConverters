@@ -14,17 +14,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 {
 	initLog();
 
-	World vickyWorld;
-	Mapper mapper;
-	RegionListing regionListing;
+	Object*	obj;				// generic object
+	ifstream	read;				// ifstream for reading files
+	Mapper	mapper;			// maps EU3 to V2
 
 
-	std::ifstream read2, read3, read4, read5, read6;
-	
-
+	// Get Input EU3 save
 	string inputFilename("input.eu3");
 	if (argc >= 2) {
 		inputFilename = argv[1];
+		log("Using input file %s.\n", inputFilename);
+		printf("Using input file %s.\n", inputFilename);
 	}
 	else {
 		log("No input file given, defaulting to input.eu3\n");
@@ -32,21 +32,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 
 
-	// Parsing EU World
-	Object* obj;				//generic object
-
+	// Parse EU3 Save
 	log("Parsing EU3 save.\n");
 	printf("Parsing EU3 save.\n");
 	
 	initParser();
-
 	obj = Parser::topLevel;
-	ifstream read;
 	read.open(inputFilename.c_str());
 	if (!read.is_open())
 	{
-		log("Error: Could not open EU3 save.\n");
-		printf("Error: Could not open EU3 save.\n");
+		log("Error: Could not open EU3 save (%s).\n", inputFilename.c_str());
+		printf("Error: Could not open EU3 save (%s).\n", inputFilename.c_str());
 		return 1;
 	}
 	readFile(read);
@@ -54,20 +50,24 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	euWorld.Init(obj);
 	read.close();
 
+
+	// Parse V2 input file
 	log("Parsing Vicky2 input save.\n");
 	printf("Parsing Vicky2 input save.\n");
 	
 	initParser();
 	obj = Parser::topLevel;
-	read2.open(std::string("input.v2").c_str());
-	if (!read2.is_open())
+	read.open(std::string("input.v2").c_str());
+	if (!read.is_open())
 	{
 		log("Error: Could not open input.v2\n");
 		printf("Error: Could not open input.v2\n");
+		return 1;
 	}
-	readFile(read2);
+	readFile(read);
+	World vickyWorld;
 	vickyWorld.Init(obj);
-	read2.close(); 
+	read.close();
 
 
 	// Parsing province mappings
@@ -76,17 +76,18 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	
 	initParser();
 	obj = Parser::topLevel;
-	read3.open(std::string("province_mappings.txt").c_str()); 
-	if (!read3.is_open())
+	read.open(std::string("province_mappings.txt").c_str()); 
+	if (!read.is_open())
 	{
 		log("Error: Could not open province_mappings.txt\n");
 		printf("Error: Could not open province_mappings.txt\n");
 		return 1;
 	}
-	readFile(read3);  
-	read3.close();
+	readFile(read);  
+	read.close();
 
 	std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = mapper.InitEUToVickyMap(obj);
+
 
 	// Parsing country mappings
 	log("Parsing country mappings.\n");
@@ -94,17 +95,18 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	
 	initParser();
 	obj = Parser::topLevel;
-	read4.open(std::string("country_mappings.txt").c_str());	
-	if (!read4.is_open())
+	read.open(std::string("country_mappings.txt").c_str());	
+	if (!read.is_open())
 	{
 		log("Error: Could not open country_mappings.txt\n");
 		printf("Error: Could not open country_mappings.txt\n");
 		return 1;
 	}
-	readFile(read4);  
-	read4.close();
+	readFile(read);  
+	read.close();
 
 	std::map<std::string, std::set<std::string> > vicFromEuCountryMap = mapper.InitEUToVickyCountryMap(obj);
+
 
 	// Generate region mapping
 	log("Parsing region structure.\n");
@@ -112,23 +114,27 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	initParser();
 	obj = Parser::topLevel;
-	read6.open(std::string("region.txt").c_str());
-	if (!read6.is_open())
+	read.open(std::string("region.txt").c_str());
+	if (!read.is_open())
 	{
 		log("Error: Could not open region.txt\n");
 		printf("Error: Could not open region.txt\n");
+		return 1;
 	}
-	readFile(read6);  
-	read6.close();
+	readFile(read);  
+	read.close();
 
 	if (obj->getLeaves().size() < 1)
 	{
-		// TODO: error;
+		log("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
+		printf("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
 		return 1;
 	}
+	RegionListing regionListing;
 	regionListing.Init(obj->getLeaves()[0]);
 
 
+	// Convert
 	mapper.MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
 	mapper.MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);
 	mapper.AssignProvinceOwnership(euWorld, vickyWorld, regionListing);
@@ -137,21 +143,22 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	  
 	InstructionsParser insParser;
 	InstructionsParser::Refresh();
-	read5.open(std::string("ins.txt").c_str());
-	if (!read5.is_open())
+	read.open(std::string("ins.txt").c_str());
+	if (!read.is_open())
 	{
 		log("Error: Could not open ins.txt\n");
 		printf("Error: Could not open ins.txt\n");
 		return 1;
 	}
-	readInsFile(read5);	
-	read5.close();
+	readInsFile(read);	
+	read.close();
 
 	VariableCalculator::Instance()->SetWorlds(&euWorld, &vickyWorld);
 	VariableCalculator::Instance()->ProcessVariables(InstructionsParser::GetProcessedVars());
 	VariableCalculator::Instance()->ProcessRules(InstructionsParser::GetProcessedRulesets());
 	InstructionsParser::Refresh();
 
+	// Output results
 	std::ofstream write;
 	Parser::topLevel = vickyWorld.GetSource();
 	write.open((inputFilename + ".v2").c_str());
@@ -164,8 +171,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	write << *(vickyWorld.GetSource()); 
 	write.close(); 
 
-	int bob = 0;
 
 	closeLog();
+	return 0;
 }
 
