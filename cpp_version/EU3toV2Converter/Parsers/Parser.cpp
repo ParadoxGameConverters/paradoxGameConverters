@@ -52,8 +52,6 @@ int trim (std::string& str) {
 
 void readFile (std::ifstream& read) {
   clearStack(); 
-  int count = 0; 
-  int prevCount = 0; 
   int openBraces = 0;
   std::string currObject;  
   bool topLevel = true; 
@@ -62,7 +60,6 @@ void readFile (std::ifstream& read) {
     std::string buffer;
     std::getline(read, buffer);
 
-    count++;
     int currBraces = trim(buffer); 
     openBraces += currBraces; 
     currObject += " " + buffer; 
@@ -83,10 +80,6 @@ void readFile (std::ifstream& read) {
     if (topLevel) continue; 
 
     openBraces = 0; 
-    if (count - prevCount > 50000) {
-      std::cout << "Parsed to line " << count << "\n";
-      prevCount = count; 
-    }
     makeObject(currObject);
     currObject.clear(); 
     topLevel = true; 
