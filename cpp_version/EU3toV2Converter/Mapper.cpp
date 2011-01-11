@@ -159,7 +159,10 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 
 			oldOwnerVal = sourceProvinces[0]->GetSource()->getValue("owner");	 
 			if (oldOwnerVal.size() < 1)
+			{
+				log("Prov %d: oldOwnerVal < 0 (no old owners?)\n", i);
 				continue;
+			}
 
 			ownerStr = oldOwnerVal[0]->getLeaf();
 			ownerStr = ownerStr.substr(1, 3); // This was stored with quotes around it
@@ -178,14 +181,32 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 					{		 
 						newOwnerVal[0]->setValue(ownerStr);
 					}
+					else
+					{
+						log("Prov %d: newOwnerVal.size <= 0 while assigning owner\n", i);
+					}
 
 					newOwnerVal = allProvinces[i]->GetSource()->getValue("controller");
 					if (newOwnerVal.size() > 0)
 					{
 						newOwnerVal[0]->setValue(ownerStr);
 					}
+					else
+					{
+						log("Prov %d: newOwnerVal.size <= 0 while assigning controller\n", i);
+					}
+				}
+				else
+				{
+					log("Prov %d: destCountry == NULL\n", i);
 				}
 			}
+			else
+			{
+				log("Error: EU3 owner of prov %d did not have a country tag.\n", i);
+				exit(1);
+			}
+
 
 			// So, who had cores on this province?
 			oldCoreVal = sourceProvinces[0]->GetSource()->getValue("core");
