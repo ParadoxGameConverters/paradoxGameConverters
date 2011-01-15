@@ -249,6 +249,10 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 				allProvinces[i]->GetSource()->addObjectAfter(newCore, "garrison");
 			}
 		}
+		else
+		{
+			log("Province %d: Source provices size <= 0", i);
+		}
 
 		// Now, re-identify the current owner, and assign a member variable
 		ownerVal = allProvinces[i]->GetSource()->getValue("owner");
