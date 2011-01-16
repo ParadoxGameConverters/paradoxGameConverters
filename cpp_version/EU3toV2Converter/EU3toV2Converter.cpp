@@ -16,7 +16,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	Object*	obj;				// generic object
 	ifstream	read;				// ifstream for reading files
-	Mapper	mapper;			// maps EU3 to V2
 
 
 	// Get Input EU3 save
@@ -86,7 +85,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
-	std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = mapper.InitEUToVickyMap(obj);
+	std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = InitEUToVickyMap(obj);
 
 
 	// Parsing country mappings
@@ -105,7 +104,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
-	std::map<std::string, std::set<std::string> > vicFromEuCountryMap = mapper.InitEUToVickyCountryMap(obj);
+	std::map<std::string, std::set<std::string> > vicFromEuCountryMap = InitEUToVickyCountryMap(obj);
 
 
 	// Generate region mapping
@@ -135,11 +134,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	// Convert
-	mapper.MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
-	mapper.MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);
-	mapper.AssignProvinceOwnership(euWorld, vickyWorld, regionListing);
-	mapper.AssignCountryCapitals(euWorld, vickyWorld);
-	mapper.SetupStates(vickyWorld, regionListing);
+	MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
+	MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);
+	AssignProvinceOwnership(euWorld, vickyWorld, regionListing);
+	AssignCountryCapitals(euWorld, vickyWorld);
+	SetupStates(vickyWorld, regionListing);
 	  
 	InstructionsParser insParser;
 	InstructionsParser::Refresh();

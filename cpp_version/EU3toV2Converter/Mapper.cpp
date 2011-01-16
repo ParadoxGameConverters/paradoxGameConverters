@@ -13,7 +13,7 @@
 
 
 
-void Mapper::MapProvinces(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld)
+void MapProvinces(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld)
 {
 	std::ostringstream stream;
 	std::map<std::string, std::set<std::string> >::iterator mapIter;
@@ -50,7 +50,7 @@ void Mapper::MapProvinces(std::map<std::string, std::set<std::string> > mapping,
 	}
 
 	// Now output information on which provinces remain unmapped
-	log("Mapper::MapProvinces finished mapping provinces.\n");
+	log("MapProvinces finished mapping provinces.\n");
 
 	int totalUnmatched = 0;
 	std::vector<Province*> provinces = destWorld.GetAllProvinces();
@@ -63,7 +63,7 @@ void Mapper::MapProvinces(std::map<std::string, std::set<std::string> > mapping,
 			if (first)
 			{
 				first = false;
-				log("Mapper::MapProvinces found destination province(s) with no source:\n");
+				log("MapProvinces found destination province(s) with no source:\n");
 			}
 			log("%s\n", provinces[i]->GetName().c_str());
 			totalUnmatched++;
@@ -71,13 +71,13 @@ void Mapper::MapProvinces(std::map<std::string, std::set<std::string> > mapping,
 	}
 	if (totalUnmatched > 0)
 	{
-		log("Warning: Mapper::MapProvinces found %d unmatched provinces.\n", totalUnmatched);
-		printf("Warning: Mapper::MapProvinces found %d unmatched provinces.\n", totalUnmatched);
+		log("Warning: MapProvinces found %d unmatched provinces.\n", totalUnmatched);
+		printf("Warning: MapProvinces found %d unmatched provinces.\n", totalUnmatched);
 	}	
 }
 
 
-void Mapper::MapCountries(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld)
+void MapCountries(std::map<std::string, std::set<std::string> > mapping, World& origWorld, World& destWorld)
 {
 	std::ostringstream stream;
 	std::map<std::string, std::set<std::string> >::iterator mapIter;
@@ -113,7 +113,7 @@ void Mapper::MapCountries(std::map<std::string, std::set<std::string> > mapping,
 	}
 
 	// Now output information on which countries remain unmapped
-	log("Mapper::MapCountries finished mapping countries.\n");
+	log("MapCountries finished mapping countries.\n");
 
 	int totalUnmatched = 0;
 	std::vector<Country*> countries = origWorld.GetAllCountries();
@@ -126,7 +126,7 @@ void Mapper::MapCountries(std::map<std::string, std::set<std::string> > mapping,
 			if (first)
 			{
 				first = false;
-				log("Mapper::MapCountries found countries with no destination:\n");
+				log("MapCountries found countries with no destination:\n");
 			}
 			log("%s\n", countries[i]->GetName().c_str());
 			totalUnmatched++; 
@@ -135,13 +135,13 @@ void Mapper::MapCountries(std::map<std::string, std::set<std::string> > mapping,
 
 	if (totalUnmatched > 0)
 	{
-		log("Warning: Mapper::MapCountries found %d unmatched countries.\n", totalUnmatched);
-		printf("Warning: Mapper::MapCountries found %d unmatched countries.\n", totalUnmatched);
+		log("Warning: MapCountries found %d unmatched countries.\n", totalUnmatched);
+		printf("Warning: MapCountries found %d unmatched countries.\n", totalUnmatched);
 	}
 }
 
 
-void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionListing& regionListing)
+void AssignProvinceOwnership(World& origWorld, World& destWorld, RegionListing& regionListing)
 {
 	std::vector<Object*> ownerVal;
 	std::vector<Province*> allProvinces = destWorld.GetAllProvinces();
@@ -266,7 +266,7 @@ void Mapper::AssignProvinceOwnership(World& origWorld, World& destWorld, RegionL
 }
 
 
-void Mapper::AssignCountryCapitals(World& origWorld, World& destWorld)
+void AssignCountryCapitals(World& origWorld, World& destWorld)
 {
 	std::vector<Object*> ownerVal;
 	std::vector<Country*> allCountries = destWorld.GetAllCountries();
@@ -309,7 +309,7 @@ void Mapper::AssignCountryCapitals(World& origWorld, World& destWorld)
 }
 
 
-void Mapper::SetupStates(World& destWorld, RegionListing& regionListing)
+void SetupStates(World& destWorld, RegionListing& regionListing)
 {
 	int startState = 590;
 	std::vector<Country*> allCountries = destWorld.GetAllCountries();
@@ -354,7 +354,7 @@ void Mapper::SetupStates(World& destWorld, RegionListing& regionListing)
 }
 
 
-void Mapper::CreateState(std::string stateID, Country* country, std::vector<std::string>& provinces)
+void CreateState(std::string stateID, Country* country, std::vector<std::string>& provinces)
 {
 	std::vector<Object*> stateVal, stateIDVal;
 
@@ -389,7 +389,7 @@ void Mapper::CreateState(std::string stateID, Country* country, std::vector<std:
 }
 
 
-std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyMap(Object* obj)
+std::map<std::string, std::set<std::string> > InitEUToVickyMap(Object* obj)
 {
 	std::map<std::string, std::set<std::string> > mapping;
 	std::map<std::string, std::set<std::string> >::iterator mapIter;
@@ -445,7 +445,7 @@ std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyMap(Object* o
 }
 
 
-std::map<std::string, std::set<std::string> > Mapper::InitEUToVickyCountryMap(Object* obj)
+std::map<std::string, std::set<std::string> > InitEUToVickyCountryMap(Object* obj)
 {
 	std::map<std::string, std::set<std::string> > mapping;
 	std::map<std::string, std::set<std::string> >::iterator mapIter;
