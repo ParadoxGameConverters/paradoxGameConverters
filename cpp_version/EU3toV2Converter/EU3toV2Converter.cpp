@@ -7,6 +7,8 @@
 #include "RegionListing.h"
 #include "Log.h"
 #include "VariableCalculator.h"
+#include "EU3World.h"
+#include "V2World.h"
 using namespace std;
 
 
@@ -45,9 +47,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		return 1;
 	}
 	readFile(read);
+	read.close();
 	World euWorld;
 	euWorld.Init(obj);
-	read.close();
+	EU3World sourceWorld;
+	sourceWorld.init(obj);
 
 
 	// Parse V2 input file
@@ -64,9 +68,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		return 1;
 	}
 	readFile(read);
+	read.close();
 	World vickyWorld;
 	vickyWorld.Init(obj);
-	read.close();
+	V2World destWorld;
+	destWorld.init(obj);
 
 
 	// Parsing province mappings
@@ -86,6 +92,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	read.close();
 
 	std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = InitEUToVickyMap(obj);
+	provinceMapping provinceMap = initProvinceMap(obj);
 
 
 	// Parsing country mappings
@@ -105,6 +112,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	read.close();
 
 	std::map<std::string, std::set<std::string> > vicFromEuCountryMap = InitEUToVickyCountryMap(obj);
+	countryMapping countryMap = initCountryMap(obj);
 
 
 	// Generate region mapping
@@ -139,6 +147,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	AssignProvinceOwnership(euWorld, vickyWorld, regionListing);
 	AssignCountryCapitals(euWorld, vickyWorld);
 	SetupStates(vickyWorld, regionListing);
+
+	// Convert (new methods)
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	  
 	InstructionsParser insParser;
 	InstructionsParser::Refresh();

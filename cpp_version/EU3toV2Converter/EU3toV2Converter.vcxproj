@@ -84,13 +84,19 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EU3Country.cpp" />
+    <ClCompile Include="EU3Province.cpp" />
     <ClCompile Include="EU3toV2Converter.cpp" />
+    <ClCompile Include="EU3World.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="RegionListing.cpp" />
     <ClCompile Include="RulesetHandler.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Supplementary.cpp" />
+    <ClCompile Include="V2Country.cpp" />
+    <ClCompile Include="V2Province.cpp" />
+    <ClCompile Include="V2World.cpp" />
     <ClCompile Include="VariableCalculator.cpp" />
     <ClCompile Include="Parsers\DateParser.cpp" />
     <ClCompile Include="Parsers\InstructionsParser.cpp" />
@@ -103,11 +109,17 @@
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="EU3Country.h" />
+    <ClInclude Include="EU3Province.h" />
+    <ClInclude Include="EU3World.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Mapper.h" />
     <ClInclude Include="RegionListing.h" />
     <ClInclude Include="RulesetHandler.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="V2Country.h" />
+    <ClInclude Include="V2Province.h" />
+    <ClInclude Include="V2World.h" />
     <ClInclude Include="VariableCalculator.h" />
     <ClInclude Include="Parsers\DateParser.h" />
     <ClInclude Include="Parsers\InstructionsParser.h" />

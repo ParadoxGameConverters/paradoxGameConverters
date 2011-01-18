@@ -19,6 +19,12 @@
     <Filter Include="World">
       <UniqueIdentifier>{063c7ff4-1c5c-41cc-b30b-cb8f375ab138}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EU3 World">
+      <UniqueIdentifier>{ee9ba205-86cb-4a0b-ae3c-cf8b63dfe0e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="V2 World">
+      <UniqueIdentifier>{08c5c068-3b6f-4c16-b964-1c6168ed4b29}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EU3toV2Converter.cpp">
@@ -72,6 +78,24 @@
     <ClCompile Include="Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="EU3World.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Province.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2World.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Province.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Country.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Country.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -118,6 +142,24 @@
     </ClInclude>
     <ClInclude Include="Log.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Province.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3World.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2World.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Province.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Country.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Country.h">
+      <Filter>V2 World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

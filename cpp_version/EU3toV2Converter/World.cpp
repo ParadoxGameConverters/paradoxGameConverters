@@ -23,7 +23,7 @@ void World::Init(Object* obj)
 	{
 		key = leaves[i]->getKey();
 		// Is this a numeric value? If so, must be a province
-		if (atoi(key.c_str()) > 0)
+		if (atoi(key.c_str()) > 0 && (atoi(key.c_str()) < 2000))
 		{
 			Province province;
 			province.Init(leaves[i]);
