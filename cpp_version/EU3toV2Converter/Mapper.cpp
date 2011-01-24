@@ -592,3 +592,27 @@ countryMapping initCountryMap(Object* obj)
 
 	return mapping;
 }
+
+
+stateMapping initStateMap(Object* obj)
+{
+	stateMapping stateMap;
+	vector<Object*> leaves = obj->getLeaves();
+
+	for (unsigned int i = 0; i < leaves.size(); i++)
+	{
+		vector<string> provinces = leaves[i]->getTokens();
+		vector<int>		neighbors;
+
+		for (unsigned int j = 0; j < provinces.size(); j++)
+		{
+			neighbors.push_back(atoi(provinces[j].c_str()));
+		}
+		for (unsigned int j = 0; j < neighbors.size(); j++)
+		{
+			stateMap.insert(make_pair<int, vector<int> >(neighbors[j], neighbors));
+		}
+	}
+
+	return stateMap;
+}

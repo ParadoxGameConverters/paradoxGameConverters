@@ -32,5 +32,8 @@ provinceMapping initProvinceMap(Object* obj);
 typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
 countryMapping initCountryMap(Object* obj);
 
+typedef map< int, vector<int> > stateMapping;
+stateMapping initStateMap(Object* obj);
+
 
 #endif // ndef MAPPER_H

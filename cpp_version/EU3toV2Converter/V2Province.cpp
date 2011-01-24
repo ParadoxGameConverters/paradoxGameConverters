@@ -27,3 +27,9 @@ void V2Province::setOwner(string newOwner)
 {
 	owner = newOwner;
 }
+
+
+string V2Province::getOwner()
+{
+	return owner;
+}

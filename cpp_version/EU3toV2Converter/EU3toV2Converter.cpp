@@ -141,15 +141,37 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	regionListing.Init(obj->getLeaves()[0]);
 
 
+	initParser();
+	obj = Parser::topLevel;
+	read.open(std::string("region.txt").c_str());
+	if (!read.is_open())
+	{
+		log("Error: Could not open region.txt\n");
+		printf("Error: Could not open region.txt\n");
+		return 1;
+	}
+	readFile(read);  
+	read.close();
+
+	if (obj->getLeaves().size() < 1)
+	{
+		log("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
+		printf("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
+		return 1;
+	}
+	stateMapping stateMap;
+	stateMap = initStateMap(obj->getLeaves()[0]);
+
+
 	// Convert
 	MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
 	MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);
 	AssignProvinceOwnership(euWorld, vickyWorld, regionListing);
 	AssignCountryCapitals(euWorld, vickyWorld);
-	SetupStates(vickyWorld, regionListing);
 
 	// Convert (new methods)
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
+	destWorld.setupStates(stateMap);
 	  
 	InstructionsParser insParser;
 	InstructionsParser::Refresh();

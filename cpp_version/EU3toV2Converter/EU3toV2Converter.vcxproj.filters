@@ -96,6 +96,9 @@
     <ClCompile Include="V2Country.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
+    <ClCompile Include="V2State.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -159,6 +162,9 @@
       <Filter>EU3 World</Filter>
     </ClInclude>
     <ClInclude Include="V2Country.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2State.h">
       <Filter>V2 World</Filter>
     </ClInclude>
   </ItemGroup>

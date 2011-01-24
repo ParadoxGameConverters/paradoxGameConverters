@@ -61,3 +61,50 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 		}
 	}
 }
+
+
+void V2World::setupStates(stateMapping stateMap)
+{
+	vector<V2Province> unassignedProvs;
+	unassignedProvs = provinces;
+
+	vector<V2Province>::iterator iter;
+	while(unassignedProvs.size() > 0)
+	{
+		iter = unassignedProvs.begin();
+		int		provId	= iter->getNum();
+		string	owner		= iter->getOwner();
+		unassignedProvs.erase(iter);
+
+		if (owner == "")
+		{
+			continue;
+		}
+
+		V2State newState(provId);
+		vector<int> neighbors = stateMap[provId];
+
+		for (unsigned int i = 0; i < neighbors.size(); i++)
+		{
+			for(iter = unassignedProvs.begin(); iter != unassignedProvs.end(); iter++)
+			{
+				if (iter->getNum() == neighbors[i])
+				{
+					if(iter->getOwner() == owner)
+					{
+						newState.addProvince(*iter);
+						unassignedProvs.erase(iter);
+					}
+				}
+			}
+		}
+
+		for (vector<V2Country>::iterator iter2 = countries.begin(); iter2 != countries.end(); iter2++)
+		{
+			if (iter2->getTag() == owner)
+			{
+				iter2->addState(newState);
+			}
+		}
+	}
+}

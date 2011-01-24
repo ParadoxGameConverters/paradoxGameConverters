@@ -7,9 +7,10 @@ using namespace std;
 
 class V2Province {
 	public:
-		void	init(Object* obj);
-		int	getNum();
-		void	setOwner(string);
+		void		init(Object* obj);
+		int		getNum();
+		void		setOwner(string);
+		string	getOwner();
 	private:
 		int		num;
 		string	name;

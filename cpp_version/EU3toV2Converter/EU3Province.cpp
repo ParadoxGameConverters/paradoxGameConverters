@@ -13,6 +13,7 @@ void EU3Province::init(Object* obj) {
 	else
 	{
 		owner = ownerObjs[0]->getLeaf();
+		owner = owner.substr(1,3);
 	}
 }
 
