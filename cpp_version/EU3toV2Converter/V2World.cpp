@@ -108,3 +108,17 @@ void V2World::setupStates(stateMapping stateMap)
 		}
 	}
 }
+
+
+void V2World::output(FILE* output)
+{
+	outputHeader(output);
+	for (unsigned int i = 0; i < provinces.size(); i++)
+	{
+		provinces[i].output(output);
+	}
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		countries[i].output(output);
+	}
+}

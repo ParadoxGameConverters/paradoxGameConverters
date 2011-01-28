@@ -1,8 +1,10 @@
 #ifndef V2PROVINCE_H_
 #define V2PROVINCE_H_
 
+#include <stdio.h>
 #include <string>
 #include "Parsers/Object.h"
+#include "tempFuncs.h"
 using namespace std;
 
 class V2Province {
@@ -11,6 +13,7 @@ class V2Province {
 		int		getNum();
 		void		setOwner(string);
 		string	getOwner();
+		void		output(FILE*);
 	private:
 		int		num;
 		string	name;

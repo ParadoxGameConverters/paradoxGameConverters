@@ -201,7 +201,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		return 1;
 	}
 	write << *(vickyWorld.GetSource()); 
-	write.close(); 
+	write.close();
+
+	FILE* output;
+	if (fopen_s(&output, "output.v2", "w") != 0)
+	{
+		log("Error: could not open output.v2.\n");
+		printf("Error: could not open output.v2.\n");
+	}
+	destWorld.output(output);
+	fclose(output);
+
 
 
 	closeLog();

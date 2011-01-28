@@ -11,6 +11,7 @@ class V2Country
 		void		init(Object* obj);
 		string	getTag();
 		void		addState(V2State);
+		void		output(FILE*);
 	private:
 		string				tag;
 		vector<V2State>	states;

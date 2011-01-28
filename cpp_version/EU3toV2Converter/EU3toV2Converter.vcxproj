@@ -94,6 +94,7 @@
     <ClCompile Include="RulesetHandler.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Supplementary.cpp" />
+    <ClCompile Include="tempFuncs.cpp" />
     <ClCompile Include="V2Country.cpp" />
     <ClCompile Include="V2Province.cpp" />
     <ClCompile Include="V2State.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="RegionListing.h" />
     <ClInclude Include="RulesetHandler.h" />
     <ClInclude Include="stdafx.h" />
+    <ClInclude Include="tempFuncs.h" />
     <ClInclude Include="V2Country.h" />
     <ClInclude Include="V2Province.h" />
     <ClInclude Include="V2State.h" />

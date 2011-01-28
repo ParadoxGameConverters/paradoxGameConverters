@@ -3,6 +3,7 @@
 
 #include "V2Province.h"
 #include <vector>
+#include "tempFuncs.h"
 using namespace std;
 
 
@@ -10,7 +11,8 @@ class V2State
 {
 	public:
 		V2State(int newId);
-		void addProvince(V2Province);
+		void	addProvince(V2Province);
+		void	output(FILE*);
 	private:
 		int id;
 		vector<V2Province> provinces;

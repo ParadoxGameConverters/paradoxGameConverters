@@ -99,6 +99,9 @@
     <ClCompile Include="V2State.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
+    <ClCompile Include="tempFuncs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="V2State.h">
       <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="tempFuncs.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
