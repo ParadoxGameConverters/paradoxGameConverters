@@ -14,6 +14,17 @@ void V2Province::init(Object* obj) {
 	{
 		name = nameObj[0]->getLeaf();
 	}
+
+	vector<Object*> rgoObj;
+	rgoObj = obj->getValue("rgo");
+	if (rgoObj.size() == 0)
+	{
+		land = false;
+	}
+	else
+	{
+		land = true;
+	}
 }
 
 
@@ -40,9 +51,15 @@ void V2Province::output(FILE* output)
 	fprintf(output, "%d=\n", num);
 	fprintf(output, "{\n");
 	fprintf(output, "	name=%s\n", name.c_str());
-	fprintf(output, "	owner=\"%s\"\n", owner.c_str());
-	fprintf(output, "	controller=\"%s\"\n", owner.c_str());
-	//output pops here
-	outputProvStuff(output);
+	if (land)
+	{
+		if (owner != "")
+		{
+			fprintf(output, "	owner=\"%s\"\n", owner.c_str());
+			fprintf(output, "	controller=\"%s\"\n", owner.c_str());
+		}
+		outputPopStuff(output);
+		outputProvStuff(output, num);
+	}
 	fprintf(output, "}\n");
 }
