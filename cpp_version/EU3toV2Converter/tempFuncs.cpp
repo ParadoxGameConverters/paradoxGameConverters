@@ -9,6 +9,7 @@ void outputHeader(FILE* output)
 	fprintf(output, "{\n");
 	fprintf(output, "	id=2107\n");
 	fprintf(output, "	type=4713\n");
+	fprintf(output, "}\n");
 	fprintf(output, "\n");
 }
 
