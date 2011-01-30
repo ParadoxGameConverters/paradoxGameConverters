@@ -32,6 +32,12 @@ void EU3World::init(Object* obj) {
 }
 
 
+vector<EU3Country> EU3World::getCountries()
+{
+	return countries;
+}
+
+
 EU3Province* EU3World::getProvince(int provNum)
 {
 	for (unsigned int i = 0; i < provinces.size(); i++)

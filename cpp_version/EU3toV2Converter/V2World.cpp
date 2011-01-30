@@ -10,26 +10,28 @@ void V2World::init(Object* obj)
 		key = leaves[i]->getKey();
 
 		// Is this a numeric value? If so, must be a province
-		if (atoi(key.c_str()) > 0)// && atoi(key.c_str()) < 3246)
+		if (atoi(key.c_str()) > 0)
 		{
 			V2Province province;
 			province.init(leaves[i]);
 			provinces.push_back(province);
 		}
+	}
 
-		// Countries are three uppercase characters
-		else if ((key.size() == 3) && 
-					(key.c_str()[0] >= 'A') && (key.c_str()[0] <= 'Z') && 
-					(key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') && 
-					(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z')
-				  )
-		{
-			V2Country country;
-			country.init(leaves[i]);
-			countries.push_back(country);
-		}
+}
+
+
+void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
+{
+	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
+	for (unsigned int i = 0; i < sourceCountries.size(); i++)
+	{
+		V2Country newCountry;
+		newCountry.init(sourceCountries[i].getTag());
+		countries.push_back(newCountry);
 	}
 }
+
 
 
 void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap)

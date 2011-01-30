@@ -170,6 +170,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	AssignCountryCapitals(euWorld, vickyWorld);
 
 	// Convert (new methods)
+	destWorld.convertCountries(sourceWorld, countryMap);
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	destWorld.setupStates(stateMap);
 	  

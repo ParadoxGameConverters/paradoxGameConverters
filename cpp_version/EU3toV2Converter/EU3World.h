@@ -10,8 +10,9 @@ using namespace std;
 
 class EU3World {
 	public:
-		void				init(Object* obj);
-		EU3Province*	getProvince(int provNum);
+		void						init(Object* obj);
+		vector<EU3Country>	getCountries();
+		EU3Province*			getProvince(int provNum);
 	private:
 		vector<EU3Province>	provinces;
 		vector<EU3Country>	countries;

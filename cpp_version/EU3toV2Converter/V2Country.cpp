@@ -1,9 +1,9 @@
 #include "V2Country.h"
 
 
-void V2Country::init(Object* obj)
+void V2Country::init(string newTag)
 {
-	tag = obj->getKey();
+	tag = newTag;
 }
 
 

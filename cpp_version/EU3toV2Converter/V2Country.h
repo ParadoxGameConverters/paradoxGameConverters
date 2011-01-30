@@ -8,7 +8,7 @@ using namespace std;
 class V2Country
 {
 	public:
-		void		init(Object* obj);
+		void		init(string);
 		string	getTag();
 		void		addState(V2State);
 		void		output(FILE*);

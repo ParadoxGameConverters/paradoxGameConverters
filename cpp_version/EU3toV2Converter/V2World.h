@@ -17,6 +17,7 @@ using namespace std;
 class V2World {
 	public:
 		void	init(Object* obj);
+		void	convertCountries(EU3World sourceWorld, countryMapping countryMap);
 		void	convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap);
 		void	setupStates(stateMapping);
 		void	output(FILE*);
