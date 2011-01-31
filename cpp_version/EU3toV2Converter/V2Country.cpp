@@ -29,6 +29,5 @@ void V2Country::output(FILE* output)
 	{
 		states[i].output(output);
 	}
-	outputCountryFooter(output);
 	fprintf(output, "}\n");
 }
