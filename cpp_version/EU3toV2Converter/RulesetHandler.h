@@ -10,12 +10,11 @@
 #define RULESETHANDLER_H
 
 #include "stdafx.h"
-#include "World.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class Definition
 ///////////////////////////////////////////////////////////////////////////////
-class RulesetHandler
+/*class RulesetHandler
 {
 public:
    static RulesetHandler* Instance();
@@ -29,6 +28,6 @@ protected:
    /// Singleton instance of the processor
    static RulesetHandler* s_calculator;
 
-};
+};*/
 
 #endif // ndef VARIABLECALCULATOR_H

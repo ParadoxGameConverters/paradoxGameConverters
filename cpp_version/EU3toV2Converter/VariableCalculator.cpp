@@ -11,7 +11,7 @@
 
 
 
-VariableCalculator* VariableCalculator::s_calculator = NULL;
+/*VariableCalculator* VariableCalculator::s_calculator = NULL;
 
 
 VariableCalculator* VariableCalculator::Instance()
@@ -148,4 +148,4 @@ void VariableCalculator::ProcessCountryVariable(Country* country, varDefinition&
 	log("VariableCalculator::ProcessCountryVariable calculated %s for country %s as %f\n", varDef.name.c_str(), country->GetName().c_str(), myVal);
 
 	country->m_flags.SetFlag(varDef.name, myVal);
-}
+}*/

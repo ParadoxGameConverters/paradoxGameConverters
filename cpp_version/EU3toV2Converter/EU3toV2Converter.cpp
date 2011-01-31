@@ -1,12 +1,10 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include "Parsers\Parser.h"
-#include "Parsers\InstructionsParser.h"
-#include "World.h"
+//#include "Parsers\InstructionsParser.h"
 #include "Mapper.h"
-#include "RegionListing.h"
 #include "Log.h"
-#include "VariableCalculator.h"
+//#include "VariableCalculator.h"
 #include "EU3World.h"
 #include "V2World.h"
 using namespace std;
@@ -48,8 +46,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);
 	read.close();
-	World euWorld;
-	euWorld.Init(obj);
 	EU3World sourceWorld;
 	sourceWorld.init(obj);
 
@@ -69,8 +65,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);
 	read.close();
-	World vickyWorld;
-	vickyWorld.Init(obj);
 	V2World destWorld;
 	destWorld.init(obj);
 
@@ -91,7 +85,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
-	std::map<std::string, std::set<std::string> > vicFromEuProvinceMap = InitEUToVickyMap(obj);
 	provinceMapping provinceMap = initProvinceMap(obj);
 
 
@@ -111,7 +104,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
-	std::map<std::string, std::set<std::string> > vicFromEuCountryMap = InitEUToVickyCountryMap(obj);
 	countryMapping countryMap = initCountryMap(obj);
 
 
@@ -133,30 +125,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	if (obj->getLeaves().size() < 1)
 	{
-		log("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
-		printf("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
-		return 1;
-	}
-	RegionListing regionListing;
-	regionListing.Init(obj->getLeaves()[0]);
-
-
-	initParser();
-	obj = Parser::topLevel;
-	read.open(std::string("region.txt").c_str());
-	if (!read.is_open())
-	{
-		log("Error: Could not open region.txt\n");
-		printf("Error: Could not open region.txt\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-
-	if (obj->getLeaves().size() < 1)
-	{
-		log("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
-		printf("This is where a TODO: error was. If you see this, but a programmer so we can put in a useful message.\n");
+		log("This is where a TODO: error was. If you see this, bug a programmer so we can put in a useful message.\n");
+		printf("This is where a TODO: error was. If you see this, bug a programmer so we can put in a useful message.\n");
 		return 1;
 	}
 	stateMapping stateMap;
@@ -164,17 +134,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	// Convert
-	MapProvinces(vicFromEuProvinceMap, euWorld, vickyWorld);
-	MapCountries(vicFromEuCountryMap, euWorld, vickyWorld);
-	AssignProvinceOwnership(euWorld, vickyWorld, regionListing);
-	AssignCountryCapitals(euWorld, vickyWorld);
-
-	// Convert (new methods)
 	destWorld.convertCountries(sourceWorld, countryMap);
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	destWorld.setupStates(stateMap);
 	  
-	InstructionsParser insParser;
+	/*InstructionsParser insParser;
 	InstructionsParser::Refresh();
 	read.open(std::string("ins.txt").c_str());
 	if (!read.is_open())
@@ -189,21 +153,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	VariableCalculator::Instance()->SetWorlds(&euWorld, &vickyWorld);
 	VariableCalculator::Instance()->ProcessVariables(InstructionsParser::GetProcessedVars());
 	VariableCalculator::Instance()->ProcessRules(InstructionsParser::GetProcessedRulesets());
-	InstructionsParser::Refresh();
+	InstructionsParser::Refresh();*/
 
 	// Output results
-	std::ofstream write;
-	Parser::topLevel = vickyWorld.GetSource();
-	write.open((inputFilename + ".v2").c_str());
-	if (!write.is_open())
-	{
-		log("Error: Could not open %s.v2\n", inputFilename.c_str());
-		printf("Error: Could not open %s.v2\n", inputFilename.c_str());
-		return 1;
-	}
-	write << *(vickyWorld.GetSource()); 
-	write.close();
-
 	FILE* output;
 	if (fopen_s(&output, "output.v2", "w") != 0)
 	{

@@ -27,7 +27,18 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 	for (unsigned int i = 0; i < sourceCountries.size(); i++)
 	{
 		V2Country newCountry;
-		newCountry.init(sourceCountries[i].getTag());
+		countryMapping::iterator iter;
+		iter = countryMap.find(sourceCountries[i].getTag());
+		if (iter != countryMap.end())
+		{
+			newCountry.init(iter->second.c_str());
+		}
+		else
+		{
+			log("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
+			printf("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
+			newCountry.init("");
+		}
 		countries.push_back(newCountry);
 	}
 }

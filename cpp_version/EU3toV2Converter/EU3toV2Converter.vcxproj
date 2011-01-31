@@ -90,7 +90,6 @@
     <ClCompile Include="EU3World.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mapper.cpp" />
-    <ClCompile Include="RegionListing.cpp" />
     <ClCompile Include="RulesetHandler.cpp" />
     <ClCompile Include="stdafx.cpp" />
     <ClCompile Include="Supplementary.cpp" />
@@ -105,10 +104,6 @@
     <ClCompile Include="Parsers\Object.cpp" />
     <ClCompile Include="Parsers\ObjectHandler.cpp" />
     <ClCompile Include="Parsers\Parser.cpp" />
-    <ClCompile Include="Country.cpp" />
-    <ClCompile Include="FlagSet.cpp" />
-    <ClCompile Include="Province.cpp" />
-    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="EU3Country.h" />
@@ -116,7 +111,6 @@
     <ClInclude Include="EU3World.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Mapper.h" />
-    <ClInclude Include="RegionListing.h" />
     <ClInclude Include="RulesetHandler.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="tempFuncs.h" />
@@ -130,10 +124,6 @@
     <ClInclude Include="Parsers\Object.h" />
     <ClInclude Include="Parsers\ObjectHandler.h" />
     <ClInclude Include="Parsers\Parser.h" />
-    <ClInclude Include="Country.h" />
-    <ClInclude Include="FlagSet.h" />
-    <ClInclude Include="Province.h" />
-    <ClInclude Include="World.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />

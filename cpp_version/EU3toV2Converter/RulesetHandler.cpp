@@ -10,7 +10,7 @@
 
 
 
-RulesetHandler* RulesetHandler::s_calculator = NULL;
+/*RulesetHandler* RulesetHandler::s_calculator = NULL;
 
 
 RulesetHandler* RulesetHandler::Instance()
@@ -125,4 +125,4 @@ void RulesetHandler::ProcessOrderLibertyEquality(World* world, std::map<std::str
 
 		log("Country %s now has national value: %s\n", countries[i]->GetName().c_str(), ideas[i].c_str());
 	}
-}
+}*/

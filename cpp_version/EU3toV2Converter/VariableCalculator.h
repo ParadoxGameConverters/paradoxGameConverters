@@ -10,12 +10,11 @@
 #define VARIABLECALCULATOR_H
 
 #include "stdafx.h"
-#include "World.h"
 
 ///////////////////////////////////////////////////////////////////////////////
 // Class Definition
 ///////////////////////////////////////////////////////////////////////////////
-class VariableCalculator
+/*class VariableCalculator
 {
 public:
    static VariableCalculator* Instance();
@@ -37,5 +36,5 @@ protected:
    World* m_euWorld;
    World* m_vickyWorld;
 };
-
+*/
 #endif // ndef VARIABLECALCULATOR_H

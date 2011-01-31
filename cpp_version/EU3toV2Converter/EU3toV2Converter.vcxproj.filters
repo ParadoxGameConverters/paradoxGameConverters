@@ -16,9 +16,6 @@
     <Filter Include="Parsers">
       <UniqueIdentifier>{4d37bd20-ad29-4ee6-949c-e9b3714661b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="World">
-      <UniqueIdentifier>{063c7ff4-1c5c-41cc-b30b-cb8f375ab138}</UniqueIdentifier>
-    </Filter>
     <Filter Include="EU3 World">
       <UniqueIdentifier>{ee9ba205-86cb-4a0b-ae3c-cf8b63dfe0e7}</UniqueIdentifier>
     </Filter>
@@ -31,12 +28,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Mapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RegionListing.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="RulesetHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
@@ -62,18 +53,6 @@
     </ClCompile>
     <ClCompile Include="Parsers\Parser.cpp">
       <Filter>Parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="Country.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
-    <ClCompile Include="FlagSet.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
-    <ClCompile Include="Province.cpp">
-      <Filter>World</Filter>
-    </ClCompile>
-    <ClCompile Include="World.cpp">
-      <Filter>World</Filter>
     </ClCompile>
     <ClCompile Include="Log.cpp">
       <Filter>Source Files</Filter>
@@ -102,15 +81,12 @@
     <ClCompile Include="tempFuncs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RulesetHandler.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RegionListing.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RulesetHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="stdafx.h">
@@ -133,18 +109,6 @@
     </ClInclude>
     <ClInclude Include="Parsers\Parser.h">
       <Filter>Parsers</Filter>
-    </ClInclude>
-    <ClInclude Include="Country.h">
-      <Filter>World</Filter>
-    </ClInclude>
-    <ClInclude Include="FlagSet.h">
-      <Filter>World</Filter>
-    </ClInclude>
-    <ClInclude Include="Province.h">
-      <Filter>World</Filter>
-    </ClInclude>
-    <ClInclude Include="World.h">
-      <Filter>World</Filter>
     </ClInclude>
     <ClInclude Include="Log.h">
       <Filter>Header Files</Filter>
@@ -171,6 +135,9 @@
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="tempFuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RulesetHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
