@@ -53,7 +53,6 @@ void outputPopStuff(FILE* output)
 
 void outputCountryHeader(FILE* output)
 {
-	fprintf(output, "	capital=300\n");
 	fprintf(output, "	wage_reform=no_minimum_wage\n");
 	fprintf(output, "	work_hours=no_work_hour_limit\n");
 	fprintf(output, "	safety_regulations=trinket_safety\n");
