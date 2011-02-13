@@ -84,6 +84,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="V2TagParser.cpp" />
     <ClCompile Include="EU3Country.cpp" />
     <ClCompile Include="EU3Province.cpp" />
     <ClCompile Include="EU3toV2Converter.cpp" />
@@ -117,6 +118,7 @@
     <ClInclude Include="V2Country.h" />
     <ClInclude Include="V2Province.h" />
     <ClInclude Include="V2State.h" />
+    <ClInclude Include="V2TagParser.h" />
     <ClInclude Include="V2World.h" />
     <ClInclude Include="VariableCalculator.h" />
     <ClInclude Include="Parsers\DateParser.h" />

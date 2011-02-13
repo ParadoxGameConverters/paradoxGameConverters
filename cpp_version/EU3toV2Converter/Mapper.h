@@ -13,6 +13,7 @@
 #include <vector>
 #include <string>
 #include "Parsers\Object.h"
+#include "EU3World.h"
 using namespace std;
 
 
@@ -20,7 +21,8 @@ typedef map< int, vector<int> > provinceMapping; // < destProvince, sourceProvin
 provinceMapping initProvinceMap(Object* obj);
 
 typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
-countryMapping initCountryMap(Object* obj);
+countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Object* rulesObj);
+vector<string>	getEU3Tags(EU3World srcWorld);
 
 typedef map< int, vector<int> > stateMapping;	// < province, all other provinces in state >
 stateMapping initStateMap(Object* obj);

@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include "Parsers\Parser.h"
+#include "V2TagParser.h"
 //#include "Parsers\InstructionsParser.h"
 #include "Mapper.h"
 #include "Log.h"
@@ -18,14 +19,30 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	ifstream	read;				// ifstream for reading files
 
 
-	// Get Input EU3 save
+	//Get V2 install location
+	string V2Loc;
+	if (argc >= 2)
+	{
+		V2Loc = argv[1];
+		log("V2Installed at %s\n", V2Loc.c_str());
+	}
+	else
+	{
+		log("Need to specify V2 install location on command line.\n");
+		printf("Need to specify V2 install location on command line.\n");
+		return 1;
+	}
+
+	//Get Input EU3 save 
 	string inputFilename("input.eu3");
-	if (argc >= 2) {
-		inputFilename = argv[1];
+	if (argc >= 3)
+	{
+		inputFilename = argv[2];
 		log("Using input file %s.\n", inputFilename.c_str());
 		printf("Using input file %s.\n", inputFilename.c_str());
 	}
-	else {
+	else
+	{
 		log("No input file given, defaulting to input.eu3\n");
 		printf("No input file given, defaulting to input.eu3\n");
 	}
@@ -91,6 +108,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parsing country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
+
+	vector<string> V2Tags;
+	read.open( (V2Loc + "\\common\\countries.txt").c_str() );
+	if (!read.is_open())
+	{
+		log("Error: Could not open countries.txt\n");
+		printf("Error: Could not open countries.txt\n");
+		return 1;
+	}
+	V2Tags = parseV2Tags(read);
+	read.close();
 	
 	initParser();
 	obj = Parser::topLevel;
@@ -104,7 +132,20 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
-	countryMapping countryMap = initCountryMap(obj);
+	vector<string> EU3Tags = getEU3Tags(sourceWorld);
+	if (EU3Tags.size() > V2Tags.size())
+	{
+		log("Error: Too many EU3 tags.\n");
+		printf("Error: Too many EU3 tags.\n");
+		//return 1;
+	}
+	countryMapping countryMap = initCountryMap(EU3Tags, V2Tags, obj);
+
+	log("Country maps:\n");
+	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
+	{
+		log("\t%s -> %s\n", i->first.c_str(), i->second.c_str());
+	}
 
 
 	// Generate region mapping
