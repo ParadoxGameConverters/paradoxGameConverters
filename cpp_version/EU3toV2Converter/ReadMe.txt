@@ -1,33 +1,21 @@
-========================================================================
-    CONSOLE APPLICATION : EU3toV2Converter Project Overview
-========================================================================
+----
+INSTRUCTIONS
+----
 
-AppWizard has created this EU3toV2Converter application for you.  
+1. Replace input.eu3 with the EU3 savegame file you want to convert (also rename it as input.eu3).
 
-This file contains a summary of what you will find in each of the files that
-make up your EU3toV2Converter application.
+2. Run EU3toV2Converter.exe
 
+3. This should generate a conversion file called output.v2
 
-EU3toV2Converter.vcproj
-    This is the main project file for VC++ projects generated using an Application Wizard. 
-    It contains information about the version of Visual C++ that generated the file, and 
-    information about the platforms, configurations, and project features selected with the
-    Application Wizard.
+4. Copy output.v2 to your victoria 2 savegames directory and load the converted savegame in Victoria 2.
 
-EU3toV2Converter.cpp
-    This is the main application source file.
+4. If it crashes, let me know.
 
-/////////////////////////////////////////////////////////////////////////////
-Other standard files:
+----
+NOTES
+----
 
-StdAfx.h, StdAfx.cpp
-    These files are used to build a precompiled header (PCH) file
-    named EU3toV2Converter.pch and a precompiled types file named StdAfx.obj.
+1. Currently, adding some province mappings results in an invalid save file. I am investigating as to why it's happening.
 
-/////////////////////////////////////////////////////////////////////////////
-Other notes:
-
-AppWizard uses "TODO:" comments to indicate parts of the source code you
-should add to or customize.
-
-/////////////////////////////////////////////////////////////////////////////
+2. The province_mapping.txt file is used by the program.
