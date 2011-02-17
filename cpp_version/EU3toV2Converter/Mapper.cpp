@@ -143,6 +143,17 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 		V2Tags.erase(V2TagPos);
 	}
 
+	while ( (EU3Tags.size() > 0) && (V2Tags.size() > 0) )
+	{
+		vector<string>::iterator V2TagPos = V2Tags.begin();
+		vector<string>::iterator EU3TagPos = EU3Tags.begin();
+		mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
+
+		//remove tags from the lists
+		EU3Tags.erase(EU3TagPos);
+		V2Tags.erase(V2TagPos);
+	}
+
 	return mapping;
 }
 
