@@ -13,6 +13,7 @@ class EU3World {
 		void						init(Object* obj);
 		vector<EU3Country>	getCountries();
 		EU3Province*			getProvince(int provNum);
+		void						removeCountry(string tag);
 	private:
 		vector<EU3Province>	provinces;
 		vector<EU3Country>	countries;

@@ -70,15 +70,14 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 	countryMapping mapping;
 	countryMapping::iterator mapIter;
 
+	// get rules
 	vector<Object*>		leaves = rulesObj->getLeaves();
-
 	if (leaves.size() < 1)
 	{
 		log ("Error: No country mapping definitions loaded.\n");
 		printf("Error: No country mapping definitions loaded.\n");
 		return mapping;
 	}
-
 	vector<Object*> rules = leaves[0]->getLeaves();
 
 	for (unsigned int i = 0; i < rules.size(); ++i)
@@ -145,16 +144,38 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 
 	while ( (EU3Tags.size() > 0) && (V2Tags.size() > 0) )
 	{
-		vector<string>::iterator V2TagPos = V2Tags.begin();
 		vector<string>::iterator EU3TagPos = EU3Tags.begin();
-		mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
+		if ( (*EU3TagPos == "REB") || (*EU3TagPos == "PIR") || (*EU3TagPos == "NAT") )
+		{
+			mapping.insert(make_pair<string, string>(*EU3TagPos, "REB"));
+			EU3Tags.erase(EU3TagPos);
+		}
+		else
+		{
+			vector<string>::iterator V2TagPos = V2Tags.begin();
+			mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
 
-		//remove tags from the lists
-		EU3Tags.erase(EU3TagPos);
-		V2Tags.erase(V2TagPos);
+			//remove tags from the lists
+			EU3Tags.erase(EU3TagPos);
+			V2Tags.erase(V2TagPos);
+		}
 	}
 
 	return mapping;
+}
+
+void removeEmptyNations(EU3World& world)
+{
+	vector<EU3Country> countries = world.getCountries();
+
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		vector<EU3Province*> provinces = countries[i].getProvinces();
+		if (provinces.size() == 0)
+		{
+			world.removeCountry(countries[i].getTag());
+		}
+	}
 }
 
 

@@ -10,7 +10,7 @@ void EU3World::init(Object* obj) {
 		key = leaves[i]->getKey();
 
 		// Is this a numeric value? If so, must be a province
-		if (atoi(key.c_str()) > 0 && atoi(key.c_str()) < 2000)
+		if (atoi(key.c_str()) > 0)
 		{
 			EU3Province province;
 			province.init(leaves[i]);
@@ -27,6 +27,19 @@ void EU3World::init(Object* obj) {
 			EU3Country country;
 			country.init(leaves[i]);
 			countries.push_back(country);
+		}
+	}
+
+	// add province info to countries
+	for (unsigned int i = 0; i < provinces.size(); i++)
+	{
+		for (unsigned int j = 0; j < countries.size(); j++)
+		{
+			if (provinces[i].getOwner() == countries[j].getTag())
+			{
+				countries[j].addProvince( &provinces[i]);
+				continue;
+			}
 		}
 	}
 }
@@ -48,4 +61,16 @@ EU3Province* EU3World::getProvince(int provNum)
 		}
 	}
 	return NULL;
+}
+
+
+void EU3World::removeCountry(string tag)
+{
+	for (vector<EU3Country>::iterator i = countries.begin(); i < countries.end(); i++)
+	{
+		if (tag == i->getTag())
+		{
+			countries.erase(i);
+		}
+	}
 }
