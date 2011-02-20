@@ -146,6 +146,8 @@ link = { eu3 = CEP vic = ION }  #Corfu                  => Ionian Islands
 
 link = { eu3 = KHA vic = MGL }  #Mongol Khanate         => Mongolia
 
+link = { eu3 = SWI vic = SWI }  #Switzerland
+
 
 
 
@@ -157,7 +159,7 @@ link = { eu3 = KHA vic = MGL }  #Mongol Khanate         => Mongolia
 
 #Scandinavia
 
-link = { eu3 = GOT vic = SWE vic = FIN vic = DEN vic = NOR vic = SCA  } #Gotland => Sweden, Finland, Denmark, Norway, Scandinavia
+link = { eu3 = GOT vic = SWE vic = FIN vic = DEN vic = NOR vic = SCA } #Gotland => Sweden, Finland, Denmark, Norway, Scandinavia
 
 #Balkans, Greece
 
@@ -176,17 +178,17 @@ link = { eu3 = LAN vic = ENG vic = SCO vic = IRE }  # Lancaster         => Unite
 link = { eu3 = YOR vic = ENG vic = SCO vic = IRE }  # York              => United Kingdom, Scotland, Ireland
 link = { eu3 = NOL vic = ENG vic = SCO vic = IRE }  # Northumberland    => United Kingdom, Scotland, Ireland
 link = { eu3 = WLS vic = ENG vic = SCO vic = IRE }  # Wales             => United Kingdom, Scotland, Ireland
-link = { eu3 = LEI vic = IRE vic = SCO vic = ENG }  #Leinster               => Ireland, Scotland, United Kingdom
-link = { eu3 = CNN vic = IRE vic = SCO vic = ENG }  #Connacht               => Ireland, Scotland, United Kingdom
-link = { eu3 = MNS vic = IRE vic = SCO vic = ENG }  #Muster                 => Ireland, Scotland, United Kingdom
-link = { eu3 = TYR vic = IRE vic = SCO vic = ENG }  #Tyrone                 => Ireland, Scotland, United Kingdom
+link = { eu3 = LEI vic = IRE vic = SCO vic = ENG }  # Leinster               => Ireland, Scotland, United Kingdom
+link = { eu3 = CNN vic = IRE vic = SCO vic = ENG }  # Connacht               => Ireland, Scotland, United Kingdom
+link = { eu3 = MNS vic = IRE vic = SCO vic = ENG }  # Munster                 => Ireland, Scotland, United Kingdom
+link = { eu3 = TYR vic = IRE vic = SCO vic = ENG }  # Tyrone                 => Ireland, Scotland, United Kingdom
 
 # Chinese States
 
-link = { eu3 = MNG vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Ming  => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
-link = { eu3 = QIN vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Qin   => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
-link = { eu3 = SST vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Shan  => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
-link = { eu3 = WUU vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Wu    => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
-link = { eu3 = XIA vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Xia   => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = MNG vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI } #Ming  => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = QIN vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI } #Qin   => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = SST vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI } #Shan  => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = WUU vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI } #Wu    => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = XIA vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI } #Xia   => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
 
 }
