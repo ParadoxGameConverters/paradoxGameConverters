@@ -144,6 +144,8 @@ link = { eu3 = GRA vic = ALD }  # Granada               => Aldjazir
 
 link = { eu3 = CEP vic = ION }  #Corfu                  => Ionian Islands
 
+link = { eu3 = KHA vic = MGL }  #Mongol Khanate         => Mongolia
+
 
 
 
@@ -178,4 +180,13 @@ link = { eu3 = LEI vic = IRE vic = SCO vic = ENG }  #Leinster               => I
 link = { eu3 = CNN vic = IRE vic = SCO vic = ENG }  #Connacht               => Ireland, Scotland, United Kingdom
 link = { eu3 = MNS vic = IRE vic = SCO vic = ENG }  #Muster                 => Ireland, Scotland, United Kingdom
 link = { eu3 = TYR vic = IRE vic = SCO vic = ENG }  #Tyrone                 => Ireland, Scotland, United Kingdom
+
+# Chinese States
+
+link = { eu3 = MNG vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Ming  => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = QIN vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Qin   => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = SST vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Shan  => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = WUU vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Wu    => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+link = { eu3 = XIA vic = CHI vic = SXI vic = YNN vic = XIN vic = XBI vic = GXI } Xia   => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
+
 }
