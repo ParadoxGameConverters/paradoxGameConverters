@@ -1,14 +1,19 @@
 mappings={
 
+#Direct Mappings
+#This is essentially one-to-one country mappings to ensure that countries that are available in BOTH EU3 and V2 get the correct tag.
+#For example, if Spain is active in EU3 it will always become Spain in V2 after conversion.
 
-# fairly direct mappings
+#The links that come first in the list are executed before the links after it.  This means, for example, that EU3s Great Britain has the first chance to become the United Kingdom,
+# England has the second chance if Great Britain has not been formed.
+
 link = { eu3 = GBR vic = ENG } 	# GreatBritain		=> United Kingdom
 link = { eu3 = ENG vic = ENG } 	# England		=> United Kingdom
+link = { eu3 = IRE vic = IRE } 	# Ireland
 link = { eu3 = FRA vic = FRA } 	# France		=> France
 link = { eu3 = RFR vic = FRA } 	# RevolutionaryFrance	=> France
 link = { eu3 = SPA vic = SPA } 	# Spain 		=> Spain
 link = { eu3 = SCO vic = SCO } 	# Scotland
-link = { eu3 = IRE vic = IRE } 	# Ireland
 
 link = { eu3 = SWE vic = SWE }  # Sweden
 link = { eu3 = DAN vic = DEN }  # Denmark
@@ -77,6 +82,7 @@ link = { eu3 = PAP vic = PAP }  # Papal State
 link = { eu3 = PAR vic = PAR }  # Parma
 link = { eu3 = SIC vic = SIC }  # Sicily               => Two Sicilies
 link = { eu3 = VEN vic = VEN }  # Venice
+link = { eu3 = TUS vic = TUS }  # Tuscany
 
 link = { eu3 = BRB vic = BEL }  # Brabant              => Belgium
 link = { eu3 = FLA vic = FLA }  # Flanders
@@ -136,6 +142,40 @@ link = { eu3 = HIN vic = HND }  # Hindustan             => India
 link = { eu3 = ARA vic = CAT }  # Aragon                => Catalonia
 link = { eu3 = GRA vic = ALD }  # Granada               => Aldjazir
 
-#Region-based mappings
+link = { eu3 = CEP vic = ION }  #Corfu                  => Ionian Islands
 
+
+
+
+#Region-based mappings
+#These mappings are one-to-many conversions.  For each EU3 tag there are many V2 tags.
+#These mappings ensure that EU3 countries that do not fit in above or are not available in V2 will be assigned a region-appropriate V2 tag.
+#The first V2 tag has priority over the tags that come after it.
+#The first link is exectuted first, before the links that come after it.
+
+#Scandinavia
+
+link = { eu3 = GOT vic = SWE vic = FIN vic = DEN vic = NOR vic = SCA  } #Gotland => Sweden, Finland, Denmark, Norway, Scandinavia
+
+#Balkans, Greece
+
+link = { eu3 = ATH vic = CRE vic = GRE }                                #Athens => Crete, Greece
+link = { eu3 = KNI vic = CRE vic = CYP }                                #Knights => Crete, Cyprus
+link = { eu3 = MOE vic = GRE vic = BYZ }                                #Morea => Greece, Byzantium
+link = { eu3 = NAX vic = GRE vic = CRE vic = CYP }                      #Naxos => Greece, Crete, Cyprus
+link = { eu3 = RAG vic = LOM vic = LUC vic = TRE }                      #Ragusa => Lombardia, Lucca, Trieste
+link = { eu3 = ACH vic = GRE vic = CRE vic = CYP vic = BYZ }            #Principality of Achaea => Greece, Crete, Cyprus, Byzantium
+link = { eu3 = TRA vic = ROM vic = SER vic = CRO vic = SLO }            #Transylvania => Romania, Serbia, Croatia, Slovenia
+
+# British Isles
+
+link = { eu3 = CRN vic = ENG vic = SCO vic = IRE }  # Cornwall          => United Kingdom, Scotland, Ireland
+link = { eu3 = LAN vic = ENG vic = SCO vic = IRE }  # Lancaster         => United Kingdom, Scotland, Ireland
+link = { eu3 = YOR vic = ENG vic = SCO vic = IRE }  # York              => United Kingdom, Scotland, Ireland
+link = { eu3 = NOL vic = ENG vic = SCO vic = IRE }  # Northumberland    => United Kingdom, Scotland, Ireland
+link = { eu3 = WLS vic = ENG vic = SCO vic = IRE }  # Wales             => United Kingdom, Scotland, Ireland
+link = { eu3 = LEI vic = IRE vic = SCO vic = ENG }  #Leinster               => Ireland, Scotland, United Kingdom
+link = { eu3 = CNN vic = IRE vic = SCO vic = ENG }  #Connacht               => Ireland, Scotland, United Kingdom
+link = { eu3 = MNS vic = IRE vic = SCO vic = ENG }  #Muster                 => Ireland, Scotland, United Kingdom
+link = { eu3 = TYR vic = IRE vic = SCO vic = ENG }  #Tyrone                 => Ireland, Scotland, United Kingdom
 }
