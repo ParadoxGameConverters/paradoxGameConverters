@@ -17,6 +17,7 @@ class EU3Province {
 		//cores
 		//culture
 		//religion
+		int		population;
 };
 
 
