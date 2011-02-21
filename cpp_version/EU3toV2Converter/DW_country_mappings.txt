@@ -113,6 +113,7 @@ link = { eu3 = KOK vic = KOK }  # Kokand
 link = { eu3 = PER vic = PER }  # Persia
 
 link = { eu3 = CHE vic = CHE }  # Cherokee
+link = { eu3 = IRO vic = MTC }  # Iroquois             => Metis Confederacy
 
 link = { eu3 = ETH vic = ETH }  # Ethiopia
 link = { eu3 = KON vic = CNG }  # Kongo                 => Kongo Free State
