@@ -19,6 +19,7 @@ class V2Province {
 		string	name;
 		string	owner;
 		bool		land;
+		int		oldPopulation;
 		//controller
 		//cores
 		//garrison

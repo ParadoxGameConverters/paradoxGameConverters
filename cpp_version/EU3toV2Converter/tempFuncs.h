@@ -7,7 +7,7 @@
 
 void outputHeader(FILE*);
 void outputProvStuff(FILE*, int);
-void outputPopStuff(FILE*);
+void outputPopStuff(FILE*, int);
 void outputCountryHeader(FILE*);
 void outputCountryMiddle(FILE*);
 void outputStateStuff(FILE*);

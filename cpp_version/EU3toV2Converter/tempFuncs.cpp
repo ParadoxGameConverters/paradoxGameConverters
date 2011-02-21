@@ -28,24 +28,24 @@ void outputProvStuff(FILE* output, int provId)
 }
 
 
-void outputPopStuff(FILE* output)
+void outputPopStuff(FILE* output, int population)
 {
 	fprintf(output, "	aristocrats=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		id=%d\n", popId++);
-	fprintf(output, "		size=100\n");
+	fprintf(output, "		size=%d\n", population/3);
 	fprintf(output, "		native_american_minor=animist\n");
 	fprintf(output, "	}\n");
 	fprintf(output, "	artisans=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		id=%d\n", popId++);
-	fprintf(output, "		size=100\n");
+	fprintf(output, "		size=%d\n", population/3);
 	fprintf(output, "		native_american_minor=animist\n");
 	fprintf(output, "	}\n");
 	fprintf(output, "	farmers=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		id=%d\n", popId++);
-	fprintf(output, "		size=100\n");
+	fprintf(output, "		size=%d\n", population/3);
 	fprintf(output, "		native_american_minor=animist\n");
 	fprintf(output, "	}\n");
 }

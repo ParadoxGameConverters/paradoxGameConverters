@@ -25,6 +25,17 @@ void V2Province::init(Object* obj) {
 	{
 		land = true;
 	}
+
+	oldPopulation = 0;
+	vector<Object*> leaves = obj->getLeaves();
+	for (unsigned int i = 0; i < leaves.size(); i++)
+	{
+		string key = leaves[i]->getKey();
+		if ( ( key == "aristocrats") || ( key == "artisans") || ( key == "bureaucrats") || ( key == "") || ( key == "clergymen") || ( key == "clerks") || ( key == "craftsmen") || ( key == "farmers") || ( key == "labourers") || ( key == "officers") || ( key == "slaves") || ( key == "soldiers") )
+		{
+			oldPopulation += atoi( (leaves[i]->getValue("size"))[0]->getLeaf().c_str() );
+		}
+	}
 }
 
 
@@ -58,7 +69,7 @@ void V2Province::output(FILE* output)
 			fprintf(output, "	owner=\"%s\"\n", owner.c_str());
 			fprintf(output, "	controller=\"%s\"\n", owner.c_str());
 		}
-		outputPopStuff(output);
+		outputPopStuff(output, oldPopulation);
 		outputProvStuff(output, num);
 	}
 	fprintf(output, "}\n");
