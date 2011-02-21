@@ -78,7 +78,10 @@ void V2Province::output(FILE* output)
 	if (land)
 	{
 		outputPopStuff(output, oldPopulation);
-		outputProvStuff(output, num, rgoType);
+		fprintf(output, "	rgo=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		goods_type=%s\n", rgoType.c_str());
+		fprintf(output, "	}\n");
 		fprintf(output, "	life_rating=%d\n", lifeRating);
 	}
 	fprintf(output, "}\n");

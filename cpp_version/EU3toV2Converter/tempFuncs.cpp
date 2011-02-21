@@ -13,19 +13,6 @@ void outputHeader(FILE* output)
 	fprintf(output, "\n");
 }
 
-void outputProvStuff(FILE* output, int provId, string rgoType)
-{
-	fprintf(output, "	rgo=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		employment=\n");
-	fprintf(output, "		{\n");
-	fprintf(output, "			province_id=%d\n", provId);
-	fprintf(output, "		}\n");
-	fprintf(output, "		last_income=0.0\n");
-	fprintf(output, "		goods_type=%s\n", rgoType.c_str());
-	fprintf(output, "	}\n");
-}
-
 
 void outputPopStuff(FILE* output, int population)
 {
