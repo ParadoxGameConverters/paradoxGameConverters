@@ -24,6 +24,8 @@ void V2Province::init(Object* obj) {
 	else
 	{
 		land = true;
+		vector<Object*> goodsObj= rgoObj[0]->getValue("goods_type");
+		rgoType = goodsObj[0]->getLeaf();
 	}
 
 	oldPopulation = 0;
@@ -68,9 +70,14 @@ void V2Province::output(FILE* output)
 		{
 			fprintf(output, "	owner=\"%s\"\n", owner.c_str());
 			fprintf(output, "	controller=\"%s\"\n", owner.c_str());
+			fprintf(output, "	core=\"%s\"\n", owner.c_str());
 		}
+	}
+	fprintf(output, "	garrison=100.000\n");
+	if (land)
+	{
 		outputPopStuff(output, oldPopulation);
-		outputProvStuff(output, num);
+		outputProvStuff(output, num, rgoType);
 	}
 	fprintf(output, "}\n");
 }

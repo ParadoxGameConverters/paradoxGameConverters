@@ -3,10 +3,12 @@
 
 
 #include <stdio.h>
+#include <string>
+using namespace std;
 
 
 void outputHeader(FILE*);
-void outputProvStuff(FILE*, int);
+void outputProvStuff(FILE*, int, string);
 void outputPopStuff(FILE*, int);
 void outputCountryHeader(FILE*);
 void outputCountryMiddle(FILE*);

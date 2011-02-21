@@ -20,9 +20,9 @@ class V2Province {
 		string	owner;
 		bool		land;
 		int		oldPopulation;
+		string	rgoType;
 		//controller
 		//cores
-		//garrison
 		//colonial
 		//pops
 		//rgo
