@@ -14,7 +14,7 @@ void outputHeader(FILE* output)
 }
 
 
-void outputPopStuff(FILE* output, int population)
+void outputPopStuff(FILE* output, int population, string rgoType)
 {
 	fprintf(output, "	aristocrats=\n");
 	fprintf(output, "	{\n");
@@ -28,7 +28,14 @@ void outputPopStuff(FILE* output, int population)
 	fprintf(output, "		size=%d\n", population/3);
 	fprintf(output, "		native_american_minor=animist\n");
 	fprintf(output, "	}\n");
-	fprintf(output, "	farmers=\n");
+	if ( (rgoType == "\"cattle\"") || (rgoType == "\"coffee\"") || (rgoType == "\"cotton\"") || (rgoType == "\"dye\"") || (rgoType == "\"fish\"") || (rgoType == "\"fruit\"") || (rgoType == "\"grain\"") || (rgoType == "\"opium\"") || (rgoType == "\"silk\"") || (rgoType == "\"tea\"") || (rgoType == "\"tobacco\"") || (rgoType == "\"wool\"") )
+	{
+		fprintf(output, "	farmers=\n");
+	}
+	else
+	{
+		fprintf(output, "	labourers=\n");
+	}
 	fprintf(output, "	{\n");
 	fprintf(output, "		id=%d\n", popId++);
 	fprintf(output, "		size=%d\n", population/3);

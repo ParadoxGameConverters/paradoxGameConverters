@@ -77,7 +77,7 @@ void V2Province::output(FILE* output)
 	fprintf(output, "	garrison=100.000\n");
 	if (land)
 	{
-		outputPopStuff(output, oldPopulation);
+		outputPopStuff(output, oldPopulation, rgoType);
 		fprintf(output, "	rgo=\n");
 		fprintf(output, "	{\n");
 		fprintf(output, "		goods_type=%s\n", rgoType.c_str());

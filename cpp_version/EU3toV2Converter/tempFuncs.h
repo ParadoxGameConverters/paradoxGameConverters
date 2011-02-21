@@ -8,7 +8,7 @@ using namespace std;
 
 
 void outputHeader(FILE*);
-void outputPopStuff(FILE*, int);
+void outputPopStuff(FILE*, int, string);
 void outputCountryHeader(FILE*);
 void outputCountryMiddle(FILE*);
 void outputStateStuff(FILE*);
