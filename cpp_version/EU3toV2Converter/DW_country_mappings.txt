@@ -71,8 +71,10 @@ link = { eu3 = HAM vic = HAM }  # Hamburg
 link = { eu3 = HAN vic = HAN }  # Hannover
 link = { eu3 = DNZ vic = DZG }  # Danzig
 link = { eu3 = MKL vic = MEC }  # Mecklenburg
-link = { eu3 = OLD vic = OLD }  # Oldenburg
+link = { eu3 = OLD vic = OLD }  # Oldenburg *
 link = { eu3 = WUR vic = WUR }  # Wurtemburg
+link = { eu3 = BOH vic = BOH }  # Bohemia               => Bohemia Moravia
+link = { eu3 = SAX vic = SAX }  # Saxony
 
 link = { eu3 = POR vic = POR }  # Portugal
 
@@ -150,12 +152,12 @@ link = { eu3 = SWI vic = SWI }  #Switzerland
 
 
 
-
 #Region-based mappings
 #These mappings are one-to-many conversions.  For each EU3 tag there are many V2 tags.
 #These mappings ensure that EU3 countries that do not fit in above or are not available in V2 will be assigned a region-appropriate V2 tag.
-#The first V2 tag has priority over the tags that come after it.
+#The LAST V2 tag has priority over the tags that come BEFORE it.
 #The first link is exectuted first, before the links that come after it.
+
 
 #Scandinavia
 
@@ -173,15 +175,16 @@ link = { eu3 = TRA vic = ROM vic = SER vic = CRO vic = SLO }            #Transyl
 
 # British Isles
 
-link = { eu3 = CRN vic = ENG vic = SCO vic = IRE }  # Cornwall          => United Kingdom, Scotland, Ireland
-link = { eu3 = LAN vic = ENG vic = SCO vic = IRE }  # Lancaster         => United Kingdom, Scotland, Ireland
-link = { eu3 = YOR vic = ENG vic = SCO vic = IRE }  # York              => United Kingdom, Scotland, Ireland
-link = { eu3 = NOL vic = ENG vic = SCO vic = IRE }  # Northumberland    => United Kingdom, Scotland, Ireland
-link = { eu3 = WLS vic = ENG vic = SCO vic = IRE }  # Wales             => United Kingdom, Scotland, Ireland
-link = { eu3 = LEI vic = IRE vic = SCO vic = ENG }  # Leinster               => Ireland, Scotland, United Kingdom
-link = { eu3 = CNN vic = IRE vic = SCO vic = ENG }  # Connacht               => Ireland, Scotland, United Kingdom
-link = { eu3 = MNS vic = IRE vic = SCO vic = ENG }  # Munster                 => Ireland, Scotland, United Kingdom
-link = { eu3 = TYR vic = IRE vic = SCO vic = ENG }  # Tyrone                 => Ireland, Scotland, United Kingdom
+link = { eu3 = CRN vic = IRE vic = SCO vic = ENG }  # Cornwall          => United Kingdom, Scotland, Ireland
+link = { eu3 = LAN vic = IRE vic = SCO vic = ENG }  # Lancaster         => United Kingdom, Scotland, Ireland
+link = { eu3 = YOR vic = IRE vic = SCO vic = ENG }  # York              => United Kingdom, Scotland, Ireland
+link = { eu3 = NOL vic = IRE vic = SCO vic = ENG }  # Northumberland    => United Kingdom, Scotland, Ireland
+link = { eu3 = WLS vic = IRE vic = SCO vic = ENG }  # Wales             => United Kingdom, Scotland, Ireland
+
+link = { eu3 = LEI vic = ENG vic = SCO vic = IRE }  # Leinster               => Ireland, Scotland, United Kingdom
+link = { eu3 = CNN vic = ENG vic = SCO vic = IRE }  # Connacht               => Ireland, Scotland, United Kingdom
+link = { eu3 = MNS vic = ENG vic = SCO vic = IRE }  # Munster                 => Ireland, Scotland, United Kingdom
+link = { eu3 = TYR vic = ENG vic = SCO vic = IRE }  # Tyrone                 => Ireland, Scotland, United Kingdom
 
 # Chinese States
 
@@ -191,4 +194,46 @@ link = { eu3 = SST vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI }
 link = { eu3 = WUU vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI } #Wu    => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
 link = { eu3 = XIA vic = GXI vic = XBI vic = XIN vic = YNN vic = SXI vic = CHI } #Xia   => China, Shanxi, Yunnan, Xinjiang, Xibei San Ma, Guangxi Clique
 
+# The Colonies
+
+link = { eu3 = LOU vic = HAI vic = QUE }  # Louisianna => Quebec, Haiti (all former french colonies former french colonies)
+
+# Eastern Europe
+
+link = { eu3 = TEU vic = LAT vic = RUT vic = PRU }  # Teutonic Order => Prussia, Latvia
+link = { eu3 = LIV vic = LIT vic = RUT vic = LAT }  # Livonian Order => Latvia, Lithuania
+link = { eu3 = MAZ vic = LAT vic = RUT vic = POL }  # Mazovia => Poland, Latvia
+link = { eu3 = RIG vic = LAT vic = RUT }            # Riga => Ruthenia, Latvia
+
+# Germany
+
+link = { eu3 = AAC vic = HAN vic = OLD vic = LUX }           # Aachen => Luxemburg, Hannover, Oldenburg
+link = { eu3 = ANS vic = HES vic = BAV vic = BAD vic = HEK } # Ansbach => Bavaria, Hesse-Kessel, Hesse-Darmstadt, Baden
+link = { eu3 = AUG vic = HES vic = BAV vic = BAD vic = HEK } # Augsburg => Bavaria, Hesse-Kessel, Hesse-Darmstadt, Baden
+link = { eu3 = BRA vic = HAM vic = HOL vic = MEC vic = PRU } # Branenburg => Prussia, Mecklenburg, Holstein, Hamburg
+link = { eu3 = HES vic = FRM vic = HEK vic = HES vic = NAS } # Hessen => Nassau, Hesse-Darmstadt, Hesse-Kassel, Frankfurt am Main
+link = { eu3 = HRE vic = GER vic = PRU }                     # Holy Roman Empire => Prussia, Germany
+link = { eu3 = KLE vic = HAN vic = OLD vic = LUX }           # Kleves => Luxemburg, Hannover, Oldenburg
+link = { eu3 = KOL vic = HAN vic = OLD vic = LUX }           # Cologne => Luxemburg, Hannover, Oldenburg
+link = { eu3 = LAU vic = OLD vic = BRE vic = HAN vic = HOL } # Lauenberg => Oldenburg, Bremen, Hannover, Holstein
+link = { eu3 = LOR vic = LUX vic = BAD }                     # Lorraine => Baden, Luxembourg
+link = { eu3 = LUN vic = OLD vic = BRE vic = HOL vic = HAN } # Luneberg => Oldenburg, Bremen, Hannover, Holstein
+link = { eu3 = MAG vic = LIP vic = BRA vic = ANH }           # Magdeburg => Lipe-Detmold, Braunsweig, Anhalt
+link = { eu3 = HES vic = FRM vic = HEK vic = NAS vic = HES } # Mainz => Nassau, Hesse-Darmstadt, Hesse-Kassel, Frankfurt am Main
+link = { eu3 = MEI vic = SAX vic = WEI vic = COB vic = MEI } # Meissen => Saxony, Saxe-Weimar, Saxe-Coburg Gotha, Saxe-Meiningen
+link = { eu3 = MUN vic = BRE vic = OLD vic = HAN }           # Munster (German City) =>  Bremen, Oldenburg, Hanover
+link = { eu3 = PAL vic = LUX vic = HES vic = NAS }           # Palatinate => Luxemburg, Hessedarmstadt, Nassau
+link = { eu3 = POM vic = HOL vic = LUB vic = MEC }           # Pommerania => Holstein, Lubeck, Meckelenburg
+link = { eu3 = SIL vic = POL vic = CZH vic = KRA }           # Silesia => Krakov, Chechoslovakia, Poland
+link = { eu3 = THU vic = SAX vic = WEI vic = COB vic = MEI } # Thuringia => Saxony, Saxe-Weimar, Saxe-Coburg Gotha, Saxe-Meiningen
+link = { eu3 = SLZ vic = SAX vic = WEI vic = COB vic = MEI } # Salzburg => Saxony, Saxe-Weimar, Saxe-Coburg Gotha, Saxe-Meiningen
+link = { eu3 = STY vic = SAX vic = WEI vic = COB vic = MEI } # Styria => Saxony, Saxe-Weimar, Saxe-Coburg Gotha, Saxe-Meiningen
+link = { eu3 = TIR vic = FRM vic = HEK vic = NAS vic = HES } # Tirol => Nassau, Hesse-Darmstadt, Hesse-Kassel, Frankfurt am Main
+link = { eu3 = TRI vic = HAN vic = OLD vic = LUX }           # Trier => Luxemburg, Hannover, Oldenburg
+link = { eu3 = ULM vic = SAX vic = WEI vic = COB vic = MEI } # Ulm => Saxony, Saxe-Weimar, Saxe-Coburg Gotha, Saxe-Meiningen
+link = { eu3 = WES vic = HAN vic = OLD vic = LUX }           # Westphalia => Luxemburg, Hannover, Oldenburg
+
+# Spain
+
+link = { eu3 = CAS vic = CAT vic = SPA }                     # Castille => Spain, Catelonia
 }
