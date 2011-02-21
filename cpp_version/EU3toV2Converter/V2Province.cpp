@@ -26,6 +26,7 @@ void V2Province::init(Object* obj) {
 		land = true;
 		vector<Object*> goodsObj= rgoObj[0]->getValue("goods_type");
 		rgoType = goodsObj[0]->getLeaf();
+		lifeRating = atoi( obj->getValue("life_rating")[0]->getLeaf().c_str() );
 	}
 
 	oldPopulation = 0;
@@ -78,6 +79,7 @@ void V2Province::output(FILE* output)
 	{
 		outputPopStuff(output, oldPopulation);
 		outputProvStuff(output, num, rgoType);
+		fprintf(output, "	life_rating=%d\n", lifeRating);
 	}
 	fprintf(output, "}\n");
 }

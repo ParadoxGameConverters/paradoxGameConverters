@@ -24,7 +24,6 @@ void outputProvStuff(FILE* output, int provId, string rgoType)
 	fprintf(output, "		last_income=0.0\n");
 	fprintf(output, "		goods_type=%s\n", rgoType.c_str());
 	fprintf(output, "	}\n");
-	fprintf(output, "	life_rating=20\n");
 }
 
 

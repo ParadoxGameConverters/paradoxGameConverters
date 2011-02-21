@@ -15,20 +15,17 @@ class V2Province {
 		string	getOwner();
 		void		output(FILE*);
 	private:
+		bool		land;
 		int		num;
 		string	name;
 		string	owner;
-		bool		land;
-		int		oldPopulation;
-		string	rgoType;
 		//controller
 		//cores
 		//colonial
+		int		oldPopulation;
 		//pops
-		//rgo
-		//life_rating
-		//last_imigration
-		//crime (can be left off)
+		string	rgoType;
+		int		lifeRating;
 };
 
 
