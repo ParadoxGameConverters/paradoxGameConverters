@@ -85,10 +85,12 @@ link = { eu3 = PAR vic = PAR }  # Parma
 link = { eu3 = SIC vic = SIC }  # Sicily               => Two Sicilies
 link = { eu3 = VEN vic = VEN }  # Venice
 link = { eu3 = TUS vic = TUS }  # Tuscany
+link = { eu3 = SIE vic = TUS }  # Sienna               => Tuscany
 
 link = { eu3 = BRB vic = BEL }  # Brabant              => Belgium
 link = { eu3 = FLA vic = FLA }  # Flanders
 link = { eu3 = NET vic = NET }  # Netherlands
+link = { eu3 = HOL vic = NET }  # Holland              => Netherlands
 link = { eu3 = LUX vic = LUX }  # Luxemburg
 
 link = { eu3 = ARM vic = ARM }  # Armenia
@@ -142,6 +144,7 @@ link = { eu3 = SND vic = SIN }  # Sind
 link = { eu3 = TRV vic = TRA }  # Travanacore
 link = { eu3 = HIN vic = HND }  # Hindustan             => India
 
+link = { eu3 = CAT vic = CAT }  # Catalonia
 link = { eu3 = ARA vic = CAT }  # Aragon                => Catalonia
 link = { eu3 = GRA vic = ALD }  # Granada               => Aldjazir
 
@@ -237,4 +240,27 @@ link = { eu3 = WES vic = HAN vic = OLD vic = LUX }           # Westphalia => Lux
 # Spain
 
 link = { eu3 = CAS vic = CAT vic = SPA }                     # Castille => Spain, Catelonia
+link = { eu3 = NAV vic = SPA vic = CAT }                     # Navara => Catelonia, Spain
+link = { eu3 = GAL vic = SPA vic = POR vic = CAT }           # Galicia => Catelona, Portugal, Spain
+
+# Italy
+
+link = { eu3 = AQU vic = TUS vic = LUC vic = MOD vic = PAR vic = VEN}    # Aquelia => Venice, Parma, Modena, Lucca, Tuscany
+link = { eu3 = ETR vic = PAR vic = MOD vic = LUC vic = TUS }             # Etruria => Tuscany, Lucca, Modena, Parma
+link = { eu3 = FER vic = PAR vic = MOD vic = LUC vic = TUS }             # Ferrara => Tuscany, Lucca, Modena, Parma
+link = { eu3 = AQU vic = TUS vic = LUC vic = MOD vic = PAR }             # Genoa => Parma, Modena, Lucca, Tuscany
+link = { eu3 = MAN vic = TUS vic = LUC vic = MOD vic = PAR vic = VEN}    # Mantua => Venice, Parma, Modena, Lucca, Tuscany
+link = { eu3 = MLO vic = TUS vic = LUC vic = MOD vic = PAR vic = VEN}    # Milan => Venice, Parma, Modena, Lucca, Tuscany
+link = { eu3 = PIS vic = PAR vic = MOD vic = LUC vic = TUS }             # Pisa => Tuscany, Lucca, Modena, Parma
+link = { eu3 = SAR vic = PAR vic = SIC vic = SAR }                       # Sardinia => Sardinia-Piedmont, Two Sicilies, Parma
+link = { eu3 = URB vic = TUS vic = LUC vic = MOD vic = PAR vic = VEN}    # Urbino => Venice, Parma, Modena, Lucca, Tuscany
+
+# The Low Countries
+
+link = { eu3 = FRI vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Friesland => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
+link = { eu3 = GEL vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Gelre => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
+link = { eu3 = HAI vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Hainaut => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
+link = { eu3 = LIE vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Liege => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
+link = { eu3 = UTR vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Utrecht => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
+
 }
