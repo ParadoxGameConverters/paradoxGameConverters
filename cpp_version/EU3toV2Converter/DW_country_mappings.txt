@@ -37,6 +37,7 @@ link = { eu3 = SER vic = SER }  # Serbia
 link = { eu3 = WAL vic = WAL }  # Walachia
 link = { eu3 = HUN vic = HUN }  # Hungary
 link = { eu3 = TUR vic = TUR }  # Ottomans              => Ottoman Empire
+link = { eu3 = TRA vic = SIE }  # Transylvania          => Siebenburgen
 
 link = { eu3 = BRZ vic = BRZ }  # Brazil
 link = { eu3 = CAN vic = CAN }  # Canada
@@ -136,6 +137,7 @@ link = { eu3 = BND vic = BUN }  # Bundelkhand
 link = { eu3 = HYD vic = HYD }  # Hyderabad
 link = { eu3 = KSH vic = KAS }  # Kashmir
 link = { eu3 = MUG vic = MUG }  # Mughal Empire         => Mughalistan
+link = { eu3 = TIM vic = MUG }  # Timurids              => Mughalistan
 link = { eu3 = MYS vic = MYS }  # Mysore
 link = { eu3 = NPL vic = NEP }  # Nepal
 link = { eu3 = ORI vic = ORI }  # Orissa
@@ -262,5 +264,26 @@ link = { eu3 = GEL vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }          
 link = { eu3 = HAI vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Hainaut => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
 link = { eu3 = LIE vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Liege => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
 link = { eu3 = UTR vic = HAN vic = OLD vic = LUX vic = BEL vic = NET }           # Utrecht => Netherlands, Belgium, Luxemburg, Hannover, Oldenburg
+
+# Russia
+
+link = { eu3 = NOV vic = RUT vic = RUS }   # Novgorod => Russia, Ruthenia
+link = { eu3 = MOS vic = RUT vic = RUS }   # Muskovy => Russia, Ruthenia
+link = { eu3 = TVE vic = RUT vic = RUS }   # Tver => Russia, Ruthenia
+link = { eu3 = PSK vic = RUT vic = RUS }   # Pskov => Russia, Ruthenia
+link = { eu3 = RYA vic = RUT vic = RUS }   # Ryazan => Russia, Ruthenia
+link = { eu3 = KAZ vic = RUT vic = RUS }   # Kazan => Russia, Ruthenia
+link = { eu3 = YAR vic = RUT vic = RUS }   # Yaroslavl => Russia, Ruthenia
+link = { eu3 = ZAZ vic = RUT vic = RUS }   # Zaporozie => Russia, Ruthenia
+link = { eu3 = SIB vic = RUT vic = RUS }   # Sibir => Russia, Ruthenia
+link = { eu3 = PLT vic = RUT vic = RUS }   # Polotsk => Russia, Ruthenia
+
+link = { eu3 = AST vic = KOK vic = BUK vic = KHI vic = AZB }    # Astrakhan => Azerbaijan, Khiva, Bukara, Kokand
+link = { eu3 = GOL vic = KOK vic = BUK vic = MUG }              # Golden Horde => Mughalistan, Bukarra, Kokand
+link = { eu3 = QAS vic = KOK vic = BUK vic = KHI vic = AZB }    # Quasim Khanate => Azerbaijan, Khiva, Bukara, Kokand
+link = { eu3 = NOG vic = KOK vic = BUK vic = MUG }              # Nogai => Mughalistan, Bukarra, Kokand
+
+# Arabia
+link = { eu3 = SHR vic = ABU vic = OMA vic = NEJ = YEM }        # Sharja => Oman, Nejd, Yemen, Abu Dhabi
 
 }
