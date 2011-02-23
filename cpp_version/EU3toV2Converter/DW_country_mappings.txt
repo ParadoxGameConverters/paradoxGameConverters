@@ -107,8 +107,11 @@ link = { eu3 = HED vic = HDJ }  # Hedjaz
 
 link = { eu3 = IRQ vic = IRQ }  # Iraq
 link = { eu3 = MOR vic = MOR }  # Morocco
+link = { eu3 = FEZ vic = MOR }  # Fez                   => Morocco
 link = { eu3 = TRP vic = TRI }  # Tripoli
 link = { eu3 = TUN vic = TUN }  # Tunisia
+link = { eu3 = ALG vic = ALD }  # Algiers               => Aldjazir
+link = { eu3 = MAM vic = EGY }  # Mamluks               => Egypt
 
 link = { eu3 = KHI vic = KHI }  # Khiva  
 link = { eu3 = KOK vic = KOK }  # Kokand
@@ -148,13 +151,15 @@ link = { eu3 = HIN vic = HND }  # Hindustan             => India
 
 link = { eu3 = CAT vic = CAT }  # Catalonia
 link = { eu3 = ARA vic = CAT }  # Aragon                => Catalonia
-link = { eu3 = GRA vic = ALD }  # Granada               => Aldjazir
+
 
 link = { eu3 = CEP vic = ION }  #Corfu                  => Ionian Islands
 
 link = { eu3 = KHA vic = MGL }  #Mongol Khanate         => Mongolia
 
 link = { eu3 = SWI vic = SWI }  #Switzerland
+
+link = { eu3 = DUR vic = AFG }  # Durrani                => Afghanistan
 
 
 
@@ -176,7 +181,7 @@ link = { eu3 = KNI vic = CRE vic = CYP }                                #Knights
 link = { eu3 = MOE vic = GRE vic = BYZ }                                #Morea => Greece, Byzantium
 link = { eu3 = NAX vic = GRE vic = CRE vic = CYP }                      #Naxos => Greece, Crete, Cyprus
 link = { eu3 = RAG vic = LOM vic = LUC vic = TRE }                      #Ragusa => Lombardia, Lucca, Trieste
-link = { eu3 = ACH vic = GRE vic = CRE vic = CYP vic = BYZ }            #Principality of Achaea => Greece, Crete, Cyprus, Byzantium
+link = { eu3 = ACH vic = BYZ vic = GRE vic = CRE vic = CYP }            #Principality of Achaea => Greece, Crete, Cyprus, Byzantium
 link = { eu3 = TRA vic = ROM vic = SER vic = CRO vic = SLO }            #Transylvania => Romania, Serbia, Croatia, Slovenia
 
 # British Isles
@@ -286,4 +291,23 @@ link = { eu3 = NOG vic = KOK vic = BUK vic = MUG }              # Nogai => Mugha
 # Arabia
 link = { eu3 = SHR vic = ABU vic = OMA vic = NEJ = YEM }        # Sharja => Oman, Nejd, Yemen, Abu Dhabi
 
+# Asia-Minor
+
+link = { eu3 = AKK vic = PER vic = IRQ vic = AZB vic = ARM }    # Ak Koyunlu => Armenia, Azerbaijan, Iraq, Persia
+link = { eu3 = AYD vic = BYZ vic = GRE vic = CRE vic = CYP }    # Aydin => Greece, Crete, Cyprus, Byzantium
+link = { eu3 = CND vic = UKR vic = CRI }                        # Candar => Crimea, Ukraine
+link = { eu3 = SYR vic = EGY vic = IRQ vic = PER }              # Syria  => Persia, Iraq, Egypt
+link = { eu3 = TRE vic = TUR vic = SER vic = SLO }              # Trebizond => Slovenia, Serbia, Ottomans
+link = { eu3 = SRU vic = TUR vic = SER vic = SLO }              # Saruhan => Slovenia, Serbia, Ottomans
+link = { eu3 = MEN vic = BYZ vic = GRE vic = CRE vic = CYP }    # Mentese => Greece, Crete, Cyprus, Byzantium
+link = { eu3 = RAM vic = AZB }                                  # Ramazan => Azerbaijan
+
+# Central Asia
+link = { eu3 = KZH vic = KOK vic = AZB vic = BUK }              # Kazakh => Bukkara, Azerbaijan, Kokand
+link = { eu3 = SHY vic = KOK vic = AZB vic = BUK }              # Shyabanid => Bukkara, Azerbaijan, Kokand
+
+# Persia
+link = { eu3 = KHO vic = IRQ vic = AFG vic = PER }              # Khorosan => Persia, Afghanistan, Iraq
+link = { eu3 = JAI vic = AFG vic = IRQ vic = PER }              # Jalayarid => Iraq, Persia, Afghanistan
+link = { eu3 = QAR vic = AFG vic = IRQ vic = PER }              # Qara Koyunlu => Iraq, Persia, Afghanistan
 }
