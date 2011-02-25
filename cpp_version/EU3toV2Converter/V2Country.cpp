@@ -1,10 +1,10 @@
 #include "V2Country.h"
 
 
-void V2Country::init(string newTag, EU3Country* oldCountry)
+void V2Country::init(string newTag, int oldCountryIndex)
 {
-	tag				= newTag;
-	sourceCountry	= oldCountry;
+	tag						= newTag;
+	sourceCountryIndex	= oldCountryIndex;
 }
 
 
@@ -44,7 +44,7 @@ void V2Country::output(FILE* output)
 }
 
 
-EU3Country* V2Country::getSourceCountry()
+int V2Country::getSourceCountryIndex()
 {
-	return sourceCountry;
+	return sourceCountryIndex;
 }

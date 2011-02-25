@@ -9,15 +9,15 @@ using namespace std;
 class V2Country
 {
 	public:
-		void			init(string, EU3Country*);
+		void			init(string, int);
 		string		getTag();
 		void			addState(V2State);
 		void			setCapital(int);
 		void			output(FILE*);
-		EU3Country*	getSourceCountry();
+		int			getSourceCountryIndex();
 	private:
 		string				tag;
 		vector<V2State>	states;
 		int					capital;
-		EU3Country*			sourceCountry;
+		int					sourceCountryIndex;
 };

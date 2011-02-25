@@ -9,7 +9,6 @@ void EU3Country::init(Object* obj)
 	if (capitalObj.size() > 0)
 	{
 		capital = atoi( capitalObj[0]->getLeaf().c_str() );
-		log("EU3 Capital is at: %d\n", capital);
 	}
 	else
 	{

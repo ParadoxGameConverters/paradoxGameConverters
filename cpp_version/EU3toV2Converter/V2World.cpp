@@ -31,25 +31,16 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 		iter = countryMap.find(sourceCountries[i].getTag());
 		if (iter != countryMap.end())
 		{
-			newCountry.init(iter->second.c_str(), &(sourceCountries[i]));
-			log("Checking pointers, old capital: %d\n", sourceCountries[i].getCapital());
-			log("	Checking pointers, old capital: %d\n", newCountry.getSourceCountry()->getCapital());
+			newCountry.init(iter->second.c_str(), i);
 		}
 		else
 		{
 			log("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
 			printf("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
-			newCountry.init("", &sourceCountries[i]);
+			newCountry.init("", i);
 		}
 
 		countries.push_back(newCountry);
-		log("		Checking pointers, old capital: %d\n", countries[i].getSourceCountry()->getCapital()); 
-	}
-
-	log("Reviewing capitals (again)\n");
-	for (unsigned int j = 0; j < countries.size(); j++)
-	{
-		log("	Old capital: %d\n", countries[j].getSourceCountry()->getCapital());
 	}
 }
 
@@ -57,12 +48,6 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 
 void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap)
 {
-	log("Checking capitals before province conversion.\n");
-	for (unsigned int i = 0; i < countries.size(); i++)
-	{
-		log("	capital = %d\n", countries[i].getSourceCountry()->getCapital());
-	}
-
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
 		int destNum					= provinces[i].getNum();
@@ -89,34 +74,34 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 			}
 		}
 	}
-
-	log("Checking capitals after province conversion.\n");
-	for (unsigned int i = 0; i < countries.size(); i++)
-	{
-		log("	capital = %d\n", countries[i].getSourceCountry()->getCapital());
-	}
 }
 
 
-void V2World::convertCapitals(provinceMapping provinceMap)
+void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 {
-	log("Checking capitals before capital conversion.\n");
-	for (unsigned int i = 0; i < countries.size(); i++)
-	{
-		log("	capital = %d\n", countries[i].getSourceCountry()->getCapital());
-	}
-
 	log("Converting Capitals:\n");
+	vector<EU3Country> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int oldCapital = countries[i].getSourceCountry()->getCapital();
-		log("	old capital: %d", countries[i].getSourceCountry()->getCapital());
-
+		int oldCapital = oldCountries[countries[i].getSourceCountryIndex()].getCapital();
+		log("	old capital: %d", oldCapital);
+		countries[i].setCapital(0);
 		if (oldCapital > 0)
 		{
-			int newCapital = provinceMap.find(oldCapital)->second[0];
-			countries[i].setCapital(newCapital);
-			log("	new capital: %d\n", newCapital);
+			for (provinceMapping::iterator j = provinceMap.begin(); j != provinceMap.end(); j++)
+			{
+				for (unsigned int k = 0; k < j->second.size(); k++)
+				{
+					if (j->second[k] == oldCapital)
+					{
+						int newCapital = j->first;
+						countries[i].setCapital(newCapital);
+						log("	new capital: %d\n", newCapital);
+						j = provinceMap.end();
+						break;
+					}
+				}
+			}
 		}
 		else
 		{
