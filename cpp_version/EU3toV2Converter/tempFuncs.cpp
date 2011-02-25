@@ -70,6 +70,7 @@ void outputCountryHeader(FILE* output)
 	fprintf(output, "	active_party=1\n");
 	fprintf(output, "	active_party=2\n");
 	fprintf(output, "	active_party=5\n");
+	fprintf(output, "	government=absolute_monarchy\n");
 	fprintf(output, "	rich_tax=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		current=0.00003\n");
