@@ -22,8 +22,15 @@ void EU3Province::init(Object* obj) {
 	}
 	else
 	{
-		vector<Object*> popObj	= obj->getValue("native_size");
-		population					= atoi( (popObj)[0]->getLeaf().c_str() );
+		popObj		= obj->getValue("native_size");
+		if (popObj.size() > 0)
+		{
+			population	= atoi( (popObj)[0]->getLeaf().c_str() );
+		}
+		else
+		{
+			population = 0;
+		}
 	}
 }
 

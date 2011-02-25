@@ -19,6 +19,7 @@ class V2World {
 		void	init(Object* obj);
 		void	convertCountries(EU3World sourceWorld, countryMapping countryMap);
 		void	convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap);
+		void	convertCapitals(provinceMapping provinceMap);
 		void	setupStates(stateMapping);
 		void	output(FILE*);
 	private:

@@ -5,6 +5,7 @@
 #include <vector>
 #include "Parsers\Object.h"
 #include "EU3Province.h"
+#include "log.h"
 using namespace std;
 
 
@@ -15,9 +16,11 @@ class EU3Country
 		string					getTag();
 		void						addProvince(EU3Province*);
 		vector<EU3Province*>	getProvinces();
+		int						getCapital();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
+		int						capital;
 };
 
 
