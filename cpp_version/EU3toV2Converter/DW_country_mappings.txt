@@ -119,6 +119,7 @@ link = { eu3 = KOK vic = KOK }  # Kokand
 link = { eu3 = PER vic = PER }  # Persia
 
 link = { eu3 = CHE vic = CHE }  # Cherokee
+link = { eu3 = HUR vic = MTC }  # Huron                => Metis Confederacy
 link = { eu3 = IRO vic = MTC }  # Iroquois             => Metis Confederacy
 
 link = { eu3 = ETH vic = ETH }  # Ethiopia
@@ -160,6 +161,8 @@ link = { eu3 = KHA vic = MGL }  #Mongol Khanate         => Mongolia
 link = { eu3 = SWI vic = SWI }  #Switzerland
 
 link = { eu3 = DUR vic = AFG }  # Durrani                => Afghanistan
+
+link = { eu3 = ZIM vic = ZUL }  # Mutapa                 => Zulu
 
 
 
@@ -252,7 +255,7 @@ link = { eu3 = GAL vic = SPA vic = POR vic = CAT }           # Galicia => Catelo
 
 # Italy
 
-link = { eu3 = AQU vic = TUS vic = LUC vic = MOD vic = PAR vic = VEN}    # Aquelia => Venice, Parma, Modena, Lucca, Tuscany
+link = { eu3 = AQU vic = TUS vic = LUC vic = MOD vic = PAR vic = VEN }   # Aquelia => Venice, Parma, Modena, Lucca, Tuscany
 link = { eu3 = ETR vic = PAR vic = MOD vic = LUC vic = TUS }             # Etruria => Tuscany, Lucca, Modena, Parma
 link = { eu3 = FER vic = PAR vic = MOD vic = LUC vic = TUS }             # Ferrara => Tuscany, Lucca, Modena, Parma
 link = { eu3 = AQU vic = TUS vic = LUC vic = MOD vic = PAR }             # Genoa => Parma, Modena, Lucca, Tuscany
@@ -289,7 +292,7 @@ link = { eu3 = QAS vic = KOK vic = BUK vic = KHI vic = AZB }    # Quasim Khanate
 link = { eu3 = NOG vic = KOK vic = BUK vic = MUG }              # Nogai => Mughalistan, Bukarra, Kokand
 
 # Arabia
-link = { eu3 = SHR vic = ABU vic = OMA vic = NEJ = YEM }        # Sharja => Oman, Nejd, Yemen, Abu Dhabi
+link = { eu3 = SHR vic = ABU vic = OMA vic = NEJ vic = YEM }        # Sharja => Oman, Nejd, Yemen, Abu Dhabi
 
 # Asia-Minor
 
@@ -310,4 +313,29 @@ link = { eu3 = SHY vic = KOK vic = AZB vic = BUK }              # Shyabanid => B
 link = { eu3 = KHO vic = IRQ vic = AFG vic = PER }              # Khorosan => Persia, Afghanistan, Iraq
 link = { eu3 = JAI vic = AFG vic = IRQ vic = PER }              # Jalayarid => Iraq, Persia, Afghanistan
 link = { eu3 = QAR vic = AFG vic = IRQ vic = PER }              # Qara Koyunlu => Iraq, Persia, Afghanistan
+
+# American Native Minors
+link = { eu3 = AZT vic = CHE vic = COL vic = UCA vic = COS vic = NIC vic = MEX} # Aztec => Mexico, Cherokee, Columbia, USCA, Costa Rica, Nicaragua
+link = { eu3 = CRE vic = MEX vic = TEX vic = NEW vic = MTC vic = CHE }          # Creek => Cherokee, Metis Confederacy, Newfoundland, Texas, Mexico
+link = { eu3 = SHA vic = MEX vic = TEX vic = NEW vic = MTC vic = CHE }          # Shawnee => Cherokee, Metis Confederacy, Newfoundland, Texas, Mexico
+link = { eu3 = ZAP vic = CHE vic = COL vic = UCA vic = COS vic = NIC vic = MEX} # Zapotec => Mexico, Cherokee, Columbia, USCA, Costa Rica, Nicaragua
+link = { eu3 = MAY vic = CHE vic = COL vic = UCA vic = COS vic = NIC vic = MEX} # Maya => Mexico, Cherokee, Columbia, USCA, Costa Rica, Nicaragua
+link = { eu3 = INC vic = BRZ vic = COL vic = ECU vic = PEU vic = VNZ }          # Inca => Venzuela, Peru, Ecuadore, Columbia, Brazil
+link = { eu3 = CHM vic = BRZ vic = COL vic = ECU vic = PEU vic = VNZ }          # Chimu => Venzuela, Peru, Ecuadore, Columbia, Brazil
+
+# African Native Minors
+link = { eu3 = LOA vic = MOR vic = LIB vic = SOK vic = CNG }      # Loango => Congo, Sokoto, Liberia, Morocco
+link = { eu3 = SON vic = MOR vic = CNG vic = LIB vic = SOK }      # Songhai => Sokoto, Libera, Congo, Morocco
+link = { eu3 = MAL vic = MOR vic = CNG vic = LIB vic = SOK }      # Mali => Sokoto, Libera, Congo, Morocco
+link = { eu3 = HAU vic = MOR vic = CNG vic = LIB vic = SOK }      # Hausa => Sokoto, Libera, Congo, Morocco
+link = { eu3 = KBO vic = MOR vic = CNG vic = LIB vic = SOK }      # Kanem Bornu => Sokoto, Libera, Congo, Morocco
+link = { eu3 = ASH vic = MOR vic = CNG vic = LIB vic = SOK }      # Ashanti => Sokoto, Libera, Congo, Morocco
+link = { eu3 = BEN vic = MOR vic = CNG vic = LIB vic = SOK }      # Benin => Sokoto, Libera, Congo, Morocco
+link = { eu3 = OYO vic = MOR vic = CNG vic = LIB vic = SOK }      # Oyo => Sokoto, Libera, Congo, Morocco
+
+link = { eu3 = NUB vic = EGY vic = ETH  }   # Funj => Ethiopia, Egypt
+link = { eu3 = ADA vic = EGY vic = ETH  }   # Adal => Ethiopia, Egypt
+
+link = { eu3 = SOF vic = RHO vic = NAL vic = ORA vic = ZUL } # Sofala => Zulu, Rhodesia, Natalia, Oranje
+
 }
