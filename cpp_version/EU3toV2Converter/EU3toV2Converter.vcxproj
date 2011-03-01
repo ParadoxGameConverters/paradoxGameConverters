@@ -68,8 +68,8 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='HttTToV2|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <OutDir Condition="'$(Configuration)|$(Platform)'=='DWToV2|Win32'">$(SolutionDir)$(Configuration)\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(Configuration)\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='HttTToV2|Win32'">$(SolutionDir)\intermediate\</IntDir>
-    <IntDir Condition="'$(Configuration)|$(Platform)'=='DWToV2|Win32'">$(SolutionDir)\intermediate\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='HttTToV2|Win32'">$(SolutionDir)\HttTintermediate\</IntDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='DWToV2|Win32'">$(SolutionDir)\DWintermediate\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='HttTToV2|Win32'">false</LinkIncremental>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='DWToV2|Win32'">false</LinkIncremental>
