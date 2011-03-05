@@ -84,7 +84,7 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		int oldCapital = oldCountries[countries[i].getSourceCountryIndex()].getCapital();
-		log("	old capital: %d", oldCapital);
+		log("	old capital: %4d", oldCapital);
 		countries[i].setCapital(0);
 		if (oldCapital > 0)
 		{
@@ -117,20 +117,27 @@ void V2World::setupStates(stateMapping stateMap)
 	vector<V2Province> unassignedProvs;
 	unassignedProvs = provinces;
 
+	int stateId = 0;
 	vector<V2Province>::iterator iter;
 	while(unassignedProvs.size() > 0)
 	{
+		log("Creating new state (#%d).\n", stateId);
 		iter = unassignedProvs.begin();
 		int		provId	= iter->getNum();
 		string	owner		= iter->getOwner();
-		unassignedProvs.erase(iter);
 
 		if (owner == "")
 		{
+			log("Province %d has no owner, done creating state.\n", iter->getNum());
+			unassignedProvs.erase(iter);
 			continue;
 		}
 
-		V2State newState(provId);
+		V2State newState(stateId);
+		stateId++;
+		log("\tAdding initial province (%d) to state.\n", iter->getNum());
+		newState.addProvince(*iter);
+		unassignedProvs.erase(iter);
 		vector<int> neighbors = stateMap[provId];
 
 		for (unsigned int i = 0; i < neighbors.size(); i++)
@@ -141,6 +148,7 @@ void V2World::setupStates(stateMapping stateMap)
 				{
 					if(iter->getOwner() == owner)
 					{
+						log("\tAdding province %d to state.\n", iter->getNum());
 						newState.addProvince(*iter);
 						unassignedProvs.erase(iter);
 					}
@@ -152,6 +160,7 @@ void V2World::setupStates(stateMapping stateMap)
 		{
 			if (iter2->getTag() == owner)
 			{
+				log("Adding state to %s.\n", iter2->getTag().c_str());
 				iter2->addState(newState);
 			}
 		}
