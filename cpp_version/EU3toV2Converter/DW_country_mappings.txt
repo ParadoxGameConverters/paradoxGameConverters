@@ -164,6 +164,8 @@ link = { eu3 = DUR vic = AFG }  # Durrani                => Afghanistan
 
 link = { eu3 = ZIM vic = ZUL }  # Mutapa                 => Zulu
 
+link = { eu3 = BAN vic = JAV }  # Banten                 => Java
+
 
 
 #Region-based mappings
@@ -290,6 +292,7 @@ link = { eu3 = AST vic = KOK vic = BUK vic = KHI vic = AZB }    # Astrakhan => A
 link = { eu3 = GOL vic = KOK vic = BUK vic = MUG }              # Golden Horde => Mughalistan, Bukarra, Kokand
 link = { eu3 = QAS vic = KOK vic = BUK vic = KHI vic = AZB }    # Quasim Khanate => Azerbaijan, Khiva, Bukara, Kokand
 link = { eu3 = NOG vic = KOK vic = BUK vic = MUG }              # Nogai => Mughalistan, Bukarra, Kokand
+link = { eu3 = CHG vic = KOK vic = BUK vic = MUG }              # Chagatai Khanate => Mughalistan, Bukarra, Kokand
 
 # Arabia
 link = { eu3 = SHR vic = ABU vic = OMA vic = NEJ vic = YEM }        # Sharja => Oman, Nejd, Yemen, Abu Dhabi
@@ -337,5 +340,13 @@ link = { eu3 = NUB vic = EGY vic = ETH  }   # Funj => Ethiopia, Egypt
 link = { eu3 = ADA vic = EGY vic = ETH  }   # Adal => Ethiopia, Egypt
 
 link = { eu3 = SOF vic = RHO vic = NAL vic = ORA vic = ZUL } # Sofala => Zulu, Rhodesia, Natalia, Oranje
+
+# The "Far East"
+
+link = { eu3 = ANN vic = SIA vic = BUR vic = CAM vic = DAI } # Annam => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = ARK vic = SIA vic = CAM vic = DAI vic = BUR } # Arakan => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = AYU vic = CAM vic = DAI vic = BUR vic = SIA } # Ayutthaya => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = CHA vic = SIA vic = BUR vic = CAM vic = DAI } # Champa => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = CHK vic = SIA vic = BUR vic = DAI vic = CAM } # Champassak => Dai Viet, Cambodia, Burma, Siam
 
 }
