@@ -79,6 +79,14 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 				{
 					newCountry = potentialCountries[j];
 					newCountry.setSourceCountryIndex(i);
+					if ( (sourceCountries[i].getTechGroup() == "western") || (sourceCountries[i].getTechGroup() == "eastern") || (sourceCountries[i].getTechGroup() == "ottoman"))
+					{
+						newCountry.setcivilized(true);
+					}
+					else
+					{
+						newCountry.setcivilized(false);
+					}
 				}
 			}
 		}

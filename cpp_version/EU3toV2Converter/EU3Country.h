@@ -17,10 +17,12 @@ class EU3Country
 		void						addProvince(EU3Province*);
 		vector<EU3Province*>	getProvinces();
 		int						getCapital();
+		string					getTechGroup();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
 		int						capital;
+		string					techGroup;
 };
 
 

@@ -14,12 +14,14 @@ class V2Country
 		void			setSourceCountryIndex(int);
 		void			addState(V2State);
 		void			setCapital(int);
+		void			setcivilized(bool);
 		void			output(FILE*);
 		int			getSourceCountryIndex();
 	private:
 		string				tag;
 		vector<V2State>	states;
 		int					capital;
+		bool					civilized;
 		int					sourceCountryIndex;
 		string				countryFile;
 };

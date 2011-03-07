@@ -14,6 +14,16 @@ void EU3Country::init(Object* obj)
 	{
 		capital = 0;
 	}
+
+	vector<Object*> techGroupObj = obj->getValue("technology_group");
+	if (techGroupObj.size() > 0)
+	{
+		techGroup = techGroupObj[0]->getLeaf().c_str();
+	}
+	else
+	{
+		log("Error: Could not load the tech group for %s\n", tag.c_str());
+	}
 }
 
 
@@ -38,4 +48,10 @@ vector<EU3Province*>	EU3Country::getProvinces()
 int EU3Country::getCapital()
 {
 	return capital;
+}
+
+
+string EU3Country::getTechGroup()
+{
+	return techGroup;
 }
