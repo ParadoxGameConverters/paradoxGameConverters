@@ -66,10 +66,10 @@ void outputCountryHeader(FILE* output)
 	fprintf(output, "		conservative=1.00000\n");
 	fprintf(output, "		liberal=0.00000\n");
 	fprintf(output, "	}\n");
-	fprintf(output, "	ruling_party=1\n");
-	fprintf(output, "	active_party=1\n");
-	fprintf(output, "	active_party=2\n");
-	fprintf(output, "	active_party=5\n");
+}
+
+void outputCountryHeader2(FILE* output)
+{
 	fprintf(output, "	government=absolute_monarchy\n");
 	fprintf(output, "	rich_tax=\n");
 	fprintf(output, "	{\n");

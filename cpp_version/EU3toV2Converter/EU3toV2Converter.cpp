@@ -117,7 +117,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("Error: Could not open countries.txt\n");
 		return 1;
 	}
-	destWorld.addPotentialCountries(V2CountriesInput);
+	destWorld.addPotentialCountries(V2CountriesInput, V2Loc);
 	V2CountriesInput.close();
 	
 	initParser();

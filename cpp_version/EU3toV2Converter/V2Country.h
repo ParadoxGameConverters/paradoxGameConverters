@@ -9,7 +9,7 @@ using namespace std;
 class V2Country
 {
 	public:
-		void			init(string tag, string countryFile);
+		void			init(string tag, string countryFile, vector<int> parties);
 		string		getTag();
 		void			setSourceCountryIndex(int);
 		void			addState(V2State);
@@ -22,6 +22,7 @@ class V2Country
 		vector<V2State>	states;
 		int					capital;
 		bool					civilized;
+		vector<int>			parties;
 		int					sourceCountryIndex;
 		string				countryFile;
 };

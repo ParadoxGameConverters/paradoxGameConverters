@@ -17,7 +17,7 @@ using namespace std;
 class V2World {
 	public:
 		void				init(Object* obj);
-		void				addPotentialCountries(ifstream &countriesMapping);
+		void				addPotentialCountries(ifstream &countriesMapping, string V2Loc);
 		vector<string>	getPotentialTags(); 
 		void				convertCountries(EU3World sourceWorld, countryMapping countryMap);
 		void				convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap);

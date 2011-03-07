@@ -2,10 +2,11 @@
 
 
 
-void V2Country::init(string newTag, string newCountryFile)
+void V2Country::init(string newTag, string newCountryFile, vector<int> newParties)
 {
 	tag			= newTag;
 	countryFile	= newCountryFile;
+	parties		= newParties;
 }
 
 
@@ -48,6 +49,12 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	capital=%d\n", capital);
 	}
 	outputCountryHeader(output);
+	fprintf(output, "	ruling_party=%d\n", parties[0]);
+	for (unsigned int i = 0; i < parties.size(); i++)
+	{
+		fprintf(output, "	active_party=%d\n", parties[i]);
+	}
+	outputCountryHeader2(output);
 	outputCountryMiddle(output);
 	if (civilized)
 	{

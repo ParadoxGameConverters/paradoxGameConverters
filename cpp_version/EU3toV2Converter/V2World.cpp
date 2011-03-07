@@ -21,8 +21,9 @@ void V2World::init(Object* obj)
 }
 
 
-void V2World::addPotentialCountries(ifstream &countriesMapping)
+void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 {
+	int partiesIndex = 0;
 	while (!countriesMapping.eof())
 	{
 		string line;
@@ -35,18 +36,35 @@ void V2World::addPotentialCountries(ifstream &countriesMapping)
 		
 		string tag;
 		tag = line.substr(0, 3);
+
+		string countryFileName;
+		int start			= line.find_first_of('/');
+		int size				= line.find_last_of('\"') - start;
+		countryFileName	= line.substr(start, size);
+
+		int oldPartiesIndex = partiesIndex;
+		ifstream countryFile( (V2Loc + "\\common\\countries\\" + countryFileName).c_str());
+		while (!countryFile.eof())
+		{
+			string line2;
+			getline(countryFile, line2);
+			if (line2 == "party = {")
+			{
+				partiesIndex++;
+			}
+		}
+		vector<int> parties;
+		for(int i = oldPartiesIndex; i < partiesIndex; i++)
+		{
+			parties.push_back(i);
+		}
+
 		if (tag == "REB")
 		{
 			continue;
 		}
-
-		string countryFile;
-		int start	= line.find_first_of('/');
-		int size		= line.find_last_of('\"') - start;
-		countryFile	= line.substr(start, size);
-
 		V2Country newCountry;
-		newCountry.init(tag, countryFile);
+		newCountry.init(tag, countryFileName, parties);
 		potentialCountries.push_back(newCountry);
 	}
 }
@@ -94,7 +112,8 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 		{
 			log("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
 			printf("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
-			newCountry.init("", "");
+			vector<int> empty;
+			newCountry.init("", "", empty);
 		}
 
 		countries.push_back(newCountry);
