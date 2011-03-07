@@ -9,8 +9,9 @@ using namespace std;
 class V2Country
 {
 	public:
-		void			init(string, int);
+		void			init(string tag, string countryFile);
 		string		getTag();
+		void			setSourceCountryIndex(int);
 		void			addState(V2State);
 		void			setCapital(int);
 		void			output(FILE*);
@@ -20,4 +21,5 @@ class V2Country
 		vector<V2State>	states;
 		int					capital;
 		int					sourceCountryIndex;
+		string				countryFile;
 };

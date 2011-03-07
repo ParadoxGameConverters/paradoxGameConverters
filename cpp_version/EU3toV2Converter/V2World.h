@@ -16,15 +16,18 @@ using namespace std;
 
 class V2World {
 	public:
-		void	init(Object* obj);
-		void	convertCountries(EU3World sourceWorld, countryMapping countryMap);
-		void	convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap);
-		void	convertCapitals(EU3World sourceWorld, provinceMapping provinceMap);
-		void	setupStates(stateMapping);
-		void	output(FILE*);
+		void				init(Object* obj);
+		void				addPotentialCountries(ifstream &countriesMapping);
+		vector<string>	getPotentialTags(); 
+		void				convertCountries(EU3World sourceWorld, countryMapping countryMap);
+		void				convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap);
+		void				convertCapitals(EU3World sourceWorld, provinceMapping provinceMap);
+		void				setupStates(stateMapping);
+		void				output(FILE*);
 	private:
 		vector<V2Province>	provinces;
 		vector<V2Country>		countries;
+		vector<V2Country>		potentialCountries;
 };
 
 

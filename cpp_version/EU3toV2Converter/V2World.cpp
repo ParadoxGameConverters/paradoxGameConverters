@@ -21,6 +21,48 @@ void V2World::init(Object* obj)
 }
 
 
+void V2World::addPotentialCountries(ifstream &countriesMapping)
+{
+	while (!countriesMapping.eof())
+	{
+		string line;
+		getline(countriesMapping, line);
+
+		if ( (line[0] == '#') | (line.size() < 3) )
+		{
+			continue;
+		}
+		
+		string tag;
+		tag = line.substr(0, 3);
+		if (tag == "REB")
+		{
+			continue;
+		}
+
+		string countryFile;
+		int start	= line.find_first_of('/');
+		int size		= line.find_last_of('\"') - start;
+		countryFile	= line.substr(start, size);
+
+		V2Country newCountry;
+		newCountry.init(tag, countryFile);
+		potentialCountries.push_back(newCountry);
+	}
+}
+
+
+vector<string> V2World::getPotentialTags()
+{
+	vector<string> tagList;
+	for (unsigned int i = 0; i < potentialCountries.size(); i++)
+	{
+		tagList.push_back(potentialCountries[i].getTag());
+	}
+	return tagList;
+}
+
+
 void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 {
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
@@ -31,13 +73,20 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 		iter = countryMap.find(sourceCountries[i].getTag());
 		if (iter != countryMap.end())
 		{
-			newCountry.init(iter->second.c_str(), i);
+			for(unsigned int j = 0; j < potentialCountries.size(); j++)
+			{
+				if (potentialCountries[j].getTag() == iter->second.c_str())
+				{
+					newCountry = potentialCountries[j];
+					newCountry.setSourceCountryIndex(i);
+				}
+			}
 		}
 		else
 		{
 			log("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
 			printf("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
-			newCountry.init("", i);
+			newCountry.init("", "");
 		}
 
 		countries.push_back(newCountry);

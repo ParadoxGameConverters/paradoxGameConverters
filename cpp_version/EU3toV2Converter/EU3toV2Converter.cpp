@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include <stdio.h>
 #include "Parsers\Parser.h"
-#include "V2TagParser.h"
 //#include "Parsers\InstructionsParser.h"
 #include "Mapper.h"
 #include "Log.h"
@@ -110,15 +109,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing country mappings.\n");
 
 	vector<string> V2Tags;
-	read.open( (V2Loc + "\\common\\countries.txt").c_str() );
-	if (!read.is_open())
+	ifstream V2CountriesInput;
+	V2CountriesInput.open( (V2Loc + "\\common\\countries.txt").c_str() );
+	if (!V2CountriesInput.is_open())
 	{
 		log("Error: Could not open countries.txt\n");
 		printf("Error: Could not open countries.txt\n");
 		return 1;
 	}
-	V2Tags = parseV2Tags(read);
-	read.close();
+	destWorld.addPotentialCountries(V2CountriesInput);
+	V2CountriesInput.close();
 	
 	initParser();
 	obj = Parser::topLevel;
@@ -134,13 +134,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	removeEmptyNations(sourceWorld);
 	vector<string> EU3Tags = getEU3Tags(sourceWorld);
-	if (EU3Tags.size() > V2Tags.size())
+	if (EU3Tags.size() > destWorld.getPotentialTags().size())
 	{
 		log("Error: Too many EU3 tags. %d EU3 tags, %d V2 tags.\n", EU3Tags.size(), V2Tags.size());
 		printf("Error: Too many EU3 tags. %d EU3 tags, %d V2 tags.\n", EU3Tags.size(), V2Tags.size());
 		//return 1;
 	}
-	countryMapping countryMap = initCountryMap(EU3Tags, V2Tags, obj);
+	countryMapping countryMap = initCountryMap(EU3Tags, destWorld.getPotentialTags(), obj);
 
 	log("Country maps:\n");
 	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)

@@ -84,9 +84,6 @@
     <ClCompile Include="RulesetHandler.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="V2TagParser.cpp">
-      <Filter>Parsers</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -142,9 +139,6 @@
     </ClInclude>
     <ClInclude Include="RulesetHandler.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="V2TagParser.h">
-      <Filter>Parsers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,9 +1,16 @@
 #include "V2Country.h"
 
 
-void V2Country::init(string newTag, int oldCountryIndex)
+
+void V2Country::init(string newTag, string newCountryFile)
 {
-	tag						= newTag;
+	tag			= newTag;
+	countryFile	= newCountryFile;
+}
+
+
+void V2Country::setSourceCountryIndex(int oldCountryIndex)
+{
 	sourceCountryIndex	= oldCountryIndex;
 }
 
