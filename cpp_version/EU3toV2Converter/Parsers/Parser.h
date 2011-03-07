@@ -7,15 +7,15 @@
 #undef BOOST_SPIRIT_DEBUG 
 #undef BOOST_SPIRIT_DEBUG_FLAGS 
 
-#include "boost/spirit.hpp"
-#include "boost/spirit/tree/ast.hpp"
+#include "boost/spirit/include/classic.hpp"
+#include "boost/spirit/include/classic_ast.hpp"
 #include <string> 
 #include "Object.h"
 #include <iostream> 
 #include <fstream> 
 
 
-using namespace boost::spirit;
+using namespace boost::spirit::classic;
 void setLHS (char const* first, char const* last);
 void pushObj (char const* first, char const* last);
 void setRHSleaf (char const* first, char const* last);
@@ -23,7 +23,7 @@ void setRHSobject (char const* first, char const* last);
 void setRHSobjlist (char const* first, char const* last);
 void setRHStaglist (char const* first, char const* last);
 
-struct Parser : public boost::spirit::grammar<Parser> {
+struct Parser : public boost::spirit::classic::grammar<Parser> {
   static Object* topLevel; 
 
   static const unsigned int OBJECT  = 1;
@@ -34,12 +34,12 @@ struct Parser : public boost::spirit::grammar<Parser> {
   static const unsigned int OBJLIST = 6;
 
   template<typename ScannerT> struct definition {
-    boost::spirit::rule<ScannerT, parser_context<>, parser_tag<LEAF> >     leaf;
-    boost::spirit::rule<ScannerT, parser_context<>, parser_tag<TAGLIST> >  taglist;
-    boost::spirit::rule<ScannerT, parser_context<>, parser_tag<ASSIGN> >   assign; 
-    boost::spirit::rule<ScannerT, parser_context<>, parser_tag<OBJECT> >   object;
-    boost::spirit::rule<ScannerT, parser_context<>, parser_tag<OBJLIST> >  objlist;
-    boost::spirit::rule<ScannerT, parser_context<>, parser_tag<STR> >      str;
+    boost::spirit::classic::rule<ScannerT, parser_context<>, parser_tag<LEAF> >     leaf;
+    boost::spirit::classic::rule<ScannerT, parser_context<>, parser_tag<TAGLIST> >  taglist;
+    boost::spirit::classic::rule<ScannerT, parser_context<>, parser_tag<ASSIGN> >   assign; 
+    boost::spirit::classic::rule<ScannerT, parser_context<>, parser_tag<OBJECT> >   object;
+    boost::spirit::classic::rule<ScannerT, parser_context<>, parser_tag<OBJLIST> >  objlist;
+    boost::spirit::classic::rule<ScannerT, parser_context<>, parser_tag<STR> >      str;
 
     definition (Parser const& self) {
       str     = ch_p('"') >> *(anychar_p - ch_p('"') ) >> ch_p('"');
@@ -61,7 +61,7 @@ struct Parser : public boost::spirit::grammar<Parser> {
 
     }
 
-    boost::spirit::rule<ScannerT, parser_context<>, parser_tag<ASSIGN> > const& start() const { return assign; }
+    boost::spirit::classic::rule<ScannerT, parser_context<>, parser_tag<ASSIGN> > const& start() const { return assign; }
   };
 
 private:

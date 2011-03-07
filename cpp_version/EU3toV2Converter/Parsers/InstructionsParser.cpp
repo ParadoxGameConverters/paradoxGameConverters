@@ -296,7 +296,7 @@ void readInsFile (std::ifstream& read)
    
    InstructionsParser p;
    BOOST_SPIRIT_DEBUG_GRAMMAR(p);
-   boost::spirit::parse_info<> result = boost::spirit::parse(data.str().c_str(), p, boost::spirit::nothing_p);
+   boost::spirit::classic::parse_info<> result = boost::spirit::classic::parse(data.str().c_str(), p, boost::spirit::classic::nothing_p);
 
    finish();
 }

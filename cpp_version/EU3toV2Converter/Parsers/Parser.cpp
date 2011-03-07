@@ -194,7 +194,7 @@ bool makeObject (std::string& command) {
   //std::cout << "Entering makeObject with " << command << std::endl; 
   static Parser p;
   //BOOST_SPIRIT_DEBUG_GRAMMAR(p);
-  boost::spirit::parse_info<> result = boost::spirit::parse(command.c_str(), p, boost::spirit::nothing_p);
+  boost::spirit::classic::parse_info<> result = boost::spirit::classic::parse(command.c_str(), p, boost::spirit::classic::nothing_p);
   if (result.full) {
     //std::cout << "Matched " << command << std::endl; 
     // Do stuff with full command

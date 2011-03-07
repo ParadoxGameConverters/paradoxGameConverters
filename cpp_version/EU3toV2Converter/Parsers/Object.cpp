@@ -228,7 +228,7 @@ void setVal (std::string name, std::string val, Object* branch) {
 void setInt (std::string name, int val, Object* branch) {
   if ((branch) && (br != branch)) br = branch; 
   static char strbuffer[1000];
-  sprintf(strbuffer, "%i", val); 
+  sprintf_s(strbuffer, 1000, "%i", val); 
   Object* b = new Object(name);
   b->setValue(strbuffer); 
   br->setValue(b); 
@@ -237,7 +237,7 @@ void setInt (std::string name, int val, Object* branch) {
 void setFlt (std::string name, double val, Object* branch) {
   if ((branch) && (br != branch)) br = branch; 
   static char strbuffer[1000];
-  sprintf(strbuffer, "%.3f", val); 
+  sprintf_s(strbuffer, 1000, "%.3f", val); 
   Object* b = new Object(name);
   b->setValue(strbuffer); 
   br->setValue(b); 
