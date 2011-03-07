@@ -10,6 +10,7 @@ class EU3Province {
 		void		init(Object* obj);
 		int		getNum();
 		string	getOwner();
+		bool		isColony();
 	private:
 		int		num;
 		string	owner;
@@ -18,6 +19,7 @@ class EU3Province {
 		//culture
 		//religion
 		int		population;
+		bool		colony;
 };
 
 

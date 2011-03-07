@@ -14,6 +14,12 @@ void V2State::addProvince(V2Province newProvince)
 }
 
 
+void V2State::setColonial(bool isIt)
+{
+	colonial = isIt;
+}
+
+
 void V2State::output(FILE* output)
 {
 	fprintf(output, "	state=\n");
@@ -32,6 +38,9 @@ void V2State::output(FILE* output)
 	}
 	fprintf(output, "\n");
 	fprintf(output, "		}\n");
-	outputStateStuff(output);
+	if (colonial)
+	{
+		fprintf(output, "		is_colonial=yes\n");
+	}
 	fprintf(output, "	}\n");
 }

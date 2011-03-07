@@ -13,6 +13,8 @@ class V2Province {
 		int		getNum();
 		void		setOwner(string);
 		string	getOwner();
+		void		setColonial(bool);
+		bool		isColonial();
 		void		output(FILE*);
 	private:
 		bool		land;
@@ -21,7 +23,7 @@ class V2Province {
 		string	owner;
 		//controller
 		//cores
-		//colonial
+		bool		colonial;
 		int		oldPopulation;
 		//pops
 		string	rgoType;

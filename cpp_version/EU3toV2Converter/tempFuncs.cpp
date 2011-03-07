@@ -129,11 +129,3 @@ void outputCountryMiddle(FILE* output)
 {
 	fprintf(output, "	money=75314.11652\n");
 }
-
-
-void outputStateStuff(FILE* output)
-{
-	fprintf(output, "		is_colonial=yes\n");
-	fprintf(output, "		savings=0.15726\n");
-	fprintf(output, "		interest=0.00000\n");
-}

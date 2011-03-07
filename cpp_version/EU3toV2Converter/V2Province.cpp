@@ -54,6 +54,17 @@ void V2Province::setOwner(string newOwner)
 }
 
 
+void V2Province::setColonial(bool isIt)
+{
+	colonial = isIt;
+}
+
+bool V2Province::isColonial()
+{
+	return colonial;
+}
+
+
 string V2Province::getOwner()
 {
 	return owner;

@@ -12,10 +12,12 @@ class V2State
 	public:
 		V2State(int newId);
 		void	addProvince(V2Province);
+		void	setColonial(bool);
 		void	output(FILE*);
 	private:
-		int id;
-		vector<V2Province> provinces;
+		int						id;
+		bool						colonial;
+		vector<V2Province>	provinces;
 };
 
 

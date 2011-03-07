@@ -108,7 +108,8 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 		}
 		else
 		{
-			string oldOwner = sourceWorld.getProvince(sourceNums[0])->getOwner();
+			EU3Province* oldProvince	= sourceWorld.getProvince(sourceNums[0]);
+			string oldOwner				= oldProvince->getOwner();
 			if (oldOwner != "")
 			{
 				countryMapping::iterator iter = contMap.find(oldOwner);
@@ -119,6 +120,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 				else
 				{
 					provinces[i].setOwner(iter->second);
+					provinces[i].setColonial(oldProvince->isColony());
 				}
 			}
 		}
@@ -186,8 +188,10 @@ void V2World::setupStates(stateMapping stateMap)
 		stateId++;
 		log("\tAdding initial province (%d) to state.\n", iter->getNum());
 		newState.addProvince(*iter);
+		vector<int> neighbors	= stateMap[provId];
+		bool colonial				= iter->isColonial();
+		newState.setColonial(colonial);
 		unassignedProvs.erase(iter);
-		vector<int> neighbors = stateMap[provId];
 
 		for (unsigned int i = 0; i < neighbors.size(); i++)
 		{
@@ -197,9 +201,12 @@ void V2World::setupStates(stateMapping stateMap)
 				{
 					if(iter->getOwner() == owner)
 					{
-						log("\tAdding province %d to state.\n", iter->getNum());
-						newState.addProvince(*iter);
-						unassignedProvs.erase(iter);
+						if ( (iter->isColonial()) == colonial)
+						{
+							log("\tAdding province %d to state.\n", iter->getNum());
+							newState.addProvince(*iter);
+							unassignedProvs.erase(iter);
+						}
 					}
 				}
 			}

@@ -11,7 +11,6 @@ void outputHeader(FILE*);
 void outputPopStuff(FILE*, int, string);
 void outputCountryHeader(FILE*);
 void outputCountryMiddle(FILE*);
-void outputStateStuff(FILE*);
 
 
 #endif TEMP_FUNCS_H_
