@@ -136,16 +136,4 @@ void outputStateStuff(FILE* output)
 	fprintf(output, "		is_colonial=yes\n");
 	fprintf(output, "		savings=0.15726\n");
 	fprintf(output, "		interest=0.00000\n");
-	fprintf(output, "		popproject=\n");
-	fprintf(output, "		{\n");
-	fprintf(output, "			input_goods=\n");
-	fprintf(output, "			{\n");
-	fprintf(output, "			}\n");
-	fprintf(output, "			money=0.00000\n");
-	fprintf(output, "			building=33\n");
-	fprintf(output, "			province=14\n");
-	fprintf(output, "			index=0\n");
-	fprintf(output, "			type=1\n");
-	fprintf(output, "			money2=yes\n");
-	fprintf(output, "		}\n");
 }
