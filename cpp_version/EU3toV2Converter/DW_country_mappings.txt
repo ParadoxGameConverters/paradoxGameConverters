@@ -154,19 +154,21 @@ link = { eu3 = CAT vic = CAT }  # Catalonia
 link = { eu3 = ARA vic = CAT }  # Aragon                => Catalonia
 
 
-link = { eu3 = CEP vic = ION }  #Corfu                  => Ionian Islands
+link = { eu3 = CEP vic = ION }  # Corfu                  => Ionian Islands
 
-link = { eu3 = KHA vic = MGL }  #Mongol Khanate         => Mongolia
+link = { eu3 = KHA vic = MGL }  # Mongol Khanate         => Mongolia
 
-link = { eu3 = SWI vic = SWI }  #Switzerland
+link = { eu3 = SWI vic = SWI }  # Switzerland
 
 link = { eu3 = DUR vic = AFG }  # Durrani                => Afghanistan
 
 link = { eu3 = ZIM vic = ZUL }  # Mutapa                 => Zulu
 
+link = { eu3 = MAJ vic = JAV }  # Majapahit              => Java
 link = { eu3 = BAN vic = JAV }  # Banten                 => Java
 
-
+link = { eu3 = KHM vic = CAM }  # Khmer                  => Cambodia
+link = { eu3 = SUK vic = SIA }  # Sukhothai              => Siam
 
 #Region-based mappings
 #These mappings are one-to-many conversions.  For each EU3 tag there are many V2 tags.
@@ -293,6 +295,7 @@ link = { eu3 = GOL vic = KOK vic = BUK vic = MUG }              # Golden Horde =
 link = { eu3 = QAS vic = KOK vic = BUK vic = KHI vic = AZB }    # Quasim Khanate => Azerbaijan, Khiva, Bukara, Kokand
 link = { eu3 = NOG vic = KOK vic = BUK vic = MUG }              # Nogai => Mughalistan, Bukarra, Kokand
 link = { eu3 = CHG vic = KOK vic = BUK vic = MUG }              # Chagatai Khanate => Mughalistan, Bukarra, Kokand
+link = { eu3 = OIR vic = KOK vic = BUK vic = MUG }              # Oriat Horde => Mughalistan, Bukarra, Kokand
 
 # Arabia
 link = { eu3 = SHR vic = ABU vic = OMA vic = NEJ vic = YEM }        # Sharja => Oman, Nejd, Yemen, Abu Dhabi
@@ -348,5 +351,19 @@ link = { eu3 = ARK vic = SIA vic = CAM vic = DAI vic = BUR } # Arakan => Dai Vie
 link = { eu3 = AYU vic = CAM vic = DAI vic = BUR vic = SIA } # Ayutthaya => Dai Viet, Cambodia, Burma, Siam
 link = { eu3 = CHA vic = SIA vic = BUR vic = CAM vic = DAI } # Champa => Dai Viet, Cambodia, Burma, Siam
 link = { eu3 = CHK vic = SIA vic = BUR vic = DAI vic = CAM } # Champassak => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = LNA vic = SIA vic = BUR vic = DAI vic = CAM } # Lanna => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = LXA vic = SIA vic = BUR vic = CAM vic = DAI } # Lan xang => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = PAT vic = BUR vic = CAM vic = DAI vic = SIA } # Pattani => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = PEG vic = SIA vic = CAM vic = DAI vic = BUR } # Pegu => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = TAU vic = SIA vic = CAM vic = DAI vic = BUR } # Taungu => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = TOK vic = SIA vic = BUR vic = CAM vic = DAI } # Tonkin => Dai Viet, Cambodia, Burma, Siam
+link = { eu3 = VIE vic = SIA vic = BUR vic = DAI vic = CAM } # Vientiane => Dai Viet, Cambodia, Burma, Siam
+
+link = { eu3 = SUL vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Sulu => phillipines, Johore, Atjeh, Bali, Java
+link = { eu3 = MLC vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Malacca => phillipines, Johore, Atjeh, Bali, Java
+link = { eu3 = MKS vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Makassar => phillipines, Johore, Atjeh, Bali, Java
+link = { eu3 = MTR vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Mataram => phillipines, Johore, Atjeh, Bali, Java
+link = { eu3 = RYU vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Ryukyu => phillipines, Johore, Atjeh, Bali, Java
+
 
 }
