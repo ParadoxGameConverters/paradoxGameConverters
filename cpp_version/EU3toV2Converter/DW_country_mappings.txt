@@ -170,6 +170,8 @@ link = { eu3 = BAN vic = JAV }  # Banten                 => Java
 link = { eu3 = KHM vic = CAM }  # Khmer                  => Cambodia
 link = { eu3 = SUK vic = SIA }  # Sukhothai              => Siam
 
+link = { eu3 = KOJ vic = ISR }  # Jerusalem              => Israel
+
 #Region-based mappings
 #These mappings are one-to-many conversions.  For each EU3 tag there are many V2 tags.
 #These mappings ensure that EU3 countries that do not fit in above or are not available in V2 will be assigned a region-appropriate V2 tag.
@@ -250,6 +252,8 @@ link = { eu3 = TIR vic = FRM vic = HEK vic = NAS vic = HES } # Tirol => Nassau, 
 link = { eu3 = TRI vic = HAN vic = OLD vic = LUX }           # Trier => Luxemburg, Hannover, Oldenburg
 link = { eu3 = ULM vic = SAX vic = WEI vic = COB vic = MEI } # Ulm => Saxony, Saxe-Weimar, Saxe-Coburg Gotha, Saxe-Meiningen
 link = { eu3 = WES vic = HAN vic = OLD vic = LUX }           # Westphalia => Luxemburg, Hannover, Oldenburg
+link = { eu3 = BAR vic = HAN vic = OLD vic = LUX }           # Bar => Luxemburg, Hannover, Oldenburg
+link = { eu3 = HSA vic = OLD vic = BRE vic = HOL vic = HAN } # Hansa => Oldenburg, Bremen, Hannover, Holstein
 
 # Spain
 
@@ -289,6 +293,9 @@ link = { eu3 = YAR vic = RUT vic = RUS }   # Yaroslavl => Russia, Ruthenia
 link = { eu3 = ZAZ vic = RUT vic = RUS }   # Zaporozie => Russia, Ruthenia
 link = { eu3 = SIB vic = RUT vic = RUS }   # Sibir => Russia, Ruthenia
 link = { eu3 = PLT vic = RUT vic = RUS }   # Polotsk => Russia, Ruthenia
+link = { eu3 = SMO vic = RUT vic = RUS }   # Smolensk => Russia, Ruthenia
+link = { eu3 = NZH vic = RUT vic = RUS }   # Nizhny-Novgorod => Russia, Ruthenia
+link = { eu3 = MUR vic = RUT vic = RUS }   # Murom => Russia, Ruthenia
 
 link = { eu3 = AST vic = KOK vic = BUK vic = KHI vic = AZB }    # Astrakhan => Azerbaijan, Khiva, Bukara, Kokand
 link = { eu3 = GOL vic = KOK vic = BUK vic = MUG }              # Golden Horde => Mughalistan, Bukarra, Kokand
@@ -364,6 +371,36 @@ link = { eu3 = MLC vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Malacca 
 link = { eu3 = MKS vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Makassar => phillipines, Johore, Atjeh, Bali, Java
 link = { eu3 = MTR vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Mataram => phillipines, Johore, Atjeh, Bali, Java
 link = { eu3 = RYU vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Ryukyu => phillipines, Johore, Atjeh, Bali, Java
+link = { eu3 = MSA vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI} # Malaya => phillipines, Johore, Atjeh, Bali, Java
 
+#India
 
+link = { eu3 = AHM vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = ASS vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BAH vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BAL vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BAS vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BNG vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BRR vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BHO vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BHU vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = BIJ vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = DLH vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = GAK vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = GOC vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = GDW vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = GUJ vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = KRK vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = KHD vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = KTH vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = MAD vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = MAR vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = MLB vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = MLD vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = MLW vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = NIZ vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = ODH vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = RAJ vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = TRV vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
+link = { eu3 = VIJ vic = BUN vic = AWA vic = BAS vic = BER vic = BHO vic = BIK vic = GWA vic = HYD vic = IND vic = JAI vic = JAS vic = JOD vic = KAL vic = KAS vic = KUT vic = LAD vic = MAK vic = MEW vic = MYS vic = NAG vic = NEP vic = ORI vic = PAN vic = SHI vic = SIK vic = SIN vic = TRA }
 }
