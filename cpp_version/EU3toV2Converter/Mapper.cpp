@@ -70,7 +70,6 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 	countryMapping mapping;
 	countryMapping::iterator mapIter;
 
-
 	// get rules
 	vector<Object*>		leaves = rulesObj->getLeaves();
 	if (leaves.size() < 1)
@@ -80,31 +79,6 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 		return mapping;
 	}
 	vector<Object*> rules = leaves[0]->getLeaves();
-
-
-	// get allowed V2 tags
-	vector<string> allowedV2Tags;
-	for (unsigned int i = 0; i < rules.size(); i++)
-	{
-		vector<Object*> rule = rules[i]->getLeaves();
-		for (unsigned int j = 0; j < rule.size(); j++)
-		{
-			if (rule[j]->getKey().compare("vic") == 0)
-			{
-				unsigned int k = 0;
-				while (k < allowedV2Tags.size())
-				{
-					if (allowedV2Tags[k] == rule[j]->getLeaf())
-					{
-						break;
-					}
-					k++;
-				}
-				allowedV2Tags.push_back(rule[j]->getLeaf());
-			}
-		}
-	}
-
 
 	for (unsigned int i = 0; i < rules.size(); ++i)
 	{
@@ -123,7 +97,7 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 			}
 			else
 			{
-				log("Warning: unknown data while parsing rules while mapping countries.\n");
+				log("Warning: unknown data while mapping countries.\n");
 			}
 		}
 
@@ -143,10 +117,10 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 		}
 
 		//find V2 tag from the rule
-		vector<string>::iterator V2TagPos = allowedV2Tags.end();
+		vector<string>::iterator V2TagPos = V2Tags.end();
 		for (unsigned int j = 0; j < rV2Tags.size(); j++)
 		{
-			for (vector<string>::iterator k = allowedV2Tags.begin(); k != allowedV2Tags.end(); k++)
+			for (vector<string>::iterator k = V2Tags.begin(); k != V2Tags.end(); k++)
 			{
 				if (*k == rV2Tags[j])
 				{
@@ -155,7 +129,7 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 				}
 			}
 		}
-		if (V2TagPos == allowedV2Tags.end())
+		if (V2TagPos == V2Tags.end())
 		{
 			continue;
 		}
@@ -165,10 +139,10 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 
 		//remove tags from the lists
 		EU3Tags.erase(EU3TagPos);
-		allowedV2Tags.erase(V2TagPos);
+		V2Tags.erase(V2TagPos);
 	}
 
-	while ( (EU3Tags.size() > 0) && (allowedV2Tags.size() > 0) )
+	while ( (EU3Tags.size() > 0) && (V2Tags.size() > 0) )
 	{
 		vector<string>::iterator EU3TagPos = EU3Tags.begin();
 		if ( (*EU3TagPos == "REB") || (*EU3TagPos == "PIR") || (*EU3TagPos == "NAT") )
@@ -178,12 +152,12 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 		}
 		else
 		{
-			vector<string>::iterator V2TagPos = allowedV2Tags.begin();
+			vector<string>::iterator V2TagPos = V2Tags.begin();
 			mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
 
 			//remove tags from the lists
 			EU3Tags.erase(EU3TagPos);
-			allowedV2Tags.erase(V2TagPos);
+			V2Tags.erase(V2TagPos);
 		}
 	}
 

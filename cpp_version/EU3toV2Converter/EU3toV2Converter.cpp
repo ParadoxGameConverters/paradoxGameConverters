@@ -134,12 +134,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	removeEmptyNations(sourceWorld);
 	vector<string> EU3Tags = getEU3Tags(sourceWorld);
-	/*if (EU3Tags.size() > destWorld.getPotentialTags().size())
+	if (EU3Tags.size() > destWorld.getPotentialTags().size())
 	{
 		log("Error: Too many EU3 tags. %d EU3 tags, %d V2 tags.\n", EU3Tags.size(), V2Tags.size());
 		printf("Error: Too many EU3 tags. %d EU3 tags, %d V2 tags.\n", EU3Tags.size(), V2Tags.size());
 		//return 1;
-	}*/
+	}
 	countryMapping countryMap = initCountryMap(EU3Tags, destWorld.getPotentialTags(), obj);
 
 	log("Country maps:\n");
