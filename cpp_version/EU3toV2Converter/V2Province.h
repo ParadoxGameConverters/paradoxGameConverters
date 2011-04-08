@@ -5,6 +5,8 @@
 #include <string>
 #include "Parsers/Object.h"
 #include "tempFuncs.h"
+#include "V2Pop.h"
+#include "EU3Province.h"
 using namespace std;
 
 class V2Province {
@@ -16,6 +18,7 @@ class V2Province {
 		void		setColonial(bool);
 		void		setCulture(string);
 		bool		isColonial();
+		void		createPops(EU3Province* oldProvince);
 		void		output(FILE*);
 	private:
 		bool		land;
@@ -24,12 +27,12 @@ class V2Province {
 		string	owner;
 		//controller
 		//cores
-		bool		colonial;
-		int		oldPopulation;
-		//pops
-		string	culture;
-		string	rgoType;
-		int		lifeRating;
+		bool				colonial;
+		int				oldPopulation;
+		vector<V2Pop>	pops;
+		string			culture;
+		string			rgoType;
+		int				lifeRating;
 };
 
 

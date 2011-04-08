@@ -14,36 +14,6 @@ void outputHeader(FILE* output)
 }
 
 
-void outputPopStuff(FILE* output, int population, string rgoType, string culture)
-{
-	fprintf(output, "	aristocrats=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		id=%d\n", popId++);
-	fprintf(output, "		size=%d\n", population/3);
-	fprintf(output, "		%s=animist\n", culture.c_str());
-	fprintf(output, "	}\n");
-	fprintf(output, "	artisans=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		id=%d\n", popId++);
-	fprintf(output, "		size=%d\n", population/3);
-	fprintf(output, "		%s=animist\n", culture.c_str());
-	fprintf(output, "	}\n");
-	if ( (rgoType == "\"cattle\"") || (rgoType == "\"coffee\"") || (rgoType == "\"cotton\"") || (rgoType == "\"dye\"") || (rgoType == "\"fish\"") || (rgoType == "\"fruit\"") || (rgoType == "\"grain\"") || (rgoType == "\"opium\"") || (rgoType == "\"silk\"") || (rgoType == "\"tea\"") || (rgoType == "\"tobacco\"") || (rgoType == "\"wool\"") )
-	{
-		fprintf(output, "	farmers=\n");
-	}
-	else
-	{
-		fprintf(output, "	labourers=\n");
-	}
-	fprintf(output, "	{\n");
-	fprintf(output, "		id=%d\n", popId++);
-	fprintf(output, "		size=%d\n", population/3);
-	fprintf(output, "		%s=animist\n", culture.c_str());
-	fprintf(output, "	}\n");
-}
-
-
 void outputCountryHeader(FILE* output)
 {
 	fprintf(output, "	wage_reform=no_minimum_wage\n");
