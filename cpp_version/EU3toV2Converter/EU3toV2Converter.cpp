@@ -203,7 +203,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	// Convert
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap);
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap);
 	destWorld.convertCapitals(sourceWorld, provinceMap);
 	destWorld.setupStates(stateMap);
 	  

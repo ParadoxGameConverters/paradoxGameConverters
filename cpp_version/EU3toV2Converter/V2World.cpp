@@ -151,7 +151,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 
 
 
-void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap)
+void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap, cultureMapping cultureMap)
 {
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
@@ -177,6 +177,17 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 				{
 					provinces[i].setOwner(iter->second);
 					provinces[i].setColonial(oldProvince->isColony());
+	
+					cultureMapping::iterator iter2 = cultureMap.find(oldProvince->getCulture());
+					if (iter2 != cultureMap.end())
+					{
+						provinces[i].setCulture(iter2->second);
+					}
+					else
+					{
+						log("Error: Could not set culture for province %d\n", destNum);
+						provinces[i].setCulture("");
+					}
 				}
 			}
 		}

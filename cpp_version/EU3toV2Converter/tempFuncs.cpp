@@ -14,19 +14,19 @@ void outputHeader(FILE* output)
 }
 
 
-void outputPopStuff(FILE* output, int population, string rgoType)
+void outputPopStuff(FILE* output, int population, string rgoType, string culture)
 {
 	fprintf(output, "	aristocrats=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		id=%d\n", popId++);
 	fprintf(output, "		size=%d\n", population/3);
-	fprintf(output, "		native_american_minor=animist\n");
+	fprintf(output, "		%s=animist\n", culture.c_str());
 	fprintf(output, "	}\n");
 	fprintf(output, "	artisans=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		id=%d\n", popId++);
 	fprintf(output, "		size=%d\n", population/3);
-	fprintf(output, "		native_american_minor=animist\n");
+	fprintf(output, "		%s=animist\n", culture.c_str());
 	fprintf(output, "	}\n");
 	if ( (rgoType == "\"cattle\"") || (rgoType == "\"coffee\"") || (rgoType == "\"cotton\"") || (rgoType == "\"dye\"") || (rgoType == "\"fish\"") || (rgoType == "\"fruit\"") || (rgoType == "\"grain\"") || (rgoType == "\"opium\"") || (rgoType == "\"silk\"") || (rgoType == "\"tea\"") || (rgoType == "\"tobacco\"") || (rgoType == "\"wool\"") )
 	{
@@ -39,7 +39,7 @@ void outputPopStuff(FILE* output, int population, string rgoType)
 	fprintf(output, "	{\n");
 	fprintf(output, "		id=%d\n", popId++);
 	fprintf(output, "		size=%d\n", population/3);
-	fprintf(output, "		native_american_minor=animist\n");
+	fprintf(output, "		%s=animist\n", culture.c_str());
 	fprintf(output, "	}\n");
 }
 

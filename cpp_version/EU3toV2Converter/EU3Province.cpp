@@ -16,6 +16,17 @@ void EU3Province::init(Object* obj) {
 		owner = owner.substr(1,3);
 	}
 
+	vector<Object*> cultureObj;
+	cultureObj = obj->getValue("culture");
+	if (cultureObj.size() == 0)
+	{
+		culture == "";
+	}
+	else
+	{
+		culture = cultureObj[0]->getLeaf();
+	}
+
 	colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
 	if (popObj.size() > 0)
@@ -50,6 +61,12 @@ int EU3Province::getNum()
 string EU3Province::getOwner()
 {
 	return owner;
+}
+
+
+string EU3Province::getCulture()
+{
+	return culture;
 }
 
 

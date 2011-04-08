@@ -59,6 +59,13 @@ void V2Province::setColonial(bool isIt)
 	colonial = isIt;
 }
 
+
+void V2Province::setCulture(string newCulture)
+{
+	culture = newCulture;
+}
+
+
 bool V2Province::isColonial()
 {
 	return colonial;
@@ -88,7 +95,7 @@ void V2Province::output(FILE* output)
 	fprintf(output, "	garrison=100.000\n");
 	if (land)
 	{
-		outputPopStuff(output, oldPopulation, rgoType);
+		outputPopStuff(output, oldPopulation, rgoType, culture);
 		fprintf(output, "	rgo=\n");
 		fprintf(output, "	{\n");
 		fprintf(output, "		goods_type=%s\n", rgoType.c_str());

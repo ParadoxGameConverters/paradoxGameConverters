@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Parsers/Object.h"
+#include "Log.h"
 using namespace std;
 
 class EU3Province {
@@ -10,13 +11,14 @@ class EU3Province {
 		void		init(Object* obj);
 		int		getNum();
 		string	getOwner();
+		string	getCulture();
 		bool		isColony();
 	private:
 		int		num;
 		string	owner;
 		//controller
 		//cores
-		//culture
+		string	culture;
 		//religion
 		int		population;
 		bool		colony;

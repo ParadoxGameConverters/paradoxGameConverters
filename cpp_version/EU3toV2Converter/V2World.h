@@ -20,7 +20,7 @@ class V2World {
 		void				addPotentialCountries(ifstream &countriesMapping, string V2Loc);
 		vector<string>	getPotentialTags(); 
 		void				convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap);
-		void				convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap);
+		void				convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap, cultureMapping cultureMap);
 		void				convertCapitals(EU3World sourceWorld, provinceMapping provinceMap);
 		void				setupStates(stateMapping);
 		void				output(FILE*);

@@ -14,6 +14,7 @@ class V2Province {
 		void		setOwner(string);
 		string	getOwner();
 		void		setColonial(bool);
+		void		setCulture(string);
 		bool		isColonial();
 		void		output(FILE*);
 	private:
@@ -26,6 +27,7 @@ class V2Province {
 		bool		colonial;
 		int		oldPopulation;
 		//pops
+		string	culture;
 		string	rgoType;
 		int		lifeRating;
 };
