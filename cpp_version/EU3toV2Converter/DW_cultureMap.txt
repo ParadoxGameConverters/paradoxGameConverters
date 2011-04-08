@@ -85,7 +85,7 @@ link = { vic = asian_minor eu3 = mon eu3 = cham eu3 = sulawesi eu3 = chin }
 link = { vic = japanese eu3 = japanese }
 link = { vic = manchu eu3 = manchu }
 link = { vic = beifaren eu3 = chihan }
-link = { vic = nanfaren ceu3 = antonese }
+link = { vic = nanfaren eu3 = cantonese }
 link = { vic = korean eu3 = korean }
 link = { vic = polynesian eu3 = polynesian eu3 = papuan }
 link = { vic = aborigine eu3 = aboriginal }
@@ -116,7 +116,7 @@ link = { vic = tuareg eu3 = tuareg }
 link = { vic = yoruba eu3 = yorumba }
 link = { vic = bakongo eu3 = kongolese }
 link = { vic = african_minor eu3 = madagasque eu3 = senegambian eu3 = bantu }
-link = { vic = oromo eu3 = ethiopia }
+link = { vic = oromo eu3 = ethiopian }
 link = { vic = somali eu3 = somali }
 link = { vic = sudanese eu3 = nubian }
 link = { vic = swahili eu3 = swahili }
