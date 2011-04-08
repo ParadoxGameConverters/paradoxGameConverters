@@ -215,3 +215,36 @@ stateMapping initStateMap(Object* obj)
 
 	return stateMap;
 }
+
+
+cultureMapping initCultureMap(Object* obj)
+{
+	cultureMapping cultureMap;
+	vector<Object*> links = obj->getLeaves();
+
+	for (unsigned int i = 0; i < links.size(); i++)
+	{
+		vector<Object*>	cultures	= links[i]->getLeaves();
+		string				dstCulture;
+		vector<string>		srcCultures;
+
+		for (unsigned int j = 0; j < cultures.size(); j++)
+		{
+			if (cultures[j]->getKey() == "vic")
+			{
+				dstCulture = cultures[j]->getLeaf();
+			}
+			if (cultures[j]->getKey() == "eu3")
+			{
+				srcCultures.push_back(cultures[j]->getLeaf());
+			}
+		}
+
+		for (unsigned int j = 0; j < srcCultures.size(); j++)
+		{
+			cultureMap.insert(pair<string,string>(srcCultures[j], dstCulture));
+		}
+	}
+
+	return cultureMap;
+}

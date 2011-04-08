@@ -72,7 +72,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	
 	initParser();
 	obj = Parser::topLevel;
-	read.open(std::string("input.v2").c_str());
+	read.open("input.v2");
 	if (!read.is_open())
 	{
 		log("Error: Could not open input.v2\n");
@@ -85,13 +85,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.init(obj);
 
 
-	// Parsing province mappings
+	// Parse province mappings
 	log("Parsing province mappings.\n");
 	printf("Parsing province mappings.\n");
 	
 	initParser();
 	obj = Parser::topLevel;
-	read.open(std::string("province_mappings.txt").c_str()); 
+	read.open("province_mappings.txt"); 
 	if (!read.is_open())
 	{
 		log("Error: Could not open province_mappings.txt\n");
@@ -104,7 +104,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	provinceMapping provinceMap = initProvinceMap(obj);
 
 
-	// Parsing country mappings
+	// Pare country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
 
@@ -122,7 +122,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	
 	initParser();
 	obj = Parser::topLevel;
-	read.open(std::string("country_mappings.txt").c_str());	
+	read.open("country_mappings.txt");	
 	if (!read.is_open())
 	{
 		log("Error: Could not open country_mappings.txt\n");
@@ -155,7 +155,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	initParser();
 	obj = Parser::topLevel;
-	read.open(std::string("region.txt").c_str());
+	read.open("region.txt");
 	if (!read.is_open())
 	{
 		log("Error: Could not open region.txt\n");
@@ -175,8 +175,34 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	stateMap = initStateMap(obj->getLeaves()[0]);
 
 
+	// Parse Culture Mappings
+	log("Parsing culture mappings.\n");
+	printf("Parsing culture mappings.\n");
+
+	initParser();
+	obj = Parser::topLevel;
+	read.open("cultureMap.txt");
+	if (!read.is_open())
+	{
+		log("Error: Could not open cultureMap.txt.\n");
+		printf("Error: Could not open cultureMap.txt.\n");
+		return 1;
+	}
+	readFile(read);  
+	read.close();
+
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse cultureMap.txt.\n");
+		printf("Error: Failed to parse cultureMap.txt.\n");
+		return 1;
+	}
+	cultureMapping cultureMap;
+	cultureMap = initCultureMap(obj->getLeaves()[0]);
+
+
 	// Convert
-	destWorld.convertCountries(sourceWorld, countryMap);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap);
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	destWorld.convertCapitals(sourceWorld, provinceMap);
 	destWorld.setupStates(stateMap);

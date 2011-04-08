@@ -19,7 +19,7 @@ class V2World {
 		void				init(Object* obj);
 		void				addPotentialCountries(ifstream &countriesMapping, string V2Loc);
 		vector<string>	getPotentialTags(); 
-		void				convertCountries(EU3World sourceWorld, countryMapping countryMap);
+		void				convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap);
 		void				convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap);
 		void				convertCapitals(EU3World sourceWorld, provinceMapping provinceMap);
 		void				setupStates(stateMapping);

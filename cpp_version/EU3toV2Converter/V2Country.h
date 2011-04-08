@@ -15,6 +15,7 @@ class V2Country
 		void			addState(V2State);
 		void			setCapital(int);
 		void			setcivilized(bool);
+		void			setPrimaryCulture(string);
 		void			output(FILE*);
 		int			getSourceCountryIndex();
 	private:
@@ -22,6 +23,7 @@ class V2Country
 		vector<V2State>	states;
 		int					capital;
 		bool					civilized;
+		string				primaryCulture;
 		vector<int>			parties;
 		int					sourceCountryIndex;
 		string				countryFile;

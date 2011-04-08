@@ -81,7 +81,7 @@ vector<string> V2World::getPotentialTags()
 }
 
 
-void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
+void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap)
 {
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < sourceCountries.size(); i++)
@@ -97,6 +97,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 				{
 					newCountry = potentialCountries[j];
 					newCountry.setSourceCountryIndex(i);
+
 					if ( (sourceCountries[i].getTechGroup() == "western") || (sourceCountries[i].getTechGroup() == "eastern") || (sourceCountries[i].getTechGroup() == "ottoman"))
 					{
 						newCountry.setcivilized(true);
@@ -104,6 +105,20 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap)
 					else
 					{
 						newCountry.setcivilized(false);
+					}
+					
+					string srcCulture = sourceCountries[i].getPrimaryCulture();
+					if (srcCulture.size() > 0)
+					{
+						cultureMapping::iterator iter2 = cultureMap.find(srcCulture);
+						if (iter2 != cultureMap.end())
+						{
+							newCountry.setPrimaryCulture(iter2->second);
+						}
+						else
+						{
+							log("No culture mapping defined for %s -> %s\n", sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
+						}
 					}
 				}
 			}

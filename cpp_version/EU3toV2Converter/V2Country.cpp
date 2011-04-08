@@ -40,6 +40,12 @@ void V2Country::setcivilized(bool isIt)
 }
 
 
+void V2Country::setPrimaryCulture(string culture)
+{
+	primaryCulture = culture;
+}
+
+
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -55,6 +61,10 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	active_party=%d\n", parties[i]);
 	}
 	outputCountryHeader2(output);
+	if (primaryCulture.size() > 0)
+	{
+		fprintf(output, "	primary_culture=\"%s\"\n", primaryCulture.c_str());
+	}
 	outputCountryMiddle(output);
 	if (civilized)
 	{
