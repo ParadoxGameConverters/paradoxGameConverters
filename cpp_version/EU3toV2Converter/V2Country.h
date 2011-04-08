@@ -16,6 +16,7 @@ class V2Country
 		void			setCapital(int);
 		void			setcivilized(bool);
 		void			setPrimaryCulture(string);
+		void			addAcceptedCulture(string);
 		void			output(FILE*);
 		int			getSourceCountryIndex();
 	private:
@@ -24,6 +25,7 @@ class V2Country
 		int					capital;
 		bool					civilized;
 		string				primaryCulture;
+		vector<string>		acceptedCultures;
 		vector<int>			parties;
 		int					sourceCountryIndex;
 		string				countryFile;

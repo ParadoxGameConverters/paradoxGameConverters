@@ -25,16 +25,17 @@ void EU3Country::init(Object* obj)
 		log("Error: Could not load the tech group for %s\n", tag.c_str());
 	}
 
-	vector<Object*> cultureObj = obj->getValue("primary_culture");
-	if (cultureObj.size() > 0)
+	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");
+	if (primaryCultureObj.size() > 0)
 	{
-		primaryCulture = cultureObj[0]->getLeaf().c_str();
-	}
-	else
-	{
-		log("Error: Could not load the primary culture for %s\n", tag.c_str());
+		primaryCulture = primaryCultureObj[0]->getLeaf().c_str();
 	}
 
+	vector<Object*> acceptedCultureObj = obj->getValue("accepted_culture");
+	for (unsigned int i = 0; i < acceptedCultureObj.size(); i++)
+	{
+		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
+	}
 }
 
 
@@ -71,4 +72,10 @@ string EU3Country::getTechGroup()
 string EU3Country::getPrimaryCulture()
 {
 	return primaryCulture;
+}
+
+
+vector<string> EU3Country::getAcceptedCultures()
+{
+	return acceptedCultures;
 }

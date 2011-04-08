@@ -19,12 +19,14 @@ class EU3Country
 		int						getCapital();
 		string					getTechGroup();
 		string					getPrimaryCulture();
+		vector<string>			getAcceptedCultures();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
 		int						capital;
 		string					techGroup;
 		string					primaryCulture;
+		vector<string>			acceptedCultures;
 };
 
 

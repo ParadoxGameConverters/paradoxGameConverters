@@ -46,6 +46,12 @@ void V2Country::setPrimaryCulture(string culture)
 }
 
 
+void V2Country::addAcceptedCulture(string culture)
+{
+	acceptedCultures.push_back(culture);
+}
+
+
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -64,6 +70,16 @@ void V2Country::output(FILE* output)
 	if (primaryCulture.size() > 0)
 	{
 		fprintf(output, "	primary_culture=\"%s\"\n", primaryCulture.c_str());
+	}
+	if (acceptedCultures.size() > 0)
+	{
+		fprintf(output, "	culture=\n");
+		fprintf(output, "	{\n");
+		for(unsigned int i = 0; i < acceptedCultures.size(); i++)
+		{
+			fprintf(output, "		\"%s\"\n", acceptedCultures[i].c_str());
+		}
+		fprintf(output, "	}\n");
 	}
 	outputCountryMiddle(output);
 	if (civilized)

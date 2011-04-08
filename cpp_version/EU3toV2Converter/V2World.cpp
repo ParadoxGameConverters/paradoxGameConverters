@@ -117,7 +117,21 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						}
 						else
 						{
-							log("No culture mapping defined for %s -> %s\n", sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
+							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
+						}
+					}
+					
+					vector<string> acceptedCultures = sourceCountries[i].getAcceptedCultures();
+					for (unsigned int k = 0; k < acceptedCultures.size(); k++)
+					{
+						cultureMapping::iterator iter2 = cultureMap.find(acceptedCultures[k]);
+						if (iter2 != cultureMap.end())
+						{
+							newCountry.addAcceptedCulture(iter2->second);
+						}
+						else
+						{
+							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
 						}
 					}
 				}
