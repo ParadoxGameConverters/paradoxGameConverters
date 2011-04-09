@@ -78,7 +78,7 @@ string V2Province::getOwner()
 }
 
 
-void V2Province::createPops(EU3Province* oldProvince)
+void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 {
 	int farmers			= 0;
 	int labourers		= 0;
@@ -103,11 +103,12 @@ void V2Province::createPops(EU3Province* oldProvince)
 		craftsmen += 5;
 	}
 
-	//If Nation has Slavery ALLOWED, add 5 SLAVES.
+	if (true)  //If Nation has Slavery ALLOWED, add 5 SLAVES. Assumed true for now
+	{
+		slaves += 5;
+	}
 	soldiers	+= 2;
-	//If province has a MANUFACTORY add 2 CRAFTSMEN
-	//If province has a MANUFACTORY add 1 clerk.
-	if(0)
+	if(0)	//If province has a MANUFACTORY
 	{
 		craftsmen	+= 2;
 		clerks		+= 1;
@@ -116,12 +117,12 @@ void V2Province::createPops(EU3Province* oldProvince)
 	clergymen	+= 1;
 	officers		+= 1;
 	//If province is the CAPITAL or NATIONAL FOCUS add 1 BUREAUCRAT
+	//If province is capital or was national focus, add 1 ARISTOCRATS.
 	//If province is CENTER OF TRADE then add 1 CLERK
+	//If province was a COT, add 1 CAPITALISTS.
 	//If government is NOT republic, add 2 ARISTOCRATS.
 	//If government is NOT absolute monarchy, add 2 CAPITALISTS.
-	//If province is capital or was national focus, add 1 ARISTOCRATS.
-	//If province was a COT, add 1 CAPITALISTS.
-	aristocrats	+= 1;
+	aristocrats	+= 1; // temporary for now
 
 	int total = farmers + labourers + slaves + soldiers + craftsmen + artisans + clergymen + clerks + bureaucrats + officers + capitalists + aristocrats;
 

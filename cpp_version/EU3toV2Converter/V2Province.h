@@ -7,6 +7,7 @@
 #include "tempFuncs.h"
 #include "V2Pop.h"
 #include "EU3Province.h"
+#include "EU3Country.h"
 using namespace std;
 
 class V2Province {
@@ -18,7 +19,7 @@ class V2Province {
 		void		setColonial(bool);
 		void		setCulture(string);
 		bool		isColonial();
-		void		createPops(EU3Province* oldProvince);
+		void		createPops(EU3Province* oldProvince, EU3Country* oldCountry);
 		void		output(FILE*);
 	private:
 		bool		land;

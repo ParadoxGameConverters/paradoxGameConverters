@@ -188,8 +188,8 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 						log("Error: Could not set culture for province %d\n", destNum);
 						provinces[i].setCulture("");
 					}
-
-					provinces[i].createPops(oldProvince);
+					sourceWorld.getCountry(oldOwner);
+					provinces[i].createPops(oldProvince, sourceWorld.getCountry(oldOwner));
 				}
 			}
 		}

@@ -51,6 +51,19 @@ vector<EU3Country> EU3World::getCountries()
 }
 
 
+EU3Country* EU3World::getCountry(string tag)
+{
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		if (countries[i].getTag() == tag)
+		{
+			return &(countries[i]);
+		}
+	}
+	return NULL;
+}
+
+
 EU3Province* EU3World::getProvince(int provNum)
 {
 	for (unsigned int i = 0; i < provinces.size(); i++)
