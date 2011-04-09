@@ -29,7 +29,7 @@ link = { vic = romanian eu3 = romanian }
 link = { vic = hungarian eu3 = hungarian }
 link = { vic = polish eu3 = polish eu3 = schlesian }
 link = { vic = czech eu3 = czech }
-link = { vic = russian eu3 = russian eu3 = uralic }
+link = { vic = russian eu3 = russian eu3 = uralic eu3 = ruthenian}
 link = { vic = byelorussian eu3 = byelorussian }
 link = { vic = lithuanian eu3 = lithuanian }
 link = { vic = latvian eu3 = latvian eu3 = old_prussian }
