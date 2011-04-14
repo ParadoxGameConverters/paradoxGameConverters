@@ -22,6 +22,7 @@ class V2Country
 		void			setArmyTech(int);
 		void			setNavyTech(int);
 		void			setCommerceTech(int);
+		void			setIndustryTech(int);
 	private:
 		void outputTech(FILE*);
 
@@ -37,4 +38,5 @@ class V2Country
 		int					armyTech;
 		int					navyTech;
 		int					commerceTech;
+		int					industryTech;
 };

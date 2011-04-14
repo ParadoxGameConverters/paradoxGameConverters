@@ -312,11 +312,17 @@ void V2World::convertTechs(EU3World sourceWorld)
 	float oldTradeS = 0.0;
 	float newTradeS;
 
+	float oldProductionMean;
+	float productionMean;
+	float oldProductionS = 0.0;
+	float newProductionS;
+
 	int num = 2;
 
-	oldLandMean		= landMean	= sourceCountries[0].getLandTech();
-	oldNavalMean	= navalMean	= sourceCountries[0].getNavalTech();
-	oldTradeMean	= tradeMean	= sourceCountries[0].getTradeTech();
+	oldLandMean			= landMean			= sourceCountries[0].getLandTech();
+	oldNavalMean		= navalMean			= sourceCountries[0].getNavalTech();
+	oldTradeMean		= tradeMean			= sourceCountries[0].getTradeTech();
+	oldProductionMean	= productionMean	= sourceCountries[0].getProductionTech();
 
 	for (unsigned int i = 1; i < sourceCountries.size(); i++)
 	{
@@ -338,12 +344,19 @@ void V2World::convertTechs(EU3World sourceWorld)
 		oldTradeMean	= tradeMean; 
 		oldTradeS		= newTradeS;
 
+		newTech				= sourceCountries[i].getProductionTech();
+		productionMean		= oldProductionMean + ((newTech - oldProductionMean) / num);
+		newProductionS		= oldProductionS + ((newTech - oldProductionMean) * (newTech - productionMean));
+		oldProductionMean	= productionMean; 
+		oldProductionS		= newProductionS;
+
 		num++;
 	}
 
-	float landStdDev = sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
-	float navalStdDev = sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
-	float tradeStdDev = sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
+	float landStdDev			= sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
+	float navalStdDev			= sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
+	float tradeStdDev			= sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
+	float productionStdDev	= sqrt( (num > 1) ? (newProductionS/(num - 1)) : 0.0 );
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
@@ -358,6 +371,10 @@ void V2World::convertTechs(EU3World sourceWorld)
 		int commerceTech = (int)(2 * (sourceCountries[countries[i].getSourceCountryIndex()].getTradeTech() - tradeMean) / tradeStdDev) + 5;
 		countries[i].setCommerceTech(commerceTech);
 		log("%s has commerce tech of %d\n", countries[i].getTag().c_str(), commerceTech);
+
+		int industryTech = (int)(2 * (sourceCountries[countries[i].getSourceCountryIndex()].getProductionTech() - productionMean) / productionStdDev) + 5;
+		countries[i].setIndustryTech(industryTech);
+		log("%s has industry tech of %d\n", countries[i].getTag().c_str(), industryTech);
 	}
 }
 

@@ -123,6 +123,12 @@ void V2Country::setCommerceTech(int newTechLevel)
 }
 
 
+void V2Country::setIndustryTech(int newTechLevel)
+{
+	industryTech = newTechLevel;
+}
+
+
 void V2Country::outputTech(FILE* output)
 {
 	fprintf(output, "	technology=\n");
@@ -250,6 +256,46 @@ void V2Country::outputTech(FILE* output)
 		fprintf(output, "		stock_exchange={1 0.000}\n");
 	}
 
+	if (industryTech > 0)
+	{
+		fprintf(output, "		water_wheel_power={1 0.000}\n");
+	}
+	if (industryTech > 1)
+	{
+		fprintf(output, "		basic_chemistry={1 0.000}\n");
+	}
+	if (industryTech > 2)
+	{
+		fprintf(output, "		publishing_industry={1 0.000}\n");
+	}
+	if (industryTech > 3)
+	{
+		fprintf(output, "		experimental_railroad={1 0.000}\n");
+	}
+	if (industryTech > 4)
+	{
+		fprintf(output, "		mechanized_mining={1 0.000}\n");
+	}
+	if (industryTech > 5)
+	{
+		fprintf(output, "		clean_coal={1 0.000}\n");
+	}
+	if (industryTech > 6)
+	{
+		fprintf(output, "		medicine={1 0.000}\n");
+	}
+	if (industryTech > 7)
+	{
+		fprintf(output, "		early_railroad={1 0.000}\n");
+	}
+	if (industryTech > 8)
+	{
+		fprintf(output, "		practical_steam_engine={1 0.000}\n");
+	}
+	if (industryTech > 9)
+	{
+		fprintf(output, "		mechanical_production={1 0.000}\n");
+	}
 
 	fprintf(output, "	}\n");
 }
