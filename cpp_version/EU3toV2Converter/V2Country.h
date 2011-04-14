@@ -19,7 +19,10 @@ class V2Country
 		void			addAcceptedCulture(string);
 		void			output(FILE*);
 		int			getSourceCountryIndex();
+		void			setArmyTech(int);
 	private:
+		void outputTech(FILE*);
+
 		string				tag;
 		vector<V2State>	states;
 		int					capital;
@@ -29,4 +32,5 @@ class V2Country
 		vector<int>			parties;
 		int					sourceCountryIndex;
 		string				countryFile;
+		int					armyTech;
 };

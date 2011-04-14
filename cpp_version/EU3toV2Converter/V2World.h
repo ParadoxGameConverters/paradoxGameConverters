@@ -23,6 +23,7 @@ class V2World {
 		void				convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap, cultureMapping cultureMap);
 		void				convertCapitals(EU3World sourceWorld, provinceMapping provinceMap);
 		void				setupStates(stateMapping);
+		void				convertTechs(EU3World sourceWorld);
 		void				output(FILE*);
 	private:
 		vector<V2Province>	provinces;

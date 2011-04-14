@@ -60,6 +60,7 @@ void V2Country::output(FILE* output)
 	{
 		fprintf(output, "	capital=%d\n", capital);
 	}
+	outputTech(output);
 	outputCountryHeader(output);
 	fprintf(output, "	ruling_party=%d\n", parties[0]);
 	for (unsigned int i = 0; i < parties.size(); i++)
@@ -101,4 +102,58 @@ void V2Country::output(FILE* output)
 int V2Country::getSourceCountryIndex()
 {
 	return sourceCountryIndex;
+}
+
+
+void V2Country::setArmyTech(int newTechLevel)
+{
+	armyTech = newTechLevel;
+}
+
+
+void V2Country::outputTech(FILE* output)
+{
+	fprintf(output, "	technology=\n");
+	fprintf(output, " {\n");
+	if (armyTech > 0)
+	{
+		fprintf(output, "		flintlock_rifles={1 0.000}\n");
+	}
+	if (armyTech > 1)
+	{
+		fprintf(output, "		military_staff_system={1 0.000}\n");
+	}
+	if (armyTech > 2)
+	{
+		fprintf(output, "		post_napoleonic_thought={1 0.000}\n");
+	}
+	if (armyTech > 3)
+	{
+		fprintf(output, "		bronze_muzzle_loaded_artillery={1 0.000}\n");
+	}
+	if (armyTech > 4)
+	{
+		fprintf(output, "		army_command_principle={1 0.000}\n");
+	}
+	if (armyTech > 5)
+	{
+		fprintf(output, "		muzzle_loaded_rifles={1 0.000}\n");
+	}
+	if (armyTech > 6)
+	{
+		fprintf(output, "		iron_muzzle_loaded_artillery={1 0.000}\n");
+	}
+	if (armyTech > 7)
+	{
+		fprintf(output, "		military_plans={1 0.000}\n");
+	}
+	if (armyTech > 8)
+	{
+		fprintf(output, "		strategic_mobility={1 0.000}\n");
+	}
+	if (armyTech > 9)
+	{
+		fprintf(output, "		army_professionalism={1 0.000}\n");
+	}	
+	fprintf(output, "	}\n");
 }

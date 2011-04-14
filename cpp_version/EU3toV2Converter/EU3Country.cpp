@@ -36,6 +36,31 @@ void EU3Country::init(Object* obj)
 	{
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
+
+	vector<Object*> techsObj = obj->getValue("technology");
+	vector<Object*> techObj = techsObj[0]->getValue("land_tech");
+	string techString = techObj[0]->getToken(0);
+	landTech = atof( techString.c_str() );
+
+	techsObj = obj->getValue("technology");
+	techObj = techsObj[0]->getValue("naval_tech");
+	techString = techObj[0]->getToken(0);
+	navalTech = atof( techString.c_str() );
+
+	techsObj = obj->getValue("technology");
+	techObj = techsObj[0]->getValue("trade_tech");
+	techString = techObj[0]->getToken(0);
+	tradeTech = atof( techString.c_str() );
+
+	techsObj = obj->getValue("technology");
+	techObj = techsObj[0]->getValue("production_tech");
+	techString = techObj[0]->getToken(0);
+	productionTech = atof( techString.c_str() );
+
+	techsObj = obj->getValue("technology");
+	techObj = techsObj[0]->getValue("government_tech");
+	techString = techObj[0]->getToken(0);
+	governmentTech = atof( techString.c_str() );
 }
 
 
@@ -78,4 +103,34 @@ string EU3Country::getPrimaryCulture()
 vector<string> EU3Country::getAcceptedCultures()
 {
 	return acceptedCultures;
+}
+
+
+float EU3Country::getLandTech()
+{
+	return landTech;
+}
+
+
+float EU3Country::getNavalTech()
+{
+	return navalTech;
+}
+
+
+float EU3Country::getTradeTech()
+{
+	return tradeTech;
+}
+
+
+float EU3Country::getProductionTech()
+{
+	return productionTech;
+}
+
+
+float EU3Country::getGovernmentTech()
+{
+	return governmentTech;
 }

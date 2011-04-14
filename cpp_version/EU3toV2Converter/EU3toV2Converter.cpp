@@ -206,6 +206,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap);
 	destWorld.convertCapitals(sourceWorld, provinceMap);
 	destWorld.setupStates(stateMap);
+	destWorld.convertTechs(sourceWorld);
 	  
 	/*InstructionsParser insParser;
 	InstructionsParser::Refresh();

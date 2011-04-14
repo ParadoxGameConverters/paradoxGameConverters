@@ -293,6 +293,40 @@ void V2World::setupStates(stateMapping stateMap)
 }
 
 
+void V2World::convertTechs(EU3World sourceWorld)
+{
+	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
+	
+	float oldLandMean;
+	float landMean;
+	float oldLandS = 0.0;
+	float newLandS;
+	int num = 2;
+
+	oldLandMean = landMean = sourceCountries[0].getLandTech();
+
+	for (unsigned int i = 1; i < sourceCountries.size(); i++)
+	{
+		float newTech	= sourceCountries[i].getLandTech();
+		landMean			= oldLandMean + ((newTech - oldLandMean) / num);
+		newLandS			= oldLandS + ((newTech - oldLandMean) * (newTech - landMean));
+		oldLandMean		= landMean; 
+		oldLandS			= newLandS;
+
+		num++;
+	}
+
+	float landStdDev = sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
+
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		int armyTech = (int)(2 * (sourceCountries[countries[i].getSourceCountryIndex()].getLandTech() - landMean) / landStdDev) + 5;
+		countries[i].setArmyTech(armyTech);
+		log("%s has army tech of %d\n", countries[i].getTag().c_str(), armyTech);
+	}
+}
+
+
 void V2World::output(FILE* output)
 {
 	outputHeader(output);
