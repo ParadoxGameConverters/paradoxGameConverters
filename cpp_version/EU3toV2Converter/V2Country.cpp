@@ -111,6 +111,12 @@ void V2Country::setArmyTech(int newTechLevel)
 }
 
 
+void V2Country::setNavyTech(int newTechLevel)
+{
+	navyTech = newTechLevel;
+}
+
+
 void V2Country::outputTech(FILE* output)
 {
 	fprintf(output, "	technology=\n");
@@ -154,6 +160,49 @@ void V2Country::outputTech(FILE* output)
 	if (armyTech > 9)
 	{
 		fprintf(output, "		army_professionalism={1 0.000}\n");
+	}
+
+	if (navyTech > 0)
+	{
+		fprintf(output, "		clipper_design={1 0.000}\n");
+	}
+	if (navyTech > 1)
+	{
+		fprintf(output, "		naval_design_bureaus={1 0.000}\n");
+	}
+	if (navyTech > 2)
+	{
+		fprintf(output, "		post_nelsonian_thought={1 0.000}\n");
+	}
+	if (navyTech > 3)
+	{
+		fprintf(output, "		alphabetic_flag_signaling={1 0.000}\n");
+	}
+	if (navyTech > 4)
+	{
+		fprintf(output, "		the_command_principle={1 0.000}\n");
+	}
+	if (navyTech > 5)
+	{
+		fprintf(output, "		steamers={1 0.000}\n");
+	}
+	if (navyTech > 6)
+	{
+		fprintf(output, "		fire_control_systems={1 0.000}\n");
+	}
+	if (navyTech > 7)
+	{
+		fprintf(output, "		naval_plans={1 0.000}\n");
+	}
+	if (navyTech > 8)
+	{
+		fprintf(output, "		naval_professionalism={1 0.000}\n");
+	}
+	if (navyTech > 9)
+	{
+		fprintf(output, "		battleship_column_doctrine={1 0.000}\n");
 	}	
+
+
 	fprintf(output, "	}\n");
 }
