@@ -117,6 +117,12 @@ void V2Country::setNavyTech(int newTechLevel)
 }
 
 
+void V2Country::setCommerceTech(int newTechLevel)
+{
+	commerceTech = newTechLevel;
+}
+
+
 void V2Country::outputTech(FILE* output)
 {
 	fprintf(output, "	technology=\n");
@@ -201,7 +207,48 @@ void V2Country::outputTech(FILE* output)
 	if (navyTech > 9)
 	{
 		fprintf(output, "		battleship_column_doctrine={1 0.000}\n");
-	}	
+	}
+
+	if (commerceTech > 0)
+	{
+		fprintf(output, "		no_standard={1 0.000}\n");
+	}
+	if (commerceTech > 1)
+	{
+		fprintf(output, "		guild_based_production={1 0.000}\n");
+	}
+	if (commerceTech > 2)
+	{
+		fprintf(output, "		freedom_of_trade={1 0.000}\n");
+	}
+	if (commerceTech > 3)
+	{
+		fprintf(output, "		private_banks={1 0.000}\n");
+	}
+	if (commerceTech > 4)
+	{
+		fprintf(output, "		early_classical_theory_and_critique={1 0.000}\n");
+	}
+	if (commerceTech > 5)
+	{
+		fprintf(output, "		ad_hoc_money_bill_printing={1 0.000}\n");
+	}
+	if (commerceTech > 6)
+	{
+		fprintf(output, "		market_structure={1 0.000}\n");
+	}
+	if (commerceTech > 7)
+	{
+		fprintf(output, "		organized_factories={1 0.000}\n");
+	}
+	if (commerceTech > 8)
+	{
+		fprintf(output, "		late_classical_theory={1 0.000}\n");
+	}
+	if (commerceTech > 9)
+	{
+		fprintf(output, "		stock_exchange={1 0.000}\n");
+	}
 
 
 	fprintf(output, "	}\n");

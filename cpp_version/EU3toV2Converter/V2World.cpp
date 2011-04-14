@@ -307,10 +307,16 @@ void V2World::convertTechs(EU3World sourceWorld)
 	float oldNavalS = 0.0;
 	float newNavalS;
 
+	float oldTradeMean;
+	float tradeMean;
+	float oldTradeS = 0.0;
+	float newTradeS;
+
 	int num = 2;
 
 	oldLandMean		= landMean	= sourceCountries[0].getLandTech();
 	oldNavalMean	= navalMean	= sourceCountries[0].getNavalTech();
+	oldTradeMean	= tradeMean	= sourceCountries[0].getTradeTech();
 
 	for (unsigned int i = 1; i < sourceCountries.size(); i++)
 	{
@@ -326,11 +332,18 @@ void V2World::convertTechs(EU3World sourceWorld)
 		oldNavalMean	= navalMean; 
 		oldNavalS		= newNavalS;
 
+		newTech			= sourceCountries[i].getTradeTech();
+		tradeMean		= oldTradeMean + ((newTech - oldTradeMean) / num);
+		newTradeS		= oldTradeS + ((newTech - oldTradeMean) * (newTech - tradeMean));
+		oldTradeMean	= tradeMean; 
+		oldTradeS		= newTradeS;
+
 		num++;
 	}
 
 	float landStdDev = sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
 	float navalStdDev = sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
+	float tradeStdDev = sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
@@ -341,6 +354,10 @@ void V2World::convertTechs(EU3World sourceWorld)
 		int navyTech = (int)(2 * (sourceCountries[countries[i].getSourceCountryIndex()].getNavalTech() - navalMean) / navalStdDev) + 5;
 		countries[i].setNavyTech(navyTech);
 		log("%s has navy tech of %d\n", countries[i].getTag().c_str(), navyTech);
+
+		int commerceTech = (int)(2 * (sourceCountries[countries[i].getSourceCountryIndex()].getTradeTech() - tradeMean) / tradeStdDev) + 5;
+		countries[i].setCommerceTech(commerceTech);
+		log("%s has commerce tech of %d\n", countries[i].getTag().c_str(), commerceTech);
 	}
 }
 

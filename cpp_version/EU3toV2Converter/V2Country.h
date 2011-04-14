@@ -21,6 +21,7 @@ class V2Country
 		int			getSourceCountryIndex();
 		void			setArmyTech(int);
 		void			setNavyTech(int);
+		void			setCommerceTech(int);
 	private:
 		void outputTech(FILE*);
 
@@ -35,4 +36,5 @@ class V2Country
 		string				countryFile;
 		int					armyTech;
 		int					navyTech;
+		int					commerceTech;
 };
