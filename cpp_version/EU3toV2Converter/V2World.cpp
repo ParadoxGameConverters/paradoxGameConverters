@@ -317,12 +317,18 @@ void V2World::convertTechs(EU3World sourceWorld)
 	float oldProductionS = 0.0;
 	float newProductionS;
 
+	float oldGovernmentMean;
+	float governmentMean;
+	float oldGovernmentS = 0.0;
+	float newGovernmentS;
+
 	int num = 2;
 
 	oldLandMean			= landMean			= sourceCountries[0].getLandTech();
 	oldNavalMean		= navalMean			= sourceCountries[0].getNavalTech();
 	oldTradeMean		= tradeMean			= sourceCountries[0].getTradeTech();
 	oldProductionMean	= productionMean	= sourceCountries[0].getProductionTech();
+	oldGovernmentMean	= governmentMean	= sourceCountries[0].getGovernmentTech();
 
 	for (unsigned int i = 1; i < sourceCountries.size(); i++)
 	{
@@ -350,6 +356,12 @@ void V2World::convertTechs(EU3World sourceWorld)
 		oldProductionMean	= productionMean; 
 		oldProductionS		= newProductionS;
 
+		newTech				= sourceCountries[i].getGovernmentTech();
+		governmentMean		= oldGovernmentMean + ((newTech - oldGovernmentMean) / num);
+		newGovernmentS		= oldGovernmentS + ((newTech - oldGovernmentMean) * (newTech - governmentMean));
+		oldGovernmentMean	= governmentMean; 
+		oldGovernmentS		= newGovernmentS;
+
 		num++;
 	}
 
@@ -357,6 +369,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 	float navalStdDev			= sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
 	float tradeStdDev			= sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
 	float productionStdDev	= sqrt( (num > 1) ? (newProductionS/(num - 1)) : 0.0 );
+	float governmentStdDev	= sqrt( (num > 1) ? (newGovernmentS/(num - 1)) : 0.0 );
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
@@ -375,6 +388,10 @@ void V2World::convertTechs(EU3World sourceWorld)
 		int industryTech = (int)(2 * (sourceCountries[countries[i].getSourceCountryIndex()].getProductionTech() - productionMean) / productionStdDev) + 5;
 		countries[i].setIndustryTech(industryTech);
 		log("%s has industry tech of %d\n", countries[i].getTag().c_str(), industryTech);
+
+		int cultureTech = (int)(2 * (sourceCountries[countries[i].getSourceCountryIndex()].getGovernmentTech() - governmentMean) / governmentStdDev) + 5;
+		countries[i].setCultureTech(cultureTech);
+		log("%s has culture tech of %d\n", countries[i].getTag().c_str(), cultureTech);
 	}
 }
 

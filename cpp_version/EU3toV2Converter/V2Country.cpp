@@ -129,6 +129,12 @@ void V2Country::setIndustryTech(int newTechLevel)
 }
 
 
+void V2Country::setCultureTech(int newTechLevel)
+{
+	cultureTech = newTechLevel;
+}
+
+
 void V2Country::outputTech(FILE* output)
 {
 	fprintf(output, "	technology=\n");
@@ -295,6 +301,47 @@ void V2Country::outputTech(FILE* output)
 	if (industryTech > 9)
 	{
 		fprintf(output, "		mechanical_production={1 0.000}\n");
+	}
+
+	if (cultureTech > 0)
+	{
+		fprintf(output, "		malthusian_thought={1 0.000}\n");
+	}
+	if (cultureTech > 1)
+	{
+		fprintf(output, "		late_enlightenment_philosophy={1 0.000}\n");
+	}
+	if (cultureTech > 2)
+	{
+		fprintf(output, "		enlightenment_thought={1 0.000}\n");
+	}
+	if (cultureTech > 3)
+	{
+		fprintf(output, "		classicism_n_early_romanticism={1 0.000}\n");
+	}
+	if (cultureTech > 4)
+	{
+		fprintf(output, "		introspectionism={1 0.000}\n");
+	}
+	if (cultureTech > 5)
+	{
+		fprintf(output, "		romanticism={1 0.000}\n");
+	}
+	if (cultureTech > 6)
+	{
+		fprintf(output, "		positivism={1 0.000}\n");
+	}
+	if (cultureTech > 7)
+	{
+		fprintf(output, "		idealism={1 0.000}\n");
+	}
+	if (cultureTech > 8)
+	{
+		fprintf(output, "		associationism={1 0.000}\n");
+	}
+	if (cultureTech > 9)
+	{
+		fprintf(output, "		ideological_thought={1 0.000}\n");
 	}
 
 	fprintf(output, "	}\n");
