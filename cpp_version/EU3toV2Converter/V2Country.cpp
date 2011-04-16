@@ -107,31 +107,46 @@ int V2Country::getSourceCountryIndex()
 
 void V2Country::setArmyTech(int newTechLevel)
 {
-	armyTech = newTechLevel;
+	if (newTechLevel > 0)
+	{
+		armyTech = newTechLevel;
+	}
 }
 
 
 void V2Country::setNavyTech(int newTechLevel)
 {
-	navyTech = newTechLevel;
+	if (newTechLevel > 0)
+	{
+		navyTech = newTechLevel;
+	}
 }
 
 
 void V2Country::setCommerceTech(int newTechLevel)
 {
-	commerceTech = newTechLevel;
+	if (newTechLevel > 0)
+	{
+		commerceTech = newTechLevel;
+	}
 }
 
 
 void V2Country::setIndustryTech(int newTechLevel)
 {
-	industryTech = newTechLevel;
+	if (newTechLevel > 0)
+	{
+		industryTech = newTechLevel;
+	}
 }
 
 
 void V2Country::setCultureTech(int newTechLevel)
 {
-	cultureTech = newTechLevel;
+	if (newTechLevel > 0)
+	{
+		cultureTech = newTechLevel;
+	}
 }
 
 
@@ -292,13 +307,9 @@ void V2Country::outputTech(FILE* output)
 	}
 	if (industryTech > 7)
 	{
-		fprintf(output, "		early_railroad={1 0.000}\n");
-	}
-	if (industryTech > 8)
-	{
 		fprintf(output, "		practical_steam_engine={1 0.000}\n");
 	}
-	if (industryTech > 9)
+	if (industryTech > 8)
 	{
 		fprintf(output, "		mechanical_production={1 0.000}\n");
 	}
@@ -333,13 +344,9 @@ void V2Country::outputTech(FILE* output)
 	}
 	if (cultureTech > 7)
 	{
-		fprintf(output, "		idealism={1 0.000}\n");
-	}
-	if (cultureTech > 8)
-	{
 		fprintf(output, "		associationism={1 0.000}\n");
 	}
-	if (cultureTech > 9)
+	if (cultureTech > 8)
 	{
 		fprintf(output, "		ideological_thought={1 0.000}\n");
 	}
