@@ -222,6 +222,7 @@
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="tempFuncs.h" />
     <ClInclude Include="V2Country.h" />
+    <ClInclude Include="V2Inventions.h" />
     <ClInclude Include="V2Pop.h" />
     <ClInclude Include="V2Province.h" />
     <ClInclude Include="V2State.h" />

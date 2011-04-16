@@ -297,35 +297,35 @@ void V2World::convertTechs(EU3World sourceWorld)
 {
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
 	
-	float oldLandMean;
-	float landMean;
-	float oldLandS = 0.0;
-	float newLandS;
-	float	highestLand;
+	double oldLandMean;
+	double landMean;
+	double oldLandS = 0.0;
+	double newLandS;
+	double	highestLand;
 
-	float oldNavalMean;
-	float navalMean;
-	float oldNavalS = 0.0;
-	float newNavalS;
-	float highestNaval;
+	double oldNavalMean;
+	double navalMean;
+	double oldNavalS = 0.0;
+	double newNavalS;
+	double highestNaval;
 
-	float oldTradeMean;
-	float tradeMean;
-	float oldTradeS = 0.0;
-	float newTradeS;
-	float highestTrade;
+	double oldTradeMean;
+	double tradeMean;
+	double oldTradeS = 0.0;
+	double newTradeS;
+	double highestTrade;
 
-	float oldProductionMean;
-	float productionMean;
-	float oldProductionS = 0.0;
-	float newProductionS;
-	float highestProduction;
+	double oldProductionMean;
+	double productionMean;
+	double oldProductionS = 0.0;
+	double newProductionS;
+	double highestProduction;
 
-	float oldGovernmentMean;
-	float governmentMean;
-	float oldGovernmentS = 0.0;
-	float newGovernmentS;
-	float highestGovernment;
+	double oldGovernmentMean;
+	double governmentMean;
+	double oldGovernmentS = 0.0;
+	double newGovernmentS;
+	double highestGovernment;
 
 	int num = 2;
 
@@ -337,7 +337,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 
 	for (unsigned int i = 1; i < sourceCountries.size(); i++)
 	{
-		float newTech	= sourceCountries[i].getLandTech();
+		double newTech	= sourceCountries[i].getLandTech();
 		landMean			= oldLandMean + ((newTech - oldLandMean) / num);
 		newLandS			= oldLandS + ((newTech - oldLandMean) * (newTech - landMean));
 		oldLandMean		= landMean; 
@@ -390,21 +390,21 @@ void V2World::convertTechs(EU3World sourceWorld)
 		num++;
 	}
 
-	float landStdDev			= sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
-	float navalStdDev			= sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
-	float tradeStdDev			= sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
-	float productionStdDev	= sqrt( (num > 1) ? (newProductionS/(num - 1)) : 0.0 );
-	float governmentStdDev	= sqrt( (num > 1) ? (newGovernmentS/(num - 1)) : 0.0 );
+	double landStdDev			= sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
+	double navalStdDev			= sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
+	double tradeStdDev			= sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
+	double productionStdDev	= sqrt( (num > 1) ? (newProductionS/(num - 1)) : 0.0 );
+	double governmentStdDev	= sqrt( (num > 1) ? (newGovernmentS/(num - 1)) : 0.0 );
 
-	float landScale			= (5		* landStdDev)			/ (highestLand			- landMean);
-	float navalScale			= (5		* navalStdDev)			/ (highestNaval		- navalMean);
-	float tradeScale			= (5		* tradeStdDev)			/ (highestTrade		- tradeMean);
-	float productionScale	= (4.5	* productionStdDev)	/ (highestProduction	- productionMean);
-	float governmentScale	= (4.5	* governmentStdDev)	/ (highestGovernment	- governmentMean);
+	double landScale			= (5		* landStdDev)			/ (highestLand			- landMean);
+	double navalScale			= (5		* navalStdDev)			/ (highestNaval		- navalMean);
+	double tradeScale			= (5		* tradeStdDev)			/ (highestTrade		- tradeMean);
+	double productionScale	= (4.5	* productionStdDev)	/ (highestProduction	- productionMean);
+	double governmentScale	= (4.5	* governmentStdDev)	/ (highestGovernment	- governmentMean);
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int armyTech = (int)(landScale * (sourceCountries[countries[i].getSourceCountryIndex()].getLandTech() - landMean) / landStdDev) + 4.5;
+		int armyTech = (int)((landScale * (sourceCountries[countries[i].getSourceCountryIndex()].getLandTech() - landMean) / landStdDev) + 4.5);
 		countries[i].setArmyTech(armyTech);
 		log("%s has army tech of %d\n", countries[i].getTag().c_str(), armyTech);
 
@@ -420,7 +420,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 		countries[i].setIndustryTech(industryTech);
 		log("%s has industry tech of %d\n", countries[i].getTag().c_str(), industryTech);
 
-		int cultureTech = (int)(governmentScale * (sourceCountries[countries[i].getSourceCountryIndex()].getGovernmentTech() - governmentMean) / governmentStdDev) + 4.5;
+		int cultureTech = (int)((governmentScale * (sourceCountries[countries[i].getSourceCountryIndex()].getGovernmentTech() - governmentMean) / governmentStdDev) + 4.5);
 		countries[i].setCultureTech(cultureTech);
 		log("%s has culture tech of %d\n", countries[i].getTag().c_str(), cultureTech);
 	}

@@ -7,6 +7,11 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	tag			= newTag;
 	countryFile	= newCountryFile;
 	parties		= newParties;
+
+	for (unsigned int i = 0; i < naval_exercises; i++)
+	{
+		inventions[i] = illegal;
+	}
 }
 
 
@@ -82,6 +87,7 @@ void V2Country::output(FILE* output)
 		}
 		fprintf(output, "	}\n");
 	}
+	outputInventions(output);
 	outputCountryMiddle(output);
 	if (civilized)
 	{
@@ -111,6 +117,25 @@ void V2Country::setArmyTech(int newTechLevel)
 	{
 		armyTech = newTechLevel;
 	}
+
+	if (armyTech > 7)
+	{
+		inventions[telegraph_coordination]		= possible;
+		inventions[mobilization_time_tables]	= possible;
+		inventions[personnel_category_tables]	= possible;
+	}
+	if (armyTech > 8)
+	{
+		inventions[field_fortifications]			= possible;
+		inventions[railroad_transport_groups]	= possible;
+		inventions[signal_detachments]			= possible;
+	}
+	if (armyTech > 9)
+	{
+		inventions[army_academic_training]	= possible;
+		inventions[field_training]				= possible;
+		inventions[army_societal_status]		= possible;
+	}
 }
 
 
@@ -119,6 +144,43 @@ void V2Country::setNavyTech(int newTechLevel)
 	if (newTechLevel > 0)
 	{
 		navyTech = newTechLevel;
+	}
+
+	if (navyTech > 0)
+	{
+		inventions[building_station_shipyards]	= possible;
+	}
+	if (navyTech > 5)
+	{
+		inventions[mechanized_fishing_vessels]					= possible;
+		inventions[steamer_automatic_construction_plants]	= possible;
+		inventions[steamer_transports]							= possible;
+		inventions[commerce_raiders]								= possible;
+	}
+	if (navyTech > 6)
+	{
+		inventions[optical_rangefinders]							= possible;
+		inventions[gyrostabilized_fire_control]				= possible;
+		inventions[armour_piercing_projectiles]				= possible;
+		inventions[armour_piercing_exploding_projectiles]	= possible;
+		inventions[armoured_turrets]								= possible;
+	}
+	if (navyTech > 7)
+	{
+		inventions[night_training]						= possible;
+		inventions[enemy_plotting_cards]				= possible;
+		inventions[target_hit_profile_analysis]	= possible;
+	}
+	if (navyTech > 8)
+	{
+		inventions[academic_training]			= possible;
+		inventions[combat_station_training]	= possible;
+		inventions[societal_status]			= possible;
+	}
+	if (navyTech > 9)
+	{
+		inventions[long_range_fire_tactic]		= possible;
+		inventions[speedy_maneuvering_tactic]	= possible;
 	}
 }
 
@@ -129,6 +191,42 @@ void V2Country::setCommerceTech(int newTechLevel)
 	{
 		commerceTech = newTechLevel;
 	}
+
+	if (commerceTech > 4)
+	{
+		inventions[john_ramsay_mcculloch]	= possible;
+		inventions[nassau_william_sr]			= possible;
+		inventions[james_mill]					= possible;
+	}
+	if (commerceTech > 5)
+	{
+		inventions[silver_standard]			= possible;
+		inventions[decimal_monetary_system]	= possible;
+	}
+	if (commerceTech > 6)
+	{
+		inventions[polypoly_structure]	= possible;
+		inventions[oligopoly_structure]	= possible;
+		inventions[monopoly_structure]	= possible;
+	}
+	if (commerceTech > 7)
+	{
+		inventions[work_classification]			= possible;
+		inventions[work_specialization]			= possible;
+		inventions[work_control_and_hierarchy]	= possible;
+	}
+	if (commerceTech > 8)
+	{
+		inventions[john_elliot_cairnes]	= possible;
+		inventions[robert_torrens]			= possible;
+		inventions[john_stuart_mill]		= possible;
+	}
+	if (commerceTech > 9)
+	{
+		inventions[multitude_of_financial_instruments]		= possible;
+		inventions[insurance_companies]							= possible;
+		inventions[regulated_buying_and_selling_of_stocks]	= possible;
+	}
 }
 
 
@@ -138,6 +236,41 @@ void V2Country::setIndustryTech(int newTechLevel)
 	{
 		industryTech = newTechLevel;
 	}
+
+	if (industryTech > 4)
+	{
+		inventions[ammunition_production]	= possible;
+		inventions[small_arms_production]	= possible;
+		inventions[explosives_production]	= possible;
+		inventions[artillery_production]		= possible;
+	}
+	if (industryTech > 5)
+	{
+		inventions[pit_coal]	= possible;
+		inventions[coke]		= possible;
+	}
+	if (industryTech > 6)
+	{
+		inventions[combat_medicine]											= possible;
+		inventions[aerial_bacteria_and_antiseptic_principle]			= possible;
+		inventions[vaccination]													= possible;
+		inventions[chemotherapy]												= possible;
+		inventions[genetics_heredity]										= possible;
+		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
+		inventions[prophylaxis_against_malaria]							= possible;
+		inventions[pressure_chambers_for_thorax_surgery]				= possible;
+	}
+	if (industryTech > 8)
+	{
+		inventions[sharp_n_roberts_power_loom]				= possible;
+		inventions[jacquard_power_loom]						= possible;
+		inventions[northrop_power_loom]						= possible;
+		inventions[mechanical_saw]								= possible;
+		inventions[mechanical_precision_saw]				= possible;
+		inventions[hussey_n_mccormicks_reaping_machine]	= possible;
+		inventions[pitts_threshing_machine]					= possible;
+		inventions[mechanized_slaughtering_block]			= possible;
+	}
 }
 
 
@@ -146,6 +279,31 @@ void V2Country::setCultureTech(int newTechLevel)
 	if (newTechLevel > 0)
 	{
 		cultureTech = newTechLevel;
+	}
+
+	if (cultureTech > 5)
+	{
+		inventions[romanticist_literature]	= possible;
+		inventions[romanticist_art]			= possible;
+		inventions[romanticist_music]			= possible;
+	}
+	if (cultureTech > 8)
+	{
+		inventions[authoritarianism]		= possible;
+		inventions[hierarchical_order]	= possible;
+		inventions[traditionalism]			= possible;
+		inventions[political_religion]	= possible;
+		inventions[paternalism]				= possible;
+		inventions[constitutionalism]		= possible;
+		inventions[individualism]			= possible;
+		inventions[rationalism]				= possible;
+		inventions[secularization]			= possible;
+		inventions[social_conscience]		= possible;
+		inventions[egalitarianism]			= possible;
+		inventions[collectivism]			= possible;
+		inventions[determinism]				= possible;
+		inventions[atheism]					= possible;
+		inventions[social_justice]			= possible;
 	}
 }
 
@@ -351,5 +509,33 @@ void V2Country::outputTech(FILE* output)
 		fprintf(output, "		ideological_thought={1 0.000}\n");
 	}
 
+	fprintf(output, "	}\n");
+}
+
+
+void V2Country::outputInventions(FILE* output)
+{
+	fprintf(output, "	possible_inventions=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		\n");
+	for (unsigned int i = 0; i < naval_exercises; i++)
+	{
+		if (inventions[i] == possible)
+		{
+			fprintf(output, "%d ", i + 1);
+		}
+	}
+
+	fprintf(output, "	}\n");
+	fprintf(output, "	illegal_inventions=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		\n");
+	for (unsigned int i = 0; i < naval_exercises; i++)
+	{
+		if (inventions[i] == illegal)
+		{
+			fprintf(output, "%d ", i + 1);
+		}
+	}
 	fprintf(output, "	}\n");
 }

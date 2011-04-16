@@ -146,6 +146,9 @@
     <ClInclude Include="V2Pop.h">
       <Filter>V2 World</Filter>
     </ClInclude>
+    <ClInclude Include="V2Inventions.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ReadMe.txt" />

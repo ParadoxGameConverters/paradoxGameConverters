@@ -20,11 +20,11 @@ class EU3Country
 		string					getTechGroup();
 		string					getPrimaryCulture();
 		vector<string>			getAcceptedCultures();
-		float						getLandTech();
-		float						getNavalTech();
-		float						getTradeTech();
-		float						getProductionTech();
-		float						getGovernmentTech();
+		double					getLandTech();
+		double					getNavalTech();
+		double					getTradeTech();
+		double					getProductionTech();
+		double					getGovernmentTech();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -32,11 +32,11 @@ class EU3Country
 		string					techGroup;
 		string					primaryCulture;
 		vector<string>			acceptedCultures;
-		float						landTech;
-		float						navalTech;
-		float						tradeTech;
-		float						productionTech;
-		float						governmentTech;
+		double					landTech;
+		double					navalTech;
+		double					tradeTech;
+		double					productionTech;
+		double					governmentTech;
 };
 
 

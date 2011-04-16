@@ -106,31 +106,31 @@ vector<string> EU3Country::getAcceptedCultures()
 }
 
 
-float EU3Country::getLandTech()
+double EU3Country::getLandTech()
 {
 	return landTech;
 }
 
 
-float EU3Country::getNavalTech()
+double EU3Country::getNavalTech()
 {
 	return navalTech;
 }
 
 
-float EU3Country::getTradeTech()
+double EU3Country::getTradeTech()
 {
 	return tradeTech;
 }
 
 
-float EU3Country::getProductionTech()
+double EU3Country::getProductionTech()
 {
 	return productionTech;
 }
 
 
-float EU3Country::getGovernmentTech()
+double EU3Country::getGovernmentTech()
 {
 	return governmentTech;
 }

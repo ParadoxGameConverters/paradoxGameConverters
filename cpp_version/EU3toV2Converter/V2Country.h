@@ -2,8 +2,11 @@
 #include "Parsers\Object.h"
 #include "V2Province.h"
 #include "V2State.h"
+#include "V2Inventions.h"
 #include "EU3Country.h"
 using namespace std;
+
+
 
 
 class V2Country
@@ -26,6 +29,7 @@ class V2Country
 		void			setCultureTech(int);
 	private:
 		void outputTech(FILE*);
+		void outputInventions(FILE*);
 
 		string				tag;
 		vector<V2State>	states;
@@ -41,4 +45,5 @@ class V2Country
 		int					commerceTech;
 		int					industryTech;
 		int					cultureTech;
+		int					inventions[naval_exercises];
 };
