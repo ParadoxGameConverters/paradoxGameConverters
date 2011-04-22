@@ -52,7 +52,7 @@ link = { eu3 = TUS vic = TUS }  # Tuscany
 link = { eu3 = SIE vic = TUS }  # Sienna               => Tuscany
 link = { eu3 = BRB vic = BEL }  # Brabant              => Belgium
 link = { eu3 = FLA vic = FLA }  # Flanders
-link = { eu3 = NET vic = NET }  # Netherlands
+link = { eu3 = NED vic = NET }  # Netherlands
 link = { eu3 = HOL vic = NET }  # Holland              => Netherlands
 link = { eu3 = LUX vic = LUX }  # Luxemburg
 link = { eu3 = SWI vic = SWI }  # Switzerland
