@@ -158,6 +158,8 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							log("No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
 						}
 					}
+
+					newCountry.setPrestige(sourceCountries[i].getPrestige() + 100);
 				}
 			}
 		}

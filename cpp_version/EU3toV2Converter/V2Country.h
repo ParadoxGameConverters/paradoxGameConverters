@@ -23,6 +23,7 @@ class V2Country
 		void			setReligion(string);
 		void			output(FILE*);
 		int			getSourceCountryIndex();
+		void			setPrestige(double);
 		void			setArmyTech(int);
 		void			setNavyTech(int);
 		void			setCommerceTech(int);
@@ -42,6 +43,7 @@ class V2Country
 		vector<int>			parties;
 		int					sourceCountryIndex;
 		string				countryFile;
+		double				prestige;
 		int					armyTech;
 		int					navyTech;
 		int					commerceTech;

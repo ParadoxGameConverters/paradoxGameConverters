@@ -66,7 +66,7 @@ void V2Country::setReligion(string newReligion)
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
-	fprintf(output, "{\n");
+	fprintf(output, "	{\n");
 	if (capital > 0)
 	{
 		fprintf(output, "	capital=%d\n", capital);
@@ -95,6 +95,7 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	}\n");
 	}
 	outputInventions(output);
+	fprintf(output, "	prestige=%f\n", prestige);
 	outputCountryMiddle(output);
 	if (civilized)
 	{
@@ -115,6 +116,12 @@ void V2Country::output(FILE* output)
 int V2Country::getSourceCountryIndex()
 {
 	return sourceCountryIndex;
+}
+
+
+void V2Country::setPrestige(double newPrestige)
+{
+	prestige = newPrestige;
 }
 
 

@@ -21,6 +21,7 @@ class EU3Country
 		string					getPrimaryCulture();
 		vector<string>			getAcceptedCultures();
 		string					getReligion();
+		double					getPrestige();
 		double					getLandTech();
 		double					getNavalTech();
 		double					getTradeTech();
@@ -34,6 +35,7 @@ class EU3Country
 		string					primaryCulture;
 		vector<string>			acceptedCultures;
 		string					religion;
+		double					prestige;
 		double					landTech;
 		double					navalTech;
 		double					tradeTech;

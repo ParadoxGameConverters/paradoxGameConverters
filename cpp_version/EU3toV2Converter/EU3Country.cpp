@@ -43,6 +43,10 @@ void EU3Country::init(Object* obj)
 		religion = religionObj[0]->getLeaf().c_str();
 	}
 
+	vector<Object*> prestigeObj = obj->getValue("prestige");
+	string prestigeString = prestigeObj[0]->getLeaf();
+	prestige = 100 * atof( prestigeString.c_str() );
+
 	vector<Object*> techsObj = obj->getValue("technology");
 	vector<Object*> techObj = techsObj[0]->getValue("land_tech");
 	string techString = techObj[0]->getToken(0);
@@ -115,6 +119,12 @@ string EU3Country::getReligion()
 {
 	return religion;
 }
+
+double EU3Country::getPrestige()
+{
+	return prestige;
+}
+
 
 double EU3Country::getLandTech()
 {
