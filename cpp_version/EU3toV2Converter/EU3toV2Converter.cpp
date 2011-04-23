@@ -200,10 +200,35 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
+	// Parse Religion Mappings
+	log("Parsing religion mappings.\n");
+	printf("Parsing religion mappings.\n");
+
+	initParser();
+	obj = Parser::topLevel;
+	read.open("religionMap.txt");
+	if (!read.is_open())
+	{
+		log("Error: Could not open religionMap.txt.\n");
+		printf("Error: Could not open religionMap.txt.\n");
+		return 1;
+	}
+	readFile(read);  
+	read.close();
+
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse religionMap.txt.\n");
+		printf("Error: Failed to parse religionMap.txt.\n");
+		return 1;
+	}
+	religionMapping religionMap;
+	religionMap = initReligionMap(obj->getLeaves()[0]);
+
 
 	// Convert
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap);
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, religionMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);
 	destWorld.convertCapitals(sourceWorld, provinceMap);
 	destWorld.setupStates(stateMap);
 	destWorld.convertTechs(sourceWorld);

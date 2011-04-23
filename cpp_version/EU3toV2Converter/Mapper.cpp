@@ -248,3 +248,36 @@ cultureMapping initCultureMap(Object* obj)
 
 	return cultureMap;
 }
+
+
+religionMapping initReligionMap(Object* obj)
+{
+	religionMapping religionMap;
+	vector<Object*> links = obj->getLeaves();
+
+	for (unsigned int i = 0; i < links.size(); i++)
+	{
+		vector<Object*>	religions	= links[i]->getLeaves();
+		string				dstReligion;
+		vector<string>		srcReligion;
+
+		for (unsigned int j = 0; j < religions.size(); j++)
+		{
+			if (religions[j]->getKey() == "vic")
+			{
+				dstReligion = religions[j]->getLeaf();
+			}
+			if (religions[j]->getKey() == "eu3")
+			{
+				srcReligion.push_back(religions[j]->getLeaf());
+			}
+		}
+
+		for (unsigned int j = 0; j < srcReligion.size(); j++)
+		{
+			religionMap.insert(pair<string,string>(srcReligion[j], dstReligion));
+		}
+	}
+
+	return religionMap;
+}

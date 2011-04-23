@@ -20,6 +20,7 @@ class V2Country
 		void			setcivilized(bool);
 		void			setPrimaryCulture(string);
 		void			addAcceptedCulture(string);
+		void			setReligion(string);
 		void			output(FILE*);
 		int			getSourceCountryIndex();
 		void			setArmyTech(int);
@@ -37,6 +38,7 @@ class V2Country
 		bool					civilized;
 		string				primaryCulture;
 		vector<string>		acceptedCultures;
+		string				religion;
 		vector<int>			parties;
 		int					sourceCountryIndex;
 		string				countryFile;

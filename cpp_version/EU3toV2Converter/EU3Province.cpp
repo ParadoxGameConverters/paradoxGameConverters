@@ -27,6 +27,18 @@ void EU3Province::init(Object* obj) {
 		culture = cultureObj[0]->getLeaf();
 	}
 
+	vector<Object*> religionObj;
+	religionObj = obj->getValue("religion");
+	if (religionObj.size() == 0)
+	{
+		religion == "";
+	}
+	else
+	{
+		religion = religionObj[0]->getLeaf();
+	}
+
+
 	colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
 	if (popObj.size() > 0)
@@ -67,6 +79,12 @@ string EU3Province::getOwner()
 string EU3Province::getCulture()
 {
 	return culture;
+}
+
+
+string EU3Province::getReligion()
+{
+	return religion;
 }
 
 

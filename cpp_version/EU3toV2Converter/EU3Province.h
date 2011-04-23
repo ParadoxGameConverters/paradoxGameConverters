@@ -12,6 +12,7 @@ class EU3Province {
 		int		getNum();
 		string	getOwner();
 		string	getCulture();
+		string	getReligion();
 		bool		isColony();
 	private:
 		int		num;
@@ -19,7 +20,7 @@ class EU3Province {
 		//controller
 		//cores
 		string	culture;
-		//religion
+		string	religion;
 		int		population;
 		bool		colony;
 };

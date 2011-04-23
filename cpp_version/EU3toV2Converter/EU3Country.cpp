@@ -37,6 +37,12 @@ void EU3Country::init(Object* obj)
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
 
+	vector<Object*> religionObj = obj->getValue("religion");
+	if (religionObj.size() > 0)
+	{
+		religion = religionObj[0]->getLeaf().c_str();
+	}
+
 	vector<Object*> techsObj = obj->getValue("technology");
 	vector<Object*> techObj = techsObj[0]->getValue("land_tech");
 	string techString = techObj[0]->getToken(0);
@@ -105,6 +111,10 @@ vector<string> EU3Country::getAcceptedCultures()
 	return acceptedCultures;
 }
 
+string EU3Country::getReligion()
+{
+	return religion;
+}
 
 double EU3Country::getLandTech()
 {

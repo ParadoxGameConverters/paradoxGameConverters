@@ -57,6 +57,12 @@ void V2Country::addAcceptedCulture(string culture)
 }
 
 
+void V2Country::setReligion(string newReligion)
+{
+	religion = newReligion;
+}
+
+
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -72,6 +78,7 @@ void V2Country::output(FILE* output)
 	{
 		fprintf(output, "	active_party=%d\n", parties[i]);
 	}
+	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	outputCountryHeader2(output);
 	if (primaryCulture.size() > 0)
 	{

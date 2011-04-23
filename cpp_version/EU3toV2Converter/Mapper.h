@@ -28,8 +28,11 @@ void removeEmptyNations(EU3World&);
 typedef map< int, vector<int> > stateMapping;	// < province, all other provinces in state >
 stateMapping initStateMap(Object* obj);
 
-typedef map< string, string > cultureMapping;
-cultureMapping initCultureMap(Object* obj);		// <srcCulture, destCulture>
+typedef map< string, string > cultureMapping;		// <srcCulture, destCulture>
+cultureMapping initCultureMap(Object* obj);
+
+typedef map< string, string> religionMapping;
+religionMapping initReligionMap(Object* obj);		// <srcReligion, destReligion>
 
 
-#endif // ndef MAPPER_H
+#endif // MAPPER_H

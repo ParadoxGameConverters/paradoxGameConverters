@@ -66,6 +66,12 @@ void V2Province::setCulture(string newCulture)
 }
 
 
+void V2Province::setReligion(string newReligion)
+{
+	religion = newReligion;
+}
+
+
 bool V2Province::isColonial()
 {
 	return colonial;
@@ -132,7 +138,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		farmersPop.setType("farmers");
 		farmersPop.setSize(oldPopulation * farmers / total);
 		farmersPop.setCulture(culture);
-		farmersPop.setReligion("animist");
+		farmersPop.setReligion(religion);
 		pops.push_back(farmersPop);
 	}
 	if (labourers > 0)
@@ -141,7 +147,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		labourersPop.setType("labourers");
 		labourersPop.setSize(oldPopulation * labourers / total);
 		labourersPop.setCulture(culture);
-		labourersPop.setReligion("animist");
+		labourersPop.setReligion(religion);
 		pops.push_back(labourersPop);
 	}
 	if (slaves > 0)
@@ -150,7 +156,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		slavesPop.setType("slaves");
 		slavesPop.setSize(oldPopulation * slaves / total);
 		slavesPop.setCulture(culture);
-		slavesPop.setReligion("animist");
+		slavesPop.setReligion(religion);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)
@@ -159,7 +165,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		soldiersPop.setType("soldiers");
 		soldiersPop.setSize(oldPopulation * soldiers / total);
 		soldiersPop.setCulture(culture);
-		soldiersPop.setReligion("animist");
+		soldiersPop.setReligion(religion);
 		pops.push_back(soldiersPop);
 	}
 	if (craftsmen > 0)
@@ -168,7 +174,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		craftsmenPop.setType("craftsmen");
 		craftsmenPop.setSize(oldPopulation * craftsmen / total);
 		craftsmenPop.setCulture(culture);
-		craftsmenPop.setReligion("animist");
+		craftsmenPop.setReligion(religion);
 		pops.push_back(craftsmenPop);
 	}
 	if (artisans > 0)
@@ -177,7 +183,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		artisansPop.setType("artisans");
 		artisansPop.setSize(oldPopulation * artisans / total);
 		artisansPop.setCulture(culture);
-		artisansPop.setReligion("animist");
+		artisansPop.setReligion(religion);
 		pops.push_back(artisansPop);
 	}
 	if (clergymen > 0)
@@ -186,7 +192,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		clergymenPop.setType("clergymen");
 		clergymenPop.setSize(oldPopulation * clergymen / total);
 		clergymenPop.setCulture(culture);
-		clergymenPop.setReligion("animist");
+		clergymenPop.setReligion(religion);
 		pops.push_back(clergymenPop);
 	}
 	if (clerks > 0)
@@ -195,7 +201,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		clerksPop.setType("clerks");
 		clerksPop.setSize(oldPopulation * clerks / total);
 		clerksPop.setCulture(culture);
-		clerksPop.setReligion("animist");
+		clerksPop.setReligion(religion);
 		pops.push_back(clerksPop);
 	}
 	if (bureaucrats > 0)
@@ -204,7 +210,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		bureaucratsPop.setType("bureaucrats");
 		bureaucratsPop.setSize(oldPopulation * bureaucrats / total);
 		bureaucratsPop.setCulture(culture);
-		bureaucratsPop.setReligion("animist");
+		bureaucratsPop.setReligion(religion);
 		pops.push_back(bureaucratsPop);
 	}
 	if (officers > 0)
@@ -213,7 +219,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		officersPop.setType("officers");
 		officersPop.setSize(oldPopulation * officers / total);
 		officersPop.setCulture(culture);
-		officersPop.setReligion("animist");
+		officersPop.setReligion(religion);
 		pops.push_back(officersPop);
 	}
 	if (capitalists > 0)
@@ -222,7 +228,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		capitalistsPop.setType("capitalists");
 		capitalistsPop.setSize(oldPopulation * capitalists / total);
 		capitalistsPop.setCulture(culture);
-		capitalistsPop.setReligion("animist");
+		capitalistsPop.setReligion(religion);
 		pops.push_back(capitalistsPop);
 	}
 	if (aristocrats > 0)
@@ -231,7 +237,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 		aristocratsPop.setType("aristocrats");
 		aristocratsPop.setSize(oldPopulation * aristocrats / total);
 		aristocratsPop.setCulture(culture);
-		aristocratsPop.setReligion("animist");
+		aristocratsPop.setReligion(religion);
 		pops.push_back(aristocratsPop);
 	}
 }

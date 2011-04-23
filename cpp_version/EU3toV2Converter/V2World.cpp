@@ -81,7 +81,7 @@ vector<string> V2World::getPotentialTags()
 }
 
 
-void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap)
+void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap)
 {
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < sourceCountries.size(); i++)
@@ -134,6 +134,20 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
 						}
 					}
+
+					string srcReligion = sourceCountries[i].getReligion();
+					if (srcReligion.size() > 0)
+					{
+						religionMapping::iterator iter2 = religionMap.find(srcReligion);
+						if (iter2 != religionMap.end())
+						{
+							newCountry.setReligion(iter2->second);
+						}
+						else
+						{
+							log("No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
+						}
+					}
 				}
 			}
 		}
@@ -151,7 +165,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 
 
 
-void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap, cultureMapping cultureMap)
+void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap, cultureMapping cultureMap, religionMapping religionMap)
 {
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
@@ -188,6 +202,18 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 						log("Error: Could not set culture for province %d\n", destNum);
 						provinces[i].setCulture("");
 					}
+
+					religionMapping::iterator iter3 = religionMap.find(oldProvince->getReligion());
+					if (iter3 != religionMap.end())
+					{
+						provinces[i].setReligion(iter3->second);
+					}
+					else
+					{
+						log("Error: Could not set religion for province %d\n", destNum);
+						provinces[i].setReligion("");
+					}
+
 					sourceWorld.getCountry(oldOwner);
 					provinces[i].createPops(oldProvince, sourceWorld.getCountry(oldOwner));
 				}
