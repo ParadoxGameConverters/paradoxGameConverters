@@ -526,7 +526,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		industryTech = (int)newTechLevel;
 	}
 
-	if (industryTech > 4)
+	if (newTechLevel > 4)
 	{
 		inventions[ammunition_production]	= possible;
 		inventions[small_arms_production]	= possible;
@@ -534,7 +534,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[artillery_production]		= possible;
 	}
 	
-	if (industryTech > 4.2)
+	if (newTechLevel > 4.2)
 	{
 		inventions[ammunition_production]	= active;
 		inventions[small_arms_production]	= possible;
@@ -542,42 +542,42 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[artillery_production]		= possible;
 	}
 	
-	if (industryTech > 4.4)
+	if (newTechLevel > 4.4)
 	{
 		inventions[small_arms_production]	= active;
 		inventions[explosives_production]	= possible;
 		inventions[artillery_production]		= possible;
 	}
 	
-	if (industryTech > 4.6)
+	if (newTechLevel > 4.6)
 	{
 		inventions[explosives_production]	= active;
 		inventions[artillery_production]		= possible;
 	}
 	
-	if (industryTech > 4.8)
+	if (newTechLevel > 4.8)
 	{
 		inventions[artillery_production]		= active;
 	}
 
-	if (industryTech > 5)
+	if (newTechLevel > 5)
 	{
 		inventions[pit_coal]	= possible;
 		inventions[coke]		= possible;
 	}
 	
-	if (industryTech > 5 + (1/3))
+	if (newTechLevel > 5 + (1/3))
 	{
 		inventions[pit_coal]	= active;
 		inventions[coke]		= possible;
 	}
 	
-	if (industryTech > 5 + (2/3))
+	if (newTechLevel > 5 + (2/3))
 	{
 		inventions[coke]		= active;
 	}
 
-	if (industryTech > 6)
+	if (newTechLevel > 6)
 	{
 		inventions[combat_medicine]											= possible;
 		inventions[aerial_bacteria_and_antiseptic_principle]			= possible;
@@ -589,7 +589,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (1/9))
+	if (newTechLevel > 6 + (1/9))
 	{
 		inventions[combat_medicine]											= active;
 		inventions[aerial_bacteria_and_antiseptic_principle]			= possible;
@@ -601,7 +601,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (2/9))
+	if (newTechLevel > 6 + (2/9))
 	{
 		inventions[aerial_bacteria_and_antiseptic_principle]			= active;
 		inventions[vaccination]													= possible;
@@ -612,7 +612,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (3/9))
+	if (newTechLevel > 6 + (3/9))
 	{
 		inventions[vaccination]													= active;
 		inventions[chemotherapy]												= possible;
@@ -622,7 +622,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (4/9))
+	if (newTechLevel > 6 + (4/9))
 	{
 		inventions[chemotherapy]												= active;
 		inventions[genetics_heredity]											= possible;
@@ -631,7 +631,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (5/9))
+	if (newTechLevel > 6 + (5/9))
 	{
 		inventions[genetics_heredity]											= active;
 		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
@@ -639,25 +639,25 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (6/9))
+	if (newTechLevel > 6 + (6/9))
 	{
 		inventions[clinical_thermometers_and_binaural_stethoscopes]	= active;
 		inventions[prophylaxis_against_malaria]							= possible;
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (7/9))
+	if (newTechLevel > 6 + (7/9))
 	{
 		inventions[prophylaxis_against_malaria]							= active;
 		inventions[pressure_chambers_for_thorax_surgery]				= possible;
 	}
 	
-	if (industryTech > 6 + (8/9))
+	if (newTechLevel > 6 + (8/9))
 	{
 		inventions[pressure_chambers_for_thorax_surgery]				= active;
 	}
 
-	if (industryTech > 8)
+	if (newTechLevel > 8)
 	{
 		inventions[sharp_n_roberts_power_loom]				= possible;
 		inventions[jacquard_power_loom]						= possible;
@@ -669,7 +669,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (1/9))
+	if (newTechLevel > 8 + (1/9))
 	{
 		inventions[sharp_n_roberts_power_loom]				= active;
 		inventions[jacquard_power_loom]						= possible;
@@ -681,7 +681,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (2/9))
+	if (newTechLevel > 8 + (2/9))
 	{
 		inventions[jacquard_power_loom]						= active;
 		inventions[northrop_power_loom]						= possible;
@@ -692,7 +692,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (3/9))
+	if (newTechLevel > 8 + (3/9))
 	{
 		inventions[northrop_power_loom]						= active;
 		inventions[mechanical_saw]								= possible;
@@ -702,7 +702,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (4/9))
+	if (newTechLevel > 8 + (4/9))
 	{
 		inventions[mechanical_saw]								= active;
 		inventions[mechanical_precision_saw]				= possible;
@@ -711,7 +711,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (5/9))
+	if (newTechLevel > 8 + (5/9))
 	{
 		inventions[mechanical_precision_saw]				= active;
 		inventions[hussey_n_mccormicks_reaping_machine]	= possible;
@@ -719,20 +719,20 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (6/9))
+	if (newTechLevel > 8 + (6/9))
 	{
 		inventions[hussey_n_mccormicks_reaping_machine]	= active;
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (7/9))
+	if (newTechLevel > 8 + (7/9))
 	{
 		inventions[pitts_threshing_machine]					= active;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
 	
-	if (industryTech > 8 + (8/9))
+	if (newTechLevel > 8 + (8/9))
 	{
 		inventions[mechanized_slaughtering_block]			= active;
 	}
@@ -746,32 +746,32 @@ void V2Country::setCultureTech(double newTechLevel)
 		cultureTech = (int)newTechLevel;
 	}
 
-	if (cultureTech > 5)
+	if (newTechLevel > 7)
 	{
 		inventions[romanticist_literature]	= possible;
 		inventions[romanticist_art]			= possible;
 		inventions[romanticist_music]			= possible;
 	}
 	
-	if (cultureTech > 5.25)
+	if (newTechLevel > 7.25)
 	{
 		inventions[romanticist_literature]	= active;
 		inventions[romanticist_art]			= possible;
 		inventions[romanticist_music]			= possible;
 	}
 	
-	if (cultureTech > 5.5)
+	if (newTechLevel > 7.5)
 	{
 		inventions[romanticist_art]			= active;
 		inventions[romanticist_music]			= possible;
 	}
 	
-	if (cultureTech > 5.75)
+	if (newTechLevel > 7.75)
 	{
 		inventions[romanticist_music]			= active;
 	}
 
-	if (cultureTech > 8)
+	if (newTechLevel > 8)
 	{
 		inventions[authoritarianism]		= possible;
 		inventions[hierarchical_order]	= possible;
@@ -790,7 +790,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.0625)
+	if (newTechLevel > 8.0625)
 	{
 		inventions[authoritarianism]		= active;
 		inventions[hierarchical_order]	= possible;
@@ -809,7 +809,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.125)
+	if (newTechLevel > 8.125)
 	{
 		inventions[hierarchical_order]	= active;
 		inventions[traditionalism]			= possible;
@@ -827,7 +827,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.1875)
+	if (newTechLevel > 8.1875)
 	{
 		inventions[traditionalism]			= active;
 		inventions[political_religion]	= possible;
@@ -844,7 +844,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.25)
+	if (newTechLevel > 8.25)
 	{
 		inventions[political_religion]	= active;
 		inventions[paternalism]				= possible;
@@ -860,7 +860,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.3125)
+	if (newTechLevel > 8.3125)
 	{
 		inventions[paternalism]				= active;
 		inventions[constitutionalism]		= possible;
@@ -875,7 +875,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.375)
+	if (newTechLevel > 8.375)
 	{
 		inventions[constitutionalism]		= active;
 		inventions[individualism]			= possible;
@@ -889,7 +889,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.4375)
+	if (newTechLevel > 8.4375)
 	{
 		inventions[individualism]			= active;
 		inventions[rationalism]				= possible;
@@ -902,7 +902,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.5)
+	if (newTechLevel > 8.5)
 	{
 		inventions[rationalism]				= active;
 		inventions[secularization]			= possible;
@@ -914,7 +914,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.5625)
+	if (newTechLevel > 8.5625)
 	{
 		inventions[secularization]			= active;
 		inventions[social_conscience]		= possible;
@@ -925,7 +925,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.625)
+	if (newTechLevel > 8.625)
 	{
 		inventions[social_conscience]		= active;
 		inventions[egalitarianism]			= possible;
@@ -935,7 +935,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.6875)
+	if (newTechLevel > 8.6875)
 	{
 		inventions[egalitarianism]			= active;
 		inventions[collectivism]			= possible;
@@ -944,7 +944,7 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.75)
+	if (newTechLevel > 8.75)
 	{
 		inventions[collectivism]			= active;
 		inventions[determinism]				= possible;
@@ -952,20 +952,20 @@ void V2Country::setCultureTech(double newTechLevel)
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.8125)
+	if (newTechLevel > 8.8125)
 	{
 		inventions[determinism]				= active;
 		inventions[atheism]					= possible;
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.875)
+	if (newTechLevel > 8.875)
 	{
 		inventions[atheism]					= active;
 		inventions[social_justice]			= possible;
 	}
 	
-	if (cultureTech > 8.93875)
+	if (newTechLevel > 8.93875)
 	{
 		inventions[social_justice]			= active;
 	}
@@ -1158,15 +1158,15 @@ void V2Country::outputTech(FILE* output)
 	}
 	if (cultureTech >= 5)
 	{
-		fprintf(output, "		romanticism={1 0.000}\n");
+		fprintf(output, "		positivism={1 0.000}\n");
 	}
 	if (cultureTech >= 6)
 	{
-		fprintf(output, "		positivism={1 0.000}\n");
+		fprintf(output, "		associationism={1 0.000}\n");
 	}
 	if (cultureTech >= 7)
 	{
-		fprintf(output, "		associationism={1 0.000}\n");
+		fprintf(output, "		romanticism={1 0.000}\n");
 	}
 	if (cultureTech >= 8)
 	{
