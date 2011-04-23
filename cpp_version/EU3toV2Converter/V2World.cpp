@@ -23,7 +23,7 @@ void V2World::init(Object* obj)
 
 void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 {
-	int partiesIndex = 0;
+	int partiesIndex = 1;
 	while (!countriesMapping.eof())
 	{
 		string line;
@@ -44,19 +44,29 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 
 		int oldPartiesIndex = partiesIndex;
 		ifstream countryFile( (V2Loc + "\\common\\countries\\" + countryFileName).c_str());
+		vector<int> parties;
 		while (!countryFile.eof())
 		{
 			string line2;
 			getline(countryFile, line2);
 			if (line2 == "party = {")
 			{
+				getline(countryFile, line2);	// party name
+				getline(countryFile, line2);	// start date
+				int start2	= line2.find_first_of('=') + 2;
+				int size2	= line2.size() - start2;
+				line2 = line2.substr(start2, size2);
+
+				int end = line2.find_first_of('.');
+				line2 = line2.substr(0, end);  // now should be just the year
+
+				if (atoi(line2.c_str()) <= 1836)
+				{
+					parties.push_back(partiesIndex);
+				}
+
 				partiesIndex++;
 			}
-		}
-		vector<int> parties;
-		for(int i = oldPartiesIndex; i < partiesIndex; i++)
-		{
-			parties.push_back(i);
 		}
 
 		if (tag == "REB")
