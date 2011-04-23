@@ -48,12 +48,12 @@ link = { eu3 = 1095 vic = 2131 } # Falklands -> Falkland Islands
 
 link = { eu3 = 747 vic = 2414 vic = 2415 vic = 2408 vic = 2412 vic = 2402 vic = 2403 } # Tucujulandia -> Amapa Macapa Oriximina Obidos Manaus Cachoeira
 link = { eu3 = 748 vic = 2410 vic = 2411 } # Grao Para -> Belem Santarem
-link = { eu3 = 749 vic = 2424 vic = 2425 } # Maranhao -> Sao Luis Chapada
-link = { eu3 = 750 vic = 2423 vic = 2600 vic = 2413 vic = 2405 vic = 2404 vic = 2407 } # Alpercatas -> Palmas Maraba Altamira Borba Tefe Tabatinga
+link = { eu3 = 749 vic = 2424 vic = 2426 } # Maranhao -> Sao Luis, Teresina
+link = { eu3 = 750 vic = 2425 vic = 2423 vic = 2600 vic = 2413 vic = 2405 vic = 2404 vic = 2407 } # Alpercatas -> Chapada, Palmas Maraba Altamira Borba Tefe Tabatinga
 link = { eu3 = 752 vic = 2427 } # Oeiras -> Oeiras
-link = { eu3 = 751 vic = 2426 vic = 2429 } # Ceara -> Teresira Fortaleza
+link = { eu3 = 751 vic = 2429 vic = 2430 } # Ceara -> Teresira Fortaleza
 link = { eu3 = 753 vic = 2431 } # Rio Grande -> Natal
-link = { eu3 = 754 vic = 2428 vic = 2430 } # Itamaraca -> Paraiba Crato
+link = { eu3 = 754 vic = 2428 } # Itamaraca -> Paraiba
 link = { eu3 = 755 vic = 2433 vic = 2432 vic = 2434 } # Pernambuco -> Cabrobo Recife Maceio
 link = { eu3 = 756 vic = 2435 vic = 2436 } # Bahia -> Aracajo Salvador de Bahia
 link = { eu3 = 759 vic = 2438 vic = 2437 vic = 2440 vic = 2444 vic = 2443 } # Diamentina -> Vilado do Barra Juazeiro Vitoria da Conquista Paracatu Januaria
@@ -123,9 +123,9 @@ link = { eu3 = 800 vic = 2316 vic = 2317 } # Chiquitos -> Santa Cruze, San Ignac
 link = { eu3 = 816 vic = 2291 vic = 2282 } # Tumbes -> Piura, Loja
 link = { eu3 = 812 vic = 2292 } # Chanchan -> Trujillo
 link = { eu3 = 813 vic = 2290 vic = 2294 } # Cajamarca -> Cajamarca Moyobamba
-link = { eu3 = 815 vic = 2286 } # Maynas -> Iquitos
-link = { eu3 = 814 vic = 2293 } # Huanuco -> Huanuco
-link = { eu3 = 811 vic = 2300 vic = 2549 } # Tarma -> Pucallpa, Tarauaca
+link = { eu3 = 815 vic = 2286 vic = 2407 } # Maynas -> Iquitos, Tabatinga 
+link = { eu3 = 814 vic = 2293 vic = 2300 } # Huanuco -> Huanuco, Pucallpa
+link = { eu3 = 811 vic = 2549 vic = 2404 } # Tarma -> Tarauaca, Tefe 
 link = { eu3 = 810 vic = 2296 } # Huancavelica -> Huancavelica
 link = { eu3 = 808 vic = 2302 vic = 2301 } # Cuzco -> Cusco Puerto Maldonado
 link = { eu3 = 804 vic = 2303 } # Puno -> Puno
@@ -191,9 +191,9 @@ link = { eu3 = 1165 vic = 1972 vic = 1974 vic = 1976 vic = 1975 }				# Gabon -> 
 link = { eu3 = 1166 vic = 2624 vic = 2000 vic = 1983 }				# Loango -> Loango, Cabinda, Boma
 link = { eu3 = 1169 vic = 1982 vic = 1977 vic = 1978 }				# Mayombe -> Kinshasa, Nkuna, Madingou
 link = { eu3 = 1167 vic = 1999 }			# Luanda -> Luanda
-link = { eu3 = 1170 vic = 2001 }				# Kongo -> Mbanza
+link = { eu3 = 1170 vic = 2001 vic = 1985 }				# Kongo -> Mbanza, Kumbana
 link = { eu3 = 1168 vic = 2003 }				# Kisarna -> Benguela 
-link = { eu3 = 1171 vic = 2002 }				# Ndongo -> Quibala
+link = { eu3 = 1171 vic = 2002 vic = 2009 }				# Ndongo -> Quibala, Malanje
 link = { eu3 = 1172 vic = 2004 }				# Benguela -> Mossamedes 
 link = { eu3 = 1173 vic = 2079 }				# Damaraland -> Swakopmund 
 
@@ -201,7 +201,8 @@ link = { eu3 = 1173 vic = 2079 }				# Damaraland -> Swakopmund
 
 ## China ##
 
-link = { eu3 = 703 vic = 1613 vic = 1616 }				# Chengde -> Chengde, Shuntian
+link = { eu3 = 703 vic = 1616 }				# Chengde -> Chengde, Shuntian
+link = { eu3 = 723 vic = 1613 }				# Xilin Gol -> Chengde
 link = { eu3 = 696 vic = 1618 }				# Xuan Fu -> Zhongding
 link = { eu3 = 697 vic = 1576 }				# Datong -> Datong
 link = { eu3 = 695 vic = 1617 vic = 1615 }		# Hejian -> Tianjin, Jizhou
@@ -240,26 +241,27 @@ link = { eu3 = 664 vic = 1502 }		# Guangxi -> Nanning
 link = { eu3 = 1840 vic = 1503 vic = 1504 }		# Guilin -> Guilin, Pingle
 link = { eu3 = 673 vic = 1507 vic = 1577 }		# Bozhou -> Zhenyuan, Chongqing
 link = { eu3 = 674 vic = 1505 }			# Guiyang -> Guiyang
-link = { eu3 = 680 vic = 1579 vic = 1583 vic = 1581 vic = 1584 }			# Shenquing -> Baotung, Shunqing, Kuizhou, Tongchuan
-link = { eu3 = 699 vic = 1490 vic = 1489 }				# Lanzhou -> Lanzhou, Gongchang
-link = { eu3 = 713 vic = 2607 }			# Kuruk Tag -> Lop Nur 
-link = { eu3 = 710 eu3 = 711 vic = 1598 }				# Hotan, Qarqan -> Khotan
+link = { eu3 = 680 vic = 1579 vic = 1583 vic = 1581 }			# Shenquing -> Baotung, Shunqing, Kuizhou
+link = { eu3 = 707 vic = 1488 }				# Yumen -> Gansu
+link = { eu3 = 708 vic = 1490 }			# Gansu -> Lanzhou
+link = { eu3 = 699 vic = 1492 }				# Lanzhou -> Pingliang
+link = { eu3 = 698 vic = 1489 }				# Guyuan -> Gongchang
+link = { eu3 = 679 vic = 1580 vic = 1578 vic = 1584 }				# Sichuan Pendi -> Jiading, Chengdu, Tongchuan
+link = { eu3 = 713 vic = 1600 }			# Kuruk Tag -> Urumqi
+link = { eu3 = 711 vic = 2607 }			# Qarqan -> Lop Nur 
+link = { eu3 = 710 vic = 1598 }				# Hotan -> Khotan
 link = { eu3 = 739 vic = 1594 }				# Altishar -> Kashgar 
 link = { eu3 = 712 vic = 1597 vic = 1595 }				# Uighuristan -> Aksu, Ili
 link = { eu3 = 663 vic = 1506 }				# Wenshan -> Anshun 
 link = { eu3 = 662 vic = 1601 }				# Yunnan -> Kunming 
 link = { eu3 = 661 vic = 1602 }				# Dali -> Dali 
 link = { eu3 = 675 vic = 1585 }			# Liangshan -> Yibin
-link = { eu3 = 679 vic = 1580 }				# Sichuan Pendi -> Jiading
-link = { eu3 = 698 vic = 1578 }				# Guyuan -> Chengdu
 link = { eu3 = 660 vic = 1603 }				# Xishuan Banna -> Puer
 		
 ## Xinjiang ##
 		
-link = { eu3 = 709 vic = 1491 vic = 1492 }				# Ningxia -> Ningxia, Pingliang
-link = { eu3 = 707 vic = 1599 }				# Yumen -> Kumul
-link = { eu3 = 708 vic = 1488 }			# Gansu -> Gansu
-link = { eu3 = 715 vic = 1600 vic = 1596 }				# Urumqi -> Urumqi, Tulta
+link = { vic = 1492 }				# Ningxia -> Ningxia, Pingliang
+link = { eu3 = 715 vic = 1596 vic = 1599 }				# Urumqi -> Tulta, Kumul
 		
 ## Mongolia ##
 
@@ -268,20 +270,20 @@ link = { eu3 = 720 vic = 1465 vic = 2207 }				# Tshiyet Noyan -> Urga, Sainshand
 link = { eu3 = 719 vic = 1466 }				# Sayin Noyan -> Dalandzagad
 link = { eu3 = 718 vic = 1468 vic = 2678 }				# Jasagdu -> Uliastai, Bulgan 
 link = { eu3 = 717 vic = 2679 vic = 2608 }				# Hovd -> Khovd, Khatgal 
-link = { eu3 = 702 vic = 1532 }				# Ulaanchab -> Guihua Tumed 
-link = { eu3 = 723 vic = 1533 }				# Xilin Gol -> Jirim Chol
-link = { eu3 = 701 vic = 1535 }				# Ordos -> Yeke Juu Chuulgan
+link = { eu3 = 702 vic = 1532 }				# Ulaanchab -> Guihua Tumed
+link = { eu3 = 701 vic = 1491 }				# Ordos -> Ningxia
+link = { eu3 = 709 vic = 1535 }				# Ningxia -> Yeke Juu Chuulgan
 link = { eu3 = 722 vic = 1534 }				# Chahar -> Ulaan Chab Chuulghan
 
 ## Manchuria ##
 
-link = { eu3 = 731 eu3 = 728 vic = 1554 }				# Ninguta, Sanxing -> Ninguta
+link = { eu3 = 731 eu3 = 728 vic = 1554 }	# Ninguta, Sanxing -> Ninguta
 link = { eu3 = 730 vic = 1555 }				# Haixi -> Jilin
-link = { eu3 = 726 vic = 1479 vic = 1481 }				# Liaodong -> Mukden, Port Arthur
+link = { eu3 = 726 vic = 1479 vic = 1481 }	# Liaodong -> Mukden, Port Arthur
 link = { eu3 = 704 vic = 1480 }				# Liaoxi -> Jinzhou 
-link = { eu3 = 725 vic = 1552 }				# Hinggan -> Qiqihar
+link = { eu3 = 725 vic = 1533 }				# Hinggan -> Jirim Chuulgan
 link = { eu3 = 724 vic = 1002 }				# Yakesa -> Manzhouli
-link = { eu3 = 727 vic = 1553 }				# Heilongjiang -> Aigun
+link = { eu3 = 727 vic = 1552 vic = 1553 }	# Heilongjiang -> Qiqihar, Aigun
 
 ### North & Central America and Carribean ###
 
@@ -542,8 +544,8 @@ link = { eu3 = 874 vic = 78 }	# Chalish -> Seattle
 
 ## Central Asia ##
 
-link = { eu3 = 440 vic = 1196 }			# Khawarzam -> Dashhowuz 
-link = { eu3 = 441 vic = 1191 }				# Khiva -> Khiva 
+link = { eu3 = 440 vic = 1191 }			# Khawarzam -> Khiva
+link = { eu3 = 441 vic = 1196 }				# Khiva -> Dashhowuz 
 link = { eu3 = 442 vic = 1198 }				# Bukhara -> Bukhara 
 link = { eu3 = 456 vic = 1193 }				# Turkestan -> Kyzylorda
 link = { eu3 = 455 vic = 1197 }				# Kyzyl Kum -> Shymkent
@@ -839,7 +841,7 @@ link = { eu3 = 410 vic = 926 vic = 930 vic = 933 }		# Iraq-i-Arab -> Baghdad, Ku
 link = { eu3 = 409 vic = 929 vic = 934 }		# Karbala -> Karbala, Najaf 
 link = { eu3 = 408 vic = 932 vic = 935 }				# Basra -> Basra, Kuwait
 link = { eu3 = 406 vic = 931 }		# Badiyat Ash Sham -> Rutbah 
-link = { eu3 = 415 vic = 925 vic = 924 }			# Sharizhor -> Kirkuk, Arbil
+link = { eu3 = 415 vic = 925 vic = 924 vic = 1110 }			# Sharizhor -> Kirkuk, Arbil, Urumia
 		
 ## Arabia ##
 link = { eu3 = 383 vic = 1154 }				# Tabouk -> Tabuk 
@@ -915,7 +917,7 @@ link = { eu3 = 424 vic = 1103 vic = 1104 }					# Shirva/Shrivan -> Siyazan, Shek
 link = { eu3 = 421 vic = 1102 vic = 1107 vic = 1112 }					# Murgan -> Baku, Lankaran, Ardabil
 link = { eu3 = 419 vic = 1098 vic = 1099 vic = 1100 vic = 1101 }		# Armenia -> Erivan, Hyumri, Kapan, Nakhichevan
 link = { eu3 = 420 vic = 1105 vic = 1106 }					# Qarabagh -> Ganja, Agdam
-link = { eu3 = 416 vic = 1108 vic = 1109 vic = 1123 vic = 1111 vic = 1110 }	# Azerbaijan -> Tabriz, Khvoy, Zanjan, Mahabad, Urumia
+link = { eu3 = 416 vic = 1108 vic = 1109 vic = 1123 vic = 1111 }	# Azerbaijan -> Tabriz, Khvoy, Zanjan, Mahabad
 		
 ## Caspian ##		
 link = { eu3 = 417 vic = 1113 }							# Gilan -> Rasht
@@ -1004,9 +1006,9 @@ link = { eu3 = 1207 vic = 1864 vic = 1866 }				# Ogaden -> Negele, Goba
 link = { eu3 = 1208 vic = 1867 }				# Haud -> Werder
 link = { eu3 = 1206 vic = 1872 vic = 1871 }			# Majerteen -> Bosaso, Hobyo
 link = { eu3 = 1205 vic = 1868 vic = 1869 }				# Mogadishu -> Mogdishu, Baidoa
-link = { eu3 = 1204 vic = 1870 vic = 2031 vic = 2025 }				# Lamu -> Kismayo, Wajir, Marsabit
-link = { eu3 = 1203 vic = 2030 vic = 2032 vic = 2024 }				# Malindi -> Lamu, Garissa, Nairobi
-link = { eu3 = 1202 vic = 2029 vic = 2033 vic = 2027 }				# Mombasa -> Mombasa, Voi, Nakuru
+link = { eu3 = 1204 vic = 1870 vic = 2031 }				# Lamu -> Kismayo, Wajir, Marsabit
+link = { eu3 = 1203 vic = 2030 vic = 2032 }				# Malindi -> Lamu, Garissa, Nairobi
+link = { eu3 = 1202 vic = 2029 vic = 2033 }				# Mombasa -> Mombasa, Voi, Nakuru
 link = { eu3 = 1200 vic = 2037 vic = 2047 }				# Tanga -> Tanga, Arusha
 link = { eu3 = 1199 vic = 2036 vic = 2045 }				# Bagamoyo -> Dar es Salaam, Morogoro
 link = { eu3 = 1198 vic = 2043 vic = 2044 }		# Tabora -> Tabora, Mwanza
@@ -1019,11 +1021,11 @@ link = { eu3 = 1190 vic = 2056 vic = 2054 }				# Zumbo -> Zumbo, Tete
 link = { eu3 = 1187 vic = 2012 vic = 790 vic = 2015 }			# Urungwe -> Lusaka, Kitwe, Monzo
 link = { eu3 = 1188 vic = 2055 vic = 2635 }				# Masapa/Tete -> Songo, Kariba
 link = { eu3 = 1186 vic = 2057 vic = 2052 }				# Sofala -> Sofala, Massekisse
-link = { eu3 = 1189 vic = 2070 vic = 2068 }				# Barwe -> Mutare, Harare
+link = { eu3 = 1189 vic = 2070 vic = 2068 vic = 2058 }				# Barwe -> Mutare, Harare, Mossurize
 link = { eu3 = 1185 vic = 2073 vic = 2069 }				# Uteve -> Masvingo, Gweru
 link = { eu3 = 1184 vic = 2071 vic = 2072 }				# Zimbabwe -> Bulawayo, Hwange
 link = { eu3 = 1183 vic = 2051 }				# Inhambane -> Inhambane 		
-link = { eu3 = 1182 vic = 2050 vic = 2049 }	# Delagoa Bay -> Chaimate, Matupo
+link = { eu3 = 1182 vic = 2050 vic = 2049 vic = 2110 }	# Delagoa Bay -> Chaimate, Matupo, Thohoyandu
 			
 ## South Africa ##
 link = { eu3 = 1177 vic = 2087 vic = 2090 vic = 2091 vic = 2089 }						# Cape -> Cape Town, Swerenham, Mossel Bay, Worcester 
@@ -1033,7 +1035,7 @@ link = { eu3 = 1176 vic = 2093 vic = 2092 }												# Roggeveld -> Calvania, 
 link = { eu3 = 1175 vic = 2088 }														# Lesser Namaqualand -> Springbok
 link = { eu3 = 1174 vic = 2084 vic = 2083 }												# Greater Namaqualand -> Angra Pequeña, Walvis Bay
 link = { eu3 = 1180 vic = 2111 vic = 2112 vic = 2104 }									# Transkei -> Durban, Ladysmith, Thabu Bosiu 
-link = { eu3 = 1181 vic = 2105 vic = 2113 vic = 2114 vic = 2110 vic = 2108 vic = 2109 }	# Natal -> Pretoria, Ulundi, Mbabane, Thohoyandy, Mosega, Lydenburg, Pretoria
+link = { eu3 = 1181 vic = 2105 vic = 2113 vic = 2114 vic = 2109 }	# Natal -> Pretoria, Ulundi, Mbabane, Thohoyandy, Mosega, Lydenburg, Pretoria
 
 ## Greece, Crete, Cyprus, Albania, Montenegro ##
 link = { eu3 = 151 vic = 860 vic = 861 vic = 858 }				# Thrace -> Istanbul, Uskudar, Kirklareli
@@ -1219,7 +1221,7 @@ link = { eu3 = 647 vic = 1450 }			# Ceram -> Ceram
 link = { eu3 = 646 vic = 1451 }			# Ambom -> Aru
 link = { eu3 = 638 vic = 1429 vic = 1425 }		# Kutei -> Samarinda Tarakan 
 link = { eu3 = 643 vic = 1434 vic = 1435 }	# Pose -> Luwuk Palu
-link = { eu3 = 641 vic = 1432 }		# Makassar -> Mamuju
+link = { eu3 = 641 vic = 1430 vic = 1431 vic = 1432 }		# Makassar -> Makassar, Bone, Mamuju
 link = { eu3 = 644 vic = 1433 }			# Menade -> Mandao
 
 
@@ -1273,11 +1275,11 @@ link = { eu3 = 47 vic = 547 vic = 545 vic = 548 }				# Vorpommern -> Swinemunde,
 link = { eu3 = 46 vic = 544 }						# Mecklenburg -> Schwerin 
 
 ## Tibet Nepal Bhutan ##
-link = { eu3 = 705 vic = 1591 }			# Dangla -> Changtang 
+link = { eu3 = 706 vic = 1557 vic = 1556 }			# Amdo -> Balekungomi, Makhai
+link = { eu3 = 705 vic = 1558 }			# Dangla -> Kegudo
 link = { eu3 = 565 vic = 1329 }			# Bhutan -> Thimphu 
-link = { eu3 = 706 vic = 1558 vic = 1557 vic = 1556 }			# Amdo -> Kegudo, Balekungomi, Makhai
 link = { eu3 = 678 vic = 1582 vic = 1586 }			# Kham -> Longan, Yazhou
-link = { eu3 = 676 vic = 1589 vic = 1592 }		# U-Tsang -> Shigatse, Ngari
+link = { eu3 = 676 vic = 1589 vic = 1592 vic = 1591 }		# U-Tsang -> Shigatse, Ngari, Changtang
 link = { eu3 = 677 vic = 1587 vic = 1590 vic = 1588 }	# Qamdo -> Lhasa, Lhodrak, Chamdo
 link = { eu3 = 557 vic = 1326 }			# Katmandu -> Katmandu
 link = { eu3 = 554 vic = 1327 }			# Gorka -> Jumla
@@ -1561,14 +1563,14 @@ link = { eu3 = 585 vic = 1333 vic = 1337 }			# Toungoo -> Toungoo Prome
 link = { eu3 = 586 vic = 1332 vic = 1330 vic = 1331 }	# Pegu -> Pegu Rangoon Bassem
 link = { eu3 = 616 vic = 1372 vic = 1371 }			# Viet Bac -> Son La Cao Bang 
 link = { eu3 = 613 vic = 1369 vic = 1370 vic = 1373 }	# Thang Long -> Hanoi Hai Phong Lang Son
-link = { eu3 = 611 vic = 1362 }				# Thakhek -> Savannakhet
-link = { eu3 = 608 vic = 1363 vic = 1368 }			# Champassak -> Salavan Pakche
+link = { eu3 = 611 vic = 1361 }				# Thakhek -> Savannakhet
+link = { eu3 = 608 vic = 1362 vic = 1363 }			# Champassak -> Salavan, Pakche
 link = { eu3 = 610 vic = 1375 vic = 1377 vic = 1376 vic = 1374 }	# Binh Tri Thien -> Hue Tourane Thanh Hoa
 link = { eu3 = 607 vic = 1379 vic = 1378 }			# Vijaya -> Qui Nhon Pleiku
-link = { eu3 = 606 vic = 1380 vic = 1381 }			# Panduranga -> Saigon Dong Quai
+link = { eu3 = 606 vic = 1380 vic = 1381 vic = 1368 }			# Panduranga -> Saigon, Dong Quai. Stongtreng
 link = { eu3 = 605 vic = 1382 vic = 1383 }			# Prey Nokor -> Hatien Vinhlong
-link = { eu3 = 604 vic = 1367 }			# Udong ->
-link = { eu3 = 609 vic = 1364 vic = 1366 }			# Siem Reap ->
+link = { eu3 = 604 vic = 1367 }			# Udong -> Kampot
+link = { eu3 = 609 vic = 1364 vic = 1366 }			# Siem Reap -> Oudong, Battambang
 link = { eu3 = 612 vic = 1358 vic = 1359 }			# Khorat -> Udon Thani Sisaket Pakche
 link = { eu3 = 615 vic = 1356 }				# Luang Prabang -> Luang Prabang 
 link = { eu3 = 614 vic = 1357 }			# Vientiane -> Vietiane
@@ -1582,11 +1584,11 @@ link = { eu3 = 590 vic = 1343 }				# Moulmein -> Moulmein
 link = { eu3 = 591 vic = 1344 }				# Tenasserim -> Mergui
 link = { eu3 = 592 vic = 1346 vic = 1347 vic = 1353 }	# Ratchaburi -> Bangkok Lopburi Ratchaburi
 link = { eu3 = 593 vic = 1354 vic = 1352 }			# Ligore -> Nakhon Si Thammarat Phuket
-link = { eu3 = 594 vic = 1392 }				# Pattani -> Pattani
+link = { eu3 = 594 vic = 1392 vic = 1389 }				# Pattani -> Pattani, Alor Setar
 link = { eu3 = 599 vic = 1391 }				# Kelantan -> Kota Bahru
-link = { eu3 = 595 vic = 1388 vic = 2575 vic = 1389 }	# Perak -> Penang Ipoh Alor Setar
+link = { eu3 = 595 vic = 2575 vic = 1388 vic = 1387 }	# Perak -> Ipoh, Penang, Kuala Lumpur
 link = { eu3 = 598 vic = 1390 }				# Pahang -> Kuantan
-link = { eu3 = 596 vic = 1386 vic = 1387 }			# Malacca -> Malacca Kula Lumpur
+link = { eu3 = 596 vic = 1386 }			# Malacca -> Malacca
 link = { eu3 = 597 vic = 1385 vic = 1384 }			# Johor -> Johor Bahru Singapore 
 link = { eu3 = 1844 vic = 1361 }			# Xiankhouang -> Savannakhet
 
