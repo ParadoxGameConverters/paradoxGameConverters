@@ -442,25 +442,101 @@ void V2World::convertTechs(EU3World sourceWorld)
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int armyTech = (int)((landScale * (sourceCountries[countries[i].getSourceCountryIndex()].getLandTech() - landMean) / landStdDev) + 4.5);
+		double armyTech = ((landScale * (sourceCountries[countries[i].getSourceCountryIndex()].getLandTech() - landMean) / landStdDev) + 4.5);
 		countries[i].setArmyTech(armyTech);
-		log("%s has army tech of %d\n", countries[i].getTag().c_str(), armyTech);
+		log("%s has army tech of %f\n", countries[i].getTag().c_str(), armyTech);
 
-		int navyTech = (int)(navalScale * (sourceCountries[countries[i].getSourceCountryIndex()].getNavalTech() - navalMean) / navalStdDev) + 5;
+		double navyTech = (navalScale * (sourceCountries[countries[i].getSourceCountryIndex()].getNavalTech() - navalMean) / navalStdDev) + 5;
 		countries[i].setNavyTech(navyTech);
-		log("%s has navy tech of %d\n", countries[i].getTag().c_str(), navyTech);
+		log("%s has navy tech of %f\n", countries[i].getTag().c_str(), navyTech);
 
-		int commerceTech = (int)(tradeScale * (sourceCountries[countries[i].getSourceCountryIndex()].getTradeTech() - tradeMean) / tradeStdDev) + 5;
+		double commerceTech = (tradeScale * (sourceCountries[countries[i].getSourceCountryIndex()].getTradeTech() - tradeMean) / tradeStdDev) + 5;
 		countries[i].setCommerceTech(commerceTech);
-		log("%s has commerce tech of %d\n", countries[i].getTag().c_str(), commerceTech);
+		log("%s has commerce tech of %f\n", countries[i].getTag().c_str(), commerceTech);
 
-		int industryTech = (int)(productionScale * (sourceCountries[countries[i].getSourceCountryIndex()].getProductionTech() - productionMean) / productionStdDev) + 5;
+		double industryTech = (productionScale * (sourceCountries[countries[i].getSourceCountryIndex()].getProductionTech() - productionMean) / productionStdDev) + 5;
 		countries[i].setIndustryTech(industryTech);
-		log("%s has industry tech of %d\n", countries[i].getTag().c_str(), industryTech);
+		log("%s has industry tech of %f\n", countries[i].getTag().c_str(), industryTech);
 
-		int cultureTech = (int)((governmentScale * (sourceCountries[countries[i].getSourceCountryIndex()].getGovernmentTech() - governmentMean) / governmentStdDev) + 4.5);
+		double cultureTech = ((governmentScale * (sourceCountries[countries[i].getSourceCountryIndex()].getGovernmentTech() - governmentMean) / governmentStdDev) + 4.5);
 		countries[i].setCultureTech(cultureTech);
-		log("%s has culture tech of %d\n", countries[i].getTag().c_str(), cultureTech);
+		log("%s has culture tech of %f\n", countries[i].getTag().c_str(), cultureTech);
+	}
+
+	int numRomanticLit = 0;
+	int numRomanticArt = 0;
+	int numRomanticMusic = 0;
+	int numPressureChambers = 0;
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		if (countries[i].getInventionState(romanticist_literature) == active)
+		{
+			numRomanticLit++;
+		}
+		if (countries[i].getInventionState(romanticist_art) == active)
+		{
+			numRomanticArt++;
+		}
+		if (countries[i].getInventionState(romanticist_music) == active)
+		{
+			numRomanticMusic++;
+		}
+		if (countries[i].getInventionState(pressure_chambers_for_thorax_surgery) == active)
+		{
+			numPressureChambers++;
+		}
+	}
+
+	double romanticLitPrestige = 0;
+	for (int i = 1; i <= numRomanticLit; i++)
+	{
+		romanticLitPrestige += 1.0/i;
+	}
+	romanticLitPrestige *= 20;
+	romanticLitPrestige /= numRomanticLit;
+
+	double romanticArtPrestige = 0;
+	for (int i = 1; i <= numRomanticArt; i++)
+	{
+		romanticArtPrestige += 1.0/i;
+	}
+	romanticArtPrestige *= 20;
+	romanticArtPrestige /= numRomanticArt;
+
+	double romanticMusicPrestige = 0;
+	for (int i = 1; i <= numRomanticMusic; i++)
+	{
+		romanticMusicPrestige += 1.0/i;
+	}
+	romanticMusicPrestige *= 20;
+	romanticMusicPrestige /= numRomanticMusic;
+
+	double pressureChambersPrestige = 0;
+	for (int i = 1; i <= numPressureChambers; i++)
+	{
+		pressureChambersPrestige += 1.0/i;
+	}
+	pressureChambersPrestige *= 50;
+	pressureChambersPrestige /= numPressureChambers;
+
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		if (countries[i].getInventionState(romanticist_literature) == active)
+		{
+			countries[i].addPrestige(romanticLitPrestige);
+		}
+		if (countries[i].getInventionState(romanticist_art) == active)
+		{
+			countries[i].addPrestige(romanticArtPrestige);
+		}
+		if (countries[i].getInventionState(romanticist_music) == active)
+		{
+			countries[i].addPrestige(romanticMusicPrestige);
+		}
+		if (countries[i].getInventionState(pressure_chambers_for_thorax_surgery) == active)
+		{
+			countries[i].addPrestige(pressureChambersPrestige);
+		}
 	}
 }
 

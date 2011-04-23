@@ -12,23 +12,25 @@ using namespace std;
 class V2Country
 {
 	public:
-		void			init(string tag, string countryFile, vector<int> parties);
-		string		getTag();
-		void			setSourceCountryIndex(int);
-		void			addState(V2State);
-		void			setCapital(int);
-		void			setcivilized(bool);
-		void			setPrimaryCulture(string);
-		void			addAcceptedCulture(string);
-		void			setReligion(string);
-		void			output(FILE*);
-		int			getSourceCountryIndex();
-		void			setPrestige(double);
-		void			setArmyTech(int);
-		void			setNavyTech(int);
-		void			setCommerceTech(int);
-		void			setIndustryTech(int);
-		void			setCultureTech(int);
+		void					init(string tag, string countryFile, vector<int> parties);
+		string				getTag();
+		void					setSourceCountryIndex(int);
+		void					addState(V2State);
+		void					setCapital(int);
+		void					setcivilized(bool);
+		void					setPrimaryCulture(string);
+		void					addAcceptedCulture(string);
+		void					setReligion(string);
+		void					output(FILE*);
+		int					getSourceCountryIndex();
+		void					setPrestige(double);
+		void					setArmyTech(double);
+		void					setNavyTech(double);
+		void					setCommerceTech(double);
+		void					setIndustryTech(double);
+		void					setCultureTech(double);
+		inventionStatus	getInventionState(inventionTypes);
+		void					addPrestige(double);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
@@ -49,5 +51,5 @@ class V2Country
 		int					commerceTech;
 		int					industryTech;
 		int					cultureTech;
-		int					inventions[naval_exercises];
+		inventionStatus	inventions[naval_exercises];
 };
