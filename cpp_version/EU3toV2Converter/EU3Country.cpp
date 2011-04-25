@@ -44,33 +44,51 @@ void EU3Country::init(Object* obj)
 	}
 
 	vector<Object*> prestigeObj = obj->getValue("prestige");
-	string prestigeString = prestigeObj[0]->getLeaf();
-	prestige = 100 * atof( prestigeString.c_str() );
+	if (prestigeObj.size() > 0)
+	{
+		string prestigeString = prestigeObj[0]->getLeaf();
+		prestige = 100 * atof( prestigeString.c_str() );
+	}
+	else
+	{
+		prestige = -100.0;
+	}
 
 	vector<Object*> techsObj = obj->getValue("technology");
-	vector<Object*> techObj = techsObj[0]->getValue("land_tech");
-	string techString = techObj[0]->getToken(0);
-	landTech = atof( techString.c_str() );
+	if (techsObj.size() < 0)
+	{
+		vector<Object*> techObj = techsObj[0]->getValue("land_tech");
+		string techString = techObj[0]->getToken(0);
+		landTech = atof( techString.c_str() );
 
-	techsObj = obj->getValue("technology");
-	techObj = techsObj[0]->getValue("naval_tech");
-	techString = techObj[0]->getToken(0);
-	navalTech = atof( techString.c_str() );
+		techsObj = obj->getValue("technology");
+		techObj = techsObj[0]->getValue("naval_tech");
+		techString = techObj[0]->getToken(0);
+		navalTech = atof( techString.c_str() );
 
-	techsObj = obj->getValue("technology");
-	techObj = techsObj[0]->getValue("trade_tech");
-	techString = techObj[0]->getToken(0);
-	tradeTech = atof( techString.c_str() );
+		techsObj = obj->getValue("technology");
+		techObj = techsObj[0]->getValue("trade_tech");
+		techString = techObj[0]->getToken(0);
+		tradeTech = atof( techString.c_str() );
 
-	techsObj = obj->getValue("technology");
-	techObj = techsObj[0]->getValue("production_tech");
-	techString = techObj[0]->getToken(0);
-	productionTech = atof( techString.c_str() );
+		techsObj = obj->getValue("technology");
+		techObj = techsObj[0]->getValue("production_tech");
+		techString = techObj[0]->getToken(0);
+		productionTech = atof( techString.c_str() );
 
-	techsObj = obj->getValue("technology");
-	techObj = techsObj[0]->getValue("government_tech");
-	techString = techObj[0]->getToken(0);
-	governmentTech = atof( techString.c_str() );
+		techsObj = obj->getValue("technology");
+		techObj = techsObj[0]->getValue("government_tech");
+		techString = techObj[0]->getToken(0);
+		governmentTech = atof( techString.c_str() );
+	}
+	else
+	{
+		landTech			= 0.0;
+		navalTech		= 0.0;
+		tradeTech		= 0.0;
+		productionTech	= 0.0;
+		governmentTech	= 0.0;
+	}
 }
 
 
