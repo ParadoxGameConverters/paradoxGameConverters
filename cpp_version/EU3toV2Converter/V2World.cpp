@@ -185,7 +185,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 		vector<int> sourceNums	= provMap[destNum];
 		if (sourceNums.size() == 0)
 		{
-			log("Error: no source for V2 province %d\n", destNum);
+			log("Error: no source for %s (province #%d)\n", provinces[i].getName().c_str() , destNum);
 			//provinces[i].setOwner("\"ERR\"");
 		}
 		else
@@ -429,8 +429,8 @@ void V2World::convertTechs(EU3World sourceWorld)
 	}
 
 	double landStdDev			= sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
-	double navalStdDev			= sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
-	double tradeStdDev			= sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
+	double navalStdDev		= sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
+	double tradeStdDev		= sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
 	double productionStdDev	= sqrt( (num > 1) ? (newProductionS/(num - 1)) : 0.0 );
 	double governmentStdDev	= sqrt( (num > 1) ? (newGovernmentS/(num - 1)) : 0.0 );
 

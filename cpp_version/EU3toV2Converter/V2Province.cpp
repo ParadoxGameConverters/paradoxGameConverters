@@ -48,6 +48,12 @@ int V2Province::getNum()
 }
 
 
+string V2Province::getName()
+{
+	return name;
+}
+
+
 void V2Province::setOwner(string newOwner)
 {
 	owner = newOwner;
