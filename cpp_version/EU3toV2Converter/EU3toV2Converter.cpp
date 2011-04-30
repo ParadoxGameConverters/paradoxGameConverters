@@ -227,10 +227,20 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	// Convert
+	printf("Converting countries.\n");
+	log("Converting countries.\n");
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, religionMap);
+	printf("Converting provinces.\n");
+	log("Converting provinces.\n");
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);
+	printf("Converting capitals.\n");
+	log("Converting capitals.\n");
 	destWorld.convertCapitals(sourceWorld, provinceMap);
+	printf("Converting states.\n");
+	log("Converting states.\n");
 	destWorld.setupStates(stateMap);
+	printf("Converting techs.\n");
+	log("Converting techs.\n");
 	destWorld.convertTechs(sourceWorld);
 	  
 	/*InstructionsParser insParser;
@@ -251,6 +261,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	InstructionsParser::Refresh();*/
 
 	// Output results
+	printf("Outputting save.\n");
+	log("Outputting save.\n");
 	FILE* output;
 	if (fopen_s(&output, "output.v2", "w") != 0)
 	{

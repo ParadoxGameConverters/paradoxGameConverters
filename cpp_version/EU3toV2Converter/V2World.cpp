@@ -237,12 +237,11 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 
 void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 {
-	log("Converting Capitals:\n");
 	vector<EU3Country> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		int oldCapital = oldCountries[countries[i].getSourceCountryIndex()].getCapital();
-		log("	old capital: %4d", oldCapital);
+		log("\n	EU3tag: %s	old capital: %4d", oldCountries[i].getTag().c_str(), oldCapital);
 		countries[i].setCapital(0);
 		if (oldCapital > 0)
 		{
@@ -254,18 +253,15 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 					{
 						int newCapital = j->first;
 						countries[i].setCapital(newCapital);
-						log("	new capital: %d\n", newCapital);
+						log("	new capital: %d", newCapital);
 						j = provinceMap.end();
 						break;
 					}
 				}
 			}
 		}
-		else
-		{
-			log("\n");
-		}
 	}
+	log("\n");
 }
 
 
