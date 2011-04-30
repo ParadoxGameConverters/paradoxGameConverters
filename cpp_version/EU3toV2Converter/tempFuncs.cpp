@@ -1,12 +1,11 @@
 #include "tempFuncs.h"
 
 
-static int popId  = 23000;
-
 void outputHeader(FILE* output)
 {
 	fprintf(output, "id=\n");
 	fprintf(output, "{\n");
+	//fprintf(output, "	id=5107\n");
 	fprintf(output, "	id=2107\n");
 	fprintf(output, "	type=4713\n");
 	fprintf(output, "}\n");
