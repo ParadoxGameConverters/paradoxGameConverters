@@ -55,7 +55,7 @@ void EU3Country::init(Object* obj)
 	}
 
 	vector<Object*> techsObj = obj->getValue("technology");
-	if (techsObj.size() < 0)
+	if (techsObj.size() > 0)
 	{
 		vector<Object*> techObj = techsObj[0]->getValue("land_tech");
 		string techString = techObj[0]->getToken(0);
