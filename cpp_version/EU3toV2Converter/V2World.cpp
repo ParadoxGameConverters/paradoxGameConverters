@@ -1,6 +1,6 @@
 #include "V2World.h"
 
-void V2World::init(Object* obj)
+void V2World::init(Object* obj, string V2Loc)
 {
 	std::string key;	
 	std::vector<Object*> leaves = obj->getLeaves();
@@ -18,6 +18,65 @@ void V2World::init(Object* obj)
 		}
 	}
 
+	struct _finddata_t	popsFileData;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (V2Loc + "\\history\\pops\\1836.1.1\\*").c_str(), &popsFileData)) == -1L)
+	{
+		log("Could not open pops files.\n");
+		return;
+	}
+	do
+	{
+		if (popsFileData.name == "." || popsFileData.name == "..")
+		{
+			continue;
+		}
+
+		Object*	obj2;				// generic object
+		ifstream	read;				// ifstream for reading files
+		initParser();
+		obj2 = Parser::topLevel;
+		read.open( (V2Loc + "\\history\\pops\\1836.1.1\\" + popsFileData.name).c_str() );
+		if (!read.is_open())
+		{
+			log("Error: Could not open %s\n", popsFileData.name);
+			printf("Error: Could not open %s\n", popsFileData.name);
+			read.close();
+			continue;
+		}
+		readFile(read);
+		read.close();
+	
+		leaves = obj2->getLeaves();
+		for (unsigned int j = 0; j < leaves.size(); j++)
+		{
+			int provNum = atoi(leaves[j]->getKey().c_str());
+			unsigned int k = 0;
+			while (k < provinces.size() && provNum != provinces[k].getNum())
+			{
+				k++;
+			}
+			if (k == provinces.size())
+			{
+				log("Could not find province %d for original pops.\n", provNum);
+				continue;
+			}
+			else
+			{
+				vector<Object*> pops = leaves[j]->getLeaves();
+				for(unsigned int l = 0; l < pops.size(); l++)
+				{
+					V2Pop newPop;
+					newPop.setType(pops[l]->getKey());
+					newPop.setCulture(pops[l]->getLeaf("culture"));
+					newPop.setReligion(pops[l]->getLeaf("religion"));
+					newPop.setSize(atoi(pops[l]->getLeaf("size").c_str()));
+					provinces[k].addOldPop(newPop);
+				}
+			}
+		}
+	} while(_findnext(fileListing, &popsFileData) == 0);
+	_findclose(fileListing);
 }
 
 

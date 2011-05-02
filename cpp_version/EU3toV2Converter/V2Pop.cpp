@@ -34,6 +34,12 @@ void V2Pop::setReligion(string newReligion)
 }
 
 
+int V2Pop::getSize()
+{
+	return size;
+}
+
+
 void V2Pop::output(FILE* output)
 {
 	fprintf(output, "	%s=\n", type.c_str());

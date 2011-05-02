@@ -30,15 +30,6 @@ void V2Province::init(Object* obj) {
 	}
 
 	oldPopulation = 0;
-	vector<Object*> leaves = obj->getLeaves();
-	for (unsigned int i = 0; i < leaves.size(); i++)
-	{
-		string key = leaves[i]->getKey();
-		if ( ( key == "aristocrats") || ( key == "artisans") || ( key == "bureaucrats") || ( key == "") || ( key == "clergymen") || ( key == "clerks") || ( key == "craftsmen") || ( key == "farmers") || ( key == "labourers") || ( key == "officers") || ( key == "slaves") || ( key == "soldiers") )
-		{
-			oldPopulation += atoi( (leaves[i]->getValue("size"))[0]->getLeaf().c_str() );
-		}
-	}
 }
 
 
@@ -81,6 +72,12 @@ void V2Province::setReligion(string newReligion)
 bool V2Province::isColonial()
 {
 	return colonial;
+}
+
+void V2Province::addOldPop(V2Pop oldPop)
+{
+	oldPops.push_back(oldPop);
+	oldPopulation += oldPop.getSize();
 }
 
 
@@ -267,9 +264,19 @@ void V2Province::output(FILE* output)
 	fprintf(output, "	garrison=100.000\n");
 	if (land)
 	{
-		for (unsigned int i = 0; i < pops.size(); i++)
+		if (owner == "")
 		{
-			pops[i].output(output);
+			for (unsigned int i = 0; i < pops.size(); i++)
+			{
+				oldPops[i].output(output);
+			}
+		}
+		else
+		{
+			for (unsigned int i = 0; i < pops.size(); i++)
+			{
+				pops[i].output(output);
+			}
 		}
 		fprintf(output, "	rgo=\n");
 		fprintf(output, "	{\n");

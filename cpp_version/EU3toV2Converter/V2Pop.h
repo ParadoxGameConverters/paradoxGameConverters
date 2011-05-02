@@ -13,6 +13,7 @@ class V2Pop
 		void	setSize(int);
 		void	setCulture(string);
 		void	setReligion(string);
+		int	getSize();
 		void	output(FILE*);
 	private:
 
