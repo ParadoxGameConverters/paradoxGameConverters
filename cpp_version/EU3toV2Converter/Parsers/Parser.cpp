@@ -10,44 +10,85 @@ void initParser()
    Parser::topLevel = new Object("topLevel");
 }
 
-int trim (std::string& str) {
+int trim (std::string& str)
+{
   // Returns net number of braces opened by str, and trims leading and trailing whitespace.
 
-  const char* s = str.c_str();
-  int ret = 0; 
-  unsigned int strSize = str.size();
-  if (0 == strSize) return 0;
-  bool isInLiteral = false; 
-  for (unsigned int i = 0; i < strSize; ++i) {
-    if ('"' == s[i]) isInLiteral = !isInLiteral; 
-    if (isInLiteral) continue; 
-    if ('{' == s[i]) ++ret; 
-    else if ('}' == s[i]) --ret;
-  }
+	const char*		s			= str.c_str();
+	int				ret		= 0;
+	unsigned int	strSize	= str.size();
 
-  unsigned int first = 0;
-  for (; first < strSize; ++first) {
-    if (s[first] == ' ') continue;
-    if (13 == (int) s[first]) continue; // Carriage return
-    break;
-  }
+	if (0 == strSize)
+	{
+		return 0;
+	}
 
-  unsigned int last = strSize - 1; 
-  for (; last > first; --last) {
-    if (' ' == s[last]) continue;
-    if (13 == (int) s[last]) continue; 
-    break;
-  }
+	bool isInLiteral = false;
+	for (unsigned int i = 0; i < strSize; ++i)
+	{
+		if ('"' == s[i])
+		{
+			isInLiteral = !isInLiteral;
+		}
+		if (isInLiteral)
+		{
+			continue;
+		}
+		if ('#' == s[i])
+		{
+			break;
+		}
+		if ('{' == s[i])
+		{
+			++ret;
+		}
+		else if ('}' == s[i])
+		{
+			--ret;
+		}
+	}
 
-  unsigned int fcomment = 0;
-  for (; fcomment < strSize; ++fcomment) {
-    if (s[fcomment] != '#') continue; 
-    break;
-  }
-  if (fcomment < last) last = fcomment-1; 
+	unsigned int first = 0;
+	for (; first < strSize; ++first)
+	{
+		if (s[first] == ' ')
+		{
+			continue;
+		}
+		if ('\r' == s[first]) // Carriage return
+		{
+			continue;
+		}
+		break;
+	}
 
-  str = str.substr(first, last - first + 1); 
-  return ret; 
+	unsigned int last = strSize - 1; 
+	for (; last > first; --last)
+	{
+		if (' ' == s[last])
+		{
+			continue;
+		}
+		if ('\r' == (int) s[last]) // Carriage return
+		{
+			continue; 
+		}
+		break;
+	}
+
+	unsigned int fcomment = 0;
+	for (; fcomment < strSize; ++fcomment)
+	{
+		if (s[fcomment] != '#') continue; 
+		break;
+	}
+	if (fcomment < last)
+	{
+		last = fcomment-1;
+	}
+
+	str = str.substr(first, last - first + 1); 
+	return ret; 
 }
 
 void readFile (std::ifstream& read) {
