@@ -266,7 +266,7 @@ void V2Province::output(FILE* output)
 	{
 		if (owner == "")
 		{
-			for (unsigned int i = 0; i < pops.size(); i++)
+			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
 				oldPops[i].output(output);
 			}
