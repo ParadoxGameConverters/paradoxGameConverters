@@ -1,0 +1,157 @@
+Revision	Version Updated		Log Message
+---------	---------------		-----------------------
+1		Java			Tree structure for java version
+2		Java			Java version, initial import
+3		Java			Conversion of province IDs occurs.
+					Might switch to Maksim converter after this
+4		Java			Commit before rewrite to pure AST based solution... Storing an intermediate model seems overkill.
+5		Java			Changed to pure AST-solution. Conversion of ids and countries (without anything else) now takes place.
+6		C++			(Inital checkin of C++ version)
+7		Java			More robust warnings on bad province/country mapping files. Countries can be merged.
+8		C++			Modified to support country mappings. Started work on instructions parsing (all countries should now have flag sets associated with them).
+9		C++			Logging added.
+10		C++			Instructions Parsing has been added to the build. Variable Calculator now calculates variables based on country properties in EU3.
+11		C++			Started work on Ruleset - Liberty, Order, Equality
+12		C++			Quick update to remove out-of-date settings.
+13		C++			Saving the National Value now.
+14		C++			Added more functions to support LiteracyRate calculation.
+15		C++			Started work on state conversion.
+16		C++			State conversion done.
+17		C++			State conversion almost ready. Tested against a large number of provinces.
+18		C++			Minor updates + Cores now transferred.
+19		C++			Adding VC2010 workspace.
+20		C++			Release config for VC2010
+21		C#			C# front end...
+22		C#			Missing method fixed and ignore filters added for intermediate files.
+23		C#/C++			Made C++ converter take input file as command line arg to correspond with C# frontend.
+24		Java			Made Java version conform with tag files format...
+					Considering to recode C++ version in Java due to parser bug.
+25		N/A			Started writing SRS. Necessary to formalize requirements as there is much confusion about that.
+26		C++			Added log messages if files can't be opened.
+27		C++			Simplified OneToManyParser (though it looks unused).
+28		C++			Simplified logger.
+29		C++			Slight clean up, failure to open files should always abort conversion (no more empty output.v2, I hope!)
+30		C++			Bad save filename should no longer crash things.
+31		C++			Removed "Parsed to line x" message (it annoys me).
+32		C++			Some more log info for tracking down that bad province conversion bug.
+33		N/A			A hopefully not too complex bug/feature list. If nothing else, it'll save me from my own absent-mindedness.
+34		N/A			Typo'd the name…
+35		C++			Another log message.
+36		C++			Mapper didn't need to be a class.
+37		N/A			Removed bugs and features files.
+38		C++			Added a new method of converting province ownership. No effect on the output yet.
+39		C++			The new conversion method now sets up states.
+40		C++			Previous commit failed. Trying again.
+41		C++			Ended the attack of the closing curly braces.
+					Cleaned up some indentation in the output.
+					Now outputs all provinces.
+					Now distinguishes between land and sea provinces.
+42		C++			Missed a closing curly brace. Doh!
+43		C++			Converts countries.
+44		C++			Removed old conversion methods.
+					Most unneeded files are deleted, a few are left completely commented out. The commented out ones have not been examined in depth, and may contain useful code.
+45		C++			.suo file shouldn't be under source control.
+46		C++			Removed some unnecessary data from the countries part of the output.
+47		C++			No capitals defined now. The game seems to default them to the lowest number province in each country.
+48		C++			New Tag conversion method.
+49		C++			Files needed for the new Tag conversion method.
+50		C++			Streamlined Build Process
+51		C++			Got debugging working with the new build configs.
+					Finished some details with the new tag conversion methods.
+52		C++			Countries with no territory are not considered for conversion.
+53		C++			Committed DW Direct country mappings.
+54		C++			Scandinavia, Balkans, Greece, British Isles now have some region specific country mappings.
+					Added some direct country mappings.
+					Added extra comments for clarity.
+55		C++			Regional mappings for chinese states, and direct map for Mongolia added.
+56		C++			Syntax errors.  Added Switzerland direct map.
+57		C++			Now incorporates historical population levels (from input.v2).
+58		C++			Cores! Historical pop numbers! Rgo types! Garrisons?
+59		C++			Province life ratings.
+60		C++			Moving some code around.
+61		C++			Correct pop type for RGO.
+62		C++			Imports EU3 province population.
+63		C++			TAG order now follows first-is-last pattern in region mappings.  
+					Added HRE => Germany mappings.
+64		C++			Added Iroquois => Metis Confederacy
+65		C++			Catalunya now has first chance to become Catelonia.
+					Spain clarifications.
+					Italy mappings.
+					Low Countries mappings
+66		C++			Russia and Arabia mappings done
+67		C++			Added EU3_DivineWind_Saves folder and Hindustan1821_1_1.eu3 save game
+					Added asia minor, central asia, persia maps
+68		C++			Added Cold Evil's DW Papal Sate save: EU3DW-ThePapalState_ColdEvil.zip
+69		C++			My HttT Burgandy->France game
+70		C++			Partial progress on the capitals thing. Need others to double-check my code.
+71		C++			Capitals now converting correctly.
+72		C++			Nations all start with Absolute Monarchy
+73		C++			Everything is more conservative.
+74		C++			Build by double-clicking a batch file!
+75		C++			
+76		C++			Fixed empty states bug.
+77		C++			Added some Indo-china maps.  These are the last ones before the unsorted block-o-nations that appears at the end of the EU3 countries file.
+78		C++			Changes to how V2 Countries are created. This will allow us to load information from the V2 install for these countries.
+79		C++			These files are no longer needed.
+80		C++			No more projects in converted states.
+81		C++			Only colonies convert as colonies.
+82		C++			Civilized nations!
+83		C++			Resolved all the compiler warnings.
+84		C++			Simple version of political parties is done (all parties are active from the start).
+85		C++			Far East countries from the block-o-nations have been entered.  India is next.
+86		C++			Indian and Stragglers maps have been complete.  Version 1 of the country mappings has been complete.  To be done is a file cleanup, and then fleshing out the regional mappings.
+87		C++			DW_country_mappings.txt has been properly sorted by region.
+88		C++			V2 tags not listed in the tag conversion rules will not be used for country conversion.
+					Copied the DW country conversion rules to the HttT country conversion rules.
+89		C++			Reverting revision 88.
+90		C++			DW_cultureMap.txt completed and added, which maps all EU3 cultures to their equivalent V2 cultures.
+91		N/A			Listed global details and land province details from an HttT save.
+92		N/A			Added HttT Country Details. Didn't write at length about the tag conversion process because I feel lazy.
+93		N/A			Small correction to semantics.
+94		C++			Primary cultures of countries now convert.
+95		N/A			Added accepted culture to the EU3 Country details.
+96		C++			Accepted cultures now converted!
+97		C++			Fixing typos in the DW culture map.
+98		C++			Basic conversion of province cultures.
+99		C++			Basic framework for pop compositions.
+100		C++			
+101		C++			Inventions should now fire properly.
+102		C++			Sharing the culture map with HttT.
+103		C++			Forgot to put these under source control earlier. Absolutely needed for the pops features.
+104		C++			Nations now have a state religion (animist).
+105		N/A			The updates from Sid Meier
+106		C++			Pop creation function now has access to the old province and old country to look up info.
+107		C++			Land techs convert to army techs.
+108		C++			Naval techs convert to navy techs.
+109		C++			Trade tech -> Commerce Tech
+110		C++			Production tech -> Industry Tech
+111		C++			input.v2 replaced with input save that does not have prov IDs in front of every province name.  old input save (input_old.v2) is kept just in cased I ballsed it up.
+112		C++			Government tech -> Culture tech
+113		C++			Adjusted scale of techs.
+114		C++			Replacement new input.v2
+115		C++			Inventions!
+116		C++			DW_religionMap.txt added.
+117		C++			Copypasted alot of tags around for more natural tag conversion.
+118		C++			Tweaks to country mappings,
+119		C++			HttT_country_mappings.txt is now identical to DW_country_mappings.txt
+120		C++			(Added Brandenburg-Prussia-Germany save)
+121		C++			(Added Yoshi HT Input save)
+122		C++			Fixed typo in country conversion list.
+123		C++			Religions now converted.
+124		C++			Only valid political parties are activated.
+125		C++			Prestige!
+126		C++			Kalelovil's updates to the DW province mappings.
+127		C++			Many inventions start fired. Prestige ones will give prestige.
+128		C++			Made Romanticism a later tech. Also fixed a minor industrial/culture inventions bug.
+129		C++			Fixed 5.1 beta crash.
+130		C++			Fixing my fix to the 5.1 beta crash.
+131		C++			Improved logging of missing province mappings.
+132		C++			Fixing the autosave bug. I think.
+133		C++			Improved logging.
+134		C++			Now pulls original pop info from V2 install. Used for uncontrolled provinces & pre-conversion population counts.
+135		C++			Fixed bug where parser would still look for curly brackets in comments.
+136		C++			No longer tries to open "." and "..".
+137		C++			Really outputs pops in unowned provinces.
+138		C++			New start date: December 12, 1835. Should allow politics to kick-start better.
+139		C++			RGO pops start employed.
+140		C++			Change log.
