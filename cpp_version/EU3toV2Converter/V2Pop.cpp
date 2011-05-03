@@ -40,6 +40,12 @@ int V2Pop::getSize()
 }
 
 
+string V2Pop::getType()
+{
+	return type;
+}
+
+
 void V2Pop::output(FILE* output)
 {
 	fprintf(output, "	%s=\n", type.c_str());

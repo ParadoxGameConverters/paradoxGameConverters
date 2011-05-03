@@ -280,6 +280,121 @@ void V2Province::output(FILE* output)
 		}
 		fprintf(output, "	rgo=\n");
 		fprintf(output, "	{\n");
+		fprintf(output, "		employment=\n");
+		fprintf(output, "		{\n");
+		fprintf(output, "			province_id=%d\n", num);
+		fprintf(output, "			employees=\n");
+		fprintf(output, "			{\n");
+		if (owner == "")
+		{
+			for (unsigned int i = 0; i < oldPops.size(); i++)
+			{
+				int numFarmers = 0;
+				if (oldPops[i].getType() == "farmers")
+				{
+					fprintf(output, "				{\n");
+					fprintf(output, "					province_pop_id=\n");
+					fprintf(output, "					{\n");
+					fprintf(output, "						province_id=%d\n", num);
+					fprintf(output, "						index=%d\n", numFarmers);
+					fprintf(output, "						type=8\n");
+					fprintf(output, "					}\n");
+					fprintf(output, "					count=%d\n", oldPops[i].getSize());
+					fprintf(output, "				}\n");
+					numFarmers++;
+				}
+			}
+			for (unsigned int i = 0; i < oldPops.size(); i++)
+			{
+				int numLabourers = 0;
+				if (oldPops[i].getType() == "labourers")
+				{
+					fprintf(output, "				{\n");
+					fprintf(output, "					province_pop_id=\n");
+					fprintf(output, "					{\n");
+					fprintf(output, "						province_id=%d\n", num);
+					fprintf(output, "						index=%d\n", numLabourers);
+					fprintf(output, "						type=9\n");
+					fprintf(output, "					}\n");
+					fprintf(output, "					count=%d\n", oldPops[i].getSize());
+					fprintf(output, "				}\n");
+					numLabourers++;
+				}
+			}
+			for (unsigned int i = 0; i < oldPops.size(); i++)
+			{
+				int numSlaves = 0;
+				if (oldPops[i].getType() == "slaves")
+				{
+					fprintf(output, "				{\n");
+					fprintf(output, "					province_pop_id=\n");
+					fprintf(output, "					{\n");
+					fprintf(output, "						province_id=%d\n", num);
+					fprintf(output, "						index=%d\n", numSlaves);
+					fprintf(output, "						type=11\n");
+					fprintf(output, "					}\n");
+					fprintf(output, "					count=%d\n", oldPops[i].getSize());
+					fprintf(output, "				}\n");
+					numSlaves++;
+				}
+			}
+		}
+		else
+		{
+			for (unsigned int i = 0; i < pops.size(); i++)
+			{
+				int numFarmers = 0;
+				if (pops[i].getType() == "farmers")
+				{
+					fprintf(output, "				{\n");
+					fprintf(output, "					province_pop_id=\n");
+					fprintf(output, "					{\n");
+					fprintf(output, "						province_id=%d\n", num);
+					fprintf(output, "						index=%d\n", numFarmers);
+					fprintf(output, "						type=8\n");
+					fprintf(output, "					}\n");
+					fprintf(output, "					count=%d\n", pops[i].getSize());
+					fprintf(output, "				}\n");
+					numFarmers++;
+				}
+			}
+			for (unsigned int i = 0; i < pops.size(); i++)
+			{
+				int numLabourers = 0;
+				if (pops[i].getType() == "labourers")
+				{
+					fprintf(output, "				{\n");
+					fprintf(output, "					province_pop_id=\n");
+					fprintf(output, "					{\n");
+					fprintf(output, "						province_id=%d\n", num);
+					fprintf(output, "						index=%d\n", numLabourers);
+					fprintf(output, "						type=9\n");
+					fprintf(output, "					}\n");
+					fprintf(output, "					count=%d\n", pops[i].getSize());
+					fprintf(output, "				}\n");
+					numLabourers++;
+				}
+			}
+			for (unsigned int i = 0; i < pops.size(); i++)
+			{
+				int numSlaves = 0;
+				if (pops[i].getType() == "slaves")
+				{
+					fprintf(output, "				{\n");
+					fprintf(output, "					province_pop_id=\n");
+					fprintf(output, "					{\n");
+					fprintf(output, "						province_id=%d\n", num);
+					fprintf(output, "						index=%d\n", numSlaves);
+					fprintf(output, "						type=11\n");
+					fprintf(output, "					}\n");
+					fprintf(output, "					count=%d\n", pops[i].getSize());
+					fprintf(output, "				}\n");
+					numSlaves++;
+				}
+			}
+		}
+		fprintf(output, "			}\n");
+		fprintf(output, "		}\n");
 		fprintf(output, "		goods_type=%s\n", rgoType.c_str());
 		fprintf(output, "	}\n");
 		fprintf(output, "	life_rating=%d\n", lifeRating);

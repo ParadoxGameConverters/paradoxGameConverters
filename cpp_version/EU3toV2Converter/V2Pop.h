@@ -9,12 +9,13 @@ class V2Pop
 {
 	public:
 		V2Pop();
-		void	setType(string);
-		void	setSize(int);
-		void	setCulture(string);
-		void	setReligion(string);
-		int	getSize();
-		void	output(FILE*);
+		void		setType(string);
+		void		setSize(int);
+		void		setCulture(string);
+		void		setReligion(string);
+		int		getSize();
+		string	getType();
+		void		output(FILE*);
 	private:
 
 		int		id;
