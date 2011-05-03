@@ -3,6 +3,7 @@
 
 void outputHeader(FILE* output)
 {
+	fprintf(output, "date=\"1835.12.31\"\n");
 	fprintf(output, "id=\n");
 	fprintf(output, "{\n");
 	//fprintf(output, "	id=5107\n");
