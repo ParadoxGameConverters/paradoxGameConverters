@@ -27,7 +27,7 @@ void V2World::init(Object* obj, string V2Loc)
 	}
 	do
 	{
-		if (popsFileData.name == "." || popsFileData.name == "..")
+		if (strcmp(popsFileData.name, ".") == 0 || strcmp(popsFileData.name, "..") == 0 )
 		{
 			continue;
 		}
