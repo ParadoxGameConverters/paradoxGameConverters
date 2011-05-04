@@ -30,25 +30,7 @@
     <ClCompile Include="Mapper.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Supplementary.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="VariableCalculator.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Parsers\DateParser.cpp">
-      <Filter>Parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="Parsers\InstructionsParser.cpp">
-      <Filter>Parsers</Filter>
-    </ClCompile>
     <ClCompile Include="Parsers\Object.cpp">
-      <Filter>Parsers</Filter>
-    </ClCompile>
-    <ClCompile Include="Parsers\ObjectHandler.cpp">
       <Filter>Parsers</Filter>
     </ClCompile>
     <ClCompile Include="Parsers\Parser.cpp">
@@ -81,9 +63,6 @@
     <ClCompile Include="tempFuncs.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="RulesetHandler.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="V2Pop.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
@@ -92,22 +71,7 @@
     <ClInclude Include="Mapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="VariableCalculator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Parsers\DateParser.h">
-      <Filter>Parsers</Filter>
-    </ClInclude>
-    <ClInclude Include="Parsers\InstructionsParser.h">
-      <Filter>Parsers</Filter>
-    </ClInclude>
     <ClInclude Include="Parsers\Object.h">
-      <Filter>Parsers</Filter>
-    </ClInclude>
-    <ClInclude Include="Parsers\ObjectHandler.h">
       <Filter>Parsers</Filter>
     </ClInclude>
     <ClInclude Include="Parsers\Parser.h">
@@ -138,9 +102,6 @@
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="tempFuncs.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="RulesetHandler.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="V2Pop.h">
