@@ -1,5 +1,4 @@
 copy "DW_country_mappings.txt" "DWToV2\country_mappings.txt"
-copy "region.txt" "DWToV2\region.txt"
 copy "readme.txt" "DWToV2\readme.txt"
 copy "DW_province_mappings.txt" "DWToV2\province_mappings.txt"
 copy "input.v2" "DWToV2\input.v2"

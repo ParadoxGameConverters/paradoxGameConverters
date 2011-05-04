@@ -156,3 +156,5 @@ Revision	Version Updated		Log Message
 139		C++			RGO pops start employed.
 140		C++			Change log.
 141		C++			Updating ReadMe.txt
+142		C++			Parser now handles single-line top-level objects.
+143		C++			Eliminated need for region.txt, pulls info from V2 install instead.

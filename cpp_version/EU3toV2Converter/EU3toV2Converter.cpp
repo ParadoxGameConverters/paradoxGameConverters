@@ -155,7 +155,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	initParser();
 	obj = Parser::topLevel;
-	read.open("region.txt");
+	read.open( (V2Loc + "\\map\\region.txt").c_str() );
 	if (!read.is_open())
 	{
 		log("Error: Could not open region.txt\n");
@@ -172,7 +172,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		return 1;
 	}
 	stateMapping stateMap;
-	stateMap = initStateMap(obj->getLeaves()[0]);
+	stateMap = initStateMap(obj);
 
 
 	// Parse Culture Mappings
