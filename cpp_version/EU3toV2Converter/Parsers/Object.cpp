@@ -1,10 +1,12 @@
 #include "Object.h"
 #include "Parser.h"
 #include <sstream> 
+#include <fstream>
+
 
 bool Object::debug = false; 
 
-Object::Object (std::string k) :
+Object::Object (string k) :
   objects(),
   strVal(),
   leaf(false),
@@ -27,12 +29,12 @@ Object::Object (Object* other) :
   isObjList(other->isObjList)
 {
   key = other->key; 
-  for (std::vector<Object*>::iterator i = other->objects.begin(); i != other->objects.end(); ++i) {
+  for (vector<Object*>::iterator i = other->objects.begin(); i != other->objects.end(); ++i) {
     objects.push_back(new Object(*i)); 
   }
 }
 
-void Object::setValue (std::string val) {
+void Object::setValue (string val) {
   strVal = val; 
   leaf = true; 
 }
@@ -42,7 +44,7 @@ void Object::setValue (Object* val) {
   leaf = false; 
 }
 
-void Object::unsetValue (std::string val) {
+void Object::unsetValue (string val) {
   for (unsigned int i = 0; i < objects.size(); ++i) {
     if (objects[i]->getKey() != val) continue; 
     objects[i] = objects.back(); 
@@ -50,17 +52,17 @@ void Object::unsetValue (std::string val) {
   }
 }
 
-void Object::setLeaf (std::string key, std::string val) {
+void Object::setLeaf (string key, string val) {
   Object* leaf = new Object(key); 
   leaf->setValue(val); 
   setValue(leaf); 
 }
 
-void Object::setValue (std::vector<Object*> val) {
+void Object::setValue (vector<Object*> val) {
   objects = val; 
 }
 
-void Object::addToList(std::string val) {
+void Object::addToList(string val) {
   isObjList = true;
   if (strVal.size() > 0)
    strVal += " ";
@@ -68,16 +70,16 @@ void Object::addToList(std::string val) {
   tokens.push_back(val); 
 }
 
-std::vector<Object*> Object::getValue (std::string key) const {
-  std::vector<Object*> ret; 
-  for (std::vector<Object*>::const_iterator i = objects.begin(); i != objects.end(); ++i) {
+vector<Object*> Object::getValue (string key) const {
+  vector<Object*> ret; 
+  for (vector<Object*>::const_iterator i = objects.begin(); i != objects.end(); ++i) {
     if ((*i)->getKey() != key) continue;
     ret.push_back(*i); 
   }
   return ret; 
 }
 
-std::string Object::getToken (int index) {
+string Object::getToken (int index) {
   if (!isObjList) return "";
   if (index >= (int) tokens.size()) return ""; 
   if (index < 0) return ""; 
@@ -89,26 +91,26 @@ int Object::numTokens () {
   return tokens.size(); 
 }
 
-std::vector<std::string> Object::getKeys () {
-  std::vector<std::string> ret;
-  for (std::vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i) {
-    std::string curr = (*i)->getKey();
-    if (std::find(ret.begin(), ret.end(), curr) != ret.end()) continue;
+vector<string> Object::getKeys () {
+  vector<string> ret;
+  for (vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i) {
+    string curr = (*i)->getKey();
+    if (find(ret.begin(), ret.end(), curr) != ret.end()) continue;
     ret.push_back(curr);
   }
   return ret; 
 }
 
-std::string Object::getLeaf (std::string leaf) const {
-  std::vector<Object*> leaves = getValue(leaf); 
+string Object::getLeaf (string leaf) const {
+  vector<Object*> leaves = getValue(leaf); 
   if (0 == leaves.size()) {
-    std::cout << "Error: Cannot find leaf " << leaf << " in object " << std::endl << *this;
+    cout << "Error: Cannot find leaf " << leaf << " in object " << endl << *this;
     assert(leaves.size()); 
   }
   return leaves[0]->getLeaf(); 
 }
 
-std::ostream& operator<< (std::ostream& os, const Object& obj) {
+ostream& operator<< (ostream& os, const Object& obj) {
   static int indent = 0; 
   for (int i = 0; i < indent; i++) {
     os << "\t"; 
@@ -130,7 +132,7 @@ std::ostream& operator<< (std::ostream& os, const Object& obj) {
     os << "{\n";
     indent++;
   }
-  for (std::vector<Object*>::const_iterator i = obj.objects.begin(); i != obj.objects.end(); ++i) {
+  for (vector<Object*>::const_iterator i = obj.objects.begin(); i != obj.objects.end(); ++i) {
     os << *(*i); 
   }
   if (&obj != Parser::topLevel) {
@@ -145,36 +147,36 @@ std::ostream& operator<< (std::ostream& os, const Object& obj) {
 
 void Object::keyCount () {
   if (leaf) {
-    std::cout << key << " : 1\n";
+    cout << key << " : 1\n";
     return;
   }
   
-  std::map<std::string, int> refCount;
+  map<string, int> refCount;
   keyCount(refCount); 
-  std::vector<std::pair<std::string, int> > sortedCount; 
-  for (std::map<std::string, int>::iterator i = refCount.begin(); i != refCount.end(); ++i) {
-    std::pair<std::string, int> curr((*i).first, (*i).second); 
+  vector<pair<string, int> > sortedCount; 
+  for (map<string, int>::iterator i = refCount.begin(); i != refCount.end(); ++i) {
+    pair<string, int> curr((*i).first, (*i).second); 
     if (2 > curr.second) continue; 
     if ((0 == sortedCount.size()) || (curr.second <= sortedCount.back().second)) {
       sortedCount.push_back(curr); 
       continue; 
     }
 
-    for (std::vector<std::pair<std::string, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j) {
+    for (vector<pair<string, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j) {
       if (curr.second < (*j).second) continue; 
       sortedCount.insert(j, 1, curr);
       break; 
     }
   }
   
-  for (std::vector<std::pair<std::string, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j) {
-    std::cout << (*j).first << " : " << (*j).second << "\n"; 
+  for (vector<pair<string, int> >::iterator j = sortedCount.begin(); j != sortedCount.end(); ++j) {
+    cout << (*j).first << " : " << (*j).second << "\n"; 
   }
 
 }
 
-void Object::keyCount (std::map<std::string, int>& counter) {
-  for (std::vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i) {
+void Object::keyCount (map<string, int>& counter) {
+  for (vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i) {
     counter[(*i)->key]++;
     if ((*i)->leaf) continue; 
     (*i)->keyCount(counter); 
@@ -182,12 +184,12 @@ void Object::keyCount (std::map<std::string, int>& counter) {
 }
 
 void Object::printTopLevel () {
-  for (std::vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i) {
-    std::cout << (*i)->key << std::endl; 
+  for (vector<Object*>::iterator i = objects.begin(); i != objects.end(); ++i) {
+    cout << (*i)->key << endl; 
   }
 }
 void Object::removeObject (Object* target) {
-  std::vector<Object*>::iterator pos = std::find(objects.begin(), objects.end(), target);
+  vector<Object*>::iterator pos = find(objects.begin(), objects.end(), target);
   if (pos == objects.end()) return; 
   objects.erase(pos); 
 }
@@ -196,9 +198,9 @@ void Object::addObject (Object* target) {
    objects.push_back(target); 
 }
 
-void Object::addObjectAfter(Object* target, std::string key) 
+void Object::addObjectAfter(Object* target, string key) 
 {   
-   std::vector<Object*>::iterator i;
+   vector<Object*>::iterator i;
 
    for (i = objects.begin(); i != objects.end(); ++i) 
    {
@@ -218,14 +220,14 @@ void Object::addObjectAfter(Object* target, std::string key)
 
 
 Object* br = 0;
-void setVal (std::string name, std::string val, Object* branch) {
+void setVal (string name, string val, Object* branch) {
   if ((branch) && (br != branch)) br = branch; 
   Object* b = new Object(name);
   b->setValue(val); 
   br->setValue(b); 
 }
 
-void setInt (std::string name, int val, Object* branch) {
+void setInt (string name, int val, Object* branch) {
   if ((branch) && (br != branch)) br = branch; 
   static char strbuffer[1000];
   sprintf_s(strbuffer, 1000, "%i", val); 
@@ -234,7 +236,7 @@ void setInt (std::string name, int val, Object* branch) {
   br->setValue(b); 
 }
 
-void setFlt (std::string name, double val, Object* branch) {
+void setFlt (string name, double val, Object* branch) {
   if ((branch) && (br != branch)) br = branch; 
   static char strbuffer[1000];
   sprintf_s(strbuffer, 1000, "%.3f", val); 
@@ -257,9 +259,9 @@ void processIncludes (Object* ret) {
   }
 }
 
-Object* processFile (std::string filename, bool includes) {
+Object* processFile (string filename, bool includes) {
   Parser::topLevel = new Object("toplevel"); 
-  std::ifstream read;
+  ifstream read;
   read.open(filename.c_str());
   readFile(read);
   read.close();
@@ -273,7 +275,7 @@ Object* processFile (std::string filename, bool includes) {
 
 Object* processFile (char* filename, bool includes) {
   Parser::topLevel = new Object("toplevel"); 
-  std::ifstream read;
+  ifstream read;
   read.open(filename);
   readFile(read);
   read.close();
@@ -285,33 +287,33 @@ Object* processFile (char* filename, bool includes) {
   return ret;  
 }
 
-double Object::safeGetFloat(std::string k, double def) {
+double Object::safeGetFloat(string k, double def) {
   objvec vec = getValue(k); 
   if (0 == vec.size()) return def;
   return atof(vec[0]->getLeaf().c_str());
 }
 
-std::string Object::safeGetString(std::string k, std::string def) {
+string Object::safeGetString(string k, string def) {
   objvec vec = getValue(k); 
   if (0 == vec.size()) return def;
   return vec[0]->getLeaf(); 
 }
 
-int Object::safeGetInt(std::string k, int def) {
+int Object::safeGetInt(string k, int def) {
   objvec vec = getValue(k); 
   if (0 == vec.size()) return def;
   return atoi(vec[0]->getLeaf().c_str());
 }
 
-Object* Object::safeGetObject(std::string k, Object* def) {
+Object* Object::safeGetObject(string k, Object* def) {
   objvec vec = getValue(k); 
   if (0 == vec.size()) return def; 
   return vec[0]; 
 }
 
 
-std::string Object::toString () const {
-  std::ostringstream blah;
+string Object::toString () const {
+  ostringstream blah;
   blah << *(this); 
   return blah.str(); 
 }

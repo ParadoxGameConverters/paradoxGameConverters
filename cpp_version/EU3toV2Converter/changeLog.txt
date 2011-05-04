@@ -159,3 +159,4 @@ Revision	Version Updated		Log Message
 142		C++			Parser now handles single-line top-level objects.
 143		C++			Eliminated need for region.txt, pulls info from V2 install instead.
 144		C++			Excluded unneeded files from the project (but keeping them in case they're useful later).
+145		C++			Simplified dependencies.

@@ -1,10 +1,8 @@
 #ifndef V2Province_H_
 #define V2Province_H_
 
+
 #include "V2Province.h"
-#include <vector>
-#include "tempFuncs.h"
-using namespace std;
 
 
 class V2State

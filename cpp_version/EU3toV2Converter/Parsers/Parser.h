@@ -1,5 +1,5 @@
-#ifndef PARSER_HH
-#define PARSER_HH
+#ifndef PARSER_H
+#define PARSER_H
 
 //#define BOOST_SPIRIT_DEBUG 1
 //#define BOOST_SPIRIT_DEBUG_FLAGS BOOST_SPIRIT_DEBUG_FLAGS_NODES
@@ -8,12 +8,7 @@
 #undef BOOST_SPIRIT_DEBUG_FLAGS 
 
 #include "boost/spirit/include/classic.hpp"
-#include "boost/spirit/include/classic_ast.hpp"
-#include <string> 
 #include "Object.h"
-#include <iostream> 
-#include <fstream>
-using namespace std;
 using namespace boost::spirit::classic;
 
 void setLHS				(char const* first, char const* last);
@@ -73,4 +68,4 @@ void	readFile(ifstream& read);
 bool	trim(string& str, int& count); 
 void	initParser();
 
-#endif
+#endif	// PARSER_H

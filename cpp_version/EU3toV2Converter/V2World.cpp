@@ -1,9 +1,15 @@
 #include "V2World.h"
+#include <fstream>
+#include <io.h>
+#include "Parsers/Parser.h"
+#include "Log.h"
+#include "tempFuncs.h"
+
 
 void V2World::init(Object* obj, string V2Loc)
 {
-	std::string key;	
-	std::vector<Object*> leaves = obj->getLeaves();
+	string key;	
+	vector<Object*> leaves = obj->getLeaves();
 
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{

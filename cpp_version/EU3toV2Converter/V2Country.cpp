@@ -1,5 +1,5 @@
 #include "V2Country.h"
-
+#include "tempFuncs.h"
 
 
 void V2Country::init(string newTag, string newCountryFile, vector<int> newParties)

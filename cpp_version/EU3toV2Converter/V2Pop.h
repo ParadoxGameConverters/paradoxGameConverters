@@ -1,6 +1,7 @@
 #ifndef V2POP_H_
 #define V2POP_H_
 
+
 #include <string>
 using namespace std;
 
@@ -24,8 +25,6 @@ class V2Pop
 		string	culture;
 		string	religion;
 };
-
-
 
 
 #endif

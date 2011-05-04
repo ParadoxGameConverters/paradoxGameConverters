@@ -1,10 +1,8 @@
-#ifndef TEMP_FUNCS_H_
-#define TEMP_FUNCS_H_
+#ifndef TEMP_FUNCS_H
+#define TEMP_FUNCS_H
 
 
 #include <stdio.h>
-#include <string>
-using namespace std;
 
 
 void outputHeader(FILE*);
@@ -13,4 +11,4 @@ void outputCountryHeader2(FILE*);
 void outputCountryMiddle(FILE*);
 
 
-#endif TEMP_FUNCS_H_
+#endif TEMP_FUNCS_H

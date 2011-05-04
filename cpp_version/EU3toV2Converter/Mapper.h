@@ -4,17 +4,12 @@
 // *                                                                          *
 // ****************************************************************************
 
-#pragma once
 
 #ifndef MAPPER_H
 #define MAPPER_H
 
-#include "stdafx.h"
-#include <vector>
-#include <string>
-#include "Parsers\Object.h"
+
 #include "EU3World.h"
-using namespace std;
 
 
 typedef map< int, vector<int> > provinceMapping; // < destProvince, sourceProvinces >

@@ -5,18 +5,15 @@
 // ****************************************************************************
 
 
-#include "stdafx.h"
 #include "Mapper.h"
 #include "Log.h"
-
-#include <algorithm>
 
 
 provinceMapping initProvinceMap(Object* obj)
 {
 	provinceMapping mapping;
 	provinceMapping::iterator mapIter;
-	//std::set<std::string> blanks;
+	//set<string> blanks;
 
 	vector<Object*> leaves = obj->getLeaves();
 

@@ -1,12 +1,9 @@
-#include <string>
-#include "Parsers\Object.h"
-#include "V2Province.h"
+#ifndef V2COUNTRY_H_
+#define V2COUNTRY_H_
+
+
 #include "V2State.h"
 #include "V2Inventions.h"
-#include "EU3Country.h"
-using namespace std;
-
-
 
 
 class V2Country
@@ -53,3 +50,6 @@ class V2Country
 		int					cultureTech;
 		inventionStatus	inventions[naval_exercises];
 };
+
+
+#endif	// V2COUNTRY_H_

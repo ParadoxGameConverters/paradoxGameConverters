@@ -1,4 +1,5 @@
 #include "EU3Country.h"
+#include "Log.h"
 
 
 void EU3Country::init(Object* obj)

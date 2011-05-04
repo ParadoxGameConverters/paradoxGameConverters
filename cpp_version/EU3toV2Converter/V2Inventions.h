@@ -1,6 +1,7 @@
 #ifndef V2INVENTIONS_H_
 #define V2INVENTIONS_H_
 
+
 enum inventionTypes
 {
 	//ARMY_INVENTIONS

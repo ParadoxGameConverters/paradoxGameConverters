@@ -1,12 +1,8 @@
 #ifndef EU3COUNTRY_H_
 #define EU3COUNTRY_H_
 
-#include <string>
-#include <vector>
-#include "Parsers\Object.h"
+
 #include "EU3Province.h"
-#include "log.h"
-using namespace std;
 
 
 class EU3Country

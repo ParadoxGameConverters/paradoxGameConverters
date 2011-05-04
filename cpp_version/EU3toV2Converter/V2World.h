@@ -1,19 +1,9 @@
 #ifndef V2WORLD_H_
 #define V2WORLD_H_
 
-#include <stdio.h>
-#include <vector>
-#include <io.h>
-#include "V2Province.h"
+
 #include "V2Country.h"
-#include "V2State.h"
-#include "EU3World.h"
-#include "Parsers/Object.h"
-#include "Parsers/Parser.h"
 #include "Mapper.h"
-#include "Log.h"
-#include "tempFuncs.h"
-using namespace std;
 
 
 class V2World {

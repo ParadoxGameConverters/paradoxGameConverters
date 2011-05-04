@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <cstdarg>
-#include "Log.h"
 
 
 static FILE* logFile;

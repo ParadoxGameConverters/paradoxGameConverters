@@ -1,13 +1,7 @@
-#include "stdafx.h"
-#include <stdio.h>
+#include <fstream>
 #include "Parsers\Parser.h"
-//#include "Parsers\InstructionsParser.h"
-#include "Mapper.h"
 #include "Log.h"
-//#include "VariableCalculator.h"
-#include "EU3World.h"
 #include "V2World.h"
-using namespace std;
 
 
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
@@ -245,7 +239,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	  
 	/*InstructionsParser insParser;
 	InstructionsParser::Refresh();
-	read.open(std::string("ins.txt").c_str());
+	read.open(string("ins.txt").c_str());
 	if (!read.is_open())
 	{
 		log("Error: Could not open ins.txt\n");

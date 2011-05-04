@@ -1,10 +1,9 @@
 #ifndef EU3PROVINCE_H_
 #define EU3PROVINCE_H_
 
-#include <string>
+
 #include "Parsers/Object.h"
-#include "Log.h"
-using namespace std;
+
 
 class EU3Province {
 	public:

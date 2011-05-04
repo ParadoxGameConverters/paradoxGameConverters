@@ -2,8 +2,8 @@
 
 
 void EU3World::init(Object* obj) {
-	std::string key;	
-	std::vector<Object*> leaves = obj->getLeaves();
+	string key;	
+	vector<Object*> leaves = obj->getLeaves();
 
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{

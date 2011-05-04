@@ -1,14 +1,10 @@
 #ifndef V2PROVINCE_H_
 #define V2PROVINCE_H_
 
-#include <stdio.h>
-#include <string>
-#include "Parsers/Object.h"
-#include "tempFuncs.h"
+
 #include "V2Pop.h"
-#include "EU3Province.h"
 #include "EU3Country.h"
-using namespace std;
+
 
 class V2Province {
 	public:

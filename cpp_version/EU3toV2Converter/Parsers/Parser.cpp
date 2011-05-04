@@ -1,5 +1,5 @@
 #include "Parser.h"
-#include "Object.h"
+#include <fstream>
 
 Object* Parser::topLevel = NULL;  
 vector<Object*> stack; 
@@ -139,8 +139,8 @@ void readFile (ifstream& read)
 	// MAX: Ignore this 
 	/*
 	if (currObject.size() > 0) {
-		std::cout << "Warning: Unable to parse file; problem is with \"" << currObject << "\"" << std::endl; 
-		std::cout << "Aborting, unable to parse file" << std::endl; 
+		cout << "Warning: Unable to parse file; problem is with \"" << currObject << "\"" << endl; 
+		cout << "Aborting, unable to parse file" << endl; 
 		abort();
 	}
 	*/
@@ -151,12 +151,12 @@ void clearStack()
 {
 	if (0 < stack.size())
 	{
-		std::cout << "Warning: Clearing stack size " << stack.size() << ". This should not happen in normal operation." << std::endl;
+		cout << "Warning: Clearing stack size " << stack.size() << ". This should not happen in normal operation." << endl;
 	}
-	for (std::vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
+	for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
 	{
-		//std::cout << (*i)->getKey() << std::endl;
-		std::cout << (*(*i)) << std::endl;
+		//cout << (*i)->getKey() << endl;
+		cout << (*(*i)) << endl;
 	}
 	stack.clear();
 }
@@ -264,22 +264,22 @@ void setRHSobjlist(char const* first, char const* last)
 }
 
 
-bool makeObject(std::string& command)
+bool makeObject(string& command)
 {
-	//std::cout << "Entering makeObject with " << command << std::endl;
+	//cout << "Entering makeObject with " << command << endl;
 	static Parser p;
 	//BOOST_SPIRIT_DEBUG_GRAMMAR(p);
 	parse_info<> result = parse(command.c_str(), p, nothing_p);
 	if (result.full)
 	{
-		//std::cout << "Matched " << command << std::endl;
+		//cout << "Matched " << command << endl;
 		// Do stuff with full command
 
 		//command.clear();
 		return true;
 	}
 
-	//std::cout << "No match in " << command << " stopped at \"" << result.stop << "\"" << std::endl;
+	//cout << "No match in " << command << " stopped at \"" << result.stop << "\"" << endl;
 	return false;
 }
 
