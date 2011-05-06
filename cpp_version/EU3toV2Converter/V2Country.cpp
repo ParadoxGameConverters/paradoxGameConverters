@@ -975,7 +975,7 @@ void V2Country::setCultureTech(double newTechLevel)
 void V2Country::outputTech(FILE* output)
 {
 	fprintf(output, "	technology=\n");
-	fprintf(output, " {\n");
+	fprintf(output, "	{\n");
 	if (armyTech >= 0)
 	{
 		fprintf(output, "		flintlock_rifles={1 0.000}\n");
@@ -1181,7 +1181,7 @@ void V2Country::outputInventions(FILE* output)
 {
 	fprintf(output, "	possible_inventions=\n");
 	fprintf(output, "	{\n");
-	fprintf(output, "		\n");
+	fprintf(output, "		");
 	for (unsigned int i = 0; i < naval_exercises; i++)
 	{
 		if (inventions[i] == possible)
@@ -1189,11 +1189,11 @@ void V2Country::outputInventions(FILE* output)
 			fprintf(output, "%d ", i + 1);
 		}
 	}
+	fprintf(output, "\n	}\n");
 
-	fprintf(output, "	}\n");
 	fprintf(output, "	illegal_inventions=\n");
 	fprintf(output, "	{\n");
-	fprintf(output, "		\n");
+	fprintf(output, "		");
 	for (unsigned int i = 0; i < naval_exercises; i++)
 	{
 		if (inventions[i] == illegal)
@@ -1201,11 +1201,11 @@ void V2Country::outputInventions(FILE* output)
 			fprintf(output, "%d ", i + 1);
 		}
 	}
+	fprintf(output, "\n	}\n");
 
-	fprintf(output, "	}\n");
 	fprintf(output, "	active_inventions=\n");
 	fprintf(output, "	{\n");
-	fprintf(output, "		\n");
+	fprintf(output, "		");
 	for (unsigned int i = 0; i < naval_exercises; i++)
 	{
 		if (inventions[i] == active)
@@ -1213,7 +1213,7 @@ void V2Country::outputInventions(FILE* output)
 			fprintf(output, "%d ", i + 1);
 		}
 	}
-	fprintf(output, "	}\n");
+	fprintf(output, "\n	}\n");
 }
 
 
