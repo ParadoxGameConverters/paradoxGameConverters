@@ -9,6 +9,7 @@
 class V2Province {
 	public:
 		void		init(Object* obj);
+		void		init(int number, string name);
 		int		getNum();
 		string	getName();
 		void		setOwner(string);

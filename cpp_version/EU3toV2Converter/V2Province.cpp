@@ -2,7 +2,7 @@
 
 
 void V2Province::init(Object* obj) {
-	num = atoi(obj->getKey().c_str());
+	/*num = atoi(obj->getKey().c_str());
 
 	vector<Object*> nameObj;
 	nameObj = obj->getValue("name");
@@ -13,7 +13,7 @@ void V2Province::init(Object* obj) {
 	else
 	{
 		name = nameObj[0]->getLeaf();
-	}
+	}*/
 
 	vector<Object*> rgoObj;
 	rgoObj = obj->getValue("rgo");
@@ -30,6 +30,14 @@ void V2Province::init(Object* obj) {
 	}
 
 	oldPopulation = 0;
+}
+
+
+void V2Province::init(int newNumber, string newName)
+{
+	num	= newNumber;
+	name	= newName;
+	land	= false;
 }
 
 
@@ -251,7 +259,7 @@ void V2Province::output(FILE* output)
 {
 	fprintf(output, "%d=\n", num);
 	fprintf(output, "{\n");
-	fprintf(output, "	name=%s\n", name.c_str());
+	fprintf(output, "	name=\"%s\"\n", name.c_str());
 	if (land)
 	{
 		if (owner != "")

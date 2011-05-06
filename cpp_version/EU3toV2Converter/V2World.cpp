@@ -8,6 +8,39 @@
 
 void V2World::init(Object* obj, string V2Loc)
 {
+	// set province names and numbers
+	ifstream read;
+	read.open( (V2Loc + "\\map\\definition.csv").c_str() );
+	if (!read.is_open())
+	{
+		log("Error: Could not open \\map\\definition.csv\n");
+		printf("Error: Could not open \\map\\definition.csv\n");
+		read.close();
+		exit(1);
+	}
+
+	string line;
+	getline(read, line);
+	while (!read.eof())
+	{
+		getline(read, line);
+		unsigned int delimiter = line.find_first_of(';');
+		if (delimiter == 0)
+		{
+			continue;
+		}
+		int provNum = atoi( line.substr(0, delimiter).c_str() );
+		delimiter = line.find_first_of(';', delimiter+1);
+		delimiter = line.find_first_of(';', delimiter+1);
+		delimiter = line.find_first_of(';', delimiter+1);
+		string provName = line.substr(delimiter + 1, line.find_first_of(';', delimiter+1) - delimiter - 1);
+
+		V2Province newProv;
+		newProv.init(provNum, provName);
+		provinces.push_back(newProv);
+	}
+
+	// set rgo types and life ratings
 	string key;	
 	vector<Object*> leaves = obj->getLeaves();
 
@@ -18,12 +51,19 @@ void V2World::init(Object* obj, string V2Loc)
 		// Is this a numeric value? If so, must be a province
 		if (atoi(key.c_str()) > 0)
 		{
-			V2Province province;
-			province.init(leaves[i]);
-			provinces.push_back(province);
+			int num = atoi(leaves[i]->getKey().c_str());
+			for(unsigned int j = 0; j < provinces.size(); j++)
+			{
+				if (num == provinces[j].getNum())
+				{
+					provinces[j].init(leaves[i]);
+					break;
+				}
+			}
 		}
 	}
 
+	// set V2 basic population levels
 	struct _finddata_t	popsFileData;
 	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (V2Loc + "\\history\\pops\\1836.1.1\\*").c_str(), &popsFileData)) == -1L)
