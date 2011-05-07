@@ -25,7 +25,7 @@ void V2World::init(Object* obj, string V2Loc)
 	{
 		getline(read, line);
 		unsigned int delimiter = line.find_first_of(';');
-		if (delimiter == 0)
+		if (delimiter == 0 || delimiter == string::npos)
 		{
 			continue;
 		}
