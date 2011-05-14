@@ -133,6 +133,7 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 
 		//add the mapping
 		mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
+		log("Added map %s -> %s\n", EU3TagPos->c_str(), V2TagPos->c_str());
 
 		//remove tags from the lists
 		EU3Tags.erase(EU3TagPos);

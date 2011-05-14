@@ -163,3 +163,4 @@ Revision	Version Updated		Log Message
 146		C++			Province numbers and names come from V2 install.
 147		C++			Cleaned up the output a bit.
 148		C++			Fixed Capitals problem from change 146.
+149		C++			Added logging during country mapping.
