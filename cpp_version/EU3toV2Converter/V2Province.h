@@ -8,7 +8,7 @@
 
 class V2Province {
 	public:
-		void		init(int number, string name);
+		void		init(int number);
 		int		getNum();
 		string	getName();
 		void		setName(string);

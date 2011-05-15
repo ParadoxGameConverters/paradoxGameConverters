@@ -2,10 +2,9 @@
 #include "Log.h"
 
 
-void V2Province::init(int newNumber, string newName)
+void V2Province::init(int newNumber)
 {
 	num				= newNumber;
-	//name				= newName;
 	name				= "";
 	land				= false;
 	oldPopulation	= 0;

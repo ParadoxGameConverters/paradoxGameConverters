@@ -30,13 +30,9 @@ void V2World::init(string V2Loc)
 			continue;
 		}
 		int provNum = atoi( line.substr(0, delimiter).c_str() );
-		delimiter = line.find_first_of(';', delimiter+1);
-		delimiter = line.find_first_of(';', delimiter+1);
-		delimiter = line.find_first_of(';', delimiter+1);
-		string provName = line.substr(delimiter + 1, line.find_first_of(';', delimiter+1) - delimiter - 1);
 
 		V2Province newProv;
-		newProv.init(provNum, provName);
+		newProv.init(provNum);
 		provinces.push_back(newProv);
 	}
 	read.close();
@@ -169,8 +165,6 @@ void V2World::init(string V2Loc)
 			int delimiter = filename.find_last_of(' ');
 			string provName = filename.substr(delimiter + 1, filename.find_first_of('.') - delimiter - 1);
 
-			V2Province newProv;
-			newProv.init(provNum, provName);
 			vector<V2Province>::iterator i;
 			for(i = provinces.begin(); i != provinces.end(); i++)
 			{
