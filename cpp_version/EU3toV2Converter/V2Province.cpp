@@ -1,43 +1,12 @@
 #include "V2Province.h"
 
 
-void V2Province::init(Object* obj) {
-	/*num = atoi(obj->getKey().c_str());
-
-	vector<Object*> nameObj;
-	nameObj = obj->getValue("name");
-	if (nameObj.size() == 0)
-	{
-		name = "";
-	}
-	else
-	{
-		name = nameObj[0]->getLeaf();
-	}*/
-
-	vector<Object*> rgoObj;
-	rgoObj = obj->getValue("rgo");
-	if (rgoObj.size() == 0)
-	{
-		land = false;
-	}
-	else
-	{
-		land = true;
-		//vector<Object*> goodsObj= rgoObj[0]->getValue("goods_type");
-		//rgoType = goodsObj[0]->getLeaf();
-		lifeRating = atoi( obj->getValue("life_rating")[0]->getLeaf().c_str() );
-	}
-
-	oldPopulation = 0;
-}
-
-
 void V2Province::init(int newNumber, string newName)
 {
-	num	= newNumber;
-	name	= newName;
-	land	= false;
+	num				= newNumber;
+	name				= newName;
+	land				= false;
+	oldPopulation	= 0;
 }
 
 
@@ -80,6 +49,13 @@ void V2Province::setReligion(string newReligion)
 void V2Province::setRgoType(string newRgo)
 {
 	rgoType = newRgo;
+	land = true;
+}
+
+
+void V2Province::setLifeRating(int newLifeRating)
+{
+	lifeRating = newLifeRating;
 }
 
 

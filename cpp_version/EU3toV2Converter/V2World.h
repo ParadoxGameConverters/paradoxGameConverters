@@ -8,7 +8,7 @@
 
 class V2World {
 	public:
-		void				init(Object* obj, string V2Loc);
+		void				init(string V2Loc);
 		void				addPotentialCountries(ifstream &countriesMapping, string V2Loc);
 		vector<string>	getPotentialTags(); 
 		void				convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap);

@@ -6,7 +6,7 @@
 #include "tempFuncs.h"
 
 
-void V2World::init(Object* obj, string V2Loc)
+void V2World::init(string V2Loc)
 {
 	// set province names and numbers
 	ifstream read;
@@ -43,7 +43,7 @@ void V2World::init(Object* obj, string V2Loc)
 
 	// set province rgo types and life ratings
 	struct _finddata_t	provDirData;
-	intptr_t			fileListing;
+	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (V2Loc + "\\history\\provinces\\*").c_str(), &provDirData)) == -1L)
 	{
 		log("Could not open province directories.\n");
@@ -69,10 +69,6 @@ void V2World::init(Object* obj, string V2Loc)
 			}
 			string filename(provFileData.name);
 			int provNum = atoi( filename.substr(0, filename.find_first_of(' ')).c_str() );
-			if (provNum==219)
-			{
-				printf("Breakpoint\n");
-			}
 			int delimiter = filename.find_last_of(' ');
 			string provName = filename.substr(delimiter + 1, filename.find_first_of('.') - delimiter - 1);
 
@@ -111,14 +107,15 @@ void V2World::init(Object* obj, string V2Loc)
 					}
 					for (unsigned int j = 0; j < lines.size(); j++)
 					{
-						if (line.c_str()[0] == (char)10)
-						{
-							line = line.substr(1, line.size() - 1);
-						}
 						if(lines[j].substr(0, 14) == "trade_goods = ")
 						{
 							string type = lines[j].substr(14, lines[j].size() - 14);
 							i->setRgoType(type);
+						}
+						if(lines[j].substr(0, 14) == "life_rating = ")
+						{
+							int rating = atoi( lines[j].substr(14, lines[j].size() - 14).c_str() );
+							i->setLifeRating(rating);
 						}
 					}
 					read.close();
@@ -136,29 +133,6 @@ void V2World::init(Object* obj, string V2Loc)
 		_findclose(fileListing2);
 	} while(_findnext(fileListing, &provDirData) == 0);
 	_findclose(fileListing);
-
-	// set rgo types and life ratings
-	string key;	
-	vector<Object*> leaves = obj->getLeaves();
-
-	for (unsigned int i = 0; i < leaves.size(); i++)
-	{
-		key = leaves[i]->getKey();
-
-		// Is this a numeric value? If so, must be a province
-		if (atoi(key.c_str()) > 0)
-		{
-			int num = atoi(leaves[i]->getKey().c_str());
-			for(unsigned int j = 0; j < provinces.size(); j++)
-			{
-				if (num == provinces[j].getNum())
-				{
-					provinces[j].init(leaves[i]);
-					break;
-				}
-			}
-		}
-	}
 
 	// set V2 basic population levels
 	struct _finddata_t	popsFileData;
@@ -189,7 +163,7 @@ void V2World::init(Object* obj, string V2Loc)
 		readFile(read);
 		read.close();
 	
-		leaves = obj2->getLeaves();
+		vector<Object*> leaves = obj2->getLeaves();
 		for (unsigned int j = 0; j < leaves.size(); j++)
 		{
 			int provNum = atoi(leaves[j]->getKey().c_str());
