@@ -17,6 +17,7 @@ class V2Province {
 		void		setColonial(bool);
 		void		setCulture(string);
 		void		setReligion(string);
+		void		setRgoType(string);
 		bool		isColonial();
 		void		addOldPop(V2Pop);
 		void		createPops(EU3Province* oldProvince, EU3Country* oldCountry);

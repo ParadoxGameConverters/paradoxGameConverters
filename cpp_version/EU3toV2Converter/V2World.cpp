@@ -39,6 +39,103 @@ void V2World::init(Object* obj, string V2Loc)
 		newProv.init(provNum, provName);
 		provinces.push_back(newProv);
 	}
+	read.close();
+
+	// set province rgo types and life ratings
+	struct _finddata_t	provDirData;
+	intptr_t			fileListing;
+	if ( (fileListing = _findfirst( (V2Loc + "\\history\\provinces\\*").c_str(), &provDirData)) == -1L)
+	{
+		log("Could not open province directories.\n");
+		return;
+	}
+	do
+	{
+		if (strcmp(provDirData.name, ".") == 0 || strcmp(provDirData.name, "..") == 0 )
+		{
+			continue;
+		}
+		struct _finddata_t	provFileData;
+		intptr_t					fileListing2;
+		if ( (fileListing2 = _findfirst( (V2Loc + "\\history\\provinces\\" + provDirData.name + "\\*").c_str(), &provFileData)) == -1L)
+		{
+			return;
+		}
+		do
+		{
+			if (strcmp(provFileData.name, ".") == 0 || strcmp(provFileData.name, "..") == 0 )
+			{
+				continue;
+			}
+			string filename(provFileData.name);
+			int provNum = atoi( filename.substr(0, filename.find_first_of(' ')).c_str() );
+			if (provNum==219)
+			{
+				printf("Breakpoint\n");
+			}
+			int delimiter = filename.find_last_of(' ');
+			string provName = filename.substr(delimiter + 1, filename.find_first_of('.') - delimiter - 1);
+
+			V2Province newProv;
+			newProv.init(provNum, provName);
+			vector<V2Province>::iterator i;
+			for(i = provinces.begin(); i != provinces.end(); i++)
+			{
+				if (i->getNum() == provNum)
+				{
+					read.open( (V2Loc + "\\history\\provinces\\" + provDirData.name + "\\" + provFileData.name).c_str(), ios_base::binary );
+					vector<string> lines;
+					while (!read.eof())
+					{
+						getline(read, line);
+						int delimiter2 = 0;
+						do
+						{
+							int delimiter3 = line.find_first_of('\r', delimiter2);
+							if (delimiter3 == line.size() - 1)
+							{
+								lines.push_back(line.substr(delimiter2, line.size() - delimiter2 - 1));
+								delimiter2 = string::npos;
+							}
+							else if (delimiter3 == string::npos)
+							{
+								lines.push_back(line);
+								delimiter2 = string::npos;
+							}
+							else
+							{
+								lines.push_back(line.substr(delimiter2, delimiter3 - delimiter2));
+								delimiter2 = delimiter3 + 1;
+							}
+						} while (delimiter2 != string::npos);
+					}
+					for (unsigned int j = 0; j < lines.size(); j++)
+					{
+						if (line.c_str()[0] == (char)10)
+						{
+							line = line.substr(1, line.size() - 1);
+						}
+						if(lines[j].substr(0, 14) == "trade_goods = ")
+						{
+							string type = lines[j].substr(14, lines[j].size() - 14);
+							i->setRgoType(type);
+						}
+					}
+					read.close();
+					break;
+				}
+			}
+			if (i == provinces.end())
+			{
+				log("	Error: could not find province %d to add rgo and liferating.\n", provNum);
+			}
+
+
+			//provinces.push_back(newProv);
+		} while(_findnext(fileListing2, &provFileData) == 0);
+		_findclose(fileListing2);
+	} while(_findnext(fileListing, &provDirData) == 0);
+	_findclose(fileListing);
 
 	// set rgo types and life ratings
 	string key;	
@@ -65,7 +162,6 @@ void V2World::init(Object* obj, string V2Loc)
 
 	// set V2 basic population levels
 	struct _finddata_t	popsFileData;
-	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (V2Loc + "\\history\\pops\\1836.1.1\\*").c_str(), &popsFileData)) == -1L)
 	{
 		log("Could not open pops files.\n");

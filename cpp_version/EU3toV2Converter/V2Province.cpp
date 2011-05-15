@@ -24,8 +24,8 @@ void V2Province::init(Object* obj) {
 	else
 	{
 		land = true;
-		vector<Object*> goodsObj= rgoObj[0]->getValue("goods_type");
-		rgoType = goodsObj[0]->getLeaf();
+		//vector<Object*> goodsObj= rgoObj[0]->getValue("goods_type");
+		//rgoType = goodsObj[0]->getLeaf();
 		lifeRating = atoi( obj->getValue("life_rating")[0]->getLeaf().c_str() );
 	}
 
@@ -77,6 +77,12 @@ void V2Province::setReligion(string newReligion)
 }
 
 
+void V2Province::setRgoType(string newRgo)
+{
+	rgoType = newRgo;
+}
+
+
 bool V2Province::isColonial()
 {
 	return colonial;
@@ -110,7 +116,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	int capitalists	= 0;
 	int aristocrats	= 0;
 
-	if ( (rgoType == "\"cattle\"") || (rgoType == "\"coffee\"") || (rgoType == "\"cotton\"") || (rgoType == "\"dye\"") || (rgoType == "\"fish\"") || (rgoType == "\"fruit\"") || (rgoType == "\"grain\"") || (rgoType == "\"opium\"") || (rgoType == "\"silk\"") || (rgoType == "\"tea\"") || (rgoType == "\"tobacco\"") || (rgoType == "\"wool\"") )
+	if ( (rgoType == "cattle") || (rgoType == "coffee") || (rgoType == "cotton") || (rgoType == "dye") || (rgoType == "fish") || (rgoType == "fruit") || (rgoType == "grain") || (rgoType == "opium") || (rgoType == "silk") || (rgoType == "tea") || (rgoType == "tobacco") || (rgoType == "wool") )
 	{
 		farmers += 90;
 	}
@@ -403,7 +409,7 @@ void V2Province::output(FILE* output)
 		}
 		fprintf(output, "			}\n");
 		fprintf(output, "		}\n");
-		fprintf(output, "		goods_type=%s\n", rgoType.c_str());
+		fprintf(output, "		goods_type=\"%s\"\n", rgoType.c_str());
 		fprintf(output, "	}\n");
 		fprintf(output, "	life_rating=%d\n", lifeRating);
 	}
