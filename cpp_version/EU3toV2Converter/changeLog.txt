@@ -167,3 +167,4 @@ Revision	Version Updated		Log Message
 150		C++			RGO type from V2 install.
 151		C++			Liferatings from V2 install.
 152		C++			Removed unnecessary files from build.
+153		C++			Get province names the right way.

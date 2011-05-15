@@ -41,6 +41,103 @@ void V2World::init(string V2Loc)
 	}
 	read.close();
 
+	// set province names
+	read.open( (V2Loc + "\\localisation\\text.csv").c_str() );
+	while (!read.eof())
+	{
+		getline(read, line);
+		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
+		{
+			int position = line.find_first_of(';');
+			int num = atoi( line.substr(4, position - 4).c_str() );
+			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
+			for (unsigned int i = 0; i < provinces.size(); i++)
+			{
+				if (provinces[i].getNum() == num)
+				{
+					provinces[i].setName(name);
+				}
+			}
+		}
+	}
+	read.close();
+	read.open( (V2Loc + "\\localisation\\1.1.csv").c_str() );
+	while (!read.eof())
+	{
+		getline(read, line);
+		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
+		{
+			int position = line.find_first_of(';');
+			int num = atoi( line.substr(4, position - 4).c_str() );
+			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
+			for (unsigned int i = 0; i < provinces.size(); i++)
+			{
+				if (provinces[i].getNum() == num)
+				{
+					provinces[i].setName(name);
+				}
+			}
+		}
+	}
+	read.close();
+	read.open( (V2Loc + "\\localisation\\1.2.csv").c_str() );
+	while (!read.eof())
+	{
+		getline(read, line);
+		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
+		{
+			int position = line.find_first_of(';');
+			int num = atoi( line.substr(4, position - 4).c_str() );
+			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
+			for (unsigned int i = 0; i < provinces.size(); i++)
+			{
+				if (provinces[i].getNum() == num)
+				{
+					provinces[i].setName(name);
+				}
+			}
+		}
+	}
+	read.close();
+	read.open( (V2Loc + "\\localisation\\beta1.csv").c_str() );
+	while (!read.eof())
+	{
+		getline(read, line);
+		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
+		{
+			int position = line.find_first_of(';');
+			int num = atoi( line.substr(4, position - 4).c_str() );
+			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
+			for (unsigned int i = 0; i < provinces.size(); i++)
+			{
+				if (provinces[i].getNum() == num)
+				{
+					provinces[i].setName(name);
+				}
+			}
+		}
+	}
+	read.close();
+	read.open( (V2Loc + "\\localisation\\beta2.csv").c_str() );
+	while (!read.eof())
+	{
+		getline(read, line);
+		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
+		{
+			int position = line.find_first_of(';');
+			int num = atoi( line.substr(4, position - 4).c_str() );
+			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
+			for (unsigned int i = 0; i < provinces.size(); i++)
+			{
+				if (provinces[i].getNum() == num)
+				{
+					provinces[i].setName(name);
+				}
+			}
+		}
+	}
+	read.close();
+
 	// set province rgo types and life ratings
 	struct _finddata_t	provDirData;
 	intptr_t					fileListing;

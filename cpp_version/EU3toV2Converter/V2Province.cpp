@@ -1,10 +1,12 @@
 #include "V2Province.h"
+#include "Log.h"
 
 
 void V2Province::init(int newNumber, string newName)
 {
 	num				= newNumber;
-	name				= newName;
+	//name				= newName;
+	name				= "";
 	land				= false;
 	oldPopulation	= 0;
 }
@@ -19,6 +21,12 @@ int V2Province::getNum()
 string V2Province::getName()
 {
 	return name;
+}
+
+
+void V2Province::setName(string newName)
+{
+	name = newName;
 }
 
 
@@ -239,6 +247,10 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 
 void V2Province::output(FILE* output)
 {
+	if (name == "")
+	{
+		log("Error: province %d was never assigned a name.\n", num);
+	}
 	fprintf(output, "%d=\n", num);
 	fprintf(output, "{\n");
 	fprintf(output, "	name=\"%s\"\n", name.c_str());

@@ -11,6 +11,7 @@ class V2Province {
 		void		init(int number, string name);
 		int		getNum();
 		string	getName();
+		void		setName(string);
 		void		setOwner(string);
 		string	getOwner();
 		void		setColonial(bool);
