@@ -1,8 +1,6 @@
 copy "HttT_country_mappings.txt" "HttTToV2\country_mappings.txt"
 copy "readme.txt" "HttTToV2\readme.txt"
 copy "HttT_province_mappings.txt" "HttTToV2\province_mappings.txt"
-copy "input.v2" "HttTToV2\input.v2"
-copy "ins.txt" "HttTToV2\ins.txt"
 copy "convert.bat" "HttTToV2\convert.bat"
 copy "cultureMap.txt" "HttTToV2\cultureMap.txt"
 copy "religionMap.txt" "HttTToV2\religionMap.txt"

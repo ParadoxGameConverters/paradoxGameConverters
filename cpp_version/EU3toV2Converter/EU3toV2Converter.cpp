@@ -63,20 +63,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse V2 input file
 	log("Parsing Vicky2 data.\n");
 	printf("Parsing Vicky2 data.\n");
-	
-	initParser();
-	obj = Parser::topLevel;
-	read.open("input.v2");
-	if (!read.is_open())
-	{
-		log("Error: Could not open input.v2\n");
-		printf("Error: Could not open input.v2\n");
-		return 1;
-	}
-	readFile(read);
-	read.close();
 	V2World destWorld;
-	destWorld.init(obj, V2Loc);
+	destWorld.init(V2Loc);
 
 
 	// Parse province mappings
