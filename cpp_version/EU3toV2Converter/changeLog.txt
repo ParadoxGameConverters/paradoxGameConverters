@@ -168,3 +168,4 @@ Revision	Version Updated		Log Message
 151		C++			Liferatings from V2 install.
 152		C++			Removed unnecessary files from build.
 153		C++			Get province names the right way.
+154		C++			Changleog now included in build.
