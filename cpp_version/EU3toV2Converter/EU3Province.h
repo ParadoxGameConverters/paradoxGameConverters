@@ -7,21 +7,22 @@
 
 class EU3Province {
 	public:
-		void		init(Object* obj);
-		int		getNum();
-		string	getOwner();
-		string	getCulture();
-		string	getReligion();
-		bool		isColony();
+		void				init(Object* obj);
+		int				getNum();
+		string			getOwner();
+		vector<string>	getCores();
+		string			getCulture();
+		string			getReligion();
+		bool				isColony();
 	private:
-		int		num;
-		string	owner;
+		int				num;
+		string			owner;
 		//controller
-		//cores
-		string	culture;
-		string	religion;
-		int		population;
-		bool		colony;
+		vector<string>	cores;
+		string			culture;
+		string			religion;
+		int				population;
+		bool				colony;
 };
 
 

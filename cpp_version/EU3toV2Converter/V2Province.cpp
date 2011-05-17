@@ -35,6 +35,12 @@ void V2Province::setOwner(string newOwner)
 }
 
 
+void V2Province::addCore(string newCore)
+{
+	cores.push_back(newCore);
+}
+
+
 void V2Province::setColonial(bool isIt)
 {
 	colonial = isIt;
@@ -259,7 +265,10 @@ void V2Province::output(FILE* output)
 		{
 			fprintf(output, "	owner=\"%s\"\n", owner.c_str());
 			fprintf(output, "	controller=\"%s\"\n", owner.c_str());
-			fprintf(output, "	core=\"%s\"\n", owner.c_str());
+		}
+		for (unsigned int i = 0; i < cores.size(); i++)
+		{
+			fprintf(output, "	core=\"%s\"\n", cores[i].c_str());
 		}
 	}
 	fprintf(output, "	garrison=100.000\n");

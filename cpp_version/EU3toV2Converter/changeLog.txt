@@ -170,3 +170,4 @@ Revision	Version Updated		Log Message
 153		C++			Get province names the right way.
 154		C++			Changleog now included in build.
 155		C++			Cleaned up old province name code.
+156		C++			Cores!

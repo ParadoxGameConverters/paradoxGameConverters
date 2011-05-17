@@ -1,4 +1,5 @@
 #include "EU3Province.h"
+#include "Log.h"
 
 
 void EU3Province::init(Object* obj) {
@@ -14,6 +15,13 @@ void EU3Province::init(Object* obj) {
 	{
 		owner = ownerObjs[0]->getLeaf();
 		owner = owner.substr(1,3);
+	}
+
+	vector<Object*> coreObjs;
+	coreObjs = obj->getValue("core");
+	for (unsigned int i = 0; i < coreObjs.size(); i++)
+	{
+		cores.push_back(coreObjs[i]->getLeaf().substr(1,3));
 	}
 
 	vector<Object*> cultureObj;
@@ -73,6 +81,12 @@ int EU3Province::getNum()
 string EU3Province::getOwner()
 {
 	return owner;
+}
+
+
+vector<string> EU3Province::getCores()
+{
+	return cores;
 }
 
 

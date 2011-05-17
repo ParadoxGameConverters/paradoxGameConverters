@@ -469,6 +469,16 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 				{
 					provinces[i].setOwner(iter->second);
 					provinces[i].setColonial(oldProvince->isColony());
+
+					vector<string> oldCores = oldProvince->getCores();
+					for(unsigned int j = 0; j < oldCores.size(); j++)
+					{
+						iter = contMap.find(oldCores[j]);
+						if (iter != contMap.end())
+						{
+							provinces[i].addCore(iter->second);
+						}
+					}
 	
 					cultureMapping::iterator iter2 = cultureMap.find(oldProvince->getCulture());
 					if (iter2 != cultureMap.end())

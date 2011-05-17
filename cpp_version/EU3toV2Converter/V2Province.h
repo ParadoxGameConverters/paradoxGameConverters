@@ -14,6 +14,7 @@ class V2Province {
 		void		setName(string);
 		void		setOwner(string);
 		string	getOwner();
+		void		addCore(string);
 		void		setColonial(bool);
 		void		setCulture(string);
 		void		setReligion(string);
@@ -24,12 +25,12 @@ class V2Province {
 		void		createPops(EU3Province* oldProvince, EU3Country* oldCountry);
 		void		output(FILE*);
 	private:
-		bool		land;
-		int		num;
-		string	name;
-		string	owner;
+		bool				land;
+		int				num;
+		string			name;
+		string			owner;
 		//controller
-		//cores
+		vector<string>	cores;
 		bool				colonial;
 		int				oldPopulation;
 		vector<V2Pop>	oldPops;
