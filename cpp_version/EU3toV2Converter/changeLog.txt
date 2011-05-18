@@ -171,3 +171,4 @@ Revision	Version Updated		Log Message
 154		C++			Changleog now included in build.
 155		C++			Cleaned up old province name code.
 156		C++			Cores!
+157		C++			RGO and pops start with money.

@@ -54,5 +54,6 @@ void V2Pop::output(FILE* output)
 	fprintf(output, "		id=%d\n", id);
 	fprintf(output, "		size=%d\n", size);
 	fprintf(output, "		%s=%s\n", culture.c_str(), religion.c_str());
+	fprintf(output, "		money=1000000.00000\n");
 	fprintf(output, "	}\n");
 }

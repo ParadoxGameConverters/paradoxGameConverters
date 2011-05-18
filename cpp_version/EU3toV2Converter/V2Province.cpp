@@ -406,6 +406,7 @@ void V2Province::output(FILE* output)
 		fprintf(output, "			}\n");
 		fprintf(output, "		}\n");
 		fprintf(output, "		goods_type=\"%s\"\n", rgoType.c_str());
+		fprintf(output, "		last_income=100000.00000\n");
 		fprintf(output, "	}\n");
 		fprintf(output, "	life_rating=%d\n", lifeRating);
 	}
