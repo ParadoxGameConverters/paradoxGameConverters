@@ -30,7 +30,7 @@ void EU3World::init(Object* obj) {
 		}
 	}
 
-	// add province info to countries
+	// add province owner info to countries
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
 		for (unsigned int j = 0; j < countries.size(); j++)
@@ -39,6 +39,23 @@ void EU3World::init(Object* obj) {
 			{
 				countries[j].addProvince( &provinces[i]);
 				continue;
+			}
+		}
+	}
+
+	// add province core info to countries
+	for (unsigned int i = 0; i < provinces.size(); i++)
+	{
+		for (unsigned int j = 0; j < countries.size(); j++)
+		{
+			vector<string> cores = provinces[i].getCores();
+			for (unsigned int k = 0; k < cores.size(); k++)
+			{
+				if (cores[k] == countries[j].getTag())
+				{
+					countries[j].addCore( &provinces[i]);
+					continue;
+				}
 			}
 		}
 	}

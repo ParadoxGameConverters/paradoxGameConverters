@@ -16,9 +16,11 @@ typedef map< int, vector<int> > provinceMapping; // < destProvince, sourceProvin
 provinceMapping initProvinceMap(Object* obj);
 
 typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
-countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Object* rulesObj);
+int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<string> V2Tags, Object* rulesObj);
 vector<string>	getEU3Tags(EU3World srcWorld);
 void removeEmptyNations(EU3World&);
+void removeOlderLandlessNations(EU3World&, int&);
+void removeLandlessNations(EU3World&);
 
 typedef map< int, vector<int> > stateMapping;	// < province, all other provinces in state >
 stateMapping initStateMap(Object* obj);

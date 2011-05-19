@@ -11,7 +11,9 @@ class EU3Country
 		void						init(Object* obj);
 		string					getTag();
 		void						addProvince(EU3Province*);
+		void						addCore(EU3Province*);
 		vector<EU3Province*>	getProvinces();
+		vector<EU3Province*>	getCores();
 		int						getCapital();
 		string					getTechGroup();
 		string					getPrimaryCulture();
@@ -26,6 +28,7 @@ class EU3Country
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
+		vector<EU3Province*>	cores;
 		int						capital;
 		string					techGroup;
 		string					primaryCulture;

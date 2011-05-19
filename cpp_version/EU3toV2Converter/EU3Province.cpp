@@ -69,6 +69,46 @@ void EU3Province::init(Object* obj) {
 			population = 0;
 		}
 	}
+
+	vector<Object*> historyObj = obj->getValue("history");
+	if (historyObj.size() > 0)
+	{
+		vector<Object*> historyObjs = historyObj[0]->getLeaves();
+		string lastOwner;
+		for (unsigned int i = 0; i < historyObjs.size(); i++)
+		{
+			if (historyObjs[i]->getKey() == "owner")
+			{
+				lastOwner = historyObjs[i]->getLeaf().substr(1,3);
+				continue;
+			}
+
+			vector<Object*> ownerObj = historyObjs[i]->getValue("owner");
+			if (ownerObj.size() > 0)
+			{
+				date newDate;
+				string dateString = historyObjs[i]->getKey();
+				newDate.year		= atoi( dateString.substr(0, 4).c_str() );
+				newDate.month		= atoi( dateString.substr(5, dateString.find_last_of('.') - 5).c_str() );
+				newDate.day			= atoi( dateString.substr(dateString.find_last_of('.') + 1, 2).c_str() );
+
+				unsigned int j;
+				for (j = 0; j < lastPossessedDate.size(); j++)
+				{
+					if (lastPossessedDate[j].first == lastOwner)
+					{
+						lastPossessedDate[j] = make_pair(lastOwner, newDate);
+						break;
+					}
+				}
+				if (j == lastPossessedDate.size())
+				{
+					lastPossessedDate.push_back( make_pair(lastOwner, newDate) );
+				}
+				lastOwner			= ownerObj[0]->getLeaf().substr(1, 3);
+			}
+		}
+	}
 }
 
 
@@ -105,4 +145,20 @@ string EU3Province::getReligion()
 bool EU3Province::isColony()
 {
 	return colony;
+}
+
+
+date EU3Province::getLastPossessedDate(string Tag)
+{
+	date newDate;
+	for (unsigned int i = 0; i < lastPossessedDate.size(); i++)
+	{
+		if (lastPossessedDate[i].first == Tag)
+		{
+			newDate.year	= lastPossessedDate[i].second.year;
+			newDate.month	= lastPossessedDate[i].second.month;
+			newDate.day		= lastPossessedDate[i].second.day;
+		}
+	}
+	return newDate;
 }

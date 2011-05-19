@@ -7,6 +7,7 @@
 
 #include "Mapper.h"
 #include "Log.h"
+#include <algorithm>
 
 
 provinceMapping initProvinceMap(Object* obj)
@@ -62,9 +63,9 @@ provinceMapping initProvinceMap(Object* obj)
 }
 
 
-countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Object* rulesObj)
+int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<string> V2Tags, Object* rulesObj)
 {
-	countryMapping mapping;
+	mapping.clear();
 	countryMapping::iterator mapIter;
 
 	// get rules
@@ -73,7 +74,7 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 	{
 		log ("Error: No country mapping definitions loaded.\n");
 		printf("Error: No country mapping definitions loaded.\n");
-		return mapping;
+		return -1;
 	}
 	vector<Object*> rules = leaves[0]->getLeaves();
 
@@ -159,10 +160,130 @@ countryMapping initCountryMap(vector<string> EU3Tags, vector<string> V2Tags, Obj
 		}
 	}
 
-	return mapping;
+	return EU3Tags.size();
 }
 
 void removeEmptyNations(EU3World& world)
+{
+	vector<EU3Country> countries = world.getCountries();
+
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		vector<EU3Province*> provinces	= countries[i].getProvinces();
+		vector<EU3Province*> cores			= countries[i].getCores();
+		if ( (provinces.size()) == 0 && (cores.size() == 0) )
+		{
+			world.removeCountry(countries[i].getTag());
+		}
+	}
+}
+
+
+bool compareLandlessNationsAges(EU3Country A, EU3Country B)
+{
+	vector<EU3Province*> ACores = A.getCores();
+	string ATag = A.getTag();
+	date ADate;
+	ADate.year	= 0;
+	ADate.month	= 0;
+	ADate.day	= 0;
+	for (unsigned int i = 0; i < ACores.size(); i++)
+	{
+		date newADate	= ACores[i]->getLastPossessedDate(ATag);
+		if (newADate.year > ADate.year)
+		{
+			ADate.year		= newADate.year;
+			ADate.month		= newADate.month;
+			ADate.day		= newADate.day;
+		}
+		else if ( (newADate.year == ADate.year) && (newADate.month > ADate.month))
+		{
+			ADate.year		= newADate.year;
+			ADate.month		= newADate.month;
+			ADate.day		= newADate.day;
+		}
+		else if ( (newADate.year == ADate.year) && (newADate.month == ADate.month) && (newADate.day > ADate.day))
+		{
+			ADate.year		= newADate.year;
+			ADate.month		= newADate.month;
+			ADate.day		= newADate.day;
+		}
+	}
+
+	vector<EU3Province*> BCores = B.getCores();
+	string BTag = B.getTag();
+	date BDate;
+	BDate.year	= 0;
+	BDate.month	= 0;
+	BDate.day	= 0;
+	for (unsigned int i = 0; i < BCores.size(); i++)
+	{
+		date newBDate	= BCores[i]->getLastPossessedDate(BTag);
+		if (newBDate.year > BDate.year)
+		{
+			BDate.year		= newBDate.year;
+			BDate.month		= newBDate.month;
+			BDate.day		= newBDate.day;
+		}
+		else if ( (newBDate.year == BDate.year) && (newBDate.month > BDate.month))
+		{
+			BDate.year		= newBDate.year;
+			BDate.month		= newBDate.month;
+			BDate.day		= newBDate.day;
+		}
+		else if ( (newBDate.year == BDate.year) && (newBDate.month == BDate.month) && (newBDate.day > BDate.day))
+		{
+			BDate.year		= newBDate.year;
+			BDate.month		= newBDate.month;
+			BDate.day		= newBDate.day;
+		}
+	}
+
+	if (ADate.year < BDate.year)
+	{
+		return true;
+	}
+	else if ( (ADate.year == BDate.year) && (ADate.month < BDate.month))
+	{
+		return true;
+	}
+	else if ( (ADate.year == BDate.year) && (ADate.month == BDate.month) && (ADate.day < BDate.day))
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+void removeOlderLandlessNations(EU3World& world, int& excess)
+{
+	vector<EU3Country> countries = world.getCountries();
+
+	vector<EU3Country> countries2;
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		vector<EU3Province*> provinces = countries[i].getProvinces();
+		if (provinces.size() == 0)
+		{
+			countries2.push_back(countries[i]);
+		}
+	}
+
+	sort(countries2.begin(), countries2.end(), compareLandlessNationsAges);
+
+	while ( (excess > 0) && (countries2.size() > 0) )
+	{
+		world.removeCountry(countries2.back().getTag());
+		countries2.pop_back();
+		excess--;
+	}
+}
+
+
+void removeLandlessNations(EU3World& world)
 {
 	vector<EU3Country> countries = world.getCountries();
 

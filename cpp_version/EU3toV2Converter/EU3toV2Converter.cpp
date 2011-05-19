@@ -114,17 +114,48 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
-	removeEmptyNations(sourceWorld);
+	countryMapping countryMap;
 	vector<string> EU3Tags = getEU3Tags(sourceWorld);
-	if (EU3Tags.size() > destWorld.getPotentialTags().size())
+	int leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
+	if (leftoverNations == -1)
 	{
-		log("Error: Too many EU3 tags. %d EU3 tags, %d V2 tags.\n", EU3Tags.size(), V2Tags.size());
-		printf("Error: Too many EU3 tags. %d EU3 tags, %d V2 tags.\n", EU3Tags.size(), V2Tags.size());
-		//return 1;
+		return 1;
 	}
-	countryMapping countryMap = initCountryMap(EU3Tags, destWorld.getPotentialTags(), obj);
+	else if (leftoverNations > 0)
+	{
+		log("Too many EU3 nations (%d). Removing landless coreless nations.\n", leftoverNations);
+		printf("Too many EU3 nations (%d). Removing landless coreless nations.\n", leftoverNations);
+		removeEmptyNations(sourceWorld);
+		EU3Tags = getEU3Tags(sourceWorld);
+		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
+	}
+	if (leftoverNations == -1)
+	{
+		return 1;
+	}
+	else if (leftoverNations > 0)
+	{
+		log("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
+		printf("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
+		removeOlderLandlessNations(sourceWorld, leftoverNations);
+		EU3Tags = getEU3Tags(sourceWorld);
+		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
+	}
+	if (leftoverNations == -1)
+	{
+		return 1;
+	}
+	else if (leftoverNations > 0)
+	{
+		log("Too many EU3 nations (%d). Removing landless nations.\n", leftoverNations);
+		printf("Too many EU3 nations (%d). Removing landless nations.\n", leftoverNations);
+		removeLandlessNations(sourceWorld);
+		EU3Tags = getEU3Tags(sourceWorld);
+		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
+	}
+	
 
-	log("Country maps:\n");
+	log("Final Country maps:\n");
 	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
 	{
 		log("\t%s -> %s\n", i->first.c_str(), i->second.c_str());

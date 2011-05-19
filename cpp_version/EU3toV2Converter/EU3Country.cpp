@@ -105,9 +105,21 @@ void EU3Country::addProvince(EU3Province* province)
 }
 
 
+void EU3Country::addCore(EU3Province* core)
+{
+	cores.push_back(core);
+}
+
+
 vector<EU3Province*>	EU3Country::getProvinces()
 {
 	return provinces;
+}
+
+
+vector<EU3Province*>	EU3Country::getCores()
+{
+	return cores;
 }
 
 

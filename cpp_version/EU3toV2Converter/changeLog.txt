@@ -172,3 +172,4 @@ Revision	Version Updated		Log Message
 155		C++			Cleaned up old province name code.
 156		C++			Cores!
 157		C++			RGO and pops start with money.
+158		C++			Landless but cored nations now convert (until we run out of tags).

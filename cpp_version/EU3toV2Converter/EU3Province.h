@@ -5,6 +5,13 @@
 #include "Parsers/Object.h"
 
 
+typedef struct
+{
+	int year;
+	int month;
+	int day;
+} date;
+
 class EU3Province {
 	public:
 		void				init(Object* obj);
@@ -14,15 +21,17 @@ class EU3Province {
 		string			getCulture();
 		string			getReligion();
 		bool				isColony();
+		date				getLastPossessedDate(string Tag);
 	private:
-		int				num;
-		string			owner;
+		int									num;
+		string								owner;
 		//controller
-		vector<string>	cores;
-		string			culture;
-		string			religion;
-		int				population;
-		bool				colony;
+		vector<string>						cores;
+		string								culture;
+		string								religion;
+		int									population;
+		bool									colony;
+		vector< pair<string, date> >	lastPossessedDate;
 };
 
 
