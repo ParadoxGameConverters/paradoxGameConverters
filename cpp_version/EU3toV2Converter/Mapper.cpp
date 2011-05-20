@@ -163,6 +163,7 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 	return EU3Tags.size();
 }
 
+
 void removeEmptyNations(EU3World& world)
 {
 	vector<EU3Country> countries = world.getCountries();
@@ -254,6 +255,40 @@ bool compareLandlessNationsAges(EU3Country A, EU3Country B)
 	else
 	{
 		return false;
+	}
+}
+
+
+void removeDeadLandlessNations(EU3World& world)
+{
+	vector<EU3Country> countries = world.getCountries();
+
+	vector<EU3Country> countries2;
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		vector<EU3Province*> provinces = countries[i].getProvinces();
+		if (provinces.size() == 0)
+		{
+			countries2.push_back(countries[i]);
+		}
+	}
+
+	for (unsigned int i = 0; i < countries2.size(); i++)
+	{
+		string culture					= countries2[i].getPrimaryCulture();
+		vector<EU3Province*> cores	= countries2[i].getCores();
+		bool cultureSurvives			= false;
+		for (unsigned int j = 0; j < cores.size(); j++)
+		{
+			if (cores[j]->getCulture() == culture)
+			{
+				cultureSurvives = true;
+			}
+		}
+		if (cultureSurvives == false)
+		{
+			world.removeCountry(countries2[i].getTag());
+		}
 	}
 }
 

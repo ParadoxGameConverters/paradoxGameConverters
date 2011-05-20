@@ -19,6 +19,7 @@ typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
 int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<string> V2Tags, Object* rulesObj);
 vector<string>	getEU3Tags(EU3World srcWorld);
 void removeEmptyNations(EU3World&);
+void removeDeadLandlessNations(EU3World&);
 void removeOlderLandlessNations(EU3World&, int&);
 void removeLandlessNations(EU3World&);
 

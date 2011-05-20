@@ -114,21 +114,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
+	removeEmptyNations(sourceWorld);
+	removeDeadLandlessNations(sourceWorld);
 	countryMapping countryMap;
 	vector<string> EU3Tags = getEU3Tags(sourceWorld);
 	int leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
-	if (leftoverNations == -1)
-	{
-		return 1;
-	}
-	else if (leftoverNations > 0)
-	{
-		log("Too many EU3 nations (%d). Removing landless coreless nations.\n", leftoverNations);
-		printf("Too many EU3 nations (%d). Removing landless coreless nations.\n", leftoverNations);
-		removeEmptyNations(sourceWorld);
-		EU3Tags = getEU3Tags(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
-	}
 	if (leftoverNations == -1)
 	{
 		return 1;
