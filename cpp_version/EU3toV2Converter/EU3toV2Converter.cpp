@@ -86,7 +86,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	provinceMapping provinceMap = initProvinceMap(obj);
 
 
-	// Pare country mappings
+	// Parse country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
 

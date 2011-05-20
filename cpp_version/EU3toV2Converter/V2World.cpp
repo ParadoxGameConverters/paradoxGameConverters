@@ -551,21 +551,18 @@ void V2World::setupStates(stateMapping stateMap)
 	vector<V2Province>::iterator iter;
 	while(unassignedProvs.size() > 0)
 	{
-		log("Creating new state (#%d).\n", stateId);
 		iter = unassignedProvs.begin();
 		int		provId	= iter->getNum();
 		string	owner		= iter->getOwner();
 
 		if (owner == "")
 		{
-			log("Province %d has no owner, done creating state.\n", iter->getNum());
 			unassignedProvs.erase(iter);
 			continue;
 		}
 
 		V2State newState(stateId);
 		stateId++;
-		log("\tAdding initial province (%d) to state.\n", iter->getNum());
 		newState.addProvince(*iter);
 		vector<int> neighbors	= stateMap[provId];
 		bool colonial				= iter->isColonial();
@@ -582,7 +579,6 @@ void V2World::setupStates(stateMapping stateMap)
 					{
 						if ( (iter->isColonial()) == colonial)
 						{
-							log("\tAdding province %d to state.\n", iter->getNum());
 							newState.addProvince(*iter);
 							unassignedProvs.erase(iter);
 						}
@@ -595,7 +591,6 @@ void V2World::setupStates(stateMapping stateMap)
 		{
 			if (iter2->getTag() == owner)
 			{
-				log("Adding state to %s.\n", iter2->getTag().c_str());
 				iter2->addState(newState);
 			}
 		}

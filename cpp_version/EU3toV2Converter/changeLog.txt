@@ -173,4 +173,5 @@ Revision	Version Updated		Log Message
 156		C++			Cores!
 157		C++			RGO and pops start with money.
 158		C++			Landless but cored nations now convert (until we run out of tags).
-159		C++			If a landless nations' culture is gone from it's cores, the nation is removed.
+159		C++			If a landless nations' culture is gone from its cores, the nation is removed.
+160		C++			Removed all that logging about the state creation process.
