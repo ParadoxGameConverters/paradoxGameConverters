@@ -511,6 +511,21 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 }
 
 
+void V2World::addUnions(unionMapping unionMap)
+{
+	for (unsigned int i = 0; i < provinces.size(); i++)
+	{
+		for (unsigned int j = 0; j < unionMap.size(); j++)
+		{
+			if (unionMap[j].first == provinces[i].getCulture())
+			{
+				provinces[i].addCore(unionMap[j].second);
+			}
+		}
+	}
+}
+
+
 void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 {
 	vector<EU3Country> oldCountries = sourceWorld.getCountries();

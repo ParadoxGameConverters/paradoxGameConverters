@@ -252,6 +252,32 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	religionMap = initReligionMap(obj->getLeaves()[0]);
 
 
+	//Parse unions mapping
+	log("Parsing union mappings.\n");
+	printf("Parsing union mappings.\n");
+
+	initParser();
+	obj = Parser::topLevel;
+	read.open("unions.txt");
+	if (!read.is_open())
+	{
+		log("Error: Could not open unions.txt.\n");
+		printf("Error: Could not open unions.txt.\n");
+		return 1;
+	}
+	readFile(read);  
+	read.close();
+
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse unions.txt.\n");
+		printf("Error: Failed to parse unions.txt.\n");
+		return 1;
+	}
+	unionMapping unionMap;
+	unionMap = initUnionMap(obj->getLeaves()[0]);
+
+
 	// Convert
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
@@ -259,6 +285,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);
+	printf("Adding unions.\n");
+	log("Adding unions.\n");
+	destWorld.addUnions(unionMap);
 	printf("Converting capitals.\n");
 	log("Converting capitals.\n");
 	destWorld.convertCapitals(sourceWorld, provinceMap);

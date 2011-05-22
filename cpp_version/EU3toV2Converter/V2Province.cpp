@@ -53,6 +53,12 @@ void V2Province::setCulture(string newCulture)
 }
 
 
+string V2Province::getCulture()
+{
+	return culture;
+}
+
+
 void V2Province::setReligion(string newReligion)
 {
 	religion = newReligion;

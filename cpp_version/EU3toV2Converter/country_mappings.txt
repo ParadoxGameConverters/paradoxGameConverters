@@ -31,7 +31,8 @@ link = { eu3 = BAV vic = BAV }  # Bavaria
 link = { eu3 = BRE vic = BRE }  # Bremen
 link = { eu3 = BRU vic = BRA }  # Brunswick             =>  Braunschweig
 link = { eu3 = FRN vic = FRM }  # Frankfurt             =>  Frankfurt am Main
-link = { eu3 = GER vic = GER }  # Germany
+link = { eu3 = GER vic = NGF }  # Germany
+link = { eu3 = HRE vic = SGF }  # HRE
 link = { eu3 = HAB vic = AUS }  # Austria
 link = { eu3 = HAM vic = HAM }  # Hamburg
 link = { eu3 = HAN vic = HAN }  # Hannover

@@ -1,0 +1,10 @@
+unions = {
+
+link = { tag = ITA culture = north_italian }
+link = { tag = ITA culture = south_italian }
+link = { tag = NGF culture = north_german }
+link = { tag = SGF culture = south_german }
+link = { tag = GER culture = north_german }
+link = { tag = GER culture = south_german }
+
+}

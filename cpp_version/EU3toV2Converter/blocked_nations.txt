@@ -1,0 +1,5 @@
+blocked = {
+
+	v2 = GER v2 = NGF v2 = SGF v2 = ITA
+
+}

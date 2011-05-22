@@ -17,6 +17,7 @@ class V2Province {
 		void		addCore(string);
 		void		setColonial(bool);
 		void		setCulture(string);
+		string	getCulture();
 		void		setReligion(string);
 		void		setRgoType(string);
 		void		setLifeRating(int);

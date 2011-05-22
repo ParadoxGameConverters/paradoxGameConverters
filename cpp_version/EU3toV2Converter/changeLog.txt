@@ -176,3 +176,4 @@ Revision	Version Updated		Log Message
 159		C++			If a landless nations' culture is gone from its cores, the nation is removed.
 160		C++			Removed all that logging about the state creation process.
 161		C++			Blocked nations list.
+162		C++			Cultural union nations.

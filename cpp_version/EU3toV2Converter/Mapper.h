@@ -31,8 +31,11 @@ stateMapping initStateMap(Object* obj);
 typedef map< string, string > cultureMapping;		// <srcCulture, destCulture>
 cultureMapping initCultureMap(Object* obj);
 
-typedef map< string, string> religionMapping;
-religionMapping initReligionMap(Object* obj);		// <srcReligion, destReligion>
+typedef map< string, string> religionMapping;		// <srcReligion, destReligion>
+religionMapping initReligionMap(Object* obj);
+
+typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
+unionMapping initUnionMap(Object* obj);
 
 
 #endif // MAPPER_H

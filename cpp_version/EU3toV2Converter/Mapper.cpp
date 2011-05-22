@@ -466,3 +466,33 @@ religionMapping initReligionMap(Object* obj)
 
 	return religionMap;
 }
+
+
+unionMapping initUnionMap(Object* obj)
+{
+	unionMapping unionMap;
+
+	vector<Object*> unions = obj->getLeaves();
+	for (unsigned int i = 0; i < unions.size(); i++)
+	{
+		string tag;
+		string culture;
+
+		vector<Object*> aUnion = unions[i]->getLeaves();
+		for (unsigned int j = 0; j < aUnion.size(); j++)
+		{
+			if (aUnion[j]->getKey() == "tag")
+			{
+				tag = aUnion[j]->getLeaf();
+			}
+			if (aUnion[j]->getKey() == "culture")
+			{
+				culture = aUnion[j]->getLeaf();
+			}
+		}
+
+		unionMap.push_back(make_pair<string,string>(culture, tag));
+	}
+
+	return unionMap;
+}
