@@ -177,3 +177,4 @@ Revision	Version Updated		Log Message
 160		C++			Removed all that logging about the state creation process.
 161		C++			Blocked nations list.
 162		C++			Cultural union nations.
+163		C++			Removed some unneeded files.
