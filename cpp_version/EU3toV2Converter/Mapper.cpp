@@ -63,7 +63,27 @@ provinceMapping initProvinceMap(Object* obj)
 }
 
 
-int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<string> V2Tags, Object* rulesObj)
+vector<string> processBlockedNations(Object* obj)
+{
+	vector<string> blockedNations;
+
+	vector<Object*> leaves = obj->getLeaves();
+	if (leaves.size() < 1)
+	{
+		return blockedNations;
+	}
+
+	vector<Object*> nations = leaves[0]->getLeaves();
+	for (unsigned int i = 0; i < nations.size(); i++)
+	{
+		blockedNations.push_back(nations[i]->getLeaf());
+	}
+
+	return blockedNations;
+}
+
+
+int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<string> V2Tags, vector<string> blockedNations, Object* rulesObj)
 {
 	mapping.clear();
 	countryMapping::iterator mapIter;
@@ -139,6 +159,17 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 		//remove tags from the lists
 		EU3Tags.erase(EU3TagPos);
 		V2Tags.erase(V2TagPos);
+	}
+
+	for (vector<string>::iterator i = V2Tags.begin(); i != V2Tags.end(); i++)
+	{
+		for (unsigned int j = 0; j < blockedNations.size(); j++)
+		{
+			if (*i == blockedNations[j])
+			{
+				V2Tags.erase(i);
+			}
+		}
 	}
 
 	while ( (EU3Tags.size() > 0) && (V2Tags.size() > 0) )

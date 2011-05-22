@@ -86,10 +86,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	provinceMapping provinceMap = initProvinceMap(obj);
 
 
-	// Parse country mappings
-	log("Parsing country mappings.\n");
-	printf("Parsing country mappings.\n");
-
+	// Get potetial V2 countries
+	log("Getting potential V2 nations.\n");
+	printf("Getting potential V2 nations.\n");
 	vector<string> V2Tags;
 	ifstream V2CountriesInput;
 	V2CountriesInput.open( (V2Loc + "\\common\\countries.txt").c_str() );
@@ -102,6 +101,26 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.addPotentialCountries(V2CountriesInput, V2Loc);
 	V2CountriesInput.close();
 	
+	// Get list of blocked nations
+	log("Getting blocked V2 nations.\n");
+	printf("Getting blocked V2 nations.\n");
+	initParser();
+	obj = Parser::topLevel;
+	read.open("blocked_nations.txt");	
+	if (!read.is_open())
+	{
+		log("Error: Could not open blocked_nations.txt\n");
+		printf("Error: Could not open blocked_nations.txt\n");
+		return 1;
+	}
+	readFile(read);  
+	read.close();
+
+	vector<string> blockedNations = processBlockedNations(obj);
+
+	// Get country mappings
+	log("Parsing country mappings.\n");
+	printf("Parsing country mappings.\n");
 	initParser();
 	obj = Parser::topLevel;
 	read.open("country_mappings.txt");	
@@ -114,11 +133,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);  
 	read.close();
 
+
+	// Map EU3 nations to V2 nations
+	log("Mapping EU3 nations to V2 nations.\n");
+	printf("Mapping EU3 nations to V2 nations.\n");
 	removeEmptyNations(sourceWorld);
 	removeDeadLandlessNations(sourceWorld);
 	countryMapping countryMap;
 	vector<string> EU3Tags = getEU3Tags(sourceWorld);
-	int leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
+	int leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
 	if (leftoverNations == -1)
 	{
 		return 1;
@@ -129,7 +152,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
 		removeOlderLandlessNations(sourceWorld, leftoverNations);
 		EU3Tags = getEU3Tags(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
+		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
 	}
 	if (leftoverNations == -1)
 	{
@@ -141,7 +164,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("Too many EU3 nations (%d). Removing landless nations.\n", leftoverNations);
 		removeLandlessNations(sourceWorld);
 		EU3Tags = getEU3Tags(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), obj);
+		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
 	}
 	
 
