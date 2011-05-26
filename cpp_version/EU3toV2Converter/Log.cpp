@@ -22,6 +22,8 @@ int log(const char* format, ...)
 	numWritten = vfprintf(logFile, format, args);
 	va_end(args);
 
+	fflush(logFile);
+
 	return numWritten;
 }
 
