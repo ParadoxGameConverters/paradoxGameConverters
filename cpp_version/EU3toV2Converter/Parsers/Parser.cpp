@@ -101,6 +101,14 @@ void readFile (ifstream& read)
 	{
 		string buffer;
 		getline(read, buffer);
+		for (string::iterator i = buffer.begin(); i != buffer.end(); i++)
+		{
+			if (*i == '\r')
+			{
+				buffer.erase(i);
+				i--;
+			}
+		}
 
 		bool opened = trim(buffer, openBraces);
 		currObject		+= " " + buffer;
