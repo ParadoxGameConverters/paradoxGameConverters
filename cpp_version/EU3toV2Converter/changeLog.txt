@@ -181,3 +181,4 @@ Revision	Version Updated		Log Message
 164		C++			unions.txt now copied into build folder.
 165		C++			Flushing log output in case of disaster.
 166		C++			Fixed another parser bug.
+167		C++			Added all V2 cultural unions.
