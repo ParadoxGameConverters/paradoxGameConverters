@@ -16,8 +16,11 @@ class EU3Province {
 	public:
 		void				init(Object* obj);
 		int				getNum();
+		void				setOwner(string);
 		string			getOwner();
 		vector<string>	getCores();
+		void				addCore(string);
+		void				removeCore(string);
 		string			getCulture();
 		string			getReligion();
 		bool				isColony();

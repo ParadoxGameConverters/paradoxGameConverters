@@ -20,6 +20,7 @@ vector<string> processBlockedNations(Object* obj);
 typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
 int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<string> V2Tags, vector<string> blockedNations, Object* rulesObj);
 vector<string>	getEU3Tags(EU3World srcWorld);
+void uniteJapan(EU3World&);
 void removeEmptyNations(EU3World&);
 void removeDeadLandlessNations(EU3World&);
 void removeOlderLandlessNations(EU3World&, int&);

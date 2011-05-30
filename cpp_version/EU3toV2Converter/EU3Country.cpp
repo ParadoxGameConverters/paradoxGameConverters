@@ -90,6 +90,25 @@ void EU3Country::init(Object* obj)
 		productionTech	= 0.0;
 		governmentTech	= 0.0;
 	}
+
+	vector<Object*> flagObject		= obj->getValue("flags");
+	vector<Object*> flagObjects	= flagObject[0]->getLeaves();
+	for (unsigned int i = 0; i < flagObjects.size(); i++)
+	{
+		flags.push_back(flagObjects[i]->getKey());
+	}
+
+
+	vector<Object*> historyObj	= obj->getValue("history");
+	vector<Object*> daimyoObj	= historyObj[0]->getValue("daimyo");
+	if (daimyoObj.size() > 0)
+	{
+		possibleDaimyo = true;
+	}
+	else
+	{
+		possibleDaimyo = false;
+	}
 }
 
 
@@ -105,9 +124,21 @@ void EU3Country::addProvince(EU3Province* province)
 }
 
 
+void EU3Country::clearProvinces()
+{
+	provinces.clear();
+}
+
+
 void EU3Country::addCore(EU3Province* core)
 {
 	cores.push_back(core);
+}
+
+
+void EU3Country::clearCores()
+{
+	cores.clear();
 }
 
 
@@ -146,14 +177,28 @@ vector<string> EU3Country::getAcceptedCultures()
 	return acceptedCultures;
 }
 
+
 string EU3Country::getReligion()
 {
 	return religion;
 }
 
+
+void EU3Country::setPrestige(double newPrestige)
+{
+	prestige = newPrestige;
+}
+
+
 double EU3Country::getPrestige()
 {
 	return prestige;
+}
+
+
+void EU3Country::setLandTech(double newTech)
+{
+	landTech = newTech;
 }
 
 
@@ -163,9 +208,21 @@ double EU3Country::getLandTech()
 }
 
 
+void EU3Country::setNavalTech(double newTech)
+{
+	navalTech = newTech;
+}
+
+
 double EU3Country::getNavalTech()
 {
 	return navalTech;
+}
+
+
+void EU3Country::setTradeTech(double newTech)
+{
+	tradeTech = newTech;
 }
 
 
@@ -175,13 +232,37 @@ double EU3Country::getTradeTech()
 }
 
 
+void EU3Country::setProductionTech(double newTech)
+{
+	productionTech = newTech;
+}
+
+
 double EU3Country::getProductionTech()
 {
 	return productionTech;
 }
 
 
+void EU3Country::setGovernmentTech(double newTech)
+{
+	governmentTech = newTech;
+}
+
+
 double EU3Country::getGovernmentTech()
 {
 	return governmentTech;
+}
+
+
+vector<string> EU3Country::getFlags()
+{
+	return flags;
+}
+
+
+bool EU3Country::getPossibleDaimyo()
+{
+	return possibleDaimyo;
 }

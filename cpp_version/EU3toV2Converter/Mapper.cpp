@@ -197,6 +197,78 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 }
 
 
+void uniteJapan(EU3World& world)
+{
+	vector<EU3Country> countries = world.getCountries();
+	vector<EU3Country>::iterator japan;
+	for (japan = countries.begin(); japan != countries.end(); japan++)
+	{
+		if (japan->getTag() == "JAP")
+		{
+			break;
+		}
+	}
+	if (japan == countries.end())
+	{
+		return;
+	}
+	vector<string> japanFlags = japan->getFlags();
+	for (unsigned int i = 0; i < japanFlags.size(); i++)
+	{
+		if (japanFlags[i] == "united_daimyos_of_japan")
+		{
+			return;
+		}
+	}
+
+	int		numProvinces	= 1;
+	double	prestige			= japan->getPrestige();
+	double	landTech			= japan->getLandTech();
+	double	navalTech		= japan->getNavalTech();
+	double	tradeTech		= japan->getTradeTech();
+	double	productionTech	= japan->getProductionTech();
+	double	governmentTech	= japan->getGovernmentTech();
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		if (countries[i].getPossibleDaimyo())
+		{
+			vector<EU3Province*> provinces = countries[i].getProvinces();
+			numProvinces += provinces.size();
+			for (unsigned int j = 0; j < provinces.size(); j++)
+			{
+				japan->addProvince(provinces[j]);
+				provinces[j]->setOwner("JAP");
+			}
+
+			vector<EU3Province*> cores = countries[i].getCores();
+			for (unsigned int j = 0; j < cores.size(); j++)
+			{
+				japan->addCore(cores[j]);
+				cores[j]->addCore("JAP");
+				cores[j]->removeCore(countries[i].getTag());
+			}
+
+			prestige			+= numProvinces * countries[i].getPrestige();
+			landTech			+= numProvinces * countries[i].getLandTech();
+			navalTech		+= numProvinces * countries[i].getNavalTech();
+			tradeTech		+= numProvinces * countries[i].getTradeTech();
+			productionTech	+= numProvinces * countries[i].getProductionTech();
+			governmentTech	+= numProvinces * countries[i].getGovernmentTech();
+
+			countries[i].clearProvinces();
+			countries[i].clearCores();
+		}
+	}
+
+	japan->setPrestige(prestige / numProvinces);
+	japan->setLandTech(landTech / numProvinces);
+	japan->setNavalTech(navalTech / numProvinces);
+	japan->setTradeTech(tradeTech / numProvinces);
+	japan->setProductionTech(productionTech / numProvinces);
+	japan->setGovernmentTech(governmentTech / numProvinces);
+}
+
+
 void removeEmptyNations(EU3World& world)
 {
 	vector<EU3Country> countries = world.getCountries();

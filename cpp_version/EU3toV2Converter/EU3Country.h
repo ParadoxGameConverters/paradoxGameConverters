@@ -11,7 +11,9 @@ class EU3Country
 		void						init(Object* obj);
 		string					getTag();
 		void						addProvince(EU3Province*);
+		void						clearProvinces();
 		void						addCore(EU3Province*);
+		void						clearCores();
 		vector<EU3Province*>	getProvinces();
 		vector<EU3Province*>	getCores();
 		int						getCapital();
@@ -19,12 +21,20 @@ class EU3Country
 		string					getPrimaryCulture();
 		vector<string>			getAcceptedCultures();
 		string					getReligion();
+		void						setPrestige(double);
 		double					getPrestige();
+		void						setLandTech(double);
 		double					getLandTech();
+		void						setNavalTech(double);
 		double					getNavalTech();
+		void						setTradeTech(double);
 		double					getTradeTech();
+		void						setProductionTech(double);
 		double					getProductionTech();
+		void						setGovernmentTech(double);
 		double					getGovernmentTech();
+		vector<string>			getFlags();
+		bool						getPossibleDaimyo();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -40,6 +50,8 @@ class EU3Country
 		double					tradeTech;
 		double					productionTech;
 		double					governmentTech;
+		vector<string>			flags;
+		bool						possibleDaimyo;
 };
 
 

@@ -118,6 +118,12 @@ int EU3Province::getNum()
 }
 
 
+void EU3Province::setOwner(string newOwner)
+{
+	owner = newOwner;
+}
+
+
 string EU3Province::getOwner()
 {
 	return owner;
@@ -127,6 +133,29 @@ string EU3Province::getOwner()
 vector<string> EU3Province::getCores()
 {
 	return cores;
+}
+
+
+void EU3Province::addCore(string tag)
+{
+	cores.push_back(tag);
+}
+
+
+void EU3Province::removeCore(string tag)
+{
+	for (vector<string>::iterator i = cores.begin(); i != cores.end(); i++)
+	{
+		if (*i == tag)
+		{
+			cores.erase(i);
+			if (cores.size() == 0)
+			{
+				break;
+			}
+			i = cores.begin();
+		}
+	}
 }
 
 
