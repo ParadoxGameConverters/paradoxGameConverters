@@ -621,7 +621,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 	double landMean;
 	double oldLandS = 0.0;
 	double newLandS;
-	double	highestLand;
+	double highestLand;
 
 	double oldNavalMean;
 	double navalMean;
@@ -648,15 +648,23 @@ void V2World::convertTechs(EU3World sourceWorld)
 	double highestGovernment;
 
 	int num = 2;
-
-	highestLand			= oldLandMean			= landMean			= sourceCountries[0].getLandTech();
-	highestNaval		= oldNavalMean			= navalMean			= sourceCountries[0].getNavalTech();
-	highestTrade		= oldTradeMean			= tradeMean			= sourceCountries[0].getTradeTech();
-	highestProduction	= oldProductionMean	= productionMean	= sourceCountries[0].getProductionTech();
-	highestGovernment	= oldGovernmentMean	= governmentMean	= sourceCountries[0].getGovernmentTech();
-
-	for (unsigned int i = 1; i < sourceCountries.size(); i++)
+	unsigned int i = 0;
+	while (sourceCountries[i].getProvinces().size() == 0)
 	{
+		i++;
+	}
+	highestLand			= oldLandMean			= landMean			= sourceCountries[i].getLandTech();
+	highestNaval		= oldNavalMean			= navalMean			= sourceCountries[i].getNavalTech();
+	highestTrade		= oldTradeMean			= tradeMean			= sourceCountries[i].getTradeTech();
+	highestProduction	= oldProductionMean	= productionMean	= sourceCountries[i].getProductionTech();
+	highestGovernment	= oldGovernmentMean	= governmentMean	= sourceCountries[i].getGovernmentTech();
+
+	for (i++; i < sourceCountries.size(); i++)
+	{
+		if (sourceCountries[i].getProvinces().size() == 0)
+		{
+			continue;
+		}
 		double newTech	= sourceCountries[i].getLandTech();
 		landMean			= oldLandMean + ((newTech - oldLandMean) / num);
 		newLandS			= oldLandS + ((newTech - oldLandMean) * (newTech - landMean));
