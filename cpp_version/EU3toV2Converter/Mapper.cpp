@@ -314,6 +314,15 @@ void removeDeadLandlessNations(EU3World& world)
 			if (cores[j]->getCulture() == culture)
 			{
 				cultureSurvives = true;
+				string owner = cores[j]->getOwner();
+				for (unsigned int k = 0; k < countries.size(); k++)
+				{
+					if (countries[k].getPrimaryCulture() == culture)
+					{
+						cultureSurvives = false;
+					}
+				}
+				
 			}
 		}
 		if (cultureSurvives == false)

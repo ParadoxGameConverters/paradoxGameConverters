@@ -182,3 +182,4 @@ Revision	Version Updated		Log Message
 165		C++			Flushing log output in case of disaster.
 166		C++			Fixed another parser bug.
 167		C++			Added all V2 cultural unions.
+168		C++			More landless nations removed.
