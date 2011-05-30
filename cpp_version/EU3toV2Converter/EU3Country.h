@@ -35,6 +35,7 @@ class EU3Country
 		double					getGovernmentTech();
 		vector<string>			getFlags();
 		bool						getPossibleDaimyo();
+		string					getGovernment();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -52,6 +53,7 @@ class EU3Country
 		double					governmentTech;
 		vector<string>			flags;
 		bool						possibleDaimyo;
+		string					government;
 };
 
 

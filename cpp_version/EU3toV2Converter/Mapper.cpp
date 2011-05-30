@@ -579,3 +579,36 @@ unionMapping initUnionMap(Object* obj)
 
 	return unionMap;
 }
+
+
+governmentMapping initGovernmentMap(Object* obj)
+{
+	governmentMapping governmentMap;
+	vector<Object*> links = obj->getLeaves();
+
+	for (unsigned int i = 0; i < links.size(); i++)
+	{
+		vector<Object*>	governments	= links[i]->getLeaves();
+		string				dstGovernment;
+		vector<string>		srcGovernments;
+
+		for (unsigned int j = 0; j < governments.size(); j++)
+		{
+			if (governments[j]->getKey() == "vic")
+			{
+				dstGovernment = governments[j]->getLeaf();
+			}
+			if (governments[j]->getKey() == "eu3")
+			{
+				srcGovernments.push_back(governments[j]->getLeaf());
+			}
+		}
+
+		for (unsigned int j = 0; j < srcGovernments.size(); j++)
+		{
+			governmentMap.insert(pair<string,string>(srcGovernments[j], dstGovernment));
+		}
+	}
+
+	return governmentMap;
+}

@@ -279,10 +279,28 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	unionMap = initUnionMap(obj->getLeaves()[0]);
 
 
+	//Parse government mapping
+	log("Parsing governments mappings.\n");
+	printf("Parsing governments mappings.\n");
+
+	initParser();
+	obj = Parser::topLevel;
+	read.open("governmentMapping.txt");
+	if (!read.is_open())
+	{
+		log("Could not open governmentMapping.txt\n");
+		printf("Could not open governmentMapping.txt\n");
+		return 1;
+	}
+	readFile(read);
+	read.close();
+	governmentMapping governmentMap;
+	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
+
 	// Convert
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, religionMap);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, religionMap, governmentMap);
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);

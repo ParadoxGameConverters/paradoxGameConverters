@@ -186,3 +186,4 @@ Revision	Version Updated		Log Message
 169		C++			All nations formed by decision now blocked during conversion.
 170		C++			Landless nations no longer considered in tech conversion.
 171		C++			Daimyos get merged into Japan.
+172		C++			Governments convert.

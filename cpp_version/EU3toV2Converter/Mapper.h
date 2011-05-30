@@ -38,5 +38,8 @@ religionMapping initReligionMap(Object* obj);
 typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
 unionMapping initUnionMap(Object* obj);
 
+typedef map< string, string > governmentMapping;	// <srcGov, dstGov>
+governmentMapping initGovernmentMap(Object* obj);
+
 
 #endif // MAPPER_H

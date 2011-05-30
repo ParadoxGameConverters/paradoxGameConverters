@@ -28,6 +28,7 @@ class V2Country
 		void					setCultureTech(double);
 		inventionStatus	getInventionState(inventionTypes);
 		void					addPrestige(double);
+		void					setGovernment(string);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
@@ -49,6 +50,7 @@ class V2Country
 		int					industryTech;
 		int					cultureTech;
 		inventionStatus	inventions[naval_exercises];
+		string				government;
 };
 
 

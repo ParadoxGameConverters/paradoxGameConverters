@@ -79,6 +79,7 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	active_party=%d\n", parties[i]);
 	}
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
+	fprintf(output, "	government=%s\n", government.c_str());
 	outputCountryHeader2(output);
 	if (primaryCulture.size() > 0)
 	{
@@ -1226,4 +1227,10 @@ inventionStatus V2Country::getInventionState(inventionTypes invention)
 void V2Country::addPrestige(double additionalPrestige)
 {
 	prestige += additionalPrestige;
+}
+
+
+void V2Country::setGovernment(string newGovernment)
+{
+	government = newGovernment;
 }

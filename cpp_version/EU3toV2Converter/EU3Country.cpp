@@ -109,6 +109,12 @@ void EU3Country::init(Object* obj)
 	{
 		possibleDaimyo = false;
 	}
+
+	vector<Object*> governmentObj = obj->getValue("government");
+	if (governmentObj.size() > 0)
+	{
+		government = governmentObj[0]->getLeaf();
+	}
 }
 
 
@@ -265,4 +271,10 @@ vector<string> EU3Country::getFlags()
 bool EU3Country::getPossibleDaimyo()
 {
 	return possibleDaimyo;
+}
+
+
+string EU3Country::getGovernment()
+{
+	return government;
 }

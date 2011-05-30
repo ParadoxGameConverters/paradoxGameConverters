@@ -357,7 +357,7 @@ vector<string> V2World::getPotentialTags()
 }
 
 
-void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap)
+void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, governmentMapping governmentMap)
 {
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < sourceCountries.size(); i++)
@@ -421,11 +421,25 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						}
 						else
 						{
-							log("No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
+							log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
 						}
 					}
 
 					newCountry.setPrestige(sourceCountries[i].getPrestige() + 100);
+
+					string srcGovernment = sourceCountries[i].getGovernment();
+					if (srcGovernment.size() > 0)
+					{
+						governmentMapping::iterator iter2 = governmentMap.find(srcGovernment);
+						if (iter2 != governmentMap.end())
+						{
+							newCountry.setGovernment(iter2->second);
+						}
+						else
+						{
+							log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
+						}
+					}
 				}
 			}
 		}
