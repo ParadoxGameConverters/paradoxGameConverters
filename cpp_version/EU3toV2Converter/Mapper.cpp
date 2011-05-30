@@ -168,6 +168,8 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 			if (*i == blockedNations[j])
 			{
 				V2Tags.erase(i);
+				i--;
+				break;
 			}
 		}
 	}
