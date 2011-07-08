@@ -187,3 +187,6 @@ Revision	Version Updated		Log Message
 170		C++			Landless nations no longer considered in tech conversion.
 171		C++			Daimyos get merged into Japan.
 172		C++			Governments convert.
+173					?
+174		N/A			Technical description of the description.
+175		C++			Added the miscmod files.
