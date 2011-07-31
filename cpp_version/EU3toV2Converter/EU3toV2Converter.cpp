@@ -3,6 +3,25 @@
 #include "Log.h"
 #include "V2World.h"
 
+static inline Object* doParseFile(const char* filename)
+{
+	ifstream	read;				// ifstream for reading files
+
+	initParser();
+	Object* obj = Parser::topLevel;
+	read.open(filename); 
+	if (!read.is_open())
+	{
+		log("Error: Could not open %s\n", filename);
+		printf("Error: Could not open %s\n", filename);
+		exit(1);
+	}
+	readFile(read);  
+	read.close();
+	read.clear();
+
+	return obj;
+}
 
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
 {
@@ -71,24 +90,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse province mappings
 	log("Parsing province mappings.\n");
 	printf("Parsing province mappings.\n");
-	
-	initParser();
-	obj = Parser::topLevel;
-	read.open("province_mappings.txt"); 
-	if (!read.is_open())
-	{
-		log("Error: Could not open province_mappings.txt\n");
-		printf("Error: Could not open province_mappings.txt\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
+	obj = doParseFile("province_mappings.txt");
 	provinceMapping provinceMap = initProvinceMap(obj);
 
 
-	// Get potetial V2 countries
+	// Get potential V2 countries
 	log("Getting potential V2 nations.\n");
 	printf("Getting potential V2 nations.\n");
 	vector<string> V2Tags;
@@ -106,37 +112,14 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Get list of blocked nations
 	log("Getting blocked V2 nations.\n");
 	printf("Getting blocked V2 nations.\n");
-	initParser();
-	obj = Parser::topLevel;
-	read.open("blocked_nations.txt");	
-	if (!read.is_open())
-	{
-		log("Error: Could not open blocked_nations.txt\n");
-		printf("Error: Could not open blocked_nations.txt\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
+	obj = doParseFile("blocked_nations.txt");
 	vector<string> blockedNations = processBlockedNations(obj);
 
 	// Get country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
 	initParser();
-	obj = Parser::topLevel;
-	read.open("country_mappings.txt");	
-	if (!read.is_open())
-	{
-		log("Error: Could not open country_mappings.txt\n");
-		printf("Error: Could not open country_mappings.txt\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
+	obj = doParseFile("country_mappings.txt");	
 
 	// Map EU3 nations to V2 nations
 	log("Mapping EU3 nations to V2 nations.\n");
@@ -172,7 +155,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
 	}
 	
-
 	log("Final Country maps:\n");
 	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
 	{
@@ -184,19 +166,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
 
-	initParser();
-	obj = Parser::topLevel;
-	read.open( (V2Loc + "\\map\\region.txt").c_str() );
-	if (!read.is_open())
-	{
-		log("Error: Could not open region.txt\n");
-		printf("Error: Could not open region.txt\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
+	obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
 	if (obj->getLeaves().size() < 1)
 	{
 		log("This is where a TODO: error was. If you see this, bug a programmer so we can put in a useful message.\n");
@@ -211,19 +181,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
 
-	initParser();
-	obj = Parser::topLevel;
-	read.open("cultureMap.txt");
-	if (!read.is_open())
-	{
-		log("Error: Could not open cultureMap.txt.\n");
-		printf("Error: Could not open cultureMap.txt.\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
+	obj = doParseFile("cultureMap.txt");
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse cultureMap.txt.\n");
@@ -237,19 +195,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing religion mappings.\n");
 	printf("Parsing religion mappings.\n");
 
-	initParser();
-	obj = Parser::topLevel;
-	read.open("religionMap.txt");
-	if (!read.is_open())
-	{
-		log("Error: Could not open religionMap.txt.\n");
-		printf("Error: Could not open religionMap.txt.\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
+	obj = doParseFile("religionMap.txt");
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse religionMap.txt.\n");
@@ -263,20 +209,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	//Parse unions mapping
 	log("Parsing union mappings.\n");
 	printf("Parsing union mappings.\n");
-
-	initParser();
-	obj = Parser::topLevel;
-	read.open("unions.txt");
-	if (!read.is_open())
-	{
-		log("Error: Could not open unions.txt.\n");
-		printf("Error: Could not open unions.txt.\n");
-		return 1;
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
+	obj = doParseFile("unions.txt");
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse unions.txt.\n");
@@ -292,17 +225,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing governments mappings.\n");
 
 	initParser();
-	obj = Parser::topLevel;
-	read.open("governmentMapping.txt");
-	if (!read.is_open())
-	{
-		log("Could not open governmentMapping.txt\n");
-		printf("Could not open governmentMapping.txt\n");
-		return 1;
-	}
-	readFile(read);
-	read.close();
-	read.clear();
+	obj = doParseFile("governmentMapping.txt");
 	governmentMapping governmentMap;
 	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
 
@@ -358,8 +281,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	destWorld.output(output);
 	fclose(output);
-
-
 
 	closeLog();
 	return 0;
