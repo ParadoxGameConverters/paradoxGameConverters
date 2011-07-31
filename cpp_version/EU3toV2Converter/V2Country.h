@@ -4,6 +4,7 @@
 
 #include "V2State.h"
 #include "V2Inventions.h"
+#include "V2Relations.h"
 
 
 class V2Country
@@ -29,6 +30,7 @@ class V2Country
 		inventionStatus	getInventionState(inventionTypes);
 		void					addPrestige(double);
 		void					setGovernment(string);
+		void					addRelations(V2Relations);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
@@ -51,6 +53,7 @@ class V2Country
 		int					cultureTech;
 		inventionStatus	inventions[naval_exercises];
 		string				government;
+		vector<V2Relations>	relations;
 };
 
 

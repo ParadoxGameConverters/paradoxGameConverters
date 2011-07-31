@@ -449,6 +449,25 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
 						}
 					}
+
+					vector<EU3Relations> srcRelations = sourceCountries[i].getRelations();
+					if (srcRelations.size() > 0)
+					{
+						for (vector<EU3Relations>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
+						{
+							countryMapping::iterator newTag = countryMap.find(itr->getCountry());
+							if (newTag != countryMap.end())
+							{
+								V2Relations v2r;
+								v2r.init(newTag->second);
+								v2r.setRelations(itr->getRelations());
+								v2r.setMilitaryAccess(itr->hasMilitaryAccess());
+								v2r.setDiplomatLastSent(itr->getDiplomatLastSent());
+								v2r.setLastWar(itr->getLastWar());
+								newCountry.addRelations(v2r);
+							}
+						}
+					}
 				}
 			}
 		}

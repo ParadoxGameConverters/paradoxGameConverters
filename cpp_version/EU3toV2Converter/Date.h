@@ -19,6 +19,9 @@ struct date
 	bool operator<=(const date& _rhs) const;
 	bool operator>=(const date& _rhs) const;
 
+	bool isSet() const;
+	string toString() const;
+
 	int year;
 	int month;
 	int day;

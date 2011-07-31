@@ -3,6 +3,7 @@
 
 
 #include "EU3Province.h"
+#include "EU3Relations.h"
 
 
 class EU3Country
@@ -36,6 +37,7 @@ class EU3Country
 		vector<string>			getFlags();
 		bool						getPossibleDaimyo();
 		string					getGovernment();
+		vector<EU3Relations>		getRelations();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -54,6 +56,7 @@ class EU3Country
 		vector<string>			flags;
 		bool						possibleDaimyo;
 		string					government;
+		vector<EU3Relations>			relations;
 };
 
 

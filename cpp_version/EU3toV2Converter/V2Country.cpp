@@ -81,6 +81,10 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
 	outputCountryHeader2(output);
+	for (vector<V2Relations>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
+	{
+		itr->output(output);
+	}
 	if (primaryCulture.size() > 0)
 	{
 		fprintf(output, "	primary_culture=\"%s\"\n", primaryCulture.c_str());
@@ -1233,4 +1237,9 @@ void V2Country::addPrestige(double additionalPrestige)
 void V2Country::setGovernment(string newGovernment)
 {
 	government = newGovernment;
+}
+
+void V2Country::addRelations(V2Relations _rel)
+{
+	relations.push_back(_rel);
 }

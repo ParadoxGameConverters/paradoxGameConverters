@@ -115,6 +115,23 @@ void EU3Country::init(Object* obj)
 	{
 		government = governmentObj[0]->getLeaf();
 	}
+
+	// Read international relations leaves
+	vector<Object*> leaves = obj->getLeaves();
+	for (unsigned int i = 0; i < leaves.size(); ++i)
+	{
+		string key = leaves[i]->getKey();
+
+		if ((key.size() == 3) && 
+			(key.c_str()[0] >= 'A') && (key.c_str()[0] <= 'Z') && 
+			(key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') && 
+			(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z'))
+		{
+			EU3Relations rel;
+			rel.init(leaves[i]);
+			relations.push_back(rel);
+		}
+	}
 }
 
 
@@ -277,4 +294,10 @@ bool EU3Country::getPossibleDaimyo()
 string EU3Country::getGovernment()
 {
 	return government;
+}
+
+
+vector<EU3Relations> EU3Country::getRelations()
+{
+	return relations;
 }
