@@ -78,8 +78,10 @@ bool trim(string& str, int& count)	// Returns net number of braces opened by str
 	unsigned int fcomment = 0;
 	for (; fcomment < strSize; ++fcomment)
 	{
-		if (s[fcomment] != '#') continue; 
-		break;
+		if (s[fcomment] == '\"')
+			isInLiteral = !isInLiteral;
+		if (!isInLiteral && (s[fcomment] == '#'))
+			break;
 	}
 	if (fcomment < last)
 	{
