@@ -289,77 +289,28 @@ bool compareLandlessNationsAges(EU3Country A, EU3Country B)
 	vector<EU3Province*> ACores = A.getCores();
 	string ATag = A.getTag();
 	date ADate;
-	ADate.year	= 0;
-	ADate.month	= 0;
-	ADate.day	= 0;
 	for (unsigned int i = 0; i < ACores.size(); i++)
 	{
 		date newADate	= ACores[i]->getLastPossessedDate(ATag);
-		if (newADate.year > ADate.year)
+		if (newADate > ADate)
 		{
-			ADate.year		= newADate.year;
-			ADate.month		= newADate.month;
-			ADate.day		= newADate.day;
-		}
-		else if ( (newADate.year == ADate.year) && (newADate.month > ADate.month))
-		{
-			ADate.year		= newADate.year;
-			ADate.month		= newADate.month;
-			ADate.day		= newADate.day;
-		}
-		else if ( (newADate.year == ADate.year) && (newADate.month == ADate.month) && (newADate.day > ADate.day))
-		{
-			ADate.year		= newADate.year;
-			ADate.month		= newADate.month;
-			ADate.day		= newADate.day;
+			ADate = newADate;
 		}
 	}
 
 	vector<EU3Province*> BCores = B.getCores();
 	string BTag = B.getTag();
 	date BDate;
-	BDate.year	= 0;
-	BDate.month	= 0;
-	BDate.day	= 0;
 	for (unsigned int i = 0; i < BCores.size(); i++)
 	{
 		date newBDate	= BCores[i]->getLastPossessedDate(BTag);
-		if (newBDate.year > BDate.year)
+		if (newBDate > BDate)
 		{
-			BDate.year		= newBDate.year;
-			BDate.month		= newBDate.month;
-			BDate.day		= newBDate.day;
-		}
-		else if ( (newBDate.year == BDate.year) && (newBDate.month > BDate.month))
-		{
-			BDate.year		= newBDate.year;
-			BDate.month		= newBDate.month;
-			BDate.day		= newBDate.day;
-		}
-		else if ( (newBDate.year == BDate.year) && (newBDate.month == BDate.month) && (newBDate.day > BDate.day))
-		{
-			BDate.year		= newBDate.year;
-			BDate.month		= newBDate.month;
-			BDate.day		= newBDate.day;
+			BDate = newBDate;
 		}
 	}
 
-	if (ADate.year < BDate.year)
-	{
-		return true;
-	}
-	else if ( (ADate.year == BDate.year) && (ADate.month < BDate.month))
-	{
-		return true;
-	}
-	else if ( (ADate.year == BDate.year) && (ADate.month == BDate.month) && (ADate.day < BDate.day))
-	{
-		return true;
-	}
-	else
-	{
-		return false;
-	}
+	return (ADate < BDate);
 }
 
 

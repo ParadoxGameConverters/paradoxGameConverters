@@ -3,14 +3,8 @@
 
 
 #include "Parsers/Object.h"
+#include "Date.h"
 
-
-typedef struct
-{
-	int year;
-	int month;
-	int day;
-} date;
 
 class EU3Province {
 	public:

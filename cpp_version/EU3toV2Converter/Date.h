@@ -1,0 +1,27 @@
+#ifndef DATE_H_
+#define DATE_H_
+
+#include <string>
+
+using namespace std;
+
+struct date
+{
+	date() : year(1), month(1), day(1) {};
+	date(string _init);
+	date(const date& _init);
+
+	date& operator=(const date& _rhs);
+	bool operator==(const date& _rhs) const;
+	bool operator!=(const date& _rhs) const;
+	bool operator<(const date& _rhs) const;
+	bool operator>(const date& _rhs) const;
+	bool operator<=(const date& _rhs) const;
+	bool operator>=(const date& _rhs) const;
+
+	int year;
+	int month;
+	int day;
+};
+
+#endif // _DATE_H

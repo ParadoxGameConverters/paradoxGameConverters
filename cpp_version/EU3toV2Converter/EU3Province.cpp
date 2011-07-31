@@ -86,11 +86,8 @@ void EU3Province::init(Object* obj) {
 			vector<Object*> ownerObj = historyObjs[i]->getValue("owner");
 			if (ownerObj.size() > 0)
 			{
-				date newDate;
 				string dateString = historyObjs[i]->getKey();
-				newDate.year		= atoi( dateString.substr(0, 4).c_str() );
-				newDate.month		= atoi( dateString.substr(5, dateString.find_last_of('.') - 5).c_str() );
-				newDate.day			= atoi( dateString.substr(dateString.find_last_of('.') + 1, 2).c_str() );
+				date newDate(dateString);
 
 				unsigned int j;
 				for (j = 0; j < lastPossessedDate.size(); j++)
@@ -179,15 +176,11 @@ bool EU3Province::isColony()
 
 date EU3Province::getLastPossessedDate(string Tag)
 {
-	date newDate;
 	for (unsigned int i = 0; i < lastPossessedDate.size(); i++)
 	{
 		if (lastPossessedDate[i].first == Tag)
 		{
-			newDate.year	= lastPossessedDate[i].second.year;
-			newDate.month	= lastPossessedDate[i].second.month;
-			newDate.day		= lastPossessedDate[i].second.day;
+			return lastPossessedDate[i].second;
 		}
 	}
-	return newDate;
 }
