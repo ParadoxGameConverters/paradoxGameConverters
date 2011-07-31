@@ -59,6 +59,12 @@ void EU3World::init(Object* obj) {
 			}
 		}
 	}
+
+	vector<Object*> diploObj = obj->getValue("diplomacy");
+	if (diploObj.size() > 0)
+	{
+		diplomacy.init(diploObj[0]);
+	}
 }
 
 
@@ -104,4 +110,10 @@ void EU3World::removeCountry(string tag)
 			break;
 		}
 	}
+}
+
+
+EU3Diplomacy& EU3World::getDiplomacy()
+{
+	return diplomacy;
 }

@@ -31,6 +31,7 @@ class V2Country
 		void					addPrestige(double);
 		void					setGovernment(string);
 		void					addRelations(V2Relations);
+		V2Relations*			getRelations(string);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);

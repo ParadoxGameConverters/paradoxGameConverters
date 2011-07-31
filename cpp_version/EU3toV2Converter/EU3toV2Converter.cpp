@@ -310,6 +310,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, religionMap, governmentMap);
+	printf("Converting diplomacy.\n");
+	log("Converting diplomacy.\n");
+	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);

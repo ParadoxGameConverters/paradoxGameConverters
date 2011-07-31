@@ -3,6 +3,7 @@
 
 
 #include "EU3Country.h"
+#include "EU3Diplomacy.h"
 
 
 class EU3World {
@@ -12,9 +13,11 @@ class EU3World {
 		EU3Country*				getCountry(string);
 		EU3Province*			getProvince(int provNum);
 		void						removeCountry(string tag);
+		EU3Diplomacy&			getDiplomacy();
 	private:
 		vector<EU3Province>	provinces;
 		vector<EU3Country>	countries;
+		EU3Diplomacy	diplomacy;
 };
 
 

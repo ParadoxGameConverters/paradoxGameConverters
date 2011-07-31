@@ -1243,3 +1243,13 @@ void V2Country::addRelations(V2Relations _rel)
 {
 	relations.push_back(_rel);
 }
+
+V2Relations* V2Country::getRelations(string withWhom)
+{
+	for (size_t i = 0; i < relations.size(); ++i)
+	{
+		if (relations[i].getTag() == withWhom)
+			return &relations[i];
+	}
+	return NULL;
+}

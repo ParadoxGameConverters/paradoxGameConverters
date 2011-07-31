@@ -3,6 +3,7 @@
 
 
 #include "V2Country.h"
+#include "V2Diplomacy.h"
 #include "Mapper.h"
 
 
@@ -18,10 +19,12 @@ class V2World {
 		void				setupStates(stateMapping);
 		void				convertTechs(EU3World sourceWorld);
 		void				output(FILE*);
+		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);
 	private:
 		vector<V2Province>	provinces;
 		vector<V2Country>		countries;
 		vector<V2Country>		potentialCountries;
+		V2Diplomacy			diplomacy;
 };
 
 

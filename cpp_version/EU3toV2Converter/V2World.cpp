@@ -656,6 +656,100 @@ void V2World::setupStates(stateMapping stateMap)
 	}
 }
 
+void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
+{
+	vector<EU3Agreement> agreements = sourceWorld.getDiplomacy().getAgreements();
+	for (vector<EU3Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
+	{
+		countryMapping::iterator newCountry1 = countryMap.find(itr->country1);
+		if (newCountry1 == countryMap.end())
+		{
+			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist", itr->country1);
+			continue;
+		}
+		countryMapping::iterator newCountry2 = countryMap.find(itr->country2);
+		if (newCountry2 == countryMap.end())
+		{
+			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist", itr->country2);
+			continue;
+		}
+
+		V2Country* v2Country1 = NULL;
+		V2Country* v2Country2 = NULL;
+		for (vector<V2Country>::iterator citr = countries.begin(); citr != countries.end(); ++citr)
+		{
+			if (citr->getTag() == newCountry1->second)
+			{
+				v2Country1 = &(*citr);
+			}
+			else if (citr->getTag() == newCountry2->second)
+			{
+				v2Country2 = &(*citr);
+			}
+			if (v2Country1 && v2Country2)
+				break;
+		}
+		if (!v2Country1)
+		{
+			log("Error: Vic2 country %s used in diplomatic agreement doesn't exist", newCountry1->second);
+			continue;
+		}
+		if (!v2Country2)
+		{
+			log("Error: Vic2 country %s used in diplomatic agreement doesn't exist", newCountry2->second);
+			continue;
+		}
+		V2Relations* r1 = v2Country1->getRelations(newCountry2->second);
+		if (!r1)
+		{
+			log("Error: Vic2 country %s has no relations with %s", newCountry1->second, newCountry2->second);
+			continue;
+		}
+		V2Relations* r2 = v2Country2->getRelations(newCountry1->second);
+		if (!r2)
+		{
+			log("Error: Vic2 country %s has no relations with %s", newCountry2->second, newCountry1->second);
+			continue;
+		}
+
+		if ((itr->type == "royal_marriage" || itr->type == "guarantee"))
+		{
+			// influence level +1, but never exceed 4
+			if (r1->getLevel() < 4)
+				r1->setLevel(r1->getLevel() + 1);
+		}
+		if (itr->type == "royal_marriage")
+		{
+			// royal marriage is bidirectional; influence level +1, but never exceed 4
+			if (r2->getLevel() < 4)
+				r2->setLevel(r2->getLevel() + 1);
+		}
+		if ((itr->type == "sphere") || (itr->type == "vassal") || (itr->type == "union"))
+		{
+			// influence level = 5
+			r1->setLevel(5);
+			/* FIXME: is this desirable?
+			// if relations are too poor, country2 will immediately eject country1's ambassadors at the start of the game
+			// so, for stability's sake, give their relations a boost
+			if (r1->getRelations() < 1)
+				r1->setRelations(1);
+			if (r2->getRelations() < 1)
+				r2->setRelations(1);
+			*/
+		}
+		if ((itr->type == "alliance") || (itr->type == "vassal"))
+		{
+			// copy agreement
+			V2Agreement v2a;
+			v2a.country1 = newCountry1->second;
+			v2a.country2 = newCountry2->second;
+			v2a.start_date = itr->start_date;
+			v2a.type = itr->type;
+			diplomacy.addAgreement(v2a);
+		}
+	}
+}
+
 
 void V2World::convertTechs(EU3World sourceWorld)
 {
@@ -886,4 +980,5 @@ void V2World::output(FILE* output)
 	{
 		countries[i].output(output);
 	}
+	diplomacy.output(output);
 }
