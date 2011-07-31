@@ -999,7 +999,7 @@ link = { eu3 = 1190 vic = 2056 vic = 2054 }				# Zumbo -> Zumbo, Tete
 link = { eu3 = 1187 vic = 2012 vic = 790 vic = 2015 }			# Urungwe -> Lusaka, Kitwe, Monzo
 link = { eu3 = 1188 vic = 2055 vic = 2635 }				# Masapa/Tete -> Songo, Kariba
 link = { eu3 = 1186 vic = 2057 vic = 2052 }				# Sofala -> Sofala, Massekisse
-link = { eu3 = 1189 vic = 2070 vic = 2068 }				# Barwe -> Mutare, Harare
+link = { eu3 = 1189 vic = 2070 vic = 2068 vic = 2058 }				# Barwe -> Mutare, Harare, Mossurize
 link = { eu3 = 1185 vic = 2073 vic = 2069 }				# Uteve -> Masvingo, Gweru
 link = { eu3 = 1184 vic = 2071 vic = 2072 }				# Zimbabwe -> Bulawayo, Hwange
 link = { eu3 = 1183 vic = 2051 }				# Inhambane -> Inhambane 		
