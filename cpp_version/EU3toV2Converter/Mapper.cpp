@@ -161,14 +161,13 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 		V2Tags.erase(V2TagPos);
 	}
 
-	for (vector<string>::iterator i = V2Tags.begin(); i != V2Tags.end(); i++)
+	for (unsigned int j = 0; j < blockedNations.size(); ++j)
 	{
-		for (unsigned int j = 0; j < blockedNations.size(); j++)
+		for (vector<string>::iterator i = V2Tags.begin(); i != V2Tags.end(); ++i)
 		{
 			if (*i == blockedNations[j])
 			{
 				V2Tags.erase(i);
-				i--;
 				break;
 			}
 		}

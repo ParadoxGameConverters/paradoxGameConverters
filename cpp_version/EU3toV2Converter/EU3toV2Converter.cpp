@@ -56,6 +56,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);
 	read.close();
+	read.clear();
 	EU3World sourceWorld;
 	sourceWorld.init(obj);
 
@@ -82,6 +83,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);  
 	read.close();
+	read.clear();
 
 	provinceMapping provinceMap = initProvinceMap(obj);
 
@@ -115,6 +117,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);  
 	read.close();
+	read.clear();
 
 	vector<string> blockedNations = processBlockedNations(obj);
 
@@ -132,6 +135,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);  
 	read.close();
+	read.clear();
 
 
 	// Map EU3 nations to V2 nations
@@ -191,6 +195,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);  
 	read.close();
+	read.clear();
 
 	if (obj->getLeaves().size() < 1)
 	{
@@ -217,6 +222,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);  
 	read.close();
+	read.clear();
 
 	if (obj->getLeaves().size() < 1)
 	{
@@ -242,6 +248,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);  
 	read.close();
+	read.clear();
 
 	if (obj->getLeaves().size() < 1)
 	{
@@ -268,6 +275,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);  
 	read.close();
+	read.clear();
 
 	if (obj->getLeaves().size() < 1)
 	{
@@ -294,6 +302,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readFile(read);
 	read.close();
+	read.clear();
 	governmentMapping governmentMap;
 	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
 
@@ -328,6 +337,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	readInsFile(read);	
 	read.close();
+	read.clear();
 
 	VariableCalculator::Instance()->SetWorlds(&euWorld, &vickyWorld);
 	VariableCalculator::Instance()->ProcessVariables(InstructionsParser::GetProcessedVars());

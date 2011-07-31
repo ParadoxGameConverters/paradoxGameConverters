@@ -36,6 +36,7 @@ void V2World::init(string V2Loc)
 		provinces.push_back(newProv);
 	}
 	read.close();
+	read.clear();
 
 	// set province names
 	read.open( (V2Loc + "\\localisation\\text.csv").c_str() );
@@ -57,6 +58,7 @@ void V2World::init(string V2Loc)
 		}
 	}
 	read.close();
+	read.clear();
 	read.open( (V2Loc + "\\localisation\\1.1.csv").c_str() );
 	while (!read.eof())
 	{
@@ -76,6 +78,7 @@ void V2World::init(string V2Loc)
 		}
 	}
 	read.close();
+	read.clear();
 	read.open( (V2Loc + "\\localisation\\1.2.csv").c_str() );
 	while (!read.eof())
 	{
@@ -95,6 +98,7 @@ void V2World::init(string V2Loc)
 		}
 	}
 	read.close();
+	read.clear();
 	read.open( (V2Loc + "\\localisation\\beta1.csv").c_str() );
 	while (!read.eof())
 	{
@@ -114,6 +118,7 @@ void V2World::init(string V2Loc)
 		}
 	}
 	read.close();
+	read.clear();
 	read.open( (V2Loc + "\\localisation\\beta2.csv").c_str() );
 	while (!read.eof())
 	{
@@ -133,6 +138,7 @@ void V2World::init(string V2Loc)
 		}
 	}
 	read.close();
+	read.clear();
 
 	// set province rgo types and life ratings
 	struct _finddata_t	provDirData;
@@ -210,6 +216,7 @@ void V2World::init(string V2Loc)
 						}
 					}
 					read.close();
+					read.clear();
 					break;
 				}
 			}
@@ -249,10 +256,12 @@ void V2World::init(string V2Loc)
 			log("Error: Could not open %s\n", popsFileData.name);
 			printf("Error: Could not open %s\n", popsFileData.name);
 			read.close();
+			read.clear();
 			continue;
 		}
 		readFile(read);
 		read.close();
+		read.clear();
 	
 		vector<Object*> leaves = obj2->getLeaves();
 		for (unsigned int j = 0; j < leaves.size(); j++)
@@ -563,6 +572,8 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 						break;
 					}
 				}
+				if (j == provinceMap.end())
+					break;
 			}
 		}
 	}

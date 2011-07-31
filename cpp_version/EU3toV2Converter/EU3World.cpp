@@ -101,6 +101,7 @@ void EU3World::removeCountry(string tag)
 		if (tag == i->getTag())
 		{
 			countries.erase(i);
+			break;
 		}
 	}
 }
