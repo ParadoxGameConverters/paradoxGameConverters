@@ -36,6 +36,9 @@
     <ClCompile Include="Parsers\Parser.cpp">
       <Filter>Parsers</Filter>
     </ClCompile>
+    <ClCompile Include="Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,6 +46,12 @@
       <Filter>EU3 World</Filter>
     </ClCompile>
     <ClCompile Include="EU3Province.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Diplomacy.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Relations.cpp">
       <Filter>EU3 World</Filter>
     </ClCompile>
     <ClCompile Include="V2World.cpp">
@@ -77,10 +86,19 @@
     <ClInclude Include="Parsers\Parser.h">
       <Filter>Parsers</Filter>
     </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EU3Province.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Diplomacy.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Relations.h">
       <Filter>EU3 World</Filter>
     </ClInclude>
     <ClInclude Include="EU3World.h">
@@ -90,6 +108,12 @@
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="V2Province.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Diplomacy.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Relations.h">
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="EU3Country.h">
