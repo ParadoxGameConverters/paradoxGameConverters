@@ -99,15 +99,15 @@ void EU3Country::init(Object* obj)
 	}
 
 
+	possibleDaimyo = false;
 	vector<Object*> historyObj	= obj->getValue("history");
-	vector<Object*> daimyoObj	= historyObj[0]->getValue("daimyo");
-	if (daimyoObj.size() > 0)
+	if (historyObj.size() > 0)
 	{
-		possibleDaimyo = true;
-	}
-	else
-	{
-		possibleDaimyo = false;
+		vector<Object*> daimyoObj = historyObj[0]->getValue("daimyo");
+		if (daimyoObj.size() > 0)
+		{
+			possibleDaimyo = true;
+		}
 	}
 
 	vector<Object*> governmentObj = obj->getValue("government");
