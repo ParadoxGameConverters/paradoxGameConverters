@@ -14,7 +14,7 @@ EU3Agreement::EU3Agreement(Object *obj)
 	}
 	else
 	{
-		log("Error: diplomatic agreement (%s) has no first party.", type);
+		log("Error: diplomatic agreement (%s) has no first party.\n", type.c_str());
 	}
 
 	std::vector<Object*> objSecond = obj->getValue("second");
@@ -26,7 +26,7 @@ EU3Agreement::EU3Agreement(Object *obj)
 	}
 	else
 	{
-		log("Error: diplomatic agreement (%s) has no second party.", type);
+		log("Error: diplomatic agreement (%s) has no second party.\n", type.c_str());
 	}
 
 	std::vector<Object*> objDate = obj->getValue("start_date");

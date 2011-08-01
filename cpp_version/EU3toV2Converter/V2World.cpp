@@ -664,13 +664,13 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 		countryMapping::iterator newCountry1 = countryMap.find(itr->country1);
 		if (newCountry1 == countryMap.end())
 		{
-			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist", itr->country1);
+			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country1.c_str());
 			continue;
 		}
 		countryMapping::iterator newCountry2 = countryMap.find(itr->country2);
 		if (newCountry2 == countryMap.end())
 		{
-			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist", itr->country2);
+			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country2.c_str());
 			continue;
 		}
 
@@ -691,24 +691,24 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 		}
 		if (!v2Country1)
 		{
-			log("Error: Vic2 country %s used in diplomatic agreement doesn't exist", newCountry1->second);
+			log("Error: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry1->second.c_str());
 			continue;
 		}
 		if (!v2Country2)
 		{
-			log("Error: Vic2 country %s used in diplomatic agreement doesn't exist", newCountry2->second);
+			log("Error: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry2->second.c_str());
 			continue;
 		}
 		V2Relations* r1 = v2Country1->getRelations(newCountry2->second);
 		if (!r1)
 		{
-			log("Error: Vic2 country %s has no relations with %s", newCountry1->second, newCountry2->second);
+			log("Error: Vic2 country %s has no relations with %s\n", newCountry1->second.c_str(), newCountry2->second.c_str());
 			continue;
 		}
 		V2Relations* r2 = v2Country2->getRelations(newCountry1->second);
 		if (!r2)
 		{
-			log("Error: Vic2 country %s has no relations with %s", newCountry2->second, newCountry1->second);
+			log("Error: Vic2 country %s has no relations with %s\n", newCountry2->second.c_str(), newCountry1->second.c_str());
 			continue;
 		}
 
