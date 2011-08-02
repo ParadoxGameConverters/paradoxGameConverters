@@ -1,10 +1,10 @@
 #include "V2World.h"
 #include <fstream>
+#include <algorithm>
 #include <io.h>
 #include "Parsers/Parser.h"
 #include "Log.h"
 #include "tempFuncs.h"
-
 
 void V2World::init(string V2Loc)
 {
@@ -40,7 +40,7 @@ void V2World::init(string V2Loc)
 
 	// set province names
 	read.open( (V2Loc + "\\localisation\\text.csv").c_str() );
-	while (!read.eof())
+	while (read.good() && !read.eof())
 	{
 		getline(read, line);
 		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
@@ -60,7 +60,7 @@ void V2World::init(string V2Loc)
 	read.close();
 	read.clear();
 	read.open( (V2Loc + "\\localisation\\1.1.csv").c_str() );
-	while (!read.eof())
+	while (read.good() && !read.eof())
 	{
 		getline(read, line);
 		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
@@ -80,7 +80,7 @@ void V2World::init(string V2Loc)
 	read.close();
 	read.clear();
 	read.open( (V2Loc + "\\localisation\\1.2.csv").c_str() );
-	while (!read.eof())
+	while (read.good() && !read.eof())
 	{
 		getline(read, line);
 		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
@@ -100,7 +100,7 @@ void V2World::init(string V2Loc)
 	read.close();
 	read.clear();
 	read.open( (V2Loc + "\\localisation\\beta1.csv").c_str() );
-	while (!read.eof())
+	while (read.good() && !read.eof())
 	{
 		getline(read, line);
 		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
@@ -120,7 +120,7 @@ void V2World::init(string V2Loc)
 	read.close();
 	read.clear();
 	read.open( (V2Loc + "\\localisation\\beta2.csv").c_str() );
-	while (!read.eof())
+	while (read.good() && !read.eof())
 	{
 		getline(read, line);
 		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
@@ -293,6 +293,50 @@ void V2World::init(string V2Loc)
 		}
 	} while(_findnext(fileListing, &popsFileData) == 0);
 	_findclose(fileListing);
+
+	// determine whether a province is coastal or not by checking if it has a naval base
+	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
+	Object*	obj2;				// generic object
+	initParser();
+	obj2 = Parser::topLevel;
+	read.open( (V2Loc + "\\map\\positions.txt").c_str() );
+	if (!read.is_open())
+	{
+		log("Error: Could not open map\\positions.txt\n");
+		printf("Error: Could not open map\\positions.txt\n");
+		exit(1);
+	}
+	readFile(read);
+	read.close();
+	read.clear();
+
+	vector<Object*> objProv = obj2->getLeaves();
+	if (objProv.size() == 0)
+	{
+		log("Error: map\\positions.txt failed to parse.");
+		printf("Error: map\\positions.txt failed to parse.");
+		exit(1);
+	}
+	for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
+	{
+		int provinceNum = atoi((*itr)->getKey().c_str());
+		vector<Object*> objPos = (*itr)->getValue("building_position");
+		if (objPos.size() == 0)
+			continue;
+		vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
+		if (objNavalBase.size() != 0)
+		{
+			// this province is coastal
+			for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+			{
+				if (pitr->getNum() == provinceNum)
+				{
+					pitr->setCoastal(true);
+					break;
+				}
+			}
+		}
+	}
 }
 
 
@@ -746,6 +790,217 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 			v2a.start_date = itr->start_date;
 			v2a.type = itr->type;
 			diplomacy.addAgreement(v2a);
+		}
+	}
+}
+
+
+// this should probably be in a data file instead of hardcoded
+// the number is the raw strength of that unit type needed in EU3 for one V2 regiment to be created
+// (see file "unit_strength.txt" for how much EU3 units count for)
+// these are based off typical end-game EU3 units being converted 3-to-1 (1000-to-3000 man regiments) for ground
+// and roughly by #cannons for 1-to-1 conversion of endgame sea units
+static const double cost_per_regiment[num_reg_categories] =
+{
+	135.0, // infantry - 45 points per 1000, 3000-man regiments
+	135.0, // cavalry - 45 points per 1000, 3000-man regiments
+	120.0, // artillery - 40 points per 1000, 3000-man regiments
+	60.0, // big ship - 1-to-1 for threedeckers
+	30.0, // light ship - 1-to-1 for heavy frigates
+	30.0, // galley - 3-to-2 for archipelago frigates (turn into light ships in vicky)
+	24.0, // transport - 1-to-1 for all transports
+};
+
+bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap)
+{
+	V2Regiment reg((RegimentCategory)rc);
+	// TODO: what to do about regiment names?
+	if (!army->getNavy())
+	{
+		// Armies need to be associated with pops
+		int eu3Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
+		const vector<int>& homeCandidates = getV2ProvinceNums(inverseProvinceMap, eu3Home);
+		if (homeCandidates.size() == 0)
+		{
+			log("Error: Regiment in army %s has unmapped home province %d; dissolving to pool.\n", army->getName().c_str(), eu3Home);
+			return false;
+		}
+		int newHomeProvince = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
+		for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+		{
+			if (pitr->getNum() == newHomeProvince)
+			{
+				vector<V2Pop> pops = pitr->getPops("soldiers");
+				if (pops.size() == 0)
+				{
+					log("Error: V2 province %d is home for a regiment, but has no soldier pops! Dissolving regiment to pool.\n", newHomeProvince);
+					return false;
+				}
+				reg.setPopID(pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID());
+				break;
+			}
+		}
+	}
+	reg.setStrength(army->getSourceArmy()->getAverageStrength(rc) * (army->getNavy() ? 100.0 : 3.0));
+	army->addRegiment(reg);
+	return true;
+}
+
+void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
+{
+	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
+	// a non-port province, Vicky crashes....
+	vector<int> port_whitelist;
+	{
+		int temp = 0;
+		ifstream s("port_whitelist.txt");
+		while (s.good() && !s.eof())
+		{
+			s >> temp;
+			port_whitelist.push_back(temp);
+		}
+		s.close();
+	}
+	vector<int> port_blacklist;
+	{
+		int temp = 0;
+		ifstream s("port_blacklist.txt");
+		while (s.good() && !s.eof())
+		{
+			s >> temp;
+			port_blacklist.push_back(temp);
+		}
+		s.close();
+	}
+
+	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
+	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
+	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		EU3Country* oldCountry = &sourceCountries[itr->getSourceCountryIndex()];
+
+		// set up armies with whatever regiments they deserve, rounded down
+		// and keep track of the remainders for later
+		double countryRemainder[num_reg_categories] = { 0.0 };
+		vector<EU3Army> sourceArmies = oldCountry->getArmies();
+		for (vector<EU3Army>::iterator aitr = sourceArmies.begin(); aitr != sourceArmies.end(); ++aitr)
+		{
+			V2Army army;
+			army.setSourceArmy(&(*aitr));
+			army.setName(aitr->getName());
+			army.setAtSea(aitr->getAtSea());
+			for (int rc = infantry; rc < num_reg_categories; ++rc)
+			{
+				int typeStrength = aitr->getTotalTypeStrength((RegimentCategory)rc);
+				if (typeStrength == 0) // no regiments of this type
+					continue;
+
+				// if we have ships, we must be a navy
+				bool isNavy = (rc >= big_ship); 
+				army.setNavy(isNavy);
+
+				double regimentCount = typeStrength / cost_per_regiment[rc];
+				int regimentsToCreate = (int)floor(regimentCount);
+				double regimentRemainder = regimentCount - regimentsToCreate;
+				countryRemainder[rc] += regimentRemainder;
+
+				double avg_strength = aitr->getAverageStrength((RegimentCategory)rc);
+				for (int i = 0; i < regimentsToCreate; ++i)
+				{
+					if (!addRegimentToArmy(&army, (RegimentCategory)rc, inverseProvinceMap))
+					{
+						// couldn't add, dissolve into pool
+						countryRemainder[rc] += 1.0;
+					}
+				}
+			}
+			vector<int> locationCandidates = getV2ProvinceNums(inverseProvinceMap, aitr->getLocation());
+			if (locationCandidates.size() == 0)
+			{
+				log("Error: Army or Navy %s assigned to unmapped province %d; dissolving to pool.\n", aitr->getName().c_str(), aitr->getLocation());
+				int regimentCounts[num_reg_categories] = { 0 };
+				army.getRegimentCounts(regimentCounts);
+				for (int rc = infantry; rc < num_reg_categories; ++rc)
+				{
+					countryRemainder[rc] += regimentCounts[rc];
+				}
+				continue;
+			}
+			// guarantee that navies are assigned to provinces with naval bases
+			if (army.getNavy())
+			{
+				for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+				{
+					vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
+					if (black != port_blacklist.end())
+					{
+						locationCandidates.erase(litr);
+						break;
+					}
+				}
+				for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+				{
+					for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+					{
+						if (pitr->getNum() == (*litr))
+						{
+							if (!pitr->isCoastal())
+							{
+								locationCandidates.erase(litr);
+								--pitr;
+								break;
+							}
+						}
+					}
+				}
+				if (locationCandidates.size() == 0)
+				{
+					log("Error: Navy %s assigned to EU3 province %d which has no corresponding coastal V2 provinces; dissolving to pool.\n", aitr->getName().c_str(), aitr->getLocation());
+					int regimentCounts[num_reg_categories] = { 0 };
+					army.getRegimentCounts(regimentCounts);
+					for (int rc = infantry; rc < num_reg_categories; ++rc)
+					{
+						countryRemainder[rc] += regimentCounts[rc];
+					}
+					continue;
+				}
+			}
+			int selectedLocation = locationCandidates[int(locationCandidates.size() * ((double)rand() / RAND_MAX))];
+			if (army.getNavy())
+			{
+				vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);
+				if (white == port_whitelist.end())
+				{
+					log("Warning: assigning navy to non-whitelisted port province %d.  If the save crashes, try blacklisting this province.\n", selectedLocation);
+					ofstream s("port_greylist.txt", ios_base::app);
+					s << selectedLocation << "\n";
+					s.close();
+				}
+			}
+			army.setLocation(selectedLocation);
+			itr->addArmy(army);
+		}
+
+		// allocate the remainders from the whole country to the armies according to their need, rounding up
+		for (int rc = infantry; rc < num_reg_categories; ++rc)
+		{
+			if (countryRemainder[rc] > 0.0)
+			{
+				log("Allocating regiments of type %d from the remainder pool for %s (total: %4lf)\n", rc, itr->getTag().c_str(), countryRemainder[rc]);
+			}
+			while (countryRemainder[rc] > 0.0)
+			{
+				V2Army* army = itr->getArmyForRemainder((RegimentCategory)rc);
+				if (!army)
+				{
+					log("Error: no suitable army or navy found for %s's pooled regiments of type %d!\n", itr->getTag().c_str(), rc);
+					break;
+				}
+				if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap))
+				{
+					countryRemainder[rc] -= 1.0;
+				}
+			}
 		}
 	}
 }

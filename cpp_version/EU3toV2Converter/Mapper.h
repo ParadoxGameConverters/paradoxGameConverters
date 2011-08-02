@@ -13,7 +13,11 @@
 
 
 typedef map< int, vector<int> > provinceMapping; // < destProvince, sourceProvinces >
+typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 provinceMapping initProvinceMap(Object* obj);
+inverseProvinceMapping invertProvinceMap(provinceMapping provMap);
+//vector<int> getV2ProvinceNums(provinceMapping provinceMap, int eu3ProvinceNum);
+const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu3ProvinceNum);
 
 vector<string> processBlockedNations(Object* obj);
 

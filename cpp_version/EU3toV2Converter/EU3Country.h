@@ -4,6 +4,7 @@
 
 #include "EU3Province.h"
 #include "EU3Relations.h"
+#include "EU3Army.h"
 
 
 class EU3Country
@@ -38,6 +39,8 @@ class EU3Country
 		bool						getPossibleDaimyo();
 		string					getGovernment();
 		vector<EU3Relations>		getRelations();
+		vector<EU3Army>				getArmies();
+		void					resolveRegimentTypes(const RegimentTypeMap& map);
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -57,6 +60,7 @@ class EU3Country
 		bool						possibleDaimyo;
 		string					government;
 		vector<EU3Relations>			relations;
+		vector<EU3Army>					armies; // and navies...
 };
 
 

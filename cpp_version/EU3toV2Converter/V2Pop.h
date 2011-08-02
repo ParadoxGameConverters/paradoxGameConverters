@@ -17,6 +17,7 @@ class V2Pop
 		int		getSize();
 		string	getType();
 		void		output(FILE*);
+		int		getID();
 	private:
 
 		int		id;

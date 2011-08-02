@@ -8,6 +8,7 @@ void V2Province::init(int newNumber)
 	name				= "";
 	land				= false;
 	oldPopulation	= 0;
+	coastal				= false;
 }
 
 
@@ -93,6 +94,30 @@ void V2Province::addOldPop(V2Pop oldPop)
 string V2Province::getOwner()
 {
 	return owner;
+}
+
+
+vector<V2Pop> V2Province::getPops(string type)
+{
+	vector<V2Pop> retval;
+	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		if (type == "*" || itr->getType() == type)
+			retval.push_back(*itr);
+	}
+	return retval;
+}
+
+
+bool V2Province::isCoastal()
+{
+	return coastal;
+}
+
+
+void V2Province::setCoastal(bool _coastal)
+{
+	coastal = _coastal;
 }
 
 

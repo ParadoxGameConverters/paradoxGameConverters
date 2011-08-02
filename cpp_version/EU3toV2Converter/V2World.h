@@ -20,7 +20,9 @@ class V2World {
 		void				convertTechs(EU3World sourceWorld);
 		void				output(FILE*);
 		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);
+		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap);
 	private:
+		bool				addRegimentToArmy(V2Army* army, RegimentCategory category, const inverseProvinceMapping& inverseProvinceMap);
 		vector<V2Province>	provinces;
 		vector<V2Country>		countries;
 		vector<V2Country>		potentialCountries;

@@ -5,6 +5,7 @@
 #include "V2State.h"
 #include "V2Inventions.h"
 #include "V2Relations.h"
+#include "V2Army.h"
 
 
 class V2Country
@@ -32,6 +33,8 @@ class V2Country
 		void					setGovernment(string);
 		void					addRelations(V2Relations);
 		V2Relations*			getRelations(string);
+		void					addArmy(V2Army);
+		V2Army*					getArmyForRemainder(RegimentCategory rc);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
@@ -55,6 +58,7 @@ class V2Country
 		inventionStatus	inventions[naval_exercises];
 		string				government;
 		vector<V2Relations>	relations;
+		vector<V2Army>		armies;
 };
 
 

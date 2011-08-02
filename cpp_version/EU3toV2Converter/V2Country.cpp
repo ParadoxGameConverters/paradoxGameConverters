@@ -81,6 +81,10 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
 	outputCountryHeader2(output);
+	for (vector<V2Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	{
+		itr->output(output);
+	}
 	for (vector<V2Relations>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
 	{
 		itr->output(output);
@@ -1239,10 +1243,12 @@ void V2Country::setGovernment(string newGovernment)
 	government = newGovernment;
 }
 
+
 void V2Country::addRelations(V2Relations _rel)
 {
 	relations.push_back(_rel);
 }
+
 
 V2Relations* V2Country::getRelations(string withWhom)
 {
@@ -1252,4 +1258,32 @@ V2Relations* V2Country::getRelations(string withWhom)
 			return &relations[i];
 	}
 	return NULL;
+}
+
+
+void V2Country::addArmy(V2Army _army)
+{
+	armies.push_back(_army);
+}
+
+
+// find the army most in need of a regiment of this category
+V2Army*	V2Country::getArmyForRemainder(RegimentCategory rc)
+{
+	V2Army* retval = NULL;
+	double retvalRemainder = -1000.0;
+	bool isNavy = (rc >= big_ship);
+	for (vector<V2Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	{
+		// only add units to armies that originally had units of the same category
+		if (itr->getSourceArmy()->getTotalTypeStrength(rc) > 0)
+		{
+			if (itr->getArmyRemainder(rc) > retvalRemainder)
+			{
+				retvalRemainder = itr->getArmyRemainder(rc);
+				retval = &(*itr);
+			}
+		}
+	}
+	return retval;
 }

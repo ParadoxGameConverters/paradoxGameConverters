@@ -23,6 +23,30 @@ static inline Object* doParseFile(const char* filename)
 	return obj;
 }
 
+static inline void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm)
+{
+	vector<Object*> top = obj->getValue(categoryName);
+	if (top.size() != 1)
+	{
+		log("Error: could not get regiment type map for %s", categoryName);
+		printf("Error: could not get regiment type map for %s", categoryName);
+		exit(1);
+	}
+	vector<Object*> types = top[0]->getLeaves();
+	if (types.size() == 0)
+	{
+		log("Error: no regiment types to map for %s", categoryName);
+		printf("Error: no regiment types to map for %s", categoryName);
+		exit(1);
+	}
+	for (vector<Object*>::iterator itr = types.begin(); itr != types.end(); ++itr)
+	{
+		string type = (*itr)->getKey();
+		string strength = (*itr)->getLeaf();
+		rtm[type] = pair<RegimentCategory, int>(category, atoi(strength.c_str()));
+	}
+}
+
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
 {
 	initLog();
@@ -78,6 +102,21 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	read.clear();
 	EU3World sourceWorld;
 	sourceWorld.init(obj);
+
+
+	// Resolve unit types
+	log("Resolving unit types.\n");
+	printf("Resolving unit types.\n");
+	RegimentTypeMap rtm;
+	obj = doParseFile("unit_strength.txt");
+	AddCategoryToRegimentTypeMap(obj, infantry, "infantry", rtm);
+	AddCategoryToRegimentTypeMap(obj, cavalry, "cavalry", rtm);
+	AddCategoryToRegimentTypeMap(obj, artillery, "artillery", rtm);
+	AddCategoryToRegimentTypeMap(obj, big_ship, "big_ship", rtm);
+	AddCategoryToRegimentTypeMap(obj, light_ship, "light_ship", rtm);
+	AddCategoryToRegimentTypeMap(obj, galley, "galley", rtm);
+	AddCategoryToRegimentTypeMap(obj, transport, "transport", rtm);
+	sourceWorld.resolveRegimentTypes(rtm);
 
 
 	// Parse V2 input file
@@ -245,6 +284,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting capitals.\n");
 	log("Converting capitals.\n");
 	destWorld.convertCapitals(sourceWorld, provinceMap);
+	printf("Converting armies and navies.\n");
+	log("Converting armies and navies.\n");
+	destWorld.convertArmies(sourceWorld, provinceMap);
 	printf("Converting states.\n");
 	log("Converting states.\n");
 	destWorld.setupStates(stateMap);

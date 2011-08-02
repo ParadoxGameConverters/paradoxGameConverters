@@ -63,6 +63,49 @@ provinceMapping initProvinceMap(Object* obj)
 }
 
 
+// invert the sense of a province map.  makes army conversion tolerable.
+inverseProvinceMapping invertProvinceMap(provinceMapping provinceMap)
+{
+	inverseProvinceMapping retval;
+	for (provinceMapping::iterator j = provinceMap.begin(); j != provinceMap.end(); j++)
+	{
+		for (unsigned int k = 0; k < j->second.size(); k++)
+		{
+			retval[j->second[k]].push_back(j->first);
+		}
+	}
+	return retval;
+}
+
+/*
+vector<int> getV2ProvinceNums(provinceMapping provinceMap, int eu3ProvinceNum)
+{
+	vector<int> retval;
+	for (provinceMapping::iterator j = provinceMap.begin(); j != provinceMap.end(); j++)
+	{
+		for (unsigned int k = 0; k < j->second.size(); k++)
+		{
+			if (j->second[k] == eu3ProvinceNum)
+			{
+				retval.push_back(j->first);
+			}
+		}
+	}
+	return retval;
+}
+*/
+
+static const vector<int> empty_vec;
+const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu3ProvinceNum)
+{
+	inverseProvinceMapping::const_iterator itr = invProvMap.find(eu3ProvinceNum);
+	if (itr == invProvMap.end())
+		return empty_vec;
+	else
+		return itr->second;
+}
+
+
 vector<string> processBlockedNations(Object* obj)
 {
 	vector<string> blockedNations;

@@ -132,6 +132,21 @@ void EU3Country::init(Object* obj)
 			relations.push_back(rel);
 		}
 	}
+
+	vector<Object*> armyObj = obj->getValue("army");
+	for (std::vector<Object*>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
+	{
+		EU3Army army;
+		army.init(*itr);
+		armies.push_back(army);
+	}
+	vector<Object*> navyObj = obj->getValue("navy");
+	for (std::vector<Object*>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
+	{
+		EU3Army navy;
+		navy.init(*itr);
+		armies.push_back(navy);
+	}
 }
 
 
@@ -300,4 +315,19 @@ string EU3Country::getGovernment()
 vector<EU3Relations> EU3Country::getRelations()
 {
 	return relations;
+}
+
+
+vector<EU3Army> EU3Country::getArmies()
+{
+	return armies;
+}
+
+
+void EU3Country::resolveRegimentTypes(const RegimentTypeMap& map)
+{
+	for (vector<EU3Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	{
+		itr->resolveRegimentTypes(map);
+	}
 }

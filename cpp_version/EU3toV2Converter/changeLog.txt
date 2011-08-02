@@ -203,3 +203,5 @@ Revision	Version Updated		Log Message
 186		C++			Update project files and changelog
 187		C++			Altered DW province mappings so the owner of Antwerpen gets a coastal province
 188		C++			Cleaned up diplomatic error messages
+189		C++			Update more province mappings for coastal provinces
+190		C++			Convert armies and navies

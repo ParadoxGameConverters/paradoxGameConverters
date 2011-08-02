@@ -75,6 +75,18 @@
     <ClCompile Include="V2Pop.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
+    <ClCompile Include="V2Diplomacy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Relations.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Army.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Army.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -133,6 +145,12 @@
     </ClInclude>
     <ClInclude Include="V2Inventions.h">
       <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Army.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Army.h">
+      <Filter>EU3 World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

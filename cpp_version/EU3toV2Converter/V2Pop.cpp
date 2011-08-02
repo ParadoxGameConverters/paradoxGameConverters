@@ -47,6 +47,12 @@ string V2Pop::getType()
 }
 
 
+int V2Pop::getID()
+{
+	return id;
+}
+
+
 void V2Pop::output(FILE* output)
 {
 	fprintf(output, "	%s=\n", type.c_str());

@@ -25,8 +25,12 @@ class V2Province {
 		void		addOldPop(V2Pop);
 		void		createPops(EU3Province* oldProvince, EU3Country* oldCountry);
 		void		output(FILE*);
+		vector<V2Pop>	getPops(string type);
+		void		setCoastal(bool coastal);
+		bool		isCoastal();
 	private:
 		bool				land;
+		bool				coastal;
 		int				num;
 		string			name;
 		string			owner;

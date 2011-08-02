@@ -191,6 +191,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="EU3Army.cpp" />
     <ClCompile Include="EU3Country.cpp" />
     <ClCompile Include="EU3Diplomacy.cpp" />
     <ClCompile Include="EU3Province.cpp" />
@@ -200,6 +201,7 @@
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="tempFuncs.cpp" />
+    <ClCompile Include="V2Army.cpp" />
     <ClCompile Include="V2Country.cpp" />
     <ClCompile Include="V2Diplomacy.cpp" />
     <ClCompile Include="V2Pop.cpp" />
@@ -212,6 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Date.h" />
+    <ClInclude Include="EU3Army.h" />
     <ClInclude Include="EU3Country.h" />
     <ClInclude Include="EU3Diplomacy.h" />
     <ClInclude Include="EU3Province.h" />
@@ -220,6 +223,7 @@
     <ClInclude Include="Log.h" />
     <ClInclude Include="Mapper.h" />
     <ClInclude Include="tempFuncs.h" />
+    <ClInclude Include="V2Army.h" />
     <ClInclude Include="V2Country.h" />
     <ClInclude Include="V2Inventions.h" />
     <ClInclude Include="V2Diplomacy.h" />

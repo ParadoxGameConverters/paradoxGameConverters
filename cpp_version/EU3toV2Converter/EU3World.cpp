@@ -117,3 +117,12 @@ EU3Diplomacy& EU3World::getDiplomacy()
 {
 	return diplomacy;
 }
+
+
+void EU3World::resolveRegimentTypes(const RegimentTypeMap& map)
+{
+	for (vector<EU3Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		itr->resolveRegimentTypes(map);
+	}
+}

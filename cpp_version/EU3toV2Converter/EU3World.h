@@ -14,6 +14,7 @@ class EU3World {
 		EU3Province*			getProvince(int provNum);
 		void						removeCountry(string tag);
 		EU3Diplomacy&			getDiplomacy();
+		void					resolveRegimentTypes(const RegimentTypeMap& map);
 	private:
 		vector<EU3Province>	provinces;
 		vector<EU3Country>	countries;
