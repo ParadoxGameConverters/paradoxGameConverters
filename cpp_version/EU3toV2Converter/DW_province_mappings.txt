@@ -1364,10 +1364,10 @@ link = { eu3 = 238 vic = 293 }								# Essex -> Chelmsford
 link = { eu3 = 1860 vic = 291 vic = 292 }					# Norfolk -> Cambridge Ipswich
 link = { eu3 = 237 vic = 294 vic = 295 }					# Oxfordshire -> Oxford St ALbans
 link = { eu3 = 239 vic = 296 vic = 298 }					# Gloucestershire -> Bristol Bath
-link = { eu3 = 236 vic = 300 }								# London -> London 
-link = { eu3 = 235 vic = 301 vic = 302 }					# Kent -> Canterbury Brighton 
 link = { eu3 = 234 vic = 303 vic = 297 }					# Wessex -> Southhampton Salisbury 
-link = { eu3 = 233 vic = 299 }								# Cornwall -> Plymouth 
+link = { eu3 = 233 vic = 299 }								# Cornwall -> Plymouth
+link = { eu3 = 236 vic = 300 vic = 301}								# London -> London Canterbury
+link = { eu3 = 235 vic = 302 }					# Kent ->  Brighton 
 
 
 ## Ireland ##
@@ -1422,8 +1422,6 @@ link = { eu3 = 737 vic = 1635 vic = 1637 }			# Jeolla -> Kwangju Cheju
 #Scandinavia
 # Sweden & Norway
 link = { eu3 = 24 vic = 310 vic = 311 } # Agder
-link = { eu3 = 17 vic = 312 vic = 313 vic = 316 } # Akershus
-link = { eu3 = 16 vic = 329 } # Bohuslan
 link = { eu3 = 22 vic = 315 vic = 314 } # Eidsiva
 link = { eu3 = 23 vic = 309 vic = 308 } # Bergenhus
 link = { eu3 = 20 vic = 305 } # Tonderlag
@@ -1438,11 +1436,14 @@ link = { eu3 = 9 vic = 317 vic = 318 } # Halsingland
 link = { eu3 = 1 vic = 322 vic = 324 } # Stockholm -> Stockholm, Uppsala
 link = { eu3 = 4 vic = 327 } # Bergenslagen
 link = { eu3 = 2 vic = 325 vic = 326 } # Ostergotland -> Norrkoping, Vasteras
-link = { eu3 = 7 vic = 330 } # Vastergotland
 link = { eu3 = 26 vic = 334 } # Halland
 link = { eu3 = 3 vic = 333 vic = 332 } # Smaland
 link = { eu3 = 6 vic = 335 vic = 374 } # Skane
 link = { eu3 = 25 vic = 331 } # Gotland
+
+link = { eu3 = 7 vic = 330 vic = 329 } # Vastergotland -> Boras,  Goteborg
+link = { eu3 = 16 vic = 316 }          # Borhuslan -> Frederiksstad
+link = { eu3 = 17 vic = 312 vic = 313} # Akerhus -> Drammen, Christiania
 
 # Denmark & Holstein
 link = { eu3 = 15 vic = 367 vic = 366 vic = 368 vic = 2557 } # Jylland
@@ -1475,15 +1476,12 @@ link = { eu3 = 206 vic = 474 vic = 476 } # Galicia -> La Coruna Vigo
 link = { eu3 = 207 vic = 475 } # Asturias -> Oviedo
 link = { eu3 = 208 vic = 477 } # Leon -> Leon
 link = { eu3 = 1745 vic = 478 } # Cantabria -> Santander
-link = { eu3 = 209 vic = 492 } # Vizcaya -> Bilbao
-link = { eu3 = 210 vic = 493 } # Navarra -> Pamplona
 link = { eu3 = 333 vic = 502 } # The Baleares -> Balearic Islands
 link = { eu3 = 216 vic = 482 } # Salamanca -> Salamanca
 link = { eu3 = 1747 vic = 486 } # Caceres -> Caceres
 link = { eu3 = 366 vic = 2136 } # The Canarias -> Canary Islands
 link = { eu3 = 221 vic = 507 vic = 506 } # Murcia -> Murcia Cartagena
 link = { eu3 = 226 vic = 517 } # Gibraltar -> Gibraltar
-link = { eu3 = 211 vic = 496 vic = 500 } # Pirineo -> Huesca Lerida
 link = { eu3 = 212 vic = 499 } # Girona -> Gerona
 link = { eu3 = 213 vic = 501 vic = 498 } # Barcelona -> Terragona Barcelona
 link = { eu3 = 220 vic = 504 vic = 503 vic = 490 } # Valencia -> Castellon Valencia Cuenca
@@ -1500,6 +1498,8 @@ link = { eu3 = 225 vic = 510 } # Cordoba -> Cordoba
 link = { eu3 = 222 vic = 515 } # Almeria -> Almeria
 link = { eu3 = 1748 vic = 516 } # La Mancha -> Jaen
 link = { eu3 = 219 vic = 489 vic = 491 vic = 508 } # Toledo -> Toledo Ciudad Real Albacete
+link = { eu3 = 209 eu3 = 210 vic = 492 } # Vizcaya, Navara -> Bilbao
+link = { eu3 = 211 vic = 496 vic = 500 vic = 493 } # Pirineo -> Huesca Lerida Pamplona
 
 
 ## Portugal and Atlantic Islands
