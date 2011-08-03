@@ -835,6 +835,7 @@ bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverse
 	return true;
 }
 
+//#define TEST_V2_PROVINCES
 void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
@@ -895,6 +896,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
 	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
+#ifndef TEST_V2_PROVINCES
 		EU3Country* oldCountry = &sourceCountries[itr->getSourceCountryIndex()];
 
 		// set up armies with whatever regiments they deserve, rounded down
@@ -990,9 +992,6 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 				if (white == port_whitelist.end())
 				{
 					log("Warning: assigning navy to non-whitelisted port province %d.  If the save crashes, try blacklisting this province.\n", selectedLocation);
-					ofstream s("port_greylist.txt", ios_base::app);
-					s << selectedLocation << "\n";
-					s.close();
 				}
 			}
 			army.setLocation(selectedLocation);
@@ -1020,6 +1019,41 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 				}
 			}
 		}
+
+#else // ifdef TEST_V2_PROVINCES
+		// output one big ship to each V2 province that's neither whitelisted nor blacklisted, but only 10 at a time per nation
+		// output from this mode is used to build whitelist and blacklist files
+		int n_tests = 0;
+		for (vector<V2Province>::iterator pitr = provinces.begin(); (pitr != provinces.end()) && (n_tests < 50); ++pitr)
+		{
+			if ((pitr->getOwner() == itr->getTag()) && pitr->isCoastal())
+			{
+				vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), pitr->getNum());
+				if (black != port_blacklist.end())
+					continue;
+
+				V2Army army;
+				army.setName("V2 Test Navy");
+				army.setAtSea(0);
+				army.setNavy(true);
+				army.setLocation(pitr->getNum());
+				V2Regiment reg(big_ship);
+				reg.setStrength(100);
+				army.addRegiment(reg);
+				itr->addArmy(army);
+
+				vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), pitr->getNum());
+				if (white == port_whitelist.end())
+				{
+					++n_tests;
+					ofstream s("port_greylist.txt", ios_base::app);
+					s << pitr->getNum() << "\n";
+					s.close();
+				}
+			}
+		}
+		log("Output %d test ships.\n", n_tests);
+#endif
 	}
 }
 

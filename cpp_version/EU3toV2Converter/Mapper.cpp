@@ -440,7 +440,7 @@ void removeLandlessNations(EU3World& world)
 }
 
 
-vector<string> getEU3Tags(EU3World srcWorld)
+vector<string> getEU3Tags(EU3World& srcWorld)
 {
 	vector<EU3Country>	EU3Countries = srcWorld.getCountries();
 	vector<string>			EU3Tags;
