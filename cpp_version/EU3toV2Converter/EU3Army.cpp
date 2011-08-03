@@ -1,6 +1,7 @@
 #include "EU3Army.h"
 #include "Log.h"
 
+
 void EU3Regiment::init(Object *obj)
 {
 	std::vector<Object*> objName = obj->getValue("name");

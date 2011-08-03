@@ -800,22 +800,6 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 }
 
 
-// this should probably be in a data file instead of hardcoded
-// the number is the raw strength of that unit type needed in EU3 for one V2 regiment to be created
-// (see file "unit_strength.txt" for how much EU3 units count for)
-// these are based off typical end-game EU3 units being converted 3-to-1 (1000-to-3000 man regiments) for ground
-// and roughly by #cannons for 1-to-1 conversion of endgame sea units
-static const double cost_per_regiment[num_reg_categories] =
-{
-	135.0, // infantry - 45 points per 1000, 3000-man regiments
-	135.0, // cavalry - 45 points per 1000, 3000-man regiments
-	120.0, // artillery - 40 points per 1000, 3000-man regiments
-	60.0, // big ship - 1-to-1 for threedeckers
-	30.0, // light ship - 1-to-1 for heavy frigates
-	30.0, // galley - 3-to-2 for archipelago frigates (turn into light ships in vicky)
-	24.0, // transport - 1-to-1 for all transports
-};
-
 bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap)
 {
 	V2Regiment reg((RegimentCategory)rc);
@@ -827,7 +811,7 @@ bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverse
 		const vector<int>& homeCandidates = getV2ProvinceNums(inverseProvinceMap, eu3Home);
 		if (homeCandidates.size() == 0)
 		{
-			log("Error: Regiment in army %s has unmapped home province %d; dissolving to pool.\n", army->getName().c_str(), eu3Home);
+			log("Error: %s regiment in army %s has unmapped home province %d; dissolving to pool.\n", RegimentCategoryNames[rc], army->getName().c_str(), eu3Home);
 			return false;
 		}
 		int newHomeProvince = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
@@ -838,7 +822,7 @@ bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverse
 				vector<V2Pop> pops = pitr->getPops("soldiers");
 				if (pops.size() == 0)
 				{
-					log("Error: V2 province %d is home for a regiment, but has no soldier pops! Dissolving regiment to pool.\n", newHomeProvince);
+					log("Error: V2 province %d is home for a regiment of %s, but has no soldier pops! Dissolving regiment to pool.\n", newHomeProvince, RegimentCategoryNames[rc]);
 					return false;
 				}
 				reg.setPopID(pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID());
@@ -876,6 +860,35 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 			port_blacklist.push_back(temp);
 		}
 		s.close();
+	}
+
+	// get cost per regiment values
+	double cost_per_regiment[num_reg_categories] = { 0.0 };
+	initParser();
+	Object*	obj2 = Parser::topLevel;
+	{
+		ifstream read;
+		read.open("regiment_costs.txt");
+		if (!read.is_open())
+		{
+			log("Error: Could not open regiment_costs.txt\n");
+			printf("Error: Could not open regiment_costs.txt\n");
+			exit(1);
+		}
+		readFile(read);
+		read.close();
+	}
+	vector<Object*> objTop = obj2->getLeaves();
+	if (objTop.size() == 0 || objTop[0]->getLeaves().size() == 0)
+	{
+		log("Error: regiment_costs.txt failed to parse.");
+		printf("Error: regiment_costs.txt failed to parse.");
+		exit(1);
+	}
+	for (int i = 0; i < num_reg_categories; ++i)
+	{
+		string regiment_cost = objTop[0]->getLeaf(RegimentCategoryNames[i]);
+		cost_per_regiment[i] = atoi(regiment_cost.c_str());
 	}
 
 	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
@@ -991,14 +1004,14 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 		{
 			if (countryRemainder[rc] > 0.0)
 			{
-				log("Allocating regiments of type %d from the remainder pool for %s (total: %4lf)\n", rc, itr->getTag().c_str(), countryRemainder[rc]);
+				log("Allocating regiments of %s from the remainder pool for %s (total: %4lf)\n", RegimentCategoryNames[rc], itr->getTag().c_str(), countryRemainder[rc]);
 			}
 			while (countryRemainder[rc] > 0.0)
 			{
 				V2Army* army = itr->getArmyForRemainder((RegimentCategory)rc);
 				if (!army)
 				{
-					log("Error: no suitable army or navy found for %s's pooled regiments of type %d!\n", itr->getTag().c_str(), rc);
+					log("Error: no suitable army or navy found for %s's pooled regiments of %s!\n", itr->getTag().c_str(), RegimentCategoryNames[rc]);
 					break;
 				}
 				if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap))

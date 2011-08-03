@@ -21,6 +21,16 @@ typedef enum
 	num_reg_categories
 } RegimentCategory;
 
+static const char* RegimentCategoryNames[] = {
+	"infantry",
+	"cavalry",
+	"artillery",
+	"big_ship",
+	"light_ship",
+	"galley",
+	"transport"
+};
+
 typedef map<string, pair<RegimentCategory, int> > RegimentTypeMap;
 
 class EU3Regiment // also Ship

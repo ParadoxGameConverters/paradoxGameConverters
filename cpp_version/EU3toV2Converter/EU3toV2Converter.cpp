@@ -109,13 +109,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Resolving unit types.\n");
 	RegimentTypeMap rtm;
 	obj = doParseFile("unit_strength.txt");
-	AddCategoryToRegimentTypeMap(obj, infantry, "infantry", rtm);
-	AddCategoryToRegimentTypeMap(obj, cavalry, "cavalry", rtm);
-	AddCategoryToRegimentTypeMap(obj, artillery, "artillery", rtm);
-	AddCategoryToRegimentTypeMap(obj, big_ship, "big_ship", rtm);
-	AddCategoryToRegimentTypeMap(obj, light_ship, "light_ship", rtm);
-	AddCategoryToRegimentTypeMap(obj, galley, "galley", rtm);
-	AddCategoryToRegimentTypeMap(obj, transport, "transport", rtm);
+	for (int i = 0; i < num_reg_categories; ++i)
+	{
+		AddCategoryToRegimentTypeMap(obj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
+	}
 	sourceWorld.resolveRegimentTypes(rtm);
 
 
