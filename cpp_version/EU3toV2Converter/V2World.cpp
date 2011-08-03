@@ -2,6 +2,7 @@
 #include <fstream>
 #include <algorithm>
 #include <io.h>
+#include <list>
 #include "Parsers/Parser.h"
 #include "Log.h"
 #include "tempFuncs.h"
@@ -652,11 +653,11 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 
 void V2World::setupStates(stateMapping stateMap)
 {
-	vector<V2Province> unassignedProvs;
-	unassignedProvs = provinces;
+	list<V2Province> unassignedProvs;
+	unassignedProvs.insert(unassignedProvs.begin(), provinces.begin(), provinces.end());
 
 	int stateId = 0;
-	vector<V2Province>::iterator iter;
+	list<V2Province>::iterator iter;
 	while(unassignedProvs.size() > 0)
 	{
 		iter = unassignedProvs.begin();
@@ -675,7 +676,7 @@ void V2World::setupStates(stateMapping stateMap)
 		vector<int> neighbors	= stateMap[provId];
 		bool colonial				= iter->isColonial();
 		newState.setColonial(colonial);
-		unassignedProvs.erase(iter);
+		iter = unassignedProvs.erase(iter);
 
 		for (unsigned int i = 0; i < neighbors.size(); i++)
 		{
@@ -688,7 +689,7 @@ void V2World::setupStates(stateMapping stateMap)
 						if ( (iter->isColonial()) == colonial)
 						{
 							newState.addProvince(*iter);
-							unassignedProvs.erase(iter);
+							iter = unassignedProvs.erase(iter);
 						}
 					}
 				}

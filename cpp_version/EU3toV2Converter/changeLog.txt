@@ -208,3 +208,4 @@ Revision	Version Updated		Log Message
 191		C++			Fix Benelux mappings for HTTT. Error instead of crashing on bad mappings. Include port lists in build.
 192		C++			Read regiment costs from a file instead of hardcoding them
 193		C++			Complete port whitelist and blacklist.
+194		C++			Speed up state conversion (O(n^2)->O(n))

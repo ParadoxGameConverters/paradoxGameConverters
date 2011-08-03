@@ -28,7 +28,7 @@ void EU3Province::init(Object* obj) {
 	cultureObj = obj->getValue("culture");
 	if (cultureObj.size() == 0)
 	{
-		culture == "";
+		culture = "";
 	}
 	else
 	{
@@ -39,7 +39,7 @@ void EU3Province::init(Object* obj) {
 	religionObj = obj->getValue("religion");
 	if (religionObj.size() == 0)
 	{
-		religion == "";
+		religion = "";
 	}
 	else
 	{
