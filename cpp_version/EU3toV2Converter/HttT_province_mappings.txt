@@ -1258,8 +1258,7 @@ link = { eu3 = 92 vic = 387 vic = 391}						# Brabant -> Brussels, Hasselt
 link = { eu3 = 100 vic = 385 vic = 383 vic = 386 }			# Friesland -> Leeuwarden, Groningen, Assen 
 link = { eu3 = 98 vic = 377 }								# Utrecht -> Utrecht 
 link = { eu3 = 94 vic = 397 vic = 398 }						# Luxemburg -> Luxemburg, Arlon 
-link = { eu3 = 93 vic = 395 vic = 396 }						# Liège -> Liege, Spa
-link = { eu3 = 1866 vic = 392 }								# Namur -> Namur
+link = { eu3 = 93 vic = 395 vic = 396 vic = 392}						# Liège -> Liege, Spa, Namur
 link = { eu3 = 1742 vic = 381 }								# Limburg -> Maastricht
 link = { eu3 = 99 vic = 382 vic = 384 }						# Gelre -> Arnhem, Zwolle
 link = { eu3 = 95 vic = 380 vic = 379 }						# Noord -> Breda, Eindhoven
@@ -1267,10 +1266,9 @@ link = { eu3 = 90 vic = 388 }								# Vlaanderen -> Bruges
 link = { eu3 = 91 vic = 393 vic = 394 }						# Hainault -> Tournai, Charleroi
 
 ## Gunt Benelux ##
-link = { eu3 = 1744 vic = 378 vic = 390 }                       # Antwerp -> Middleberg, Antwerp
+link = { eu3 = 1744 vic = 378 vic = 390 vic = 389 }                       # Antwerp -> Middleberg, Antwerp, Ghent
 link = { eu3 = 96 vic = 376 }                                   # Zeeland -> Rotterdam
 link = { eu3 = 97 vic = 375 }                                   # Holland -> Amsterdam
-link = { eu3 = 1865 vic = 389 }                                 # Ghent -> Ghent
 
 ## Switzerland ##
 link = { eu3 = 166 vic = 603 vic = 606 vic = 611 vic = 2568 }			# Schwyz -> Zürich Luzern Chur Lugano 

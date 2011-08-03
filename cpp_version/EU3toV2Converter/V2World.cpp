@@ -543,6 +543,11 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 		else
 		{
 			EU3Province* oldProvince	= sourceWorld.getProvince(sourceNums[0]);
+			if (!oldProvince)
+			{
+				log("Error: old province %d does not exist.  Bad mapping?\n", sourceNums[0]);
+				continue;
+			}
 			string oldOwner				= oldProvince->getOwner();
 			if (oldOwner != "")
 			{

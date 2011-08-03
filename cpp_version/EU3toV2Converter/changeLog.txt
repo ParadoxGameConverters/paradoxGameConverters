@@ -205,3 +205,4 @@ Revision	Version Updated		Log Message
 188		C++			Cleaned up diplomatic error messages
 189		C++			Update more province mappings for coastal provinces
 190		C++			Convert armies and navies
+191		C++			Fix Benelux mappings for HTTT. Error instead of crashing on bad mappings. Include port lists in build.
