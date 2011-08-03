@@ -315,15 +315,17 @@ void removeEmptyNations(EU3World& world)
 {
 	vector<EU3Country> countries = world.getCountries();
 
+	vector<string> tagsToRemove;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		vector<EU3Province*> provinces	= countries[i].getProvinces();
 		vector<EU3Province*> cores			= countries[i].getCores();
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
-			world.removeCountry(countries[i].getTag());
+			tagsToRemove.push_back(countries[i].getTag());
 		}
 	}
+	world.removeCountries(tagsToRemove);
 }
 
 
@@ -362,6 +364,7 @@ void removeDeadLandlessNations(EU3World& world)
 	vector<EU3Country> countries = world.getCountries();
 
 	vector<EU3Country> countries2;
+	map<string, int> cultureCounts;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		vector<EU3Province*> provinces = countries[i].getProvinces();
@@ -369,8 +372,14 @@ void removeDeadLandlessNations(EU3World& world)
 		{
 			countries2.push_back(countries[i]);
 		}
+		string culture = countries[i].getPrimaryCulture();
+		map<string, int>::iterator itr = cultureCounts.find(culture);
+		if (itr == cultureCounts.end())
+			cultureCounts[culture] = 0;
+		++cultureCounts[culture];
 	}
 
+	vector<string> tagsToRemove;
 	for (unsigned int i = 0; i < countries2.size(); i++)
 	{
 		string culture					= countries2[i].getPrimaryCulture();
@@ -380,23 +389,17 @@ void removeDeadLandlessNations(EU3World& world)
 		{
 			if (cores[j]->getCulture() == culture)
 			{
-				cultureSurvives = true;
-				string owner = cores[j]->getOwner();
-				for (unsigned int k = 0; k < countries.size(); k++)
-				{
-					if (countries[k].getPrimaryCulture() == culture)
-					{
-						cultureSurvives = false;
-					}
-				}
-				
+				cultureSurvives = (cultureCounts[culture] == 0);
+				break;
 			}
 		}
 		if (cultureSurvives == false)
 		{
-			world.removeCountry(countries2[i].getTag());
+			--cultureCounts[countries2[i].getPrimaryCulture()];
+			tagsToRemove.push_back(countries2[i].getTag());
 		}
 	}
+	world.removeCountries(tagsToRemove);
 }
 
 
@@ -416,12 +419,14 @@ void removeOlderLandlessNations(EU3World& world, int& excess)
 
 	sort(countries2.begin(), countries2.end(), compareLandlessNationsAges);
 
+	vector<string> tagsToRemove;
 	while ( (excess > 0) && (countries2.size() > 0) )
 	{
-		world.removeCountry(countries2.back().getTag());
+		tagsToRemove.push_back(countries2.back().getTag());
 		countries2.pop_back();
 		excess--;
 	}
+	world.removeCountries(tagsToRemove);
 }
 
 
@@ -429,14 +434,16 @@ void removeLandlessNations(EU3World& world)
 {
 	vector<EU3Country> countries = world.getCountries();
 
+	vector<string> tagsToRemove;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		vector<EU3Province*> provinces = countries[i].getProvinces();
 		if (provinces.size() == 0)
 		{
-			world.removeCountry(countries[i].getTag());
+			tagsToRemove.push_back(countries[i].getTag());
 		}
 	}
+	world.removeCountries(tagsToRemove);
 }
 
 

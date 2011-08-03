@@ -100,6 +100,28 @@ EU3Province* EU3World::getProvince(int provNum)
 }
 
 
+// calling vector::erase in a loop is really slow.  batch removals to avoid it.
+void EU3World::removeCountries(vector<string>& tags)
+{
+	vector<EU3Country> newCountries;
+	for (vector<EU3Country>::iterator ci = countries.begin(); ci != countries.end(); ++ci)
+	{
+		bool shouldBeRemoved = false;
+		for (vector<string>::iterator ti = tags.begin(); ti != tags.end(); ++ti)
+		{
+			if (ci->getTag() == *ti)
+			{
+				shouldBeRemoved = true;
+				break;
+			}
+		}
+		if (!shouldBeRemoved)
+			newCountries.push_back(*ci);
+	}
+	countries.swap(newCountries);
+}
+
+
 void EU3World::removeCountry(string tag)
 {
 	for (vector<EU3Country>::iterator i = countries.begin(); i < countries.end(); i++)
