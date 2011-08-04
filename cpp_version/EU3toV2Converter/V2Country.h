@@ -38,6 +38,7 @@ class V2Country
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
+		void outputReforms(FILE*);
 
 		string				tag;
 		vector<V2State>	states;

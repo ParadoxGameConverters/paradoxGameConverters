@@ -72,6 +72,7 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	capital=%d\n", capital);
 	}
 	outputTech(output);
+	outputReforms(output);
 	outputCountryHeader(output);
 	fprintf(output, "	ruling_party=%d\n", parties[0]);
 	for (unsigned int i = 0; i < parties.size(); i++)
@@ -978,6 +979,28 @@ void V2Country::setCultureTech(double newTechLevel)
 	{
 		inventions[social_justice]			= active;
 	}
+}
+
+
+void V2Country::outputReforms(FILE* output)
+{
+	fprintf(output, "	wage_reform=no_minimum_wage\n");
+	fprintf(output, "	work_hours=no_work_hour_limit\n");
+	fprintf(output, "	safety_regulations=no_safety\n");
+	fprintf(output, "	unemployment_subsidies=no_subsidies\n");
+	fprintf(output, "	pensions=no_pensions\n");
+	fprintf(output, "	health_care=no_health_care\n");
+	fprintf(output, "	slavery=yes_slavery\n");
+	if (government == "democracy")
+		fprintf(output, "\tvote_franschise=landed_voting\n");
+	else
+		fprintf(output, "\tvote_franschise=none_voting\n");
+	fprintf(output, "	upper_house_composition=appointed\n");
+	fprintf(output, "	voting_system=first_past_the_post\n");
+	fprintf(output, "	public_meetings=no_meeting\n");
+	fprintf(output, "	press_rights=state_press\n");
+	fprintf(output, "	trade_unions=no_trade_unions\n");
+	fprintf(output, "	political_parties=underground_parties\n");
 }
 
 

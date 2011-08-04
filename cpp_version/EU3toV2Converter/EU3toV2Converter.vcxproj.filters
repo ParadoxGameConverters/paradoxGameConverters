@@ -75,17 +75,17 @@
     <ClCompile Include="V2Pop.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
-    <ClCompile Include="V2Diplomacy.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="V2Relations.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="V2Army.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
     <ClCompile Include="EU3Army.cpp">
       <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Diplomacy.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Relations.cpp">
+      <Filter>V2 World</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
