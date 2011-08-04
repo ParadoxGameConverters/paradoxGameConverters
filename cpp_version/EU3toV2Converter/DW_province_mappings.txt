@@ -1306,11 +1306,11 @@ link = { eu3 = 1865 vic = 389 }                                 # Ghent -> Ghent
 ## Switzerland ##
 link = { eu3 = 166 vic = 2568 }						# Schwyz -> Lugano
 link = { eu3 = 165 vic = 607 vic = 605 vic = 604 }	# Bern -> Bern, Basel
-link = { eu3 = 165 vic = 603 }						# Zurich -> Zurich
-link = { eu3 = 165 vic = 606 }						# St Gallen -> Lucerne
-link = { eu3 = 165 vic = 611 }						# Chur -> Chur				
-link = { eu3 = 165 vic = 607 vic = 608 }			# Freiburg -> Geneva, Neuchatel
-link = { eu3 = 165 vic = 609 }						# Wallis -> Sitten
+link = { eu3 = 1869 vic = 603 }						# Zurich -> Zurich
+link = { eu3 = 1870 vic = 606 }						# St Gallen -> Lucerne
+link = { eu3 = 1873 vic = 611 }						# Chur -> Chur				
+link = { eu3 = 1867 vic = 607 vic = 608 }			# Freiburg -> Geneva, Neuchatel
+link = { eu3 = 1871 vic = 609 }						# Wallis -> Sitten
 
 ## Italy ##
 link = { eu3 = 111 vic = 733 }                                          # Friuli -> Udine
