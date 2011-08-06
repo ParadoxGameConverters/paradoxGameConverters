@@ -828,7 +828,7 @@ bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverse
 				int soldierPop = pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID();
 				if (!pitr->growSoldierPop(soldierPop))
 				{
-					log("Error: Could not grow province %d soldier pop ID %d to support %s regiment. Regiment will be undersupported.\n", newHomeProvince, soldierPop, RegimentCategoryNames[rc]);
+					log("Error: Could not grow province %d soldier pop ID %d to support regiment in army %s. Regiment will be undersupported.\n", newHomeProvince, soldierPop, army->getName().c_str());
 				}
 				reg.setPopID(soldierPop);
 				break;
@@ -928,6 +928,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 				int regimentsToCreate = (int)floor(regimentCount);
 				double regimentRemainder = regimentCount - regimentsToCreate;
 				countryRemainder[rc] += regimentRemainder;
+				army.setArmyRemainders((RegimentCategory)rc, army.getArmyRemainder((RegimentCategory)rc) + regimentRemainder);
 
 				double avg_strength = aitr->getAverageStrength((RegimentCategory)rc);
 				for (int i = 0; i < regimentsToCreate; ++i)
@@ -936,6 +937,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 					{
 						// couldn't add, dissolve into pool
 						countryRemainder[rc] += 1.0;
+						army.setArmyRemainders((RegimentCategory)rc, army.getArmyRemainder((RegimentCategory)rc) + 1.0);
 					}
 				}
 			}
@@ -1021,6 +1023,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 				if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap))
 				{
 					countryRemainder[rc] -= 1.0;
+					army->setArmyRemainders((RegimentCategory)rc, army->getArmyRemainder((RegimentCategory)rc) - 1.0);
 				}
 			}
 		}
