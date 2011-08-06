@@ -214,3 +214,4 @@ Revision	Version Updated		Log Message
 197		C++			Correct DW Switzerland province mappings
 198		C++			steppe_horde added to government map.
 199		C++			Always give democracies some form of voting rights.
+200		C++			Grow soldier pops to support the regiments assigned to them

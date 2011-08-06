@@ -280,6 +280,65 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 }
 
 
+int V2Province::getTotalPopulation()
+{
+	int total = 0;
+	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		total += itr->getSize();
+	}
+	return total;
+}
+
+
+// V2 requires 1000 for the first regiment and 3000 thereafter
+// we require an extra 1/30 to stabilize the start of the game
+static int getRequiredPopForRegimentCount(int count)
+{
+	if (count == 0) return 0;
+	return (1033 + (count - 1) * 3100);
+}
+
+bool V2Province::growSoldierPop(int popID)
+{
+	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		if (itr->getID() == popID)
+		{
+			int currentlySupported = itr->getSupportedRegimentCount();
+			int growBy = getRequiredPopForRegimentCount(currentlySupported + 1) - itr->getSize();
+			if (growBy > 0)
+			{
+				// gotta grow; find a same-culture same-religion farmer/laborer to pull from
+				int provincePop = getTotalPopulation();
+				bool foundSourcePop = false;
+				for (vector<V2Pop>::iterator isrc = pops.begin(); isrc != pops.end(); ++isrc)
+				{
+					if (isrc->getType() == "farmers" || isrc->getType() == "labourers")
+					{
+						if (isrc->getCulture() == itr->getCulture() && isrc->getReligion() == itr->getReligion())
+						{
+							// don't let the farmer/labourer shrink beneath 10% of the province population
+							if (isrc->getSize() - growBy > provincePop * 0.10)
+							{
+								isrc->setSize(isrc->getSize() - growBy);
+								itr->setSize(itr->getSize() + growBy);
+								foundSourcePop = true;
+								break;
+							}
+						}
+					}
+				}
+				if (!foundSourcePop)
+					return false;
+			}
+			itr->setSupportedRegimentCount(++currentlySupported);
+			return true;
+		}
+	}
+	return false;
+}
+
 
 void V2Province::output(FILE* output)
 {

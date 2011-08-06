@@ -594,7 +594,6 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 						provinces[i].setReligion("");
 					}
 
-					sourceWorld.getCountry(oldOwner);
 					provinces[i].createPops(oldProvince, sourceWorld.getCountry(oldOwner));
 				}
 			}
@@ -826,7 +825,12 @@ bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverse
 					log("Error: V2 province %d is home for a regiment of %s, but has no soldier pops! Dissolving regiment to pool.\n", newHomeProvince, RegimentCategoryNames[rc]);
 					return false;
 				}
-				reg.setPopID(pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID());
+				int soldierPop = pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID();
+				if (!pitr->growSoldierPop(soldierPop))
+				{
+					log("Error: Could not grow province %d soldier pop ID %d to support %s regiment. Regiment will be undersupported.\n", newHomeProvince, soldierPop, RegimentCategoryNames[rc]);
+				}
+				reg.setPopID(soldierPop);
 				break;
 			}
 		}

@@ -6,6 +6,8 @@ static int nextId = 23000;
 
 V2Pop::V2Pop()
 {
+	supportedRegiments = 0;
+
 	id = nextId;
 	nextId++;
 }
@@ -50,6 +52,30 @@ string V2Pop::getType()
 int V2Pop::getID()
 {
 	return id;
+}
+
+
+string V2Pop::getCulture()
+{
+	return culture;
+}
+
+
+string V2Pop::getReligion()
+{
+	return religion;
+}
+
+
+int V2Pop::getSupportedRegimentCount()
+{
+	return supportedRegiments;
+}
+
+
+void V2Pop::setSupportedRegimentCount(int regiments)
+{
+	supportedRegiments = regiments;
 }
 
 

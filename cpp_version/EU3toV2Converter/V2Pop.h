@@ -18,13 +18,18 @@ class V2Pop
 		string	getType();
 		void		output(FILE*);
 		int		getID();
-	private:
+		string	getCulture();
+		string	getReligion();
+		int		getSupportedRegimentCount();
+		void	setSupportedRegimentCount(int regiments);
 
+	private:
 		int		id;
 		string	type;
 		int		size;
 		string	culture;
 		string	religion;
+		int		supportedRegiments;
 };
 
 

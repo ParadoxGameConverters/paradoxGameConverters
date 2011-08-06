@@ -28,6 +28,8 @@ class V2Province {
 		vector<V2Pop>	getPops(string type);
 		void		setCoastal(bool coastal);
 		bool		isCoastal();
+		int			getTotalPopulation();
+		bool		growSoldierPop(int popID);
 	private:
 		bool				land;
 		bool				coastal;
