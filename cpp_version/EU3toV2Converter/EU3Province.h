@@ -19,6 +19,7 @@ class EU3Province {
 		string			getReligion();
 		bool				isColony();
 		date				getLastPossessedDate(string Tag);
+		bool				wasColonised();
 	private:
 		int									num;
 		string								owner;
@@ -28,7 +29,10 @@ class EU3Province {
 		string								religion;
 		int									population;
 		bool									colony;
-		vector< pair<string, date> >	lastPossessedDate;
+		map<string, date>				lastPossessedDate;
+		vector< pair<date, string> >	ownershipHistory;
+		vector< pair<date, string> >	religionHistory;
+		vector< pair<date, string> >	cultureHistory;
 };
 
 

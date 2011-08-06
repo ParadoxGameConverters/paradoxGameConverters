@@ -22,7 +22,8 @@ class V2World {
 		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);
 		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap);
 	private:
-		bool				addRegimentToArmy(V2Army* army, RegimentCategory category, const inverseProvinceMapping& inverseProvinceMap);
+		V2Province*			getProvinceForExpeditionaryArmy(const V2Country& country);
+		bool				addRegimentToArmy(V2Army* army, RegimentCategory category, const inverseProvinceMapping& inverseProvinceMap, V2Country& country);
 		vector<V2Province>	provinces;
 		vector<V2Country>		countries;
 		vector<V2Country>		potentialCountries;

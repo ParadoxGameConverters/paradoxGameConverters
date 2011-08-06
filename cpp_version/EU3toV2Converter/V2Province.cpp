@@ -79,6 +79,18 @@ void V2Province::setLifeRating(int newLifeRating)
 }
 
 
+void V2Province::setColonised(bool wasIt)
+{
+	colonised = wasIt;
+}
+
+
+bool V2Province::wasColonised()
+{
+	return colonised;
+}
+
+
 bool V2Province::isColonial()
 {
 	return colonial;

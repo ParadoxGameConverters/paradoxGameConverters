@@ -1,4 +1,5 @@
 #include "EU3Province.h"
+#include <algorithm>
 #include "Log.h"
 
 
@@ -75,37 +76,60 @@ void EU3Province::init(Object* obj) {
 	{
 		vector<Object*> historyObjs = historyObj[0]->getLeaves();
 		string lastOwner;
+		string thisCountry;
 		for (unsigned int i = 0; i < historyObjs.size(); i++)
 		{
 			if (historyObjs[i]->getKey() == "owner")
 			{
-				lastOwner = historyObjs[i]->getLeaf().substr(1,3);
+				thisCountry = historyObjs[i]->getLeaf().substr(1,3);
+				lastOwner = thisCountry;
+				ownershipHistory.push_back(make_pair(date(), thisCountry));
+				continue;
+			}
+			else if (historyObjs[i]->getKey() == "culture")
+			{
+				cultureHistory.push_back(make_pair(date(), historyObjs[i]->getLeaf()));
+				continue;
+			}
+			else if (historyObjs[i]->getKey() == "religion")
+			{
+				religionHistory.push_back(make_pair(date(), historyObjs[i]->getLeaf()));
 				continue;
 			}
 
 			vector<Object*> ownerObj = historyObjs[i]->getValue("owner");
 			if (ownerObj.size() > 0)
 			{
-				string dateString = historyObjs[i]->getKey();
-				date newDate(dateString);
+				date newDate(historyObjs[i]->getKey());
+				thisCountry = ownerObj[0]->getLeaf().substr(1, 3);
 
-				unsigned int j;
-				for (j = 0; j < lastPossessedDate.size(); j++)
-				{
-					if (lastPossessedDate[j].first == lastOwner)
-					{
-						lastPossessedDate[j] = make_pair(lastOwner, newDate);
-						break;
-					}
-				}
-				if (j == lastPossessedDate.size())
-				{
-					lastPossessedDate.push_back( make_pair(lastOwner, newDate) );
-				}
-				lastOwner			= ownerObj[0]->getLeaf().substr(1, 3);
+				map<string, date>::iterator itr = lastPossessedDate.find(lastOwner);
+				if (itr != lastPossessedDate.end())
+					itr->second = newDate;
+				else
+					lastPossessedDate.insert(make_pair(lastOwner, newDate));
+				lastOwner = thisCountry;
+
+				ownershipHistory.push_back(make_pair(newDate, thisCountry));
+			}
+			vector<Object*> culObj = historyObjs[i]->getValue("culture");
+			if (culObj.size() > 0)
+			{
+				date newDate(historyObjs[i]->getKey());
+				cultureHistory.push_back(make_pair(newDate, culObj[0]->getLeaf()));
+			}
+			vector<Object*> religObj = historyObjs[i]->getValue("religion");
+			if (religObj.size() > 0)
+			{
+				date newDate(historyObjs[i]->getKey());
+				religionHistory.push_back(make_pair(newDate, religObj[0]->getLeaf()));
 			}
 		}
 	}
+
+	sort(ownershipHistory.begin(), ownershipHistory.end());
+	sort(cultureHistory.begin(), cultureHistory.end());
+	sort(religionHistory.begin(), religionHistory.end());
 }
 
 
@@ -174,13 +198,25 @@ bool EU3Province::isColony()
 }
 
 
-date EU3Province::getLastPossessedDate(string Tag)
+bool EU3Province::wasColonised()
 {
-	for (unsigned int i = 0; i < lastPossessedDate.size(); i++)
+	// returns true if the first owner did not own the province at the beginning of the game,
+	// but acquired it later through colonization
+	if (ownershipHistory.size() > 0)
 	{
-		if (lastPossessedDate[i].first == Tag)
+		if (ownershipHistory[0].first != date())
 		{
-			return lastPossessedDate[i].second;
+			return true;
 		}
 	}
+	return false;
+}
+
+
+date EU3Province::getLastPossessedDate(string Tag)
+{
+	map<string, date>::iterator itr = lastPossessedDate.find(Tag);
+	if (itr != lastPossessedDate.end())
+		return itr->second;
+	return date();
 }

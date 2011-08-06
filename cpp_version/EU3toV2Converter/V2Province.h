@@ -22,6 +22,8 @@ class V2Province {
 		void		setRgoType(string);
 		void		setLifeRating(int);
 		bool		isColonial();
+		void		setColonised(bool);
+		bool		wasColonised();
 		void		addOldPop(V2Pop);
 		void		createPops(EU3Province* oldProvince, EU3Country* oldCountry);
 		void		output(FILE*);
@@ -39,6 +41,7 @@ class V2Province {
 		//controller
 		vector<string>	cores;
 		bool				colonial;
+		bool				colonised;
 		int				oldPopulation;
 		vector<V2Pop>	oldPops;
 		vector<V2Pop>	pops;

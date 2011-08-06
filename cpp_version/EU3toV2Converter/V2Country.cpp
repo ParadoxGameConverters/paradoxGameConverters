@@ -21,7 +21,7 @@ void V2Country::setSourceCountryIndex(int oldCountryIndex)
 }
 
 
-string V2Country::getTag()
+string V2Country::getTag() const
 {
 	return tag;
 }
@@ -48,6 +48,12 @@ void V2Country::setcivilized(bool isIt)
 void V2Country::setPrimaryCulture(string culture)
 {
 	primaryCulture = culture;
+}
+
+
+string V2Country::getPrimaryCulture() const
+{
+	return primaryCulture;
 }
 
 

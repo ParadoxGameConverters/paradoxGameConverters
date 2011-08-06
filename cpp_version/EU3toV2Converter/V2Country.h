@@ -12,12 +12,13 @@ class V2Country
 {
 	public:
 		void					init(string tag, string countryFile, vector<int> parties);
-		string				getTag();
+		string				getTag() const;
 		void					setSourceCountryIndex(int);
 		void					addState(V2State);
 		void					setCapital(int);
 		void					setcivilized(bool);
 		void					setPrimaryCulture(string);
+		string				getPrimaryCulture() const;
 		void					addAcceptedCulture(string);
 		void					setReligion(string);
 		void					output(FILE*);
