@@ -195,7 +195,9 @@ link = { eu3 = 1170 vic = 2001 vic = 1985 }				# Kongo -> Mbanza, Kumbana
 link = { eu3 = 1168 vic = 2003 }				# Kisarna -> Benguela 
 link = { eu3 = 1171 vic = 2002 vic = 2009 }				# Ndongo -> Quibala, Malanje
 link = { eu3 = 1172 vic = 2004 }				# Benguela -> Mossamedes 
-link = { eu3 = 1173 vic = 2079 }				# Damaraland -> Swakopmund 
+link = { eu3 = 1173 vic = 2079 }				# Damaraland -> Swakopmund
+link = { eu3 = 1129 vic = 1781 }                                # Azzawad -> Walata
+link = { eu3 = 1130 vic = 2609 }                                # Tadimaket -> Aroauane 
 
 ### China ###
 
