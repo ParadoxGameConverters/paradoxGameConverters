@@ -219,3 +219,6 @@ Revision	Version Updated		Log Message
 202		C++			If a regiment's home province doesn't belong to the regiment owner, don't try to use its pops.
 					If a regiment's home was originally a colony that can't support it, make it into an expeditionary unit.
 					Detect and handle several additional errors in army placement.
+
+203		C++			EU3 provinces 1129 and 1130 correctly mapped.
+204		C++			Moved some functions to new files.

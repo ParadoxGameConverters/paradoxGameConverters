@@ -3,49 +3,7 @@
 #include "Log.h"
 #include "V2World.h"
 
-static inline Object* doParseFile(const char* filename)
-{
-	ifstream	read;				// ifstream for reading files
 
-	initParser();
-	Object* obj = Parser::topLevel;
-	read.open(filename); 
-	if (!read.is_open())
-	{
-		log("Error: Could not open %s\n", filename);
-		printf("Error: Could not open %s\n", filename);
-		exit(1);
-	}
-	readFile(read);  
-	read.close();
-	read.clear();
-
-	return obj;
-}
-
-static inline void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm)
-{
-	vector<Object*> top = obj->getValue(categoryName);
-	if (top.size() != 1)
-	{
-		log("Error: could not get regiment type map for %s", categoryName);
-		printf("Error: could not get regiment type map for %s", categoryName);
-		exit(1);
-	}
-	vector<Object*> types = top[0]->getLeaves();
-	if (types.size() == 0)
-	{
-		log("Error: no regiment types to map for %s", categoryName);
-		printf("Error: no regiment types to map for %s", categoryName);
-		exit(1);
-	}
-	for (vector<Object*>::iterator itr = types.begin(); itr != types.end(); ++itr)
-	{
-		string type = (*itr)->getKey();
-		string strength = (*itr)->getLeaf();
-		rtm[type] = pair<RegimentCategory, int>(category, atoi(strength.c_str()));
-	}
-}
 
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
 {

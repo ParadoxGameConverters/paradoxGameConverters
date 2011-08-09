@@ -67,5 +67,6 @@ bool	makeObject(string& command);
 void	readFile(ifstream& read);
 bool	trim(string& str, int& count); 
 void	initParser();
+Object* doParseFile(const char* filename);
 
 #endif	// PARSER_H

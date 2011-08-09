@@ -6,6 +6,8 @@
 
 
 void outputHeader(FILE*);
+void outputTempReforms(FILE* output);
+void outputTempReforms2(FILE* output);
 void outputCountryHeader(FILE*);
 void outputCountryHeader2(FILE*);
 void outputCountryMiddle(FILE*);

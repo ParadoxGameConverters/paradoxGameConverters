@@ -1,5 +1,7 @@
 #include "Parser.h"
+#include "..\Log.h"
 #include <fstream>
+
 
 Object* Parser::topLevel = NULL;  
 vector<Object*> stack; 
@@ -291,6 +293,27 @@ bool makeObject(string& command)
 
 	//cout << "No match in " << command << " stopped at \"" << result.stop << "\"" << endl;
 	return false;
+}
+
+
+Object* doParseFile(const char* filename)
+{
+	ifstream	read;				// ifstream for reading files
+
+	initParser();
+	Object* obj = Parser::topLevel;
+	read.open(filename); 
+	if (!read.is_open())
+	{
+		log("Error: Could not open %s\n", filename);
+		printf("Error: Could not open %s\n", filename);
+		exit(1);
+	}
+	readFile(read);  
+	read.close();
+	read.clear();
+
+	return obj;
 }
 
 

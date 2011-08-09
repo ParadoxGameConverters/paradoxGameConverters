@@ -73,4 +73,7 @@ class EU3Army // also Navy
 		vector<EU3Regiment>		regiments;
 };
 
+void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm);
+
+
 #endif
