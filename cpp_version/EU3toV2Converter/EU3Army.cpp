@@ -146,12 +146,30 @@ int EU3Army::getProbabilisticHomeProvince(RegimentCategory category)
 	{
 		if (itr->getCategory() == category)
 		{
-			homeProvinces.push_back(itr->getHome());
+			int home = itr->getHome();
+			bool blocked = false;
+			for (vector<int>::iterator bitr = blocked_homes.begin(); bitr != blocked_homes.end(); ++bitr)
+			{
+				if (home == *bitr)
+				{
+					blocked = true;
+					break;
+				}
+			}
+			if (!blocked)
+				homeProvinces.push_back(home);
 		}
 	}
+	if (homeProvinces.size() == 0)
+		return -1;
 	return homeProvinces[int(homeProvinces.size() * ((double)rand() / RAND_MAX))];
 }
 
+
+void EU3Army::blockHomeProvince(int home)
+{
+	blocked_homes.push_back(home);
+}
 
 
 void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm)

@@ -820,35 +820,100 @@ V2Province* V2World::getProvinceForExpeditionaryArmy(const V2Country& country)
 }
 
 
-bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, V2Country& country)
+vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
+{
+	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
+	// a non-port province, Vicky crashes....
+	static vector<int> port_blacklist;
+	if (port_blacklist.size() == 0)
+	{
+		int temp = 0;
+		ifstream s("port_blacklist.txt");
+		while (s.good() && !s.eof())
+		{
+			s >> temp;
+			port_blacklist.push_back(temp);
+		}
+		s.close();
+	}
+
+	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	{
+		vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
+		if (black != port_blacklist.end())
+		{
+			locationCandidates.erase(litr);
+			break;
+		}
+	}
+	for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	{
+		for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+		{
+			if (pitr->getNum() == (*litr))
+			{
+				if (!pitr->isCoastal())
+				{
+					locationCandidates.erase(litr);
+					--pitr;
+					break;
+				}
+			}
+		}
+	}
+	return locationCandidates;
+}
+
+
+// return values: 0 = success, -1 = retry from pool, -2 = do not retry
+int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, V2Country& country)
 {
 	V2Regiment reg((RegimentCategory)rc);
-	// TODO: what to do about regiment names?
-	if (!army->getNavy())
+	int eu3Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
+	if (eu3Home == -1)
 	{
-		// Armies need to be associated with pops
-		int eu3Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
-		const vector<int>& homeCandidates = getV2ProvinceNums(inverseProvinceMap, eu3Home);
+		log("Error: army/navy %s has no valid home provinces for %s due to previous errors; dissolving to pool.\n", army->getName().c_str(), RegimentCategoryNames[rc]);
+		return -2;
+	}
+	vector<int> homeCandidates = getV2ProvinceNums(inverseProvinceMap, eu3Home);
+	if (homeCandidates.size() == 0)
+	{
+		log("Error: %s unit in army/navy %s has unmapped home province %d; dissolving to pool.\n", RegimentCategoryNames[rc], army->getName().c_str(), eu3Home);
+		army->getSourceArmy()->blockHomeProvince(eu3Home);
+		return -1;
+	}
+	// Navies should only get homes in port provinces
+	if (army->getNavy())
+	{
+		homeCandidates = getPortProvinces(homeCandidates);
 		if (homeCandidates.size() == 0)
 		{
-			log("Error: %s regiment in army %s has unmapped home province %d; dissolving to pool.\n", RegimentCategoryNames[rc], army->getName().c_str(), eu3Home);
-			return false;
+			log("Error: %s in navy %s has EU3 home province %d which has no corresponding V2 port provinces; dissolving to pool.\n", RegimentCategoryNames[rc], army->getName().c_str(), eu3Home);
+			army->getSourceArmy()->blockHomeProvince(eu3Home);
+			return -1;
 		}
-		int newHomeProvince = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
-		for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	}
+	int newHomeProvince = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
+	for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	{
+		if (pitr->getNum() == newHomeProvince)
 		{
-			if (pitr->getNum() == newHomeProvince)
+			V2Province* homeProvince = &(*pitr);
+			// Armies need to be associated with pops
+			if (!army->getNavy())
 			{
 				if (pitr->getOwner() != country.getTag())
 				{
 					log("Error: V2 province %d is home for a %s %s regiment, but belongs to %s! Dissolving regiment to pool.\n", newHomeProvince, country.getTag().c_str(), RegimentCategoryNames[rc], pitr->getOwner().c_str());
-					return false;
+					// all provinces in a given province map have the same owner, so the source home was bad
+					army->getSourceArmy()->blockHomeProvince(eu3Home);
+					return -1;
 				}
 				vector<V2Pop> pops = pitr->getPops("soldiers");
 				if (pops.size() == 0)
 				{
 					log("Error: V2 province %d is home for a regiment of %s, but has no soldier pops! Dissolving regiment to pool.\n", newHomeProvince, RegimentCategoryNames[rc]);
-					return false;
+					return -1;
 				}
 				int soldierPop = pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID();
 				bool growSucceeded = pitr->growSoldierPop(soldierPop);
@@ -864,7 +929,10 @@ bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverse
 							int expSoldierPop = pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID();
 							growSucceeded = expSender->growSoldierPop(expSoldierPop);
 							if (growSucceeded)
+							{
+								homeProvince = expSender;
 								soldierPop = expSoldierPop;
+							}
 						}
 					}
 				}
@@ -873,13 +941,14 @@ bool V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverse
 					log("Error: Could not grow province %d soldier pop ID %d to support regiment in army %s. Regiment will be undersupported.\n", newHomeProvince, soldierPop, army->getName().c_str());
 				}
 				reg.setPopID(soldierPop);
-				break;
 			}
+			reg.setName(homeProvince->getRegimentName(rc));
+			break;
 		}
 	}
 	reg.setStrength(army->getSourceArmy()->getAverageStrength(rc) * (army->getNavy() ? 100.0 : 3.0));
 	army->addRegiment(reg);
-	return true;
+	return 0;
 }
 
 //#define TEST_V2_PROVINCES
@@ -895,17 +964,6 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 		{
 			s >> temp;
 			port_whitelist.push_back(temp);
-		}
-		s.close();
-	}
-	vector<int> port_blacklist;
-	{
-		int temp = 0;
-		ifstream s("port_blacklist.txt");
-		while (s.good() && !s.eof())
-		{
-			s >> temp;
-			port_blacklist.push_back(temp);
 		}
 		s.close();
 	}
@@ -975,7 +1033,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 				double avg_strength = aitr->getAverageStrength((RegimentCategory)rc);
 				for (int i = 0; i < regimentsToCreate; ++i)
 				{
-					if (!addRegimentToArmy(&army, (RegimentCategory)rc, inverseProvinceMap, (*itr)))
+					if (addRegimentToArmy(&army, (RegimentCategory)rc, inverseProvinceMap, (*itr)) != 0)
 					{
 						// couldn't add, dissolve into pool
 						countryRemainder[rc] += 1.0;
@@ -998,33 +1056,10 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 			// guarantee that navies are assigned to provinces with naval bases
 			if (army.getNavy())
 			{
-				for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-				{
-					vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
-					if (black != port_blacklist.end())
-					{
-						locationCandidates.erase(litr);
-						break;
-					}
-				}
-				for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
-				{
-					for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-					{
-						if (pitr->getNum() == (*litr))
-						{
-							if (!pitr->isCoastal())
-							{
-								locationCandidates.erase(litr);
-								--pitr;
-								break;
-							}
-						}
-					}
-				}
+				locationCandidates = getPortProvinces(locationCandidates);
 				if (locationCandidates.size() == 0)
 				{
-					log("Error: Navy %s assigned to EU3 province %d which has no corresponding coastal V2 provinces; dissolving to pool.\n", aitr->getName().c_str(), aitr->getLocation());
+					log("Error: Navy %s assigned to EU3 province %d which has no corresponding V2 port provinces; dissolving to pool.\n", aitr->getName().c_str(), aitr->getLocation());
 					int regimentCounts[num_reg_categories] = { 0 };
 					army.getRegimentCounts(regimentCounts);
 					for (int rc = infantry; rc < num_reg_categories; ++rc)
@@ -1054,8 +1089,6 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 			{
 				log("Allocating regiments of %s from the remainder pool for %s (total: %4lf)\n", RegimentCategoryNames[rc], itr->getTag().c_str(), countryRemainder[rc]);
 			}
-			int remainingRetries = 5;
-			double prevCountryRemainder = countryRemainder[rc];
 			while (countryRemainder[rc] > 0.0)
 			{
 				V2Army* army = itr->getArmyForRemainder((RegimentCategory)rc);
@@ -1064,20 +1097,17 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 					log("Error: no suitable army or navy found for %s's pooled regiments of %s!\n", itr->getTag().c_str(), RegimentCategoryNames[rc]);
 					break;
 				}
-				if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, (*itr)))
+				switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, (*itr)))
 				{
+				case 0: // success
 					countryRemainder[rc] -= 1.0;
 					army->setArmyRemainders((RegimentCategory)rc, army->getArmyRemainder((RegimentCategory)rc) - 1.0);
-				}
-
-				if (countryRemainder[rc] == prevCountryRemainder)
-					--remainingRetries;
-				else
-					remainingRetries = 5;
-				prevCountryRemainder = countryRemainder[rc];
-				if (remainingRetries == 0)
-				{
-					log("Error: could not place %s's pooled regiments of %s (retries exceeded)!\n", itr->getTag().c_str(), RegimentCategoryNames[rc]);
+					break;
+				case -1: // retry
+					break;
+				case -2: // do not retry
+					log("Disqualifying army/navy %s from receiving more %s from the pool.\n", army->getName().c_str(), RegimentCategoryNames[rc]);
+					army->setArmyRemainders((RegimentCategory)rc, -2000.0);
 					break;
 				}
 			}

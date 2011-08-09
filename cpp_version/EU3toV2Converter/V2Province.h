@@ -32,6 +32,7 @@ class V2Province {
 		bool		isCoastal();
 		int			getTotalPopulation();
 		bool		growSoldierPop(int popID);
+		string		getRegimentName(RegimentCategory rc);
 	private:
 		bool				land;
 		bool				coastal;
@@ -49,6 +50,7 @@ class V2Province {
 		string			religion;
 		string			rgoType;
 		int				lifeRating;
+		int				unitNameCount[num_reg_categories];
 };
 
 

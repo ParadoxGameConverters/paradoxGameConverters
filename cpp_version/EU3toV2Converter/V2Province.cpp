@@ -1,6 +1,8 @@
 #include "V2Province.h"
 #include "Log.h"
 
+#include <sstream>
+
 
 void V2Province::init(int newNumber)
 {
@@ -9,6 +11,9 @@ void V2Province::init(int newNumber)
 	land				= false;
 	oldPopulation	= 0;
 	coastal				= false;
+
+	for (int i = 0; i < num_reg_categories; ++i)
+		unitNameCount[i] = 0;
 }
 
 
@@ -352,6 +357,78 @@ bool V2Province::growSoldierPop(int popID)
 }
 
 
+static string CardinalToOrdinal(int cardinal)
+{
+	int hundredRem = cardinal % 100;
+	int tenRem = cardinal % 10;
+	if (hundredRem - tenRem == 10)
+	{
+		return "th";
+	}
+
+	switch (tenRem)
+	{
+	case 1:
+		return "st";
+	case 2:
+		return "nd";
+	case 3:
+		return "rd";
+	default:
+		return "th";
+	}
+}
+
+
+string V2Province::getRegimentName(RegimentCategory rc)
+{
+	// galleys turn into light ships; count and name them identically
+	if (rc == galley)
+		rc = light_ship;
+
+	stringstream str;
+	str << "\"";
+	str << ++unitNameCount[rc] << CardinalToOrdinal(unitNameCount[rc]); // 1st, 2nd, etc
+	str << " " << getName() << " "; // Hamburg, Lyon, etc
+	switch (rc)
+	{
+	case artillery:
+		str << "Artillery";
+		break;
+	case infantry:
+		str << "Infantry";
+		break;
+	case cavalry:
+		str << "Cavalry";
+		break;
+	case big_ship:
+		str << "Man'o'war";
+		break;
+	case light_ship:
+		str << "Frigate";
+		break;
+	case transport:
+		str << "Clipper Transport";
+		break;
+	}
+	str << "\"";
+	return str.str();
+}
+
+
+// determined experimentally
+static const int unitNameOffsets[num_reg_categories] =
+{
+	16,	// infantry
+	5,	// cavalry
+	4,	// artillery
+	19, // big_ship
+	13, // light_ship
+	0,	// galley (unused)
+	6	// transport
+};
+
+
 void V2Province::output(FILE* output)
 {
 	if (name == "")
@@ -511,6 +588,37 @@ void V2Province::output(FILE* output)
 		fprintf(output, "		last_income=100000.00000\n");
 		fprintf(output, "	}\n");
 		fprintf(output, "	life_rating=%d\n", lifeRating);
+
+		// unit name counts are stored in an odd kind of variable-length sparse array.  try to emulate.
+		int outputUnitNameUntil = 0;
+		for (int i = 0; i < num_reg_categories; ++i)
+		{
+			if (unitNameCount[i] > 0 && unitNameOffsets[i] > outputUnitNameUntil)
+			{
+				outputUnitNameUntil = unitNameOffsets[i];
+			}
+		}
+		if (outputUnitNameUntil > 0)
+		{
+			fprintf(output, "\tunit_names=\n");
+			fprintf(output, "\t{\n");
+			fprintf(output, "\t\tdata=\n");
+			fprintf(output, "\t\t{\n");
+			for (int i = 1; i <= outputUnitNameUntil; ++i)
+			{
+				fprintf(output, "\t\t\t{\n");
+				for (int j = 0; j < num_reg_categories; ++j)
+				{
+					if ((i == unitNameOffsets[j]) && unitNameCount[j] > 0)
+					{
+						fprintf(output, "\t\t\t\tcount=%d\n", unitNameCount[j]);
+					}
+				}
+				fprintf(output, "\t\t\t}\n\n");
+			}
+			fprintf(output, "\t\t}\n");
+			fprintf(output, "\t}\n");
+		}
 	}
 	fprintf(output, "}\n");
 }

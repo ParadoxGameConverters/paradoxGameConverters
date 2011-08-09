@@ -995,6 +995,7 @@ void V2Country::outputReforms(FILE* output)
 		fprintf(output, "\tvote_franschise=landed_voting\n");
 	else
 		fprintf(output, "\tvote_franschise=none_voting\n");
+	outputTempReforms2(output);
 }
 
 

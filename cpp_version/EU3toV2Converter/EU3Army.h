@@ -65,12 +65,14 @@ class EU3Army // also Navy
 		double					getAverageStrength(RegimentCategory category);
 		int						getTotalTypeStrength(RegimentCategory category);
 		int						getProbabilisticHomeProvince(RegimentCategory category);
+		void					blockHomeProvince(int home);
 		int						getAtSea() const { return at_sea; }
 	private:
 		string					name;
 		int						location;
 		int						at_sea;
 		vector<EU3Regiment>		regiments;
+		vector<int>				blocked_homes;
 };
 
 void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm);
