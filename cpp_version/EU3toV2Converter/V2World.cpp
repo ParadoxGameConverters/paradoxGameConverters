@@ -609,7 +609,7 @@ void V2World::addUnions(unionMapping unionMap)
 	{
 		for (unsigned int j = 0; j < unionMap.size(); j++)
 		{
-			if (unionMap[j].first == provinces[i].getCulture())
+			if ( (unionMap[j].first == provinces[i].getCulture()) && (!provinces[i].wasColonised()) )
 			{
 				provinces[i].addCore(unionMap[j].second);
 			}
