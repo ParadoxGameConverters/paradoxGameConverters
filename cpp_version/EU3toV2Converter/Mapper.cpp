@@ -492,9 +492,10 @@ cultureMapping initCultureMap(Object* obj)
 
 	for (unsigned int i = 0; i < links.size(); i++)
 	{
-		vector<Object*>	cultures	= links[i]->getLeaves();
-		string				dstCulture;
-		vector<string>		srcCultures;
+		vector<Object*>			cultures	= links[i]->getLeaves();
+		vector<string>				srcCultures;
+		string						dstCulture;
+		vector< distinguisher > distinguishers;
 
 		for (unsigned int j = 0; j < cultures.size(); j++)
 		{
@@ -506,11 +507,29 @@ cultureMapping initCultureMap(Object* obj)
 			{
 				srcCultures.push_back(cultures[j]->getLeaf());
 			}
+			if (cultures[j]->getKey() == "owner")
+			{
+				distinguisher newD;
+				newD.first	= owner;
+				newD.second	= cultures[j]->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if (cultures[j]->getKey() == "religion")
+			{
+				distinguisher newD;
+				newD.first	= religion;
+				newD.second	= cultures[j]->getLeaf();
+				distinguishers.push_back(newD);
+			}
 		}
 
 		for (unsigned int j = 0; j < srcCultures.size(); j++)
 		{
-			cultureMap.insert(pair<string,string>(srcCultures[j], dstCulture));
+			cultureStruct	rule;
+			rule.srcCulture		= srcCultures[j];
+			rule.dstCulture		= dstCulture;
+			rule.distinguishers	= distinguishers;
+			cultureMap.push_back(rule);
 		}
 	}
 

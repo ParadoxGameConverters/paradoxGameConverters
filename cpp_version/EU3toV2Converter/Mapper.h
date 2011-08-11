@@ -33,7 +33,18 @@ void removeLandlessNations(EU3World&);
 typedef map< int, vector<int> > stateMapping;	// < province, all other provinces in state >
 stateMapping initStateMap(Object* obj);
 
-typedef map< string, string > cultureMapping;		// <srcCulture, destCulture>
+enum distinguisherType
+{
+	owner,
+	religion
+};
+typedef pair< distinguisherType, string > distinguisher;
+typedef struct {
+	string srcCulture;
+	string dstCulture;
+	vector< distinguisher > distinguishers;
+} cultureStruct;
+typedef vector < cultureStruct > cultureMapping;
 cultureMapping initCultureMap(Object* obj);
 
 typedef map< string, string> religionMapping;		// <srcReligion, destReligion>

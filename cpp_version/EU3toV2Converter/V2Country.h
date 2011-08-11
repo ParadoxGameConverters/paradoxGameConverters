@@ -21,6 +21,7 @@ class V2Country
 		string				getPrimaryCulture() const;
 		void					addAcceptedCulture(string);
 		void					setReligion(string);
+		string				getReligion();
 		void					output(FILE*);
 		int					getSourceCountryIndex();
 		void					setPrestige(double);

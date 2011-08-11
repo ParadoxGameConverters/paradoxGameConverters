@@ -440,12 +440,37 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					string srcCulture = sourceCountries[i].getPrimaryCulture();
 					if (srcCulture.size() > 0)
 					{
-						cultureMapping::iterator iter2 = cultureMap.find(srcCulture);
-						if (iter2 != cultureMap.end())
+						bool matched = false;
+						for (size_t k = 0; (k < cultureMap.size()) && (!matched); k++)
 						{
-							newCountry.setPrimaryCulture(iter2->second);
+							bool match = true;
+							if (cultureMap[k].srcCulture == srcCulture)
+							{
+								for (size_t j = 0; j < cultureMap[k].distinguishers.size(); j++)
+								{
+									if (cultureMap[k].distinguishers[j].first == owner)
+									{
+										if (newCountry.getTag() != cultureMap[k].distinguishers[j].second)
+											match = false;
+									}
+									else if (cultureMap[k].distinguishers[j].first == religion)
+									{
+										if (newCountry.getReligion() != cultureMap[k].distinguishers[j].second)
+											match = false;
+									}
+									else
+									{
+										log ("Error: Unhandled distinguisher type in culture rules.\n");
+									}
+								}
+								if (match)
+								{
+									newCountry.setPrimaryCulture(cultureMap[k].dstCulture);
+									matched = true;
+								}
+							}
 						}
-						else
+						if (!matched)
 						{
 							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
 						}
@@ -454,12 +479,37 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					vector<string> acceptedCultures = sourceCountries[i].getAcceptedCultures();
 					for (unsigned int k = 0; k < acceptedCultures.size(); k++)
 					{
-						cultureMapping::iterator iter2 = cultureMap.find(acceptedCultures[k]);
-						if (iter2 != cultureMap.end())
+						bool matched = false;
+						for (size_t l = 0; (l < cultureMap.size()) && (!matched); l++)
 						{
-							newCountry.addAcceptedCulture(iter2->second);
+							bool match = true;
+							if (cultureMap[l].srcCulture == acceptedCultures[k])
+							{
+								for (size_t j = 0; j < cultureMap[l].distinguishers.size(); j++)
+								{
+									if (cultureMap[l].distinguishers[j].first == owner)
+									{
+										if (newCountry.getTag() != cultureMap[l].distinguishers[j].second)
+											match = false;
+									}
+									else if (cultureMap[l].distinguishers[j].first == religion)
+									{
+										if (newCountry.getReligion() != cultureMap[l].distinguishers[j].second)
+											match = false;
+									}
+									else
+									{
+										log ("Error: Unhandled distinguisher type in culture rules.\n");
+									}
+								}
+							}
+							if (match)
+							{
+								newCountry.addAcceptedCulture(cultureMap[l].dstCulture);
+								matched = true;
+							}
 						}
-						else
+						if (!matched)
 						{
 							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i].getTag().c_str(), newCountry.getTag().c_str());
 						}
@@ -573,12 +623,38 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 						}
 					}
 	
-					cultureMapping::iterator iter2 = cultureMap.find(oldProvince->getCulture());
-					if (iter2 != cultureMap.end())
+					bool matched = false;
+					for (size_t k = 0; (k < cultureMap.size()) && (!matched); k++)
 					{
-						provinces[i].setCulture(iter2->second);
+						if (cultureMap[k].srcCulture == oldProvince->getCulture())
+						{
+							bool match = true;
+							for (size_t j = 0; j < cultureMap[k].distinguishers.size(); j++)
+							{
+								if (cultureMap[k].distinguishers[j].first == owner)
+								{
+									if (oldProvince->getOwner() != cultureMap[k].distinguishers[j].second)
+										match = false;
+								}
+								else if (cultureMap[k].distinguishers[j].first == religion)
+								{
+									if (oldProvince->getReligion() != cultureMap[k].distinguishers[j].second)
+										match = false;
+								}
+								else
+								{
+									log ("Error: Unhandled distinguisher type in culture rules.\n");
+								}
+
+							}
+							if (match)
+							{
+								provinces[i].setCulture(cultureMap[k].dstCulture);
+								matched = true;
+							}
+						}
 					}
-					else
+					if (!matched)
 					{
 						log("Error: Could not set culture for province %d\n", destNum);
 						provinces[i].setCulture("");

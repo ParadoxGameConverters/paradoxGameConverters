@@ -223,4 +223,6 @@ Revision	Version Updated		Log Message
 204		C++			Moved some functions to new files.
 205		C++			Assign names to converted regiments and ships, and record the name counts for V2
 					Improve robustness and determinism of pool allocation retry logic
-206		C++			All reforms set again.
+					All reforms set again.
+206		C++			Colonized provinces not required for cultural unions.
+207		C++			Cultures can be distinguished by province owner/country tag and religion.

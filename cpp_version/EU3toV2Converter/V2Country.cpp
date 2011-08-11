@@ -69,6 +69,12 @@ void V2Country::setReligion(string newReligion)
 }
 
 
+string V2Country::getReligion()
+{
+	return religion;
+}
+
+
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());

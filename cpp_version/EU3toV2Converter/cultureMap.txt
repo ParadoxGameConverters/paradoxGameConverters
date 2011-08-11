@@ -3,7 +3,9 @@
 cultureMap = {
 
 link = { vic = north_german eu3 = pommeranian eu3 = prussian eu3 = hannoverian eu3 = saxon  }
-link = { vic = south_german eu3 = hessian eu3 = bavarian eu3 = austrian eu3 = rheinlaender }
+link = { vic = swiss eu3 = rheinlaender owner = SWI }
+link = { vic = south_german eu3 = rheinlaender }
+link = { vic = south_german eu3 = hessian eu3 = bavarian eu3 = austrian }
 link = { vic = dutch eu3 = dutch }
 link = { vic = flemish eu3 = flemish }
 link = { vic = wallonian eu3 = wallonian }
