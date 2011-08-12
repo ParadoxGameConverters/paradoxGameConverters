@@ -32,5 +32,7 @@ class V2Pop
 		int		supportedRegiments;
 };
 
+int getNextPopId();
+
 
 #endif

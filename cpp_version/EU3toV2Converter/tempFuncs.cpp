@@ -1,12 +1,10 @@
 #include "tempFuncs.h"
 
 
-void outputHeader(FILE* output)
+void outputTempHeader(FILE* output)
 {
-	fprintf(output, "date=\"1835.12.31\"\n");
 	fprintf(output, "id=\n");
 	fprintf(output, "{\n");
-	//fprintf(output, "	id=5107\n");
 	fprintf(output, "	id=2107\n");
 	fprintf(output, "	type=4713\n");
 	fprintf(output, "}\n");

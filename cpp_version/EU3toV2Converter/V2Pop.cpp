@@ -89,3 +89,9 @@ void V2Pop::output(FILE* output)
 	fprintf(output, "		money=1000000.00000\n");
 	fprintf(output, "	}\n");
 }
+
+
+int getNextPopId()
+{
+	return nextId;
+}

@@ -234,3 +234,4 @@ Revision	Version Updated		Log Message
 213		C++			Sliders now influence political reforms.
 214		C++			Flags and modifiers now influence political reforms.
 215		C++			Build_and_test.bat
+216		C++			DasGuntLord01's recommended changes.
