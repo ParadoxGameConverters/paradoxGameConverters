@@ -22,18 +22,6 @@ void outputTempReforms(FILE* output)
 	fprintf(output, "	unemployment_subsidies=no_subsidies\n");
 	fprintf(output, "	pensions=no_pensions\n");
 	fprintf(output, "	health_care=no_health_care\n");
-	fprintf(output, "	slavery=yes_slavery\n");
-}
-
-
-void outputTempReforms2(FILE* output)
-{
-	fprintf(output, "	upper_house_composition=appointed\n");
-	fprintf(output, "	voting_system=first_past_the_post\n");
-	fprintf(output, "	public_meetings=no_meeting\n");
-	fprintf(output, "	press_rights=state_press\n");
-	fprintf(output, "	trade_unions=no_trade_unions\n");
-	fprintf(output, "	political_parties=underground_parties\n");
 }
 
 

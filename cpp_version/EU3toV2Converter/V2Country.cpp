@@ -75,6 +75,8 @@ string V2Country::getReligion()
 }
 
 
+
+
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -84,7 +86,7 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	capital=%d\n", capital);
 	}
 	outputTech(output);
-	outputReforms(output);
+	reforms.output(output);
 	outputCountryHeader(output);
 	fprintf(output, "	ruling_party=%d\n", parties[0]);
 	for (unsigned int i = 0; i < parties.size(); i++)
@@ -994,17 +996,6 @@ void V2Country::setCultureTech(double newTechLevel)
 }
 
 
-void V2Country::outputReforms(FILE* output)
-{
-	outputTempReforms(output);
-	if (government == "democracy")
-		fprintf(output, "\tvote_franschise=landed_voting\n");
-	else
-		fprintf(output, "\tvote_franschise=none_voting\n");
-	outputTempReforms2(output);
-}
-
-
 void V2Country::outputTech(FILE* output)
 {
 	fprintf(output, "	technology=\n");
@@ -1310,4 +1301,10 @@ V2Army*	V2Country::getArmyForRemainder(RegimentCategory rc)
 		}
 	}
 	return retval;
+}
+
+
+void V2Country::setReforms(EU3Country* srcCountry)
+{
+	reforms.init(srcCountry);
 }

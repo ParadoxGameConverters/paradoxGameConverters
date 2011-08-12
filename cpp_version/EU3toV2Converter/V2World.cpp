@@ -545,6 +545,8 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						}
 					}
 
+					newCountry.setReforms(&sourceCountries[newCountry.getSourceCountryIndex()]);
+
 					vector<EU3Relations> srcRelations = sourceCountries[i].getRelations();
 					if (srcRelations.size() > 0)
 					{

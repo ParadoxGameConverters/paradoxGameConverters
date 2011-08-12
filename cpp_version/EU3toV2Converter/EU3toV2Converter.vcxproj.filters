@@ -87,6 +87,9 @@
     <ClCompile Include="V2Relations.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
+    <ClCompile Include="V2Reforms.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -151,6 +154,9 @@
     </ClInclude>
     <ClInclude Include="EU3Army.h">
       <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Reforms.h">
+      <Filter>V2 World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

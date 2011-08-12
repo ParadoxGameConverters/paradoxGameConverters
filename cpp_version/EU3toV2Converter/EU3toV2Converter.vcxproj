@@ -206,6 +206,7 @@
     <ClCompile Include="V2Diplomacy.cpp" />
     <ClCompile Include="V2Pop.cpp" />
     <ClCompile Include="V2Province.cpp" />
+    <ClCompile Include="V2Reforms.cpp" />
     <ClCompile Include="V2Relations.cpp" />
     <ClCompile Include="V2State.cpp" />
     <ClCompile Include="V2World.cpp" />
@@ -229,6 +230,7 @@
     <ClInclude Include="V2Diplomacy.h" />
     <ClInclude Include="V2Pop.h" />
     <ClInclude Include="V2Province.h" />
+    <ClInclude Include="V2Reforms.h" />
     <ClInclude Include="V2Relations.h" />
     <ClInclude Include="V2State.h" />
     <ClInclude Include="V2World.h" />
