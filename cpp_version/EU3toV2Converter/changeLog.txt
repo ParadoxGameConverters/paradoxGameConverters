@@ -231,3 +231,4 @@ Revision	Version Updated		Log Message
 210		C++			Automated test conversions.
 211		C++			Build script uses environment variables instead of hard-coded paths.
 212		C++			Renamed test input for new script.
+213		C++			Sliders now influence political reforms.

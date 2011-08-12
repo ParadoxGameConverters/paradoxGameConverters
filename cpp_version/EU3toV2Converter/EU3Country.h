@@ -38,9 +38,17 @@ class EU3Country
 		vector<string>			getFlags();
 		bool						getPossibleDaimyo();
 		string					getGovernment();
-		vector<EU3Relations>		getRelations();
-		vector<EU3Army>				getArmies();
-		void					resolveRegimentTypes(const RegimentTypeMap& map);
+		vector<EU3Relations>	getRelations();
+		vector<EU3Army>		getArmies();
+		void						resolveRegimentTypes(const RegimentTypeMap& map);
+		int						getCentralizationDecentralization();
+		int						getAristocracyPlutocracy();
+		int						getSerfdomFreesubjects();
+		int						getInnovativeNarrowminded();
+		int						getMercantilismFreetrade();
+		int						getOffensiveDefensive();
+		int						getLandNaval();
+		int						getQualityQuantity();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -59,8 +67,16 @@ class EU3Country
 		vector<string>			flags;
 		bool						possibleDaimyo;
 		string					government;
-		vector<EU3Relations>			relations;
-		vector<EU3Army>					armies; // and navies...
+		vector<EU3Relations>	relations;
+		vector<EU3Army>		armies; // and navies...
+		int						centralization_decentralization;
+		int						aristocracy_plutocracy;
+		int						serfdom_freesubjects;
+		int						innovative_narrowminded;
+		int						mercantilism_freetrade;
+		int						offensive_defensive;
+		int						land_naval;
+		int						quality_quantity;
 };
 
 

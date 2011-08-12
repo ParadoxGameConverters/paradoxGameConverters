@@ -8,8 +8,9 @@
 class V2Reforms {
 	public:
 		void init(EU3Country*);
-		void output(FILE*);
 		void governmentEffects(EU3Country*);
+		void sliderEffects(EU3Country*);
+		void output(FILE*);
 	private:
 		int slavery;
 		int vote_franchise;

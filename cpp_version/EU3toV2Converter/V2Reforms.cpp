@@ -20,6 +20,7 @@ void V2Reforms::init(EU3Country* srcCountry)
 	pensions							= 0;
 	health_care						= 0;
 	governmentEffects(srcCountry);
+	sliderEffects(srcCountry);
 }
 
 
@@ -404,6 +405,138 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 	{
 		log("Error: Undefined government type while setting reforms for %s: %s\n", srcCountry->getTag().c_str(), government.c_str());
 	}
+}
+
+
+void V2Reforms::sliderEffects(EU3Country* srcCountry)
+{
+	int centralization_decentralization = srcCountry->getCentralizationDecentralization();
+	slavery							+= centralization_decentralization * 0;
+	vote_franchise					+= centralization_decentralization * 0;
+	upper_house_composition		+= centralization_decentralization * 0;
+	voting_system					+= centralization_decentralization * 0;
+	public_meetings				+= centralization_decentralization * 0;
+	press_rights					+= centralization_decentralization * 0;
+	trade_unions					+= centralization_decentralization * 0;
+	political_parties				+= centralization_decentralization * 0;
+	wage_reforms					+= centralization_decentralization * 0;
+	work_hours						+= centralization_decentralization * 0;
+	safety_regulations			+= centralization_decentralization * 0;
+	unemployment_subsidies		+= centralization_decentralization * 0;
+	pensions							+= centralization_decentralization * 0;
+	health_care						+= centralization_decentralization * 0;
+	
+	int aristocracy_plutocracy = srcCountry->getAristocracyPlutocracy();
+	slavery							+= aristocracy_plutocracy * 0;
+	vote_franchise					+= aristocracy_plutocracy * 0;
+	upper_house_composition		+= aristocracy_plutocracy * 1;
+	voting_system					+= aristocracy_plutocracy * 0;
+	public_meetings				+= aristocracy_plutocracy * 0;
+	press_rights					+= aristocracy_plutocracy * 0;
+	trade_unions					+= aristocracy_plutocracy * 0;
+	political_parties				+= aristocracy_plutocracy * 0;
+	wage_reforms					+= aristocracy_plutocracy * 0;
+	work_hours						+= aristocracy_plutocracy * 0;
+	safety_regulations			+= aristocracy_plutocracy * 0;
+	unemployment_subsidies		+= aristocracy_plutocracy * 0;
+	pensions							+= aristocracy_plutocracy * 0;
+	health_care						+= aristocracy_plutocracy * 0;
+
+	int serfdom_freesubjects = srcCountry->getSerfdomFreesubjects();
+	slavery							+= serfdom_freesubjects * 0;
+	vote_franchise					+= serfdom_freesubjects * 2;
+	upper_house_composition		+= serfdom_freesubjects * 1;
+	voting_system					+= serfdom_freesubjects * 0;
+	public_meetings				+= serfdom_freesubjects * 1;
+	press_rights					+= serfdom_freesubjects * 1;
+	trade_unions					+= serfdom_freesubjects * 1;
+	political_parties				+= serfdom_freesubjects * 1;
+	wage_reforms					+= serfdom_freesubjects * 0;
+	work_hours						+= serfdom_freesubjects * 0;
+	safety_regulations			+= serfdom_freesubjects * 0;
+	unemployment_subsidies		+= serfdom_freesubjects * 0;
+	pensions							+= serfdom_freesubjects * 0;
+	health_care						+= serfdom_freesubjects * 0;
+
+	int innovative_narrowminded = srcCountry->getInnovativeNarrowminded();
+	slavery							+= innovative_narrowminded * 0;
+	vote_franchise					+= innovative_narrowminded * 0;
+	upper_house_composition		+= innovative_narrowminded * 0;
+	voting_system					+= innovative_narrowminded * -1;
+	public_meetings				+= innovative_narrowminded * -1;
+	press_rights					+= innovative_narrowminded * -1;
+	trade_unions					+= innovative_narrowminded * -1;
+	political_parties				+= innovative_narrowminded * -1;
+	wage_reforms					+= innovative_narrowminded * -1;
+	work_hours						+= innovative_narrowminded * -1;
+	safety_regulations			+= innovative_narrowminded * -1;
+	unemployment_subsidies		+= innovative_narrowminded * -1;
+	pensions							+= innovative_narrowminded * -1;
+	health_care						+= innovative_narrowminded * -1;
+	
+	int mercantilism_freetrade = srcCountry->getMercantilismFreetrade();
+	slavery							+= mercantilism_freetrade * 0;
+	vote_franchise					+= mercantilism_freetrade * 0;
+	upper_house_composition		+= mercantilism_freetrade * 0;
+	voting_system					+= mercantilism_freetrade * 0;
+	public_meetings				+= mercantilism_freetrade * 0;
+	press_rights					+= mercantilism_freetrade * 0;
+	trade_unions					+= mercantilism_freetrade * 0;
+	political_parties				+= mercantilism_freetrade * 0;
+	wage_reforms					+= mercantilism_freetrade * 0;
+	work_hours						+= mercantilism_freetrade * 0;
+	safety_regulations			+= mercantilism_freetrade * 0;
+	unemployment_subsidies		+= mercantilism_freetrade * 0;
+	pensions							+= mercantilism_freetrade * 0;
+	health_care						+= mercantilism_freetrade * 0;
+	
+	int offensive_defensive = srcCountry->getOffensiveDefensive();
+	slavery							+= offensive_defensive * 0;
+	vote_franchise					+= offensive_defensive * 0;
+	upper_house_composition		+= offensive_defensive * 0;
+	voting_system					+= offensive_defensive * 0;
+	public_meetings				+= offensive_defensive * 0;
+	press_rights					+= offensive_defensive * 0;
+	trade_unions					+= offensive_defensive * 0;
+	political_parties				+= offensive_defensive * 0;
+	wage_reforms					+= offensive_defensive * 0;
+	work_hours						+= offensive_defensive * 0;
+	safety_regulations			+= offensive_defensive * 0;
+	unemployment_subsidies		+= offensive_defensive * 0;
+	pensions							+= offensive_defensive * 0;
+	health_care						+= offensive_defensive * 0;
+	
+	int land_naval = srcCountry->getLandNaval();
+	slavery							+= land_naval * 0;
+	vote_franchise					+= land_naval * 0;
+	upper_house_composition		+= land_naval * 0;
+	voting_system					+= land_naval * 0;
+	public_meetings				+= land_naval * 0;
+	press_rights					+= land_naval * 0;
+	trade_unions					+= land_naval * 0;
+	political_parties				+= land_naval * 0;
+	wage_reforms					+= land_naval * 0;
+	work_hours						+= land_naval * 0;
+	safety_regulations			+= land_naval * 0;
+	unemployment_subsidies		+= land_naval * 0;
+	pensions							+= land_naval * 0;
+	health_care						+= land_naval * 0;
+	
+	int quality_quantity = srcCountry->getQualityQuantity();
+	slavery							+= quality_quantity * 0;
+	vote_franchise					+= quality_quantity * 0;
+	upper_house_composition		+= quality_quantity * 0;
+	voting_system					+= quality_quantity * 0;
+	public_meetings				+= quality_quantity * 0;
+	press_rights					+= quality_quantity * 0;
+	trade_unions					+= quality_quantity * 0;
+	political_parties				+= quality_quantity * 0;
+	wage_reforms					+= quality_quantity * 0;
+	work_hours						+= quality_quantity * 0;
+	safety_regulations			+= quality_quantity * 0;
+	unemployment_subsidies		+= quality_quantity * 0;
+	pensions							+= quality_quantity * 0;
+	health_care						+= quality_quantity * 0;
 }
 
 

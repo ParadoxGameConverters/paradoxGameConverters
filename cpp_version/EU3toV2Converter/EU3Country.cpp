@@ -147,6 +147,47 @@ void EU3Country::init(Object* obj)
 		navy.init(*itr);
 		armies.push_back(navy);
 	}
+
+	vector<Object*> sliderObj = obj->getValue("centralization_decentralization");
+	if (sliderObj.size() > 0)
+	{
+		centralization_decentralization = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
+	sliderObj = obj->getValue("aristocracy_plutocracy");
+	if (sliderObj.size() > 0)
+	{
+		aristocracy_plutocracy = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
+	sliderObj = obj->getValue("serfdom_freesubjects");
+	if (sliderObj.size() > 0)
+	{
+		serfdom_freesubjects = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
+	sliderObj = obj->getValue("innovative_narrowminded");
+	if (sliderObj.size() > 0)
+	{
+		innovative_narrowminded = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
+	sliderObj = obj->getValue("mercantilism_freetrade");
+	if (sliderObj.size() > 0)
+	{
+		mercantilism_freetrade = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
+	sliderObj = obj->getValue("offensive_defensive");
+	if (sliderObj.size() > 0)
+	{
+		offensive_defensive = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
+	sliderObj = obj->getValue("land_naval");
+	if (sliderObj.size() > 0)
+	{
+		land_naval = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
+	sliderObj = obj->getValue("quality_quantity");
+	if (sliderObj.size() > 0)
+	{
+		quality_quantity = atoi( sliderObj[0]->getLeaf().c_str() );
+	}
 }
 
 
@@ -330,4 +371,52 @@ void EU3Country::resolveRegimentTypes(const RegimentTypeMap& map)
 	{
 		itr->resolveRegimentTypes(map);
 	}
+}
+
+
+int EU3Country::getCentralizationDecentralization()
+{
+	return centralization_decentralization;
+}
+
+
+int EU3Country::getAristocracyPlutocracy()
+{
+	return aristocracy_plutocracy;
+}
+
+
+int EU3Country::getSerfdomFreesubjects()
+{
+	return serfdom_freesubjects;
+}
+
+
+int EU3Country::getInnovativeNarrowminded()
+{
+	return innovative_narrowminded;
+}
+
+
+int EU3Country::getMercantilismFreetrade()
+{
+	return mercantilism_freetrade;
+}
+
+
+int EU3Country::getOffensiveDefensive()
+{
+	return offensive_defensive;
+}
+
+
+int EU3Country::getLandNaval()
+{
+	return land_naval;
+}
+
+
+int EU3Country::getQualityQuantity()
+{
+	return quality_quantity;
 }
