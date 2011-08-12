@@ -232,3 +232,4 @@ Revision	Version Updated		Log Message
 211		C++			Build script uses environment variables instead of hard-coded paths.
 212		C++			Renamed test input for new script.
 213		C++			Sliders now influence political reforms.
+214		C++			Flags and modifiers now influence political reforms.

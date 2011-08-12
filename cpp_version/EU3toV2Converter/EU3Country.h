@@ -36,6 +36,7 @@ class EU3Country
 		void						setGovernmentTech(double);
 		double					getGovernmentTech();
 		vector<string>			getFlags();
+		vector<string>			getModifiers();
 		bool						getPossibleDaimyo();
 		string					getGovernment();
 		vector<EU3Relations>	getRelations();
@@ -65,6 +66,7 @@ class EU3Country
 		double					productionTech;
 		double					governmentTech;
 		vector<string>			flags;
+		vector<string>			modifiers;
 		bool						possibleDaimyo;
 		string					government;
 		vector<EU3Relations>	relations;

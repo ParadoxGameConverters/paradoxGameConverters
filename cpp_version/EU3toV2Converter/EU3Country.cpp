@@ -98,6 +98,16 @@ void EU3Country::init(Object* obj)
 		flags.push_back(flagObjects[i]->getKey());
 	}
 
+	vector<Object*> modifierObject	= obj->getValue("modifier");
+	for (unsigned int i = 0; i < modifierObject.size(); i++)
+	{
+		vector<Object*> nameObject = modifierObject[i]->getLeaves();
+		if (nameObject.size() > 0)
+		{
+			modifiers.push_back(nameObject[0]->getLeaf());
+		}
+	}
+
 
 	possibleDaimyo = false;
 	vector<Object*> historyObj	= obj->getValue("history");
@@ -338,6 +348,12 @@ double EU3Country::getGovernmentTech()
 vector<string> EU3Country::getFlags()
 {
 	return flags;
+}
+
+
+vector<string> EU3Country::getModifiers()
+{
+	return modifiers;
 }
 
 

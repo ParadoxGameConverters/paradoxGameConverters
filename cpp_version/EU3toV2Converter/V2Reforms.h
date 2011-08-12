@@ -10,6 +10,8 @@ class V2Reforms {
 		void init(EU3Country*);
 		void governmentEffects(EU3Country*);
 		void sliderEffects(EU3Country*);
+		void flagEffects(EU3Country*);
+		void modifierEffects(EU3Country*);
 		void output(FILE*);
 	private:
 		int slavery;
