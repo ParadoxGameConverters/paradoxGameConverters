@@ -229,3 +229,4 @@ Revision	Version Updated		Log Message
 208		C++			Government type now influences political reforms.
 209		C++			The rest of the files needed for reforms.
 210		C++			Automated test conversions.
+211		C++			Build script uses environment variables instead of hard-coded paths.

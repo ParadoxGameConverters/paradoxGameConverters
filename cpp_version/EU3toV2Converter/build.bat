@@ -1,6 +1,6 @@
 del *.zip /q
 
-call "D:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\vcvarsall.bat"
+call "%VSTUDIO_LOC%\VC\vcvarsall.bat"
 
 del dwtov2 /q
 rmdir dwtov2
@@ -11,7 +11,7 @@ rmdir DWintermediate
 msbuild.exe EU3toV2Converter.sln /p:Configuration=DWToV2
 cd DWToV2
 del *.pdb
-"D:\Program Files (x86)\IZArc\IZArc.exe" -ad DWToV2;*
+"%IZARC_LOC%" -ad DWToV2;*
 copy ".zip" "../DWToV2.zip"
 cd ..
 
@@ -25,6 +25,6 @@ rmdir HttTintermediate
 msbuild.exe EU3toV2Converter.sln /p:Configuration=HttTToV2
 cd HttTToV2
 del *.pdb
-"D:\Program Files (x86)\IZArc\IZArc.exe" -ad HttTToV2;*
+"%IZARC_LOC%" -ad HttTToV2;*
 copy ".zip" "../HttTToV2.zip"
 cd ..
