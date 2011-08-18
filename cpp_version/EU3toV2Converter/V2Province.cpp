@@ -56,21 +56,20 @@ void V2Province::setColonial(bool isIt)
 }
 
 
-void V2Province::setCulture(string newCulture)
-{
-	culture = newCulture;
-}
-
-
 string V2Province::getCulture()
 {
-	return culture;
-}
-
-
-void V2Province::setReligion(string newReligion)
-{
-	religion = newReligion;
+	map<string, int> culturePop;
+	pair<string, int> currentPlurality;
+	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		map<string, int>::iterator thisCulture = culturePop.find(itr->getCulture());
+		if (thisCulture == culturePop.end())
+			thisCulture = culturePop.insert(thisCulture, pair<string, int>(itr->getCulture(), 0));
+		thisCulture->second += itr->getSize();
+		if (thisCulture->second > currentPlurality.second)
+			currentPlurality = (*thisCulture);
+	}
+	return currentPlurality.first;
 }
 
 
@@ -141,7 +140,7 @@ void V2Province::setCoastal(bool _coastal)
 }
 
 
-void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
+void V2Province::createPops(string culture, string religion, double ratio, EU3Province* oldProvince, EU3Country* oldCountry)
 {
 	int farmers			= 0;
 	int labourers		= 0;
@@ -193,7 +192,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop farmersPop;
 		farmersPop.setType("farmers");
-		farmersPop.setSize(oldPopulation * farmers / total);
+		farmersPop.setSize((int)(ratio * oldPopulation * farmers / total));
 		farmersPop.setCulture(culture);
 		farmersPop.setReligion(religion);
 		pops.push_back(farmersPop);
@@ -202,7 +201,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop labourersPop;
 		labourersPop.setType("labourers");
-		labourersPop.setSize(oldPopulation * labourers / total);
+		labourersPop.setSize((int)(ratio * oldPopulation * labourers / total));
 		labourersPop.setCulture(culture);
 		labourersPop.setReligion(religion);
 		pops.push_back(labourersPop);
@@ -211,7 +210,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop slavesPop;
 		slavesPop.setType("slaves");
-		slavesPop.setSize(oldPopulation * slaves / total);
+		slavesPop.setSize((int)(ratio * oldPopulation * slaves / total));
 		slavesPop.setCulture(culture);
 		slavesPop.setReligion(religion);
 		pops.push_back(slavesPop);
@@ -220,7 +219,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop soldiersPop;
 		soldiersPop.setType("soldiers");
-		soldiersPop.setSize(oldPopulation * soldiers / total);
+		soldiersPop.setSize((int)(ratio * oldPopulation * soldiers / total));
 		soldiersPop.setCulture(culture);
 		soldiersPop.setReligion(religion);
 		pops.push_back(soldiersPop);
@@ -229,7 +228,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop craftsmenPop;
 		craftsmenPop.setType("craftsmen");
-		craftsmenPop.setSize(oldPopulation * craftsmen / total);
+		craftsmenPop.setSize((int)(ratio * oldPopulation * craftsmen / total));
 		craftsmenPop.setCulture(culture);
 		craftsmenPop.setReligion(religion);
 		pops.push_back(craftsmenPop);
@@ -238,7 +237,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop artisansPop;
 		artisansPop.setType("artisans");
-		artisansPop.setSize(oldPopulation * artisans / total);
+		artisansPop.setSize((int)(ratio * oldPopulation * artisans / total));
 		artisansPop.setCulture(culture);
 		artisansPop.setReligion(religion);
 		pops.push_back(artisansPop);
@@ -247,7 +246,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop clergymenPop;
 		clergymenPop.setType("clergymen");
-		clergymenPop.setSize(oldPopulation * clergymen / total);
+		clergymenPop.setSize((int)(ratio * oldPopulation * clergymen / total));
 		clergymenPop.setCulture(culture);
 		clergymenPop.setReligion(religion);
 		pops.push_back(clergymenPop);
@@ -256,7 +255,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop clerksPop;
 		clerksPop.setType("clerks");
-		clerksPop.setSize(oldPopulation * clerks / total);
+		clerksPop.setSize((int)(ratio * oldPopulation * clerks / total));
 		clerksPop.setCulture(culture);
 		clerksPop.setReligion(religion);
 		pops.push_back(clerksPop);
@@ -265,7 +264,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop bureaucratsPop;
 		bureaucratsPop.setType("bureaucrats");
-		bureaucratsPop.setSize(oldPopulation * bureaucrats / total);
+		bureaucratsPop.setSize((int)(ratio * oldPopulation * bureaucrats / total));
 		bureaucratsPop.setCulture(culture);
 		bureaucratsPop.setReligion(religion);
 		pops.push_back(bureaucratsPop);
@@ -274,7 +273,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop officersPop;
 		officersPop.setType("officers");
-		officersPop.setSize(oldPopulation * officers / total);
+		officersPop.setSize((int)(ratio * oldPopulation * officers / total));
 		officersPop.setCulture(culture);
 		officersPop.setReligion(religion);
 		pops.push_back(officersPop);
@@ -283,7 +282,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop capitalistsPop;
 		capitalistsPop.setType("capitalists");
-		capitalistsPop.setSize(oldPopulation * capitalists / total);
+		capitalistsPop.setSize((int)(ratio * oldPopulation * capitalists / total));
 		capitalistsPop.setCulture(culture);
 		capitalistsPop.setReligion(religion);
 		pops.push_back(capitalistsPop);
@@ -292,7 +291,7 @@ void V2Province::createPops(EU3Province* oldProvince, EU3Country* oldCountry)
 	{
 		V2Pop aristocratsPop;
 		aristocratsPop.setType("aristocrats");
-		aristocratsPop.setSize(oldPopulation * aristocrats / total);
+		aristocratsPop.setSize((int)(ratio * oldPopulation * aristocrats / total));
 		aristocratsPop.setCulture(culture);
 		aristocratsPop.setReligion(religion);
 		pops.push_back(aristocratsPop);

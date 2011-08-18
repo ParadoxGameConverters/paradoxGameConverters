@@ -606,6 +606,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 			string oldOwner = "";
 			// determine ownership by province count, or total population (if province count is tied)
 			map<string, MTo1ProvinceComp> provinceBins;
+			double newProvinceTotalPop = 0;
 			for (vector<int>::iterator itr = sourceNums.begin(); itr != sourceNums.end(); ++itr)
 			{
 				EU3Province* province = sourceWorld.getProvince(*itr);
@@ -619,6 +620,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 					provinceBins[tag] = MTo1ProvinceComp();
 				provinceBins[tag].provinces.push_back(province);
 				provinceBins[tag].totalPopulation += province->getPopulation();
+				newProvinceTotalPop += province->getPopulation();
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
 				if (   (oldOwner == "")
@@ -663,58 +665,59 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 									provinces[i].addCore(iter->second);
 								}
 							}
+
+							bool matched = false;
+							string culture = "";
+							for (size_t k = 0; (k < cultureMap.size()) && (!matched); k++)
+							{
+								if (cultureMap[k].srcCulture == (*vitr)->getCulture())
+								{
+									bool match = true;
+									for (size_t j = 0; j < cultureMap[k].distinguishers.size(); j++)
+									{
+										if (cultureMap[k].distinguishers[j].first == owner)
+										{
+											if ((*vitr)->getOwner() != cultureMap[k].distinguishers[j].second)
+												match = false;
+										}
+										else if (cultureMap[k].distinguishers[j].first == religion)
+										{
+											if ((*vitr)->getReligion() != cultureMap[k].distinguishers[j].second)
+												match = false;
+										}
+										else
+										{
+											log ("Error: Unhandled distinguisher type in culture rules.\n");
+										}
+
+									}
+									if (match)
+									{
+										culture = cultureMap[k].dstCulture;
+										matched = true;
+									}
+								}
+							}
+							if (!matched)
+							{
+								log("Error: Could not set culture for pops in province %d\n", destNum);
+							}
+
+							string religion = "";
+							religionMapping::iterator iter3 = religionMap.find((*vitr)->getReligion());
+							if (iter3 != religionMap.end())
+							{
+								religion = iter3->second;
+							}
+							else
+							{
+								log("Error: Could not set religion for pops in province %d\n", destNum);
+							}
+
+							double popRatio = (*vitr)->getPopulation() / newProvinceTotalPop;
+							provinces[i].createPops(culture, religion,  popRatio, (*vitr), sourceWorld.getCountry(oldOwner));
 						}
 					}
-	
-					bool matched = false;
-					for (size_t k = 0; (k < cultureMap.size()) && (!matched); k++)
-					{
-						if (cultureMap[k].srcCulture == oldProvince->getCulture())
-						{
-							bool match = true;
-							for (size_t j = 0; j < cultureMap[k].distinguishers.size(); j++)
-							{
-								if (cultureMap[k].distinguishers[j].first == owner)
-								{
-									if (oldProvince->getOwner() != cultureMap[k].distinguishers[j].second)
-										match = false;
-								}
-								else if (cultureMap[k].distinguishers[j].first == religion)
-								{
-									if (oldProvince->getReligion() != cultureMap[k].distinguishers[j].second)
-										match = false;
-								}
-								else
-								{
-									log ("Error: Unhandled distinguisher type in culture rules.\n");
-								}
-
-							}
-							if (match)
-							{
-								provinces[i].setCulture(cultureMap[k].dstCulture);
-								matched = true;
-							}
-						}
-					}
-					if (!matched)
-					{
-						log("Error: Could not set culture for province %d\n", destNum);
-						provinces[i].setCulture("");
-					}
-
-					religionMapping::iterator iter3 = religionMap.find(oldProvince->getReligion());
-					if (iter3 != religionMap.end())
-					{
-						provinces[i].setReligion(iter3->second);
-					}
-					else
-					{
-						log("Error: Could not set religion for province %d\n", destNum);
-						provinces[i].setReligion("");
-					}
-
-					provinces[i].createPops(oldProvince, sourceWorld.getCountry(oldOwner));
 				}
 			}
 		}

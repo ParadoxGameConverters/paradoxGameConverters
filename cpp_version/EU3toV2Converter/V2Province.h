@@ -16,16 +16,14 @@ class V2Province {
 		string	getOwner();
 		void		addCore(string);
 		void		setColonial(bool);
-		void		setCulture(string);
 		string	getCulture();
-		void		setReligion(string);
 		void		setRgoType(string);
 		void		setLifeRating(int);
 		bool		isColonial();
 		void		setColonised(bool);
 		bool		wasColonised();
 		void		addOldPop(V2Pop);
-		void		createPops(EU3Province* oldProvince, EU3Country* oldCountry);
+		void		createPops(string culture, string religion, double ratio, EU3Province* oldProvince, EU3Country* oldCountry);
 		void		output(FILE*);
 		vector<V2Pop>	getPops(string type);
 		void		setCoastal(bool coastal);
@@ -46,8 +44,6 @@ class V2Province {
 		int				oldPopulation;
 		vector<V2Pop>	oldPops;
 		vector<V2Pop>	pops;
-		string			culture;
-		string			religion;
 		string			rgoType;
 		int				lifeRating;
 		int				unitNameCount[num_reg_categories];

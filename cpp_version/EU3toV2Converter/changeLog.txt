@@ -237,3 +237,4 @@ Revision	Version Updated		Log Message
 216		C++			DasGuntLord01's recommended changes.
 217		C++			Improve fairness of many-to-one owner and core allocations.
 218		C++			Simplify capital conversion algorithm.
+219		C++			Create minority pops for many-to-one mapped provinces, when applicable.
