@@ -581,6 +581,13 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 }
 
 
+struct MTo1ProvinceComp
+{
+	MTo1ProvinceComp() : totalPopulation(0) {};
+
+	vector<EU3Province*> provinces;
+	int totalPopulation;
+};
 
 void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap, cultureMapping cultureMap, religionMapping religionMap)
 {
@@ -595,13 +602,35 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 		}
 		else
 		{
-			EU3Province* oldProvince	= sourceWorld.getProvince(sourceNums[0]);
-			if (!oldProvince)
+			EU3Province* oldProvince = NULL;
+			string oldOwner = "";
+			// determine ownership by province count, or total population (if province count is tied)
+			map<string, MTo1ProvinceComp> provinceBins;
+			for (vector<int>::iterator itr = sourceNums.begin(); itr != sourceNums.end(); ++itr)
 			{
-				log("Error: old province %d does not exist.  Bad mapping?\n", sourceNums[0]);
-				continue;
+				EU3Province* province = sourceWorld.getProvince(*itr);
+				if (!province)
+				{
+					log("Error: old province %d does not exist.  Bad mapping?\n", sourceNums[0]);
+					continue;
+				}
+				string tag = province->getOwner();
+				if (provinceBins.find(tag) == provinceBins.end())
+					provinceBins[tag] = MTo1ProvinceComp();
+				provinceBins[tag].provinces.push_back(province);
+				provinceBins[tag].totalPopulation += province->getPopulation();
+				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
+				// or I have the same number of provinces, but more population, than the current owner
+				if (   (oldOwner == "")
+					|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner].provinces.size())
+					|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner].provinces.size())
+					    && (provinceBins[tag].totalPopulation > provinceBins[oldOwner].totalPopulation)))
+				{
+					oldOwner = tag;
+					oldProvince = province;
+				}
 			}
-			string oldOwner				= oldProvince->getOwner();
+
 			if (oldOwner != "")
 			{
 				countryMapping::iterator iter = contMap.find(oldOwner);
@@ -615,13 +644,25 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 					provinces[i].setColonial(oldProvince->isColony());
 					provinces[i].setColonised(oldProvince->wasColonised());
 
-					vector<string> oldCores = oldProvince->getCores();
-					for(unsigned int j = 0; j < oldCores.size(); j++)
+					for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
 					{
-						iter = contMap.find(oldCores[j]);
-						if (iter != contMap.end())
+						for (vector<EU3Province*>::iterator vitr = mitr->second.provinces.begin(); vitr != mitr->second.provinces.end(); ++vitr)
 						{
-							provinces[i].addCore(iter->second);
+							vector<string> oldCores = (*vitr)->getCores();
+							for(unsigned int j = 0; j < oldCores.size(); j++)
+							{
+								// skip this core if the country is the owner of the EU3 province but not the V2 province
+								// (i.e. "avoid boundary conflicts that didn't exist in EU3").
+								// this country may still get core via a province that DID belong to the current V2 owner
+								if ((oldCores[j] == mitr->first) && (oldCores[j] != oldOwner))
+									continue;
+
+								iter = contMap.find(oldCores[j]);
+								if (iter != contMap.end())
+								{
+									provinces[i].addCore(iter->second);
+								}
+							}
 						}
 					}
 	

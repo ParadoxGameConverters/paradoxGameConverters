@@ -192,6 +192,12 @@ string EU3Province::getReligion()
 }
 
 
+int EU3Province::getPopulation()
+{
+	return population;
+}
+
+
 bool EU3Province::isColony()
 {
 	return colony;

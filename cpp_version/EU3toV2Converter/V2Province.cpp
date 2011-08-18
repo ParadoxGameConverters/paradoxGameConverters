@@ -2,6 +2,7 @@
 #include "Log.h"
 
 #include <sstream>
+#include <algorithm>
 
 
 void V2Province::init(int newNumber)
@@ -43,7 +44,9 @@ void V2Province::setOwner(string newOwner)
 
 void V2Province::addCore(string newCore)
 {
-	cores.push_back(newCore);
+	// only add if unique
+	if (std::find(cores.begin(), cores.end(), newCore) == cores.end())
+		cores.push_back(newCore);
 }
 
 

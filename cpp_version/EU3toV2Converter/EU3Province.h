@@ -17,6 +17,7 @@ class EU3Province {
 		void				removeCore(string);
 		string			getCulture();
 		string			getReligion();
+		int				getPopulation();
 		bool				isColony();
 		date				getLastPossessedDate(string Tag);
 		bool				wasColonised();
