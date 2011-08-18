@@ -739,30 +739,18 @@ void V2World::addUnions(unionMapping unionMap)
 
 void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 {
+	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
 	vector<EU3Country> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		int oldCapital = oldCountries[countries[i].getSourceCountryIndex()].getCapital();
 		log("\n	EU3tag: %s	old capital: %4d", oldCountries[i].getTag().c_str(), oldCapital);
-		countries[i].setCapital(0);
-		if (oldCapital > 0)
+		inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
+		if (itr != inverseProvinceMap.end())
 		{
-			for (provinceMapping::iterator j = provinceMap.begin(); j != provinceMap.end(); j++)
-			{
-				for (unsigned int k = 0; k < j->second.size(); k++)
-				{
-					if (j->second[k] == oldCapital)
-					{
-						int newCapital = j->first;
-						countries[i].setCapital(newCapital);
-						log("	new capital: %d", newCapital);
-						j = provinceMap.end();
-						break;
-					}
-				}
-				if (j == provinceMap.end())
-					break;
-			}
+			int newCapital = itr->second[0];
+			countries[i].setCapital(newCapital);
+			log("	new capital: %d", newCapital);
 		}
 	}
 	log("\n");
