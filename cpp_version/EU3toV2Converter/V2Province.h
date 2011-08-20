@@ -31,6 +31,7 @@ class V2Province {
 		int			getTotalPopulation();
 		bool		growSoldierPop(int popID);
 		string		getRegimentName(RegimentCategory rc);
+		void		combinePops();
 	private:
 		bool				land;
 		bool				coastal;

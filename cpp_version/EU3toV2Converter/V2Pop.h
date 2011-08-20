@@ -14,14 +14,16 @@ class V2Pop
 		void		setSize(int);
 		void		setCulture(string);
 		void		setReligion(string);
-		int		getSize();
-		string	getType();
+		int		getSize() const;
+		string	getType() const;
 		void		output(FILE*);
-		int		getID();
-		string	getCulture();
-		string	getReligion();
-		int		getSupportedRegimentCount();
+		int		getID() const;
+		string	getCulture() const;
+		string	getReligion() const;
+		int		getSupportedRegimentCount() const;
 		void	setSupportedRegimentCount(int regiments);
+
+		bool	canCombine(const V2Pop& rhs);
 
 	private:
 		int		id;

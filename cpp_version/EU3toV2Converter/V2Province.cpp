@@ -359,6 +359,37 @@ bool V2Province::growSoldierPop(int popID)
 }
 
 
+void V2Province::combinePops()
+{
+	vector<int> trashPops;
+	for (vector<V2Pop>::iterator lhs = pops.begin(); lhs != pops.end(); ++lhs)
+	{
+		vector<V2Pop>::iterator rhs = lhs;
+		for (++rhs; rhs != pops.end(); ++rhs)
+		{
+			if (lhs->canCombine(*rhs))
+			{
+				lhs->setSize(lhs->getSize() + rhs->getSize());
+				trashPops.push_back(rhs->getID());
+			}
+		}
+	}
+	vector<V2Pop> consolidatedPops;
+	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		bool isTrashed = false;
+		for (vector<int>::iterator titr = trashPops.begin(); titr != trashPops.end(); ++titr)
+		{
+			if (itr->getID() == (*titr))
+				isTrashed = true;
+		}
+		if (!isTrashed)
+			consolidatedPops.push_back(*itr);
+	}
+	pops.swap(consolidatedPops);
+}
+
+
 static string CardinalToOrdinal(int cardinal)
 {
 	int hundredRem = cardinal % 100;

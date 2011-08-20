@@ -666,61 +666,67 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								}
 							}
 
-							bool matched = false;
-							string culture = "";
-							for (size_t k = 0; (k < cultureMap.size()) && (!matched); k++)
+							double provPopRatio = (*vitr)->getPopulation() / newProvinceTotalPop;
+							(*vitr)->buildPopRatios();
+							vector<EU3PopRatio> popRatios = (*vitr)->getPopRatios();
+							for (vector<EU3PopRatio>::iterator pritr = popRatios.begin(); pritr != popRatios.end(); ++pritr)
 							{
-								if (cultureMap[k].srcCulture == (*vitr)->getCulture())
+								bool matched = false;
+								string culture = "";
+								for (size_t k = 0; (k < cultureMap.size()) && (!matched); k++)
 								{
-									bool match = true;
-									for (size_t j = 0; j < cultureMap[k].distinguishers.size(); j++)
+									if (cultureMap[k].srcCulture == pritr->culture)
 									{
-										if (cultureMap[k].distinguishers[j].first == owner)
+										bool match = true;
+										for (size_t j = 0; j < cultureMap[k].distinguishers.size(); j++)
 										{
-											if ((*vitr)->getOwner() != cultureMap[k].distinguishers[j].second)
-												match = false;
-										}
-										else if (cultureMap[k].distinguishers[j].first == religion)
-										{
-											if ((*vitr)->getReligion() != cultureMap[k].distinguishers[j].second)
-												match = false;
-										}
-										else
-										{
-											log ("Error: Unhandled distinguisher type in culture rules.\n");
-										}
+											if (cultureMap[k].distinguishers[j].first == owner)
+											{
+												if ((*vitr)->getOwner() != cultureMap[k].distinguishers[j].second)
+													match = false;
+											}
+											else if (cultureMap[k].distinguishers[j].first == religion)
+											{
+												if (pritr->religion != cultureMap[k].distinguishers[j].second)
+													match = false;
+											}
+											else
+											{
+												log ("Error: Unhandled distinguisher type in culture rules.\n");
+											}
 
-									}
-									if (match)
-									{
-										culture = cultureMap[k].dstCulture;
-										matched = true;
+										}
+										if (match)
+										{
+											culture = cultureMap[k].dstCulture;
+											matched = true;
+										}
 									}
 								}
-							}
-							if (!matched)
-							{
-								log("Error: Could not set culture for pops in province %d\n", destNum);
-							}
+								if (!matched)
+								{
+									log("Error: Could not set culture for pops in province %d\n", destNum);
+								}
 
-							string religion = "";
-							religionMapping::iterator iter3 = religionMap.find((*vitr)->getReligion());
-							if (iter3 != religionMap.end())
-							{
-								religion = iter3->second;
-							}
-							else
-							{
-								log("Error: Could not set religion for pops in province %d\n", destNum);
-							}
+								string religion = "";
+								religionMapping::iterator iter3 = religionMap.find(pritr->religion);
+								if (iter3 != religionMap.end())
+								{
+									religion = iter3->second;
+								}
+								else
+								{
+									log("Error: Could not set religion for pops in province %d\n", destNum);
+								}
 
-							double popRatio = (*vitr)->getPopulation() / newProvinceTotalPop;
-							provinces[i].createPops(culture, religion,  popRatio, (*vitr), sourceWorld.getCountry(oldOwner));
+								provinces[i].createPops(culture, religion, pritr->popRatio * provPopRatio, (*vitr), sourceWorld.getCountry(oldOwner));
+							}
 						}
 					}
 				}
 			}
 		}
+		provinces[i].combinePops();
 	}
 }
 
@@ -973,7 +979,6 @@ vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
 	}
 	return locationCandidates;
 }
-
 
 // return values: 0 = success, -1 = retry from pool, -2 = do not retry
 int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, V2Country& country)

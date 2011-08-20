@@ -6,6 +6,12 @@
 #include "Date.h"
 
 
+struct EU3PopRatio {
+	string culture;
+	string religion;
+	double popRatio;
+};
+
 class EU3Province {
 	public:
 		void				init(Object* obj);
@@ -21,7 +27,10 @@ class EU3Province {
 		bool				isColony();
 		date				getLastPossessedDate(string Tag);
 		bool				wasColonised();
+		void				buildPopRatios();
+		vector<EU3PopRatio>	getPopRatios();
 	private:
+		void							decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
 		int									num;
 		string								owner;
 		//controller
@@ -34,6 +43,7 @@ class EU3Province {
 		vector< pair<date, string> >	ownershipHistory;
 		vector< pair<date, string> >	religionHistory;
 		vector< pair<date, string> >	cultureHistory;
+		vector<EU3PopRatio>				popRatios;
 };
 
 

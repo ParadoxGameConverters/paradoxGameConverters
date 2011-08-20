@@ -226,3 +226,115 @@ date EU3Province::getLastPossessedDate(string Tag)
 		return itr->second;
 	return date();
 }
+
+
+void EU3Province::decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop)
+{
+	// quick out for initial state (no decay needed)
+	if (olddate == date())
+		return;
+	// quick out for same year (we do decay at year end)
+	if (olddate.year == newdate.year)
+		return;
+	// drop all non-current pops by a total of .0025 per year, divided proportionally
+	double nonCurrentRatio = (1.0 - currentPop.popRatio);
+	for (vector<EU3PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+	{
+		itr->popRatio -= .0025 * (newdate.year - olddate.year) * itr->popRatio / nonCurrentRatio ;
+	}
+	// increase current pop by .0025 per year
+	currentPop.popRatio += .0025 * (newdate.year - olddate.year);
+}
+
+
+void EU3Province::buildPopRatios()
+{
+	if (!popRatios.empty())
+		return;
+	// fast-forward to 1620 (200 year decay means any changes before then will be at 100%)
+	string curCulture = "";
+	string curReligion = "";
+	vector< pair<date, string> >::iterator citr = cultureHistory.begin();
+	vector< pair<date, string> >::iterator ritr = religionHistory.begin();
+	while (citr != cultureHistory.end() && citr->first.year < 1620)
+	{
+		curCulture = citr->second;
+		++citr;
+	} 
+	while (ritr != religionHistory.end() && ritr->first.year < 1620)
+	{
+		curReligion = ritr->second;
+		++ritr;
+	}
+	// build and scale historic culture-religion pairs
+	EU3PopRatio pr;
+	pr.culture = curCulture;
+	pr.religion = curReligion;
+	pr.popRatio = 1.0;
+	date cdate, rdate, lastloopdate;
+	while (citr != cultureHistory.end() || ritr != religionHistory.end())
+	{
+		if (citr == cultureHistory.end())
+			cdate = date("2000.1.1");
+		else
+			cdate = citr->first;
+		if (ritr == religionHistory.end())
+			rdate = date("2000.1.1");
+		else
+			rdate = ritr->first;
+		if (cdate < rdate)
+		{
+			decayPopRatios(lastloopdate, cdate, pr);
+			popRatios.push_back(pr);
+			for (vector<EU3PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+			{
+				itr->popRatio /= 2.0;
+			}
+			pr.popRatio = 0.5;
+			pr.culture = citr->second;
+			curCulture = citr->second;
+			lastloopdate = cdate;
+			++citr;
+		}
+		else if (cdate == rdate)
+		{
+			// culture and religion change on the same day;
+			decayPopRatios(lastloopdate, cdate, pr);
+			popRatios.push_back(pr);
+			for (vector<EU3PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+			{
+				itr->popRatio /= 2.0;
+			}
+			pr.popRatio = 0.5;
+			pr.culture = citr->second;
+			pr.religion = ritr->second;
+			curCulture = citr->second;
+			curReligion = ritr->second;
+			lastloopdate = cdate;
+			++citr;
+			++ritr;
+		}
+		else if (rdate < cdate)
+		{
+			decayPopRatios(lastloopdate, rdate, pr);
+			popRatios.push_back(pr);
+			for (vector<EU3PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+			{
+				itr->popRatio /= 2.0;
+			}
+			pr.popRatio = 0.5;
+			pr.religion = ritr->second;
+			curReligion = ritr->second;
+			lastloopdate = rdate;
+			++ritr;
+		}
+	}
+	decayPopRatios(lastloopdate, date("1821.1.1"), pr);
+	popRatios.push_back(pr);
+}
+
+
+vector<EU3PopRatio> EU3Province::getPopRatios()
+{
+	return popRatios;
+}
