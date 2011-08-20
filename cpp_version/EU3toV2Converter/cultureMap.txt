@@ -113,7 +113,7 @@ link = { vic = native_american_minor eu3 = arawak eu3 = carib eu3 = teremembe eu
 link = { vic = yankee eu3 = american }
 link = { vic = akan eu3 = aka eu3 = ashanti }
 link = { vic = bambara eu3 = mali }
-link = { vic = dyula deu3 = yola }
+link = { vic = dyula eu3 = dyola }
 link = { vic = tuareg eu3 = tuareg }
 link = { vic = yoruba eu3 = yorumba }
 link = { vic = bakongo eu3 = kongolese }

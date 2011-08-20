@@ -241,3 +241,4 @@ Revision	Version Updated		Log Message
 220		???
 221		C++			Add minorities to provinces with recent conversion and assimilation events.
 222		C++			Improve determinism and reliability of army support pop selection.
+223		C++			Fix Dyola culture mapping.
