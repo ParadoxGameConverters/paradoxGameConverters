@@ -359,6 +359,33 @@ bool V2Province::growSoldierPop(int popID)
 }
 
 
+static bool PopSortBySizePredicate(const V2Pop& pop1, const V2Pop& pop2)
+{
+	return (pop1.getSize() < pop2.getSize());
+}
+
+// pick a soldier pop to use for an army.  prefer larger pops to smaller ones, and grow where possible.
+int V2Province::getSoldierPopForArmy(bool force)
+{
+	vector<V2Pop> spops = getPops("soldiers");
+	if (spops.size() == 0)
+		return -1; // no soldier pops
+
+	sort(spops.begin(), spops.end(), PopSortBySizePredicate);
+	for (vector<V2Pop>::iterator itr = spops.begin(); itr != spops.end(); ++itr)
+	{
+		if (growSoldierPop(itr->getID()))
+			return itr->getID();
+	}
+
+	// no suitable pops
+	if (force)
+		return spops[0].getID();
+	else
+		return -1;
+}
+
+
 void V2Province::combinePops()
 {
 	vector<int> trashPops;

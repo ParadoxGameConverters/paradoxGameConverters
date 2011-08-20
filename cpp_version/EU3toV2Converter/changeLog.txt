@@ -240,3 +240,4 @@ Revision	Version Updated		Log Message
 219		C++			Create minority pops for many-to-one mapped provinces, when applicable.
 220		???
 221		C++			Add minorities to provinces with recent conversion and assimilation events.
+222		C++			Improve determinism and reliability of army support pop selection.

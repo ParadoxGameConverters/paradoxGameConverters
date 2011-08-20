@@ -1024,15 +1024,8 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 					army->getSourceArmy()->blockHomeProvince(eu3Home);
 					return -1;
 				}
-				vector<V2Pop> pops = pitr->getPops("soldiers");
-				if (pops.size() == 0)
-				{
-					log("Error: V2 province %d is home for a regiment of %s, but has no soldier pops! Dissolving regiment to pool.\n", newHomeProvince, RegimentCategoryNames[rc]);
-					return -1;
-				}
-				int soldierPop = pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID();
-				bool growSucceeded = pitr->growSoldierPop(soldierPop);
-				if (!growSucceeded)
+				int soldierPop = pitr->getSoldierPopForArmy();
+				if (-1 == soldierPop)
 				{
 					// if the old home province was colonized and can't support the unit, try turning it into an "expeditionary" army
 					if (pitr->wasColonised())
@@ -1040,10 +1033,8 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 						V2Province* expSender = getProvinceForExpeditionaryArmy(country);
 						if (expSender)
 						{
-							vector<V2Pop> pops = expSender->getPops("soldiers");
-							int expSoldierPop = pops[int(pops.size() * ((double)rand() / RAND_MAX))].getID();
-							growSucceeded = expSender->growSoldierPop(expSoldierPop);
-							if (growSucceeded)
+							int expSoldierPop = expSender->getSoldierPopForArmy();
+							if (-1 != expSoldierPop)
 							{
 								homeProvince = expSender;
 								soldierPop = expSoldierPop;
@@ -1051,9 +1042,10 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 						}
 					}
 				}
-				if (!growSucceeded)
+				if (-1 == soldierPop)
 				{
-					log("Error: Could not grow province %d soldier pop ID %d to support regiment in army %s. Regiment will be undersupported.\n", newHomeProvince, soldierPop, army->getName().c_str());
+					soldierPop = pitr->getSoldierPopForArmy(true);
+					log("Error: Could not grow province %d soldier pops to support %s regiment in army %s. Regiment will be undersupported.\n", newHomeProvince, RegimentCategoryNames[rc], army->getName().c_str());
 				}
 				reg.setPopID(soldierPop);
 			}
