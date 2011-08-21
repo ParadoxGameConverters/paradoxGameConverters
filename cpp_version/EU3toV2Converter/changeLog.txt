@@ -245,3 +245,4 @@ Revision	Version Updated		Log Message
 224		???
 225		C++			Avoid creating noculture/noreligion minority pops
 226		C++			Assign regiments to minority soldier pops that are already large enough before growing majority soldier pops.
+227		C++			Select V2 home provinces for armies deterministically based on which mapped province is best capable of supporting the army.

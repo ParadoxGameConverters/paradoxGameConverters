@@ -28,8 +28,9 @@ class V2Province {
 		vector<V2Pop>	getPops(string type);
 		void		setCoastal(bool coastal);
 		bool		isCoastal();
-		int			getTotalPopulation();
+		int			getTotalPopulation() const;
 		int			getSoldierPopForArmy(bool force = false);
+		pair<int, int> getAvailableSoldierCapacity() const;
 		string		getRegimentName(RegimentCategory rc);
 		void		combinePops();
 	private:

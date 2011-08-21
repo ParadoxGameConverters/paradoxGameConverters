@@ -299,10 +299,10 @@ void V2Province::createPops(string culture, string religion, double ratio, EU3Pr
 }
 
 
-int V2Province::getTotalPopulation()
+int V2Province::getTotalPopulation() const
 {
 	int total = 0;
-	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (vector<V2Pop>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
 		total += itr->getSize();
 	}
@@ -394,6 +394,28 @@ int V2Province::getSoldierPopForArmy(bool force)
 		return spops[0].getID();
 	else
 		return -1;
+}
+
+
+pair<int, int> V2Province::getAvailableSoldierCapacity() const
+{
+	int soldierCap = 0;
+	int draftCap = 0;
+	int provincePop = getTotalPopulation();
+	for (vector<V2Pop>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		if (itr->getType() == "soldiers")
+		{
+			// unused capacity is the size of the pop minus the capacity already used, or 0, if it's already overdrawn
+			soldierCap += max(itr->getSize() - getRequiredPopForRegimentCount(itr->getSupportedRegimentCount()), 0);
+		}
+		else if (itr->getType() == "farmers" || itr->getType() == "labourers")
+		{
+			// unused capacity is the size of the pop in excess of 10% of the province pop, or 0, if it's already too small
+			draftCap += max(itr->getSize() - int(0.10 * provincePop), 0);
+		}
+	}
+	return pair<int,int>(soldierCap, draftCap);
 }
 
 

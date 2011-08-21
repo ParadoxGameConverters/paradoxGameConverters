@@ -917,6 +917,11 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 }
 
 
+static bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2)
+{
+	return (prov1->getAvailableSoldierCapacity() > prov2->getAvailableSoldierCapacity());
+}
+
 V2Province* V2World::getProvinceForExpeditionaryArmy(const V2Country& country)
 {
 	vector<V2Province*> candidates;
@@ -930,7 +935,8 @@ V2Province* V2World::getProvinceForExpeditionaryArmy(const V2Country& country)
 	}
 	if (candidates.size() > 0)
 	{
-		return candidates[int(candidates.size() * ((double)rand() / RAND_MAX))];
+		sort(candidates.begin(), candidates.end(), ProvinceRegimentCapacityPredicate);
+		return candidates[0];
 	}
 	return NULL;
 }
@@ -997,9 +1003,10 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 		army->getSourceArmy()->blockHomeProvince(eu3Home);
 		return -1;
 	}
-	// Navies should only get homes in port provinces
+	V2Province* homeProvince;
 	if (army->getNavy())
 	{
+		// Navies should only get homes in port provinces
 		homeCandidates = getPortProvinces(homeCandidates);
 		if (homeCandidates.size() == 0)
 		{
@@ -1007,52 +1014,68 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 			army->getSourceArmy()->blockHomeProvince(eu3Home);
 			return -1;
 		}
-	}
-	int newHomeProvince = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
-	for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
-	{
-		if (pitr->getNum() == newHomeProvince)
+		int homeProvinceID = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
+		for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 		{
-			V2Province* homeProvince = &(*pitr);
-			// Armies need to be associated with pops
-			if (!army->getNavy())
+			if (pitr->getNum() == homeProvinceID)
 			{
-				if (pitr->getOwner() != country.getTag())
-				{
-					log("Error: V2 province %d is home for a %s %s regiment, but belongs to %s! Dissolving regiment to pool.\n", newHomeProvince, country.getTag().c_str(), RegimentCategoryNames[rc], pitr->getOwner().c_str());
-					// all provinces in a given province map have the same owner, so the source home was bad
-					army->getSourceArmy()->blockHomeProvince(eu3Home);
-					return -1;
-				}
-				int soldierPop = pitr->getSoldierPopForArmy();
-				if (-1 == soldierPop)
-				{
-					// if the old home province was colonized and can't support the unit, try turning it into an "expeditionary" army
-					if (pitr->wasColonised())
-					{
-						V2Province* expSender = getProvinceForExpeditionaryArmy(country);
-						if (expSender)
-						{
-							int expSoldierPop = expSender->getSoldierPopForArmy();
-							if (-1 != expSoldierPop)
-							{
-								homeProvince = expSender;
-								soldierPop = expSoldierPop;
-							}
-						}
-					}
-				}
-				if (-1 == soldierPop)
-				{
-					soldierPop = pitr->getSoldierPopForArmy(true);
-					log("Error: Could not grow province %d soldier pops to support %s regiment in army %s. Regiment will be undersupported.\n", newHomeProvince, RegimentCategoryNames[rc], army->getName().c_str());
-				}
-				reg.setPopID(soldierPop);
+				homeProvince = &(*pitr);
+				break;
 			}
-			reg.setName(homeProvince->getRegimentName(rc));
-			break;
 		}
 	}
+	else
+	{
+		// Armies should get a home in the candidate most capable of supporting them
+		vector<V2Province*> sortedHomeCandidates;
+		for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+		{
+			for (vector<int>::iterator nitr = homeCandidates.begin(); nitr != homeCandidates.end(); ++nitr)
+			{
+				if (pitr->getNum() == *nitr)
+				{
+					sortedHomeCandidates.push_back(&(*pitr));
+				}
+			}
+			if (sortedHomeCandidates.size() == homeCandidates.size())
+				break;
+		}
+		sort(sortedHomeCandidates.begin(), sortedHomeCandidates.end(), ProvinceRegimentCapacityPredicate);
+		homeProvince = sortedHomeCandidates[0];
+		// Armies need to be associated with pops
+		if (homeProvince->getOwner() != country.getTag())
+		{
+			log("Error: V2 province %d is home for a %s %s regiment, but belongs to %s! Dissolving regiment to pool.\n", homeProvince->getNum(), country.getTag().c_str(), RegimentCategoryNames[rc], homeProvince->getOwner().c_str());
+			// all provinces in a given province map have the same owner, so the source home was bad
+			army->getSourceArmy()->blockHomeProvince(eu3Home);
+			return -1;
+		}
+		int soldierPop = homeProvince->getSoldierPopForArmy();
+		if (-1 == soldierPop)
+		{
+			// if the old home province was colonized and can't support the unit, try turning it into an "expeditionary" army
+			if (homeProvince->wasColonised())
+			{
+				V2Province* expSender = getProvinceForExpeditionaryArmy(country);
+				if (expSender)
+				{
+					int expSoldierPop = expSender->getSoldierPopForArmy();
+					if (-1 != expSoldierPop)
+					{
+						homeProvince = expSender;
+						soldierPop = expSoldierPop;
+					}
+				}
+			}
+		}
+		if (-1 == soldierPop)
+		{
+			soldierPop = homeProvince->getSoldierPopForArmy(true);
+			log("Error: Could not grow province %d soldier pops to support %s regiment in army %s. Regiment will be undersupported.\n", homeProvince->getNum(), RegimentCategoryNames[rc], army->getName().c_str());
+		}
+		reg.setPopID(soldierPop);
+	}
+	reg.setName(homeProvince->getRegimentName(rc));
 	reg.setStrength(army->getSourceArmy()->getAverageStrength(rc) * (army->getNavy() ? 100.0 : 3.0));
 	army->addRegiment(reg);
 	return 0;
