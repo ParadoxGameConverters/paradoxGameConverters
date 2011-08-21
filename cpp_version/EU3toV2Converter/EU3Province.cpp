@@ -261,10 +261,20 @@ void EU3Province::buildPopRatios()
 		curCulture = citr->second;
 		++citr;
 	} 
+	if (citr != cultureHistory.end() && curCulture == "")
+	{
+		// no starting culture; use first settlement culture for starting pop even if it's after 1620
+		curCulture = citr->second;
+	}
 	while (ritr != religionHistory.end() && ritr->first.year < 1620)
 	{
 		curReligion = ritr->second;
 		++ritr;
+	}
+	if (ritr != religionHistory.end() && curReligion == "")
+	{
+		// no starting religion; use first settlement religion for starting pop even if it's after 1620
+		curReligion = ritr->second;
 	}
 	// build and scale historic culture-religion pairs
 	EU3PopRatio pr;
