@@ -39,6 +39,7 @@ public:
   vector<string> getTokens() { return tokens; }
   int numTokens (); 
   void addToList (string val); 
+  void addToList (vector<string>::iterator begin, vector<string>::iterator end);
   void printTopLevel ();
   inline bool isLeaf () {return leaf;}
   double safeGetFloat (string k, double def = 0);
@@ -66,8 +67,5 @@ typedef vector<Object*> objvec;
 typedef map<string, Object*> stobmap;
 typedef map<string, string> ststmap;
 typedef map<Object*, Object*> obobmap;
-extern Object* processFile (char* filename, bool includes = false);
-extern Object* processFile (string filename, bool includes = false);
-
 
 #endif	// OBJECT_H

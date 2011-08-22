@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <io.h>
 #include <list>
+#include <math.h>
 #include "Parsers/Parser.h"
 #include "Log.h"
 #include "tempFuncs.h"
@@ -54,6 +55,7 @@ void V2World::init(string V2Loc)
 				if (provinces[i].getNum() == num)
 				{
 					provinces[i].setName(name);
+					break;
 				}
 			}
 		}
@@ -74,6 +76,7 @@ void V2World::init(string V2Loc)
 				if (provinces[i].getNum() == num)
 				{
 					provinces[i].setName(name);
+					break;
 				}
 			}
 		}
@@ -94,6 +97,7 @@ void V2World::init(string V2Loc)
 				if (provinces[i].getNum() == num)
 				{
 					provinces[i].setName(name);
+					break;
 				}
 			}
 		}
@@ -114,6 +118,7 @@ void V2World::init(string V2Loc)
 				if (provinces[i].getNum() == num)
 				{
 					provinces[i].setName(name);
+					break;
 				}
 			}
 		}
@@ -134,6 +139,7 @@ void V2World::init(string V2Loc)
 				if (provinces[i].getNum() == num)
 				{
 					provinces[i].setName(name);
+					break;
 				}
 			}
 		}
@@ -151,13 +157,14 @@ void V2World::init(string V2Loc)
 	}
 	do
 	{
+		string provDirPath = V2Loc + "\\history\\provinces\\" + provDirData.name + "\\";
 		if (strcmp(provDirData.name, ".") == 0 || strcmp(provDirData.name, "..") == 0 )
 		{
 			continue;
 		}
 		struct _finddata_t	provFileData;
 		intptr_t					fileListing2;
-		if ( (fileListing2 = _findfirst( (V2Loc + "\\history\\provinces\\" + provDirData.name + "\\*").c_str(), &provFileData)) == -1L)
+		if ( (fileListing2 = _findfirst( (provDirPath + "*").c_str(), &provFileData)) == -1L)
 		{
 			return;
 		}
@@ -177,7 +184,7 @@ void V2World::init(string V2Loc)
 			{
 				if (i->getNum() == provNum)
 				{
-					read.open( (V2Loc + "\\history\\provinces\\" + provDirData.name + "\\" + provFileData.name).c_str(), ios_base::binary );
+					read.open( (provDirPath + provFileData.name).c_str(), ios_base::binary );
 					vector<string> lines;
 					while (!read.eof())
 					{
@@ -250,7 +257,7 @@ void V2World::init(string V2Loc)
 		Object*	obj2;				// generic object
 		ifstream	read;				// ifstream for reading files
 		initParser();
-		obj2 = Parser::topLevel;
+		obj2 = getTopLevel();
 		read.open( (V2Loc + "\\history\\pops\\1836.1.1\\" + popsFileData.name).c_str() );
 		if (!read.is_open())
 		{
@@ -297,20 +304,7 @@ void V2World::init(string V2Loc)
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
-	Object*	obj2;				// generic object
-	initParser();
-	obj2 = Parser::topLevel;
-	read.open( (V2Loc + "\\map\\positions.txt").c_str() );
-	if (!read.is_open())
-	{
-		log("Error: Could not open map\\positions.txt\n");
-		printf("Error: Could not open map\\positions.txt\n");
-		exit(1);
-	}
-	readFile(read);
-	read.close();
-	read.clear();
-
+	Object*	obj2 = doParseFile((V2Loc + "\\map\\positions.txt").c_str());
 	vector<Object*> objProv = obj2->getLeaves();
 	if (objProv.size() == 0)
 	{
@@ -1100,20 +1094,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 
 	// get cost per regiment values
 	double cost_per_regiment[num_reg_categories] = { 0.0 };
-	initParser();
-	Object*	obj2 = Parser::topLevel;
-	{
-		ifstream read;
-		read.open("regiment_costs.txt");
-		if (!read.is_open())
-		{
-			log("Error: Could not open regiment_costs.txt\n");
-			printf("Error: Could not open regiment_costs.txt\n");
-			exit(1);
-		}
-		readFile(read);
-		read.close();
-	}
+	Object*	obj2 = doParseFile("regiment_costs.txt");
 	vector<Object*> objTop = obj2->getLeaves();
 	if (objTop.size() == 0 || objTop[0]->getLeaves().size() == 0)
 	{

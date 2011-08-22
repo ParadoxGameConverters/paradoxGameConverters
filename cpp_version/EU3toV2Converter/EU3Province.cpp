@@ -15,14 +15,13 @@ void EU3Province::init(Object* obj) {
 	else
 	{
 		owner = ownerObjs[0]->getLeaf();
-		owner = owner.substr(1,3);
 	}
 
 	vector<Object*> coreObjs;
 	coreObjs = obj->getValue("core");
 	for (unsigned int i = 0; i < coreObjs.size(); i++)
 	{
-		cores.push_back(coreObjs[i]->getLeaf().substr(1,3));
+		cores.push_back(coreObjs[i]->getLeaf());
 	}
 
 	vector<Object*> cultureObj;
@@ -81,7 +80,7 @@ void EU3Province::init(Object* obj) {
 		{
 			if (historyObjs[i]->getKey() == "owner")
 			{
-				thisCountry = historyObjs[i]->getLeaf().substr(1,3);
+				thisCountry = historyObjs[i]->getLeaf();
 				lastOwner = thisCountry;
 				ownershipHistory.push_back(make_pair(date(), thisCountry));
 				continue;
@@ -101,7 +100,7 @@ void EU3Province::init(Object* obj) {
 			if (ownerObj.size() > 0)
 			{
 				date newDate(historyObjs[i]->getKey());
-				thisCountry = ownerObj[0]->getLeaf().substr(1, 3);
+				thisCountry = ownerObj[0]->getLeaf();
 
 				map<string, date>::iterator itr = lastPossessedDate.find(lastOwner);
 				if (itr != lastPossessedDate.end())

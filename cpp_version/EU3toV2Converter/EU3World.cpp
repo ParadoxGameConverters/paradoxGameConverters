@@ -1,6 +1,5 @@
 #include "EU3World.h"
 
-
 void EU3World::init(Object* obj) {
 	string key;	
 	vector<Object*> leaves = obj->getLeaves();
@@ -38,7 +37,7 @@ void EU3World::init(Object* obj) {
 			if (provinces[i].getOwner() == countries[j].getTag())
 			{
 				countries[j].addProvince( &provinces[i]);
-				continue;
+				break;
 			}
 		}
 	}
@@ -46,15 +45,15 @@ void EU3World::init(Object* obj) {
 	// add province core info to countries
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
+		vector<string> cores = provinces[i].getCores();
 		for (unsigned int j = 0; j < countries.size(); j++)
 		{
-			vector<string> cores = provinces[i].getCores();
 			for (unsigned int k = 0; k < cores.size(); k++)
 			{
 				if (cores[k] == countries[j].getTag())
 				{
 					countries[j].addCore( &provinces[i]);
-					continue;
+					break;
 				}
 			}
 		}

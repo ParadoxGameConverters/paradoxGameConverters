@@ -2,7 +2,9 @@
 #include "Parser.h"
 #include <sstream> 
 #include <fstream>
-
+#include <algorithm>
+#include <iostream>
+#include <assert.h>
 
 bool Object::debug = false; 
 
@@ -70,6 +72,18 @@ void Object::addToList(string val) {
   tokens.push_back(val); 
 }
 
+void Object::addToList(vector<string>::iterator begin, vector<string>::iterator end)
+{
+  isObjList = true;
+  for (vector<string>::iterator itr = begin; itr != end; ++itr)
+  {
+    if (strVal.size() > 0)
+      strVal += " ";
+    strVal += *itr; 
+  }
+  tokens.insert(tokens.end(), begin, end);
+}
+
 vector<Object*> Object::getValue (string key) const {
   vector<Object*> ret; 
   for (vector<Object*>::const_iterator i = objects.begin(); i != objects.end(); ++i) {
@@ -124,7 +138,7 @@ ostream& operator<< (ostream& os, const Object& obj) {
     return os; 
   }
 
-  if (&obj != Parser::topLevel) {
+  if (&obj != getTopLevel()) {
     os << obj.key << "=\n";
     for (int i = 0; i < indent; i++) {
        os << "\t"; 
@@ -135,7 +149,7 @@ ostream& operator<< (ostream& os, const Object& obj) {
   for (vector<Object*>::const_iterator i = obj.objects.begin(); i != obj.objects.end(); ++i) {
     os << *(*i); 
   }
-  if (&obj != Parser::topLevel) {
+  if (&obj != getTopLevel()) {
     indent--; 
     for (int i = 0; i < indent; i++) {
       os << "\t"; 
@@ -243,48 +257,6 @@ void setFlt (string name, double val, Object* branch) {
   Object* b = new Object(name);
   b->setValue(strbuffer); 
   br->setValue(b); 
-}
-
-void processIncludes (Object* ret) {
-  objvec empty; 
-  objvec includes = ret->getValue("include"); 
-  for (objiter i = includes.begin(); i != includes.end(); ++i) {
-    Object* temp = processFile((*i)->getLeaf()); 
-    objvec nleaves = temp->getLeaves(); 
-    for (objiter nl = nleaves.begin(); nl != nleaves.end(); ++nl) {
-      ret->setValue(*nl); 
-    }
-    temp->setValue(empty); 
-    delete temp; 
-  }
-}
-
-Object* processFile (string filename, bool includes) {
-  Parser::topLevel = new Object("toplevel"); 
-  ifstream read;
-  read.open(filename.c_str());
-  readFile(read);
-  read.close();
-  Object* ret = Parser::topLevel; 
-  if (includes) {
-    processIncludes(ret); 
-    Parser::topLevel = ret; 
-  }
-  return ret; 
-}
-
-Object* processFile (char* filename, bool includes) {
-  Parser::topLevel = new Object("toplevel"); 
-  ifstream read;
-  read.open(filename);
-  readFile(read);
-  read.close();
-  Object* ret = Parser::topLevel; 
-  if (includes) {
-    processIncludes(ret); 
-    Parser::topLevel = ret; 
-  }
-  return ret;  
 }
 
 double Object::safeGetFloat(string k, double def) {

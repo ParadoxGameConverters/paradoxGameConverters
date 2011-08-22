@@ -92,10 +92,13 @@ void EU3Country::init(Object* obj)
 	}
 
 	vector<Object*> flagObject		= obj->getValue("flags");
-	vector<Object*> flagObjects	= flagObject[0]->getLeaves();
-	for (unsigned int i = 0; i < flagObjects.size(); i++)
+	if (flagObject.size() > 0)
 	{
-		flags.push_back(flagObjects[i]->getKey());
+		vector<Object*> flagObjects	= flagObject[0]->getLeaves();
+		for (unsigned int i = 0; i < flagObjects.size(); i++)
+		{
+			flags.push_back(flagObjects[i]->getKey());
+		}
 	}
 
 	vector<Object*> modifierObject	= obj->getValue("modifier");

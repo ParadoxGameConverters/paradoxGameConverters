@@ -14,12 +14,10 @@ void EU3Regiment::init(Object *obj)
 	if (objType.size() > 0)
 	{
 		type = objType[0]->getLeaf();
-		if (type[0] == '\"')
-			type = type.substr(1, type.length() - 2);
 	}
 	else
 	{
-		log("Error: Regiment or Ship \"%s\" has no type.", name.c_str());
+		log("Error: Regiment or Ship \"%s\" has no type.\n", name.c_str());
 	}
 
 	std::vector<Object*> objHome = obj->getValue("home");
@@ -29,7 +27,7 @@ void EU3Regiment::init(Object *obj)
 	}
 	else
 	{
-		log("Error: Regiment or Ship \"%s\" has no home.", name.c_str());
+		log("Error: Regiment or Ship \"%s\" has no home.\n", name.c_str());
 		home = -1;
 	}
 
@@ -53,7 +51,7 @@ void EU3Army::init(Object *obj)
 	}
 	else
 	{
-		name = "\"\"";
+		name = "";
 	}
 
 	std::vector<Object*> objLoc = obj->getValue("location");
@@ -63,7 +61,7 @@ void EU3Army::init(Object *obj)
 	}
 	else
 	{
-		log("Error: Army or Navy \"%s\" has no location.", name.c_str());
+		log("Error: Army or Navy \"%s\" has no location.\n", name.c_str());
 		location = -1;
 	}
 
@@ -106,7 +104,7 @@ void EU3Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 		}
 		else
 		{
-			log("Unknown unit type %s for regiment \"%s\"", itr->getType(), itr->getName());
+			log("Unknown unit type %s for regiment \"%s\"\n", itr->getType().c_str(), itr->getName().c_str());
 		}
 	}
 }

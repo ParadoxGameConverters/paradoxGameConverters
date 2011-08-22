@@ -1,121 +1,121 @@
 #include "Parser.h"
-#include "..\Log.h"
 #include <fstream>
+#include <boost/spirit/include/support_istream_iterator.hpp>
+#include <boost/spirit/include/qi.hpp>
+#include "..\Log.h"
 
+using namespace boost::spirit;
 
-Object* Parser::topLevel = NULL;  
+static void setLHS			(string key);
+static void pushObj			();
+static void setRHSleaf		(string val);
+static void setRHSobject	();
+static void setRHSobjlist	();
+static void setRHStaglist	(vector<string> val);
+
+static Object* topLevel = NULL;  
 vector<Object*> stack; 
 vector<Object*> objstack; 
 
+template <typename Iterator>
+struct SkipComment : qi::grammar<Iterator>
+{
+	qi::rule<Iterator> comment;
+
+	SkipComment() : SkipComment::base_type(comment)
+	{
+		comment = qi::raw[qi::lexeme[qi::lit("#") >> +(qi::char_ - qi::eol)] >> -qi::eol];
+	}
+};
+
+template <typename Iterator>
+struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
+	static Object* topLevel; 
+
+	qi::rule<Iterator, string(), SkipComment<Iterator> >	leaf;
+	qi::rule<Iterator, vector<string>(), SkipComment<Iterator> >	taglist;
+	qi::rule<Iterator, SkipComment<Iterator> >	assign;
+	qi::rule<Iterator, SkipComment<Iterator> >	object;
+	qi::rule<Iterator, SkipComment<Iterator> >	objlist;
+	qi::rule<Iterator, string()>	str;
+
+	Parser() : Parser::base_type(assign)
+	{
+		str     = lexeme[lit('"') >> raw[*(~qi::char_('"'))] >> lit('"')];
+		leaf    = raw[ &(~qi::char_("={}\"")) >> *(qi::graph - qi::char_("=}"))];
+		taglist = lit('{') >> omit[*(qi::space)] >> lexeme[( ( skip[leaf] | str ) % *(qi::space) )] >> omit[*(qi::space)] >> lit('}');
+		object  = raw[lit('{') >> +(assign) >> *(qi::space) >> lit('}')];
+		objlist = raw[lit('{') >> *( *(qi::space) >> object[&pushObj] ) >> *(qi::space) >> lit('}')];
+		assign  = raw[+((*(qi::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(qi::space) >> lit('=')
+			>> *(qi::space) 
+			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) 
+			>> *(qi::space)))];
+
+		str.name("str");
+		leaf.name("leaf");
+		taglist.name("taglist");
+		object.name("object");
+		objlist.name("objlist");
+		assign.name("assign");
+#if(0)
+		debug(str);
+		debug(leaf);
+		debug(taglist);
+		debug(object);
+		debug(objlist);
+		debug(assign);
+#endif
+	}
+};
+
+Object* getTopLevel()
+{
+	return topLevel;
+}
+
 void initParser()
 {
-	Parser::topLevel = new Object("topLevel");
+	topLevel = new Object("topLevel");
 }
 
-bool trim(string& str, int& count)	// Returns net number of braces opened by str, and trims leading and trailing whitespace.
+string bufferOneObject(ifstream& read)
 {
-	const char*		s			= str.c_str();
-	unsigned int	strSize	= str.size();
-	bool				opened	= false;
-
-	if (0 == strSize)
-	{
-		return 0;
-	}
-
-	bool isInLiteral = false;
-	for (unsigned int i = 0; i < strSize; ++i)
-	{
-		if ('"' == s[i])
-		{
-			isInLiteral = !isInLiteral;
-		}
-		if (isInLiteral)
-		{
-			continue;
-		}
-		if ('#' == s[i])
-		{
-			break;
-		}
-		if ('{' == s[i])
-		{
-			++count;
-			opened = true;
-		}
-		else if ('}' == s[i])
-		{
-			--count;
-		}
-	}
-
-	unsigned int first = 0;
-	for (; first < strSize; ++first)
-	{
-		if (s[first] == ' ')
-		{
-			continue;
-		}
-		if ('\r' == s[first]) // Carriage return
-		{
-			continue;
-		}
-		break;
-	}
-
-	unsigned int last = strSize - 1; 
-	for (; last > first; --last)
-	{
-		if (' ' == s[last])
-		{
-			continue;
-		}
-		if ('\r' == (int) s[last]) // Carriage return
-		{
-			continue; 
-		}
-		break;
-	}
-
-	unsigned int fcomment = 0;
-	for (; fcomment < strSize; ++fcomment)
-	{
-		if (s[fcomment] == '\"')
-			isInLiteral = !isInLiteral;
-		if (!isInLiteral && (s[fcomment] == '#'))
-			break;
-	}
-	if (fcomment < last)
-	{
-		last = fcomment - 1;
-	}
-
-	str = str.substr(first, last - first + 1); 
-	return opened; 
-}
-
-void readFile (ifstream& read)
-{
-	clearStack();
-
 	int openBraces = 0;
-	string currObject;
+	string currObject, buffer;
 	bool topLevel = true;
 	while (read.good())
 	{
-		string buffer;
 		getline(read, buffer);
-		for (string::iterator i = buffer.begin(); i != buffer.end(); i++)
+		currObject += "\n" + buffer;
+
+		bool opened = false;
+		bool isInLiteral = false;
+		const char* str = buffer.c_str();
+		unsigned int strSize = buffer.size();
+		for (unsigned int i = 0; i < strSize; ++i)
 		{
-			if (*i == '\r')
+			if ('"' == str[i])
 			{
-				buffer.erase(i);
-				i--;
+				isInLiteral = !isInLiteral;
+			}
+			if (isInLiteral)
+			{
+				continue;
+			}
+			if ('#' == str[i])
+			{
+				break;
+			}
+			if ('{' == str[i])
+			{
+				++openBraces;
+				opened = true;
+			}
+			else if ('}' == str[i])
+			{
+				--openBraces;
 			}
 		}
-
-		bool opened = trim(buffer, openBraces);
-		currObject		+= " " + buffer;
 
 		if (openBraces > 0)
 		{
@@ -141,21 +141,37 @@ void readFile (ifstream& read)
 			continue; 
 		}
 
-		openBraces = 0; 
-		makeObject(currObject);
-		currObject.clear(); 
-		topLevel = true; 
+		break;
 	}
+	return currObject;
+}
 
-	trim(currObject, openBraces); 
-	// MAX: Ignore this 
-	/*
-	if (currObject.size() > 0) {
-		cout << "Warning: Unable to parse file; problem is with \"" << currObject << "\"" << endl; 
-		cout << "Aborting, unable to parse file" << endl; 
-		abort();
-	}
+bool readFile(ifstream& read)
+{
+	clearStack();
+	read.unsetf(std::ios::skipws);
+
+	/* - it turns out that the current implementation of spirit::istream_iterator is ungodly slow...
+	static Parser<boost::spirit::istream_iterator> p;
+	static SkipComment<boost::spirit::istream_iterator> s;
+
+	boost::spirit::istream_iterator begin(read);
+	boost::spirit::istream_iterator end;
+
+	return qi::phrase_parse(begin, end, p, s);
 	*/
+
+	static Parser<string::iterator> p;
+	static SkipComment<string::iterator> s;
+
+	/* buffer and parse one object at a time */
+	while (read.good())
+	{
+		string currObject = bufferOneObject(read);
+		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
+			return false;
+	}
+	return true;
 }
 
 
@@ -174,19 +190,18 @@ void clearStack()
 }
 
 
-void setLHS(char const* first, char const* last)
+void setLHS(string key)
 {
-	string key(first, last);
 	//cout << "Setting lefthand side " << key << endl;
 	Object* p = new Object(key);
 	if (0 == stack.size())
 	{
-		Parser::topLevel->setValue(p);
+		topLevel->setValue(p);
 	}
 	stack.push_back(p);
 }
 
-void pushObj(char const* first, char const* last)
+void pushObj()
 {
 	string key("objlist");
 	Object* p = new Object(key); 
@@ -195,9 +210,8 @@ void pushObj(char const* first, char const* last)
 }
 
 
-void setRHSleaf(char const* first, char const* last)
+void setRHSleaf(string val)
 {
-	string val(first, last); 
 	Object* l = stack.back();
 	stack.pop_back(); 
 	l->setValue(val); 
@@ -208,43 +222,11 @@ void setRHSleaf(char const* first, char const* last)
 	}
 }
 
-void setRHStaglist(char const* first, char const* last)
+void setRHStaglist(vector<string> val)
 {
 	Object* l = stack.back();
 	stack.pop_back(); 
-
-	string val(first, last); 
-	string tag;
-	bool stringmode = false; 
-	for (unsigned int i = (val[0] == '{') ? 1 : 0; i < val.size(); ++i)
-	{
-		if ((val[i] == ' ') && (0 == tag.size()))
-		{
-			continue;
-		}
-		if (val[i] == '"')
-		{
-			tag.push_back(val[i]); 
-			if (stringmode)
-			{
-				l->addToList(tag); 
-				tag.clear(); 
-			}
-			stringmode = !stringmode;
-			continue;
-		}
-		if (((val[i] == ' ') && (!stringmode)) || (val[i] == '}'))
-		{
-	      if (tag.size() > 0)
-			{
-				l->addToList(tag); 
-			}
-			tag.clear(); 
-			continue;
-		}
-		tag.push_back(val[i]); 
-	}
-
+	l->addToList(val.begin(), val.end());
 	if (0 < stack.size())
 	{
 		Object* p = stack.back(); 
@@ -252,7 +234,7 @@ void setRHStaglist(char const* first, char const* last)
 	}
 }
 
-void setRHSobject(char const* first, char const* last)
+void setRHSobject()
 {
 	// No value is set, a bunch of leaves have been defined. 
 	Object* l = stack.back();
@@ -264,7 +246,7 @@ void setRHSobject(char const* first, char const* last)
 	}
 }
 
-void setRHSobjlist(char const* first, char const* last)
+void setRHSobjlist()
 {
 	if (0 < stack.size())
 	{
@@ -275,33 +257,12 @@ void setRHSobjlist(char const* first, char const* last)
 	objstack.clear(); 
 }
 
-
-bool makeObject(string& command)
-{
-	//cout << "Entering makeObject with " << command << endl;
-	static Parser p;
-	//BOOST_SPIRIT_DEBUG_GRAMMAR(p);
-	parse_info<> result = parse(command.c_str(), p, nothing_p);
-	if (result.full)
-	{
-		//cout << "Matched " << command << endl;
-		// Do stuff with full command
-
-		//command.clear();
-		return true;
-	}
-
-	//cout << "No match in " << command << " stopped at \"" << result.stop << "\"" << endl;
-	return false;
-}
-
-
 Object* doParseFile(const char* filename)
 {
 	ifstream	read;				// ifstream for reading files
 
 	initParser();
-	Object* obj = Parser::topLevel;
+	Object* obj = getTopLevel();
 	read.open(filename); 
 	if (!read.is_open())
 	{
@@ -315,7 +276,3 @@ Object* doParseFile(const char* filename)
 
 	return obj;
 }
-
-
-
-

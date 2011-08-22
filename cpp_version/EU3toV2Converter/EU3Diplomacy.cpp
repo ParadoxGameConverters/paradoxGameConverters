@@ -9,8 +9,6 @@ EU3Agreement::EU3Agreement(Object *obj)
 	if (objFirst.size() > 0)
 	{
 		country1 = objFirst[0]->getLeaf();
-		if (country1[0] == '\"')
-			country1 = country1.substr(1, country1.length() - 2);
 	}
 	else
 	{
@@ -21,8 +19,6 @@ EU3Agreement::EU3Agreement(Object *obj)
 	if (objSecond.size() > 0)
 	{
 		country2 = objSecond[0]->getLeaf();
-		if (country2[0] == '\"')
-			country2 = country2.substr(1, country2.length() - 2);
 	}
 	else
 	{

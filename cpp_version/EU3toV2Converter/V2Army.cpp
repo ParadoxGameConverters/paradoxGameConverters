@@ -64,7 +64,7 @@ void V2Regiment::output(FILE* out)
 		fprintf(out, "\t\tregiment=\n");
 	fprintf(out, "\t\t{\n");
 	id.output(out, 3);
-	fprintf(out, "\t\t\tname=%s\n", name.c_str());
+	fprintf(out, "\t\t\tname=\"%s\"\n", name.c_str());
 	if (!isShip)
 	{
 		fprintf(out, "\t\t\tpop=\n");
@@ -98,7 +98,7 @@ void V2Army::output(FILE* out)
 		fprintf(out, "\tarmy=\n");
 	fprintf(out, "\t{\n");
 	id.output(out, 2);
-	fprintf(out, "\t\tname=%s\n", name.c_str());
+	fprintf(out, "\t\tname=\"%s\"\n", name.c_str());
 	fprintf(out, "\t\tlocation=%d\n", location);
 	fprintf(out, "\t\tsupplies=1.000\n");
 	for (vector<V2Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)

@@ -47,7 +47,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing EU3 save.\n");
 	
 	initParser();
-	obj = Parser::topLevel;
+	obj = getTopLevel();
 	read.open(inputFilename.c_str());
 	if (!read.is_open())
 	{

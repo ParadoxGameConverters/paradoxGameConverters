@@ -480,7 +480,6 @@ string V2Province::getRegimentName(RegimentCategory rc)
 		rc = light_ship;
 
 	stringstream str;
-	str << "\"";
 	str << ++unitNameCount[rc] << CardinalToOrdinal(unitNameCount[rc]); // 1st, 2nd, etc
 	str << " " << getName() << " "; // Hamburg, Lyon, etc
 	switch (rc)
@@ -504,7 +503,6 @@ string V2Province::getRegimentName(RegimentCategory rc)
 		str << "Clipper Transport";
 		break;
 	}
-	str << "\"";
 	return str.str();
 }
 
