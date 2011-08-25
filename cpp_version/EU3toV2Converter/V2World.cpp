@@ -765,12 +765,12 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 
 
 
+static int stateId = 0;
 void V2World::setupStates(stateMapping stateMap)
 {
 	list<V2Province> unassignedProvs;
 	unassignedProvs.insert(unassignedProvs.begin(), provinces.begin(), provinces.end());
 
-	int stateId = 0;
 	list<V2Province>::iterator iter;
 	while(unassignedProvs.size() > 0)
 	{
@@ -1505,6 +1505,8 @@ void V2World::outputHeader(FILE* output)
 	fprintf(output, "date=\"1835.12.31\"\n");
 	fprintf(output, "automate_trade=no\n");
 	fprintf(output, "automate_sliders=0\n");
+	fprintf(output, "unit=%d\n", V2ArmyID().id);
+	fprintf(output, "state=%d\n", stateId);
 	fprintf(output, "start_date=\"1835.12.31\"\n");
 	fprintf(output, "start_pop_index=%d\n", getNextPopId());
 	fprintf(output, "worldmarket=\n");

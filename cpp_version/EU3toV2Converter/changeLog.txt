@@ -248,3 +248,4 @@ Revision	Version Updated		Log Message
 227		C++			Select V2 home provinces for armies deterministically based on which mapped province is best capable of supporting the army.
 228		C++			Migrate parser grammar from Spirit::Classic to Spirit::Qi, and other misc fixes.  Notably faster, and quote stripping works right.
 229		C++			National Values
+230		C++			Avoid army and state ID collisions
