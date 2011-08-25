@@ -10,6 +10,9 @@
 
 void V2World::init(string V2Loc)
 {
+	equalityLeft	= 6;
+	libertyLeft		= 30;
+
 	// set province names and numbers
 	ifstream read;
 	read.open( (V2Loc + "\\map\\definition.csv").c_str() );
@@ -540,6 +543,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					}
 
 					newCountry.setReforms(&sourceCountries[newCountry.getSourceCountryIndex()]);
+					newCountry.setNationalIdea(&sourceCountries[newCountry.getSourceCountryIndex()], libertyLeft, equalityLeft);
 
 					vector<EU3Relations> srcRelations = sourceCountries[i].getRelations();
 					if (srcRelations.size() > 0)

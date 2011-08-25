@@ -50,6 +50,7 @@ class EU3Country
 		int						getOffensiveDefensive();
 		int						getLandNaval();
 		int						getQualityQuantity();
+		vector<string>			getNationalIdeas();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -79,6 +80,7 @@ class EU3Country
 		int						offensive_defensive;
 		int						land_naval;
 		int						quality_quantity;
+		vector<string>			nationalIdeas;
 };
 
 

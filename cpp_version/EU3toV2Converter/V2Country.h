@@ -39,6 +39,7 @@ class V2Country
 		void					addArmy(V2Army);
 		V2Army*					getArmyForRemainder(RegimentCategory rc);
 		void					setReforms(EU3Country*);
+		void					setNationalIdea(EU3Country*, int& libertyLeft, int& equalityLeft);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
@@ -64,6 +65,7 @@ class V2Country
 		vector<V2Relations>	relations;
 		vector<V2Army>		armies;
 		V2Reforms			reforms;
+		string				nationalValue;
 };
 
 

@@ -30,6 +30,9 @@ class V2World {
 		vector<V2Country>		countries;
 		vector<V2Country>		potentialCountries;
 		V2Diplomacy			diplomacy;
+
+		int					equalityLeft;
+		int					libertyLeft;
 };
 
 

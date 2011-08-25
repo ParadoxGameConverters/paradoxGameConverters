@@ -201,6 +201,208 @@ void EU3Country::init(Object* obj)
 	{
 		quality_quantity = atoi( sliderObj[0]->getLeaf().c_str() );
 	}
+
+	vector<Object*> NIObj;
+	NIObj = obj->getValue("press_gangs");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("press_gangs");
+	}
+	NIObj = obj->getValue("grand_navy");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("grand_navy");
+	}
+	NIObj = obj->getValue("sea_hawks");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("sea_hawks");
+	}
+	NIObj = obj->getValue("superior_seamanship");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("superior_seamanship");
+	}
+	NIObj = obj->getValue("naval_glory");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("naval_glory");
+	}
+	NIObj = obj->getValue("excellent_shipwrights");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("excellent_shipwrights");
+	}
+	NIObj = obj->getValue("naval_fighting_instruction");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("naval_fighting_instruction");
+	}
+	NIObj = obj->getValue("naval_provisioning");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("naval_provisioning");
+	}
+	NIObj = obj->getValue("grand_army");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("grand_army");
+	}
+	NIObj = obj->getValue("military_drill");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("military_drill");
+	}
+	NIObj = obj->getValue("engineer_corps");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("engineer_corps");
+	}
+	NIObj = obj->getValue("battlefield_commisions");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("battlefield_commisions");
+	}
+	NIObj = obj->getValue("glorious_arms");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("glorious_arms");
+	}
+	NIObj = obj->getValue("national_conscripts");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("national_conscripts");
+	}
+	NIObj = obj->getValue("regimental_system");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("regimental_system");
+	}
+	NIObj = obj->getValue("napoleonic_warfare");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("napoleonic_warfare");
+	}
+	NIObj = obj->getValue("land_of_opportunity");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("land_of_opportunity");
+	}
+	NIObj = obj->getValue("merchant_adventures");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("merchant_adventures");
+	}
+	NIObj = obj->getValue("colonial_ventures");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("colonial_ventures");
+	}
+	NIObj = obj->getValue("shrewd_commerce_practise");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("shrewd_commerce_practise");
+	}
+	NIObj = obj->getValue("vice_roys");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("vice_roys");
+	}
+	NIObj = obj->getValue("quest_for_the_new_world");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("quest_for_the_new_world");
+	}
+	NIObj = obj->getValue("scientific_revolution");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("scientific_revolution");
+	}
+	NIObj = obj->getValue("improved_foraging");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("improved_foraging");
+	}
+	NIObj = obj->getValue("vetting");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("vetting");
+	}
+	NIObj = obj->getValue("bureaucracy");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("bureaucracy");
+	}
+	NIObj = obj->getValue("national_bank");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("national_bank");
+	}
+	NIObj = obj->getValue("national_trade_policy");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("national_trade_policy");
+	}
+	NIObj = obj->getValue("espionage");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("espionage");
+	}
+	NIObj = obj->getValue("bill_of_rights");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("bill_of_rights");
+	}
+	NIObj = obj->getValue("smithian_economics");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("smithian_economics");
+	}
+	NIObj = obj->getValue("liberty_egalite_fraternity");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("liberty_egalite_fraternity");
+	}
+	NIObj = obj->getValue("ecumenism");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("ecumenism");
+	}
+	NIObj = obj->getValue("church_attendance_duty");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("church_attendance_duty");
+	}
+	NIObj = obj->getValue("divine_supremacy");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("divine_supremacy");
+	}
+	NIObj = obj->getValue("patron_of_art");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("patron_of_art");
+	}
+	NIObj = obj->getValue("deus_vult");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("deus_vult");
+	}
+	NIObj = obj->getValue("humanist_tolerance");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("humanist_tolerance");
+	}
+	NIObj = obj->getValue("cabinet");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("cabinet");
+	}
+	NIObj = obj->getValue("revolution_and_counter");
+	if (NIObj.size() > 0 && ( NIObj[0]->getLeaf() == "yes" ) )
+	{
+		nationalIdeas.push_back("revolution_and_counter");
+	}
 }
 
 
@@ -438,4 +640,10 @@ int EU3Country::getLandNaval()
 int EU3Country::getQualityQuantity()
 {
 	return quality_quantity;
+}
+
+
+vector<string> EU3Country::getNationalIdeas()
+{
+	return nationalIdeas;
 }

@@ -118,6 +118,7 @@ void V2Country::output(FILE* output)
 		}
 		fprintf(output, "	}\n");
 	}
+	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
 	outputInventions(output);
 	fprintf(output, "	prestige=%f\n", prestige);
 	outputCountryMiddle(output);
@@ -1307,4 +1308,111 @@ V2Army*	V2Country::getArmyForRemainder(RegimentCategory rc)
 void V2Country::setReforms(EU3Country* srcCountry)
 {
 	reforms.init(srcCountry);
+}
+
+
+void V2Country::setNationalIdea(EU3Country* srcCountry, int& libertyLeft, int& equalityLeft)
+{
+	int orderScore = 0;
+	orderScore += srcCountry->getOffensiveDefensive();
+	orderScore += srcCountry->getInnovativeNarrowminded();
+	orderScore += srcCountry->getQualityQuantity();
+	vector<string> nationalIdeas = srcCountry->getNationalIdeas();
+	for (unsigned int i = 0; i < nationalIdeas.size(); i++)
+	{
+		if (nationalIdeas[i] == "deus_vult")
+		{
+			orderScore += 2;
+		}
+		if (nationalIdeas[i] == "church_attendance_duty")
+		{
+			orderScore += 2;
+		}
+		if (nationalIdeas[i] == "divine_supremacy")
+		{
+			orderScore += 2;
+		}
+		if (nationalIdeas[i] == "national_conscripts")
+		{
+			orderScore += 2;
+		}
+		if (nationalIdeas[i] == "press_gangs")
+		{
+			orderScore += 1;
+		}
+		if (nationalIdeas[i] == "military_drill")
+		{
+			orderScore += 1;
+		}
+		if (nationalIdeas[i] == "bureaucracy")
+		{
+			orderScore += 1;
+		}
+	}
+
+	int libertyScore = 0;
+	libertyScore += srcCountry->getCentralizationDecentralization();
+	libertyScore += srcCountry->getSerfdomFreesubjects();
+	libertyScore += srcCountry->getMercantilismFreetrade();
+	for (unsigned int i = 0; i < nationalIdeas.size(); i++)
+	{
+		if (nationalIdeas[i] == "liberty_egalite_fraternity")
+		{
+			libertyScore += 4;
+		}
+		if (nationalIdeas[i] == "smithian_economics")
+		{
+			libertyScore += 2;
+		}
+		if (nationalIdeas[i] == "bill_of_rights")
+		{
+			libertyScore += 2;
+		}
+		if (nationalIdeas[i] == "scientific_revolution")
+		{
+			libertyScore += 1;
+		}
+		if (nationalIdeas[i] == "ecumenism")
+		{
+			libertyScore += 1;
+		}
+	}
+
+	int equalityScore = 0;
+	equalityScore += srcCountry->getAristocracyPlutocracy();
+	equalityScore += srcCountry->getSerfdomFreesubjects();
+	for (unsigned int i = 0; i < nationalIdeas.size(); i++)
+	{
+		if (nationalIdeas[i] == "liberty_egalite_fraternity")
+		{
+			equalityScore += 4;
+		}
+		if (nationalIdeas[i] == "humanist_tolerance")
+		{
+			equalityScore += 2;
+		}
+		if (nationalIdeas[i] == "bill_of_rights")
+		{
+			equalityScore += 2;
+		}
+		if (nationalIdeas[i] == "ecumenism")
+		{
+			equalityScore += 1;
+		}
+	}
+
+	if ( (equalityScore > orderScore) && (equalityScore >= libertyScore) && (equalityLeft > 0) )
+	{
+		nationalValue = "nv_equality";
+		equalityLeft--;
+	}
+	else if ( (libertyScore > orderScore) && (libertyLeft > 0) )
+	{
+		nationalValue = "nv_liberty";
+		libertyLeft--;
+	}
+	else
+	{
+		nationalValue = "nv_order";
+	}
 }
