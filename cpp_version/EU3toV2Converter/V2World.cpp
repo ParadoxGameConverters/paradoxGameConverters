@@ -1502,7 +1502,7 @@ void V2World::output(FILE* output)
 
 void V2World::outputHeader(FILE* output)
 {
-	fprintf(output, "date=\"1835.12.31\"\n");
+	fprintf(output, "date=\"1835.12.1\"\n");
 	fprintf(output, "automate_trade=no\n");
 	fprintf(output, "automate_sliders=0\n");
 	fprintf(output, "unit=%d\n", V2ArmyID().id);

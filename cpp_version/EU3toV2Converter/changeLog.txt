@@ -249,3 +249,4 @@ Revision	Version Updated		Log Message
 228		C++			Migrate parser grammar from Spirit::Classic to Spirit::Qi, and other misc fixes.  Notably faster, and quote stripping works right.
 229		C++			National Values
 230		C++			Avoid army and state ID collisions
+231		C++			Move start date to 31.12.1835 so pops have the opportunity to develop issues before first election.
