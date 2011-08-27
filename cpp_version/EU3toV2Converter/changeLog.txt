@@ -252,3 +252,4 @@ Revision	Version Updated		Log Message
 231		C++			Move start date to 31.12.1835 so pops have the opportunity to develop issues before first election.
 232		C++			Tweak parser grammar to allow empty objects (like many V2 unit-name counters)
 233		C++			Don't generate pops with size < 1.  Correct pop RGO employment indices.  Modify output order to be more like V2.
+234		C++			Match output order more closely to V2 saves to make comparisons easier.

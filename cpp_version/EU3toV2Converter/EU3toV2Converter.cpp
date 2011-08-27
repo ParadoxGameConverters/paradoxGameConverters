@@ -91,7 +91,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Get potential V2 countries
 	log("Getting potential V2 nations.\n");
 	printf("Getting potential V2 nations.\n");
-	vector<string> V2Tags;
 	ifstream V2CountriesInput;
 	V2CountriesInput.open( (V2Loc + "\\common\\countries.txt").c_str() );
 	if (!V2CountriesInput.is_open())

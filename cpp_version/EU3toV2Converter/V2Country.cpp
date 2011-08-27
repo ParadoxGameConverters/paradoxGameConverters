@@ -75,6 +75,22 @@ string V2Country::getReligion()
 }
 
 
+void V2Country::sortRelations(const vector<string>& order)
+{
+	vector<V2Relations> sortedRelations;
+	for (vector<string>::const_iterator oitr = order.begin(); oitr != order.end(); ++oitr)
+	{
+		for (vector<V2Relations>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
+		{
+			if (itr->getTag() == (*oitr))
+			{
+				sortedRelations.push_back(*itr);
+				break;
+			}
+		}
+	}
+	relations.swap(sortedRelations);
+}
 
 
 void V2Country::output(FILE* output)
@@ -104,6 +120,7 @@ void V2Country::output(FILE* output)
 	{
 		itr->output(output);
 	}
+	outputInventions(output);
 	if (primaryCulture.size() > 0)
 	{
 		fprintf(output, "	primary_culture=\"%s\"\n", primaryCulture.c_str());
@@ -118,10 +135,9 @@ void V2Country::output(FILE* output)
 		}
 		fprintf(output, "	}\n");
 	}
-	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
-	outputInventions(output);
 	fprintf(output, "	prestige=%f\n", prestige);
 	outputCountryMiddle(output);
+	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
 	if (civilized)
 	{
 		fprintf(output, "	civilized=yes\n");
@@ -1204,6 +1220,18 @@ void V2Country::outputTech(FILE* output)
 
 void V2Country::outputInventions(FILE* output)
 {
+	fprintf(output, "	active_inventions=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		");
+	for (unsigned int i = 0; i < naval_exercises; i++)
+	{
+		if (inventions[i] == active)
+		{
+			fprintf(output, "%d ", i + 1);
+		}
+	}
+	fprintf(output, "\n	}\n");
+
 	fprintf(output, "	possible_inventions=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		");
@@ -1222,18 +1250,6 @@ void V2Country::outputInventions(FILE* output)
 	for (unsigned int i = 0; i < naval_exercises; i++)
 	{
 		if (inventions[i] == illegal)
-		{
-			fprintf(output, "%d ", i + 1);
-		}
-	}
-	fprintf(output, "\n	}\n");
-
-	fprintf(output, "	active_inventions=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		");
-	for (unsigned int i = 0; i < naval_exercises; i++)
-	{
-		if (inventions[i] == active)
 		{
 			fprintf(output, "%d ", i + 1);
 		}

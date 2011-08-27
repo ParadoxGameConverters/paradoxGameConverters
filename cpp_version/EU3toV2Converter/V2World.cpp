@@ -397,6 +397,24 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 }
 
 
+void V2World::sortCountries(const vector<string>& order)
+{
+	vector<V2Country> sortedCountries;
+	for (vector<string>::const_iterator oitr = order.begin(); oitr != order.end(); ++oitr)
+	{
+		for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+		{
+			if (itr->getTag() == (*oitr))
+			{
+				sortedCountries.push_back(*itr);
+				break;
+			}
+		}
+	}
+	countries.swap(sortedCountries);
+}
+
+
 vector<string> V2World::getPotentialTags()
 {
 	vector<string> tagList;
@@ -410,6 +428,7 @@ vector<string> V2World::getPotentialTags()
 
 void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, governmentMapping governmentMap)
 {
+	vector<string> outputOrder = getPotentialTags();
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < sourceCountries.size(); i++)
 	{
@@ -563,6 +582,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							}
 						}
 					}
+					newCountry.sortRelations(outputOrder);
 				}
 			}
 		}
@@ -576,6 +596,9 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 
 		countries.push_back(newCountry);
 	}
+
+	// put countries in the same order as potentialCountries was (this is the same order V2 will save them in)
+	sortCountries(outputOrder);
 }
 
 

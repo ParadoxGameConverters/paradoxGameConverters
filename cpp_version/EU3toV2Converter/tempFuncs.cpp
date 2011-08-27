@@ -92,5 +92,11 @@ void outputCountryHeader2(FILE* output)
 
 void outputCountryMiddle(FILE* output)
 {
+	fprintf(output, "	bank=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		money=0.00000\n");
+	fprintf(output, "		money_lent=0.00000\n");
+	fprintf(output, "	}\n");
 	fprintf(output, "	money=75314.11652\n");
+	fprintf(output, "	last_bankrupt=\"1.1.1\"\n");
 }

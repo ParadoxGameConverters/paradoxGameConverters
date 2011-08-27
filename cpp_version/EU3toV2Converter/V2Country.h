@@ -40,6 +40,7 @@ class V2Country
 		V2Army*					getArmyForRemainder(RegimentCategory rc);
 		void					setReforms(EU3Country*);
 		void					setNationalIdea(EU3Country*, int& libertyLeft, int& equalityLeft);
+		void					sortRelations(const vector<string>& order);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
