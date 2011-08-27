@@ -81,16 +81,13 @@ void V2Pop::setSupportedRegimentCount(int regiments)
 
 void V2Pop::output(FILE* output)
 {
-	if (size > 0)
-	{
-		fprintf(output, "	%s=\n", type.c_str());
-		fprintf(output, "	{\n");
-		fprintf(output, "		id=%d\n", id);
-		fprintf(output, "		size=%d\n", size);
-		fprintf(output, "		%s=%s\n", culture.c_str(), religion.c_str());
-		fprintf(output, "		money=1000000.00000\n");
-		fprintf(output, "	}\n");
-	}
+	fprintf(output, "	%s=\n", type.c_str());
+	fprintf(output, "	{\n");
+	fprintf(output, "		id=%d\n", id);
+	fprintf(output, "		size=%d\n", size);
+	fprintf(output, "		%s=%s\n", culture.c_str(), religion.c_str());
+	fprintf(output, "		money=1000000.00000\n");
+	fprintf(output, "	}\n");
 }
 
 

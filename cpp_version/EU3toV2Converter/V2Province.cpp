@@ -432,6 +432,8 @@ void V2Province::combinePops()
 				lhs->setSize(lhs->getSize() + rhs->getSize());
 				trashPops.push_back(rhs->getID());
 			}
+			if (rhs->getSize() < 1)
+				trashPops.push_back(rhs->getID());
 		}
 	}
 	vector<V2Pop> consolidatedPops;
@@ -519,6 +521,14 @@ static const int unitNameOffsets[num_reg_categories] =
 	6	// transport
 };
 
+bool PopSortForOutputPredicate(const V2Pop& pop1, const V2Pop& pop2)
+{
+	if (pop1.getType() != pop2.getType())
+	{
+		return pop1.getType() < pop2.getType();
+	}
+	return pop1.getID() < pop2.getID();
+}
 
 void V2Province::output(FILE* output)
 {
@@ -546,6 +556,7 @@ void V2Province::output(FILE* output)
 	{
 		if (owner == "")
 		{
+			sort(oldPops.begin(), oldPops.end(), PopSortForOutputPredicate);
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
 				oldPops[i].output(output);
@@ -553,6 +564,7 @@ void V2Province::output(FILE* output)
 		}
 		else
 		{
+			sort(pops.begin(), pops.end(), PopSortForOutputPredicate);
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
 				pops[i].output(output);
@@ -567,9 +579,9 @@ void V2Province::output(FILE* output)
 		fprintf(output, "			{\n");
 		if (owner == "")
 		{
+			int numFarmers = 0;
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
-				int numFarmers = 0;
 				if (oldPops[i].getType() == "farmers")
 				{
 					fprintf(output, "				{\n");
@@ -584,9 +596,9 @@ void V2Province::output(FILE* output)
 					numFarmers++;
 				}
 			}
+			int numLabourers = 0;
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
-				int numLabourers = 0;
 				if (oldPops[i].getType() == "labourers")
 				{
 					fprintf(output, "				{\n");
@@ -601,9 +613,9 @@ void V2Province::output(FILE* output)
 					numLabourers++;
 				}
 			}
+			int numSlaves = 0;
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
-				int numSlaves = 0;
 				if (oldPops[i].getType() == "slaves")
 				{
 					fprintf(output, "				{\n");
@@ -621,9 +633,9 @@ void V2Province::output(FILE* output)
 		}
 		else
 		{
+			int numFarmers = 0;
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
-				int numFarmers = 0;
 				if (pops[i].getType() == "farmers")
 				{
 					fprintf(output, "				{\n");
@@ -638,9 +650,9 @@ void V2Province::output(FILE* output)
 					numFarmers++;
 				}
 			}
+			int numLabourers = 0;
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
-				int numLabourers = 0;
 				if (pops[i].getType() == "labourers")
 				{
 					fprintf(output, "				{\n");
@@ -655,9 +667,9 @@ void V2Province::output(FILE* output)
 					numLabourers++;
 				}
 			}
+			int numSlaves = 0;
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
-				int numSlaves = 0;
 				if (pops[i].getType() == "slaves")
 				{
 					fprintf(output, "				{\n");
@@ -675,8 +687,8 @@ void V2Province::output(FILE* output)
 		}
 		fprintf(output, "			}\n");
 		fprintf(output, "		}\n");
-		fprintf(output, "		goods_type=\"%s\"\n", rgoType.c_str());
 		fprintf(output, "		last_income=100000.00000\n");
+		fprintf(output, "		goods_type=\"%s\"\n", rgoType.c_str());
 		fprintf(output, "	}\n");
 		fprintf(output, "	life_rating=%d\n", lifeRating);
 
