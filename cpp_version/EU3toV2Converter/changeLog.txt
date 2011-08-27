@@ -253,3 +253,4 @@ Revision	Version Updated		Log Message
 232		C++			Tweak parser grammar to allow empty objects (like many V2 unit-name counters)
 233		C++			Don't generate pops with size < 1.  Correct pop RGO employment indices.  Modify output order to be more like V2.
 234		C++			Match output order more closely to V2 saves to make comparisons easier.
+235		C++			Culture mapping changes: give Sami, Ukrainian, Ugrian, Pashtun, Baluchi, and Malagasy correct mappings; move Papuan from Polynesian to Melanesian.

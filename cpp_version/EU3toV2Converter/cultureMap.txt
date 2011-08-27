@@ -11,7 +11,8 @@ link = { vic = flemish eu3 = flemish }
 link = { vic = wallonian eu3 = wallonian }
 link = { vic = swedish eu3 = swedish }
 link = { vic = danish eu3 = danish }
-link = { vic = norwegian eu3 = norwegian eu3 = sapmi }
+link = { vic = norwegian eu3 = norwegian }
+link = { vic = sami eu3 = sapmi }
 link = { vic = finnish eu3 = finnish eu3 = ingrian eu3 = karelian }
 link = { vic = british eu3 = english eu3 = scottish eu3 = welsh eu3 = breton }
 link = { vic = irish eu3 = irish }
@@ -31,7 +32,9 @@ link = { vic = romanian eu3 = romanian }
 link = { vic = hungarian eu3 = hungarian }
 link = { vic = polish eu3 = polish eu3 = schlesian }
 link = { vic = czech eu3 = czech }
-link = { vic = russian eu3 = russian eu3 = uralic eu3 = ruthenian}
+link = { vic = russian eu3 = russian }
+link = { vic = ugrian eu3 = uralic }
+link = { vic = ukrainian eu3 = ruthenian }
 link = { vic = byelorussian eu3 = byelorussian }
 link = { vic = lithuanian eu3 = lithuanian }
 link = { vic = latvian eu3 = latvian eu3 = old_prussian }
@@ -46,10 +49,12 @@ link = { vic = bedouin eu3 = bedouin_arabic }
 link = { vic = berber eu3 = berber }
 link = { vic = turkish eu3 = turkish }
 link = { vic = azerbaijani eu3 = azerbadjani }
-link = { vic = persian eu3 = persian eu3 = east_persian eu3 = baluchi }
+link = { vic = persian eu3 = persian }
 link = { vic = uzbek eu3 = uzbehk }
 link = { vic = kazak eu3 = khazak }
 link = { vic = kirgiz eu3 = kirgiz }
+link = { vic = pashtun eu3 = east_persian }
+link = { vic = baluchi eu3 = baluchi }
 link = { vic = turkmen eu3 = turkmeni }
 link = { vic = tatar eu3 = tartar }
 link = { vic = mongol eu3 =  mongol }
@@ -89,9 +94,9 @@ link = { vic = manchu eu3 = manchu }
 link = { vic = beifaren eu3 = chihan }
 link = { vic = nanfaren eu3 = cantonese }
 link = { vic = korean eu3 = korean }
-link = { vic = polynesian eu3 = polynesian eu3 = papuan }
+link = { vic = polynesian eu3 = polynesian }
 link = { vic = aborigine eu3 = aboriginal }
-link = { vic = melanesian eu3 = melanesian eu3 = madagascan }
+link = { vic = melanesian eu3 = melanesian eu3 = papuan }
 link = { vic = zapotec eu3 = zapotek }
 link = { vic = mayan eu3 = mayan }
 link = { vic = nahua eu3 = aztek }
@@ -117,7 +122,8 @@ link = { vic = dyula eu3 = dyola }
 link = { vic = tuareg eu3 = tuareg }
 link = { vic = yoruba eu3 = yorumba }
 link = { vic = bakongo eu3 = kongolese }
-link = { vic = african_minor eu3 = madagasque eu3 = senegambian eu3 = bantu }
+link = { vic = african_minor eu3 = senegambian eu3 = bantu eu3 = madagascan }
+link = { vic = malagasy eu3 = madagasque }
 link = { vic = oromo eu3 = ethiopian }
 link = { vic = somali eu3 = somali }
 link = { vic = sudanese eu3 = nubian }
