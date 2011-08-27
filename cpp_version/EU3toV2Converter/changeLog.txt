@@ -250,3 +250,4 @@ Revision	Version Updated		Log Message
 229		C++			National Values
 230		C++			Avoid army and state ID collisions
 231		C++			Move start date to 31.12.1835 so pops have the opportunity to develop issues before first election.
+232		C++			Tweak parser grammar to allow empty objects (like many V2 unit-name counters)

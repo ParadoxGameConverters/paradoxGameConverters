@@ -44,7 +44,7 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 		str     = lexeme[lit('"') >> raw[*(~qi::char_('"'))] >> lit('"')];
 		leaf    = raw[ &(~qi::char_("={}\"")) >> *(qi::graph - qi::char_("=}"))];
 		taglist = lit('{') >> omit[*(qi::space)] >> lexeme[( ( skip[leaf] | str ) % *(qi::space) )] >> omit[*(qi::space)] >> lit('}');
-		object  = raw[lit('{') >> +(assign) >> *(qi::space) >> lit('}')];
+		object  = raw[lit('{') >> *(assign) >> *(qi::space) >> lit('}')];
 		objlist = raw[lit('{') >> *( *(qi::space) >> object[&pushObj] ) >> *(qi::space) >> lit('}')];
 		assign  = raw[+((*(qi::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(qi::space) >> lit('=')
 			>> *(qi::space) 
