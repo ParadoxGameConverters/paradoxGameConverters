@@ -446,11 +446,11 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 
 					if ( (sourceCountries[i].getTechGroup() == "western") || (sourceCountries[i].getTechGroup() == "eastern") || (sourceCountries[i].getTechGroup() == "ottoman"))
 					{
-						newCountry.setcivilized(true);
+						newCountry.setCivilized(true);
 					}
 					else
 					{
-						newCountry.setcivilized(false);
+						newCountry.setCivilized(false);
 					}
 					
 					string srcCulture = sourceCountries[i].getPrimaryCulture();
@@ -1503,6 +1503,93 @@ void V2World::convertTechs(EU3World sourceWorld)
 		{
 			countries[i].addPrestige(pressureChambersPrestige);
 		}
+	}
+}
+
+
+void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder)
+{
+	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
+	double productionMean = 0.0f;
+	int num = 1;
+	for (vector<EU3Country>::iterator itr = sourceCountries.begin(); itr != sourceCountries.end(); ++itr)
+	{
+		if (itr->getProvinces().size() == 0)
+			continue;
+		if (itr->getTechGroup() != "western")
+			continue;
+
+		double prodTech = itr->getProductionTech();
+		productionMean += ((prodTech - productionMean) / num);
+		++num;
+	}
+
+	vector<pair<double, V2Country*>> weightedCountries;
+	double totalIndWeight = 0.0;
+	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		if (!itr->isCivilized())
+			continue;
+
+		EU3Country* source = &sourceCountries[itr->getSourceCountryIndex()];
+		if (source->getProvinces().size() == 0)
+			continue;
+
+		double industryWeight = (source->getProductionTech() - productionMean) + source->getManufactoryCount();
+		// having one manufactory and average tech is not enough; you must have more than one, or above-average tech
+		if (industryWeight > 1.0)
+		{
+			weightedCountries.push_back(pair<double, V2Country*>(industryWeight, &(*itr)));
+			totalIndWeight += industryWeight;
+		}
+	}
+	if (weightedCountries.size() < 1)
+	{
+		log("Error: no countries are able to accept factories!\n");
+		return;
+	}
+	sort(weightedCountries.begin(), weightedCountries.end());
+
+	deque<V2Factory> factoryList = factoryBuilder.buildFactories();
+	vector<pair<int, V2Country*>> factoryCounts;
+	for (vector<pair<double, V2Country*>>::iterator itr = weightedCountries.begin(); itr != weightedCountries.end(); ++itr)
+	{
+		int factories = int(ceil((itr->first / totalIndWeight) * factoryList.size()));
+		log("%s has industrial weight %2.2lf granting %d factories\n", itr->second->getTag().c_str(), itr->first, factories);
+		factoryCounts.push_back(pair<int, V2Country*>(factories, itr->second));
+	}
+
+	vector<pair<int, V2Country*>>::iterator lastReceptiveCountry = factoryCounts.begin();
+	vector<pair<int, V2Country*>>::iterator citr = factoryCounts.begin();
+	while (factoryList.size() > 0)
+	{
+		bool accepted = false;
+		if (citr->first > 0) // can take more factories
+		{
+			for (deque<V2Factory>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
+			{
+				if (citr->second->addFactory(*qitr))
+				{
+					--(citr->first);
+					lastReceptiveCountry = citr;
+					accepted = true;
+					factoryList.erase(qitr);
+					break;
+				}
+			}
+		}
+		if (!accepted && citr == lastReceptiveCountry)
+		{
+			log("No countries will accept any of the remaining factories!");
+			for (deque<V2Factory>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
+			{
+				log("\n\t%s", qitr->getTypeName().c_str());
+			}
+			log("\n");
+			break;
+		}
+		if (++citr == factoryCounts.end())
+			citr = factoryCounts.begin(); // loop around to beginning
 	}
 }
 

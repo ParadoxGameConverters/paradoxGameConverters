@@ -90,6 +90,9 @@
     <ClCompile Include="V2Reforms.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
+    <ClCompile Include="V2Factory.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -156,6 +159,9 @@
       <Filter>EU3 World</Filter>
     </ClInclude>
     <ClInclude Include="V2Reforms.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Factory.h">
       <Filter>V2 World</Filter>
     </ClInclude>
   </ItemGroup>

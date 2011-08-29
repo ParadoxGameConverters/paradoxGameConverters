@@ -647,3 +647,21 @@ vector<string> EU3Country::getNationalIdeas()
 {
 	return nationalIdeas;
 }
+
+
+int EU3Country::getManufactoryCount()
+{
+	int retval = 0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		if ((*itr)->hasBuilding("weapons"))
+			++retval;
+		if ((*itr)->hasBuilding("wharf"))
+			++retval;
+		if ((*itr)->hasBuilding("textile"))
+			++retval;
+		if ((*itr)->hasBuilding("refinery"))
+			++retval;
+	}
+	return retval;
+}

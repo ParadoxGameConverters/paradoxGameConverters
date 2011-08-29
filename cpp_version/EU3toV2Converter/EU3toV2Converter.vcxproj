@@ -204,6 +204,7 @@
     <ClCompile Include="V2Army.cpp" />
     <ClCompile Include="V2Country.cpp" />
     <ClCompile Include="V2Diplomacy.cpp" />
+    <ClCompile Include="V2Factory.cpp" />
     <ClCompile Include="V2Pop.cpp" />
     <ClCompile Include="V2Province.cpp" />
     <ClCompile Include="V2Reforms.cpp" />
@@ -226,6 +227,7 @@
     <ClInclude Include="tempFuncs.h" />
     <ClInclude Include="V2Army.h" />
     <ClInclude Include="V2Country.h" />
+    <ClInclude Include="V2Factory.h" />
     <ClInclude Include="V2Inventions.h" />
     <ClInclude Include="V2Diplomacy.h" />
     <ClInclude Include="V2Pop.h" />

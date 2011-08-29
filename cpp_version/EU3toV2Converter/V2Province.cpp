@@ -80,6 +80,12 @@ void V2Province::setRgoType(string newRgo)
 }
 
 
+string V2Province::getRgoType()
+{
+	return rgoType;
+}
+
+
 void V2Province::setLifeRating(int newLifeRating)
 {
 	lifeRating = newLifeRating;

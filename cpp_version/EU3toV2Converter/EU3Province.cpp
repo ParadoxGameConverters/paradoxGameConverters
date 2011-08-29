@@ -46,6 +46,12 @@ void EU3Province::init(Object* obj) {
 		religion = religionObj[0]->getLeaf();
 	}
 
+	checkBuilding(obj, "weapons");
+	checkBuilding(obj, "university");
+	checkBuilding(obj, "wharf");
+	checkBuilding(obj, "textile");
+	checkBuilding(obj, "fine_arts_academy");
+	checkBuilding(obj, "refinery");
 
 	colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
@@ -129,6 +135,24 @@ void EU3Province::init(Object* obj) {
 	sort(ownershipHistory.begin(), ownershipHistory.end());
 	sort(cultureHistory.begin(), cultureHistory.end());
 	sort(religionHistory.begin(), religionHistory.end());
+}
+
+
+void EU3Province::checkBuilding(Object* province_obj, string building)
+{
+	vector<Object*> buildingObj;
+	buildingObj = province_obj->getValue(building);
+	if ((buildingObj.size() > 0) && (buildingObj[0]->getLeaf() == "yes"))
+		buildings[building] = true;
+}
+
+
+bool EU3Province::hasBuilding(string building)
+{
+	map<string, bool>::iterator itr = buildings.find(building);
+	if (itr == buildings.end())
+		return false;
+	return itr->second;
 }
 
 

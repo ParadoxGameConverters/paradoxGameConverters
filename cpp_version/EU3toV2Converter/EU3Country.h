@@ -51,6 +51,7 @@ class EU3Country
 		int						getLandNaval();
 		int						getQualityQuantity();
 		vector<string>			getNationalIdeas();
+		int						getManufactoryCount();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;

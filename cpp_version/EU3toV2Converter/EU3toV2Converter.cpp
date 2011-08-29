@@ -2,6 +2,7 @@
 #include "Parsers\Parser.h"
 #include "Log.h"
 #include "V2World.h"
+#include "V2Factory.h"
 
 
 
@@ -79,6 +80,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing Vicky2 data.\n");
 	V2World destWorld;
 	destWorld.init(V2Loc);
+
+
+	// Construct factory factory
+	log("Determining factory allocation rules.\n");
+	printf("Determining factory allocation rules.\n");
+	V2FactoryFactory factoryBuilder;
+	factoryBuilder.init(V2Loc);
 
 
 	// Parse province mappings
@@ -247,7 +255,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting techs.\n");
 	log("Converting techs.\n");
 	destWorld.convertTechs(sourceWorld);
-	  
+	printf("Allocating starting factories.\n");
+	log("Allocating starting factories.\n");
+	destWorld.allocateFactories(sourceWorld, factoryBuilder);
+
 	/*InstructionsParser insParser;
 	InstructionsParser::Refresh();
 	read.open(string("ins.txt").c_str());

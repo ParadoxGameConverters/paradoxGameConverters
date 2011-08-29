@@ -18,6 +18,7 @@ class V2Province {
 		void		setColonial(bool);
 		string	getCulture();
 		void		setRgoType(string);
+		string		getRgoType();
 		void		setLifeRating(int);
 		bool		isColonial();
 		void		setColonised(bool);

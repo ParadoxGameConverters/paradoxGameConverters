@@ -4,6 +4,7 @@
 
 #include "V2Country.h"
 #include "V2Diplomacy.h"
+#include "V2Factory.h"
 #include "Mapper.h"
 
 
@@ -22,6 +23,7 @@ class V2World {
 		void				output(FILE*);
 		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);
 		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap);
+		void				allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder);
 	private:
 		void					outputHeader(FILE*);
 		V2Province*			getProvinceForExpeditionaryArmy(const V2Country& country);

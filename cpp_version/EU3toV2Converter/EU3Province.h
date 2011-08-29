@@ -29,8 +29,10 @@ class EU3Province {
 		bool				wasColonised();
 		void				buildPopRatios();
 		vector<EU3PopRatio>	getPopRatios();
+		bool				hasBuilding(string building);
 	private:
 		void							decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
+		void							checkBuilding(Object* provinceObj, string building);
 		int									num;
 		string								owner;
 		//controller
@@ -44,6 +46,7 @@ class EU3Province {
 		vector< pair<date, string> >	religionHistory;
 		vector< pair<date, string> >	cultureHistory;
 		vector<EU3PopRatio>				popRatios;
+		map<string, bool>				buildings;
 };
 
 

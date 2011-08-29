@@ -7,6 +7,7 @@
 #include "V2Relations.h"
 #include "V2Army.h"
 #include "V2Reforms.h"
+#include "V2Factory.h"
 
 
 class V2Country
@@ -17,7 +18,8 @@ class V2Country
 		void					setSourceCountryIndex(int);
 		void					addState(V2State);
 		void					setCapital(int);
-		void					setcivilized(bool);
+		void					setCivilized(bool);
+		bool					isCivilized();
 		void					setPrimaryCulture(string);
 		string				getPrimaryCulture() const;
 		void					addAcceptedCulture(string);
@@ -31,7 +33,7 @@ class V2Country
 		void					setCommerceTech(double);
 		void					setIndustryTech(double);
 		void					setCultureTech(double);
-		inventionStatus	getInventionState(inventionTypes);
+		inventionStatus	getInventionState(inventionType);
 		void					addPrestige(double);
 		void					setGovernment(string);
 		void					addRelations(V2Relations);
@@ -41,6 +43,7 @@ class V2Country
 		void					setReforms(EU3Country*);
 		void					setNationalIdea(EU3Country*, int& libertyLeft, int& equalityLeft);
 		void					sortRelations(const vector<string>& order);
+		bool					addFactory(V2Factory);
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
@@ -56,11 +59,7 @@ class V2Country
 		int					sourceCountryIndex;
 		string				countryFile;
 		double				prestige;
-		int					armyTech;
-		int					navyTech;
-		int					commerceTech;
-		int					industryTech;
-		int					cultureTech;
+		vector<string>		techs;
 		inventionStatus	inventions[naval_exercises];
 		string				government;
 		vector<V2Relations>	relations;
