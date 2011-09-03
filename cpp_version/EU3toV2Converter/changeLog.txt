@@ -259,3 +259,4 @@ Revision	Version Updated		Log Message
 238		C++			Convert starting financials (treasury, loans, etc)
 239		C++			Added forgotten files
 240		C++			Fix regression in accepted culture mapping
+241		C++			Fix parsing of dates with non-four-digit years (i.e. 1.1.1)
