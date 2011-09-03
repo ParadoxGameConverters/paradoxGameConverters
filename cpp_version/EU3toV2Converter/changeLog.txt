@@ -258,3 +258,4 @@ Revision	Version Updated		Log Message
 237		C++			Apply diminishing-returns scaling to manufactory bonus for starting factories.
 238		C++			Convert starting financials (treasury, loans, etc)
 239		C++			Added forgotten files
+240		C++			Fix regression in accepted culture mapping

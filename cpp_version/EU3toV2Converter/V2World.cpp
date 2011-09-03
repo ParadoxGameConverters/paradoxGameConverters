@@ -520,11 +520,11 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 										log ("Error: Unhandled distinguisher type in culture rules.\n");
 									}
 								}
-							}
-							if (match)
-							{
-								newCountry.addAcceptedCulture(cultureMap[l].dstCulture);
-								matched = true;
+								if (match)
+								{
+									newCountry.addAcceptedCulture(cultureMap[l].dstCulture);
+									matched = true;
+								}
 							}
 						}
 						if (!matched)
