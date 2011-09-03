@@ -48,6 +48,7 @@ class V2Country
 		void					setMoney(double);
 		void					setLastBankrupt(date);
 		void					addLoan(string creditor, double size, double interest);
+		void					setDiploPoints(double);
 
 	private:
 		void outputTech(FILE*);
@@ -74,6 +75,7 @@ class V2Country
 		double				money;
 		date				lastBankrupt;
 		vector<V2Creditor>	creditors;
+		double				diploPoints;
 };
 
 

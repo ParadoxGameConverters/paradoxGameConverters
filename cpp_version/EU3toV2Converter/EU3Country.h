@@ -58,6 +58,7 @@ class EU3Country
 		double					inflationAdjust(double input);
 		date					getLastBankrupt();
 		vector<EU3Loan>			getLoans();
+		double					getDiplomats();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -92,6 +93,7 @@ class EU3Country
 		double					inflation;
 		date					last_bankrupt;
 		vector<EU3Loan>			loans;
+		double					diplomats;
 };
 
 

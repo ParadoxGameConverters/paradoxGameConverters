@@ -426,6 +426,12 @@ void EU3Country::init(Object* obj)
 		loan.init(*itr);
 		loans.push_back(loan);
 	}
+
+	vector<Object*> diploObj = obj->getValue("diplomats");
+	if (diploObj.size() > 0)
+	{
+		diplomats = atoi(diploObj[0]->getLeaf().c_str());
+	}
 }
 
 
@@ -719,3 +725,8 @@ vector<EU3Loan> EU3Country::getLoans()
 	return loans;
 }
 
+
+double EU3Country::getDiplomats()
+{
+	return diplomats;
+}

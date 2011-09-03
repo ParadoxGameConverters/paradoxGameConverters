@@ -117,6 +117,7 @@ void V2Country::output(FILE* output)
 	{
 		fprintf(output, "	active_party=%d\n", parties[i]);
 	}
+	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
 	outputCountryHeader2(output);
@@ -1555,4 +1556,10 @@ void V2Country::addLoan(string creditor, double size, double interest)
 		cred.addLoan(size, interest);
 		creditors.push_back(cred);
 	}
+}
+
+
+void V2Country::setDiploPoints(double points)
+{
+	diploPoints = points;
 }

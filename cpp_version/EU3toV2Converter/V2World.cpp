@@ -608,6 +608,8 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						double size = MONEYFACTOR * sourceCountries[i].inflationAdjust(itr->getAmount());
 						newCountry.addLoan(lender, size, itr->getInterest() / 100.0f);
 					}
+
+					newCountry.setDiploPoints(2.0 * sourceCountries[i].getDiplomats());
 				}
 			}
 		}

@@ -260,3 +260,4 @@ Revision	Version Updated		Log Message
 239		C++			Added forgotten files
 240		C++			Fix regression in accepted culture mapping
 241		C++			Fix parsing of dates with non-four-digit years (i.e. 1.1.1)
+242		C++			Convert diplomats to diplomacy points (1:2)
