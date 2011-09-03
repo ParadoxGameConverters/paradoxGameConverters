@@ -5,6 +5,7 @@
 #include "EU3Province.h"
 #include "EU3Relations.h"
 #include "EU3Army.h"
+#include "EU3Loan.h"
 
 
 class EU3Country
@@ -52,6 +53,11 @@ class EU3Country
 		int						getQualityQuantity();
 		vector<string>			getNationalIdeas();
 		int						getManufactoryCount();
+		double					getTreasury();
+		double					getInflation();
+		double					inflationAdjust(double input);
+		date					getLastBankrupt();
+		vector<EU3Loan>			getLoans();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -82,6 +88,10 @@ class EU3Country
 		int						land_naval;
 		int						quality_quantity;
 		vector<string>			nationalIdeas;
+		double					treasury;
+		double					inflation;
+		date					last_bankrupt;
+		vector<EU3Loan>			loans;
 };
 
 

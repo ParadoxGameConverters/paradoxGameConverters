@@ -8,6 +8,8 @@
 #include "Log.h"
 #include "tempFuncs.h"
 
+#define MONEYFACTOR 30	// ducat to pound conversion rate
+
 void V2World::init(string V2Loc)
 {
 	equalityLeft	= 6;
@@ -583,6 +585,29 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						}
 					}
 					newCountry.sortRelations(outputOrder);
+
+					newCountry.setMoney(MONEYFACTOR * sourceCountries[i].inflationAdjust(sourceCountries[i].getTreasury()));
+					newCountry.setLastBankrupt(sourceCountries[i].getLastBankrupt());
+
+					vector<EU3Loan> srcLoans = sourceCountries[i].getLoans();
+					for (vector<EU3Loan>::iterator itr = srcLoans.begin(); itr != srcLoans.end(); ++itr)
+					{
+						string lender = newCountry.getTag();
+						if (itr->getLender() != "---")
+						{
+							countryMapping::iterator newTag = countryMap.find(itr->getLender());
+							if (newTag != countryMap.end())
+							{
+								lender = newTag->second;
+							}
+							else
+							{
+								log("Error: lender %s could not be found for %s's loan!\n", itr->getLender().c_str(), newCountry.getTag().c_str());
+							}
+						}
+						double size = MONEYFACTOR * sourceCountries[i].inflationAdjust(itr->getAmount());
+						newCountry.addLoan(lender, size, itr->getInterest() / 100.0f);
+					}
 				}
 			}
 		}

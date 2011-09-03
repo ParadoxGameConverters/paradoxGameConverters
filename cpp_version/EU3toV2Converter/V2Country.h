@@ -8,6 +8,7 @@
 #include "V2Army.h"
 #include "V2Reforms.h"
 #include "V2Factory.h"
+#include "V2Creditor.h"
 
 
 class V2Country
@@ -44,6 +45,10 @@ class V2Country
 		void					setNationalIdea(EU3Country*, int& libertyLeft, int& equalityLeft);
 		void					sortRelations(const vector<string>& order);
 		bool					addFactory(V2Factory);
+		void					setMoney(double);
+		void					setLastBankrupt(date);
+		void					addLoan(string creditor, double size, double interest);
+
 	private:
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
@@ -66,6 +71,9 @@ class V2Country
 		vector<V2Army>		armies;
 		V2Reforms			reforms;
 		string				nationalValue;
+		double				money;
+		date				lastBankrupt;
+		vector<V2Creditor>	creditors;
 };
 
 

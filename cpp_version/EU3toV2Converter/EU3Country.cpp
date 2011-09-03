@@ -403,6 +403,29 @@ void EU3Country::init(Object* obj)
 	{
 		nationalIdeas.push_back("revolution_and_counter");
 	}
+
+	vector<Object*> moneyObj = obj->getValue("treasury");
+	if (moneyObj.size() > 0)
+	{
+		treasury = atof(moneyObj[0]->getLeaf().c_str());
+	}
+	moneyObj = obj->getValue("inflation");
+	if (moneyObj.size() > 0)
+	{
+		inflation = atof(moneyObj[0]->getLeaf().c_str());
+	}
+	moneyObj = obj->getValue("last_bankrupt");
+	if (moneyObj.size() > 0)
+	{
+		last_bankrupt = date(moneyObj[0]->getLeaf().c_str());
+	}
+	moneyObj = obj->getValue("loan");
+	for (vector<Object*>::iterator itr = moneyObj.begin(); itr != moneyObj.end(); ++itr)
+	{
+		EU3Loan loan;
+		loan.init(*itr);
+		loans.push_back(loan);
+	}
 }
 
 
@@ -665,3 +688,34 @@ int EU3Country::getManufactoryCount()
 	}
 	return retval;
 }
+
+
+double EU3Country::getTreasury()
+{
+	return treasury;
+}
+
+
+double EU3Country::getInflation()
+{
+	return inflation;
+}
+
+
+double EU3Country::inflationAdjust(double input)
+{
+	return (input / (1.0 + (inflation / 100.0)));
+}
+
+
+date EU3Country::getLastBankrupt()
+{
+	return last_bankrupt;
+}
+
+
+vector<EU3Loan> EU3Country::getLoans()
+{
+	return loans;
+}
+

@@ -145,6 +145,12 @@ void V2Country::output(FILE* output)
 	}
 	fprintf(output, "	prestige=%f\n", prestige);
 	outputCountryMiddle(output);
+	fprintf(output, "	money=%f\n", money);
+	fprintf(output, "	last_bankrupt=\"%s\"\n", lastBankrupt.toString().c_str());
+	for (vector<V2Creditor>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
+	{
+		itr->output(output);
+	}
 	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
 	if (civilized)
 	{
@@ -1514,5 +1520,39 @@ void V2Country::setNationalIdea(EU3Country* srcCountry, int& libertyLeft, int& e
 	else
 	{
 		nationalValue = "nv_order";
+	}
+}
+
+
+void V2Country::setMoney(double _cash)
+{
+	money = _cash;
+}
+
+
+void V2Country::setLastBankrupt(date _lastBankrupt)
+{
+	lastBankrupt = _lastBankrupt;
+}
+
+
+void V2Country::addLoan(string creditor, double size, double interest)
+{
+	bool found = false;
+	for (vector<V2Creditor>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
+	{
+		if (creditor == itr->getCountry())
+		{
+			itr->addLoan(size, interest);
+			found = true;
+			break;
+		}
+	}
+	if (!found)
+	{
+		V2Creditor cred;
+		cred.setCountry(creditor);
+		cred.addLoan(size, interest);
+		creditors.push_back(cred);
 	}
 }
