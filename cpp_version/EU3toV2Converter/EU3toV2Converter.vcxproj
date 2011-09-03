@@ -194,6 +194,7 @@
     <ClCompile Include="EU3Army.cpp" />
     <ClCompile Include="EU3Country.cpp" />
     <ClCompile Include="EU3Diplomacy.cpp" />
+    <ClCompile Include="EU3Loan.cpp" />
     <ClCompile Include="EU3Province.cpp" />
     <ClCompile Include="EU3Relations.cpp" />
     <ClCompile Include="EU3toV2Converter.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="tempFuncs.cpp" />
     <ClCompile Include="V2Army.cpp" />
     <ClCompile Include="V2Country.cpp" />
+    <ClCompile Include="V2Creditor.cpp" />
     <ClCompile Include="V2Diplomacy.cpp" />
     <ClCompile Include="V2Factory.cpp" />
     <ClCompile Include="V2Pop.cpp" />
@@ -219,6 +221,7 @@
     <ClInclude Include="EU3Army.h" />
     <ClInclude Include="EU3Country.h" />
     <ClInclude Include="EU3Diplomacy.h" />
+    <ClInclude Include="EU3Loan.h" />
     <ClInclude Include="EU3Province.h" />
     <ClInclude Include="EU3Relations.h" />
     <ClInclude Include="EU3World.h" />
@@ -227,6 +230,7 @@
     <ClInclude Include="tempFuncs.h" />
     <ClInclude Include="V2Army.h" />
     <ClInclude Include="V2Country.h" />
+    <ClInclude Include="V2Creditor.h" />
     <ClInclude Include="V2Factory.h" />
     <ClInclude Include="V2Inventions.h" />
     <ClInclude Include="V2Diplomacy.h" />

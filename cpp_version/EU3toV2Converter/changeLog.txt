@@ -257,3 +257,4 @@ Revision	Version Updated		Log Message
 236		C++			Add starting factories.
 237		C++			Apply diminishing-returns scaling to manufactory bonus for starting factories.
 238		C++			Convert starting financials (treasury, loans, etc)
+239		C++			Added forgotten files
