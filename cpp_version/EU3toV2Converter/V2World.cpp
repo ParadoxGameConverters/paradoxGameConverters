@@ -1535,7 +1535,10 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		if (source->getProvinces().size() == 0)
 			continue;
 
-		double industryWeight = (source->getProductionTech() - productionMean) + source->getManufactoryCount();
+		// modified manufactory weight follows diminishing returns curve y = x^(3/4)+log((x^2)/5+1)
+		int manuCount = source->getManufactoryCount();
+		double manuWeight = pow(manuCount, 0.75) + log((manuCount * manuCount) / 5.0 + 1.0);
+		double industryWeight = (source->getProductionTech() - productionMean) + manuWeight;
 		// having one manufactory and average tech is not enough; you must have more than one, or above-average tech
 		if (industryWeight > 1.0)
 		{
