@@ -829,7 +829,7 @@ link = { eu3 = 409 vic = 929 vic = 934 }		# Karbala -> Karbala, Najaf
 link = { eu3 = 408 vic = 932 vic = 935 }				# Basra -> Basra, Kuwait
 link = { eu3 = 406 vic = 931 }		# Badiyat Ash Sham -> Rutbah 
 link = { eu3 = 415 vic = 925 vic = 924 }			# Sharizhor -> Kirkuk, Arbil
-		
+
 ## Arabia ##
 link = { eu3 = 383 vic = 1154 }				# Tabouk -> Tabuk 
 link = { eu3 = 384 vic = 1153 }				# Medina -> Medina 
@@ -838,21 +838,21 @@ link = { eu3 = 386 vic = 1155 }				# Asir -> Abha
 link = { eu3 = 405 vic = 1156 }				# Al Jawf -> Kaf 
 link = { eu3 = 393 vic = 1158 vic = 1160 }				# Jabal Shammar -> Rafha, Hail 
 link = { eu3 = 394 vic = 1164 vic = 1163 vic = 2586 }			# Al Hasa -> Hufuf, Qatif, Al-Ahsa  
-link = { eu3 = 392 vic = 1157 vic = 1159 vic = 1161 }				# Nejd/Najd -> Riyadh, Halaban, Sharurah
+link = { eu3 = 392 vic = 1157 vic = 1159 }				# Nejd/Najd -> Riyadh, Halaban
 link = { eu3 = 395 vic = 1165 }			# Qatar -> Doha 
 link = { eu3 = 396 vic = 1162 }			# Bahrain -> Bahrain
-link = { eu3 = 397 eu3 = 404 vic = 1167 }				# Beni Yas -> Abu Dhabi  
+link = { eu3 = 397 eu3 = 404 vic = 1167 }				# Beni Yas, Liwa -> Abu Dhabi  
 link = { eu3 = 398 vic = 1168 }				# Qawasim -> Dubai 
 link = { eu3 = 399 vic = 1169 }				# Suhar -> Sohar
 link = { eu3 = 403 vic = 1170 }				# Nizwa -> Nizwa 
 link = { eu3 = 400 vic = 1166 vic = 1171 }				# Muscat -> Muscat, Sur 
 link = { eu3 = 401 vic = 1172 }				# Dhofar -> Duqm 
 link = { eu3 = 402 vic = 1174 }			# Mahra -> Salalah 
-link = { eu3 = 391 vic = 1175 }			# Najran -> Ghayda 
-link = { eu3 = 389 vic = 1176 vic = 1173 }		# Hadramut -> Bayda, Mulkalla
-link = { eu3 = 390 vic = 1178 vic = 1180 }		# Sana'a -> Sana, Taizz 
-link = { eu3 = 387 vic = 1179 }				# Mocha -> Hodeida
-link = { eu3 = 388 vic = 1412 }				# Aden -> Aden 
+link = { eu3 = 391 vic = 1161 }			# Najran -> Sharurah
+link = { eu3 = 389 vic = 1173 vic = 1175 }		# Hadramut -> Mulkalla, Ghayda
+link = { eu3 = 390 vic = 1178 }			# Sana'a -> Sana
+link = { eu3 = 387 vic = 1179 vic = 1180 }			# Mocha -> Hodeida, Taizz
+link = { eu3 = 388 vic = 1412 vic = 1176 }			# Aden -> Aden, Bayda
 
 ## Turkey ##
 link = { eu3 = 316 vic = 862 }					# Bithynia -> Izmit 
