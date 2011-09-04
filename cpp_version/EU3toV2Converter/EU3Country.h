@@ -20,6 +20,7 @@ class EU3Country
 		vector<EU3Province*>	getProvinces();
 		vector<EU3Province*>	getCores();
 		int						getCapital();
+		int						getNationalFocus();
 		string					getTechGroup();
 		string					getPrimaryCulture();
 		vector<string>			getAcceptedCultures();
@@ -64,6 +65,7 @@ class EU3Country
 		vector<EU3Province*>	provinces;
 		vector<EU3Province*>	cores;
 		int						capital;
+		int						nationalFocus;
 		string					techGroup;
 		string					primaryCulture;
 		vector<string>			acceptedCultures;

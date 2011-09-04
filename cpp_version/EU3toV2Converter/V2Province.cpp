@@ -168,24 +168,46 @@ void V2Province::createPops(string culture, string religion, double ratio, EU3Pr
 	else
 	{
 		labourers += 90;
-		craftsmen += 5;
+		craftsmen += 2;
 	}
 
-	if (true)  //If Nation has Slavery ALLOWED, add 5 SLAVES. Assumed true for now
+	bool hasSlavery = false;
+	vector<string> modifiers = oldCountry->getModifiers();
+	for(size_t i = 0; i < modifiers.size(); i++)
+	{
+		if (modifiers[i] == "\"the_abolish_slavery_act\"")
+		{
+			hasSlavery = true;
+		}
+	}
+	if (hasSlavery)  //If Nation has Slavery ALLOWED, add 5 SLAVES
 	{
 		slaves += 5;
 	}
+
 	soldiers	+= 2;
-	if(0)	//If province has a MANUFACTORY
+
+	if(   oldProvince->hasBuilding("weapons")
+	   || oldProvince->hasBuilding("wharf")
+	   || oldProvince->hasBuilding("refinery")
+	   || oldProvince->hasBuilding("textile"))	//If province has a MANUFACTORY
 	{
-		craftsmen	+= 2;
+		craftsmen	+= 5;
 		clerks		+= 1;
 	}
 	artisans		+= 5;
 	clergymen	+= 1;
 	officers		+= 1;
+
 	//If province is the CAPITAL or NATIONAL FOCUS add 1 BUREAUCRAT
 	//If province is capital or was national focus, add 1 ARISTOCRATS.
+	if (oldCountry->getCapital() == oldProvince->getNum()
+		|| oldCountry->getNationalFocus() == oldProvince->getNum())
+	{
+		bureaucrats	+= 1;
+		aristocrats += 1;
+	}
+
 	//If province is CENTER OF TRADE then add 1 CLERK
 	//If province was a COT, add 1 CAPITALISTS.
 	//If government is NOT republic, add 2 ARISTOCRATS.

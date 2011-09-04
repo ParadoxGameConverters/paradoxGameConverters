@@ -16,6 +16,16 @@ void EU3Country::init(Object* obj)
 		capital = 0;
 	}
 
+	vector<Object*> nfObj = obj->getValue("national_focus");
+	if (nfObj.size() > 0)
+	{
+		nationalFocus = atoi( nfObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		nationalFocus = 0;
+	}
+
 	vector<Object*> techGroupObj = obj->getValue("technology_group");
 	if (techGroupObj.size() > 0)
 	{
@@ -480,6 +490,12 @@ vector<EU3Province*>	EU3Country::getCores()
 int EU3Country::getCapital()
 {
 	return capital;
+}
+
+
+int EU3Country::getNationalFocus()
+{
+	return nationalFocus;
 }
 
 

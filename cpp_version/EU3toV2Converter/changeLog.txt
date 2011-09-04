@@ -262,3 +262,4 @@ Revision	Version Updated		Log Message
 241		C++			Fix parsing of dates with non-four-digit years (i.e. 1.1.1)
 242		C++			Convert diplomats to diplomacy points (1:2)
 243		C++			Tweaks to southern Arabia province mappings
+244		C++			Implement some pop creation rules that existed only in comments
