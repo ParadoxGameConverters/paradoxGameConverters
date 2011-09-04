@@ -24,7 +24,7 @@ struct SkipComment : qi::grammar<Iterator>
 
 	SkipComment() : SkipComment::base_type(comment)
 	{
-		comment = qi::raw[qi::lexeme[qi::lit("#") >> +(qi::char_ - qi::eol)] >> -qi::eol];
+		comment = qi::raw[qi::lexeme[lit("#") >> +(iso8859_1::char_ - qi::eol)] >> -qi::eol];
 	}
 };
 
@@ -41,15 +41,15 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 
 	Parser() : Parser::base_type(assign)
 	{
-		str     = lexeme[lit('"') >> raw[*(~qi::char_('"'))] >> lit('"')];
-		leaf    = raw[ &(~qi::char_("={}\"")) >> *(qi::graph - qi::char_("=}"))];
-		taglist = lit('{') >> omit[*(qi::space)] >> lexeme[( ( skip[leaf] | str ) % *(qi::space) )] >> omit[*(qi::space)] >> lit('}');
-		object  = raw[lit('{') >> *(assign) >> *(qi::space) >> lit('}')];
-		objlist = raw[lit('{') >> *( *(qi::space) >> object[&pushObj] ) >> *(qi::space) >> lit('}')];
-		assign  = raw[+((*(qi::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(qi::space) >> lit('=')
-			>> *(qi::space) 
+		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"'))] >> lit('"')];
+		leaf    = raw[ &(~iso8859_1::char_("={}\"")) >> *(iso8859_1::graph - iso8859_1::char_("=}"))];
+		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( skip[leaf] | str ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
+		object  = raw[lit('{') >> *(assign) >> *(iso8859_1::space) >> lit('}')];
+		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
+		assign  = raw[+((*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(iso8859_1::space) >> lit('=')
+			>> *(iso8859_1::space) 
 			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) 
-			>> *(qi::space)))];
+			>> *(iso8859_1::space)))];
 
 		str.name("str");
 		leaf.name("leaf");
