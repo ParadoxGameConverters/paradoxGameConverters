@@ -1,4 +1,5 @@
 #include "V2Pop.h"
+#include "Log.h"
 
 
 static int nextId = 23000;
@@ -7,6 +8,7 @@ static int nextId = 23000;
 V2Pop::V2Pop()
 {
 	supportedRegiments = 0;
+	size = 0;
 
 	id = nextId;
 	nextId++;
@@ -16,12 +18,14 @@ V2Pop::V2Pop()
 void V2Pop::setType(string newType)
 {
 	type = newType;
+	recalcMoney();
 }
 
 
 void V2Pop::setSize(int newSize)
 {
 	size = newSize;
+	recalcMoney();
 }
 
 
@@ -86,7 +90,7 @@ void V2Pop::output(FILE* output)
 	fprintf(output, "		id=%d\n", id);
 	fprintf(output, "		size=%d\n", size);
 	fprintf(output, "		%s=%s\n", culture.c_str(), religion.c_str());
-	fprintf(output, "		money=1000000.00000\n");
+	fprintf(output, "		money=%f\n", money);
 	fprintf(output, "	}\n");
 }
 
@@ -100,4 +104,35 @@ int getNextPopId()
 bool V2Pop::canCombine(const V2Pop& rhs)
 {
 	return ((culture == rhs.getCulture()) && (religion == rhs.getReligion()) && (type == rhs.getType()));
+}
+
+
+void V2Pop::recalcMoney()
+{
+	money = 1000000.0;
+	
+	if (type == "" || size == 0)
+		return;
+
+	if (type == "aristocrats" || type == "capitalists")
+	{
+		money = 100.0 * size;
+	}
+	else if (type == "artisans" || type == "bureaucrats" || type == "clergymen" 
+		  || type == "clerks" || type == "craftsmen" || type == "officers")
+	{
+		money = 10.0 * size;
+	}
+	else if (type == "farmers" || type == "labourers" || type == "soldiers")
+	{
+		money = 1.0 * size;
+	}
+	else if (type == "slaves")
+	{
+		money = 0.1 * size;
+	}
+	else
+	{
+		log("Error: Unexpected pop type %s!\n", type.c_str());
+	}
 }

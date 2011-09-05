@@ -22,16 +22,18 @@ class V2Pop
 		string	getReligion() const;
 		int		getSupportedRegimentCount() const;
 		void	setSupportedRegimentCount(int regiments);
-
 		bool	canCombine(const V2Pop& rhs);
 
 	private:
+		void	recalcMoney();
+
 		int		id;
 		string	type;
 		int		size;
 		string	culture;
 		string	religion;
 		int		supportedRegiments;
+		double	money;
 };
 
 int getNextPopId();
