@@ -55,12 +55,14 @@ class EU3Country
 		int						getLandNaval();
 		int						getQualityQuantity();
 		vector<string>			getNationalIdeas();
+		bool					hasNationalIdea(string);
 		int						getManufactoryCount();
 		double					getTreasury();
 		double					getInflation();
 		double					inflationAdjust(double input);
 		date					getLastBankrupt();
 		vector<EU3Loan>			getLoans();
+		double					getEstimatedMonthlyIncome();
 		double					getDiplomats();
 		double					getBadboy();
 		double					getBadboyLimit();
@@ -101,6 +103,7 @@ class EU3Country
 		double					inflation;
 		date					last_bankrupt;
 		vector<EU3Loan>			loans;
+		double					estMonthlyIncome;
 		double					diplomats;
 		double					badboy;
 		double					legitimacy;

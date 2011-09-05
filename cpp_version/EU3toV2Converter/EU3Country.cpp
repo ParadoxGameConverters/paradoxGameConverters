@@ -450,10 +450,18 @@ void EU3Country::init(Object* obj)
 	{
 		treasury = atof(moneyObj[0]->getLeaf().c_str());
 	}
+	else
+	{
+		treasury = 0.0;
+	}
 	moneyObj = obj->getValue("inflation");
 	if (moneyObj.size() > 0)
 	{
 		inflation = atof(moneyObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		inflation = 0.0;
 	}
 	moneyObj = obj->getValue("last_bankrupt");
 	if (moneyObj.size() > 0)
@@ -467,7 +475,15 @@ void EU3Country::init(Object* obj)
 		loan.init(*itr);
 		loans.push_back(loan);
 	}
-
+	moneyObj = obj->getValue("estimated_monthly_income");
+	if (moneyObj.size() > 0)
+	{
+		estMonthlyIncome = atof(moneyObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		estMonthlyIncome = 0.0;
+	}
 	vector<Object*> diploObj = obj->getValue("diplomats");
 	if (diploObj.size() > 0)
 	{
@@ -797,6 +813,12 @@ vector<EU3Loan> EU3Country::getLoans()
 }
 
 
+double EU3Country::getEstimatedMonthlyIncome()
+{
+	return estMonthlyIncome;
+}
+
+
 double EU3Country::getDiplomats()
 {
 	return diplomats;
@@ -848,6 +870,14 @@ bool EU3Country::hasModifier(string modifier)
 	vector<string>::iterator itr = find(modifiers.begin(), modifiers.end(), modifier);
 	return (itr != modifiers.end());
 }
+
+
+bool EU3Country::hasNationalIdea(string ni)
+{
+	vector<string>::iterator itr = find(nationalIdeas.begin(), nationalIdeas.end(), ni);
+	return (itr != nationalIdeas.end());
+}
+
 
 vector<EU3Leader> EU3Country::getLeaders()
 {

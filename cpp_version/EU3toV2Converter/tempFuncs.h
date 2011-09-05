@@ -9,7 +9,6 @@ void outputTempHeader(FILE*);
 void outputTempReforms(FILE* output);
 void outputCountryHeader(FILE*);
 void outputCountryHeader2(FILE*);
-void outputCountryMiddle(FILE*);
 
 
 #endif TEMP_FUNCS_H

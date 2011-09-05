@@ -88,13 +88,3 @@ void outputCountryHeader2(FILE* output)
 	fprintf(output, "		min_tax=21\n");
 	fprintf(output, "	}\n");
 }
-
-
-void outputCountryMiddle(FILE* output)
-{
-	fprintf(output, "	bank=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		money=0.00000\n");
-	fprintf(output, "		money_lent=0.00000\n");
-	fprintf(output, "	}\n");
-}

@@ -149,7 +149,11 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	}\n");
 	}
 	fprintf(output, "	prestige=%f\n", prestige);
-	outputCountryMiddle(output);
+	fprintf(output, "	bank=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		money=%f\n", bankReserves);
+	fprintf(output, "		money_lent=0.00000\n");
+	fprintf(output, "	}\n");
 	fprintf(output, "	money=%f\n", money);
 	fprintf(output, "	last_bankrupt=\"%s\"\n", lastBankrupt.toString().c_str());
 	for (vector<V2Creditor>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
@@ -1561,6 +1565,12 @@ void V2Country::addLoan(string creditor, double size, double interest)
 		cred.addLoan(size, interest);
 		creditors.push_back(cred);
 	}
+}
+
+
+void V2Country::setBankReserves(double money)
+{
+	bankReserves = money;
 }
 
 

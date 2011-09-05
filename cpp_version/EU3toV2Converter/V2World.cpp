@@ -610,8 +610,14 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						newCountry.addLoan(lender, size, itr->getInterest() / 100.0f);
 					}
 
-					newCountry.setDiploPoints(2.0 * sourceCountries[i].getDiplomats());
+					// 1 month's income in reserves, or 6 months' if national bank NI is present
+					// note that the GC's starting reserves are very low, so it's not necessary for this number to be large
+					double reserves = MONEYFACTOR * sourceCountries[i].inflationAdjust(sourceCountries[i].getEstimatedMonthlyIncome());
+					if (sourceCountries[i].hasNationalIdea("national_bank"))
+						reserves *= 6.0;
+					newCountry.setBankReserves(reserves);
 
+					newCountry.setDiploPoints(2.0 * sourceCountries[i].getDiplomats());
 					newCountry.setBadboy((25.0 / sourceCountries[i].getBadboyLimit()) * sourceCountries[i].getBadboy());
 				}
 			}
