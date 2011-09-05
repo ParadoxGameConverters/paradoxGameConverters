@@ -34,6 +34,8 @@ class V2Province {
 		pair<int, int> getAvailableSoldierCapacity() const;
 		string		getRegimentName(RegimentCategory rc);
 		void		combinePops();
+		void		setFortLevel(int);
+		void		setNavalBaseLevel(int);
 	private:
 		bool		growSoldierPop(int popID);
 		bool				land;
@@ -51,6 +53,8 @@ class V2Province {
 		string			rgoType;
 		int				lifeRating;
 		int				unitNameCount[num_reg_categories];
+		int				fortLevel;
+		int				navalBaseLevel;
 };
 
 

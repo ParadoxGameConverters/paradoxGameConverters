@@ -12,6 +12,8 @@ void V2Province::init(int newNumber)
 	land				= false;
 	oldPopulation	= 0;
 	coastal				= false;
+	fortLevel			= 0;
+	navalBaseLevel		= 0;
 
 	for (int i = 0; i < num_reg_categories; ++i)
 		unitNameCount[i] = 0;
@@ -471,6 +473,18 @@ void V2Province::combinePops()
 }
 
 
+void V2Province::setFortLevel(int level)
+{
+	fortLevel = level;
+}
+
+
+void V2Province::setNavalBaseLevel(int level)
+{
+	navalBaseLevel = level;
+}
+
+
 static string CardinalToOrdinal(int cardinal)
 {
 	int hundredRem = cardinal % 100;
@@ -571,6 +585,24 @@ void V2Province::output(FILE* output)
 		}
 	}
 	fprintf(output, "	garrison=100.000\n");
+	if (fortLevel > 0)
+	{
+		fprintf(output, "	fort=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		%f %f\n", (float)fortLevel, (float)fortLevel);
+		fprintf(output, "	}\n");
+	}
+	if (navalBaseLevel > 0)
+	{
+		fprintf(output, "	naval_base=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		%f %f\n", (float)navalBaseLevel, (float)navalBaseLevel);
+		fprintf(output, "	}\n");
+	}
+	if (colonial)
+	{
+		fprintf(output, "	colonial=yes\n");
+	}
 	if (land)
 	{
 		if (owner == "")

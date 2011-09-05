@@ -53,6 +53,19 @@ void EU3Province::init(Object* obj) {
 	checkBuilding(obj, "fine_arts_academy");
 	checkBuilding(obj, "refinery");
 
+	checkBuilding(obj, "fort1");
+	checkBuilding(obj, "fort2");
+	checkBuilding(obj, "fort3");
+	checkBuilding(obj, "fort4");
+	checkBuilding(obj, "fort5");
+	checkBuilding(obj, "fort6");
+	checkBuilding(obj, "dock");
+	checkBuilding(obj, "drydock");
+	checkBuilding(obj, "shipyard");
+	checkBuilding(obj, "grand_shipyard");
+	checkBuilding(obj, "naval_arsenal");
+	checkBuilding(obj, "naval_base");
+
 	colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
 	if (popObj.size() > 0)

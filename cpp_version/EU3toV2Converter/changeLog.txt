@@ -267,3 +267,4 @@ Revision	Version Updated		Log Message
 246		C++			Convert infamy (scaled against limit).
 247		C++			Convert admirals/explorers and generals/conquistadors
 248		C++			Assign converted military leaders to their converted armies/navies
+249		C++			Provinces with high-level EU3 forts or shipyards get level 1 V2 forts or shipyards

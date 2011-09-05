@@ -772,6 +772,24 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 
 								provinces[i].createPops(culture, religion, pritr->popRatio * provPopRatio, (*vitr), sourceWorld.getCountry(oldOwner));
 							}
+
+							if ((*vitr)->hasBuilding("fort4") || (*vitr)->hasBuilding("fort5") || (*vitr)->hasBuilding("fort6"))
+							{
+								provinces[i].setFortLevel(1);
+							}
+							// note: HTTT has only shipyard
+							if (   (*vitr)->hasBuilding("shipyard") || (*vitr)->hasBuilding("grand_shipyard")
+								|| (*vitr)->hasBuilding("naval_arsenal") || (*vitr)->hasBuilding("naval_base"))
+							{
+								// place naval bases only in port provinces
+								vector<int> candidates;
+								candidates.push_back(provinces[i].getNum());
+								candidates = getPortProvinces(candidates);
+								if (candidates.size() > 0)
+								{
+									provinces[i].setNavalBaseLevel(1);
+								}
+							}
 						}
 					}
 				}
