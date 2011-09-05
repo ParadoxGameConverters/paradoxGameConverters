@@ -50,6 +50,7 @@ class V2Army // also Navy
 		EU3Army*				getSourceArmy() const { return sourceArmy; };
 		void					setAtSea(int atSea) { at_sea = atSea; }
 		void					getRegimentCounts(int counts[num_reg_categories]);
+		void					setLeaderID(int id) { leaderID = id; };
 	private:
 		V2ArmyID				id;
 		string					name;
@@ -59,6 +60,7 @@ class V2Army // also Navy
 		EU3Army*				sourceArmy; // only valid during conversion
 		bool					isNavy;
 		int						at_sea;
+		int						leaderID;
 };
 
 #endif

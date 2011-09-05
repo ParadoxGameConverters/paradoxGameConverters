@@ -75,6 +75,17 @@ void EU3Army::init(Object *obj)
 		at_sea = 0;
 	}
 
+	std::vector<Object*> objLeader = obj->getValue("leader");
+	if (objLeader.size() > 0)
+	{
+		objLeader = objLeader[0]->getValue("id");
+		leaderID = atoi(objLeader[0]->getLeaf().c_str());
+	}
+	else
+	{
+		leaderID = 0;
+	}
+
 	std::vector<Object*> objRegs = obj->getValue("regiment");
 	for (vector<Object*>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
 	{

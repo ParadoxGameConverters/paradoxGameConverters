@@ -80,6 +80,7 @@ void V2Regiment::output(FILE* out)
 
 V2Army::V2Army()
 {
+	leaderID = 0;
 	for (int i = 0; i < num_reg_categories; ++i)
 		army_remainders[i] = 0;
 }
@@ -99,6 +100,14 @@ void V2Army::output(FILE* out)
 	fprintf(out, "\t{\n");
 	id.output(out, 2);
 	fprintf(out, "\t\tname=\"%s\"\n", name.c_str());
+	if (leaderID)
+	{
+		fprintf(out, "\t\tleader=\n");
+		fprintf(out, "\t\t{\n");
+		fprintf(out, "\t\t\tid=%d\n", leaderID);
+		fprintf(out, "\t\t\ttype=37\n");
+		fprintf(out, "\t\t}\n");
+	}
 	fprintf(out, "\t\tlocation=%d\n", location);
 	fprintf(out, "\t\tsupplies=1.000\n");
 	for (vector<V2Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
@@ -107,6 +116,7 @@ void V2Army::output(FILE* out)
 	}
 	if (isNavy)
 		fprintf(out, "\t\tat_sea=%d\n", at_sea);
+
 	fprintf(out, "\t}\n");
 }
 

@@ -22,8 +22,8 @@ class V2World {
 		void				convertTechs(EU3World sourceWorld);
 		void				output(FILE*);
 		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);
-		void				convertLeaders(EU3World sourceWorld);
-		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap);
+		void				convertLeaders(EU3World sourceWorld, map<int,int>& leaderIDMap);
+		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap);
 		void				allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder);
 	private:
 		void					outputHeader(FILE*);

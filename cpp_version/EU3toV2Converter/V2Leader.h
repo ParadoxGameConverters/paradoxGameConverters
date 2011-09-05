@@ -16,6 +16,7 @@ public:
 	void	setActivationDate(date activation) { activationDate = activation; };
 	void	setLand(bool land) { isLand = land; };
 	void	setTraits(string _personality, string _background) { personality = _personality; background = _background; };
+	int		getID() const { return id; };
 
 private:
 	string	name;

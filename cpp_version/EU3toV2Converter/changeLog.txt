@@ -266,3 +266,4 @@ Revision	Version Updated		Log Message
 245		C++			Switch the parser from ASCII to ISO 8859-1.  Fixes parsing of commerce_inventions.txt.
 246		C++			Convert infamy (scaled against limit).
 247		C++			Convert admirals/explorers and generals/conquistadors
+248		C++			Assign converted military leaders to their converted armies/navies

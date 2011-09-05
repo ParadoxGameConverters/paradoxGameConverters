@@ -246,12 +246,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting capitals.\n");
 	log("Converting capitals.\n");
 	destWorld.convertCapitals(sourceWorld, provinceMap);
+
+	map<int, int> leaderIDMap; // <EU3, V2>
 	printf("Converting generals and admirals.\n");
 	log("Converting generals and admirals.\n");
-	destWorld.convertLeaders(sourceWorld);
+	destWorld.convertLeaders(sourceWorld, leaderIDMap);
 	printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
-	destWorld.convertArmies(sourceWorld, provinceMap);
+	destWorld.convertArmies(sourceWorld, provinceMap, leaderIDMap);
+
 	printf("Converting states.\n");
 	log("Converting states.\n");
 	destWorld.setupStates(stateMap);

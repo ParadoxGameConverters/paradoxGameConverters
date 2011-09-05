@@ -968,7 +968,7 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 }
 
 
-void V2World::convertLeaders(EU3World sourceWorld)
+void V2World::convertLeaders(EU3World sourceWorld, map<int,int>& leaderMap)
 {
 	LeaderTraits lt;
 	lt.init();
@@ -988,6 +988,7 @@ void V2World::convertLeaders(EU3World sourceWorld)
 			string background = lt.getBackground(itr->getFire(), itr->getShock(), itr->getManuever(), itr->getSiege());
 			leader.setTraits(personality, background);
 			countries[i].addLeader(leader);
+			leaderMap[itr->getID()] = leader.getID();
 		}
 	}
 }
@@ -1158,7 +1159,7 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 }
 
 //#define TEST_V2_PROVINCES
-void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
+void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
@@ -1207,6 +1208,13 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 			army.setSourceArmy(&(*aitr));
 			army.setName(aitr->getName());
 			army.setAtSea(aitr->getAtSea());
+
+			map<int, int>::const_iterator lmapitr = leaderIDMap.find(aitr->getLeaderID());
+			if (lmapitr != leaderIDMap.end())
+			{
+				army.setLeaderID(lmapitr->second);
+			}
+
 			for (int rc = infantry; rc < num_reg_categories; ++rc)
 			{
 				int typeStrength = aitr->getTotalTypeStrength((RegimentCategory)rc);
@@ -1234,6 +1242,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap)
 					}
 				}
 			}
+
 			vector<int> locationCandidates = getV2ProvinceNums(inverseProvinceMap, aitr->getLocation());
 			if (locationCandidates.size() == 0)
 			{
