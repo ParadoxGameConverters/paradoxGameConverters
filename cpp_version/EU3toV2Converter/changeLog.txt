@@ -265,3 +265,4 @@ Revision	Version Updated		Log Message
 244		C++			Implement some pop creation rules that existed only in comments
 245		C++			Switch the parser from ASCII to ISO 8859-1.  Fixes parsing of commerce_inventions.txt.
 246		C++			Convert infamy (scaled against limit).
+247		C++			Convert admirals/explorers and generals/conquistadors

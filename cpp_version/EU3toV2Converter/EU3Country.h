@@ -6,6 +6,7 @@
 #include "EU3Relations.h"
 #include "EU3Army.h"
 #include "EU3Loan.h"
+#include "EU3Leader.h"
 
 
 class EU3Country
@@ -64,6 +65,7 @@ class EU3Country
 		double					getBadboy();
 		double					getBadboyLimit();
 		double					getLegitimacy();
+		vector<EU3Leader>		getLeaders();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -102,6 +104,7 @@ class EU3Country
 		double					diplomats;
 		double					badboy;
 		double					legitimacy;
+		vector<EU3Leader>		leaders;
 };
 
 

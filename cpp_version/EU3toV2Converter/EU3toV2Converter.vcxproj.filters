@@ -57,6 +57,9 @@
     <ClCompile Include="EU3Loan.cpp">
       <Filter>EU3 World</Filter>
     </ClCompile>
+    <ClCompile Include="EU3Leader.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
     <ClCompile Include="V2World.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
@@ -64,6 +67,9 @@
       <Filter>V2 World</Filter>
     </ClCompile>
     <ClCompile Include="V2Creditor.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Leader.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
     <ClCompile Include="EU3Country.cpp">
@@ -76,6 +82,9 @@
       <Filter>V2 World</Filter>
     </ClCompile>
     <ClCompile Include="tempFuncs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeaderTraits.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="V2Pop.cpp">
@@ -131,10 +140,16 @@
     <ClInclude Include="EU3Loan.h">
       <Filter>EU3 World</Filter>
     </ClInclude>
+    <ClInclude Include="EU3Leader.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
     <ClInclude Include="V2World.h">
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="V2Creditor.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Leader.h">
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="V2Province.h">
@@ -156,6 +171,9 @@
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="tempFuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderTraits.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="V2Pop.h">

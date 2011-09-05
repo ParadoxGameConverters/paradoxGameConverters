@@ -246,6 +246,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting capitals.\n");
 	log("Converting capitals.\n");
 	destWorld.convertCapitals(sourceWorld, provinceMap);
+	printf("Converting generals and admirals.\n");
+	log("Converting generals and admirals.\n");
+	destWorld.convertLeaders(sourceWorld);
 	printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
 	destWorld.convertArmies(sourceWorld, provinceMap);

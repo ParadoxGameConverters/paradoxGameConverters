@@ -6,6 +6,7 @@
 #include <math.h>
 #include "Parsers/Parser.h"
 #include "Log.h"
+#include "LeaderTraits.h"
 #include "tempFuncs.h"
 
 #define MONEYFACTOR 30	// ducat to pound conversion rate
@@ -962,6 +963,31 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 			v2a.start_date = itr->start_date;
 			v2a.type = itr->type;
 			diplomacy.addAgreement(v2a);
+		}
+	}
+}
+
+
+void V2World::convertLeaders(EU3World sourceWorld)
+{
+	LeaderTraits lt;
+	lt.init();
+
+	vector<EU3Country> oldCountries = sourceWorld.getCountries();
+	for (unsigned int i = 0; i < countries.size(); ++i)
+	{
+		vector<EU3Leader> oldLeaders = oldCountries[countries[i].getSourceCountryIndex()].getLeaders();
+		for (vector<EU3Leader>::iterator itr = oldLeaders.begin(); itr != oldLeaders.end(); ++itr)
+		{
+			V2Leader leader;
+			leader.init(&(countries[i]));
+			leader.setName(itr->getName());
+			leader.setActivationDate(itr->getActivationDate());
+			leader.setLand(itr->isLand());
+			string personality = lt.getPersonality(itr->getFire(), itr->getShock(), itr->getManuever(), itr->getSiege());
+			string background = lt.getBackground(itr->getFire(), itr->getShock(), itr->getManuever(), itr->getSiege());
+			leader.setTraits(personality, background);
+			countries[i].addLeader(leader);
 		}
 	}
 }

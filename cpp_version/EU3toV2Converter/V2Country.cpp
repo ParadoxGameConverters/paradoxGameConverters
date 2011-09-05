@@ -121,6 +121,10 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
 	outputCountryHeader2(output);
+	for (vector<V2Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	{
+		itr->output(output);
+	}
 	for (vector<V2Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
 		itr->output(output);
@@ -1569,4 +1573,10 @@ void V2Country::setDiploPoints(double points)
 void V2Country::setBadboy(double _badboy)
 {
 	badboy = _badboy;
+}
+
+
+void V2Country::addLeader(V2Leader leader)
+{
+	leaders.push_back(leader);
 }

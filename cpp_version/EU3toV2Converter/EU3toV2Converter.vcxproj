@@ -194,11 +194,13 @@
     <ClCompile Include="EU3Army.cpp" />
     <ClCompile Include="EU3Country.cpp" />
     <ClCompile Include="EU3Diplomacy.cpp" />
+    <ClCompile Include="EU3Leader.cpp" />
     <ClCompile Include="EU3Loan.cpp" />
     <ClCompile Include="EU3Province.cpp" />
     <ClCompile Include="EU3Relations.cpp" />
     <ClCompile Include="EU3toV2Converter.cpp" />
     <ClCompile Include="EU3World.cpp" />
+    <ClCompile Include="LeaderTraits.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="Mapper.cpp" />
     <ClCompile Include="tempFuncs.cpp" />
@@ -207,6 +209,7 @@
     <ClCompile Include="V2Creditor.cpp" />
     <ClCompile Include="V2Diplomacy.cpp" />
     <ClCompile Include="V2Factory.cpp" />
+    <ClCompile Include="V2Leader.cpp" />
     <ClCompile Include="V2Pop.cpp" />
     <ClCompile Include="V2Province.cpp" />
     <ClCompile Include="V2Reforms.cpp" />
@@ -221,10 +224,12 @@
     <ClInclude Include="EU3Army.h" />
     <ClInclude Include="EU3Country.h" />
     <ClInclude Include="EU3Diplomacy.h" />
+    <ClCompile Include="EU3Leader.h" />
     <ClInclude Include="EU3Loan.h" />
     <ClInclude Include="EU3Province.h" />
     <ClInclude Include="EU3Relations.h" />
     <ClInclude Include="EU3World.h" />
+    <ClCompile Include="LeaderTraits.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Mapper.h" />
     <ClInclude Include="tempFuncs.h" />
@@ -234,6 +239,7 @@
     <ClInclude Include="V2Factory.h" />
     <ClInclude Include="V2Inventions.h" />
     <ClInclude Include="V2Diplomacy.h" />
+    <ClCompile Include="V2Leader.h" />
     <ClInclude Include="V2Pop.h" />
     <ClInclude Include="V2Province.h" />
     <ClInclude Include="V2Reforms.h" />

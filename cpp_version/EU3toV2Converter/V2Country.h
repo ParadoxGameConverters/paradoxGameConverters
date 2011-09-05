@@ -9,6 +9,7 @@
 #include "V2Reforms.h"
 #include "V2Factory.h"
 #include "V2Creditor.h"
+#include "V2Leader.h"
 
 
 class V2Country
@@ -50,6 +51,7 @@ class V2Country
 		void					addLoan(string creditor, double size, double interest);
 		void					setDiploPoints(double);
 		void					setBadboy(double);
+		void					addLeader(V2Leader);
 
 	private:
 		void outputTech(FILE*);
@@ -78,6 +80,7 @@ class V2Country
 		vector<V2Creditor>	creditors;
 		double				diploPoints;
 		double				badboy;
+		vector<V2Leader>	leaders;
 };
 
 

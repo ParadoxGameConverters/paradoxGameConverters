@@ -2,7 +2,6 @@
 #include "Log.h"
 #include <algorithm>
 
-
 void EU3Country::init(Object* obj)
 {
 	tag = obj->getKey();
@@ -132,7 +131,38 @@ void EU3Country::init(Object* obj)
 		{
 			possibleDaimyo = true;
 		}
+
+		vector<Object*> historyLeaves = historyObj[0]->getLeaves();
+		for (vector<Object*>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
+		{
+			// grab leaders from history, ignoring those that are more than 100 years old...
+			if (date((*itr)->getKey()) > date("1740.1.1"))
+			{
+				vector<Object*> leaderObjs = (*itr)->getValue("leader");
+				for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
+				{
+					EU3Leader leader;
+					leader.init(*litr);
+					leaders.push_back(leader);
+				}
+			}
+		}
 	}
+
+	// figure out which leaders are active, and ditch the rest
+	vector<Object*> activeLeaderObj = obj->getValue("leader");
+	vector<int> activeIds;
+	vector<EU3Leader> activeLeaders;
+	for (vector<Object*>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
+	{
+		activeIds.push_back(atoi((*itr)->getLeaf("id").c_str()));
+	}
+	for (vector<EU3Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	{
+		if (find(activeIds.begin(), activeIds.end(), itr->getID()) != activeIds.end())
+			activeLeaders.push_back(*itr);
+	}
+	leaders.swap(activeLeaders);
 
 	vector<Object*> governmentObj = obj->getValue("government");
 	if (governmentObj.size() > 0)
@@ -817,4 +847,9 @@ bool EU3Country::hasModifier(string modifier)
 {
 	vector<string>::iterator itr = find(modifiers.begin(), modifiers.end(), modifier);
 	return (itr != modifiers.end());
+}
+
+vector<EU3Leader> EU3Country::getLeaders()
+{
+	return leaders;
 }
