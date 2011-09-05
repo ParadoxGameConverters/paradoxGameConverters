@@ -171,16 +171,7 @@ void V2Province::createPops(string culture, string religion, double ratio, EU3Pr
 		craftsmen += 2;
 	}
 
-	bool hasSlavery = false;
-	vector<string> modifiers = oldCountry->getModifiers();
-	for(size_t i = 0; i < modifiers.size(); i++)
-	{
-		if (modifiers[i] == "\"the_abolish_slavery_act\"")
-		{
-			hasSlavery = true;
-		}
-	}
-	if (hasSlavery)  //If Nation has Slavery ALLOWED, add 5 SLAVES
+	if (!oldCountry->hasModifier("the_abolish_slavery_act"))  //If Nation has Slavery ALLOWED, add 5 SLAVES
 	{
 		slaves += 5;
 	}

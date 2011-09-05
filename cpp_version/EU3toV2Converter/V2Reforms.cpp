@@ -570,26 +570,22 @@ void V2Reforms::flagEffects(EU3Country* srcCountry)
 
 void V2Reforms::modifierEffects(EU3Country* srcCountry)
 {
-	vector<string> modifiers = srcCountry->getModifiers();
-	for(size_t i = 0; i < modifiers.size(); i++)
+	if (srcCountry->hasModifier("the_abolish_slavery_act"))
 	{
-		if (modifiers[i] == "\"the_abolish_slavery_act\"")
-		{
-			slavery							+= 1;
-			vote_franchise					+= 0;
-			upper_house_composition		+= 0;
-			voting_system					+= 0;
-			public_meetings				+= 0;
-			press_rights					+= 0;
-			trade_unions					+= 0;
-			political_parties				+= 0;
-			wage_reforms					+= 0;
-			work_hours						+= 0;
-			safety_regulations			+= 0;
-			unemployment_subsidies		+= 0;
-			pensions							+= 0;
-			health_care						+= 0;
-		}
+		slavery							+= 1;
+		vote_franchise					+= 0;
+		upper_house_composition		+= 0;
+		voting_system					+= 0;
+		public_meetings				+= 0;
+		press_rights					+= 0;
+		trade_unions					+= 0;
+		political_parties				+= 0;
+		wage_reforms					+= 0;
+		work_hours						+= 0;
+		safety_regulations			+= 0;
+		unemployment_subsidies		+= 0;
+		pensions							+= 0;
+		health_care						+= 0;
 	}
 }
 

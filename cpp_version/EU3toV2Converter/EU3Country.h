@@ -39,6 +39,7 @@ class EU3Country
 		double					getGovernmentTech();
 		vector<string>			getFlags();
 		vector<string>			getModifiers();
+		bool					hasModifier(string);
 		bool						getPossibleDaimyo();
 		string					getGovernment();
 		vector<EU3Relations>	getRelations();
@@ -60,6 +61,9 @@ class EU3Country
 		date					getLastBankrupt();
 		vector<EU3Loan>			getLoans();
 		double					getDiplomats();
+		double					getBadboy();
+		double					getBadboyLimit();
+		double					getLegitimacy();
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -96,6 +100,8 @@ class EU3Country
 		date					last_bankrupt;
 		vector<EU3Loan>			loans;
 		double					diplomats;
+		double					badboy;
+		double					legitimacy;
 };
 
 

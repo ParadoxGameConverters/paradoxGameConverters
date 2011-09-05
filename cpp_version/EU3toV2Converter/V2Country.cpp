@@ -165,6 +165,7 @@ void V2Country::output(FILE* output)
 	{
 		states[i].output(output);
 	}
+	fprintf(output, "	badboy=%f\n", badboy);
 	fprintf(output, "}\n");
 }
 
@@ -1562,4 +1563,10 @@ void V2Country::addLoan(string creditor, double size, double interest)
 void V2Country::setDiploPoints(double points)
 {
 	diploPoints = points;
+}
+
+
+void V2Country::setBadboy(double _badboy)
+{
+	badboy = _badboy;
 }

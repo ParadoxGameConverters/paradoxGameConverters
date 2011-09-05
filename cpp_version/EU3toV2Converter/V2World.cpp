@@ -610,6 +610,8 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					}
 
 					newCountry.setDiploPoints(2.0 * sourceCountries[i].getDiplomats());
+
+					newCountry.setBadboy((25.0 / sourceCountries[i].getBadboyLimit()) * sourceCountries[i].getBadboy());
 				}
 			}
 		}

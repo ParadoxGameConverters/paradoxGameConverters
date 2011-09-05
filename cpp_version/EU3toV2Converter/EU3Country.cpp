@@ -1,5 +1,6 @@
 #include "EU3Country.h"
 #include "Log.h"
+#include <algorithm>
 
 
 void EU3Country::init(Object* obj)
@@ -442,6 +443,30 @@ void EU3Country::init(Object* obj)
 	{
 		diplomats = atoi(diploObj[0]->getLeaf().c_str());
 	}
+	else
+	{
+		diplomats = 0;
+	}
+
+	vector<Object*> badboyObj = obj->getValue("badboy");
+	if (badboyObj.size() > 0)
+	{
+		badboy = atof(badboyObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		badboy = 0.0;
+	}
+
+	vector<Object*> legitObj = obj->getValue("legitimacy");
+	if (legitObj.size() > 0)
+	{
+		legitimacy = atof(legitObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		legitimacy = 1.0;
+	}
 }
 
 
@@ -745,4 +770,51 @@ vector<EU3Loan> EU3Country::getLoans()
 double EU3Country::getDiplomats()
 {
 	return diplomats;
+}
+
+
+double EU3Country::getBadboy()
+{
+	return badboy;
+}
+
+
+double EU3Country::getBadboyLimit()
+{
+	double badboyLimit = 30.0;
+
+	// gov effects
+	if (government == "despotic_monarchy" || government == "tribal_despotism")
+		badboyLimit += 10.0;
+
+	// modifier effects
+	if (hasModifier("the_licensing_of_the_press_act"))
+		badboyLimit -= 3.0;
+	if (hasModifier("the_witchcraft_act"))
+		badboyLimit -= 2.0;
+	if (hasModifier("the_education_act"))
+		badboyLimit -= 2.0;
+	if (hasModifier("revocation_of_restraint_of_appeals"))
+		badboyLimit -= 2.0;
+	if (hasModifier("colonial_expansions"))
+		badboyLimit -= 3.0;
+	if (hasModifier("hire_privateers"))
+		badboyLimit -= 3.0;
+	if (hasModifier("the_anti_piracy_act"))
+		badboyLimit -= 3.0;
+
+	// ruler effects (DIP, tribal MIL) not taken into account - assume the best (DIP 8/MIL 8)
+	badboyLimit += 8.0;
+
+	// legitimacy effect (-5 at 0, +5 at 100)
+	badboyLimit += 10 * (legitimacy - 0.5);
+
+	return badboyLimit;
+}
+
+
+bool EU3Country::hasModifier(string modifier)
+{
+	vector<string>::iterator itr = find(modifiers.begin(), modifiers.end(), modifier);
+	return (itr != modifiers.end());
 }
