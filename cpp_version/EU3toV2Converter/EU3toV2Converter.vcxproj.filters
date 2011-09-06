@@ -140,16 +140,10 @@
     <ClInclude Include="EU3Loan.h">
       <Filter>EU3 World</Filter>
     </ClInclude>
-    <ClInclude Include="EU3Leader.h">
-      <Filter>EU3 World</Filter>
-    </ClInclude>
     <ClInclude Include="V2World.h">
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="V2Creditor.h">
-      <Filter>V2 World</Filter>
-    </ClInclude>
-    <ClInclude Include="V2Leader.h">
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="V2Province.h">
@@ -173,9 +167,6 @@
     <ClInclude Include="tempFuncs.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="LeaderTraits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="V2Pop.h">
       <Filter>V2 World</Filter>
     </ClInclude>
@@ -193,6 +184,15 @@
     </ClInclude>
     <ClInclude Include="V2Factory.h">
       <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Leader.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Leader.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderTraits.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -272,3 +272,4 @@ Revision	Version Updated		Log Message
 251		C++			Put some small starting reserves in the national bank (bigger with the national bank NI)
 252		C++			More changes to pops. A few bureaucrats for everyone.
 					Many fewer officers and somewhat fewer soldiers. Allow some NIs a small influence on pop generation.
+253		C++			Fix a few project file problems (if you've had trouble building, rebuild all)
