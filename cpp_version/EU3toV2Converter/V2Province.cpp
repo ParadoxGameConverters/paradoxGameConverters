@@ -150,6 +150,8 @@ void V2Province::setCoastal(bool _coastal)
 
 void V2Province::createPops(string culture, string religion, double ratio, EU3Province* oldProvince, EU3Country* oldCountry)
 {
+	// each "point" here represents slightly less than 0.1% (1/1000) population of this culture-religion pair
+	// (depending on the total points allocated)
 	int farmers			= 0;
 	int labourers		= 0;
 	int craftsmen		= 0;
@@ -165,47 +167,84 @@ void V2Province::createPops(string culture, string religion, double ratio, EU3Pr
 
 	if ( (rgoType == "cattle") || (rgoType == "coffee") || (rgoType == "cotton") || (rgoType == "dye") || (rgoType == "fish") || (rgoType == "fruit") || (rgoType == "grain") || (rgoType == "opium") || (rgoType == "silk") || (rgoType == "tea") || (rgoType == "tobacco") || (rgoType == "wool") )
 	{
-		farmers += 90;
+		farmers += 900;
 	}
 	else
 	{
-		labourers += 90;
-		craftsmen += 2;
+		labourers += 900;
+		craftsmen += 10;
 	}
 
-	if (!oldCountry->hasModifier("the_abolish_slavery_act"))  //If Nation has Slavery ALLOWED, add 5 SLAVES
+	//If Nation has Slavery ALLOWED
+	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
 	{
-		slaves += 5;
+		slaves += 50;
 	}
 
-	soldiers	+= 2;
+	soldiers	+= 10;
+	if (oldCountry->hasNationalIdea("grand_army")
+		|| oldCountry->hasNationalIdea("glorious_arms"))
+	{
+		soldiers += 5;
+	}
 
+	//If province has a MANUFACTORY
 	if(   oldProvince->hasBuilding("weapons")
 	   || oldProvince->hasBuilding("wharf")
 	   || oldProvince->hasBuilding("refinery")
-	   || oldProvince->hasBuilding("textile"))	//If province has a MANUFACTORY
+	   || oldProvince->hasBuilding("textile"))
 	{
-		craftsmen	+= 5;
-		clerks		+= 1;
+		craftsmen	+= 50;
+		clerks		+= 10;
 	}
-	artisans		+= 5;
-	clergymen	+= 1;
-	officers		+= 1;
+	if (oldCountry->hasNationalIdea("scientific_revolution"))
+	{
+		clerks += 5;
+	}
 
-	//If province is the CAPITAL or NATIONAL FOCUS add 1 BUREAUCRAT
-	//If province is capital or was national focus, add 1 ARISTOCRATS.
+	artisans		+= 50;
+	clergymen	+= 10;
+	if (oldCountry->hasNationalIdea("church_attendance_duty")
+		|| oldCountry->hasNationalIdea("deus_vult"))
+	{
+		clergymen += 5;
+	}
+
+	officers		+= 3;
+	if (oldCountry->hasNationalIdea("battlefield_commissions")
+		|| oldCountry->hasNationalIdea("sea_hawks"))
+	{
+		officers  += 3;
+	}
+
+	//If province is the CAPITAL or NATIONAL FOCUS
 	if (oldCountry->getCapital() == oldProvince->getNum()
 		|| oldCountry->getNationalFocus() == oldProvince->getNum())
 	{
-		bureaucrats	+= 1;
-		aristocrats += 1;
+		bureaucrats	+= 10;
+		aristocrats += 10;
+	}
+	bureaucrats += 5;
+	if (oldCountry->hasNationalIdea("bureaucracy"))
+	{
+		bureaucrats += 5;
 	}
 
-	//If province is CENTER OF TRADE then add 1 CLERK
-	//If province was a COT, add 1 CAPITALISTS.
-	//If government is NOT republic, add 2 ARISTOCRATS.
-	//If government is NOT absolute monarchy, add 2 CAPITALISTS.
-	aristocrats	+= 1; // temporary for now
+	//If province is CENTER OF TRADE then add 10 CLERKS.
+	//If province was a COT, add 10 CAPITALISTS.
+	//If government is NOT republic, add 20 ARISTOCRATS.
+	//If government is NOT absolute monarchy, add 20 CAPITALISTS.
+	aristocrats	+= 10; // temporary for now
+
+	if (oldCountry->hasNationalIdea("viceroys")
+		&& oldProvince->wasColonised())
+	{
+		aristocrats += 5;
+	}
+	if (oldCountry->hasNationalIdea("smithian_economics"))
+	{
+		capitalists += 3;
+	}
 
 	int total = farmers + labourers + slaves + soldiers + craftsmen + artisans + clergymen + clerks + bureaucrats + officers + capitalists + aristocrats;
 

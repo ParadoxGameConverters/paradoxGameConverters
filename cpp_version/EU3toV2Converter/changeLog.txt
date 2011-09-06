@@ -270,3 +270,5 @@ Revision	Version Updated		Log Message
 249		C++			Provinces with high-level EU3 forts or shipyards get level 1 V2 forts or shipyards
 250		C++			Assign slightly more reasonable starting cash reserves for pops
 251		C++			Put some small starting reserves in the national bank (bigger with the national bank NI)
+252		C++			More changes to pops. A few bureaucrats for everyone.
+					Many fewer officers and somewhat fewer soldiers. Allow some NIs a small influence on pop generation.
