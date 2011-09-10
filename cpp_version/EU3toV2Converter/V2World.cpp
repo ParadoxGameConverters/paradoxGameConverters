@@ -4,6 +4,7 @@
 #include <io.h>
 #include <list>
 #include <math.h>
+#include <float.h>
 #include "Parsers/Parser.h"
 #include "Log.h"
 #include "LeaderTraits.h"
@@ -1597,6 +1598,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 
 void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder)
 {
+	// determine average production tech
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
 	double productionMean = 0.0f;
 	int num = 1;
@@ -1612,8 +1614,8 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		++num;
 	}
 
-	vector<pair<double, V2Country*>> weightedCountries;
-	double totalIndWeight = 0.0;
+	// give all extant civilized nations an industrial score
+	deque<pair<double, V2Country*>> weightedCountries;
 	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		if (!itr->isCivilized())
@@ -1631,7 +1633,6 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		if (industryWeight > 1.0)
 		{
 			weightedCountries.push_back(pair<double, V2Country*>(industryWeight, &(*itr)));
-			totalIndWeight += industryWeight;
 		}
 	}
 	if (weightedCountries.size() < 1)
@@ -1641,15 +1642,32 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 	}
 	sort(weightedCountries.begin(), weightedCountries.end());
 
+	// allow a maximum of 10 (plus any tied at tenth place) countries to recieve factories
+	deque<pair<double, V2Country*>> restrictCountries;
+	double threshold = 1.0;
+	double totalIndWeight = 0.0;
+	for (deque<pair<double, V2Country*>>::reverse_iterator itr = weightedCountries.rbegin();
+		itr != weightedCountries.rend(); ++itr)
+	{
+		if ((restrictCountries.size() > 10) && (itr->first < (threshold - FLT_EPSILON)))
+			break;
+		restrictCountries.push_front(*itr); // preserve sort
+		totalIndWeight += itr->first;
+		threshold = itr->first;
+	}
+	weightedCountries.swap(restrictCountries);
+
+	// determine how many factories each eligible nation gets
 	deque<V2Factory> factoryList = factoryBuilder.buildFactories();
 	vector<pair<int, V2Country*>> factoryCounts;
-	for (vector<pair<double, V2Country*>>::iterator itr = weightedCountries.begin(); itr != weightedCountries.end(); ++itr)
+	for (deque<pair<double, V2Country*>>::iterator itr = weightedCountries.begin(); itr != weightedCountries.end(); ++itr)
 	{
-		int factories = int(ceil((itr->first / totalIndWeight) * factoryList.size()));
-		log("%s has industrial weight %2.2lf granting %d factories\n", itr->second->getTag().c_str(), itr->first, factories);
+		int factories = int(((itr->first / totalIndWeight) * factoryList.size()) + 0.5 /*round*/);
+		log("%s has industrial weight %2.2lf granting max %d factories\n", itr->second->getTag().c_str(), itr->first, factories);
 		factoryCounts.push_back(pair<int, V2Country*>(factories, itr->second));
 	}
 
+	// allocate the factories
 	vector<pair<int, V2Country*>>::iterator lastReceptiveCountry = factoryCounts.begin();
 	vector<pair<int, V2Country*>>::iterator citr = factoryCounts.begin();
 	while (factoryList.size() > 0)

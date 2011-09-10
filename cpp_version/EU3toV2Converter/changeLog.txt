@@ -274,3 +274,4 @@ Revision	Version Updated		Log Message
 					Many fewer officers and somewhat fewer soldiers. Allow some NIs a small influence on pop generation.
 253		C++			Fix a few project file problems (if you've had trouble building, rebuild all)
 254		C++			Simplify parser leaf rules and improve parser debugging.
+255		C++			Limit factory allocation to 10 nations (plus those tied for tenth)
