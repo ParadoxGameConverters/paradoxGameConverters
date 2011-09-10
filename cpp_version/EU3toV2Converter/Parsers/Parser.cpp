@@ -28,6 +28,7 @@ struct SkipComment : qi::grammar<Iterator>
 	}
 };
 
+static bool debugme = false;
 template <typename Iterator>
 struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	static Object* topLevel; 
@@ -42,7 +43,7 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	Parser() : Parser::base_type(assign)
 	{
 		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"'))] >> lit('"')];
-		leaf    = raw[ &(~iso8859_1::char_("={}\"")) >> *(iso8859_1::graph - iso8859_1::char_("=}"))];
+		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:"))];
 		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( skip[leaf] | str ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
 		object  = raw[lit('{') >> *(assign) >> *(iso8859_1::space) >> lit('}')];
 		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
@@ -57,14 +58,16 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 		object.name("object");
 		objlist.name("objlist");
 		assign.name("assign");
-#if(0)
-		debug(str);
-		debug(leaf);
-		debug(taglist);
-		debug(object);
-		debug(objlist);
-		debug(assign);
-#endif
+
+		if (debugme)
+		{
+			debug(str);
+			debug(leaf);
+			debug(taglist);
+			debug(object);
+			debug(objlist);
+			debug(assign);
+		}
 	}
 };
 
@@ -260,6 +263,12 @@ void setRHSobjlist()
 Object* doParseFile(const char* filename)
 {
 	ifstream	read;				// ifstream for reading files
+
+	/* - when using parser debugging, also ensure that the parser object is non-static!
+	debugme = false;
+	if (string(filename) == "D:\\Victoria 2\\technologies\\commerce_tech.txt")
+		debugme = true;
+	*/
 
 	initParser();
 	Object* obj = getTopLevel();
