@@ -1190,7 +1190,8 @@ link = { eu3 = 77 vic = 571 }						# Pfalz -> Kaiserlautern
 link = { eu3 = 74 vic = 586 }						# Baden -> Karlsruhe 
 link = { eu3 = 71 vic = 569 vic = 590 }				# Ansbach -> Mannheim, Heilbronn
 link = { eu3 = 70 vic = 589 vic = 591 vic = 594 }	# Württemberg -> Stuttgart, Tubingen, Sigmaringen 
-link = { eu3 = 69 vic = 588 vic = 593 }				# Konstanz -> Konstanz, Ulm
+link = { eu3 = 69 vic = 588 }						# Konstanz -> Konstanz
+link = { eu3 = 1872 vic = 593 }						# Ulm -> Ulm
 link = { eu3 = 68 vic = 592 vic = 595 }				# Schwaben -> Augsburg, Nuremburg
 link = { eu3 = 67 vic = 598 }						# Franken -> Bayreuth
 link = { eu3 = 65 vic = 599 }						# München -> Munich
