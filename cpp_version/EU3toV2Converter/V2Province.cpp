@@ -265,6 +265,21 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		capitalists += 3;
 	}
 
+	// Capitalists, Bureaucrats, and Aristocrats are only found in the state capital
+	if (!isStateCapital)
+	{
+		capitalists = 0;
+		bureaucrats = 0;
+		aristocrats = 0;
+	}
+	else
+	{
+		double provPopRatio = 2.0f * (double)statePopulation / (double)oldPopulation;
+		capitalists = (int)(capitalists * provPopRatio);
+		bureaucrats = (int)(bureaucrats * provPopRatio);
+		aristocrats = (int)(aristocrats * provPopRatio);
+	}
+
 	int total = farmers + labourers + slaves + soldiers + craftsmen + artisans + clergymen + clerks + bureaucrats + officers + capitalists + aristocrats;
 
 	if (farmers > 0)

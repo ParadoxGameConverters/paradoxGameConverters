@@ -97,7 +97,7 @@ void V2State::setupPops(EU3World& sourceWorld)
 	int statePopulation = getStatePopulation();
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		(*itr)->doCreatePops(false, statePopulation, sourceWorld);
+		(*itr)->doCreatePops((itr == provinces.begin()), statePopulation, sourceWorld);
 	}
 }
 
