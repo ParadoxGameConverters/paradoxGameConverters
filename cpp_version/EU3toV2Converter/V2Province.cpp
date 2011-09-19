@@ -1,6 +1,7 @@
 #include "V2Province.h"
 #include "Log.h"
 
+#include "EU3World.h"
 #include <sstream>
 #include <algorithm>
 
@@ -148,7 +149,25 @@ void V2Province::setCoastal(bool _coastal)
 }
 
 
-void V2Province::createPops(string culture, string religion, double ratio, EU3Province* oldProvince, EU3Country* oldCountry)
+void V2Province::addPopDemographic(V2Demographic d)
+{
+	demographics.push_back(d);
+}
+
+
+void V2Province::doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld)
+{
+	for (vector<V2Demographic>::iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
+	{
+		EU3Province* oldProvince = sourceWorld.getProvince(itr->oldProvinceID);
+		EU3Country* oldCountry = sourceWorld.getCountry(itr->oldCountry);
+		createPops(*itr, isStateCapital, statePopulation, oldProvince, oldCountry);
+	}
+	combinePops();
+}
+
+
+void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry)
 {
 	// each "point" here represents slightly less than 0.1% (1/1000) population of this culture-religion pair
 	// (depending on the total points allocated)
@@ -252,110 +271,116 @@ void V2Province::createPops(string culture, string religion, double ratio, EU3Pr
 	{
 		V2Pop farmersPop;
 		farmersPop.setType("farmers");
-		farmersPop.setSize((int)(ratio * oldPopulation * farmers / total));
-		farmersPop.setCulture(culture);
-		farmersPop.setReligion(religion);
+		farmersPop.setSize((int)(demographic.ratio * oldPopulation * farmers / total));
+		farmersPop.setCulture(demographic.culture);
+		farmersPop.setReligion(demographic.religion);
 		pops.push_back(farmersPop);
 	}
 	if (labourers > 0)
 	{
 		V2Pop labourersPop;
 		labourersPop.setType("labourers");
-		labourersPop.setSize((int)(ratio * oldPopulation * labourers / total));
-		labourersPop.setCulture(culture);
-		labourersPop.setReligion(religion);
+		labourersPop.setSize((int)(demographic.ratio * oldPopulation * labourers / total));
+		labourersPop.setCulture(demographic.culture);
+		labourersPop.setReligion(demographic.religion);
 		pops.push_back(labourersPop);
 	}
 	if (slaves > 0)
 	{
 		V2Pop slavesPop;
 		slavesPop.setType("slaves");
-		slavesPop.setSize((int)(ratio * oldPopulation * slaves / total));
-		slavesPop.setCulture(culture);
-		slavesPop.setReligion(religion);
+		slavesPop.setSize((int)(demographic.ratio * oldPopulation * slaves / total));
+		slavesPop.setCulture(demographic.culture);
+		slavesPop.setReligion(demographic.religion);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)
 	{
 		V2Pop soldiersPop;
 		soldiersPop.setType("soldiers");
-		soldiersPop.setSize((int)(ratio * oldPopulation * soldiers / total));
-		soldiersPop.setCulture(culture);
-		soldiersPop.setReligion(religion);
+		soldiersPop.setSize((int)(demographic.ratio * oldPopulation * soldiers / total));
+		soldiersPop.setCulture(demographic.culture);
+		soldiersPop.setReligion(demographic.religion);
 		pops.push_back(soldiersPop);
 	}
 	if (craftsmen > 0)
 	{
 		V2Pop craftsmenPop;
 		craftsmenPop.setType("craftsmen");
-		craftsmenPop.setSize((int)(ratio * oldPopulation * craftsmen / total));
-		craftsmenPop.setCulture(culture);
-		craftsmenPop.setReligion(religion);
+		craftsmenPop.setSize((int)(demographic.ratio * oldPopulation * craftsmen / total));
+		craftsmenPop.setCulture(demographic.culture);
+		craftsmenPop.setReligion(demographic.religion);
 		pops.push_back(craftsmenPop);
 	}
 	if (artisans > 0)
 	{
 		V2Pop artisansPop;
 		artisansPop.setType("artisans");
-		artisansPop.setSize((int)(ratio * oldPopulation * artisans / total));
-		artisansPop.setCulture(culture);
-		artisansPop.setReligion(religion);
+		artisansPop.setSize((int)(demographic.ratio * oldPopulation * artisans / total));
+		artisansPop.setCulture(demographic.culture);
+		artisansPop.setReligion(demographic.religion);
 		pops.push_back(artisansPop);
 	}
 	if (clergymen > 0)
 	{
 		V2Pop clergymenPop;
 		clergymenPop.setType("clergymen");
-		clergymenPop.setSize((int)(ratio * oldPopulation * clergymen / total));
-		clergymenPop.setCulture(culture);
-		clergymenPop.setReligion(religion);
+		clergymenPop.setSize((int)(demographic.ratio * oldPopulation * clergymen / total));
+		clergymenPop.setCulture(demographic.culture);
+		clergymenPop.setReligion(demographic.religion);
 		pops.push_back(clergymenPop);
 	}
 	if (clerks > 0)
 	{
 		V2Pop clerksPop;
 		clerksPop.setType("clerks");
-		clerksPop.setSize((int)(ratio * oldPopulation * clerks / total));
-		clerksPop.setCulture(culture);
-		clerksPop.setReligion(religion);
+		clerksPop.setSize((int)(demographic.ratio * oldPopulation * clerks / total));
+		clerksPop.setCulture(demographic.culture);
+		clerksPop.setReligion(demographic.religion);
 		pops.push_back(clerksPop);
 	}
 	if (bureaucrats > 0)
 	{
 		V2Pop bureaucratsPop;
 		bureaucratsPop.setType("bureaucrats");
-		bureaucratsPop.setSize((int)(ratio * oldPopulation * bureaucrats / total));
-		bureaucratsPop.setCulture(culture);
-		bureaucratsPop.setReligion(religion);
+		bureaucratsPop.setSize((int)(demographic.ratio * oldPopulation * bureaucrats / total));
+		bureaucratsPop.setCulture(demographic.culture);
+		bureaucratsPop.setReligion(demographic.religion);
 		pops.push_back(bureaucratsPop);
 	}
 	if (officers > 0)
 	{
 		V2Pop officersPop;
 		officersPop.setType("officers");
-		officersPop.setSize((int)(ratio * oldPopulation * officers / total));
-		officersPop.setCulture(culture);
-		officersPop.setReligion(religion);
+		officersPop.setSize((int)(demographic.ratio * oldPopulation * officers / total));
+		officersPop.setCulture(demographic.culture);
+		officersPop.setReligion(demographic.religion);
 		pops.push_back(officersPop);
 	}
 	if (capitalists > 0)
 	{
 		V2Pop capitalistsPop;
 		capitalistsPop.setType("capitalists");
-		capitalistsPop.setSize((int)(ratio * oldPopulation * capitalists / total));
-		capitalistsPop.setCulture(culture);
-		capitalistsPop.setReligion(religion);
+		capitalistsPop.setSize((int)(demographic.ratio * oldPopulation * capitalists / total));
+		capitalistsPop.setCulture(demographic.culture);
+		capitalistsPop.setReligion(demographic.religion);
 		pops.push_back(capitalistsPop);
 	}
 	if (aristocrats > 0)
 	{
 		V2Pop aristocratsPop;
 		aristocratsPop.setType("aristocrats");
-		aristocratsPop.setSize((int)(ratio * oldPopulation * aristocrats / total));
-		aristocratsPop.setCulture(culture);
-		aristocratsPop.setReligion(religion);
+		aristocratsPop.setSize((int)(demographic.ratio * oldPopulation * aristocrats / total));
+		aristocratsPop.setCulture(demographic.culture);
+		aristocratsPop.setReligion(demographic.religion);
 		pops.push_back(aristocratsPop);
 	}
+}
+
+
+int V2Province::getOldPopulation() const
+{
+	return oldPopulation;
 }
 
 

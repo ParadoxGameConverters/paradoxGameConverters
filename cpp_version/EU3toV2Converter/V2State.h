@@ -10,7 +10,7 @@ class V2State
 {
 	public:
 		V2State(int newId);
-		void	addProvince(V2Province);
+		void	addProvince(V2Province*);
 		void	addFactory(V2Factory);
 		void	setColonial(bool);
 		bool	isColonial();
@@ -20,10 +20,12 @@ class V2State
 		int		getCraftsmenPerFactory();
 		int		getID();
 		int		getFactoryCount();
+		void	setupPops(EU3World& sourceWorld);
+		int		getStatePopulation();
 	private:
 		int						id;
 		bool						colonial;
-		vector<V2Province>	provinces;
+		vector<V2Province*>	provinces;
 		vector<V2Factory>	factories;
 };
 

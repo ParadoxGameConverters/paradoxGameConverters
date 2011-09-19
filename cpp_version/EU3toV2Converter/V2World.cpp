@@ -777,7 +777,13 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 									log("Error: Could not set religion for pops in province %d\n", destNum);
 								}
 
-								provinces[i].createPops(culture, religion, pritr->popRatio * provPopRatio, (*vitr), sourceWorld.getCountry(oldOwner));
+								V2Demographic demographic;
+								demographic.culture = culture;
+								demographic.religion = religion;
+								demographic.ratio = pritr->popRatio * provPopRatio;
+								demographic.oldCountry = oldOwner;
+								demographic.oldProvinceID = (*vitr)->getNum();
+								provinces[i].addPopDemographic(demographic);
 							}
 
 							if ((*vitr)->hasBuilding("fort4") || (*vitr)->hasBuilding("fort5") || (*vitr)->hasBuilding("fort6"))
@@ -802,7 +808,6 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 				}
 			}
 		}
-		provinces[i].combinePops();
 	}
 }
 
@@ -846,15 +851,16 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 static int stateId = 0;
 void V2World::setupStates(stateMapping stateMap)
 {
-	list<V2Province> unassignedProvs;
-	unassignedProvs.insert(unassignedProvs.begin(), provinces.begin(), provinces.end());
+	list<V2Province*> unassignedProvs;
+	for (vector<V2Province>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+		unassignedProvs.push_back(&(*itr));
 
-	list<V2Province>::iterator iter;
+	list<V2Province*>::iterator iter;
 	while(unassignedProvs.size() > 0)
 	{
 		iter = unassignedProvs.begin();
-		int		provId	= iter->getNum();
-		string	owner		= iter->getOwner();
+		int		provId	= (*iter)->getNum();
+		string	owner	= (*iter)->getOwner();
 
 		if (owner == "")
 		{
@@ -866,7 +872,7 @@ void V2World::setupStates(stateMapping stateMap)
 		stateId++;
 		newState.addProvince(*iter);
 		vector<int> neighbors	= stateMap[provId];
-		bool colonial				= iter->isColonial();
+		bool colonial				= (*iter)->isColonial();
 		newState.setColonial(colonial);
 		iter = unassignedProvs.erase(iter);
 
@@ -874,11 +880,11 @@ void V2World::setupStates(stateMapping stateMap)
 		{
 			for(iter = unassignedProvs.begin(); iter != unassignedProvs.end(); iter++)
 			{
-				if (iter->getNum() == neighbors[i])
+				if ((*iter)->getNum() == neighbors[i])
 				{
-					if(iter->getOwner() == owner)
+					if ((*iter)->getOwner() == owner)
 					{
-						if ( (iter->isColonial()) == colonial)
+						if ((*iter)->isColonial() == colonial)
 						{
 							newState.addProvince(*iter);
 							iter = unassignedProvs.erase(iter);
@@ -1699,6 +1705,15 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		}
 		if (++citr == factoryCounts.end())
 			citr = factoryCounts.begin(); // loop around to beginning
+	}
+}
+
+
+void V2World::setupPops(EU3World& sourceWorld)
+{
+	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		itr->setupPops(sourceWorld);
 	}
 }
 

@@ -19,6 +19,7 @@ class V2World {
 		void				addUnions(unionMapping unionMap);
 		void				convertCapitals(EU3World sourceWorld, provinceMapping provinceMap);
 		void				setupStates(stateMapping);
+		void				setupPops(EU3World& sourceWorld);
 		void				convertTechs(EU3World sourceWorld);
 		void				output(FILE*);
 		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);

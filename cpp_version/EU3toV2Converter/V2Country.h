@@ -53,6 +53,7 @@ class V2Country
 		void					setDiploPoints(double);
 		void					setBadboy(double);
 		void					addLeader(V2Leader);
+		void					setupPops(EU3World& sourceWorld);
 
 	private:
 		void outputTech(FILE*);

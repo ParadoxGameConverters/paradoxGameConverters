@@ -1590,3 +1590,12 @@ void V2Country::addLeader(V2Leader leader)
 {
 	leaders.push_back(leader);
 }
+
+
+void V2Country::setupPops(EU3World& sourceWorld)
+{
+	for (vector<V2State>::iterator itr = states.begin(); itr != states.end(); ++itr)
+	{
+		itr->setupPops(sourceWorld);
+	}
+}

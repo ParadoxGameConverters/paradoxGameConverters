@@ -2,8 +2,17 @@
 #define V2PROVINCE_H_
 
 
+#include "EU3World.h"
 #include "V2Pop.h"
-#include "EU3Country.h"
+
+
+struct V2Demographic {
+	string culture;
+	string religion;
+	double ratio;
+	int oldProvinceID;
+	string oldCountry;
+};
 
 
 class V2Province {
@@ -24,20 +33,24 @@ class V2Province {
 		void		setColonised(bool);
 		bool		wasColonised();
 		void		addOldPop(V2Pop);
-		void		createPops(string culture, string religion, double ratio, EU3Province* oldProvince, EU3Country* oldCountry);
 		void		output(FILE*);
 		vector<V2Pop>	getPops(string type);
+		void		addPopDemographic(V2Demographic d);
+		void		doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld);
 		void		setCoastal(bool coastal);
 		bool		isCoastal();
 		int			getTotalPopulation() const;
+		int			getOldPopulation() const;
 		int			getSoldierPopForArmy(bool force = false);
 		pair<int, int> getAvailableSoldierCapacity() const;
 		string		getRegimentName(RegimentCategory rc);
-		void		combinePops();
 		void		setFortLevel(int);
 		void		setNavalBaseLevel(int);
 	private:
+		void		createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry);
+		void		combinePops();
 		bool		growSoldierPop(int popID);
+
 		bool				land;
 		bool				coastal;
 		int				num;
@@ -48,6 +61,7 @@ class V2Province {
 		bool				colonial;
 		bool				colonised;
 		int				oldPopulation;
+		vector<V2Demographic> demographics;
 		vector<V2Pop>	oldPops;
 		vector<V2Pop>	pops;
 		string			rgoType;

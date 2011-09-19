@@ -8,7 +8,7 @@ V2State::V2State(int newId)
 }
 
 
-void V2State::addProvince(V2Province newProvince)
+void V2State::addProvince(V2Province* newProvince)
 {
 	provinces.push_back(newProvince);
 }
@@ -34,9 +34,9 @@ bool V2State::isColonial()
 
 bool V2State::isCoastal()
 {
-	for (vector<V2Province>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		if (itr->isCoastal())
+		if ((*itr)->isCoastal())
 			return true;
 	}
 	return false;
@@ -45,9 +45,9 @@ bool V2State::isCoastal()
 
 bool V2State::hasLocalSupply(string product)
 {
-	for (vector<V2Province>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		if (itr->getRgoType() == product)
+		if ((*itr)->getRgoType() == product)
 			return true;
 	}
 	return false;
@@ -57,9 +57,9 @@ bool V2State::hasLocalSupply(string product)
 int V2State::getCraftsmenPerFactory()
 {
 	int totalCraftsmen = 0;
-	for (vector<V2Province>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		vector<V2Pop> pops = itr->getPops("craftsmen");
+		vector<V2Pop> pops = (*itr)->getPops("craftsmen");
 		for (vector<V2Pop>::iterator pitr = pops.begin(); pitr != pops.end(); ++pitr)
 		{
 			totalCraftsmen += pitr->getSize();
@@ -81,6 +81,27 @@ int V2State::getID()
 }
 
 
+int V2State::getStatePopulation()
+{
+	int population = 0;
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		population += (*itr)->getOldPopulation();
+	}
+	return population;
+}
+
+
+void V2State::setupPops(EU3World& sourceWorld)
+{
+	int statePopulation = getStatePopulation();
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		(*itr)->doCreatePops(false, statePopulation, sourceWorld);
+	}
+}
+
+
 void V2State::output(FILE* output)
 {
 	fprintf(output, "	state=\n");
@@ -95,7 +116,7 @@ void V2State::output(FILE* output)
 	fprintf(output, "			");
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
-		fprintf(output, "%d ", provinces[i].getNum());
+		fprintf(output, "%d ", provinces[i]->getNum());
 	}
 	fprintf(output, "\n");
 	fprintf(output, "		}\n");
