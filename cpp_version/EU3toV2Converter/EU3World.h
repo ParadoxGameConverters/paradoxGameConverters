@@ -6,8 +6,18 @@
 #include "EU3Diplomacy.h"
 
 
+enum WorldType
+{
+	Unknown = 0,
+	VeryOld,
+	HeirToTheThrone,
+	DivineWind
+};
+
+
 class EU3World {
 	public:
+		EU3World() : cachedWorldType(Unknown) {};
 		void						init(Object* obj);
 		vector<EU3Country>	getCountries();
 		EU3Country*				getCountry(string);
@@ -16,7 +26,9 @@ class EU3World {
 		void						removeCountries(vector<string>& tags);
 		EU3Diplomacy&			getDiplomacy();
 		void					resolveRegimentTypes(const RegimentTypeMap& map);
+		WorldType				getWorldType();
 	private:
+		WorldType				cachedWorldType;
 		vector<EU3Province>	provinces;
 		vector<EU3Country>	countries;
 		EU3Diplomacy	diplomacy;

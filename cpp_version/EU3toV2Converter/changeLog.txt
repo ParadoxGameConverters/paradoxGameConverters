@@ -275,3 +275,4 @@ Revision	Version Updated		Log Message
 253		C++			Fix a few project file problems (if you've had trouble building, rebuild all)
 254		C++			Simplify parser leaf rules and improve parser debugging.
 255		C++			Limit factory allocation to 10 nations (plus those tied for tenth)
+256		C++			Determine EU3 save type dynamically.  Currently unused, but could eliminate the need for multiple build targets.

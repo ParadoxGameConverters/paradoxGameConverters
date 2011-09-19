@@ -1,4 +1,5 @@
 #include "EU3World.h"
+#include "Log.h"
 
 void EU3World::init(Object* obj) {
 	string key;	
@@ -146,4 +147,41 @@ void EU3World::resolveRegimentTypes(const RegimentTypeMap& map)
 	{
 		itr->resolveRegimentTypes(map);
 	}
+}
+
+
+WorldType EU3World::getWorldType()
+{
+	if (cachedWorldType != Unknown)
+		return cachedWorldType;
+
+	int maxProvinceID = 0;
+	for (vector<EU3Province>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		if (itr->getNum() > maxProvinceID)
+			maxProvinceID = itr->getNum();
+	}
+
+	switch (maxProvinceID)
+	{
+	case 1814:
+		cachedWorldType = HeirToTheThrone;
+		break;
+	case 1882:
+		cachedWorldType = DivineWind;
+		break;
+	default:
+		log("Unrecognized max province ID: %d\n", maxProvinceID);
+		if (maxProvinceID < 1814)
+		{
+			cachedWorldType = VeryOld; // pre-HttT
+		}
+		else
+		{
+			cachedWorldType = Unknown; // possibly modded
+		}
+		break;
+	}
+
+	return cachedWorldType;
 }

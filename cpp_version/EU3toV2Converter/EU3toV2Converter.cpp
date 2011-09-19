@@ -5,7 +5,6 @@
 #include "V2Factory.h"
 
 
-
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
 {
 	initLog();
@@ -63,6 +62,29 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	sourceWorld.init(obj);
 
 
+	// Figure out if we're using an HTTT or DW game
+	WorldType game = sourceWorld.getWorldType();
+	switch (game)
+	{
+	case VeryOld:
+		printf("Error: EU3 game appears to be from an old version; only HttT and DW are supported.\n");
+		log("Error: EU3 game appears to be from an old version; only HttT and DW are supported.\n");
+		exit(1);
+	case HeirToTheThrone:
+		printf("Game type is: EU3 Heir to the Throne.\n");
+		log("Game type is: EU3 Heir to the Throne.\n");
+		break;
+	case DivineWind:
+		printf("Game type is: EU3 Divine Wind.\n");
+		log("Game type is: EU3 Divine Wind.\n");
+		break;
+	default:
+		printf("Error: Could not determine savegame type.\n");
+		log("Error: Could not determine savegame type.\n");
+		exit(1);
+	}
+
+
 	// Resolve unit types
 	log("Resolving unit types.\n");
 	printf("Resolving unit types.\n");
@@ -92,7 +114,22 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse province mappings
 	log("Parsing province mappings.\n");
 	printf("Parsing province mappings.\n");
-	obj = doParseFile("province_mappings.txt");
+	const char* mappingFile = "province_mappings.txt";
+	// if province_mappings.txt exists, always use it (e.g. as an override for mods);
+	// otherwise use the appropriate mapping for the game type
+	FILE* testfp = NULL;
+	if (fopen_s(&testfp, mappingFile, "rb") != 0)
+	{
+		if (game == HeirToTheThrone)
+			mappingFile = "HttT_province_mappings.txt";
+		else if (game == DivineWind)
+			mappingFile = "DW_province_mappings.txt";
+	}
+	else
+	{
+		fclose(testfp);
+	}
+	obj = doParseFile(mappingFile);
 	provinceMapping provinceMap = initProvinceMap(obj);
 
 
