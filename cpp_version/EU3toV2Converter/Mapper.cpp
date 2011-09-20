@@ -179,15 +179,21 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 
 		//find V2 tag from the rule
 		vector<string>::iterator V2TagPos = V2Tags.end();
-		for (unsigned int j = 0; j < rV2Tags.size(); j++)
+		unsigned int distance = 0;
+		for (vector<string>::reverse_iterator j = rV2Tags.rbegin(); j != rV2Tags.rend(); ++j)
 		{
-			for (vector<string>::iterator k = V2Tags.begin(); k != V2Tags.end(); k++)
+			++distance;
+			for (vector<string>::iterator k = V2Tags.begin(); k != V2Tags.end(); ++k)
 			{
-				if (*k == rV2Tags[j])
+				if (*k == *j)
 				{
 					V2TagPos = k;
 					break;
 				}
+			}
+			if (V2TagPos != V2Tags.end())
+			{
+				break;
 			}
 		}
 		if (V2TagPos == V2Tags.end())
@@ -197,7 +203,7 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 
 		//add the mapping
 		mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
-		log("Added map %s -> %s\n", EU3TagPos->c_str(), V2TagPos->c_str());
+		log("Added map %s -> %s (#%d)\n", EU3TagPos->c_str(), V2TagPos->c_str(), distance);
 
 		//remove tags from the lists
 		EU3Tags.erase(EU3TagPos);
@@ -228,6 +234,7 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 		{
 			vector<string>::iterator V2TagPos = V2Tags.begin();
 			mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
+			log("Added map %s -> %s (fallback)\n", EU3TagPos->c_str(), V2TagPos->c_str());
 
 			//remove tags from the lists
 			EU3Tags.erase(EU3TagPos);
