@@ -278,3 +278,5 @@ Revision	Version Updated		Log Message
 256		C++			Determine EU3 save type dynamically.  Currently unused, but could eliminate the need for multiple build targets.
 257		C++			Create states earlier in the conversion process so we can use state data for pops.
 258		C++			Place bureaucrat, aristocrat, and capitalist pops in state capitals only.
+259		C++			Map DW province 1872 (Ulm)
+260		C++			Italy country mappings: add Naples and fix Genoa
