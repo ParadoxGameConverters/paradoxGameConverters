@@ -281,3 +281,4 @@ Revision	Version Updated		Log Message
 259		C++			Map DW province 1872 (Ulm)
 260		C++			Italy country mappings: add Naples and fix Genoa
 261		C++			Improve diagnostic output from country mapper.  Add and improve various country mappings.
+262		C++			Additional country mapping improvements.
