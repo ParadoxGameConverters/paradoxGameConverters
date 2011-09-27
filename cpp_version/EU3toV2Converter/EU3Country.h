@@ -68,6 +68,7 @@ class EU3Country
 		double					getBadboyLimit();
 		double					getLegitimacy();
 		vector<EU3Leader>		getLeaders();
+		void					eatCountry(EU3Country* target);
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;

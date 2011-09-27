@@ -1601,7 +1601,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 	}
 }
 
-
+#pragma optimize("", off)
 void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder)
 {
 	// determine average production tech

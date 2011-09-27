@@ -883,3 +883,62 @@ vector<EU3Leader> EU3Country::getLeaders()
 {
 	return leaders;
 }
+
+
+void EU3Country::eatCountry(EU3Country* target)
+{
+	// autocannibalism is forbidden
+	if (target->getTag() == tag)
+		return;
+
+	// for calculation of weighted averages
+	int totalProvinces = target->provinces.size() + provinces.size();
+	if (totalProvinces == 0)
+		totalProvinces = 1;
+	double myWeight = (double)provinces.size() / (double)totalProvinces;
+	double targetWeight = (double)target->provinces.size() / (double)totalProvinces;
+
+	// acquire target's cores (always)
+	for (unsigned int j = 0; j < target->cores.size(); j++)
+	{
+		addCore(target->cores[j]);
+		target->cores[j]->addCore(tag);
+		target->cores[j]->removeCore(target->tag);
+	}
+
+	// everything else, do only if this country actually currently exists
+	if (target->provinces.size() > 0)
+	{
+		// acquire target's provinces
+		for (unsigned int j = 0; j < target->provinces.size(); j++)
+		{
+			addProvince(target->provinces[j]);
+			target->provinces[j]->setOwner(tag);
+		}
+
+		// acquire target's armies, navies, admirals, and generals
+		armies.insert(armies.end(), target->armies.begin(), target->armies.end());
+		leaders.insert(leaders.end(), target->leaders.begin(), target->leaders.end());
+
+		// acquire the target's treasury and income, as well as their liabilities
+		treasury += target->treasury;
+		estMonthlyIncome += target->estMonthlyIncome;
+		loans.insert(loans.end(), target->loans.begin(), target->loans.end());
+
+		// rebalance prestige, badboy, inflation and techs from weighted average
+		prestige		= myWeight * prestige		+ targetWeight * target->prestige;
+		badboy			= myWeight * badboy			+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
+		inflation		= myWeight * inflation		+ targetWeight * target->inflation;
+		landTech		= myWeight * landTech		+ targetWeight * target->landTech;
+		navalTech		= myWeight * navalTech		+ targetWeight * target->navalTech;
+		tradeTech		= myWeight * tradeTech		+ targetWeight * target->tradeTech;
+		productionTech	= myWeight * productionTech	+ targetWeight * target->productionTech;
+		governmentTech	= myWeight * governmentTech	+ targetWeight * target->governmentTech;
+	}
+
+	// coreless, landless countries will be cleaned up automatically
+	target->clearProvinces();
+	target->clearCores();
+
+	log("Merged %s into %s\n", target->tag.c_str(), tag.c_str());
+}

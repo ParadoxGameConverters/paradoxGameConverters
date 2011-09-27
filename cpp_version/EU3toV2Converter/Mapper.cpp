@@ -270,51 +270,60 @@ void uniteJapan(EU3World& world)
 		}
 	}
 
-	int		numProvinces	= 1;
-	double	prestige			= japan->getPrestige();
-	double	landTech			= japan->getLandTech();
-	double	navalTech		= japan->getNavalTech();
-	double	tradeTech		= japan->getTradeTech();
-	double	productionTech	= japan->getProductionTech();
-	double	governmentTech	= japan->getGovernmentTech();
-	for (unsigned int i = 0; i < countries.size(); i++)
+	vector<vector<EU3Country>::iterator> daimyos;
+	for (vector<EU3Country>::iterator i = countries.begin(); i != countries.end(); ++i)
 	{
-		if (countries[i].getPossibleDaimyo())
+		if (i->getPossibleDaimyo())
 		{
-			vector<EU3Province*> provinces = countries[i].getProvinces();
-			numProvinces += provinces.size();
-			for (unsigned int j = 0; j < provinces.size(); j++)
-			{
-				japan->addProvince(provinces[j]);
-				provinces[j]->setOwner("JAP");
-			}
-
-			vector<EU3Province*> cores = countries[i].getCores();
-			for (unsigned int j = 0; j < cores.size(); j++)
-			{
-				japan->addCore(cores[j]);
-				cores[j]->addCore("JAP");
-				cores[j]->removeCore(countries[i].getTag());
-			}
-
-			prestige			+= numProvinces * countries[i].getPrestige();
-			landTech			+= numProvinces * countries[i].getLandTech();
-			navalTech		+= numProvinces * countries[i].getNavalTech();
-			tradeTech		+= numProvinces * countries[i].getTradeTech();
-			productionTech	+= numProvinces * countries[i].getProductionTech();
-			governmentTech	+= numProvinces * countries[i].getGovernmentTech();
-
-			countries[i].clearProvinces();
-			countries[i].clearCores();
+			japan->eatCountry(world.getCountry(i->getTag()));
 		}
 	}
+}
 
-	japan->setPrestige(prestige / numProvinces);
-	japan->setLandTech(landTech / numProvinces);
-	japan->setNavalTech(navalTech / numProvinces);
-	japan->setTradeTech(tradeTech / numProvinces);
-	japan->setProductionTech(productionTech / numProvinces);
-	japan->setGovernmentTech(governmentTech / numProvinces);
+
+void mergeNations(EU3World& world, Object* mergeObj)
+{
+	vector<Object*> rules = mergeObj->getValue("merge_nations");
+	if (rules.size() < 0)
+	{
+		log("No nations have merging requested (skipping).\n");
+		return;
+	}
+
+	rules = rules[0]->getLeaves();
+	for (vector<Object*>::iterator itr = rules.begin(); itr != rules.end(); ++itr)
+	{
+		if ((*itr)->getKey() == "merge_daimyos")
+		{
+			if ((*itr)->getLeaf() == "yes")
+			{
+				uniteJapan(world);
+			}
+			continue;
+		}
+
+		vector<Object*> thisMerge = (*itr)->getLeaves();
+		string masterTag;
+		vector<string> slaveTags;
+		bool enabled = false;
+		for (vector<Object*>::iterator jtr = thisMerge.begin(); jtr != thisMerge.end(); ++jtr)
+		{
+			if ((*jtr)->getKey() == "merge" && (*jtr)->getLeaf() == "yes")
+				enabled = true;
+			else if ((*jtr)->getKey() == "master")
+				masterTag = (*jtr)->getLeaf();
+			else if ((*jtr)->getKey() == "slave")
+				slaveTags.push_back((*jtr)->getLeaf());
+		}
+		EU3Country* master = world.getCountry(masterTag);
+		if (enabled && master != NULL && slaveTags.size() > 0)
+		{
+			for (vector<string>::iterator sitr = slaveTags.begin(); sitr != slaveTags.end(); ++sitr)
+			{
+				master->eatCountry(world.getCountry(*sitr));
+			}
+		}
+	}
 }
 
 

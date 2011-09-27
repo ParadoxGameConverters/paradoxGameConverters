@@ -97,6 +97,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	sourceWorld.resolveRegimentTypes(rtm);
 
 
+	// Merge nations
+	log("Merging nations.\n");
+	printf("Merging nations.\n");
+	obj = doParseFile("merge_nations.txt");
+	mergeNations(sourceWorld, obj);
+
+
 	// Parse V2 input file
 	log("Parsing Vicky2 data.\n");
 	printf("Parsing Vicky2 data.\n");
@@ -162,7 +169,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Map EU3 nations to V2 nations
 	log("Mapping EU3 nations to V2 nations.\n");
 	printf("Mapping EU3 nations to V2 nations.\n");
-	uniteJapan(sourceWorld);
 	removeEmptyNations(sourceWorld);
 	removeDeadLandlessNations(sourceWorld);
 	countryMapping countryMap;
