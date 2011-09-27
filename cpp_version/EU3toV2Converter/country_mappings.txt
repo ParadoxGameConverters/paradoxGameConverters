@@ -384,8 +384,8 @@ link = { eu3 = MSA vic = JAV vic = BAL vic = ATJ vic = JOH vic = PHI }          
 
 link = { eu3 = LOU vic = TEX vic = HAI vic = QUE vic = USA }                     # Louisiana => United States, Quebec, Haiti, Texas
 link = { eu3 = AZT vic = CHE vic = COL vic = UCA vic = COS vic = NIC vic = MEX } # Aztec => Mexico, Cherokee, Columbia, USCA, Costa Rica, Nicaragua
-link = { eu3 = CRE vic = MEX vic = TEX vic = NEW vic = MTC vic = CHE }           # Creek => Cherokee, Metis Confederacy, Newfoundland, Texas, Mexico
-link = { eu3 = SHA vic = MEX vic = TEX vic = NEW vic = MTC vic = CHE }           # Shawnee => Cherokee, Metis Confederacy, Newfoundland, Texas, Mexico
+link = { eu3 = CRE vic = USA vic = MEX vic = TEX vic = NEW vic = MTC vic = CHE } # Creek => Cherokee, Metis Confederacy, Newfoundland, Texas, Mexico
+link = { eu3 = SHA vic = USA vic = MEX vic = TEX vic = NEW vic = MTC vic = CHE } # Shawnee => Cherokee, Metis Confederacy, Newfoundland, Texas, Mexico
 link = { eu3 = ZAP vic = CHE vic = COL vic = UCA vic = COS vic = NIC vic = MEX } # Zapotec => Mexico, Cherokee, Columbia, USCA, Costa Rica, Nicaragua
 link = { eu3 = MAY vic = CHE vic = COL vic = UCA vic = COS vic = NIC vic = MEX } # Maya => Mexico, Cherokee, Columbia, USCA, Costa Rica, Nicaragua
 
