@@ -834,7 +834,7 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		int oldCapital = oldCountries[countries[i].getSourceCountryIndex()].getCapital();
-		log("\n	EU3tag: %s	old capital: %4d", oldCountries[i].getTag().c_str(), oldCapital);
+		log("\n	EU3tag: %s	old capital: %4d", oldCountries[countries[i].getSourceCountryIndex()].getTag().c_str(), oldCapital);
 		inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
 		if (itr != inverseProvinceMap.end())
 		{
@@ -912,13 +912,13 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 		countryMapping::iterator newCountry1 = countryMap.find(itr->country1);
 		if (newCountry1 == countryMap.end())
 		{
-			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country1.c_str());
+			// log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country1.c_str());
 			continue;
 		}
 		countryMapping::iterator newCountry2 = countryMap.find(itr->country2);
 		if (newCountry2 == countryMap.end())
 		{
-			log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country2.c_str());
+			// log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country2.c_str());
 			continue;
 		}
 

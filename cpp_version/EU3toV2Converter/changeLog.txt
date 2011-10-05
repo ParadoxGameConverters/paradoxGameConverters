@@ -286,3 +286,4 @@ Revision	Version Updated		Log Message
 264		C++			Abstract and improve Daimyo-merging logic.  Add capability for user-defined nation merging (see merge_nations.txt).
 265		C++			Restrict CNG tag to explicit mappings only; allocating it breaks the Congo Free State event.
 266		C++			Additional country mapping improvements.
+267		C++			Record the correct country tag in the capital mapping section of the log.  Failing to find EU3 nations for diplomatic agreements is not an error.
