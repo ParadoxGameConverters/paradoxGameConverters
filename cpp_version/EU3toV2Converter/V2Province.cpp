@@ -149,6 +149,12 @@ void V2Province::setCoastal(bool _coastal)
 }
 
 
+bool V2Province::isLand()
+{
+	return land;
+}
+
+
 void V2Province::addPopDemographic(V2Demographic d)
 {
 	demographics.push_back(d);

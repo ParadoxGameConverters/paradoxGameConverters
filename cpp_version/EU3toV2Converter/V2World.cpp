@@ -1286,24 +1286,36 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 				}
 				continue;
 			}
-			// guarantee that navies are assigned to provinces with naval bases
+			bool usePort = false;
+			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
 			if (army.getNavy())
 			{
-				locationCandidates = getPortProvinces(locationCandidates);
-				if (locationCandidates.size() == 0)
+				for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 				{
-					log("Error: Navy %s assigned to EU3 province %d which has no corresponding V2 port provinces; dissolving to pool.\n", aitr->getName().c_str(), aitr->getLocation());
-					int regimentCounts[num_reg_categories] = { 0 };
-					army.getRegimentCounts(regimentCounts);
-					for (int rc = infantry; rc < num_reg_categories; ++rc)
+					if ((pitr->getNum() == locationCandidates[0]) && pitr->isLand())
 					{
-						countryRemainder[rc] += regimentCounts[rc];
+						usePort = true;
+						break;
 					}
-					continue;
+				}
+				if (usePort)
+				{
+					locationCandidates = getPortProvinces(locationCandidates);
+					if (locationCandidates.size() == 0)
+					{
+						log("Error: Navy %s assigned to EU3 province %d which has no corresponding V2 port provinces; dissolving to pool.\n", aitr->getName().c_str(), aitr->getLocation());
+						int regimentCounts[num_reg_categories] = { 0 };
+						army.getRegimentCounts(regimentCounts);
+						for (int rc = infantry; rc < num_reg_categories; ++rc)
+						{
+							countryRemainder[rc] += regimentCounts[rc];
+						}
+						continue;
+					}
 				}
 			}
 			int selectedLocation = locationCandidates[int(locationCandidates.size() * ((double)rand() / RAND_MAX))];
-			if (army.getNavy())
+			if (army.getNavy() && usePort)
 			{
 				vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);
 				if (white == port_whitelist.end())
@@ -1601,7 +1613,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 	}
 }
 
-#pragma optimize("", off)
+
 void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder)
 {
 	// determine average production tech

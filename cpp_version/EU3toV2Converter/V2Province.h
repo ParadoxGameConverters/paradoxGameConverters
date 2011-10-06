@@ -39,6 +39,7 @@ class V2Province {
 		void		doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld);
 		void		setCoastal(bool coastal);
 		bool		isCoastal();
+		bool		isLand();
 		int			getTotalPopulation() const;
 		int			getOldPopulation() const;
 		int			getSoldierPopForArmy(bool force = false);

@@ -1543,4 +1543,360 @@ link = { eu3 = 598 vic = 1390 }				# Pahang -> Kuantan
 link = { eu3 = 596 vic = 1386 vic = 1387 }			# Malacca -> Malacca Kula Lumpur
 link = { eu3 = 597 vic = 1385 vic = 1384 }			# Johor -> Johor Bahru Singapore 
 
+
+
+## WATER PROVINCES ##
+
+link = { eu3 = 1250 vic = 2703 }		# Vänern -> Vänern
+link = { eu3 = 1251 vic = 2704 }		# Vättern -> Vättern
+link = { eu3 = 1252 vic = 2705 }		# Gulf of Bothnia -> Gulf of Bothnia
+link = { eu3 = 1253 vic = 2706 }		# Ålands Hav -> Ålands Hav
+link = { eu3 = 1254 vic = 2707 }		# Gulf of Finland -> Gulf of Finland
+link = { eu3 = 1255 vic = 2708 }		# Western Baltic Sea -> Western Baltic Sea
+link = { eu3 = 1256 vic = 2709 }		# Gulf of Riga -> Gulf of Riga
+link = { eu3 = 1257 vic = 2710 }		# Southern Baltic Sea -> Southern Baltic Sea
+link = { eu3 = 1258 vic = 2711 }		# Öresund -> Öresund
+link = { eu3 = 1259 vic = 2712 }		# Kattegat -> Kattegat
+link = { eu3 = 1260 vic = 2713 }		# Peipsi Järv -> Peipsi Järv
+link = { eu3 = 1261 vic = 2714 }		# Ladoga -> Ladoga
+link = { eu3 = 1262 vic = 2715 }		# Onega -> Onega
+link = { eu3 = 1652 vic = 2716 }		# White Sea -> White Sea
+link = { eu3 = 1264 vic = 2717 }		# Lofoten Sea -> Lofoten Sea
+link = { eu3 = 1265 vic = 2718 }		# Northern Norwegian Sea -> Northern Norwegian Sea
+link = { eu3 = 1266 vic = 2719 }		# Southern Norwegian Sea -> Southern Norwegian Sea
+link = { eu3 = 1267 vic = 2720 }		# Skagerrack -> Skagerrack
+link = { eu3 = 1268 vic = 2721 }		# Helgoland Bight -> Helgoland Bight
+link = { eu3 = 1269 vic = 2722 }		# Coast of Holland -> Coast of Holland
+link = { eu3 = 1270 vic = 2723 }		# Dogger Bank -> Dogger Bank
+link = { eu3 = 1271 vic = 2724 }		# Straits of Dover -> Straits of Dover
+link = { eu3 = 1272 vic = 2725 }		# The Channel -> The Channel
+link = { eu3 = 1273 vic = 2726 }		# Land's End -> Lands End
+link = { eu3 = 1274 vic = 2727 }		# Coast of Brittany -> Coast of Britanny
+link = { eu3 = 1275 vic = 2728 }		# Quiberon Bay -> Quiberon Bay
+link = { eu3 = 1276 vic = 2729 }		# Cote D'Argent -> Cote D'Argent
+link = { eu3 = 1277 vic = 2730 }		# Bay of Biscay -> Bay of Biscay
+link = { eu3 = 1278 vic = 2731 }		# Cantabrian Sea -> Cantabrian Sea
+link = { eu3 = 1279 vic = 2732 }		# Tyne -> Tyne
+link = { eu3 = 1280 vic = 2733 }		# Firth of Forth -> Firth of Forth
+link = { eu3 = 1281 vic = 2734 }		# The North Sea -> The North Sea
+link = { eu3 = 1282 vic = 2735 }		# Moray Firth -> Moray Firth
+link = { eu3 = 1283 vic = 2736 }		# North Channel -> North Channel
+link = { eu3 = 1284 vic = 2737 }		# Irish Sea -> Irish Sea
+link = { eu3 = 1285 vic = 2738 }		# St. George's Channel -> St. George's Channel
+link = { eu3 = 1286 vic = 2739 }		# Donegal Bay -> Donegal Bay
+link = { eu3 = 1287 vic = 2740 }		# Dingle Bay -> Dingle Bay
+link = { eu3 = 1288 vic = 2741 }		# Celtic Sea -> Celtic Sea
+link = { eu3 = 1289 vic = 2742 }		# Western Approaches -> Western Approaches
+link = { eu3 = 1290 vic = 2743 }		# Finisterre Bay -> Finisterre Bay
+link = { eu3 = 1291 vic = 2744 }		# Lusitanian Sea -> Lusitanian Sea
+link = { eu3 = 1292 vic = 2745 }		# Gulf of Cadiz -> Gulf of Cadiz
+link = { eu3 = 1293 vic = 2746 }		# Straits of Gibraltar -> Straits of Gibraltar
+link = { eu3 = 1294 vic = 2747 }		# Gulf of Almeria -> Gulf of Almeira
+link = { eu3 = 1295 vic = 2748 }		# Gulf of Valencia -> Gulf of Valencia
+link = { eu3 = 1296 vic = 2749 }		# Gulf of Lion -> Gulf of Lion
+link = { eu3 = 1297 vic = 2750 }		# Cote D'Azur -> Cote D'Azur
+link = { eu3 = 1298 vic = 2751 }		# Ligurian Sea -> Ligurian Sea
+link = { eu3 = 1299 vic = 2752 }		# Gulf of Mallorca -> Gulf of Mallocra
+link = { eu3 = 1300 vic = 2753 }		# Western Mediterranean -> Western Mediterranean
+link = { eu3 = 1301 vic = 2754 }		# Barbary Coast -> Barbary Coast
+link = { eu3 = 1302 vic = 2755 }		# Cape Bon -> Cape Bon
+link = { eu3 = 1303 vic = 2756 }		# Tyrrenean Sea -> Tyrrenean Sea
+link = { eu3 = 1304 vic = 2757 }		# Bay of Napoli -> Bay of Naples
+link = { eu3 = 1305 vic = 2758 }		# Gulf of Gabes -> Gulf of Gabes
+link = { eu3 = 1306 vic = 2759 }		# Malta Channel -> Malta Channel
+link = { eu3 = 1307 vic = 2760 }		# Straits of Messina -> Straits of Messina
+link = { eu3 = 1308 vic = 2761 }		# Gulf of Venice -> Gulf of Venice
+link = { eu3 = 1309 vic = 2762 }		# Adriatic Sea -> Adriatic Sea
+link = { eu3 = 1310 vic = 2763 }		# Straits of Otranto -> Straits of Otranto
+link = { eu3 = 1311 vic = 2764 }		# Gulf of Taranto -> Gulf of Taranto
+link = { eu3 = 1312 vic = 2765 }		# Ionian Sea -> Ionian Sea
+link = { eu3 = 1313 vic = 2766 }		# Gulf of Sirte -> Gulf of Sirte
+link = { eu3 = 1314 vic = 2767 }		# Gulf of Tobruk -> Gulf of Tobruk
+link = { eu3 = 1315 vic = 2768 }		# Bay of Alexandria -> Bay of Alexandrian
+link = { eu3 = 1316 vic = 2769 }		# Palestinian Coast -> Palestinian Coast
+link = { eu3 = 1317 vic = 2770 }		# Gulf of Cyprus -> Gulf of Cyprus
+link = { eu3 = 1318 vic = 2771 }		# Sea of Crete -> Sea of Crete
+link = { eu3 = 1319 vic = 2772 }		# Aegean Sea -> Aegean Sea
+link = { eu3 = 1320 vic = 2773 }		# Sea of Marmara -> Sea of Marmara
+link = { eu3 = 1321 vic = 2774 }		# Gulf of Varna -> Gulf of Varna
+link = { eu3 = 1322 vic = 2775 }		# Gulf of Odessa -> Gulf of Odessa
+link = { eu3 = 1323 vic = 2776 }		# Sea of Azov -> Sea of Azov
+link = { eu3 = 1324 vic = 2777 }		# Eastern Black Sea -> Eastern Black Sea
+link = { eu3 = 1325 vic = 2778 }		# Lake Balaton -> Lake Balaton
+link = { eu3 = 1326 vic = 2779 }		# Caspian Sea -> Caspian Sea
+link = { eu3 = 1327 vic = 2780 }		# Aral Sea -> Aral Sea
+link = { eu3 = 1328 vic = 2781 }		# Gulf of Suez -> Gulf of Suez
+link = { eu3 = 1329 vic = 2782 }		# Red Sea -> Red Sea
+link = { eu3 = 1330 vic = 2784 }		# Bab el Mandeb -> Bal el Mandeb
+link = { eu3 = 1333 vic = 2786 }		# Mascate Coast -> Mascate Coast
+link = { eu3 = 1334 vic = 2787 }		# Straits of Hormuz -> Straits of Hormuz
+link = { eu3 = 1335 vic = 2788 }		# Persian Gulf -> Persian Gulf
+link = { eu3 = 1336 vic = 2789 }		# Gulf of Indus -> Gulf of Indus
+link = { eu3 = 1337 vic = 2790 }		# Gulf of Gujarat -> Gulf of Gujarat
+link = { eu3 = 1338 vic = 2791 }		# Laquedive Islands -> Laquedive Islands
+link = { eu3 = 1339 vic = 2792 }		# Coast of Malabar -> Coast of Malabar
+link = { eu3 = 1340 vic = 2793 }		# Comorin Cape -> Comorin Cape
+link = { eu3 = 1341 vic = 2794 }		# Coast of Coromandel -> Coast of Caramandel
+link = { eu3 = 1342 vic = 2795 }		# Coast of Orissa -> Coast of Orissa
+link = { eu3 = 1343 vic = 2796 }		# Ganges Delta -> Ganges Delta
+link = { eu3 = 1344 vic = 2797 }		# Akyab Bay -> Akyab Bay
+link = { eu3 = 1345 vic = 2798 }		# Irrawady Delta -> Irrawady Delta
+link = { eu3 = 1346 vic = 2799 }		# Andaman Sea -> Andaman Sea
+link = { eu3 = 1347 vic = 2800 }		# Mergui Archipelago -> Mergui Archipelago
+link = { eu3 = 1348 vic = 2801 }		# Straits of Malacca -> Straits of Malacca
+link = { eu3 = 1349 vic = 2802 }		# Nicobar Isles -> Nicobar Isles
+link = { eu3 = 1350 vic = 2803 }		# Coast of Aceh -> Coast of Atjeh
+link = { eu3 = 1351 vic = 2804 }		# Coast of Sumatra -> Coast of Sumatra
+link = { eu3 = 1352 vic = 2805 }		# Christmas Island -> Christmas Island
+link = { eu3 = 1353 vic = 2806 }		# Coast of Java -> Coast of Java
+link = { eu3 = 1354 vic = 2807 }		# Coast of Surabaya -> Coast of Surabaya
+link = { eu3 = 1355 vic = 2808 }		# Straits of Lombok -> Straits of Lombok
+link = { eu3 = 1356 vic = 2809 }		# Timor Sea -> Timor Sea
+link = { eu3 = 1357 vic = 2810 }		# The Moluccas -> The Moluccas
+link = { eu3 = 1358 vic = 2811 }		# Java Sea -> Java Sea
+link = { eu3 = 1359 vic = 2812 }		# Straits of Makassar -> Straits of Makassar
+link = { eu3 = 1360 vic = 2813 }		# Karimata Strait -> Karimata Strait
+link = { eu3 = 1361 vic = 2814 }		# Straits of Johor -> Straits of Johore
+link = { eu3 = 1362 vic = 2815 }		# Malayan Sea -> Malayan Sea
+link = { eu3 = 1363 vic = 2816 }		# Coast of Sarawak -> Coast of Sarawk
+link = { eu3 = 1364 vic = 2817 }		# Mekong Delta -> Mekong Delta
+link = { eu3 = 1365 vic = 2818 }		# Gulf of Siam -> Gulf of Siam
+link = { eu3 = 1366 vic = 2819 }		# Cam Ranh Bay -> Cam Rah Bay
+link = { eu3 = 1367 vic = 2820 }		# South China Sea -> South China Sea
+link = { eu3 = 1368 vic = 2821 }		# Coast of Brunei -> Coast of Brunei
+link = { eu3 = 1369 vic = 2822 }		# Coast of Annam -> Coast of Annam
+link = { eu3 = 1370 vic = 2823 }		# Gulf of Tonkin -> Gulf of Tonkin
+link = { eu3 = 1371 vic = 2824 }		# Guangzhou Bay -> Guanghou Bay
+link = { eu3 = 1372 vic = 2825 }		# Taiwan Strait -> Taiwan Strait
+link = { eu3 = 1373 vic = 2826 }		# Yang Tse Delta -> Yang Tse Delta
+link = { eu3 = 1374 vic = 2827 }		# Yellow Sea -> Yellow Sea
+link = { eu3 = 1375 vic = 2828 }		# Korea Bay -> Korea Bay
+link = { eu3 = 1376 vic = 2829 }		# South Korean Sea -> South Korean Sea
+link = { eu3 = 1377 vic = 2830 }		# North Korean Sea -> North Korean Sea
+link = { eu3 = 1378 vic = 2831 }		# Coast of Olga -> Coast of Olga
+link = { eu3 = 1379 vic = 2832 }		# Tatar Straits -> Tatar Straits
+link = { eu3 = 1380 vic = 2833 }		# Amur Estuary -> Amur Delta
+link = { eu3 = 1381 vic = 2834 }		# Bay of Ayan -> Baj of Ayan
+link = { eu3 = 1382 vic = 2835 }		# Bay of Komenskoie -> Bay of Komenskoie
+link = { eu3 = 1383 vic = 2836 }		# Coast of Kamchatka -> Coast of Kamchatska
+link = { eu3 = 1384 vic = 2837 }		# Okhotsk Sea -> Oktothsk Sea
+link = { eu3 = 1385 vic = 2838 }		# Coast of Sakhalin -> Coast Sahkalin
+link = { eu3 = 1386 vic = 2839 }		# Soya Strait -> Soya Strait
+link = { eu3 = 1387 vic = 2840 }		# Tsugaru Strait -> Tsugaru Strait
+link = { eu3 = 1388 vic = 2841 }		# Sea of Japan -> Sea of Japan
+link = { eu3 = 1389 vic = 2842 }		# Amakusa Sea -> Amakusa Sea
+link = { eu3 = 1390 vic = 2843 }		# Setto Inland Sea -> Setto Inland Sea
+link = { eu3 = 1391 vic = 2844 }		# Tokai Sea -> Tokai Sea
+link = { eu3 = 1392 vic = 2845 }		# Ryukyu Islands -> Ryukyu Islands
+link = { eu3 = 1393 vic = 2846 }		# Luzon Strait -> Luzon Strait
+link = { eu3 = 1394 vic = 2847 }		# Paracel Islands -> Paracel Islands
+link = { eu3 = 1395 vic = 2848 }		# Manila Bay -> Manila Bay
+link = { eu3 = 1396 vic = 2849 }		# Coast of Luzon -> Coast of Luzon
+link = { eu3 = 1397 vic = 2850 }		# Gulf of Leyte -> Gulf of Leyte
+link = { eu3 = 1398 vic = 2851 }		# Sulu Sea -> Sulu Sea
+link = { eu3 = 1399 vic = 2852 }		# Sea of Celebes -> Sea of Celebes
+link = { eu3 = 1400 vic = 2853 }		# Sea of Ternete -> Sea of Ternete
+link = { eu3 = 1401 vic = 2854 }		# Sea of Banda -> Sea of Banda
+link = { eu3 = 1403 vic = 2856 }		# Palau Islands -> Palau Islands
+link = { eu3 = 1404 vic = 2857 }		# Biak Bay -> Biak Bay
+link = { eu3 = 1405 vic = 2858 }		# Vilian Strait -> Vilian Strait
+link = { eu3 = 1406 vic = 2859 }		# Trobrian Islands -> Trobrian Islands
+link = { eu3 = 1407 vic = 2860 }		# Torres Strait -> Torres Strait
+link = { eu3 = 1408 vic = 2861 }		# Arafuam Sea -> Arafuam Sea
+link = { eu3 = 1409 vic = 2862 }		# Kolepom Bay -> Kolepom Bay
+link = { eu3 = 1410 vic = 2863 }		# Gulf of Carpentaria -> Gulf of Carpentaria
+link = { eu3 = 1411 vic = 2864 }		# Great Barrier Reef -> Great Barrier Reef
+link = { eu3 = 1412 vic = 2865 }		# Capricorn Bay -> Capricorn Bay
+link = { eu3 = 1413 vic = 2866 }		# Cape Howe -> Cape Howe
+link = { eu3 = 1414 vic = 2867 }		# Bass Strait -> Bass Strait
+link = { eu3 = 1415 vic = 2868 }		# Kangaroo Island -> Kangaroo Island
+link = { eu3 = 1416 vic = 2869 }		# Great Australian Bight -> Great Australian Bight
+link = { eu3 = 1417 vic = 2870 }		# Cape Leuwiin -> Cape Leuwiin
+link = { eu3 = 1418 vic = 2871 }		# Shark Bay -> Shark Bay
+link = { eu3 = 1419 vic = 2872 }		# Northwest Cape -> Northwest Cape
+link = { eu3 = 1420 vic = 2873 }		# King Sound -> King Sound
+link = { eu3 = 1421 vic = 2874 }		# Tasman Sea -> Tasman Sea
+link = { eu3 = 1422 vic = 2875 }		# Southern Tasman Sea -> Southern Tasman Sea
+link = { eu3 = 1423 vic = 2876 }		# Cook Strait -> Cook Strait
+link = { eu3 = 1424 vic = 2877 }		# Northern Tasman Sea -> Northern Tasman Sea
+link = { eu3 = 1426 vic = 2879 }		# Coast of New Zealand -> Coast of New Zealand
+link = { eu3 = 1427 vic = 2880 }		# Canterbury Bight -> Cantebury Bight
+link = { eu3 = 1428 vic = 2881 }		# Sea of Antarctica -> Sea of Antarctica
+link = { eu3 = 1429 vic = 2882 }		# New Caledonian Sea -> New Caledonian Sea
+link = { eu3 = 1430 vic = 2883 }		# Coral Sea -> Coral Sea
+link = { eu3 = 1432 vic = 2885 }		# Solomon Sea -> Solomon Sea
+link = { eu3 = 1433 vic = 2886 }		# Nauru Island -> Nauru Island
+link = { eu3 = 1434 vic = 2887 }		# Melanesia Sea -> Melanesia Sea
+link = { eu3 = 1435 vic = 2889 }		# Yap Islands -> Yap Islands
+link = { eu3 = 1438 vic = 2891 }		# Tinian Sea -> Tinian Sea
+link = { eu3 = 1439 vic = 2892 }		# Iwo Jima Sea -> Iwo Jima Sea
+link = { eu3 = 1440 vic = 2893 }		# Taihei Ocean -> Taihei Ocean
+link = { eu3 = 1441 vic = 2894 }		# Kuril Islands -> The Kuriles
+link = { eu3 = 1442 vic = 2895 }		# Bay of Uka -> Bay of Uka
+link = { eu3 = 1443 vic = 2896 }		# Bay of Oljut -> Bay of Oljut
+link = { eu3 = 1444 vic = 2897 }		# Bay of Anadyr -> Bay of Anadyr
+link = { eu3 = 1446 vic = 2899 }		# Horn of Africa -> Horn of Africa
+link = { eu3 = 1447 vic = 2900 }		# Coast of Pepper -> Coast of Pepper
+link = { eu3 = 1448 vic = 2901 }		# Zanzibar Strait -> Zanzibar Strait
+link = { eu3 = 1449 vic = 2902 }		# Mozambique Channel -> Mozambique Channel
+link = { eu3 = 1450 vic = 2903 }		# Diego Suarez Bay -> Diego Suarez Bay
+link = { eu3 = 1451 vic = 2904 }		# Western Arabian Sea -> Western Arabian Sea
+link = { eu3 = 1452 vic = 2905 }		# Eastern Arabian Sea -> Eastern Arabian Sea
+link = { eu3 = 1453 vic = 2906 }		# The Seychelles -> The Seychelles
+link = { eu3 = 1454 vic = 2907 }		# Coast of Tamatave -> Coast of Tamatave
+link = { eu3 = 1455 vic = 2908 }		# The Mascareignes -> The Mascareignes
+link = { eu3 = 1456 vic = 2909 }		# Gulf of Zambeze -> Gulf of Zambeze
+link = { eu3 = 1457 vic = 2910 }		# Coast of Natal -> Coast of Natal
+link = { eu3 = 1458 vic = 2911 }		# Coast of Transkei -> Coast of Transkei
+link = { eu3 = 1459 vic = 2912 }		# Coast of Ciskei -> Coast of Ciskei
+link = { eu3 = 1460 vic = 2913 }		# Cape of Good Hope -> Cape of Good Hope
+link = { eu3 = 1461 vic = 2914 }		# Coast of Namibia -> Coast of Namibia
+link = { eu3 = 1462 vic = 2915 }		# Coast of Angola -> Coast of Angola
+link = { eu3 = 1463 vic = 2916 }		# Gulf of Kongo -> Gulf of Kongo
+link = { eu3 = 1464 vic = 2917 }		# Coast of Cameroon -> Coast of Cameroon
+link = { eu3 = 1465 vic = 2918 }		# Gulf of Nigeria -> Gulf of Nigeria
+link = { eu3 = 1466 vic = 2919 }		# Ivory Coast -> Ivory Coast
+link = { eu3 = 1467 vic = 2920 }		# Gold Coast -> Gold Coast
+link = { eu3 = 1468 vic = 2921 }		# Coast of Gambia -> Coast of Gamvia
+link = { eu3 = 1469 vic = 2922 }		# Coast of Guinea -> Coast of Guinea
+link = { eu3 = 1470 vic = 2923 }		# Mauretanian Coast -> Maueretanian Coast
+link = { eu3 = 1471 vic = 2924 }		# Canarian Sea -> Canarian Sea
+link = { eu3 = 1472 vic = 2925 }		# Coast of Morocco -> Coast of Morocco
+link = { eu3 = 1473 vic = 2926 }		# Jan Mayen Sea -> Jan Mayen Sea
+link = { eu3 = 1474 vic = 2927 }		# Spitzberg Sea -> Spitzberg Sea
+link = { eu3 = 1475 vic = 2928 }		# Icelandic Sea -> Icelandic Sea
+link = { eu3 = 1476 vic = 2929 }		# Shetland Straits -> Shetland Straits
+link = { eu3 = 1477 vic = 2930 }		# Coast of Iceland -> Coast of Iceland
+link = { eu3 = 1478 vic = 2931 }		# Northeastern Atlantic -> Northeastern Atlantic
+link = { eu3 = 1479 vic = 2932 }		# Rockall -> Rockall
+link = { eu3 = 1480 vic = 2933 }		# Denmark Strait -> Denmark Strait
+link = { eu3 = 1481 vic = 2934 }		# Eastern Coast of Greenland -> Eastern Coast of Greenland
+link = { eu3 = 1482 vic = 2935 }		# Western Coast of Greenland -> Western Coast of Greenland
+link = { eu3 = 1483 vic = 2936 }		# Labrador Strait -> Labrador Strait
+link = { eu3 = 1484 vic = 2937 }		# Baffin Bay -> Baffin Bay
+link = { eu3 = 1485 vic = 2938 }		# Hudson Straits -> Hudson Straits
+link = { eu3 = 1486 vic = 2939 }		# James Bay -> James Bay
+link = { eu3 = 1487 vic = 2940 }		# Western Hudson Bay -> Western Hudson Bay
+link = { eu3 = 1488 vic = 2941 }		# Eastern Hudson Bay -> Eastern Hudson Bay
+link = { eu3 = 1489 vic = 2942 }		# Foxe Basin -> Foxe Bassin
+link = { eu3 = 1490 vic = 2943 }		# Gulf of St. Lawrence -> Gulf of St. Lawrence
+link = { eu3 = 1491 vic = 2944 }		# Cabot Strait -> Cabot Strait
+link = { eu3 = 1492 vic = 2945 }		# Bay of Fundy -> Bay of Fundy
+link = { eu3 = 1493 vic = 2946 }		# Strait of Belle Isle -> Strait of Belle Isle
+link = { eu3 = 1494 vic = 2947 }		# Fortune Bay -> Fortune Bay
+link = { eu3 = 1495 vic = 2948 }		# Notre Dame Bay -> Notre Dame Bay
+link = { eu3 = 1496 vic = 2949 }		# Labrador Sea -> Labrador Sea
+link = { eu3 = 1497 vic = 2950 }		# Greenland Sea -> Greenland Sea
+link = { eu3 = 1498 vic = 2951 }		# Northern Atlantic -> Northern Atlantic
+link = { eu3 = 1499 vic = 2952 }		# Massachusetts Bay -> Masschusetts Bay
+link = { eu3 = 1500 vic = 2953 }		# Chesapeake Bay -> Chesapaeake Bay
+link = { eu3 = 1501 vic = 2954 }		# Cape Hatteras -> Cape Hatteras
+link = { eu3 = 1502 vic = 2955 }		# Coast of Carolina -> Coast of Carolina
+link = { eu3 = 1503 vic = 2956 }		# Coast of Florida -> Coast of Florida
+link = { eu3 = 1504 vic = 2957 }		# Sea of Sargassos -> Sea of Sargassos
+link = { eu3 = 1505 vic = 2958 }		# Florida Straits -> Florida Straits
+link = { eu3 = 1506 vic = 2959 }		# Apalachee Bay -> Apalachee Bay
+link = { eu3 = 1507 vic = 2960 }		# Mobile Bay -> Mobile Bay
+link = { eu3 = 1508 vic = 2961 }		# Galveston Bay -> Galveston Bay
+link = { eu3 = 1509 vic = 2962 }		# Tampico Bay -> Tampico Bay
+link = { eu3 = 1510 vic = 2963 }		# Yucatan Sea -> Yucatan Sea
+link = { eu3 = 1511 vic = 2964 }		# Gulf of Mexico -> Gulf of Mexico
+link = { eu3 = 1512 vic = 2965 }		# Yucatan Channel -> Yucatan Channel
+link = { eu3 = 1513 vic = 2966 }		# Belize Bay -> Belize Bay
+link = { eu3 = 1514 vic = 2967 }		# Moscitos Coast -> Moscitos Coast
+link = { eu3 = 1515 vic = 2968 }		# Gulf of Darien -> Gulf of Darien
+link = { eu3 = 1516 vic = 2969 }		# Jamaica Channel -> Jamica Channel
+link = { eu3 = 1517 vic = 2970 }		# Central Caribbean -> Central Carribean
+link = { eu3 = 1518 vic = 2971 }		# Northwestern Caribbean -> Northwestern Carribean
+link = { eu3 = 1519 vic = 2972 }		# Venezuelan Gulf -> Venezualan Gulf
+link = { eu3 = 1520 vic = 2973 }		# Venezuelan Sea -> Venezuelan Sea
+link = { eu3 = 1521 vic = 2974 }		# Eastern Caribbean -> Eastern Carribean
+link = { eu3 = 1522 vic = 2975 }		# Windward Islands -> Windward Islands
+link = { eu3 = 1523 vic = 2976 }		# Lesser Antilles -> Lesser Antilles
+link = { eu3 = 1524 vic = 2977 }		# Turks & Caicos Sea -> Turks & Caicos Sea
+link = { eu3 = 1525 vic = 2978 }		# Coast of Cuba -> Coast of Cuba
+link = { eu3 = 1526 vic = 2979 }		# Coast of Hispaniola -> Coast of Hispaniola
+link = { eu3 = 1527 vic = 2980 }		# Guyana Coast -> Guyana Coast
+link = { eu3 = 1528 vic = 2981 }		# Bay of Belem -> Bay of Belem
+link = { eu3 = 1529 vic = 2982 }		# Amazonas Gulf -> Amazonas Gulf
+link = { eu3 = 1530 vic = 2983 }		# Coast of Brazil -> Coast of Brazil
+link = { eu3 = 1531 vic = 2984 }		# Coast of Recife -> Coast of Recife
+link = { eu3 = 1532 vic = 2985 }		# Coast of Pernambuc -> Coast of Pernambuc
+link = { eu3 = 1533 vic = 2986 }		# Todos Santos Bay -> Todos Santos Bay
+link = { eu3 = 1534 vic = 2987 }		# Rio De Janeiro -> Rio De Janeiro
+link = { eu3 = 1535 vic = 2988 }		# Baia Parangua -> Baia Parangua
+link = { eu3 = 1536 vic = 2989 }		# Rio De La Plata -> Rio De La Plata
+link = { eu3 = 1537 vic = 2990 }		# Bahia Blanca -> Bahia Blanca
+link = { eu3 = 1538 vic = 2991 }		# Coast of Patagonia -> Coast of Patagonia
+link = { eu3 = 1539 vic = 2992 }		# Magellan Strait -> Magellan Strait
+link = { eu3 = 1540 vic = 2993 }		# South Chilean Coast -> South Chilean Coast
+link = { eu3 = 1541 vic = 2994 }		# Coast of Chile -> Coast of Chile
+link = { eu3 = 1542 vic = 2995 }		# Atacama Coast -> Atacama Coast
+link = { eu3 = 1543 vic = 2996 }		# Arica Gulf -> Arica Gulf
+link = { eu3 = 1544 vic = 2997 }		# Arequipa Bay -> Arequipa Bay
+link = { eu3 = 1545 vic = 2998 }		# Coast of Peru -> Coast of Peru
+link = { eu3 = 1546 vic = 2999 }		# Guayaguil Bay -> Guayaguil Bay
+link = { eu3 = 1547 vic = 3000 }		# Coast of Ecuador -> Coast of Ecuador
+link = { eu3 = 1548 vic = 3001 }		# Gulf of Panama -> Gulf of Panama
+link = { eu3 = 1549 vic = 3002 }		# Bay of Costa Rica -> Bay of Costa Rica
+link = { eu3 = 1550 vic = 3003 }		# Acapulco Bay -> Acapulco Bay
+link = { eu3 = 1551 vic = 3004 }		# Manzazilla Bay -> Manzazilla Bay
+link = { eu3 = 1552 vic = 3005 }		# Mazatlan Bay -> Mazatlan Bay
+link = { eu3 = 1553 vic = 3006 }		# Gulf of California -> Gulf of California
+link = { eu3 = 1554 vic = 3007 }		# Coast of Baja -> Coast of Baja
+link = { eu3 = 1555 vic = 3008 }		# Coast of California -> Coast of California
+link = { eu3 = 1556 vic = 3009 }		# Santa Catalina Islands -> Santa Catalina Islands
+link = { eu3 = 1557 vic = 3010 }		# Coast of Oregon -> Coast of Oregon
+link = { eu3 = 1558 vic = 3011 }		# Coast of Columbia -> Coast of Columbia
+link = { eu3 = 1559 vic = 3012 }		# Hecate Strait -> Hecate Strait
+link = { eu3 = 1560 vic = 3013 }		# Kodiak Island -> Gulf of Alaska
+link = { eu3 = 1561 vic = 3014 }		# Coast of Alaska -> Coast of Alaska
+link = { eu3 = 1562 vic = 3015 }		# Kuskowim Bay -> Kuskowim Bay
+link = { eu3 = 1563 vic = 3016 }		# Hatton Bank -> Hatton Bank
+link = { eu3 = 1564 vic = 3017 }		# Eastern Gibbs Fracture -> Eastern Gibbs Fracture
+link = { eu3 = 1565 vic = 3018 }		# Western Gibbs Fracture -> Western Gibbs Fracture
+link = { eu3 = 1566 vic = 3019 }		# Iberian Shelf -> Iberian Shelf
+link = { eu3 = 1567 vic = 3020 }		# Sea of Azores -> Sea of Azores
+link = { eu3 = 1568 vic = 3021 }		# Corner Seamounts -> Corner Seamounts
+link = { eu3 = 1570 vic = 3022 }		# New England Seamounts -> New England Seamounts
+link = { eu3 = 1569 vic = 3023 }		# Sable Island Bank -> Sable Island Bank
+link = { eu3 = 1571 vic = 3024 }		# Blake Plateau -> Blake Plataeu
+link = { eu3 = 1572 vic = 3025 }		# West Bermuda Sea -> West Bermuda Sea
+link = { eu3 = 1573 vic = 3026 }		# East Bermuda Sea -> East Bermuda Sea
+link = { eu3 = 1575 vic = 3028 }		# Northern Guiana Basin -> Northern Guiana Basin
+link = { eu3 = 1576 vic = 3029 }		# Guiana Basin -> Guiana Basin
+link = { eu3 = 1577 vic = 3030 }		# Southern Guiana Basin -> Southern Guiana Basin
+link = { eu3 = 1578 vic = 3031 }		# Canary Approach -> Canary Approach
+link = { eu3 = 1579 vic = 3032 }		# Cap Verde Approach -> Cap Verde Approach
+link = { eu3 = 1584 vic = 3037 }		# Romanche Gap -> Romanche Gap
+link = { eu3 = 1585 vic = 3038 }		# East Guinea Basin -> East Guinea Basin
+link = { eu3 = 1586 vic = 3039 }		# West Guinea Basin -> West Guinea Basin
+link = { eu3 = 1587 vic = 3040 }		# Coast of Falklands -> Coast of Falklands
+link = { eu3 = 1588 vic = 3041 }		# New Georgia Islands -> New Georgia Islands
+link = { eu3 = 1595 vic = 3048 }		# East of Magellans -> East of Magellans
+link = { eu3 = 1610 vic = 3063 }		# Cape of Storms -> Cape of Storms
+link = { eu3 = 1611 vic = 3064 }		# Gulf of Bengal -> Gulf of Bengal
+link = { eu3 = 1612 vic = 3065 }		# Northern Bay of Bengal -> Northen Bay of Bengal
+link = { eu3 = 1613 vic = 3066 }		# Southern Bay of Bengal -> Southern Bay of Bengal
+link = { eu3 = 1614 vic = 3067 }		# Ceylon Sea -> Ceylon Sea
+link = { eu3 = 1615 vic = 3068 }		# Coast of Maldives -> Coast of Maldives
+link = { eu3 = 1648 vic = 3101 }		# Lake Tchad -> Lake Tchad
+link = { eu3 = 1649 vic = 3102 }		# Lake Victoria -> Lake Victoria
+link = { eu3 = 1650 vic = 3103 }		# Lake Tangayika -> Lake Tangayika
+link = { eu3 = 1651 vic = 3104 }		# Lake Malawi -> Lake Malawi
+link = { eu3 = 1653 vic = 3106 }		# Lake Balchasj -> Lake Balchasj
+link = { eu3 = 1654 vic = 3107 }		# Lake Bajkal -> Lake Bajkal
+link = { eu3 = 1656 vic = 3109 }		# Lake Titicaca -> Lake Titicaca
+link = { eu3 = 1657 vic = 3110 }		# Lake Nicaragua -> Lake Nicaragua
+link = { eu3 = 1659 vic = 3112 }		# Lake Ontario -> Lake Ontario
+link = { eu3 = 1660 vic = 3113 }		# Lake Erie -> Lake Erie
+link = { eu3 = 1661 vic = 3114 }		# Lake Huron -> Lake Huron
+link = { eu3 = 1662 vic = 3115 }		# Lake Michigan -> Lake Michigan
+link = { eu3 = 1663 vic = 3116 }		# Lake Superior -> Lake Superior
+link = { eu3 = 1664 vic = 3117 }		# Lake Nipigon -> Lake Nipigon
+link = { eu3 = 1665 vic = 3118 }		# Lake Winnipeg -> Lake Winnipeg
+link = { eu3 = 1697 vic = 3150 }		# Coast of Hawaii -> Coast of Hawaii
+link = { eu3 = 1436 vic = 3197 }		# Philippine Sea -> Southern Pacific #27
+link = { eu3 = 1655 vic = 3235 }		# Poyang Lake -> Lake Poyang
+
 }
