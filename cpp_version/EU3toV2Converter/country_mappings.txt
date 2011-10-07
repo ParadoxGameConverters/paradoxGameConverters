@@ -255,11 +255,12 @@ link = { eu3 = TYR vic = SWE vic = FIN vic = DEN vic = NOR vic = IRE vic = SCO v
 # Eastern Europe
 
 link = { eu3 = ATH vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = CRE vic = GRE }                        #Athens => Crete, Greece
-link = { eu3 = KNI vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = CRE vic = CYP }                        #Knights => Crete, Cyprus
-link = { eu3 = MOE vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = GRE }                                  #Morea => Greece, Byzantium
+link = { eu3 = KNI vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = ION vic = CRE vic = CYP }              #Knights => Crete, Cyprus, Ionian Islands
+link = { eu3 = MOE vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = GRE }                                  #Morea => Greece
 link = { eu3 = NAX vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = GRE vic = CRE vic = CYP }              #Naxos => Greece, Crete, Cyprus
 link = { eu3 = RAG vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = LOM vic = LUC vic = TRE }              #Ragusa => Lombardia, Lucca, Trieste
-link = { eu3 = ACH vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = GRE vic = CRE vic = CYP }              #Principality of Achaea => Greece, Crete, Cyprus, Byzantium
+link = { eu3 = ACH vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = CYP vic = CRE vic = GRE }              #Principality of Achaea => Greece, Crete, Cyprus
+link = { eu3 = EPI vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = CRE vic = GRE vic = ION }              #Epirus => Ionian Islands, Greece, Crete
 link = { eu3 = TEU vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = EST vic = LAT vic = PRU }              # Teutonic Order => Prussia, Latvia, Estonia
 link = { eu3 = LIV vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = EST vic = PRU vic = LIT vic = LAT }    # Livonian Order => Latvia, Lithuania, Prussia, Estonia
 link = { eu3 = KUR vic = SER vic = CRO vic = LAT vic = LIT vic = PER vic = AZB vic = ARM vic = SLV vic = UKR vic = CRI vic = TUR vic = SLO  vic = EST vic = PRU vic = LAT }              # Kurland => Latvia, Prussia, Estonia

@@ -288,3 +288,4 @@ Revision	Version Updated		Log Message
 266		C++			Additional country mapping improvements.
 267		C++			Record the correct country tag in the capital mapping section of the log.  Failing to find EU3 nations for diplomatic agreements is not an error.
 268		C++			Add many water province mappings, and allow navies to spawn in them.
+269		C++			Map DW province 1853 (Kozani).  Give Epirus a country mapping.
