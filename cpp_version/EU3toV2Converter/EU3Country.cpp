@@ -65,6 +65,16 @@ void EU3Country::init(Object* obj)
 		prestige = -100.0;
 	}
 
+	vector<Object*> stabilityObj = obj->getValue("stability");
+	if (stabilityObj.size() > 0)
+	{
+		stability = atof( stabilityObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		stability = -3.0;
+	}
+
 	vector<Object*> techsObj = obj->getValue("technology");
 	if (techsObj.size() > 0)
 	{
@@ -603,6 +613,12 @@ void EU3Country::setPrestige(double newPrestige)
 double EU3Country::getPrestige()
 {
 	return prestige;
+}
+
+
+double EU3Country::getStability()
+{
+	return stability;
 }
 
 

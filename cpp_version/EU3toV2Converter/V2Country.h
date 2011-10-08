@@ -37,6 +37,7 @@ class V2Country
 		void					setCultureTech(double);
 		inventionStatus	getInventionState(inventionType);
 		void					addPrestige(double);
+		void					addPlurality(double);
 		void					setGovernment(string);
 		void					addRelations(V2Relations);
 		V2Relations*			getRelations(string);
@@ -70,6 +71,7 @@ class V2Country
 		int					sourceCountryIndex;
 		string				countryFile;
 		double				prestige;
+		double				plurality;
 		vector<string>		techs;
 		inventionStatus	inventions[naval_exercises];
 		string				government;

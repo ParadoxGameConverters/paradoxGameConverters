@@ -9,6 +9,8 @@ V2Pop::V2Pop()
 {
 	supportedRegiments = 0;
 	size = 0;
+	consciousness = 0.0;
+	militancy = 0.0;
 
 	id = nextId;
 	nextId++;
@@ -38,6 +40,18 @@ void V2Pop::setCulture(string newCulture)
 void V2Pop::setReligion(string newReligion)
 {
 	religion = newReligion;
+}
+
+
+void V2Pop::setConsciousness(double con)
+{
+	consciousness = con;
+}
+
+
+void V2Pop::setMilitancy(double mil)
+{
+	militancy = mil;
 }
 
 
@@ -91,6 +105,8 @@ void V2Pop::output(FILE* output)
 	fprintf(output, "		size=%d\n", size);
 	fprintf(output, "		%s=%s\n", culture.c_str(), religion.c_str());
 	fprintf(output, "		money=%f\n", money);
+	fprintf(output, "		con=%f\n", consciousness);
+	fprintf(output, "		mil=%f\n", militancy);
 	fprintf(output, "	}\n");
 }
 

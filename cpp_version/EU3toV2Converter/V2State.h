@@ -20,7 +20,7 @@ class V2State
 		int		getCraftsmenPerFactory();
 		int		getID();
 		int		getFactoryCount();
-		void	setupPops(EU3World& sourceWorld);
+		void	setupPops(EU3World& sourceWorld, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
 		int		getStatePopulation();
 	private:
 		int						id;

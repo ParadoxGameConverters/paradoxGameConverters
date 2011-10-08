@@ -92,12 +92,13 @@ int V2State::getStatePopulation()
 }
 
 
-void V2State::setupPops(EU3World& sourceWorld)
+void V2State::setupPops(EU3World& sourceWorld, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier)
 {
 	int statePopulation = getStatePopulation();
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
 		(*itr)->doCreatePops((itr == provinces.begin()), statePopulation, sourceWorld);
+		(*itr)->setPopConMil(primaryCulture, acceptedCultures, religion, nationalConModifier, nationalMilModifier);
 	}
 }
 

@@ -399,6 +399,48 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 }
 
 
+void V2Province::setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier)
+{
+	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		double con = nationalConModifier;
+		double mil = nationalMilModifier;
+		// culture penalty - none if national culture
+		if (itr->getCulture() != nationalCulture)
+		{
+			vector<string>::iterator accepted = std::find(acceptedCultures.begin(), acceptedCultures.end(), itr->getCulture());
+			if (accepted == acceptedCultures.end())
+			{
+				// non-accepted - 1 con + 1 mil
+				mil += 1.0;
+				con += 1.0;
+			}
+			else
+			{
+				// accepted - 0.5 con
+				con += 0.5;
+			}
+		}
+		// religion penalty - none if national religion
+		if (itr->getReligion() != nationalReligion)
+		{
+			// TODO - should incorporate tolerance (not easily knowable), perhaps on a 0-1 or 0-2 scale
+			mil += 1.0;
+			con += 1.0;
+		}
+		// TODO - province decisions, province events, buildings, nationalism
+
+		// cap at [0.0, 10.0]
+		con = max(min(con, 10.0), 0.0);
+		mil = max(min(mil, 10.0), 0.0);
+
+		// make it so
+		itr->setConsciousness(con);
+		itr->setMilitancy(mil);
+	}
+}
+
+
 int V2Province::getOldPopulation() const
 {
 	return oldPopulation;

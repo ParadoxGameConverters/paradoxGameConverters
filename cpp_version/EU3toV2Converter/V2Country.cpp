@@ -2,6 +2,8 @@
 #include "tempFuncs.h"
 #include "Log.h"
 #include <algorithm>
+#include <math.h>
+#include <float.h>
 
 
 void V2Country::init(string newTag, string newCountryFile, vector<int> newParties)
@@ -14,6 +16,8 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	{
 		inventions[i] = illegal;
 	}
+
+	plurality = 0.0;
 }
 
 
@@ -120,6 +124,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
+	fprintf(output, "	plurality=%f", plurality);
 	outputCountryHeader2(output);
 	for (vector<V2Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
@@ -1594,8 +1599,25 @@ void V2Country::addLeader(V2Leader leader)
 
 void V2Country::setupPops(EU3World& sourceWorld)
 {
+	EU3Country oldCountry = sourceWorld.getCountries()[sourceCountryIndex];
+
+	// calculate NATIONAL con and mil modifiers (province modifiers are done in V2Province::setPopConMil)
+	double con = 0.0;
+	double mil = 0.0;
+	// 0 to 3 points of mil from stability, based on a similar discontinuous function to that used by EU3 to calc revolt risk
+	double stability = oldCountry.getStability();
+	if (stability > -FLT_EPSILON) // positive stability: 3 stab -> 0 mil ==> 0 stab -> 1 mil
+		mil += fabs(stability - 3.0) / 3.0;
+	else // negative stability: 0 stab -> 1 mil ==> -3 stab -> 3 mil
+		mil += fabs(stability) * 2.0 / 3.0 + 1.0;
+	// 0 to 2 points of con from serfdom<->free subjects
+	double serf_fs = oldCountry.getSerfdomFreesubjects();
+	con += (serf_fs * 2.0 / 5.0) + 1.0;
+	// TODO: national decisions, national events, war exhaustion
+
+	// create the pops
 	for (vector<V2State>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
-		itr->setupPops(sourceWorld);
+		itr->setupPops(sourceWorld, primaryCulture, acceptedCultures, religion, con, mil);
 	}
 }

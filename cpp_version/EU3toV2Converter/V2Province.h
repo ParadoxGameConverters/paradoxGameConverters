@@ -37,6 +37,7 @@ class V2Province {
 		vector<V2Pop>	getPops(string type);
 		void		addPopDemographic(V2Demographic d);
 		void		doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld);
+		void		setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier);
 		void		setCoastal(bool coastal);
 		bool		isCoastal();
 		bool		isLand();
