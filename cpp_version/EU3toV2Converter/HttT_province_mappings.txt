@@ -1727,7 +1727,7 @@ link = { eu3 = 1430 vic = 2883 }		# Coral Sea -> Coral Sea
 link = { eu3 = 1432 vic = 2885 }		# Solomon Sea -> Solomon Sea
 link = { eu3 = 1433 vic = 2886 }		# Nauru Island -> Nauru Island
 link = { eu3 = 1434 vic = 2887 }		# Melanesia Sea -> Melanesia Sea
-link = { eu3 = 1435 vic = 2889 }		# Yap Islands -> Yap Islands
+link = { eu3 = 1435 vic = 2888 }		# Micronesia Sea -> Micronesia Sea
 link = { eu3 = 1438 vic = 2891 }		# Tinian Sea -> Tinian Sea
 link = { eu3 = 1439 vic = 2892 }		# Iwo Jima Sea -> Iwo Jima Sea
 link = { eu3 = 1440 vic = 2893 }		# Taihei Ocean -> Taihei Ocean
@@ -1896,7 +1896,7 @@ link = { eu3 = 1663 vic = 3116 }		# Lake Superior -> Lake Superior
 link = { eu3 = 1664 vic = 3117 }		# Lake Nipigon -> Lake Nipigon
 link = { eu3 = 1665 vic = 3118 }		# Lake Winnipeg -> Lake Winnipeg
 link = { eu3 = 1697 vic = 3150 }		# Coast of Hawaii -> Coast of Hawaii
-link = { eu3 = 1436 vic = 3197 }		# Philippine Sea -> Southern Pacific #27
+link = { eu3 = 1436 vic = 2889 }		# Yap Islands -> Yap Islands
 link = { eu3 = 1655 vic = 3235 }		# Poyang Lake -> Lake Poyang
 
 }
