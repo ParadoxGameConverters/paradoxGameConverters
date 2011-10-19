@@ -295,3 +295,4 @@ Revision	Version Updated		Log Message
 273		N/A			Clean up some stray files
 274		ProvinceMapper		Introduce Province Mapper tool
 275		ProvinceMapper		Handle new mappings files a bit better
+276		ProvinceMapper		Make release builds work
