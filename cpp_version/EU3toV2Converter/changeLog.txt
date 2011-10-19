@@ -292,3 +292,5 @@ Revision	Version Updated		Log Message
 270		C++			Set some starting CON (from serfdom/free-subj, culture, religion) and MIL (from stability, culture, religion) for pops.  Eventually need other factors (decisions, tolerance, buildings, modifiers) incorporated.
 271		C++			Allow Mantua to map to Lombardia.
 272		C++			Fix Yap Islands/Micronesia Sea mappings.
+273		N/A			Clean up some stray files
+274		C#			Introduce Province Mapper tool
