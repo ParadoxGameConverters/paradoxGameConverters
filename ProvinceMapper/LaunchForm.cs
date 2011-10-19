@@ -79,12 +79,17 @@ namespace ProvinceMapper
             Program.targetMap = new MapReader(targetMap, Program.targetDef.provinces, PushStatusUpdate);
 
             // read existing mappings (if any)
-            if (tbMappingsFile.Text.Trim() != String.Empty)
+            string mappingFile = tbMappingsFile.Text.Trim();
+            if (mappingFile != String.Empty && File.Exists(mappingFile))
             {
                 lblStatus.Text = "Parse Existing Mappings";
                 Application.DoEvents();
-                Program.mappings = new MappingReader(tbMappingsFile.Text, tbSourceTag.Text,
+                Program.mappings = new MappingReader(mappingFile, tbSourceTag.Text,
                     tbDestTag.Text, Program.sourceDef.provinces, Program.targetDef.provinces, PushStatusUpdate);
+            }
+            else
+            {
+                Program.mappings = new MappingReader(mappingFile, tbSourceTag.Text, tbDestTag.Text);
             }
         }
 

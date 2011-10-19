@@ -15,6 +15,13 @@ namespace ProvinceMapper
 
         private string path;
 
+        public MappingReader(string _path, string _srcTag, string _destTag)
+        {
+            srcTag = _srcTag;
+            destTag = _destTag;
+            path = _path;
+        }
+
         public MappingReader(string _path, string _srcTag, string _destTag, List<Province> srcProvs, List<Province> destProvs, StatusUpdate su)
         {
             srcTag = _srcTag;
