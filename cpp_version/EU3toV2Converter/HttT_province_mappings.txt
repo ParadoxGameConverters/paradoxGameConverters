@@ -1560,7 +1560,7 @@ link = { eu3 = 1259 vic = 2712 }		# Kattegat -> Kattegat
 link = { eu3 = 1260 vic = 2713 }		# Peipsi Järv -> Peipsi Järv
 link = { eu3 = 1261 vic = 2714 }		# Ladoga -> Ladoga
 link = { eu3 = 1262 vic = 2715 }		# Onega -> Onega
-link = { eu3 = 1652 vic = 2716 }		# White Sea -> White Sea
+link = { eu3 = 1652 eu3 = 1263 vic = 2716 }	# White Sea, Barents Sea -> White Sea
 link = { eu3 = 1264 vic = 2717 }		# Lofoten Sea -> Lofoten Sea
 link = { eu3 = 1265 vic = 2718 }		# Northern Norwegian Sea -> Northern Norwegian Sea
 link = { eu3 = 1266 vic = 2719 }		# Southern Norwegian Sea -> Southern Norwegian Sea
@@ -1627,7 +1627,7 @@ link = { eu3 = 1326 vic = 2779 }		# Caspian Sea -> Caspian Sea
 link = { eu3 = 1327 vic = 2780 }		# Aral Sea -> Aral Sea
 link = { eu3 = 1328 vic = 2781 }		# Gulf of Suez -> Gulf of Suez
 link = { eu3 = 1329 vic = 2782 }		# Red Sea -> Red Sea
-link = { eu3 = 1330 vic = 2784 }		# Bab el Mandeb -> Bal el Mandeb
+link = { eu3 = 1330 vic = 2783 }		# Straits of Obokk -> Straits of Obokk
 link = { eu3 = 1333 vic = 2786 }		# Mascate Coast -> Mascate Coast
 link = { eu3 = 1334 vic = 2787 }		# Straits of Hormuz -> Straits of Hormuz
 link = { eu3 = 1335 vic = 2788 }		# Persian Gulf -> Persian Gulf
@@ -1867,10 +1867,10 @@ link = { eu3 = 1575 vic = 3028 }		# Northern Guiana Basin -> Northern Guiana Bas
 link = { eu3 = 1576 vic = 3029 }		# Guiana Basin -> Guiana Basin
 link = { eu3 = 1577 vic = 3030 }		# Southern Guiana Basin -> Southern Guiana Basin
 link = { eu3 = 1578 vic = 3031 }		# Canary Approach -> Canary Approach
-link = { eu3 = 1579 vic = 3032 }		# Cap Verde Approach -> Cap Verde Approach
+link = { eu3 = 1579 vic = 3032 vic = 3033 }	# Cap Verde Approach -> Cap Verde Approach, Central Atlantic #1
 link = { eu3 = 1584 vic = 3037 }		# Romanche Gap -> Romanche Gap
-link = { eu3 = 1585 vic = 3038 }		# East Guinea Basin -> East Guinea Basin
-link = { eu3 = 1586 vic = 3039 }		# West Guinea Basin -> West Guinea Basin
+link = { eu3 = 1585 vic = 3038 vic = 3039 }	# East Guinea Basin -> East Guinea Basin, West Guinea Basin
+link = { eu3 = 1586 vic = 3203 vic = 3054 }	# West Guinea Basin -> Western Atlantic #10, Eastern Atlantic #2
 link = { eu3 = 1587 vic = 3040 }		# Coast of Falklands -> Coast of Falklands
 link = { eu3 = 1588 vic = 3041 }		# New Georgia Islands -> New Georgia Islands
 link = { eu3 = 1595 vic = 3048 }		# East of Magellans -> East of Magellans
@@ -1898,5 +1898,140 @@ link = { eu3 = 1665 vic = 3118 }		# Lake Winnipeg -> Lake Winnipeg
 link = { eu3 = 1697 vic = 3150 }		# Coast of Hawaii -> Coast of Hawaii
 link = { eu3 = 1436 vic = 2889 }		# Yap Islands -> Yap Islands
 link = { eu3 = 1655 vic = 3235 }		# Poyang Lake -> Lake Poyang
+link = { eu3 = 1574 vic = 3027 vic = 3209 }	# Some Funny Seaname -> Some Funny Seaname, Central Atlantic #13
+link = { eu3 = 1583 vic = 3210 vic = 3036 vic = 3208 }	# Central Atlantic #4 -> Central Atlantic #14, Central Atlantic #4, Central Atlantic #12
+link = { eu3 = 1582 vic = 3211 vic = 3035 }	# Central Atlantic #3 -> Central Atlantic #15, Central Atlantic #3
+link = { eu3 = 1580 vic = 3237 }	# Central Atlantic #1 -> Northern Atlantic #2
+link = { eu3 = 1581 vic = 3034 vic = 3207 vic = 3206 vic = 3205 }	# Central Atlantic #2 -> Central Atlantic #2, Central Atlantic #11, Central Atlantic #10, Central Atlantic #9
+link = { eu3 = 1597 vic = 3051 vic = 3053 }	# Central Atlantic #6 -> Central Atlantic #7, Eastern Atlantic #1
+link = { eu3 = 1596 vic = 3049 vic = 3050 }	# Central Atlantic #5 -> Central Atlantic #5, Central Atlantic #6
+link = { eu3 = 1591 vic = 3044 }	# Western Atlantic #3 -> Western Atlantic #3
+link = { eu3 = 1590 vic = 3043 }	# Western Atlantic #2 -> Western Atlantic #2
+link = { eu3 = 1589 vic = 3042 }	# Western Atlantic #1 -> Western Atlantic #1
+link = { eu3 = 1598 vic = 3052 vic = 3204 vic = 3202 }	# Central Atlantic #7 -> Central Atlantic #8, Western Atlantic #11, Western Atlantic #9
+link = { eu3 = 1592 vic = 3045 }	# Western Atlantic #4 -> Western Atlantic #4
+link = { eu3 = 1599 vic = 3058 }	# Central Atlantic #8 -> Eastern Atlantic #6
+link = { eu3 = 1600 vic = 3057 }	# Eastern Atlantic #1 -> Eastern Atlantic #5
+link = { eu3 = 1601 vic = 3055 }	# Eastern Atlantic #2 -> Eastern Atlantic #3
+link = { eu3 = 1593 vic = 3201 }	# Western Atlantic #5 -> Western Atlantic #8
+link = { eu3 = 1606 vic = 3046 }	# Southern Atlantic #1 -> Western Atlantic #5
+link = { eu3 = 1605 vic = 3059 }	# Eastern Atlantic #6 -> Southern Atlantic #1
+link = { eu3 = 1604 vic = 3061 }	# Eastern Atlantic #5 -> Southern Atlantic #3
+link = { eu3 = 1602 vic = 3062 }	# Eastern Atlantic #3 -> Southern Atlantic #4
+link = { eu3 = 1603 vic = 3056 }	# Eastern Atlantic #4 -> Eastern Atlantic #4
+link = { eu3 = 1594 vic = 3047 }	# Western Atlantic #6 -> Western Atlantic #6
+link = { eu3 = 1607 eu3 = 1608 vic = 3200 }	# Southern Atlantic #2, Southern Atlantic #3 -> Western Atlantic #7
+link = { eu3 = 1609 vic = 3060 }	# Southern Atlantic #4 -> Southern Atlantic #2
+link = { eu3 = 1331 vic = 2784 }	# Bal el Mandeb -> Bal el Mandeb
+link = { eu3 = 1332 vic = 2785 }	# Coast of Mascate -> Coast of Mascate
+link = { eu3 = 1437 vic = 2890 }	# Mariana Islands -> Mariana Islands
+link = { eu3 = 1402 vic = 2855 }	# Philipine Sea -> Philipine Sea
+link = { eu3 = 1616 vic = 3069 }	# Indian Ocean #1 -> Indian Ocean #1
+link = { eu3 = 1618 vic = 3071 }	# Indian Ocean #3 -> Indian Ocean #3
+link = { eu3 = 1619 vic = 3072 }	# Indian Ocean #4 -> Indian Ocean #4
+link = { eu3 = 1622 vic = 3215 vic = 3212 vic = 3214 vic = 3213 }	# Indian Ocean #7 -> Indian Ocean #36, Indian Ocean #37, Indian Ocean #35, Indian Ocean #34
+link = { eu3 = 1617 vic = 3070 }	# Indian Ocean #2 -> Indian Ocean #2
+link = { eu3 = 1620 vic = 3073 }	# Indian Ocean #5 -> Indian Ocean #5
+link = { eu3 = 1621 vic = 3074 }	# Indian Ocean #6 -> Indian Ocean #6
+link = { eu3 = 1623 vic = 3076 }	# Indian Ocean #8 -> Indian Ocean #8
+link = { eu3 = 1624 vic = 3075 vic = 3077 }	# Indian Ocean #9 -> Indian Ocean #7, Indian Ocean #9
+link = { eu3 = 1642 vic = 3095 }	# Indian Ocean #27 -> Indian Ocean #27
+link = { eu3 = 1641 vic = 3094 }	# Indian Ocean #26 -> Indian Ocean #26
+link = { eu3 = 1643 vic = 3091 vic = 3096 }	# Indian Ocean #28 -> Indian Ocean #23, Indian Ocean #28
+link = { eu3 = 1644 vic = 3097 }	# Indian Ocean #29 -> Indian Ocean #29
+link = { eu3 = 1645 vic = 3093 }	# Indian Ocean #30 -> Indian Ocean #25
+link = { eu3 = 1646 vic = 3090 }	# Indian Ocean #31 -> Indian Ocean #22
+link = { eu3 = 1647 vic = 3100 }	# Indian Ocean #32 -> Indian Ocean #32
+link = { eu3 = 1625 vic = 3078 }	# Indian Ocean #10 -> Indian Ocean #10
+link = { eu3 = 1626 vic = 3079 }	# Indian Ocean #11 -> Indian Ocean #11
+link = { eu3 = 1627 vic = 3080 }	# Indian Ocean #12 -> Indian Ocean #12
+link = { eu3 = 1630 vic = 3083 }	# Indian Ocean #15 -> Indian Ocean #15
+link = { eu3 = 1629 vic = 3082 }	# Indian Ocean #14 -> Indian Ocean #14
+link = { eu3 = 1628 vic = 3081 }	# Indian Ocean #13 -> Indian Ocean #13
+link = { eu3 = 1636 vic = 3089 }	# Indian Ocean #21 -> Indian Ocean #21
+link = { eu3 = 1631 vic = 3084 }	# Indian Ocean #16 -> Indian Ocean #16
+link = { eu3 = 1637 vic = 3099 }	# Indian Ocean #22 -> Indian Ocean #31
+link = { eu3 = 1632 vic = 3085 }	# Indian Ocean #17 -> Indian Ocean #17
+link = { eu3 = 1638 vic = 3098 }	# Indian Ocean #23 -> Indian Ocean #30
+link = { eu3 = 1633 vic = 3086 vic = 3105 }	# Indian Ocean #18 -> Indian Ocean #18, Indian Ocean #33
+link = { eu3 = 1640 vic = 3092 }	# Indian Ocean #25 -> Indian Ocean #24
+link = { eu3 = 1639 vic = 3087 }	# Indian Ocean #24 -> Indian Ocean #19
+link = { eu3 = 1634 vic = 3088 }	# Indian Ocean #19 -> Indian Ocean #20
+link = { eu3 = 1635 vic = 3226 }	# Indian Ocean #20 -> Indian Ocean #38
+link = { eu3 = 1425 vic = 2878 vic = 3220 }	# Cape Farwell -> Cape Farwell, Southern Pacific #34
+link = { eu3 = 1431 vic = 3192 }	# Gilbert Sea -> Southern Pacific #22
+link = { eu3 = 1706 vic = 3248 vic = 3198 }	# Eastern Pacific #7 -> West Magellan Strait, Southern Pacific #28
+link = { eu3 = 1682 vic = 3135 }	# Northern Pacific #6 -> Northern Pacific #6
+link = { eu3 = 1684 vic = 3137 }	# Northern Pacific #8 -> Northern Pacific #8
+link = { eu3 = 1687 vic = 3140 vic = 3147 }	# Central Pacific #1 -> Central Pacific #1, Central Pacific #8
+link = { eu3 = 1694 vic = 3141 vic = 3148 vic = 3151 }	# Central Pacific #8 -> Central Pacific #2, Central Pacific #9, Central Pacific #11
+link = { eu3 = 1695 vic = 3154 vic = 3155 }	# Central Pacific #9 -> Eastern Pacific #1, Eastern Pacific #2
+link = { eu3 = 1701 vic = 3156 }	# Eastern Pacific #2 -> Eastern Pacific #3
+link = { eu3 = 1700 vic = 3157 }	# Eastern Pacific #1 -> Eastern Pacific #4
+link = { eu3 = 1702 vic = 3158 }	# Eastern Pacific #3 -> Eastern Pacific #5
+link = { eu3 = 1703 vic = 3171 }	# Eastern Pacific #4 -> Southern Pacifc #1
+link = { eu3 = 1704 vic = 3196 }	# Eastern Pacific #5 -> Southern Pacific #26
+link = { eu3 = 1705 vic = 3193 vic = 3199 }	# Eastern Pacific #6 -> Southern Pacific #23, Southern Pacific #29
+link = { eu3 = 1718 vic = 3195 vic = 3245 }	# Southern Pacifc #2 -> Southern Pacific #25, Southern Pacific #39
+link = { eu3 = 1717 vic = 3194 }	# Southern Pacifc #1 -> Southern Pacific #24
+link = { eu3 = 1710 vic = 3166 }	# Eastern Pacific #11 -> Eastern Pacific #13
+link = { eu3 = 1709 vic = 3172 }	# Eastern Pacific #10 -> Southern Pacific #2
+link = { eu3 = 1708 vic = 3163 }	# Eastern Pacific #9 -> Eastern Pacific #10
+link = { eu3 = 1707 vic = 3162 }	# Eastern Pacific #8 -> Eastern Pacific #9
+link = { eu3 = 1696 vic = 3160 vic = 3161 }	# Central Pacific #10 -> Eastern Pacific #7, Eastern Pacific #8
+link = { eu3 = 1716 vic = 3165 }	# Eastern Pacific #17 -> Eastern Pacific #12
+link = { eu3 = 1711 vic = 3174 }	# Eastern Pacific #12 -> Southern Pacific #4
+link = { eu3 = 1712 vic = 3190 }	# Eastern Pacific #13 -> Southern Pacific #20
+link = { eu3 = 1713 vic = 3188 }	# Eastern Pacific #14 -> Southern Pacific #18
+link = { eu3 = 1730 vic = 3243 }	# Southern Pacifc #14 -> Southern Pacific #38
+link = { eu3 = 1719 vic = 3189 }	# Southern Pacifc #3 -> Southern Pacific #19
+link = { eu3 = 1678 vic = 3130 }	# Northern Pacific #2 -> Northern Pacific #1
+link = { eu3 = 1681 vic = 3134 }	# Northern Pacific #5 -> Northern Pacific #5
+link = { eu3 = 1680 vic = 3131 vic = 3132 }	# Northern Pacific #4 -> Northern Pacific #2, Northern Pacific #3
+link = { eu3 = 1686 vic = 3138 vic = 3111 }	# Northern Pacific #10 -> Northern Pacific #9, Northern Pacific #10
+link = { eu3 = 1685 vic = 3139 vic = 3142 }	# Northern Pacific #9 -> Northern Pacific #10, Central Pacific #3
+link = { eu3 = 1688 vic = 3146 }	# Central Pacific #2 -> Central Pacific #7
+link = { eu3 = 1693 vic = 3149 }	# Central Pacific #7 -> Central Pacific #10
+link = { eu3 = 1689 vic = 3145 }	# Central Pacific #3 -> Central Pacific #6
+link = { eu3 = 1692 vic = 3152 }	# Central Pacific #6 -> Central Pacific #12
+link = { eu3 = 1691 vic = 3153 }	# Central Pacific #5 -> Central Pacific #13
+link = { eu3 = 1690 vic = 3144 }	# Central Pacific #4 -> Central Pacific #5
+link = { eu3 = 1683 vic = 3143 }	# Northern Pacific #7 -> Central Pacific #4
+link = { eu3 = 1679 vic = 3136 }	# Northern Pacific #3 -> Northern Pacific #7
+link = { eu3 = 1699 vic = 3247 }	# Central Pacific #12 -> West Hawaii
+link = { eu3 = 1714 vic = 3169 }	# Eastern Pacific #15 -> Eastern Pacific #16
+link = { eu3 = 1715 vic = 3167 vic = 3164 vic = 3168 }	# Eastern Pacific #16 -> Eastern Pacific #14, Eastern Pacific #11, Eastern Pacific #15
+link = { eu3 = 1736 vic = 3173 }	# Southern Pacifc #20 -> Southern Pacific #3
+link = { eu3 = 1735 vic = 3176 }	# Southern Pacifc #19 -> Southern Pacific #6
+link = { eu3 = 1734 eu3 = 1733 vic = 3177 }	# Southern Pacifc #18, Southern Pacifc #17 -> Southern Pacific #7
+link = { eu3 = 1698 vic = 3178 }	# Central Pacific #11 -> Southern Pacific #8
+link = { eu3 = 1740 vic = 3181 }	# Southern Pacifc #25 -> Southern Pacific #11
+link = { eu3 = 1737 vic = 3175 }	# Southern Pacifc #22 -> Southern Pacific #5
+link = { eu3 = 1728 eu3 = 1738 vic = 3170 }	# Southern Pacifc #12, Southern Pacifc #23 -> Eastern Pacific #16
+link = { eu3 = 1726 vic = 3179 }	# Southern Pacifc #10 -> Southern Pacific #9
+link = { eu3 = 1739 eu3 = 1741 vic = 3180 }	# Southern Pacifc #24, Southern Pacifc #26 -> Southern Pacific #10
+link = { eu3 = 1731 vic = 3187 }	# Southern Pacifc #15 -> Southern Pacific #17
+link = { eu3 = 1729 vic = 3182 }	# Southern Pacifc #13 -> Southern Pacific #12
+link = { eu3 = 1720 vic = 3186 }	# Southern Pacifc #4 -> Southern Pacific #16
+link = { eu3 = 1727 vic = 3159 }	# Southern Pacifc #11 -> Eastern Pacific #6
+link = { eu3 = 1721 vic = 3183 }	# Southern Pacifc #5 -> Southern Pacific #13
+link = { eu3 = 1722 vic = 3185 vic = 3184 }	# Southern Pacifc #6 -> Southern Pacific #15, Southern Pacific #14
+link = { eu3 = 1724 vic = 3219 }	# Southern Pacifc #8 -> Southern Pacific #33
+link = { eu3 = 1723 vic = 3216 }	# Southern Pacifc #7 -> Southern Pacific #30
+link = { eu3 = 1725 vic = 3191 }	# Southern Pacifc #9 -> Southern Pacific #21
+link = { eu3 = 1732 vic = 3221 }	# Southern Pacifc #16 -> Southern Pacific #35
+link = { eu3 = 1445 vic = 2898 }	# Bering Sea -> Western Pacific #12
+link = { eu3 = 1666 vic = 3121 }	# Western Pacific #1 -> Western Pacific #3
+link = { eu3 = 1668 vic = 3119 }	# Western Pacific #3 -> Western Pacific #1
+link = { eu3 = 1667 vic = 3120 }	# Western Pacific #2 -> Western Pacific #2
+link = { eu3 = 1670 vic = 3122 }	# Western Pacific #5 -> Western Pacific #4
+link = { eu3 = 1669 vic = 3123 }	# Western Pacific #4 -> Western Pacific #5
+link = { eu3 = 1671 vic = 3124 }	# Western Pacific #6 -> Western Pacific #6
+link = { eu3 = 1672 vic = 3125 }	# Western Pacific #7 -> Western Pacific #7
+link = { eu3 = 1673 vic = 3126 vic = 3129 }	# Western Pacific #8 -> Western Pacific #8, Western Pacific #11
+link = { eu3 = 1675 vic = 3128 }	# Western Pacific #10 -> Western Pacific #10
+link = { eu3 = 1674 vic = 3127 vic = 3217 vic = 3223 vic = 3218 }	# Western Pacific #9 -> Western Pacific #9, Southern Pacific #31, Southern Pacific #37, Southern Pacific #32
+link = { eu3 = 1676 vic = 3197 vic = 3222 vic = 3244 }	# Western Pacific #11 -> Southern Pacific #27, Southern Pacific #36, Western Pacific #13
+link = { eu3 = 1677 vic = 3133 }	# Northern Pacific #1 -> Northern Pacific #4
 
 }
