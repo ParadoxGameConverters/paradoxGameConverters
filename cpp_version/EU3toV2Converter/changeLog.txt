@@ -297,3 +297,4 @@ Revision	Version Updated		Log Message
 275		ProvinceMapper		Handle new mappings files a bit better
 276		ProvinceMapper		Make release builds work
 277		C++			Add remaining sea and ocean mappings.
+278		C++			Parse country data with the parser instead of ad-hoc. Add a missing linebreak to output.

@@ -345,6 +345,7 @@ void V2World::init(string V2Loc)
 void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 {
 	int partiesIndex = 1;
+	const date FirstStartDate = date("1835.12.12");
 	while (!countriesMapping.eof())
 	{
 		string line;
@@ -363,31 +364,25 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 		int size				= line.find_last_of('\"') - start;
 		countryFileName	= line.substr(start, size);
 
-		int oldPartiesIndex = partiesIndex;
-		ifstream countryFile( (V2Loc + "\\common\\countries\\" + countryFileName).c_str());
 		vector<int> parties;
-		while (!countryFile.eof())
+		Object* countryData = doParseFile((V2Loc + "\\common\\countries\\" + countryFileName).c_str());
+
+		vector<Object*> partyData = countryData->getValue("party");
+		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 		{
-			string line2;
-			getline(countryFile, line2);
-			if (line2 == "party = {")
+			string name = (*itr)->getLeaf("name");
+			date start_date = date((*itr)->getLeaf("start_date"));
+			date end_date =  date((*itr)->getLeaf("end_date"));
+			// string ideology = (*itr)->getLeaf("ideology");
+
+			// party starts before our start date and doesn't end before our start date
+			if (start_date <= FirstStartDate && end_date >= FirstStartDate)
 			{
-				getline(countryFile, line2);	// party name
-				getline(countryFile, line2);	// start date
-				int start2	= line2.find_first_of('=') + 2;
-				int size2	= line2.size() - start2;
-				line2 = line2.substr(start2, size2);
-
-				int end = line2.find_first_of('.');
-				line2 = line2.substr(0, end);  // now should be just the year
-
-				if (atoi(line2.c_str()) <= 1836)
-				{
-					parties.push_back(partiesIndex);
-				}
-
-				partiesIndex++;
+				parties.push_back(partiesIndex);
+				// log("Party %s ID: %d\n", name.c_str(), partiesIndex);
 			}
+
+			partiesIndex++;
 		}
 
 		if (tag == "REB")

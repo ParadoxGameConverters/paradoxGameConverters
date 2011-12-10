@@ -124,7 +124,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
-	fprintf(output, "	plurality=%f", plurality);
+	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader2(output);
 	for (vector<V2Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{

@@ -39,12 +39,14 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	qi::rule<Iterator, SkipComment<Iterator> >	object;
 	qi::rule<Iterator, SkipComment<Iterator> >	objlist;
 	qi::rule<Iterator, string()>	str;
+	qi::rule<Iterator, string(), SkipComment<Iterator> >	tolleaf;
 
 	Parser() : Parser::base_type(assign)
 	{
 		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"'))] >> lit('"')];
+		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n"))];
 		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:"))];
-		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( skip[leaf] | str ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
+		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
 		object  = raw[lit('{') >> *(assign) >> *(iso8859_1::space) >> lit('}')];
 		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
 		assign  = raw[+((*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(iso8859_1::space) >> lit('=')
