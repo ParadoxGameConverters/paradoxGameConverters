@@ -1621,3 +1621,13 @@ void V2Country::setupPops(EU3World& sourceWorld)
 		itr->setupPops(sourceWorld, primaryCulture, acceptedCultures, religion, con, mil);
 	}
 }
+void V2Country::setLiteracy(double newLiteracy)
+{
+	literacy = newLiteracy;
+}
+
+
+double V2Country::getLiteracy()
+{
+	return literacy;
+}

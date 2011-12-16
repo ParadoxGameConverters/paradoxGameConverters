@@ -4,12 +4,12 @@
 
 #include "EU3World.h"
 #include "V2Pop.h"
-
-
+#include "EU3Country.h"
 struct V2Demographic {
 	string culture;
 	string religion;
 	double ratio;
+	double literacy;
 	int oldProvinceID;
 	string oldCountry;
 };

@@ -16,6 +16,7 @@ class V2Pop
 		void		setReligion(string);
 		void		setConsciousness(double);
 		void		setMilitancy(double);
+		void		setLiteracy(double);
 		int		getSize() const;
 		string	getType() const;
 		void		output(FILE*);
@@ -38,6 +39,7 @@ class V2Pop
 		double	money;
 		double	consciousness;
 		double	militancy;
+		double	literacy;
 };
 
 int getNextPopId();

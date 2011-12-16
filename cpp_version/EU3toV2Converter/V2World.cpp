@@ -615,6 +615,48 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 
 					newCountry.setDiploPoints(2.0 * sourceCountries[i].getDiplomats());
 					newCountry.setBadboy((25.0 / sourceCountries[i].getBadboyLimit()) * sourceCountries[i].getBadboy());
+
+					double innovationFactor	= 5 - sourceCountries[i].getInnovativeNarrowminded();
+					double serfdomFactor		= 5 + sourceCountries[i].getSerfdomFreesubjects();
+					double literacy = innovationFactor * serfdomFactor * 0.004;
+					if ( (sourceCountries[i].getReligion() == "Protestant") || (sourceCountries[i].getReligion() == "Confucianism") )
+					{
+						literacy += 0.05;
+					}
+					vector<string> ideas = sourceCountries[i].getNationalIdeas();
+					for (unsigned int k = 0; k < ideas.size(); k++)
+					{
+						if ( (ideas[k] == "bureaucracy") || (ideas[k] == "liberty_egalite_fraternity") || (ideas[k] == "church_attendance_duty") )
+						{
+							literacy += 0.04;
+						}
+					}
+					int numProvinces = 0;
+					int numUniversities = 0;
+					vector<EU3Province*> provinces = sourceCountries[i].getProvinces();
+					numUniversities = provinces.size();
+					for (unsigned int k = 0; k < provinces.size(); k++)
+					{
+						if (provinces[k]->hasBuilding("university"))
+						{
+							numUniversities++;
+						}
+					}
+					double universityBonus;
+					if (numProvinces > 0)
+					{
+						universityBonus = numUniversities / numProvinces;
+					}
+					else
+					{
+						universityBonus = 0;
+					}
+					if (universityBonus > 0.2)
+					{
+						universityBonus = 0.2;
+					}
+					literacy += universityBonus;
+					newCountry.setLiteracy(literacy);
 				}
 			}
 		}
@@ -778,6 +820,17 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								demographic.ratio = pritr->popRatio * provPopRatio;
 								demographic.oldCountry = oldOwner;
 								demographic.oldProvinceID = (*vitr)->getNum();
+								
+								V2Country* owner = getCountry(provinces[i].getOwner());
+								if ( (owner != NULL) && (owner->getTag() != "") )
+								{
+									demographic.literacy = owner->getLiteracy();
+								}
+								else
+								{
+									demographic.literacy = 0.1;
+								}
+
 								provinces[i].addPopDemographic(demographic);
 							}
 
@@ -1722,6 +1775,22 @@ void V2World::setupPops(EU3World& sourceWorld)
 	{
 		itr->setupPops(sourceWorld);
 	}
+}
+
+
+V2Country* V2World::getCountry(string tag)
+{
+	vector<V2Country>::iterator itr;
+
+	for (itr = countries.begin(); itr != countries.end(); itr++)
+	{
+		if ( 0 == (tag.compare(itr->getTag())) )
+		{
+			return &(*itr);
+		}
+	}
+
+	return NULL;
 }
 
 

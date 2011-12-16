@@ -55,6 +55,8 @@ class V2Country
 		void					setBadboy(double);
 		void					addLeader(V2Leader);
 		void					setupPops(EU3World& sourceWorld);
+		void					setLiteracy(double);
+		double				getLiteracy();
 
 	private:
 		void outputTech(FILE*);
@@ -86,6 +88,7 @@ class V2Country
 		double				diploPoints;
 		double				badboy;
 		vector<V2Leader>	leaders;
+		double				literacy;
 };
 
 

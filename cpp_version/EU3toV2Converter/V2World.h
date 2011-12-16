@@ -31,6 +31,7 @@ class V2World {
 		V2Province*			getProvinceForExpeditionaryArmy(const V2Country& country);
 		vector<int>			getPortProvinces(vector<int> provinces);
 		int					addRegimentToArmy(V2Army* army, RegimentCategory category, const inverseProvinceMapping& inverseProvinceMap, V2Country& country);
+		V2Country*			getCountry(string tag);
 		vector<V2Province>	provinces;
 		vector<V2Country>		countries;
 		vector<V2Country>		potentialCountries;

@@ -55,6 +55,12 @@ void V2Pop::setMilitancy(double mil)
 }
 
 
+void V2Pop::setLiteracy(double newLiteracy)
+{
+	literacy = newLiteracy;
+}
+
+
 int V2Pop::getSize() const
 {
 	return size;
@@ -107,6 +113,7 @@ void V2Pop::output(FILE* output)
 	fprintf(output, "		money=%f\n", money);
 	fprintf(output, "		con=%f\n", consciousness);
 	fprintf(output, "		mil=%f\n", militancy);
+	fprintf(output, "		literacy=%f\n", literacy);
 	fprintf(output, "	}\n");
 }
 
