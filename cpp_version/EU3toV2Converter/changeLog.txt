@@ -299,3 +299,4 @@ Revision	Version Updated		Log Message
 277		C++			Add remaining sea and ocean mappings.
 278		C++			Parse country data with the parser instead of ad-hoc. Add a missing linebreak to output.
 279		C++			Literacy
+280		C++			Initialize variable in log.cpp

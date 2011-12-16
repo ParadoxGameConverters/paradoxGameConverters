@@ -19,7 +19,7 @@ void initLog()
 
 int log(const char* format, ...)
 {
-	int numWritten;
+	int numWritten = 0;
 
 	if (newline)
 	{
