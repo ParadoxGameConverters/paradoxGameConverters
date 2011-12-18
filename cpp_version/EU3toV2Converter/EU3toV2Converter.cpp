@@ -199,13 +199,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
 	}
 	
-	log("Final Country maps:\n");
-	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
-	{
-		log("\t%s -> %s\n", i->first.c_str(), i->second.c_str());
-	}
-
-
 	// Generate region mapping
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
