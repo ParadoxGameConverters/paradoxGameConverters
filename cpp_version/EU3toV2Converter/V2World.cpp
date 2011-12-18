@@ -695,6 +695,9 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 			log("Error: no source for %s (province #%d)\n", provinces[i].getName().c_str() , destNum);
 			//provinces[i].setOwner("\"ERR\"");
 		}
+		else if (sourceNums[0] == 0) {
+			continue;
+		}
 		else
 		{
 			EU3Province* oldProvince = NULL;

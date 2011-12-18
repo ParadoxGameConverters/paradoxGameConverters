@@ -50,6 +50,11 @@ provinceMapping initProvinceMap(Object* obj)
 			}
 		}
 
+		if (EU3nums.size() == 0)
+		{
+			EU3nums.push_back(0);
+		}
+
 		for (unsigned int k = 0; k < V2nums.size(); k++)
 		{
 			pair< int, vector<int> > insertMe;
