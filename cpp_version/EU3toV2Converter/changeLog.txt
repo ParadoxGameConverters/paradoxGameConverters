@@ -303,3 +303,4 @@ Revision	Version Updated		Log Message
 281		C++			No longer log country mappings twice.
 282		C++			Major update to DW province mappings.
 283		C++			Code to handle null province mappings.
+284		C++			Major update to HttT province mappings. Minor adjustments to DW mappings.

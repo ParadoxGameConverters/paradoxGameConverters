@@ -143,7 +143,7 @@ link = { eu3 = 1811 vic = 2595 vic = 44 }	# Nunavut -> Nunavut, Echo Bay
 link = { eu3 = 1812 vic = 6 vic = 7 vic = 8 vic = 10 vic = 2598 vic = 9 vic = 11 vic = 12 vic = 2596 vic = 3227 }	# Northwest Territories -> Whitehorse, Dawson, Ross River, Inuvik, Fort Liard, Fort Simpson, Echo Bay, Reliance, Fort Resolution, Great Slave Lake
 
 ## Alberta & Saskatchewan
-link = { eu3 = 1813 eu3 = 1780 vic = 2597 vic = 23 vic = 31 vic = 32 vic = 33 vic = 34 vic = 30 vic = 35 vic = 29 vic = 26 vic = 27 vic = 22 vic = 3228 vic = 3229 }	# Saskatchewan, Komi -> Fort Vermilion, Athabaska Landing, Stanley, Prince Albert, Asquith, Saskatoon, Regina, Maple Creek, Medicine Hat, Calgary, Denwood, Edmonton, Lake Athabasca, Reindeer Lake
+link = { eu3 = 1813 vic = 2597 vic = 23 vic = 31 vic = 32 vic = 33 vic = 34 vic = 30 vic = 35 vic = 29 vic = 26 vic = 27 vic = 22 vic = 3228 vic = 3229 }	# Saskatchewan, Komi -> Fort Vermilion, Athabaska Landing, Stanley, Prince Albert, Asquith, Saskatoon, Regina, Maple Creek, Medicine Hat, Calgary, Denwood, Edmonton, Lake Athabasca, Reindeer Lake
 
 ## Quebec
 link = { eu3 = 986 vic = 67 }	# Kespek -> Rimouski
@@ -195,6 +195,8 @@ link = { eu3 = 1808 vic = 79 vic = 80 vic = 82 vic = 83 vic = 94 vic = 95 vic = 
 
 ## Great Plains
 link = { eu3 = 1809 vic = 114 vic = 113 vic = 115 vic = 116 vic = 119 vic = 112 vic = 111 vic = 110 vic = 107 vic = 108 vic = 106 vic = 124 }	# Great Plains -> Missoula, Bozeman, Great Falls, Billings, Dickinson, Casper, Cody, Chyenne, Grand Junction, Alamosa, Denver, Alliance
+
+## Mexico
 link = { eu3 = 847 vic = 2177 vic = 2178 }	# Mixtec -> Oaxaca, Collataro
 link = { eu3 = 850 vic = 2176 }	# Tlaxcala -> Puebla
 link = { eu3 = 849 vic = 2179 vic = 2180 }	# Tlapanec -> Acapuilco, Chilpancingo
@@ -850,7 +852,7 @@ link = { eu3 = 271 vic = 365 vic = 364 }	# Samogitia -> Palanga, Siauliai
 link = { eu3 = 272 vic = 360 vic = 361 vic = 363 }	# Lithuania -> Vilnius, Kaunas, Panevezys
 link = { eu3 = 270 vic = 362 }	# Troki -> Marijampole
 
-## East Prussia	
+## East Prussia
 link = { eu3 = 43 vic = 690 vic = 691 vic = 692 }	# Danzig -> Danzig, Tuchel, Deutsch Krone
 link = { eu3 = 42 vic = 696 }	# Warmia -> Allenstein
 link = { eu3 = 1859 vic = 693 vic = 694 }	# Torun -> Elbing, Torun
@@ -1100,7 +1102,7 @@ link = { eu3 = 331 vic = 887 vic = 888 }	# Erserum -> Erzurum, Erzincan
 link = { eu3 = 332 vic = 891 vic = 899 vic = 898 vic = 889 vic = 893 }	# Mus -> Bitlis, Urfa, Antep, Malatya, Diyarbakir
 link = { eu3 = 418 vic = 890 vic = 892 vic = 885 }	# Van -> Van, Hakkari, Kars
 
-## Levant	
+## Levant
 link = { eu3 = 377 vic = 905 }	# Aleppo -> Latakia
 link = { eu3 = 1849 vic = 897 vic = 904 }	# Hamah  -> Aleppo, Hama
 link = { eu3 = 407 vic = 901 }	# Dayr Az Zor -> Dayr al-Zour
@@ -1407,7 +1409,7 @@ link = { eu3 = 419 vic = 1098 vic = 1099 vic = 1100 vic = 1101 }	# Armenia -> Er
 link = { eu3 = 420 vic = 1105 vic = 1106 }	# Qarabagh -> Ganja, Agdam
 link = { eu3 = 416 vic = 1108 vic = 1109 vic = 1123 vic = 1111 }	# Azerbaijan -> Tabriz, Khvoy, Zanjan, Mahabad
 		
-## Caspian		
+## Caspian
 link = { eu3 = 417 vic = 1113 }	# Gilan -> Rasht
 link = { eu3 = 426 vic = 1114 vic = 1115 }	# Mazandaran -> Noshehr, Sari
 link = { eu3 = 427 vic = 1116 }	# Gurgan -> Gorgan
@@ -1602,7 +1604,6 @@ link = { eu3 = 738 vic = 1485 vic = 2562 }	# Taiwan -> Taibei, Tainan
 
 
 ## WATER PROVINCES ##
-
 link = { eu3 = 1250 vic = 2703 }	# Vänern -> Vänern
 link = { eu3 = 1251 vic = 2704 }	# Vättern -> Vättern
 link = { eu3 = 1252 vic = 2705 }	# Gulf of Bothnia -> Gulf of Bothnia
