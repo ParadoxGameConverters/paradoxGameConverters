@@ -28,7 +28,7 @@ void mergeNations(EU3World&, Object* mergeObj);
 void uniteJapan(EU3World&);
 void removeEmptyNations(EU3World&);
 void removeDeadLandlessNations(EU3World&);
-void removeOlderLandlessNations(EU3World&, int&);
+void removeOlderLandlessNations(EU3World&, int);
 void removeLandlessNations(EU3World&);
 
 typedef map< int, vector<int> > stateMapping;	// < province, all other provinces in state >

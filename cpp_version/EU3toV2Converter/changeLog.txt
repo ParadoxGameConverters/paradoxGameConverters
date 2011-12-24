@@ -305,3 +305,4 @@ Revision	Version Updated		Log Message
 283		C++			Code to handle null province mappings.
 284		C++			Major update to HttT province mappings. Minor adjustments to DW mappings.
 285		C++			Fixed an old bug with dead landless nations (some were just mostly dead, not all dead).
+286		C++			Now remove enough older landless nations.

@@ -182,7 +182,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	{
 		log("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
 		printf("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
-		removeOlderLandlessNations(sourceWorld, leftoverNations);
+		removeOlderLandlessNations(sourceWorld, leftoverNations + blockedNations.size());
 		EU3Tags = getEU3Tags(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
 	}

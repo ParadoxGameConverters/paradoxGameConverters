@@ -420,7 +420,7 @@ void removeDeadLandlessNations(EU3World& world)
 }
 
 
-void removeOlderLandlessNations(EU3World& world, int& excess)
+void removeOlderLandlessNations(EU3World& world, int excess)
 {
 	vector<EU3Country> countries = world.getCountries();
 
