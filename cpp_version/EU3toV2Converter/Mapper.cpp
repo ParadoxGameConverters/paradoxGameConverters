@@ -385,7 +385,6 @@ void removeDeadLandlessNations(EU3World& world)
 	vector<EU3Country> countries = world.getCountries();
 
 	vector<EU3Country> countries2;
-	map<string, int> cultureCounts;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		vector<EU3Province*> provinces = countries[i].getProvinces();
@@ -393,11 +392,6 @@ void removeDeadLandlessNations(EU3World& world)
 		{
 			countries2.push_back(countries[i]);
 		}
-		string culture = countries[i].getPrimaryCulture();
-		map<string, int>::iterator itr = cultureCounts.find(culture);
-		if (itr == cultureCounts.end())
-			cultureCounts[culture] = 0;
-		++cultureCounts[culture];
 	}
 
 	vector<string> tagsToRemove;
@@ -410,13 +404,15 @@ void removeDeadLandlessNations(EU3World& world)
 		{
 			if (cores[j]->getCulture() == culture)
 			{
-				cultureSurvives = (cultureCounts[culture] == 0);
-				break;
+				if (world.getCountry(cores[j]->getOwner())->getPrimaryCulture() != culture)
+				{
+					cultureSurvives = true;
+					break;
+				}	
 			}
 		}
 		if (cultureSurvives == false)
 		{
-			--cultureCounts[countries2[i].getPrimaryCulture()];
 			tagsToRemove.push_back(countries2[i].getTag());
 		}
 	}
