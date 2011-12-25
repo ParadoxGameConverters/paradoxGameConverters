@@ -9,6 +9,7 @@
 #include "Log.h"
 #include "LeaderTraits.h"
 #include "tempFuncs.h"
+#include "Configuration.h"
 
 #define MONEYFACTOR 30	// ducat to pound conversion rate
 
@@ -345,7 +346,7 @@ void V2World::init(string V2Loc)
 void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 {
 	int partiesIndex = 1;
-	const date FirstStartDate = date("1835.12.12");
+	const date FirstStartDate = Configuration::getStartDate();
 	while (!countriesMapping.eof())
 	{
 		string line;
@@ -1815,12 +1816,12 @@ void V2World::output(FILE* output)
 
 void V2World::outputHeader(FILE* output)
 {
-	fprintf(output, "date=\"1835.12.1\"\n");
+	fprintf(output, "date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
 	fprintf(output, "automate_trade=no\n");
 	fprintf(output, "automate_sliders=0\n");
 	fprintf(output, "unit=%d\n", V2ArmyID().id);
 	fprintf(output, "state=%d\n", stateId);
-	fprintf(output, "start_date=\"1835.12.31\"\n");
+	fprintf(output, "start_date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
 	fprintf(output, "start_pop_index=%d\n", getNextPopId());
 	fprintf(output, "worldmarket=\n");
 	fprintf(output, "{\n");

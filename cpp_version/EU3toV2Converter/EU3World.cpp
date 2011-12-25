@@ -1,5 +1,6 @@
 #include "EU3World.h"
 #include "Log.h"
+#include "Configuration.h"
 
 void EU3World::init(Object* obj) {
 	string key;	
@@ -182,6 +183,20 @@ WorldType EU3World::getWorldType()
 		}
 		break;
 	}
+
+	// Allow the configuration file to override the game type
+	string configWorldType = Configuration::getGametype();
+	WorldType forcedWorldType = Unknown;
+	if (configWorldType == "dw")
+		forcedWorldType = DivineWind;
+	else if (configWorldType == "httt")
+		forcedWorldType = HeirToTheThrone;
+
+	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != Unknown))
+		log("Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
+
+	if (forcedWorldType != Unknown)
+		cachedWorldType = forcedWorldType;
 
 	return cachedWorldType;
 }

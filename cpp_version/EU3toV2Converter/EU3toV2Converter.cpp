@@ -1,8 +1,10 @@
 #include <fstream>
+#include <sys/stat.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
 #include "V2World.h"
 #include "V2Factory.h"
+#include "Configuration.h"
 
 
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
@@ -14,24 +16,21 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	//Get V2 install location
-	string V2Loc;
-	if (argc >= 2)
+	string V2Loc = Configuration::getV2Path();
+	struct stat st;
+	if (V2Loc.empty() || (stat(V2Loc.c_str(), &st) != 0))
 	{
-		V2Loc = argv[1];
-		log("V2Installed at %s\n", V2Loc.c_str());
+		log("No Victoria2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Victoria2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
 	}
-	else
-	{
-		log("Need to specify V2 install location on command line.\n");
-		printf("Need to specify V2 install location on command line.\n");
-		return 1;
-	}
+
 
 	//Get Input EU3 save 
 	string inputFilename("input.eu3");
-	if (argc >= 3)
+	if (argc >= 2)
 	{
-		inputFilename = argv[2];
+		inputFilename = argv[1];
 		log("Using input file %s.\n", inputFilename.c_str());
 		printf("Using input file %s.\n", inputFilename.c_str());
 	}

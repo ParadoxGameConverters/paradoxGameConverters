@@ -1,0 +1,17 @@
+configuration =
+{
+	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
+	v2directory = "D:\Paradox Interactive\Victoria 2"
+
+	# The date on which the game is to start.  Default: 1835.12.12
+	start_date = 1835.12.12
+
+	# Game Type: what version of EU3 generated the save.  Possible values:
+	# 	auto	detect version automatically - vanilla only!
+	#	httt	force version to Heir To The Throne (4.x)
+	#	dw	force version to Divine Wind (5.x)
+	gametype = auto
+
+	# Note: if converting to vanilla V2, you may want to merge some EU3 nations in order for tags to make sense.
+	# Merge settings are found in merge_nations.txt, rather than this file.
+}
