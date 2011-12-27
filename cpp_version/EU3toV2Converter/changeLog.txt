@@ -310,3 +310,4 @@ Revision	Version Updated		Log Message
 288		C++			Refactor reading of localized province names.
 289		C++			Administrative republics convert to democracies, not monarchies.
 290		C++			Write all countries to the file, even if they don't exist yet. Fixes releasing cultural unions, etc.
+291		C++			A little output cleanup.

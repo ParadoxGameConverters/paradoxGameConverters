@@ -649,7 +649,7 @@ void V2Reforms::output(FILE* output)
 	{
 		fprintf(output, "	voting_system=proportional_representation\n");
 	}
-	if (voting_system >= 5)
+	else if (voting_system >= 5)
 	{
 		fprintf(output, "	voting_system=jefferson_method\n");
 	}

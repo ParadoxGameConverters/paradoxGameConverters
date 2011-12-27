@@ -68,16 +68,16 @@ void V2Factory::output(FILE* output)
 	// plus a small supply of cement and machine parts for efficiency
 	fprintf(output, "\t\t\tstockpile=\n");
 	fprintf(output, "\t\t\t{\n");
-	fprintf(output, "\t\t\t\tcement=0.5");
-	fprintf(output, "\t\t\t\tmachine_parts=0.05");
 	for (map<string,float>::const_iterator itr = type->inputs.begin(); itr != type->inputs.end(); ++itr)
 	{
-		fprintf(output, "\t\t\t\t%s=%f", itr->first.c_str(), itr->second * 0.5);
+		fprintf(output, "\t\t\t\t%s=%f\n", itr->first.c_str(), itr->second * 0.5);
 	}
+	fprintf(output, "\t\t\t\tcement=0.5\n");
+	fprintf(output, "\t\t\t\tmachine_parts=0.05\n");
 	fprintf(output, "\t\t\t}\n");
 
 	// prime the pump with a little starting cash
-	fprintf(output, "\t\t\tmoney=20000.0");
+	fprintf(output, "\t\t\tmoney=20000.0\n");
 
 	fprintf(output, "\t\t}\n");
 }
