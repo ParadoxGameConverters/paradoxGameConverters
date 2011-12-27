@@ -599,6 +599,22 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 		countries.push_back(newCountry);
 	}
 
+	// ALL potential countries should be output to the file, otherwise some things don't get initialized right
+	for (vector<V2Country>::iterator itr = potentialCountries.begin(); itr != potentialCountries.end(); ++itr)
+	{
+		vector<V2Country>::iterator citr = countries.begin();
+		for (; citr != countries.end(); ++citr)
+		{
+			if (citr->getTag() == itr->getTag())
+				break;
+		}
+		if (citr == countries.end())
+		{
+			countries.push_back(*itr);
+			(--countries.end())->initFromHistory();
+		}
+	}
+
 	// put countries in the same order as potentialCountries was (this is the same order V2 will save them in)
 	sortCountries(outputOrder);
 }
@@ -812,14 +828,18 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 	vector<EU3Country> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int oldCapital = oldCountries[countries[i].getSourceCountryIndex()].getCapital();
-		log("\n	EU3tag: %s	old capital: %4d", oldCountries[countries[i].getSourceCountryIndex()].getTag().c_str(), oldCapital);
-		inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
-		if (itr != inverseProvinceMap.end())
+		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		if (sourceCountryIndex >= 0)
 		{
-			int newCapital = itr->second[0];
-			countries[i].setCapital(newCapital);
-			log("	new capital: %d", newCapital);
+			int oldCapital = oldCountries[sourceCountryIndex].getCapital();
+			log("\n	EU3tag: %s	old capital: %4d", oldCountries[sourceCountryIndex].getTag().c_str(), oldCapital);
+			inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
+			if (itr != inverseProvinceMap.end())
+			{
+				int newCapital = itr->second[0];
+				countries[i].setCapital(newCapital);
+				log("	new capital: %d", newCapital);
+			}
 		}
 	}
 	log("\n");
@@ -986,19 +1006,23 @@ void V2World::convertLeaders(EU3World sourceWorld, map<int,int>& leaderMap)
 	vector<EU3Country> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); ++i)
 	{
-		vector<EU3Leader> oldLeaders = oldCountries[countries[i].getSourceCountryIndex()].getLeaders();
-		for (vector<EU3Leader>::iterator itr = oldLeaders.begin(); itr != oldLeaders.end(); ++itr)
+		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		if (sourceCountryIndex > 0)
 		{
-			V2Leader leader;
-			leader.init(&(countries[i]));
-			leader.setName(itr->getName());
-			leader.setActivationDate(itr->getActivationDate());
-			leader.setLand(itr->isLand());
-			string personality = lt.getPersonality(itr->getFire(), itr->getShock(), itr->getManuever(), itr->getSiege());
-			string background = lt.getBackground(itr->getFire(), itr->getShock(), itr->getManuever(), itr->getSiege());
-			leader.setTraits(personality, background);
-			countries[i].addLeader(leader);
-			leaderMap[itr->getID()] = leader.getID();
+			vector<EU3Leader> oldLeaders = oldCountries[sourceCountryIndex].getLeaders();
+			for (vector<EU3Leader>::iterator itr = oldLeaders.begin(); itr != oldLeaders.end(); ++itr)
+			{
+				V2Leader leader;
+				leader.init(&(countries[i]));
+				leader.setName(itr->getName());
+				leader.setActivationDate(itr->getActivationDate());
+				leader.setLand(itr->isLand());
+				string personality = lt.getPersonality(itr->getFire(), itr->getShock(), itr->getManuever(), itr->getSiege());
+				string background = lt.getBackground(itr->getFire(), itr->getShock(), itr->getManuever(), itr->getSiege());
+				leader.setTraits(personality, background);
+				countries[i].addLeader(leader);
+				leaderMap[itr->getID()] = leader.getID();
+			}
 		}
 	}
 }
@@ -1206,7 +1230,10 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 #ifndef TEST_V2_PROVINCES
-		EU3Country* oldCountry = &sourceCountries[itr->getSourceCountryIndex()];
+		int sourceCountryIndex = itr->getSourceCountryIndex();
+		if (sourceCountryIndex < 0)
+			continue;
+		EU3Country* oldCountry = &sourceCountries[sourceCountryIndex];
 
 		// set up armies with whatever regiments they deserve, rounded down
 		// and keep track of the remainders for later
@@ -1494,23 +1521,27 @@ void V2World::convertTechs(EU3World sourceWorld)
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		double armyTech = ((landScale * (sourceCountries[countries[i].getSourceCountryIndex()].getLandTech() - landMean) / landStdDev) + 4.5);
+		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		if (sourceCountryIndex < 0)
+			continue;
+
+		double armyTech = ((landScale * (sourceCountries[sourceCountryIndex].getLandTech() - landMean) / landStdDev) + 4.5);
 		countries[i].setArmyTech(armyTech);
 		log("%s has army tech of %f\n", countries[i].getTag().c_str(), armyTech);
 
-		double navyTech = (navalScale * (sourceCountries[countries[i].getSourceCountryIndex()].getNavalTech() - navalMean) / navalStdDev) + 5;
+		double navyTech = (navalScale * (sourceCountries[sourceCountryIndex].getNavalTech() - navalMean) / navalStdDev) + 5;
 		countries[i].setNavyTech(navyTech);
 		log("%s has navy tech of %f\n", countries[i].getTag().c_str(), navyTech);
 
-		double commerceTech = (tradeScale * (sourceCountries[countries[i].getSourceCountryIndex()].getTradeTech() - tradeMean) / tradeStdDev) + 5;
+		double commerceTech = (tradeScale * (sourceCountries[sourceCountryIndex].getTradeTech() - tradeMean) / tradeStdDev) + 5;
 		countries[i].setCommerceTech(commerceTech);
 		log("%s has commerce tech of %f\n", countries[i].getTag().c_str(), commerceTech);
 
-		double industryTech = (productionScale * (sourceCountries[countries[i].getSourceCountryIndex()].getProductionTech() - productionMean) / productionStdDev) + 5;
+		double industryTech = (productionScale * (sourceCountries[sourceCountryIndex].getProductionTech() - productionMean) / productionStdDev) + 5;
 		countries[i].setIndustryTech(industryTech);
 		log("%s has industry tech of %f\n", countries[i].getTag().c_str(), industryTech);
 
-		double cultureTech = ((governmentScale * (sourceCountries[countries[i].getSourceCountryIndex()].getGovernmentTech() - governmentMean) / governmentStdDev) + 4.5);
+		double cultureTech = ((governmentScale * (sourceCountries[sourceCountryIndex].getGovernmentTech() - governmentMean) / governmentStdDev) + 4.5);
 		countries[i].setCultureTech(cultureTech);
 		log("%s has culture tech of %f\n", countries[i].getTag().c_str(), cultureTech);
 	}
@@ -1618,7 +1649,11 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		if (!itr->isCivilized())
 			continue;
 
-		EU3Country* source = &sourceCountries[itr->getSourceCountryIndex()];
+		int sourceCountryIndex = itr->getSourceCountryIndex();
+		if (sourceCountryIndex < 0)
+			continue;
+
+		EU3Country* source = &sourceCountries[sourceCountryIndex];
 		if (source->getProvinces().size() == 0)
 			continue;
 

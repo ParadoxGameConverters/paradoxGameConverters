@@ -16,6 +16,7 @@ class V2Country
 {
 	public:
 		void					init(string tag, string countryFile, vector<int> parties);
+		void					initFromHistory();
 		string				getTag() const;
 		void					setSourceCountryIndex(int);
 		void					addState(V2State);

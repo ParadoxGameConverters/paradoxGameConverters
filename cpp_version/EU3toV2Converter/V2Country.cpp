@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <math.h>
 #include <float.h>
+#include <io.h>
+#include "Configuration.h"
+#include "Parsers/Parser.h"
 
 
 void V2Country::init(string newTag, string newCountryFile, vector<int> newParties)
@@ -18,6 +21,70 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	}
 
 	plurality = 0.0;
+	capital = 0;
+	diploPoints = 0.0;
+	badboy = 0.0;
+	prestige = 0.0;
+	money = 0.0;
+
+	sourceCountryIndex = -1;
+}
+
+
+// used only for countries which are NOT converted (i.e. unions, dead countries, etc)
+void V2Country::initFromHistory()
+{
+	string V2Loc = Configuration::getV2Path();
+	string filename = V2Loc + "\\history\\countries\\" + tag + "*.txt";
+	struct _finddata_t	fileData;
+	intptr_t			fileListing;
+	if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
+	{
+		Object* obj = doParseFile( (V2Loc + "\\history\\countries\\" + fileData.name).c_str() );
+
+		vector<Object*> results = obj->getValue("primary_culture");
+		if (results.size() > 0)
+		{
+			setPrimaryCulture(results[0]->getLeaf());
+		}
+
+		results = obj->getValue("culture");
+		for (vector<Object*>::iterator itr = results.begin(); itr != results.end(); ++itr)
+		{
+			addAcceptedCulture((*itr)->getLeaf());
+		}
+
+		results = obj->getValue("religion");
+		if (results.size() > 0)
+		{
+			setReligion(results[0]->getLeaf());
+		}
+
+		results = obj->getValue("government");
+		if (results.size() > 0)
+		{
+			setGovernment(results[0]->getLeaf());
+		}
+
+		results = obj->getValue("civilized");
+		if (results.size() > 0)
+		{
+			setCivilized(results[0]->getLeaf() == "yes");
+		}
+
+		results = obj->getValue("nationalvalue");
+		if (results.size() > 0)
+			nationalValue = results[0]->getLeaf();
+		else
+			nationalValue = "nv_order";
+
+		results = obj->getValue("capital");
+		if (results.size() > 0)
+		{
+			capital = atoi(results[0]->getLeaf().c_str());
+		}
+	}
+	_findclose(fileListing);
 }
 
 
@@ -108,7 +175,7 @@ void V2Country::sortRelations(const vector<string>& order)
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
-	fprintf(output, "	{\n");
+	fprintf(output, "{\n");
 	if (capital > 0)
 	{
 		fprintf(output, "	capital=%d\n", capital);
@@ -1599,6 +1666,9 @@ void V2Country::addLeader(V2Leader leader)
 
 void V2Country::setupPops(EU3World& sourceWorld)
 {
+	if (states.size() < 1) // skip entirely for empty nations
+		return;
+
 	EU3Country oldCountry = sourceWorld.getCountries()[sourceCountryIndex];
 
 	// calculate NATIONAL con and mil modifiers (province modifiers are done in V2Province::setPopConMil)
