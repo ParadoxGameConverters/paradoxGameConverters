@@ -41,8 +41,9 @@ THE CONVERTER MOD for VICTORIA 2
 Zonix's CONVERTER MOD for VICTORIA 2 adds all the nations that exist in EU3 which are missing in Victoria 2.  This mod allows for complete 1 to 1 country mappings rather than using nations where possible.
 
 As of version 0.2, the mod also contains missing cultures.
+As of version 0.3 the mod comes with Magc8Balls flag pack as standard
 
-You can get it here: http://www.mediafire.com/?89zaze2sxgx1vlc
+You can get it here: http://www.megaupload.com/?d=LTJ8U66N
 
 INSTRUCTIONS
 1) Make a second copy of your VICTORIA 2 directory.  This will be the modified copy of victoria 2.  (Be sure to name it accordingly, so you don't get confused!)
