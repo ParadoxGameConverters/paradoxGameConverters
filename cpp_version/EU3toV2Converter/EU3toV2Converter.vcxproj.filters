@@ -108,6 +108,9 @@
     <ClCompile Include="V2Factory.cpp">
       <Filter>V2 World</Filter>
     </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Mapper.h">
@@ -192,6 +195,9 @@
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="LeaderTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

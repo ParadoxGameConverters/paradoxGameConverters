@@ -190,6 +190,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="EU3Army.cpp" />
     <ClCompile Include="EU3Country.cpp" />
@@ -220,6 +221,7 @@
     <ClCompile Include="Parsers\Parser.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Configuration.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="EU3Army.h" />
     <ClInclude Include="EU3Country.h" />

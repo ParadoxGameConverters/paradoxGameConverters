@@ -7,7 +7,7 @@ copy "%i%\*.eu3" .\input.eu3
 del %i% /q
 del %i%.zip
 rmdir %i%
-call convert.bat
+call EU3toV2Converter.exe
 del input.eu3 /q
 copy output.v2 ..\testresults\%i%.v2
 copy log.txt ..\testresults\%i%-Log.txt
