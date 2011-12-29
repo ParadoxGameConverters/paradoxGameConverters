@@ -1532,11 +1532,11 @@ void V2World::convertTechs(EU3World sourceWorld)
 	double productionStdDev	= sqrt( (num > 1) ? (newProductionS/(num - 1)) : 0.0 );
 	double governmentStdDev	= sqrt( (num > 1) ? (newGovernmentS/(num - 1)) : 0.0 );
 
-	double landScale			= (5		* landStdDev)			/ (highestLand			- landMean);
-	double navalScale			= (5		* navalStdDev)			/ (highestNaval		- navalMean);
-	double tradeScale			= (5		* tradeStdDev)			/ (highestTrade		- tradeMean);
-	double productionScale	= (4.5	* productionStdDev)	/ (highestProduction	- productionMean);
-	double governmentScale	= (4.5	* governmentStdDev)	/ (highestGovernment	- governmentMean);
+	double landScale			= (2.5	* landStdDev)			/ (highestLand			- landMean);
+	double navalScale			= (7		* navalStdDev)			/ (highestNaval		- navalMean);
+	double tradeScale			= (4.5	* tradeStdDev)			/ (highestTrade		- tradeMean);
+	double productionScale	= (3.5	* productionStdDev)	/ (highestProduction	- productionMean);
+	double governmentScale	= (3		* governmentStdDev)	/ (highestGovernment	- governmentMean);
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
@@ -1544,23 +1544,23 @@ void V2World::convertTechs(EU3World sourceWorld)
 		if (sourceCountryIndex < 0)
 			continue;
 
-		double armyTech = ((landScale * (sourceCountries[sourceCountryIndex].getLandTech() - landMean) / landStdDev) + 4.5);
+		double armyTech = ((landScale * (sourceCountries[sourceCountryIndex].getLandTech() - landMean) / landStdDev) + 2.5);
 		countries[i].setArmyTech(armyTech);
 		log("%s has army tech of %f\n", countries[i].getTag().c_str(), armyTech);
 
-		double navyTech = (navalScale * (sourceCountries[sourceCountryIndex].getNavalTech() - navalMean) / navalStdDev) + 5;
+		double navyTech = (navalScale * (sourceCountries[sourceCountryIndex].getNavalTech() - navalMean) / navalStdDev);
 		countries[i].setNavyTech(navyTech);
 		log("%s has navy tech of %f\n", countries[i].getTag().c_str(), navyTech);
 
-		double commerceTech = (tradeScale * (sourceCountries[sourceCountryIndex].getTradeTech() - tradeMean) / tradeStdDev) + 5;
+		double commerceTech = (tradeScale * (sourceCountries[sourceCountryIndex].getTradeTech() - tradeMean) / tradeStdDev) + 4.5;
 		countries[i].setCommerceTech(commerceTech);
 		log("%s has commerce tech of %f\n", countries[i].getTag().c_str(), commerceTech);
 
-		double industryTech = (productionScale * (sourceCountries[sourceCountryIndex].getProductionTech() - productionMean) / productionStdDev) + 5;
+		double industryTech = (productionScale * (sourceCountries[sourceCountryIndex].getProductionTech() - productionMean) / productionStdDev) + 3.5;
 		countries[i].setIndustryTech(industryTech);
 		log("%s has industry tech of %f\n", countries[i].getTag().c_str(), industryTech);
 
-		double cultureTech = ((governmentScale * (sourceCountries[sourceCountryIndex].getGovernmentTech() - governmentMean) / governmentStdDev) + 4.5);
+		double cultureTech = ((governmentScale * (sourceCountries[sourceCountryIndex].getGovernmentTech() - governmentMean) / governmentStdDev) + 3);
 		countries[i].setCultureTech(cultureTech);
 		log("%s has culture tech of %f\n", countries[i].getTag().c_str(), cultureTech);
 	}
@@ -1568,7 +1568,6 @@ void V2World::convertTechs(EU3World sourceWorld)
 	int numRomanticLit = 0;
 	int numRomanticArt = 0;
 	int numRomanticMusic = 0;
-	int numPressureChambers = 0;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		if (countries[i].getInventionState(romanticist_literature) == active)
@@ -1582,10 +1581,6 @@ void V2World::convertTechs(EU3World sourceWorld)
 		if (countries[i].getInventionState(romanticist_music) == active)
 		{
 			numRomanticMusic++;
-		}
-		if (countries[i].getInventionState(pressure_chambers_for_thorax_surgery) == active)
-		{
-			numPressureChambers++;
 		}
 	}
 
@@ -1613,14 +1608,6 @@ void V2World::convertTechs(EU3World sourceWorld)
 	romanticMusicPrestige *= 20;
 	romanticMusicPrestige /= numRomanticMusic;
 
-	double pressureChambersPrestige = 0;
-	for (int i = 1; i <= numPressureChambers; i++)
-	{
-		pressureChambersPrestige += 1.0/i;
-	}
-	pressureChambersPrestige *= 50;
-	pressureChambersPrestige /= numPressureChambers;
-
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		if (countries[i].getInventionState(romanticist_literature) == active)
@@ -1634,10 +1621,6 @@ void V2World::convertTechs(EU3World sourceWorld)
 		if (countries[i].getInventionState(romanticist_music) == active)
 		{
 			countries[i].addPrestige(romanticMusicPrestige);
-		}
-		if (countries[i].getInventionState(pressure_chambers_for_thorax_surgery) == active)
-		{
-			countries[i].addPrestige(pressureChambersPrestige);
 		}
 	}
 }

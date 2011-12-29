@@ -318,3 +318,4 @@ Revision	Version Updated		Log Message
 295		C++			Updates to literacy calculations.
 296		C++			Update build config for only one output version.
 297		C++			Removed some normally hidden compiler warnings.
+298		C++			Updated tech conversion.

@@ -264,122 +264,35 @@ void V2Country::setPrestige(double newPrestige)
 
 void V2Country::setArmyTech(double newTechLevel)
 {
-	if (newTechLevel > 0)
+	if (newTechLevel >= 0)
 	{
-		if (newTechLevel >= 0)
-		{
-			techs.push_back("flintlock_rifles");
-		}
-		if (newTechLevel >= 1)
-		{
-			techs.push_back("military_staff_system");
-		}
-		if (newTechLevel >= 2)
-		{
-			techs.push_back("post_napoleonic_thought");
-		}
-		if (newTechLevel >= 3)
-		{
-			techs.push_back("bronze_muzzle_loaded_artillery");
-		}
-		if (newTechLevel >= 4)
-		{
-			techs.push_back("army_command_principle");
-		}
-		if (newTechLevel >= 5)
-		{
-			techs.push_back("muzzle_loaded_rifles");
-		}
-		if (newTechLevel >= 6)
-		{
-			techs.push_back("iron_muzzle_loaded_artillery");
-		}
-		if (newTechLevel >= 7)
-		{
-			techs.push_back("military_plans");
-		}
-		if (newTechLevel >= 8)
-		{
-			techs.push_back("strategic_mobility");
-		}
-		if (newTechLevel >= 9)
-		{
-			techs.push_back("army_professionalism");
-		}
+		techs.push_back("flintlock_rifles");
 	}
-	
-	if (newTechLevel > 7)
+	if (newTechLevel >= 0.25)
 	{
-		inventions[telegraph_coordination]		= possible;
-		inventions[mobilization_time_tables]	= possible;
-		inventions[personnel_category_tables]	= possible;
+		techs.push_back("bronze_muzzle_loaded_artillery");
+	}
+	if (newTechLevel >= 2)
+	{
+		techs.push_back("post_napoleonic_thought");
+	}
+	if (newTechLevel >= 3)
+	{
+		techs.push_back("army_command_principle");
+	}
+	if (newTechLevel >= 4)
+	{
+		techs.push_back("military_staff_system");
+	}
+	if (newTechLevel >= 5)
+	{
+		techs.push_back("army_professionalism");
 	}
 
-	if (newTechLevel > 7.25)
-	{
-		inventions[telegraph_coordination]		= active;
-		inventions[mobilization_time_tables]	= possible;
-		inventions[personnel_category_tables]	= possible;
-	}
-
-	if (newTechLevel > 7.5)
-	{
-		inventions[mobilization_time_tables]	= active;
-		inventions[personnel_category_tables]	= possible;
-	}
-
-	if (newTechLevel > 7.75)
-	{
-		inventions[personnel_category_tables]	= active;
-	}
-
-	if (newTechLevel > 8)
-	{
-		inventions[field_fortifications]			= possible;
-		inventions[railroad_transport_groups]	= possible;
-		inventions[signal_detachments]			= possible;
-	}
-
-	if (newTechLevel > 8.25)
-	{
-		inventions[field_fortifications]			= active;
-		inventions[railroad_transport_groups]	= possible;
-		inventions[signal_detachments]			= possible;
-	}
-
-	if (newTechLevel > 8.5)
-	{
-		inventions[railroad_transport_groups]	= active;
-		inventions[signal_detachments]			= possible;
-	}
-
-	if (newTechLevel > 8.75)
-	{
-		inventions[signal_detachments]			= active;
-	}
-
-	if (newTechLevel > 9)
-	{
-		inventions[army_academic_training]	= possible;
-		inventions[field_training]				= possible;
-		inventions[army_societal_status]		= possible;
-	}
-	
-	if (newTechLevel > 9.25)
+	if (newTechLevel >= 5)
 	{
 		inventions[army_academic_training]	= active;
-		inventions[field_training]				= possible;
-		inventions[army_societal_status]		= possible;
-	}
-	
-	if (newTechLevel > 9.5)
-	{
 		inventions[field_training]				= active;
-		inventions[army_societal_status]		= possible;
-	}
-	
-	if (newTechLevel > 9.75)
-	{
 		inventions[army_societal_status]		= active;
 	}
 }
@@ -387,566 +300,300 @@ void V2Country::setArmyTech(double newTechLevel)
 
 void V2Country::setNavyTech(double newTechLevel)
 {
-	if (newTechLevel > 0)
+	if (newTechLevel >= 0)
 	{
-		if (newTechLevel >= 0)
-		{
-			techs.push_back("clipper_design");
-		}
-		if (newTechLevel >= 1)
-		{
-			techs.push_back("naval_design_bureaus");
-		}
-		if (newTechLevel >= 2)
-		{
-			techs.push_back("post_nelsonian_thought");
-		}
-		if (newTechLevel >= 3)
-		{
-			techs.push_back("alphabetic_flag_signaling");
-		}
-		if (newTechLevel >= 4)
-		{
-			techs.push_back("the_command_principle");
-		}
-		if (newTechLevel >= 5)
-		{
-			techs.push_back("steamers");
-		}
-		if (newTechLevel >= 6)
-		{
-			techs.push_back("fire_control_systems");
-		}
-		if (newTechLevel >= 7)
-		{
-			techs.push_back("naval_plans");
-		}
-		if (newTechLevel >= 8)
-		{
-			techs.push_back("naval_professionalism");
-		}
-		if (newTechLevel >= 9)
-		{
-			techs.push_back("battleship_column_doctrine");
-		}
+		techs.push_back("post_nelsonian_thought");
+	}
+	if (newTechLevel >= 0.25)
+	{
+		techs.push_back("the_command_principle");
+	}
+	if (newTechLevel >= 4)
+	{
+		techs.push_back("clipper_design");
+	}
+	if (newTechLevel >= 4)
+	{
+		techs.push_back("naval_design_bureaus");
+	}
+	if (newTechLevel >= 4)
+	{
+		techs.push_back("alphabetic_flag_signaling");
+	}
+	if (newTechLevel >= 6)
+	{
+		techs.push_back("battleship_column_doctrine");
+	}
+	if (newTechLevel >= 6)
+	{
+		techs.push_back("steamers");
+	}
+	if (newTechLevel >= 7)
+	{
+		techs.push_back("naval_professionalism");
 	}
 
-	if (newTechLevel > 0)
+	if (newTechLevel >= 4)
+	{
+		inventions[building_station_shipyards]	= possible;
+	}
+	if (newTechLevel >= 4.5)
 	{
 		inventions[building_station_shipyards]	= active;
 	}
-	
-	if (newTechLevel > 5)
+
+	if (newTechLevel >= 6)
 	{
+		inventions[long_range_fire_tactic]						= possible;
+		inventions[speedy_maneuvering_tactic]					= possible;
 		inventions[mechanized_fishing_vessels]					= possible;
 		inventions[steamer_automatic_construction_plants]	= possible;
 		inventions[steamer_transports]							= possible;
 		inventions[commerce_raiders]								= possible;
 	}
-
-	if (newTechLevel > 5.2)
+	if (newTechLevel >= 6 + (1/7))
+	{
+		inventions[long_range_fire_tactic]						= active;
+		inventions[speedy_maneuvering_tactic]					= possible;
+		inventions[mechanized_fishing_vessels]					= possible;
+		inventions[steamer_automatic_construction_plants]	= possible;
+		inventions[steamer_transports]							= possible;
+		inventions[commerce_raiders]								= possible;
+	}
+	if (newTechLevel >= 6 + (2/7))
+	{
+		inventions[speedy_maneuvering_tactic]					= active;
+		inventions[mechanized_fishing_vessels]					= possible;
+		inventions[steamer_automatic_construction_plants]	= possible;
+		inventions[steamer_transports]							= possible;
+		inventions[commerce_raiders]								= possible;
+	}
+	if (newTechLevel >= 6 + (3/7))
 	{
 		inventions[mechanized_fishing_vessels]					= active;
 		inventions[steamer_automatic_construction_plants]	= possible;
 		inventions[steamer_transports]							= possible;
 		inventions[commerce_raiders]								= possible;
 	}
-	
-	if (newTechLevel > 5.4)
+	if (newTechLevel >= 6 + (4/7))
 	{
 		inventions[steamer_automatic_construction_plants]	= active;
 		inventions[steamer_transports]							= possible;
 		inventions[commerce_raiders]								= possible;
 	}
-	
-	if (newTechLevel > 5.6)
+	if (newTechLevel >= 6 + (5/7))
 	{
 		inventions[steamer_transports]							= active;
 		inventions[commerce_raiders]								= possible;
 	}
-	
-	if (newTechLevel > 5.8)
+	if (newTechLevel >= 6 + (6/7))
 	{
 		inventions[commerce_raiders]								= active;
 	}
-
-	if (newTechLevel > 6)
-	{
-		inventions[optical_rangefinders]							= possible;
-		inventions[gyrostabilized_fire_control]				= possible;
-		inventions[armour_piercing_projectiles]				= possible;
-		inventions[armour_piercing_exploding_projectiles]	= possible;
-		inventions[armoured_turrets]								= possible;
-	}
-
-	if (newTechLevel > 6 + (1/6))
-	{
-		inventions[optical_rangefinders]							= active;
-		inventions[gyrostabilized_fire_control]				= possible;
-		inventions[armour_piercing_projectiles]				= possible;
-		inventions[armour_piercing_exploding_projectiles]	= possible;
-		inventions[armoured_turrets]								= possible;
-	}
 	
-	if (newTechLevel > 6 + (2/6))
-	{
-		inventions[gyrostabilized_fire_control]				= active;
-		inventions[armour_piercing_projectiles]				= possible;
-		inventions[armour_piercing_exploding_projectiles]	= possible;
-		inventions[armoured_turrets]								= possible;
-	}
-	
-	if (newTechLevel > 6 + (3/6))
-	{
-		inventions[armour_piercing_projectiles]				= active;
-		inventions[armour_piercing_exploding_projectiles]	= possible;
-		inventions[armoured_turrets]								= possible;
-	}
-	
-	if (newTechLevel > 6 + (4/6))
-	{
-		inventions[armour_piercing_exploding_projectiles]	= active;
-		inventions[armoured_turrets]								= possible;
-	}
-	
-	if (newTechLevel > 6 + (5/6))
-	{
-		inventions[armoured_turrets]								= active;
-	}
-	
-	if (newTechLevel > 7)
-	{
-		inventions[night_training]						= possible;
-		inventions[enemy_plotting_cards]				= possible;
-		inventions[target_hit_profile_analysis]	= possible;
-	}
-
-	if (newTechLevel > 7.25)
-	{
-		inventions[night_training]						= active;
-		inventions[enemy_plotting_cards]				= possible;
-		inventions[target_hit_profile_analysis]	= possible;
-	}
-	
-	if (newTechLevel > 7.5)
-	{
-		inventions[enemy_plotting_cards]				= active;
-		inventions[target_hit_profile_analysis]	= possible;
-	}
-	
-	if (newTechLevel > 7.75)
-	{
-		inventions[target_hit_profile_analysis]	= active;
-	}
-	
-	if (newTechLevel > 8)
-	{
-		inventions[academic_training]			= possible;
-		inventions[combat_station_training]	= possible;
-		inventions[societal_status]			= possible;
-	}
-
-	if (newTechLevel > 8.25)
+	if (newTechLevel >= 7)
 	{
 		inventions[academic_training]			= active;
-		inventions[combat_station_training]	= possible;
-		inventions[societal_status]			= possible;
-	}
-	
-	if (newTechLevel > 8.5)
-	{
 		inventions[combat_station_training]	= active;
-		inventions[societal_status]			= possible;
-	}
-	
-	if (newTechLevel > 8.75)
-	{
 		inventions[societal_status]			= active;
 	}
-	
-	if (newTechLevel > 9)
-	{
-		inventions[long_range_fire_tactic]		= possible;
-		inventions[speedy_maneuvering_tactic]	= possible;
-	}
-
-	if (newTechLevel > 9 + (1/3))
-	{
-		inventions[long_range_fire_tactic]		= active;
-		inventions[speedy_maneuvering_tactic]	= possible;
-	}
-	
-	if (newTechLevel > 9 + (2/3))
-	{
-		inventions[speedy_maneuvering_tactic]	= active;
-	}
-	}
+}
 
 
 void V2Country::setCommerceTech(double newTechLevel)
 {
-	if (newTechLevel > 0)
+	techs.push_back("no_standard");
+	if (newTechLevel >= 1)
 	{
-		if (newTechLevel >= 0)
-		{
-			techs.push_back("no_standard");
-		}
-		if (newTechLevel >= 1)
-		{
-			techs.push_back("guild_based_production");
-		}
-		if (newTechLevel >= 2)
-		{
-			techs.push_back("freedom_of_trade");
-		}
-		if (newTechLevel >= 3)
-		{
-			techs.push_back("private_banks");
-		}
-		if (newTechLevel >= 4)
-		{
-			techs.push_back("early_classical_theory_and_critique");
-		}
-		if (newTechLevel >= 5)
-		{
-			techs.push_back("ad_hoc_money_bill_printing");
-		}
-		if (newTechLevel >= 6)
-		{
-			techs.push_back("market_structure");
-		}
-		if (newTechLevel >= 7)
-		{
-			techs.push_back("organized_factories");
-		}
-		if (newTechLevel >= 8)
-		{
-			techs.push_back("late_classical_theory");
-		}
-		if (newTechLevel >= 9)
-		{
-			techs.push_back("stock_exchange");
-		}
+		techs.push_back("guild_based_production");
+	}
+	if (newTechLevel >= 2)
+	{
+		techs.push_back("private_banks");
+	}
+	if (newTechLevel >= 3)
+	{
+		techs.push_back("early_classical_theory_and_critique");
+	}
+	if (newTechLevel >= 3.25)
+	{
+		techs.push_back("freedom_of_trade");
+	}
+	if (newTechLevel >= 6)
+	{
+		techs.push_back("stock_exchange");
+	}
+	if (newTechLevel >= 8)
+	{
+		techs.push_back("ad_hoc_money_bill_printing");
+	}
+	if (newTechLevel >= 8)
+	{
+		techs.push_back("market_structure");
+	}
+	if (newTechLevel >= 9)
+	{
+		techs.push_back("late_classical_theory");
 	}
 
-	if (newTechLevel > 4)
+	if (newTechLevel >= 3.25)
 	{
 		inventions[john_ramsay_mcculloch]	= possible;
 		inventions[nassau_william_sr]			= possible;
 		inventions[james_mill]					= possible;
 	}
-	
-	if (newTechLevel > 4.25)
+	if (newTechLevel >= 3.9375)
 	{
 		inventions[john_ramsay_mcculloch]	= active;
 		inventions[nassau_william_sr]			= possible;
 		inventions[james_mill]					= possible;
 	}
-	
-	if (newTechLevel > 4.5)
+	if (newTechLevel >= 4.625)
 	{
 		inventions[nassau_william_sr]			= active;
 		inventions[james_mill]					= possible;
 	}
-	
-	if (newTechLevel > 4.75)
+	if (newTechLevel >= 5.3125)
 	{
 		inventions[james_mill]					= active;
 	}
 
-	if (newTechLevel > 5)
-	{
-		inventions[silver_standard]			= possible;
-		inventions[decimal_monetary_system]	= possible;
-	}
-	
-	if (newTechLevel > 5 + (1/3))
-	{
-		inventions[silver_standard]			= active;
-		inventions[decimal_monetary_system]	= possible;
-	}
-	
-	if (newTechLevel > 5 + (2/3))
-	{
-		inventions[decimal_monetary_system]	= active;
-	}
-
-	if (newTechLevel > 6)
-	{
-		inventions[polypoly_structure]	= possible;
-		inventions[oligopoly_structure]	= possible;
-		inventions[monopoly_structure]	= possible;
-	}
-	
-	if (newTechLevel > 6.25)
-	{
-		inventions[polypoly_structure]	= active;
-		inventions[oligopoly_structure]	= possible;
-		inventions[monopoly_structure]	= possible;
-	}
-	
-	if (newTechLevel > 6.5)
-	{
-		inventions[oligopoly_structure]	= active;
-		inventions[monopoly_structure]	= possible;
-	}
-	
-	if (newTechLevel > 6.75)
-	{
-		inventions[monopoly_structure]	= active;
-	}
-
-	if (newTechLevel > 7)
-	{
-		inventions[work_classification]			= possible;
-		inventions[work_specialization]			= possible;
-		inventions[work_control_and_hierarchy]	= possible;
-	}
-	
-	if (newTechLevel > 7.25)
-	{
-		inventions[work_classification]			= active;
-		inventions[work_specialization]			= possible;
-		inventions[work_control_and_hierarchy]	= possible;
-	}
-	
-	if (newTechLevel > 7.5)
-	{
-		inventions[work_specialization]			= active;
-		inventions[work_control_and_hierarchy]	= possible;
-	}
-	
-	if (newTechLevel > 7.75)
-	{
-		inventions[work_control_and_hierarchy]	= active;
-	}
-
-	if (newTechLevel > 8)
-	{
-		inventions[john_elliot_cairnes]	= possible;
-		inventions[robert_torrens]			= possible;
-		inventions[john_stuart_mill]		= possible;
-	}
-	
-	if (newTechLevel > 8.25)
-	{
-		inventions[john_elliot_cairnes]	= active;
-		inventions[robert_torrens]			= possible;
-		inventions[john_stuart_mill]		= possible;
-	}
-	
-	if (newTechLevel > 8.5)
-	{
-		inventions[robert_torrens]			= active;
-		inventions[john_stuart_mill]		= possible;
-	}
-	
-	if (newTechLevel > 8.75)
-	{
-		inventions[john_stuart_mill]		= active;
-	}
-
-	if (newTechLevel > 9)
+	if (newTechLevel >= 6)
 	{
 		inventions[multitude_of_financial_instruments]		= possible;
 		inventions[insurance_companies]							= possible;
 		inventions[regulated_buying_and_selling_of_stocks]	= possible;
 	}
-	
-	if (newTechLevel > 9.25)
+	if (newTechLevel >= 6.25)
 	{
 		inventions[multitude_of_financial_instruments]		= active;
 		inventions[insurance_companies]							= possible;
 		inventions[regulated_buying_and_selling_of_stocks]	= possible;
 	}
-	
-	if (newTechLevel > 9.5)
+	if (newTechLevel >= 6.5)
 	{
 		inventions[insurance_companies]							= active;
 		inventions[regulated_buying_and_selling_of_stocks]	= possible;
 	}
-	
-	if (newTechLevel > 9.75)
+	if (newTechLevel >= 6.75)
 	{
 		inventions[regulated_buying_and_selling_of_stocks]	= active;
+	}
+
+	if (newTechLevel >= 8)
+	{
+		inventions[silver_standard]			= possible;
+		inventions[decimal_monetary_system]	= possible;
+		inventions[polypoly_structure]		= possible;
+		inventions[oligopoly_structure]		= possible;
+		inventions[monopoly_structure]		= possible;
+	}
+	if (newTechLevel >= 8 + (1/6))
+	{
+		inventions[silver_standard]			= active;
+		inventions[decimal_monetary_system]	= possible;
+		inventions[polypoly_structure]		= possible;
+		inventions[oligopoly_structure]		= possible;
+		inventions[monopoly_structure]		= possible;
+	}
+	if (newTechLevel >= 8 + (2/6))
+	{
+		inventions[decimal_monetary_system]	= active;
+		inventions[polypoly_structure]		= possible;
+		inventions[oligopoly_structure]		= possible;
+		inventions[monopoly_structure]		= possible;
+	}
+	if (newTechLevel >= 8 + (3/6))
+	{
+		inventions[polypoly_structure]		= active;
+		inventions[oligopoly_structure]		= possible;
+		inventions[monopoly_structure]		= possible;
+	}
+	if (newTechLevel >= 8 + (4/6))
+	{
+		inventions[oligopoly_structure]		= active;
+		inventions[monopoly_structure]		= possible;
+	}
+	if (newTechLevel >= 8 + (5/6))
+	{
+		inventions[monopoly_structure]		= active;
+	}
+
+	if (newTechLevel >= 9)
+	{
+		inventions[john_elliot_cairnes]	= active;
+		inventions[robert_torrens]			= active;
+		inventions[john_stuart_mill]		= active;
 	}
 }
 
 
 void V2Country::setIndustryTech(double newTechLevel)
 {
-	if (newTechLevel > 0)
+	if (newTechLevel >= 0)
 	{
-		if (newTechLevel >= 0)
-		{
-			techs.push_back("water_wheel_power");
-		}
-		if (newTechLevel >= 1)
-		{
-			techs.push_back("basic_chemistry");
-		}
-		if (newTechLevel >= 2)
-		{
-			techs.push_back("publishing_industry");
-		}
-		if (newTechLevel >= 3)
-		{
-			techs.push_back("experimental_railroad");
-		}
-		if (newTechLevel >= 4)
-		{
-			techs.push_back("mechanized_mining");
-		}
-		if (newTechLevel >= 5)
-		{
-			techs.push_back("clean_coal");
-		}
-		if (newTechLevel >= 6)
-		{
-			techs.push_back("medicine");
-		}
-		if (newTechLevel >= 7)
-		{
-			techs.push_back("practical_steam_engine");
-		}
-		if (newTechLevel >= 8)
-		{
-			techs.push_back("mechanical_production");
-		}
+		techs.push_back("water_wheel_power");
+	}
+	if (newTechLevel >= 1)
+	{
+		techs.push_back("publishing_industry");
+	}
+	if (newTechLevel >= 3)
+	{
+		techs.push_back("mechanized_mining");
+	}
+	if (newTechLevel >= 3)
+	{
+		techs.push_back("basic_chemistry");
+	}
+	if (newTechLevel >= 4)
+	{
+		techs.push_back("practical_steam_engine");
+	}
+	if (newTechLevel >= 5)
+	{
+		techs.push_back("experimental_railroad");
+	}
+	if (newTechLevel >= 6)
+	{
+		techs.push_back("mechanical_production");
+	}
+	if (newTechLevel >= 7)
+	{
+		techs.push_back("clean_coal");
 	}
 
-	if (newTechLevel > 4)
+	if (newTechLevel >= 3)
 	{
 		inventions[ammunition_production]	= possible;
 		inventions[small_arms_production]	= possible;
 		inventions[explosives_production]	= possible;
 		inventions[artillery_production]		= possible;
 	}
-	
-	if (newTechLevel > 4.2)
+	if (newTechLevel >= 3.2)
 	{
 		inventions[ammunition_production]	= active;
 		inventions[small_arms_production]	= possible;
 		inventions[explosives_production]	= possible;
 		inventions[artillery_production]		= possible;
 	}
-	
-	if (newTechLevel > 4.4)
+	if (newTechLevel >= 3.4)
 	{
 		inventions[small_arms_production]	= active;
 		inventions[explosives_production]	= possible;
 		inventions[artillery_production]		= possible;
 	}
-	
-	if (newTechLevel > 4.6)
+	if (newTechLevel >= 3.6)
 	{
 		inventions[explosives_production]	= active;
 		inventions[artillery_production]		= possible;
 	}
-	
-	if (newTechLevel > 4.8)
+	if (newTechLevel >= 3.8)
 	{
 		inventions[artillery_production]		= active;
 	}
 
-	if (newTechLevel > 5)
-	{
-		inventions[pit_coal]	= possible;
-		inventions[coke]		= possible;
-	}
-	
-	if (newTechLevel > 5 + (1/3))
-	{
-		inventions[pit_coal]	= active;
-		inventions[coke]		= possible;
-	}
-	
-	if (newTechLevel > 5 + (2/3))
-	{
-		inventions[coke]		= active;
-	}
-
-	if (newTechLevel > 6)
-	{
-		inventions[combat_medicine]											= possible;
-		inventions[aerial_bacteria_and_antiseptic_principle]			= possible;
-		inventions[vaccination]													= possible;
-		inventions[chemotherapy]												= possible;
-		inventions[genetics_heredity]											= possible;
-		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
-		inventions[prophylaxis_against_malaria]							= possible;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (1/9))
-	{
-		inventions[combat_medicine]											= active;
-		inventions[aerial_bacteria_and_antiseptic_principle]			= possible;
-		inventions[vaccination]													= possible;
-		inventions[chemotherapy]												= possible;
-		inventions[genetics_heredity]											= possible;
-		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
-		inventions[prophylaxis_against_malaria]							= possible;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (2/9))
-	{
-		inventions[aerial_bacteria_and_antiseptic_principle]			= active;
-		inventions[vaccination]													= possible;
-		inventions[chemotherapy]												= possible;
-		inventions[genetics_heredity]											= possible;
-		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
-		inventions[prophylaxis_against_malaria]							= possible;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (3/9))
-	{
-		inventions[vaccination]													= active;
-		inventions[chemotherapy]												= possible;
-		inventions[genetics_heredity]											= possible;
-		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
-		inventions[prophylaxis_against_malaria]							= possible;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (4/9))
-	{
-		inventions[chemotherapy]												= active;
-		inventions[genetics_heredity]											= possible;
-		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
-		inventions[prophylaxis_against_malaria]							= possible;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (5/9))
-	{
-		inventions[genetics_heredity]											= active;
-		inventions[clinical_thermometers_and_binaural_stethoscopes]	= possible;
-		inventions[prophylaxis_against_malaria]							= possible;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (6/9))
-	{
-		inventions[clinical_thermometers_and_binaural_stethoscopes]	= active;
-		inventions[prophylaxis_against_malaria]							= possible;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (7/9))
-	{
-		inventions[prophylaxis_against_malaria]							= active;
-		inventions[pressure_chambers_for_thorax_surgery]				= possible;
-	}
-	
-	if (newTechLevel > 6 + (8/9))
-	{
-		inventions[pressure_chambers_for_thorax_surgery]				= active;
-	}
-
-	if (newTechLevel > 8)
+	if (newTechLevel >= 6)
 	{
 		inventions[sharp_n_roberts_power_loom]				= possible;
 		inventions[jacquard_power_loom]						= possible;
@@ -957,8 +604,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (1/9))
+	if (newTechLevel >= 6 + (1/9))
 	{
 		inventions[sharp_n_roberts_power_loom]				= active;
 		inventions[jacquard_power_loom]						= possible;
@@ -969,8 +615,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (2/9))
+	if (newTechLevel >= 6 + (2/9))
 	{
 		inventions[jacquard_power_loom]						= active;
 		inventions[northrop_power_loom]						= possible;
@@ -980,8 +625,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (3/9))
+	if (newTechLevel >= 6 + (3/9))
 	{
 		inventions[northrop_power_loom]						= active;
 		inventions[mechanical_saw]								= possible;
@@ -990,8 +634,7 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (4/9))
+	if (newTechLevel >= 6 + (4/9))
 	{
 		inventions[mechanical_saw]								= active;
 		inventions[mechanical_precision_saw]				= possible;
@@ -999,299 +642,85 @@ void V2Country::setIndustryTech(double newTechLevel)
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (5/9))
+	if (newTechLevel >= 6 + (5/9))
 	{
 		inventions[mechanical_precision_saw]				= active;
 		inventions[hussey_n_mccormicks_reaping_machine]	= possible;
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (6/9))
+	if (newTechLevel >= 6 + (6/9))
 	{
 		inventions[hussey_n_mccormicks_reaping_machine]	= active;
 		inventions[pitts_threshing_machine]					= possible;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (7/9))
+	if (newTechLevel >= 6 + (7/9))
 	{
 		inventions[pitts_threshing_machine]					= active;
 		inventions[mechanized_slaughtering_block]			= possible;
 	}
-	
-	if (newTechLevel > 8 + (8/9))
+	if (newTechLevel >= 6 + (8/9))
 	{
 		inventions[mechanized_slaughtering_block]			= active;
+	}
+
+	if (newTechLevel >= 7)
+	{
+		inventions[pit_coal]	= active;
+		inventions[coke]		= active;
 	}
 }
 
 
 void V2Country::setCultureTech(double newTechLevel)
 {
-	if (newTechLevel > 0)
+	if (newTechLevel >= 0)
 	{
-		if (newTechLevel >= 0)
-		{
-			techs.push_back("malthusian_thought");
-		}
-		if (newTechLevel >= 1)
-		{
-			techs.push_back("late_enlightenment_philosophy");
-		}
-		if (newTechLevel >= 2)
-		{
-			techs.push_back("enlightenment_thought");
-		}
-		if (newTechLevel >= 3)
-		{
-			techs.push_back("classicism_n_early_romanticism");
-		}
-		if (newTechLevel >= 4)
-		{
-			techs.push_back("introspectionism");
-		}
-		if (newTechLevel >= 5)
-		{
-			techs.push_back("positivism");
-		}
-		if (newTechLevel >= 6)
-		{
-			techs.push_back("associationism");
-		}
-		if (newTechLevel >= 7)
-		{
-			techs.push_back("romanticism");
-		}
-		if (newTechLevel >= 8)
-		{
-			techs.push_back("ideological_thought");
-		}
+		techs.push_back("classicism_n_early_romanticism");
+	}
+	if (newTechLevel >= 0)
+	{
+		techs.push_back("late_enlightenment_philosophy");
+	}
+	if (newTechLevel >= 2)
+	{
+		techs.push_back("enlightenment_thought");
+	}
+	if (newTechLevel >= 4)
+	{
+		techs.push_back("malthusian_thought");
+	}
+	if (newTechLevel >= 4)
+	{
+		techs.push_back("introspectionism");
+	}
+	if (newTechLevel >= 5)
+	{
+		techs.push_back("romanticism");
 	}
 
-	if (newTechLevel > 7)
+
+	if (newTechLevel >= 5)
 	{
 		inventions[romanticist_literature]	= possible;
 		inventions[romanticist_art]			= possible;
 		inventions[romanticist_music]			= possible;
 	}
-	
-	if (newTechLevel > 7.25)
+	if (newTechLevel >= 5 + (1/3))
 	{
 		inventions[romanticist_literature]	= active;
 		inventions[romanticist_art]			= possible;
 		inventions[romanticist_music]			= possible;
 	}
-	
-	if (newTechLevel > 7.5)
+	if (newTechLevel >= 5 + (2/3))
 	{
 		inventions[romanticist_art]			= active;
 		inventions[romanticist_music]			= possible;
 	}
-	
-	if (newTechLevel > 7.75)
+	if (newTechLevel >= 6)
 	{
 		inventions[romanticist_music]			= active;
-	}
-
-	if (newTechLevel > 8)
-	{
-		inventions[authoritarianism]		= possible;
-		inventions[hierarchical_order]	= possible;
-		inventions[traditionalism]			= possible;
-		inventions[political_religion]	= possible;
-		inventions[paternalism]				= possible;
-		inventions[constitutionalism]		= possible;
-		inventions[individualism]			= possible;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.0625)
-	{
-		inventions[authoritarianism]		= active;
-		inventions[hierarchical_order]	= possible;
-		inventions[traditionalism]			= possible;
-		inventions[political_religion]	= possible;
-		inventions[paternalism]				= possible;
-		inventions[constitutionalism]		= possible;
-		inventions[individualism]			= possible;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.125)
-	{
-		inventions[hierarchical_order]	= active;
-		inventions[traditionalism]			= possible;
-		inventions[political_religion]	= possible;
-		inventions[paternalism]				= possible;
-		inventions[constitutionalism]		= possible;
-		inventions[individualism]			= possible;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.1875)
-	{
-		inventions[traditionalism]			= active;
-		inventions[political_religion]	= possible;
-		inventions[paternalism]				= possible;
-		inventions[constitutionalism]		= possible;
-		inventions[individualism]			= possible;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.25)
-	{
-		inventions[political_religion]	= active;
-		inventions[paternalism]				= possible;
-		inventions[constitutionalism]		= possible;
-		inventions[individualism]			= possible;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.3125)
-	{
-		inventions[paternalism]				= active;
-		inventions[constitutionalism]		= possible;
-		inventions[individualism]			= possible;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.375)
-	{
-		inventions[constitutionalism]		= active;
-		inventions[individualism]			= possible;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.4375)
-	{
-		inventions[individualism]			= active;
-		inventions[rationalism]				= possible;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.5)
-	{
-		inventions[rationalism]				= active;
-		inventions[secularization]			= possible;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.5625)
-	{
-		inventions[secularization]			= active;
-		inventions[social_conscience]		= possible;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.625)
-	{
-		inventions[social_conscience]		= active;
-		inventions[egalitarianism]			= possible;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.6875)
-	{
-		inventions[egalitarianism]			= active;
-		inventions[collectivism]			= possible;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.75)
-	{
-		inventions[collectivism]			= active;
-		inventions[determinism]				= possible;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.8125)
-	{
-		inventions[determinism]				= active;
-		inventions[atheism]					= possible;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.875)
-	{
-		inventions[atheism]					= active;
-		inventions[social_justice]			= possible;
-	}
-	
-	if (newTechLevel > 8.93875)
-	{
-		inventions[social_justice]			= active;
 	}
 }
 
