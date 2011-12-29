@@ -1396,7 +1396,6 @@ V2Army*	V2Country::getArmyForRemainder(RegimentCategory rc)
 {
 	V2Army* retval = NULL;
 	double retvalRemainder = -1000.0;
-	bool isNavy = (rc >= big_ship);
 	for (vector<V2Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
 		// only add units to armies that originally had units of the same category

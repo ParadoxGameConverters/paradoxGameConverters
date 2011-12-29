@@ -97,10 +97,10 @@ void V2World::init(string V2Loc)
 					while (!read.eof())
 					{
 						getline(read, line);
-						int delimiter2 = 0;
+						size_t delimiter2 = 0;
 						do
 						{
-							int delimiter3 = line.find_first_of('\r', delimiter2);
+							size_t delimiter3 = line.find_first_of('\r', delimiter2);
 							if (delimiter3 == line.size() - 1)
 							{
 								lines.push_back(line.substr(delimiter2, line.size() - delimiter2 - 1));
@@ -1288,7 +1288,6 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 				countryRemainder[rc] += regimentRemainder;
 				army.setArmyRemainders((RegimentCategory)rc, army.getArmyRemainder((RegimentCategory)rc) + regimentRemainder);
 
-				double avg_strength = aitr->getAverageStrength((RegimentCategory)rc);
 				for (int i = 0; i < regimentsToCreate; ++i)
 				{
 					if (addRegimentToArmy(&army, (RegimentCategory)rc, inverseProvinceMap, (*itr)) != 0)
