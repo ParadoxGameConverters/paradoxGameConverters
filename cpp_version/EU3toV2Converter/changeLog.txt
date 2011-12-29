@@ -311,5 +311,9 @@ Revision	Version Updated		Log Message
 289		C++			Administrative republics convert to democracies, not monarchies.
 290		C++			Write all countries to the file, even if they don't exist yet. Fixes releasing cultural unions, etc.
 291		C++			A little output cleanup.
-292		N/A			Build and test changes for configuration file.
-293		C++			Updates to literacy calculations.
+292		N/A			readme updated and expanded
+					ADAGE mod goverment mappings added for posterity
+293		N/A			Readme updated
+294		N/A			Build and test changes for configuration file.
+295		C++			Updates to literacy calculations.
+296		C++			Update build config for only one output version.

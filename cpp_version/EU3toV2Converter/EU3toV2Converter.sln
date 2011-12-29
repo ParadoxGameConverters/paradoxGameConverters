@@ -6,17 +6,11 @@ EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
-		DWToV2|Win32 = DWToV2|Win32
-		HttTToV2|Win32 = HttTToV2|Win32
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.Debug|Win32.ActiveCfg = Debug|Win32
 		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.Debug|Win32.Build.0 = Debug|Win32
-		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.DWToV2|Win32.ActiveCfg = DWToV2|Win32
-		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.DWToV2|Win32.Build.0 = DWToV2|Win32
-		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.HttTToV2|Win32.ActiveCfg = HttTToV2|Win32
-		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.HttTToV2|Win32.Build.0 = HttTToV2|Win32
 		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.Release|Win32.ActiveCfg = Release|Win32
 		{04741D5D-89B9-409B-8C8C-15D6025A72AE}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection

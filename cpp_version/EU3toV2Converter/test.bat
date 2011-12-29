@@ -1,6 +1,6 @@
 set i=%~n1
 
-copy ..\..\EU3_DivineWind_Saves\%i%.zip .\%i%.zip
+copy ..\..\EU3_Saves\%i%.zip .\%i%.zip
 set PWD=%~dp0
 "%IZARC_LOC%" -ef "%PWD%" "%i%.zip"
 copy "%i%\*.eu3" .\input.eu3

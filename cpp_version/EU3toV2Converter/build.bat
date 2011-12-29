@@ -2,29 +2,15 @@ del *.zip /q
 
 call "%VSTUDIO_LOC%\VC\vcvarsall.bat"
 
-del dwtov2 /q
-rmdir dwtov2
+del release /q
+rmdir release
 
-del DWintermediate /q
-rmdir DWintermediate
+del Release /q
+rmdir Release
 
-msbuild.exe EU3toV2Converter.sln /p:Configuration=DWToV2
-cd DWToV2
+msbuild.exe EU3toV2Converter.sln /p:Configuration=Release
+cd Release
 del *.pdb
-"%IZARC_LOC%" -ad DWToV2;*
-copy ".zip" "../DWToV2.zip"
-cd ..
-
-
-del HttTtov2 /q
-rmdir HttTtov2
-
-del HttTintermediate /q
-rmdir HttTintermediate
-
-msbuild.exe EU3toV2Converter.sln /p:Configuration=HttTToV2
-cd HttTToV2
-del *.pdb
-"%IZARC_LOC%" -ad HttTToV2;*
-copy ".zip" "../HttTToV2.zip"
+"%IZARC_LOC%" -ad Release;*
+copy ".zip" "../EU3ToV2.zip"
 cd ..
