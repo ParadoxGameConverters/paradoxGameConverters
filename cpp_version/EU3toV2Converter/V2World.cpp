@@ -544,17 +544,25 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					newCountry.setDiploPoints(2.0 * sourceCountries[i].getDiplomats());
 					newCountry.setBadboy((25.0 / sourceCountries[i].getBadboyLimit()) * sourceCountries[i].getBadboy());
 
-					double innovationFactor	= 5 - sourceCountries[i].getInnovativeNarrowminded();
-					double serfdomFactor		= 5 + sourceCountries[i].getSerfdomFreesubjects();
-					double literacy = innovationFactor * serfdomFactor * 0.004;
-					if ( (sourceCountries[i].getReligion() == "Protestant") || (sourceCountries[i].getReligion() == "Confucianism") )
+					double innovationFactor	= 5 * (5 - sourceCountries[i].getInnovativeNarrowminded());
+					double serfdomFactor		= 5 * (5 + sourceCountries[i].getSerfdomFreesubjects());
+					double literacy = (innovationFactor + serfdomFactor) * 0.004;
+					if ( (sourceCountries[i].getReligion() == "Protestant") || (sourceCountries[i].getReligion() == "Confucianism") || (sourceCountries[i].getReligion() == "Reformed") )
 					{
 						literacy += 0.05;
 					}
 					vector<string> ideas = sourceCountries[i].getNationalIdeas();
 					for (unsigned int k = 0; k < ideas.size(); k++)
 					{
-						if ( (ideas[k] == "bureaucracy") || (ideas[k] == "liberty_egalite_fraternity") || (ideas[k] == "church_attendance_duty") )
+						if ( (ideas[k] == "bureaucracy") || (ideas[k] == "liberty_egalite_fraternity") || (ideas[k] == "church_attendance_duty") || (ideas[k] == "scientific_revolution") )
+						{
+							literacy += 0.04;
+						}
+					}
+					vector<string> modifiers = sourceCountries[i].getModifiers();
+					for (unsigned int k = 0; k < modifiers.size(); k++)
+					{
+						if ( (modifiers[k] == "the_school_establishment_act") || (modifiers[k] == "sunday_schools") || (modifiers[k] == "the_education_act") || (modifiers[k] == "monastic_education_system") || (modifiers[k] == "western_embassy_mission") )
 						{
 							literacy += 0.04;
 						}
@@ -570,20 +578,32 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							numUniversities++;
 						}
 					}
-					double universityBonus;
+					double universityBonus1;
 					if (numProvinces > 0)
 					{
-						universityBonus = numUniversities / numProvinces;
+						universityBonus1 = numUniversities / numProvinces;
 					}
 					else
 					{
-						universityBonus = 0;
+						universityBonus1 = 0;
 					}
+					double universityBonus2	= numUniversities * 0.01;
+					double universityBonus	= max(universityBonus1, universityBonus2);
 					if (universityBonus > 0.2)
 					{
 						universityBonus = 0.2;
 					}
 					literacy += universityBonus;
+					string techGroup = sourceCountries[i].getTechGroup();
+					if ( (techGroup == "western") || (techGroup == "eastern") || (techGroup == "ottoman") )
+					{
+						literacy += 0.1;
+					}
+					if (literacy > 0.8)
+					{
+						literacy = 0.8;
+					}
+					log("Setting %s's literacy to %f\n", newCountry.getTag().c_str(), literacy);
 					newCountry.setLiteracy(literacy);
 				}
 			}
