@@ -21,6 +21,11 @@ public:
 		return getInstance()->V2Path;
 	}
 
+	static string getEU3Path()
+	{
+		return getInstance()->EU3Path;
+	}
+
 	static string getGametype()
 	{
 		return getInstance()->gametype;
@@ -38,6 +43,7 @@ private:
 
 	date startDate;
 	string V2Path;
+	string EU3Path;
 	string gametype;
 };
 

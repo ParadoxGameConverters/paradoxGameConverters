@@ -648,3 +648,40 @@ governmentMapping initGovernmentMap(Object* obj)
 
 	return governmentMap;
 }
+
+
+unionCulturesList initUnionCultures(Object* obj)
+{
+	unionCulturesList unionCultures;
+	vector<Object*> cultureGroups = obj->getLeaves();
+
+	for (unsigned int i = 0; i < cultureGroups.size(); i++)
+	{
+		vector<Object*>		cultures			= cultureGroups[i]->getLeaves();
+		bool						hasUnion			= false;
+		unionCultureStruct	unionCulture;
+
+		for (unsigned int j = 0; j < cultures.size(); j++)
+		{
+			if (cultures[j]->getKey() == "union")
+			{
+				hasUnion = true;
+				unionCulture.tag = cultures[j]->getLeaf();
+			}
+			else if (cultures[j]->getKey() == "dynasty_names")
+			{
+			}
+			else
+			{
+				unionCulture.cultures.push_back(cultures[j]->getKey());
+			}
+		}
+
+		if (hasUnion)
+		{
+			unionCultures.push_back(unionCulture);
+		}
+	}
+
+	return unionCultures;
+}

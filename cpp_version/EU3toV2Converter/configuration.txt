@@ -3,6 +3,9 @@ configuration =
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	v2directory = "D:\Paradox Interactive\Victoria 2"
 
+	# Europa Universalis 3 directory: a path on your computer where Europa Universalis 3 is installed
+	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
+
 	# The date on which the game is to start.  Default: 1835.12.12
 	start_date = 1835.12.12
 

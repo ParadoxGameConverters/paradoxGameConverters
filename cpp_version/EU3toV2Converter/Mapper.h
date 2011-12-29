@@ -57,5 +57,12 @@ unionMapping initUnionMap(Object* obj);
 typedef map< string, string > governmentMapping;	// <srcGov, dstGov>
 governmentMapping initGovernmentMap(Object* obj);
 
+typedef struct {
+	string tag;
+	vector<string> cultures;
+} unionCultureStruct;
+typedef vector<unionCultureStruct> unionCulturesList;
+unionCulturesList initUnionCultures(Object* obj);
+
 
 #endif // MAPPER_H

@@ -18,6 +18,7 @@ Configuration::Configuration()
 	}
 
 	V2Path = obj[0]->getLeaf("v2directory");
+	EU3Path = obj[0]->getLeaf("EU3directory");
 	startDate = date(obj[0]->getLeaf("start_date"));
 	gametype = obj[0]->getLeaf("gametype");
 }

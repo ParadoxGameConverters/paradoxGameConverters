@@ -25,6 +25,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		return (-2);
 	}
 
+	//Get EU3 install location
+	string EU3Loc = Configuration::getEU3Path();
+	if (EU3Loc.empty() || (stat(EU3Loc.c_str(), &st) != 0))
+	{
+		log("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
+
 
 	//Get Input EU3 save 
 	string inputFilename("input.eu3");
@@ -227,6 +236,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
+	obj = doParseFile( (EU3Loc + "\\common\\cultures.txt").c_str() );
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse cultures.txt.\n");
+		printf("Error: Failed to parse cultures.txt.\n");
+		return 1;
+	}
+	unionCulturesList unionCultures;
+	unionCultures = initUnionCultures(obj);
+
 	// Parse Religion Mappings
 	log("Parsing religion mappings.\n");
 	printf("Parsing religion mappings.\n");
@@ -268,7 +287,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Convert
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, religionMap, governmentMap);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap);
 	printf("Converting diplomacy.\n");
 	log("Converting diplomacy.\n");
 	destWorld.convertDiplomacy(sourceWorld, countryMap);

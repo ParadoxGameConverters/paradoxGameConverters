@@ -353,7 +353,7 @@ vector<string> V2World::getPotentialTags()
 }
 
 
-void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, governmentMapping governmentMap)
+void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, unionCulturesList unionCultures, religionMapping religionMap, governmentMapping governmentMap)
 {
 	vector<string> outputOrder = getPotentialTags();
 	vector<EU3Country> sourceCountries = sourceWorld.getCountries();
@@ -420,6 +420,16 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					}
 					
 					vector<string> acceptedCultures = sourceCountries[i].getAcceptedCultures();
+					for (unsigned int k = 0; k < unionCultures.size(); k++)
+					{
+						if (sourceCountries[i].getTag() == unionCultures[k].tag)
+						{
+							for (unsigned int l = 0; l < unionCultures[k].cultures.size(); l++)
+							{
+								acceptedCultures.push_back(unionCultures[k].cultures[l]);
+							}
+						}
+					}
 					for (unsigned int k = 0; k < acceptedCultures.size(); k++)
 					{
 						bool matched = false;
