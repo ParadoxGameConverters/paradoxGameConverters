@@ -9,13 +9,6 @@ Sourceforge project: https://sourceforge.net/projects/eu3tovic2/
 
 
 ----
-IMPORTANT
-----
-
-MAKE SURE YOU HAVE THE RIGHT VERSION OF THE CONVERTER PROGRAM. THERE IS ONE EACH FOR HTTT and DIVINE WIND.
-
-
-----
 REQUIREMENTS
 ----
 EU3:HTTT version 4.1 or EU3:DW version 5.1
@@ -28,8 +21,13 @@ INSTRUCTIONS
 
 1) Find the desired save file in "[YOUR EU3 DIRECTORY]/save games".
 2) Copy the save game in to the directory of this converter, and rename it to "input.eu3"
-3) Open the file "converter.bat".  At the top of the file there is a Victoria 2 directory.  Modify it so that it points to YOUR copy of Victoria 2.
-4) Run "converter.bat".  This will create a file in the converters directory called "output.v2".
+3) Open the file "configuration.txt".  In the file there is a line that reads 
+	v2directory = "D:\Paradox Interactive\Victoria 2"
+   Modify it so that it points to YOUR copy of Victoria 2.
+4) In "configuration.txt", there is a line that reads
+	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
+   Modify it so that it points to YOUR copy of Europa Universalis III.
+4) Run "EU3toV2Converter.exe".  This will create a file in the converters directory called "output.v2".
 5) Copy "output.v2" to "[YOUR VICTORIA DIRECTORY]/save games" and run Victoria 2
 6) Load the output game and immediately save the game.  Then resign, and load that game.  Enjoy!
 

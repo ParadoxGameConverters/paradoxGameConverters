@@ -323,3 +323,4 @@ Revision	Version Updated		Log Message
 300		C++			Further tech updates.
 301		C++			Tweaked pop conversion of bureaucrats, aristocrats, and capitalists.
 302		C++			Tweaked pop conversion of officers, soldiers, artisans, clerks, and craftsmen.
+303		N/A			Updated Readme file.
