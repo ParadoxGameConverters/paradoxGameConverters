@@ -320,3 +320,4 @@ Revision	Version Updated		Log Message
 297		C++			Removed some normally hidden compiler warnings.
 298		C++			Updated tech conversion
 299		C++			All cultures from EU3 cultural unions now accepted.
+300		C++			Further tech updates.

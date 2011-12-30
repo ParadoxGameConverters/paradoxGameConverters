@@ -675,14 +675,8 @@ void V2Country::setIndustryTech(double newTechLevel)
 
 void V2Country::setCultureTech(double newTechLevel)
 {
-	if (newTechLevel >= 0)
-	{
-		techs.push_back("classicism_n_early_romanticism");
-	}
-	if (newTechLevel >= 0)
-	{
-		techs.push_back("late_enlightenment_philosophy");
-	}
+	techs.push_back("classicism_n_early_romanticism");
+	techs.push_back("late_enlightenment_philosophy");
 	if (newTechLevel >= 2)
 	{
 		techs.push_back("enlightenment_thought");
@@ -1119,6 +1113,8 @@ void V2Country::setupPops(EU3World& sourceWorld)
 		itr->setupPops(sourceWorld, primaryCulture, acceptedCultures, religion, con, mil);
 	}
 }
+
+
 void V2Country::setLiteracy(double newLiteracy)
 {
 	literacy = newLiteracy;
