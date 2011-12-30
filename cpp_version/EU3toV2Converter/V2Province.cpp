@@ -205,17 +205,17 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	   || oldProvince->hasBuilding("refinery")
 	   || oldProvince->hasBuilding("textile"))
 	{
-		craftsmen	+= 500;
-		clerks		+= 100;
+		craftsmen	+= 100;
+		clerks		+= 5;
 	}
 	if (oldCountry->hasNationalIdea("scientific_revolution"))
 	{
-		clerks += 50;
+		clerks += 10;
 	}
 
-	artisans		+= 500;
+	artisans	+= 800;
 
-	//If province is CENTER OF TRADE then add 100 CLERKS, 100 CAPITALISTS, 100 ARTISANS.
+	//If province is CENTER OF TRADE then add 10 CLERKS, 3 CAPITALISTS, 100 ARTISANS.
 	//if ()
 	//{
 	//}
@@ -225,18 +225,18 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		slaves += 500;
 	}
 
-	soldiers	+= 100;
+	soldiers	+= 50;
 	if (oldCountry->hasNationalIdea("grand_army")
 		|| oldCountry->hasNationalIdea("glorious_arms"))
 	{
 		soldiers += 50;
 	}
 
-	officers		+= 30;
+	officers		+= 10;
 	if (oldCountry->hasNationalIdea("battlefield_commissions")
 		|| oldCountry->hasNationalIdea("sea_hawks"))
 	{
-		officers  += 30;
+		officers  += 10;
 	}
 
 	clergymen	+= 100;
