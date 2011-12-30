@@ -175,7 +175,7 @@ void V2Province::doCreatePops(bool isStateCapital, int statePopulation, EU3World
 
 void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry)
 {
-	// each "point" here represents slightly less than 0.1% (1/1000) population of this culture-religion pair
+	// each "point" here represents slightly less than 0.01% (1/10000) population of this culture-religion pair
 	// (depending on the total points allocated)
 	int farmers			= 0;
 	int labourers		= 0;
@@ -192,83 +192,90 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 
 	if ( (rgoType == "cattle") || (rgoType == "coffee") || (rgoType == "cotton") || (rgoType == "dye") || (rgoType == "fish") || (rgoType == "fruit") || (rgoType == "grain") || (rgoType == "opium") || (rgoType == "silk") || (rgoType == "tea") || (rgoType == "tobacco") || (rgoType == "wool") )
 	{
-		farmers += 900;
+		farmers += 9000;
 	}
 	else
 	{
-		labourers += 900;
-		craftsmen += 10;
+		labourers += 9000;
+		craftsmen += 100;
 	}
 
-	//If Nation has Slavery ALLOWED
-	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
-	{
-		slaves += 50;
-	}
-
-	soldiers	+= 10;
-	if (oldCountry->hasNationalIdea("grand_army")
-		|| oldCountry->hasNationalIdea("glorious_arms"))
-	{
-		soldiers += 5;
-	}
-
-	//If province has a MANUFACTORY
 	if(   oldProvince->hasBuilding("weapons")
 	   || oldProvince->hasBuilding("wharf")
 	   || oldProvince->hasBuilding("refinery")
 	   || oldProvince->hasBuilding("textile"))
 	{
-		craftsmen	+= 50;
-		clerks		+= 10;
+		craftsmen	+= 500;
+		clerks		+= 100;
 	}
 	if (oldCountry->hasNationalIdea("scientific_revolution"))
 	{
-		clerks += 5;
+		clerks += 50;
 	}
 
-	artisans		+= 50;
-	clergymen	+= 10;
-	if (oldCountry->hasNationalIdea("church_attendance_duty")
-		|| oldCountry->hasNationalIdea("deus_vult"))
+	artisans		+= 500;
+
+	//If province is CENTER OF TRADE then add 100 CLERKS, 100 CAPITALISTS, 100 ARTISANS.
+	//if ()
+	//{
+	//}
+
+	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
 	{
-		clergymen += 5;
+		slaves += 500;
 	}
 
-	officers		+= 3;
+	soldiers	+= 100;
+	if (oldCountry->hasNationalIdea("grand_army")
+		|| oldCountry->hasNationalIdea("glorious_arms"))
+	{
+		soldiers += 50;
+	}
+
+	officers		+= 30;
 	if (oldCountry->hasNationalIdea("battlefield_commissions")
 		|| oldCountry->hasNationalIdea("sea_hawks"))
 	{
-		officers  += 3;
+		officers  += 30;
 	}
 
-	//If province is the CAPITAL or NATIONAL FOCUS
+	clergymen	+= 100;
+	if (oldCountry->hasNationalIdea("church_attendance_duty")
+		|| oldCountry->hasNationalIdea("deus_vult"))
+	{
+		clergymen += 50;
+	}
+
+	bureaucrats += 7;
 	if (oldCountry->getCapital() == oldProvince->getNum()
 		|| oldCountry->getNationalFocus() == oldProvince->getNum())
 	{
-		bureaucrats	+= 10;
-		aristocrats += 10;
+		bureaucrats	+= 30;
+		aristocrats += 100;
 	}
-	bureaucrats += 5;
 	if (oldCountry->hasNationalIdea("bureaucracy"))
 	{
-		bureaucrats += 5;
+		bureaucrats += 7;
 	}
 
-	//If province is CENTER OF TRADE then add 10 CLERKS.
-	//If province was a COT, add 10 CAPITALISTS.
-	//If government is NOT republic, add 20 ARISTOCRATS.
-	//If government is NOT absolute monarchy, add 20 CAPITALISTS.
-	aristocrats	+= 10; // temporary for now
-
+	aristocrats	+= 25;
+	if ( (oldCountry->getGovernment() != "merchant_republic") && (oldCountry->getGovernment() != "noble_republic") && (oldCountry->getGovernment() != "administrative_republic") && (oldCountry->getGovernment() != "republican_dictatorship") && (oldCountry->getGovernment() != "constitutional_republic") && (oldCountry->getGovernment() != "bureaucratic_despotism") && (oldCountry->getGovernment() != "tribal_democracy") && (oldCountry->getGovernment() != "revolutionary_republic") )
+	{
+		aristocrats += 50;
+	}
 	if (oldCountry->hasNationalIdea("viceroys")
 		&& oldProvince->wasColonised())
 	{
-		aristocrats += 5;
+		aristocrats += 25;
+	}
+	
+	if (oldCountry->getGovernment() != "absolute_monarchy")
+	{
+		capitalists += 2;
 	}
 	if (oldCountry->hasNationalIdea("smithian_economics"))
 	{
-		capitalists += 3;
+		capitalists += 1;
 	}
 
 	// Capitalists, Bureaucrats, and Aristocrats are only found in the state capital
