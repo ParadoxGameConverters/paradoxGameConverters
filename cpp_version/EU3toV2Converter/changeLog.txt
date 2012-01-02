@@ -325,3 +325,4 @@ Revision	Version Updated		Log Message
 302		C++			Tweaked pop conversion of officers, soldiers, artisans, clerks, and craftsmen.
 303		N/A			Updated Readme file.
 304		N/A			Added TO-Prussia-Germany save game.
+305		C++			Don't place union cores on (or spawn expeditionary armies from) pagan conquests.

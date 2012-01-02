@@ -717,6 +717,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 					provinces[i].setOwner(iter->second);
 					provinces[i].setColonial(oldProvince->isColony());
 					provinces[i].setColonised(oldProvince->wasColonised());
+					provinces[i].setPaganConquest(oldProvince->wasPaganConquest(sourceWorld.getCountry(oldOwner)->getReligion()));
 
 					for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
 					{
@@ -843,7 +844,7 @@ void V2World::addUnions(unionMapping unionMap)
 	{
 		for (unsigned int j = 0; j < unionMap.size(); j++)
 		{
-			if ( (unionMap[j].first == provinces[i].getCulture()) && (!provinces[i].wasColonised()) )
+			if ( (unionMap[j].first == provinces[i].getCulture()) && (!provinces[i].wasPaganConquest()) && (!provinces[i].wasColonised()) )
 			{
 				provinces[i].addCore(unionMap[j].second);
 			}
@@ -1068,7 +1069,7 @@ V2Province* V2World::getProvinceForExpeditionaryArmy(const V2Country& country)
 	vector<V2Province*> candidates;
 	for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
-		if ((pitr->getOwner() == country.getTag()) && !pitr->wasColonised() 
+		if ((pitr->getOwner() == country.getTag()) && !pitr->wasColonised() && !pitr->wasPaganConquest()
 			&& (pitr->getCulture() == country.getPrimaryCulture()) && (pitr->getPops("soldiers").size() > 0))
 		{
 			candidates.push_back(&(*pitr));

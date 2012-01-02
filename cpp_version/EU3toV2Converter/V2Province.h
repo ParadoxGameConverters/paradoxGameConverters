@@ -32,6 +32,8 @@ class V2Province {
 		bool		isColonial();
 		void		setColonised(bool);
 		bool		wasColonised();
+		void		setPaganConquest(bool);
+		bool		wasPaganConquest();
 		void		addOldPop(V2Pop);
 		void		output(FILE*);
 		vector<V2Pop>	getPops(string type);
@@ -62,6 +64,7 @@ class V2Province {
 		vector<string>	cores;
 		bool				colonial;
 		bool				colonised;
+		bool				originallyPagan;
 		int				oldPopulation;
 		vector<V2Demographic> demographics;
 		vector<V2Pop>	oldPops;

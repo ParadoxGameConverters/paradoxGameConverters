@@ -27,6 +27,7 @@ class EU3Province {
 		bool				isColony();
 		date				getLastPossessedDate(string Tag);
 		bool				wasColonised();
+		bool				wasPaganConquest(string ownerReligion);
 		void				buildPopRatios();
 		vector<EU3PopRatio>	getPopRatios();
 		bool				hasBuilding(string building);

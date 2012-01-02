@@ -255,6 +255,26 @@ bool EU3Province::wasColonised()
 }
 
 
+bool EU3Province::wasPaganConquest(string ownerReligion)
+{
+	// returns true if the province was originally pagan, the current owner is non-pagan,
+	// and the province was NOT colonized
+	if (religionHistory.size() > 0 && !wasColonised())
+	{
+		// TODO: should probably read these from EU3 common/religion.txt
+		string firstReligion = religionHistory[0].second;
+		if (firstReligion == "animism" || firstReligion == "shamanism")
+		{
+			if (ownerReligion != "animism" && ownerReligion != "shamanism")
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+
+
 date EU3Province::getLastPossessedDate(string Tag)
 {
 	map<string, date>::iterator itr = lastPossessedDate.find(Tag);

@@ -70,6 +70,7 @@ class EU3Country
 		double					getLegitimacy();
 		vector<EU3Leader>		getLeaders();
 		void					eatCountry(EU3Country* target);
+		bool					isPagan() const;
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;

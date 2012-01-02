@@ -107,6 +107,18 @@ bool V2Province::wasColonised()
 }
 
 
+void V2Province::setPaganConquest(bool wasIt)
+{
+	originallyPagan = wasIt;
+}
+
+
+bool V2Province::wasPaganConquest()
+{
+	return originallyPagan;
+}
+
+
 bool V2Province::isColonial()
 {
 	return colonial;
