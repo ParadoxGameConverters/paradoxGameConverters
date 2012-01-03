@@ -40,7 +40,7 @@ link = { tag = ROM culture = romanian }
 #Hungary
 link = { tag = HUN culture = hungarian }
 
-#Hungry
+#Poland
 link = { tag = POL culture = polish }
 
 #Czechoslovakia
