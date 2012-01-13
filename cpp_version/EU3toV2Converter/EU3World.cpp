@@ -209,9 +209,14 @@ WorldType EU3World::getWorldType()
 		forcedWorldType = DivineWind;
 	else if (configWorldType == "httt")
 		forcedWorldType = HeirToTheThrone;
+	else if (configWorldType == "auto")
+		forcedWorldType = cachedWorldType;
 
 	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != Unknown))
 		log("Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
+
+	if (cachedWorldType == Unknown)
+		log("Error: world type unknown!\n");
 
 	if (forcedWorldType != Unknown)
 		cachedWorldType = forcedWorldType;

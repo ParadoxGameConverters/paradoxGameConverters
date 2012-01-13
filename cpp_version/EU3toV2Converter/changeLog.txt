@@ -328,4 +328,6 @@ Revision	Version Updated		Log Message
 305		C++			Don't place union cores on (or spawn expeditionary armies from) pagan conquests.
 306		C++			Comment unions.txt
 307		C++			Fix unions.txt comment for Poland
-308		C++			Massive overhaul of DW pop conversion.
+308		C++			Updated Readme.txt
+309		C++			Massive overhaul of DW pop conversion.
+310		C++			Better logging of EU3 type check errors.
