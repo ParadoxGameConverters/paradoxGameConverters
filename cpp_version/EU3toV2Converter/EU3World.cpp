@@ -66,6 +66,24 @@ void EU3World::init(Object* obj) {
 	{
 		diplomacy.init(diploObj[0]);
 	}
+
+	vector<Object*> tradeObj = obj->getValue("trade");
+	if (tradeObj.size() > 0)
+	{
+		vector<Object*> COTsObj = tradeObj[0]->getValue("cot");
+		for (unsigned int i = 0; i < COTsObj.size(); i++)
+		{
+			int location = atoi( COTsObj[i]->getValue("location")[0]->getLeaf().c_str() );
+			for (unsigned int j = 0; j < provinces.size(); j++)
+			{
+				if (provinces[j].getNum() == location)
+				{
+					provinces[j].setCOT(true);
+					break;
+				}
+			}
+		}
+	}
 }
 
 

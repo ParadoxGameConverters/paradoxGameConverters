@@ -5,6 +5,10 @@
 #include "EU3World.h"
 #include "V2Pop.h"
 #include "EU3Country.h"
+#include "Configuration.h"
+
+
+
 struct V2Demographic {
 	string culture;
 	string religion;
@@ -34,11 +38,13 @@ class V2Province {
 		bool		wasColonised();
 		void		setPaganConquest(bool);
 		bool		wasPaganConquest();
+		void		setCOT(bool);
+		bool		getCOT();
 		void		addOldPop(V2Pop);
 		void		output(FILE*);
 		vector<V2Pop>	getPops(string type);
 		void		addPopDemographic(V2Demographic d);
-		void		doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld);
+		void		doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld, bool stateHasCOT);
 		void		setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier);
 		void		setCoastal(bool coastal);
 		bool		isCoastal();
@@ -51,7 +57,7 @@ class V2Province {
 		void		setFortLevel(int);
 		void		setNavalBaseLevel(int);
 	private:
-		void		createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry);
+		void		createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry, bool stateHasCOT);
 		void		combinePops();
 		bool		growSoldierPop(int popID);
 
@@ -64,6 +70,7 @@ class V2Province {
 		vector<string>	cores;
 		bool				colonial;
 		bool				colonised;
+		bool				COT;
 		bool				originallyPagan;
 		int				oldPopulation;
 		vector<V2Demographic> demographics;

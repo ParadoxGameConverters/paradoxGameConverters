@@ -59,12 +59,36 @@ void EU3Province::init(Object* obj) {
 	checkBuilding(obj, "fort4");
 	checkBuilding(obj, "fort5");
 	checkBuilding(obj, "fort6");
+
 	checkBuilding(obj, "dock");
 	checkBuilding(obj, "drydock");
 	checkBuilding(obj, "shipyard");
 	checkBuilding(obj, "grand_shipyard");
 	checkBuilding(obj, "naval_arsenal");
 	checkBuilding(obj, "naval_base");
+
+	checkBuilding(obj, "temple");
+	checkBuilding(obj, "courthouse");
+	checkBuilding(obj, "spy_agency");
+	checkBuilding(obj, "town_hall");
+	checkBuilding(obj, "college");
+	checkBuilding(obj, "cathedral");
+
+	checkBuilding(obj, "armory");
+	checkBuilding(obj, "training_fields");
+	checkBuilding(obj, "barracks");
+	checkBuilding(obj, "regimental_camp");
+	checkBuilding(obj, "arsenal");
+	checkBuilding(obj, "conscription_center");
+
+	checkBuilding(obj, "constable");
+	checkBuilding(obj, "workshop");
+	checkBuilding(obj, "counting_house");
+	checkBuilding(obj, "treasury_office");
+	checkBuilding(obj, "mint");
+	checkBuilding(obj, "stock_exchange");
+
+	checkBuilding(obj, "customs_house");
 
 	colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
@@ -148,6 +172,8 @@ void EU3Province::init(Object* obj) {
 	sort(ownershipHistory.begin(), ownershipHistory.end());
 	sort(cultureHistory.begin(), cultureHistory.end());
 	sort(religionHistory.begin(), religionHistory.end());
+
+	centerOfTrade = false;
 }
 
 
@@ -166,6 +192,18 @@ bool EU3Province::hasBuilding(string building)
 	if (itr == buildings.end())
 		return false;
 	return itr->second;
+}
+
+
+bool EU3Province::isCOT()
+{
+	return centerOfTrade;
+}
+
+
+void EU3Province::setCOT(bool isCOT)
+{
+	centerOfTrade = isCOT;
 }
 
 

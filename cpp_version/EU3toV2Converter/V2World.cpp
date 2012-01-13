@@ -718,6 +718,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 					provinces[i].setColonial(oldProvince->isColony());
 					provinces[i].setColonised(oldProvince->wasColonised());
 					provinces[i].setPaganConquest(oldProvince->wasPaganConquest(sourceWorld.getCountry(oldOwner)->getReligion()));
+					provinces[i].setCOT(oldProvince->isCOT());
 
 					for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
 					{

@@ -119,6 +119,18 @@ bool V2Province::wasPaganConquest()
 }
 
 
+void V2Province::setCOT(bool wasCOT)
+{
+	COT = wasCOT;
+}
+
+
+bool V2Province::getCOT()
+{
+	return COT;
+}
+
+
 bool V2Province::isColonial()
 {
 	return colonial;
@@ -173,21 +185,21 @@ void V2Province::addPopDemographic(V2Demographic d)
 }
 
 
-void V2Province::doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld)
+void V2Province::doCreatePops(bool isStateCapital, int statePopulation, EU3World& sourceWorld, bool stateHasCOT)
 {
 	for (vector<V2Demographic>::iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
 		EU3Province* oldProvince = sourceWorld.getProvince(itr->oldProvinceID);
 		EU3Country* oldCountry = sourceWorld.getCountry(itr->oldCountry);
-		createPops(*itr, isStateCapital, statePopulation, oldProvince, oldCountry);
+		createPops(*itr, isStateCapital, statePopulation, oldProvince, oldCountry, stateHasCOT);
 	}
 	combinePops();
 }
 
 
-void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry)
+void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry, bool stateHasCOT)
 {
-	// each "point" here represents slightly less than 0.01% (1/10000) population of this culture-religion pair
+	// each "point" here represents slightly less than 0.01% (1 / 10 000) population of this culture-religion pair
 	// (depending on the total points allocated)
 	int farmers			= 0;
 	int labourers		= 0;
@@ -202,92 +214,272 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	int capitalists	= 0;
 	int aristocrats	= 0;
 
-	if ( (rgoType == "cattle") || (rgoType == "coffee") || (rgoType == "cotton") || (rgoType == "dye") || (rgoType == "fish") || (rgoType == "fruit") || (rgoType == "grain") || (rgoType == "opium") || (rgoType == "silk") || (rgoType == "tea") || (rgoType == "tobacco") || (rgoType == "wool") )
+	if (Configuration::getGametype() == "httt")
 	{
-		farmers += 9000;
-	}
-	else
-	{
-		labourers += 9000;
-		craftsmen += 100;
-	}
+		if ( (rgoType == "cattle") || (rgoType == "coffee") || (rgoType == "cotton") || (rgoType == "dye") || (rgoType == "fish") || (rgoType == "fruit") || (rgoType == "grain") || (rgoType == "opium") || (rgoType == "silk") || (rgoType == "tea") || (rgoType == "tobacco") || (rgoType == "wool") )
+		{
+			farmers += 9000;
+		}
+		else
+		{
+			labourers += 9000;
+			craftsmen += 100;
+		}
 
-	if(   oldProvince->hasBuilding("weapons")
-	   || oldProvince->hasBuilding("wharf")
-	   || oldProvince->hasBuilding("refinery")
-	   || oldProvince->hasBuilding("textile"))
-	{
-		craftsmen	+= 100;
-		clerks		+= 5;
-	}
-	if (oldCountry->hasNationalIdea("scientific_revolution"))
-	{
-		clerks += 10;
-	}
+		if(   oldProvince->hasBuilding("weapons")
+		   || oldProvince->hasBuilding("wharf")
+			|| oldProvince->hasBuilding("refinery")
+		   || oldProvince->hasBuilding("textile"))
+		{
+			craftsmen	+= 100;
+			clerks		+= 5;
+		}
+		if (oldCountry->hasNationalIdea("scientific_revolution"))
+		{
+			clerks += 10;
+		}
 
-	artisans	+= 800;
+		artisans	+= 800;
 
-	//If province is CENTER OF TRADE then add 10 CLERKS, 3 CAPITALISTS, 100 ARTISANS.
-	//if ()
-	//{
-	//}
+		//If province is CENTER OF TRADE then add 100 CLERKS, 3 CAPITALISTS, 1000 ARTISANS.
+		//if ()
+		//{
+		//}
 
-	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
-	{
-		slaves += 500;
-	}
+		if (!oldCountry->hasModifier("the_abolish_slavery_act"))
+		{
+			slaves += 500;
+		}
 
-	soldiers	+= 50;
-	if (oldCountry->hasNationalIdea("grand_army")
-		|| oldCountry->hasNationalIdea("glorious_arms"))
-	{
-		soldiers += 50;
-	}
+		soldiers	+= 50;
+		if (oldCountry->hasNationalIdea("grand_army")
+			|| oldCountry->hasNationalIdea("glorious_arms"))
+		{
+			soldiers += 50;
+		}
 
-	officers		+= 10;
-	if (oldCountry->hasNationalIdea("battlefield_commissions")
-		|| oldCountry->hasNationalIdea("sea_hawks"))
-	{
-		officers  += 10;
-	}
+		officers		+= 100;
+		if (oldCountry->hasNationalIdea("battlefield_commissions")
+			|| oldCountry->hasNationalIdea("sea_hawks"))
+		{
+			officers  += 10;
+		}
 
-	clergymen	+= 100;
-	if (oldCountry->hasNationalIdea("church_attendance_duty")
-		|| oldCountry->hasNationalIdea("deus_vult"))
-	{
-		clergymen += 50;
-	}
+		clergymen	+= 100;
+		if (oldCountry->hasNationalIdea("church_attendance_duty")
+			|| oldCountry->hasNationalIdea("deus_vult"))
+		{
+			clergymen += 50;
+		}
 
-	bureaucrats += 7;
-	if (oldCountry->getCapital() == oldProvince->getNum()
-		|| oldCountry->getNationalFocus() == oldProvince->getNum())
-	{
-		bureaucrats	+= 30;
-		aristocrats += 100;
-	}
-	if (oldCountry->hasNationalIdea("bureaucracy"))
-	{
 		bureaucrats += 7;
+		if (oldCountry->getCapital() == oldProvince->getNum()
+			|| oldCountry->getNationalFocus() == oldProvince->getNum())
+		{
+			bureaucrats	+= 30;
+			aristocrats += 100;
+		}
+		if (oldCountry->hasNationalIdea("bureaucracy"))
+		{
+			bureaucrats += 7;
+		}
+
+		aristocrats	+= 25;
+		if ( (oldCountry->getGovernment() != "merchant_republic") && (oldCountry->getGovernment() != "noble_republic") && (oldCountry->getGovernment() != "administrative_republic") && (oldCountry->getGovernment() != "republican_dictatorship") && (oldCountry->getGovernment() != "constitutional_republic") && (oldCountry->getGovernment() != "bureaucratic_despotism") && (oldCountry->getGovernment() != "tribal_democracy") && (oldCountry->getGovernment() != "revolutionary_republic") )
+		{
+			aristocrats += 50;
+		}
+		if (oldCountry->hasNationalIdea("viceroys")
+			&& oldProvince->wasColonised())
+		{
+			aristocrats += 25;
+		}
+	
+		if (oldCountry->getGovernment() != "absolute_monarchy")
+		{
+			capitalists += 2;
+		}
+		if (oldCountry->hasNationalIdea("smithian_economics"))
+		{
+			capitalists += 1;
+		}
 	}
 
-	aristocrats	+= 25;
-	if ( (oldCountry->getGovernment() != "merchant_republic") && (oldCountry->getGovernment() != "noble_republic") && (oldCountry->getGovernment() != "administrative_republic") && (oldCountry->getGovernment() != "republican_dictatorship") && (oldCountry->getGovernment() != "constitutional_republic") && (oldCountry->getGovernment() != "bureaucratic_despotism") && (oldCountry->getGovernment() != "tribal_democracy") && (oldCountry->getGovernment() != "revolutionary_republic") )
+	else // Gametype == dw
 	{
-		aristocrats += 50;
-	}
-	if (oldCountry->hasNationalIdea("viceroys")
-		&& oldProvince->wasColonised())
-	{
-		aristocrats += 25;
-	}
+		int govBuilding = 0;
+		if (oldProvince->hasBuilding("temple"))
+		{
+			govBuilding = 1;
+		}
+		else if (oldProvince->hasBuilding("courthouse"))
+		{
+			govBuilding = 2;
+		}
+		else if (oldProvince->hasBuilding("spy_agency"))
+		{
+			govBuilding = 3;
+		}
+		else if (oldProvince->hasBuilding("town_hall"))
+		{
+			govBuilding = 4;
+		}
+		else if (oldProvince->hasBuilding("college"))
+		{
+			govBuilding = 6;
+		}
+		else if (oldProvince->hasBuilding("cathedral"))
+		{
+			govBuilding = 8;
+		}
+
+		int armyBuilding = 0;
+		if (oldProvince->hasBuilding("armory"))
+		{
+			armyBuilding = 1;
+		}
+		else if (oldProvince->hasBuilding("training_fields"))
+		{
+			armyBuilding = 2;
+		}
+		else if (oldProvince->hasBuilding("barracks"))
+		{
+			armyBuilding = 3;
+		}
+		else if (oldProvince->hasBuilding("regimental_camp"))
+		{
+			armyBuilding = 4;
+		}
+		else if (oldProvince->hasBuilding("arsenal"))
+		{
+			armyBuilding = 6;
+		}
+		else if (oldProvince->hasBuilding("conscription_center"))
+		{
+			armyBuilding = 8;
+		}
+
+		int productionBuilding = 0;
+		if (oldProvince->hasBuilding("constable"))
+		{
+			productionBuilding = 1;
+		}
+		else if (oldProvince->hasBuilding("workshop"))
+		{
+			productionBuilding = 2;
+		}
+		else if (oldProvince->hasBuilding("counting_house"))
+		{
+			productionBuilding = 3;
+		}
+		else if (oldProvince->hasBuilding("treasury_office"))
+		{
+			productionBuilding = 4;
+		}
+		else if (oldProvince->hasBuilding("mint"))
+		{
+			productionBuilding = 6;
+		}
+		else if (oldProvince->hasBuilding("stock_exchange"))
+		{
+			productionBuilding = 8;
+		}
+
+
+		if ( (rgoType == "cattle") || (rgoType == "coffee") || (rgoType == "cotton") || (rgoType == "dye") || (rgoType == "fish") || (rgoType == "fruit") || (rgoType == "grain") || (rgoType == "opium") || (rgoType == "silk") || (rgoType == "tea") || (rgoType == "tobacco") || (rgoType == "wool") )
+		{
+			farmers += 9000;
+		}
+		else
+		{
+			labourers += 9000;
+		}
+
+		if(   oldProvince->hasBuilding("weapons")
+		   || oldProvince->hasBuilding("wharf")
+			|| oldProvince->hasBuilding("refinery")
+		   || oldProvince->hasBuilding("textile"))
+		{
+			craftsmen	+= (productionBuilding + 1) * 20;
+			clerks		+= 5;
+		}
+		if (oldCountry->hasNationalIdea("scientific_revolution"))
+		{
+			clerks *= 3;
+		}
+
+
+		artisans	+= productionBuilding * 175;
+
+		//If province is CENTER OF TRADE then add 10 CLERKS, 3 CAPITALISTS, 100 ARTISANS.
+		if (stateHasCOT)
+		{
+			artisans		+= 875;
+			clerks		+= 10;
+			capitalists	+= 3;
+		}
+
+		if (!oldCountry->hasModifier("the_abolish_slavery_act"))
+		{
+			slaves += 500;
+		}
+
+		soldiers	+= armyBuilding * 10;
+		if (oldCountry->hasNationalIdea("grand_army")
+			|| oldCountry->hasNationalIdea("glorious_arms"))
+		{
+			soldiers *= 5;
+		}
+
+		officers	+= armyBuilding * 2;
+		if (oldCountry->hasNationalIdea("battlefield_commissions")
+			|| oldCountry->hasNationalIdea("sea_hawks"))
+		{
+			officers  *= 2;
+		}
+
+		clergymen += 100;
+		if (oldCountry->hasNationalIdea("church_attendance_duty")
+			|| oldCountry->hasNationalIdea("deus_vult"))
+		{
+			clergymen += 50;
+		}
+
+		bureaucrats += govBuilding * 2;
+		if (oldCountry->getCapital() == oldProvince->getNum()
+			|| oldCountry->getNationalFocus() == oldProvince->getNum())
+		{
+			bureaucrats	+= 30;
+			aristocrats += 150;
+		}
+		if (oldCountry->hasNationalIdea("bureaucracy"))
+		{
+			bureaucrats *= 2;
+		}
+
+		aristocrats	+= 37;
+		if ( (oldCountry->getGovernment() != "merchant_republic") && (oldCountry->getGovernment() != "noble_republic") && (oldCountry->getGovernment() != "administrative_republic") && (oldCountry->getGovernment() != "republican_dictatorship") && (oldCountry->getGovernment() != "constitutional_republic") && (oldCountry->getGovernment() != "bureaucratic_despotism") && (oldCountry->getGovernment() != "tribal_democracy") && (oldCountry->getGovernment() != "revolutionary_republic") )
+		{
+			aristocrats += 75;
+		}
+		if (oldCountry->hasNationalIdea("viceroys")
+			&& oldProvince->wasColonised())
+		{
+			aristocrats += 38;
+		}
 	
-	if (oldCountry->getGovernment() != "absolute_monarchy")
-	{
-		capitalists += 2;
-	}
-	if (oldCountry->hasNationalIdea("smithian_economics"))
-	{
-		capitalists += 1;
+		if (oldProvince->hasBuilding("customs_house"))
+		{
+			capitalists += 1;
+		}
+		if (oldCountry->getGovernment() != "absolute_monarchy")
+		{
+			capitalists *= 2;
+		}
+		if (oldCountry->hasNationalIdea("smithian_economics"))
+		{
+			capitalists *= 2;
+		}
 	}
 
 	// Capitalists, Bureaucrats, and Aristocrats are only found in the state capital

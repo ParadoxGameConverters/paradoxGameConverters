@@ -22,6 +22,7 @@ class V2State
 		int		getFactoryCount();
 		void	setupPops(EU3World& sourceWorld, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
 		int		getStatePopulation();
+		bool		hasCOT();
 	private:
 		int						id;
 		bool						colonial;
