@@ -11,7 +11,7 @@ Sourceforge project: https://sourceforge.net/projects/eu3tovic2/
 ----
 REQUIREMENTS
 ----
-EU3:HTTT version 4.1 or EU3:DW version 5.1
+EU3:HTTT version 4.1 or EU3:DW version 5.1 or later
 Victoria 2 version 1.3 or later
 
 
