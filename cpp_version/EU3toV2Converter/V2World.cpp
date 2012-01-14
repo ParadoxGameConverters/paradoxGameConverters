@@ -482,7 +482,9 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						}
 					}
 
-					newCountry.setPrestige(sourceCountries[i].getPrestige() + 100);
+					double prestige = sourceCountries[i].getPrestige() + 100;
+					prestige			+= sourceCountries[i].getCulture();
+					newCountry.setPrestige(prestige);
 
 					string srcGovernment = sourceCountries[i].getGovernment();
 					if (srcGovernment.size() > 0)

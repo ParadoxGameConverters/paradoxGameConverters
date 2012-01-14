@@ -28,6 +28,8 @@ class EU3Country
 		string					getReligion();
 		void						setPrestige(double);
 		double					getPrestige();
+		void						setCulture(double);
+		double					getCulture();
 		void						setLandTech(double);
 		double					getStability();
 		double					getLandTech();
@@ -82,6 +84,7 @@ class EU3Country
 		vector<string>			acceptedCultures;
 		string					religion;
 		double					prestige;
+		double					culture;
 		double					stability;
 		double					landTech;
 		double					navalTech;

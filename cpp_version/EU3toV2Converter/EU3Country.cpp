@@ -57,12 +57,21 @@ void EU3Country::init(Object* obj)
 	vector<Object*> prestigeObj = obj->getValue("prestige");
 	if (prestigeObj.size() > 0)
 	{
-		string prestigeString = prestigeObj[0]->getLeaf();
-		prestige = 100 * atof( prestigeString.c_str() );
+		prestige = 100 * atof( prestigeObj[0]->getLeaf().c_str() );
 	}
 	else
 	{
 		prestige = -100.0;
+	}
+
+	vector<Object*> cultureObj = obj->getValue("cultural_tradition");
+	if (cultureObj.size() > 0)
+	{
+		culture = 100 * atof( cultureObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		culture = 0.0;
 	}
 
 	vector<Object*> stabilityObj = obj->getValue("stability");
@@ -613,6 +622,18 @@ void EU3Country::setPrestige(double newPrestige)
 double EU3Country::getPrestige()
 {
 	return prestige;
+}
+
+
+void EU3Country::setCulture(double newCulture)
+{
+	culture = newCulture;
+}
+
+
+double EU3Country::getCulture()
+{
+	return culture;
 }
 
 
