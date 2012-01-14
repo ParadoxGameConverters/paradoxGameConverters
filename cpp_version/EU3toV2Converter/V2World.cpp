@@ -486,6 +486,9 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					prestige			+= sourceCountries[i].getCulture();
 					newCountry.setPrestige(prestige);
 
+					double leadership = sourceCountries[i].getArmyTradition() + sourceCountries[i].getNavyTradition();
+					newCountry.setLeadership(leadership);
+
 					string srcGovernment = sourceCountries[i].getGovernment();
 					if (srcGovernment.size() > 0)
 					{

@@ -74,6 +74,26 @@ void EU3Country::init(Object* obj)
 		culture = 0.0;
 	}
 
+	vector<Object*> armyTraditionObj = obj->getValue("army_tradition");
+	if (armyTraditionObj.size() > 0)
+	{
+		armyTradition = 100 * atof( armyTraditionObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		armyTradition = 0.0;
+	}
+
+	vector<Object*> navyTraditionObj = obj->getValue("navy_tradition");
+	if (navyTraditionObj.size() > 0)
+	{
+		navyTradition = 100 * atof( navyTraditionObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		navyTradition = 0.0;
+	}
+
 	vector<Object*> stabilityObj = obj->getValue("stability");
 	if (stabilityObj.size() > 0)
 	{
@@ -634,6 +654,30 @@ void EU3Country::setCulture(double newCulture)
 double EU3Country::getCulture()
 {
 	return culture;
+}
+
+
+void EU3Country::setArmyTradition(double newArmyTradition)
+{
+	armyTradition = newArmyTradition;
+}
+
+
+double EU3Country::getArmyTradition()
+{
+	return armyTradition;
+}
+
+
+void EU3Country::setNavyTradition(double newNavyTradition)
+{
+	navyTradition = newNavyTradition;
+}
+
+
+double EU3Country::getNavyTradition()
+{
+	return navyTradition;
 }
 
 

@@ -31,6 +31,7 @@ class V2Country
 		void					output(FILE*);
 		int					getSourceCountryIndex();
 		void					setPrestige(double);
+		void					setLeadership(double);
 		void					setArmyTech(double);
 		void					setNavyTech(double);
 		void					setCommerceTech(double);
@@ -74,6 +75,7 @@ class V2Country
 		int					sourceCountryIndex;
 		string				countryFile;
 		double				prestige;
+		double				leadership;
 		double				plurality;
 		vector<string>		techs;
 		inventionStatus	inventions[naval_exercises];

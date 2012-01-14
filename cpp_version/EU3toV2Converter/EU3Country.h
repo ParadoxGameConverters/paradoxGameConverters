@@ -30,6 +30,10 @@ class EU3Country
 		double					getPrestige();
 		void						setCulture(double);
 		double					getCulture();
+		void						setArmyTradition(double);
+		double					getArmyTradition();
+		void						setNavyTradition(double);
+		double					getNavyTradition();
 		void						setLandTech(double);
 		double					getStability();
 		double					getLandTech();
@@ -85,6 +89,8 @@ class EU3Country
 		string					religion;
 		double					prestige;
 		double					culture;
+		double					armyTradition;
+		double					navyTradition;
 		double					stability;
 		double					landTech;
 		double					navalTech;

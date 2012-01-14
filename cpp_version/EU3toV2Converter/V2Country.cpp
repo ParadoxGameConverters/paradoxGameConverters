@@ -193,6 +193,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	government=%s\n", government.c_str());
 	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader2(output);
+	fprintf(output, "	leadership=%f\n", leadership);
 	for (vector<V2Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
 		itr->output(output);
@@ -259,6 +260,12 @@ int V2Country::getSourceCountryIndex()
 void V2Country::setPrestige(double newPrestige)
 {
 	prestige = newPrestige;
+}
+
+
+void V2Country::setLeadership(double newLeadership)
+{
+	leadership = newLeadership;
 }
 
 
