@@ -6,8 +6,8 @@ configuration =
 	# Europa Universalis 3 directory: a path on your computer where Europa Universalis 3 is installed
 	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
 
-	# The date on which the game is to start.  Default: 1835.12.12
-	start_date = 1835.12.12
+	# The date on which the game is to start.  Default: 1835.12.1
+	start_date = 1835.12.1
 
 	# Game Type: what version of EU3 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!

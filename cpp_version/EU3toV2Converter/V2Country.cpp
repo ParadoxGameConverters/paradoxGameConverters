@@ -181,6 +181,7 @@ void V2Country::output(FILE* output)
 		fprintf(output, "	capital=%d\n", capital);
 	}
 	outputTech(output);
+	outputElection(output);
 	reforms.output(output);
 	outputCountryHeader(output);
 	fprintf(output, "	ruling_party=%d\n", parties[0]);
@@ -777,6 +778,24 @@ void V2Country::outputInventions(FILE* output)
 		}
 	}
 	fprintf(output, "\n	}\n");
+}
+
+
+void V2Country::outputElection(FILE* output)
+{
+	date electionDate = Configuration::getStartDate();
+
+	if (electionDate.month == 12)
+	{
+		electionDate.month = 1;
+		electionDate.year++;
+	}
+	else
+	{
+		electionDate.month++;
+	}
+	electionDate.year -= 4;
+	fprintf(output, "last_election=%s\n", electionDate.toString().c_str());
 }
 
 

@@ -333,3 +333,4 @@ Revision	Version Updated		Log Message
 310		C++			Better logging of EU3 type check errors.
 311		C++			Culture rating increases prestige.
 312		C++			Army and Navy tradition give leadership.
+313		C++			Elections one month after game start.
