@@ -31,6 +31,11 @@ public:
 		return getInstance()->gametype;
 	}
 
+	static string getRemovetype()
+	{
+		return getInstance()->removetype;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -45,6 +50,7 @@ private:
 	string V2Path;
 	string EU3Path;
 	string gametype;
+	string removetype;
 };
 
 #endif // CONFIGURATION_H_

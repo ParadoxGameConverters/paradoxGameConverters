@@ -334,3 +334,4 @@ Revision	Version Updated		Log Message
 311		C++			Culture rating increases prestige.
 312		C++			Army and Navy tradition give leadership.
 313		C++			Elections one month after game start.
+314		C++			Landless nation removal option in configuration.txt.

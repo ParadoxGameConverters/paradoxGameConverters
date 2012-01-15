@@ -21,4 +21,5 @@ Configuration::Configuration()
 	EU3Path = obj[0]->getLeaf("EU3directory");
 	startDate = date(obj[0]->getLeaf("start_date"));
 	gametype = obj[0]->getLeaf("gametype");
+	removetype = obj[0]->getLeaf("removetype");
 }

@@ -178,10 +178,29 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Mapping EU3 nations to V2 nations.\n");
 	printf("Mapping EU3 nations to V2 nations.\n");
 	removeEmptyNations(sourceWorld);
-	removeDeadLandlessNations(sourceWorld);
+	if (Configuration::getRemovetype() == "dead")
+	{
+		removeDeadLandlessNations(sourceWorld);
+	}
+	else if (Configuration::getRemovetype() == "all")
+	{
+		removeLandlessNations(sourceWorld);
+	}
 	countryMapping countryMap;
 	vector<string> EU3Tags = getEU3Tags(sourceWorld);
 	int leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
+		if (leftoverNations == -1)
+	{
+		return 1;
+	}
+	else if (leftoverNations > 0)
+	{
+		log("Too many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
+		printf("Too many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
+		removeDeadLandlessNations(sourceWorld);
+		EU3Tags = getEU3Tags(sourceWorld);
+		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
+	}
 	if (leftoverNations == -1)
 	{
 		return 1;
