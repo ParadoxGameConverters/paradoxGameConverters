@@ -26,28 +26,18 @@ class EU3Country
 		string					getPrimaryCulture();
 		vector<string>			getAcceptedCultures();
 		string					getReligion();
-		void						setPrestige(double);
 		double					getPrestige();
-		void						setCulture(double);
 		double					getCulture();
-		void						setArmyTradition(double);
 		double					getArmyTradition();
-		void						setNavyTradition(double);
 		double					getNavyTradition();
-		void						setLandTech(double);
 		double					getStability();
 		double					getLandTech();
-		void						setNavalTech(double);
 		double					getNavalTech();
-		void						setTradeTech(double);
 		double					getTradeTech();
-		void						setProductionTech(double);
 		double					getProductionTech();
-		void						setGovernmentTech(double);
 		double					getGovernmentTech();
 		vector<string>			getFlags();
-		vector<string>			getModifiers();
-		bool					hasModifier(string);
+		bool						hasModifier(string);
 		bool						getPossibleDaimyo();
 		string					getGovernment();
 		vector<EU3Relations>	getRelations();
@@ -62,21 +52,19 @@ class EU3Country
 		int						getLandNaval();
 		int						getQualityQuantity();
 		vector<string>			getNationalIdeas();
-		bool					hasNationalIdea(string);
+		bool						hasNationalIdea(string);
 		int						getManufactoryCount();
 		double					getTreasury();
-		double					getInflation();
 		double					inflationAdjust(double input);
-		date					getLastBankrupt();
-		vector<EU3Loan>			getLoans();
+		date						getLastBankrupt();
+		vector<EU3Loan>		getLoans();
 		double					getEstimatedMonthlyIncome();
 		double					getDiplomats();
 		double					getBadboy();
 		double					getBadboyLimit();
-		double					getLegitimacy();
 		vector<EU3Leader>		getLeaders();
-		void					eatCountry(EU3Country* target);
-		bool					isPagan() const;
+		void						eatCountry(EU3Country* target);
+
 	private:
 		string					tag;
 		vector<EU3Province*>	provinces;
@@ -113,14 +101,15 @@ class EU3Country
 		int						quality_quantity;
 		vector<string>			nationalIdeas;
 		double					treasury;
-		double					inflation;
-		date					last_bankrupt;
-		vector<EU3Loan>			loans;
+		date						last_bankrupt;
+		vector<EU3Loan>		loans;
 		double					estMonthlyIncome;
 		double					diplomats;
 		double					badboy;
-		double					legitimacy;
 		vector<EU3Leader>		leaders;
+
+		double					legitimacy;
+		double					inflation;
 };
 
 

@@ -633,21 +633,9 @@ string EU3Country::getReligion()
 }
 
 
-void EU3Country::setPrestige(double newPrestige)
-{
-	prestige = newPrestige;
-}
-
-
 double EU3Country::getPrestige()
 {
 	return prestige;
-}
-
-
-void EU3Country::setCulture(double newCulture)
-{
-	culture = newCulture;
 }
 
 
@@ -657,21 +645,9 @@ double EU3Country::getCulture()
 }
 
 
-void EU3Country::setArmyTradition(double newArmyTradition)
-{
-	armyTradition = newArmyTradition;
-}
-
-
 double EU3Country::getArmyTradition()
 {
 	return armyTradition;
-}
-
-
-void EU3Country::setNavyTradition(double newNavyTradition)
-{
-	navyTradition = newNavyTradition;
 }
 
 
@@ -687,21 +663,9 @@ double EU3Country::getStability()
 }
 
 
-void EU3Country::setLandTech(double newTech)
-{
-	landTech = newTech;
-}
-
-
 double EU3Country::getLandTech()
 {
 	return landTech;
-}
-
-
-void EU3Country::setNavalTech(double newTech)
-{
-	navalTech = newTech;
 }
 
 
@@ -711,33 +675,15 @@ double EU3Country::getNavalTech()
 }
 
 
-void EU3Country::setTradeTech(double newTech)
-{
-	tradeTech = newTech;
-}
-
-
 double EU3Country::getTradeTech()
 {
 	return tradeTech;
 }
 
 
-void EU3Country::setProductionTech(double newTech)
-{
-	productionTech = newTech;
-}
-
-
 double EU3Country::getProductionTech()
 {
 	return productionTech;
-}
-
-
-void EU3Country::setGovernmentTech(double newTech)
-{
-	governmentTech = newTech;
 }
 
 
@@ -750,12 +696,6 @@ double EU3Country::getGovernmentTech()
 vector<string> EU3Country::getFlags()
 {
 	return flags;
-}
-
-
-vector<string> EU3Country::getModifiers()
-{
-	return modifiers;
 }
 
 
@@ -867,12 +807,6 @@ int EU3Country::getManufactoryCount()
 double EU3Country::getTreasury()
 {
 	return treasury;
-}
-
-
-double EU3Country::getInflation()
-{
-	return inflation;
 }
 
 

@@ -574,13 +574,9 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							literacy += 0.04;
 						}
 					}
-					vector<string> modifiers = sourceCountries[i].getModifiers();
-					for (unsigned int k = 0; k < modifiers.size(); k++)
+					if ( sourceCountries[i].hasModifier("the_school_establishment_act") || sourceCountries[i].hasModifier("sunday_schools") || sourceCountries[i].hasModifier("the_education_act") || sourceCountries[i].hasModifier("monastic_education_system") || sourceCountries[i].hasModifier("western_embassy_mission") )
 					{
-						if ( (modifiers[k] == "the_school_establishment_act") || (modifiers[k] == "sunday_schools") || (modifiers[k] == "the_education_act") || (modifiers[k] == "monastic_education_system") || (modifiers[k] == "western_embassy_mission") )
-						{
-							literacy += 0.04;
-						}
+						literacy += 0.04;
 					}
 					int numProvinces = 0;
 					int numUniversities = 0;
