@@ -337,6 +337,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting techs.\n");
 	log("Converting techs.\n");
 	destWorld.convertTechs(sourceWorld);
+	destWorld.convertTechSchools(sourceWorld);
 	printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);

@@ -36,6 +36,11 @@ class EU3Country
 		double					getTradeTech();
 		double					getProductionTech();
 		double					getGovernmentTech();
+		double					getLandInvestment();
+		double					getNavalInvestment();
+		double					getTradeInvestment();
+		double					getProductionInvestment();
+		double					getGovernmentInvestment();
 		vector<string>			getFlags();
 		bool						hasModifier(string);
 		bool						getPossibleDaimyo();
@@ -85,6 +90,11 @@ class EU3Country
 		double					tradeTech;
 		double					productionTech;
 		double					governmentTech;
+		double					landInvestment;
+		double					navalInvestment;
+		double					tradeInvestment;
+		double					productionInvestment;
+		double					governmentInvestment;
 		vector<string>			flags;
 		vector<string>			modifiers;
 		bool						possibleDaimyo;

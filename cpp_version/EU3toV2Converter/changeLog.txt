@@ -336,3 +336,4 @@ Revision	Version Updated		Log Message
 313		C++			Elections one month after game start.
 314		C++			Landless nation removal option in configuration.txt.
 315		C++			Cleaned up EU3Country a little.
+316		C++			Tech Schools.

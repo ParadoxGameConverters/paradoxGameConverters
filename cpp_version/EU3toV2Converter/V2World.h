@@ -21,6 +21,7 @@ class V2World {
 		void				setupStates(stateMapping);
 		void				setupPops(EU3World& sourceWorld);
 		void				convertTechs(EU3World sourceWorld);
+		void				convertTechSchools(EU3World sourceWorld);
 		void				output(FILE*);
 		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);
 		void				convertLeaders(EU3World sourceWorld, map<int,int>& leaderIDMap);

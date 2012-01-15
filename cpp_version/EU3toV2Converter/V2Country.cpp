@@ -26,6 +26,7 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	badboy = 0.0;
 	prestige = 0.0;
 	money = 0.0;
+	techSchool = "traditional_academic";
 
 	sourceCountryIndex = -1;
 }
@@ -208,6 +209,7 @@ void V2Country::output(FILE* output)
 		itr->output(output);
 	}
 	outputInventions(output);
+	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
 	if (primaryCulture.size() > 0)
 	{
 		fprintf(output, "	primary_culture=\"%s\"\n", primaryCulture.c_str());
@@ -724,6 +726,12 @@ void V2Country::setCultureTech(double newTechLevel)
 	{
 		inventions[romanticist_music]			= active;
 	}
+}
+
+
+void V2Country::setTechSchool(string newTechSchool)
+{
+	techSchool = newTechSchool;
 }
 
 

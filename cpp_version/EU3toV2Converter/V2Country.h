@@ -37,6 +37,7 @@ class V2Country
 		void					setCommerceTech(double);
 		void					setIndustryTech(double);
 		void					setCultureTech(double);
+		void					setTechSchool(string);
 		inventionStatus	getInventionState(inventionType);
 		void					addPrestige(double);
 		void					addPlurality(double);
@@ -80,6 +81,7 @@ class V2Country
 		double				plurality;
 		vector<string>		techs;
 		inventionStatus	inventions[naval_exercises];
+		string				techSchool;
 		string				government;
 		vector<V2Relations>	relations;
 		vector<V2Army>		armies;

@@ -140,6 +140,24 @@ void EU3Country::init(Object* obj)
 		governmentTech	= 0.0;
 	}
 
+	vector<Object*> investmentObj = obj->getValue("distribution");
+	if (investmentObj.size() > 0)
+	{
+		landInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() );
+		navalInvestment		= atof( investmentObj[0]->getTokens()[3].c_str() );
+		tradeInvestment		= atof( investmentObj[0]->getTokens()[4].c_str() );
+		productionInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() );
+		governmentInvestment	= atof( investmentObj[0]->getTokens()[6].c_str() );
+	}
+	else
+	{
+		landInvestment			= 0.0;
+		navalInvestment		= 0.0;
+		tradeInvestment		= 0.0;
+		productionInvestment	= 0.0;
+		governmentInvestment	= 0.0;
+	}
+
 	vector<Object*> flagObject		= obj->getValue("flags");
 	if (flagObject.size() > 0)
 	{
@@ -693,6 +711,36 @@ double EU3Country::getGovernmentTech()
 }
 
 
+double EU3Country::getLandInvestment()
+{
+	return landInvestment;
+}
+
+
+double EU3Country::getNavalInvestment()
+{
+	return navalInvestment;
+}
+
+
+double EU3Country::getTradeInvestment()	
+{
+	return tradeInvestment;
+}
+
+
+double EU3Country::getProductionInvestment()
+{
+	return productionInvestment;
+}
+
+
+double EU3Country::getGovernmentInvestment()
+{
+	return governmentInvestment;
+}
+
+
 vector<string> EU3Country::getFlags()
 {
 	return flags;
@@ -941,10 +989,10 @@ void EU3Country::eatCountry(EU3Country* target)
 		loans.insert(loans.end(), target->loans.begin(), target->loans.end());
 
 		// rebalance prestige, badboy, inflation and techs from weighted average
-		prestige		= myWeight * prestige		+ targetWeight * target->prestige;
+		prestige			= myWeight * prestige		+ targetWeight * target->prestige;
 		badboy			= myWeight * badboy			+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
 		inflation		= myWeight * inflation		+ targetWeight * target->inflation;
-		landTech		= myWeight * landTech		+ targetWeight * target->landTech;
+		landTech			= myWeight * landTech		+ targetWeight * target->landTech;
 		navalTech		= myWeight * navalTech		+ targetWeight * target->navalTech;
 		tradeTech		= myWeight * tradeTech		+ targetWeight * target->tradeTech;
 		productionTech	= myWeight * productionTech	+ targetWeight * target->productionTech;
