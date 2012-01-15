@@ -1639,7 +1639,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 }
 
 
-void V2World::convertTechSchools(EU3World sourceWorld)
+void V2World::convertTechSchools(EU3World sourceWorld, vector<techSchool> techSchools)
 {
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
@@ -1650,72 +1650,26 @@ void V2World::convertTechSchools(EU3World sourceWorld)
 		double productionInvestment	= sourceWorld.getCountries()[sourceIndex].getProductionInvestment();
 		double governmentInvestment	= sourceWorld.getCountries()[sourceIndex].getGovernmentInvestment();
 
-		double traditional_academic =		abs(landInvestment			-  0.0	- 0.2) +
-													abs(navalInvestment			-  0.0	- 0.2) +
-													abs(tradeInvestment			-  0.0	- 0.2) +
-													abs(productionInvestment	-  0.0	- 0.2) +
-													abs(governmentInvestment	-  0.0	- 0.2);
-		double army_tech_school =			abs(landInvestment			-  0.15	- 0.2) +
-													abs(navalInvestment			- -0.05	- 0.2) +
-													abs(tradeInvestment			-  0.0	- 0.2) +
-													abs(productionInvestment	-  0.1	- 0.2) +
-													abs(governmentInvestment	- -0.1	- 0.2);
-		double naval_tech_school =			abs(landInvestment			- -0.05	- 0.2) +
-													abs(navalInvestment			-  0.15	- 0.2) +
-													abs(tradeInvestment			-  0.1	- 0.2) +
-													abs(productionInvestment	-  0.0	- 0.2) +
-													abs(governmentInvestment	- -0.1	- 0.2);
-		double industrial_tech_school =	abs(landInvestment			- -0.05	- 0.2) +
-													abs(navalInvestment			- -0.10	- 0.2) +
-													abs(tradeInvestment			-  0.05	- 0.2) +
-													abs(productionInvestment	-  0.15	- 0.2) +
-													abs(governmentInvestment	-  0.0	- 0.2);
-		double culture_tech_school =		abs(landInvestment			-  0.0	- 0.2) +
-													abs(navalInvestment			- -0.25	- 0.2) +
-													abs(tradeInvestment			-  0.0	- 0.2) +
-													abs(productionInvestment	- -0.25	- 0.2) +
-													abs(governmentInvestment	-  0.3	- 0.2);
-		double commerce_tech_school =		abs(landInvestment			- -0.1	- 0.2) +
-													abs(navalInvestment			- -0.1	- 0.2) +
-													abs(tradeInvestment			-  0.1	- 0.2) +
-													abs(productionInvestment	-  0.05	- 0.2) +
-													abs(governmentInvestment	-  0.1	- 0.2);
+		double lowestScore = 100.0;
+		string bestSchool = "traditional_academic";
 
-		if ( (traditional_academic < army_tech_school) && (traditional_academic < naval_tech_school) && (traditional_academic < industrial_tech_school) && (traditional_academic < culture_tech_school) && (traditional_academic < commerce_tech_school) )
+		for (unsigned int j = 0; j < techSchools.size(); j++)
 		{
-			log("%s has tech school traditional_academic\n", countries[i].getTag().c_str());
-			countries[i].setTechSchool("traditional_academic");
+			double newScore = abs(landInvestment			-  techSchools[j].armyInvestment			- 0.2) +
+									abs(navalInvestment			-  techSchools[j].navyInvestment			- 0.2) +
+									abs(tradeInvestment			-  techSchools[j].commerceInvestment	- 0.2) +
+									abs(productionInvestment	-  techSchools[j].industryInvestment	- 0.2) +
+									abs(governmentInvestment	-  techSchools[j].cultureInvestment		- 0.2);
+
+			if (newScore < lowestScore)
+			{
+				bestSchool	= techSchools[j].name;
+				lowestScore	= newScore;
+			}
 		}
-		else if ( (army_tech_school < traditional_academic) && (army_tech_school < naval_tech_school) && (army_tech_school < industrial_tech_school) && (army_tech_school < culture_tech_school) && (army_tech_school < commerce_tech_school) )
-		{
-			log("%s has tech school army_tech_school\n", countries[i].getTag().c_str());
-			countries[i].setTechSchool("army_tech_school");
-		}
-		else if ( (naval_tech_school < traditional_academic) && (naval_tech_school < army_tech_school) && (naval_tech_school < industrial_tech_school) && (naval_tech_school < culture_tech_school) && (naval_tech_school < commerce_tech_school) )
-		{
-			log("%s has tech school naval_tech_school\n", countries[i].getTag().c_str());
-			countries[i].setTechSchool("naval_tech_school");
-		}
-		else if ( (industrial_tech_school < traditional_academic) && (industrial_tech_school < army_tech_school) && (industrial_tech_school < naval_tech_school) && (industrial_tech_school < culture_tech_school) && (industrial_tech_school < commerce_tech_school) )
-		{
-			log("%s has tech school industrial_tech_school\n", countries[i].getTag().c_str());
-			countries[i].setTechSchool("industrial_tech_school");
-		}
-		else if ( (culture_tech_school < traditional_academic) && (culture_tech_school < army_tech_school) && (culture_tech_school < naval_tech_school) && (culture_tech_school < industrial_tech_school) && (culture_tech_school < commerce_tech_school) )
-		{
-			log("%s has tech school culture_tech_school\n", countries[i].getTag().c_str());
-			countries[i].setTechSchool("culture_tech_school");
-		}
-		else if ( (commerce_tech_school < traditional_academic) && (commerce_tech_school < army_tech_school) && (commerce_tech_school < naval_tech_school) && (commerce_tech_school < industrial_tech_school) && (commerce_tech_school < culture_tech_school) )
-		{
-			log("%s has tech school commerce_tech_school\n", countries[i].getTag().c_str());
-			countries[i].setTechSchool("commerce_tech_school");
-		}
-		else
-		{
-			log("%s has no clear tech school. Defaulting to traditional_academic\n", countries[i].getTag().c_str());
-			countries[i].setTechSchool("traditional_academic");
-		}
+
+		log("%s has tech school %s\n", countries[i].getTag().c_str(), bestSchool.c_str());
+		countries[i].setTechSchool(bestSchool);
 	}
 }
 

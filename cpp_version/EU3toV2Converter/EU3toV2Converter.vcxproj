@@ -125,6 +125,7 @@
     <ClCompile Include="V2Reforms.cpp" />
     <ClCompile Include="V2Relations.cpp" />
     <ClCompile Include="V2State.cpp" />
+    <ClCompile Include="V2TechSchools.cpp" />
     <ClCompile Include="V2World.cpp" />
     <ClCompile Include="Parsers\Object.cpp" />
     <ClCompile Include="Parsers\Parser.cpp" />
@@ -156,6 +157,7 @@
     <ClInclude Include="V2Reforms.h" />
     <ClInclude Include="V2Relations.h" />
     <ClInclude Include="V2State.h" />
+    <ClInclude Include="V2TechSchools.h" />
     <ClInclude Include="V2World.h" />
     <ClInclude Include="Parsers\Object.h" />
     <ClInclude Include="Parsers\Parser.h" />

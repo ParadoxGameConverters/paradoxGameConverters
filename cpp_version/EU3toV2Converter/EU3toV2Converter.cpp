@@ -4,6 +4,7 @@
 #include "Log.h"
 #include "V2World.h"
 #include "V2Factory.h"
+#include "V2TechSchools.h"
 #include "Configuration.h"
 
 
@@ -303,6 +304,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	governmentMapping governmentMap;
 	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
 
+
+	//Parse tech schools
+	log("Parsing tech schools.\n");
+	printf("Parsing tech schools.\n");
+	initParser();
+	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
+	vector<techSchool> techSchools;
+	techSchools = initTechSchools(obj);
+
+
 	// Convert
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
@@ -337,7 +348,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting techs.\n");
 	log("Converting techs.\n");
 	destWorld.convertTechs(sourceWorld);
-	destWorld.convertTechSchools(sourceWorld);
+	destWorld.convertTechSchools(sourceWorld, techSchools);
 	printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
