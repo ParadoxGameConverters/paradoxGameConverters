@@ -342,24 +342,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 
-	/*InstructionsParser insParser;
-	InstructionsParser::Refresh();
-	read.open(string("ins.txt").c_str());
-	if (!read.is_open())
-	{
-		log("Error: Could not open ins.txt\n");
-		printf("Error: Could not open ins.txt\n");
-		return 1;
-	}
-	readInsFile(read);	
-	read.close();
-	read.clear();
-
-	VariableCalculator::Instance()->SetWorlds(&euWorld, &vickyWorld);
-	VariableCalculator::Instance()->ProcessVariables(InstructionsParser::GetProcessedVars());
-	VariableCalculator::Instance()->ProcessRules(InstructionsParser::GetProcessedRulesets());
-	InstructionsParser::Refresh();*/
-
 	// Output results
 	printf("Outputting save.\n");
 	log("Outputting save.\n");
