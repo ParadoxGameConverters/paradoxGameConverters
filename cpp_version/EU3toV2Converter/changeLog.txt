@@ -340,3 +340,4 @@ Revision	Version Updated		Log Message
 317		C++			Deleted a bunch of old files.
 318		C++			Updated build.bat.
 319		C++			Tech schools now come from V2 install.
+320		C++			Added V2TechSchools.cpp and V2TechSchools.h
