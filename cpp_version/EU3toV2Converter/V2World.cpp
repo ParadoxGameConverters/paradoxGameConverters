@@ -1644,6 +1644,9 @@ void V2World::convertTechSchools(EU3World sourceWorld, vector<techSchool> techSc
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		int sourceIndex = countries[i].getSourceCountryIndex();
+		if (sourceIndex < 0)
+			continue;
+
 		double landInvestment			= sourceWorld.getCountries()[sourceIndex].getLandInvestment();
 		double navalInvestment			= sourceWorld.getCountries()[sourceIndex].getNavalInvestment();
 		double tradeInvestment			= sourceWorld.getCountries()[sourceIndex].getTradeInvestment();

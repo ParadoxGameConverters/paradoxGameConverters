@@ -341,3 +341,4 @@ Revision	Version Updated		Log Message
 318		C++			Updated build.bat.
 319		C++			Tech schools now come from V2 install.
 320		C++			Added V2TechSchools.cpp and V2TechSchools.h
+321		C++			Protect against crash.
