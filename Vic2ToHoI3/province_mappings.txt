@@ -1,119 +1,285 @@
 mappings = {
+
+# Europe
+
+link = { vic = 252 hoi = 8086 hoi = 8084 hoi = 8089 }	# Iceland -> Reykjavik, Egilsstadir, Höfn
+
+	# British Isles
+	
+	link = { vic = 267 hoi = 417 hoi = 604 hoi = 722 hoi = 806 hoi = 723 hoi = 680 hoi = 724 hoi = 681 hoi = 766 hoi = 807 hoi = 765 hoi = 847 hoi = 848 hoi = 933 hoi = 892 hoi = 932 hoi = 891 hoi = 846 hoi = 973 hoi = 1014 hoi = 974 hoi = 893 }	# Inverness -> Lerwick, Scapa Flow, Stornoway, Barra, Cape Wrath, Durness, Dornoch, Wick, Dingwall, Lairg, Ullapool, Gairloch, Inverness, Newtonmoore, Cannich, Fort Augustus, Kyle of Lochalsh, Portree, Mallaig, Tobermoray, Dalwhinnie, Grantown
+	link = { vic = 266 hoi = 849 hoi = 850 hoi = 894 hoi = 934 hoi = 976 }	# Aberdeen -> Lossiemouth, Peterhead, Aberdeen, Balmoral, Arbroath
+	link = { vic = 268 hoi = 1017 hoi = 1053 hoi = 975 }	# Dundee -> Smith Falls, Rosyth, Dunkeld
+	link = { vic = 270 hoi = 1016 hoi = 1052 hoi = 1089 hoi = 1126 hoi = 1015 }	# Stirling -> Stirling, Crianlarich, Dunbarton, Campbeltown, Forth William
+	link = { vic = 271 hoi = 1090 hoi = 1127 hoi = 1167 hoi = 1296 hoi = 1208 hoi = 1252 }	# Glasgow -> Shotts, Glasgow, Lanark, Wigtown, Ayr, Stranraer
+	link = { vic = 269 hoi = 1128 hoi = 1129 hoi = 1168 }	# Edinburgh -> Edinburgh, Dunbar, Selkirk
+	link = { vic = 272 hoi = 1169 hoi = 1210 hoi = 1209 hoi = 1253 }	# Dumfries -> Berwick, Morpeth, Hawick, Dunfries
+	link = { vic = 304 hoi = 1386 }	# Isle of Man -> Douglas
+
+	link = { vic = 280 hoi = 1255 hoi = 1299 }	# Newcastle On Tyne -> Newcastle, Sunderland
+	link = { vic = 279 hoi = 1254 hoi = 1298 hoi = 1297 hoi = 1342 hoi = 1343 }	# Carlisle -> Carlisle, Kendal, Workington, Barrow, Durham
+	link = { vic = 277 hoi = 1521 hoi = 1477 hoi = 1387 }	# Liverpool -> Liverpool, Preston, Lancaster
+	link = { vic = 278 hoi = 1522 hoi = 1432 }	# Manchester -> Manchester, Skipton
+	link = { vic = 282 hoi = 1388 hoi = 1478 }	# Leeds -> Darlington, Leeds
+	link = { vic = 281 hoi = 1344 hoi = 1389 hoi = 1433 hoi = 1524 }	# Hull -> Middlesborough, Scarborough, York, Hull
+
+	link = { vic = 283 hoi = 1523 hoi = 1567 }	# Sheffield -> Doncaster, Sheffield
+	link = { vic = 285 hoi = 1613 hoi = 1566 }	# Chester -> Chester, Warrington
+	link = { vic = 290 hoi = 1616 hoi = 1568 hoi = 1668 }	# Lincoln -> Grimsby, Scunthorpe, Lincoln
+	link = { vic = 288 hoi = 1615 hoi = 1667 hoi = 1614 }	# Nottingham -> Nottingham, Derby, Stoke
+	link = { vic = 276 hoi = 1564 hoi = 1612 hoi = 1565 }	# Holyhead -> Anglesey, Bangor, Birkenhead
+	link = { vic = 292 hoi = 1731 hoi = 1617 hoi = 1670 hoi = 1669 hoi = 1790 hoi = 1789 hoi = 1850 }	# Ipswich -> Norwich, Langham, Great Yarmouth, Kings Lynn, Lowestoft, Thetford, Ipswich
+	link = { vic = 291 hoi = 1730 hoi = 1788 hoi = 1849 hoi = 452 }	# Cambridge -> Peterborough, Northampton, Cambridge, Bedford
+
+	link = { vic = 289 hoi = 1729 }	# Leicester -> Leicester
+	link = { vic = 284 hoi = 1728 hoi = 1666 }	# Birmingham -> Birmingham, Crewe
+	link = { vic = 287 hoi = 1787 hoi = 1847 hoi = 1786 }	# Coventry -> Coventry, Evesham, Worcester
+	link = { vic = 286 hoi = 1727 }	# Shrewesbury -> Shrewsbury
+	link = { vic = 275 hoi = 1665 hoi = 1785 hoi = 1846 }	# Llandrindod -> Wrexham, Brecon, Monmouth
+	link = { vic = 274 hoi = 1726 hoi = 1845 hoi = 1904 hoi = 1844 }	# Cardigan -> Aberyswyth, Cardigan, Swansea, Pembrooke
+	link = { vic = 273 hoi = 1905 }	# Cardiff -> Cardiff
+	link = { vic = 293 hoi = 1909 }	# Chelmsford -> Southend
+	link = { vic = 295 hoi = 1908 hoi = 1848 hoi = 1963 }	# St Albans -> Luton, Milton Keynes, Slough
+
+	link = { vic = 294 hoi = 1907 hoi = 1962 }	# Oxford -> Oxford, Swindon
+	link = { vic = 296 hoi = 1906 hoi = 2018 }	# Bristol -> Gloucester, Bristol
+	link = { vic = 301 hoi = 2021 hoi = 11379 }	# Canterbury -> Dover, england
+	link = { vic = 300 hoi = 1964 }	# London -> London
+	link = { vic = 302 hoi = 11380 hoi = 2020 hoi = 2079 }	# Brighton -> england, Aldershot, Brighton
+	link = { vic = 303 hoi = 2078 hoi = 2019 hoi = 2135 }	# Southampton -> Southampton, Reading, Newport
+	link = { vic = 297 hoi = 2136 hoi = 2077 }	# Salisbury -> Weymouth, Bournemouth
+	link = { vic = 298 hoi = 2076 hoi = 2075 }	# Bath -> Taunton, Bideford
+	link = { vic = 299 hoi = 2193 hoi = 2134 hoi = 2250 hoi = 2192 hoi = 2307 }	# Plymouth -> Exeter, Bude, Plymouth, Bodmin, Penzance
+	link = { vic = 254 hoi = 1251 hoi = 1341 hoi = 1295 }	# Belfast -> Larne, Belfast, Coleraine
+
+	link = { vic = 255 hoi = 1294 hoi = 1340 }	# Londonderry -> Buncrana, Omagh
+	link = { vic = 257 hoi = 1250 hoi = 1293 }	# Donegal -> Letteskenny, Donegal
+	link = { vic = 256 hoi = 1385 hoi = 1430 hoi = 1431 }	# Armagh -> Armagh, Cavan, Newry
+	link = { vic = 259 hoi = 1339 hoi = 1384 hoi = 1429 }	# Sligo -> Sligo, Enniskillen, Leitrin
+	link = { vic = 258 hoi = 1473 hoi = 1383 hoi = 1428 hoi = 1518 }	# Galway -> Clifden, Balline, Mayo, Galway
+	link = { vic = 263 hoi = 1563 hoi = 1476 }	# Dublin -> Dublin, Drogheda
+	link = { vic = 265 hoi = 1664 hoi = 1725 hoi = 1611 hoi = 1663 hoi = 1784 }	# Wexford -> Wicklow, Wexford, Carlow, Kilkenny, Waterford
+
+	link = { vic = 264 hoi = 1475 hoi = 1520 hoi = 1519 hoi = 1562 hoi = 1561 hoi = 1610 }	# Kildare -> Longford, Kildare, Roscommon, Mullingar, Loughrea, Tullamore
+	link = { vic = 262 hoi = 1724 hoi = 1783 }	# Waterford -> Tipperary, Youghan
+	link = { vic = 261 hoi = 1609 hoi = 1662 hoi = 1723 hoi = 1782 hoi = 1722 }	# Limerick -> Ennis, Limerick, Kilrush, Tralee, Dingle
+	link = { vic = 307 hoi = 36 hoi = 51 hoi = 38 hoi = 25 hoi = 16 hoi = 37 hoi = 24 hoi = 9 hoi = 17 hoi = 18 hoi = 26 hoi = 10 hoi = 19 hoi = 11 hoi = 28 hoi = 12 hoi = 5 hoi = 20 hoi = 29 hoi = 7 hoi = 4 hoi = 3 hoi = 6 hoi = 8 hoi = 13 hoi = 14 hoi = 21 hoi = 22 hoi = 15 hoi = 39 hoi = 41 hoi = 27 hoi = 2 hoi = 1 hoi = 23 hoi = 44 }	# Hammerfest -> Tennevoll, Kaisepakte, Helligskogen, Nordkjosbotn, Målsnes, Setermoen, Senja, Tromso, Skibotn, Altaelva, Mieron, Storslett, Jiesjávri, Alta, Tenojoki, Lakselv, Skaidi, Skoganvarre, Laevvajåk, Storfjordbotn, Nordkynhalvoya, Veldnes, Borselv, Båtsfjord, Rastegai'sa, Båteng, Finnmark, Polmak, Kroknes, Rophi, Kárásjohka, Masi, Repvåg, Porsangerhalvoya, Kirkenes, Nikel'
+	link = { vic = 260 hoi = 1843 hoi = 1842 }	# Cork -> Cork, Killerney
+	
+	# Scandi-wegia
+	
+	link = { vic = 306 hoi = 49 hoi = 65 hoi = 82 hoi = 99 hoi = 80 hoi = 117 hoi = 98 hoi = 116 hoi = 135 hoi = 134 hoi = 212 hoi = 227 hoi = 213 hoi = 200 hoi = 187 hoi = 201 hoi = 153 hoi = 172 hoi = 154 hoi = 173 hoi = 188 hoi = 66 hoi = 81 }	# Bodo -> Hinnoya, Narvik, Alitåive, Ritsem, Bodo, Sulitjelma, Fauske, Moldjord, Storjord, Ågskaret, Mosjoen, Laksfors, Bleikvassli, Donna, Nesna, Oksskolten, Kilboghamn, Mo i Rana, Bjollånes, Slierogaise, Bredviken, Björkstugan, Bognes
+	link = { vic = 305 hoi = 291 hoi = 337 hoi = 361 hoi = 338 hoi = 313 hoi = 389 hoi = 390 hoi = 421 hoi = 362 hoi = 315 hoi = 339 hoi = 363 hoi = 293 hoi = 316 hoi = 273 hoi = 243 hoi = 258 hoi = 242 hoi = 226 hoi = 257 hoi = 241 hoi = 256 hoi = 272 hoi = 292 hoi = 422 hoi = 420 hoi = 457 }	# Trondheim -> Trondheim, Aure, Rindal, Svorkmo, Brekstad, Meldal, Ålen, Ulsberg, Storen, Stjordalshalsen, Kråklivollen, Tydal, Steinkjer, Meråker, Sorli, Kroken, Royrvik, Tosbotn, Bronnoysund, Namsos, Kolvereid, Osen, Namdalseid, Åfjord, Roros, Gjora, Driva
+	link = { vic = 308 hoi = 360 hoi = 388 hoi = 419 hoi = 387 hoi = 386 hoi = 418 hoi = 455 hoi = 491 hoi = 454 hoi = 453 hoi = 490 hoi = 527 }	# Alesund -> Kristiansund, Engan, Verma, Molde, Ålesund, Stordal, Björli, Geiranger, Volda, Selje, Nordfjordeid, Hornindal
+
+	link = { vic = 309 hoi = 526 hoi = 565 hoi = 566 hoi = 606 hoi = 605 hoi = 682 hoi = 725 hoi = 767 hoi = 683 hoi = 642 hoi = 607 hoi = 643 hoi = 684 hoi = 726 hoi = 644 hoi = 808 }	# Bergen -> Svelgen, Anda, Strynsvattnet, Suphellenipa, Askvoll, Lervik, Fedje, Ålvik, Leikanger, Sande, Jostedola, Luster, Laerdalsoyri, Finse, Grindaheim, Bergen
+	link = { vic = 310 hoi = 851 hoi = 895 hoi = 936 hoi = 977 hoi = 978 hoi = 1018 hoi = 1054 hoi = 935 }	# Christiansand -> Haugesund, Sinnes, Sveindal, Moi, Arendal, Kristiansand, Farsund, Stavanger
+	link = { vic = 311 hoi = 979 hoi = 938 hoi = 896 hoi = 852 hoi = 809 hoi = 853 hoi = 897 hoi = 937 }	# Skien -> Skien, Larvik, Setesdal, Sauda, Haukeligrend, Åmot, Drangedal, Åmli
+	link = { vic = 312 hoi = 898 hoi = 854 hoi = 810 hoi = 768 hoi = 855 }	# Drammen -> Tonsberg, Skien, Selfjord, Geilo, Drammen
+	link = { vic = 315 hoi = 456 hoi = 492 hoi = 528 hoi = 567 hoi = 529 hoi = 493 hoi = 568 hoi = 569 hoi = 530 hoi = 609 hoi = 608 hoi = 645 hoi = 646 hoi = 686 hoi = 685 hoi = 727 hoi = 769 hoi = 728 }	# Lillehammer -> Lora, Digervarden, Donfoss, Galdhopiggen, Vågåmo, Hjerjkinn, Ringebu, Koppang, Alvdal, Tretten, Skaget, Bagn, Lillehammer, Dokka, Fagernes, Torpo, Rodberg, Gulsvik
+	link = { vic = 313 hoi = 811 hoi = 812 hoi = 770 hoi = 771 hoi = 729 hoi = 856 }	# Christiania -> Kongsberg, Oslo, Honefoss, Magnor, Moss, Askim
+	link = { vic = 314 hoi = 687 hoi = 647 hoi = 570 hoi = 611 hoi = 531 hoi = 610 hoi = 495 hoi = 494 hoi = 458 hoi = 730 }	# Hamar -> Hamar, Elverum, Jordet, Nybergsund, Otnes, Rena, Femundsenden, Tolga, Bjorgan, Svullrya
+
+	link = { vic = 316 hoi = 899 hoi = 980 hoi = 939 hoi = 900 hoi = 813 hoi = 1019 }	# Frederiksstad -> Sarpsborg, Strömstad, Bengtsfors, Årjäng, Arvika, Lysekil
+	link = { vic = 982 hoi = 33 hoi = 32 hoi = 45 }	# Petsamo -> Pecenga, Cyp-Navolok, Titovka
+	link = { vic = 2587 hoi = 59 hoi = 47 hoi = 46 hoi = 60 hoi = 74 hoi = 73 hoi = 75 hoi = 34 hoi = 48 hoi = 35 hoi = 61 hoi = 63 hoi = 62 hoi = 76 hoi = 94 hoi = 78 hoi = 114 hoi = 64 hoi = 113 hoi = 112 hoi = 111 hoi = 93 hoi = 92 hoi = 91 }	# Kola -> Murmansk, Verrkne-teriberskoye, Port Vladimir, Severomorsk, Tajbola, Verhnetulomskij, Olenegorsk, Zapadnyj Kil'din, Dal'nie Zelency, Teriberka, Perkh'yavr, Harlovka, Zahrebetnoe, Lovozero, Polmos, Iokanga, Gremiha, Varzino, Kanevka, Kolmozero, Motka, Revda, Laplandija, Kola
+	link = { vic = 983 hoi = 115 hoi = 133 hoi = 171 hoi = 185 hoi = 170 hoi = 150 hoi = 169 hoi = 130 hoi = 149 hoi = 168 hoi = 148 hoi = 147 hoi = 129 hoi = 110 hoi = 128 hoi = 166 hoi = 165 hoi = 146 hoi = 127 hoi = 109 hoi = 108 hoi = 145 hoi = 183 hoi = 198 hoi = 211 hoi = 224 hoi = 239 hoi = 225 }	# Kandalaksha -> Lumbovka, Ponoj, Korabel'noye, Cavan'ga, Strel'na, Cal'mny-Varre, Varzuga, Indel', Krasnoscel'e, Olenica, Vostocinoe  Munozero, Inga, Berezovka, Kirovsk, Apatity, Umba, Kandalaksa, Ozero Kolvitskoye, Njavka, Moncegorsk, Laplandskij Zapovednik, Kjume, Zelenoborskij, Lesozavodskij, Tedino, Cupa, Louhi, Ambarnyj
+	link = { vic = 348 hoi = 778 }	# Aland Islands -> Mariehamn
+	link = { vic = 353 hoi = 985 }	# Kuressaare -> Saaremaa
+	link = { vic = 331 hoi = 1135 hoi = 1217 }	# Gotland -> Visby, Burgsvik
+
+	link = { vic = 328 hoi = 940 hoi = 981 hoi = 1092 hoi = 1055 hoi = 857 hoi = 901 hoi = 772 hoi = 814 hoi = 858 }	# Karlstad -> Säffle, Mellerud, Kungälv, Vänersborg, Kil, Karlstad, Sunne, Munkfors, Storfors
+	link = { vic = 330 hoi = 1131 hoi = 1213 hoi = 1172 hoi = 1171 hoi = 1093 hoi = 1132 hoi = 1056 hoi = 1020 }	# Boras -> Alingsås, Kungsbacka, Borås, Göteborg, Vara, Falköping, Skövde, Lidköping
+	link = { vic = 334 hoi = 1302 hoi = 1258 hoi = 1347 hoi = 1392 hoi = 689 hoi = 1438 hoi = 1483 }	# Malmo -> Halmstad, Hylte, Markaryd, Helsingborg, Hörby, Malmö, Trelleborg
+	link = { vic = 374 hoi = 1682 }	# Bornholm -> Bornholm
+	link = { vic = 335 hoi = 1484 hoi = 317 hoi = 1393 hoi = 1394 hoi = 1349 }	# Karlskrona -> Ystad, Kristianstad, Hässleholm, Karlshamn, Karlskrona
+	link = { vic = 332 hoi = 1350 hoi = 1216 hoi = 1260 hoi = 1305 hoi = 1175 }	# Kalmar -> Borgholm, Oskarshamn, Nybro, Kalmar, Tingsryd
+	link = { vic = 333 hoi = 1173 hoi = 1259 hoi = 1214 hoi = 1303 hoi = 1304 hoi = 1348 hoi = 1215 }	# Vaxjo -> Jönköping, Värnamo, Gislaved, Ljungby, Växjö, Älmhult, Nässjö
+	link = { vic = 325 hoi = 1133 hoi = 1057 hoi = 1058 hoi = 1095 hoi = 1134 hoi = 1094 hoi = 1174 hoi = 1059 hoi = 1023 hoi = 983 }	# Norrkoping -> Gränna, Ödeshög, Linköping, Valdemarsvik, Västervik, Mjölby, Eksjö, Norrköping, Finspång, Vingåker
+	link = { vic = 327 hoi = 1021 hoi = 982 hoi = 1022 hoi = 902 hoi = 942 hoi = 941 }	# Orebro -> Karlsborg, Askersund, Motala, Karlskoga, Örebro, Kristinehamn
+	link = { vic = 326 hoi = 943 hoi = 944 hoi = 984 hoi = 903 hoi = 904 hoi = 860 hoi = 817 hoi = 861 hoi = 905 }	# Vasteras -> Katrineholm, Nyköping, Flen, Arboga, Eskilstuna, Köping, Västerås, Södertälje, Nynäshamn
+
+	link = { vic = 322 hoi = 862 }	# Stockholm -> Stockholm
+	link = { vic = 324 hoi = 818 hoi = 776 hoi = 735 hoi = 777 hoi = 692 hoi = 734 }	# Uppsala -> Enköping, Uppsala, Östhammar, Norrtälje, Älvkarleby, Sala
+	link = { vic = 323 hoi = 612 hoi = 613 hoi = 775 hoi = 690 hoi = 774 hoi = 816 hoi = 859 hoi = 815 hoi = 773 hoi = 732 hoi = 731 hoi = 688 hoi = 648 hoi = 649 }	# Falun -> Orsa, Furudal, Surahammar, Borlänge, Kopparberg, Lindesberg, Nora, Grecken, Filipstad, Fredriksberg, Vansbro, Sysslebäck, Venjan, Mora
+	link = { vic = 317 hoi = 733 hoi = 651 hoi = 691 hoi = 650 hoi = 614 hoi = 574 hoi = 573 hoi = 535 }	# Gavle -> Avesta, Gävle, Sandviken, Falun, Ockelbo, Söderhamn, Edsbyn, Bollnäs
+	link = { vic = 318 hoi = 498 hoi = 499 hoi = 462 hoi = 425 hoi = 366 hoi = 394 hoi = 426 hoi = 463 hoi = 343 hoi = 395 hoi = 367 hoi = 318 }	# Sundsvall -> Gåda, Hudiksvall, Ljungaverk, Ånge, Hammarstrand, Ljungå, Timrå, Sundsvall, Näsåker, Härnösand, Sollefteå, Ramsele
+	link = { vic = 319 hoi = 295 hoi = 274 hoi = 342 hoi = 294 hoi = 340 hoi = 341 hoi = 365 hoi = 461 hoi = 393 hoi = 424 hoi = 392 hoi = 364 hoi = 391 hoi = 423 hoi = 460 hoi = 497 hoi = 534 hoi = 572 hoi = 532 hoi = 533 hoi = 496 hoi = 571 hoi = 459 }	# Ostersund -> Tåsjö, Sjoutnäset, Borgvattnet, Edevik, Vålådalen, Järpen, Östersund, Haverö, Bräcke, Rätansbyn, Torsborg, Hallen, Ramundberget, Funäsdalen, Vemdalen, Älvros, Hamra, Åmån, Särna, Kräckelbäcken, Kölsvallen, Trängslet, Käringsjön
+	link = { vic = 320 hoi = 202 hoi = 215 hoi = 230 hoi = 246 hoi = 262 hoi = 278 hoi = 279 hoi = 263 hoi = 322 hoi = 298 hoi = 321 hoi = 299 hoi = 368 hoi = 345 hoi = 320 hoi = 344 hoi = 319 hoi = 297 hoi = 277 hoi = 261 hoi = 276 hoi = 296 hoi = 275 hoi = 260 hoi = 245 hoi = 229 hoi = 214 hoi = 228 hoi = 244 hoi = 259 }	# Umea -> Umfors, Sorsele, Holmsjö, Kristineberg, Lycksele, Burträsk, Skellefteå, Kusfors, Umeå, Örträsk, Nordmaling, Vindeln, Örnsköldsvik, Björna, Fredrika, Degersjön, Sunnersta, Hälla, Vägsele, Kattisavan, Åsele, Jungsele, Dorotea, Vilhelmina, Gunnarn, Ankarsund, Vindelfjällen, Tärnaby, Dikanäs, Saxnäs
+
+	link = { vic = 321 hoi = 53 hoi = 69 hoi = 85 hoi = 103 hoi = 122 hoi = 160 hoi = 178 hoi = 52 hoi = 67 hoi = 68 hoi = 84 hoi = 102 hoi = 121 hoi = 139 hoi = 159 hoi = 177 hoi = 193 hoi = 206 hoi = 248 hoi = 233 hoi = 218 hoi = 232 hoi = 247 hoi = 231 hoi = 217 hoi = 216 hoi = 192 hoi = 205 hoi = 204 hoi = 189 hoi = 203 hoi = 155 hoi = 174 hoi = 190 hoi = 191 hoi = 176 hoi = 158 hoi = 101 hoi = 120 hoi = 138 hoi = 119 hoi = 83 hoi = 100 hoi = 137 hoi = 118 hoi = 136 hoi = 156 hoi = 157 hoi = 175 hoi = 140 }	# Lulea -> Karesuando, Nunasvaara, Lumivaara, Muonio, Kolari, Övertorneå, Kalix, Råstätno, Kiruna, Nedre Soppero, Vittangi, Parakka, Pajala, Polcirkeln, Överkalix, Råne, Luleå, Boden, Fällfors, Piteå, Älvsbyn, Arvidsjaur, Malå, Avaviken, Moskosel, Slagnäs, Harads, Kåbdalis, Luleb, Laisvall, Uddjaure, Sädvaluspen, Labbas, Arjeplog, Kuollejaure, Tårrajaur, Vuollerim, Fjällåsen, Gällivare, Jokkmokk, Tjaktjajaure, Sjaunja, Suorva, Tjåmotis, Kvikkjokk, Västerfjäll, Stenudden, Karats, Udtja, Pello
+	link = { vic = 338 hoi = 40 hoi = 54 hoi = 70 hoi = 86 hoi = 104 hoi = 141 hoi = 179 hoi = 194 hoi = 195 hoi = 181 hoi = 196 hoi = 182 hoi = 164 hoi = 126 hoi = 144 hoi = 163 hoi = 143 hoi = 162 hoi = 161 hoi = 123 hoi = 142 hoi = 180 hoi = 124 hoi = 106 hoi = 87 hoi = 105 hoi = 125 hoi = 107 hoi = 72 hoi = 89 hoi = 57 hoi = 43 hoi = 30 hoi = 42 hoi = 55 hoi = 71 hoi = 56 hoi = 88 hoi = 58 hoi = 90 hoi = 31 }	# Tornio -> Pöyrisjoki, Kietsimäjoki, Lisma, Tepasto, Kittilä, Sirkkakoski, Tornio, Hepola, Ranua, Autti, Livojoki, Maaninkavaara, Alakurtti, Kovdor, Tumcha, Isokylä, Aapajärvi, Korvala, Rovaniemi, Unari, Korvala, Simojoki, Petkula, Saariselkä, Pokka, Jeesiö, Tanhua, Nota, Patsoyoki, Ivalo, Sevettijärvi, Partakko, Ovedalsvárri, Jårgastak, Angeli, Mariscala, Inari, Kuttura, Gora Kucintundra, Gora Ciltal'd, Bjorknes
+	link = { vic = 336 hoi = 251 hoi = 235 hoi = 208 hoi = 207 hoi = 220 hoi = 219 hoi = 234 hoi = 250 hoi = 265 hoi = 249 hoi = 264 hoi = 281 hoi = 280 hoi = 301 hoi = 324 hoi = 302 hoi = 325 hoi = 282 hoi = 303 hoi = 283 hoi = 221 }	# Oulu -> Kongasmäki, Juorkuna, Pudasjärvi, Yli-Kärpää, Ylikiiminki, Olhava, Oulu, Vaala, Rantsila, Raahe, Yppäri, Kilpua, Alavieska, Yllvieska, Sarjankylä, Pulkkila, Pyhäntä, Kestilä, Otanmäki, Mainua, Kalhamajärvi
+	link = { vic = 337 hoi = 197 hoi = 209 hoi = 222 hoi = 236 hoi = 252 hoi = 266 hoi = 267 hoi = 284 hoi = 305 hoi = 304 }	# Kajaani -> Olanga, Kuusamo, Hossa, Puolanka, Ämmänsaan, Ristijärvi, Pista, Lentiira, Lauvuskylä, Kajaani
+	link = { vic = 346 hoi = 464 hoi = 427 hoi = 369 hoi = 396 hoi = 397 hoi = 346 hoi = 300 hoi = 323 hoi = 347 hoi = 348 hoi = 372 hoi = 399 hoi = 371 hoi = 370 hoi = 398 hoi = 429 hoi = 428 hoi = 466 hoi = 467 hoi = 538 hoi = 502 hoi = 537 hoi = 465 hoi = 500 hoi = 536 hoi = 501 hoi = 430 }	# Vaasa -> Teuva, Seinäjoki, Vaasa, Korsnäs, Lapua, Jakobstad, Kokkola, Toholampi, Reisjärvi, Pyhäjärvi, Keitele, Kannonkoski, Pihtipudas, Veteli, Perho, Karstula, Soini, Myllymäki, Petäjävesi, Padasjoki, Mänttä, Tampere, Alavus, Isojoki, Hämeenkyrö, Virrat, Suolahti
+	link = { vic = 345 hoi = 652 hoi = 693 hoi = 615 hoi = 736 hoi = 575 }	# Turku -> Rauma, Yläne, Kokemäki, Turku, Pori
+	link = { vic = 347 hoi = 616 hoi = 576 hoi = 577 hoi = 694 hoi = 653 }	# Tampere -> Forssa, Pirkkala, Valkeakoski, Salo, Alastaro
+
+	link = { vic = 344 hoi = 654 hoi = 617 hoi = 695 hoi = 578 hoi = 503 hoi = 539 hoi = 655 hoi = 618 }	# Hameenlinna -> Hämeenlinna, Lammi, Riihimäki, Luhanka, Jyväskylä, Joutsa, Lahti, Heinola
+	link = { vic = 343 hoi = 779 hoi = 737 hoi = 738 hoi = 780 hoi = 739 hoi = 696 }	# Helsinki -> Hanko, Kimito, Karkkila, Inkoo, Helsinki, Porvoo
+	link = { vic = 340 hoi = 656 hoi = 657 hoi = 697 hoi = 698 hoi = 619 }	# Kotka -> Kouvola, Ylämaa, Kotka, Viipuri, Svetogorsk
+	link = { vic = 341 hoi = 579 hoi = 540 hoi = 504 hoi = 505 hoi = 506 hoi = 580 hoi = 541 }	# Mikkeli -> Mäntyharju, Mikkeli, Kalvitsa, Varkaus, Onkamo, Lappeenranta, Rautjärvi
+	link = { vic = 342 hoi = 433 hoi = 471 hoi = 403 hoi = 375 hoi = 351 hoi = 327 hoi = 326 hoi = 349 hoi = 373 hoi = 350 hoi = 374 hoi = 402 hoi = 401 hoi = 400 hoi = 431 hoi = 468 hoi = 469 hoi = 432 hoi = 470 }	# Kuopio -> Ilomantsi, Ozero Janis', Kudamguba, Lieksa, Nurmes, Maanselkä, Sonkajärvi, Kiuruvesi, Leppälahti, Sälevä, Juankoski, Romppala, Kuopio, Närhilä, Suontee, Hankasalmi, Pieksämäki, Palokki, Joensuu
+
+	# Germany and the Low Countries
+	
+	link = { vic = 383 hoi = 1674 }	# Groningen -> Delfzijl
+	link = { vic = 385 hoi = 1618 hoi = 1672 hoi = 1732 hoi = 1673 hoi = 1569 }	# Leeuwarden -> Dokkum, Leeuwarden, Wolvega, Groningen, Waddenneilanden
+	link = { vic = 386 hoi = 1733 hoi = 1853 hoi = 1793 }	# Assen -> Assen, Almelo, Emmen
+	link = { vic = 384 hoi = 1792 hoi = 1913 hoi = 1852 hoi = 1912 hoi = 1968 }	# Zwolle -> Zwolle, Enschede, Lelystad, Deventer, Zutphen
+	link = { vic = 382 hoi = 1911 hoi = 1967 hoi = 2025 }	# Arnhem -> Amersfoort, Apeldoorn, Doetinchem
+	link = { vic = 377 hoi = 1966 }	# Utrecht -> Utrecht
+	link = { vic = 375 hoi = 1671 hoi = 1791 hoi = 1851 hoi = 1910 }	# Amsterdam -> Den Helder, Purmerend, Haarlem, Amsterdam
+	link = { vic = 376 hoi = 1965 hoi = 2023 hoi = 2022 }	# Rotterdam -> Leiden, Gouda, DenHaag
+
+	link = { vic = 378 hoi = 2080 hoi = 2138 hoi = 2081 }	# Middelburg -> Middelburg, Roosendaal, Rotterdam
+	link = { vic = 380 hoi = 2139 hoi = 2082 }	# Breda -> Breda, s Hertogenbosch
+	link = { vic = 379 hoi = 2198 hoi = 2024 hoi = 2083 }	# Eindhoven -> Eindhoven, Ede, Arnhem
+	link = { vic = 381 hoi = 2199 hoi = 2140 }	# Maastricht -> Overloon, Nijmegen
+	link = { vic = 388 hoi = 2137 }	# Bruges -> Brugge
+	link = { vic = 389 hoi = 2196 }	# Ghent -> Gent
+	link = { vic = 393 hoi = 2252 }	# Tournai -> Lille
+
+	link = { vic = 390 hoi = 2197 }	# Antwerp -> Antwerpen
+	link = { vic = 394 hoi = 2310 }	# Charleroi -> Tournai
+	link = { vic = 387 hoi = 2253 hoi = 2311 }	# Brussels -> Ath, Bruxelles
+	link = { vic = 392 hoi = 2369 hoi = 2427 }	# Namur -> Namur, Charleroi
+	link = { vic = 391 hoi = 10685 hoi = 2254 }	# Hasselt -> Herentals, Geel
+	link = { vic = 395 hoi = 2312 hoi = 2255 }	# Liege -> Liège, Hasselt
+	link = { vic = 396 hoi = 2313 hoi = 2370 }	# Spa -> Monschau, Bastogne
+	link = { vic = 398 hoi = 2428 hoi = 2489 }	# Arlon -> Neufchâteau, Arlon
+	link = { vic = 397 hoi = 2429 }	# Luxembourg -> Luxembourg
+
+	link = { vic = 367 hoi = 1130 hoi = 1170 hoi = 1212 }	# Aalborg -> Fredrikshavn, Jammerbugt, Aalborg
+	link = { vic = 368 hoi = 1300 }	# Ribe -> Herning
+	link = { vic = 2557 hoi = 1211 hoi = 1256 hoi = 1345 hoi = 1346 }	# Esbjerg -> Holstebro, Silkeborg, Esbjerg, Kolding
+	link = { vic = 366 hoi = 1257 hoi = 1301 }	# Aarhus -> Randers, Århus
+	link = { vic = 372 hoi = 1436 hoi = 1437 hoi = 1482 hoi = 1526 }	# Copenhagen -> Slagelse, Helsingör, Copenhagen, Guldborgssund
+	link = { vic = 373 hoi = 1391 hoi = 1435 hoi = 1481 }	# Odense -> Odense, Faaborg, Svendborg
+	link = { vic = 371 hoi = 1390 hoi = 1434 }	# Abenra -> Tönder, Sönderborg
+
+	link = { vic = 370 hoi = 1479 hoi = 1525 }	# Flensburg -> Leck, Flensburg
+	link = { vic = 369 hoi = 1571 hoi = 1572 hoi = 1621 }	# Kiel -> Schleswig, Kiel, Neumünster
+	link = { vic = 528 hoi = 1737 }	# Hamburg -> Hamburg
+	link = { vic = 531 hoi = 1677 hoi = 1620 }	# Stade -> Stade, Cuxhaven
+	link = { vic = 539 hoi = 1676 hoi = 1736 }	# Bremen -> Bremerhaven, Bremen
+	link = { vic = 540 hoi = 1570 hoi = 1735 hoi = 1675 hoi = 1795 }	# Oldenburg -> Wilhelmshaven, Oldenburg, Wiesmoor, Harpstedt
+	link = { vic = 543 hoi = 1734 hoi = 1619 }	# Emden -> Emden, Norden
+
+	link = { vic = 529 hoi = 1678 }	# Lauenburg -> Segeberg
+	link = { vic = 530 hoi = 1679 hoi = 1622 hoi = 1738 }	# Lubeck -> Lübeck, Malente, Mölln
+	link = { vic = 544 hoi = 1798 hoi = 1739 hoi = 1799 hoi = 1740 }	# Schwerin -> Schwerin, Wismar, Parchim, Rostock
+	link = { vic = 548 hoi = 1680 }	# Stralsund -> Stralsund
+	link = { vic = 547 hoi = 1742 hoi = 1681 hoi = 1623 }	# Swinemunde -> Swinemünde, Wolgast, Rügen
+	link = { vic = 545 hoi = 1800 hoi = 1741 }	# Neustrelitz -> Neubrandenburg, Greifswald
+	link = { vic = 550 hoi = 1801 hoi = 1862 }	# Prenzlau -> Pasewalk, Schwedt an der Oder
+
+	link = { vic = 546 hoi = 1743 hoi = 1802 }	# Stettin -> Griefenburg, Stettin
+	link = { vic = 679 hoi = 1683 hoi = 1744 }	# Kolberg -> Kolberg, Falkenburg
+	link = { vic = 680 hoi = 1624 hoi = 1684 hoi = 1625 }	# Koslin -> Köslin, Bublitz, Stolp
+	link = { vic = 690 hoi = 1626 }	# Danzig -> Danzig
+	link = { vic = 691 hoi = 1573 hoi = 1685 hoi = 1746 hoi = 1745 }	# Tuchel -> Lauenburg, Chojnice, Grudziadz, Naklo nad Notecia
+	link = { vic = 693 hoi = 1627 hoi = 1686 hoi = 1747 }	# Elbing -> Elbing, Marienburg, Rosenberg
+	link = { vic = 696 hoi = 1748 hoi = 1688 hoi = 1749 hoi = 1689 hoi = 1629 hoi = 1628 hoi = 1574 hoi = 1687 hoi = 1630 }	# Allenstein -> Allenstein, Sensburg, Johannisburg, Lyck, Lötzen, Guttstadt, Braunsberg, Mohrungen, Suwalki
+	link = { vic = 695 hoi = 1439 hoi = 1527 hoi = 1485 hoi = 1575 hoi = 1528 }	# Konigsburg -> Rauschen, Königsberg, Labiau, Bartenstein, Insterburg
+
+	link = { vic = 697 hoi = 1576 hoi = 1577 hoi = 1529 }	# Gumbinnen -> Goldap, Kalvarija, Virbalis
+	link = { vic = 698 hoi = 1395 hoi = 1440 hoi = 1486 }	# Memel -> Silute, Tilsit, Ragnit
+	link = { vic = 365 hoi = 1306 hoi = 1307 hoi = 1351 }	# Palanga -> Klaipeda, Plunge, Laukuva
+	link = { vic = 364 hoi = 1352 hoi = 1397 hoi = 1441 hoi = 1487 hoi = 1396 }	# Siauliai -> Kelme, Raseiniai, Jurbarkas, Marijampole, Taurage
+	link = { vic = 363 hoi = 1353 hoi = 1398 hoi = 1354 hoi = 1399 hoi = 1355 hoi = 1444 hoi = 1443 hoi = 1489 hoi = 1531 hoi = 1488 hoi = 1442 hoi = 1530 }	# Panevezys -> Seduva, Jonava, Ukmerge, Sirvintos, Utena, Pabrade, Kaisiadorys, Vievis, Semeliskes, Ziezmariai, Kaunas, Alytus
+	link = { vic = 359 hoi = 1218 hoi = 1176 hoi = 1261 }	# Liepaja -> Liepaja, Alsunga, Vainode
+	link = { vic = 358 hoi = 1096 hoi = 1097 hoi = 1136 hoi = 1177 hoi = 1219 hoi = 1262 }	# Ventspils -> Ventspils, Valdemãrpils, Talsi, Tukums, Saldus, Dobele
+	link = { vic = 354 hoi = 1178 hoi = 1138 }	# Riga -> Riga, Sigulda
+
+	link = { vic = 357 hoi = 1137 hoi = 1220 hoi = 1263 hoi = 1308 hoi = 1221 hoi = 1309 }	# Jelgava -> Jurmala, Jelgava, Bauska, Siauliai, Aizkraukle, Panevezys
+	link = { vic = 356 hoi = 1222 hoi = 1264 hoi = 1310 hoi = 1265 hoi = 1311 hoi = 1223 hoi = 1224 hoi = 1266 }	# Daugavpils -> Jekabpils, Birzai, Svedasai, Livani, Daugavpils, Rezekne, Ludza, Dagda
+	link = { vic = 355 hoi = 1098 hoi = 1061 hoi = 1099 hoi = 1100 hoi = 1139 hoi = 1179 hoi = 1180 hoi = 1181 hoi = 1140 }	# Valmiera -> Cesis, Salacgriva, Valka, Vilaka, Jaunpiebalga, Ergli, Madona, Karsava, Gulbene
+	link = { vic = 351 hoi = 1060 hoi = 1024 hoi = 987 hoi = 1025 }	# Parnu -> Aloja, Abja-Paluoja, Imavere, Rõngu
+	link = { vic = 352 hoi = 1062 hoi = 1026 hoi = 988 hoi = 947 }	# Dorpat -> Võru, Petseri, Tartu, Jogeva
+	link = { vic = 349 hoi = 945 hoi = 986 hoi = 906 hoi = 863 hoi = 946 }	# Reval -> Risti, Pärnu, Tallinn, Tapa, Paide
+	link = { vic = 350 hoi = 820 hoi = 864 hoi = 819 hoi = 907 }	# Narva -> Narva, Kohtla-Järve, Kivioli, Mustvee
+	link = { vic = 572 hoi = 2552 hoi = 2490 hoi = 2430 }	# Trier -> Metz, Saarlouis, Trier
+	link = { vic = 573 hoi = 2553 }	# Saarbrucken -> Saarbrücken
+
+	link = { vic = 576 hoi = 2256 hoi = 2371 }	# Aachen -> Aachen, Bitburg
+	link = { vic = 577 hoi = 2084 hoi = 2141 hoi = 2200 }	# Kleves -> Duisburg, Kalkar, Mönchengladbach
+	link = { vic = 578 hoi = 2142 }	# Dusseldorf -> Düsseldorf
+	link = { vic = 580 hoi = 2143 hoi = 2085 hoi = 2086 }	# Dortmund -> Dortmund, Recklinghausen, Arnsberg
+	link = { vic = 581 hoi = 1969 hoi = 2026 hoi = 2027 }	# Munster -> Münster, Bocholt, Hamm
+	link = { vic = 542 hoi = 1794 hoi = 1854 }	# Lingen -> Cloppenburg, Lingen
+	link = { vic = 541 hoi = 1855 }	# Cloppenburg -> Vechta
+
+	link = { vic = 532 hoi = 1797 hoi = 1858 }	# Luneburg -> Lüneburg, Lückow
+	link = { vic = 535 hoi = 1856 hoi = 1796 }	# Nienburg -> Nienburg, Walsrode
+	link = { vic = 534 hoi = 1857 }	# Hanover -> Hannover
+	link = { vic = 585 hoi = 1971 }	# Detmold -> Detmold
+	link = { vic = 538 hoi = 1914 hoi = 1970 }	# Osnabruck -> Osnabrück, Herford
+	link = { vic = 582 hoi = 1915 hoi = 2028 }	# Minden -> Minden, Paderborn
+	link = { vic = 557 hoi = 1919 hoi = 1859 hoi = 1918 }	# Stendal -> Stendal, Ludwigslust, Gardelegen
+
+	link = { vic = 553 hoi = 1974 hoi = 2032 }	# Magdeburg -> Magdeburg, Bernburg
+	link = { vic = 536 hoi = 1917 hoi = 2031 hoi = 1972 hoi = 1916 hoi = 1973 hoi = 2030 }	# Brunswick -> Braunschweig, Halberstadt, Hildesheim, Bückenburg, Oschersleben, Goslar
+	link = { vic = 537 hoi = 2088 hoi = 2029 hoi = 2089 hoi = 2146 hoi = 2087 }	# Gottingen -> Göttingen, Beverungen, Bad Harzburg, Duderstadt, Arolsen
+	link = { vic = 583 hoi = 2258 }	# Siegen -> Siegen
+	link = { vic = 2561 hoi = 2201 hoi = 2315 }	# Siegburg -> Wuppertal, Hennef
+	link = { vic = 575 hoi = 2257 hoi = 2314 }	# Cologne -> Köln, Düren
+	link = { vic = 574 hoi = 2372 hoi = 2431 hoi = 2491 }	# Kreuznach -> Bonn, Morbach, St Wendel
+	link = { vic = 579 hoi = 2373 }	# Koblenz -> Koblenz
+
+	link = { vic = 584 hoi = 2144 hoi = 2202 }	# Korbach -> Brilon, Bad Berleburg
+	link = { vic = 566 hoi = 2145 hoi = 2204 hoi = 2203 }	# Kassel -> Kassel, Bebra, Borken
+	link = { vic = 554 hoi = 2262 hoi = 2205 hoi = 2206 hoi = 2147 }	# Erfurt -> Erfurt, Mühlhausen, Jena, Sonderhausen
+	link = { vic = 555 hoi = 2091 }	# Dessau -> Dessau
+	link = { vic = 556 hoi = 2148 hoi = 2090 hoi = 2149 hoi = 2150 hoi = 2092 }	# Halle -> Halle, Aschersleben, Torgau, Senftenberg, Finsterwalde
+	link = { vic = 551 hoi = 1860 hoi = 1920 }	# Pritzwalk -> Wittenberge, Potsdam
+	link = { vic = 549 hoi = 1861 hoi = 1976 hoi = 1921 hoi = 2034 hoi = 2033 hoi = 1975 }	# Berlin -> Berlin, Lyckenwalde, Erkner, Lübben, Wittenberg, Bradenburg
+
+	link = { vic = 552 hoi = 2093 hoi = 1977 hoi = 1922 }	# Cottbus -> Cottbus, Frankfurt (Oder), Neudamm
+	link = { vic = 567 hoi = 2317 }	# Giessen -> Giessen
+	link = { vic = 564 hoi = 2374 }	# Frankfurt -> Frankfurt am Main
+	link = { vic = 565 hoi = 2316 hoi = 2259 }	# Wiesbaden -> Wetzlar, Biedenkopf
+	link = { vic = 570 hoi = 2432 }	# Mainz -> Mainz
+	link = { vic = 571 hoi = 2492 hoi = 2554 }	# Kaiserlautern -> Kaiserslautern, Neunkirchen
+	link = { vic = 2560 hoi = 2433 }	# Darmstadt -> Darmstadt
+
+	link = { vic = 569 hoi = 2493 }	# Mannheim -> Mannheim
+	link = { vic = 590 hoi = 2556 hoi = 2622 }	# Heilbronn -> Heilbronn, Öhringen
+	link = { vic = 586 hoi = 2555 hoi = 2620 hoi = 2751 hoi = 2686 }	# Karlsruhe -> Karlsruhe, Rastatt, Villingen, Baden-Baden
+	link = { vic = 587 hoi = 2948 hoi = 3016 hoi = 2882 hoi = 3084 }	# Freiburg -> Baden, Hinterzarten, Donaueschingen, Todtmoos
+	link = { vic = 591 hoi = 2752 hoi = 2816 }	# Tubingen -> Tübingen, Rottweil
+	link = { vic = 593 hoi = 2884 hoi = 2950 hoi = 3019 hoi = 3086 hoi = 3152 hoi = 3153 }	# Ulm -> Ulm, Ehingen, Kempten, Leutkirch, Friedrichshafen, Oberstdorf
+	link = { vic = 594 hoi = 2817 hoi = 2883 }	# Sigmaringen -> Reutlingen, Balingen
+	link = { vic = 589 hoi = 2687 hoi = 2621 hoi = 2753 }	# Stuttgart -> Stuttgart, Pforzheim, Schwäbish Gmünd
+
+	link = { vic = 588 hoi = 3085 hoi = 3017 hoi = 2949 hoi = 3018 }	# Konstanz -> Konstanz, Blumberg, Tuttlingen, Stockach
+	link = { vic = 568 hoi = 2260 }	# Fulda -> Fulda
+	link = { vic = 562 hoi = 2261 hoi = 2319 }	# Gotha -> Gotha, Suhl
+	link = { vic = 596 hoi = 2375 }	# Aschaffenburg -> Aschaffenburg
+	link = { vic = 563 hoi = 2318 hoi = 2376 }	# Meiningen -> Meiningen, Schweinfurt
+	link = { vic = 597 hoi = 2494 hoi = 2557 hoi = 2434 hoi = 2495 }	# Wurzburg -> Buchen, Bad Mergentheim, Würzburg, Bad Windsheim
+	link = { vic = 559 hoi = 2207 hoi = 2264 hoi = 2263 hoi = 2322 }	# Leipzig -> Leipzig, Chemnitz, Gera, Altenberg
+
+	link = { vic = 558 hoi = 2208 hoi = 2265 }	# Dresden -> Dresden, Neukirch
+	link = { vic = 687 hoi = 2151 hoi = 2209 }	# Gorlitz -> Görlitz, Bautzen
+	link = { vic = 681 hoi = 2094 hoi = 2035 hoi = 1978 hoi = 1923 }	# Kustrin -> Sorau, Eisenhüttenstadt, Reppen, Landsberg
+	link = { vic = 692 hoi = 1863 hoi = 1864 hoi = 1803 hoi = 1804 }	# Deutsch Krone -> Stargard, Woldenberg, Arnswalde, Schneidenmühl
+	link = { vic = 561 hoi = 2320 hoi = 2377 }	# Weimar -> Sonneberg, Kronach
+	link = { vic = 560 hoi = 2321 hoi = 2378 hoi = 2379 hoi = 2437 }	# Chemnitz -> Zwickau, Oelsnitz, Marienberg, Klingenthal
+	link = { vic = 598 hoi = 2435 hoi = 2436 hoi = 2496 }	# Bayreuth -> Bamberg, Bayeruth, Erlangen
+
+	link = { vic = 595 hoi = 2558 hoi = 2623 hoi = 2624 hoi = 2689 hoi = 2688 }	# Nuremburg -> Nürnberg, Ansbach, Neumarkt, Roth, Aalen
+	link = { vic = 602 hoi = 2559 hoi = 2690 hoi = 2756 }	# Regensburg -> Amberg, Regensburg, Straubing
+	link = { vic = 601 hoi = 2754 hoi = 2819 hoi = 2755 }	# Ingolstadt -> Nördlingen, Aichach, Ingolstadt
+	link = { vic = 600 hoi = 2820 hoi = 2887 hoi = 2821 hoi = 2888 }	# Landshut -> Landshut, Mühldorf am Inn, Pfarrkirchen, Passau
+	link = { vic = 592 hoi = 2885 hoi = 3020 hoi = 2951 hoi = 3087 hoi = 3088 hoi = 2818 hoi = 3154 hoi = 3222 }	# Augsburg -> Augsburg, Weilheim, Mindelheim, Marktoberdorf, Bad Tölz, Heidenheim, Murnau, Kreuth
+	link = { vic = 599 hoi = 2952 hoi = 3021 hoi = 3155 hoi = 3089 hoi = 2953 hoi = 2886 hoi = 2954 hoi = 3156 }	# Munich -> München, Grafing, Rosenheim, Traunstein, Trostberg, Freising, Burghausen, Bad Reichenhall
+	
+# North America & Greenland
+
 link = { vic = 2636 vic = 2591 hoi = 6643 }	# Aasiaat, Sisimiut -> 
 link = { vic = 2632 hoi = 8418 hoi = 10675 }	# Isortoq -> Tasilaq, greenland
 link = { vic = 251 hoi = 8524 hoi = 10683 }	# Nuuk -> Nuuk, siberia 1
-link = { vic = 252 hoi = 8086 hoi = 8084 hoi = 8089 }	# Iceland -> Reykjavik, Egilsstadir, Höfn
 
-link = { vic = 267 hoi = 417 hoi = 604 hoi = 722 hoi = 806 hoi = 723 hoi = 680 hoi = 724 hoi = 681 hoi = 766 hoi = 807 hoi = 765 hoi = 847 hoi = 848 hoi = 933 hoi = 892 hoi = 932 hoi = 891 hoi = 846 hoi = 973 hoi = 1014 hoi = 974 hoi = 893 }	# Inverness -> Lerwick, Scapa Flow, Stornoway, Barra, Cape Wrath, Durness, Dornoch, Wick, Dingwall, Lairg, Ullapool, Gairloch, Inverness, Newtonmoore, Cannich, Fort Augustus, Kyle of Lochalsh, Portree, Mallaig, Tobermoray, Dalwhinnie, Grantown
-link = { vic = 266 hoi = 849 hoi = 850 hoi = 894 hoi = 934 hoi = 976 }	# Aberdeen -> Lossiemouth, Peterhead, Aberdeen, Balmoral, Arbroath
-link = { vic = 268 hoi = 1017 hoi = 1053 hoi = 975 }	# Dundee -> Smith Falls, Rosyth, Dunkeld
-link = { vic = 270 hoi = 1016 hoi = 1052 hoi = 1089 hoi = 1126 hoi = 1015 }	# Stirling -> Stirling, Crianlarich, Dunbarton, Campbeltown, Forth William
-link = { vic = 271 hoi = 1090 hoi = 1127 hoi = 1167 hoi = 1296 hoi = 1208 hoi = 1252 }	# Glasgow -> Shotts, Glasgow, Lanark, Wigtown, Ayr, Stranraer
-link = { vic = 269 hoi = 1128 hoi = 1129 hoi = 1168 }	# Edinburgh -> Edinburgh, Dunbar, Selkirk
-link = { vic = 272 hoi = 1169 hoi = 1210 hoi = 1209 hoi = 1253 }	# Dumfries -> Berwick, Morpeth, Hawick, Dunfries
-link = { vic = 304 hoi = 1386 }	# Isle of Man -> Douglas
-
-link = { vic = 280 hoi = 1255 hoi = 1299 }	# Newcastle On Tyne -> Newcastle, Sunderland
-link = { vic = 279 hoi = 1254 hoi = 1298 hoi = 1297 hoi = 1342 hoi = 1343 }	# Carlisle -> Carlisle, Kendal, Workington, Barrow, Durham
-link = { vic = 277 hoi = 1521 hoi = 1477 hoi = 1387 }	# Liverpool -> Liverpool, Preston, Lancaster
-link = { vic = 278 hoi = 1522 hoi = 1432 }	# Manchester -> Manchester, Skipton
-link = { vic = 282 hoi = 1388 hoi = 1478 }	# Leeds -> Darlington, Leeds
-link = { vic = 281 hoi = 1344 hoi = 1389 hoi = 1433 hoi = 1524 }	# Hull -> Middlesborough, Scarborough, York, Hull
-
-link = { vic = 283 hoi = 1523 hoi = 1567 }	# Sheffield -> Doncaster, Sheffield
-link = { vic = 285 hoi = 1613 hoi = 1566 }	# Chester -> Chester, Warrington
-link = { vic = 290 hoi = 1616 hoi = 1568 hoi = 1668 }	# Lincoln -> Grimsby, Scunthorpe, Lincoln
-link = { vic = 288 hoi = 1615 hoi = 1667 hoi = 1614 }	# Nottingham -> Nottingham, Derby, Stoke
-link = { vic = 276 hoi = 1564 hoi = 1612 hoi = 1565 }	# Holyhead -> Anglesey, Bangor, Birkenhead
-link = { vic = 292 hoi = 1731 hoi = 1617 hoi = 1670 hoi = 1669 hoi = 1790 hoi = 1789 hoi = 1850 }	# Ipswich -> Norwich, Langham, Great Yarmouth, Kings Lynn, Lowestoft, Thetford, Ipswich
-link = { vic = 291 hoi = 1730 hoi = 1788 hoi = 1849 hoi = 452 }	# Cambridge -> Peterborough, Northampton, Cambridge, Bedford
-
-link = { vic = 289 hoi = 1729 }	# Leicester -> Leicester
-link = { vic = 284 hoi = 1728 hoi = 1666 }	# Birmingham -> Birmingham, Crewe
-link = { vic = 287 hoi = 1787 hoi = 1847 hoi = 1786 }	# Coventry -> Coventry, Evesham, Worcester
-link = { vic = 286 hoi = 1727 }	# Shrewesbury -> Shrewsbury
-link = { vic = 275 hoi = 1665 hoi = 1785 hoi = 1846 }	# Llandrindod -> Wrexham, Brecon, Monmouth
-link = { vic = 274 hoi = 1726 hoi = 1845 hoi = 1904 hoi = 1844 }	# Cardigan -> Aberyswyth, Cardigan, Swansea, Pembrooke
-link = { vic = 273 hoi = 1905 }	# Cardiff -> Cardiff
-link = { vic = 293 hoi = 1909 }	# Chelmsford -> Southend
-link = { vic = 295 hoi = 1908 hoi = 1848 hoi = 1963 }	# St Albans -> Luton, Milton Keynes, Slough
-
-link = { vic = 294 hoi = 1907 hoi = 1962 }	# Oxford -> Oxford, Swindon
-link = { vic = 296 hoi = 1906 hoi = 2018 }	# Bristol -> Gloucester, Bristol
-link = { vic = 301 hoi = 2021 hoi = 11379 }	# Canterbury -> Dover, england
-link = { vic = 300 hoi = 1964 }	# London -> London
-link = { vic = 302 hoi = 11380 hoi = 2020 hoi = 2079 }	# Brighton -> england, Aldershot, Brighton
-link = { vic = 303 hoi = 2078 hoi = 2019 hoi = 2135 }	# Southampton -> Southampton, Reading, Newport
-link = { vic = 297 hoi = 2136 hoi = 2077 }	# Salisbury -> Weymouth, Bournemouth
-link = { vic = 298 hoi = 2076 hoi = 2075 }	# Bath -> Taunton, Bideford
-link = { vic = 299 hoi = 2193 hoi = 2134 hoi = 2250 hoi = 2192 hoi = 2307 }	# Plymouth -> Exeter, Bude, Plymouth, Bodmin, Penzance
-link = { vic = 254 hoi = 1251 hoi = 1341 hoi = 1295 }	# Belfast -> Larne, Belfast, Coleraine
-
-link = { vic = 255 hoi = 1294 hoi = 1340 }	# Londonderry -> Buncrana, Omagh
-link = { vic = 257 hoi = 1250 hoi = 1293 }	# Donegal -> Letteskenny, Donegal
-link = { vic = 256 hoi = 1385 hoi = 1430 hoi = 1431 }	# Armagh -> Armagh, Cavan, Newry
-link = { vic = 259 hoi = 1339 hoi = 1384 hoi = 1429 }	# Sligo -> Sligo, Enniskillen, Leitrin
-link = { vic = 258 hoi = 1473 hoi = 1383 hoi = 1428 hoi = 1518 }	# Galway -> Clifden, Balline, Mayo, Galway
-link = { vic = 263 hoi = 1563 hoi = 1476 }	# Dublin -> Dublin, Drogheda
-link = { vic = 265 hoi = 1664 hoi = 1725 hoi = 1611 hoi = 1663 hoi = 1784 }	# Wexford -> Wicklow, Wexford, Carlow, Kilkenny, Waterford
-
-link = { vic = 264 hoi = 1475 hoi = 1520 hoi = 1519 hoi = 1562 hoi = 1561 hoi = 1610 }	# Kildare -> Longford, Kildare, Roscommon, Mullingar, Loughrea, Tullamore
-link = { vic = 262 hoi = 1724 hoi = 1783 }	# Waterford -> Tipperary, Youghan
-link = { vic = 261 hoi = 1609 hoi = 1662 hoi = 1723 hoi = 1782 hoi = 1722 }	# Limerick -> Ennis, Limerick, Kilrush, Tralee, Dingle
-link = { vic = 307 hoi = 36 hoi = 51 hoi = 38 hoi = 25 hoi = 16 hoi = 37 hoi = 24 hoi = 9 hoi = 17 hoi = 18 hoi = 26 hoi = 10 hoi = 19 hoi = 11 hoi = 28 hoi = 12 hoi = 5 hoi = 20 hoi = 29 hoi = 7 hoi = 4 hoi = 3 hoi = 6 hoi = 8 hoi = 13 hoi = 14 hoi = 21 hoi = 22 hoi = 15 hoi = 39 hoi = 41 hoi = 27 hoi = 2 hoi = 1 hoi = 23 hoi = 44 }	# Hammerfest -> Tennevoll, Kaisepakte, Helligskogen, Nordkjosbotn, Målsnes, Setermoen, Senja, Tromso, Skibotn, Altaelva, Mieron, Storslett, Jiesjávri, Alta, Tenojoki, Lakselv, Skaidi, Skoganvarre, Laevvajåk, Storfjordbotn, Nordkynhalvoya, Veldnes, Borselv, Båtsfjord, Rastegai'sa, Båteng, Finnmark, Polmak, Kroknes, Rophi, Kárásjohka, Masi, Repvåg, Porsangerhalvoya, Kirkenes, Nikel'
-link = { vic = 260 hoi = 1843 hoi = 1842 }	# Cork -> Cork, Killerney
-link = { vic = 306 hoi = 49 hoi = 65 hoi = 82 hoi = 99 hoi = 80 hoi = 117 hoi = 98 hoi = 116 hoi = 135 hoi = 134 hoi = 212 hoi = 227 hoi = 213 hoi = 200 hoi = 187 hoi = 201 hoi = 153 hoi = 172 hoi = 154 hoi = 173 hoi = 188 hoi = 66 hoi = 81 }	# Bodo -> Hinnoya, Narvik, Alitåive, Ritsem, Bodo, Sulitjelma, Fauske, Moldjord, Storjord, Ågskaret, Mosjoen, Laksfors, Bleikvassli, Donna, Nesna, Oksskolten, Kilboghamn, Mo i Rana, Bjollånes, Slierogaise, Bredviken, Björkstugan, Bognes
-link = { vic = 305 hoi = 291 hoi = 337 hoi = 361 hoi = 338 hoi = 313 hoi = 389 hoi = 390 hoi = 421 hoi = 362 hoi = 315 hoi = 339 hoi = 363 hoi = 293 hoi = 316 hoi = 273 hoi = 243 hoi = 258 hoi = 242 hoi = 226 hoi = 257 hoi = 241 hoi = 256 hoi = 272 hoi = 292 hoi = 422 hoi = 420 hoi = 457 }	# Trondheim -> Trondheim, Aure, Rindal, Svorkmo, Brekstad, Meldal, Ålen, Ulsberg, Storen, Stjordalshalsen, Kråklivollen, Tydal, Steinkjer, Meråker, Sorli, Kroken, Royrvik, Tosbotn, Bronnoysund, Namsos, Kolvereid, Osen, Namdalseid, Åfjord, Roros, Gjora, Driva
-link = { vic = 308 hoi = 360 hoi = 388 hoi = 419 hoi = 387 hoi = 386 hoi = 418 hoi = 455 hoi = 491 hoi = 454 hoi = 453 hoi = 490 hoi = 527 }	# Alesund -> Kristiansund, Engan, Verma, Molde, Ålesund, Stordal, Björli, Geiranger, Volda, Selje, Nordfjordeid, Hornindal
-
-link = { vic = 309 hoi = 526 hoi = 565 hoi = 566 hoi = 606 hoi = 605 hoi = 682 hoi = 725 hoi = 767 hoi = 683 hoi = 642 hoi = 607 hoi = 643 hoi = 684 hoi = 726 hoi = 644 hoi = 808 }	# Bergen -> Svelgen, Anda, Strynsvattnet, Suphellenipa, Askvoll, Lervik, Fedje, Ålvik, Leikanger, Sande, Jostedola, Luster, Laerdalsoyri, Finse, Grindaheim, Bergen
-link = { vic = 310 hoi = 851 hoi = 895 hoi = 936 hoi = 977 hoi = 978 hoi = 1018 hoi = 1054 hoi = 935 }	# Christiansand -> Haugesund, Sinnes, Sveindal, Moi, Arendal, Kristiansand, Farsund, Stavanger
-link = { vic = 311 hoi = 979 hoi = 938 hoi = 896 hoi = 852 hoi = 809 hoi = 853 hoi = 897 hoi = 937 }	# Skien -> Skien, Larvik, Setesdal, Sauda, Haukeligrend, Åmot, Drangedal, Åmli
-link = { vic = 312 hoi = 898 hoi = 854 hoi = 810 hoi = 768 hoi = 855 }	# Drammen -> Tonsberg, Skien, Selfjord, Geilo, Drammen
-link = { vic = 315 hoi = 456 hoi = 492 hoi = 528 hoi = 567 hoi = 529 hoi = 493 hoi = 568 hoi = 569 hoi = 530 hoi = 609 hoi = 608 hoi = 645 hoi = 646 hoi = 686 hoi = 685 hoi = 727 hoi = 769 hoi = 728 }	# Lillehammer -> Lora, Digervarden, Donfoss, Galdhopiggen, Vågåmo, Hjerjkinn, Ringebu, Koppang, Alvdal, Tretten, Skaget, Bagn, Lillehammer, Dokka, Fagernes, Torpo, Rodberg, Gulsvik
-link = { vic = 313 hoi = 811 hoi = 812 hoi = 770 hoi = 771 hoi = 729 hoi = 856 }	# Christiania -> Kongsberg, Oslo, Honefoss, Magnor, Moss, Askim
-link = { vic = 314 hoi = 687 hoi = 647 hoi = 570 hoi = 611 hoi = 531 hoi = 610 hoi = 495 hoi = 494 hoi = 458 hoi = 730 }	# Hamar -> Hamar, Elverum, Jordet, Nybergsund, Otnes, Rena, Femundsenden, Tolga, Bjorgan, Svullrya
-
-link = { vic = 316 hoi = 899 hoi = 980 hoi = 939 hoi = 900 hoi = 813 hoi = 1019 }	# Frederiksstad -> Sarpsborg, Strömstad, Bengtsfors, Årjäng, Arvika, Lysekil
-link = { vic = 982 hoi = 33 hoi = 32 hoi = 45 }	# Petsamo -> Pecenga, Cyp-Navolok, Titovka
-link = { vic = 2587 hoi = 59 hoi = 47 hoi = 46 hoi = 60 hoi = 74 hoi = 73 hoi = 75 hoi = 34 hoi = 48 hoi = 35 hoi = 61 hoi = 63 hoi = 62 hoi = 76 hoi = 94 hoi = 78 hoi = 114 hoi = 64 hoi = 113 hoi = 112 hoi = 111 hoi = 93 hoi = 92 hoi = 91 }	# Kola -> Murmansk, Verrkne-teriberskoye, Port Vladimir, Severomorsk, Tajbola, Verhnetulomskij, Olenegorsk, Zapadnyj Kil'din, Dal'nie Zelency, Teriberka, Perkh'yavr, Harlovka, Zahrebetnoe, Lovozero, Polmos, Iokanga, Gremiha, Varzino, Kanevka, Kolmozero, Motka, Revda, Laplandija, Kola
-link = { vic = 983 hoi = 115 hoi = 133 hoi = 171 hoi = 185 hoi = 170 hoi = 150 hoi = 169 hoi = 130 hoi = 149 hoi = 168 hoi = 148 hoi = 147 hoi = 129 hoi = 110 hoi = 128 hoi = 166 hoi = 165 hoi = 146 hoi = 127 hoi = 109 hoi = 108 hoi = 145 hoi = 183 hoi = 198 hoi = 211 hoi = 224 hoi = 239 hoi = 225 }	# Kandalaksha -> Lumbovka, Ponoj, Korabel'noye, Cavan'ga, Strel'na, Cal'mny-Varre, Varzuga, Indel', Krasnoscel'e, Olenica, Vostocinoe  Munozero, Inga, Berezovka, Kirovsk, Apatity, Umba, Kandalaksa, Ozero Kolvitskoye, Njavka, Moncegorsk, Laplandskij Zapovednik, Kjume, Zelenoborskij, Lesozavodskij, Tedino, Cupa, Louhi, Ambarnyj
-link = { vic = 348 hoi = 778 }	# Aland Islands -> Mariehamn
-link = { vic = 353 hoi = 985 }	# Kuressaare -> Saaremaa
-link = { vic = 331 hoi = 1135 hoi = 1217 }	# Gotland -> Visby, Burgsvik
-
-link = { vic = 328 hoi = 940 hoi = 981 hoi = 1092 hoi = 1055 hoi = 857 hoi = 901 hoi = 772 hoi = 814 hoi = 858 }	# Karlstad -> Säffle, Mellerud, Kungälv, Vänersborg, Kil, Karlstad, Sunne, Munkfors, Storfors
-link = { vic = 330 hoi = 1131 hoi = 1213 hoi = 1172 hoi = 1171 hoi = 1093 hoi = 1132 hoi = 1056 hoi = 1020 }	# Boras -> Alingsås, Kungsbacka, Borås, Göteborg, Vara, Falköping, Skövde, Lidköping
-link = { vic = 334 hoi = 1302 hoi = 1258 hoi = 1347 hoi = 1392 hoi = 689 hoi = 1438 hoi = 1483 }	# Malmo -> Halmstad, Hylte, Markaryd, Helsingborg, Hörby, Malmö, Trelleborg
-link = { vic = 374 hoi = 1682 }	# Bornholm -> Bornholm
-link = { vic = 335 hoi = 1484 hoi = 317 hoi = 1393 hoi = 1394 hoi = 1349 }	# Karlskrona -> Ystad, Kristianstad, Hässleholm, Karlshamn, Karlskrona
-link = { vic = 332 hoi = 1350 hoi = 1216 hoi = 1260 hoi = 1305 hoi = 1175 }	# Kalmar -> Borgholm, Oskarshamn, Nybro, Kalmar, Tingsryd
-link = { vic = 333 hoi = 1173 hoi = 1259 hoi = 1214 hoi = 1303 hoi = 1304 hoi = 1348 hoi = 1215 }	# Vaxjo -> Jönköping, Värnamo, Gislaved, Ljungby, Växjö, Älmhult, Nässjö
-link = { vic = 325 hoi = 1133 hoi = 1057 hoi = 1058 hoi = 1095 hoi = 1134 hoi = 1094 hoi = 1174 hoi = 1059 hoi = 1023 hoi = 983 }	# Norrkoping -> Gränna, Ödeshög, Linköping, Valdemarsvik, Västervik, Mjölby, Eksjö, Norrköping, Finspång, Vingåker
-link = { vic = 327 hoi = 1021 hoi = 982 hoi = 1022 hoi = 902 hoi = 942 hoi = 941 }	# Orebro -> Karlsborg, Askersund, Motala, Karlskoga, Örebro, Kristinehamn
-link = { vic = 326 hoi = 943 hoi = 944 hoi = 984 hoi = 903 hoi = 904 hoi = 860 hoi = 817 hoi = 861 hoi = 905 }	# Vasteras -> Katrineholm, Nyköping, Flen, Arboga, Eskilstuna, Köping, Västerås, Södertälje, Nynäshamn
-
-link = { vic = 322 hoi = 862 }	# Stockholm -> Stockholm
-link = { vic = 324 hoi = 818 hoi = 776 hoi = 735 hoi = 777 hoi = 692 hoi = 734 }	# Uppsala -> Enköping, Uppsala, Östhammar, Norrtälje, Älvkarleby, Sala
-link = { vic = 323 hoi = 612 hoi = 613 hoi = 775 hoi = 690 hoi = 774 hoi = 816 hoi = 859 hoi = 815 hoi = 773 hoi = 732 hoi = 731 hoi = 688 hoi = 648 hoi = 649 }	# Falun -> Orsa, Furudal, Surahammar, Borlänge, Kopparberg, Lindesberg, Nora, Grecken, Filipstad, Fredriksberg, Vansbro, Sysslebäck, Venjan, Mora
-link = { vic = 317 hoi = 733 hoi = 651 hoi = 691 hoi = 650 hoi = 614 hoi = 574 hoi = 573 hoi = 535 }	# Gavle -> Avesta, Gävle, Sandviken, Falun, Ockelbo, Söderhamn, Edsbyn, Bollnäs
-link = { vic = 318 hoi = 498 hoi = 499 hoi = 462 hoi = 425 hoi = 366 hoi = 394 hoi = 426 hoi = 463 hoi = 343 hoi = 395 hoi = 367 hoi = 318 }	# Sundsvall -> Gåda, Hudiksvall, Ljungaverk, Ånge, Hammarstrand, Ljungå, Timrå, Sundsvall, Näsåker, Härnösand, Sollefteå, Ramsele
-link = { vic = 319 hoi = 295 hoi = 274 hoi = 342 hoi = 294 hoi = 340 hoi = 341 hoi = 365 hoi = 461 hoi = 393 hoi = 424 hoi = 392 hoi = 364 hoi = 391 hoi = 423 hoi = 460 hoi = 497 hoi = 534 hoi = 572 hoi = 532 hoi = 533 hoi = 496 hoi = 571 hoi = 459 }	# Ostersund -> Tåsjö, Sjoutnäset, Borgvattnet, Edevik, Vålådalen, Järpen, Östersund, Haverö, Bräcke, Rätansbyn, Torsborg, Hallen, Ramundberget, Funäsdalen, Vemdalen, Älvros, Hamra, Åmån, Särna, Kräckelbäcken, Kölsvallen, Trängslet, Käringsjön
-link = { vic = 320 hoi = 202 hoi = 215 hoi = 230 hoi = 246 hoi = 262 hoi = 278 hoi = 279 hoi = 263 hoi = 322 hoi = 298 hoi = 321 hoi = 299 hoi = 368 hoi = 345 hoi = 320 hoi = 344 hoi = 319 hoi = 297 hoi = 277 hoi = 261 hoi = 276 hoi = 296 hoi = 275 hoi = 260 hoi = 245 hoi = 229 hoi = 214 hoi = 228 hoi = 244 hoi = 259 }	# Umea -> Umfors, Sorsele, Holmsjö, Kristineberg, Lycksele, Burträsk, Skellefteå, Kusfors, Umeå, Örträsk, Nordmaling, Vindeln, Örnsköldsvik, Björna, Fredrika, Degersjön, Sunnersta, Hälla, Vägsele, Kattisavan, Åsele, Jungsele, Dorotea, Vilhelmina, Gunnarn, Ankarsund, Vindelfjällen, Tärnaby, Dikanäs, Saxnäs
-
-link = { vic = 321 hoi = 53 hoi = 69 hoi = 85 hoi = 103 hoi = 122 hoi = 160 hoi = 178 hoi = 52 hoi = 67 hoi = 68 hoi = 84 hoi = 102 hoi = 121 hoi = 139 hoi = 159 hoi = 177 hoi = 193 hoi = 206 hoi = 248 hoi = 233 hoi = 218 hoi = 232 hoi = 247 hoi = 231 hoi = 217 hoi = 216 hoi = 192 hoi = 205 hoi = 204 hoi = 189 hoi = 203 hoi = 155 hoi = 174 hoi = 190 hoi = 191 hoi = 176 hoi = 158 hoi = 101 hoi = 120 hoi = 138 hoi = 119 hoi = 83 hoi = 100 hoi = 137 hoi = 118 hoi = 136 hoi = 156 hoi = 157 hoi = 175 hoi = 140 }	# Lulea -> Karesuando, Nunasvaara, Lumivaara, Muonio, Kolari, Övertorneå, Kalix, Råstätno, Kiruna, Nedre Soppero, Vittangi, Parakka, Pajala, Polcirkeln, Överkalix, Råne, Luleå, Boden, Fällfors, Piteå, Älvsbyn, Arvidsjaur, Malå, Avaviken, Moskosel, Slagnäs, Harads, Kåbdalis, Luleb, Laisvall, Uddjaure, Sädvaluspen, Labbas, Arjeplog, Kuollejaure, Tårrajaur, Vuollerim, Fjällåsen, Gällivare, Jokkmokk, Tjaktjajaure, Sjaunja, Suorva, Tjåmotis, Kvikkjokk, Västerfjäll, Stenudden, Karats, Udtja, Pello
-link = { vic = 338 hoi = 40 hoi = 54 hoi = 70 hoi = 86 hoi = 104 hoi = 141 hoi = 179 hoi = 194 hoi = 195 hoi = 181 hoi = 196 hoi = 182 hoi = 164 hoi = 126 hoi = 144 hoi = 163 hoi = 143 hoi = 162 hoi = 161 hoi = 123 hoi = 142 hoi = 180 hoi = 124 hoi = 106 hoi = 87 hoi = 105 hoi = 125 hoi = 107 hoi = 72 hoi = 89 hoi = 57 hoi = 43 hoi = 30 hoi = 42 hoi = 55 hoi = 71 hoi = 56 hoi = 88 hoi = 58 hoi = 90 hoi = 31 }	# Tornio -> Pöyrisjoki, Kietsimäjoki, Lisma, Tepasto, Kittilä, Sirkkakoski, Tornio, Hepola, Ranua, Autti, Livojoki, Maaninkavaara, Alakurtti, Kovdor, Tumcha, Isokylä, Aapajärvi, Korvala, Rovaniemi, Unari, Korvala, Simojoki, Petkula, Saariselkä, Pokka, Jeesiö, Tanhua, Nota, Patsoyoki, Ivalo, Sevettijärvi, Partakko, Ovedalsvárri, Jårgastak, Angeli, Mariscala, Inari, Kuttura, Gora Kucintundra, Gora Ciltal'd, Bjorknes
-link = { vic = 336 hoi = 251 hoi = 235 hoi = 208 hoi = 207 hoi = 220 hoi = 219 hoi = 234 hoi = 250 hoi = 265 hoi = 249 hoi = 264 hoi = 281 hoi = 280 hoi = 301 hoi = 324 hoi = 302 hoi = 325 hoi = 282 hoi = 303 hoi = 283 hoi = 221 }	# Oulu -> Kongasmäki, Juorkuna, Pudasjärvi, Yli-Kärpää, Ylikiiminki, Olhava, Oulu, Vaala, Rantsila, Raahe, Yppäri, Kilpua, Alavieska, Yllvieska, Sarjankylä, Pulkkila, Pyhäntä, Kestilä, Otanmäki, Mainua, Kalhamajärvi
-link = { vic = 337 hoi = 197 hoi = 209 hoi = 222 hoi = 236 hoi = 252 hoi = 266 hoi = 267 hoi = 284 hoi = 305 hoi = 304 }	# Kajaani -> Olanga, Kuusamo, Hossa, Puolanka, Ämmänsaan, Ristijärvi, Pista, Lentiira, Lauvuskylä, Kajaani
-link = { vic = 346 hoi = 464 hoi = 427 hoi = 369 hoi = 396 hoi = 397 hoi = 346 hoi = 300 hoi = 323 hoi = 347 hoi = 348 hoi = 372 hoi = 399 hoi = 371 hoi = 370 hoi = 398 hoi = 429 hoi = 428 hoi = 466 hoi = 467 hoi = 538 hoi = 502 hoi = 537 hoi = 465 hoi = 500 hoi = 536 hoi = 501 hoi = 430 }	# Vaasa -> Teuva, Seinäjoki, Vaasa, Korsnäs, Lapua, Jakobstad, Kokkola, Toholampi, Reisjärvi, Pyhäjärvi, Keitele, Kannonkoski, Pihtipudas, Veteli, Perho, Karstula, Soini, Myllymäki, Petäjävesi, Padasjoki, Mänttä, Tampere, Alavus, Isojoki, Hämeenkyrö, Virrat, Suolahti
-link = { vic = 345 hoi = 652 hoi = 693 hoi = 615 hoi = 736 hoi = 575 }	# Turku -> Rauma, Yläne, Kokemäki, Turku, Pori
-link = { vic = 347 hoi = 616 hoi = 576 hoi = 577 hoi = 694 hoi = 653 }	# Tampere -> Forssa, Pirkkala, Valkeakoski, Salo, Alastaro
-
-link = { vic = 344 hoi = 654 hoi = 617 hoi = 695 hoi = 578 hoi = 503 hoi = 539 hoi = 655 hoi = 618 }	# Hameenlinna -> Hämeenlinna, Lammi, Riihimäki, Luhanka, Jyväskylä, Joutsa, Lahti, Heinola
-link = { vic = 343 hoi = 779 hoi = 737 hoi = 738 hoi = 780 hoi = 739 hoi = 696 }	# Helsinki -> Hanko, Kimito, Karkkila, Inkoo, Helsinki, Porvoo
-link = { vic = 340 hoi = 656 hoi = 657 hoi = 697 hoi = 698 hoi = 619 }	# Kotka -> Kouvola, Ylämaa, Kotka, Viipuri, Svetogorsk
-link = { vic = 341 hoi = 579 hoi = 540 hoi = 504 hoi = 505 hoi = 506 hoi = 580 hoi = 541 }	# Mikkeli -> Mäntyharju, Mikkeli, Kalvitsa, Varkaus, Onkamo, Lappeenranta, Rautjärvi
-link = { vic = 342 hoi = 433 hoi = 471 hoi = 403 hoi = 375 hoi = 351 hoi = 327 hoi = 326 hoi = 349 hoi = 373 hoi = 350 hoi = 374 hoi = 402 hoi = 401 hoi = 400 hoi = 431 hoi = 468 hoi = 469 hoi = 432 hoi = 470 }	# Kuopio -> Ilomantsi, Ozero Janis', Kudamguba, Lieksa, Nurmes, Maanselkä, Sonkajärvi, Kiuruvesi, Leppälahti, Sälevä, Juankoski, Romppala, Kuopio, Närhilä, Suontee, Hankasalmi, Pieksämäki, Palokki, Joensuu
 link = { vic = 75 hoi = 8589 hoi = 8622 }	# Millertown -> Cook's Harbour, Morts
 link = { vic = 74 hoi = 8654 hoi = 8623 hoi = 8682 hoi = 8734 }	# Saint Johns -> Windsor, Gander, Rencontre East, St John's
 link = { vic = 62 hoi = 8522 hoi = 8523 hoi = 8487 hoi = 8486 hoi = 8484 hoi = 8485 }	# Sept-Iles -> Havre-St-Pierre, Kegaska, St-Augustin, Olomane, Sept-Iles, Pitaga
@@ -154,7 +320,7 @@ link = { vic = 56 hoi = 3271 hoi = 3341 hoi = 3409 hoi = 3340 hoi = 3205 hoi = 3
 link = { vic = 46 hoi = 3408 hoi = 3407 hoi = 3476 hoi = 3541 hoi = 3339 hoi = 3338 hoi = 3269 }	# Toronto -> Trenton, Cobourg, Oshawa, Toronto, Havelock, Petersborough, Lakefield
 link = { vic = 53 hoi = 3267 hoi = 3405 hoi = 3475 hoi = 3336 hoi = 3337 hoi = 3268 hoi = 3404 hoi = 3335 hoi = 3406 }	# Barrie -> Owen Sound, Orangeville, Bramton, Collingwood, Barrie, Orillia, Wingham, Kincardine, Newmarket
 link = { vic = 55 hoi = 3605 hoi = 3668 hoi = 3474 hoi = 3604 hoi = 3667 }	# Hamilton -> Hamilton, Simcoe, Arthur, Kitchener, Stratford
-link = { vic = 54 hoi = 3665 hoi = 3798 hoi = 3731 hoi = 3732 hoi = 3666 hoi = 3603 hoi = 3539 hoi = 3473 }	# Windsor -> Forest, Leamington, Chatham, London, Forest, Great Bend, Seaforth, Goderich
+link = { vic = 54 vic = 77 hoi = 3665 hoi = 3798 hoi = 3731 hoi = 3732 hoi = 3666 hoi = 3603 hoi = 3539 hoi = 3473 }	# Windsor -> Forest, Leamington, Chatham, London, Forest, Great Bend, Seaforth, Goderich
 
 link = { vic = 66 hoi = 6993 hoi = 6973 hoi = 6952 }	# Sherbrooke -> Sherbrooke, Asbestos, Thetford Mines
 link = { vic = 71 hoi = 7016 hoi = 6997 }	# Halifax -> Yarmouth, Halifax
@@ -217,157 +383,21 @@ link = { vic = 20 hoi = 6666 hoi = 6676 hoi = 6660 }	# Kelowna -> Kelowna, Castl
 link = { vic = 14 hoi = 6659 hoi = 6664 hoi = 6675 hoi = 6670 hoi = 6682 }	# Vancouver Island -> Port McNeill, Campbell River, Port Alberni, Nanaimo, Victoria
 link = { vic = 13 hoi = 6648 hoi = 6652 hoi = 6649 hoi = 6671 hoi = 6665 hoi = 6656 hoi = 6645 }	# Vancouver -> Simon Sound, Powell River, Williams Lake, Vancouver, Squamish, Lillooet, Mount Waddington
 
-link = { vic = 383 hoi = 1674 }	# Groningen -> Delfzijl
-link = { vic = 385 hoi = 1618 hoi = 1672 hoi = 1732 hoi = 1673 hoi = 1569 }	# Leeuwarden -> Dokkum, Leeuwarden, Wolvega, Groningen, Waddenneilanden
-link = { vic = 386 hoi = 1733 hoi = 1853 hoi = 1793 }	# Assen -> Assen, Almelo, Emmen
-link = { vic = 384 hoi = 1792 hoi = 1913 hoi = 1852 hoi = 1912 hoi = 1968 }	# Zwolle -> Zwolle, Enschede, Lelystad, Deventer, Zutphen
-link = { vic = 382 hoi = 1911 hoi = 1967 hoi = 2025 }	# Arnhem -> Amersfoort, Apeldoorn, Doetinchem
-link = { vic = 377 hoi = 1966 }	# Utrecht -> Utrecht
-link = { vic = 375 hoi = 1671 hoi = 1791 hoi = 1851 hoi = 1910 }	# Amsterdam -> Den Helder, Purmerend, Haarlem, Amsterdam
-link = { vic = 376 hoi = 1965 hoi = 2023 hoi = 2022 }	# Rotterdam -> Leiden, Gouda, DenHaag
+link = { vic = 78 hoi = 6697 hoi = 6683 hoi = 6689 hoi = 6683 hoi = 6714 hoi = 6723 hoi = 6696 hoi = 6713 hoi = 6731 hoi = 6722 hoi = 6732 hoi = 6743 hoi = 6741 hoi = 6752 hoi = 6753 hoi = 6742 hoi = 8508 hoi = 6764 hoi = 6785 hoi = 6774 hoi = 6763} # Seattle -> Seattle, Everett, Wenatchee, Ellensburg, Tacoma, Yakima, Bremerton, Aberdeen, Astoria, Olympia, Mount St Helens, Granger, Seaside 6741, Longview, Mount Adams, Glenoma, Columbia 8508, Lewis, John Day, Portland, Nehalem
+link = { vic = 79 hoi = 8385 hoi = 6698 hoi = 8360 hoi = 8411} # Spokane -> Spokane, Quincy 6698, Libby, Kellogg
+link = { vic = 80 hoi = 8438 hoi = 8471 hoi = 8546 hoi = 8439 hoi = 8509 hoi = 8547 hoi = 8577 hoi = 8609 hoi = 8610 hoi = 8578} # Walla Walla -> Craigmont, Richland, Grand Forks 8546, Helena, Weiser, Butte, Ukiah, Caldwell, Dillon, Boise
 
-link = { vic = 378 hoi = 2080 hoi = 2138 hoi = 2081 }	# Middelburg -> Middelburg, Roosendaal, Rotterdam
-link = { vic = 380 hoi = 2139 hoi = 2082 }	# Breda -> Breda, s Hertogenbosch
-link = { vic = 379 hoi = 2198 hoi = 2024 hoi = 2083 }	# Eindhoven -> Eindhoven, Ede, Arnhem
-link = { vic = 381 hoi = 2199 hoi = 2140 }	# Maastricht -> Overloon, Nijmegen
-link = { vic = 388 hoi = 2137 }	# Bruges -> Brugge
-link = { vic = 389 hoi = 2196 }	# Ghent -> Gent
-link = { vic = 393 hoi = 2252 }	# Tournai -> Lille
+# South America
 
-link = { vic = 390 hoi = 2197 }	# Antwerp -> Antwerpen
-link = { vic = 394 hoi = 2310 }	# Charleroi -> Tournai
-link = { vic = 387 hoi = 2253 hoi = 2311 }	# Brussels -> Ath, Bruxelles
-link = { vic = 392 hoi = 2369 hoi = 2427 }	# Namur -> Namur, Charleroi
-link = { vic = 391 hoi = 10685 hoi = 2254 }	# Hasselt -> Herentals, Geel
-link = { vic = 395 hoi = 2312 hoi = 2255 }	# Liege -> Liège, Hasselt
-link = { vic = 396 hoi = 2313 hoi = 2370 }	# Spa -> Monschau, Bastogne
-link = { vic = 398 hoi = 2428 hoi = 2489 }	# Arlon -> Neufchâteau, Arlon
-link = { vic = 397 hoi = 2429 }	# Luxembourg -> Luxembourg
+# Asia
 
-link = { vic = 367 hoi = 1130 hoi = 1170 hoi = 1212 }	# Aalborg -> Fredrikshavn, Jammerbugt, Aalborg
-link = { vic = 368 hoi = 1300 }	# Ribe -> Herning
-link = { vic = 2557 hoi = 1211 hoi = 1256 hoi = 1345 hoi = 1346 }	# Esbjerg -> Holstebro, Silkeborg, Esbjerg, Kolding
-link = { vic = 366 hoi = 1257 hoi = 1301 }	# Aarhus -> Randers, Århus
-link = { vic = 372 hoi = 1436 hoi = 1437 hoi = 1482 hoi = 1526 }	# Copenhagen -> Slagelse, Helsingör, Copenhagen, Guldborgssund
-link = { vic = 373 hoi = 1391 hoi = 1435 hoi = 1481 }	# Odense -> Odense, Faaborg, Svendborg
-link = { vic = 371 hoi = 1390 hoi = 1434 }	# Abenra -> Tönder, Sönderborg
+# Russia
 
-link = { vic = 370 hoi = 1479 hoi = 1525 }	# Flensburg -> Leck, Flensburg
-link = { vic = 369 hoi = 1571 hoi = 1572 hoi = 1621 }	# Kiel -> Schleswig, Kiel, Neumünster
-link = { vic = 528 hoi = 1737 }	# Hamburg -> Hamburg
-link = { vic = 531 hoi = 1677 hoi = 1620 }	# Stade -> Stade, Cuxhaven
-link = { vic = 539 hoi = 1676 hoi = 1736 }	# Bremen -> Bremerhaven, Bremen
-link = { vic = 540 hoi = 1570 hoi = 1735 hoi = 1675 hoi = 1795 }	# Oldenburg -> Wilhelmshaven, Oldenburg, Wiesmoor, Harpstedt
-link = { vic = 543 hoi = 1734 hoi = 1619 }	# Emden -> Emden, Norden
+# Middle East
 
-link = { vic = 529 hoi = 1678 }	# Lauenburg -> Segeberg
-link = { vic = 530 hoi = 1679 hoi = 1622 hoi = 1738 }	# Lubeck -> Lübeck, Malente, Mölln
-link = { vic = 544 hoi = 1798 hoi = 1739 hoi = 1799 hoi = 1740 }	# Schwerin -> Schwerin, Wismar, Parchim, Rostock
-link = { vic = 548 hoi = 1680 }	# Stralsund -> Stralsund
-link = { vic = 547 hoi = 1742 hoi = 1681 hoi = 1623 }	# Swinemunde -> Swinemünde, Wolgast, Rügen
-link = { vic = 545 hoi = 1800 hoi = 1741 }	# Neustrelitz -> Neubrandenburg, Greifswald
-link = { vic = 550 hoi = 1801 hoi = 1862 }	# Prenzlau -> Pasewalk, Schwedt an der Oder
+# Africa
 
-link = { vic = 546 hoi = 1743 hoi = 1802 }	# Stettin -> Griefenburg, Stettin
-link = { vic = 679 hoi = 1683 hoi = 1744 }	# Kolberg -> Kolberg, Falkenburg
-link = { vic = 680 hoi = 1624 hoi = 1684 hoi = 1625 }	# Koslin -> Köslin, Bublitz, Stolp
-link = { vic = 690 hoi = 1626 }	# Danzig -> Danzig
-link = { vic = 691 hoi = 1573 hoi = 1685 hoi = 1746 hoi = 1745 }	# Tuchel -> Lauenburg, Chojnice, Grudziadz, Naklo nad Notecia
-link = { vic = 693 hoi = 1627 hoi = 1686 hoi = 1747 }	# Elbing -> Elbing, Marienburg, Rosenberg
-link = { vic = 696 hoi = 1748 hoi = 1688 hoi = 1749 hoi = 1689 hoi = 1629 hoi = 1628 hoi = 1574 hoi = 1687 hoi = 1630 }	# Allenstein -> Allenstein, Sensburg, Johannisburg, Lyck, Lötzen, Guttstadt, Braunsberg, Mohrungen, Suwalki
-link = { vic = 695 hoi = 1439 hoi = 1527 hoi = 1485 hoi = 1575 hoi = 1528 }	# Konigsburg -> Rauschen, Königsberg, Labiau, Bartenstein, Insterburg
-
-link = { vic = 697 hoi = 1576 hoi = 1577 hoi = 1529 }	# Gumbinnen -> Goldap, Kalvarija, Virbalis
-link = { vic = 698 hoi = 1395 hoi = 1440 hoi = 1486 }	# Memel -> Silute, Tilsit, Ragnit
-link = { vic = 365 hoi = 1306 hoi = 1307 hoi = 1351 }	# Palanga -> Klaipeda, Plunge, Laukuva
-link = { vic = 364 hoi = 1352 hoi = 1397 hoi = 1441 hoi = 1487 hoi = 1396 }	# Siauliai -> Kelme, Raseiniai, Jurbarkas, Marijampole, Taurage
-link = { vic = 363 hoi = 1353 hoi = 1398 hoi = 1354 hoi = 1399 hoi = 1355 hoi = 1444 hoi = 1443 hoi = 1489 hoi = 1531 hoi = 1488 hoi = 1442 hoi = 1530 }	# Panevezys -> Seduva, Jonava, Ukmerge, Sirvintos, Utena, Pabrade, Kaisiadorys, Vievis, Semeliskes, Ziezmariai, Kaunas, Alytus
-link = { vic = 359 hoi = 1218 hoi = 1176 hoi = 1261 }	# Liepaja -> Liepaja, Alsunga, Vainode
-link = { vic = 358 hoi = 1096 hoi = 1097 hoi = 1136 hoi = 1177 hoi = 1219 hoi = 1262 }	# Ventspils -> Ventspils, Valdemãrpils, Talsi, Tukums, Saldus, Dobele
-link = { vic = 354 hoi = 1178 hoi = 1138 }	# Riga -> Riga, Sigulda
-
-link = { vic = 357 hoi = 1137 hoi = 1220 hoi = 1263 hoi = 1308 hoi = 1221 hoi = 1309 }	# Jelgava -> Jurmala, Jelgava, Bauska, Siauliai, Aizkraukle, Panevezys
-link = { vic = 356 hoi = 1222 hoi = 1264 hoi = 1310 hoi = 1265 hoi = 1311 hoi = 1223 hoi = 1224 hoi = 1266 }	# Daugavpils -> Jekabpils, Birzai, Svedasai, Livani, Daugavpils, Rezekne, Ludza, Dagda
-link = { vic = 355 hoi = 1098 hoi = 1061 hoi = 1099 hoi = 1100 hoi = 1139 hoi = 1179 hoi = 1180 hoi = 1181 hoi = 1140 }	# Valmiera -> Cesis, Salacgriva, Valka, Vilaka, Jaunpiebalga, Ergli, Madona, Karsava, Gulbene
-link = { vic = 351 hoi = 1060 hoi = 1024 hoi = 987 hoi = 1025 }	# Parnu -> Aloja, Abja-Paluoja, Imavere, Rõngu
-link = { vic = 352 hoi = 1062 hoi = 1026 hoi = 988 hoi = 947 }	# Dorpat -> Võru, Petseri, Tartu, Jogeva
-link = { vic = 349 hoi = 945 hoi = 986 hoi = 906 hoi = 863 hoi = 946 }	# Reval -> Risti, Pärnu, Tallinn, Tapa, Paide
-link = { vic = 350 hoi = 820 hoi = 864 hoi = 819 hoi = 907 }	# Narva -> Narva, Kohtla-Järve, Kivioli, Mustvee
-link = { vic = 572 hoi = 2552 hoi = 2490 hoi = 2430 }	# Trier -> Metz, Saarlouis, Trier
-link = { vic = 573 hoi = 2553 }	# Saarbrucken -> Saarbrücken
-
-link = { vic = 576 hoi = 2256 hoi = 2371 }	# Aachen -> Aachen, Bitburg
-link = { vic = 577 hoi = 2084 hoi = 2141 hoi = 2200 }	# Kleves -> Duisburg, Kalkar, Mönchengladbach
-link = { vic = 578 hoi = 2142 }	# Dusseldorf -> Düsseldorf
-link = { vic = 580 hoi = 2143 hoi = 2085 hoi = 2086 }	# Dortmund -> Dortmund, Recklinghausen, Arnsberg
-link = { vic = 581 hoi = 1969 hoi = 2026 hoi = 2027 }	# Munster -> Münster, Bocholt, Hamm
-link = { vic = 542 hoi = 1794 hoi = 1854 }	# Lingen -> Cloppenburg, Lingen
-link = { vic = 541 hoi = 1855 }	# Cloppenburg -> Vechta
-
-link = { vic = 532 hoi = 1797 hoi = 1858 }	# Luneburg -> Lüneburg, Lückow
-link = { vic = 535 hoi = 1856 hoi = 1796 }	# Nienburg -> Nienburg, Walsrode
-link = { vic = 534 hoi = 1857 }	# Hanover -> Hannover
-link = { vic = 585 hoi = 1971 }	# Detmold -> Detmold
-link = { vic = 538 hoi = 1914 hoi = 1970 }	# Osnabruck -> Osnabrück, Herford
-link = { vic = 582 hoi = 1915 hoi = 2028 }	# Minden -> Minden, Paderborn
-link = { vic = 557 hoi = 1919 hoi = 1859 hoi = 1918 }	# Stendal -> Stendal, Ludwigslust, Gardelegen
-
-link = { vic = 553 hoi = 1974 hoi = 2032 }	# Magdeburg -> Magdeburg, Bernburg
-link = { vic = 536 hoi = 1917 hoi = 2031 hoi = 1972 hoi = 1916 hoi = 1973 hoi = 2030 }	# Brunswick -> Braunschweig, Halberstadt, Hildesheim, Bückenburg, Oschersleben, Goslar
-link = { vic = 537 hoi = 2088 hoi = 2029 hoi = 2089 hoi = 2146 hoi = 2087 }	# Gottingen -> Göttingen, Beverungen, Bad Harzburg, Duderstadt, Arolsen
-link = { vic = 583 hoi = 2258 }	# Siegen -> Siegen
-link = { vic = 2561 hoi = 2201 hoi = 2315 }	# Siegburg -> Wuppertal, Hennef
-link = { vic = 575 hoi = 2257 hoi = 2314 }	# Cologne -> Köln, Düren
-link = { vic = 574 hoi = 2372 hoi = 2431 hoi = 2491 }	# Kreuznach -> Bonn, Morbach, St Wendel
-link = { vic = 579 hoi = 2373 }	# Koblenz -> Koblenz
-
-link = { vic = 584 hoi = 2144 hoi = 2202 }	# Korbach -> Brilon, Bad Berleburg
-link = { vic = 566 hoi = 2145 hoi = 2204 hoi = 2203 }	# Kassel -> Kassel, Bebra, Borken
-link = { vic = 554 hoi = 2262 hoi = 2205 hoi = 2206 hoi = 2147 }	# Erfurt -> Erfurt, Mühlhausen, Jena, Sonderhausen
-link = { vic = 555 hoi = 2091 }	# Dessau -> Dessau
-link = { vic = 556 hoi = 2148 hoi = 2090 hoi = 2149 hoi = 2150 hoi = 2092 }	# Halle -> Halle, Aschersleben, Torgau, Senftenberg, Finsterwalde
-link = { vic = 551 hoi = 1860 hoi = 1920 }	# Pritzwalk -> Wittenberge, Potsdam
-link = { vic = 549 hoi = 1861 hoi = 1976 hoi = 1921 hoi = 2034 hoi = 2033 hoi = 1975 }	# Berlin -> Berlin, Lyckenwalde, Erkner, Lübben, Wittenberg, Bradenburg
-
-link = { vic = 552 hoi = 2093 hoi = 1977 hoi = 1922 }	# Cottbus -> Cottbus, Frankfurt (Oder), Neudamm
-link = { vic = 567 hoi = 2317 }	# Giessen -> Giessen
-link = { vic = 564 hoi = 2374 }	# Frankfurt -> Frankfurt am Main
-link = { vic = 565 hoi = 2316 hoi = 2259 }	# Wiesbaden -> Wetzlar, Biedenkopf
-link = { vic = 570 hoi = 2432 }	# Mainz -> Mainz
-link = { vic = 571 hoi = 2492 hoi = 2554 }	# Kaiserlautern -> Kaiserslautern, Neunkirchen
-link = { vic = 2560 hoi = 2433 }	# Darmstadt -> Darmstadt
-
-link = { vic = 569 hoi = 2493 }	# Mannheim -> Mannheim
-link = { vic = 590 hoi = 2556 hoi = 2622 }	# Heilbronn -> Heilbronn, Öhringen
-link = { vic = 586 hoi = 2555 hoi = 2620 hoi = 2751 hoi = 2686 }	# Karlsruhe -> Karlsruhe, Rastatt, Villingen, Baden-Baden
-link = { vic = 587 hoi = 2948 hoi = 3016 hoi = 2882 hoi = 3084 }	# Freiburg -> Baden, Hinterzarten, Donaueschingen, Todtmoos
-link = { vic = 591 hoi = 2752 hoi = 2816 }	# Tubingen -> Tübingen, Rottweil
-link = { vic = 593 hoi = 2884 hoi = 2950 hoi = 3019 hoi = 3086 hoi = 3152 hoi = 3153 }	# Ulm -> Ulm, Ehingen, Kempten, Leutkirch, Friedrichshafen, Oberstdorf
-link = { vic = 594 hoi = 2817 hoi = 2883 }	# Sigmaringen -> Reutlingen, Balingen
-link = { vic = 589 hoi = 2687 hoi = 2621 hoi = 2753 }	# Stuttgart -> Stuttgart, Pforzheim, Schwäbish Gmünd
-
-link = { vic = 588 hoi = 3085 hoi = 3017 hoi = 2949 hoi = 3018 }	# Konstanz -> Konstanz, Blumberg, Tuttlingen, Stockach
-link = { vic = 568 hoi = 2260 }	# Fulda -> Fulda
-link = { vic = 562 hoi = 2261 hoi = 2319 }	# Gotha -> Gotha, Suhl
-link = { vic = 596 hoi = 2375 }	# Aschaffenburg -> Aschaffenburg
-link = { vic = 563 hoi = 2318 hoi = 2376 }	# Meiningen -> Meiningen, Schweinfurt
-link = { vic = 597 hoi = 2494 hoi = 2557 hoi = 2434 hoi = 2495 }	# Wurzburg -> Buchen, Bad Mergentheim, Würzburg, Bad Windsheim
-link = { vic = 559 hoi = 2207 hoi = 2264 hoi = 2263 hoi = 2322 }	# Leipzig -> Leipzig, Chemnitz, Gera, Altenberg
-
-link = { vic = 558 hoi = 2208 hoi = 2265 }	# Dresden -> Dresden, Neukirch
-link = { vic = 687 hoi = 2151 hoi = 2209 }	# Gorlitz -> Görlitz, Bautzen
-link = { vic = 681 hoi = 2094 hoi = 2035 hoi = 1978 hoi = 1923 }	# Kustrin -> Sorau, Eisenhüttenstadt, Reppen, Landsberg
-link = { vic = 692 hoi = 1863 hoi = 1864 hoi = 1803 hoi = 1804 }	# Deutsch Krone -> Stargard, Woldenberg, Arnswalde, Schneidenmühl
-link = { vic = 561 hoi = 2320 hoi = 2377 }	# Weimar -> Sonneberg, Kronach
-link = { vic = 560 hoi = 2321 hoi = 2378 hoi = 2379 hoi = 2437 }	# Chemnitz -> Zwickau, Oelsnitz, Marienberg, Klingenthal
-link = { vic = 598 hoi = 2435 hoi = 2436 hoi = 2496 }	# Bayreuth -> Bamberg, Bayeruth, Erlangen
-
-link = { vic = 595 hoi = 2558 hoi = 2623 hoi = 2624 hoi = 2689 hoi = 2688 }	# Nuremburg -> Nürnberg, Ansbach, Neumarkt, Roth, Aalen
-link = { vic = 602 hoi = 2559 hoi = 2690 hoi = 2756 }	# Regensburg -> Amberg, Regensburg, Straubing
-link = { vic = 601 hoi = 2754 hoi = 2819 hoi = 2755 }	# Ingolstadt -> Nördlingen, Aichach, Ingolstadt
-link = { vic = 600 hoi = 2820 hoi = 2887 hoi = 2821 hoi = 2888 }	# Landshut -> Landshut, Mühldorf am Inn, Pfarrkirchen, Passau
-link = { vic = 592 hoi = 2885 hoi = 3020 hoi = 2951 hoi = 3087 hoi = 3088 hoi = 2818 hoi = 3154 hoi = 3222 }	# Augsburg -> Augsburg, Weilheim, Mindelheim, Marktoberdorf, Bad Tölz, Heidenheim, Murnau, Kreuth
-link = { vic = 599 hoi = 2952 hoi = 3021 hoi = 3155 hoi = 3089 hoi = 2953 hoi = 2886 hoi = 2954 hoi = 3156 }	# Munich -> München, Grafing, Rosenheim, Traunstein, Trostberg, Freising, Burghausen, Bad Reichenhall
+# Australasia
 
 link = { vic = 2509 hoi = 7936 hoi = 7953 hoi = 7968 hoi = 7990 hoi = 7981 }	# Auckland -> Kaitaia, Whangarei, Wellsford, Auckland, Helensville
 link = { vic = 2571 hoi = 7974 hoi = 8009 hoi = 8018 hoi = 8036 hoi = 8027 }	# Tauranga -> Pauanui, Paeroa, Tauranga, Rotorua, Morrinsville
@@ -379,4 +409,14 @@ link = { vic = 2516 hoi = 8071 hoi = 8072 hoi = 8069 hoi = 10472 hoi = 8068 }	# 
 link = { vic = 2514 hoi = 10477 hoi = 10481 hoi = 10484 }	# Hokitika -> Greymouth, Fox Glacier, Okuru
 link = { vic = 2515 hoi = 10485 hoi = 10490 hoi = 10492 hoi = 10495 }	# Christchurch -> Christchurch, Timaru, Queenstown, Dunedin
 link = { vic = 2513 hoi = 10489 hoi = 10494 hoi = 10499 hoi = 10497 }	# Dunedin -> Milford Sound, Te Anau, Orepuki, Invercargill
+
+
+
+
+
+
+
+
+
+
 }
