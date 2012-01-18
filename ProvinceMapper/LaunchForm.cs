@@ -17,6 +17,14 @@ namespace ProvinceMapper
         public LaunchForm()
         {
             InitializeComponent();
+
+            // load settings
+            tbSourceMapFolder.Text = Properties.Settings.Default.srcMapFolder;
+            tbDestMapFolder.Text = Properties.Settings.Default.destMapFolder;
+            tbSourceTag.Text = Properties.Settings.Default.srcTag;
+            tbDestTag.Text = Properties.Settings.Default.destTag;
+            tbMappingsFile.Text = Properties.Settings.Default.mappingFile;
+            cbScale.Checked = Properties.Settings.Default.fitMaps;
         }
 
         private Bitmap CleanResizeBitmap(Bitmap input, int w, int h)
@@ -91,6 +99,15 @@ namespace ProvinceMapper
             {
                 Program.mappings = new MappingReader(mappingFile, tbSourceTag.Text, tbDestTag.Text);
             }
+
+            // save settings
+            Properties.Settings.Default.srcMapFolder = tbSourceMapFolder.Text;
+            Properties.Settings.Default.destMapFolder = tbDestMapFolder.Text;
+            Properties.Settings.Default.srcTag = tbSourceTag.Text;
+            Properties.Settings.Default.destTag = tbDestTag.Text;
+            Properties.Settings.Default.mappingFile = tbMappingsFile.Text;
+            Properties.Settings.Default.fitMaps = cbScale.Checked;
+            Properties.Settings.Default.Save();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
