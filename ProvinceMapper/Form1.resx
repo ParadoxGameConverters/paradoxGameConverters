@@ -162,17 +162,17 @@
   <data name="tbUnmapped.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         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
-        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
+        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAJbSURBVDhPtZJbSJNhHMZ3EyRON7SYeWLRrSYmgRPbioZ2
+        IdhyljMiJzanM8coM5x2GDpBqo+1HNk6gBpKzKvwgGmfOm3UhWw4PJHpbHPMT2dsZBluT/O7EKQSveiF
+        5+79/f7P++dlMP7XmSJzuWOtvE1dOWtDr4iI3vcc85szk3PTd36NW5QBQsHq3pdgpONszjh5MeD/8QIr
+        zirY+zPQXMk+vmfJmCmL+vylGeraEkgkuRgdKEN7fax7T4L3rfxq6/DVQI36GkwmEzQaDeLiY2DtTgNR
+        Hlm6q2TxgzjsU69wY6u6pDAfBEFALpeDw2GBmpOi7W7UzxYZ48A/JYOvMjunbVWht79EbZ0UKpUKfMFp
+        qK6fgverEpMDmcFHpay2vwqGO7ISrKSIXpx/3QiSrEPehTykpiSB7C3C2oIMqzNivNVxg4SSxf1DQrbx
+        rY4F7SYt8OngcdUjO/sEJPknYbcUYGVKFEouZgbiA7qKSPsOQU9LumDKUhakYb8ePm8jHLPVMD45j+aH
+        2XDaxFgez8CyVQC3mYsuLTP4QB6Rsy0hOwUe//rzUPVnNPzNow7VLsXlQhF4vHToNEmgJoSgbEK4RxKw
+        2BcGvSLMRwu6iLRq1/x9+L4bt+E1pxIOexFyzqUiJTkWs0Pp8HxMhnv0KJaGOHC9C0cvER7USpmvGdrK
+        xOCa7ylWqSZ68hbsnS+mF0ZNZIWq83bAS4MsuPoPok/HRIM8mmIYbsaZDbeOwXg7EYYbcXQeK4+AqIih
+        01hymE5D8SHcuxJFp+YSG+oCNppknPY9/c7dLv0GY9x5D3hqGKoAAAAASUVORK5CYII=
 </value>
   </data>
   <data name="tbFitSelection.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">

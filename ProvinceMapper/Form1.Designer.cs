@@ -182,6 +182,7 @@
             "4x"});
             this.cbZoom.Name = "cbZoom";
             this.cbZoom.Size = new System.Drawing.Size(40, 23);
+            this.cbZoom.ToolTipText = "Zoom Factor";
             this.cbZoom.SelectedIndexChanged += new System.EventHandler(this.cbZoom_SelectedIndexChanged);
             // 
             // lbMappings

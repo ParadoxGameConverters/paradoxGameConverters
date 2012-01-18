@@ -39,7 +39,7 @@ namespace ProvinceMapper
             }
 
             // force rescale/redraw
-            cbZoom_SelectedIndexChanged(this, new EventArgs());
+            cbZoom.SelectedIndex = 0;
 
             lbMappings.Items.AddRange(Program.mappings.mappings.ToArray());
             lbMappings.Items.Add(newMappingItem);
