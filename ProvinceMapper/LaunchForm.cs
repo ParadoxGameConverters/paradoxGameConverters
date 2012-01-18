@@ -27,16 +27,6 @@ namespace ProvinceMapper
             cbScale.Checked = Properties.Settings.Default.fitMaps;
         }
 
-        private Bitmap CleanResizeBitmap(Bitmap input, int w, int h)
-        {
-            Bitmap bmp = new Bitmap(w, h);
-            Graphics g = Graphics.FromImage(bmp);
-            g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
-            g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
-            g.DrawImage(input, 0, 0, w, h);
-            return bmp;
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             // read definitions and create province lists
@@ -66,11 +56,11 @@ namespace ProvinceMapper
                 int w = Math.Max(srcMap.Width, targetMap.Width);
                 if (srcMap.Height < h || srcMap.Width < w)
                 {
-                    srcMap = CleanResizeBitmap(srcMap, w, h);
+                    srcMap = Program.CleanResizeBitmap(srcMap, w, h);
                 }
                 if (targetMap.Height < h || targetMap.Width < w)
                 {
-                    targetMap = CleanResizeBitmap(targetMap, w, h);
+                    targetMap = Program.CleanResizeBitmap(targetMap, w, h);
                 }
             }
             PushStatusUpdate(100.0);

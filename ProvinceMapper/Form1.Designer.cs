@@ -40,6 +40,8 @@
             this.tbSelection = new System.Windows.Forms.ToolStripButton();
             this.tbUnmapped = new System.Windows.Forms.ToolStripButton();
             this.tbFitSelection = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.cbZoom = new System.Windows.Forms.ToolStripComboBox();
             this.lbMappings = new System.Windows.Forms.ListBox();
             this.HorizontalSplit = new System.Windows.Forms.SplitContainer();
             this.pbSource = new System.Windows.Forms.PictureBox();
@@ -84,7 +86,9 @@
             this.toolStripSeparator2,
             this.tbSelection,
             this.tbUnmapped,
-            this.tbFitSelection});
+            this.tbFitSelection,
+            this.toolStripSeparator3,
+            this.cbZoom});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(235, 25);
@@ -160,6 +164,25 @@
             this.tbFitSelection.Size = new System.Drawing.Size(23, 22);
             this.tbFitSelection.Text = "Fit Selection";
             this.tbFitSelection.Click += new System.EventHandler(this.tbFitSelection_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // cbZoom
+            // 
+            this.cbZoom.AutoSize = false;
+            this.cbZoom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbZoom.DropDownWidth = 50;
+            this.cbZoom.Items.AddRange(new object[] {
+            "1x",
+            "2x",
+            "3x",
+            "4x"});
+            this.cbZoom.Name = "cbZoom";
+            this.cbZoom.Size = new System.Drawing.Size(40, 23);
+            this.cbZoom.SelectedIndexChanged += new System.EventHandler(this.cbZoom_SelectedIndexChanged);
             // 
             // lbMappings
             // 
@@ -267,6 +290,8 @@
         private System.Windows.Forms.ToolStripButton tbMoveUp;
         private System.Windows.Forms.ToolStripButton tbMoveDown;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripComboBox cbZoom;
     }
 }
 

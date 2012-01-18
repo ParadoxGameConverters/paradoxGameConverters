@@ -22,22 +22,10 @@ namespace ProvinceMapper
         private SortedList<int, Province> srcChroma;
         private SortedList<int, Province> destChroma;
 
+        private float scaleFactor = 1.0f;
+
         private void Form1_Load(object sender, EventArgs e)
         {
-            pbSource.BackgroundImage = bmpSrc = new Bitmap(Program.sourceMap.map);
-            pbSource.Size = bmpSrc.Size;
-            pbSource.Image = new Bitmap(bmpSrc.Width, bmpSrc.Height);
-            Graphics g = Graphics.FromImage(pbSource.Image);
-            g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bmpSrc.Size));
-            g.Flush();
-
-            pbTarget.BackgroundImage = bmpDest = new Bitmap(Program.targetMap.map);
-            pbTarget.Size = bmpDest.Size;
-            pbTarget.Image = new Bitmap(bmpDest.Width, bmpDest.Height);
-            g = Graphics.FromImage(pbTarget.Image);
-            g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bmpDest.Size));
-            g.Flush();
-
             srcChroma = new SortedList<int, Province>();
             foreach (Province p in Program.sourceDef.provinces)
             {
@@ -49,6 +37,9 @@ namespace ProvinceMapper
             {
                 destChroma.Add(p.rgb.ToArgb(), p);
             }
+
+            // force rescale/redraw
+            cbZoom_SelectedIndexChanged(this, new EventArgs());
 
             lbMappings.Items.AddRange(Program.mappings.mappings.ToArray());
             lbMappings.Items.Add(newMappingItem);
@@ -200,16 +191,16 @@ namespace ProvinceMapper
                 else
                 {
                     if (newSelection.Count > 0)
-                        invalidRect = newSelection[0].Rect;
+                        invalidRect = Program.ScaleRect(newSelection[0].Rect, scaleFactor);
                     else if (oldSelection.Count > 0)
-                        invalidRect = oldSelection[0].Rect;
+                        invalidRect = Program.ScaleRect(oldSelection[0].Rect, scaleFactor);
                     foreach (Province p in newSelection)
                     {
-                        invalidRect = Rectangle.Union(invalidRect, p.Rect);
+                        invalidRect = Rectangle.Union(invalidRect, Program.ScaleRect(p.Rect, scaleFactor));
                     }
                     foreach (Province p in oldSelection)
                     {
-                        invalidRect = Rectangle.Union(invalidRect, p.Rect);
+                        invalidRect = Rectangle.Union(invalidRect, Program.ScaleRect(p.Rect, scaleFactor));
                     }
                 }
 
@@ -218,19 +209,25 @@ namespace ProvinceMapper
                 g.FillRectangle(Brushes.Transparent, invalidRect);
                 g.CompositingMode = System.Drawing.Drawing2D.CompositingMode.SourceOver;
 
+                // disable interpolation and smoothing to preserve chroma
+                g.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.NearestNeighbor;
+                g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.None;
+
                 if (MaskMapped)
                 {
                     foreach (Province p in provinces)
                     {
-                        if (p.mapping != null && Rectangle.Intersect(p.Rect, invalidRect) != Rectangle.Empty)
-                            g.DrawImageUnscaled(p.BlackMask, p.Rect.Location);
+                        Rectangle scaledRect = Program.ScaleRect(p.Rect, scaleFactor);
+                        if (p.mapping != null && Rectangle.Intersect(scaledRect, invalidRect) != Rectangle.Empty)
+                            g.DrawImage(p.BlackMask, scaledRect);
                     }
                 }
 
                 foreach (Province p in newSelection)
                 {
-                    if (Rectangle.Intersect(p.Rect, invalidRect) != Rectangle.Empty)
-                        g.DrawImageUnscaled(p.SelectionMask, p.Rect.Location);
+                    Rectangle scaledRect = Program.ScaleRect(p.Rect, scaleFactor);
+                    if (Rectangle.Intersect(scaledRect, invalidRect) != Rectangle.Empty)
+                        g.DrawImage(p.SelectionMask, scaledRect);
                 }
                 pb.Invalidate(invalidRect);
 
@@ -271,10 +268,10 @@ namespace ProvinceMapper
         {
             if (srcSelection.Count > 0)
             {
-                Rectangle srcFit = srcSelection[0].Rect;
+                Rectangle srcFit = Program.ScaleRect(srcSelection[0].Rect, scaleFactor);
                 foreach (Province p in srcSelection)
                 {
-                    srcFit = Rectangle.Union(p.Rect, srcFit);
+                    srcFit = Rectangle.Union(srcFit, Program.ScaleRect(p.Rect, scaleFactor));
                 }
                 Point fitCenter = new Point(srcFit.X + srcFit.Width / 2, srcFit.Y + srcFit.Height / 2);
                 Point panelCenter = new Point(HorizontalSplit.Panel1.Width / 2, HorizontalSplit.Panel1.Height / 2);
@@ -284,10 +281,10 @@ namespace ProvinceMapper
 
             if (destSelection.Count > 0)
             {
-                Rectangle destFit = destSelection[0].Rect;
+                Rectangle destFit = Program.ScaleRect(destSelection[0].Rect, scaleFactor);
                 foreach (Province p in destSelection)
                 {
-                    destFit = Rectangle.Union(p.Rect, destFit);
+                    destFit = Rectangle.Union(destFit, Program.ScaleRect(p.Rect, scaleFactor));
                 }
                 Point fitCenter = new Point(destFit.X + destFit.Width / 2, destFit.Y + destFit.Height / 2);
                 Point panelCenter = new Point(HorizontalSplit.Panel1.Width / 2, HorizontalSplit.Panel1.Height / 2);
@@ -343,6 +340,30 @@ namespace ProvinceMapper
             tbSelection.Checked = true;
             tbUnmapped.Checked = false;
             MaskMapped = false;
+            createSelPBs(true);
+        }
+
+        private void cbZoom_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbZoom.SelectedItem != null)
+                scaleFactor = float.Parse(cbZoom.SelectedItem.ToString().TrimEnd('x'));
+
+            pbSource.BackgroundImage = bmpSrc = Program.CleanResizeBitmap(Program.sourceMap.map,
+                (int)(Program.sourceMap.map.Width * scaleFactor), (int)(Program.sourceMap.map.Height * scaleFactor));
+            pbSource.Size = bmpSrc.Size;
+            pbSource.Image = new Bitmap(bmpSrc.Width, bmpSrc.Height);
+            Graphics g = Graphics.FromImage(pbSource.Image);
+            g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bmpSrc.Size));
+            g.Flush();
+
+            pbTarget.BackgroundImage = bmpDest = Program.CleanResizeBitmap(Program.targetMap.map,
+                (int)(Program.targetMap.map.Width * scaleFactor), (int)(Program.targetMap.map.Height * scaleFactor));
+            pbTarget.Size = bmpDest.Size;
+            pbTarget.Image = new Bitmap(bmpDest.Width, bmpDest.Height);
+            g = Graphics.FromImage(pbTarget.Image);
+            g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bmpDest.Size));
+            g.Flush();
+
             createSelPBs(true);
         }
     }
