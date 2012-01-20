@@ -342,3 +342,4 @@ Revision	Version Updated		Log Message
 319		C++			Tech schools now come from V2 install.
 320		C++			Added V2TechSchools.cpp and V2TechSchools.h
 321		C++			Protect against crash.
+322		C++			Log if source provinces have no destination.

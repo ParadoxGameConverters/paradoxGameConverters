@@ -1,6 +1,7 @@
 #include "EU3World.h"
 #include "Log.h"
 #include "Configuration.h"
+#include "Mapper.h"
 
 void EU3World::init(Object* obj) {
 	string key;	
@@ -222,4 +223,19 @@ WorldType EU3World::getWorldType()
 		cachedWorldType = forcedWorldType;
 
 	return cachedWorldType;
+}
+
+
+void EU3World::checkAllProvincesMapped(provinceMapping provinceMap)
+{
+	inverseProvinceMapping inverseMap = invertProvinceMap(provinceMap);
+	for (unsigned int i = 0; i < provinces.size(); i++)
+	{
+		int srcNum					= provinces[i].getNum();
+		vector<int> destNums		= inverseMap[srcNum];
+		if (destNums.size() == 0)
+		{
+			log("Error: no destination for province #%d\n", srcNum);
+		}
+	}
 }

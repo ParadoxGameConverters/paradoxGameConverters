@@ -147,6 +147,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	obj = doParseFile(mappingFile);
 	provinceMapping provinceMap = initProvinceMap(obj);
+	sourceWorld.checkAllProvincesMapped(provinceMap);
 
 
 	// Get potential V2 countries

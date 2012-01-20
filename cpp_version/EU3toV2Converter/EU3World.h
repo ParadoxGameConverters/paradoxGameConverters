@@ -14,6 +14,8 @@ enum WorldType
 	DivineWind
 };
 
+typedef map< int, vector<int> > provinceMapping; // prevents circular dependency
+
 
 class EU3World {
 	public:
@@ -27,6 +29,7 @@ class EU3World {
 		EU3Diplomacy&			getDiplomacy();
 		void					resolveRegimentTypes(const RegimentTypeMap& map);
 		WorldType				getWorldType();
+		void						checkAllProvincesMapped(provinceMapping provinceMap);
 	private:
 		WorldType				cachedWorldType;
 		vector<EU3Province>	provinces;
