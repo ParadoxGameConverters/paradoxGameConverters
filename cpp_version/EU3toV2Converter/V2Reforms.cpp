@@ -270,7 +270,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 	else if (government == "bureaucratic_despotism")
 	{
 		slavery							+= 0;
-		vote_franchise					+= 5;
+		vote_franchise					+= -5;
 		upper_house_composition		+= 5;
 		voting_system					+= 0;
 		public_meetings				+= 0;
