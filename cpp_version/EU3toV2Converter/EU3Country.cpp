@@ -143,22 +143,22 @@ void EU3Country::init(Object* obj)
 	vector<Object*> incomeObj = obj->getValue("estimated_monthly_income");
 	if (incomeObj.size() > 0)
 	{
-		estimatedMonthlyIncome = atof( incomeObj[0]->getLeaf().c_str() );
+		estMonthlyIncome = atof(incomeObj[0]->getLeaf().c_str());
 	}
 	else
 	{
-		estimatedMonthlyIncome = 0.0;
+		estMonthlyIncome = 0.0;
 	}
-	log("%s's estimated monthly income is %f.\n", tag.c_str(), estimatedMonthlyIncome);
+	log("%s's estimated monthly income is %f.\n", tag.c_str(), estMonthlyIncome);
 
 	vector<Object*> investmentObj = obj->getValue("distribution");
 	if (investmentObj.size() > 0)
 	{
-		landInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() ) * estimatedMonthlyIncome;
-		navalInvestment		= atof( investmentObj[0]->getTokens()[3].c_str() ) * estimatedMonthlyIncome;
-		tradeInvestment		= atof( investmentObj[0]->getTokens()[4].c_str() ) * estimatedMonthlyIncome;
-		productionInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() ) * estimatedMonthlyIncome;
-		governmentInvestment	= atof( investmentObj[0]->getTokens()[6].c_str() ) * estimatedMonthlyIncome;
+		landInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() ) * estMonthlyIncome;
+		navalInvestment		= atof( investmentObj[0]->getTokens()[3].c_str() ) * estMonthlyIncome;
+		tradeInvestment		= atof( investmentObj[0]->getTokens()[4].c_str() ) * estMonthlyIncome;
+		productionInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() ) * estMonthlyIncome;
+		governmentInvestment	= atof( investmentObj[0]->getTokens()[6].c_str() ) * estMonthlyIncome;
 	}
 	else
 	{
@@ -542,15 +542,6 @@ void EU3Country::init(Object* obj)
 		EU3Loan loan;
 		loan.init(*itr);
 		loans.push_back(loan);
-	}
-	moneyObj = obj->getValue("estimated_monthly_income");
-	if (moneyObj.size() > 0)
-	{
-		estMonthlyIncome = atof(moneyObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		estMonthlyIncome = 0.0;
 	}
 	vector<Object*> diploObj = obj->getValue("diplomats");
 	if (diploObj.size() > 0)
@@ -1000,14 +991,20 @@ void EU3Country::eatCountry(EU3Country* target)
 		loans.insert(loans.end(), target->loans.begin(), target->loans.end());
 
 		// rebalance prestige, badboy, inflation and techs from weighted average
-		prestige			= myWeight * prestige		+ targetWeight * target->prestige;
-		badboy			= myWeight * badboy			+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
-		inflation		= myWeight * inflation		+ targetWeight * target->inflation;
-		landTech			= myWeight * landTech		+ targetWeight * target->landTech;
-		navalTech		= myWeight * navalTech		+ targetWeight * target->navalTech;
-		tradeTech		= myWeight * tradeTech		+ targetWeight * target->tradeTech;
-		productionTech	= myWeight * productionTech	+ targetWeight * target->productionTech;
-		governmentTech	= myWeight * governmentTech	+ targetWeight * target->governmentTech;
+		prestige				= myWeight * prestige					+ targetWeight * target->prestige;
+		badboy				= myWeight * badboy						+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
+		inflation			= myWeight * inflation					+ targetWeight * target->inflation;
+		landTech				= myWeight * landTech					+ targetWeight * target->landTech;
+		navalTech			= myWeight * navalTech					+ targetWeight * target->navalTech;
+		tradeTech			= myWeight * tradeTech					+ targetWeight * target->tradeTech;
+		productionTech		= myWeight * productionTech			+ targetWeight * target->productionTech;
+		governmentTech		= myWeight * governmentTech			+ targetWeight * target->governmentTech;
+		estMonthlyIncome	= myWeight * landInvestment			+ targetWeight * target->landInvestment;
+		estMonthlyIncome	= myWeight * navalInvestment			+ targetWeight * target->navalInvestment;
+		estMonthlyIncome	= myWeight * tradeInvestment			+ targetWeight * target->tradeInvestment;
+		estMonthlyIncome	= myWeight * productionInvestment	+ targetWeight * target->productionInvestment;
+		estMonthlyIncome	= myWeight * governmentInvestment	+ targetWeight * target->governmentInvestment;
+		estMonthlyIncome	= myWeight * estMonthlyIncome			+ targetWeight * target->estMonthlyIncome;
 	}
 
 	// coreless, landless countries will be cleaned up automatically
