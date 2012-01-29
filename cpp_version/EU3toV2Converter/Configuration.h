@@ -16,6 +16,11 @@ public:
 		return getInstance()->startDate;
 	}
 
+	static double getMaxLiteracy()
+	{
+		return getInstance()->maxLiteracy;
+	}
+
 	static string getV2Path()
 	{
 		return getInstance()->V2Path;
@@ -46,11 +51,12 @@ public:
 private:
 	static Configuration* instance;
 
-	date startDate;
-	string V2Path;
-	string EU3Path;
-	string gametype;
-	string removetype;
+	date		startDate;
+	double	maxLiteracy;
+	string	V2Path;
+	string	EU3Path;
+	string	gametype;
+	string	removetype;
 };
 
 #endif // CONFIGURATION_H_

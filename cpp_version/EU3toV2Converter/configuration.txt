@@ -9,6 +9,9 @@ configuration =
 	# The date on which the game is to start.  Default: 1835.12.1
 	start_date = 1835.12.1
 
+	# The maximum literacy a nation will start with. Default 80%
+	max_literacy = 0.80
+
 	# Game Type: what version of EU3 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!
 	#	httt	force version to Heir To The Throne (4.x)

@@ -610,9 +610,9 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					{
 						literacy += 0.1;
 					}
-					if (literacy > 0.8)
+					if (literacy > Configuration::getMaxLiteracy())
 					{
-						literacy = 0.8;
+						literacy = Configuration::getMaxLiteracy();
 					}
 					log("Setting %s's literacy to %f\n", newCountry.getTag().c_str(), literacy);
 					newCountry.setLiteracy(literacy);
