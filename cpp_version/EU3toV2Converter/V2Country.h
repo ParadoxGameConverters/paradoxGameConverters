@@ -26,6 +26,7 @@ class V2Country
 		void					setPrimaryCulture(string);
 		string				getPrimaryCulture() const;
 		void					addAcceptedCulture(string);
+		vector<string>		getAcceptedCultures();
 		void					setReligion(string);
 		string				getReligion();
 		void					output(FILE*);

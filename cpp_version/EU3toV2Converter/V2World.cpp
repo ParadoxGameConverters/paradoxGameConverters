@@ -801,16 +801,24 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								demographic.oldCountry = oldOwner;
 								demographic.oldProvinceID = (*vitr)->getNum();
 								
+								demographic.literacy = 0.1;
 								V2Country* owner = getCountry(provinces[i].getOwner());
 								if ( (owner != NULL) && (owner->getTag() != "") )
 								{
-									demographic.literacy = owner->getLiteracy();
+									vector<string> acceptedCultures = owner->getAcceptedCultures();
+									for (unsigned int l = 0; l < acceptedCultures.size(); l++)
+									{
+										if (acceptedCultures[l] == culture)
+										{
+											demographic.literacy = owner->getLiteracy();
+										}
+									}
+									if (owner->getPrimaryCulture() == culture)
+									{
+										demographic.literacy = owner->getLiteracy();
+									}
 								}
-								else
-								{
-									demographic.literacy = 0.1;
-								}
-
+								
 								provinces[i].addPopDemographic(demographic);
 							}
 

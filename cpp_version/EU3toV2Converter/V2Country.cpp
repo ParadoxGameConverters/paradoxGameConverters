@@ -143,6 +143,12 @@ void V2Country::addAcceptedCulture(string culture)
 }
 
 
+vector<string> V2Country::getAcceptedCultures()
+{
+	return acceptedCultures;
+}
+
+
 void V2Country::setReligion(string newReligion)
 {
 	religion = newReligion;

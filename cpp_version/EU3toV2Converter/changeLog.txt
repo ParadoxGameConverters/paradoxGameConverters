@@ -349,3 +349,4 @@ Revision	Version Updated		Log Message
 334		C++			Allow culture_tech_school but make traditional_academic a hard default to beat.
 335		C++			Max literacy is defined in configuration.txt.
 336		C++			Remove log about estimated income.
+337		C++			Non-culture pops have 10% literacy.
