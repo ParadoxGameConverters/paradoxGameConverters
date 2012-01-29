@@ -1,0 +1,4 @@
+blocked = {
+	block = prussian_tech_school
+	block = culture_tech_school
+}

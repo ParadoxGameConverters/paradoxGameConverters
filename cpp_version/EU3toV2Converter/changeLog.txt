@@ -345,3 +345,4 @@ Revision	Version Updated		Log Message
 330		C++			Log if source provinces have no destination.
 331		C++			Manus now affect tech school.
 332		C++			Merge nations does tech schools right.
+333		C++			Block some tech schools.

@@ -19,7 +19,8 @@ typedef struct techSchool
 } techSchool;
 
 
-vector<techSchool> initTechSchools(Object*);
+vector<techSchool>	initTechSchools(Object* obj, vector<string> blockedTechSchools);
+vector<string>			initBlockedTechSchools(Object*);
 
 
 

@@ -310,9 +310,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing tech schools.\n");
 	printf("Parsing tech schools.\n");
 	initParser();
+	obj = doParseFile("blocked_tech_schools.txt");
+	vector<string> blockedTechSchools;
+	blockedTechSchools = initBlockedTechSchools(obj);
+	initParser();
 	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
 	vector<techSchool> techSchools;
-	techSchools = initTechSchools(obj);
+	techSchools = initTechSchools(obj, blockedTechSchools);
 
 
 	// Convert
