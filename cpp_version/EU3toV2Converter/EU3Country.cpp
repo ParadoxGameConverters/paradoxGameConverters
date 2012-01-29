@@ -140,14 +140,25 @@ void EU3Country::init(Object* obj)
 		governmentTech	= 0.0;
 	}
 
+	vector<Object*> incomeObj = obj->getValue("estimated_monthly_income");
+	if (incomeObj.size() > 0)
+	{
+		estimatedMonthlyIncome = atof( incomeObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		estimatedMonthlyIncome = 0.0;
+	}
+	log("%s's estimated monthly income is %f.\n", tag.c_str(), estimatedMonthlyIncome);
+
 	vector<Object*> investmentObj = obj->getValue("distribution");
 	if (investmentObj.size() > 0)
 	{
-		landInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() );
-		navalInvestment		= atof( investmentObj[0]->getTokens()[3].c_str() );
-		tradeInvestment		= atof( investmentObj[0]->getTokens()[4].c_str() );
-		productionInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() );
-		governmentInvestment	= atof( investmentObj[0]->getTokens()[6].c_str() );
+		landInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() ) * estimatedMonthlyIncome;
+		navalInvestment		= atof( investmentObj[0]->getTokens()[3].c_str() ) * estimatedMonthlyIncome;
+		tradeInvestment		= atof( investmentObj[0]->getTokens()[4].c_str() ) * estimatedMonthlyIncome;
+		productionInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() ) * estimatedMonthlyIncome;
+		governmentInvestment	= atof( investmentObj[0]->getTokens()[6].c_str() ) * estimatedMonthlyIncome;
 	}
 	else
 	{

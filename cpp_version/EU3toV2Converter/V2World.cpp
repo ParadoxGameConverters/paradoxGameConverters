@@ -1645,13 +1645,47 @@ void V2World::convertTechSchools(EU3World sourceWorld, vector<techSchool> techSc
 	{
 		int sourceIndex = countries[i].getSourceCountryIndex();
 		if (sourceIndex < 0)
+		{
 			continue;
+		}
 
 		double landInvestment			= sourceWorld.getCountries()[sourceIndex].getLandInvestment();
 		double navalInvestment			= sourceWorld.getCountries()[sourceIndex].getNavalInvestment();
 		double tradeInvestment			= sourceWorld.getCountries()[sourceIndex].getTradeInvestment();
 		double productionInvestment	= sourceWorld.getCountries()[sourceIndex].getProductionInvestment();
 		double governmentInvestment	= sourceWorld.getCountries()[sourceIndex].getGovernmentInvestment();
+
+		vector<EU3Province*> srcProvinces = sourceWorld.getCountries()[sourceIndex].getProvinces();
+		for(unsigned int j = 0; j < srcProvinces.size(); j++)
+		{
+			if (srcProvinces[j]->hasBuilding("weapons"))
+			{
+				landInvestment += 50;
+			}
+			if (srcProvinces[j]->hasBuilding("wharf"))
+			{
+				navalInvestment += 50;
+			}
+			if (srcProvinces[j]->hasBuilding("refinery"))
+			{
+				tradeInvestment += 50;
+			}
+			if (srcProvinces[j]->hasBuilding("textile"))
+			{
+				productionInvestment += 50;
+			}
+			if (srcProvinces[j]->hasBuilding("university"))
+			{
+				governmentInvestment += 50;
+			}
+		}
+
+		double totalInvestment			= landInvestment + navalInvestment + tradeInvestment + productionInvestment + governmentInvestment;
+		landInvestment						/= totalInvestment;
+		navalInvestment					/= totalInvestment;
+		tradeInvestment					/= totalInvestment;
+		productionInvestment				/= totalInvestment;
+		governmentInvestment				/= totalInvestment;
 
 		double lowestScore = 100.0;
 		string bestSchool = "traditional_academic";

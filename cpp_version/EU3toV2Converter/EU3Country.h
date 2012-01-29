@@ -95,6 +95,7 @@ class EU3Country
 		double					tradeInvestment;
 		double					productionInvestment;
 		double					governmentInvestment;
+		double					estimatedMonthlyIncome;
 		vector<string>			flags;
 		vector<string>			modifiers;
 		bool						possibleDaimyo;
