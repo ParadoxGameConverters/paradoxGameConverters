@@ -149,7 +149,6 @@ void EU3Country::init(Object* obj)
 	{
 		estMonthlyIncome = 0.0;
 	}
-	log("%s's estimated monthly income is %f.\n", tag.c_str(), estMonthlyIncome);
 
 	vector<Object*> investmentObj = obj->getValue("distribution");
 	if (investmentObj.size() > 0)
