@@ -1687,7 +1687,7 @@ void V2World::convertTechSchools(EU3World sourceWorld, vector<techSchool> techSc
 		productionInvestment				/= totalInvestment;
 		governmentInvestment				/= totalInvestment;
 
-		double lowestScore = 100.0;
+		double lowestScore = 1.0;
 		string bestSchool = "traditional_academic";
 
 		for (unsigned int j = 0; j < techSchools.size(); j++)

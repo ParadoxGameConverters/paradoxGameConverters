@@ -346,3 +346,4 @@ Revision	Version Updated		Log Message
 331		C++			Manus now affect tech school.
 332		C++			Merge nations does tech schools right.
 333		C++			Block some tech schools.
+334		C++			Allow culture_tech_school but make traditional_academic a hard default to beat.
