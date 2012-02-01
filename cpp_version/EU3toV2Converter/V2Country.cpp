@@ -190,7 +190,12 @@ void V2Country::output(FILE* output)
 	outputTech(output);
 	outputElection(output);
 	reforms.output(output);
-	outputCountryHeader(output);
+	fprintf(output, "	upper_house=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		reactionary=0.33000\n");
+	fprintf(output, "		conservative=0.34000\n");
+	fprintf(output, "		liberal=0.33000\n");
+	fprintf(output, "	}\n");
 	fprintf(output, "	ruling_party=%d\n", parties[0]);
 	for (unsigned int i = 0; i < parties.size(); i++)
 	{
@@ -200,7 +205,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
 	fprintf(output, "	plurality=%f\n", plurality);
-	outputCountryHeader2(output);
+	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
 	for (vector<V2Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{

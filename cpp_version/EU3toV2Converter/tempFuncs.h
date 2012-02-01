@@ -7,7 +7,6 @@
 
 void outputTempHeader(FILE*);
 void outputCountryHeader(FILE*);
-void outputCountryHeader2(FILE*);
 
 
 #endif TEMP_FUNCS_H

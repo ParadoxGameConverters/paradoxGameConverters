@@ -14,17 +14,6 @@ void outputTempHeader(FILE* output)
 
 void outputCountryHeader(FILE* output)
 {
-	fprintf(output, "	upper_house=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		reactionary=0.00000\n");
-	fprintf(output, "		conservative=1.00000\n");
-	fprintf(output, "		liberal=0.00000\n");
-	fprintf(output, "	}\n");
-}
-
-
-void outputCountryHeader2(FILE* output)
-{
 	fprintf(output, "	rich_tax=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		current=0.00003\n");
