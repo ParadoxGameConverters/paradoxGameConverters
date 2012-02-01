@@ -351,3 +351,5 @@ Revision	Version Updated		Log Message
 336		C++			Remove log about estimated income.
 337		C++			Non-culture pops have 10% literacy.
 338		C++			Fixed typo with bureaucratic despotism reforms.
+339		C++			Added Korea1821_01_02_ConverterMod0.5 save.
+340		C++			Tab before "last_election" in output

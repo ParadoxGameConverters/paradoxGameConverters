@@ -809,7 +809,7 @@ void V2Country::outputElection(FILE* output)
 		electionDate.month++;
 	}
 	electionDate.year -= 4;
-	fprintf(output, "last_election=%s\n", electionDate.toString().c_str());
+	fprintf(output, "	last_election=%s\n", electionDate.toString().c_str());
 }
 
 
