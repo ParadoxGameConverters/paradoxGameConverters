@@ -6,7 +6,6 @@
 
 
 void outputTempHeader(FILE*);
-void outputTempReforms(FILE* output);
 void outputCountryHeader(FILE*);
 void outputCountryHeader2(FILE*);
 

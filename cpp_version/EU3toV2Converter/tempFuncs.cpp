@@ -12,17 +12,6 @@ void outputTempHeader(FILE* output)
 }
 
 
-void outputTempReforms(FILE* output)
-{
-	fprintf(output, "	wage_reform=no_minimum_wage\n");
-	fprintf(output, "	work_hours=no_work_hour_limit\n");
-	fprintf(output, "	safety_regulations=no_safety\n");
-	fprintf(output, "	unemployment_subsidies=no_subsidies\n");
-	fprintf(output, "	pensions=no_pensions\n");
-	fprintf(output, "	health_care=no_health_care\n");
-}
-
-
 void outputCountryHeader(FILE* output)
 {
 	fprintf(output, "	upper_house=\n");
