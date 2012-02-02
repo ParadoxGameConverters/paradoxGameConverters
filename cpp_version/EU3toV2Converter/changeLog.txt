@@ -355,3 +355,4 @@ Revision	Version Updated		Log Message
 340		C++			Tab before "last_election" in output
 341		C++			Social reforms no longer in a temp function (no functional change).
 342		C++			Balance Upper House (and move out of a temp function).
+344		C++			Make room in configuration file for V2 gametype.

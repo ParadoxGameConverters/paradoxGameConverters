@@ -214,7 +214,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	int capitalists	= 0;
 	int aristocrats	= 0;
 
-	if (Configuration::getGametype() == "httt")
+	if (Configuration::getEU3Gametype() == "httt")
 	{
 		if ( (rgoType == "cattle") || (rgoType == "coffee") || (rgoType == "cotton") || (rgoType == "dye") || (rgoType == "fish") || (rgoType == "fruit") || (rgoType == "grain") || (rgoType == "opium") || (rgoType == "silk") || (rgoType == "tea") || (rgoType == "tobacco") || (rgoType == "wool") )
 		{

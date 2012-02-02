@@ -204,7 +204,7 @@ WorldType EU3World::getWorldType()
 	}
 
 	// Allow the configuration file to override the game type
-	string configWorldType = Configuration::getGametype();
+	string configWorldType = Configuration::getEU3Gametype();
 	WorldType forcedWorldType = Unknown;
 	if (configWorldType == "dw")
 		forcedWorldType = DivineWind;

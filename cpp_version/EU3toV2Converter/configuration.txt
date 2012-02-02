@@ -12,11 +12,15 @@ configuration =
 	# The maximum literacy a nation will start with. Default 80%
 	max_literacy = 0.80
 
-	# Game Type: what version of EU3 generated the save.  Possible values:
+	# EU3 Game Type: what version of EU3 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!
 	#	httt	force version to Heir To The Throne (4.x)
 	#	dw	force version to Divine Wind (5.x)
-	gametype = auto
+	EU3gametype = auto
+
+	# V2 Game Type: what version of V2 to convert to.  Possible values:
+	#	vanilla	vanilla V2 (1.x)
+	V2gametype = vanilla
 
 	# Remove type: which landless nations to remove. Possible values:
 	#	none	remove none of them

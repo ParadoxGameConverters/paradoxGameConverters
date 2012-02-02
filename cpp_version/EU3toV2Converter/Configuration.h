@@ -31,9 +31,14 @@ public:
 		return getInstance()->EU3Path;
 	}
 
-	static string getGametype()
+	static string getEU3Gametype()
 	{
-		return getInstance()->gametype;
+		return getInstance()->EU3gametype;
+	}
+
+	static string getV2Gametype()
+	{
+		return getInstance()->V2gametype;
 	}
 
 	static string getRemovetype()
@@ -55,7 +60,8 @@ private:
 	double	maxLiteracy;
 	string	V2Path;
 	string	EU3Path;
-	string	gametype;
+	string	EU3gametype;
+	string	V2gametype;
 	string	removetype;
 };
 

@@ -21,6 +21,7 @@ Configuration::Configuration()
 	maxLiteracy	= atof(obj[0]->getLeaf("max_literacy").c_str());
 	V2Path		= obj[0]->getLeaf("v2directory");
 	EU3Path		= obj[0]->getLeaf("EU3directory");
-	gametype		= obj[0]->getLeaf("gametype");
+	EU3gametype	= obj[0]->getLeaf("EU3gametype");
+	V2gametype	= obj[0]->getLeaf("V2gametype");
 	removetype	= obj[0]->getLeaf("removetype");
 }
