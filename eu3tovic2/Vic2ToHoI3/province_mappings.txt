@@ -1,0 +1,151 @@
+mappings = {
+link = { vic = 252 hoi = 8086 hoi = 8084 hoi = 8089 }	# Iceland -> Reykjavik, Egilsstadir, Höfn
+link = { vic = 2636 vic = 2591 hoi = 6643 }	# Aasiaat, Sisimiut -> 
+link = { vic = 2632 hoi = 8418 hoi = 10675 }	# Isortoq -> Tasilaq, greenland
+link = { vic = 251 hoi = 8524 hoi = 10683 }	# Nuuk -> Nuuk, siberia 1
+link = { vic = 75 hoi = 8589 hoi = 8622 }	# Millertown -> Cook's Harbour, Morts
+link = { vic = 74 hoi = 8654 hoi = 8623 hoi = 8682 hoi = 8734 }	# Saint Johns -> Windsor, Gander, Rencontre East, St John's
+link = { vic = 62 hoi = 8522 hoi = 8523 hoi = 8487 hoi = 8486 hoi = 8484 hoi = 8485 }	# Sept-Iles -> Havre-St-Pierre, Kegaska, St-Augustin, Olomane, Sept-Iles, Pitaga
+link = { vic = 2625 hoi = 8449 hoi = 8391 }	# Port Hope Simpson -> Happy Valley-Goose Bay, Charlottetown
+link = { vic = 76 hoi = 6885 }	# Hopedale -> Nain
+link = { vic = 2627 hoi = 11365 }	# Fort Chimo -> north canada
+link = { vic = 2626 hoi = 6974 }	# Port Harrison -> Puvurnituq
+link = { vic = 59 hoi = 8521 hoi = 8520 }	# Nitchequon -> Labrador City, Eastmain
+link = { vic = 2593 hoi = 2935 hoi = 6903 }	# Fort George -> Eastmain, Rivière aux Feuilles
+link = { vic = 2592 hoi = 6927 }	# Ungava -> Kangiqsualujjuaq
+link = { vic = 61 hoi = 8588 hoi = 8621 hoi = 8587 hoi = 8557 }	# Chicoutimi -> Baie-Comeau, Chicoutimi, Saguenay, Outardes
+link = { vic = 60 hoi = 3737 hoi = 3669 }	# Charles Fort -> Mistissini, La Sarre
+link = { vic = 48 hoi = 3543 hoi = 8519 hoi = 8483 hoi = 8556 }	# Fort Albany -> Fort Albany, Kapuskasing, Cochrane, Timmins
+link = { vic = 2628 hoi = 3540 }	# Attawapiskat -> Attawapiskat
+link = { vic = 47 hoi = 8616 }	# Fort Severn -> Winisk
+link = { vic = 37 hoi = 5027 hoi = 11375 }	# Churchill -> Churchill, north canada
+link = { vic = 43 hoi = 8258 }	# Arviat -> Baker Lake
+link = { vic = 2595 hoi = 11372 hoi = 8257 }	# Nunavut -> north canada, Chesterfield Inlet
+link = { vic = 44 hoi = 8448 hoi = 8390 hoi = 11374 }	# Echo Bay -> Taloyoak, Coral Harbour, north canada
+link = { vic = 45 hoi = 8417 hoi = 14126 hoi = 3796 }	# Baffin Island -> Cumberland, canada, Iqaluit
+link = { vic = 38 hoi = 11362 }	# Indian Lakes -> north canada
+link = { vic = 39 hoi = 8477 hoi = 8478 }	# Norway House -> Norway House, Berens River
+link = { vic = 2594 hoi = 3470 hoi = 3601 }	# Pickle -> Pickle Lake, Nakina
+link = { vic = 49 hoi = 8446 }	# Dryden -> Gold Rock
+link = { vic = 50 hoi = 8480 hoi = 11373 hoi = 8481 hoi = 8447 hoi = 8518 hoi = 8482 }	# Thunder Bay -> Thunder Bay, north canada, Geraldton, Nipigon, White River, Hearst
+link = { vic = 51 hoi = 8555 hoi = 8619 hoi = 8586 }	# Sault Ste Marie -> Wawa, Sault Sainte Marie, Chapleau
+link = { vic = 52 hoi = 6879 hoi = 3136 hoi = 3202 hoi = 3203 hoi = 3137 hoi = 2934 hoi = 3001 hoi = 3002 hoi = 3069 hoi = 3068 hoi = 3000 hoi = 2933 hoi = 6857 hoi = 2867 hoi = 2868 hoi = 3003 hoi = 3070 hoi = 3071 hoi = 3138 }	# Sudbury -> Sudbury, Huntsville, Midland, Gravenhurst, Kawagama Lake, Opeongo Lake, South River, Mattawa, Whitney, Byng Inlet, Rutter, North Bay, Sturgeon, Cobalt, Temiscaming, Dumoine, Madawaska Lake, Deep River, Killaloe Station
+link = { vic = 63 hoi = 4399 hoi = 8652 hoi = 6924 hoi = 8620 hoi = 4586 hoi = 4400 hoi = 8653 hoi = 6880 hoi = 6902 hoi = 6881 hoi = 6858 hoi = 6840 }	# Temiscaming -> Amos, Malartic, Lac Simàrd, Val-d'Or, Beattyville, Dolbeau, Parent, Dozois, Baskatong, Gatineau, Royun, Kirkland Lake
+link = { vic = 65 hoi = 6859 hoi = 6883 hoi = 6860 hoi = 6905 }	# Quebec City -> La Tuque, Rivière-á-Pierre, Baie-St-Paul, Québec
+link = { vic = 64 hoi = 6951 hoi = 6926 hoi = 6904 hoi = 6882 }	# Trois Rivieres -> Trois-Rivières, St Gabriel, Rivière Matawin, St-Alexis-des-Monts
+link = { vic = 58 hoi = 6992 hoi = 6950 hoi = 6972 hoi = 6925 }	# Montreal -> Montréal, St Jovité, Tracy, Mont Laurier
+link = { vic = 57 hoi = 6949 hoi = 3206 hoi = 3342 hoi = 3272 hoi = 6971 }	# Ottawa -> Gracefield, Fort-Coulonge, Ottawa, Perth, Alexandria
+link = { vic = 56 hoi = 3271 hoi = 3341 hoi = 3409 hoi = 3340 hoi = 3205 hoi = 3204 hoi = 3270 }	# Kingston -> Lanark, Brockville, Kingston, Harrowsmith, Pembroke, Bancroft, Madoc
+link = { vic = 46 hoi = 3408 hoi = 3407 hoi = 3476 hoi = 3541 hoi = 3339 hoi = 3338 hoi = 3269 }	# Toronto -> Trenton, Cobourg, Oshawa, Toronto, Havelock, Petersborough, Lakefield
+link = { vic = 53 hoi = 3267 hoi = 3405 hoi = 3475 hoi = 3336 hoi = 3337 hoi = 3268 hoi = 3404 hoi = 3335 hoi = 3406 }	# Barrie -> Owen Sound, Orangeville, Bramton, Collingwood, Barrie, Orillia, Wingham, Kincardine, Newmarket
+link = { vic = 55 hoi = 3605 hoi = 3668 hoi = 3474 hoi = 3604 hoi = 3667 }	# Hamilton -> Hamilton, Simcoe, Arthur, Kitchener, Stratford
+link = { vic = 54 vic = 77 hoi = 3665 hoi = 3798 hoi = 3731 hoi = 3732 hoi = 3666 hoi = 3603 hoi = 3539 hoi = 3473 }	# Windsor, St Pierre & Miquelon -> Forest, Leamington, Chatham, London, Forest, Great Bend, Seaforth, Goderich
+link = { vic = 66 hoi = 6993 hoi = 6973 hoi = 6952 }	# Sherbrooke -> Sherbrooke, Asbestos, Thetford Mines
+link = { vic = 71 hoi = 7016 hoi = 6997 }	# Halifax -> Yarmouth, Halifax
+link = { vic = 72 hoi = 7017 hoi = 6977 hoi = 6998 }	# Truro -> Sheet Harbour, New Glasgow, Port Hawksbury
+link = { vic = 70 hoi = 6931 }	# Prince Edward Island -> Charlottetown
+link = { vic = 73 hoi = 6956 }	# Cape Breton Island -> Glace Bay
+link = { vic = 67 hoi = 6798 hoi = 6811 hoi = 6841 hoi = 6824 hoi = 6861 hoi = 6884 }	# Rimouski -> Gaspé, La Martre, Matane, New Richmond, Rivière-du-Loup, Montmagny
+link = { vic = 69 hoi = 6862 hoi = 6886 hoi = 6907 hoi = 6906 }	# Bathurst -> Matapédia, Caraquet, Plaster Rock, Edmundston
+link = { vic = 68 hoi = 6930 hoi = 6955 hoi = 6976 hoi = 6954 hoi = 6996 }	# Fredericton -> St-Louis-de-Kent, Dieppe, Moncton, Fredericton, Saint John
+link = { vic = 250 hoi = 6928 hoi = 6953 hoi = 6929 }	# Caribou -> St John, Jackman, Millinocket
+link = { vic = 249 hoi = 6975 hoi = 7015 hoi = 6995 hoi = 7014 hoi = 6994 hoi = 7033 }	# Bangor -> Danforth, Machias, Old Town, Bangor, Monson, Rockland
+link = { vic = 248 hoi = 7013 hoi = 3872 hoi = 7049 hoi = 3741 }	# Lewiston -> Stratton, Waterville, Augusta, Portland
+link = { vic = 12 hoi = 8732 hoi = 11368 hoi = 8308 hoi = 10686 hoi = 4800 hoi = 11364 }	# Reliance -> Reliance, north canada, Kugluktuk, canada, Cambridge Bay, north canada
+link = { vic = 40 hoi = 8284 hoi = 8365 }	# Dauphin -> Swan River, Russel
+link = { vic = 36 hoi = 8445 }	# Winnipeg -> Winnipeg
+link = { vic = 42 hoi = 8516 }	# Pembina -> Hannah
+link = { vic = 41 hoi = 8444 hoi = 8416 }	# Brandon -> Portage la Prairie, Brandon
+link = { vic = 26 hoi = 8336 }	# Calgary -> Calgary
+link = { vic = 30 hoi = 8364 hoi = 8415 hoi = 8339 hoi = 8338 }	# Regina -> Regina, Virden, Preeceville, Fort Qu'Appelle
+link = { vic = 32 hoi = 8584 }	# Prince Albert -> La Ronge
+link = { vic = 35 hoi = 8388 hoi = 8414 hoi = 8363 }	# Maple Creek -> Central Butte, Westhope, Moose Jaw
+link = { vic = 33 hoi = 8310 }	# Asquith -> Watrous
+link = { vic = 34 hoi = 8256 hoi = 8283 }	# Saskatoon -> Saskatoon, Kinistino
+link = { vic = 31 hoi = 8386 }	# Stanley -> La Roche
+link = { vic = 2596 hoi = 8705 }	# Fort Resolution -> Stony Rapids
+link = { vic = 27 hoi = 8337 }	# Denwood -> Kerrobert
+link = { vic = 29 hoi = 8387 }	# Medicine Hat -> Morgan
+link = { vic = 4 hoi = 8081 hoi = 8083 hoi = 10734 hoi = 10733 hoi = 10732 hoi = 10684 hoi = 8079 }	# Dutch Harbor -> Aleutian Range, Port Moller, Yunaska Island, Unmak Island, Unalaska Island, Attu Island, Nondalton
+link = { vic = 5 hoi = 8077 }	# Unalakleet -> Bethel
+link = { vic = 2631 hoi = 8075 }	# Yukon -> Nome
+link = { vic = 2599 hoi = 8076 }	# Fort Yukon -> Barrow
+link = { vic = 2630 hoi = 8078 }	# Fairbanks -> Anchorage
+link = { vic = 3 hoi = 8087 }	# Kenai -> Kodiak
+link = { vic = 6 hoi = 8082 hoi = 8085 hoi = 8090 }	# Whitehorse -> Valdez, Carmacks, Whitehorse
+link = { vic = 7 hoi = 8232 }	# Dawson -> Brooks Range
+link = { vic = 8 vic = 2598 vic = 10 hoi = 11367 }	# Ross River, Fort Liard, Inuvik -> north canada
+link = { vic = 9 hoi = 8583 hoi = 11377 }	# Fort Simpson -> Tuktoyaktuk, north canada
+link = { vic = 11 hoi = 11392 }	# Echo Bay -> canada
+link = { vic = 23 hoi = 8312 }	# Athabaska Landing -> Yellowknife
+link = { vic = 22 hoi = 8389 }	# Edmonton -> Fort Chipewyan
+link = { vic = 2597 hoi = 8362 }	# Fort Vermilion -> Paddle Prairie
+link = { vic = 2629 hoi = 8311 hoi = 8189 }	# Beatton River -> Fort Liard, Beatton River
+link = { vic = 17 hoi = 8309 }	# Atlin -> Cassiar
+link = { vic = 18 vic = 24 hoi = 8472 }	# Fort Saint John, Jasper -> Fort Mcmurray
+link = { vic = 28 hoi = 8335 }	# Fort MacLeod -> Cranbrook
+link = { vic = 25 hoi = 8334 }	# Banff -> Banff
+link = { vic = 21 hoi = 8307 hoi = 6653 hoi = 8255 }	# Vernon -> Fort Macleod, Vernon, Salmon Arm
+link = { vic = 2 hoi = 8088 hoi = 8091 }	# Yakutat -> Alexander Archipelago, Juneau
+link = { vic = 1 hoi = 8112 }	# Sitka -> Sitka
+link = { vic = 15 hoi = 8147 hoi = 8160 hoi = 8173 hoi = 6638 hoi = 6635 hoi = 6641 }	# Prince Rupert -> Ketchikan, Prince Rupert, Smithers, Vanderhoof, Kitimat, Ocean Falls
+link = { vic = 16 hoi = 8135 }	# Glenora -> Wrangell
+link = { vic = 19 hoi = 8208 hoi = 8282 hoi = 8231 hoi = 8207 }	# Prince George -> Valleyview, Revelstoke, Hinton, Grande Prairie
+link = { vic = 20 hoi = 6666 hoi = 6676 hoi = 6660 }	# Kelowna -> Kelowna, Castlegar, Kamloops
+link = { vic = 14 hoi = 6659 hoi = 6664 hoi = 6675 hoi = 6670 hoi = 6682 }	# Vancouver Island -> Port McNeill, Campbell River, Port Alberni, Nanaimo, Victoria
+link = { vic = 13 hoi = 6648 hoi = 6652 hoi = 6649 hoi = 6671 hoi = 6665 hoi = 6656 hoi = 6645 }	# Vancouver -> Simon Sound, Powell River, Williams Lake, Vancouver, Squamish, Lillooet, Mount Waddington
+link = { vic = 78 hoi = 6697 hoi = 6683 hoi = 6714 hoi = 6723 hoi = 6696 hoi = 6713 hoi = 6731 hoi = 6722 hoi = 6732 hoi = 6743 hoi = 6741 hoi = 6752 hoi = 6753 hoi = 6742 hoi = 8508 hoi = 6764 hoi = 6785 hoi = 6774 hoi = 6763 }	# Seattle -> Seattle, Everett, Tacoma, Yakima, Bremerton, Aberdeen, Astoria, Olympia, Mount St Helens, Granger, Seaside, Longview, Mount Adams, Glenoma, Columbia, Lewis, John Day, Portland, Nehalem
+link = { vic = 79 hoi = 8385 hoi = 6698 hoi = 8360 hoi = 8411 }	# Spokane -> Spokane, Quincy, Libby, Kellogg
+link = { vic = 80 hoi = 8438 hoi = 8471 hoi = 8546 hoi = 8439 hoi = 8509 hoi = 8547 hoi = 8577 hoi = 8609 hoi = 8610 hoi = 8578 }	# Walla Walla -> Craigmont, Richland, Grand Forks, Helena, Weiser, Butte, Ukiah, Caldwell, Dillon, Boise
+link = { vic = 2509 hoi = 7936 hoi = 7953 hoi = 7968 hoi = 7990 hoi = 7981 }	# Auckland -> Kaitaia, Whangarei, Wellsford, Auckland, Helensville
+link = { vic = 2571 hoi = 7974 hoi = 8009 hoi = 8018 hoi = 8036 hoi = 8027 }	# Tauranga -> Pauanui, Paeroa, Tauranga, Rotorua, Morrinsville
+link = { vic = 2511 hoi = 8037 hoi = 8046 hoi = 8053 hoi = 8060 hoi = 8065 }	# Napier -> Ruatoria, Gisborne, Wairoa, Taupo, Napier
+link = { vic = 2512 hoi = 8070 hoi = 8066 hoi = 8067 hoi = 8064 }	# Wellington -> Wellington, Palmerston North, Waipawa, Wanganur
+link = { vic = 2510 hoi = 8017 hoi = 8035 hoi = 8052 hoi = 8059 hoi = 8045 }	# New Plymouth -> Hamilton, Otorohanga, New Plymouth, Stratford, Mangakino
+link = { vic = 2482 hoi = 8074 hoi = 10475 hoi = 8073 hoi = 10471 hoi = 10476 hoi = 10480 }	# Tasmania -> Launceston, Strahan, Smithton, Devonport, Hobart, New Norfolk
+link = { vic = 2516 hoi = 8071 hoi = 8072 hoi = 8069 hoi = 10472 hoi = 8068 }	# Nelson -> Nelson, Kaikoura, Blenheim, Westport, Takaka
+link = { vic = 2514 hoi = 10477 hoi = 10481 hoi = 10484 }	# Hokitika -> Greymouth, Fox Glacier, Okuru
+link = { vic = 2515 hoi = 10485 hoi = 10490 hoi = 10492 hoi = 10495 }	# Christchurch -> Christchurch, Timaru, Queenstown, Dunedin
+link = { vic = 2513 hoi = 10489 hoi = 10494 hoi = 10499 hoi = 10497 }	# Dunedin -> Milford Sound, Te Anau, Orepuki, Invercargill
+link = { vic = 2488 hoi = 7805 hoi = 7806 hoi = 7813 hoi = 7822 hoi = 7818 hoi = 7823 hoi = 7828 hoi = 7831 hoi = 7830 hoi = 7827 hoi = 7825 hoi = 7826 hoi = 7832 }	# Cooktown -> Somerset, Rocky Point, Coen, Maramie, Lakefield, Cooktown, Port Douglas, Cairns, Gamboola, Highbury, Mitchell, Dixie, Chillagoe
+link = { vic = 2487 hoi = 7834 hoi = 7839 hoi = 7842 hoi = 7846 hoi = 7849 hoi = 7845 hoi = 7850 hoi = 7854 }	# Townsville -> Ingham, Greenvale, Townsville, Home Hill, Hillgrove, Charters Towers, Proserpine, Longton
+link = { vic = 2604 hoi = 10264 hoi = 10276 hoi = 10250 hoi = 7829 hoi = 10265 hoi = 10277 }	# Normanton -> Burketown, Kamileroi, Normanton, Staaten, Croydon, The Lynd Junction
+link = { vic = 2489 hoi = 10303 hoi = 10329 hoi = 7883 hoi = 10290 }	# Longreach -> Whitewood, Aramac, Isisford, McKinlay
+link = { vic = 2483 hoi = 7923 }	# Brisbane -> Brisbane
+link = { vic = 2484 hoi = 7858 hoi = 7863 hoi = 7868 hoi = 7872 hoi = 7884 hoi = 7896 hoi = 7902 hoi = 7897 hoi = 7912 }	# Gladstone -> Mackay, Rockhampton, Leura, Gladstone, Rosedale, Monto, Murgon, Maryborough, Nambour
+link = { vic = 2485 hoi = 7862 hoi = 7857 hoi = 7871 hoi = 7877 hoi = 7890 hoi = 7906 }	# Clermont -> Moray Downs, Torrens Creek, Surbiton, Woorabinda, Theodore, Jackson
+link = { vic = 2486 hoi = 7928 hoi = 7918 }	# Toowoomba -> Toowoomba, Kingaroy
+link = { vic = 2490 hoi = 10341 hoi = 10353 hoi = 10370 hoi = 10361 hoi = 7911 hoi = 7901 hoi = 7934 hoi = 7922 hoi = 10360 hoi = 10388 }	# Charleville -> Yalleroi, Nive Downs, Westgate, Mitchell, Muckadilla, Eurombah, Toobeah, Surat, Coongoola, Durham Downs
+link = { vic = 2470 hoi = 7943 hoi = 7935 hoi = 7952 hoi = 7962 }	# Port Macquarie -> Coffs Harbour, Casino, Kempsey, Taree
+link = { vic = 2474 hoi = 7957 hoi = 7961 hoi = 7956 hoi = 7951 hoi = 7947 }	# Moree -> Walcha, Scone, Gulargambone, Tamworth, Armidale
+link = { vic = 2469 hoi = 7967 }	# Newcastle -> Newcastle
+link = { vic = 2468 hoi = 7989 }	# Sydney -> Sydney
+link = { vic = 2471 hoi = 7973 }	# Ophir -> Kandos
+link = { vic = 2472 hoi = 7999 hoi = 8008 hoi = 8016 hoi = 8026 hoi = 8044 hoi = 8034 }	# Eden -> Crookwell, Ulladulla, Moruya, Cooma, Merimbula, Jindabyne
+link = { vic = 2479 hoi = 8051 hoi = 8058 hoi = 8063 }	# Sale -> Orbost, Bairnsdale, Sale
+link = { vic = 2480 hoi = 8043 hoi = 8050 }	# Beechworth -> Omeo, Tamboritha
+link = { vic = 2476 hoi = 8057 hoi = 8042 }	# Melbourne -> Melbourne, Mooroopna
+link = { vic = 2477 hoi = 8062 hoi = 8061 hoi = 8055 hoi = 8056 }	# Warmambool -> Geelong, Port Fairy, Mount Gambier, Ballarat
+link = { vic = 2478 hoi = 8049 }	# Ballarat -> Bendigo
+link = { vic = 2481 hoi = 10459 hoi = 10449 hoi = 10445 hoi = 10455 }	# Swan Hill -> Natimuk, Hopetoun, Mildura, Echuca
+link = { vic = 2473 hoi = 10450 hoi = 8033 hoi = 8006 hoi = 10446 hoi = 8025 hoi = 8015 hoi = 8007 hoi = 7998 hoi = 7979 hoi = 7972 hoi = 7980 hoi = 7988 }	# Wagga Wagga -> Deniliquin, Wangaratta, Lockhart, Urana, Albury, Holbrook, Canberra, Wagga Wagga, Ardlethan, Bogan Gate, Orange, Young
+link = { vic = 2475 hoi = 7942 hoi = 10390 hoi = 10378 hoi = 10389 hoi = 10421 hoi = 10432 hoi = 10433 hoi = 10403 hoi = 10414 hoi = 10422 }	# Broken Hill -> Talwood, Dirranbandi, Cunnamulla, Tilpa, Menindee, Darnick, Griffith, Boorindal, Cobar, Mullengudgery
+link = { vic = 2493 hoi = 10454 hoi = 10444 }	# Robe -> Kingston South East, Pinnaroo
+link = { vic = 2491 vic = 2492 vic = 2494 hoi = 10438 }	# Adelaide, Port Lincolon, Port Augusta -> Adelaide
+link = { vic = 2495 hoi = 10402 hoi = 10369 hoi = 10413 hoi = 10431 hoi = 10420 }	# Oodnadatta -> Lyndhurst, William Creek, Broken Hill, Canopus, Quorn
+link = { vic = 2496 hoi = 10368 hoi = 10377 hoi = 10387 hoi = 10411 hoi = 10401 hoi = 10412 hoi = 10430 hoi = 10400 hoi = 10376 }	# Tarcoola -> Meramangye, Mabel Creek, Maralinga, Nullarbor, Ceduna, Warramboo, Mount Hope, Eucla, Deakin
+link = { vic = 2505 hoi = 7817 hoi = 7816 hoi = 7811 hoi = 7815 hoi = 7810 hoi = 7807 hoi = 6596 hoi = 6587 hoi = 6583 hoi = 6580 hoi = 6584 hoi = 6581 hoi = 6589 hoi = 6585 hoi = 6588 hoi = 6591 hoi = 6597 hoi = 6590 hoi = 6604 hoi = 6603 hoi = 7808 hoi = 6598 hoi = 6605 hoi = 7812 hoi = 6606 hoi = 6599 hoi = 6592 hoi = 6593 hoi = 6600 hoi = 7809 hoi = 6608 hoi = 6607 hoi = 6594 hoi = 6601 hoi = 6602 hoi = 6595 hoi = 10196 }	# Palmerston -> Roper, Larrimah, Pine Creek, Wingate, Victoria, Daly, Darwin, Beagle Gulf, Bathurst, Cape Van Diemen, Melville, Cobourg Peninsula, Goulburn, Croker, Oenpelli, East Alligator, South Alligator, Van Diemen Gulf, Nitmiluk, Rum Jungle, Mataranka, Beswick, Mann, Mainoru, Rose, Arnhem Land, Maningrida, Nangalala, Goyder, Numbulwar, Blue Mud Bay, Mitchell Range, Ramingining, Gapuwiyak, Nhulubuy, Gove Peninsula, Groote Eylandt
+link = { vic = 2506 hoi = 7814 hoi = 7819 hoi = 10234 hoi = 7820 hoi = 10235 hoi = 7821 hoi = 7824 hoi = 10249 hoi = 10263 }	# Tennant Creek -> Wyndham, Kalkaringi, Top Springs, Willeroo, Nutwood Downs, Daly Waters, Cox, Borroloola, Tennant Creek
+link = { vic = 2507 hoi = 10352 hoi = 10359 hoi = 10358 }	# Alice Springs -> Alice Springs, Mount Dutton, Great Victoria Desert
+link = { vic = 2603 hoi = 10233 hoi = 10232 }	# Tanami -> Nicholson, Gibson Desert
+link = { vic = 2501 hoi = 10248 hoi = 10218 hoi = 10206 hoi = 10217 hoi = 10262 hoi = 10275 hoi = 10289 }	# Broome -> Christmas Creek, Kimberley Plateau, Cape Voltaire, Coltier Bay, Broome, Lagrange, Shay Gap
+link = { vic = 2602 hoi = 10302 hoi = 10313 hoi = 10301 hoi = 10321 hoi = 10328 hoi = 7876 }	# Roebourne -> Port Hedland, Roebourne, Onslow, Wyloo, Exmouth, Carnarvon
+link = { vic = 2502 hoi = 7889 hoi = 7900 hoi = 7905 hoi = 7917 hoi = 7933 hoi = 10383 hoi = 7895 hoi = 7882 }	# Dampier -> Denham, Tamala, Wuranga, Morawa, Buntine, Leonora, Errabiddy Hills, Carey Downs
+link = { vic = 2499 hoi = 7910 hoi = 7927 hoi = 7941 hoi = 10396 }	# Geraldton -> Geraldton, Eneabba, Lancelin, Northam
+link = { vic = 2497 hoi = 7950 hoi = 10427 }	# Perth -> Perth, Augusta
+link = { vic = 2498 hoi = 10437 hoi = 10417 }	# Kojonup -> Albany, Wagin
+link = { vic = 2504 hoi = 10428 hoi = 10429 hoi = 10419 hoi = 10410 hoi = 10399 hoi = 10386 }	# Esperance -> Esperance, Cape Pasley, Point Culver, Nuytsland, Caiguna, Madura
+link = { vic = 2500 hoi = 10397 hoi = 10409 hoi = 10418 hoi = 10408 hoi = 10384 hoi = 10398 }	# Kalgoorlie -> Coonana, Fraser Range, Widgiemooltha, Yellowdine, Laverton, Zanthus
+link = { vic = 2503 hoi = 10385 hoi = 10375 hoi = 10367 hoi = 10374 }	# Wiluna -> Plumridge, Rawlinna, Haig, Bandya
+link = { vic = 2605 vic = 2601 hoi = 10335 hoi = 10439 }	# Gibson's Desert, Sandy Desert -> Earaheedy, Paterson Range
+}

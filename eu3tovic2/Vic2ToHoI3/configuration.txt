@@ -1,0 +1,25 @@
+configuration =
+{
+	# HoI3 directory: a path on your computer where Hearts of Iron III is installed
+	hoi3directory = "D:\Paradox Interactive\Hearts of Iron III"
+
+	# The date on which the game is to start.  Default: 1935.12.12
+	start_date = 1935.12.12
+
+	# Game Type: what version of Vic2 generated the save.  Possible values:
+	# 	auto	detect version automatically - vanilla only!
+	#	orig	force version to Victoria 2 without expansions (1.x)
+	#	ahd	force version to Victoria 2: A House Divided (2.x)
+	gametype = auto
+
+	# Faction Leader: how the converter determines who the faction leaders are
+	#	auto		Not yet implemented.  Others to come.
+	#	manual		Uncomment axis_faction, etc, and fill with Vicky tags.  First tag in each list is leader, others are members.
+	faction_leader = auto
+	# axis_faction = { GER ITA }
+	# allies_faction = { ENG FRA CAN HND SAF }
+	# comintern_faction = { RUS }
+
+	# Note: if converting to vanilla HoI3, you may want to merge some V2 nations in order for tags to make sense.
+	# Merge settings are found in merge_nations.txt, rather than this file.
+}

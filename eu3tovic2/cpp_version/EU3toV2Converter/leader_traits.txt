@@ -1,0 +1,203 @@
+# General/Admiral conversion rules
+# 
+# All four values (fire, shock, manuever, siege) are read from the EU3 file.
+# The rules here set MINIMUM CONDITIONS for each (enabled) personality and background.
+# The special value "other" consists of the sum of all unnamed values
+# so if a personality specifies "fire" and "other", "other" means "shock + manuever + siege".
+# Keep in mind: fire, shock, manuever are capped at 6; siege at 2.
+# 
+# The first rule that matches is selected, so the better/more restrictive rules should be near the top of each section.
+# If some traits are not desired for conversion, simply omit them from the file.
+# Default rules are chosen to generally result in POSITIVE traits
+
+personality =
+{
+	au_fait =		# attack 3, org 0.15
+	{
+		fire = 6
+		other = 12
+	}
+	defiant =		# defence 3, morale 0.2
+	{
+		shock = 6
+		other = 10
+	}
+	audacious =		# attack 2, defence 2, speed 0.1
+	{
+		shock = 4
+		fire = 4
+		manuever = 2
+	}
+	unflinching =	# attack 3
+	{
+		fire = 6
+	}
+	resolute =		# defence 2, morale 0.5
+	{
+		shock = 4
+		siege = 2
+	}
+	chivalrous =	# attack 2, morale 0.2
+	{
+		fire = 4
+		siege = 2
+	}
+	efficient =		# attack 2, org 0.1
+	{
+		fire = 4
+		other = 8
+	}
+	hellbent =		# speed 0.40
+	{
+		manuever = 6
+	}
+	coolminded =	# defence 2
+	{
+		shock = 4
+	}
+	disciplined =	# attack 2
+	{
+		fire = 4
+	}
+	stalwart =		# attack 1, defence 1
+	{
+		shock = 2
+		fire = 2
+	}
+	resourceful =	# defence 1, reliability 0.02
+	{
+		shock = 2
+		other = 6
+	}
+	intuitive =		# morale 0.2, org 0.1
+	{
+		siege = 2
+		other = 4
+	}
+	persistant =		# speed 0.15
+	{
+		manuever = 3
+	}
+	balanced_p =		# defence 1
+	{
+		shock = 2
+	}
+	soldierly =		# attack 1
+	{
+		fire = 2
+	}
+	charismatic =	# morale 0.2, reliability 0.02
+	{
+		siege = 2
+		other = 3
+	}
+	earnest =		# speed 0.1
+	{
+		manuever = 2
+	}
+	gallant =		# morale 0.2
+	{
+		siege = 2
+	}
+	active_p =		# speed 0.05
+	{
+		manuever = 1
+	}
+	inspiring =		# morale 0.1
+	{
+		siege = 1
+	}
+	tactful =		# exp 0.1
+	{
+		other = 2 # just 2 points total
+	}
+	polite =		# exp 0.05
+	{
+		other = 0 # always match
+	}
+}
+
+background =
+{
+	school_of_defense = # defence 3 - and really, they can't spell defence consistently?
+	{
+		shock = 6
+	}
+	school_of_the_bayonet = # attack 2, defence 1, speed 0.1
+	{
+		fire = 5
+		manuever = 4
+		shock = 4
+	}
+	cavalry_school = # attack 2
+	{
+		fire = 5
+	}
+	cartographer =	# speed 0.4
+	{
+		manuever = 6
+	}
+	school_of_offense = # attack 1, morale 0.1, speed 0.1
+	{
+		fire = 3
+		manuever = 3
+		other = 6
+	}
+	uncommonly_young = # attack 1, defence 1
+	{
+		fire = 3
+		shock = 3
+	}
+	artillerist =	# defence 1, morale 0.1, reliability 0.02
+	{
+		shock = 2
+		other = 7
+	}
+	natural_born_leader = # attack 1, recon 0.05, morale 0.1
+	{
+		fire = 2
+		other = 6
+	}
+	bootlicker =	# defence 1, reliability 0.02
+	{
+		shock = 2
+		other = 5
+	}
+	brownnoser =	# attack 1, reliability 0.01
+	{
+		fire = 2
+		other = 5
+	}
+	generals_aide =	# defence 1
+	{
+		shock = 2
+	}
+	war_college =	# attack 1
+	{
+		fire = 2
+	}
+	drillmaster =	# morale 0.2
+	{
+		siege = 2
+	}
+	bureaucrat_speed = # speed 0.15
+	{
+		manuever = 3
+	}
+	aristocrat =	# morale 0.1
+	{
+		siege = 1
+	}
+	armchair_general = # speed 0.1
+	{
+		manuever = 2
+	}
+	engineer =		# speed 0.05
+	{
+		manuever = 1
+	}
+	pawn =			# reliability 0.05
+	{
+		other = 0 # always match
+	}
+}

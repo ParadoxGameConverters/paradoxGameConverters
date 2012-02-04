@@ -1,0 +1,10 @@
+blocked = {
+	
+	hoi3 = VIC 	# Vichy France
+	hoi3 = DDR	# East Germany
+	hoi3 = DFR	# West Germany
+	hoi3 = RSI	# Italian Social Republic
+	hoi3 = SPR	# Republican Spain
+	hoi3 = PRK	# People's Republic of Korea
+
+}

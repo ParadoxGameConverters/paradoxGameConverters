@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Parsers">
+      <UniqueIdentifier>{4d37bd20-ad29-4ee6-949c-e9b3714661b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="EU3 World">
+      <UniqueIdentifier>{ee9ba205-86cb-4a0b-ae3c-cf8b63dfe0e7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="V2 World">
+      <UniqueIdentifier>{08c5c068-3b6f-4c16-b964-1c6168ed4b29}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="EU3toV2Converter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Mapper.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsers\Object.cpp">
+      <Filter>Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="Parsers\Parser.cpp">
+      <Filter>Parsers</Filter>
+    </ClCompile>
+    <ClCompile Include="Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3World.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Province.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Diplomacy.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Relations.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Loan.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Leader.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2World.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Province.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Creditor.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Leader.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Country.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Country.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2State.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="tempFuncs.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LeaderTraits.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Pop.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Army.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="EU3Army.cpp">
+      <Filter>EU3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Diplomacy.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Relations.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Reforms.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Factory.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V2TechSchools.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Mapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Parsers\Object.h">
+      <Filter>Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="Parsers\Parser.h">
+      <Filter>Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Province.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Diplomacy.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Relations.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3World.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Loan.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2World.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Creditor.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Province.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Diplomacy.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Relations.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Country.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Country.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2State.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="tempFuncs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Pop.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Inventions.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Army.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Army.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Reforms.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Factory.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="EU3Leader.h">
+      <Filter>EU3 World</Filter>
+    </ClInclude>
+    <ClInclude Include="V2Leader.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="LeaderTraits.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Configuration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="V2TechSchools.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ReadMe.txt" />
+  </ItemGroup>
+</Project>

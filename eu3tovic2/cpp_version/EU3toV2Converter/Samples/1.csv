@@ -1,0 +1,5 @@
+#The converter format is as follows:;;
+#The leftmost cell should always contain the Vicky province ID;;
+#Following cells on the right should contain EU3 province ID's that make up this Vicky province;;
+#Anything that follows the hash character is ignored;;
+317;165

@@ -1,0 +1,34 @@
+configuration =
+{
+	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
+	v2directory = "D:\Paradox Interactive\Victoria 2"
+
+	# Europa Universalis 3 directory: a path on your computer where Europa Universalis 3 is installed
+	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
+
+	# The date on which the game is to start.  Default: 1835.12.1
+	start_date = 1835.12.1
+
+	# The maximum literacy a nation will start with. Default 80%
+	max_literacy = 0.80
+
+	# EU3 Game Type: what version of EU3 generated the save.  Possible values:
+	# 	auto	detect version automatically - vanilla only!
+	#	httt	force version to Heir To The Throne (4.x)
+	#	dw	force version to Divine Wind (5.x)
+	EU3gametype = auto
+
+	# V2 Game Type: what version of V2 to convert to.  Possible values:
+	#	vanilla	vanilla V2 (1.x)
+	V2gametype = vanilla
+
+	# Remove type: which landless nations to remove. Possible values:
+	#	none	remove none of them
+	#	dead	remove ones without a cultural backing
+	#	all	remove all of them
+	# Note: if there are not enough V2 tags, some or all of these will be done no matter what.
+	removetype = dead
+	
+	# Note: if converting to vanilla V2, you may want to merge some EU3 nations in order for tags to make sense.
+	# Merge settings are found in merge_nations.txt, rather than this file.
+}
