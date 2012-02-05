@@ -476,4 +476,197 @@ link = { vic = 2312 hoi = 10173 }	# Oruro -> Turco
 link = { vic = 2310 hoi = 10151 hoi = 10132 }	# La Paz -> La Paz, Achacachi
 link = { vic = 2370 vic = 2369 vic = 2371 hoi = 10198 }	# Cochinoca, Jujuy, Equia -> Río Mulatos
 link = { vic = 2372 hoi = 10221 hoi = 10186 }	# Rivadavia -> San Pedro, Potosí
+link = { vic = 420 hoi = 2605 hoi = 2541 hoi = 2671 }	# Brest -> Quimper, Brest, Quimperlé
+link = { vic = 421 hoi = 2542 hoi = 2607 hoi = 2606 hoi = 2672 }	# St Brieuc -> Treguier, St-Brieuc, Rostrenen, Josselin
+link = { vic = 422 hoi = 2737 hoi = 2869 }	# Vannes -> Lorient, Pornic
+link = { vic = 424 hoi = 2608 hoi = 2673 hoi = 2739 }	# Rennes -> St-Malo, Dinan, Rennes
+link = { vic = 423 hoi = 2738 hoi = 2803 hoi = 2802 hoi = 2936 }	# Nantes -> Mauron, Blain, St-Nazaire, Machecoul
+link = { vic = 437 hoi = 2870 hoi = 3004 hoi = 3005 hoi = 3072 hoi = 3073 hoi = 3139 }	# La Roche -> Nantes, St-Jean-de-Monts, Montaigu, Les Sables-d'Olonne, St-Hermine, Lucon
+link = { vic = 442 hoi = 3273 hoi = 3207 hoi = 3343 hoi = 3613 hoi = 3140 hoi = 3274 }	# La Rochelle -> Rochefort, La Rochelle, Cognac, Sore, Niort, St Jean-d'Angély
+link = { vic = 458 hoi = 3412 hoi = 3545 hoi = 3612 hoi = 3747 hoi = 3479 hoi = 3680 }	# Bordeaux -> Pauillac, La Teste, Mimizan, Saint-Paul-lès-Dax, Bordeaux, Morceny
+link = { vic = 460 hoi = 3815 hoi = 3887 hoi = 3959 hoi = 4028 hoi = 4098 hoi = 3958 hoi = 4027 }	# Pau -> Bayonne, Mourenx, Pau, Tarbes, Montréjeau, St-Palais, Oloron-Ste-Marie
+link = { vic = 457 hoi = 4161 hoi = 4099 hoi = 4162 hoi = 4227 }	# Foix -> St-Girons, Cazères, Foix, Les Cabannes
+link = { vic = 464 hoi = 4228 hoi = 4297 }	# Perpignan -> Perpignan, Prades
+link = { vic = 463 hoi = 4101 hoi = 4163 hoi = 4032 }	# Carcassone -> Sigean, Limoux, Bédarieux
+link = { vic = 461 hoi = 4033 hoi = 4102 }	# Montpellier -> Montpellier, Béziers
+link = { vic = 467 hoi = 4164 hoi = 4103 hoi = 4034 }	# Marseilles -> Marseille, Sénas, Arles
+link = { vic = 470 hoi = 4229 hoi = 4165 hoi = 4230 hoi = 4166 }	# Toulon -> Toulon, Brignoles, Hyères, Cannes
+link = { vic = 472 hoi = 4106 }	# Nice -> Nice
+link = { vic = 471 hoi = 4038 hoi = 4037 }	# Frejus -> Monaco, Puget-Théniers
+link = { vic = 454 hoi = 3826 hoi = 3825 hoi = 3897 hoi = 3968 hoi = 3969 hoi = 3756 hoi = 3896 }	# Grenoble -> Briancon, Le Bourg-d'Oisans, Embrun, Gap, Allos, Chambéry, Corps
+link = { vic = 466 hoi = 3824 }	# Chambery -> Grenoble
+link = { vic = 465 hoi = 3757 hoi = 3689 hoi = 3622 }	# Annency -> Albertville, Annecy, Mondane
+link = { vic = 451 hoi = 3621 hoi = 3688 hoi = 3687 }	# Lyon -> St-Claude, Ruffieux, Lyon
+link = { vic = 433 hoi = 3553 hoi = 3487 hoi = 3420 hoi = 3486 hoi = 3350 hoi = 3552 }	# Lons -> Lons-le-Saunier, Poligny, Chaussin, Chalon-sur-Saône, Beaune, Mâcon
+link = { vic = 410 hoi = 3083 hoi = 3150 }	# Colmar -> Mulhouse, Belfort
+link = { vic = 432 hoi = 3149 hoi = 3351 hoi = 3282 hoi = 3216 hoi = 3421 hoi = 3082 hoi = 3148 }	# Besancon -> Montbéliard, Besancon, Maîche, Villersexel, Morteau, Ronchamp, Lure
+link = { vic = 469 hoi = 4105 hoi = 4104 hoi = 4036 }	# Digne -> Digne-les-Bains, Aix-en-Provence, Manosque
+link = { vic = 468 hoi = 3966 hoi = 3895 hoi = 3967 hoi = 4035 hoi = 3823 hoi = 3894 hoi = 3965 }	# Avignon -> Avignon, Valence, Nyons, Cavaillon, Annonay, Uzés, Nîmes
+link = { vic = 462 hoi = 3751 hoi = 3820 hoi = 3892 hoi = 3964 hoi = 3821 hoi = 3752 hoi = 3893 hoi = 3822 hoi = 3753 }	# Rodez -> Rodez, Salles-Curan, Camarès, Lodève, Millau, Laissac, Le Vigan, Privas, Le-Puy-en-Velay
+link = { vic = 459 hoi = 3681 hoi = 3748 hoi = 3816 hoi = 3888 hoi = 3817 hoi = 3960 }	# Mont de Marsan -> Lavardat, Roquefort, Mont-de-Marsan, Nogaro, Euaze, Mirande
+link = { vic = 455 hoi = 3961 hoi = 3889 hoi = 4029 hoi = 4030 hoi = 4100 hoi = 4031 }	# Toulouse -> Toulouse, Gimont, St-Gaudens, Carcassonne, Castelnaudary, Mazamet
+link = { vic = 456 hoi = 3963 hoi = 3891 hoi = 3962 hoi = 3890 hoi = 3818 hoi = 3749 hoi = 3819 }	# Montauban -> Lacaune, Réalmont, Castres, Graulhet, Mountauban, Lectoure, Carmaux
+link = { vic = 444 hoi = 3344 hoi = 3414 hoi = 3480 hoi = 3413 hoi = 3546 }	# Angouleme -> Angoulême, Périgueux, Bergerac, Chalais, Marmande
+link = { vic = 447 hoi = 3547 hoi = 3614 hoi = 3682 hoi = 3615 hoi = 3548 }	# Tulle -> Belves, Fumel, Cahors, Gourdon, Gramat
+link = { vic = 450 hoi = 3683 hoi = 3616 hoi = 3750 hoi = 3684 }	# Cahors -> Aubin, Montsalvy, Villefranche, Espalion
+link = { vic = 453 hoi = 3755 hoi = 3620 hoi = 3754 }	# Valence -> Bourgoin-Jallieu, Bourg-en-Bresse, St-Ètienne
+link = { vic = 445 hoi = 3345 hoi = 3415 hoi = 3481 }	# Limoges -> Limoges, Brive-la-Gaillarde, Souillac
+link = { vic = 418 hoi = 2422 hoi = 2543 hoi = 2481 hoi = 2482 }	# Caen -> Cherbourg, Granville, Périers, Caen
+link = { vic = 415 hoi = 2483 hoi = 2545 hoi = 2423 }	# Rouen -> Le Havre, Falaise, Dieppe
+link = { vic = 402 hoi = 2365 hoi = 2424 }	# Amiens -> Gamaches, Buchy
+link = { vic = 400 hoi = 2195 hoi = 2194 hoi = 2308 }	# Dunkirk -> Dunkerque, Calais, Berck
+link = { vic = 399 hoi = 2251 hoi = 2367 hoi = 2309 }	# Lille -> St-Omer, Cambrai, Lillers
+link = { vic = 417 hoi = 2609 hoi = 2544 hoi = 2610 hoi = 2675 }	# Alencon -> Mortain, Vire, Argentan, Mayenne
+link = { vic = 425 hoi = 2613 }	# Paris -> Paris
+link = { vic = 401 hoi = 2366 hoi = 2485 hoi = 2425 }	# Arras -> Abbeville, Beauvais, Amiens
+link = { vic = 2570 hoi = 2547 hoi = 2546 hoi = 2612 }	# Beauvais -> Vernon, Évreux, Dreux
+link = { vic = 426 hoi = 2742 hoi = 2677 hoi = 2743 hoi = 2807 }	# Chartres -> Vibraye, Nogent-le-Rotrou, Châteaudun, Vendôme
+link = { vic = 416 hoi = 2484 hoi = 2611 hoi = 2676 }	# Evreux -> Rouen, Bernay, Alencon
+link = { vic = 435 hoi = 2674 hoi = 2740 hoi = 2804 }	# Laval -> Fougères, Laval, Angers
+link = { vic = 436 hoi = 2741 hoi = 2805 hoi = 2806 }	# Le Mans -> Le Mans, Durtal, Château-du-Loir
+link = { vic = 441 hoi = 2872 hoi = 3007 hoi = 2939 hoi = 3075 }	# Tours -> Saumur, Mirebeau, Descartes, Poitiers
+link = { vic = 443 hoi = 3275 hoi = 3209 hoi = 3141 hoi = 3208 }	# Poitiers -> Confolens, Charroux, Couhé, Melle
+link = { vic = 434 hoi = 2938 hoi = 2871 hoi = 2937 hoi = 3006 hoi = 3074 }	# Angers -> Thouars, Chemillé, Cholet, Bressuire, Parthenay
+link = { vic = 438 hoi = 2808 hoi = 2875 hoi = 2941 }	# Orleans -> Orléans, Gien, Vierzon
+link = { vic = 446 hoi = 3076 hoi = 3008 hoi = 3143 hoi = 3277 hoi = 3346 hoi = 3276 hoi = 3210 hoi = 3142 }	# Chateauroux -> Châtearoux, Châtellerault, Châteauroux, Guéret, Eymoutiers, Bourganeuf, La Souterraine, Le Dorat
+link = { vic = 440 hoi = 2873 hoi = 2940 }	# Blois -> Tours, Loches
+link = { vic = 439 hoi = 3010 hoi = 3077 hoi = 3009 }	# Bourges -> Bourges, Ardentes, Vatan
+link = { vic = 430 hoi = 3212 hoi = 3278 hoi = 3211 hoi = 3144 hoi = 3078 hoi = 3279 hoi = 3145 }	# Moulins -> Moulins, St-Amand-Montrond, Lignières, Sancoins, La Charité-sur-Loire, Varennes-sur-Allier, Nevers
+link = { vic = 428 hoi = 3214 hoi = 3215 hoi = 3281 hoi = 3213 hoi = 3280 }	# Dijon -> Dijon, Vesoul, Dole, Saulieu, Épinac
+link = { vic = 431 hoi = 3419 hoi = 3349 }	# Macon -> Autun, Digoin
+link = { vic = 449 hoi = 3482 hoi = 3549 hoi = 3617 hoi = 3685 }	# Aurillac -> Martel, Mauriac, Laguiole, Massiac
+link = { vic = 448 hoi = 3550 hoi = 3417 hoi = 3347 hoi = 3416 hoi = 3483 hoi = 3618 hoi = 3686 }	# Clermont-Ferrand -> Clermont-Ferrand, Montlucon, Aubosson, Meymac, Bugeat, Cunlhat, Courpière
+link = { vic = 452 hoi = 3485 hoi = 3619 hoi = 3551 hoi = 3418 hoi = 3484 hoi = 3348 }	# St Etienne -> Paray-le-Monial, Lamastre, Limagne, Vichy, Combronde, Gannat
+link = { vic = 409 hoi = 2881 hoi = 2750 hoi = 2685 hoi = 2815 hoi = 2814 hoi = 2880 }	# Strasbourg -> Colmar, Molsheim, Achern, Strasbourg, Sélestat, Bruyeres
+link = { vic = 407 hoi = 3014 hoi = 2945 hoi = 2878 hoi = 2812 hoi = 2879 hoi = 2747 hoi = 2946 hoi = 3081 hoi = 3013 }	# Chaumont -> Jussey, Langres, Clefmont, Neufchâteau, Vittel, Chaumont, Xertigny, Combeaufontaine, Fayl-Billot
+link = { vic = 408 hoi = 2616 hoi = 2615 hoi = 2550 hoi = 2681 }	# Chalons -> Châlons, Sézanne, Reims, Troyes
+link = { vic = 405 hoi = 2488 hoi = 2682 }	# Charleville -> Mouzon, St Dizier
+link = { vic = 414 hoi = 2947 hoi = 3015 }	# Epinal -> Guebwiller, Le Thillot
+link = { vic = 412 hoi = 2619 hoi = 2684 }	# Metz -> Pirmasens, Saverne
+link = { vic = 413 hoi = 2551 hoi = 2618 }	# Verdun -> Verdun, Faulquemont
+link = { vic = 411 hoi = 2813 hoi = 2749 hoi = 2683 hoi = 2617 hoi = 2748 }	# Nancy -> Le Thillot, St-Dié, Nancy, Commercy, Colombey-les-Belles
+link = { vic = 403 hoi = 2486 hoi = 2548 hoi = 2614 hoi = 2549 }	# Laon -> Noyon, Clermont, Charly, Soissons
+link = { vic = 404 hoi = 2426 hoi = 2368 hoi = 2487 }	# Cambrai -> St-Quentin, Valenciennes, Laon
+link = { vic = 429 hoi = 3012 hoi = 3011 hoi = 3079 hoi = 3147 hoi = 3080 hoi = 3146 hoi = 2944 hoi = 2943 hoi = 2942 }	# Auxerre -> Avallon, Cosne-Cours, Prémery, Oyonnax, Champlitte, Vitteaux, Chablis, Saulieu, Sancerre
+link = { vic = 406 hoi = 2745 hoi = 2810 hoi = 2876 hoi = 2746 hoi = 2811 hoi = 2877 hoi = 2680 }	# Troyes -> Montargis, Toucy, Clamecy, Joigny, Ervy-le-Châtel, Auxerre, Sens
+link = { vic = 427 hoi = 2679 hoi = 2678 hoi = 2744 hoi = 2809 hoi = 2874 }	# Melun -> Nemours, Étampes, Puiseaux, Châteauneuf, Blois
+link = { vic = 518 hoi = 4086 hoi = 4213 hoi = 4149 hoi = 4087 hoi = 4017 }	# Oporto -> Porto, Ovar, Cinfães, Fafe, Braga
+link = { vic = 519 hoi = 4088 hoi = 4151 hoi = 4150 hoi = 4215 }	# Vila Real -> Vinhais, Braganca, Vila Real, Meda
+link = { vic = 520 hoi = 4407 hoi = 4345 hoi = 4284 hoi = 4344 hoi = 4472 hoi = 4647 hoi = 4535 hoi = 4536 hoi = 4214 hoi = 4283 hoi = 4406 hoi = 4591 hoi = 4592 }	# Covilha -> Guarda, Pinhel, Moimenta da Beira, Viseu, Covilhã, Monforte, Castelo Branco, Alcafozes, Peso de Régua, Castro Daire, Gouveia, Gavião, Portalegre
+link = { vic = 521 hoi = 4644 }	# Lisbon -> Lisbon
+link = { vic = 524 hoi = 4750 }	# Setubal -> Setúbal
+link = { vic = 527 hoi = 4901 hoi = 4949 hoi = 4991 hoi = 4950 hoi = 4992 }	# Faro -> Vila do Bispo, Portimão, Faro, Mértola, Cabanas
+link = { vic = 526 hoi = 4852 hoi = 4802 hoi = 4851 hoi = 4902 hoi = 4903 }	# Beja -> Beja, Torrão, Sines, Aljustrel, Serpa
+link = { vic = 525 hoi = 4853 hoi = 4752 hoi = 4701 hoi = 4646 hoi = 4700 hoi = 4803 hoi = 4751 }	# Evora -> Barrancos, Mourão, Elvas, Estremoz, Redondo, Moura, Évora
+link = { vic = 523 hoi = 4699 hoi = 4590 hoi = 4645 }	# Abrantes -> Vendas Novas, Santarém, Avis
+link = { vic = 522 hoi = 4589 hoi = 4533 hoi = 4534 hoi = 4470 hoi = 4471 hoi = 4405 hoi = 4343 hoi = 4282 }	# Coimbra -> Torres Vedras, Caldas da Rainha, Tomar, Marinha Grande, Lousã, Coimbra, Mangualde, Aveiro
+link = { vic = 474 hoi = 3610 hoi = 3609 hoi = 3611 hoi = 3677 hoi = 3743 hoi = 3676 hoi = 3675 }	# La Coruna -> La Coruña, Carballo, Foz, Villalba, Melide, Santiago de Compstela, Muros
+link = { vic = 476 hoi = 3742 hoi = 3877 hoi = 3948 hoi = 3949 hoi = 4018 hoi = 3878 hoi = 3808 hoi = 3809 hoi = 3950 }	# Vigo -> Villagarcía de Arosa, Vigo, Baiona, A Cañiza, Verín, Ourense, O Carballiño, Sarria, Monforte
+link = { vic = 475 hoi = 3679 hoi = 3745 hoi = 3678 hoi = 3746 hoi = 3812 }	# Oviedo -> Piedras Blancas, Cangas del Narcea, Navia, Oviedo, Llanes
+link = { vic = 478 hoi = 3814 hoi = 3813 hoi = 3883 }	# Santander -> Santander, Torrelavega, Villacarriedo
+link = { vic = 492 hoi = 3886 hoi = 3957 hoi = 3885 hoi = 3884 hoi = 3956 hoi = 4025 hoi = 4094 hoi = 4024 hoi = 3955 }	# BIlbao -> Irún, San Sebastián, Guernica, Bilbao, Vitoria, Guipúzcoa, Haro, Miranda de Ebro, Villarcayo
+link = { vic = 487 hoi = 4540 }	# Madrid -> Madrid
+link = { vic = 512 hoi = 5097 hoi = 5066 hoi = 5126 }	# Cadiz -> Jerez de la Frontera, Lebrija, Montellano
+link = { vic = 509 hoi = 5030 hoi = 4994 hoi = 5031 hoi = 5067 hoi = 4995 hoi = 4953 }	# Seville -> Seville, Lora del Río, La Puebla de Cazalla, Alcalá, Palma del Río, Constantina
+link = { vic = 511 hoi = 5029 hoi = 4951 hoi = 4993 }	# Huelva -> Huelva, Alosno, Valverde del Camino
+link = { vic = 517 hoi = 5156 }	# Gibraltar -> Algeciras
+link = { vic = 514 hoi = 5127 hoi = 5098 hoi = 5157 hoi = 5128 hoi = 5099 hoi = 5068 }	# Malaga -> Marbella, Ronda, Estepona, Málaga, Antequera, Campillos
+link = { vic = 515 hoi = 5131 hoi = 5159 hoi = 5130 hoi = 5102 hoi = 5101 hoi = 5071 }	# Almeria -> Albox, Almería, Vicar, Macael, Guadix, Baza
+link = { vic = 513 hoi = 5129 hoi = 5158 hoi = 5070 hoi = 5100 }	# Granada -> Granada, Adra, Montejícar, Alcalá la Real
+link = { vic = 506 hoi = 5103 hoi = 5104 }	# Cartagena -> Mazarrón, Cartagena
+link = { vic = 505 hoi = 4960 hoi = 5001 hoi = 5037 hoi = 4912 }	# Alicante -> Alzira, Alicante, San Javier, Ayora
+link = { vic = 498 hoi = 4548 hoi = 4485 hoi = 4419 hoi = 4484 hoi = 4356 hoi = 4418 }	# Barcelona -> Barcelona, Mataró, Manresa, Terrassa, Solsona, Ponts
+link = { vic = 503 hoi = 4862 hoi = 4812 hoi = 4761 hoi = 4813 hoi = 4709 hoi = 4760 }	# Valencia -> Valencia, Requena, Segerbe, Sagunto, Teruel, Sinarcas
+link = { vic = 501 hoi = 4547 hoi = 4546 hoi = 4657 hoi = 4483 hoi = 4602 }	# Tarragona -> Tarragona, Cambrils, Tortosa, Lleida, Alcañiz
+link = { vic = 504 hoi = 4656 hoi = 4710 hoi = 4762 hoi = 4711 }	# Castellon -> Morella, Lucena del Cid, Castelló de la Plana, Vinaroz
+link = { vic = 499 hoi = 4358 hoi = 4420 hoi = 4357 hoi = 4296 }	# Gerona -> Girona, Lloret de Mar, Manlleu, Berga
+link = { vic = 482 hoi = 4347 hoi = 4286 hoi = 4216 hoi = 4285 hoi = 4346 hoi = 4409 hoi = 4408 hoi = 4474 hoi = 4538 hoi = 4152 hoi = 4019 hoi = 4089 }	# Salamanca -> Salamanca, Ledesma, Fermoselle, Vitigudino, La Fuente de San Esteban, Guijuelo, Ciudad Rodrigo, Béjar, Candeleda, Bermillo de Sayago, A Gudiña, Alcanices
+link = { vic = 483 hoi = 4153 hoi = 4287 hoi = 4217 hoi = 4218 hoi = 4288 hoi = 4348 hoi = 4410 hoi = 4476 hoi = 4475 hoi = 4411 hoi = 4349 }	# Avila -> Villardefrades, Medina del Campo, Zamora, Valladolid, Cuéllar, Arévalo, Salmoral, Ávila, Piedrahita, Segovia, Cantalejo
+link = { vic = 479 hoi = 3882 hoi = 3953 hoi = 4022 hoi = 3954 }	# Burgos -> Reinosa, Guardo, Saldaña, Herrera de Pisuerga
+link = { vic = 480 hoi = 3881 hoi = 3952 hoi = 4020 hoi = 4090 hoi = 4021 hoi = 4091 }	# Valladolid -> Cistierna, Léon, La Bañeza, Benavente, Sahagún, Villada
+link = { vic = 477 hoi = 3744 hoi = 3810 hoi = 3811 hoi = 3879 hoi = 3951 hoi = 3880 }	# Leon -> Lugo, Fabero, La Robla, Villafranca del Bierzo, Ponferrada, Murias de Paredes
+link = { vic = 493 hoi = 4026 hoi = 4095 hoi = 4158 hoi = 4096 hoi = 4222 hoi = 4157 }	# Pamplona -> Pamplona, Estella, Tafalla, Hecho, Ejea de los Caballeros, Logroño
+link = { vic = 481 hoi = 4154 hoi = 4155 hoi = 4220 hoi = 4289 hoi = 4219 hoi = 4290 hoi = 4350 hoi = 4351 hoi = 4413 }	# Soria -> Palencia, Burgos, Salas de los Infantes, Aranda de Duero, Lerma, Abejar, Berlanga, Almazan, Sigüenza
+link = { vic = 494 hoi = 4093 hoi = 4023 hoi = 4092 hoi = 4156 hoi = 4221 hoi = 4291 }	# Logrono -> Briviesca, Villadiego, Tardajos, Belorado, Anguiano, Soria
+link = { vic = 496 hoi = 4097 hoi = 4159 hoi = 4224 hoi = 4160 hoi = 4294 }	# Huesca -> Argelès-Gazost, Jaca, Rodellar, Boltaña, La Pobla de Segur
+link = { vic = 500 hoi = 4225 hoi = 4226 hoi = 4295 hoi = 4355 hoi = 4417 }	# Lerida -> Pont de Suert, Andorra la Vella, La Pobla de Lillet, Isona, Monzon
+link = { vic = 495 hoi = 4223 hoi = 4293 hoi = 4354 hoi = 4482 hoi = 4545 hoi = 4416 hoi = 4292 hoi = 4353 }	# Zaragoza -> Ayerbe, Huesca, Barbastro, Candasnos, Aguaviva, La Almonda, Tudela, Zaragoza
+link = { vic = 488 hoi = 4477 hoi = 4412 hoi = 4478 hoi = 4541 hoi = 4598 hoi = 4542 hoi = 4479 hoi = 4543 hoi = 4653 }	# Siguenza -> Alcobendas, Matabuena, Guadalajara, Alcala de Henares, Villabilla, Sacedón, Embid, Tortuera, Priego
+link = { vic = 490 hoi = 4708 hoi = 4599 hoi = 4654 hoi = 4811 }	# Cuenca -> Cuenca, Peñalén, Albarracín, Tarazona de la Mancha
+link = { vic = 497 hoi = 4352 hoi = 4415 hoi = 4481 hoi = 4601 hoi = 4544 hoi = 4600 hoi = 4655 hoi = 4480 hoi = 4414 }	# Teruel -> Tarazona de Aragon, Cariñena, Azuara, Muniesa, Cosa, Monreal del Campo, Montalbán, Calamocha, Calatayud
+link = { vic = 489 hoi = 4651 hoi = 4596 hoi = 4539 hoi = 4595 hoi = 4650 hoi = 4705 hoi = 4597 hoi = 4652 hoi = 4706 }	# Toledo -> Toledo, Escalona, Sotillo de la Adrada, Talavera de la Reina, Belvís de la Jara, El Molinillo, Fuenlabrada, Tarancón, Tembleque
+link = { vic = 510 hoi = 4954 hoi = 4856 hoi = 4907 hoi = 4955 hoi = 4996 hoi = 5032 hoi = 5069 hoi = 5033 }	# Cordoba -> Córdoba, Pozoblanco, Villanueva de Córdoba, Andújar, Montoro, Puente-Genil, Priego de Córdoba, Jaén
+link = { vic = 491 hoi = 4808 hoi = 4857 hoi = 4807 hoi = 4756 hoi = 4757 hoi = 4809 hoi = 4858 hoi = 4909 hoi = 4859 }	# Ciudad Real -> Ciudad Real, Puertollano, Almadén, Piedrabuen, Daimiel, Alcázar de San Juan, Valdepeñas, La Solana, Tomelloso
+link = { vic = 507 hoi = 5073 hoi = 5000 hoi = 5036 }	# Murcia -> Murcia, Hellín, Caravaca
+link = { vic = 516 hoi = 4908 hoi = 4956 hoi = 4997 hoi = 5034 hoi = 5072 hoi = 5035 hoi = 4998 hoi = 4999 hoi = 4957 hoi = 4910 }	# Jaen -> La Carolina, Moral de Calatrava, Linares, Ubeda, Lorca, Huéscar, Beas de Segura, Elche de la Sierra, Santiago-Pontones, Munera
+link = { vic = 508 hoi = 4707 hoi = 4758 hoi = 4759 hoi = 4810 hoi = 4860 hoi = 4861 hoi = 4911 hoi = 4959 hoi = 4958 }	# Albacete -> Montalbo, Las Mesas, Honrubia, Villarrobledo, La Roda, Casas-Ibáñez, Albacete, Almansa, Tobarra
+link = { vic = 484 hoi = 4854 hoi = 4804 hoi = 4905 hoi = 4952 hoi = 4904 }	# Badajoz -> Monesterio, Salvaléon, Azuaga, Nerva, Aracena
+link = { vic = 486 hoi = 4473 hoi = 4537 hoi = 4594 hoi = 4593 hoi = 4648 hoi = 4702 hoi = 4753 hoi = 4805 }	# Caceres -> Coria, Plasencia, Jaraicejo, Cáceres, Truillo, Mérida, Almendralejo, Castuera
+link = { vic = 485 hoi = 4704 hoi = 4649 hoi = 4703 hoi = 4755 hoi = 4806 hoi = 4754 hoi = 4855 }	# Almendralejo -> Guadiana, Alfa, Logrosán, Agudo, Belalcázar, Don Benito, Argallón
+link = { vic = 502 hoi = 4913 hoi = 4863 hoi = 5002 }	# Balearic Islands -> Mallorca, Menorca, Jávea
+link = { vic = 473 hoi = 4298 hoi = 4359 hoi = 4421 hoi = 4486 }	# Corsica -> Bastia, Calvi, Corte, Ajàccio
+link = { vic = 766 hoi = 4658 hoi = 4712 hoi = 4764 hoi = 4763 }	# Sassari -> Olbia, Sassari, Nuoro, Oristano
+link = { vic = 765 hoi = 4814 hoi = 4865 hoi = 4914 hoi = 4864 }	# Cagliari -> Laconi, Tortolì, Cagliari, Villacidro
+link = { vic = 2134 hoi = 8970 }	# Azores -> Azores
+link = { vic = 2135 hoi = 11384 }	# Madeira -> Maderia
+link = { vic = 2136 hoi = 9506 }	# Canary Islands -> Canary Islands
+link = { vic = 1876 hoi = 10631 }	# Cape Verde -> Cap Verde
+link = { vic = 762 hoi = 5233 hoi = 5266 hoi = 5267 hoi = 5234 }	# Palermo -> Palermo, Trapani, Sciacca, Termini Imerese
+link = { vic = 763 hoi = 5235 hoi = 5236 hoi = 5269 }	# Messina -> Cefalù, Messina, Catania
+link = { vic = 764 hoi = 5331 hoi = 5298 hoi = 5330 hoi = 5268 hoi = 5297 }	# Catania -> Siracusa, Caltagirone, Gela, Caltanissetta, Agrigento
+link = { vic = 854 hoi = 5359 }	# Malta -> Malta
+link = { vic = 760 hoi = 5135 hoi = 5169 hoi = 5105 hoi = 5039 hoi = 5074 }	# Catanzaro -> Cartanzaro, Polistena, Crotone, Rossano, Cosenza
+link = { vic = 761 hoi = 4916 hoi = 4869 hoi = 4817 hoi = 4867 hoi = 5003 hoi = 4816 }	# Potenza -> Bernalda, Taranto, Altamura, Ferrandina, Acri, Potenza
+link = { vic = 758 hoi = 4962 hoi = 4917 hoi = 4868 }	# Brindisi -> Galatina, Lecce, Matera
+link = { vic = 756 hoi = 4768 hoi = 4767 hoi = 4818 }	# Bari -> Bari, Barletta, Monopoli
+link = { vic = 757 hoi = 4607 hoi = 4606 hoi = 4662 hoi = 4715 hoi = 4714 hoi = 4766 hoi = 4661 }	# Foggia -> San Severo, Termoli, Foggia, Manfredonia, Avellino, Campagna, Campobasso
+link = { vic = 755 hoi = 5038 hoi = 4961 hoi = 4915 hoi = 4866 }	# Salerno -> Montalto Uffogo, Castrolvillari, Camerota, Agropoli
+link = { vic = 754 hoi = 4765 hoi = 4815 hoi = 4713 }	# Naples -> Napoli, Salerno, Mondragone
+link = { vic = 749 hoi = 4549 hoi = 4603 hoi = 4488 hoi = 4550 hoi = 4487 hoi = 4423 }	# Rome -> Roma, Anzio, Tivoli, Anagni, Viterbo, Terni
+link = { vic = 2567 hoi = 4604 hoi = 4660 hoi = 4659 }	# Gaeta -> Frosinone, Monte Cassino, Latina
+link = { vic = 753 hoi = 4424 hoi = 4302 hoi = 4363 hoi = 4425 hoi = 4551 hoi = 4605 hoi = 4552 hoi = 4489 hoi = 4235 hoi = 4490 }	# Aquila -> Amatrice, Matelica, Ascoli Piceno, Pescara, Sulmona, Isernia, Atessa, L'Aquila, Macerata, Ortona
+link = { vic = 729 hoi = 3696 }	# Venice -> Venezia
+link = { vic = 724 hoi = 3971 hoi = 4040 }	# Genoa -> Genova, Ovada
+link = { vic = 725 hoi = 3900 hoi = 4039 }	# Savona -> Savona, San Remo
+link = { vic = 720 hoi = 3827 hoi = 3970 hoi = 3898 hoi = 3758 }	# Turin -> Torino, Limone Piemonte, Cuneo, Ceresole Reale
+link = { vic = 604 hoi = 3217 }	# Basel -> Basel
+link = { vic = 603 hoi = 3285 hoi = 3151 hoi = 3218 hoi = 3354 hoi = 3284 }	# Zurich -> Zürich, Winterthur, Aarau, Schwyz, Langenthal
+link = { vic = 607 hoi = 3554 hoi = 3488 }	# Geneva -> Genève, Lausanne
+link = { vic = 605 hoi = 3422 hoi = 3489 hoi = 3623 hoi = 3690 hoi = 3555 }	# Bern -> Bern, Spiez, St Niklaus, Monthey, Vevey
+link = { vic = 608 hoi = 3352 }	# Neuchatel -> Biel
+link = { vic = 611 hoi = 3356 hoi = 3286 hoi = 3219 hoi = 3426 hoi = 3425 hoi = 3355 }	# Chur -> Chur, Tiefencastel, St Gallen, Davos, Filisur, Disentis Muster
+link = { vic = 606 hoi = 3556 hoi = 3490 hoi = 3424 hoi = 3423 hoi = 3353 hoi = 3283 }	# Lucern -> Brig, Meiringen, Airolo, Luzern, Matterhorn, Grenchen
+link = { vic = 736 hoi = 3630 }	# Trieste -> Trieste
+link = { vic = 770 hoi = 3904 hoi = 3833 hoi = 3697 hoi = 3764 }	# Pola -> Pola, Rovigno, Kozina, Umago
+link = { vic = 733 hoi = 3562 }	# Udine -> Udine
+link = { vic = 737 hoi = 3563 }	# Gorizia -> Gorizia
+link = { vic = 732 hoi = 3561 hoi = 3495 hoi = 3628 hoi = 3629 }	# Treviso -> Treviso, Pordenone, Vicenza, Caorle
+link = { vic = 726 hoi = 3692 }	# Milan -> Milano
+link = { vic = 738 hoi = 3761 hoi = 3829 hoi = 3901 }	# Parma -> Parma, Berceto, Barga
+link = { vic = 723 hoi = 3760 hoi = 3899 }	# Alessandria -> Bobbio, Mondovi
+link = { vic = 721 hoi = 3691 }	# Aosta -> Aosta
+link = { vic = 609 hoi = 3624 }	# Sitten -> Biella
+link = { vic = 722 hoi = 3828 hoi = 3759 }	# Novara -> Broni, Novara
+link = { vic = 727 hoi = 3625 hoi = 3557 hoi = 3491 hoi = 3558 }	# Bergamo -> Bergamo, Como, Locarno, Sondrio
+link = { vic = 2568 hoi = 3693 }	# Lugano -> Piacenza
+link = { vic = 735 hoi = 3494 hoi = 3428 hoi = 3493 }	# Bozen -> Thiene, Belluno, Storo
+link = { vic = 734 hoi = 3427 hoi = 3560 hoi = 3559 hoi = 3492 }	# Trent -> Trento, Garda, Brescia, Edolo
+link = { vic = 731 hoi = 3832 }	# Padua -> Ravenna
+link = { vic = 730 hoi = 3695 hoi = 3627 hoi = 3831 }	# Verona -> Verona, Desenzano del Garda, Modena
+link = { vic = 742 hoi = 3763 }	# Ferrara -> Ferrara
+link = { vic = 743 hoi = 3975 hoi = 4043 }	# Ravenna -> Forlì, Rimini
+link = { vic = 752 hoi = 4170 hoi = 4110 hoi = 4234 }	# Ancona -> Ancona, Fano, Fabriano
+link = { vic = 740 hoi = 3972 }	# Massa -> La Spezia
+link = { vic = 746 hoi = 4107 hoi = 4041 }	# Lucca -> Pisa, Prato
+link = { vic = 745 hoi = 4231 }	# Leghorn -> Livorno
+link = { vic = 748 hoi = 4167 hoi = 4232 hoi = 4299 }	# Grosetto -> Empoli, Poggibonsi, Cecina
+link = { vic = 750 hoi = 4422 hoi = 4361 hoi = 4300 hoi = 4360 }	# Viterbo -> Montefiascone, Monte Castello, Montalino, Grosetto
+link = { vic = 751 hoi = 4168 hoi = 4109 hoi = 4169 hoi = 4233 hoi = 4301 hoi = 4362 }	# Perugia -> Arezzo, Sassocorvaro, Urbino, Cortona, Perugia, Foligno
+link = { vic = 747 hoi = 4108 hoi = 4042 }	# Siena -> Firenze, Poppi
+link = { vic = 741 hoi = 3903 }	# Bologna -> Bologna
+link = { vic = 744 hoi = 3973 hoi = 3902 hoi = 3974 }	# Florence -> Pistoia, Firezuola, Marradi
+link = { vic = 739 hoi = 3830 }	# Modena -> Pavullo nel Frignano
+link = { vic = 728 hoi = 3694 hoi = 3762 }	# Brescia -> Cremona, Mantova
+link = { vic = 759 hoi = 5237 hoi = 5203 }	# Reggio di Calabria -> Melito di Porto Salvo, Regio di Calabria
+
 }
