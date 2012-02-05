@@ -316,7 +316,7 @@ namespace ProvinceMapper
         {
             Mapping m = lbMappings.SelectedItem as Mapping;
             int idx = Program.mappings.mappings.IndexOf(m);
-            if (idx > 1)
+            if (idx > 0)
             {
                 Program.mappings.mappings[idx] = Program.mappings.mappings[idx - 1];
                 Program.mappings.mappings[idx - 1] = m;
