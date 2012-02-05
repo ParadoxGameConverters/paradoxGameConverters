@@ -1,0 +1,13 @@
+ProvinceMapper Change Log
+
+0.9B
+- Preserve comment lines and allow new comments to be added
+- Fix boundary conditions for move up/move down
+- Fix handling of input files containing whitespace at BOL
+
+0.9A
+- Save settings from launch dialog
+- Support map zoom
+
+0.9
+- initial release
