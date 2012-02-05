@@ -43,6 +43,7 @@ namespace ProvinceMapper
 
             lbMappings.Items.AddRange(Program.mappings.mappings.ToArray());
             lbMappings.Items.Add(newMappingItem);
+            lbMappings.Items.Add(newCommentItem);
         }
 
         private Point srcPt;
@@ -85,7 +86,7 @@ namespace ProvinceMapper
             Province p = null;
             if (srcChroma.TryGetValue(c.ToArgb(), out p))
             {
-                Mapping m = lbMappings.SelectedItem as Mapping;
+                ProvinceMapping m = lbMappings.SelectedItem as ProvinceMapping;
                 if (p.mapping != null && p.mapping != m)
                 {
                     // the province is mapped, but not to the current mapping;
@@ -128,7 +129,7 @@ namespace ProvinceMapper
             Province p = null;
             if (destChroma.TryGetValue(c.ToArgb(), out p))
             {
-                Mapping m = lbMappings.SelectedItem as Mapping;
+                ProvinceMapping m = lbMappings.SelectedItem as ProvinceMapping;
                 if (p.mapping != null && p.mapping != m)
                 {
                     // the province is mapped, but not to the current mapping;
@@ -237,6 +238,7 @@ namespace ProvinceMapper
         }
 
         private String newMappingItem = "-- <Create New Mapping> --";
+        private String newCommentItem = "-- <Create New Comment> --";
         private bool skipSelPBRedraw = false;
         private void lbMappings_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -245,14 +247,26 @@ namespace ProvinceMapper
 
             if (lbMappings.SelectedItem == (Object)newMappingItem) // reference test!
             {
-                Mapping m = new Mapping();
+                ProvinceMapping m = new ProvinceMapping();
+
                 Program.mappings.mappings.Add(m);
-                lbMappings.Items.Insert(lbMappings.Items.Count - 1, m);
+                lbMappings.Items.Insert(lbMappings.Items.Count - 2, m);
+                lbMappings.SelectedItem = m;
+            }
+            else if (lbMappings.SelectedItem == (Object)newCommentItem) // reference test!
+            {
+                CommentMapping m = new CommentMapping();
+                CommentForm cf = new CommentForm();
+                cf.SetComment(m);
+                cf.ShowDialog();
+
+                Program.mappings.mappings.Add(m);
+                lbMappings.Items.Insert(lbMappings.Items.Count - 2, m);
                 lbMappings.SelectedItem = m;
             }
             else
             {
-                Mapping m = lbMappings.SelectedItem as Mapping;
+                ProvinceMapping m = lbMappings.SelectedItem as ProvinceMapping;
                 if (m != null)
                 {
                     srcSelection.AddRange(m.srcProvs);

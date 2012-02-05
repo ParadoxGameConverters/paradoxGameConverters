@@ -5,16 +5,23 @@ using System.Text;
 
 namespace ProvinceMapper
 {
-    class Mapping
+    interface Mapping
+    {
+        bool isIncomplete();
+        string ToString();
+        string ToOutputString(string srcTag, string destTag);
+    }
+
+    class ProvinceMapping : Mapping
     {
         public List<Province> srcProvs = new List<Province>();
         public List<Province> destProvs = new List<Province>();
 
-        public Mapping()
+        public ProvinceMapping()
         {
         }
 
-        public Mapping(string line, string srcTag, string destTag, List<Province> possibleSources, List<Province> possibleDests)
+        public ProvinceMapping(string line, string srcTag, string destTag, List<Province> possibleSources, List<Province> possibleDests)
         {
             string[] tokens = line.Split(' ', '\t');
             int parseMode = 0;
@@ -103,7 +110,7 @@ namespace ProvinceMapper
             return retval;
         }
 
-        public string ToOutputString(string srcTag, string destTag)
+        public virtual string ToOutputString(string srcTag, string destTag)
         {
             if (isIncomplete())
                 return "";
@@ -127,7 +134,7 @@ namespace ProvinceMapper
             return (srcProvs.Count > 1) && (destProvs.Count > 1);
         }
 
-        public bool isIncomplete()
+        public virtual bool isIncomplete()
         {
             return (srcProvs.Count == 0) || (destProvs.Count == 0);
         }
@@ -135,6 +142,40 @@ namespace ProvinceMapper
         public bool isInvalid()
         {
             return isManyToMany() || isIncomplete();
+        }
+    }
+
+    class CommentMapping : Mapping
+    {
+        public string commentLine;
+
+        public CommentMapping()
+        {
+            commentLine = String.Empty;
+        }
+
+        public CommentMapping(string line)
+        {
+            if (line == String.Empty)
+                commentLine = String.Empty;
+
+            string tmpStr = line.Remove(0,1);
+            commentLine = tmpStr.Trim();
+        }
+
+        public bool isIncomplete()
+        {
+            return false; // comments are always complete
+        }
+
+        public override string ToString()
+        {
+            return "# " + commentLine;
+        }
+
+        public string ToOutputString(string srcTag, string destTag)
+        {
+            return "# " + commentLine;
         }
     }
 }

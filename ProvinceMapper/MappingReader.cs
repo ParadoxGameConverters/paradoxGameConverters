@@ -32,9 +32,24 @@ namespace ProvinceMapper
             while (!sr.EndOfStream)
             {
                 string line = sr.ReadLine().Trim();
-                if (line.StartsWith("link"))
+                if (line.Length > 0)
                 {
-                    mappings.Add(new Mapping(line, srcTag, destTag, srcProvs, destProvs));
+                    if (line.StartsWith("link"))
+                    {
+                        mappings.Add(new ProvinceMapping(line, srcTag, destTag, srcProvs, destProvs));
+                    }
+                    else if (line.StartsWith("#"))
+                    {
+                        mappings.Add(new CommentMapping(line));
+                    }
+                    else if (line.StartsWith("mappings") || line.StartsWith("{") || line.StartsWith("}"))
+                    {
+                        // ignore these lines
+                    }
+                    else
+                    {
+                        System.Windows.Forms.MessageBox.Show(String.Format("Error parsing province mapping file: line beginning '{0}' appears to be invalid.", line.Split(' ')[0]));
+                    }
                 }
                 su(100.0 * sr.BaseStream.Position / sr.BaseStream.Length);
             }
