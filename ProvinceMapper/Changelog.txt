@@ -1,5 +1,8 @@
 ProvinceMapper Change Log
 
+0.9C
+- Optionally read province names from localization instead of map data
+
 0.9B
 - Preserve comment lines and allow new comments to be added
 - Fix boundary conditions for move up/move down
