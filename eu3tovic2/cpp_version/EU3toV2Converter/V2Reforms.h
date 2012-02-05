@@ -3,6 +3,7 @@
 
 
 #include "EU3Country.h"
+#include "Configuration.h"
 
 
 class V2Reforms {
@@ -28,6 +29,7 @@ class V2Reforms {
 		int unemployment_subsidies;
 		int pensions;
 		int health_care;
+		int school_reforms;
 };
 
 

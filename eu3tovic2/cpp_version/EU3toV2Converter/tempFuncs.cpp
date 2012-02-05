@@ -66,3 +66,9 @@ void outputCountryHeader(FILE* output)
 	fprintf(output, "		min_tax=21\n");
 	fprintf(output, "	}\n");
 }
+
+
+void outputSchoolReforms(FILE* output)
+{
+	fprintf(output, "	school_reforms=no_schools\n");
+}

@@ -7,6 +7,7 @@
 
 void outputTempHeader(FILE*);
 void outputCountryHeader(FILE*);
+void outputSchoolReforms(FILE*);
 
 
 #endif TEMP_FUNCS_H

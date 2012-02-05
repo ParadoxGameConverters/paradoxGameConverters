@@ -19,6 +19,7 @@ void V2Reforms::init(EU3Country* srcCountry)
 	unemployment_subsidies		= 0;
 	pensions							= 0;
 	health_care						= 0;
+	school_reforms					= 0;
 	governmentEffects(srcCountry);
 	sliderEffects(srcCountry);
 	flagEffects(srcCountry);
@@ -598,6 +599,11 @@ void V2Reforms::output(FILE* output)
 	fprintf(output, "	unemployment_subsidies=no_subsidies\n");
 	fprintf(output, "	pensions=no_pensions\n");
 	fprintf(output, "	health_care=no_health_care\n");
+
+	if (Configuration::getV2Gametype() == "ahd")
+	{
+		outputSchoolReforms(output);
+	}
 
 	if (slavery >= 1)
 	{

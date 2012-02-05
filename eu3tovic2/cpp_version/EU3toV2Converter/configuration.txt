@@ -19,7 +19,7 @@ configuration =
 	EU3gametype = auto
 
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	vanilla	vanilla V2 (1.x)
+	#	vanilla	Vanilla V2 (1.x)
 	V2gametype = vanilla
 
 	# Remove type: which landless nations to remove. Possible values:
@@ -29,6 +29,6 @@ configuration =
 	# Note: if there are not enough V2 tags, some or all of these will be done no matter what.
 	removetype = dead
 	
-	# Note: if converting to vanilla V2, you may want to merge some EU3 nations in order for tags to make sense.
+	# Note: if converting to unmodded V2, you may want to merge some EU3 nations in order for tags to make sense.
 	# Merge settings are found in merge_nations.txt, rather than this file.
 }
