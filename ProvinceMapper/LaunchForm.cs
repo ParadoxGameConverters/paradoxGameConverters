@@ -25,6 +25,7 @@ namespace ProvinceMapper
             tbDestTag.Text = Properties.Settings.Default.destTag;
             tbMappingsFile.Text = Properties.Settings.Default.mappingFile;
             cbScale.Checked = Properties.Settings.Default.fitMaps;
+            cbNamesFrom.SelectedItem = Properties.Settings.Default.namesFrom;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -76,6 +77,18 @@ namespace ProvinceMapper
             Application.DoEvents();
             Program.targetMap = new MapReader(targetMap, Program.targetDef.provinces, PushStatusUpdate);
 
+            // load localizations, if desired
+            if (cbNamesFrom.SelectedItem.ToString() == "Localization")
+            {
+                lblStatus.Text = "Load Source Localization";
+                Application.DoEvents();
+                LocalizationReader lr = new LocalizationReader(tbSourceMapFolder.Text, Program.sourceDef.provinces, PushStatusUpdate);
+
+                lblStatus.Text = "Load Target Localization";
+                Application.DoEvents();
+                lr = new LocalizationReader(tbDestMapFolder.Text, Program.targetDef.provinces, PushStatusUpdate);
+            }
+
             // read existing mappings (if any)
             string mappingFile = tbMappingsFile.Text.Trim();
             if (mappingFile != String.Empty && File.Exists(mappingFile))
@@ -97,6 +110,7 @@ namespace ProvinceMapper
             Properties.Settings.Default.destTag = tbDestTag.Text;
             Properties.Settings.Default.mappingFile = tbMappingsFile.Text;
             Properties.Settings.Default.fitMaps = cbScale.Checked;
+            Properties.Settings.Default.namesFrom = cbNamesFrom.SelectedItem.ToString();
             Properties.Settings.Default.Save();
         }
 

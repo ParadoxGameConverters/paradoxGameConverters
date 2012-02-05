@@ -43,6 +43,8 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.lblStatus = new System.Windows.Forms.Label();
             this.cbScale = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cbNamesFrom = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -116,7 +118,7 @@
             // btnBegin
             // 
             this.btnBegin.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnBegin.Location = new System.Drawing.Point(211, 194);
+            this.btnBegin.Location = new System.Drawing.Point(211, 220);
             this.btnBegin.Name = "btnBegin";
             this.btnBegin.Size = new System.Drawing.Size(61, 23);
             this.btnBegin.TabIndex = 8;
@@ -127,7 +129,7 @@
             // btnExit
             // 
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnExit.Location = new System.Drawing.Point(12, 194);
+            this.btnExit.Location = new System.Drawing.Point(12, 220);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(61, 23);
             this.btnExit.TabIndex = 9;
@@ -154,7 +156,7 @@
             // 
             // progressBar1
             // 
-            this.progressBar1.Location = new System.Drawing.Point(12, 165);
+            this.progressBar1.Location = new System.Drawing.Point(12, 191);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(260, 23);
             this.progressBar1.TabIndex = 12;
@@ -162,7 +164,7 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(79, 199);
+            this.lblStatus.Location = new System.Drawing.Point(79, 225);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(47, 13);
             this.lblStatus.TabIndex = 13;
@@ -173,18 +175,41 @@
             this.cbScale.AutoSize = true;
             this.cbScale.Checked = true;
             this.cbScale.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.cbScale.Location = new System.Drawing.Point(12, 140);
+            this.cbScale.Location = new System.Drawing.Point(12, 166);
             this.cbScale.Name = "cbScale";
             this.cbScale.Size = new System.Drawing.Size(116, 17);
             this.cbScale.TabIndex = 14;
             this.cbScale.Text = "Resize smaller map";
             this.cbScale.UseVisualStyleBackColor = true;
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(13, 143);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(91, 13);
+            this.label6.TabIndex = 15;
+            this.label6.Text = "Use Names From:";
+            // 
+            // cbNamesFrom
+            // 
+            this.cbNamesFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbNamesFrom.FormattingEnabled = true;
+            this.cbNamesFrom.Items.AddRange(new object[] {
+            "Localization",
+            "Map data"});
+            this.cbNamesFrom.Location = new System.Drawing.Point(116, 140);
+            this.cbNamesFrom.Name = "cbNamesFrom";
+            this.cbNamesFrom.Size = new System.Drawing.Size(121, 21);
+            this.cbNamesFrom.TabIndex = 16;
+            // 
             // LaunchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 227);
+            this.ClientSize = new System.Drawing.Size(284, 256);
+            this.Controls.Add(this.cbNamesFrom);
+            this.Controls.Add(this.label6);
             this.Controls.Add(this.cbScale);
             this.Controls.Add(this.lblStatus);
             this.Controls.Add(this.progressBar1);
@@ -224,6 +249,8 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.CheckBox cbScale;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cbNamesFrom;
     }
 }
 

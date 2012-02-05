@@ -94,5 +94,17 @@ namespace ProvinceMapper.Properties {
                 this["fitMaps"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Localization")]
+        public string namesFrom {
+            get {
+                return ((string)(this["namesFrom"]));
+            }
+            set {
+                this["namesFrom"] = value;
+            }
+        }
     }
 }
