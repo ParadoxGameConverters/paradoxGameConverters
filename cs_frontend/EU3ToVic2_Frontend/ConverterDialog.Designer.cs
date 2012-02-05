@@ -77,9 +77,9 @@
             this.conversionProcess.StartInfo.UserName = "";
             this.conversionProcess.StartInfo.UseShellExecute = false;
             this.conversionProcess.SynchronizingObject = this;
-            this.conversionProcess.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(this.conversionProcess_OutputDataReceived);
             this.conversionProcess.ErrorDataReceived += new System.Diagnostics.DataReceivedEventHandler(this.conversionProcess_ErrorDataReceived);
             this.conversionProcess.Exited += new System.EventHandler(this.conversionProcess_Exited);
+            this.conversionProcess.OutputDataReceived += new System.Diagnostics.DataReceivedEventHandler(this.conversionProcess_OutputDataReceived);
             // 
             // conversionLog
             // 
@@ -93,7 +93,7 @@
             // cancelButton
             // 
             this.cancelButton.Enabled = false;
-            this.cancelButton.Location = new System.Drawing.Point(151, 13);
+            this.cancelButton.Location = new System.Drawing.Point(150, 12);
             this.cancelButton.Name = "cancelButton";
             this.cancelButton.Size = new System.Drawing.Size(127, 23);
             this.cancelButton.TabIndex = 4;

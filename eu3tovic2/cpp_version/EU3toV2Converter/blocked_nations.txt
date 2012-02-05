@@ -1,5 +1,0 @@
-blocked = {
-
-	v2 = GER v2 = NGF v2 = SGF v2 = ITA v2 = SCA v2 = ENG v2 = FRA v2 = YUG v2 = ROM v2 = HUN v2 = POL v2 = CZH v2 = RUS v2 = HND v2 = CSA v2 = KUK v2 = BYZ v2 = ISR v2 = BAB v2 = GUA v2 = USA v2 = CNG
-
-}

@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual C# Express 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EU3ToVic2_Frontend", "EU3ToVic2_Frontend.csproj", "{7F72EE44-1FDD-4797-8A36-F6D8E630E196}"
 EndProject
 Global
