@@ -383,7 +383,7 @@ link = { vic = 20 hoi = 6666 hoi = 6676 hoi = 6660 }	# Kelowna -> Kelowna, Castl
 link = { vic = 14 hoi = 6659 hoi = 6664 hoi = 6675 hoi = 6670 hoi = 6682 }	# Vancouver Island -> Port McNeill, Campbell River, Port Alberni, Nanaimo, Victoria
 link = { vic = 13 hoi = 6648 hoi = 6652 hoi = 6649 hoi = 6671 hoi = 6665 hoi = 6656 hoi = 6645 }	# Vancouver -> Simon Sound, Powell River, Williams Lake, Vancouver, Squamish, Lillooet, Mount Waddington
 
-link = { vic = 78 hoi = 6697 hoi = 6683 hoi = 6689 hoi = 6683 hoi = 6714 hoi = 6723 hoi = 6696 hoi = 6713 hoi = 6731 hoi = 6722 hoi = 6732 hoi = 6743 hoi = 6741 hoi = 6752 hoi = 6753 hoi = 6742 hoi = 8508 hoi = 6764 hoi = 6785 hoi = 6774 hoi = 6763} # Seattle -> Seattle, Everett, Wenatchee, Ellensburg, Tacoma, Yakima, Bremerton, Aberdeen, Astoria, Olympia, Mount St Helens, Granger, Seaside 6741, Longview, Mount Adams, Glenoma, Columbia 8508, Lewis, John Day, Portland, Nehalem
+link = { vic = 78 hoi = 6697 hoi = 6689 hoi = 6683 hoi = 6714 hoi = 6723 hoi = 6696 hoi = 6713 hoi = 6731 hoi = 6722 hoi = 6732 hoi = 6743 hoi = 6741 hoi = 6752 hoi = 6753 hoi = 6742 hoi = 8508 hoi = 6764 hoi = 6785 hoi = 6774 hoi = 6763} # Seattle -> Seattle, Everett, Wenatchee, Ellensburg, Tacoma, Yakima, Bremerton, Aberdeen, Astoria, Olympia, Mount St Helens, Granger, Seaside 6741, Longview, Mount Adams, Glenoma, Columbia 8508, Lewis, John Day, Portland, Nehalem
 link = { vic = 79 hoi = 8385 hoi = 6698 hoi = 8360 hoi = 8411} # Spokane -> Spokane, Quincy 6698, Libby, Kellogg
 link = { vic = 80 hoi = 8438 hoi = 8471 hoi = 8546 hoi = 8439 hoi = 8509 hoi = 8547 hoi = 8577 hoi = 8609 hoi = 8610 hoi = 8578} # Walla Walla -> Craigmont, Richland, Grand Forks 8546, Helena, Weiser, Butte, Ukiah, Caldwell, Dillon, Boise
 
