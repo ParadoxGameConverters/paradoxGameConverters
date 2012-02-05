@@ -31,7 +31,7 @@ namespace ProvinceMapper
             StreamReader sr = new StreamReader(path, Encoding.GetEncoding(1252));
             while (!sr.EndOfStream)
             {
-                string line = sr.ReadLine();
+                string line = sr.ReadLine().Trim();
                 if (line.StartsWith("link"))
                 {
                     mappings.Add(new Mapping(line, srcTag, destTag, srcProvs, destProvs));
