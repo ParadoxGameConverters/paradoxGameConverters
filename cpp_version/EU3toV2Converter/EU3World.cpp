@@ -184,6 +184,9 @@ WorldType EU3World::getWorldType()
 
 	switch (maxProvinceID)
 	{
+	case 1774:
+		cachedWorldType = InNomine;
+		break;
 	case 1814:
 		cachedWorldType = HeirToTheThrone;
 		break;
@@ -192,9 +195,9 @@ WorldType EU3World::getWorldType()
 		break;
 	default:
 		log("Unrecognized max province ID: %d\n", maxProvinceID);
-		if (maxProvinceID < 1814)
+		if (maxProvinceID < 1774)
 		{
-			cachedWorldType = VeryOld; // pre-HttT
+			cachedWorldType = VeryOld; // pre-IN
 		}
 		else
 		{
@@ -210,6 +213,8 @@ WorldType EU3World::getWorldType()
 		forcedWorldType = DivineWind;
 	else if (configWorldType == "httt")
 		forcedWorldType = HeirToTheThrone;
+	else if (configWorldType == "in")
+		forcedWorldType = InNomine;
 	else if (configWorldType == "auto")
 		forcedWorldType = cachedWorldType;
 

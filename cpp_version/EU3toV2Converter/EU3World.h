@@ -10,6 +10,7 @@ enum WorldType
 {
 	Unknown = 0,
 	VeryOld,
+	InNomine,
 	HeirToTheThrone,
 	DivineWind
 };

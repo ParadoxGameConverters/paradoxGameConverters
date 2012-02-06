@@ -71,7 +71,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	sourceWorld.init(obj);
 
 
-	// Figure out if we're using an HTTT or DW game
+	// Figure out what EU3 gametype we're using
 	WorldType game = sourceWorld.getWorldType();
 	switch (game)
 	{
@@ -79,6 +79,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("Error: EU3 game appears to be from an old version; only HttT and DW are supported.\n");
 		log("Error: EU3 game appears to be from an old version; only HttT and DW are supported.\n");
 		exit(1);
+	case InNomine:
+		printf("Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
+		log("Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
+		break;
 	case HeirToTheThrone:
 		printf("Game type is: EU3 Heir to the Throne.\n");
 		log("Game type is: EU3 Heir to the Throne.\n");
@@ -140,6 +144,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 			mappingFile = "HttT_province_mappings.txt";
 		else if (game == DivineWind)
 			mappingFile = "DW_province_mappings.txt";
+		else if (game == InNomine)
+			mappingFile = "IN_province_mappings.txt";
 	}
 	else
 	{

@@ -18,6 +18,8 @@ Configuration::Configuration()
 	}
 
 	startDate	= date(obj[0]->getLeaf("start_date"));
+	if (startDate < date("1835.1.1"))
+		log("Warning: start dates prior to 1835 are likely to cause crashes!\n");
 	maxLiteracy	= atof(obj[0]->getLeaf("max_literacy").c_str());
 	V2Path		= obj[0]->getLeaf("v2directory");
 	EU3Path		= obj[0]->getLeaf("EU3directory");

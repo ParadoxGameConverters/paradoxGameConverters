@@ -371,7 +371,8 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					newCountry = potentialCountries[j];
 					newCountry.setSourceCountryIndex(i);
 
-					if ( (sourceCountries[i].getTechGroup() == "western") || (sourceCountries[i].getTechGroup() == "eastern") || (sourceCountries[i].getTechGroup() == "ottoman"))
+					if ( (sourceCountries[i].getTechGroup() == "western") || (sourceCountries[i].getTechGroup() == "latin") ||
+						(sourceCountries[i].getTechGroup() == "eastern") || (sourceCountries[i].getTechGroup() == "ottoman"))
 					{
 						newCountry.setCivilized(true);
 					}
@@ -606,7 +607,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					}
 					literacy += universityBonus;
 					string techGroup = sourceCountries[i].getTechGroup();
-					if ( (techGroup == "western") || (techGroup == "eastern") || (techGroup == "ottoman") )
+					if ( (techGroup == "western") || (techGroup == "latin") || (techGroup == "eastern") || (techGroup == "ottoman") )
 					{
 						literacy += 0.1;
 					}
@@ -1729,7 +1730,7 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 	{
 		if (itr->getProvinces().size() == 0)
 			continue;
-		if (itr->getTechGroup() != "western")
+		if ((itr->getTechGroup() != "western") && (itr->getTechGroup() != "latin"))
 			continue;
 
 		double prodTech = itr->getProductionTech();
