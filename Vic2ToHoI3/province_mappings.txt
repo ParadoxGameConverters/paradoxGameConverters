@@ -4,18 +4,18 @@ link = { vic = 252 hoi = 8086 hoi = 8084 hoi = 8089 }	# Iceland -> Reykjavik, Eg
 # British Isles
 link = { vic = 267 hoi = 417 hoi = 604 hoi = 722 hoi = 806 hoi = 723 hoi = 680 hoi = 724 hoi = 681 hoi = 766 hoi = 807 hoi = 765 hoi = 847 hoi = 848 hoi = 933 hoi = 892 hoi = 932 hoi = 891 hoi = 846 hoi = 973 hoi = 1014 hoi = 974 hoi = 893 }	# Inverness -> Lerwick, Scapa Flow, Stornoway, Barra, Cape Wrath, Durness, Dornoch, Wick, Dingwall, Lairg, Ullapool, Gairloch, Inverness, Newtonmoore, Cannich, Fort Augustus, Kyle of Lochalsh, Portree, Mallaig, Tobermoray, Dalwhinnie, Grantown
 link = { vic = 266 hoi = 849 hoi = 850 hoi = 894 hoi = 934 hoi = 976 }	# Aberdeen -> Lossiemouth, Peterhead, Aberdeen, Balmoral, Arbroath
-link = { vic = 268 hoi = 1017 hoi = 1053 hoi = 975 }	# Dundee -> Smith Falls, Rosyth, Dunkeld
-link = { vic = 270 hoi = 1016 hoi = 1052 hoi = 1089 hoi = 1126 hoi = 1015 }	# Stirling -> Stirling, Crianlarich, Dunbarton, Campbeltown, Forth William
+link = { vic = 268 hoi = 1017 hoi = 1053 hoi = 975 }	# Dundee -> Dundee, Rosyth, Dunkeld
+link = { vic = 270 hoi = 1016 hoi = 1052 hoi = 1089 hoi = 1126 hoi = 1015 }	# Stirling -> Stirling, Crianlarich, Dunbarton, Campbeltown, Fort William
 link = { vic = 271 hoi = 1090 hoi = 1127 hoi = 1167 hoi = 1296 hoi = 1208 hoi = 1252 }	# Glasgow -> Shotts, Glasgow, Lanark, Wigtown, Ayr, Stranraer
 link = { vic = 269 hoi = 1128 hoi = 1129 hoi = 1168 }	# Edinburgh -> Edinburgh, Dunbar, Selkirk
-link = { vic = 272 hoi = 1169 hoi = 1210 hoi = 1209 hoi = 1253 }	# Dumfries -> Berwick, Morpeth, Hawick, Dunfries
+link = { vic = 272 hoi = 1169 hoi = 1210 hoi = 1209 hoi = 1253 }	# Dumfries -> Berwick, Morpeth, Hawick, Dumfries
 link = { vic = 304 hoi = 1386 }	# Isle of Man -> Douglas
-link = { vic = 280 hoi = 1255 hoi = 1299 }	# Newcastle On Tyne -> Newcastle, Sunderland
+link = { vic = 280 hoi = 1255 hoi = 1299 }	# Newcastle-upon-Tyne -> Newcastle, Sunderland
 link = { vic = 279 hoi = 1254 hoi = 1298 hoi = 1297 hoi = 1342 hoi = 1343 }	# Carlisle -> Carlisle, Kendal, Workington, Barrow, Durham
 link = { vic = 277 hoi = 1521 hoi = 1477 hoi = 1387 }	# Liverpool -> Liverpool, Preston, Lancaster
 link = { vic = 278 hoi = 1522 hoi = 1432 }	# Manchester -> Manchester, Skipton
 link = { vic = 282 hoi = 1388 hoi = 1478 }	# Leeds -> Darlington, Leeds
-link = { vic = 281 hoi = 1344 hoi = 1389 hoi = 1433 hoi = 1524 }	# Hull -> Middlesborough, Scarborough, York, Hull
+link = { vic = 281 hoi = 1344 hoi = 1389 hoi = 1433 hoi = 1524 }	# Hull -> Middlesbrough, Scarborough, York, Hull
 link = { vic = 283 hoi = 1523 hoi = 1567 }	# Sheffield -> Doncaster, Sheffield
 link = { vic = 285 hoi = 1613 hoi = 1566 }	# Chester -> Chester, Warrington
 link = { vic = 290 hoi = 1616 hoi = 1568 hoi = 1668 }	# Lincoln -> Grimsby, Scunthorpe, Lincoln
@@ -26,92 +26,92 @@ link = { vic = 291 hoi = 1730 hoi = 1788 hoi = 1849 hoi = 452 }	# Cambridge -> P
 link = { vic = 289 hoi = 1729 }	# Leicester -> Leicester
 link = { vic = 284 hoi = 1728 hoi = 1666 }	# Birmingham -> Birmingham, Crewe
 link = { vic = 287 hoi = 1787 hoi = 1847 hoi = 1786 }	# Coventry -> Coventry, Evesham, Worcester
-link = { vic = 286 hoi = 1727 }	# Shrewesbury -> Shrewsbury
+link = { vic = 286 hoi = 1727 }	# Shrewsbury -> Shrewsbury
 link = { vic = 275 hoi = 1665 hoi = 1785 hoi = 1846 }	# Llandrindod -> Wrexham, Brecon, Monmouth
-link = { vic = 274 hoi = 1726 hoi = 1845 hoi = 1904 hoi = 1844 }	# Cardigan -> Aberyswyth, Cardigan, Swansea, Pembrooke
+link = { vic = 274 hoi = 1726 hoi = 1845 hoi = 1904 hoi = 1844 }	# Cardigan -> Aberystwyth, Cardigan, Swansea, Pembroke
 link = { vic = 273 hoi = 1905 }	# Cardiff -> Cardiff
 link = { vic = 293 hoi = 1909 }	# Chelmsford -> Southend
-link = { vic = 295 hoi = 1908 hoi = 1848 hoi = 1963 }	# St Albans -> Luton, Milton Keynes, Slough
+link = { vic = 295 hoi = 1908 hoi = 1848 hoi = 1963 }	# St Albans -> Luton, Bletchley, Slough
 link = { vic = 294 hoi = 1907 hoi = 1962 }	# Oxford -> Oxford, Swindon
 link = { vic = 296 hoi = 1906 hoi = 2018 }	# Bristol -> Gloucester, Bristol
-link = { vic = 301 hoi = 2021 hoi = 11379 }	# Canterbury -> Dover, england
+link = { vic = 301 hoi = 2021 hoi = 11379 }	# Canterbury -> Dover, Maidstone
 link = { vic = 300 hoi = 1964 }	# London -> London
-link = { vic = 302 hoi = 11380 hoi = 2020 hoi = 2079 }	# Brighton -> england, Aldershot, Brighton
-link = { vic = 303 hoi = 2078 hoi = 2019 hoi = 2135 }	# Southampton -> Southampton, Reading, Newport
+link = { vic = 302 hoi = 11380 hoi = 2020 hoi = 2079 }	# Brighton -> Reigate, Aldershot, Brighton
+link = { vic = 303 hoi = 2078 hoi = 2019 hoi = 2135 }	# Southampton -> Portsmouth, Reading, Newport
 link = { vic = 297 hoi = 2136 hoi = 2077 }	# Salisbury -> Weymouth, Bournemouth
 link = { vic = 298 hoi = 2076 hoi = 2075 }	# Bath -> Taunton, Bideford
 link = { vic = 299 hoi = 2193 hoi = 2134 hoi = 2250 hoi = 2192 hoi = 2307 }	# Plymouth -> Exeter, Bude, Plymouth, Bodmin, Penzance
 link = { vic = 254 hoi = 1251 hoi = 1341 hoi = 1295 }	# Belfast -> Larne, Belfast, Coleraine
 link = { vic = 255 hoi = 1294 hoi = 1340 }	# Londonderry -> Buncrana, Omagh
-link = { vic = 257 hoi = 1250 hoi = 1293 }	# Donegal -> Letteskenny, Donegal
+link = { vic = 257 hoi = 1250 hoi = 1293 }	# Donegal -> Letterkenny, Donegal
 link = { vic = 256 hoi = 1385 hoi = 1430 hoi = 1431 }	# Armagh -> Armagh, Cavan, Newry
-link = { vic = 259 hoi = 1339 hoi = 1384 hoi = 1429 }	# Sligo -> Sligo, Enniskillen, Leitrin
-link = { vic = 258 hoi = 1473 hoi = 1383 hoi = 1428 hoi = 1518 }	# Galway -> Clifden, Balline, Mayo, Galway
+link = { vic = 259 hoi = 1339 hoi = 1384 hoi = 1429 }	# Sligo -> Sligo, Enniskillen, Leitrim
+link = { vic = 258 hoi = 1473 hoi = 1383 hoi = 1428 hoi = 1518 }	# Galway -> Clifden, Ballina, Mayo, Galway
 link = { vic = 263 hoi = 1563 hoi = 1476 }	# Dublin -> Dublin, Drogheda
 link = { vic = 265 hoi = 1664 hoi = 1725 hoi = 1611 hoi = 1663 hoi = 1784 }	# Wexford -> Wicklow, Wexford, Carlow, Kilkenny, Waterford
 link = { vic = 264 hoi = 1475 hoi = 1520 hoi = 1519 hoi = 1562 hoi = 1561 hoi = 1610 }	# Kildare -> Longford, Kildare, Roscommon, Mullingar, Loughrea, Tullamore
-link = { vic = 262 hoi = 1724 hoi = 1783 }	# Waterford -> Tipperary, Youghan
+link = { vic = 262 hoi = 1724 hoi = 1783 }	# Waterford -> Tipperary, Youghal
 link = { vic = 261 hoi = 1609 hoi = 1662 hoi = 1723 hoi = 1782 hoi = 1722 }	# Limerick -> Ennis, Limerick, Kilrush, Tralee, Dingle
-link = { vic = 307 hoi = 36 hoi = 51 hoi = 38 hoi = 25 hoi = 16 hoi = 37 hoi = 24 hoi = 9 hoi = 17 hoi = 18 hoi = 26 hoi = 10 hoi = 19 hoi = 11 hoi = 28 hoi = 12 hoi = 5 hoi = 20 hoi = 29 hoi = 7 hoi = 4 hoi = 3 hoi = 6 hoi = 8 hoi = 13 hoi = 14 hoi = 21 hoi = 22 hoi = 15 hoi = 39 hoi = 41 hoi = 27 hoi = 2 hoi = 1 hoi = 23 hoi = 44 }	# Hammerfest -> Tennevoll, Kaisepakte, Helligskogen, Nordkjosbotn, Målsnes, Setermoen, Senja, Tromso, Skibotn, Altaelva, Mieron, Storslett, Jiesjávri, Alta, Tenojoki, Lakselv, Skaidi, Skoganvarre, Laevvajåk, Storfjordbotn, Nordkynhalvoya, Veldnes, Borselv, Båtsfjord, Rastegai'sa, Båteng, Finnmark, Polmak, Kroknes, Rophi, Kárásjohka, Masi, Repvåg, Porsangerhalvoya, Kirkenes, Nikel'
-link = { vic = 260 hoi = 1843 hoi = 1842 }	# Cork -> Cork, Killerney
+link = { vic = 307 hoi = 36 hoi = 51 hoi = 38 hoi = 25 hoi = 16 hoi = 37 hoi = 24 hoi = 9 hoi = 17 hoi = 18 hoi = 26 hoi = 10 hoi = 19 hoi = 11 hoi = 28 hoi = 12 hoi = 5 hoi = 20 hoi = 29 hoi = 7 hoi = 4 hoi = 3 hoi = 6 hoi = 8 hoi = 13 hoi = 14 hoi = 21 hoi = 22 hoi = 15 hoi = 39 hoi = 41 hoi = 27 hoi = 2 hoi = 1 hoi = 23 hoi = 44 }	# Hammerfest -> Tennevoll, Kaisepakte, Helligskogen, Nordkjosbotn, Målsnes, Setermoen, Senja, Tromso, Skibotn, Altaelva, Mieron, Storslett, Jiesjávri, Alta, Tenojoki, Lakselv, Skaidi, Skoganvarre, Laevvajåk, Storfjordbotn, Nordkynhalvoya, Veldnes, Borselv, Båtsfjord, Rastegai'sa, Båteng, Finnmark, Polmak, Kroknes, Rophi, Kárásjohka, Masi, Repvåg, Porsangerhalvoya, Kirkenes, Ovre Pasvik
+link = { vic = 260 hoi = 1843 hoi = 1842 }	# Cork -> Cork, Killarney
 # Scandi-wegia
 link = { vic = 306 hoi = 49 hoi = 65 hoi = 82 hoi = 99 hoi = 80 hoi = 117 hoi = 98 hoi = 116 hoi = 135 hoi = 134 hoi = 212 hoi = 227 hoi = 213 hoi = 200 hoi = 187 hoi = 201 hoi = 153 hoi = 172 hoi = 154 hoi = 173 hoi = 188 hoi = 66 hoi = 81 }	# Bodo -> Hinnoya, Narvik, Alitåive, Ritsem, Bodo, Sulitjelma, Fauske, Moldjord, Storjord, Ågskaret, Mosjoen, Laksfors, Bleikvassli, Donna, Nesna, Oksskolten, Kilboghamn, Mo i Rana, Bjollånes, Slierogaise, Bredviken, Björkstugan, Bognes
 link = { vic = 305 hoi = 291 hoi = 337 hoi = 361 hoi = 338 hoi = 313 hoi = 389 hoi = 390 hoi = 421 hoi = 362 hoi = 315 hoi = 339 hoi = 363 hoi = 293 hoi = 316 hoi = 273 hoi = 243 hoi = 258 hoi = 242 hoi = 226 hoi = 257 hoi = 241 hoi = 256 hoi = 272 hoi = 292 hoi = 422 hoi = 420 hoi = 457 }	# Trondheim -> Trondheim, Aure, Rindal, Svorkmo, Brekstad, Meldal, Ålen, Ulsberg, Storen, Stjordalshalsen, Kråklivollen, Tydal, Steinkjer, Meråker, Sorli, Kroken, Royrvik, Tosbotn, Bronnoysund, Namsos, Kolvereid, Osen, Namdalseid, Åfjord, Roros, Gjora, Driva
 link = { vic = 308 hoi = 360 hoi = 388 hoi = 419 hoi = 387 hoi = 386 hoi = 418 hoi = 455 hoi = 491 hoi = 454 hoi = 453 hoi = 490 hoi = 527 }	# Alesund -> Kristiansund, Engan, Verma, Molde, Ålesund, Stordal, Björli, Geiranger, Volda, Selje, Nordfjordeid, Hornindal
 link = { vic = 309 hoi = 526 hoi = 565 hoi = 566 hoi = 606 hoi = 605 hoi = 682 hoi = 725 hoi = 767 hoi = 683 hoi = 642 hoi = 607 hoi = 643 hoi = 684 hoi = 726 hoi = 644 hoi = 808 }	# Bergen -> Svelgen, Anda, Strynsvattnet, Suphellenipa, Askvoll, Lervik, Fedje, Ålvik, Leikanger, Sande, Jostedola, Luster, Laerdalsoyri, Finse, Grindaheim, Bergen
-link = { vic = 310 hoi = 851 hoi = 895 hoi = 936 hoi = 977 hoi = 978 hoi = 1018 hoi = 1054 hoi = 935 }	# Christiansand -> Haugesund, Sinnes, Sveindal, Moi, Arendal, Kristiansand, Farsund, Stavanger
-link = { vic = 311 hoi = 979 hoi = 938 hoi = 896 hoi = 852 hoi = 809 hoi = 853 hoi = 897 hoi = 937 }	# Skien -> Skien, Larvik, Setesdal, Sauda, Haukeligrend, Åmot, Drangedal, Åmli
-link = { vic = 312 hoi = 898 hoi = 854 hoi = 810 hoi = 768 hoi = 855 }	# Drammen -> Tonsberg, Skien, Selfjord, Geilo, Drammen
+link = { vic = 310 hoi = 851 hoi = 895 hoi = 936 hoi = 977 hoi = 978 hoi = 1018 hoi = 1054 hoi = 935 }	# Christianssand -> Haugesund, Sinnes, Sveindal, Moi, Arendal, Kristiansand, Farsund, Stavanger
+link = { vic = 311 hoi = 979 hoi = 938 hoi = 896 hoi = 852 hoi = 809 hoi = 853 hoi = 897 hoi = 937 }	# Skien -> Kragerø, Larvik, Setesdal, Sauda, Haukeligrend, Åmot, Drangedal, Åmli
+link = { vic = 312 hoi = 898 hoi = 854 hoi = 810 hoi = 768 hoi = 855 }	# Drammen -> Tonsberg, Skien, Seljord, Geilo, Drammen
 link = { vic = 315 hoi = 456 hoi = 492 hoi = 528 hoi = 567 hoi = 529 hoi = 493 hoi = 568 hoi = 569 hoi = 530 hoi = 609 hoi = 608 hoi = 645 hoi = 646 hoi = 686 hoi = 685 hoi = 727 hoi = 769 hoi = 728 }	# Lillehammer -> Lora, Digervarden, Donfoss, Galdhopiggen, Vågåmo, Hjerjkinn, Ringebu, Koppang, Alvdal, Tretten, Skaget, Bagn, Lillehammer, Dokka, Fagernes, Torpo, Rodberg, Gulsvik
 link = { vic = 313 hoi = 811 hoi = 812 hoi = 770 hoi = 771 hoi = 729 hoi = 856 }	# Christiania -> Kongsberg, Oslo, Honefoss, Magnor, Moss, Askim
 link = { vic = 314 hoi = 687 hoi = 647 hoi = 570 hoi = 611 hoi = 531 hoi = 610 hoi = 495 hoi = 494 hoi = 458 hoi = 730 }	# Hamar -> Hamar, Elverum, Jordet, Nybergsund, Otnes, Rena, Femundsenden, Tolga, Bjorgan, Svullrya
 link = { vic = 316 hoi = 899 hoi = 980 hoi = 939 hoi = 900 hoi = 813 hoi = 1019 }	# Frederiksstad -> Sarpsborg, Strömstad, Bengtsfors, Årjäng, Arvika, Lysekil
-link = { vic = 982 hoi = 33 hoi = 32 hoi = 45 }	# Petsamo -> Pecenga, Cyp-Navolok, Titovka
-link = { vic = 2587 hoi = 59 hoi = 47 hoi = 46 hoi = 60 hoi = 74 hoi = 73 hoi = 75 hoi = 34 hoi = 48 hoi = 35 hoi = 61 hoi = 63 hoi = 62 hoi = 76 hoi = 94 hoi = 78 hoi = 114 hoi = 64 hoi = 113 hoi = 112 hoi = 111 hoi = 93 hoi = 92 hoi = 91 }	# Kola -> Murmansk, Verrkne-teriberskoye, Port Vladimir, Severomorsk, Tajbola, Verhnetulomskij, Olenegorsk, Zapadnyj Kil'din, Dal'nie Zelency, Teriberka, Perkh'yavr, Harlovka, Zahrebetnoe, Lovozero, Polmos, Iokanga, Gremiha, Varzino, Kanevka, Kolmozero, Motka, Revda, Laplandija, Kola
-link = { vic = 983 hoi = 115 hoi = 133 hoi = 171 hoi = 185 hoi = 170 hoi = 150 hoi = 169 hoi = 130 hoi = 149 hoi = 168 hoi = 148 hoi = 147 hoi = 129 hoi = 110 hoi = 128 hoi = 166 hoi = 165 hoi = 146 hoi = 127 hoi = 109 hoi = 108 hoi = 145 hoi = 183 hoi = 198 hoi = 211 hoi = 224 hoi = 239 hoi = 225 }	# Kandalaksha -> Lumbovka, Ponoj, Korabel'noye, Cavan'ga, Strel'na, Cal'mny-Varre, Varzuga, Indel', Krasnoscel'e, Olenica, Vostocinoe  Munozero, Inga, Berezovka, Kirovsk, Apatity, Umba, Kandalaksa, Ozero Kolvitskoye, Njavka, Moncegorsk, Laplandskij Zapovednik, Kjume, Zelenoborskij, Lesozavodskij, Tedino, Cupa, Louhi, Ambarnyj
-link = { vic = 348 hoi = 778 }	# Aland Islands -> Mariehamn
-link = { vic = 353 hoi = 985 }	# Kuressaare -> Saaremaa
+link = { vic = 982 hoi = 33 hoi = 32 hoi = 45 }	# Petsamo -> Petsamo, Kalastajansaarento, Vaalesjoki
+link = { vic = 2587 hoi = 59 hoi = 47 hoi = 46 hoi = 60 hoi = 74 hoi = 73 hoi = 75 hoi = 34 hoi = 48 hoi = 35 hoi = 61 hoi = 63 hoi = 62 hoi = 76 hoi = 94 hoi = 78 hoi = 114 hoi = 64 hoi = 113 hoi = 112 hoi = 111 hoi = 93 hoi = 92 hoi = 91 }	# Kola -> Kola, Verrkne teriberskoye, Murmansk, Songuj, Tajbola, Verhnetulomskij, Olenegorsk, Severomorsk, Dal'nie Zelency, Teriberka, Perkh'yavr, Harlovka, Zahrebetnoe, Lovozero, Polmos, Iokanga, Gremiha, Varzino, Kanevka, Kolmozero, Motka, Revda, Murmanskaja, Laplandija
+link = { vic = 983 hoi = 115 hoi = 133 hoi = 171 hoi = 185 hoi = 170 hoi = 150 hoi = 169 hoi = 130 hoi = 149 hoi = 168 hoi = 148 hoi = 147 hoi = 129 hoi = 110 hoi = 128 hoi = 166 hoi = 165 hoi = 146 hoi = 127 hoi = 109 hoi = 108 hoi = 145 hoi = 183 hoi = 198 hoi = 211 hoi = 224 hoi = 239 hoi = 225 }	# Kandalaksha -> Lumbovka, Ponoj, Korabel'noye, Cavan'ga, Strel'na, Cal'mny Varre, Varzuga, Indel', Krasnoscel'e, Olenica, Vostocinoe  Munozero, Inga, Berezovka, Kirovsk, Apatity, Umba, Kandalaksa, Ozero Kolvitskoye, Njavka, Moncegorsk, Laplandskij Zapovednik, Kjume, Zelenoborskij, Lesozavodskij, Tedino, Cupa, Louhi, Ambarnyj
+link = { vic = 348 hoi = 778 }	# Åland Islands -> Mariehamn
+link = { vic = 353 hoi = 985 }	# Ösel -> Saaremaa
 link = { vic = 331 hoi = 1135 hoi = 1217 }	# Gotland -> Visby, Burgsvik
 link = { vic = 328 hoi = 940 hoi = 981 hoi = 1092 hoi = 1055 hoi = 857 hoi = 901 hoi = 772 hoi = 814 hoi = 858 }	# Karlstad -> Säffle, Mellerud, Kungälv, Vänersborg, Kil, Karlstad, Sunne, Munkfors, Storfors
-link = { vic = 330 hoi = 1131 hoi = 1213 hoi = 1172 hoi = 1171 hoi = 1093 hoi = 1132 hoi = 1056 hoi = 1020 }	# Boras -> Alingsås, Kungsbacka, Borås, Göteborg, Vara, Falköping, Skövde, Lidköping
-link = { vic = 334 hoi = 1302 hoi = 1258 hoi = 1347 hoi = 1392 hoi = 689 hoi = 1438 hoi = 1483 }	# Malmo -> Halmstad, Hylte, Markaryd, Helsingborg, Hörby, Malmö, Trelleborg
+link = { vic = 330 hoi = 1131 hoi = 1213 hoi = 1172 hoi = 1171 hoi = 1093 hoi = 1132 hoi = 1056 hoi = 1020 }	# Borås -> Alingsås, Kungsbacka, Borås, Göteborg, Vara, Falköping, Skövde, Lidköping
+link = { vic = 334 hoi = 1302 hoi = 1258 hoi = 1347 hoi = 1392 hoi = 689 hoi = 1438 hoi = 1483 }	# Malmö -> Halmstad, Hylte, Markaryd, Helsingborg, Hörby, Malmö, Trelleborg
 link = { vic = 374 hoi = 1682 }	# Bornholm -> Bornholm
 link = { vic = 335 hoi = 1484 hoi = 317 hoi = 1393 hoi = 1394 hoi = 1349 }	# Karlskrona -> Ystad, Kristianstad, Hässleholm, Karlshamn, Karlskrona
 link = { vic = 332 hoi = 1350 hoi = 1216 hoi = 1260 hoi = 1305 hoi = 1175 }	# Kalmar -> Borgholm, Oskarshamn, Nybro, Kalmar, Tingsryd
-link = { vic = 333 hoi = 1173 hoi = 1259 hoi = 1214 hoi = 1303 hoi = 1304 hoi = 1348 hoi = 1215 }	# Vaxjo -> Jönköping, Värnamo, Gislaved, Ljungby, Växjö, Älmhult, Nässjö
-link = { vic = 325 hoi = 1133 hoi = 1057 hoi = 1058 hoi = 1095 hoi = 1134 hoi = 1094 hoi = 1174 hoi = 1059 hoi = 1023 hoi = 983 }	# Norrkoping -> Gränna, Ödeshög, Linköping, Valdemarsvik, Västervik, Mjölby, Eksjö, Norrköping, Finspång, Vingåker
-link = { vic = 327 hoi = 1021 hoi = 982 hoi = 1022 hoi = 902 hoi = 942 hoi = 941 }	# Orebro -> Karlsborg, Askersund, Motala, Karlskoga, Örebro, Kristinehamn
-link = { vic = 326 hoi = 943 hoi = 944 hoi = 984 hoi = 903 hoi = 904 hoi = 860 hoi = 817 hoi = 861 hoi = 905 }	# Vasteras -> Katrineholm, Nyköping, Flen, Arboga, Eskilstuna, Köping, Västerås, Södertälje, Nynäshamn
+link = { vic = 333 hoi = 1173 hoi = 1259 hoi = 1214 hoi = 1303 hoi = 1304 hoi = 1348 hoi = 1215 }	# Växjö -> Jönköping, Värnamo, Gislaved, Ljungby, Växjö, Älmhult, Nässjö
+link = { vic = 325 hoi = 1133 hoi = 1057 hoi = 1058 hoi = 1095 hoi = 1134 hoi = 1094 hoi = 1174 hoi = 1059 hoi = 1023 hoi = 983 }	# Norrköping -> Gränna, Ödeshög, Linköping, Valdemarsvik, Västervik, Mjölby, Eksjö, Norrköping, Finspång, Vingåker
+link = { vic = 327 hoi = 1021 hoi = 982 hoi = 1022 hoi = 902 hoi = 942 hoi = 941 }	# Örebro -> Karlsborg, Askersund, Motala, Karlskoga, Örebro, Kristinehamn
+link = { vic = 326 hoi = 943 hoi = 944 hoi = 984 hoi = 903 hoi = 904 hoi = 860 hoi = 817 hoi = 861 hoi = 905 }	# Västerås -> Katrineholm, Nyköping, Flen, Arboga, Eskilstuna, Köping, Västerås, Strängnäs, Södertälje
 link = { vic = 322 hoi = 862 }	# Stockholm -> Stockholm
-link = { vic = 324 hoi = 818 hoi = 776 hoi = 735 hoi = 777 hoi = 692 hoi = 734 }	# Uppsala -> Enköping, Uppsala, Östhammar, Norrtälje, Älvkarleby, Sala
-link = { vic = 323 hoi = 612 hoi = 613 hoi = 775 hoi = 690 hoi = 774 hoi = 816 hoi = 859 hoi = 815 hoi = 773 hoi = 732 hoi = 731 hoi = 688 hoi = 648 hoi = 649 }	# Falun -> Orsa, Furudal, Surahammar, Borlänge, Kopparberg, Lindesberg, Nora, Grecken, Filipstad, Fredriksberg, Vansbro, Sysslebäck, Venjan, Mora
-link = { vic = 317 hoi = 733 hoi = 651 hoi = 691 hoi = 650 hoi = 614 hoi = 574 hoi = 573 hoi = 535 }	# Gavle -> Avesta, Gävle, Sandviken, Falun, Ockelbo, Söderhamn, Edsbyn, Bollnäs
-link = { vic = 318 hoi = 498 hoi = 499 hoi = 462 hoi = 425 hoi = 366 hoi = 394 hoi = 426 hoi = 463 hoi = 343 hoi = 395 hoi = 367 hoi = 318 }	# Sundsvall -> Gåda, Hudiksvall, Ljungaverk, Ånge, Hammarstrand, Ljungå, Timrå, Sundsvall, Näsåker, Härnösand, Sollefteå, Ramsele
-link = { vic = 319 hoi = 295 hoi = 274 hoi = 342 hoi = 294 hoi = 340 hoi = 341 hoi = 365 hoi = 461 hoi = 393 hoi = 424 hoi = 392 hoi = 364 hoi = 391 hoi = 423 hoi = 460 hoi = 497 hoi = 534 hoi = 572 hoi = 532 hoi = 533 hoi = 496 hoi = 571 hoi = 459 }	# Ostersund -> Tåsjö, Sjoutnäset, Borgvattnet, Edevik, Vålådalen, Järpen, Östersund, Haverö, Bräcke, Rätansbyn, Torsborg, Hallen, Ramundberget, Funäsdalen, Vemdalen, Älvros, Hamra, Åmån, Särna, Kräckelbäcken, Kölsvallen, Trängslet, Käringsjön
-link = { vic = 320 hoi = 202 hoi = 215 hoi = 230 hoi = 246 hoi = 262 hoi = 278 hoi = 279 hoi = 263 hoi = 322 hoi = 298 hoi = 321 hoi = 299 hoi = 368 hoi = 345 hoi = 320 hoi = 344 hoi = 319 hoi = 297 hoi = 277 hoi = 261 hoi = 276 hoi = 296 hoi = 275 hoi = 260 hoi = 245 hoi = 229 hoi = 214 hoi = 228 hoi = 244 hoi = 259 }	# Umea -> Umfors, Sorsele, Holmsjö, Kristineberg, Lycksele, Burträsk, Skellefteå, Kusfors, Umeå, Örträsk, Nordmaling, Vindeln, Örnsköldsvik, Björna, Fredrika, Degersjön, Sunnersta, Hälla, Vägsele, Kattisavan, Åsele, Jungsele, Dorotea, Vilhelmina, Gunnarn, Ankarsund, Vindelfjällen, Tärnaby, Dikanäs, Saxnäs
-link = { vic = 321 hoi = 53 hoi = 69 hoi = 85 hoi = 103 hoi = 122 hoi = 160 hoi = 178 hoi = 52 hoi = 67 hoi = 68 hoi = 84 hoi = 102 hoi = 121 hoi = 139 hoi = 159 hoi = 177 hoi = 193 hoi = 206 hoi = 248 hoi = 233 hoi = 218 hoi = 232 hoi = 247 hoi = 231 hoi = 217 hoi = 216 hoi = 192 hoi = 205 hoi = 204 hoi = 189 hoi = 203 hoi = 155 hoi = 174 hoi = 190 hoi = 191 hoi = 176 hoi = 158 hoi = 101 hoi = 120 hoi = 138 hoi = 119 hoi = 83 hoi = 100 hoi = 137 hoi = 118 hoi = 136 hoi = 156 hoi = 157 hoi = 175 hoi = 140 }	# Lulea -> Karesuando, Nunasvaara, Lumivaara, Muonio, Kolari, Övertorneå, Kalix, Råstätno, Kiruna, Nedre Soppero, Vittangi, Parakka, Pajala, Polcirkeln, Överkalix, Råne, Luleå, Boden, Fällfors, Piteå, Älvsbyn, Arvidsjaur, Malå, Avaviken, Moskosel, Slagnäs, Harads, Kåbdalis, Luleb, Laisvall, Uddjaure, Sädvaluspen, Labbas, Arjeplog, Kuollejaure, Tårrajaur, Vuollerim, Fjällåsen, Gällivare, Jokkmokk, Tjaktjajaure, Sjaunja, Suorva, Tjåmotis, Kvikkjokk, Västerfjäll, Stenudden, Karats, Udtja, Pello
-link = { vic = 338 hoi = 40 hoi = 54 hoi = 70 hoi = 86 hoi = 104 hoi = 141 hoi = 179 hoi = 194 hoi = 195 hoi = 181 hoi = 196 hoi = 182 hoi = 164 hoi = 126 hoi = 144 hoi = 163 hoi = 143 hoi = 162 hoi = 161 hoi = 123 hoi = 142 hoi = 180 hoi = 124 hoi = 106 hoi = 87 hoi = 105 hoi = 125 hoi = 107 hoi = 72 hoi = 89 hoi = 57 hoi = 43 hoi = 30 hoi = 42 hoi = 55 hoi = 71 hoi = 56 hoi = 88 hoi = 58 hoi = 90 hoi = 31 }	# Tornio -> Pöyrisjoki, Kietsimäjoki, Lisma, Tepasto, Kittilä, Sirkkakoski, Tornio, Hepola, Ranua, Autti, Livojoki, Maaninkavaara, Alakurtti, Kovdor, Tumcha, Isokylä, Aapajärvi, Korvala, Rovaniemi, Unari, Korvala, Simojoki, Petkula, Saariselkä, Pokka, Jeesiö, Tanhua, Nota, Patsoyoki, Ivalo, Sevettijärvi, Partakko, Ovedalsvárri, Jårgastak, Angeli, Mariscala, Inari, Kuttura, Gora Kucintundra, Gora Ciltal'd, Bjorknes
-link = { vic = 336 hoi = 251 hoi = 235 hoi = 208 hoi = 207 hoi = 220 hoi = 219 hoi = 234 hoi = 250 hoi = 265 hoi = 249 hoi = 264 hoi = 281 hoi = 280 hoi = 301 hoi = 324 hoi = 302 hoi = 325 hoi = 282 hoi = 303 hoi = 283 hoi = 221 }	# Oulu -> Kongasmäki, Juorkuna, Pudasjärvi, Yli-Kärpää, Ylikiiminki, Olhava, Oulu, Vaala, Rantsila, Raahe, Yppäri, Kilpua, Alavieska, Yllvieska, Sarjankylä, Pulkkila, Pyhäntä, Kestilä, Otanmäki, Mainua, Kalhamajärvi
-link = { vic = 337 hoi = 197 hoi = 209 hoi = 222 hoi = 236 hoi = 252 hoi = 266 hoi = 267 hoi = 284 hoi = 305 hoi = 304 }	# Kajaani -> Olanga, Kuusamo, Hossa, Puolanka, Ämmänsaan, Ristijärvi, Pista, Lentiira, Lauvuskylä, Kajaani
-link = { vic = 346 hoi = 464 hoi = 427 hoi = 369 hoi = 396 hoi = 397 hoi = 346 hoi = 300 hoi = 323 hoi = 347 hoi = 348 hoi = 372 hoi = 399 hoi = 371 hoi = 370 hoi = 398 hoi = 429 hoi = 428 hoi = 466 hoi = 467 hoi = 538 hoi = 502 hoi = 537 hoi = 465 hoi = 500 hoi = 536 hoi = 501 hoi = 430 }	# Vaasa -> Teuva, Seinäjoki, Vaasa, Korsnäs, Lapua, Jakobstad, Kokkola, Toholampi, Reisjärvi, Pyhäjärvi, Keitele, Kannonkoski, Pihtipudas, Veteli, Perho, Karstula, Soini, Myllymäki, Petäjävesi, Padasjoki, Mänttä, Tampere, Alavus, Isojoki, Hämeenkyrö, Virrat, Suolahti
+link = { vic = 324 hoi = 818 hoi = 776 hoi = 735 hoi = 777 hoi = 692 hoi = 734 }	# Uppsala -> Sigtuna, Uppsala, Östhammar, Norrtälje, Älvkarleby, Sala
+link = { vic = 323 hoi = 612 hoi = 613 hoi = 775 hoi = 690 hoi = 774 hoi = 816 hoi = 859 hoi = 815 hoi = 773 hoi = 732 hoi = 731 hoi = 688 hoi = 648 hoi = 649 }	# Falun -> Mora, Furudal, Surahammar, Borlänge, Kopparberg, Lindesberg, Nora, Grecken, Filipstad, Fredriksberg, Vansbro, Sysslebäck, Venjan, Leksand
+link = { vic = 317 hoi = 733 hoi = 651 hoi = 691 hoi = 650 hoi = 614 hoi = 574 hoi = 573 hoi = 535 }	# Gävle -> Avesta, Gävle, Sandviken, Falun, Ockelbo, Söderhamn, Edsbyn, Bollnäs
+link = { vic = 318 hoi = 498 hoi = 499 hoi = 462 hoi = 425 hoi = 366 hoi = 394 hoi = 426 hoi = 463 hoi = 343 hoi = 395 hoi = 367 hoi = 318 }	# Sundsvall -> Gåda, Hudiksvall, Ånge, Bräcke, Hammarstrand, Ljungå, Timrå, Sundsvall, Näsåker, Härnösand, Sollefteå, Ramsele
+link = { vic = 319 hoi = 295 hoi = 274 hoi = 342 hoi = 294 hoi = 340 hoi = 341 hoi = 365 hoi = 461 hoi = 393 hoi = 424 hoi = 392 hoi = 364 hoi = 391 hoi = 423 hoi = 460 hoi = 497 hoi = 534 hoi = 572 hoi = 532 hoi = 533 hoi = 496 hoi = 571 hoi = 459 }	# Östersund -> Tåsjö, Gäddede, Hallen, Hotagen, Storlien, Järpen, Östersund, Haverö, Svenstavik, Åsarna, Hede, Flatruet, Ramundberget, Funäsdalen, Vemdalen, Ramsjö, Hamra, Orsa, Särna, Älvros, Sveg, Trängslet, Käringsjön
+link = { vic = 320 hoi = 202 hoi = 215 hoi = 230 hoi = 246 hoi = 262 hoi = 278 hoi = 279 hoi = 263 hoi = 322 hoi = 298 hoi = 321 hoi = 299 hoi = 368 hoi = 345 hoi = 320 hoi = 344 hoi = 319 hoi = 297 hoi = 277 hoi = 261 hoi = 276 hoi = 296 hoi = 275 hoi = 260 hoi = 245 hoi = 229 hoi = 214 hoi = 228 hoi = 244 hoi = 259 }	# Umeå -> Umfors, Sorsele, Holmsjö, Kristineberg, Lycksele, Burträsk, Skellefteå, Kusfors, Umeå, Örträsk, Nordmaling, Vindeln, Örnsköldsvik, Björna, Fredrika, Degersjön, Sunnersta, Hälla, Vägsele, Kattisavan, Åsele, Jungsele, Dorotea, Vilhelmina, Gunnarn, Ankarsund, Vindelfjällen, Tärnaby, Dikanäs, Saxnäs
+link = { vic = 321 hoi = 53 hoi = 69 hoi = 85 hoi = 103 hoi = 122 hoi = 160 hoi = 178 hoi = 52 hoi = 67 hoi = 68 hoi = 84 hoi = 102 hoi = 121 hoi = 139 hoi = 159 hoi = 177 hoi = 193 hoi = 206 hoi = 248 hoi = 233 hoi = 218 hoi = 232 hoi = 247 hoi = 231 hoi = 217 hoi = 216 hoi = 192 hoi = 205 hoi = 204 hoi = 189 hoi = 203 hoi = 155 hoi = 174 hoi = 190 hoi = 191 hoi = 176 hoi = 158 hoi = 101 hoi = 120 hoi = 138 hoi = 119 hoi = 83 hoi = 100 hoi = 137 hoi = 118 hoi = 136 hoi = 156 hoi = 157 hoi = 175 hoi = 140 }	# Luleå -> Karesuando, Nunasvaara, Lumivaara, Muonio, Kolari, Övertorneå, Kalix, Råstätno, Kiruna, Nedre Soppero, Vittangi, Parakka, Pajala, Polcirkeln, Överkalix, Råne, Luleå, Boden, Fällfors, Piteå, Älvsbyn, Arvidsjaur, Malå, Avaviken, Moskosel, Slagnäs, Harads, Kåbdalis, Luleb, Laisvall, Uddjaure, Sädvaluspen, Labbas, Arjeplog, Kuollejaure, Tårrajaur, Vuollerim, Fjällåsen, Gällivare, Jokkmokk, Tjaktjajaure, Sjaunja, Suorva, Tjåmotis, Kvikkjokk, Västerfjäll, Stenudden, Karats, Udtja, Pello
+link = { vic = 338 hoi = 40 hoi = 54 hoi = 70 hoi = 86 hoi = 104 hoi = 141 hoi = 179 hoi = 194 hoi = 195 hoi = 181 hoi = 196 hoi = 182 hoi = 164 hoi = 126 hoi = 144 hoi = 163 hoi = 143 hoi = 162 hoi = 161 hoi = 123 hoi = 142 hoi = 180 hoi = 124 hoi = 106 hoi = 87 hoi = 105 hoi = 125 hoi = 107 hoi = 72 hoi = 89 hoi = 57 hoi = 43 hoi = 30 hoi = 42 hoi = 55 hoi = 71 hoi = 56 hoi = 88 hoi = 58 hoi = 90 hoi = 31 }	# Tornio -> Kilpisjärvi, Enontekiö, Lisma, Tepasto, Kittilä, Sirkkakoski, Tornio, Hepola, Ranua, Simojärvi, Livojoki, Maaninkavaara, Alakurtti, Maanselkä, Salla, Isokylä, Kemijärvi, Autti, Rovaniemi, Unari, Korvala, Simojoki, Sodankylä, Saariselkä, Pokka, Jeesiö, Tanhua, Korvatunturi, Paatsjoki, Ivalo, Sevettijärvi, Partakko, Outakoski, Jårgastak, Porrastunturi, Korsa, Inari, Kuttura, Nautsi, Suonikylä, Utsjoki
+link = { vic = 336 hoi = 251 hoi = 235 hoi = 208 hoi = 207 hoi = 220 hoi = 219 hoi = 234 hoi = 250 hoi = 265 hoi = 249 hoi = 264 hoi = 281 hoi = 280 hoi = 301 hoi = 324 hoi = 302 hoi = 325 hoi = 282 hoi = 303 hoi = 283 hoi = 221 }	# Oulu -> Kongasmäki, Juorkuna, Pudasjärvi, Yli Kärpää, Ylikiiminki, Olhava, Oulu, Vaala, Rantsila, Raahe, Yppäri, Kilpua, Alavieska, Ylivieska, Sarjankylä, Pulkkila, Pyhäntä, Kestilä, Otanmäki, Mainua, Kalhamajärvi
+link = { vic = 337 hoi = 197 hoi = 209 hoi = 222 hoi = 236 hoi = 252 hoi = 266 hoi = 267 hoi = 284 hoi = 305 hoi = 304 }	# Kajaani -> Oulanka, Kuusamo, Hossa, Puolanka, Ämmänsaan, Ristijärvi, Kianta, Lentiira, Lauvuskylä, Kajaani
+link = { vic = 346 hoi = 464 hoi = 427 hoi = 369 hoi = 396 hoi = 397 hoi = 346 hoi = 300 hoi = 323 hoi = 347 hoi = 348 hoi = 372 hoi = 399 hoi = 371 hoi = 370 hoi = 398 hoi = 429 hoi = 428 hoi = 466 hoi = 467 hoi = 538 hoi = 502 hoi = 537 hoi = 465 hoi = 500 hoi = 536 hoi = 501 hoi = 430 }	# Vaasa -> Teuva, Seinäjoki, Vaasa, Korsnäs, Lapua, Pietarsaari, Kokkola, Toholampi, Reisjärvi, Pyhäjärvi, Keitele, Kannonkoski, Pihtipudas, Veteli, Perho, Karstula, Soini, Myllymäki, Petäjävesi, Padasjoki, Mänttä, Tampere, Alavus, Isojoki, Hämeenkyrö, Virrat, Suolahti
 link = { vic = 345 hoi = 652 hoi = 693 hoi = 615 hoi = 736 hoi = 575 }	# Turku -> Rauma, Yläne, Kokemäki, Turku, Pori
 link = { vic = 347 hoi = 616 hoi = 576 hoi = 577 hoi = 694 hoi = 653 }	# Tampere -> Forssa, Pirkkala, Valkeakoski, Salo, Alastaro
-link = { vic = 344 hoi = 654 hoi = 617 hoi = 695 hoi = 578 hoi = 503 hoi = 539 hoi = 655 hoi = 618 }	# Hameenlinna -> Hämeenlinna, Lammi, Riihimäki, Luhanka, Jyväskylä, Joutsa, Lahti, Heinola
+link = { vic = 344 hoi = 654 hoi = 617 hoi = 695 hoi = 578 hoi = 503 hoi = 539 hoi = 655 hoi = 618 }	# Hämeenlinna -> Hämeenlinna, Lammi, Riihimäki, Luhanka, Jyväskylä, Joutsa, Lahti, Heinola
 link = { vic = 343 hoi = 779 hoi = 737 hoi = 738 hoi = 780 hoi = 739 hoi = 696 }	# Helsinki -> Hanko, Kimito, Karkkila, Inkoo, Helsinki, Porvoo
-link = { vic = 340 hoi = 656 hoi = 657 hoi = 697 hoi = 698 hoi = 619 }	# Kotka -> Kouvola, Ylämaa, Kotka, Viipuri, Svetogorsk
+link = { vic = 340 hoi = 656 hoi = 657 hoi = 697 hoi = 698 hoi = 619 }	# Kotka -> Kouvola, Ylämaa, Kotka, Viipuri, Enso
 link = { vic = 341 hoi = 579 hoi = 540 hoi = 504 hoi = 505 hoi = 506 hoi = 580 hoi = 541 }	# Mikkeli -> Mäntyharju, Mikkeli, Kalvitsa, Varkaus, Onkamo, Lappeenranta, Rautjärvi
-link = { vic = 342 hoi = 433 hoi = 471 hoi = 403 hoi = 375 hoi = 351 hoi = 327 hoi = 326 hoi = 349 hoi = 373 hoi = 350 hoi = 374 hoi = 402 hoi = 401 hoi = 400 hoi = 431 hoi = 468 hoi = 469 hoi = 432 hoi = 470 }	# Kuopio -> Ilomantsi, Ozero Janis', Kudamguba, Lieksa, Nurmes, Maanselkä, Sonkajärvi, Kiuruvesi, Leppälahti, Sälevä, Juankoski, Romppala, Kuopio, Närhilä, Suontee, Hankasalmi, Pieksämäki, Palokki, Joensuu
+link = { vic = 342 hoi = 433 hoi = 471 hoi = 403 hoi = 375 hoi = 351 hoi = 327 hoi = 326 hoi = 349 hoi = 373 hoi = 350 hoi = 374 hoi = 402 hoi = 401 hoi = 400 hoi = 431 hoi = 468 hoi = 469 hoi = 432 hoi = 470 }	# Kuopio -> Ilomantsi, Jänisjärvi, Koitere, Lieksa, Nurmes, Maanselkä, Sonkajärvi, Kiuruvesi, Leppälahti, Sälevä, Juankoski, Romppala, Kuopio, Närhilä, Suontee, Hankasalmi, Pieksämäki, Palokki, Joensuu
 # Germany and the Low Countries
 link = { vic = 383 hoi = 1674 }	# Groningen -> Delfzijl
-link = { vic = 385 hoi = 1618 hoi = 1672 hoi = 1732 hoi = 1673 hoi = 1569 }	# Leeuwarden -> Dokkum, Leeuwarden, Heerenveen, Groningen, Waddenneilanden
+link = { vic = 385 hoi = 1618 hoi = 1672 hoi = 1732 hoi = 1673 hoi = 1569 }	# Leeuwarden -> Dokkum, Leeuwarden, Heerenveen, Groningen, Waddeneilanden
 link = { vic = 386 hoi = 1733 hoi = 1853 hoi = 1793 }	# Assen -> Assen, Hoogeveen, Emmen
-link = { vic = 384 hoi = 1792 hoi = 1913 hoi = 1852 hoi = 1912 hoi = 1968 }	# Zwolle -> Steenvijk, Enschede, Zwolle, Deventer, Winterswijk
+link = { vic = 384 hoi = 1792 hoi = 1913 hoi = 1852 hoi = 1912 hoi = 1968 }	# Zwolle -> Steenwijk, Enschede, Zwolle, Deventer, Winterswijk
 link = { vic = 382 hoi = 1911 hoi = 1967 hoi = 2025 }	# Arnhem -> Amersfoort, Apeldoorn, Arnhem
 link = { vic = 377 hoi = 1966 }	# Utrecht -> Utrecht
 link = { vic = 375 hoi = 1671 hoi = 1791 hoi = 1851 hoi = 1910 }	# Amsterdam -> Den Helder, Alkmaar, Haarlem, Amsterdam
-link = { vic = 376 hoi = 1965 hoi = 2023 hoi = 2022 }	# Rotterdam -> Dordrecht, Breda, DenHaag
+link = { vic = 376 hoi = 1965 hoi = 2023 hoi = 2022 }	# Rotterdam -> Dordrecht, Breda, Den Haag
 link = { vic = 378 hoi = 2080 hoi = 2138 hoi = 2081 }	# Middelburg -> Middelburg, Roosendaal, Rotterdam
-link = { vic = 380 hoi = 2139 hoi = 2082 }	# Breda -> Tilburg, s Hertogenbosch
+link = { vic = 380 hoi = 2139 hoi = 2082 }	# Breda -> Tilburg, 's Hertogenbosch
 link = { vic = 379 hoi = 2198 hoi = 2024 hoi = 2083 }	# Eindhoven -> Eindhoven, Ede, Nijmwegen
 link = { vic = 381 hoi = 2199 hoi = 2140 }	# Maastricht -> Venlo, Maastricht
 link = { vic = 388 hoi = 2137 }	# Bruges -> Brugge
@@ -122,7 +122,7 @@ link = { vic = 394 hoi = 2310 }	# Charleroi -> Tournai
 link = { vic = 387 hoi = 2253 hoi = 2311 }	# Brussels -> Aalst, Bruxelles
 link = { vic = 392 hoi = 2369 hoi = 2427 }	# Namur -> Namur, Philippeville
 link = { vic = 391 hoi = 10685 hoi = 2254 }	# Hasselt -> Turnhout, Leuven
-link = { vic = 395 hoi = 2312 hoi = 2255 }	# Liege -> Liège, Hasselt
+link = { vic = 395 hoi = 2312 hoi = 2255 }	# Liège -> Liège, Hasselt
 link = { vic = 396 hoi = 2313 hoi = 2370 }	# Spa -> Verviers, Bastogne
 link = { vic = 398 hoi = 2428 hoi = 2489 }	# Arlon -> Dinant, Arlon
 link = { vic = 397 hoi = 2429 }	# Luxembourg -> Luxembourg
@@ -132,163 +132,163 @@ link = { vic = 2557 hoi = 1211 hoi = 1256 hoi = 1345 hoi = 1346 }	# Esbjerg -> H
 link = { vic = 366 hoi = 1257 hoi = 1301 }	# Aarhus -> Randers, Århus
 link = { vic = 372 hoi = 1436 hoi = 1437 hoi = 1482 hoi = 1526 }	# Copenhagen -> Slagelse, Helsingör, Copenhagen, Guldborgssund
 link = { vic = 373 hoi = 1391 hoi = 1435 hoi = 1481 }	# Odense -> Odense, Faaborg, Svendborg
-link = { vic = 371 hoi = 1390 hoi = 1434 }	# Abenra -> Tönder, Sönderborg
+link = { vic = 371 hoi = 1390 hoi = 1434 }	# Aabenraa -> Tönder, Sönderborg
 link = { vic = 370 hoi = 1479 hoi = 1525 }	# Flensburg -> Leck, Flensburg
-link = { vic = 369 hoi = 1571 hoi = 1572 hoi = 1621 }	# Kiel -> Schleswig, Kiel, Neumünster
+link = { vic = 369 hoi = 1571 hoi = 1572 hoi = 1621 }	# Kiel -> Heide, Kiel, Neumünster
 link = { vic = 528 hoi = 1737 }	# Hamburg -> Hamburg
 link = { vic = 531 hoi = 1677 hoi = 1620 }	# Stade -> Stade, Cuxhaven
 link = { vic = 539 hoi = 1676 hoi = 1736 }	# Bremen -> Bremerhaven, Bremen
-link = { vic = 540 hoi = 1570 hoi = 1735 hoi = 1675 hoi = 1795 }	# Oldenburg -> Wilhelmshaven, Oldenburg, Wiesmoor, Harpstedt
-link = { vic = 543 hoi = 1734 hoi = 1619 }	# Emden -> Emden, Norden
+link = { vic = 540 hoi = 1570 hoi = 1735 hoi = 1675 hoi = 1795 }	# Oldenburg -> Wilhelmshaven, Oldenburg, Leer, Delmenhorst
+link = { vic = 543 hoi = 1734 hoi = 1619 }	# Emden -> Winschoten, Emden
 link = { vic = 529 hoi = 1678 }	# Lauenburg -> Segeberg
-link = { vic = 530 hoi = 1679 hoi = 1622 hoi = 1738 }	# Lubeck -> Lübeck, Malente, Mölln
-link = { vic = 544 hoi = 1798 hoi = 1739 hoi = 1799 hoi = 1740 }	# Schwerin -> Schwerin, Wismar, Parchim, Rostock
+link = { vic = 530 hoi = 1679 hoi = 1622 hoi = 1738 }	# Lübeck -> Lübeck, Plön, Mölln
+link = { vic = 544 hoi = 1798 hoi = 1739 hoi = 1799 hoi = 1740 }	# Schwerin -> Schwerin, Wismar, Güstrow, Rostock
 link = { vic = 548 hoi = 1680 }	# Stralsund -> Stralsund
-link = { vic = 547 hoi = 1742 hoi = 1681 hoi = 1623 }	# Swinemunde -> Swinemünde, Wolgast, Rügen
-link = { vic = 545 hoi = 1800 hoi = 1741 }	# Neustrelitz -> Neubrandenburg, Greifswald
-link = { vic = 550 hoi = 1801 hoi = 1862 }	# Prenzlau -> Pasewalk, Schwedt an der Oder
-link = { vic = 546 hoi = 1743 hoi = 1802 }	# Stettin -> Griefenburg, Stettin
-link = { vic = 679 hoi = 1683 hoi = 1744 }	# Kolberg -> Kolberg, Falkenburg
-link = { vic = 680 hoi = 1624 hoi = 1684 hoi = 1625 }	# Koslin -> Köslin, Bublitz, Stolp
+link = { vic = 547 hoi = 1742 hoi = 1681 hoi = 1623 }	# Swinemünde -> Stettin, Wolgast, Greifswald
+link = { vic = 545 hoi = 1800 hoi = 1741 }	# Neustrelitz -> Waren, Neubrandenburg
+link = { vic = 550 hoi = 1801 hoi = 1862 }	# Prenzlau -> Prenzlau, Schwedt an der Oder
+link = { vic = 546 hoi = 1743 hoi = 1802 }	# Stettin -> Greifenberg, Gollnow
+link = { vic = 679 hoi = 1683 hoi = 1744 }	# Kolberg -> Kolberg, Belgard
+link = { vic = 680 hoi = 1624 hoi = 1684 hoi = 1625 }	# Koslin -> Köslin, Rügenwalde, Stolp
 link = { vic = 690 hoi = 1626 }	# Danzig -> Danzig
-link = { vic = 691 hoi = 1573 hoi = 1685 hoi = 1746 hoi = 1745 }	# Tuchel -> Lauenburg, Chojnice, Grudziadz, Naklo nad Notecia
-link = { vic = 693 hoi = 1627 hoi = 1686 hoi = 1747 }	# Elbing -> Elbing, Marienburg, Rosenberg
-link = { vic = 696 hoi = 1748 hoi = 1688 hoi = 1749 hoi = 1689 hoi = 1629 hoi = 1628 hoi = 1574 hoi = 1687 }	# Allenstein -> Allenstein, Sensburg, Johannisburg, Lyck, Lötzen, Guttstadt, Braunsberg, Mohrungen
-link = { vic = 695 hoi = 1439 hoi = 1527 hoi = 1485 hoi = 1575 hoi = 1528 }	# Konigsburg -> Rauschen, Königsberg, Labiau, Bartenstein, Insterburg
+link = { vic = 691 hoi = 1573 hoi = 1685 hoi = 1746 hoi = 1745 }	# Tuchel -> Lauenburg, Koscierzyna, Grudziadz, Tuchola
+link = { vic = 693 hoi = 1627 hoi = 1686 hoi = 1747 }	# Elbing -> Elbing, Marienburg, Osterode
+link = { vic = 696 hoi = 1748 hoi = 1688 hoi = 1749 hoi = 1689 hoi = 1629 hoi = 1628 hoi = 1574 hoi = 1687 }	# Allenstein -> Allenstein, Sensburg, Johannisburg, Lyck, Lötzen, Wormditt, Braunsberg, Mohrungen
+link = { vic = 695 hoi = 1439 hoi = 1527 hoi = 1485 hoi = 1575 hoi = 1528 }	# Königsberg -> Cranz, Königsberg, Labiau, Bartenstein, Insterburg
 link = { vic = 697 hoi = 1576 hoi = 1577 hoi = 1529 }	# Gumbinnen -> Goldap, Kalvarija, Virbalis
-link = { vic = 698 hoi = 1395 hoi = 1440 hoi = 1486 }	# Memel -> Silute, Tilsit, Ragnit
-link = { vic = 365 hoi = 1306 hoi = 1307 hoi = 1351 }	# Palanga -> Klaipeda, Plunge, Laukuva
+link = { vic = 698 hoi = 1395 hoi = 1440 hoi = 1486 }	# Memel -> Palanga, Tilsit, Ragnit
+link = { vic = 365 hoi = 1306 hoi = 1307 hoi = 1351 }	# Palanga -> Memel, Plunge, Laukuva
 link = { vic = 364 hoi = 1352 hoi = 1397 hoi = 1441 hoi = 1396 }	# Siauliai -> Kelme, Raseiniai, Jurbarkas, Taurage
-link = { vic = 363 hoi = 1353 hoi = 1398 hoi = 1354 hoi = 1399 hoi = 1355 hoi = 1444 hoi = 1443 hoi = 1531 }	# Panevezys -> Seduva, Jonava, Ukmerge, Sirvintos, Utena, Pabrade, Kaisiadorys, Semeliskes
+link = { vic = 363 hoi = 1353 hoi = 1398 hoi = 1354 hoi = 1399 hoi = 1355 hoi = 1444 hoi = 1443 hoi = 1531 }	# Panevezys -> Panevezys, Jonava, Ukmerge, Utena, Swieciany, Niemeczyn, Sirvintos, Olkieniki
 link = { vic = 359 hoi = 1218 hoi = 1176 hoi = 1261 }	# Liepaja -> Liepaja, Alsunga, Vainode
-link = { vic = 358 hoi = 1096 hoi = 1097 hoi = 1136 hoi = 1177 hoi = 1219 hoi = 1262 }	# Ventspils -> Ventspils, Valdemãrpils, Talsi, Tukums, Saldus, Dobele
+link = { vic = 358 hoi = 1096 hoi = 1097 hoi = 1136 hoi = 1177 hoi = 1219 hoi = 1262 }	# Ventspils -> Ventspils, Valdemãrpils, Stende, Tukums, Saldus, Dobele
 link = { vic = 354 hoi = 1178 hoi = 1138 }	# Riga -> Riga, Sigulda
-link = { vic = 357 hoi = 1137 hoi = 1220 hoi = 1263 hoi = 1308 hoi = 1221 hoi = 1309 }	# Jelgava -> Jurmala, Jelgava, Bauska, Siauliai, Aizkraukle, Panevezys
-link = { vic = 356 hoi = 1222 hoi = 1264 hoi = 1310 hoi = 1265 hoi = 1311 hoi = 1223 hoi = 1224 hoi = 1266 }	# Daugavpils -> Jekabpils, Birzai, Svedasai, Livani, Daugavpils, Rezekne, Ludza, Dagda
-link = { vic = 355 hoi = 1098 hoi = 1061 hoi = 1099 hoi = 1100 hoi = 1139 hoi = 1179 hoi = 1180 hoi = 1181 hoi = 1140 }	# Valmiera -> Cesis, Salacgriva, Valka, Vilaka, Jaunpiebalga, Ergli, Madona, Karsava, Gulbene
-link = { vic = 351 hoi = 1060 hoi = 1024 hoi = 987 hoi = 1025 }	# Parnu -> Aloja, Abja-Paluoja, Imavere, Rõngu
-link = { vic = 352 hoi = 1062 hoi = 1026 hoi = 988 hoi = 947 }	# Dorpat -> Võru, Petseri, Tartu, Jogeva
-link = { vic = 349 hoi = 945 hoi = 986 hoi = 906 hoi = 863 hoi = 946 }	# Reval -> Risti, Pärnu, Tallinn, Tapa, Paide
-link = { vic = 350 hoi = 820 hoi = 864 hoi = 819 hoi = 907 }	# Narva -> Narva, Kohtla-Järve, Kivioli, Mustvee
-link = { vic = 572 hoi = 2552 hoi = 2490 hoi = 2430 }	# Trier -> Metz, Saarlouis, Trier
-link = { vic = 573 hoi = 2553 }	# Saarbrucken -> Saarbrücken
+link = { vic = 357 hoi = 1137 hoi = 1220 hoi = 1263 hoi = 1308 hoi = 1221 hoi = 1309 }	# Jelgava -> Jurmala, Jelgava, Bauska, Siauliai, Aizkraukle, Pasvalis
+link = { vic = 356 hoi = 1222 hoi = 1264 hoi = 1310 hoi = 1265 hoi = 1311 hoi = 1223 hoi = 1224 hoi = 1266 }	# Daugavpils -> Jekabpils, Birzai, Rokiskis, Livani, Daugavpils, Rezekne, Ludza, Dagda
+link = { vic = 355 hoi = 1098 hoi = 1061 hoi = 1099 hoi = 1100 hoi = 1139 hoi = 1179 hoi = 1180 hoi = 1181 hoi = 1140 }	# Valmiera -> Salacgriva, Valka, Ape, Aluksne, Jaunpiebalga, Ergli, Madona, Karsava, Gulbene
+link = { vic = 351 hoi = 1060 hoi = 1024 hoi = 987 hoi = 1025 }	# Pärnu -> Sindi, Viljandi, Vöhma, Röngu
+link = { vic = 352 hoi = 1062 hoi = 1026 hoi = 988 hoi = 947 }	# Dorpat -> Vöru, Räpina, Tartu, Jogeva
+link = { vic = 349 hoi = 945 hoi = 986 hoi = 906 hoi = 863 hoi = 946 }	# Reval -> Haapsalu, Pärnu, Tallinn, Tapa, Rapla
+link = { vic = 350 hoi = 820 hoi = 864 hoi = 819 hoi = 907 }	# Narva -> Narva, Kohtla Järve, Rakvere, Paide
+link = { vic = 572 hoi = 2552 hoi = 2490 hoi = 2430 }	# Trier -> Cattenom, Saarlouis, Trier
+link = { vic = 573 hoi = 2553 }	# Saarbrücken -> Saarbrücken
 link = { vic = 576 hoi = 2256 hoi = 2371 }	# Aachen -> Aachen, Bitburg
-link = { vic = 577 hoi = 2084 hoi = 2141 hoi = 2200 }	# Kleves -> Duisburg, Kalkar, Münchengladbach
-link = { vic = 578 hoi = 2142 }	# Dusseldorf -> Düsseldorf
-link = { vic = 580 hoi = 2143 hoi = 2085 hoi = 2086 }	# Dortmund -> Dortmund, Recklinghausen, Arnsberg
-link = { vic = 581 hoi = 1969 hoi = 2026 hoi = 2027 }	# Munster -> Münster, Bocholt, Hamm
-link = { vic = 542 hoi = 1794 hoi = 1854 }	# Lingen -> Cloppenburg, Lingen
+link = { vic = 577 hoi = 2084 hoi = 2141 hoi = 2200 }	# Cleves -> Kleve, Krefeld, M. Gladbach
+link = { vic = 578 hoi = 2142 }	# Düsseldorf -> Düsseldorf
+link = { vic = 580 hoi = 2143 hoi = 2085 hoi = 2086 }	# Dortmund -> Dortmund, Essen, Hamm
+link = { vic = 581 hoi = 1969 hoi = 2026 hoi = 2027 }	# Münster -> Nordhorn, Bocholt, Münster
+link = { vic = 542 hoi = 1794 hoi = 1854 }	# Lingen -> Papenburg, Meppen
 link = { vic = 541 hoi = 1855 }	# Cloppenburg -> Vechta
-link = { vic = 532 hoi = 1797 hoi = 1858 }	# Luneburg -> Lüneburg, Lückow
-link = { vic = 535 hoi = 1856 hoi = 1796 }	# Nienburg -> Nienburg, Walsrode
+link = { vic = 532 hoi = 1797 hoi = 1858 }	# Lüneburg -> Lüneburg, Lüchow
+link = { vic = 535 hoi = 1856 hoi = 1796 }	# Nienburg -> Minden, Walsrode
 link = { vic = 534 hoi = 1857 }	# Hanover -> Hannover
 link = { vic = 585 hoi = 1971 }	# Detmold -> Detmold
-link = { vic = 538 hoi = 1914 hoi = 1970 }	# Osnabruck -> Osnabrück, Herford
-link = { vic = 582 hoi = 1915 hoi = 2028 }	# Minden -> Minden, Paderborn
-link = { vic = 557 hoi = 1919 hoi = 1859 hoi = 1918 }	# Stendal -> Stendal, Ludwigslust, Gardelegen
-link = { vic = 553 hoi = 1974 hoi = 2032 }	# Magdeburg -> Magdeburg, Bernburg
-link = { vic = 536 hoi = 1917 hoi = 2031 hoi = 1972 hoi = 1916 hoi = 1973 hoi = 2030 }	# Brunswick -> Braunschweig, Halberstadt, Hildesheim, Bückenburg, Oschersleben, Goslar
-link = { vic = 537 hoi = 2088 hoi = 2029 hoi = 2089 hoi = 2146 hoi = 2087 }	# Gottingen -> Göttingen, Beverungen, Bad Harzburg, Duderstadt, Eschwege
+link = { vic = 538 hoi = 1914 hoi = 1970 }	# Osnabrück -> Lingen, Osnabrück
+link = { vic = 582 hoi = 1915 hoi = 2028 }	# Minden -> Bielefeld, Paderborn
+link = { vic = 557 hoi = 1919 hoi = 1859 hoi = 1918 }	# Stendal -> Wittenberge, Parchim, Osterburg
+link = { vic = 553 hoi = 1974 hoi = 2032 }	# Magdeburg -> Magdeburg, Zerbst
+link = { vic = 536 hoi = 1917 hoi = 2031 hoi = 1972 hoi = 1916 hoi = 1973 hoi = 2030 }	# Brunswick -> Uelzen, Oschersleben, Soltau, Nienburg, Salzwedel, Braunschweig
+link = { vic = 537 hoi = 2088 hoi = 2029 hoi = 2089 hoi = 2146 hoi = 2087 }	# Göttingen -> Göttingen, Hildesheim, Nordhausen, Duderstadt, Eschwege
 link = { vic = 583 hoi = 2258 }	# Siegen -> Siegen
 link = { vic = 2561 hoi = 2201 hoi = 2315 }	# Siegburg -> Wuppertal, Hennef
 link = { vic = 575 hoi = 2257 hoi = 2314 }	# Cologne -> Köln, Düren
-link = { vic = 574 hoi = 2372 hoi = 2431 hoi = 2491 }	# Kreuznach -> Bonn, Wiesbaden, St Wendel
+link = { vic = 574 hoi = 2372 hoi = 2431 hoi = 2491 }	# Kreuznach -> Bonn, Wiesbaden, St. Wendel
 link = { vic = 579 hoi = 2373 }	# Koblenz -> Koblenz
-link = { vic = 584 hoi = 2144 hoi = 2202 }	# Korbach -> Brilon, Bad Berleburg
+link = { vic = 584 hoi = 2144 hoi = 2202 }	# Korbach -> Korbach, Marburg
 link = { vic = 566 hoi = 2145 hoi = 2204 hoi = 2203 }	# Kassel -> Kassel, Bebra, Borken
-link = { vic = 554 hoi = 2262 hoi = 2205 hoi = 2206 hoi = 2147 }	# Erfurt -> Erfurt, Mühlhausen, Jena, Sonderhausen
-link = { vic = 555 hoi = 2091 }	# Dessau -> Dessau
-link = { vic = 556 hoi = 2148 hoi = 2090 hoi = 2149 hoi = 2150 hoi = 2092 }	# Halle -> Halle, Stendal, Torgau, Senftenberg, Finsterwalde
-link = { vic = 551 hoi = 1860 hoi = 1920 }	# Pritzwalk -> Wittenberge, Potsdam
-link = { vic = 549 hoi = 1861 hoi = 1976 hoi = 1921 hoi = 2034 hoi = 2033 hoi = 1975 }	# Berlin -> Berlin, Lyckenwalde, Erkner, Lübben, Neuruppin, Bradenburg
-link = { vic = 552 hoi = 2093 hoi = 1977 hoi = 1922 }	# Cottbus -> Cottbus, Frankfurt (Oder), Neudamm
+link = { vic = 554 hoi = 2262 hoi = 2205 hoi = 2206 hoi = 2147 }	# Erfurt -> Erfurt, Mühlhausen, Jena, Sangerhausen
+link = { vic = 555 hoi = 2091 }	# Dessau -> Wittenberg
+link = { vic = 556 hoi = 2148 hoi = 2090 hoi = 2149 hoi = 2150 hoi = 2092 }	# Halle -> Dessau, Stendal, Meißen, Hoyerswerda, Finsterwalde
+link = { vic = 551 hoi = 1860 hoi = 1920 }	# Pritzwalk -> Pritzwalk, Potsdam
+link = { vic = 549 hoi = 1861 hoi = 1976 hoi = 1921 hoi = 2034 hoi = 2033 hoi = 1975 }	# Berlin -> Berlin, Neustrelitz, Eberswalde, Lübben, Neuruppin, Brandenburg
+link = { vic = 552 hoi = 2093 hoi = 1977 hoi = 1922 }	# Cottbus -> Cottbus, Frankfurt an der Oder, Küstrin
 link = { vic = 567 hoi = 2317 }	# Giessen -> Giessen
 link = { vic = 564 hoi = 2374 }	# Frankfurt -> Frankfurt am Main
 link = { vic = 565 hoi = 2316 hoi = 2259 }	# Wiesbaden -> Wetzlar, Friedberg
 link = { vic = 570 hoi = 2432 }	# Mainz -> Mainz
-link = { vic = 571 hoi = 2492 hoi = 2554 }	# Kaiserlautern -> Kaiserslautern, Aschaffenburg
+link = { vic = 571 hoi = 2492 hoi = 2554 }	# Kaiserslautern -> Kaiserslautern, Aschaffenburg
 link = { vic = 2560 hoi = 2433 }	# Darmstadt -> Darmstadt
 link = { vic = 569 hoi = 2493 }	# Mannheim -> Mannheim
-link = { vic = 590 hoi = 2556 hoi = 2622 }	# Heilbronn -> Heilbronn, Öhringen
-link = { vic = 586 hoi = 2555 hoi = 2620 hoi = 2751 hoi = 2686 }	# Karlsruhe -> Karlsruhe, Rastatt, Villingen, Dieburg
-link = { vic = 587 hoi = 2948 hoi = 3016 hoi = 2882 hoi = 3084 }	# Freiburg -> Baden, Hinterzarten, Donaueschingen, Todtmoos
-link = { vic = 591 hoi = 2752 hoi = 2816 }	# Tubingen -> Tübingen, Rottweil
-link = { vic = 593 hoi = 2884 hoi = 2950 hoi = 3019 hoi = 3086 hoi = 3152 hoi = 3153 }	# Ulm -> Ulm, Ehingen, Kempten, Leutkirch, Friedrichshafen, Oberstdorf
+link = { vic = 590 hoi = 2556 hoi = 2622 }	# Heilbronn -> Wertheim, Rothenburg o.d.Tauber
+link = { vic = 586 hoi = 2555 hoi = 2620 hoi = 2751 hoi = 2686 }	# Karlsruhe -> Bensheim, Ludwigshafen, Karlsruhe, Dieburg
+link = { vic = 587 hoi = 2948 hoi = 3016 hoi = 2882 hoi = 3084 }	# Freiburg -> Offenburg, Freiburg, Baden Baden, Lörrach
+link = { vic = 591 hoi = 2752 hoi = 2816 }	# Tübingen -> Tübingen, Pforzheim
+link = { vic = 593 hoi = 2884 hoi = 2950 hoi = 3019 hoi = 3086 hoi = 3152 hoi = 3153 }	# Ulm -> Ulm, Ehingen, Biberach, Leutkirch, Friedrichshafen, Oberstdorf
 link = { vic = 594 hoi = 2817 hoi = 2883 }	# Sigmaringen -> Reutlingen, Künzelsau
-link = { vic = 589 hoi = 2687 hoi = 2621 hoi = 2753 }	# Stuttgart -> Stuttgart, Pforzheim, Schwäbish Gmünd
-link = { vic = 588 hoi = 3085 hoi = 3017 hoi = 2949 hoi = 3018 }	# Konstanz -> Konstanz, Blumberg, Heilbronn, Stockach
+link = { vic = 589 hoi = 2687 hoi = 2621 hoi = 2753 }	# Stuttgart -> Stuttgart, Mosbach, Schwäbisch Gmünd
+link = { vic = 588 hoi = 3085 hoi = 3017 hoi = 2949 hoi = 3018 }	# Konstanz -> Konstanz, Rottweil, Heilbronn, Tuttlingen
 link = { vic = 568 hoi = 2260 }	# Fulda -> Fulda
 link = { vic = 562 hoi = 2261 hoi = 2319 }	# Gotha -> Eisenach, Naumburg
 link = { vic = 596 hoi = 2375 }	# Aschaffenburg -> Gelnhausen
-link = { vic = 563 hoi = 2318 hoi = 2376 }	# Meiningen -> Meiningen, Schweinfurt
-link = { vic = 597 hoi = 2494 hoi = 2557 hoi = 2434 hoi = 2495 }	# Wurzburg -> Bad Kissingen, Bad Mergentheim, Würzburg, Sonneberg
+link = { vic = 563 hoi = 2318 hoi = 2376 }	# Meiningen -> Suhl, Schweinfurt
+link = { vic = 597 hoi = 2494 hoi = 2557 hoi = 2434 hoi = 2495 }	# Würzburg -> Bad Kissingen, Kitzingen, Würzburg, Sonneberg
 link = { vic = 559 hoi = 2207 hoi = 2264 hoi = 2263 hoi = 2322 }	# Leipzig -> Leipzig, Kamenz, Torgau, Pirna
-link = { vic = 558 hoi = 2208 hoi = 2265 }	# Dresden -> Dresden, Neukirch
-link = { vic = 687 hoi = 2151 hoi = 2209 }	# Gorlitz -> Görlitz, Bautzen
-link = { vic = 681 hoi = 2094 hoi = 2035 hoi = 1978 hoi = 1923 }	# Kustrin -> Sorau, Eisenhüttenstadt, Reppen, Landsberg
-link = { vic = 692 hoi = 1863 hoi = 1864 hoi = 1803 hoi = 1804 }	# Deutsch Krone -> Stargard, Woldenberg, Arnswalde, Schneidenmühl
+link = { vic = 558 hoi = 2208 hoi = 2265 }	# Dresden -> Dresden, Bautzen
+link = { vic = 687 hoi = 2151 hoi = 2209 }	# Gorlitz -> Sorau, Görlitz
+link = { vic = 681 hoi = 2094 hoi = 2035 hoi = 1978 hoi = 1923 }	# Kustrin -> Grünberg, Guben, Schwiebus, Landsberg
+link = { vic = 692 hoi = 1863 hoi = 1864 hoi = 1803 hoi = 1804 }	# Deutsch Krone -> Stargard, Schneidmühl, Deutsch Krone, Neustettin
 link = { vic = 561 hoi = 2320 hoi = 2377 }	# Weimar -> Gera, Halle
-link = { vic = 560 hoi = 2321 hoi = 2378 hoi = 2379 hoi = 2437 }	# Chemnitz -> Chemnitz, Zwickau, Altenberg, Klingenthal
-link = { vic = 598 hoi = 2435 hoi = 2436 hoi = 2496 }	# Bayreuth -> Bamberg, Bayeruth, Hof
-link = { vic = 595 hoi = 2558 hoi = 2623 hoi = 2624 hoi = 2689 hoi = 2688 }	# Nuremburg -> Nürnberg, Ansbach, Neumarkt, Bayreuth, Crailsheim
-link = { vic = 602 hoi = 2559 hoi = 2690 hoi = 2756 }	# Regensburg -> Amberg, Schwandorf, Straubing
-link = { vic = 601 hoi = 2754 hoi = 2819 hoi = 2755 }	# Ingolstadt -> Nördlingen, Aichach, Ingolstadt
-link = { vic = 600 hoi = 2820 hoi = 2887 hoi = 2821 hoi = 2888 }	# Landshut -> Landshut, Mühldorf am Inn, Pfarrkirchen, Passau
-link = { vic = 592 hoi = 2885 hoi = 3020 hoi = 2951 hoi = 3087 hoi = 3088 hoi = 2818 hoi = 3154 hoi = 3222 }	# Augsburg -> Augsburg, Weilheim, Mindelheim, Marktoberdorf, Bad Tölz, Heidenheim, Murnau, Kreuth
-link = { vic = 599 hoi = 2952 hoi = 3021 hoi = 3155 hoi = 3089 hoi = 2953 hoi = 2886 hoi = 2954 hoi = 3156 }	# Munich -> München, Augsburg, Rosenheim, Traunstein, Trostberg, Freising, Burghausen, Bad Reichenhall
+link = { vic = 560 hoi = 2321 hoi = 2378 hoi = 2379 hoi = 2437 }	# Chemnitz -> Chemnitz, Zwickau, Altenberg, Aue
+link = { vic = 598 hoi = 2435 hoi = 2436 hoi = 2496 }	# Bayreuth -> Coburg, Plauen, Hof
+link = { vic = 595 hoi = 2558 hoi = 2623 hoi = 2624 hoi = 2689 hoi = 2688 }	# Nuremberg -> Nürnberg, Bamberg, Amberg, Bayreuth, Crailsheim
+link = { vic = 602 hoi = 2559 hoi = 2690 hoi = 2756 }	# Regensburg -> Weiden, Schwandorf, Cham
+link = { vic = 601 hoi = 2754 hoi = 2819 hoi = 2755 }	# Ingolstadt -> Ansbach, Eichstätt, Neumarkt
+link = { vic = 600 hoi = 2820 hoi = 2887 hoi = 2821 hoi = 2888 }	# Landshut -> Regensburg, Straubing, Deggendorf, Passau
+link = { vic = 592 hoi = 2885 hoi = 3020 hoi = 2951 hoi = 3087 hoi = 3088 hoi = 2818 hoi = 3154 hoi = 3222 }	# Augsburg -> Donauwörth, Landsberg am Lech, Neu Ulm, Memmingen, Kaufbeuren, Heidenheim, Kempten, Garmisch Partenkirchen
+link = { vic = 599 hoi = 2952 hoi = 3021 hoi = 3155 hoi = 3089 hoi = 2953 hoi = 2886 hoi = 2954 hoi = 3156 }	# Munich -> München, Augsburg, Rosenheim, Traunstein, Landshut, Ingolstadt, Pfarrkirchen, Bad Reichenhall
 # North America & Greenland
-link = { vic = 2636 vic = 2591 hoi = 6643 }	# Aasiaat, Sisimiut -> 
-link = { vic = 2632 hoi = 8418 hoi = 10675 }	# Isortoq -> Tasilaq, greenland
-link = { vic = 251 hoi = 8524 hoi = 10683 }	# Nuuk -> Nuuk, siberia 1
+link = { vic = 2636 vic = 2591 hoi = 6643 }	# Egedesminde, Holsteinsborg -> Sisimiut
+link = { vic = 2632 hoi = 8418 hoi = 10675 }	# Ammassalik -> Ammassalik, Thule
+link = { vic = 251 hoi = 8524 hoi = 10683 }	# Godthab -> Godthab, Timmiarmiut
 link = { vic = 75 hoi = 8589 hoi = 8622 }	# Millertown -> Cook's Harbour, Morts
-link = { vic = 74 hoi = 8654 hoi = 8623 hoi = 8682 hoi = 8734 }	# Saint Johns -> Windsor, Gander, Rencontre East, St John's
-link = { vic = 62 hoi = 8522 hoi = 8523 hoi = 8487 hoi = 8486 hoi = 8484 hoi = 8485 }	# Sept-Iles -> Havre-St-Pierre, Kegaska, St-Augustin, Olomane, Sept-Iles, Pitaga
-link = { vic = 2625 hoi = 8449 hoi = 8391 }	# Port Hope Simpson -> Happy Valley-Goose Bay, Charlottetown
+link = { vic = 74 hoi = 8654 hoi = 8623 hoi = 8682 hoi = 8734 }	# Saint Johns -> Windsor, Gander, Rencontre East, St. John's
+link = { vic = 62 hoi = 8522 hoi = 8523 hoi = 8487 hoi = 8486 hoi = 8484 hoi = 8485 }	# Sept-Îles -> Havre St Pierre, Kegaska, St. Augustin, Olomane, Sept Iles, Pitaga
+link = { vic = 2625 hoi = 8449 hoi = 8391 }	# Port Hope Simpson -> Happy Valley Goose Bay, Charlottetown
 link = { vic = 76 hoi = 6885 }	# Hopedale -> Nain
-link = { vic = 2627 hoi = 11365 }	# Fort Chimo -> north canada
+link = { vic = 2627 hoi = 11365 }	# Fort Chimo -> Kangiqsualujjuaq
 link = { vic = 2626 hoi = 6974 }	# Port Harrison -> Puvurnituq
-link = { vic = 59 hoi = 8521 hoi = 8520 }	# Nitchequon -> Labrador City, Eastmain
+link = { vic = 59 hoi = 8521 hoi = 8520 }	# Nitchequon -> Labrador City, Woollett
 link = { vic = 2593 hoi = 2935 hoi = 6903 }	# Fort George -> Eastmain, Rivière aux Feuilles
 link = { vic = 2592 hoi = 6927 }	# Ungava -> Kangiqsualujjuaq
-link = { vic = 61 hoi = 8588 hoi = 8621 hoi = 8587 hoi = 8557 }	# Chicoutimi -> Baie-Comeau, Chicoutimi, Saguenay, Outardes
-link = { vic = 60 hoi = 3737 hoi = 3669 }	# Charles Fort -> Mistissini, La Sarre
+link = { vic = 61 hoi = 8588 hoi = 8621 hoi = 8587 hoi = 8557 }	# Chicoutimi -> Baie Comeau, Chicoutimi, Saguenay, Outardes
+link = { vic = 60 hoi = 3737 hoi = 3669 }	# Fort Rupert -> Mistissini, La Sarre
 link = { vic = 48 hoi = 3543 hoi = 8519 hoi = 8483 hoi = 8556 }	# Fort Albany -> Fort Albany, Kapuskasing, Cochrane, Timmins
 link = { vic = 2628 hoi = 3540 }	# Attawapiskat -> Attawapiskat
 link = { vic = 47 hoi = 8616 }	# Fort Severn -> Winisk
-link = { vic = 37 hoi = 5027 hoi = 11375 }	# Churchill -> Churchill, north canada
+link = { vic = 37 hoi = 5027 hoi = 11375 }	# Churchill -> Churchill, Lake Lynn
 link = { vic = 43 hoi = 8258 }	# Arviat -> Baker Lake
-link = { vic = 2595 hoi = 11372 hoi = 8257 }	# Nunavut -> north canada, Chesterfield Inlet
-link = { vic = 44 hoi = 8448 hoi = 8390 hoi = 11374 }	# Echo Bay -> Taloyoak, Coral Harbour, north canada
-link = { vic = 45 hoi = 8417 hoi = 14126 hoi = 3796 }	# Baffin Island -> Cumberland, canada, Iqaluit
-link = { vic = 38 hoi = 11362 }	# Indian Lakes -> north canada
+link = { vic = 2595 hoi = 11372 hoi = 8257 }	# Nunavut -> Coral Harbor, Chesterfield Inlet
+link = { vic = 44 hoi = 8448 hoi = 8390 hoi = 11374 }	# Echo Bay -> Taloyoak, Cape Dorset, Repulse Bay
+link = { vic = 45 hoi = 8417 hoi = 14126 hoi = 3796 }	# Baffin Island -> Cumberland, Nettiling, Iqaluit
+link = { vic = 38 hoi = 11362 }	# Indian Lakes -> Back River
 link = { vic = 39 hoi = 8477 hoi = 8478 }	# Norway House -> Norway House, Berens River
 link = { vic = 2594 hoi = 3470 hoi = 3601 }	# Pickle -> Pickle Lake, Nakina
 link = { vic = 49 hoi = 8446 }	# Dryden -> Gold Rock
-link = { vic = 50 hoi = 8480 hoi = 11373 hoi = 8481 hoi = 8447 hoi = 8518 hoi = 8482 }	# Thunder Bay -> Thunder Bay, north canada, Geraldton, Nipigon, White River, Hearst
+link = { vic = 50 hoi = 8480 hoi = 11373 hoi = 8481 hoi = 8447 hoi = 8518 hoi = 8482 }	# Thunder Bay -> Dryden, Nipigon, Geraldton, Thunder Bay, White River, Hearst
 link = { vic = 51 hoi = 8555 hoi = 8619 hoi = 8586 }	# Sault Ste Marie -> Wawa, Sault Sainte Marie, Chapleau
 link = { vic = 52 hoi = 6879 hoi = 3136 hoi = 3202 hoi = 3203 hoi = 3137 hoi = 2934 hoi = 3001 hoi = 3002 hoi = 3069 hoi = 3068 hoi = 3000 hoi = 2933 hoi = 6857 hoi = 2867 hoi = 2868 hoi = 3003 hoi = 3070 hoi = 3071 hoi = 3138 }	# Sudbury -> Sudbury, Huntsville, Midland, Gravenhurst, Kawagama Lake, Opeongo Lake, South River, Mattawa, Whitney, Byng Inlet, Rutter, North Bay, Sturgeon, Cobalt, Temiscaming, Dumoine, Madawaska Lake, Deep River, Killaloe Station
-link = { vic = 63 hoi = 4399 hoi = 8652 hoi = 6924 hoi = 8620 hoi = 4586 hoi = 4400 hoi = 8653 hoi = 6880 hoi = 6902 hoi = 6881 hoi = 6858 hoi = 6840 }	# Temiscaming -> Amos, Malartic, Lac Simàrd, Val-d'Or, Beattyville, Dolbeau, Parent, Dozois, Baskatong, Gatineau, Royun, Kirkland Lake
-link = { vic = 65 hoi = 6859 hoi = 6883 hoi = 6860 hoi = 6905 }	# Quebec City -> La Tuque, Rivière-á-Pierre, Baie-St-Paul, Québec
-link = { vic = 64 hoi = 6951 hoi = 6926 hoi = 6904 hoi = 6882 }	# Trois Rivieres -> Trois-Rivières, St Gabriel, Rivière Matawin, St-Alexis-des-Monts
-link = { vic = 58 hoi = 6992 hoi = 6950 hoi = 6972 hoi = 6925 }	# Montreal -> Montréal, St Jovité, Tracy, Mont Laurier
-link = { vic = 57 hoi = 6949 hoi = 3206 hoi = 3342 hoi = 3272 hoi = 6971 }	# Ottawa -> Gracefield, Fort-Coulonge, Ottawa, Perth, Alexandria
+link = { vic = 63 hoi = 4399 hoi = 8652 hoi = 6924 hoi = 8620 hoi = 4586 hoi = 4400 hoi = 8653 hoi = 6880 hoi = 6902 hoi = 6881 hoi = 6858 hoi = 6840 }	# Temiscaming -> Amos, Malartic, Lac Simàrd, Val d'Or, Beattyville, Dolbeau, Parent, Dozois, Baskatong, Gatineau, Royun, Kirkland Lake
+link = { vic = 65 hoi = 6859 hoi = 6883 hoi = 6860 hoi = 6905 }	# Quebec City -> La Tuque, Rivière á Pierre, Baie St Paul, Québec
+link = { vic = 64 hoi = 6951 hoi = 6926 hoi = 6904 hoi = 6882 }	# Trois-Rivières -> Trois Rivières, St. Gabriel, Rivière Matawin, St. Alexis des Monts
+link = { vic = 58 hoi = 6992 hoi = 6950 hoi = 6972 hoi = 6925 }	# Montreal -> Montréal, St. Jovité, Tracy, Mont Laurier
+link = { vic = 57 hoi = 6949 hoi = 3206 hoi = 3342 hoi = 3272 hoi = 6971 }	# Ottawa -> Gracefield, Fort Coulonge, Ottawa, Perth, Alexandria
 link = { vic = 56 hoi = 3271 hoi = 3341 hoi = 3409 hoi = 3340 hoi = 3205 hoi = 3204 hoi = 3270 }	# Kingston -> Lanark, Brockville, Kingston, Harrowsmith, Pembroke, Bancroft, Madoc
 link = { vic = 46 hoi = 3408 hoi = 3407 hoi = 3476 hoi = 3541 hoi = 3339 hoi = 3338 hoi = 3269 }	# Toronto -> Trenton, Cobourg, Oshawa, Toronto, Havelock, Petersborough, Lakefield
-link = { vic = 53 hoi = 3267 hoi = 3405 hoi = 3475 hoi = 3336 hoi = 3337 hoi = 3268 hoi = 3404 hoi = 3335 hoi = 3406 }	# Barrie -> Owen Sound, Orangeville, Bramton, Collingwood, Barrie, Orillia, Wingham, Kincardine, Newmarket
+link = { vic = 53 hoi = 3267 hoi = 3405 hoi = 3475 hoi = 3336 hoi = 3337 hoi = 3268 hoi = 3404 hoi = 3335 hoi = 3406 }	# Barrie -> Owen Sound, Orangeville, Brampton, Collingwood, Barrie, Orillia, Wingham, Kincardine, Newmarket
 link = { vic = 55 hoi = 3605 hoi = 3668 hoi = 3474 hoi = 3604 hoi = 3667 }	# Hamilton -> Hamilton, Simcoe, Arthur, Kitchener, Stratford
-link = { vic = 54 vic = 77 hoi = 3665 hoi = 3798 hoi = 3731 hoi = 3732 hoi = 3666 hoi = 3603 hoi = 3539 hoi = 3473 }	# Windsor, St Pierre & Miquelon -> Forest, Leamington, Chatham, London, Forest, Great Bend, Seaforth, Goderich
+link = { vic = 54 vic = 77 hoi = 3665 hoi = 3798 hoi = 3731 hoi = 3732 hoi = 3666 hoi = 3603 hoi = 3539 hoi = 3473 }	# Windsor, St Pierre & Miquelon -> Sarnia, Leamington, Chatham, London, Forest, Grand Bend, Seaforth, Goderich
 link = { vic = 66 hoi = 6993 hoi = 6973 hoi = 6952 }	# Sherbrooke -> Sherbrooke, Asbestos, Thetford Mines
 link = { vic = 71 hoi = 7016 hoi = 6997 }	# Halifax -> Yarmouth, Halifax
 link = { vic = 72 hoi = 7017 hoi = 6977 hoi = 6998 }	# Truro -> Sheet Harbour, New Glasgow, Port Hawksbury
 link = { vic = 70 hoi = 6931 }	# Prince Edward Island -> Charlottetown
 link = { vic = 73 hoi = 6956 }	# Cape Breton Island -> Glace Bay
-link = { vic = 67 hoi = 6798 hoi = 6811 hoi = 6841 hoi = 6824 hoi = 6861 hoi = 6884 }	# Rimouski -> Gaspé, La Martre, Matane, New Richmond, Rivière-du-Loup, Montmagny
+link = { vic = 67 hoi = 6798 hoi = 6811 hoi = 6841 hoi = 6824 hoi = 6861 hoi = 6884 }	# Rimouski -> Gaspé, La Martre, Matane, New Richmond, Rivière du Loup, Montmagny
 link = { vic = 69 hoi = 6862 hoi = 6886 hoi = 6907 hoi = 6906 }	# Bathurst -> Matapédia, Caraquet, Plaster Rock, Edmundston
-link = { vic = 68 hoi = 6930 hoi = 6955 hoi = 6976 hoi = 6954 hoi = 6996 }	# Fredericton -> St-Louis-de-Kent, Dieppe, Moncton, Fredericton, Saint John
-link = { vic = 250 hoi = 6928 hoi = 6953 hoi = 6929 }	# Caribou -> St John, Jackman, Millinocket
+link = { vic = 68 hoi = 6930 hoi = 6955 hoi = 6976 hoi = 6954 hoi = 6996 }	# Fredericton -> St. Louis de Kent, Dieppe, Moncton, Fredericton, Saint John
+link = { vic = 250 hoi = 6928 hoi = 6953 hoi = 6929 }	# Caribou -> St. Georges, Mullinocket, Millinocket
 link = { vic = 249 hoi = 6975 hoi = 7015 hoi = 6995 hoi = 7014 hoi = 6994 hoi = 7033 }	# Bangor -> Danforth, Machias, Old Town, Bangor, Monson, Rockland
 link = { vic = 248 hoi = 7013 hoi = 3872 hoi = 7049 hoi = 3741 }	# Lewiston -> Stratton, Waterville, Augusta, Portland
-link = { vic = 12 hoi = 8732 hoi = 11368 hoi = 8308 hoi = 10686 hoi = 4800 hoi = 11364 }	# Reliance -> Reliance, north canada, Kugluktuk, canada, Cambridge Bay, north canada
+link = { vic = 12 hoi = 8732 hoi = 11368 hoi = 8308 hoi = 10686 hoi = 4800 hoi = 11364 }	# Reliance -> Reliance, Aberdeen Lake, Kugluktuk, Bathurst Inlet, Cambridge Bay, Gjoa Haven
 link = { vic = 40 hoi = 8284 hoi = 8365 }	# Dauphin -> Swan River, Russel
 link = { vic = 36 hoi = 8445 }	# Winnipeg -> Winnipeg
 link = { vic = 42 hoi = 8516 }	# Pembina -> Hannah
@@ -303,30 +303,30 @@ link = { vic = 31 hoi = 8386 }	# Stanley -> La Roche
 link = { vic = 2596 hoi = 8705 }	# Fort Resolution -> Stony Rapids
 link = { vic = 27 hoi = 8337 }	# Denwood -> Kerrobert
 link = { vic = 29 hoi = 8387 }	# Medicine Hat -> Morgan
-link = { vic = 4 hoi = 8081 hoi = 8083 hoi = 10734 hoi = 10733 hoi = 10732 hoi = 10684 hoi = 8079 }	# Dutch Harbor -> Aleutian Range, Port Moller, Yunaska Island, Unmak Island, Unalaska Island, Attu Island, Nondalton
-link = { vic = 5 hoi = 8077 }	# Unalakleet -> Bethel
-link = { vic = 2631 hoi = 8075 }	# Yukon -> Nome
-link = { vic = 2599 hoi = 8076 }	# Fort Yukon -> Barrow
-link = { vic = 2630 hoi = 8078 }	# Fairbanks -> Anchorage
+link = { vic = 4 hoi = 8081 hoi = 8083 hoi = 10734 hoi = 10733 hoi = 10732 hoi = 10684 hoi = 8079 }	# Dutch Harbor -> Aleutian Range, Port Moller, Yunaska Island, Umnak Island, Unalaska Island, Attu Island, Nondalton
+link = { vic = 5 hoi = 8077 }	# Bethel -> Bethel
+link = { vic = 2631 hoi = 8075 }	# Unalakeet -> Nome
+link = { vic = 2599 hoi = 8076 }	# Fairbanks -> Barrow
+link = { vic = 2630 hoi = 8078 }	# Cordova -> Anchorage
 link = { vic = 3 hoi = 8087 }	# Kenai -> Kodiak
-link = { vic = 6 hoi = 8082 hoi = 8085 hoi = 8090 }	# Whitehorse -> Valdez, Carmacks, Whitehorse
-link = { vic = 7 hoi = 8232 }	# Dawson -> Brooks Range
-link = { vic = 8 vic = 2598 vic = 10 hoi = 11367 }	# Ross River, Fort Liard, Inuvik -> north canada
-link = { vic = 9 hoi = 8583 hoi = 11377 }	# Fort Simpson -> Tuktoyaktuk, north canada
-link = { vic = 11 hoi = 11392 }	# Echo Bay -> canada
+link = { vic = 6 hoi = 8082 hoi = 8085 hoi = 8090 }	# Whitehorse -> Whitehorse, Atlin, Dease Lake
+link = { vic = 7 hoi = 8232 }	# Dawson -> Dawson
+link = { vic = 8 vic = 2598 vic = 10 hoi = 11367 }	# Ross River, Fort Liard, Inuvik -> Fort McPherson
+link = { vic = 9 hoi = 8583 hoi = 11377 }	# Fort Simpson -> Tuktoyaktuk, Great Bear Lake
+link = { vic = 11 hoi = 11392 }	# Echo Bay -> Point Lake
 link = { vic = 23 hoi = 8312 }	# Athabaska Landing -> Yellowknife
 link = { vic = 22 hoi = 8389 }	# Edmonton -> Fort Chipewyan
 link = { vic = 2597 hoi = 8362 }	# Fort Vermilion -> Paddle Prairie
 link = { vic = 2629 hoi = 8311 hoi = 8189 }	# Beatton River -> Fort Liard, Beatton River
-link = { vic = 17 hoi = 8309 }	# Atlin -> Cassiar
+link = { vic = 17 hoi = 8309 }	# Atlin -> Hyland Post
 link = { vic = 18 vic = 24 hoi = 8472 }	# Fort Saint John, Jasper -> Fort Mcmurray
 link = { vic = 28 hoi = 8335 }	# Fort MacLeod -> Cranbrook
 link = { vic = 25 hoi = 8334 }	# Banff -> Banff
 link = { vic = 21 hoi = 8307 hoi = 6653 hoi = 8255 }	# Vernon -> Fort Macleod, Vernon, Salmon Arm
-link = { vic = 2 hoi = 8088 hoi = 8091 }	# Yakutat -> Alexander Archipelago, Juneau
-link = { vic = 1 hoi = 8112 }	# Sitka -> Sitka
-link = { vic = 15 hoi = 8147 hoi = 8160 hoi = 8173 hoi = 6638 hoi = 6635 hoi = 6641 }	# Prince Rupert -> Ketchikan, Prince Rupert, Smithers, Vanderhoof, Kitimat, Ocean Falls
-link = { vic = 16 hoi = 8135 }	# Glenora -> Wrangell
+link = { vic = 2 hoi = 8088 hoi = 8091 }	# Yakutat -> Alexander Archipelago, Glenora
+link = { vic = 1 hoi = 8112 }	# Sitka -> Alice Arm
+link = { vic = 15 hoi = 8147 hoi = 8160 hoi = 8173 hoi = 6638 hoi = 6635 hoi = 6641 }	# Prince Rupert -> Port Clements, Campbell Island, Smithers, Vanderhoof, Kitimat, Ocean Falls
+link = { vic = 16 hoi = 8135 }	# Glenora -> Prince Rupert
 link = { vic = 19 hoi = 8208 hoi = 8282 hoi = 8231 hoi = 8207 }	# Prince George -> Valleyview, Revelstoke, Hinton, Grande Prairie
 link = { vic = 20 hoi = 6666 hoi = 6676 hoi = 6660 }	# Kelowna -> Kelowna, Castlegar, Kamloops
 link = { vic = 14 hoi = 6659 hoi = 6664 hoi = 6675 hoi = 6670 hoi = 6682 }	# Vancouver Island -> Port McNeill, Campbell River, Port Alberni, Nanaimo, Victoria
@@ -375,7 +375,7 @@ link = { vic = 2481 hoi = 10459 hoi = 10449 hoi = 10445 hoi = 10455 }	# Swan Hil
 link = { vic = 2473 hoi = 10450 hoi = 8033 hoi = 8006 hoi = 10446 hoi = 8025 hoi = 8015 hoi = 8007 hoi = 7998 hoi = 7979 hoi = 7972 hoi = 7980 hoi = 7988 }	# Wagga Wagga -> Deniliquin, Wangaratta, Lockhart, Urana, Albury, Holbrook, Canberra, Wagga Wagga, Ardlethan, Bogan Gate, Orange, Young
 link = { vic = 2475 hoi = 7942 hoi = 10390 hoi = 10378 hoi = 10389 hoi = 10421 hoi = 10432 hoi = 10433 hoi = 10403 hoi = 10414 hoi = 10422 }	# Broken Hill -> Talwood, Dirranbandi, Cunnamulla, Tilpa, Menindee, Darnick, Griffith, Boorindal, Cobar, Mullengudgery
 link = { vic = 2493 hoi = 10454 hoi = 10444 }	# Robe -> Kingston South East, Pinnaroo
-link = { vic = 2491 vic = 2492 vic = 2494 hoi = 10438 }	# Adelaide, Port Lincolon, Port Augusta -> Adelaide
+link = { vic = 2491 vic = 2492 vic = 2494 hoi = 10438 }	# Adelaide, Port Lincoln, Port Augusta -> Adelaide
 link = { vic = 2495 hoi = 10402 hoi = 10369 hoi = 10413 hoi = 10431 hoi = 10420 }	# Oodnadatta -> Lyndhurst, William Creek, Broken Hill, Canopus, Quorn
 link = { vic = 2496 hoi = 10368 hoi = 10377 hoi = 10387 hoi = 10411 hoi = 10401 hoi = 10412 hoi = 10430 hoi = 10400 hoi = 10376 }	# Tarcoola -> Meramangye, Mabel Creek, Maralinga, Nullarbor, Ceduna, Warramboo, Mount Hope, Eucla, Deakin
 link = { vic = 2505 hoi = 7817 hoi = 7816 hoi = 7811 hoi = 7815 hoi = 7810 hoi = 7807 hoi = 6596 hoi = 6587 hoi = 6583 hoi = 6580 hoi = 6584 hoi = 6581 hoi = 6589 hoi = 6585 hoi = 6588 hoi = 6591 hoi = 6597 hoi = 6590 hoi = 6604 hoi = 6603 hoi = 7808 hoi = 6598 hoi = 6605 hoi = 7812 hoi = 6606 hoi = 6599 hoi = 6592 hoi = 6593 hoi = 6600 hoi = 7809 hoi = 6608 hoi = 6607 hoi = 6594 hoi = 6601 hoi = 6602 hoi = 6595 hoi = 10196 }	# Palmerston -> Roper, Larrimah, Pine Creek, Wingate, Victoria, Daly, Darwin, Beagle Gulf, Bathurst, Cape Van Diemen, Melville, Cobourg Peninsula, Goulburn, Croker, Oenpelli, East Alligator, South Alligator, Van Diemen Gulf, Nitmiluk, Rum Jungle, Mataranka, Beswick, Mann, Mainoru, Rose, Arnhem Land, Maningrida, Nangalala, Goyder, Numbulwar, Blue Mud Bay, Mitchell Range, Ramingining, Gapuwiyak, Nhulubuy, Gove Peninsula, Groote Eylandt
@@ -395,12 +395,12 @@ link = { vic = 2605 vic = 2601 hoi = 10335 hoi = 10439 }	# Gibson's Desert, Sand
 # South America
 link = { vic = 2133 hoi = 10488 }	# South Georgia -> South Georgia
 link = { vic = 2131 hoi = 10479 }	# Falkland Islands -> Falkland Islands
-link = { vic = 2400 hoi = 10498 }	# Rio Grande -> Ushuaia
+link = { vic = 2400 hoi = 10498 }	# Río Grande -> Ushuaia
 link = { vic = 2335 hoi = 10493 }	# Porvenir -> Caleta Josefina
 link = { vic = 2334 hoi = 10491 hoi = 10496 }	# Punta Arenas -> Puerto Natales, Punta Arenas
-link = { vic = 2333 hoi = 10451 hoi = 10456 hoi = 10460 hoi = 10463 hoi = 10467 hoi = 10473 hoi = 10482 hoi = 10486 }	# Puerto Aisen -> Corcovado, Puerto Cisnes, Coihaique, Cochrane, Cerro O'Higgins, Cerro Bertrand, Cerro Stokes, Puerto San Carlos
+link = { vic = 2333 hoi = 10451 hoi = 10456 hoi = 10460 hoi = 10463 hoi = 10467 hoi = 10473 hoi = 10482 hoi = 10486 }	# Puerto Aisén -> Corcovado, Puerto Cisnes, Coihaique, Cochrane, Cerro O'Higgins, Cerro Bertrand, Cerro Stokes, Puerto San Carlos
 link = { vic = 2332 hoi = 10391 hoi = 10423 hoi = 10404 hoi = 10441 }	# Osorno -> Osorno, Cochamó, Puerto Montt, Chaitén
-link = { vic = 2399 hoi = 10487 hoi = 10483 hoi = 10478 hoi = 10469 hoi = 10474 }	# Rio Galleagos -> Río Gallegos, Coy Aike, Tapi Aike, Lago Viedma, Monte León
+link = { vic = 2399 hoi = 10487 hoi = 10483 hoi = 10478 hoi = 10469 hoi = 10474 }	# Río Gallegos -> Río Gallegos, Coy Aike, Tapi Aike, Lago Viedma, Monte León
 link = { vic = 2398 hoi = 10470 hoi = 10468 hoi = 10465 hoi = 10466 hoi = 10464 }	# Puerto Deseado -> Rio Chico, Pampa Chica, El Pluma, Cabo Blanco, Pico Truncado
 link = { vic = 2396 hoi = 10461 hoi = 10458 hoi = 10453 hoi = 7992 hoi = 10435 hoi = 10443 hoi = 7991 hoi = 10442 hoi = 10448 }	# Rawson -> Comodoro Rivadavia, Puerto Visser, Camarones, Trelew, Puerto Pirámides, Chasico, Cona Niyeo, Gangán, Las Plumas
 link = { vic = 2397 hoi = 10447 hoi = 10452 hoi = 10457 hoi = 10462 }	# Esquel -> Esquel, Sarmiento, Buen Pasto, Paso Río Mayo
@@ -408,56 +408,56 @@ link = { vic = 2392 hoi = 7964 hoi = 7969 hoi = 7982 hoi = 7975 }	# Viedma -> Sa
 link = { vic = 2355 hoi = 7959 }	# Carmen -> Viedma
 link = { vic = 2328 hoi = 10371 }	# Valdivia -> Valdivia
 link = { vic = 2394 hoi = 10434 hoi = 10424 hoi = 10405 hoi = 7963 hoi = 7954 hoi = 7958 }	# Bariloche -> El Maitén, El Caín, Los Menucos, Valcheta, Sierra Colorada, General Conesa
-link = { vic = 2391 hoi = 10415 hoi = 10392 hoi = 10379 hoi = 10372 hoi = 10355 hoi = 10380 }	# Nequen -> San Carlos de Bariloche, Piedra de Águila, Temuco, Chos Malal, Cerro Payún, Neuquén
+link = { vic = 2391 hoi = 10415 hoi = 10392 hoi = 10379 hoi = 10372 hoi = 10355 hoi = 10380 }	# Neuquén -> San Carlos de Bariloche, Piedra de Águila, Temuco, Chos Malal, Cerro Payún, Neuquén
 link = { vic = 2329 hoi = 10354 hoi = 10362 }	# Temuco -> Concepción, Chillán
 link = { vic = 2330 vic = 2327 hoi = 10342 }	# Cauquenes, Talca -> Talca
-link = { vic = 2331 hoi = 10347 }	# Chillan -> San Clemente
+link = { vic = 2331 hoi = 10347 }	# Chillán -> San Clemente
 link = { vic = 2578 vic = 2308 hoi = 10161 }	# Tacna, Arica -> Arica
 link = { vic = 2307 hoi = 10197 }	# Iquique -> Iquique
 link = { vic = 2309 hoi = 10219 }	# Calama -> Calama
 link = { vic = 2305 hoi = 10251 }	# Antofagasta -> Antofagasta
-link = { vic = 2322 hoi = 10278 hoi = 10291 }	# Copiapo -> Copiapo, Huasco
+link = { vic = 2322 hoi = 10278 hoi = 10291 }	# Copiapó -> Copiapo, Huasco
 link = { vic = 2323 hoi = 10304 }	# La Serena -> La Serena
-link = { vic = 2326 hoi = 10322 }	# Vina del Mar -> Illapel
-link = { vic = 2325 vic = 2324 hoi = 10336 }	# Valparaiso, Santiago -> Santiago
-link = { vic = 2354 hoi = 7949 hoi = 7945 hoi = 7939 }	# Bahia Blanca -> Río Colorado, Bahía Blanca, Trey Arroyos
+link = { vic = 2326 hoi = 10322 }	# Viña del Mar -> Illapel
+link = { vic = 2325 vic = 2324 hoi = 10336 }	# Valparaíso, Santiago -> Santiago
+link = { vic = 2354 hoi = 7949 hoi = 7945 hoi = 7939 }	# Bahía Blanca -> Río Colorado, Bahía Blanca, Trey Arroyos
 link = { vic = 2352 hoi = 7946 hoi = 7940 hoi = 7932 }	# Mar del Plata -> Necochea, Miramar, Mar del Plata
 link = { vic = 2351 hoi = 7916 hoi = 7909 hoi = 7921 hoi = 7904 }	# La Plata -> General Lavalle, Verónica, General Juan Madariaga, La Plata
 link = { vic = 2348 hoi = 7899 }	# Buenos Aires -> Buenos Aires
-link = { vic = 2360 hoi = 7885 hoi = 10325 }	# Parana -> Campana, San Nicolás
-link = { vic = 2359 hoi = 7878 hoi = 10317 hoi = 10295 hoi = 10308 }	# Colon -> Carmelo, Salto, Monte Caseros, Artigas
-link = { vic = 2345 hoi = 7886 hoi = 7879 hoi = 7873 hoi = 7864 hoi = 7869 }	# Paysandu -> San José de Mayo, La Cruz Florida, Mercedes, Concepción del Uruguay, Carmen
+link = { vic = 2360 hoi = 7885 hoi = 10325 }	# Paraná -> Campana, San Nicolás
+link = { vic = 2359 hoi = 7878 hoi = 10317 hoi = 10295 hoi = 10308 }	# Colón -> Carmelo, Salto, Monte Caseros, Artigas
+link = { vic = 2345 hoi = 7886 hoi = 7879 hoi = 7873 hoi = 7864 hoi = 7869 }	# Paysandú -> San José de Mayo, La Cruz Florida, Mercedes, Concepción del Uruguay, Carmen
 link = { vic = 2344 hoi = 7893 }	# Montevideo -> Montevideo
 link = { vic = 2347 hoi = 7887 hoi = 7874 hoi = 7880 hoi = 7894 hoi = 7888 }	# Melo -> Maldonado, Sarandi del Yí, Treinta y Tres, Rocha, Santa Vitória do Palmar
 link = { vic = 2350 hoi = 7926 hoi = 7915 hoi = 7920 hoi = 7931 hoi = 7914 hoi = 7908 hoi = 7925 hoi = 7919 }	# Azul -> Tandil, Dolores, Azul, Juárez, Olavarría, General Belgrano, Santa Elena, Carhué
-link = { vic = 2353 hoi = 7930 hoi = 7913 hoi = 7924 }	# Trenque Lanquen -> Pigüé, San Carlos de Bolívar, Salinqueló
-link = { vic = 2393 hoi = 7955 hoi = 7948 hoi = 7944 hoi = 7937 hoi = 10373 hoi = 10356 hoi = 10364 hoi = 7929 }	# Telen -> Lago del Abra, Benjamín Zorrillo, Choele Choel, Chelforó, Puelches, General Pico, Santa Rosa, General Acha
-link = { vic = 2395 hoi = 10363 }	# Curaco -> Puelén
+link = { vic = 2353 hoi = 7930 hoi = 7913 hoi = 7924 }	# Trenque Lauquen -> Pigüé, San Carlos de Bolívar, Salinqueló
+link = { vic = 2393 hoi = 7955 hoi = 7948 hoi = 7944 hoi = 7937 hoi = 10373 hoi = 10356 hoi = 10364 hoi = 7929 }	# Telén -> Lago del Abra, Benjamín Zorrillo, Choele Choel, Chelforó, Puelches, General Pico, Santa Rosa, General Acha
+link = { vic = 2395 hoi = 10363 }	# Curacó -> Puelén
 link = { vic = 2390 hoi = 10343 }	# San Rafael -> Vargas
 link = { vic = 2389 hoi = 10330 }	# Mendoza -> Mendoza
 link = { vic = 2384 hoi = 10337 hoi = 10348 }	# Mercedes -> San Luis, Santa Isabel
-link = { vic = 2382 hoi = 10344 }	# Renanco -> Mercedes
-link = { vic = 2349 hoi = 7907 hoi = 7903 hoi = 7892 }	# Junin -> Carlos Casares, Chivilcoy, Chacabuco
+link = { vic = 2382 hoi = 10344 }	# Renancó -> Mercedes
+link = { vic = 2349 hoi = 7907 hoi = 7903 hoi = 7892 }	# Junín -> Carlos Casares, Chivilcoy, Chacabuco
 link = { vic = 2363 hoi = 10349 hoi = 7898 }	# Rosario -> Laboulaye Rufino, Junín
-link = { vic = 2361 hoi = 10316 hoi = 10332 hoi = 10307 }	# Santa Espiritu -> Rosario, Pergamino, Santa-Fe
-link = { vic = 2381 hoi = 10338 }	# Rio Cuarto -> Río Cuarto
+link = { vic = 2361 hoi = 10316 hoi = 10332 hoi = 10307 }	# Sancti Spiritu -> Rosario, Pergamino, Santa Fe
+link = { vic = 2381 hoi = 10338 }	# Río Cuarto -> Río Cuarto
 link = { vic = 2383 hoi = 10331 }	# San Luis -> La Toma
-link = { vic = 2464 hoi = 7875 hoi = 7861 }	# Pelotas -> Melo, Camaqua
-link = { vic = 2346 hoi = 7860 hoi = 7865 hoi = 7859 }	# Tacumba -> Minas de Corrales, Ansina, Tacuarembó
-link = { vic = 2467 hoi = 7870 hoi = 7855 }	# Alegrete -> Fraile Muerto, Rivera
+link = { vic = 2464 hoi = 7875 hoi = 7861 }	# Pelotas -> Erval, Camaqua
+link = { vic = 2346 hoi = 7860 hoi = 7865 hoi = 7859 }	# Tacuarembó -> Minas de Corrales, Ansina, Tacuarembó
+link = { vic = 2467 hoi = 7870 hoi = 7855 }	# Alegrete -> Coxilha, Rivera
 link = { vic = 2466 hoi = 7866 hoi = 7867 hoi = 7851 hoi = 7856 hoi = 10296 }	# Santa Maria -> Bagé, São Gabriel, Rio Grande do Sul, Santa Maria, São Borja
 link = { vic = 2463 hoi = 7852 hoi = 7853 hoi = 7848 hoi = 7844 hoi = 7881 }	# Porto Alegre -> Santa Cruz do Sul, Capão da Canoa, Porto Alegre, Caxias do Sul, Pelotas
 link = { vic = 2461 hoi = 7841 hoi = 7836 }	# Desterro -> Criciúma, Florianópolis
 link = { vic = 2457 hoi = 10242 }	# Curitiba -> Curitiba
 link = { vic = 2451 hoi = 10192 }	# Santos -> São José dos Campos
-link = { vic = 2455 vic = 2450 hoi = 10226 }	# Iguape, Sao Paulo -> São Paulo
+link = { vic = 2455 vic = 2450 hoi = 10226 }	# Iguape, São Paulo -> São Paulo
 link = { vic = 2447 hoi = 10181 hoi = 10193 }	# Rio de Janeiro -> Volta Redonda, Rio de Janeiro
 link = { vic = 2448 hoi = 10182 }	# Campos -> Campos dos Goitacazes
 link = { vic = 2388 hoi = 10314 hoi = 10292 }	# Calingasta -> San Juan, Guandacol
 link = { vic = 2385 hoi = 10266 }	# La Rioja -> Palo Blanco
 link = { vic = 2387 hoi = 10323 }	# San Juan -> Cantantal
 link = { vic = 2386 hoi = 10305 }	# Santa Rita -> Astica
-link = { vic = 2379 hoi = 10315 hoi = 10306 }	# Cordoba de Argentina -> Río Tercero, Córdoba
+link = { vic = 2379 hoi = 10315 hoi = 10306 }	# Córdoba de Argentina -> Río Tercero, Córdoba
 link = { vic = 2380 hoi = 10324 hoi = 10294 }	# Villa Nueva -> Villa María, Las Varillas
 link = { vic = 2375 hoi = 10236 }	# Vinchina -> Caipe
 link = { vic = 2374 hoi = 10252 hoi = 10293 hoi = 10279 }	# Catamarca -> Cerro Mojones, La Rioja, Antofagasta de la Sierra
@@ -465,278 +465,278 @@ link = { vic = 2465 hoi = 10283 hoi = 7837 hoi = 7843 hoi = 7847 hoi = 7840 hoi 
 # 
 link = { vic = 2459 hoi = 7838 hoi = 7833 }	# Lajes -> Lajes, Cacador
 link = { vic = 2362 hoi = 10281 hoi = 10268 }	# Reconquista -> Resistencia, Presidencia Roca
-link = { vic = 2373 hoi = 10267 }	# Tucuman -> San Miguel de Tucumán
-link = { vic = 2378 hoi = 10280 }	# Mailin -> Santiago del Estero
+link = { vic = 2373 hoi = 10267 }	# Tucumán -> San Miguel de Tucumán
+link = { vic = 2378 hoi = 10280 }	# Mailín -> Santiago del Estero
 link = { vic = 2376 hoi = 10253 }	# Santiago del Estero -> Monte Quemado
-link = { vic = 2377 hoi = 10238 }	# Anatuya -> Fortín General Diaz
-link = { vic = 2365 hoi = 10254 hoi = 10200 hoi = 10209 }	# Villa Angela -> Asunción, Pozo Colorado, Fortín Linares
+link = { vic = 2377 hoi = 10238 }	# Añatuya -> Fortín General Diaz
+link = { vic = 2365 hoi = 10254 hoi = 10200 hoi = 10209 }	# Villa Ángela -> Asunción, Pozo Colorado, Fortín Linares
 link = { vic = 2368 hoi = 10207 hoi = 10220 hoi = 10208 }	# Salta -> Pena Barrosa, Rosario, Salta
-link = { vic = 2314 hoi = 10185 }	# Potosi -> Llíca
+link = { vic = 2314 hoi = 10185 }	# Potosí -> Llíca
 link = { vic = 2312 hoi = 10173 }	# Oruro -> Turco
 link = { vic = 2310 hoi = 10151 hoi = 10132 }	# La Paz -> La Paz, Achacachi
 link = { vic = 2370 vic = 2369 vic = 2371 hoi = 10198 }	# Cochinoca, Jujuy, Equia -> Río Mulatos
 link = { vic = 2372 hoi = 10221 hoi = 10186 }	# Rivadavia -> San Pedro, Potosí
-link = { vic = 420 hoi = 2605 hoi = 2541 hoi = 2671 }	# Brest -> Quimper, Brest, Quimperlé
-link = { vic = 421 hoi = 2542 hoi = 2607 hoi = 2606 hoi = 2672 }	# St Brieuc -> Treguier, St-Brieuc, Rostrenen, Josselin
-link = { vic = 422 hoi = 2737 hoi = 2869 }	# Vannes -> Lorient, Pornic
-link = { vic = 424 hoi = 2608 hoi = 2673 hoi = 2739 }	# Rennes -> St-Malo, Dinan, Rennes
-link = { vic = 423 hoi = 2738 hoi = 2803 hoi = 2802 hoi = 2936 }	# Nantes -> Mauron, Blain, St-Nazaire, Machecoul
-link = { vic = 437 hoi = 2870 hoi = 3004 hoi = 3005 hoi = 3072 hoi = 3073 hoi = 3139 }	# La Roche -> Nantes, St-Jean-de-Monts, Montaigu, Les Sables-d'Olonne, St-Hermine, Lucon
-link = { vic = 442 hoi = 3273 hoi = 3207 hoi = 3343 hoi = 3613 hoi = 3140 hoi = 3274 }	# La Rochelle -> Rochefort, La Rochelle, Cognac, Sore, Niort, St Jean-d'Angély
-link = { vic = 458 hoi = 3412 hoi = 3545 hoi = 3612 hoi = 3747 hoi = 3479 hoi = 3680 }	# Bordeaux -> Pauillac, La Teste, Mimizan, Saint-Paul-lès-Dax, Bordeaux, Morceny
-link = { vic = 460 hoi = 3815 hoi = 3887 hoi = 3959 hoi = 4028 hoi = 4098 hoi = 3958 hoi = 4027 }	# Pau -> Bayonne, Mourenx, Pau, Tarbes, Montréjeau, St-Palais, Oloron-Ste-Marie
-link = { vic = 457 hoi = 4161 hoi = 4099 hoi = 4162 hoi = 4227 }	# Foix -> St-Girons, Cazères, Foix, Les Cabannes
+link = { vic = 420 hoi = 2605 hoi = 2541 hoi = 2671 }	# Brest -> Brest, Morlaix, Quimper
+link = { vic = 421 hoi = 2542 hoi = 2607 hoi = 2606 hoi = 2672 }	# St Brieuc -> Lannion, St. Brieuc, Carhaix Ploguer, Rostrenen
+link = { vic = 422 hoi = 2737 hoi = 2869 }	# Vannes -> Lorient, Vannes
+link = { vic = 424 hoi = 2608 hoi = 2673 hoi = 2739 }	# Rennes -> St. Malo, Dinan, Rennes
+link = { vic = 423 hoi = 2738 hoi = 2803 hoi = 2802 hoi = 2936 }	# Nantes -> Pontivy, Blain, St. Nazaire, Chateaubriant
+link = { vic = 437 hoi = 2870 hoi = 3004 hoi = 3005 hoi = 3072 hoi = 3073 hoi = 3139 }	# La Roche -> Nantes, St.Jean de Monts, Challans, Les Sables d'Olonne, Cholet, La Roche
+link = { vic = 442 hoi = 3273 hoi = 3207 hoi = 3343 hoi = 3613 hoi = 3140 hoi = 3274 }	# La Rochelle -> La Rochelle, Niort, Royan, Creon, Parthenay, Cognac
+link = { vic = 458 hoi = 3412 hoi = 3545 hoi = 3612 hoi = 3747 hoi = 3479 hoi = 3680 }	# Bordeaux -> Pauillac, La Teste, Mimizan, Dax, Bordeaux, Labouheyre
+link = { vic = 460 hoi = 3815 hoi = 3887 hoi = 3959 hoi = 4028 hoi = 4098 hoi = 3958 hoi = 4027 }	# Pau -> Bayonne, Orthez, Pau, Tarbes, Lannemezan, St. Palais, Oloron
+link = { vic = 457 hoi = 4161 hoi = 4099 hoi = 4162 hoi = 4227 }	# Foix -> St. Gaudens, Foix, Lavelanet, Ax les Thermes
 link = { vic = 464 hoi = 4228 hoi = 4297 }	# Perpignan -> Perpignan, Prades
-link = { vic = 463 hoi = 4101 hoi = 4163 hoi = 4032 }	# Carcassone -> Sigean, Limoux, Bédarieux
+link = { vic = 463 hoi = 4101 hoi = 4163 hoi = 4032 }	# Carcassonne -> Narbonne, Limoux, Bédarieux
 link = { vic = 461 hoi = 4033 hoi = 4102 }	# Montpellier -> Montpellier, Béziers
-link = { vic = 467 hoi = 4164 hoi = 4103 hoi = 4034 }	# Marseilles -> Marseille, Sénas, Arles
-link = { vic = 470 hoi = 4229 hoi = 4165 hoi = 4230 hoi = 4166 }	# Toulon -> Toulon, Brignoles, Hyères, Cannes
+link = { vic = 467 hoi = 4164 hoi = 4103 hoi = 4034 }	# Marseilles -> Marignane, Arles, Nîmes
+link = { vic = 470 hoi = 4229 hoi = 4165 hoi = 4230 hoi = 4166 }	# Toulon -> Marseille, Brignoles, Toulon, Cogolin
 link = { vic = 472 hoi = 4106 }	# Nice -> Nice
-link = { vic = 471 hoi = 4038 hoi = 4037 }	# Frejus -> Monaco, Puget-Théniers
-link = { vic = 454 hoi = 3826 hoi = 3825 hoi = 3897 hoi = 3968 hoi = 3969 hoi = 3756 hoi = 3896 }	# Grenoble -> Briancon, Le Bourg-d'Oisans, Embrun, Gap, Allos, Chambéry, Corps
-link = { vic = 466 hoi = 3824 }	# Chambery -> Grenoble
-link = { vic = 465 hoi = 3757 hoi = 3689 hoi = 3622 }	# Annency -> Albertville, Annecy, Mondane
-link = { vic = 451 hoi = 3621 hoi = 3688 hoi = 3687 }	# Lyon -> St-Claude, Ruffieux, Lyon
-link = { vic = 433 hoi = 3553 hoi = 3487 hoi = 3420 hoi = 3486 hoi = 3350 hoi = 3552 }	# Lons -> Lons-le-Saunier, Poligny, Chaussin, Chalon-sur-Saône, Beaune, Mâcon
-link = { vic = 410 hoi = 3083 hoi = 3150 }	# Colmar -> Mulhouse, Belfort
-link = { vic = 432 hoi = 3149 hoi = 3351 hoi = 3282 hoi = 3216 hoi = 3421 hoi = 3082 hoi = 3148 }	# Besancon -> Montbéliard, Besancon, Maîche, Villersexel, Morteau, Ronchamp, Lure
-link = { vic = 469 hoi = 4105 hoi = 4104 hoi = 4036 }	# Digne -> Digne-les-Bains, Aix-en-Provence, Manosque
-link = { vic = 468 hoi = 3966 hoi = 3895 hoi = 3967 hoi = 4035 hoi = 3823 hoi = 3894 hoi = 3965 }	# Avignon -> Avignon, Valence, Nyons, Cavaillon, Annonay, Uzés, Nîmes
-link = { vic = 462 hoi = 3751 hoi = 3820 hoi = 3892 hoi = 3964 hoi = 3821 hoi = 3752 hoi = 3893 hoi = 3822 hoi = 3753 }	# Rodez -> Rodez, Salles-Curan, Camarès, Lodève, Millau, Laissac, Le Vigan, Privas, Le-Puy-en-Velay
-link = { vic = 459 hoi = 3681 hoi = 3748 hoi = 3816 hoi = 3888 hoi = 3817 hoi = 3960 }	# Mont de Marsan -> Lavardat, Roquefort, Mont-de-Marsan, Nogaro, Euaze, Mirande
-link = { vic = 455 hoi = 3961 hoi = 3889 hoi = 4029 hoi = 4030 hoi = 4100 hoi = 4031 }	# Toulouse -> Toulouse, Gimont, St-Gaudens, Carcassonne, Castelnaudary, Mazamet
-link = { vic = 456 hoi = 3963 hoi = 3891 hoi = 3962 hoi = 3890 hoi = 3818 hoi = 3749 hoi = 3819 }	# Montauban -> Lacaune, Réalmont, Castres, Graulhet, Mountauban, Lectoure, Carmaux
-link = { vic = 444 hoi = 3344 hoi = 3414 hoi = 3480 hoi = 3413 hoi = 3546 }	# Angouleme -> Angoulême, Périgueux, Bergerac, Chalais, Marmande
-link = { vic = 447 hoi = 3547 hoi = 3614 hoi = 3682 hoi = 3615 hoi = 3548 }	# Tulle -> Belves, Fumel, Cahors, Gourdon, Gramat
-link = { vic = 450 hoi = 3683 hoi = 3616 hoi = 3750 hoi = 3684 }	# Cahors -> Aubin, Montsalvy, Villefranche, Espalion
-link = { vic = 453 hoi = 3755 hoi = 3620 hoi = 3754 }	# Valence -> Bourgoin-Jallieu, Bourg-en-Bresse, St-Ètienne
-link = { vic = 445 hoi = 3345 hoi = 3415 hoi = 3481 }	# Limoges -> Limoges, Brive-la-Gaillarde, Souillac
-link = { vic = 418 hoi = 2422 hoi = 2543 hoi = 2481 hoi = 2482 }	# Caen -> Cherbourg, Granville, Périers, Caen
-link = { vic = 415 hoi = 2483 hoi = 2545 hoi = 2423 }	# Rouen -> Le Havre, Falaise, Dieppe
-link = { vic = 402 hoi = 2365 hoi = 2424 }	# Amiens -> Gamaches, Buchy
-link = { vic = 400 hoi = 2195 hoi = 2194 hoi = 2308 }	# Dunkirk -> Dunkerque, Calais, Berck
-link = { vic = 399 hoi = 2251 hoi = 2367 hoi = 2309 }	# Lille -> St-Omer, Cambrai, Lillers
-link = { vic = 417 hoi = 2609 hoi = 2544 hoi = 2610 hoi = 2675 }	# Alencon -> Mortain, Vire, Argentan, Mayenne
+link = { vic = 471 hoi = 4038 hoi = 4037 }	# Frejus -> Cannes, Puget Théniers
+link = { vic = 454 hoi = 3826 hoi = 3825 hoi = 3897 hoi = 3968 hoi = 3969 hoi = 3756 hoi = 3896 }	# Grenoble -> Briancon, Le Bourg d'Oisans, Embrun, Gap, Barcelonnette, Grenoble, Veynes
+link = { vic = 466 hoi = 3824 }	# Chambéry -> Romans sur Isere
+link = { vic = 465 hoi = 3757 hoi = 3689 hoi = 3622 }	# Annecy -> Albertville, Chambery, Annecy
+link = { vic = 451 hoi = 3621 hoi = 3688 hoi = 3687 }	# Lyon -> St. Claude, Bourgoin Jollieu, Lyon
+link = { vic = 433 hoi = 3553 hoi = 3487 hoi = 3420 hoi = 3486 hoi = 3350 hoi = 3552 }	# Lons -> Lons le Saunier, Champagnole, Louhans, Macon, Chalon sur Saône, Tarare
+link = { vic = 410 hoi = 3083 hoi = 3150 }	# Colmar -> Colmar, Mulhouse
+link = { vic = 432 hoi = 3149 hoi = 3351 hoi = 3282 hoi = 3216 hoi = 3421 hoi = 3082 hoi = 3148 }	# Besançon -> Belfort, Besancon, Poligny, Baume les Dames, Pontarlier, Ronchamp, Vesoul
+link = { vic = 469 hoi = 4105 hoi = 4104 hoi = 4036 }	# Digne -> Digne les Bains, Aix en Provence, Manosque
+link = { vic = 468 hoi = 3966 hoi = 3895 hoi = 3967 hoi = 4035 hoi = 3823 hoi = 3894 hoi = 3965 }	# Avignon -> Uzés, Valence, Valrèas, Avignon, Annonay, Aubenas, Alès
+link = { vic = 462 hoi = 3751 hoi = 3820 hoi = 3892 hoi = 3964 hoi = 3821 hoi = 3752 hoi = 3893 hoi = 3822 hoi = 3753 }	# Rodez -> Villefranche, Rodez, St. Affrique, Lodève, Marvejols, St. Flour, Mende, Le Puy en Velay, Langeac
+link = { vic = 459 hoi = 3681 hoi = 3748 hoi = 3816 hoi = 3888 hoi = 3817 hoi = 3960 }	# Mont de Marsan -> Casteljaloux, Roquefort, Mont de Marsan, Nogaro, Auch, Mirande
+link = { vic = 455 hoi = 3961 hoi = 3889 hoi = 4029 hoi = 4030 hoi = 4100 hoi = 4031 }	# Toulouse -> Toulouse, Gimont, Muret, Pamiers, Mirepoix, Carcassonne
+link = { vic = 456 hoi = 3963 hoi = 3891 hoi = 3962 hoi = 3890 hoi = 3818 hoi = 3749 hoi = 3819 }	# Montauban -> Mezamet, Castres, Revel, St.Sulpice, Montauban, Agen, Albi
+link = { vic = 444 hoi = 3344 hoi = 3414 hoi = 3480 hoi = 3413 hoi = 3546 }	# Angoulême -> Angoulême, Nontron, Bergerac, Coutras, Marmande
+link = { vic = 447 hoi = 3547 hoi = 3614 hoi = 3682 hoi = 3615 hoi = 3548 }	# Tulle -> Le Bugue, Villeneuve/L, Cahors, Gourdon, Souillac
+link = { vic = 450 hoi = 3683 hoi = 3616 hoi = 3750 hoi = 3684 }	# Cahors -> Figeac, Argentat, Caussade, Aurillac
+link = { vic = 453 hoi = 3755 hoi = 3620 hoi = 3754 }	# Valence -> Vienne, St. Charmont, St. Ètienne
+link = { vic = 445 hoi = 3345 hoi = 3415 hoi = 3481 }	# Limoges -> Limoges, Bujaleuf, Brive la Gaillarde
+link = { vic = 418 hoi = 2422 hoi = 2543 hoi = 2481 hoi = 2482 }	# Caen -> Cherbourg, Granville, Carentan, Caen
+link = { vic = 415 hoi = 2483 hoi = 2545 hoi = 2423 }	# Rouen -> Le Havre, Lisieux, Dieppe
+link = { vic = 402 hoi = 2365 hoi = 2424 }	# Amiens -> Gamaches, Abbeville
+link = { vic = 400 hoi = 2195 hoi = 2194 hoi = 2308 }	# Dunkirk -> Dunkerque, Calais, Boulogne
+link = { vic = 399 hoi = 2251 hoi = 2367 hoi = 2309 }	# Lille -> St. Omer, Hazebrouck, Lille
+link = { vic = 417 hoi = 2609 hoi = 2544 hoi = 2610 hoi = 2675 }	# Alençon -> St. Lo, Falaise, Argentan, La Ferte
 link = { vic = 425 hoi = 2613 }	# Paris -> Paris
-link = { vic = 401 hoi = 2366 hoi = 2485 hoi = 2425 }	# Arras -> Abbeville, Beauvais, Amiens
-link = { vic = 2570 hoi = 2547 hoi = 2546 hoi = 2612 }	# Beauvais -> Vernon, Évreux, Dreux
-link = { vic = 426 hoi = 2742 hoi = 2677 hoi = 2743 hoi = 2807 }	# Chartres -> Vibraye, Nogent-le-Rotrou, Châteaudun, Vendôme
-link = { vic = 416 hoi = 2484 hoi = 2611 hoi = 2676 }	# Evreux -> Rouen, Bernay, Alencon
-link = { vic = 435 hoi = 2674 hoi = 2740 hoi = 2804 }	# Laval -> Fougères, Laval, Angers
-link = { vic = 436 hoi = 2741 hoi = 2805 hoi = 2806 }	# Le Mans -> Le Mans, Durtal, Château-du-Loir
-link = { vic = 441 hoi = 2872 hoi = 3007 hoi = 2939 hoi = 3075 }	# Tours -> Saumur, Mirebeau, Descartes, Poitiers
-link = { vic = 443 hoi = 3275 hoi = 3209 hoi = 3141 hoi = 3208 }	# Poitiers -> Confolens, Charroux, Couhé, Melle
-link = { vic = 434 hoi = 2938 hoi = 2871 hoi = 2937 hoi = 3006 hoi = 3074 }	# Angers -> Thouars, Chemillé, Cholet, Bressuire, Parthenay
-link = { vic = 438 hoi = 2808 hoi = 2875 hoi = 2941 }	# Orleans -> Orléans, Gien, Vierzon
-link = { vic = 446 hoi = 3076 hoi = 3008 hoi = 3143 hoi = 3277 hoi = 3346 hoi = 3276 hoi = 3210 hoi = 3142 }	# Chateauroux -> Châtearoux, Châtellerault, Châteauroux, Guéret, Eymoutiers, Bourganeuf, La Souterraine, Le Dorat
-link = { vic = 440 hoi = 2873 hoi = 2940 }	# Blois -> Tours, Loches
-link = { vic = 439 hoi = 3010 hoi = 3077 hoi = 3009 }	# Bourges -> Bourges, Ardentes, Vatan
-link = { vic = 430 hoi = 3212 hoi = 3278 hoi = 3211 hoi = 3144 hoi = 3078 hoi = 3279 hoi = 3145 }	# Moulins -> Moulins, St-Amand-Montrond, Lignières, Sancoins, La Charité-sur-Loire, Varennes-sur-Allier, Nevers
-link = { vic = 428 hoi = 3214 hoi = 3215 hoi = 3281 hoi = 3213 hoi = 3280 }	# Dijon -> Dijon, Vesoul, Dole, Saulieu, Épinac
-link = { vic = 431 hoi = 3419 hoi = 3349 }	# Macon -> Autun, Digoin
-link = { vic = 449 hoi = 3482 hoi = 3549 hoi = 3617 hoi = 3685 }	# Aurillac -> Martel, Mauriac, Laguiole, Massiac
-link = { vic = 448 hoi = 3550 hoi = 3417 hoi = 3347 hoi = 3416 hoi = 3483 hoi = 3618 hoi = 3686 }	# Clermont-Ferrand -> Clermont-Ferrand, Montlucon, Aubosson, Meymac, Bugeat, Cunlhat, Courpière
-link = { vic = 452 hoi = 3485 hoi = 3619 hoi = 3551 hoi = 3418 hoi = 3484 hoi = 3348 }	# St Etienne -> Paray-le-Monial, Lamastre, Limagne, Vichy, Combronde, Gannat
-link = { vic = 409 hoi = 2881 hoi = 2750 hoi = 2685 hoi = 2815 hoi = 2814 hoi = 2880 }	# Strasbourg -> Colmar, Molsheim, Achern, Strasbourg, Sélestat, Bruyeres
-link = { vic = 407 hoi = 3014 hoi = 2945 hoi = 2878 hoi = 2812 hoi = 2879 hoi = 2747 hoi = 2946 hoi = 3081 hoi = 3013 }	# Chaumont -> Jussey, Langres, Clefmont, Neufchâteau, Vittel, Chaumont, Xertigny, Combeaufontaine, Fayl-Billot
-link = { vic = 408 hoi = 2616 hoi = 2615 hoi = 2550 hoi = 2681 }	# Chalons -> Châlons, Sézanne, Reims, Troyes
-link = { vic = 405 hoi = 2488 hoi = 2682 }	# Charleville -> Mouzon, St Dizier
-link = { vic = 414 hoi = 2947 hoi = 3015 }	# Epinal -> Guebwiller, Le Thillot
-link = { vic = 412 hoi = 2619 hoi = 2684 }	# Metz -> Pirmasens, Saverne
-link = { vic = 413 hoi = 2551 hoi = 2618 }	# Verdun -> Verdun, Faulquemont
-link = { vic = 411 hoi = 2813 hoi = 2749 hoi = 2683 hoi = 2617 hoi = 2748 }	# Nancy -> Le Thillot, St-Dié, Nancy, Commercy, Colombey-les-Belles
-link = { vic = 403 hoi = 2486 hoi = 2548 hoi = 2614 hoi = 2549 }	# Laon -> Noyon, Clermont, Charly, Soissons
-link = { vic = 404 hoi = 2426 hoi = 2368 hoi = 2487 }	# Cambrai -> St-Quentin, Valenciennes, Laon
-link = { vic = 429 hoi = 3012 hoi = 3011 hoi = 3079 hoi = 3147 hoi = 3080 hoi = 3146 hoi = 2944 hoi = 2943 hoi = 2942 }	# Auxerre -> Avallon, Cosne-Cours, Prémery, Oyonnax, Champlitte, Vitteaux, Chablis, Saulieu, Sancerre
-link = { vic = 406 hoi = 2745 hoi = 2810 hoi = 2876 hoi = 2746 hoi = 2811 hoi = 2877 hoi = 2680 }	# Troyes -> Montargis, Toucy, Clamecy, Joigny, Ervy-le-Châtel, Auxerre, Sens
-link = { vic = 427 hoi = 2679 hoi = 2678 hoi = 2744 hoi = 2809 hoi = 2874 }	# Melun -> Nemours, Étampes, Puiseaux, Châteauneuf, Blois
+link = { vic = 401 hoi = 2366 hoi = 2485 hoi = 2425 }	# Arras -> Aucher, Arras, Amiens
+link = { vic = 2570 hoi = 2547 hoi = 2546 hoi = 2612 }	# Beauvais -> Beauvais, Neufchatel en Bray, Vernon
+link = { vic = 426 hoi = 2742 hoi = 2677 hoi = 2743 hoi = 2807 }	# Chartres -> Chartres, Dreux, Versailles, Angerville
+link = { vic = 416 hoi = 2484 hoi = 2611 hoi = 2676 }	# Évreux -> Rouen, Évreux, L'Aigle
+link = { vic = 435 hoi = 2674 hoi = 2740 hoi = 2804 }	# Laval -> Fougères, Mayenne, Laval
+link = { vic = 436 hoi = 2741 hoi = 2805 hoi = 2806 }	# Le Mans -> Le Mans, Alencon, Vendôme
+link = { vic = 441 hoi = 2872 hoi = 3007 hoi = 2939 hoi = 3075 }	# Tours -> Château du Loir, Chinon, Tours, Châtellerault
+link = { vic = 443 hoi = 3275 hoi = 3209 hoi = 3141 hoi = 3208 }	# Poitiers -> Ruffec, Montmorillon, Poitiers, Melle
+link = { vic = 434 hoi = 2938 hoi = 2871 hoi = 2937 hoi = 3006 hoi = 3074 }	# Angers -> Allonnes, La Fleche, Angers, Saumur, Bressuire
+link = { vic = 438 hoi = 2808 hoi = 2875 hoi = 2941 }	# Orléans -> Orléans, Montargis, Gien
+link = { vic = 446 hoi = 3076 hoi = 3008 hoi = 3143 hoi = 3277 hoi = 3346 hoi = 3276 hoi = 3210 hoi = 3142 }	# Chateauroux -> Buzancais, Loches, Chateauroux, Guéret, Bourganeuf, La Souterraine, Argenton sur Creuse, Le Blanc
+link = { vic = 440 hoi = 2873 hoi = 2940 }	# Blois -> Blois, La Ferte St.Aubin
+link = { vic = 439 hoi = 3010 hoi = 3077 hoi = 3009 }	# Bourges -> Cosne Cours, Bourges, Vierzon
+link = { vic = 430 hoi = 3212 hoi = 3278 hoi = 3211 hoi = 3144 hoi = 3078 hoi = 3279 hoi = 3145 }	# Moulins -> Nevers, Sancoins, St. Amand Montrond, Dun sur Auron, La Charité, Luzy, Corbigny
+link = { vic = 428 hoi = 3214 hoi = 3215 hoi = 3281 hoi = 3213 hoi = 3280 }	# Dijon -> Dijon, Gray, Genlis, Saulieu, Autun
+link = { vic = 431 hoi = 3419 hoi = 3349 }	# Macon -> Charolles, Digoin
+link = { vic = 449 hoi = 3482 hoi = 3549 hoi = 3617 hoi = 3685 }	# Aurillac -> Bugeat, Meymac, Mauriac, Murat
+link = { vic = 448 hoi = 3550 hoi = 3417 hoi = 3347 hoi = 3416 hoi = 3483 hoi = 3618 hoi = 3686 }	# Clermont-Ferrand -> Clermont Ferrand, St.Pourcain sur Sioule, Montlucon, Aubusson, Bourg Lastic, Issoire, Montbrison
+link = { vic = 452 hoi = 3485 hoi = 3619 hoi = 3551 hoi = 3418 hoi = 3484 hoi = 3348 }	# St Étienne -> Roanne, Feurs, Thiers, La Palisse, Vichy, Moulins
+link = { vic = 409 hoi = 2881 hoi = 2750 hoi = 2685 hoi = 2815 hoi = 2814 hoi = 2880 }	# Strasbourg -> Haguenau, Wissembourg, Landau, Strasbourg, Schirmeck, St. Dié
+link = { vic = 407 hoi = 3014 hoi = 2945 hoi = 2878 hoi = 2812 hoi = 2879 hoi = 2747 hoi = 2946 hoi = 3081 hoi = 3013 }	# Chaumont -> Xertigny, Vittel, Chaumont, Neufchâteau, Mirecourt, St. Dizier, Épinal, Fayl Billot, Langres
+link = { vic = 408 hoi = 2616 hoi = 2615 hoi = 2550 hoi = 2681 }	# Chalons -> Ste Menehould, Charleville Mezieres, Reims, Chalons en Champagne
+link = { vic = 405 hoi = 2488 hoi = 2682 }	# Charleville -> Sedan, Verdun
+link = { vic = 414 hoi = 2947 hoi = 3015 }	# Épinal -> Sélestat, Le Thillot
+link = { vic = 412 hoi = 2619 hoi = 2684 }	# Metz -> Pirmasens, Sarreguemines
+link = { vic = 413 hoi = 2551 hoi = 2618 }	# Verdun -> Longuyon, Metz
+link = { vic = 411 hoi = 2813 hoi = 2749 hoi = 2683 hoi = 2617 hoi = 2748 }	# Nancy -> Charmes, Lunéville, Nancy, St. Mihiel, Toul
+link = { vic = 403 hoi = 2486 hoi = 2548 hoi = 2614 hoi = 2549 }	# Laon -> St. Quentin, Compiègne, Chateau Thierry, Soissons
+link = { vic = 404 hoi = 2426 hoi = 2368 hoi = 2487 }	# Cambrai -> Cambrai, Hirson, Laon
+link = { vic = 429 hoi = 3012 hoi = 3011 hoi = 3079 hoi = 3147 hoi = 3080 hoi = 3146 hoi = 2944 hoi = 2943 hoi = 2942 }	# Auxerre -> Montbard, Auxerre, Clamency, Is sur Tille, Semur en Auxois, Vitteaux, Chatillon/Seine, Chablis, Courtenay
+link = { vic = 406 hoi = 2745 hoi = 2810 hoi = 2876 hoi = 2746 hoi = 2811 hoi = 2877 hoi = 2680 }	# Troyes -> Sezanne, Aix en Othe, Joigny, Troyes, Bar sur Aube, Mailly le Camp, Epernay
+link = { vic = 427 hoi = 2679 hoi = 2678 hoi = 2744 hoi = 2809 hoi = 2874 }	# Melun -> Jouarre, Meaux, Melun, Sens, Étampes
 link = { vic = 518 hoi = 4086 hoi = 4213 hoi = 4149 hoi = 4087 hoi = 4017 }	# Oporto -> Porto, Ovar, Cinfães, Fafe, Braga
-link = { vic = 519 hoi = 4088 hoi = 4151 hoi = 4150 hoi = 4215 }	# Vila Real -> Vinhais, Braganca, Vila Real, Meda
-link = { vic = 520 hoi = 4407 hoi = 4345 hoi = 4284 hoi = 4344 hoi = 4472 hoi = 4647 hoi = 4535 hoi = 4536 hoi = 4214 hoi = 4283 hoi = 4406 hoi = 4591 hoi = 4592 }	# Covilha -> Guarda, Pinhel, Moimenta da Beira, Viseu, Covilhã, Monforte, Castelo Branco, Alcafozes, Peso de Régua, Castro Daire, Gouveia, Gavião, Portalegre
-link = { vic = 521 hoi = 4644 }	# Lisbon -> Lisbon
+link = { vic = 519 hoi = 4088 hoi = 4151 hoi = 4150 hoi = 4215 }	# Vila Real -> Vinhais, Bragança, Vila Real, Meda
+link = { vic = 520 hoi = 4407 hoi = 4345 hoi = 4284 hoi = 4344 hoi = 4472 hoi = 4647 hoi = 4535 hoi = 4536 hoi = 4214 hoi = 4283 hoi = 4406 hoi = 4591 hoi = 4592 }	# Covilhã -> Guarda, Pinhel, Moimenta da Beira, Viseu, Covilhã, Monforte, Castelo Branco, Idanha a Nova, Peso da Régua, Castro Daire, Gouveia, Gavião, Portalegre
+link = { vic = 521 hoi = 4644 }	# Lisbon -> Lisboa
 link = { vic = 524 hoi = 4750 }	# Setubal -> Setúbal
-link = { vic = 527 hoi = 4901 hoi = 4949 hoi = 4991 hoi = 4950 hoi = 4992 }	# Faro -> Vila do Bispo, Portimão, Faro, Mértola, Cabanas
-link = { vic = 526 hoi = 4852 hoi = 4802 hoi = 4851 hoi = 4902 hoi = 4903 }	# Beja -> Beja, Torrão, Sines, Aljustrel, Serpa
-link = { vic = 525 hoi = 4853 hoi = 4752 hoi = 4701 hoi = 4646 hoi = 4700 hoi = 4803 hoi = 4751 }	# Evora -> Barrancos, Mourão, Elvas, Estremoz, Redondo, Moura, Évora
+link = { vic = 527 hoi = 4901 hoi = 4949 hoi = 4991 hoi = 4950 hoi = 4992 }	# Faro -> Vila do Bispo, Portimão, Faro, Mértola, Tavira
+link = { vic = 526 hoi = 4852 hoi = 4802 hoi = 4851 hoi = 4902 hoi = 4903 }	# Beja -> Beja, Alcácer do Sal, Sines, Aljustrel, Serpa
+link = { vic = 525 hoi = 4853 hoi = 4752 hoi = 4701 hoi = 4646 hoi = 4700 hoi = 4803 hoi = 4751 }	# Évora -> Barrancos, Mourão, Elvas, Estremoz, Redondo, Moura, Évora
 link = { vic = 523 hoi = 4699 hoi = 4590 hoi = 4645 }	# Abrantes -> Vendas Novas, Santarém, Avis
 link = { vic = 522 hoi = 4589 hoi = 4533 hoi = 4534 hoi = 4470 hoi = 4471 hoi = 4405 hoi = 4343 hoi = 4282 }	# Coimbra -> Torres Vedras, Caldas da Rainha, Tomar, Marinha Grande, Lousã, Coimbra, Mangualde, Aveiro
-link = { vic = 474 hoi = 3610 hoi = 3609 hoi = 3611 hoi = 3677 hoi = 3743 hoi = 3676 hoi = 3675 }	# La Coruna -> La Coruña, Carballo, Foz, Villalba, Melide, Santiago de Compstela, Muros
+link = { vic = 474 hoi = 3610 hoi = 3609 hoi = 3611 hoi = 3677 hoi = 3743 hoi = 3676 hoi = 3675 }	# La Coruña -> La Coruña, Carballo, Foz, Villalba, Melide, Santiago de Compstela, Muros
 link = { vic = 476 hoi = 3742 hoi = 3877 hoi = 3948 hoi = 3949 hoi = 4018 hoi = 3878 hoi = 3808 hoi = 3809 hoi = 3950 }	# Vigo -> Villagarcía de Arosa, Vigo, Baiona, A Cañiza, Verín, Ourense, O Carballiño, Sarria, Monforte
 link = { vic = 475 hoi = 3679 hoi = 3745 hoi = 3678 hoi = 3746 hoi = 3812 }	# Oviedo -> Piedras Blancas, Cangas del Narcea, Navia, Oviedo, Llanes
 link = { vic = 478 hoi = 3814 hoi = 3813 hoi = 3883 }	# Santander -> Santander, Torrelavega, Villacarriedo
-link = { vic = 492 hoi = 3886 hoi = 3957 hoi = 3885 hoi = 3884 hoi = 3956 hoi = 4025 hoi = 4094 hoi = 4024 hoi = 3955 }	# BIlbao -> Irún, San Sebastián, Guernica, Bilbao, Vitoria, Guipúzcoa, Haro, Miranda de Ebro, Villarcayo
+link = { vic = 492 hoi = 3886 hoi = 3957 hoi = 3885 hoi = 3884 hoi = 3956 hoi = 4025 hoi = 4094 hoi = 4024 hoi = 3955 }	# Bilbao -> Irún, San Sebastián, Guernica, Bilbao, Vitoria, Guipúzcoa, Haro, Miranda de Ebro, Villarcayo
 link = { vic = 487 hoi = 4540 }	# Madrid -> Madrid
-link = { vic = 512 hoi = 5097 hoi = 5066 hoi = 5126 }	# Cadiz -> Jerez de la Frontera, Lebrija, Montellano
+link = { vic = 512 hoi = 5097 hoi = 5066 hoi = 5126 }	# Cádiz -> Jerez de la Frontera, Lebrija, Montellano
 link = { vic = 509 hoi = 5030 hoi = 4994 hoi = 5031 hoi = 5067 hoi = 4995 hoi = 4953 }	# Seville -> Seville, Lora del Río, La Puebla de Cazalla, Alcalá, Palma del Río, Constantina
 link = { vic = 511 hoi = 5029 hoi = 4951 hoi = 4993 }	# Huelva -> Huelva, Alosno, Valverde del Camino
 link = { vic = 517 hoi = 5156 }	# Gibraltar -> Algeciras
-link = { vic = 514 hoi = 5127 hoi = 5098 hoi = 5157 hoi = 5128 hoi = 5099 hoi = 5068 }	# Malaga -> Marbella, Ronda, Estepona, Málaga, Antequera, Campillos
-link = { vic = 515 hoi = 5131 hoi = 5159 hoi = 5130 hoi = 5102 hoi = 5101 hoi = 5071 }	# Almeria -> Albox, Almería, Vicar, Macael, Guadix, Baza
+link = { vic = 514 hoi = 5127 hoi = 5098 hoi = 5157 hoi = 5128 hoi = 5099 hoi = 5068 }	# Málaga -> Marbella, Ronda, Estepona, Málaga, Antequera, Campillos
+link = { vic = 515 hoi = 5131 hoi = 5159 hoi = 5130 hoi = 5102 hoi = 5101 hoi = 5071 }	# Almería -> Albox, Almería, Vicar, Macael, Guadix, Baza
 link = { vic = 513 hoi = 5129 hoi = 5158 hoi = 5070 hoi = 5100 }	# Granada -> Granada, Adra, Montejícar, Alcalá la Real
 link = { vic = 506 hoi = 5103 hoi = 5104 }	# Cartagena -> Mazarrón, Cartagena
 link = { vic = 505 hoi = 4960 hoi = 5001 hoi = 5037 hoi = 4912 }	# Alicante -> Alzira, Alicante, San Javier, Ayora
 link = { vic = 498 hoi = 4548 hoi = 4485 hoi = 4419 hoi = 4484 hoi = 4356 hoi = 4418 }	# Barcelona -> Barcelona, Mataró, Manresa, Terrassa, Solsona, Ponts
 link = { vic = 503 hoi = 4862 hoi = 4812 hoi = 4761 hoi = 4813 hoi = 4709 hoi = 4760 }	# Valencia -> Valencia, Requena, Segerbe, Sagunto, Teruel, Sinarcas
 link = { vic = 501 hoi = 4547 hoi = 4546 hoi = 4657 hoi = 4483 hoi = 4602 }	# Tarragona -> Tarragona, Cambrils, Tortosa, Lleida, Alcañiz
-link = { vic = 504 hoi = 4656 hoi = 4710 hoi = 4762 hoi = 4711 }	# Castellon -> Morella, Lucena del Cid, Castelló de la Plana, Vinaroz
+link = { vic = 504 hoi = 4656 hoi = 4710 hoi = 4762 hoi = 4711 }	# Castellón -> Morella, Lucena del Cid, Castelló de la Plana, Vinaroz
 link = { vic = 499 hoi = 4358 hoi = 4420 hoi = 4357 hoi = 4296 }	# Gerona -> Girona, Lloret de Mar, Manlleu, Berga
 link = { vic = 482 hoi = 4347 hoi = 4286 hoi = 4216 hoi = 4285 hoi = 4346 hoi = 4409 hoi = 4408 hoi = 4474 hoi = 4538 hoi = 4152 hoi = 4019 hoi = 4089 }	# Salamanca -> Salamanca, Ledesma, Fermoselle, Vitigudino, La Fuente de San Esteban, Guijuelo, Ciudad Rodrigo, Béjar, Candeleda, Bermillo de Sayago, A Gudiña, Alcanices
-link = { vic = 483 hoi = 4153 hoi = 4287 hoi = 4217 hoi = 4218 hoi = 4288 hoi = 4348 hoi = 4410 hoi = 4476 hoi = 4475 hoi = 4411 hoi = 4349 }	# Avila -> Villardefrades, Medina del Campo, Zamora, Valladolid, Cuéllar, Arévalo, Salmoral, Ávila, Piedrahita, Segovia, Cantalejo
+link = { vic = 483 hoi = 4153 hoi = 4287 hoi = 4217 hoi = 4218 hoi = 4288 hoi = 4348 hoi = 4410 hoi = 4476 hoi = 4475 hoi = 4411 hoi = 4349 }	# Ávila -> Villardefrades, Medina del Campo, Zamora, Valladolid, Cuéllar, Arévalo, Salmoral, Ávila, Piedrahita, Segovia, Cantalejo
 link = { vic = 479 hoi = 3882 hoi = 3953 hoi = 4022 hoi = 3954 }	# Burgos -> Reinosa, Guardo, Saldaña, Herrera de Pisuerga
 link = { vic = 480 hoi = 3881 hoi = 3952 hoi = 4020 hoi = 4090 hoi = 4021 hoi = 4091 }	# Valladolid -> Cistierna, Léon, La Bañeza, Benavente, Sahagún, Villada
-link = { vic = 477 hoi = 3744 hoi = 3810 hoi = 3811 hoi = 3879 hoi = 3951 hoi = 3880 }	# Leon -> Lugo, Fabero, La Robla, Villafranca del Bierzo, Ponferrada, Murias de Paredes
+link = { vic = 477 hoi = 3744 hoi = 3810 hoi = 3811 hoi = 3879 hoi = 3951 hoi = 3880 }	# León -> Lugo, Fabero, La Robla, Villafranca del Bierzo, Ponferrada, Murias de Paredes
 link = { vic = 493 hoi = 4026 hoi = 4095 hoi = 4158 hoi = 4096 hoi = 4222 hoi = 4157 }	# Pamplona -> Pamplona, Estella, Tafalla, Hecho, Ejea de los Caballeros, Logroño
 link = { vic = 481 hoi = 4154 hoi = 4155 hoi = 4220 hoi = 4289 hoi = 4219 hoi = 4290 hoi = 4350 hoi = 4351 hoi = 4413 }	# Soria -> Palencia, Burgos, Salas de los Infantes, Aranda de Duero, Lerma, Abejar, Berlanga, Almazan, Sigüenza
-link = { vic = 494 hoi = 4093 hoi = 4023 hoi = 4092 hoi = 4156 hoi = 4221 hoi = 4291 }	# Logrono -> Briviesca, Villadiego, Tardajos, Belorado, Anguiano, Soria
-link = { vic = 496 hoi = 4097 hoi = 4159 hoi = 4224 hoi = 4160 hoi = 4294 }	# Huesca -> Argelès-Gazost, Jaca, Rodellar, Boltaña, La Pobla de Segur
-link = { vic = 500 hoi = 4225 hoi = 4226 hoi = 4295 hoi = 4355 hoi = 4417 }	# Lerida -> Pont de Suert, Andorra la Vella, La Pobla de Lillet, Isona, Monzon
+link = { vic = 494 hoi = 4093 hoi = 4023 hoi = 4092 hoi = 4156 hoi = 4221 hoi = 4291 }	# Logroño -> Briviesca, Villadiego, Tardajos, Belorado, Anguiano, Soria
+link = { vic = 496 hoi = 4097 hoi = 4159 hoi = 4224 hoi = 4160 hoi = 4294 }	# Huesca -> Argelès Gazost, Jaca, Rodellar, Boltaña, La Pobla de Segur
+link = { vic = 500 hoi = 4225 hoi = 4226 hoi = 4295 hoi = 4355 hoi = 4417 }	# Lérida -> Pont de Suert, Andorra la Vella, La Pobla de Lillet, Isona, Monzon
 link = { vic = 495 hoi = 4223 hoi = 4293 hoi = 4354 hoi = 4482 hoi = 4545 hoi = 4416 hoi = 4292 hoi = 4353 }	# Zaragoza -> Ayerbe, Huesca, Barbastro, Candasnos, Aguaviva, La Almonda, Tudela, Zaragoza
-link = { vic = 488 hoi = 4477 hoi = 4412 hoi = 4478 hoi = 4541 hoi = 4598 hoi = 4542 hoi = 4479 hoi = 4543 hoi = 4653 }	# Siguenza -> Alcobendas, Matabuena, Guadalajara, Alcala de Henares, Villabilla, Sacedón, Embid, Tortuera, Priego
+link = { vic = 488 hoi = 4477 hoi = 4412 hoi = 4478 hoi = 4541 hoi = 4598 hoi = 4542 hoi = 4479 hoi = 4543 hoi = 4653 }	# Sigüenza -> Alcobendas, Matabuena, Guadalajara, Alcala de Henares, Villabilla, Sacedón, Embid, Tortuera, Priego
 link = { vic = 490 hoi = 4708 hoi = 4599 hoi = 4654 hoi = 4811 }	# Cuenca -> Cuenca, Peñalén, Albarracín, Tarazona de la Mancha
 link = { vic = 497 hoi = 4352 hoi = 4415 hoi = 4481 hoi = 4601 hoi = 4544 hoi = 4600 hoi = 4655 hoi = 4480 hoi = 4414 }	# Teruel -> Tarazona de Aragon, Cariñena, Azuara, Muniesa, Cosa, Monreal del Campo, Montalbán, Calamocha, Calatayud
 link = { vic = 489 hoi = 4651 hoi = 4596 hoi = 4539 hoi = 4595 hoi = 4650 hoi = 4705 hoi = 4597 hoi = 4652 hoi = 4706 }	# Toledo -> Toledo, Escalona, Sotillo de la Adrada, Talavera de la Reina, Belvís de la Jara, El Molinillo, Fuenlabrada, Tarancón, Tembleque
-link = { vic = 510 hoi = 4954 hoi = 4856 hoi = 4907 hoi = 4955 hoi = 4996 hoi = 5032 hoi = 5069 hoi = 5033 }	# Cordoba -> Córdoba, Pozoblanco, Villanueva de Córdoba, Andújar, Montoro, Puente-Genil, Priego de Córdoba, Jaén
+link = { vic = 510 hoi = 4954 hoi = 4856 hoi = 4907 hoi = 4955 hoi = 4996 hoi = 5032 hoi = 5069 hoi = 5033 }	# Córdoba -> Córdoba, Pozoblanco, Villanueva de Córdoba, Andújar, Montoro, Puente Genil, Priego de Córdoba, Jaén
 link = { vic = 491 hoi = 4808 hoi = 4857 hoi = 4807 hoi = 4756 hoi = 4757 hoi = 4809 hoi = 4858 hoi = 4909 hoi = 4859 }	# Ciudad Real -> Ciudad Real, Puertollano, Almadén, Piedrabuen, Daimiel, Alcázar de San Juan, Valdepeñas, La Solana, Tomelloso
 link = { vic = 507 hoi = 5073 hoi = 5000 hoi = 5036 }	# Murcia -> Murcia, Hellín, Caravaca
-link = { vic = 516 hoi = 4908 hoi = 4956 hoi = 4997 hoi = 5034 hoi = 5072 hoi = 5035 hoi = 4998 hoi = 4999 hoi = 4957 hoi = 4910 }	# Jaen -> La Carolina, Moral de Calatrava, Linares, Ubeda, Lorca, Huéscar, Beas de Segura, Elche de la Sierra, Santiago-Pontones, Munera
-link = { vic = 508 hoi = 4707 hoi = 4758 hoi = 4759 hoi = 4810 hoi = 4860 hoi = 4861 hoi = 4911 hoi = 4959 hoi = 4958 }	# Albacete -> Montalbo, Las Mesas, Honrubia, Villarrobledo, La Roda, Casas-Ibáñez, Albacete, Almansa, Tobarra
+link = { vic = 516 hoi = 4908 hoi = 4956 hoi = 4997 hoi = 5034 hoi = 5072 hoi = 5035 hoi = 4998 hoi = 4999 hoi = 4957 hoi = 4910 }	# Jaén -> La Carolina, Moral de Calatrava, Linares, Ubeda, Lorca, Huéscar, Beas de Segura, Elche de la Sierra, Santiago Pontones, Munera
+link = { vic = 508 hoi = 4707 hoi = 4758 hoi = 4759 hoi = 4810 hoi = 4860 hoi = 4861 hoi = 4911 hoi = 4959 hoi = 4958 }	# Albacete -> Montalbo, Las Mesas, Honrubia, Villarrobledo, La Roda, Casas Ibáñez, Albacete, Almansa, Tobarra
 link = { vic = 484 hoi = 4854 hoi = 4804 hoi = 4905 hoi = 4952 hoi = 4904 }	# Badajoz -> Monesterio, Salvaléon, Azuaga, Nerva, Aracena
-link = { vic = 486 hoi = 4473 hoi = 4537 hoi = 4594 hoi = 4593 hoi = 4648 hoi = 4702 hoi = 4753 hoi = 4805 }	# Caceres -> Coria, Plasencia, Jaraicejo, Cáceres, Truillo, Mérida, Almendralejo, Castuera
+link = { vic = 486 hoi = 4473 hoi = 4537 hoi = 4594 hoi = 4593 hoi = 4648 hoi = 4702 hoi = 4753 hoi = 4805 }	# Cáceres -> Coria, Plasencia, Jaraicejo, Cáceres, Truillo, Badajoz, Almendralejo, Castuera
 link = { vic = 485 hoi = 4704 hoi = 4649 hoi = 4703 hoi = 4755 hoi = 4806 hoi = 4754 hoi = 4855 }	# Almendralejo -> Guadiana, Alfa, Logrosán, Agudo, Belalcázar, Don Benito, Argallón
-link = { vic = 502 hoi = 4913 hoi = 4863 hoi = 5002 }	# Balearic Islands -> Mallorca, Menorca, Jávea
+link = { vic = 502 hoi = 4913 hoi = 4863 hoi = 5002 }	# Balearic Islands -> Mallorca, Menorca, Eivissa
 link = { vic = 473 hoi = 4298 hoi = 4359 hoi = 4421 hoi = 4486 }	# Corsica -> Bastia, Calvi, Corte, Ajàccio
 link = { vic = 766 hoi = 4658 hoi = 4712 hoi = 4764 hoi = 4763 }	# Sassari -> Olbia, Sassari, Nuoro, Oristano
-link = { vic = 765 hoi = 4814 hoi = 4865 hoi = 4914 hoi = 4864 }	# Cagliari -> Laconi, Tortolì, Cagliari, Villacidro
-link = { vic = 2134 hoi = 8970 }	# Azores -> Azores
-link = { vic = 2135 hoi = 11384 }	# Madeira -> Maderia
+link = { vic = 765 hoi = 4814 hoi = 4865 hoi = 4914 hoi = 4864 }	# Cagliari -> Laconi, Tortolì, Cagliari, Iglesias
+link = { vic = 2134 hoi = 8970 }	# Azores -> Açores
+link = { vic = 2135 hoi = 11384 }	# Madeira -> Madeira
 link = { vic = 2136 hoi = 9506 }	# Canary Islands -> Canary Islands
-link = { vic = 1876 hoi = 10631 }	# Cape Verde -> Cap Verde
-link = { vic = 762 hoi = 5233 hoi = 5266 hoi = 5267 hoi = 5234 }	# Palermo -> Palermo, Trapani, Sciacca, Termini Imerese
+link = { vic = 1876 hoi = 10631 }	# Cape Verde -> Cape Verde Islands
+link = { vic = 762 hoi = 5233 hoi = 5266 hoi = 5267 hoi = 5234 }	# Palermo -> Palermo, Trapani, Sciacca, Bagheria
 link = { vic = 763 hoi = 5235 hoi = 5236 hoi = 5269 }	# Messina -> Cefalù, Messina, Catania
 link = { vic = 764 hoi = 5331 hoi = 5298 hoi = 5330 hoi = 5268 hoi = 5297 }	# Catania -> Siracusa, Caltagirone, Gela, Caltanissetta, Agrigento
 link = { vic = 854 hoi = 5359 }	# Malta -> Malta
-link = { vic = 760 hoi = 5135 hoi = 5169 hoi = 5105 hoi = 5039 hoi = 5074 }	# Catanzaro -> Cartanzaro, Polistena, Crotone, Rossano, Cosenza
-link = { vic = 761 hoi = 4916 hoi = 4869 hoi = 4817 hoi = 4867 hoi = 5003 hoi = 4816 }	# Potenza -> Bernalda, Taranto, Altamura, Ferrandina, Acri, Potenza
-link = { vic = 758 hoi = 4962 hoi = 4917 hoi = 4868 }	# Brindisi -> Galatina, Lecce, Matera
+link = { vic = 760 hoi = 5135 hoi = 5169 hoi = 5105 hoi = 5039 hoi = 5074 }	# Catanzaro -> Catanzaro, Gioia Tauro, Crotone, Rossano, Cosenza
+link = { vic = 761 hoi = 4916 hoi = 4869 hoi = 4817 hoi = 4867 hoi = 5003 hoi = 4816 }	# Potenza -> Bernalda, Taranto, Matera, Tricarico, Acri, Potenza
+link = { vic = 758 hoi = 4962 hoi = 4917 hoi = 4868 }	# Brindisi -> Galatina, Lecce, Brindisi
 link = { vic = 756 hoi = 4768 hoi = 4767 hoi = 4818 }	# Bari -> Bari, Barletta, Monopoli
-link = { vic = 757 hoi = 4607 hoi = 4606 hoi = 4662 hoi = 4715 hoi = 4714 hoi = 4766 hoi = 4661 }	# Foggia -> San Severo, Termoli, Foggia, Manfredonia, Avellino, Campagna, Campobasso
-link = { vic = 755 hoi = 5038 hoi = 4961 hoi = 4915 hoi = 4866 }	# Salerno -> Montalto Uffogo, Castrolvillari, Camerota, Agropoli
+link = { vic = 757 hoi = 4607 hoi = 4606 hoi = 4662 hoi = 4715 hoi = 4714 hoi = 4766 hoi = 4661 }	# Foggia -> Manfredonia, San Severo, Foggia, Cerignola, Benevento, Melfi, Campobasso
+link = { vic = 755 hoi = 5038 hoi = 4961 hoi = 4915 hoi = 4866 }	# Salerno -> Montalto Uffogo, Lauria, Camerota, Agropoli
 link = { vic = 754 hoi = 4765 hoi = 4815 hoi = 4713 }	# Naples -> Napoli, Salerno, Mondragone
-link = { vic = 749 hoi = 4549 hoi = 4603 hoi = 4488 hoi = 4550 hoi = 4487 hoi = 4423 }	# Rome -> Roma, Anzio, Tivoli, Anagni, Viterbo, Terni
+link = { vic = 749 hoi = 4549 hoi = 4603 hoi = 4488 hoi = 4550 hoi = 4487 hoi = 4423 }	# Rome -> Roma, Anzio, Tivoli, Anagni, Civitavecchia, Civita Castellana
 link = { vic = 2567 hoi = 4604 hoi = 4660 hoi = 4659 }	# Gaeta -> Frosinone, Monte Cassino, Latina
-link = { vic = 753 hoi = 4424 hoi = 4302 hoi = 4363 hoi = 4425 hoi = 4551 hoi = 4605 hoi = 4552 hoi = 4489 hoi = 4235 hoi = 4490 }	# Aquila -> Amatrice, Matelica, Ascoli Piceno, Pescara, Sulmona, Isernia, Atessa, L'Aquila, Macerata, Ortona
+link = { vic = 753 hoi = 4424 hoi = 4302 hoi = 4363 hoi = 4425 hoi = 4551 hoi = 4605 hoi = 4552 hoi = 4489 hoi = 4235 hoi = 4490 }	# Aquila -> L'Aquila, Foligno, Ascoli Piceno, Pescara, Sulmona, Isernia, Termoli, Avezzano, Macerata, Ortona
 link = { vic = 729 hoi = 3696 }	# Venice -> Venezia
 link = { vic = 724 hoi = 3971 hoi = 4040 }	# Genoa -> Genova, Ovada
 link = { vic = 725 hoi = 3900 hoi = 4039 }	# Savona -> Savona, San Remo
-link = { vic = 720 hoi = 3827 hoi = 3970 hoi = 3898 hoi = 3758 }	# Turin -> Torino, Limone Piemonte, Cuneo, Ceresole Reale
+link = { vic = 720 hoi = 3827 hoi = 3970 hoi = 3898 hoi = 3758 }	# Turin -> Torino, Cuneo, Pinerolo, Aosta
 link = { vic = 604 hoi = 3217 }	# Basel -> Basel
 link = { vic = 603 hoi = 3285 hoi = 3151 hoi = 3218 hoi = 3354 hoi = 3284 }	# Zurich -> Zürich, Winterthur, Aarau, Schwyz, Langenthal
 link = { vic = 607 hoi = 3554 hoi = 3488 }	# Geneva -> Genève, Lausanne
-link = { vic = 605 hoi = 3422 hoi = 3489 hoi = 3623 hoi = 3690 hoi = 3555 }	# Bern -> Bern, Spiez, St Niklaus, Monthey, Vevey
-link = { vic = 608 hoi = 3352 }	# Neuchatel -> Biel
-link = { vic = 611 hoi = 3356 hoi = 3286 hoi = 3219 hoi = 3426 hoi = 3425 hoi = 3355 }	# Chur -> Chur, Tiefencastel, St Gallen, Davos, Filisur, Disentis Muster
-link = { vic = 606 hoi = 3556 hoi = 3490 hoi = 3424 hoi = 3423 hoi = 3353 hoi = 3283 }	# Lucern -> Brig, Meiringen, Airolo, Luzern, Matterhorn, Grenchen
+link = { vic = 605 hoi = 3422 hoi = 3489 hoi = 3623 hoi = 3690 hoi = 3555 }	# Bern -> Bern, Spiez, St. Niklaus, Monthey, Vevey
+link = { vic = 608 hoi = 3352 }	# Neuchâtel -> Neuchâtel
+link = { vic = 611 hoi = 3356 hoi = 3286 hoi = 3219 hoi = 3426 hoi = 3425 hoi = 3355 }	# Chur -> Chur, Tiefencastel, St. Gallen, Davos, Filisur, Disentis Muster
+link = { vic = 606 hoi = 3556 hoi = 3490 hoi = 3424 hoi = 3423 hoi = 3353 hoi = 3283 }	# Lucerne -> Brig, Meiringen, Airolo, Luzern, Biel, Grenchen
 link = { vic = 736 hoi = 3630 }	# Trieste -> Trieste
 link = { vic = 770 hoi = 3904 hoi = 3833 hoi = 3697 hoi = 3764 }	# Pola -> Pola, Rovigno, Kozina, Umago
 link = { vic = 733 hoi = 3562 }	# Udine -> Udine
-link = { vic = 737 hoi = 3563 hoi = 3496 }	# Gorizia -> Gorizia, Cividale del Friuli
-link = { vic = 732 hoi = 3561 hoi = 3495 hoi = 3628 hoi = 3629 }	# Treviso -> Treviso, Pordenone, Vicenza, Caorle
+link = { vic = 737 hoi = 3563 hoi = 3496 }	# Gorizia -> Gorizia, Tolmezzo
+link = { vic = 732 hoi = 3561 hoi = 3495 hoi = 3628 hoi = 3629 }	# Treviso -> Treviso, Vittorio Veneto, Vicenza, Padova
 link = { vic = 726 hoi = 3692 }	# Milan -> Milano
-link = { vic = 738 hoi = 3761 hoi = 3829 hoi = 3901 }	# Parma -> Parma, Berceto, Barga
-link = { vic = 723 hoi = 3760 hoi = 3899 }	# Alessandria -> Bobbio, Mondovi
-link = { vic = 721 hoi = 3691 }	# Aosta -> Aosta
+link = { vic = 738 hoi = 3761 hoi = 3829 hoi = 3901 }	# Parma -> Piacenza, Voghera, Bobbio
+link = { vic = 723 hoi = 3760 hoi = 3899 }	# Alessandria -> Pavia, Asti
+link = { vic = 721 hoi = 3691 }	# Aosta -> Châtillon
 link = { vic = 609 hoi = 3624 }	# Sitten -> Biella
-link = { vic = 722 hoi = 3828 hoi = 3759 }	# Novara -> Broni, Novara
-link = { vic = 727 hoi = 3625 hoi = 3557 hoi = 3491 hoi = 3558 }	# Bergamo -> Bergamo, Como, Locarno, Sondrio
-link = { vic = 2568 hoi = 3693 }	# Lugano -> Piacenza
-link = { vic = 735 hoi = 3494 hoi = 3428 hoi = 3493 }	# Bozen -> Thiene, Belluno, Storo
-link = { vic = 734 hoi = 3427 hoi = 3560 hoi = 3559 hoi = 3492 }	# Trent -> Trento, Garda, Brescia, Edolo
-link = { vic = 731 hoi = 3832 }	# Padua -> Ravenna
-link = { vic = 730 hoi = 3695 hoi = 3627 hoi = 3831 }	# Verona -> Verona, Desenzano del Garda, Modena
+link = { vic = 722 hoi = 3828 hoi = 3759 }	# Novara -> Alessandria, Vercelli
+link = { vic = 727 hoi = 3625 hoi = 3557 hoi = 3491 hoi = 3558 }	# Bergamo -> Como, Domodossola, Locarno, Chiavenna
+link = { vic = 2568 hoi = 3693 }	# Lugano -> Novara
+link = { vic = 735 hoi = 3494 hoi = 3428 hoi = 3493 }	# Bozen -> Merano, Bolzano, Lasa
+link = { vic = 734 hoi = 3427 hoi = 3560 hoi = 3559 hoi = 3492 }	# Trent -> Trento, Ala, Saló, Sondrio
+link = { vic = 731 hoi = 3832 }	# Padua -> Chioggia
+link = { vic = 730 hoi = 3695 hoi = 3627 hoi = 3831 }	# Verona -> Verona, Brescia, Modena
 link = { vic = 742 hoi = 3763 }	# Ferrara -> Ferrara
-link = { vic = 743 hoi = 3975 hoi = 4043 }	# Ravenna -> Forlì, Rimini
+link = { vic = 743 hoi = 3975 hoi = 4043 }	# Ravenna -> Ravenna, Rimini
 link = { vic = 752 hoi = 4170 hoi = 4110 hoi = 4234 }	# Ancona -> Ancona, Fano, Fabriano
 link = { vic = 740 hoi = 3972 }	# Massa -> La Spezia
-link = { vic = 746 hoi = 4107 hoi = 4041 }	# Lucca -> Pisa, Prato
+link = { vic = 746 hoi = 4107 hoi = 4041 }	# Lucca -> Pisa, Pistoia
 link = { vic = 745 hoi = 4231 }	# Leghorn -> Livorno
-link = { vic = 748 hoi = 4167 hoi = 4232 hoi = 4299 }	# Grosetto -> Empoli, Poggibonsi, Cecina
-link = { vic = 750 hoi = 4422 hoi = 4361 hoi = 4300 hoi = 4360 }	# Viterbo -> Montefiascone, Monte Castello, Montalino, Grosetto
-link = { vic = 751 hoi = 4168 hoi = 4109 hoi = 4169 hoi = 4233 hoi = 4301 hoi = 4362 }	# Perugia -> Arezzo, Sassocorvaro, Urbino, Cortona, Perugia, Foligno
-link = { vic = 747 hoi = 4108 hoi = 4042 }	# Siena -> Firenze, Poppi
+link = { vic = 748 hoi = 4167 hoi = 4232 hoi = 4299 }	# Grosetto -> Empoli, Siena, Piombino
+link = { vic = 750 hoi = 4422 hoi = 4361 hoi = 4300 hoi = 4360 }	# Viterbo -> Orbetello, Viterbo, Montepulciano, Grosseto
+link = { vic = 751 hoi = 4168 hoi = 4109 hoi = 4169 hoi = 4233 hoi = 4301 hoi = 4362 }	# Perugia -> Montevarchi, San Marino, Urbino, Arezzo, Perugia, Terni
+link = { vic = 747 hoi = 4108 hoi = 4042 }	# Siena -> Firenze, Forlì
 link = { vic = 741 hoi = 3903 }	# Bologna -> Bologna
-link = { vic = 744 hoi = 3973 hoi = 3902 hoi = 3974 }	# Florence -> Pistoia, Firezuola, Marradi
-link = { vic = 739 hoi = 3830 }	# Modena -> Pavullo nel Frignano
+link = { vic = 744 hoi = 3973 hoi = 3902 hoi = 3974 }	# Florence -> Castelnovo ne'Monti, Reggio nell'Emilia, Sassuolo
+link = { vic = 739 hoi = 3830 }	# Modena -> Parma
 link = { vic = 728 hoi = 3694 hoi = 3762 }	# Brescia -> Cremona, Mantova
-link = { vic = 759 hoi = 5237 hoi = 5203 }	# Reggio di Calabria -> Melito di Porto Salvo, Regio di Calabria
+link = { vic = 759 hoi = 5237 hoi = 5203 }	# Reggio di Calabria -> Siderno, Reggio di Calabria
 link = { vic = 614 hoi = 3220 }	# Bregenz -> Bregenz
-link = { vic = 612 hoi = 3289 hoi = 3358 hoi = 3288 hoi = 3221 hoi = 3287 hoi = 3357 }	# Innsbruck -> Innsbruck, Steinach, Längenfeld, Kappl, Bludenz, Obergurgl
-link = { vic = 613 hoi = 3022 hoi = 3090 }	# Salzburg -> Neumarkt, Salzburg
-link = { vic = 619 hoi = 2958 }	# Vienna -> Wien
-link = { vic = 618 hoi = 3362 hoi = 3360 hoi = 3291 hoi = 3224 hoi = 3429 hoi = 3359 hoi = 3430 }	# Klagenfurt -> Klagenfurt, Spittal, Spittal, Bad Hofgastein, Kötschach, Maria Luggau, Villach
-link = { vic = 615 hoi = 3290 hoi = 3223 }	# Lienz -> Oberdrauburg, Matrei in Osttirol
-link = { vic = 616 hoi = 3227 hoi = 3361 hoi = 3292 hoi = 3226 }	# Graz -> Graz, Leibnitz, Murau, Scheifling
-link = { vic = 622 hoi = 2955 hoi = 3023 }	# Linz -> Vöcklabruck, Mondsee
-link = { vic = 621 hoi = 3024 hoi = 2890 hoi = 2957 hoi = 2891 }	# Krems -> Freistadt, Zwettl, St Pölten, Hollabrunn
-link = { vic = 624 hoi = 3094 hoi = 3160 hoi = 3293 hoi = 3294 }	# Eisenstadt -> Eisenstadt, Ternitz, Feldberg, Leibnitz
-link = { vic = 620 hoi = 3025 hoi = 3093 hoi = 3159 hoi = 3092 hoi = 2956 }	# Sankt Polten -> Amstetten, Annaberg, Leoben, Windischgarsten, Linz
-link = { vic = 617 hoi = 3091 hoi = 3158 hoi = 3225 hoi = 3157 }	# Judenburg -> Bad Ischl, Tauplitz, Mauterndorf, Schladming
-link = { vic = 626 hoi = 2501 hoi = 2440 hoi = 2381 }	# Hradec Kralove -> Hradec Králové, Chlumec nad Cidlinou, Liberec
-link = { vic = 625 hoi = 2439 }	# Prague -> Praha
-link = { vic = 631 hoi = 2825 hoi = 2824 hoi = 2694 hoi = 2760 hoi = 2761 hoi = 2629 hoi = 2563 hoi = 2630 hoi = 2696 hoi = 2762 hoi = 2695 }	# Brno -> Mikulov, Moravské Budejovice, Telc, Znojmo, Klobouky, Jihlava, Humpolec, Vyskov, Buchlovice, Uhersky Brod, Brno
-link = { vic = 633 hoi = 2959 hoi = 2892 hoi = 2960 hoi = 2893 hoi = 2826 }	# Bratislava -> Bratislava, Breclav, Nitra, Trnava, Holíc
-link = { vic = 627 hoi = 2497 hoi = 2625 hoi = 2560 }	# Karlsbad -> Cheb, Tachov, Bor
-link = { vic = 629 hoi = 2626 hoi = 2757 hoi = 2691 hoi = 2692 hoi = 2561 hoi = 2627 hoi = 2758 hoi = 2822 }	# Plzen -> Stankov, Strázny, Domazlice, Vimperk, Prestice, Klatovy, Prachatice, Horni Planá
-link = { vic = 630 hoi = 2823 hoi = 2693 hoi = 2889 hoi = 2759 hoi = 2628 hoi = 2500 hoi = 2562 }	# Budejovice -> Vyssi Brod, Ceské Budejovice, Cesky Krumlov, Jindrichuv Hradec, Pelhrimov, Kolín, Milevsko
-link = { vic = 628 hoi = 2380 hoi = 2438 hoi = 2498 hoi = 2499 }	# Aussig -> Ustí nad Labem, Karlovy Vary, Lazne, Plzen
-link = { vic = 950 hoi = 2898 hoi = 2832 hoi = 2767 hoi = 2831 hoi = 2899 hoi = 2965 }	# Uzgorord -> Uzhhorod, Uzhok, Snina, Humenné, Volovets, Mukacheve
-link = { vic = 637 hoi = 2766 hoi = 2830 hoi = 2765 hoi = 2764 hoi = 2699 hoi = 2633 }	# Kosice -> Presov, Roznava, Poprad, Ruzomberok, Nowy Targ, Jablonka
-link = { vic = 636 hoi = 2698 hoi = 2631 hoi = 2763 }	# Banska Bystrica -> Zilina, Zlín, Valaská Belá
-link = { vic = 634 hoi = 2632 hoi = 2697 hoi = 2827 }	# Trencin -> Makov, Púchov, Trencín
-link = { vic = 635 hoi = 2894 hoi = 2828 }	# Nitra -> Zlaté Moravce, Prievidza
-link = { vic = 638 hoi = 2829 hoi = 2895 }	# Roznava -> Rimavská Sobota, Banská Bystrica
-link = { vic = 632 hoi = 2565 hoi = 2564 hoi = 2441 hoi = 2502 }	# Olomouc -> Olomouc, Pardubice, Krummhübel, Svitavy
-link = { vic = 361 hoi = 1442 hoi = 1488 }	# Kaunas -> Kaunas, Ziezmariai
+link = { vic = 612 hoi = 3289 hoi = 3358 hoi = 3288 hoi = 3221 hoi = 3287 hoi = 3357 }	# Innsbruck -> Innsbruck, Sölden, Längenfeld, Kappl, Bludenz, Pfunds
+link = { vic = 613 hoi = 3022 hoi = 3090 }	# Salzburg -> Braunau am Inn, Salzburg
+link = { vic = 619 hoi = 2958 }	# Vienna -> Gänserndorf
+link = { vic = 618 hoi = 3362 hoi = 3360 hoi = 3291 hoi = 3224 hoi = 3429 hoi = 3359 hoi = 3430 }	# Klagenfurt -> Klagenfurt, Spittal, Tamsweg, Bischofshofen, Lienz, Matrei in Osttirol, Villach
+link = { vic = 615 hoi = 3290 hoi = 3223 }	# Lienz -> Mittersill, Kufstein
+link = { vic = 616 hoi = 3227 hoi = 3361 hoi = 3292 hoi = 3226 }	# Graz -> Graz, Leibnitz, Murau, Judenburg
+link = { vic = 622 hoi = 2955 hoi = 3023 }	# Linz -> Rohrbach, Vöcklabruck
+link = { vic = 621 hoi = 3024 hoi = 2890 hoi = 2957 hoi = 2891 }	# Krems -> Freistadt, Zwettl, Krems, Hollabrunn
+link = { vic = 624 hoi = 3094 hoi = 3160 hoi = 3293 hoi = 3294 }	# Eisenstadt -> Eisenstadt, Oberwart, Feldberg, Fürstenfeld
+link = { vic = 620 hoi = 3025 hoi = 3093 hoi = 3159 hoi = 3092 hoi = 2956 }	# Sankt Pölten -> St. Pölten, Wiener Neustadt, Leoben, Waidhofen, Linz
+link = { vic = 617 hoi = 3091 hoi = 3158 hoi = 3225 hoi = 3157 }	# Judenburg -> Wels, Tauplitz, Mauterndorf, Schladming
+link = { vic = 626 hoi = 2501 hoi = 2440 hoi = 2381 }	# Hradec Králové -> Hradec Králové, Trutnov, Liberec
+link = { vic = 625 hoi = 2439 }	# Prague -> Céska Lipa
+link = { vic = 631 hoi = 2825 hoi = 2824 hoi = 2694 hoi = 2760 hoi = 2761 hoi = 2629 hoi = 2563 hoi = 2630 hoi = 2696 hoi = 2762 hoi = 2695 }	# Brno -> Znojmo, Jindrichuv Hradek, Jihlava, Trebic, Svitavy, Pardubice, Kutná Hora, Sumperk, Olomouc, Zlín, Brno
+link = { vic = 633 hoi = 2959 hoi = 2892 hoi = 2960 hoi = 2893 hoi = 2826 }	# Bratislava -> Trnava, Senica, Nitra, Priestany, Novo Mesto n.v.
+link = { vic = 627 hoi = 2497 hoi = 2625 hoi = 2560 }	# Karlsbad -> Karlovy Vary, Cheb, Marianske Lazne
+link = { vic = 629 hoi = 2626 hoi = 2757 hoi = 2691 hoi = 2692 hoi = 2561 hoi = 2627 hoi = 2758 hoi = 2822 }	# Plzen -> Plzen, Domazlice, Tachov, Pribram, Rakovnik, Beroun, Pisek, Susice
+link = { vic = 630 hoi = 2823 hoi = 2693 hoi = 2889 hoi = 2759 hoi = 2628 hoi = 2500 hoi = 2562 }	# Budejovice -> Ceské Budejovice, Tabor, Cesky Krumlov, Sobeslav, Pelhrimov, Nymburk, Praha
+link = { vic = 628 hoi = 2380 hoi = 2438 hoi = 2498 hoi = 2499 }	# Aussig -> Varnsdorf, Ustí nad Labem, Chomutov, Kladno
+link = { vic = 950 hoi = 2898 hoi = 2832 hoi = 2767 hoi = 2831 hoi = 2899 hoi = 2965 }	# Uzgorord -> Uzhhorod, Svalava, Perecin, Humenné, Volovets, Berehove
+link = { vic = 637 hoi = 2766 hoi = 2830 hoi = 2765 hoi = 2764 hoi = 2699 hoi = 2633 }	# Košice -> Presov, Spisska Nová Ves, Kezmarek, Martin, Nowy Targ, Bielsko Biala
+link = { vic = 636 hoi = 2698 hoi = 2631 hoi = 2763 }	# Banská Bystrica -> Zilina, Ostrava, Povazká Bystrika
+link = { vic = 634 hoi = 2632 hoi = 2697 hoi = 2827 }	# Trencín -> Opava, Novy Jicin, Trencín
+link = { vic = 635 hoi = 2894 hoi = 2828 }	# Nitra -> Topocani, Prievidza
+link = { vic = 638 hoi = 2829 hoi = 2895 }	# Rožnava -> Ruzomberok, Banská Bystrica
+link = { vic = 632 hoi = 2565 hoi = 2564 hoi = 2441 hoi = 2502 }	# Olomouc -> Krnov, Ceske Trebova, Glatz, Jesenik
+link = { vic = 361 hoi = 1442 hoi = 1488 }	# Kaunas -> Kaunas, Kaisiadorys
 link = { vic = 362 hoi = 1487 hoi = 1530 }	# Marijampole -> Marijampole, Alytus
-link = { vic = 947 hoi = 1445 hoi = 1400 hoi = 1356 hoi = 1401 }	# Pastavy -> Pastavy, Svencioneliai, Braslaw, Hlybokaye
-link = { vic = 938 hoi = 1634 hoi = 1580 hoi = 1490 hoi = 1533 }	# Lida -> Maladzyechna, Smarhon, Svir, Knyahinin
-link = { vic = 939 hoi = 1754 hoi = 1813 hoi = 1692 hoi = 1693 hoi = 1633 hoi = 1753 }	# Baranovichi -> Stolpce, Baranavichy, Radun', Navahrudak, Salcininkai, Lida
-link = { vic = 940 hoi = 1874 hoi = 1989 hoi = 1933 hoi = 1988 hoi = 1932 hoi = 1812 hoi = 2046 hoi = 1873 hoi = 1872 }	# Pinsk -> Mal'kavichy, Stolin, Pinsk, Ivanava, Ivatsevichy, Shchuchyn, Zarichne, Slonim, Vawkavysk
-link = { vic = 953 hoi = 2833 hoi = 2834 hoi = 2703 hoi = 2768 hoi = 2702 hoi = 2637 hoi = 2638 hoi = 2704 }	# Stanislavov -> Kalush, Buczacz, Zhuravno, Bolekhiv, Drohobych, Stryy, Bursztyn, Zolotnyky
-link = { vic = 952 hoi = 2573 hoi = 2639 hoi = 2450 hoi = 2510 hoi = 2391 hoi = 2392 }	# Ternopil -> Ternopil', Skalat, Radiwilów, Zloczów, Lopatyn, Dubno
-link = { vic = 956 hoi = 2277 hoi = 2220 hoi = 2276 hoi = 2334 }	# Rovne -> Styr, Manevychi, Torchyn, Luts'k
-link = { vic = 957 hoi = 2104 hoi = 2162 hoi = 2161 hoi = 2045 hoi = 1987 hoi = 2044 hoi = 2160 hoi = 2102 hoi = 2103 hoi = 2219 }	# Kovel -> Lyubeshiv, Kuznetsovs'k, Povors'k, Malinavka, Drachichyn, Ratne, Kovel', Shats'k, Kamin'- Kashyrs'kyy, Holoby
+link = { vic = 947 hoi = 1445 hoi = 1400 hoi = 1356 hoi = 1401 }	# Pastavy -> Postawy, Glebokie, Braslaw, Hlybokaye
+link = { vic = 938 hoi = 1634 hoi = 1580 hoi = 1490 hoi = 1533 }	# Lida -> Radoszkowice, Wolozyn, Svir, Wilejka
+link = { vic = 939 hoi = 1754 hoi = 1813 hoi = 1692 hoi = 1693 hoi = 1633 hoi = 1753 }	# Baranovichi -> Stolpce, Baranowicze, Horodyszcz, Jeremicze, Lubiez, Nowogródek
+link = { vic = 940 hoi = 1874 hoi = 1989 hoi = 1933 hoi = 1988 hoi = 1932 hoi = 1812 hoi = 2046 hoi = 1873 hoi = 1872 }	# Pinsk -> Nieswiez, Luniniec, Pinsk, Iwanowo, Chomsk, Slonim, Malkowicze, Lipsk, Rozana
+link = { vic = 953 hoi = 2833 hoi = 2834 hoi = 2703 hoi = 2768 hoi = 2702 hoi = 2637 hoi = 2638 hoi = 2704 }	# Stanislavov -> Skole, Stryj, Drohobycz, Borislaw, Dolne, Sambor, Zloczów, Brzezany
+link = { vic = 952 hoi = 2573 hoi = 2639 hoi = 2450 hoi = 2510 hoi = 2391 hoi = 2392 }	# Ternopil -> Tarnopol, Lanowce, Krzemieniec, Radziechow, Horochow, Dubno
+link = { vic = 956 hoi = 2277 hoi = 2220 hoi = 2276 hoi = 2334 }	# Rovne -> Kiwerce, Kolki, Rozyszcze, Luck
+link = { vic = 957 hoi = 2104 hoi = 2162 hoi = 2161 hoi = 2045 hoi = 1987 hoi = 2044 hoi = 2160 hoi = 2102 hoi = 2103 hoi = 2219 }	# Kovel -> Kuchecka Wola, Wlodzimierz, Powórsk, Drohiczyn, Kobryn, Maloryta, Switaz, Krymno, Ratno, Kowel
 link = { vic = 706 hoi = 1928 }	# Warsaw -> Warszawa
-link = { vic = 707 hoi = 1630 hoi = 1690 hoi = 1750 hoi = 1578 hoi = 1631 }	# Suwalki -> Suwalki, Augustów, Grajewo, Daugai, Druskienniki
-link = { vic = 360 hoi = 1532 hoi = 1489 hoi = 1579 hoi = 1632 hoi = 1751 hoi = 1752 }	# Vilnius -> Wilno, Vievis, Trakai, Varena, Grodno, Astryna
-link = { vic = 708 hoi = 1927 hoi = 1807 hoi = 1868 hoi = 1983 hoi = 1926 hoi = 1982 hoi = 1867 }	# Plock -> Plock, Rypin, Mlawa, Pruszków, Chodecz, Bzura, Wloclawek
-link = { vic = 709 hoi = 1809 hoi = 1808 hoi = 1869 hoi = 2041 }	# Lomza -> Lomza, Ostroleka, Ostrów Mazowiecka, Warka
-link = { vic = 711 hoi = 1929 hoi = 1985 hoi = 2043 hoi = 1984 hoi = 2042 hoi = 2100 }	# Siedlice -> Siedlce, Rogozniczka, Biala Podlaska, Kaluszyn, Luków, Pulawy
-link = { vic = 719 hoi = 1810 hoi = 1870 hoi = 1930 }	# Bialystock -> Bialystok, Sokoly, Bocki
-link = { vic = 937 hoi = 1986 hoi = 1931 }	# Brest-Litovsk -> Brest-Litovsk, Kobryn
-link = { vic = 936 hoi = 1691 hoi = 1811 hoi = 1871 }	# Grodno -> Parechcha, Masty, Kamyayets
-link = { vic = 715 hoi = 2158 hoi = 2331 hoi = 2273 hoi = 2216 hoi = 2217 hoi = 2101 hoi = 2159 hoi = 2274 hoi = 2218 hoi = 2388 hoi = 2330 }	# Lublin -> Lublin, Bilgoraj, Wyzokie, Ostrowiec, Zólkiewka, Parczew, Cyców, Zamosc, Chelm, Janów Lubelski, Stalowa Wola
-link = { vic = 705 hoi = 2507 hoi = 2446 hoi = 2387 hoi = 2569 }	# Przemysl -> Przeworsk, Rzeszów, Busko-Zdrój, Krosno
-link = { vic = 702 hoi = 2509 hoi = 2449 hoi = 2390 hoi = 2332 hoi = 2275 hoi = 2333 }	# Lvov -> Lwów, Kam''yanka-Buz'ka, Chervonohrad, Tomaszów Lubelski, Novovolyns'k, Zaturtsi
-link = { vic = 951 hoi = 2572 hoi = 2636 hoi = 2508 hoi = 2448 hoi = 2389 hoi = 2447 hoi = 2570 hoi = 2571 hoi = 2701 hoi = 2635 }	# Stryi -> Zhydachiv, Przemysl, Zapalów, Nemyriv, Obsza, Jaroslaw, Pruchnik, Velikiy Lyubin, Ozenna, Tyrawa Woloska
+link = { vic = 707 hoi = 1630 hoi = 1690 hoi = 1750 hoi = 1578 hoi = 1631 }	# Suwalki -> Suwalki, Augustów, Osowiec, Daugai, Sopockinie
+link = { vic = 360 hoi = 1532 hoi = 1489 hoi = 1579 hoi = 1632 hoi = 1751 hoi = 1752 }	# Vilnius -> Wilno, Oszmiana, Lipinski, Lida, Grodno, Wolkowysk
+link = { vic = 708 hoi = 1927 hoi = 1807 hoi = 1868 hoi = 1983 hoi = 1926 hoi = 1982 hoi = 1867 }	# Plock -> Plock, Dzialdowo, Mlawa, Modlin, Wloclawek, Kutno, Rypin
+link = { vic = 709 hoi = 1809 hoi = 1808 hoi = 1869 hoi = 2041 }	# Lomza -> Lomza, Przasnysz, Ostroleka, Pultusk
+link = { vic = 711 hoi = 1929 hoi = 1985 hoi = 2043 hoi = 1984 hoi = 2042 hoi = 2100 }	# Siedlice -> Ostrów Mazowiecka, Siedlce, Biala Podlaska, Lochow, Otwock, Warka
+link = { vic = 719 hoi = 1810 hoi = 1870 hoi = 1930 }	# Bialystock -> Bialystok, Zambrów, Bielsk Podlaski
+link = { vic = 937 hoi = 1986 hoi = 1931 }	# Brest-Litovsk -> Brzesc Litewski, Pruzana
+link = { vic = 936 hoi = 1691 hoi = 1811 hoi = 1871 }	# Grodno -> Sokolka, Narew, Hajnowka
+link = { vic = 715 hoi = 2158 hoi = 2331 hoi = 2273 hoi = 2216 hoi = 2217 hoi = 2101 hoi = 2159 hoi = 2274 hoi = 2218 hoi = 2388 hoi = 2330 }	# Lublin -> Lublin, Krasnik, Ostrowiec, Radom, Deblin, Luków, Wlodawa, Bychawa, Chelm, Sandomierz, Opatow
+link = { vic = 705 hoi = 2507 hoi = 2446 hoi = 2387 hoi = 2569 }	# Przemysl -> Mielec, Staszów, Chmielnik, Tarnów
+link = { vic = 702 hoi = 2509 hoi = 2449 hoi = 2390 hoi = 2332 hoi = 2275 hoi = 2333 }	# Lvov -> Lwów, Sokal, Tomaszów Lubelski, Zamosc, Luboml, Wlodzimierz Wolynski
+link = { vic = 951 hoi = 2572 hoi = 2636 hoi = 2508 hoi = 2448 hoi = 2389 hoi = 2447 hoi = 2570 hoi = 2571 hoi = 2701 hoi = 2635 }	# Stryi -> Zolkiev, Przemysl, Lancut, Jaroslaw, Bilgoraj, Stalowa Wola, Rzeszów, Sanok, Krosno, Gorlice
 link = { vic = 694 hoi = 1866 hoi = 1805 hoi = 1806 }	# Torun -> Torun, Bydgoszcz, Brodnica
-link = { vic = 683 hoi = 2323 hoi = 2266 hoi = 2324 hoi = 2382 }	# Liegnitz -> Zittau, Markllissa, Friedeberg, Waldenburg
-link = { vic = 682 hoi = 2152 hoi = 2095 hoi = 2268 }	# Breslau -> Hirschberg, Rawicz, Trebnitz
-link = { vic = 689 hoi = 2566 hoi = 2503 hoi = 2443 }	# Tesin -> Wodzislaw Slaski, Ratibor, Krappitz
-link = { vic = 2584 hoi = 2567 }	# Bielsko -> Wisla
-link = { vic = 704 hoi = 2634 }	# Novy Sacz -> Nowy Sacz
+link = { vic = 683 hoi = 2323 hoi = 2266 hoi = 2324 hoi = 2382 }	# Liegnitz -> Zittau, Bunzlau, Lauban, Waldenburg
+link = { vic = 682 hoi = 2152 hoi = 2095 hoi = 2268 }	# Breslau -> Wohlau, Militsch, Trebnitz
+link = { vic = 689 hoi = 2566 hoi = 2503 hoi = 2443 }	# Tesin -> Rybnik, Ratibor, Gleiwitz
+link = { vic = 2584 hoi = 2567 }	# Bielsko -> Cieszyn
+link = { vic = 704 hoi = 2634 }	# Novy Sacz -> Bochnia
 link = { vic = 685 hoi = 2386 }	# Kattowitz -> Katowice
 link = { vic = 703 hoi = 2445 }	# Krakow -> Kraków
-link = { vic = 714 hoi = 2506 hoi = 2568 hoi = 2505 }	# Tarnow -> Tarnów, Jordanów, Bielsko-Biala
-link = { vic = 684 hoi = 2385 hoi = 2327 hoi = 2326 hoi = 2212 hoi = 2153 hoi = 2211 }	# Oppeln -> Oppeln, Kreuzburg, Münsterberg, Grottkau, Breslau, Waldenburg
-link = { vic = 688 hoi = 2442 hoi = 2383 hoi = 2325 hoi = 2267 }	# Troppau -> Bauerwitz, Langenbielau, Hirschberg, Lähn
-link = { vic = 716 hoi = 2328 hoi = 2504 hoi = 2444 hoi = 2384 hoi = 2329 hoi = 2270 }	# Kielce -> Góry, Jastrzebie-Zdrój, Zory, Beuthen, Wloszczowa, Lubliniec
-link = { vic = 713 hoi = 2099 hoi = 2098 hoi = 2157 hoi = 2215 }	# Radom -> Tomaszów, Zdunska Wola, Radom, Opoczno
-link = { vic = 700 hoi = 1865 hoi = 1925 }	# Bromberg -> Gniezno, Konin
-link = { vic = 699 hoi = 1980 hoi = 1979 hoi = 2036 hoi = 2037 }	# Posen -> Slupca, Koscian, Leszno, Gostyn
-link = { vic = 701 hoi = 1924 hoi = 2096 }	# Gniezno -> Poznan, Ostrów Wielkopolski
-link = { vic = 717 hoi = 2213 hoi = 2154 hoi = 2269 hoi = 2271 }	# Kalisz -> Krzepice, Ostrzeszów, Brieg, Czestochowa
-link = { vic = 712 hoi = 2214 hoi = 2155 hoi = 2040 hoi = 2156 }	# Lodz -> Klobuck, Wielun, Lódz, Belchatów
-link = { vic = 710 hoi = 2039 hoi = 2097 hoi = 2038 hoi = 1981 }	# Skierniewicz -> Sieradz, Zloczew, Kalisz, Turek
+link = { vic = 714 hoi = 2506 hoi = 2568 hoi = 2505 }	# Tarnow -> Busko Zdrój, Miechow, Chrzanow
+link = { vic = 684 hoi = 2385 hoi = 2327 hoi = 2326 hoi = 2212 hoi = 2153 hoi = 2211 }	# Oppeln -> Oppeln, Kreuzburg, Brieg, Oels, Breslau, Liegnitz
+link = { vic = 688 hoi = 2442 hoi = 2383 hoi = 2325 hoi = 2267 }	# Troppau -> Neisse, Langenbielau, Schweidnitz, Jauer
+link = { vic = 716 hoi = 2328 hoi = 2504 hoi = 2444 hoi = 2384 hoi = 2329 hoi = 2270 }	# Kielce -> Lubliniec, Zawiercie, Sosnowiec, Beuthen, Jedrzejow, Wloszczowa
+link = { vic = 713 hoi = 2099 hoi = 2098 hoi = 2157 hoi = 2215 }	# Radom -> Tomaszów, Lowicz, Opoczno, Konskie
+link = { vic = 700 hoi = 1865 hoi = 1925 }	# Bromberg -> Wagrowiec, Gniezno
+link = { vic = 699 hoi = 1980 hoi = 1979 hoi = 2036 hoi = 2037 }	# Posen -> Wronki, Szamotuly, Koscian, Leszno
+link = { vic = 701 hoi = 1924 hoi = 2096 }	# Gniezno -> Poznan, Rawicz
+link = { vic = 717 hoi = 2213 hoi = 2154 hoi = 2269 hoi = 2271 }	# Kalisz -> Sieradz, Ostrów Wielkopolski, Wielun, Czestochowa
+link = { vic = 712 hoi = 2214 hoi = 2155 hoi = 2040 hoi = 2156 }	# Lodz -> Radomsko, Zdunska Wola, Lódz, Piotrików
+link = { vic = 710 hoi = 2039 hoi = 2097 hoi = 2038 hoi = 1981 }	# Skierniewice -> Konin, Kalisz, Jarocin, Inowroclaw
 link = { vic = 848 hoi = 5381 hoi = 5398 }	# Iraklion -> Irakleio, Tympaki
 link = { vic = 847 hoi = 5379 hoi = 5380 }	# Chania -> Chania, Rethymno
 link = { vic = 839 hoi = 5171 hoi = 5136 }	# Nafplion -> Argos, Tripolis
@@ -745,7 +745,7 @@ link = { vic = 842 hoi = 5106 }	# Patras -> Patra
 link = { vic = 827 hoi = 5075 }	# Zante -> Kefallinía
 link = { vic = 840 hoi = 5107 hoi = 5137 }	# Corinth -> Korinthos, Nafplio
 link = { vic = 834 hoi = 5076 }	# Athens -> Athina
-link = { vic = 838 hoi = 5077 }	# Khalkis -> Agios Dimitrios
+link = { vic = 838 hoi = 5077 }	# Khalkis -> Chalkida
 link = { vic = 845 hoi = 10731 }	# Cyclades -> Dodecanese
 link = { vic = 846 hoi = 5138 }	# Dodecanese -> Rodos
 link = { vic = 835 hoi = 5041 }	# Amfissa -> Amfissa
@@ -756,10 +756,10 @@ link = { vic = 824 hoi = 4870 hoi = 4819 hoi = 4871 hoi = 4918 }	# Janina -> Ker
 link = { vic = 853 hoi = 4769 hoi = 4717 }	# Gjirokaster -> Vlore, Korce
 link = { vic = 833 hoi = 4964 hoi = 4919 }	# Trikkala -> Agrinio, Thesprotiko
 link = { vic = 832 hoi = 4873 hoi = 4821 }	# Volos -> Larisa, Katerini
-link = { vic = 831 hoi = 4920 hoi = 4872 }	# Larisa -> Trikala, Sykia
+link = { vic = 831 hoi = 4920 hoi = 4872 }	# Larissa -> Trikala, Sykia
 link = { vic = 821 hoi = 4665 hoi = 4719 }	# Edessa -> Edessa, Meliki
 link = { vic = 820 hoi = 4820 hoi = 4771 }	# Grevena -> Paliouria, Kozani
-link = { vic = 819 hoi = 4770 hoi = 4718 }	# Florina -> Neapoli, Ptolemaida
+link = { vic = 819 hoi = 4770 hoi = 4718 }	# Florina -> Kastoria, Florina
 link = { vic = 805 hoi = 4666 hoi = 4611 }	# Salonika -> Kilkis, Giannitsa
 link = { vic = 822 hoi = 4720 hoi = 4667 }	# Polygyros -> Salonica, Arnaia
 link = { vic = 823 hoi = 4612 hoi = 4613 }	# Kavala -> Serres, Kavala
@@ -770,117 +770,117 @@ link = { vic = 860 hoi = 4503 }	# Istanbul -> Istanbul
 link = { vic = 858 hoi = 4438 hoi = 4375 }	# Kirklareli -> Karacaköy, Demirköy
 link = { vic = 859 hoi = 4502 hoi = 4437 }	# Gallipoli -> Corlu, Lüleburgaz
 link = { vic = 828 hoi = 4501 hoi = 4374 hoi = 4436 }	# Edirne -> Tekirdag, Kirklareli, Edirne
-link = { vic = 830 hoi = 4560 }	# Dedeagatch -> Malkara
+link = { vic = 830 hoi = 4560 }	# Dedeagatch -> Gelibolu
 link = { vic = 852 hoi = 4716 }	# Vlore -> Durres
 link = { vic = 849 hoi = 4663 }	# Tirana -> Tirane
 link = { vic = 850 hoi = 4494 hoi = 4554 }	# Shkoder -> Shkoder, Rreshen
 link = { vic = 851 hoi = 4608 }	# Durres -> Lezhe
 link = { vic = 811 hoi = 4056 }	# Ruse -> Ruse
-link = { vic = 812 hoi = 4121 hoi = 4245 }	# Pleven -> Pleven, Svoge
-link = { vic = 818 hoi = 4057 hoi = 4058 hoi = 3990 }	# Silistre -> Vulchidol, Cavarna, Bazargic
-link = { vic = 814 hoi = 4183 hoi = 4123 }	# Varna -> Aytos, Varna
+link = { vic = 812 hoi = 4121 hoi = 4245 }	# Pleven -> Pleven, Orechow
+link = { vic = 818 hoi = 4057 hoi = 4058 hoi = 3990 }	# Silistre -> Silistria, Cavarna, Dobrich
+link = { vic = 814 hoi = 4183 hoi = 4123 }	# Varna -> Tolbuchin, Varna
 link = { vic = 817 hoi = 4248 hoi = 4313 }	# Burgas -> Burgas, Yambol
-link = { vic = 813 hoi = 4247 hoi = 4182 hoi = 4246 hoi = 4312 hoi = 4122 }	# Shumen -> Sliven, Veliko Turnovo, Lovech, Kazanluk, Shumen
-link = { vic = 815 hoi = 4435 hoi = 4500 hoi = 4559 hoi = 4499 hoi = 4558 hoi = 4434 }	# Plovdiv -> Plovdiv, Haskovo, Smolyan, Pazardzhik, Yakoruda, Samokov
-link = { vic = 816 hoi = 4373 hoi = 4372 hoi = 4311 }	# Stara Zagora -> Stara Zagora, Srednogorie, Sopot
+link = { vic = 813 hoi = 4247 hoi = 4182 hoi = 4246 hoi = 4312 hoi = 4122 }	# Shumen -> Sliven, Tarnovo, Kazanlak, Stara Zagora, Shumen
+link = { vic = 815 hoi = 4435 hoi = 4500 hoi = 4559 hoi = 4499 hoi = 4558 hoi = 4434 }	# Plovdiv -> Plovdiv, Momcilgrad, Madan, Asenovgrad, Paschmakti, Stanke Dimitrov
+link = { vic = 816 hoi = 4373 hoi = 4372 hoi = 4311 }	# Stara Zagora -> Dimitrovgrad, Pazardzhik, Sopot
 link = { vic = 809 hoi = 4371 }	# Sofia -> Sofiya
-link = { vic = 810 hoi = 4180 hoi = 4054 hoi = 4119 hoi = 4181 }	# Vidin -> Montana, Vidin, Rakovitsa, Vratsa
-link = { vic = 808 hoi = 4497 hoi = 4498 hoi = 4557 hoi = 4433 }	# Petrich -> Kyustendil, Blagoevgrad, Kresna, Pernik
+link = { vic = 810 hoi = 4180 hoi = 4054 hoi = 4119 hoi = 4181 }	# Vidin -> Lom, Calafat, Vidin, Vratsa
+link = { vic = 808 hoi = 4497 hoi = 4498 hoi = 4557 hoi = 4433 }	# Petrich -> Petric, Blagoevgrad, Goce Delcev, Pernik
 link = { vic = 674 hoi = 3919 }	# Constanta -> Constanta
-link = { vic = 669 hoi = 3918 hoi = 3989 }	# Calarasi -> Calarasi, Dulovo
+link = { vic = 669 hoi = 3918 hoi = 3989 }	# Calarasi -> Fetesti, Dulovo
 link = { vic = 675 hoi = 3713 hoi = 3646 hoi = 3780 }	# Tulcea -> Sulina, Tulcea, Babadag
-link = { vic = 678 hoi = 3377 hoi = 3446 hoi = 3580 hoi = 3513 }	# Izmail -> Cetatea Alba, Sarata, Vâlcov, Artsyz
-link = { vic = 676 hoi = 3308 hoi = 3241 hoi = 3038 hoi = 3307 hoi = 3376 }	# Chisinau -> Rozdil'na, Krasni Okny, Soroca, Tiraspol, Tighina
-link = { vic = 662 vic = 677 hoi = 2770 hoi = 2835 hoi = 2901 hoi = 2769 hoi = 3172 hoi = 3106 hoi = 2969 hoi = 2902 hoi = 3105 }	# Cernauti, Balti -> Trembowla, Orynyn, Borszczów, Ivano-Frankivs'k, Balti, Rezina, Edinet, Chernivtsi, Botosani
-link = { vic = 647 hoi = 3369 hoi = 3301 hoi = 3370 hoi = 3439 }	# Oradea -> Oradea, Marghita, Alesd, Salonta
-link = { vic = 651 hoi = 3101 hoi = 3034 hoi = 3167 hoi = 3235 hoi = 3168 }	# Szatmar -> Satu Mare, Livada, Carei, Tasnad, Seini
-link = { vic = 652 hoi = 3573 hoi = 3505 hoi = 3706 hoi = 3506 }	# Temesvar -> Arad, Sânnicolau Mare, Timisoara, Curtici
-link = { vic = 653 hoi = 3639 hoi = 3572 hoi = 3640 hoi = 3438 }	# Resicabanya -> Jimbolia, Nadlac, Faget, Chisineu-Cris
-link = { vic = 665 hoi = 3774 hoi = 3707 hoi = 3775 hoi = 3843 }	# Tirgu Jiu -> Resita, Hunedoara, Petrosani, Moldova Noua
-link = { vic = 666 hoi = 3986 hoi = 3844 hoi = 3914 hoi = 3987 }	# Craiova -> Vânju Mare, Petrila, Drobeta, Craiova
-link = { vic = 664 hoi = 3915 hoi = 3916 hoi = 3988 hoi = 4055 }	# Bucharest -> Strehaia, Saceni, Alexandria, Corabia
-link = { vic = 661 hoi = 2900 hoi = 3035 hoi = 2966 hoi = 3102 hoi = 3169 }	# Beszterce -> Chorna Tysa, Dubove, Mizhhir'ya, Vama, Cavnic
-link = { vic = 654 hoi = 3441 hoi = 3303 hoi = 3236 }	# Cluj -> Cluj-Napoca, Târgu Lapus, Baia Mare
-link = { vic = 655 hoi = 3371 hoi = 3302 hoi = 3440 }	# Gyulafehervar -> Zalau, Zalau, Huedin
-link = { vic = 656 hoi = 3507 hoi = 3574 hoi = 3508 hoi = 3641 hoi = 3708 }	# Deva -> Beius, Savârsin, Câmpeni, Ilia, Cugir
-link = { vic = 671 hoi = 2968 hoi = 3037 hoi = 3104 hoi = 3171 hoi = 3306 hoi = 3239 }	# Botosani -> Berehomet, Dorohoi, Radauti, Suceava, Iasi, Târgu Neamt
-link = { vic = 670 hoi = 3240 hoi = 3173 hoi = 3375 hoi = 3305 hoi = 3512 hoi = 3445 }	# Iasi -> Chisinau, Orhei, Vaslui, Vatra Dornei, Bârlad, Comrat
-link = { vic = 673 hoi = 3579 hoi = 3645 hoi = 3578 hoi = 3712 }	# Galati -> Galati, Ianca, Focsani, Ostrov
-link = { vic = 668 hoi = 3848 hoi = 3779 hoi = 3711 hoi = 3644 hoi = 3778 hoi = 3917 hoi = 3847 hoi = 3846 hoi = 3710 }	# Braila -> Hârsova, Rusetu, Buzau, Valenii de Munte, Ploiesti, Bucuresti, Urziceni, Titu, Târgoviste
-link = { vic = 663 hoi = 3036 hoi = 2967 hoi = 3103 hoi = 3170 }	# Suceava -> Snyatyn, Rakhiv, Viseu de Sus, Putyla
-link = { vic = 672 hoi = 3238 hoi = 3444 hoi = 3374 hoi = 3511 }	# Bacau -> Maieru, Bacau, Piatra Neamt, Onesti
-link = { vic = 667 hoi = 3642 hoi = 3577 hoi = 3709 hoi = 3777 hoi = 3845 hoi = 3776 hoi = 3643 }	# Tirgoviste -> Polovragi, Brasov, Râmnicu Vâlcea, Pitesti, Ionesti, Novaci, Câmpulung
-link = { vic = 659 hoi = 3575 hoi = 3510 }	# Brasso -> Alba Iulia, Odorheiu Secuiesc
-link = { vic = 657 hoi = 3509 hoi = 3576 }	# Nagyszeben -> Aiud, Sibiu
-link = { vic = 2533 hoi = 3372 hoi = 3442 }	# Targu Mures -> Bistrita, Târgu Mures
-link = { vic = 660 hoi = 3443 hoi = 3373 hoi = 3304 hoi = 3237 }	# Udvarhely -> Gheorgheni, Toplita, Lunca Bradului, Romuli
+link = { vic = 678 hoi = 3377 hoi = 3446 hoi = 3580 hoi = 3513 }	# Izmail -> Cetatea Alba, Kilia, St.Georg, Ismail
+link = { vic = 676 hoi = 3308 hoi = 3241 hoi = 3038 hoi = 3307 hoi = 3376 }	# Chisinau -> Ermoclia, Bender, Vaslui, Cahul, Artsyz
+link = { vic = 662 vic = 677 hoi = 2770 hoi = 2835 hoi = 2901 hoi = 2769 hoi = 3172 hoi = 3106 hoi = 2969 hoi = 2902 hoi = 3105 }	# Cernauti, Balti -> Skalat, Czortkow, Kolomyja, Stanislawow, Balti, Orhei, Soroca, Chotinu, Botosani
+link = { vic = 647 hoi = 3369 hoi = 3301 hoi = 3370 hoi = 3439 }	# Oradea -> Beius, Bologa, Cimpeni, Dezna
+link = { vic = 651 hoi = 3101 hoi = 3034 hoi = 3167 hoi = 3235 hoi = 3168 }	# Szatmár -> Satu Mare, Carei, Tasnad, Zalau, Jibou
+link = { vic = 652 hoi = 3573 hoi = 3505 hoi = 3706 hoi = 3506 }	# Temesvar -> Arad, Sânnicolau Mare, Timisoara, Lipova
+link = { vic = 653 hoi = 3639 hoi = 3572 hoi = 3640 hoi = 3438 }	# Resicabánya -> Lugoj, Resita, Caransebes, Faget
+link = { vic = 665 hoi = 3774 hoi = 3707 hoi = 3775 hoi = 3843 }	# Tirgu Jiu -> Mehadia, Lupeni, Baja de Arama, Orsova
+link = { vic = 666 hoi = 3986 hoi = 3844 hoi = 3914 hoi = 3987 }	# Craiova -> Jiana, Rovinari, Turnu Severin, Craiova
+link = { vic = 664 hoi = 3915 hoi = 3916 hoi = 3988 hoi = 4055 }	# Bucharest -> Caracal, Slatina, Giurgiu, Alexandria
+link = { vic = 661 hoi = 2900 hoi = 3035 hoi = 2966 hoi = 3102 hoi = 3169 }	# Beszterce -> Volove, Sighetu Marmatiei, Chust, Baia Mare, Bistrija
+link = { vic = 654 hoi = 3441 hoi = 3303 hoi = 3236 }	# Cluj -> Cluj, Târgu Mures, Dej
+link = { vic = 655 hoi = 3371 hoi = 3302 hoi = 3440 }	# Gyulafehervar -> Turda, Sighisoara, Sinmiclaus
+link = { vic = 656 hoi = 3507 hoi = 3574 hoi = 3508 hoi = 3641 hoi = 3708 }	# Deva -> Deva, Gradiste, Alba Iulia, Petrosani, Tirgu Jiu
+link = { vic = 671 hoi = 2968 hoi = 3037 hoi = 3104 hoi = 3171 hoi = 3306 hoi = 3239 }	# Botosani -> Cernauti, Dorohoi, Radauti, Suceava, Iasi, Roman
+link = { vic = 670 hoi = 3240 hoi = 3173 hoi = 3375 hoi = 3305 hoi = 3512 hoi = 3445 }	# Iasi -> Chisinau, Husi, Bârlad, Tecuci, Reni, Galati
+link = { vic = 673 hoi = 3579 hoi = 3645 hoi = 3578 hoi = 3712 }	# Galati -> Macin, Braila, Topliceni, Topolog
+link = { vic = 668 hoi = 3848 hoi = 3779 hoi = 3711 hoi = 3644 hoi = 3778 hoi = 3917 hoi = 3847 hoi = 3846 hoi = 3710 }	# Braila -> Medgidia, Slobozia, Buzau, Ramnicu Sarat, Ploiesti, Bucuresti, Calarasi, Târgoviste, Campina
+link = { vic = 663 hoi = 3036 hoi = 2967 hoi = 3103 hoi = 3170 }	# Suceava -> Jaremcze, Rachov, Rodna, Stulpicani
+link = { vic = 672 hoi = 3238 hoi = 3444 hoi = 3374 hoi = 3511 }	# Bacau -> Piatra Neamt, Bacau, Onesti, Focsani
+link = { vic = 667 hoi = 3642 hoi = 3577 hoi = 3709 hoi = 3777 hoi = 3845 hoi = 3776 hoi = 3643 }	# Tirgoviste -> Bran, Brasov, Râmnicu Vâlcea, Pitesti, Dragasani, Filiasi, Nehoiu
+link = { vic = 659 hoi = 3575 hoi = 3510 }	# Brasso -> Fagaras, Sfantu Gheorghe
+link = { vic = 657 hoi = 3509 hoi = 3576 }	# Nagyszeben -> Cincu, Sibiu
+link = { vic = 2533 hoi = 3372 hoi = 3442 }	# Targu Mures -> Christura, Odorhei
+link = { vic = 660 hoi = 3443 hoi = 3373 hoi = 3304 hoi = 3237 }	# Udvarhely -> Târgu Secuiesc, Miercurca Ciuc, Gheorgheni, Gurghiu
 link = { vic = 771 hoi = 3633 }	# Zagreb -> Zagreb
 link = { vic = 641 hoi = 3164 }	# Budapest -> Budapest
-link = { vic = 640 hoi = 3569 hoi = 3502 }	# Pecs -> Pécs, Kaposvár
-link = { vic = 649 hoi = 3437 hoi = 3504 }	# Szeged -> Szeged, Csongrád
-link = { vic = 645 hoi = 3503 hoi = 3366 hoi = 3435 hoi = 3436 }	# Kecskemet -> Szekszárd, Dunaújváros, Sárbogárd, Kiskörös
-link = { vic = 623 hoi = 3027 hoi = 3095 hoi = 3161 }	# Sopron -> Pezinok, Samorín, Sopron
-link = { vic = 639 hoi = 3228 hoi = 3295 hoi = 3162 }	# Zalaegerszeg -> Koszeg, Szombathely, Györ
-link = { vic = 644 hoi = 3365 hoi = 3296 hoi = 3297 hoi = 3230 }	# Kaposvar -> Zalaegerszeg, Veszprém, Székesfehérvár, Zirc
-link = { vic = 642 hoi = 3028 hoi = 3029 hoi = 2961 hoi = 3030 }	# Gyor -> Dunajska Streda, Svodin, Levice, Vel'ky Krtís
-link = { vic = 643 hoi = 3163 hoi = 3096 hoi = 3229 hoi = 3231 hoi = 3098 hoi = 3097 }	# Szekesfehevar -> Tatabánya, Nové Zámky, Celldömölk, Érd, Hatvan, Esztergom
-link = { vic = 650 hoi = 3165 hoi = 3233 hoi = 3368 hoi = 3299 hoi = 3367 hoi = 3298 hoi = 3232 }	# Bekescsaba -> Jászberény, Poroszlo, Békéscsaba, Szolnok, Kecskemét, Dabas, Albertirsa
-link = { vic = 648 hoi = 2964 hoi = 3100 hoi = 3033 hoi = 3300 hoi = 3234 hoi = 3166 }	# Debrecen -> Pácin, Tiszavasvári, Kisvárda, Debrecen, Valea lui Mihai, Nagykálló
-link = { vic = 646 hoi = 2897 hoi = 2896 hoi = 2962 hoi = 3031 hoi = 2963 hoi = 3032 hoi = 3099 }	# Miskolc -> Kosice, Plesivec, Hajnácka, Gyöngyös, Moldava nad Bodvou, Encs, Miskolc
+link = { vic = 640 hoi = 3569 hoi = 3502 }	# Pécs -> Pécs, Kaposvár
+link = { vic = 649 hoi = 3437 hoi = 3504 }	# Szeged -> Szeged, Hódmezövasárhely
+link = { vic = 645 hoi = 3503 hoi = 3366 hoi = 3435 hoi = 3436 }	# Kecskemét -> Baja, Dunaújváros, Szekszard, Kiskunhalas
+link = { vic = 623 hoi = 3027 hoi = 3095 hoi = 3161 }	# Sopron -> Bratislava, Dunajska Streda, Tata
+link = { vic = 639 hoi = 3228 hoi = 3295 hoi = 3162 }	# Zalaegerszeg -> Sopron, Szombathely, Györ
+link = { vic = 644 hoi = 3365 hoi = 3296 hoi = 3297 hoi = 3230 }	# Kaposvár -> Zalaegerszeg, Veszprém, Székesfehérvár, Zirc
+link = { vic = 642 hoi = 3028 hoi = 3029 hoi = 2961 hoi = 3030 }	# Gyor -> Nove Zamky, Sahy, Levice, Velky Krtís
+link = { vic = 643 hoi = 3163 hoi = 3096 hoi = 3229 hoi = 3231 hoi = 3098 hoi = 3097 }	# Székesfehérvár -> Tatabánya, Komarno, Kapovar, Hatvan, Gyöngyös, Salgótarján
+link = { vic = 650 hoi = 3165 hoi = 3233 hoi = 3368 hoi = 3299 hoi = 3367 hoi = 3298 hoi = 3232 }	# Békéscsaba -> Jászberény, Karzag, Békéscsaba, Szolnok, Kecskemét, Monor, Cegléd
+link = { vic = 648 hoi = 2964 hoi = 3100 hoi = 3033 hoi = 3300 hoi = 3234 hoi = 3166 }	# Debrecen -> Sárospatak, Nyíregyháza, Kisvárda, Debrecen, Oradea, Békés
+link = { vic = 646 hoi = 2897 hoi = 2896 hoi = 2962 hoi = 3031 hoi = 2963 hoi = 3032 hoi = 3099 }	# Miskolc -> Kosice, Brezno, Lucenec, Encs, Roznava, Tokai, Miskolc
 # Yugoslavia
 link = { vic = 783 hoi = 4174 }	# Sarajevo -> Sarajevo
-link = { vic = 788 hoi = 4364 hoi = 4427 hoi = 4426 hoi = 4304 }	# Mostar -> Mostar, Dubrovnik, Korcula, Ljubinje
-link = { vic = 782 hoi = 4492 }	# Dubrovnik -> Herceg-Novi
+link = { vic = 788 hoi = 4364 hoi = 4427 hoi = 4426 hoi = 4304 }	# Mostar -> Metkovic, Ljubinje, Korcula, Nevesinje
+link = { vic = 782 hoi = 4492 }	# Dubrovnik -> Herceg Novi
 link = { vic = 780 hoi = 4236 }	# Split -> Split
 link = { vic = 781 hoi = 4171 }	# Zadar -> Zadar
-link = { vic = 774 hoi = 4044 }	# Senj -> Pag
-link = { vic = 778 hoi = 3834 }	# Fiume -> Novi Vinodolski
+link = { vic = 774 hoi = 4044 }	# Senj -> Karlobag
+link = { vic = 778 hoi = 3834 }	# Fiume -> Rijeka
 link = { vic = 773 hoi = 3905 hoi = 3632 hoi = 3698 hoi = 3766 }	# Karlovac -> Otocac, Novo Mesto, Ribnica, Delnice
-link = { vic = 775 hoi = 3434 hoi = 3500 hoi = 3566 }	# Varadzin -> Lenti, Ljutomer, Krsko
-link = { vic = 769 hoi = 3564 hoi = 3497 hoi = 3631 hoi = 3765 }	# Postojna -> Vipava, Slap, Cerknica, Kostel
-link = { vic = 768 hoi = 3498 hoi = 3431 hoi = 3363 hoi = 3499 hoi = 3565 }	# Ljubljana -> Kranj, Jesenice, Dravograd, Celje, Ljubljana
-link = { vic = 767 hoi = 3432 hoi = 3364 hoi = 3433 }	# Maribor -> Gornji Grad, Örségi, Maribor
-link = { vic = 789 hoi = 4173 hoi = 4237 hoi = 4303 hoi = 4238 hoi = 4172 hoi = 4112 }	# Livno -> Prozor, Imotski, Ljubuski, Konjic, Sinj, Jajce
-link = { vic = 784 hoi = 3906 hoi = 3835 hoi = 3977 hoi = 3978 hoi = 4045 hoi = 4111 hoi = 4046 }	# Bihac -> Bihac, Ogulin, Perusic, Bosanski Petrovac, Udbina, Knin, Titov Drvar
-link = { vic = 772 hoi = 3699 hoi = 3700 hoi = 3767 hoi = 3768 hoi = 3836 }	# Sisak -> Karlovac, Sisak, Vrnograc, Bosanska Dubica, Bosanski Novi
-link = { vic = 785 hoi = 3838 hoi = 3837 hoi = 3907 hoi = 3979 hoi = 4047 hoi = 4113 hoi = 4048 hoi = 3980 hoi = 3908 }	# Banja Luka -> Slavonski Brod, Bosanska Gradiska, Sanski Most, Banja Luka, Travnik, Zenica, Zavidovici, Teslic, Prnjavor
-link = { vic = 787 hoi = 4175 hoi = 4114 hoi = 4239 }	# Foca -> Rogatica, Vlasenica, Foca
-link = { vic = 2582 hoi = 4493 }	# Kotor -> Bar
-link = { vic = 800 hoi = 4553 hoi = 4429 }	# Ulcinj -> Ulcinj, Koplik i Siperm
-link = { vic = 2583 hoi = 4366 hoi = 4428 }	# Cetinje -> Podgorica, Kotor
+link = { vic = 775 hoi = 3434 hoi = 3500 hoi = 3566 }	# Varaždin -> Lenti, Ormoz, Krsko
+link = { vic = 769 hoi = 3564 hoi = 3497 hoi = 3631 hoi = 3765 }	# Postojna -> Nova Gorica, Bovec, Cerknica, Kostel
+link = { vic = 768 hoi = 3498 hoi = 3431 hoi = 3363 hoi = 3499 hoi = 3565 }	# Ljubljana -> Kranj, Jesenice, Maribor, Celje, Ljubljana
+link = { vic = 767 hoi = 3432 hoi = 3364 hoi = 3433 }	# Maribor -> Murska Sobota, Körmend, Ptuj
+link = { vic = 789 hoi = 4173 hoi = 4237 hoi = 4303 hoi = 4238 hoi = 4172 hoi = 4112 }	# Livno -> Prozor, Makarska, Mostar, Konjic, Sinj, Jajce
+link = { vic = 784 hoi = 3906 hoi = 3835 hoi = 3977 hoi = 3978 hoi = 4045 hoi = 4111 hoi = 4046 }	# Bihac -> Bihac, Ogulin, Perusic, Bosanski Petrovac, Udbina, Knin, Drvar
+link = { vic = 772 hoi = 3699 hoi = 3700 hoi = 3767 hoi = 3768 hoi = 3836 }	# Sisak -> Karlovac, Sisak, Vrnograc, Bosanska Dubica, Novi Grad
+link = { vic = 785 hoi = 3838 hoi = 3837 hoi = 3907 hoi = 3979 hoi = 4047 hoi = 4113 hoi = 4048 hoi = 3980 hoi = 3908 }	# Banja Luka -> Bosanski Brod, Gradiska, Sanski Most, Banja Luka, Travnik, Zenica, Zavidovici, Doboj, Prnjavor
+link = { vic = 787 hoi = 4175 hoi = 4114 hoi = 4239 }	# Foca -> Rudo, Vlasenica, Foca
+link = { vic = 2582 hoi = 4493 }	# Kotor -> Cetinje
+link = { vic = 800 hoi = 4553 hoi = 4429 }	# Ulcinj -> Ulcinj, Podgorica
+link = { vic = 2583 hoi = 4366 hoi = 4428 }	# Cetinje -> Danilovgrad, Cevo
 link = { vic = 2569 hoi = 4365 hoi = 4305 }	# Niksic -> Gacko, Niksic
-link = { vic = 807 hoi = 4496 hoi = 4431 hoi = 4495 hoi = 4555 hoi = 4610 hoi = 4664 hoi = 4609 hoi = 4556 hoi = 4432 hoi = 4369 hoi = 4308 hoi = 4368 hoi = 4430 }	# Bitola -> Kratovo, Presevo, Tetovo, Skopje, Veles, Bitola, Gostivar, Kocani, Bosilegrad, Surdulica, Medveda, Pristina, Dakovica
-link = { vic = 806 hoi = 4243 hoi = 4179 hoi = 4244 hoi = 4310 hoi = 4370 hoi = 4309 }	# Skopje -> Nis, Knjazevac, Pirot, Kostinbrod, Trun, Vlasotince
+link = { vic = 807 hoi = 4496 hoi = 4431 hoi = 4495 hoi = 4555 hoi = 4610 hoi = 4664 hoi = 4609 hoi = 4556 hoi = 4432 hoi = 4369 hoi = 4308 hoi = 4368 hoi = 4430 }	# Bitola -> Stip, Kumanovo, Tetovo, Skopje, Veles, Bitola, Gostivar, Kocani, Bosilegrad, Surdulica, Medveda, Pristina, Dakovica
+link = { vic = 806 hoi = 4243 hoi = 4179 hoi = 4244 hoi = 4310 hoi = 4370 hoi = 4309 }	# Skopje -> Nis, Knjazevac, Pirot, Berkovica, Kyustendil, Vlasotince
 link = { vic = 803 hoi = 4367 hoi = 4307 hoi = 4241 hoi = 4306 }	# Prizren -> Plav, Novi Pazar, Sjenica, Kolasin
 link = { vic = 2577 hoi = 4240 }	# Pljevlja -> Pljevlja
-link = { vic = 804 hoi = 4115 hoi = 4049 hoi = 4176 }	# Novi Pazar -> Visegrad, Zvornik, Prijepolje
+link = { vic = 804 hoi = 4115 hoi = 4049 hoi = 4176 }	# Novi Pazar -> Visegrad, Zvornik, Užice
 link = { vic = 794 hoi = 3912 }	# Belgrade -> Beograd
-link = { vic = 797 hoi = 4050 hoi = 4116 }	# Uzice -> Uzice, Pozega
+link = { vic = 797 hoi = 4050 hoi = 4116 }	# Užice -> Valjevo, Pozega
 link = { vic = 796 hoi = 4051 }	# Kragujevac -> Arandelovac
-link = { vic = 798 hoi = 4052 hoi = 4118 }	# Nis -> Cuprija, Razanj
+link = { vic = 798 hoi = 4052 hoi = 4118 }	# Niš -> Cuprija, Boljevac
 link = { vic = 799 hoi = 4178 hoi = 4117 }	# Leskovac -> Krusevac, Jagodina
-link = { vic = 802 hoi = 4242 hoi = 4177 }	# Pristina -> Kursumlija, Usce
-link = { vic = 795 hoi = 3913 hoi = 3985 hoi = 4053 hoi = 3984 hoi = 3983 hoi = 3842 }	# Bor -> Kucevo, Petrovac, Zajecar, Pozarevac, Mionica, Vrsac
-link = { vic = 776 hoi = 3501 hoi = 3567 hoi = 3634 hoi = 3568 }	# Bjelovar -> Nagykanizsa, Koprivnica, Bjelovar, Nagyatád
-link = { vic = 777 hoi = 3635 hoi = 3701 hoi = 3769 }	# Pozega -> Szigetvar, Daruvar, Pozega
-link = { vic = 786 hoi = 3909 hoi = 3981 hoi = 3839 hoi = 3910 hoi = 3982 }	# Tuzla -> Modrica, Tuzla, Brcko, Sid, Sabac
-link = { vic = 779 hoi = 3636 hoi = 3702 hoi = 3770 hoi = 3703 }	# Osijek -> Beli Manastir, Nasice, Osijek, Sombor
-link = { vic = 792 hoi = 3772 hoi = 3705 hoi = 3773 hoi = 3841 hoi = 3911 }	# Pancevo -> Ada, Kikinda, Jasa Tomic, Zrenjanin, Indija
+link = { vic = 802 hoi = 4242 hoi = 4177 }	# Pristina -> Kursumlija, Kraljevo
+link = { vic = 795 hoi = 3913 hoi = 3985 hoi = 4053 hoi = 3984 hoi = 3983 hoi = 3842 }	# Bor -> Velico Gradiste, Petrovac, Zajecar, Pozarevac, Panavo, Vrsac
+link = { vic = 776 hoi = 3501 hoi = 3567 hoi = 3634 hoi = 3568 }	# Bjelovar -> Nagykanizsa, Cakovec, Virovitica, Nagyatád
+link = { vic = 777 hoi = 3635 hoi = 3701 hoi = 3769 }	# Požega -> Szigetvar, Slatina, Nasice
+link = { vic = 786 hoi = 3909 hoi = 3981 hoi = 3839 hoi = 3910 hoi = 3982 }	# Tuzla -> Brcko, Tuzla, Backa Palanka, Semska Mitrovica, Sabac
+link = { vic = 779 hoi = 3636 hoi = 3702 hoi = 3770 hoi = 3703 }	# Osijek -> Beli Manastir, Valpovo, Osijek, Sombor
+link = { vic = 792 hoi = 3772 hoi = 3705 hoi = 3773 hoi = 3841 hoi = 3911 }	# Pancevo -> Ada, Kikinda, Jasa Tomic, Zrenjanin, Ruma
 link = { vic = 791 hoi = 3638 hoi = 3704 hoi = 3771 }	# Mitrovica -> Senta, Srbobran, Kula
 link = { vic = 2538 hoi = 3571 hoi = 3637 }	# Novi Sad -> Kanjiza, Subotica
 link = { vic = 793 hoi = 3570 }	# Vukovar -> Bajmok
 # Turkey
-link = { vic = 886 hoi = 4124 hoi = 4190 hoi = 4125 hoi = 3521 hoi = 7172 }	# Ardahan -> Arhavi, Artvin, , , 
+link = { vic = 886 hoi = 4124 hoi = 4190 hoi = 4125 hoi = 3521 hoi = 7172 }	# Ardahan -> Arhavi, Artvin, Berta, Kömürlü, Olur
 link = { vic = 882 hoi = 4189 hoi = 4188 hoi = 4256 }	# Trabzon -> Rize, Trabzon, Caykara
 link = { vic = 884 hoi = 4254 hoi = 4255 hoi = 4320 hoi = 4321 }	# Giresun -> Samsun, Ordu, Niksar, Gümüshane
 link = { vic = 883 hoi = 4187 hoi = 4253 hoi = 4319 hoi = 4318 hoi = 4252 }	# Sinop -> Sinop, Bafra, Kavak, Duragan, Boyabat
 link = { vic = 880 hoi = 4251 hoi = 4186 hoi = 4185 hoi = 4316 hoi = 4317 hoi = 4378 hoi = 4379 hoi = 4444 hoi = 4508 hoi = 4443 hoi = 4507 }	# Kastamonu -> Kastamonu, Ayancik, Küre, Daday, Ilgaz Daglari, Ilgaz, Osmancik, Tosya, Cankiri, Arac, Orta
 link = { vic = 876 hoi = 4619 }	# Ankara -> Ankara
 link = { vic = 881 hoi = 4315 hoi = 4377 hoi = 4250 hoi = 4184 hoi = 4249 hoi = 4314 hoi = 4376 hoi = 4442 hoi = 4506 }	# Bolu -> Caycuma, Eflâni, Azdavay, Cide, Bartin, Zonguldak, Devrek, Karabük, Mengen
-link = { vic = 861 hoi = 4439 hoi = 4504 }	# Uskudar -> Kandira, Sakarya
+link = { vic = 861 hoi = 4439 hoi = 4504 }	# Üsküdar -> Kandira, Sakarya
 link = { vic = 862 hoi = 4440 hoi = 4441 hoi = 4505 hoi = 4563 hoi = 4564 hoi = 4618 }	# Izmit -> Akcakoca, Eregli, Düzce, Bolu, Gerede, Güdül
 link = { vic = 863 hoi = 4616 hoi = 4670 hoi = 4724 hoi = 4671 hoi = 4617 hoi = 4562 }	# Bursa -> Tarakli, Inegöl, Bozüyük, Cukurhisar, Mudurnu, Akyazi
-link = { vic = 865 hoi = 4721 hoi = 4668 hoi = 4772 hoi = 4773 }	# Canakkale -> Canakkale, Gelibolu, Ezine, Can
+link = { vic = 865 hoi = 4721 hoi = 4668 hoi = 4772 hoi = 4773 }	# Canakkale -> Canakkale, Biga, Ezine, Can
 link = { vic = 864 hoi = 4722 hoi = 4669 hoi = 4723 hoi = 4775 hoi = 4824 hoi = 4774 hoi = 4823 hoi = 4874 hoi = 4822 }	# Balikesir -> Bandirma, Karacabey, Harmancik, Domanic, Dursunbey, Mustafakemalpasa, Balikesir, Bergama, Edremit
 link = { vic = 869 hoi = 4966 hoi = 4922 hoi = 5006 hoi = 5007 hoi = 5042 hoi = 5078 hoi = 5043 }	# Izmir -> Izmir, Akhisar, Kusadasi, Aydin, Mugla, Ortaca, Üzümlü
 link = { vic = 872 hoi = 5108 hoi = 5109 hoi = 5079 }	# Mugla -> Fethiye, Finike, Elmali
@@ -888,10 +888,10 @@ link = { vic = 875 hoi = 5080 hoi = 5045 hoi = 5010 hoi = 5011 hoi = 5046 }	# An
 link = { vic = 895 hoi = 4974 hoi = 5013 hoi = 5081 hoi = 5047 }	# Mersin -> Adana, Icel, Silifke, Anamur
 link = { vic = 894 hoi = 4975 hoi = 4882 hoi = 4930 }	# Adana -> Osmaniye, Kozan, Bahce
 link = { vic = 896 hoi = 4931 hoi = 4832 hoi = 4783 hoi = 4624 hoi = 4678 }	# Marash -> Islahye, Pazarcik, Adiyaman, Elazig, Malatya
-link = { vic = 898 hoi = 4884 hoi = 4883 hoi = 7354 }	# Antep -> Sanliurfa, Gaziantep, 
-link = { vic = 899 hoi = 7344 hoi = 7331 hoi = 7319 hoi = 7332 hoi = 7303 hoi = 4679 }	# Urfa -> , Diyarbakir, , , Solhan, Bingöl
+link = { vic = 898 hoi = 4884 hoi = 4883 hoi = 7354 }	# Antep -> Sanliurfa, Gaziantep, Derik
+link = { vic = 899 hoi = 7344 hoi = 7331 hoi = 7319 hoi = 7332 hoi = 7303 hoi = 4679 }	# Urfa -> Diyarbakir, Siverek, Bingöl, Batman, Solhan, Hani
 link = { vic = 870 hoi = 4875 hoi = 4923 hoi = 4967 }	# Manisa -> Bigadic, Alasehir, Salihli
-link = { vic = 867 hoi = 4776 hoi = 4826 hoi = 4877 hoi = 4825 }	# Kutahya -> Inönü, Anitkaya, Sincanli, Kütahya
+link = { vic = 867 hoi = 4776 hoi = 4826 hoi = 4877 hoi = 4825 }	# Kütahya -> Inönü, Anitkaya, Sincanli, Kütahya
 link = { vic = 871 hoi = 4876 hoi = 4924 hoi = 5008 hoi = 4968 }	# Denizli -> Usak, Civril, Kizilhisar, Denizli
 link = { vic = 874 hoi = 5009 hoi = 4970 hoi = 4926 hoi = 4971 hoi = 5044 }	# Burdur -> Burdur, Isparta, Yalva, Aksu, Korkuteli
 link = { vic = 866 hoi = 4969 hoi = 4925 hoi = 4878 }	# Afyon -> Basmakci, Sandikli, Afyon
@@ -900,5 +900,65 @@ link = { vic = 873 hoi = 4728 hoi = 4880 hoi = 4972 hoi = 5012 hoi = 4927 hoi = 
 link = { vic = 878 hoi = 4973 hoi = 4929 hoi = 4780 hoi = 4928 hoi = 4781 hoi = 4730 hoi = 4782 hoi = 4731 hoi = 4677 }	# Kayseri -> Eregli, Camardi, Nevsehir, Aksaray, Kayseri, Hasbek, Kahramanmaras, Afsin, Göksun
 link = { vic = 877 hoi = 4380 hoi = 4445 hoi = 4509 hoi = 4566 hoi = 4621 hoi = 4675 hoi = 4729 hoi = 4676 hoi = 4511 hoi = 4381 }	# Amasya -> Amasya, Corum, Iskilip, Kizirlirmak, Sungurlu, Delice, Kirsehir, Yozgat, Kaynar, Turhal
 link = { vic = 879 hoi = 4382 hoi = 4448 hoi = 4512 hoi = 4569 hoi = 4623 hoi = 4570 }	# Sivas -> Tokat, Bayburt, Refahiye, Erzincan, Sivas, Karakocan
+link = { vic = 890 hoi = 7305 hoi = 7320 hoi = 7286 }	# Van -> Agri, Igdir, Tutak
+link = { vic = 885 hoi = 7269 hoi = 7223 hoi = 7198 hoi = 7248 hoi = 4674 }	# Kars -> Kars, Cildir, Göle, Selim, Karakurt
+link = { vic = 893 hoi = 4565 }	# Diyarbakir -> Baykan
+link = { vic = 892 hoi = 7304 }	# Hakkari -> Van
+link = { vic = 889 hoi = 7285 hoi = 5048 hoi = 4513 }	# Malatya -> Mus, Askale, Erzurum
+link = { vic = 891 hoi = 4447 hoi = 7247 }	# Bitlis -> Varto, Pasinler
+link = { vic = 888 hoi = 4383 hoi = 4449 hoi = 3920 hoi = 4322 }	# Erzincan -> Ispir, Tortum, Narman, Yusufeli
+link = { vic = 887 hoi = 7268 hoi = 7222 hoi = 4257 }	# Erzurum -> Karaurgan, Sarkamis, Oltu
+# Russia
+link = { vic = 1107 hoi = 7356 hoi = 7333 }	# Lankaran -> Masalli, Ali Bayramli
+link = { vic = 1106 hoi = 8996 hoi = 9021 hoi = 7321 }	# Agdam -> Agdam, Imisli, Qazimämmäd
+link = { vic = 1098 hoi = 8971 hoi = 7287 }	# Erivan -> Gäncä, Yerevan
+link = { vic = 1102 hoi = 7307 }	# Baku -> Baki
+link = { vic = 1104 hoi = 7306 hoi = 7270 hoi = 7251 hoi = 7288 }	# Sheki -> Märäza, Quba, Säki, Göycay
+link = { vic = 1103 hoi = 7289 hoi = 7252 }	# Siyazen -> Sumqayit, Derbent
+link = { vic = 1052 hoi = 7226 hoi = 7176 hoi = 7201 hoi = 7152 hoi = 7175 }	# Derbent -> Izberbas, Mahackala, Hasav'jurt, Kizljar, Gunib
+link = { vic = 1105 hoi = 8946 hoi = 7250 }	# Ganja -> Mingäcevir, Mingäcevir Su Anbari
+link = { vic = 1099 hoi = 3854 hoi = 4827 }	# Gyumri -> Ashtarak, Iori
+link = { vic = 1090 hoi = 3654 hoi = 7225 hoi = 3524 hoi = 7200 hoi = 3254 }	# Tblisi -> Qax, Zaqatala, Balakän, Sagarejo, T'bilisi
+link = { vic = 1093 hoi = 7224 hoi = 7249 }	# Akhaltsikhe -> Rust'avi, Gyumri
+link = { vic = 1096 hoi = 4059 hoi = 3991 }	# Batum -> Bat'umi, K'obulet'i
+link = { vic = 1094 hoi = 3849 }	# Poti -> P'ot'i
+link = { vic = 1095 hoi = 3584 hoi = 3647 hoi = 3714 }	# Sukhumi -> Sokhumi, Och'amch'ire, Zugdidi
+link = { vic = 1049 hoi = 3379 hoi = 3380 hoi = 3450 hoi = 3516 hoi = 3451 hoi = 3517 hoi = 3583 }	# Novorossiysk -> Taman, Novorossijsk, Gelendzik, Tuapse, Hadyzensk, Soci, Gagra
+link = { vic = 966 hoi = 3449 hoi = 3378 }	# Kerch -> Kerch, Shcholkine
+link = { vic = 1047 hoi = 2979 hoi = 3048 hoi = 2980 hoi = 2981 hoi = 3049 hoi = 3050 hoi = 3117 hoi = 2915 hoi = 2982 hoi = 3051 hoi = 3118 }	# Azov -> Azov, Batajsk, Samarskoe, Zernograd, Krilovskaya, Gulyay Boriskovka, Tihoreck, Arpachin, Mechetinskaya, Obedinenniy, Oktyabrskoye
+link = { vic = 1048 hoi = 3047 hoi = 3114 hoi = 3180 hoi = 3246 hoi = 3312 hoi = 3115 hoi = 3181 hoi = 3116 hoi = 3182 hoi = 3248 hoi = 3183 hoi = 3249 hoi = 3315 hoi = 3382 hoi = 3314 hoi = 3381 hoi = 3247 hoi = 3313 }	# Ekaterinodar -> Starominskaja, Ejsk, Primorsko Ahtarsk, Kuban, Slavjansk na Kubani, Kuscevskaja, Timasevsk, Pavlovskaja, Beysug, Shovgenovsky, Kropotkin, Girej, Labinsk, Majkop, Giaginskaja, Belorecensk, Korenovsk, Krasnodar
+link = { vic = 1053 hoi = 7127 hoi = 7106 }	# Gunib -> Tarumovka, Brjanskoe
+link = { vic = 1091 hoi = 3322 hoi = 7151 hoi = 7174 hoi = 7150 hoi = 3458 hoi = 7199 hoi = 3456 hoi = 7173 }	# Pasanauri -> Qvareli, Satoj, Mts'khet'a, Kaspi, Gori, Bolnisi, Khashuri, Bakuriani
+link = { vic = 1092 hoi = 7149 hoi = 3992 hoi = 4060 hoi = 3921 hoi = 3850 hoi = 3851 hoi = 3922 hoi = 3781 hoi = 3715 hoi = 3782 }	# Kutaisi -> Akhalts'ikhe, Ozurrget'i, Ozurget'i, Lanch'khut'i, Samtredia, K'ut'aisi, Zestap'oni, Senaki, Tqvarch'eli, Lentekhi
+link = { vic = 979 hoi = 2913 hoi = 2847 hoi = 2783 hoi = 2718 hoi = 2653 hoi = 2719 hoi = 2784 hoi = 2848 hoi = 2785 hoi = 2849 hoi = 2914 }	# Rostov -> Rostov na Don, Novosahtinsk, Krasnodon, Kamensk Sahtinskij, Chebotovka, Krasniy Sulin, Shakhty, Aksay, Ust Donetskiy, Melikhovskaya, Novocerkassk
+link = { vic = 1046 hoi = 2654 hoi = 2589 hoi = 2527 hoi = 2467 hoi = 2468 hoi = 2529 hoi = 2591 hoi = 2657 hoi = 2723 hoi = 2789 hoi = 2853 hoi = 2919 hoi = 2985 hoi = 3054 hoi = 3053 hoi = 2984 hoi = 2917 hoi = 2851 hoi = 2720 hoi = 2786 hoi = 2655 hoi = 2590 hoi = 2528 hoi = 2656 hoi = 2722 hoi = 2788 hoi = 2918 hoi = 2852 hoi = 2787 hoi = 2721 hoi = 2469 hoi = 2530 hoi = 2592 hoi = 2658 hoi = 2724 hoi = 2854 hoi = 2920 hoi = 2986 hoi = 2593 hoi = 2470 hoi = 2411 hoi = 2410 }	# Chirskaya -> Millerovo, Kolodezi, Meshkovskaya, Mescheryakovskiy, Kalacheyevskiy, Solonka, Nizhni Ermakovsky, Bazki, Nizhni Yablonovskiy, Ust Mechetka, Nadezhevka, Tatsinsky, Naumovskiy, Kuznetsovsky, Dalniy, Komarov, Veseliy, Malomechetniy, Belaya Kulitva, Semikarakorsk, Degtevo, Donskoy, Migulinskaya, Vherknemakeyevka, Kashary, Ilinka, Bolshaya Marynovka, Visliy, Konstatinovsk, Khmyzov, Nekhayevskiy, Alekseyevskaya, Veshenskaya, Bogovskaya, Selivanovskaya, Morozovsk, Verkhnegutov, Proletarsk, Bukanovskaya, Novoannininskiy, Uryupinsk, Nizhnedolgovskiy
+link = { vic = 1057 hoi = 3722 hoi = 3655 hoi = 3721 hoi = 3592 hoi = 3591 hoi = 3526 hoi = 3788 }	# Kizylyar -> Kutan, Andratinskiy, Juzno Suhokumsk, Rybachiy, Kayasula, Iki Burul, Kocubei
+link = { vic = 1055 hoi = 3653 hoi = 3719 hoi = 3786 hoi = 3720 hoi = 3787 hoi = 3855 hoi = 7105 hoi = 3856 hoi = 3590 hoi = 3525 hoi = 3460 }	# Grozny -> Stepnoe, Mozdok, Goragorskij, Acikulak, Naurskaja, Terek, Groznyj, Kunbatar, Budennovks, Cograyskoe Vodohranilisce, Dzhedzhikiny
+link = { vic = 1054 hoi = 3785 hoi = 3925 hoi = 3926 hoi = 7126 hoi = 7125 hoi = 3924 hoi = 3853 }	# Vladikavkaz -> Nazran, Ordzhonikidze, Tebulos Mt'a, Aragvi, Tskhinvali, Ivris Ugheltekhili, Magas
+link = { vic = 1056 hoi = 3923 hoi = 3852 hoi = 3783 hoi = 3716 hoi = 3650 hoi = 3588 hoi = 3523 hoi = 3459 hoi = 3589 hoi = 3652 hoi = 3718 hoi = 3784 hoi = 3717 hoi = 3651 }	# Pyatigorsk -> Chiat'ura, Oni, Lajanurpekhi, Kislovodsk, Pjatigorsk, Mineral'ne Vody, Sablinskoye, Arzgir, Zelenokumsk, Malgobek, Terek, Sadon, Mamison Pass, Nal'cik
+link = { vic = 1051 hoi = 3316 hoi = 3384 hoi = 3454 hoi = 3520 hoi = 3586 hoi = 3649 hoi = 3648 hoi = 3585 hoi = 3519 hoi = 3453 hoi = 3383 hoi = 3452 hoi = 3518 }	# Adygei -> Chaplygin, Kurganinsk, Soveckaja, Elbrus, Otradnaja, Cerkessk, Tsalenjikha, Kodori, Teberda, Sedok, Mostovskoj, Psebaj, Ritsis Nakrdzali
+link = { vic = 1050 hoi = 3052 hoi = 3119 hoi = 3184 hoi = 3122 hoi = 3123 hoi = 3188 hoi = 3189 hoi = 3190 hoi = 3255 hoi = 3323 hoi = 3391 hoi = 3390 hoi = 3256 hoi = 3389 hoi = 3321 hoi = 3388 hoi = 3457 hoi = 3522 hoi = 3587 hoi = 3387 hoi = 3320 hoi = 3253 hoi = 3319 hoi = 3252 hoi = 3187 hoi = 3121 hoi = 3186 hoi = 3120 hoi = 3185 hoi = 3251 hoi = 3318 hoi = 3386 hoi = 3455 hoi = 3385 hoi = 3317 hoi = 3250 }	# Stavropol -> Egorlitkskaya, Shaumyanovskiy, Temizhbekskaya, Sal'sk, Salskiyk, Sandata, Krasny Skotovod, Zavetnoye, Remontnoye, Elista, Krasniy, Bulg, Vorobevka, Prijutnoe, Yashalta, Kalaus, Svetlograd, Alexandrovskoe, Nevinnomyssk, Grachevka, Divnoe, Krasnaya Polyana, Dobrovol'noe, Dmitriyevskoye, Kruchenaya Balka, Selina, Lopanka, Voronovo, Egorlik, Rasshevatskaya, Rozhdestvenskaya, Voroshilovsk, Urup, Konokovo, Armavir, Novokubansk
+link = { vic = 1041 hoi = 2927 hoi = 2993 hoi = 3129 hoi = 3062 hoi = 3195 hoi = 3261 hoi = 3464 hoi = 3529 hoi = 3327 hoi = 3394 hoi = 3594 hoi = 3463 hoi = 3528 hoi = 3593 hoi = 3527 hoi = 3462 hoi = 3393 hoi = 3326 hoi = 3260 hoi = 3194 hoi = 3259 hoi = 3325 hoi = 3392 hoi = 3461 hoi = 3324 hoi = 3258 hoi = 3193 hoi = 3128 hoi = 3061 hoi = 2992 hoi = 2926 hoi = 2861 hoi = 2731 hoi = 2730 hoi = 2796 hoi = 2860 hoi = 2795 hoi = 2729 hoi = 2664 hoi = 2598 hoi = 2475 hoi = 2474 hoi = 2415 hoi = 2357 hoi = 2414 hoi = 2356 hoi = 2413 hoi = 2355 hoi = 2412 hoi = 2531 hoi = 2471 hoi = 2472 hoi = 2533 hoi = 2595 hoi = 2532 hoi = 2594 hoi = 2659 hoi = 2725 hoi = 2791 hoi = 2790 hoi = 2855 hoi = 2921 hoi = 2987 hoi = 3055 hoi = 3124 hoi = 3056 hoi = 2988 hoi = 3057 hoi = 2989 hoi = 2922 hoi = 2856 hoi = 2726 hoi = 2660 hoi = 2661 hoi = 2727 hoi = 2596 hoi = 2473 hoi = 2534 hoi = 2662 hoi = 2535 hoi = 2663 hoi = 2597 hoi = 2728 hoi = 2794 hoi = 2859 hoi = 2924 hoi = 3059 hoi = 2990 hoi = 2858 hoi = 2793 hoi = 2857 hoi = 2792 hoi = 2923 hoi = 3058 hoi = 3125 hoi = 3191 hoi = 3257 hoi = 3192 hoi = 3126 hoi = 3127 hoi = 2991 hoi = 2925 hoi = 2797 hoi = 2665 hoi = 2599 hoi = 2536 hoi = 2358 }	# Elitsa -> Terekiy, Tyuligen, Mikhaylovka, Kharbali, Aksarayskiy, Krasnij Jar, Astrahan', Kamjzjak, Seitovka, Ninovka, Lagan, Promyslovka, Ulan Hol, Artezian, Yakovlevo, Adyk, Cernye Zemli, Atsan Khuduk, Hoseutovo, Tambovka, Utta, Khargata, Kirovskiy, Komsomolskiy, Ulan Erge, Bol'shoj Altsyn, Sarpa, Kopanovka, Nikolskoye, Verhnij Baskuncak, Shungay, Urda, Zhiyenbat, Kaysatskoye, Dzhanibek, Saykin, Put Ilicha, Zolotari, Staraya Ivantsovka, Gmelinka, Kharkovka, Levuchnovka, Berezhnovka, Gryaznukha, Petrov Val, Kotovo, Danilovka, Prydki, Mordvintsevo, Kumulzhenska, Mikhailovka, Muravli, Olkhovka, Log, Frolovo, Semafirovich, Perelazovskiy, Kalmykovskiy, Surovikino, Sinyapkin, Chernishkovskiy, Popov, Nizhnegunov, Volgodonsk, Sirotsky, Nagavskaya, Kotelnikovo, Pimeno Cherni, Sadovoe, Abganerovo, Verkhnechirskiy, Kalach, Kremenskaya, Ilovlya, Yerovka, Gorniy Balikley, Kamysin, Nikolayeskaya Sloboda, Dubovka, Meliorator, Krasnoselets, Alexandrovka, Demidov, Stepnoy, Kolobovka, Stasov, Zubovka, Ushakovka, Leninsk, Volzskij, Stalingrad, Noviyy Rogachik, Svetlyj Jar, Cherny Yar, Vyazovka, Troickoe, Yalmta, Ergeninskiy, Sadovoye, Tsagan Nur, Ahtubinsk, Simkin, Zhetibay, Bolchevik, Pallasovka, Vodyanka, Lugovskoye
+link = { vic = 1036 hoi = 3197 hoi = 3131 hoi = 2995 hoi = 2799 hoi = 2733 hoi = 2798 hoi = 2862 hoi = 2863 hoi = 2994 hoi = 2928 hoi = 3063 hoi = 3395 hoi = 3196 hoi = 3130 hoi = 3262 }	# Astrakhan -> Zhaltyr, Kyzylbas, Aybas, Novaya Kazanka, Tash, Dzhanatala, Borli, Uyali, Azgir, Noviy Ushtagan, Kotjajevka, Volodarskij, Novolesnyy, Priozerniy, Ganyushkino
+link = { vic = 1205 hoi = 7357 hoi = 7347 hoi = 7108 hoi = 7254 hoi = 7309 hoi = 7272 hoi = 7227 hoi = 7202 hoi = 7177 hoi = 7203 hoi = 7228 hoi = 7255 hoi = 7291 hoi = 7271 hoi = 7253 hoi = 7290 hoi = 7308 hoi = 7334 hoi = 7322 }	# Kyzyl Arvat -> Gyzyletrek, Sharlouk, Nizh Aydere, Garrygala, Gyzylarbat, Vpadina Assake Audan, Chink Kaplankyr, Zapadnyy Chink Ustyurta, Bekdash, Solonchak Kendyrlisor, Uval Muzbel', Darvaza, Gory Koymatdag, Solonchak Shokozakhly, Zaliv Kara Bogaz Gol, Krasnovodsk, Nebitdag, Bugdayli, Karagez
+link = { vic = 1204 hoi = 7335 hoi = 7323 hoi = 9022 hoi = 7181 hoi = 7310 hoi = 7292 hoi = 7273 hoi = 7256 hoi = 7293 hoi = 7205 hoi = 7229 }	# Ashkhabad -> Ashgabat, Yelbarsli, Kaka, Chaacha, Murzechirla, Kazy, Yerbent, Urgench, Gaz Achak, Khorazm, Dashoguz
+link = { vic = 1206 hoi = 9051 hoi = 9078 hoi = 9132 hoi = 9107 hoi = 9079 hoi = 9053 hoi = 9024 hoi = 9052 hoi = 8998 hoi = 9023 hoi = 8997 hoi = 7274 hoi = 8972 hoi = 7206 hoi = 7230 }	# Merv -> Tedzhenstroy, Mary, Kala I Mor, Tagtabazar, Mukry, Karshi, Navoi, Turkmenabat, Bukhara, Cheshme, Yelbarsli, Gazli, Gory Kul'dzhuktau, Gory Auminzatau, Dzhangel'dy
+link = { vic = 1200 hoi = 9080 hoi = 9054 hoi = 9081 hoi = 7257 hoi = 9025 }	# Qarshi -> Stalinabad, Angren, Qarokul, Khujand, Tashkent
+link = { vic = 1207 hoi = 9135 hoi = 9110 hoi = 9055 }	# Kulob -> Khorugh, Alichur, Namangan
+link = { vic = 1190 hoi = 9027 hoi = 9002 hoi = 8977 hoi = 8951 hoi = 8976 }	# Naryn -> Bishkek, Chokpar, Bakanas, Aksuyek, Shu
+link = { vic = 1186 hoi = 8952 hoi = 8927 }	# Alma Ata -> Alma Ata, Zheltorangy
+link = { vic = 1595 hoi = 8928 hoi = 8907 }	# Ili -> Matay, Lepsy
+link = { vic = 1596 hoi = 8886 hoi = 8841 hoi = 8863 }	# Tulta -> Chindagatuy, Makanchi, Karakum
+link = { vic = 1188 hoi = 8885 hoi = 8906 }	# Qaratal -> Karaoy, Kopbirlik
+link = { vic = 2679 hoi = 8817 hoi = 8792 hoi = 8791 hoi = 8765 }	# Khovd -> Bertek, Tashanta, Ust' Kamenogorsk, Chemal
+link = { vic = 2608 hoi = 8739 hoi = 8740 hoi = 8713 hoi = 8687 }	# Khatgal -> Aktash, Vershina Tei, Petrovka, Mezhdurechensk
+link = { vic = 2678 hoi = 8767 hoi = 8741 hoi = 8689 hoi = 8661 hoi = 8688 hoi = 8714 }	# Bulgan -> Abaza, Cheremushki, Artemovsk, Tubil', Sorsk, Abakan
+link = { vic = 1465 hoi = 8768 hoi = 8795 hoi = 8821 hoi = 8769 hoi = 8742 hoi = 8715 }	# Urga -> Vostocnyj Sajan, Orlik, Kyren, Angarsk, Nerchinskiy Zavod, Shumskiy
+link = { vic = 1467 hoi = 8846 hoi = 8822 hoi = 8847 hoi = 8848 hoi = 8824 hoi = 8797 hoi = 8744 hoi = 8717 hoi = 8743 hoi = 8796 }	# Bayan Tumen -> Gorodok, Kyakhta, Petrovsk Zabaykal'skiy, Dakituy, Aksha, Ulan Ude, Ulan Ude, Ust' Ordynskij, Irkutsk, Irkut
+link = { vic = 1552 hoi = 8799 hoi = 8825 hoi = 8800 hoi = 8747 hoi = 8721 hoi = 8772 hoi = 8720 hoi = 8746 hoi = 8693 hoi = 8771 }	# Qiqihar -> Suvorovskiy, Zabaykal'sk, Starotsurukhaytuy, Kadaya, Argunsk, Baley, Sretensk, Shilka, Nerchinsk, Aginskoye
+link = { vic = 1082 hoi = 4456 hoi = 4327 hoi = 4262 hoi = 4195 hoi = 4263 hoi = 4196 hoi = 4130 hoi = 4197 hoi = 4065 hoi = 4264 hoi = 4329 hoi = 4458 hoi = 4391 hoi = 4328 hoi = 4390 hoi = 4457 }	# HaIshenwai -> Novokiyevskoye, Razdolnaya, Voroshilov, Spassk Dalny, Semyonovka, Chuguevka, Kavalerovka, Tetyukhe, Terney, Olga, Vangou, Preobrazheniye, Suchan, Artyom, Vladivostok, Nakhodka
+link = { vic = 1083 hoi = 4063 hoi = 3995 hoi = 3928 hoi = 3857 hoi = 7045 hoi = 8576 hoi = 6822 hoi = 6837 hoi = 6876 hoi = 6855 hoi = 6900 hoi = 3133 hoi = 3199 hoi = 3198 hoi = 3530 hoi = 3396 hoi = 3595 hoi = 3465 hoi = 3328 hoi = 3397 hoi = 3263 hoi = 3329 hoi = 3466 hoi = 3531 hoi = 3657 hoi = 3724 hoi = 3859 hoi = 3930 hoi = 3596 hoi = 3656 hoi = 3723 hoi = 3789 hoi = 3790 hoi = 3858 hoi = 3929 hoi = 3996 hoi = 4064 hoi = 4129 }	# Boli -> Lesozavodsk, Iman, Bikin, Vyazemsky, Khabarovsk, Bogorodskoye, De Kastri, Tumnin, Vysokogorny, Verkhnetambovskoye, Orlovka, Uska Orochskaya, Vanino, Gornuy, Malyshevo, Sarapulskoye, Mukhen, Koppi, Bira, Gatka, Maysky, Sovetskaya Gavan, Innokentevsky, Grossevichi, Nelma, Edinka, Svetlaya, Amgu, Sikhote Alin, Agzu, Gvasyugi, Dolmi, Okhotnichy, Vostok, Verkhniy Pereval, Molodezhnoye, Novopokrovka, Kirovsky
+link = { vic = 1553 hoi = 8695 hoi = 8668 hoi = 8635 hoi = 8571 hoi = 8634 hoi = 8667 hoi = 8603 hoi = 8539 hoi = 8604 hoi = 8540 hoi = 8502 hoi = 8572 hoi = 8504 }	# Aigun -> Mar'ino, Ust' Karsk, Mogocha, Davenda, Vershino Darasunskiy, Chernyshevsk, Aksenovo Zilovskoye, Petropavlovsk Kamchatskiy, Amazar, Silka, Mogoca, Yerofey Pavlovich, Skovorodino
+link = { vic = 2617 hoi = 8467 hoi = 8542 hoi = 8574 hoi = 8638 hoi = 8697 hoi = 8724 hoi = 8776 hoi = 7027 hoi = 7044 hoi = 7008 hoi = 6967 hoi = 6945 hoi = 6920 hoi = 6899 hoi = 6919 hoi = 6944 hoi = 6989 hoi = 7028 hoi = 7007 hoi = 6988 hoi = 6966 hoi = 6874 hoi = 8671 }	# Saghalian Oula -> Zeya, Magdagachi, Sivaki, Vladimiro Shimanovskiy, Svobodnyy, Kuybyshevka Vostochnaya, Blagoveshchensk, Arkhara, Leninskoye, Novoussuri, Litovko, Troitskoye, Malmyzh, Elban, Kur, Dzhuen, Kukan, Birobidzhan, Obluchye, Raychikha, Urgal, Suluk, Tyrma
 
 }
