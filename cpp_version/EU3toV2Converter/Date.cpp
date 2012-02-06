@@ -29,6 +29,24 @@ date& date::operator=(const date& _rhs)
 	return *this;
 }
 
+date::date(const Object* _init)
+{
+	vector<Object*> dateSubObj = _init->getValue("year");
+	if (dateSubObj.size() > 0)
+	{
+		// date specified by year=, month=, day=
+		year = atoi(_init->getLeaf("year").c_str());
+		month = atoi(_init->getLeaf("month").c_str());
+		day = atoi(_init->getLeaf("day").c_str());
+	}
+	else
+	{
+		// date specified by year.month.day
+		// build another date object via date(string&) and copy it to this one
+		(*this) = date(_init->getLeaf());
+	}
+}
+
 bool date::operator==(const date& _rhs) const
 {
 	return ((year == _rhs.year)

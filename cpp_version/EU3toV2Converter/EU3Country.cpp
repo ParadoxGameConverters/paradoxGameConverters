@@ -200,10 +200,11 @@ void EU3Country::init(Object* obj)
 		}
 
 		vector<Object*> historyLeaves = historyObj[0]->getLeaves();
+		date hundredYearsOld = date("1740.1.1");
 		for (vector<Object*>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
 		{
 			// grab leaders from history, ignoring those that are more than 100 years old...
-			if (date((*itr)->getKey()) > date("1740.1.1"))
+			if (date((*itr)->getKey()) > hundredYearsOld)
 			{
 				vector<Object*> leaderObjs = (*itr)->getValue("leader");
 				for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
@@ -533,7 +534,7 @@ void EU3Country::init(Object* obj)
 	moneyObj = obj->getValue("last_bankrupt");
 	if (moneyObj.size() > 0)
 	{
-		last_bankrupt = date(moneyObj[0]->getLeaf().c_str());
+		last_bankrupt = date(moneyObj[0]);
 	}
 	moneyObj = obj->getValue("loan");
 	for (vector<Object*>::iterator itr = moneyObj.begin(); itr != moneyObj.end(); ++itr)
