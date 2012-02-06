@@ -87,6 +87,7 @@ int main(int argc, char * argv[])
 	}
 	obj = doParseFile(mappingFile);
 	provinceMapping provinceMap = initProvinceMap(obj);
+	sourceWorld.checkAllProvincesMapped(provinceMap);
 
 	// Get potential HoI3 countries
 	log("Getting potential HoI3 nations.\n");
@@ -108,17 +109,37 @@ int main(int argc, char * argv[])
 	obj = doParseFile("blocked_nations.txt");
 	vector<string> blockedNations = processBlockedNations(obj);
 
+	// Parse unions mapping
+	log("Parsing union mappings.\n");
+	printf("Parsing union mappings.\n");
+	obj = doParseFile("unions.txt");
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse unions.txt.\n");
+		printf("Error: Failed to parse unions.txt.\n");
+		return 1;
+	}
+	unionMapping unionMap;
+	unionMap = initUnionMap(obj->getLeaves()[0]);
+
 	// Get country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
 	initParser();
 	obj = doParseFile("country_mappings.txt");	
 
-	// Map EU3 nations to V2 nations
+	// Map V2 nations to HoI3 nations
 	log("Mapping V2 nations to HoI3 nations.\n");
 	printf("Mapping V2 nations to HoI3 nations.\n");
 	removeEmptyNations(sourceWorld);
-	//XXX: need to somehow remove old landless nations.  Not sure how.
+	if (Configuration::getRemovetype() == "absorbed")
+	{
+		removeCulturallyAbsorbedNations(sourceWorld, unionMap);
+	}
+	else if (Configuration::getRemovetype() == "all")
+	{
+		removeLandlessNations(sourceWorld);
+	}
 	countryMapping countryMap;
 	vector<string> V2Tags = getV2Tags(sourceWorld);
 	int leftoverNations = initCountryMap(countryMap, V2Tags, destWorld.getPotentialTags(), blockedNations, obj);
@@ -128,9 +149,21 @@ int main(int argc, char * argv[])
 	}
 	else if (leftoverNations > 0)
 	{
-		log("Too many V2 nations (%d). Removing older landless nations.\n", leftoverNations);
-		printf("Too many V2 nations (%d). Removing older landless nations.\n", leftoverNations);
-		//XXX: need to somehow remove more old landless nations.  Not sure how.
+		log("Too many V2 nations (%d). Removing culturally-absorbed nations.\n", leftoverNations);
+		printf("Too many V2 nations (%d). Removing culturally-absorbed nations.\n", leftoverNations);
+		removeCulturallyAbsorbedNations(sourceWorld, unionMap);
+		V2Tags = getV2Tags(sourceWorld);
+		leftoverNations = initCountryMap(countryMap, V2Tags, destWorld.getPotentialTags(), blockedNations, obj);
+	}
+	if (leftoverNations == -1)
+	{
+		return 1;
+	}
+	else if (leftoverNations > 0)
+	{
+		log("Too many V2 nations (%d). Removing landless nations.\n", leftoverNations);
+		printf("Too many V2 nations (%d). Removing landless nations.\n", leftoverNations);
+		removeLandlessNations(sourceWorld);
 		V2Tags = getV2Tags(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, V2Tags, destWorld.getPotentialTags(), blockedNations, obj);
 	}

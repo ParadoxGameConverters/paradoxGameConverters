@@ -29,6 +29,7 @@ class V2Country
 		vector<string>		getTechs() { return techs; };
 		vector<V2Army>		getArmies() { return armies; };
 		vector<V2Relations>	getRelations() { return relations; };
+		string				getPrimaryCulture() { return primaryCulture; };
 
 	private:
 		string				tag;

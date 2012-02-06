@@ -17,9 +17,12 @@ Configuration::Configuration()
 		exit (-2);
 	}
 
+	V2Path = obj[0]->getLeaf("v2directory");
 	HoI3Path = obj[0]->getLeaf("hoi3directory");
 	startDate = date(obj[0]->getLeaf("start_date"));
-	gametype = obj[0]->getLeaf("gametype");
+	removetype	= obj[0]->getLeaf("removetype");
+	V2gametype = obj[0]->getLeaf("v2gametype");
+	HoI3gametype = obj[0]->getLeaf("hoi3gametype");
 	factionLeaderAlgorithm = obj[0]->getLeaf("faction_leader");
 	if (factionLeaderAlgorithm == "manual")
 	{

@@ -288,6 +288,80 @@ void removeEmptyNations(V2World& world)
 }
 
 
+void removeCulturallyAbsorbedNations(V2World& world, unionMapping unions)
+{
+	// remove nations where:
+	// 1. Country owns no land
+	// 2. Country's primary culture's cultural union owns at least one core belonging to country
+	vector<V2Country> countries = world.getCountries();
+
+	vector<string> tagsToRemove;
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		vector<V2Province*> provinces	= countries[i].getProvinces();
+		if ( (provinces.size()) == 0 )
+		{
+			// find any unions for this nation's primary culture
+			for (unionMapping::iterator umitr = unions.begin(); umitr != unions.end(); ++umitr)
+			{
+				if (umitr->first == countries[i].getPrimaryCulture())
+				{
+					string unionTag = umitr->second;
+					for (vector<V2Country>::iterator ucitr = countries.begin(); ucitr != countries.end(); ++ucitr)
+					{
+						if (ucitr->getTag() == unionTag)
+						{
+							// check each union to be sure it has provinces, and if so, that at least one province
+							// is cored by this country
+							vector<V2Province*> uProvs = ucitr->getProvinces();
+							if (uProvs.size() > 0)
+							{
+								for (vector<V2Province*>::iterator upitr = uProvs.begin(); upitr != uProvs.end(); ++upitr)
+								{
+									vector<string> cores = (*upitr)->getCores();
+									bool foundCore = false;
+									for (vector<string>::iterator citr = cores.begin(); citr != cores.end(); ++citr)
+									{
+										if ((*citr) == countries[i].getTag())
+										{
+											log("Removing country %s, which was absorbed by %s.\n", (*citr).c_str(), unionTag.c_str());
+											tagsToRemove.push_back(countries[i].getTag());
+											foundCore = true;
+											break;
+										}
+									}
+									if (foundCore)
+										break;
+								}
+							}
+							break;
+						}
+					}
+				}
+			}
+		}
+	}
+	world.removeCountries(tagsToRemove);
+}
+
+
+void removeLandlessNations(V2World& world)
+{
+	vector<V2Country> countries = world.getCountries();
+
+	vector<string> tagsToRemove;
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		vector<V2Province*> provinces = countries[i].getProvinces();
+		if (provinces.size() == 0)
+		{
+			tagsToRemove.push_back(countries[i].getTag());
+		}
+	}
+	world.removeCountries(tagsToRemove);
+}
+
+
 vector<string> getV2Tags(V2World& srcWorld)
 {
 	vector<V2Country>	V2Countries = srcWorld.getCountries();
@@ -300,3 +374,34 @@ vector<string> getV2Tags(V2World& srcWorld)
 
 	return V2Tags;
 }
+
+
+unionMapping initUnionMap(Object* obj)
+{
+	unionMapping unionMap;
+
+	vector<Object*> unions = obj->getLeaves();
+	for (unsigned int i = 0; i < unions.size(); i++)
+	{
+		string tag;
+		string culture;
+
+		vector<Object*> aUnion = unions[i]->getLeaves();
+		for (unsigned int j = 0; j < aUnion.size(); j++)
+		{
+			if (aUnion[j]->getKey() == "tag")
+			{
+				tag = aUnion[j]->getLeaf();
+			}
+			if (aUnion[j]->getKey() == "culture")
+			{
+				culture = aUnion[j]->getLeaf();
+			}
+		}
+
+		unionMap.push_back(make_pair<string,string>(culture, tag));
+	}
+
+	return unionMap;
+}
+

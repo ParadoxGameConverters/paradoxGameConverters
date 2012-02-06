@@ -22,9 +22,24 @@ public:
 		return getInstance()->HoI3Path;
 	}
 
-	static string getGametype()
+	static string getV2Path()
 	{
-		return getInstance()->gametype;
+		return getInstance()->V2Path;
+	}
+
+	static string getHoI3Gametype()
+	{
+		return getInstance()->HoI3gametype;
+	}
+
+	static string getV2Gametype()
+	{
+		return getInstance()->V2gametype;
+	}
+
+	static string getRemovetype()
+	{
+		return getInstance()->removetype;
 	}
 
 	static string getFactionLeaderAlgo()
@@ -59,7 +74,10 @@ private:
 
 	date startDate;
 	string HoI3Path;
-	string gametype;
+	string V2Path;
+	string HoI3gametype;
+	string V2gametype;
+	string removetype;
 	string factionLeaderAlgorithm;
 	vector<string> manualAxisFaction;
 	vector<string> manualAlliesFaction;

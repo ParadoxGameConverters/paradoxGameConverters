@@ -17,6 +17,12 @@ void V2Country::init(Object* obj)
 		capital = 0;
 	}
 
+	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");
+	if (primaryCultureObj.size() > 0)
+	{
+		primaryCulture = primaryCultureObj[0]->getLeaf().c_str();
+	}
+
 	vector<Object*> techObj = obj->getValue("technology");
 	if (techObj.size() > 0)
 	{

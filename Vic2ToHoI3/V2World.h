@@ -5,6 +5,10 @@
 #include "V2Province.h"
 #include "V2Diplomacy.h"
 
+
+typedef map< int, vector<int> > provinceMapping; // prevents circular dependency
+
+
 class V2World {
 	public:
 		void					init(Object* obj);
@@ -14,6 +18,7 @@ class V2World {
 		void					removeCountry(string tag);
 		void					removeCountries(vector<string>& tags);
 		V2Diplomacy&			getDiplomacy() { return diplomacy; };
+		void					checkAllProvincesMapped(provinceMapping provinceMap);
 
 	private:
 		vector<V2Province>	provinces;
