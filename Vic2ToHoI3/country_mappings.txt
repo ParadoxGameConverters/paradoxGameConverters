@@ -103,29 +103,55 @@ link = { vic = VNZ hoi = VEN }	# Venezuela
 link = { vic = AST hoi = AST }	# Australia
 link = { vic = NZL hoi = NZL }	# New Zealand
 
+
+#Region-based mappings
+#These mappings are one-to-many conversions.  For each V2 tag there are several HoI3 tags.
+#These mappings ensure that V2 countries that do not fit in above or are not available in HoI3 will be assigned a region-appropriate HoI3 tag.
+#The LAST HoI3 tag has priority over the tags that come BEFORE it.
+#The first link is exectuted first, before the links that come after it.
+
+# Scandinavia
+link = { vic = SCA hoi = ICL hoi = FIN hoi = NOR hoi = DEN hoi = SWE }	# Scandinavia => Sweden, Denmark, Norway, Finland, Iceland
+
+# Lowlands
+link = { vic = WLL hoi = LUX hoi = HOL hoi = BEL }		# Wallonia	=> Belgium, Netherlands, Luxembourg
+link = { vic = FLA hoi = HOL hoi = LUX hoi = BEL }		# Flanders	=> Belgium, Luxembourg, Netherlands
+
+# German Majors
+link = { vic = NGF hoi = POL hoi = LAT hoi = LIT hoi = GER }	# NGF		=> Germany, Lithuania, Latvia, Poland
+link = { vic = PRU hoi = POL hoi = LAT hoi = LIT hoi = GER }	# Prussia 	=> Germany, Lithuania, Latvia, Poland
+link = { vic = SGF hoi = LUX hoi = SCH hoi = AUS hoi = GER }	# SGF		=> Germany, Austria, Switzerland, Luxembourg
+link = { vic = KUK hoi = POL hoi = GER hoi = HUN hoi = AUS }	# Austria-Hun.	=> Austria, Hungary, Germany, Poland
+
+# Catalonia
+link = { vic = CAT hoi = ITA hoi = FRA hoi = POR hoi = SPA }	# Catalonia	=> Spain, Portugal, France, Italy
+
+# Scotland
+link = { vic = SCO hoi = NOR hoi = ICL hoi = IRE hoi = ENG }	# Scotland	=> United Kingdom, Ireland, Iceland, Norway
+
+# Central Europe
+link = { vic = BOH hoi = HUN hoi = POL hoi = SLO hoi = CZE }	# Bohemia	=> Czechoslovakia, Slovakia, Poland, Hungary
+link = { vic = KRA hoi = HUN hoi = CZE hoi = SLO hoi = POL }	# Krakow	=> Poland, Slovakia, Czechoslovakia, Hungary
+
+# Black Sea
+link = { vic = UKR hoi = CZE hoi = HUN hoi = SLO hoi = SOV }	# Ukraine	=> Soviet Union, Slovakia, Hungary, Czechoslovakia
+link = { vic = RUT hoi = CZE hoi = HUN hoi = SLO hoi = SOV }	# Ruthenia	=> Soviet Union, Slovakia, Hungary, Czechoslovakia
+link = { vic = CRI hoi = CZE hoi = HUN hoi = SLO hoi = SOV }	# Crimea	=> Soviet Union, Slovakia, Hungary, Czechoslovakia
+
+# Arabia
+link = { vic = ABU hoi = PAL hoi = PER hoi = YEM hoi = OMN hoi = JOR hoi = SAU }	# Abu Dhabi	=> Saudi Arabia, Jordan, Oman, Yemen, Persia, Palestine
+link = { vic = HDJ hoi = IRQ hoi = OMN hoi = YEM hoi = PAL hoi = JOR hoi = SAU }	# Hedjaz	=> Saudi Arabia, Jordan, Palestine, Yemen, Oman, Iraq
+
+
 # missing:
-# PRU Prussia
-# KUK Austria-Hungary
-# SCA Scandinavia
-# FLA Flanders
-# CAT Catalonia
-# SCO Scotland
-# WLL Wallonia
 # --- ALL GERMAN MINORS (except LUX)
 # --- ALL ITALIAN MINORS
-# BOH Bohemia
-# KRA Krakow
-# CRI Crimea
-# RUT Ruthenia
-# UKR Ukraine
 # --- ALL BALKANS (except Albania, Bulgaria, Romania, Greece, Ottomans, and Yugoslavia)
 # --- ALL AFRICA (except Egypt, Liberia, Ethiopia, SA)
-# ABU Abu Dhabi
 # ARM Armenia
 # AZB Azerbaijan
 # BUK Bukkhara
 # GEO Georgia
-# HDJ Hedjaz
 # KHI Khiva
 # KOK Kokland
 # MUG Mughalistan
