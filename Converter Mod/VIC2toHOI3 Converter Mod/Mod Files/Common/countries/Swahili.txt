@@ -1,0 +1,392 @@
+color = { 67  162  145 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+ministers = {
+	65001 = {
+		name = "Haile Selassie I"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65001
+		head_of_state = stern_imperialist
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	65002 = {
+		name = "Bedjironde Tekle Hawariate"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65002
+		head_of_government = happy_amateur
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	65003 = {
+		name = "Herouy Wolde Selassie"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65003
+		foreign_minister = general_staffer
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	65007 = {
+		name = "Ras Mulugueta"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	65008 = {
+		name = "Desta Damtew"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65008
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	65009 = {
+		name = "Ras Seyum"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65009
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_army = static_defence_doctrine
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	65010 = {
+		name = "John Robinson"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M65010
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	65032 = {
+		name = "Lij Johannes"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M65011
+		head_of_state = insignificant_layman
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	65033 = {
+		name = "Vittorio Emanuele III"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M65033
+		head_of_state = resigned_generalissimo
+		start_date = 1939.1.1
+	}
+	65034 = {
+		name = "Ras Imru Haile Selassie"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M65021
+		head_of_state = benevolent_gentleman
+		head_of_government = corporate_suit
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	65036 = {
+		name = "Makonnen Endelkatchew"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65036
+		head_of_government = political_protege
+		foreign_minister = great_compromiser
+		start_date = 1941.1.1
+	}
+	65037 = {
+		name = "Haile Selassie Gugsa"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M65012
+		head_of_government = naive_optimist
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	65038 = {
+		name = "Ras Getachew"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M65014
+		head_of_government = old_general
+		armament_minister = military_entrepreneur
+		start_date = 1939.1.1
+	}
+	65040 = {
+		name = "Blatta Zawde Belaineh"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M65024
+		head_of_government = silent_workhorse
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	65043 = {
+		name = "Aklilu Habtewold"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65043
+		foreign_minister = biased_intellectual
+		minister_of_security = efficient_sociopath
+		start_date = 1943.1.1
+	}
+	65044 = {
+		name = "Mered Azmatch Asfa Wossen"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65044
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1945.1.1
+	}
+	65045 = {
+		name = "Ras Hailu Tekle Haimanot"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M65013
+		foreign_minister = iron_fisted_brute
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	65046 = {
+		name = "Ras Kebbede"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M65017
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_defence
+		start_date = 1939.1.1
+	}
+	65047 = {
+		name = "Ras Sega"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65023
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	65048 = {
+		name = "Dedja Zinatch Nadeon"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65029
+		foreign_minister = iron_fisted_brute
+		chief_of_navy = power_projection_doctrine
+		start_date = 1941.1.1
+	}
+	65049 = {
+		name = "Tsehafe Taezaz"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M65049
+		foreign_minister = ideological_crusader
+		armament_minister = air_superiority_proponent
+		start_date = 1943.1.1
+	}
+	65050 = {
+		name = "Pierre Linant de Bellefonds"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65050
+		armament_minister = administrative_genius
+		start_date = 1937.1.1
+	}
+	65056 = {
+		name = "Wagshum Wosen Hailu"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65056
+		armament_minister = tank_proponent
+		start_date = 1941.1.1
+	}
+	65059 = {
+		name = "Deajaz Gabremariam"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65059
+		minister_of_security = compassionate_gentleman
+		start_date = 1945.1.1
+	}
+	65060 = {
+		name = "Kantiba Wosene Zamanel"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M65015
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	65061 = {
+		name = "Lij Asrate"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M65061
+		minister_of_security = silent_lawyer
+		start_date = 1939.1.1
+	}
+	65062 = {
+		name = "Ras Gugsa Arya"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65025
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	65063 = {
+		name = "Ato Fassika"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65063
+		minister_of_security = prince_of_terror
+		start_date = 1941.1.1
+	}
+	65065 = {
+		name = "Fikre Selasse Katama"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65065
+		minister_of_intelligence = research_specialist
+		start_date = 1941.1.1
+	}
+	65066 = {
+		name = "Tamrat Yigezu"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65066
+		minister_of_intelligence = dismal_enigma
+		start_date = 1945.1.1
+	}
+	65067 = {
+		name = "Markos Wolde Gabriel"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M65067
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	65070 = {
+		name = "Lij Araya Abebe"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65070
+		minister_of_intelligence = industrial_specialist
+		start_date = 1941.1.1
+	}
+	65071 = {
+		name = "Hapte Mikael Agafari"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65071
+		chief_of_staff = school_of_psychology
+		start_date = 1937.1.1
+	}
+	65072 = {
+		name = "Haile Wolde Rufe"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65072
+		chief_of_staff = school_of_mass_combat
+		start_date = 1945.1.1
+	}
+	65074 = {
+		name = "Woldemeskal Tariku"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65027
+		chief_of_staff = school_of_defence
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	65075 = {
+		name = "Abanefso Balcha"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65075
+		chief_of_staff = school_of_mass_combat
+		start_date = 1941.1.1
+	}
+	65077 = {
+		name = "Haile Abba Mersa"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65077
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1941.1.1
+	}
+	65078 = {
+		name = "Lij Abiye Abebe"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M65078
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	65079 = {
+		name = "Ras Kassa"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M65018
+		chief_of_army = decisive_battle_doctrine
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	65084 = {
+		name = "Wondossen Kassa"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M65084
+		chief_of_navy = open_seas_doctrine
+		start_date = 1937.1.1
+	}
+	65089 = {
+		name = "Mesfin Sileshi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M65089
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1939.1.1
+	}
+	65090 = {
+		name = "Fitauri Zawde Gobena"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M65020
+		chief_of_air = air_superiority_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1945.1.1
+	}
+	65092 = {
+		name = "Gabriel Zawde Gilaneh"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M65030
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+}

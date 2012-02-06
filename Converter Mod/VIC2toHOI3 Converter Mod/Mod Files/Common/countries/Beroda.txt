@@ -1,0 +1,753 @@
+color = { 255  188  102 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1st Indian Infantry Division" "2nd Indian Infantry Division" "3rd Indian Infantry Division" "4th Indian Infantry Division" "5th Indian Infantry Division" "6th Indian Infantry Division" "7th Indian Infantry Division" "8th Indian Infantry Division" "9th Indian Infantry Division" "10th Indian Infantry Division" "11th Indian Infantry Division" 
+		"12th Indian Infantry Division" "13th Indian Infantry Division" "14th Indian Infantry Division" "15th Indian Infantry Division" "16th Indian Infantry Division" "17th Indian Infantry Division" "18th Indian Infantry Division" "19th Indian Infantry Division" "20th Indian Infantry Division" 
+	}
+	cavalry_brigade = {
+		"1st Cavalry Division" "2nd Cavalry Division" "3rd Cavalry Division" "4th Cavalry Division" "5th Cavalry Division" "6th Cavalry Division" "7th Cavalry Division" "8th Cavalry Division" "9th Cavalry Division" "10th Cavalry Division" 
+	}
+	motorized_brigade = {
+		"1st Infantry Division" "2nd Infantry Division" "3rd Infantry Division" "1st Motorized Division" "2nd Motorized Division" "3rd Motorized Division" "4th Motorized Division" "5th Motorized Division" "6th Motorized Division" 
+	}
+	mechanized_brigade = {
+		"1st Infantry Division" "2nd Infantry Division" "3rd Infantry Division" "1st Mechanized Division" "2nd Mechanized Division" "3rd Mechanized Division" "4th Mechanized Division" "5th Mechanized Division" "6th Mechanized Division" "7th Mechanized Division" "8th Mechanized Division" 
+		"9th Mechanized Division" "10th Mechanized Division" 
+	}
+	light_armor_brigade = {
+		"1st Armoured Division" "2nd Armoured Division" "3rd Armoured Division" "4th Armoured Division" "5th Armoured Division" "6th Armoured Division" "7th Armoured Division" "8th Armoured Division" "9th Armoured Division" "10th Armoured Division" "11th Armoured Division" 
+		"12th Armoured Division" "14th Armoured Division" "15th Armoured Division" 
+	}
+	armor_brigade = {
+		"1st Armoured Division" "2nd Armoured Division" "3rd Armoured Division" "4th Armoured Division" "5th Armoured Division" "6th Armoured Division" "7th Armoured Division" "8th Armoured Division" "9th Armoured Division" "10th Armoured Division" "11th Armoured Division" 
+		"12th Armoured Division" "14th Armoured Division" "15th Armoured Division" 
+	}
+	paratrooper_brigade = {
+		"1st Airborne Division" "2nd Airborne Division" "3rd Airborne Division" "4th Airborne Division" "5th Airborne Division" "6th Airborne Division" "7th Airborne Division" "8th Airborne Division" "9th Airborne Division" "10th Airborne Division" 
+	}
+	marine_brigade = {
+		"1st Marine Division" "2nd Marine Division" "3rd Marine Division" "4th Marine Division" "5th Marine Division" "6th Marine Division" "7th Marine Division" "8th Marine Division" "9th Marine Division" "10th Marine Division" 
+	}
+	bergsjaeger_brigade = {
+		"1st Gurkha Division" "2nd Gurkha Division" "3rd Gurkha Division" "4th Gurkha Division" "5th Gurkha Division" "8th Gurkha Division" "10th Gurkha Division" "11th Gurkha Division" "12th Gurkha Division" 
+	}
+	garrison_brigade = {
+		"1st Indian Garrison Division" "2nd Indian Garrison Division" "3rd Indian Garrison Division" "4th Indian Garrison Division" "5th Indian Garrison Division" "6th Indian Garrison Division" "7th Indian Garrison Division" "8th Indian Garrison Division" "9th Indian Garrison Division" "10th Indian Garrison Division" "11th Indian Garrison Division" 
+		"12th Indian Garrison Division" "13th Indian Garrison Division" "14th Indian Garrison Division" "15th Indian Garrison Division" "16th Indian Garrison Division" "17th Indian Garrison Division" "18th Indian Garrison Division" "19th Indian Garrison Division" "20th Indian Garrison Division" 
+	}
+	hq_brigade = {
+		"1st Indian Army" "2nd Indian Army" "3rd Indian Army" "4th Indian Army" "5th Indian Army" "6th Indian Army" "7th Indian Army" "8th Indian Army" 
+	}
+	militia_brigade = {
+		"1st Infantry Division" "2nd Infantry Division" "3rd Infantry Division" "4th Infantry Division" "5th Infantry Division" "6th Infantry Division" "7th Infantry Division" "8th Infantry Division" "9th Infantry Division" "10th Infantry Division" "11th Infantry Division" 
+		"12th Infantry Division" "13th Infantry Division" "14th Infantry Division" "15th Infantry Division" "16th Infantry Division" "17th Infantry Division" "18th Infantry Division" "19th Infantry Division" "20th Infantry Division" "21st Infantry Division" "22nd Infantry Division" 
+		"23rd Infantry Division" "24th Infantry Division" "25th Infantry Division" "26th Infantry Division" "27th Infantry Division" "28th Infantry Division" "29th Infantry Division" "30th Infantry Division" 
+	}
+	multi_role = {
+		"No.1 Group" "No.2 Group" "No.3 Group" "No.4 Group" "No.5 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" 
+		"No.13 Group" "No.14 Group" "No.15 Group" "No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" 
+	}
+	interceptor = {
+		"No.1 Group" "No.2 Group" "No.3 Group" "No.4 Group" "No.5 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" 
+		"No.13 Group" "No.14 Group" "No.15 Group" "No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" 
+	}
+	strategic_bomber = {
+		"No.1 Group" "No.2 Group" "No.6 Group" "No.3 Group" "No.4 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" 
+		"No.13 Group" "No.14 Group" "No.15 Group" "No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" 
+	}
+	tactical_bomber = {
+		"No.1 Group" "No.2 Group" "No.6 Group" "No.3 Group" "No.4 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" 
+		"No.13 Group" "No.14 Group" "No.15 Group" "No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" 
+	}
+	naval_bomber = {
+		"No.1 Group" "No.2 Group" "No.3 Group" "No.4 Group" "No.5 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" 
+		"No.13 Group" "No.14 Group" "No.15 Group" "No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" "No.1 Group" "No.2 Group" "No.3 Group" 
+		"No.4 Group" "No.5 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" "No.13 Group" "No.14 Group" "No.15 Group" 
+		"No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" 
+	}
+	cas = {
+		"No.1 Group" "No.2 Group" "No.6 Group" "No.3 Group" "No.4 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" 
+		"No.13 Group" "No.14 Group" "No.15 Group" "No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" 
+	}
+	transport_plane = {
+		"No.1 Group" "No.2 Group" "No.3 Group" "No.4 Group" "No.5 Group" "No.7 Group" "No.8 Group" "No.9 Group" "No.10 Group" "No.11 Group" "No.12 Group" 
+		"No.13 Group" "No.14 Group" "No.15 Group" "No.16 Group" "No.17 Group" "No.18 Group" "No.19 Group" "No.20 Group" 
+	}
+	battleship = {
+		"HMIS Taragiri" "HMIS Vindhyagiri" "HMIS Brahmaputra" 
+	}
+	light_cruiser = {
+		"HMIS Nilgiri" "HMIS Orissa" "HMIS Deccan" "HMIS Bihar" "HMIS Kumaon" "HMIS Rohilkhand" "HMIS Khyber" "HMIS Carnafic" "HMIS Rajputana" "HMIS Konkan" "HMIS Bombay" 
+		"HMIS Bengal" "HMIS Madras" 
+	}
+	heavy_cruiser = {
+		"HMIS Nilgiri" "HMIS Orissa" "HMIS Deccan" "HMIS Bihar" "HMIS Kumaon" "HMIS Rohilkhand" "HMIS Khyber" "HMIS Carnafic" "HMIS Rajputana" "HMIS Konkan" "HMIS Bombay" 
+		"HMIS Bengal" "HMIS Madras" 
+	}
+	battlecruiser = {
+		"HMIS Taragiri" "HMIS Vindhyagiri" "HMIS Brahmaputra" 
+	}
+	destroyer = {
+		"1st Destroyer Division" "2nd Destroyer Division" "3rd Destroyer Division" "4th Destroyer Division" "5th Destroyer Division" "6th Destroyer Division" "7th Destroyer Division" "8th Destroyer Division" "9th Destroyer Division" "10th Destroyer Division" "11th Destroyer Division" 
+		"12th Destroyer Division" "13th Destroyer Division" "14th Destroyer Division" "15th Destroyer Division" 
+	}
+	carrier = {
+		"HMIS Vikrant" "HMIS Virrant" "HMIS Viraat" "HMIS Mysore" 
+	}
+	escort_carrier = {
+		"HMIS Vikrant" "HMIS Virrant" "HMIS Viraat" "HMIS Mysore" 
+	}
+	submarine = {
+		"1st Submarine Division" "2nd Submarine Division" "3rd Submarine Division" "4th Submarine Division" "5th Submarine Division" "6th Submarine Division" "7th Submarine Division" "8th Submarine Division" "9th Submarine Division" "10th Submarine Division" "11th Submarine Division" 
+		"12th Submarine Division" "13th Submarine Division" "14th Submarine Division" "15th Submarine Division" 
+	}
+	transport_ship = {
+		"1st Transport Division" "2nd Transport Division" "3rd Transport Division" "4th Transport Division" "5th Transport Division" "6th Transport Division" "7th Transport Division" "8th Transport Division" "9th Transport Division" "10th Transport Division" "11th Transport Division" 
+		"12th Transport Division" "13th Transport Division" "14th Transport Division" "15th Transport Division" 
+	}
+
+}
+
+ministers = {
+	59001 = {
+		name = "Victor Lord Linlithgow"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59001
+		head_of_state = stern_imperialist
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	59002 = {
+		name = "John Edward Golightly"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59002
+		head_of_government = silent_workhorse
+		start_date = 1936.1.1
+	}
+	59003 = {
+		name = "Sir Jilendra Vayaphrasattar"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59003
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	59004 = {
+		name = "Anyang Bhula"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59004
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	59005 = {
+		name = "George H. Douglas"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M59005
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	59006 = {
+		name = "Archibald Angus"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59006
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	59008 = {
+		name = "Arthur A. Barrett"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59008
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	59009 = {
+		name = "William E. Parry"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = L1378
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	59010 = {
+		name = "Bruce W. McPherson"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59010
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	59031 = {
+		name = "Rajendra Prasad"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59031
+		head_of_state = weary_stiff_neck
+		chief_of_staff = school_of_defence
+		head_of_state = weary_stiff_neck
+		start_date = 1950.1.1
+	}
+	59032 = {
+		name = "Bahadur Bathram of Maler Kotla"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59032
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	59033 = {
+		name = "Lord Louis Mountbatten"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59033
+		head_of_state = popular_figurehead
+		start_date = 1945.1.1
+	}
+	59034 = {
+		name = "Archibald Wavell"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59034
+		head_of_state = resigned_generalissimo
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1942.1.1
+	}
+	59035 = {
+		name = "Rashbehari Basu"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59016
+		head_of_state = insignificant_layman
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	59037 = {
+		name = "Mahatma Mohandas Gandhi"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59037
+		head_of_government = silent_workhorse
+		start_date = 1936.1.1
+	}
+	59038 = {
+		name = "Michael Morris"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59038
+		head_of_government = happy_amateur
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	59039 = {
+		name = "Dr. John Mathai"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59039
+		head_of_government = corporate_suit
+		armament_minister = theoretical_scientist
+		start_date = 1945.1.1
+	}
+	59040 = {
+		name = "Nabob Kureishi of Bhawalapur"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59040
+		head_of_government = smiling_oilman
+		start_date = 1942.1.1
+	}
+	59041 = {
+		name = "Sir Mohammed Iqbal"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59041
+		head_of_government = backroom_backstabber
+		start_date = 1936.1.1
+	}
+	59043 = {
+		name = "Subhas Chandra Bose"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59011
+		foreign_minister = the_cloak_n_dagger_schemer
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	59044 = {
+		name = "Ananthasayanam Ayyangar"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M59044
+		foreign_minister = great_compromiser
+		chief_of_staff = school_of_defence
+		start_date = 1937.1.1
+	}
+	59045 = {
+		name = "Sarat Chandra Bose"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59045
+		foreign_minister = biased_intellectual
+		start_date = 1941.1.1
+	}
+	59046 = {
+		name = "Jawahar Lal Nehru"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59046
+		foreign_minister = ideological_crusader
+		head_of_government = political_protege
+		start_date = 1941.1.1
+	}
+	59047 = {
+		name = "Bhimrao Ramji Ambedkar"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M59025
+		foreign_minister = apologetic_clerk
+		minister_of_security = man_of_the_people
+		start_date = 1943.1.1
+	}
+	59048 = {
+		name = "Bahadur Jayla of Khoch Bahur"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59048
+		foreign_minister = apologetic_clerk
+		armament_minister = battle_fleet_proponent
+		start_date = 1936.1.1
+	}
+	59049 = {
+		name = "Mohammed Ayub Khan"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59049
+		foreign_minister = general_staffer
+		start_date = 1943.1.1
+	}
+	59050 = {
+		name = "Aly Khan IV"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59050
+		foreign_minister = great_compromiser
+		start_date = 1942.1.1
+	}
+	59051 = {
+		name = "Agha Khan III"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59051
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	59053 = {
+		name = "Ajoy Kumar Ghosh"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59023
+		foreign_minister = biased_intellectual
+		minister_of_security = efficient_sociopath
+		start_date = 1943.1.1
+	}
+	59055 = {
+		name = "Khawaja Nazimuddin"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59055
+		foreign_minister = apologetic_clerk
+		start_date = 1947.1.1
+	}
+	59056 = {
+		name = "Sardar Vallabhbhai Patel"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59056
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	59057 = {
+		name = "Lal Bahadur Shastri"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59024
+		armament_minister = administrative_genius
+		start_date = 1944.1.1
+	}
+	59060 = {
+		name = "Hitendra Desai"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59060
+		armament_minister = resource_industrialist
+		start_date = 1945.1.1
+	}
+	59062 = {
+		name = "Nawab Jaygoor of Pataudi"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M59062
+		armament_minister = resource_industrialist
+		start_date = 1939.1.1
+	}
+	59063 = {
+		name = "Iskander Mirza"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59014
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	59064 = {
+		name = "Sir Chhotu Ram"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59026
+		armament_minister = air_superiority_proponent
+		minister_of_intelligence = industrial_specialist
+		start_date = 1938.1.1
+	}
+	59065 = {
+		name = "Jyoti Basu"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59021
+		armament_minister = administrative_genius
+		start_date = 1939.1.1
+	}
+	59067 = {
+		name = "Muhammed Ali Bogra"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59067
+		armament_minister = air_to_sea_proponent
+		start_date = 1944.1.1
+	}
+	59068 = {
+		name = "Rafi Ahmed Kidwai"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M59068
+		minister_of_security = crime_fighter
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	59070 = {
+		name = "Harilal J. Kania"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M59070
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	59071 = {
+		name = "Sir Henry Gidney"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59071
+		minister_of_security = compassionate_gentleman
+		start_date = 1942.1.1
+	}
+	59072 = {
+		name = "Nizam Osman of Hyderabad"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59015
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	59073 = {
+		name = "Muhammed Mujeeb"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M59073
+		minister_of_security = back_stabber
+		start_date = 1938.1.1
+	}
+	59077 = {
+		name = "Shri Jagjivan Ram"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59077
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	59081 = {
+		name = "Jehangir Bhabha Homi"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59079
+		minister_of_intelligence = technical_specialist
+		start_date = 1943.1.1
+	}
+	59082 = {
+		name = "Stephen Hope-Carlill"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = L1356
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1945.1.1
+	}
+	59083 = {
+		name = "Sir Bwahadur Kandra"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M59083
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	59084 = {
+		name = "Lindsey Stephenson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M59084
+		minister_of_intelligence = dismal_enigma
+		start_date = 1938.1.1
+	}
+	59087 = {
+		name = "Abdul Majeed Khwaja"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59087
+		minister_of_intelligence = dismal_enigma
+		start_date = 1945.1.1
+	}
+	59090 = {
+		name = "Charles T.M. Pizey"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59090
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1946.1.1
+	}
+	59091 = {
+		name = "Mohan Singh"
+		ideology = social_liberal
+		loyalty = 0.25
+		picture = M59028
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	59092 = {
+		name = "Sardar Baldev Singh"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M59092
+		chief_of_staff = school_of_psychology
+		start_date = 1941.1.1
+	}
+	59093 = {
+		name = "Kodandera Cariappa"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M59093
+		chief_of_staff = school_of_fire_support
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	59095 = {
+		name = "Kodandera Thimayya"
+		ideology = market_liberal
+		loyalty = 0.50
+		picture = M59095
+		chief_of_staff = school_of_defence
+		start_date = 1942.1.1
+	}
+	59097 = {
+		name = "Shah Nawaz Khan"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59017
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1943.1.1
+	}
+	59099 = {
+		name = "Ram Singh Thakur"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59099
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	59102 = {
+		name = "Sir Frank Messervy"
+		ideology = social_liberal
+		loyalty = 0.25
+		picture = M59102
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	59104 = {
+		name = "Kureishi of Bhawalapur"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59040
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	59107 = {
+		name = "Bhaskar Soman"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M59107
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	59109 = {
+		name = "Ram Dass Katari"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M59019
+		chief_of_navy = power_projection_doctrine
+		start_date = 1947.1.1
+	}
+	59110 = {
+		name = "W.H. Gould-Bradford"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = L1349
+		chief_of_navy = open_seas_doctrine
+		start_date = 1942.1.1
+	}
+	59112 = {
+		name = "Harinder Singh"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59112
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1946.1.1
+	}
+	59113 = {
+		name = "Arjan Singh Vibhusan"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M59113
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	59115 = {
+		name = "Subroto Mukherjee"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M59115
+		chief_of_air = army_aviation_doctrine
+		start_date = 1946.1.1
+	}
+	59116 = {
+		name = "Mehar Singh"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M59114
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	59117 = {
+		name = "Aspy Merwan Engineer"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M59117
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	59119 = {
+		name = "Ravindra Darshan Singh"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59118
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	59122 = {
+		name = "Yeswanthrao II of Indore"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59122
+		foreign_minister = iron_fisted_brute
+		start_date = 1941.1.1
+	}
+	59123 = {
+		name = "H.H. Buland of Kishangarh"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59123
+		armament_minister = air_to_ground_proponent
+		start_date = 1942.1.1
+	}
+	59124 = {
+		name = "Ali Khan III of Banganapalle"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59124
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	59125 = {
+		name = "H.H. Waghji of Morvi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M59125
+		minister_of_security = compassionate_gentleman
+		start_date = 1944.1.1
+	}
+	59126 = {
+		name = "H.H. Tashi of Sikkim"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M59126
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	59127 = {
+		name = "Chakravarti Rajagopalachari"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59127
+		head_of_state = die_hard_reformer
+		start_date = 1948.1.1
+	}
+	59129 = {
+		name = "Ganesh Mavalankar"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59129
+		foreign_minister = great_compromiser
+		start_date = 1952.1.1
+	}
+	59130 = {
+		name = "Sarvepalli Radhakrishnan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M59130
+		minister_of_security = compassionate_gentleman
+		start_date = 1951.1.1
+	}
+}

@@ -1,0 +1,27 @@
+## These events are designed to give some inpetus for cultural unions to form.  
+## A cultural union decision can be made when a major power of that culture has all the relevent CORE PROVINCES of the union nation under its sphere of influence.
+## These events will occur in the background, and will essentially double check that the relevent cores are in place for cultural unions to take place.
+
+## The general form of the event will but thus:
+
+## For a given union
+##	if that country does not exist (has no cores anywhere)
+##		the country will get cores on all relevent provinces.
+
+country_event = {
+	id = 80000
+	title = "French unity"
+	desc = "French unity event"
+
+	trigger = {
+		fire_only_once = yes
+	}
+
+	option = {
+		name = "Splendid"
+
+		425 = { add_core = FRA}
+		
+	}
+
+}

@@ -1,0 +1,708 @@
+color = { 130  206  113 }
+graphical_culture = Japanese
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"2ème Division d'Infanterie" "4ème Division d'Infanterie" "6ème Division d'Infanterie" "7ème Division d'Infanterie" "8ème Division d'Infanterie" "14ème Division d'Infanterie" "10ème Division d'Infanterie" "11ème Division d'Infanterie" "13ème Division d'Infanterie" "16ème Division d'Infanterie" "18ème Division d'Infanterie" 
+		"19ème Division d'Infanterie" "20ème Division d'Infanterie" 
+	}
+	cavalry_brigade = {
+		"1ère Division Légère de Cavalerie" "2ème Division Légère de Cavalerie" "3ème Division Légère de Cavalerie" "4ème Division Légère de Cavalerie" "5ème Division Légère de Cavalerie" 
+	}
+	motorized_brigade = {
+		"1ère Division d'Infanterie Motorisée" "3ème Division d'Infanterie Motorisée" "5ème Division d'Infanterie Motorisée" 
+	}
+	mechanized_brigade = {
+		"1ère Division Légère Mécanisée" "2ème Division Légère Mécanisée" "3ème Division Légère Mécanisée" "4ème Division Légère Mécanisée" "5ème Division Légère Mécanisée" 
+	}
+	light_armor_brigade = {
+		"1ere Division Cuirassée de Réserve" "2ème Division Cuirassée de Réserve" "3ème Division Cuirassée de Réserve" "4ème Division Cuirassée de Réserve" "5ème Division Cuirassée de Réserve" 
+	}
+	armor_brigade = {
+		"1ère Division Cuirassée de Réserve" "2ème Division Cuirassée de Réserve" "3ème Division Cuirassée de Réserve" "4ème Division Cuirassée de Réserve" "5ème Division Cuirassée de Réserve" "6ème Division Cuirassée de Réserve" 
+	}
+	paratrooper_brigade = {
+		"1re Divsion Aéroportée" "2ème Divsion Aéroportée" "3ème Divsion Aéroportée" "4ème Divsion Aéroportée" "5ème Divsion Aéroportée" 
+	}
+	marine_brigade = {
+		"1ère Division d'Infanterie de Marine" "2ème Division d'Infanterie de Marine" "3ème Division d'Infanterie de Marine" "4ème Division d'Infanterie de Marine" 
+	}
+	bergsjaeger_brigade = {
+		"27ème Division d'Infanterie" "30ème Division d'Infanterie" "31ème Division d'Infanterie" 
+	}
+	garrison_brigade = {
+		"2ème Division d'Garnison" "4ème Division d'Garnison" "6ème Division d'Garnison" "7ème Division d'Garnison" "8ème Division d'Garnison" "14ème Division d'Garnison" 
+	}
+	hq_brigade = {
+		"1ère Armée Indochinois" "2ème Armée Indochinois" "3ème Armée Indochinois" 
+	}
+	militia_brigade = {
+		"1ère Division d'Infanterie de Réserve" "2ème Division d'Infanterie de Réserve" "3ème Division d'Infanterie de Réserve" "4ème Division d'Infanterie de Réserve" "5ème Division d'Infanterie de Réserve" "6ème Division d'Infanterie de Réserve" "7ème Division d'Infanterie de Réserve" "8ème Division d'Infanterie de Réserve" "9ème Division d'Infanterie de Réserve" "10ème Division d'Infanterie de Réserve" "11ème Division d'Infanterie de Réserve" 
+		"12ème Division d'Infanterie de Réserve" "13ème Division d'Infanterie de Réserve" 
+	}
+	multi_role = {
+		"Groupe de Chasse 21" "Groupe de Chasse 22" "Groupe de Chasse 23" "Groupe de Chasse 24" "Groupe de Chasse 25" 
+	}
+	interceptor = {
+		"Groupe de Chasse 22" "Groupe de Chasse 23" "Groupe de Chasse 24" "Groupe de Chasse 25" 
+	}
+	strategic_bomber = {
+		"Groupe de Bombardèment 1" "Groupe de Bombardèment 2" "Groupe de Bombardèment 3" "Groupe de Bombardèment 6" "Groupe de Bombardèment 7" "Groupe de Bombardèment 8" 
+	}
+	tactical_bomber = {
+		"Groupe de Bombardèment 1" "Groupe de Bombardèment 2" "Groupe de Bombardèment 3" "Groupe de Bombardèment 6" "Groupe de Bombardèment 7" "Groupe de Bombardèment 8" "Groupe de Bombardèment 9" "Groupe de Bombardèment 10" 
+	}
+	naval_bomber = {
+		"Groupe de Bombardèment Naval 1" "Groupe de Bombardèment Naval 2" "Groupe de Bombardèment Naval 3" "Groupe de Bombardèment Naval 4" "Groupe de Bombardèment Naval 5" "Groupe de Torpilleur 1" "Groupe de Torpilleur 2" "Groupe de Torpilleur 3" "Groupe de Torpilleur 4" "Groupe de Torpilleur 5" 
+	}
+	cas = {
+		"Groupe de Bombardèment d'Assaut 18" "Groupe de Bombardèment d'Assaut 19" "Groupe de Bombardèment d'Assaut 21" "Groupe de Bombardèment d'Assaut 22" "Groupe de Bombardèment d'Assaut 23" "Groupe de Bombardèment d'Assaut 24" 
+	}
+	transport_plane = {
+		"1er Groupe de Transport Aérien" "2ème Groupe de Transport Aérien" "3ème Groupe de Transport Aérien" "4ème Groupe de Transport Aérien" "5ème Groupe de Transport Aérien" 
+	}
+	battleship = {
+		"Indépendance" "Liberté" "Egalité" "Fraternité" "Nation" 
+	}
+	light_cruiser = {
+		"Indépendance" "Liberté" "Egalité" "Fraternité" "Nation" 
+	}
+	heavy_cruiser = {
+		"Indépendance" "Liberté" "Egalité" "Fraternité" "Nation" "Indépendance" "Liberté" "Egalité" "Fraternité" "Nation" 
+	}
+	battlecruiser = {
+		"Indépendance" "Liberté" "Egalité" "Fraternité" "Nation" 
+	}
+	destroyer = {
+		"1ère Divisionde Torpilleurs" "2ème Divisionde Torpilleurs" "3ème Divisionde Torpilleurs" "4ème Divisionde Torpilleurs" "5ème Divisionde Torpilleurs" 
+	}
+	submarine = {
+		"1ère Flottille sous-marine" "2ème Flottille sous-Marine" "3ème Flottille sous-Marine" "4ème Flottille sous-Marine" "5ème Flottille sous-Marine" 
+	}
+	transport_ship = {
+		"1ère Flottille de Transport" "2ème Flottille de Transport" "3ème Flottille de Transport" "4ème Flottille de Transport" "5ème Flottille de Transport" 
+	}
+
+}
+
+ministers = {
+	543001 = {
+		name = "H.M. Bao Dai"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M542001
+		head_of_state = weary_stiff_neck
+		start_date = 1936.1.1
+	}
+	543002 = {
+		name = "Ngo Dinh Diem"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M542018
+		head_of_government = political_protege
+		head_of_government = flamboyant_tough_guy
+		start_date = 1936.1.1
+	}
+	543003 = {
+		name = "Tong Doc Phuong"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M542003
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	543004 = {
+		name = "Nguyen Van Tam"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M542004
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	543005 = {
+		name = "Ho Dac Trung"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M542005
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	543006 = {
+		name = "Tran Gia Thoai"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M542032
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	543007 = {
+		name = "Le Quan"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M542042
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	543008 = {
+		name = "Duong Van Minh"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M542046
+		chief_of_army = armoured_spearhead_doctrine
+		chief_of_army = decisive_battle_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	543009 = {
+		name = "Nguyen Van Thinh"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M542025
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	543010 = {
+		name = "Nguyen Van Xuan"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M542023
+		chief_of_air = carpet_bombing_doctrine
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	543011 = {
+		name = "Pol Pot"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M541014
+		head_of_state = power_hungry_demagogue
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	543012 = {
+		name = "Ho Chi Minh"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M542012
+		head_of_state = ruthless_powermonger
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	543013 = {
+		name = "H.R.H. Souphanou Vong"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M540012
+		head_of_state = die_hard_reformer
+		chief_of_staff = school_of_psychology
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	543014 = {
+		name = "H.M. Sisowath Monivong"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M541001
+		head_of_state = benevolent_gentleman
+		start_date = 1936.1.1
+	}
+	543015 = {
+		name = "Norodom Suramarit"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M541012
+		head_of_state = barking_buffoon
+		start_date = 1936.1.1
+	}
+	543016 = {
+		name = "H.M. Sasiavong Vong"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M540001
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	543017 = {
+		name = "Sisowath Monipong"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M541003
+		head_of_state = popular_figurehead
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	543018 = {
+		name = "H.R.H. Khai Dinh"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M542011
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	543019 = {
+		name = "H.R.H. Savang Vatana"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M540011
+		head_of_state = autocratic_charmer
+		start_date = 1936.1.1
+	}
+	543020 = {
+		name = "Khieu Samphan"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M541022
+		head_of_government = smiling_oilman
+		start_date = 1936.1.1
+	}
+	543021 = {
+		name = "Truong Tchin"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M542019
+		head_of_government = backroom_backstabber
+		start_date = 1936.1.1
+	}
+	543022 = {
+		name = "Khambulatom Oomau"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M540019
+		head_of_government = happy_amateur
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	543023 = {
+		name = "H.R.H. Norodom Sihanouk"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M541011
+		head_of_government = old_admiral
+		start_date = 1936.1.1
+	}
+	543024 = {
+		name = "Son Sann"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M541020
+		head_of_government = silent_workhorse
+		start_date = 1936.1.1
+	}
+	543025 = {
+		name = "H.R.H. Phaya Khammao"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M540003
+		head_of_government = corporate_suit
+		start_date = 1936.1.1
+	}
+	543026 = {
+		name = "Sisowath Sirik Matak"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M541021
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	543028 = {
+		name = "Phetsarath Mahaouphatat"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M540008
+		head_of_government = old_general
+		minister_of_security = prince_of_terror
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	543029 = {
+		name = "Leng Sary"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M541027
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	543030 = {
+		name = "Pham Van Dong"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M542024
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	543031 = {
+		name = "Phomvihanh Kaysone"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M540020
+		foreign_minister = iron_fisted_brute
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	543033 = {
+		name = "Phan Sina"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M541025
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	543034 = {
+		name = "Sasorith Kataydon"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M540021
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	543035 = {
+		name = "Krisan Cheda"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M541026
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	543037 = {
+		name = "H.R.H. Boun Oum"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M540010
+		foreign_minister = iron_fisted_brute
+		armament_minister = infantry_proponent
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	543038 = {
+		name = "Nuon Chea"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M541033
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	543039 = {
+		name = "Le Duan"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M542030
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	543041 = {
+		name = "Sisowath Monireth"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M541004
+		armament_minister = tank_proponent
+		chief_of_staff = school_of_defence
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	543042 = {
+		name = "Sam An"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M541031
+		armament_minister = battle_fleet_proponent
+		start_date = 1936.1.1
+	}
+	543043 = {
+		name = "H.R.H. Souvanna Rath"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M540009
+		armament_minister = laissez_faires_capitalist
+		armament_minister = administrative_genius
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	543044 = {
+		name = "Norodom Phanouvong"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M541032
+		armament_minister = submarine_proponent
+		start_date = 1936.1.1
+	}
+	543045 = {
+		name = "Le Van Hoac"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M542027
+		armament_minister = theoretical_scientist
+		start_date = 1936.1.1
+	}
+	543048 = {
+		name = "The Lu"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M542035
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	543050 = {
+		name = "Sisowath Youtevong"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M541005
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = technical_specialist
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	543051 = {
+		name = "Sisowath Monirak"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M541023
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	543052 = {
+		name = "Aphay Khou"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M540034
+		minister_of_security = crooked_kleptocrat
+		chief_of_staff = school_of_fire_support
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	543053 = {
+		name = "Sakiwat Phirun"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M541037
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	543054 = {
+		name = "Ngo Dinh Nhu"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M542033
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	543056 = {
+		name = "Tea Banh"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M541043
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	543057 = {
+		name = "Phan Huy Quat"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M542039
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	543059 = {
+		name = "Son Ngoc Thanh"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M541006
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	543060 = {
+		name = "Hy Weng"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M541041
+		minister_of_intelligence = dismal_enigma
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	543061 = {
+		name = "Savang Vong"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M540037
+		minister_of_intelligence = political_specialist
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	543063 = {
+		name = "Pham Toc Quia"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M542038
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	543064 = {
+		name = "Phousannani Kone"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M540031
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	543065 = {
+		name = "Kieng Vang"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M541047
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	543066 = {
+		name = "Vo Nguyen Giap"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M542044
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	543067 = {
+		name = "Phichith Douangchai"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M540035
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	543068 = {
+		name = "Norodom Sihanouk"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M541044
+		chief_of_staff = school_of_manoeuvre
+		chief_of_navy = open_seas_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	543069 = {
+		name = "Chhun Lim"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M541045
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	543072 = {
+		name = "Nguyen Huu Coo"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M542043
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	543074 = {
+		name = "Son Sen"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M541051
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	543076 = {
+		name = "Vang Pao"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M540038
+		chief_of_army = static_defence_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	543078 = {
+		name = "Sisowath Watchayavong"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M541049
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	543080 = {
+		name = "Lon Nol"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M541035
+		chief_of_army = static_defence_doctrine
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	543083 = {
+		name = "You Hok Kry"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M541055
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	543084 = {
+		name = "Thrang Tun Doc"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M542052
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	543090 = {
+		name = "Ho Tan Quyen"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M542051
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	543092 = {
+		name = "Proum Sokha"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M541059
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	543093 = {
+		name = "Nguyen Huu Tho"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M542055
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	543095 = {
+		name = "Chai Saing Yun"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M541029
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	543100 = {
+		name = "Sourith Sasorith"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M540043
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+}

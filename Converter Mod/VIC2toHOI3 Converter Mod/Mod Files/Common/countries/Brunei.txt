@@ -1,0 +1,597 @@
+color = { 86  106  135 }
+graphical_culture = Japanese
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1e Divisie" "2e Divisie" "3e Divisie" "4e Divisie" "5e Divisie" "6e Divisie" "7e Divisie" "8e Divisie" "Peel Divisie" "9e Divisie" "10e Divisie" 
+		"11e Divisie" "12e Divisie" "13e Divisie" "14e Divisie" "15e Divisie" "16e Divisie" "17e Divisie" "18e Divisie" "19e Divisie" "20e Divisie" "21e Divisie" 
+		"22e Divisie" "23e Divisie" "24e Divisie" "25e Divisie" "26e Divisie" "27e Divisie" "28e Divisie" "29e Divisie" "30e Divisie" 
+	}
+	cavalry_brigade = {
+		"1e Huzaren te Paard" "2e Huzaren te Paard" "3e Huzaren te Paard" "4e Huzaren te Paard" "5e Huzaren te Paard" "6e Huzaren te Paard" "7e Huzaren te Paard" "8e Huzaren te Paard" "9e Huzaren te Paard" "10e Huzaren te Paard" 
+	}
+	motorized_brigade = {
+		"1e Gemotoriseerde Huzaren" "2e Gemotoriseerde Huzaren" "3e Gemotoriseerde Huzaren" "4e Gemotoriseerde Huzaren" "5e Gemotoriseerde Huzaren" "6e Gemotoriseerde Huzaren" "7e Gemotoriseerde Huzaren" "8e Gemotoriseerde Huzaren" "9e Gemotoriseerde Huzaren" "10e Gemotoriseerde Huzaren" "11e Gemotoriseerde Huzaren" 
+		"12e Gemotoriseerde Huzaren" "13e Gemotoriseerde Huzaren" "14e Gemotoriseerde Huzaren" "15e Gemotoriseerde Huzaren" "16e Gemotoriseerde Huzaren" "17e Gemotoriseerde Huzaren" "18e Gemotoriseerde Huzaren" "19e Gemotoriseerde Huzaren" "20e Gemotoriseerde Huzaren" 
+	}
+	mechanized_brigade = {
+		"1e Lichte Divisie" "2e Lichte Divisie" "3e Lichte Divisie" "4e Lichte Divisie" "5e Lichte Divisie" "6e Lichte Divisie" "7e Lichte Divisie" "8e Lichte Divisie" "9e Lichte Divisie" "10e Lichte Divisie" "11e Lichte Divisie" 
+		"12e Lichte Divisie" "13e Lichte Divisie" "14e Lichte Divisie" "15e Lichte Divisie" "16e Lichte Divisie" "17e Lichte Divisie" "18e Lichte Divisie" "19e Lichte Divisie" "20e Lichte Divisie" 
+	}
+	light_armor_brigade = {
+		"1e Pantser Division" "2e Pantser Division" "3e Pantser Division" "4e Pantser Division" "5e Pantser Division" "6e Pantser Division" "7e Pantser Division" "8e Pantser Division" "9e Pantser Division" "10e Pantser Division" "11e Pantser Division" 
+		"12e Pantser Division" "13e Pantser Division" "14e Pantser Division" "15e Pantser Division" 
+	}
+	armor_brigade = {
+		"1e Pantser Division" "2e Pantser Division" "3e Pantser Division" "4e Pantser Division" "5e Pantser Division" "6e Pantser Division" "7e Pantser Division" "8e Pantser Division" "9e Pantser Division" "10e Pantser Division" "11e Pantser Division" 
+		"12e Pantser Division" "13e Pantser Division" "14e Pantser Division" "15e Pantser Division" 
+	}
+	paratrooper_brigade = {
+		"1e Parachutisten Divisie" "2e Parachutisten Divisie" "3e Parachutisten Divisie" "4e Parachutisten Divisie" "5e Parachutisten Divisie" "6e Parachutisten Divisie" "7e Parachutisten Divisie" "8e Parachutisten Divisie" "9e Parachutisten Divisie" "10e Parachutisten Divisie" 
+	}
+	marine_brigade = {
+		"1e Mariniers Divisie" "2e Mariniers Divisie" "3e Mariniers Divisie" "4e Mariniers Divisie" "5e Mariniers Divisie" "6e Mariniers Divisie" "7e Mariniers Divisie" "8e Mariniers Divisie" "9e Mariniers Divisie" "10e Mariniers Divisie" "11e Mariniers Divisie" 
+		"12e Mariniers Divisie" "13e Mariniers Divisie" "14e Mariniers Divisie" "15e Mariniers Divisie" "16e Mariniers Divisie" "17e Mariniers Divisie" "18e Mariniers Divisie" "19e Mariniers Divisie" "20e Mariniers Divisie" 
+	}
+	bergsjaeger_brigade = {
+		"1e Jager Divisie" "2e Jager Divisie" "3e Jager Divisie" "4e Jager Divisie" "5e Jager Divisie" "6e Jager Divisie" "7e Jager Divisie" "8e Jager Divisie" "9e Jager Divisie" "10e Jager Divisie" 
+	}
+	garrison_brigade = {
+		"1e Divisie" "2e Divisie" "3e Divisie" "4e Divisie" "5e Divisie" "6e Divisie" "7e Divisie" "8e Divisie" "9e Divisie" "10e Divisie" "11e Divisie" 
+		"12e Divisie" "13e Divisie" "14e Divisie" "15e Divisie" "16e Divisie" "17e Divisie" "18e Divisie" "19e Divisie" "20e Divisie" 
+	}
+	hq_brigade = {
+		"1e Veldeger" "2e Veldeger" "O.L.Z." "3e Veldeger" "4e Veldeger" 
+	}
+	militia_brigade = {
+		"Territoriaal Bevel Friesland" "Territoriaal Bevel Overijssel" "Territoriaal Bevel Noord-Brabant" "Territoriaal Bevel Limburg" "Commando Zeeland" "Stelling Den Helder" "1e Militie Divisie" "2e Militie Divisie" "3e Militie Divisie" "4e Militie Divisie" "5e Militie Divisie" 
+		"6e Militie Divisie" "7e Militie Divisie" "8e Militie Divisie" "9e Militie Divisie" "10e Militie Divisie" "11e Militie Divisie" "12e Militie Divisie" "13e Militie Divisie" "14e Militie Divisie" "15e Militie Divisie" "16e Militie Divisie" 
+		"17e Militie Divisie" "18e Militie Divisie" "19e Militie Divisie" "20e Militie Divisie" 
+	}
+	multi_role = {
+		"1e Jachtvliegtuig Groep" "2e Jachtvliegtuig Groep" "3e Jachtvliegtuig Groep" "4e Jachtvliegtuig Groep" "5e Jachtvliegtuig Groep" "6e Jachtvliegtuig Groep" "7e Jachtvliegtuig Groep" "8e Jachtvliegtuig Groep" "9e Jachtvliegtuig Groep" "10e Jachtvliegtuig Groep" "11e Jachtvliegtuig Groep" 
+		"12e Jachtvliegtuig Groep" "13e Jachtvliegtuig Groep" "14e Jachtvliegtuig Groep" "15e Jachtvliegtuig Groep" "16e Jachtvliegtuig Groep" "17e Jachtvliegtuig Groep" "18e Jachtvliegtuig Groep" "19e Jachtvliegtuig Groep" "20e Jachtvliegtuig Groep" 
+	}
+	interceptor = {
+		"1e Jachtvliegtuig Groep" "2e Jachtvliegtuig Groep" "3e Jachtvliegtuig Groep" "4e Jachtvliegtuig Groep" "5e Jachtvliegtuig Groep" "6e Jachtvliegtuig Groep" "7e Jachtvliegtuig Groep" "8e Jachtvliegtuig Groep" "9e Jachtvliegtuig Groep" "10e Jachtvliegtuig Groep" "11e Jachtvliegtuig Groep" 
+		"12e Jachtvliegtuig Groep" "13e Jachtvliegtuig Groep" "14e Jachtvliegtuig Groep" "15e Jachtvliegtuig Groep" "16e Jachtvliegtuig Groep" "17e Jachtvliegtuig Groep" "18e Jachtvliegtuig Groep" "19e Jachtvliegtuig Groep" "20e Jachtvliegtuig Groep" 
+	}
+	strategic_bomber = {
+		"1e Zware Bombardeervliegtuig Groep" "2e Zware Bombardeervliegtuig Groep" "3e Zware Bombardeervliegtuig Groep" "4e Zware Bombardeervliegtuig Groep" "5e Zware Bombardeervliegtuig Groep" "6e Zware Bombardeervliegtuig Groep" "7e Zware Bombardeervliegtuig Groep" "8e Zware Bombardeervliegtuig Groep" "9e Zware Bombardeervliegtuig Groep" "10e Zware Bombardeervliegtuig Groep" "11e Zware Bombardeervliegtuig Groep" 
+		"12e Zware Bombardeervliegtuig Groep" "13e Zware Bombardeervliegtuig Groep" "14e Zware Bombardeervliegtuig Groep" "15e Zware Bombardeervliegtuig Groep" "16e Zware Bombardeervliegtuig Groep" "17e Zware Bombardeervliegtuig Groep" "18e Zware Bombardeervliegtuig Groep" "19e Zware Bombardeervliegtuig Groep" "20e Zware Bombardeervliegtuig Groep" 
+	}
+	tactical_bomber = {
+		"1e Licht Bombardeervliegtuig Groep" "2e Licht Bombardeervliegtuig Groep" "3e Licht Bombardeervliegtuig Groep" "4e Licht Bombardeervliegtuig Groep" "5e Licht Bombardeervliegtuig Groep" "6e Licht Bombardeervliegtuig Groep" "7e Licht Bombardeervliegtuig Groep" "8e Licht Bombardeervliegtuig Groep" "9e Licht Bombardeervliegtuig Groep" "10e Licht Bombardeervliegtuig Groep" "11e Licht Bombardeervliegtuig Groep" 
+		"12e Licht Bombardeervliegtuig Groep" "13e Licht Bombardeervliegtuig Groep" "14e Licht Bombardeervliegtuig Groep" "15e Licht Bombardeervliegtuig Groep" "16e Licht Bombardeervliegtuig Groep" "17e Licht Bombardeervliegtuig Groep" "18e Licht Bombardeervliegtuig Groep" "19e Tac. Bombardeervliegtuig Groep" "20e Tac. Bombardeervliegtuig Groep" 
+	}
+	naval_bomber = {
+		"1e Marine Bombardeervliegtuig Groep" "2e Marine Bombardeervliegtuig Groep" "3e Marine Bombardeervliegtuig Groep" "4e Marine Bombardeervliegtuig Groep" "5e Marine Bombardeervliegtuig Groep" "6e Marine Bombardeervliegtuig Groep" "7e Marine Bombardeervliegtuig Groep" "8e Marine Bombardeervliegtuig Groep" "9e Marine Bombardeervliegtuig Groep" "10e Marine Bombardeervliegtuig Groep" "11e Marine Bombardeervliegtuig Groep" 
+		"12e Marine Bombardeervliegtuig Groep" "13e Marine Bombardeervliegtuig Groep" "14e Marine Bombardeervliegtuig Groep" "15e Marine Bombardeervliegtuig Groep" "16e Marine Bombardeervliegtuig Groep" "17e Marine Bombardeervliegtuig Groep" "18e Marine Bombardeervliegtuig Groep" "19e Marine Bombardeervliegtuig Groep" "20e Marine Bombardeervliegtuig Groep" "1e Marine Torpedovliegtuig Groep" "2e Marine Torpedovliegtuig Groep" 
+		"3e Marine Torpedovliegtuig Groep" "4e Marine Torpedovliegtuig Groep" "5e Marine Torpedovliegtuig Groep" "6e Marine Torpedovliegtuig Groep" "7e Marine Torpedovliegtuig Groep" "8e Marine Torpedovliegtuig Groep" "9e Marine Torpedovliegtuig Groep" "10e Marine Torpedovliegtuig Groep" "11e Marine Torpedovliegtuig Groep" "12e Marine Torpedovliegtuig Groep" "13e Marine Torpedovliegtuig Groep" 
+		"14e Marine Torpedovliegtuig Groep" "15e Marine Torpedovliegtuig Groep" "16e Marine Torpedovliegtuig Groep" "17e Marine Torpedovliegtuig Groep" "18e Marine Torpedovliegtuig Groep" "19e Marine Torpedovliegtuig Groep" "20e Marine Torpedovliegtuig Groep" 
+	}
+	cas = {
+		"1e Duik Bombardeervliegtuig Groep" "2e Duik Bombardeervliegtuig Groep" "3e Duik Bombardeervliegtuig Groep" "4e Duik Bombardeervliegtuig Groep" "5e Duik Bombardeervliegtuig Groep" "6e Duik Bombardeervliegtuig Groep" "7e Duik Bombardeervliegtuig Groep" "8e Duik Bombardeervliegtuig Groep" "9e Duik Bombardeervliegtuig Groep" "10e Duik Bombardeervliegtuig Groep" "11e Duik Bombardeervliegtuig Groep" 
+		"12e Duik Bombardeervliegtuig Groep" "13e Duik Bombardeervliegtuig Groep" "14e Duik Bombardeervliegtuig Groep" "15e Duik Bombardeervliegtuig Groep" "16e Duik Bombardeervliegtuig Groep" "17e Duik Bombardeervliegtuig Groep" "18e Duik Bombardeervliegtuig Groep" "19e Duik Bombardeervliegtuig Groep" "20e Duik Bombardeervliegtuig Groep" 
+	}
+	transport_plane = {
+		"1e Transportvliegtuig Groep" "2e Transportvliegtuig Groep" "3e Transportvliegtuig Groep" "4e Transportvliegtuig Groep" "5e Transportvliegtuig Groep" "6e Transportvliegtuig Groep" "7e Transportvliegtuig Groep" "8e Transportvliegtuig Groep" "9e Transportvliegtuig Groep" "10e Transportvliegtuig Groep" "11e Transportvliegtuig Groep" 
+		"12e Transportvliegtuig Groep" "13e Transportvliegtuig Groep" "14e Transportvliegtuig Groep" "15e Transportvliegtuig Groep" "16e Transportvliegtuig Groep" "17e Transportvliegtuig Groep" "18e Transportvliegtuig Groep" "19e Transportvliegtuig Groep" "20e Transportvliegtuig Groep" 
+	}
+	battleship = {
+		"HNMS De Zeven Provincien" "HNMS De Ruyter" "HNMS Tromp" "HNMS Piet Hein" "HNMS Hertog Hendrik" "HNMS Koningin-Regentes" "HNMS Java" "HNMS Sumatra" "HNMS Van Speijk" "HNMS Witte de With" 
+	}
+	light_cruiser = {
+		"HNMS Tromp" "HNMS Jacob van Heemskerck" "HNMS De Ruyter" "HNMS Java" "HNMS Sumatra" "HNMS Celebes" "HNMS Eendracht" "HNMS Kijkduin" "HNMS Van Galen" "HNMS Van Nes" "HNMS Van Kinsbergen" 
+		"HNMS Evertsen" "HNMS Tjerk Hiddes" "HNMS Banckert" "HNMS Kortenaer" "HNMS Van Speijk" "HNMS Witte de With" "HNMS Abraham Crijnssen" "HNMS Philips van Almonde" "HNMS Blois van Treslong" "HNMS Jan van Brakel" "HNMS Pieter Florisz" 
+		"HNMS Willem van der Zaan" "HNMS Abraham van der Hulst" "HNMS Marnix" "HNMS Johan Maurits van Nassau" "HNMS De Bitter" "HNMS Van Amstel" "HNMS Van Ewijck" "HNMS Dubois" "HNMS De Zeeuw" "HNMS Van Zijll" "HNMS Isaac Sweers" 
+		"HNMS Callenburgh" "HNMS Soerabaja" "HNMS Batjan" "HNMS Ceram" "HNMS Ambon" "HNMS Banda" "HNMS Ternate" "HNMS Boeroe" "HNMS Morotai" "HNMS Tidore" "HNMS Friesland" 
+		"HNMS Holland" "HNMS Drenthe" "HNMS Groningen" "HNMS Overijssel" "HNMS Gelderland" "HNMS Zeeland" "HNMS Utrecht" "HNMS Brabant" "HNMS Limburg" 
+	}
+	heavy_cruiser = {
+		"HNMS De Zeven Provincien" "HNMS Tromp" "HNMS Jacob van Heemskerck" "HNMS De Ruyter" "HNMS Java" "HNMS Sumatra" "HNMS Celebes" "HNMS Eendracht" "HNMS Kijkduin" "HNMS Van Galen" "HNMS Van Nes" 
+		"HNMS Van Kinsbergen" "HNMS Evertsen" "HNMS Tjerk Hiddes" "HNMS Banckert" "HNMS Kortenaer" "HNMS Van Speijk" "HNMS Witte de With" "HNMS Abraham Crijnssen" "HNMS Philips van Almonde" "HNMS Blois van Treslong" "HNMS Jan van Brakel" 
+		"HNMS Pieter Florisz" "HNMS Willem van der Zaan" "HNMS Abraham van der Hulst" "HNMS Marnix" "HNMS Johan Maurits van Nassau" "HNMS De Bitter" "HNMS Van Amstel" "HNMS Van Ewijck" "HNMS Dubois" "HNMS De Zeeuw" "HNMS Van Zijll" 
+		"HNMS Isaac Sweers" "HNMS Callenburgh" "HNMS Soerabaja" "HNMS Batjan" "HNMS Ceram" "HNMS Ambon" "HNMS Banda" "HNMS Ternate" "HNMS Boeroe" "HNMS Morotai" "HNMS Tidore" 
+		"HNMS Friesland" "HNMS Holland" "HNMS Drenthe" "HNMS Groningen" "HNMS Overijssel" "HNMS Gelderland" "HNMS Zeeland" "HNMS Utrecht" "HNMS Brabant" "HNMS Limburg" 
+	}
+	battlecruiser = {
+		"HNMS De Zeven Provincien" "HNMS Eendracht" "HNMS Tromp" "HNMS Jacob van Heemskerck" "HNMS De Ruyter" 
+	}
+	destroyer = {
+		"1e Torpedobootjager Smaldeel" "2e Torpedobootjager Smaldeel" "3e Torpedobootjager Smaldeel" "4e Torpedobootjager Smaldeel" "5e Torpedobootjager Smaldeel" "6e Torpedobootjager Smaldeel" "7e Torpedobootjager Smaldeel" "8e Torpedobootjager Smaldeel" "9e Torpedobootjager Smaldeel" "10e Torpedobootjager Smaldeel" "11e Torpedobootjager Smaldeel" 
+		"12e Torpedobootjager Smaldeel" "13e Torpedobootjager Smaldeel" "14e Torpedobootjager Smaldeel" "15e Torpedobootjager Smaldeel" "16e Torpedobootjager Smaldeel" "17e Torpedobootjager Smaldeel" "18e Torpedobootjager Smaldeel" "19e Torpedobootjager Smaldeel" "20e Torpedobootjager Smaldeel" 
+	}
+	carrier = {
+		"HNMS De Zeven Provincien" "HNMS De Ruyter" "HNMS Tromp" "HNMS Piet Hein" 
+	}
+	submarine = {
+		"1e Onderzeeboot Smaldeel" "2e Onderzeeboot Smaldeel" "3e Onderzeeboot Smaldeel" "4e Onderzeeboot Smaldeel" "5e Onderzeeboot Smaldeel" "6e Onderzeeboot Smaldeel" "7e Onderzeeboot Smaldeel" "8e Onderzeeboot Smaldeel" "9e Onderzeeboot Smaldeel" "10e Onderzeeboot Smaldeel" "11e Onderzeeboot Smaldeel" 
+		"12e Onderzeeboot Smaldeel" "13e Onderzeeboot Smaldeel" "14e Onderzeeboot Smaldeel" "15e Onderzeeboot Smaldeel" "16e Onderzeeboot Smaldeel" "17e Onderzeeboot Smaldeel" "18e Onderzeeboot Smaldeel" "19e Onderzeeboot Smaldeel" "20e Onderzeeboot Smaldeel" 
+	}
+	transport_ship = {
+		"1e Transport Smaldeel" "2e Transport Smaldeel" "3e Transport Smaldeel" "4e Transport Smaldeel" "5e Transport Smaldeel" "6e Transport Smaldeel" "7e Transport Smaldeel" "8e Transport Smaldeel" "9e Transport Smaldeel" "10e Transport Smaldeel" "11e Transport Smaldeel" 
+		"12e Transport Smaldeel" "13e Transport Smaldeel" "14e Transport Smaldeel" "15e Transport Smaldeel" "16e Transport Smaldeel" "17e Transport Smaldeel" "18e Transport Smaldeel" "19e Transport Smaldeel" "20e Transport Smaldeel" 
+	}
+
+}
+
+ministers = {
+	577001 = {
+		name = "Wilhelmina"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M8001
+		head_of_state = popular_figurehead
+		start_date = 1936.1.1
+	}
+	577002 = {
+		name = "Tjarda van Starkenborgh-Stachouwer"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M577002
+		head_of_government = flamboyant_tough_guy
+		start_date = 1936.1.1
+	}
+	577003 = {
+		name = "Hubertus Van Mook"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M577003
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	577004 = {
+		name = "Muhammad III Pontiak"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M577004
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	577005 = {
+		name = "Fedde Schurer"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M8113
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	577006 = {
+		name = "Raymond Westerling"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M577006
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	577007 = {
+		name = "Murk Boerstra"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L7802
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	577008 = {
+		name = "Gerardus Berenschot"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L7801
+		chief_of_army = static_defence_doctrine
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	577009 = {
+		name = "Conrad Helfrich"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L7839
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	577010 = {
+		name = "Ludolph van Oyen"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L7859
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	577011 = {
+		name = "Achmed Sukarno"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577011
+		head_of_state = weary_stiff_neck
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	577012 = {
+		name = "Ferdinand Lumban Tobing"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M577012
+		head_of_state = autocratic_charmer
+		start_date = 1936.1.1
+	}
+	577013 = {
+		name = "Kawan Musso"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M577013
+		head_of_state = power_hungry_demagogue
+		start_date = 1936.1.1
+	}
+	577014 = {
+		name = "Muhammad Hatta"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577014
+		head_of_government = political_protege
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	577015 = {
+		name = "Muhammad Thamrin"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M577015
+		head_of_government = smiling_oilman
+		start_date = 1936.1.1
+	}
+	577016 = {
+		name = "Amir Sjarifuddin"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M577016
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	577017 = {
+		name = "Ahmad Subandrio"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M577017
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	577018 = {
+		name = "Hamengkubowono IX Yopgya"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M577018
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1943.1.1
+	}
+	577019 = {
+		name = "Sutan Sjahrir"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M577019
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	577020 = {
+		name = "Sukarjo Wiryopranato"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M577020
+		foreign_minister = great_compromiser
+		start_date = 1944.1.1
+	}
+	577021 = {
+		name = "Suryono Suripno"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M577021
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	577022 = {
+		name = "Sjarifudin Prawiranegara"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M577022
+		armament_minister = air_to_sea_proponent
+		start_date = 1936.1.1
+	}
+	577023 = {
+		name = "Dodechismo Djuanda"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M577023
+		armament_minister = tank_proponent
+		start_date = 1944.1.1
+	}
+	577024 = {
+		name = "Haj Agus Salim"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M577024
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	577025 = {
+		name = "Amangwu VIII Jogarta"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M577025
+		armament_minister = air_superiority_proponent
+		start_date = 1943.1.1
+	}
+	577026 = {
+		name = "Danudirjia Setiabudi"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M577026
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	577027 = {
+		name = "Lukman Dan Sardjono"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M577027
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	577028 = {
+		name = "D.W. Cokroaminoto"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M577028
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	577029 = {
+		name = "Ngabehi van Jogakarta"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M577029
+		minister_of_security = man_of_the_people
+		start_date = 1946.1.1
+	}
+	577030 = {
+		name = "Arie Frederick Lasut"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M577030
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	577031 = {
+		name = "Adam Malik"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M577031
+		minister_of_security = compassionate_gentleman
+		start_date = 1945.1.1
+	}
+	577032 = {
+		name = "S.M. Kartosuwirjo"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M577032
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	577033 = {
+		name = "D.N. Aidit"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M577033
+		minister_of_security = silent_lawyer
+		start_date = 1945.1.1
+	}
+	577034 = {
+		name = "Besar Sudirman"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577034
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	577035 = {
+		name = "Dr. Cipto Mangunkusomo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577035
+		minister_of_intelligence = technical_specialist
+		start_date = 1938.1.1
+	}
+	577036 = {
+		name = "Mohammed Yamin"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M577036
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	577037 = {
+		name = "T.N. Supratman"
+		ideology = leninist
+		loyalty = 0.50
+		picture = M577037
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	577040 = {
+		name = "Hein Ter Poorten"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L7819
+		chief_of_staff = school_of_fire_support
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1941.1.1
+	}
+	577041 = {
+		name = "Hamid II Pontiak"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M577041
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	577042 = {
+		name = "Tan Malaka"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M577042
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	577043 = {
+		name = "Abdul Harris Nasution"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577043
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	577045 = {
+		name = "Rudolph Bakker"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L7800
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1941.1.1
+	}
+	577046 = {
+		name = "Simon Spoor"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = L7817
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1945.1.1
+	}
+	577047 = {
+		name = "Uyrip Sumoharjo"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M577047
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	577049 = {
+		name = "Amangwu IX Jogarta"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577049
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	577050 = {
+		name = "We Yohannes"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M577050
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	577051 = {
+		name = "Ahmad Alimin"
+		ideology = leninist
+		loyalty = 0.50
+		picture = M577051
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	577053 = {
+		name = "Mohammed Jusf"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577053
+		chief_of_air = air_superiority_doctrine
+		start_date = 1942.1.1
+	}
+	577054 = {
+		name = "R.M. Suryo"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M577054
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	577055 = {
+		name = "I.M. Najoan"
+		ideology = leninist
+		loyalty = 0.50
+		picture = M577055
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	577056 = {
+		name = "Abdul Halim"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577056
+		head_of_government = naive_optimist
+		minister_of_security = crime_fighter
+		start_date = 1950.1.1
+	}
+	577057 = {
+		name = "Mohammed Natsir"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577057
+		head_of_government = corporate_suit
+		start_date = 1950.1.1
+	}
+	577058 = {
+		name = "Sukoman Wirjosandjojo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577058
+		head_of_government = smiling_oilman
+		start_date = 1951.1.1
+	}
+	577059 = {
+		name = "Siswanto Wilopo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577059
+		head_of_government = ambitious_union_boss
+		start_date = 1952.1.1
+	}
+	577060 = {
+		name = "Ali Sastromidjojo"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M577060
+		head_of_government = silent_workhorse
+		start_date = 1953.1.1
+	}
+	577063 = {
+		name = "Wakil Pakmehasan"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M577063
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1950.1.1
+	}
+}

@@ -1,0 +1,324 @@
+color = { 69  119  82 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	cavalry_brigade = {
+		"Sipahis al-1i 'Medina'" "Sipahis al-2i" "Sipahis al-3i" "Sipahis al-4i" "Sipahis al-5i" "Sipahis al-6i" "Sipahis al-7i" "Sipahis al-8i" "Sipahis al-9i" "Sipahis al-10i" "Sipahis al-11r" 
+		"Sipahis al-12r" "Sipahis al-13r" "Sipahis al-14r" "Sipahis al-15r" 
+	}
+	motorized_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	mechanized_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	light_armor_brigade = {
+		"Sipahis al-1i" "Sipahis al-2i" "Sipahis al-3i" "Sipahis al-4i" "Sipahis al-5i" "Sipahis al-6i" "Sipahis al-7i" "Sipahis al-8i" "Sipahis al-9i" "Sipahis al-10i" 
+	}
+	armor_brigade = {
+		"Sipahis al-1i" "Sipahis al-2i" "Sipahis al-3i" "Sipahis al-4i" "Sipahis al-5i" "Sipahis al-6i" "Sipahis al-7i" "Sipahis al-8i" "Sipahis al-9i" "Sipahis al-10i" 
+	}
+	paratrooper_brigade = {
+		"al-Mushati al-20r" "al-Mushati al-21r" "al-Mushati al-22r" "al-Mushati al-23r" "al-Mushati al-24r" "al-Mushati al-25r" "al-Mushati al-26r" "al-Mushati al-27r" "al-Mushati al-28r" "al-Mushati al-29r" "al-Mushati al-30r" 
+			}
+	marine_brigade = {
+		"al-Mushati al-20r" "al-Mushati al-21r" "al-Mushati al-22r" "al-Mushati al-23r" "al-Mushati al-24r" "al-Mushati al-25r" "al-Mushati al-26r" "al-Mushati al-27r" "al-Mushati al-28r" "al-Mushati al-29r" "al-Mushati al-30r" 
+			}
+	bergsjaeger_brigade = {
+		"al-Mushati al-20r" "al-Mushati al-21r" "al-Mushati al-22r" "al-Mushati al-23r" "al-Mushati al-24r" "al-Mushati al-25r" "al-Mushati al-26r" "al-Mushati al-27r" "al-Mushati al-28r" "al-Mushati al-29r" "al-Mushati al-30r" 
+			}
+	garrison_brigade = {
+		"al-Mushati al-1i" "al-Mushati al-2i" "al-Mushati al-3i" "al-Mushati al-4i" "al-Mushati al-5i" "al-Mushati al-6i" "al-Mushati al-7i" "al-Mushati al-8i" "al-Mushati al-9i" "al-Mushati al-10i" "al-Mushati al-12r" 
+		"al-Mushati al-13r" "al-Mushati al-14r" "al-Mushati al-15r" "al-Mushati al-16r" "al-Mushati al-17r" "al-Mushati al-18r" "al-Mushati al-19r" "al-Mushati al-20r" 
+	}
+	hq_brigade = {
+		"1st Saudi Army" "2nd Saudi Army" "3rd Saudi Army" "4th Saudi Army" "5th Saudi Army" 
+	}
+	militia_brigade = {
+		"al-Milishiya al-1i" "al-Milishiya al-2i" "al-Milishiya al-3i" "al-Milishiya al-4i" "al-Milishiya al-5i" "al-Milishiya al-6i" "al-Milishiya al-7i" "al-Milishiya al-8i" "al-Milishiya al-9i" "al-Milishiya al-10i" "al-Milishiya al-11r" 
+		"al-Milishiya al-12r" "al-Milishiya al-13r" "al-Milishiya al-14r" "al-Milishiya al-15r" "al-Milishiya al-16r" "al-Milishiya al-17r" "al-Milishiya al-18r" "al-Milishiya al-19r" "al-Milishiya al-20r" "al-Milishiya al-21r" "al-Milishiya al-22r" 
+		"al-Milishiya al-23r" "al-Milishiya al-24r" "al-Milishiya al-25r" 
+	}
+	multi_role = {
+		"1. RSAF Fighter Group" "2. RSAF Fighter Group" "3. RSAF Fighter Group" "4. RSAF Fighter Group" "5. RSAF Fighter Group" "6. RSAF Fighter Group" "7. RSAF Fighter Group" "8. RSAF Fighter Group" "9. RSAF Fighter Group" "10. RSAF Fighter Group" 
+	}
+	interceptor = {
+		"1. RSAF Fighter Group" "2. RSAF Fighter Group" "3. RSAF Fighter Group" "4. RSAF Fighter Group" "5. RSAF Fighter Group" "6. RSAF Fighter Group" "7. RSAF Fighter Group" "8. RSAF Fighter Group" "9. RSAF Fighter Group" "10. RSAF Fighter Group" "1. RSAF Fighter Group" 
+		"2. RSAF Fighter Group" "3. RSAF Fighter Group" "4. RSAF Fighter Group" "5. RSAF Fighter Group" "6. RSAF Fighter Group" "7. RSAF Fighter Group" "8. RSAF Fighter Group" "9. RSAF Fighter Group" "10. RSAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"11. RSAF Strategic Bomb Group" "12. RSAF Strategic Bomb Group" "13. RSAF Strategic Bomb Group" "14. RSAF Strategic Bomb Group" "15. RSAF Strategic Bomb Group" "16. RSAF Strategic Bomb Group" "17. RSAF Strategic Bomb Group" "18. RSAF Strategic Bomb Group" "19. RSAF Strategic Bomb Group" "20. RSAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"21. RSAF Tactical Bomb Group" "22. RSAF Tactical Bomb Group" "23. RSAF Tactical Bomb Group" "24. RSAF Tactical Bomb Group" "25. RSAF Tactical Bomb Group" "26. RSAF Tactical Bomb Group" "27. RSAF Tactical Bomb Group" "28. RSAF Tactical Bomb Group" "29. RSAF Tactical Bomb Group" "30. RSAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"41. RSAF Marine Bomb Group" "42. RSAF Marine Bomb Group" "43. RSAF Marine Bomb Group" "44. RSAF Marine Bomb Group" "45. RSAF Marine Bomb Group" "46. RSAF Marine Bomb Group" "47. RSAF Marine Bomb Group" "48. RSAF Marine Bomb Group" "49. RSAF Marine Bomb Group" "50. RSAF Marine Bomb Group" 
+	}
+	cas = {
+		"31. RSAF Dive Bomb Group" "32. RSAF Dive Bomb Group" "33. RSAF Dive Bomb Group" "34. RSAF Dive Bomb Group" "35. RSAF Dive Bomb Group" "36. RSAF Dive Bomb Group" "37. RSAF Dive Bomb Group" "38. RSAF Dive Bomb Group" "39. RSAF Dive Bomb Group" "40. RSAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"61. RSAF Airtransport" "62. RSAF Airtransport" "63. RSAF Airtransport" "64. RSAF Airtransport" 
+	}
+	battleship = {
+		"RSNS Makkah" "RSNS al Madinah" 
+	}
+	light_cruiser = {
+		"RSNS Jiddah" "RSNS Ad Damman" "RSNS Al Hufüf" "RSNS At Tä'if" "RSNS Najran" 
+	}
+	heavy_cruiser = {
+		"RSNS Jiddah" "RSNS Ad Damman" "RSNS Al Hufüf" "RSNS At Tä'if" "RSNS Najran" 
+	}
+	battlecruiser = {
+		"RSNS Makkah" "RSNS al Madinah" 
+	}
+	destroyer = {
+		"Flotille Al Bi'ra" "Flotille Tabuk" "Flotille Aynunah" "Flotille Dal'at al Akhdar" "Flotille Al Qalibah" "Flotille Ziba" "Flotille Al Wajh" "Flotille Hanak" "Flotille Khuff" "Flotille Umm Lajj" 
+	}
+	carrier = {
+		"RSNS Al 'Arabiyah as Su'udiyah" "RSNS Aziz ibn Saud" 
+	}
+	submarine = {
+		"Flotille Abu Mahbe" "Flotille Janbu" "Flotille Badr Hunayn" "Flotille Rabiqh" "Flotille Al Qadimah" "Flotille Ra's Atibah" "Flotille Al Lith" "Flotille Az Zam" "Flotille Zalim" "Flotille Turabah" 
+	}
+	transport_ship = {
+		"Ustul al-Hamli al-1i" "Ustul al-Hamli al-2i" "Ustul al-Hamli al-3i" "Ustul al-Hamli al-4i" "Ustul al-Hamli al-5i" "Ustul al-Hamli al-6i" "Ustul al-Hamli al-7i" "Ustul al-Hamli al-8i" "Ustul al-Hamli al-9i" "Ustul al-Hamli al-10i" 
+	}
+
+}
+
+ministers = {
+	63001 = {
+		name = "Abdul Aziz al Saud"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63001
+		head_of_state = ruthless_powermonger
+		start_date = 1936.1.1
+	}
+	63002 = {
+		name = "Saud al Saud"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63002
+		head_of_government = backroom_backstabber
+		chief_of_staff = school_of_manoeuvre
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	63003 = {
+		name = "Faisal al Saud"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63003
+		foreign_minister = apologetic_clerk
+		armament_minister = resource_industrialist
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_navy = open_seas_doctrine
+		minister_of_intelligence = industrial_specialist
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	63005 = {
+		name = "Khalid al Saud"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63005
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	63010 = {
+		name = "Faisal Saud"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63003
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	63031 = {
+		name = "Hubert Scott-Paine"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63031
+		foreign_minister = general_staffer
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = political_specialist
+		start_date = 1939.1.1
+	}
+	63032 = {
+		name = "Charles Lord Parmoor"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63032
+		foreign_minister = apologetic_clerk
+		start_date = 1941.1.1
+	}
+	63033 = {
+		name = "Harry St.John Philby"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63033
+		foreign_minister = ideological_crusader
+		armament_minister = infantry_proponent
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = dismal_enigma
+		start_date = 1944.1.1
+	}
+	63035 = {
+		name = "G.G. Aime-Murray"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63035
+		armament_minister = administrative_genius
+		start_date = 1937.1.1
+	}
+	63037 = {
+		name = "Arthur J. Salter"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63037
+		armament_minister = theoretical_scientist
+		start_date = 1939.1.1
+	}
+	63038 = {
+		name = "Malcolm de le Vingne"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63038
+		armament_minister = resource_industrialist
+		start_date = 1940.1.1
+	}
+	63039 = {
+		name = "Geoffrey George Knox"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63039
+		armament_minister = tank_proponent
+		start_date = 1941.1.1
+	}
+	63040 = {
+		name = "Salih al Rajihi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63040
+		armament_minister = laissez_faires_capitalist
+		start_date = 1945.1.1
+	}
+	63043 = {
+		name = "James Power Carne"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63043
+		minister_of_security = efficient_sociopath
+		start_date = 1942.1.1
+	}
+	63044 = {
+		name = "Alwyn Parker"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63044
+		minister_of_security = man_of_the_people
+		start_date = 1943.1.1
+	}
+	63045 = {
+		name = "Suleiman al Olyan"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63045
+		minister_of_security = back_stabber
+		start_date = 1945.1.1
+	}
+	63046 = {
+		name = "Sir Eric Fullerton"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63046
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_staff = school_of_psychology
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1937.1.1
+	}
+	63051 = {
+		name = "William Campbell-Rice"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63051
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1937.1.1
+	}
+	63052 = {
+		name = "T.E. Shaw"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63052
+		chief_of_staff = school_of_fire_support
+		chief_of_army = elastic_defence_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1938.1.1
+	}
+	63053 = {
+		name = "T.R.S. Smythe-Cooper"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63053
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1940.1.1
+	}
+	63060 = {
+		name = "Philip Gordon-Lee"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63060
+		chief_of_navy = open_seas_doctrine
+		start_date = 1941.1.1
+	}
+	63064 = {
+		name = "Arthur Dawkins"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M63064
+		chief_of_air = air_superiority_doctrine
+		start_date = 1941.1.1
+	}
+	63065 = {
+		name = "Bassam Abu Khadar"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M63065
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1945.1.1
+	}
+}

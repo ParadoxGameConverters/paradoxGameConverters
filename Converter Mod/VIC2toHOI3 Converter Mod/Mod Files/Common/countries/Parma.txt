@@ -1,0 +1,1022 @@
+color = { 67  127  63 }
+graphical_culture = Italian
+
+major = yes
+default_templates = {
+	ITA_infantry = {
+		infantry_brigade
+		infantry_brigade
+	}
+	ITA_allpina = {
+		bergsjaeger_brigade
+		bergsjaeger_brigade
+	}
+	ITA_celere = {
+		cavalry_brigade
+		cavalry_brigade
+		motorized_brigade
+	}
+	ITA_motorised = {
+		motorized_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	ITA_armour= {
+		light_armor_brigade
+		motorized_brigade
+	}
+	ITA_trukmovable = {
+		motorized_brigade
+ 		infantry_brigade
+	}
+	ITA_ccnn = {
+		militia_brigade
+		militia_brigade
+	}
+	ITA_allpina_russian = {
+		bergsjaeger_brigade
+		bergsjaeger_brigade
+		anti_tank_brigade
+	}
+	ITA_motorised_1942 = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+		artillery_brigade
+	}
+	ITA_armour_1942 = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+		sp_artillery_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1a Divisione 'Superga'" "2a Divisione 'Sforzesca'" "3a Divisione 'Ravenna'" "4a Divisione 'Livorno'" "5a Divisione 'Cosseria'" "6a Divisione 'Cuneo'" "7a Divisione 'Lupi di Toscana'" "11a Divisione 'Brennero'" "12a Divisione 'Sassari'" "13a Divisione 'Re'" "14a Divisione 'Isonzo'" 
+		"15a Divisione 'Bergamo'" "16a Divisione 'Pistoia'" "17a Divisione 'Pavia'" "18a Divisione 'Messina'" "19a Divisione 'Venezia'" "20a Divisione 'Friuli'" "21a Divisione 'Granatieri di Sardegna'" "22a Divisione 'Cacciatori delle Alpi'" "23a Divisione 'Ferrara'" "24a Divisione 'Pinerolo'" "25a Divisione 'Bologna'" 
+		"26a Divisione 'Assietta'" "27a Divisione 'Brescia'" "28a Divisione 'Aosta'" "29a Divisione 'Piemonte'" "30a Divisione 'Sabauda'" "31a Divisione 'Calabria'" "32a Divisione 'Marche'" "33a Divisione 'Acqui'" "36a Divisione 'Forli'" "37a Divisione 'Modena'" "38a Divisione 'Puglie'" 
+		"41a Divisione 'Firenze'" "44a Divisione 'Cremona'" "47a Divisione 'Bari'" "48a Divisione 'Taro'" "49a Divisione 'Parma'" "50a Divisione 'Regina'" "51a Divisione 'Siena'" "53a Divisione 'Arezzo'" "55a Divisione 'Savona'" "54a Divisione 'Napoli'" "56a Divisione 'Casale'" 
+		"57a Divisione 'Lombardia'" "58a Divisione 'Legnano'" "59a Divisione 'Cagliari'" "61a Divisione 'Sirte'" "62a Divisione 'Marmarica'" "63a Divisione 'Cirene'" "64a Divisione 'Catanzaro'" "1a CCNN '23 Marzo'" "2a CCNN '28 Ottobre'" "3a CCNN '21 Aprile'" "4a CCNN '3 Gennaio'" 
+		"'M'CCNN Divisione" "65a Divisione 'Verona'" "66a Divisione 'Padua'" "67a Divisione 'Arezzo'" "68a Divisione 'Mantua'" "69a Divisione 'Parma'" "70a Divisione 'Reggio'" "71a Divisione 'Milano'" "72a Divisione 'Piacenza'" "73a Divisione 'Novara'" "74a Divisione 'Legnano'" 
+		"75a Divisione 'Verona'" "76a Divisione 'Siena'" "77a Divisione 'Gaeta'" "78a Divisione 'Bari'" "79a Divisione 'Palermo'" "80a Divisione 'Granatieri di Savoia'" "81a Divisone 'Africa'" 
+	}
+	cavalry_brigade = {
+		"1a Divisione 'Eugenio di Savoia'" "2a Divisione 'Emanuele Filiberto'" "3a Divisione 'Principe Amedeo'" "4a Divisione 'Santi Maurizio'" "5a Divisione 'Giuseppe Garibaldi'" "6a Divisione 'Luigi di Savoia'" "7a Divisione 'Emanuele Filiberto'" "8a Divisione 'Raimondo Montecuccoli'" "9a Divisione 'Muzio Attendolo'" "10a Divisione 'Luigi Cadorna'" "11a Divisione 'Armando Diaz'" 
+		"12a Divisione 'Alberico da Barbiano'" "13a Divisione 'Alberto di Giussano'" "14a Divisione 'Bartolomeo Colleoni'" "15a Divisione 'Giov. D. Bande Nere'" "Cavalleria Coloniale" "16a Divisione Cavalleria" "17a Divisione Cavalleria" "18a Divisione Cavalleria" "19a Divisione Cavalleria" "20a Divisione Cavalleria" 
+	}
+	motorized_brigade = {
+		"9a Divisione 'Pasubio'" "10a Divisione 'Piave'" "17a Divisione 'Pavia'" "22a Divisione 'Cacciatori delle Alpi'" "25a Divisione 'Bologna'" "27a Divisione 'Brescia'" "52a Divisione 'Torino'" "55a Divisione 'Savona'" "60a Divisione 'Sabratha'" "61a Divisione 'Sirte'" "62a Divisione 'Marmarica'" 
+		"63a Divisione 'Cirene'" "64a Divisione 'Catanzaro'" "101a Divisione 'Trieste'" "102a Divisione 'Trento'" "103a Divisione 'Piacenza'" "104a Divisione 'Mantova'" "105a Divisione 'Rovigo'" "1a CCNN '23 Marzo'" "2a CCNN '28 Ottobre'" "3a CCNN '21 Aprile'" "4a CCNN '3 Gennaio'" 
+		"'M'CCNN Divisione" "106a Divisione 'Turin'" "107a Divisione 'Cagliari'" 
+	}
+	mechanized_brigade = {
+		"101a Divisione 'Trieste'" "102a Divisione 'Trento'" "101a Divisione 'Trieste'" "102a Divisione 'Trento'" "10a Divisione 'Piave'" "16a Divisione 'Pistoia'" "Divisione 'Giovani Fascisti'" "101a Divisione 'Trieste'" "102a Divisione 'Trento'" "103a Divisione 'Piacenza'" "104a Divisione 'Mantova'" 
+		"105a Divisione 'Rovigo'" "1a CCNN '23 Marzo'" "2a CCNN '28 Ottobre'" "3a CCNN '21 Aprile'" "4a CCNN '3 Gennaio'" "'M'CCNN Divisione" "106a Divisione 'Turin'" "107a Divisione 'Cagliari'" "108a Divisione 'Solferino'" "109a Divisione 'Rimini'" "110a Divisione 'Pola'" 
+		"111a Divisione 'Fiume'" "112a Divisione 'Vicenza'" "113a Divisione 'Trentino'" "114a Divisione 'Bari'" "115a Divisione 'Florentia'" "116a Divisione 'Faenza'" "117a Divisione 'Roma'" 
+	}
+	light_armor_brigade = {
+		"131a Divisione 'Centauro'" "132a Divisione 'Ariete'" "133a Divisione 'Littorio'" "134a Divisione Corrazzata 'M'" "135a Divisione 'Freccia'" "1a CCNN '23 Marzo'" "2a CCNN '28 Ottobre'" "3a CCNN '21 Aprile'" "4a CCNN '3 Gennaio'" "'M'CCNN Divisione" "136a Divisione 'Veltro'" 
+		"137a Divisione 'Orione'" "138a Divisione 'Palmaria'" "139a Divisione 'Ram'" "140a Divisione Corrazzata" "141a Divisione Corrazzata" "142a Divisione Corrazzata" "143a Divisione Corrazzata" "144a Divisione Corrazzata" "145a Divisione Corrazzata" "146a Divisione Corrazzata" "147a Divisione Corrazzata" 
+		"148a Divisione Corrazzata" "149a Divisione Corrazzata" "150a Divisione Corrazzata" 
+	}
+	armor_brigade = {
+		"131a Divisione 'Centauro'" "132a Divisione 'Ariete'" "133a Divisione 'Littorio'" "134a Divisione Corrazzata 'M'" "135a Divisione 'Freccia'" "1a CCNN '23 Marzo'" "2a CCNN '28 Ottobre'" "3a CCNN '21 Aprile'" "4a CCNN '3 Gennaio'" "'M'CCNN Divisione" "136a Divisione 'Veltro'" 
+		"137a Divisione 'Orione'" "138a Divisione 'Palmaria'" "139a Divisione 'Ram'" "140a Divisione Corrazzata" "141a Divisione Corrazzata" "142a Divisione Corrazzata" "143a Divisione Corrazzata" "144a Divisione Corrazzata" "145a Divisione Corrazzata" "146a Divisione Corrazzata" "147a Divisione Corrazzata" 
+		"148a Divisione Corrazzata" "149a Divisione Corrazzata" "150a Divisione Corrazzata" 
+	}
+	paratrooper_brigade = {
+		"80a Divisione 'Spezia'" "184a Divisione 'Nembo'" "185a Divisione 'Folgore'" "183a Divisione 'Ciclone'" "182a Divisione 'Falco'" "181a Divisione 'Sagittario'" "186a Divisione 'Saetta'" "187a Divisione Paracadutisti" "188a Divisione Paracadutisti" "189a Divisione Paracadutisti" "190a Divisione Paracadutisti" 
+		"191a Divisione Paracadutisti" "192a Divisione Paracadutisti" "193a Divisione Paracadutisti" "194a Divisione Paracadutisti" "195a Divisione Paracadutisti" "196a Divisione Paracadutisti" "197a Divisione Paracadutisti" "198a Divisione Paracadutisti" "199a Divisione Paracadutisti" 
+	}
+	marine_brigade = {
+		"1a Divisione 'San Marco'" "2a Divisione 'Caterinetta'" "3a Divisione 'Catald'" "4a Divisione 'Angellus'" "5a Divisione 'James della Marca'" "6a Divisione 'Gennaro'" "7a Divisione 'Giovanni d'Acquarola'" "8a Divisione 'Milmart'" "9a Divisione 'Bafile'" "10a Divisione 'Grado'" "11a Divisione 'Tobruk'" 
+		"12a Divisione di Marina" "13a Divisione di Marina" "14a Divisione di Marina" "15a Divisione di Marina" "16a Divisione di Marina" "17a Divisione di Marina" "18a Divisione di Marina" "19a Divisione di Marina" "20a Divisione di Marina" 
+	}
+	bergsjaeger_brigade = {
+		"1a Divisione Alpina 'Taurinese'" "2a Divisione Alpina 'Tridentina'" "3a Divisione Alpina 'Julia'" "4a Divisione Alpina 'Cuneense'" "5a Divisione Alpina 'Pusteria'" "6a Divisione Alpina 'Alpi Graje'" "7a Divisione Alpina 'Monterosa'" "8a Divisione Alpina 'Cadore'" "9a Divisione Alpina 'Orobica'" "10a Divisione Alpina 'Aosta'" "11a Divisione Alpina 'Val d'Adige'" 
+		"12a Divisione Alpina 'Bergamo'" "13a Divisione Alpina 'Vicenza'" "14a Divisione Alpina 'Conegliano'" "15a Divisione Alpina 'Val d'Orco'" "16a Divisione Alpina 'Udine'" "17a Divisione Alpina 'Mondovi'" "18a Divisione Alpina 'Pinerolo'" "19a Divisione Alpina 'Belluno'" "20a Divisione Alpina 'Lanzo'" 
+	}
+	garrison_brigade = {
+		"50a Divisione 'Regina'" "51a Divisione 'Siena'" "53a Divisione 'Arezzo'" "55a Divisione 'Savona'" "54a Divisione 'Napoli'" "56a Divisione 'Casale'" "57a Divisione 'Lombardia'" "58a Divisione 'Legnano'" "59a Divisione 'Cagliari'" "61a Divisione 'Sirte'" "62a Divisione 'Marmarica'" 
+		"63a Divisione 'Cirene'" "64a Divisione 'Catanzaro'" "65a Divisione 'Verona'" "66a Divisione 'Padua'" "67a Divisione 'Arezzo'" "68a Divisione 'Mantua'" "69a Divisione 'Parma'" "70a Divisione 'Reggio'" "71a Divisione 'Milano'" "72a Divisione 'Piacenza'" "73a Divisione 'Novara'" 
+		"74a Divisione 'Legnano'" "75a Divisione 'Verona'" "76a Divisione 'Siena'" "77a Divisione 'Gaeta'" "78a Divisione 'Bari'" "79a Divisione 'Palermo'" "80a Divisione 'Granatieri di Savoia'" "81a Divisone 'Africa'" 
+	}
+	hq_brigade = {
+		"1a Armata" "2a Armata" "3a Armata" "4a Armata" "5a Armata" "6a Armata" "7a Armata" "8a Armata" "9a Armata" "10a Armata" "11a Armata" 
+		"Gruppo d'Armate Ovest" "Gruppo d'Armate Est" "Gruppo d'Armate Sud" "Gruppo d'Armate Nord" "Gruppo d'Armate 1" "Gruppo d'Armate 2" "Gruppo d'Armate 3" "Gruppo d'Armate 4" 
+	}
+	militia_brigade = {
+		"151a Divisione 'Perugia'" "152a Divisione 'Piceno'" "153a Divisione 'Macerata'" "154a Divisione 'Murge'" "155a Divisione 'Emilia'" "156a Divisione 'Vicenza'" "157a Divisione 'Novara'" "158a Divisione 'Zara'" "159a Divisione 'Veneto'" "201a Divisione Costiera" "202a Divisione Costiera" 
+		"203a Divisione Costiera" "204a Divisione Costiera" "205a Divisione Costiera" "206a Divisione Costiera" "207a Divisione Costiera" "208a Divisione Costiera" "209a Divisione Costiera" "210a Divisione Costiera" "211a Divisione Costiera" "212a Divisione Costiera" "213a Divisione Costiera" 
+		"214a Divisione Costiera" "215a Divisione Costiera" "216a Divisione Costiera" "220a Divisione Costiera" "221a Divisione Costiera" "222a Divisione Costiera" "223a Divisione Costiera" "224a Divisione Costiera" "225a Divisione Costiera" "226a Divisione Costiera" "227a Divisione Costiera" 
+		"230a Divisione Costiera" 
+	}
+	multi_role = {
+		"1a Gruppo di Caccia 'Aquila'" "2a Gruppo di Caccia 'Borea'" "7a Gruppo di Caccia" "8a Gruppo di Caccia 'Astore'" "9a Gruppo di Caccia" "14a Gruppo di Caccia 'Rex'" "15a Gruppo di Caccia" "16a Gruppo di Caccia" "17a Gruppo di Caccia" "18a Gruppo di Caccia" "19a Gruppo di Caccia" 
+		"20a Gruppo di Caccia" "21a Gruppo di Caccia" "22a Gruppo di Caccia" "23a Gruppo di Caccia" "24a Gruppo di Caccia" "25a Gruppo di Caccia" "26a Gruppo di Caccia" "27a Gruppo di Caccia" "28a Gruppo di Caccia" "29a Gruppo di Caccia" "30a Gruppo di Caccia" 
+			}
+	interceptor = {
+		"1a Gruppo di Caccia 'Aquila'" "2a Gruppo di Caccia 'Borea'" "7a Gruppo di Caccia" "8a Gruppo di Caccia 'Astore'" "9a Gruppo di Caccia" "14a Gruppo di Caccia 'Rex'" "15a Gruppo di Caccia" "16a Gruppo di Caccia" "17a Gruppo di Caccia" "18a Gruppo di Caccia" "19a Gruppo di Caccia" 
+		"20a Gruppo di Caccia" "21a Gruppo di Caccia" "22a Gruppo di Caccia" "23a Gruppo di Caccia" "24a Gruppo di Caccia" "25a Gruppo di Caccia" "26a Gruppo di Caccia" "27a Gruppo di Caccia" "28a Gruppo di Caccia" "29a Gruppo di Caccia" "30a Gruppo di Caccia" 
+			}
+	strategic_bomber = {
+		"3a Gruppo di Bomb. Strategico 'Centauro'" "4a Gruppo di Bomb. Strategico 'Drago'" "5a Gruppo di Bomb. Strategico 'Eolo'" "6a Gruppo di Bomb. Strategico 'Falco'" "10a Gruppo di Bomb. Strategico 'Marte'" "11a Gruppo di Bomb. Strategico 'Nibbio'" "12a Gruppo di Bomb. Strategico" "13a Gruppo di Bomb. Strategico 'Pegaso'" "31a Gruppo di Bomb. Strategico" "35a Gruppo di Bomb. Strategico" "50a Gruppo di Bomb. Strategico" 
+		"51a Gruppo di Bomb. Strategico" "52a Gruppo di Bomb. Strategico" "53a Gruppo di Bomb. Strategico" "54a Gruppo di Bomb. Strategico" "55a Gruppo di Bomb. Strategico" "56a Gruppo di Bomb. Strategico" "57a Gruppo di Bomb. Strategico" "58a Gruppo di Bomb. Strategico" "59a Gruppo di Bomb. Strategico" "60a Gruppo di Bomb. Strategico" "61a Gruppo di Bomb. Strategico" 
+		"62a Gruppo di Bomb. Strategico" "63a Gruppo di Bomb. Strategico" "64a Gruppo di Bomb. Strategico" "65a Gruppo di Bomb. Strategico" "66a Gruppo di Bomb. Strategico" "67a Gruppo di Bomb. Strategico" "68a Gruppo di Bomb. Strategico" "69a Gruppo di Bomb. Strategico" "70a Gruppo di Bomb. Strategico" "71a Gruppo di Bomb. Strategico" "72a Gruppo di Bomb. Strategico" 
+		"73a Gruppo di Bomb. Strategico" "74a Gruppo di Bomb. Strategico" "75a Gruppo di Bomb. Strategico" 
+	}
+	tactical_bomber = {
+		"3a Gruppo di Bomb. Tattico 'Centauro'" "4a Gruppo di Bomb. Tattico 'Drago'" "5a Gruppo di Bomb. Tattico 'Eolo'" "6a Gruppo di Bomb. Tattico 'Falco'" "10a Gruppo di Bomb. Tattico 'Marte'" "11a Gruppo di Bomb. Tattico 'Nibbio'" "12a Gruppo di Bomb. Tattico" "13a Gruppo di Bomb. Tattico 'Pegaso'" "31a Gruppo di Bomb. Tattico" "35a Gruppo di Bomb. Tattico" "32a Gruppo di Bomb. Tattico" 
+		"33a Gruppo di Bomb. Tattico" "34a Gruppo di Bomb. Tattico" "36a Gruppo di Bomb. Tattico" "37a Gruppo di Bomb. Tattico" "38a Gruppo di Bomb. Tattico" "39a Gruppo di Bomb. Tattico" "40a Gruppo di Bomb. Tattico" "41a Gruppo di Bomb. Tattico" "42a Gruppo di Bomb. Tattico" "43a Gruppo di Bomb. Tattico" "44a Gruppo di Bomb. Tattico" 
+		"45a Gruppo di Bomb. Tattico" "46a Gruppo di Bomb. Tattico" "47a Gruppo di Bomb. Tattico" "48a Gruppo di Bomb. Tattico" "49a Gruppo di Bomb. Tattico" 
+	}
+	naval_bomber = {
+		"3a Gruppo Bomb. di Navale 'Centauro'" "4a Gruppo Bomb. di Navale 'Drago'" "5a Gruppo Bomb. di Navale 'Eolo'" "6a Gruppo Bomb. di Navale 'Falco'" "10a Gruppo Bomb. di Navale 'Marte'" "11a Gruppo Bomb. di Navale 'Nibbio'" "12a Gruppo Bomb. di Navale" "13a Gruppo Bomb. di Navale 'Pegaso'" "31a Gruppo Bomb. di Navale" "110a Gruppo Bomb. di Navale" "111a Gruppo Bomb. di Navale" 
+		"112a Gruppo Bomb. di Navale" "113a Gruppo Bomb. di Navale" "114a Gruppo Bomb. di Navale" "115a Gruppo Bomb. di Navale" "116a Gruppo Bomb. di Navale" "117a Gruppo Bomb. di Navale" "118a Gruppo Bomb. di Navale" "119a Gruppo Bomb. di Navale" "120a Gruppo Bomb. di Navale" "121a Gruppo Bomb. di Navale" "122a Gruppo Bomb. di Navale" 
+		"123a Gruppo Bomb. di Navale" "124a Gruppo Bomb. di Navale" "125a Gruppo Bomb. di Navale" "126a Gruppo Bomb. di Navale" "127a Gruppo Bomb. di Navale" "128a Gruppo Bomb. di Navale" "129a Gruppo Bomb. di Navale" "130a Gruppo Bomb. di Navale" "131a Gruppo Bomb. di Navale" "132a Gruppo Bomb. di Navale" "133a Gruppo Bomb. di Navale" 
+		"134a Gruppo Bomb. di Navale" "135a Gruppo Bomb. di Navale" "140a Gruppo Bombardieri Torpedinieri" "141a Gruppo Bombardieri Torpedinieri" "142a Gruppo Bombardieri Torpedinieri" "143a Gruppo Bombardieri Torpedinieri" "144a Gruppo Bombardieri Torpedinieri" "145a Gruppo Bombardieri Torpedinieri" "146a Gruppo Bombardieri Torpedinieri" "147a Gruppo Bombardieri Torpedinieri" "148a Gruppo Bombardieri Torpedinieri" 
+		"149a Gruppo Bombardieri Torpedinieri" "150a Gruppo Bombardieri Torpedinieri" "151a Gruppo Bombardieri Torpedinieri" "152a Gruppo Bombardieri Torpedinieri" "153a Gruppo Bombardieri Torpedinieri" "154a Gruppo Bombardieri Torpedinieri" "155a Gruppo Bombardieri Torpedinieri" "156a Gruppo Bombardieri Torpedinieri" "157a Gruppo Bombardieri Torpedinieri" "158a Gruppo Bombardieri Torpedinieri" "159a Gruppo Bombardieri Torpedinieri" 
+		"160a Gruppo Bombardieri Torpedinieri" "161a Gruppo Bombardieri Torpedinieri" "162a Gruppo Bombardieri Torpedinieri" "163a Gruppo Bombardieri Torpedinieri" "164a Gruppo Bombardieri Torpedinieri" "165a Gruppo Bombardieri Torpedinieri" 
+	}
+	cas = {
+		"3a Gruppo di Bomb. D'Assalto 'Centauro'" "4a Gruppo di Bomb. D'Assalto 'Drago'" "5a Gruppo di Bomb. D'Assalto 'Eolo'" "6a Gruppo di Bomb. D'Assalto 'Falco'" "10a Gruppo di Bomb. D'Assalto 'Marte'" "11a Gruppo di Bomb. D'Assalto 'Nibbio'" "12a Gruppo di Bomb. D'Assalto" "13a Gruppo di Bomb. D'Assalto 'Pegaso'" "31a Gruppo di Bomb. D'Assalto" "80a Gruppo D'Assalto" "81a Gruppo D'Assalto" 
+		"82a Gruppo D'Assalto" "83a Gruppo D'Assalto" "84a Gruppo D'Assalto" "85a Gruppo D'Assalto" "86a Gruppo D'Assalto" "87a Gruppo D'Assalto" "88a Gruppo D'Assalto" "89a Gruppo D'Assalto" "90a Gruppo D'Assalto" "91a Gruppo D'Assalto" "92a Gruppo D'Assalto" 
+		"93a Gruppo D'Assalto" "94a Gruppo D'Assalto" "95a Gruppo D'Assalto" "96a Gruppo D'Assalto" "97a Gruppo D'Assalto" "98a Gruppo D'Assalto" "99a Gruppo D'Assalto" "100a Gruppo D'Assalto" "101a Gruppo D'Assalto" "102a Gruppo D'Assalto" "103a Gruppo D'Assalto" 
+		"104a Gruppo D'Assalto" "105a Gruppo D'Assalto" 
+	}
+	transport_plane = {
+		"39a Gruppo Trasporti" "170a Gruppo Trasporti" "171a Gruppo Trasporti" "172a Gruppo Trasporti" "173a Gruppo Trasporti" "174a Gruppo Trasporti" "175a Gruppo Trasporti" "176a Gruppo Trasporti" "177a Gruppo Trasporti" "178a Gruppo Trasporti" "179a Gruppo Trasporti" 
+		"180a Gruppo Trasporti" "181a Gruppo Trasporti" "182a Gruppo Trasporti" "183a Gruppo Trasporti" "184a Gruppo Trasporti" "185a Gruppo Trasporti" 
+	}
+	battleship = {
+		"RN Littorio" "RN Vittorio Veneto" "RN Roma" "RN Impero" "RN Francesco Caracciolo" "RN Cristoforo Colombo" "RN Marcantonio Colonna" "RN Francesco Morosini" "RN Dante Alighieri" "RN Giulio Cesare" "RN Leonardo Da Vinci" 
+		"RN Conte Di Cavour" "RN Andrea Doria" "RN Duilio" 
+	}
+	light_cruiser = {
+		"RM Duca degli Abruzzi" "RM Giuseppe Garibaldi" "RM Costanzo Ciano" "RM Venezia" "RM Attilio Regolo" "RM Caio Mario" "RM Claudio Druso" "RM Claudio Tiberio" "RM Cornelio Silla" "RM Giulio Germanico" "RM Ottaviano Augusto" 
+		"RM Paolo Emilio" "RM Pompeo Magno" "RM Scipione Africano" "RM Ulpio Traiano" "RM Vipsanio Agrippa" "RM Etna" "RM Vesuvio" "RM Elba" "RM Etruria" "RM Liguria" "RM Lombardia" 
+		"RM Puglia" "RM Umbria" "RM Calabria" "RM Libia" "RM Campania" "RM Basilicata" "RM Quarto" "RM Nino Bixio" "RM Marsala" "RM Brindisi" "RM Ancona" 
+		"RM Bari" "RM Amberto di Giussano" "RM Albercio da Barbiano" "RM Bartolomeo Colleoni" "RM Bande Nere" "RM Luigi Cardorna" "RM Armando Diaz" "RM Raimondo Montecuccoli" "RM Muzio Attendolo" "RM Duca d'Aosta" "RM Eugenio di Savoia" 
+			}
+	heavy_cruiser = {
+		"RN Marco Polo" "RN Carlo Alberto" "RN Vettor Pisani" "RN Francesco Ferruccio" "RN Giuseppe Garibaldi" "RN Varese" "RN Pisa" "RN Amalfi" "RN San Giorgo" "RN San Marco" "RN Trento" 
+		"RN Trieste" "RN Fiume" "RN Gorizia" "RN Pola" "RN Zara" "RN Bolzano" 
+	}
+	battlecruiser = {
+		"RN Taranto" "RN La Spezia" "RN Genoa" "RN Milan" 
+	}
+	destroyer = {
+		"1a Flottiglia Torpediniere" "2a Flottiglia Torpediniere" "3a Flottiglia Torpediniere" "4a Flottiglia Torpediniere" "5a Flottiglia Torpediniere" "6a Flottiglia Torpediniere" "7a Flottiglia Torpediniere" "8a Flottiglia Torpediniere" "9a Flottiglia Torpediniere" "10a Flottiglia Torpediniere" "11a Flottiglia Torpediniere" 
+		"12a Flottiglia Torpediniere" "13a Flottiglia Torpediniere" "14a Flottiglia Torpediniere" "15a Flottiglia Torpediniere" "16a Flottiglia Torpediniere" "17a Flottiglia Torpediniere" "18a Flottiglia Torpediniere" "19a Flottiglia Torpediniere" "20a Flottiglia Torpediniere" "21a Flottiglia Torpediniere" "22a Flottiglia Torpediniere" 
+		"23a Flottiglia Torpediniere" "24a Flottiglia Torpediniere" "25a Flottiglia Torpediniere" "26a Flottiglia Torpediniere" "27a Flottiglia Torpediniere" "28a Flottiglia Torpediniere" "29a Flottiglia Torpediniere" "30a Flottiglia Torpediniere" "31a Flottiglia Torpediniere" "32a Flottiglia Torpediniere" "33a Flottiglia Torpediniere" 
+		"34a Flottiglia Torpediniere" "35a Flottiglia Torpediniere" "36a Flottiglia Torpediniere" "37a Flottiglia Torpediniere" "38a Flottiglia Torpediniere" "39a Flottiglia Torpediniere" "40a Flottiglia Torpediniere" "41a Flottiglia Torpediniere" "42a Flottiglia Torpediniere" "43a Flottiglia Torpediniere" "44a Flottiglia Torpediniere" 
+		"45a Flottiglia Torpediniere" "46a Flottiglia Torpediniere" "47a Flottiglia Torpediniere" "48a Flottiglia Torpediniere" "49a Flottiglia Torpediniere" "50a Flottiglia Torpediniere" "51a Flottiglia Torpediniere" "52a Flottiglia Torpediniere" "53a Flottiglia Torpediniere" "54a Flottiglia Torpediniere" "55a Flottiglia Torpediniere" 
+		"56a Flottiglia Torpediniere" "57a Flottiglia Torpediniere" "58a Flottiglia Torpediniere" "59a Flottiglia Torpediniere" "60a Flottiglia Torpediniere" "61a Flottiglia Torpediniere" "62a Flottiglia Torpediniere" "63a Flottiglia Torpediniere" "64a Flottiglia Torpediniere" "65a Flottiglia Torpediniere" "66a Flottiglia Torpediniere" 
+		"67a Flottiglia Torpediniere" "68a Flottiglia Torpediniere" "69a Flottiglia Torpediniere" "70a Flottiglia Torpediniere" "71a Flottiglia Torpediniere" "72a Flottiglia Torpediniere" "73a Flottiglia Torpediniere" "74a Flottiglia Torpediniere" "75a Flottiglia Torpediniere" "76a Flottiglia Torpediniere" "77a Flottiglia Torpediniere" 
+		"78a Flottiglia Torpediniere" "79a Flottiglia Torpediniere" "80a Flottiglia Torpediniere" "81a Flottiglia Torpediniere" "82a Flottiglia Torpediniere" "83a Flottiglia Torpediniere" "84a Flottiglia Torpediniere" "85a Flottiglia Torpediniere" "86a Flottiglia Torpediniere" "87a Flottiglia Torpediniere" "88a Flottiglia Torpediniere" 
+		"89a Flottiglia Torpediniere" "90a Flottiglia Torpediniere" "91a Flottiglia Torpediniere" "92a Flottiglia Torpediniere" "93a Flottiglia Torpediniere" "94a Flottiglia Torpediniere" "95a Flottiglia Torpediniere" "96a Flottiglia Torpediniere" "97a Flottiglia Torpediniere" "98a Flottiglia Torpediniere" "99a Flottiglia Torpediniere" 
+		"100a Flottiglia Torpediniere" 
+	}
+	carrier = {
+		"RN Aquila" "RN Sparviero" "RN Europa" "RN Falco" "RN Sagittario" 
+	}
+	escort_carrier = {
+		"RN Aquila" "RN Sparviero" "RN Europa" "RN Sagittario" 
+	}
+	submarine = {
+		"1a Flottiglia Sommergibili" "2a Flottiglia Sommergibili" "3a Flottiglia Sommergibili" "4a Flottiglia Sommergibili" "5a Flottiglia Sommergibili" "6a Flottiglia Sommergibili" "7a Flottiglia Sommergibili" "8a Flottiglia Sommergibili" "9a Flottiglia Sommergibili" "10a Flottiglia Sommergibili" "11a Flottiglia Sommergibili" 
+		"12a Flottiglia Sommergibili" "13a Flottiglia Sommergibili" "14a Flottiglia Sommergibili" "15a Flottiglia Sommergibili" "16a Flottiglia Sommergibili" "17a Flottiglia Sommergibili" "18a Flottiglia Sommergibili" "19a Flottiglia Sommergibili" "20a Flottiglia Sommergibili" "21a Flottiglia Sommergibili" "22a Flottiglia Sommergibili" 
+		"23a Flottiglia Sommergibili" "24a Flottiglia Sommergibili" "25a Flottiglia Sommergibili" "26a Flottiglia Sommergibili" "27a Flottiglia Sommergibili" "28a Flottiglia Sommergibili" "29a Flottiglia Sommergibili" "30a Flottiglia Sommergibili" "31a Flottiglia Sommergibili" "32a Flottiglia Sommergibili" "33a Flottiglia Sommergibili" 
+		"34a Flottiglia Sommergibili" "35a Flottiglia Sommergibili" "36a Flottiglia Sommergibili" "37a Flottiglia Sommergibili" "38a Flottiglia Sommergibili" "39a Flottiglia Sommergibili" "40a Flottiglia Sommergibili" "41a Flottiglia Sommergibili" "42a Flottiglia Sommergibili" "43a Flottiglia Sommergibili" "44a Flottiglia Sommergibili" 
+		"45a Flottiglia Sommergibili" "46a Flottiglia Sommergibili" "47a Flottiglia Sommergibili" "48a Flottiglia Sommergibili" "49a Flottiglia Sommergibili" "50a Flottiglia Sommergibili" "51a Flottiglia Sommergibili" "52a Flottiglia Sommergibili" "53a Flottiglia Sommergibili" "54a Flottiglia Sommergibili" "55a Flottiglia Sommergibili" 
+		"56a Flottiglia Sommergibili" "57a Flottiglia Sommergibili" "58a Flottiglia Sommergibili" "59a Flottiglia Sommergibili" "60a Flottiglia Sommergibili" "61a Flottiglia Sommergibili" "62a Flottiglia Sommergibili" "63a Flottiglia Sommergibili" "64a Flottiglia Sommergibili" "65a Flottiglia Sommergibili" "66a Flottiglia Sommergibili" 
+		"67a Flottiglia Sommergibili" "68a Flottiglia Sommergibili" "69a Flottiglia Sommergibili" "70a Flottiglia Sommergibili" "71a Flottiglia Sommergibili" "72a Flottiglia Sommergibili" "73a Flottiglia Sommergibili" "74a Flottiglia Sommergibili" "75a Flottiglia Sommergibili" "76a Flottiglia Sommergibili" "77a Flottiglia Sommergibili" 
+		"78a Flottiglia Sommergibili" "79a Flottiglia Sommergibili" "80a Flottiglia Sommergibili" "81a Flottiglia Sommergibili" "82a Flottiglia Sommergibili" "83a Flottiglia Sommergibili" "84a Flottiglia Sommergibili" "85a Flottiglia Sommergibili" "86a Flottiglia Sommergibili" "87a Flottiglia Sommergibili" "88a Flottiglia Sommergibili" 
+		"89a Flottiglia Sommergibili" "90a Flottiglia Sommergibili" "91a Flottiglia Sommergibili" "92a Flottiglia Sommergibili" "93a Flottiglia Sommergibili" "94a Flottiglia Sommergibili" "95a Flottiglia Sommergibili" "96a Flottiglia Sommergibili" "97a Flottiglia Sommergibili" "98a Flottiglia Sommergibili" "99a Flottiglia Sommergibili" 
+		"100a Flottiglia Sommergibili" 
+	}
+	transport_ship = {
+		"Squadrone Giorgio Orsini" "Squadrone Tarquinia" "Squadrone Porto di Roma" "Squadrone Giampaolo" "Squadrone Aventino" "Squadrone Puccini" "Squadrone Aspromonte" "Squadrone Maria" "Squadrone Sagittario" "Squadrone Rina Corrado" "Squadrone Enrichetta" 
+		"Squadrone Tripoli" "Squadrone Vallelunga" "Squadrone Panigaglia" "Squadrone Asmara" "Squadrone Cherso" "Squadrone Lussino" "1a Squadrone Trasporti" "2a Squadrone Trasporti" "3a Squadrone Trasporti" "4a Squadrone Trasporti" "5a Squadrone Trasporti" 
+		"6a Squadrone Trasporti" "7a Squadrone Trasporti" "8a Squadrone Trasporti" "9a Squadrone Trasporti" "10a Squadrone Trasporti" "11a Squadrone Trasporti" "12a Squadrone Trasporti" "13a Squadrone Trasporti" "14a Squadrone Trasporti" "15a Squadrone Trasporti" "16a Squadrone Trasporti" 
+		"17a Squadrone Trasporti" "18a Squadrone Trasporti" "19a Squadrone Trasporti" "20a Squadrone Trasporti" "21a Squadrone Trasporti" "22a Squadrone Trasporti" "23a Squadrone Trasporti" "24a Squadrone Trasporti" "25a Squadrone Trasporti" "26a Squadrone Trasporti" "27a Squadrone Trasporti" 
+		"28a Squadrone Trasporti" "29a Squadrone Trasporti" "30a Squadrone Trasporti" "31a Squadrone Trasporti" "32a Squadrone Trasporti" "33a Squadrone Trasporti" "34a Squadrone Trasporti" "35a Squadrone Trasporti" "36a Squadrone Trasporti" "37a Squadrone Trasporti" "38a Squadrone Trasporti" 
+		"39a Squadrone Trasporti" "40a Squadrone Trasporti" "41a Squadrone Trasporti" "42a Squadrone Trasporti" "43a Squadrone Trasporti" "44a Squadrone Trasporti" "45a Squadrone Trasporti" "46a Squadrone Trasporti" "47a Squadrone Trasporti" "48a Squadrone Trasporti" "49a Squadrone Trasporti" 
+		"50a Squadrone Trasporti" "51a Squadrone Trasporti" "52a Squadrone Trasporti" "53a Squadrone Trasporti" "54a Squadrone Trasporti" "55a Squadrone Trasporti" "56a Squadrone Trasporti" "57a Squadrone Trasporti" "58a Squadrone Trasporti" "59a Squadrone Trasporti" "60a Squadrone Trasporti" 
+		"61a Squadrone Trasporti" "62a Squadrone Trasporti" "63a Squadrone Trasporti" "64a Squadrone Trasporti" "65a Squadrone Trasporti" "66a Squadrone Trasporti" "67a Squadrone Trasporti" "68a Squadrone Trasporti" "69a Squadrone Trasporti" "70a Squadrone Trasporti" "71a Squadrone Trasporti" 
+		"72a Squadrone Trasporti" "73a Squadrone Trasporti" "74a Squadrone Trasporti" "75a Squadrone Trasporti" "76a Squadrone Trasporti" "77a Squadrone Trasporti" "78a Squadrone Trasporti" "79a Squadrone Trasporti" "80a Squadrone Trasporti" "81a Squadrone Trasporti" "82a Squadrone Trasporti" 
+		"83a Squadrone Trasporti" "84a Squadrone Trasporti" "85a Squadrone Trasporti" "86a Squadrone Trasporti" "87a Squadrone Trasporti" "88a Squadrone Trasporti" "89a Squadrone Trasporti" "90a Squadrone Trasporti" "91a Squadrone Trasporti" "92a Squadrone Trasporti" "93a Squadrone Trasporti" 
+		"94a Squadrone Trasporti" "95a Squadrone Trasporti" "96a Squadrone Trasporti" "97a Squadrone Trasporti" "98a Squadrone Trasporti" "99a Squadrone Trasporti" "100a Squadrone Trasporti" 
+	}
+
+}
+
+ministers = {
+	3001 = {
+		name = "Vittorio Emanuele III"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3001
+		head_of_state = weary_stiff_neck
+		head_of_state = weary_stiff_neck
+		head_of_state = weary_stiff_neck
+		start_date = 1936.1.1
+	}
+	3002 = {
+		name = "Benito Mussolini"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3002
+		head_of_government = flamboyant_tough_guy
+		armament_minister = resource_industrialist
+		head_of_state = barking_buffoon
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = ideological_crusader
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	3003 = {
+		name = "Gian Galeazzo Ciano"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3003
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	3005 = {
+		name = "Guido Buffarini-Guidi"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3005
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	3006 = {
+		name = "Cesare Amé"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3006
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	3007 = {
+		name = "Francesco Grazioli"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M3007
+		chief_of_staff = logistics_specialist
+		start_date = 1936.1.1
+	}
+	3008 = {
+		name = "Alberto Pariani"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M3008
+		chief_of_army = guns_and_butter_doctrine
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	3009 = {
+		name = "Domenico Cavagnari"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M3009
+		chief_of_navy = decisive_naval_battle_doctrine
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	3010 = {
+		name = "Giuseppe Valle"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M3010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	3035 = {
+		name = "Paolo Thaon di Revel"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3035
+		head_of_state = resigned_generalissimo
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = open_seas_doctrine
+		start_date = 1945.1.1
+	}
+	3036 = {
+		name = "Umberto II"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3011
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		start_date = 1944.1.1
+	}
+	3038 = {
+		name = "Alcide de Gasperi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3038
+		head_of_state = flamboyant_tough_guy
+		head_of_government = backroom_backstabber
+		foreign_minister = ideological_crusader
+		minister_of_security = compassionate_gentleman
+		start_date = 1946.1.1
+	}
+	3039 = {
+		name = "Enrico de Nicola"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3039
+		head_of_state = benevolent_gentleman
+		head_of_state = benevolent_gentleman
+		minister_of_security = man_of_the_people
+		start_date = 1946.1.1
+	}
+	3041 = {
+		name = "Palmiro Togliatti"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M3021
+		head_of_state = power_hungry_demagogue
+		foreign_minister = ideological_crusader
+		minister_of_security = crime_fighter
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	3044 = {
+		name = "Junio Borghese"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3044
+		head_of_government = political_protege
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1945.1.1
+	}
+	3045 = {
+		name = "Pietro Badoglio"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3012
+		head_of_government = old_general
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_mass_combat
+		start_date = 1943.1.1
+	}
+	3046 = {
+		name = "Conde Stefano Jacini"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3046
+		head_of_government = happy_amateur
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	3048 = {
+		name = "Ivanoe Bonomi"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3048
+		head_of_government = silent_workhorse
+		foreign_minister = apologetic_clerk
+		minister_of_security = efficient_sociopath
+		start_date = 1944.1.1
+	}
+	3049 = {
+		name = "Ferruccio Parri"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3049
+		head_of_government = naive_optimist
+		minister_of_security = man_of_the_people
+		start_date = 1945.1.1
+	}
+	3050 = {
+		name = "Luigi Longo"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M3022
+		head_of_government = political_protege
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	3053 = {
+		name = "Giuseppe Bastianini"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3053
+		foreign_minister = iron_fisted_brute
+		start_date = 1945.1.1
+	}
+	3054 = {
+		name = "Pietro Conte Acquarone"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3054
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1943.1.1
+	}
+	3056 = {
+		name = "Dino Grandi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3056
+		foreign_minister = great_compromiser
+		minister_of_intelligence = research_specialist
+		chief_of_navy = power_projection_doctrine
+		start_date = 1945.1.1
+	}
+	3057 = {
+		name = "Pier Federico Martinetti"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3057
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	3058 = {
+		name = "Bernardo Attolico"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3058
+		foreign_minister = biased_intellectual
+		start_date = 1943.1.1
+	}
+	3060 = {
+		name = "Carlo Sforza"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3013
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1947.1.1
+	}
+	3062 = {
+		name = "Pietro Nenni"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3062
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1945.1.1
+	}
+	3064 = {
+		name = "Federico Baistrocchi"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3064
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	3066 = {
+		name = "Ubaldo Soddu"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M3066
+		armament_minister = military_entrepreneur
+		start_date = 1939.1.1
+	}
+	3067 = {
+		name = "Alfredo Guzzoni"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M3067
+		armament_minister = submarine_proponent
+		start_date = 1940.1.1
+	}
+	3068 = {
+		name = "Antonio Sorice"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3068
+		armament_minister = corrupt_kleptocrat
+		start_date = 1943.1.1
+	}
+	3071 = {
+		name = "G. Imperiali de Francarillo"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3071
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	3072 = {
+		name = "Romulo Paladini"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3072
+		armament_minister = tank_proponent
+		start_date = 1947.1.1
+	}
+	3073 = {
+		name = "Giacomo Acerbo"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3073
+		armament_minister = resource_industrialist
+		start_date = 1946.1.1
+	}
+	3075 = {
+		name = "Domenico Bartolini"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3075
+		armament_minister = theoretical_scientist
+		start_date = 1944.1.1
+	}
+	3076 = {
+		name = "Guido Jung"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3076
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	3077 = {
+		name = "Alberto Theodoli"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3077
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	3078 = {
+		name = "Francesco Orestano"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3078
+		armament_minister = military_entrepreneur
+		start_date = 1939.1.1
+	}
+	3079 = {
+		name = "Fulberto Vivaldi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3079
+		armament_minister = air_to_ground_proponent
+		start_date = 1941.1.1
+	}
+	3080 = {
+		name = "Taddeo Orlando"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3080
+		armament_minister = theoretical_scientist
+		start_date = 1944.1.1
+	}
+	3081 = {
+		name = "Alessandro Marchese Casati"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M3081
+		armament_minister = tank_proponent
+		start_date = 1944.1.1
+	}
+	3082 = {
+		name = "Manlio Brosio"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3082
+		armament_minister = infantry_proponent
+		start_date = 1946.1.1
+	}
+	3083 = {
+		name = "Cipriano Facchinetti"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3083
+		armament_minister = resource_industrialist
+		chief_of_staff = school_of_mass_combat
+		start_date = 1947.1.1
+	}
+	3084 = {
+		name = "Giovanni Ciraolo"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3084
+		armament_minister = administrative_genius
+		start_date = 1944.1.1
+	}
+	3085 = {
+		name = "Luigi Einaudi"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3085
+		armament_minister = strategic_air_proponent
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		start_date = 1945.1.1
+	}
+	3086 = {
+		name = "G. Barone Paulucci di Calboli"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3086
+		armament_minister = laissez_faires_capitalist
+		start_date = 1947.1.1
+	}
+	3087 = {
+		name = "Vittorio Vidali"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M3087
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	3088 = {
+		name = "Mauro Scoccimarro"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M3088
+		armament_minister = air_to_sea_proponent
+		start_date = 1941.1.1
+	}
+	3089 = {
+		name = "Antonio Pesenti"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M3024
+		armament_minister = resource_industrialist
+		minister_of_intelligence = technical_specialist
+		start_date = 1945.1.1
+	}
+	3091 = {
+		name = "Umberto Albini"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3091
+		minister_of_security = prince_of_terror
+		start_date = 1940.1.1
+	}
+	3092 = {
+		name = "Antonio Scuero"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3092
+		minister_of_security = back_stabber
+		start_date = 1943.1.1
+	}
+	3094 = {
+		name = "Piero Brandimarte"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3094
+		minister_of_security = efficient_sociopath
+		start_date = 1945.1.1
+	}
+	3095 = {
+		name = "Umberto Ricci"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3015
+		minister_of_security = silent_lawyer
+		minister_of_intelligence = industrial_specialist
+		start_date = 1943.1.1
+	}
+	3096 = {
+		name = "Robert Farinacci"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3096
+		minister_of_security = back_stabber
+		start_date = 1945.1.1
+	}
+	3100 = {
+		name = "Vito Reale"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3100
+		minister_of_security = crime_fighter
+		start_date = 1944.1.1
+	}
+	3101 = {
+		name = "Mario Scelba"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3101
+		minister_of_security = back_stabber
+		start_date = 1947.1.1
+	}
+	3102 = {
+		name = "Salvatore Aldisio"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3102
+		minister_of_security = prince_of_terror
+		start_date = 1944.1.1
+	}
+	3105 = {
+		name = "Giuseppe Romita"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M3105
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	3107 = {
+		name = "Julian Zugazagoitia Mendieta"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M3107
+		minister_of_security = efficient_sociopath
+		start_date = 1943.1.1
+	}
+	3108 = {
+		name = "Enzo Galbiati"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3108
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	3110 = {
+		name = "Alfredo de Marschio"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M3110
+		minister_of_intelligence = dismal_enigma
+		start_date = 1943.1.1
+	}
+	3112 = {
+		name = "Giacomo Carboni"
+		ideology = national_socialist
+		loyalty = 0.50
+		picture = M3112
+		minister_of_intelligence = industrial_specialist
+		start_date = 1945.1.1
+	}
+	3115 = {
+		name = "Maggiorno Ferraris"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3115
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	3116 = {
+		name = "Giuseppe Pella"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3116
+		minister_of_intelligence = research_specialist
+		head_of_government = silent_workhorse
+		foreign_minister = ideological_crusader
+		start_date = 1945.1.1
+	}
+	3117 = {
+		name = "Ezio Vanoni"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3117
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1946.1.1
+	}
+	3118 = {
+		name = "Emilio Pagliano"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3118
+		minister_of_intelligence = industrial_specialist
+		start_date = 1944.1.1
+	}
+	3119 = {
+		name = "A. de Marinis de Ricia"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3014
+		minister_of_intelligence = technical_specialist
+		chief_of_army = elastic_defence_doctrine
+		armament_minister = administrative_genius
+		start_date = 1946.1.1
+	}
+	3120 = {
+		name = "Guiseppe di Vittorio"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M3120
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	3124 = {
+		name = "Ugo Cavallero"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3124
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1939.1.1
+	}
+	3126 = {
+		name = "Achille Starace"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3126
+		chief_of_staff = school_of_psychology
+		start_date = 1943.1.1
+	}
+	3127 = {
+		name = "Vito Catastini"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M3017
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1945.1.1
+	}
+	3128 = {
+		name = "Vittorio Ambrosio"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M3128
+		chief_of_staff = school_of_psychology
+		chief_of_army = static_defence_doctrine
+		start_date = 1943.1.1
+	}
+	3130 = {
+		name = "Mario Cingolani"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3130
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	3132 = {
+		name = "Ettore Conti"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3132
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1945.1.1
+	}
+	3133 = {
+		name = "Randolfo Pacciardi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3133
+		chief_of_staff = school_of_defence
+		armament_minister = military_entrepreneur
+		start_date = 1946.1.1
+	}
+	3134 = {
+		name = "Alessandro Casati"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3134
+		chief_of_staff = school_of_defence
+		start_date = 1944.1.1
+	}
+	3136 = {
+		name = "Luigi Gasparotto"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3136
+		chief_of_staff = school_of_manoeuvre
+		chief_of_air = army_aviation_doctrine
+		start_date = 1947.1.1
+	}
+	3139 = {
+		name = "Rodolfo Graziani"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M3139
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1939.1.1
+	}
+	3140 = {
+		name = "Mario Roatta"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3140
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1941.1.1
+	}
+	3144 = {
+		name = "Dionisio Ancelotti"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3144
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1944.1.1
+	}
+	3145 = {
+		name = "Enrico Mattei"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3018
+		chief_of_army = decisive_battle_doctrine
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1947.1.1
+	}
+	3147 = {
+		name = "Giancarlo Pajetta"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M3028
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	3149 = {
+		name = "Arturo Riccardi"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M3149
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1940.1.1
+	}
+	3151 = {
+		name = "Alfredo Rocco"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M3151
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1945.1.1
+	}
+	3154 = {
+		name = "Raffaele de Courten"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M3019
+		chief_of_navy = open_seas_doctrine
+		start_date = 1943.1.1
+	}
+	3155 = {
+		name = "Allesandrino Ceresa"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3155
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	3157 = {
+		name = "Vittorio Scialoja"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M3157
+		chief_of_navy = power_projection_doctrine
+		start_date = 1946.1.1
+	}
+	3160 = {
+		name = "Francesco Pricolo"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M3160
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	3161 = {
+		name = "Rino Corso Fougier"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M3161
+		chief_of_air = air_superiority_doctrine
+		start_date = 1941.1.1
+	}
+	3163 = {
+		name = "Renato Sandalli"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M3020
+		chief_of_air = army_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	3164 = {
+		name = "Tomasso Tittoni"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3164
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	3165 = {
+		name = "Pietro Piacentini"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3165
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	3166 = {
+		name = "Antonio Scialoja"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3166
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	3173 = {
+		name = "Emilio Paolo Taviani"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3173
+		armament_minister = theoretical_scientist
+		start_date = 1953.1.1
+	}
+	3174 = {
+		name = "Amintore Fanfani"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M3174
+		minister_of_security = compassionate_gentleman
+		start_date = 1953.1.1
+	}
+}
+

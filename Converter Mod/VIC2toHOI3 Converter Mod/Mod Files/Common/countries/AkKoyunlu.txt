@@ -1,0 +1,676 @@
+color = { 171  190  152 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Piyade Tümeni" "2. Piyade Tümeni" "3. Piyade Tümeni" "4. Piyade Tümeni" "5. Piyade Tümeni" "6. Piyade Tümeni" "7. Piyade Tümeni" "8. Piyade Tümeni" "9. Piyade Tümeni" "10. Piyade Tümeni" "11. Piyade Tümeni" 
+		"12. Piyade Tümeni" "13. Piyade Tümeni" "14. Piyade Tümeni" "15. Piyade Tümeni" "16. Piyade Tümeni" "17. Piyade Tümeni" "18. Piyade Tümeni" "19. Piyade Tümeni" "20. Piyade Tümeni" "21. Piyade Tümeni" "22. Piyade Tümeni" 
+		"23. Piyade Tümeni" "24. Piyade Tümeni" "25. Piyade Tümeni" "26. Piyade Tümeni" "27. Piyade Tümeni" "28. Piyade Tümeni" "29. Piyade Tümeni" "30. Piyade Tümeni" "31. Piyade Tümeni" "32. Piyade Tümeni" "33. Piyade Tümeni" 
+		"34. Piyade Tümeni" "35. Piyade Tümeni" "36. Piyade Tümeni" "37. Piyade Tümeni" "38. Piyade Tümeni" "39. Piyade Tümeni" "40. Piyade Tümeni" "41. Piyade Tümeni" "42. Piyade Tümeni" "43. Piyade Tümeni" "44. Piyade Tümeni" 
+		"45. Piyade Tümeni" "46. Piyade Tümeni" "47. Piyade Tümeni" "48. Piyade Tümeni" "49. Piyade Tümeni" "50. Piyade Tümeni" "51. Piyade Tümeni" "52. Piyade Tümeni" "53. Piyade Tümeni" "54. Piyade Tümeni" "55. Piyade Tümeni" 
+		"56. Piyade Tümeni" "57. Piyade Tümeni" "58. Piyade Tümeni" "59. Piyade Tümeni" "60. Piyade Tümeni" "61. Piyade Tümeni" "62. Piyade Tümeni" "63. Piyade Tümeni" "64. Piyade Tümeni" "65. Piyade Tümeni" "66. Piyade Tümeni" 
+		"67. Piyade Tümeni" "68. Piyade Tümeni" "69. Piyade Tümeni" "70. Piyade Tümeni" "71. Piyade Tümeni" "72. Piyade Tümeni" "73. Piyade Tümeni" "74. Piyade Tümeni" "75. Piyade Tümeni" "76. Piyade Tümeni" "77. Piyade Tümeni" 
+		"78. Piyade Tümeni" "79. Piyade Tümeni" "80. Piyade Tümeni" "81. Piyade Tümeni" "82. Piyade Tümeni" "83. Piyade Tümeni" "84. Piyade Tümeni" "85. Piyade Tümeni" "86. Piyade Tümeni" "87. Piyade Tümeni" "88. Piyade Tümeni" 
+		"89. Piyade Tümeni" "90. Piyade Tümeni" "91. Piyade Tümeni" "92. Piyade Tümeni" "93. Piyade Tümeni" "94. Piyade Tümeni" "95. Piyade Tümeni" "96. Piyade Tümeni" "97. Piyade Tümeni" "98. Piyade Tümeni" "99. Piyade Tümeni" 
+		"100. Piyade Tümeni" "101. Piyade Tümeni" "102. Piyade Tümeni" "103. Piyade Tümeni" "104. Piyade Tümeni" "105. Piyade Tümeni" "106. Piyade Tümeni" "107. Piyade Tümeni" "108. Piyade Tümeni" "109. Piyade Tümeni" "110. Piyade Tümeni" 
+			}
+	cavalry_brigade = {
+		"1. Süvari Tümeni" "2. Süvari Tümeni" "3. Süvari Tümeni" "4. Yedek Süvari Tümeni" "5. Yedek Süvari Tümeni" "6. Yedek Süvari Tümeni" "7. Yedek Süvari Tümeni" "8. Yedek Süvari Tümeni" "9. Yedek Süvari Tümeni" "10. Yedek Süvari Tümeni" "11. Yedek Süvari Tümeni" 
+		"12. Yedek Süvari Tümeni" "13. Yedek Süvari Tümeni" "14. Yedek Süvari Tümeni" "15. Yedek Süvari Tümeni" 
+	}
+	motorized_brigade = {
+		"1. Motorize Tugay" "2. Motorize Tugay" "3. Motorize Tugay" "4. Motorize Tugay" "5. Motorize Tugay" "6. Motorize Tugay" "7. Motorize Tugay" "8. Motorize Tugay" "9. Motorize Tugay" "10. Motorize Tugay" "11. Motorize Tugay" 
+		"12. Motorize Tugay" "13. Motorize Tugay" "14. Motorize Tugay" "15. Motorize Tugay" 
+	}
+	mechanized_brigade = {
+		"1. Mekanize Tugay" "2. Mekanize Tugay" "3. Mekanize Tugay" "4. Mekanize Tugay" "5. Mekanize Tugay" "6. Mekanize Tugay" "7. Mekanize Tugay" "8. Mekanize Tugay" "9. Mekanize Tugay" "10. Mekanize Tugay" "11. Mekanize Tugay" 
+		"12. Mekanize Tugay" "13. Mekanize Tugay" "14. Mekanize Tugay" "15. Mekanize Tugay" 
+	}
+	light_armor_brigade = {
+		"1. Zirhli Tugay" "2. Zirhli Tugay" "3. Zirhli Tugay" "4. Zirhli Tugay" "5. Zirhli Tugay" "6. Zirhli Tugay" "7. Zirhli Tugay" "8. Zirhli Tugay" "9. Zirhli Tugay" "10. Zirhli Tugay" "11. Zirhli Tugay" 
+		"12. Zirhli Tugay" "13. Zirhli Tugay" "14. Zirhli Tugay" "15. Zirhli Tugay" 
+	}
+	armor_brigade = {
+		"1. Zirhli Tugay" "2. Zirhli Tugay" "3. Zirhli Tugay" "4. Zirhli Tugay" "5. Zirhli Tugay" "6. Zirhli Tugay" "7. Zirhli Tugay" "8. Zirhli Tugay" "9. Zirhli Tugay" "10. Zirhli Tugay" "11. Zirhli Tugay" 
+		"12. Zirhli Tugay" "13. Zirhli Tugay" "14. Zirhli Tugay" "15. Zirhli Tugay" 
+	}
+	paratrooper_brigade = {
+		"1. Hv. Piyade Tümeni" "2. Hv. Piyade Tümeni" "3. Hv. Piyade Tümeni" "4. Hv. Piyade Tümeni" "5. Hv. Piyade Tümeni" "6. Hv. Piyade Tümeni" "7. Hv. Piyade Tümeni" "8. Hv. Piyade Tümeni" "9. Hv. Piyade Tümeni" "10. Hv. Piyade Tümeni" 
+	}
+	marine_brigade = {
+		"1. Dz. Piyade Tümeni" "2. Dz. Piyade Tümeni" "3. Dz. Piyade Tümeni" "4. Dz. Piyade Tümeni" "5. Dz. Piyade Tümeni" "6. Dz. Piyade Tümeni" "7. Dz. Piyade Tümeni" "8. Dz. Piyade Tümeni" "9. Dz. Piyade Tümeni" "10. Dz. Piyade Tümeni" 
+	}
+	bergsjaeger_brigade = {
+		"1. Dagci Tugay" "2. Dagci Tugay" "3. Dagci Tugay" "4. Dagci Tugay" "5. Dagci Tugay" "6. Dagci Tugay" "7. Dagci Tugay" "8. Dagci Tugay" "9. Dagci Tugay" "10. Dagci Tugay" "11. Dagci Tugay" 
+		"12. Dagci Tugay" "13. Dagci Tugay" "14. Dagci Tugay" "15. Dagci Tugay" "16. Dagci Tugay" "17. Dagci Tugay" "18. Dagci Tugay" "19. Dagci Tugay" "20. Dagci Tugay" 
+	}
+	garrison_brigade = {
+		"1. Piyade Tümeni" "2. Piyade Tümeni" "3. Piyade Tümeni" "4. Piyade Tümeni" "5. Piyade Tümeni" "6. Piyade Tümeni" "7. Piyade Tümeni" "8. Piyade Tümeni" "9. Piyade Tümeni" "10. Piyade Tümeni" "11. Piyade Tümeni" 
+		"12. Piyade Tümeni" "13. Piyade Tümeni" "14. Piyade Tümeni" "15. Piyade Tümeni" "16. Piyade Tümeni" "17. Piyade Tümeni" "18. Piyade Tümeni" "19. Piyade Tümeni" "20. Piyade Tümeni" "21. Piyade Tümeni" "22. Piyade Tümeni" 
+		"23. Piyade Tümeni" "24. Piyade Tümeni" "25. Piyade Tümeni" "26. Piyade Tümeni" "27. Piyade Tümeni" "28. Piyade Tümeni" "29. Piyade Tümeni" "30. Piyade Tümeni" "31. Piyade Tümeni" "32. Piyade Tümeni" "33. Piyade Tümeni" 
+		"34. Piyade Tümeni" "35. Piyade Tümeni" "36. Piyade Tümeni" "37. Piyade Tümeni" "38. Piyade Tümeni" "39. Piyade Tümeni" "40. Piyade Tümeni" "41. Piyade Tümeni" "42. Piyade Tümeni" "43. Piyade Tümeni" "44. Piyade Tümeni" 
+		"45. Piyade Tümeni" "46. Piyade Tümeni" "47. Piyade Tümeni" "48. Piyade Tümeni" "49. Piyade Tümeni" "50. Piyade Tümeni" "51. Piyade Tümeni" "52. Piyade Tümeni" "53. Piyade Tümeni" "54. Piyade Tümeni" "55. Piyade Tümeni" 
+		"56. Piyade Tümeni" "57. Piyade Tümeni" "58. Piyade Tümeni" "59. Piyade Tümeni" "60. Piyade Tümeni" "61. Piyade Tümeni" "62. Piyade Tümeni" "63. Piyade Tümeni" "64. Piyade Tümeni" "65. Piyade Tümeni" "66. Piyade Tümeni" 
+		"67. Piyade Tümeni" "68. Piyade Tümeni" "69. Piyade Tümeni" "70. Piyade Tümeni" "71. Piyade Tümeni" "72. Piyade Tümeni" "73. Piyade Tümeni" "74. Piyade Tümeni" "75. Piyade Tümeni" "76. Piyade Tümeni" "77. Piyade Tümeni" 
+		"78. Piyade Tümeni" "79. Piyade Tümeni" "80. Piyade Tümeni" "81. Piyade Tümeni" "82. Piyade Tümeni" "83. Piyade Tümeni" "84. Piyade Tümeni" "85. Piyade Tümeni" "86. Piyade Tümeni" "87. Piyade Tümeni" "88. Piyade Tümeni" 
+		"89. Piyade Tümeni" "90. Piyade Tümeni" "91. Piyade Tümeni" "92. Piyade Tümeni" "93. Piyade Tümeni" "94. Piyade Tümeni" "95. Piyade Tümeni" "96. Piyade Tümeni" "97. Piyade Tümeni" "98. Piyade Tümeni" "99. Piyade Tümeni" 
+		"100. Piyade Tümeni" "101. Piyade Tümeni" "102. Piyade Tümeni" "103. Piyade Tümeni" "104. Piyade Tümeni" "105. Piyade Tümeni" "106. Piyade Tümeni" "107. Piyade Tümeni" "108. Piyade Tümeni" "109. Piyade Tümeni" "110. Piyade Tümeni" 
+			}
+	hq_brigade = {
+		"1. Kara Ordusu" "2. Kara Ordusu" "3. Kara Ordusu" "4. Kara Ordusu" "5. Kara Ordusu" "6. Kara Ordusu" "7. Kara Ordusu" "8. Kara Ordusu" "9. Kara Ordusu" "10. Kara Ordusu" "15. Kara Ordusu" 
+			}
+	militia_brigade = {
+		"1. Kuvayi Milliye Birligi" "2. Kuvayi Milliye Birligi" "3. Kuvayi Milliye Birligi" "4. Kuvayi Milliye Birligi" "5. Kuvayi Milliye Birligi" "6. Kuvayi Milliye Birligi" "7. Kuvayi Milliye Birligi" "8. Kuvayi Milliye Birligi" "9. Kuvayi Milliye Birligi" "10. Kuvayi Milliye Birligi" "11. Kuvayi Milliye Birligi" 
+		"12. Kuvayi Milliye Birligi" "13. Kuvayi Milliye Birligi" "14. Kuvayi Milliye Birligi" "15. Kuvayi Milliye Birligi" "16. Kuvayi Milliye Birligi" "17. Kuvayi Milliye Birligi" "18. Kuvayi Milliye Birligi" "19. Kuvayi Milliye Birligi" "20. Kuvayi Milliye Birligi" 
+	}
+	multi_role = {
+		"1. Avci Filo" "2. Avci Filo" "3. Avci Filo" "4. Avci Filo" "5. Avci Filo" "6. Avci Filo" "7. Avci Filo" "8. Avci Filo" "9. Avci Filo" "10. Avci Filo" "11. Avci Filo" 
+		"12. Avci Filo" "13. Avci Filo" "14. Avci Filo" "15. Avci Filo" 
+	}
+	interceptor = {
+		"1. Avci Filo" "2. Avci Filo" "3. Avci Filo" "4. Avci Filo" "5. Avci Filo" "6. Avci Filo" "7. Avci Filo" "8. Avci Filo" "9. Avci Filo" "10. Avci Filo" "11. Avci Filo" 
+		"12. Avci Filo" "13. Avci Filo" "14. Avci Filo" "15. Avci Filo" 
+	}
+	strategic_bomber = {
+		"1. Stratejik Bombardiman Filosu" "2. Stratejik Bombardiman Filosu" "3. Stratejik Bombardiman Filosu" "4. Stratejik Bombardiman Filosu" "5. Stratejik Bombardiman Filosu" "6. Stratejik Bombardiman Filosu" "7. Stratejik Bombardiman Filosu" "8. Stratejik Bombardiman Filosu" "9. Stratejik Bombardiman Filosu" "10. Stratejik Bombardiman Filosu" "11. Stratejik Bombardiman Filosu" 
+		"12. Stratejik Bombardiman Filosu" "13. Stratejik Bombardiman Filosu" "14. Stratejik Bombardiman Filosu" "15. Stratejik Bombardiman Filosu" 
+	}
+	tactical_bomber = {
+		"1. Taktik Bombardiman Filosu" "2. Taktik Bombardiman Filosu" "3. Taktik Bombardiman Filosu" "4. Taktik Bombardiman Filosu" "5. Taktik Bombardiman Filosu" "6. Taktik Bombardiman Filosu" "7. Taktik Bombardiman Filosu" "8. Taktik Bombardiman Filosu" "9. Taktik Bombardiman Filosu" "10. Taktik Bombardiman Filosu" "11. Taktik Bombardiman Filosu" 
+		"12. Taktik Bombardiman Filosu" "13. Taktik Bombardiman Filosu" "14. Taktik Bombardiman Filosu" "15. Taktik Bombardiman Filosu" 
+	}
+	naval_bomber = {
+		"1. Deniz Avci Filo" "2. Deniz Avci Filo" "3. Deniz Avci Filo" "4. Deniz Avci Filo" "5. Deniz Avci Filo" "6. Deniz Avci Filo" "7. Deniz Avci Filo" "8. Deniz Avci Filo" "9. Deniz Avci Filo" "10. Deniz Avci Filo" "11. Deniz Avci Filo" 
+		"12. Deniz Avci Filo" "13. Deniz Avci Filo" "14. Deniz Avci Filo" "15. Deniz Avci Filo" "1. Torpil Filo" "2. Torpil Filo" "3. Torpil Filo" "4. Torpil Filo" "5. Torpil Filo" "6. Torpil Filo" "7. Torpil Filo" 
+		"8. Torpil Filo" "9. Torpil Filo" "10. Torpil Filo" "11. Torpil Filo" "12. Torpil Filo" "13. Torpil Filo" "14. Torpil Filo" "15. Torpil Filo" 
+	}
+	cas = {
+		"1. Tank Avci Filo" "2. Tank Avci Filo" "3. Tank Avci Filo" "4. Tank Avci Filo" "5. Tank Avci Filo" "6. Tank Avci Filo" "7. Tank Avci Filo" "8. Tank Avci Filo" "9. Tank Avci Filo" "10. Tank Avci Filo" "11. Tank Avci Filo" 
+		"12. Tank Avci Filo" "13. Tank Avci Filo" "14. Tank Avci Filo" "15. Tank Avci Filo" 
+	}
+	transport_plane = {
+		"1. Hava Indirme Filosu" "2. Hava Indirme Filosu" "3. Hava Indirme Filosu" "4. Hava Indirme Filosu" "5. Hava Indirme Filosu" "6. Hava Indirme Filosu" 
+	}
+	battleship = {
+		"TCG Yavuz" "TCG Barbaros" "TCG Salih Reis" "TCG Kilic Ali Reis" "TCG Midilli" "TCG Turgud Reis" "TCG Saldiray" 
+	}
+	light_cruiser = {
+		"TCG Residiye" "TCG Kesan" "TCG Sariyer" "TCG Sinop" "TCG Gaziantep" "TCG Adana" "TCG Iskenderun" "TCG Mugla" "TCG Manisa" "TCG Fethiye" "TCG Balikesir" 
+		"TCG Dumlupinar" "TCG Kilic Ali" 
+	}
+	heavy_cruiser = {
+		"TCG Canakkale" "TCG Edirne" "TCG Tuzla" "TCG Hamidiye" "TCG Mecidiye" "TCG Yalova" "TCG Gemlik" "TCG Izmit" "TCG Gebze" "TCG Gelibolu" "TCG Urla" 
+		"TCG Mersin" "TCG Golcük" 
+	}
+	battlecruiser = {
+		"TCG Batiray" "TCG Yildiray" "TCG Yavuzay" "TCG Izmir" "TCG Istanbul" "TCG Samsun" "TCG Trabzon" 
+	}
+	destroyer = {
+		"1. Destroyer Filotilla" "2. Destroyer Filotilla" "3. Destroyer Filotilla" "4. Destroyer Filotilla" "5. Destroyer Filotilla" "6. Destroyer Filotilla" "7. Destroyer Filotilla" "8. Destroyer Filotilla" "9. Destroyer Filotilla" "10. Destroyer Filotilla" "11. Destroyer Filotilla" 
+		"12. Destroyer Filotilla" "13. Destroyer Filotilla" "14. Destroyer Filotilla" "15. Destroyer Filotilla" "16. Destroyer Filotilla" "17. Destroyer Filotilla" "18. Destroyer Filotilla" "19. Destroyer Filotilla" "21. Destroyer Filotilla" "22. Destroyer Filotilla" "23. Destroyer Filotilla" 
+		"24. Destroyer Filotilla" "25. Destroyer Filotilla" "26. Destroyer Filotilla" "27. Destroyer Filotilla" "28. Destroyer Filotilla" "29. Destroyer Filotilla" "31. Destroyer Filotilla" "32. Destroyer Filotilla" "33. Destroyer Filotilla" "34. Destroyer Filotilla" "35. Destroyer Filotilla" 
+		"36. Destroyer Filotilla" "37. Destroyer Filotilla" "38. Destroyer Filotilla" "39. Destroyer Filotilla" 
+	}
+	carrier = {
+		"TCG Tekirdag" "TCG Bandirma" 
+	}
+	escort_carrier = {
+		"TCG Gaziantep" "TCG Giresun" "TCG Gokceada" "TCG Gediz" "TCG Muavenet" "TCG Kocatepe" "TCG Zafer" "TCG Trakya" "TCG Karadeniz" "TCG Ege" "TCG Barbaros" 
+		"TCG Oruc Reis" "TCG Salihreis" "TCG Kemalreis" 
+	}
+	submarine = {
+		"1. Denizalti Filotilla" "2. Denizalti Filotilla" "3. Denizalti Filotilla" "4. Denizalti Filotilla" "5. Denizalti Filotilla" "6. Denizalti Filotilla" "7. Denizalti Filotilla" "8. Denizalti Filotilla" "9. Denizalti Filotilla" "10. Denizalti Filotilla" "11. Denizalti Filotilla" 
+		"12. Denizalti Filotilla" "13. Denizalti Filotilla" "14. Denizalti Filotilla" "15. Denizalti Filotilla" "16. Denizalti Filotilla" "17. Denizalti Filotilla" "18. Denizalti Filotilla" "19. Denizalti Filotilla" "20. Denizalti Filotilla" "21. Denizalti Filotilla" "22. Denizalti Filotilla" 
+		"23. Denizalti Filotilla" "24. Denizalti Filotilla" "25. Denizalti Filotilla" "26. Denizalti Filotilla" "27. Denizalti Filotilla" "28. Denizalti Filotilla" "29. Denizalti Filotilla" 
+	}
+	transport_ship = {
+		"Meric" "Urla" "Marmara" "Ege" "KaraDeniz" "AkDeniz" "Mecidiyekoy" "Akkoy" "Karacabey" "Bursa" "Inegöl" 
+		"Kalkan" "Yenice" "Canakkale" 
+	}
+
+}
+
+ministers = {
+	12001 = {
+		name = "Kemal Atatürk"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M12001
+		head_of_state = resigned_generalissimo
+		start_date = 1936.1.1
+	}
+	12002 = {
+		name = "Ismet Inönü"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M12002
+		head_of_state = pig_headed_isolationist
+		head_of_government = political_protege
+		foreign_minister = great_compromiser
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	12003 = {
+		name = "Tewfik Rüstü Aras"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12003
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	12004 = {
+		name = "Zekai Apaydin"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12004
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	12005 = {
+		name = "Sükrü Kaya"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12005
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	12006 = {
+		name = "Sükrü Ali Ogel"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12006
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	12007 = {
+		name = "Fevzi Cakmak"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	12008 = {
+		name = "Mehmet Nuri Yamut"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12008
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	12009 = {
+		name = "Mehmet Ali Üngen"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12009
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	12010 = {
+		name = "Ali Örlungat"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12010
+		chief_of_air = army_aviation_doctrine
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	12031 = {
+		name = "Ismet Inönü"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M12031
+		head_of_state = pig_headed_isolationist
+		armament_minister = administrative_genius
+		start_date = 1938.1.1
+	}
+	12032 = {
+		name = "Mahmud Celal Bayar"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M12032
+		head_of_government = silent_workhorse
+		minister_of_security = back_stabber
+		head_of_state = barking_buffoon
+		start_date = 1938.1.1
+	}
+	12033 = {
+		name = "Refik Saydam"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M12024
+		head_of_government = smiling_oilman
+		armament_minister = infantry_proponent
+		chief_of_air = air_superiority_doctrine
+		start_date = 1939.1.1
+	}
+	12034 = {
+		name = "Sükrü Saracoglu"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M12034
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = biased_intellectual
+		start_date = 1942.1.1
+	}
+	12036 = {
+		name = "Said Menemencioglu"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12036
+		foreign_minister = great_compromiser
+		start_date = 1942.1.1
+	}
+	12038 = {
+		name = "Hassan Saka"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12038
+		foreign_minister = ideological_crusader
+		head_of_government = happy_amateur
+		start_date = 1944.1.1
+	}
+	12039 = {
+		name = "Necmettin Sadik Sadak"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12039
+		foreign_minister = general_staffer
+		start_date = 1947.1.1
+	}
+	12040 = {
+		name = "Refet Bele"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12040
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	12042 = {
+		name = "Ali Fehti Okyar"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12013
+		foreign_minister = biased_intellectual
+		minister_of_intelligence = dismal_enigma
+		start_date = 1937.1.1
+	}
+	12043 = {
+		name = "Abdülhalik Renda"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12043
+		foreign_minister = apologetic_clerk
+		start_date = 1943.1.1
+	}
+	12045 = {
+		name = "Nurullah Esat Sümer"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12045
+		armament_minister = corrupt_kleptocrat
+		start_date = 1943.1.1
+	}
+	12046 = {
+		name = "Adnan Menderes"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12046
+		armament_minister = theoretical_scientist
+		minister_of_security = back_stabber
+		head_of_government = ambitious_union_boss
+		start_date = 1946.1.1
+	}
+	12048 = {
+		name = "Fuad Calistar"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12048
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	12049 = {
+		name = "Kazim Özalp"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12049
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	12050 = {
+		name = "Tevfik Rüsta Aras"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12050
+		armament_minister = theoretical_scientist
+		start_date = 1939.1.1
+	}
+	12051 = {
+		name = "Mehmet Günaltay"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12051
+		armament_minister = tank_proponent
+		head_of_government = silent_workhorse
+		start_date = 1940.1.1
+	}
+	12052 = {
+		name = "Münir Bürsen"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12052
+		armament_minister = laissez_faires_capitalist
+		start_date = 1946.1.1
+	}
+	12054 = {
+		name = "Mustafa Renda"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12054
+		armament_minister = military_entrepreneur
+		minister_of_intelligence = dismal_enigma
+		start_date = 1938.1.1
+	}
+	12056 = {
+		name = "Hüsnü Cakir"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12056
+		minister_of_security = crooked_kleptocrat
+		start_date = 1943.1.1
+	}
+	12057 = {
+		name = "Hilmi Uran"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12057
+		minister_of_security = crime_fighter
+		start_date = 1944.1.1
+	}
+	12059 = {
+		name = "Memduh Tagmac"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12059
+		minister_of_security = prince_of_terror
+		chief_of_air = air_superiority_doctrine
+		start_date = 1946.1.1
+	}
+	12061 = {
+		name = "Abdul Naci Tinaz"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12061
+		minister_of_security = silent_lawyer
+		chief_of_staff = school_of_fire_support
+		start_date = 1938.1.1
+	}
+	12063 = {
+		name = "Abbas Cevat"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M12025
+		minister_of_security = crooked_kleptocrat
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1939.1.1
+	}
+	12064 = {
+		name = "Saffet Arikan"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12058
+		minister_of_security = crime_fighter
+		start_date = 1940.1.1
+	}
+	12065 = {
+		name = "Ali Riza Türel"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12065
+		minister_of_security = efficient_sociopath
+		start_date = 1940.1.1
+	}
+	12066 = {
+		name = "Orhan Gökay"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12015
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	12067 = {
+		name = "Mehmet Recep Peker"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12067
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = industrial_specialist
+		head_of_government = political_protege
+		start_date = 1941.1.1
+	}
+	12069 = {
+		name = "Ali Rüza Artunkal"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12069
+		minister_of_intelligence = research_specialist
+		start_date = 1943.1.1
+	}
+	12070 = {
+		name = "Mumtaz Ökmen"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12070
+		minister_of_intelligence = industrial_specialist
+		start_date = 1946.1.1
+	}
+	12072 = {
+		name = "Fuad Köprülü"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12026
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1938.1.1
+	}
+	12075 = {
+		name = "Abdurrahman Gürman"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12075
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1946.1.1
+	}
+	12077 = {
+		name = "Mustafa Eldelhun"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12077
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1943.1.1
+	}
+	12078 = {
+		name = "Cemil Toüdemür"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12078
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1946.1.1
+	}
+	12079 = {
+		name = "Ali Fuat Cebesoy"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12079
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1938.1.1
+	}
+	12080 = {
+		name = "Vehbi Koc"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12080
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1943.1.1
+	}
+	12081 = {
+		name = "Ahmet Aydam Bölak"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12081
+		chief_of_navy = base_control_doctrine
+		start_date = 1946.1.1
+	}
+	12083 = {
+		name = "Erkan Gataly"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12083
+		chief_of_air = army_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	12011 = {
+		name = "Nihal Atsiz"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M12011
+		head_of_state = ruthless_powermonger
+		start_date = 1936.1.1
+	}
+	12012 = {
+		name = "Zeki Velidi Togan"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M12012
+		head_of_government = old_general
+		start_date = 1936.1.1
+	}
+	12013 = {
+		name = "Ali Fethi Okyar"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M12013
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	12014 = {
+		name = "Sadi Özbek"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M12014
+		armament_minister = air_to_sea_proponent
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	12018 = {
+		name = "Alparslan Türkes"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M12018
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	12019 = {
+		name = "Rauf Orbay"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M12019
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	12021 = {
+		name = "Sefik Hüsnü"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M12021
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	12022 = {
+		name = "Pertev Naili Boratav"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M12022
+		head_of_government = naive_optimist
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	12023 = {
+		name = "Nazim Hikmet Ran"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M12023
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	12029 = {
+		name = "Ismael Erim"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M12029
+		chief_of_navy = decisive_naval_battle_doctrine
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	12090 = {
+		name = "Mehmet Fuat Köprülü"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12090
+		foreign_minister = iron_fisted_brute
+		start_date = 1950.1.1
+	}
+	12091 = {
+		name = "Faik Ahmet Barutcu"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M12091
+		armament_minister = battle_fleet_proponent
+		start_date = 1947.1.1
+	}
+	12093 = {
+		name = "Samet Agaoglu"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12093
+		armament_minister = theoretical_scientist
+		start_date = 1950.1.1
+	}
+	12094 = {
+		name = "Fatim Rüstü Zorlu"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12094
+		armament_minister = administrative_genius
+		start_date = 1952.1.1
+	}
+	12095 = {
+		name = "Refik Koraltan"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M12095
+		minister_of_security = silent_lawyer
+		start_date = 1950.1.1
+	}
+}
