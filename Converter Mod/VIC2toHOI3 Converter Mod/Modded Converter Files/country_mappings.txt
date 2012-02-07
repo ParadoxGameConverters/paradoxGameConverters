@@ -316,32 +316,32 @@ link = { vic = QAR hoi = QAR }  # Qara Koyunlu
 link = { vic = TIM hoi = TIM }  # Timurid
 
 #Africa
-link = { eu3 = ASH vic = ASH }  # Ashanti
-link = { eu3 = BEN vic = BEN }  # Benin  
-link = { eu3 = ETH vic = ETH }  # Ethiopia
-link = { eu3 = KON vic = KON }  # Kongo
-link = { eu3 = MAL vic = MAL }  # Mali
-link = { eu3 = NUB vic = NUB }  # Funj  
-link = { eu3 = SON vic = SON }  # Songhai
-link = { eu3 = ZAN vic = SWA }  # Swahili   
-link = { eu3 = ZIM vic = ZIM }  # Mutapa 
-link = { eu3 = ADA vic = ADA }  # Adal
-link = { eu3 = HAU vic = HAU }  # Hausa
-link = { eu3 = KBO vic = KBO }  # Kanem Bornu
-link = { eu3 = LOA vic = LOA }  # Loango
-link = { eu3 = OYO vic = OYO }  # Oyo
-link = { eu3 = SOF vic = SOF }  # Sofala     
-link = { eu3 = SOK vic = SOK }  # Sokoto
-link = { eu3 = CNG vic = CNG }  # Congo Free State
-link = { eu3 = MAD vic = MAD }  # Madagascar
+link = { vic = ASH vic = ASH }  # Ashanti
+link = { vic = BEN vic = BEN }  # Benin  
+link = { vic = ETH vic = ETH }  # Ethiopia
+link = { vic = KON vic = KON }  # Kongo
+link = { vic = MAL vic = MAL }  # Mali
+link = { vic = NUB vic = NUB }  # Funj  
+link = { vic = SON vic = SON }  # Songhai
+link = { vic = ZAN vic = SWA }  # Swahili   
+link = { vic = ZIM vic = ZIM }  # Mutapa 
+link = { vic = ADA vic = ADA }  # Adal
+link = { vic = HAU vic = HAU }  # Hausa
+link = { vic = KBO vic = KBO }  # Kanem Bornu
+link = { vic = LOA vic = LOA }  # Loango
+link = { vic = OYO vic = OYO }  # Oyo
+link = { vic = SOF vic = SOF }  # Sofala     
+link = { vic = SOK vic = SOK }  # Sokoto
+link = { vic = CNG vic = CNG }  # Congo Free State
+link = { vic = MAD vic = MAD }  # Madagascar
 link = { vic = LIB hoi = LIB }	# Liberia
-link = { eu3 = NAL vic = NAL }  # Natalia
-link = { eu3 = ORA vic = ORA }  # Oranje
+link = { vic = NAL vic = NAL }  # Natalia
+link = { vic = ORA vic = ORA }  # Oranje
 link = { vic = SAF hoi = SAF }	# South Africa
-link = { eu3 = RHO vic = RHO }  # Southern Rhodesia
-link = { eu3 = TRN vic = TRN }  # Transvaal
-link = { eu3 = ZAN vic = ZAN }  # Zanzibar
-link = { eu3 = ZUL vic = ZUL }  # Zulu
+link = { vic = RHO vic = RHO }  # Southern Rhodesia
+link = { vic = TRN vic = TRN }  # Transvaal
+link = { vic = ZAN vic = ZAN }  # Zanzibar
+link = { vic = ZUL vic = ZUL }  # Zulu
 
 #Eastern Asia
 link = { vic = CHI hoi = CHI }	# China
@@ -373,71 +373,84 @@ link = { vic = KHA hoi = KHA }	# Mongol Khanate
 link = { vic = OIR hoi = OIR }	# Oirat Horde
 link = { vic = MGL hoi = MON }	# Mongolia
 
-# Southeastern Asia
-link = { vic = JAV hoi = IND }	# Java		=> Indonesia
+#Indochina
+link = { vic = ANN hoi = ANN }  # Annam
+link = { vic = ARK hoi = ARK }  # Arakan
+link = { vic = CAM hoi = CAM }  # Cambodia
+link = { vic = CHA hoi = CHA }  # Champa
+link = { vic = CHK hoi = CHK }  # Champassak
+link = { vic = DAI hoi = DAI }  # Dai Viet
+link = { vic = JOH hoi = JOH }  # Johore
+link = { vic = LNA hoi = LNA }  # Lan Na
+link = { vic = LUA hoi = LUA }  # Luang Prabang
+link = { vic = LXA hoi = LXA }  # Lan Xang
+link = { vic = PAT hoi = PAT }  # Pattani
+link = { vic = PEG hoi = PEG }  # Pegu
 link = { vic = SIA hoi = SIA }	# Siam
+link = { vic = SST hoi = SST }  # Shan
+link = { vic = SUK hoi = SUK }  # Sukhothai
+link = { vic = TOK hoi = TOK }  # Tonkin
+link = { vic = WIA hoi = WIA }  # Wiang Chhan
+
+#Malay Archipelago
+link = { vic = ATJ hoi = ATJ }  # Atjeh
+link = { vic = BAL hoi = BAL }  # Bali
+link = { vic = BAN hoi = BAN }  # Banten
+link = { vic = BRU hoi = BRU }  # Brunei
+link = { vic = JAV hoi = JAV }	# Java
+link = { vic = MAJ hoi = MAJ }  # Majapahit
+link = { vic = MKS hoi = MKS }  # Makassar
+link = { vic = MLC hoi = MLC }  # Malacca
+link = { vic = MSA hoi = MSA }  # Malaya
+link = { vic = MTR hoi = MTR }  # Mataram
 link = { vic = PHI hoi = PHI }	# Phillipines
+link = { vic = SUL hoi = SUL }  # Sulu
 
-
-link = { vic = HND hoi = IND }	# India
+# Central Asia and India
+link = { vic = AHM hoi = AHM }  # Bihar
+link = { vic = ASS hoi = ASS }  # Assam
+link = { vic = BAH hoi = BAH }  # Deccan
+link = { vic = BCS hoi = BCS }  # Baluchistan
+link = { vic = BAS hoi = BAS }  # Bastar
+link = { vic = BNG hoi = BNG }  # Bengal
+link = { vic = BRR hoi = BRR }  # Berar
+link = { vic = BHO hoi = BHO }  # Bhopal
+link = { vic = BHU hoi = BHU }  # Bhutan
+link = { vic = BIJ hoi = BIJ }  # Bijapur
+link = { vic = BUN hoi = BUN }  # Bundelkhand
+link = { vic = DLH hoi = DLH }  # Delhi
+link = { vic = GAK hoi = GAK }  # Gakwar
+link = { vic = GOC hoi = GOC }  # Golcanda
+link = { vic = GDW hoi = GDW }  # Gondwana
+link = { vic = GUJ hoi = GUJ }  # Gujarat
+link = { vic = HYD hoi = HYD }  # Hyderabad
+link = { vic = KRK hoi = KRK }  # Carnatic
+link = { vic = KAS hoi = KAS }  # Kashmir
+link = { vic = KHD hoi = KHD }  # Khandesh
+link = { vic = KTH hoi = KTH }  # Ceylon
+link = { vic = MAD hoi = MAD }  # Madurai
+link = { vic = MAR hoi = MAR }  # Maharasthra
+link = { vic = MLB hoi = MLB }  # Manipur
+link = { vic = MLD hoi = MLD }  # Maldive
+link = { vic = MLW hoi = MLW }  # Malwa
+link = { vic = MUG hoi = MUG }  # Mughalistan
+link = { vic = MYS hoi = MYS }  # Mysore
+link = { vic = NIZ hoi = NIZ }  # Deva Bengal
 link = { vic = NEP hoi = NEP }	# Nepal
-
-link = { vic = BHU hoi = BHU }	# Bhutan
+link = { vic = ORI hoi = ORI }  # Orissa
+link = { vic = AWA hoi = AWA }  # Awadh
+link = { vic = PAN hoi = PAN }  # Panjab
+link = { vic = RAJ hoi = RAJ }  # Rajputna
+link = { vic = SIN hoi = SIN }  # Sind
+link = { vic = TRA hoi = TRA }  # Travanacore
+link = { vic = VIJ hoi = VIJ }  # Vijaynagara
+link = { vic = HND hoi = IND }	# India
 
 # Australasia
 link = { vic = AST hoi = AST }	# Australia
 link = { vic = NZL hoi = NZL }	# New Zealand
 
 # missing:
-# PRU Prussia
-# KUK Austria-Hungary
-# SCA Scandinavia DONE!
-# FLA Flanders DONE!
-# CAT Catalonia DONE!
-# SCO Scotland DONE!
-# WLL Wallonia DONE!
-# --- ALL GERMAN MINORS (except LUX) Done!
-# --- ALL ITALIAN MINORS DONE! Done!
-# BOH Bohemia Done!
-# KRA Krakow Done!
-# CRI Crimea Done!
-# RUT Ruthenia Done
-# UKR Ukraine Done
-# --- ALL BALKANS (except Albania, Bulgaria, Romania, Greece, Ottomans, and Yugoslavia) Done
-# --- ALL AFRICA (except Egypt, Liberia, Ethiopia, SA) Done
-# ABU Abu Dhabi Done
-# ARM Armenia Done
-# AZB Azerbaijan Done
-# BUK Bukkhara Done
-# GEO Georgia Done
-# HDJ Hedjaz Done
-# KHI Khiva
-# KOK Kokland
-# MUG Mughalistan
-# --- ALL INDIAN MINORS (except Nepal)
-# ATJ Atjeh
-# BAL Bali
-# BRU Brunei
-# BUR Burma
-# CAM Cambodia
-# DAI Dai Viet
-# LUA Luang Prabang
-# JOH Johore
-# WIA Wiang Chhan
-# CAL California
-# CHE Cherokee
-# COL Columbia (British)
-# CSA Confederate States
-# DES Deseret
-# HAW Hawaii
-# MAN Manhattan Commune
-# MTS Metis Confederacy
-# NEN New England
-# NEW Newfoundland
-# QUE Quebec
-# TEX Texas
-# UCA US Central America
-# BYZ Byzantium
-# BAB Babylonia
+NONE!
 
 }
