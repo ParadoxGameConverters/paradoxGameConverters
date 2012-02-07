@@ -47,7 +47,7 @@ BRY	= "countries/Berry.txt"
 VIC	= "countries/Vichy France.txt"
 
 # Iberian Peninsula
-ARA	= "countries/Aragon.txt"
+ARN	= "countries/Aragon.txt"
 CAT	= "countries/Catalonia.txt"
 CAS	= "countries/Castille.txt"
 GRA	= "countries/Granada.txt"
@@ -78,7 +78,7 @@ SNA	= "countries/Siena.txt"
 SAR	= "countries/Sardinia-Piedmont.txt"
 TUS	= "countries/Tuscany.txt"
 URB	= "countries/Urbino.txt"
-VEN	= "countries/Venice.txt"
+VNE	= "countries/Venice.txt"
 LUC	= "countries/Lucca.txt"
 SIC	= "countries/Two Sicilies.txt"
 TRE	= "countries/Trieste.txt"
@@ -165,7 +165,7 @@ BAV	= "countries/Bavaria.txt"
 BOH	= "countries/Bohemia-Moravia.txt"
 BRD	= "countries/Brandenburg.txt"
 BRE	= "countries/Bremen.txt"
-BRA	= "countries/Braunschweig.txt"
+BRS	= "countries/Braunschweig.txt"
 FRM	= "countries/Frankfurt am Main.txt"
 GER	= "countries/Germany.txt"
 AUS	= "countries/Austria.txt"
@@ -238,41 +238,47 @@ NZH	= "countries/NizhnyNovgorod.txt"
 
 SOV	= "countries/Soviet Union.txt"
 
-# Americas
-BRA	= "countries/Brazil.txt"
-CAN	= "countries/Canada.txt"
-CHL	= "countries/Chile.txt"
-COL	= "countries/Colombia.txt" # South American
-HAI	= "countries/Haiti.txt"
-ARG	= "countries/Argentina.txt"
-LOU	= "countries/Louisiana.txt"
-MEX	= "countries/Mexico.txt"
-PRU	= "countries/Peru.txt"
-PAR	= "countries/Paraguay.txt"
-QUE	= "countries/Quebec.txt"
-VEN	= "countries/Venezuela.txt"
-UCA	= "countries/United States of Central America.txt"
-USA	= "countries/USA.txt"
-BOL	= "countries/Bolivia.txt"
+# North America
 CAL	= "countries/Californian Republic.txt"
+CAN	= "countries/Canada.txt
 CLM	= "countries/Columbia.txt" #North American
-COS	= "countries/Costa Rica.txt"
 CSA	= "countries/CSA.txt"
-CUB	= "countries/Cuba.txt"
 DES	= "countries/Deseret.txt"
-DOM	= "countries/Dominican Republic.txt"
-ECU	= "countries/Ecuador.txt"
-SAL	= "countries/El Salvador.txt"
-GUA	= "countries/Guatemala.txt"
 HAW	= "countries/Hawaii.txt"
-MAN	= "countries/Manhattan Commune.txt"
-HON	= "countries/Honduras.txt"
+LOU	= "countries/Louisiana.txt"
+MHC	= "countries/Manhattan Commune.txt"
+MEX	= "countries/Mexico.txt"
 NEN	= "countries/New England.txt"
 NEW	= "countries/Newfoundland.txt"
+TEX	= "countries/Texas.txt"
+QUE	= "countries/Quebec.txt"
+USA	= "countries/USA.txt"
+
+# Central America
+COS	= "countries/Costa Rica.txt"
+SAL	= "countries/El Salvador.txt"
+GUA	= "countries/Guatemala.txt"
+HON	= "countries/Honduras.txt"
 NIC	= "countries/Nicaragua.txt"
 PAN	= "countries/Panama.txt"
-TEX	= "countries/Texas.txt"
+UCA	= "countries/United States of Central America.txt"
+
+# South America
+ARG	= "countries/Argentina.txt"
+BOL	= "countries/Bolivia.txt"
+BRA	= "countries/Brazil.txt"
+CHL	= "countries/Chile.txt"
+COL	= "countries/Colombia.txt" # South American
+ECU	= "countries/Ecuador.txt"
+PAR	= "countries/Paraguay.txt"
+PRU	= "countries/Peru.txt"
 URU	= "countries/Uruguay.txt"
+VEN	= "countries/Venezuela.txt"
+
+# Caribbean
+CUB	= "countries/Cuba.txt"
+DOM	= "countries/Dominican Republic.txt"
+HAI	= "countries/Haiti.txt"
 
 # Native Americans
 AZT	= "countries/Aztec.txt"
@@ -288,12 +294,13 @@ ZAP	= "countries/Zapotec.txt"
 MTC	= "countries/Metis Confederacy.txt"
 
 #Arabia
-YEM	= "countries/Yemen.txt"
+
 ALH	= "countries/Haasa.txt"
 OMN	= "countries/Oman.txt"
 SAU	= "countries/Saudi Arabia.txt"
 HDJ	= "countries/Hedjaz.txt"
 UAE	= "countries/United Arab Emirates.txt"
+YEM	= "countries/Yemen.txt"
 
 # Asia Minor
 AKK	= "countries/AkKoyunlu.txt"
