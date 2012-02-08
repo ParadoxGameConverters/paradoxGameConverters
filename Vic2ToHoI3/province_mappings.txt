@@ -1099,5 +1099,70 @@ link = { vic = 1022 hoi = 961 hoi = 1002 hoi = 1041 hoi = 1042 hoi = 1079 hoi = 
 link = { vic = 1023 hoi = 879 hoi = 835 hoi = 880 hoi = 922 hoi = 1003 hoi = 962 hoi = 921 hoi = 795 hoi = 796 }	# Kostorma -> Istopniy, Dorovatka, Pogorelevo, Belovo, Rameshki, Chukhloma, Elegino, Gavrilkovo, Moseyevo
 link = { vic = 1024 hoi = 713 hoi = 755 hoi = 756 hoi = 798 hoi = 837 hoi = 797 hoi = 881 hoi = 923 hoi = 964 hoi = 1004 hoi = 963 }	# Galich -> Grinevo, Semichayevskaya, Gusikha, Totma, Zaytsevo, Alferovskaya, Manilovo, Yaksha, Georgievskoye, Dimnitsa, Povalikhino
 link = { vic = 991 hoi = 547 hoi = 444 hoi = 591 hoi = 592 hoi = 668 hoi = 669 hoi = 711 hoi = 753 hoi = 754 hoi = 670 hoi = 671 hoi = 633 hoi = 556 hoi = 555 hoi = 520 hoi = 448 hoi = 447 hoi = 414 hoi = 446 hoi = 519 hoi = 518 hoi = 483 hoi = 445 hoi = 482 hoi = 553 hoi = 554 hoi = 594 hoi = 631 }	# Uglich -> Mozela, Bolshaya Tovra, Valdiyevo, Norinskaya, Verkhovazhe, Drugosimonovskaya, Boyarskaya, Rogna, Kuzminskaya, Fominskaya, Udaltsovskaya, Doshchanoye, Vorkuta, Zapodyuzhe, Dorovskaya, Kargovino, Pochtovoye, Dvinskoy, Emetsk, Ust Shonosha, Verkhopuyskiy, Pukshenga, Erin Navolok, Tulma, Sol'vychegodsk, Zaruchevskaya, Spasskaya, Bolshaya Gora
+# RussiaFarEast
+link = { vic = 1088 hoi = 6875 hoi = 7120 }	# Shumshu -> Ostrov Paramusir, Ostrov Urup
+link = { vic = 1074 hoi = 8536 hoi = 8669 hoi = 8227 }	# Petropavlovsk -> Petropavlovsk Kamcackij, Ust' Kamchatsk, Kikhchik
+link = { vic = 2633 hoi = 8300 hoi = 8575 }	# Ossora -> Ossora, Tigil'
+link = { vic = 2616 hoi = 8570 }	# Tilichiki -> Palana
+link = { vic = 2590 vic = 2637 hoi = 10680 }	# Ugolnoye, Novo Mariinsk -> Anadyr
+link = { vic = 2666 hoi = 11376 }	# Pevek -> Pevek
+link = { vic = 2634 hoi = 8541 }	# Rassvet -> Pakhachi
+link = { vic = 2661 hoi = 10679 }	# Nizhnekolymsk -> Anyuysk
+link = { vic = 2662 hoi = 8355 }	# Cherskiy -> Srednekolymsk
+link = { vic = 2622 hoi = 11371 }	# Markovo -> Verkhne Kolymsk
+link = { vic = 2663 hoi = 8383 }	# Kamenskoye -> Evensk
+link = { vic = 1073 hoi = 8694 hoi = 8230 }	# Yevensk -> Susuman, Magadan
+link = { vic = 2638 vic = 2618 hoi = 8229 }	# Omsukchan, Talaya -> Okhotsk
+link = { vic = 2660 hoi = 10678 }	# Bereyezovka -> Cokurdah
+link = { vic = 2664 vic = 2665 vic = 2619 vic = 2621 hoi = 11369 hoi = 8324 }	# Oyotuni, Chokurdakh, Abiy, Srednekolymsk -> Verkhoyansk, Niznejansk
+link = { vic = 2647 vic = 2667 hoi = 706 }	# Yansk, Bulun -> Tit Ary
+link = { vic = 2652 vic = 2670 hoi = 10677 }	# Kular, Tiksi -> Ust' Olenek
+link = { vic = 2614 vic = 2659 hoi = 674 }	# Mordiyakha, Napalkovo -> Ostrov Belyj
+link = { vic = 2680 vic = 2658 hoi = 595 }	# Dudinka, Kheta -> Poluostrov Yamal
+link = { vic = 2673 hoi = 959 }	# Olenyok -> Tajmyr
+link = { vic = 2653 hoi = 10676 }	# Saskylah -> Poluostrov Tajmyr
+link = { vic = 2674 hoi = 1154 }	# Essey -> Ozero Tajmyr
+link = { vic = 2654 hoi = 11363 }	# Khatanga -> Golchikha
+link = { vic = 1086 hoi = 8470 hoi = 8545 }	# Pogobi -> Okha, Alexandrovsk Sakhalinsky
+link = { vic = 1087 hoi = 8640 hoi = 6990 hoi = 7009 }	# Otomari -> Shisuka, Maoka, Toyohara
+link = { vic = 1084 hoi = 8437 hoi = 8467 hoi = 8505 hoi = 8468 hoi = 8506 hoi = 8543 hoi = 8544 hoi = 8507 hoi = 8469 hoi = 8608 hoi = 14127 }	# Utchan -> Torom, Zeya, Fevral'sk, Tugur, Usalgin, Zlatoustovsk, Imeni Poliny Osipenko, Nikolayevsk na Amure, Mago, Solnechny, Bolshoy Shantar
+link = { vic = 1072 hoi = 8254 hoi = 8281 }	# Okhotsk -> Ulya, Enken
+link = { vic = 2641 hoi = 8253 hoi = 8280 hoi = 8306 hoi = 8333 hoi = 8359 hoi = 8410 hoi = 8332 hoi = 8384 hoi = 8305 }	# Ayan -> Curapca, Ust' Maja, Nelkan, Ayan, Nemuy, Chumikan, Aidanskoe Nagor's, Stanovoj Hrebet, Tommot
+link = { vic = 2676 hoi = 8601 hoi = 8568 hoi = 8537 }	# Kirensk -> Kurumkan, Nizhneangarsk, Kirensk
+link = { vic = 1080 hoi = 8720 hoi = 8693 hoi = 8667 hoi = 8635 hoi = 8571 hoi = 8603 hoi = 8539 }	# Chernomin -> Sretensk, Nerchinsk, Chernyshevsk, Mogocha, Davenda, Aksenovo Zilovskoye, Petropavlovsk Kamchatskiy
+link = { vic = 2696 hoi = 8602 }	# Aldan -> Bukacaca
+link = { vic = 2644 hoi = 8538 hoi = 8464 hoi = 8433 hoi = 8501 hoi = 8463 hoi = 8432 hoi = 8406 hoi = 8381 hoi = 8407 hoi = 8380 hoi = 8329 hoi = 8356 }	# Olyekminsk -> Amalat, Dronovskiy, Taksimo, Stanovoe Nagore, Taksimo, Limpeya, Kropotkin, Engazhimo, Sinyuga, Mutina, Khamra, Sorgo
+link = { vic = 2645 hoi = 8569 hoi = 8500 }	# Chilchi -> Vitimskoe Ploskogore, Lena
+link = { vic = 2620 hoi = 11370 }	# Syasir -> Ust Aldan
+link = { vic = 2639 hoi = 8745 }	# Susuman -> Lazo
+link = { vic = 2651 hoi = 11360 hoi = 587 }	# Udanchniy -> Udzha, Saskylah
+link = { vic = 2650 hoi = 8248 hoi = 8275 hoi = 8301 hoi = 8327 hoi = 8379 hoi = 8405 hoi = 8462 hoi = 8566 hoi = 8224 }	# Nyurba -> Morkoka, Nianjaja Tunguska, Nizhnealysardakh, Erbogacen, Nizhnekarelina, Parshino, Rassokha, Essej, Kotuj
+link = { vic = 2695 hoi = 8461 hoi = 8431 hoi = 8498 hoi = 8404 hoi = 8353 hoi = 8326 hoi = 8274 hoi = 8247 hoi = 8223 hoi = 8299 hoi = 8273 hoi = 8378 hoi = 8430 }	# Mukhtuya -> Ust' limsk, Lena, Ust' limskij Vodohranilisce, Vanavara, Cunya, Evenkijskij Avtonomnyj Okrug, Tura, Poligus, Novoselovo, Bor, Kominskiy, Podkamennaja Tunguska, Energetik
+link = { vic = 2669 hoi = 8331 hoi = 8357 hoi = 8382 hoi = 8434 hoi = 8408 hoi = 8358 hoi = 8409 hoi = 8435 hoi = 8465 hoi = 8502 hoi = 8330 hoi = 8304 hoi = 8279 }	# Amga -> Aldan, Torgo, Kedrovyy, Novaya Chara, Ust' Nyukzha, Nerjungri, Tyndinskiy, Ust' Urkima, Erofej Pavlovic, Mogoca, Artemovskij, Olekminsk, Mohsogolloh
+link = { vic = 2640 hoi = 8354 hoi = 8376 hoi = 8228 hoi = 8206 hoi = 8252 }	# Ziryanka -> Kytalyktah, Tomtor, Jakutsk, Tjung, Berdingestjah
+link = { vic = 2643 vic = 2668 hoi = 11359 }	# Honuu, Verkhoyansk -> Bulun
+link = { vic = 1071 hoi = 707 }	# Bytantaysk -> Muna
+link = { vic = 2649 vic = 2671 hoi = 11358 }	# Zhigansk, Zhilinda -> Vilyuisk
+link = { vic = 2642 hoi = 8400 hoi = 8188 }	# Ust Nera -> Zigansk, Viljujsk
+link = { vic = 1069 hoi = 8328 hoi = 8302 hoi = 8276 hoi = 8249 }	# Vilyuysk -> Vitim, Arylakh, Bol. Kon'ki, Cernysevskij
+link = { vic = 2672 hoi = 8459 hoi = 8225 hoi = 8204 }	# Pokrovsk -> Udacnyj, Ajhal, Mirnyj
+link = { vic = 2648 hoi = 8187 hoi = 8205 hoi = 8226 hoi = 8251 hoi = 8277 hoi = 8303 hoi = 8278 }	# Yakutsk -> Olenek, Malykaj, Almaznyj, Suntar, Chamcha, Lensk, Njuja
+link = { vic = 2675 hoi = 10682 }	# Yekonda -> Hatanga
+link = { vic = 2655 hoi = 11361 }	# Tura -> Dudinka
+link = { vic = 2693 hoi = 10681 }	# Uchami -> Novyj Urengoj
+link = { vic = 2657 hoi = 1111 }	# Svetlogorsk -> Obskaja Guba
+link = { vic = 2615 hoi = 8108 }	# Krasnoselkup -> Japtiksale
+link = { vic = 2613 hoi = 11366 }	# Nyda -> Yamalia
+link = { vic = 2684 hoi = 673 }	# Yar Sale -> Laborovaja
+link = { vic = 2682 hoi = 8100 }	# Aksarka -> Salekhard
+link = { vic = 2701 vic = 2694 vic = 2677 vic = 1076 vic = 2656 hoi = 918 }	# Surinda, Vanavara, Dotkon, Bratsk, Tayimba -> Novyj Kajak
+link = { vic = 1063 hoi = 8496 hoi = 8458 hoi = 8427 hoi = 8401 hoi = 8428 hoi = 8402 hoi = 8351 hoi = 8377 hoi = 8403 hoi = 8352 hoi = 8325 hoi = 8298 hoi = 8350 hoi = 8323 hoi = 8297 hoi = 8272 hoi = 8246 hoi = 8296 hoi = 8244 hoi = 8271 hoi = 8245 }	# Tomsk -> Severo Enisejskij, Monastyrka, Staroverovskiy, Indygin, Vorogovo, Polichet, Podbel', Tunga, Pridorozhnyy, Naduy, Sumarokovo, Burnyy, Komsa, Urlyukov, Lebed, Bakhta, Kochumdek, Zubrekovksiy, Ratta, Ust' Ozernoye, Borodino
+link = { vic = 2690 hoi = 8106 hoi = 8097 hoi = 8107 hoi = 8119 }	# Verkhniy Ufaley -> Beloyarskiy, Verkhne Kazymskiy, Nadym, Noyabrsk
+link = { vic = 2692 hoi = 1039 }	# Kostino -> Gory Byrranga
+link = { vic = 1070 hoi = 8186 hoi = 8202 hoi = 8221 hoi = 8203 hoi = 8222 }	# Bryanka -> Putorana, Kurejka, Kotui, Kocecum, Zaimka
+link = { vic = 2691 hoi = 8159 hoi = 8172 hoi = 8185 }	# Vorgovo -> Gory Kamen', Delimakit, Khantayskoye Ozero
+link = { vic = 2681 hoi = 8123 hoi = 8101 hoi = 8111 hoi = 8134 hoi = 8146 hoi = 8171 hoi = 8158 hoi = 8145 hoi = 8133 }	# Kikkiakki -> Noril'sk, Nadym, Nojabr'sk, Igarka, Sneznogorsk, Aleksandrovskoe, Niznevartovsk, Megion, Ul't Yagun
+link = { vic = 2646 hoi = 8122 hoi = 8132 hoi = 8121 hoi = 8143 hoi = 8144 hoi = 8157 hoi = 8169 hoi = 8156 hoi = 8155 hoi = 8131 hoi = 8142 hoi = 8154 hoi = 8120 hoi = 8130 }	# Ases Igan -> Fedorovskiy, Numto, Mankova, Pyt Yakh, Surgut, Langepas, Neftejugansk, Gornyj, Tavinsk, Kondinskoye, Sentyabr'skiy, Rymovy, Nefteyugansk, Novyy Urengoy
+link = { vic = 1065 hoi = 8109 hoi = 8098 hoi = 8099 hoi = 8110 }	# Nizhnevartovsk -> Kutop'jugan, Jamalo Nenetskij, Noviy Urengoy, Zapadno Sibirskaja Ravnina
 
 }
