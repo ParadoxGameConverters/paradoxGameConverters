@@ -34,6 +34,10 @@ configuration =
 	#	all		remove all of them
 	# Note: if there are not enough HoI3 tags, some or all of these will be done no matter what.
 	removetype = absorbed
+
+	# Money Factor: amount by which monetary figures are multiplied (treasuries, debts, etc).
+	#	Default: 0.000005 (two hundred thousand V2 pounds to one HOI3 "$")
+	money_factor = 0.000005
 	
 	# Note: if converting to vanilla HoI3, you may want to merge some V2 nations in order for tags to make sense.
 	# Merge settings are found in merge_nations.txt, rather than this file.

@@ -177,8 +177,7 @@ void HoI3World::convertCountries(V2World sourceWorld, countryMapping countryMap)
 					}
 					newCountry.sortRelations(outputOrder);
 
-					//XXX: newCountry.setMoney(MONEYFACTOR * sourceCountries[i].getTreasury());
-					//XXX: newCountry.setLastBankrupt(sourceCountries[i].getLastBankrupt());
+					//XXX: newCountry.setMoney(Configuration::getMoneyFactor() * sourceCountries[i].getMoney());
 
 					/*XXX:
 					vector<V2Loan> srcLoans = sourceCountries[i].getLoans();
@@ -197,12 +196,12 @@ void HoI3World::convertCountries(V2World sourceWorld, countryMapping countryMap)
 								log("Error: lender %s could not be found for %s's loan!\n", itr->getLender().c_str(), newCountry.getTag().c_str());
 							}
 						}
-						double size = MONEYFACTOR * sourceCountries[i].inflationAdjust(itr->getAmount());
+						double size = Configuration::getMoneyFactor() * sourceCountries[i].inflationAdjust(itr->getAmount());
 						newCountry.addLoan(lender, size, itr->getInterest() / 100.0f);
 					}
 					*/
 
-					//XXX: newCountry.setDiploPoints(2.0 * sourceCountries[i].getDiplomats());
+					newCountry.setDiploPoints(2.5 * sourceCountries[i].getDiploPoints()); // 2-to-5 ratio based on alliance cost
 				}
 			}
 		}

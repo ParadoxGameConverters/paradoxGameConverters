@@ -23,6 +23,7 @@ Configuration::Configuration()
 	removetype	= obj[0]->getLeaf("removetype");
 	V2gametype = obj[0]->getLeaf("v2gametype");
 	HoI3gametype = obj[0]->getLeaf("hoi3gametype");
+	moneyFactor = atof(obj[0]->getLeaf("money_factor").c_str());
 	factionLeaderAlgorithm = obj[0]->getLeaf("faction_leader");
 	if (factionLeaderAlgorithm == "manual")
 	{

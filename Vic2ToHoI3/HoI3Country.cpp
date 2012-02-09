@@ -117,6 +117,7 @@ void HoI3Country::output(FILE* output)
 		fprintf(output, "		%s={%d 0.000}\n", itr->first.c_str(), itr->second);
 	}
 	fprintf(output, "	}\n");
+	fprintf(output, "	diplo_influence=%f\n", diploPoints);
 	for (vector<HoI3Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
 		itr->output(output);
@@ -154,4 +155,10 @@ void HoI3Country::addProvince(int index)
 vector<int> HoI3Country::getProvinces() const
 {
 	return provinces;
+}
+
+
+void HoI3Country::setDiploPoints(double newPts)
+{
+	diploPoints = newPts;
 }

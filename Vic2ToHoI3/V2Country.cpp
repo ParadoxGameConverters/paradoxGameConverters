@@ -45,6 +45,18 @@ void V2Country::init(Object* obj)
 		}
 	}
 
+	vector<Object*> moneyObj = obj->getValue("money");
+	if (moneyObj.size() > 0)
+	{
+		money = atof(moneyObj[0]->getLeaf().c_str());
+	}
+
+	vector<Object*> diploObj = obj->getValue("diplomatic_points");
+	if (diploObj.size() > 0)
+	{
+		diploPoints = atof(diploObj[0]->getLeaf().c_str());
+	}
+
 	// Read international relations leaves
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); ++i)
@@ -162,9 +174,9 @@ void V2Country::eatCountry(V2Country* target)
 		armies.insert(armies.end(), target->armies.begin(), target->armies.end());
 		//XXX: leaders.insert(leaders.end(), target->leaders.begin(), target->leaders.end());
 
-		// acquire the target's treasury and income, as well as their liabilities
-		//XXX: treasury += target->treasury;
-		//XXX: estMonthlyIncome += target->estMonthlyIncome;
+		// acquire the target's treasury and reserves, as well as their liabilities
+		money += target->money;
+		bankReserves += target->bankReserves;
 		//XXX: loans.insert(loans.end(), target->loans.begin(), target->loans.end());
 
 		// rebalance prestige, badboy from weighted average

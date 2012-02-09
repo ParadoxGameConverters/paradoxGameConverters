@@ -30,6 +30,8 @@ class V2Country
 		vector<V2Army>		getArmies() { return armies; };
 		vector<V2Relations>	getRelations() { return relations; };
 		string				getPrimaryCulture() { return primaryCulture; };
+		double				getMoney() { return money; };
+		double				getDiploPoints() { return diploPoints; };
 
 	private:
 		string				tag;
@@ -51,7 +53,6 @@ class V2Country
 		//XXX: V2Reforms			reforms;
 		//string				nationalValue;
 		double				money;
-		date				lastBankrupt;
 		//XXX: vector<V2Creditor>	creditors;
 		double				bankReserves;
 		double				diploPoints;

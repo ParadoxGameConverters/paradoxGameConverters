@@ -62,6 +62,11 @@ public:
 		return getInstance()->manualCominternFaction;
 	}
 
+	static double getMoneyFactor()
+	{
+		return getInstance()->moneyFactor;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -79,6 +84,7 @@ private:
 	string V2gametype;
 	string removetype;
 	string factionLeaderAlgorithm;
+	double moneyFactor;
 	vector<string> manualAxisFaction;
 	vector<string> manualAlliesFaction;
 	vector<string> manualCominternFaction;

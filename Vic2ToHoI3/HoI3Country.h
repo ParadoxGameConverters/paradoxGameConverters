@@ -27,7 +27,6 @@ class HoI3Country
 		void					addArmy(HoI3Army);
 		void					sortRelations(const vector<string>& order);
 		void					setMoney(double);
-		void					setLastBankrupt(date);
 		void					addLoan(string creditor, double size, double interest);
 		void					setDiploPoints(double);
 		//XXX: void					addLeader(HoI3Leader);
@@ -46,7 +45,6 @@ class HoI3Country
 		vector<HoI3Relations>	relations;
 		vector<HoI3Army>	armies;
 		double				money;
-		date				lastBankrupt;
 		//XXX: vector<HoI3Creditor>	creditors;
 		double				diploPoints;
 		//XXX: vector<HoI3Leader>	leaders;
