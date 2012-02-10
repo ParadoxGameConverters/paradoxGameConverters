@@ -54,6 +54,16 @@ void V2World::init(string V2Loc)
 	getProvinceLocalizations(V2Loc + "\\localisation\\1.2.csv");
 	getProvinceLocalizations(V2Loc + "\\localisation\\beta1.csv");
 	getProvinceLocalizations(V2Loc + "\\localisation\\beta2.csv");
+	getProvinceLocalizations(V2Loc + "\\localisation\\beta3.csv");
+	getProvinceLocalizations(V2Loc + "\\localisation\\1.3.csv");
+	getProvinceLocalizations(V2Loc + "\\localisation\\newtext.csv");
+	getProvinceLocalizations(V2Loc + "\\localisation\\1.4.csv");
+	if (Configuration::getV2Gametype() == "AHD")
+	{
+		getProvinceLocalizations(V2Loc + "\\localisation\\housedivided.csv");
+		getProvinceLocalizations(V2Loc + "\\localisation\\housedivided2_1.csv");
+	}
+
 
 	// set province rgo types and life ratings
 	struct _finddata_t	provDirData;
