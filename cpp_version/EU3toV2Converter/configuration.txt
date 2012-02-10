@@ -15,6 +15,7 @@ configuration =
 
 	# EU3 Game Type: what version of EU3 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!
+	#	in	force version to In Nomine (3.x) - experimental!
 	#	httt	force version to Heir To The Throne (4.x)
 	#	dw	force version to Divine Wind (5.x)
 	EU3gametype = auto
