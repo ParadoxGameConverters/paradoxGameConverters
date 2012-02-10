@@ -361,3 +361,4 @@ Revision	Version Updated		Log Message
 376		C++			Use the parser to grab province data instead of doing it manually.  Hopefully fixes AHD Baltimore.
 378		C++			Get more localizations (including AHD ones).
 379		C++			Automated test scripts now test against multiple config files.
+380		C++			AHD unciv nations now get research points for reforms instead of techs.

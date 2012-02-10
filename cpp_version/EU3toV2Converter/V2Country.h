@@ -82,6 +82,7 @@ class V2Country
 		double				plurality;
 		vector<string>		techs;
 		inventionStatus	inventions[naval_exercises];
+		double				researchPoints;
 		string				techSchool;
 		string				government;
 		vector<V2Relations>	relations;
