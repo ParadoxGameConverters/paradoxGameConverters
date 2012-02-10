@@ -358,3 +358,4 @@ Revision	Version Updated		Log Message
 344		C++			Make room in configuration file for V2 gametype.
 361		C++			Experimental support for EU3:IN.  Warn when attempting to use start dates that are too early.
 367		C++			Support In Nomine-style three-part dates.
+376		C++			Use the parser to grab province data instead of doing it manually.  Hopefully fixes AHD Baltimore.

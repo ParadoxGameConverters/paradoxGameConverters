@@ -92,47 +92,17 @@ void V2World::init(string V2Loc)
 			{
 				if (i->getNum() == provNum)
 				{
-					read.open( (provDirPath + provFileData.name).c_str(), ios_base::binary );
-					vector<string> lines;
-					while (!read.eof())
+					Object* provinceObj = doParseFile((provDirPath + provFileData.name).c_str());
+					vector<Object*> rgoObj = provinceObj->getValue("trade_goods");
+					if (rgoObj.size() > 0)
 					{
-						getline(read, line);
-						size_t delimiter2 = 0;
-						do
-						{
-							size_t delimiter3 = line.find_first_of('\r', delimiter2);
-							if (delimiter3 == line.size() - 1)
-							{
-								lines.push_back(line.substr(delimiter2, line.size() - delimiter2 - 1));
-								delimiter2 = string::npos;
-							}
-							else if (delimiter3 == string::npos)
-							{
-								lines.push_back(line);
-								delimiter2 = string::npos;
-							}
-							else
-							{
-								lines.push_back(line.substr(delimiter2, delimiter3 - delimiter2));
-								delimiter2 = delimiter3 + 1;
-							}
-						} while (delimiter2 != string::npos);
+						i->setRgoType(rgoObj[0]->getLeaf());
 					}
-					for (unsigned int j = 0; j < lines.size(); j++)
+					vector<Object*> lifeObj = provinceObj->getValue("life_rating");
+					if (lifeObj.size() > 0)
 					{
-						if(lines[j].substr(0, 14) == "trade_goods = ")
-						{
-							string type = lines[j].substr(14, lines[j].size() - 14);
-							i->setRgoType(type);
-						}
-						if(lines[j].substr(0, 14) == "life_rating = ")
-						{
-							int rating = atoi( lines[j].substr(14, lines[j].size() - 14).c_str() );
-							i->setLifeRating(rating);
-						}
+						i->setLifeRating(atoi(lifeObj[0]->getLeaf().c_str()));
 					}
-					read.close();
-					read.clear();
 					break;
 				}
 			}
@@ -140,9 +110,6 @@ void V2World::init(string V2Loc)
 			{
 				log("	Error: could not find province %d to add rgo and liferating.\n", provNum);
 			}
-
-
-			//provinces.push_back(newProv);
 		} while(_findnext(fileListing2, &provFileData) == 0);
 		_findclose(fileListing2);
 	} while(_findnext(fileListing, &provDirData) == 0);
