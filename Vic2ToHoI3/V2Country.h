@@ -32,6 +32,11 @@ class V2Country
 		string				getPrimaryCulture() { return primaryCulture; };
 		double				getMoney() { return money; };
 		double				getDiploPoints() { return diploPoints; };
+		double				getEducationSpending() { return educationSpending; }
+		double				getAdminSpending() { return adminSpending; }
+		double				getSocialSpending() { return socialSpending; }
+		double				getMilitarySpending() { return militarySpending; }
+		string				getReform(string reform);
 
 	private:
 		string				tag;
@@ -61,6 +66,12 @@ class V2Country
 		double				literacy;
 		vector<V2Province*>	provinces;
 		vector<V2Province*>	cores;
+		double				educationSpending;
+		double				adminSpending;
+		double				socialSpending;
+		double				militarySpending;
+
+		map<string, string> reforms;
 };
 
 

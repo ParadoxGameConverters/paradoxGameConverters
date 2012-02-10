@@ -156,6 +156,61 @@ void HoI3World::convertCountries(V2World sourceWorld, countryMapping countryMap)
 
 					//XXX: Map government types, set up ministers(?)
 
+					// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
+					if (sourceCountries[i].getGovernmentType() == "democracy" || sourceCountries[i].getGovernmentType() == "hms_government")
+						newCountry.setCivilLaw("open_society");
+					else if (sourceCountries[i].getGovernmentType() == "proletarian_dictatorship")
+						newCountry.setCivilLaw("totalitarian_system");
+					else
+						newCountry.setCivilLaw("limited_restrictions");
+
+					// conscription law - everyone starts with volunteer armies
+					newCountry.setConscriptionLaw("volunteer_army");
+
+					// economic law - everyone starts with full civilian economy
+					newCountry.setEconomicLaw("full_civilian_economy");
+
+					// educational investment law - from educational spending
+					if (sourceCountries[i].getEducationSpending() > 0.75)
+						newCountry.setEducationalLaw("big_education_investment");
+					else if (sourceCountries[i].getEducationSpending() > 0.5)
+						newCountry.setEducationalLaw("medium_large_education_investment");
+					else if (sourceCountries[i].getEducationSpending() > 0.25)
+						newCountry.setEducationalLaw("average_education_investment");
+					else
+						newCountry.setEducationalLaw("minimal_education_investment");
+
+					// industrial policy laws - everyone starts with consumer product orientation
+					newCountry.setIndustrialLaw("consumer_product_orientation");
+
+					// press laws - set from press reforms
+					if (sourceCountries[i].getReform("press_rights") == "free_press")
+						newCountry.setPressLaw("free_press");
+					else if (sourceCountries[i].getReform("press_rights") == "censored_press")
+						newCountry.setPressLaw("censored_press");
+					else // press_rights == state_press
+					{
+						if ((sourceCountries[i].getGovernmentType() == "proletarian_dicatorship") ||
+							(sourceCountries[i].getGovernmentType() == "fascist_dictatorship"))
+						{
+							newCountry.setPressLaw("propaganda_press");
+						}
+						else
+						{
+							newCountry.setPressLaw("state_press");
+						}
+					}
+
+					// training laws - from military spending
+					if (sourceCountries[i].getMilitarySpending() > 0.75)
+						newCountry.setTrainingLaw("specialist_training");
+					else if (sourceCountries[i].getMilitarySpending() > 0.5)
+						newCountry.setTrainingLaw("advanced_training");
+					else if (sourceCountries[i].getMilitarySpending() > 0.25)
+						newCountry.setTrainingLaw("basic_training");
+					else
+						newCountry.setTrainingLaw("minimal_training");
+
 					vector<V2Relations> srcRelations = sourceCountries[i].getRelations();
 					if (srcRelations.size() > 0)
 					{

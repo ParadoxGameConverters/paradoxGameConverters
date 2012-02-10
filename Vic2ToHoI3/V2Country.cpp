@@ -45,6 +45,28 @@ void V2Country::init(Object* obj)
 		}
 	}
 
+	vector<Object*> uhObj = obj->getValue("upper_house");
+	if (uhObj.size() > 0)
+	{
+		vector<Object*> uhComp = uhObj[0]->getLeaves();
+		for (vector<Object*>::iterator itr = uhComp.begin(); itr != uhComp.end(); ++itr)
+		{
+			upperHouseComposition[(*itr)->getKey()] = atof((*itr)->getLeaf().c_str());
+		}
+	}
+
+	vector<Object*> partyObj = obj->getValue("ruling_party");
+	if (partyObj.size() > 0)
+	{
+		rulingParty = atoi(partyObj[0]->getLeaf().c_str());
+	}
+
+	partyObj = obj->getValue("active_party");
+	for (vector<Object*>::iterator itr = partyObj.begin(); itr != partyObj.end(); ++itr)
+	{
+		parties.push_back(atoi((*itr)->getLeaf().c_str()));
+	}
+
 	vector<Object*> moneyObj = obj->getValue("money");
 	if (moneyObj.size() > 0)
 	{
@@ -57,8 +79,67 @@ void V2Country::init(Object* obj)
 		diploPoints = atof(diploObj[0]->getLeaf().c_str());
 	}
 
-	// Read international relations leaves
+	vector<Object*> govObj = obj->getValue("government");
+	if (govObj.size() > 0)
+	{
+		government = govObj[0]->getLeaf();
+	}
+
+	// Read spending
+	vector<Object*> spendingObj = obj->getValue("education_spending");
+	if (spendingObj.size() > 0)
+	{
+		vector<Object*> settingsObj = spendingObj[0]->getValue("settings");
+		if (settingsObj.size() > 0)
+		{
+			educationSpending = atof(settingsObj[0]->getLeaf().c_str());
+		}
+	}
+	spendingObj = obj->getValue("crime_fighting");
+	if (spendingObj.size() > 0)
+	{
+		vector<Object*> settingsObj = spendingObj[0]->getValue("settings");
+		if (settingsObj.size() > 0)
+		{
+			adminSpending = atof(settingsObj[0]->getLeaf().c_str());
+		}
+	}
+	spendingObj = obj->getValue("social_spending");
+	if (spendingObj.size() > 0)
+	{
+		vector<Object*> settingsObj = spendingObj[0]->getValue("settings");
+		if (settingsObj.size() > 0)
+		{
+			socialSpending = atof(settingsObj[0]->getLeaf().c_str());
+		}
+	}
+	spendingObj = obj->getValue("military_spending");
+	if (spendingObj.size() > 0)
+	{
+		vector<Object*> settingsObj = spendingObj[0]->getValue("settings");
+		if (settingsObj.size() > 0)
+		{
+			militarySpending = atof(settingsObj[0]->getLeaf().c_str());
+		}
+	}
+
+	// Read reforms
 	vector<Object*> leaves = obj->getLeaves();
+	for (unsigned int i = 0; i < leaves.size(); ++i)
+	{
+		string key = leaves[i]->getKey();
+
+		if (key == "slavery" || key == "vote_franchise" || key == "upper_house_composition" ||
+		    key == "voting_system" || key == "public_meetings" || key == "press_rights" ||
+			key == "trade_unions" || key == "political_parties" || key == "wage_reforms" ||
+			key == "work_hours" || key == "safety_regulations" || key == "unemployment_subsidies" ||
+			key == "pensions" || key == "health_care")
+		{
+			reforms[key] = leaves[i]->getLeaf();
+		}
+	}
+
+	// Read international relations leaves
 	for (unsigned int i = 0; i < leaves.size(); ++i)
 	{
 		string key = leaves[i]->getKey();
@@ -205,4 +286,14 @@ void V2Country::eatCountry(V2Country* target)
 	target->clearCores();
 
 	log("Merged %s into %s\n", target->tag.c_str(), tag.c_str());
+}
+
+
+string V2Country::getReform(string reform)
+{
+	map<string,string>::iterator itr = reforms.find(reform);
+	if (itr == reforms.end())
+		return "";
+	
+	return itr->second;
 }

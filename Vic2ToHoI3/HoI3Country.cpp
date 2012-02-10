@@ -12,6 +12,14 @@ void HoI3Country::init(string newTag, string newCountryFile)
 	capital = 0;
 	diploPoints = 0.0;
 	sourceCountryIndex = -1;
+
+	civil_law = "open_society";
+	conscription_law = "volunteer_army";
+	economic_law = "full_civilian_economy";
+	educational_investment_law = "minimal_education_investment";
+	industrial_policy_laws = "consumer_product_orientation";
+	press_laws = "free_press";
+	training_laws = "minimal_training";
 }
 
 
@@ -118,6 +126,13 @@ void HoI3Country::output(FILE* output)
 	}
 	fprintf(output, "	}\n");
 	fprintf(output, "	diplo_influence=%f\n", diploPoints);
+	fprintf(output, "	civil_law=%s\n", civil_law.c_str());
+	fprintf(output, "	conscription_law=%s\n", conscription_law.c_str());
+	fprintf(output, "	economic_law=%s\n", economic_law.c_str());
+	fprintf(output, "	education_investment_law=%s\n", educational_investment_law.c_str());
+	fprintf(output, "	industrial_policy_laws=%s\n", industrial_policy_laws.c_str());
+	fprintf(output, "	press_laws=%s\n", press_laws.c_str());
+	fprintf(output, "	training_laws=%s\n", training_laws.c_str());
 	for (vector<HoI3Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
 		itr->output(output);

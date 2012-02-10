@@ -17,7 +17,7 @@ class HoI3Country
 	public:
 		void					init(string tag, string countryFile);
 		void					initFromHistory();
-		string				getTag() const;
+		string					getTag() const;
 		void					setSourceCountryIndex(int);
 		int						getSourceCountryIndex();
 		void					setCapital(int);
@@ -35,6 +35,15 @@ class HoI3Country
 		vector<int>				getProvinces() const;	// note: returns indexes into provinces array, NOT province nums
 		HoI3Alignment*			getAlignment();
 
+		// laws
+		void					setCivilLaw(string newLaw)			{ civil_law = newLaw; };
+		void					setConscriptionLaw(string newLaw)	{ conscription_law = newLaw; };
+		void					setEconomicLaw(string newLaw)		{ economic_law = newLaw; };
+		void					setEducationalLaw(string newLaw)	{ educational_investment_law = newLaw; };
+		void					setIndustrialLaw(string newLaw)		{ industrial_policy_laws = newLaw; };
+		void					setPressLaw(string newLaw)			{ press_laws = newLaw; };
+		void					setTrainingLaw(string newLaw)		{ training_laws = newLaw; };
+
 	private:
 		void outputTech(FILE*);
 
@@ -51,6 +60,15 @@ class HoI3Country
 		map<string, int>	technologies;
 		vector<int>			provinces;
 		HoI3Alignment		alignment;
+
+		// laws
+		string				civil_law;
+		string				conscription_law;
+		string				economic_law;
+		string				educational_investment_law;
+		string				industrial_policy_laws;
+		string				press_laws;
+		string				training_laws;
 };
 
 
