@@ -1,6 +1,7 @@
 #include "V2Reforms.h"
 #include "tempFuncs.h"
 #include "Log.h"
+#include "Configuration.h"
 
 
 void V2Reforms::init(EU3Country* srcCountry)
@@ -19,6 +20,7 @@ void V2Reforms::init(EU3Country* srcCountry)
 	unemployment_subsidies		= 0;
 	pensions							= 0;
 	health_care						= 0;
+	school_reforms					= 0;
 	governmentEffects(srcCountry);
 	sliderEffects(srcCountry);
 	flagEffects(srcCountry);
@@ -45,6 +47,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "celestial_empire")
 	{
@@ -62,6 +65,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "despotic_monarchy")
 	{
@@ -79,6 +83,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "feudal_monarchy")
 	{
@@ -96,6 +101,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "merchant_republic")
 	{
@@ -113,6 +119,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "imperial_government")
 	{
@@ -130,6 +137,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "noble_republic")
 	{
@@ -147,6 +155,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "administrative_monarchy")
 	{
@@ -164,6 +173,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "administrative_republic")
 	{
@@ -181,6 +191,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "absolute_monarchy")
 	{
@@ -198,6 +209,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "republican_dictatorship")
 	{
@@ -215,6 +227,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "constitutional_monarchy")
 	{
@@ -232,6 +245,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "enlightened_despotism")
 	{
@@ -249,6 +263,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "constitutional_republic")
 	{
@@ -266,6 +281,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "bureaucratic_despotism")
 	{
@@ -283,6 +299,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "theocratic_government")
 	{
@@ -300,6 +317,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "papal_government")
 	{
@@ -317,6 +335,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "tribal_despotism")
 	{
@@ -334,6 +353,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "tribal_federation")
 	{
@@ -351,6 +371,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "tribal_democracy")
 	{
@@ -368,6 +389,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "revolutionary_republic")
 	{
@@ -385,6 +407,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else if (government == "revolutionary_empire")
 	{
@@ -402,6 +425,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 	else 
 	{
@@ -427,6 +451,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= centralization_decentralization * 0;
 	pensions							+= centralization_decentralization * 0;
 	health_care						+= centralization_decentralization * 0;
+	school_reforms					+= centralization_decentralization * 0;
 	
 	int aristocracy_plutocracy = srcCountry->getAristocracyPlutocracy();
 	slavery							+= aristocracy_plutocracy * 0;
@@ -443,6 +468,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= aristocracy_plutocracy * 0;
 	pensions							+= aristocracy_plutocracy * 0;
 	health_care						+= aristocracy_plutocracy * 0;
+	school_reforms					+= aristocracy_plutocracy * 0;
 
 	int serfdom_freesubjects = srcCountry->getSerfdomFreesubjects();
 	slavery							+= serfdom_freesubjects * 0;
@@ -459,6 +485,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= serfdom_freesubjects * 0;
 	pensions							+= serfdom_freesubjects * 0;
 	health_care						+= serfdom_freesubjects * 0;
+	school_reforms					+= serfdom_freesubjects * 0;
 
 	int innovative_narrowminded = srcCountry->getInnovativeNarrowminded();
 	slavery							+= innovative_narrowminded * 0;
@@ -475,6 +502,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= innovative_narrowminded * -1;
 	pensions							+= innovative_narrowminded * -1;
 	health_care						+= innovative_narrowminded * -1;
+	school_reforms					+= innovative_narrowminded * 0;
 	
 	int mercantilism_freetrade = srcCountry->getMercantilismFreetrade();
 	slavery							+= mercantilism_freetrade * 0;
@@ -491,6 +519,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= mercantilism_freetrade * 0;
 	pensions							+= mercantilism_freetrade * 0;
 	health_care						+= mercantilism_freetrade * 0;
+	school_reforms					+= mercantilism_freetrade * 0;
 	
 	int offensive_defensive = srcCountry->getOffensiveDefensive();
 	slavery							+= offensive_defensive * 0;
@@ -507,6 +536,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= offensive_defensive * 0;
 	pensions							+= offensive_defensive * 0;
 	health_care						+= offensive_defensive * 0;
+	school_reforms					+= offensive_defensive * 0;
 	
 	int land_naval = srcCountry->getLandNaval();
 	slavery							+= land_naval * 0;
@@ -523,6 +553,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= land_naval * 0;
 	pensions							+= land_naval * 0;
 	health_care						+= land_naval * 0;
+	school_reforms					+= land_naval * 0;
 	
 	int quality_quantity = srcCountry->getQualityQuantity();
 	slavery							+= quality_quantity * 0;
@@ -539,6 +570,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 	unemployment_subsidies		+= quality_quantity * 0;
 	pensions							+= quality_quantity * 0;
 	health_care						+= quality_quantity * 0;
+	school_reforms					+= quality_quantity * 0;
 }
 
 
@@ -563,6 +595,7 @@ void V2Reforms::flagEffects(EU3Country* srcCountry)
 			unemployment_subsidies		+= 0;
 			pensions							+= 0;
 			health_care						+= 0;
+			school_reforms					+= 0;
 		}
 	}
 }
@@ -586,6 +619,61 @@ void V2Reforms::modifierEffects(EU3Country* srcCountry)
 		unemployment_subsidies		+= 0;
 		pensions							+= 0;
 		health_care						+= 0;
+		school_reforms					+= 0;
+	}
+	if (srcCountry->hasModifier("the_school_establishment_act"))
+	{
+		slavery							+= 1;
+		vote_franchise					+= 0;
+		upper_house_composition		+= 0;
+		voting_system					+= 0;
+		public_meetings				+= 0;
+		press_rights					+= 0;
+		trade_unions					+= 0;
+		political_parties				+= 0;
+		wage_reforms					+= 0;
+		work_hours						+= 0;
+		safety_regulations			+= 0;
+		unemployment_subsidies		+= 0;
+		pensions							+= 0;
+		health_care						+= 0;
+		school_reforms					+= 5;
+	}
+	if (srcCountry->hasModifier("the_education_act"))
+	{
+		slavery							+= 1;
+		vote_franchise					+= 0;
+		upper_house_composition		+= 0;
+		voting_system					+= 0;
+		public_meetings				+= 0;
+		press_rights					+= 0;
+		trade_unions					+= 0;
+		political_parties				+= 0;
+		wage_reforms					+= 0;
+		work_hours						+= 0;
+		safety_regulations			+= 0;
+		unemployment_subsidies		+= 0;
+		pensions							+= 0;
+		health_care						+= 0;
+		school_reforms					+= 5;
+	}
+	if (srcCountry->hasModifier("sunday_schools"))
+	{
+		slavery							+= 1;
+		vote_franchise					+= 0;
+		upper_house_composition		+= 0;
+		voting_system					+= 0;
+		public_meetings				+= 0;
+		press_rights					+= 0;
+		trade_unions					+= 0;
+		political_parties				+= 0;
+		wage_reforms					+= 0;
+		work_hours						+= 0;
+		safety_regulations			+= 0;
+		unemployment_subsidies		+= 0;
+		pensions							+= 0;
+		health_care						+= 0;
+		school_reforms					+= 5;
 	}
 }
 
@@ -598,6 +686,18 @@ void V2Reforms::output(FILE* output)
 	fprintf(output, "	unemployment_subsidies=no_subsidies\n");
 	fprintf(output, "	pensions=no_pensions\n");
 	fprintf(output, "	health_care=no_health_care\n");
+
+	if (Configuration::getV2Gametype() == "AHD")
+	{
+		if (school_reforms >= 10)
+		{
+			fprintf(output, "	school_reforms=low_schools\n");
+		}
+		else
+		{
+			fprintf(output, "	school_reforms=no_schools\n");
+		}
+	}
 
 	if (slavery >= 1)
 	{

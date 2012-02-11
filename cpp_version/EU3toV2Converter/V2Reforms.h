@@ -28,6 +28,7 @@ class V2Reforms {
 		int unemployment_subsidies;
 		int pensions;
 		int health_care;
+		int school_reforms;
 };
 
 
