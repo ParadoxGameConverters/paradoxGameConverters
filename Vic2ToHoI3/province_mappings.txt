@@ -1424,8 +1424,8 @@ link = { vic = 2051 hoi = 10340 hoi = 10351 }	# Inhambane -> Inhambane, Xai Xai
 link = { vic = 2113 vic = 2112 hoi = 7960 }	# Ulundi, Ladysmith -> Ulundi
 link = { vic = 2049 vic = 2050 hoi = 10382 }	# Lourenzo Marques, Chaimate -> Lourenco Marques
 link = { vic = 2114 hoi = 10395 }	# Mbabane -> Nelspruit
-link = { vic = 2110 hoi = 10326 hoi = 10357 }	# Thohoyandu -> Mossurize, Massingir
-link = { vic = 2107 hoi = 10426 }	# Klerksdorp -> Mafikeng
+link = { vic = 2110 vic = 2109 hoi = 10357 hoi = 10326 }	# Thohoyandu, Lydenburg -> Massingir, Mossurize
+link = { vic = 2107 vic = 2106 vic = 2105 hoi = 10426 }	# Klerksdorp, Witwatersrand, Pretoria -> Mafikeng
 link = { vic = 2095 vic = 2094 hoi = 10436 hoi = 10416 }	# Dikathong, Kimberley -> Kimberley, Upington
 link = { vic = 2084 hoi = 10381 hoi = 10365 }	# Angra Pequena -> Pomona, Hottentots Bay
 link = { vic = 2086 hoi = 10393 hoi = 10406 }	# Karasburg -> Ai Ais, Karasburg
@@ -1494,14 +1494,14 @@ link = { vic = 2002 hoi = 10139 hoi = 10127 hoi = 10113 }	# Quibala -> Uíge, Amb
 link = { vic = 2001 hoi = 10073 hoi = 10085 }	# Mbanza -> Dolisie, Cabinda
 link = { vic = 1974 hoi = 10047 }	# Mayumbe -> Port Gentil
 link = { vic = 1972 hoi = 10021 }	# Libreville -> Libreville
-link = { vic = 1975 hoi = 10037 }	# Moanda -> Lambaréne
+link = { vic = 1975 vic = 1978 hoi = 10037 }	# Moanda, Madingou -> Lambaréne
 link = { vic = 1982 hoi = 10064 }	# Kinshasa -> Pointe Noire
 link = { vic = 2624 vic = 2000 vic = 1983 hoi = 10055 }	# Loango, Cabinda, Boma -> Tchibanga
 link = { vic = 1954 hoi = 10632 }	# São Tomé -> São Tomé
 link = { vic = 1955 vic = 1973 hoi = 10002 }	# Fernando Pó, Bata -> Bata
 link = { vic = 1956 vic = 1958 vic = 1959 hoi = 9986 }	# Douala, Kribi, Yaounde -> Douala
 link = { vic = 1934 hoi = 9970 }	# Calabar -> Calabar
-link = { vic = 1976 vic = 1980 hoi = 10028 }	# Makokou, Djambala -> Brazzaville
+link = { vic = 1976 vic = 1980 vic = 1977 hoi = 10028 }	# Makokou, Djambala, Nkuna -> Brazzaville
 link = { vic = 1962 vic = 1966 vic = 1981 hoi = 9921 }	# Bertoua, Nola, Impfondo -> Yaoundé
 link = { vic = 2035 vic = 2034 hoi = 10074 }	# Usumbura, Kigali -> Bukoba
 link = { vic = 2019 hoi = 10272 }	# Entebbe -> Kampala
@@ -1954,5 +1954,6 @@ link = { vic = 3032 hoi = 13079 hoi = 13029 hoi = 13033 hoi = 13030 hoi = 13018 
 link = { vic = 3207 hoi = 10853 hoi = 13019 hoi = 13017 hoi = 13040 }	# Cape Verde Basin -> South Central Barracuda Fracture Zone, Southeastern Barracuda Fracture Zone, Eastern Vema Fracture Zone, East Central Vema Fracture Zone
 link = { vic = 3206 hoi = 13037 hoi = 10852 hoi = 13237 hoi = 10851 hoi = 13236 }	# East Demerara Plain -> Western Vema Fracture Zone, Southwestern Vema Fracture Zone, Southeastern Demerara Plain, Western Four North Fracture Zone, Western Sierra Leone Fracture Zone
 link = { vic = 3030 hoi = 13016 hoi = 13039 hoi = 13038 hoi = 13041 }	# Southern Guiana Basin -> Western Banary Basin, Southeastern Vema Fracture Zone, Southern Vema Fracture Zone, West Central Vema Fracture Zone
+link = { vic = 2108 hoi = 8030 }	# Mosega -> Mazunga
 
 }
