@@ -365,3 +365,4 @@ Revision	Version Updated		Log Message
 380		C++			AHD unciv nations now get research points for reforms instead of techs.
 381		C++			Document "EU3gametype = in" setting in configuration.txt.
 383		C++			School reforms for AHD.
+386		C++			Inca culture maps to Quechua, not Tarascan (the Tarascan people are from modern Mexico)

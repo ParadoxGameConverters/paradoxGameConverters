@@ -100,7 +100,7 @@ link = { vic = melanesian eu3 = melanesian eu3 = papuan }
 link = { vic = zapotec eu3 = zapotek }
 link = { vic = mayan eu3 = mayan }
 link = { vic = nahua eu3 = aztek }
-link = { vic = tarascan eu3 = inca }
+link = { vic = quechua eu3 = inca }
 link = { vic = guarani eu3 = guarani }
 link = { vic = aimara eu3 = aimara }
 link = { vic = amazonian eu3 = amazonian }
