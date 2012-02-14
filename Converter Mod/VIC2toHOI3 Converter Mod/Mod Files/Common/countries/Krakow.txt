@@ -1,4 +1,4 @@
-color = { 190  110  101 }
+color = { 138  193  231 }
 graphical_culture = Generic
 
 last_election = 1935.11.6

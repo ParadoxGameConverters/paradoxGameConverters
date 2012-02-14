@@ -1,4 +1,4 @@
-color = { 67  123  237 }
+color = { 166  224  85 }
 graphical_culture = Us
 major = yes
 

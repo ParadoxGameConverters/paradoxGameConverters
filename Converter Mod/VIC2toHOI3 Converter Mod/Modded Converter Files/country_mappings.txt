@@ -34,7 +34,7 @@ link = { vic = CHP hoi = CHP } 	# Champagne
 link = { vic = COR hoi = COR } 	# Corsica
 link = { vic = DAU hoi = DAU } 	# Dauphine
 link = { vic = FOI hoi = FOI } 	# Foix
-link = { vic = GUY hoi = GUY } 	# Guyenne
+link = { vic = GUY hoi = GUN } 	# Guyenne
 link = { vic = NEV hoi = NEV } 	# Nevers
 link = { vic = NRM hoi = NRM } 	# Normandy
 link = { vic = ORL hoi = ORL } 	# Orleans
@@ -445,6 +445,7 @@ link = { vic = SIN hoi = SIN }  # Sind
 link = { vic = TRA hoi = TRA }  # Travanacore
 link = { vic = VIJ hoi = VIJ }  # Vijaynagara
 link = { vic = HND hoi = IND }	# India
+link = { vic = IND hoi = INE }	# Indore
 
 # Australasia
 link = { vic = AST hoi = AST }	# Australia

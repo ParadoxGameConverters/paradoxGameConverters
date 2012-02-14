@@ -1,4 +1,4 @@
-color = { 221  178  83 }
+color = { 242  149  0 }
 graphical_culture = Japanese
 
 major = yes

@@ -1,4 +1,4 @@
-color = { 80  159  90 }
+color = { 48  164  51 }
 graphical_culture = British
 
 last_election = 1933.6.17

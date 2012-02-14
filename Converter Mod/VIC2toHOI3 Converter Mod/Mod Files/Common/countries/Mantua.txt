@@ -1,4 +1,4 @@
-color = { 67  127  63 }
+color = { 191  83  101 }
 graphical_culture = Italian
 
 major = yes

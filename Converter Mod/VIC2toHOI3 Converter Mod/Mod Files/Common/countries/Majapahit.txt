@@ -1,4 +1,4 @@
-color = { 86  106  135 }
+color = { 201  28  54 }
 graphical_culture = Japanese
 
 default_templates = {

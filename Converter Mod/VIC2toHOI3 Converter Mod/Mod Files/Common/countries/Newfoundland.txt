@@ -1,4 +1,4 @@
-color = { 119  48  39 }
+color = { 255  211  56 }
 graphical_culture = Us
 
 last_election = 1935.10.14

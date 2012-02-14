@@ -1,4 +1,4 @@
-color = { 77  103  174 }
+color = { 202  112  85 }
 graphical_culture = Italian
 
 default_templates = {

@@ -1,4 +1,4 @@
-color = { 110  142  190 }
+color = { 93  160  163 }
 graphical_culture = French
 
 last_election = 1932.5.4

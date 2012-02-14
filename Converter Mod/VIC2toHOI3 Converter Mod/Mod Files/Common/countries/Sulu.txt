@@ -1,4 +1,4 @@
-color = { 144  143  181 }
+color = { 89  164  144 }
 graphical_culture = Japanese
 
 last_election = 1933.11.11

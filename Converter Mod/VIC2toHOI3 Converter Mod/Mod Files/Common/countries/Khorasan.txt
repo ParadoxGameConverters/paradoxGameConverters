@@ -1,4 +1,4 @@
-color = { 64  160  167 }
+color = { 130  168  224 }
 graphical_culture = Soviet
 
 default_templates = {

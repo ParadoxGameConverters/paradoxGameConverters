@@ -1,4 +1,4 @@
-color = { 191  93  79 }
+color = { 107  170  77 }
 graphical_culture = British
 major = yes
 

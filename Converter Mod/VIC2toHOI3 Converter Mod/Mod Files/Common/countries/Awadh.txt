@@ -1,4 +1,4 @@
-color = { 255  188  102 }
+color = { 119  130  145 }
 graphical_culture = Generic
 
 default_templates = {

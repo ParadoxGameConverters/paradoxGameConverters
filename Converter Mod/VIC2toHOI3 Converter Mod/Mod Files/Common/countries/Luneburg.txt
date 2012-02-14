@@ -1,4 +1,4 @@
-color = { 104  153  126 }
+color = { 135  109  147 }
 graphical_culture = German
 
 default_templates = {

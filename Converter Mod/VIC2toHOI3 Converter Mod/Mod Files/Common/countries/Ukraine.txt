@@ -1,4 +1,4 @@
-color = { 125  13  24 }
+color = { 124  183  151 }
 graphical_culture = Soviet
 major = yes
 
