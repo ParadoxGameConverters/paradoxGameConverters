@@ -30,6 +30,24 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	researchPoints	= 0.0;
 
 	sourceCountryIndex = -1;
+
+	uncivReforms[0].name		= "yes_land_reform";					uncivReforms[0].active	= false;	uncivReforms[0].westernizationProgress		= 10;
+	uncivReforms[1].name		= "yes_admin_reform";				uncivReforms[1].active	= false;	uncivReforms[1].westernizationProgress		= 10;
+	uncivReforms[2].name		= "yes_finance_reform";				uncivReforms[2].active	= false;	uncivReforms[2].westernizationProgress		= 10;
+	uncivReforms[3].name		= "finance_reform_two";				uncivReforms[3].active	= false;	uncivReforms[3].westernizationProgress		= 10;
+	uncivReforms[4].name		= "yes_education_reform";			uncivReforms[4].active	= false;	uncivReforms[4].westernizationProgress		= 10;
+	uncivReforms[5].name		= "yes_transport_improv";			uncivReforms[5].active	= false;	uncivReforms[5].westernizationProgress		= 10;
+	uncivReforms[6].name		= "yes_pre_indust";					uncivReforms[6].active	= false;	uncivReforms[6].westernizationProgress		= 20;
+	uncivReforms[7].name		= "yes_industrial_construction";	uncivReforms[7].active	= false;	uncivReforms[7].westernizationProgress		= 30;
+	
+	uncivReforms[8].name		= "yes_foreign_training";			uncivReforms[8].active	= false;	uncivReforms[8].westernizationProgress		= 10;
+	uncivReforms[9].name		= "yes_foreign_weapons";			uncivReforms[9].active	= false;	uncivReforms[9].westernizationProgress		= 10;
+	uncivReforms[10].name	= "yes_military_constructions";	uncivReforms[10].active	= false;	uncivReforms[10].westernizationProgress	= 10;
+	uncivReforms[11].name	= "yes_foreign_officers";			uncivReforms[11].active	= false;	uncivReforms[11].westernizationProgress	= 15;
+	uncivReforms[12].name	= "yes_army_schools";				uncivReforms[12].active	= false;	uncivReforms[12].westernizationProgress	= 15;
+	uncivReforms[13].name	= "yes_foreign_naval_officers";	uncivReforms[13].active	= false;	uncivReforms[13].westernizationProgress	= 15;
+	uncivReforms[14].name	= "yes_naval_schools";				uncivReforms[14].active	= false;	uncivReforms[14].westernizationProgress	= 15;
+	uncivReforms[15].name	= "yes_foreign_navies";				uncivReforms[15].active	= false;	uncivReforms[15].westernizationProgress	= 15;
 }
 
 
@@ -192,6 +210,10 @@ void V2Country::output(FILE* output)
 	outputTech(output);
 	outputElection(output);
 	reforms.output(output);
+	if (  (Configuration::getV2Gametype() == "AHD") && (!civilized) )
+	{
+		outputUncivReforms(output);
+	}
 	fprintf(output, "	upper_house=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		reactionary=0.33000\n");
@@ -267,6 +289,133 @@ void V2Country::output(FILE* output)
 }
 
 
+void V2Country::outputUncivReforms(FILE* output)
+{
+	if (uncivReforms[0].active) {
+		fprintf(output, "	land_reform=yes_land_reform\n");
+	}
+	else
+	{
+		fprintf(output, "	land_reform=no_land_reform\n");
+	}
+
+	if (uncivReforms[1].active) {
+		fprintf(output, "	admin_reform=yes_admin_reform\n");
+	}
+	else
+	{
+		fprintf(output, "	admin_reform=no_admin_reform\n");
+	}
+
+	if (uncivReforms[3].active) {
+		fprintf(output, "	finance_reform=finance_reform_two\n");
+	}
+	else if (uncivReforms[2].active) {
+		fprintf(output, "	finance_reform=yes_finance_reform\n");
+	}
+	else
+	{
+		fprintf(output, "	finance_reform=no_finance_reform\n");
+	}
+
+	if (uncivReforms[4].active) {
+		fprintf(output, "	education_reform=yes_education_reform\n");
+	}
+	else
+	{
+		fprintf(output, "	education_reform=no_education_reform\n");
+	}
+
+	if (uncivReforms[5].active) {
+		fprintf(output, "	transport_improv=yes_transport_improv\n");
+	}
+	else
+	{
+		fprintf(output, "	transport_improv=no_transport_improv\n");
+	}
+
+	if (uncivReforms[6].active) {
+		fprintf(output, "	pre_indust=yes_pre_indust\n");
+	}
+	else
+	{
+		fprintf(output, "	pre_indust=no_pre_indust\n");
+	}
+
+	if (uncivReforms[7].active) {
+		fprintf(output, "	industrial_construction=yes_industrial_construction\n");
+	}
+	else
+	{
+		fprintf(output, "	industrial_construction=no_industrial_construction\n");
+	}
+
+	if (uncivReforms[8].active) {
+		fprintf(output, "	foreign_training=yes_foreign_training\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_training=no_foreign_training\n");
+	}
+
+	if (uncivReforms[9].active) {
+		fprintf(output, "	foreign_weapons=yes_foreign_weapons\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_weapons=no_foreign_weapons\n");
+	}
+
+	if (uncivReforms[10].active) {
+		fprintf(output, "	military_constructions=yes_military_constructions\n");
+	}
+	else
+	{
+		fprintf(output, "	military_constructions=no_military_constructions\n");
+	}
+
+	if (uncivReforms[11].active) {
+		fprintf(output, "	foreign_officers=yes_foreign_officers\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_officers=no_foreign_officers\n");
+	}
+
+	if (uncivReforms[12].active) {
+		fprintf(output, "	army_schools=yes_army_schools\n");
+	}
+	else
+	{
+		fprintf(output, "	army_schools=no_army_schools\n");
+	}
+
+	if (uncivReforms[13].active) {
+		fprintf(output, "	foreign_naval_officers=yes_foreign_naval_officers\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_naval_officers=no_foreign_naval_officers\n");
+	}
+
+	if (uncivReforms[14].active) {
+		fprintf(output, "	naval_schools=yes_naval_schools\n");
+	}
+	else
+	{
+		fprintf(output, "	naval_schools=no_naval_schools\n");
+	}
+
+	if (uncivReforms[14].active) {
+		fprintf(output, "	foreign_navies=yes_foreign_navies\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_navies=no_foreign_navies\n");
+	}
+}
+
+
 int V2Country::getSourceCountryIndex()
 {
 	return sourceCountryIndex;
@@ -320,10 +469,6 @@ void V2Country::setArmyTech(double newTechLevel)
 			inventions[field_training]				= active;
 			inventions[army_societal_status]		= active;
 		}
-	}
-	else
-	{
-		researchPoints += newTechLevel * 10000;
 	}
 }
 
@@ -414,10 +559,6 @@ void V2Country::setNavyTech(double newTechLevel)
 			inventions[combat_station_training]	= active;
 			inventions[societal_status]			= active;
 		}
-	}
-	else
-	{
-		researchPoints += newTechLevel * 10000;
 	}
 }
 
@@ -534,10 +675,6 @@ void V2Country::setCommerceTech(double newTechLevel)
 			inventions[john_stuart_mill]		= active;
 		}
 	}
-	else
-	{
-		researchPoints += newTechLevel * 10000;
-	}
 }
 
 
@@ -652,10 +789,6 @@ void V2Country::setIndustryTech(double newTechLevel)
 			inventions[coke]		= active;
 		}
 	}
-	else
-	{
-		researchPoints += newTechLevel * 10000;
-	}
 }
 
 
@@ -701,16 +834,70 @@ void V2Country::setCultureTech(double newTechLevel)
 			inventions[romanticist_music]			= active;
 		}
 	}
-	else
-	{
-		researchPoints += newTechLevel * 10000;
-	}
 }
 
 
 void V2Country::setTechSchool(string newTechSchool)
 {
 	techSchool = newTechSchool;
+}
+
+
+void V2Country::setUncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus)
+{
+	double socioEconProgress = westernizationProgress * socioEcoFocus;
+	for (unsigned int i = 0; i < 8; i++)
+	{
+		if (socioEconProgress >= uncivReforms[i].westernizationProgress - 0.001)
+		{
+			uncivReforms[i].active	= true;
+			socioEconProgress			-=uncivReforms[i].westernizationProgress;
+		}
+	}
+
+	double milProgress = westernizationProgress * milFocus;
+	for (unsigned int i = 8; i < 16; i++)
+	{
+		if (milProgress >= uncivReforms[i].westernizationProgress - 0.001)
+		{
+			uncivReforms[i].active	= true;
+			milProgress					-=uncivReforms[i].westernizationProgress;
+		}
+	}
+
+	double remainingProgress = socioEconProgress + milProgress;
+	if (socioEconProgress >= milProgress)
+	{
+		for (unsigned int i = 0; i < 8; i++)
+		{
+			if (uncivReforms[i].active	== true)
+			{
+				continue;
+			}
+			else if (remainingProgress >= uncivReforms[i].westernizationProgress - 0.001)
+			{
+				uncivReforms[i].active	= true;
+				remainingProgress			-=uncivReforms[i].westernizationProgress;
+			}
+		}
+	}
+	else
+	{
+		for (unsigned int i = 8; i < 16; i++)
+		{
+			if (uncivReforms[i].active	== true)
+			{
+				continue;
+			}
+			else if (remainingProgress >= uncivReforms[i].westernizationProgress - 0.001)
+			{
+				uncivReforms[i].active	= true;
+				remainingProgress			-=uncivReforms[i].westernizationProgress;
+			}
+		}
+	}
+
+	researchPoints += remainingProgress * 800;
 }
 
 

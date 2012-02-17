@@ -662,4 +662,13 @@ enum inventionStatus
 };
 
 
+
+typedef struct uncivReformData
+{
+	string				name;
+	bool					active;
+	int					westernizationProgress;
+} uncivReformData;
+
+
 #endif	// V2INVENTIONS_H_

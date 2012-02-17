@@ -30,6 +30,7 @@ class V2Country
 		void					setReligion(string);
 		string				getReligion();
 		void					output(FILE*);
+		void					outputUncivReforms(FILE*);
 		int					getSourceCountryIndex();
 		void					setPrestige(double);
 		void					setLeadership(double);
@@ -39,6 +40,7 @@ class V2Country
 		void					setIndustryTech(double);
 		void					setCultureTech(double);
 		void					setTechSchool(string);
+		void					setUncivReforms(int, double, double);
 		inventionStatus	getInventionState(inventionType);
 		void					addPrestige(double);
 		void					addPlurality(double);
@@ -82,6 +84,7 @@ class V2Country
 		double				plurality;
 		vector<string>		techs;
 		inventionStatus	inventions[naval_exercises];
+		uncivReformData	uncivReforms[16];
 		double				researchPoints;
 		string				techSchool;
 		string				government;

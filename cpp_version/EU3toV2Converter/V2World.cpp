@@ -256,7 +256,7 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 		string line;
 		getline(countriesMapping, line);
 
-		if ( (line[0] == '#') | (line.size() < 3) )
+		if ( (line.size() < 3) || (line[0] == '#') )
 		{
 			continue;
 		}
@@ -1540,28 +1540,32 @@ void V2World::convertTechs(EU3World sourceWorld)
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+
 		if (sourceCountryIndex < 0)
-			continue;
+				continue;
 
-		double armyTech = ((landScale * (sourceCountries[sourceCountryIndex].getLandTech() - landMean) / landStdDev) + 2.5);
-		countries[i].setArmyTech(armyTech);
-		log("%s has army tech of %f\n", countries[i].getTag().c_str(), armyTech);
+		if( countries[i].isCivilized() || (Configuration::getV2Gametype() != "AHD") )
+		{
+			double armyTech = ((landScale * (sourceCountries[sourceCountryIndex].getLandTech() - landMean) / landStdDev) + 2.5);
+			countries[i].setArmyTech(armyTech);
+			log("%s has army tech of %f\n", countries[i].getTag().c_str(), armyTech);
 
-		double navyTech = (navalScale * (sourceCountries[sourceCountryIndex].getNavalTech() - navalMean) / navalStdDev);
-		countries[i].setNavyTech(navyTech);
-		log("%s has navy tech of %f\n", countries[i].getTag().c_str(), navyTech);
+			double navyTech = (navalScale * (sourceCountries[sourceCountryIndex].getNavalTech() - navalMean) / navalStdDev);
+			countries[i].setNavyTech(navyTech);
+			log("%s has navy tech of %f\n", countries[i].getTag().c_str(), navyTech);
 
-		double commerceTech = (tradeScale * (sourceCountries[sourceCountryIndex].getTradeTech() - tradeMean) / tradeStdDev) + 4.5;
-		countries[i].setCommerceTech(commerceTech);
-		log("%s has commerce tech of %f\n", countries[i].getTag().c_str(), commerceTech);
+			double commerceTech = (tradeScale * (sourceCountries[sourceCountryIndex].getTradeTech() - tradeMean) / tradeStdDev) + 4.5;
+			countries[i].setCommerceTech(commerceTech);
+			log("%s has commerce tech of %f\n", countries[i].getTag().c_str(), commerceTech);
 
-		double industryTech = (productionScale * (sourceCountries[sourceCountryIndex].getProductionTech() - productionMean) / productionStdDev) + 3.5;
-		countries[i].setIndustryTech(industryTech);
-		log("%s has industry tech of %f\n", countries[i].getTag().c_str(), industryTech);
+			double industryTech = (productionScale * (sourceCountries[sourceCountryIndex].getProductionTech() - productionMean) / productionStdDev) + 3.5;
+			countries[i].setIndustryTech(industryTech);
+			log("%s has industry tech of %f\n", countries[i].getTag().c_str(), industryTech);
 
-		double cultureTech = ((governmentScale * (sourceCountries[sourceCountryIndex].getGovernmentTech() - governmentMean) / governmentStdDev) + 3);
-		countries[i].setCultureTech(cultureTech);
-		log("%s has culture tech of %f\n", countries[i].getTag().c_str(), cultureTech);
+			double cultureTech = ((governmentScale * (sourceCountries[sourceCountryIndex].getGovernmentTech() - governmentMean) / governmentStdDev) + 3);
+			countries[i].setCultureTech(cultureTech);
+			log("%s has culture tech of %f\n", countries[i].getTag().c_str(), cultureTech);
+		}
 	}
 
 	int numRomanticLit = 0;
@@ -1620,6 +1624,53 @@ void V2World::convertTechs(EU3World sourceWorld)
 		if (countries[i].getInventionState(romanticist_music) == active)
 		{
 			countries[i].addPrestige(romanticMusicPrestige);
+		}
+	}
+
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		if (sourceCountryIndex < 0)
+				continue;
+
+		if ( (sourceCountries[sourceCountryIndex].getTechGroup() == "western") || (sourceCountries[sourceCountryIndex].getTechGroup() == "latin") ||
+						(sourceCountries[sourceCountryIndex].getTechGroup() == "eastern") || (sourceCountries[sourceCountryIndex].getTechGroup() == "ottoman"))
+		{
+			continue;
+		}
+		else if ( (sourceCountries[sourceCountryIndex].getTechGroup() == "nomad_group") || (sourceCountries[sourceCountryIndex].getTechGroup() == "sub_saharan") || 
+					 (sourceCountries[sourceCountryIndex].getTechGroup() == "new_world") ) {
+			double totalTechs			= sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() + sourceCountries[sourceCountryIndex].getGovernmentTech() + 
+											sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech();
+			double militaryDev		= ( sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() ) / totalTechs;
+			double socioEconDev	= ( sourceCountries[sourceCountryIndex].getGovernmentTech() + sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech() ) / totalTechs;
+			log("Setting unciv reforms for %s. Westernization at 0 percent.\n", countries[i].getTag().c_str());
+			countries[i].setUncivReforms(0, militaryDev, socioEconDev);
+		}
+		else if ( (sourceCountries[sourceCountryIndex].getTechGroup() == "indian") || (sourceCountries[sourceCountryIndex].getTechGroup() == "chinese") ) {
+			double totalTechs			= sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() + sourceCountries[sourceCountryIndex].getGovernmentTech() + 
+											sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech();
+			double militaryDev		= ( sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() ) / totalTechs;
+			double socioEconDev	= ( sourceCountries[sourceCountryIndex].getGovernmentTech() + sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech() ) / totalTechs;
+			log("Setting unciv reforms for %s. Westernization at 30 percent.\n", countries[i].getTag().c_str());
+			countries[i].setUncivReforms(30, militaryDev, socioEconDev);
+		}
+		else if (sourceCountries[sourceCountryIndex].getTechGroup() == "muslim") {
+			double totalTechs			= sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() + sourceCountries[sourceCountryIndex].getGovernmentTech() + 
+											sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech();
+			double militaryDev		= ( sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() ) / totalTechs;
+			double socioEconDev	= ( sourceCountries[sourceCountryIndex].getGovernmentTech() + sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech() ) / totalTechs;
+			log("Setting unciv reforms for %s. Westernization at 60 percent.\n", countries[i].getTag().c_str());
+			countries[i].setUncivReforms(60, militaryDev, socioEconDev);
+		}
+		else
+		{
+			log("Error: Unhandled tech group (%s) for unciv nation. Giving no reforms\n", sourceCountries[sourceCountryIndex].getTechGroup().c_str());
+			double totalTechs			= sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() + sourceCountries[sourceCountryIndex].getGovernmentTech() + 
+											sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech();
+			double militaryDev		= ( sourceCountries[sourceCountryIndex].getLandTech() + sourceCountries[sourceCountryIndex].getNavalTech() ) / totalTechs;
+			double socioEconDev	= ( sourceCountries[sourceCountryIndex].getGovernmentTech() + sourceCountries[sourceCountryIndex].getTradeTech() + sourceCountries[sourceCountryIndex].getProductionTech() ) / totalTechs;
+			countries[i].setUncivReforms(0, militaryDev, socioEconDev);
 		}
 	}
 }
