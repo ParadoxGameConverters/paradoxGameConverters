@@ -27,9 +27,9 @@ INSTRUCTIONS
 4) In "configuration.txt", there is a line that reads
 	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
    Modify it so that it points to YOUR copy of Europa Universalis III.
-4) Run "EU3toV2Converter.exe".  This will create a file in the converters directory called "output.v2".
-5) Copy "output.v2" to "[YOUR VICTORIA DIRECTORY]/save games" and run Victoria 2
-6) Load the output game and immediately save the game.  Then resign, and load that game.  Enjoy!
+5) Run "EU3toV2Converter.exe".  This will create a file in the converters directory called "output.v2".
+6) Copy "output.v2" to "[YOUR VICTORIA DIRECTORY]/save games" and run Victoria 2
+7) Load the output game and immediately save the game.  Then resign, and load that game.  Enjoy!
 
 
 ----
