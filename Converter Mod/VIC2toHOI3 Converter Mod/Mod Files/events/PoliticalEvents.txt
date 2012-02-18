@@ -1,0 +1,1887 @@
+#########################
+# Parliamentary Scandal #
+#########################
+country_event = {
+	
+	id = 5001
+
+	trigger = {
+		not = { has_country_flag = parliamentary_scandal }
+		not = { organisation = 70 }
+	}
+
+	mean_time_to_happen =  {
+		months = 24
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5001"
+	desc = "EVTDESC5001"
+	picture = "parliamentary_scandal"
+
+	option = {
+		name = "EVTOPTA5001"			# OK
+		set_country_flag = parliamentary_scandal
+		add_country_modifier = {
+			name = "parliamentary_scandal"
+			duration = 20
+		}
+	}
+}
+
+###########################
+# Great War Manifestation #
+###########################
+country_event = {
+	
+	id = 5002
+
+	trigger = {
+		or = {
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = social_conservatism
+			government = constitutional_monarchy
+		}
+		war = no
+		not = { has_country_flag = great_war_manifestation }
+	}
+
+	mean_time_to_happen =  {
+		months = 24
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5002"
+	desc = "EVTDESC5002"
+	picture = "great_war_manifestion"
+
+	option = {
+		name = "EVTOPTA5002"			# Great
+		set_country_flag = great_war_manifestation
+		add_country_modifier = {
+			name = "great_war_manifestation"
+			duration = 20
+		}
+	}
+}
+
+#############################
+# Great Peace Manifestation #
+#############################
+country_event = {
+	
+	id = 5003
+
+	trigger = {
+		or = {
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = social_conservatism
+			government = constitutional_monarchy
+		}
+		war = no
+		not = { has_country_flag = great_peace_manifestation }
+	}
+
+	mean_time_to_happen =  {
+		months = 24
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5003"
+	desc = "EVTDESC5003"
+	picture = "great_war_manifestion"
+
+	option = {
+		name = "EVTOPTA5003"			# Great
+		set_country_flag = great_peace_manifestation
+		national_unity = -1
+		add_country_modifier = {
+			name = "great_peace_manifestation"
+			duration = 20
+		}
+	}
+}
+
+###################################################################
+# Famous War Hero Publishes Articles Critizing the Conduct of War #
+###################################################################
+country_event = {
+	
+	id = 5004
+
+	trigger = {
+		war = yes
+		dissent = 5
+		not = { has_country_flag = critique_against_the_war }
+	}
+
+	mean_time_to_happen =  {
+		months = 24
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5004"
+	desc = "EVTDESC5004"
+	picture = "news_paper"
+
+	option = {
+		name = "EVTOPTA5004"			# Find a way to silence those kind of remarks
+		set_country_flag = critique_against_the_war
+		add_country_modifier = {
+			name = "critique_against_the_war"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5004"			# Let him talk, it makes no difference
+		set_country_flag = critique_against_the_war
+		dissent = 5
+	}
+}
+
+##########################################
+# Government nationalizes private sector #
+##########################################
+country_event = {
+	
+	id = 5005
+
+	trigger = {
+		not = { government = market_liberalism }
+		not = { government = social_democracy }
+		not = { government = social_liberalism }
+		not = { government = social_conservatism }
+		not = { government = constitutional_monarchy }
+	}
+
+	mean_time_to_happen =  {
+		months = 24
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5005"
+	desc = "EVTDESC5005"
+	picture = "private_sector"
+
+	option = {
+		name = "EVTOPTA5005"			# OK
+		add_country_modifier = {
+			name = "nationalization_of_private_sector"
+			duration = 20
+		}
+	}
+}
+
+#######################
+# Major Worker Strike #
+#######################
+country_event = {
+	
+	id = 5006
+
+	trigger = {
+		not = { national_unity = 80 }
+		not = { organisation = 70 }
+		not = { has_country_flag = major_worker_strike }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5006"
+	desc = "EVTDESC5006"
+	picture = "major_worker_strike"
+
+	option = {
+		name = "EVTOPTA5006"			# It's hardly anything to worry about
+		set_country_flag = major_worker_strike
+		random = {
+			chance = 50
+			national_unity = -2
+			add_country_modifier = {
+				name = "major_worker_strike"
+				duration = 40
+			}
+		}
+	}
+	option = {
+		name = "EVTOPTB5006"			# Find and arrest the strike leaders
+		set_country_flag = major_worker_strike
+		add_country_modifier = {
+			name = "major_worker_strike"
+			duration = 40
+		}
+	}
+}
+
+####################
+# Rogue Politician #
+####################
+country_event = {
+	
+	id = 5008
+
+	trigger = {
+		not = { organisation = 70 }
+		or = {
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = social_conservatism
+			government = constitutional_monarchy
+		}
+		not = { has_country_flag = rogue_politician }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5008"
+	desc = "EVTDESC5008"
+	picture = "politician"
+
+	option = {
+		name = "EVTOPTA5008"			# Give him your support
+		set_country_flag = rogue_politician
+		national_unity = -1
+		add_country_modifier = {
+			name = "rogue_politician"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5008"			# Ignore him
+		set_country_flag = rogue_politician
+		dissent = 5
+	}
+}
+
+################################
+# Outlaw the Communist Parties #
+################################
+country_event = {
+	
+	id = 5009
+
+	trigger = {
+		or = {
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = social_conservatism
+			government = constitutional_monarchy
+		}
+		organisation = 70
+		not = {
+			leninist = {
+				organisation = 50
+				popularity = 50
+			}
+		}
+		not = {
+			stalinist = {
+				organisation = 50
+				popularity = 50
+			}
+		}
+		not = { has_country_flag = outlaw_communist_parties }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5009"
+	desc = "EVTDESC5009"
+	picture = "outlaw_communist_party"
+
+	option = {
+		name = "EVTOPTA5009"			# Give your support
+		set_country_flag = outlaw_communist_parties
+		stalinist = {
+			organisation = -10
+			popularity = -5
+		}
+		leninist = {
+			organisation = -10
+			popularity = -5
+		}
+	}
+	option = {
+		name = "EVTOPTB5009"			# Oppose any ideas of that kind
+		set_country_flag = outlaw_communist_parties
+		neutrality = 3
+	}
+}
+
+##############################
+# Outlaw the Fascist Parties #
+##############################
+country_event = {
+	
+	id = 5010
+
+	trigger = {
+		or = {
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = social_conservatism
+			government = constitutional_monarchy
+		}
+		organisation = 70
+		not = {
+			national_socialist = {
+				organisation = 50
+				popularity = 50
+			}
+		}
+		not = {
+			fascistic = {
+				organisation = 50
+				popularity = 50
+			}
+		}
+		not = { has_country_flag = outlaw_fascist_parties }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5010"
+	desc = "EVTDESC5010"
+	picture = "outlaw_fascist_parties"
+
+	option = {
+		name = "EVTOPTA5010"			# Give your support
+		set_country_flag = outlaw_fascist_parties
+		national_socialist = {
+			organisation = -10
+			popularity = -5
+		}		
+		fascistic = {
+			organisation = -10
+			popularity = -5
+		}
+	}
+	option = {
+		name = "EVTOPTB5010"			# Oppose any ideas of that kind
+		set_country_flag = outlaw_fascist_parties
+		neutrality = 3
+	}
+}
+
+########################################
+# Clashes Between Paramilitary troops  #
+########################################
+country_event = {
+
+	id = 5012
+
+	trigger = {
+		or = {
+			national_socialist = {
+				organisation = 50
+				popularity = 50
+			}
+			fascistic = {
+				organisation = 50
+				popularity = 50
+			}
+		}
+		or = {
+			leninist = {
+				organisation = 50
+				popularity = 50
+			}
+			stalinist = {
+				organisation = 50
+				popularity = 50
+			}
+		}
+		dissent = 5
+		not = { has_country_flag = paramilitary_troops }
+		not = { has_country_flag = prohibit_new_parties }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5012"
+	desc = "EVTDESC5012"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA5012"			# Do something about it
+		set_country_flag = paramilitary_troops
+		add_country_modifier = {
+			name = "paramilitary_forces"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5012"			# What for?
+		set_country_flag = paramilitary_troops
+		national_unity = -1
+	}
+}
+
+########################################
+# Re-organization of the War Ministry  #
+########################################
+country_event = {
+
+	id = 5013
+
+	trigger = {
+		or = {
+			government = national_socialism
+			government = fascist_republic
+			government = socialist_republic
+			government = federal_socialist_republic
+		}
+		not = { organisation = 50 }
+		not = { has_country_flag = reorganization_of_war_ministry }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5013"
+	desc = "EVTDESC5013"
+	picture = "parliamentary_scandal"
+
+	option = {
+		name = "EVTOPTA5013"			# We need more loyal ministers like him
+		set_country_flag = reorganization_of_war_ministry
+		add_country_modifier = {
+			name = "reorganization_of_war_ministry"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5013"			# That's just ridiculous
+		set_country_flag = reorganization_of_war_ministry
+		dissent = 3
+	}
+}
+
+############################################
+# Strike Against Forced Consription Policy #
+############################################
+country_event = {
+
+	id = 5014
+
+	trigger = {
+		conscription_law = service_by_requirement
+		war = yes
+		dissent = 3
+		not = { has_country_flag = forced_conscription_policy }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5014"
+	desc = "EVTDESC5014"
+	picture = "major_worker_strike"
+
+	option = {
+		name = "EVTOPTA5014"			# Give it the highest priority
+		set_country_flag = forced_conscription_policy
+		add_country_modifier = {
+			name = "forced_conscription_policy"
+			duration = 30
+		}
+	}
+	option = {
+		name = "EVTOPTB5014"			# It's nothing to worry about
+		set_country_flag = forced_conscription_policy
+		random = {
+			chance = 50
+			dissent = 4
+		}
+	}
+}
+
+#########################################
+# Control Extremist Political Movements #
+#########################################
+country_event = {
+
+	id = 5015
+
+	trigger = {
+		or = {
+			government = social_conservatism
+			government = market_liberalism
+			government = social_liberalism
+			government = social_democracy
+			government = constitutional_monarchy
+		}
+		or = {
+			national_socialist = {
+				organisation = 50
+				popularity = 50
+			}
+			fascistic = {
+				organisation = 50
+				popularity = 50
+			}
+		}
+		not = { has_country_flag = control_of_extremist_movements }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5015"
+	desc = "EVTDESC5015"
+	picture = "outlaw_fascist_parties"
+
+	option = {
+		name = "EVTOPTA5015"			# Give your consent
+		set_country_flag = control_of_extremist_movements
+		add_country_modifier = {
+			name = "control_of_extremist_movements"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5015"			# That's taking it too far
+		set_country_flag = control_of_extremist_movements
+		national_unity = -1
+	}
+}
+
+#########################
+# Emergency Legislation #
+#########################
+country_event = {
+
+	id = 5016
+
+	trigger = {
+		not = { year = 1939 }
+		is_threatend = 40
+		war = no
+		not = { has_country_flag = emergency_legislation }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5016"
+	desc = "EVTDESC5016"
+	picture = "constitutional"
+
+	option = {
+		name = "EVTOPTA5016"			# Give it a go
+		set_country_flag = emergency_legislation
+		add_country_modifier = {
+			name = "emergency_legislations"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5016"			# Find some other solution
+		set_country_flag = emergency_legislation
+		money = -50
+	}
+}
+
+###############################################
+# Anti-Terrorist Measures, National socialist #
+###############################################
+country_event = {
+
+	id = 5017
+
+	trigger = {
+		
+		and = {
+			or = {
+				government = social_conservatism
+				government = market_liberalism
+				government = social_democracy
+				government = social_liberalism
+				government = constitutional_monarchy
+			}
+			ideology = national_socialist
+			organisation = 50
+		}
+		not = { has_country_flag = anti_terrorist_measures }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5017"
+	desc = "EVTDESC5017"
+	picture = "fire"
+
+	option = {
+		name = "EVTOPTA5017"			# Good
+		set_country_flag = anti_terrorist_measures
+		government = national_socialism
+	}
+}
+
+#############################################
+# Prohibit the Establishment of New Parties #
+#############################################
+country_event = {
+
+	id = 5018
+
+	trigger = {
+		or = {
+			or = {
+				government = absolute_monarchy
+				government = left_wing_radicals
+			}
+			and = {
+				or = {
+					government = socialist_republic
+					government = federal_socialist_republic
+					government = national_socialism
+					government = fascist_republic
+				}
+				not = { year = 1937 }
+			}
+		}
+		not = { has_country_flag = prohibit_new_parties }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5018"
+	desc = "EVTDESC5018"
+	picture = "politics1"
+
+	option = {
+		name = "EVTOPTA5018"			# ...and not a day too early
+		set_country_flag = prohibit_new_parties
+		add_country_modifier = {
+			name = "prohibit_new_parties"
+			duration = 20
+		}
+		dissent = 1
+		popularity = -5
+	}
+	option = {
+		name = "EVTOPTB5018"			# It seems a bit extreme
+		set_country_flag = prohibit_new_parties
+		popularity = 6
+		organisation = -2
+	}
+}
+
+#########################################
+# Political Feuds within the Government #
+#########################################
+country_event = {
+
+	id = 5019
+
+	trigger = {
+		press_laws = propaganda_press
+		not = { has_country_flag = political_feuds }
+		not = { organisation = 50 }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5019"
+	desc = "EVTDESC5019"
+	picture = "politics1"
+
+	option = {
+		name = "EVTOPTA5019"			# Ridiculous!
+		set_country_flag = political_feuds
+		add_country_modifier = {
+			name = "political_feuds"
+			duration = 20
+		}
+	}
+}
+
+#####################################
+# Assassination Attempt of Minister #
+#####################################
+country_event = {
+
+	id = 5020
+
+	trigger = {
+		not = { national_unity = 50 }
+		not = { ideology = left_wing_radical }
+		not = { ideology = leninist }
+		not = { ideology = stalinist }
+		not = { has_country_flag = assassination_attempt_of_minister }
+		not = { government = left_wing_radicals }
+		not = { government = socialist_republic }
+		not = { government = federal_socialist_republic }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5020"
+	desc = "EVTDESC5020"
+	picture = "comander_assasinated"
+
+	option = {
+		name = "EVTOPTA5020"			# OK
+		set_country_flag = assassination_attempt_of_minister
+		add_country_modifier = {
+			name = "assassination_attempt"
+			duration = 20
+		}
+	}
+}
+
+country_event = {
+
+	id = 5021
+
+	trigger = {
+		not = { national_unity = 50 }
+		not = { ideology = national_socialist }
+		not = { ideology = fascistic }
+		not = { ideology = paternal_autocrat }
+		not = { government = national_socialism }
+		not = { government = fascist_republic }
+		not = { government = absolute_monarchy }
+		not = { has_country_flag = assassination_attempt_of_minister }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5021"
+	desc = "EVTDESC5021"
+	picture = "comander_assasinated"
+
+	option = {
+		name = "EVTOPTA5021"			# OK
+		set_country_flag = assassination_attempt_of_minister
+		national_unity = -1
+		add_country_modifier = {
+			name = "assassination_attempt"
+			duration = 20
+		}
+	}
+}
+
+####################
+# Illegal Printing #
+####################
+country_event = {
+	
+	id = 5022
+
+	trigger = {
+		not = { government = market_liberalism }
+		not = { government = social_democracy }
+		not = { government = social_liberalism }
+		not = { government = social_conservatism }
+		not = { government = constitutional_monarchy }
+		not = { has_country_flag = illegal_printing_discovered }
+	}
+
+	mean_time_to_happen =  {
+		months = 24
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5022"
+	desc = "EVTDESC5022"
+	picture = "news_paper"
+
+	option = {
+		name = "EVTOPTA5022"			# Increase efforts to track them down
+		set_country_flag = illegal_printing_discovered
+		add_country_modifier = {
+			name = "illegal_printing"
+			duration = 20
+		}
+		random = {
+			chance = 40
+			dissent = 3
+		}
+	}
+	option = {
+		name = "EVTOPTB5022"			# There are more pressing matters
+		set_country_flag = illegal_printing_discovered
+		dissent = 3
+	}
+}
+
+########################
+# Intelligence Network #
+########################
+country_event = {
+	
+	id = 5023
+
+	trigger = {
+		is_threatend = 50
+		not = { government = market_liberalism }
+		not = { government = social_democracy }
+		not = { government = social_liberalism }
+		not = { government = social_conservatism }
+		not = { government = constitutional_monarchy }
+		not = { has_country_flag = intelligence_network }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5023"
+	desc = "EVTDESC5023"
+	picture = "reserch_sbotage"
+
+	option = {
+		name = "EVTOPTA5023"			# Of course
+		set_country_flag = intelligence_network
+		add_country_modifier = {
+			name = "intelligence_network"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5023"			# That won't be necessary
+		set_country_flag = intelligence_network
+		neutrality = 3
+	}
+}
+
+#####################################################
+# Minister Cooperating with Revolutionary Movements #
+#####################################################
+country_event = {
+
+	id = 5024
+
+	trigger = {
+		or = {
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = social_conservatism
+			government = constitutional_monarchy
+		}
+		dissent = 7
+		not = { organisation = 50 }
+		not = { has_country_flag = revolutionary_movement }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5024"
+	desc = "EVTDESC5024"
+	picture = "politics2"
+
+	option = {
+		name = "EVTOPTA5024"			# Find him, whatever it takes
+		set_country_flag = revolutionary_movement
+		money = -50
+		dissent = 2
+	}
+	option = {
+		name = "EVTOPTB5024"			# It's no use
+		set_country_flag = revolutionary_movement
+		national_unity = -1
+		add_country_modifier = {
+			name = "revolutionary_movements"
+			duration = 60
+		}
+	}
+}
+
+########################
+# Resistance Movements #
+########################
+country_event = {
+	
+	id = 5025
+
+	trigger = {
+		or = {
+			government = national_socialism
+			government = fascist_republic
+		}
+		dissent = 5
+		year = 1940
+		num_of_vassals = 1
+		not = { has_country_flag = resistance_movement }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5025"
+	desc = "EVTDESC5025"
+	picture = "politics2"
+
+	option = {
+		name = "EVTOPTA5025"			# Give it the highest priority
+		set_country_flag = resistance_movement
+		money = -20
+		add_country_modifier = {
+			name = "resistance_movement"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5025"			# Send some troops to deal with it
+		set_country_flag = resistance_movement
+		add_country_modifier = {
+			name = "resistance_movement"
+			duration = 60
+		}
+	}
+}
+
+####################################
+# Resistance Movement Infiltrated  #
+####################################
+country_event = {
+	
+	id = 5026
+
+	trigger = {
+		has_country_flag = intelligence_network
+		or = {
+			and = {
+				or = {
+					government = national_socialism
+					government = fascist_republic
+				}
+				or = {
+					leninist = {
+						organisation = 50
+						popularity = 40
+					}
+					stalinist = {
+						organisation = 50
+						popularity = 40
+					}
+				}
+			}
+			and = {
+				or = {
+					government = socialist_republic
+					government = federal_socialist_republic
+				}
+				or = {
+					national_socialist = {
+						organisation = 50
+						popularity = 40
+					}
+					fascistic = {
+						organisation = 50
+						popularity = 40
+					}
+				}
+			}
+		}
+		not = { has_country_flag = resistance_movement_infiltrated }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5026"
+	desc = "EVTDESC5026"
+	picture = "politics2"
+
+	option = {
+		name = "EVTOPTA5026"			# There's no point in waiting
+		set_country_flag = resistance_movement_infiltrated
+		add_country_modifier = {
+			name = "resistance_movement_laid_open"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5026"			# We'll wait
+		set_country_flag = resistance_movement_infiltrated
+		add_country_modifier = {
+			name = "resistance_movement_infiltrated"
+			duration = 20
+		}
+	}
+}
+
+############################################
+# Re-organization of the Foreign Ministry  #
+############################################
+country_event = {
+	
+	id = 5027
+
+	trigger = {
+		not = { has_country_flag = restructuring_the_foreign_ministry }
+		is_in_any_faction = no
+		not = { year = 1940 }
+		war = no
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5027"
+	desc = "EVTDESC5027"
+	picture = "politics1"
+
+	option = {
+		name = "EVTOPTA5027"			# Good initiative
+		set_country_flag = restructuring_the_foreign_ministry
+		add_country_modifier = {
+			name = "restructuring_the_foreign_ministry"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5027"			# There's no need
+		set_country_flag = restructuring_the_foreign_ministry
+		add_country_modifier = {
+			name = "troublesome_ministry"
+			duration = 20
+		}
+	}
+}
+
+###############
+# Retaliation #
+###############
+country_event = {
+	
+	id = 5028
+
+	trigger = {
+		dissent = 5
+		war = no
+		has_country_flag = assassination_attempt_of_opposition_leader
+		not = { has_country_flag = retaliation }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5028"
+	desc = "EVTDESC5028"
+	picture = "politician"
+
+	option = {
+		name = "EVTOPTA5028"			# We have to put an end to this
+		set_country_flag = retaliation
+		add_country_modifier = {
+			name = "retaliation"
+			duration = 20
+		}
+	}
+}
+
+######################################
+# Corruption Within the Police Force #
+######################################
+country_event = {
+	
+	id = 5029
+
+	trigger = {
+		war = no
+		dissent = 7
+	}
+
+	mean_time_to_happen =  {
+		months = 24
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5029"
+	desc = "EVTDESC5029"
+	picture = "law"
+
+	option = {
+		name = "EVTOPTA5029"			# That seems a bit overly ambitious
+		add_country_modifier = {
+			name = "corruption_within_the_police_force"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5029"			# Do it
+		add_country_modifier = {
+			name = "restructuring_of_the_police_force"
+			duration = 20
+		}
+	}
+}
+
+##############################
+# Unauthorized Demonstration #
+##############################
+country_event = {
+	
+	id = 5030
+
+	trigger = {
+		not = { popularity = 50 }
+		dissent = 5
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5030"
+	desc = "EVTDESC5030"
+	picture = "great_war_manifestion"
+
+	option = {
+		name = "EVTOPTA5030"			# Send reinforcements
+		add_country_modifier = {
+			name = "reinforcements"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5030"			# They can handle it
+		add_country_modifier = {
+			name = "riots"
+			duration = 20
+		}
+	}
+}
+
+###############################################
+# Resistance Leader Tries to Flee the Country #
+###############################################
+country_event = {
+	
+	id = 5031
+
+	trigger = {
+		not = { year = 1938 }
+		or = {
+			government = national_socialism
+			government = fascist_republic
+			government = socialist_republic
+			government = federal_socialist_republic
+		}
+		organisation = 70
+		not = { has_country_flag = resistance_leader_flees }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5031"
+	desc = "EVTDESC5031"
+	picture = "resistance"
+
+	option = {
+		name = "EVTOPTA5031"			# Of course
+		set_country_flag = resistance_leader_flees
+		random = {
+			chance = 50
+			add_country_modifier = {
+				name = "resistance_leader_caught"
+				duration = 20
+			}
+		}
+	}
+}
+
+##############################################
+# Assassination Attempt of Opposition Leader #
+##############################################
+country_event = {
+	
+	id = 5032
+
+	trigger = {
+		not = { organisation = 50 }
+		not = { popularity = 50 }
+		or = {
+			government = social_conservatism
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = constitutional_monarchy
+		}
+		not = { has_country_flag = assassination_attempt_of_opposition_leader }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5032"
+	desc = "EVTDESC5032"
+	picture = "fire"
+
+	option = {
+		name = "EVTOPTA5032"			# Do what you can to calm things down
+		set_country_flag = assassination_attempt_of_opposition_leader
+		add_country_modifier = {
+			name = "assassination_attempt_of_opposition_leader"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5032"			# Let the army handle it
+		set_country_flag = assassination_attempt_of_opposition_leader
+		add_country_modifier = {
+			name = "riots_in_the_street"
+			duration = 20
+		}
+	}
+}
+
+####################################
+# Weapons Found on Train Transport #
+####################################
+country_event = {
+	
+	id = 5033
+
+	trigger = {
+		not = { government = national_socialism }
+		not = { government = fascist_republic }
+		not = { government = socialist_republic }
+		not = { government = federal_socialist_republic }
+		not = { has_country_flag = weapons_transport }
+		dissent = 5
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5033"
+	desc = "EVTDESC5033"
+	picture = "industry_sabotaged"
+
+	option = {
+		name = "EVTOPTA5033"			# Send some troops to investigate
+		set_country_flag = weapons_transport
+		add_country_modifier = {
+			name = "weapons_transport"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5033"			# Don't bother, it's just a minor group
+		set_country_flag = weapons_transport
+		random = {
+			chance = 50
+			dissent = 2
+		}
+	}
+}
+
+###################
+# Bribed Minister #
+###################
+country_event = {
+	
+	id = 5034
+
+	trigger = {
+		not = { has_country_flag = bribed_minister }
+		or = {
+			government = social_conservatism
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = constitutional_monarchy
+		}
+		not = { organisation = 50 }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5034"
+	desc = "EVTDESC5034"
+	picture = "minister_resign"
+
+	option = {
+		name = "EVTOPTA5034"			# Defend him
+		set_country_flag = bribed_minister
+		random = {
+			chance = 50
+			national_unity = -1
+			add_country_modifier = {
+				name = "political_mistake"
+				duration = 20
+			}
+		}
+	}
+	option = {
+		name = "EVTOPTB5034"			# Give him a new position
+		set_country_flag = bribed_minister
+		organisation = -5
+	}
+}
+
+####################
+# Rigged Elections #
+####################
+country_event = {
+	
+	id = 5035
+
+	trigger = {
+		war = no
+		not = { popularity = 50 }
+		or = {
+			government = social_conservatism
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = constitutional_monarchy
+		}
+		not = { has_country_flag = rigged_elections }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+	}
+
+	title = "EVTNAME5035"
+	desc = "EVTDESC5035"
+	picture = "election"
+
+	option = {
+		name = "EVTOPTA5035"			# Prepare a speech
+		set_country_flag = rigged_elections
+		random_list = {
+			30 = { national_unity = -1 }
+			40 = { dissent = -1 }
+			30 = { popularity = -5 }
+		}
+	}
+}
+
+##############################
+# Leak Within the Government #
+##############################
+country_event = {
+	
+	id = 5036
+
+	trigger = {
+		war = yes
+		not = { organisation = 60 }
+		not = { popularity = 60 }
+		not = { has_country_flag = leak_within_the_government }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+	}
+
+	title = "EVTNAME5036"
+	desc = "EVTDESC5036"
+	picture = "politician"
+
+	option = {
+		name = "EVTOPTA5036"			# It's probably nothing
+		set_country_flag = leak_within_the_government
+		random = {
+			chance = 60
+			organisation = -2
+			popularity = -5
+		}
+	}
+	option = {
+		name = "EVTOPTB5036"			# Increase your efforts
+		set_country_flag = leak_within_the_government
+		random = {
+			chance = 40
+			organisation = -4
+			popularity = -5
+		}
+	}
+}
+
+############################################
+# Foreign Nation Supports Opposition Party #
+############################################
+country_event = {
+	
+	id = 5037
+
+	trigger = {
+		war = no
+		or = {
+			government = social_conservatism
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = constitutional_monarchy
+		}
+		is_in_any_faction = no
+		any_neighbor_country = {
+			or = {
+				government = national_socialism
+				government = fascist_republic
+				government = socialist_republic
+				government = federal_socialist_republic
+			}
+			not = { alliance_with = this }
+		}
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+	}
+
+	title = "EVTNAME5037"
+	desc = "EVTDESC5037"
+	picture = "politics1"
+
+	option = {
+		name = "EVTOPTA5037"			# Continue the investigation
+		add_country_modifier = {
+			name = "investigation_of_opposition_party"
+			duration = 20
+		}
+	}
+	option = {
+		name = "EVTOPTB5037"			# There are other things to worry about
+		add_country_modifier = {
+			name = "opposition_gains_support"
+			duration = 20
+		}
+	}
+}
+
+###########################
+# Anti-Terrorist Measures #
+###########################
+country_event = {
+
+	id = 5038
+
+	trigger = {
+		
+		and = {
+			or = {
+				government = social_conservatism
+				government = market_liberalism
+				government = social_democracy
+				government = social_liberalism
+				government = constitutional_monarchy
+			}
+			ideology = fascistic
+			organisation = 50
+		}
+		not = { has_country_flag = anti_terrorist_measures }
+	}
+
+	mean_time_to_happen =  {
+		months = 18
+
+		modifier = {
+			factor = 2.0
+			war = yes
+		}
+	}
+
+	title = "EVTNAME5017"
+	desc = "EVTDESC5017"
+	picture = "fire"
+
+	option = {
+		name = "EVTOPTA5017"			# Good
+		set_country_flag = anti_terrorist_measures
+		government = fascist_republic
+	}
+}
+
+#######################
+# Happy Random Events #
+#######################
+
+country_event = {
+
+	id = 5040 
+	
+	trigger = {
+		NOT = { has_country_modifier = economic_boost }
+	}
+
+	mean_time_to_happen = {
+		months =  36
+	}
+
+	title = "EVTNAME5040"
+	desc = "EVTDESC5040"
+	picture = "private_sector"
+
+	option = {
+		name = "EVTOPTA5040"
+		add_country_modifier = {
+			name = "economic_boost"
+			duration = 6
+		}
+	}
+}
+
+
+country_event = {
+
+	id = 5041 
+	
+	trigger = {
+		NOT = { has_country_modifier = volunteer_surge }
+	}
+
+	mean_time_to_happen = {
+		months =  36
+	}
+
+	title = "EVTNAME5041"
+	desc = "EVTDESC5041"
+	picture = "great_war_manifestion"
+
+	option = {
+		name = "EVTOPTA5041"
+		add_country_modifier = {
+			name = "volunteer_surge"
+			duration = 6
+		}
+	}
+}
+
+
+country_event = {
+
+	id = 5042 
+	
+	trigger = {
+		war = yes
+		NOT = { energy = 20000 }
+	}
+
+	mean_time_to_happen = {
+		months =  36
+	}
+
+	title = "EVTNAME5042"
+	desc = "EVTDESC5042"
+	picture = "great_war_manifestion"
+
+	option = {
+		name = "EVTOPTA5042"
+		energy = 50 
+	}
+}
+
+
+
+country_event = {
+
+	id = 5043 
+	
+	trigger = {
+		war = yes
+		NOT = { metal = 10000 }
+	}
+
+	mean_time_to_happen = {
+		months =  36
+	}
+
+	title = "EVTNAME5043"
+	desc = "EVTDESC5043"
+	picture = "great_war_manifestion"
+
+	option = {
+		name = "EVTOPTA5043"
+		metal = 50 
+	}
+}
+
+
+
+country_event = {
+
+	id = 5044
+	
+	trigger = {
+		war = yes
+		NOT = { rare_materials = 5000 }
+	}
+
+	mean_time_to_happen = {
+		months =  36
+	}
+
+	title = "EVTNAME5044"
+	desc = "EVTDESC5044"
+	picture = "great_war_manifestion"
+
+	option = {
+		name = "EVTOPTA5044"
+		rare_materials = 50
+	}
+}
+
+#########################
+# Minister resigns #
+#########################
+country_event = {
+	
+	id = 5045
+
+	trigger = {
+		has_removable_minister = yes
+		or = {
+				government = social_conservatism
+				government = market_liberalism
+				government = social_democracy
+				government = social_liberalism
+				government = constitutional_monarchy
+			}
+	}
+
+	mean_time_to_happen =  {
+		months = 36
+
+	}
+
+	title = "EVTNAME5001"
+	desc = "EVTDESC5001"
+	picture = "parliamentary_scandal"
+
+	option = {
+		name = "EVTOPTA5001"			# OK
+		remove_minister = yes
+	}
+}
+
+#########################
+# Minister fired #
+#########################
+country_event = {
+	
+	id = 5056
+
+	trigger = {
+		has_removable_minister = yes
+		NOT = {
+			or = {
+					government = social_conservatism
+					government = market_liberalism
+					government = social_democracy
+					government = social_liberalism
+					government = constitutional_monarchy
+			}
+		}
+	}
+
+	mean_time_to_happen =  {
+		months = 36
+
+	}
+
+	title = "EVTNAME5001"
+	desc = "EVTDESC5001"
+	picture = "parliamentary_scandal"
+
+	option = {
+		name = "EVTOPTA5001"			# OK
+		remove_minister = yes
+	}
+}
+

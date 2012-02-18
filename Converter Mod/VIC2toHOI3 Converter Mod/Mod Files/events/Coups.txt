@@ -1,0 +1,259 @@
+#######################
+# Social Conservative #
+#######################
+country_event = {
+	
+	id = 4001
+
+	trigger = {
+		not = { national_unity = 80 }
+		dissent = 10
+		social_conservative = {
+			organisation = 60
+			popularity = 60
+		}
+		not = { government = social_conservatism }
+		not = { government = constitutional_monarchy }
+		not = { government = spanish_social_conservatism }
+		not = { government = market_liberalism }
+		not = { government = social_democracy }
+		not = { government = social_liberalism }
+	}
+
+	mean_time_to_happen =  {
+		months = 12
+	}
+
+	title = "EVTNAME4001"
+	desc = "EVTDESC4001"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA4001"
+		government = social_conservatism
+	}
+}
+####################
+# Social Democracy #
+####################
+country_event = {
+	
+	id = 4002
+
+	trigger = {
+		not = { national_unity = 80 }
+		dissent = 10
+		social_democrat = {
+			organisation = 60
+			popularity = 60
+		}
+		not = { government = social_conservatism }
+		not = { government = constitutional_monarchy }
+		not = { government = spanish_social_conservatism }
+		not = { government = market_liberalism }
+		not = { government = social_democracy }
+		not = { government = social_liberalism }
+	}
+
+	mean_time_to_happen =  {
+		months = 12
+	}
+
+	title = "EVTNAME4002"
+	desc = "EVTDESC4002"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA4002"
+		government = social_democracy
+
+	}
+}
+######################
+# Socialist Republic #
+######################
+country_event = {
+	
+	id = 4003
+
+	trigger = {
+		not = { national_unity = 80 }
+		dissent = 10
+		leninist = {
+			organisation = 60
+			popularity = 60
+		}
+		not = { government = left_wing_radicals }
+		not = { government = socialist_republic }
+		not = { government = federal_socialist_republic }
+	}
+
+	mean_time_to_happen =  {
+		months = 12
+	}
+
+	title = "EVTNAME4003"
+	desc = "EVTDESC4003"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA4003"
+		government = socialist_republic
+	}
+}
+##############################
+# Federal Socialist Republic #
+##############################
+country_event = {
+	
+	id = 4004
+
+	trigger = {
+		not = { national_unity = 80 }
+		dissent = 10
+		stalinist = {
+			organisation = 60
+			popularity = 60
+		}
+		not = { government = left_wing_radicals }
+		not = { government = socialist_republic }
+		not = { government = federal_socialist_republic }
+	}
+
+	mean_time_to_happen =  {
+		months = 12
+	}
+
+	title = "EVTNAME4004"
+	desc = "EVTDESC4004"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA4004"
+		government = federal_socialist_republic
+
+	}
+}
+####################
+# Fascist Republic #
+####################
+country_event = {
+	
+	id = 4005
+
+	trigger = {
+		not = { national_unity = 80 }
+		dissent = 10
+		fascistic = {
+			organisation = 60
+			popularity = 60
+		}
+		not = { government = national_socialism }
+		not = { government = fascist_republic }
+		not = { government = germanic_fascist_republic }
+		not = { government = right_wing_republic }
+		not = { government = hungarian_right_wing_republic }
+		not = { government = right_wing_autocrat }
+		not = { government = absolute_monarchy }
+		not = { government = imperial }
+	}
+
+	mean_time_to_happen =  {
+		months = 12
+	}
+
+	title = "EVTNAME4005"
+	desc = "EVTDESC4005"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA4005"
+		government = fascist_republic
+
+	}
+}
+######################
+# National Socialism #
+######################
+country_event = {
+	
+	id = 4006
+
+	trigger = {
+		not = { national_unity = 80 }
+		dissent = 10
+		national_socialist = {
+			organisation = 60
+			popularity = 60
+		}
+		not = { government = national_socialism }
+		not = { government = fascist_republic }
+		not = { government = germanic_fascist_republic }
+		not = { government = right_wing_republic }
+		not = { government = hungarian_right_wing_republic }
+		not = { government = right_wing_autocrat }
+		not = { government = absolute_monarchy }
+		not = { government = imperial }
+	}
+
+	mean_time_to_happen =  {
+		months = 12
+	}
+
+	title = "EVTNAME4006"
+	desc = "EVTDESC4006"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA4006"
+		government = national_socialism
+	}
+}
+
+######################
+# Coup from spies #
+######################
+country_event = {
+	
+	id = 5057
+	is_triggered_only = yes
+	major = yes
+
+
+	title = "EVTNAME5057"
+	desc = "EVTDESC5057"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA5057"
+		leave_faction = axis
+		leave_faction = allies
+		leave_faction = comintern
+		coup_by = FROM
+				
+		relation = { who = FROM value = 200 }
+		organisation = 20
+		popularity = 20
+		national_unity = -30
+	}
+}
+######################
+# Failed coup from spies #
+######################
+country_event = {
+	
+	id = 5058
+	is_triggered_only = yes
+	major = yes
+
+	title = "EVTNAME5058"
+	desc = "EVTDESC5058"
+	picture = "coup"
+
+	option = {
+		name = "EVTOPTA5058"
+		organisation = 10
+		popularity = 10
+		relation = { who = FROM value = -50 }
+	}
+}
