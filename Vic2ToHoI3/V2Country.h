@@ -32,6 +32,9 @@ class V2Country
 		string				getPrimaryCulture() { return primaryCulture; };
 		double				getMoney() { return money; };
 		double				getDiploPoints() { return diploPoints; };
+		string				getGovernmentType() { return government; };
+		int					getRulingParty() { return rulingParty; };
+		double				getUpperHousePercentage(string ideology);
 		double				getEducationSpending() { return educationSpending; }
 		double				getAdminSpending() { return adminSpending; }
 		double				getSocialSpending() { return socialSpending; }
@@ -45,7 +48,7 @@ class V2Country
 		string				primaryCulture;
 		vector<string>		acceptedCultures;
 		string				religion;
-		//XXX: vector<int>			parties;
+		vector<int>			parties;
 		int					sourceCountryIndex;
 		string				countryFile;
 		double				prestige;
@@ -66,6 +69,8 @@ class V2Country
 		double				literacy;
 		vector<V2Province*>	provinces;
 		vector<V2Province*>	cores;
+		int					rulingParty;
+		map<string, double>	upperHouseComposition;
 		double				educationSpending;
 		double				adminSpending;
 		double				socialSpending;

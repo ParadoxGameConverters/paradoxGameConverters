@@ -67,6 +67,12 @@ void V2Country::init(Object* obj)
 		parties.push_back(atoi((*itr)->getLeaf().c_str()));
 	}
 
+	partyObj = obj->getValue("active_party");
+	for (vector<Object*>::iterator itr = partyObj.begin(); itr != partyObj.end(); ++itr)
+	{
+		parties.push_back(atoi((*itr)->getLeaf().c_str()));
+	}
+
 	vector<Object*> moneyObj = obj->getValue("money");
 	if (moneyObj.size() > 0)
 	{
@@ -286,6 +292,16 @@ void V2Country::eatCountry(V2Country* target)
 	target->clearCores();
 
 	log("Merged %s into %s\n", target->tag.c_str(), tag.c_str());
+}
+
+
+double V2Country::getUpperHousePercentage(string ideology)
+{
+	map<string, double>::iterator itr = upperHouseComposition.find(ideology);
+	if (itr == upperHouseComposition.end())
+		return 0.0;
+
+	return itr->second;
 }
 
 

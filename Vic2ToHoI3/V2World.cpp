@@ -2,8 +2,13 @@
 #include "Log.h"
 #include "Configuration.h"
 #include "Mapper.h"
+#include "Parsers/Parser.h"
+
+#include <fstream>
 
 void V2World::init(Object* obj) {
+	buildParties();
+
 	string key;	
 	vector<Object*> leaves = obj->getLeaves();
 
@@ -69,6 +74,49 @@ void V2World::init(Object* obj) {
 	{
 		diplomacy.init(diploObj[0]);
 	}
+}
+
+
+void V2World::buildParties()
+{
+	ifstream V2CountriesInput;
+	V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
+	if (!V2CountriesInput.is_open())
+	{
+		log("Error: Could not open countries.txt\n");
+		printf("Error: Could not open countries.txt\n");
+		exit(1);
+	}
+	V2Party emptyParty;
+	parties.push_back(emptyParty);
+	while (!V2CountriesInput.eof())
+	{
+		string line;
+		getline(V2CountriesInput, line);
+
+		if ( (line[0] == '#') | (line.size() < 3) )
+		{
+			continue;
+		}
+		
+		string tag;
+		tag = line.substr(0, 3);
+
+		string countryFileName;
+		int start		= line.find_first_of('/');
+		int size		= line.find_last_of('\"') - start;
+		countryFileName	= line.substr(start, size);
+
+		Object* countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+
+		vector<Object*> partyData = countryData->getValue("party");
+		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
+		{
+			V2Party newParty(*itr);
+			parties.push_back(newParty);
+		}
+	}
+	V2CountriesInput.close();
 }
 
 
