@@ -71,6 +71,7 @@ class V2Country
 
 		string				tag;
 		vector<V2State>	states;
+		vector<V2Province*>	provinces;
 		int					capital;
 		bool					civilized;
 		string				primaryCulture;

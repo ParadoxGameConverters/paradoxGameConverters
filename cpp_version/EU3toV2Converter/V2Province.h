@@ -56,6 +56,7 @@ class V2Province {
 		string		getRegimentName(RegimentCategory rc);
 		void		setFortLevel(int);
 		void		setNavalBaseLevel(int);
+		void		setRailLevel(int);
 	private:
 		void		createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, EU3Province* oldProvince, EU3Country* oldCountry, bool stateHasCOT);
 		void		combinePops();
@@ -81,6 +82,7 @@ class V2Province {
 		int				unitNameCount[num_reg_categories];
 		int				fortLevel;
 		int				navalBaseLevel;
+		int				railLevel;
 };
 
 

@@ -20,6 +20,15 @@ void V2State::addFactory(V2Factory factory)
 }
 
 
+void V2State::addRailroads()
+{
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		(*itr)->setRailLevel(1);
+	}
+}
+
+
 void V2State::setColonial(bool isIt)
 {
 	colonial = isIt;
@@ -103,6 +112,26 @@ bool V2State::hasCOT()
 	}
 
 	return false;
+}
+
+
+bool V2State::provInState(int id)
+{
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		if ( (*itr)->getNum() == id )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+
+vector<V2Province*> V2State::getProvinces()
+{
+	return provinces;
 }
 
 

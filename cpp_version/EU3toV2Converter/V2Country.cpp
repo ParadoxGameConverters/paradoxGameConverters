@@ -34,7 +34,7 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	uncivReforms[0].name		= "yes_land_reform";					uncivReforms[0].active	= false;	uncivReforms[0].westernizationProgress		= 10;
 	uncivReforms[1].name		= "yes_admin_reform";				uncivReforms[1].active	= false;	uncivReforms[1].westernizationProgress		= 10;
 	uncivReforms[2].name		= "yes_finance_reform";				uncivReforms[2].active	= false;	uncivReforms[2].westernizationProgress		= 10;
-	uncivReforms[3].name		= "finance_reform_two";				uncivReforms[3].active	= false;	uncivReforms[3].westernizationProgress		= 10;
+	uncivReforms[3].name		= "finance_reform_two";				uncivReforms[3].active	= false;	uncivReforms[3].westernizationProgress		= 0;
 	uncivReforms[4].name		= "yes_education_reform";			uncivReforms[4].active	= false;	uncivReforms[4].westernizationProgress		= 10;
 	uncivReforms[5].name		= "yes_transport_improv";			uncivReforms[5].active	= false;	uncivReforms[5].westernizationProgress		= 10;
 	uncivReforms[6].name		= "yes_pre_indust";					uncivReforms[6].active	= false;	uncivReforms[6].westernizationProgress		= 20;
@@ -123,6 +123,11 @@ string V2Country::getTag() const
 void V2Country::addState(V2State newState)
 {
 	states.push_back(newState);
+	vector<V2Province*> newProvinces = newState.getProvinces();
+	for (unsigned int i = 0; i < newProvinces.size(); i++)
+	{
+		provinces.push_back(newProvinces[i]);
+	}
 }
 
 
@@ -898,6 +903,44 @@ void V2Country::setUncivReforms(int westernizationProgress, double milFocus, dou
 	}
 
 	researchPoints += remainingProgress * 800;
+
+	if (uncivReforms[5].active == true)
+	{
+		for (unsigned int i = 0; i < states.size(); i++)
+		{
+			if (states[i].provInState(capital))
+			{
+				states[i].addRailroads();
+			}
+		}
+	}
+
+	if (uncivReforms[9].active == true)
+	{
+		techs.push_back("flintlock_rifles");
+	}
+
+	if (uncivReforms[10].active == true)
+	{
+		techs.push_back("post_napoleonic_thought");
+		for (unsigned int i = 0; i < provinces.size(); i++)
+		{
+			if (provinces[i]->getNum() == capital)
+			{
+				provinces[i]->setFortLevel(2);
+			}
+		}
+	}
+
+	if (uncivReforms[11].active == true)
+	{
+		techs.push_back("military_staff_system");
+	}
+
+	if (uncivReforms[15].active == true)
+	{
+		techs.push_back("post_nelsonian_thought");
+	}
 }
 
 

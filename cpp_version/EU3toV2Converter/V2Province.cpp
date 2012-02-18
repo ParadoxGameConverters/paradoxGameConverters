@@ -15,6 +15,7 @@ void V2Province::init(int newNumber)
 	coastal				= false;
 	fortLevel			= 0;
 	navalBaseLevel		= 0;
+	railLevel			= 0;
 
 	for (int i = 0; i < num_reg_categories; ++i)
 		unitNameCount[i] = 0;
@@ -835,6 +836,12 @@ void V2Province::setNavalBaseLevel(int level)
 }
 
 
+void V2Province::setRailLevel(int level)
+{
+	railLevel = level;
+}
+
+
 static string CardinalToOrdinal(int cardinal)
 {
 	int hundredRem = cardinal % 100;
@@ -947,6 +954,13 @@ void V2Province::output(FILE* output)
 		fprintf(output, "	naval_base=\n");
 		fprintf(output, "	{\n");
 		fprintf(output, "		%f %f\n", (float)navalBaseLevel, (float)navalBaseLevel);
+		fprintf(output, "	}\n");
+	}
+	if (railLevel > 0)
+	{
+		fprintf(output, "	railroad=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		%f %f\n", (float)railLevel, (float)railLevel);
 		fprintf(output, "	}\n");
 	}
 	if (colonial)

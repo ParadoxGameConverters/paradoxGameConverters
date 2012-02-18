@@ -10,24 +10,27 @@ class V2State
 {
 	public:
 		V2State(int newId);
-		void	addProvince(V2Province*);
-		void	addFactory(V2Factory);
-		void	setColonial(bool);
-		bool	isColonial();
-		void	output(FILE*);
-		bool	isCoastal();
-		bool	hasLocalSupply(string product);
-		int		getCraftsmenPerFactory();
-		int		getID();
-		int		getFactoryCount();
-		void	setupPops(EU3World& sourceWorld, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
-		int		getStatePopulation();
-		bool		hasCOT();
+		void						addProvince(V2Province*);
+		void						addFactory(V2Factory);
+		void						addRailroads();
+		void						setColonial(bool);
+		bool						isColonial();
+		void						output(FILE*);
+		bool						isCoastal();
+		bool						hasLocalSupply(string product);
+		int						getCraftsmenPerFactory();
+		int						getID();
+		int						getFactoryCount();
+		void						setupPops(EU3World& sourceWorld, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
+		int						getStatePopulation();
+		bool						hasCOT();
+		bool						provInState(int id);
+		vector<V2Province*>	getProvinces();
 	private:
 		int						id;
 		bool						colonial;
 		vector<V2Province*>	provinces;
-		vector<V2Factory>	factories;
+		vector<V2Factory>		factories;
 };
 
 

@@ -11,6 +11,7 @@ V2Pop::V2Pop()
 	size = 0;
 	consciousness = 0.0;
 	militancy = 0.0;
+	literacy	= 10.0;
 
 	id = nextId;
 	nextId++;

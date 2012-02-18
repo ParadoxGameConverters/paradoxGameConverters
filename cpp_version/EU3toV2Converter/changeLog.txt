@@ -368,3 +368,4 @@ Revision	Version Updated		Log Message
 386		C++			Inca culture maps to Quechua, not Tarascan (the Tarascan people are from modern Mexico)
 388		C++			Tiny mistake in readme fixed.
 390		C++			Unciv nations get reforms.
+391		C++			Unciv reforms fire proper effects.
