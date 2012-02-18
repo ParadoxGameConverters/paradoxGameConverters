@@ -2,3 +2,5 @@ Revision	Log Message
 ---------	----------------
 1		Initial commit
 2		Initial parser
+3		Automated build batch file
+4		Copy data files on build
