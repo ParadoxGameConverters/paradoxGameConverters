@@ -369,4 +369,5 @@ Revision	Version Updated		Log Message
 388		C++			Tiny mistake in readme fixed.
 390		C++			Unciv nations get reforms.
 392		C++			Unciv reforms fire proper effects.
-393		C++			Bill of Rights NI reduces slaves by 10%
+394		C++			Bill of Rights NI reduces slaves by 10%
+395		C++			Upper House determined by sliders.

@@ -484,9 +484,9 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	}
 
 	//Bill of Rights NI reduces slaves by 10%
-	if (oldCountry->hasNationalIdea("bill_of_rights")
+	if (oldCountry->hasNationalIdea("bill_of_rights") )
 	{
-		slaves *= 0.9;
+		slaves = (int)(slaves * 0.9);
 	}
 
 	// Capitalists, Bureaucrats, and Aristocrats are only found in the state capital

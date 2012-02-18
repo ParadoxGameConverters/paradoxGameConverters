@@ -481,6 +481,55 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						}
 					}
 
+					int reactionary	= 0;
+					int conservative	= 0;
+					int liberal			= 0;
+					int total			= 0;
+					if (sourceCountries[newCountry.getSourceCountryIndex()].getCentralizationDecentralization() < 0)
+					{
+						conservative -= sourceCountries[newCountry.getSourceCountryIndex()].getCentralizationDecentralization();
+					}
+					else
+					{
+						liberal += sourceCountries[newCountry.getSourceCountryIndex()].getCentralizationDecentralization();
+					}
+					if (sourceCountries[newCountry.getSourceCountryIndex()].getAristocracyPlutocracy() < 0)
+					{
+						reactionary -= sourceCountries[newCountry.getSourceCountryIndex()].getAristocracyPlutocracy();
+					}
+					else
+					{
+						liberal += sourceCountries[newCountry.getSourceCountryIndex()].getAristocracyPlutocracy();
+					}
+					if (sourceCountries[newCountry.getSourceCountryIndex()].getSerfdomFreesubjects() < 0)
+					{
+						reactionary -= sourceCountries[newCountry.getSourceCountryIndex()].getSerfdomFreesubjects();
+					}
+					else
+					{
+						liberal += sourceCountries[newCountry.getSourceCountryIndex()].getSerfdomFreesubjects();
+					}
+					if (sourceCountries[newCountry.getSourceCountryIndex()].getInnovativeNarrowminded() < 0)
+					{
+						liberal -= sourceCountries[newCountry.getSourceCountryIndex()].getInnovativeNarrowminded();
+					}
+					else
+					{
+						conservative += sourceCountries[newCountry.getSourceCountryIndex()].getInnovativeNarrowminded();
+					}
+					if (sourceCountries[newCountry.getSourceCountryIndex()].getMercantilismFreetrade() < 0)
+					{
+						conservative -= sourceCountries[newCountry.getSourceCountryIndex()].getMercantilismFreetrade();
+					}
+					else
+					{
+						liberal += sourceCountries[newCountry.getSourceCountryIndex()].getMercantilismFreetrade();
+					}
+					total = reactionary + conservative + liberal;
+					newCountry.setUpperHouse( (reactionary / (double)total), (conservative / (double)total), (liberal / (double)total) );
+
+
+
 					newCountry.setReforms(&sourceCountries[newCountry.getSourceCountryIndex()]);
 					newCountry.setNationalIdea(&sourceCountries[newCountry.getSourceCountryIndex()], libertyLeft, equalityLeft);
 

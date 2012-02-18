@@ -31,6 +31,10 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 
 	sourceCountryIndex = -1;
 
+	upperHouseReactionary	= 0.333;
+	upperHouseConservative	= 0.333;
+	upperHouseLiberal			= 0.333;
+
 	uncivReforms[0].name		= "yes_land_reform";					uncivReforms[0].active	= false;	uncivReforms[0].westernizationProgress		= 10;
 	uncivReforms[1].name		= "yes_admin_reform";				uncivReforms[1].active	= false;	uncivReforms[1].westernizationProgress		= 10;
 	uncivReforms[2].name		= "yes_finance_reform";				uncivReforms[2].active	= false;	uncivReforms[2].westernizationProgress		= 10;
@@ -221,9 +225,9 @@ void V2Country::output(FILE* output)
 	}
 	fprintf(output, "	upper_house=\n");
 	fprintf(output, "	{\n");
-	fprintf(output, "		reactionary=0.33000\n");
-	fprintf(output, "		conservative=0.34000\n");
-	fprintf(output, "		liberal=0.33000\n");
+	fprintf(output, "		reactionary=%f\n", upperHouseReactionary);
+	fprintf(output, "		conservative=%f\n", upperHouseConservative);
+	fprintf(output, "		liberal=%f\n", upperHouseLiberal);
 	fprintf(output, "	}\n");
 	fprintf(output, "	ruling_party=%d\n", parties[0]);
 	for (unsigned int i = 0; i < parties.size(); i++)
@@ -1031,6 +1035,14 @@ void V2Country::addPrestige(double additionalPrestige)
 void V2Country::setGovernment(string newGovernment)
 {
 	government = newGovernment;
+}
+
+
+void V2Country::setUpperHouse(double reactionary, double conservative, double liberal)
+{
+	upperHouseReactionary	= reactionary;
+	upperHouseConservative	= conservative;
+	upperHouseLiberal			= liberal;
 }
 
 

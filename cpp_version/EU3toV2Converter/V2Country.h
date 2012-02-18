@@ -45,6 +45,7 @@ class V2Country
 		void					addPrestige(double);
 		void					addPlurality(double);
 		void					setGovernment(string);
+		void					setUpperHouse(double reactionary, double conservative, double liberal);
 		void					addRelations(V2Relations);
 		V2Relations*			getRelations(string);
 		void					addArmy(V2Army);
@@ -89,6 +90,9 @@ class V2Country
 		double				researchPoints;
 		string				techSchool;
 		string				government;
+		double				upperHouseReactionary;
+		double				upperHouseConservative;
+		double				upperHouseLiberal;
 		vector<V2Relations>	relations;
 		vector<V2Army>		armies;
 		V2Reforms			reforms;
