@@ -1,10 +1,12 @@
-#include "Object.h"
-#include "Parser.h"
 #include <sstream> 
 #include <fstream>
 #include <algorithm>
 #include <iostream>
 #include <assert.h>
+#include "Object.h"
+#include "Parser.h"
+
+
 
 bool Object::debug = false; 
 

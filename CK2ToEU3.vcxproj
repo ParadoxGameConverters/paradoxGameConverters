@@ -91,14 +91,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Convert.cpp" />
+    <ClCompile Include="Source\EU3World\EU3World.cpp" />
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Parsers\Object.cpp" />
     <ClCompile Include="Source\Parsers\Parser.cpp" />
+    <ClCompile Include="Source\Temp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\EU3World\EU3World.h" />
     <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Parsers\Object.h" />
     <ClInclude Include="Source\Parsers\Parser.h" />
+    <ClInclude Include="Source\Temp.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

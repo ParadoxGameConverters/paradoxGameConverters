@@ -16,6 +16,9 @@
     <Filter Include="Parsers">
       <UniqueIdentifier>{a17e77d6-6f0e-4855-979c-fc332da7e204}</UniqueIdentifier>
     </Filter>
+    <Filter Include="EU3World">
+      <UniqueIdentifier>{5eef07c5-6a70-463c-a404-aa73662ab430}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Convert.cpp">
@@ -30,6 +33,12 @@
     <ClCompile Include="Source\Parsers\Parser.cpp">
       <Filter>Parsers</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Temp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU3World\EU3World.cpp">
+      <Filter>EU3World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -40,6 +49,12 @@
     </ClInclude>
     <ClInclude Include="Source\Parsers\Parser.h">
       <Filter>Parsers</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Temp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU3World\EU3World.h">
+      <Filter>EU3World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

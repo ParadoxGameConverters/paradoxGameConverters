@@ -11,7 +11,7 @@ del %i%.zip
 rmdir %i%
 call CK2ToEU3.exe
 del input.ck2 /q
-rem copy output.v2 ..\testresults\%j%\%i%.v2
+copy output.eu3 ..\testresults\%j%\%i%.eu3
 copy log.txt ..\testresults\%j%\%i%-Log.txt
-rem del output.v2 /q
+del output.eu3 /q
 del log.txt /q

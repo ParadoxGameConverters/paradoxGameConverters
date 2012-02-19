@@ -1,0 +1,2 @@
+
+void outputTempHeader(FILE*);

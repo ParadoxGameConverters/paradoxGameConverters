@@ -3,6 +3,7 @@
 #include "Log.h"
 #include "Parsers/Parser.h"
 #include "Parsers/Object.h"
+#include "EU3World\EU3World.h"
 using namespace std;
 
 
@@ -46,6 +47,25 @@ int main(int argc, char * argv[])
 	readFile(read);
 	read.close();
 	read.clear();
+
+
+
+	EU3World destWorld;
+
+
+
+
+	// Output results
+	printf("Outputting save.\n");
+	log("Outputting save.\n");
+	FILE* output;
+	if (fopen_s(&output, "output.eu3", "w") != 0)
+	{
+		log("Error: could not open output.v2.\n");
+		printf("Error: could not open output.v2.\n");
+	}
+	destWorld.output(output);
+	fclose(output);
 
 
 
