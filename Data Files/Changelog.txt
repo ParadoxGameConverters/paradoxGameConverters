@@ -5,3 +5,4 @@ Revision	Log Message
 3		Automated build batch file
 4		Copy data files on build
 5		Automated Test and Build_and_Test batch files
+6		Add initial province mapping with Iceland mapped

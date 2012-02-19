@@ -1,0 +1,5 @@
+mappings = {
+# Iceland
+link = { ck2 = 1 eu3 = 370 }	# Vestisland -> Reykjavik
+link = { ck2 = 2 eu3 = 371 }	# Austisland -> Akureyri
+}
