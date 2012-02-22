@@ -26,6 +26,8 @@ namespace ProvinceMapper
             tbMappingsFile.Text = Properties.Settings.Default.mappingFile;
             cbScale.Checked = Properties.Settings.Default.fitMaps;
             cbNamesFrom.SelectedItem = Properties.Settings.Default.namesFrom;
+            ckInvertSource.Checked = Properties.Settings.Default.invertSource;
+            ckInvertDest.Checked = Properties.Settings.Default.invertDest;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -71,11 +73,11 @@ namespace ProvinceMapper
             // add geo data to province lists
             lblStatus.Text = "Load Source Map";
             Application.DoEvents();
-            Program.sourceMap = new MapReader(srcMap, Program.sourceDef.provinces, PushStatusUpdate);
+            Program.sourceMap = new MapReader(srcMap, Program.sourceDef.provinces, ckInvertSource.Checked, PushStatusUpdate);
 
             lblStatus.Text = "Load Target Map";
             Application.DoEvents();
-            Program.targetMap = new MapReader(targetMap, Program.targetDef.provinces, PushStatusUpdate);
+            Program.targetMap = new MapReader(targetMap, Program.targetDef.provinces, ckInvertDest.Checked, PushStatusUpdate);
 
             // load localizations, if desired
             if (cbNamesFrom.SelectedItem.ToString() == "Localization")
@@ -111,6 +113,8 @@ namespace ProvinceMapper
             Properties.Settings.Default.mappingFile = tbMappingsFile.Text;
             Properties.Settings.Default.fitMaps = cbScale.Checked;
             Properties.Settings.Default.namesFrom = cbNamesFrom.SelectedItem.ToString();
+            Properties.Settings.Default.invertSource = ckInvertSource.Checked;
+            Properties.Settings.Default.invertDest = ckInvertDest.Checked;
             Properties.Settings.Default.Save();
         }
 

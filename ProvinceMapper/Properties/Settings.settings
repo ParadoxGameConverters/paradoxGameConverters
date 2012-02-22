@@ -23,5 +23,11 @@
     <Setting Name="namesFrom" Type="System.String" Scope="User">
       <Value Profile="(Default)">Localization</Value>
     </Setting>
+    <Setting Name="invertSource" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="invertDest" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

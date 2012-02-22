@@ -45,6 +45,8 @@
             this.cbScale = new System.Windows.Forms.CheckBox();
             this.label6 = new System.Windows.Forms.Label();
             this.cbNamesFrom = new System.Windows.Forms.ComboBox();
+            this.ckInvertSource = new System.Windows.Forms.CheckBox();
+            this.ckInvertDest = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // label1
@@ -118,7 +120,7 @@
             // btnBegin
             // 
             this.btnBegin.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnBegin.Location = new System.Drawing.Point(211, 220);
+            this.btnBegin.Location = new System.Drawing.Point(265, 220);
             this.btnBegin.Name = "btnBegin";
             this.btnBegin.Size = new System.Drawing.Size(61, 23);
             this.btnBegin.TabIndex = 8;
@@ -158,7 +160,7 @@
             // 
             this.progressBar1.Location = new System.Drawing.Point(12, 191);
             this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(260, 23);
+            this.progressBar1.Size = new System.Drawing.Size(314, 23);
             this.progressBar1.TabIndex = 12;
             // 
             // lblStatus
@@ -203,11 +205,37 @@
             this.cbNamesFrom.Size = new System.Drawing.Size(121, 21);
             this.cbNamesFrom.TabIndex = 16;
             // 
+            // ckInvertSource
+            // 
+            this.ckInvertSource.AutoSize = true;
+            this.ckInvertSource.Checked = true;
+            this.ckInvertSource.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckInvertSource.Location = new System.Drawing.Point(278, 11);
+            this.ckInvertSource.Name = "ckInvertSource";
+            this.ckInvertSource.Size = new System.Drawing.Size(53, 17);
+            this.ckInvertSource.TabIndex = 17;
+            this.ckInvertSource.Text = "Invert";
+            this.ckInvertSource.UseVisualStyleBackColor = true;
+            // 
+            // ckInvertDest
+            // 
+            this.ckInvertDest.AutoSize = true;
+            this.ckInvertDest.Checked = true;
+            this.ckInvertDest.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.ckInvertDest.Location = new System.Drawing.Point(278, 37);
+            this.ckInvertDest.Name = "ckInvertDest";
+            this.ckInvertDest.Size = new System.Drawing.Size(53, 17);
+            this.ckInvertDest.TabIndex = 18;
+            this.ckInvertDest.Text = "Invert";
+            this.ckInvertDest.UseVisualStyleBackColor = true;
+            // 
             // LaunchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 256);
+            this.ClientSize = new System.Drawing.Size(338, 256);
+            this.Controls.Add(this.ckInvertDest);
+            this.Controls.Add(this.ckInvertSource);
             this.Controls.Add(this.cbNamesFrom);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.cbScale);
@@ -251,6 +279,8 @@
         private System.Windows.Forms.CheckBox cbScale;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ComboBox cbNamesFrom;
+        private System.Windows.Forms.CheckBox ckInvertSource;
+        private System.Windows.Forms.CheckBox ckInvertDest;
     }
 }
 

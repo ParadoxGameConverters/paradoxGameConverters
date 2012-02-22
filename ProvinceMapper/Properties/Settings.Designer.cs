@@ -106,5 +106,29 @@ namespace ProvinceMapper.Properties {
                 this["namesFrom"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool invertSource {
+            get {
+                return ((bool)(this["invertSource"]));
+            }
+            set {
+                this["invertSource"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool invertDest {
+            get {
+                return ((bool)(this["invertDest"]));
+            }
+            set {
+                this["invertDest"] = value;
+            }
+        }
     }
 }
