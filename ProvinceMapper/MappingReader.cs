@@ -36,11 +36,25 @@ namespace ProvinceMapper
                 {
                     if (line.StartsWith("link"))
                     {
-                        mappings.Add(new ProvinceMapping(line, srcTag, destTag, srcProvs, destProvs));
+                        try
+                        {
+                            mappings.Add(new ProvinceMapping(line, srcTag, destTag, srcProvs, destProvs));
+                        }
+                        catch (Exception e)
+                        {
+                            System.Windows.Forms.MessageBox.Show(e.Message, "Error in mapping file");
+                        }
                     }
                     else if (line.StartsWith("#"))
                     {
-                        mappings.Add(new CommentMapping(line));
+                        try
+                        {
+                            mappings.Add(new CommentMapping(line));
+                        }
+                        catch (Exception e)
+                        {
+                            System.Windows.Forms.MessageBox.Show(e.Message, "Error in mapping file");
+                        }
                     }
                     else if (line.StartsWith("mappings") || line.StartsWith("{") || line.StartsWith("}"))
                     {

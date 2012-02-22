@@ -60,6 +60,8 @@ namespace ProvinceMapper
                                     {
                                         return p.ID == provID;
                                     });
+                                if (prov == null)
+                                    throw new Exception(String.Format("Province \"{0}\" appears in a mapping, but not in game data!", prov.ToString()));
                                 if (prov.mapping != null)
                                     throw new Exception(String.Format("Province \"{0}\" appears in more than one mapping!", prov.ToString()));
                                 prov.mapping = this;
@@ -74,6 +76,8 @@ namespace ProvinceMapper
                                     {
                                         return p.ID == provID;
                                     });
+                                if (prov == null)
+                                    throw new Exception(String.Format("Province \"{0}\" appears in a mapping, but not in game data!", prov.ToString()));
                                 if (prov.mapping != null)
                                     throw new Exception(String.Format("Province \"{0}\" appears in more than one mapping!", prov.ToString()));
                                 prov.mapping = this;
