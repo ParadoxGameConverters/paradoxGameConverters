@@ -1,3 +1,6 @@
+#ifndef V2PARTY_H
+#define V2PARTY_H
+
 #include "Parsers/Object.h"
 
 #include "Date.h"
@@ -19,6 +22,8 @@ public:
 	string religious_policy;
 	string citizenship_policy;
 	string war_policy;
-
+	
 	bool isActiveOn(date query) { return ((query > start_date) && (query < end_date)); };
 };
+
+#endif // V2PARTY_H

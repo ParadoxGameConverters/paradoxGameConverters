@@ -7,3 +7,4 @@ copy "configuration.txt" "release\configuration.txt"
 copy "tech_mapping.txt" "release\tech_mapping.txt"
 copy "unit_mapping.txt" "release\unit_mapping.txt"
 copy "unions.txt" "release\unions.txt
+copy "government_mappings.txt" "release\government_mappings.txt"

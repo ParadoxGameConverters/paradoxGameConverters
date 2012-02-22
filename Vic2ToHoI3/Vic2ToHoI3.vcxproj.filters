@@ -84,6 +84,12 @@
     <ClInclude Include="HoI3Alignment.h">
       <Filter>HoI3 World</Filter>
     </ClInclude>
+    <ClInclude Include="V2Party.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="GovernmentMapper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Parsers\Parser.cpp">
@@ -145,6 +151,12 @@
     </ClCompile>
     <ClCompile Include="HoI3Alignment.cpp">
       <Filter>HoI3 World</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Party.cpp">
+      <Filter>Vic2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="GovernmentMapper.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

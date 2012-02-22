@@ -5,6 +5,7 @@
 #include "Parsers/Parser.h"
 #include "Log.h"
 #include "Configuration.h"
+#include "GovernmentMapper.h"
 
 
 void HoI3World::init(string HoI3Loc)
@@ -154,7 +155,10 @@ void HoI3World::convertCountries(V2World sourceWorld, countryMapping countryMap)
 
 					//XXX: Map prestige(?)
 
-					//XXX: Map government types, set up ministers(?)
+					// Map government types
+					newCountry.setGovernment(getGovernmentForCountry(sourceCountries[i], sourceWorld));
+
+					//XXX: set up ministers(?)
 
 					// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
 					if (sourceCountries[i].getGovernmentType() == "democracy" || sourceCountries[i].getGovernmentType() == "hms_government")
@@ -171,11 +175,11 @@ void HoI3World::convertCountries(V2World sourceWorld, countryMapping countryMap)
 					newCountry.setEconomicLaw("full_civilian_economy");
 
 					// educational investment law - from educational spending
-					if (sourceCountries[i].getEducationSpending() > 0.75)
+					if (sourceCountries[i].getEducationSpending() > 0.90)
 						newCountry.setEducationalLaw("big_education_investment");
-					else if (sourceCountries[i].getEducationSpending() > 0.5)
+					else if (sourceCountries[i].getEducationSpending() > 0.70)
 						newCountry.setEducationalLaw("medium_large_education_investment");
-					else if (sourceCountries[i].getEducationSpending() > 0.25)
+					else if (sourceCountries[i].getEducationSpending() > 0.40)
 						newCountry.setEducationalLaw("average_education_investment");
 					else
 						newCountry.setEducationalLaw("minimal_education_investment");
@@ -202,11 +206,11 @@ void HoI3World::convertCountries(V2World sourceWorld, countryMapping countryMap)
 					}
 
 					// training laws - from military spending
-					if (sourceCountries[i].getMilitarySpending() > 0.75)
+					if (sourceCountries[i].getMilitarySpending() > 0.90)
 						newCountry.setTrainingLaw("specialist_training");
-					else if (sourceCountries[i].getMilitarySpending() > 0.5)
+					else if (sourceCountries[i].getMilitarySpending() > 0.70)
 						newCountry.setTrainingLaw("advanced_training");
-					else if (sourceCountries[i].getMilitarySpending() > 0.25)
+					else if (sourceCountries[i].getMilitarySpending() > 0.40)
 						newCountry.setTrainingLaw("basic_training");
 					else
 						newCountry.setTrainingLaw("minimal_training");

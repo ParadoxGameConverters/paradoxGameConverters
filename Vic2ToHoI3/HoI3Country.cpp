@@ -126,6 +126,7 @@ void HoI3Country::output(FILE* output)
 	}
 	fprintf(output, "	}\n");
 	fprintf(output, "	diplo_influence=%f\n", diploPoints);
+	fprintf(output, "	government=%s\n", government.c_str());
 	fprintf(output, "	civil_law=%s\n", civil_law.c_str());
 	fprintf(output, "	conscription_law=%s\n", conscription_law.c_str());
 	fprintf(output, "	economic_law=%s\n", economic_law.c_str());

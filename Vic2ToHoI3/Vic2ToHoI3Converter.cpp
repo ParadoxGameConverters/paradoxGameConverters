@@ -6,6 +6,7 @@
 #include "V2World.h"
 #include "HoI3World.h"
 #include "Mapper.h"
+#include "GovernmentMapper.h"
 
 int main(int argc, char * argv[])
 {
@@ -122,10 +123,21 @@ int main(int argc, char * argv[])
 	unionMapping unionMap;
 	unionMap = initUnionMap(obj->getLeaves()[0]);
 
+	// Parse government mapping
+	log("Parsing government mappings.\n");
+	printf("Parsing government mappings.\n");
+	obj = doParseFile("government_mappings.txt");
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse government_mappings.txt.\n");
+		printf("Error: Failed to parse government_mappings.txt.\n");
+		return 1;
+	}
+	initGovernmentMap(obj->getLeaves()[0]);
+
 	// Get country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
-	initParser();
 	obj = doParseFile("country_mappings.txt");	
 
 	// Map V2 nations to HoI3 nations

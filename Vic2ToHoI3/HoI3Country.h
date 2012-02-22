@@ -34,6 +34,7 @@ class HoI3Country
 		void					addProvince(int index);	// note: takes index into provinces array, NOT province num
 		vector<int>				getProvinces() const;	// note: returns indexes into provinces array, NOT province nums
 		HoI3Alignment*			getAlignment();
+		void					setGovernment(string newGov)		{ government = newGov; };
 
 		// laws
 		void					setCivilLaw(string newLaw)			{ civil_law = newLaw; };
@@ -60,6 +61,7 @@ class HoI3Country
 		map<string, int>	technologies;
 		vector<int>			provinces;
 		HoI3Alignment		alignment;
+		string				government;
 
 		// laws
 		string				civil_law;

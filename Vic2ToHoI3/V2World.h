@@ -20,7 +20,7 @@ class V2World {
 		void					removeCountries(vector<string>& tags);
 		V2Diplomacy&			getDiplomacy() { return diplomacy; };
 		void					checkAllProvincesMapped(provinceMapping provinceMap);
-		V2Party					getParty(int index) { return parties[index]; }
+		V2Party					getParty(int index) const { return parties[index]; }
 
 	private:
 		void				buildParties();

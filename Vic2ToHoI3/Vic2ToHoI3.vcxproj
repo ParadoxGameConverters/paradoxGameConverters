@@ -76,6 +76,7 @@
   <ItemGroup>
     <ClInclude Include="Configuration.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="GovernmentMapper.h" />
     <ClInclude Include="HoI3Alignment.h" />
     <ClInclude Include="HoI3Army.h" />
     <ClInclude Include="HoI3Country.h" />
@@ -91,6 +92,7 @@
     <ClInclude Include="V2Country.h" />
     <ClInclude Include="V2Diplomacy.h" />
     <ClInclude Include="V2Inventions.h" />
+    <ClInclude Include="V2Party.h" />
     <ClInclude Include="V2Province.h" />
     <ClInclude Include="V2Relations.h" />
     <ClInclude Include="V2World.h" />
@@ -98,6 +100,7 @@
   <ItemGroup>
     <ClCompile Include="Configuration.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="GovernmentMapper.cpp" />
     <ClCompile Include="HoI3Alignment.cpp" />
     <ClCompile Include="HoI3Army.cpp" />
     <ClCompile Include="HoI3Country.cpp" />
@@ -112,6 +115,7 @@
     <ClCompile Include="V2Army.cpp" />
     <ClCompile Include="V2Country.cpp" />
     <ClCompile Include="V2Diplomacy.cpp" />
+    <ClCompile Include="V2Party.cpp" />
     <ClCompile Include="V2Province.cpp" />
     <ClCompile Include="V2Relations.cpp" />
     <ClCompile Include="V2World.cpp" />
