@@ -1,0 +1,34 @@
+321	Initial commit - mostly functional, partial mappings
+322	Fix name of province_mappings.txt
+325	V2 provinces 78-80 (Washington State) mapped
+343	Australia mapped
+346	Re-merge Australia with old mappings so we don't lose Europe
+351	Remove duplicate entry for province 6683
+353	Western Europe mapped
+355	Southern Europe mapped
+362	Add configuration options for controlling dead nation removal
+363	Add a few more country mappings
+364	Russia mapping started
+365	Corrected Russia sothern border
+366	More corrections to Russia southern border
+369	Half of Russia done
+371	Completed Russia
+372	South America mapped
+373	Convert diplomacy points.  Prep for money conversion (won't be finished until supply pools are implemented)
+374	Convert laws
+375	Africa, Carribian, Pacific, and Atlantic islands mapped
+377	Oceans: Baltic, Artic, Carribean, North & South Atlantic mapped
+382	Africa fixed
+384	North & South Pacific, Southern Indian done
+385	Fixed a slight oversight in central asia province mappings
+389	Middle East and Iran mapped
+391	India, Tibet, Nepal, Afghanistan mapped
+393	All land but USA complete; all oceans but part of Pacific & Indian complete
+398	Read party and government data
+399	Land mappings complete
+400	Land and sea mappings complete
+401	Read the active parties just once, not twice
+402	Fix some holes in the province mappings
+405	Convert government type
+406	Convert last election date (fixes a few problems with democracies)
+407	Add changelog
