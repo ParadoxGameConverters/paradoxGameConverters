@@ -29,6 +29,12 @@ void V2Country::init(Object* obj)
 		techs = techObj[0]->getKeys();
 	}
 
+	vector<Object*> electionObj = obj->getValue("last_election");
+	if (electionObj.size() > 0)
+	{
+		lastElection = date(electionObj[0]->getLeaf().c_str());
+	}
+
 	for (int i = 0; i <= naval_exercises; ++i)
 	{
 		inventions[i] = illegal; // we don't care if they're possible or not

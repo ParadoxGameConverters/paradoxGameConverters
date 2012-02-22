@@ -125,6 +125,7 @@ void HoI3Country::output(FILE* output)
 		fprintf(output, "		%s={%d 0.000}\n", itr->first.c_str(), itr->second);
 	}
 	fprintf(output, "	}\n");
+	fprintf(output, "	last_election=%s\n", lastElection.toString().c_str());
 	fprintf(output, "	diplo_influence=%f\n", diploPoints);
 	fprintf(output, "	government=%s\n", government.c_str());
 	fprintf(output, "	civil_law=%s\n", civil_law.c_str());

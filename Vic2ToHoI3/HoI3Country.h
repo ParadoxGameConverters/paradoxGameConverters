@@ -35,6 +35,7 @@ class HoI3Country
 		vector<int>				getProvinces() const;	// note: returns indexes into provinces array, NOT province nums
 		HoI3Alignment*			getAlignment();
 		void					setGovernment(string newGov)		{ government = newGov; };
+		void					setLastElection(date electionDate)	{ lastElection = electionDate; };
 
 		// laws
 		void					setCivilLaw(string newLaw)			{ civil_law = newLaw; };
@@ -62,6 +63,7 @@ class HoI3Country
 		vector<int>			provinces;
 		HoI3Alignment		alignment;
 		string				government;
+		date				lastElection;
 
 		// laws
 		string				civil_law;

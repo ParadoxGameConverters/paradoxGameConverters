@@ -35,11 +35,12 @@ class V2Country
 		string				getGovernmentType() { return government; };
 		int					getRulingParty() { return rulingParty; };
 		double				getUpperHousePercentage(string ideology);
-		double				getEducationSpending() { return educationSpending; }
-		double				getAdminSpending() { return adminSpending; }
-		double				getSocialSpending() { return socialSpending; }
-		double				getMilitarySpending() { return militarySpending; }
+		double				getEducationSpending() { return educationSpending; };
+		double				getAdminSpending() { return adminSpending; };
+		double				getSocialSpending() { return socialSpending; };
+		double				getMilitarySpending() { return militarySpending; };
 		string				getReform(string reform);
+		date				getLastElection() { return lastElection; };
 
 	private:
 		string				tag;
@@ -75,6 +76,7 @@ class V2Country
 		double				adminSpending;
 		double				socialSpending;
 		double				militarySpending;
+		date				lastElection;
 
 		map<string, string> reforms;
 };

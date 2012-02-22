@@ -157,6 +157,7 @@ void HoI3World::convertCountries(V2World sourceWorld, countryMapping countryMap)
 
 					// Map government types
 					newCountry.setGovernment(getGovernmentForCountry(sourceCountries[i], sourceWorld));
+					newCountry.setLastElection(sourceCountries[i].getLastElection());
 
 					//XXX: set up ministers(?)
 
