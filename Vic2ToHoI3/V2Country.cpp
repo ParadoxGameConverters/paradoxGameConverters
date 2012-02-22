@@ -67,12 +67,6 @@ void V2Country::init(Object* obj)
 		parties.push_back(atoi((*itr)->getLeaf().c_str()));
 	}
 
-	partyObj = obj->getValue("active_party");
-	for (vector<Object*>::iterator itr = partyObj.begin(); itr != partyObj.end(); ++itr)
-	{
-		parties.push_back(atoi((*itr)->getLeaf().c_str()));
-	}
-
 	vector<Object*> moneyObj = obj->getValue("money");
 	if (moneyObj.size() > 0)
 	{
