@@ -1,0 +1,8 @@
+configuration =
+{
+	# Europa Universalis 3 directory: a path on your computer where Europa Universalis 3 is installed
+	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
+
+	# Crusader Kings 2 directory: a path on your computer where Crusader Kings 2 is installed
+	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
+}

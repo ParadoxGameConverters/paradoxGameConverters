@@ -7,3 +7,4 @@ Revision	Log Message
 5		Automated Test and Build_and_Test batch files
 6		Add initial province mapping with Iceland mapped
 7		Output a minimal yet functional EU3 save
+8		Add configuration file and relating code

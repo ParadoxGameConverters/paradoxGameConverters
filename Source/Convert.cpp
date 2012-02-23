@@ -1,6 +1,8 @@
 #include <fstream>
 #include <string>
+#include <sys/stat.h>
 #include "Log.h"
+#include "Configuration.h"
 #include "Parsers/Parser.h"
 #include "Parsers/Object.h"
 #include "EU3World\EU3World.h"
@@ -14,6 +16,26 @@ int main(int argc, char * argv[])
 
 	Object*	obj;				// generic object
 	ifstream	read;				// ifstream for reading files
+
+
+	//Get CK2 install location
+	string CK2Loc = Configuration::getCK2Path();
+	struct stat st;
+	if (CK2Loc.empty() || (stat(CK2Loc.c_str(), &st) != 0))
+	{
+		log("No Crusader King 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Crusader King 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
+
+	//Get EU3 install location
+	string EU3Loc = Configuration::getEU3Path();
+	if (EU3Loc.empty() || (stat(EU3Loc.c_str(), &st) != 0))
+	{
+		log("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
 
 
 	//Get Input CK2 save 
@@ -47,7 +69,6 @@ int main(int argc, char * argv[])
 	readFile(read);
 	read.close();
 	read.clear();
-
 
 
 	EU3World destWorld;
