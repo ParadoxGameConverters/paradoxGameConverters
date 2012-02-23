@@ -39,6 +39,15 @@
     <ClCompile Include="Source\EU3World\EU3World.cpp">
       <Filter>EU3World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\mappers.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\Configuration.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU3World\EU3Province.cpp">
+      <Filter>EU3World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -54,6 +63,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\EU3World\EU3World.h">
+      <Filter>EU3World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\mappers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Configuration.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU3World\EU3Province.h">
       <Filter>EU3World</Filter>
     </ClInclude>
   </ItemGroup>

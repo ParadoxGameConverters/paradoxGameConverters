@@ -8,3 +8,4 @@ Revision	Log Message
 6		Add initial province mapping with Iceland mapped
 7		Output a minimal yet functional EU3 save
 8		Add configuration file and relating code
+9		ROTW provinces get ownership from EU3 install

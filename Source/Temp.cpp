@@ -16,4 +16,5 @@ void outputTempHeader(FILE* output)
 	fprintf(output, "	id=3001\n");
 	fprintf(output, "	type=4713\n");
 	fprintf(output, "}\n");
+	fprintf(output, "\n");
 }
