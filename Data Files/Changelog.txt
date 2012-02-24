@@ -9,3 +9,4 @@ Revision	Log Message
 7		Output a minimal yet functional EU3 save
 8		Add configuration file and relating code
 9		ROTW provinces get ownership from EU3 install
+10		England Ireland Scotland Wales mapped

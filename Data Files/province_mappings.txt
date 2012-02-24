@@ -3,6 +3,37 @@ mappings = {
 link = { ck2 = 1 eu3 = 370 }	# Vestisland -> Reykjavik
 link = { ck2 = 2 eu3 = 371 }	# Austisland -> Akureyri
 
+# England, Ireland, Scotland, and Wales
+link = { ck2 = 5 ck2 = 4 ck2 = 3 eu3 = 372 }	# Ulster, Tyrone, Tyrconnell -> Ulster
+link = { ck2 = 9 eu3 = 376 }	# Connacht -> Connaught
+link = { ck2 = 11 ck2 = 8 ck2 = 7 eu3 = 373 }	# Dublin, Breifne, Oriel -> Meath
+link = { ck2 = 15 ck2 = 16 ck2 = 12 ck2 = 10 eu3 = 374 }	# Ormond, Leinster, Ossory, Kildare -> Leinster
+link = { ck2 = 14 ck2 = 13 eu3 = 375 }	# Desmond, Thomond -> Munster
+link = { ck2 = 36 eu3 = 369 }	# Orkney -> Orkney
+link = { ck2 = 37 ck2 = 39 ck2 = 40 ck2 = 45 eu3 = 252 }	# Caithness, Ross, Moray, Argyll -> Highlands
+link = { ck2 = 35 eu3 = 253 }	# Innse Gall -> Western Isles
+link = { ck2 = 41 eu3 = 251 }	# Buchan -> Aberdeen
+link = { ck2 = 44 ck2 = 42 ck2 = 43 ck2 = 46 eu3 = 250 }	# Atholl, Strathearn, Gowrie, Fife -> Fife
+link = { ck2 = 47 ck2 = 49 ck2 = 50 ck2 = 38 eu3 = 249 }	# Clydesdale, Carrick, Galloway, Teviotdale -> Ayrshire
+link = { ck2 = 48 ck2 = 51 eu3 = 248 }	# Lothian, Dunbar -> Lothian
+link = { ck2 = 52 ck2 = 56 eu3 = 246 }	# Northumberland, Durham -> Northumberland
+link = { ck2 = 53 ck2 = 55 ck2 = 54 eu3 = 247 }	# Cumberland, Westmorland, Isle of Man -> Cumbria
+link = { ck2 = 57 eu3 = 245 }	# York -> Yorkshire
+link = { ck2 = 61 eu3 = 243 }	# Lincoln -> Lincoln
+link = { ck2 = 58 ck2 = 59 eu3 = 244 }	# Lancaster, Chester -> Lancashire
+link = { ck2 = 60 ck2 = 64 ck2 = 65 eu3 = 242 }	# Perfeddwlad, Gwynedd, Powys -> Gwynedd
+link = { ck2 = 18 ck2 = 19 ck2 = 20 eu3 = 241 }	# Dyfed, Glamorgan, Gwent -> Glamorgan
+link = { ck2 = 66 ck2 = 30 ck2 = 67 ck2 = 17 eu3 = 240 }	# Shrewsbury, Worcester, Warwick, Hereford -> Marches
+link = { ck2 = 31 ck2 = 29 ck2 = 28 ck2 = 27 ck2 = 21 ck2 = 23 eu3 = 233 }	# Cornwall, Devon, Somerset, Dorset, Gloucester, Wiltshire -> Cornwall
+link = { ck2 = 26 eu3 = 234 }	# Winchester -> Wessex
+link = { ck2 = 73 ck2 = 25 ck2 = 24 eu3 = 235 }	# Kent, Sussex, Surrey -> Kent
+link = { ck2 = 71 ck2 = 70 eu3 = 1860 }	# Suffolk, Norfolk -> Norfolk
+link = { ck2 = 63 ck2 = 62 eu3 = 1861 }	# Derby, Leicester -> Derby
+link = { ck2 = 68 ck2 = 69 eu3 = 237 }	# Northampton, Bedford -> Oxfordshire
+link = { ck2 = 22 eu3 = 239 }	# Oxford -> Gloucestershire
+link = { ck2 = 72 eu3 = 238 }	# Essex -> Essex
+link = { ck2 = 32 eu3 = 236 }	# Middlesex -> London
+
 # ROTW
 link = { eu3 = 572 eu3 = 573 }
 }
