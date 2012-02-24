@@ -116,7 +116,7 @@ namespace ProvinceMapper
 
         public virtual string ToOutputString(string srcTag, string destTag)
         {
-            if (isIncomplete())
+            if (srcProvs.Count == 0 && destProvs.Count == 0)
                 return "";
             string retval = String.Empty;
             retval += "link = { ";
@@ -129,7 +129,13 @@ namespace ProvinceMapper
                 retval += destTag + " = " + p.ID.ToString() + " ";
             }
             retval += "}\t# ";
+            if (isManyToMany())
+                retval += "MANY-TO-MANY: ";
+            if (srcProvs.Count == 0)
+                retval += "NOTHING";
             retval += this.ToString();
+            if (destProvs.Count == 0)
+                retval += "DROPPED";
             return retval;
         }
 

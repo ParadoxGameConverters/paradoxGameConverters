@@ -1,5 +1,9 @@
 ProvinceMapper Change Log
 
+0.9E
+- Allow one-sided province mappings
+- Mark one-sided and many-to-many province mappings in the output comments
+
 0.9D
 - Make map inversion optional (CK2 doesn't need it)
 - Throw a more useful error when a province is mapped but doesn't exist in game data
