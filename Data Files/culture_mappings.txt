@@ -1,0 +1,49 @@
+cultureMap = {
+
+link = { ck2 = scottish eu3 = scottish }
+link = { ck2 = irish eu3 = irish }
+link = { ck2 = welsh eu3 = welsh }
+link = { ck2 = saxon ck2 = english eu3 = english }
+link = { ck2 = norman eu3 = normand }
+link = { ck2 = breton eu3 = breton }
+link = { ck2 = frankish eu3 = cosmopolitan_french }
+link = { ck2 = occitan eu3 = occitan }
+link = { ck2 = basque eu3 = basque }
+link = { ck2 = castillan eu3 = castillian }
+link = { ck2 = portuguese eu3 = portugese }
+link = { ck2 = catalan eu3 = catalan }
+link = { ck2 = andalucian eu3 = andalucian }
+link = { ck2 = maghreb_arabic eu3 = maghreb_arabic }
+link = { ck2 = levantine_arabic eu3 = al_suryah_arabic }
+link = { ck2 = egyptian_arabic eu3 = al_misr_arabic }
+link = { ck2 = ethiopian eu3 = somali religion = muslim }
+link = { ck2 = ethiopian eu3 = ethiopian }
+link = { ck2 = bedouin_arabic eu3 = bedouin_arabic }
+link = { ck2 = persian eu3 = persian }
+link = { ck2 = turkish eu3 = turkish }
+link = { ck2 = armenian eu3 = armenian }
+link = { ck2 = alan ck2 = cuman ck2 = pecheneg ck2 = mongol eu3 = tartar }
+link = { ck2 = russian eu3 = russian }
+link = { ck2 = komi eu3 = uralic }
+link = { ck2 = finnish eu3 = finnish }
+link = { ck2 = lappish eu3 = sapmi }
+link = { ck2 = swedish eu3 = swedish }
+link = { ck2 = norwegian eu3 = norwegian }
+link = { ck2 = danish eu3 = danish }
+link = { ck2 = ugricbaltic eu3 = estonian }
+link = { ck2 = lettigallish eu3 = latvian }
+link = { ck2 = lithuanian eu3 = lithuanian }
+link = { ck2 = prussian eu3 = old_prussian }
+link = { ck2 = polish ck2 = pommeranian eu3 = polish }
+link = { ck2 = bohemian eu3 = czech }
+link = { ck2 = hungarian eu3 = hungarian }
+link = { ck2 = romanian eu3 = romanian }
+link = { ck2 = georgian eu3 = georgian }
+link = { ck2 = greek eu3 = greek }
+link = { ck2 = serbian eu3 = serbian }
+link = { ck2 = croatian eu3 = croatian }
+link = { ck2 = dutch eu3 = dutch }
+
+
+#link = { ck2 = italian eu3 = lombard eu3 = umbrian eu3 = sicilian }
+#link = { ck2 = german eu3 = pommeranian eu3 = prussian eu3 = hessian eu3 = saxon eu3 = rheinlaender eu3 = austrian eu3 = bavarian }
