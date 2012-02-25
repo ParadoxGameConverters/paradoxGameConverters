@@ -1,5 +1,14 @@
 ProvinceMapper Change Log
 
+0.9F
+- Add keyboard shortcuts:
+	- F2: Change comment text
+	- F3: Insert new comment above selected
+	- F4: Insert new mapping above selected
+	- Ctrl+Plus: Move selected up
+	- Ctrl+Minus: Move selected down
+- Fix memory leak associated with map zoom
+
 0.9E
 - Allow one-sided province mappings
 - Mark one-sided and many-to-many province mappings in the output comments

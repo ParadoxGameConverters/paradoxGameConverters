@@ -256,9 +256,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(705, 467);
             this.Controls.Add(this.VerticalSplit);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Province Mapper";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.VerticalSplit.Panel1.ResumeLayout(false);
             this.VerticalSplit.Panel1.PerformLayout();
             this.VerticalSplit.Panel2.ResumeLayout(false);

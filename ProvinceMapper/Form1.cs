@@ -247,22 +247,11 @@ namespace ProvinceMapper
 
             if (lbMappings.SelectedItem == (Object)newMappingItem) // reference test!
             {
-                ProvinceMapping m = new ProvinceMapping();
-
-                Program.mappings.mappings.Add(m);
-                lbMappings.Items.Insert(lbMappings.Items.Count - 2, m);
-                lbMappings.SelectedItem = m;
+                CreateNewMapping(false, lbMappings.Items.Count - 2);
             }
             else if (lbMappings.SelectedItem == (Object)newCommentItem) // reference test!
             {
-                CommentMapping m = new CommentMapping();
-                CommentForm cf = new CommentForm();
-                cf.SetComment(m);
-                cf.ShowDialog();
-
-                Program.mappings.mappings.Add(m);
-                lbMappings.Items.Insert(lbMappings.Items.Count - 2, m);
-                lbMappings.SelectedItem = m;
+                CreateNewMapping(true, lbMappings.Items.Count - 2);
             }
             else
             {
@@ -276,6 +265,26 @@ namespace ProvinceMapper
 
             if (!skipSelPBRedraw)
                 createSelPBs(false);
+        }
+
+        private void CreateNewMapping(bool comment, int location)
+        {
+            Mapping m = null;
+            if (comment)
+            {
+                CommentMapping cm = new CommentMapping();
+                CommentForm cf = new CommentForm();
+                cf.SetComment(cm);
+                cf.ShowDialog();
+                m = cm;
+            }
+            else // province map
+            {
+                m = new ProvinceMapping();
+            }
+            Program.mappings.mappings.Insert(location, m);
+            lbMappings.Items.Insert(location, m);
+            lbMappings.SelectedItem = m;
         }
 
         private void tbFitSelection_Click(object sender, EventArgs e)
@@ -389,6 +398,49 @@ namespace ProvinceMapper
             g.Flush();
 
             createSelPBs(true);
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                // change comment text
+                CommentMapping cm = lbMappings.SelectedItem as CommentMapping;
+                if (cm != null)
+                {
+                    CommentForm cf = new CommentForm();
+                    cf.SetComment(cm);
+                    cf.ShowDialog();
+                }
+                lbMappings.Items[lbMappings.SelectedIndex] = cm;
+            }
+            else if (e.KeyCode == Keys.F3)
+            {
+                // create new comment
+                if (lbMappings.SelectedIndex >= 0)
+                    CreateNewMapping(true, lbMappings.SelectedIndex);
+                else
+                    CreateNewMapping(true, lbMappings.Items.Count - 2);
+            }
+            else if (e.KeyCode == Keys.F4)
+            {
+                // create new mapping
+                if (lbMappings.SelectedIndex >= 0)
+                    CreateNewMapping(false, lbMappings.SelectedIndex);
+                else
+                    CreateNewMapping(false, lbMappings.Items.Count - 2);
+            }
+            else if (e.Control)
+            {
+                if (e.KeyCode == Keys.Oemplus)
+                {
+                    tbMoveUp_Click(sender, e);
+                }
+                else if (e.KeyCode == Keys.OemMinus)
+                {
+                    tbMoveDown_Click(sender, e);
+                }
+            }
         }
     }
 }
