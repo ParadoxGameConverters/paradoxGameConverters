@@ -362,6 +362,11 @@ namespace ProvinceMapper
             if (cbZoom.SelectedItem != null)
                 scaleFactor = float.Parse(cbZoom.SelectedItem.ToString().TrimEnd('x'));
 
+            if (pbSource.BackgroundImage != null)
+                pbSource.BackgroundImage.Dispose();
+            if (pbSource.Image != null)
+                pbSource.Image.Dispose();
+
             pbSource.BackgroundImage = bmpSrc = Program.CleanResizeBitmap(Program.sourceMap.map,
                 (int)(Program.sourceMap.map.Width * scaleFactor), (int)(Program.sourceMap.map.Height * scaleFactor));
             pbSource.Size = bmpSrc.Size;
@@ -369,6 +374,11 @@ namespace ProvinceMapper
             Graphics g = Graphics.FromImage(pbSource.Image);
             g.FillRectangle(Brushes.Transparent, new Rectangle(new Point(0, 0), bmpSrc.Size));
             g.Flush();
+
+            if (pbTarget.BackgroundImage != null)
+                pbTarget.BackgroundImage.Dispose();
+            if (pbTarget.Image != null)
+                pbTarget.Image.Dispose();
 
             pbTarget.BackgroundImage = bmpDest = Program.CleanResizeBitmap(Program.targetMap.map,
                 (int)(Program.targetMap.map.Width * scaleFactor), (int)(Program.targetMap.map.Height * scaleFactor));
