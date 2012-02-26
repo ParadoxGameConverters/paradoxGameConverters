@@ -43,6 +43,37 @@ void HoI3World::init(string HoI3Loc)
 	// set province names
 	getProvinceLocalizations(HoI3Loc + "\\localisation\\province_names.csv");
 	getProvinceLocalizations(HoI3Loc + "\\localisation\\gold.csv");
+
+	// determine whether each province is coastal or not by checking if it has a naval base
+	// if it's not coastal, we won't try to put any navies in it (otherwise HoI3 crashes)
+	Object*	obj2 = doParseFile((HoI3Loc + "\\map\\positions.txt").c_str());
+	vector<Object*> objProv = obj2->getLeaves();
+	if (objProv.size() == 0)
+	{
+		log("Error: map\\positions.txt failed to parse.");
+		printf("Error: map\\positions.txt failed to parse.");
+		exit(1);
+	}
+	for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
+	{
+		int provinceNum = atoi((*itr)->getKey().c_str());
+		vector<Object*> objPos = (*itr)->getValue("building_position");
+		if (objPos.size() == 0)
+			continue;
+		vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
+		if (objNavalBase.size() != 0)
+		{
+			// this province is coastal
+			for (vector<HoI3Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+			{
+				if (pitr->getNum() == provinceNum)
+				{
+					pitr->setCoastal(true);
+					break;
+				}
+			}
+		}
+	}
 }
 
 
@@ -604,8 +635,44 @@ static string CardinalToOrdinal(int cardinal)
 	}
 }
 
+
+vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
+{
+	for (vector<HoI3Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	{
+		for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+		{
+			if (pitr->getNum() == (*litr))
+			{
+				if (!pitr->isCoastal() || pitr->isBlacklistedPort())
+				{
+					locationCandidates.erase(litr);
+					--pitr;
+					break;
+				}
+			}
+		}
+	}
+	return locationCandidates;
+}
+
+
 void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap)
 {
+	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
+	// a non-port province, HoI3 can crash....
+	vector<int> port_whitelist;
+	{
+		int temp = 0;
+		ifstream s("port_whitelist.txt");
+		while (s.good() && !s.eof())
+		{
+			s >> temp;
+			port_whitelist.push_back(temp);
+		}
+		s.close();
+	}
+
 	map<string, HoI3RegimentType> unitTypeMap; // <vic, hoi>
 	Object* obj = doParseFile("unit_mapping.txt");
 	vector<Object*> leaves = obj->getLeaves();
@@ -674,8 +741,37 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 				continue;
 			}
 
-			//XXX: make sure navies get assigned to port-capable provinces, not landlocked provinces
+			bool usePort = false;
+			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
+			if (aitr->getNavy())
+			{
+				for (vector<HoI3Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+				{
+					if ((pitr->getNum() == locationCandidates[0]) && pitr->isLand())
+					{
+						usePort = true;
+						break;
+					}
+				}
+				if (usePort)
+				{
+					locationCandidates = getPortProvinces(locationCandidates);
+					if (locationCandidates.size() == 0)
+					{
+						log("Error: Navy %s assigned to V2 province %d which has no corresponding HoI3 port provinces; dropping.\n", aitr->getName().c_str(), aitr->getLocation());
+						continue;
+					}
+				}
+			}
 			int selectedLocation = locationCandidates[int(locationCandidates.size() * ((double)rand() / RAND_MAX))];
+			if (aitr->getNavy() && usePort)
+			{
+				vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);
+				if (white == port_whitelist.end())
+				{
+					log("Warning: assigning navy to non-whitelisted port province %d.  If you encounter crashes, try blacklisting this province.\n", selectedLocation);
+				}
+			}
 			destArmy.setLocation(selectedLocation);
 			HoI3Province* locationProvince;
 			for (vector<HoI3Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
@@ -720,10 +816,9 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 
 			if (!destArmy.isEmpty())
 			{
-				if (aitr->getNavy())
+				if (aitr->getNavy() && locationProvince->isLand())
 				{
 					// make sure a naval base is waiting for them
-					// XXX: probably want to make sure it's an owned land province first :|
 					locationProvince->requireNavalBase(1);
 				}
 				itr->addArmy(destArmy);

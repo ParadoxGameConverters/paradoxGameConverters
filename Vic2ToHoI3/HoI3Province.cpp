@@ -2,6 +2,7 @@
 #include "Log.h"
 #include <algorithm>
 #include <io.h>
+#include <fstream>
 #include "Configuration.h"
 #include "Parsers/Parser.h"
 
@@ -9,6 +10,11 @@ void HoI3Province::init(int newNumber)
 {
 	num				= newNumber;
 	name			= "";
+
+	points = 0;
+	metal = oil = rare_materials = energy = manpower = leadership = 0.0;
+	is_land = false;
+	is_blacklisted_port = false;
 
 	char sNum[8];
 	sprintf_s(sNum, 8, "%d", num);
@@ -29,14 +35,16 @@ void HoI3Province::init(int newNumber)
 			{
 				Object* obj = doParseFile( (HoI3Loc + "\\history\\provinces\\" + dirData.name + "\\" + fileData.name).c_str() );
 
-				vector<Object*> results = obj->getValue("points");
+				vector<Object*> results = obj->getValue("owner");
+				if (results.size() > 0)
+				{
+					is_land = true;
+				}
+					
+				results = obj->getValue("points");
 				if (results.size() > 0)
 				{
 					points = atoi(results[0]->getLeaf().c_str());
-				}
-				else
-				{
-					points = 0;
 				}
 
 				results = obj->getValue("metal");
@@ -44,19 +52,11 @@ void HoI3Province::init(int newNumber)
 				{
 					metal = atof(results[0]->getLeaf().c_str());
 				}
-				else
-				{
-					metal = 0.0;
-				}
 
 				results = obj->getValue("crude_oil");
 				if (results.size() > 0)
 				{
 					oil = atof(results[0]->getLeaf().c_str());
-				}
-				else
-				{
-					oil = 0.0;
 				}
 
 				results = obj->getValue("rare_materials");
@@ -64,19 +64,11 @@ void HoI3Province::init(int newNumber)
 				{
 					rare_materials = atof(results[0]->getLeaf().c_str());
 				}
-				else
-				{
-					rare_materials = 0.0;
-				}
 
 				results = obj->getValue("energy");
 				if (results.size() > 0)
 				{
 					energy = atof(results[0]->getLeaf().c_str());
-				}
-				else
-				{
-					energy = 0.0;
 				}
 
 				results = obj->getValue("manpower");
@@ -84,19 +76,11 @@ void HoI3Province::init(int newNumber)
 				{
 					manpower = atof(results[0]->getLeaf().c_str());
 				}
-				else
-				{
-					manpower = 0.0;
-				}
 
 				results = obj->getValue("leadership");
 				if (results.size() > 0)
 				{
 					leadership = atof(results[0]->getLeaf().c_str());
-				}
-				else
-				{
-					leadership = 0.0;
 				}
 
 				_findclose(fileListing);
@@ -108,6 +92,28 @@ void HoI3Province::init(int newNumber)
 	_findclose(dirListing);
 
 	naval_base = air_base = industry = land_fort = coastal_fort = anti_air = infrastructure = 0;
+
+	// hack for naval bases.  some coastal provinces can't have a naval base at all.
+	static vector<int> port_blacklist;
+	if (port_blacklist.size() == 0)
+	{
+		int temp = 0;
+		ifstream s("port_blacklist.txt");
+		while (s.good() && !s.eof())
+		{
+			s >> temp;
+			port_blacklist.push_back(temp);
+		}
+		s.close();
+	}
+	for (vector<int>::iterator itr = port_blacklist.begin(); itr != port_blacklist.end(); ++itr)
+	{
+		if (newNumber == *itr)
+		{
+			is_blacklisted_port = true;
+			break;
+		}
+	}
 }
 
 int HoI3Province::getNum()
@@ -192,7 +198,10 @@ void HoI3Province::output(FILE * output)
 
 void HoI3Province::requireNavalBase(int _min)
 {
-	naval_base = max(naval_base, _min);
+	if (is_coastal && !is_blacklisted_port)
+	{
+		naval_base = max(naval_base, _min);
+	}
 }
 
 void HoI3Province::requireAirBase(int _min)
@@ -207,7 +216,10 @@ void HoI3Province::requireIndustry(int _min)
 
 void HoI3Province::requireCoastalFort(int _min)
 {
-	coastal_fort = max(coastal_fort, _min);
+	if (is_coastal)
+	{
+		coastal_fort = max(coastal_fort, _min);
+	}
 }
 
 void HoI3Province::requireLandFort(int _min)
@@ -223,4 +235,24 @@ void HoI3Province::requireAntiAir(int _min)
 void HoI3Province::requireInfrastructure(int _min)
 {
 	infrastructure = max(infrastructure, _min);
+}
+
+bool HoI3Province::isLand()
+{
+	return is_land;
+}
+
+void HoI3Province::setCoastal(bool newVal)
+{
+	is_coastal = newVal;
+}
+
+bool HoI3Province::isCoastal()
+{
+	return is_coastal;
+}
+
+bool HoI3Province::isBlacklistedPort()
+{
+	return is_blacklisted_port;
 }

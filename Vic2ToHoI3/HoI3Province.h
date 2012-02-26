@@ -15,6 +15,10 @@ class HoI3Province {
 		void		setOwner(string);
 		string		getOwner();
 		void		addCore(string);
+		bool		isLand();
+		void		setCoastal(bool);
+		bool		isCoastal();
+		bool		isBlacklistedPort();
 		void		output(FILE*);
 
 		void		requireNavalBase(int min);
@@ -31,6 +35,9 @@ class HoI3Province {
 		string			owner;
 		//controller
 		vector<string>	cores;
+		bool			is_land;
+		bool			is_coastal;
+		bool			is_blacklisted_port;
 
 		int				points;
 		double			metal;

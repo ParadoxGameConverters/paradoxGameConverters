@@ -28,6 +28,7 @@ private:
 		void					getProvinceLocalizations(string file);
 		void					checkManualFaction(const countryMapping& countryMap, const vector<string>& candidateTags, vector<string>& destination, string logName);
 		void					factionSatellites(vector<string>& faction);
+		vector<int>				getPortProvinces(vector<int> locationCandidates);
 
 		vector<HoI3Province>	provinces;
 		vector<HoI3Country>		countries;
