@@ -67,6 +67,11 @@ public:
 		return getInstance()->moneyFactor;
 	}
 
+	static double getMinInfra()
+	{
+		return getInstance()->minInfra;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -85,6 +90,7 @@ private:
 	string removetype;
 	string factionLeaderAlgorithm;
 	double moneyFactor;
+	double minInfra;
 	vector<string> manualAxisFaction;
 	vector<string> manualAlliesFaction;
 	vector<string> manualCominternFaction;

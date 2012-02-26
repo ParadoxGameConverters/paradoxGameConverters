@@ -25,6 +25,7 @@ Configuration::Configuration()
 	HoI3gametype = obj[0]->getLeaf("hoi3gametype");
 	moneyFactor = atof(obj[0]->getLeaf("money_factor").c_str());
 	factionLeaderAlgorithm = obj[0]->getLeaf("faction_leader");
+	minInfra = atof(obj[0]->getLeaf("min_infrastructure").c_str());
 	if (factionLeaderAlgorithm == "manual")
 	{
 		vector<Object*> factionObj = obj[0]->getValue("axis_faction");

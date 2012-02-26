@@ -396,6 +396,7 @@ void HoI3World::convertProvinces(V2World sourceWorld, provinceMapping provMap, c
 							provinces[i].requireCoastalFort((*vitr)->getFort());
 							provinces[i].requireLandFort((*vitr)->getFort());
 							provinces[i].requireNavalBase((*vitr)->getNavalBase());
+							provinces[i].requireInfrastructure((int)Configuration::getMinInfra());
 							provinces[i].requireInfrastructure((*vitr)->getInfra());
 
 							// XXX: how shall we set industry?

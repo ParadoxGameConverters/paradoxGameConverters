@@ -38,6 +38,10 @@ configuration =
 	# Money Factor: amount by which monetary figures are multiplied (treasuries, debts, etc).
 	#	Default: 0.000005 (two hundred thousand V2 pounds to one HOI3 "$")
 	money_factor = 0.000005
+
+	# Minimum Infrastructure: every land province will have at least this much infrastructure
+	#	Default: 3.0 (minimum required to move armies)
+	min_infrastructure = 3.0
 	
 	# Note: if converting to vanilla HoI3, you may want to merge some V2 nations in order for tags to make sense.
 	# Merge settings are found in merge_nations.txt, rather than this file.
