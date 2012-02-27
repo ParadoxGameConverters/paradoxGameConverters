@@ -44,7 +44,8 @@ Fixed Crash due to misnamed and misplaced flags
 0.8
 Re added converter files.  Modified mappings, cultures, and unions according to tag changes.
 0.9
-Fixed localisations
+Fixed localisations and reorderd some tags
+KNOWN ISSUE: Wrong Flag for great britain?
 
 Error List:
 1. Sometimes the game crashes after the end of the year so ensure you save before (Proberly a autosave problem?)

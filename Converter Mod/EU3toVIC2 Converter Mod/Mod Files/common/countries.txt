@@ -8,7 +8,7 @@ REB 	=	"countries/rebels.txt"
 # British Isles
 CNN		="countries/Connacht.txt"##
 CRN		="countries/Cornwall.txt"##
-ENG		="countries/England.txt"#
+ENL		="countries/England.txt"#
 IRE		="countries/Ireland.txt"
 LAN		="countries/Lancaster.txt"##
 MNS		="countries/IRE_Munster.txt"##
@@ -18,7 +18,7 @@ TYR		="countries/Ulster.txt"##
 WLS		="countries/Wales.txt"##
 YOR		="countries/York.txt"##
 NOL		="countries/Northumberland.txt"
-GBR		="countries/United Kingdom.txt"
+ENG		="countries/United Kingdom.txt"
 
 # France
 ALE		="countries/Alencon.txt"##
