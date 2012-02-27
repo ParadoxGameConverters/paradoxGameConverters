@@ -27,7 +27,7 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 		//parse relevant file
 		Object* obj;
 		char num[5];
-		_itoa_s(rotwProvinces[i], num, 4, 10);
+		_itoa_s(rotwProvinces[i], num, 5, 10);
 		
 		string filename = Configuration::getEU3Path() + "\\history\\provinces\\" + num + "*-*.txt";
 		struct _finddata_t	fileData;
