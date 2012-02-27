@@ -11,8 +11,8 @@ mappings={
 
 link = { eu3 = CNN vic = CNN } 	# Connacht
 link = { eu3 = CRN vic = CRN } 	# Cornwall
-link = { eu3 = ENG vic = ENL } 	# England
-link = { eu3 = GBR vic = ENG } 	# Great Britain		=> United Kingdom
+link = { eu3 = ENG vic = ENG } 	# England
+link = { eu3 = GBR vic = GBR } 	# Great Britain		=> United Kingdom
 link = { eu3 = IRE vic = IRE } 	# Ireland
 link = { eu3 = LEI vic = LEI } 	# Leinster
 link = { eu3 = LAN vic = LAN } 	# Lancaster
@@ -65,7 +65,7 @@ link = { eu3 = SPA vic = SPA } 	# Spain
 link = { eu3 = AQU vic = AQU }  # Aquileia
 link = { eu3 = ETR vic = ETR }  # Etruria
 link = { eu3 = FER vic = FER }  # Ferrara
-link = { eu3 = GEN vic = GEN }  # Genoa
+link = { eu3 = GEN vic = GNA }  # Genoa
 link = { eu3 = ITA vic = ITA }  # Italy
 link = { eu3 = MAN vic = MTA }  # Mantua
 link = { eu3 = MLO vic = LOM }  # Milan

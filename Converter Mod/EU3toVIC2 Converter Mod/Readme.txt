@@ -39,6 +39,10 @@ AHM now correctly mapped to BAS
 Fixed Itallian, German, NGF and SGF unions
 Meissen now correctly mapped to MSN
 Fixed SAR being mapped twice
+0.7
+Fixed Crash due to misnamed and misplaced flags
+0.8
+Re added converter files.  Modified mappings, cultures, and unions according to tag changes.
 
 Error List:
 1. Sometimes the game crashes after the end of the year so ensure you save before (Proberly a autosave problem?)

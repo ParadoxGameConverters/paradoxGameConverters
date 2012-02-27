@@ -8,7 +8,7 @@ REB 	=	"countries/rebels.txt"
 # British Isles
 CNN		="countries/Connacht.txt"##
 CRN		="countries/Cornwall.txt"##
-ENL		="countries/England.txt"#
+ENG		="countries/England.txt"#
 IRE		="countries/Ireland.txt"
 LAN		="countries/Lancaster.txt"##
 MNS		="countries/IRE_Munster.txt"##
@@ -18,7 +18,7 @@ TYR		="countries/Ulster.txt"##
 WLS		="countries/Wales.txt"##
 YOR		="countries/York.txt"##
 NOL		="countries/Northumberland.txt"
-ENG		="countries/United Kingdom.txt"
+GBR		="countries/United Kingdom.txt"
 
 # France
 ALE		="countries/Alencon.txt"##
@@ -58,7 +58,7 @@ GAL		="countries/Galicia.txt"	##
 AQU		="countries/Aquileia.txt"##
 ETR		="countries/Etruria.txt"##
 FER		="countries/Ferrara.txt"##
-GEN		="countries/Genoa.txt"##
+GNA		="countries/Genoa.txt"##
 ITA		="countries/Italy.txt"
 MTA		="countries/Mantua.txt"##
 LOM		="countries/Lombardia.txt"
@@ -489,3 +489,6 @@ NZL		="countries/New Zealand.txt"
 #new for 1.2
 ISR		="countries/Israel.txt"
 BAB		="countries/Babylonia.txt"
+
+#new for AHD
+TPG		="countries/Taiping.txt"

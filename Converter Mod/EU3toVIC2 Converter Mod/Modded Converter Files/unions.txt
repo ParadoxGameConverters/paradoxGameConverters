@@ -47,11 +47,11 @@ link = { tag = SCA culture = finnish }
 link = { tag = SCA culture = sami }
 
 #Great Britain
-link = { tag = ENG culture = british }
-link = { tag = ENG culture = english }
-link = { tag = ENG culture = scottish }
-link = { tag = ENG culture = irish }
-link = { tag = ENG culture = welsh }
+link = { tag = GBR culture = british }
+link = { tag = GBR culture = english }
+link = { tag = GBR culture = scottish }
+link = { tag = GBR culture = irish }
+link = { tag = GBR culture = welsh }
 
 #Yugoslavia
 link = { tag = YUG culture = croat }
