@@ -11,3 +11,4 @@ Revision	Log Message
 9		ROTW provinces get ownership from EU3 install
 10		England Ireland Scotland Wales mapped
 11		CK2 cultures mapped, except for german and italian
+12		Gunther's province mappings

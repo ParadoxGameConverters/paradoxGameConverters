@@ -34,6 +34,928 @@ link = { ck2 = 22 eu3 = 239 }	# Oxford -> Gloucestershire
 link = { ck2 = 72 eu3 = 238 }	# Essex -> Essex
 link = { ck2 = 32 eu3 = 236 }	# Middlesex -> London
 
-# ROTW
-link = { eu3 = 572 eu3 = 573 }
+# Africa
+link = { ck2 = 871 eu3 = 1206 eu3 = 1099 }	# Busaso -> Majerteen, Socotra
+link = { ck2 = 872 eu3 = 1209 }	# Berbera -> Berbera
+link = { ck2 = 873 eu3 = 1212 }	# Harer -> Zeila
+link = { ck2 = 882 ck2 = 884 eu3 = 1211 }	# Ankober, Antalo -> Harer
+link = { ck2 = 881 eu3 = 1210 }	# Asosa -> Ifat
+link = { ck2 = 880 eu3 = 1213 eu3 = 1223 eu3 = 1225 }	# Sennar -> Shoa, Gojjam, Butana
+link = { ck2 = 879 eu3 = 1229 }	# Atbara -> Berber
+link = { ck2 = 792 ck2 = 878 eu3 = 1232 }	# Nubia, Hayya -> Suakin
+link = { ck2 = 877 ck2 = 876 eu3 = 1230 }	# Kassala, Akordat -> Massawa
+link = { ck2 = 875 ck2 = 874 eu3 = 1215 }	# Aksum, Tadjoura -> Tajura
+link = { ck2 = 883 eu3 = 1226 eu3 = 1227 eu3 = 1214 }	# Gondar -> Taka, Tigre, Awsa
+link = { ck2 = 885 eu3 = 1224 }	# Matamma -> Gonder
+link = { ck2 = 793 eu3 = 1228 eu3 = 1231 }	# Makuria -> Dongola, Ibrim
+link = { ck2 = 791 ck2 = 794 ck2 = 795 eu3 = 360 }	# Quena, Aswan, Asyut -> Nile
+link = { ck2 = 800 eu3 = 1233 }	# Gizeh -> Kargah
+link = { ck2 = 785 eu3 = 365 }	# Sinai -> Sinai
+link = { ck2 = 790 eu3 = 361 }	# Sarqihya -> Cairo
+link = { ck2 = 797 ck2 = 796 eu3 = 359 }	# Manupura, Cairo -> Asyut
+link = { ck2 = 789 eu3 = 363 }	# Pelusia -> Diamientia
+link = { ck2 = 798 eu3 = 362 }	# Damietta -> Delta
+link = { ck2 = 799 ck2 = 802 ck2 = 801 eu3 = 358 }	# Gabiyaha, Alexandria, Buhairya -> Alexandria
+link = { ck2 = 804 ck2 = 803 eu3 = 357 }	# Al Alamayn, Quattara -> Libya
+link = { ck2 = 806 ck2 = 808 ck2 = 807 ck2 = 805 eu3 = 356 }	# Cyrenaica, Benghazi, Senoussi, Tobruk -> Cyrenaica
+link = { ck2 = 809 ck2 = 810 eu3 = 355 }	# Syrte, Leptis Magna -> Sirt
+link = { ck2 = 811 eu3 = 354 }	# Tripolitana -> Tripolitania
+link = { ck2 = 816 ck2 = 814 ck2 = 813 eu3 = 353 }	# Mahdia, Gabes, Djerba -> Gabes
+link = { ck2 = 815 eu3 = 352 }	# Kairwan -> Gafsa
+link = { ck2 = 819 ck2 = 818 ck2 = 817 eu3 = 341 }	# Bizerte, Medjerda, Tunis -> Tunis
+link = { ck2 = 820 eu3 = 340 eu3 = 1882 }	# Annaba -> Constantine, Bône
+link = { ck2 = 822 eu3 = 339 }	# Bejaija -> Kabylia
+link = { ck2 = 825 ck2 = 831 ck2 = 824 eu3 = 338 }	# Beni Yanni, Al Djazair, Tell Atlas -> Al-Djazair
+link = { ck2 = 821 eu3 = 351 }	# Constantine -> Biskra
+link = { ck2 = 823 ck2 = 828 eu3 = 350 }	# Biskra, Ouled Nail -> Aures
+link = { ck2 = 832 eu3 = 337 }	# Orania -> Oran
+link = { ck2 = 830 ck2 = 834 eu3 = 336 }	# Lemdiyya, Tlemcen -> Tlemcen
+link = { ck2 = 829 ck2 = 833 ck2 = 835 eu3 = 349 }	# Mzab, Atlas Mnt, Hanyan -> Atlas
+link = { ck2 = 836 eu3 = 335 }	# Snassen -> Melilla
+link = { ck2 = 838 ck2 = 840 ck2 = 837 eu3 = 343 }	# El Rif, Fes, Figuig -> Fez
+link = { ck2 = 839 eu3 = 1751 }	# Cebta -> Ceuta
+link = { ck2 = 842 ck2 = 844 eu3 = 342 }	# Infa, Massat -> Toubkhal
+link = { ck2 = 841 eu3 = 334 }	# Tangiers -> Tangiers
+link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Ifni, Tharasset -> Safi
+link = { ck2 = 849 eu3 = 366 }	# Canarias -> The Canarias
+link = { ck2 = 843 eu3 = 344 }	# Marrakech -> Marrakech
+
+# # Arabian Peninsula, Middle East and Eastern Boundary Provinces
+link = { ck2 = 788 ck2 = 787 eu3 = 364 }	# Farama, El-Arish -> Gaza
+link = { ck2 = 786 ck2 = 782 ck2 = 779 eu3 = 1854 }	# Eilat, Negev, Beersheb -> Negev
+link = { ck2 = 784 ck2 = 720 eu3 = 383 }	# Al 'Aqabah, Hijaz -> Tabouk
+link = { ck2 = 718 eu3 = 384 }	# Medina -> Medina
+link = { ck2 = 719 eu3 = 385 }	# Mecca -> Mecca
+link = { ck2 = 861 eu3 = 386 }	# Asir -> Asir
+link = { ck2 = 860 ck2 = 859 eu3 = 387 }	# Sanaa, Taizz -> Mocha
+link = { ck2 = 858 ck2 = 857 eu3 = 388 }	# Aden, Bayda -> Aden
+link = { ck2 = 856 ck2 = 855 eu3 = 389 }	# Kathiri, Mahra -> Hadramut
+link = { ck2 = 866 eu3 = 402 }	# Dhofar -> Mahra
+link = { ck2 = 867 eu3 = 401 }	# Duqm -> Dhofar
+link = { ck2 = 868 eu3 = 400 }	# Muscat -> Muscat
+link = { ck2 = 869 eu3 = 399 }	# Hajar -> Suhar
+link = { ck2 = 870 eu3 = 398 eu3 = 404 eu3 = 397 }	# Dhu Zabi -> Qawasim, Liwa, Beni Yas
+link = { ck2 = 652 eu3 = 395 }	# Al Hasa -> Qatar
+link = { ck2 = 653 eu3 = 396 }	# Bahrein -> Bahrain
+link = { ck2 = 908 eu3 = 403 eu3 = 1779 eu3 = 391 eu3 = 390 }	# Sharawrah -> Nizwa, Rub' al Khali, Najran, Sana'a
+link = { ck2 = 862 ck2 = 863 eu3 = 392 }	# Halaban, Hajr -> Najd
+link = { ck2 = 651 ck2 = 650 ck2 = 654 eu3 = 394 }	# Damman, Kuwait, Rummah -> Al Hasa
+link = { ck2 = 865 ck2 = 864 eu3 = 393 }	# Rafha, Hail -> Jabal Shammar
+link = { ck2 = 649 eu3 = 408 }	# Basra -> Basra
+link = { ck2 = 647 ck2 = 648 ck2 = 645 eu3 = 412 }	# Ahvaz, Khozistan, Hendjan -> Khuzestan
+link = { ck2 = 643 ck2 = 644 eu3 = 429 }	# Fars, Shiraz -> Fars
+link = { ck2 = 642 ck2 = 640 eu3 = 430 }	# Ladistan, Zermanya -> Laristan
+link = { ck2 = 641 ck2 = 854 eu3 = 431 }	# Hormuz, Jask -> Hormuz
+link = { ck2 = 899 eu3 = 434 }	# Tis -> Makran
+link = { ck2 = 721 ck2 = 717 ck2 = 783 eu3 = 405 }	# Tabuk, Al Jawf, Maan -> Al Jawf
+link = { ck2 = 722 ck2 = 778 eu3 = 380 }	# Petra, Monreal -> Al Karak
+link = { ck2 = 781 ck2 = 780 ck2 = 776 ck2 = 774 ck2 = 775 ck2 = 773 eu3 = 379 }	# Darum, Ascalon, Hebron, Jerusalem, Jaffa, Tiberias -> Judea
+link = { ck2 = 777 ck2 = 723 eu3 = 381 }	# Kerak, Madaba -> Hawran
+link = { ck2 = 772 ck2 = 771 eu3 = 1855 }	# Acre, Tyrus -> Sidon
+link = { ck2 = 770 ck2 = 767 eu3 = 378 }	# Beirut, Tripoli -> Beirut
+link = { ck2 = 894 eu3 = 435 }	# Baluchistan -> Sistan
+link = { ck2 = 299 eu3 = 446 }	# Farrah -> Herat
+link = { ck2 = 907 eu3 = 445 }	# Sabzevar -> Marv
+link = { ck2 = 904 eu3 = 444 eu3 = 442 }	# Balkh -> Charjo, Bukhara
+link = { ck2 = 626 ck2 = 902 ck2 = 901 eu3 = 440 }	# Maverannahr, Dashhowuz, Khiva -> Khawarzam
+link = { ck2 = 622 ck2 = 900 eu3 = 471 }	# Aral, Kyzylorda -> Alimuly
+link = { ck2 = 897 ck2 = 898 eu3 = 472 }	# Ryn Desert, Omsk -> Zheteru
+link = { ck2 = 893 eu3 = 1075 eu3 = 1076 }	# Surgut -> Tyumen, Kurgan
+link = { ck2 = 887 eu3 = 1074 }	# Yamalia -> Tobolsk
+link = { ck2 = 910 eu3 = 1780 eu3 = 1080 eu3 = 1073 eu3 = 1072 eu3 = 1069 }	# Siberia -> Komi, Idnakar, Berezov, Obdorsk, Surgut
+
+
+### ROTW ####
+# ROTW - North America
+link = { eu3 = 1810 }	# NOTHING -> Alaska
+link = { eu3 = 979 }	# NOTHING -> Aleut
+link = { eu3 = 978 }	# NOTHING -> Kenai
+link = { eu3 = 977 }	# NOTHING -> Yakutat
+link = { eu3 = 976 }	# NOTHING -> Tlingit
+link = { eu3 = 975 }	# NOTHING -> Tsimshian
+link = { eu3 = 974 }	# NOTHING -> Kwakiutl
+link = { eu3 = 972 }	# NOTHING -> Nootka
+link = { eu3 = 973 }	# NOTHING -> Squamish
+link = { eu3 = 874 }	# NOTHING -> Salish
+link = { eu3 = 873 }	# NOTHING -> Chinook
+link = { eu3 = 872 }	# NOTHING -> Kalapuya
+link = { eu3 = 871 }	# NOTHING -> Pomo
+link = { eu3 = 869 }	# NOTHING -> Salinan
+link = { eu3 = 870 }	# NOTHING -> Yorkuts
+link = { eu3 = 868 }	# NOTHING -> Chumash
+link = { eu3 = 867 }	# NOTHING -> Mojave
+link = { eu3 = 865 }	# NOTHING -> Cochimi
+link = { eu3 = 866 }	# NOTHING -> Guaycura
+link = { eu3 = 876 }	# NOTHING -> Yavapai
+link = { eu3 = 862 }	# NOTHING -> Yaqui
+link = { eu3 = 859 }	# NOTHING -> Sinaloa
+link = { eu3 = 855 }	# NOTHING -> Huichol
+link = { eu3 = 854 }	# NOTHING -> Sayultecas
+link = { eu3 = 851 }	# NOTHING -> Tarasco
+link = { eu3 = 849 }	# NOTHING -> Tlapanec
+link = { eu3 = 847 }	# NOTHING -> Mixtec
+link = { eu3 = 844 }	# NOTHING -> Zapotec
+link = { eu3 = 841 }	# NOTHING -> Guatemala
+link = { eu3 = 839 }	# NOTHING -> Pipil
+link = { eu3 = 837 }	# NOTHING -> Nicaragua
+link = { eu3 = 836 }	# NOTHING -> Chorotega
+link = { eu3 = 835 }	# NOTHING -> Panama
+link = { eu3 = 838 }	# NOTHING -> Mosquito
+link = { eu3 = 840 }	# NOTHING -> Honduras
+link = { eu3 = 843 }	# NOTHING -> Belize
+link = { eu3 = 842 }	# NOTHING -> Petén
+link = { eu3 = 846 }	# NOTHING -> Yucatan
+link = { eu3 = 845 }	# NOTHING -> Campeche
+link = { eu3 = 848 }	# NOTHING -> Tohancapan
+link = { eu3 = 858 }	# NOTHING -> Tamaulipas
+link = { eu3 = 884 }	# NOTHING -> Karankawa
+link = { eu3 = 888 }	# NOTHING -> Atakapa
+link = { eu3 = 893 }	# NOTHING -> Chitimacha
+link = { eu3 = 921 }	# NOTHING -> Bayougoula
+link = { eu3 = 922 }	# NOTHING -> Mobile
+link = { eu3 = 923 }	# NOTHING -> Pensacola
+link = { eu3 = 928 }	# NOTHING -> Apalachee
+link = { eu3 = 926 }	# NOTHING -> Seminole
+link = { eu3 = 927 }	# NOTHING -> Timucua
+link = { eu3 = 929 }	# NOTHING -> Muskogee
+link = { eu3 = 932 }	# NOTHING -> Santee
+link = { eu3 = 938 }	# NOTHING -> Pamlico
+link = { eu3 = 950 }	# NOTHING -> Powhatan
+link = { eu3 = 953 }	# NOTHING -> Conoy
+link = { eu3 = 957 }	# NOTHING -> Delaware
+link = { eu3 = 956 }	# NOTHING -> Lenape
+link = { eu3 = 962 }	# NOTHING -> Unami
+link = { eu3 = 963 }	# NOTHING -> Mahican
+link = { eu3 = 965 }	# NOTHING -> Manhattan
+link = { eu3 = 966 }	# NOTHING -> Connecticut
+link = { eu3 = 967 }	# NOTHING -> Narraganset
+link = { eu3 = 968 }	# NOTHING -> Massachusetts
+link = { eu3 = 970 }	# NOTHING -> Pennacook
+link = { eu3 = 985 }	# NOTHING -> Micmac
+link = { eu3 = 971 }	# NOTHING -> Abnaki
+link = { eu3 = 984 }	# NOTHING -> Acadia
+link = { eu3 = 983 }	# NOTHING -> Epekwitk
+link = { eu3 = 982 }	# NOTHING -> Unamakik
+link = { eu3 = 981 }	# NOTHING -> Taqamkuk
+link = { eu3 = 980 }	# NOTHING -> Beothuk
+link = { eu3 = 996 }	# NOTHING -> Innu
+link = { eu3 = 986 }	# NOTHING -> Kespek
+link = { eu3 = 990 }	# NOTHING -> Kwedech
+link = { eu3 = 994 }	# NOTHING -> Stadacona
+link = { eu3 = 995 }	# NOTHING -> Atikamekw
+link = { eu3 = 997 }	# NOTHING -> Labrador
+link = { eu3 = 998 }	# NOTHING -> Ungava
+link = { eu3 = 999 }	# NOTHING -> Nunavik
+link = { eu3 = 1000 }	# NOTHING -> Cree
+link = { eu3 = 1003 }	# NOTHING -> Moose Cree
+link = { eu3 = 1004 }	# NOTHING -> Attawapiskat
+link = { eu3 = 1005 }	# NOTHING -> Swampy Cree
+link = { eu3 = 1006 }	# NOTHING -> Chipewyan
+link = { eu3 = 1811 }	# NOTHING -> Nunavut
+link = { eu3 = 1807 }	# NOTHING -> Baffin
+link = { eu3 = 1804 }	# NOTHING -> Greenland
+link = { eu3 = 1105 }	# NOTHING -> Vestbygden
+link = { eu3 = 1104 }	# NOTHING -> Eiriksfjord
+link = { eu3 = 1812 }	# NOTHING -> Northwest Territories
+link = { eu3 = 1814 }	# NOTHING -> Columbia
+link = { eu3 = 1813 }	# NOTHING -> Saskatchewan
+link = { eu3 = 1809 }	# NOTHING -> Great Plains
+link = { eu3 = 1808 }	# NOTHING -> Great Basin
+link = { eu3 = 875 }	# NOTHING -> Canyon
+link = { eu3 = 878 }	# NOTHING -> Navajo
+link = { eu3 = 880 }	# NOTHING -> Pueblo
+link = { eu3 = 889 }	# NOTHING -> Arapaho
+link = { eu3 = 890 }	# NOTHING -> Kiowa
+link = { eu3 = 898 }	# NOTHING -> Kansas
+link = { eu3 = 901 }	# NOTHING -> Pawnee
+link = { eu3 = 903 }	# NOTHING -> Omaha
+link = { eu3 = 907 }	# NOTHING -> Dakota
+link = { eu3 = 906 }	# NOTHING -> Lakota
+link = { eu3 = 909 }	# NOTHING -> Mandan
+link = { eu3 = 1010 }	# NOTHING -> Manitoba
+link = { eu3 = 1011 }	# NOTHING -> Woods Cree
+link = { eu3 = 1009 }	# NOTHING -> Atikaki
+link = { eu3 = 1806 }	# NOTHING -> Weagamow
+link = { eu3 = 1008 }	# NOTHING -> Winnipeg
+link = { eu3 = 1007 }	# NOTHING -> Ojibwa
+link = { eu3 = 1001 }	# NOTHING -> Sault
+link = { eu3 = 1002 }	# NOTHING -> Abitbi
+link = { eu3 = 1805 }	# NOTHING -> Québec
+link = { eu3 = 992 }	# NOTHING -> Algonquin
+link = { eu3 = 993 }	# NOTHING -> Hochelega
+link = { eu3 = 969 }	# NOTHING -> Pocumtuk
+link = { eu3 = 964 }	# NOTHING -> Mohawk
+link = { eu3 = 989 }	# NOTHING -> Ontario
+link = { eu3 = 991 }	# NOTHING -> Ottawa
+link = { eu3 = 988 }	# NOTHING -> Huron
+link = { eu3 = 911 }	# NOTHING -> Menominee
+link = { eu3 = 912 }	# NOTHING -> Sauk
+link = { eu3 = 910 }	# NOTHING -> Chippewa
+link = { eu3 = 908 }	# NOTHING -> Minnesota
+link = { eu3 = 913 }	# NOTHING -> Fox
+link = { eu3 = 914 }	# NOTHING -> Winnebago
+link = { eu3 = 945 }	# NOTHING -> Michigan
+link = { eu3 = 944 }	# NOTHING -> Potawatomi
+link = { eu3 = 987 }	# NOTHING -> Niagara
+link = { eu3 = 958 }	# NOTHING -> Seneca
+link = { eu3 = 959 }	# NOTHING -> Cayuga
+link = { eu3 = 960 }	# NOTHING -> Onondaga
+link = { eu3 = 961 }	# NOTHING -> Oneida
+link = { eu3 = 955 }	# NOTHING -> Susquehanna
+link = { eu3 = 954 }	# NOTHING -> Allegheny
+link = { eu3 = 947 }	# NOTHING -> Erie
+link = { eu3 = 946 }	# NOTHING -> Wyandot
+link = { eu3 = 943 }	# NOTHING -> Miami
+link = { eu3 = 916 }	# NOTHING -> Kaskaskia
+link = { eu3 = 915 }	# NOTHING -> Illinois
+link = { eu3 = 905 }	# NOTHING -> Iowa
+link = { eu3 = 904 }	# NOTHING -> Nakota
+link = { eu3 = 902 }	# NOTHING -> Missouri
+link = { eu3 = 899 }	# NOTHING -> Osage
+link = { eu3 = 900 }	# NOTHING -> Tamaroa
+link = { eu3 = 917 }	# NOTHING -> Cahokia
+link = { eu3 = 942 }	# NOTHING -> Wea
+link = { eu3 = 940 }	# NOTHING -> Kentucky
+link = { eu3 = 948 }	# NOTHING -> Ohio
+link = { eu3 = 951 }	# NOTHING -> Kanawha
+link = { eu3 = 952 }	# NOTHING -> Manahoac
+link = { eu3 = 937 }	# NOTHING -> Tuscarora
+link = { eu3 = 949 }	# NOTHING -> Monacan
+link = { eu3 = 941 }	# NOTHING -> Cumberland
+link = { eu3 = 939 }	# NOTHING -> Pennyrile
+link = { eu3 = 934 }	# NOTHING -> Shawnee
+link = { eu3 = 935 }	# NOTHING -> Cherokee
+link = { eu3 = 936 }	# NOTHING -> Cheraw
+link = { eu3 = 933 }	# NOTHING -> Catawba
+link = { eu3 = 931 }	# NOTHING -> Chiaha
+link = { eu3 = 930 }	# NOTHING -> Yamasee
+link = { eu3 = 924 }	# NOTHING -> Alabama
+link = { eu3 = 925 }	# NOTHING -> Tuskegee
+link = { eu3 = 920 }	# NOTHING -> Choctaw
+link = { eu3 = 919 }	# NOTHING -> Chickasaw
+link = { eu3 = 918 }	# NOTHING -> Tennessee
+link = { eu3 = 894 }	# NOTHING -> Caddo
+link = { eu3 = 895 }	# NOTHING -> Arkansas
+link = { eu3 = 897 }	# NOTHING -> Quapaw
+link = { eu3 = 892 }	# NOTHING -> Wichita
+link = { eu3 = 896 }	# NOTHING -> Ozark
+link = { eu3 = 891 }	# NOTHING -> Jicarilla
+link = { eu3 = 885 }	# NOTHING -> Comanche
+link = { eu3 = 881 }	# NOTHING -> Piro
+link = { eu3 = 879 }	# NOTHING -> Apache
+link = { eu3 = 877 }	# NOTHING -> Pima
+link = { eu3 = 863 }	# NOTHING -> Suma
+link = { eu3 = 864 }	# NOTHING -> Concho
+link = { eu3 = 882 }	# NOTHING -> Mescalero
+link = { eu3 = 861 }	# NOTHING -> Coahuila
+link = { eu3 = 886 }	# NOTHING -> Waco
+link = { eu3 = 883 }	# NOTHING -> Lipan
+link = { eu3 = 887 }	# NOTHING -> Tonkawa
+link = { eu3 = 860 }	# NOTHING -> Tepehuan
+link = { eu3 = 856 }	# NOTHING -> Zacatecas
+link = { eu3 = 857 }	# NOTHING -> Guachichil
+link = { eu3 = 853 }	# NOTHING -> Huastec
+link = { eu3 = 852 }	# NOTHING -> Mexico
+link = { eu3 = 850 }	# NOTHING -> Tlaxcala
+link = { eu3 = 482 }	# NOTHING -> Bahamas
+link = { eu3 = 484 }	# NOTHING -> Havana
+link = { eu3 = 485 }	# NOTHING -> Moron
+link = { eu3 = 486 }	# NOTHING -> Guantanamo
+link = { eu3 = 487 }	# NOTHING -> Jamaica
+link = { eu3 = 483 }	# NOTHING -> Turks Islands
+link = { eu3 = 489 }	# NOTHING -> Tortuga
+link = { eu3 = 488 }	# NOTHING -> Les Cayes
+link = { eu3 = 490 }	# NOTHING -> Barahonas
+link = { eu3 = 492 }	# NOTHING -> Puerto Rico
+link = { eu3 = 1881 }	# NOTHING -> St. Barthélemy
+link = { eu3 = 493 }	# NOTHING -> St. Thomas
+link = { eu3 = 494 }	# NOTHING -> St. Martin
+link = { eu3 = 495 }	# NOTHING -> St. Kitts
+link = { eu3 = 496 }	# NOTHING -> Antigua
+link = { eu3 = 497 }	# NOTHING -> Guadeloupe
+link = { eu3 = 498 }	# NOTHING -> Dominica
+link = { eu3 = 499 }	# NOTHING -> Martinique
+link = { eu3 = 501 }	# NOTHING -> Barbados
+link = { eu3 = 500 }	# NOTHING -> St. Lucia
+link = { eu3 = 502 }	# NOTHING -> Trinidad
+link = { eu3 = 481 }	# NOTHING -> Bermuda
+link = { eu3 = 367 }	# NOTHING -> The Azores
+
+# #ROTW South America
+link = { eu3 = 826 }	# NOTHING -> Choco
+link = { eu3 = 823 }	# NOTHING -> Cauca
+link = { eu3 = 820 }	# NOTHING -> Quito
+link = { eu3 = 819 }	# NOTHING -> Guayaquil
+link = { eu3 = 816 }	# NOTHING -> Tumbes
+link = { eu3 = 812 }	# NOTHING -> Chanchan
+link = { eu3 = 809 }	# NOTHING -> Lima
+link = { eu3 = 806 }	# NOTHING -> Nazca
+link = { eu3 = 805 }	# NOTHING -> Arequipa
+link = { eu3 = 796 }	# NOTHING -> Arica
+link = { eu3 = 793 }	# NOTHING -> Atacama
+link = { eu3 = 792 }	# NOTHING -> Copiapo
+link = { eu3 = 787 }	# NOTHING -> Picunmapu
+link = { eu3 = 784 }	# NOTHING -> Huillimapu
+link = { eu3 = 783 }	# NOTHING -> Patagonia Occidental
+link = { eu3 = 782 }	# NOTHING -> Tierra del Fuego
+link = { eu3 = 1095 }	# NOTHING -> Falklands
+link = { eu3 = 781 }	# NOTHING -> Patagonia Oriental
+link = { eu3 = 780 }	# NOTHING -> Tehuelmapu
+link = { eu3 = 779 }	# NOTHING -> Serranos
+link = { eu3 = 778 }	# NOTHING -> Rio de la Plata
+link = { eu3 = 773 }	# NOTHING -> Banda Oriental
+link = { eu3 = 771 }	# NOTHING -> Patos
+link = { eu3 = 769 }	# NOTHING -> Santana
+link = { eu3 = 766 }	# NOTHING -> Sao Vicente
+link = { eu3 = 764 }	# NOTHING -> Santo Amaro
+link = { eu3 = 763 }	# NOTHING -> Rio de Janeiro
+link = { eu3 = 762 }	# NOTHING -> Sao Tome
+link = { eu3 = 761 }	# NOTHING -> Espirito Santo
+link = { eu3 = 760 }	# NOTHING -> Porto Seguro
+link = { eu3 = 757 }	# NOTHING -> Ilheus
+link = { eu3 = 756 }	# NOTHING -> Bahia
+link = { eu3 = 755 }	# NOTHING -> Pernambuco
+link = { eu3 = 754 }	# NOTHING -> Itamaraca
+link = { eu3 = 753 }	# NOTHING -> Rio Grande
+link = { eu3 = 751 }	# NOTHING -> Ceara
+link = { eu3 = 749 }	# NOTHING -> Maranhao
+link = { eu3 = 748 }	# NOTHING -> Grao Para
+link = { eu3 = 747 }	# NOTHING -> Tucujulandia
+link = { eu3 = 746 }	# NOTHING -> Cayenne
+link = { eu3 = 745 }	# NOTHING -> Suriname
+link = { eu3 = 744 }	# NOTHING -> Demerara
+link = { eu3 = 743 }	# NOTHING -> Essequibo
+link = { eu3 = 741 }	# NOTHING -> Cumana
+link = { eu3 = 831 }	# NOTHING -> Caracas
+link = { eu3 = 491 }	# NOTHING -> Curacao
+link = { eu3 = 830 }	# NOTHING -> Maracaibo
+link = { eu3 = 829 }	# NOTHING -> Magdalena
+link = { eu3 = 828 }	# NOTHING -> Cartagena
+link = { eu3 = 827 }	# NOTHING -> Antioquía
+link = { eu3 = 832 }	# NOTHING -> Chiancon
+link = { eu3 = 833 }	# NOTHING -> Tunja
+link = { eu3 = 834 }	# NOTHING -> Barinas
+link = { eu3 = 742 }	# NOTHING -> Guayana
+link = { eu3 = 825 }	# NOTHING -> Bogota
+link = { eu3 = 824 }	# NOTHING -> Mariquita
+link = { eu3 = 822 }	# NOTHING -> Caqueta
+link = { eu3 = 821 }	# NOTHING -> Quijos
+link = { eu3 = 818 }	# NOTHING -> Canelos
+link = { eu3 = 817 }	# NOTHING -> Cuenca
+link = { eu3 = 813 }	# NOTHING -> Cajamarca
+link = { eu3 = 815 }	# NOTHING -> Maynas
+link = { eu3 = 814 }	# NOTHING -> Huanuco
+link = { eu3 = 811 }	# NOTHING -> Tarma
+link = { eu3 = 810 }	# NOTHING -> Huancavelica
+link = { eu3 = 807 }	# NOTHING -> Huamanga
+link = { eu3 = 808 }	# NOTHING -> Cuzco
+link = { eu3 = 804 }	# NOTHING -> Puno
+link = { eu3 = 802 }	# NOTHING -> Chuquiabo
+link = { eu3 = 803 }	# NOTHING -> Moxos
+link = { eu3 = 801 }	# NOTHING -> Caranga
+link = { eu3 = 800 }	# NOTHING -> Chiquitos
+link = { eu3 = 798 }	# NOTHING -> Charcas
+link = { eu3 = 797 }	# NOTHING -> Caracara
+link = { eu3 = 795 }	# NOTHING -> Chichas
+link = { eu3 = 794 }	# NOTHING -> Jujuy
+link = { eu3 = 791 }	# NOTHING -> Catamarca
+link = { eu3 = 788 }	# NOTHING -> Cuyo
+link = { eu3 = 785 }	# NOTHING -> Pehuenmapu
+link = { eu3 = 786 }	# NOTHING -> Salinas Grande
+link = { eu3 = 789 }	# NOTHING -> Pampas
+link = { eu3 = 790 }	# NOTHING -> Chaco Austral
+link = { eu3 = 777 }	# NOTHING -> Parana
+link = { eu3 = 772 }	# NOTHING -> Uruguay
+link = { eu3 = 770 }	# NOTHING -> Tape
+link = { eu3 = 776 }	# NOTHING -> Itenines
+link = { eu3 = 799 }	# NOTHING -> Chaco Boreal
+link = { eu3 = 775 }	# NOTHING -> Xeres
+link = { eu3 = 774 }	# NOTHING -> Mbaracayu
+link = { eu3 = 768 }	# NOTHING -> Guayra
+link = { eu3 = 765 }	# NOTHING -> Minas Gerais
+link = { eu3 = 767 }	# NOTHING -> Mato Grosso
+link = { eu3 = 1803 }	# NOTHING -> Southern Amazonas
+link = { eu3 = 1802 }	# NOTHING -> Northern Amazonas
+link = { eu3 = 750 }	# NOTHING -> Alpercatas
+link = { eu3 = 752 }	# NOTHING -> Oeiras
+link = { eu3 = 759 }	# NOTHING -> Diamentina
+link = { eu3 = 758 }	# NOTHING -> Goias
+
+# Oceania
+link = { eu3 = 1790 }	# NOTHING -> Western Australia
+link = { eu3 = 1084 }	# NOTHING -> Wadjuk
+link = { eu3 = 1791 }	# NOTHING -> Central Australia
+link = { eu3 = 1086 }	# NOTHING -> Kaurna
+link = { eu3 = 1088 }	# NOTHING -> Wergaia
+link = { eu3 = 1089 }	# NOTHING -> Wiradjuri
+link = { eu3 = 1091 }	# NOTHING -> Kamilaroi
+link = { eu3 = 1093 }	# NOTHING -> Barunggam
+link = { eu3 = 1094 }	# NOTHING -> Gubbi Gubbi
+link = { eu3 = 1092 }	# NOTHING -> Bundjalung
+link = { eu3 = 1090 }	# NOTHING -> Eora
+link = { eu3 = 1087 }	# NOTHING -> Woiworung
+link = { eu3 = 1085 }	# NOTHING -> Paredarerme
+link = { eu3 = 1246 }	# NOTHING -> Aorangi
+link = { eu3 = 1109 }	# NOTHING -> Timaru
+link = { eu3 = 1107 }	# NOTHING -> Taranaki
+link = { eu3 = 1106 }	# NOTHING -> Whangarei
+link = { eu3 = 1108 }	# NOTHING -> Wairoa
+link = { eu3 = 1239 }	# NOTHING -> Vanuatu
+link = { eu3 = 1238 }	# NOTHING -> Solomon Islands
+link = { eu3 = 1237 }	# NOTHING -> Papua
+link = { eu3 = 1789 }	# NOTHING -> Maoke
+link = { eu3 = 1236 }	# NOTHING -> Rabaul
+link = { eu3 = 1245 }	# NOTHING -> Irian
+link = { eu3 = 647 }	# NOTHING -> Ceram
+link = { eu3 = 648 }	# NOTHING -> Halmahera
+link = { eu3 = 644 }	# NOTHING -> Menade
+link = { eu3 = 643 }	# NOTHING -> Pose
+link = { eu3 = 641 }	# NOTHING -> Makassar
+link = { eu3 = 642 }	# NOTHING -> Bone
+link = { eu3 = 635 }	# NOTHING -> Timor
+link = { eu3 = 633 }	# NOTHING -> Flores
+link = { eu3 = 634 }	# NOTHING -> Sumba
+link = { eu3 = 632 }	# NOTHING -> Sumbawa
+link = { eu3 = 631 }	# NOTHING -> Bali-Lombok
+link = { eu3 = 627 }	# NOTHING -> Blambangan
+link = { eu3 = 628 }	# NOTHING -> Surabaya
+link = { eu3 = 626 }	# NOTHING -> Mataram
+link = { eu3 = 625 }	# NOTHING -> Priangan
+link = { eu3 = 629 }	# NOTHING -> Demak
+link = { eu3 = 630 }	# NOTHING -> Sunda
+link = { eu3 = 624 }	# NOTHING -> Banten
+link = { eu3 = 623 }	# NOTHING -> Lampung
+link = { eu3 = 621 }	# NOTHING -> Benkulen
+link = { eu3 = 622 }	# NOTHING -> Palembang
+link = { eu3 = 619 }	# NOTHING -> Minangkabau
+link = { eu3 = 620 }	# NOTHING -> Siak
+link = { eu3 = 618 }	# NOTHING -> Aru
+link = { eu3 = 617 }	# NOTHING -> Aceh
+link = { eu3 = 639 }	# NOTHING -> Banjarmasin
+link = { eu3 = 640 }	# NOTHING -> Sukadane
+link = { eu3 = 636 }	# NOTHING -> Brunei
+link = { eu3 = 638 }	# NOTHING -> Kutei
+link = { eu3 = 637 }	# NOTHING -> Sabah
+link = { eu3 = 655 }	# NOTHING -> Palawan
+link = { eu3 = 652 }	# NOTHING -> Maguindanao
+link = { eu3 = 653 }	# NOTHING -> Tagoloan
+link = { eu3 = 654 }	# NOTHING -> Visayas
+link = { eu3 = 656 }	# NOTHING -> Manila
+link = { eu3 = 658 }	# NOTHING -> Cagayan
+link = { eu3 = 657 }	# NOTHING -> Samtoy
+link = { eu3 = 1235 }	# NOTHING -> Guam
+link = { eu3 = 645 }	# NOTHING -> Buru
+link = { eu3 = 649 }	# NOTHING -> Ternate
+link = { eu3 = 1242 }	# NOTHING -> Fiji
+link = { eu3 = 1243 }	# NOTHING -> Samoa
+link = { eu3 = 1244 }	# NOTHING -> Tahiti
+link = { eu3 = 1241 }	# NOTHING -> Kiribati
+link = { eu3 = 1240 }	# NOTHING -> Hawaii
+
+# # ROTW Africa
+link = { eu3 = 346 eu3 = 348 }	# NOTHING -> Figuig, Sus
+link = { eu3 = 347 }	# NOTHING -> Ifni
+link = { eu3 = 1110 }	# NOTHING -> Rio de Oro
+link = { eu3 = 1111 }	# NOTHING -> Arguin
+link = { eu3 = 368 }	# NOTHING -> Madeira
+link = { eu3 = 1096 }	# NOTHING -> Cape Verde
+link = { eu3 = 1793 }	# NOTHING -> El Djouf
+link = { eu3 = 1127 }	# NOTHING -> Tuat
+link = { eu3 = 1794 }	# NOTHING -> Central Sahara
+link = { eu3 = 1128 }	# NOTHING -> Taodeni
+link = { eu3 = 1795 }	# NOTHING -> East Sahara
+link = { eu3 = 1234 }	# NOTHING -> Nubia
+link = { eu3 = 1220 }	# NOTHING -> Dar Ja'al
+link = { eu3 = 1221 }	# NOTHING -> Taqali
+link = { eu3 = 1219 }	# NOTHING -> Kordofan
+link = { eu3 = 1158 }	# NOTHING -> Kanem
+link = { eu3 = 1157 }	# NOTHING -> Borno
+link = { eu3 = 1156 }	# NOTHING -> Damagaram
+link = { eu3 = 1148 }	# NOTHING -> Gobir
+link = { eu3 = 1130 }	# NOTHING -> Tadimekket
+link = { eu3 = 1129 }	# NOTHING -> Azawadd
+link = { eu3 = 1132 }	# NOTHING -> Timbuktu
+link = { eu3 = 1133 }	# NOTHING -> Gao
+link = { eu3 = 1112 }	# NOTHING -> Trarza
+link = { eu3 = 1113 }	# NOTHING -> Cayor
+link = { eu3 = 1114 }	# NOTHING -> Gabu
+link = { eu3 = 1116 }	# NOTHING -> Wolof
+link = { eu3 = 1115 }	# NOTHING -> Brakna
+link = { eu3 = 1123 }	# NOTHING -> Segu
+link = { eu3 = 1131 }	# NOTHING -> Massina
+link = { eu3 = 1135 }	# NOTHING -> Yatenga
+link = { eu3 = 1134 }	# NOTHING -> Jenne
+link = { eu3 = 1124 }	# NOTHING -> Wasuju
+link = { eu3 = 1121 }	# NOTHING -> Bure
+link = { eu3 = 1120 }	# NOTHING -> Bambuk
+link = { eu3 = 1117 }	# NOTHING -> Futa Jallon
+link = { eu3 = 1118 }	# NOTHING -> Sierra Leone
+link = { eu3 = 1122 }	# NOTHING -> Konian
+link = { eu3 = 1125 }	# NOTHING -> Worodugu
+link = { eu3 = 1119 }	# NOTHING -> Grain Coast
+link = { eu3 = 1126 }	# NOTHING -> Ivory Coast
+link = { eu3 = 1139 }	# NOTHING -> Gold Coast
+link = { eu3 = 1138 }	# NOTHING -> Kumasi
+link = { eu3 = 1137 }	# NOTHING -> Wagadugi
+link = { eu3 = 1136 }	# NOTHING -> Gurma
+link = { eu3 = 1142 }	# NOTHING -> Dendi
+link = { eu3 = 1143 }	# NOTHING -> Borgu
+link = { eu3 = 1140 }	# NOTHING -> Abomey
+link = { eu3 = 1141 }	# NOTHING -> Whydah
+link = { eu3 = 1144 }	# NOTHING -> Oyo
+link = { eu3 = 1147 }	# NOTHING -> Benin
+link = { eu3 = 1151 }	# NOTHING -> Bonny
+link = { eu3 = 1146 }	# NOTHING -> Ife
+link = { eu3 = 1145 }	# NOTHING -> Nupe
+link = { eu3 = 1150 }	# NOTHING -> Zamfara
+link = { eu3 = 1149 }	# NOTHING -> Katsina
+link = { eu3 = 1155 }	# NOTHING -> Kano
+link = { eu3 = 1154 }	# NOTHING -> Zazzau
+link = { eu3 = 1153 }	# NOTHING -> Pindinga
+link = { eu3 = 1152 }	# NOTHING -> Idah
+link = { eu3 = 1163 }	# NOTHING -> Calabar
+link = { eu3 = 1097 }	# NOTHING -> Fernando Po
+link = { eu3 = 1165 }	# NOTHING -> Gabon
+link = { eu3 = 1098 }	# NOTHING -> St. Helena
+link = { eu3 = 1161 }	# NOTHING -> Bauchi
+link = { eu3 = 1249 }	# NOTHING -> Yola
+link = { eu3 = 1160 }	# NOTHING -> Mandara
+link = { eu3 = 1159 }	# NOTHING -> Bagirmi
+link = { eu3 = 1796 }	# NOTHING -> Central Africa
+link = { eu3 = 1216 }	# NOTHING -> Dar Nuba
+link = { eu3 = 1217 }	# NOTHING -> Fazughli
+link = { eu3 = 1798 }	# NOTHING -> Uganda
+link = { eu3 = 1207 }	# NOTHING -> Ogaden
+link = { eu3 = 1208 }	# NOTHING -> Haud
+link = { eu3 = 1218 }	# NOTHING -> Kefa
+link = { eu3 = 1222 }	# NOTHING -> Gezira
+link = { eu3 = 1205 }	# NOTHING -> Mogadishu
+link = { eu3 = 1204 }	# NOTHING -> Lamu
+link = { eu3 = 1203 }	# NOTHING -> Malindi
+link = { eu3 = 1202 }	# NOTHING -> Mombasa
+link = { eu3 = 1200 }	# NOTHING -> Tanga
+link = { eu3 = 1199 }	# NOTHING -> Bagamoyo
+link = { eu3 = 1198 }	# NOTHING -> Tabora
+link = { eu3 = 1197 }	# NOTHING -> Ujiji
+link = { eu3 = 1797 }	# NOTHING -> Inner Kongo
+link = { eu3 = 1164 }	# NOTHING -> Cameroon
+link = { eu3 = 1169 }	# NOTHING -> Mayombe
+link = { eu3 = 1162 }	# NOTHING -> Wukari
+link = { eu3 = 1166 }	# NOTHING -> Loango
+link = { eu3 = 1170 }	# NOTHING -> Kongo
+link = { eu3 = 1167 }	# NOTHING -> Luanda
+link = { eu3 = 1171 }	# NOTHING -> Ndongo
+link = { eu3 = 1800 }	# NOTHING -> Zambia
+link = { eu3 = 1799 }	# NOTHING -> Malawi
+link = { eu3 = 1196 }	# NOTHING -> Kilwa
+link = { eu3 = 1201 }	# NOTHING -> Zanzibar
+link = { eu3 = 1194 }	# NOTHING -> Boina
+link = { eu3 = 1792 }	# NOTHING -> Antananarivo
+link = { eu3 = 1193 }	# NOTHING -> Menabe
+link = { eu3 = 1195 }	# NOTHING -> Mozambique
+link = { eu3 = 1192 }	# NOTHING -> Quelimane
+link = { eu3 = 1186 }	# NOTHING -> Sofala
+link = { eu3 = 1183 }	# NOTHING -> Inhambane
+link = { eu3 = 1182 }	# NOTHING -> Delagoa Bay
+link = { eu3 = 1181 }	# NOTHING -> Natal
+link = { eu3 = 1180 }	# NOTHING -> Transkei
+link = { eu3 = 1179 }	# NOTHING -> Little Karoo
+link = { eu3 = 1177 }	# NOTHING -> Cape
+link = { eu3 = 1175 }	# NOTHING -> Lesser Namaqualand
+link = { eu3 = 1174 }	# NOTHING -> Greater Namaqualand
+link = { eu3 = 1173 }	# NOTHING -> Damaraland
+link = { eu3 = 1172 }	# NOTHING -> Benguela
+link = { eu3 = 1168 }	# NOTHING -> Kisarna
+link = { eu3 = 1187 }	# NOTHING -> Urungwe
+link = { eu3 = 1184 }	# NOTHING -> Zimbabwe
+link = { eu3 = 1801 }	# NOTHING -> Kalahari
+link = { eu3 = 1185 }	# NOTHING -> Uteve
+link = { eu3 = 1189 }	# NOTHING -> Barwe
+link = { eu3 = 1188 }	# NOTHING -> Masapa
+link = { eu3 = 1190 }	# NOTHING -> Zumbo
+link = { eu3 = 1191 }	# NOTHING -> Sena
+link = { eu3 = 1178 }	# NOTHING -> Great Karoo
+link = { eu3 = 1176 }	# NOTHING -> Roggeveld
+
+# ROTW Far East
+link = { eu3 = 1015 }	# NOTHING -> Okinawa
+link = { eu3 = 1815 }	# NOTHING -> Hyuga
+link = { eu3 = 1012 }	# NOTHING -> Satsuma
+link = { eu3 = 1817 }	# NOTHING -> Higo
+link = { eu3 = 1013 }	# NOTHING -> Hizen
+link = { eu3 = 1818 }	# NOTHING -> Chikuzen
+link = { eu3 = 1017 }	# NOTHING -> Nagato
+link = { eu3 = 1014 }	# NOTHING -> Bungo
+link = { eu3 = 1016 }	# NOTHING -> Shikoku
+link = { eu3 = 1819 }	# NOTHING -> Tosa
+link = { eu3 = 1820 }	# NOTHING -> Awa
+link = { eu3 = 1825 }	# NOTHING -> Aki
+link = { eu3 = 1823 }	# NOTHING -> Iwami
+link = { eu3 = 1018 }	# NOTHING -> Izumo
+link = { eu3 = 1828 }	# NOTHING -> Bingo
+link = { eu3 = 1827 }	# NOTHING -> Bitchu
+link = { eu3 = 1826 }	# NOTHING -> Hoki
+link = { eu3 = 1830 }	# NOTHING -> Tajima
+link = { eu3 = 1019 }	# NOTHING -> Harima
+link = { eu3 = 1831 }	# NOTHING -> Tanba
+link = { eu3 = 1021 }	# NOTHING -> Settsu
+link = { eu3 = 1832 }	# NOTHING -> Yamato
+link = { eu3 = 1022 }	# NOTHING -> Kii
+link = { eu3 = 1030 }	# NOTHING -> Owari
+link = { eu3 = 1020 }	# NOTHING -> Kyoto
+link = { eu3 = 1834 }	# NOTHING -> Omi
+link = { eu3 = 1023 }	# NOTHING -> Echizen
+link = { eu3 = 1835 }	# NOTHING -> Mino
+link = { eu3 = 1839 }	# NOTHING -> Totomi
+link = { eu3 = 1029 }	# NOTHING -> Shinano
+link = { eu3 = 1837 }	# NOTHING -> Etchu
+link = { eu3 = 1024 }	# NOTHING -> Echigo
+link = { eu3 = 1841 }	# NOTHING -> Izu
+link = { eu3 = 1843 }	# NOTHING -> Kozuke
+link = { eu3 = 1028 }	# NOTHING -> Musashi
+link = { eu3 = 1842 }	# NOTHING -> Kazusa
+link = { eu3 = 1027 }	# NOTHING -> Hitachi
+link = { eu3 = 1026 }	# NOTHING -> Mutsu
+link = { eu3 = 1025 }	# NOTHING -> Dewa
+link = { eu3 = 1847 }	# NOTHING -> Shiribeshi
+link = { eu3 = 1031 }	# NOTHING -> Kamikawa
+link = { eu3 = 1852 }	# NOTHING -> Tokachi
+link = { eu3 = 1032 }	# NOTHING -> The Kurils
+link = { eu3 = 1033 }	# NOTHING -> Sakhalin
+link = { eu3 = 1034 }	# NOTHING -> Kamchatka
+link = { eu3 = 1035 }	# NOTHING -> Penchisky
+link = { eu3 = 1038 }	# NOTHING -> Anadyrsk
+link = { eu3 = 1037 }	# NOTHING -> Nizhe-Kolymsk
+link = { eu3 = 1036 }	# NOTHING -> Podzhiversk
+link = { eu3 = 1783 }	# NOTHING -> Eastern Siberia
+link = { eu3 = 1782 }	# NOTHING -> Central Siberia
+link = { eu3 = 1039 }	# NOTHING -> Verkhoyansk
+link = { eu3 = 1040 }	# NOTHING -> Suntar Khayat
+link = { eu3 = 1041 }	# NOTHING -> Gizhiga
+link = { eu3 = 1044 }	# NOTHING -> Tauisk
+link = { eu3 = 1043 }	# NOTHING -> Okhotsk
+link = { eu3 = 1042 }	# NOTHING -> Kamnuskoye
+link = { eu3 = 1045 }	# NOTHING -> Yakutsk
+link = { eu3 = 1046 }	# NOTHING -> Butalsk
+link = { eu3 = 1047 }	# NOTHING -> Jugjur
+link = { eu3 = 1052 }	# NOTHING -> Verkohzehkoye
+link = { eu3 = 1048 }	# NOTHING -> Udskoye
+link = { eu3 = 1050 }	# NOTHING -> Deren
+link = { eu3 = 1049 }	# NOTHING -> Saghalian Oula
+link = { eu3 = 1053 }	# NOTHING -> Albazinsky
+link = { eu3 = 729 }	# NOTHING -> Wusuli
+link = { eu3 = 728 }	# NOTHING -> Sanxing
+link = { eu3 = 727 }	# NOTHING -> Heilongjiang
+link = { eu3 = 724 }	# NOTHING -> Yakesa
+link = { eu3 = 731 }	# NOTHING -> Ninguta
+link = { eu3 = 1850 }	# NOTHING -> Mudanjiang
+link = { eu3 = 732 }	# NOTHING -> Hamgyeong
+link = { eu3 = 730 }	# NOTHING -> Haixi
+link = { eu3 = 725 }	# NOTHING -> Hinggan
+link = { eu3 = 723 }	# NOTHING -> Xilin Gol
+link = { eu3 = 704 }	# NOTHING -> Liaoxi
+link = { eu3 = 726 }	# NOTHING -> Liaodong
+link = { eu3 = 1845 }	# NOTHING -> Uiji
+link = { eu3 = 733 }	# NOTHING -> Pyeongan
+link = { eu3 = 734 }	# NOTHING -> Gangwon
+link = { eu3 = 735 }	# NOTHING -> Chungcheong
+link = { eu3 = 736 }	# NOTHING -> Gyeongsang
+link = { eu3 = 737 }	# NOTHING -> Jeolla
+link = { eu3 = 738 }	# NOTHING -> Taiwan
+link = { eu3 = 597 }	# NOTHING -> Johor
+link = { eu3 = 659 }	# NOTHING -> Riau
+link = { eu3 = 596 }	# NOTHING -> Malacca
+link = { eu3 = 598 }	# NOTHING -> Pahang
+link = { eu3 = 595 }	# NOTHING -> Perak
+link = { eu3 = 599 }	# NOTHING -> Kelantan
+link = { eu3 = 594 }	# NOTHING -> Pattani
+link = { eu3 = 593 }	# NOTHING -> Ligore
+link = { eu3 = 592 }	# NOTHING -> Ratchaburi
+link = { eu3 = 591 }	# NOTHING -> Tenasserim
+link = { eu3 = 603 }	# NOTHING -> Rayong
+link = { eu3 = 604 }	# NOTHING -> Udong
+link = { eu3 = 605 }	# NOTHING -> Prey Nokor
+link = { eu3 = 606 }	# NOTHING -> Panduranga
+link = { eu3 = 609 }	# NOTHING -> Siem Reap
+link = { eu3 = 608 }	# NOTHING -> Champassak
+link = { eu3 = 607 }	# NOTHING -> Vijaya
+link = { eu3 = 610 }	# NOTHING -> Binh Tri Thien
+link = { eu3 = 611 }	# NOTHING -> Thakhek
+link = { eu3 = 612 }	# NOTHING -> Khorat
+link = { eu3 = 600 }	# NOTHING -> Ayutthaya
+link = { eu3 = 590 }	# NOTHING -> Moulmein
+link = { eu3 = 586 }	# NOTHING -> Pegu
+link = { eu3 = 579 }	# NOTHING -> Arakan
+link = { eu3 = 585 }	# NOTHING -> Toungoo
+link = { eu3 = 589 }	# NOTHING -> Chiang Mai
+link = { eu3 = 601 }	# NOTHING -> Sukthothai
+link = { eu3 = 614 }	# NOTHING -> Vientiane
+link = { eu3 = 602 }	# NOTHING -> Chiang Rai
+link = { eu3 = 1844 }	# NOTHING -> Xiankhouang
+link = { eu3 = 615 }	# NOTHING -> Luang Prabang
+link = { eu3 = 613 }	# NOTHING -> Thang Long
+link = { eu3 = 666 }	# NOTHING -> Hainan
+link = { eu3 = 665 }	# NOTHING -> Jiangmen
+link = { eu3 = 668 }	# NOTHING -> Macau
+link = { eu3 = 667 }	# NOTHING -> Guangzhou
+link = { eu3 = 1829 }	# NOTHING -> Xiamen
+link = { eu3 = 669 }	# NOTHING -> Fuzhou
+link = { eu3 = 1824 }	# NOTHING -> Wenzhou
+link = { eu3 = 684 }	# NOTHING -> Hangzhou
+link = { eu3 = 1822 }	# NOTHING -> Shangai
+link = { eu3 = 1821 }	# NOTHING -> Nanjing
+link = { eu3 = 685 }	# NOTHING -> Huai'an
+link = { eu3 = 690 }	# NOTHING -> Shandong Bandao
+link = { eu3 = 691 }	# NOTHING -> Jinan
+link = { eu3 = 695 }	# NOTHING -> Hejian
+link = { eu3 = 1816 }	# NOTHING -> Beijing
+link = { eu3 = 568 }	# NOTHING -> Chittagong
+link = { eu3 = 564 }	# NOTHING -> Vanga
+link = { eu3 = 561 }	# NOTHING -> Bangala
+link = { eu3 = 553 }	# NOTHING -> Cuttack
+link = { eu3 = 549 }	# NOTHING -> Parlakimidi
+link = { eu3 = 542 }	# NOTHING -> Telingana
+link = { eu3 = 541 }	# NOTHING -> Kondavidu
+link = { eu3 = 539 }	# NOTHING -> Madras
+link = { eu3 = 537 }	# NOTHING -> Tiruchchirapalli
+link = { eu3 = 536 }	# NOTHING -> Madurai
+link = { eu3 = 535 }	# NOTHING -> Malabar
+link = { eu3 = 538 }	# NOTHING -> Kongu
+link = { eu3 = 533 }	# NOTHING -> Mysore
+link = { eu3 = 534 }	# NOTHING -> Calicut
+link = { eu3 = 532 }	# NOTHING -> Raichur Doab
+link = { eu3 = 531 }	# NOTHING -> Goa
+link = { eu3 = 530 }	# NOTHING -> Konkan
+link = { eu3 = 529 }	# NOTHING -> Dadra
+link = { eu3 = 528 }	# NOTHING -> Surat
+link = { eu3 = 515 }	# NOTHING -> Kathiawar
+link = { eu3 = 516 }	# NOTHING -> Ahmadabad
+link = { eu3 = 503 }	# NOTHING -> Kutch
+link = { eu3 = 504 }	# NOTHING -> Sind
+link = { eu3 = 576 }	# NOTHING -> Indus
+link = { eu3 = 575 }	# NOTHING -> Baluchistan
+link = { eu3 = 447 }	# NOTHING -> Kandahar
+link = { eu3 = 449 }	# NOTHING -> Gharchistan
+link = { eu3 = 450 }	# NOTHING -> Balkh
+link = { eu3 = 453 }	# NOTHING -> Karshi
+link = { eu3 = 454 }	# NOTHING -> Samarkand
+link = { eu3 = 455 }	# NOTHING -> Kyzyl Kum
+link = { eu3 = 456 }	# NOTHING -> Turkestan
+link = { eu3 = 476 }	# NOTHING -> Kypshak
+link = { eu3 = 479 }	# NOTHING -> Kerey
+link = { eu3 = 1071 }	# NOTHING -> Tara
+link = { eu3 = 1070 }	# NOTHING -> Koda
+link = { eu3 = 1781 }	# NOTHING -> Western Siberia
+link = { eu3 = 1067 }	# NOTHING -> Narym
+link = { eu3 = 1068 }	# NOTHING -> Pegaya Orda
+link = { eu3 = 1061 }	# NOTHING -> Yeniseysk
+link = { eu3 = 1064 }	# NOTHING -> Tomsk
+link = { eu3 = 480 }	# NOTHING -> Kulunda
+link = { eu3 = 477 }	# NOTHING -> Nadym
+link = { eu3 = 478 }	# NOTHING -> Argyn
+link = { eu3 = 457 }	# NOTHING -> Tashkent
+link = { eu3 = 459 }	# NOTHING -> Chuy
+link = { eu3 = 461 }	# NOTHING -> Moghulistan
+link = { eu3 = 458 }	# NOTHING -> Ferghana
+link = { eu3 = 452 }	# NOTHING -> Badakhshan
+link = { eu3 = 460 }	# NOTHING -> Tian Shan
+link = { eu3 = 1785 }	# NOTHING -> Karakoram
+link = { eu3 = 509 }	# NOTHING -> Kashmir
+link = { eu3 = 508 }	# NOTHING -> Jammu
+link = { eu3 = 578 }	# NOTHING -> Kohistan
+link = { eu3 = 451 }	# NOTHING -> Kabulistan
+link = { eu3 = 448 }	# NOTHING -> Gazni
+link = { eu3 = 577 }	# NOTHING -> Quetta
+link = { eu3 = 507 }	# NOTHING -> Lahore
+link = { eu3 = 506 }	# NOTHING -> Multan
+link = { eu3 = 511 }	# NOTHING -> Sutlej
+link = { eu3 = 510 }	# NOTHING -> Chandigarh
+link = { eu3 = 740 }	# NOTHING -> Ladakh
+link = { eu3 = 739 }	# NOTHING -> Altishar
+link = { eu3 = 1786 }	# NOTHING -> Takla Makan
+link = { eu3 = 712 }	# NOTHING -> Uighuristan
+link = { eu3 = 1784 }	# NOTHING -> Tiam Shan
+link = { eu3 = 714 }	# NOTHING -> Dzungaria
+link = { eu3 = 1066 }	# NOTHING -> Altai
+link = { eu3 = 1065 }	# NOTHING -> Kuznetsk
+link = { eu3 = 1062 }	# NOTHING -> Kachinsk
+link = { eu3 = 1063 }	# NOTHING -> Sayan
+link = { eu3 = 716 }	# NOTHING -> Tannu Tuva
+link = { eu3 = 717 }	# NOTHING -> Hovd
+link = { eu3 = 715 }	# NOTHING -> Urumqi
+link = { eu3 = 713 }	# NOTHING -> Kuruk Tag
+link = { eu3 = 711 }	# NOTHING -> Qarqan
+link = { eu3 = 710 eu3 = 555 }	# NOTHING -> Hotan, Oudh
+link = { eu3 = 1055 }	# NOTHING -> Verkne-Angarsky
+link = { eu3 = 1059 }	# NOTHING -> Bratsk
+link = { eu3 = 1054 }	# NOTHING -> Ilimsk
+link = { eu3 = 1051 }	# NOTHING -> Uchurskoye
+link = { eu3 = 1060 }	# NOTHING -> Irkutsk
+link = { eu3 = 1056 }	# NOTHING -> Barguzinsky
+link = { eu3 = 1058 }	# NOTHING -> Nerchinsky
+link = { eu3 = 1057 }	# NOTHING -> Udinsky
+link = { eu3 = 718 }	# NOTHING -> Jasagdu
+link = { eu3 = 719 }	# NOTHING -> Sayin Noyan
+link = { eu3 = 720 }	# NOTHING -> Tshiyet Noyan
+link = { eu3 = 721 }	# NOTHING -> Dornod
+link = { eu3 = 722 }	# NOTHING -> Chahar
+link = { eu3 = 703 }	# NOTHING -> Chengde
+link = { eu3 = 696 }	# NOTHING -> Xuan Fu
+link = { eu3 = 702 }	# NOTHING -> Ulaanchab
+link = { eu3 = 701 }	# NOTHING -> Ordos
+link = { eu3 = 693 }	# NOTHING -> Sanguan
+link = { eu3 = 697 }	# NOTHING -> Datong
+link = { eu3 = 692 }	# NOTHING -> Handan
+link = { eu3 = 694 }	# NOTHING -> Changzhi
+link = { eu3 = 1838 }	# NOTHING -> Hefei
+link = { eu3 = 688 }	# NOTHING -> Kaifeng
+link = { eu3 = 686 }	# NOTHING -> Anqing
+link = { eu3 = 683 }	# NOTHING -> Nanchang
+link = { eu3 = 670 }	# NOTHING -> Ganzhou
+link = { eu3 = 671 }	# NOTHING -> Changsha
+link = { eu3 = 682 }	# NOTHING -> Hanyang
+link = { eu3 = 687 }	# NOTHING -> Running
+link = { eu3 = 1836 }	# NOTHING -> Nanyang
+link = { eu3 = 681 }	# NOTHING -> Yichuan
+link = { eu3 = 672 }	# NOTHING -> Chenzhou
+link = { eu3 = 1840 }	# NOTHING -> Guilin
+link = { eu3 = 664 }	# NOTHING -> Guangxi
+link = { eu3 = 663 }	# NOTHING -> Wenshan
+link = { eu3 = 616 }	# NOTHING -> Viet Bac
+link = { eu3 = 660 }	# NOTHING -> Xishuan Banna
+link = { eu3 = 587 }	# NOTHING -> Keng Tung
+link = { eu3 = 588 }	# NOTHING -> Mongnai
+link = { eu3 = 580 }	# NOTHING -> Chin
+link = { eu3 = 584 }	# NOTHING -> Kyaukse
+link = { eu3 = 569 }	# NOTHING -> Manipur
+link = { eu3 = 567 }	# NOTHING -> Silhet
+link = { eu3 = 563 }	# NOTHING -> Pandua
+link = { eu3 = 560 }	# NOTHING -> Jharkhand
+link = { eu3 = 552 }	# NOTHING -> Orissa
+link = { eu3 = 548 }	# NOTHING -> Indravati
+link = { eu3 = 543 }	# NOTHING -> Golconda
+link = { eu3 = 540 }	# NOTHING -> Bangalore
+link = { eu3 = 544 }	# NOTHING -> Ahmadnagar
+link = { eu3 = 545 }	# NOTHING -> Maharastra
+link = { eu3 = 527 }	# NOTHING -> Khandesh
+link = { eu3 = 517 }	# NOTHING -> Baroda
+link = { eu3 = 514 }	# NOTHING -> Jodphur
+link = { eu3 = 513 }	# NOTHING -> Jaisalmer
+link = { eu3 = 505 }	# NOTHING -> Bakkar
+link = { eu3 = 520 }	# NOTHING -> Bikaner
+link = { eu3 = 512 }	# NOTHING -> Thar
+link = { eu3 = 521 }	# NOTHING -> Panipat
+link = { eu3 = 522 }	# NOTHING -> Delhi
+link = { eu3 = 1787 }	# NOTHING -> Himalaya
+link = { eu3 = 705 }	# NOTHING -> Dangla
+link = { eu3 = 706 }	# NOTHING -> Amdo
+link = { eu3 = 707 }	# NOTHING -> Yumen
+link = { eu3 = 709 }	# NOTHING -> Ningxia
+link = { eu3 = 708 }	# NOTHING -> Gansu
+link = { eu3 = 699 }	# NOTHING -> Lanzhou
+link = { eu3 = 700 }	# NOTHING -> Shaanxi
+link = { eu3 = 689 }	# NOTHING -> Fengyuan
+link = { eu3 = 680 }	# NOTHING -> Shenquing
+link = { eu3 = 673 }	# NOTHING -> Bozhou
+link = { eu3 = 674 }	# NOTHING -> Guiyang
+link = { eu3 = 675 }	# NOTHING -> Liangshan
+link = { eu3 = 662 }	# NOTHING -> Yunnan
+link = { eu3 = 661 }	# NOTHING -> Dali
+link = { eu3 = 583 }	# NOTHING -> Hsenwi
+link = { eu3 = 581 }	# NOTHING -> Sagaing
+link = { eu3 = 570 }	# NOTHING -> Naga
+link = { eu3 = 566 }	# NOTHING -> Assam
+link = { eu3 = 562 }	# NOTHING -> Koch
+link = { eu3 = 558 }	# NOTHING -> Maithil
+link = { eu3 = 559 }	# NOTHING -> Bihar
+link = { eu3 = 551 }	# NOTHING -> Gondwana
+link = { eu3 = 547 }	# NOTHING -> Bastar
+link = { eu3 = 546 }	# NOTHING -> Nagpur
+link = { eu3 = 550 }	# NOTHING -> Mandla
+link = { eu3 = 526 }	# NOTHING -> Malwa
+link = { eu3 = 518 }	# NOTHING -> Udaipur
+link = { eu3 = 519 }	# NOTHING -> Jaipur
+link = { eu3 = 523 }	# NOTHING -> Lucknow
+link = { eu3 = 524 }	# NOTHING -> Agra
+link = { eu3 = 525 }	# NOTHING -> Ajmer
+link = { eu3 = 556 }	# NOTHING -> Allahabad
+link = { eu3 = 554 }	# NOTHING -> Gorka
+link = { eu3 = 557 }	# NOTHING -> Katmandu
+link = { eu3 = 676 }	# NOTHING -> U-Tsang
+link = { eu3 = 565 }	# NOTHING -> Bhutan
+link = { eu3 = 1788 }	# NOTHING -> Arunachal
+link = { eu3 = 571 }	# NOTHING -> Brahmaputra
+link = { eu3 = 677 }	# NOTHING -> Qamdo
+link = { eu3 = 678 }	# NOTHING -> Kham
+link = { eu3 = 679 }	# NOTHING -> Sichuan Pendi
+link = { eu3 = 582 }	# NOTHING -> Kachin
+link = { eu3 = 1833 }	# NOTHING -> Ji'an
+link = { eu3 = 1248 }	# NOTHING -> Maldives
+link = { eu3 = 1100 }	# NOTHING -> Mahe
+link = { eu3 = 1101 }	# NOTHING -> Diego Garcia
+link = { eu3 = 1103 }	# NOTHING -> Bourbon
+link = { eu3 = 1102 }	# NOTHING -> Mauritius
+link = { eu3 = 698 }	# NOTHING -> Guyuan
+link = { eu3 = 650 }	# NOTHING -> Tidore
+link = { eu3 = 651 }	# NOTHING -> Sulu
 }
