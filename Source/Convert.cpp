@@ -6,6 +6,7 @@
 #include "Parsers/Parser.h"
 #include "Parsers/Object.h"
 #include "EU3World\EU3World.h"
+#include	"CK2World\CK2World.h"
 #include "Mappers.h"
 using namespace std;
 
@@ -70,6 +71,8 @@ int main(int argc, char * argv[])
 	readFile(read);
 	read.close();
 	read.clear();
+	CK2World srcWorld;
+	srcWorld.init(obj);
 
 
 	// Parse province mappings
@@ -81,6 +84,7 @@ int main(int argc, char * argv[])
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
 
 	EU3World destWorld;
+	destWorld.init(srcWorld);
 
 
 

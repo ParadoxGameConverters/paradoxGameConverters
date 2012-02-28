@@ -11,11 +11,18 @@ using namespace std;
 
 void EU3World::output(FILE* output)
 {
+	fprintf(output, "date=\"%s\"\n", startDate.toString().c_str());
 	outputTempHeader(output);
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
 		provinces[i].output(output);
 	}
+}
+
+
+void EU3World::init(CK2World srcWorld)
+{
+	startDate = srcWorld.getEndDate();
 }
 
 

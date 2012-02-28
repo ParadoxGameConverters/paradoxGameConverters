@@ -19,6 +19,9 @@
     <Filter Include="EU3World">
       <UniqueIdentifier>{5eef07c5-6a70-463c-a404-aa73662ab430}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CK2World">
+      <UniqueIdentifier>{02fc5e8a-8876-4bbc-975f-8b7d081070bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Convert.cpp">
@@ -48,6 +51,12 @@
     <ClCompile Include="Source\EU3World\EU3Province.cpp">
       <Filter>EU3World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Date.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\CK2World\CK2World.cpp">
+      <Filter>CK2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -73,6 +82,12 @@
     </ClInclude>
     <ClInclude Include="Source\EU3World\EU3Province.h">
       <Filter>EU3World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\Date.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CK2World\CK2World.h">
+      <Filter>CK2World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

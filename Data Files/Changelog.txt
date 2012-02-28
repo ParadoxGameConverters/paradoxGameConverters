@@ -13,3 +13,4 @@ Revision	Log Message
 11		CK2 cultures mapped, except for german and italian
 12		Gunther's province mappings
 13		Fix bug uncovered by ROTW mappings
+14		EU3 starts at the date CK2 ended
