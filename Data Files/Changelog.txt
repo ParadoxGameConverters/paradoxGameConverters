@@ -16,3 +16,4 @@ Revision	Log Message
 14		Middle East and Persia mapped
 15		EU3 starts at the date CK2 ended
 16		Merge
+17		Start date taken into account for ROTW provinces

@@ -1,7 +1,7 @@
 #include "EU3Province.h"
 
 
-void EU3Province::init(int newNum, Object* obj)
+void EU3Province::init(int newNum, Object* obj, date startDate)
 {
 	num = newNum;
 	vector<Object*> ownerObj = obj[0].getValue("owner");
@@ -12,6 +12,24 @@ void EU3Province::init(int newNum, Object* obj)
 	else
 	{
 		owner = "";
+	}
+
+	vector<Object*> objectList = obj->getLeaves();
+	for (unsigned int i = 0; i < objectList.size(); i++)
+	{
+		string key = objectList[i]->getKey();
+		if (key[0] == '1')
+		{
+			date histDate(key);
+			if (histDate <= startDate)
+			{
+				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
+				if (newOwnerObj.size() > 0)
+				{
+					owner = newOwnerObj[0]->getLeaf();
+				}
+			}
+		}
 	}
 }
 

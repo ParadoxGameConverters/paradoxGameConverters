@@ -52,7 +52,7 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 
 		//initialize province
 		EU3Province newProvince;
-		newProvince.init(rotwProvinces[i], obj);
+		newProvince.init(rotwProvinces[i], obj, startDate);
 
 		//add to provinces list
 		provinces.push_back(newProvince);
