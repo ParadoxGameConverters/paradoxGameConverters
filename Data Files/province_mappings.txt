@@ -2,7 +2,6 @@ mappings = {
 # Iceland
 link = { ck2 = 1 eu3 = 370 }	# Vestisland -> Reykjavik
 link = { ck2 = 2 eu3 = 371 }	# Austisland -> Akureyri
-
 # England, Ireland, Scotland, and Wales
 link = { ck2 = 5 ck2 = 4 ck2 = 3 eu3 = 372 }	# Ulster, Tyrone, Tyrconnell -> Ulster
 link = { ck2 = 9 eu3 = 376 }	# Connacht -> Connaught
@@ -33,7 +32,6 @@ link = { ck2 = 68 ck2 = 69 eu3 = 237 }	# Northampton, Bedford -> Oxfordshire
 link = { ck2 = 22 eu3 = 239 }	# Oxford -> Gloucestershire
 link = { ck2 = 72 eu3 = 238 }	# Essex -> Essex
 link = { ck2 = 32 eu3 = 236 }	# Middlesex -> London
-
 # Africa
 link = { ck2 = 871 eu3 = 1206 eu3 = 1099 }	# Busaso -> Majerteen, Socotra
 link = { ck2 = 872 eu3 = 1209 }	# Berbera -> Berbera
@@ -79,7 +77,6 @@ link = { ck2 = 841 eu3 = 334 }	# Tangiers -> Tangiers
 link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Ifni, Tharasset -> Safi
 link = { ck2 = 849 eu3 = 366 }	# Canarias -> The Canarias
 link = { ck2 = 843 eu3 = 344 }	# Marrakech -> Marrakech
-
 # # Arabian Peninsula, Middle East and Eastern Boundary Provinces
 link = { ck2 = 788 ck2 = 787 eu3 = 364 }	# Farama, El-Arish -> Gaza
 link = { ck2 = 786 ck2 = 782 ck2 = 779 eu3 = 1854 }	# Eilat, Negev, Beersheb -> Negev
@@ -100,7 +97,7 @@ link = { ck2 = 653 eu3 = 396 }	# Bahrein -> Bahrain
 link = { ck2 = 908 eu3 = 403 eu3 = 1779 eu3 = 391 eu3 = 390 }	# Sharawrah -> Nizwa, Rub' al Khali, Najran, Sana'a
 link = { ck2 = 862 ck2 = 863 eu3 = 392 }	# Halaban, Hajr -> Najd
 link = { ck2 = 651 ck2 = 650 ck2 = 654 eu3 = 394 }	# Damman, Kuwait, Rummah -> Al Hasa
-link = { ck2 = 865 ck2 = 864 eu3 = 393 }	# Rafha, Hail -> Jabal Shammar
+link = { ck2 = 865 ck2 = 864 ck2 = 716 eu3 = 393 }	# Rafha, Hail, Ar'ar -> Jabal Shammar
 link = { ck2 = 649 eu3 = 408 }	# Basra -> Basra
 link = { ck2 = 647 ck2 = 648 ck2 = 645 eu3 = 412 }	# Ahvaz, Khozistan, Hendjan -> Khuzestan
 link = { ck2 = 643 ck2 = 644 eu3 = 429 }	# Fars, Shiraz -> Fars
@@ -123,9 +120,45 @@ link = { ck2 = 897 ck2 = 898 eu3 = 472 }	# Ryn Desert, Omsk -> Zheteru
 link = { ck2 = 893 eu3 = 1075 eu3 = 1076 }	# Surgut -> Tyumen, Kurgan
 link = { ck2 = 887 eu3 = 1074 }	# Yamalia -> Tobolsk
 link = { ck2 = 910 eu3 = 1780 eu3 = 1080 eu3 = 1073 eu3 = 1072 eu3 = 1069 }	# Siberia -> Komi, Idnakar, Berezov, Obdorsk, Surgut
+link = { ck2 = 766 ck2 = 764 ck2 = 763 ck2 = 765 eu3 = 377 }	# Tortosa, Antiocheia, Alexandretta, Archa -> Aleppo
+link = { ck2 = 735 ck2 = 707 ck2 = 734 ck2 = 699 ck2 = 702 ck2 = 701 eu3 = 332 }	# Teluch, Melitene, Aintab, Edessa, Mesopotamia, Taron -> Mus
+link = { ck2 = 752 ck2 = 737 ck2 = 706 eu3 = 329 }	# Galatia, Kaisereia, Koloneia -> Sivas
+link = { ck2 = 704 ck2 = 678 eu3 = 330 }	# Theodosiopolis, Trapezous -> Trebizon
+link = { ck2 = 738 ck2 = 705 eu3 = 328 }	# Amisos, Chaldea -> Sinope
+link = { ck2 = 680 ck2 = 679 eu3 = 422 }	# Tao, Kartli -> Imereti
+link = { ck2 = 703 ck2 = 681 eu3 = 331 }	# Karin, Ani -> Erserum
+link = { ck2 = 733 ck2 = 732 eu3 = 1849 }	# Aleppo, Hama -> Hammah
+link = { ck2 = 725 ck2 = 769 ck2 = 768 ck2 = 731 ck2 = 730 ck2 = 728 eu3 = 382 }	# Irbid, Safed, Baalbek, Homs, Palmyra, Damascus -> Damascus
+link = { ck2 = 691 ck2 = 655 ck2 = 690 eu3 = 409 }	# Al Nasiryah, Kufa, Al Amarah -> Karbala
+link = { ck2 = 693 ck2 = 695 ck2 = 712 ck2 = 727 ck2 = 726 ck2 = 713 ck2 = 714 ck2 = 724 ck2 = 715 ck2 = 694 ck2 = 692 eu3 = 406 }	# Baghdad, Deir, Suwaida, Syria, Al Mafraq, Druz, Az Zarqa, Amman, Al Habbariyah, Karbala, Al Nadjaf -> Badiyat Ash Sham
+link = { ck2 = 708 ck2 = 709 ck2 = 710 ck2 = 729 ck2 = 698 ck2 = 700 ck2 = 711 eu3 = 407 }	# Tell Bashir, Asas, Al Bichri, Tadmor, Al Jazira, Bira, Sinjar -> Dayr Az Zor
+link = { ck2 = 672 eu3 = 423 }	# Dwin -> Kartli
+link = { ck2 = 675 ck2 = 674 eu3 = 425 }	# Semender, Derbent -> Dagestan
+link = { ck2 = 669 ck2 = 673 eu3 = 424 }	# Shemakha, Albania -> Shirvan
+link = { ck2 = 668 eu3 = 421 }	# Shirvan -> Murgan
+link = { ck2 = 666 eu3 = 417 }	# Gilan -> Gilan
+link = { ck2 = 662 ck2 = 661 eu3 = 426 }	# Mazandaran, Tabaristan -> Mazandaran
+link = { ck2 = 633 eu3 = 427 }	# Gurgan -> Gurgan
+link = { ck2 = 624 ck2 = 623 eu3 = 443 }	# Mangyshlak, Khwarizm -> Ust Yurt
+link = { ck2 = 625 ck2 = 972 eu3 = 439 }	# Usturt, Kara-Bogaz Gol -> Mangyshlak
+link = { ck2 = 627 ck2 = 629 ck2 = 628 eu3 = 438 }	# Kara-Kum, Turkmen, Bukhara -> Kara Kum
+link = { ck2 = 903 eu3 = 441 }	# Samarkand -> Khiva
+link = { ck2 = 631 ck2 = 630 ck2 = 905 eu3 = 437 }	# Dihistan, Merv, Herat -> Atak
+link = { ck2 = 906 ck2 = 632 ck2 = 635 ck2 = 637 eu3 = 436 }	# Birjand, Khorasan, Qohistan, Sistan -> Khurasan
+link = { ck2 = 852 ck2 = 639 ck2 = 853 eu3 = 432 }	# Zahedan, Kerman, Bam -> Kerman
+link = { ck2 = 634 ck2 = 636 ck2 = 638 ck2 = 646 ck2 = 660 eu3 = 433 }	# Nishapur, Lut, Yazd, Esfahan, Qwivir -> Dash-i-Lut
+link = { ck2 = 663 ck2 = 658 ck2 = 659 eu3 = 428 }	# Rayy, Hamadan, Qom -> Ajam
+link = { ck2 = 656 ck2 = 689 ck2 = 688 eu3 = 410 }	# Tigris, Ilam, Kermanshah -> Iraq-i-Arab
+link = { ck2 = 657 eu3 = 413 }	# Luristan -> Luristan
+link = { ck2 = 664 eu3 = 414 }	# Qazwin -> Hamadan
+link = { ck2 = 697 ck2 = 696 eu3 = 411 }	# Mosul, Euphrates -> Mosul
+link = { ck2 = 687 ck2 = 686 ck2 = 685 eu3 = 415 }	# Kirkuk, Oromieh, Kurdistan -> Sharizhor
+link = { ck2 = 665 ck2 = 667 eu3 = 416 }	# Dailam, Tabriz -> Azerbaijan
+link = { ck2 = 671 ck2 = 670 eu3 = 420 }	# Suenik, Azerbaijan -> Qarabagh
+link = { ck2 = 683 ck2 = 684 eu3 = 418 }	# Amida, Nisibin -> Van
+link = { ck2 = 682 eu3 = 419 }	# Vaspurakan -> Armenia
 
-
-### ROTW ####
+# ## ROTW ####
 # ROTW - North America
 link = { eu3 = 1810 }	# NOTHING -> Alaska
 link = { eu3 = 979 }	# NOTHING -> Aleut
@@ -340,7 +373,6 @@ link = { eu3 = 500 }	# NOTHING -> St. Lucia
 link = { eu3 = 502 }	# NOTHING -> Trinidad
 link = { eu3 = 481 }	# NOTHING -> Bermuda
 link = { eu3 = 367 }	# NOTHING -> The Azores
-
 # #ROTW South America
 link = { eu3 = 826 }	# NOTHING -> Choco
 link = { eu3 = 823 }	# NOTHING -> Cauca
@@ -440,7 +472,6 @@ link = { eu3 = 750 }	# NOTHING -> Alpercatas
 link = { eu3 = 752 }	# NOTHING -> Oeiras
 link = { eu3 = 759 }	# NOTHING -> Diamentina
 link = { eu3 = 758 }	# NOTHING -> Goias
-
 # Oceania
 link = { eu3 = 1790 }	# NOTHING -> Western Australia
 link = { eu3 = 1084 }	# NOTHING -> Wadjuk
@@ -511,7 +542,6 @@ link = { eu3 = 1243 }	# NOTHING -> Samoa
 link = { eu3 = 1244 }	# NOTHING -> Tahiti
 link = { eu3 = 1241 }	# NOTHING -> Kiribati
 link = { eu3 = 1240 }	# NOTHING -> Hawaii
-
 # # ROTW Africa
 link = { eu3 = 346 eu3 = 348 }	# NOTHING -> Figuig, Sus
 link = { eu3 = 347 }	# NOTHING -> Ifni
@@ -636,7 +666,6 @@ link = { eu3 = 1190 }	# NOTHING -> Zumbo
 link = { eu3 = 1191 }	# NOTHING -> Sena
 link = { eu3 = 1178 }	# NOTHING -> Great Karoo
 link = { eu3 = 1176 }	# NOTHING -> Roggeveld
-
 # ROTW Far East
 link = { eu3 = 1015 }	# NOTHING -> Okinawa
 link = { eu3 = 1815 }	# NOTHING -> Hyuga
@@ -958,4 +987,6 @@ link = { eu3 = 1102 }	# NOTHING -> Mauritius
 link = { eu3 = 698 }	# NOTHING -> Guyuan
 link = { eu3 = 650 }	# NOTHING -> Tidore
 link = { eu3 = 651 }	# NOTHING -> Sulu
+
+
 }
