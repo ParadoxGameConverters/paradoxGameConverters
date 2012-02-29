@@ -17,3 +17,4 @@ Revision	Log Message
 15		EU3 starts at the date CK2 ended
 16		Merge
 17		Start date taken into account for ROTW provinces
+18		Added missing CK2World files
