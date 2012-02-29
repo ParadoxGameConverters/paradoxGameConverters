@@ -57,6 +57,9 @@
     <ClCompile Include="Source\CK2World\CK2World.cpp">
       <Filter>CK2World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CK2World\CK2Title.cpp">
+      <Filter>CK2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -87,6 +90,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\CK2World\CK2World.h">
+      <Filter>CK2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CK2World\CK2Title.h">
       <Filter>CK2World</Filter>
     </ClInclude>
   </ItemGroup>

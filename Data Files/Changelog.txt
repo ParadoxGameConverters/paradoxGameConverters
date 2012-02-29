@@ -18,3 +18,4 @@ Revision	Log Message
 16		Merge
 17		Start date taken into account for ROTW provinces
 18		Added missing CK2World files
+19		Read in titles

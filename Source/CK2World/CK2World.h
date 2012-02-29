@@ -4,6 +4,7 @@
 
 #include "..\Parsers\Object.h"
 #include "..\Date.h"
+#include "CK2Title.h"
 
 
 class CK2World

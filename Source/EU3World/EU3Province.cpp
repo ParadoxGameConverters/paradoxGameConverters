@@ -4,7 +4,7 @@
 void EU3Province::init(int newNum, Object* obj, date startDate)
 {
 	num = newNum;
-	vector<Object*> ownerObj = obj[0].getValue("owner");
+	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
 	{
 		owner = ownerObj[0]->getLeaf();
