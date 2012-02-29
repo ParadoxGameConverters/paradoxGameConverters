@@ -16,6 +16,7 @@ void CK2Title::init(Object* obj)
 void CK2Title::addLiege(CK2Title* newLiege)
 {
 	liege = newLiege;
+	liege->addVassal(this);
 }
 
 
@@ -34,4 +35,15 @@ string CK2Title::getTitleString()
 string CK2Title::getLiegeString()
 {
 	return liegeString;
+}
+
+
+CK2Title::~CK2Title()
+{
+/*	while (vassals.size() > 0)
+	{
+		CK2Title* currentTitle = vassals[vassals.size() - 1];
+		delete currentTitle;
+		vassals.pop_back();
+	}*/
 }

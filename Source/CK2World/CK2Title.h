@@ -13,6 +13,7 @@ class CK2Title
 		void		addVassal(CK2Title*);
 		string	getTitleString();
 		string	getLiegeString();
+		~CK2Title();
 	private:
 		string				titleString;
 		string				liegeString;

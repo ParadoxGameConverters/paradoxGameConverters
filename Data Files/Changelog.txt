@@ -19,3 +19,4 @@ Revision	Log Message
 17		Start date taken into account for ROTW provinces
 18		Added missing CK2World files
 19		Read in titles
+20		Create tree of vassal/liege relationships
