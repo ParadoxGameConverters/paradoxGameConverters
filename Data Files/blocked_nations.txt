@@ -1,0 +1,5 @@
+blocked = {
+
+	eu3 = REB eu3 = PIR eur = NAT eu3 = GER
+
+}

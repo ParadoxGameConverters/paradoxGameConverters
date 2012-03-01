@@ -58,3 +58,45 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 		provinces.push_back(newProvince);
 	}
 }
+
+
+void EU3World::addPotentialCountries(ifstream &countriesMapping, string EU3Loc)
+{
+	while (!countriesMapping.eof())
+	{
+		string line;
+		getline(countriesMapping, line);
+
+		if ( (line.size() < 3) || (line[0] == '#') )
+		{
+			continue;
+		}
+		
+		string tag;
+		tag = line.substr(0, 3);
+
+		string countryFileName;
+		int start			= line.find_first_of('/');
+		int size				= line.find_last_of('\"') - start;
+		countryFileName	= line.substr(start, size);
+
+		if (tag == "REB")
+		{
+			continue;
+		}
+		EU3Country newCountry;
+		newCountry.init(tag, countryFileName);
+		potentialCountries.push_back(newCountry);
+	}
+}
+
+
+vector<string>	EU3World::getPotentialTags()
+{
+	vector<string> tagList;
+	for (unsigned int i = 0; i < potentialCountries.size(); i++)
+	{
+		tagList.push_back(potentialCountries[i].getTag());
+	}
+	return tagList;
+}

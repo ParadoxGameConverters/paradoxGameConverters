@@ -87,6 +87,50 @@ int main(int argc, char * argv[])
 	destWorld.init(srcWorld);
 
 
+	// Get potential EU3 countries
+	log("Getting potential EU3 nations.\n");
+	printf("Getting potential EU3 nations.\n");
+	ifstream EU3CountriesInput;
+	EU3CountriesInput.open( (EU3Loc + "\\common\\countries.txt").c_str() );
+	if (!EU3CountriesInput.is_open())
+	{
+		log("Error: Could not open countries.txt\n");
+		printf("Error: Could not open countries.txt\n");
+		return 1;
+	}
+	destWorld.addPotentialCountries(EU3CountriesInput, EU3Loc);
+	EU3CountriesInput.close();
+	
+	// Get list of blocked nations
+	log("Getting blocked EU3 nations.\n");
+	printf("Getting blocked EU3 nations.\n");
+	obj = doParseFile("blocked_nations.txt");
+	vector<string> blockedNations = processBlockedNations(obj);
+
+	// Get country mappings
+	log("Parsing country mappings.\n");
+	printf("Parsing country mappings.\n");
+	initParser();
+	obj = doParseFile("country_mappings.txt");	
+
+	// Map CK2 nations to EU3 nations
+	log("Mapping CK2 nations to EU3 nations.\n");
+	printf("Mapping CK2 nations to EU3 nations.\n");
+	countryMapping countryMap;
+	vector<string> CK2Tags = getCK2Titles(srcWorld);
+	int leftoverNations = initCountryMap(countryMap, CK2Tags, destWorld.getPotentialTags(), blockedNations, obj);
+	if (leftoverNations == -1)
+	{
+		return 1;
+	}
+	else if (leftoverNations > 0)
+	{
+		log("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
+		printf("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
+		return -1;
+	}
+
+
 
 
 	destWorld.setupRotwProvinces(inverseProvinceMap);

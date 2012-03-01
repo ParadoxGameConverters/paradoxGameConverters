@@ -10,8 +10,9 @@
 class CK2World
 {
 	public:
-		void	init(Object*);
-		date	getEndDate();
+		void					init(Object*);
+		date					getEndDate();
+		vector<CK2Title*>	getIndependentTitles();
 		~CK2World();
 	private:
 		date					endDate;

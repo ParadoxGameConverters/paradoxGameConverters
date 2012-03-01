@@ -95,6 +95,7 @@
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Convert.cpp" />
     <ClCompile Include="Source\Date.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Country.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
     <ClCompile Include="Source\EU3World\EU3World.cpp" />
     <ClCompile Include="Source\Log.cpp" />
@@ -108,6 +109,7 @@
     <ClInclude Include="Source\CK2World\CK2World.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Date.h" />
+    <ClInclude Include="Source\EU3World\EU3Country.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />
     <ClInclude Include="Source\EU3World\EU3World.h" />
     <ClInclude Include="Source\Log.h" />

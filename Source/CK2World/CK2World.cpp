@@ -61,6 +61,12 @@ date CK2World::getEndDate()
 }
 
 
+vector<CK2Title*> CK2World::getIndependentTitles()
+{
+	return independentTitles;
+}
+
+
 CK2World::~CK2World()
 {
 /*	while (independentTitles.size() > 0)

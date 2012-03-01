@@ -1,0 +1,13 @@
+mappings={
+
+#Direct Mappings
+#This is essentially one-to-one country mappings to ensure that countries that are available in BOTH EU3 and V2 get the correct tag.
+#For example, if Spain is active in EU3 it will always become Spain in V2 after conversion.
+
+#The links that come first in the list are executed before the links after it.  This means, for example, that EU3s Great Britain has the first chance to become the United Kingdom,
+# England has the second chance if Great Britain has not been formed. This comment needs to be updated for this converter.
+
+
+link = { CK2 = k_england EU3 = ENG } 	# England		=> England
+
+}
