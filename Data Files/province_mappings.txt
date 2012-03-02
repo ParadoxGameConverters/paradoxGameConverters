@@ -158,6 +158,54 @@ link = { ck2 = 671 ck2 = 670 eu3 = 420 }	# Suenik, Azerbaijan -> Qarabagh
 link = { ck2 = 683 ck2 = 684 eu3 = 418 }	# Amida, Nisibin -> Van
 link = { ck2 = 682 eu3 = 419 }	# Vaspurakan -> Armenia
 
+# Spain
+link = { ck2 = 156 eu3 = 206 }	# Coruña -> Galicia
+link = { ck2 = 157 eu3 = 231 }	# Santiago -> Porto
+link = { ck2 = 158 ck2 = 159 eu3 = 1851 }	# Porto, Coimbra -> Ribatejo
+link = { ck2 = 160 eu3 = 227 }	# Lisboa -> Lisboa
+link = { ck2 = 161 eu3 = 229 }	# Alcácer do Sal -> Alentejo
+link = { ck2 = 162 eu3 = 230 }	# Silves -> Algarve
+link = { ck2 = 163 ck2 = 164 eu3 = 224 }	# Faro, Niebla -> Andalucía
+link = { ck2 = 165 eu3 = 1749 }	# Cadiz -> Cadiz
+link = { ck2 = 166 eu3 = 226 }	# Algeciras -> Gibraltar
+link = { ck2 = 167 ck2 = 180 eu3 = 223 }	# Malaga, Granada -> Granada
+link = { ck2 = 168 eu3 = 222 }	# Almeria -> Almería
+link = { ck2 = 169 eu3 = 221 }	# Murcia -> Murcia
+link = { ck2 = 170 eu3 = 1750 }	# Denia -> Alicante
+link = { ck2 = 172 ck2 = 171 eu3 = 220 }	# Castellon, Valencia -> València
+link = { ck2 = 173 ck2 = 204 ck2 = 203 eu3 = 213 }	# Tarragona, Barcelona, Lleida -> Barcelona
+link = { ck2 = 205 ck2 = 206 eu3 = 212 }	# Empuries, Urgell -> Girona
+link = { ck2 = 207 eu3 = 211 }	# Alto Aragón -> Pirineo
+link = { ck2 = 152 eu3 = 210 }	# Navarra -> Navarra
+link = { ck2 = 153 eu3 = 209 }	# Viscaya -> Vizcaya
+link = { ck2 = 154 eu3 = 1745 }	# Asturias de Santillana -> Cantabria
+link = { ck2 = 155 eu3 = 207 }	# Asturias de Oviedo -> Asturias
+link = { ck2 = 202 ck2 = 175 ck2 = 174 eu3 = 214 }	# Zaragoza, Calatayud, Albarracin -> Aragón
+link = { ck2 = 201 ck2 = 199 eu3 = 1746 }	# Nájera, Burgos -> Burgos
+link = { ck2 = 190 ck2 = 189 eu3 = 208 }	# Leon, Astorga -> León
+link = { ck2 = 183 ck2 = 182 ck2 = 181 eu3 = 225 }	# Aracena, Sevilla, Cordoba -> Córdoba
+link = { ck2 = 185 ck2 = 184 eu3 = 218 }	# Mértola, Badajoz -> Badajoz
+link = { ck2 = 179 ck2 = 196 eu3 = 1748 }	# Almansa, Calatrava -> La Mancha
+link = { ck2 = 178 eu3 = 219 }	# La Mancha -> Toledo
+link = { ck2 = 188 eu3 = 232 }	# Bragança -> Bragança
+link = { ck2 = 187 ck2 = 186 eu3 = 228 }	# Castelo Branco, Évora -> Beira
+link = { ck2 = 191 ck2 = 192 eu3 = 216 }	# Zamora, Salamanca -> Salamanca
+link = { ck2 = 198 ck2 = 200 ck2 = 176 eu3 = 215 }	# Valladolid, Soria, Molina -> Castilla La Vieja
+link = { ck2 = 177 ck2 = 197 eu3 = 217 }	# Cuenca, Toledo -> Madrid
+link = { ck2 = 193 ck2 = 195 ck2 = 194 eu3 = 1747 }	# Alcantara, Caceres, Plasencia -> Caceres
+
+# Mediteranian Islands
+link = { ck2 = 826 ck2 = 827 eu3 = 333 }	# Menorca, Mallorca -> The Baleares
+link = { ck2 = 325 ck2 = 326 eu3 = 127 }	# Arborea, Cagliari -> Sardinia
+link = { ck2 = 324 eu3 = 1247 }	# Corsica -> Corsica
+link = { ck2 = 812 eu3 = 126 }	# Malta -> Malta
+link = { ck2 = 340 ck2 = 342 ck2 = 341 eu3 = 125 }	# Palermo, Girgenti, Trapani -> Palermo
+link = { ck2 = 339 ck2 = 343 eu3 = 124 }	# Messina, Siracusa -> Messina
+link = { ck2 = 479 ck2 = 480 eu3 = 163 }	# Kaneia, Chandax -> Crete
+link = { ck2 = 483 eu3 = 320 }	# Rhodos -> Rhodes
+link = { ck2 = 757 ck2 = 756 eu3 = 321 }	# Famagusta, Limisol -> Cyprus
+link = { ck2 = 484 eu3 = 164 }	# Naxos -> Naxos
+
 # ## ROTW ####
 # ROTW - North America
 link = { eu3 = 1810 }	# NOTHING -> Alaska
