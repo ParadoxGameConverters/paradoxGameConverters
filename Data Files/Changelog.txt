@@ -23,3 +23,4 @@ Revision	Log Message
 21		Country Mappings
 22		Iberian Peninsula and Med Islands mapped
 23		Italy and Scandiwegia mapped
+24		Country Mappings: Independent kingoms
