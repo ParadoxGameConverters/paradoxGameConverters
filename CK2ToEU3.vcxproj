@@ -90,6 +90,8 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\CK2World\CK2Barony.cpp" />
+    <ClCompile Include="Source\CK2World\CK2Province.cpp" />
     <ClCompile Include="Source\CK2World\CK2Title.cpp" />
     <ClCompile Include="Source\CK2World\CK2World.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
@@ -105,6 +107,8 @@
     <ClCompile Include="Source\Temp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CK2World\CK2Barony.h" />
+    <ClInclude Include="Source\CK2World\CK2Province.h" />
     <ClInclude Include="Source\CK2World\CK2Title.h" />
     <ClInclude Include="Source\CK2World\CK2World.h" />
     <ClInclude Include="Source\Configuration.h" />

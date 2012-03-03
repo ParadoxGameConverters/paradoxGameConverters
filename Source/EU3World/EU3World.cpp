@@ -26,6 +26,86 @@ void EU3World::init(CK2World srcWorld)
 }
 
 
+void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Province*> allSrcProvinces, countryMapping countryMap)
+{
+	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
+	{
+		if (i->second[0] == 0)
+		{
+			continue;
+		}
+
+		
+		vector<int>	srcProvinceNums = i->second;
+		vector<CK2Province*> srcProvinces;
+		for (unsigned j = 0; j < srcProvinceNums.size(); j++)
+		{
+			CK2Province* srcProvince = allSrcProvinces[ srcProvinceNums[j] ];
+			if (srcProvince == 0)
+			{
+				log("Could not get information for CK2 province #%d. Sea Province?\n", srcProvinceNums[j]);
+			}
+			else
+			{
+				srcProvinces.push_back(srcProvince);
+			}
+		}
+
+		vector<CK2Barony*> baronies;
+		for (unsigned int j = 0; j < srcProvinces.size(); j++)
+		{
+			vector<CK2Barony*> srcBaronies = srcProvinces[j]->getBaronies();
+			for(unsigned int k = 0; k < srcBaronies.size(); k++)
+			{
+				baronies.push_back(srcBaronies[k]);
+			}
+		}
+
+		vector< pair<string, int > > owners;	// ownerTitle, numBaronies
+		for (unsigned int j = 0; j < baronies.size(); j++)
+		{
+			CK2Title* title = baronies[j]->getTitle();
+			while( !title->isIndependent() )
+			{
+				title = title->getLiege();
+			}
+
+			bool ownerFound = false;
+			for(unsigned int k = 0; k < owners.size(); k++)
+			{
+				if (owners[k].first == title->getTitleString())
+				{
+					owners[k].second++;
+					ownerFound = true;
+				}
+			}
+			if (!ownerFound)
+			{
+				owners.push_back( make_pair(title->getTitleString(), 1) );
+			}
+		}
+
+		EU3Province newProvince;
+		newProvince.setNumber(i->first);
+
+		string	greatestOwner;
+		int		greatestOwnerNum = 0;
+		for (unsigned int j = 0; j < owners.size(); j++)
+		{
+			newProvince.addCore( countryMap[owners[j].first] );
+			if (owners[j].second > greatestOwnerNum)
+			{
+				greatestOwner		= owners[j].first;
+				greatestOwnerNum	= owners[j].second;
+			}
+		}
+		newProvince.setOwner( countryMap[greatestOwner] );
+
+		provinces.push_back(newProvince);
+	}
+}
+
+
 void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 {
 	vector<int> rotwProvinces = inverseProvinceMap[0];

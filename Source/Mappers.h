@@ -1,3 +1,7 @@
+#ifndef MAPPERS_H_
+#define MAPPERS_H_
+
+
 #include <vector>
 #include <map>
 #include "Parsers\Object.h"
@@ -15,3 +19,7 @@ vector<string> processBlockedNations(Object* obj);
 typedef map< string, string > countryMapping;	// < sourceTitle, destCountry>
 int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<string> EU3Tags, vector<string> blockedNations, Object* rulesObj);
 vector<string>	getCK2Titles(CK2World& srcWorld);
+
+
+
+#endif	// MAPPERS_H_

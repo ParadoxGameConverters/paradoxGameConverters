@@ -1,3 +1,8 @@
+#ifndef EU3COUNTRY_H_
+#define EU3COUNTRY_H_
+
+
+
 #include <string>
 #include <vector>
 using namespace std;
@@ -12,3 +17,7 @@ class EU3Country
 		string	tag;
 		string	countryFile;
 };
+
+
+
+#endif	// EU3COUNTRY_H_

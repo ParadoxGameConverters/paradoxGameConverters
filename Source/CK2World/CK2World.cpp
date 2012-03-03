@@ -18,7 +18,6 @@ void CK2World::init(Object* obj)
 	}
 
 	// get titles
-	vector<CK2Title*> titles;
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
@@ -27,27 +26,33 @@ void CK2World::init(Object* obj)
 		{
 			CK2Title* newTitle = new CK2Title;
 			newTitle->init(leaves[i]);
-			titles.push_back(newTitle);
+			titles.insert(make_pair(newTitle->getTitleString(), newTitle) );
+		}
+	}
+
+	// get provinces
+	for (unsigned int i = 0; i < leaves.size(); i++)
+	{
+		string key = leaves[i]->getKey();
+		if (atoi(key.c_str()) > 0)
+		{
+			CK2Province* newProvince = new CK2Province;
+			newProvince->init(leaves[i], titles);
+			provinces.insert(make_pair(atoi(key.c_str()), newProvince) );
 		}
 	}
 
 	// create tree of vassal/liege relationships
-	for (unsigned int i = 0; i < titles.size(); i++)
+	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
-		string liege = titles[i]->getLiegeString();
+		string liege = i->second->getLiegeString();
 		if (liege == "")
 		{
-			independentTitles.push_back(titles[i]);
+			independentTitles.push_back(i->second);
 		}
 		else
 		{
-			for (unsigned int j = 0; j < titles.size(); j++)
-			{
-				if (titles[j]->getTitleString() == liege)
-				{
-					titles[i]->addLiege(titles[j]);
-				}
-			}
+			i->second->addLiege(titles[liege]);
 		}
 	}
 
@@ -64,6 +69,12 @@ date CK2World::getEndDate()
 vector<CK2Title*> CK2World::getIndependentTitles()
 {
 	return independentTitles;
+}
+
+
+map<int, CK2Province*> CK2World::getProvinces()
+{
+	return provinces;
 }
 
 

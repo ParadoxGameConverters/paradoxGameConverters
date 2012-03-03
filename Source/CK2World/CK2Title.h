@@ -8,17 +8,20 @@
 class CK2Title
 {
 	public:
-		void		init(Object*);
-		void		addLiege(CK2Title*);
-		void		addVassal(CK2Title*);
-		string	getTitleString();
-		string	getLiegeString();
+		void			init(Object*);
+		void			addLiege(CK2Title*);
+		void			addVassal(CK2Title*);
+		string		getTitleString();
+		string		getLiegeString();
+		CK2Title*	getLiege();
+		bool			isIndependent();
 		~CK2Title();
 	private:
 		string				titleString;
 		string				liegeString;
 		CK2Title*			liege;
 		vector<CK2Title*>	vassals;
+		bool					independent;
 };
 
 

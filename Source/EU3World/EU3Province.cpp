@@ -42,5 +42,28 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "	owner=\"%s\"\n", owner.c_str());
 	}
+	for (unsigned int i = 0; i < cores.size(); i++)
+	{
+		fprintf(output, "	core=\"%s\"\n", cores[i].c_str());
+	}
 	fprintf(output, "}\n");
+}
+
+
+
+void EU3Province::setNumber(int newNumber)
+{
+	num = newNumber;
+}
+
+
+void EU3Province::addCore(string newCore)
+{
+	cores.push_back(newCore);
+}
+
+
+void EU3Province::setOwner(string newOwner)
+{
+	owner = newOwner;
 }

@@ -10,6 +10,8 @@ void CK2Title::init(Object* obj)
 	{
 		liegeString = liegeObjs[0]->getLeaf();
 	}
+
+	independent = true;
 }
 
 
@@ -17,6 +19,8 @@ void CK2Title::addLiege(CK2Title* newLiege)
 {
 	liege = newLiege;
 	liege->addVassal(this);
+
+	independent = false;
 }
 
 
@@ -35,6 +39,18 @@ string CK2Title::getTitleString()
 string CK2Title::getLiegeString()
 {
 	return liegeString;
+}
+
+
+CK2Title* CK2Title::getLiege()
+{
+	return liege;
+}
+
+
+bool CK2Title::isIndependent()
+{
+	return independent;
 }
 
 
