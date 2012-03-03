@@ -21,4 +21,5 @@ Revision	Log Message
 19		Read in titles
 20		Create tree of vassal/liege relationships
 21		Country Mappings
-21		Iberian Peninsula and Med Islands mapped
+22		Iberian Peninsula and Med Islands mapped
+23		Italy and Scandiwegia mapped

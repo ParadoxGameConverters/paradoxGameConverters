@@ -206,6 +206,76 @@ link = { ck2 = 483 eu3 = 320 }	# Rhodos -> Rhodes
 link = { ck2 = 757 ck2 = 756 eu3 = 321 }	# Famagusta, Limisol -> Cyprus
 link = { ck2 = 484 eu3 = 164 }	# Naxos -> Naxos
 
+# Italy
+link = { ck2 = 340 ck2 = 342 ck2 = 341 eu3 = 125 }	# Palermo, Girgenti, Trapani -> Palermo
+link = { ck2 = 343 ck2 = 339 eu3 = 124 }	# Siracusa, Messina -> Messina
+link = { ck2 = 812 eu3 = 126 }	# Malta -> Malta
+link = { ck2 = 325 ck2 = 326 eu3 = 127 }	# Arborea, Cagliari -> Sardinia
+link = { ck2 = 344 ck2 = 337 ck2 = 338 eu3 = 123 }	# Taranto, Catanzaro, Reggio -> Calabria
+link = { ck2 = 348 ck2 = 347 ck2 = 346 ck2 = 345 eu3 = 122 }	# Foggia, Apulia, Bari, Lecce -> Apulia
+link = { ck2 = 356 eu3 = 112 }	# Venezia -> Venezia
+link = { ck2 = 324 eu3 = 1247 }	# Corsica -> Corsica
+link = { ck2 = 333 ck2 = 243 eu3 = 118 }	# Rome, Orvieto -> Roma
+link = { ck2 = 350 eu3 = 119 }	# Ancona -> Ancona
+link = { ck2 = 349 ck2 = 335 eu3 = 120 }	# Spoleto, Benevento -> Abruzzi
+link = { ck2 = 851 ck2 = 334 ck2 = 336 eu3 = 121 }	# Capua, Napoli, Salerno -> Napoli
+link = { ck2 = 353 ck2 = 355 eu3 = 113 }	# Ferrara, Padua -> Ferrara
+link = { ck2 = 322 ck2 = 323 eu3 = 106 }	# Modena, Lucca -> Modena
+link = { ck2 = 327 eu3 = 115 }	# Pisa -> Pisa
+link = { ck2 = 331 ck2 = 330 ck2 = 332 eu3 = 117 }	# Piombino, Siena, Orbetello -> Siena
+link = { ck2 = 328 eu3 = 116 }	# Firenze -> Firenze
+link = { ck2 = 352 ck2 = 351 ck2 = 329 eu3 = 114 }	# Bologna, Ravenna, Urbino -> Romagna
+link = { ck2 = 354 eu3 = 109 }	# Mantua -> Mantua
+link = { ck2 = 320 eu3 = 1862 }	# Cremona -> Cremona
+link = { ck2 = 319 eu3 = 108 }	# Verona -> Verona
+link = { ck2 = 357 eu3 = 1774 }	# Treviso -> Treviso
+link = { ck2 = 321 eu3 = 105 }	# Parma -> Parma
+link = { ck2 = 233 eu3 = 101 }	# Genoa -> Liguria
+link = { ck2 = 230 eu3 = 102 }	# Nice -> Nice
+link = { ck2 = 231 eu3 = 1875 }	# Saluzzo -> Cuneo
+link = { ck2 = 318 eu3 = 107 }	# Brescia -> Brescia
+link = { ck2 = 317 eu3 = 110 }	# Trent -> Trent
+link = { ck2 = 235 ck2 = 234 eu3 = 104 }	# Lombardia, Pavia -> Lombardia
+link = { ck2 = 232 ck2 = 236 eu3 = 103 }	# Monferrato, Piemonte -> Piedmont
+link = { ck2 = 358 eu3 = 1769 eu3 = 111 }	# Aquileia -> Görz, Friuli
+# Nordic Countries
+link = { ck2 = 263 eu3 = 1775 }	# Holstein -> Holstein
+link = { ck2 = 264 eu3 = 13 }	# Slesvig -> Slesvig
+link = { ck2 = 267 eu3 = 15 }	# Jylland -> Jylland
+link = { ck2 = 265 eu3 = 14 }	# Fyn -> Fyn
+link = { ck2 = 266 eu3 = 12 }	# Sjælland -> Sjælland
+link = { ck2 = 303 ck2 = 6 eu3 = 6 }	# Skåne, Blekinge -> Skåne
+link = { ck2 = 298 ck2 = 300 eu3 = 3 }	# Småland, Öland -> Småland
+link = { ck2 = 301 eu3 = 25 }	# Gotland -> Gotland
+link = { ck2 = 376 eu3 = 35 }	# Saaremaa -> Ösel
+link = { ck2 = 302 eu3 = 26 }	# Halland -> Halland
+link = { ck2 = 297 eu3 = 7 }	# Västergötland -> Västergötland
+link = { ck2 = 296 eu3 = 16 }	# Viken -> Bohuslän
+link = { ck2 = 295 ck2 = 288 ck2 = 294 eu3 = 5 }	# Dal, Värmland, Närke -> Värmland
+link = { ck2 = 293 eu3 = 2 }	# Östergötland -> Östergötland
+link = { ck2 = 289 eu3 = 4 }	# Västmanland -> Bergslagen
+link = { ck2 = 292 ck2 = 290 eu3 = 1 }	# Södermanland, Uppland -> Stockholm
+link = { ck2 = 271 ck2 = 272 eu3 = 17 }	# Vestfold, Akershus -> Akershus
+link = { ck2 = 268 ck2 = 270 eu3 = 24 }	# Agder, Telemark -> Agder
+link = { ck2 = 274 ck2 = 269 ck2 = 275 eu3 = 23 }	# Bergenshus, Rogaland, Trøndelag -> Bergenshus
+link = { ck2 = 387 eu3 = 1777 }	# Kola -> Kola
+link = { ck2 = 389 eu3 = 315 }	# Finnmark -> Finnmark
+link = { ck2 = 279 eu3 = 18 }	# Lappland -> Lappland
+link = { ck2 = 280 eu3 = 11 }	# Västerbotten -> Västerbotten
+link = { ck2 = 281 ck2 = 283 ck2 = 285 ck2 = 286 eu3 = 9 }	# Ångermanland, Medelpad, Hälsingland, Gästrikland -> Hälsingland
+link = { ck2 = 282 eu3 = 10 }	# Jämtland -> Jämtland
+link = { ck2 = 284 ck2 = 287 eu3 = 8 }	# Herjedalen, Järnbäraland -> Dalaskogen
+link = { ck2 = 273 ck2 = 276 eu3 = 22 }	# Oppland, Hedmark -> Eidsiva
+link = { ck2 = 277 eu3 = 20 }	# Naumadal -> Trøndelag
+link = { ck2 = 278 ck2 = 391 eu3 = 21 }	# Hålogaland, Nordland -> Hålogaland
+link = { ck2 = 385 ck2 = 386 eu3 = 19 }	# Pohjanmaa, Kemi -> Österbotten
+link = { ck2 = 291 ck2 = 382 ck2 = 384 eu3 = 27 }	# Åland, Suomi, Satakunta -> Finland
+link = { ck2 = 383 eu3 = 29 }	# Häme -> Tavastland
+link = { ck2 = 381 eu3 = 28 }	# Uusimaa -> Nyland
+link = { ck2 = 392 eu3 = 30 eu3 = 32 }	# Käkisalmi -> Viborg, Kexholm
+link = { ck2 = 390 eu3 = 31 }	# Savo -> Savolax
+link = { ck2 = 850 ck2 = 388 eu3 = 1776 }	# Kantalahti, Karjala -> Karelia
+
 # ## ROTW ####
 # ROTW - North America
 link = { eu3 = 1810 }	# NOTHING -> Alaska
