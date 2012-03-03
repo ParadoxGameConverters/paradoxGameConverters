@@ -1,13 +1,49 @@
 mappings={
 
 #Direct Mappings
-#This is essentially one-to-one country mappings to ensure that countries that are available in BOTH EU3 and V2 get the correct tag.
-#For example, if Spain is active in EU3 it will always become Spain in V2 after conversion.
+#This is essentially one-to-one country mappings to ensure that countries that are available in BOTH CK2 and EU3 get the correct tag.
+#For example, if the Kingdom of England (k_england) is active in CK2 it will always become England (ENG) in EU3 after conversion.
 
 #The links that come first in the list are executed before the links after it.  This means, for example, that EU3s Great Britain has the first chance to become the United Kingdom,
 # England has the second chance if Great Britain has not been formed. This comment needs to be updated for this converter.
 
+# Special Tags
+link = { CK2 = e_rebels EU3 = REB } # Rebels
+link = { CK2 = e_pirates  EU3 = PIR } # Pirates
 
+## INDEPENDENT KINGDOMS AND EMPIRES
+
+# Europe
 link = { CK2 = k_england EU3 = ENG } 	# England		=> England
+link = { CK2 = k_papal_state EU3 = PAP } # Papal States
+link = { CK2 = e_hre  EU3 = HRE } # Holy Roman Empire
+link = { CK2 = e_byzantium EU3 = BYZ } # Byzantium
+link = { CK2 = k_sweden EU3 = SWE } # Sweden
+link = { CK2 = k_denmark EU3 = DAN } # Denmark
+link = { CK2 = k_poland EU3 = POL } # Poland
+link = { CK2 = k_lithuania EU3 = LIT } # Lithuania
+link = { CK2 = k_finland EU3 = FIN } # Finland
+link = { CK2 = k_hungary EU3 = HUN } # Hungary
+link = { CK2 = k_italy EU3 = ITA } # Italy
+link = { CK2 = k_burgundy EU3 = BUR } # Burgundy
+link = { CK2 = k_france EU3 = FRA } # France
+link = { CK2 = k_aragon EU3 = ARA } # Aragon
+link = { CK2 = k_castille EU3 =  CAS} # Castille
+link = { CK2 = k_portugal EU3 = POR } # Portugal
+link = { CK2 = k_egypt EU3 = MAM } # Egypt -> Mamluks
+link = { CK2 = k_wales EU3 = WLS } # Wales
+link = { CK2 = k_scotland EU3 = SCO } # Scotland
+link = { CK2 = k_ireland EU3 = IRE } # Ireland
+link = { CK2 = k_norway EU3 = NOR } #Norway
 
+
+# The Steppe and the East
+link = { CK2 = e_golden_horde  EU3 = GOL } # Golden Horde
+link = { CK2 = e_timurids  EU3 =  TIM} # timurids
+link = { CK2 = k_persia EU3 = PER } # Persia
+link = { CK2 = k_georgia EU3 = GEO } # Georgia
+
+## Duchies and Holy Orders
+# Holy Orders
+link = { CK2 = d_teutonic_order  EU3 = TEU } # Teutonic Order
 }

@@ -21,4 +21,8 @@ Revision	Log Message
 19		Read in titles
 20		Create tree of vassal/liege relationships
 21		Country Mappings
-22		European province ownership
+22		Iberian Peninsula and Med Islands mapped	
+23		Italy and Scandiwegia mapped
+24		Country Mappings: Independent kingoms
+25		European province ownership
+26		Merge
