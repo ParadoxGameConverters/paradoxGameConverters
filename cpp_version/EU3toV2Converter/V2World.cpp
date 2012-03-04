@@ -15,6 +15,8 @@
 
 void V2World::init(string V2Loc)
 {
+	buildParties();
+
 	equalityLeft	= 6;
 	libertyLeft		= 30;
 
@@ -275,18 +277,7 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 		vector<Object*> partyData = countryData->getValue("party");
 		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 		{
-			string name = (*itr)->getLeaf("name");
-			date start_date = date((*itr)->getLeaf("start_date"));
-			date end_date =  date((*itr)->getLeaf("end_date"));
-			// string ideology = (*itr)->getLeaf("ideology");
-
-			// party starts before our start date and doesn't end before our start date
-			if (start_date <= FirstStartDate && end_date >= FirstStartDate)
-			{
-				parties.push_back(partiesIndex);
-				// log("Party %s ID: %d\n", name.c_str(), partiesIndex);
-			}
-
+			parties.push_back(partiesIndex);
 			partiesIndex++;
 		}
 
@@ -295,7 +286,7 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 			continue;
 		}
 		V2Country newCountry;
-		newCountry.init(tag, countryFileName, parties);
+		newCountry.init(tag, countryFileName, parties, this);
 		potentialCountries.push_back(newCountry);
 	}
 }
@@ -651,7 +642,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 			log("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
 			printf("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i].getTag().c_str());
 			vector<int> empty;
-			newCountry.init("", "", empty);
+			newCountry.init("", "", empty, this);
 		}
 
 		countries.push_back(newCountry);
@@ -1908,6 +1899,49 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 }
 
 
+void V2World::buildParties()
+{
+	ifstream V2CountriesInput;
+	V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
+	if (!V2CountriesInput.is_open())
+	{
+		log("Error: Could not open countries.txt\n");
+		printf("Error: Could not open countries.txt\n");
+		exit(1);
+	}
+	V2Party emptyParty;
+	parties.push_back(emptyParty);
+	while (!V2CountriesInput.eof())
+	{
+		string line;
+		getline(V2CountriesInput, line);
+
+		if ( (line[0] == '#') | (line.size() < 3) )
+		{
+			continue;
+		}
+		
+		string tag;
+		tag = line.substr(0, 3);
+
+		string countryFileName;
+		int start		= line.find_first_of('/');
+		int size		= line.find_last_of('\"') - start;
+		countryFileName	= line.substr(start, size);
+
+		Object* countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+
+		vector<Object*> partyData = countryData->getValue("party");
+		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
+		{
+			V2Party newParty(*itr);
+			parties.push_back(newParty);
+		}
+	}
+	V2CountriesInput.close();
+}
+
+
 void V2World::setupPops(EU3World& sourceWorld)
 {
 	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
@@ -1930,6 +1964,12 @@ V2Country* V2World::getCountry(string tag)
 	}
 
 	return NULL;
+}
+
+
+V2Party V2World::getParty(int index)
+{
+	 return parties[index];
 }
 
 

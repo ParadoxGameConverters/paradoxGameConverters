@@ -1,4 +1,5 @@
 #include "V2Country.h"
+#include "V2World.h"
 #include "tempFuncs.h"
 #include "Log.h"
 #include <algorithm>
@@ -9,8 +10,10 @@
 #include "Parsers/Parser.h"
 
 
-void V2Country::init(string newTag, string newCountryFile, vector<int> newParties)
+void V2Country::init(string newTag, string newCountryFile, vector<int> newParties, V2World* newWorld)
 {
+	theWorld = newWorld;
+
 	tag			= newTag;
 	countryFile	= newCountryFile;
 	parties		= newParties;
@@ -229,11 +232,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "		conservative=%f\n", upperHouseConservative);
 	fprintf(output, "		liberal=%f\n", upperHouseLiberal);
 	fprintf(output, "	}\n");
-	fprintf(output, "	ruling_party=%d\n", parties[0]);
-	for (unsigned int i = 0; i < parties.size(); i++)
-	{
-		fprintf(output, "	active_party=%d\n", parties[i]);
-	}
+	outputParties(output);
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
 	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
@@ -1020,6 +1019,19 @@ void V2Country::outputElection(FILE* output)
 }
 
 
+void V2Country::outputParties(FILE* output)
+{
+	fprintf(output, "	ruling_party=%d\n", rulingParty);
+	for (unsigned int i = 0; i < parties.size(); i++)
+	{
+		if (  theWorld->getParty(parties[i]).isActiveOn( Configuration::getStartDate() )  )
+		{
+			fprintf(output, "	active_party=%d\n", parties[i]);
+		}
+	}
+}
+
+
 inventionStatus V2Country::getInventionState(inventionType invention)
 {
 	return inventions[invention];
@@ -1043,6 +1055,21 @@ void V2Country::setUpperHouse(double reactionary, double conservative, double li
 	upperHouseReactionary	= reactionary;
 	upperHouseConservative	= conservative;
 	upperHouseLiberal			= liberal;
+
+	setRulingParty();
+}
+
+
+void V2Country::setRulingParty()
+{
+	for (unsigned int i = 0; i < parties.size(); i++)
+	{
+		if ( theWorld->getParty(parties[i]).isActiveOn(Configuration::getStartDate()) )
+		{
+			rulingParty = parties[i];
+			break;
+		}
+	}
 }
 
 

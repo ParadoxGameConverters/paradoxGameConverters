@@ -6,6 +6,7 @@
 #include "V2Diplomacy.h"
 #include "V2Factory.h"
 #include "V2TechSchools.h"
+#include "V2Party.h"
 #include "Mapper.h"
 
 
@@ -28,20 +29,23 @@ class V2World {
 		void				convertLeaders(EU3World sourceWorld, map<int,int>& leaderIDMap);
 		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap);
 		void				allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder);
+		V2Party			getParty(int index);
 	private:
-		void					outputHeader(FILE*);
-		void				getProvinceLocalizations(string file);
-		V2Province*			getProvinceForExpeditionaryArmy(const V2Country& country);
-		vector<int>			getPortProvinces(vector<int> provinces);
-		int					addRegimentToArmy(V2Army* army, RegimentCategory category, const inverseProvinceMapping& inverseProvinceMap, V2Country& country);
-		V2Country*			getCountry(string tag);
+		void						buildParties();
+		void						outputHeader(FILE*);
+		void						getProvinceLocalizations(string file);
+		V2Province*				getProvinceForExpeditionaryArmy(const V2Country& country);
+		vector<int>				getPortProvinces(vector<int> provinces);
+		int						addRegimentToArmy(V2Army* army, RegimentCategory category, const inverseProvinceMapping& inverseProvinceMap, V2Country& country);
+		V2Country*				getCountry(string tag);
+
 		vector<V2Province>	provinces;
 		vector<V2Country>		countries;
 		vector<V2Country>		potentialCountries;
-		V2Diplomacy			diplomacy;
-
-		int					equalityLeft;
-		int					libertyLeft;
+		vector<V2Party>		parties;
+		V2Diplomacy				diplomacy;
+		int						equalityLeft;
+		int						libertyLeft;
 };
 
 

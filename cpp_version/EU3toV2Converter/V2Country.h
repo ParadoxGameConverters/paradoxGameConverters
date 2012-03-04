@@ -12,10 +12,12 @@
 #include "V2Leader.h"
 
 
+class V2World;
+
 class V2Country
 {
 	public:
-		void					init(string tag, string countryFile, vector<int> parties);
+		void					init(string tag, string countryFile, vector<int> parties, V2World* theWorld);
 		void					initFromHistory();
 		string				getTag() const;
 		void					setSourceCountryIndex(int);
@@ -46,6 +48,7 @@ class V2Country
 		void					addPlurality(double);
 		void					setGovernment(string);
 		void					setUpperHouse(double reactionary, double conservative, double liberal);
+		void					setRulingParty();
 		void					addRelations(V2Relations);
 		V2Relations*			getRelations(string);
 		void					addArmy(V2Army);
@@ -69,7 +72,9 @@ class V2Country
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
 		void outputElection(FILE*);
+		void outputParties(FILE*);
 
+		V2World*				theWorld;
 		string				tag;
 		vector<V2State>	states;
 		vector<V2Province*>	provinces;
@@ -79,6 +84,7 @@ class V2Country
 		vector<string>		acceptedCultures;
 		string				religion;
 		vector<int>			parties;
+		int					rulingParty;
 		int					sourceCountryIndex;
 		string				countryFile;
 		double				prestige;
