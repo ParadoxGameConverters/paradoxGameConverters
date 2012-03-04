@@ -7,6 +7,8 @@ mappings={
 #The links that come first in the list are executed before the links after it.  This means, for example, that EU3s Great Britain has the first chance to become the United Kingdom,
 # England has the second chance if Great Britain has not been formed. This comment needs to be updated for this converter.
 
+# link = { CK2 =  EU3 =  }
+
 # Special Tags
 link = { CK2 = e_rebels EU3 = REB } # Rebels
 link = { CK2 = e_pirates  EU3 = PIR } # Pirates
@@ -42,6 +44,20 @@ link = { CK2 = e_golden_horde  EU3 = GOL } # Golden Horde
 link = { CK2 = e_timurids  EU3 =  TIM} # timurids
 link = { CK2 = k_persia EU3 = PER } # Persia
 link = { CK2 = k_georgia EU3 = GEO } # Georgia
+
+# The Titular Kingdoms and Empires
+link = { CK2 = k_candar EU3 = CND }
+link = { CK2 = k_aydin EU3 = AYD }
+link = { CK2 = k_karaman EU3 = KAR }
+link = { CK2 = k_naples EU3 = NAP }
+link = { CK2 = k_navarra EU3 = NAV }
+link = { CK2 = k_bosnia EU3 = BOS }
+link = { CK2 = k_ottoman EU3 = TUR }
+link = { CK2 = k_saruhan EU3 = SRU }
+link = { CK2 = k_spanish_galicia EU3 = GAL }
+link = { CK2 = k_trebizond EU3 = TRE }
+link = { CK2 = k_venice EU3 = VEN }
+
 
 ## Duchies and Holy Orders
 # Holy Orders

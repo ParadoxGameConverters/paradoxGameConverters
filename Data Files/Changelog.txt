@@ -26,3 +26,4 @@ Revision	Log Message
 24		Country Mappings: Independent kingoms
 25		European province ownership
 26		Merge
+27		1-to-1 titular kingdoms mapped
