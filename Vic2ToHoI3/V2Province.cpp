@@ -55,6 +55,21 @@ void V2Province::init(Object* obj)
 			infrastructureLevel = atoi(tokens[0].c_str());
 		}
 	}
+	
+	// read pops
+	vector<Object*> children = obj->getLeaves();
+	for (vector<Object*>::iterator itr = children.begin(); itr != children.end(); ++itr)
+	{
+		string key = (*itr)->getKey();
+		if (key == "aristocrats" || key == "artisans" || key == "bureaucrats" || key == "capitalists" || key == "clergymen" 
+			|| key == "craftsmen" || key == "clerks" || key == "farmers" || key == "soldiers" || key == "officers"
+			|| key == "labourers" || key == "slaves")
+		{
+			V2Pop pop;
+			pop.init(*itr);
+			pops.push_back(pop);
+		}
+	}
 }
 
 
@@ -105,7 +120,25 @@ void V2Province::removeCore(string tag)
 }
 
 
-int V2Province::getPopulation()
+int V2Province::getPopulation(string type) const
 {
-	return 0; //XXX: population s/b used to determine province owner in the many-to-one case (maybe doesn't happen in HoI3?)
+	int totalPop = 0;
+	for (vector<V2Pop>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		// empty string for type gets total population
+		if (type == "" || type == itr->getType())
+		{
+			totalPop += itr->getSize();
+		}
+	}
+	return totalPop;
+}
+
+bool V2Province::containsPop(int id) const
+{
+	for (vector<V2Pop>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		if (itr->getId() == id)
+			return true;
+	}
 }
