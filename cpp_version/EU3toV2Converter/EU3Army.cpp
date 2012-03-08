@@ -1,6 +1,6 @@
 #include "EU3Army.h"
 #include "Log.h"
-
+#include "Parsers/Parser.h"
 
 void EU3Regiment::init(Object *obj)
 {
@@ -203,4 +203,70 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 		string strength = (*itr)->getLeaf();
 		rtm[type] = pair<RegimentCategory, int>(category, atoi(strength.c_str()));
 	}
+}
+
+
+void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap& rtm)
+{
+	Object* obj = doParseFile((directory + "\\" + name + ".txt").c_str());
+
+	int rc = -1;
+	vector<Object*> typeObj = obj->getValue("type");
+	if (typeObj.size() < 1)
+	{
+		log("Error: unit file for %s has no type!\n", name.c_str());
+		return;
+	}
+	string type = typeObj[0]->getLeaf();
+	for (int i = 0; i < num_reg_categories; ++i)
+	{
+		if (type == RegimentCategoryNames[i])
+			rc = i;
+	}
+	if (rc == -1)
+	{
+		log("Error: unit file for %s has unrecognized type %s!\n", name.c_str(), type.c_str());
+		return;
+	}
+
+	int unitStrength = 0;
+	vector<Object*> strObj;
+	strObj = obj->getValue("maneuver");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	strObj = obj->getValue("offensive_morale");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	strObj = obj->getValue("defensive_morale");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	strObj = obj->getValue("offensive_fire");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	strObj = obj->getValue("defensive_fire");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	strObj = obj->getValue("offensive_shock");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	strObj = obj->getValue("defensive_shock");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	strObj = obj->getValue("hull_size");
+	if (strObj.size() > 0)
+		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+
+	// give all transports equal weight for 1-to-1 conversion
+	if (rc == transport)
+	{
+		unitStrength = 24;
+	}
+
+	if (unitStrength == 0)
+	{
+		log("Error: unit %s has no strength!\n", name.c_str());
+		return;
+	}
+
+	rtm[name] = pair<RegimentCategory, int>((RegimentCategory)rc, unitStrength);
 }

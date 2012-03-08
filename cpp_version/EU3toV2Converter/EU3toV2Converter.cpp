@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sys/stat.h>
+#include <io.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
 #include "V2World.h"
@@ -102,11 +103,40 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Resolving unit types.\n");
 	printf("Resolving unit types.\n");
 	RegimentTypeMap rtm;
-	obj = doParseFile("unit_strength.txt");
-	for (int i = 0; i < num_reg_categories; ++i)
+	read.open("unit_strength.txt");
+	if (read.is_open())
 	{
-		AddCategoryToRegimentTypeMap(obj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
+		read.close();
+		read.clear();
+		log("Reading unit strengths from unit_strength.txt\n");
+		obj = doParseFile("unit_strength.txt");
+		for (int i = 0; i < num_reg_categories; ++i)
+		{
+			AddCategoryToRegimentTypeMap(obj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
+		}
 	}
+	else
+	{
+		log("Reading unit strengths from EU3 installation folder\n");
+		struct _finddata_t unitFileData;
+		intptr_t fileListing;
+		if ( (fileListing = _findfirst( (EU3Loc + "\\common\\units\\*.txt").c_str(), &unitFileData)) == -1L)
+		{
+			log("Could not open units directory.\n");
+			return -1;
+		}
+		do
+		{
+			if (strcmp(unitFileData.name, ".") == 0 || strcmp(unitFileData.name, "..") == 0 )
+				continue;
+			string unitFilename = unitFileData.name;
+			string unitName = unitFilename.substr(0, unitFilename.find_first_of('.'));
+			AddUnitFileToRegimentTypeMap((EU3Loc + "\\common\\units"), unitName, rtm);
+		} while(_findnext(fileListing, &unitFileData) == 0);
+		_findclose(fileListing);
+	}
+	read.close();
+	read.clear();
 	sourceWorld.resolveRegimentTypes(rtm);
 
 
