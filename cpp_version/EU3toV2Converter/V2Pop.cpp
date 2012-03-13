@@ -61,6 +61,13 @@ void V2Pop::setLiteracy(double newLiteracy)
 	literacy = newLiteracy;
 }
 
+void V2Pop::setIdeology(double newReactionary, double newConservative, double newLiberal)
+{
+	reactionary		= newReactionary;
+	conservative	= newConservative;
+	liberal			= newLiberal;
+}
+
 
 int V2Pop::getSize() const
 {
@@ -112,6 +119,12 @@ void V2Pop::output(FILE* output)
 	fprintf(output, "		size=%d\n", size);
 	fprintf(output, "		%s=%s\n", culture.c_str(), religion.c_str());
 	fprintf(output, "		money=%f\n", money);
+	fprintf(output, "		ideology=\n");
+	fprintf(output, "		{\n");
+	fprintf(output, "			2=%f\n", reactionary);
+	fprintf(output, "			3=%f\n", conservative);
+	fprintf(output, "			6=%f\n", liberal);
+	fprintf(output, "		}\n");
 	fprintf(output, "		con=%f\n", consciousness);
 	fprintf(output, "		mil=%f\n", militancy);
 	fprintf(output, "		literacy=%f\n", literacy);

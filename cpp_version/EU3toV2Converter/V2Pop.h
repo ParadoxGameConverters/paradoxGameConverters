@@ -17,6 +17,7 @@ class V2Pop
 		void		setConsciousness(double);
 		void		setMilitancy(double);
 		void		setLiteracy(double);
+		void		setIdeology(double reactionary, double conservative, double liberal);
 		int		getSize() const;
 		string	getType() const;
 		void		output(FILE*);
@@ -39,6 +40,9 @@ class V2Pop
 		double	money;
 		double	consciousness;
 		double	militancy;
+		double	reactionary;
+		double	conservative;
+		double	liberal;
 		double	literacy;
 };
 

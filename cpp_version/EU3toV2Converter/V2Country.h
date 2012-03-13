@@ -48,6 +48,9 @@ class V2Country
 		void					addPlurality(double);
 		void					setGovernment(string);
 		void					setUpperHouse(double reactionary, double conservative, double liberal);
+		double				getReactionary();
+		double				getConservative();
+		double				getLiberal();
 		void					setRulingParty();
 		void					addRelations(V2Relations);
 		V2Relations*			getRelations(string);

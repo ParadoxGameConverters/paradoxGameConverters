@@ -14,6 +14,9 @@ struct V2Demographic {
 	string religion;
 	double ratio;
 	double literacy;
+	double reactionary;
+	double conservative;
+	double liberal;
 	int oldProvinceID;
 	string oldCountry;
 };

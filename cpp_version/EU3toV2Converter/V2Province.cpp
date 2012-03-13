@@ -514,6 +514,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		farmersPop.setCulture(demographic.culture);
 		farmersPop.setReligion(demographic.religion);
 		farmersPop.setLiteracy(demographic.literacy);
+		farmersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(farmersPop);
 	}
 	if (labourers > 0)
@@ -524,6 +525,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		labourersPop.setCulture(demographic.culture);
 		labourersPop.setReligion(demographic.religion);
 		labourersPop.setLiteracy(demographic.literacy);
+		labourersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(labourersPop);
 	}
 	if (slaves > 0)
@@ -534,6 +536,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		slavesPop.setCulture(demographic.culture);
 		slavesPop.setReligion(demographic.religion);
 		slavesPop.setLiteracy(demographic.literacy);
+		slavesPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)
@@ -544,6 +547,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		soldiersPop.setCulture(demographic.culture);
 		soldiersPop.setReligion(demographic.religion);
 		soldiersPop.setLiteracy(demographic.literacy);
+		soldiersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(soldiersPop);
 	}
 	if (craftsmen > 0)
@@ -554,6 +558,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		craftsmenPop.setCulture(demographic.culture);
 		craftsmenPop.setReligion(demographic.religion);
 		craftsmenPop.setLiteracy(demographic.literacy);
+		craftsmenPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(craftsmenPop);
 	}
 	if (artisans > 0)
@@ -564,6 +569,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		artisansPop.setCulture(demographic.culture);
 		artisansPop.setReligion(demographic.religion);
 		artisansPop.setLiteracy(demographic.literacy);
+		artisansPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(artisansPop);
 	}
 	if (clergymen > 0)
@@ -574,6 +580,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		clergymenPop.setCulture(demographic.culture);
 		clergymenPop.setReligion(demographic.religion);
 		clergymenPop.setLiteracy(demographic.literacy);
+		clergymenPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(clergymenPop);
 	}
 	if (clerks > 0)
@@ -584,6 +591,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		clerksPop.setCulture(demographic.culture);
 		clerksPop.setReligion(demographic.religion);
 		clerksPop.setLiteracy(demographic.literacy);
+		clerksPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(clerksPop);
 	}
 	if (bureaucrats > 0)
@@ -594,6 +602,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		bureaucratsPop.setCulture(demographic.culture);
 		bureaucratsPop.setReligion(demographic.religion);
 		bureaucratsPop.setLiteracy(demographic.literacy);
+		bureaucratsPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(bureaucratsPop);
 	}
 	if (officers > 0)
@@ -604,6 +613,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		officersPop.setCulture(demographic.culture);
 		officersPop.setReligion(demographic.religion);
 		officersPop.setLiteracy(demographic.literacy);
+		officersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(officersPop);
 	}
 	if (capitalists > 0)
@@ -614,6 +624,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		capitalistsPop.setCulture(demographic.culture);
 		capitalistsPop.setReligion(demographic.religion);
 		capitalistsPop.setLiteracy(demographic.literacy);
+		capitalistsPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(capitalistsPop);
 	}
 	if (aristocrats > 0)
@@ -624,6 +635,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		aristocratsPop.setCulture(demographic.culture);
 		aristocratsPop.setReligion(demographic.religion);
 		aristocratsPop.setLiteracy(demographic.literacy);
+		aristocratsPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
 		pops.push_back(aristocratsPop);
 	}
 }

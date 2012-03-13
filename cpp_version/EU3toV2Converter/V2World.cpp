@@ -836,6 +836,10 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 										demographic.literacy = owner->getLiteracy();
 									}
 								}
+
+								demographic.reactionary		= owner->getReactionary();
+								demographic.conservative	= owner->getConservative();
+								demographic.liberal			= owner->getLiberal();
 								
 								provinces[i].addPopDemographic(demographic);
 							}

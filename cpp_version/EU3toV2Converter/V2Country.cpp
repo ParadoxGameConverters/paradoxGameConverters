@@ -1060,6 +1060,24 @@ void V2Country::setUpperHouse(double reactionary, double conservative, double li
 }
 
 
+double V2Country::getReactionary()
+{
+	return upperHouseReactionary;
+}
+
+
+double V2Country::getConservative()
+{
+	return upperHouseConservative;
+}
+
+
+double V2Country::getLiberal()
+{
+	return upperHouseLiberal;
+}
+
+
 void V2Country::setRulingParty()
 {
 	for (unsigned int i = 0; i < parties.size(); i++)
