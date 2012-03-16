@@ -19,6 +19,7 @@ struct V2Demographic {
 	double liberal;
 	int oldProvinceID;
 	string oldCountry;
+	vector< pair<int, double> > issues;
 };
 
 

@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include <vector>
 using namespace std;
 
 
@@ -18,6 +19,7 @@ class V2Pop
 		void		setMilitancy(double);
 		void		setLiteracy(double);
 		void		setIdeology(double reactionary, double conservative, double liberal);
+		void		setIssues(vector< pair<int, double> >	issues);
 		int		getSize() const;
 		string	getType() const;
 		void		output(FILE*);
@@ -44,6 +46,7 @@ class V2Pop
 		double	conservative;
 		double	liberal;
 		double	literacy;
+		vector< pair<int, double> >	issues;
 };
 
 int getNextPopId();

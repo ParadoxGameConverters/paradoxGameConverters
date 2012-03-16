@@ -373,4 +373,5 @@ Revision	Version Updated		Log Message
 395		C++			Upper House determined by sliders.
 421		C++			Incorporate better political party code.
 422		C++			Build unit strengths on the fly from the EU3 folder if unit_strength.txt doesn't exist, and remove it by default.  Should make converting from mods easier.
-423		C++			Pop idealogies determined by upper house
+424		C++			Pop idealogies determined by upper house
+425		C++			Pop issues from political parties

@@ -840,6 +840,58 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								demographic.reactionary		= owner->getReactionary();
 								demographic.conservative	= owner->getConservative();
 								demographic.liberal			= owner->getLiberal();
+
+								list< pair<int, double> > issues;
+								vector< pair<int, int> > reactionaryIssues	= owner->getReactionaryIssues();
+								int reactionaryTotal = 0;
+								for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
+								{
+									reactionaryTotal += reactionaryIssues[j].second;
+								}
+								for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
+								{
+									issues.push_back( make_pair(reactionaryIssues[j].first, (demographic.reactionary * reactionaryIssues[j].second / reactionaryTotal) ) );
+								}
+								
+								vector< pair<int, int> > conservativeIssues	= owner->getConservativeIssues();
+								int conservativeTotal = 0;
+								for (unsigned int j = 0; j < conservativeIssues.size(); j++)
+								{
+									conservativeTotal += conservativeIssues[j].second;
+								}
+								for (unsigned int j = 0; j < conservativeIssues.size(); j++)
+								{
+									issues.push_back( make_pair(conservativeIssues[j].first, (demographic.conservative * conservativeIssues[j].second / conservativeTotal) ) );
+								}
+
+								vector< pair<int, int> > liberalIssues	= owner->getLiberalIssues();
+								int liberalTotal = 0;
+								for (unsigned int j = 0; j < liberalIssues.size(); j++)
+								{
+									liberalTotal += liberalIssues[j].second;
+								}
+								for (unsigned int j = 0; j < liberalIssues.size(); j++)
+								{
+									issues.push_back( make_pair(liberalIssues[j].first, (demographic.liberal * liberalIssues[j].second / liberalTotal) ) );
+								}
+								for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++)
+								{
+									list< pair<int, double> >::iterator k = j;
+									for (k++; k != issues.end(); k++)
+									{
+										if (j->first == k->first)
+										{
+											j->second += k->second;
+											issues.erase(k);
+											k--;
+										}
+									}
+								}
+
+								for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++)
+								{
+									demographic.issues.push_back(*j);
+								}
 								
 								provinces[i].addPopDemographic(demographic);
 							}

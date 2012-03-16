@@ -23,6 +23,7 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 		inventions[i] = illegal;
 	}
 
+	leadership		= 0.0;
 	plurality		= 0.0;
 	capital			= 0;
 	diploPoints		= 0.0;
@@ -55,6 +56,8 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	uncivReforms[13].name	= "yes_foreign_naval_officers";	uncivReforms[13].active	= false;	uncivReforms[13].westernizationProgress	= 15;
 	uncivReforms[14].name	= "yes_naval_schools";				uncivReforms[14].active	= false;	uncivReforms[14].westernizationProgress	= 15;
 	uncivReforms[15].name	= "yes_foreign_navies";				uncivReforms[15].active	= false;	uncivReforms[15].westernizationProgress	= 15;
+
+	setIssues();
 }
 
 
@@ -112,6 +115,8 @@ void V2Country::initFromHistory()
 		}
 	}
 	_findclose(fileListing);
+
+	setIssues();
 }
 
 
@@ -1075,6 +1080,318 @@ double V2Country::getConservative()
 double V2Country::getLiberal()
 {
 	return upperHouseLiberal;
+}
+
+
+void V2Country::setIssues()
+{
+	//reactionary issues
+	int issueWeights[68];
+	memset(issueWeights, 0, sizeof(issueWeights) );
+	for(unsigned int i = 0; i < parties.size(); i++)
+	{
+		V2Party party = theWorld->getParty(i);
+		if (party.ideology != "reactionary")
+		{
+			continue;
+		}
+		if ( !party.isActiveOn(Configuration::getStartDate()) )
+		{
+			continue;
+		}
+
+		if (party.economic_policy == "laissez_faire")
+		{
+			issueWeights[3]++;
+		}
+		else if (party.economic_policy == "interventionism")
+		{
+			issueWeights[4]++;
+		}
+		else if (party.economic_policy == "state_capitalism")
+		{
+			issueWeights[5]++;
+		}
+		else if (party.economic_policy == "planned_economy")
+		{
+			issueWeights[6]++;
+		}
+
+		if (party.trade_policy == "protectionism")
+		{
+			issueWeights[1]++;
+		}
+		else if (party.trade_policy == "free_trade")
+		{
+			issueWeights[2]++;
+		}
+
+		if (party.religious_policy == "pro_atheism")
+		{
+			issueWeights[7]++;
+		}
+		else if (party.religious_policy == "secularized")
+		{
+			issueWeights[8]++;
+		}
+		else if (party.religious_policy == "pluralism")
+		{
+			issueWeights[9]++;
+		}
+		else if (party.religious_policy == "moralism")
+		{
+			issueWeights[10]++;
+		}
+
+		if (party.citizenship_policy == "residency")
+		{
+			issueWeights[11]++;
+		}
+		else if (party.citizenship_policy == "limited_citizenship")
+		{
+			issueWeights[12]++;
+		}
+		else if (party.citizenship_policy == "full_citizenship")
+		{
+			issueWeights[13]++;
+		}
+
+		if (party.war_policy == "jingoism")
+		{
+			issueWeights[14]++;
+		}
+		else if (party.war_policy == "pro_military")
+		{
+			issueWeights[15]++;
+		}
+		else if (party.war_policy == "anti_military")
+		{
+			issueWeights[16]++;
+		}
+		else if (party.war_policy == "pacifism")
+		{
+			issueWeights[16]++;
+		}
+	}
+
+	for (unsigned int i = 0; i < 68; i++)
+	{
+		if (issueWeights[i] > 0)
+		{
+			reactionaryIssues.push_back( make_pair(i, issueWeights[i]) );
+		}
+	}
+
+
+	//conservative issues
+	memset(issueWeights, 0, sizeof(issueWeights) );
+	for(unsigned int i = 0; i < parties.size(); i++)
+	{
+		V2Party party = theWorld->getParty(i);
+		if (party.ideology != "conservative")
+		{
+			continue;
+		}
+		if ( !party.isActiveOn(Configuration::getStartDate()) )
+		{
+			continue;
+		}
+
+		if (party.economic_policy == "laissez_faire")
+		{
+			issueWeights[3]++;
+		}
+		else if (party.economic_policy == "interventionism")
+		{
+			issueWeights[4]++;
+		}
+		else if (party.economic_policy == "state_capitalism")
+		{
+			issueWeights[5]++;
+		}
+		else if (party.economic_policy == "planned_economy")
+		{
+			issueWeights[6]++;
+		}
+
+		if (party.trade_policy == "protectionism")
+		{
+			issueWeights[1]++;
+		}
+		else if (party.trade_policy == "free_trade")
+		{
+			issueWeights[2]++;
+		}
+
+		if (party.religious_policy == "pro_atheism")
+		{
+			issueWeights[7]++;
+		}
+		else if (party.religious_policy == "secularized")
+		{
+			issueWeights[8]++;
+		}
+		else if (party.religious_policy == "pluralism")
+		{
+			issueWeights[9]++;
+		}
+		else if (party.religious_policy == "moralism")
+		{
+			issueWeights[10]++;
+		}
+
+		if (party.citizenship_policy == "residency")
+		{
+			issueWeights[11]++;
+		}
+		else if (party.citizenship_policy == "limited_citizenship")
+		{
+			issueWeights[12]++;
+		}
+		else if (party.citizenship_policy == "full_citizenship")
+		{
+			issueWeights[13]++;
+		}
+
+		if (party.war_policy == "jingoism")
+		{
+			issueWeights[14]++;
+		}
+		else if (party.war_policy == "pro_military")
+		{
+			issueWeights[15]++;
+		}
+		else if (party.war_policy == "anti_military")
+		{
+			issueWeights[16]++;
+		}
+		else if (party.war_policy == "pacifism")
+		{
+			issueWeights[16]++;
+		}
+	}
+
+	for (unsigned int i = 0; i < 68; i++)
+	{
+		if (issueWeights[i] > 0)
+		{
+			conservativeIssues.push_back( make_pair(i, issueWeights[i]) );
+		}
+	}
+
+	//liberal issues
+	memset(issueWeights, 0, sizeof(issueWeights) );
+	for(unsigned int i = 0; i < parties.size(); i++)
+	{
+		V2Party party = theWorld->getParty(i);
+		if (party.ideology != "liberal")
+		{
+			continue;
+		}
+		if ( !party.isActiveOn(Configuration::getStartDate()) )
+		{
+			continue;
+		}
+
+		if (party.economic_policy == "laissez_faire")
+		{
+			issueWeights[3]++;
+		}
+		else if (party.economic_policy == "interventionism")
+		{
+			issueWeights[4]++;
+		}
+		else if (party.economic_policy == "state_capitalism")
+		{
+			issueWeights[5]++;
+		}
+		else if (party.economic_policy == "planned_economy")
+		{
+			issueWeights[6]++;
+		}
+
+		if (party.trade_policy == "protectionism")
+		{
+			issueWeights[1]++;
+		}
+		else if (party.trade_policy == "free_trade")
+		{
+			issueWeights[2]++;
+		}
+
+		if (party.religious_policy == "pro_atheism")
+		{
+			issueWeights[7]++;
+		}
+		else if (party.religious_policy == "secularized")
+		{
+			issueWeights[8]++;
+		}
+		else if (party.religious_policy == "pluralism")
+		{
+			issueWeights[9]++;
+		}
+		else if (party.religious_policy == "moralism")
+		{
+			issueWeights[10]++;
+		}
+
+		if (party.citizenship_policy == "residency")
+		{
+			issueWeights[11]++;
+		}
+		else if (party.citizenship_policy == "limited_citizenship")
+		{
+			issueWeights[12]++;
+		}
+		else if (party.citizenship_policy == "full_citizenship")
+		{
+			issueWeights[13]++;
+		}
+
+		if (party.war_policy == "jingoism")
+		{
+			issueWeights[14]++;
+		}
+		else if (party.war_policy == "pro_military")
+		{
+			issueWeights[15]++;
+		}
+		else if (party.war_policy == "anti_military")
+		{
+			issueWeights[16]++;
+		}
+		else if (party.war_policy == "pacifism")
+		{
+			issueWeights[16]++;
+		}
+	}
+
+	for (unsigned int i = 0; i < 68; i++)
+	{
+		if (issueWeights[i] > 0)
+		{
+			liberalIssues.push_back( make_pair(i, issueWeights[i]) );
+		}
+	}
+}
+
+
+vector< pair<int, int> > V2Country::getReactionaryIssues()
+{
+	return reactionaryIssues;
+}
+
+
+vector< pair<int, int> > V2Country::getConservativeIssues()
+{
+	return conservativeIssues;
+}
+
+
+vector< pair<int, int> > V2Country::getLiberalIssues()
+{
+	return liberalIssues;
 }
 
 

@@ -69,6 +69,12 @@ void V2Pop::setIdeology(double newReactionary, double newConservative, double ne
 }
 
 
+void V2Pop::setIssues(vector< pair<int, double> > newIssues)
+{
+	issues = newIssues;
+}
+
+
 int V2Pop::getSize() const
 {
 	return size;
@@ -124,6 +130,13 @@ void V2Pop::output(FILE* output)
 	fprintf(output, "			2=%f\n", reactionary);
 	fprintf(output, "			3=%f\n", conservative);
 	fprintf(output, "			6=%f\n", liberal);
+	fprintf(output, "		}\n");
+	fprintf(output, "		issues=\n");
+	fprintf(output, "		{\n");
+	for (unsigned int i = 0; i < issues.size(); i++)
+	{
+		fprintf(output, "			%d=%f\n", issues[i].first, 100 * issues[i].second);
+	}
 	fprintf(output, "		}\n");
 	fprintf(output, "		con=%f\n", consciousness);
 	fprintf(output, "		mil=%f\n", militancy);

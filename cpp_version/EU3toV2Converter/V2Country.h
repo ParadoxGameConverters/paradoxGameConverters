@@ -10,6 +10,8 @@
 #include "V2Factory.h"
 #include "V2Creditor.h"
 #include "V2Leader.h"
+#include <vector>
+using namespace std;
 
 
 class V2World;
@@ -51,6 +53,9 @@ class V2Country
 		double				getReactionary();
 		double				getConservative();
 		double				getLiberal();
+		vector< pair<int, int> >	getReactionaryIssues();
+		vector< pair<int, int> >	getConservativeIssues();
+		vector< pair<int, int> >	getLiberalIssues();
 		void					setRulingParty();
 		void					addRelations(V2Relations);
 		V2Relations*			getRelations(string);
@@ -72,6 +77,7 @@ class V2Country
 		double				getLiteracy();
 
 	private:
+		void setIssues();
 		void outputTech(FILE*);
 		void outputInventions(FILE*);
 		void outputElection(FILE*);
@@ -102,6 +108,9 @@ class V2Country
 		double				upperHouseReactionary;
 		double				upperHouseConservative;
 		double				upperHouseLiberal;
+		vector< pair<int, int> > reactionaryIssues;
+		vector< pair<int, int> > conservativeIssues;
+		vector< pair<int, int> > liberalIssues;
 		vector<V2Relations>	relations;
 		vector<V2Army>		armies;
 		V2Reforms			reforms;
