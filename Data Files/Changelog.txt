@@ -27,5 +27,7 @@ Revision	Log Message
 25		Country Mappings: Independent kingoms
 26		European province ownership
 27		Merge
+28		1-to-1 titular kingdoms mapped
 29		Add HRE conversion mechanic
 30		European provinces visible to all
+31		Merge
