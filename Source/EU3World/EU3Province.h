@@ -17,11 +17,13 @@ class EU3Province
 		void addCore(string);
 		void setOwner(string);
 		void setInHRE(bool);
+		void setDiscoveredBy(vector<string>);
 	private:
 		int				num;
 		string			owner;
 		vector<string>	cores;
 		bool				inHRE;
+		vector<string>	discoveredBy;
 };
 
 

@@ -106,6 +106,7 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 		}
 		newProvince.setOwner( countryMap[greatestOwner] );
 		newProvince.setInHRE(inHRE);
+		newProvince.setDiscoveredBy(europeanCountries);
 
 		provinces.push_back(newProvince);
 	}
@@ -173,6 +174,8 @@ void EU3World::addPotentialCountries(ifstream &countriesMapping, string EU3Loc)
 		EU3Country newCountry;
 		newCountry.init(tag, countryFileName);
 		potentialCountries.push_back(newCountry);
+
+		europeanCountries.push_back(tag);	//TODO: determine this more properly
 	}
 }
 

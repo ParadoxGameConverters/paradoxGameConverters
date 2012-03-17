@@ -52,6 +52,14 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "	hre=yes\n");
 	}
+	fprintf(output, "	discovery_dates={9999.1.1 9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
+	fprintf(output, "	discovery_religion_dates={9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
+	fprintf(output, "	discovered_by={ ");
+	for (unsigned int i = 0; i < discoveredBy.size(); i++)
+	{
+		fprintf(output, "%s ", discoveredBy[i].c_str());
+	}
+	fprintf(output, "	}\n");
 	fprintf(output, "}\n");
 }
 
@@ -78,4 +86,10 @@ void EU3Province::setOwner(string newOwner)
 void EU3Province::setInHRE(bool input)
 {
 	inHRE = input;
+}
+
+
+void EU3Province::setDiscoveredBy(vector<string> input)
+{
+	discoveredBy = input;
 }
