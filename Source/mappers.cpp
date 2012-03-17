@@ -1,5 +1,6 @@
 #include "mappers.h"
 #include "Log.h"
+#include "Configuration.h"
 
 
 
@@ -145,6 +146,12 @@ int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<str
 			continue;
 		}
 
+		if (rCK2Title == Configuration::getHRETitle())
+		{
+			CK2Titles.erase(CK2TitlesPos);
+			continue;
+		}
+
 		//find EU3 tag from the rule
 		vector<string>::iterator EU3TagPos = EU3Tags.end();
 		unsigned int distance = 0;
@@ -201,6 +208,10 @@ int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<str
 		else if (*CK2TitlesPos == "e_pirates")
 		{
 			mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR"));
+			CK2Titles.erase(CK2TitlesPos);
+		}
+		else if (*CK2TitlesPos == Configuration::getHRETitle())
+		{
 			CK2Titles.erase(CK2TitlesPos);
 		}
 		else

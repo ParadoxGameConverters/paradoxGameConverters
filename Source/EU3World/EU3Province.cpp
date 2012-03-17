@@ -31,6 +31,8 @@ void EU3Province::init(int newNum, Object* obj, date startDate)
 			}
 		}
 	}
+
+	inHRE = false;
 }
 
 
@@ -45,6 +47,10 @@ void EU3Province::output(FILE* output)
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
 		fprintf(output, "	core=\"%s\"\n", cores[i].c_str());
+	}
+	if (inHRE)
+	{
+		fprintf(output, "	hre=yes\n");
 	}
 	fprintf(output, "}\n");
 }
@@ -66,4 +72,10 @@ void EU3Province::addCore(string newCore)
 void EU3Province::setOwner(string newOwner)
 {
 	owner = newOwner;
+}
+
+
+void EU3Province::setInHRE(bool input)
+{
+	inHRE = input;
 }

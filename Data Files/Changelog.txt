@@ -26,3 +26,4 @@ Revision	Log Message
 24		Country Mappings: Independent kingoms
 25		European province ownership
 26		Merge
+28		Add HRE conversion mechanic

@@ -22,6 +22,11 @@ public:
 		return getInstance()->EU3Path;
 	}
 
+	static string getHRETitle()
+	{
+		return getInstance()->HRETitle;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -34,6 +39,7 @@ private:
 
 	string	CK2Path;
 	string	EU3Path;
+	string	HRETitle;
 };
 
 #endif // CONFIGURATION_H_

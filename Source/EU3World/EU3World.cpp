@@ -61,6 +61,7 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 			}
 		}
 
+		bool inHRE = false;
 		vector< pair<string, int > > owners;	// ownerTitle, numBaronies
 		for (unsigned int j = 0; j < baronies.size(); j++)
 		{
@@ -82,6 +83,10 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 			if (!ownerFound)
 			{
 				owners.push_back( make_pair(title->getTitleString(), 1) );
+				if (title->isInHRE())
+				{
+					inHRE = true;
+				}
 			}
 		}
 
@@ -100,6 +105,7 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 			}
 		}
 		newProvince.setOwner( countryMap[greatestOwner] );
+		newProvince.setInHRE(inHRE);
 
 		provinces.push_back(newProvince);
 	}

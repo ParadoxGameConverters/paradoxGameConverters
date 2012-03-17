@@ -11,7 +11,8 @@ void CK2Title::init(Object* obj)
 		liegeString = liegeObjs[0]->getLeaf();
 	}
 
-	independent = true;
+	independent	= true;
+	inHRE			= false;
 }
 
 
@@ -27,6 +28,12 @@ void CK2Title::addLiege(CK2Title* newLiege)
 void CK2Title::addVassal(CK2Title* vassal)
 {
 	vassals.push_back(vassal);
+}
+
+
+void CK2Title::addToHRE()
+{
+	inHRE = true;
 }
 
 
@@ -52,6 +59,13 @@ bool CK2Title::isIndependent()
 {
 	return independent;
 }
+
+
+bool CK2Title::isInHRE()
+{
+	return inHRE;
+}
+
 
 
 CK2Title::~CK2Title()

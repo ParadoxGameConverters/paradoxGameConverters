@@ -16,10 +16,12 @@ class EU3Province
 		void setNumber(int);
 		void addCore(string);
 		void setOwner(string);
+		void setInHRE(bool);
 	private:
 		int				num;
 		string			owner;
 		vector<string>	cores;
+		bool				inHRE;
 };
 
 
