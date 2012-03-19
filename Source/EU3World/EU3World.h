@@ -25,6 +25,7 @@ class EU3World
 		date						startDate;
 		vector<EU3Province>	provinces;
 		vector<EU3Country>	potentialCountries;
+		vector<string>			europeanCountries;
 };
 
 

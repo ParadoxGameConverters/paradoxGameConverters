@@ -23,7 +23,11 @@ Revision	Log Message
 21		Country Mappings
 22		Iberian Peninsula and Med Islands mapped	
 23		Italy and Scandiwegia mapped
-24		Country Mappings: Independent kingoms
-25		European province ownership
-26		Merge
-27		1-to-1 titular kingdoms mapped
+24		England save from rho
+25		Country Mappings: Independent kingoms
+26		European province ownership
+27		Merge
+28		1-to-1 titular kingdoms mapped
+29		Add HRE conversion mechanic
+30		European provinces visible to all
+31		Merge

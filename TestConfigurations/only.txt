@@ -5,4 +5,7 @@ configuration =
 
 	# Crusader Kings 2 directory: a path on your computer where Crusader Kings 2 is installed
 	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
+
+	# HRE Title: the CK2 Title that will convert are the HRE in EU3. All immediate vassals will be independent.
+	HRETitle = "e_hre"
 }

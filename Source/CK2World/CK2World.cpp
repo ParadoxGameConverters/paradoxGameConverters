@@ -1,5 +1,6 @@
 #include "CK2World.h"
 #include "..\Log.h"
+#include "..\Configuration.h"
 
 
 
@@ -43,12 +44,19 @@ void CK2World::init(Object* obj)
 	}
 
 	// create tree of vassal/liege relationships
+	string hreTitle = Configuration::getHRETitle();
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
 		string liege = i->second->getLiegeString();
 		if (liege == "")
 		{
 			independentTitles.push_back(i->second);
+		}
+		else if (liege == hreTitle)
+		{
+			i->second->addToHRE();
+			independentTitles.push_back(i->second);
+			hreMembers.push_back(i->second);
 		}
 		else
 		{
@@ -57,6 +65,7 @@ void CK2World::init(Object* obj)
 	}
 
 	log("There are a total of %d independent titles\n", independentTitles.size());
+	log("There are a total of %d hre members\n", hreMembers.size());
 }
 
 

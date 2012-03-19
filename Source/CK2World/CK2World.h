@@ -19,6 +19,7 @@ class CK2World
 	private:
 		date							endDate;
 		vector<CK2Title*>			independentTitles;
+		vector<CK2Title*>			hreMembers;
 		map<string, CK2Title*>	titles;
 		map<int, CK2Province*>	provinces;
 };

@@ -11,10 +11,12 @@ class CK2Title
 		void			init(Object*);
 		void			addLiege(CK2Title*);
 		void			addVassal(CK2Title*);
+		void			addToHRE();
 		string		getTitleString();
 		string		getLiegeString();
 		CK2Title*	getLiege();
 		bool			isIndependent();
+		bool			isInHRE();
 		~CK2Title();
 	private:
 		string				titleString;
@@ -22,6 +24,7 @@ class CK2Title
 		CK2Title*			liege;
 		vector<CK2Title*>	vassals;
 		bool					independent;
+		bool					inHRE;
 };
 
 
