@@ -276,6 +276,57 @@ link = { ck2 = 392 eu3 = 30 eu3 = 32 }	# Käkisalmi -> Viborg, Kexholm
 link = { ck2 = 390 eu3 = 31 }	# Savo -> Savolax
 link = { ck2 = 850 ck2 = 388 eu3 = 1776 }	# Kantalahti, Karjala -> Karelia
 
+# France
+link = { ck2 = 104 ck2 = 103 eu3 = 170 }	# Cornouaille, Léon -> Finistère
+link = { ck2 = 102 ck2 = 101 eu3 = 169 }	# Penthievre, Rennes -> Armor
+link = { ck2 = 105 ck2 = 106 eu3 = 171 }	# Vannes, Nantes -> Morbihan
+link = { ck2 = 100 ck2 = 99 eu3 = 168 }	# Mortain, Évreux -> Normandie
+link = { ck2 = 142 eu3 = 172 }	# Thouars -> Vendée
+link = { ck2 = 143 ck2 = 148 ck2 = 144 ck2 = 141 eu3 = 180 }	# Saintonge, Angoulême, Lusignan, Poitiers -> Poitou
+link = { ck2 = 149 eu3 = 174 }	# Bordeaux -> Gascogne
+link = { ck2 = 150 ck2 = 151 eu3 = 173 }	# Marsan, Dax -> Labourd
+link = { ck2 = 97 eu3 = 167 }	# Rouen -> Caux
+link = { ck2 = 96 eu3 = 89 }	# Eu -> Picardie
+link = { ck2 = 75 eu3 = 87 }	# Boulogne -> Calais
+link = { ck2 = 74 ck2 = 76 eu3 = 90 }	# Guines, Yperen -> Vlaanderen
+link = { ck2 = 79 ck2 = 93 eu3 = 96 }	# Zeeland, Gent -> Zeeland
+link = { ck2 = 78 eu3 = 1744 }	# Brugge -> Antwerpen
+link = { ck2 = 80 ck2 = 81 eu3 = 97 }	# Holland, Westfriesland -> Holland
+link = { ck2 = 208 ck2 = 209 ck2 = 210 eu3 = 176 }	# Béarn, Armagnac, Foix -> Béarn
+link = { ck2 = 211 eu3 = 197 }	# Rosello -> Roussillon
+link = { ck2 = 212 ck2 = 220 ck2 = 219 eu3 = 200 }	# Narbonne, Melgueil, Gévaudan -> Languedoc
+link = { ck2 = 213 ck2 = 214 eu3 = 196 }	# Carcassonne, Toulouse -> Toulouse
+link = { ck2 = 221 eu3 = 201 }	# Provence -> Provence
+link = { ck2 = 215 eu3 = 194 eu3 = 175 }	# Agen -> Périgord, Armagnac
+link = { ck2 = 218 eu3 = 198 }	# Rouergue -> Rouergue
+link = { ck2 = 222 eu3 = 202 }	# Venaissin -> Avignon
+link = { ck2 = 108 eu3 = 177 eu3 = 1879 }	# Maine -> Maine, Alencon
+link = { ck2 = 107 eu3 = 178 }	# Anjou -> Anjou
+link = { ck2 = 77 eu3 = 88 }	# Artois -> Artois
+link = { ck2 = 229 ck2 = 223 ck2 = 228 eu3 = 204 }	# Forcalquier, Vivarais, Vienne -> Dauphiné
+link = { ck2 = 237 eu3 = 205 }	# Savoie -> Savoie
+link = { ck2 = 216 ck2 = 147 ck2 = 145 eu3 = 195 }	# Périgord, Limousin, La Marche -> Limousin
+link = { ck2 = 217 ck2 = 224 eu3 = 199 }	# Auvergne, Forez -> Auvergne
+link = { ck2 = 227 eu3 = 203 }	# Lyon -> Lyonnais
+link = { ck2 = 135 eu3 = 192 eu3 = 1877 eu3 = 193 }	# Bourgogne -> Bourgogne, Charolais, Franche-Comté
+link = { ck2 = 127 eu3 = 189 }	# Lorraine -> Lothringen
+link = { ck2 = 128 eu3 = 188 }	# Metz -> Metz
+link = { ck2 = 129 ck2 = 133 eu3 = 187 }	# Verdun, Saintois -> Barrois
+link = { ck2 = 115 eu3 = 94 }	# Luxembourg -> Luxemburg
+link = { ck2 = 116 eu3 = 93 }	# Liege -> Liège
+link = { ck2 = 117 eu3 = 92 }	# Brabant -> Brabant
+link = { ck2 = 94 eu3 = 1865 eu3 = 91 eu3 = 1866 }	# Hainaut -> Ghent, Hainaut, Namur
+link = { ck2 = 113 eu3 = 181 }	# Vermandois -> Valenciennes
+link = { ck2 = 95 eu3 = 1743 }	# Amiens -> Cambray
+link = { ck2 = 114 eu3 = 182 }	# Reims -> Vermandois
+link = { ck2 = 130 eu3 = 186 }	# Troyes -> Champagne
+link = { ck2 = 98 ck2 = 112 ck2 = 111 eu3 = 183 }	# Vexin, Paris, Chartres -> Île-de-France
+link = { ck2 = 109 ck2 = 140 ck2 = 110 ck2 = 138 eu3 = 184 }	# Vendôme, Tours, Blois, Orléans -> Orleanais
+link = { ck2 = 139 eu3 = 179 }	# Bourges -> Berry
+link = { ck2 = 131 eu3 = 185 }	# Sens -> Nemours
+link = { ck2 = 132 ck2 = 136 ck2 = 137 eu3 = 191 }	# Auxerre, Dijon, Nevers -> Nevers
+link = { ck2 = 146 ck2 = 226 ck2 = 225 ck2 = 240 eu3 = 190 }	# Bourbon, Charolais, Mâcon, Chalons -> Bourbon
+
 # ## ROTW ####
 # ROTW - North America
 link = { eu3 = 1810 }	# NOTHING -> Alaska
