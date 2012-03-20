@@ -11,8 +11,8 @@ mappings={
 
 link = { eu3 = CNN vic = CNN } 	# Connacht
 link = { eu3 = CRN vic = CRN } 	# Cornwall
-link = { eu3 = ENG vic = ENG } 	# England
-link = { eu3 = GBR vic = GBR } 	# Great Britain		=> United Kingdom
+link = { eu3 = ENG vic = ENL } 	# England
+link = { eu3 = GBR vic = ENG } 	# Great Britain		=> United Kingdom
 link = { eu3 = IRE vic = IRE } 	# Ireland
 link = { eu3 = LEI vic = LEI } 	# Leinster
 link = { eu3 = LAN vic = LAN } 	# Lancaster

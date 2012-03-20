@@ -46,6 +46,8 @@ Re added converter files.  Modified mappings, cultures, and unions according to 
 0.9
 Fixed localisations and reorderd some tags
 KNOWN ISSUE: Wrong Flag for great britain?
+0.91
+Actually fixed tags, fixed GENOA localisation
 
 Error List:
 1. Sometimes the game crashes after the end of the year so ensure you save before (Proberly a autosave problem?)
