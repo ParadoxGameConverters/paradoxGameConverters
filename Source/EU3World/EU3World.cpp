@@ -17,6 +17,10 @@ void EU3World::output(FILE* output)
 	{
 		provinces[i].output(output);
 	}
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		countries[i]->output(output);
+	}
 }
 
 
