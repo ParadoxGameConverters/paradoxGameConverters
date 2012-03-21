@@ -6,6 +6,7 @@
 #include <map>
 #include "Parsers\Object.h"
 #include "CK2World\CK2World.h"
+#include "EU3World\EU3Country.h"
 using namespace std;
 
 
@@ -16,8 +17,8 @@ inverseProvinceMapping invertProvinceMap(provinceMapping provMap);
 
 vector<string> processBlockedNations(Object* obj);
 
-typedef map< string, string > countryMapping;	// < sourceTitle, destCountry>
-int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<string> EU3Tags, vector<string> blockedNations, Object* rulesObj);
+typedef map< string, EU3Country* > countryMapping;	// < sourceTitle, destCountry>
+int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<EU3Country*> EU3Countries, vector<string> blockedNations, Object* rulesObj);
 vector<string>	getCK2Titles(CK2World& srcWorld);
 
 

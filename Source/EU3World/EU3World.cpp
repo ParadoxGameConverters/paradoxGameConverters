@@ -97,14 +97,17 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 		int		greatestOwnerNum = 0;
 		for (unsigned int j = 0; j < owners.size(); j++)
 		{
-			newProvince.addCore( countryMap[owners[j].first] );
+			newProvince.addCore( countryMap[owners[j].first]->getTag() );
 			if (owners[j].second > greatestOwnerNum)
 			{
 				greatestOwner		= owners[j].first;
 				greatestOwnerNum	= owners[j].second;
 			}
 		}
-		newProvince.setOwner( countryMap[greatestOwner] );
+		if (owners.size() > 0)
+		{
+			newProvince.setOwner( countryMap[greatestOwner]->getTag() );
+		}
 		newProvince.setInHRE(inHRE);
 		newProvince.setDiscoveredBy(europeanCountries);
 
@@ -147,8 +150,9 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 }
 
 
-void EU3World::addPotentialCountries(ifstream &countriesMapping, string EU3Loc)
+void EU3World::addPotentialCountries(ifstream &countriesMapping)
 {
+	string EU3Loc = Configuration::getEU3Path();
 	while (!countriesMapping.eof())
 	{
 		string line;
@@ -171,21 +175,16 @@ void EU3World::addPotentialCountries(ifstream &countriesMapping, string EU3Loc)
 		{
 			continue;
 		}
-		EU3Country newCountry;
-		newCountry.init(tag, countryFileName);
-		potentialCountries.push_back(newCountry);
+		EU3Country* newCountry = new EU3Country;
+		newCountry->init(tag, countryFileName);
+		countries.push_back(newCountry);
 
 		europeanCountries.push_back(tag);	//TODO: determine this more properly
 	}
 }
 
 
-vector<string>	EU3World::getPotentialTags()
+vector<EU3Country*>	EU3World::getCountries()
 {
-	vector<string> tagList;
-	for (unsigned int i = 0; i < potentialCountries.size(); i++)
-	{
-		tagList.push_back(potentialCountries[i].getTag());
-	}
-	return tagList;
+	return countries;
 }

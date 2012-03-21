@@ -15,16 +15,16 @@
 class EU3World
 {
 	public:
-		void				output(FILE*);
-		void				init(CK2World);
-		void				convertProvinces(provinceMapping, map<int, CK2Province*>, countryMapping);
-		void				setupRotwProvinces(provinceMapping);
-		void				addPotentialCountries(ifstream&, string);
-		vector<string>	getPotentialTags();
+		void						output(FILE*);
+		void						init(CK2World);
+		void						convertProvinces(provinceMapping, map<int, CK2Province*>, countryMapping);
+		void						setupRotwProvinces(provinceMapping);
+		void						addPotentialCountries(ifstream&);
+		vector<EU3Country*>	getCountries();
 	private:
 		date						startDate;
 		vector<EU3Province>	provinces;
-		vector<EU3Country>	potentialCountries;
+		vector<EU3Country*>	countries;
 		vector<string>			europeanCountries;
 };
 

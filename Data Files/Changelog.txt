@@ -31,3 +31,4 @@ Revision	Log Message
 29		Add HRE conversion mechanic
 30		European provinces visible to all
 31		Merge
+32		Change country mapping to map a pointer to the EU3 Country itself

@@ -95,7 +95,7 @@ vector<string> processBlockedNations(Object* obj)
 }
 
 
-int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<string> EU3Tags, vector<string> blockedNations, Object* rulesObj)
+int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<EU3Country*> EU3Countries, vector<string> blockedNations, Object* rulesObj)
 {
 	mapping.clear();
 	countryMapping::iterator mapIter;
@@ -153,61 +153,61 @@ int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<str
 		}
 
 		//find EU3 tag from the rule
-		vector<string>::iterator EU3TagPos = EU3Tags.end();
+		vector<EU3Country*>::iterator EU3CountryPos = EU3Countries.end();
 		unsigned int distance = 0;
 		for (vector<string>::reverse_iterator j = rEU3Tags.rbegin(); j != rEU3Tags.rend(); ++j)
 		{
 			++distance;
-			for (vector<string>::iterator k = EU3Tags.begin(); k != EU3Tags.end(); ++k)
+			for (vector<EU3Country*>::iterator k = EU3Countries.begin(); k != EU3Countries.end(); ++k)
 			{
-				if (*k == *j)
+				if ( (*k)->getTag() == *j)
 				{
-					EU3TagPos = k;
+					EU3CountryPos = k;
 					break;
 				}
 			}
-			if (EU3TagPos != EU3Tags.end())
+			if (EU3CountryPos != EU3Countries.end())
 			{
 				break;
 			}
 		}
-		if (EU3TagPos == EU3Tags.end())
+		if (EU3CountryPos == EU3Countries.end())
 		{
 			continue;
 		}
 
 		//add the mapping
-		mapping.insert(make_pair<string, string>(*CK2TitlesPos, *EU3TagPos));
-		log("Added map %s -> %s (#%d)\n", CK2TitlesPos->c_str(), EU3TagPos->c_str(), distance);
+		mapping.insert(make_pair<string, EU3Country*>(*CK2TitlesPos, *EU3CountryPos));
+		log("Added map %s -> %s (#%d)\n", CK2TitlesPos->c_str(), (*EU3CountryPos)->getTag().c_str() , distance);
 
 		//remove tags from the lists
 		CK2Titles.erase(CK2TitlesPos);
-		EU3Tags.erase(EU3TagPos);
+		EU3Countries.erase(EU3CountryPos);
 	}
 
 	for (unsigned int j = 0; j < blockedNations.size(); ++j)
 	{
-		for (vector<string>::iterator i = EU3Tags.begin(); i != EU3Tags.end(); ++i)
+		for (vector<EU3Country*>::iterator i = EU3Countries.begin(); i != EU3Countries.end(); ++i)
 		{
-			if (*i == blockedNations[j])
+			if ((*i)->getTag() == blockedNations[j])
 			{
-				EU3Tags.erase(i);
+				EU3Countries.erase(i);
 				break;
 			}
 		}
 	}
 
-	while ( (CK2Titles.size() > 0) && (EU3Tags.size() > 0) )
+	while ( (CK2Titles.size() > 0) && (EU3Countries.size() > 0) )
 	{
 		vector<string>::iterator CK2TitlesPos = CK2Titles.begin();
 		if (*CK2TitlesPos == "e_rebels")
 		{
-			mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB"));
+			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
 			CK2Titles.erase(CK2TitlesPos);
 		}
 		else if (*CK2TitlesPos == "e_pirates")
 		{
-			mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR"));
+			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
 			CK2Titles.erase(CK2TitlesPos);
 		}
 		else if (*CK2TitlesPos == Configuration::getHRETitle())
@@ -216,13 +216,13 @@ int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<str
 		}
 		else
 		{
-			vector<string>::iterator EU3TagPos = EU3Tags.begin();
-			mapping.insert(make_pair<string, string>(*CK2TitlesPos, *EU3TagPos));
-			log("Added map %s -> %s (fallback)\n", CK2TitlesPos->c_str(), EU3TagPos->c_str());
+			vector<EU3Country*>::iterator EU3TagPos = EU3Countries.begin();
+			mapping.insert(make_pair<string, EU3Country*>(*CK2TitlesPos, *EU3TagPos));
+			log("Added map %s -> %s (fallback)\n", CK2TitlesPos->c_str(), (*EU3TagPos)->getTag().c_str());
 
 			//remove tags from the lists
 			CK2Titles.erase(CK2TitlesPos);
-			EU3Tags.erase(EU3TagPos);
+			EU3Countries.erase(EU3TagPos);
 		}
 	}
 

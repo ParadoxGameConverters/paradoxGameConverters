@@ -30,12 +30,12 @@ int main(int argc, char * argv[])
 		return (-2);
 	}
 
-	//Get EU3 install location
+	//Verify EU3 install location
 	string EU3Loc = Configuration::getEU3Path();
 	if (EU3Loc.empty() || (stat(EU3Loc.c_str(), &st) != 0))
 	{
-		log("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 
@@ -98,7 +98,7 @@ int main(int argc, char * argv[])
 		printf("Error: Could not open countries.txt\n");
 		return 1;
 	}
-	destWorld.addPotentialCountries(EU3CountriesInput, EU3Loc);
+	destWorld.addPotentialCountries(EU3CountriesInput);
 	EU3CountriesInput.close();
 	
 	// Get list of blocked nations
@@ -118,7 +118,7 @@ int main(int argc, char * argv[])
 	printf("Mapping CK2 nations to EU3 nations.\n");
 	countryMapping countryMap;
 	vector<string> CK2Tags = getCK2Titles(srcWorld);
-	int leftoverNations = initCountryMap(countryMap, CK2Tags, destWorld.getPotentialTags(), blockedNations, obj);
+	int leftoverNations = initCountryMap(countryMap, CK2Tags, destWorld.getCountries(), blockedNations, obj);
 	if (leftoverNations == -1)
 	{
 		return 1;
