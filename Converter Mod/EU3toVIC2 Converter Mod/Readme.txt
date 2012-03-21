@@ -48,6 +48,8 @@ Fixed localisations and reorderd some tags
 KNOWN ISSUE: Wrong Flag for great britain?
 0.91
 Actually fixed tags, fixed GENOA localisation
+0.92
+Removed inexplicable quotemarks from all strings in localisations
 
 Error List:
 1. Sometimes the game crashes after the end of the year so ensure you save before (Proberly a autosave problem?)
