@@ -108,8 +108,7 @@ int main(int argc, char * argv[])
 	log("Mapping CK2 nations to EU3 nations.\n");
 	printf("Mapping CK2 nations to EU3 nations.\n");
 	countryMapping countryMap;
-	vector<string> CK2Tags = getCK2Titles(srcWorld);
-	int leftoverNations = initCountryMap(countryMap, CK2Tags, destWorld.getCountries(), blockedNations, obj);
+	int leftoverNations = initCountryMap(countryMap, srcWorld.getIndependentTitles(), destWorld.getCountries(), blockedNations, obj);
 	if (leftoverNations == -1)
 	{
 		return 1;

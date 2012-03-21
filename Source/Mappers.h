@@ -17,9 +17,8 @@ inverseProvinceMapping invertProvinceMap(provinceMapping provMap);
 
 vector<string> processBlockedNations(Object* obj);
 
-typedef map< string, EU3Country* > countryMapping;	// < sourceTitle, destCountry>
-int initCountryMap(countryMapping& mapping, vector<string> CK2Titles, vector<EU3Country*> EU3Countries, vector<string> blockedNations, Object* rulesObj);
-vector<string>	getCK2Titles(CK2World& srcWorld);
+typedef map< CK2Title*, EU3Country* > countryMapping;
+int initCountryMap(countryMapping& mapping, vector<CK2Title*> CK2Titles, vector<EU3Country*> EU3Countries, vector<string> blockedNations, Object* rulesObj);
 
 
 
