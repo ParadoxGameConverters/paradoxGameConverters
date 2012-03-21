@@ -1,5 +1,6 @@
 #include "EU3World.h"
 #include <string>
+#include <algorithm>
 #include <io.h>
 #include "..\Log.h"
 #include "..\temp.h"
@@ -177,6 +178,7 @@ void EU3World::addPotentialCountries()
 
 		string tag;
 		tag = filename.substr(0, 3);
+		transform(tag.begin(), tag.end(), tag.begin(), toupper); 
 
 		if (tag == "REB")
 		{

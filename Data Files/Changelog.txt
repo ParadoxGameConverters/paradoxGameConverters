@@ -35,3 +35,4 @@ Revision	Log Message
 33		Output countries
 34		Use /history/countries/ instead of /common/countries.txt
 35		Change country mapping to map a pointer to the CK2 Title itself
+36		Get 1399 governments

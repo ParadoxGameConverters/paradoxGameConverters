@@ -10,6 +10,10 @@ void EU3Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
+	if(government != "")
+	{
+		fprintf(output, "	government=%s\n", government.c_str());
+	}
 	fprintf(output, "}\n");
 }
 
@@ -35,7 +39,17 @@ void EU3Country::init(string newTag, string newHistoryFile)
 	read.close();
 	read.clear();
 
+	vector<Object*> leaves = obj->getValue("government");
+	if (leaves.size() > 0)
+	{
+		government = leaves[0]->getLeaf();
+	}
+}
 
+
+void EU3Country::convert(CK2Title* src)
+{
+	government = "";
 }
 
 

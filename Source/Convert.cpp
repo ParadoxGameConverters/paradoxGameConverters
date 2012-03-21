@@ -124,6 +124,10 @@ int main(int argc, char * argv[])
 
 	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap);
 	destWorld.setupRotwProvinces(inverseProvinceMap);
+	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
+	{
+		i->second->convert(i->first);
+	}
 	
 
 
