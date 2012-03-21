@@ -90,16 +90,7 @@ int main(int argc, char * argv[])
 	// Get potential EU3 countries
 	log("Getting potential EU3 nations.\n");
 	printf("Getting potential EU3 nations.\n");
-	ifstream EU3CountriesInput;
-	EU3CountriesInput.open( (EU3Loc + "\\common\\countries.txt").c_str() );
-	if (!EU3CountriesInput.is_open())
-	{
-		log("Error: Could not open countries.txt\n");
-		printf("Error: Could not open countries.txt\n");
-		return 1;
-	}
-	destWorld.addPotentialCountries(EU3CountriesInput);
-	EU3CountriesInput.close();
+	destWorld.addPotentialCountries();
 	
 	// Get list of blocked nations
 	log("Getting blocked EU3 nations.\n");

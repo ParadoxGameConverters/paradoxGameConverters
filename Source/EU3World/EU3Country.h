@@ -16,7 +16,7 @@ class EU3Country
 		string	getTag();
 	private:
 		string	tag;
-		string	countryFile;
+		string	historyFile;
 };
 
 

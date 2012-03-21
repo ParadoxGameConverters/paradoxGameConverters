@@ -19,7 +19,7 @@ class EU3World
 		void						init(CK2World);
 		void						convertProvinces(provinceMapping, map<int, CK2Province*>, countryMapping);
 		void						setupRotwProvinces(provinceMapping);
-		void						addPotentialCountries(ifstream&);
+		void						addPotentialCountries();
 		vector<EU3Country*>	getCountries();
 	private:
 		date						startDate;

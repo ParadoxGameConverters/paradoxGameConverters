@@ -154,37 +154,43 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 }
 
 
-void EU3World::addPotentialCountries(ifstream &countriesMapping)
+void EU3World::addPotentialCountries()
 {
 	string EU3Loc = Configuration::getEU3Path();
-	while (!countriesMapping.eof())
+
+	struct _finddata_t	countryDirData;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (EU3Loc + "\\history\\countries\\*").c_str(), &countryDirData)) == -1L)
 	{
-		string line;
-		getline(countriesMapping, line);
-
-		if ( (line.size() < 3) || (line[0] == '#') )
+		log("Error: Could not open country history directory.\n");
+		return;
+	}
+	do
+	{
+		if (strcmp(countryDirData.name, ".") == 0 || strcmp(countryDirData.name, "..") == 0 )
 		{
-			continue;
+				continue;
 		}
-		
-		string tag;
-		tag = line.substr(0, 3);
 
-		string countryFileName;
-		int start			= line.find_first_of('/');
-		int size				= line.find_last_of('\"') - start;
-		countryFileName	= line.substr(start, size);
+		string filename;
+		filename = countryDirData.name;
+
+		string tag;
+		tag = filename.substr(0, 3);
 
 		if (tag == "REB")
 		{
 			continue;
 		}
+
 		EU3Country* newCountry = new EU3Country;
-		newCountry->init(tag, countryFileName);
+		newCountry->init(tag, filename);
 		countries.push_back(newCountry);
 
 		europeanCountries.push_back(tag);	//TODO: determine this more properly
-	}
+
+	} while(_findnext(fileListing, &countryDirData) == 0);
+	_findclose(fileListing);
 }
 
 

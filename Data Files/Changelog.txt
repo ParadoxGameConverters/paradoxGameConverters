@@ -33,3 +33,4 @@ Revision	Log Message
 31		Merge
 32		Change country mapping to map a pointer to the EU3 Country itself
 33		Output countries
+34		Use /history/countries/ instead of /common/countries.txt
