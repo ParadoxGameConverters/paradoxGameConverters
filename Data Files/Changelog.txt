@@ -31,8 +31,11 @@ Revision	Log Message
 29		Add HRE conversion mechanic
 30		European provinces visible to all
 31		Merge
-32		Change country mapping to map a pointer to the EU3 Country itself
-33		Output countries
-34		Use /history/countries/ instead of /common/countries.txt
-35		Change country mapping to map a pointer to the CK2 Title itself
-36		Get 1399 governments
+32		France province mappings
+33		Change country mapping to map a pointer to the EU3 Country itself
+34		Output countries
+35		Use /history/countries/ instead of /common/countries.txt
+36		Change country mapping to map a pointer to the CK2 Title itself
+37		Get 1399 governments
+38		Merge
+39		Merge
