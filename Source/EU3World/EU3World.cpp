@@ -141,7 +141,7 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 		}
 		else
 		{
-			log("Error: Could not find EU3 history file for province %d!\n", num);
+			log("Error: Could not find EU3 history file for province %d!\n", rotwProvinces[i]);
 			continue;
 		}
 
