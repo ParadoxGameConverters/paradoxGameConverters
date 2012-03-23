@@ -2,7 +2,7 @@
 
 
 
-void CK2Title::init(Object* obj)
+void CK2Title::init(Object* obj,  map<int, CK2Character*> characters)
 {
 	titleString = obj->getKey();
 	vector<Object*> liegeObjs = obj->getValue("liege");
@@ -13,6 +13,12 @@ void CK2Title::init(Object* obj)
 
 	independent	= true;
 	inHRE			= false;
+
+	vector<Object*> holderObjs = obj->getValue("holder");
+	if (holderObjs.size() > 0)
+	{
+		holder = characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ];
+	}
 }
 
 

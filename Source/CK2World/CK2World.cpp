@@ -18,6 +18,17 @@ void CK2World::init(Object* obj)
 		date newDate("1399.10.14");
 	}
 
+	// get characters
+	vector<Object*> characterLeaves = obj->getValue("character");
+	characterLeaves = characterLeaves[0]->getLeaves();
+	for (unsigned int i = 0; i < characterLeaves.size(); i++)
+	{
+		int number = atoi( characterLeaves[i]->getKey().c_str() );
+		CK2Character* newCharacter = new CK2Character;
+		newCharacter->init(characterLeaves[i]);
+		characters.insert( make_pair(number, newCharacter) );
+	}
+
 	// get titles
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
@@ -26,8 +37,8 @@ void CK2World::init(Object* obj)
 		if ( (key.substr(0, 2) == "e_") || (key.substr(0, 2) == "k_") || (key.substr(0, 2) == "d_") || (key.substr(0, 2) == "c_") || (key.substr(0, 2) == "b_") )
 		{
 			CK2Title* newTitle = new CK2Title;
-			newTitle->init(leaves[i]);
-			titles.insert(make_pair(newTitle->getTitleString(), newTitle) );
+			newTitle->init(leaves[i], characters);
+			titles.insert( make_pair(newTitle->getTitleString(), newTitle) );
 		}
 	}
 

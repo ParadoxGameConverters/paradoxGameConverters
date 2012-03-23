@@ -40,3 +40,4 @@ Revision	Log Message
 38		Merge
 39		Merge
 40		Fix log when province history file not found
+41		Characters imported

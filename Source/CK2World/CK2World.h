@@ -6,6 +6,7 @@
 #include "..\Date.h"
 #include "CK2Title.h"
 #include "CK2Province.h"
+#include "CK2Character.h"
 
 
 class CK2World
@@ -20,6 +21,7 @@ class CK2World
 		date							endDate;
 		vector<CK2Title*>			independentTitles;
 		vector<CK2Title*>			hreMembers;
+		map<int, CK2Character*>	characters;
 		map<string, CK2Title*>	titles;
 		map<int, CK2Province*>	provinces;
 };

@@ -2,13 +2,14 @@
 #define CK2TITLE_H_
 
 #include "..\Parsers\Object.h"
+#include "CK2Character.h"
 
 
 
 class CK2Title
 {
 	public:
-		void			init(Object*);
+		void			init(Object*, map<int, CK2Character*>);
 		void			addLiege(CK2Title*);
 		void			addVassal(CK2Title*);
 		void			addToHRE();
@@ -20,6 +21,7 @@ class CK2Title
 		~CK2Title();
 	private:
 		string				titleString;
+		CK2Character*		holder;
 		string				liegeString;
 		CK2Title*			liege;
 		vector<CK2Title*>	vassals;
