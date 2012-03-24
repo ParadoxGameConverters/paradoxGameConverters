@@ -701,6 +701,8 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 		}
 	}
 
+	HoI3RegimentType hqBrigade("hq_brigade");
+
 	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
 	vector<V2Country> sourceCountries = sourceWorld.getCountries();
 	for (vector<HoI3Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
@@ -712,10 +714,13 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 
 		int airForceIndex = 0;
 
+		HoI3RegGroup::resetRegGroupNameCounts();
+
+		// Convert actual armies
 		vector<V2Army> sourceArmies = oldCountry->getArmies();
 		for (vector<V2Army>::iterator aitr = sourceArmies.begin(); aitr != sourceArmies.end(); ++aitr)
 		{
-			HoI3Army destArmy;
+			HoI3RegGroup destArmy;
 			destArmy.setName(aitr->getName());
 			destArmy.setFuelSupplies(aitr->getSupplies());
 			if (aitr->getNavy())
@@ -781,7 +786,7 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 			}
 
 			// air units need to be split into air forces
-			HoI3Army destAirForce;
+			HoI3RegGroup destAirForce;
 			destAirForce.setFuelSupplies(aitr->getSupplies());
 			destAirForce.setForceType(air);
 			destAirForce.setLocation(selectedLocation);
@@ -809,9 +814,9 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 
 				// Add to army/navy or newly created air force as appropriate
 				if (destReg.getForceType() != air)
-					destArmy.addRegiment(destReg);
+					destArmy.addRegiment(destReg, true);
 				else
-					destAirForce.addRegiment(destReg);
+					destAirForce.addRegiment(destReg, true);
 			}
 
 			if (!destArmy.isEmpty())
@@ -839,6 +844,10 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 				itr->addArmy(destAirForce);
 			}
 		}
+
+		// Put the package together
+		itr->createTheatres();
+		itr->createArmyHQs(hqBrigade);
 	}
 }
 

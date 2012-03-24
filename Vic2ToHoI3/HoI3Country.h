@@ -24,7 +24,7 @@ class HoI3Country
 		void					output(FILE*);
 		void					addRelations(HoI3Relations);
 		HoI3Relations*			getRelations(string);
-		void					addArmy(HoI3Army);
+		void					addArmy(HoI3RegGroup);
 		void					sortRelations(const vector<string>& order);
 		void					setMoney(double);
 		void					addLoan(string creditor, double size, double interest);
@@ -36,6 +36,9 @@ class HoI3Country
 		HoI3Alignment*			getAlignment();
 		void					setGovernment(string newGov)		{ government = newGov; };
 		void					setLastElection(date electionDate)	{ lastElection = electionDate; };
+
+		void					createArmyHQs(HoI3RegimentType hqBrigade);
+		void					createTheatres();
 
 		// laws
 		void					setCivilLaw(string newLaw)			{ civil_law = newLaw; };
@@ -54,7 +57,7 @@ class HoI3Country
 		int					sourceCountryIndex;
 		string				countryFile;
 		vector<HoI3Relations>	relations;
-		vector<HoI3Army>	armies;
+		vector<HoI3RegGroup>	armies;
 		double				money;
 		//XXX: vector<HoI3Creditor>	creditors;
 		double				diploPoints;

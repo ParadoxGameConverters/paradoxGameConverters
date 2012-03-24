@@ -24,6 +24,15 @@ enum ForceType
 	air
 };
 
+enum CommandLevel
+{
+	division,
+	corps,
+	army,
+	armygroup,
+	theatre
+};
+
 class HoI3RegimentType
 {
 	public:
@@ -42,7 +51,7 @@ class HoI3RegimentType
 class HoI3Regiment // also Ship, Wing
 {
 	public:
-		void					output(FILE* out);
+		void					output(FILE* out, int indentlevel);
 		void					setName(string _name) { name = _name; };
 		void					setType(HoI3RegimentType _type) { type = _type; };
 		void					setStrength(double str) { strength = str; };
@@ -58,22 +67,30 @@ class HoI3Regiment // also Ship, Wing
 		double					experience;
 };
 
-class HoI3Army // really Division; also Navy, Air
+class HoI3RegGroup // also Navy, Air
 {
 	public:
-								HoI3Army();
-		void					output(FILE* out);
+								HoI3RegGroup();
+		void					output(FILE* out, int indentlevel);
 		void					setName(string _name) { name = _name; };
+		void					setName();
+		static void				resetRegGroupNameCounts();
 		string					getName() const { return name; };
 		void					setLocation(int provinceID) { location = provinceID; };
-		void					addRegiment(HoI3Regiment reg);
+		bool					addRegiment(HoI3Regiment reg, bool allowPromote);
 		void					setFuelSupplies(double supplyLevel) { supplies = supplyLevel; fuel = supplyLevel; };
 		void					setForceType(ForceType _type) { force_type = _type; };
 		ForceType				getForceType() const { return force_type; };
 		void					setAtSea(int atSea) { at_sea = atSea; }
 		void					setLeaderID(int id) { leaderID = id; };
-		bool					isEmpty() { return (regiments.size() == 0); };
+		bool					isEmpty() { return (regiments.size() == 0 && children.size() == 0); };
+		static void				resetHQCounts();
+		void					createHQs(HoI3RegimentType hqType);
+
 	private:
+		void					setCommandLevel(CommandLevel lvl) { command_level = lvl; };
+		HoI3RegGroup			createChild();
+
 		HoI3ArmyID				id;
 		string					name;
 		int						location;
@@ -83,6 +100,8 @@ class HoI3Army // really Division; also Navy, Air
 		ForceType				force_type;
 		int						at_sea;
 		int						leaderID;
+		vector<HoI3RegGroup>	children;
+		CommandLevel			command_level;
 };
 
 #endif

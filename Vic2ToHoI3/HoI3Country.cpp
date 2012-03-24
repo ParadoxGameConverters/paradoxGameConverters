@@ -135,9 +135,9 @@ void HoI3Country::output(FILE* output)
 	fprintf(output, "	industrial_policy_laws=%s\n", industrial_policy_laws.c_str());
 	fprintf(output, "	press_laws=%s\n", press_laws.c_str());
 	fprintf(output, "	training_laws=%s\n", training_laws.c_str());
-	for (vector<HoI3Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	for (vector<HoI3RegGroup>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
-		itr->output(output);
+		itr->output(output, 1);
 	}
 	for (vector<HoI3Relations>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
 	{
@@ -157,7 +157,7 @@ void HoI3Country::setTechnology(string tech, int level)
 }
 
 
-void HoI3Country::addArmy(HoI3Army _army)
+void HoI3Country::addArmy(HoI3RegGroup _army)
 {
 	armies.push_back(_army);
 }
@@ -178,4 +178,20 @@ vector<int> HoI3Country::getProvinces() const
 void HoI3Country::setDiploPoints(double newPts)
 {
 	diploPoints = newPts;
+}
+
+
+void HoI3Country::createArmyHQs(HoI3RegimentType hqBrigade)
+{
+	HoI3RegGroup::resetHQCounts();
+	for (vector<HoI3RegGroup>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	{
+		itr->createHQs(hqBrigade);
+	}
+}
+
+
+void HoI3Country::createTheatres()
+{
+	// XXX: create theatres
 }
