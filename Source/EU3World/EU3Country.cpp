@@ -90,7 +90,30 @@ void EU3Country::convert(CK2Title* src)
 	government = "";
 
 	//delete monarch; TODO: find out why this crashes things
-	monarch = new EU3Ruler(src->getHolder()->getName(), 1, 1, 1, "blank");
+	string	name		= "";
+	int		dip		= 1;
+	int		adm		= 1;
+	int		mil		= 1;
+	string	dynasty	= "blank";
+	CK2Character* holder = src->getHolder();
+	if (holder != NULL)
+	{
+		name = holder->getName();
+		CK2Dynasty* dynPointer = holder->getDynasty();
+		if (dynPointer != NULL)
+		{
+			dynasty = dynPointer->getName();
+		}
+		else
+		{
+			log("Error: %s (holder of %s) does not have a dynasty!\n", name.c_str(), tag.c_str());
+		}
+	}
+	else
+	{
+		log("Error: %s does not have a holder!\n", tag.c_str());
+	}
+	monarch = new EU3Ruler(name, dip, adm, mil, dynasty);
 }
 
 

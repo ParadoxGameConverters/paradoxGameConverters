@@ -46,3 +46,4 @@ Revision	Log Message
 44		getvalue() ignores case
 45		Import explicit dynasties
 46		Import dynasties from dynasties.txt
+47		Export dynasty name with ruler
