@@ -19,6 +19,18 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	{
 		holder = characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ];
 	}
+
+	vector<Object*> historyObjs = obj->getValue("history");
+	if (historyObjs.size() > 0)
+	{
+		historyObjs = historyObjs[0]->getLeaves();
+		for (unsigned int i = 0; i < historyObjs.size(); i++)
+		{
+			CK2History* newHistory = new CK2History();
+			newHistory->init(historyObjs[i], characters);
+			history.push_back(newHistory);
+		}
+	}
 }
 
 
@@ -52,6 +64,12 @@ string CK2Title::getTitleString()
 CK2Character* CK2Title::getHolder()
 {
 	return holder;
+}
+
+
+vector<CK2History*> CK2Title::getHistory()
+{
+	return history;
 }
 
 

@@ -4,6 +4,7 @@
 
 #include <string>
 #include "..\Parsers\Object.h"
+#include "..\Date.h"
 #include "CK2Dynasty.h"
 using namespace std;
 
@@ -14,11 +15,13 @@ class CK2Character
 		void init(Object*, map<int, CK2Dynasty*>&);
 		string		getName();
 		CK2Dynasty*	getDynasty();
+		date			getBirthDate();
 	private:
 		string		name;
 		string		religion;
 		string		culture;
 		CK2Dynasty*	dynasty;
+		date			birthDate;
 };
 
 

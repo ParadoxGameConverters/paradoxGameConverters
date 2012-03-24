@@ -47,3 +47,4 @@ Revision	Log Message
 45		Import explicit dynasties
 46		Import dynasties from dynasties.txt
 47		Export dynasty name with ruler
+48		Import history of former rulers and write it out

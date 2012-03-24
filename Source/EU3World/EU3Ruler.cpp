@@ -1,5 +1,6 @@
 #include "EU3Ruler.h"
 #include "..\Configuration.h"
+#include "..\Log.h"
 #include <fstream>
 
 
@@ -71,6 +72,29 @@ EU3Ruler::EU3Ruler(Object* obj)
 }
 
 
+EU3Ruler::EU3Ruler(CK2Character* src)
+{
+	name				= "";
+	diplomacy		= 1;
+	administration	= 1;
+	military			= 1;
+	id					= Configuration::getID();
+	dynasty			= "blank";
+	birthDate		= src->getBirthDate();
+
+	name = src->getName();
+	CK2Dynasty* dynPointer = src->getDynasty();
+	if (dynPointer != NULL)
+	{
+		dynasty = dynPointer->getName();
+	}
+	else
+	{
+		log("Error: %s does not have a dynasty!\n", name.c_str());
+	}
+}
+
+
 void EU3Ruler::output(FILE* output)
 {
 	fprintf(output,"			monarch=\n");
@@ -85,6 +109,7 @@ void EU3Ruler::output(FILE* output)
 	fprintf(output,"					type=37\n");
 	fprintf(output,"				}\n");
 	fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+	fprintf(output,"				birth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
 	fprintf(output,"			}\n");
 }
 

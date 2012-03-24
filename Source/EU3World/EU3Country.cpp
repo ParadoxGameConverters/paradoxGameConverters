@@ -13,13 +13,10 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "{\n");
 	fprintf(output, "	history=\n");
 	fprintf(output, "	{\n");
-	fprintf(output, "		1399.10.13=\n");
-	fprintf(output, "		{\n");
-	if (monarch != NULL)
+	for (unsigned int i = 0; i < history.size(); i++)
 	{
-		monarch->output(output);
+		history[i]->output(output);
 	}
-	fprintf(output, "		}\n");
 	fprintf(output, "	}\n");
 	if(government != "")
 	{
@@ -88,32 +85,20 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 void EU3Country::convert(CK2Title* src)
 {
 	government = "";
+	monarch = NULL;
 
-	//delete monarch; TODO: find out why this crashes things
-	string	name		= "";
-	int		dip		= 1;
-	int		adm		= 1;
-	int		mil		= 1;
-	string	dynasty	= "blank";
-	CK2Character* holder = src->getHolder();
-	if (holder != NULL)
+	vector<CK2History*> oldHistory = src->getHistory();
+	for (unsigned int i = 0; i < oldHistory.size(); i++)
 	{
-		name = holder->getName();
-		CK2Dynasty* dynPointer = holder->getDynasty();
-		if (dynPointer != NULL)
+		EU3History* newHistory = new EU3History();
+		newHistory->init(oldHistory[i]);
+		history.push_back(newHistory);
+
+		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
 		{
-			dynasty = dynPointer->getName();
-		}
-		else
-		{
-			log("Error: %s (holder of %s) does not have a dynasty!\n", name.c_str(), tag.c_str());
+			monarch = newHistory->getMonarch();
 		}
 	}
-	else
-	{
-		log("Error: %s does not have a holder!\n", tag.c_str());
-	}
-	monarch = new EU3Ruler(name, dip, adm, mil, dynasty);
 }
 
 

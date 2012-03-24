@@ -3,31 +3,35 @@
 
 #include "..\Parsers\Object.h"
 #include "CK2Character.h"
+#include "CK2History.h"
 
 
 
 class CK2Title
 {
 	public:
-		void				init(Object*, map<int, CK2Character*>&);
-		void				addLiege(CK2Title*);
-		void				addVassal(CK2Title*);
-		void				addToHRE();
-		string			getTitleString();
-		CK2Character*	getHolder();
-		string			getLiegeString();
-		CK2Title*		getLiege();
-		bool				isIndependent();
-		bool				isInHRE();
+		void						init(Object*, map<int, CK2Character*>&);
+		void						addLiege(CK2Title*);
+		void						addVassal(CK2Title*);
+		void						addToHRE();
+		string					getTitleString();
+		CK2Character*			getHolder();
+		vector<CK2History*>	getHistory();
+		string					getLiegeString();
+		CK2Title*				getLiege();
+		bool						isIndependent();
+		bool						isInHRE();
 		~CK2Title();
 	private:
-		string				titleString;
-		CK2Character*		holder;
-		string				liegeString;
-		CK2Title*			liege;
-		vector<CK2Title*>	vassals;
-		bool					independent;
-		bool					inHRE;
+		string					titleString;
+		CK2Character*			holder;
+		vector<CK2History*>	history;
+		string					liegeString;
+		CK2Title*				liege;
+		vector<CK2Title*>		vassals;
+
+		bool						independent;
+		bool						inHRE;
 };
 
 

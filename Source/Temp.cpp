@@ -1,4 +1,5 @@
 #include <fstream>
+#include "Configuration.h"
 
 
 
@@ -13,7 +14,7 @@ void outputTempHeader(FILE* output)
 	fprintf(output, "\n");
 	fprintf(output, "id=\n");
 	fprintf(output, "{\n");
-	fprintf(output, "	id=3001\n");
+	fprintf(output, "	id=%d\n", Configuration::getID());
 	fprintf(output, "	type=4713\n");
 	fprintf(output, "}\n");
 	fprintf(output, "\n");

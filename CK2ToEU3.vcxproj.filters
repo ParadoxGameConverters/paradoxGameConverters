@@ -78,6 +78,12 @@
     <ClCompile Include="Source\CK2World\CK2Dynasty.cpp">
       <Filter>CK2World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CK2World\Ck2History.cpp">
+      <Filter>CK2World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU3World\EU3History.cpp">
+      <Filter>EU3World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -130,6 +136,12 @@
     </ClInclude>
     <ClInclude Include="Source\CK2World\CK2Dynasty.h">
       <Filter>CK2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CK2World\CK2History.h">
+      <Filter>CK2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU3World\EU3History.h">
+      <Filter>EU3World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

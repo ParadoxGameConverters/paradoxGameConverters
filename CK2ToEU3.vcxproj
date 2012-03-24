@@ -93,6 +93,7 @@
     <ClCompile Include="Source\CK2World\CK2Barony.cpp" />
     <ClCompile Include="Source\CK2World\CK2Character.cpp" />
     <ClCompile Include="Source\CK2World\CK2Dynasty.cpp" />
+    <ClCompile Include="Source\CK2World\Ck2History.cpp" />
     <ClCompile Include="Source\CK2World\CK2Province.cpp" />
     <ClCompile Include="Source\CK2World\CK2Title.cpp" />
     <ClCompile Include="Source\CK2World\CK2World.cpp" />
@@ -100,6 +101,7 @@
     <ClCompile Include="Source\Convert.cpp" />
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\EU3World\EU3Country.cpp" />
+    <ClCompile Include="Source\EU3World\EU3History.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
     <ClCompile Include="Source\EU3World\EU3Ruler.cpp" />
     <ClCompile Include="Source\EU3World\EU3World.cpp" />
@@ -113,12 +115,14 @@
     <ClInclude Include="Source\CK2World\CK2Barony.h" />
     <ClInclude Include="Source\CK2World\CK2Character.h" />
     <ClInclude Include="Source\CK2World\CK2Dynasty.h" />
+    <ClInclude Include="Source\CK2World\CK2History.h" />
     <ClInclude Include="Source\CK2World\CK2Province.h" />
     <ClInclude Include="Source\CK2World\CK2Title.h" />
     <ClInclude Include="Source\CK2World\CK2World.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\EU3World\EU3Country.h" />
+    <ClInclude Include="Source\EU3World\EU3History.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />
     <ClInclude Include="Source\EU3World\EU3Ruler.h" />
     <ClInclude Include="Source\EU3World\EU3World.h" />
