@@ -87,12 +87,20 @@ void Object::addToList(vector<string>::iterator begin, vector<string>::iterator 
 }
 
 vector<Object*> Object::getValue (string key) const {
-  vector<Object*> ret; 
-  for (vector<Object*>::const_iterator i = objects.begin(); i != objects.end(); ++i) {
-    if ((*i)->getKey() != key) continue;
-    ret.push_back(*i); 
-  }
-  return ret; 
+	vector<Object*> ret;
+
+	transform(key.begin(), key.end(), key.begin(), toupper);
+	for (vector<Object*>::const_iterator i = objects.begin(); i != objects.end(); ++i)
+	{
+		string iKey = (*i)->getKey();
+		transform(iKey.begin(), iKey.end(), iKey.begin(), toupper);
+		if (iKey != key)
+		{
+			continue;
+		}
+		ret.push_back(*i); 
+	}
+	return ret; 
 }
 
 string Object::getToken (int index) {

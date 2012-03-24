@@ -178,7 +178,7 @@ void EU3World::addPotentialCountries()
 
 		string tag;
 		tag = filename.substr(0, 3);
-		transform(tag.begin(), tag.end(), tag.begin(), toupper); 
+		transform(tag.begin(), tag.end(), tag.begin(), toupper);
 
 		if (tag == "REB")
 		{
