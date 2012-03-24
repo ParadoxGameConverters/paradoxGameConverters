@@ -14,6 +14,7 @@ class CK2World
 {
 	public:
 		void							init(Object*);
+		void							addDynasties(Object*);
 		date							getEndDate();
 		vector<CK2Title*>			getIndependentTitles();
 		map<int, CK2Province*>	getProvinces();

@@ -19,7 +19,7 @@ void CK2World::init(Object* obj)
 	}
 
 	// get dynasties
-	printf("	Getting dynasties\n");
+	printf("	Getting dynasties from save\n");
 	vector<Object*> dynastyLeaves = obj->getValue("dynasties");
 	dynastyLeaves = dynastyLeaves[0]->getLeaves();
 	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
@@ -93,6 +93,19 @@ void CK2World::init(Object* obj)
 
 	log("There are a total of %d independent titles\n", independentTitles.size());
 	log("There are a total of %d hre members\n", hreMembers.size());
+}
+
+
+void CK2World::addDynasties(Object* obj)
+{
+	vector<Object*> dynastyLeaves = obj->getLeaves();
+	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
+	{
+		int number = atoi( dynastyLeaves[i]->getKey().c_str() );
+		CK2Dynasty* newDynasty = new CK2Dynasty;
+		newDynasty->init(dynastyLeaves[i]);
+		dynasties.insert( make_pair(number, newDynasty) );
+	}
 }
 
 

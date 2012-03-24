@@ -45,3 +45,4 @@ Revision	Log Message
 43		EU3 nation have rulers and rulers have first names
 44		getvalue() ignores case
 45		Import explicit dynasties
+46		Import dynasties from dynasties.txt
