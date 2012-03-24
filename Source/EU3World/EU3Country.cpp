@@ -2,6 +2,7 @@
 #include "..\Log.h"
 #include "..\Parsers\Parser.h"
 #include "..\Configuration.h"
+#include "..\Date.h"
 #include <fstream>
 using namespace std;
 
@@ -10,15 +11,33 @@ void EU3Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
+	fprintf(output, "	history=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		1399.10.13=\n");
+	fprintf(output, "		{\n");
+	if (monarch != NULL)
+	{
+		monarch->output(output);
+	}
+	fprintf(output, "		}\n");
+	fprintf(output, "	}\n");
 	if(government != "")
 	{
 		fprintf(output, "	government=%s\n", government.c_str());
+	}
+	if (monarch != NULL)
+	{
+		fprintf(output, "	monarch=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		id=%d\n", monarch->getID());
+		fprintf(output, "		type=37\n");
+		fprintf(output, "	}\n");
 	}
 	fprintf(output, "}\n");
 }
 
 
-void EU3Country::init(string newTag, string newHistoryFile)
+void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 {
 	tag			= newTag;
 	historyFile	= newHistoryFile;
@@ -44,12 +63,34 @@ void EU3Country::init(string newTag, string newHistoryFile)
 	{
 		government = leaves[0]->getLeaf();
 	}
+
+	monarch = NULL;
+	vector<Object*> objectList = obj->getLeaves();
+	for (unsigned int i = 0; i < objectList.size(); i++)
+	{
+		string key = objectList[i]->getKey();
+		if (key[0] == '1')
+		{
+			date histDate(key);
+			if (histDate <= startDate)
+			{
+				vector<Object*> newMonarchObj = objectList[i]->getValue("monarch");
+				if (newMonarchObj.size() > 0)
+				{
+					monarch = new EU3Ruler(newMonarchObj[0]);
+				}
+			}
+		}
+	}
 }
 
 
 void EU3Country::convert(CK2Title* src)
 {
 	government = "";
+
+	//delete monarch; TODO: find out why this crashes things
+	monarch = new EU3Ruler(src->getHolder()->getName(), 1, 1, 1, "blank");
 }
 
 

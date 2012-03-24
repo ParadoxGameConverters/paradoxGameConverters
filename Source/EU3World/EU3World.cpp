@@ -186,7 +186,7 @@ void EU3World::addPotentialCountries()
 		}
 
 		EU3Country* newCountry = new EU3Country;
-		newCountry->init(tag, filename);
+		newCountry->init(tag, filename, startDate);
 		countries.push_back(newCountry);
 
 		europeanCountries.push_back(tag);	//TODO: determine this more properly

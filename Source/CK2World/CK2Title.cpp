@@ -49,6 +49,12 @@ string CK2Title::getTitleString()
 }
 
 
+CK2Character* CK2Title::getHolder()
+{
+	return holder;
+}
+
+
 string CK2Title::getLiegeString()
 {
 	return liegeString;

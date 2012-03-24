@@ -27,6 +27,11 @@ public:
 		return getInstance()->HRETitle;
 	}
 
+	static int getID()
+	{
+		return getInstance()->id++;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -40,6 +45,8 @@ private:
 	string	CK2Path;
 	string	EU3Path;
 	string	HRETitle;
+
+	int		id;
 };
 
 #endif // CONFIGURATION_H_

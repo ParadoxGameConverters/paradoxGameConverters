@@ -9,15 +9,16 @@
 class CK2Title
 {
 	public:
-		void			init(Object*, map<int, CK2Character*>);
-		void			addLiege(CK2Title*);
-		void			addVassal(CK2Title*);
-		void			addToHRE();
-		string		getTitleString();
-		string		getLiegeString();
-		CK2Title*	getLiege();
-		bool			isIndependent();
-		bool			isInHRE();
+		void				init(Object*, map<int, CK2Character*>);
+		void				addLiege(CK2Title*);
+		void				addVassal(CK2Title*);
+		void				addToHRE();
+		string			getTitleString();
+		CK2Character*	getHolder();
+		string			getLiegeString();
+		CK2Title*		getLiege();
+		bool				isIndependent();
+		bool				isInHRE();
 		~CK2Title();
 	private:
 		string				titleString;

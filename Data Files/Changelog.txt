@@ -42,3 +42,4 @@ Revision	Log Message
 40		Fix log when province history file not found
 41		Characters imported
 42		Add new source files from last change
+43		EU3 nation have rulers and rulers have first names
