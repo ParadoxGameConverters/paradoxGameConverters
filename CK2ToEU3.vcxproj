@@ -92,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="Source\CK2World\CK2Barony.cpp" />
     <ClCompile Include="Source\CK2World\CK2Character.cpp" />
+    <ClCompile Include="Source\CK2World\CK2Dynasty.cpp" />
     <ClCompile Include="Source\CK2World\CK2Province.cpp" />
     <ClCompile Include="Source\CK2World\CK2Title.cpp" />
     <ClCompile Include="Source\CK2World\CK2World.cpp" />
@@ -111,6 +112,7 @@
   <ItemGroup>
     <ClInclude Include="Source\CK2World\CK2Barony.h" />
     <ClInclude Include="Source\CK2World\CK2Character.h" />
+    <ClInclude Include="Source\CK2World\CK2Dynasty.h" />
     <ClInclude Include="Source\CK2World\CK2Province.h" />
     <ClInclude Include="Source\CK2World\CK2Title.h" />
     <ClInclude Include="Source\CK2World\CK2World.h" />

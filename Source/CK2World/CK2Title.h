@@ -9,7 +9,7 @@
 class CK2Title
 {
 	public:
-		void				init(Object*, map<int, CK2Character*>);
+		void				init(Object*, map<int, CK2Character*>&);
 		void				addLiege(CK2Title*);
 		void				addVassal(CK2Title*);
 		void				addToHRE();

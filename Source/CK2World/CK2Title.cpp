@@ -2,7 +2,7 @@
 
 
 
-void CK2Title::init(Object* obj,  map<int, CK2Character*> characters)
+void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 {
 	titleString = obj->getKey();
 	vector<Object*> liegeObjs = obj->getValue("liege");

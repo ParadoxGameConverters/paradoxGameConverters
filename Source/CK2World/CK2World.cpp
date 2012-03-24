@@ -18,18 +18,32 @@ void CK2World::init(Object* obj)
 		date newDate("1399.10.14");
 	}
 
+	// get dynasties
+	printf("	Getting dynasties\n");
+	vector<Object*> dynastyLeaves = obj->getValue("dynasties");
+	dynastyLeaves = dynastyLeaves[0]->getLeaves();
+	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
+	{
+		int number = atoi( dynastyLeaves[i]->getKey().c_str() );
+		CK2Dynasty* newDynasty = new CK2Dynasty;
+		newDynasty->init(dynastyLeaves[i]);
+		dynasties.insert( make_pair(number, newDynasty) );
+	}
+
 	// get characters
+	printf("	Getting characters\n");
 	vector<Object*> characterLeaves = obj->getValue("character");
 	characterLeaves = characterLeaves[0]->getLeaves();
 	for (unsigned int i = 0; i < characterLeaves.size(); i++)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
 		CK2Character* newCharacter = new CK2Character;
-		newCharacter->init(characterLeaves[i]);
+		newCharacter->init(characterLeaves[i], dynasties);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
 	// get titles
+	printf("	Getting titles\n");
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
@@ -43,6 +57,7 @@ void CK2World::init(Object* obj)
 	}
 
 	// get provinces
+	printf("	Getting provinces\n");
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		string key = leaves[i]->getKey();
@@ -55,6 +70,7 @@ void CK2World::init(Object* obj)
 	}
 
 	// create tree of vassal/liege relationships
+	printf("	Relating vassals and lieges\n");
 	string hreTitle = Configuration::getHRETitle();
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
