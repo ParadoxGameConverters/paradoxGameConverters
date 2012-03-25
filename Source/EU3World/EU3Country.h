@@ -25,6 +25,7 @@ class EU3Country
 		string					government;
 		EU3Ruler*				monarch;
 		vector<EU3History*>	history;
+		vector<EU3Ruler*>		previousMonarchs;
 };
 
 

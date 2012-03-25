@@ -49,3 +49,4 @@ Revision	Log Message
 47		Export dynasty name with ruler
 48		Import history of former rulers and write it out
 49		Add Hungary1453_01_01
+50		Output previous_ruler section

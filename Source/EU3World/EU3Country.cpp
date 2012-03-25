@@ -18,7 +18,7 @@ void EU3Country::output(FILE* output)
 		history[i]->output(output);
 	}
 	fprintf(output, "	}\n");
-	if(government != "")
+	if (government != "")
 	{
 		fprintf(output, "	government=%s\n", government.c_str());
 	}
@@ -27,6 +27,14 @@ void EU3Country::output(FILE* output)
 		fprintf(output, "	monarch=\n");
 		fprintf(output, "	{\n");
 		fprintf(output, "		id=%d\n", monarch->getID());
+		fprintf(output, "		type=37\n");
+		fprintf(output, "	}\n");
+	}
+	for (unsigned int i = 0; i < previousMonarchs.size(); i++)
+	{
+		fprintf(output, "	previous_monarch=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		id=%d\n", previousMonarchs[i]->getID());
 		fprintf(output, "		type=37\n");
 		fprintf(output, "	}\n");
 	}
@@ -94,11 +102,17 @@ void EU3Country::convert(CK2Title* src)
 		newHistory->init(oldHistory[i]);
 		history.push_back(newHistory);
 
+		if (newHistory->getMonarch() != NULL)
+		{
+			previousMonarchs.push_back(newHistory->getMonarch());
+		}
+
 		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
 		{
 			monarch = newHistory->getMonarch();
 		}
 	}
+	previousMonarchs.pop_back();
 }
 
 
