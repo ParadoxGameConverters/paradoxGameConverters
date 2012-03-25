@@ -22,6 +22,7 @@ class V2Province {
 		int					getFort() const { return fortLevel; };
 		int					getNavalBase() const { return navalBaseLevel; };
 		bool				containsPop(int id) const;
+		double				getAvgMil() const;
 
 	private:
 		int				num;

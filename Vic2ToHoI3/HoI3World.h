@@ -29,6 +29,7 @@ private:
 		void					checkManualFaction(const countryMapping& countryMap, const vector<string>& candidateTags, vector<string>& destination, string logName);
 		void					factionSatellites(vector<string>& faction);
 		vector<int>				getPortProvinces(vector<int> locationCandidates);
+		HoI3RegGroup			createTheatre(HoI3Province*);
 
 		vector<HoI3Province>	provinces;
 		vector<HoI3Country>		countries;
@@ -37,6 +38,7 @@ private:
 		vector<string>			axisFaction;
 		vector<string>			alliesFaction;
 		vector<string>			cominternFaction;
+		map<int, string>		continents;  // < province, continent >
 };
 
 

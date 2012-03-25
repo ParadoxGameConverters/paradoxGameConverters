@@ -77,7 +77,10 @@ class HoI3RegGroup // also Navy, Air
 		static void				resetRegGroupNameCounts();
 		string					getName() const { return name; };
 		void					setLocation(int provinceID) { location = provinceID; };
+		void					setLocationContinent(string continent) { location_continent = continent; };
+		string					getLocationContinent() const { return location_continent; };
 		bool					addRegiment(HoI3Regiment reg, bool allowPromote);
+		void					addChild(HoI3RegGroup group);
 		void					setFuelSupplies(double supplyLevel) { supplies = supplyLevel; fuel = supplyLevel; };
 		void					setForceType(ForceType _type) { force_type = _type; };
 		ForceType				getForceType() const { return force_type; };
@@ -86,14 +89,15 @@ class HoI3RegGroup // also Navy, Air
 		bool					isEmpty() { return (regiments.size() == 0 && children.size() == 0); };
 		static void				resetHQCounts();
 		void					createHQs(HoI3RegimentType hqType);
+		void					setCommandLevel(CommandLevel lvl) { command_level = lvl; };
 
 	private:
-		void					setCommandLevel(CommandLevel lvl) { command_level = lvl; };
 		HoI3RegGroup			createChild();
 
 		HoI3ArmyID				id;
 		string					name;
 		int						location;
+		string					location_continent; // cached value
 		vector<HoI3Regiment>	regiments;
 		double					supplies;
 		double					fuel;

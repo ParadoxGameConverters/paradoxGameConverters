@@ -163,6 +163,21 @@ void HoI3Country::addArmy(HoI3RegGroup _army)
 }
 
 
+void HoI3Country::addTheatre(HoI3RegGroup _theatre)
+{
+	vector<HoI3RegGroup> newArmies;
+	for (vector<HoI3RegGroup>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	{
+		if (itr->getLocationContinent() == _theatre.getLocationContinent())
+			_theatre.addChild(*itr);
+		else
+			newArmies.push_back(*itr);
+	}
+	newArmies.push_back(_theatre);
+	armies.swap(newArmies);
+}
+
+
 void HoI3Country::addProvince(int index)
 {
 	provinces.push_back(index);
@@ -188,10 +203,4 @@ void HoI3Country::createArmyHQs(HoI3RegimentType hqBrigade)
 	{
 		itr->createHQs(hqBrigade);
 	}
-}
-
-
-void HoI3Country::createTheatres()
-{
-	// XXX: create theatres
 }

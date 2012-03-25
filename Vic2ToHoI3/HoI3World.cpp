@@ -74,6 +74,24 @@ void HoI3World::init(string HoI3Loc)
 			}
 		}
 	}
+
+	obj2 = doParseFile((HoI3Loc + "\\map\\continent.txt").c_str());
+	vector<Object*> objCont = obj2->getLeaves();
+	if (objCont.size() == 0)
+	{
+		log("Error: map\\continent.txt failed to parse.");
+		printf("Error: map\\continent.txt failed to parse.");
+		exit(1);
+	}
+	for (vector<Object*>::iterator itr = objCont.begin(); itr != objCont.end(); ++itr)
+	{
+		string cont = (*itr)->getKey();
+		vector<string> provs = (*itr)->getTokens();
+		for (vector<string>::iterator pitr = provs.begin(); pitr != provs.end(); ++pitr)
+		{
+			continents[atoi(pitr->c_str())] = cont;
+		}
+	}
 }
 
 
@@ -430,6 +448,8 @@ void HoI3World::convertProvinces(V2World sourceWorld, provinceMapping provMap, c
 							provinces[i].requireInfrastructure((int)Configuration::getMinInfra());
 							provinces[i].requireInfrastructure((*vitr)->getInfra());
 
+							provinces[i].setAvgMil((*vitr)->getAvgMil());
+
 							// XXX: how shall we set industry?
 						}
 					}
@@ -657,6 +677,19 @@ vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 }
 
 
+HoI3RegGroup HoI3World::createTheatre(HoI3Province* province)
+{
+	HoI3RegGroup newTheatre;
+	newTheatre.setCommandLevel(theatre);
+	newTheatre.setForceType(land);
+	newTheatre.setFuelSupplies(100.0);
+	newTheatre.setLocation(province->getNum());
+	newTheatre.setLocationContinent(continents[province->getNum()]);
+	newTheatre.setName(province->getName() + " HQ");
+	return newTheatre;
+}
+
+
 void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
@@ -778,6 +811,8 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 				}
 			}
 			destArmy.setLocation(selectedLocation);
+			if (!aitr->getAtSea())
+				destArmy.setLocationContinent(continents[selectedLocation]);
 			HoI3Province* locationProvince;
 			for (vector<HoI3Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 			{
@@ -790,6 +825,8 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 			destAirForce.setFuelSupplies(aitr->getSupplies());
 			destAirForce.setForceType(air);
 			destAirForce.setLocation(selectedLocation);
+			if (!aitr->getAtSea())
+				destAirForce.setLocationContinent(continents[selectedLocation]);
 
 			vector<V2Regiment> sourceRegiments = aitr->getRegiments();
 			for (vector<V2Regiment>::iterator ritr = sourceRegiments.begin(); ritr != sourceRegiments.end(); ++ritr)
@@ -845,8 +882,55 @@ void HoI3World::convertArmies(V2World sourceWorld, provinceMapping provinceMap, 
 			}
 		}
 
-		// Put the package together
-		itr->createTheatres();
+		// Create a theatre in the capital
+		HoI3Province* capProv = NULL;
+		for (vector<HoI3Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+		{
+			if (pitr->getNum() == itr->getCapital())
+			{
+				capProv = &(*pitr);
+				break;
+			}
+		}
+		if (!capProv)
+			log("Error: no capital for country %s, can't generate theatres!\n", itr->getTag().c_str());
+		else
+		{
+			HoI3RegGroup theatre = createTheatre(capProv);
+			itr->addTheatre(theatre);
+			vector<int> provs = itr->getProvinces();
+			if (provs.size() > 100)
+			{
+				// need more theatres - find the least-militant province on each continent
+				string capCont = continents[capProv->getNum()];
+				map<string, pair<HoI3Province*, double> > theatres;
+				theatres[capCont] = pair<HoI3Province*, double>(capProv, 0.0);
+				for (vector<int>::iterator pitr = provs.begin(); pitr != provs.end(); ++pitr)
+				{
+					string pCont = continents[provinces[*pitr].getNum()];
+					if (pCont == capCont)
+						continue;
+					else
+					{
+						map<string, pair<HoI3Province*, double> >::iterator titr = theatres.find(pCont);
+						if (titr == theatres.end() || provinces[*pitr].getAvgMil() < titr->second.second)
+						{
+							theatres[pCont] = pair<HoI3Province*, double>(&(provinces[*pitr]), provinces[*pitr].getAvgMil());
+						}
+					}
+				}
+				for (map<string, pair<HoI3Province*, double> >::iterator titr = theatres.begin(); titr != theatres.end(); ++titr)
+				{
+					if (titr->first != capCont)
+					{
+						HoI3RegGroup theatre = createTheatre(titr->second.first);
+						itr->addTheatre(theatre);
+					}
+				}
+			}
+		}
+
+		// Generate HQ units
 		itr->createArmyHQs(hqBrigade);
 	}
 }

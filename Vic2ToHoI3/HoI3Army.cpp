@@ -186,6 +186,7 @@ HoI3RegGroup HoI3RegGroup::createChild()
 {
 	HoI3RegGroup newChild;
 	newChild.setLocation(location);
+	newChild.setLocationContinent(location_continent);
 	newChild.setFuelSupplies(fuel);
 	newChild.setForceType(force_type);
 	newChild.setAtSea(at_sea);
@@ -259,6 +260,15 @@ void HoI3RegGroup::setName()
 		break;
 	}
 	name = newname.str();
+}
+
+
+void HoI3RegGroup::addChild(HoI3RegGroup newChild)
+{
+	if (command_level != theatre)
+		log("Error: tried to externally add a child to a non-theatre army group!\n");
+
+	children.push_back(newChild);
 }
 
 

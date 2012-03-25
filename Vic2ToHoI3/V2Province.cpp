@@ -143,3 +143,15 @@ bool V2Province::containsPop(int id) const
 	}
 	return false;
 }
+
+double V2Province::getAvgMil() const
+{
+	double avgMil = 0.0;
+	int runPop = 0;
+	for (vector<V2Pop>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	{
+		avgMil = ((avgMil * runPop) + (itr->getMil() * itr->getSize())) / (runPop + itr->getSize());
+		runPop += itr->getSize();
+	}
+	return avgMil;
+}

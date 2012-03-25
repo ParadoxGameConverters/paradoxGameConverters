@@ -21,10 +21,12 @@ class HoI3Country
 		void					setSourceCountryIndex(int);
 		int						getSourceCountryIndex();
 		void					setCapital(int);
+		int						getCapital() const					{ return capital; };
 		void					output(FILE*);
 		void					addRelations(HoI3Relations);
 		HoI3Relations*			getRelations(string);
 		void					addArmy(HoI3RegGroup);
+		void					addTheatre(HoI3RegGroup);
 		void					sortRelations(const vector<string>& order);
 		void					setMoney(double);
 		void					addLoan(string creditor, double size, double interest);
@@ -38,7 +40,6 @@ class HoI3Country
 		void					setLastElection(date electionDate)	{ lastElection = electionDate; };
 
 		void					createArmyHQs(HoI3RegimentType hqBrigade);
-		void					createTheatres();
 
 		// laws
 		void					setCivilLaw(string newLaw)			{ civil_law = newLaw; };
@@ -50,8 +51,6 @@ class HoI3Country
 		void					setTrainingLaw(string newLaw)		{ training_laws = newLaw; };
 
 	private:
-		void outputTech(FILE*);
-
 		string				tag;
 		int					capital;
 		int					sourceCountryIndex;

@@ -15,6 +15,7 @@ void HoI3Province::init(int newNumber)
 	metal = oil = rare_materials = energy = manpower = leadership = 0.0;
 	is_land = false;
 	is_blacklisted_port = false;
+	avg_mil = 0.0;
 
 	char sNum[8];
 	sprintf_s(sNum, 8, "%d", num);

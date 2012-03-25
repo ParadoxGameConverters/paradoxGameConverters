@@ -10,6 +10,7 @@ class V2Pop
 		string					getType() const { return type; };
 		int						getId() const { return id; };
 		int						getSize() const { return size; };
+		double					getMil() const { return mil; };
 
 	private:
 		string					type;
