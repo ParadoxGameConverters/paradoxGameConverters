@@ -5,6 +5,14 @@
 #include <fstream>
 #include "Configuration.h"
 #include "Parsers/Parser.h"
+#include <math.h>
+
+#undef IND_DIAG
+
+#ifdef IND_DIAG
+static map<int, int> industryDistribution;
+static map<int, int> ncraftsDistribution;
+#endif
 
 void HoI3Province::init(int newNumber)
 {
@@ -13,6 +21,8 @@ void HoI3Province::init(int newNumber)
 
 	points = 0;
 	metal = oil = rare_materials = energy = manpower = leadership = 0.0;
+	industry = 0;
+	is_coastal = false;
 	is_land = false;
 	is_blacklisted_port = false;
 	avg_mil = 0.0;
@@ -84,6 +94,19 @@ void HoI3Province::init(int newNumber)
 					leadership = atof(results[0]->getLeaf().c_str());
 				}
 
+#ifdef IND_DIAG
+				results = obj->getValue("industry");
+				if (results.size() > 0)
+				{
+					int temp_industry = atoi(results[0]->getLeaf().c_str());
+					map<int, int>::iterator itr = industryDistribution.find(temp_industry);
+					if (itr == industryDistribution.end())
+						industryDistribution[temp_industry] = 1;
+					else
+						++itr->second;
+				}
+#endif
+
 				_findclose(fileListing);
 				break;
 			}
@@ -92,7 +115,7 @@ void HoI3Province::init(int newNumber)
 	}
 	_findclose(dirListing);
 
-	naval_base = air_base = industry = land_fort = coastal_fort = anti_air = infrastructure = 0;
+	naval_base = air_base = land_fort = coastal_fort = anti_air = infrastructure = 0;
 
 	// hack for naval bases.  some coastal provinces can't have a naval base at all.
 	static vector<int> port_blacklist;
@@ -154,9 +177,44 @@ void HoI3Province::addCore(string newCore)
 		cores.push_back(newCore);
 }
 
+void HoI3Province::setNCrafts(int nc)
+{
+	int realnc = max(0, nc - 70000);
+	ncrafts = (int)log(double(realnc / 8000) * realnc);
+	ncrafts = max(0, ncrafts - 10);
+#ifdef IND_DIAG
+	map<int, int>::iterator itr = ncraftsDistribution.find(ncrafts);
+	if (itr == ncraftsDistribution.end())
+		ncraftsDistribution[ncrafts] = 1;
+	else
+		++itr->second;
+#endif
+	industry = ncrafts;
+};
+
 
 void HoI3Province::output(FILE * output)
 {
+#ifdef IND_DIAG
+	static bool outputDistribution = false;
+	if (!outputDistribution)
+	{
+		for (int i = 0; i < 10; ++i)
+		{
+			map<int, int>::iterator itr = industryDistribution.find(i);
+			if (itr != industryDistribution.end())
+				log("GC Industry Distribution %d: %d\n", i, itr->second);
+		}
+		for (int i = 0; i < 100; ++i)
+		{
+			map<int, int>::iterator itr = ncraftsDistribution.find(i);
+			if (itr != ncraftsDistribution.end())
+				log("NCrafts Industry Distribution %d: %d\n", i, itr->second);
+		}
+		outputDistribution = true;
+	}
+#endif
+
 	fprintf(output, "%d=\n", num);
 	fprintf(output, "{\n");
 	// HoI doesn't store province names in the save???

@@ -24,6 +24,8 @@ class HoI3Province {
 		double		getAvgMil() const { return avg_mil; };
 		void		setAvgMil(double mil) { avg_mil = mil; };
 
+		void		setNCrafts(int nc);
+
 		void		requireNavalBase(int min);
 		void		requireAirBase(int min);
 		void		requireIndustry(int min);
@@ -43,6 +45,7 @@ class HoI3Province {
 		bool			is_blacklisted_port;
 
 		double			avg_mil;
+		int				ncrafts;
 
 		int				points;
 		double			metal;

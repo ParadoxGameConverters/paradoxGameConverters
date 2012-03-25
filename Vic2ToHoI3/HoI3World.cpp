@@ -449,6 +449,9 @@ void HoI3World::convertProvinces(V2World sourceWorld, provinceMapping provMap, c
 							provinces[i].requireInfrastructure((*vitr)->getInfra());
 
 							provinces[i].setAvgMil((*vitr)->getAvgMil());
+							provinces[i].setNCrafts((*vitr)->getPopulation("craftsmen") / mitr->second.provinces.size()
+												  + (*vitr)->getPopulation("artisans") / mitr->second.provinces.size()
+												  + (*vitr)->getPopulation("clerks") * 2 / mitr->second.provinces.size());
 
 							// XXX: how shall we set industry?
 						}
