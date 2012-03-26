@@ -199,8 +199,6 @@ link = { ck2 = 826 ck2 = 827 eu3 = 333 }	# Menorca, Mallorca -> The Baleares
 link = { ck2 = 325 ck2 = 326 eu3 = 127 }	# Arborea, Cagliari -> Sardinia
 link = { ck2 = 324 eu3 = 1247 }	# Corsica -> Corsica
 link = { ck2 = 812 eu3 = 126 }	# Malta -> Malta
-link = { ck2 = 340 ck2 = 342 ck2 = 341 eu3 = 125 }	# Palermo, Girgenti, Trapani -> Palermo
-link = { ck2 = 339 ck2 = 343 eu3 = 124 }	# Messina, Siracusa -> Messina
 link = { ck2 = 479 ck2 = 480 eu3 = 163 }	# Kaneia, Chandax -> Crete
 link = { ck2 = 483 eu3 = 320 }	# Rhodos -> Rhodes
 link = { ck2 = 757 ck2 = 756 eu3 = 321 }	# Famagusta, Limisol -> Cyprus
@@ -209,12 +207,9 @@ link = { ck2 = 484 eu3 = 164 }	# Naxos -> Naxos
 # Italy
 link = { ck2 = 340 ck2 = 342 ck2 = 341 eu3 = 125 }	# Palermo, Girgenti, Trapani -> Palermo
 link = { ck2 = 343 ck2 = 339 eu3 = 124 }	# Siracusa, Messina -> Messina
-link = { ck2 = 812 eu3 = 126 }	# Malta -> Malta
-link = { ck2 = 325 ck2 = 326 eu3 = 127 }	# Arborea, Cagliari -> Sardinia
 link = { ck2 = 344 ck2 = 337 ck2 = 338 eu3 = 123 }	# Taranto, Catanzaro, Reggio -> Calabria
 link = { ck2 = 348 ck2 = 347 ck2 = 346 ck2 = 345 eu3 = 122 }	# Foggia, Apulia, Bari, Lecce -> Apulia
 link = { ck2 = 356 eu3 = 112 }	# Venezia -> Venezia
-link = { ck2 = 324 eu3 = 1247 }	# Corsica -> Corsica
 link = { ck2 = 333 ck2 = 243 eu3 = 118 }	# Rome, Orvieto -> Roma
 link = { ck2 = 350 eu3 = 119 }	# Ancona -> Ancona
 link = { ck2 = 349 ck2 = 335 eu3 = 120 }	# Spoleto, Benevento -> Abruzzi
@@ -326,6 +321,66 @@ link = { ck2 = 139 eu3 = 179 }	# Bourges -> Berry
 link = { ck2 = 131 eu3 = 185 }	# Sens -> Nemours
 link = { ck2 = 132 ck2 = 136 ck2 = 137 eu3 = 191 }	# Auxerre, Dijon, Nevers -> Nevers
 link = { ck2 = 146 ck2 = 226 ck2 = 225 ck2 = 240 eu3 = 190 }	# Bourbon, Charolais, Mâcon, Chalons -> Bourbon
+
+# Central Europe
+link = { ck2 = 83 eu3 = 99 eu3 = 98 }	# Gelre -> Gelre, Utrecht
+link = { ck2 = 84 eu3 = 100 }	# Friesland -> Friesland
+link = { ck2 = 85 eu3 = 55 }	# Ostfriesland -> Oldenburg
+link = { ck2 = 86 eu3 = 1874 }	# Oldenburg -> Bremen
+link = { ck2 = 848 eu3 = 54 }	# Bremen -> Stade
+link = { ck2 = 262 eu3 = 45 }	# Lübeck -> Lübeck
+link = { ck2 = 260 eu3 = 46 }	# Mecklenburg -> Mecklenburg
+link = { ck2 = 304 ck2 = 306 ck2 = 307 eu3 = 47 }	# Rügen, Rostock, Werle -> Vorpommern
+link = { ck2 = 308 ck2 = 365 eu3 = 50 }	# Wolgast, Brandenburg -> Brandenburg
+link = { ck2 = 364 eu3 = 1763 eu3 = 60 }	# Lausitz -> Niederlausitz, Oberlausitz
+link = { ck2 = 366 eu3 = 1858 eu3 = 49 }	# Stettin -> Stettin, Neumark
+link = { ck2 = 437 eu3 = 265 }	# Praha -> Moravia
+link = { ck2 = 363 eu3 = 266 }	# Litomerice -> Bohemia
+link = { ck2 = 361 eu3 = 64 }	# Niederbayern -> Niederbayern
+link = { ck2 = 439 ck2 = 362 eu3 = 267 }	# Plzen, Domazlice -> Sudety
+link = { ck2 = 252 eu3 = 1872 }	# Ulm -> Ulm
+link = { ck2 = 448 eu3 = 76 }	# Salzburg -> Salzburg
+link = { ck2 = 316 eu3 = 73 }	# Tirol -> Tirol
+link = { ck2 = 359 eu3 = 1768 }	# Innsbruck -> Lienz
+link = { ck2 = 121 eu3 = 83 eu3 = 78 eu3 = 1876 }	# Nassau -> Nassau, Mainz, Frankfurt
+link = { ck2 = 87 eu3 = 56 }	# Osnabrück -> Osnabrück
+link = { ck2 = 88 eu3 = 86 }	# Münster -> Münster
+link = { ck2 = 89 ck2 = 90 eu3 = 1742 }	# Kleve, Jülich -> Limburg
+link = { ck2 = 91 eu3 = 95 }	# Loon -> Breda
+link = { ck2 = 119 eu3 = 84 eu3 = 85 }	# Köln -> Berg, Köln
+link = { ck2 = 257 eu3 = 57 eu3 = 1758 }	# Braunschweig -> Brunswick, Hannover
+link = { ck2 = 258 ck2 = 259 eu3 = 53 }	# Lüneburg, Celle -> Lüneburg
+link = { ck2 = 261 eu3 = 1857 }	# Hamburg -> Lauenburg
+link = { ck2 = 309 eu3 = 52 eu3 = 51 }	# Altmark -> Altmark, Ruppin
+link = { ck2 = 255 eu3 = 63 }	# Thüringen -> Thüringen
+link = { ck2 = 254 eu3 = 79 }	# Würzburg -> Würzburg
+link = { ck2 = 120 eu3 = 1762 eu3 = 81 eu3 = 82 }	# Göttingen -> Kassel, Hessen, Westfalen
+link = { ck2 = 310 eu3 = 1759 eu3 = 59 }	# Anhalt -> Potsdam, Meissen
+link = { ck2 = 256 eu3 = 58 }	# Weimar -> Anhalt
+link = { ck2 = 311 eu3 = 62 }	# Plauen -> Leipzig
+link = { ck2 = 312 eu3 = 61 eu3 = 1771 }	# Meissen -> Dresden, Erz
+link = { ck2 = 238 eu3 = 1871 }	# Valais -> Wallis
+link = { ck2 = 239 ck2 = 241 eu3 = 1867 }	# Genève, Neuchatel -> Freiburg
+link = { ck2 = 244 ck2 = 242 eu3 = 165 }	# Bern, Aargau -> Bern
+link = { ck2 = 134 eu3 = 1880 }	# Sundgau -> Sundgau
+link = { ck2 = 247 eu3 = 1873 }	# Chur -> Chur
+link = { ck2 = 246 eu3 = 166 }	# Grisons -> Schwyz
+link = { ck2 = 248 ck2 = 245 eu3 = 1870 }	# St. Gallen, Schwyz -> St Gallen
+link = { ck2 = 250 eu3 = 1869 }	# Breisgau -> Zürich
+link = { ck2 = 971 ck2 = 249 ck2 = 251 eu3 = 69 }	# Bodensee, Schwaben, Fürstenberg -> Konstanz
+link = { ck2 = 253 eu3 = 71 eu3 = 70 }	# Württemberg -> Ansbach, Württemberg
+link = { ck2 = 360 eu3 = 1868 eu3 = 65 }	# Oberbayern -> Augsburg, München
+link = { ck2 = 315 eu3 = 68 }	# Kempten -> Schwaben
+link = { ck2 = 314 eu3 = 1757 eu3 = 67 }	# Nürnberg -> Oberpfalz, Franken
+link = { ck2 = 313 eu3 = 66 }	# Bamberg -> Bamberg
+link = { ck2 = 125 eu3 = 72 eu3 = 74 }	# Baden -> Breisgau, Baden
+link = { ck2 = 126 eu3 = 75 }	# Nordgau -> Elsass
+link = { ck2 = 122 eu3 = 77 }	# Leiningen -> Pfalz
+link = { ck2 = 123 eu3 = 1760 }	# Mainz -> Koblenz
+link = { ck2 = 124 eu3 = 1761 eu3 = 80 }	# Pfalz -> Worms, Trier
+link = { ck2 = 118 eu3 = 1878 }	# Trier -> Aachen
+}
+
 
 # ## ROTW ####
 # ROTW - North America

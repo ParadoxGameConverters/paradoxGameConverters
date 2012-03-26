@@ -51,3 +51,4 @@ Revision	Log Message
 49		Add Hungary1453_01_01 save
 50		Output previous_ruler section
 51		Add Sicily save
+52		Central Europe Mapped, duplicate mappings removed.
