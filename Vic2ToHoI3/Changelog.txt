@@ -32,3 +32,12 @@
 405	Convert government type
 406	Convert last election date (fixes a few problems with democracies)
 407	Add changelog
+410	Small province oversight in Korea
+412	Fix a handful of holes in the mappings
+415	Configurable minimum infrastructure level
+416	Put ports and navies only in provinces where ports are legal
+423	Read pop information and use it to decide evenly-divided many-to-one province mappings
+428	Build army command heirarchies, and assign HQ units appropriately
+429	All nations get a theatre; nations with >100 provinces get one per continent
+430	Distribute IC based on production pops.  A bit generous at the moment.
+431	Add V2Pop.* to solution
