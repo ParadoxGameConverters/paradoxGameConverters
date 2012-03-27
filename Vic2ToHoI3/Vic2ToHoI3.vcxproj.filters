@@ -90,6 +90,9 @@
     <ClInclude Include="GovernmentMapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="V2Pop.h">
+      <Filter>Vic2 World</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Parsers\Parser.cpp">
@@ -157,6 +160,9 @@
     </ClCompile>
     <ClCompile Include="GovernmentMapper.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="V2Pop.cpp">
+      <Filter>Vic2 World</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
