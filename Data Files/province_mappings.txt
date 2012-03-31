@@ -379,7 +379,6 @@ link = { ck2 = 122 eu3 = 77 }	# Leiningen -> Pfalz
 link = { ck2 = 123 eu3 = 1760 }	# Mainz -> Koblenz
 link = { ck2 = 124 eu3 = 1761 eu3 = 80 }	# Pfalz -> Worms, Trier
 link = { ck2 = 118 eu3 = 1878 }	# Trier -> Aachen
-}
 
 
 # ## ROTW ####
