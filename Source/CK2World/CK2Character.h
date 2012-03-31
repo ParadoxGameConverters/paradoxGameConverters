@@ -16,12 +16,20 @@ class CK2Character
 		string		getName();
 		CK2Dynasty*	getDynasty();
 		date			getBirthDate();
+		void			setParents(map<int, CK2Character*>&);
+		void			addChild(CK2Character*);
 	private:
 		string		name;
 		string		religion;
 		string		culture;
 		CK2Dynasty*	dynasty;
 		date			birthDate;
+
+		int							fatherNum;
+		CK2Character*				father;
+		int							motherNum;
+		CK2Character*				mother;
+		vector<CK2Character*>	children;
 };
 
 

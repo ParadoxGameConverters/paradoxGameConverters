@@ -42,6 +42,12 @@ void CK2World::init(Object* obj)
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
+	printf("	Creating family trees\n");
+	for (map<int, CK2Character*>::iterator i = characters.begin(); i != characters.end(); i++)
+	{
+		i->second->setParents(characters);
+	}
+
 	// get titles
 	printf("	Getting titles\n");
 	vector<Object*> leaves = obj->getLeaves();

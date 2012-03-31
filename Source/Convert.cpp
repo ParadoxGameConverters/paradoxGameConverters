@@ -56,8 +56,8 @@ int main(int argc, char * argv[])
 
 
 	// Parse CK2 Save
-	log("Parsing CK2 save.\n");
-	printf("Parsing CK2 save.\n");
+	log("Getting CK2 data.\n");
+	printf("Getting CK2 data.\n");
 
 	printf("	Adding dynasties from dynasties.txt\n");
 	initParser();
@@ -75,6 +75,7 @@ int main(int argc, char * argv[])
 	CK2World srcWorld;
 	srcWorld.addDynasties(obj);
 	
+	printf("	Parsing CK2 save.\n");
 	initParser();
 	obj = getTopLevel();
 	read.open(inputFilename.c_str());
