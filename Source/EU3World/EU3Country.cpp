@@ -38,6 +38,14 @@ void EU3Country::output(FILE* output)
 		fprintf(output, "		type=37\n");
 		fprintf(output, "	}\n");
 	}
+	if (heir != NULL)
+	{
+		fprintf(output, "	heir=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		id=%d\n", heir->getID());
+		fprintf(output, "		type=37\n");
+		fprintf(output, "	}\n");
+	}
 	fprintf(output, "}\n");
 }
 
@@ -87,6 +95,8 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 			}
 		}
 	}
+
+	heir = NULL;
 }
 
 
@@ -113,6 +123,17 @@ void EU3Country::convert(CK2Title* src)
 		}
 	}
 	previousMonarchs.pop_back();
+
+	CK2Character* newHeir = src->getHeir();
+	if (newHeir != NULL)
+	{
+		heir = new EU3Ruler(newHeir);
+
+		EU3History* newHistory = new EU3History();
+		newHistory->initHeir(heir);
+		history.push_back(newHistory);
+	}
+	
 }
 
 

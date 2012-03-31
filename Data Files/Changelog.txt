@@ -56,3 +56,4 @@ Revision	Log Message
 54		Merge
 55		Lots of blocked nations
 56		Children in sorted order in family trees
+57		Primogeniture heirs

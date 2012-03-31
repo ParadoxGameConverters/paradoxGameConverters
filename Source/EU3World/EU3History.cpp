@@ -12,6 +12,17 @@ void EU3History::init(CK2History* src)
 	{
 		monarch = new EU3Ruler(holder);
 	}
+
+	heir = NULL;
+}
+
+
+void EU3History::initHeir(EU3Ruler* newHeir)
+{
+	when = newHeir->getBirthDate();
+
+	monarch = NULL;
+	heir = newHeir;
 }
 
 
@@ -21,7 +32,13 @@ void EU3History::output(FILE* output)
 	fprintf(output, "		{\n");
 	if (monarch != NULL)
 	{
+		fprintf(output,"			monarch=\n");
 		monarch->output(output);
+	}
+	if (heir != NULL)
+	{
+		fprintf(output,"			heir=\n");
+		heir->output(output);
 	}
 	fprintf(output, "		}\n");
 }

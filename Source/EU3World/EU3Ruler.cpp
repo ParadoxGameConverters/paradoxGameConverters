@@ -97,7 +97,6 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 
 void EU3Ruler::output(FILE* output)
 {
-	fprintf(output,"			monarch=\n");
 	fprintf(output,"			{\n");
 	fprintf(output,"				name=\"%s\"\n", name.c_str());
 	fprintf(output,"				DIP=%d\n", diplomacy);
@@ -117,4 +116,10 @@ void EU3Ruler::output(FILE* output)
 int EU3Ruler::getID()
 {
 	return id;
+}
+
+
+date EU3Ruler::getBirthDate()
+{
+	return birthDate;
 }

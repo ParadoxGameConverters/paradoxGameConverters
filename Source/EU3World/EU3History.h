@@ -12,11 +12,13 @@
 class EU3History {
 	public:
 		void			init(CK2History*);
+		void			initHeir(EU3Ruler*);
 		void			output(FILE*);
 		EU3Ruler*	getMonarch();
 	private:
 		date			when;
 		EU3Ruler*	monarch;
+		EU3Ruler*	heir;
 };
 
 

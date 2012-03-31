@@ -16,6 +16,7 @@ class CK2Title
 		void						addToHRE();
 		string					getTitleString();
 		CK2Character*			getHolder();
+		CK2Character*			getHeir();
 		vector<CK2History*>	getHistory();
 		string					getLiegeString();
 		CK2Title*				getLiege();
@@ -25,6 +26,8 @@ class CK2Title
 	private:
 		string					titleString;
 		CK2Character*			holder;
+		CK2Character*			heir;
+		string					successionLaw;
 		vector<CK2History*>	history;
 		string					liegeString;
 		CK2Title*				liege;

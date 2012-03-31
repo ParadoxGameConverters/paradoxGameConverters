@@ -17,6 +17,7 @@ class EU3Ruler
 		EU3Ruler(Object*);
 		void	output(FILE*);
 		int	getID();
+		date	getBirthDate();
 	private:
 		string	name;
 		int		diplomacy;

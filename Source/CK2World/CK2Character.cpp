@@ -28,6 +28,16 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties)
 	{
 		motherNum = -1;
 	}
+
+	vector<Object*> deathObj = obj->getValue("death_date");
+	if (deathObj.size() > 0)
+	{
+		dead = true;
+	}
+	else
+	{
+		dead = false;
+	}
 }
 
 
@@ -80,4 +90,32 @@ void CK2Character::addChild(CK2Character* newChild)
 	{
 		children.push_back(newChild);
 	}
+}
+
+
+bool CK2Character::isDead()
+{
+	return dead;
+}
+
+
+CK2Character* CK2Character::getPrimogenitureHeir()
+{
+	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+	{
+		if ( !(*i)->isDead() )
+		{
+			return *i;
+		}
+		else
+		{
+			CK2Character* possibleHeir = (*i)->getPrimogenitureHeir();
+			if (possibleHeir != NULL)
+			{
+				return possibleHeir;
+			}
+		}
+	}
+
+	return NULL;
 }
