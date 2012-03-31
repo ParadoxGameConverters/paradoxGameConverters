@@ -55,3 +55,4 @@ Revision	Log Message
 53		Create family trees
 54		Merge
 55		Lots of blocked nations
+56		Children in sorted order in family trees

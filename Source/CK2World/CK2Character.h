@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include <list>
 #include "..\Parsers\Object.h"
 #include "..\Date.h"
 #include "CK2Dynasty.h"
@@ -29,7 +30,7 @@ class CK2Character
 		CK2Character*				father;
 		int							motherNum;
 		CK2Character*				mother;
-		vector<CK2Character*>	children;
+		list<CK2Character*>		children;
 };
 
 

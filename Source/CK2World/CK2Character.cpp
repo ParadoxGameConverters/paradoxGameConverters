@@ -67,5 +67,17 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 
 void CK2Character::addChild(CK2Character* newChild)
 {
-	children.push_back(newChild);
+	bool inserted = false;
+	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+	{
+		if ((*i)->getBirthDate() > newChild->getBirthDate())
+		{
+			children.insert(i, newChild);
+			inserted = true;
+		}
+	}
+	if (!inserted)
+	{
+		children.push_back(newChild);
+	}
 }
