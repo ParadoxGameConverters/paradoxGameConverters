@@ -2,6 +2,24 @@
 
 
 
+CK2Character::CK2Character()
+{
+	name			= "";
+	religion		= "";
+	culture		= "";
+	dynasty		= NULL;
+	birthDate	= (string)"1.1.1";
+	dead			= true;
+	deathDate	= (string)"1.1.1";
+	fatherNum	= -1;
+	father		= NULL;
+	motherNum	= -1;
+	mother		= NULL;
+	children.clear();
+	female		= false;
+}
+
+
 void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties)
 {
 	name			= obj->getLeaf("birth_name");
@@ -32,11 +50,23 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties)
 	vector<Object*> deathObj = obj->getValue("death_date");
 	if (deathObj.size() > 0)
 	{
-		dead = true;
+		dead			= true;
+		deathDate	= deathObj[0]->getLeaf();
 	}
 	else
 	{
-		dead = false;
+		dead			= false;
+		deathDate	= (string)"1.1.1";
+	}
+
+	vector<Object*> femaleObj = obj->getValue("female");
+	if (femaleObj.size() > 0)
+	{
+		female = ( femaleObj[0]->getLeaf() == "yes" );
+	}
+	else
+	{
+		female = false;
 	}
 }
 
@@ -96,6 +126,18 @@ void CK2Character::addChild(CK2Character* newChild)
 bool CK2Character::isDead()
 {
 	return dead;
+}
+
+
+date CK2Character::getDeathDate()
+{
+	return deathDate;
+}
+
+
+bool CK2Character::isFemale()
+{
+	return female;
 }
 
 

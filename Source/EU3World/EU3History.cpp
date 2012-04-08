@@ -32,13 +32,11 @@ void EU3History::output(FILE* output)
 	fprintf(output, "		{\n");
 	if (monarch != NULL)
 	{
-		fprintf(output,"			monarch=\n");
-		monarch->output(output);
+		monarch->outputAsMonarch(output);
 	}
 	if (heir != NULL)
 	{
-		fprintf(output,"			heir=\n");
-		heir->output(output);
+		heir->outputAsHeir(output);
 	}
 	fprintf(output, "		}\n");
 }

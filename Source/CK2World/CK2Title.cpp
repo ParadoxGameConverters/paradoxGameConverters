@@ -19,6 +19,8 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	{
 		holder = characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ];
 	}
+
+	heir = false;
 	successionLaw = obj->getLeaf("succession");
 	if (successionLaw == "primogeniture")
 	{

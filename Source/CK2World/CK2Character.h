@@ -13,6 +13,7 @@ using namespace std;
 class CK2Character
 {
 	public:
+		CK2Character();
 		void				init(Object*, map<int, CK2Dynasty*>&);
 		string			getName();
 		CK2Dynasty*		getDynasty();
@@ -20,6 +21,8 @@ class CK2Character
 		void				setParents(map<int, CK2Character*>&);
 		void				addChild(CK2Character*);
 		bool				isDead();
+		date				getDeathDate();
+		bool				isFemale();
 		CK2Character*	getPrimogenitureHeir();
 	private:
 		string		name;
@@ -28,6 +31,8 @@ class CK2Character
 		CK2Dynasty*	dynasty;
 		date			birthDate;
 		bool			dead;
+		date			deathDate;
+		bool			female;
 
 		int							fatherNum;
 		CK2Character*				father;
