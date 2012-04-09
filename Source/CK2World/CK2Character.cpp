@@ -141,6 +141,12 @@ bool CK2Character::isFemale()
 }
 
 
+CK2Character* CK2Character::getFather()
+{
+	return father;
+}
+
+
 CK2Character* CK2Character::getPrimogenitureHeir()
 {
 	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)

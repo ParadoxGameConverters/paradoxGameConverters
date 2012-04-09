@@ -59,3 +59,4 @@ Revision	Log Message
 57		Primogeniture heirs
 58		More character information
 59		Temporary government of tribal despotism
+60		Search up the family tree for primogeniture heirs if needed

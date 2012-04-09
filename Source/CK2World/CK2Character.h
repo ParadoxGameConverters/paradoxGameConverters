@@ -23,6 +23,7 @@ class CK2Character
 		bool				isDead();
 		date				getDeathDate();
 		bool				isFemale();
+		CK2Character*	getFather();
 		CK2Character*	getPrimogenitureHeir();
 	private:
 		string		name;
