@@ -58,3 +58,4 @@ Revision	Log Message
 56		Children in sorted order in family trees
 57		Primogeniture heirs
 58		More character information
+59		Temporary government of tribal despotism

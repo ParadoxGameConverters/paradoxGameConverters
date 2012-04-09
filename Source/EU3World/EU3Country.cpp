@@ -22,6 +22,10 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "	government=%s\n", government.c_str());
 	}
+	else
+	{
+		fprintf(output, "	government=tribal_despotism\n");
+	}
 	if (monarch != NULL)
 	{
 		fprintf(output, "	monarch=\n");
