@@ -69,6 +69,56 @@ EU3Ruler::EU3Ruler(Object* obj)
 	{
 		dynasty = "blank";
 	}
+
+	vector<Object*> birthdateObjs = obj->getValue("birth_Date");
+	if (birthdateObjs.size() > 0)
+	{
+		birthDate = birthdateObjs[0]->getLeaf();
+	}
+	else
+	{
+		birthDate = (string)"1.1.1";
+	}
+
+	vector<Object*> deathdateObjs = obj->getValue("death_Date");
+	if (deathdateObjs.size() > 0)
+	{
+		deathDate = deathdateObjs[0]->getLeaf();
+	}
+	else
+	{
+		deathDate = (string)"1.1.1";
+	}
+
+	vector<Object*> claimObjs = obj->getValue("claim");
+	if (claimObjs.size() > 0)
+	{
+		claim = atoi( claimObjs[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		claim = 100;
+	}
+
+	vector<Object*> monarchNameObjs = obj->getValue("monarch_name");
+	if (monarchNameObjs.size() > 0)
+	{
+		monarchName = monarchNameObjs[0]->getLeaf();
+	}
+	else
+	{
+		monarchName = "";
+	}
+
+	vector<Object*> femaleObjs = obj->getValue("female");
+	if (femaleObjs.size() > 0)
+	{
+		female = (femaleObjs[0]->getLeaf() == "yes");
+	}
+	else
+	{
+		female = false;
+	}
 }
 
 
@@ -81,6 +131,10 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	id					= Configuration::getID();
 	dynasty			= "blank";
 	birthDate		= src->getBirthDate();
+	deathDate		= src->getDeathDate();
+	claim				= 100;
+	monarchName		= "";
+	female			= src->isFemale();
 
 	name = src->getName();
 	CK2Dynasty* dynPointer = src->getDynasty();
@@ -95,13 +149,18 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 }
 
 
-void EU3Ruler::output(FILE* output)
+void EU3Ruler::outputAsMonarch(FILE* output)
 {
+	fprintf(output,"			monarch=\n");
 	fprintf(output,"			{\n");
 	fprintf(output,"				name=\"%s\"\n", name.c_str());
 	fprintf(output,"				DIP=%d\n", diplomacy);
 	fprintf(output,"				ADM=%d\n", administration);
 	fprintf(output,"				MIL=%d\n", military);
+	if (female)
+	{
+		fprintf(output, "				female=yes\n");
+	}
 	fprintf(output,"				id=\n");
 	fprintf(output,"				{\n");
 	fprintf(output,"					id=%d\n", id);
@@ -109,6 +168,32 @@ void EU3Ruler::output(FILE* output)
 	fprintf(output,"				}\n");
 	fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
 	fprintf(output,"				birth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
+	fprintf(output,"			}\n");
+}
+
+
+void EU3Ruler::outputAsHeir(FILE* output)
+{
+	fprintf(output,"			heir=\n");
+	fprintf(output,"			{\n");
+	fprintf(output,"				name=\"%s\"\n", name.c_str());
+	fprintf(output,"				DIP=%d\n", diplomacy);
+	fprintf(output,"				ADM=%d\n", administration);
+	fprintf(output,"				MIL=%d\n", military);
+	if (female)
+	{
+		fprintf(output, "				female=yes\n");
+	}
+	fprintf(output,"				id=\n");
+	fprintf(output,"				{\n");
+	fprintf(output,"					id=%d\n", id);
+	fprintf(output,"					type=37\n");
+	fprintf(output,"				}\n");
+	fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+	fprintf(output,"				birth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
+	fprintf(output,"				death_date=\"%d.%d.%d\"\n", deathDate.year, deathDate.month, deathDate.day);
+	fprintf(output,"				claim=%d\n", claim);
+	fprintf(output,"				monarch_name=\"%s\"\n", monarchName.c_str());
 	fprintf(output,"			}\n");
 }
 

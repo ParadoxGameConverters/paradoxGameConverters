@@ -15,7 +15,8 @@ class EU3Ruler
 		EU3Ruler(string name, int dip, int adm, int mil, string dynasty);
 		EU3Ruler(CK2Character*);
 		EU3Ruler(Object*);
-		void	output(FILE*);
+		void	outputAsMonarch(FILE*);
+		void	outputAsHeir(FILE*);
 		int	getID();
 		date	getBirthDate();
 	private:
@@ -26,6 +27,10 @@ class EU3Ruler
 		int		id;
 		string	dynasty;
 		date		birthDate;
+		date		deathDate;
+		int		claim;
+		string	monarchName;
+		bool		female;
 };
 
 

@@ -19,10 +19,21 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	{
 		holder = characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ];
 	}
+
+	heir = NULL;
 	successionLaw = obj->getLeaf("succession");
 	if (successionLaw == "primogeniture")
 	{
-		heir = holder->getPrimogenitureHeir();
+		CK2Character* tempHolder = holder;
+		do
+		{
+			heir = tempHolder->getPrimogenitureHeir();
+			tempHolder = tempHolder->getFather();
+			if (tempHolder == NULL)
+			{
+				break;
+			}
+		} while (heir == NULL);
 	}
 
 	vector<Object*> historyObjs = obj->getValue("history");
