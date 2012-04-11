@@ -497,6 +497,34 @@ link = { ck2 = 533 ck2 = 537 ck2 = 539 ck2 = 545 eu3 = 162 }	# Saris, Bereg, Mar
 link = { ck2 = 534 eu3 = 261 }	# Peremyshl -> Ruthenia
 link = { ck2 = 535 ck2 = 536 ck2 = 546 eu3 = 279 }	# Vladimir Volynsky, Galich, Terebovl -> Volhynia
 
+# Greece and Aegean
+link = { ck2 = 478 eu3 = 145 }	# Monemvasia -> Morea
+link = { ck2 = 476 ck2 = 477 ck2 = 481 eu3 = 1773 }	# Achaia, Methone, Korinthos -> Achaea
+link = { ck2 = 485 ck2 = 482 eu3 = 146 }	# Euboia, Atheniai -> Athens
+link = { ck2 = 475 ck2 = 473 ck2 = 472 ck2 = 474 eu3 = 144 }	# Hellas, Árta, Épieros, Cephalonia -> Janina
+link = { ck2 = 488 eu3 = 147 }	# Demetrias -> Larissa
+link = { ck2 = 489 eu3 = 1853 }	# Thessalia -> Kozani
+link = { ck2 = 490 ck2 = 491 ck2 = 492 eu3 = 148 }	# Thessalonike, Chalkidike, Strymon -> Macedonia
+link = { ck2 = 470 ck2 = 469 ck2 = 471 eu3 = 143 }	# Dyrrachion, Zeta, Ochrid -> Albania
+link = { ck2 = 493 ck2 = 494 ck2 = 495 ck2 = 487 eu3 = 149 }	# Philippopolis, Adrianopolis, Kaliopolis, Lesbos -> Edirne
+link = { ck2 = 468 eu3 = 138 }	# Ragusa -> Zeta
+link = { ck2 = 467 eu3 = 137 }	# Split -> Ragusa
+link = { ck2 = 496 eu3 = 151 }	# Byzantion -> Thrace
+link = { ck2 = 497 ck2 = 498 eu3 = 1764 }	# Thrake, Mesembria -> Burgas
+# Rest of Turkey
+link = { ck2 = 739 ck2 = 751 ck2 = 740 ck2 = 750 eu3 = 325 }	# Sinope, Paphlagonia, Herakleia, Nikaea -> Kastamon
+link = { ck2 = 741 ck2 = 742 eu3 = 316 }	# Nikomedeia, Prusa -> Bithynia
+link = { ck2 = 744 ck2 = 743 ck2 = 745 eu3 = 317 }	# Abydos, Kyzikos, Smyrna -> Bursa
+link = { ck2 = 746 ck2 = 748 eu3 = 318 }	# Ephesos, Laodikeia -> Smyrna
+link = { ck2 = 747 eu3 = 319 }	# Lykia -> Antalya
+link = { ck2 = 755 ck2 = 758 eu3 = 324 }	# Attaleia, Seleukeia -> Karaman
+link = { ck2 = 736 ck2 = 762 ck2 = 761 eu3 = 327 }	# Lykandos, Adana, Tarsos -> Adana
+link = { ck2 = 760 eu3 = 326 }	# Tyana -> Angora
+link = { ck2 = 753 eu3 = 1846 }	# Ancyra -> Yazgod
+link = { ck2 = 759 eu3 = 323 }	# Ikonion -> Konya
+link = { ck2 = 749 eu3 = 322 }	# Dorylaion -> Anatolia
+link = { ck2 = 754 eu3 = 1848 }	# Sozopolis -> Hamid
+
 # ## ROTW ####
 # ROTW - North America
 link = { eu3 = 1810 }	# NOTHING -> Alaska
