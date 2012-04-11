@@ -57,3 +57,4 @@ Revision	Log Message
 55		Lots of blocked nations
 56		Children in sorted order in family trees
 57		Primogeniture heirs
+58		Eastern Europe mapped.  All mappings (dirty) done.
