@@ -23,6 +23,7 @@ class CK2Character
 		bool				isDead();
 		date				getDeathDate();
 		bool				isFemale();
+		int*				getStats();
 		CK2Character*	getFather();
 		CK2Character*	getPrimogenitureHeir();
 	private:
@@ -34,12 +35,23 @@ class CK2Character
 		bool			dead;
 		date			deathDate;
 		bool			female;
+		int			stats[5];
 
 		int							fatherNum;
 		CK2Character*				father;
 		int							motherNum;
 		CK2Character*				mother;
 		list<CK2Character*>		children;
+};
+
+
+enum stats
+{
+	DIPLOMACY = 0,
+	MARTIAL,
+	STEWARDSHIP,
+	INTRIGUE,
+	LEARNING
 };
 
 

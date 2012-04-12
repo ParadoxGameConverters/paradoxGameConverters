@@ -60,3 +60,7 @@ Revision	Log Message
 58		More character information
 59		Temporary government of tribal despotism
 60		Search up the family tree for primogeniture heirs if needed
+61		Eastern Europe mapped.  All mappings (dirty) done.
+62		Merge
+63		greece & turkey
+64		Initial stat conversion

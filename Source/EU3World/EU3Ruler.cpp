@@ -146,6 +146,35 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	{
 		log("Error: %s does not have a dynasty!\n", name.c_str());
 	}
+
+	int* stats = src->getStats();
+	int bonus		= ( stats[INTRIGUE] + stats[LEARNING] ) / (3 * 3);
+	diplomacy		= stats[DIPLOMACY] / 3		+ bonus;
+	administration	= stats[STEWARDSHIP] / 3 	+ bonus;
+	military			= stats[MARTIAL] /3			+ bonus;
+	
+	int leftover	=	( stats[INTRIGUE] + stats[LEARNING] ) % (3 * 3);
+	leftover			+= stats[DIPLOMACY] % 3;
+	leftover			+= stats[STEWARDSHIP] % 3;
+	leftover			+= stats[MARTIAL] % 3;
+
+	diplomacy		+= leftover / (3 * 3);
+	administration	+= leftover / (3 * 3);
+	military			+= leftover / (3 * 3);
+	leftover			%= (3 * 3);
+
+	if ( (diplomacy >= administration) && (diplomacy >= military) )
+	{
+		diplomacy += leftover / 3;
+	}
+	else if (administration >= military)
+	{
+		administration += leftover / 3;
+	}
+	else
+	{
+		military += leftover / 3;
+	}
 }
 
 

@@ -1,4 +1,5 @@
 #include "CK2Character.h"
+#include "..\log.h"
 
 
 
@@ -17,6 +18,8 @@ CK2Character::CK2Character()
 	mother		= NULL;
 	children.clear();
 	female		= false;
+
+	memset(stats, 0, sizeof(stats));
 }
 
 
@@ -68,6 +71,26 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties)
 	{
 		female = false;
 	}
+
+	vector<Object*> attributesObj = obj->getValue("attributes");
+	if (attributesObj.size() > 0)
+	{
+		vector<string> attributeTokens = attributesObj[0]->getTokens();
+		stats[DIPLOMACY]		= atoi( attributeTokens[0].c_str() );
+		stats[MARTIAL]			= atoi( attributeTokens[1].c_str() );
+		stats[STEWARDSHIP]	= atoi( attributeTokens[2].c_str() );
+		stats[INTRIGUE]		= atoi( attributeTokens[3].c_str() );
+		stats[LEARNING]		= atoi( attributeTokens[4].c_str() );
+	}
+	else
+	{
+		stats[DIPLOMACY]		= 0;
+		stats[MARTIAL]			= 0;
+		stats[STEWARDSHIP]	= 0;
+		stats[INTRIGUE]		= 0;
+		stats[LEARNING]		= 0;
+	}
+
 }
 
 
@@ -138,6 +161,12 @@ date CK2Character::getDeathDate()
 bool CK2Character::isFemale()
 {
 	return female;
+}
+
+
+int* CK2Character::getStats()
+{
+	return stats;
 }
 
 
