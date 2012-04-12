@@ -25,7 +25,7 @@ class CK2Character
 		bool				isFemale();
 		int*				getStats();
 		CK2Character*	getFather();
-		CK2Character*	getPrimogenitureHeir();
+		CK2Character*	getPrimogenitureHeir(string);
 	private:
 		string		name;
 		string		religion;

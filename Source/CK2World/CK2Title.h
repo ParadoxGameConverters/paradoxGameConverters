@@ -28,6 +28,7 @@ class CK2Title
 		CK2Character*			holder;
 		CK2Character*			heir;
 		string					successionLaw;
+		string					genderLaw;
 		vector<CK2History*>	history;
 		string					liegeString;
 		CK2Title*				liege;

@@ -21,19 +21,36 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	}
 
 	heir = NULL;
+	genderLaw = obj->getLeaf("gender");
 	successionLaw = obj->getLeaf("succession");
 	if (successionLaw == "primogeniture")
 	{
 		CK2Character* tempHolder = holder;
 		do
 		{
-			heir = tempHolder->getPrimogenitureHeir();
+			heir = tempHolder->getPrimogenitureHeir(genderLaw);
 			tempHolder = tempHolder->getFather();
 			if (tempHolder == NULL)
 			{
 				break;
 			}
 		} while (heir == NULL);
+	}
+	else if (successionLaw == "gavelkind")
+	{
+		heir = NULL;
+	}
+	else if (successionLaw == "seniority")
+	{
+		heir = NULL;
+	}
+	else if (successionLaw == "feudal_elective")
+	{
+		heir = NULL;
+	}
+	else if (successionLaw == "turkish_succession")
+	{
+		heir = NULL;
 	}
 
 	vector<Object*> historyObjs = obj->getValue("history");
