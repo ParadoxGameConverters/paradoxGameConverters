@@ -32,6 +32,10 @@ EU3Ruler::EU3Ruler(Object* obj)
 	if (dipObjs.size() > 0)
 	{
 		diplomacy = atoi( dipObjs[0]->getLeaf().c_str() );
+		if (diplomacy < 1)
+		{
+			diplomacy = 1;
+		}
 	}
 	else
 	{
@@ -42,6 +46,10 @@ EU3Ruler::EU3Ruler(Object* obj)
 	if (admObjs.size() > 0)
 	{
 		administration = atoi( admObjs[0]->getLeaf().c_str() );
+		if (administration < 1)
+		{
+			administration = 1;
+		}
 	}
 	else
 	{
@@ -52,6 +60,10 @@ EU3Ruler::EU3Ruler(Object* obj)
 	if (milObjs.size() > 0)
 	{
 		military = atoi( milObjs[0]->getLeaf().c_str() );
+		if (military < 1)
+		{
+			military = 1;
+		}
 	}
 	else
 	{
