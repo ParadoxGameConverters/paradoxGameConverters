@@ -69,3 +69,4 @@ Revision	Log Message
 67		Unless Absolute Cognatic, female lines only considered after male ones
 68		Traits
 69		EU3 stats have a minimum of one
+70		Actually implement the stats floor

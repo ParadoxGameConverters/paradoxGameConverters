@@ -187,6 +187,19 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	{
 		military += leftover / 3;
 	}
+
+	if (diplomacy < 1)
+	{
+		diplomacy = 1;
+	}
+	if (military < 1)
+	{
+		military = 1;
+	}
+	if (administration < 1)
+	{
+		administration = 1;
+	}
 }
 
 
