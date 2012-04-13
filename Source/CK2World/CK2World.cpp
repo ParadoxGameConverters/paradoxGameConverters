@@ -38,7 +38,7 @@ void CK2World::init(Object* obj)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
 		CK2Character* newCharacter = new CK2Character;
-		newCharacter->init(characterLeaves[i], dynasties);
+		newCharacter->init(characterLeaves[i], dynasties, traits);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
@@ -115,6 +115,18 @@ void CK2World::addDynasties(Object* obj)
 }
 
 
+void CK2World::addTraits(Object* obj)
+{
+	vector<Object*> traitLeaves = obj->getLeaves();
+	for (unsigned int i = 0; i < traitLeaves.size(); i++)
+	{
+		CK2Trait* newTrait = new CK2Trait;
+		newTrait->init(traitLeaves[i]);
+		traits.insert( make_pair(i + 1, newTrait) );
+	}
+}
+
+
 date CK2World::getEndDate()
 {
 	return endDate;
@@ -135,10 +147,11 @@ map<int, CK2Province*> CK2World::getProvinces()
 
 CK2World::~CK2World()
 {
-/*	while (independentTitles.size() > 0)
+/*	TODO: determine why this crashes things
+	while (independentTitles.size() > 0)
 	{
 		CK2Title* currentTitle = independentTitles[independentTitles.size() - 1];
 		delete currentTitle;
 		independentTitles.pop_back();
-	}*/
+	}*/ 
 }

@@ -12,18 +12,19 @@ CK2Character::CK2Character()
 	birthDate	= (string)"1.1.1";
 	dead			= true;
 	deathDate	= (string)"1.1.1";
+	female		= false;
+	traits.clear();
+	memset(stats, 0, sizeof(stats));
+
 	fatherNum	= -1;
 	father		= NULL;
 	motherNum	= -1;
 	mother		= NULL;
 	children.clear();
-	female		= false;
-
-	memset(stats, 0, sizeof(stats));
 }
 
 
-void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties)
+void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes)
 {
 	name			= obj->getLeaf("birth_name");
 	religion		= obj->getLeaf("religion");
@@ -91,6 +92,35 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties)
 		stats[LEARNING]		= 0;
 	}
 
+	vector<Object*> traitsObj = obj->getValue("traits");
+	if (traitsObj.size() > 0)
+	{
+		vector<string> traitsStrings = traitsObj[0]->getTokens();
+		for (unsigned int i = 0; i < traitsStrings.size(); i++)
+		{
+			traits.push_back( atoi(traitsStrings[i].c_str()) );
+		}
+	}
+
+	for (unsigned int i = 0; i < traits.size(); i++)
+	{
+		CK2Trait* currentTrait = traitTypes[ traits[i] ];
+		if (currentTrait == NULL)
+		{
+			if (dynasty != NULL)
+				log("Error: %s %s had extra trait %d\n", name.c_str(), dynasty->getName().c_str(), traits[i]);
+			else
+				log("Error: %s had extra trait %d\n", name.c_str(), traits[i]);
+		}
+		else
+		{
+			stats[DIPLOMACY]		+= currentTrait->diplomacy;
+			stats[MARTIAL]			+= currentTrait->martial;
+			stats[STEWARDSHIP]	+= currentTrait->stewardship;
+			stats[INTRIGUE]		+= currentTrait->intrigue;
+			stats[LEARNING]		+= currentTrait->learning;
+		}
+	}
 }
 
 

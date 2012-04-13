@@ -96,6 +96,7 @@
     <ClCompile Include="Source\CK2World\Ck2History.cpp" />
     <ClCompile Include="Source\CK2World\CK2Province.cpp" />
     <ClCompile Include="Source\CK2World\CK2Title.cpp" />
+    <ClCompile Include="Source\CK2World\CK2Trait.cpp" />
     <ClCompile Include="Source\CK2World\CK2World.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Convert.cpp" />
@@ -118,6 +119,7 @@
     <ClInclude Include="Source\CK2World\CK2History.h" />
     <ClInclude Include="Source\CK2World\CK2Province.h" />
     <ClInclude Include="Source\CK2World\CK2Title.h" />
+    <ClInclude Include="Source\CK2World\CK2Trait.h" />
     <ClInclude Include="Source\CK2World\CK2World.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Date.h" />

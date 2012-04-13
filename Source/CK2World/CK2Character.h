@@ -7,6 +7,7 @@
 #include "..\Parsers\Object.h"
 #include "..\Date.h"
 #include "CK2Dynasty.h"
+#include "CK2Trait.h"
 using namespace std;
 
 
@@ -14,7 +15,7 @@ class CK2Character
 {
 	public:
 		CK2Character();
-		void				init(Object*, map<int, CK2Dynasty*>&);
+		void				init(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&);
 		string			getName();
 		CK2Dynasty*		getDynasty();
 		date				getBirthDate();
@@ -35,6 +36,7 @@ class CK2Character
 		bool			dead;
 		date			deathDate;
 		bool			female;
+		vector<int>	traits;
 		int			stats[5];
 
 		int							fatherNum;

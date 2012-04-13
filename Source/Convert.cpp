@@ -59,6 +59,22 @@ int main(int argc, char * argv[])
 	log("Getting CK2 data.\n");
 	printf("Getting CK2 data.\n");
 
+	printf("	Getting traits\n");
+	initParser();
+	obj = getTopLevel();
+	read.open(Configuration::getCK2Path() + "/common/traits/00_traits.txt");
+	if (!read.is_open())
+	{
+		log("Error: Could not open 00_traits.txt!\n");
+		printf("Error: Could not open 00_traits.txt!\n");
+		return 1;
+	}
+	readFile(read);
+	read.close();
+	read.clear();
+	CK2World srcWorld;
+	srcWorld.addTraits(obj);
+
 	printf("	Adding dynasties from dynasties.txt\n");
 	initParser();
 	obj = getTopLevel();
@@ -72,7 +88,6 @@ int main(int argc, char * argv[])
 	readFile(read);
 	read.close();
 	read.clear();
-	CK2World srcWorld;
 	srcWorld.addDynasties(obj);
 	
 	printf("	Parsing CK2 save.\n");

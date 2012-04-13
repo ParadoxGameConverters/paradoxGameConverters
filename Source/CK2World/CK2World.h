@@ -8,6 +8,7 @@
 #include "CK2Province.h"
 #include "CK2Character.h"
 #include "CK2Dynasty.h"
+#include "CK2Trait.h"
 
 
 class CK2World
@@ -15,6 +16,7 @@ class CK2World
 	public:
 		void							init(Object*);
 		void							addDynasties(Object*);
+		void							addTraits(Object*);
 		date							getEndDate();
 		vector<CK2Title*>			getIndependentTitles();
 		map<int, CK2Province*>	getProvinces();
@@ -25,6 +27,7 @@ class CK2World
 		vector<CK2Title*>			hreMembers;
 		map<int, CK2Dynasty*>	dynasties;
 		map<int, CK2Character*>	characters;
+		map<int, CK2Trait*>		traits;
 		map<string, CK2Title*>	titles;
 		map<int, CK2Province*>	provinces;
 };
