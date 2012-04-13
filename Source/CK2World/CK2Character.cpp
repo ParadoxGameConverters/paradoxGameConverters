@@ -178,6 +178,7 @@ CK2Character* CK2Character::getFather()
 
 CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 {
+	// unless absolute cognatic, consider only males
 	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
 	{
 		if (	( !(*i)->isDead() ) &&
@@ -188,13 +189,36 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 		}
 		else
 		{
-			if ( !(*i)->isFemale() || (genderLaw == "true_cognatic") || (genderLaw == "cognatic") )
+			if ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
 			{
 				CK2Character* possibleHeir = (*i)->getPrimogenitureHeir(genderLaw);
 				if (possibleHeir != NULL)
 				{
 					return possibleHeir;
 				}
+			}
+		}
+	}
+
+	// no heirs in male lines, so consider females
+	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+	{
+		if ( !(*i)->isFemale() )
+		{
+			continue;
+		}
+		if (	( !(*i)->isDead() ) &&
+				( !(*i)->isFemale() || (genderLaw == "cognatic") )
+			)
+		{
+			return *i;
+		}
+		else
+		{
+			CK2Character* possibleHeir = (*i)->getPrimogenitureHeir(genderLaw);
+			if (possibleHeir != NULL)
+			{
+				return possibleHeir;
 			}
 		}
 	}

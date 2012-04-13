@@ -66,3 +66,4 @@ Revision	Log Message
 64		Initial stat conversion
 65		Gender laws
 66		Merge
+67		Unless Absolute Cognatic, female lines only considered after male ones
