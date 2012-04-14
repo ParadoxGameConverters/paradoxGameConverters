@@ -73,6 +73,16 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 		female = false;
 	}
 
+	vector<Object*> bastardObj = obj->getValue("is_bastard");
+	if (bastardObj.size() > 0)
+	{
+		bastard = ( bastardObj[0]->getLeaf() == "yes" );
+	}
+	else
+	{
+		bastard = false;
+	}
+
 	vector<Object*> attributesObj = obj->getValue("attributes");
 	if (attributesObj.size() > 0)
 	{
@@ -194,6 +204,12 @@ bool CK2Character::isFemale()
 }
 
 
+bool CK2Character::isBastard()
+{
+	return bastard;
+}
+
+
 int* CK2Character::getStats()
 {
 	return stats;
@@ -211,6 +227,10 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 	// unless absolute cognatic, consider only males
 	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
 	{
+		if ( (*i)->isBastard() )
+		{
+			continue;
+		}
 		if (	( !(*i)->isDead() ) &&
 				( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
 			)
@@ -234,6 +254,10 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
 	{
 		if ( !(*i)->isFemale() )
+		{
+			continue;
+		}
+		if ( (*i)->isBastard() )
 		{
 			continue;
 		}

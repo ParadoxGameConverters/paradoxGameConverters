@@ -24,6 +24,7 @@ class CK2Character
 		bool				isDead();
 		date				getDeathDate();
 		bool				isFemale();
+		bool				isBastard();
 		int*				getStats();
 		CK2Character*	getFather();
 		CK2Character*	getPrimogenitureHeir(string);
@@ -36,6 +37,7 @@ class CK2Character
 		bool			dead;
 		date			deathDate;
 		bool			female;
+		bool			bastard;
 		vector<int>	traits;
 		int			stats[5];
 
