@@ -21,6 +21,8 @@ struct date
 	bool operator>(const date& _rhs) const;
 	bool operator<=(const date& _rhs) const;
 	bool operator>=(const date& _rhs) const;
+	
+	float diffInYears(const date& _rhs) const;
 
 	bool isSet() const;
 	string toString() const;

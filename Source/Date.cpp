@@ -83,6 +83,97 @@ bool date::operator>=(const date& _rhs) const
 	return ((*this == _rhs) || (*this > _rhs));
 }
 
+float date::diffInYears(const date& _rhs) const
+{
+	float years = float(year - _rhs.year);
+
+	int lhsDays;
+	switch (month)
+	{
+		case 1:
+			lhsDays = day;
+			break;
+		case 2:
+			lhsDays = day + 31;
+			break;
+		case 3:
+			lhsDays = day + 59;
+			break;
+		case 4:
+			lhsDays = day + 90;
+			break;
+		case 5:
+			lhsDays = day + 120;
+			break;
+		case 6:
+			lhsDays = day + 151;
+			break;
+		case 7:
+			lhsDays = day + 181;
+			break;
+		case 8:
+			lhsDays = day + 212;
+			break;
+		case 9:
+			lhsDays = day + 243;
+			break;
+		case 10:
+			lhsDays = day + 273;
+			break;
+		case 11:
+			lhsDays = day + 304;
+			break;
+		case 12:
+			lhsDays = day + 334;
+			break;
+	}
+
+	int rhsDays;
+	switch (month)
+	{
+		case 1:
+			rhsDays = day;
+			break;
+		case 2:
+			rhsDays = day + 31;
+			break;
+		case 3:
+			rhsDays = day + 59;
+			break;
+		case 4:
+			rhsDays = day + 90;
+			break;
+		case 5:
+			rhsDays = day + 120;
+			break;
+		case 6:
+			rhsDays = day + 151;
+			break;
+		case 7:
+			rhsDays = day + 181;
+			break;
+		case 8:
+			rhsDays = day + 212;
+			break;
+		case 9:
+			rhsDays = day + 243;
+			break;
+		case 10:
+			rhsDays = day + 273;
+			break;
+		case 11:
+			rhsDays = day + 304;
+			break;
+		case 12:
+			rhsDays = day + 334;
+			break;
+	}
+
+	years += (lhsDays - rhsDays) / 365;
+
+	return years;
+}
+
 bool date::isSet() const
 {
 	date default_date;

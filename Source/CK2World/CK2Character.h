@@ -15,7 +15,7 @@ class CK2Character
 {
 	public:
 		CK2Character();
-		void				init(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&);
+		void				init(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
 		string			getName();
 		CK2Dynasty*		getDynasty();
 		date				getBirthDate();
@@ -34,6 +34,7 @@ class CK2Character
 		string		culture;
 		CK2Dynasty*	dynasty;
 		date			birthDate;
+		float			age;
 		bool			dead;
 		date			deathDate;
 		bool			female;
@@ -46,6 +47,8 @@ class CK2Character
 		int							motherNum;
 		CK2Character*				mother;
 		list<CK2Character*>		children;
+		int							guardianNum;
+		CK2Character*				guardian;
 };
 
 

@@ -1,5 +1,6 @@
 #include "CK2Character.h"
 #include "..\log.h"
+#include "..\Configuration.h"
 
 
 
@@ -24,13 +25,14 @@ CK2Character::CK2Character()
 }
 
 
-void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes)
+void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
 {
 	name			= obj->getLeaf("birth_name");
 	religion		= obj->getLeaf("religion");
 	culture		= obj->getLeaf("culture");
 	dynasty		= dynasties[ atoi( obj->getLeaf("dynasty").c_str() ) ];
 	birthDate	= obj->getLeaf("birth_date");
+	age			= theDate.diffInYears(birthDate);
 
 	vector<Object*> fatherObj = obj->getValue("father");
 	if (fatherObj.size() > 0)
@@ -49,6 +51,15 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	else
 	{
 		motherNum = -1;
+	}
+	vector<Object*> guardianObj = obj->getValue("guardian");
+	if (guardianObj.size() > 0)
+	{
+		guardianNum = atoi( guardianObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		guardianNum = -1;
 	}
 
 	vector<Object*> deathObj = obj->getValue("death_date");
@@ -164,6 +175,38 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 	{
 		mother = characters[motherNum];
 		mother->addChild(this);
+	}
+
+	if (guardianNum != -1)
+	{
+		guardian = characters[guardianNum];
+		if (age < 16)
+		{
+			int* guardianStats = guardian->getStats();
+			for (unsigned int i = 0; i < 5; i++)
+			{
+				stats[i] += int( ((16 - age) / 16)  * guardianStats[i] );
+			}
+		}
+	}
+	else
+	{
+		if ( (age < 16) && (father != NULL) )
+		{
+			int* guardianStats = father->getStats();
+			for (unsigned int i = 0; i < 5; i++)
+			{
+				stats[i] += int( ((16 - age) / 16)  * guardianStats[i] );
+			}
+		}
+		else if ( (age < 16) && (mother != NULL) )
+		{
+			int* guardianStats = mother->getStats();
+			for (unsigned int i = 0; i < 5; i++)
+			{
+				stats[i] += int( ((16 - age) / 16)  * guardianStats[i] );
+			}
+		}
 	}
 }
 

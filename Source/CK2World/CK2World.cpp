@@ -38,7 +38,7 @@ void CK2World::init(Object* obj)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
 		CK2Character* newCharacter = new CK2Character;
-		newCharacter->init(characterLeaves[i], dynasties, traits);
+		newCharacter->init(characterLeaves[i], dynasties, traits, endDate);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
