@@ -142,6 +142,14 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 			stats[LEARNING]		+= currentTrait->learning;
 		}
 	}
+
+	for (unsigned int i = 0; i < 5; i++)
+	{
+		if (stats[i] < 0)
+		{
+			stats[i] = 0;
+		}
+	}
 }
 
 
