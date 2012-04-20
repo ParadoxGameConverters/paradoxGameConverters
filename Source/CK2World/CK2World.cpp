@@ -29,6 +29,9 @@ void CK2World::init(Object* obj)
 		newDynasty->init(dynastyLeaves[i]);
 		dynasties.insert( make_pair(number, newDynasty) );
 	}
+	CK2Dynasty* newDynasty = new CK2Dynasty;
+	newDynasty->init(0, "Lowborn");
+	dynasties.insert( make_pair(0, newDynasty) );
 
 	// get characters
 	printf("	Getting characters\n");

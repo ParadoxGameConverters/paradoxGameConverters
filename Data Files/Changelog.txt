@@ -75,3 +75,4 @@ Revision	Log Message
 73		Stat floors and ceilings implemented
 74		Stat floor of 0 for CK2 characters
 75		Seniority succession
+76		Added 'Lowborn' dynasty

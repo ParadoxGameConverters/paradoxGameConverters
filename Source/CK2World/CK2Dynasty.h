@@ -15,6 +15,7 @@ class CK2Dynasty
 {
 	public:
 		void				init(Object*);
+		void				init(int, string);
 		int				getNum();
 		string			getName();
 		void				addMember(CK2Character*);

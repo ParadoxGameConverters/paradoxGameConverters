@@ -18,6 +18,13 @@ void CK2Dynasty::init(Object* obj)
 }
 
 
+void CK2Dynasty::init(int newNum, string newName)
+{
+	num	= newNum;
+	name	= newName;
+}
+
+
 int CK2Dynasty::getNum()
 {
 	return num;
