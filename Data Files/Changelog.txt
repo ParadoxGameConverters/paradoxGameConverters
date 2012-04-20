@@ -72,3 +72,4 @@ Revision	Log Message
 70		Actually implement the stats floor
 71		Bastards can't be heirs
 72		Extrapolate stats for characters younger than 16
+73		Stat floors and ceilings implemented

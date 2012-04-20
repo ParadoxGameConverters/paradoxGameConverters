@@ -190,15 +190,34 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 
 	if (diplomacy < 1)
 	{
-		diplomacy = 1;
+		log("%s had a lower diplomacy than 3 (%d).\n", name.c_str(), diplomacy);
+		diplomacy = 3;
 	}
 	if (military < 1)
 	{
-		military = 1;
+		log("%s had a lower military than 3 (%d).\n", name.c_str(), military);
+		military = 3;
 	}
 	if (administration < 1)
 	{
-		administration = 1;
+		log("%s had a lower administration than 3 (%d).\n", name.c_str(), administration);
+		administration = 3;
+	}
+
+	if (diplomacy > 9)
+	{
+		log("%s had a higher diplomacy than 9 (%d).\n", name.c_str(), diplomacy);
+		diplomacy = 9;
+	}
+	if (military > 9)
+	{
+		log("%s had a higher military than 9. (%d).\n", name.c_str(), military);
+		military = 9;
+	}
+	if (administration > 9)
+	{
+		log("%s had a higher administration than 9. (%d).\n", name.c_str(), administration);
+		administration = 9;
 	}
 }
 
