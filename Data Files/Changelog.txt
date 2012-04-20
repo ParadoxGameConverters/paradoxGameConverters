@@ -74,3 +74,4 @@ Revision	Log Message
 72		Extrapolate stats for characters younger than 16
 73		Stat floors and ceilings implemented
 74		Stat floor of 0 for CK2 characters
+75		Seniority succession

@@ -31,6 +31,10 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	religion		= obj->getLeaf("religion");
 	culture		= obj->getLeaf("culture");
 	dynasty		= dynasties[ atoi( obj->getLeaf("dynasty").c_str() ) ];
+	if (dynasty != NULL)
+	{
+		dynasty->addMember(this);
+	}
 	birthDate	= obj->getLeaf("birth_date");
 	age			= theDate.diffInYears(birthDate);
 

@@ -42,7 +42,7 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	}
 	else if (successionLaw == "seniority")
 	{
-		heir = NULL;
+		heir = holder->getDynasty()->getSenoirityHeir(genderLaw);
 	}
 	else if (successionLaw == "feudal_elective")
 	{
