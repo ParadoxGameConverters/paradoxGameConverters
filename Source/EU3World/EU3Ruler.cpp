@@ -161,9 +161,14 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 
 	int* stats = src->getStats();
 	int bonus		= ( stats[INTRIGUE] + stats[LEARNING] ) / (3 * 3);
-	diplomacy		= stats[DIPLOMACY] / 3		+ bonus;
-	administration	= stats[STEWARDSHIP] / 3 	+ bonus;
-	military			= stats[MARTIAL] /3			+ bonus;
+
+	diplomacy		=	3;
+	administration	=	3;
+	military			=	3;
+
+	diplomacy		+= stats[DIPLOMACY] / 3		+ bonus;
+	administration	+= stats[STEWARDSHIP] / 3 	+ bonus;
+	military			+= stats[MARTIAL] /3			+ bonus;
 	
 	int leftover	=	( stats[INTRIGUE] + stats[LEARNING] ) % (3 * 3);
 	leftover			+= stats[DIPLOMACY] % 3;
@@ -188,19 +193,19 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 		military += leftover / 3;
 	}
 
-	if (diplomacy < 1)
+	if (diplomacy < 3)
 	{
 		int* stats = src->getStats();
 		log("%s had a lower diplomacy than 3 (%d) %d %d %d %d %d.\n", name.c_str(), diplomacy, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		diplomacy = 3;
 	}
-	if (military < 1)
+	if (military < 3)
 	{
 		int* stats = src->getStats();
 		log("%s had a lower military than 3 (%d) %d %d %d %d %d.\n", name.c_str(), military, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		military = 3;
 	}
-	if (administration < 1)
+	if (administration < 3)
 	{
 		int* stats = src->getStats();
 		log("%s had a lower administration than 3 (%d) %d %d %d %d %d.\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
