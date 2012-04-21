@@ -160,37 +160,37 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	}
 
 	int* stats = src->getStats();
-	int bonus		= ( stats[INTRIGUE] + stats[LEARNING] ) / (3 * 3);
+	int bonus		= ( stats[INTRIGUE] + stats[LEARNING] ) / (6 * 3);
 
 	diplomacy		=	3;
 	administration	=	3;
 	military			=	3;
 
-	diplomacy		+= stats[DIPLOMACY] / 3		+ bonus;
-	administration	+= stats[STEWARDSHIP] / 3 	+ bonus;
-	military			+= stats[MARTIAL] /3			+ bonus;
+	diplomacy		+= stats[DIPLOMACY]		/ 6	+ bonus;
+	administration	+= stats[STEWARDSHIP]	/ 6	+ bonus;
+	military			+= stats[MARTIAL]			/ 6	+ bonus;
 	
-	int leftover	=	( stats[INTRIGUE] + stats[LEARNING] ) % (3 * 3);
-	leftover			+= stats[DIPLOMACY] % 3;
-	leftover			+= stats[STEWARDSHIP] % 3;
-	leftover			+= stats[MARTIAL] % 3;
+	int leftover	=	( stats[INTRIGUE] + stats[LEARNING] ) % (6 * 3);
+	leftover			+= stats[DIPLOMACY]		% 6;
+	leftover			+= stats[STEWARDSHIP]	% 6;
+	leftover			+= stats[MARTIAL]			% 6;
 
-	diplomacy		+= leftover / (3 * 3);
-	administration	+= leftover / (3 * 3);
-	military			+= leftover / (3 * 3);
-	leftover			%= (3 * 3);
+	diplomacy		+= leftover / (6 * 3);
+	administration	+= leftover / (6 * 3);
+	military			+= leftover / (6 * 3);
+	leftover			%= (6 * 3);
 
 	if ( (diplomacy <= administration) && (diplomacy <= military) )
 	{
-		diplomacy += leftover / 3;
+		diplomacy += leftover / 6;
 	}
 	else if (administration <= military)
 	{
-		administration += leftover / 3;
+		administration += leftover / 6;
 	}
 	else
 	{
-		military += leftover / 3;
+		military += leftover / 6;
 	}
 
 	if (diplomacy < 3)

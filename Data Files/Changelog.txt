@@ -78,3 +78,4 @@ Revision	Log Message
 76		Added 'Lowborn' dynasty
 77		Correct lower bound for stats to 3
 78		Bonus stats go to lowest stat instead of highest
+79		Stat scaling factor doubled
