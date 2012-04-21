@@ -180,11 +180,11 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	military			+= leftover / (3 * 3);
 	leftover			%= (3 * 3);
 
-	if ( (diplomacy >= administration) && (diplomacy >= military) )
+	if ( (diplomacy <= administration) && (diplomacy <= military) )
 	{
 		diplomacy += leftover / 3;
 	}
-	else if (administration >= military)
+	else if (administration <= military)
 	{
 		administration += leftover / 3;
 	}
@@ -227,7 +227,7 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	if (administration > 9)
 	{
 		int* stats = src->getStats();
-		log("%s had a higher administration than 9 %d %d %d %d %d. (%d).\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
+		log("%s had a higher administration than 9 (%d) %d %d %d %d %d.\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		administration = 9;
 	}
 }
