@@ -46,7 +46,7 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	}
 	else if (successionLaw == "feudal_elective")
 	{
-		heir = NULL;
+		heir = getFeudalElectiveHeir(obj, characters);
 	}
 	else if (successionLaw == "turkish_succession")
 	{
@@ -135,6 +135,49 @@ bool CK2Title::isIndependent()
 bool CK2Title::isInHRE()
 {
 	return inHRE;
+}
+
+
+CK2Character* CK2Title::getFeudalElectiveHeir(Object* obj,  map<int, CK2Character*>& characters)
+{
+	vector< pair<int, int> > nominees;		// id, votes
+
+	vector<Object*> leavesObj = obj->getLeaves();
+	for (unsigned int i = 0; i < leavesObj.size(); i++)
+	{
+		if (leavesObj[i]->getKey() == "nomination")
+		{
+			vector<Object*> nomineeObj = leavesObj[i]->getValue("nominee");
+			int nomineeId = atoi( nomineeObj[0]->getLeaf("id").c_str() );
+
+			bool nomineeMarked = false;
+			for (unsigned int j = 0; j < nominees.size(); j++)
+			{
+				if (nominees[j].first == nomineeId)
+				{
+					nominees[j].second++;
+					nomineeMarked = true;
+				}
+			}
+			if (nomineeMarked == false)
+			{
+				nominees.push_back( make_pair(nomineeId, 1) );
+			}
+		}
+	}
+
+	int nominee = -1;
+	int mostVotes = 0;
+	for (unsigned int i = 0; i < nominees.size(); i++)
+	{
+		if (nominees[i].second > mostVotes)
+		{
+			nominee		= nominees[i].first;
+			mostVotes	= nominees[i].second;
+		}
+	}
+
+	return characters[nominee];
 }
 
 

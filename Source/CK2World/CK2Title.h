@@ -22,6 +22,7 @@ class CK2Title
 		CK2Title*				getLiege();
 		bool						isIndependent();
 		bool						isInHRE();
+		CK2Character*			getFeudalElectiveHeir(Object*,  map<int, CK2Character*>&);
 		~CK2Title();
 	private:
 		string					titleString;
