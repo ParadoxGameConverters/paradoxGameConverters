@@ -57,14 +57,17 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 		}
 
 		vector<CK2Barony*> baronies;
+		int numBaronies = 0;
 		for (unsigned int j = 0; j < srcProvinces.size(); j++)
 		{
 			vector<CK2Barony*> srcBaronies = srcProvinces[j]->getBaronies();
 			for(unsigned int k = 0; k < srcBaronies.size(); k++)
 			{
 				baronies.push_back(srcBaronies[k]);
+				numBaronies++;
 			}
 		}
+		log("EU3 province %d contains %d CK2 baronies.\n", i->first, numBaronies);
 
 		bool inHRE = false;
 		vector< pair<CK2Title*, int > > owners;	// ownerTitle, numBaronies
