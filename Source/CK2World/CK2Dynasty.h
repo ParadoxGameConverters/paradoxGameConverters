@@ -3,12 +3,12 @@
 
 
 #include <string>
-#include "..\Parsers\Object.h"
+#include <vector>
 using namespace std;
 
 
 
-//forward declaration
+class Object;
 class CK2Character;
 
 class CK2Dynasty

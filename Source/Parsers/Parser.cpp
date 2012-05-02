@@ -1,11 +1,11 @@
 #include "..\Log.h"
 #include "Parser.h"
-#include <fstream>
+#include "Object.h"
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
-
-
 using namespace boost::spirit;
+
+
 
 static void setLHS			(string key);
 static void pushObj			();

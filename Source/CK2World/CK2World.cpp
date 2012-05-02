@@ -1,6 +1,12 @@
 #include "CK2World.h"
 #include "..\Log.h"
 #include "..\Configuration.h"
+#include "..\Parsers\Object.h"
+#include "CK2Title.h"
+#include "CK2Province.h"
+#include "CK2Character.h"
+#include "CK2Dynasty.h"
+#include "CK2Trait.h"
 
 
 

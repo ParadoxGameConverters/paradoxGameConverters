@@ -1,5 +1,8 @@
 #include "EU3History.h"
 #include "..\CK2World\CK2Character.h"
+#include "..\CK2World\CK2History.h"
+#include "EU3Ruler.h"
+
 
 
 void EU3History::init(CK2History* src)

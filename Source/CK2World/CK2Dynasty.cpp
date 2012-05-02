@@ -1,5 +1,6 @@
 #include "CK2Dynasty.h"
 #include "CK2Character.h"
+#include "..\Parsers\Object.h"
 
 
 

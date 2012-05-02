@@ -2,14 +2,19 @@
 #define CK2WORLD
 
 
-#include "..\Parsers\Object.h"
+#include <vector>
+#include <map>
 #include "..\Date.h"
-#include "CK2Title.h"
-#include "CK2Province.h"
-#include "CK2Character.h"
-#include "CK2Dynasty.h"
-#include "CK2Trait.h"
+using namespace std;
 
+
+
+class Object;
+class CK2Title;
+class CK2Province;
+class CK2Dynasty;
+class CK2Character;
+class CK2Trait;
 
 class CK2World
 {

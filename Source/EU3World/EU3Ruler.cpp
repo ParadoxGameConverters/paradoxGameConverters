@@ -1,6 +1,9 @@
 #include "EU3Ruler.h"
+#include "..\CK2World\CK2Character.h"
+#include "..\CK2World\CK2Dynasty.h"
 #include "..\Configuration.h"
 #include "..\Log.h"
+#include "..\Parsers\Object.h"
 #include <fstream>
 
 

@@ -6,6 +6,7 @@
 #include "Parsers/Parser.h"
 #include "Parsers/Object.h"
 #include "EU3World\EU3World.h"
+#include "EU3World\EU3Country.h"
 #include	"CK2World\CK2World.h"
 #include "Mappers.h"
 using namespace std;
@@ -115,7 +116,7 @@ int main(int argc, char * argv[])
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
 
 	EU3World destWorld;
-	destWorld.init(srcWorld);
+	destWorld.init(&srcWorld);
 
 
 	// Get potential EU3 countries

@@ -6,6 +6,12 @@
 #include "..\temp.h"
 #include "..\Configuration.h"
 #include "..\Parsers\Parser.h"
+#include "..\CK2World\CK2Barony.h"
+#include "..\CK2World\CK2Title.h"
+#include "..\CK2World\CK2Province.h"
+#include	"..\CK2World\CK2World.h"
+#include "EU3Province.h"
+#include "EU3Country.h"
 using namespace std;
 
 
@@ -16,7 +22,7 @@ void EU3World::output(FILE* output)
 	outputTempHeader(output);
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
-		provinces[i].output(output);
+		provinces[i]->output(output);
 	}
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
@@ -25,9 +31,9 @@ void EU3World::output(FILE* output)
 }
 
 
-void EU3World::init(CK2World srcWorld)
+void EU3World::init(CK2World* srcWorld)
 {
-	startDate = srcWorld.getEndDate();
+	startDate = srcWorld->getEndDate();
 }
 
 
@@ -98,14 +104,14 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 			}
 		}
 
-		EU3Province newProvince;
-		newProvince.setNumber(i->first);
+		EU3Province* newProvince = new EU3Province;
+		newProvince->setNumber(i->first);
 
 		CK2Title*	greatestOwner;
 		int			greatestOwnerNum = 0;
 		for (unsigned int j = 0; j < owners.size(); j++)
 		{
-			newProvince.addCore( countryMap[owners[j].first]->getTag() );
+			newProvince->addCore( countryMap[owners[j].first]->getTag() );
 			if (owners[j].second > greatestOwnerNum)
 			{
 				greatestOwner		= owners[j].first;
@@ -114,10 +120,10 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 		}
 		if (owners.size() > 0)
 		{
-			newProvince.setOwner( countryMap[greatestOwner]->getTag() );
+			newProvince->setOwner( countryMap[greatestOwner]->getTag() );
 		}
-		newProvince.setInHRE(inHRE);
-		newProvince.setDiscoveredBy(europeanCountries);
+		newProvince->setInHRE(inHRE);
+		newProvince->setDiscoveredBy(europeanCountries);
 
 		provinces.push_back(newProvince);
 	}
@@ -149,8 +155,8 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 		}
 
 		//initialize province
-		EU3Province newProvince;
-		newProvince.init(rotwProvinces[i], obj, startDate);
+		EU3Province* newProvince = new EU3Province;;
+		newProvince->init(rotwProvinces[i], obj, startDate);
 
 		//add to provinces list
 		provinces.push_back(newProvince);

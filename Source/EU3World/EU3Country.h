@@ -5,12 +5,13 @@
 
 #include <string>
 #include <vector>
-#include "EU3Ruler.h"
-#include "EU3History.h"
-#include "..\CK2World\CK2Title.h"
 #include "..\Date.h"
 using namespace std;
 
+
+class CK2Title;
+class EU3Ruler;
+class EU3History;
 
 class EU3Country
 {

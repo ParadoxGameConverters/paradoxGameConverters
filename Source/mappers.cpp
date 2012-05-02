@@ -1,6 +1,9 @@
 #include "mappers.h"
 #include "Log.h"
 #include "Configuration.h"
+#include "Parsers\Object.h"
+#include "CK2World\CK2Title.h"
+#include "EU3World\EU3Country.h"
 
 
 

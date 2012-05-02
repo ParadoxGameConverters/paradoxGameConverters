@@ -1,6 +1,9 @@
 #include "Configuration.h"
 #include "Parsers/Parser.h"
+#include "Parsers\Object.h"
 #include "Log.h"
+#include <vector>
+using namespace std;
 
 
 

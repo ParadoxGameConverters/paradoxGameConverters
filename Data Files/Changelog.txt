@@ -81,3 +81,4 @@ Revision	Log Message
 79		Stat scaling factor doubled
 80		Feudal Elective succession
 81		Log number of CK2 baronies in each EU3 province
+82		Use forward declarations instead of header includes

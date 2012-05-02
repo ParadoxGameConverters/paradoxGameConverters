@@ -1,4 +1,6 @@
 #include "CK2History.h"
+#include "..\Parsers\Object.h"
+
 
 
 void CK2History::init(Object* obj, map<int, CK2Character*>& characters)

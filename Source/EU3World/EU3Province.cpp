@@ -1,4 +1,5 @@
 #include "EU3Province.h"
+#include "..\Parsers\Object.h"
 
 
 void EU3Province::init(int newNum, Object* obj, date startDate)

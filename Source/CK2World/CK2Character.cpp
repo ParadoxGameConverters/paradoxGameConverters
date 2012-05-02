@@ -1,6 +1,9 @@
 #include "CK2Character.h"
 #include "..\log.h"
 #include "..\Configuration.h"
+#include "..\Parsers\Object.h"
+#include "CK2Dynasty.h"
+#include "CK2Trait.h"
 
 
 

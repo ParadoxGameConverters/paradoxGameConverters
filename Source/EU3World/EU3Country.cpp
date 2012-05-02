@@ -1,8 +1,13 @@
 #include "EU3Country.h"
 #include "..\Log.h"
 #include "..\Parsers\Parser.h"
+#include "..\Parsers\Object.h"
 #include "..\Configuration.h"
 #include "..\Date.h"
+#include "..\CK2World\CK2Title.h"
+#include "..\CK2World\CK2History.h"
+#include "EU3Ruler.h"
+#include "EU3History.h"
 #include <fstream>
 using namespace std;
 

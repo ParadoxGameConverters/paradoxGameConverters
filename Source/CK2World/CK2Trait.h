@@ -2,8 +2,8 @@
 #define CK2TRAIT_H_
 
 
-#include "..\Parsers\Object.h"
 
+class Object;
 
 class CK2Trait
 {

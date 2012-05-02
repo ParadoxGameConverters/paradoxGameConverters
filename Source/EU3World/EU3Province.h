@@ -3,10 +3,13 @@
 
 
 #include <string>
-#include "..\Parsers\Object.h"
+#include <vector>
 #include "..\Date.h"
 using namespace std;
 
+
+
+class Object;
 
 class EU3Province
 {

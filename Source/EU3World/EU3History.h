@@ -3,11 +3,11 @@
 
 
 #include "..\Date.h"
-#include "..\CK2World\CK2History.h"
-#include "EU3Ruler.h"
 #include <fstream>
 
 
+class CK2History;
+class EU3Ruler;
 
 class EU3History {
 	public:

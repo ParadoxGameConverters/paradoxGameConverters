@@ -2,9 +2,9 @@
 #define CK2BARONY_H_
 
 
-#include "..\Parsers\Object.h"
-#include "CK2Title.h"
 
+class Object;
+class CK2Title;
 
 class CK2Barony
 {

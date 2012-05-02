@@ -1,4 +1,5 @@
 #include "CK2Trait.h"
+#include "..\Parsers\Object.h"
 
 
 

@@ -4,11 +4,14 @@
 
 #include <vector>
 #include <map>
-#include "Parsers\Object.h"
-#include "CK2World\CK2World.h"
-#include "EU3World\EU3Country.h"
 using namespace std;
 
+
+
+class Object;
+class CK2World;
+class CK2Title;
+class EU3Country;
 
 typedef map< int, vector<int> > provinceMapping;			// < destProvince,	sourceProvinces	>
 typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince,	destProvinces		>

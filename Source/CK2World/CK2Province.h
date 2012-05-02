@@ -3,11 +3,14 @@
 
 
 #include <vector>
-#include "..\Parsers\Object.h"
-#include "CK2Title.h"
-#include "CK2Barony.h"
+#include <map>
+using namespace std;
 
 
+
+class Object;
+class CK2Title;
+class CK2Barony;
 
 class CK2Province
 {

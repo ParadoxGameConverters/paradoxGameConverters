@@ -1,11 +1,15 @@
 #ifndef CK2TITLE_H_
 #define CK2TITLE_H_
 
-#include "..\Parsers\Object.h"
-#include "CK2Character.h"
-#include "CK2History.h"
+
+#include <vector>
+#include <map>
+using namespace std;
 
 
+class Object;
+class CK2Character;
+class CK2History;
 
 class CK2Title
 {

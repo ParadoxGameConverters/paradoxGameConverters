@@ -8,6 +8,7 @@
 using namespace std;
 
 
+
 class Object {
   friend ostream& operator<< (ostream& o, const Object& i);
 

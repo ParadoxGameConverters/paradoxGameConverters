@@ -2,10 +2,11 @@
 #define DATE_H_
 
 #include <string>
-
-#include "Parsers/Object.h"
-
 using namespace std;
+
+
+
+class Object;
 
 struct date
 {

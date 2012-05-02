@@ -3,11 +3,12 @@
 
 
 #include <string>
-#include "..\Parsers\Object.h"
 #include "..\Date.h"
-#include "..\CK2World\CK2Character.h"
 using namespace std;
 
+
+class Object;
+class CK2Character;
 
 class EU3Ruler
 {

@@ -4,12 +4,17 @@
 
 #include <string>
 #include <list>
-#include "..\Parsers\Object.h"
+#include <map>
+#include <vector>
 #include "..\Date.h"
-#include "CK2Dynasty.h"
-#include "CK2Trait.h"
 using namespace std;
 
+
+
+class		Object;
+struct	date;
+class		CK2Dynasty;
+class		CK2Trait;
 
 class CK2Character
 {
