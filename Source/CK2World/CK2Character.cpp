@@ -296,16 +296,16 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 
 void CK2Character::setEmployer(map<int, CK2Character*>& characters, map<string, CK2Barony*>& baronies)
 {
-	if ( (employerNum != -1) && (jobType != NONE) )
+	if ( (hostNum != -1) && (jobType != NONE) )
 	{
-		CK2Character* employer = characters[employerNum];
+		CK2Character* employer = characters[hostNum];
 		if (employer != NULL)
 		{
-			characters[employerNum]->addAdvisor(this, jobType);
+			characters[hostNum]->addAdvisor(this, jobType);
 		}
 		else
 		{
-			log("%s %s has an invalid employer. (%d)\n", name.c_str(), dynasty->getName().c_str(), employerNum);
+			log("%s %s has an invalid employer. (%d)\n", name.c_str(), dynasty->getName().c_str(), hostNum);
 		}
 	}
 

@@ -85,3 +85,4 @@ Revision	Log Message
 83		Initial implementation of DasGuntLord01's advisor conversion technique
 84		Don't try to get an heir of a title no-one holds (also, the save that exposed this error)
 85		No more cloned advisors
+86		Titled advisors now included
