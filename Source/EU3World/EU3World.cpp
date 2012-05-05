@@ -10,8 +10,11 @@
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2Province.h"
 #include	"..\CK2World\CK2World.h"
+#include "..\CK2World\CK2Character.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
+#include "EU3Ruler.h"
+#include "EU3Advisor.h"
 using namespace std;
 
 
@@ -20,14 +23,24 @@ void EU3World::output(FILE* output)
 {
 	fprintf(output, "date=\"%s\"\n", startDate.toString().c_str());
 	outputTempHeader(output);
-	for (unsigned int i = 0; i < provinces.size(); i++)
+	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		provinces[i]->output(output);
+		i->second->output(output);
 	}
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		countries[i]->output(output);
 	}
+	fprintf(output, "active_advisors=\n");
+	fprintf(output, "{\n");
+	fprintf(output, "	notechgroup=\n");
+	fprintf(output, "	{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		advisors[i]->outputInActive(output);
+	}
+	fprintf(output, "	}\n");
+	fprintf(output, "}\n");
 }
 
 
@@ -125,7 +138,48 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 		newProvince->setInHRE(inHRE);
 		newProvince->setDiscoveredBy(europeanCountries);
 
-		provinces.push_back(newProvince);
+		provinces.insert( make_pair(i->first, newProvince) );
+	}
+}
+
+
+void EU3World::convertAdvisors(inverseProvinceMapping inverseProvinceMap, countryMapping countryMap)
+{
+	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
+	{
+		CK2Character* ruler = i->first->getHolder();
+		if (ruler == NULL)
+		{
+			continue;
+		}
+		CK2Character** srcAdvisors = ruler->getAdvisors();
+		for (unsigned int i = 0; i < 5; i++)
+		{
+			if (srcAdvisors[i] != NULL)
+			{
+				EU3Advisor*	newAdvisor		= new EU3Advisor(srcAdvisors[i], inverseProvinceMap, provinces, startDate);
+				int			CK2Location		= srcAdvisors[i]->getLocationNum();
+
+				vector<int>		provinceNums;
+				provinceNums.clear();
+				if (CK2Location != NULL)
+				{
+					provinceNums = inverseProvinceMap[CK2Location];
+				}
+
+				EU3Province*	advisorHome = NULL;
+				if (provinceNums.size() > 0)
+				{
+					advisorHome = provinces[ provinceNums[0] ];
+					newAdvisor->setLocation( provinceNums[0] );
+				}
+				if (advisorHome != NULL)
+				{
+					advisorHome->addAdvisor(newAdvisor);
+					advisors.push_back(newAdvisor);
+				}
+			}
+		}
 	}
 }
 
@@ -159,7 +213,7 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
 		newProvince->init(rotwProvinces[i], obj, startDate);
 
 		//add to provinces list
-		provinces.push_back(newProvince);
+		provinces.insert( make_pair(rotwProvinces[i], newProvince) );
 	}
 }
 

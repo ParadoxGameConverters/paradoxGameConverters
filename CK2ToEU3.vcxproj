@@ -101,6 +101,7 @@
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Convert.cpp" />
     <ClCompile Include="Source\Date.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Advisor.cpp" />
     <ClCompile Include="Source\EU3World\EU3Country.cpp" />
     <ClCompile Include="Source\EU3World\EU3History.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
@@ -123,6 +124,7 @@
     <ClInclude Include="Source\CK2World\CK2World.h" />
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Date.h" />
+    <ClInclude Include="Source\EU3World\EU3Advisor.h" />
     <ClInclude Include="Source\EU3World\EU3Country.h" />
     <ClInclude Include="Source\EU3World\EU3History.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />

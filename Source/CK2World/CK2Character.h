@@ -12,9 +12,21 @@ using namespace std;
 
 
 class		Object;
-struct	date;
 class		CK2Dynasty;
 class		CK2Trait;
+class		CK2Province;
+class		CK2Barony;
+
+enum advisorTypes
+{
+	CHANCELLOR	= 0,
+	MARSHAL,
+	STEWARD,
+	SPYMASTER,
+	CHAPLAIN,
+	NONE,
+};
+
 
 class CK2Character
 {
@@ -25,7 +37,10 @@ class CK2Character
 		CK2Dynasty*		getDynasty();
 		date				getBirthDate();
 		void				setParents(map<int, CK2Character*>&);
+		void				setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
 		void				addChild(CK2Character*);
+		void				addAdvisor(CK2Character*, advisorTypes);
+		CK2Character**	getAdvisors();
 		bool				isDead();
 		date				getDeathDate();
 		bool				isFemale();
@@ -33,6 +48,9 @@ class CK2Character
 		int*				getStats();
 		CK2Character*	getFather();
 		CK2Character*	getPrimogenitureHeir(string);
+		advisorTypes	getJobType();
+		int				getLocationNum();
+		string			getCapitalString();
 	private:
 		string		name;
 		string		religion;
@@ -54,6 +72,13 @@ class CK2Character
 		list<CK2Character*>		children;
 		int							guardianNum;
 		CK2Character*				guardian;
+
+		CK2Character*				advisors[6];
+		int							employerNum;
+		advisorTypes				jobType;
+		int							hostNum;
+		int							locationNum;
+		string						capitalString;
 };
 
 

@@ -12,6 +12,7 @@ using namespace std;
 class Object;
 class CK2Title;
 class CK2Province;
+class CK2Barony;
 class CK2Dynasty;
 class CK2Character;
 class CK2Trait;
@@ -35,6 +36,7 @@ class CK2World
 		map<int, CK2Trait*>		traits;
 		map<string, CK2Title*>	titles;
 		map<int, CK2Province*>	provinces;
+		map<string, CK2Barony*>	baronies;
 };
 
 

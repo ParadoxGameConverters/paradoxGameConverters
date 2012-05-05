@@ -2,13 +2,20 @@
 
 
 
-void CK2Barony::init(Object* obj, CK2Title* newTitle)
+void CK2Barony::init(Object* obj, CK2Title* newTitle, CK2Province* newProvince)
 {
-	title = newTitle;
+	title		= newTitle;
+	province	= newProvince;
 }
 
 
 CK2Title* CK2Barony::getTitle()
 {
 	return title;
+}
+
+
+CK2Province* CK2Barony::getProvince()
+{
+	return province;
 }

@@ -16,6 +16,7 @@ class CK2Province
 {
 	public:
 		void						init(Object*, map<string, CK2Title*>);
+		int						getNumber();
 		vector<CK2Barony*>	getBaronies();
 	private:
 		int						number;

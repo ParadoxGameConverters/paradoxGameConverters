@@ -4,6 +4,8 @@
 #include "..\Parsers\Object.h"
 #include "CK2Dynasty.h"
 #include "CK2Trait.h"
+#include "CK2Barony.h"
+#include "CK2Province.h"
 
 
 
@@ -17,6 +19,7 @@ CK2Character::CK2Character()
 	dead			= true;
 	deathDate	= (string)"1.1.1";
 	female		= false;
+	bastard		= false;
 	traits.clear();
 	memset(stats, 0, sizeof(stats));
 
@@ -25,6 +28,14 @@ CK2Character::CK2Character()
 	motherNum	= -1;
 	mother		= NULL;
 	children.clear();
+	guardianNum	= -1;
+	guardian		= NULL;
+
+	memset(advisors, NULL, sizeof(advisors));
+	employerNum	= -1;
+	jobType		= NONE;
+	hostNum		= -1;
+	locationNum	= -1;
 }
 
 
@@ -101,6 +112,44 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 		bastard = false;
 	}
 
+	vector<Object*> employerObj = obj->getValue("employer");
+	if (employerObj.size() > 0)
+	{
+		employerNum = atoi( employerObj[0]->getLeaf().c_str() );
+	}
+
+	vector<Object*> hostObj = obj->getValue("host");
+	if (hostObj.size() > 0)
+	{
+		hostNum = atoi( hostObj[0]->getLeaf().c_str() );
+	}
+
+	vector<Object*> jobObj = obj->getValue("job_title");
+	if (jobObj.size() > 0)
+	{
+		string jobTitle = jobObj[0]->getLeaf();
+		if (jobTitle == "job_chancellor")
+		{
+			jobType = CHANCELLOR;
+		}
+		else if (jobTitle == "job_marshal")
+		{
+			jobType = MARSHAL;
+		}
+		else if (jobTitle == "job_treasurer")
+		{
+			jobType = STEWARD;
+		}
+		else if (jobTitle == "job_spymaster")
+		{
+			jobType = SPYMASTER;
+		}
+		else if (jobTitle == "job_spiritual")
+		{
+			jobType = CHAPLAIN;
+		}
+	}
+
 	vector<Object*> attributesObj = obj->getValue("attributes");
 	if (attributesObj.size() > 0)
 	{
@@ -155,6 +204,17 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 		if (stats[i] < 0)
 		{
 			stats[i] = 0;
+		}
+	}
+
+
+	vector<Object*> demesneObj = obj->getValue("demesne");
+	if (demesneObj.size() > 0)
+	{
+		vector<Object*> capitalObj = demesneObj[0]->getValue("capital");
+		if (capitalObj.size() > 0)
+		{
+			capitalString = capitalObj[0]->getLeaf();
 		}
 	}
 }
@@ -226,6 +286,37 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 }
 
 
+void CK2Character::setEmployer(map<int, CK2Character*>& characters, map<string, CK2Barony*>& baronies)
+{
+	if ( (employerNum != -1) && (jobType != NONE) )
+	{
+		CK2Character* employer = characters[employerNum];
+		if (employer != NULL)
+		{
+			characters[employerNum]->addAdvisor(this, jobType);
+		}
+		else
+		{
+			log("%s %s has an invalid employer. (%d)\n", name.c_str(), dynasty->getName().c_str(), employerNum);
+		}
+	}
+
+	if (hostNum != -1)
+	{
+		CK2Character* host = characters[hostNum];
+		if (host != NULL)
+		{
+			string hostCapitalString = host->getCapitalString();
+			CK2Barony* homeBarony = baronies[hostCapitalString];
+			if (homeBarony != NULL)
+			{
+				locationNum = homeBarony->getProvince()->getNumber();
+			}
+		}
+	}
+}
+
+
 void CK2Character::addChild(CK2Character* newChild)
 {
 	bool inserted = false;
@@ -241,6 +332,18 @@ void CK2Character::addChild(CK2Character* newChild)
 	{
 		children.push_back(newChild);
 	}
+}
+
+
+void CK2Character::addAdvisor(CK2Character* newAdvisor, advisorTypes type)
+{
+	advisors[type] = newAdvisor;
+}
+
+
+CK2Character** CK2Character::getAdvisors()
+{
+	return advisors;
 }
 
 
@@ -336,4 +439,22 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 	}
 
 	return NULL;
+}
+
+
+advisorTypes CK2Character::getJobType()
+{
+	return jobType;
+}
+
+
+int CK2Character::getLocationNum()
+{
+	return locationNum;
+}
+
+
+string CK2Character::getCapitalString()
+{
+	return capitalString;
 }

@@ -6,6 +6,7 @@
 #include "..\Date.h"
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2History.h"
+#include "..\CK2World\CK2Character.h"
 #include "EU3Ruler.h"
 #include "EU3History.h"
 #include <fstream>
@@ -142,7 +143,6 @@ void EU3Country::convert(CK2Title* src)
 		newHistory->initHeir(heir);
 		history.push_back(newHistory);
 	}
-	
 }
 
 

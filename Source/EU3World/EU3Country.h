@@ -6,12 +6,14 @@
 #include <string>
 #include <vector>
 #include "..\Date.h"
+#include "..\Mappers.h"
 using namespace std;
 
 
 class CK2Title;
 class EU3Ruler;
 class EU3History;
+class CK2Province;
 
 class EU3Country
 {
@@ -21,13 +23,13 @@ class EU3Country
 		void		convert(CK2Title*);
 		string	getTag();
 	private:
-		string					tag;
-		string					historyFile;
-		string					government;
+		string						tag;
+		string						historyFile;
+		string						government;
 		EU3Ruler*				monarch;
 		EU3Ruler*				heir;
-		vector<EU3History*>	history;
-		vector<EU3Ruler*>		previousMonarchs;
+		vector<EU3History*>		history;
+		vector<EU3Ruler*>	previousMonarchs;
 };
 
 

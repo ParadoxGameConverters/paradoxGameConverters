@@ -16,6 +16,12 @@ EU3Ruler::EU3Ruler(string newName, int dip, int adm, int mil, string newDynasty)
 	military			= mil;
 	id					= Configuration::getID();
 	dynasty			= newDynasty;
+
+	birthDate		= (string)"1.1.1";
+	deathDate		= (string)"1.1.1";
+	claim				= 0;
+	monarchName		= "";
+	female			= false;
 }
 
 

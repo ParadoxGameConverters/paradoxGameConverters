@@ -82,3 +82,4 @@ Revision	Log Message
 80		Feudal Elective succession
 81		Log number of CK2 baronies in each EU3 province
 82		Use forward declarations instead of header includes
+83		Initial implementation of DasGuntLord01's advisor conversion technique

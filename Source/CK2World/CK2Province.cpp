@@ -15,10 +15,16 @@ void CK2Province::init(Object* obj, map<string, CK2Title*> titles)
 		if (key[0] == 'b')
 		{
 			CK2Barony* newBarony = new CK2Barony;
-			newBarony->init( leaves[i], titles[key]);
+			newBarony->init( leaves[i], titles[key], this);
 			baronies.push_back(newBarony);
 		}
 	}
+}
+
+
+int CK2Province::getNumber()
+{
+	return number;
 }
 
 

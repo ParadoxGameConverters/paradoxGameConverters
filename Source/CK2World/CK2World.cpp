@@ -4,6 +4,7 @@
 #include "..\Parsers\Object.h"
 #include "CK2Title.h"
 #include "CK2Province.h"
+#include "CK2Barony.h"
 #include "CK2Character.h"
 #include "CK2Dynasty.h"
 #include "CK2Trait.h"
@@ -80,7 +81,14 @@ void CK2World::init(Object* obj)
 		{
 			CK2Province* newProvince = new CK2Province;
 			newProvince->init(leaves[i], titles);
-			provinces.insert(make_pair(atoi(key.c_str()), newProvince) );
+			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
+
+			vector<CK2Barony*> newBaronies = newProvince->getBaronies();
+			for (unsigned int j = 0; j < newBaronies.size(); j++)
+			{
+				string title = newBaronies[j]->getTitle()->getTitleString();
+				baronies.insert( make_pair(title, newBaronies[j]) );
+			}
 		}
 	}
 
@@ -103,6 +111,16 @@ void CK2World::init(Object* obj)
 		else
 		{
 			i->second->addLiege(titles[liege]);
+		}
+	}
+
+	printf("	Setting employers\n");
+	for (map<int, CK2Character*>::iterator i = characters.begin(); i != characters.end(); i++)
+	{
+		CK2Character* character = i->second;
+		if (character != NULL)
+		{
+			character->setEmployer(characters, baronies);
 		}
 	}
 

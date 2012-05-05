@@ -2,6 +2,7 @@
 #include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2History.h"
 #include "EU3Ruler.h"
+#include "EU3Advisor.h"
 
 
 
@@ -16,7 +17,8 @@ void EU3History::init(CK2History* src)
 		monarch = new EU3Ruler(holder);
 	}
 
-	heir = NULL;
+	heir		= NULL;
+	advisor	= NULL;
 }
 
 
@@ -24,8 +26,20 @@ void EU3History::initHeir(EU3Ruler* newHeir)
 {
 	when = newHeir->getBirthDate();
 
-	monarch = NULL;
-	heir = newHeir;
+	monarch	= NULL;
+	heir		= newHeir;
+	advisor	= NULL;
+}
+
+
+void EU3History::initAdvisor(EU3Advisor* newAdvisor)
+{
+	when = newAdvisor->getDate();
+	when.year += 16;
+
+	monarch	= NULL;
+	heir		= NULL;
+	advisor	= newAdvisor;
 }
 
 
@@ -40,6 +54,10 @@ void EU3History::output(FILE* output)
 	if (heir != NULL)
 	{
 		heir->outputAsHeir(output);
+	}
+	if (advisor != NULL)
+	{
+		advisor->outputInProvince(output);
 	}
 	fprintf(output, "		}\n");
 }
