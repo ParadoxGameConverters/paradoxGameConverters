@@ -11,6 +11,7 @@
 
 CK2Character::CK2Character()
 {
+	num			= -1;
 	name			= "";
 	religion		= "";
 	culture		= "";
@@ -41,6 +42,7 @@ CK2Character::CK2Character()
 
 void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
 {
+	num			= atoi( obj->getKey().c_str() );
 	name			= obj->getLeaf("birth_name");
 	religion		= obj->getLeaf("religion");
 	culture		= obj->getLeaf("culture");
@@ -217,6 +219,12 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 			capitalString = capitalObj[0]->getLeaf();
 		}
 	}
+}
+
+
+int CK2Character::getNum()
+{
+	return num;
 }
 
 

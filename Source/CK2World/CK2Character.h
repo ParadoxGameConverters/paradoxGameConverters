@@ -33,6 +33,7 @@ class CK2Character
 	public:
 		CK2Character();
 		void				init(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
+		int				getNum();
 		string			getName();
 		CK2Dynasty*		getDynasty();
 		date				getBirthDate();
@@ -52,6 +53,7 @@ class CK2Character
 		int				getLocationNum();
 		string			getCapitalString();
 	private:
+		int			num;
 		string		name;
 		string		religion;
 		string		culture;

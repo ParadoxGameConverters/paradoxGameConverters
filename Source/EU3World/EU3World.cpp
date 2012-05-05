@@ -145,14 +145,19 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 
 void EU3World::convertAdvisors(inverseProvinceMapping inverseProvinceMap, countryMapping countryMap)
 {
+	map<int, CK2Character*> independentRulers;
 	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
 	{
 		CK2Character* ruler = i->first->getHolder();
-		if (ruler == NULL)
+		if (ruler != NULL)
 		{
-			continue;
+			independentRulers.insert( make_pair(ruler->getNum(), ruler) );
 		}
-		CK2Character** srcAdvisors = ruler->getAdvisors();
+	}
+
+	for (map<int, CK2Character*>::iterator i = independentRulers.begin(); i != independentRulers.end(); i++)
+	{
+		CK2Character** srcAdvisors = i->second->getAdvisors();
 		for (unsigned int i = 0; i < 5; i++)
 		{
 			if (srcAdvisors[i] != NULL)
