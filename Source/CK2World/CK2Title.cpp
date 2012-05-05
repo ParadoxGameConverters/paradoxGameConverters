@@ -7,6 +7,24 @@
 
 
 
+CK2Title::CK2Title()
+{
+	titleString		= "";
+	holder			= NULL;
+	heir				= NULL;
+	successionLaw	= "";
+	genderLaw		= "";
+	history.clear();
+	liegeString		= "";
+	liege				= NULL;
+	vassals.clear();
+
+	independent		= true;
+	inHRE				= false;
+}
+
+
+
 void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 {
 	titleString = obj->getKey();
@@ -16,46 +34,45 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 		liegeString = liegeObjs[0]->getLeaf();
 	}
 
-	independent	= true;
-	inHRE			= false;
-
 	vector<Object*> holderObjs = obj->getValue("holder");
 	if (holderObjs.size() > 0)
 	{
 		holder = characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ];
 	}
 
-	heir = NULL;
 	genderLaw = obj->getLeaf("gender");
 	successionLaw = obj->getLeaf("succession");
-	if (successionLaw == "primogeniture")
+	if (holder != NULL)
 	{
-		CK2Character* tempHolder = holder;
-		do
+		if (successionLaw == "primogeniture")
 		{
-			heir = tempHolder->getPrimogenitureHeir(genderLaw);
-			tempHolder = tempHolder->getFather();
-			if (tempHolder == NULL)
+			CK2Character* tempHolder = holder;
+			do
 			{
-				break;
-			}
-		} while (heir == NULL);
-	}
-	else if (successionLaw == "gavelkind")
-	{
-		heir = NULL;
-	}
-	else if (successionLaw == "seniority")
-	{
-		heir = holder->getDynasty()->getSenoirityHeir(genderLaw);
-	}
-	else if (successionLaw == "feudal_elective")
-	{
-		heir = getFeudalElectiveHeir(obj, characters);
-	}
-	else if (successionLaw == "turkish_succession")
-	{
-		heir = NULL;
+				heir = tempHolder->getPrimogenitureHeir(genderLaw);
+				tempHolder = tempHolder->getFather();
+				if (tempHolder == NULL)
+				{
+					break;
+				}
+			} while (heir == NULL);
+		}
+		else if (successionLaw == "gavelkind")
+		{
+			heir = NULL;
+		}
+		else if (successionLaw == "seniority")
+		{
+			heir = holder->getDynasty()->getSenoirityHeir(genderLaw);
+		}
+		else if (successionLaw == "feudal_elective")
+		{
+			heir = getFeudalElectiveHeir(obj, characters);
+		}
+		else if (successionLaw == "turkish_succession")
+		{
+			heir = NULL;
+		}
 	}
 
 	vector<Object*> historyObjs = obj->getValue("history");
@@ -189,6 +206,7 @@ CK2Character* CK2Title::getFeudalElectiveHeir(Object* obj,  map<int, CK2Characte
 
 CK2Title::~CK2Title()
 {
+	//TODO: learn why this crashes things
 /*	while (vassals.size() > 0)
 	{
 		CK2Title* currentTitle = vassals[vassals.size() - 1];

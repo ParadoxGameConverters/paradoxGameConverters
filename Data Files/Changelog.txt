@@ -83,3 +83,4 @@ Revision	Log Message
 81		Log number of CK2 baronies in each EU3 province
 82		Use forward declarations instead of header includes
 83		Initial implementation of DasGuntLord01's advisor conversion technique
+84		Don't try to get an heir of a title no-one holds (also, the save that exposed this error)

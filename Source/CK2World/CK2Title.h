@@ -14,6 +14,7 @@ class CK2History;
 class CK2Title
 {
 	public:
+		CK2Title();
 		void						init(Object*, map<int, CK2Character*>&);
 		void						addLiege(CK2Title*);
 		void						addVassal(CK2Title*);
