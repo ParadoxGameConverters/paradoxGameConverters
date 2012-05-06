@@ -86,3 +86,4 @@ Revision	Log Message
 84		Don't try to get an heir of a title no-one holds (also, the save that exposed this error)
 85		No more cloned advisors
 86		Titled advisors now included
+87		Remove save incompatible with current CK2 version
