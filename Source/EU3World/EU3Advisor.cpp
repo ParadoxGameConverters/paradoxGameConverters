@@ -55,24 +55,27 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping inverseProvince
 			break;
 	}
 
-	vector<int> possibleLocations = inverseProvinceMap[src->getLocationNum()];
-	if (possibleLocations.size() > 0)
+	if (src->getLocationNum() != -1)
 	{
-		location = possibleLocations[0];
-	}
-	else
-	{
-		log("Error: no possible EU3 locations for %s %s\n", name.c_str(), dynasty.c_str());
-	}
+		vector<int> possibleLocations = inverseProvinceMap[src->getLocationNum()];
+		if (possibleLocations.size() > 0)
+		{
+			location = possibleLocations[0];
+		}
+		else
+		{
+			log("Error: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
+		}
 
-	EU3Province* homeProvince = provinces[location];
-	if (homeProvince != NULL)
-	{
-		home = homeProvince->getOwner();
-	}
-	else
-	{
-		log("Error: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
+		EU3Province* homeProvince = provinces[location];
+		if (homeProvince != NULL)
+		{
+			home = homeProvince->getOwner();
+		}
+		else
+		{
+			log("Error: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
+		}
 	}
 
 	startDate = newStartDate;

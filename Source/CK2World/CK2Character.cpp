@@ -311,7 +311,7 @@ void CK2Character::setEmployer(map<int, CK2Character*>& characters, map<string, 
 
 	if (hostNum != -1)
 	{
-		CK2Character* host = characters[hostNum];
+		CK2Character* host = characters[employerNum];
 		if (host != NULL)
 		{
 			string hostCapitalString = host->getCapitalString();
