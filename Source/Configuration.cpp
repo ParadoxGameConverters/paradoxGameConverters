@@ -26,5 +26,7 @@ Configuration::Configuration()
 	CK2Path		= obj[0]->getLeaf("CK2directory");
 	EU3Path		= obj[0]->getLeaf("EU3directory");
 	HRETitle		= obj[0]->getLeaf("HRETitle");
+	advisorsType= obj[0]->getLeaf("advisorsType");
+
 	id				= 1;
 }

@@ -89,3 +89,4 @@ Revision	Log Message
 87		Remove save incompatible with current CK2 version
 88		Added Latin_Empire1303_04_27.ck2
 89		If an advisor has no home, don't try to place them somewhere
+90		Option for advisors now in configuration file

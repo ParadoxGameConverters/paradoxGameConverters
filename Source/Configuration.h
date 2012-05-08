@@ -32,6 +32,11 @@ public:
 		return getInstance()->id++;
 	}
 
+	static string getAdvisorsType()
+	{
+		return getInstance()->advisorsType;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -45,6 +50,7 @@ private:
 	string	CK2Path;
 	string	EU3Path;
 	string	HRETitle;
+	string	advisorsType;
 
 	int		id;
 };
