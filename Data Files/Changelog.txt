@@ -87,3 +87,4 @@ Revision	Log Message
 85		No more cloned advisors
 86		Titled advisors now included
 87		Remove save incompatible with current CK2 version
+88		Added Latin_Empire1303_04_27.ck2
