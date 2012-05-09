@@ -77,8 +77,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	switch (game)
 	{
 	case VeryOld:
-		printf("Error: EU3 game appears to be from an old version; only HttT and DW are supported.\n");
-		log("Error: EU3 game appears to be from an old version; only HttT and DW are supported.\n");
+		printf("Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
+		log("Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
 		exit(1);
 	case InNomine:
 		printf("Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");

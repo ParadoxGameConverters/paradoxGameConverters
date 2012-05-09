@@ -185,6 +185,7 @@ WorldType EU3World::getWorldType()
 	switch (maxProvinceID)
 	{
 	case 1774:
+	case 1775:
 		cachedWorldType = InNomine;
 		break;
 	case 1814:
