@@ -98,6 +98,10 @@ void CK2World::init(Object* obj)
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
 		string liege = i->second->getLiegeString();
+		if (i->second->getHolder() == NULL)
+		{
+			continue;
+		}
 		if (liege == "")
 		{
 			independentTitles.push_back(i->second);
