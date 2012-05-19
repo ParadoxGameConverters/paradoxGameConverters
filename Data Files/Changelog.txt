@@ -96,3 +96,4 @@ Revision	Log Message
 94		Improved variety of advisors
 95		Initial gavelkind implementation
 96		Restrict gavelkind heirs to valid children
+97		Rename test config file appropriately

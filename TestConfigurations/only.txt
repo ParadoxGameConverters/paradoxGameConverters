@@ -8,6 +8,4 @@ configuration =
 
 	# HRE Title: the CK2 Title that will convert are the HRE in EU3. All immediate vassals will be independent.
 	HRETitle = "e_hre"
-
-	advisorsType = "DasGuntLord01"
 }
