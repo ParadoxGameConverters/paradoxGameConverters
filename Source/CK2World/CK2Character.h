@@ -16,6 +16,7 @@ class		CK2Dynasty;
 class		CK2Trait;
 class		CK2Province;
 class		CK2Barony;
+class		CK2Title;
 
 enum advisorTypes
 {
@@ -37,6 +38,7 @@ class CK2Character
 		string			getName();
 		CK2Dynasty*		getDynasty();
 		date				getBirthDate();
+		void				addTitle(CK2Title*);
 		void				setParents(map<int, CK2Character*>&);
 		void				setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
 		void				addChild(CK2Character*);
@@ -49,24 +51,26 @@ class CK2Character
 		int*				getStats();
 		CK2Character*	getFather();
 		CK2Character*	getPrimogenitureHeir(string);
+		void				setGavelkindHeirs(string);
 		advisorTypes	getJobType();
 		string			getAction();
 		int				getLocationNum();
 		string			getCapitalString();
 	private:
-		int			num;
-		string		name;
-		string		religion;
-		string		culture;
-		CK2Dynasty*	dynasty;
-		date			birthDate;
-		float			age;
-		bool			dead;
-		date			deathDate;
-		bool			female;
-		bool			bastard;
-		vector<int>	traits;
-		int			stats[5];
+		int					num;
+		string				name;
+		string				religion;
+		string				culture;
+		CK2Dynasty*			dynasty;
+		date					birthDate;
+		float					age;
+		bool					dead;
+		date					deathDate;
+		bool					female;
+		bool					bastard;
+		vector<int>			traits;
+		int					stats[5];
+		vector<CK2Title*>	titles;
 
 		int							fatherNum;
 		CK2Character*				father;

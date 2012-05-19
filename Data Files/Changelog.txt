@@ -94,3 +94,4 @@ Revision	Log Message
 92		Lots of advisors
 93		Remove option for advisors from configuration file
 94		Improved variety of advisors
+95		Initial gavelkind implementation

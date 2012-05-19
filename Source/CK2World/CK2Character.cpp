@@ -6,6 +6,7 @@
 #include "CK2Trait.h"
 #include "CK2Barony.h"
 #include "CK2Province.h"
+#include "CK2Title.h"
 
 
 
@@ -23,6 +24,7 @@ CK2Character::CK2Character()
 	bastard		= false;
 	traits.clear();
 	memset(stats, 0, sizeof(stats));
+	titles.clear();
 
 	fatherNum	= -1;
 	father		= NULL;
@@ -253,6 +255,12 @@ date CK2Character::getBirthDate()
 }
 
 
+void CK2Character::addTitle(CK2Title* newTitle)
+{
+	titles.push_back(newTitle);
+}
+
+
 void CK2Character::setParents(map<int, CK2Character*>& characters)
 {
 	if (fatherNum != -1)
@@ -454,6 +462,117 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 	}
 
 	return NULL;
+}
+
+
+void CK2Character::setGavelkindHeirs(string genderLaw)
+{
+	if (children.size() <= 0)
+	{
+		CK2Character* heir = getPrimogenitureHeir(genderLaw);
+		for (vector<CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
+		{
+			if ( (*i)->getSuccessionLaw() == "gavelkind")
+			{
+				(*i)->setHeir(heir);
+			}
+		}
+
+		return;
+	}
+
+	vector<CK2Title*>	empireTitles;
+	vector<CK2Title*>	kingdomTitles;
+	vector<CK2Title*>	duchyTitles;
+	vector<CK2Title*>	countyTitles;
+	vector<CK2Title*>	baronyTitles;
+	for (vector<CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
+	{
+		if ( (*i)->getSuccessionLaw() == "gavelkind")
+		{
+			string titleString = (*i)->getTitleString();
+			if ( titleString.substr(0, 2) == "e_")
+			{
+				empireTitles.push_back(*i);
+			}
+			else if ( titleString.substr(0, 2) == "k_")
+			{
+				kingdomTitles.push_back(*i);
+			}
+			else if ( titleString.substr(0, 2) == "d_")
+			{
+				duchyTitles.push_back(*i);
+			}
+			else if ( titleString.substr(0, 2) == "c_")
+			{
+				countyTitles.push_back(*i);
+			}
+			else if ( titleString.substr(0, 2) == "b_")
+			{
+				baronyTitles.push_back(*i);
+			}
+		}
+	}
+
+	list<CK2Character*>::iterator heirItr = children.begin();
+	for (vector<CK2Title*>::iterator i = empireTitles.begin(); i != empireTitles.end(); i++)
+	{
+		if (heirItr == children.end())
+		{
+			heirItr = children.begin();
+		}
+
+		(*i)->setHeir(*heirItr);
+		heirItr++;
+	}
+
+	heirItr = children.begin();
+	for (vector<CK2Title*>::iterator i = kingdomTitles.begin(); i != kingdomTitles.end(); i++)
+	{
+		if (heirItr == children.end())
+		{
+			heirItr = children.begin();
+		}
+
+		(*i)->setHeir(*heirItr);
+		heirItr++;
+	}
+
+	heirItr = children.begin();
+	for (vector<CK2Title*>::iterator i = duchyTitles.begin(); i != duchyTitles.end(); i++)
+	{
+		if (heirItr == children.end())
+		{
+			heirItr = children.begin();
+		}
+
+		(*i)->setHeir(*heirItr);
+		heirItr++;
+	}
+
+	heirItr = children.begin();
+	for (vector<CK2Title*>::iterator i = countyTitles.begin(); i != countyTitles.end(); i++)
+	{
+		if (heirItr == children.end())
+		{
+			heirItr = children.begin();
+		}
+
+		(*i)->setHeir(*heirItr);
+		heirItr++;
+	}
+
+	heirItr = children.begin();
+	for (vector<CK2Title*>::iterator i = baronyTitles.begin(); i != baronyTitles.end(); i++)
+	{
+		if (heirItr == children.end())
+		{
+			heirItr = children.begin();
+		}
+
+		(*i)->setHeir(*heirItr);
+		heirItr++;
+	}
 }
 
 

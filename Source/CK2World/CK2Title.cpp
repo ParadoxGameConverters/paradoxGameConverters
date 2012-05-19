@@ -38,6 +38,10 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	if (holderObjs.size() > 0)
 	{
 		holder = characters[ atoi( holderObjs[0]->getLeaf().c_str() ) ];
+		if (holder != NULL)
+		{
+			holder->addTitle(this);
+		}
 	}
 
 	genderLaw = obj->getLeaf("gender");
@@ -59,7 +63,10 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 		}
 		else if (successionLaw == "gavelkind")
 		{
-			heir = NULL;
+			if(heir == NULL) // if the heir is not null, we've already set this
+			{
+				holder->setGavelkindHeirs(genderLaw);
+			}
 		}
 		else if (successionLaw == "seniority")
 		{
@@ -124,9 +131,21 @@ CK2Character* CK2Title::getHolder()
 }
 
 
+void CK2Title::setHeir(CK2Character* newHeir)
+{
+	heir = newHeir;
+}
+
+
 CK2Character* CK2Title::getHeir()
 {
 	return heir;
+}
+
+
+string CK2Title::getSuccessionLaw()
+{
+	return successionLaw;
 }
 
 
