@@ -170,6 +170,12 @@ vector<CK2Title*> CK2World::getIndependentTitles()
 }
 
 
+map<string, CK2Title*> CK2World::getAllTitles()
+{
+	return titles;
+}
+
+
 map<int, CK2Province*> CK2World::getProvinces()
 {
 	return provinces;

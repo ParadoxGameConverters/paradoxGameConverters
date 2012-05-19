@@ -143,21 +143,22 @@ void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Provinc
 }
 
 
-void EU3World::convertAdvisors(inverseProvinceMapping inverseProvinceMap, countryMapping countryMap)
+void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, CK2World& srcWorld)
 {
-	map<int, CK2Character*> independentRulers;
-	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
+	map<string, CK2Title*> titles = srcWorld.getAllTitles();
+	map<int, CK2Character*> rulers;
+	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
-		CK2Character* ruler = i->first->getHolder();
+		CK2Character* ruler = i->second->getHolder();
 		if (ruler != NULL)
 		{
-			independentRulers.insert( make_pair(ruler->getNum(), ruler) );
+			rulers.insert( make_pair(ruler->getNum(), ruler) );
 		}
 	}
 
 	if (Configuration::getAdvisorsType() == "DasGuntLord01")
 	{
-		for (map<int, CK2Character*>::iterator i = independentRulers.begin(); i != independentRulers.end(); i++)
+		for (map<int, CK2Character*>::iterator i = rulers.begin(); i != rulers.end(); i++)
 		{
 			CK2Character** srcAdvisors = i->second->getAdvisors();
 			for (unsigned int i = 0; i < 5; i++)

@@ -25,6 +25,7 @@ class CK2World
 		void							addTraits(Object*);
 		date							getEndDate();
 		vector<CK2Title*>			getIndependentTitles();
+		map<string, CK2Title*>	getAllTitles();
 		map<int, CK2Province*>	getProvinces();
 		~CK2World();
 	private:
