@@ -27,35 +27,32 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping inverseProvince
 		log("Error: %s does not have a dynasty!\n", name.c_str());
 	}
 
-	if (Configuration::getAdvisorsType() == "DasGuntLord01")
+	advisorTypes	jobType	= src->getJobType();
+	int*				srcStats	= src->getStats();
+	switch (jobType)
 	{
-		advisorTypes	jobType	= src->getJobType();
-		int*				srcStats	= src->getStats();
-		switch (jobType)
-		{
-			case CHANCELLOR:
-				advisorType = "diplomat";
-				advisorSkill	= srcStats[DIPLOMACY] / 4;
-				break;
-			case MARSHAL:
-				advisorType = "army_reformer";
-				advisorSkill	= srcStats[MARTIAL] / 4;
-				break;
-			case STEWARD:
-				advisorType = "sheriff";
-				advisorSkill	= srcStats[STEWARDSHIP] / 4;
-				break;
-			case SPYMASTER:
-				advisorType = "spymaster";
-				advisorSkill	= srcStats[INTRIGUE] / 4;
-				break;
-			case CHAPLAIN:
-				advisorType = "theologian";
-				advisorSkill	= srcStats[LEARNING] / 4;
-				break;
-			default:
-				break;
-		}
+		case CHANCELLOR:
+			advisorType = "diplomat";
+			advisorSkill	= srcStats[DIPLOMACY] / 4;
+			break;
+		case MARSHAL:
+			advisorType = "army_reformer";
+			advisorSkill	= srcStats[MARTIAL] / 4;
+			break;
+		case STEWARD:
+			advisorType = "sheriff";
+			advisorSkill	= srcStats[STEWARDSHIP] / 4;
+			break;
+		case SPYMASTER:
+			advisorType = "spymaster";
+			advisorSkill	= srcStats[INTRIGUE] / 4;
+			break;
+		case CHAPLAIN:
+			advisorType = "theologian";
+			advisorSkill	= srcStats[LEARNING] / 4;
+			break;
+		default:
+			break;
 	}
 
 	if (src->getLocationNum() != -1)

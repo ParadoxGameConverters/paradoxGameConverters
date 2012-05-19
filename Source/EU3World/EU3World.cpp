@@ -156,36 +156,33 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, CK2Wo
 		}
 	}
 
-	if (Configuration::getAdvisorsType() == "DasGuntLord01")
+	for (map<int, CK2Character*>::iterator i = rulers.begin(); i != rulers.end(); i++)
 	{
-		for (map<int, CK2Character*>::iterator i = rulers.begin(); i != rulers.end(); i++)
+		CK2Character** srcAdvisors = i->second->getAdvisors();
+		for (unsigned int i = 0; i < 5; i++)
 		{
-			CK2Character** srcAdvisors = i->second->getAdvisors();
-			for (unsigned int i = 0; i < 5; i++)
+			if (srcAdvisors[i] != NULL)
 			{
-				if (srcAdvisors[i] != NULL)
+				EU3Advisor*	newAdvisor		= new EU3Advisor(srcAdvisors[i], inverseProvinceMap, provinces, startDate);
+				int			CK2Location		= srcAdvisors[i]->getLocationNum();
+
+				vector<int>		provinceNums;
+				provinceNums.clear();
+				if (CK2Location != NULL)
 				{
-					EU3Advisor*	newAdvisor		= new EU3Advisor(srcAdvisors[i], inverseProvinceMap, provinces, startDate);
-					int			CK2Location		= srcAdvisors[i]->getLocationNum();
+					provinceNums = inverseProvinceMap[CK2Location];
+				}
 
-					vector<int>		provinceNums;
-					provinceNums.clear();
-					if (CK2Location != NULL)
-					{
-						provinceNums = inverseProvinceMap[CK2Location];
-					}
-
-					EU3Province*	advisorHome = NULL;
-					if (provinceNums.size() > 0)
-					{
-						advisorHome = provinces[ provinceNums[0] ];
-						newAdvisor->setLocation( provinceNums[0] );
-					}
-					if (advisorHome != NULL)
-					{
-						advisorHome->addAdvisor(newAdvisor);
-						advisors.push_back(newAdvisor);
-					}
+				EU3Province*	advisorHome = NULL;
+				if (provinceNums.size() > 0)
+				{
+					advisorHome = provinces[ provinceNums[0] ];
+					newAdvisor->setLocation( provinceNums[0] );
+				}
+				if (advisorHome != NULL)
+				{
+					advisorHome->addAdvisor(newAdvisor);
+					advisors.push_back(newAdvisor);
 				}
 			}
 		}

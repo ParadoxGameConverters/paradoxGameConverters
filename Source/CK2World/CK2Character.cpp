@@ -126,32 +126,29 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 		hostNum = atoi( hostObj[0]->getLeaf().c_str() );
 	}
 
-	if (Configuration::getAdvisorsType() == "DasGuntLord01")
+	vector<Object*> jobObj = obj->getValue("job_title");
+	if (jobObj.size() > 0)
 	{
-		vector<Object*> jobObj = obj->getValue("job_title");
-		if (jobObj.size() > 0)
+		string jobTitle = jobObj[0]->getLeaf();
+		if (jobTitle == "job_chancellor")
 		{
-			string jobTitle = jobObj[0]->getLeaf();
-			if (jobTitle == "job_chancellor")
-			{
-				jobType = CHANCELLOR;
-			}
-			else if (jobTitle == "job_marshal")
-			{
-				jobType = MARSHAL;
-			}
-			else if (jobTitle == "job_treasurer")
-			{
-				jobType = STEWARD;
-			}
-			else if (jobTitle == "job_spymaster")
-			{
-				jobType = SPYMASTER;
-			}
-			else if (jobTitle == "job_spiritual")
-			{
-				jobType = CHAPLAIN;
-			}
+			jobType = CHANCELLOR;
+		}
+		else if (jobTitle == "job_marshal")
+		{
+			jobType = MARSHAL;
+		}
+		else if (jobTitle == "job_treasurer")
+		{
+			jobType = STEWARD;
+		}
+		else if (jobTitle == "job_spymaster")
+		{
+			jobType = SPYMASTER;
+		}
+		else if (jobTitle == "job_spiritual")
+		{
+			jobType = CHAPLAIN;
 		}
 	}
 
@@ -299,19 +296,16 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 
 void CK2Character::setEmployer(map<int, CK2Character*>& characters, map<string, CK2Barony*>& baronies)
 {
-	if (Configuration::getAdvisorsType() == "DasGuntLord01")
+	if ( (hostNum != -1) && (jobType != NONE) )
 	{
-		if ( (hostNum != -1) && (jobType != NONE) )
+		CK2Character* employer = characters[hostNum];
+		if (employer != NULL)
 		{
-			CK2Character* employer = characters[hostNum];
-			if (employer != NULL)
-			{
-				characters[hostNum]->addAdvisor(this, jobType);
-			}
-			else
-			{
-				log("%s %s has an invalid employer. (%d)\n", name.c_str(), dynasty->getName().c_str(), hostNum);
-			}
+			characters[hostNum]->addAdvisor(this, jobType);
+		}
+		else
+		{
+			log("%s %s has an invalid employer. (%d)\n", name.c_str(), dynasty->getName().c_str(), hostNum);
 		}
 	}
 
