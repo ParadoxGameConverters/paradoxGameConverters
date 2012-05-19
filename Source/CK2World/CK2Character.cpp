@@ -467,7 +467,16 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 
 void CK2Character::setGavelkindHeirs(string genderLaw)
 {
-	if (children.size() <= 0)
+	vector<CK2Character*> heirs;
+	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+	{
+		if ( !(*i)->isBastard() && !(*i)->isDead() && !(*i)->isFemale())
+		{
+			heirs.push_back(*i);
+		}
+	}
+
+	if (heirs.size() <= 0)
 	{
 		CK2Character* heir = getPrimogenitureHeir(genderLaw);
 		for (vector<CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
@@ -514,60 +523,60 @@ void CK2Character::setGavelkindHeirs(string genderLaw)
 		}
 	}
 
-	list<CK2Character*>::iterator heirItr = children.begin();
+	vector<CK2Character*>::iterator heirItr = heirs.begin();
 	for (vector<CK2Title*>::iterator i = empireTitles.begin(); i != empireTitles.end(); i++)
 	{
-		if (heirItr == children.end())
+		if (heirItr == heirs.end())
 		{
-			heirItr = children.begin();
+			heirItr = heirs.begin();
 		}
 
 		(*i)->setHeir(*heirItr);
 		heirItr++;
 	}
 
-	heirItr = children.begin();
+	heirItr = heirs.begin();
 	for (vector<CK2Title*>::iterator i = kingdomTitles.begin(); i != kingdomTitles.end(); i++)
 	{
-		if (heirItr == children.end())
+		if (heirItr == heirs.end())
 		{
-			heirItr = children.begin();
+			heirItr = heirs.begin();
 		}
 
 		(*i)->setHeir(*heirItr);
 		heirItr++;
 	}
 
-	heirItr = children.begin();
+	heirItr = heirs.begin();
 	for (vector<CK2Title*>::iterator i = duchyTitles.begin(); i != duchyTitles.end(); i++)
 	{
-		if (heirItr == children.end())
+		if (heirItr == heirs.end())
 		{
-			heirItr = children.begin();
+			heirItr = heirs.begin();
 		}
 
 		(*i)->setHeir(*heirItr);
 		heirItr++;
 	}
 
-	heirItr = children.begin();
+	heirItr = heirs.begin();
 	for (vector<CK2Title*>::iterator i = countyTitles.begin(); i != countyTitles.end(); i++)
 	{
-		if (heirItr == children.end())
+		if (heirItr == heirs.end())
 		{
-			heirItr = children.begin();
+			heirItr = heirs.begin();
 		}
 
 		(*i)->setHeir(*heirItr);
 		heirItr++;
 	}
 
-	heirItr = children.begin();
+	heirItr = heirs.begin();
 	for (vector<CK2Title*>::iterator i = baronyTitles.begin(); i != baronyTitles.end(); i++)
 	{
-		if (heirItr == children.end())
+		if (heirItr == heirs.end())
 		{
-			heirItr = children.begin();
+			heirItr = heirs.begin();
 		}
 
 		(*i)->setHeir(*heirItr);

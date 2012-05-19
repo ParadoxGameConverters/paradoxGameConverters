@@ -95,3 +95,4 @@ Revision	Log Message
 93		Remove option for advisors from configuration file
 94		Improved variety of advisors
 95		Initial gavelkind implementation
+96		Restrict gavelkind heirs to valid children
