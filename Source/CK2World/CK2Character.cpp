@@ -35,6 +35,7 @@ CK2Character::CK2Character()
 	memset(advisors, NULL, sizeof(advisors));
 	employerNum	= -1;
 	jobType		= NONE;
+	action		= "";
 	hostNum		= -1;
 	locationNum	= -1;
 }
@@ -150,6 +151,12 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 		{
 			jobType = CHAPLAIN;
 		}
+	}
+
+	vector<Object*> actionObj = obj->getValue("action");
+	if (actionObj.size() > 0)
+	{
+		action = actionObj[0]->getLeaf();
 	}
 
 	vector<Object*> attributesObj = obj->getValue("attributes");
@@ -453,6 +460,12 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 advisorTypes CK2Character::getJobType()
 {
 	return jobType;
+}
+
+
+string CK2Character::getAction()
+{
+	return action;
 }
 
 

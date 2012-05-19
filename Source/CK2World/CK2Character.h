@@ -50,6 +50,7 @@ class CK2Character
 		CK2Character*	getFather();
 		CK2Character*	getPrimogenitureHeir(string);
 		advisorTypes	getJobType();
+		string			getAction();
 		int				getLocationNum();
 		string			getCapitalString();
 	private:
@@ -78,6 +79,7 @@ class CK2Character
 		CK2Character*				advisors[6];
 		int							employerNum;
 		advisorTypes				jobType;
+		string						action;
 		int							hostNum;
 		int							locationNum;
 		string						capitalString;

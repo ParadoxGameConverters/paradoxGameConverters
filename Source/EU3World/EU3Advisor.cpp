@@ -28,28 +28,92 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping inverseProvince
 	}
 
 	advisorTypes	jobType	= src->getJobType();
+	string			action	= src->getAction();
 	int*				srcStats	= src->getStats();
 	switch (jobType)
 	{
 		case CHANCELLOR:
-			advisorType = "diplomat";
 			advisorSkill	= srcStats[DIPLOMACY] / 4;
+			if (action == "action_improve_relations")
+			{
+				advisorType = "diplomat";
+			}
+			else if (action == "action_fabricate_claims")
+			{
+				advisorType = "ambassador";
+			}
+			else if (action == "action_sow_dissent")
+			{
+				advisorType = "ambassador";
+			}
+			else
+			{
+				advisorType = "philosopher";
+			}
 			break;
 		case MARSHAL:
-			advisorType = "army_reformer";
 			advisorSkill	= srcStats[MARTIAL] / 4;
+			if (action == "action_advance_mil_tech")
+			{
+				advisorType = "army_reformer";
+			}
+			else if (action == "action_train_troops")
+			{
+				advisorType = "recruitmaster";
+			}
+			else if (action == "action_assist_arrest")
+			{
+				advisorType = "high_judge";
+			}
+			else
+			{
+				advisorType = "grand_captain";
+			}
 			break;
 		case STEWARD:
-			advisorType = "sheriff";
 			advisorSkill	= srcStats[STEWARDSHIP] / 4;
+			if (action == "action_squeeze_peasants")
+			{
+				advisorType = "sheriff";
+			}
+			else if (action == "action_oversee_construction")
+			{
+				advisorType = "alderman";
+			}
+			else if (action == "action_advance_eco_tech")
+			{
+				advisorType = "treasurer";
+			}
+			else
+			{
+				advisorType = "master_of_mint";
+			}
 			break;
 		case SPYMASTER:
-			advisorType = "spymaster";
 			advisorSkill	= srcStats[INTRIGUE] / 4;
+			if (action == "action_uncover_plots")
+			{
+				advisorType = "inquisitor";
+			}
+			else
+			{
+				advisorType = "spymaster";
+			}
 			break;
 		case CHAPLAIN:
-			advisorType = "theologian";
 			advisorSkill	= srcStats[LEARNING] / 4;
+			if (action == "action_improve_rel_relations")
+			{
+				advisorType = "diplomat";
+			}
+			else if (action == "action_advance_cul_tech")
+			{
+				advisorType = "statesman";
+			}
+			else
+			{
+				advisorType = "theologian";
+			}
 			break;
 		default:
 			break;

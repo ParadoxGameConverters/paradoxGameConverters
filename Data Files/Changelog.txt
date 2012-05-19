@@ -93,3 +93,4 @@ Revision	Log Message
 91		No longer count titles help by no-one as independent
 92		Lots of advisors
 93		Remove option for advisors from configuration file
+94		Improved variety of advisors
