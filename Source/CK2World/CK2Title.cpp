@@ -4,6 +4,7 @@
 #include "CK2Title.h"
 #include "CK2Dynasty.h"
 #include "CK2History.h"
+#include "..\Log.h"
 
 
 
@@ -78,7 +79,7 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 		}
 		else if (successionLaw == "turkish_succession")
 		{
-			heir = NULL;
+			heir = getTurkishSuccessionHeir();
 		}
 	}
 
@@ -219,6 +220,88 @@ CK2Character* CK2Title::getFeudalElectiveHeir(Object* obj,  map<int, CK2Characte
 	}
 
 	return characters[nominee];
+}
+
+
+CK2Character* CK2Title::getTurkishSuccessionHeir()
+{
+	CK2Character* heir = NULL;
+	int largestDemesne = 0;
+
+	for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
+	{
+		if ( (*i)->getTitleString().substr(0, 2) == "k_" )
+		{
+			if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
+			{
+				heir = (*i)->getHolder();
+				largestDemesne = (*i)->getHolder()->getDemesneSize();
+			}
+			else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
+			{
+				log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
+			}
+		}
+	}
+
+	if (heir == NULL)
+	{
+		for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
+		{
+			if ( (*i)->getTitleString().substr(0, 2) == "d_" )
+			{
+				if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
+				{
+					heir = (*i)->getHolder();
+					largestDemesne = (*i)->getHolder()->getDemesneSize();
+				}
+				else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
+				{
+					log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
+				}
+			}
+		}
+	}
+
+	if (heir == NULL)
+	{
+		for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
+		{
+			if ( (*i)->getTitleString().substr(0, 2) == "c_" )
+			{
+				if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
+				{
+					heir = (*i)->getHolder();
+					largestDemesne = (*i)->getHolder()->getDemesneSize();
+				}
+				else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
+				{
+					log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
+				}
+			}
+		}
+	}
+
+	if (heir == NULL)
+	{
+		for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
+		{
+			if ( (*i)->getTitleString().substr(0, 2) == "b_" )
+			{
+				if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
+				{
+					heir = (*i)->getHolder();
+					largestDemesne = (*i)->getHolder()->getDemesneSize();
+				}
+				else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
+				{
+					log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
+				}
+			}
+		}
+	}
+
+	return heir;
 }
 
 

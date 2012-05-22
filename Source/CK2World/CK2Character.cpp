@@ -261,6 +261,21 @@ void CK2Character::addTitle(CK2Title* newTitle)
 }
 
 
+int CK2Character::getDemesneSize()
+{
+	int size = 0;
+	for (vector<CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
+	{
+		if ( (*i)->getTitleString().substr(0, 2) == "b_" )
+		{
+			size++;
+		}
+	}
+
+	return size;
+}
+
+
 void CK2Character::setParents(map<int, CK2Character*>& characters)
 {
 	if (fatherNum != -1)

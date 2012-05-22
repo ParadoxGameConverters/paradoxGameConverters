@@ -39,6 +39,7 @@ class CK2Character
 		CK2Dynasty*		getDynasty();
 		date				getBirthDate();
 		void				addTitle(CK2Title*);
+		int				getDemesneSize();
 		void				setParents(map<int, CK2Character*>&);
 		void				setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
 		void				addChild(CK2Character*);

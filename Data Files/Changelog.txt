@@ -98,3 +98,4 @@ Revision	Log Message
 96		Restrict gavelkind heirs to valid children
 97		Rename test config file appropriately
 98		Update Gavelkind to handle no immediate heirs
+99		Turkish Succession

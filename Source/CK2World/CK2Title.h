@@ -30,6 +30,7 @@ class CK2Title
 		bool						isIndependent();
 		bool						isInHRE();
 		CK2Character*			getFeudalElectiveHeir(Object*,  map<int, CK2Character*>&);
+		CK2Character*			getTurkishSuccessionHeir();
 		~CK2Title();
 	private:
 		string					titleString;
