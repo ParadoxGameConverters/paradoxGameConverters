@@ -57,6 +57,8 @@ class CK2Character
 		int				getLocationNum();
 		string			getCapitalString();
 	private:
+		vector<CK2Character*>	getGavelkindHeirs(string);
+
 		int					num;
 		string				name;
 		string				religion;

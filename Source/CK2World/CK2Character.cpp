@@ -468,25 +468,18 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 void CK2Character::setGavelkindHeirs(string genderLaw)
 {
 	vector<CK2Character*> heirs;
-	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+	CK2Character* tempHolder = this;
+	do
 	{
-		if ( !(*i)->isBastard() && !(*i)->isDead() && !(*i)->isFemale())
-		{
-			heirs.push_back(*i);
-		}
-	}
-
+			heirs = tempHolder->getGavelkindHeirs(genderLaw);
+			tempHolder = tempHolder->getFather();
+			if (tempHolder == NULL)
+			{
+				break;
+			}
+	} while (heirs.size() <= 0);
 	if (heirs.size() <= 0)
 	{
-		CK2Character* heir = getPrimogenitureHeir(genderLaw);
-		for (vector<CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
-		{
-			if ( (*i)->getSuccessionLaw() == "gavelkind")
-			{
-				(*i)->setHeir(heir);
-			}
-		}
-
 		return;
 	}
 
@@ -582,6 +575,49 @@ void CK2Character::setGavelkindHeirs(string genderLaw)
 		(*i)->setHeir(*heirItr);
 		heirItr++;
 	}
+}
+
+
+vector<CK2Character*> CK2Character::getGavelkindHeirs(string genderLaw)
+{
+	vector<CK2Character*> heirs;
+
+	// try male children
+	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+	{
+		if ( !(*i)->isBastard() && !(*i)->isDead() && !(*i)->isFemale())
+		{
+			heirs.push_back(*i);
+		}
+	}
+
+	// try decendants of oldest eligible child
+	if (heirs.size() <= 0)
+	{
+		for (list<CK2Character*>::iterator i = children.begin(); ( i != children.end() && heirs.size() <= 0 ); i++)
+		{
+			if (   !(*i)->isBastard() && 
+				  ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
+				)
+			{
+				heirs = (*i)->getGavelkindHeirs(genderLaw);
+			}
+		}
+	}
+
+	// try female children
+	if (heirs.size() <= 0)
+	{
+		for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+		{
+			if ( !(*i)->isBastard() && !(*i)->isDead() && genderLaw == "cognatic")
+			{
+				heirs.push_back(*i);
+			}
+		}
+	}
+
+	return heirs;
 }
 
 
