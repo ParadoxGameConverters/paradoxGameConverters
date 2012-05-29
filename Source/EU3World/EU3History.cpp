@@ -6,6 +6,14 @@
 
 
 
+EU3History::EU3History()
+{
+	monarch	= NULL;
+	heir		= NULL;
+	advisor	= NULL;
+}
+
+
 void EU3History::init(CK2History* src)
 {
 	when = src->getWhen();
@@ -17,6 +25,16 @@ void EU3History::init(CK2History* src)
 		monarch = new EU3Ruler(holder);
 	}
 
+	heir		= NULL;
+	advisor	= NULL;
+}
+
+
+void EU3History::initMonarch(EU3Ruler* newMonarch, date newWhen)
+{
+	when = newWhen;
+	
+	monarch	= newMonarch;
 	heir		= NULL;
 	advisor	= NULL;
 }

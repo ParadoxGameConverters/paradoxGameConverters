@@ -99,3 +99,4 @@ Revision	Log Message
 97		Rename test config file appropriately
 98		Update Gavelkind to handle no immediate heirs
 99		Turkish Succession
+100		Restore monarch conversion in ROTW (had been broken in change 48)

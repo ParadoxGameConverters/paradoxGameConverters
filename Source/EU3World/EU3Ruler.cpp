@@ -260,7 +260,6 @@ void EU3Ruler::outputAsMonarch(FILE* output)
 	fprintf(output,"					type=37\n");
 	fprintf(output,"				}\n");
 	fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
-	fprintf(output,"				birth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
 	fprintf(output,"			}\n");
 }
 

@@ -97,13 +97,23 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 			date histDate(key);
 			if (histDate <= startDate)
 			{
+				EU3History* newHistory = new EU3History;
+
 				vector<Object*> newMonarchObj = objectList[i]->getValue("monarch");
 				if (newMonarchObj.size() > 0)
 				{
 					monarch = new EU3Ruler(newMonarchObj[0]);
+					previousMonarchs.push_back(monarch);
+
+					newHistory->initMonarch(monarch, histDate);
+					history.push_back(newHistory);
 				}
 			}
 		}
+	}
+	if (previousMonarchs.size() > 0)
+	{
+		previousMonarchs.pop_back();
 	}
 
 	heir = NULL;
@@ -114,6 +124,7 @@ void EU3Country::convert(CK2Title* src)
 {
 	government = "";
 	monarch = NULL;
+	history.clear();
 
 	vector<CK2History*> oldHistory = src->getHistory();
 	for (unsigned int i = 0; i < oldHistory.size(); i++)
@@ -132,7 +143,10 @@ void EU3Country::convert(CK2Title* src)
 			monarch = newHistory->getMonarch();
 		}
 	}
-	previousMonarchs.pop_back();
+	if (previousMonarchs.size() > 0)
+	{
+		previousMonarchs.pop_back();
+	}
 
 	CK2Character* newHeir = src->getHeir();
 	if (newHeir != NULL)
