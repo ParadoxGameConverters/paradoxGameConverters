@@ -8,23 +8,6 @@
 
 
 
-EU3Ruler::EU3Ruler(string newName, int dip, int adm, int mil, string newDynasty)
-{
-	name				= newName;
-	diplomacy		= dip;
-	administration	= adm;
-	military			= mil;
-	id					= Configuration::getID();
-	dynasty			= newDynasty;
-
-	birthDate		= (string)"1.1.1";
-	deathDate		= (string)"1.1.1";
-	claim				= 0;
-	monarchName		= "";
-	female			= false;
-}
-
-
 EU3Ruler::EU3Ruler(Object* obj)
 {
 	vector<Object*> nameObjs = obj->getValue("name");
@@ -36,6 +19,7 @@ EU3Ruler::EU3Ruler(Object* obj)
 	{
 		name = "nameless";
 	}
+	regnalNum = -1;
 
 	vector<Object*> dipObjs = obj->getValue("DIP");
 	if (dipObjs.size() > 0)
@@ -146,6 +130,7 @@ EU3Ruler::EU3Ruler(Object* obj)
 EU3Ruler::EU3Ruler(CK2Character* src)
 {
 	name				= "";
+	regnalNum		= 1;
 	diplomacy		= 1;
 	administration	= 1;
 	military			= 1;
@@ -242,11 +227,31 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 }
 
 
+string EU3Ruler::getName()
+{
+	return name;
+}
+
+
+void EU3Ruler::setRegnalNum(int newNum)
+{
+	regnalNum = newNum;
+}
+
+
+int EU3Ruler::getRegnalNum()
+{
+	return regnalNum;
+}
+
+
 void EU3Ruler::outputAsMonarch(FILE* output)
 {
 	fprintf(output,"			monarch=\n");
 	fprintf(output,"			{\n");
-	fprintf(output,"				name=\"%s\"\n", name.c_str());
+	fprintf(output,"				name=\"%s ", name.c_str());
+	outputRegnalNum(output);
+	fprintf(output, "\"\n");
 	fprintf(output,"				DIP=%d\n", diplomacy);
 	fprintf(output,"				ADM=%d\n", administration);
 	fprintf(output,"				MIL=%d\n", military);
@@ -285,7 +290,16 @@ void EU3Ruler::outputAsHeir(FILE* output)
 	fprintf(output,"				birth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
 	fprintf(output,"				death_date=\"%d.%d.%d\"\n", deathDate.year, deathDate.month, deathDate.day);
 	fprintf(output,"				claim=%d\n", claim);
-	fprintf(output,"				monarch_name=\"%s\"\n", monarchName.c_str());
+	if (monarchName != "")
+	{
+		fprintf(output,"				monarch_name=\"%s\"\n", monarchName.c_str());
+	}
+	else
+	{
+		fprintf(output, "				monarch_name=\"%s ", name.c_str());
+		outputRegnalNum(output);
+		fprintf(output, "\"\n");
+	}
 	fprintf(output,"			}\n");
 }
 
@@ -299,4 +313,29 @@ int EU3Ruler::getID()
 date EU3Ruler::getBirthDate()
 {
 	return birthDate;
+}
+
+
+void EU3Ruler::outputRegnalNum(FILE* output)
+{
+	if (regnalNum != -1)
+	{
+		// algorithm adapted from http://www.blackwasp.co.uk/NumberToRoman.aspx
+		// Set up key numerals and numeral pairs
+		int		values[13]		= { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
+		string	numerals[13]	= { "M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I" };
+		
+		// Loop through each of the values to diminish the number
+		int number = regnalNum;
+		for (int i = 0; i < 13; i++)
+		{
+			// If the number being converted is less than the test value, append
+			// the corresponding numeral or numeral pair to the resultant string
+			while (number >= values[i])
+			{
+				number -= values[i];
+				fprintf(output, "%s", numerals[i].c_str());
+			}
+		}
+	}
 }

@@ -13,6 +13,18 @@
 using namespace std;
 
 
+EU3Country::EU3Country()
+{
+	tag				= "";
+	historyFile		= "";
+	government		= "";
+	monarch			= NULL;
+	heir				= NULL;
+	history.clear();
+	previousMonarchs.clear();
+}
+
+
 void EU3Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -58,7 +70,7 @@ void EU3Country::output(FILE* output)
 	}
 	fprintf(output, "}\n");
 }
-
+	
 
 void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 {
@@ -104,7 +116,6 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 				{
 					monarch = new EU3Ruler(newMonarchObj[0]);
 					previousMonarchs.push_back(monarch);
-
 					newHistory->initMonarch(monarch, histDate);
 					history.push_back(newHistory);
 				}
@@ -125,6 +136,7 @@ void EU3Country::convert(CK2Title* src)
 	government = "";
 	monarch = NULL;
 	history.clear();
+	previousMonarchs.clear();
 
 	vector<CK2History*> oldHistory = src->getHistory();
 	for (unsigned int i = 0; i < oldHistory.size(); i++)
@@ -141,6 +153,16 @@ void EU3Country::convert(CK2Title* src)
 		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
 		{
 			monarch = newHistory->getMonarch();
+		}
+	}
+	for (vector<EU3Ruler*>::iterator i = previousMonarchs.begin(); i != previousMonarchs.end(); i++)
+	{
+		for(vector<EU3Ruler*>::iterator j = previousMonarchs.begin(); j != i; j++)
+		{
+			if ( (*i)->getName() == (*j)->getName())
+			{
+				(*i)->setRegnalNum( (*j)->getRegnalNum() + 1 );
+			}
 		}
 	}
 	if (previousMonarchs.size() > 0)

@@ -13,15 +13,21 @@ class CK2Character;
 class EU3Ruler
 {
 	public:
-		EU3Ruler(string name, int dip, int adm, int mil, string dynasty);
 		EU3Ruler(CK2Character*);
 		EU3Ruler(Object*);
-		void	outputAsMonarch(FILE*);
-		void	outputAsHeir(FILE*);
-		int	getID();
-		date	getBirthDate();
+		string	getName();
+		void		setRegnalNum(int);
+		int		getRegnalNum();
+		void		outputAsMonarch(FILE*);
+		void		outputAsHeir(FILE*);
+		int		getID();
+		date		getBirthDate();
+		void		setMonarchName();
 	private:
+		void outputRegnalNum(FILE*);
+
 		string	name;
+		int		regnalNum;
 		int		diplomacy;
 		int		administration;
 		int		military;

@@ -18,6 +18,7 @@ class CK2Province;
 class EU3Country
 {
 	public:
+		EU3Country();
 		void		output(FILE*);
 		void		init(string tag, string countryFile, date startDate);
 		void		convert(CK2Title*);
