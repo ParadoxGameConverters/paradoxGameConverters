@@ -14,6 +14,7 @@ class CK2Character;
 class CK2History
 {
 	public:
+		CK2History();
 		void init(Object*, map<int, CK2Character*>&);
 		date				getWhen();
 		CK2Character*	getHolder();

@@ -4,6 +4,13 @@
 
 
 
+CK2Province::CK2Province()
+{
+	number = -1;
+	baronies.clear();
+}
+
+
 void CK2Province::init(Object* obj, map<string, CK2Title*> titles)
 {
 	number = atoi( obj->getKey().c_str() );

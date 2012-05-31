@@ -10,6 +10,19 @@
 
 
 
+EU3Advisor::EU3Advisor()
+{
+	name				= "";
+	id					= -1;
+	dynasty			= "";
+	advisorType		= "";
+	advisorSkill	= -1;
+	location			= -1;
+	home				= "";
+	startDate		= (date)"1.1.1";
+}
+
+
 EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> provinces, date newStartDate)
 {
 	name				= "";

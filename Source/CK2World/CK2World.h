@@ -20,6 +20,7 @@ class CK2Trait;
 class CK2World
 {
 	public:
+		CK2World();
 		void							init(Object*);
 		void							addDynasties(Object*);
 		void							addTraits(Object*);

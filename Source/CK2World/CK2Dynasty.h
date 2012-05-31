@@ -14,6 +14,7 @@ class CK2Character;
 class CK2Dynasty
 {
 	public:
+		CK2Dynasty();
 		void				init(Object*);
 		void				init(int, string);
 		int				getNum();

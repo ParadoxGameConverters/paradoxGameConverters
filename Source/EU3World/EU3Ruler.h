@@ -13,6 +13,7 @@ class CK2Character;
 class EU3Ruler
 {
 	public:
+		EU3Ruler();
 		EU3Ruler(CK2Character*);
 		EU3Ruler(Object*);
 		string	getName();

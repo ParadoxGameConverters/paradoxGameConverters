@@ -3,6 +3,17 @@
 #include "..\Parsers\Object.h"
 
 
+EU3Province::EU3Province()
+{
+	num	= -1;
+	owner	= "";
+	cores.clear();
+	inHRE	= false;
+	discoveredBy.clear();
+	history.clear();
+}
+
+
 void EU3Province::init(int newNum, Object* obj, date startDate)
 {
 	num = newNum;

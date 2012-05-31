@@ -17,6 +17,7 @@ class EU3Advisor;
 class EU3World
 {
 	public:
+		EU3World();
 		void						output(FILE*);
 		void						init(CK2World*);
 		void						convertProvinces(provinceMapping, map<int, CK2Province*>, countryMapping);

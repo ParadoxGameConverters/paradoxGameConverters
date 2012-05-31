@@ -8,6 +8,23 @@
 
 
 
+EU3Ruler::EU3Ruler()
+{
+	name				= "";
+	regnalNum		= -1;
+	diplomacy		= -1;
+	administration	= -1;
+	military			= -1;
+	id					= -1;
+	dynasty			= "";
+	birthDate		= (date)"1.1.1";
+	deathDate		= (date)"1.1.1";
+	claim				= -1;
+	monarchName		= "";
+	female			= false;
+}
+
+
 EU3Ruler::EU3Ruler(Object* obj)
 {
 	vector<Object*> nameObjs = obj->getValue("name");

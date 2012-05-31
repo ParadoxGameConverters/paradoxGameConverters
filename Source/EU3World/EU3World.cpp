@@ -19,6 +19,16 @@ using namespace std;
 
 
 
+EU3World::EU3World()
+{
+	startDate = (date)"1.1.1";
+	provinces.clear();
+	countries.clear();
+	europeanCountries.clear();
+	advisors.clear();
+}
+
+
 void EU3World::output(FILE* output)
 {
 	fprintf(output, "date=\"%s\"\n", startDate.toString().c_str());

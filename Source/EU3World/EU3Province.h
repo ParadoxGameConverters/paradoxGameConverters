@@ -17,6 +17,7 @@ class EU3Advisor;
 class EU3Province
 {
 	public:
+		EU3Province();
 		void		init(int num, Object* obj, date startDate);
 		void		output(FILE*);
 		void		setNumber(int);

@@ -11,6 +11,20 @@
 
 
 
+CK2World::CK2World()
+{
+	endDate = (date)"1.1.1";
+	independentTitles.clear();
+	hreMembers.clear();
+	dynasties.clear();
+	characters.clear();
+	traits.clear();
+	titles.clear();
+	provinces.clear();
+	baronies.clear();
+}
+
+
 void CK2World::init(Object* obj)
 {
 	// get conversion date

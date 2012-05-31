@@ -4,6 +4,14 @@
 
 
 
+CK2Dynasty::CK2Dynasty()
+{
+	num	= -1;
+	name	= "";
+	members.clear();
+}
+
+
 void CK2Dynasty::init(Object* obj)
 {
 	num = atoi( obj->getKey().c_str() );
