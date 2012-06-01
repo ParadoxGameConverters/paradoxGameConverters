@@ -118,6 +118,19 @@ int main(int argc, char * argv[])
 	obj = doParseFile(mappingFile);
 	provinceMapping			provinceMap				= initProvinceMap(obj);
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
+	map<int, CK2Province*> srcProvinces				= srcWorld.getProvinces();
+	for (map<int, CK2Province*>::iterator i = srcProvinces.begin(); i != srcProvinces.end(); i++)
+	{
+		inverseProvinceMapping::iterator p = inverseProvinceMap.find(i->first);
+		if ( p == inverseProvinceMap.end() )
+		{
+			log("	Error: CK2 province %d has no mapping specified!\n", i->first);
+		}
+		else if ( p->second.size() == 0 )
+		{
+			log("	Warning: CK2 province %d is not mapped to any EU3 provinces!\n", i->first);
+		}
+	}
 
 	EU3World destWorld;
 	destWorld.init(&srcWorld);
