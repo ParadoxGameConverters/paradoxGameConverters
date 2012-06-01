@@ -64,7 +64,7 @@ provinceMapping initProvinceMap(Object* obj)
 }
 
 
-inverseProvinceMapping invertProvinceMap(provinceMapping provinceMap)
+inverseProvinceMapping invertProvinceMap(provinceMapping& provinceMap)
 {
 	inverseProvinceMapping retval;
 	for (provinceMapping::iterator j = provinceMap.begin(); j != provinceMap.end(); j++)
@@ -98,7 +98,7 @@ vector<string> processBlockedNations(Object* obj)
 }
 
 
-int initCountryMap(countryMapping& mapping, vector<CK2Title*> CK2Titles, vector<EU3Country*> EU3Countries, vector<string> blockedNations, Object* rulesObj)
+int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, vector<EU3Country*>& EU3Countries, vector<string>& blockedNations, Object* rulesObj)
 {
 	mapping.clear();
 	countryMapping::iterator mapIter;

@@ -23,7 +23,7 @@ EU3Advisor::EU3Advisor()
 }
 
 
-EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> provinces, date newStartDate)
+EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinceMap, map<int, EU3Province*> provinces, date newStartDate)
 {
 	name				= "";
 	id					= Configuration::getID();

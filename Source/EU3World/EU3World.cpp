@@ -60,7 +60,7 @@ void EU3World::init(CK2World* srcWorld)
 }
 
 
-void EU3World::convertProvinces(provinceMapping provinceMap, map<int, CK2Province*> allSrcProvinces, countryMapping countryMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap)
 {
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
@@ -200,7 +200,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, CK2Wo
 }
 
 
-void EU3World::setupRotwProvinces(inverseProvinceMapping inverseProvinceMap)
+void EU3World::setupRotwProvinces(inverseProvinceMapping& inverseProvinceMap)
 {
 	vector<int> rotwProvinces = inverseProvinceMap[0];
 	for (unsigned int i = 0; i < rotwProvinces.size(); i++)

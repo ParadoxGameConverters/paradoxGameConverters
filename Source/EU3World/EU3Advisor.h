@@ -16,7 +16,7 @@ class EU3Advisor
 {
 	public:
 		EU3Advisor();
-		EU3Advisor(CK2Character*, inverseProvinceMapping, map<int, EU3Province*>, date);
+		EU3Advisor(CK2Character*, inverseProvinceMapping&, map<int, EU3Province*>, date);
 		void	outputInProvince(FILE*);
 		void	outputInActive(FILE*);
 		void	setLocation(int);
