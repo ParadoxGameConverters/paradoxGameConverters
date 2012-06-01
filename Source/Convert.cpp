@@ -56,7 +56,7 @@ int main(int argc, char * argv[])
 	}
 
 
-	// Parse CK2 Save
+	// Input CK2 Data
 	log("Getting CK2 data.\n");
 	printf("Getting CK2 data.\n");
 
@@ -91,7 +91,8 @@ int main(int argc, char * argv[])
 	read.clear();
 	srcWorld.addDynasties(obj);
 	
-	printf("	Parsing CK2 save.\n");
+	log("Parsing CK2 save.\n");
+	printf("Parsing CK2 save.\n");
 	initParser();
 	obj = getTopLevel();
 	read.open(inputFilename.c_str());
@@ -104,6 +105,9 @@ int main(int argc, char * argv[])
 	readFile(read);
 	read.close();
 	read.clear();
+
+	log("Importing parsed data.\n");
+	printf("Importing parsed data.\n");
 	srcWorld.init(obj);
 
 
@@ -152,15 +156,27 @@ int main(int argc, char * argv[])
 		return -1;
 	}
 
+
+	// Convert
+	log("Converting provinces.\n");
+	printf("Converting provinces.\n");
 	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap);
+
+	log("Setting up ROTW provinces.\n");
+	printf("Setting up ROTW provinces.\n");
 	destWorld.setupRotwProvinces(inverseProvinceMap);
+
+	log("Converting advisors.\n");
+	printf("Converting advisors.\n");
 	destWorld.convertAdvisors(inverseProvinceMap, srcWorld);
+
+	log("Converting countries.\n");
+	printf("Converting countries.\n");
 	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
 	{
 		i->second->convert(i->first);
 	}
 	
-
 
 
 	// Output results
@@ -176,7 +192,8 @@ int main(int argc, char * argv[])
 	fclose(output);
 
 
-
+	log("Complete.\n");
+	printf("Complete.\n");
 	closeLog();
 	return 0;
 }

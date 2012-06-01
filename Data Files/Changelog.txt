@@ -103,3 +103,4 @@ Revision	Log Message
 101		Regnal numbers for rulers
 102		Constructors for everyone!
 103		Pass references data structures, not copies (should cause miniscule speedup)
+104		Update logging to be more helpful

@@ -6,6 +6,7 @@
 #include "..\temp.h"
 #include "..\Configuration.h"
 #include "..\Parsers\Parser.h"
+#include "..\Parsers\Object.h"
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2Province.h"
@@ -77,7 +78,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			CK2Province* srcProvince = allSrcProvinces[ srcProvinceNums[j] ];
 			if (srcProvince == 0)
 			{
-				log("Could not get information for CK2 province #%d. Sea Province?\n", srcProvinceNums[j]);
+				log("	Could not get information for CK2 province #%d. Sea Province?\n", srcProvinceNums[j]);
 			}
 			else
 			{
@@ -96,7 +97,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 				numBaronies++;
 			}
 		}
-		log("EU3 province %d contains %d CK2 baronies.\n", i->first, numBaronies);
+		log("	,EU3 province ,%d, contains ,%d, CK2 baronies.\n", i->first, numBaronies);
 
 		bool inHRE = false;
 		vector< pair<CK2Title*, int > > owners;	// ownerTitle, numBaronies
@@ -220,8 +221,7 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping& inverseProvinceMap)
 		}
 		else
 		{
-			log("Error: Could not find EU3 history file for province %d!\n", rotwProvinces[i]);
-			continue;
+			obj = new Object("NULL Object");
 		}
 
 		//initialize province

@@ -54,6 +54,10 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	{
 		dynasty->addMember(this);
 	}
+	else
+	{
+		log("		Error: no dynasty for character %d (%s).\n", num, name.c_str());
+	}
 	birthDate	= obj->getLeaf("birth_date");
 	age			= theDate.diffInYears(birthDate);
 
@@ -173,6 +177,7 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	}
 	else
 	{
+		log("		Error: no attributes for character %d (%s).\n", num, name.c_str());
 		stats[DIPLOMACY]		= 0;
 		stats[MARTIAL]			= 0;
 		stats[STEWARDSHIP]	= 0;

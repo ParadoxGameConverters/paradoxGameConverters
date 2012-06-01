@@ -142,8 +142,8 @@ void CK2World::init(Object* obj)
 		}
 	}
 
-	log("There are a total of %d independent titles\n", independentTitles.size());
-	log("There are a total of %d hre members\n", hreMembers.size());
+	log("	There are a total of %d independent titles\n", independentTitles.size());
+	log("	There are a total of %d hre members\n", hreMembers.size());
 }
 
 

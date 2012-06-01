@@ -141,7 +141,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 		}
 		else
 		{
-			log("Error: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
+			log("	Error: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
 		}
 
 		EU3Province* homeProvince = provinces[location];
@@ -151,7 +151,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 		}
 		else
 		{
-			log("Error: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
+			log("	Error: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
 		}
 	}
 

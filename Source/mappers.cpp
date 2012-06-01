@@ -181,7 +181,7 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, vector
 
 		//add the mapping
 		mapping.insert(make_pair<CK2Title*, EU3Country*>(*CK2TitlesPos, *EU3CountryPos));
-		log("Added map %s -> %s (#%d)\n", (*CK2TitlesPos)->getTitleString().c_str(), (*EU3CountryPos)->getTag().c_str() , distance);
+		log("	Added map %s -> %s (#%d)\n", (*CK2TitlesPos)->getTitleString().c_str(), (*EU3CountryPos)->getTag().c_str() , distance);
 
 		//remove tags from the lists
 		CK2Titles.erase(CK2TitlesPos);
@@ -221,7 +221,7 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, vector
 		{
 			vector<EU3Country*>::iterator EU3TagPos = EU3Countries.begin();
 			mapping.insert(make_pair<CK2Title*, EU3Country*>(*CK2TitlesPos, *EU3TagPos));
-			log("Added map %s -> %s (fallback)\n", (*CK2TitlesPos)->getTitleString().c_str(), (*EU3TagPos)->getTag().c_str());
+			log("	Added map %s -> %s (fallback)\n", (*CK2TitlesPos)->getTitleString().c_str(), (*EU3TagPos)->getTag().c_str());
 
 			//remove tags from the lists
 			CK2Titles.erase(CK2TitlesPos);
