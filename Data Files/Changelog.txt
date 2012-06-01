@@ -105,3 +105,4 @@ Revision	Log Message
 103		Pass references data structures, not copies (should cause miniscule speedup)
 104		Update logging to be more helpful
 105		Verify all CK2 provinces are mapped
+106		Add missing province mappings

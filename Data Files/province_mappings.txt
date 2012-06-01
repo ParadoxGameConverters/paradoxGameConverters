@@ -8,9 +8,9 @@ link = { ck2 = 9 eu3 = 376 }	# Connacht -> Connaught
 link = { ck2 = 11 ck2 = 8 ck2 = 7 eu3 = 373 }	# Dublin, Breifne, Oriel -> Meath
 link = { ck2 = 15 ck2 = 16 ck2 = 12 ck2 = 10 eu3 = 374 }	# Ormond, Leinster, Ossory, Kildare -> Leinster
 link = { ck2 = 14 ck2 = 13 eu3 = 375 }	# Desmond, Thomond -> Munster
-link = { ck2 = 36 eu3 = 369 }	# Orkney -> Orkney
+link = { ck2 = 36 ck2 = 34 eu3 = 369 }	# Orkney, Shetland -> Orkney
 link = { ck2 = 37 ck2 = 39 ck2 = 40 ck2 = 45 eu3 = 252 }	# Caithness, Ross, Moray, Argyll -> Highlands
-link = { ck2 = 35 eu3 = 253 }	# Innse Gall -> Western Isles
+link = { ck2 = 35 ck2 = 33 eu3 = 253 }	# Innse Gall, Faereyar -> Western Isles
 link = { ck2 = 41 eu3 = 251 }	# Buchan -> Aberdeen
 link = { ck2 = 44 ck2 = 42 ck2 = 43 ck2 = 46 eu3 = 250 }	# Atholl, Strathearn, Gowrie, Fife -> Fife
 link = { ck2 = 47 ck2 = 49 ck2 = 50 ck2 = 38 eu3 = 249 }	# Clydesdale, Carrick, Galloway, Teviotdale -> Ayrshire
@@ -77,6 +77,7 @@ link = { ck2 = 841 eu3 = 334 }	# Tangiers -> Tangiers
 link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Ifni, Tharasset -> Safi
 link = { ck2 = 849 eu3 = 366 }	# Canarias -> The Canarias
 link = { ck2 = 843 eu3 = 344 }	# Marrakech -> Marrakech
+link = { ck2 = 909 eu3 = 1795 eu3 = 1794 eu3 = 1793 }	# Sahara Desert -> East Sahara, Central Sahara, El Djouf
 # # Arabian Peninsula, Middle East and Eastern Boundary Provinces
 link = { ck2 = 788 ck2 = 787 eu3 = 364 }	# Farama, El-Arish -> Gaza
 link = { ck2 = 786 ck2 = 782 ck2 = 779 eu3 = 1854 }	# Eilat, Negev, Beersheb -> Negev
@@ -157,7 +158,6 @@ link = { ck2 = 665 ck2 = 667 eu3 = 416 }	# Dailam, Tabriz -> Azerbaijan
 link = { ck2 = 671 ck2 = 670 eu3 = 420 }	# Suenik, Azerbaijan -> Qarabagh
 link = { ck2 = 683 ck2 = 684 eu3 = 418 }	# Amida, Nisibin -> Van
 link = { ck2 = 682 eu3 = 419 }	# Vaspurakan -> Armenia
-
 # Spain
 link = { ck2 = 156 eu3 = 206 }	# Coruña -> Galicia
 link = { ck2 = 157 eu3 = 231 }	# Santiago -> Porto
@@ -193,7 +193,6 @@ link = { ck2 = 191 ck2 = 192 eu3 = 216 }	# Zamora, Salamanca -> Salamanca
 link = { ck2 = 198 ck2 = 200 ck2 = 176 eu3 = 215 }	# Valladolid, Soria, Molina -> Castilla La Vieja
 link = { ck2 = 177 ck2 = 197 eu3 = 217 }	# Cuenca, Toledo -> Madrid
 link = { ck2 = 193 ck2 = 195 ck2 = 194 eu3 = 1747 }	# Alcantara, Caceres, Plasencia -> Caceres
-
 # Mediteranian Islands
 link = { ck2 = 826 ck2 = 827 eu3 = 333 }	# Menorca, Mallorca -> The Baleares
 link = { ck2 = 325 ck2 = 326 eu3 = 127 }	# Arborea, Cagliari -> Sardinia
@@ -203,7 +202,6 @@ link = { ck2 = 479 ck2 = 480 eu3 = 163 }	# Kaneia, Chandax -> Crete
 link = { ck2 = 483 eu3 = 320 }	# Rhodos -> Rhodes
 link = { ck2 = 757 ck2 = 756 eu3 = 321 }	# Famagusta, Limisol -> Cyprus
 link = { ck2 = 484 eu3 = 164 }	# Naxos -> Naxos
-
 # Italy
 link = { ck2 = 340 ck2 = 342 ck2 = 341 eu3 = 125 }	# Palermo, Girgenti, Trapani -> Palermo
 link = { ck2 = 343 ck2 = 339 eu3 = 124 }	# Siracusa, Messina -> Messina
@@ -239,7 +237,7 @@ link = { ck2 = 264 eu3 = 13 }	# Slesvig -> Slesvig
 link = { ck2 = 267 eu3 = 15 }	# Jylland -> Jylland
 link = { ck2 = 265 eu3 = 14 }	# Fyn -> Fyn
 link = { ck2 = 266 eu3 = 12 }	# Sjælland -> Sjælland
-link = { ck2 = 303 ck2 = 6 eu3 = 6 }	# Skåne, Blekinge -> Skåne
+link = { ck2 = 303 ck2 = 6 ck2 = 305 eu3 = 6 }	# Skåne, Blekinge, Bornholm -> Skåne
 link = { ck2 = 298 ck2 = 300 eu3 = 3 }	# Småland, Öland -> Småland
 link = { ck2 = 301 eu3 = 25 }	# Gotland -> Gotland
 link = { ck2 = 376 eu3 = 35 }	# Saaremaa -> Ösel
@@ -270,7 +268,6 @@ link = { ck2 = 381 eu3 = 28 }	# Uusimaa -> Nyland
 link = { ck2 = 392 eu3 = 30 eu3 = 32 }	# Käkisalmi -> Viborg, Kexholm
 link = { ck2 = 390 eu3 = 31 }	# Savo -> Savolax
 link = { ck2 = 850 ck2 = 388 eu3 = 1776 }	# Kantalahti, Karjala -> Karelia
-
 # France
 link = { ck2 = 104 ck2 = 103 eu3 = 170 }	# Cornouaille, Léon -> Finistère
 link = { ck2 = 102 ck2 = 101 eu3 = 169 }	# Penthievre, Rennes -> Armor
@@ -321,9 +318,11 @@ link = { ck2 = 139 eu3 = 179 }	# Bourges -> Berry
 link = { ck2 = 131 eu3 = 185 }	# Sens -> Nemours
 link = { ck2 = 132 ck2 = 136 ck2 = 137 eu3 = 191 }	# Auxerre, Dijon, Nevers -> Nevers
 link = { ck2 = 146 ck2 = 226 ck2 = 225 ck2 = 240 eu3 = 190 }	# Bourbon, Charolais, Mâcon, Chalons -> Bourbon
-
 # Central Europe
-link = { ck2 = 83 eu3 = 99 eu3 = 98 }	# Gelre -> Gelre, Utrecht
+link = { ck2 = 82 eu3 = 98 }	# Sticht -> Utrecht
+link = { ck2 = 259 eu3 = 44 }	# Celle -> Hamburg
+link = { ck2 = 430 eu3 = 1763 }	# Lubusz -> Niederlausitz
+link = { ck2 = 83 eu3 = 99 }	# Gelre -> Gelre
 link = { ck2 = 84 eu3 = 100 }	# Friesland -> Friesland
 link = { ck2 = 85 eu3 = 55 }	# Ostfriesland -> Oldenburg
 link = { ck2 = 86 eu3 = 1874 }	# Oldenburg -> Bremen
@@ -331,10 +330,10 @@ link = { ck2 = 848 eu3 = 54 }	# Bremen -> Stade
 link = { ck2 = 262 eu3 = 45 }	# Lübeck -> Lübeck
 link = { ck2 = 260 eu3 = 46 }	# Mecklenburg -> Mecklenburg
 link = { ck2 = 304 ck2 = 306 ck2 = 307 eu3 = 47 }	# Rügen, Rostock, Werle -> Vorpommern
-link = { ck2 = 308 ck2 = 365 eu3 = 50 }	# Wolgast, Brandenburg -> Brandenburg
-link = { ck2 = 364 eu3 = 1763 eu3 = 60 }	# Lausitz -> Niederlausitz, Oberlausitz
+link = { ck2 = 365 ck2 = 308 eu3 = 50 }	# Brandenburg, Wolgast -> Brandenburg
+link = { ck2 = 364 eu3 = 60 }	# Lausitz -> Oberlausitz
 link = { ck2 = 366 eu3 = 1858 eu3 = 49 }	# Stettin -> Stettin, Neumark
-link = { ck2 = 437 eu3 = 265 }	# Praha -> Moravia
+link = { ck2 = 437 ck2 = 436 eu3 = 265 }	# Praha, Boleslav -> Moravia
 link = { ck2 = 363 eu3 = 266 }	# Litomerice -> Bohemia
 link = { ck2 = 361 eu3 = 64 }	# Niederbayern -> Niederbayern
 link = { ck2 = 439 ck2 = 362 eu3 = 267 }	# Plzen, Domazlice -> Sudety
@@ -346,10 +345,10 @@ link = { ck2 = 121 eu3 = 83 eu3 = 78 eu3 = 1876 }	# Nassau -> Nassau, Mainz, Fra
 link = { ck2 = 87 eu3 = 56 }	# Osnabrück -> Osnabrück
 link = { ck2 = 88 eu3 = 86 }	# Münster -> Münster
 link = { ck2 = 89 ck2 = 90 eu3 = 1742 }	# Kleve, Jülich -> Limburg
-link = { ck2 = 91 eu3 = 95 }	# Loon -> Breda
+link = { ck2 = 91 ck2 = 92 eu3 = 95 }	# Loon, Breda -> Breda
 link = { ck2 = 119 eu3 = 84 eu3 = 85 }	# Köln -> Berg, Köln
 link = { ck2 = 257 eu3 = 57 eu3 = 1758 }	# Braunschweig -> Brunswick, Hannover
-link = { ck2 = 258 ck2 = 259 eu3 = 53 }	# Lüneburg, Celle -> Lüneburg
+link = { ck2 = 258 eu3 = 53 }	# Lüneburg -> Lüneburg
 link = { ck2 = 261 eu3 = 1857 }	# Hamburg -> Lauenburg
 link = { ck2 = 309 eu3 = 52 eu3 = 51 }	# Altmark -> Altmark, Ruppin
 link = { ck2 = 255 eu3 = 63 }	# Thüringen -> Thüringen
@@ -411,7 +410,7 @@ link = { ck2 = 431 ck2 = 429 eu3 = 254 }	# Poznan, Gniezno -> Poznan
 link = { ck2 = 432 eu3 = 255 eu3 = 258 }	# Kalisz -> Kalisz, Sieradz
 link = { ck2 = 529 eu3 = 256 }	# Plock -> Plock
 link = { ck2 = 527 eu3 = 262 eu3 = 259 }	# Krakow -> Krakow, Sandomierz
-link = { ck2 = 434 ck2 = 435 eu3 = 264 }	# Lower Silesia, Upper Silesia -> Breslau
+link = { ck2 = 435 ck2 = 434 eu3 = 264 }	# Upper Silesia, Lower Silesia -> Breslau
 link = { ck2 = 433 ck2 = 526 ck2 = 440 eu3 = 263 }	# Opole, Cieszyn, Olomouc -> Ratibor
 link = { ck2 = 505 ck2 = 503 eu3 = 141 }	# Belgrade, Hum -> Serbia
 link = { ck2 = 466 eu3 = 139 }	# Zachlumia -> Hum
@@ -496,7 +495,6 @@ link = { ck2 = 523 ck2 = 538 eu3 = 157 }	# Heves, Abauj -> Partium
 link = { ck2 = 533 ck2 = 537 ck2 = 539 ck2 = 545 eu3 = 162 }	# Saris, Bereg, Marmaros, Torki -> Carpathia
 link = { ck2 = 534 eu3 = 261 }	# Peremyshl -> Ruthenia
 link = { ck2 = 535 ck2 = 536 ck2 = 546 eu3 = 279 }	# Vladimir Volynsky, Galich, Terebovl -> Volhynia
-
 # Greece and Aegean
 link = { ck2 = 478 eu3 = 145 }	# Monemvasia -> Morea
 link = { ck2 = 476 ck2 = 477 ck2 = 481 eu3 = 1773 }	# Achaia, Methone, Korinthos -> Achaea
@@ -515,7 +513,7 @@ link = { ck2 = 497 ck2 = 498 eu3 = 1764 }	# Thrake, Mesembria -> Burgas
 link = { ck2 = 739 ck2 = 751 ck2 = 740 ck2 = 750 eu3 = 325 }	# Sinope, Paphlagonia, Herakleia, Nikaea -> Kastamon
 link = { ck2 = 741 ck2 = 742 eu3 = 316 }	# Nikomedeia, Prusa -> Bithynia
 link = { ck2 = 744 ck2 = 743 ck2 = 745 eu3 = 317 }	# Abydos, Kyzikos, Smyrna -> Bursa
-link = { ck2 = 746 ck2 = 748 eu3 = 318 }	# Ephesos, Laodikeia -> Smyrna
+link = { ck2 = 746 ck2 = 748 ck2 = 486 eu3 = 318 }	# Ephesos, Laodikeia, Chios -> Smyrna
 link = { ck2 = 747 eu3 = 319 }	# Lykia -> Antalya
 link = { ck2 = 755 ck2 = 758 eu3 = 324 }	# Attaleia, Seleukeia -> Karaman
 link = { ck2 = 736 ck2 = 762 ck2 = 761 eu3 = 327 }	# Lykandos, Adana, Tarsos -> Adana
@@ -524,7 +522,6 @@ link = { ck2 = 753 eu3 = 1846 }	# Ancyra -> Yazgod
 link = { ck2 = 759 eu3 = 323 }	# Ikonion -> Konya
 link = { ck2 = 749 eu3 = 322 }	# Dorylaion -> Anatolia
 link = { ck2 = 754 eu3 = 1848 }	# Sozopolis -> Hamid
-
 # ## ROTW ####
 # ROTW - North America
 link = { eu3 = 1810 }	# NOTHING -> Alaska
@@ -916,11 +913,8 @@ link = { eu3 = 1110 }	# NOTHING -> Rio de Oro
 link = { eu3 = 1111 }	# NOTHING -> Arguin
 link = { eu3 = 368 }	# NOTHING -> Madeira
 link = { eu3 = 1096 }	# NOTHING -> Cape Verde
-link = { eu3 = 1793 }	# NOTHING -> El Djouf
 link = { eu3 = 1127 }	# NOTHING -> Tuat
-link = { eu3 = 1794 }	# NOTHING -> Central Sahara
 link = { eu3 = 1128 }	# NOTHING -> Taodeni
-link = { eu3 = 1795 }	# NOTHING -> East Sahara
 link = { eu3 = 1234 }	# NOTHING -> Nubia
 link = { eu3 = 1220 }	# NOTHING -> Dar Ja'al
 link = { eu3 = 1221 }	# NOTHING -> Taqali
@@ -1354,6 +1348,4 @@ link = { eu3 = 1102 }	# NOTHING -> Mauritius
 link = { eu3 = 698 }	# NOTHING -> Guyuan
 link = { eu3 = 650 }	# NOTHING -> Tidore
 link = { eu3 = 651 }	# NOTHING -> Sulu
-
-
 }
