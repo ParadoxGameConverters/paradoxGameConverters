@@ -106,3 +106,4 @@ Revision	Log Message
 104		Update logging to be more helpful
 105		Verify all CK2 provinces are mapped
 106		Add missing province mappings
+107		Water provinces mapped

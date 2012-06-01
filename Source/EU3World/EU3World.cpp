@@ -76,11 +76,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		for (unsigned j = 0; j < srcProvinceNums.size(); j++)
 		{
 			CK2Province* srcProvince = allSrcProvinces[ srcProvinceNums[j] ];
-			if (srcProvince == 0)
-			{
-				log("	Could not get information for CK2 province #%d. Sea Province?\n", srcProvinceNums[j]);
-			}
-			else
+			if (srcProvince != NULL)
 			{
 				srcProvinces.push_back(srcProvince);
 			}
