@@ -379,7 +379,7 @@ link = { ck2 = 123 eu3 = 1760 }	# Mainz -> Koblenz
 link = { ck2 = 124 eu3 = 1761 eu3 = 80 }	# Pfalz -> Worms, Trier
 link = { ck2 = 118 eu3 = 1878 }	# Trier -> Aachen
 # Eastern Europe
-link = { ck2 = 458 eu3 = 131 }	# Istria -> Croatia
+link = { ck2 = 458 eu3 = 131 eu3 = 130 }	# Istria -> Croatia, Istria
 link = { ck2 = 459 ck2 = 464 ck2 = 465 eu3 = 136 }	# Veglia, Senj, Zadar -> Dalmatia
 link = { ck2 = 509 ck2 = 510 eu3 = 159 }	# Karvuna, Constantia -> Silistria
 link = { ck2 = 511 eu3 = 1756 }	# Galaz -> Budjak
@@ -564,7 +564,7 @@ link = { ck2 = 980 eu3 = 1291 }	# Portugal Coast -> Lusitanian Sea
 link = { ck2 = 970 eu3 = 1290 }	# Cabo de Finisterre -> Finisterre Bay
 link = { ck2 = 1014 eu3 = 1278 }	# Coast of Asturias -> Cantabrian Sea
 link = { ck2 = 974 eu3 = 1276 }	# Bay of Biscay -> Cote D'Argent
-link = { ck2 = 1015 eu3 = 1275 }	# Northern Bay of Biscay -> Quiberon Bay
+link = { ck2 = 1015 eu3 = 1275 eu3 = 1277 }	# Northern Bay of Biscay -> Quiberon Bay, Bay of Biscay
 link = { ck2 = 977 eu3 = 1274 }	# Bretagne Coast -> Coast of Brittany
 link = { ck2 = 1010 ck2 = 967 eu3 = 1273 }	# Îles de la Manche, Land's End -> Land's End
 link = { ck2 = 1009 ck2 = 966 eu3 = 1272 }	# Baie de la Seine, The Solent -> The Channel
@@ -1248,8 +1248,11 @@ link = { eu3 = 561 }	# NOTHING -> Bangala
 link = { eu3 = 553 }	# NOTHING -> Cuttack
 link = { eu3 = 549 }	# NOTHING -> Parlakimidi
 link = { eu3 = 542 }	# NOTHING -> Telingana
+link = { eu3 = 574 }	# NOTHING -> The Andamans
 link = { eu3 = 541 }	# NOTHING -> Kondavidu
 link = { eu3 = 539 }	# NOTHING -> Madras
+link = { eu3 = 573 }	# NOTHING -> Korales
+link = { eu3 = 572 }	# NOTHING -> Jaffna
 link = { eu3 = 537 }	# NOTHING -> Tiruchchirapalli
 link = { eu3 = 536 }	# NOTHING -> Madurai
 link = { eu3 = 535 }	# NOTHING -> Malabar
