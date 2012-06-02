@@ -81,6 +81,7 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 	ifstream read;
 	string EU3Loc = Configuration::getEU3Path();
 
+	// Parse history file
 	initParser();
 	obj = getTopLevel();
 	read.open((EU3Loc + "/history/countries/" + historyFile).c_str());
@@ -93,13 +94,22 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 	read.close();
 	read.clear();
 
-	vector<Object*> leaves = obj->getValue("government");
-	if (leaves.size() > 0)
+	// Set objects from top of history file
+	vector<Object*> govLeaves = obj->getValue("government");
+	if (govLeaves.size() > 0)
 	{
-		government = leaves[0]->getLeaf();
+		government = govLeaves[0]->getLeaf();
 	}
 
 	monarch = NULL;
+
+	vector<Object*> techLeaves = obj->getValue("technology_group");
+	if (techLeaves.size() > 0)
+	{
+		techGroup = techLeaves[0]->getLeaf();
+	}
+
+	// update items based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
 	{
@@ -119,6 +129,12 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 					newHistory->initMonarch(monarch, histDate);
 					history.push_back(newHistory);
 				}
+
+				vector<Object*> techLeaves = obj->getValue("technology_group");
+				if (techLeaves.size() > 0)
+				{
+					techGroup = techLeaves[0]->getLeaf();
+				}
 			}
 		}
 	}
@@ -126,6 +142,9 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 	{
 		previousMonarchs.pop_back();
 	}
+
+
+
 
 	heir = NULL;
 }
@@ -185,4 +204,10 @@ void EU3Country::convert(CK2Title* src)
 string EU3Country::getTag()
 {
 	return tag;
+}
+
+
+string EU3Country::getTechGroup()
+{
+	return techGroup;
 }

@@ -23,6 +23,7 @@ class EU3Country
 		void		init(string tag, string countryFile, date startDate);
 		void		convert(CK2Title*);
 		string	getTag();
+		string	getTechGroup();
 	private:
 		string					tag;
 		string					historyFile;
@@ -31,6 +32,7 @@ class EU3Country
 		EU3Ruler*				heir;
 		vector<EU3History*>	history;
 		vector<EU3Ruler*>		previousMonarchs;
+		string					techGroup;
 };
 
 
