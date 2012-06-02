@@ -20,17 +20,19 @@ class EU3World
 		EU3World();
 		void						output(FILE*);
 		void						init(CK2World*);
+		void						convertCountries(countryMapping&);
 		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&);
 		void						convertAdvisors(inverseProvinceMapping&, CK2World&);
 		void						setupRotwProvinces(provinceMapping&);
 		void						addPotentialCountries();
 		vector<EU3Country*>	getCountries();
 	private:
-		date							startDate;
-		map<int, EU3Province*>	provinces;
-		vector<EU3Country*>		countries;
-		vector<string>				europeanCountries;
-		vector<EU3Advisor*>		advisors;
+		date									startDate;
+		map<int, EU3Province*>			provinces;
+		vector<EU3Country*>				countries;
+		vector<string>						europeanCountries;
+		vector<EU3Advisor*>				advisors;
+		map< string, vector<string> >	mapSpreadStrings;
 };
 
 

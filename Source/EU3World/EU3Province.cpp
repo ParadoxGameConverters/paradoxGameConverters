@@ -14,7 +14,7 @@ EU3Province::EU3Province()
 }
 
 
-void EU3Province::init(int newNum, Object* obj, date startDate)
+void EU3Province::init(int newNum, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings)
 {
 	num = newNum;
 	vector<Object*> ownerObj = obj->getValue("owner");
@@ -25,6 +25,16 @@ void EU3Province::init(int newNum, Object* obj, date startDate)
 	else
 	{
 		owner = "";
+	}
+
+	vector<Object*> discoveredByObj = obj->getValue("discovered_by");
+	for (unsigned int i = 0; i < discoveredByObj.size(); i++)
+	{
+		vector<string> discoverers = mapSpreadStrings[ discoveredByObj[i]->getLeaf() ];
+		for (unsigned int j = 0; j < discoverers.size(); j++)
+		{
+			discoveredBy.push_back( discoverers[j] );
+		}
 	}
 
 	vector<Object*> objectList = obj->getLeaves();
@@ -40,6 +50,16 @@ void EU3Province::init(int newNum, Object* obj, date startDate)
 				if (newOwnerObj.size() > 0)
 				{
 					owner = newOwnerObj[0]->getLeaf();
+				}
+
+				vector<Object*> discoveredByObj = obj->getValue("discovered_by");
+				for (unsigned int i = 0; i < discoveredByObj.size(); i++)
+				{
+					vector<string> discoverers = mapSpreadStrings[ discoveredByObj[i]->getLeaf() ];
+					for (unsigned int j = 0; j < discoverers.size(); j++)
+					{
+						discoveredBy.push_back( discoverers[j] );
+					}
 				}
 			}
 		}
@@ -113,7 +133,10 @@ void EU3Province::setInHRE(bool input)
 
 void EU3Province::setDiscoveredBy(vector<string> input)
 {
-	discoveredBy = input;
+	for (unsigned int i = 0; i < input.size(); i++)
+	{
+		discoveredBy.push_back(input[i]);
+	}
 }
 
 

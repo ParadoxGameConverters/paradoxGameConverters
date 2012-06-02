@@ -171,6 +171,10 @@ int main(int argc, char * argv[])
 
 
 	// Convert
+	log("Converting countries.\n");
+	printf("Converting countries.\n");
+	destWorld.convertCountries(countryMap);
+
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
 	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap);
@@ -182,13 +186,6 @@ int main(int argc, char * argv[])
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
 	destWorld.convertAdvisors(inverseProvinceMap, srcWorld);
-
-	log("Converting countries.\n");
-	printf("Converting countries.\n");
-	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
-	{
-		i->second->convert(i->first);
-	}
 	
 
 

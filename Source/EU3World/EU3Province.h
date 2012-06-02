@@ -4,6 +4,7 @@
 
 #include <string>
 #include <vector>
+#include <map>
 #include "..\Date.h"
 using namespace std;
 
@@ -18,7 +19,7 @@ class EU3Province
 {
 	public:
 		EU3Province();
-		void		init(int num, Object* obj, date startDate);
+		void		init(int num, Object* obj, date startDate, map< string, vector<string> >&);
 		void		output(FILE*);
 		void		setNumber(int);
 		void		addCore(string);

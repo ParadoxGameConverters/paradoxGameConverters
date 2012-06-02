@@ -61,6 +61,80 @@ void EU3World::init(CK2World* srcWorld)
 }
 
 
+void EU3World::convertCountries(countryMapping& countryMap)
+{
+	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
+	{
+		i->second->convert(i->first);
+		europeanCountries.push_back(i->second->getTag());
+	}
+
+	vector<string> nomadTech;
+	vector<string> westernTech;
+	vector<string> easternTech;
+	vector<string> ottomanTech;
+	vector<string> muslimTech;
+	vector<string> indianTech;
+	vector<string> chineseTech;
+	vector<string> subSaharanTech;
+	vector<string> newWorldTech;
+	for (vector<EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
+	{
+		string techGroup = (*i)->getTechGroup();
+		if (techGroup == "nomad_group")
+		{
+			nomadTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "western")
+		{
+			westernTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "eastern")
+		{
+			easternTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "ottoman")
+		{
+			ottomanTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "muslim")
+		{
+			muslimTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "indian")
+		{
+			indianTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "chinese")
+		{
+			chineseTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "sub_saharan")
+		{
+			subSaharanTech.push_back( (*i)->getTag() );
+		}
+		else if (techGroup == "new_world")
+		{
+			newWorldTech.push_back( (*i)->getTag() );
+		}
+
+		vector<string> selfString;
+		selfString.push_back( (*i)->getTag() );
+		mapSpreadStrings.insert(  make_pair( (*i)->getTag(), selfString )  );
+	}
+
+	mapSpreadStrings.insert( make_pair("nomad_group", nomadTech) );
+	mapSpreadStrings.insert( make_pair("western", westernTech) );
+	mapSpreadStrings.insert( make_pair("eastern", easternTech) );
+	mapSpreadStrings.insert( make_pair("ottoman", ottomanTech) );
+	mapSpreadStrings.insert( make_pair("muslim", muslimTech) );
+	mapSpreadStrings.insert( make_pair("indian", indianTech) );
+	mapSpreadStrings.insert( make_pair("chinese", chineseTech) );
+	mapSpreadStrings.insert( make_pair("sub_saharan", subSaharanTech) );
+	mapSpreadStrings.insert( make_pair("new_world", newWorldTech) );
+}
+
+
 void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap)
 {
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
@@ -222,7 +296,7 @@ void EU3World::setupRotwProvinces(inverseProvinceMapping& inverseProvinceMap)
 
 		//initialize province
 		EU3Province* newProvince = new EU3Province;;
-		newProvince->init(rotwProvinces[i], obj, startDate);
+		newProvince->init(rotwProvinces[i], obj, startDate, mapSpreadStrings);
 
 		//add to provinces list
 		provinces.insert( make_pair(rotwProvinces[i], newProvince) );
@@ -263,8 +337,6 @@ void EU3World::addPotentialCountries()
 		EU3Country* newCountry = new EU3Country;
 		newCountry->init(tag, filename, startDate);
 		countries.push_back(newCountry);
-
-		europeanCountries.push_back(tag);	//TODO: determine this more properly
 
 	} while(_findnext(fileListing, &countryDirData) == 0);
 	_findclose(fileListing);
