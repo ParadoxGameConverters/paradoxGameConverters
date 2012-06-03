@@ -23,7 +23,60 @@ EU3Advisor::EU3Advisor()
 }
 
 
-EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinceMap, map<int, EU3Province*> provinces, date newStartDate)
+EU3Advisor::EU3Advisor(Object* advisorObj, map<int, EU3Province*>& provinces)
+{
+	vector<Object*> nameObj = advisorObj->getValue("name");
+	if (nameObj.size() > 0)
+	{
+		name = nameObj[0]->getLeaf();
+	}
+
+	id					= Configuration::getID();
+	dynasty			= "";
+
+	vector<Object*> typeObj = advisorObj->getValue("type");
+	if (typeObj.size() > 0)
+	{
+		advisorType = typeObj[0]->getLeaf();
+	}
+
+	vector<Object*> skillObj = advisorObj->getValue("skill");
+	if (skillObj.size() > 0)
+	{
+		advisorSkill = atoi( skillObj[0]->getLeaf().c_str() );
+	}
+
+	vector<Object*> locationObj = advisorObj->getValue("location");
+	if (locationObj.size() > 0)
+	{
+		location = atoi( locationObj[0]->getLeaf().c_str() );
+	}
+
+	EU3Province* homeProvince = provinces[location];
+	if (homeProvince != NULL)
+	{
+		home = homeProvince->getOwner();
+	}
+	else
+	{
+		log("	Error: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
+	}
+
+	vector<Object*> dateObj = advisorObj->getValue("date");
+	if (dateObj.size() > 0)
+	{
+		startDate = dateObj[0]->getLeaf();
+	}
+
+	vector<Object*> deathDateObj = advisorObj->getValue("death_date");
+	if (deathDateObj.size() > 0)
+	{
+		deathDate = deathDateObj[0]->getLeaf();
+	}
+}
+
+
+EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinceMap, map<int, EU3Province*>& provinces, date newStartDate)
 {
 	name				= "";
 	id					= Configuration::getID();
@@ -156,6 +209,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 	}
 
 	startDate = newStartDate;
+	startDate.year += 16;
 }
 
 
@@ -163,11 +217,21 @@ void EU3Advisor::outputInProvince(FILE* output)
 {
 	fprintf(output,"			advisor=\n");
 	fprintf(output,"			{\n");
-	fprintf(output,"				name=\"%s %s\"\n", name.c_str(), dynasty.c_str());
+	if (dynasty != "")
+	{
+		fprintf(output,"				name=\"%s %s\"\n", name.c_str(), dynasty.c_str());
+	}
+	else
+	{
+		fprintf(output,"				name=\"%s\"\n", name.c_str());
+	}
 	fprintf(output,"				type=%s\n", advisorType.c_str());
 	fprintf(output,"				skill=%d\n", advisorSkill);
 	fprintf(output,"				location=%d\n", location);
-	fprintf(output,"				home=\"%s\"\n", home.c_str());
+	if (home != "")
+	{
+		fprintf(output,"				home=\"%s\"\n", home.c_str());
+	}
 	fprintf(output,"				date=\"%d.%d.%d\"\n", startDate.year, startDate.month, startDate.day);
 	fprintf(output,"				hire_date=\"1.1.1\"\n");
 	fprintf(output,"				move=0\n");
@@ -196,7 +260,19 @@ void EU3Advisor::setLocation(int newLocation)
 }
 
 
+int EU3Advisor::getLocation()
+{
+	return location;
+}
+
+
 date EU3Advisor::getDate()
 {
 	return startDate;
+}
+
+
+date EU3Advisor::getDeathDate()
+{
+	return deathDate;
 }

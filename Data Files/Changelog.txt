@@ -115,3 +115,4 @@ Revision	Log Message
 113		Eliminate extra space in ROTW ruler names
 114		Correct empty dynasty name
 115		Use doParseFile()
+116		Advisors for ROTW (except the parser chokes on the history files)

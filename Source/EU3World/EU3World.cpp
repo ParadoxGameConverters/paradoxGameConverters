@@ -223,9 +223,10 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 	}
 }
 
-
-void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, CK2World& srcWorld)
+#pragma optimize("", off)
+void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provinceMapping& provinceMap, CK2World& srcWorld)
 {
+	// CK2 Advisors
 	map<string, CK2Title*> titles = srcWorld.getAllTitles();
 	map<int, CK2Character*> rulers;
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
@@ -268,8 +269,49 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, CK2Wo
 			}
 		}
 	}
-}
 
+	// ROTW Advisors
+	string EU3Loc = Configuration::getEU3Path();
+
+	struct _finddata_t	advisorDirData;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (EU3Loc + "\\history\\advisors\\*").c_str(), &advisorDirData)) == -1L)
+	{
+		log("	Error: Could not open advisors history directory.\n");
+		return;
+	}
+	do
+	{
+		if (strcmp(advisorDirData.name, ".") == 0 || strcmp(advisorDirData.name, "..") == 0 )
+		{
+				continue;
+		}
+
+		string filename;
+		filename = advisorDirData.name;
+
+		Object* obj;
+		obj = doParseFile((Configuration::getEU3Path() + "/history/advisors/" + filename).c_str());
+
+		vector<Object*> advisorsObj = obj->getLeaves();
+		for (unsigned int i = 0; i < advisorsObj.size(); i++)
+		{
+			EU3Advisor* newAdvisor = new EU3Advisor(advisorsObj[i], provinces);
+			if ( (newAdvisor->getDate() < startDate) && (startDate < newAdvisor->getDeathDate()) )
+			{
+				vector<int> srcLocationNums = provinceMap[newAdvisor->getLocation()];
+				if ( (srcLocationNums.size() == 1) && (srcLocationNums[0] == 0) )
+				{
+					provinces[newAdvisor->getLocation()]->addAdvisor(newAdvisor);
+					advisors.push_back(newAdvisor);
+				}
+			}
+		}
+
+	} while(_findnext(fileListing, &advisorDirData) == 0);
+	_findclose(fileListing);
+}
+#pragma optimize("", on)
 
 void EU3World::setupRotwProvinces(inverseProvinceMapping& inverseProvinceMap)
 {

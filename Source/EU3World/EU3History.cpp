@@ -53,7 +53,6 @@ void EU3History::initHeir(EU3Ruler* newHeir, date newWhen)
 void EU3History::initAdvisor(EU3Advisor* newAdvisor)
 {
 	when = newAdvisor->getDate();
-	when.year += 16;
 
 	monarch	= NULL;
 	heir		= NULL;
