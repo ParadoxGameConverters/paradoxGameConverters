@@ -114,3 +114,4 @@ Revision	Log Message
 112		Heirs for ROTW nations
 113		Eliminate extra space in ROTW ruler names
 114		Correct empty dynasty name
+115		Use doParseFile()

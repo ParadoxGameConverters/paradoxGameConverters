@@ -61,50 +61,17 @@ int main(int argc, char * argv[])
 	printf("Getting CK2 data.\n");
 
 	printf("	Getting traits\n");
-	initParser();
-	obj = getTopLevel();
-	read.open(Configuration::getCK2Path() + "/common/traits/00_traits.txt");
-	if (!read.is_open())
-	{
-		log("Error: Could not open 00_traits.txt!\n");
-		printf("Error: Could not open 00_traits.txt!\n");
-		return 1;
-	}
-	readFile(read);
-	read.close();
-	read.clear();
+	obj = doParseFile((Configuration::getCK2Path() + "/common/traits/00_traits.txt").c_str());
 	CK2World srcWorld;
 	srcWorld.addTraits(obj);
 
 	printf("	Adding dynasties from dynasties.txt\n");
-	initParser();
-	obj = getTopLevel();
-	read.open(Configuration::getCK2Path() + "/common/dynasties.txt");
-	if (!read.is_open())
-	{
-		log("Error: Could not open dynasties.txt!\n");
-		printf("Error: Could not open dynasties.txt!\n");
-		return 1;
-	}
-	readFile(read);
-	read.close();
-	read.clear();
+	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
 	srcWorld.addDynasties(obj);
 	
 	log("Parsing CK2 save.\n");
 	printf("Parsing CK2 save.\n");
-	initParser();
-	obj = getTopLevel();
-	read.open(inputFilename.c_str());
-	if (!read.is_open())
-	{
-		log("Error: Could not open CK2 save (%s).\n", inputFilename.c_str());
-		printf("Error: Could not open CK2 save (%s).\n", inputFilename.c_str());
-		return 1;
-	}
-	readFile(read);
-	read.close();
-	read.clear();
+	obj = doParseFile(inputFilename.c_str());
 
 	log("Importing parsed data.\n");
 	printf("Importing parsed data.\n");
@@ -185,7 +152,7 @@ int main(int argc, char * argv[])
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
-	destWorld.convertAdvisors(inverseProvinceMap, srcWorld);
+	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);
 	
 
 
