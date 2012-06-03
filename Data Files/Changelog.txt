@@ -113,3 +113,4 @@ Revision	Log Message
 111		A few more map fixes
 112		Heirs for ROTW nations
 113		Eliminate extra space in ROTW ruler names
+114		Correct empty dynasty name

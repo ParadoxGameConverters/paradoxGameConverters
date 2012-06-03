@@ -87,10 +87,6 @@ EU3Ruler::EU3Ruler(Object* obj)
 	{
 		dynasty = dynastyObjs[0]->getLeaf();
 	}
-	else
-	{
-		dynasty = "blank";
-	}
 
 	vector<Object*> birthdateObjs = obj->getValue("birth_Date");
 	if (birthdateObjs.size() > 0)
@@ -152,7 +148,7 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	administration	= 1;
 	military			= 1;
 	id					= Configuration::getID();
-	dynasty			= "blank";
+	dynasty			= "";
 	birthDate		= src->getBirthDate();
 	deathDate		= src->getDeathDate();
 	claim				= 100;
@@ -281,7 +277,10 @@ void EU3Ruler::outputAsMonarch(FILE* output)
 	fprintf(output,"					id=%d\n", id);
 	fprintf(output,"					type=37\n");
 	fprintf(output,"				}\n");
-	fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+	if (dynasty != "")
+	{
+		fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+	}
 	fprintf(output,"			}\n");
 }
 
@@ -303,7 +302,10 @@ void EU3Ruler::outputAsHeir(FILE* output)
 	fprintf(output,"					id=%d\n", id);
 	fprintf(output,"					type=37\n");
 	fprintf(output,"				}\n");
-	fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+	if (dynasty != "")
+	{
+		fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+	}
 	fprintf(output,"				birth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
 	fprintf(output,"				death_date=\"%d.%d.%d\"\n", deathDate.year, deathDate.month, deathDate.day);
 	fprintf(output,"				claim=%d\n", claim);
