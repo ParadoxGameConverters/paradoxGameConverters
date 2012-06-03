@@ -266,7 +266,7 @@ void EU3Ruler::outputAsMonarch(FILE* output)
 {
 	fprintf(output,"			monarch=\n");
 	fprintf(output,"			{\n");
-	fprintf(output,"				name=\"%s ", name.c_str());
+	fprintf(output,"				name=\"%s", name.c_str());
 	outputRegnalNum(output);
 	fprintf(output, "\"\n");
 	fprintf(output,"				DIP=%d\n", diplomacy);
@@ -313,7 +313,7 @@ void EU3Ruler::outputAsHeir(FILE* output)
 	}
 	else
 	{
-		fprintf(output, "				monarch_name=\"%s ", name.c_str());
+		fprintf(output, "				monarch_name=\"%s", name.c_str());
 		outputRegnalNum(output);
 		fprintf(output, "\"\n");
 	}
@@ -337,6 +337,8 @@ void EU3Ruler::outputRegnalNum(FILE* output)
 {
 	if (regnalNum != -1)
 	{
+		fprintf(output, " ");
+
 		// algorithm adapted from http://www.blackwasp.co.uk/NumberToRoman.aspx
 		// Set up key numerals and numeral pairs
 		int		values[13]		= { 1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1 };
