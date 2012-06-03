@@ -101,7 +101,8 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 		government = govLeaves[0]->getLeaf();
 	}
 
-	monarch = NULL;
+	monarch	= NULL;
+	heir		= NULL;
 
 	vector<Object*> techLeaves = obj->getValue("technology_group");
 	if (techLeaves.size() > 0)
@@ -130,6 +131,14 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 					history.push_back(newHistory);
 				}
 
+				vector<Object*> newHeirObj = objectList[i]->getValue("heir");
+				if (newHeirObj.size() > 0)
+				{
+					heir = new EU3Ruler(newHeirObj[0]);
+					newHistory->initHeir(heir, histDate);
+					history.push_back(newHistory);
+				}
+
 				vector<Object*> techLeaves = obj->getValue("technology_group");
 				if (techLeaves.size() > 0)
 				{
@@ -142,11 +151,6 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 	{
 		previousMonarchs.pop_back();
 	}
-
-
-
-
-	heir = NULL;
 }
 
 
@@ -157,6 +161,7 @@ void EU3Country::convert(CK2Title* src)
 	history.clear();
 	previousMonarchs.clear();
 
+	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
 	for (unsigned int i = 0; i < oldHistory.size(); i++)
 	{
@@ -172,6 +177,7 @@ void EU3Country::convert(CK2Title* src)
 		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
 		{
 			monarch = newHistory->getMonarch();
+			ascensionDate = newHistory->getWhen();
 		}
 	}
 	for (vector<EU3Ruler*>::iterator i = previousMonarchs.begin(); i != previousMonarchs.end(); i++)
@@ -194,8 +200,14 @@ void EU3Country::convert(CK2Title* src)
 	{
 		heir = new EU3Ruler(newHeir);
 
+		date when = newHeir->getBirthDate();
+		if (when < ascensionDate)
+		{
+			when = ascensionDate;
+		}
+
 		EU3History* newHistory = new EU3History();
-		newHistory->initHeir(heir);
+		newHistory->initHeir(heir, when);
 		history.push_back(newHistory);
 	}
 }

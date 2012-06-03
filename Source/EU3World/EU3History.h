@@ -16,9 +16,10 @@ class EU3History {
 		EU3History();
 		void				init(CK2History*);
 		void				initMonarch(EU3Ruler*, date);
-		void				initHeir(EU3Ruler*);
+		void				initHeir(EU3Ruler*, date);
 		void				initAdvisor(EU3Advisor*);
 		void				output(FILE*);
+		date				getWhen();
 		EU3Ruler*		getMonarch();
 	private:
 		date				when;

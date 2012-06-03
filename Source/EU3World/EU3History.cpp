@@ -40,9 +40,9 @@ void EU3History::initMonarch(EU3Ruler* newMonarch, date newWhen)
 }
 
 
-void EU3History::initHeir(EU3Ruler* newHeir)
+void EU3History::initHeir(EU3Ruler* newHeir, date newWhen)
 {
-	when = newHeir->getBirthDate();
+	when = newWhen;
 
 	monarch	= NULL;
 	heir		= newHeir;
@@ -78,6 +78,12 @@ void EU3History::output(FILE* output)
 		advisor->outputInProvince(output);
 	}
 	fprintf(output, "		}\n");
+}
+
+
+date EU3History::getWhen()
+{
+	return when;
 }
 
 
