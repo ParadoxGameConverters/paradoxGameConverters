@@ -24,7 +24,7 @@ struct SkipComment : qi::grammar<Iterator>
 
 	SkipComment() : SkipComment::base_type(comment)
 	{
-		comment = qi::raw[qi::lexeme[lit("#") >> +(iso8859_1::char_ - qi::eol)] >> -qi::eol];
+		comment = qi::raw[qi::lexeme[lit("#") >> *(iso8859_1::char_ - qi::eol)] >> -qi::eol];
 	}
 };
 

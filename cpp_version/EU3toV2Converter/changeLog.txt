@@ -378,4 +378,4 @@ Revision	Version Updated		Log Message
 426		C++			Correctly detect IN 3.2 saves
 434		C++			Allow the parser to skip sets of empty braces (EU3 seems to stick them in occasionally).
 435		C++			Don't crash when encountering a cored province with no owner.
-
+437		C++			Allow comments that have no comment text, just a # by itself.
