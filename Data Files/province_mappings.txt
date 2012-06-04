@@ -498,7 +498,8 @@ link = { ck2 = 535 ck2 = 536 ck2 = 546 eu3 = 279 }	# Vladimir Volynsky, Galich, 
 link = { ck2 = 478 eu3 = 145 }	# Monemvasia -> Morea
 link = { ck2 = 476 ck2 = 477 ck2 = 481 eu3 = 1773 }	# Achaia, Methone, Korinthos -> Achaea
 link = { ck2 = 485 ck2 = 482 eu3 = 146 }	# Euboia, Atheniai -> Athens
-link = { ck2 = 475 ck2 = 473 ck2 = 472 ck2 = 474 eu3 = 144 }	# Hellas, Árta, Épieros, Cephalonia -> Janina
+link = { ck2 = 474 eu3 = 142 }	# Cephalonia -> Corfu
+link = { ck2 = 475 ck2 = 473 ck2 = 472 eu3 = 144 }	# Hellas, Árta, Épieros -> Janina
 link = { ck2 = 488 eu3 = 147 }	# Demetrias -> Larissa
 link = { ck2 = 489 eu3 = 1853 }	# Thessalia -> Kozani
 link = { ck2 = 490 ck2 = 491 ck2 = 492 eu3 = 148 }	# Thessalonike, Chalkidike, Strymon -> Macedonia
@@ -942,6 +943,7 @@ link = { eu3 = 1237 }	# NOTHING -> Papua
 link = { eu3 = 1789 }	# NOTHING -> Maoke
 link = { eu3 = 1236 }	# NOTHING -> Rabaul
 link = { eu3 = 1245 }	# NOTHING -> Irian
+link = { eu3 = 646 }	# NOTHING -> Ambom
 link = { eu3 = 647 }	# NOTHING -> Ceram
 link = { eu3 = 648 }	# NOTHING -> Halmahera
 link = { eu3 = 644 }	# NOTHING -> Menade

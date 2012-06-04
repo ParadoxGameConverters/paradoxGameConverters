@@ -29,7 +29,7 @@ EU3World::EU3World()
 	advisors.clear();
 }
 
-
+#pragma optimize("", off)
 void EU3World::output(FILE* output)
 {
 	fprintf(output, "date=\"%s\"\n", startDate.toString().c_str());
@@ -53,7 +53,7 @@ void EU3World::output(FILE* output)
 	fprintf(output, "	}\n");
 	fprintf(output, "}\n");
 }
-
+#pragma optimize("", on)
 
 void EU3World::init(CK2World* srcWorld)
 {

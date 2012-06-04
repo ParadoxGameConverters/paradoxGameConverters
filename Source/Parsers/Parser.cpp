@@ -1,11 +1,10 @@
-#include "..\Log.h"
 #include "Parser.h"
-#include "Object.h"
+#include <fstream>
 #include <boost/spirit/include/support_istream_iterator.hpp>
 #include <boost/spirit/include/qi.hpp>
+#include "..\Log.h"
+
 using namespace boost::spirit;
-
-
 
 static void setLHS			(string key);
 static void pushObj			();
@@ -25,7 +24,7 @@ struct SkipComment : qi::grammar<Iterator>
 
 	SkipComment() : SkipComment::base_type(comment)
 	{
-		comment = qi::raw[qi::lexeme[lit("#") >> +(iso8859_1::char_ - qi::eol)] >> -qi::eol];
+		comment = qi::raw[qi::lexeme[lit("#") >> *(iso8859_1::char_ - qi::eol)] >> -qi::eol];
 	}
 };
 
@@ -34,26 +33,55 @@ template <typename Iterator>
 struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	static Object* topLevel; 
 
+	// leaf: either left or right side of assignment.  unquoted keyword.
+	// example: leaf
 	qi::rule<Iterator, string(), SkipComment<Iterator> >	leaf;
+
+	// taglist: a grouping of anonymous (rhs) leaves or strings
+	// examples: { TAG TAG TAG } or { "string" "string" TAG }
 	qi::rule<Iterator, vector<string>(), SkipComment<Iterator> >	taglist;
+
+	// assign: assignment
+	// examples: lhs = rhs or lhs = { lhs = rhs }
 	qi::rule<Iterator, SkipComment<Iterator> >	assign;
+
+	// object: a grouping of assignments
+	// example: object = { leaf = "string" }
 	qi::rule<Iterator, SkipComment<Iterator> >	object;
+
+	// objlist: a grouping of anonymous (rhs) objects
+	// example: objlist = { { leaf = "string } { leaf = leaf } }
 	qi::rule<Iterator, SkipComment<Iterator> >	objlist;
+
+	// str: a quoted literal string.  may include extended and/or reserved characters.
+	// example: "I am a string."
 	qi::rule<Iterator, string()>	str;
+
+	// tolleaf: a tolerant leaf.  may include extended and other unreserved characters.  rhs only.
+	// example: leaves with accents (names, for instance).
 	qi::rule<Iterator, string(), SkipComment<Iterator> >	tolleaf;
 
-	Parser() : Parser::base_type(assign)
+	// braces: a stray set of empty rhs braces (without an lhs)
+	// EU3 seems to do this for certain decision mods.
+	qi::rule<Iterator, SkipComment<Iterator> >	braces;
+
+	// root: evaluation starts here.  objects recurse to root.
+	qi::rule<Iterator, SkipComment<Iterator> >	root;
+
+	Parser() : Parser::base_type(root)
 	{
+		braces	= lit('{') >> *(iso8859_1::space) >> lit('}');
 		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"'))] >> lit('"')];
 		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n"))];
 		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:"))];
 		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
-		object  = raw[lit('{') >> *(assign) >> *(iso8859_1::space) >> lit('}')];
+		object  = raw[lit('{') >> *(root) >> *(iso8859_1::space) >> lit('}')];
 		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
-		assign  = raw[+((*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(iso8859_1::space) >> lit('=')
+		assign  = raw[(*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(iso8859_1::space) >> lit('=')
 			>> *(iso8859_1::space) 
 			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) 
-			>> *(iso8859_1::space)))];
+			>> *(iso8859_1::space))];
+		root	= +(assign | braces);
 
 		str.name("str");
 		leaf.name("leaf");
@@ -61,6 +89,8 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 		object.name("object");
 		objlist.name("objlist");
 		assign.name("assign");
+		braces.name("braces");
+		root.name("root");
 
 		if (debugme)
 		{
@@ -70,6 +100,8 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 			debug(object);
 			debug(objlist);
 			debug(assign);
+			debug(braces);
+			debug(root);
 		}
 	}
 };
@@ -267,16 +299,22 @@ Object* doParseFile(const char* filename)
 {
 	ifstream	read;				// ifstream for reading files
 
+	/* - when using parser debugging, also ensure that the parser object is non-static!
+	debugme = false;
+	if (string(filename) == "D:\\Victoria 2\\technologies\\commerce_tech.txt")
+		debugme = true;
+	*/
+
 	initParser();
 	Object* obj = getTopLevel();
 	read.open(filename); 
 	if (!read.is_open())
 	{
-		log("	Error: Could not open %s\n", filename);
-		printf("	Error: Could not open %s\n", filename);
+		log("Error: Could not open %s\n", filename);
+		printf("Error: Could not open %s\n", filename);
 		exit(1);
 	}
-	readFile(read);
+	readFile(read);  
 	read.close();
 	read.clear();
 

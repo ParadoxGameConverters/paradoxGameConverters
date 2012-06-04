@@ -1,14 +1,7 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-
-
-#include <fstream>
-using namespace std;
-
-
-
-class Object;
+#include "Object.h"
 
 Object*	getTopLevel();
 void	clearStack(); 
