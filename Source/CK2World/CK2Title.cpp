@@ -128,7 +128,7 @@ void CK2Title::determineHeir(map<int, CK2Character*>& characters)
 			CK2Character* tempHolder = holder;
 			do
 			{
-				heir = tempHolder->getPrimogenitureHeir(genderLaw);
+				heir = tempHolder->getPrimogenitureHeir(genderLaw, holder);
 				tempHolder = tempHolder->getFather();
 				if (tempHolder == NULL)
 				{

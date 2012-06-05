@@ -52,7 +52,7 @@ class CK2Character
 		int*							getStats();
 		vector<CK2Title*>			getTitles();
 		CK2Character*				getFather();
-		CK2Character*				getPrimogenitureHeir(string);
+		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
 		void							setGavelkindHeirs(string);
 		advisorTypes				getJobType();
