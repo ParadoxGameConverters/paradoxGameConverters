@@ -36,7 +36,14 @@ void EU3World::output(FILE* output)
 	outputTempHeader(output);
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		i->second->output(output);
+		if (i->second != NULL)
+		{
+			i->second->output(output);
+		}
+		else
+		{
+			log("	Error: EU3 province %d is unmapped!\n", i->first);
+		}
 	}
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{

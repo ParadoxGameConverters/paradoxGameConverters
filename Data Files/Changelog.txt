@@ -119,3 +119,4 @@ Revision	Log Message
 117		Updated parser files (and fixes to province mapping revealed by update)
 118		Turkish/Open Succession fixed
 119		Primogeniture succession no longer can lead to someone being their own heir
+120		Log unmapped EU3 provinces instead of crashing
