@@ -33,30 +33,32 @@ class CK2Character
 {
 	public:
 		CK2Character();
-		void				init(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
-		int				getNum();
-		string			getName();
-		CK2Dynasty*		getDynasty();
-		date				getBirthDate();
-		void				addTitle(CK2Title*);
-		int				getDemesneSize();
-		void				setParents(map<int, CK2Character*>&);
-		void				setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
-		void				addChild(CK2Character*);
-		void				addAdvisor(CK2Character*, advisorTypes);
-		CK2Character**	getAdvisors();
-		bool				isDead();
-		date				getDeathDate();
-		bool				isFemale();
-		bool				isBastard();
-		int*				getStats();
-		CK2Character*	getFather();
-		CK2Character*	getPrimogenitureHeir(string);
-		void				setGavelkindHeirs(string);
-		advisorTypes	getJobType();
-		string			getAction();
-		int				getLocationNum();
-		string			getCapitalString();
+		void							init(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
+		int							getNum();
+		string						getName();
+		CK2Dynasty*					getDynasty();
+		date							getBirthDate();
+		void							addTitle(CK2Title*);
+		int							getDemesneSize();
+		void							setParents(map<int, CK2Character*>&);
+		void							setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
+		void							addChild(CK2Character*);
+		void							addAdvisor(CK2Character*, advisorTypes);
+		CK2Character**				getAdvisors();
+		bool							isDead();
+		date							getDeathDate();
+		bool							isFemale();
+		bool							isBastard();
+		int*							getStats();
+		vector<CK2Title*>			getTitles();
+		CK2Character*				getFather();
+		CK2Character*				getPrimogenitureHeir(string);
+		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
+		void							setGavelkindHeirs(string);
+		advisorTypes				getJobType();
+		string						getAction();
+		int							getLocationNum();
+		string						getCapitalString();
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
 

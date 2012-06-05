@@ -47,39 +47,28 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 
 	genderLaw = obj->getLeaf("gender");
 	successionLaw = obj->getLeaf("succession");
-	if (holder != NULL)
+
+	vector<Object*> leavesObj = obj->getLeaves();
+	for (unsigned int i = 0; i < leavesObj.size(); i++)
 	{
-		if (successionLaw == "primogeniture")
+		if (leavesObj[i]->getKey() == "nomination")
 		{
-			CK2Character* tempHolder = holder;
-			do
+			vector<Object*> nomineeObj = leavesObj[i]->getValue("nominee");
+			int nomineeId = atoi( nomineeObj[0]->getLeaf("id").c_str() );
+
+			bool nomineeMarked = false;
+			for (unsigned int j = 0; j < nominees.size(); j++)
 			{
-				heir = tempHolder->getPrimogenitureHeir(genderLaw);
-				tempHolder = tempHolder->getFather();
-				if (tempHolder == NULL)
+				if (nominees[j].first == nomineeId)
 				{
-					break;
+					nominees[j].second++;
+					nomineeMarked = true;
 				}
-			} while (heir == NULL);
-		}
-		else if (successionLaw == "gavelkind")
-		{
-			if(heir == NULL) // if the heir is not null, we've already set this
-			{
-				holder->setGavelkindHeirs(genderLaw);
 			}
-		}
-		else if (successionLaw == "seniority")
-		{
-			heir = holder->getDynasty()->getSenoirityHeir(genderLaw);
-		}
-		else if (successionLaw == "feudal_elective")
-		{
-			heir = getFeudalElectiveHeir(obj, characters);
-		}
-		else if (successionLaw == "turkish_succession")
-		{
-			heir = getTurkishSuccessionHeir();
+			if (nomineeMarked == false)
+			{
+				nominees.push_back( make_pair(nomineeId, 1) );
+			}
 		}
 	}
 
@@ -94,8 +83,6 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 			history.push_back(newHistory);
 		}
 	}
-
-	
 }
 
 
@@ -129,6 +116,46 @@ string CK2Title::getTitleString()
 CK2Character* CK2Title::getHolder()
 {
 	return holder;
+}
+
+
+void CK2Title::determineHeir(map<int, CK2Character*>& characters)
+{
+	if (holder != NULL)
+	{
+		if (successionLaw == "primogeniture")
+		{
+			CK2Character* tempHolder = holder;
+			do
+			{
+				heir = tempHolder->getPrimogenitureHeir(genderLaw);
+				tempHolder = tempHolder->getFather();
+				if (tempHolder == NULL)
+				{
+					break;
+				}
+			} while (heir == NULL);
+		}
+		else if (successionLaw == "gavelkind")
+		{
+			if(heir == NULL) // if the heir is not null, we've already set this
+			{
+				holder->setGavelkindHeirs(genderLaw);
+			}
+		}
+		else if (successionLaw == "seniority")
+		{
+			heir = holder->getDynasty()->getSenoirityHeir(genderLaw);
+		}
+		else if (successionLaw == "feudal_elective")
+		{
+			heir = getFeudalElectiveHeir(characters);
+		}
+		else if (successionLaw == "turkish_succession")
+		{
+			heir = getTurkishSuccessionHeir();
+		}
+	}
 }
 
 
@@ -180,34 +207,8 @@ bool CK2Title::isInHRE()
 }
 
 
-CK2Character* CK2Title::getFeudalElectiveHeir(Object* obj,  map<int, CK2Character*>& characters)
+CK2Character* CK2Title::getFeudalElectiveHeir(map<int, CK2Character*>& characters)
 {
-	vector< pair<int, int> > nominees;		// id, votes
-
-	vector<Object*> leavesObj = obj->getLeaves();
-	for (unsigned int i = 0; i < leavesObj.size(); i++)
-	{
-		if (leavesObj[i]->getKey() == "nomination")
-		{
-			vector<Object*> nomineeObj = leavesObj[i]->getValue("nominee");
-			int nomineeId = atoi( nomineeObj[0]->getLeaf("id").c_str() );
-
-			bool nomineeMarked = false;
-			for (unsigned int j = 0; j < nominees.size(); j++)
-			{
-				if (nominees[j].first == nomineeId)
-				{
-					nominees[j].second++;
-					nomineeMarked = true;
-				}
-			}
-			if (nomineeMarked == false)
-			{
-				nominees.push_back( make_pair(nomineeId, 1) );
-			}
-		}
-	}
-
 	int nominee = -1;
 	int mostVotes = 0;
 	for (unsigned int i = 0; i < nominees.size(); i++)
@@ -225,80 +226,104 @@ CK2Character* CK2Title::getFeudalElectiveHeir(Object* obj,  map<int, CK2Characte
 
 CK2Character* CK2Title::getTurkishSuccessionHeir()
 {
-	CK2Character* heir = NULL;
+	vector<CK2Character*> potentialHeirs;
+	potentialHeirs.clear();
+	CK2Character* tempHolder = holder;
+	do
+	{
+		potentialHeirs = tempHolder->getPotentialOpenHeirs(genderLaw, holder);
+		tempHolder = tempHolder->getFather();
+		if (tempHolder == NULL)
+		{
+			break;
+		}
+	} while (potentialHeirs.size() == 0);
+
 	int largestDemesne = 0;
-
-	for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
+	for (vector<CK2Character*>::iterator i = potentialHeirs.begin(); i != potentialHeirs.end(); i++)
 	{
-		if ( (*i)->getTitleString().substr(0, 2) == "k_" )
+		vector<CK2Title*> titles = (*i)->getTitles();
+		int demesne = 0;
+		for (vector<CK2Title*>::iterator j = titles.begin(); j != titles.end(); j++)
 		{
-			if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
+			if ( (*j)->getTitleString().substr(0, 2) == "k_" )
 			{
-				heir = (*i)->getHolder();
-				largestDemesne = (*i)->getHolder()->getDemesneSize();
+				demesne++;
 			}
-			else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
+		}
+		if (demesne > largestDemesne)
+		{
+			heir = *i;
+			largestDemesne = demesne;
+		}
+	}
+
+	if (heir == NULL)
+	{
+		for (vector<CK2Character*>::iterator i = potentialHeirs.begin(); i != potentialHeirs.end(); i++)
+		{
+			vector<CK2Title*> titles = (*i)->getTitles();
+			int demesne = 0;
+			for (vector<CK2Title*>::iterator j = titles.begin(); j != titles.end(); j++)
 			{
-				log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
+				if ( (*j)->getTitleString().substr(0, 2) == "d_" )
+				{
+					demesne++;
+				}
+			}
+			if (demesne > largestDemesne)
+			{
+				heir = *i;
+				largestDemesne = demesne;
 			}
 		}
 	}
 
 	if (heir == NULL)
 	{
-		for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
+		for (vector<CK2Character*>::iterator i = potentialHeirs.begin(); i != potentialHeirs.end(); i++)
 		{
-			if ( (*i)->getTitleString().substr(0, 2) == "d_" )
+			vector<CK2Title*> titles = (*i)->getTitles();
+			int demesne = 0;
+			for (vector<CK2Title*>::iterator j = titles.begin(); j != titles.end(); j++)
 			{
-				if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
+				if ( (*j)->getTitleString().substr(0, 2) == "c_" )
 				{
-					heir = (*i)->getHolder();
-					largestDemesne = (*i)->getHolder()->getDemesneSize();
+					demesne++;
 				}
-				else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
-				{
-					log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
-				}
+			}
+			if (demesne > largestDemesne)
+			{
+				heir = *i;
+				largestDemesne = demesne;
 			}
 		}
 	}
 
 	if (heir == NULL)
 	{
-		for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
+		for (vector<CK2Character*>::iterator i = potentialHeirs.begin(); i != potentialHeirs.end(); i++)
 		{
-			if ( (*i)->getTitleString().substr(0, 2) == "c_" )
+			vector<CK2Title*> titles = (*i)->getTitles();
+			int demesne = 0;
+			for (vector<CK2Title*>::iterator j = titles.begin(); j != titles.end(); j++)
 			{
-				if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
+				if ( (*j)->getTitleString().substr(0, 2) == "b_" )
 				{
-					heir = (*i)->getHolder();
-					largestDemesne = (*i)->getHolder()->getDemesneSize();
+					demesne++;
 				}
-				else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
-				{
-					log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
-				}
+			}
+			if (demesne > largestDemesne)
+			{
+				heir = *i;
+				largestDemesne = demesne;
 			}
 		}
 	}
 
-	if (heir == NULL)
+	if ( (heir == NULL) && (potentialHeirs.size() > 0) )
 	{
-		for (vector<CK2Title*>::iterator i = vassals.begin(); i != vassals.end(); i++)
-		{
-			if ( (*i)->getTitleString().substr(0, 2) == "b_" )
-			{
-				if ( (*i)->getHolder()->getDemesneSize() > largestDemesne )
-				{
-					heir = (*i)->getHolder();
-					largestDemesne = (*i)->getHolder()->getDemesneSize();
-				}
-				else if ( (*i)->getHolder()->getDemesneSize() == largestDemesne )
-				{
-					log("Error: Tie in turkish succession for %s.\n", titleString.c_str() );
-				}
-			}
-		}
+		heir = potentialHeirs[0];
 	}
 
 	return heir;

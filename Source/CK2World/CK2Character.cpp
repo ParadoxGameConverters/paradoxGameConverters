@@ -420,6 +420,12 @@ int* CK2Character::getStats()
 }
 
 
+vector<CK2Title*> CK2Character::getTitles()
+{
+	return titles;
+}
+
+
 CK2Character* CK2Character::getFather()
 {
 	return father;
@@ -482,6 +488,72 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw)
 	}
 
 	return NULL;
+}
+
+
+vector<CK2Character*> CK2Character::getPotentialOpenHeirs(string genderLaw, CK2Character* currentHolder)
+{
+	vector<CK2Character*> potentialHeirs;
+	potentialHeirs.clear();
+
+	// unless absolute cognatic, consider male children first
+	for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+	{
+		if (	( (*i) != currentHolder ) &&
+			   ( !(*i)->isDead() ) && !(*i)->isBastard() &&
+				( !(*i)->isFemale() || (genderLaw == "true_cognatic") ) 
+			)
+		{
+			potentialHeirs.push_back(*i);
+		}
+	}
+
+	// unless absolute cognatic, consider only male lines
+	if (potentialHeirs.size() == 0)
+	{
+		for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+		{
+			if ( ( (*i) != currentHolder ) &&
+				  ( !(*i)->isBastard() ) &&
+				  ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
+				)
+			{
+				potentialHeirs = (*i)->getPotentialOpenHeirs(genderLaw, currentHolder);
+			}
+		}
+	}
+
+	// no heirs in male lines, so consider female children
+	if (potentialHeirs.size() == 0)
+	{
+		for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+		{
+			if (  ( (*i) != currentHolder ) &&
+				   ( !(*i)->isDead() ) && !(*i)->isBastard() &&
+					( !(*i)->isFemale() || (genderLaw == "cognatic") )
+				)
+			{
+				potentialHeirs.push_back(*i);
+			}
+		}
+	}
+
+	// no heirs in male lines, so consider female lines
+	if (potentialHeirs.size() == 0)
+	{
+		for (list<CK2Character*>::iterator i = children.begin(); i != children.end(); i++)
+		{
+			if (	( (*i) != currentHolder ) &&
+				   ( !(*i)->isDead() ) && (*i)->isBastard() &&
+					( !(*i)->isFemale() || (genderLaw == "cognatic") )
+				)
+			{
+				potentialHeirs = (*i)->getPotentialOpenHeirs(genderLaw, currentHolder);
+			}
+		}
+	}
+
+	return potentialHeirs;
 }
 
 

@@ -21,6 +21,7 @@ class CK2Title
 		void						addToHRE();
 		string					getTitleString();
 		CK2Character*			getHolder();
+		void						determineHeir(map<int, CK2Character*>&);
 		void						setHeir(CK2Character*);
 		CK2Character*			getHeir();
 		string					getSuccessionLaw();
@@ -29,22 +30,24 @@ class CK2Title
 		CK2Title*				getLiege();
 		bool						isIndependent();
 		bool						isInHRE();
-		CK2Character*			getFeudalElectiveHeir(Object*,  map<int, CK2Character*>&);
-		CK2Character*			getTurkishSuccessionHeir();
 		~CK2Title();
 	private:
-		string					titleString;
-		CK2Character*			holder;
-		CK2Character*			heir;
-		string					successionLaw;
-		string					genderLaw;
-		vector<CK2History*>	history;
-		string					liegeString;
-		CK2Title*				liege;
-		vector<CK2Title*>		vassals;
+		CK2Character*					getFeudalElectiveHeir(map<int, CK2Character*>&);
+		CK2Character*					getTurkishSuccessionHeir();
 
-		bool						independent;
-		bool						inHRE;
+		string							titleString;
+		CK2Character*					holder;
+		CK2Character*					heir;
+		string							successionLaw;
+		string							genderLaw;
+		vector< pair<int, int> >	nominees;		// id, votes
+		vector<CK2History*>			history;
+		string							liegeString;
+		CK2Title*						liege;
+		vector<CK2Title*>				vassals;
+
+		bool								independent;
+		bool								inHRE;
 };
 
 

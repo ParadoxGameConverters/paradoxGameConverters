@@ -132,6 +132,13 @@ void CK2World::init(Object* obj)
 		}
 	}
 
+	// determine heirs
+	printf("	Determining heirs\n");
+	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
+	{
+		i->second->determineHeir(characters);
+	}
+
 	printf("	Setting employers\n");
 	for (map<int, CK2Character*>::iterator i = characters.begin(); i != characters.end(); i++)
 	{

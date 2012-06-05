@@ -29,7 +29,7 @@ EU3World::EU3World()
 	advisors.clear();
 }
 
-#pragma optimize("", off)
+
 void EU3World::output(FILE* output)
 {
 	fprintf(output, "date=\"%s\"\n", startDate.toString().c_str());
@@ -53,7 +53,7 @@ void EU3World::output(FILE* output)
 	fprintf(output, "	}\n");
 	fprintf(output, "}\n");
 }
-#pragma optimize("", on)
+
 
 void EU3World::init(CK2World* srcWorld)
 {
@@ -223,7 +223,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 	}
 }
 
-#pragma optimize("", off)
+
 void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provinceMapping& provinceMap, CK2World& srcWorld)
 {
 	// CK2 Advisors
@@ -311,7 +311,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 	} while(_findnext(fileListing, &advisorDirData) == 0);
 	_findclose(fileListing);
 }
-#pragma optimize("", on)
+
 
 void EU3World::setupRotwProvinces(inverseProvinceMapping& inverseProvinceMap)
 {
