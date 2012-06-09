@@ -10,7 +10,7 @@ Sourceforge project: https://sourceforge.net/projects/ck2toeu3/
 ----
 REQUIREMENTS
 ----
-CK2 version 1.0 or later
+CK2 version 1.4 or later
 EU3:DW version 5.1 or later
 
 
@@ -26,8 +26,10 @@ INSTRUCTIONS
 4) In "configuration.txt", there is a line that reads
 	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
    Modify it so that it points to YOUR copy of Europa Universalis III.
-5) Run "CK2ToEU3.exe".  Currently, this does nothing, but eventually this will create a file in the converters directory called "output.eu3".
-6) A file named log.txt will be created. Immediately report any errors to the thread on the forums.
+5) Run "CK2ToEU3.exe".  This will create a file in the converter's directory called "output.eu3".
+6) Copy output.eu3 to "[YOUR EU3 DIRECTORY]/save games".
+7) A file named log.txt will also be created. Immediately report any errors to the thread on the forums.
+8) Load up the save and verify everything converted well.
 
 
 
@@ -37,6 +39,10 @@ CREDITS
 
 A (incomplete) list of those who contributed effort to this mammoth undertaking
 
-Idhrendur
+Idhrendur	- Programming
+DasGuntLord01	- Analysis, Data Files
+dtremenak	- Analysis, Tools
+tamius23	- Data Files
+rho		- Data Files
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -

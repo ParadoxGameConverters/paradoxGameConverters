@@ -122,3 +122,4 @@ Revision	Log Message
 120		Log unmapped EU3 provinces instead of crashing
 121		Regents
 122		Added Ireland_endgame to sample saves
+123		Updated readme.txt
