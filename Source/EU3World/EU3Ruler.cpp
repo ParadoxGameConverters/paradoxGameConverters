@@ -285,6 +285,33 @@ void EU3Ruler::outputAsMonarch(FILE* output)
 }
 
 
+void EU3Ruler::outputAsRegent(FILE* output)
+{
+	fprintf(output,"			monarch=\n");
+	fprintf(output,"			{\n");
+	fprintf(output,"				name=\"(Regent) %s", name.c_str());
+	fprintf(output, "\"\n");
+	fprintf(output,"				DIP=%d\n", diplomacy);
+	fprintf(output,"				ADM=%d\n", administration);
+	fprintf(output,"				MIL=%d\n", military);
+	if (female)
+	{
+		fprintf(output, "				female=yes\n");
+	}
+	fprintf(output,"				regent=yes\n");
+	fprintf(output,"				id=\n");
+	fprintf(output,"				{\n");
+	fprintf(output,"					id=%d\n", id);
+	fprintf(output,"					type=37\n");
+	fprintf(output,"				}\n");
+	if (dynasty != "")
+	{
+		fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+	}
+	fprintf(output,"			}\n");
+}
+
+
 void EU3Ruler::outputAsHeir(FILE* output)
 {
 	fprintf(output,"			heir=\n");

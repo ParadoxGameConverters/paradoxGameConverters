@@ -52,6 +52,7 @@ class CK2Character
 		int*							getStats();
 		vector<CK2Title*>			getTitles();
 		CK2Character*				getFather();
+		CK2Character*				getRegent();
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
 		void							setGavelkindHeirs(string);
@@ -84,6 +85,8 @@ class CK2Character
 		list<CK2Character*>		children;
 		int							guardianNum;
 		CK2Character*				guardian;
+		int							regentNum;
+		CK2Character*				regent;
 
 		CK2Character*				advisors[6];
 		int							employerNum;

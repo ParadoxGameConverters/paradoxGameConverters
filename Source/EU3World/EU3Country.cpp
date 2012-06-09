@@ -20,6 +20,7 @@ EU3Country::EU3Country()
 	government		= "";
 	monarch			= NULL;
 	heir				= NULL;
+	regent			= NULL;
 	history.clear();
 	previousMonarchs.clear();
 }
@@ -44,7 +45,15 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "	government=tribal_despotism\n");
 	}
-	if (monarch != NULL)
+	if (regent != NULL)
+	{
+		fprintf(output, "	monarch=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		id=%d\n", regent->getID());
+		fprintf(output, "		type=37\n");
+		fprintf(output, "	}\n");
+	}
+	else if (monarch != NULL)
 	{
 		fprintf(output, "	monarch=\n");
 		fprintf(output, "	{\n");
@@ -60,7 +69,15 @@ void EU3Country::output(FILE* output)
 		fprintf(output, "		type=37\n");
 		fprintf(output, "	}\n");
 	}
-	if (heir != NULL)
+	if (regent != NULL)
+	{
+		fprintf(output, "	heir=\n");
+		fprintf(output, "	{\n");
+		fprintf(output, "		id=%d\n", monarch->getID());
+		fprintf(output, "		type=37\n");
+		fprintf(output, "	}\n");
+	}
+	else if (heir != NULL)
 	{
 		fprintf(output, "	heir=\n");
 		fprintf(output, "	{\n");
@@ -156,15 +173,29 @@ void EU3Country::convert(CK2Title* src)
 		newHistory->init(oldHistory[i]);
 		history.push_back(newHistory);
 
-		if (newHistory->getMonarch() != NULL)
+		if (newHistory->getRegent() != NULL)
+		{
+			previousMonarchs.push_back(newHistory->getRegent());
+		}
+		else if (newHistory->getMonarch() != NULL)
 		{
 			previousMonarchs.push_back(newHistory->getMonarch());
 		}
 
 		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
 		{
-			monarch = newHistory->getMonarch();
-			ascensionDate = newHistory->getWhen();
+			EU3Ruler* newRegent = newHistory->getRegent();
+			if (newRegent != NULL)
+			{
+				monarch			= newRegent;
+				heir				= newHistory->getHeir();
+				ascensionDate	= newHistory->getWhen();
+			}
+			else
+			{
+				monarch			= newHistory->getMonarch();
+				ascensionDate	= newHistory->getWhen();
+			}
 		}
 	}
 	for (vector<EU3Ruler*>::iterator i = previousMonarchs.begin(); i != previousMonarchs.end(); i++)
@@ -182,20 +213,23 @@ void EU3Country::convert(CK2Title* src)
 		previousMonarchs.pop_back();
 	}
 
-	CK2Character* newHeir = src->getHeir();
-	if (newHeir != NULL)
+	if (heir == NULL)
 	{
-		heir = new EU3Ruler(newHeir);
-
-		date when = newHeir->getBirthDate();
-		if (when < ascensionDate)
+		CK2Character* newHeir = src->getHeir();
+		if (newHeir != NULL)
 		{
-			when = ascensionDate;
-		}
+			heir = new EU3Ruler(newHeir);
 
-		EU3History* newHistory = new EU3History();
-		newHistory->initHeir(heir, when);
-		history.push_back(newHistory);
+			date when = newHeir->getBirthDate();
+			if (when < ascensionDate)
+			{
+				when = ascensionDate;
+			}
+
+			EU3History* newHistory = new EU3History();
+			newHistory->initHeir(heir, when);
+			history.push_back(newHistory);
+		}
 	}
 }
 

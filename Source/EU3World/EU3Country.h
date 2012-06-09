@@ -30,6 +30,7 @@ class EU3Country
 		string					government;
 		EU3Ruler*				monarch;
 		EU3Ruler*				heir;
+		EU3Ruler*				regent;
 		vector<EU3History*>	history;
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;

@@ -33,6 +33,8 @@ CK2Character::CK2Character()
 	children.clear();
 	guardianNum	= -1;
 	guardian		= NULL;
+	regentNum	= -1;
+	regent		= NULL;
 
 	memset(advisors, NULL, sizeof(advisors));
 	employerNum	= -1;
@@ -87,6 +89,15 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	else
 	{
 		guardianNum = -1;
+	}
+	vector<Object*> regentObj = obj->getValue("regent");
+	if (regentObj.size() > 0)
+	{
+		regentNum = atoi( regentObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		regentNum = -1;
 	}
 
 	vector<Object*> deathObj = obj->getValue("death_date");
@@ -326,6 +337,11 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 			}
 		}
 	}
+
+	if (regentNum != -1)
+	{
+		regent = characters[regentNum];
+	}
 }
 
 
@@ -429,6 +445,12 @@ vector<CK2Title*> CK2Character::getTitles()
 CK2Character* CK2Character::getFather()
 {
 	return father;
+}
+
+
+CK2Character* CK2Character::getRegent()
+{
+	return regent;
 }
 
 

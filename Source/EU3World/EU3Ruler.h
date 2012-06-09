@@ -20,6 +20,7 @@ class EU3Ruler
 		void		setRegnalNum(int);
 		int		getRegnalNum();
 		void		outputAsMonarch(FILE*);
+		void		outputAsRegent(FILE*);
 		void		outputAsHeir(FILE*);
 		int		getID();
 		date		getBirthDate();

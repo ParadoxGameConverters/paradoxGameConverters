@@ -120,3 +120,4 @@ Revision	Log Message
 118		Turkish/Open Succession fixed
 119		Primogeniture succession no longer can lead to someone being their own heir
 120		Log unmapped EU3 provinces instead of crashing
+121		Regents
