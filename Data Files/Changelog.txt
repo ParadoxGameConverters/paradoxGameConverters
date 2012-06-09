@@ -121,3 +121,4 @@ Revision	Log Message
 119		Primogeniture succession no longer can lead to someone being their own heir
 120		Log unmapped EU3 provinces instead of crashing
 121		Regents
+122		Added Ireland_endgame to sample saves
