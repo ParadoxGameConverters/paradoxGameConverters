@@ -16,7 +16,7 @@ EU3World::EU3World()
 	diplomacy			= NULL;
 }
 
-#pragma optimize("", off)
+
 void EU3World::init(Object* obj) {
 	string key;	
 	vector<Object*> leaves = obj->getLeaves();
@@ -101,7 +101,7 @@ void EU3World::init(Object* obj) {
 		}
 	}
 }
-#pragma optimize("", on)
+
 
 vector<EU3Country*> EU3World::getCountries()
 {
