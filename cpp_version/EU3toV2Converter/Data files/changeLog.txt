@@ -381,3 +381,4 @@ Revision	Version Updated		Log Message
 437		C++			Allow comments that have no comment text, just a # by itself.
 438		C++			Use forward declarations instead of #includes in EU3World
 439		C++			Move files around
+440		C++			Make log.txt easier to read

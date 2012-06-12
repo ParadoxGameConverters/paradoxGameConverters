@@ -210,7 +210,7 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 
 		//add the mapping
 		mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
-		log("Added map %s -> %s (#%d)\n", EU3TagPos->c_str(), V2TagPos->c_str(), distance);
+		log("	Added map %s -> %s (#%d)\n", EU3TagPos->c_str(), V2TagPos->c_str(), distance);
 
 		//remove tags from the lists
 		EU3Tags.erase(EU3TagPos);
@@ -241,7 +241,7 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 		{
 			vector<string>::iterator V2TagPos = V2Tags.begin();
 			mapping.insert(make_pair<string, string>(*EU3TagPos, *V2TagPos));
-			log("Added map %s -> %s (fallback)\n", EU3TagPos->c_str(), V2TagPos->c_str());
+			log("	Added map %s -> %s (fallback)\n", EU3TagPos->c_str(), V2TagPos->c_str());
 
 			//remove tags from the lists
 			EU3Tags.erase(EU3TagPos);
@@ -293,7 +293,7 @@ void mergeNations(EU3World& world, Object* mergeObj)
 	vector<Object*> rules = mergeObj->getValue("merge_nations");
 	if (rules.size() < 0)
 	{
-		log("No nations have merging requested (skipping).\n");
+		log("	No nations have merging requested (skipping).\n");
 		return;
 	}
 

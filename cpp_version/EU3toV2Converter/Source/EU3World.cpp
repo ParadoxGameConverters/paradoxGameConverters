@@ -210,7 +210,7 @@ WorldType EU3World::getWorldType()
 		cachedWorldType = DivineWind;
 		break;
 	default:
-		log("Unrecognized max province ID: %d\n", maxProvinceID);
+		log("	Unrecognized max province ID: %d\n", maxProvinceID);
 		if (maxProvinceID < 1774)
 		{
 			cachedWorldType = VeryOld; // pre-IN
@@ -235,10 +235,10 @@ WorldType EU3World::getWorldType()
 		forcedWorldType = cachedWorldType;
 
 	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != Unknown))
-		log("Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
+		log("	Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
 
 	if (cachedWorldType == Unknown)
-		log("Error: world type unknown!\n");
+		log("	Error: world type unknown!\n");
 
 	if (forcedWorldType != Unknown)
 		cachedWorldType = forcedWorldType;
@@ -256,7 +256,7 @@ void EU3World::checkAllProvincesMapped(provinceMapping provinceMap)
 		vector<int> destNums		= inverseMap[srcNum];
 		if (destNums.size() == 0)
 		{
-			log("Error: no destination for province #%d\n", srcNum);
+			log("	Error: no destination for province #%d\n", srcNum);
 		}
 	}
 }

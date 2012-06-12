@@ -1527,13 +1527,13 @@ bool V2Country::addFactory(V2Factory factory)
 
 	if (candidates.size() == 0)
 	{
-		log("%s rejected %s (no candidate states)\n", tag.c_str(), factory.getTypeName().c_str());
+		log("	%s rejected %s (no candidate states)\n", tag.c_str(), factory.getTypeName().c_str());
 		return false;
 	}
 
 	V2State* target = candidates[0].second;
 	target->addFactory(factory);
-	log("%s accepted %s (%d candidate states)\n", tag.c_str(), factory.getTypeName().c_str(), candidates.size());
+	log("	%s accepted %s (%d candidate states)\n", tag.c_str(), factory.getTypeName().c_str(), candidates.size());
 	return true;
 }
 

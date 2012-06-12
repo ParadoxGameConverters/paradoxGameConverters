@@ -77,24 +77,24 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	switch (game)
 	{
 	case VeryOld:
-		printf("Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
-		log("Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
+		printf("	Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
+		log("	Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
 		exit(1);
 	case InNomine:
-		printf("Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
-		log("Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
+		printf("	Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
+		log("	Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
 		break;
 	case HeirToTheThrone:
-		printf("Game type is: EU3 Heir to the Throne.\n");
-		log("Game type is: EU3 Heir to the Throne.\n");
+		printf("	Game type is: EU3 Heir to the Throne.\n");
+		log("	Game type is: EU3 Heir to the Throne.\n");
 		break;
 	case DivineWind:
-		printf("Game type is: EU3 Divine Wind.\n");
-		log("Game type is: EU3 Divine Wind.\n");
+		printf("	Game type is: EU3 Divine Wind.\n");
+		log("	Game type is: EU3 Divine Wind.\n");
 		break;
 	default:
-		printf("Error: Could not determine savegame type.\n");
-		log("Error: Could not determine savegame type.\n");
+		printf("	Error: Could not determine savegame type.\n");
+		log("	Error: Could not determine savegame type.\n");
 		exit(1);
 	}
 
@@ -108,7 +108,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	{
 		read.close();
 		read.clear();
-		log("Reading unit strengths from unit_strength.txt\n");
+		log("	Reading unit strengths from unit_strength.txt\n");
 		obj = doParseFile("unit_strength.txt");
 		for (int i = 0; i < num_reg_categories; ++i)
 		{
@@ -117,12 +117,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	else
 	{
-		log("Reading unit strengths from EU3 installation folder\n");
+		log("	Reading unit strengths from EU3 installation folder\n");
 		struct _finddata_t unitFileData;
 		intptr_t fileListing;
 		if ( (fileListing = _findfirst( (EU3Loc + "\\common\\units\\*.txt").c_str(), &unitFileData)) == -1L)
 		{
-			log("Could not open units directory.\n");
+			log("	Could not open units directory.\n");
 			return -1;
 		}
 		do
@@ -193,8 +193,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	V2CountriesInput.open( (V2Loc + "\\common\\countries.txt").c_str() );
 	if (!V2CountriesInput.is_open())
 	{
-		log("Error: Could not open countries.txt\n");
-		printf("Error: Could not open countries.txt\n");
+		log("	Error: Could not open countries.txt\n");
+		printf("	Error: Could not open countries.txt\n");
 		return 1;
 	}
 	destWorld.addPotentialCountries(V2CountriesInput, V2Loc);
@@ -368,8 +368,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);
-	printf("Converting capitals.\n");
-	log("Converting capitals.\n");
+	printf("Converting capitals.");
+	log("Converting capitals.");
 	destWorld.convertCapitals(sourceWorld, provinceMap);
 	printf("Creating pops.\n");
 	log("Creating pops.\n");

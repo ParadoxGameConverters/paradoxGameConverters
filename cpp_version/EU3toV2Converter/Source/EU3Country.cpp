@@ -1070,5 +1070,5 @@ void EU3Country::eatCountry(EU3Country* target)
 	target->clearProvinces();
 	target->clearCores();
 
-	log("Merged %s into %s\n", target->tag.c_str(), tag.c_str());
+	log("	Merged %s into %s\n", target->tag.c_str(), tag.c_str());
 }

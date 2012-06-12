@@ -89,7 +89,7 @@ void V2Army::output(FILE* out)
 {
 	if (regiments.size() == 0)
 	{
-		log("Army %s has no regiments after conversion; skipping.\n", name.c_str());
+		log("	Army %s has no regiments after conversion; skipping.\n", name.c_str());
 		return;
 	}
 
