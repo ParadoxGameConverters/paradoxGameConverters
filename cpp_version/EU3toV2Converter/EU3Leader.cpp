@@ -1,5 +1,22 @@
 #include "EU3Leader.h"
 #include "Log.h"
+#include "Parsers\Object.h"
+
+
+
+EU3Leader::EU3Leader()
+{
+	name				= "";
+	fire				= -1;
+	shock				= -1;
+	manuever			= -1;
+	siege				= -1;
+	id					= -1;
+	type				= "";
+	activationDate	= (string)"1.1.1";
+}
+
+
 
 void EU3Leader::init(Object *obj)
 {
@@ -45,6 +62,7 @@ void EU3Leader::init(Object *obj)
 		activationDate = date(subObj[0]->getLeaf());
 	}
 }
+
 
 bool EU3Leader::isLand() const
 {

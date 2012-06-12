@@ -7,6 +7,8 @@
 
 #include "Mapper.h"
 #include "Log.h"
+#include "EU3Country.h"
+#include "EU3Province.h"
 #include <algorithm>
 
 
@@ -253,11 +255,11 @@ int initCountryMap(countryMapping& mapping, vector<string> EU3Tags, vector<strin
 
 void uniteJapan(EU3World& world)
 {
-	vector<EU3Country> countries = world.getCountries();
-	vector<EU3Country>::iterator japan;
+	vector<EU3Country*> countries = world.getCountries();
+	vector<EU3Country*>::iterator japan;
 	for (japan = countries.begin(); japan != countries.end(); japan++)
 	{
-		if (japan->getTag() == "JAP")
+		if ( (*japan)->getTag() == "JAP")
 		{
 			break;
 		}
@@ -266,7 +268,7 @@ void uniteJapan(EU3World& world)
 	{
 		return;
 	}
-	vector<string> japanFlags = japan->getFlags();
+	vector<string> japanFlags = (*japan)->getFlags();
 	for (unsigned int i = 0; i < japanFlags.size(); i++)
 	{
 		if (japanFlags[i] == "united_daimyos_of_japan")
@@ -276,11 +278,11 @@ void uniteJapan(EU3World& world)
 	}
 
 	vector<vector<EU3Country>::iterator> daimyos;
-	for (vector<EU3Country>::iterator i = countries.begin(); i != countries.end(); ++i)
+	for (vector<EU3Country*>::iterator i = countries.begin(); i != countries.end(); ++i)
 	{
-		if (i->getPossibleDaimyo())
+		if ( (*i)->getPossibleDaimyo() )
 		{
-			japan->eatCountry(world.getCountry(i->getTag()));
+			(*japan)->eatCountry(world.getCountry( (*i)->getTag() ));
 		}
 	}
 }
@@ -334,26 +336,26 @@ void mergeNations(EU3World& world, Object* mergeObj)
 
 void removeEmptyNations(EU3World& world)
 {
-	vector<EU3Country> countries = world.getCountries();
+	vector<EU3Country*> countries = world.getCountries();
 
 	vector<string> tagsToRemove;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		vector<EU3Province*> provinces	= countries[i].getProvinces();
-		vector<EU3Province*> cores			= countries[i].getCores();
+		vector<EU3Province*> provinces	= countries[i]->getProvinces();
+		vector<EU3Province*> cores			= countries[i]->getCores();
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
-			tagsToRemove.push_back(countries[i].getTag());
+			tagsToRemove.push_back(countries[i]->getTag());
 		}
 	}
 	world.removeCountries(tagsToRemove);
 }
 
 
-bool compareLandlessNationsAges(EU3Country A, EU3Country B)
+bool compareLandlessNationsAges(EU3Country* A, EU3Country* B)
 {
-	vector<EU3Province*> ACores = A.getCores();
-	string ATag = A.getTag();
+	vector<EU3Province*> ACores = A->getCores();
+	string ATag = A->getTag();
 	date ADate;
 	for (unsigned int i = 0; i < ACores.size(); i++)
 	{
@@ -364,8 +366,8 @@ bool compareLandlessNationsAges(EU3Country A, EU3Country B)
 		}
 	}
 
-	vector<EU3Province*> BCores = B.getCores();
-	string BTag = B.getTag();
+	vector<EU3Province*> BCores = B->getCores();
+	string BTag = B->getTag();
 	date BDate;
 	for (unsigned int i = 0; i < BCores.size(); i++)
 	{
@@ -382,12 +384,12 @@ bool compareLandlessNationsAges(EU3Country A, EU3Country B)
 
 void removeDeadLandlessNations(EU3World& world)
 {
-	vector<EU3Country> countries = world.getCountries();
+	vector<EU3Country*> countries = world.getCountries();
 
-	vector<EU3Country> countries2;
+	vector<EU3Country*> countries2;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		vector<EU3Province*> provinces = countries[i].getProvinces();
+		vector<EU3Province*> provinces = countries[i]->getProvinces();
 		if (provinces.size() == 0)
 		{
 			countries2.push_back(countries[i]);
@@ -397,8 +399,8 @@ void removeDeadLandlessNations(EU3World& world)
 	vector<string> tagsToRemove;
 	for (unsigned int i = 0; i < countries2.size(); i++)
 	{
-		string culture					= countries2[i].getPrimaryCulture();
-		vector<EU3Province*> cores	= countries2[i].getCores();
+		string culture					= countries2[i]->getPrimaryCulture();
+		vector<EU3Province*> cores	= countries2[i]->getCores();
 		bool cultureSurvives			= false;
 		for (unsigned int j = 0; j < cores.size(); j++)
 		{
@@ -415,7 +417,7 @@ void removeDeadLandlessNations(EU3World& world)
 		}
 		if (cultureSurvives == false)
 		{
-			tagsToRemove.push_back(countries2[i].getTag());
+			tagsToRemove.push_back(countries2[i]->getTag());
 		}
 	}
 	world.removeCountries(tagsToRemove);
@@ -424,12 +426,12 @@ void removeDeadLandlessNations(EU3World& world)
 
 void removeOlderLandlessNations(EU3World& world, int excess)
 {
-	vector<EU3Country> countries = world.getCountries();
+	vector<EU3Country*> countries = world.getCountries();
 
-	vector<EU3Country> countries2;
+	vector<EU3Country*> countries2;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		vector<EU3Province*> provinces = countries[i].getProvinces();
+		vector<EU3Province*> provinces = countries[i]->getProvinces();
 		if (provinces.size() == 0)
 		{
 			countries2.push_back(countries[i]);
@@ -441,7 +443,7 @@ void removeOlderLandlessNations(EU3World& world, int excess)
 	vector<string> tagsToRemove;
 	while ( (excess > 0) && (countries2.size() > 0) )
 	{
-		tagsToRemove.push_back(countries2.back().getTag());
+		tagsToRemove.push_back(countries2.back()->getTag());
 		countries2.pop_back();
 		excess--;
 	}
@@ -451,15 +453,15 @@ void removeOlderLandlessNations(EU3World& world, int excess)
 
 void removeLandlessNations(EU3World& world)
 {
-	vector<EU3Country> countries = world.getCountries();
+	vector<EU3Country*> countries = world.getCountries();
 
 	vector<string> tagsToRemove;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		vector<EU3Province*> provinces = countries[i].getProvinces();
+		vector<EU3Province*> provinces = countries[i]->getProvinces();
 		if (provinces.size() == 0)
 		{
-			tagsToRemove.push_back(countries[i].getTag());
+			tagsToRemove.push_back(countries[i]->getTag());
 		}
 	}
 	world.removeCountries(tagsToRemove);
@@ -468,12 +470,12 @@ void removeLandlessNations(EU3World& world)
 
 vector<string> getEU3Tags(EU3World& srcWorld)
 {
-	vector<EU3Country>	EU3Countries = srcWorld.getCountries();
+	vector<EU3Country*>	EU3Countries = srcWorld.getCountries();
 	vector<string>			EU3Tags;
 
 	for (unsigned int i = 0; i < EU3Countries.size(); i++)
 	{
-		EU3Tags.push_back(EU3Countries[i].getTag());
+		EU3Tags.push_back(EU3Countries[i]->getTag());
 	}
 
 	return EU3Tags;

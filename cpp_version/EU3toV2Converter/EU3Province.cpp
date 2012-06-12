@@ -1,6 +1,28 @@
 #include "EU3Province.h"
-#include <algorithm>
 #include "Log.h"
+#include "Parsers/Object.h"
+#include <algorithm>
+
+
+
+EU3Province::EU3Province()
+{
+	num				= -1;
+	owner				= "";
+	//controller
+	cores.clear();
+	culture			= "";
+	religion			= "";
+	population		= -1;
+	colony			= false;
+	centerOfTrade	= false;
+	lastPossessedDate.clear();
+	ownershipHistory.clear();
+	religionHistory.clear();
+	cultureHistory.clear();
+	popRatios.clear();
+	buildings.clear();
+}
 
 
 void EU3Province::init(Object* obj) {

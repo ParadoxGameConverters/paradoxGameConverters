@@ -1,4 +1,15 @@
 #include "EU3Loan.h"
+#include "Parsers\Object.h"
+
+
+
+EU3Loan::EU3Loan()
+{
+	lender	= "";
+	interest	= -1;
+	amount	= -1;
+}
+
 
 void EU3Loan::init(Object* obj)
 {

@@ -2,6 +2,19 @@
 #include "Log.h"
 #include "Parsers/Parser.h"
 
+
+
+EU3Regiment::EU3Regiment()
+{
+	name				= "";
+	type				= "";
+	home				= -1;
+	strength			= -1;
+	category			= num_reg_categories;
+	type_strength	= -1;
+}
+
+
 void EU3Regiment::init(Object *obj)
 {
 	std::vector<Object*> objName = obj->getValue("name");
@@ -41,6 +54,18 @@ void EU3Regiment::init(Object *obj)
 		strength = 0.0;
 	}
 }
+
+
+EU3Army::EU3Army()
+{
+	name		= "";
+	location	= -1;
+	at_sea	= -1;
+	regiments.clear();
+	blocked_homes.clear();
+	leaderID	= -1;
+}
+
 
 void EU3Army::init(Object *obj)
 {
@@ -103,6 +128,7 @@ void EU3Army::init(Object *obj)
 	}
 }
 
+
 void EU3Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 {
 	for (vector<EU3Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
@@ -120,6 +146,7 @@ void EU3Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 	}
 }
 
+
 double EU3Army::getAverageStrength(RegimentCategory category)
 {
 	int count = 0;
@@ -135,6 +162,7 @@ double EU3Army::getAverageStrength(RegimentCategory category)
 	return (total / count);
 }
 
+
 int EU3Army::getTotalTypeStrength(RegimentCategory category)
 {
 	int total = 0;
@@ -147,6 +175,7 @@ int EU3Army::getTotalTypeStrength(RegimentCategory category)
 	}
 	return total;
 }
+
 
 int EU3Army::getProbabilisticHomeProvince(RegimentCategory category)
 {

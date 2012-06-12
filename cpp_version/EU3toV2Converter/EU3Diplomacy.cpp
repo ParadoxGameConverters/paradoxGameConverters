@@ -1,5 +1,8 @@
 #include "EU3Diplomacy.h"
 #include "Log.h"
+#include "Parsers\Object.h"
+
+
 
 EU3Agreement::EU3Agreement(Object *obj)
 {
@@ -32,6 +35,13 @@ EU3Agreement::EU3Agreement(Object *obj)
 	}
 }
 
+
+EU3Diplomacy::EU3Diplomacy()
+{
+	agreements.clear();
+}
+
+#pragma optimize("", off)
 void EU3Diplomacy::init(Object* obj)
 {
 	std::vector<Object*> objRMs = obj->getValue("royal_marriage");
@@ -76,3 +86,4 @@ void EU3Diplomacy::init(Object* obj)
 		agreements.push_back(agr);
 	}
 }
+#pragma optimize("", on)

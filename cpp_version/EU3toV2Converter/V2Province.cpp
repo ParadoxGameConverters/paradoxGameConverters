@@ -2,6 +2,7 @@
 #include "Log.h"
 
 #include "EU3World.h"
+#include "EU3Province.h"
 #include <sstream>
 #include <algorithm>
 

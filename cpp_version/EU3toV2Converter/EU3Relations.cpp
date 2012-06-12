@@ -1,4 +1,16 @@
 #include "EU3Relations.h"
+#include "Parsers/Object.h"
+
+
+
+EU3Relations::EU3Relations()
+{
+	tag						= "";
+	value						= -1;
+	military_access		= false;
+	last_send_diplomat	= (string)"1.1.1";
+	last_war					= (string)"1.1.1";
+}
 
 
 void EU3Relations::init(Object* obj) {

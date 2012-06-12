@@ -2,8 +2,13 @@
 #define EU3PROVINCE_H_
 
 
-#include "Parsers/Object.h"
 #include "Date.h"
+#include <string>
+#include <vector>
+using namespace std;
+
+class Object;
+
 
 
 struct EU3PopRatio {
@@ -12,30 +17,32 @@ struct EU3PopRatio {
 	double popRatio;
 };
 
+
 class EU3Province {
 	public:
-		void				init(Object* obj);
-		int				getNum();
-		void				setOwner(string);
-		string			getOwner();
-		vector<string>	getCores();
-		void				addCore(string);
-		void				removeCore(string);
-		string			getCulture();
-		string			getReligion();
-		int				getPopulation();
-		bool				isColony();
-		date				getLastPossessedDate(string Tag);
-		bool				wasColonised();
-		bool				wasPaganConquest(string ownerReligion);
-		void				buildPopRatios();
+		EU3Province();
+		void						init(Object* obj);
+		int						getNum();
+		void						setOwner(string);
+		string					getOwner();
+		vector<string>			getCores();
+		void						addCore(string);
+		void						removeCore(string);
+		string					getCulture();
+		string					getReligion();
+		int						getPopulation();
+		bool						isColony();
+		date						getLastPossessedDate(string Tag);
+		bool						wasColonised();
+		bool						wasPaganConquest(string ownerReligion);
+		void						buildPopRatios();
 		vector<EU3PopRatio>	getPopRatios();
-		bool				hasBuilding(string building);
-		bool				isCOT();
-		void				setCOT(bool isCOT);
+		bool						hasBuilding(string building);
+		bool						isCOT();
+		void						setCOT(bool isCOT);
 	private:
-		void							decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
-		void							checkBuilding(Object* provinceObj, string building);
+		void									decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
+		void									checkBuilding(Object* provinceObj, string building);
 		int									num;
 		string								owner;
 		//controller
@@ -45,12 +52,12 @@ class EU3Province {
 		int									population;
 		bool									colony;
 		bool									centerOfTrade;
-		map<string, date>				lastPossessedDate;
+		map<string, date>					lastPossessedDate;
 		vector< pair<date, string> >	ownershipHistory;
 		vector< pair<date, string> >	religionHistory;
 		vector< pair<date, string> >	cultureHistory;
 		vector<EU3PopRatio>				popRatios;
-		map<string, bool>				buildings;
+		map<string, bool>					buildings;
 };
 
 

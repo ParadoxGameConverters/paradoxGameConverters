@@ -1,6 +1,65 @@
 #include "EU3Country.h"
 #include "Log.h"
+#include "EU3Province.h"
+#include "EU3Relations.h"
+#include "EU3Loan.h"
+#include "EU3Leader.h"
 #include <algorithm>
+
+
+
+EU3Country::EU3Country()
+{
+	tag										= "";
+	provinces.clear();
+	cores.clear();
+	capital									= -1;
+	nationalFocus							= -1;
+	techGroup								= "";
+	primaryCulture							= "";
+	acceptedCultures.clear();
+	religion									= "";
+	prestige									= -1;
+	culture									= -1;
+	armyTradition							= -1;
+	navyTradition							= -1;
+	stability								= -1;
+	landTech									= -1;
+	navalTech								= -1;
+	tradeTech								= -1;
+	productionTech							= -1;
+	governmentTech							= -1;
+	landInvestment							= -1;
+	navalInvestment						= -1;
+	tradeInvestment						= -1;
+	productionInvestment					= -1;
+	governmentInvestment					= -1;
+	flags.clear();
+	modifiers.clear();
+	possibleDaimyo							= false;
+	government								= "";
+	relations.clear();
+	armies.clear();
+	centralization_decentralization	= -1;
+	aristocracy_plutocracy				= -1;
+	serfdom_freesubjects					= -1;
+	innovative_narrowminded				= -1;
+	mercantilism_freetrade				= -1;
+	offensive_defensive					= -1;
+	land_naval								= -1;
+	quality_quantity						= -1;
+	nationalIdeas.clear();
+	treasury									= -1;
+	last_bankrupt							= (string)"1.1.1";
+	loans.clear();
+	estMonthlyIncome						= -1;
+	diplomats								= -1;
+	badboy									= -1;
+	leaders.clear();
+	legitimacy								= -1;
+	inflation								= -1;
+}
+
 
 void EU3Country::init(Object* obj)
 {
@@ -209,8 +268,8 @@ void EU3Country::init(Object* obj)
 				vector<Object*> leaderObjs = (*itr)->getValue("leader");
 				for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
 				{
-					EU3Leader leader;
-					leader.init(*litr);
+					EU3Leader* leader = new EU3Leader;
+					leader->init(*litr);
 					leaders.push_back(leader);
 				}
 			}
@@ -220,14 +279,14 @@ void EU3Country::init(Object* obj)
 	// figure out which leaders are active, and ditch the rest
 	vector<Object*> activeLeaderObj = obj->getValue("leader");
 	vector<int> activeIds;
-	vector<EU3Leader> activeLeaders;
+	vector<EU3Leader*> activeLeaders;
 	for (vector<Object*>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
 	{
 		activeIds.push_back(atoi((*itr)->getLeaf("id").c_str()));
 	}
-	for (vector<EU3Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	for (vector<EU3Leader*>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
-		if (find(activeIds.begin(), activeIds.end(), itr->getID()) != activeIds.end())
+		if (find(activeIds.begin(), activeIds.end(), (*itr)->getID()) != activeIds.end())
 			activeLeaders.push_back(*itr);
 	}
 	leaders.swap(activeLeaders);
@@ -249,8 +308,8 @@ void EU3Country::init(Object* obj)
 			(key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') && 
 			(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z'))
 		{
-			EU3Relations rel;
-			rel.init(leaves[i]);
+			EU3Relations* rel = new EU3Relations;
+			rel->init(leaves[i]);
 			relations.push_back(rel);
 		}
 	}
@@ -258,15 +317,15 @@ void EU3Country::init(Object* obj)
 	vector<Object*> armyObj = obj->getValue("army");
 	for (std::vector<Object*>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
 	{
-		EU3Army army;
-		army.init(*itr);
+		EU3Army* army = new EU3Army;
+		army->init(*itr);
 		armies.push_back(army);
 	}
 	vector<Object*> navyObj = obj->getValue("navy");
 	for (std::vector<Object*>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
 	{
-		EU3Army navy;
-		navy.init(*itr);
+		EU3Army* navy = new EU3Army;
+		navy->init(*itr);
 		armies.push_back(navy);
 	}
 
@@ -539,8 +598,8 @@ void EU3Country::init(Object* obj)
 	moneyObj = obj->getValue("loan");
 	for (vector<Object*>::iterator itr = moneyObj.begin(); itr != moneyObj.end(); ++itr)
 	{
-		EU3Loan loan;
-		loan.init(*itr);
+		EU3Loan* loan = new EU3Loan;
+		loan->init(*itr);
 		loans.push_back(loan);
 	}
 	vector<Object*> diploObj = obj->getValue("diplomats");
@@ -761,13 +820,13 @@ string EU3Country::getGovernment()
 }
 
 
-vector<EU3Relations> EU3Country::getRelations()
+vector<EU3Relations*> EU3Country::getRelations()
 {
 	return relations;
 }
 
 
-vector<EU3Army> EU3Country::getArmies()
+vector<EU3Army*> EU3Country::getArmies()
 {
 	return armies;
 }
@@ -775,9 +834,9 @@ vector<EU3Army> EU3Country::getArmies()
 
 void EU3Country::resolveRegimentTypes(const RegimentTypeMap& map)
 {
-	for (vector<EU3Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	for (vector<EU3Army*>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
-		itr->resolveRegimentTypes(map);
+		(*itr)->resolveRegimentTypes(map);
 	}
 }
 
@@ -872,7 +931,7 @@ date EU3Country::getLastBankrupt()
 }
 
 
-vector<EU3Loan> EU3Country::getLoans()
+vector<EU3Loan*> EU3Country::getLoans()
 {
 	return loans;
 }
@@ -944,7 +1003,7 @@ bool EU3Country::hasNationalIdea(string ni)
 }
 
 
-vector<EU3Leader> EU3Country::getLeaders()
+vector<EU3Leader*> EU3Country::getLeaders()
 {
 	return leaders;
 }

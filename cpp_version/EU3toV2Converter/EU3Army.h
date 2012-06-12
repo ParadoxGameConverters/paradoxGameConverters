@@ -2,8 +2,14 @@
 #define EU3ARMY_H_
 
 
-#include "stdafx.h"
-#include "Parsers/Object.h"
+
+#include <string>
+#include <map>
+#include <vector>
+using namespace std;
+
+class Object;
+
 
 
 typedef enum
@@ -21,6 +27,7 @@ typedef enum
 	num_reg_categories
 } RegimentCategory;
 
+
 static const char* RegimentCategoryNames[] = {
 	"infantry",
 	"cavalry",
@@ -31,19 +38,22 @@ static const char* RegimentCategoryNames[] = {
 	"transport"
 };
 
+
 typedef map<string, pair<RegimentCategory, int> > RegimentTypeMap;
+
 
 class EU3Regiment // also Ship
 {
 	public:
-		void					init(Object* obj);
+		EU3Regiment();
+		void						init(Object* obj);
 		string					getName() const { return name; }
 		string					getType() const { return type; }
 		int						getHome() const { return home; }
 		double					getStrength() const { return strength; }
-		void					setCategory(RegimentCategory cat) { category = cat; }
+		void						setCategory(RegimentCategory cat) { category = cat; }
 		RegimentCategory		getCategory() const { return category; }
-		void					setTypeStrength(int typeStrength) { type_strength = typeStrength; }
+		void						setTypeStrength(int typeStrength) { type_strength = typeStrength; }
 		int						getTypeStrength() const { return type_strength; }
 	private:
 		string					name;
@@ -54,31 +64,35 @@ class EU3Regiment // also Ship
 		int						type_strength;
 };
 
+
 class EU3Army // also Navy
 {
 	public:
-		void					init(Object* obj);
+		EU3Army();
+		void						init(Object* obj);
 		string					getName() const { return name; }
 		int						getLocation() const { return location; }
-		vector<EU3Regiment>		getRegiments() { return regiments; }
-		void					resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap);
+		vector<EU3Regiment>	getRegiments() { return regiments; }
+		void						resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap);
 		double					getAverageStrength(RegimentCategory category);
 		int						getTotalTypeStrength(RegimentCategory category);
 		int						getProbabilisticHomeProvince(RegimentCategory category);
-		void					blockHomeProvince(int home);
+		void						blockHomeProvince(int home);
 		int						getAtSea() const { return at_sea; }
 		int						getLeaderID() const { return leaderID; }
 	private:
 		string					name;
 		int						location;
 		int						at_sea;
-		vector<EU3Regiment>		regiments;
+		vector<EU3Regiment>	regiments;
 		vector<int>				blocked_homes;
 		int						leaderID;
 };
 
+
 void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm);
 void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap& rtm);
+
 
 
 #endif
