@@ -2,6 +2,7 @@
 #include "Log.h"
 #include "Configuration.h"
 #include "Mapper.h"
+#include "Parsers\Object.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
 #include "EU3Diplomacy.h"

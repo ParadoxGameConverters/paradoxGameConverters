@@ -2,6 +2,8 @@
 #include "tempFuncs.h"
 #include "Log.h"
 #include "Configuration.h"
+#include "EU3Country.h"
+
 
 
 void V2Reforms::init(EU3Country* srcCountry)

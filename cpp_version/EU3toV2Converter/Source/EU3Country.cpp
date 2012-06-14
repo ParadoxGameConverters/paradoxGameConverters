@@ -1,5 +1,6 @@
 #include "EU3Country.h"
 #include "Log.h"
+#include "Parsers\Object.h"
 #include "EU3Province.h"
 #include "EU3Relations.h"
 #include "EU3Loan.h"

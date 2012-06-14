@@ -15,9 +15,19 @@
 #include "EU3Leader.h"
 #include "EU3Province.h"
 #include "EU3Diplomacy.h"
+#include "V2Province.h"
+#include "V2State.h"
+#include "V2Relations.h"
+#include "V2Army.h"
+#include "V2Leader.h"
+#include "V2Pop.h"
+#include "V2Country.h"
+
 
 
 #define MONEYFACTOR 30	// ducat to pound conversion rate
+
+
 
 void V2World::init(string V2Loc)
 {
@@ -49,8 +59,8 @@ void V2World::init(string V2Loc)
 		}
 		int provNum = atoi( line.substr(0, delimiter).c_str() );
 
-		V2Province newProv;
-		newProv.init(provNum);
+		V2Province* newProv = new V2Province;
+		newProv->init(provNum);
 		provinces.push_back(newProv);
 	}
 	read.close();
@@ -105,21 +115,21 @@ void V2World::init(string V2Loc)
 			int delimiter = filename.find_last_of(' ');
 			string provName = filename.substr(delimiter + 1, filename.find_first_of('.') - delimiter - 1);
 
-			vector<V2Province>::iterator i;
+			vector<V2Province*>::iterator i;
 			for(i = provinces.begin(); i != provinces.end(); i++)
 			{
-				if (i->getNum() == provNum)
+				if ( (*i)->getNum() == provNum )
 				{
 					Object* provinceObj = doParseFile((provDirPath + provFileData.name).c_str());
 					vector<Object*> rgoObj = provinceObj->getValue("trade_goods");
 					if (rgoObj.size() > 0)
 					{
-						i->setRgoType(rgoObj[0]->getLeaf());
+						(*i)->setRgoType(rgoObj[0]->getLeaf());
 					}
 					vector<Object*> lifeObj = provinceObj->getValue("life_rating");
 					if (lifeObj.size() > 0)
 					{
-						i->setLifeRating(atoi(lifeObj[0]->getLeaf().c_str()));
+						(*i)->setLifeRating(atoi(lifeObj[0]->getLeaf().c_str()));
 					}
 					break;
 				}
@@ -169,7 +179,7 @@ void V2World::init(string V2Loc)
 		{
 			int provNum = atoi(leaves[j]->getKey().c_str());
 			unsigned int k = 0;
-			while (k < provinces.size() && provNum != provinces[k].getNum())
+			while (k < provinces.size() && provNum != provinces[k]->getNum())
 			{
 				k++;
 			}
@@ -183,12 +193,12 @@ void V2World::init(string V2Loc)
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
-					V2Pop newPop;
-					newPop.setType(pops[l]->getKey());
-					newPop.setCulture(pops[l]->getLeaf("culture"));
-					newPop.setReligion(pops[l]->getLeaf("religion"));
-					newPop.setSize(atoi(pops[l]->getLeaf("size").c_str()));
-					provinces[k].addOldPop(newPop);
+					V2Pop* newPop = new V2Pop;
+					newPop->setType(pops[l]->getKey());
+					newPop->setCulture(pops[l]->getLeaf("culture"));
+					newPop->setReligion(pops[l]->getLeaf("religion"));
+					newPop->setSize(atoi(pops[l]->getLeaf("size").c_str()));
+					provinces[k]->addOldPop(newPop);
 				}
 			}
 		}
@@ -215,11 +225,11 @@ void V2World::init(string V2Loc)
 		if (objNavalBase.size() != 0)
 		{
 			// this province is coastal
-			for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+			for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 			{
-				if (pitr->getNum() == provinceNum)
+				if ( (*pitr)->getNum() == provinceNum)
 				{
-					pitr->setCoastal(true);
+					(*pitr)->setCoastal(true);
 					break;
 				}
 			}
@@ -243,9 +253,9 @@ void V2World::getProvinceLocalizations(string file)
 			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
 			for (unsigned int i = 0; i < provinces.size(); i++)
 			{
-				if (provinces[i].getNum() == num)
+				if (provinces[i]->getNum() == num)
 				{
-					provinces[i].setName(name);
+					provinces[i]->setName(name);
 					break;
 				}
 			}
@@ -291,8 +301,8 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 		{
 			continue;
 		}
-		V2Country newCountry;
-		newCountry.init(tag, countryFileName, parties, this);
+		V2Country* newCountry = new V2Country;
+		newCountry->init(tag, countryFileName, parties, this);
 		potentialCountries.push_back(newCountry);
 	}
 }
@@ -300,12 +310,12 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 
 void V2World::sortCountries(const vector<string>& order)
 {
-	vector<V2Country> sortedCountries;
+	vector<V2Country*> sortedCountries;
 	for (vector<string>::const_iterator oitr = order.begin(); oitr != order.end(); ++oitr)
 	{
-		for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+		for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 		{
-			if (itr->getTag() == (*oitr))
+			if ( (*itr)->getTag() == (*oitr) )
 			{
 				sortedCountries.push_back(*itr);
 				break;
@@ -321,7 +331,7 @@ vector<string> V2World::getPotentialTags()
 	vector<string> tagList;
 	for (unsigned int i = 0; i < potentialCountries.size(); i++)
 	{
-		tagList.push_back(potentialCountries[i].getTag());
+		tagList.push_back(potentialCountries[i]->getTag());
 	}
 	return tagList;
 }
@@ -333,26 +343,26 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 	vector<EU3Country*> sourceCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < sourceCountries.size(); i++)
 	{
-		V2Country newCountry;
+		V2Country* newCountry;
 		countryMapping::iterator iter;
 		iter = countryMap.find(sourceCountries[i]->getTag());
 		if (iter != countryMap.end())
 		{
 			for(unsigned int j = 0; j < potentialCountries.size(); j++)
 			{
-				if (potentialCountries[j].getTag() == iter->second.c_str())
+				if (potentialCountries[j]->getTag() == iter->second.c_str())
 				{
 					newCountry = potentialCountries[j];
-					newCountry.setSourceCountryIndex(i);
+					newCountry->setSourceCountryIndex(i);
 
 					if ( (sourceCountries[i]->getTechGroup() == "western") || (sourceCountries[i]->getTechGroup() == "latin") ||
 						(sourceCountries[i]->getTechGroup() == "eastern") || (sourceCountries[i]->getTechGroup() == "ottoman"))
 					{
-						newCountry.setCivilized(true);
+						newCountry->setCivilized(true);
 					}
 					else
 					{
-						newCountry.setCivilized(false);
+						newCountry->setCivilized(false);
 					}
 					
 					string srcCulture = sourceCountries[i]->getPrimaryCulture();
@@ -368,12 +378,12 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 								{
 									if (cultureMap[k].distinguishers[j].first == owner)
 									{
-										if (newCountry.getTag() != cultureMap[k].distinguishers[j].second)
+										if (newCountry->getTag() != cultureMap[k].distinguishers[j].second)
 											match = false;
 									}
 									else if (cultureMap[k].distinguishers[j].first == religion)
 									{
-										if (newCountry.getReligion() != cultureMap[k].distinguishers[j].second)
+										if (newCountry->getReligion() != cultureMap[k].distinguishers[j].second)
 											match = false;
 									}
 									else
@@ -383,14 +393,14 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 								}
 								if (match)
 								{
-									newCountry.setPrimaryCulture(cultureMap[k].dstCulture);
+									newCountry->setPrimaryCulture(cultureMap[k].dstCulture);
 									matched = true;
 								}
 							}
 						}
 						if (!matched)
 						{
-							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i]->getTag().c_str(), newCountry.getTag().c_str());
+							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i]->getTag().c_str(), newCountry->getTag().c_str());
 						}
 					}
 					
@@ -417,12 +427,12 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 								{
 									if (cultureMap[l].distinguishers[j].first == owner)
 									{
-										if (newCountry.getTag() != cultureMap[l].distinguishers[j].second)
+										if (newCountry->getTag() != cultureMap[l].distinguishers[j].second)
 											match = false;
 									}
 									else if (cultureMap[l].distinguishers[j].first == religion)
 									{
-										if (newCountry.getReligion() != cultureMap[l].distinguishers[j].second)
+										if (newCountry->getReligion() != cultureMap[l].distinguishers[j].second)
 											match = false;
 									}
 									else
@@ -432,14 +442,14 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 								}
 								if (match)
 								{
-									newCountry.addAcceptedCulture(cultureMap[l].dstCulture);
+									newCountry->addAcceptedCulture(cultureMap[l].dstCulture);
 									matched = true;
 								}
 							}
 						}
 						if (!matched)
 						{
-							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i]->getTag().c_str(), newCountry.getTag().c_str());
+							log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), sourceCountries[i]->getTag().c_str(), newCountry->getTag().c_str());
 						}
 					}
 
@@ -449,20 +459,20 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						religionMapping::iterator iter2 = religionMap.find(srcReligion);
 						if (iter2 != religionMap.end())
 						{
-							newCountry.setReligion(iter2->second);
+							newCountry->setReligion(iter2->second);
 						}
 						else
 						{
-							log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), sourceCountries[i]->getTag().c_str(), newCountry.getTag().c_str());
+							log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), sourceCountries[i]->getTag().c_str(), newCountry->getTag().c_str());
 						}
 					}
 
 					double prestige = sourceCountries[i]->getPrestige() + 100;
 					prestige			+= sourceCountries[i]->getCulture();
-					newCountry.setPrestige(prestige);
+					newCountry->setPrestige(prestige);
 
 					double leadership = sourceCountries[i]->getArmyTradition() + sourceCountries[i]->getNavyTradition();
-					newCountry.setLeadership(leadership);
+					newCountry->setLeadership(leadership);
 
 					string srcGovernment = sourceCountries[i]->getGovernment();
 					if (srcGovernment.size() > 0)
@@ -470,11 +480,11 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 						governmentMapping::iterator iter2 = governmentMap.find(srcGovernment);
 						if (iter2 != governmentMap.end())
 						{
-							newCountry.setGovernment(iter2->second);
+							newCountry->setGovernment(iter2->second);
 						}
 						else
 						{
-							log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), sourceCountries[i]->getTag().c_str(), newCountry.getTag().c_str());
+							log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), sourceCountries[i]->getTag().c_str(), newCountry->getTag().c_str());
 						}
 					}
 
@@ -482,53 +492,53 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					int conservative	= 0;
 					int liberal			= 0;
 					int total			= 0;
-					if (sourceCountries[newCountry.getSourceCountryIndex()]->getCentralizationDecentralization() < 0)
+					if (sourceCountries[newCountry->getSourceCountryIndex()]->getCentralizationDecentralization() < 0)
 					{
-						conservative -= sourceCountries[newCountry.getSourceCountryIndex()]->getCentralizationDecentralization();
+						conservative -= sourceCountries[newCountry->getSourceCountryIndex()]->getCentralizationDecentralization();
 					}
 					else
 					{
-						liberal += sourceCountries[newCountry.getSourceCountryIndex()]->getCentralizationDecentralization();
+						liberal += sourceCountries[newCountry->getSourceCountryIndex()]->getCentralizationDecentralization();
 					}
-					if (sourceCountries[newCountry.getSourceCountryIndex()]->getAristocracyPlutocracy() < 0)
+					if (sourceCountries[newCountry->getSourceCountryIndex()]->getAristocracyPlutocracy() < 0)
 					{
-						reactionary -= sourceCountries[newCountry.getSourceCountryIndex()]->getAristocracyPlutocracy();
-					}
-					else
-					{
-						liberal += sourceCountries[newCountry.getSourceCountryIndex()]->getAristocracyPlutocracy();
-					}
-					if (sourceCountries[newCountry.getSourceCountryIndex()]->getSerfdomFreesubjects() < 0)
-					{
-						reactionary -= sourceCountries[newCountry.getSourceCountryIndex()]->getSerfdomFreesubjects();
+						reactionary -= sourceCountries[newCountry->getSourceCountryIndex()]->getAristocracyPlutocracy();
 					}
 					else
 					{
-						liberal += sourceCountries[newCountry.getSourceCountryIndex()]->getSerfdomFreesubjects();
+						liberal += sourceCountries[newCountry->getSourceCountryIndex()]->getAristocracyPlutocracy();
 					}
-					if (sourceCountries[newCountry.getSourceCountryIndex()]->getInnovativeNarrowminded() < 0)
+					if (sourceCountries[newCountry->getSourceCountryIndex()]->getSerfdomFreesubjects() < 0)
 					{
-						liberal -= sourceCountries[newCountry.getSourceCountryIndex()]->getInnovativeNarrowminded();
-					}
-					else
-					{
-						conservative += sourceCountries[newCountry.getSourceCountryIndex()]->getInnovativeNarrowminded();
-					}
-					if (sourceCountries[newCountry.getSourceCountryIndex()]->getMercantilismFreetrade() < 0)
-					{
-						conservative -= sourceCountries[newCountry.getSourceCountryIndex()]->getMercantilismFreetrade();
+						reactionary -= sourceCountries[newCountry->getSourceCountryIndex()]->getSerfdomFreesubjects();
 					}
 					else
 					{
-						liberal += sourceCountries[newCountry.getSourceCountryIndex()]->getMercantilismFreetrade();
+						liberal += sourceCountries[newCountry->getSourceCountryIndex()]->getSerfdomFreesubjects();
+					}
+					if (sourceCountries[newCountry->getSourceCountryIndex()]->getInnovativeNarrowminded() < 0)
+					{
+						liberal -= sourceCountries[newCountry->getSourceCountryIndex()]->getInnovativeNarrowminded();
+					}
+					else
+					{
+						conservative += sourceCountries[newCountry->getSourceCountryIndex()]->getInnovativeNarrowminded();
+					}
+					if (sourceCountries[newCountry->getSourceCountryIndex()]->getMercantilismFreetrade() < 0)
+					{
+						conservative -= sourceCountries[newCountry->getSourceCountryIndex()]->getMercantilismFreetrade();
+					}
+					else
+					{
+						liberal += sourceCountries[newCountry->getSourceCountryIndex()]->getMercantilismFreetrade();
 					}
 					total = reactionary + conservative + liberal;
-					newCountry.setUpperHouse( (reactionary / (double)total), (conservative / (double)total), (liberal / (double)total) );
+					newCountry->setUpperHouse( (reactionary / (double)total), (conservative / (double)total), (liberal / (double)total) );
 
 
 
-					newCountry.setReforms(sourceCountries[newCountry.getSourceCountryIndex()]);
-					newCountry.setNationalIdea(sourceCountries[newCountry.getSourceCountryIndex()], libertyLeft, equalityLeft);
+					newCountry->setReforms(sourceCountries[newCountry->getSourceCountryIndex()]);
+					newCountry->setNationalIdea(sourceCountries[newCountry->getSourceCountryIndex()], libertyLeft, equalityLeft);
 
 					vector<EU3Relations*> srcRelations = sourceCountries[i]->getRelations();
 					if (srcRelations.size() > 0)
@@ -538,25 +548,25 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							countryMapping::iterator newTag = countryMap.find( (*itr)->getCountry() );
 							if (newTag != countryMap.end())
 							{
-								V2Relations v2r;
-								v2r.init(newTag->second);
-								v2r.setRelations( (*itr)->getRelations() );
-								v2r.setMilitaryAccess( (*itr)->hasMilitaryAccess() );
-								v2r.setDiplomatLastSent( (*itr)->getDiplomatLastSent() );
-								v2r.setLastWar( (*itr)->getLastWar() );
-								newCountry.addRelations(v2r);
+								V2Relations* v2r = new V2Relations;
+								v2r->init(newTag->second);
+								v2r->setRelations( (*itr)->getRelations() );
+								v2r->setMilitaryAccess( (*itr)->hasMilitaryAccess() );
+								v2r->setDiplomatLastSent( (*itr)->getDiplomatLastSent() );
+								v2r->setLastWar( (*itr)->getLastWar() );
+								newCountry->addRelations(v2r);
 							}
 						}
 					}
-					newCountry.sortRelations(outputOrder);
+					newCountry->sortRelations(outputOrder);
 
-					newCountry.setMoney(MONEYFACTOR * sourceCountries[i]->inflationAdjust(sourceCountries[i]->getTreasury()));
-					newCountry.setLastBankrupt(sourceCountries[i]->getLastBankrupt());
+					newCountry->setMoney(MONEYFACTOR * sourceCountries[i]->inflationAdjust(sourceCountries[i]->getTreasury()));
+					newCountry->setLastBankrupt(sourceCountries[i]->getLastBankrupt());
 
 					vector<EU3Loan*> srcLoans = sourceCountries[i]->getLoans();
 					for (vector<EU3Loan*>::iterator itr = srcLoans.begin(); itr != srcLoans.end(); ++itr)
 					{
-						string lender = newCountry.getTag();
+						string lender = newCountry->getTag();
 						if ( (*itr)->getLender() != "---")
 						{
 							countryMapping::iterator newTag = countryMap.find( (*itr)->getLender() );
@@ -566,11 +576,11 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							}
 							else
 							{
-								log("Error: lender %s could not be found for %s's loan!\n", (*itr)->getLender().c_str(), newCountry.getTag().c_str());
+								log("Error: lender %s could not be found for %s's loan!\n", (*itr)->getLender().c_str(), newCountry->getTag().c_str());
 							}
 						}
 						double size = MONEYFACTOR * sourceCountries[i]->inflationAdjust( (*itr)->getAmount() );
-						newCountry.addLoan(lender, size, (*itr)->getInterest() / 100.0f);
+						newCountry->addLoan(lender, size, (*itr)->getInterest() / 100.0f);
 					}
 
 					// 1 month's income in reserves, or 6 months' if national bank NI is present
@@ -578,10 +588,10 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					double reserves = MONEYFACTOR * sourceCountries[i]->inflationAdjust(sourceCountries[i]->getEstimatedMonthlyIncome());
 					if (sourceCountries[i]->hasNationalIdea("national_bank"))
 						reserves *= 6.0;
-					newCountry.setBankReserves(reserves);
+					newCountry->setBankReserves(reserves);
 
-					newCountry.setDiploPoints(2.0 * sourceCountries[i]->getDiplomats());
-					newCountry.setBadboy((25.0 / sourceCountries[i]->getBadboyLimit()) * sourceCountries[i]->getBadboy());
+					newCountry->setDiploPoints(2.0 * sourceCountries[i]->getDiplomats());
+					newCountry->setBadboy((25.0 / sourceCountries[i]->getBadboyLimit()) * sourceCountries[i]->getBadboy());
 
 					double innovationFactor	= 5 * (5 - sourceCountries[i]->getInnovativeNarrowminded());
 					double serfdomFactor		= 5 * (5 + sourceCountries[i]->getSerfdomFreesubjects());
@@ -638,8 +648,8 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					{
 						literacy = Configuration::getMaxLiteracy();
 					}
-					log("	Setting %s's literacy to %f\n", newCountry.getTag().c_str(), literacy);
-					newCountry.setLiteracy(literacy);
+					log("	Setting %s's literacy to %f\n", newCountry->getTag().c_str(), literacy);
+					newCountry->setLiteracy(literacy);
 				}
 			}
 		}
@@ -648,25 +658,25 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 			log("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i]->getTag().c_str());
 			printf("Error: Could not convert EU3 tag %s to V2.\n", sourceCountries[i]->getTag().c_str());
 			vector<int> empty;
-			newCountry.init("", "", empty, this);
+			newCountry->init("", "", empty, this);
 		}
 
 		countries.push_back(newCountry);
 	}
 
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right
-	for (vector<V2Country>::iterator itr = potentialCountries.begin(); itr != potentialCountries.end(); ++itr)
+	for (vector<V2Country*>::iterator itr = potentialCountries.begin(); itr != potentialCountries.end(); ++itr)
 	{
-		vector<V2Country>::iterator citr = countries.begin();
+		vector<V2Country*>::iterator citr = countries.begin();
 		for (; citr != countries.end(); ++citr)
 		{
-			if (citr->getTag() == itr->getTag())
+			if ( (*citr)->getTag() == (*itr)->getTag())
 				break;
 		}
 		if (citr == countries.end())
 		{
 			countries.push_back(*itr);
-			(--countries.end())->initFromHistory();
+			( *(--countries.end()) )->initFromHistory();
 		}
 	}
 
@@ -683,15 +693,16 @@ struct MTo1ProvinceComp
 	int totalPopulation;
 };
 
+
 void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap, cultureMapping cultureMap, religionMapping religionMap)
 {
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
-		int destNum					= provinces[i].getNum();
+		int destNum					= provinces[i]->getNum();
 		vector<int> sourceNums	= provMap[destNum];
 		if (sourceNums.size() == 0)
 		{
-			log("Error: no source for %s (province #%d)\n", provinces[i].getName().c_str() , destNum);
+			log("Error: no source for %s (province #%d)\n", provinces[i]->getName().c_str() , destNum);
 			//provinces[i].setOwner("\"ERR\"");
 		}
 		else if (sourceNums[0] == 0) {
@@ -739,11 +750,11 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 				}
 				else
 				{
-					provinces[i].setOwner(iter->second);
-					provinces[i].setColonial(oldProvince->isColony());
-					provinces[i].setColonised(oldProvince->wasColonised());
-					provinces[i].setPaganConquest(oldProvince->wasPaganConquest(sourceWorld.getCountry(oldOwner)->getReligion()));
-					provinces[i].setCOT(oldProvince->isCOT());
+					provinces[i]->setOwner(iter->second);
+					provinces[i]->setColonial(oldProvince->isColony());
+					provinces[i]->setColonised(oldProvince->wasColonised());
+					provinces[i]->setPaganConquest(oldProvince->wasPaganConquest(sourceWorld.getCountry(oldOwner)->getReligion()));
+					provinces[i]->setCOT(oldProvince->isCOT());
 
 					for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
 					{
@@ -761,7 +772,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								iter = contMap.find(oldCores[j]);
 								if (iter != contMap.end())
 								{
-									provinces[i].addCore(iter->second);
+									provinces[i]->addCore(iter->second);
 								}
 							}
 
@@ -826,7 +837,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								demographic.oldProvinceID = (*vitr)->getNum();
 								
 								demographic.literacy = 0.1;
-								V2Country* owner = getCountry(provinces[i].getOwner());
+								V2Country* owner = getCountry(provinces[i]->getOwner());
 								if ( (owner != NULL) && (owner->getTag() != "") )
 								{
 									vector<string> acceptedCultures = owner->getAcceptedCultures();
@@ -889,7 +900,8 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 										{
 											j->second += k->second;
 											issues.erase(k);
-											k--;
+											k = j;
+											k++;
 										}
 									}
 								}
@@ -899,12 +911,12 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 									demographic.issues.push_back(*j);
 								}
 								
-								provinces[i].addPopDemographic(demographic);
+								provinces[i]->addPopDemographic(demographic);
 							}
 
 							if ((*vitr)->hasBuilding("fort4") || (*vitr)->hasBuilding("fort5") || (*vitr)->hasBuilding("fort6"))
 							{
-								provinces[i].setFortLevel(1);
+								provinces[i]->setFortLevel(1);
 							}
 							// note: HTTT has only shipyard
 							if (   (*vitr)->hasBuilding("shipyard") || (*vitr)->hasBuilding("grand_shipyard")
@@ -912,11 +924,11 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 							{
 								// place naval bases only in port provinces
 								vector<int> candidates;
-								candidates.push_back(provinces[i].getNum());
+								candidates.push_back(provinces[i]->getNum());
 								candidates = getPortProvinces(candidates);
 								if (candidates.size() > 0)
 								{
-									provinces[i].setNavalBaseLevel(1);
+									provinces[i]->setNavalBaseLevel(1);
 								}
 							}
 						}
@@ -934,9 +946,9 @@ void V2World::addUnions(unionMapping unionMap)
 	{
 		for (unsigned int j = 0; j < unionMap.size(); j++)
 		{
-			if ( (unionMap[j].first == provinces[i].getCulture()) && (!provinces[i].wasPaganConquest()) && (!provinces[i].wasColonised()) )
+			if ( (unionMap[j].first == provinces[i]->getCulture()) && (!provinces[i]->wasPaganConquest()) && (!provinces[i]->wasColonised()) )
 			{
-				provinces[i].addCore(unionMap[j].second);
+				provinces[i]->addCore(unionMap[j].second);
 			}
 		}
 	}
@@ -949,7 +961,7 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 	vector<EU3Country*> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		int sourceCountryIndex = countries[i]->getSourceCountryIndex();
 		if (sourceCountryIndex >= 0)
 		{
 			int oldCapital = oldCountries[sourceCountryIndex]->getCapital();
@@ -957,7 +969,7 @@ void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
 			if (itr != inverseProvinceMap.end())
 			{
 				int newCapital = itr->second[0];
-				countries[i].setCapital(newCapital);
+				countries[i]->setCapital(newCapital);
 			}
 		}
 	}
@@ -969,8 +981,8 @@ static int stateId = 0;
 void V2World::setupStates(stateMapping stateMap)
 {
 	list<V2Province*> unassignedProvs;
-	for (vector<V2Province>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-		unassignedProvs.push_back(&(*itr));
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+		unassignedProvs.push_back(*itr);
 
 	list<V2Province*>::iterator iter;
 	while(unassignedProvs.size() > 0)
@@ -985,12 +997,12 @@ void V2World::setupStates(stateMapping stateMap)
 			continue;
 		}
 
-		V2State newState(stateId);
+		V2State* newState = new V2State(stateId);
 		stateId++;
-		newState.addProvince(*iter);
+		newState->addProvince(*iter);
 		vector<int> neighbors	= stateMap[provId];
 		bool colonial				= (*iter)->isColonial();
-		newState.setColonial(colonial);
+		newState->setColonial(colonial);
 		iter = unassignedProvs.erase(iter);
 
 		for (unsigned int i = 0; i < neighbors.size(); i++)
@@ -1003,7 +1015,7 @@ void V2World::setupStates(stateMapping stateMap)
 					{
 						if ((*iter)->isColonial() == colonial)
 						{
-							newState.addProvince(*iter);
+							newState->addProvince(*iter);
 							iter = unassignedProvs.erase(iter);
 						}
 					}
@@ -1011,15 +1023,16 @@ void V2World::setupStates(stateMapping stateMap)
 			}
 		}
 
-		for (vector<V2Country>::iterator iter2 = countries.begin(); iter2 != countries.end(); iter2++)
+		for (vector<V2Country*>::iterator iter2 = countries.begin(); iter2 != countries.end(); iter2++)
 		{
-			if (iter2->getTag() == owner)
+			if ( (*iter2)->getTag() == owner)
 			{
-				iter2->addState(newState);
+				(*iter2)->addState(newState);
 			}
 		}
 	}
 }
+
 
 void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 {
@@ -1041,15 +1054,15 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 
 		V2Country* v2Country1 = NULL;
 		V2Country* v2Country2 = NULL;
-		for (vector<V2Country>::iterator citr = countries.begin(); citr != countries.end(); ++citr)
+		for (vector<V2Country*>::iterator citr = countries.begin(); citr != countries.end(); ++citr)
 		{
-			if (citr->getTag() == newCountry1->second)
+			if ( (*citr)->getTag() == newCountry1->second )
 			{
-				v2Country1 = &(*citr);
+				v2Country1 = *citr;
 			}
-			else if (citr->getTag() == newCountry2->second)
+			else if ( (*citr)->getTag() == newCountry2->second )
 			{
-				v2Country2 = &(*citr);
+				v2Country2 = *citr;
 			}
 			if (v2Country1 && v2Country2)
 				break;
@@ -1124,22 +1137,22 @@ void V2World::convertLeaders(EU3World sourceWorld, map<int,int>& leaderMap)
 	vector<EU3Country*> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); ++i)
 	{
-		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		int sourceCountryIndex = countries[i]->getSourceCountryIndex();
 		if (sourceCountryIndex > 0)
 		{
 			vector<EU3Leader*> oldLeaders = oldCountries[sourceCountryIndex]->getLeaders();
 			for (vector<EU3Leader*>::iterator itr = oldLeaders.begin(); itr != oldLeaders.end(); ++itr)
 			{
-				V2Leader leader;
-				leader.init(&(countries[i]));
-				leader.setName( (*itr)->getName() );
-				leader.setActivationDate( (*itr)->getActivationDate() );
-				leader.setLand( (*itr)->isLand() );
+				V2Leader* leader = new V2Leader;
+				leader->init(countries[i]);
+				leader->setName( (*itr)->getName() );
+				leader->setActivationDate( (*itr)->getActivationDate() );
+				leader->setLand( (*itr)->isLand() );
 				string personality = lt.getPersonality( (*itr)->getFire(), (*itr)->getShock(), (*itr)->getManuever(), (*itr)->getSiege() );
 				string background = lt.getBackground( (*itr)->getFire(), (*itr)->getShock(), (*itr)->getManuever(), (*itr)->getSiege());
-				leader.setTraits(personality, background);
-				countries[i].addLeader(leader);
-				leaderMap[ (*itr)->getID() ] = leader.getID();
+				leader->setTraits(personality, background);
+				countries[i]->addLeader(leader);
+				leaderMap[ (*itr)->getID() ] = leader->getID();
 			}
 		}
 	}
@@ -1151,15 +1164,16 @@ static bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* pro
 	return (prov1->getAvailableSoldierCapacity() > prov2->getAvailableSoldierCapacity());
 }
 
+
 V2Province* V2World::getProvinceForExpeditionaryArmy(const V2Country& country)
 {
 	vector<V2Province*> candidates;
-	for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
-		if ((pitr->getOwner() == country.getTag()) && !pitr->wasColonised() && !pitr->wasPaganConquest()
-			&& (pitr->getCulture() == country.getPrimaryCulture()) && (pitr->getPops("soldiers").size() > 0))
+		if (( (*pitr)->getOwner() == country.getTag() ) && !(*pitr)->wasColonised() && !(*pitr)->wasPaganConquest()
+			&& ( (*pitr)->getCulture() == country.getPrimaryCulture() ) && ( (*pitr)->getPops("soldiers").size() > 0) )
 		{
-			candidates.push_back(&(*pitr));
+			candidates.push_back(*pitr);
 		}
 	}
 	if (candidates.size() > 0)
@@ -1197,13 +1211,13 @@ vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
 			break;
 		}
 	}
-	for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
 		for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 		{
-			if (pitr->getNum() == (*litr))
+			if ( (*pitr)->getNum() == (*litr) )
 			{
-				if (!pitr->isCoastal())
+				if ( !(*pitr)->isCoastal() )
 				{
 					locationCandidates.erase(litr);
 					--pitr;
@@ -1214,6 +1228,7 @@ vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
 	}
 	return locationCandidates;
 }
+
 
 // return values: 0 = success, -1 = retry from pool, -2 = do not retry
 int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, V2Country& country)
@@ -1244,11 +1259,11 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 			return -1;
 		}
 		int homeProvinceID = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
-		for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+		for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 		{
-			if (pitr->getNum() == homeProvinceID)
+			if ( (*pitr)->getNum() == homeProvinceID )
 			{
-				homeProvince = &(*pitr);
+				homeProvince = *pitr;
 				break;
 			}
 		}
@@ -1257,13 +1272,13 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 	{
 		// Armies should get a home in the candidate most capable of supporting them
 		vector<V2Province*> sortedHomeCandidates;
-		for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+		for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 		{
 			for (vector<int>::iterator nitr = homeCandidates.begin(); nitr != homeCandidates.end(); ++nitr)
 			{
-				if (pitr->getNum() == *nitr)
+				if ( (*pitr)->getNum() == *nitr )
 				{
-					sortedHomeCandidates.push_back(&(*pitr));
+					sortedHomeCandidates.push_back(*pitr);
 				}
 			}
 			if (sortedHomeCandidates.size() == homeCandidates.size())
@@ -1310,6 +1325,7 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 	return 0;
 }
 
+
 //#define TEST_V2_PROVINCES
 void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap)
 {
@@ -1345,10 +1361,10 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 
 	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
 	vector<EU3Country*> sourceCountries = sourceWorld.getCountries();
-	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 #ifndef TEST_V2_PROVINCES
-		int sourceCountryIndex = itr->getSourceCountryIndex();
+		int sourceCountryIndex = (*itr)->getSourceCountryIndex();
 		if (sourceCountryIndex < 0)
 			continue;
 		EU3Country* oldCountry = sourceCountries[sourceCountryIndex];
@@ -1359,15 +1375,15 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 		vector<EU3Army*> sourceArmies = oldCountry->getArmies();
 		for (vector<EU3Army*>::iterator aitr = sourceArmies.begin(); aitr != sourceArmies.end(); ++aitr)
 		{
-			V2Army army;
-			army.setSourceArmy(&(**aitr));
-			army.setName( (*aitr)->getName() );
-			army.setAtSea( (*aitr)->getAtSea() );
+			V2Army* army = new V2Army;
+			army->setSourceArmy(&(**aitr));
+			army->setName( (*aitr)->getName() );
+			army->setAtSea( (*aitr)->getAtSea() );
 
 			map<int, int>::const_iterator lmapitr = leaderIDMap.find( (*aitr)->getLeaderID() );
 			if (lmapitr != leaderIDMap.end())
 			{
-				army.setLeaderID(lmapitr->second);
+				army->setLeaderID(lmapitr->second);
 			}
 
 			for (int rc = infantry; rc < num_reg_categories; ++rc)
@@ -1378,21 +1394,21 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 
 				// if we have ships, we must be a navy
 				bool isNavy = (rc >= big_ship); 
-				army.setNavy(isNavy);
+				army->setNavy(isNavy);
 
 				double regimentCount = typeStrength / cost_per_regiment[rc];
 				int regimentsToCreate = (int)floor(regimentCount);
 				double regimentRemainder = regimentCount - regimentsToCreate;
 				countryRemainder[rc] += regimentRemainder;
-				army.setArmyRemainders((RegimentCategory)rc, army.getArmyRemainder((RegimentCategory)rc) + regimentRemainder);
+				army->setArmyRemainders((RegimentCategory)rc, army->getArmyRemainder((RegimentCategory)rc) + regimentRemainder);
 
 				for (int i = 0; i < regimentsToCreate; ++i)
 				{
-					if (addRegimentToArmy(&army, (RegimentCategory)rc, inverseProvinceMap, (*itr)) != 0)
+					if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, (*(*itr)) ) != 0)
 					{
 						// couldn't add, dissolve into pool
 						countryRemainder[rc] += 1.0;
-						army.setArmyRemainders((RegimentCategory)rc, army.getArmyRemainder((RegimentCategory)rc) + 1.0);
+						army->setArmyRemainders((RegimentCategory)rc, army->getArmyRemainder((RegimentCategory)rc) + 1.0);
 					}
 				}
 			}
@@ -1402,7 +1418,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 			{
 				log("	Error: Army or Navy %s assigned to unmapped province %d; dissolving to pool.\n", (*aitr)->getName().c_str(), (*aitr)->getLocation());
 				int regimentCounts[num_reg_categories] = { 0 };
-				army.getRegimentCounts(regimentCounts);
+				army->getRegimentCounts(regimentCounts);
 				for (int rc = infantry; rc < num_reg_categories; ++rc)
 				{
 					countryRemainder[rc] += regimentCounts[rc];
@@ -1411,11 +1427,11 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 			}
 			bool usePort = false;
 			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
-			if (army.getNavy())
+			if (army->getNavy())
 			{
-				for (vector<V2Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+				for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 				{
-					if ((pitr->getNum() == locationCandidates[0]) && pitr->isLand())
+					if (  ( (*pitr)->getNum() == locationCandidates[0] ) && (*pitr)->isLand()  )
 					{
 						usePort = true;
 						break;
@@ -1428,7 +1444,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 					{
 						log("	Error: Navy %s assigned to EU3 province %d which has no corresponding V2 port provinces; dissolving to pool.\n", (*aitr)->getName().c_str(), (*aitr)->getLocation());
 						int regimentCounts[num_reg_categories] = { 0 };
-						army.getRegimentCounts(regimentCounts);
+						army->getRegimentCounts(regimentCounts);
 						for (int rc = infantry; rc < num_reg_categories; ++rc)
 						{
 							countryRemainder[rc] += regimentCounts[rc];
@@ -1438,7 +1454,7 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 				}
 			}
 			int selectedLocation = locationCandidates[int(locationCandidates.size() * ((double)rand() / RAND_MAX))];
-			if (army.getNavy() && usePort)
+			if (army->getNavy() && usePort)
 			{
 				vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);
 				if (white == port_whitelist.end())
@@ -1446,8 +1462,8 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 					log("	Warning: assigning navy to non-whitelisted port province %d.  If the save crashes, try blacklisting this province.\n", selectedLocation);
 				}
 			}
-			army.setLocation(selectedLocation);
-			itr->addArmy(army);
+			army->setLocation(selectedLocation);
+			(*itr)->addArmy(army);
 		}
 
 		// allocate the remainders from the whole country to the armies according to their need, rounding up
@@ -1455,17 +1471,17 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 		{
 			if (countryRemainder[rc] > 0.0)
 			{
-				log("	Allocating regiments of %s from the remainder pool for %s (total: %4lf)\n", RegimentCategoryNames[rc], itr->getTag().c_str(), countryRemainder[rc]);
+				log("	Allocating regiments of %s from the remainder pool for %s (total: %4lf)\n", RegimentCategoryNames[rc], (*itr)->getTag().c_str(), countryRemainder[rc]);
 			}
 			while (countryRemainder[rc] > 0.0)
 			{
-				V2Army* army = itr->getArmyForRemainder((RegimentCategory)rc);
+				V2Army* army = (*itr)->getArmyForRemainder((RegimentCategory)rc);
 				if (!army)
 				{
-					log("		Error: no suitable army or navy found for %s's pooled regiments of %s!\n", itr->getTag().c_str(), RegimentCategoryNames[rc]);
+					log("		Error: no suitable army or navy found for %s's pooled regiments of %s!\n", (*itr)->getTag().c_str(), RegimentCategoryNames[rc]);
 					break;
 				}
-				switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, (*itr)))
+				switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, (*(*itr)) ))
 				{
 				case 0: // success
 					countryRemainder[rc] -= 1.0;
@@ -1638,32 +1654,32 @@ void V2World::convertTechs(EU3World sourceWorld)
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		int sourceCountryIndex = countries[i]->getSourceCountryIndex();
 
 		if (sourceCountryIndex < 0)
 				continue;
 
-		if( countries[i].isCivilized() || (Configuration::getV2Gametype() != "AHD") )
+		if( countries[i]->isCivilized() || (Configuration::getV2Gametype() != "AHD") )
 		{
 			double armyTech = ((landScale * (sourceCountries[sourceCountryIndex]->getLandTech() - landMean) / landStdDev) + 2.5);
-			countries[i].setArmyTech(armyTech);
-			log("	%s has army tech of %f\n", countries[i].getTag().c_str(), armyTech);
+			countries[i]->setArmyTech(armyTech);
+			log("	%s has army tech of %f\n", countries[i]->getTag().c_str(), armyTech);
 
 			double navyTech = (navalScale * (sourceCountries[sourceCountryIndex]->getNavalTech() - navalMean) / navalStdDev);
-			countries[i].setNavyTech(navyTech);
-			log("	%s has navy tech of %f\n", countries[i].getTag().c_str(), navyTech);
+			countries[i]->setNavyTech(navyTech);
+			log("	%s has navy tech of %f\n", countries[i]->getTag().c_str(), navyTech);
 
 			double commerceTech = (tradeScale * (sourceCountries[sourceCountryIndex]->getTradeTech() - tradeMean) / tradeStdDev) + 4.5;
-			countries[i].setCommerceTech(commerceTech);
-			log("	%s has commerce tech of %f\n", countries[i].getTag().c_str(), commerceTech);
+			countries[i]->setCommerceTech(commerceTech);
+			log("	%s has commerce tech of %f\n", countries[i]->getTag().c_str(), commerceTech);
 
 			double industryTech = (productionScale * (sourceCountries[sourceCountryIndex]->getProductionTech() - productionMean) / productionStdDev) + 3.5;
-			countries[i].setIndustryTech(industryTech);
-			log("	%s has industry tech of %f\n", countries[i].getTag().c_str(), industryTech);
+			countries[i]->setIndustryTech(industryTech);
+			log("	%s has industry tech of %f\n", countries[i]->getTag().c_str(), industryTech);
 
 			double cultureTech = ((governmentScale * (sourceCountries[sourceCountryIndex]->getGovernmentTech() - governmentMean) / governmentStdDev) + 3);
-			countries[i].setCultureTech(cultureTech);
-			log("	%s has culture tech of %f\n", countries[i].getTag().c_str(), cultureTech);
+			countries[i]->setCultureTech(cultureTech);
+			log("	%s has culture tech of %f\n", countries[i]->getTag().c_str(), cultureTech);
 		}
 	}
 
@@ -1672,15 +1688,15 @@ void V2World::convertTechs(EU3World sourceWorld)
 	int numRomanticMusic = 0;
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		if (countries[i].getInventionState(romanticist_literature) == active)
+		if (countries[i]->getInventionState(romanticist_literature) == active)
 		{
 			numRomanticLit++;
 		}
-		if (countries[i].getInventionState(romanticist_art) == active)
+		if (countries[i]->getInventionState(romanticist_art) == active)
 		{
 			numRomanticArt++;
 		}
-		if (countries[i].getInventionState(romanticist_music) == active)
+		if (countries[i]->getInventionState(romanticist_music) == active)
 		{
 			numRomanticMusic++;
 		}
@@ -1712,17 +1728,17 @@ void V2World::convertTechs(EU3World sourceWorld)
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		if (countries[i].getInventionState(romanticist_literature) == active)
+		if (countries[i]->getInventionState(romanticist_literature) == active)
 		{
-			countries[i].addPrestige(romanticLitPrestige);
+			countries[i]->addPrestige(romanticLitPrestige);
 		}
-		if (countries[i].getInventionState(romanticist_art) == active)
+		if (countries[i]->getInventionState(romanticist_art) == active)
 		{
-			countries[i].addPrestige(romanticArtPrestige);
+			countries[i]->addPrestige(romanticArtPrestige);
 		}
-		if (countries[i].getInventionState(romanticist_music) == active)
+		if (countries[i]->getInventionState(romanticist_music) == active)
 		{
-			countries[i].addPrestige(romanticMusicPrestige);
+			countries[i]->addPrestige(romanticMusicPrestige);
 		}
 	}
 
@@ -1730,7 +1746,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 	log("Converting unciv reforms\n");
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int sourceCountryIndex = countries[i].getSourceCountryIndex();
+		int sourceCountryIndex = countries[i]->getSourceCountryIndex();
 		if (sourceCountryIndex < 0)
 				continue;
 
@@ -1745,24 +1761,24 @@ void V2World::convertTechs(EU3World sourceWorld)
 											sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech();
 			double militaryDev		= ( sourceCountries[sourceCountryIndex]->getLandTech() + sourceCountries[sourceCountryIndex]->getNavalTech() ) / totalTechs;
 			double socioEconDev	= ( sourceCountries[sourceCountryIndex]->getGovernmentTech() + sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 0 percent.\n", countries[i].getTag().c_str());
-			countries[i].setUncivReforms(0, militaryDev, socioEconDev);
+			log("	Setting unciv reforms for %s. Westernization at 0 percent.\n", countries[i]->getTag().c_str());
+			countries[i]->setUncivReforms(0, militaryDev, socioEconDev);
 		}
 		else if ( (sourceCountries[sourceCountryIndex]->getTechGroup() == "indian") || (sourceCountries[sourceCountryIndex]->getTechGroup() == "chinese") ) {
 			double totalTechs			= sourceCountries[sourceCountryIndex]->getLandTech() + sourceCountries[sourceCountryIndex]->getNavalTech() + sourceCountries[sourceCountryIndex]->getGovernmentTech() + 
 											sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech();
 			double militaryDev		= ( sourceCountries[sourceCountryIndex]->getLandTech() + sourceCountries[sourceCountryIndex]->getNavalTech() ) / totalTechs;
 			double socioEconDev	= ( sourceCountries[sourceCountryIndex]->getGovernmentTech() + sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 30 percent.\n", countries[i].getTag().c_str());
-			countries[i].setUncivReforms(30, militaryDev, socioEconDev);
+			log("	Setting unciv reforms for %s. Westernization at 30 percent.\n", countries[i]->getTag().c_str());
+			countries[i]->setUncivReforms(30, militaryDev, socioEconDev);
 		}
 		else if (sourceCountries[sourceCountryIndex]->getTechGroup() == "muslim") {
 			double totalTechs			= sourceCountries[sourceCountryIndex]->getLandTech() + sourceCountries[sourceCountryIndex]->getNavalTech() + sourceCountries[sourceCountryIndex]->getGovernmentTech() + 
 											sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech();
 			double militaryDev		= ( sourceCountries[sourceCountryIndex]->getLandTech() + sourceCountries[sourceCountryIndex]->getNavalTech() ) / totalTechs;
 			double socioEconDev	= ( sourceCountries[sourceCountryIndex]->getGovernmentTech() + sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 60 percent.\n", countries[i].getTag().c_str());
-			countries[i].setUncivReforms(60, militaryDev, socioEconDev);
+			log("	Setting unciv reforms for %s. Westernization at 60 percent.\n", countries[i]->getTag().c_str());
+			countries[i]->setUncivReforms(60, militaryDev, socioEconDev);
 		}
 		else
 		{
@@ -1771,7 +1787,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 											sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech();
 			double militaryDev		= ( sourceCountries[sourceCountryIndex]->getLandTech() + sourceCountries[sourceCountryIndex]->getNavalTech() ) / totalTechs;
 			double socioEconDev	= ( sourceCountries[sourceCountryIndex]->getGovernmentTech() + sourceCountries[sourceCountryIndex]->getTradeTech() + sourceCountries[sourceCountryIndex]->getProductionTech() ) / totalTechs;
-			countries[i].setUncivReforms(0, militaryDev, socioEconDev);
+			countries[i]->setUncivReforms(0, militaryDev, socioEconDev);
 		}
 	}
 }
@@ -1781,7 +1797,7 @@ void V2World::convertTechSchools(EU3World sourceWorld, vector<techSchool> techSc
 {
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		int sourceIndex = countries[i].getSourceCountryIndex();
+		int sourceIndex = countries[i]->getSourceCountryIndex();
 		if (sourceIndex < 0)
 		{
 			continue;
@@ -1843,8 +1859,8 @@ void V2World::convertTechSchools(EU3World sourceWorld, vector<techSchool> techSc
 			}
 		}
 
-		log("	%s has tech school %s\n", countries[i].getTag().c_str(), bestSchool.c_str());
-		countries[i].setTechSchool(bestSchool);
+		log("	%s has tech school %s\n", countries[i]->getTag().c_str(), bestSchool.c_str());
+		countries[i]->setTechSchool(bestSchool);
 	}
 }
 
@@ -1869,12 +1885,12 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 
 	// give all extant civilized nations an industrial score
 	deque<pair<double, V2Country*>> weightedCountries;
-	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		if (!itr->isCivilized())
+		if ( !(*itr)->isCivilized() )
 			continue;
 
-		int sourceCountryIndex = itr->getSourceCountryIndex();
+		int sourceCountryIndex = (*itr)->getSourceCountryIndex();
 		if (sourceCountryIndex < 0)
 			continue;
 
@@ -1889,7 +1905,7 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		// having one manufactory and average tech is not enough; you must have more than one, or above-average tech
 		if (industryWeight > 1.0)
 		{
-			weightedCountries.push_back(pair<double, V2Country*>(industryWeight, &(*itr)));
+			weightedCountries.push_back(pair<double, V2Country*>(industryWeight, *itr));
 		}
 	}
 	if (weightedCountries.size() < 1)
@@ -1915,7 +1931,7 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 	weightedCountries.swap(restrictCountries);
 
 	// determine how many factories each eligible nation gets
-	deque<V2Factory> factoryList = factoryBuilder.buildFactories();
+	deque<V2Factory*> factoryList = factoryBuilder.buildFactories();
 	vector<pair<int, V2Country*>> factoryCounts;
 	for (deque<pair<double, V2Country*>>::iterator itr = weightedCountries.begin(); itr != weightedCountries.end(); ++itr)
 	{
@@ -1932,9 +1948,9 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		bool accepted = false;
 		if (citr->first > 0) // can take more factories
 		{
-			for (deque<V2Factory>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
+			for (deque<V2Factory*>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
 			{
-				if (citr->second->addFactory(*qitr))
+				if ( citr->second->addFactory(*qitr) )
 				{
 					--(citr->first);
 					lastReceptiveCountry = citr;
@@ -1947,9 +1963,9 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		if (!accepted && citr == lastReceptiveCountry)
 		{
 			log("No countries will accept any of the remaining factories!\n");
-			for (deque<V2Factory>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
+			for (deque<V2Factory*>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
 			{
-				log("\t%s\n", qitr->getTypeName().c_str());
+				log("\t%s\n", (*qitr)->getTypeName().c_str());
 			}
 			break;
 		}
@@ -1969,8 +1985,8 @@ void V2World::buildParties()
 		printf("Error: Could not open countries.txt\n");
 		exit(1);
 	}
-	V2Party emptyParty;
-	parties.push_back(emptyParty);
+	V2Party* emptyParty = new V2Party;
+	parties.push_back(emptyParty); // TODO: Check if we really need this
 	while (!V2CountriesInput.eof())
 	{
 		string line;
@@ -1994,7 +2010,7 @@ void V2World::buildParties()
 		vector<Object*> partyData = countryData->getValue("party");
 		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 		{
-			V2Party newParty(*itr);
+			V2Party* newParty = new V2Party(*itr);
 			parties.push_back(newParty);
 		}
 	}
@@ -2004,22 +2020,22 @@ void V2World::buildParties()
 
 void V2World::setupPops(EU3World& sourceWorld)
 {
-	for (vector<V2Country>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->setupPops(sourceWorld);
+		(*itr)->setupPops(sourceWorld);
 	}
 }
 
 
 V2Country* V2World::getCountry(string tag)
 {
-	vector<V2Country>::iterator itr;
+	vector<V2Country*>::iterator itr;
 
 	for (itr = countries.begin(); itr != countries.end(); itr++)
 	{
-		if ( 0 == (tag.compare(itr->getTag())) )
+		if ( 0 == (tag.compare( (*itr)->getTag() )) )
 		{
-			return &(*itr);
+			return *itr;
 		}
 	}
 
@@ -2027,7 +2043,7 @@ V2Country* V2World::getCountry(string tag)
 }
 
 
-V2Party V2World::getParty(int index)
+V2Party* V2World::getParty(int index)
 {
 	 return parties[index];
 }
@@ -2039,11 +2055,11 @@ void V2World::output(FILE* output)
 	outputTempHeader(output);
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
-		provinces[i].output(output);
+		provinces[i]->output(output);
 	}
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		countries[i].output(output);
+		countries[i]->output(output);
 	}
 	diplomacy.output(output);
 }

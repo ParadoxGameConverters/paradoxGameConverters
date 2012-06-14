@@ -1,15 +1,10 @@
-// ****************************************************************************
-// *                                                                          *
-// *		     EU3 to Victoria 2 conversion project                     *
-// *                                                                          *
-// ****************************************************************************
-
-
 #ifndef MAPPER_H
 #define MAPPER_H
 
 
+
 #include "EU3World.h"
+
 
 
 typedef map< int, vector<int> > provinceMapping; // < destProvince, sourceProvinces >
@@ -63,6 +58,7 @@ typedef struct {
 } unionCultureStruct;
 typedef vector<unionCultureStruct> unionCulturesList;
 unionCulturesList initUnionCultures(Object* obj);
+
 
 
 #endif // MAPPER_H

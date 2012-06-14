@@ -3,6 +3,18 @@
 #include "Log.h"
 
 
+
+V2FactoryType::V2FactoryType()
+{
+	name					= "";
+	requireCoastal		= false;
+	requireTech			= "";
+	requireInvention	= (inventionType)-1;
+	requireLocalInput	= false;
+	inputs.clear();
+}
+
+
 void V2FactoryType::init(Object* factory)
 {
 	name = factory->getKey();
@@ -116,6 +128,15 @@ void V2FactoryFactory::loadRequiredInventions(string filename)
 }
 
 
+V2FactoryFactory::V2FactoryFactory()
+{
+	factoryCounts.clear();
+	factoryTypes.clear();
+	factoryTechReqs.clear();
+	factoryInventionReqs.clear();
+}
+
+
 void V2FactoryFactory::init(string V2Loc)
 {
 	// load required techs/inventions
@@ -135,24 +156,24 @@ void V2FactoryFactory::init(string V2Loc)
 	vector<Object*> factoryObjs = obj->getLeaves();
 	for (vector<Object*>::iterator itr = factoryObjs.begin(); itr != factoryObjs.end(); ++itr)
 	{
-		V2FactoryType ft;
-		ft.init(*itr);
-		map<string,string>::iterator reqitr = factoryTechReqs.find(ft.name);
+		V2FactoryType* ft = new V2FactoryType;
+		ft->init(*itr);
+		map<string,string>::iterator reqitr = factoryTechReqs.find(ft->name);
 		if (reqitr != factoryTechReqs.end())
-			ft.requireTech = reqitr->second;
-		reqitr = factoryInventionReqs.find(ft.name);
+			ft->requireTech = reqitr->second;
+		reqitr = factoryInventionReqs.find(ft->name);
 		if (reqitr != factoryInventionReqs.end())
 		{
 			for (int i = 0; i <= naval_exercises; ++i)
 			{
 				if (reqitr->second == inventionNames[i])
 				{
-					ft.requireInvention = (inventionType)i;
+					ft->requireInvention = (inventionType)i;
 					break;
 				}
 			}
 		}
-		factoryTypes[ft.name] = ft;
+		factoryTypes[ft->name] = ft;
 	}
 
 	obj = doParseFile("starting_factories.txt");
@@ -169,25 +190,26 @@ void V2FactoryFactory::init(string V2Loc)
 		string factoryType = (*itr)->getKey();
 		int count = atoi((*itr)->getLeaf().c_str());
 
-		map<string, V2FactoryType>::iterator t = factoryTypes.find(factoryType);
+		map<string, V2FactoryType*>::iterator t = factoryTypes.find(factoryType);
 		if (t == factoryTypes.end())
 		{
 			log("Error: Could not locate V2 factory type for starting factories of type %s!\n", factoryType.c_str());
 			continue;
 		}
-		factoryCounts.push_back(pair<V2FactoryType*, int>(&(t->second), count));
+		factoryCounts.push_back(pair<V2FactoryType*, int>(t->second, count));
 	}
 }
 
 
-deque<V2Factory> V2FactoryFactory::buildFactories()
+deque<V2Factory*> V2FactoryFactory::buildFactories()
 {
-	deque<V2Factory> retval;
+	deque<V2Factory*> retval;
 	for (vector<pair<V2FactoryType*, int>>::iterator itr = factoryCounts.begin(); itr != factoryCounts.end(); ++itr)
 	{
 		for (int i = 0; i < itr->second; ++i)
 		{
-			retval.push_back(V2Factory(itr->first));
+			V2Factory* newFactory = new V2Factory(itr->first);
+			retval.push_back( newFactory );
 		}
 	}
 	return retval;

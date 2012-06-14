@@ -1,6 +1,7 @@
 #include "V2Relations.h"
 
 
+
 void V2Relations::init(string newTag)
 {
 	tag = newTag;
@@ -8,6 +9,7 @@ void V2Relations::init(string newTag)
 	level = 2; // Neutral
 	military_access = false;
 }
+
 
 void V2Relations::output(FILE* out)
 {
@@ -32,6 +34,7 @@ void V2Relations::output(FILE* out)
 	}
 	fprintf(out, "\t}\n");
 }
+
 
 void V2Relations::setLevel(int lvl)
 {

@@ -1,5 +1,7 @@
 #include "V2Party.h"
 
+
+
 V2Party::V2Party(Object *party_obj)
 {
 	name = party_obj->getLeaf("name");

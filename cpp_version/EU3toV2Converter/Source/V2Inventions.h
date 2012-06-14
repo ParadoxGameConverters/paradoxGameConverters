@@ -1,6 +1,13 @@
 #ifndef V2INVENTIONS_H_
 #define V2INVENTIONS_H_
 
+
+
+#include <string>
+using namespace std;
+
+
+
 #define INVENTION_UNION(DO) \
 	/*ARMY_INVENTIONS*/ \
  \

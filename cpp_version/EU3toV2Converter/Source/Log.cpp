@@ -8,6 +8,8 @@ static char timeBuf[64];
 static tm timeInfo; 
 static bool newline;
 
+
+
 void initLog()
 {
 	if (fopen_s(&logFile, "log.txt", "w") != 0)

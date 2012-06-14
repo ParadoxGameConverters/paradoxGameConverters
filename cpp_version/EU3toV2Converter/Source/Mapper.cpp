@@ -1,15 +1,10 @@
-// ****************************************************************************
-// *																								  *
-// *			  EU3 to Victoria 2 conversion project							*
-// *																								  *
-// ****************************************************************************
-
-
 #include "Mapper.h"
 #include "Log.h"
+#include "Parsers\Object.h"
 #include "EU3Country.h"
 #include "EU3Province.h"
 #include <algorithm>
+
 
 
 provinceMapping initProvinceMap(Object* obj)

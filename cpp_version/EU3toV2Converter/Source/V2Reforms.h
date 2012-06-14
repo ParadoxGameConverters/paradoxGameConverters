@@ -2,7 +2,11 @@
 #define V2REFORMS_H_
 
 
-#include "EU3Country.h"
+
+//#include "EU3Country.h"
+#include <stdio.h>
+class EU3Country;
+
 
 
 class V2Reforms {
@@ -30,7 +34,6 @@ class V2Reforms {
 		int health_care;
 		int school_reforms;
 };
-
 
 
 

@@ -1,10 +1,11 @@
 #include "V2Province.h"
 #include "Log.h"
-
 #include "EU3World.h"
 #include "EU3Province.h"
+#include "V2Pop.h"
 #include <sstream>
 #include <algorithm>
+
 
 
 void V2Province::init(int newNumber)
@@ -65,12 +66,12 @@ string V2Province::getCulture()
 {
 	map<string, int> culturePop;
 	pair<string, int> currentPlurality;
-	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (vector<V2Pop*>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
-		map<string, int>::iterator thisCulture = culturePop.find(itr->getCulture());
+		map<string, int>::iterator thisCulture = culturePop.find( (*itr)->getCulture() );
 		if (thisCulture == culturePop.end())
-			thisCulture = culturePop.insert(thisCulture, pair<string, int>(itr->getCulture(), 0));
-		thisCulture->second += itr->getSize();
+			thisCulture = culturePop.insert(thisCulture, pair<string, int>( (*itr)->getCulture(), 0) );
+		thisCulture->second += (*itr)->getSize();
 		if (thisCulture->second > currentPlurality.second)
 			currentPlurality = (*thisCulture);
 	}
@@ -138,10 +139,10 @@ bool V2Province::isColonial()
 	return colonial;
 }
 
-void V2Province::addOldPop(V2Pop oldPop)
+void V2Province::addOldPop(V2Pop* oldPop)
 {
 	oldPops.push_back(oldPop);
-	oldPopulation += oldPop.getSize();
+	oldPopulation += oldPop->getSize();
 }
 
 
@@ -151,12 +152,12 @@ string V2Province::getOwner()
 }
 
 
-vector<V2Pop> V2Province::getPops(string type)
+vector<V2Pop*> V2Province::getPops(string type)
 {
-	vector<V2Pop> retval;
-	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	vector<V2Pop*> retval;
+	for (vector<V2Pop*>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
-		if (type == "*" || itr->getType() == type)
+		if (type == "*" || (*itr)->getType() == type)
 			retval.push_back(*itr);
 	}
 	return retval;
@@ -509,146 +510,146 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 
 	if (farmers > 0)
 	{
-		V2Pop farmersPop;
-		farmersPop.setType("farmers");
-		farmersPop.setSize((int)(demographic.ratio * oldPopulation * farmers / total));
-		farmersPop.setCulture(demographic.culture);
-		farmersPop.setReligion(demographic.religion);
-		farmersPop.setLiteracy(demographic.literacy);
-		farmersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		farmersPop.setIssues(demographic.issues);
+		V2Pop* farmersPop = new V2Pop;
+		farmersPop->setType("farmers");
+		farmersPop->setSize((int)(demographic.ratio * oldPopulation * farmers / total));
+		farmersPop->setCulture(demographic.culture);
+		farmersPop->setReligion(demographic.religion);
+		farmersPop->setLiteracy(demographic.literacy);
+		farmersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		farmersPop->setIssues(demographic.issues);
 		pops.push_back(farmersPop);
 	}
 	if (labourers > 0)
 	{
-		V2Pop labourersPop;
-		labourersPop.setType("labourers");
-		labourersPop.setSize((int)(demographic.ratio * oldPopulation * labourers / total));
-		labourersPop.setCulture(demographic.culture);
-		labourersPop.setReligion(demographic.religion);
-		labourersPop.setLiteracy(demographic.literacy);
-		labourersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		labourersPop.setIssues(demographic.issues);
+		V2Pop* labourersPop = new V2Pop;
+		labourersPop->setType("labourers");
+		labourersPop->setSize((int)(demographic.ratio * oldPopulation * labourers / total));
+		labourersPop->setCulture(demographic.culture);
+		labourersPop->setReligion(demographic.religion);
+		labourersPop->setLiteracy(demographic.literacy);
+		labourersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		labourersPop->setIssues(demographic.issues);
 		pops.push_back(labourersPop);
 	}
 	if (slaves > 0)
 	{
-		V2Pop slavesPop;
-		slavesPop.setType("slaves");
-		slavesPop.setSize((int)(demographic.ratio * oldPopulation * slaves / total));
-		slavesPop.setCulture(demographic.culture);
-		slavesPop.setReligion(demographic.religion);
-		slavesPop.setLiteracy(demographic.literacy);
-		slavesPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		slavesPop.setIssues(demographic.issues);
+		V2Pop* slavesPop = new V2Pop;
+		slavesPop->setType("slaves");
+		slavesPop->setSize((int)(demographic.ratio * oldPopulation * slaves / total));
+		slavesPop->setCulture(demographic.culture);
+		slavesPop->setReligion(demographic.religion);
+		slavesPop->setLiteracy(demographic.literacy);
+		slavesPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		slavesPop->setIssues(demographic.issues);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)
 	{
-		V2Pop soldiersPop;
-		soldiersPop.setType("soldiers");
-		soldiersPop.setSize((int)(demographic.ratio * oldPopulation * soldiers / total));
-		soldiersPop.setCulture(demographic.culture);
-		soldiersPop.setReligion(demographic.religion);
-		soldiersPop.setLiteracy(demographic.literacy);
-		soldiersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		soldiersPop.setIssues(demographic.issues);
+		V2Pop* soldiersPop = new V2Pop;
+		soldiersPop->setType("soldiers");
+		soldiersPop->setSize((int)(demographic.ratio * oldPopulation * soldiers / total));
+		soldiersPop->setCulture(demographic.culture);
+		soldiersPop->setReligion(demographic.religion);
+		soldiersPop->setLiteracy(demographic.literacy);
+		soldiersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		soldiersPop->setIssues(demographic.issues);
 		pops.push_back(soldiersPop);
 	}
 	if (craftsmen > 0)
 	{
-		V2Pop craftsmenPop;
-		craftsmenPop.setType("craftsmen");
-		craftsmenPop.setSize((int)(demographic.ratio * oldPopulation * craftsmen / total));
-		craftsmenPop.setCulture(demographic.culture);
-		craftsmenPop.setReligion(demographic.religion);
-		craftsmenPop.setLiteracy(demographic.literacy);
-		craftsmenPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		craftsmenPop.setIssues(demographic.issues);
+		V2Pop* craftsmenPop = new V2Pop;
+		craftsmenPop->setType("craftsmen");
+		craftsmenPop->setSize((int)(demographic.ratio * oldPopulation * craftsmen / total));
+		craftsmenPop->setCulture(demographic.culture);
+		craftsmenPop->setReligion(demographic.religion);
+		craftsmenPop->setLiteracy(demographic.literacy);
+		craftsmenPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		craftsmenPop->setIssues(demographic.issues);
 		pops.push_back(craftsmenPop);
 	}
 	if (artisans > 0)
 	{
-		V2Pop artisansPop;
-		artisansPop.setType("artisans");
-		artisansPop.setSize((int)(demographic.ratio * oldPopulation * artisans / total));
-		artisansPop.setCulture(demographic.culture);
-		artisansPop.setReligion(demographic.religion);
-		artisansPop.setLiteracy(demographic.literacy);
-		artisansPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		artisansPop.setIssues(demographic.issues);
+		V2Pop* artisansPop = new V2Pop;
+		artisansPop->setType("artisans");
+		artisansPop->setSize((int)(demographic.ratio * oldPopulation * artisans / total));
+		artisansPop->setCulture(demographic.culture);
+		artisansPop->setReligion(demographic.religion);
+		artisansPop->setLiteracy(demographic.literacy);
+		artisansPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		artisansPop->setIssues(demographic.issues);
 		pops.push_back(artisansPop);
 	}
 	if (clergymen > 0)
 	{
-		V2Pop clergymenPop;
-		clergymenPop.setType("clergymen");
-		clergymenPop.setSize((int)(demographic.ratio * oldPopulation * clergymen / total));
-		clergymenPop.setCulture(demographic.culture);
-		clergymenPop.setReligion(demographic.religion);
-		clergymenPop.setLiteracy(demographic.literacy);
-		clergymenPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		clergymenPop.setIssues(demographic.issues);
+		V2Pop* clergymenPop = new V2Pop;
+		clergymenPop->setType("clergymen");
+		clergymenPop->setSize((int)(demographic.ratio * oldPopulation * clergymen / total));
+		clergymenPop->setCulture(demographic.culture);
+		clergymenPop->setReligion(demographic.religion);
+		clergymenPop->setLiteracy(demographic.literacy);
+		clergymenPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		clergymenPop->setIssues(demographic.issues);
 		pops.push_back(clergymenPop);
 	}
 	if (clerks > 0)
 	{
-		V2Pop clerksPop;
-		clerksPop.setType("clerks");
-		clerksPop.setSize((int)(demographic.ratio * oldPopulation * clerks / total));
-		clerksPop.setCulture(demographic.culture);
-		clerksPop.setReligion(demographic.religion);
-		clerksPop.setLiteracy(demographic.literacy);
-		clerksPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		clerksPop.setIssues(demographic.issues);
+		V2Pop* clerksPop = new V2Pop;
+		clerksPop->setType("clerks");
+		clerksPop->setSize((int)(demographic.ratio * oldPopulation * clerks / total));
+		clerksPop->setCulture(demographic.culture);
+		clerksPop->setReligion(demographic.religion);
+		clerksPop->setLiteracy(demographic.literacy);
+		clerksPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		clerksPop->setIssues(demographic.issues);
 		pops.push_back(clerksPop);
 	}
 	if (bureaucrats > 0)
 	{
-		V2Pop bureaucratsPop;
-		bureaucratsPop.setType("bureaucrats");
-		bureaucratsPop.setSize((int)(demographic.ratio * oldPopulation * bureaucrats / total));
-		bureaucratsPop.setCulture(demographic.culture);
-		bureaucratsPop.setReligion(demographic.religion);
-		bureaucratsPop.setLiteracy(demographic.literacy);
-		bureaucratsPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		bureaucratsPop.setIssues(demographic.issues);
+		V2Pop* bureaucratsPop = new V2Pop;
+		bureaucratsPop->setType("bureaucrats");
+		bureaucratsPop->setSize((int)(demographic.ratio * oldPopulation * bureaucrats / total));
+		bureaucratsPop->setCulture(demographic.culture);
+		bureaucratsPop->setReligion(demographic.religion);
+		bureaucratsPop->setLiteracy(demographic.literacy);
+		bureaucratsPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		bureaucratsPop->setIssues(demographic.issues);
 		pops.push_back(bureaucratsPop);
 	}
 	if (officers > 0)
 	{
-		V2Pop officersPop;
-		officersPop.setType("officers");
-		officersPop.setSize((int)(demographic.ratio * oldPopulation * officers / total));
-		officersPop.setCulture(demographic.culture);
-		officersPop.setReligion(demographic.religion);
-		officersPop.setLiteracy(demographic.literacy);
-		officersPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		officersPop.setIssues(demographic.issues);
+		V2Pop* officersPop = new V2Pop;
+		officersPop->setType("officers");
+		officersPop->setSize((int)(demographic.ratio * oldPopulation * officers / total));
+		officersPop->setCulture(demographic.culture);
+		officersPop->setReligion(demographic.religion);
+		officersPop->setLiteracy(demographic.literacy);
+		officersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		officersPop->setIssues(demographic.issues);
 		pops.push_back(officersPop);
 	}
 	if (capitalists > 0)
 	{
-		V2Pop capitalistsPop;
-		capitalistsPop.setType("capitalists");
-		capitalistsPop.setSize((int)(demographic.ratio * oldPopulation * capitalists / total));
-		capitalistsPop.setCulture(demographic.culture);
-		capitalistsPop.setReligion(demographic.religion);
-		capitalistsPop.setLiteracy(demographic.literacy);
-		capitalistsPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		capitalistsPop.setIssues(demographic.issues);
+		V2Pop* capitalistsPop = new V2Pop;
+		capitalistsPop->setType("capitalists");
+		capitalistsPop->setSize((int)(demographic.ratio * oldPopulation * capitalists / total));
+		capitalistsPop->setCulture(demographic.culture);
+		capitalistsPop->setReligion(demographic.religion);
+		capitalistsPop->setLiteracy(demographic.literacy);
+		capitalistsPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		capitalistsPop->setIssues(demographic.issues);
 		pops.push_back(capitalistsPop);
 	}
 	if (aristocrats > 0)
 	{
-		V2Pop aristocratsPop;
-		aristocratsPop.setType("aristocrats");
-		aristocratsPop.setSize((int)(demographic.ratio * oldPopulation * aristocrats / total));
-		aristocratsPop.setCulture(demographic.culture);
-		aristocratsPop.setReligion(demographic.religion);
-		aristocratsPop.setLiteracy(demographic.literacy);
-		aristocratsPop.setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		aristocratsPop.setIssues(demographic.issues);
+		V2Pop* aristocratsPop = new V2Pop;
+		aristocratsPop->setType("aristocrats");
+		aristocratsPop->setSize((int)(demographic.ratio * oldPopulation * aristocrats / total));
+		aristocratsPop->setCulture(demographic.culture);
+		aristocratsPop->setReligion(demographic.religion);
+		aristocratsPop->setLiteracy(demographic.literacy);
+		aristocratsPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
+		aristocratsPop->setIssues(demographic.issues);
 		pops.push_back(aristocratsPop);
 	}
 }
@@ -656,14 +657,14 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 
 void V2Province::setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier)
 {
-	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (vector<V2Pop*>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
 		double con = nationalConModifier;
 		double mil = nationalMilModifier;
 		// culture penalty - none if national culture
-		if (itr->getCulture() != nationalCulture)
+		if ( (*itr)->getCulture() != nationalCulture )
 		{
-			vector<string>::iterator accepted = std::find(acceptedCultures.begin(), acceptedCultures.end(), itr->getCulture());
+			vector<string>::iterator accepted = std::find(acceptedCultures.begin(), acceptedCultures.end(), (*itr)->getCulture());
 			if (accepted == acceptedCultures.end())
 			{
 				// non-accepted - 1 con + 1 mil
@@ -677,7 +678,7 @@ void V2Province::setPopConMil(string nationalCulture, vector<string> acceptedCul
 			}
 		}
 		// religion penalty - none if national religion
-		if (itr->getReligion() != nationalReligion)
+		if ( (*itr)->getReligion() != nationalReligion )
 		{
 			// TODO - should incorporate tolerance (not easily knowable), perhaps on a 0-1 or 0-2 scale
 			mil += 1.0;
@@ -690,8 +691,8 @@ void V2Province::setPopConMil(string nationalCulture, vector<string> acceptedCul
 		mil = max(min(mil, 10.0), 0.0);
 
 		// make it so
-		itr->setConsciousness(con);
-		itr->setMilitancy(mil);
+		(*itr)->setConsciousness(con);
+		(*itr)->setMilitancy(mil);
 	}
 }
 
@@ -705,9 +706,9 @@ int V2Province::getOldPopulation() const
 int V2Province::getTotalPopulation() const
 {
 	int total = 0;
-	for (vector<V2Pop>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (vector<V2Pop*>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
-		total += itr->getSize();
+		total += (*itr)->getSize();
 	}
 	return total;
 }
@@ -721,30 +722,31 @@ static int getRequiredPopForRegimentCount(int count)
 	return (1033 + (count - 1) * 3100);
 }
 
+
 bool V2Province::growSoldierPop(int popID)
 {
-	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (vector<V2Pop*>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
-		if (itr->getID() == popID)
+		if ( (*itr)->getID() == popID )
 		{
-			int currentlySupported = itr->getSupportedRegimentCount();
-			int growBy = getRequiredPopForRegimentCount(currentlySupported + 1) - itr->getSize();
+			int currentlySupported = (*itr)->getSupportedRegimentCount();
+			int growBy = getRequiredPopForRegimentCount(currentlySupported + 1) - (*itr)->getSize();
 			if (growBy > 0)
 			{
 				// gotta grow; find a same-culture same-religion farmer/laborer to pull from
 				int provincePop = getTotalPopulation();
 				bool foundSourcePop = false;
-				for (vector<V2Pop>::iterator isrc = pops.begin(); isrc != pops.end(); ++isrc)
+				for (vector<V2Pop*>::iterator isrc = pops.begin(); isrc != pops.end(); ++isrc)
 				{
-					if (isrc->getType() == "farmers" || isrc->getType() == "labourers")
+					if ( (*isrc)->getType() == "farmers" || (*isrc)->getType() == "labourers" )
 					{
-						if (isrc->getCulture() == itr->getCulture() && isrc->getReligion() == itr->getReligion())
+						if ( (*isrc)->getCulture() == (*isrc)->getCulture() && (*isrc)->getReligion() == (*isrc)->getReligion() )
 						{
 							// don't let the farmer/labourer shrink beneath 10% of the province population
-							if (isrc->getSize() - growBy > provincePop * 0.10)
+							if ( (*isrc)->getSize() - growBy > provincePop * 0.10 )
 							{
-								isrc->setSize(isrc->getSize() - growBy);
-								itr->setSize(itr->getSize() + growBy);
+								(*isrc)->setSize( (*isrc)->getSize() - growBy );
+								(*itr)->setSize( (*itr)->getSize() + growBy );
 								foundSourcePop = true;
 								break;
 							}
@@ -754,7 +756,7 @@ bool V2Province::growSoldierPop(int popID)
 				if (!foundSourcePop)
 					return false;
 			}
-			itr->setSupportedRegimentCount(++currentlySupported);
+			(*itr)->setSupportedRegimentCount(++currentlySupported);
 			return true;
 		}
 	}
@@ -762,39 +764,40 @@ bool V2Province::growSoldierPop(int popID)
 }
 
 
-static bool PopSortBySizePredicate(const V2Pop& pop1, const V2Pop& pop2)
+static bool PopSortBySizePredicate(const V2Pop* pop1, const V2Pop* pop2)
 {
-	return (pop1.getSize() > pop2.getSize());
+	return (pop1->getSize() > pop2->getSize());
 }
+
 
 // pick a soldier pop to use for an army.  prefer larger pops to smaller ones, and grow only if necessary.
 int V2Province::getSoldierPopForArmy(bool force)
 {
-	vector<V2Pop> spops = getPops("soldiers");
+	vector<V2Pop*> spops = getPops("soldiers");
 	if (spops.size() == 0)
 		return -1; // no soldier pops
 
 	sort(spops.begin(), spops.end(), PopSortBySizePredicate);
 	// try largest to smallest, without growing
-	for (vector<V2Pop>::iterator itr = spops.begin(); itr != spops.end(); ++itr)
+	for (vector<V2Pop*>::iterator itr = spops.begin(); itr != spops.end(); ++itr)
 	{
-		int growBy = getRequiredPopForRegimentCount(itr->getSupportedRegimentCount() + 1) - itr->getSize();
+		int growBy = getRequiredPopForRegimentCount( (*itr)->getSupportedRegimentCount() + 1 ) - (*itr)->getSize();
 		if (growBy <= 0)
 		{
-			if (growSoldierPop(itr->getID())) // won't actually grow, but necessary to increment supported regiment count
-				return itr->getID();
+			if (growSoldierPop( (*itr)->getID() )) // won't actually grow, but necessary to increment supported regiment count
+				return (*itr)->getID();
 		}
 	}
 	// try largest to smallest, trying to grow
-	for (vector<V2Pop>::iterator itr = spops.begin(); itr != spops.end(); ++itr)
+	for (vector<V2Pop*>::iterator itr = spops.begin(); itr != spops.end(); ++itr)
 	{
-		if (growSoldierPop(itr->getID()))
-			return itr->getID();
+		if (growSoldierPop( (*itr)->getID() ))
+			return (*itr)->getID();
 	}
 
 	// no suitable pops
 	if (force)
-		return spops[0].getID();
+		return spops[0]->getID();
 	else
 		return -1;
 }
@@ -805,17 +808,17 @@ pair<int, int> V2Province::getAvailableSoldierCapacity() const
 	int soldierCap = 0;
 	int draftCap = 0;
 	int provincePop = getTotalPopulation();
-	for (vector<V2Pop>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	for (vector<V2Pop*>::const_iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
-		if (itr->getType() == "soldiers")
+		if ( (*itr)->getType() == "soldiers" )
 		{
 			// unused capacity is the size of the pop minus the capacity already used, or 0, if it's already overdrawn
-			soldierCap += max(itr->getSize() - getRequiredPopForRegimentCount(itr->getSupportedRegimentCount()), 0);
+			soldierCap += max( (*itr)->getSize() - getRequiredPopForRegimentCount( (*itr)->getSupportedRegimentCount() ), 0 );
 		}
-		else if (itr->getType() == "farmers" || itr->getType() == "labourers")
+		else if ( (*itr)->getType() == "farmers" || (*itr)->getType() == "labourers" )
 		{
 			// unused capacity is the size of the pop in excess of 10% of the province pop, or 0, if it's already too small
-			draftCap += max(itr->getSize() - int(0.10 * provincePop), 0);
+			draftCap += max( (*itr)->getSize() - int(0.10 * provincePop), 0 );
 		}
 	}
 	return pair<int,int>(soldierCap, draftCap);
@@ -825,27 +828,27 @@ pair<int, int> V2Province::getAvailableSoldierCapacity() const
 void V2Province::combinePops()
 {
 	vector<int> trashPops;
-	for (vector<V2Pop>::iterator lhs = pops.begin(); lhs != pops.end(); ++lhs)
+	for (vector<V2Pop*>::iterator lhs = pops.begin(); lhs != pops.end(); ++lhs)
 	{
-		vector<V2Pop>::iterator rhs = lhs;
+		vector<V2Pop*>::iterator rhs = lhs;
 		for (++rhs; rhs != pops.end(); ++rhs)
 		{
-			if (lhs->canCombine(*rhs))
+			if ( (*lhs)->canCombine(**rhs) )
 			{
-				lhs->setSize(lhs->getSize() + rhs->getSize());
-				trashPops.push_back(rhs->getID());
+				(*lhs)->setSize( (*lhs)->getSize() + (*rhs)->getSize() );
+				trashPops.push_back( (*rhs)->getID() );
 			}
-			if (rhs->getSize() < 1)
-				trashPops.push_back(rhs->getID());
+			if ( (*rhs)->getSize() < 1 )
+				trashPops.push_back( (*rhs)->getID() );
 		}
 	}
-	vector<V2Pop> consolidatedPops;
-	for (vector<V2Pop>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
+	vector<V2Pop*> consolidatedPops;
+	for (vector<V2Pop*>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
 	{
 		bool isTrashed = false;
 		for (vector<int>::iterator titr = trashPops.begin(); titr != trashPops.end(); ++titr)
 		{
-			if (itr->getID() == (*titr))
+			if ( (*itr)->getID() == (*titr))
 				isTrashed = true;
 		}
 		if (!isTrashed)
@@ -942,14 +945,16 @@ static const int unitNameOffsets[num_reg_categories] =
 	6	// transport
 };
 
-bool PopSortForOutputPredicate(const V2Pop& pop1, const V2Pop& pop2)
+
+bool PopSortForOutputPredicate(const V2Pop* pop1, const V2Pop* pop2)
 {
-	if (pop1.getType() != pop2.getType())
+	if (pop1->getType() != pop2->getType())
 	{
-		return pop1.getType() < pop2.getType();
+		return pop1->getType() < pop2->getType();
 	}
-	return pop1.getID() < pop2.getID();
+	return pop1->getID() < pop2->getID();
 }
+
 
 void V2Province::output(FILE* output)
 {
@@ -1005,7 +1010,7 @@ void V2Province::output(FILE* output)
 			sort(oldPops.begin(), oldPops.end(), PopSortForOutputPredicate);
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
-				oldPops[i].output(output);
+				oldPops[i]->output(output);
 			}
 		}
 		else
@@ -1013,7 +1018,7 @@ void V2Province::output(FILE* output)
 			sort(pops.begin(), pops.end(), PopSortForOutputPredicate);
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
-				pops[i].output(output);
+				pops[i]->output(output);
 			}
 		}
 		fprintf(output, "	rgo=\n");
@@ -1028,7 +1033,7 @@ void V2Province::output(FILE* output)
 			int numFarmers = 0;
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
-				if (oldPops[i].getType() == "farmers")
+				if (oldPops[i]->getType() == "farmers")
 				{
 					fprintf(output, "				{\n");
 					fprintf(output, "					province_pop_id=\n");
@@ -1037,7 +1042,7 @@ void V2Province::output(FILE* output)
 					fprintf(output, "						index=%d\n", numFarmers);
 					fprintf(output, "						type=8\n");
 					fprintf(output, "					}\n");
-					fprintf(output, "					count=%d\n", oldPops[i].getSize());
+					fprintf(output, "					count=%d\n", oldPops[i]->getSize());
 					fprintf(output, "				}\n");
 					numFarmers++;
 				}
@@ -1045,7 +1050,7 @@ void V2Province::output(FILE* output)
 			int numLabourers = 0;
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
-				if (oldPops[i].getType() == "labourers")
+				if (oldPops[i]->getType() == "labourers")
 				{
 					fprintf(output, "				{\n");
 					fprintf(output, "					province_pop_id=\n");
@@ -1054,7 +1059,7 @@ void V2Province::output(FILE* output)
 					fprintf(output, "						index=%d\n", numLabourers);
 					fprintf(output, "						type=9\n");
 					fprintf(output, "					}\n");
-					fprintf(output, "					count=%d\n", oldPops[i].getSize());
+					fprintf(output, "					count=%d\n", oldPops[i]->getSize());
 					fprintf(output, "				}\n");
 					numLabourers++;
 				}
@@ -1062,7 +1067,7 @@ void V2Province::output(FILE* output)
 			int numSlaves = 0;
 			for (unsigned int i = 0; i < oldPops.size(); i++)
 			{
-				if (oldPops[i].getType() == "slaves")
+				if (oldPops[i]->getType() == "slaves")
 				{
 					fprintf(output, "				{\n");
 					fprintf(output, "					province_pop_id=\n");
@@ -1071,7 +1076,7 @@ void V2Province::output(FILE* output)
 					fprintf(output, "						index=%d\n", numSlaves);
 					fprintf(output, "						type=11\n");
 					fprintf(output, "					}\n");
-					fprintf(output, "					count=%d\n", oldPops[i].getSize());
+					fprintf(output, "					count=%d\n", oldPops[i]->getSize());
 					fprintf(output, "				}\n");
 					numSlaves++;
 				}
@@ -1082,7 +1087,7 @@ void V2Province::output(FILE* output)
 			int numFarmers = 0;
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
-				if (pops[i].getType() == "farmers")
+				if (pops[i]->getType() == "farmers")
 				{
 					fprintf(output, "				{\n");
 					fprintf(output, "					province_pop_id=\n");
@@ -1091,7 +1096,7 @@ void V2Province::output(FILE* output)
 					fprintf(output, "						index=%d\n", numFarmers);
 					fprintf(output, "						type=8\n");
 					fprintf(output, "					}\n");
-					fprintf(output, "					count=%d\n", pops[i].getSize());
+					fprintf(output, "					count=%d\n", pops[i]->getSize());
 					fprintf(output, "				}\n");
 					numFarmers++;
 				}
@@ -1099,7 +1104,7 @@ void V2Province::output(FILE* output)
 			int numLabourers = 0;
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
-				if (pops[i].getType() == "labourers")
+				if (pops[i]->getType() == "labourers")
 				{
 					fprintf(output, "				{\n");
 					fprintf(output, "					province_pop_id=\n");
@@ -1108,7 +1113,7 @@ void V2Province::output(FILE* output)
 					fprintf(output, "						index=%d\n", numLabourers);
 					fprintf(output, "						type=9\n");
 					fprintf(output, "					}\n");
-					fprintf(output, "					count=%d\n", pops[i].getSize());
+					fprintf(output, "					count=%d\n", pops[i]->getSize());
 					fprintf(output, "				}\n");
 					numLabourers++;
 				}
@@ -1116,7 +1121,7 @@ void V2Province::output(FILE* output)
 			int numSlaves = 0;
 			for (unsigned int i = 0; i < pops.size(); i++)
 			{
-				if (pops[i].getType() == "slaves")
+				if (pops[i]->getType() == "slaves")
 				{
 					fprintf(output, "				{\n");
 					fprintf(output, "					province_pop_id=\n");
@@ -1125,7 +1130,7 @@ void V2Province::output(FILE* output)
 					fprintf(output, "						index=%d\n", numSlaves);
 					fprintf(output, "						type=11\n");
 					fprintf(output, "					}\n");
-					fprintf(output, "					count=%d\n", pops[i].getSize());
+					fprintf(output, "					count=%d\n", pops[i]->getSize());
 					fprintf(output, "				}\n");
 					numSlaves++;
 				}

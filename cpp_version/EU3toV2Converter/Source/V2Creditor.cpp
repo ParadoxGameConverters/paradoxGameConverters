@@ -1,6 +1,7 @@
 #include "V2Creditor.h"
 
 
+
 void V2Creditor::addLoan(double size, double _interest)
 {
 	double totalDebt = size + debt;

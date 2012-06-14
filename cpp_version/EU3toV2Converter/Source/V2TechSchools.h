@@ -4,7 +4,10 @@
 
 
 #include <string>
-#include "Parsers\Object.h"
+#include <vector>
+using namespace std;
+
+class Object;
 
 
 

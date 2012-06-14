@@ -2,13 +2,16 @@
 #include "Log.h"
 
 
+
 static int nextArmyID = 0;
+
 
 V2ArmyID::V2ArmyID()
 {
 	type = 40; // seems to be always 40, for army, navy, ship and regiment
 	id = ++nextArmyID;
 }
+
 
 void V2ArmyID::output(FILE* out, int indentlevel)
 {
@@ -19,6 +22,7 @@ void V2ArmyID::output(FILE* out, int indentlevel)
 	fprintf(out, "%s\ttype=%d\n", indent.c_str(), type);
 	fprintf(out, "%s}\n", indent.c_str());
 }
+
 
 V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 {
@@ -56,6 +60,7 @@ V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 	setName("\"\""); // avoid crashes if no name set
 }
 
+
 void V2Regiment::output(FILE* out)
 {
 	if (isShip)
@@ -78,12 +83,14 @@ void V2Regiment::output(FILE* out)
 	fprintf(out, "\t\t}\n");
 }
 
+
 V2Army::V2Army()
 {
 	leaderID = 0;
 	for (int i = 0; i < num_reg_categories; ++i)
 		army_remainders[i] = 0;
 }
+
 
 void V2Army::output(FILE* out)
 {
@@ -120,10 +127,12 @@ void V2Army::output(FILE* out)
 	fprintf(out, "\t}\n");
 }
 
+
 void V2Army::addRegiment(V2Regiment reg)
 {
 	regiments.push_back(reg);
 }
+
 
 void V2Army::getRegimentCounts(int counts[num_reg_categories])
 {

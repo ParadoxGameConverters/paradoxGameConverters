@@ -382,3 +382,4 @@ Revision	Version Updated		Log Message
 438		C++			Use forward declarations instead of #includes in EU3World
 439		C++			Move files around
 440		C++			Make log.txt easier to read
+443		C++			Use forward declarations instead of #includes in V2World

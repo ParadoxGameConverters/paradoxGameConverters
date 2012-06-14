@@ -3,6 +3,8 @@
 
 
 #include "Date.h"
+#include <vector>
+using namespace std;
 
 class Object;
 

@@ -1,5 +1,7 @@
 #include "V2Diplomacy.h"
 
+
+
 void V2Diplomacy::output(FILE * out)
 {
 	fprintf(out, "diplomacy=\n");

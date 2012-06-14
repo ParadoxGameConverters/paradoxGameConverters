@@ -2,12 +2,18 @@
 #define V2WORLD_H_
 
 
-#include "V2Country.h"
+
+//#include "V2Country.h"
 #include "V2Diplomacy.h"
 #include "V2Factory.h"
 #include "V2TechSchools.h"
 #include "V2Party.h"
 #include "Mapper.h"
+
+class V2Country;
+class V2Province;
+class V2Army;
+
 
 
 class V2World {
@@ -29,7 +35,7 @@ class V2World {
 		void				convertLeaders(EU3World sourceWorld, map<int,int>& leaderIDMap);
 		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap);
 		void				allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder);
-		V2Party			getParty(int index);
+		V2Party*			getParty(int index);
 	private:
 		void						buildParties();
 		void						outputHeader(FILE*);
@@ -39,14 +45,15 @@ class V2World {
 		int						addRegimentToArmy(V2Army* army, RegimentCategory category, const inverseProvinceMapping& inverseProvinceMap, V2Country& country);
 		V2Country*				getCountry(string tag);
 
-		vector<V2Province>	provinces;
-		vector<V2Country>		countries;
-		vector<V2Country>		potentialCountries;
-		vector<V2Party>		parties;
+		vector<V2Province*>	provinces;
+		vector<V2Country*>	countries;
+		vector<V2Country*>	potentialCountries;
+		vector<V2Party*>		parties;
 		V2Diplomacy				diplomacy;
 		int						equalityLeft;
 		int						libertyLeft;
 };
+
 
 
 #endif // V2WORLD_H_

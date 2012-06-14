@@ -1,7 +1,10 @@
 #include "V2Leader.h"
 #include "V2Country.h"
 
+
+
 static int nextId = 0;
+
 
 void V2Leader::init(V2Country* _country)
 {
@@ -10,6 +13,7 @@ void V2Leader::init(V2Country* _country)
 	country = _country->getTag();
 	// TODO: figure out picture
 }
+
 
 void V2Leader::output(FILE *output)
 {

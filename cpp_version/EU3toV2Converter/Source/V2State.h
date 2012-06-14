@@ -2,8 +2,16 @@
 #define V2Province_H_
 
 
-#include "V2Province.h"
-#include "V2Factory.h"
+
+#include <stdio.h>
+#include <string>
+#include <vector>
+using namespace std;
+
+class V2Province;
+class V2Factory;
+class EU3World;
+
 
 
 class V2State
@@ -11,7 +19,7 @@ class V2State
 	public:
 		V2State(int newId);
 		void						addProvince(V2Province*);
-		void						addFactory(V2Factory);
+		void						addFactory(V2Factory*);
 		void						addRailroads();
 		void						setColonial(bool);
 		bool						isColonial();
@@ -30,7 +38,7 @@ class V2State
 		int						id;
 		bool						colonial;
 		vector<V2Province*>	provinces;
-		vector<V2Factory>		factories;
+		vector<V2Factory*>	factories;
 };
 
 

@@ -2,9 +2,11 @@
 #define V2POP_H_
 
 
+
 #include <string>
 #include <vector>
 using namespace std;
+
 
 
 class V2Pop
@@ -27,8 +29,8 @@ class V2Pop
 		string	getCulture() const;
 		string	getReligion() const;
 		int		getSupportedRegimentCount() const;
-		void	setSupportedRegimentCount(int regiments);
-		bool	canCombine(const V2Pop& rhs);
+		void		setSupportedRegimentCount(int regiments);
+		bool		canCombine(const V2Pop& rhs);
 
 	private:
 		void	recalcMoney();
@@ -49,7 +51,9 @@ class V2Pop
 		vector< pair<int, double> >	issues;
 };
 
+
 int getNextPopId();
+
 
 
 #endif

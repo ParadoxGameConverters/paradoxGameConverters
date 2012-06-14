@@ -1,7 +1,11 @@
 #ifndef V2ARMY_H_
 #define V2ARMY_H_
 
+
+
 #include "EU3Army.h"
+
+
 
 struct V2ArmyID
 {
@@ -13,6 +17,7 @@ public:
 	int type;
 };
 
+
 class V2Regiment // also Ship
 {
 	public:
@@ -22,16 +27,17 @@ class V2Regiment // also Ship
 		void					setPopID(int newPop) { popID = newPop; };
 		void					setStrength(double str) { strength = str; };
 		bool					getShip() const { return isShip; };
-		RegimentCategory		getCategory() const { return category; };
+		RegimentCategory	getCategory() const { return category; };
 	private:
 		V2ArmyID				id;
-		string					name;
-		string					type;
-		int						popID;
-		double					strength;
+		string				name;
+		string				type;
+		int					popID;
+		double				strength;
 		bool					isShip;
-		RegimentCategory		category;
+		RegimentCategory	category;
 };
+
 
 class V2Army // also Navy
 {
@@ -40,27 +46,29 @@ class V2Army // also Navy
 		void					output(FILE* out);
 		void					addRegiment(V2Regiment reg);
 		void					setName(string _name) { name = _name; };
-		string					getName() const { return name; };
+		string				getName() const { return name; };
 		void					setLocation(int provinceID) { location = provinceID; };
 		void					setNavy(bool navy) { isNavy = navy; };
 		bool					getNavy() const { return isNavy; };
 		void					setArmyRemainders(RegimentCategory category, double remainder) { army_remainders[category] = remainder; };
-		double					getArmyRemainder(RegimentCategory category) const { return army_remainders[category]; };
+		double				getArmyRemainder(RegimentCategory category) const { return army_remainders[category]; };
 		void					setSourceArmy(EU3Army* source) { sourceArmy = source; };
 		EU3Army*				getSourceArmy() const { return sourceArmy; };
 		void					setAtSea(int atSea) { at_sea = atSea; }
 		void					getRegimentCounts(int counts[num_reg_categories]);
 		void					setLeaderID(int id) { leaderID = id; };
 	private:
-		V2ArmyID				id;
+		V2ArmyID					id;
 		string					name;
 		int						location;
-		vector<V2Regiment>		regiments;
+		vector<V2Regiment>	regiments;
 		double					army_remainders[num_reg_categories];
-		EU3Army*				sourceArmy; // only valid during conversion
-		bool					isNavy;
+		EU3Army*					sourceArmy; // only valid during conversion
+		bool						isNavy;
 		int						at_sea;
 		int						leaderID;
 };
+
+
 
 #endif

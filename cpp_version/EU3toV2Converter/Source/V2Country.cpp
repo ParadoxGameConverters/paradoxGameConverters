@@ -1,13 +1,21 @@
 #include "V2Country.h"
-#include "V2World.h"
-#include "tempFuncs.h"
-#include "Log.h"
 #include <algorithm>
 #include <math.h>
 #include <float.h>
 #include <io.h>
+#include "Log.h"
+#include "tempFuncs.h"
 #include "Configuration.h"
 #include "Parsers/Parser.h"
+#include "V2World.h"
+#include "V2State.h"
+#include "V2Province.h"
+#include "V2Relations.h"
+#include "V2Army.h"
+#include "V2Reforms.h"
+#include "V2Creditor.h"
+#include "V2Leader.h"
+
 
 
 void V2Country::init(string newTag, string newCountryFile, vector<int> newParties, V2World* newWorld)
@@ -17,6 +25,10 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	tag			= newTag;
 	countryFile	= newCountryFile;
 	parties		= newParties;
+	rulingParty	= -1;
+
+	states.clear();
+	provinces.clear();
 
 	for (unsigned int i = 0; i < naval_exercises; i++)
 	{
@@ -32,6 +44,27 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	money				= 0.0;
 	techSchool		= "traditional_academic";
 	researchPoints	= 0.0;
+	civilized		= false;
+	primaryCulture	= "";
+	religion			= "";
+	government		= "";
+	nationalValue	= "";
+	lastBankrupt	= (string)"1.1.1";
+	bankReserves	= 0.0;
+	literacy			= 0.0;
+
+	acceptedCultures.clear();
+	techs.clear();
+	reactionaryIssues.clear();
+	conservativeIssues.clear();
+	liberalIssues.clear();
+	relations.clear();
+	armies.clear();
+	creditors.clear();
+	leaders.clear();
+
+	reforms = new V2Reforms;
+		
 
 	sourceCountryIndex = -1;
 
@@ -132,10 +165,10 @@ string V2Country::getTag() const
 }
 
 
-void V2Country::addState(V2State newState)
+void V2Country::addState(V2State* newState)
 {
 	states.push_back(newState);
-	vector<V2Province*> newProvinces = newState.getProvinces();
+	vector<V2Province*> newProvinces = newState->getProvinces();
 	for (unsigned int i = 0; i < newProvinces.size(); i++)
 	{
 		provinces.push_back(newProvinces[i]);
@@ -199,12 +232,12 @@ string V2Country::getReligion()
 
 void V2Country::sortRelations(const vector<string>& order)
 {
-	vector<V2Relations> sortedRelations;
+	vector<V2Relations*> sortedRelations;
 	for (vector<string>::const_iterator oitr = order.begin(); oitr != order.end(); ++oitr)
 	{
-		for (vector<V2Relations>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
+		for (vector<V2Relations*>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
 		{
-			if (itr->getTag() == (*oitr))
+			if ( (*itr)->getTag() == (*oitr) )
 			{
 				sortedRelations.push_back(*itr);
 				break;
@@ -226,7 +259,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputTech(output);
 	outputElection(output);
-	reforms.output(output);
+	reforms->output(output);
 	if (  (Configuration::getV2Gametype() == "AHD") && (!civilized) )
 	{
 		outputUncivReforms(output);
@@ -244,17 +277,17 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
-	for (vector<V2Leader>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	for (vector<V2Leader*>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
-		itr->output(output);
+		(*itr)->output(output);
 	}
-	for (vector<V2Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	for (vector<V2Army*>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
-		itr->output(output);
+		(*itr)->output(output);
 	}
-	for (vector<V2Relations>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
+	for (vector<V2Relations*>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
 	{
-		itr->output(output);
+		(*itr)->output(output);
 	}
 	outputInventions(output);
 	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
@@ -280,9 +313,9 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	}\n");
 	fprintf(output, "	money=%f\n", money);
 	fprintf(output, "	last_bankrupt=\"%s\"\n", lastBankrupt.toString().c_str());
-	for (vector<V2Creditor>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
+	for (vector<V2Creditor*>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
 	{
-		itr->output(output);
+		(*itr)->output(output);
 	}
 	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
 	if (civilized)
@@ -295,7 +328,7 @@ void V2Country::output(FILE* output)
 	}
 	for(unsigned int i = 0; i < states.size(); i++)
 	{
-		states[i].output(output);
+		states[i]->output(output);
 	}
 	fprintf(output, "	badboy=%f\n", badboy);
 	fprintf(output, "}\n");
@@ -916,9 +949,9 @@ void V2Country::setUncivReforms(int westernizationProgress, double milFocus, dou
 	{
 		for (unsigned int i = 0; i < states.size(); i++)
 		{
-			if (states[i].provInState(capital))
+			if (states[i]->provInState(capital))
 			{
-				states[i].addRailroads();
+				states[i]->addRailroads();
 			}
 		}
 	}
@@ -1029,7 +1062,7 @@ void V2Country::outputParties(FILE* output)
 	fprintf(output, "	ruling_party=%d\n", rulingParty);
 	for (unsigned int i = 0; i < parties.size(); i++)
 	{
-		if (  theWorld->getParty(parties[i]).isActiveOn( Configuration::getStartDate() )  )
+		if (  theWorld->getParty(parties[i])->isActiveOn( Configuration::getStartDate() )  )
 		{
 			fprintf(output, "	active_party=%d\n", parties[i]);
 		}
@@ -1090,85 +1123,85 @@ void V2Country::setIssues()
 	memset(issueWeights, 0, sizeof(issueWeights) );
 	for(unsigned int i = 0; i < parties.size(); i++)
 	{
-		V2Party party = theWorld->getParty(i);
-		if (party.ideology != "reactionary")
+		V2Party* party = theWorld->getParty(i);
+		if (party->ideology != "reactionary")
 		{
 			continue;
 		}
-		if ( !party.isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(Configuration::getStartDate()) )
 		{
 			continue;
 		}
 
-		if (party.economic_policy == "laissez_faire")
+		if (party->economic_policy == "laissez_faire")
 		{
 			issueWeights[3]++;
 		}
-		else if (party.economic_policy == "interventionism")
+		else if (party->economic_policy == "interventionism")
 		{
 			issueWeights[4]++;
 		}
-		else if (party.economic_policy == "state_capitalism")
+		else if (party->economic_policy == "state_capitalism")
 		{
 			issueWeights[5]++;
 		}
-		else if (party.economic_policy == "planned_economy")
+		else if (party->economic_policy == "planned_economy")
 		{
 			issueWeights[6]++;
 		}
 
-		if (party.trade_policy == "protectionism")
+		if (party->trade_policy == "protectionism")
 		{
 			issueWeights[1]++;
 		}
-		else if (party.trade_policy == "free_trade")
+		else if (party->trade_policy == "free_trade")
 		{
 			issueWeights[2]++;
 		}
 
-		if (party.religious_policy == "pro_atheism")
+		if (party->religious_policy == "pro_atheism")
 		{
 			issueWeights[7]++;
 		}
-		else if (party.religious_policy == "secularized")
+		else if (party->religious_policy == "secularized")
 		{
 			issueWeights[8]++;
 		}
-		else if (party.religious_policy == "pluralism")
+		else if (party->religious_policy == "pluralism")
 		{
 			issueWeights[9]++;
 		}
-		else if (party.religious_policy == "moralism")
+		else if (party->religious_policy == "moralism")
 		{
 			issueWeights[10]++;
 		}
 
-		if (party.citizenship_policy == "residency")
+		if (party->citizenship_policy == "residency")
 		{
 			issueWeights[11]++;
 		}
-		else if (party.citizenship_policy == "limited_citizenship")
+		else if (party->citizenship_policy == "limited_citizenship")
 		{
 			issueWeights[12]++;
 		}
-		else if (party.citizenship_policy == "full_citizenship")
+		else if (party->citizenship_policy == "full_citizenship")
 		{
 			issueWeights[13]++;
 		}
 
-		if (party.war_policy == "jingoism")
+		if (party->war_policy == "jingoism")
 		{
 			issueWeights[14]++;
 		}
-		else if (party.war_policy == "pro_military")
+		else if (party->war_policy == "pro_military")
 		{
 			issueWeights[15]++;
 		}
-		else if (party.war_policy == "anti_military")
+		else if (party->war_policy == "anti_military")
 		{
 			issueWeights[16]++;
 		}
-		else if (party.war_policy == "pacifism")
+		else if (party->war_policy == "pacifism")
 		{
 			issueWeights[16]++;
 		}
@@ -1187,85 +1220,85 @@ void V2Country::setIssues()
 	memset(issueWeights, 0, sizeof(issueWeights) );
 	for(unsigned int i = 0; i < parties.size(); i++)
 	{
-		V2Party party = theWorld->getParty(i);
-		if (party.ideology != "conservative")
+		V2Party* party = theWorld->getParty(i);
+		if (party->ideology != "conservative")
 		{
 			continue;
 		}
-		if ( !party.isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(Configuration::getStartDate()) )
 		{
 			continue;
 		}
 
-		if (party.economic_policy == "laissez_faire")
+		if (party->economic_policy == "laissez_faire")
 		{
 			issueWeights[3]++;
 		}
-		else if (party.economic_policy == "interventionism")
+		else if (party->economic_policy == "interventionism")
 		{
 			issueWeights[4]++;
 		}
-		else if (party.economic_policy == "state_capitalism")
+		else if (party->economic_policy == "state_capitalism")
 		{
 			issueWeights[5]++;
 		}
-		else if (party.economic_policy == "planned_economy")
+		else if (party->economic_policy == "planned_economy")
 		{
 			issueWeights[6]++;
 		}
 
-		if (party.trade_policy == "protectionism")
+		if (party->trade_policy == "protectionism")
 		{
 			issueWeights[1]++;
 		}
-		else if (party.trade_policy == "free_trade")
+		else if (party->trade_policy == "free_trade")
 		{
 			issueWeights[2]++;
 		}
 
-		if (party.religious_policy == "pro_atheism")
+		if (party->religious_policy == "pro_atheism")
 		{
 			issueWeights[7]++;
 		}
-		else if (party.religious_policy == "secularized")
+		else if (party->religious_policy == "secularized")
 		{
 			issueWeights[8]++;
 		}
-		else if (party.religious_policy == "pluralism")
+		else if (party->religious_policy == "pluralism")
 		{
 			issueWeights[9]++;
 		}
-		else if (party.religious_policy == "moralism")
+		else if (party->religious_policy == "moralism")
 		{
 			issueWeights[10]++;
 		}
 
-		if (party.citizenship_policy == "residency")
+		if (party->citizenship_policy == "residency")
 		{
 			issueWeights[11]++;
 		}
-		else if (party.citizenship_policy == "limited_citizenship")
+		else if (party->citizenship_policy == "limited_citizenship")
 		{
 			issueWeights[12]++;
 		}
-		else if (party.citizenship_policy == "full_citizenship")
+		else if (party->citizenship_policy == "full_citizenship")
 		{
 			issueWeights[13]++;
 		}
 
-		if (party.war_policy == "jingoism")
+		if (party->war_policy == "jingoism")
 		{
 			issueWeights[14]++;
 		}
-		else if (party.war_policy == "pro_military")
+		else if (party->war_policy == "pro_military")
 		{
 			issueWeights[15]++;
 		}
-		else if (party.war_policy == "anti_military")
+		else if (party->war_policy == "anti_military")
 		{
 			issueWeights[16]++;
 		}
-		else if (party.war_policy == "pacifism")
+		else if (party->war_policy == "pacifism")
 		{
 			issueWeights[16]++;
 		}
@@ -1283,85 +1316,85 @@ void V2Country::setIssues()
 	memset(issueWeights, 0, sizeof(issueWeights) );
 	for(unsigned int i = 0; i < parties.size(); i++)
 	{
-		V2Party party = theWorld->getParty(i);
-		if (party.ideology != "liberal")
+		V2Party* party = theWorld->getParty(i);
+		if (party->ideology != "liberal")
 		{
 			continue;
 		}
-		if ( !party.isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(Configuration::getStartDate()) )
 		{
 			continue;
 		}
 
-		if (party.economic_policy == "laissez_faire")
+		if (party->economic_policy == "laissez_faire")
 		{
 			issueWeights[3]++;
 		}
-		else if (party.economic_policy == "interventionism")
+		else if (party->economic_policy == "interventionism")
 		{
 			issueWeights[4]++;
 		}
-		else if (party.economic_policy == "state_capitalism")
+		else if (party->economic_policy == "state_capitalism")
 		{
 			issueWeights[5]++;
 		}
-		else if (party.economic_policy == "planned_economy")
+		else if (party->economic_policy == "planned_economy")
 		{
 			issueWeights[6]++;
 		}
 
-		if (party.trade_policy == "protectionism")
+		if (party->trade_policy == "protectionism")
 		{
 			issueWeights[1]++;
 		}
-		else if (party.trade_policy == "free_trade")
+		else if (party->trade_policy == "free_trade")
 		{
 			issueWeights[2]++;
 		}
 
-		if (party.religious_policy == "pro_atheism")
+		if (party->religious_policy == "pro_atheism")
 		{
 			issueWeights[7]++;
 		}
-		else if (party.religious_policy == "secularized")
+		else if (party->religious_policy == "secularized")
 		{
 			issueWeights[8]++;
 		}
-		else if (party.religious_policy == "pluralism")
+		else if (party->religious_policy == "pluralism")
 		{
 			issueWeights[9]++;
 		}
-		else if (party.religious_policy == "moralism")
+		else if (party->religious_policy == "moralism")
 		{
 			issueWeights[10]++;
 		}
 
-		if (party.citizenship_policy == "residency")
+		if (party->citizenship_policy == "residency")
 		{
 			issueWeights[11]++;
 		}
-		else if (party.citizenship_policy == "limited_citizenship")
+		else if (party->citizenship_policy == "limited_citizenship")
 		{
 			issueWeights[12]++;
 		}
-		else if (party.citizenship_policy == "full_citizenship")
+		else if (party->citizenship_policy == "full_citizenship")
 		{
 			issueWeights[13]++;
 		}
 
-		if (party.war_policy == "jingoism")
+		if (party->war_policy == "jingoism")
 		{
 			issueWeights[14]++;
 		}
-		else if (party.war_policy == "pro_military")
+		else if (party->war_policy == "pro_military")
 		{
 			issueWeights[15]++;
 		}
-		else if (party.war_policy == "anti_military")
+		else if (party->war_policy == "anti_military")
 		{
 			issueWeights[16]++;
 		}
-		else if (party.war_policy == "pacifism")
+		else if (party->war_policy == "pacifism")
 		{
 			issueWeights[16]++;
 		}
@@ -1399,7 +1432,7 @@ void V2Country::setRulingParty()
 {
 	for (unsigned int i = 0; i < parties.size(); i++)
 	{
-		if ( theWorld->getParty(parties[i]).isActiveOn(Configuration::getStartDate()) )
+		if ( theWorld->getParty(parties[i])->isActiveOn(Configuration::getStartDate()) )
 		{
 			rulingParty = parties[i];
 			break;
@@ -1408,7 +1441,7 @@ void V2Country::setRulingParty()
 }
 
 
-void V2Country::addRelations(V2Relations _rel)
+void V2Country::addRelations(V2Relations* _rel)
 {
 	relations.push_back(_rel);
 }
@@ -1418,14 +1451,14 @@ V2Relations* V2Country::getRelations(string withWhom)
 {
 	for (size_t i = 0; i < relations.size(); ++i)
 	{
-		if (relations[i].getTag() == withWhom)
-			return &relations[i];
+		if (relations[i]->getTag() == withWhom)
+			return relations[i];
 	}
 	return NULL;
 }
 
 
-void V2Country::addArmy(V2Army _army)
+void V2Country::addArmy(V2Army* _army)
 {
 	armies.push_back(_army);
 }
@@ -1436,15 +1469,15 @@ V2Army*	V2Country::getArmyForRemainder(RegimentCategory rc)
 {
 	V2Army* retval = NULL;
 	double retvalRemainder = -1000.0;
-	for (vector<V2Army>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	for (vector<V2Army*>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
 		// only add units to armies that originally had units of the same category
-		if (itr->getSourceArmy()->getTotalTypeStrength(rc) > 0)
+		if ( (*itr)->getSourceArmy()->getTotalTypeStrength(rc) > 0 )
 		{
-			if (itr->getArmyRemainder(rc) > retvalRemainder)
+			if ( (*itr)->getArmyRemainder(rc) > retvalRemainder )
 			{
-				retvalRemainder = itr->getArmyRemainder(rc);
-				retval = &(*itr);
+				retvalRemainder = (*itr)->getArmyRemainder(rc);
+				retval = *itr;
 			}
 		}
 	}
@@ -1454,7 +1487,7 @@ V2Army*	V2Country::getArmyForRemainder(RegimentCategory rc)
 
 void V2Country::setReforms(EU3Country* srcCountry)
 {
-	reforms.init(srcCountry);
+	reforms->init(srcCountry);
 }
 
 
@@ -1466,51 +1499,51 @@ static bool FactoryCandidateSortPredicate(const pair<int, V2State*>& lhs, const 
 }
 
 
-bool V2Country::addFactory(V2Factory factory)
+bool V2Country::addFactory(V2Factory* factory)
 {
 	// check factory techs
-	string requiredTech = factory.getRequiredTech();
+	string requiredTech = factory->getRequiredTech();
 	if (requiredTech != "")
 	{
 		vector<string>::iterator itr = find(techs.begin(), techs.end(), requiredTech);
 		if (itr == techs.end())
 		{
-			log("%s rejected %s (missing reqd tech: %s)\n", tag.c_str(), factory.getTypeName().c_str(), requiredTech.c_str());
+			log("%s rejected %s (missing reqd tech: %s)\n", tag.c_str(), factory->getTypeName().c_str(), requiredTech.c_str());
 			return false;
 		}
 	}
 	
 	// check factory inventions
-	inventionType requiredInvention = factory.getRequiredInvention();
+	inventionType requiredInvention = factory->getRequiredInvention();
 	if (requiredInvention >= 0 && inventions[requiredInvention] != active)
 	{
-		log("%s rejected %s (missing reqd invention: %s)\n", tag.c_str(), factory.getTypeName().c_str(), inventionNames[requiredInvention]);
+		log("%s rejected %s (missing reqd invention: %s)\n", tag.c_str(), factory->getTypeName().c_str(), inventionNames[requiredInvention]);
 		return false;
 	}
 
 	// find a state to add the factory to, which meets the factory's requirements
 	vector<pair<int, V2State*>> candidates;
-	for (vector<V2State>::iterator itr = states.begin(); itr != states.end(); ++itr)
+	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
-		if (itr->isColonial())
+		if ( (*itr)->isColonial() )
 			continue;
 
-		if (itr->getFactoryCount() >= 8)
+		if ( (*itr)->getFactoryCount() >= 8 )
 			continue;
 
-		if (factory.requiresCoastal())
+		if (factory->requiresCoastal())
 		{
-			if (!itr->isCoastal())
+			if ( !(*itr)->isCoastal() )
 				continue;
 		}
 
-		vector<string> requiredProducts = factory.getRequiredRGO();
+		vector<string> requiredProducts = factory->getRequiredRGO();
 		if (requiredProducts.size() > 0)
 		{
 			bool hasInput = false;
 			for (vector<string>::iterator prod = requiredProducts.begin(); prod != requiredProducts.end(); ++prod)
 			{
-				if (itr->hasLocalSupply(*prod))
+				if ( (*itr)->hasLocalSupply(*prod) )
 				{
 					hasInput = true;
 					break;
@@ -1520,20 +1553,20 @@ bool V2Country::addFactory(V2Factory factory)
 				continue;
 		}
 
-		candidates.push_back(pair<int, V2State*>(itr->getCraftsmenPerFactory(), &(*itr)));
+		candidates.push_back(pair<int, V2State*>( (*itr)->getCraftsmenPerFactory(), (*itr) ));
 	}
 
 	sort(candidates.begin(), candidates.end(), FactoryCandidateSortPredicate);
 
 	if (candidates.size() == 0)
 	{
-		log("	%s rejected %s (no candidate states)\n", tag.c_str(), factory.getTypeName().c_str());
+		log("	%s rejected %s (no candidate states)\n", tag.c_str(), factory->getTypeName().c_str());
 		return false;
 	}
 
 	V2State* target = candidates[0].second;
 	target->addFactory(factory);
-	log("	%s accepted %s (%d candidate states)\n", tag.c_str(), factory.getTypeName().c_str(), candidates.size());
+	log("	%s accepted %s (%d candidate states)\n", tag.c_str(), factory->getTypeName().c_str(), candidates.size());
 	return true;
 }
 
@@ -1660,20 +1693,20 @@ void V2Country::setLastBankrupt(date _lastBankrupt)
 void V2Country::addLoan(string creditor, double size, double interest)
 {
 	bool found = false;
-	for (vector<V2Creditor>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
+	for (vector<V2Creditor*>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
 	{
-		if (creditor == itr->getCountry())
+		if (creditor == (*itr)->getCountry())
 		{
-			itr->addLoan(size, interest);
+			(*itr)->addLoan(size, interest);
 			found = true;
 			break;
 		}
 	}
 	if (!found)
 	{
-		V2Creditor cred;
-		cred.setCountry(creditor);
-		cred.addLoan(size, interest);
+		V2Creditor* cred = new V2Creditor;
+		cred->setCountry(creditor);
+		cred->addLoan(size, interest);
 		creditors.push_back(cred);
 	}
 }
@@ -1697,7 +1730,7 @@ void V2Country::setBadboy(double _badboy)
 }
 
 
-void V2Country::addLeader(V2Leader leader)
+void V2Country::addLeader(V2Leader* leader)
 {
 	leaders.push_back(leader);
 }
@@ -1725,9 +1758,9 @@ void V2Country::setupPops(EU3World& sourceWorld)
 	// TODO: national decisions, national events, war exhaustion
 
 	// create the pops
-	for (vector<V2State>::iterator itr = states.begin(); itr != states.end(); ++itr)
+	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
-		itr->setupPops(sourceWorld, primaryCulture, acceptedCultures, religion, con, mil);
+		(*itr)->setupPops(sourceWorld, primaryCulture, acceptedCultures, religion, con, mil);
 	}
 }
 

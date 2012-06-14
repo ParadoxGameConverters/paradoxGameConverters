@@ -150,6 +150,21 @@
     <ClInclude Include="Source\Parsers\Parser.h" />
     <ClInclude Include="Source\stdafx.h" />
     <ClInclude Include="Source\tempFuncs.h" />
+    <ClInclude Include="Source\V2Army.h" />
+    <ClInclude Include="Source\V2Country.h" />
+    <ClInclude Include="Source\V2Creditor.h" />
+    <ClInclude Include="Source\V2Diplomacy.h" />
+    <ClInclude Include="Source\V2Factory.h" />
+    <ClInclude Include="Source\V2Inventions.h" />
+    <ClInclude Include="Source\V2Leader.h" />
+    <ClInclude Include="Source\V2Party.h" />
+    <ClInclude Include="Source\V2Pop.h" />
+    <ClInclude Include="Source\V2Province.h" />
+    <ClInclude Include="Source\V2Reforms.h" />
+    <ClInclude Include="Source\V2Relations.h" />
+    <ClInclude Include="Source\V2State.h" />
+    <ClInclude Include="Source\V2TechSchools.h" />
+    <ClInclude Include="Source\V2World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

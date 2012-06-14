@@ -2,8 +2,13 @@
 #define V2DIPLOMACY_H_
 
 
-#include "Parsers/Object.h"
+
 #include "Date.h"
+#include <vector>
+
+class Object;
+
+
 
 struct V2Agreement
 {
@@ -13,6 +18,7 @@ struct V2Agreement
 	date start_date;
 };
 
+
 class V2Diplomacy
 {
 	public:
@@ -21,5 +27,7 @@ class V2Diplomacy
 	private:
 		vector<V2Agreement>	agreements;
 };
+
+
 
 #endif

@@ -1,7 +1,15 @@
 #ifndef LEADERTRAITS_H_
 #define LEADERTRAITS_H_
 
-#include "Parsers/Object.h"
+
+
+#include <string>
+#include <vector>
+using namespace std;
+
+class Object;
+
+
 
 struct TraitConversion
 {
@@ -16,6 +24,7 @@ struct TraitConversion
 	string	trait;
 };
 
+
 class LeaderTraits
 {
 public:
@@ -27,5 +36,7 @@ private:
 	vector<TraitConversion> personalities;
 	vector<TraitConversion> backgrounds;
 };
+
+
 
 #endif // LEADERTRAITS_H_

@@ -1,10 +1,16 @@
 #include "V2State.h"
 #include "tempFuncs.h"
+#include "V2Pop.h"
+#include "V2Province.h"
+#include "V2Factory.h"
 
 
 V2State::V2State(int newId)
 {
-	id = newId;
+	id			= newId;
+	colonial	= false;
+	provinces.clear();
+	factories.clear();
 }
 
 
@@ -14,7 +20,7 @@ void V2State::addProvince(V2Province* newProvince)
 }
 
 
-void V2State::addFactory(V2Factory factory)
+void V2State::addFactory(V2Factory* factory)
 {
 	factories.push_back(factory);
 }
@@ -68,10 +74,10 @@ int V2State::getCraftsmenPerFactory()
 	int totalCraftsmen = 0;
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		vector<V2Pop> pops = (*itr)->getPops("craftsmen");
-		for (vector<V2Pop>::iterator pitr = pops.begin(); pitr != pops.end(); ++pitr)
+		vector<V2Pop*> pops = (*itr)->getPops("craftsmen");
+		for (vector<V2Pop*>::iterator pitr = pops.begin(); pitr != pops.end(); ++pitr)
 		{
-			totalCraftsmen += pitr->getSize();
+			totalCraftsmen += (*pitr)->getSize();
 		}
 	}
 	return totalCraftsmen / (factories.size() + 1);
@@ -164,9 +170,9 @@ void V2State::output(FILE* output)
 	}
 	fprintf(output, "\n");
 	fprintf(output, "		}\n");
-	for (vector<V2Factory>::iterator itr = factories.begin(); itr != factories.end(); ++itr)
+	for (vector<V2Factory*>::iterator itr = factories.begin(); itr != factories.end(); ++itr)
 	{
-		itr->output(output);
+		(*itr)->output(output);
 	}
 	if (colonial)
 	{
