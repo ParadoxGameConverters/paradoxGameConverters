@@ -125,4 +125,21 @@ link = { tag = FRA culture = aquitane }
 link = { tag = FRA culture = burgundian }
 link = { tag = FRA culture = occitain }
 
+#Arabia
+link = { tag = ARA culture = mashriqi }
+link = { tag = ARA culture = bedouin }
+link = { tag = ARA culture = misri }
+link = { tag = ARA culture = maghrebi }
+
+#United Baltic Provinces
+link = { tag = UBD culture = latvian }
+link = { tag = UBD culture = estonian }
+
+#Belarus
+link = { tag = BYE culture = byelorussian }
+
+#Polish-Lithuanian Commonwealth
+link = { tag = PLC culture = polish }
+link = { tag = PLC culture = lithuanian }
+
 }
