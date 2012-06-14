@@ -50,6 +50,8 @@ KNOWN ISSUE: Wrong Flag for great britain?
 Actually fixed tags, fixed GENOA localisation
 0.92
 Removed inexplicable quotemarks from all strings in localisations
+0.94
+Added countries from AHD 2.31
 
 Error List:
 1. Sometimes the game crashes after the end of the year so ensure you save before (Proberly a autosave problem?)

@@ -136,12 +136,15 @@ SLO		="countries/Slovenia.txt"
 YUG		="countries/Yugoslavia.txt"
 
 # Eastern Europe
+UBD		="countries/United Baltic Provinces.txt"
+BYE		="countries/Belarus.txt"
 DZG		="countries/Danzig.txt"
 KRA		="countries/Krakow.txt"
 LIT		="countries/Lithuania.txt"
 LIV		="countries/Livonian Order.txt"##
 MAZ		="countries/Mazovia.txt"##
 POL		="countries/Poland.txt"
+PLC		="countries/Poland-Lithuania.txt"
 PRU		="countries/Prussia.txt"
 KUR		="countries/Kurland.txt"##
 RIG		="countries/Riga.txt"##
@@ -259,6 +262,7 @@ DES		="countries/Deseret.txt"
 DOM		="countries/Dominican Republic.txt"
 ECU		="countries/Ecuador.txt"
 ELS		="countries/El Salvador.txt"
+GCO		="countries/Gran Colombia.txt"
 GUA		="countries/Guatemala.txt"
 HAW		="countries/Hawaii.txt"
 MAN		="countries/Manhattan Commune.txt"
@@ -291,6 +295,7 @@ OMA		="countries/Oman.txt"
 NEJ		="countries/Nejd.txt"
 HDJ		="countries/Hedjaz.txt"
 ABU		="countries/Abu Dhabi.txt"
+ARA		="countries/Arabia.txt"
 
 # Asia Minor
 AKK		="countries/AkKoyunlu.txt"
