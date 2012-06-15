@@ -52,6 +52,9 @@ Actually fixed tags, fixed GENOA localisation
 Removed inexplicable quotemarks from all strings in localisations
 0.94
 Added countries from AHD 2.31
+0.95
+Fixed Aragon tag, fixing CTD on game start.  Changed mappings and flags appropriately.
+Fixed localasation problems.
 
 Error List:
 1. Sometimes the game crashes after the end of the year so ensure you save before (Proberly a autosave problem?)

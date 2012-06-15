@@ -50,7 +50,7 @@ link = { eu3 = BUR vic = BRG }  # Burgundy
 # Spain
 
 
-link = { eu3 = ARA vic = ARA }  # Aragon
+link = { eu3 = ARA vic = ARO }  # Aragon
 link = { eu3 = CAS vic = CAS }  # Castille
 link = { eu3 = CAT vic = CAT }  # Catalonia
 link = { eu3 = GAL vic = GAL }  # Galicia

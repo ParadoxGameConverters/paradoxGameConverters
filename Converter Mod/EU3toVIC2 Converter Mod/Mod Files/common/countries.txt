@@ -45,7 +45,7 @@ TOU		="countries/Toulouse.txt"##
 BRY		="countries/Berry.txt"	##
 
 # Iberian Peninsula
-ARA		="countries/Aragon.txt"##
+ARO		="countries/Aragon.txt"##
 CAT		="countries/Catalonia.txt"
 CAS		="countries/Castille.txt"##
 GRA		="countries/Granada.txt"##
@@ -496,3 +496,4 @@ BAB		="countries/Babylonia.txt"
 
 #new for AHD
 TPG		="countries/Taiping.txt"
+
