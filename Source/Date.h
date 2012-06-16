@@ -2,10 +2,11 @@
 #define DATE_H_
 
 #include <string>
-
-#include "Parsers/Object.h"
-
 using namespace std;
+
+
+
+class Object;
 
 struct date
 {
@@ -21,6 +22,8 @@ struct date
 	bool operator>(const date& _rhs) const;
 	bool operator<=(const date& _rhs) const;
 	bool operator>=(const date& _rhs) const;
+	
+	float diffInYears(const date& _rhs) const;
 
 	bool isSet() const;
 	string toString() const;

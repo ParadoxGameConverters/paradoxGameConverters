@@ -2,16 +2,19 @@
 #define CK2HISTORY_H_
 
 
+#include <map>
 #include "..\Date.h"
-#include "..\Parsers\Object.h"
-#include "CK2Character.h"
+using namespace std;
 
 
 
+class Object;
+class CK2Character;
 
 class CK2History
 {
 	public:
+		CK2History();
 		void init(Object*, map<int, CK2Character*>&);
 		date				getWhen();
 		CK2Character*	getHolder();

@@ -2,17 +2,21 @@
 #define CK2BARONY_H_
 
 
-#include "..\Parsers\Object.h"
-#include "CK2Title.h"
 
+class Object;
+class CK2Title;
+class CK2Province;
 
 class CK2Barony
 {
 	public:
-		void			init(Object*, CK2Title*);
-		CK2Title*	getTitle();
+		CK2Barony();
+		void				init(Object*, CK2Title*, CK2Province*);
+		CK2Title*		getTitle();
+		CK2Province*	getProvince();
 	private:
-		CK2Title*	title;
+		CK2Title*		title;
+		CK2Province*	province;
 };
 
 

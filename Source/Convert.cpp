@@ -6,6 +6,7 @@
 #include "Parsers/Parser.h"
 #include "Parsers/Object.h"
 #include "EU3World\EU3World.h"
+#include "EU3World\EU3Country.h"
 #include	"CK2World\CK2World.h"
 #include "Mappers.h"
 using namespace std;
@@ -55,39 +56,25 @@ int main(int argc, char * argv[])
 	}
 
 
-	// Parse CK2 Save
+	// Input CK2 Data
 	log("Getting CK2 data.\n");
 	printf("Getting CK2 data.\n");
 
-	printf("	Adding dynasties from dynasties.txt\n");
-	initParser();
-	obj = getTopLevel();
-	read.open(Configuration::getCK2Path() + "/common/dynasties.txt");
-	if (!read.is_open())
-	{
-		log("Error: Could not open dynasties.txt!\n");
-		printf("Error: Could not open dynasties.txt!\n");
-		return 1;
-	}
-	readFile(read);
-	read.close();
-	read.clear();
+	printf("	Getting traits\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/traits/00_traits.txt").c_str());
 	CK2World srcWorld;
+	srcWorld.addTraits(obj);
+
+	printf("	Adding dynasties from dynasties.txt\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
 	srcWorld.addDynasties(obj);
 	
-	printf("	Parsing CK2 save.\n");
-	initParser();
-	obj = getTopLevel();
-	read.open(inputFilename.c_str());
-	if (!read.is_open())
-	{
-		log("Error: Could not open CK2 save (%s).\n", inputFilename.c_str());
-		printf("Error: Could not open CK2 save (%s).\n", inputFilename.c_str());
-		return 1;
-	}
-	readFile(read);
-	read.close();
-	read.clear();
+	log("Parsing CK2 save.\n");
+	printf("Parsing CK2 save.\n");
+	obj = doParseFile(inputFilename.c_str());
+
+	log("Importing parsed data.\n");
+	printf("Importing parsed data.\n");
 	srcWorld.init(obj);
 
 
@@ -98,9 +85,22 @@ int main(int argc, char * argv[])
 	obj = doParseFile(mappingFile);
 	provinceMapping			provinceMap				= initProvinceMap(obj);
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
+	map<int, CK2Province*> srcProvinces				= srcWorld.getProvinces();
+	for (map<int, CK2Province*>::iterator i = srcProvinces.begin(); i != srcProvinces.end(); i++)
+	{
+		inverseProvinceMapping::iterator p = inverseProvinceMap.find(i->first);
+		if ( p == inverseProvinceMap.end() )
+		{
+			log("	Error: CK2 province %d has no mapping specified!\n", i->first);
+		}
+		else if ( p->second.size() == 0 )
+		{
+			log("	Warning: CK2 province %d is not mapped to any EU3 provinces!\n", i->first);
+		}
+	}
 
 	EU3World destWorld;
-	destWorld.init(srcWorld);
+	destWorld.init(&srcWorld);
 
 
 	// Get potential EU3 countries
@@ -136,14 +136,24 @@ int main(int argc, char * argv[])
 		return -1;
 	}
 
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap);
-	destWorld.setupRotwProvinces(inverseProvinceMap);
-	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
-	{
-		i->second->convert(i->first);
-	}
-	
 
+	// Convert
+	log("Converting countries.\n");
+	printf("Converting countries.\n");
+	destWorld.convertCountries(countryMap);
+
+	log("Converting provinces.\n");
+	printf("Converting provinces.\n");
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap);
+
+	log("Setting up ROTW provinces.\n");
+	printf("Setting up ROTW provinces.\n");
+	destWorld.setupRotwProvinces(inverseProvinceMap);
+
+	log("Converting advisors.\n");
+	printf("Converting advisors.\n");
+	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);
+	
 
 
 	// Output results
@@ -159,7 +169,8 @@ int main(int argc, char * argv[])
 	fclose(output);
 
 
-
+	log("Complete.\n");
+	printf("Complete.\n");
 	closeLog();
 	return 0;
 }

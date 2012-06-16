@@ -57,4 +57,67 @@ Revision	Log Message
 55		Lots of blocked nations
 56		Children in sorted order in family trees
 57		Primogeniture heirs
-58		Eastern Europe mapped.  All mappings (dirty) done.
+58		More character information
+59		Temporary government of tribal despotism
+60		Search up the family tree for primogeniture heirs if needed
+61		Eastern Europe mapped.  All mappings (dirty) done.
+62		Merge
+63		greece & turkey
+64		Initial stat conversion
+65		Gender laws
+66		Merge
+67		Unless Absolute Cognatic, female lines only considered after male ones
+68		Traits
+69		EU3 stats have a minimum of one
+70		Actually implement the stats floor
+71		Bastards can't be heirs
+72		Extrapolate stats for characters younger than 16
+73		Stat floors and ceilings implemented
+74		Stat floor of 0 for CK2 characters
+75		Seniority succession
+76		Added 'Lowborn' dynasty
+77		Correct lower bound for stats to 3
+78		Bonus stats go to lowest stat instead of highest
+79		Stat scaling factor doubled
+80		Feudal Elective succession
+81		Log number of CK2 baronies in each EU3 province
+82		Use forward declarations instead of header includes
+83		Initial implementation of DasGuntLord01's advisor conversion technique
+84		Don't try to get an heir of a title no-one holds (also, the save that exposed this error)
+85		No more cloned advisors
+86		Titled advisors now included
+87		Remove save incompatible with current CK2 version
+88		Added Latin_Empire1303_04_27.ck2
+89		If an advisor has no home, don't try to place them somewhere
+90		Option for advisors now in configuration file
+91		No longer count titles help by no-one as independent
+92		Lots of advisors
+93		Remove option for advisors from configuration file
+94		Improved variety of advisors
+95		Initial gavelkind implementation
+96		Restrict gavelkind heirs to valid children
+97		Rename test config file appropriately
+98		Update Gavelkind to handle no immediate heirs
+99		Turkish Succession
+100		Restore monarch conversion in ROTW (had been broken in change 48)
+101		Regnal numbers for rulers
+102		Constructors for everyone!
+103		Pass references data structures, not copies (should cause miniscule speedup)
+104		Update logging to be more helpful
+105		Verify all CK2 provinces are mapped
+106		Add missing province mappings
+107		Water provinces mapped
+108		Tech group from history files
+109		Better map spread
+110		Map ROTW water provinces
+111		A few more map fixes
+112		Heirs for ROTW nations
+113		Eliminate extra space in ROTW ruler names
+114		Correct empty dynasty name
+115		Use doParseFile()
+116		Advisors for ROTW (except the parser chokes on the history files)
+117		Updated parser files (and fixes to province mapping revealed by update)
+118		Turkish/Open Succession fixed
+119		Primogeniture succession no longer can lead to someone being their own heir
+120		Log unmapped EU3 provinces instead of crashing
+121		Regents

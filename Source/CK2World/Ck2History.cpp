@@ -1,4 +1,13 @@
 #include "CK2History.h"
+#include "..\Parsers\Object.h"
+
+
+
+CK2History::CK2History()
+{
+	when		= (date)"1.1.1";
+	holder	= NULL;
+}
 
 
 void CK2History::init(Object* obj, map<int, CK2Character*>& characters)

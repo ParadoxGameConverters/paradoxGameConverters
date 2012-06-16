@@ -3,16 +3,21 @@
 
 
 #include <vector>
-#include "..\Parsers\Object.h"
-#include "CK2Title.h"
-#include "CK2Barony.h"
+#include <map>
+using namespace std;
 
 
+
+class Object;
+class CK2Title;
+class CK2Barony;
 
 class CK2Province
 {
 	public:
+		CK2Province();
 		void						init(Object*, map<string, CK2Title*>);
+		int						getNumber();
 		vector<CK2Barony*>	getBaronies();
 	private:
 		int						number;
