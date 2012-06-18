@@ -3,6 +3,7 @@
 #include "EU3World.h"
 #include "EU3Province.h"
 #include "V2Pop.h"
+#include "V2Country.h"
 #include <sstream>
 #include <algorithm>
 
@@ -12,6 +13,7 @@ void V2Province::init(int newNumber)
 {
 	num				= newNumber;
 	name				= "";
+	owner				= "";
 	land				= false;
 	oldPopulation	= 0;
 	coastal				= false;
@@ -44,7 +46,7 @@ void V2Province::setName(string newName)
 
 void V2Province::setOwner(string newOwner)
 {
-	owner = newOwner;
+	owner		= newOwner;
 }
 
 
@@ -483,6 +485,18 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		{
 			capitalists *= 2;
 		}
+	}
+
+	// Uncivs cannot have capitalists, clerks, or craftsmen
+	if (	(oldCountry->getTechGroup() != "western") &&
+			(oldCountry->getTechGroup() != "latin") &&
+			(oldCountry->getTechGroup() != "eastern") &&
+			(oldCountry->getTechGroup() != "ottoman")
+		)
+	{
+		capitalists	= 0;
+		clerks		= 0;
+		craftsmen	= 0;
 	}
 
 	//Bill of Rights NI reduces slaves by 10%
