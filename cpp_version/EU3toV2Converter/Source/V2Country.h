@@ -29,7 +29,7 @@ class V2Country
 		void								init(string tag, string countryFile, vector<int> parties, V2World* theWorld);
 		void								initFromHistory();
 		string							getTag() const;
-		void								setSourceCountryIndex(int);
+		void								setSourceTag(string);
 		void								addState(V2State*);
 		void								setCapital(int);
 		void								setCivilized(bool);
@@ -42,7 +42,7 @@ class V2Country
 		string							getReligion();
 		void								output(FILE*);
 		void								outputUncivReforms(FILE*);
-		int								getSourceCountryIndex();
+		string							getSourceTag();
 		void								setPrestige(double);
 		void								setLeadership(double);
 		void								setArmyTech(double);
@@ -101,7 +101,7 @@ class V2Country
 		string							religion;
 		vector<int>						parties;
 		int								rulingParty;
-		int								sourceCountryIndex;
+		string							sourceTag;
 		string							countryFile;
 		double							prestige;
 		double							leadership;

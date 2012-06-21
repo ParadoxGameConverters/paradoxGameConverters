@@ -5,27 +5,7 @@
 
 
 
-EU3Province::EU3Province()
-{
-	num				= -1;
-	owner				= "";
-	//controller
-	cores.clear();
-	culture			= "";
-	religion			= "";
-	population		= -1;
-	colony			= false;
-	centerOfTrade	= false;
-	lastPossessedDate.clear();
-	ownershipHistory.clear();
-	religionHistory.clear();
-	cultureHistory.clear();
-	popRatios.clear();
-	buildings.clear();
-}
-
-
-void EU3Province::init(Object* obj) {
+EU3Province::EU3Province(Object* obj) {
 	num = atoi(obj->getKey().c_str());
 
 	vector<Object*> ownerObjs;
@@ -68,50 +48,6 @@ void EU3Province::init(Object* obj) {
 		religion = religionObj[0]->getLeaf();
 	}
 
-	checkBuilding(obj, "weapons");
-	checkBuilding(obj, "university");
-	checkBuilding(obj, "wharf");
-	checkBuilding(obj, "textile");
-	checkBuilding(obj, "fine_arts_academy");
-	checkBuilding(obj, "refinery");
-
-	checkBuilding(obj, "fort1");
-	checkBuilding(obj, "fort2");
-	checkBuilding(obj, "fort3");
-	checkBuilding(obj, "fort4");
-	checkBuilding(obj, "fort5");
-	checkBuilding(obj, "fort6");
-
-	checkBuilding(obj, "dock");
-	checkBuilding(obj, "drydock");
-	checkBuilding(obj, "shipyard");
-	checkBuilding(obj, "grand_shipyard");
-	checkBuilding(obj, "naval_arsenal");
-	checkBuilding(obj, "naval_base");
-
-	checkBuilding(obj, "temple");
-	checkBuilding(obj, "courthouse");
-	checkBuilding(obj, "spy_agency");
-	checkBuilding(obj, "town_hall");
-	checkBuilding(obj, "college");
-	checkBuilding(obj, "cathedral");
-
-	checkBuilding(obj, "armory");
-	checkBuilding(obj, "training_fields");
-	checkBuilding(obj, "barracks");
-	checkBuilding(obj, "regimental_camp");
-	checkBuilding(obj, "arsenal");
-	checkBuilding(obj, "conscription_center");
-
-	checkBuilding(obj, "constable");
-	checkBuilding(obj, "workshop");
-	checkBuilding(obj, "counting_house");
-	checkBuilding(obj, "treasury_office");
-	checkBuilding(obj, "mint");
-	checkBuilding(obj, "stock_exchange");
-
-	checkBuilding(obj, "customs_house");
-
 	colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
 	if (popObj.size() > 0)
@@ -134,6 +70,8 @@ void EU3Province::init(Object* obj) {
 			population = 0;
 		}
 	}
+
+	centerOfTrade = false;
 
 	vector<Object*> historyObj = obj->getValue("history");
 	if (historyObj.size() > 0)
@@ -195,61 +133,51 @@ void EU3Province::init(Object* obj) {
 	sort(cultureHistory.begin(), cultureHistory.end());
 	sort(religionHistory.begin(), religionHistory.end());
 
-	centerOfTrade = false;
-}
+	checkBuilding(obj, "weapons");
+	checkBuilding(obj, "university");
+	checkBuilding(obj, "wharf");
+	checkBuilding(obj, "textile");
+	checkBuilding(obj, "fine_arts_academy");
+	checkBuilding(obj, "refinery");
 
+	checkBuilding(obj, "fort1");
+	checkBuilding(obj, "fort2");
+	checkBuilding(obj, "fort3");
+	checkBuilding(obj, "fort4");
+	checkBuilding(obj, "fort5");
+	checkBuilding(obj, "fort6");
 
-void EU3Province::checkBuilding(Object* province_obj, string building)
-{
-	vector<Object*> buildingObj;
-	buildingObj = province_obj->getValue(building);
-	if ((buildingObj.size() > 0) && (buildingObj[0]->getLeaf() == "yes"))
-		buildings[building] = true;
-}
+	checkBuilding(obj, "dock");
+	checkBuilding(obj, "drydock");
+	checkBuilding(obj, "shipyard");
+	checkBuilding(obj, "grand_shipyard");
+	checkBuilding(obj, "naval_arsenal");
+	checkBuilding(obj, "naval_base");
 
+	checkBuilding(obj, "temple");
+	checkBuilding(obj, "courthouse");
+	checkBuilding(obj, "spy_agency");
+	checkBuilding(obj, "town_hall");
+	checkBuilding(obj, "college");
+	checkBuilding(obj, "cathedral");
 
-bool EU3Province::hasBuilding(string building)
-{
-	map<string, bool>::iterator itr = buildings.find(building);
-	if (itr == buildings.end())
-		return false;
-	return itr->second;
-}
+	checkBuilding(obj, "armory");
+	checkBuilding(obj, "training_fields");
+	checkBuilding(obj, "barracks");
+	checkBuilding(obj, "regimental_camp");
+	checkBuilding(obj, "arsenal");
+	checkBuilding(obj, "conscription_center");
 
+	checkBuilding(obj, "constable");
+	checkBuilding(obj, "workshop");
+	checkBuilding(obj, "counting_house");
+	checkBuilding(obj, "treasury_office");
+	checkBuilding(obj, "mint");
+	checkBuilding(obj, "stock_exchange");
 
-bool EU3Province::isCOT()
-{
-	return centerOfTrade;
-}
+	checkBuilding(obj, "customs_house");
 
-
-void EU3Province::setCOT(bool isCOT)
-{
-	centerOfTrade = isCOT;
-}
-
-
-int EU3Province::getNum()
-{
-	return num;
-}
-
-
-void EU3Province::setOwner(string newOwner)
-{
-	owner = newOwner;
-}
-
-
-string EU3Province::getOwner()
-{
-	return owner;
-}
-
-
-vector<string> EU3Province::getCores()
-{
-	return cores;
+	buildPopRatios();
 }
 
 
@@ -273,30 +201,6 @@ void EU3Province::removeCore(string tag)
 			i = cores.begin();
 		}
 	}
-}
-
-
-string EU3Province::getCulture()
-{
-	return culture;
-}
-
-
-string EU3Province::getReligion()
-{
-	return religion;
-}
-
-
-int EU3Province::getPopulation()
-{
-	return population;
-}
-
-
-bool EU3Province::isColony()
-{
-	return colony;
 }
 
 
@@ -335,31 +239,112 @@ bool EU3Province::wasPaganConquest(string ownerReligion)
 }
 
 
+bool EU3Province::hasBuilding(string building)
+{
+	map<string, bool>::iterator itr = buildings.find(building);
+	if (itr == buildings.end())
+	{
+		return false;
+	}
+
+	return itr->second;
+}
+
+
+int EU3Province::getNum()
+{
+	return num;
+}
+
+
+string EU3Province::getOwner()
+{
+	return owner;
+}
+
+
+vector<EU3Country*> EU3Province::getCores(map<string, EU3Country*> countries)
+{
+	vector<EU3Country*> coreOwners;
+	for (vector<string>::iterator i = cores.begin(); i != cores.end(); i++)
+	{
+		if (countries[*i] != NULL)	// TODO: remove this. It should be unneeded when refactoring is complete and the mappers remove all traces of removed nations
+		{
+			coreOwners.push_back(countries[*i]);
+		}
+	}
+
+	return coreOwners;
+}
+
+
+string EU3Province::getCulture()
+{
+	return culture;
+}
+
+
+string EU3Province::getReligion()
+{
+	return religion;
+}
+
+
+int EU3Province::getPopulation()
+{
+	return population;
+}
+
+
+bool EU3Province::isColony()
+{
+	return colony;
+}
+
+
+bool EU3Province::isCOT()
+{
+	return centerOfTrade;
+}
+
+
 date EU3Province::getLastPossessedDate(string Tag)
 {
 	map<string, date>::iterator itr = lastPossessedDate.find(Tag);
 	if (itr != lastPossessedDate.end())
+	{
 		return itr->second;
+	}
 	return date();
 }
 
 
-void EU3Province::decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop)
+vector<EU3PopRatio> EU3Province::getPopRatios()
 {
-	// quick out for initial state (no decay needed)
-	if (olddate == date())
-		return;
-	// quick out for same year (we do decay at year end)
-	if (olddate.year == newdate.year)
-		return;
-	// drop all non-current pops by a total of .0025 per year, divided proportionally
-	double nonCurrentRatio = (1.0 - currentPop.popRatio);
-	for (vector<EU3PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+	return popRatios;
+}
+
+
+void EU3Province::setOwner(string newOwner)
+{
+	owner = newOwner;
+}
+
+
+void EU3Province::setCOT(bool isCOT)
+{
+	centerOfTrade = isCOT;
+}
+
+
+void EU3Province::checkBuilding(Object* provinceObj, string building)
+{
+	vector<Object*> buildingObj;
+	buildingObj = provinceObj->getValue(building);
+	if ((buildingObj.size() > 0) && (buildingObj[0]->getLeaf() == "yes"))
 	{
-		itr->popRatio -= .0025 * (newdate.year - olddate.year) * itr->popRatio / nonCurrentRatio ;
+		buildings[building] = true;
 	}
-	// increase current pop by .0025 per year
-	currentPop.popRatio += .0025 * (newdate.year - olddate.year);
 }
 
 
@@ -367,9 +352,10 @@ void EU3Province::buildPopRatios()
 {
 	if (!popRatios.empty())
 		return;
+
 	// fast-forward to 1620 (200 year decay means any changes before then will be at 100%)
-	string curCulture = "";
-	string curReligion = "";
+	string curCulture		= "";
+	string curReligion	= "";
 	vector< pair<date, string> >::iterator citr = cultureHistory.begin();
 	vector< pair<date, string> >::iterator ritr = religionHistory.begin();
 	while (citr != cultureHistory.end() && citr->first.year < 1620)
@@ -392,22 +378,31 @@ void EU3Province::buildPopRatios()
 		// no starting religion; use first settlement religion for starting pop even if it's after 1620
 		curReligion = ritr->second;
 	}
+
 	// build and scale historic culture-religion pairs
 	EU3PopRatio pr;
-	pr.culture = curCulture;
-	pr.religion = curReligion;
-	pr.popRatio = 1.0;
+	pr.culture	= curCulture;
+	pr.religion	= curReligion;
+	pr.popRatio	= 1.0;
 	date cdate, rdate, lastloopdate;
 	while (citr != cultureHistory.end() || ritr != religionHistory.end())
 	{
 		if (citr == cultureHistory.end())
+		{
 			cdate = date("2000.1.1");
+		}
 		else
+		{
 			cdate = citr->first;
+		}
 		if (ritr == religionHistory.end())
+		{
 			rdate = date("2000.1.1");
+		}
 		else
+		{
 			rdate = ritr->first;
+		}
 		if (cdate < rdate)
 		{
 			decayPopRatios(lastloopdate, cdate, pr);
@@ -416,10 +411,10 @@ void EU3Province::buildPopRatios()
 			{
 				itr->popRatio /= 2.0;
 			}
-			pr.popRatio = 0.5;
-			pr.culture = citr->second;
-			curCulture = citr->second;
-			lastloopdate = cdate;
+			pr.popRatio		= 0.5;
+			pr.culture		= citr->second;
+			curCulture		= citr->second;
+			lastloopdate	= cdate;
 			++citr;
 		}
 		else if (cdate == rdate)
@@ -431,12 +426,12 @@ void EU3Province::buildPopRatios()
 			{
 				itr->popRatio /= 2.0;
 			}
-			pr.popRatio = 0.5;
-			pr.culture = citr->second;
-			pr.religion = ritr->second;
-			curCulture = citr->second;
-			curReligion = ritr->second;
-			lastloopdate = cdate;
+			pr.popRatio		= 0.5;
+			pr.culture		= citr->second;
+			pr.religion		= ritr->second;
+			curCulture		= citr->second;
+			curReligion		= ritr->second;
+			lastloopdate	= cdate;
 			++citr;
 			++ritr;
 		}
@@ -448,10 +443,10 @@ void EU3Province::buildPopRatios()
 			{
 				itr->popRatio /= 2.0;
 			}
-			pr.popRatio = 0.5;
-			pr.religion = ritr->second;
-			curReligion = ritr->second;
-			lastloopdate = rdate;
+			pr.popRatio		= 0.5;
+			pr.religion		= ritr->second;
+			curReligion		= ritr->second;
+			lastloopdate	= rdate;
 			++ritr;
 		}
 	}
@@ -460,7 +455,27 @@ void EU3Province::buildPopRatios()
 }
 
 
-vector<EU3PopRatio> EU3Province::getPopRatios()
+void EU3Province::decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop)
 {
-	return popRatios;
+	// quick out for initial state (no decay needed)
+	if (olddate == date())
+	{
+		return;
+	}
+
+	// quick out for same year (we do decay at year end)
+	if (olddate.year == newdate.year)
+	{
+		return;
+	}
+
+	// drop all non-current pops by a total of .0025 per year, divided proportionally
+	double nonCurrentRatio = (1.0 - currentPop.popRatio);
+	for (vector<EU3PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
+	{
+		itr->popRatio -= .0025 * (newdate.year - olddate.year) * itr->popRatio / nonCurrentRatio ;
+	}
+
+	// increase current pop by .0025 per year
+	currentPop.popRatio += .0025 * (newdate.year - olddate.year);
 }

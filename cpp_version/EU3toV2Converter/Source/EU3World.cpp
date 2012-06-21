@@ -29,8 +29,7 @@ void EU3World::init(Object* obj) {
 		// Is this a numeric value? If so, must be a province
 		if (atoi(key.c_str()) > 0)
 		{
-			EU3Province* province = new EU3Province;
-			province->init(leaves[i]);
+			EU3Province* province = new EU3Province(leaves[i]);
 			provinces.push_back(province);
 		}
 
@@ -43,18 +42,18 @@ void EU3World::init(Object* obj) {
 		{
 			EU3Country* country = new EU3Country;
 			country->init(leaves[i]);
-			countries.push_back(country);
+			countries.insert(make_pair(country->getTag(), country));
 		}
 	}
 
 	// add province owner info to countries
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
-		for (unsigned int j = 0; j < countries.size(); j++)
+		for (map<string, EU3Country*>::iterator j = countries.begin(); j != countries.end(); j++)
 		{
-			if (provinces[i]->getOwner() == countries[j]->getTag())
+			if (provinces[i]->getOwner() == j->second->getTag())
 			{
-				countries[j]->addProvince(provinces[i]);
+				j->second->addProvince(provinces[i]);
 				break;
 			}
 		}
@@ -63,17 +62,10 @@ void EU3World::init(Object* obj) {
 	// add province core info to countries
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
-		vector<string> cores = provinces[i]->getCores();
-		for (unsigned int j = 0; j < countries.size(); j++)
+		vector<EU3Country*> cores = provinces[i]->getCores(countries);
+		for (unsigned int j = 0; j < cores.size(); j++)
 		{
-			for (unsigned int k = 0; k < cores.size(); k++)
-			{
-				if (cores[k] == countries[j]->getTag())
-				{
-					countries[j]->addCore(provinces[i]);
-					break;
-				}
-			}
+			cores[j]->addCore(provinces[i]);
 		}
 	}
 
@@ -104,7 +96,7 @@ void EU3World::init(Object* obj) {
 }
 
 
-vector<EU3Country*> EU3World::getCountries()
+map<string, EU3Country*> EU3World::getCountries()
 {
 	return countries;
 }
@@ -112,14 +104,15 @@ vector<EU3Country*> EU3World::getCountries()
 
 EU3Country* EU3World::getCountry(string tag)
 {
-	for (unsigned int i = 0; i < countries.size(); i++)
+	map<string, EU3Country*>::iterator i = countries.find(tag);
+	if (i != countries.end())
 	{
-		if (countries[i]->getTag() == tag)
-		{
-			return countries[i];
-		}
+		return i->second;
 	}
-	return NULL;
+	else
+	{
+		return NULL;
+	}
 }
 
 
@@ -139,35 +132,16 @@ EU3Province* EU3World::getProvince(int provNum)
 // calling vector::erase in a loop is really slow.  batch removals to avoid it.
 void EU3World::removeCountries(vector<string>& tags)
 {
-	vector<EU3Country*> newCountries;
-	for (vector<EU3Country*>::iterator ci = countries.begin(); ci != countries.end(); ++ci)
+	for (vector<string>::iterator i = tags.begin(); i != tags.end(); i++)
 	{
-		bool shouldBeRemoved = false;
-		for (vector<string>::iterator ti = tags.begin(); ti != tags.end(); ++ti)
-		{
-			if ( (*ci)->getTag() == *ti)
-			{
-				shouldBeRemoved = true;
-				break;
-			}
-		}
-		if (!shouldBeRemoved)
-			newCountries.push_back(*ci);
+		countries.erase(*i);
 	}
-	countries.swap(newCountries);
 }
 
 
 void EU3World::removeCountry(string tag)
 {
-	for (vector<EU3Country*>::iterator i = countries.begin(); i < countries.end(); i++)
-	{
-		if (tag == (*i)->getTag())
-		{
-			countries.erase(i);
-			break;
-		}
-	}
+	countries.erase(tag);
 }
 
 
@@ -177,11 +151,11 @@ EU3Diplomacy* EU3World::getDiplomacy()
 }
 
 
-void EU3World::resolveRegimentTypes(const RegimentTypeMap& map)
+void EU3World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
 {
-	for (vector<EU3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	for (map<string, EU3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		(*itr)->resolveRegimentTypes(map);
+		itr->second->resolveRegimentTypes(rtMap);
 	}
 }
 

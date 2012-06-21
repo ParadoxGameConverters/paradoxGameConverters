@@ -9,6 +9,7 @@
 using namespace std;
 
 class Object;
+class EU3Country;
 
 
 
@@ -21,29 +22,33 @@ struct EU3PopRatio {
 
 class EU3Province {
 	public:
-		EU3Province();
-		void						init(Object* obj);
-		int						getNum();
-		void						setOwner(string);
-		string					getOwner();
-		vector<string>			getCores();
+		EU3Province(Object* obj);
+
 		void						addCore(string);
 		void						removeCore(string);
+		bool						wasColonised();
+		bool						wasPaganConquest(string ownerReligion);
+		bool						hasBuilding(string building);
+
+		int						getNum();
+		string					getOwner();
+		vector<EU3Country*>	getCores(map<string, EU3Country*>);
 		string					getCulture();
 		string					getReligion();
 		int						getPopulation();
 		bool						isColony();
-		date						getLastPossessedDate(string Tag);
-		bool						wasColonised();
-		bool						wasPaganConquest(string ownerReligion);
-		void						buildPopRatios();
-		vector<EU3PopRatio>	getPopRatios();
-		bool						hasBuilding(string building);
 		bool						isCOT();
+		date						getLastPossessedDate(string Tag);
+		vector<EU3PopRatio>	getPopRatios();
+
+		void						setOwner(string);
 		void						setCOT(bool isCOT);
+
 	private:
-		void									decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
-		void									checkBuilding(Object* provinceObj, string building);
+		void	checkBuilding(Object* provinceObj, string building);
+		void	buildPopRatios();
+		void	decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
+
 		int									num;
 		string								owner;
 		//controller
@@ -53,8 +58,8 @@ class EU3Province {
 		int									population;
 		bool									colony;
 		bool									centerOfTrade;
-		map<string, date>					lastPossessedDate;
 		vector< pair<date, string> >	ownershipHistory;
+		map<string, date>					lastPossessedDate;
 		vector< pair<date, string> >	religionHistory;
 		vector< pair<date, string> >	cultureHistory;
 		vector<EU3PopRatio>				popRatios;

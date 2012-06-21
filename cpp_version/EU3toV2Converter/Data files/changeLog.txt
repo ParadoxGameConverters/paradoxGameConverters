@@ -385,3 +385,4 @@ Revision	Version Updated		Log Message
 443		C++			Use forward declarations instead of #includes in V2World
 444		C++			Update data files for new countries in 2.31
 447		C++			No capitalists, clerks, or craftsmen in unciv nations
+448		C++			Refactor EU3 Province

@@ -45,9 +45,6 @@
     <ClCompile Include="Source\EU3Relations.cpp">
       <Filter>EU3 World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EU3toV2Converter.cpp">
-      <Filter>EU3 World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EU3World.cpp">
       <Filter>EU3 World</Filter>
     </ClCompile>
@@ -119,6 +116,9 @@
     </ClCompile>
     <ClCompile Include="Source\V2Province.cpp">
       <Filter>V2 World</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\EU3toV2Converter.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

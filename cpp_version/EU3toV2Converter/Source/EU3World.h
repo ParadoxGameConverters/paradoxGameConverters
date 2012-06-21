@@ -25,21 +25,22 @@ enum WorldType
 class EU3World {
 	public:
 		EU3World();
-		void						init(Object* obj);
-		vector<EU3Country*>	getCountries();
-		EU3Country*				getCountry(string);
-		EU3Province*			getProvince(int provNum);
-		void						removeCountry(string tag);
-		void						removeCountries(vector<string>& tags);
-		EU3Diplomacy*			getDiplomacy();
-		void						resolveRegimentTypes(const RegimentTypeMap& map);
-		WorldType				getWorldType();
-		void						checkAllProvincesMapped(provinceMapping provinceMap);
+		void								init(Object* obj);
+		map<string, EU3Country*>	getCountries();
+		EU3Country*						getCountry(string);
+		EU3Province*					getProvince(int provNum);
+		void								removeCountry(string tag);
+		void								removeCountries(vector<string>& tags);
+		EU3Diplomacy*					getDiplomacy();
+		void								resolveRegimentTypes(const RegimentTypeMap& map);
+		WorldType						getWorldType();
+		void								checkAllProvincesMapped(provinceMapping provinceMap);
 	private:
-		WorldType				cachedWorldType;
-		vector<EU3Province*>	provinces;
-		vector<EU3Country*>	countries;
-		EU3Diplomacy*			diplomacy;
+		WorldType						cachedWorldType;
+		vector<EU3Province*>			provinces;
+		map<string, EU3Country*>	countries;
+		//vector<EU3Country*>	countries;
+		EU3Diplomacy*					diplomacy;
 };
 
 

@@ -66,7 +66,7 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	reforms = new V2Reforms;
 		
 
-	sourceCountryIndex = -1;
+	sourceTag = "";
 
 	upperHouseReactionary	= 0.333;
 	upperHouseConservative	= 0.333;
@@ -153,9 +153,9 @@ void V2Country::initFromHistory()
 }
 
 
-void V2Country::setSourceCountryIndex(int oldCountryIndex)
+void V2Country::setSourceTag(string oldTag)
 {
-	sourceCountryIndex	= oldCountryIndex;
+	sourceTag	= oldTag;
 }
 
 
@@ -462,9 +462,9 @@ void V2Country::outputUncivReforms(FILE* output)
 }
 
 
-int V2Country::getSourceCountryIndex()
+string V2Country::getSourceTag()
 {
-	return sourceCountryIndex;
+	return sourceTag;
 }
 
 
@@ -1741,7 +1741,7 @@ void V2Country::setupPops(EU3World& sourceWorld)
 	if (states.size() < 1) // skip entirely for empty nations
 		return;
 
-	EU3Country* oldCountry = sourceWorld.getCountries()[sourceCountryIndex];
+	EU3Country* oldCountry = sourceWorld.getCountries()[sourceTag];
 
 	// calculate NATIONAL con and mil modifiers (province modifiers are done in V2Province::setPopConMil)
 	double con = 0.0;
