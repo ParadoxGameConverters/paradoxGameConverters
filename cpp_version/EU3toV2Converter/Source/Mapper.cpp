@@ -263,13 +263,9 @@ void uniteJapan(EU3World& world)
 	{
 		return;
 	}
-	vector<string> japanFlags = japan->second->getFlags();
-	for (unsigned int i = 0; i < japanFlags.size(); i++)
+	if( japan->second->hasFlag("united_daimyos_of_japan") )
 	{
-		if (japanFlags[i] == "united_daimyos_of_japan")
-		{
-			return;
-		}
+		return;
 	}
 
 	vector<map<string, EU3Country*>::iterator> daimyos;

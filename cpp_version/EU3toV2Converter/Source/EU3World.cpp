@@ -40,8 +40,7 @@ void EU3World::init(Object* obj) {
 					(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z')
 				  )
 		{
-			EU3Country* country = new EU3Country;
-			country->init(leaves[i]);
+			EU3Country* country = new EU3Country(leaves[i]);
 			countries.insert(make_pair(country->getTag(), country));
 		}
 	}

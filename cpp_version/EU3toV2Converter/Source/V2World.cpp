@@ -560,7 +560,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					}
 					newCountry->sortRelations(outputOrder);
 
-					newCountry->setMoney(MONEYFACTOR * i->second->inflationAdjust(i->second->getTreasury()));
+					newCountry->setMoney(MONEYFACTOR * i->second->getTreasury());
 					newCountry->setLastBankrupt(i->second->getLastBankrupt());
 
 					vector<EU3Loan*> srcLoans = i->second->getLoans();
@@ -600,15 +600,39 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 					{
 						literacy += 0.05;
 					}
-					vector<string> ideas = i->second->getNationalIdeas();
-					for (unsigned int k = 0; k < ideas.size(); k++)
+					if ( i->second->hasNationalIdea("bureaucracy") )
 					{
-						if ( (ideas[k] == "bureaucracy") || (ideas[k] == "liberty_egalite_fraternity") || (ideas[k] == "church_attendance_duty") || (ideas[k] == "scientific_revolution") )
-						{
 							literacy += 0.04;
-						}
 					}
-					if ( i->second->hasModifier("the_school_establishment_act") || i->second->hasModifier("sunday_schools") || i->second->hasModifier("the_education_act") || i->second->hasModifier("monastic_education_system") || i->second->hasModifier("western_embassy_mission") )
+					if ( i->second->hasNationalIdea("liberty_egalite_fraternity") )
+					{
+						literacy += 0.04;
+					}
+					if ( i->second->hasNationalIdea("church_attendance_duty") )
+					{
+						literacy += 0.04;
+					}
+					if ( i->second->hasNationalIdea("scientific_revolution") )
+					{
+						literacy += 0.04;
+					}
+					if ( i->second->hasModifier("the_school_establishment_act") )
+					{
+						literacy += 0.04;
+					}
+					if ( i->second->hasModifier("sunday_schools") )
+					{
+						literacy += 0.04;
+					}
+					if ( i->second->hasModifier("the_education_act") )
+					{
+						literacy += 0.04;
+					}
+					if ( i->second->hasModifier("monastic_education_system") )
+					{
+						literacy += 0.04;
+					}
+					if ( i->second->hasModifier("western_embassy_mission") )
 					{
 						literacy += 0.04;
 					}

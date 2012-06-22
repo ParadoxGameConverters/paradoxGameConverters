@@ -1577,88 +1577,78 @@ void V2Country::setNationalIdea(EU3Country* srcCountry, int& libertyLeft, int& e
 	orderScore += srcCountry->getOffensiveDefensive();
 	orderScore += srcCountry->getInnovativeNarrowminded();
 	orderScore += srcCountry->getQualityQuantity();
-	vector<string> nationalIdeas = srcCountry->getNationalIdeas();
-	for (unsigned int i = 0; i < nationalIdeas.size(); i++)
+	if ( srcCountry->hasNationalIdea("deus_vult") )
 	{
-		if (nationalIdeas[i] == "deus_vult")
-		{
-			orderScore += 2;
-		}
-		if (nationalIdeas[i] == "church_attendance_duty")
-		{
-			orderScore += 2;
-		}
-		if (nationalIdeas[i] == "divine_supremacy")
-		{
-			orderScore += 2;
-		}
-		if (nationalIdeas[i] == "national_conscripts")
-		{
-			orderScore += 2;
-		}
-		if (nationalIdeas[i] == "press_gangs")
-		{
-			orderScore += 1;
-		}
-		if (nationalIdeas[i] == "military_drill")
-		{
-			orderScore += 1;
-		}
-		if (nationalIdeas[i] == "bureaucracy")
-		{
-			orderScore += 1;
-		}
+		orderScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("church_attendance_duty") )
+	{
+		orderScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("divine_supremacy") )
+	{
+		orderScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("national_conscripts") )
+	{
+		orderScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("press_gangs") )
+	{
+		orderScore += 1;
+	}
+	if ( srcCountry->hasNationalIdea("military_drill") )
+	{
+		orderScore += 1;
+	}
+	if ( srcCountry->hasNationalIdea("bureaucracy") )
+	{
+		orderScore += 1;
 	}
 
 	int libertyScore = 0;
 	libertyScore += srcCountry->getCentralizationDecentralization();
 	libertyScore += srcCountry->getSerfdomFreesubjects();
 	libertyScore += srcCountry->getMercantilismFreetrade();
-	for (unsigned int i = 0; i < nationalIdeas.size(); i++)
+	if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
 	{
-		if (nationalIdeas[i] == "liberty_egalite_fraternity")
-		{
-			libertyScore += 4;
-		}
-		if (nationalIdeas[i] == "smithian_economics")
-		{
-			libertyScore += 2;
-		}
-		if (nationalIdeas[i] == "bill_of_rights")
-		{
-			libertyScore += 2;
-		}
-		if (nationalIdeas[i] == "scientific_revolution")
-		{
-			libertyScore += 1;
-		}
-		if (nationalIdeas[i] == "ecumenism")
-		{
-			libertyScore += 1;
-		}
+		libertyScore += 4;
+	}
+	if ( srcCountry->hasNationalIdea("smithian_economics") )
+	{
+		libertyScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("bill_of_rights") )
+	{
+		libertyScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("scientific_revolution") )
+	{
+		libertyScore += 1;
+	}
+	if ( srcCountry->hasNationalIdea("ecumenism") )
+	{
+		libertyScore += 1;
 	}
 
 	int equalityScore = 0;
 	equalityScore += srcCountry->getAristocracyPlutocracy();
 	equalityScore += srcCountry->getSerfdomFreesubjects();
-	for (unsigned int i = 0; i < nationalIdeas.size(); i++)
+	if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
 	{
-		if (nationalIdeas[i] == "liberty_egalite_fraternity")
-		{
-			equalityScore += 4;
-		}
-		if (nationalIdeas[i] == "humanist_tolerance")
-		{
-			equalityScore += 2;
-		}
-		if (nationalIdeas[i] == "bill_of_rights")
-		{
-			equalityScore += 2;
-		}
-		if (nationalIdeas[i] == "ecumenism")
-		{
-			equalityScore += 1;
-		}
+		equalityScore += 4;
+	}
+	if ( srcCountry->hasNationalIdea("humanist_tolerance") )
+	{
+		equalityScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("bill_of_rights") )
+	{
+		equalityScore += 2;
+	}
+	if ( srcCountry->hasNationalIdea("ecumenism") )
+	{
+		equalityScore += 1;
 	}
 
 	if ( (equalityScore > orderScore) && (equalityScore >= libertyScore) && (equalityLeft > 0) )

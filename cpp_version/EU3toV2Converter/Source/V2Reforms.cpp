@@ -578,27 +578,23 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 
 void V2Reforms::flagEffects(EU3Country* srcCountry)
 {
-	vector<string> flags = srcCountry->getFlags();
-	for(size_t i = 0; i < flags.size(); i++)
+	if ( srcCountry->hasFlag("") )
 	{
-		if (flags[i] == "")
-		{
-			slavery							+= 0;
-			vote_franchise					+= 0;
-			upper_house_composition		+= 0;
-			voting_system					+= 0;
-			public_meetings				+= 0;
-			press_rights					+= 0;
-			trade_unions					+= 0;
-			political_parties				+= 0;
-			wage_reforms					+= 0;
-			work_hours						+= 0;
-			safety_regulations			+= 0;
-			unemployment_subsidies		+= 0;
-			pensions							+= 0;
-			health_care						+= 0;
-			school_reforms					+= 0;
-		}
+		slavery							+= 0;
+		vote_franchise					+= 0;
+		upper_house_composition		+= 0;
+		voting_system					+= 0;
+		public_meetings				+= 0;
+		press_rights					+= 0;
+		trade_unions					+= 0;
+		political_parties				+= 0;
+		wage_reforms					+= 0;
+		work_hours						+= 0;
+		safety_regulations			+= 0;
+		unemployment_subsidies		+= 0;
+		pensions							+= 0;
+		health_care						+= 0;
+		school_reforms					+= 0;
 	}
 }
 

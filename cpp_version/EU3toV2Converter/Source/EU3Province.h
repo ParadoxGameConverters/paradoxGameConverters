@@ -30,17 +30,18 @@ class EU3Province {
 		bool						wasPaganConquest(string ownerReligion);
 		bool						hasBuilding(string building);
 
-		int						getNum() { return num; };
-		string					getOwner() { return owner; };
 		vector<EU3Country*>	getCores(map<string, EU3Country*> countries);
-		int						getPopulation() { return population; };
-		bool						isColony() { return colony; };
-		bool						isCOT() { return centerOfTrade; };
 		date						getLastPossessedDate(string tag);
-		vector<EU3PopRatio>	getPopRatios() { return popRatios; };
 
-		void						setOwner(string newOwner) { owner = newOwner; };
-		void						setCOT(bool isCOT) { centerOfTrade = isCOT; };
+		int						getNum()				const { return num; };
+		string					getOwner()			const { return owner; };
+		int						getPopulation()	const { return population; };
+		bool						isColony()			const { return colony; };
+		bool						isCOT()				const { return centerOfTrade; };
+		vector<EU3PopRatio>	getPopRatios()		const { return popRatios; };
+
+		void						setOwner(string newOwner)	{ owner = newOwner; };
+		void						setCOT(bool isCOT)			{ centerOfTrade = isCOT; };
 
 	private:
 		void	checkBuilding(Object* provinceObj, string building);

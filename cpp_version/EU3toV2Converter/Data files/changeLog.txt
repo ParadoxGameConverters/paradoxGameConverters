@@ -390,3 +390,4 @@ Revision	Version Updated		Log Message
 450		C++			Finish refactoring EU3 Province
 451		C++			Refactor a bunch of EU3 classes
 452		C++			Formatting of refactored classes
+453		C++			Refactor EU3Country
