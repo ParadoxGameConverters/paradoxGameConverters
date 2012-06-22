@@ -11,30 +11,45 @@ EU3Leader::EU3Leader(Object *obj)
 	{
 		name = subObj[0]->getLeaf();
 	}
-	subObj = obj->getValue("type");
-	if (subObj.size() > 0)
+	else
 	{
-		type = subObj[0]->getLeaf();
+		name = "";
 	}
 	subObj = obj->getValue("manuever");
 	if (subObj.size() > 0)
 	{
 		manuever = atoi(subObj[0]->getLeaf().c_str());
 	}
+	else
+	{
+		manuever = 0;
+	}
 	subObj = obj->getValue("fire");
 	if (subObj.size() > 0)
 	{
 		fire = atoi(subObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		fire = 0;
 	}
 	subObj = obj->getValue("shock");
 	if (subObj.size() > 0)
 	{
 		shock = atoi(subObj[0]->getLeaf().c_str());
 	}
+	else
+	{
+		shock = 0;
+	}
 	subObj = obj->getValue("siege");
 	if (subObj.size() > 0)
 	{
 		siege = atoi(subObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		siege = 0;
 	}
 	subObj = obj->getValue("id");
 	if (subObj.size() > 0)
@@ -42,10 +57,27 @@ EU3Leader::EU3Leader(Object *obj)
 		subObj = subObj[0]->getValue("id");
 		id = atoi(subObj[0]->getLeaf().c_str());
 	}
+	else
+	{
+		id = 0;
+	}
+	subObj = obj->getValue("type");
+	if (subObj.size() > 0)
+	{
+		type = subObj[0]->getLeaf();
+	}
+	else
+	{
+		type = "";
+	}
 	subObj = obj->getValue("activation");
 	if (subObj.size() > 0)
 	{
 		activationDate = date(subObj[0]->getLeaf());
+	}
+	else
+	{
+		activationDate = date();
 	}
 }
 

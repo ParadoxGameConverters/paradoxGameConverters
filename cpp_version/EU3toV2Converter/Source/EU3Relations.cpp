@@ -31,10 +31,18 @@ EU3Relations::EU3Relations(Object* obj) {
 	{
 		last_send_diplomat = date(lastSendObj[0]);
 	}
+	else
+	{
+		last_send_diplomat = date();
+	}
 
 	vector<Object*> lastWarObj =  obj->getValue("last_war");
 	if (lastWarObj.size() > 0)
 	{
 		last_war = date(lastWarObj[0]);
+	}
+	else
+	{
+		last_war = date();
 	}
 }

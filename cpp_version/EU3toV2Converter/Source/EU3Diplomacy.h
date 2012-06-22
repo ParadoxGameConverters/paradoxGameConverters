@@ -12,7 +12,6 @@ class Object;
 
 struct EU3Agreement
 {
-	EU3Agreement();
 	EU3Agreement(Object* obj);
 
 	string	type;

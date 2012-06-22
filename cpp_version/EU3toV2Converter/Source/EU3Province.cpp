@@ -19,6 +19,7 @@ EU3Province::EU3Province(Object* obj) {
 		owner = ownerObjs[0]->getLeaf();
 	}
 
+	cores.clear();
 	vector<Object*> coreObjs;
 	coreObjs = obj->getValue("core");
 	for (unsigned int i = 0; i < coreObjs.size(); i++)
@@ -51,6 +52,10 @@ EU3Province::EU3Province(Object* obj) {
 
 	centerOfTrade = false;
 
+	ownershipHistory.clear();
+	lastPossessedDate.clear();
+	religionHistory.clear();
+	cultureHistory.clear();
 	vector<Object*> historyObj = obj->getValue("history");
 	if (historyObj.size() > 0)
 	{
@@ -106,11 +111,13 @@ EU3Province::EU3Province(Object* obj) {
 			}
 		}
 	}
-
 	sort(ownershipHistory.begin(), ownershipHistory.end());
 	sort(cultureHistory.begin(), cultureHistory.end());
 	sort(religionHistory.begin(), religionHistory.end());
 
+	popRatios.clear();
+
+	buildings.clear();
 	checkBuilding(obj, "weapons");
 	checkBuilding(obj, "university");
 	checkBuilding(obj, "wharf");
@@ -229,18 +236,6 @@ bool EU3Province::hasBuilding(string building)
 }
 
 
-int EU3Province::getNum()
-{
-	return num;
-}
-
-
-string EU3Province::getOwner()
-{
-	return owner;
-}
-
-
 vector<EU3Country*> EU3Province::getCores(map<string, EU3Country*> countries)
 {
 	vector<EU3Country*> coreOwners;
@@ -256,24 +251,6 @@ vector<EU3Country*> EU3Province::getCores(map<string, EU3Country*> countries)
 }
 
 
-int EU3Province::getPopulation()
-{
-	return population;
-}
-
-
-bool EU3Province::isColony()
-{
-	return colony;
-}
-
-
-bool EU3Province::isCOT()
-{
-	return centerOfTrade;
-}
-
-
 date EU3Province::getLastPossessedDate(string tag)
 {
 	map<string, date>::iterator itr = lastPossessedDate.find(tag);
@@ -282,24 +259,6 @@ date EU3Province::getLastPossessedDate(string tag)
 		return itr->second;
 	}
 	return date();
-}
-
-
-vector<EU3PopRatio> EU3Province::getPopRatios()
-{
-	return popRatios;
-}
-
-
-void EU3Province::setOwner(string newOwner)
-{
-	owner = newOwner;
-}
-
-
-void EU3Province::setCOT(bool isCOT)
-{
-	centerOfTrade = isCOT;
 }
 
 

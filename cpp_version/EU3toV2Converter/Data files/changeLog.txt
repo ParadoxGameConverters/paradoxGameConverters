@@ -389,3 +389,4 @@ Revision	Version Updated		Log Message
 449		C++			Change removal of dead landless nations to use pop ratios instead of majority culture
 450		C++			Finish refactoring EU3 Province
 451		C++			Refactor a bunch of EU3 classes
+452		C++			Formatting of refactored classes

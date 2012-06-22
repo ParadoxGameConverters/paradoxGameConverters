@@ -11,6 +11,10 @@ EU3Regiment::EU3Regiment(Object *obj)
 	{
 		name = objName[0]->getLeaf();
 	}
+	else
+	{
+		name = "";
+	}
 
 	std::vector<Object*> objType = obj->getValue("type");
 	if (objType.size() > 0)
@@ -20,6 +24,7 @@ EU3Regiment::EU3Regiment(Object *obj)
 	else
 	{
 		log("Error: Regiment or Ship \"%s\" has no type.\n", name.c_str());
+		type = "";
 	}
 
 	std::vector<Object*> objHome = obj->getValue("home");
@@ -42,6 +47,9 @@ EU3Regiment::EU3Regiment(Object *obj)
 	{
 		strength = 0.0;
 	}
+
+	category			= num_reg_categories;
+	type_strength	= 0;
 }
 
 
@@ -78,6 +86,22 @@ EU3Army::EU3Army(Object *obj)
 		at_sea = 0;
 	}
 
+	regiments.clear();
+	std::vector<Object*> objRegs = obj->getValue("regiment");
+	for (vector<Object*>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
+	{
+		EU3Regiment* reg = new EU3Regiment(*itr);
+		regiments.push_back(reg);
+	}
+	std::vector<Object*> objShips = obj->getValue("ship");
+	for (vector<Object*>::iterator itr = objShips.begin(); itr != objShips.end(); ++itr)
+	{
+		EU3Regiment* reg = new EU3Regiment(*itr);
+		regiments.push_back(reg);
+	}
+
+	blocked_homes.clear();
+
 	std::vector<Object*> objLeader = obj->getValue("leader");
 	if (objLeader.size() > 0)
 	{
@@ -87,20 +111,6 @@ EU3Army::EU3Army(Object *obj)
 	else
 	{
 		leaderID = 0;
-	}
-
-	std::vector<Object*> objRegs = obj->getValue("regiment");
-	for (vector<Object*>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
-	{
-		EU3Regiment* reg = new EU3Regiment(*itr);
-		regiments.push_back(reg);
-	}
-
-	std::vector<Object*> objShips = obj->getValue("ship");
-	for (vector<Object*>::iterator itr = objShips.begin(); itr != objShips.end(); ++itr)
-	{
-		EU3Regiment* reg = new EU3Regiment(*itr);
-		regiments.push_back(reg);
 	}
 }
 
