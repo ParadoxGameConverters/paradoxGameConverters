@@ -24,19 +24,19 @@ class EU3Province {
 	public:
 		EU3Province(Object* obj);
 
-		void						addCore(string);
-		void						removeCore(string);
+		void						addCore(string tag);
+		void						removeCore(string tag);
 		bool						wasColonised();
 		bool						wasPaganConquest(string ownerReligion);
 		bool						hasBuilding(string building);
 
 		int						getNum();
 		string					getOwner();
-		vector<EU3Country*>	getCores(map<string, EU3Country*>);
+		vector<EU3Country*>	getCores(map<string, EU3Country*> countries);
 		int						getPopulation();
 		bool						isColony();
 		bool						isCOT();
-		date						getLastPossessedDate(string Tag);
+		date						getLastPossessedDate(string tag);
 		vector<EU3PopRatio>	getPopRatios();
 
 		void						setOwner(string);
@@ -51,7 +51,6 @@ class EU3Province {
 		string								owner;
 		//controller
 		vector<string>						cores;
-		//string								religion;
 		int									population;
 		bool									colony;
 		bool									centerOfTrade;

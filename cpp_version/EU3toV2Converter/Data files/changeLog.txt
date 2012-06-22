@@ -387,3 +387,4 @@ Revision	Version Updated		Log Message
 447		C++			No capitalists, clerks, or craftsmen in unciv nations
 448		C++			Refactor EU3 Province
 449		C++			Change removal of dead landless nations to use pop ratios instead of majority culture
+450		C++			Finish refactoring EU3 Province
