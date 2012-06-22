@@ -1120,7 +1120,7 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 			V2Agreement v2a;
 			v2a.country1 = newCountry1->second;
 			v2a.country2 = newCountry2->second;
-			v2a.start_date = itr->start_date;
+			v2a.start_date = itr->startDate;
 			v2a.type = itr->type;
 			diplomacy.addAgreement(v2a);
 		}

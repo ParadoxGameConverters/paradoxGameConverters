@@ -12,8 +12,7 @@ class Object;
 class EU3Loan
 {
 	public:
-		EU3Loan();
-		void		init(Object* obj);
+		EU3Loan(Object* obj);
 		string	getLender() const { return lender; };
 		double	getInterest() const { return interest; };
 		double	getAmount() const { return amount; };

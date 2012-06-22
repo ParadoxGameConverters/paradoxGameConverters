@@ -70,10 +70,13 @@ void EU3World::init(Object* obj) {
 	}
 
 	vector<Object*> diploObj = obj->getValue("diplomacy");
-	diplomacy = new EU3Diplomacy;
 	if (diploObj.size() > 0)
 	{
-		diplomacy->init(diploObj[0]);
+		diplomacy = new EU3Diplomacy(diploObj[0]);
+	}
+	else
+	{
+		diplomacy = new EU3Diplomacy;
 	}
 
 	vector<Object*> tradeObj = obj->getValue("trade");

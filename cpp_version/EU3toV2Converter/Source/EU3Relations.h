@@ -13,8 +13,7 @@ class Object;
 class EU3Relations
 {
 	public:
-		EU3Relations();
-		void		init(Object* obj);
+		EU3Relations(Object* obj);
 		string	getCountry() const { return tag; };
 		int		getRelations() const { return value; };
 		bool		hasMilitaryAccess() const { return military_access; };

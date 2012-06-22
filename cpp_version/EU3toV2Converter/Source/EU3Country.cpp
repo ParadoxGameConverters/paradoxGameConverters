@@ -269,8 +269,7 @@ void EU3Country::init(Object* obj)
 				vector<Object*> leaderObjs = (*itr)->getValue("leader");
 				for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
 				{
-					EU3Leader* leader = new EU3Leader;
-					leader->init(*litr);
+					EU3Leader* leader = new EU3Leader(*litr);
 					leaders.push_back(leader);
 				}
 			}
@@ -309,8 +308,7 @@ void EU3Country::init(Object* obj)
 			(key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') && 
 			(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z'))
 		{
-			EU3Relations* rel = new EU3Relations;
-			rel->init(leaves[i]);
+			EU3Relations* rel = new EU3Relations(leaves[i]);
 			relations.push_back(rel);
 		}
 	}
@@ -318,15 +316,13 @@ void EU3Country::init(Object* obj)
 	vector<Object*> armyObj = obj->getValue("army");
 	for (std::vector<Object*>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
 	{
-		EU3Army* army = new EU3Army;
-		army->init(*itr);
+		EU3Army* army = new EU3Army(*itr);
 		armies.push_back(army);
 	}
 	vector<Object*> navyObj = obj->getValue("navy");
 	for (std::vector<Object*>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
 	{
-		EU3Army* navy = new EU3Army;
-		navy->init(*itr);
+		EU3Army* navy = new EU3Army(*itr);
 		armies.push_back(navy);
 	}
 
@@ -599,8 +595,7 @@ void EU3Country::init(Object* obj)
 	moneyObj = obj->getValue("loan");
 	for (vector<Object*>::iterator itr = moneyObj.begin(); itr != moneyObj.end(); ++itr)
 	{
-		EU3Loan* loan = new EU3Loan;
-		loan->init(*itr);
+		EU3Loan* loan = new EU3Loan(*itr);
 		loans.push_back(loan);
 	}
 	vector<Object*> diploObj = obj->getValue("diplomats");

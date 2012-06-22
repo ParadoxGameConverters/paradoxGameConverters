@@ -4,18 +4,7 @@
 
 
 
-EU3Regiment::EU3Regiment()
-{
-	name				= "";
-	type				= "";
-	home				= -1;
-	strength			= -1;
-	category			= num_reg_categories;
-	type_strength	= -1;
-}
-
-
-void EU3Regiment::init(Object *obj)
+EU3Regiment::EU3Regiment(Object *obj)
 {
 	std::vector<Object*> objName = obj->getValue("name");
 	if (objName.size() > 0)
@@ -56,18 +45,7 @@ void EU3Regiment::init(Object *obj)
 }
 
 
-EU3Army::EU3Army()
-{
-	name		= "";
-	location	= -1;
-	at_sea	= -1;
-	regiments.clear();
-	blocked_homes.clear();
-	leaderID	= -1;
-}
-
-
-void EU3Army::init(Object *obj)
+EU3Army::EU3Army(Object *obj)
 {
 	std::vector<Object*> objName = obj->getValue("name");
 	if (objName.size() > 0)
@@ -114,16 +92,14 @@ void EU3Army::init(Object *obj)
 	std::vector<Object*> objRegs = obj->getValue("regiment");
 	for (vector<Object*>::iterator itr = objRegs.begin(); itr != objRegs.end(); ++itr)
 	{
-		EU3Regiment reg;
-		reg.init(*itr);
+		EU3Regiment* reg = new EU3Regiment(*itr);
 		regiments.push_back(reg);
 	}
 
 	std::vector<Object*> objShips = obj->getValue("ship");
 	for (vector<Object*>::iterator itr = objShips.begin(); itr != objShips.end(); ++itr)
 	{
-		EU3Regiment reg;
-		reg.init(*itr);
+		EU3Regiment* reg = new EU3Regiment(*itr);
 		regiments.push_back(reg);
 	}
 }
@@ -131,17 +107,17 @@ void EU3Army::init(Object *obj)
 
 void EU3Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 {
-	for (vector<EU3Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<EU3Regiment*>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
-		RegimentTypeMap::const_iterator ritr = regimentTypeMap.find(itr->getType());
+		RegimentTypeMap::const_iterator ritr = regimentTypeMap.find( (*itr)->getType() );
 		if (ritr != regimentTypeMap.end())
 		{
-			itr->setCategory(ritr->second.first);
-			itr->setTypeStrength(ritr->second.second);
+			(*itr)->setCategory(ritr->second.first);
+			(*itr)->setTypeStrength(ritr->second.second);
 		}
 		else
 		{
-			log("Unknown unit type %s for regiment \"%s\"\n", itr->getType().c_str(), itr->getName().c_str());
+			log("Unknown unit type %s for regiment \"%s\"\n", (*itr)->getType().c_str(), (*itr)->getName().c_str());
 		}
 	}
 }
@@ -151,11 +127,11 @@ double EU3Army::getAverageStrength(RegimentCategory category)
 {
 	int count = 0;
 	double total = 0.0;
-	for (vector<EU3Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<EU3Regiment*>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
-		if (itr->getCategory() == category)
+		if ( (*itr)->getCategory() == category )
 		{
-			total += itr->getStrength();
+			total += (*itr)->getStrength();
 			++count;
 		}
 	}
@@ -166,11 +142,11 @@ double EU3Army::getAverageStrength(RegimentCategory category)
 int EU3Army::getTotalTypeStrength(RegimentCategory category)
 {
 	int total = 0;
-	for (vector<EU3Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<EU3Regiment*>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
-		if (itr->getCategory() == category)
+		if ( (*itr)->getCategory() == category )
 		{
-			total += itr->getTypeStrength();
+			total += (*itr)->getTypeStrength();
 		}
 	}
 	return total;
@@ -180,11 +156,11 @@ int EU3Army::getTotalTypeStrength(RegimentCategory category)
 int EU3Army::getProbabilisticHomeProvince(RegimentCategory category)
 {
 	vector<int> homeProvinces;
-	for (vector<EU3Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<EU3Regiment*>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
-		if (itr->getCategory() == category)
+		if ( (*itr)->getCategory() == category )
 		{
-			int home = itr->getHome();
+			int home = (*itr)->getHome();
 			bool blocked = false;
 			for (vector<int>::iterator bitr = blocked_homes.begin(); bitr != blocked_homes.end(); ++bitr)
 			{

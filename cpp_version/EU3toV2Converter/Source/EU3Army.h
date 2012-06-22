@@ -45,15 +45,16 @@ typedef map<string, pair<RegimentCategory, int> > RegimentTypeMap;
 class EU3Regiment // also Ship
 {
 	public:
-		EU3Regiment();
-		void						init(Object* obj);
+		EU3Regiment(Object* obj);
+
+		void						setCategory(RegimentCategory cat) { category = cat; }
+		void						setTypeStrength(int typeStrength) { type_strength = typeStrength; }
+
 		string					getName() const { return name; }
 		string					getType() const { return type; }
 		int						getHome() const { return home; }
 		double					getStrength() const { return strength; }
-		void						setCategory(RegimentCategory cat) { category = cat; }
 		RegimentCategory		getCategory() const { return category; }
-		void						setTypeStrength(int typeStrength) { type_strength = typeStrength; }
 		int						getTypeStrength() const { return type_strength; }
 	private:
 		string					name;
@@ -68,23 +69,22 @@ class EU3Regiment // also Ship
 class EU3Army // also Navy
 {
 	public:
-		EU3Army();
-		void						init(Object* obj);
-		string					getName() const { return name; }
-		int						getLocation() const { return location; }
-		vector<EU3Regiment>	getRegiments() { return regiments; }
+		EU3Army(Object* obj);
 		void						resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap);
 		double					getAverageStrength(RegimentCategory category);
 		int						getTotalTypeStrength(RegimentCategory category);
 		int						getProbabilisticHomeProvince(RegimentCategory category);
 		void						blockHomeProvince(int home);
+
+		string					getName() const { return name; }
+		int						getLocation() const { return location; }
 		int						getAtSea() const { return at_sea; }
 		int						getLeaderID() const { return leaderID; }
 	private:
 		string					name;
 		int						location;
 		int						at_sea;
-		vector<EU3Regiment>	regiments;
+		vector<EU3Regiment*>	regiments;
 		vector<int>				blocked_homes;
 		int						leaderID;
 };

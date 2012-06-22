@@ -3,17 +3,7 @@
 
 
 
-EU3Relations::EU3Relations()
-{
-	tag						= "";
-	value						= -1;
-	military_access		= false;
-	last_send_diplomat	= (string)"1.1.1";
-	last_war					= (string)"1.1.1";
-}
-
-
-void EU3Relations::init(Object* obj) {
+EU3Relations::EU3Relations(Object* obj) {
 	tag = obj->getKey();
 
 	vector<Object*> valueObj = obj->getValue("value");

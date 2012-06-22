@@ -4,21 +4,7 @@
 
 
 
-EU3Leader::EU3Leader()
-{
-	name				= "";
-	fire				= -1;
-	shock				= -1;
-	manuever			= -1;
-	siege				= -1;
-	id					= -1;
-	type				= "";
-	activationDate	= (string)"1.1.1";
-}
-
-
-
-void EU3Leader::init(Object *obj)
+EU3Leader::EU3Leader(Object *obj)
 {
 	vector<Object*> subObj = obj->getValue("name");
 	if (subObj.size() > 0)

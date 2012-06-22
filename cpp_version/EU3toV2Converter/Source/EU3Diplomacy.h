@@ -18,7 +18,7 @@ struct EU3Agreement
 	string	type;
 	string	country1;
 	string	country2;
-	date		start_date;
+	date		startDate;
 };
 
 
@@ -26,7 +26,7 @@ class EU3Diplomacy
 {
 	public:
 		EU3Diplomacy();
-		void						init(Object* obj);
+		EU3Diplomacy(Object* obj);
 		vector<EU3Agreement>	getAgreements() { return agreements; };
 	private:
 		vector<EU3Agreement>	agreements;

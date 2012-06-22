@@ -31,7 +31,7 @@ EU3Agreement::EU3Agreement(Object *obj)
 	std::vector<Object*> objDate = obj->getValue("start_date");
 	if (objDate.size() > 0)
 	{
-		start_date = date(objDate[0]->getLeaf());
+		startDate = date(objDate[0]->getLeaf());
 	}
 }
 
@@ -42,7 +42,7 @@ EU3Diplomacy::EU3Diplomacy()
 }
 
 
-void EU3Diplomacy::init(Object* obj)
+EU3Diplomacy::EU3Diplomacy(Object* obj)
 {
 	std::vector<Object*> objRMs = obj->getValue("royal_marriage");
 	for (std::vector<Object*>::iterator itr = objRMs.begin(); itr != objRMs.end(); ++itr)

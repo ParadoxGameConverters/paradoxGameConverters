@@ -3,15 +3,7 @@
 
 
 
-EU3Loan::EU3Loan()
-{
-	lender	= "";
-	interest	= -1;
-	amount	= -1;
-}
-
-
-void EU3Loan::init(Object* obj)
+EU3Loan::EU3Loan(Object* obj)
 {
 	vector<Object*> moneyObj = obj->getValue("interest");
 	if (moneyObj.size() > 0)

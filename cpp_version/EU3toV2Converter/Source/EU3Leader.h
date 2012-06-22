@@ -11,8 +11,7 @@ class Object;
 class EU3Leader
 {
 	public:
-		EU3Leader();
-		void		init(Object* obj);
+		EU3Leader(Object* obj);
 		string	getName() const { return name; };
 		int		getFire() const { return fire; };
 		int		getShock() const { return shock; };
