@@ -392,29 +392,44 @@ void removeDeadLandlessNations(EU3World& world)
 	}
 
 	vector<string> tagsToRemove;
-	for (unsigned int i = 0; i < countries2.size(); i++)
+	for (vector<EU3Country*>::iterator countryItr = countries2.begin(); countryItr != countries2.end(); countryItr++)
 	{
-		string culture					= countries2[i]->getPrimaryCulture();
-		vector<EU3Province*> cores	= countries2[i]->getCores();
+		string primaryCulture		= (*countryItr)->getPrimaryCulture();
+		vector<EU3Province*> cores	= (*countryItr)->getCores();
 		bool cultureSurvives			= false;
-		for (unsigned int j = 0; j < cores.size(); j++)
+		for (vector<EU3Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
 		{
-			if (cores[j]->getOwner() == "")
-				continue;
-			if (cores[j]->getCulture() == culture)
+			if ( (*coreItr)->getOwner() == "")
 			{
-				if (world.getCountry(cores[j]->getOwner())->getPrimaryCulture() != culture)
+				continue;
+			}
+
+			vector<EU3PopRatio> popRatios = (*coreItr)->getPopRatios();
+			double culturePercent = 0.0f;
+			for (vector<EU3PopRatio>::iterator popItr = popRatios.begin(); popItr != popRatios.end(); popItr++)
+			{
+				if (popItr->culture == primaryCulture)
+				{
+					culturePercent += popItr->popRatio;
+				}
+			}
+
+			if ( culturePercent >= 0.5 )
+			{
+				if (  world.getCountry( (*coreItr)->getOwner() )->getPrimaryCulture() != primaryCulture  )
 				{
 					cultureSurvives = true;
 					break;
 				}	
 			}
 		}
+
 		if (cultureSurvives == false)
 		{
-			tagsToRemove.push_back(countries2[i]->getTag());
+			tagsToRemove.push_back( (*countryItr)->getTag() );
 		}
 	}
+
 	world.removeCountries(tagsToRemove);
 }
 

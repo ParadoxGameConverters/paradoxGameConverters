@@ -26,28 +26,6 @@ EU3Province::EU3Province(Object* obj) {
 		cores.push_back(coreObjs[i]->getLeaf());
 	}
 
-	vector<Object*> cultureObj;
-	cultureObj = obj->getValue("culture");
-	if (cultureObj.size() == 0)
-	{
-		culture = "";
-	}
-	else
-	{
-		culture = cultureObj[0]->getLeaf();
-	}
-
-	vector<Object*> religionObj;
-	religionObj = obj->getValue("religion");
-	if (religionObj.size() == 0)
-	{
-		religion = "";
-	}
-	else
-	{
-		religion = religionObj[0]->getLeaf();
-	}
-
 	colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
 	if (popObj.size() > 0)
@@ -275,18 +253,6 @@ vector<EU3Country*> EU3Province::getCores(map<string, EU3Country*> countries)
 	}
 
 	return coreOwners;
-}
-
-
-string EU3Province::getCulture()
-{
-	return culture;
-}
-
-
-string EU3Province::getReligion()
-{
-	return religion;
 }
 
 

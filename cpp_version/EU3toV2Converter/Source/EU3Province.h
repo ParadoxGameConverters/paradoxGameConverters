@@ -33,8 +33,6 @@ class EU3Province {
 		int						getNum();
 		string					getOwner();
 		vector<EU3Country*>	getCores(map<string, EU3Country*>);
-		string					getCulture();
-		string					getReligion();
 		int						getPopulation();
 		bool						isColony();
 		bool						isCOT();
@@ -53,8 +51,7 @@ class EU3Province {
 		string								owner;
 		//controller
 		vector<string>						cores;
-		string								culture;
-		string								religion;
+		//string								religion;
 		int									population;
 		bool									colony;
 		bool									centerOfTrade;
