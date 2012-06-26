@@ -1,0 +1,223 @@
+# If you add religions, and use those tags, do not change them without changing everywhere they are used.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+christian = {
+
+	catholic = {
+		icon = 1
+		color = { 0.8 0.8 0 }
+	}
+
+	protestant = {
+		icon = 2
+		color = { 0 0 0.7 }
+	}
+
+	orthodox = {
+		icon = 3
+		color = { 0.7 0.5 0 }
+
+	}
+	
+	coptic = {
+		icon = 4
+		color = { 0 0.5 0.7 }
+		
+	}
+	
+	cathar = {
+		color = { 0.5 0.5 0.9 }
+		
+		icon = 15
+		
+	}
+	
+	fraticelli = {
+		color = { 0.7 0.7 0.4 }
+		
+		icon = 15
+		
+	}
+	
+	waldensian = {
+		color = { 0.4 0.4 0.7 }
+		
+		icon = 15
+	}
+	
+	lollard = {
+		color = { 0.5 0.8 0.8 }
+		icon = 15
+		
+	}
+	
+	bogomilist = {
+		color = { 0.9 0.7 0 }
+		
+		icon = 16
+		
+	}
+	
+	iconoclast = {
+		color = { 0.9 0.6 0.6 }
+		
+		icon = 16
+		
+	}
+	
+	monophysite = {
+		color = { 0.8 0.4 0.1 }
+		
+		icon = 16
+		
+	}
+	
+	nestorian = {
+		color = { 0.6 0.2 0.2 }
+		icon = 16
+	}
+}
+
+muslim = {
+	sunni = {
+		icon = 5
+		color = { 0 0.6 0 }
+		
+		
+	}
+
+	shiite = {
+		icon = 6
+		color = { 0 0.8 0 }
+		
+	}
+
+	jewish = {
+		icon = 7
+		color = { 0.3 0.5 0.3 }
+	}
+
+	zikri = {
+		color = { 0.2 0.6 0.2 }
+		icon = 17
+		
+	}
+	
+	yazidi = {
+		color = { 0.1 0.7 0.1 }
+		icon = 17
+		
+	}
+	
+	ibadi = {
+		color = { 0.3 0.6 0.3 }
+		icon = 17
+		
+	}
+	
+	bektashi = {
+		color = { 0.3 0.8 0.3 }
+		icon = 18
+		
+	}
+	
+	druze = {
+		color = { 0.0 0.9 0.4 }
+		
+		icon = 18
+	}
+	
+	hurufi = {
+		color = { 0.4 0.9 0.0 }
+		icon = 18
+		
+	}	
+}
+
+eastern = {
+	mahayana = {
+	
+		color = { 0.8 0.3 0 }
+		icon = 8
+	}
+
+	gelugpa = {
+		color = { 0 0.3 0.8 }
+		icon = 9
+	}
+
+	theravada = {
+		color = { 0.8 0 0.8 }
+		icon = 10
+	}
+
+	hindu = {
+		color = { 0 0.8 0.8 }
+		icon = 11
+	}
+
+	shinto = {
+		color = { 0.8 0 0 }
+		icon = 12
+	}
+
+	sikh = {
+		color = { 0.3 0.8 0 }
+		icon = 13
+	}
+
+}
+
+pagan = {
+	animist = {
+		icon = 14
+		color = { 0.5 0.0 0.0 }
+		pagan = yes
+		
+	}
+	shamanism = {
+		color = { 0.5 0.3 0.3 }
+		pagan = yes	
+		icone = 19
+	}
+	
+	generic_pagan = {
+		color = { 0.6 0.0 0.0 }
+		pagan = yes
+		icon = 20
+		
+	}
+	
+	norse_pagan = {
+		color = { 0.7 0.7 0.7 }
+		pagan = yes
+		icon = 20
+	}
+	
+	tengri_pagan = {
+		color = { 0.0 0.2 0.8 }
+		pagan = yes
+		icon = 20
+	}
+	
+	baltic_pagan = {
+		color = { 0.6 0.4 0.3 }
+		pagan = yes
+		icon = 20
+	}
+	
+	finnish_pagan = {
+		color = { 0.5 0.5 0.0 }
+		pagan = yes
+		icon = 20
+	}
+
+}
+
+zoroastrian_group = {
+	zoroastrian = {
+		color = { 0.5 0.7 0.2 }
+		icon = 20
+	}
+}

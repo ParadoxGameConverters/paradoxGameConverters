@@ -189,6 +189,19 @@ link = { vic = sudanese eu3 = nubian }
 link = { vic = swahili eu3 = swahili }
 link = { vic = shona eu3 = shona }
 
+link = { eu3 = frankish vic = frankish }
+link = { eu3 = italian vic = italian }
+link = { eu3 = alan vic = alan }
+link = { eu3 = lappish vic = lappish }
+link = { eu3 = ugricbaltic vic = ugricbaltic }
+link = { eu3 = komi vic = komi }
+link = { eu3 = lettigallish vic = lettigallish }
+link = { eu3 = cuman vic = cuman }
+link = { eu3 = pecheneg vic = pecheneg }
+link = { eu3 = levantine_arabic vic = levantine_arabic }
+link = { eu3 = egyptian_arabic vic = egyptian_arabic }
+
+
 
 }
 
