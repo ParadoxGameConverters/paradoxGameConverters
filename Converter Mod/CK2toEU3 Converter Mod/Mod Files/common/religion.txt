@@ -99,6 +99,10 @@ christian = {
 	cathar = {
 		color = { 0.5 0.5 0.9 }
 		
+		allowed_conversion = {
+			catholic
+		}
+		
 		province = {
 			stability_cost = 30
 		}
@@ -114,6 +118,10 @@ christian = {
 	fraticelli = {
 		color = { 0.7 0.7 0.4 }
 		
+		allowed_conversion = {
+			catholic
+		}
+		
 		province = {
 			stability_cost = 30
 		}
@@ -124,11 +132,13 @@ christian = {
 			tolerance_heretic = 1
 		}
 		
-		date = 1066.1.1
 	}
 	
 	waldensian = {
 		color = { 0.4 0.4 0.7 }
+		allowed_conversion = {
+			catholic
+		}
 		
 		province = {
 			stability_cost = 30
@@ -140,11 +150,13 @@ christian = {
 			tolerance_heretic = 1
 		}
 		
-		date = 1066.1.1
 	}
 	
 	lollard = {
 		color = { 0.5 0.8 0.8 }
+		allowed_conversion = {
+			catholic
+		}
 		
 		province = {
 			stability_cost = 30
@@ -156,12 +168,15 @@ christian = {
 			tolerance_heretic = 1
 		}
 		
-		date = 1066.1.1
 	}
 	
 	bogomilist = {
 		color = { 0.9 0.7 0 }
 		
+		allowed_conversion = {
+			catholic
+		}
+		
 		province = {
 			stability_cost = 30
 		}
@@ -172,12 +187,15 @@ christian = {
 			tolerance_heretic = 1
 		}
 		
-		date = 1066.1.1
 	}
 	
 	iconoclast = {
 		color = { 0.9 0.6 0.6 }
 		
+		allowed_conversion = {
+			catholic
+		}
+		
 		province = {
 			stability_cost = 30
 		}
@@ -188,12 +206,15 @@ christian = {
 			tolerance_heretic = 1
 		}
 		
-		date = 1066.1.1
 	}
 	
 	monophysite = {
 		color = { 0.8 0.4 0.1 }
 		
+		allowed_conversion = {
+			catholic
+		}
+		
 		province = {
 			stability_cost = 30
 		}
@@ -204,12 +225,15 @@ christian = {
 			tolerance_heretic = 1
 		}
 		
-		date = 1066.1.1
 	}
 	
 	nestorian = {
 		color = { 0.6 0.2 0.2 }
 		
+		allowed_conversion = {
+			catholic
+		}
+		
 		province = {
 			stability_cost = 30
 		}
@@ -220,7 +244,6 @@ christian = {
 			tolerance_heretic = 1
 		}
 		
-		date = 1066.1.1
 	}
 	
 	crusade_name = CRUSADE

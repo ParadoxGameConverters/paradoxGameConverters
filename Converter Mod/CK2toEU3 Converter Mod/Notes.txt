@@ -47,3 +47,31 @@ Pagan:
 	tolerence heretic: 2
 
 	missionary placement change = 0.084
+
+
+
+Cultures of CK2 that are not present in EU3
+
+LATIN:
+	Frankish
+	Italian
+
+
+Byzantine
+	Alan
+
+finno-urgic
+	lappish
+	ugricbaltic
+	Komi
+
+Baltic
+	lettigallish
+
+Altaic
+	Cuman
+	Pecheneg
+
+Arabic
+	levantine_arabic
+	egyptian_arabic
