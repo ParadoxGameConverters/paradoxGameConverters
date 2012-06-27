@@ -166,13 +166,13 @@ EU3Province::EU3Province(Object* obj) {
 }
 
 
-void EU3Province::addCore(const string tag)
+void EU3Province::addCore(string tag)
 {
 	cores.push_back(tag);
 }
 
 
-void EU3Province::removeCore(const string tag)
+void EU3Province::removeCore(string tag)
 {
 	for (vector<string>::iterator i = cores.begin(); i != cores.end(); i++)
 	{
@@ -204,7 +204,7 @@ bool EU3Province::wasColonised() const
 }
 
 
-bool EU3Province::wasPaganConquest(const string ownerReligion) const
+bool EU3Province::wasPaganConquest(string ownerReligion) const
 {
 	// returns true if the province was originally pagan, the current owner is non-pagan,
 	// and the province was NOT colonized
@@ -224,14 +224,14 @@ bool EU3Province::wasPaganConquest(const string ownerReligion) const
 }
 
 
-bool EU3Province::hasBuilding(const string building) const
+bool EU3Province::hasBuilding(string building) const
 {
 	int num = buildings.count(building);
 	return (num > 0);
 }
 
 
-vector<EU3Country*> EU3Province::getCores(const map<string, EU3Country*> countries) const
+vector<EU3Country*> EU3Province::getCores(const map<string, EU3Country*>& countries) const
 {
 	vector<EU3Country*> coreOwners;
 	for (vector<string>::const_iterator i = cores.begin(); i != cores.end(); i++)
@@ -247,7 +247,7 @@ vector<EU3Country*> EU3Province::getCores(const map<string, EU3Country*> countri
 }
 
 
-date EU3Province::getLastPossessedDate(const string tag) const
+date EU3Province::getLastPossessedDate(string tag) const
 {
 	map<string, date>::const_iterator itr = lastPossessedDate.find(tag);
 	if (itr != lastPossessedDate.end())
@@ -258,7 +258,7 @@ date EU3Province::getLastPossessedDate(const string tag) const
 }
 
 
-void EU3Province::checkBuilding(const Object* provinceObj, const string building)
+void EU3Province::checkBuilding(const Object* provinceObj, string building)
 {
 	vector<Object*> buildingObj;
 	buildingObj = provinceObj->getValue(building);
@@ -373,7 +373,7 @@ void EU3Province::buildPopRatios()
 }
 
 
-void EU3Province::decayPopRatios(const date oldDate, const date newDate, EU3PopRatio& currentPop)
+void EU3Province::decayPopRatios(date oldDate, date newDate, EU3PopRatio& currentPop)
 {
 	// quick out for initial state (no decay needed)
 	if (oldDate == date())

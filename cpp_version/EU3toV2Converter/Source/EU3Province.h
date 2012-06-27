@@ -24,14 +24,14 @@ class EU3Province {
 	public:
 		EU3Province(Object* obj);
 
-		void						addCore(const string tag);
-		void						removeCore(const string tag);
+		void						addCore(string tag);
+		void						removeCore(string tag);
 		bool						wasColonised() const;
-		bool						wasPaganConquest(const string ownerReligion) const;
-		bool						hasBuilding(const string building) const;
+		bool						wasPaganConquest(string ownerReligion) const;
+		bool						hasBuilding(string building) const;
 
-		vector<EU3Country*>	getCores(const map<string, EU3Country*> countries) const;
-		date						getLastPossessedDate(const string tag) const;
+		vector<EU3Country*>	getCores(const map<string, EU3Country*>& countries) const;
+		date						getLastPossessedDate(string tag) const;
 
 		int						getNum()				const { return num; };
 		string					getOwner()			const { return owner; };
@@ -40,13 +40,13 @@ class EU3Province {
 		bool						isCOT()				const { return centerOfTrade; };
 		vector<EU3PopRatio>	getPopRatios()		const { return popRatios; };
 
-		void						setOwner(const string newOwner)	{ owner = newOwner; };
-		void						setCOT(const bool isCOT)			{ centerOfTrade = isCOT; };
+		void						setOwner(string newOwner)	{ owner = newOwner; };
+		void						setCOT(bool isCOT)			{ centerOfTrade = isCOT; };
 
 	private:
-		void	checkBuilding(const Object* provinceObj, const string building);
+		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
-		void	decayPopRatios(const date olddate, const date newdate, EU3PopRatio& currentPop);
+		void	decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
 
 		int									num;
 		string								owner;

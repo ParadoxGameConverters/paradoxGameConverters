@@ -499,21 +499,21 @@ void EU3Country::addCore(EU3Province* core)
 }
 
 
-bool EU3Country::hasModifier(const string modifier) const
+bool EU3Country::hasModifier(string modifier) const
 {
 	map<string, bool>::const_iterator itr = modifiers.find(modifier);
 	return (itr != modifiers.end());
 }
 
 
-bool EU3Country::hasNationalIdea(const string ni) const
+bool EU3Country::hasNationalIdea(string ni) const
 {
 	map<string, bool>::const_iterator itr = nationalIdeas.find(ni);
 	return (itr != nationalIdeas.end());
 }
 
 
-bool EU3Country::hasFlag(const string flag) const
+bool EU3Country::hasFlag(string flag) const
 {
 	map<string, bool>::const_iterator itr = flags.find(flag);
 	return (itr != flags.end());
@@ -547,7 +547,7 @@ int EU3Country::getManufactoryCount() const
 }
 
 
-double EU3Country::inflationAdjust(const double input) const
+double EU3Country::inflationAdjust(double input) const
 {
 	return (input / (1.0 + (inflation / 100.0)));
 }

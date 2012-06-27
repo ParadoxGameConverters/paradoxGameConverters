@@ -20,12 +20,12 @@ class EU3Country
 
 		void							addProvince(EU3Province*);
 		void							addCore(EU3Province*);
-		bool							hasModifier(const string) const;
-		bool							hasNationalIdea(const string) const;
-		bool							hasFlag(const string) const ;
+		bool							hasModifier(string) const;
+		bool							hasNationalIdea(string) const;
+		bool							hasFlag(string) const ;
 		void							resolveRegimentTypes(const RegimentTypeMap& map);
 		int							getManufactoryCount() const;
-		double						inflationAdjust(const double input) const;
+		double						inflationAdjust(double input) const;
 		double						getBadboyLimit() const;
 		void							eatCountry(EU3Country* target);
 
