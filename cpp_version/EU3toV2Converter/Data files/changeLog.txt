@@ -392,3 +392,4 @@ Revision	Version Updated		Log Message
 452		C++			Formatting of refactored classes
 453		C++			Refactor EU3Country
 454		C++			Refactor EU3World
+455		C++			EU3 classes now with added const

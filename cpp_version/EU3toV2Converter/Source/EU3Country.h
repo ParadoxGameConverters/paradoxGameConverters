@@ -20,13 +20,13 @@ class EU3Country
 
 		void							addProvince(EU3Province*);
 		void							addCore(EU3Province*);
-		bool							hasModifier(string);
-		bool							hasNationalIdea(string);
-		bool							hasFlag(string);
+		bool							hasModifier(const string) const;
+		bool							hasNationalIdea(const string) const;
+		bool							hasFlag(const string) const ;
 		void							resolveRegimentTypes(const RegimentTypeMap& map);
-		int							getManufactoryCount();
-		double						inflationAdjust(double input);
-		double						getBadboyLimit();
+		int							getManufactoryCount() const;
+		double						inflationAdjust(const double input) const;
+		double						getBadboyLimit() const;
 		void							eatCountry(EU3Country* target);
 
 		string						getTag()										const { return tag; };
@@ -72,10 +72,10 @@ class EU3Country
 		double						getBadboy()									const { return badboy; };
 		vector<EU3Leader*>		getLeaders()								const { return leaders; };
 
-		double						getTreasury()								{ return inflationAdjust(treasury); };
+		double						getTreasury()								const	{ return inflationAdjust(treasury); };
 
 	private:
-		void							checkIdea(Object*, string);
+		void							checkIdea(const Object*, const string);
 		void							clearProvinces();
 		void							clearCores();
 

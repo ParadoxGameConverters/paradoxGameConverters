@@ -166,13 +166,13 @@ EU3Province::EU3Province(Object* obj) {
 }
 
 
-void EU3Province::addCore(string tag)
+void EU3Province::addCore(const string tag)
 {
 	cores.push_back(tag);
 }
 
 
-void EU3Province::removeCore(string tag)
+void EU3Province::removeCore(const string tag)
 {
 	for (vector<string>::iterator i = cores.begin(); i != cores.end(); i++)
 	{
@@ -189,7 +189,7 @@ void EU3Province::removeCore(string tag)
 }
 
 
-bool EU3Province::wasColonised()
+bool EU3Province::wasColonised() const
 {
 	// returns true if the first owner did not own the province at the beginning of the game,
 	// but acquired it later through colonization
@@ -204,7 +204,7 @@ bool EU3Province::wasColonised()
 }
 
 
-bool EU3Province::wasPaganConquest(string ownerReligion)
+bool EU3Province::wasPaganConquest(const string ownerReligion) const
 {
 	// returns true if the province was originally pagan, the current owner is non-pagan,
 	// and the province was NOT colonized
@@ -224,26 +224,22 @@ bool EU3Province::wasPaganConquest(string ownerReligion)
 }
 
 
-bool EU3Province::hasBuilding(string building)
+bool EU3Province::hasBuilding(const string building) const
 {
-	map<string, bool>::iterator itr = buildings.find(building);
-	if (itr == buildings.end())
-	{
-		return false;
-	}
-
-	return itr->second;
+	int num = buildings.count(building);
+	return (num > 0);
 }
 
 
-vector<EU3Country*> EU3Province::getCores(map<string, EU3Country*> countries)
+vector<EU3Country*> EU3Province::getCores(const map<string, EU3Country*> countries) const
 {
 	vector<EU3Country*> coreOwners;
-	for (vector<string>::iterator i = cores.begin(); i != cores.end(); i++)
+	for (vector<string>::const_iterator i = cores.begin(); i != cores.end(); i++)
 	{
-		if (countries[*i] != NULL)	// TODO: remove this. It should be unneeded when refactoring is complete and the mappers remove all traces of removed nations
+		map<string, EU3Country*>::const_iterator j = countries.find(*i);
+		if (j != countries.end())
 		{
-			coreOwners.push_back(countries[*i]);
+			coreOwners.push_back(j->second);
 		}
 	}
 
@@ -251,9 +247,9 @@ vector<EU3Country*> EU3Province::getCores(map<string, EU3Country*> countries)
 }
 
 
-date EU3Province::getLastPossessedDate(string tag)
+date EU3Province::getLastPossessedDate(const string tag) const
 {
-	map<string, date>::iterator itr = lastPossessedDate.find(tag);
+	map<string, date>::const_iterator itr = lastPossessedDate.find(tag);
 	if (itr != lastPossessedDate.end())
 	{
 		return itr->second;
@@ -262,7 +258,7 @@ date EU3Province::getLastPossessedDate(string tag)
 }
 
 
-void EU3Province::checkBuilding(Object* provinceObj, string building)
+void EU3Province::checkBuilding(const Object* provinceObj, const string building)
 {
 	vector<Object*> buildingObj;
 	buildingObj = provinceObj->getValue(building);
@@ -377,7 +373,7 @@ void EU3Province::buildPopRatios()
 }
 
 
-void EU3Province::decayPopRatios(date oldDate, date newDate, EU3PopRatio& currentPop)
+void EU3Province::decayPopRatios(const date oldDate, const date newDate, EU3PopRatio& currentPop)
 {
 	// quick out for initial state (no decay needed)
 	if (oldDate == date())

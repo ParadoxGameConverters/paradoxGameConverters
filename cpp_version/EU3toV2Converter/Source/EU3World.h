@@ -25,12 +25,12 @@ enum WorldType
 class EU3World {
 	public:
 		EU3World(Object* obj);
-		EU3Country*						getCountry(const string tag);
-		EU3Province*					getProvince(const int provNum);
+		EU3Country*						getCountry(const string tag) const;
+		EU3Province*					getProvince(const int provNum) const;
 		void								removeCountry(const string tag);
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		WorldType						getWorldType();
-		void								checkAllProvincesMapped(const inverseProvinceMapping inverseProvinceMap);
+		void								checkAllProvincesMapped(const inverseProvinceMapping inverseProvinceMap) const;
 
 		map<string, EU3Country*>	getCountries()	const { return countries; };
 		EU3Diplomacy*					getDiplomacy()	const { return diplomacy; };

@@ -47,8 +47,8 @@ class EU3Regiment // also Ship
 	public:
 		EU3Regiment(Object* obj);
 
-		void						setCategory(RegimentCategory cat) { category = cat; }
-		void						setTypeStrength(int typeStrength) { type_strength = typeStrength; }
+		void						setCategory(const RegimentCategory cat) { category = cat; }
+		void						setTypeStrength(const int typeStrength) { type_strength = typeStrength; }
 
 		string					getName() const { return name; }
 		string					getType() const { return type; }
@@ -71,9 +71,9 @@ class EU3Army // also Navy
 	public:
 		EU3Army(Object* obj);
 		void						resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap);
-		double					getAverageStrength(RegimentCategory category);
-		int						getTotalTypeStrength(RegimentCategory category);
-		int						getProbabilisticHomeProvince(RegimentCategory category);
+		double					getAverageStrength(RegimentCategory category) const;
+		int						getTotalTypeStrength(RegimentCategory category) const;
+		int						getProbabilisticHomeProvince(RegimentCategory category) const;
 		void						blockHomeProvince(int home);
 
 		string					getName() const { return name; }

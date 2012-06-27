@@ -133,11 +133,11 @@ void EU3Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 }
 
 
-double EU3Army::getAverageStrength(RegimentCategory category)
+double EU3Army::getAverageStrength(RegimentCategory category) const
 {
 	int count = 0;
 	double total = 0.0;
-	for (vector<EU3Regiment*>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<EU3Regiment*>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		if ( (*itr)->getCategory() == category )
 		{
@@ -149,10 +149,10 @@ double EU3Army::getAverageStrength(RegimentCategory category)
 }
 
 
-int EU3Army::getTotalTypeStrength(RegimentCategory category)
+int EU3Army::getTotalTypeStrength(RegimentCategory category) const
 {
 	int total = 0;
-	for (vector<EU3Regiment*>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<EU3Regiment*>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		if ( (*itr)->getCategory() == category )
 		{
@@ -163,16 +163,16 @@ int EU3Army::getTotalTypeStrength(RegimentCategory category)
 }
 
 
-int EU3Army::getProbabilisticHomeProvince(RegimentCategory category)
+int EU3Army::getProbabilisticHomeProvince(RegimentCategory category) const
 {
 	vector<int> homeProvinces;
-	for (vector<EU3Regiment*>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<EU3Regiment*>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		if ( (*itr)->getCategory() == category )
 		{
 			int home = (*itr)->getHome();
 			bool blocked = false;
-			for (vector<int>::iterator bitr = blocked_homes.begin(); bitr != blocked_homes.end(); ++bitr)
+			for (vector<int>::const_iterator bitr = blocked_homes.begin(); bitr != blocked_homes.end(); ++bitr)
 			{
 				if (home == *bitr)
 				{

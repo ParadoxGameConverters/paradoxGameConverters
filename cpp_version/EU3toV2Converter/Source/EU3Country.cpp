@@ -502,23 +502,23 @@ void EU3Country::addCore(EU3Province* core)
 }
 
 
-bool EU3Country::hasModifier(string modifier)
+bool EU3Country::hasModifier(const string modifier) const
 {
-	map<string, bool>::iterator itr = modifiers.find(modifier);
+	map<string, bool>::const_iterator itr = modifiers.find(modifier);
 	return (itr != modifiers.end());
 }
 
 
-bool EU3Country::hasNationalIdea(string ni)
+bool EU3Country::hasNationalIdea(const string ni) const
 {
-	map<string, bool>::iterator itr = nationalIdeas.find(ni);
+	map<string, bool>::const_iterator itr = nationalIdeas.find(ni);
 	return (itr != nationalIdeas.end());
 }
 
 
-bool EU3Country::hasFlag(string flag)
+bool EU3Country::hasFlag(const string flag) const
 {
-	map<string, bool>::iterator itr = flags.find(flag);
+	map<string, bool>::const_iterator itr = flags.find(flag);
 	return (itr != flags.end());
 }
 
@@ -532,10 +532,10 @@ void EU3Country::resolveRegimentTypes(const RegimentTypeMap& map)
 }
 
 
-int EU3Country::getManufactoryCount()
+int EU3Country::getManufactoryCount() const
 {
 	int retval = 0;
-	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (vector<EU3Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
 		if ((*itr)->hasBuilding("weapons"))
 			++retval;
@@ -550,13 +550,13 @@ int EU3Country::getManufactoryCount()
 }
 
 
-double EU3Country::inflationAdjust(double input)
+double EU3Country::inflationAdjust(const double input) const
 {
 	return (input / (1.0 + (inflation / 100.0)));
 }
 
 
-double EU3Country::getBadboyLimit()
+double EU3Country::getBadboyLimit() const
 {
 	double badboyLimit = 30.0;
 
@@ -655,7 +655,7 @@ void EU3Country::eatCountry(EU3Country* target)
 }
 
 
-void EU3Country::checkIdea(Object* countryObj, string idea)
+void EU3Country::checkIdea(const Object* countryObj, const string idea)
 {
 	vector<Object*> niObj;
 	niObj = countryObj->getValue(idea);

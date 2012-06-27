@@ -26,7 +26,7 @@ class EU3Diplomacy
 	public:
 		EU3Diplomacy();
 		EU3Diplomacy(Object* obj);
-		vector<EU3Agreement>	getAgreements() { return agreements; };
+		vector<EU3Agreement>	getAgreements() const { return agreements; };
 	private:
 		vector<EU3Agreement>	agreements;
 };

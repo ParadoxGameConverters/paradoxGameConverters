@@ -88,9 +88,9 @@ EU3World::EU3World(Object* obj)
 }
 
 
-EU3Country* EU3World::getCountry(const string tag)
+EU3Country* EU3World::getCountry(const string tag) const
 {
-	map<string, EU3Country*>::iterator i = countries.find(tag);
+	map<string, EU3Country*>::const_iterator i = countries.find(tag);
 	if (i != countries.end())
 	{
 		return i->second;
@@ -102,9 +102,9 @@ EU3Country* EU3World::getCountry(const string tag)
 }
 
 
-EU3Province* EU3World::getProvince(const int provNum)
+EU3Province* EU3World::getProvince(const int provNum) const
 {
-	map<int, EU3Province*>::iterator i = provinces.find(provNum);
+	map<int, EU3Province*>::const_iterator i = provinces.find(provNum);
 	if (i != provinces.end())
 	{
 		return i->second;
@@ -211,9 +211,9 @@ WorldType EU3World::getWorldType()
 }
 
 
-void EU3World::checkAllProvincesMapped(const inverseProvinceMapping inverseProvinceMap)
+void EU3World::checkAllProvincesMapped(const inverseProvinceMapping inverseProvinceMap) const
 {
-	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (map<int, EU3Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
 		if ( (j != inverseProvinceMap.end()) && (j->second.size() == 0) )
