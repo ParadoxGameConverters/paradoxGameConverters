@@ -9,19 +9,15 @@
 
 
 
-EU3World::EU3World()
+EU3World::EU3World(Object* obj)
 {
-	cachedWorldType	= Unknown;
-	provinces.clear();
-	countries.clear();
-	diplomacy			= NULL;
-}
+	cachedWorldType = Unknown;
 
-
-void EU3World::init(Object* obj) {
 	string key;	
 	vector<Object*> leaves = obj->getLeaves();
 
+	provinces.clear();
+	countries.clear();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		key = leaves[i]->getKey();
@@ -30,7 +26,7 @@ void EU3World::init(Object* obj) {
 		if (atoi(key.c_str()) > 0)
 		{
 			EU3Province* province = new EU3Province(leaves[i]);
-			provinces.push_back(province);
+			provinces.insert( make_pair(province->getNum(), province) );
 		}
 
 		// Countries are three uppercase characters
@@ -46,25 +42,22 @@ void EU3World::init(Object* obj) {
 	}
 
 	// add province owner info to countries
-	for (unsigned int i = 0; i < provinces.size(); i++)
+	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		for (map<string, EU3Country*>::iterator j = countries.begin(); j != countries.end(); j++)
+		map<string, EU3Country*>::iterator j = countries.find( i->second->getOwner() );
+		if (j != countries.end())
 		{
-			if (provinces[i]->getOwner() == j->second->getTag())
-			{
-				j->second->addProvince(provinces[i]);
-				break;
-			}
+			j->second->addProvince(i->second);
 		}
 	}
 
 	// add province core info to countries
-	for (unsigned int i = 0; i < provinces.size(); i++)
+	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		vector<EU3Country*> cores = provinces[i]->getCores(countries);
-		for (unsigned int j = 0; j < cores.size(); j++)
+		vector<EU3Country*> cores = i->second->getCores(countries);
+		for (vector<EU3Country*>::iterator j = cores.begin(); j != cores.end(); j++)
 		{
-			cores[j]->addCore(provinces[i]);
+			(*j)->addCore(i->second);
 		}
 	}
 
@@ -82,29 +75,20 @@ void EU3World::init(Object* obj) {
 	if (tradeObj.size() > 0)
 	{
 		vector<Object*> COTsObj = tradeObj[0]->getValue("cot");
-		for (unsigned int i = 0; i < COTsObj.size(); i++)
+		for (vector<Object*>::iterator i = COTsObj.begin(); i != COTsObj.end(); i++)
 		{
-			int location = atoi( COTsObj[i]->getValue("location")[0]->getLeaf().c_str() );
-			for (unsigned int j = 0; j < provinces.size(); j++)
+			int location = atoi( (*i)->getValue("location")[0]->getLeaf().c_str() );
+			map<int, EU3Province*>::iterator j = provinces.find(location);
+			if ( j != provinces.end() )
 			{
-				if (provinces[j]->getNum() == location)
-				{
-					provinces[j]->setCOT(true);
-					break;
-				}
+				j->second->setCOT(true);
 			}
 		}
 	}
 }
 
 
-map<string, EU3Country*> EU3World::getCountries()
-{
-	return countries;
-}
-
-
-EU3Country* EU3World::getCountry(string tag)
+EU3Country* EU3World::getCountry(const string tag)
 {
 	map<string, EU3Country*>::iterator i = countries.find(tag);
 	if (i != countries.end())
@@ -118,38 +102,23 @@ EU3Country* EU3World::getCountry(string tag)
 }
 
 
-EU3Province* EU3World::getProvince(int provNum)
+EU3Province* EU3World::getProvince(const int provNum)
 {
-	for (unsigned int i = 0; i < provinces.size(); i++)
+	map<int, EU3Province*>::iterator i = provinces.find(provNum);
+	if (i != provinces.end())
 	{
-		if (provinces[i]->getNum() == provNum)
-		{
-			return provinces[i];
-		}
+		return i->second;
 	}
-	return NULL;
-}
-
-
-// calling vector::erase in a loop is really slow.  batch removals to avoid it.
-void EU3World::removeCountries(vector<string>& tags)
-{
-	for (vector<string>::iterator i = tags.begin(); i != tags.end(); i++)
+	else
 	{
-		countries.erase(*i);
+		return NULL;
 	}
 }
 
 
-void EU3World::removeCountry(string tag)
+void EU3World::removeCountry(const string tag)
 {
 	countries.erase(tag);
-}
-
-
-EU3Diplomacy* EU3World::getDiplomacy()
-{
-	return diplomacy;
 }
 
 
@@ -165,13 +134,17 @@ void EU3World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
 WorldType EU3World::getWorldType()
 {
 	if (cachedWorldType != Unknown)
+	{
 		return cachedWorldType;
+	}
 
 	int maxProvinceID = 0;
-	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (map<int, EU3Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		if ( (*itr)->getNum() > maxProvinceID )
-			maxProvinceID = (*itr)->getNum();
+		if ( itr->first > maxProvinceID )
+		{
+			maxProvinceID = itr->first;
+		}
 	}
 
 	switch (maxProvinceID)
@@ -203,37 +176,49 @@ WorldType EU3World::getWorldType()
 	string configWorldType = Configuration::getEU3Gametype();
 	WorldType forcedWorldType = Unknown;
 	if (configWorldType == "dw")
+	{
 		forcedWorldType = DivineWind;
+	}
 	else if (configWorldType == "httt")
+	{
 		forcedWorldType = HeirToTheThrone;
+	}
 	else if (configWorldType == "in")
+	{
 		forcedWorldType = InNomine;
+	}
 	else if (configWorldType == "auto")
+	{
 		forcedWorldType = cachedWorldType;
+	}
 
 	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != Unknown))
+	{
 		log("	Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
+	}
 
 	if (cachedWorldType == Unknown)
+	{
 		log("	Error: world type unknown!\n");
+	}
 
 	if (forcedWorldType != Unknown)
+	{
 		cachedWorldType = forcedWorldType;
+	}
 
 	return cachedWorldType;
 }
 
 
-void EU3World::checkAllProvincesMapped(provinceMapping provinceMap)
+void EU3World::checkAllProvincesMapped(const inverseProvinceMapping inverseProvinceMap)
 {
-	inverseProvinceMapping inverseMap = invertProvinceMap(provinceMap);
-	for (unsigned int i = 0; i < provinces.size(); i++)
+	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		int srcNum					= provinces[i]->getNum();
-		vector<int> destNums		= inverseMap[srcNum];
-		if (destNums.size() == 0)
+		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
+		if ( (j != inverseProvinceMap.end()) && (j->second.size() == 0) )
 		{
-			log("	Error: no destination for province #%d\n", srcNum);
+			log("	Error: no destination for province #%d\n", i->first);
 		}
 	}
 }

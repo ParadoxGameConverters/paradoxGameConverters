@@ -68,8 +68,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	readFile(read);
 	read.close();
 	read.clear();
-	EU3World sourceWorld;
-	sourceWorld.init(obj);
+	EU3World sourceWorld(obj);
 
 
 	// Figure out what EU3 gametype we're using
@@ -183,7 +182,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	obj = doParseFile(mappingFile);
 	provinceMapping provinceMap = initProvinceMap(obj);
-	sourceWorld.checkAllProvincesMapped(provinceMap);
+	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
+	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 
 	// Get potential V2 countries

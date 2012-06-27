@@ -501,13 +501,13 @@ void EU3Country::addCore(EU3Province* core)
 	cores.push_back(core);
 }
 
-#pragma optimize("", off)
+
 bool EU3Country::hasModifier(string modifier)
 {
 	map<string, bool>::iterator itr = modifiers.find(modifier);
 	return (itr != modifiers.end());
 }
-#pragma optimize("", on)
+
 
 bool EU3Country::hasNationalIdea(string ni)
 {

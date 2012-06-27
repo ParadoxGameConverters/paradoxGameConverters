@@ -329,17 +329,15 @@ void removeEmptyNations(EU3World& world)
 {
 	map<string, EU3Country*> countries = world.getCountries();
 
-	vector<string> tagsToRemove;
 	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
 		vector<EU3Province*> provinces	= i->second->getProvinces();
 		vector<EU3Province*> cores			= i->second->getCores();
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
-			tagsToRemove.push_back(i->second->getTag());
+			world.removeCountry(i->second->getTag());
 		}
 	}
-	world.removeCountries(tagsToRemove);
 }
 
 
@@ -387,7 +385,6 @@ void removeDeadLandlessNations(EU3World& world)
 		}
 	}
 
-	vector<string> tagsToRemove;
 	for (vector<EU3Country*>::iterator countryItr = countries2.begin(); countryItr != countries2.end(); countryItr++)
 	{
 		string primaryCulture		= (*countryItr)->getPrimaryCulture();
@@ -422,11 +419,9 @@ void removeDeadLandlessNations(EU3World& world)
 
 		if (cultureSurvives == false)
 		{
-			tagsToRemove.push_back( (*countryItr)->getTag() );
+			world.removeCountry( (*countryItr)->getTag() );
 		}
 	}
-
-	world.removeCountries(tagsToRemove);
 }
 
 
@@ -446,14 +441,12 @@ void removeOlderLandlessNations(EU3World& world, int excess)
 
 	sort(countries2.begin(), countries2.end(), compareLandlessNationsAges);
 
-	vector<string> tagsToRemove;
 	while ( (excess > 0) && (countries2.size() > 0) )
 	{
-		tagsToRemove.push_back(countries2.back()->getTag());
+		world.removeCountry(countries2.back()->getTag());
 		countries2.pop_back();
 		excess--;
 	}
-	world.removeCountries(tagsToRemove);
 }
 
 
@@ -461,16 +454,14 @@ void removeLandlessNations(EU3World& world)
 {
 	map<string, EU3Country*> countries = world.getCountries();
 
-	vector<string> tagsToRemove;
 	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
 		vector<EU3Province*> provinces = i->second->getProvinces();
 		if (provinces.size() == 0)
 		{
-			tagsToRemove.push_back(i->second->getTag());
+			world.removeCountry(i->second->getTag());
 		}
 	}
-	world.removeCountries(tagsToRemove);
 }
 
 

@@ -8,7 +8,7 @@ class EU3Country;
 class EU3Province;
 class EU3Diplomacy;
 struct EU3Agreement;
-typedef map< int, vector<int> > provinceMapping; // < destProvince, sourceProvinces >
+typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
 
 
@@ -24,22 +24,20 @@ enum WorldType
 
 class EU3World {
 	public:
-		EU3World();
-		void								init(Object* obj);
-		map<string, EU3Country*>	getCountries();
-		EU3Country*						getCountry(string);
-		EU3Province*					getProvince(int provNum);
-		void								removeCountry(string tag);
-		void								removeCountries(vector<string>& tags);
-		EU3Diplomacy*					getDiplomacy();
+		EU3World(Object* obj);
+		EU3Country*						getCountry(const string tag);
+		EU3Province*					getProvince(const int provNum);
+		void								removeCountry(const string tag);
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		WorldType						getWorldType();
-		void								checkAllProvincesMapped(provinceMapping provinceMap);
+		void								checkAllProvincesMapped(const inverseProvinceMapping inverseProvinceMap);
+
+		map<string, EU3Country*>	getCountries()	const { return countries; };
+		EU3Diplomacy*					getDiplomacy()	const { return diplomacy; };
 	private:
 		WorldType						cachedWorldType;
-		vector<EU3Province*>			provinces;
+		map<int, EU3Province*>		provinces;
 		map<string, EU3Country*>	countries;
-		//vector<EU3Country*>	countries;
 		EU3Diplomacy*					diplomacy;
 };
 
