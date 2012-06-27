@@ -4,6 +4,7 @@
 
 
 //#include "V2Country.h"
+#include "EU3Army.h"
 #include "V2Diplomacy.h"
 #include "V2Factory.h"
 #include "V2TechSchools.h"
@@ -25,7 +26,7 @@ class V2World {
 		void				convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, unionCulturesList unionCultures, religionMapping religionMap, governmentMapping governmentMap);
 		void				convertProvinces(EU3World sourceWorld, provinceMapping provinceMap, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap);
 		void				addUnions(unionMapping unionMap);
-		void				convertCapitals(EU3World sourceWorld, provinceMapping provinceMap);
+		void				convertCapitals(EU3World sourceWorld, inverseProvinceMapping inverseProvinceMap);
 		void				setupStates(stateMapping);
 		void				setupPops(EU3World& sourceWorld);
 		void				convertTechs(EU3World sourceWorld);
@@ -33,9 +34,11 @@ class V2World {
 		void				output(FILE*);
 		void				convertDiplomacy(EU3World sourceWorld, countryMapping countryMap);
 		void				convertLeaders(EU3World sourceWorld, map<int,int>& leaderIDMap);
-		void				convertArmies(EU3World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap);
+		void				convertArmies(EU3World sourceWorld, inverseProvinceMapping inverseProvinceMap, const map<int,int>& leaderIDMap);
 		void				allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder);
 		V2Party*			getParty(int index);
+
+		map<string, V2Country*>	getPotentialCountries()	const;
 	private:
 		void						buildParties();
 		void						outputHeader(FILE*);

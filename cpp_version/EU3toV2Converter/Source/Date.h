@@ -14,7 +14,7 @@ class Object;
 struct date
 {
 	date() : year(1), month(1), day(1) {};
-	date(string _init);
+	date(const string _init);
 	date(const date& _init);
 	date(const Object* _init);
 

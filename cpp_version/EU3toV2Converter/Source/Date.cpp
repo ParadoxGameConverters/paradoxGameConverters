@@ -3,18 +3,25 @@
 
 
 
-date::date(string _init)
+date::date(const string _init)
 {
 	if (_init.length() < 1)
 		return;
 
+	string subStr;
 	if (_init[0] == '\"')
-		_init = _init.substr(1, _init.length() - 2);
-	int first_dot = _init.find_first_of('.');
-	int last_dot = _init.find_last_of('.');
-	year	= atoi( _init.substr(0, first_dot).c_str() );
-	month	= atoi( _init.substr(first_dot + 1, last_dot - first_dot).c_str() );
-	day		= atoi( _init.substr(last_dot + 1, 2).c_str() );
+	{
+		subStr = _init.substr(1, _init.length() - 2);
+	}
+	else
+	{
+		subStr = _init;
+	}
+	int first_dot = subStr.find_first_of('.');
+	int last_dot = subStr.find_last_of('.');
+	year	= atoi( subStr.substr(0, first_dot).c_str() );
+	month	= atoi( subStr.substr(first_dot + 1, last_dot - first_dot).c_str() );
+	day		= atoi( subStr.substr(last_dot + 1, 2).c_str() );
 }
 
 date::date(const date& _init)

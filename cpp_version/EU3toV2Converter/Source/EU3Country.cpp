@@ -43,7 +43,7 @@ EU3Country::EU3Country(Object* obj)
 	}
 	else
 	{
-		log("Error: Could not load the tech group for %s\n", tag.c_str());
+		log("	Error: Could not load the tech group for %s\n", tag.c_str());
 		techGroup = "";
 	}
 
@@ -54,7 +54,6 @@ EU3Country::EU3Country(Object* obj)
 	}
 	else
 	{
-		log("Error: Could not load the primary culture for %s\n", tag.c_str());
 		primaryCulture = "";
 	}
 
@@ -72,7 +71,6 @@ EU3Country::EU3Country(Object* obj)
 	}
 	else
 	{
-		log("Error: Could not load the religion for %s\n", tag.c_str());
 		religion = "";
 	}
 
@@ -271,7 +269,6 @@ EU3Country::EU3Country(Object* obj)
 	}
 	else
 	{
-		log("Error: Could not load the government for %s\n", tag.c_str());
 		government = "";
 	}
 

@@ -3,6 +3,7 @@
 #include <io.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
+#include "EU3World.h"
 #include "V2World.h"
 #include "V2Factory.h"
 #include "V2TechSchools.h"
@@ -225,9 +226,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		removeLandlessNations(sourceWorld);
 	}
 	countryMapping countryMap;
-	vector<string> EU3Tags = getEU3Tags(sourceWorld);
-	int leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
-		if (leftoverNations == -1)
+	int leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
+	if (leftoverNations == -1)
 	{
 		return 1;
 	}
@@ -236,8 +236,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Too many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
 		printf("Too many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
 		removeDeadLandlessNations(sourceWorld);
-		EU3Tags = getEU3Tags(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
+		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
 	if (leftoverNations == -1)
 	{
@@ -248,8 +247,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
 		printf("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
 		removeOlderLandlessNations(sourceWorld, leftoverNations + blockedNations.size());
-		EU3Tags = getEU3Tags(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
+		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
 	if (leftoverNations == -1)
 	{
@@ -260,8 +258,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Too many EU3 nations (%d). Removing landless nations.\n", leftoverNations);
 		printf("Too many EU3 nations (%d). Removing landless nations.\n", leftoverNations);
 		removeLandlessNations(sourceWorld);
-		EU3Tags = getEU3Tags(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, EU3Tags, destWorld.getPotentialTags(), blockedNations, obj);
+		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
 	
 	// Generate region mapping
@@ -370,7 +367,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.setupStates(stateMap);
 	printf("Converting capitals.");
 	log("Converting capitals.");
-	destWorld.convertCapitals(sourceWorld, provinceMap);
+	destWorld.convertCapitals(sourceWorld, inverseProvinceMap);
 	printf("Creating pops.\n");
 	log("Creating pops.\n");
 	destWorld.setupPops(sourceWorld);
@@ -384,7 +381,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertLeaders(sourceWorld, leaderIDMap);
 	printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
-	destWorld.convertArmies(sourceWorld, provinceMap, leaderIDMap);
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
 
 	printf("Converting techs.\n");
 	log("Converting techs.\n");

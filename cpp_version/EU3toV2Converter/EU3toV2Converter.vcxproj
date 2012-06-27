@@ -110,12 +110,10 @@
     <ClCompile Include="Source\EU3Relations.cpp" />
     <ClCompile Include="Source\EU3toV2Converter.cpp" />
     <ClCompile Include="Source\EU3World.cpp" />
-    <ClCompile Include="Source\LeaderTraits.cpp" />
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\Parsers\Object.cpp" />
     <ClCompile Include="Source\Parsers\Parser.cpp" />
-    <ClCompile Include="Source\stdafx.cpp" />
     <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\V2Army.cpp" />
     <ClCompile Include="Source\V2Country.cpp" />
@@ -123,6 +121,7 @@
     <ClCompile Include="Source\V2Diplomacy.cpp" />
     <ClCompile Include="Source\V2Factory.cpp" />
     <ClCompile Include="Source\V2Leader.cpp" />
+    <ClCompile Include="Source\V2LeaderTraits.cpp" />
     <ClCompile Include="Source\V2Party.cpp" />
     <ClCompile Include="Source\V2Pop.cpp" />
     <ClCompile Include="Source\V2Province.cpp" />
@@ -143,12 +142,10 @@
     <ClInclude Include="Source\EU3Province.h" />
     <ClInclude Include="Source\EU3Relations.h" />
     <ClInclude Include="Source\EU3World.h" />
-    <ClInclude Include="Source\LeaderTraits.h" />
     <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\Parsers\Object.h" />
     <ClInclude Include="Source\Parsers\Parser.h" />
-    <ClInclude Include="Source\stdafx.h" />
     <ClInclude Include="Source\tempFuncs.h" />
     <ClInclude Include="Source\V2Army.h" />
     <ClInclude Include="Source\V2Country.h" />
@@ -157,6 +154,7 @@
     <ClInclude Include="Source\V2Factory.h" />
     <ClInclude Include="Source\V2Inventions.h" />
     <ClInclude Include="Source\V2Leader.h" />
+    <ClInclude Include="Source\V2LeaderTraits.h" />
     <ClInclude Include="Source\V2Party.h" />
     <ClInclude Include="Source\V2Pop.h" />
     <ClInclude Include="Source\V2Province.h" />

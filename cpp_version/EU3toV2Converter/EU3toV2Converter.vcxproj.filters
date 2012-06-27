@@ -60,16 +60,10 @@
     <ClCompile Include="Source\Date.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Source\LeaderTraits.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Source\Log.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\Mapper.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Source\tempFuncs.cpp">
@@ -120,6 +114,9 @@
     <ClCompile Include="Source\EU3toV2Converter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2LeaderTraits.cpp">
+      <Filter>V2 World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\EU3Army.h">
@@ -152,16 +149,10 @@
     <ClInclude Include="Source\Date.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Source\LeaderTraits.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\Mapper.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Source\tempFuncs.h">
@@ -216,6 +207,9 @@
       <Filter>V2 World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World.h">
+      <Filter>V2 World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\V2LeaderTraits.h">
       <Filter>V2 World</Filter>
     </ClInclude>
   </ItemGroup>

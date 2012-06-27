@@ -7,6 +7,7 @@
 #include "tempFuncs.h"
 #include "Configuration.h"
 #include "Parsers/Parser.h"
+#include "EU3World.h"
 #include "V2World.h"
 #include "V2State.h"
 #include "V2Province.h"

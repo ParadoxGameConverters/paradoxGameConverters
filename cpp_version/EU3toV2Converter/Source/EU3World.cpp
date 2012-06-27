@@ -216,7 +216,7 @@ void EU3World::checkAllProvincesMapped(const inverseProvinceMapping inverseProvi
 	for (map<int, EU3Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
-		if ( (j != inverseProvinceMap.end()) && (j->second.size() == 0) )
+		if ( (j == inverseProvinceMap.end()) || (j->second.size() == 0) )
 		{
 			log("	Error: no destination for province #%d\n", i->first);
 		}

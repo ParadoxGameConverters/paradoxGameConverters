@@ -7,9 +7,10 @@
 #include <float.h>
 #include "Parsers/Parser.h"
 #include "Log.h"
-#include "LeaderTraits.h"
+#include "V2LeaderTraits.h"
 #include "tempFuncs.h"
 #include "Configuration.h"
+#include "EU3World.h"
 #include "EU3Relations.h"
 #include "EU3Loan.h"
 #include "EU3Leader.h"
@@ -978,9 +979,8 @@ void V2World::addUnions(unionMapping unionMap)
 }
 
 
-void V2World::convertCapitals(EU3World sourceWorld, provinceMapping provinceMap)
+void V2World::convertCapitals(EU3World sourceWorld, inverseProvinceMapping inverseProvinceMap)
 {
-	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
 	map<string, EU3Country*> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
@@ -1350,7 +1350,7 @@ int V2World::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseP
 
 
 //#define TEST_V2_PROVINCES
-void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, const map<int,int>& leaderIDMap)
+void V2World::convertArmies(EU3World sourceWorld, inverseProvinceMapping inverseProvinceMap, const map<int,int>& leaderIDMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
@@ -1382,7 +1382,6 @@ void V2World::convertArmies(EU3World sourceWorld, provinceMapping provinceMap, c
 		cost_per_regiment[i] = atoi(regiment_cost.c_str());
 	}
 
-	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
 	map<string, EU3Country*> sourceCountries = sourceWorld.getCountries();
 	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
@@ -2264,4 +2263,16 @@ void V2World::outputHeader(FILE* output)
 	fprintf(output, "	{\n");
 	fprintf(output, "	}\n");
 	fprintf(output, "}\n");
+}
+
+
+map<string, V2Country*> V2World::getPotentialCountries() const
+{
+	map<string, V2Country*> retVal;
+	for (vector<V2Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
+	{
+		retVal[ (*i)->getTag() ] = *i;
+	}
+
+	return retVal;
 }
