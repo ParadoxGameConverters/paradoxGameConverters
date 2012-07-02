@@ -26,47 +26,53 @@ void V2ArmyID::output(FILE* out, int indentlevel)
 
 V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 {
+	name		= "\"\"";
+	popID		= 0;
+	strength	= 0.0;
 	switch (rc)
 	{
-	case infantry:
-		type = "infantry";
-		isShip = false;
-		break;
-	case cavalry:
-		type = "cavalry";
-		isShip = false;
-		break;
-	case artillery:
-		type = "artillery";
-		isShip = false;
-		break;
-	case big_ship:
-		type = "manowar";
-		isShip = true;
-		break;
-	case galley:
-	case light_ship:
-		type = "frigate";
-		isShip = true;
-		break;
-	case transport:
-		type = "clipper_transport";
-		isShip = true;
-		break;
-	default:
-		log("Unexpected regiment category %d", rc);
-		break;
+		case infantry:
+			type = "infantry";
+			isShip = false;
+			break;
+		case cavalry:
+			type = "cavalry";
+			isShip = false;
+			break;
+		case artillery:
+			type = "artillery";
+			isShip = false;
+			break;
+		case big_ship:
+			type = "manowar";
+			isShip = true;
+			break;
+		case galley:
+		case light_ship:
+			type = "frigate";
+			isShip = true;
+			break;
+		case transport:
+			type = "clipper_transport";
+			isShip = true;
+			break;
+		default:
+			log("Unexpected regiment category %d", rc);
+			break;
 	}
-	setName("\"\""); // avoid crashes if no name set
 }
 
 
 void V2Regiment::output(FILE* out)
 {
 	if (isShip)
+	{
 		fprintf(out, "\t\tship=\n");
+	}
 	else
+	{
 		fprintf(out, "\t\tregiment=\n");
+	}
 	fprintf(out, "\t\t{\n");
 	id.output(out, 3);
 	fprintf(out, "\t\t\tname=\"%s\"\n", name.c_str());
@@ -84,11 +90,26 @@ void V2Regiment::output(FILE* out)
 }
 
 
-V2Army::V2Army()
+V2Army::V2Army(EU3Army* oldArmy, map<int, int> leaderIDMap)
 {
-	leaderID = 0;
-	for (int i = 0; i < num_reg_categories; ++i)
-		army_remainders[i] = 0;
+	name			= oldArmy->getName();
+	location		= -1;
+	regiments.clear();
+	memset(armyRemainders, 0, sizeof(armyRemainders));
+	sourceArmy	= oldArmy;
+	at_sea		= oldArmy->getAtSea();
+
+	map<int, int>::const_iterator lmapitr = leaderIDMap.find( oldArmy->getLeaderID() );
+	if (lmapitr != leaderIDMap.end())
+	{
+			leaderID = lmapitr->second;
+	}
+	else
+	{
+		leaderID = 0;
+	}
+
+	isNavy		= false;
 }
 
 
@@ -99,15 +120,18 @@ void V2Army::output(FILE* out)
 		log("	Army %s has no regiments after conversion; skipping.\n", name.c_str());
 		return;
 	}
-
 	if (isNavy)
+	{
 		fprintf(out, "\tnavy=\n");
+	}
 	else
+	{
 		fprintf(out, "\tarmy=\n");
+	}
 	fprintf(out, "\t{\n");
 	id.output(out, 2);
 	fprintf(out, "\t\tname=\"%s\"\n", name.c_str());
-	if (leaderID)
+	if (leaderID > 0)
 	{
 		fprintf(out, "\t\tleader=\n");
 		fprintf(out, "\t\t{\n");
@@ -122,8 +146,9 @@ void V2Army::output(FILE* out)
 		itr->output(out);
 	}
 	if (isNavy)
+	{
 		fprintf(out, "\t\tat_sea=%d\n", at_sea);
-
+	}
 	fprintf(out, "\t}\n");
 }
 

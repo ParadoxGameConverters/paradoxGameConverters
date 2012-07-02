@@ -23,6 +23,7 @@
 #include "V2Leader.h"
 #include "V2Pop.h"
 #include "V2Country.h"
+#include "V2Reforms.h"
 
 
 
@@ -549,12 +550,7 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 							countryMapping::iterator newTag = countryMap.find( (*itr)->getCountry() );
 							if (newTag != countryMap.end())
 							{
-								V2Relations* v2r = new V2Relations;
-								v2r->init(newTag->second);
-								v2r->setRelations( (*itr)->getRelations() );
-								v2r->setMilitaryAccess( (*itr)->hasMilitaryAccess() );
-								v2r->setDiplomatLastSent( (*itr)->getDiplomatLastSent() );
-								v2r->setLastWar( (*itr)->getLastWar() );
+								V2Relations* v2r = new V2Relations(newTag->second, *itr);
 								newCountry->addRelations(v2r);
 							}
 						}
@@ -1154,8 +1150,7 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 
 void V2World::convertLeaders(EU3World sourceWorld, map<int,int>& leaderMap)
 {
-	LeaderTraits lt;
-	lt.init();
+	V2LeaderTraits lt;
 
 	map<string, EU3Country*> oldCountries = sourceWorld.getCountries();
 	for (unsigned int i = 0; i < countries.size(); ++i)
@@ -1166,14 +1161,7 @@ void V2World::convertLeaders(EU3World sourceWorld, map<int,int>& leaderMap)
 			vector<EU3Leader*> oldLeaders = oldCountries[sourceTag]->getLeaders();
 			for (vector<EU3Leader*>::iterator itr = oldLeaders.begin(); itr != oldLeaders.end(); ++itr)
 			{
-				V2Leader* leader = new V2Leader;
-				leader->init(countries[i]);
-				leader->setName( (*itr)->getName() );
-				leader->setActivationDate( (*itr)->getActivationDate() );
-				leader->setLand( (*itr)->isLand() );
-				string personality = lt.getPersonality( (*itr)->getFire(), (*itr)->getShock(), (*itr)->getManuever(), (*itr)->getSiege() );
-				string background = lt.getBackground( (*itr)->getFire(), (*itr)->getShock(), (*itr)->getManuever(), (*itr)->getSiege());
-				leader->setTraits(personality, background);
+				V2Leader* leader = new V2Leader(countries[i], *itr, lt);
 				countries[i]->addLeader(leader);
 				leaderMap[ (*itr)->getID() ] = leader->getID();
 			}
@@ -1397,16 +1385,7 @@ void V2World::convertArmies(EU3World sourceWorld, inverseProvinceMapping inverse
 		vector<EU3Army*> sourceArmies = oldCountry->getArmies();
 		for (vector<EU3Army*>::iterator aitr = sourceArmies.begin(); aitr != sourceArmies.end(); ++aitr)
 		{
-			V2Army* army = new V2Army;
-			army->setSourceArmy(&(**aitr));
-			army->setName( (*aitr)->getName() );
-			army->setAtSea( (*aitr)->getAtSea() );
-
-			map<int, int>::const_iterator lmapitr = leaderIDMap.find( (*aitr)->getLeaderID() );
-			if (lmapitr != leaderIDMap.end())
-			{
-				army->setLeaderID(lmapitr->second);
-			}
+			V2Army* army = new V2Army(*aitr, leaderIDMap);
 
 			for (int rc = infantry; rc < num_reg_categories; ++rc)
 			{
@@ -1764,52 +1743,55 @@ void V2World::convertTechs(EU3World sourceWorld)
 		}
 	}
 
-	printf("Converting unciv reforms\n");
-	log("Converting unciv reforms\n");
-	for (unsigned int i = 0; i < countries.size(); i++)
+	if (Configuration::getV2Gametype() == "AHD")
 	{
-		string sourceTag = countries[i]->getSourceTag();
-		if (sourceTag == "")
-				continue;
+		printf("Converting unciv reforms\n");
+		log("Converting unciv reforms\n");
+		for (unsigned int i = 0; i < countries.size(); i++)
+		{
+			string sourceTag = countries[i]->getSourceTag();
+			if (sourceTag == "")
+					continue;
 
-		if ( (sourceCountries[sourceTag]->getTechGroup() == "western") || (sourceCountries[sourceTag]->getTechGroup() == "latin") ||
-						(sourceCountries[sourceTag]->getTechGroup() == "eastern") || (sourceCountries[sourceTag]->getTechGroup() == "ottoman"))
-		{
-			continue;
-		}
-		else if ( (sourceCountries[sourceTag]->getTechGroup() == "nomad_group") || (sourceCountries[sourceTag]->getTechGroup() == "sub_saharan") || 
-					 (sourceCountries[sourceTag]->getTechGroup() == "new_world") ) {
-			double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
-											sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
-			double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
-			double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 0 percent.\n", countries[i]->getTag().c_str());
-			countries[i]->setUncivReforms(0, militaryDev, socioEconDev);
-		}
-		else if ( (sourceCountries[sourceTag]->getTechGroup() == "indian") || (sourceCountries[sourceTag]->getTechGroup() == "chinese") ) {
-			double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
-											sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
-			double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
-			double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 30 percent.\n", countries[i]->getTag().c_str());
-			countries[i]->setUncivReforms(30, militaryDev, socioEconDev);
-		}
-		else if (sourceCountries[sourceTag]->getTechGroup() == "muslim") {
-			double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
-											sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
-			double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
-			double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 60 percent.\n", countries[i]->getTag().c_str());
-			countries[i]->setUncivReforms(60, militaryDev, socioEconDev);
-		}
-		else
-		{
-			log("	Error: Unhandled tech group (%s) for unciv nation. Giving no reforms\n", sourceCountries[sourceTag]->getTechGroup().c_str());
-			double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
-											sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
-			double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
-			double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
-			countries[i]->setUncivReforms(0, militaryDev, socioEconDev);
+			if ( (sourceCountries[sourceTag]->getTechGroup() == "western") || (sourceCountries[sourceTag]->getTechGroup() == "latin") ||
+							(sourceCountries[sourceTag]->getTechGroup() == "eastern") || (sourceCountries[sourceTag]->getTechGroup() == "ottoman"))
+			{
+				continue;
+			}
+			else if ( (sourceCountries[sourceTag]->getTechGroup() == "nomad_group") || (sourceCountries[sourceTag]->getTechGroup() == "sub_saharan") || 
+						 (sourceCountries[sourceTag]->getTechGroup() == "new_world") ) {
+				double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
+												sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
+				double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
+				double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
+				log("	Setting unciv reforms for %s. Westernization at 0 percent.\n", countries[i]->getTag().c_str());
+				countries[i]->setUncivReforms( new V2UncivReforms(0, militaryDev, socioEconDev, countries[i]) );
+			}
+			else if ( (sourceCountries[sourceTag]->getTechGroup() == "indian") || (sourceCountries[sourceTag]->getTechGroup() == "chinese") ) {
+				double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
+												sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
+				double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
+				double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
+				log("	Setting unciv reforms for %s. Westernization at 30 percent.\n", countries[i]->getTag().c_str());
+				countries[i]->setUncivReforms( new V2UncivReforms(30, militaryDev, socioEconDev, countries[i]) );
+			}
+			else if (sourceCountries[sourceTag]->getTechGroup() == "muslim") {
+				double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
+												sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
+				double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
+				double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
+				log("	Setting unciv reforms for %s. Westernization at 60 percent.\n", countries[i]->getTag().c_str());
+				countries[i]->setUncivReforms( new V2UncivReforms(60, militaryDev, socioEconDev, countries[i]) );
+			}
+			else
+			{
+				log("	Error: Unhandled tech group (%s) for unciv nation. Giving no reforms\n", sourceCountries[sourceTag]->getTechGroup().c_str());
+				double totalTechs			= sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() + sourceCountries[sourceTag]->getGovernmentTech() + 
+												sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech();
+				double militaryDev		= ( sourceCountries[sourceTag]->getLandTech() + sourceCountries[sourceTag]->getNavalTech() ) / totalTechs;
+				double socioEconDev	= ( sourceCountries[sourceTag]->getGovernmentTech() + sourceCountries[sourceTag]->getTradeTech() + sourceCountries[sourceTag]->getProductionTech() ) / totalTechs;
+				countries[i]->setUncivReforms( new V2UncivReforms(0, militaryDev, socioEconDev, countries[i]) );
+			}
 		}
 	}
 }
@@ -2008,7 +1990,7 @@ void V2World::buildParties()
 		exit(1);
 	}
 	V2Party* emptyParty = new V2Party;
-	parties.push_back(emptyParty); // TODO: Check if we really need this
+	parties.push_back(emptyParty); // Avoid off by one errors and ugly code everywhere
 	while (!V2CountriesInput.eof())
 	{
 		string line;

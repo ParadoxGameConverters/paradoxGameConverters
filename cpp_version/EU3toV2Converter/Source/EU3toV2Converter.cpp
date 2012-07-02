@@ -157,8 +157,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Construct factory factory
 	log("Determining factory allocation rules.\n");
 	printf("Determining factory allocation rules.\n");
-	V2FactoryFactory factoryBuilder;
-	factoryBuilder.init(V2Loc);
+	V2FactoryFactory factoryBuilder(V2Loc);
 
 
 	// Parse province mappings

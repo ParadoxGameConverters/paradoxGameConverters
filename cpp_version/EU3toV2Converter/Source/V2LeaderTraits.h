@@ -11,10 +11,10 @@ class Object;
 
 
 
-struct TraitConversion
+struct V2TraitConversion
 {
-	void	init(Object* obj);
-	bool	matches(int fire, int shock, int manuever, int siege);
+	V2TraitConversion(Object* obj);
+	bool matches(int fire, int shock, int manuever, int siege) const;
 
 	int		req_fire;
 	int		req_shock;
@@ -25,16 +25,16 @@ struct TraitConversion
 };
 
 
-class LeaderTraits
+class V2LeaderTraits
 {
-public:
-	void	init();
-	string	getPersonality(int fire, int shock, int manuever, int siege);
-	string	getBackground(int fire, int shock, int manuever, int siege);
+	public:
+		V2LeaderTraits();
 
-private:
-	vector<TraitConversion> personalities;
-	vector<TraitConversion> backgrounds;
+		string	getPersonality(int fire, int shock, int manuever, int siege) const;
+		string	getBackground(int fire, int shock, int manuever, int siege) const;
+	private:
+		vector<V2TraitConversion> personalities;
+		vector<V2TraitConversion> backgrounds;
 };
 
 

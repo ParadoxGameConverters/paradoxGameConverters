@@ -650,10 +650,13 @@ using namespace std;
 	DO(amphibious_warfare_training) \
 	DO(naval_exercises)
 
+
+
 #define MAKE_UNION(VAR) VAR,
 enum inventionType {
     INVENTION_UNION(MAKE_UNION)
 };
+
 
 #define MAKE_STRINGS(VAR) #VAR,
 const char* const inventionNames[naval_exercises+1] = {
@@ -668,14 +671,6 @@ enum inventionStatus
 	active
 };
 
-
-
-typedef struct uncivReformData
-{
-	string				name;
-	bool					active;
-	int					westernizationProgress;
-} uncivReformData;
 
 
 #endif	// V2INVENTIONS_H_

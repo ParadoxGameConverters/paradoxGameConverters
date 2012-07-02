@@ -1,13 +1,16 @@
 #include "V2Relations.h"
+#include "EU3Relations.h"
 
 
 
-void V2Relations::init(string newTag)
+V2Relations::V2Relations(string newTag, EU3Relations* oldRelations)
 {
-	tag = newTag;
-	value = 0;
-	level = 2; // Neutral
-	military_access = false;
+	tag					= newTag;
+	value					= oldRelations->getRelations();
+	militaryAccess		= oldRelations->hasMilitaryAccess();
+	lastSendDiplomat	= oldRelations->getDiplomatLastSent();
+	lastWar				= oldRelations->getLastWar();
+	level					= 2; // Neutral
 }
 
 
@@ -16,17 +19,17 @@ void V2Relations::output(FILE* out)
 	fprintf(out, "\t%s=\n", tag.c_str());
 	fprintf(out, "\t{\n");
 	fprintf(out, "\t\tvalue=%d\n", value);
-	if (military_access)
+	if (militaryAccess)
 	{
 		fprintf(out, "\t\tmilitary_access=yes\n");
 	}
-	if (last_send_diplomat.isSet())
+	if (lastSendDiplomat.isSet())
 	{
-		fprintf(out, "\t\tlast_send_diplomat=\"%s\"\n", last_send_diplomat.toString().c_str());
+		fprintf(out, "\t\tlast_send_diplomat=\"%s\"\n", lastSendDiplomat.toString().c_str());
 	}
-	if (last_war.isSet())
+	if (lastWar.isSet())
 	{
-		fprintf(out, "\t\tlast_war=\"%s\"\n", last_war.toString().c_str());
+		fprintf(out, "\t\tlast_war=\"%s\"\n", lastWar.toString().c_str());
 	}
 	if (level != 2)
 	{
@@ -39,6 +42,8 @@ void V2Relations::output(FILE* out)
 void V2Relations::setLevel(int lvl)
 {
 	if (lvl < 0 || lvl > 5)
+	{
 		return;
+	}
 	level = lvl;
 }

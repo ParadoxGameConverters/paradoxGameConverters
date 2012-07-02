@@ -64,7 +64,7 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	creditors.clear();
 	leaders.clear();
 
-	reforms = new V2Reforms;
+	reforms = NULL;
 		
 
 	sourceTag = "";
@@ -73,23 +73,7 @@ void V2Country::init(string newTag, string newCountryFile, vector<int> newPartie
 	upperHouseConservative	= 0.333;
 	upperHouseLiberal			= 0.333;
 
-	uncivReforms[0].name		= "yes_land_reform";					uncivReforms[0].active	= false;	uncivReforms[0].westernizationProgress		= 10;
-	uncivReforms[1].name		= "yes_admin_reform";				uncivReforms[1].active	= false;	uncivReforms[1].westernizationProgress		= 10;
-	uncivReforms[2].name		= "yes_finance_reform";				uncivReforms[2].active	= false;	uncivReforms[2].westernizationProgress		= 10;
-	uncivReforms[3].name		= "finance_reform_two";				uncivReforms[3].active	= false;	uncivReforms[3].westernizationProgress		= 0;
-	uncivReforms[4].name		= "yes_education_reform";			uncivReforms[4].active	= false;	uncivReforms[4].westernizationProgress		= 10;
-	uncivReforms[5].name		= "yes_transport_improv";			uncivReforms[5].active	= false;	uncivReforms[5].westernizationProgress		= 10;
-	uncivReforms[6].name		= "yes_pre_indust";					uncivReforms[6].active	= false;	uncivReforms[6].westernizationProgress		= 20;
-	uncivReforms[7].name		= "yes_industrial_construction";	uncivReforms[7].active	= false;	uncivReforms[7].westernizationProgress		= 30;
-	
-	uncivReforms[8].name		= "yes_foreign_training";			uncivReforms[8].active	= false;	uncivReforms[8].westernizationProgress		= 10;
-	uncivReforms[9].name		= "yes_foreign_weapons";			uncivReforms[9].active	= false;	uncivReforms[9].westernizationProgress		= 10;
-	uncivReforms[10].name	= "yes_military_constructions";	uncivReforms[10].active	= false;	uncivReforms[10].westernizationProgress	= 10;
-	uncivReforms[11].name	= "yes_foreign_officers";			uncivReforms[11].active	= false;	uncivReforms[11].westernizationProgress	= 15;
-	uncivReforms[12].name	= "yes_army_schools";				uncivReforms[12].active	= false;	uncivReforms[12].westernizationProgress	= 15;
-	uncivReforms[13].name	= "yes_foreign_naval_officers";	uncivReforms[13].active	= false;	uncivReforms[13].westernizationProgress	= 15;
-	uncivReforms[14].name	= "yes_naval_schools";				uncivReforms[14].active	= false;	uncivReforms[14].westernizationProgress	= 15;
-	uncivReforms[15].name	= "yes_foreign_navies";				uncivReforms[15].active	= false;	uncivReforms[15].westernizationProgress	= 15;
+	uncivReforms = NULL;
 
 	setIssues();
 }
@@ -248,7 +232,7 @@ void V2Country::sortRelations(const vector<string>& order)
 	relations.swap(sortedRelations);
 }
 
-
+#pragma optimize("", off)
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -260,10 +244,16 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputTech(output);
 	outputElection(output);
-	reforms->output(output);
-	if (  (Configuration::getV2Gametype() == "AHD") && (!civilized) )
+	if (reforms != NULL)
 	{
-		outputUncivReforms(output);
+		reforms->output(output);
+	}
+	if (!civilized)
+	{
+		if (uncivReforms != NULL)
+		{
+			uncivReforms->output(output);
+		}
 	}
 	fprintf(output, "	upper_house=\n");
 	fprintf(output, "	{\n");
@@ -314,9 +304,9 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	}\n");
 	fprintf(output, "	money=%f\n", money);
 	fprintf(output, "	last_bankrupt=\"%s\"\n", lastBankrupt.toString().c_str());
-	for (vector<V2Creditor*>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
+	for (map<string, V2Creditor*>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
 	{
-		(*itr)->output(output);
+		itr->second->output(output);
 	}
 	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
 	if (civilized)
@@ -334,134 +324,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	badboy=%f\n", badboy);
 	fprintf(output, "}\n");
 }
-
-
-void V2Country::outputUncivReforms(FILE* output)
-{
-	if (uncivReforms[0].active) {
-		fprintf(output, "	land_reform=yes_land_reform\n");
-	}
-	else
-	{
-		fprintf(output, "	land_reform=no_land_reform\n");
-	}
-
-	if (uncivReforms[1].active) {
-		fprintf(output, "	admin_reform=yes_admin_reform\n");
-	}
-	else
-	{
-		fprintf(output, "	admin_reform=no_admin_reform\n");
-	}
-
-	if (uncivReforms[3].active) {
-		fprintf(output, "	finance_reform=finance_reform_two\n");
-	}
-	else if (uncivReforms[2].active) {
-		fprintf(output, "	finance_reform=yes_finance_reform\n");
-	}
-	else
-	{
-		fprintf(output, "	finance_reform=no_finance_reform\n");
-	}
-
-	if (uncivReforms[4].active) {
-		fprintf(output, "	education_reform=yes_education_reform\n");
-	}
-	else
-	{
-		fprintf(output, "	education_reform=no_education_reform\n");
-	}
-
-	if (uncivReforms[5].active) {
-		fprintf(output, "	transport_improv=yes_transport_improv\n");
-	}
-	else
-	{
-		fprintf(output, "	transport_improv=no_transport_improv\n");
-	}
-
-	if (uncivReforms[6].active) {
-		fprintf(output, "	pre_indust=yes_pre_indust\n");
-	}
-	else
-	{
-		fprintf(output, "	pre_indust=no_pre_indust\n");
-	}
-
-	if (uncivReforms[7].active) {
-		fprintf(output, "	industrial_construction=yes_industrial_construction\n");
-	}
-	else
-	{
-		fprintf(output, "	industrial_construction=no_industrial_construction\n");
-	}
-
-	if (uncivReforms[8].active) {
-		fprintf(output, "	foreign_training=yes_foreign_training\n");
-	}
-	else
-	{
-		fprintf(output, "	foreign_training=no_foreign_training\n");
-	}
-
-	if (uncivReforms[9].active) {
-		fprintf(output, "	foreign_weapons=yes_foreign_weapons\n");
-	}
-	else
-	{
-		fprintf(output, "	foreign_weapons=no_foreign_weapons\n");
-	}
-
-	if (uncivReforms[10].active) {
-		fprintf(output, "	military_constructions=yes_military_constructions\n");
-	}
-	else
-	{
-		fprintf(output, "	military_constructions=no_military_constructions\n");
-	}
-
-	if (uncivReforms[11].active) {
-		fprintf(output, "	foreign_officers=yes_foreign_officers\n");
-	}
-	else
-	{
-		fprintf(output, "	foreign_officers=no_foreign_officers\n");
-	}
-
-	if (uncivReforms[12].active) {
-		fprintf(output, "	army_schools=yes_army_schools\n");
-	}
-	else
-	{
-		fprintf(output, "	army_schools=no_army_schools\n");
-	}
-
-	if (uncivReforms[13].active) {
-		fprintf(output, "	foreign_naval_officers=yes_foreign_naval_officers\n");
-	}
-	else
-	{
-		fprintf(output, "	foreign_naval_officers=no_foreign_naval_officers\n");
-	}
-
-	if (uncivReforms[14].active) {
-		fprintf(output, "	naval_schools=yes_naval_schools\n");
-	}
-	else
-	{
-		fprintf(output, "	naval_schools=no_naval_schools\n");
-	}
-
-	if (uncivReforms[14].active) {
-		fprintf(output, "	foreign_navies=yes_foreign_navies\n");
-	}
-	else
-	{
-		fprintf(output, "	foreign_navies=no_foreign_navies\n");
-	}
-}
-
+#pragma optimize("", on)
 
 string V2Country::getSourceTag()
 {
@@ -890,100 +753,7 @@ void V2Country::setTechSchool(string newTechSchool)
 }
 
 
-void V2Country::setUncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus)
-{
-	double socioEconProgress = westernizationProgress * socioEcoFocus;
-	for (unsigned int i = 0; i < 8; i++)
-	{
-		if (socioEconProgress >= uncivReforms[i].westernizationProgress - 0.001)
-		{
-			uncivReforms[i].active	= true;
-			socioEconProgress			-=uncivReforms[i].westernizationProgress;
-		}
-	}
 
-	double milProgress = westernizationProgress * milFocus;
-	for (unsigned int i = 8; i < 16; i++)
-	{
-		if (milProgress >= uncivReforms[i].westernizationProgress - 0.001)
-		{
-			uncivReforms[i].active	= true;
-			milProgress					-=uncivReforms[i].westernizationProgress;
-		}
-	}
-
-	double remainingProgress = socioEconProgress + milProgress;
-	if (socioEconProgress >= milProgress)
-	{
-		for (unsigned int i = 0; i < 8; i++)
-		{
-			if (uncivReforms[i].active	== true)
-			{
-				continue;
-			}
-			else if (remainingProgress >= uncivReforms[i].westernizationProgress - 0.001)
-			{
-				uncivReforms[i].active	= true;
-				remainingProgress			-=uncivReforms[i].westernizationProgress;
-			}
-		}
-	}
-	else
-	{
-		for (unsigned int i = 8; i < 16; i++)
-		{
-			if (uncivReforms[i].active	== true)
-			{
-				continue;
-			}
-			else if (remainingProgress >= uncivReforms[i].westernizationProgress - 0.001)
-			{
-				uncivReforms[i].active	= true;
-				remainingProgress			-=uncivReforms[i].westernizationProgress;
-			}
-		}
-	}
-
-	researchPoints += remainingProgress * 800;
-
-	if (uncivReforms[5].active == true)
-	{
-		for (unsigned int i = 0; i < states.size(); i++)
-		{
-			if (states[i]->provInState(capital))
-			{
-				states[i]->addRailroads();
-			}
-		}
-	}
-
-	if (uncivReforms[9].active == true)
-	{
-		techs.push_back("flintlock_rifles");
-	}
-
-	if (uncivReforms[10].active == true)
-	{
-		techs.push_back("post_napoleonic_thought");
-		for (unsigned int i = 0; i < provinces.size(); i++)
-		{
-			if (provinces[i]->getNum() == capital)
-			{
-				provinces[i]->setFortLevel(2);
-			}
-		}
-	}
-
-	if (uncivReforms[11].active == true)
-	{
-		techs.push_back("military_staff_system");
-	}
-
-	if (uncivReforms[15].active == true)
-	{
-		techs.push_back("post_nelsonian_thought");
-	}
-}
 
 
 void V2Country::outputTech(FILE* output)
@@ -1488,7 +1258,7 @@ V2Army*	V2Country::getArmyForRemainder(RegimentCategory rc)
 
 void V2Country::setReforms(EU3Country* srcCountry)
 {
-	reforms->init(srcCountry);
+	reforms	= new V2Reforms(srcCountry);
 }
 
 
@@ -1538,13 +1308,13 @@ bool V2Country::addFactory(V2Factory* factory)
 				continue;
 		}
 
-		vector<string> requiredProducts = factory->getRequiredRGO();
+		map<string,float> requiredProducts = factory->getRequiredRGO();
 		if (requiredProducts.size() > 0)
 		{
 			bool hasInput = false;
-			for (vector<string>::iterator prod = requiredProducts.begin(); prod != requiredProducts.end(); ++prod)
+			for (map<string,float>::iterator prod = requiredProducts.begin(); prod != requiredProducts.end(); ++prod)
 			{
-				if ( (*itr)->hasLocalSupply(*prod) )
+				if ( (*itr)->hasLocalSupply(prod->first) )
 				{
 					hasInput = true;
 					break;
@@ -1684,21 +1454,16 @@ void V2Country::setLastBankrupt(date _lastBankrupt)
 void V2Country::addLoan(string creditor, double size, double interest)
 {
 	bool found = false;
-	for (vector<V2Creditor*>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
+	map<string, V2Creditor*>::iterator itr = creditors.find(creditor);
+	if (itr != creditors.end())
 	{
-		if (creditor == (*itr)->getCountry())
-		{
-			(*itr)->addLoan(size, interest);
-			found = true;
-			break;
-		}
+			itr->second->addLoan(size, interest);
 	}
-	if (!found)
+	else
 	{
-		V2Creditor* cred = new V2Creditor;
-		cred->setCountry(creditor);
+		V2Creditor* cred = new V2Creditor(creditor);
 		cred->addLoan(size, interest);
-		creditors.push_back(cred);
+		creditors.insert(make_pair(creditor, cred));
 	}
 }
 

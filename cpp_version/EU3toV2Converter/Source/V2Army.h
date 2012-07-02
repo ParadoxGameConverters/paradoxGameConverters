@@ -9,25 +9,27 @@
 
 struct V2ArmyID
 {
-public:
-	V2ArmyID();
-	void output(FILE* out, int indentlevel);
+	public:
+		V2ArmyID();
+		void output(FILE* out, int indentlevel);
 
-	int id;
-	int type;
+		int id;
+		int type;
 };
 
 
 class V2Regiment // also Ship
 {
 	public:
-								V2Regiment(RegimentCategory rc);
-		void					output(FILE* out);
-		void					setName(string _name) { name = _name; };
-		void					setPopID(int newPop) { popID = newPop; };
-		void					setStrength(double str) { strength = str; };
-		bool					getShip() const { return isShip; };
-		RegimentCategory	getCategory() const { return category; };
+		V2Regiment(RegimentCategory rc);
+		void output(FILE* out);
+
+		void setName(string _name)		{ name = _name; };
+		void setPopID(int newPop)		{ popID = newPop; };
+		void setStrength(double str)	{ strength = str; };
+
+		bool					getShip()		const { return isShip; };
+		RegimentCategory	getCategory()	const { return category; };
 	private:
 		V2ArmyID				id;
 		string				name;
@@ -42,31 +44,29 @@ class V2Regiment // also Ship
 class V2Army // also Navy
 {
 	public:
-								V2Army();
+		V2Army(EU3Army* oldArmy, map<int, int> leaderIDMap);
 		void					output(FILE* out);
 		void					addRegiment(V2Regiment reg);
-		void					setName(string _name) { name = _name; };
+
+		void					setLocation(int provinceID)												{ location = provinceID; };
+		void					setNavy(bool navy)															{ isNavy = navy; };
+		void					setArmyRemainders(RegimentCategory category, double remainder)	{ armyRemainders[category] = remainder; };
+
 		string				getName() const { return name; };
-		void					setLocation(int provinceID) { location = provinceID; };
-		void					setNavy(bool navy) { isNavy = navy; };
-		bool					getNavy() const { return isNavy; };
-		void					setArmyRemainders(RegimentCategory category, double remainder) { army_remainders[category] = remainder; };
-		double				getArmyRemainder(RegimentCategory category) const { return army_remainders[category]; };
-		void					setSourceArmy(EU3Army* source) { sourceArmy = source; };
-		EU3Army*				getSourceArmy() const { return sourceArmy; };
-		void					setAtSea(int atSea) { at_sea = atSea; }
 		void					getRegimentCounts(int counts[num_reg_categories]);
-		void					setLeaderID(int id) { leaderID = id; };
+		double				getArmyRemainder(RegimentCategory category) const { return armyRemainders[category]; };
+		EU3Army*				getSourceArmy() const { return sourceArmy; };
+		bool					getNavy() const { return isNavy; };
 	private:
 		V2ArmyID					id;
 		string					name;
 		int						location;
 		vector<V2Regiment>	regiments;
-		double					army_remainders[num_reg_categories];
+		double					armyRemainders[num_reg_categories];
 		EU3Army*					sourceArmy; // only valid during conversion
-		bool						isNavy;
 		int						at_sea;
 		int						leaderID;
+		bool						isNavy;
 };
 
 

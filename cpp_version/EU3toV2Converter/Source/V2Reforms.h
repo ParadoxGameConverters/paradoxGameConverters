@@ -3,21 +3,25 @@
 
 
 
-//#include "EU3Country.h"
 #include <stdio.h>
+#include <string>
+using namespace std;
+
 class EU3Country;
+class V2Country;
 
 
 
 class V2Reforms {
 	public:
-		void init(EU3Country*);
+		V2Reforms(EU3Country*);
+		void output(FILE*);
+	private:
 		void governmentEffects(EU3Country*);
 		void sliderEffects(EU3Country*);
 		void flagEffects(EU3Country*);
 		void modifierEffects(EU3Country*);
-		void output(FILE*);
-	private:
+
 		int slavery;
 		int vote_franchise;
 		int upper_house_composition;
@@ -35,6 +39,14 @@ class V2Reforms {
 		int school_reforms;
 };
 
+
+class V2UncivReforms {
+	public:
+		V2UncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus, V2Country* country);
+		void output(FILE*);
+	private:
+		bool reforms[16];
+};
 
 
 #endif V2REFORMS_H_

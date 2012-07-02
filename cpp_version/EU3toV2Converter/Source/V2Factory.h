@@ -15,8 +15,7 @@ class Object;
 
 struct V2FactoryType
 {
-	V2FactoryType();
-	void	init(Object* factory);
+	V2FactoryType(Object* factory);
 
 	string				name;
 	bool					requireCoastal;
@@ -30,17 +29,14 @@ struct V2FactoryType
 class V2Factory
 {
 	public:
-		V2Factory(): type(NULL) {};
 		V2Factory(const V2FactoryType* _type) : type(_type) {};
+		void					output(FILE* output);
+		map<string,float>	getRequiredRGO() const;
 
-		bool				requiresCoastal() const { return type->requireCoastal; }
-		string			getRequiredTech() const { return type->requireTech; }
-		inventionType	getRequiredInvention() const { return type->requireInvention; }
-		vector<string>	getRequiredRGO() const;
-		string			getTypeName() const { return type->name; }
-
-		void				output(FILE* output);
-
+		bool				requiresCoastal()			const { return type->requireCoastal; }
+		string			getRequiredTech()			const { return type->requireTech; }
+		inventionType	getRequiredInvention()	const { return type->requireInvention; }
+		string			getTypeName()				const { return type->name; }
 	private:
 		const V2FactoryType* type;
 };
@@ -49,14 +45,11 @@ class V2Factory
 class V2FactoryFactory
 {
 	public:
-		V2FactoryFactory();
-		void					init(string V2loc);
+		V2FactoryFactory(string V2loc);
 		deque<V2Factory*>	buildFactories();
-
 	private:
 		void					loadRequiredTechs(string filename);
 		void					loadRequiredInventions(string filename);
-
 		vector<pair<V2FactoryType*, int>>	factoryCounts;
 		map<string, V2FactoryType*>			factoryTypes;
 		map<string, string>						factoryTechReqs;

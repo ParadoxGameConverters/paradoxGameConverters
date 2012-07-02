@@ -1,12 +1,14 @@
 #include "V2Reforms.h"
-#include "tempFuncs.h"
 #include "Log.h"
 #include "Configuration.h"
 #include "EU3Country.h"
+#include "V2Country.h"
+#include "V2State.h"
+#include "V2Province.h"
 
 
 
-void V2Reforms::init(EU3Country* srcCountry)
+V2Reforms::V2Reforms(EU3Country* srcCountry)
 {
 	slavery							= 0;
 	vote_franchise					= 0;
@@ -27,6 +29,153 @@ void V2Reforms::init(EU3Country* srcCountry)
 	sliderEffects(srcCountry);
 	flagEffects(srcCountry);
 	modifierEffects(srcCountry);
+}
+
+
+void V2Reforms::output(FILE* output)
+{
+	fprintf(output, "	wage_reform=no_minimum_wage\n");
+	fprintf(output, "	work_hours=no_work_hour_limit\n");
+	fprintf(output, "	safety_regulations=no_safety\n");
+	fprintf(output, "	unemployment_subsidies=no_subsidies\n");
+	fprintf(output, "	pensions=no_pensions\n");
+	fprintf(output, "	health_care=no_health_care\n");
+
+	if (Configuration::getV2Gametype() == "AHD")
+	{
+		if (school_reforms >= 10)
+		{
+			fprintf(output, "	school_reforms=low_schools\n");
+		}
+		else
+		{
+			fprintf(output, "	school_reforms=no_schools\n");
+		}
+	}
+
+	if (slavery >= 1)
+	{
+		fprintf(output, "	slavery=no_slavery\n");
+	}
+	else
+	{
+		fprintf(output, "	slavery=yes_slavery\n");
+	}
+
+	if (vote_franchise >= 20)
+	{
+		fprintf(output, "	vote_franschise=universal_voting\n");
+	}
+	else if (vote_franchise >= 15)
+	{
+		fprintf(output, "	vote_franschise=universal_weighted_voting\n");
+	}
+	else if (vote_franchise >= 10)
+	{
+		fprintf(output, "	vote_franschise=wealth_voting\n");
+	}
+	else if (vote_franchise >= 5)
+	{
+		fprintf(output, "	vote_franschise=wealth_weighted_voting\n");
+	}
+	else if (vote_franchise >= 0)
+	{
+		fprintf(output, "	vote_franschise=landed_voting\n");
+	}
+	else
+	{
+		fprintf(output, "	vote_franschise=none_voting\n");
+	}
+
+	if (upper_house_composition >= 10)
+	{
+		fprintf(output, "	upper_house_composition=population_equal_weight\n");
+	}
+	else if (upper_house_composition >= 5)
+	{
+		fprintf(output, "	upper_house_composition=state_equal_weight\n");
+	}
+	else if (upper_house_composition >= 0)
+	{
+		fprintf(output, "	upper_house_composition=appointed\n");
+	}
+	else
+	{
+		fprintf(output, "	upper_house_composition=party_appointed\n");
+	}
+
+	if (voting_system >= 10)
+	{
+		fprintf(output, "	voting_system=proportional_representation\n");
+	}
+	else if (voting_system >= 5)
+	{
+		fprintf(output, "	voting_system=jefferson_method\n");
+	}
+	else
+	{
+		fprintf(output, "	voting_system=first_past_the_post\n");
+	}
+
+	if (public_meetings >= 5)
+	{
+		fprintf(output, "	public_meetings=yes_meeting\n");
+	}
+	else
+	{
+		fprintf(output, "	public_meetings=no_meeting\n");
+	}
+
+	if (press_rights >= 10)
+	{
+		fprintf(output, "	press_rights=free_press\n");
+	}
+	else if (press_rights >= 5)
+	{
+		fprintf(output, "	press_rights=censored_press\n");
+	}
+	else
+	{
+		fprintf(output, "	press_rights=state_press\n");
+	}
+
+	if (trade_unions >= 15)
+	{
+		fprintf(output, "	trade_unions=all_trade_unions\n");
+	}
+	else if (trade_unions >= 10)
+	{
+		fprintf(output, "	trade_unions=non_socialist\n");
+	}
+	else if (trade_unions >= 5)
+	{
+		fprintf(output, "	trade_unions=state_controlled\n");
+	}
+	else
+	{
+		fprintf(output, "	trade_unions=no_trade_unions\n");
+	}
+
+	if (political_parties >= 20)
+	{
+		fprintf(output, "	political_parties=secret_ballots\n");
+	}
+	else if (political_parties >= 15)
+	{
+		fprintf(output, "	political_parties=non_secret_ballots\n");
+	}
+	else if (political_parties >= 10)
+	{
+		fprintf(output, "	political_parties=gerrymandering\n");
+	}
+	else if (political_parties >= 5)
+	{
+		fprintf(output, "	political_parties=harassment\n");
+	}
+	else
+	{
+		fprintf(output, "	political_parties=underground_parties\n");
+	}
 }
 
 
@@ -676,148 +825,253 @@ void V2Reforms::modifierEffects(EU3Country* srcCountry)
 }
 
 
-void V2Reforms::output(FILE* output)
+V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus, V2Country* country)
 {
-	fprintf(output, "	wage_reform=no_minimum_wage\n");
-	fprintf(output, "	work_hours=no_work_hour_limit\n");
-	fprintf(output, "	safety_regulations=no_safety\n");
-	fprintf(output, "	unemployment_subsidies=no_subsidies\n");
-	fprintf(output, "	pensions=no_pensions\n");
-	fprintf(output, "	health_care=no_health_care\n");
+	int westernizationCost[16];
+	westernizationCost[0]	= 10;
+	westernizationCost[1]	= 10;
+	westernizationCost[2]	= 10;
+	westernizationCost[3]	= 0;
+	westernizationCost[4]	= 10;
+	westernizationCost[5]	= 10;
+	westernizationCost[6]	= 20;
+	westernizationCost[7]	= 30;
 
-	if (Configuration::getV2Gametype() == "AHD")
+	westernizationCost[8]	= 10;
+	westernizationCost[9]	= 10;
+	westernizationCost[10]	= 10;
+	westernizationCost[11]	= 15;
+	westernizationCost[12]	= 15;
+	westernizationCost[13]	= 15;
+	westernizationCost[14]	= 15;
+	westernizationCost[15]	= 15;
+
+	double socioEconProgress = westernizationProgress * socioEcoFocus;
+	for (unsigned int i = 0; i < 8; i++)
 	{
-		if (school_reforms >= 10)
+		if (socioEconProgress >= westernizationCost[i] - 0.001)
 		{
-			fprintf(output, "	school_reforms=low_schools\n");
+			reforms[i]			= true;
+			socioEconProgress	-= westernizationCost[i];
 		}
 		else
 		{
-			fprintf(output, "	school_reforms=no_schools\n");
+			reforms[i] = false;
 		}
 	}
 
-	if (slavery >= 1)
+	double milProgress = westernizationProgress * milFocus;
+	for (unsigned int i = 8; i < 16; i++)
 	{
-		fprintf(output, "	slavery=no_slavery\n");
-	}
-	else
-	{
-		fprintf(output, "	slavery=yes_slavery\n");
-	}
-
-	if (vote_franchise >= 20)
-	{
-		fprintf(output, "	vote_franschise=universal_voting\n");
-	}
-	else if (vote_franchise >= 15)
-	{
-		fprintf(output, "	vote_franschise=universal_weighted_voting\n");
-	}
-	else if (vote_franchise >= 10)
-	{
-		fprintf(output, "	vote_franschise=wealth_voting\n");
-	}
-	else if (vote_franchise >= 5)
-	{
-		fprintf(output, "	vote_franschise=wealth_weighted_voting\n");
-	}
-	else if (vote_franchise >= 0)
-	{
-		fprintf(output, "	vote_franschise=landed_voting\n");
-	}
-	else
-	{
-		fprintf(output, "	vote_franschise=none_voting\n");
+		if (milProgress >= westernizationCost[i] - 0.001)
+		{
+			reforms[i]	= true;
+			milProgress	-= westernizationCost[i];
+		}
+		else
+		{
+			reforms[i] = false;
+		}
 	}
 
-	if (upper_house_composition >= 10)
+	double remainingProgress = socioEconProgress + milProgress;
+	if (socioEconProgress >= milProgress)
 	{
-		fprintf(output, "	upper_house_composition=population_equal_weight\n");
-	}
-	else if (upper_house_composition >= 5)
-	{
-		fprintf(output, "	upper_house_composition=state_equal_weight\n");
-	}
-	else if (upper_house_composition >= 0)
-	{
-		fprintf(output, "	upper_house_composition=appointed\n");
+		for (unsigned int i = 0; i < 8; i++)
+		{
+			if (reforms[i]	== true)
+			{
+				continue;
+			}
+			else if (remainingProgress >= westernizationCost[i] - 0.001)
+			{
+				reforms[i]			= true;
+				remainingProgress	-=westernizationCost[i];
+			}
+		}
 	}
 	else
 	{
-		fprintf(output, "	upper_house_composition=party_appointed\n");
+		for (unsigned int i = 8; i < 16; i++)
+		{
+			if (reforms[i]	== true)
+			{
+				continue;
+			}
+			else if (remainingProgress >= westernizationCost[i] - 0.001)
+			{
+				reforms[i]			= true;
+				remainingProgress	-= westernizationCost[i];
+			}
+		}
 	}
 
-	if (voting_system >= 10)
+	country->addResearchPoints(remainingProgress * 800);
+
+	vector<V2State*> states = country->getStates();
+	if (reforms[5] == true)
 	{
-		fprintf(output, "	voting_system=proportional_representation\n");
-	}
-	else if (voting_system >= 5)
-	{
-		fprintf(output, "	voting_system=jefferson_method\n");
-	}
-	else
-	{
-		fprintf(output, "	voting_system=first_past_the_post\n");
+		for (unsigned int i = 0; i < states.size(); i++)
+		{
+			if (states[i]->provInState(country->getCapital()))
+			{
+				states[i]->addRailroads();
+			}
+		}
 	}
 
-	if (public_meetings >= 5)
+	if (reforms[9] == true)
 	{
-		fprintf(output, "	public_meetings=yes_meeting\n");
-	}
-	else
-	{
-		fprintf(output, "	public_meetings=no_meeting\n");
+		country->addTech("flintlock_rifles");
 	}
 
-	if (press_rights >= 10)
+	if (reforms[10] == true)
 	{
-		fprintf(output, "	press_rights=free_press\n");
-	}
-	else if (press_rights >= 5)
-	{
-		fprintf(output, "	press_rights=censored_press\n");
-	}
-	else
-	{
-		fprintf(output, "	press_rights=state_press\n");
-	}
-
-	if (trade_unions >= 15)
-	{
-		fprintf(output, "	trade_unions=all_trade_unions\n");
-	}
-	else if (trade_unions >= 10)
-	{
-		fprintf(output, "	trade_unions=non_socialist\n");
-	}
-	else if (trade_unions >= 5)
-	{
-		fprintf(output, "	trade_unions=state_controlled\n");
-	}
-	else
-	{
-		fprintf(output, "	trade_unions=no_trade_unions\n");
+		country->addTech("post_napoleonic_thought");
+		vector<V2Province*> provinces = country->getProvinces();
+		for (vector<V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+		{
+			if ( (*i)->getNum() == country->getCapital())
+			{
+				(*i)->setFortLevel(2);
+			}
+		}
 	}
 
-	if (political_parties >= 20)
+	if (reforms[11] == true)
 	{
-		fprintf(output, "	political_parties=secret_ballots\n");
+		country->addTech("military_staff_system");
 	}
-	else if (political_parties >= 15)
+
+	if (reforms[15] == true)
 	{
-		fprintf(output, "	political_parties=non_secret_ballots\n");
+		country->addTech("post_nelsonian_thought");
 	}
-	else if (political_parties >= 10)
-	{
-		fprintf(output, "	political_parties=gerrymandering\n");
-	}
-	else if (political_parties >= 5)
-	{
-		fprintf(output, "	political_parties=harassment\n");
+}
+
+
+void V2UncivReforms::output(FILE* output)
+{
+	if (reforms[0]) {
+		fprintf(output, "	land_reform=yes_land_reform\n");
 	}
 	else
 	{
-		fprintf(output, "	political_parties=underground_parties\n");
+		fprintf(output, "	land_reform=no_land_reform\n");
+	}
+
+	if (reforms[1]) {
+		fprintf(output, "	admin_reform=yes_admin_reform\n");
+	}
+	else
+	{
+		fprintf(output, "	admin_reform=no_admin_reform\n");
+	}
+
+	if (reforms[3]) {
+		fprintf(output, "	finance_reform=finance_reform_two\n");
+	}
+	else if (reforms[2]) {
+		fprintf(output, "	finance_reform=yes_finance_reform\n");
+	}
+	else
+	{
+		fprintf(output, "	finance_reform=no_finance_reform\n");
+	}
+
+	if (reforms[4]) {
+		fprintf(output, "	education_reform=yes_education_reform\n");
+	}
+	else
+	{
+		fprintf(output, "	education_reform=no_education_reform\n");
+	}
+
+	if (reforms[5]) {
+		fprintf(output, "	transport_improv=yes_transport_improv\n");
+	}
+	else
+	{
+		fprintf(output, "	transport_improv=no_transport_improv\n");
+	}
+
+	if (reforms[6]) {
+		fprintf(output, "	pre_indust=yes_pre_indust\n");
+	}
+	else
+	{
+		fprintf(output, "	pre_indust=no_pre_indust\n");
+	}
+
+	if (reforms[7]) {
+		fprintf(output, "	industrial_construction=yes_industrial_construction\n");
+	}
+	else
+	{
+		fprintf(output, "	industrial_construction=no_industrial_construction\n");
+	}
+
+	if (reforms[8]) {
+		fprintf(output, "	foreign_training=yes_foreign_training\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_training=no_foreign_training\n");
+	}
+
+	if (reforms[9]) {
+		fprintf(output, "	foreign_weapons=yes_foreign_weapons\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_weapons=no_foreign_weapons\n");
+	}
+
+	if (reforms[10]) {
+		fprintf(output, "	military_constructions=yes_military_constructions\n");
+	}
+	else
+	{
+		fprintf(output, "	military_constructions=no_military_constructions\n");
+	}
+
+	if (reforms[11]) {
+		fprintf(output, "	foreign_officers=yes_foreign_officers\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_officers=no_foreign_officers\n");
+	}
+
+	if (reforms[12]) {
+		fprintf(output, "	army_schools=yes_army_schools\n");
+	}
+	else
+	{
+		fprintf(output, "	army_schools=no_army_schools\n");
+	}
+
+	if (reforms[13]) {
+		fprintf(output, "	foreign_naval_officers=yes_foreign_naval_officers\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_naval_officers=no_foreign_naval_officers\n");
+	}
+
+	if (reforms[14]) {
+		fprintf(output, "	naval_schools=yes_naval_schools\n");
+	}
+	else
+	{
+		fprintf(output, "	naval_schools=no_naval_schools\n");
+	}
+
+	if (reforms[14]) {
+		fprintf(output, "	foreign_navies=yes_foreign_navies\n");
+	}
+	else
+	{
+		fprintf(output, "	foreign_navies=no_foreign_navies\n");
 	}
 }

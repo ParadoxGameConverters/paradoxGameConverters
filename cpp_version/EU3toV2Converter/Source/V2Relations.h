@@ -5,27 +5,27 @@
 
 #include "Date.h"
 
+class EU3Relations;
+
 
 
 class V2Relations
 {
 	public:
-		void		init(string newTag);
-		void		output(FILE* out);
-		int		getRelations() const { return value; };
-		void 		setRelations(int newRel) { value = newRel; };
-		void		setMilitaryAccess(bool hasAccess) { military_access = hasAccess; };
-		void		setDiplomatLastSent(date lastSent) { last_send_diplomat = lastSent; };
-		void		setLastWar(date lastWar) { last_war = lastWar; };
-		int		getLevel() const { return level; };
+		V2Relations(string newTag, EU3Relations* oldRelations);
+		void output(FILE* out);
+
 		void		setLevel(int level);
-		string	getTag() const { return tag; };
+
+		string	getTag()			const { return tag; };
+		int		getRelations()	const { return value; };
+		int		getLevel()		const { return level; };
 	private:
 		string	tag;
 		int		value;
-		bool		military_access;
-		date		last_send_diplomat;
-		date		last_war;
+		bool		militaryAccess;
+		date		lastSendDiplomat;
+		date		lastWar;
 		int		level;
 };
 

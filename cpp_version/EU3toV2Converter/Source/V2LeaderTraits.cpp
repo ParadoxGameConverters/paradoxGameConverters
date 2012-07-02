@@ -1,9 +1,10 @@
 #include "V2LeaderTraits.h"
-
 #include "Parsers/Parser.h"
 #include "Log.h"
 
-void TraitConversion::init(Object* obj)
+
+
+V2TraitConversion::V2TraitConversion(Object* obj)
 {
 	trait = obj->getKey();
 
@@ -58,57 +59,60 @@ void TraitConversion::init(Object* obj)
 	}
 }
 
-bool TraitConversion::matches(int fire, int shock, int manuever, int siege)
+
+bool V2TraitConversion::matches(int fire, int shock, int manuever, int siege) const
 {
-	if (fire < req_fire)
+	if ( (fire < req_fire) || (shock < req_shock) || (manuever < req_manuever) || (siege < req_siege) )
+	{
 		return false;
-	if (shock < req_shock)
-		return false;
-	if (manuever < req_manuever)
-		return false;
-	if (siege < req_siege)
-		return false;
+	}
 
 	// other consists of the sum of all non-required attributes
 	if (req_other > 0)
 	{
-		int other = (req_fire != 0 ? 0 : fire);
-		other += (req_shock != 0 ? 0 : shock);
-		other += (req_manuever != 0 ? 0 : manuever);
-		other += (req_siege != 0 ? 0 : siege);
+		int other	= (req_fire			!= 0 ? 0 : fire);
+		other			+= (req_shock		!= 0 ? 0 : shock);
+		other			+= (req_manuever	!= 0 ? 0 : manuever);
+		other			+= (req_siege		!= 0 ? 0 : siege);
 
 		if (other < req_other)
+		{
 			return false;
+		}
 	}
 
 	return true;
 }
 
-void LeaderTraits::init()
+
+V2LeaderTraits::V2LeaderTraits()
 {
 	Object* obj = doParseFile("leader_traits.txt");
+
+	backgrounds.clear();
 	vector<Object*> traitObjs = obj->getValue("background");
 	if (traitObjs.size() > 0)
 	{
 		traitObjs = traitObjs[0]->getLeaves();
 		for (vector<Object*>::iterator itr = traitObjs.begin(); itr != traitObjs.end(); ++itr)
 		{
-			TraitConversion tc;
-			tc.init(*itr);
+			V2TraitConversion tc(*itr);
 			backgrounds.push_back(tc);
 		}
 	}
+
+	personalities.clear();
 	traitObjs = obj->getValue("personality");
 	if (traitObjs.size() > 0)
 	{
 		traitObjs = traitObjs[0]->getLeaves();
 		for (vector<Object*>::iterator itr = traitObjs.begin(); itr != traitObjs.end(); ++itr)
 		{
-			TraitConversion tc;
-			tc.init(*itr);
+			V2TraitConversion tc(*itr);
 			personalities.push_back(tc);
 		}
 	}
+
 	if (backgrounds.size() == 0 || personalities.size() == 0)
 	{
 		printf("Error: Trait conversion failed to initialize!\n");
@@ -117,22 +121,27 @@ void LeaderTraits::init()
 	}
 }
 
-string LeaderTraits::getBackground(int fire, int shock, int manuever, int siege)
+
+string V2LeaderTraits::getBackground(int fire, int shock, int manuever, int siege) const
 {
-	for (vector<TraitConversion>::iterator itr = backgrounds.begin(); itr != backgrounds.end(); ++itr)
+	for (vector<V2TraitConversion>::const_iterator itr = backgrounds.begin(); itr != backgrounds.end(); ++itr)
 	{
 		if (itr->matches(fire, shock, manuever, siege))
+		{
 			return itr->trait;
+		}
 	}
 	return "";
 }
 
-string LeaderTraits::getPersonality(int fire, int shock, int manuever, int siege)
+string V2LeaderTraits::getPersonality(int fire, int shock, int manuever, int siege) const
 {
-	for (vector<TraitConversion>::iterator itr = personalities.begin(); itr != personalities.end(); ++itr)
+	for (vector<V2TraitConversion>::const_iterator itr = personalities.begin(); itr != personalities.end(); ++itr)
 	{
 		if (itr->matches(fire, shock, manuever, siege))
+		{
 			return itr->trait;
+		}
 	}
 	return "";
 }

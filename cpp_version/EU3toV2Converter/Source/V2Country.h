@@ -17,6 +17,7 @@ class V2Province;
 class V2Relations;
 class V2Army;
 class V2Reforms;
+class V2UncivReforms;
 class V2Factory;
 class V2Creditor;
 class V2Leader;
@@ -41,7 +42,6 @@ class V2Country
 		void								setReligion(string);
 		string							getReligion();
 		void								output(FILE*);
-		void								outputUncivReforms(FILE*);
 		string							getSourceTag();
 		void								setPrestige(double);
 		void								setLeadership(double);
@@ -51,7 +51,6 @@ class V2Country
 		void								setIndustryTech(double);
 		void								setCultureTech(double);
 		void								setTechSchool(string);
-		void								setUncivReforms(int, double, double);
 		inventionStatus				getInventionState(inventionType);
 		void								addPrestige(double);
 		void								addPlurality(double);
@@ -82,7 +81,12 @@ class V2Country
 		void								setupPops(EU3World& sourceWorld);
 		void								setLiteracy(double);
 		double							getLiteracy();
-
+		void								addResearchPoints(double newPoints) { researchPoints += newPoints; };
+		vector<V2State*>				getStates() const { return states; };
+		int								getCapital() const { return capital; };
+		void								addTech(string newTech) { techs.push_back(newTech); };
+		vector<V2Province*>			getProvinces() const { return provinces; };
+		void								setUncivReforms(V2UncivReforms* newReforms) { uncivReforms = newReforms; };
 	private:
 		void setIssues();
 		void outputTech(FILE*);
@@ -108,7 +112,7 @@ class V2Country
 		double							plurality;
 		vector<string>					techs;
 		inventionStatus				inventions[naval_exercises];
-		uncivReformData				uncivReforms[16];
+		V2UncivReforms*				uncivReforms;
 		double							researchPoints;
 		string							techSchool;
 		string							government;
@@ -124,7 +128,7 @@ class V2Country
 		string							nationalValue;
 		double							money;
 		date								lastBankrupt;
-		vector<V2Creditor*>			creditors;
+		map<string, V2Creditor*>	creditors;
 		double							bankReserves;
 		double							diploPoints;
 		double							badboy;
