@@ -524,146 +524,146 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 
 	if (farmers > 0)
 	{
-		V2Pop* farmersPop = new V2Pop;
-		farmersPop->setType("farmers");
-		farmersPop->setSize((int)(demographic.ratio * oldPopulation * farmers / total));
-		farmersPop->setCulture(demographic.culture);
-		farmersPop->setReligion(demographic.religion);
-		farmersPop->setLiteracy(demographic.literacy);
-		farmersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		farmersPop->setIssues(demographic.issues);
+		V2Pop* farmersPop = new V2Pop(	"farmers",
+													(int)(demographic.ratio * oldPopulation * farmers / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(farmersPop);
 	}
 	if (labourers > 0)
 	{
-		V2Pop* labourersPop = new V2Pop;
-		labourersPop->setType("labourers");
-		labourersPop->setSize((int)(demographic.ratio * oldPopulation * labourers / total));
-		labourersPop->setCulture(demographic.culture);
-		labourersPop->setReligion(demographic.religion);
-		labourersPop->setLiteracy(demographic.literacy);
-		labourersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		labourersPop->setIssues(demographic.issues);
+		V2Pop* labourersPop = new V2Pop(	"labourers",
+													(int)(demographic.ratio * oldPopulation * labourers / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(labourersPop);
 	}
 	if (slaves > 0)
 	{
-		V2Pop* slavesPop = new V2Pop;
-		slavesPop->setType("slaves");
-		slavesPop->setSize((int)(demographic.ratio * oldPopulation * slaves / total));
-		slavesPop->setCulture(demographic.culture);
-		slavesPop->setReligion(demographic.religion);
-		slavesPop->setLiteracy(demographic.literacy);
-		slavesPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		slavesPop->setIssues(demographic.issues);
+		V2Pop* slavesPop = new V2Pop(		"slaves",
+													(int)(demographic.ratio * oldPopulation * slaves / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)
 	{
-		V2Pop* soldiersPop = new V2Pop;
-		soldiersPop->setType("soldiers");
-		soldiersPop->setSize((int)(demographic.ratio * oldPopulation * soldiers / total));
-		soldiersPop->setCulture(demographic.culture);
-		soldiersPop->setReligion(demographic.religion);
-		soldiersPop->setLiteracy(demographic.literacy);
-		soldiersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		soldiersPop->setIssues(demographic.issues);
+		V2Pop* soldiersPop = new V2Pop(	"soldiers",
+													(int)(demographic.ratio * oldPopulation * soldiers / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(soldiersPop);
 	}
 	if (craftsmen > 0)
 	{
-		V2Pop* craftsmenPop = new V2Pop;
-		craftsmenPop->setType("craftsmen");
-		craftsmenPop->setSize((int)(demographic.ratio * oldPopulation * craftsmen / total));
-		craftsmenPop->setCulture(demographic.culture);
-		craftsmenPop->setReligion(demographic.religion);
-		craftsmenPop->setLiteracy(demographic.literacy);
-		craftsmenPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		craftsmenPop->setIssues(demographic.issues);
+		V2Pop* craftsmenPop = new V2Pop(	"craftsmen",
+													(int)(demographic.ratio * oldPopulation * craftsmen / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(craftsmenPop);
 	}
 	if (artisans > 0)
 	{
-		V2Pop* artisansPop = new V2Pop;
-		artisansPop->setType("artisans");
-		artisansPop->setSize((int)(demographic.ratio * oldPopulation * artisans / total));
-		artisansPop->setCulture(demographic.culture);
-		artisansPop->setReligion(demographic.religion);
-		artisansPop->setLiteracy(demographic.literacy);
-		artisansPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		artisansPop->setIssues(demographic.issues);
+		V2Pop* artisansPop = new V2Pop(	"artisans",
+													(int)(demographic.ratio * oldPopulation * artisans / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(artisansPop);
 	}
 	if (clergymen > 0)
 	{
-		V2Pop* clergymenPop = new V2Pop;
-		clergymenPop->setType("clergymen");
-		clergymenPop->setSize((int)(demographic.ratio * oldPopulation * clergymen / total));
-		clergymenPop->setCulture(demographic.culture);
-		clergymenPop->setReligion(demographic.religion);
-		clergymenPop->setLiteracy(demographic.literacy);
-		clergymenPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		clergymenPop->setIssues(demographic.issues);
+		V2Pop* clergymenPop = new V2Pop(	"clergymen",
+													(int)(demographic.ratio * oldPopulation * clergymen / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(clergymenPop);
 	}
 	if (clerks > 0)
 	{
-		V2Pop* clerksPop = new V2Pop;
-		clerksPop->setType("clerks");
-		clerksPop->setSize((int)(demographic.ratio * oldPopulation * clerks / total));
-		clerksPop->setCulture(demographic.culture);
-		clerksPop->setReligion(demographic.religion);
-		clerksPop->setLiteracy(demographic.literacy);
-		clerksPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		clerksPop->setIssues(demographic.issues);
+		V2Pop* clerksPop = new V2Pop(	"clerks",
+												(int)(demographic.ratio * oldPopulation * clerks / total),
+												demographic.culture,
+												demographic.religion,
+												demographic.literacy,
+												demographic.reactionary, demographic.conservative, demographic.liberal,
+												demographic.issues
+												);
 		pops.push_back(clerksPop);
 	}
 	if (bureaucrats > 0)
 	{
-		V2Pop* bureaucratsPop = new V2Pop;
-		bureaucratsPop->setType("bureaucrats");
-		bureaucratsPop->setSize((int)(demographic.ratio * oldPopulation * bureaucrats / total));
-		bureaucratsPop->setCulture(demographic.culture);
-		bureaucratsPop->setReligion(demographic.religion);
-		bureaucratsPop->setLiteracy(demographic.literacy);
-		bureaucratsPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		bureaucratsPop->setIssues(demographic.issues);
+		V2Pop* bureaucratsPop = new V2Pop(	"bureaucrats",
+														(int)(demographic.ratio * oldPopulation * bureaucrats / total),
+														demographic.culture,
+														demographic.religion,
+														demographic.literacy,
+														demographic.reactionary, demographic.conservative, demographic.liberal,
+														demographic.issues
+												);
 		pops.push_back(bureaucratsPop);
 	}
 	if (officers > 0)
 	{
-		V2Pop* officersPop = new V2Pop;
-		officersPop->setType("officers");
-		officersPop->setSize((int)(demographic.ratio * oldPopulation * officers / total));
-		officersPop->setCulture(demographic.culture);
-		officersPop->setReligion(demographic.religion);
-		officersPop->setLiteracy(demographic.literacy);
-		officersPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		officersPop->setIssues(demographic.issues);
+		V2Pop* officersPop = new V2Pop(	"officers",
+													(int)(demographic.ratio * oldPopulation * officers / total),
+													demographic.culture,
+													demographic.religion,
+													demographic.literacy,
+													demographic.reactionary, demographic.conservative, demographic.liberal,
+													demographic.issues
+												);
 		pops.push_back(officersPop);
 	}
 	if (capitalists > 0)
 	{
-		V2Pop* capitalistsPop = new V2Pop;
-		capitalistsPop->setType("capitalists");
-		capitalistsPop->setSize((int)(demographic.ratio * oldPopulation * capitalists / total));
-		capitalistsPop->setCulture(demographic.culture);
-		capitalistsPop->setReligion(demographic.religion);
-		capitalistsPop->setLiteracy(demographic.literacy);
-		capitalistsPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		capitalistsPop->setIssues(demographic.issues);
+		V2Pop* capitalistsPop = new V2Pop(	"capitalists",
+														(int)(demographic.ratio * oldPopulation * capitalists / total),
+														demographic.culture,
+														demographic.religion,
+														demographic.literacy,
+														demographic.reactionary, demographic.conservative, demographic.liberal,
+														demographic.issues
+												);
 		pops.push_back(capitalistsPop);
 	}
 	if (aristocrats > 0)
 	{
-		V2Pop* aristocratsPop = new V2Pop;
-		aristocratsPop->setType("aristocrats");
-		aristocratsPop->setSize((int)(demographic.ratio * oldPopulation * aristocrats / total));
-		aristocratsPop->setCulture(demographic.culture);
-		aristocratsPop->setReligion(demographic.religion);
-		aristocratsPop->setLiteracy(demographic.literacy);
-		aristocratsPop->setIdeology(demographic.reactionary, demographic.conservative, demographic.liberal);
-		aristocratsPop->setIssues(demographic.issues);
+		V2Pop* aristocratsPop = new V2Pop(	"aristocrats",
+														(int)(demographic.ratio * oldPopulation * aristocrats / total),
+														demographic.culture,
+														demographic.religion,
+														demographic.literacy,
+														demographic.reactionary, demographic.conservative, demographic.liberal,
+														demographic.issues
+												);
 		pops.push_back(aristocratsPop);
 	}
 }
@@ -743,8 +743,7 @@ bool V2Province::growSoldierPop(int popID)
 	{
 		if ( (*itr)->getID() == popID )
 		{
-			int currentlySupported = (*itr)->getSupportedRegimentCount();
-			int growBy = getRequiredPopForRegimentCount(currentlySupported + 1) - (*itr)->getSize();
+			int growBy = getRequiredPopForRegimentCount((*itr)->getSupportedRegimentCount() + 1) - (*itr)->getSize();
 			if (growBy > 0)
 			{
 				// gotta grow; find a same-culture same-religion farmer/laborer to pull from
@@ -759,8 +758,8 @@ bool V2Province::growSoldierPop(int popID)
 							// don't let the farmer/labourer shrink beneath 10% of the province population
 							if ( (*isrc)->getSize() - growBy > provincePop * 0.10 )
 							{
-								(*isrc)->setSize( (*isrc)->getSize() - growBy );
-								(*itr)->setSize( (*itr)->getSize() + growBy );
+								(*isrc)->changeSize(-growBy);
+								(*itr)->changeSize(growBy);
 								foundSourcePop = true;
 								break;
 							}
@@ -770,7 +769,7 @@ bool V2Province::growSoldierPop(int popID)
 				if (!foundSourcePop)
 					return false;
 			}
-			(*itr)->setSupportedRegimentCount(++currentlySupported);
+			(*itr)->incrementSupportedRegimentCount();
 			return true;
 		}
 	}
@@ -847,9 +846,8 @@ void V2Province::combinePops()
 		vector<V2Pop*>::iterator rhs = lhs;
 		for (++rhs; rhs != pops.end(); ++rhs)
 		{
-			if ( (*lhs)->canCombine(**rhs) )
+			if ( (*lhs)->combine(**rhs) )
 			{
-				(*lhs)->setSize( (*lhs)->getSize() + (*rhs)->getSize() );
 				trashPops.push_back( (*rhs)->getID() );
 			}
 			if ( (*rhs)->getSize() < 1 )

@@ -195,11 +195,9 @@ void V2World::init(string V2Loc)
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
-					V2Pop* newPop = new V2Pop;
-					newPop->setType(pops[l]->getKey());
-					newPop->setCulture(pops[l]->getLeaf("culture"));
-					newPop->setReligion(pops[l]->getLeaf("religion"));
-					newPop->setSize(atoi(pops[l]->getLeaf("size").c_str()));
+					vector< pair<int, double> > issues;
+					issues.clear();
+					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"), 10.0, 0.0, 0.0, 0.0, issues);
 					provinces[k]->addOldPop(newPop);
 				}
 			}

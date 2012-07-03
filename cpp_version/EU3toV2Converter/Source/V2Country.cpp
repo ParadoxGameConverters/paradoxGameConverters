@@ -232,7 +232,7 @@ void V2Country::sortRelations(const vector<string>& order)
 	relations.swap(sortedRelations);
 }
 
-#pragma optimize("", off)
+
 void V2Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -324,7 +324,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	badboy=%f\n", badboy);
 	fprintf(output, "}\n");
 }
-#pragma optimize("", on)
+
 
 string V2Country::getSourceTag()
 {

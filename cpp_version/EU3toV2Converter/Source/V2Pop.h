@@ -12,26 +12,21 @@ using namespace std;
 class V2Pop
 {
 	public:
-		V2Pop();
-		void		setType(string);
-		void		setSize(int);
-		void		setCulture(string);
-		void		setReligion(string);
-		void		setConsciousness(double);
-		void		setMilitancy(double);
-		void		setLiteracy(double);
-		void		setIdeology(double reactionary, double conservative, double liberal);
-		void		setIssues(vector< pair<int, double> >	issues);
-		int		getSize() const;
-		string	getType() const;
-		void		output(FILE*);
-		int		getID() const;
-		string	getCulture() const;
-		string	getReligion() const;
-		int		getSupportedRegimentCount() const;
-		void		setSupportedRegimentCount(int regiments);
-		bool		canCombine(const V2Pop& rhs);
+		V2Pop(string type, int size, string culture, string religion, double literacy, double reactionary, double conservative, double liberal, vector< pair<int, double> > issues);
+		void output(FILE*);
+		bool combine(const V2Pop& rhs);
 
+		void	changeSize(int delta)					{ size += delta; recalcMoney(); };
+		void	incrementSupportedRegimentCount()	{ supportedRegiments++; };
+		void	setConsciousness(double con)			{ consciousness = con; };
+		void	setMilitancy(double mil)				{ militancy = mil; };
+
+		int		getSize()							const	{ return size; };
+		string	getType()							const	{ return type; };
+		int		getID()								const	{ return id; };
+		string	getCulture()						const	{ return culture; };
+		string	getReligion()						const	{ return religion; };
+		int		getSupportedRegimentCount()	const	{ return supportedRegiments; };
 	private:
 		void	recalcMoney();
 
@@ -43,11 +38,11 @@ class V2Pop
 		int		supportedRegiments;
 		double	money;
 		double	consciousness;
+		double	literacy;
 		double	militancy;
 		double	reactionary;
 		double	conservative;
 		double	liberal;
-		double	literacy;
 		vector< pair<int, double> >	issues;
 };
 

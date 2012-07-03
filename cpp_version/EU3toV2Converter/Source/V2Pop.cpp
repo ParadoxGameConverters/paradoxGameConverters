@@ -6,155 +6,69 @@
 static int nextId = 23000;
 
 
-V2Pop::V2Pop()
+V2Pop::V2Pop(string _type, int _size, string _culture, string _religion, double _literacy, double _reactionary, double _conservative, double _liberal, vector< pair<int, double> > _issues)
 {
-	supportedRegiments = 0;
-	size = 0;
-	consciousness = 0.0;
-	militancy = 0.0;
-	literacy	= 10.0;
-
 	id = nextId;
 	nextId++;
-}
 
+	type						= _type;
+	size						= _size;
+	culture					= _culture;
+	religion					= _religion;
+	supportedRegiments	= 0;
+	money						= 0.0;
+	consciousness			= 0.0;
+	militancy				= 0.0;
+	literacy					= _literacy;
+	reactionary				= _reactionary;
+	conservative			= _conservative;
+	liberal					= _liberal;
+	issues					= _issues;
 
-void V2Pop::setType(string newType)
-{
-	type = newType;
 	recalcMoney();
-}
-
-
-void V2Pop::setSize(int newSize)
-{
-	size = newSize;
-	recalcMoney();
-}
-
-
-void V2Pop::setCulture(string newCulture)
-{
-	culture = newCulture;
-}
-
-
-void V2Pop::setReligion(string newReligion)
-{
-	religion = newReligion;
-}
-
-
-void V2Pop::setConsciousness(double con)
-{
-	consciousness = con;
-}
-
-
-void V2Pop::setMilitancy(double mil)
-{
-	militancy = mil;
-}
-
-
-void V2Pop::setLiteracy(double newLiteracy)
-{
-	literacy = newLiteracy;
-}
-
-void V2Pop::setIdeology(double newReactionary, double newConservative, double newLiberal)
-{
-	reactionary		= newReactionary;
-	conservative	= newConservative;
-	liberal			= newLiberal;
-}
-
-
-void V2Pop::setIssues(vector< pair<int, double> > newIssues)
-{
-	issues = newIssues;
-}
-
-
-int V2Pop::getSize() const
-{
-	return size;
-}
-
-
-string V2Pop::getType() const
-{
-	return type;
-}
-
-
-int V2Pop::getID() const
-{
-	return id;
-}
-
-
-string V2Pop::getCulture() const
-{
-	return culture;
-}
-
-
-string V2Pop::getReligion() const
-{
-	return religion;
-}
-
-
-int V2Pop::getSupportedRegimentCount() const
-{
-	return supportedRegiments;
-}
-
-
-void V2Pop::setSupportedRegimentCount(int regiments)
-{
-	supportedRegiments = regiments;
 }
 
 
 void V2Pop::output(FILE* output)
 {
-	fprintf(output, "	%s=\n", type.c_str());
-	fprintf(output, "	{\n");
-	fprintf(output, "		id=%d\n", id);
-	fprintf(output, "		size=%d\n", size);
-	fprintf(output, "		%s=%s\n", culture.c_str(), religion.c_str());
-	fprintf(output, "		money=%f\n", money);
-	fprintf(output, "		ideology=\n");
-	fprintf(output, "		{\n");
-	fprintf(output, "			2=%f\n", reactionary);
-	fprintf(output, "			3=%f\n", conservative);
-	fprintf(output, "			6=%f\n", liberal);
-	fprintf(output, "		}\n");
-	fprintf(output, "		issues=\n");
-	fprintf(output, "		{\n");
+	fprintf(output, "\t%s=\n", type.c_str());
+	fprintf(output, "\t{\n");
+	fprintf(output, "\t\tid=%d\n", id);
+	fprintf(output, "\t\tsize=%d\n", size);
+	fprintf(output, "\t\t%s=%s\n", culture.c_str(), religion.c_str());
+	fprintf(output, "\t\tmoney=%f\n", money);
+	fprintf(output, "\t\tideology=\n");
+	fprintf(output, "\t{\n");
+	fprintf(output, "\t\t\t2=%f\n", reactionary);
+	fprintf(output, "\t\t\t3=%f\n", conservative);
+	fprintf(output, "\t\t\t6=%f\n", liberal);
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tissues=\n");
+	fprintf(output, "\t\t{\n");
 	for (unsigned int i = 0; i < issues.size(); i++)
 	{
-		fprintf(output, "			%d=%f\n", issues[i].first, 100 * issues[i].second);
+		fprintf(output, "\t\t\t%d=%f\n", issues[i].first, 100 * issues[i].second);
 	}
-	fprintf(output, "		}\n");
-	fprintf(output, "		con=%f\n", consciousness);
-	fprintf(output, "		mil=%f\n", militancy);
-	fprintf(output, "		literacy=%f\n", literacy);
-	fprintf(output, "	}\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tcon=%f\n", consciousness);
+	fprintf(output, "\t\tmil=%f\n", militancy);
+	fprintf(output, "\t\tliteracy=%f\n", literacy);
+	fprintf(output, "\t}\n");
 }
 
 
-int getNextPopId()
+bool V2Pop::combine(const V2Pop& rhs)
 {
-	return nextId;
-}
-
-
-bool V2Pop::canCombine(const V2Pop& rhs)
-{
-	return ((culture == rhs.getCulture()) && (religion == rhs.getReligion()) && (type == rhs.getType()));
+	if ((culture == rhs.culture) && (religion == rhs.religion) && (type == rhs.type))
+	{
+		size += rhs.size;
+		recalcMoney();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
 
 
@@ -162,9 +76,6 @@ void V2Pop::recalcMoney()
 {
 	money = 1000000.0;
 	
-	if (type == "" || size == 0)
-		return;
-
 	if (type == "aristocrats" || type == "capitalists")
 	{
 		money = 100.0 * size;
@@ -186,4 +97,10 @@ void V2Pop::recalcMoney()
 	{
 		log("Error: Unexpected pop type %s!\n", type.c_str());
 	}
+}
+
+
+int getNextPopId()
+{
+	return nextId;
 }
