@@ -30,7 +30,7 @@ class V2Factory
 {
 	public:
 		V2Factory(const V2FactoryType* _type) : type(_type) {};
-		void					output(FILE* output);
+		void					output(FILE* output) const;
 		map<string,float>	getRequiredRGO() const;
 
 		bool				requiresCoastal()			const { return type->requireCoastal; }
@@ -46,7 +46,7 @@ class V2FactoryFactory
 {
 	public:
 		V2FactoryFactory(string V2loc);
-		deque<V2Factory*>	buildFactories();
+		deque<V2Factory*>	buildFactories() const;
 	private:
 		void					loadRequiredTechs(string filename);
 		void					loadRequiredInventions(string filename);

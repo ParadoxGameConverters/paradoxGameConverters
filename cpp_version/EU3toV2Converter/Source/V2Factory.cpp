@@ -44,7 +44,7 @@ V2FactoryType::V2FactoryType(Object* factory)
 }
 
 
-void V2Factory::output(FILE* output)
+void V2Factory::output(FILE* output) const
 {
 	// V2 takes care of hiring employees on day 1, provided sufficient starting capital
 	fprintf(output, "\t\tstate_buildings=\n");
@@ -155,10 +155,10 @@ V2FactoryFactory::V2FactoryFactory(string V2Loc)
 }
 
 
-deque<V2Factory*> V2FactoryFactory::buildFactories()
+deque<V2Factory*> V2FactoryFactory::buildFactories() const
 {
 	deque<V2Factory*> retval;
-	for (vector< pair<V2FactoryType*, int> >::iterator itr = factoryCounts.begin(); itr != factoryCounts.end(); ++itr)
+	for (vector< pair<V2FactoryType*, int> >::const_iterator itr = factoryCounts.begin(); itr != factoryCounts.end(); ++itr)
 	{
 		for (int i = 0; i < itr->second; ++i)
 		{

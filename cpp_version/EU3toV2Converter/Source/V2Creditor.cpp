@@ -10,7 +10,7 @@ void V2Creditor::addLoan(double size, double _interest)
 }
 
 
-void V2Creditor::output(FILE* output)
+void V2Creditor::output(FILE* output) const
 {
 	fprintf(output, "\tcreditor=\n");
 	fprintf(output, "\t{\n");

@@ -44,10 +44,11 @@ EU3World::EU3World(Object* obj)
 	// add province owner info to countries
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		map<string, EU3Country*>::iterator j = countries.find( i->second->getOwner() );
+		map<string, EU3Country*>::iterator j = countries.find( i->second->getOwnerString() );
 		if (j != countries.end())
 		{
 			j->second->addProvince(i->second);
+			i->second->setOwner(j->second);
 		}
 	}
 

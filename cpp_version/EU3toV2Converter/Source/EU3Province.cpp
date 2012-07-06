@@ -1,4 +1,5 @@
 #include "EU3Province.h"
+#include "EU3Country.h"
 #include "Log.h"
 #include "Parsers/Object.h"
 #include <algorithm>
@@ -12,12 +13,13 @@ EU3Province::EU3Province(Object* obj) {
 	ownerObjs = obj->getValue("owner");
 	if (ownerObjs.size() == 0)
 	{
-		owner = "";
+		ownerString = "";
 	}
 	else
 	{
-		owner = ownerObjs[0]->getLeaf();
+		ownerString = ownerObjs[0]->getLeaf();
 	}
+	owner = NULL;
 
 	cores.clear();
 	vector<Object*> coreObjs;
@@ -204,7 +206,7 @@ bool EU3Province::wasColonised() const
 }
 
 
-bool EU3Province::wasPaganConquest(string ownerReligion) const
+bool EU3Province::wasPaganConquest() const
 {
 	// returns true if the province was originally pagan, the current owner is non-pagan,
 	// and the province was NOT colonized
@@ -212,6 +214,7 @@ bool EU3Province::wasPaganConquest(string ownerReligion) const
 	{
 		// TODO: should probably read these from EU3 common/religion.txt
 		string firstReligion = religionHistory[0].second;
+		string ownerReligion = owner->getReligion();
 		if (firstReligion == "animism" || firstReligion == "shamanism")
 		{
 			if (ownerReligion != "animism" && ownerReligion != "shamanism")

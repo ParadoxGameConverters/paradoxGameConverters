@@ -76,26 +76,26 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	WorldType game = sourceWorld.getWorldType();
 	switch (game)
 	{
-	case VeryOld:
-		printf("	Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
-		log("	Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
-		exit(1);
-	case InNomine:
-		printf("	Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
-		log("	Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
-		break;
-	case HeirToTheThrone:
-		printf("	Game type is: EU3 Heir to the Throne.\n");
-		log("	Game type is: EU3 Heir to the Throne.\n");
-		break;
-	case DivineWind:
-		printf("	Game type is: EU3 Divine Wind.\n");
-		log("	Game type is: EU3 Divine Wind.\n");
-		break;
-	default:
-		printf("	Error: Could not determine savegame type.\n");
-		log("	Error: Could not determine savegame type.\n");
-		exit(1);
+		case VeryOld:
+			printf("	Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
+			log("	Error: EU3 game appears to be from an old version; only IN, HttT, and DW are supported.\n");
+			exit(1);
+		case InNomine:
+			printf("	Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
+			log("	Game type is: EU3 In Nomine.  EXPERIMENTAL.\n");
+			break;
+		case HeirToTheThrone:
+			printf("	Game type is: EU3 Heir to the Throne.\n");
+			log("	Game type is: EU3 Heir to the Throne.\n");
+			break;
+		case DivineWind:
+			printf("	Game type is: EU3 Divine Wind.\n");
+			log("	Game type is: EU3 Divine Wind.\n");
+			break;
+		default:
+			printf("	Error: Could not determine savegame type.\n");
+			log("	Error: Could not determine savegame type.\n");
+			exit(1);
 	}
 
 
@@ -364,8 +364,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);
-	printf("Converting capitals.");
-	log("Converting capitals.");
+	printf("Converting capitals.\n");
+	log("Converting capitals.\n");
 	destWorld.convertCapitals(sourceWorld, inverseProvinceMap);
 	printf("Creating pops.\n");
 	log("Creating pops.\n");

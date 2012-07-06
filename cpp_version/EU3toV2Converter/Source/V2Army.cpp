@@ -13,7 +13,7 @@ V2ArmyID::V2ArmyID()
 }
 
 
-void V2ArmyID::output(FILE* out, int indentlevel)
+void V2ArmyID::output(FILE* out, int indentlevel) const
 {
 	string indent(indentlevel, '\t');
 	fprintf(out, "%sid=\n", indent.c_str());
@@ -63,7 +63,7 @@ V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 }
 
 
-void V2Regiment::output(FILE* out)
+void V2Regiment::output(FILE* out) const
 {
 	if (isShip)
 	{
@@ -113,7 +113,7 @@ V2Army::V2Army(EU3Army* oldArmy, map<int, int> leaderIDMap)
 }
 
 
-void V2Army::output(FILE* out)
+void V2Army::output(FILE* out) const
 {
 	if (regiments.size() == 0)
 	{
@@ -141,7 +141,7 @@ void V2Army::output(FILE* out)
 	}
 	fprintf(out, "\t\tlocation=%d\n", location);
 	fprintf(out, "\t\tsupplies=1.000\n");
-	for (vector<V2Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<V2Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		itr->output(out);
 	}
@@ -159,9 +159,9 @@ void V2Army::addRegiment(V2Regiment reg)
 }
 
 
-void V2Army::getRegimentCounts(int counts[num_reg_categories])
+void V2Army::getRegimentCounts(int counts[num_reg_categories]) const
 {
-	for (vector<V2Regiment>::iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
+	for (vector<V2Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		counts[itr->getCategory()]++;
 	}

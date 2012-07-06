@@ -11,7 +11,7 @@ struct V2ArmyID
 {
 	public:
 		V2ArmyID();
-		void output(FILE* out, int indentlevel);
+		void output(FILE* out, int indentlevel) const;
 
 		int id;
 		int type;
@@ -22,7 +22,7 @@ class V2Regiment // also Ship
 {
 	public:
 		V2Regiment(RegimentCategory rc);
-		void output(FILE* out);
+		void output(FILE* out) const;
 
 		void setName(string _name)		{ name = _name; };
 		void setPopID(int newPop)		{ popID = newPop; };
@@ -45,7 +45,7 @@ class V2Army // also Navy
 {
 	public:
 		V2Army(EU3Army* oldArmy, map<int, int> leaderIDMap);
-		void					output(FILE* out);
+		void					output(FILE* out) const;
 		void					addRegiment(V2Regiment reg);
 
 		void					setLocation(int provinceID)												{ location = provinceID; };
@@ -53,7 +53,7 @@ class V2Army // also Navy
 		void					setArmyRemainders(RegimentCategory category, double remainder)	{ armyRemainders[category] = remainder; };
 
 		string				getName() const { return name; };
-		void					getRegimentCounts(int counts[num_reg_categories]);
+		void					getRegimentCounts(int counts[num_reg_categories]) const;
 		double				getArmyRemainder(RegimentCategory category) const { return armyRemainders[category]; };
 		EU3Army*				getSourceArmy() const { return sourceArmy; };
 		bool					getNavy() const { return isNavy; };

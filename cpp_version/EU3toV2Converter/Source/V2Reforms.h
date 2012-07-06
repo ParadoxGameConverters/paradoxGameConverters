@@ -15,7 +15,7 @@ class V2Country;
 class V2Reforms {
 	public:
 		V2Reforms(EU3Country*);
-		void output(FILE*);
+		void output(FILE*) const;
 	private:
 		void governmentEffects(EU3Country*);
 		void sliderEffects(EU3Country*);

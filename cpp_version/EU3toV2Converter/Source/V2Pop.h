@@ -13,7 +13,7 @@ class V2Pop
 {
 	public:
 		V2Pop(string type, int size, string culture, string religion, double literacy, double reactionary, double conservative, double liberal, vector< pair<int, double> > issues);
-		void output(FILE*);
+		void output(FILE*) const;
 		bool combine(const V2Pop& rhs);
 
 		void	changeSize(int delta)					{ size += delta; recalcMoney(); };

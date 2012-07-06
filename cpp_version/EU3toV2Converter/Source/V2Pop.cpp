@@ -29,7 +29,7 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion, double 
 }
 
 
-void V2Pop::output(FILE* output)
+void V2Pop::output(FILE* output) const
 {
 	fprintf(output, "\t%s=\n", type.c_str());
 	fprintf(output, "\t{\n");

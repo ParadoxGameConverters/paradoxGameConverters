@@ -14,7 +14,7 @@ V2Relations::V2Relations(string newTag, EU3Relations* oldRelations)
 }
 
 
-void V2Relations::output(FILE* out)
+void V2Relations::output(FILE* out) const
 {
 	fprintf(out, "\t%s=\n", tag.c_str());
 	fprintf(out, "\t{\n");

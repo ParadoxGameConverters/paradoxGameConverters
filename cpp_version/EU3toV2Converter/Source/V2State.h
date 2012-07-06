@@ -3,6 +3,7 @@
 
 
 
+#include "EU3World.h"
 #include <stdio.h>
 #include <string>
 #include <vector>
@@ -29,7 +30,7 @@ class V2State
 		int						getCraftsmenPerFactory();
 		int						getID();
 		int						getFactoryCount();
-		void						setupPops(EU3World& sourceWorld, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
+		void						setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
 		int						getStatePopulation();
 		bool						hasCOT();
 		bool						provInState(int id);

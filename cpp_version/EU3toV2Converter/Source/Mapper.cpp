@@ -327,7 +327,7 @@ void removeDeadLandlessNations(EU3World& world)
 		bool cultureSurvives			= false;
 		for (vector<EU3Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
 		{
-			if ( (*coreItr)->getOwner() == "")
+			if ( (*coreItr)->getOwner() == NULL)
 			{
 				continue;
 			}
@@ -344,7 +344,7 @@ void removeDeadLandlessNations(EU3World& world)
 
 			if ( culturePercent >= 0.5 )
 			{
-				if (  world.getCountry( (*coreItr)->getOwner() )->getPrimaryCulture() != primaryCulture  )
+				if (  (*coreItr)->getOwner()->getPrimaryCulture() != primaryCulture  )
 				{
 					cultureSurvives = true;
 					break;

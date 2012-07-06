@@ -32,7 +32,7 @@ V2Reforms::V2Reforms(EU3Country* srcCountry)
 }
 
 
-void V2Reforms::output(FILE* output)
+void V2Reforms::output(FILE* output) const
 {
 	fprintf(output, "	wage_reform=no_minimum_wage\n");
 	fprintf(output, "	work_hours=no_work_hour_limit\n");

@@ -2,11 +2,11 @@
 
 
 
-void V2Diplomacy::output(FILE * out)
+void V2Diplomacy::output(FILE * out) const
 {
 	fprintf(out, "diplomacy=\n");
 	fprintf(out, "{\n");
-	for (vector<V2Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
+	for (vector<V2Agreement>::const_iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
 		fprintf(out, "\t%s=\n", itr->type.c_str());
 		fprintf(out, "\t{\n");

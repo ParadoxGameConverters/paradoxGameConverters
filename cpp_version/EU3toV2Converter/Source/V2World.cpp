@@ -61,8 +61,7 @@ void V2World::init(string V2Loc)
 		}
 		int provNum = atoi( line.substr(0, delimiter).c_str() );
 
-		V2Province* newProv = new V2Province;
-		newProv->init(provNum);
+		V2Province* newProv = new V2Province(provNum);
 		provinces.push_back(newProv);
 	}
 	read.close();
@@ -123,16 +122,7 @@ void V2World::init(string V2Loc)
 				if ( (*i)->getNum() == provNum )
 				{
 					Object* provinceObj = doParseFile((provDirPath + provFileData.name).c_str());
-					vector<Object*> rgoObj = provinceObj->getValue("trade_goods");
-					if (rgoObj.size() > 0)
-					{
-						(*i)->setRgoType(rgoObj[0]->getLeaf());
-					}
-					vector<Object*> lifeObj = provinceObj->getValue("life_rating");
-					if (lifeObj.size() > 0)
-					{
-						(*i)->setLifeRating(atoi(lifeObj[0]->getLeaf().c_str()));
-					}
+					(*i)->importHistory(provinceObj);
 					break;
 				}
 			}
@@ -730,7 +720,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 		else
 		{
 			EU3Province* oldProvince = NULL;
-			string oldOwner = "";
+			EU3Country* oldOwner = NULL;
 			// determine ownership by province count, or total population (if province count is tied)
 			map<string, MTo1ProvinceComp> provinceBins;
 			double newProvinceTotalPop = 0;
@@ -742,7 +732,16 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 					log("Error: old province %d does not exist.  Bad mapping?\n", sourceNums[0]);
 					continue;
 				}
-				string tag = province->getOwner();
+				EU3Country* owner = province->getOwner();
+				string tag;
+				if (owner != NULL)
+				{
+					tag = owner->getTag();
+				}
+				else
+				{
+					tag = "";
+				}
 				if (provinceBins.find(tag) == provinceBins.end())
 					provinceBins[tag] = MTo1ProvinceComp();
 				provinceBins[tag].provinces.push_back(province);
@@ -750,30 +749,27 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 				newProvinceTotalPop += province->getPopulation();
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
-				if (   (oldOwner == "")
-					|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner].provinces.size())
-					|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner].provinces.size())
-					    && (provinceBins[tag].totalPopulation > provinceBins[oldOwner].totalPopulation)))
+				if (   (oldOwner == NULL)
+					|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
+					|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
+					    && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
 				{
-					oldOwner = tag;
+					oldOwner = owner;
 					oldProvince = province;
 				}
 			}
 
-			if (oldOwner != "")
+			if (oldOwner != NULL)
 			{
-				countryMapping::iterator iter = contMap.find(oldOwner);
+				countryMapping::iterator iter = contMap.find(oldOwner->getTag());
 				if (iter == contMap.end())
 				{
-					log("Error: Could not map provinces owned by %s.\n", oldOwner.c_str());
+					log("Error: Could not map provinces owned by %s.\n", oldOwner->getTag().c_str());
 				}
 				else
 				{
 					provinces[i]->setOwner(iter->second);
-					provinces[i]->setColonial(oldProvince->isColony());
-					provinces[i]->setColonised(oldProvince->wasColonised());
-					provinces[i]->setPaganConquest(oldProvince->wasPaganConquest(sourceWorld.getCountry(oldOwner)->getReligion()));
-					provinces[i]->setCOT(oldProvince->isCOT());
+					provinces[i]->convertFromOldProvince(oldProvince);
 
 					for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
 					{
@@ -785,7 +781,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								// skip this core if the country is the owner of the EU3 province but not the V2 province
 								// (i.e. "avoid boundary conflicts that didn't exist in EU3").
 								// this country may still get core via a province that DID belong to the current V2 owner
-								if ((oldCores[j]->getTag() == mitr->first) && (oldCores[j]->getTag() != oldOwner))
+								if ((oldCores[j]->getTag() == mitr->first) && (oldCores[j]->getTag() != oldOwner->getTag()))
 									continue;
 
 								iter = contMap.find(oldCores[j]->getTag());
@@ -810,7 +806,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 										{
 											if (cultureMap[k].distinguishers[j].first == owner)
 											{
-												if ((*vitr)->getOwner() != cultureMap[k].distinguishers[j].second)
+												if ((*vitr)->getOwner()->getTag() != cultureMap[k].distinguishers[j].second)
 													match = false;
 											}
 											else if (cultureMap[k].distinguishers[j].first == religion)
@@ -852,7 +848,7 @@ void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, co
 								demographic.religion = religion;
 								demographic.ratio = pritr->popRatio * provPopRatio;
 								demographic.oldCountry = oldOwner;
-								demographic.oldProvinceID = (*vitr)->getNum();
+								demographic.oldProvince = *vitr;
 								
 								demographic.literacy = 0.1;
 								V2Country* owner = getCountry(provinces[i]->getOwner());
@@ -964,7 +960,7 @@ void V2World::addUnions(unionMapping unionMap)
 	{
 		for (unsigned int j = 0; j < unionMap.size(); j++)
 		{
-			if ( (unionMap[j].first == provinces[i]->getCulture()) && (!provinces[i]->wasPaganConquest()) && (!provinces[i]->wasColonised()) )
+			if ( (provinces[i]->hasCulture(unionMap[j].first, 0.5)) && (!provinces[i]->wasPaganConquest()) && (!provinces[i]->wasColonised()) )
 			{
 				provinces[i]->addCore(unionMap[j].second);
 			}
@@ -1180,7 +1176,7 @@ V2Province* V2World::getProvinceForExpeditionaryArmy(const V2Country& country)
 	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
 		if (( (*pitr)->getOwner() == country.getTag() ) && !(*pitr)->wasColonised() && !(*pitr)->wasPaganConquest()
-			&& ( (*pitr)->getCulture() == country.getPrimaryCulture() ) && ( (*pitr)->getPops("soldiers").size() > 0) )
+			&& ( (*pitr)->hasCulture(country.getPrimaryCulture(), 0.5) ) && ( (*pitr)->getPops("soldiers").size() > 0) )
 		{
 			candidates.push_back(*pitr);
 		}
@@ -2057,6 +2053,7 @@ void V2World::output(FILE* output)
 	outputTempHeader(output);
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
+		provinces[i]->sortPops();
 		provinces[i]->output(output);
 	}
 	for (unsigned int i = 0; i < countries.size(); i++)

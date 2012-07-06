@@ -615,7 +615,7 @@ void EU3Country::eatCountry(EU3Country* target)
 		for (unsigned int j = 0; j < target->provinces.size(); j++)
 		{
 			addProvince(target->provinces[j]);
-			target->provinces[j]->setOwner(tag);
+			target->provinces[j]->setOwner(this);
 		}
 
 		// acquire target's armies, navies, admirals, and generals

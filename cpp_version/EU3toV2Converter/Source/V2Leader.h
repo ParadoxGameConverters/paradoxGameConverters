@@ -17,7 +17,7 @@ class V2Leader
 {
 	public:
 		V2Leader(const V2Country* _country, const EU3Leader* oldLeader, const V2LeaderTraits& traits);
-		void output(FILE* output);
+		void output(FILE* output) const;
 
 		int getID() const { return id; };
 	private:

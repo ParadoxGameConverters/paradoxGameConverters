@@ -22,7 +22,7 @@ V2Leader::V2Leader(const V2Country* _country, const EU3Leader* oldLeader, const 
 }
 
 
-void V2Leader::output(FILE *output)
+void V2Leader::output(FILE *output) const
 {
 	fprintf(output, "\tleader=\n");
 	fprintf(output, "\t{\n");
