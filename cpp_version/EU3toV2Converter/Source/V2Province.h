@@ -32,7 +32,7 @@ class V2Province
 		V2Province(int number);
 		void output(FILE*) const;
 		void importHistory(Object*);
-		void convertFromOldProvince(EU3Province* oldProvince);
+		void convertFromOldProvince(const EU3Province* oldProvince);
 		void addCore(string);
 		void addOldPop(const V2Pop*);
 		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT);

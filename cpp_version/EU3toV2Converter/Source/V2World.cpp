@@ -1010,19 +1010,18 @@ void V2World::setupStates(stateMapping stateMap)
 			continue;
 		}
 
-		V2State* newState = new V2State(stateId);
+		V2State* newState = new V2State(stateId, *iter);
 		stateId++;
-		newState->addProvince(*iter);
 		vector<int> neighbors	= stateMap[provId];
 		bool colonial				= (*iter)->isColonial();
 		newState->setColonial(colonial);
 		iter = unassignedProvs.erase(iter);
 
-		for (unsigned int i = 0; i < neighbors.size(); i++)
+		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
 		{
 			for(iter = unassignedProvs.begin(); iter != unassignedProvs.end(); iter++)
 			{
-				if ((*iter)->getNum() == neighbors[i])
+				if ((*iter)->getNum() == *i)
 				{
 					if ((*iter)->getOwner() == owner)
 					{

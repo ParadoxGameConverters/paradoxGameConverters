@@ -5,24 +5,43 @@
 #include "V2Factory.h"
 
 
-V2State::V2State(int newId)
+V2State::V2State(int newId, V2Province* firstProvince)
 {
 	id			= newId;
 	colonial	= false;
 	provinces.clear();
+	provinces.push_back(firstProvince);
 	factories.clear();
 }
 
 
-void V2State::addProvince(V2Province* newProvince)
+void V2State::output(FILE* output) const
 {
-	provinces.push_back(newProvince);
-}
-
-
-void V2State::addFactory(V2Factory* factory)
-{
-	factories.push_back(factory);
+	fprintf(output, "\tstate=\n");
+	fprintf(output, "\t{\n");
+	fprintf(output, "\t\tid=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\tid=%d\n", id);
+	fprintf(output, "\t\t\ttype=47\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tprovinces=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t");
+	for (vector<V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		fprintf(output, "%d ", (*i)->getNum());
+	}
+	fprintf(output, "\n");
+	fprintf(output, "\t\t}\n");
+	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); ++itr)
+	{
+		(*itr)->output(output);
+	}
+	if (colonial)
+	{
+		fprintf(output, "\t\tis_colonial=yes\n");
+	}
+	fprintf(output, "\t}\n");
 }
 
 
@@ -35,44 +54,48 @@ void V2State::addRailroads()
 }
 
 
-void V2State::setColonial(bool isIt)
+void V2State::setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier)
 {
-	colonial = isIt;
-}
-
-
-bool V2State::isColonial()
-{
-	return colonial;
-}
-
-
-bool V2State::isCoastal()
-{
+	int	statePopulation = getStatePopulation();
+	bool	cot = hasCOT();
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		(*itr)->doCreatePops(game, (itr == provinces.begin()), statePopulation, cot);
+		(*itr)->setPopConMil(primaryCulture, acceptedCultures, religion, nationalConModifier, nationalMilModifier);
+	}
+}
+
+
+bool V2State::isCoastal() const
+{
+	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
 		if ((*itr)->isCoastal())
+		{
 			return true;
+		}
 	}
 	return false;
 }
 
 
-bool V2State::hasLocalSupply(string product)
+bool V2State::hasLocalSupply(string product) const
 {
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
 		if ((*itr)->getRgoType() == product)
+		{
 			return true;
+		}
 	}
 	return false;
 }
 
 
-int V2State::getCraftsmenPerFactory()
+int V2State::getCraftsmenPerFactory() const
 {
 	int totalCraftsmen = 0;
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
 		vector<V2Pop*> pops = (*itr)->getPops("craftsmen");
 		for (vector<V2Pop*>::iterator pitr = pops.begin(); pitr != pops.end(); ++pitr)
@@ -84,22 +107,24 @@ int V2State::getCraftsmenPerFactory()
 }
 
 
-int V2State::getFactoryCount()
+bool V2State::provInState(int id) const
 {
-	return factories.size();
+	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		if ( (*itr)->getNum() == id )
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 
-int V2State::getID()
-{
-	return id;
-}
-
-
-int V2State::getStatePopulation()
+int V2State::getStatePopulation() const
 {
 	int population = 0;
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
 		population += (*itr)->getOldPopulation();
 	}
@@ -118,65 +143,4 @@ bool V2State::hasCOT()
 	}
 
 	return false;
-}
-
-
-bool V2State::provInState(int id)
-{
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-	{
-		if ( (*itr)->getNum() == id )
-		{
-			return true;
-		}
-	}
-
-	return false;
-}
-
-
-vector<V2Province*> V2State::getProvinces()
-{
-	return provinces;
-}
-
-
-void V2State::setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier)
-{
-	int statePopulation = getStatePopulation();
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-	{
-		(*itr)->doCreatePops(game, (itr == provinces.begin()), statePopulation, hasCOT());
-		(*itr)->setPopConMil(primaryCulture, acceptedCultures, religion, nationalConModifier, nationalMilModifier);
-	}
-}
-
-
-void V2State::output(FILE* output)
-{
-	fprintf(output, "	state=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		id=\n");
-	fprintf(output, "		{\n");
-	fprintf(output, "			id=%d\n", id);
-	fprintf(output, "			type=47\n");
-	fprintf(output, "		}\n");
-	fprintf(output, "		provinces=\n");
-	fprintf(output, "		{\n");
-	fprintf(output, "			");
-	for (unsigned int i = 0; i < provinces.size(); i++)
-	{
-		fprintf(output, "%d ", provinces[i]->getNum());
-	}
-	fprintf(output, "\n");
-	fprintf(output, "		}\n");
-	for (vector<V2Factory*>::iterator itr = factories.begin(); itr != factories.end(); ++itr)
-	{
-		(*itr)->output(output);
-	}
-	if (colonial)
-	{
-		fprintf(output, "		is_colonial=yes\n");
-	}
-	fprintf(output, "	}\n");
 }

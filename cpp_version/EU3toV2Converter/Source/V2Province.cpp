@@ -308,7 +308,7 @@ void V2Province::importHistory(Object* obj)
 }
 
 
-void V2Province::convertFromOldProvince(EU3Province* oldProvince)
+void V2Province::convertFromOldProvince(const EU3Province* oldProvince)
 {
 	colonial				= oldProvince->isColony();
 	colonised			= oldProvince->wasColonised();

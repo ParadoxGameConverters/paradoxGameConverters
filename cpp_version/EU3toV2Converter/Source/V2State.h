@@ -18,28 +18,32 @@ class EU3World;
 class V2State
 {
 	public:
-		V2State(int newId);
-		void						addProvince(V2Province*);
-		void						addFactory(V2Factory*);
-		void						addRailroads();
-		void						setColonial(bool);
-		bool						isColonial();
-		void						output(FILE*);
-		bool						isCoastal();
-		bool						hasLocalSupply(string product);
-		int						getCraftsmenPerFactory();
-		int						getID();
-		int						getFactoryCount();
-		void						setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
-		int						getStatePopulation();
-		bool						hasCOT();
-		bool						provInState(int id);
-		vector<V2Province*>	getProvinces();
+		V2State(int newId, V2Province* firstProvince);
+		void output(FILE* output) const;
+
+		void addRailroads();
+		void setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
+
+		bool	isCoastal() const;
+		bool	hasLocalSupply(string product) const;
+		int	getCraftsmenPerFactory() const;
+		bool	provInState(int id) const;
+
+		void	addProvince(V2Province* newProvince) { provinces.push_back(newProvince); };
+		void	addFactory(const V2Factory* factory) { factories.push_back(factory); };
+		void	setColonial(bool isIt) { colonial = isIt; };
+
+		bool						isColonial()		const { return colonial; };
+		int						getFactoryCount()	const { return factories.size(); };
+		int						getID()				const { return id; };
+		vector<V2Province*>	getProvinces()		const { return provinces; };
 	private:
-		int						id;
-		bool						colonial;
-		vector<V2Province*>	provinces;
-		vector<V2Factory*>	factories;
+		int	getStatePopulation() const;
+		bool	hasCOT();
+		int								id;
+		bool								colonial;
+		vector<V2Province*>			provinces;
+		vector<const V2Factory*>	factories;
 };
 
 
