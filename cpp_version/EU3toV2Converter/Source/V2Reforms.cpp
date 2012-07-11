@@ -8,7 +8,7 @@
 
 
 
-V2Reforms::V2Reforms(EU3Country* srcCountry)
+V2Reforms::V2Reforms(const EU3Country* srcCountry)
 {
 	slavery							= 0;
 	vote_franchise					= 0;
@@ -179,7 +179,7 @@ void V2Reforms::output(FILE* output) const
 }
 
 
-void V2Reforms::governmentEffects(EU3Country* srcCountry)
+void V2Reforms::governmentEffects(const EU3Country* srcCountry)
 {
 	string government = srcCountry->getGovernment();
 	if (government == "steppe_horde")
@@ -585,7 +585,7 @@ void V2Reforms::governmentEffects(EU3Country* srcCountry)
 }
 
 
-void V2Reforms::sliderEffects(EU3Country* srcCountry)
+void V2Reforms::sliderEffects(const EU3Country* srcCountry)
 {
 	int centralization_decentralization = srcCountry->getCentralizationDecentralization();
 	slavery							+= centralization_decentralization * 0;
@@ -725,7 +725,7 @@ void V2Reforms::sliderEffects(EU3Country* srcCountry)
 }
 
 
-void V2Reforms::flagEffects(EU3Country* srcCountry)
+void V2Reforms::flagEffects(const EU3Country* srcCountry)
 {
 	if ( srcCountry->hasFlag("") )
 	{
@@ -748,7 +748,7 @@ void V2Reforms::flagEffects(EU3Country* srcCountry)
 }
 
 
-void V2Reforms::modifierEffects(EU3Country* srcCountry)
+void V2Reforms::modifierEffects(const EU3Country* srcCountry)
 {
 	if (srcCountry->hasModifier("the_abolish_slavery_act"))
 	{
@@ -908,16 +908,9 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 
 	country->addResearchPoints(remainingProgress * 800);
 
-	vector<V2State*> states = country->getStates();
 	if (reforms[5] == true)
 	{
-		for (unsigned int i = 0; i < states.size(); i++)
-		{
-			if (states[i]->provInState(country->getCapital()))
-			{
-				states[i]->addRailroads();
-			}
-		}
+		country->addRailroadtoCapitalState();
 	}
 
 	if (reforms[9] == true)

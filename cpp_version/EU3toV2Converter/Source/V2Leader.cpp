@@ -9,14 +9,14 @@
 static int nextId = 0;
 
 
-V2Leader::V2Leader(const V2Country* _country, const EU3Leader* oldLeader, const V2LeaderTraits& traits)
+V2Leader::V2Leader(string tag, const EU3Leader* oldLeader, const V2LeaderTraits& traits)
 {
 	name				= oldLeader->getName();
 	activationDate	= oldLeader->getActivationDate();
 	isLand			= oldLeader->isLand();
 	personality		= traits.getPersonality( oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege() );
 	background		= traits.getBackground(  oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege() );
-	country			= _country->getTag();
+	country			= tag;
 	//picture			= "";		// TODO: figure out picture
 	id = ++nextId;
 }

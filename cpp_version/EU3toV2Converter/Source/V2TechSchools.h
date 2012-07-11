@@ -11,7 +11,7 @@ class Object;
 
 
 
-typedef struct techSchool
+typedef struct V2TechSchool
 {
 	string name;
 	double armyInvestment;
@@ -22,7 +22,7 @@ typedef struct techSchool
 } techSchool;
 
 
-vector<techSchool>	initTechSchools(Object* obj, vector<string> blockedTechSchools);
+vector<V2TechSchool>	initTechSchools(Object* obj, vector<string> blockedTechSchools);
 vector<string>			initBlockedTechSchools(Object*);
 
 

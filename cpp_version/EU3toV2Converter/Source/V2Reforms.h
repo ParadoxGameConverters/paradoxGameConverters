@@ -14,13 +14,13 @@ class V2Country;
 
 class V2Reforms {
 	public:
-		V2Reforms(EU3Country*);
+		V2Reforms(const EU3Country*);
 		void output(FILE*) const;
 	private:
-		void governmentEffects(EU3Country*);
-		void sliderEffects(EU3Country*);
-		void flagEffects(EU3Country*);
-		void modifierEffects(EU3Country*);
+		void governmentEffects(const EU3Country*);
+		void sliderEffects(const EU3Country*);
+		void flagEffects(const EU3Country*);
+		void modifierEffects(const EU3Country*);
 
 		int slavery;
 		int vote_franchise;

@@ -186,6 +186,7 @@ int EU3Army::getProbabilisticHomeProvince(RegimentCategory category) const
 	}
 	if (homeProvinces.size() == 0)
 		return -1;
+
 	return homeProvinces[int(homeProvinces.size() * ((double)rand() / RAND_MAX))];
 }
 

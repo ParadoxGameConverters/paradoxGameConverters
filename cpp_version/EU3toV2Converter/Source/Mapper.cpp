@@ -479,14 +479,14 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 			if ( (*j)->getKey() == "owner" )
 			{
 				distinguisher newD;
-				newD.first	= owner;
+				newD.first	= DTOwner;
 				newD.second	= (*j)->getLeaf();
 				distinguishers.push_back(newD);
 			}
 			if ( (*j)->getKey() == "religion" )
 			{
 				distinguisher newD;
-				newD.first	= religion;
+				newD.first	= DTReligion;
 				newD.second	= (*j)->getLeaf();
 				distinguishers.push_back(newD);
 			}
@@ -602,23 +602,24 @@ governmentMapping initGovernmentMap(Object* obj)
 }
 
 
-unionCulturesList initUnionCultures(Object* obj)
+unionCulturesMap initUnionCultures(Object* obj)
 {
-	unionCulturesList unionCultures;
+	unionCulturesMap unionCultures;
 	vector<Object*> cultureGroups = obj->getLeaves();
 
 	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
 	{
-		vector<Object*>		cultures			= (*i)->getLeaves();
+		vector<Object*>		culturesObj		= (*i)->getLeaves();
 		bool						hasUnion			= false;
-		unionCultureStruct	unionCulture;
+		string					tag;
+		vector<string>			cultures;
 
-		for (vector<Object*>::iterator j = cultures.begin(); j != cultures.end(); j++)
+		for (vector<Object*>::iterator j = culturesObj.begin(); j != culturesObj.end(); j++)
 		{
 			if ( (*j)->getKey() == "union")
 			{
-				hasUnion = true;
-				unionCulture.tag = (*j)->getLeaf();
+				hasUnion	= true;
+				tag		= (*j)->getLeaf();
 			}
 			else if ( (*j)->getKey() == "dynasty_names" )
 			{
@@ -626,13 +627,13 @@ unionCulturesList initUnionCultures(Object* obj)
 			}
 			else
 			{
-				unionCulture.cultures.push_back( (*j)->getKey() );
+				cultures.push_back( (*j)->getKey() );
 			}
 		}
 
 		if (hasUnion)
 		{
-			unionCultures.push_back(unionCulture);
+			unionCultures[tag] = cultures;
 		}
 	}
 

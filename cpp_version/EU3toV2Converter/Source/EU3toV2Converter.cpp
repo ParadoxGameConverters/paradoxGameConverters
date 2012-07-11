@@ -7,6 +7,7 @@
 #include "V2World.h"
 #include "V2Factory.h"
 #include "V2TechSchools.h"
+#include "V2LeaderTraits.h"
 #include "Configuration.h"
 
 
@@ -296,7 +297,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("Error: Failed to parse cultures.txt.\n");
 		return 1;
 	}
-	unionCulturesList unionCultures;
+	unionCulturesMap unionCultures;
 	unionCultures = initUnionCultures(obj);
 
 	// Parse Religion Mappings
@@ -350,11 +351,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	vector<techSchool> techSchools;
 	techSchools = initTechSchools(obj, blockedTechSchools);
 
+	// Get Leader traits
+	log("Getting leader traits.\n");
+	printf("Getting leader traits.\n");
+	V2LeaderTraits lt;
+	map<int, int> leaderIDMap; // <EU3, V2>
+
 
 	// Convert
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
 	printf("Converting diplomacy.\n");
 	log("Converting diplomacy.\n");
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
@@ -364,20 +371,19 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);
-	printf("Converting capitals.\n");
+	/*printf("Converting capitals.\n");
 	log("Converting capitals.\n");
-	destWorld.convertCapitals(sourceWorld, inverseProvinceMap);
+	destWorld.convertCapitals(sourceWorld, inverseProvinceMap);*/
 	printf("Creating pops.\n");
 	log("Creating pops.\n");
 	destWorld.setupPops(sourceWorld);
 	printf("Adding unions.\n");
 	log("Adding unions.\n");
 	destWorld.addUnions(unionMap);
-
-	map<int, int> leaderIDMap; // <EU3, V2>
-	printf("Converting generals and admirals.\n");
-	log("Converting generals and admirals.\n");
-	destWorld.convertLeaders(sourceWorld, leaderIDMap);
+	
+	//printf("Converting generals and admirals.\n");
+	//log("Converting generals and admirals.\n");
+	//destWorld.convertLeaders(sourceWorld, leaderIDMap);
 	printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
@@ -385,9 +391,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting techs.\n");
 	log("Converting techs.\n");
 	destWorld.convertTechs(sourceWorld);
-	printf("Converting tech schools.\n");
+	/*printf("Converting tech schools.\n");
 	log("Converting tech schools.\n");
-	destWorld.convertTechSchools(sourceWorld, techSchools);
+	destWorld.convertTechSchools(sourceWorld, techSchools);*/
 	printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);

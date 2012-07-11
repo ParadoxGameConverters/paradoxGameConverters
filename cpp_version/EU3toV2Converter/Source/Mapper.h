@@ -35,8 +35,8 @@ stateMapping initStateMap(Object* obj);
 
 enum distinguisherType
 {
-	owner,
-	religion
+	DTOwner,
+	DTReligion
 };
 typedef pair<distinguisherType, string> distinguisher;
 typedef struct {
@@ -60,12 +60,8 @@ typedef map<string, string> governmentMapping;	// <srcGov, dstGov>
 governmentMapping initGovernmentMap(Object* obj);
 
 
-typedef struct {
-	string tag;
-	vector<string> cultures;
-} unionCultureStruct;
-typedef vector<unionCultureStruct> unionCulturesList;
-unionCulturesList initUnionCultures(Object* obj);
+typedef map< string, vector<string> > unionCulturesMap; // <tag, cultures>
+unionCulturesMap initUnionCultures(Object* obj);
 
 
 

@@ -3,8 +3,10 @@
 
 
 
+#include "Mapper.h"
 #include "EU3Army.h"
 #include "V2Inventions.h"
+#include "V2TechSchools.h"
 #include "Date.h"
 #include <vector>
 using namespace std;
@@ -21,80 +23,70 @@ class V2UncivReforms;
 class V2Factory;
 class V2Creditor;
 class V2Leader;
+class V2LeaderTraits;
 
 
 
 class V2Country
 {
 	public:
-		void								init(string tag, string countryFile, vector<int> parties, V2World* theWorld);
-		void								initFromHistory();
-		string							getTag() const;
-		void								setSourceTag(string);
-		void								addState(V2State*);
-		void								setCapital(int);
-		void								setCivilized(bool);
-		bool								isCivilized();
-		void								setPrimaryCulture(string);
-		string							getPrimaryCulture() const;
-		void								addAcceptedCulture(string);
-		vector<string>					getAcceptedCultures();
-		void								setReligion(string);
-		string							getReligion();
+		V2Country(string _tag, string _countryFile, vector<int> _parties, V2World* _theWorld);
 		void								output(FILE*);
-		string							getSourceTag();
-		void								setPrestige(double);
-		void								setLeadership(double);
-		void								setArmyTech(double);
-		void								setNavyTech(double);
-		void								setCommerceTech(double);
-		void								setIndustryTech(double);
-		void								setCultureTech(double);
-		void								setTechSchool(string);
-		inventionStatus				getInventionState(inventionType);
-		void								addPrestige(double);
-		void								addPlurality(double);
-		void								setGovernment(string);
-		void								setUpperHouse(double reactionary, double conservative, double liberal);
-		double							getReactionary();
-		double							getConservative();
-		double							getLiberal();
-		vector< pair<int, int> >	getReactionaryIssues();
-		vector< pair<int, int> >	getConservativeIssues();
-		vector< pair<int, int> >	getLiberalIssues();
-		void								setRulingParty();
-		void								addRelations(V2Relations*);
-		V2Relations*					getRelations(string);
-		void								addArmy(V2Army*);
-		V2Army*							getArmyForRemainder(RegimentCategory rc);
-		void								setReforms(EU3Country*);
-		void								setNationalIdea(EU3Country*, int& libertyLeft, int& equalityLeft);
-		void								sortRelations(const vector<string>& order);
-		bool								addFactory(V2Factory*);
-		void								setMoney(double);
-		void								setLastBankrupt(date);
-		void								addLoan(string creditor, double size, double interest);
-		void								setBankReserves(double);
-		void								setDiploPoints(double);
-		void								setBadboy(double);
-		void								addLeader(V2Leader*);
+		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
+		void								initFromHistory();
+		void								addState(V2State* newState);
+		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, vector<V2Province*> allProvinces, vector<int> port_whitelist);
+		void								setNationalIdea(int& libertyLeft, int& equalityLeft);
+		bool								addFactory(V2Factory* factory);
+		void								addRailroadtoCapitalState();
 		void								setupPops(EU3World& sourceWorld);
-		void								setLiteracy(double);
-		double							getLiteracy();
+		void								setArmyTech(double mean, double scale, double stdDev);
+		void								setNavyTech(double mean, double scale, double stdDev);
+		void								setCommerceTech(double mean, double scale, double stdDev);
+		void								setIndustryTech(double mean, double scale, double stdDev);
+		void								setCultureTech(double mean, double scale, double stdDev);
+
+		V2Relations*					getRelations(string withWhom) const;
+		
+		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; };
 		void								addResearchPoints(double newPoints) { researchPoints += newPoints; };
-		vector<V2State*>				getStates() const { return states; };
-		int								getCapital() const { return capital; };
 		void								addTech(string newTech) { techs.push_back(newTech); };
+
 		vector<V2Province*>			getProvinces() const { return provinces; };
-		void								setUncivReforms(V2UncivReforms* newReforms) { uncivReforms = newReforms; };
+		string							getTag() const { return tag; };
+		bool								isCivilized() const { return civilized; };
+		string							getPrimaryCulture() const { return primaryCulture; };
+		vector<string>					getAcceptedCultures() const { return acceptedCultures; };
+		const EU3Country*				getSourceCountry() const { return srcCountry; };
+		inventionStatus				getInventionState(inventionType invention) const { return inventions[invention]; };
+		double							getReactionary() const { return upperHouseReactionary; };
+		double							getConservative() const { return upperHouseConservative; };
+		double							getLiberal() const { return upperHouseLiberal; };
+		vector< pair<int, int> >	getReactionaryIssues() const { return reactionaryIssues; };
+		vector< pair<int, int> >	getConservativeIssues() const { return conservativeIssues; };
+		vector< pair<int, int> >	getLiberalIssues() const { return liberalIssues; };
+		double							getLiteracy() const { return literacy; };
+		int								getCapital() const { return capital; };
 	private:
-		void setIssues();
-		void outputTech(FILE*);
-		void outputInventions(FILE*);
-		void outputElection(FILE*);
-		void outputParties(FILE*);
+		void			outputTech(FILE*);
+		void			outputInventions(FILE*);
+		void			outputElection(FILE*);
+		void			outputParties(FILE*);
+		void			setIssues();
+		void			setRulingParty();
+		void			sortRelations(const vector<string>& order);
+		void			addLoan(string creditor, double size, double interest);
+		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, vector<V2Province*> allProvinces);
+		vector<int>	getPortProvinces(vector<int> locationCandidates, vector<V2Province*> allProvinces);
+		V2Army*		getArmyForRemainder(RegimentCategory rc);
+		V2Province*	getProvinceForExpeditionaryArmy();
+		
+		
+		
+
 
 		V2World*							theWorld;
+		const EU3Country*				srcCountry;
 		string							tag;
 		vector<V2State*>				states;
 		vector<V2Province*>			provinces;
@@ -105,7 +97,6 @@ class V2Country
 		string							religion;
 		vector<int>						parties;
 		int								rulingParty;
-		string							sourceTag;
 		string							countryFile;
 		double							prestige;
 		double							leadership;
@@ -135,6 +126,8 @@ class V2Country
 		vector<V2Leader*>				leaders;
 		double							literacy;
 };
+
+bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);
 
 
 #endif	// V2COUNTRY_H_
