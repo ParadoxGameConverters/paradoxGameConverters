@@ -151,8 +151,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse V2 input file
 	log("Parsing Vicky2 data.\n");
 	printf("Parsing Vicky2 data.\n");
-	V2World destWorld;
-	destWorld.init(V2Loc);
+	V2World destWorld(V2Loc);
 
 
 	// Construct factory factory
@@ -187,20 +186,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 
-	// Get potential V2 countries
-	log("Getting potential V2 nations.\n");
-	printf("Getting potential V2 nations.\n");
-	ifstream V2CountriesInput;
-	V2CountriesInput.open( (V2Loc + "\\common\\countries.txt").c_str() );
-	if (!V2CountriesInput.is_open())
-	{
-		log("	Error: Could not open countries.txt\n");
-		printf("	Error: Could not open countries.txt\n");
-		return 1;
-	}
-	destWorld.addPotentialCountries(V2CountriesInput, V2Loc);
-	V2CountriesInput.close();
-	
 	// Get list of blocked nations
 	log("Getting blocked V2 nations.\n");
 	printf("Getting blocked V2 nations.\n");
@@ -371,29 +356,18 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);
-	/*printf("Converting capitals.\n");
-	log("Converting capitals.\n");
-	destWorld.convertCapitals(sourceWorld, inverseProvinceMap);*/
 	printf("Creating pops.\n");
 	log("Creating pops.\n");
 	destWorld.setupPops(sourceWorld);
 	printf("Adding unions.\n");
 	log("Adding unions.\n");
 	destWorld.addUnions(unionMap);
-	
-	//printf("Converting generals and admirals.\n");
-	//log("Converting generals and admirals.\n");
-	//destWorld.convertLeaders(sourceWorld, leaderIDMap);
 	printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
-
 	printf("Converting techs.\n");
 	log("Converting techs.\n");
 	destWorld.convertTechs(sourceWorld);
-	/*printf("Converting tech schools.\n");
-	log("Converting tech schools.\n");
-	destWorld.convertTechSchools(sourceWorld, techSchools);*/
 	printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);

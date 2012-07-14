@@ -24,13 +24,14 @@ class V2Factory;
 class V2Creditor;
 class V2Leader;
 class V2LeaderTraits;
+struct V2Party;
 
 
 
 class V2Country
 {
 	public:
-		V2Country(string _tag, string _countryFile, vector<int> _parties, V2World* _theWorld);
+		V2Country(string _tag, string _countryFile, map<int, V2Party*> _parties, V2World* _theWorld);
 		void								output(FILE*);
 		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
@@ -80,10 +81,6 @@ class V2Country
 		vector<int>	getPortProvinces(vector<int> locationCandidates, vector<V2Province*> allProvinces);
 		V2Army*		getArmyForRemainder(RegimentCategory rc);
 		V2Province*	getProvinceForExpeditionaryArmy();
-		
-		
-		
-
 
 		V2World*							theWorld;
 		const EU3Country*				srcCountry;
@@ -95,7 +92,7 @@ class V2Country
 		string							primaryCulture;
 		vector<string>					acceptedCultures;
 		string							religion;
-		vector<int>						parties;
+		map<int, V2Party*>			parties;
 		int								rulingParty;
 		string							countryFile;
 		double							prestige;

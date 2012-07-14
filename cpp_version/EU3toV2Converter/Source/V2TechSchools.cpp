@@ -4,7 +4,8 @@
 
 
 
-vector<techSchool> initTechSchools(Object* obj, vector<string> blockedTechSchools) {
+vector<techSchool> initTechSchools(Object* obj, vector<string> blockedTechSchools)
+{
 	vector<techSchool> techSchools;
 
 	vector<Object*> schoolObj = obj->getValue("schools");

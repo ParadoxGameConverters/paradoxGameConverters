@@ -27,14 +27,13 @@
 
 
 
-void V2World::init(string V2Loc)
+V2World::V2World(string V2Loc)
 {
-	buildParties();
-
-	equalityLeft	= 6;
-	libertyLeft		= 30;
-
+	log("\tImporting provinces.\n");
+	printf("\tImporting provinces.\n");
+	
 	// set province names and numbers
+	provinces.clear();
 	ifstream read;
 	read.open( (V2Loc + "\\map\\definition.csv").c_str() );
 	if (!read.is_open())
@@ -132,6 +131,8 @@ void V2World::init(string V2Loc)
 	_findclose(fileListing);
 
 	// set V2 basic population levels
+	log("\tImporting historical pops.\n");
+	printf("\tImporting historical pops.\n");
 	struct _finddata_t	popsFileData;
 	if ( (fileListing = _findfirst( (V2Loc + "\\history\\pops\\1836.1.1\\*").c_str(), &popsFileData)) == -1L)
 	{
@@ -193,6 +194,8 @@ void V2World::init(string V2Loc)
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
+	log("\tFinding coastal provinces.\n");
+	printf("\tFinding coastal provinces.\n");
 	Object*	obj2 = doParseFile((V2Loc + "\\map\\positions.txt").c_str());
 	vector<Object*> objProv = obj2->getLeaves();
 	if (objProv.size() == 0)
@@ -221,46 +224,30 @@ void V2World::init(string V2Loc)
 			}
 		}
 	}
-}
 
+	countries.clear();
 
-void V2World::getProvinceLocalizations(string file)
-{
-	ifstream read;
-	string line;
-	read.open( file.c_str() );
-	while (read.good() && !read.eof())
-	{
-		getline(read, line);
-		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
-		{
-			int position = line.find_first_of(';');
-			int num = atoi( line.substr(4, position - 4).c_str() );
-			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
-			for (unsigned int i = 0; i < provinces.size(); i++)
-			{
-				if (provinces[i]->getNum() == num)
-				{
-					provinces[i]->setName(name);
-					break;
-				}
-			}
-		}
-	}
-	read.close();
-}
-
-
-void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
-{
-	int partiesIndex = 1;
+	log("\tGetting potential countries and building political parties.\n");
+	printf("\tGetting potential countries and building political parties.\n");
+	parties.clear();
+	potentialCountries.clear();
 	const date FirstStartDate = Configuration::getStartDate();
-	while (!countriesMapping.eof())
+	ifstream V2CountriesInput;
+	V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
+	if (!V2CountriesInput.is_open())
+	{
+		log("Error: Could not open countries.txt\n");
+		printf("Error: Could not open countries.txt\n");
+		exit(1);
+	}
+
+	int partiesIndex = 1;
+	while (!V2CountriesInput.eof())
 	{
 		string line;
-		getline(countriesMapping, line);
+		getline(V2CountriesInput, line);
 
-		if ( (line.size() < 3) || (line[0] == '#') )
+		if ( (line[0] == '#') | (line.size() < 3) )
 		{
 			continue;
 		}
@@ -269,17 +256,19 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 		tag = line.substr(0, 3);
 
 		string countryFileName;
-		int start			= line.find_first_of('/');
-		int size				= line.find_last_of('\"') - start;
+		int start		= line.find_first_of('/');
+		int size		= line.find_last_of('\"') - start;
 		countryFileName	= line.substr(start, size);
 
-		vector<int> parties;
-		Object* countryData = doParseFile((V2Loc + "\\common\\countries\\" + countryFileName).c_str());
+		Object* countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
 
 		vector<Object*> partyData = countryData->getValue("party");
+		map<int, V2Party*> localParties;
 		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 		{
-			parties.push_back(partiesIndex);
+			V2Party* newParty = new V2Party(*itr);
+			parties.insert( make_pair(partiesIndex, newParty) );
+			localParties.insert( make_pair(partiesIndex, newParty) );
 			partiesIndex++;
 		}
 
@@ -287,59 +276,238 @@ void V2World::addPotentialCountries(ifstream &countriesMapping, string V2Loc)
 		{
 			continue;
 		}
-		V2Country* newCountry = new V2Country(tag, countryFileName, parties, this);
+		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
 		potentialCountries.push_back(newCountry);
 	}
+	V2CountriesInput.close();
+
+	equalityLeft	= 6;
+	libertyLeft		= 30;
 }
 
 
-void V2World::sortCountries(const vector<string>& order)
+void V2World::output(FILE* output)
 {
-	vector<V2Country*> sortedCountries;
-	for (vector<string>::const_iterator oitr = order.begin(); oitr != order.end(); ++oitr)
+	outputHeader(output);
+	outputTempHeader(output);
+	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
-		for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
-		{
-			if ( (*itr)->getTag() == (*oitr) )
-			{
-				sortedCountries.push_back(*itr);
-				break;
-			}
-		}
+		provinces[i]->sortPops();
+		provinces[i]->output(output);
 	}
-	countries.swap(sortedCountries);
+	for (unsigned int i = 0; i < countries.size(); i++)
+	{
+		countries[i]->output(output);
+	}
+	diplomacy.output(output);
 }
 
 
-vector<string> V2World::getPotentialTags()
+static int stateId = 0;
+void V2World::outputHeader(FILE* output)
 {
-	vector<string> tagList;
+	fprintf(output, "date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
+	fprintf(output, "automate_trade=no\n");
+	fprintf(output, "automate_sliders=0\n");
+	fprintf(output, "unit=%d\n", V2ArmyID().id);
+	fprintf(output, "state=%d\n", stateId);
+	fprintf(output, "start_date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
+	fprintf(output, "start_pop_index=%d\n", getNextPopId());
+	fprintf(output, "worldmarket=\n");
+	fprintf(output, "{\n");
+	fprintf(output, "	worldmarket_pool=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		ammunition=0.46634\n");
+	fprintf(output, "		small_arms=1.01407\n");
+	fprintf(output, "		artillery=1.43967\n");
+	fprintf(output, "		canned_food=4.16602\n");
+	fprintf(output, "		cotton=966.92960\n");
+	fprintf(output, "		dye=785.78574\n");
+	fprintf(output, "		wool=1794.33109\n");
+	fprintf(output, "		silk=192.24536\n");
+	fprintf(output, "		coal=1698.31195\n");
+	fprintf(output, "		sulphur=201.85480\n");
+	fprintf(output, "		iron=498.86673\n");
+	fprintf(output, "		timber=1038.01337\n");
+	fprintf(output, "		tropical_wood=258.42496\n");
+	fprintf(output, "		precious_metal=17.16943\n");
+	fprintf(output, "		steel=395.23450\n");
+	fprintf(output, "		cement=3.23746\n");
+	fprintf(output, "		machine_parts=3.84375\n");
+	fprintf(output, "		glass=52.54648\n");
+	fprintf(output, "		fertilizer=66.62204\n");
+	fprintf(output, "		explosives=18.46304\n");
+	fprintf(output, "		clipper_convoy=0.05063\n");
+	fprintf(output, "		steamer_convoy=2.83932\n");
+	fprintf(output, "		fabric=139.08908\n");
+	fprintf(output, "		lumber=101.34860\n");
+	fprintf(output, "		paper=3.35300\n");
+	fprintf(output, "		cattle=813.88202\n");
+	fprintf(output, "		fish=1535.25745\n");
+	fprintf(output, "		fruit=2686.31516\n");
+	fprintf(output, "		grain=4360.54388\n");
+	fprintf(output, "		tobacco=2200.08780\n");
+	fprintf(output, "		tea=2673.66977\n");
+	fprintf(output, "		coffee=1334.11459\n");
+	fprintf(output, "		opium=1118.43161\n");
+	fprintf(output, "		wine=7.32648\n");
+	fprintf(output, "		liquor=0.69968\n");
+	fprintf(output, "		regular_clothes=34.41812\n");
+	fprintf(output, "		luxury_clothes=0.40475\n");
+	fprintf(output, "		furniture=0.29919\n");
+	fprintf(output, "		luxury_furniture=0.38611\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	price_pool=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		ammunition=17.52002\n");
+	fprintf(output, "		small_arms=37.00000\n");
+	fprintf(output, "		artillery=60.00000\n");
+	fprintf(output, "		canned_food=16.00000\n");
+	fprintf(output, "		barrels=98.00000\n");
+	fprintf(output, "		aeroplanes=110.00000\n");
+	fprintf(output, "		cotton=1.97998\n");
+	fprintf(output, "		dye=11.97998\n");
+	fprintf(output, "		wool=0.67999\n");
+	fprintf(output, "		silk=10.00000\n");
+	fprintf(output, "		coal=2.28998\n");
+	fprintf(output, "		sulphur=6.02002\n");
+	fprintf(output, "		iron=3.47998\n");
+	fprintf(output, "		timber=0.89999\n");
+	fprintf(output, "		tropical_wood=5.37997\n");
+	fprintf(output, "		rubber=7.00000\n");
+	fprintf(output, "		oil=12.00000\n");
+	fprintf(output, "		precious_metal=7.50000\n");
+	fprintf(output, "		steel=4.67999\n");
+	fprintf(output, "		cement=15.97998\n");
+	fprintf(output, "		machine_parts=36.47998\n");
+	fprintf(output, "		glass=2.92001\n");
+	fprintf(output, "		fuel=25.00000\n");
+	fprintf(output, "		fertilizer=10.00000\n");
+	fprintf(output, "		explosives=20.02002\n");
+	fprintf(output, "		clipper_convoy=42.00000\n");
+	fprintf(output, "		steamer_convoy=64.97998\n");
+	fprintf(output, "		electric_gear=16.00000\n");
+	fprintf(output, "		fabric=1.82001\n");
+	fprintf(output, "		lumber=1.02002\n");
+	fprintf(output, "		paper=3.42001\n");
+	fprintf(output, "		cattle=1.97998\n");
+	fprintf(output, "		fish=1.47998\n");
+	fprintf(output, "		fruit=1.77997\n");
+	fprintf(output, "		grain=2.17999\n");
+	fprintf(output, "		tobacco=1.10001\n");
+	fprintf(output, "		tea=2.60001\n");
+	fprintf(output, "		coffee=2.07999\n");
+	fprintf(output, "		opium=3.20001\n");
+	fprintf(output, "		automobiles=70.00000\n");
+	fprintf(output, "		telephones=16.00000\n");
+	fprintf(output, "		wine=9.72003\n");
+	fprintf(output, "		liquor=6.42001\n");
+	fprintf(output, "		regular_clothes=5.82001\n");
+	fprintf(output, "		luxury_clothes=65.02002\n");
+	fprintf(output, "		furniture=4.92001\n");
+	fprintf(output, "		luxury_furniture=59.02002\n");
+	fprintf(output, "		radio=16.00000\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	last_price_history=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	supply_pool=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	last_supply_pool=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	price_change=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	discovered_goods=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "		ammunition=1.00000\n");
+	fprintf(output, "		small_arms=1.00000\n");
+	fprintf(output, "		artillery=1.00000\n");
+	fprintf(output, "		canned_food=1.00000\n");
+	fprintf(output, "		cotton=1.00000\n");
+	fprintf(output, "		dye=1.00000\n");
+	fprintf(output, "		wool=1.00000\n");
+	fprintf(output, "		silk=1.00000\n");
+	fprintf(output, "		coal=1.00000\n");
+	fprintf(output, "		sulphur=1.00000\n");
+	fprintf(output, "		iron=1.00000\n");
+	fprintf(output, "		timber=1.00000\n");
+	fprintf(output, "		tropical_wood=1.00000\n");
+	fprintf(output, "		rubber=1.00000\n");
+	fprintf(output, "		oil=1.00000\n");
+	fprintf(output, "		precious_metal=1.00000\n");
+	fprintf(output, "		steel=1.00000\n");
+	fprintf(output, "		cement=1.00000\n");
+	fprintf(output, "		machine_parts=1.00000\n");
+	fprintf(output, "		glass=1.00000\n");
+	fprintf(output, "		fertilizer=1.00000\n");
+	fprintf(output, "		explosives=1.00000\n");
+	fprintf(output, "		clipper_convoy=1.00000\n");
+	fprintf(output, "		steamer_convoy=1.00000\n");
+	fprintf(output, "		fabric=1.00000\n");
+	fprintf(output, "		lumber=1.00000\n");
+	fprintf(output, "		paper=1.00000\n");
+	fprintf(output, "		cattle=1.00000\n");
+	fprintf(output, "		fish=1.00000\n");
+	fprintf(output, "		fruit=1.00000\n");
+	fprintf(output, "		grain=1.00000\n");
+	fprintf(output, "		tobacco=1.00000\n");
+	fprintf(output, "		tea=1.00000\n");
+	fprintf(output, "		coffee=1.00000\n");
+	fprintf(output, "		opium=1.00000\n");
+	fprintf(output, "		wine=1.00000\n");
+	fprintf(output, "		liquor=1.00000\n");
+	fprintf(output, "		regular_clothes=1.00000\n");
+	fprintf(output, "		luxury_clothes=1.00000\n");
+	fprintf(output, "		furniture=1.00000\n");
+	fprintf(output, "		luxury_furniture=1.00000\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	actual_sold=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	actual_sold_world=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	real_demand=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	demand=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "	player_balance=\n");
+	fprintf(output, "	{\n");
+	fprintf(output, "	}\n");
+	fprintf(output, "}\n");
+}
+
+
+void V2World::convertCountries(const EU3World& sourceWorld, const countryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
+{
+	vector<string> outputOrder;
+	outputOrder.clear();
 	for (unsigned int i = 0; i < potentialCountries.size(); i++)
 	{
-		tagList.push_back(potentialCountries[i]->getTag());
+		outputOrder.push_back(potentialCountries[i]->getTag());
 	}
-	return tagList;
-}
 
-
-void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, cultureMapping cultureMap, unionCulturesMap unionCultures, religionMapping religionMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<techSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
-{
-	vector<string> outputOrder = getPotentialTags();
 	map<string, EU3Country*> sourceCountries = sourceWorld.getCountries();
 	for (map<string, EU3Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
 	{
 		V2Country* newCountry;
-		countryMapping::iterator iter;
+		countryMapping::const_iterator iter;
 		iter = countryMap.find(i->second->getTag());
 		if (iter != countryMap.end())
 		{
-			for(unsigned int j = 0; j < potentialCountries.size(); j++)
+			for(vector<V2Country*>::iterator j = potentialCountries.begin(); j != potentialCountries.end(); j++)
 			{
-				if (potentialCountries[j]->getTag() == iter->second.c_str())
+				if ( (*j)->getTag() == iter->second.c_str() )
 				{
-					newCountry = potentialCountries[j];
+					newCountry = *j;
 					newCountry->initFromEU3Country(i->second, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
 					newCountry->setNationalIdea(libertyLeft, equalityLeft);
+					break;
 				}
 			}
 		}
@@ -363,359 +531,40 @@ void V2World::convertCountries(EU3World sourceWorld, countryMapping countryMap, 
 		}
 		if (citr == countries.end())
 		{
+			(*itr)->initFromHistory();
 			countries.push_back(*itr);
-			( *(--countries.end()) )->initFromHistory();
 		}
 	}
 
 	// put countries in the same order as potentialCountries was (this is the same order V2 will save them in)
-	sortCountries(outputOrder);
-}
-
-
-struct MTo1ProvinceComp
-{
-	MTo1ProvinceComp() : totalPopulation(0) {};
-
-	vector<EU3Province*> provinces;
-	int totalPopulation;
-};
-
-
-void V2World::convertProvinces(EU3World sourceWorld, provinceMapping provMap, countryMapping contMap, cultureMapping cultureMap, religionMapping religionMap)
-{
-	for (unsigned int i = 0; i < provinces.size(); i++)
+	vector<V2Country*> sortedCountries;
+	for (vector<string>::const_iterator oitr = outputOrder.begin(); oitr != outputOrder.end(); ++oitr)
 	{
-		int destNum					= provinces[i]->getNum();
-		vector<int> sourceNums	= provMap[destNum];
-		if (sourceNums.size() == 0)
+		for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 		{
-			log("Error: no source for %s (province #%d)\n", provinces[i]->getName().c_str() , destNum);
-			//provinces[i].setOwner("\"ERR\"");
-		}
-		else if (sourceNums[0] == 0) {
-			continue;
-		}
-		else
-		{
-			EU3Province* oldProvince = NULL;
-			EU3Country* oldOwner = NULL;
-			// determine ownership by province count, or total population (if province count is tied)
-			map<string, MTo1ProvinceComp> provinceBins;
-			double newProvinceTotalPop = 0;
-			for (vector<int>::iterator itr = sourceNums.begin(); itr != sourceNums.end(); ++itr)
+			if ( (*itr)->getTag() == (*oitr) )
 			{
-				EU3Province* province = sourceWorld.getProvince(*itr);
-				if (!province)
-				{
-					log("Error: old province %d does not exist.  Bad mapping?\n", sourceNums[0]);
-					continue;
-				}
-				EU3Country* owner = province->getOwner();
-				string tag;
-				if (owner != NULL)
-				{
-					tag = owner->getTag();
-				}
-				else
-				{
-					tag = "";
-				}
-				if (provinceBins.find(tag) == provinceBins.end())
-					provinceBins[tag] = MTo1ProvinceComp();
-				provinceBins[tag].provinces.push_back(province);
-				provinceBins[tag].totalPopulation += province->getPopulation();
-				newProvinceTotalPop += province->getPopulation();
-				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
-				// or I have the same number of provinces, but more population, than the current owner
-				if (   (oldOwner == NULL)
-					|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-					|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-					    && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
-				{
-					oldOwner = owner;
-					oldProvince = province;
-				}
-			}
-
-			if (oldOwner != NULL)
-			{
-				countryMapping::iterator iter = contMap.find(oldOwner->getTag());
-				if (iter == contMap.end())
-				{
-					log("Error: Could not map provinces owned by %s.\n", oldOwner->getTag().c_str());
-				}
-				else
-				{
-					provinces[i]->setOwner(iter->second);
-					provinces[i]->convertFromOldProvince(oldProvince);
-
-					for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
-					{
-						for (vector<EU3Province*>::iterator vitr = mitr->second.provinces.begin(); vitr != mitr->second.provinces.end(); ++vitr)
-						{
-							vector<EU3Country*> oldCores = (*vitr)->getCores(sourceWorld.getCountries());
-							for(unsigned int j = 0; j < oldCores.size(); j++)
-							{
-								// skip this core if the country is the owner of the EU3 province but not the V2 province
-								// (i.e. "avoid boundary conflicts that didn't exist in EU3").
-								// this country may still get core via a province that DID belong to the current V2 owner
-								if ((oldCores[j]->getTag() == mitr->first) && (oldCores[j]->getTag() != oldOwner->getTag()))
-									continue;
-
-								iter = contMap.find(oldCores[j]->getTag());
-								if (iter != contMap.end())
-								{
-									provinces[i]->addCore(iter->second);
-								}
-							}
-
-							double provPopRatio = (*vitr)->getPopulation() / newProvinceTotalPop;
-							vector<EU3PopRatio> popRatios = (*vitr)->getPopRatios();
-							for (vector<EU3PopRatio>::iterator pritr = popRatios.begin(); pritr != popRatios.end(); ++pritr)
-							{
-								bool matched = false;
-								string culture = "";
-								for (size_t k = 0; (k < cultureMap.size()) && (!matched); k++)
-								{
-									if (cultureMap[k].srcCulture == pritr->culture)
-									{
-										bool match = true;
-										for (size_t j = 0; j < cultureMap[k].distinguishers.size(); j++)
-										{
-											if (cultureMap[k].distinguishers[j].first == DTOwner)
-											{
-												if ((*vitr)->getOwner()->getTag() != cultureMap[k].distinguishers[j].second)
-													match = false;
-											}
-											else if (cultureMap[k].distinguishers[j].first == DTReligion)
-											{
-												if (pritr->religion != cultureMap[k].distinguishers[j].second)
-													match = false;
-											}
-											else
-											{
-												log ("Error: Unhandled distinguisher type in culture rules.\n");
-											}
-
-										}
-										if (match)
-										{
-											culture = cultureMap[k].dstCulture;
-											matched = true;
-										}
-									}
-								}
-								if (!matched)
-								{
-									log("Error: Could not set culture for pops in province %d\n", destNum);
-								}
-
-								string religion = "";
-								religionMapping::iterator iter3 = religionMap.find(pritr->religion);
-								if (iter3 != religionMap.end())
-								{
-									religion = iter3->second;
-								}
-								else
-								{
-									log("Error: Could not set religion for pops in province %d\n", destNum);
-								}
-
-								V2Demographic demographic;
-								demographic.culture = culture;
-								demographic.religion = religion;
-								demographic.ratio = pritr->popRatio * provPopRatio;
-								demographic.oldCountry = oldOwner;
-								demographic.oldProvince = *vitr;
-								
-								demographic.literacy = 0.1;
-								V2Country* owner = getCountry(provinces[i]->getOwner());
-								if ( (owner != NULL) && (owner->getTag() != "") )
-								{
-									vector<string> acceptedCultures = owner->getAcceptedCultures();
-									for (unsigned int l = 0; l < acceptedCultures.size(); l++)
-									{
-										if (acceptedCultures[l] == culture)
-										{
-											demographic.literacy = owner->getLiteracy();
-										}
-									}
-									if (owner->getPrimaryCulture() == culture)
-									{
-										demographic.literacy = owner->getLiteracy();
-									}
-								}
-
-								demographic.reactionary		= owner->getReactionary();
-								demographic.conservative	= owner->getConservative();
-								demographic.liberal			= owner->getLiberal();
-
-								list< pair<int, double> > issues;
-								vector< pair<int, int> > reactionaryIssues	= owner->getReactionaryIssues();
-								int reactionaryTotal = 0;
-								for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
-								{
-									reactionaryTotal += reactionaryIssues[j].second;
-								}
-								for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
-								{
-									issues.push_back( make_pair(reactionaryIssues[j].first, (demographic.reactionary * reactionaryIssues[j].second / reactionaryTotal) ) );
-								}
-								
-								vector< pair<int, int> > conservativeIssues	= owner->getConservativeIssues();
-								int conservativeTotal = 0;
-								for (unsigned int j = 0; j < conservativeIssues.size(); j++)
-								{
-									conservativeTotal += conservativeIssues[j].second;
-								}
-								for (unsigned int j = 0; j < conservativeIssues.size(); j++)
-								{
-									issues.push_back( make_pair(conservativeIssues[j].first, (demographic.conservative * conservativeIssues[j].second / conservativeTotal) ) );
-								}
-
-								vector< pair<int, int> > liberalIssues	= owner->getLiberalIssues();
-								int liberalTotal = 0;
-								for (unsigned int j = 0; j < liberalIssues.size(); j++)
-								{
-									liberalTotal += liberalIssues[j].second;
-								}
-								for (unsigned int j = 0; j < liberalIssues.size(); j++)
-								{
-									issues.push_back( make_pair(liberalIssues[j].first, (demographic.liberal * liberalIssues[j].second / liberalTotal) ) );
-								}
-								for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++)
-								{
-									list< pair<int, double> >::iterator k = j;
-									for (k++; k != issues.end(); k++)
-									{
-										if (j->first == k->first)
-										{
-											j->second += k->second;
-											issues.erase(k);
-											k = j;
-											k++;
-										}
-									}
-								}
-
-								for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++)
-								{
-									demographic.issues.push_back(*j);
-								}
-								
-								provinces[i]->addPopDemographic(demographic);
-							}
-
-							if ((*vitr)->hasBuilding("fort4") || (*vitr)->hasBuilding("fort5") || (*vitr)->hasBuilding("fort6"))
-							{
-								provinces[i]->setFortLevel(1);
-							}
-							// note: HTTT has only shipyard
-							if (   (*vitr)->hasBuilding("shipyard") || (*vitr)->hasBuilding("grand_shipyard")
-								|| (*vitr)->hasBuilding("naval_arsenal") || (*vitr)->hasBuilding("naval_base"))
-							{
-								// place naval bases only in port provinces
-								vector<int> candidates;
-								candidates.push_back(provinces[i]->getNum());
-								candidates = getPortProvinces(candidates);
-								if (candidates.size() > 0)
-								{
-									provinces[i]->setNavalBaseLevel(1);
-								}
-							}
-						}
-					}
-				}
+				sortedCountries.push_back(*itr);
+				break;
 			}
 		}
 	}
+	countries.swap(sortedCountries);
 }
 
 
-void V2World::addUnions(unionMapping unionMap)
-{
-	for (unsigned int i = 0; i < provinces.size(); i++)
-	{
-		for (unsigned int j = 0; j < unionMap.size(); j++)
-		{
-			if ( (provinces[i]->hasCulture(unionMap[j].first, 0.5)) && (!provinces[i]->wasPaganConquest()) && (!provinces[i]->wasColonised()) )
-			{
-				provinces[i]->addCore(unionMap[j].second);
-			}
-		}
-	}
-}
-
-
-static int stateId = 0;
-void V2World::setupStates(stateMapping stateMap)
-{
-	list<V2Province*> unassignedProvs;
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-		unassignedProvs.push_back(*itr);
-
-	list<V2Province*>::iterator iter;
-	while(unassignedProvs.size() > 0)
-	{
-		iter = unassignedProvs.begin();
-		int		provId	= (*iter)->getNum();
-		string	owner	= (*iter)->getOwner();
-
-		if (owner == "")
-		{
-			unassignedProvs.erase(iter);
-			continue;
-		}
-
-		V2State* newState = new V2State(stateId, *iter);
-		stateId++;
-		vector<int> neighbors	= stateMap[provId];
-		bool colonial				= (*iter)->isColonial();
-		newState->setColonial(colonial);
-		iter = unassignedProvs.erase(iter);
-
-		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
-		{
-			for(iter = unassignedProvs.begin(); iter != unassignedProvs.end(); iter++)
-			{
-				if ((*iter)->getNum() == *i)
-				{
-					if ((*iter)->getOwner() == owner)
-					{
-						if ((*iter)->isColonial() == colonial)
-						{
-							newState->addProvince(*iter);
-							iter = unassignedProvs.erase(iter);
-						}
-					}
-				}
-			}
-		}
-
-		for (vector<V2Country*>::iterator iter2 = countries.begin(); iter2 != countries.end(); iter2++)
-		{
-			if ( (*iter2)->getTag() == owner)
-			{
-				(*iter2)->addState(newState);
-			}
-		}
-	}
-}
-
-
-void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
+void V2World::convertDiplomacy(const EU3World& sourceWorld, const countryMapping& countryMap)
 {
 	vector<EU3Agreement> agreements = sourceWorld.getDiplomacy()->getAgreements();
 	for (vector<EU3Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
-		countryMapping::iterator newCountry1 = countryMap.find(itr->country1);
+		countryMapping::const_iterator newCountry1 = countryMap.find(itr->country1);
 		if (newCountry1 == countryMap.end())
 		{
 			// log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country1.c_str());
 			continue;
 		}
-		countryMapping::iterator newCountry2 = countryMap.find(itr->country2);
+		countryMapping::const_iterator newCountry2 = countryMap.find(itr->country2);
 		if (newCountry2 == countryMap.end())
 		{
 			// log("Error: EU3 Country %s used in diplomatic agreement doesn't exist\n", itr->country2.c_str());
@@ -799,53 +648,363 @@ void V2World::convertDiplomacy(EU3World sourceWorld, countryMapping countryMap)
 }
 
 
-vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
+struct MTo1ProvinceComp
 {
-	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
-	// a non-port province, Vicky crashes....
-	static vector<int> port_blacklist;
-	if (port_blacklist.size() == 0)
-	{
-		int temp = 0;
-		ifstream s("port_blacklist.txt");
-		while (s.good() && !s.eof())
-		{
-			s >> temp;
-			port_blacklist.push_back(temp);
-		}
-		s.close();
-	}
+	MTo1ProvinceComp() : totalPopulation(0) {};
 
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	vector<EU3Province*> provinces;
+	int totalPopulation;
+};
+
+
+void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMapping& provinceMap, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap)
+{
+	for (vector<V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
-		if (black != port_blacklist.end())
+		int destNum												= (*i)->getNum();
+		provinceMapping::const_iterator provinceLink	= provinceMap.find(destNum);
+		if ( (provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0) )
 		{
-			locationCandidates.erase(litr);
-			break;
+			log("Error: no source for %s (province #%d)\n", (*i)->getName().c_str() , destNum);
 		}
-	}
-	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
-	{
-		for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+		else if (provinceLink->second[0] == 0) {
+			continue;
+		}
+
+		EU3Province* oldProvince	= NULL;
+		EU3Country* oldOwner			= NULL;
+		// determine ownership by province count, or total population (if province count is tied)
+		map<string, MTo1ProvinceComp> provinceBins;
+		double newProvinceTotalPop = 0;
+		for (vector<int>::const_iterator itr = provinceLink->second.begin(); itr != provinceLink->second.end(); ++itr)
 		{
-			if ( (*pitr)->getNum() == (*litr) )
+			EU3Province* province = sourceWorld.getProvince(*itr);
+			if (!province)
 			{
-				if ( !(*pitr)->isCoastal() )
+				log("Error: old province %d does not exist. Bad mapping?\n", provinceLink->second[0]);
+				continue;
+			}
+			EU3Country* owner = province->getOwner();
+			string tag;
+			if (owner != NULL)
+			{
+				tag = owner->getTag();
+			}
+			else
+			{
+				tag = "";
+			}
+			if (provinceBins.find(tag) == provinceBins.end())
+			{
+				provinceBins[tag] = MTo1ProvinceComp();
+			}
+			provinceBins[tag].provinces.push_back(province);
+			provinceBins[tag].totalPopulation += province->getPopulation();
+			newProvinceTotalPop += province->getPopulation();
+			// I am the new owner if there is no current owner, or I have more provinces than the current owner,
+			// or I have the same number of provinces, but more population, than the current owner
+			if (	(oldOwner == NULL)
+				|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
+				|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
+					   && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+			{
+				oldOwner = owner;
+				oldProvince = province;
+			}
+		}
+		if (oldOwner == NULL)
+		{
+			continue;
+		}
+
+		countryMapping::const_iterator iter = countryMap.find(oldOwner->getTag());
+		if (iter == countryMap.end())
+		{
+			log("Error: Could not map provinces owned by %s.\n", oldOwner->getTag().c_str());
+		}
+		else
+		{
+			(*i)->setOwner(iter->second);
+			(*i)->convertFromOldProvince(oldProvince);
+
+			for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
+			{
+				for (vector<EU3Province*>::iterator vitr = mitr->second.provinces.begin(); vitr != mitr->second.provinces.end(); ++vitr)
 				{
-					locationCandidates.erase(litr);
-					--pitr;
-					break;
+					// assign cores
+					vector<EU3Country*> oldCores = (*vitr)->getCores(sourceWorld.getCountries());
+					for(vector<EU3Country*>::iterator j = oldCores.begin(); j != oldCores.end(); j++)
+					{
+						// skip this core if the country is the owner of the EU3 province but not the V2 province
+						// (i.e. "avoid boundary conflicts that didn't exist in EU3").
+						// this country may still get core via a province that DID belong to the current V2 owner
+						if (( (*j)->getTag() == mitr->first) && ( (*j)->getTag() != oldOwner->getTag()))
+						{
+							continue;
+						}
+
+						iter = countryMap.find( (*j)->getTag());
+						if (iter != countryMap.end())
+						{
+							(*i)->addCore(iter->second);
+						}
+					}
+
+					// determine demographics
+					double provPopRatio = (*vitr)->getPopulation() / newProvinceTotalPop;
+					vector<EU3PopRatio> popRatios = (*vitr)->getPopRatios();
+					for (vector<EU3PopRatio>::iterator prItr = popRatios.begin(); prItr != popRatios.end(); ++prItr)
+					{
+						bool matched = false;
+						string culture = "";
+						for (cultureMapping::const_iterator cultureItr = cultureMap.begin(); (cultureItr != cultureMap.end()) && (!matched); cultureItr++)
+						{
+							if (cultureItr->srcCulture == prItr->culture)
+							{
+								bool match = true;
+								for (vector<distinguisher>::const_iterator distiguisherItr = cultureItr->distinguishers.begin(); distiguisherItr != cultureItr->distinguishers.end(); distiguisherItr++)
+								{
+									if (distiguisherItr->first == DTOwner)
+									{
+										if ((*vitr)->getOwner()->getTag() != distiguisherItr->second)
+											match = false;
+									}
+									else if (distiguisherItr->first == DTReligion)
+									{
+										if (prItr->religion != distiguisherItr->second)
+											match = false;
+									}
+									else
+									{
+										log ("Error: Unhandled distinguisher type in culture rules.\n");
+									}
+
+								}
+								if (match)
+								{
+									culture = cultureItr->dstCulture;
+									matched = true;
+								}
+							}
+						}
+						if (!matched)
+						{
+							log("Error: Could not set culture for pops in province %d\n", destNum);
+						}
+
+						string religion = "";
+						religionMapping::const_iterator religionItr = religionMap.find(prItr->religion);
+						if (religionItr != religionMap.end())
+						{
+							religion = religionItr->second;
+						}
+						else
+						{
+							log("Error: Could not set religion for pops in province %d\n", destNum);
+						}
+
+						V2Demographic demographic;
+						demographic.culture		= culture;
+						demographic.religion		= religion;
+						demographic.ratio			= prItr->popRatio * provPopRatio;
+						demographic.oldCountry	= oldOwner;
+						demographic.oldProvince	= *vitr;
+								
+						demographic.literacy = 0.1;
+						V2Country* owner = getCountry( (*i)->getOwner());
+						if ( (owner != NULL) && (owner->getTag() != "") )
+						{
+							if (owner->getPrimaryCulture() == culture)
+							{
+								demographic.literacy = owner->getLiteracy();
+							}
+							else
+							{
+								vector<string> acceptedCultures = owner->getAcceptedCultures();
+								for (vector<string>::iterator acItr = acceptedCultures.begin(); acItr < acceptedCultures.end(); acItr++)
+								{
+									if ( *acItr == culture)
+									{
+										demographic.literacy = owner->getLiteracy();
+									}
+								}
+							}
+						}
+
+						demographic.reactionary		= owner->getReactionary();
+						demographic.conservative	= owner->getConservative();
+						demographic.liberal			= owner->getLiberal();
+
+						list< pair<int, double> > issues;
+						vector< pair<int, int> > reactionaryIssues = owner->getReactionaryIssues();
+						int reactionaryTotal = 0;
+						for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
+						{
+							reactionaryTotal += reactionaryIssues[j].second;
+						}
+						for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
+						{
+							issues.push_back( make_pair(reactionaryIssues[j].first, (demographic.reactionary * reactionaryIssues[j].second / reactionaryTotal) ) );
+						}
+								
+						vector< pair<int, int> > conservativeIssues	= owner->getConservativeIssues();
+						int conservativeTotal = 0;
+						for (unsigned int j = 0; j < conservativeIssues.size(); j++)
+						{
+							conservativeTotal += conservativeIssues[j].second;
+						}
+						for (unsigned int j = 0; j < conservativeIssues.size(); j++)
+						{
+							issues.push_back( make_pair(conservativeIssues[j].first, (demographic.conservative * conservativeIssues[j].second / conservativeTotal) ) );
+						}
+
+						vector< pair<int, int> > liberalIssues	= owner->getLiberalIssues();
+						int liberalTotal = 0;
+						for (unsigned int j = 0; j < liberalIssues.size(); j++)
+						{
+							liberalTotal += liberalIssues[j].second;
+						}
+						for (unsigned int j = 0; j < liberalIssues.size(); j++)
+						{
+							issues.push_back( make_pair(liberalIssues[j].first, (demographic.liberal * liberalIssues[j].second / liberalTotal) ) );
+						}
+						for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++) // TODO: replace with a better algorithm
+						{
+							list< pair<int, double> >::iterator k = j;
+							for (k++; k != issues.end(); k++)
+							{
+								if (j->first == k->first)
+								{
+									j->second += k->second;
+									issues.erase(k);
+									j = issues.begin();
+									k = j;
+									k++;
+								}
+							}
+						}
+
+						for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++)
+						{
+							demographic.issues.push_back(*j);
+						}
+								
+						(*i)->addPopDemographic(demographic);
+					}
+
+					// set forts and naval bases
+					if ((*vitr)->hasBuilding("fort4") || (*vitr)->hasBuilding("fort5") || (*vitr)->hasBuilding("fort6"))
+					{
+						(*i)->setFortLevel(1);
+					}
+					// note: HTTT has only shipyard
+					if (   (*vitr)->hasBuilding("shipyard") || (*vitr)->hasBuilding("grand_shipyard")
+						|| (*vitr)->hasBuilding("naval_arsenal") || (*vitr)->hasBuilding("naval_base"))
+					{
+						// place naval bases only in port provinces
+						vector<int> candidates;
+						candidates.push_back( (*i)->getNum() );
+						candidates = getPortProvinces(candidates);
+						if (candidates.size() > 0)
+						{
+							(*i)->setNavalBaseLevel(1);
+						}
+					}
 				}
 			}
 		}
 	}
-	return locationCandidates;
+}
+
+
+void V2World::setupStates(const stateMapping& stateMap)
+{
+	list<V2Province*> unassignedProvs;
+	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		unassignedProvs.push_back(*itr);
+	}
+
+	list<V2Province*>::iterator iter;
+	while(unassignedProvs.size() > 0)
+	{
+		iter = unassignedProvs.begin();
+		int		provId	= (*iter)->getNum();
+		string	owner		= (*iter)->getOwner();
+
+		if (owner == "")
+		{
+			unassignedProvs.erase(iter);
+			continue;
+		}
+
+		V2State* newState = new V2State(stateId, *iter);
+		stateId++;
+		stateMapping::const_iterator stateItr = stateMap.find(provId);
+		vector<int> neighbors;
+		if (stateItr != stateMap.end())
+		{
+			neighbors = stateItr->second;
+		}
+		bool colonial				= (*iter)->isColonial();
+		newState->setColonial(colonial);
+		iter = unassignedProvs.erase(iter);
+
+		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
+		{
+			for(iter = unassignedProvs.begin(); iter != unassignedProvs.end(); iter++)
+			{
+				if ((*iter)->getNum() == *i)
+				{
+					if ((*iter)->getOwner() == owner)
+					{
+						if ((*iter)->isColonial() == colonial)
+						{
+							newState->addProvince(*iter);
+							iter = unassignedProvs.erase(iter);
+						}
+					}
+				}
+			}
+		}
+
+		for (vector<V2Country*>::iterator iter2 = countries.begin(); iter2 != countries.end(); iter2++)
+		{
+			if ( (*iter2)->getTag() == owner)
+			{
+				(*iter2)->addState(newState);
+			}
+		}
+	}
+}
+
+
+void V2World::setupPops(EU3World& sourceWorld)
+{
+	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		(*itr)->setupPops(sourceWorld);
+	}
+}
+
+
+void V2World::addUnions(const unionMapping& unionMap)
+{
+	for (vector<V2Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		for (unionMapping::const_iterator unionItr = unionMap.begin(); unionItr != unionMap.end(); unionItr++)
+		{
+			if ( (*provItr)->hasCulture(unionItr->first, 0.5) && !(*provItr)->wasPaganConquest() && !(*provItr)->wasColonised() )
+			{
+				(*provItr)->addCore(unionItr->second);
+			}
+		}
+	}
 }
 
 
 //#define TEST_V2_PROVINCES
-void V2World::convertArmies(EU3World sourceWorld, inverseProvinceMapping inverseProvinceMap, const map<int,int>& leaderIDMap)
+void V2World::convertArmies(const EU3World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
@@ -886,7 +1045,7 @@ void V2World::convertArmies(EU3World sourceWorld, inverseProvinceMapping inverse
 }
 
 
-void V2World::convertTechs(EU3World sourceWorld)
+void V2World::convertTechs(const EU3World& sourceWorld)
 {
 	map<string, EU3Country*> sourceCountries = sourceWorld.getCountries();
 	
@@ -1076,7 +1235,7 @@ void V2World::convertTechs(EU3World sourceWorld)
 }
 
 
-void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryBuilder)
+void V2World::allocateFactories(const EU3World& sourceWorld, const V2FactoryFactory& factoryBuilder)
 {
 	// determine average production tech
 	map<string, EU3Country*> sourceCountries = sourceWorld.getCountries();
@@ -1085,9 +1244,13 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 	for (map<string, EU3Country*>::iterator itr = sourceCountries.begin(); itr != sourceCountries.end(); ++itr)
 	{
 		if ( (itr)->second->getProvinces().size() == 0)
+		{
 			continue;
+		}
 		if (( (itr)->second->getTechGroup() != "western" ) && ( (itr)->second->getTechGroup() != "latin" ))
+		{
 			continue;
+		}
 
 		double prodTech = (itr)->second->getProductionTech();
 		productionMean += ((prodTech - productionMean) / num);
@@ -1099,14 +1262,20 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		if ( !(*itr)->isCivilized() )
+		{
 			continue;
+		}
 
 		const EU3Country* sourceCountry = (*itr)->getSourceCountry();
 		if (sourceCountry == NULL)
+		{
 			continue;
+		}
 
 		if (sourceCountry->getProvinces().size() == 0)
+		{
 			continue;
+		}
 
 		// modified manufactory weight follows diminishing returns curve y = x^(3/4)+log((x^2)/5+1)
 		int manuCount = sourceCountry->getManufactoryCount();
@@ -1133,7 +1302,9 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 		itr != weightedCountries.rend(); ++itr)
 	{
 		if ((restrictCountries.size() > 10) && (itr->first < (threshold - FLT_EPSILON)))
+		{
 			break;
+		}
 		restrictCountries.push_front(*itr); // preserve sort
 		totalIndWeight += itr->first;
 		threshold = itr->first;
@@ -1180,60 +1351,94 @@ void V2World::allocateFactories(EU3World sourceWorld, V2FactoryFactory& factoryB
 			break;
 		}
 		if (++citr == factoryCounts.end())
+		{
 			citr = factoryCounts.begin(); // loop around to beginning
+		}
 	}
 }
 
 
-void V2World::buildParties()
+map<string, V2Country*> V2World::getPotentialCountries() const
 {
-	ifstream V2CountriesInput;
-	V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
-	if (!V2CountriesInput.is_open())
+	map<string, V2Country*> retVal;
+	for (vector<V2Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
 	{
-		log("Error: Could not open countries.txt\n");
-		printf("Error: Could not open countries.txt\n");
-		exit(1);
+		retVal[ (*i)->getTag() ] = *i;
 	}
-	V2Party* emptyParty = new V2Party;
-	parties.push_back(emptyParty); // Avoid off by one errors and ugly code everywhere
-	while (!V2CountriesInput.eof())
-	{
-		string line;
-		getline(V2CountriesInput, line);
 
-		if ( (line[0] == '#') | (line.size() < 3) )
-		{
-			continue;
-		}
-		
-		string tag;
-		tag = line.substr(0, 3);
-
-		string countryFileName;
-		int start		= line.find_first_of('/');
-		int size		= line.find_last_of('\"') - start;
-		countryFileName	= line.substr(start, size);
-
-		Object* countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
-
-		vector<Object*> partyData = countryData->getValue("party");
-		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
-		{
-			V2Party* newParty = new V2Party(*itr);
-			parties.push_back(newParty);
-		}
-	}
-	V2CountriesInput.close();
+	return retVal;
 }
 
 
-void V2World::setupPops(EU3World& sourceWorld)
+void V2World::getProvinceLocalizations(string file)
 {
-	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	ifstream read;
+	string line;
+	read.open( file.c_str() );
+	while (read.good() && !read.eof())
 	{
-		(*itr)->setupPops(sourceWorld);
+		getline(read, line);
+		if (line.substr(0,4) == "PROV" && isdigit(line.c_str()[4]))
+		{
+			int position = line.find_first_of(';');
+			int num = atoi( line.substr(4, position - 4).c_str() );
+			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
+			for (unsigned int i = 0; i < provinces.size(); i++)
+			{
+				if (provinces[i]->getNum() == num)
+				{
+					provinces[i]->setName(name);
+					break;
+				}
+			}
+		}
 	}
+	read.close();
+}
+
+
+vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
+{
+	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
+	// a non-port province, Vicky crashes....
+	static vector<int> port_blacklist;
+	if (port_blacklist.size() == 0)
+	{
+		int temp = 0;
+		ifstream s("port_blacklist.txt");
+		while (s.good() && !s.eof())
+		{
+			s >> temp;
+			port_blacklist.push_back(temp);
+		}
+		s.close();
+	}
+
+	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	{
+		vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
+		if (black != port_blacklist.end())
+		{
+			locationCandidates.erase(litr);
+			break;
+		}
+	}
+	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	{
+		for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+		{
+			if ( (*pitr)->getNum() == (*litr) )
+			{
+				if ( !(*pitr)->isCoastal() )
+				{
+					locationCandidates.erase(litr);
+					--pitr;
+					break;
+				}
+			}
+		}
+	}
+	return locationCandidates;
 }
 
 
@@ -1250,218 +1455,4 @@ V2Country* V2World::getCountry(string tag)
 	}
 
 	return NULL;
-}
-
-
-V2Party* V2World::getParty(int index)
-{
-	 return parties[index];
-}
-
-
-void V2World::output(FILE* output)
-{
-	outputHeader(output);
-	outputTempHeader(output);
-	for (unsigned int i = 0; i < provinces.size(); i++)
-	{
-		provinces[i]->sortPops();
-		provinces[i]->output(output);
-	}
-	for (unsigned int i = 0; i < countries.size(); i++)
-	{
-		countries[i]->output(output);
-	}
-	diplomacy.output(output);
-}
-
-
-void V2World::outputHeader(FILE* output)
-{
-	fprintf(output, "date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
-	fprintf(output, "automate_trade=no\n");
-	fprintf(output, "automate_sliders=0\n");
-	fprintf(output, "unit=%d\n", V2ArmyID().id);
-	fprintf(output, "state=%d\n", stateId);
-	fprintf(output, "start_date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
-	fprintf(output, "start_pop_index=%d\n", getNextPopId());
-	fprintf(output, "worldmarket=\n");
-	fprintf(output, "{\n");
-	fprintf(output, "	worldmarket_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		ammunition=0.46634\n");
-	fprintf(output, "		small_arms=1.01407\n");
-	fprintf(output, "		artillery=1.43967\n");
-	fprintf(output, "		canned_food=4.16602\n");
-	fprintf(output, "		cotton=966.92960\n");
-	fprintf(output, "		dye=785.78574\n");
-	fprintf(output, "		wool=1794.33109\n");
-	fprintf(output, "		silk=192.24536\n");
-	fprintf(output, "		coal=1698.31195\n");
-	fprintf(output, "		sulphur=201.85480\n");
-	fprintf(output, "		iron=498.86673\n");
-	fprintf(output, "		timber=1038.01337\n");
-	fprintf(output, "		tropical_wood=258.42496\n");
-	fprintf(output, "		precious_metal=17.16943\n");
-	fprintf(output, "		steel=395.23450\n");
-	fprintf(output, "		cement=3.23746\n");
-	fprintf(output, "		machine_parts=3.84375\n");
-	fprintf(output, "		glass=52.54648\n");
-	fprintf(output, "		fertilizer=66.62204\n");
-	fprintf(output, "		explosives=18.46304\n");
-	fprintf(output, "		clipper_convoy=0.05063\n");
-	fprintf(output, "		steamer_convoy=2.83932\n");
-	fprintf(output, "		fabric=139.08908\n");
-	fprintf(output, "		lumber=101.34860\n");
-	fprintf(output, "		paper=3.35300\n");
-	fprintf(output, "		cattle=813.88202\n");
-	fprintf(output, "		fish=1535.25745\n");
-	fprintf(output, "		fruit=2686.31516\n");
-	fprintf(output, "		grain=4360.54388\n");
-	fprintf(output, "		tobacco=2200.08780\n");
-	fprintf(output, "		tea=2673.66977\n");
-	fprintf(output, "		coffee=1334.11459\n");
-	fprintf(output, "		opium=1118.43161\n");
-	fprintf(output, "		wine=7.32648\n");
-	fprintf(output, "		liquor=0.69968\n");
-	fprintf(output, "		regular_clothes=34.41812\n");
-	fprintf(output, "		luxury_clothes=0.40475\n");
-	fprintf(output, "		furniture=0.29919\n");
-	fprintf(output, "		luxury_furniture=0.38611\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	price_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		ammunition=17.52002\n");
-	fprintf(output, "		small_arms=37.00000\n");
-	fprintf(output, "		artillery=60.00000\n");
-	fprintf(output, "		canned_food=16.00000\n");
-	fprintf(output, "		barrels=98.00000\n");
-	fprintf(output, "		aeroplanes=110.00000\n");
-	fprintf(output, "		cotton=1.97998\n");
-	fprintf(output, "		dye=11.97998\n");
-	fprintf(output, "		wool=0.67999\n");
-	fprintf(output, "		silk=10.00000\n");
-	fprintf(output, "		coal=2.28998\n");
-	fprintf(output, "		sulphur=6.02002\n");
-	fprintf(output, "		iron=3.47998\n");
-	fprintf(output, "		timber=0.89999\n");
-	fprintf(output, "		tropical_wood=5.37997\n");
-	fprintf(output, "		rubber=7.00000\n");
-	fprintf(output, "		oil=12.00000\n");
-	fprintf(output, "		precious_metal=7.50000\n");
-	fprintf(output, "		steel=4.67999\n");
-	fprintf(output, "		cement=15.97998\n");
-	fprintf(output, "		machine_parts=36.47998\n");
-	fprintf(output, "		glass=2.92001\n");
-	fprintf(output, "		fuel=25.00000\n");
-	fprintf(output, "		fertilizer=10.00000\n");
-	fprintf(output, "		explosives=20.02002\n");
-	fprintf(output, "		clipper_convoy=42.00000\n");
-	fprintf(output, "		steamer_convoy=64.97998\n");
-	fprintf(output, "		electric_gear=16.00000\n");
-	fprintf(output, "		fabric=1.82001\n");
-	fprintf(output, "		lumber=1.02002\n");
-	fprintf(output, "		paper=3.42001\n");
-	fprintf(output, "		cattle=1.97998\n");
-	fprintf(output, "		fish=1.47998\n");
-	fprintf(output, "		fruit=1.77997\n");
-	fprintf(output, "		grain=2.17999\n");
-	fprintf(output, "		tobacco=1.10001\n");
-	fprintf(output, "		tea=2.60001\n");
-	fprintf(output, "		coffee=2.07999\n");
-	fprintf(output, "		opium=3.20001\n");
-	fprintf(output, "		automobiles=70.00000\n");
-	fprintf(output, "		telephones=16.00000\n");
-	fprintf(output, "		wine=9.72003\n");
-	fprintf(output, "		liquor=6.42001\n");
-	fprintf(output, "		regular_clothes=5.82001\n");
-	fprintf(output, "		luxury_clothes=65.02002\n");
-	fprintf(output, "		furniture=4.92001\n");
-	fprintf(output, "		luxury_furniture=59.02002\n");
-	fprintf(output, "		radio=16.00000\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	last_price_history=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	supply_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	last_supply_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	price_change=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	discovered_goods=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		ammunition=1.00000\n");
-	fprintf(output, "		small_arms=1.00000\n");
-	fprintf(output, "		artillery=1.00000\n");
-	fprintf(output, "		canned_food=1.00000\n");
-	fprintf(output, "		cotton=1.00000\n");
-	fprintf(output, "		dye=1.00000\n");
-	fprintf(output, "		wool=1.00000\n");
-	fprintf(output, "		silk=1.00000\n");
-	fprintf(output, "		coal=1.00000\n");
-	fprintf(output, "		sulphur=1.00000\n");
-	fprintf(output, "		iron=1.00000\n");
-	fprintf(output, "		timber=1.00000\n");
-	fprintf(output, "		tropical_wood=1.00000\n");
-	fprintf(output, "		rubber=1.00000\n");
-	fprintf(output, "		oil=1.00000\n");
-	fprintf(output, "		precious_metal=1.00000\n");
-	fprintf(output, "		steel=1.00000\n");
-	fprintf(output, "		cement=1.00000\n");
-	fprintf(output, "		machine_parts=1.00000\n");
-	fprintf(output, "		glass=1.00000\n");
-	fprintf(output, "		fertilizer=1.00000\n");
-	fprintf(output, "		explosives=1.00000\n");
-	fprintf(output, "		clipper_convoy=1.00000\n");
-	fprintf(output, "		steamer_convoy=1.00000\n");
-	fprintf(output, "		fabric=1.00000\n");
-	fprintf(output, "		lumber=1.00000\n");
-	fprintf(output, "		paper=1.00000\n");
-	fprintf(output, "		cattle=1.00000\n");
-	fprintf(output, "		fish=1.00000\n");
-	fprintf(output, "		fruit=1.00000\n");
-	fprintf(output, "		grain=1.00000\n");
-	fprintf(output, "		tobacco=1.00000\n");
-	fprintf(output, "		tea=1.00000\n");
-	fprintf(output, "		coffee=1.00000\n");
-	fprintf(output, "		opium=1.00000\n");
-	fprintf(output, "		wine=1.00000\n");
-	fprintf(output, "		liquor=1.00000\n");
-	fprintf(output, "		regular_clothes=1.00000\n");
-	fprintf(output, "		luxury_clothes=1.00000\n");
-	fprintf(output, "		furniture=1.00000\n");
-	fprintf(output, "		luxury_furniture=1.00000\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	actual_sold=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	actual_sold_world=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	real_demand=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	demand=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	player_balance=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "}\n");
-}
-
-
-map<string, V2Country*> V2World::getPotentialCountries() const
-{
-	map<string, V2Country*> retVal;
-	for (vector<V2Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
-	{
-		retVal[ (*i)->getTag() ] = *i;
-	}
-
-	return retVal;
 }

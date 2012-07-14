@@ -27,7 +27,7 @@
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 
-V2Country::V2Country(string _tag, string _countryFile, vector<int> _parties, V2World* _theWorld)
+V2Country::V2Country(string _tag, string _countryFile, map<int, V2Party*> _parties, V2World* _theWorld)
 {
 	theWorld = _theWorld;
 
@@ -253,11 +253,11 @@ void V2Country::outputElection(FILE* output)
 void V2Country::outputParties(FILE* output)
 {
 	fprintf(output, "	ruling_party=%d\n", rulingParty);
-	for (unsigned int i = 0; i < parties.size(); i++)
+	for (map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		if (  theWorld->getParty(parties[i])->isActiveOn( Configuration::getStartDate() )  )
+		if (  i->second->isActiveOn( Configuration::getStartDate() )  )
 		{
-			fprintf(output, "	active_party=%d\n", parties[i]);
+			fprintf(output, "	active_party=%d\n", i->first);
 		}
 	}
 }
@@ -1619,9 +1619,9 @@ void V2Country::setIssues()
 	//reactionary issues
 	int issueWeights[68];
 	memset(issueWeights, 0, sizeof(issueWeights) );
-	for(unsigned int i = 0; i < parties.size(); i++)
+	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		V2Party* party = theWorld->getParty(i);
+		V2Party* party = i->second;
 		if (party->ideology != "reactionary")
 		{
 			continue;
@@ -1716,9 +1716,9 @@ void V2Country::setIssues()
 
 	//conservative issues
 	memset(issueWeights, 0, sizeof(issueWeights) );
-	for(unsigned int i = 0; i < parties.size(); i++)
+	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		V2Party* party = theWorld->getParty(i);
+		V2Party* party = i->second;
 		if (party->ideology != "conservative")
 		{
 			continue;
@@ -1812,9 +1812,9 @@ void V2Country::setIssues()
 
 	//liberal issues
 	memset(issueWeights, 0, sizeof(issueWeights) );
-	for(unsigned int i = 0; i < parties.size(); i++)
+	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		V2Party* party = theWorld->getParty(i);
+		V2Party* party = i->second;
 		if (party->ideology != "liberal")
 		{
 			continue;
@@ -1910,11 +1910,11 @@ void V2Country::setIssues()
 
 void V2Country::setRulingParty()
 {
-	for (unsigned int i = 0; i < parties.size(); i++)
+	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		if ( theWorld->getParty(parties[i])->isActiveOn(Configuration::getStartDate()) )
+		if (i->second->isActiveOn(Configuration::getStartDate()) )
 		{
-			rulingParty = parties[i];
+			rulingParty = i->first;
 			break;
 		}
 	}
