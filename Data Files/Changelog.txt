@@ -130,3 +130,4 @@ Revision	Log Message
 127		Updated country title mapping with almost all tags
 128		Merge
 129		Sync Changelog.txt with repository
+130		Add Nyrael's Croatia 1453 game to sample saves
