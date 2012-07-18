@@ -123,3 +123,4 @@ Revision	Log Message
 121		Regents
 122		Added Ireland_endgame to sample saves
 123		Updated readme.txt
+124		Updated country title mapping with almost all tags
