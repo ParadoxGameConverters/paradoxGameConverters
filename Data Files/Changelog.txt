@@ -123,4 +123,10 @@ Revision	Log Message
 121		Regents
 122		Added Ireland_endgame to sample saves
 123		Updated readme.txt
-124		Updated country title mapping with almost all tags
+124		Added dirty religion mappings
+		Added converter mod directory: 0.1 now adds new religions
+125		Merge
+126		CK3 to EU3 converter mod religion and cultures
+127		Updated country title mapping with almost all tags
+128		Merge
+129		Sync Changelog.txt with repository
