@@ -267,8 +267,8 @@ V2World::V2World(string V2Loc)
 		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 		{
 			V2Party* newParty = new V2Party(*itr);
-			parties.insert( make_pair(partiesIndex, newParty) );
-			localParties.insert( make_pair(partiesIndex, newParty) );
+			parties.insert(make_pair(partiesIndex, newParty));
+			localParties.insert(make_pair(partiesIndex, newParty));
 			partiesIndex++;
 		}
 
@@ -844,7 +844,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 						}
 						for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
 						{
-							issues.push_back( make_pair(reactionaryIssues[j].first, (demographic.reactionary * reactionaryIssues[j].second / reactionaryTotal) ) );
+							issues.push_back(make_pair(reactionaryIssues[j].first, (demographic.reactionary * reactionaryIssues[j].second / reactionaryTotal) ));
 						}
 								
 						vector< pair<int, int> > conservativeIssues	= owner->getConservativeIssues();
@@ -855,7 +855,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 						}
 						for (unsigned int j = 0; j < conservativeIssues.size(); j++)
 						{
-							issues.push_back( make_pair(conservativeIssues[j].first, (demographic.conservative * conservativeIssues[j].second / conservativeTotal) ) );
+							issues.push_back(make_pair(conservativeIssues[j].first, (demographic.conservative * conservativeIssues[j].second / conservativeTotal) ));
 						}
 
 						vector< pair<int, int> > liberalIssues	= owner->getLiberalIssues();
@@ -866,7 +866,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 						}
 						for (unsigned int j = 0; j < liberalIssues.size(); j++)
 						{
-							issues.push_back( make_pair(liberalIssues[j].first, (demographic.liberal * liberalIssues[j].second / liberalTotal) ) );
+							issues.push_back(make_pair(liberalIssues[j].first, (demographic.liberal * liberalIssues[j].second / liberalTotal) ));
 						}
 						for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++) // TODO: replace with a better algorithm
 						{

@@ -179,7 +179,7 @@ void V2FactoryFactory::loadRequiredTechs(string filename)
 		vector<Object*> building = (*itr)->getValue("activate_building");
 		for (vector<Object*>::iterator bitr = building.begin(); bitr != building.end(); ++bitr)
 		{
-			factoryTechReqs.insert( make_pair((*bitr)->getLeaf(), (*itr)->getKey()) );
+			factoryTechReqs.insert(make_pair((*bitr)->getLeaf(), (*itr)->getKey()));
 		}
 	}
 }

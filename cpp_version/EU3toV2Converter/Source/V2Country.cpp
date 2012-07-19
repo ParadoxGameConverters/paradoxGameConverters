@@ -1709,7 +1709,7 @@ void V2Country::setIssues()
 	{
 		if (issueWeights[i] > 0)
 		{
-			reactionaryIssues.push_back( make_pair(i, issueWeights[i]) );
+			reactionaryIssues.push_back(make_pair(i, issueWeights[i]));
 		}
 	}
 
@@ -1806,7 +1806,7 @@ void V2Country::setIssues()
 	{
 		if (issueWeights[i] > 0)
 		{
-			conservativeIssues.push_back( make_pair(i, issueWeights[i]) );
+			conservativeIssues.push_back(make_pair(i, issueWeights[i]));
 		}
 	}
 
@@ -1902,7 +1902,7 @@ void V2Country::setIssues()
 	{
 		if (issueWeights[i] > 0)
 		{
-			liberalIssues.push_back( make_pair(i, issueWeights[i]) );
+			liberalIssues.push_back(make_pair(i, issueWeights[i]));
 		}
 	}
 }

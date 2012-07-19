@@ -56,7 +56,7 @@ provinceMapping initProvinceMap(Object* obj)
 
 		for (vector<int>::iterator j = V2nums.begin(); j != V2nums.end(); j++)
 		{
-			mapping.insert( make_pair(*j, EU3nums) );
+			mapping.insert(make_pair(*j, EU3nums));
 		}
 	}
 
@@ -169,7 +169,7 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 			if (V2Country != V2Countries.end())
 			{
 				//add the mapping
-				mapping.insert( make_pair<string, string>(EU3Country->first, V2Country->first) );
+				mapping.insert(make_pair(EU3Country->first, V2Country->first));
 				log("\tAdded map %s -> %s (#%d)\n", EU3Country->first.c_str(),V2Country->first.c_str(), distance);
 
 				//remove tags from the lists
@@ -183,19 +183,19 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 	map<string, EU3Country*>::iterator itr = EU3Countries.find("REB");
 	if ( itr != EU3Countries.end() )
 	{
-		mapping.insert(make_pair<string, string>(itr->first, "REB"));
+		mapping.insert(make_pair(itr->first, "REB"));
 		EU3Countries.erase(itr);
 	}
 	itr = EU3Countries.find("PIR");
 	if ( itr != EU3Countries.end() )
 	{
-		mapping.insert(make_pair<string, string>(itr->first, "REB"));
+		mapping.insert(make_pair(itr->first, "REB"));
 		EU3Countries.erase(itr);
 	}
 	itr = EU3Countries.find("NAT");
 	if ( itr != EU3Countries.end() )
 	{
-		mapping.insert(make_pair<string, string>(itr->first, "REB"));
+		mapping.insert(make_pair(itr->first, "REB"));
 		EU3Countries.erase(itr);
 	}
 
@@ -212,7 +212,7 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 	{
 		map<string, EU3Country*>::iterator EU3Country = EU3Countries.begin();
 		map<string, V2Country*>::iterator V2Country = V2Countries.begin();
-		mapping.insert(make_pair<string, string>(EU3Country->first, V2Country->first));
+		mapping.insert(make_pair(EU3Country->first, V2Country->first));
 		log("\tAdded map %s -> %s (fallback)\n", EU3Country->first.c_str(), V2Country->first.c_str());
 
 		EU3Countries.erase(EU3Country);
@@ -453,7 +453,7 @@ stateMapping initStateMap(Object* obj)
 		}
 		for (vector<int>::iterator j = neighbors.begin(); j != neighbors.end(); j++)
 		{
-			stateMap.insert( make_pair<int, vector<int> >(*j, neighbors) );
+			stateMap.insert(make_pair(*j, neighbors));
 		}
 	}
 
@@ -538,7 +538,7 @@ religionMapping initReligionMap(Object* obj)
 
 		for (vector<string>::iterator j = srcReligion.begin(); j != srcReligion.end(); j++)
 		{
-			religionMap.insert( make_pair<string,string>((*j), dstReligion) );
+			religionMap.insert(make_pair((*j), dstReligion));
 		}
 	}
 
@@ -601,7 +601,7 @@ governmentMapping initGovernmentMap(Object* obj)
 
 		for (vector<string>::iterator j = srcGovernments.begin(); j != srcGovernments.end(); j++)
 		{
-			governmentMap.insert( make_pair<string,string>((*j), dstGovernment) );
+			governmentMap.insert(make_pair((*j), dstGovernment));
 		}
 	}
 

@@ -26,7 +26,7 @@ EU3World::EU3World(Object* obj)
 		if (atoi(key.c_str()) > 0)
 		{
 			EU3Province* province = new EU3Province(leaves[i]);
-			provinces.insert( make_pair(province->getNum(), province) );
+			provinces.insert(make_pair(province->getNum(), province));
 		}
 
 		// Countries are three uppercase characters
