@@ -401,3 +401,4 @@ Revision	Version Updated		Log Message
 462		C++			Refactor V2State
 463		C++			Refactor V2Country
 464		C++			Refactor V2World
+465		C++			Refactor Configuration
