@@ -11,6 +11,7 @@
 #include "Configuration.h"
 
 
+
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
 {
 	initLog();
@@ -55,21 +56,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	// Parse EU3 Save
-	log("Parsing EU3 save.\n");
-	printf("Parsing EU3 save.\n");
-	
-	initParser();
-	obj = getTopLevel();
-	read.open(inputFilename.c_str());
-	if (!read.is_open())
-	{
-		log("Error: Could not open EU3 save (%s).\n", inputFilename.c_str());
-		printf("Error: Could not open EU3 save (%s).\n", inputFilename.c_str());
-		return 1;
-	}
-	readFile(read);
-	read.close();
-	read.clear();
+	log("Importing EU3 save.\n");
+	printf("Importing EU3 save.\n");
+	log("\tParsing save.\n");
+	printf("\tParsing save.\n");
+	obj = doParseFile(inputFilename.c_str());
+	log("\tExtracting data.\n");
+	printf("\tExtracting data.\n");
 	EU3World sourceWorld(obj);
 
 
@@ -109,7 +102,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	{
 		read.close();
 		read.clear();
-		log("	Reading unit strengths from unit_strength.txt\n");
+		log("\tReading unit strengths from unit_strength.txt\n");
 		obj = doParseFile("unit_strength.txt");
 		for (int i = 0; i < num_reg_categories; ++i)
 		{
@@ -129,7 +122,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		do
 		{
 			if (strcmp(unitFileData.name, ".") == 0 || strcmp(unitFileData.name, "..") == 0 )
+			{
 				continue;
+			}
 			string unitFilename = unitFileData.name;
 			string unitName = unitFilename.substr(0, unitFilename.find_first_of('.'));
 			AddUnitFileToRegimentTypeMap((EU3Loc + "\\common\\units"), unitName, rtm);
@@ -218,8 +213,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	else if (leftoverNations > 0)
 	{
-		log("Too many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
-		printf("Too many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
+		log("\tToo many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
+		printf("\tToo many EU3 nations (%d). Removing dead landless nations.\n", leftoverNations);
 		removeDeadLandlessNations(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
@@ -229,8 +224,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	else if (leftoverNations > 0)
 	{
-		log("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
-		printf("Too many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
+		log("\tToo many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
+		printf("\tToo many EU3 nations (%d). Removing older landless nations.\n", leftoverNations);
 		removeOlderLandlessNations(sourceWorld, leftoverNations + blockedNations.size());
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
@@ -240,8 +235,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	else if (leftoverNations > 0)
 	{
-		log("Too many EU3 nations (%d). Removing all landless nations.\n", leftoverNations);
-		printf("Too many EU3 nations (%d). Removing all landless nations.\n", leftoverNations);
+		log("\tToo many EU3 nations (%d). Removing all landless nations.\n", leftoverNations);
+		printf("\tToo many EU3 nations (%d). Removing all landless nations.\n", leftoverNations);
 		removeLandlessNations(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
@@ -249,12 +244,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Generate region mapping
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
-
 	obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
 	if (obj->getLeaves().size() < 1)
 	{
-		log("This is where a TODO: error was. If you see this, bug a programmer so we can put in a useful message.\n");
-		printf("This is where a TODO: error was. If you see this, bug a programmer so we can put in a useful message.\n");
+		log("Error: Could not parse region.txt.\n");
+		printf("Error: Could not parse region.txt.\n");
 		return 1;
 	}
 	stateMapping stateMap;
@@ -264,7 +258,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse Culture Mappings
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
-
 	obj = doParseFile("cultureMap.txt");
 	if (obj->getLeaves().size() < 1)
 	{
@@ -288,7 +281,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse Religion Mappings
 	log("Parsing religion mappings.\n");
 	printf("Parsing religion mappings.\n");
-
 	obj = doParseFile("religionMap.txt");
 	if (obj->getLeaves().size() < 1)
 	{
@@ -317,7 +309,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	//Parse government mapping
 	log("Parsing governments mappings.\n");
 	printf("Parsing governments mappings.\n");
-
 	initParser();
 	obj = doParseFile("governmentMapping.txt");
 	governmentMapping governmentMap;
@@ -335,6 +326,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
 	vector<techSchool> techSchools;
 	techSchools = initTechSchools(obj, blockedTechSchools);
+
 
 	// Get Leader traits
 	log("Getting leader traits.\n");
@@ -371,6 +363,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
+
 
 	// Output results
 	printf("Outputting save.\n");

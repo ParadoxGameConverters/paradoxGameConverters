@@ -404,3 +404,4 @@ Revision	Version Updated		Log Message
 465		C++			Refactor Configuration
 466		C++			Refactor Date
 467		C++			Refactor Mapper
+468		C++			Refactor EU3toV2Coverter.cpp
