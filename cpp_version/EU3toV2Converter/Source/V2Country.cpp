@@ -85,7 +85,7 @@ V2Country::V2Country(string _tag, string _countryFile, map<int, V2Party*> _parti
 }
 
 
-void V2Country::output(FILE* output)
+void V2Country::output(FILE* output) const
 {
 	fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
@@ -120,15 +120,15 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
-	for (vector<V2Leader*>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
 		(*itr)->output(output);
 	}
-	for (vector<V2Army*>::iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	for (vector<V2Army*>::const_iterator itr = armies.begin(); itr != armies.end(); ++itr)
 	{
 		(*itr)->output(output);
 	}
-	for (vector<V2Relations*>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
+	for (vector<V2Relations*>::const_iterator itr = relations.begin(); itr != relations.end(); ++itr)
 	{
 		(*itr)->output(output);
 	}
@@ -156,7 +156,7 @@ void V2Country::output(FILE* output)
 	fprintf(output, "	}\n");
 	fprintf(output, "	money=%f\n", money);
 	fprintf(output, "	last_bankrupt=\"%s\"\n", lastBankrupt.toString().c_str());
-	for (map<string, V2Creditor*>::iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
+	for (map<string, V2Creditor*>::const_iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
 	{
 		itr->second->output(output);
 	}
@@ -178,12 +178,12 @@ void V2Country::output(FILE* output)
 }
 
 
-void V2Country::outputTech(FILE* output)
+void V2Country::outputTech(FILE* output) const
 {
 	fprintf(output, "	technology=\n");
 	fprintf(output, "	{\n");
 
-	for (vector<string>::iterator itr = techs.begin(); itr != techs.end(); ++itr)
+	for (vector<string>::const_iterator itr = techs.begin(); itr != techs.end(); ++itr)
 	{
 		fprintf(output, "\t\t"); fprintf(output, itr->c_str()); fprintf(output, "={1 0.000}\n");
 	}
@@ -192,7 +192,7 @@ void V2Country::outputTech(FILE* output)
 }
 
 
-void V2Country::outputInventions(FILE* output)
+void V2Country::outputInventions(FILE* output) const
 {
 	fprintf(output, "	active_inventions=\n");
 	fprintf(output, "	{\n");
@@ -232,7 +232,7 @@ void V2Country::outputInventions(FILE* output)
 }
 
 
-void V2Country::outputElection(FILE* output)
+void V2Country::outputElection(FILE* output) const
 {
 	date electionDate = Configuration::getStartDate();
 
@@ -250,10 +250,10 @@ void V2Country::outputElection(FILE* output)
 }
 
 
-void V2Country::outputParties(FILE* output)
+void V2Country::outputParties(FILE* output) const
 {
 	fprintf(output, "	ruling_party=%d\n", rulingParty);
-	for (map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
+	for (map<int, V2Party*>::const_iterator i = parties.begin(); i != parties.end(); i++)
 	{
 		if (  i->second->isActiveOn( Configuration::getStartDate() )  )
 		{

@@ -43,7 +43,7 @@ class V2Reforms {
 class V2UncivReforms {
 	public:
 		V2UncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus, V2Country* country);
-		void output(FILE*);
+		void output(FILE*) const;
 	private:
 		bool reforms[16];
 };

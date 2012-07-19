@@ -286,7 +286,7 @@ V2World::V2World(string V2Loc)
 }
 
 
-void V2World::output(FILE* output)
+void V2World::output(FILE* output) const
 {
 	outputHeader(output);
 	outputTempHeader(output);
@@ -304,7 +304,7 @@ void V2World::output(FILE* output)
 
 
 static int stateId = 0;
-void V2World::outputHeader(FILE* output)
+void V2World::outputHeader(FILE* output) const
 {
 	fprintf(output, "date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
 	fprintf(output, "automate_trade=no\n");

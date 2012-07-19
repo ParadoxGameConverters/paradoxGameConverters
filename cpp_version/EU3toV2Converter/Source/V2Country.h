@@ -32,7 +32,7 @@ class V2Country
 {
 	public:
 		V2Country(string _tag, string _countryFile, map<int, V2Party*> _parties, V2World* _theWorld);
-		void								output(FILE*);
+		void								output(FILE*) const;
 		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
 		void								addState(V2State* newState);
@@ -69,10 +69,10 @@ class V2Country
 		double							getLiteracy() const { return literacy; };
 		int								getCapital() const { return capital; };
 	private:
-		void			outputTech(FILE*);
-		void			outputInventions(FILE*);
-		void			outputElection(FILE*);
-		void			outputParties(FILE*);
+		void			outputTech(FILE*) const ;
+		void			outputInventions(FILE*) const;
+		void			outputElection(FILE*) const;
+		void			outputParties(FILE*) const;
 		void			setIssues();
 		void			setRulingParty();
 		void			sortRelations(const vector<string>& order);

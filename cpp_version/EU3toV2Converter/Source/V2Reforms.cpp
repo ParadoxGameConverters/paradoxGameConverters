@@ -943,7 +943,7 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 }
 
 
-void V2UncivReforms::output(FILE* output)
+void V2UncivReforms::output(FILE* output) const
 {
 	if (reforms[0]) {
 		fprintf(output, "	land_reform=yes_land_reform\n");

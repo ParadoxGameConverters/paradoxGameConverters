@@ -21,7 +21,7 @@ class V2LeaderTraits;
 class V2World {
 	public:
 		V2World(string V2Loc);
-		void output(FILE*);
+		void output(FILE*) const;
 		
 		void convertCountries(const EU3World& sourceWorld, const countryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void convertDiplomacy(const EU3World& sourceWorld, const countryMapping& countryMap);
@@ -35,7 +35,7 @@ class V2World {
 
 		map<string, V2Country*>	getPotentialCountries()	const;
 	private:
-		void			outputHeader(FILE*);
+		void			outputHeader(FILE*) const;
 		void			getProvinceLocalizations(string file);
 		vector<int>	getPortProvinces(vector<int> provinces);
 		V2Country*	getCountry(string tag);

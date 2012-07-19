@@ -406,3 +406,4 @@ Revision	Version Updated		Log Message
 467		C++			Refactor Mapper
 468		C++			Refactor EU3toV2Coverter.cpp
 469		C++			More consise use of make_pair()
+470		C++			Make all output functions const
