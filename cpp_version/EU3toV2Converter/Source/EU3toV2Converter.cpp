@@ -240,8 +240,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	else if (leftoverNations > 0)
 	{
-		log("Too many EU3 nations (%d). Removing landless nations.\n", leftoverNations);
-		printf("Too many EU3 nations (%d). Removing landless nations.\n", leftoverNations);
+		log("Too many EU3 nations (%d). Removing all landless nations.\n", leftoverNations);
+		printf("Too many EU3 nations (%d). Removing all landless nations.\n", leftoverNations);
 		removeLandlessNations(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
