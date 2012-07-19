@@ -11,13 +11,13 @@ class Configuration // Singleton
 	public:
 		Configuration();
 
-		static date getStartDate()			const { return getInstance()->startDate; }
-		static double getMaxLiteracy()	const { return getInstance()->maxLiteracy; }
-		static string getV2Path()			const { return getInstance()->V2Path; }
-		static string getEU3Path()			const { return getInstance()->EU3Path;	}
-		static string getEU3Gametype()	const { return getInstance()->EU3gametype; }
-		static string getV2Gametype()		const { return getInstance()->V2gametype;	}
-		static string getRemovetype()		const { return getInstance()->removetype;	}
+		static date getStartDate()			{ return getInstance()->startDate; }
+		static double getMaxLiteracy()	{ return getInstance()->maxLiteracy; }
+		static string getV2Path()			{ return getInstance()->V2Path; }
+		static string getEU3Path()			{ return getInstance()->EU3Path;	}
+		static string getEU3Gametype()	{ return getInstance()->EU3gametype; }
+		static string getV2Gametype()		{ return getInstance()->V2gametype;	}
+		static string getRemovetype()		{ return getInstance()->removetype;	}
 		static Configuration* getInstance()
 		{
 			if (instance == NULL)

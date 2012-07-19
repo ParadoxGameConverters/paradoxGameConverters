@@ -58,7 +58,7 @@ V2Country::V2Country(string _tag, string _countryFile, map<int, V2Party*> _parti
 	religion			= "";
 	government		= "";
 	nationalValue	= "";
-	lastBankrupt	= (string)"1.1.1";
+	lastBankrupt	= date();
 	bankReserves	= 0.0;
 	literacy			= 0.0;
 

@@ -6,7 +6,9 @@
 date::date(const string _init)
 {
 	if (_init.length() < 1)
+	{
 		return;
+	}
 
 	string subStr;
 	if (_init[0] == '\"')
@@ -17,27 +19,30 @@ date::date(const string _init)
 	{
 		subStr = _init;
 	}
-	int first_dot = subStr.find_first_of('.');
-	int last_dot = subStr.find_last_of('.');
-	year	= atoi( subStr.substr(0, first_dot).c_str() );
-	month	= atoi( subStr.substr(first_dot + 1, last_dot - first_dot).c_str() );
-	day		= atoi( subStr.substr(last_dot + 1, 2).c_str() );
+	int first_dot	= subStr.find_first_of('.');
+	int last_dot	= subStr.find_last_of('.');
+	year				= atoi( subStr.substr(0, first_dot).c_str() );
+	month				= atoi( subStr.substr(first_dot + 1, last_dot - first_dot).c_str() );
+	day				= atoi( subStr.substr(last_dot + 1, 2).c_str() );
 }
+
 
 date::date(const date& _init)
 {
-	year = _init.year;
-	month = _init.month;
-	day = _init.day;
+	year	= _init.year;
+	month	= _init.month;
+	day	= _init.day;
 }
+
 
 date& date::operator=(const date& _rhs)
 {
-	year = _rhs.year;
-	month = _rhs.month;
-	day = _rhs.day;
+	year	= _rhs.year;
+	month	= _rhs.month;
+	day	= _rhs.day;
 	return *this;
 }
+
 
 date::date(const Object* _init)
 {
@@ -45,9 +50,9 @@ date::date(const Object* _init)
 	if (dateSubObj.size() > 0)
 	{
 		// date specified by year=, month=, day=
-		year = atoi(_init->getLeaf("year").c_str());
-		month = atoi(_init->getLeaf("month").c_str());
-		day = atoi(_init->getLeaf("day").c_str());
+		year	= atoi(_init->getLeaf("year").c_str());
+		month	= atoi(_init->getLeaf("month").c_str());
+		day	= atoi(_init->getLeaf("day").c_str());
 	}
 	else
 	{
@@ -57,6 +62,7 @@ date::date(const Object* _init)
 	}
 }
 
+
 bool date::operator==(const date& _rhs) const
 {
 	return ((year == _rhs.year)
@@ -64,10 +70,12 @@ bool date::operator==(const date& _rhs) const
 		 && (day == _rhs.day));
 }
 
+
 bool date::operator!=(const date& _rhs) const
 {
 	return !(*this == _rhs);
 }
+
 
 bool date::operator<(const date& _rhs) const
 {
@@ -76,6 +84,7 @@ bool date::operator<(const date& _rhs) const
 		|| ((year == _rhs.year) && (month == _rhs.month) && (day < _rhs.day)));
 }
 
+
 bool date::operator>(const date& _rhs) const
 {
 	return ((year > _rhs.year)
@@ -83,21 +92,25 @@ bool date::operator>(const date& _rhs) const
 		|| ((year == _rhs.year) && (month == _rhs.month) && (day > _rhs.day)));
 }
 
+
 bool date::operator<=(const date& _rhs) const
 {
 	return ((*this == _rhs) || (*this < _rhs));
 }
+
 
 bool date::operator>=(const date& _rhs) const
 { 
 	return ((*this == _rhs) || (*this > _rhs));
 }
 
+
 bool date::isSet() const
 {
 	date default_date;
 	return (*this != default_date);
 }
+
 
 string date::toString() const
 {
