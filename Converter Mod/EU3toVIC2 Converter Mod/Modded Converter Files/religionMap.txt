@@ -5,25 +5,25 @@ religionmap = {
 link = { vic = catholic eu3 = catholic }
 link = { vic = protestant eu3 = protestant eu3 = reformed }
 link = { vic = orthodox eu3 = orthodox }
-link = { vic = cathar eu3 = cathar
-link = { vic = fraticelli eu3 = fraticelli
-link = { vic = waldensian eu3 = waldensian
-link = { vic = lollard eu3 = lollard
-link = { vic = bogomilist eu3 = bogomilist 
-link = { vic = iconoclast eu3 = iconoclast
-link = { vic = monophysite eu3 = monophysite 
-link = { vic = nestorian eu3 = nestorian
+link = { vic = cathar eu3 = cathar }
+link = { vic = fraticelli eu3 = fraticelli }
+link = { vic = waldensian eu3 = waldensian }
+link = { vic = lollard eu3 = lollard }
+link = { vic = bogomilist eu3 = bogomilist  }
+link = { vic = iconoclast eu3 = iconoclast }
+link = { vic = monophysite eu3 = monophysite  }
+link = { vic = nestorian eu3 = nestorian }
 
 #Muslims
 
 link = { vic = sunni eu3 = sunni }
 link = { vic = shiite eu3 = shiite }
-link = { vic = zikri eu3 = zikri 
-link = { vic = yazidi eu3 = yazidi 
-link = { vic = ibadi eu3 = ibadi
-link = { vic = bektashi eu3 = bektashi 
-link = { vic = druze eu3 = druze 
-link = { vic = hurufi eu3 = hurufi 
+link = { vic = zikri eu3 = zikri }
+link = { vic = yazidi eu3 = yazidi }
+link = { vic = ibadi eu3 = ibadi }
+link = { vic = bektashi eu3 = bektashi }
+link = { vic = druze eu3 = druze }
+link = { vic = hurufi eu3 = hurufi }
 
 #Eastern
 link = { vic = mahayana eu3 = confucianism }
@@ -33,11 +33,11 @@ link = { vic = shinto eu3 = shinto }
 
 #Pagans
 link = { vic = animist eu3 = animism eu3 = shamanism }
-link = { vic = generic_pagan eu3 = generic_pagan 
-link = { vic = norse_pagan eu3 = norse_pagan 
-link = { vic = tengri_pagan eu3 = tengri_pagan 
-link = { vic = baltic_pagan eu3 = baltic_pagan 
-link = { vic = finnish_pagan eu3 = finnish_pagan 
+link = { vic = generic_pagan eu3 = generic_pagan }
+link = { vic = norse_pagan eu3 = norse_pagan }
+link = { vic = tengri_pagan eu3 = tengri_pagan }
+link = { vic = baltic_pagan eu3 = baltic_pagan }
+link = { vic = finnish_pagan eu3 = finnish_pagan }
 
 
 }
