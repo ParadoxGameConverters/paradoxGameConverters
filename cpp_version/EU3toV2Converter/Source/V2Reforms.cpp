@@ -824,7 +824,7 @@ void V2Reforms::modifierEffects(const EU3Country* srcCountry)
 	}
 }
 
-#pragma optimize("", off)
+
 V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus, V2Country* country)
 {
 	int westernizationCost[16];
@@ -941,7 +941,7 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 		country->addTech("post_nelsonian_thought");
 	}
 }
-#pragma optimize("", on)
+
 
 void V2UncivReforms::output(FILE* output) const
 {

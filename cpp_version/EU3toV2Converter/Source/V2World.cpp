@@ -26,6 +26,17 @@
 #include "V2Reforms.h"
 
 
+typedef struct fileWithCreateTime
+{
+	string	filename;
+	time_t	createTime;
+	bool operator < (const fileWithCreateTime &rhs) const
+	{
+		return createTime < rhs.createTime;
+	};
+} fileWithCreateTime;
+
+
 
 V2World::V2World(string V2Loc)
 {
@@ -65,26 +76,37 @@ V2World::V2World(string V2Loc)
 
 	// set province names
 	printf("\tSetting names.\n");
-	getProvinceLocalizations(V2Loc + "\\localisation\\text.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\1.1.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\1.2.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\beta1.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\beta2.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\beta3.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\1.3.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\newtext.csv");
-	getProvinceLocalizations(V2Loc + "\\localisation\\1.4.csv");
-	if (Configuration::getV2Gametype() == "AHD")
-	{
-		getProvinceLocalizations(V2Loc + "\\localisation\\housedivided.csv");
-		getProvinceLocalizations(V2Loc + "\\localisation\\housedivided2_1.csv");
-	}
+	vector<fileWithCreateTime> localisationFiles;
 
+	struct _finddata_t	localisationData;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (V2Loc + "\\localisation\\*.csv").c_str(), &localisationData)) == -1L)
+	{
+		log("Error: Could not open localisation directory.\n");
+		return;
+	}
+	do
+	{
+		if (strcmp(localisationData.name, ".") == 0 || strcmp(localisationData.name, "..") == 0 )
+		{
+			continue;
+		}
+		fileWithCreateTime newFile;
+		newFile.filename		= localisationData.name;
+		newFile.createTime	= localisationData.time_create;
+		localisationFiles.push_back(newFile);
+	} while(_findnext(fileListing, &localisationData) == 0);
+	_findclose(fileListing);
+
+	sort(localisationFiles.begin(), localisationFiles.end());
+	for (vector<fileWithCreateTime>::iterator i = localisationFiles.begin(); i < localisationFiles.end(); i++)
+	{
+		getProvinceLocalizations(V2Loc + "\\localisation\\" + i->filename);
+	}
 
 	// set province rgo types and life ratings
 	printf("\tSetting rgo types and life ratings.\n");
 	struct _finddata_t	provDirData;
-	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (V2Loc + "\\history\\provinces\\*").c_str(), &provDirData)) == -1L)
 	{
 		log("Could not open province directories.\n");
