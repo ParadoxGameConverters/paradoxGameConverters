@@ -27,6 +27,7 @@ class V2World {
 		void convertDiplomacy(const EU3World& sourceWorld, const countryMapping& countryMap);
 		void convertProvinces(const EU3World& sourceWorld, const provinceMapping& provinceMap, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap);
 		void setupStates(const stateMapping&);
+		void convertUncivReforms();
 		void setupPops(EU3World& sourceWorld);
 		void addUnions(const unionMapping& unionMap);
 		void convertArmies(const EU3World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap);

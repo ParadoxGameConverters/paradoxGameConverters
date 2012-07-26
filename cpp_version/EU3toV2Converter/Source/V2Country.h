@@ -40,6 +40,7 @@ class V2Country
 		void								setNationalIdea(int& libertyLeft, int& equalityLeft);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
+		void								convertUncivReforms();
 		void								setupPops(EU3World& sourceWorld);
 		void								setArmyTech(double mean, double scale, double stdDev);
 		void								setNavyTech(double mean, double scale, double stdDev);

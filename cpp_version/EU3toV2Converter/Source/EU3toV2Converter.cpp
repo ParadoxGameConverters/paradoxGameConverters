@@ -348,6 +348,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);
+	printf("Setting unciv reforms.\n");
+	log("Setting unciv reforms.\n");
+	destWorld.convertUncivReforms();
 	printf("Creating pops.\n");
 	log("Creating pops.\n");
 	destWorld.setupPops(sourceWorld);

@@ -33,6 +33,7 @@ V2World::V2World(string V2Loc)
 	printf("\tImporting provinces.\n");
 	
 	// set province names and numbers
+	printf("\tSetting numbers.\n");
 	provinces.clear();
 	ifstream read;
 	read.open( (V2Loc + "\\map\\definition.csv").c_str() );
@@ -63,6 +64,7 @@ V2World::V2World(string V2Loc)
 	read.clear();
 
 	// set province names
+	printf("\tSetting names.\n");
 	getProvinceLocalizations(V2Loc + "\\localisation\\text.csv");
 	getProvinceLocalizations(V2Loc + "\\localisation\\1.1.csv");
 	getProvinceLocalizations(V2Loc + "\\localisation\\1.2.csv");
@@ -80,6 +82,7 @@ V2World::V2World(string V2Loc)
 
 
 	// set province rgo types and life ratings
+	printf("\tSetting rgo types and life ratings.\n");
 	struct _finddata_t	provDirData;
 	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (V2Loc + "\\history\\provinces\\*").c_str(), &provDirData)) == -1L)
@@ -977,6 +980,16 @@ void V2World::setupStates(const stateMapping& stateMap)
 		}
 	}
 }
+
+
+void V2World::convertUncivReforms()
+{
+	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		(*itr)->convertUncivReforms();
+	}
+}
+
 
 
 void V2World::setupPops(EU3World& sourceWorld)

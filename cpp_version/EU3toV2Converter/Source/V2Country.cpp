@@ -662,52 +662,6 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 		leaders.push_back(leader);
 		leaderMap[ (*itr)->getID() ] = leader->getID();
 	}
-
-	// Unciv reforms
-	if (Configuration::getV2Gametype() == "AHD")
-	{
-		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
-				(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
-		{
-			// civilized, do nothing
-		}
-		else if ( (srcCountry->getTechGroup() == "nomad_group") || (srcCountry->getTechGroup() == "sub_saharan") || (srcCountry->getTechGroup() == "new_world") )
-		{
-			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
-											srcCountry->getTradeTech() + srcCountry->getProductionTech();
-			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
-			double socioEconDev	= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
-			log("\tSetting unciv reforms for %s. Westernization at 0 percent.\n", tag.c_str());
-			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
-		}
-		else if ( (srcCountry->getTechGroup() == "indian") || (srcCountry->getTechGroup() == "chinese") )
-		{
-			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
-											srcCountry->getTradeTech() + srcCountry->getProductionTech();
-			double militaryDev		= (srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
-			double socioEconDev	= (srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 30 percent.\n", tag.c_str());
-			uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
-		}
-		else if (srcCountry->getTechGroup() == "muslim")
-		{
-			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
-											srcCountry->getTradeTech() + srcCountry->getProductionTech();
-			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
-			double socioEconDev	= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 60 percent.\n", tag.c_str());
-			uncivReforms = new V2UncivReforms(60, militaryDev, socioEconDev, this);
-		}
-		else
-		{
-			log("	Error: Unhandled tech group (%s) for unciv nation. Giving no reforms\n", srcCountry->getTechGroup().c_str());
-			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
-											srcCountry->getTradeTech() + srcCountry->getProductionTech();
-			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
-			double socioEconDev	= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
-			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
-		}
-	}
 }
 
 
@@ -1126,6 +1080,55 @@ void V2Country::addRailroadtoCapitalState()
 		if ( (*i)->provInState(capital) )
 		{
 			(*i)->addRailroads();
+		}
+	}
+}
+
+
+void V2Country::convertUncivReforms()
+{
+	if ( (srcCountry != NULL) && (Configuration::getV2Gametype() == "AHD") )
+	{
+		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
+				(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
+		{
+			// civilized, do nothing
+		}
+		else if ( (srcCountry->getTechGroup() == "nomad_group") || (srcCountry->getTechGroup() == "sub_saharan") || (srcCountry->getTechGroup() == "new_world") )
+		{
+			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
+											  srcCountry->getTradeTech() + srcCountry->getProductionTech();
+			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
+			double socioEconDev		= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
+			log("\tSetting unciv reforms for %s. Westernization at 0 percent.\n", tag.c_str());
+			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
+		}
+		else if ( (srcCountry->getTechGroup() == "indian") || (srcCountry->getTechGroup() == "chinese") )
+		{
+			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
+											  srcCountry->getTradeTech() + srcCountry->getProductionTech();
+			double militaryDev		= (srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
+			double socioEconDev		= (srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
+			log("	Setting unciv reforms for %s. Westernization at 30 percent.\n", tag.c_str());
+			uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
+		}
+		else if (srcCountry->getTechGroup() == "muslim")
+		{
+			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
+											  srcCountry->getTradeTech() + srcCountry->getProductionTech();
+			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
+			double socioEconDev		= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
+			log("	Setting unciv reforms for %s. Westernization at 60 percent.\n", tag.c_str());
+			uncivReforms = new V2UncivReforms(60, militaryDev, socioEconDev, this);
+		}
+		else
+		{
+			log("	Error: Unhandled tech group (%s) for unciv nation. Giving no reforms\n", srcCountry->getTechGroup().c_str());
+			double totalTechs			= srcCountry->getLandTech() + srcCountry->getNavalTech() + srcCountry->getGovernmentTech() + 
+											  srcCountry->getTradeTech() + srcCountry->getProductionTech();
+			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
+			double socioEconDev		= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
+			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
 		}
 	}
 }
