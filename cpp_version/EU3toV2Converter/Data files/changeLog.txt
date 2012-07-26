@@ -411,3 +411,4 @@ Revision	Version Updated		Log Message
 472		C++			Configuration defaults to AHD instead of vanilla V2
 473		C++			More automatic import of localisation files
 475		C++			Update automated test batch files
+476		C++			Add 1.4 patch to automated test cases
