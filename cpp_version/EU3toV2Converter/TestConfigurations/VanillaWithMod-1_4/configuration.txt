@@ -1,7 +1,7 @@
 configuration =
 {
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
-	v2directory = "D:\Paradox Interactive\Victoria 2 - 1.4"
+	v2directory = "D:\Paradox Interactive\Victoria 2 - Vanilla - Converter Mod - 1.4"
 
 	# Europa Universalis 3 directory: a path on your computer where Europa Universalis 3 is installed
 	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
@@ -23,7 +23,7 @@ configuration =
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
 	#	vanilla	vanilla V2 (1.x)
 	#	AHD	A House Divided (2.x)
-	V2gametype = AHD
+	V2gametype = vanilla
 
 	# Remove type: which landless nations to remove. Possible values:
 	#	none	remove none of them
