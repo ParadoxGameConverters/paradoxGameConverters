@@ -691,6 +691,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 		if ( (provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0) )
 		{
 			log("Error: no source for %s (province #%d)\n", (*i)->getName().c_str() , destNum);
+			continue;
 		}
 		else if (provinceLink->second[0] == 0) {
 			continue;
