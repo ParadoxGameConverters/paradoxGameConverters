@@ -133,3 +133,4 @@ Revision	Log Message
 130		Add Nyrael's Croatia 1453 game to sample saves
 131		Get version number from save game
 132		Add Hispania1399_10_17 save game
+133		Read all files in traits and dynasties directories

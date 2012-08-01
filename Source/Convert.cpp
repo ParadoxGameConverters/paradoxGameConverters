@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <sys/stat.h>
+#include <io.h>
 #include "Log.h"
 #include "Configuration.h"
 #include "Parsers/Parser.h"
@@ -59,15 +60,50 @@ int main(int argc, char * argv[])
 	// Input CK2 Data
 	log("Getting CK2 data.\n");
 	printf("Getting CK2 data.\n");
-
-	printf("	Getting traits\n");
-	obj = doParseFile((Configuration::getCK2Path() + "/common/traits/00_traits.txt").c_str());
 	CK2World srcWorld;
-	srcWorld.addTraits(obj);
 
-	printf("	Adding dynasties from dynasties.txt\n");
-	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
-	srcWorld.addDynasties(obj);
+	log("\tGetting traits\n");
+	printf("\tGetting traits\n");
+	struct _finddata_t	traitsData;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\traits\\*").c_str(), &traitsData)) == -1L)
+	{
+		log("\t\tError: Could not open traits directory.\n");
+		printf("\t\tError: Could not open traits directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(traitsData.name, ".") == 0 || strcmp(traitsData.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
+		srcWorld.addTraits(obj);
+	} while(_findnext(fileListing, &traitsData) == 0);
+	_findclose(fileListing);
+
+	log("\tAdding dynasties from CK2 Install\n");
+	printf("\tAdding dynasties from CK2 Install\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
+	struct _finddata_t	dynastiesData;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\dynasties\\*").c_str(), &dynastiesData)) == -1L)
+	{
+		log("\t\tError: Could not open dynasties directory.\n");
+		printf("\t\tError: Could not open dynasties directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(dynastiesData.name, ".") == 0 || strcmp(dynastiesData.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
+		srcWorld.addDynasties(obj);
+	} while(_findnext(fileListing, &dynastiesData) == 0);
+	_findclose(fileListing);
+
 	
 	log("Parsing CK2 save.\n");
 	printf("Parsing CK2 save.\n");
