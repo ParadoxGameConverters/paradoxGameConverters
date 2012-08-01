@@ -117,6 +117,25 @@ EU3Province::EU3Province(Object* obj) {
 	sort(cultureHistory.begin(), cultureHistory.end());
 	sort(religionHistory.begin(), religionHistory.end());
 
+	if (cultureHistory.size() == 0)
+	{
+		vector<Object*> culObj = obj->getValue("culture");
+		if (culObj.size() > 0)
+		{
+			date newDate;
+			cultureHistory.push_back(make_pair(newDate, culObj[0]->getLeaf()));
+		}
+	}
+	if (religionHistory.size() == 0)
+	{
+		vector<Object*> religObj = obj->getValue("religion");
+		if (religObj.size() > 0)
+		{
+			date newDate;
+			religionHistory.push_back(make_pair(newDate, religObj[0]->getLeaf()));
+		}
+	}
+
 	popRatios.clear();
 
 	buildings.clear();

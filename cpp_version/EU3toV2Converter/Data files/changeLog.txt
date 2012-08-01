@@ -414,3 +414,4 @@ Revision	Version Updated		Log Message
 476		C++			Add 1.4 patch to automated test cases
 477		C++			1.4 patch applied to Vanilla game, not AHD
 478		C++			Fix error with HttT conversions
+479		C++			Fix missing culture problem with games from CK2 To Eu3 Lua converter
