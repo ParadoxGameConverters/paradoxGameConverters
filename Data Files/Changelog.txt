@@ -132,3 +132,4 @@ Revision	Log Message
 129		Sync Changelog.txt with repository
 130		Add Nyrael's Croatia 1453 game to sample saves
 131		Get version number from save game
+132		Add Hispania1399_10_17 save game
