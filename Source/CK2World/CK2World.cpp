@@ -2,6 +2,7 @@
 #include "..\Log.h"
 #include "..\Configuration.h"
 #include "..\Parsers\Object.h"
+#include "CK2Version.h"
 #include "CK2Title.h"
 #include "CK2Province.h"
 #include "CK2Barony.h"
@@ -13,6 +14,7 @@
 
 CK2World::CK2World()
 {
+	version = NULL;
 	endDate = (date)"1.1.1";
 	independentTitles.clear();
 	hreMembers.clear();
@@ -27,6 +29,19 @@ CK2World::CK2World()
 
 void CK2World::init(Object* obj)
 {
+	// get version
+	vector<Object*> versionObj = obj->getValue("version");
+	if (versionObj.size() > 0)
+	{
+		version = new CK2Version( versionObj[0]->getLeaf() );
+	}
+	else
+	{
+		log("\tError: Unknown version format.\n");
+		printf("\tError: Unknown version format.\n");
+		version = new CK2Version("0.0");
+	}
+
 	// get conversion date
 	vector<Object*> dateObj = obj->getValue("date");
 	if (dateObj.size() > 0)
