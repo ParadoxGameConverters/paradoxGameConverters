@@ -15,7 +15,7 @@
 CK2World::CK2World()
 {
 	version = NULL;
-	endDate = (date)"1.1.1";
+	endDate = date();
 	independentTitles.clear();
 	hreMembers.clear();
 	dynasties.clear();
@@ -61,12 +61,10 @@ void CK2World::init(Object* obj)
 	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
 	{
 		int number = atoi( dynastyLeaves[i]->getKey().c_str() );
-		CK2Dynasty* newDynasty = new CK2Dynasty;
-		newDynasty->init(dynastyLeaves[i]);
+		CK2Dynasty* newDynasty = new CK2Dynasty(dynastyLeaves[i]);
 		dynasties.insert( make_pair(number, newDynasty) );
 	}
-	CK2Dynasty* newDynasty = new CK2Dynasty;
-	newDynasty->init(0, "Lowborn");
+	CK2Dynasty* newDynasty = new CK2Dynasty(0, "Lowborn");
 	dynasties.insert( make_pair(0, newDynasty) );
 
 	// get characters
@@ -76,8 +74,7 @@ void CK2World::init(Object* obj)
 	for (unsigned int i = 0; i < characterLeaves.size(); i++)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
-		CK2Character* newCharacter = new CK2Character;
-		newCharacter->init(characterLeaves[i], dynasties, traits, endDate);
+		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, endDate);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
@@ -95,8 +92,7 @@ void CK2World::init(Object* obj)
 		string key = leaves[i]->getKey();
 		if ( (key.substr(0, 2) == "e_") || (key.substr(0, 2) == "k_") || (key.substr(0, 2) == "d_") || (key.substr(0, 2) == "c_") || (key.substr(0, 2) == "b_") )
 		{
-			CK2Title* newTitle = new CK2Title;
-			newTitle->init(leaves[i], characters);
+			CK2Title* newTitle = new CK2Title(leaves[i], characters);
 			titles.insert( make_pair(newTitle->getTitleString(), newTitle) );
 		}
 	}
@@ -108,8 +104,7 @@ void CK2World::init(Object* obj)
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province;
-			newProvince->init(leaves[i], titles);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();
@@ -175,8 +170,7 @@ void CK2World::addDynasties(Object* obj)
 	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
 	{
 		int number = atoi( dynastyLeaves[i]->getKey().c_str() );
-		CK2Dynasty* newDynasty = new CK2Dynasty;
-		newDynasty->init(dynastyLeaves[i]);
+		CK2Dynasty* newDynasty = new CK2Dynasty(dynastyLeaves[i]);
 		dynasties.insert( make_pair(number, newDynasty) );
 	}
 }
@@ -187,44 +181,7 @@ void CK2World::addTraits(Object* obj)
 	vector<Object*> traitLeaves = obj->getLeaves();
 	for (unsigned int i = 0; i < traitLeaves.size(); i++)
 	{
-		CK2Trait* newTrait = new CK2Trait;
-		newTrait->init(traitLeaves[i]);
+		CK2Trait* newTrait = new CK2Trait(traitLeaves[i]);
 		traits.insert( make_pair(i + 1, newTrait) );
 	}
-}
-
-
-date CK2World::getEndDate()
-{
-	return endDate;
-}
-
-
-vector<CK2Title*> CK2World::getIndependentTitles()
-{
-	return independentTitles;
-}
-
-
-map<string, CK2Title*> CK2World::getAllTitles()
-{
-	return titles;
-}
-
-
-map<int, CK2Province*> CK2World::getProvinces()
-{
-	return provinces;
-}
-
-
-CK2World::~CK2World()
-{
-/*	TODO: determine why this crashes things
-	while (independentTitles.size() > 0)
-	{
-		CK2Title* currentTitle = independentTitles[independentTitles.size() - 1];
-		delete currentTitle;
-		independentTitles.pop_back();
-	}*/ 
 }

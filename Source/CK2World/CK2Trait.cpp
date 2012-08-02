@@ -3,17 +3,7 @@
 
 
 
-CK2Trait::CK2Trait()
-{
-	diplomacy	= 0;
-	martial		= 0;
-	stewardship	= 0;
-	intrigue		= 0;
-	learning		= 0;
-}
-
-
-void CK2Trait::init(Object* obj)
+CK2Trait::CK2Trait(Object* obj)
 {
 	vector<Object*> diplomacyObj = obj->getValue("diplomacy");
 	if (diplomacyObj.size() > 0)

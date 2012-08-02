@@ -18,6 +18,8 @@ class CK2Dynasty;
 class CK2Character;
 class CK2Trait;
 
+
+
 class CK2World
 {
 	public:
@@ -26,12 +28,11 @@ class CK2World
 		void							addDynasties(Object*);
 		void							addTraits(Object*);
 
-		CK2Version*					getVersion() const	{ return version; };
-		date							getEndDate();
-		vector<CK2Title*>			getIndependentTitles();
-		map<string, CK2Title*>	getAllTitles();
-		map<int, CK2Province*>	getProvinces();
-		~CK2World();
+		CK2Version*					getVersion()				const	{ return version; };
+		date							getEndDate()				const { return endDate; };
+		vector<CK2Title*>			getIndependentTitles()	const { return independentTitles; };
+		map<string, CK2Title*>	getAllTitles()				const { return titles; };
+		map<int, CK2Province*>	getProvinces()				const { return provinces; };
 	private:
 		CK2Version*					version;
 		date							endDate;

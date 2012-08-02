@@ -25,15 +25,3 @@ CK2Version::CK2Version(string versionString)
 
 	minor = atoi( versionString.substr(periodPos, minorLength).c_str() );
 }
-
-
-bool CK2Version::operator == (CK2Version& rhs)
-{
-	return ( (major == rhs.major) && (minor == rhs.minor) && (revision == rhs.revision) );
-}
-
-
-bool CK2Version::operator > (CK2Version& rhs)
-{
-	return ( (major > rhs.major) || (minor > rhs.minor) || (revision > rhs.revision) );
-}

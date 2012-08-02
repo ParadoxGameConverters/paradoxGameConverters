@@ -4,14 +4,7 @@
 
 
 
-CK2Province::CK2Province()
-{
-	number = -1;
-	baronies.clear();
-}
-
-
-void CK2Province::init(Object* obj, map<string, CK2Title*> titles)
+CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles)
 {
 	number = atoi( obj->getKey().c_str() );
 
@@ -21,21 +14,8 @@ void CK2Province::init(Object* obj, map<string, CK2Title*> titles)
 		string key = leaves[i]->getKey();
 		if (key[0] == 'b')
 		{
-			CK2Barony* newBarony = new CK2Barony;
-			newBarony->init( leaves[i], titles[key], this);
+			CK2Barony* newBarony = new CK2Barony( leaves[i], titles[key], this);
 			baronies.push_back(newBarony);
 		}
 	}
-}
-
-
-int CK2Province::getNumber()
-{
-	return number;
-}
-
-
-vector<CK2Barony*> CK2Province::getBaronies()
-{
-	return baronies;
 }

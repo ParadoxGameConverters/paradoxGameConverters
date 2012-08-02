@@ -10,42 +10,7 @@
 
 
 
-CK2Character::CK2Character()
-{
-	num			= -1;
-	name			= "";
-	religion		= "";
-	culture		= "";
-	dynasty		= NULL;
-	birthDate	= (string)"1.1.1";
-	dead			= true;
-	deathDate	= (string)"1.1.1";
-	female		= false;
-	bastard		= false;
-	traits.clear();
-	memset(stats, 0, sizeof(stats));
-	titles.clear();
-
-	fatherNum	= -1;
-	father		= NULL;
-	motherNum	= -1;
-	mother		= NULL;
-	children.clear();
-	guardianNum	= -1;
-	guardian		= NULL;
-	regentNum	= -1;
-	regent		= NULL;
-
-	memset(advisors, NULL, sizeof(advisors));
-	employerNum	= -1;
-	jobType		= NONE;
-	action		= "";
-	hostNum		= -1;
-	locationNum	= -1;
-}
-
-
-void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
+CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
 {
 	num			= atoi( obj->getKey().c_str() );
 	name			= obj->getLeaf("birth_name");
@@ -234,7 +199,6 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 		}
 	}
 
-
 	vector<Object*> demesneObj = obj->getValue("demesne");
 	if (demesneObj.size() > 0)
 	{
@@ -247,48 +211,9 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 }
 
 
-int CK2Character::getNum()
-{
-	return num;
-}
-
-
-string CK2Character::getName()
-{
-	return name;
-}
-
-
-CK2Dynasty* CK2Character::getDynasty()
-{
-	return dynasty;
-}
-
-
-date CK2Character::getBirthDate()
-{
-	return birthDate;
-}
-
-
 void CK2Character::addTitle(CK2Title* newTitle)
 {
 	titles.push_back(newTitle);
-}
-
-
-int CK2Character::getDemesneSize()
-{
-	int size = 0;
-	for (vector<CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
-	{
-		if ( (*i)->getTitleString().substr(0, 2) == "b_" )
-		{
-			size++;
-		}
-	}
-
-	return size;
 }
 
 
@@ -397,60 +322,6 @@ void CK2Character::addChild(CK2Character* newChild)
 void CK2Character::addAdvisor(CK2Character* newAdvisor, advisorTypes type)
 {
 	advisors[type] = newAdvisor;
-}
-
-
-CK2Character** CK2Character::getAdvisors()
-{
-	return advisors;
-}
-
-
-bool CK2Character::isDead()
-{
-	return dead;
-}
-
-
-date CK2Character::getDeathDate()
-{
-	return deathDate;
-}
-
-
-bool CK2Character::isFemale()
-{
-	return female;
-}
-
-
-bool CK2Character::isBastard()
-{
-	return bastard;
-}
-
-
-int* CK2Character::getStats()
-{
-	return stats;
-}
-
-
-vector<CK2Title*> CK2Character::getTitles()
-{
-	return titles;
-}
-
-
-CK2Character* CK2Character::getFather()
-{
-	return father;
-}
-
-
-CK2Character* CK2Character::getRegent()
-{
-	return regent;
 }
 
 
@@ -738,28 +609,4 @@ vector<CK2Character*> CK2Character::getGavelkindHeirs(string genderLaw)
 	}
 
 	return heirs;
-}
-
-
-advisorTypes CK2Character::getJobType()
-{
-	return jobType;
-}
-
-
-string CK2Character::getAction()
-{
-	return action;
-}
-
-
-int CK2Character::getLocationNum()
-{
-	return locationNum;
-}
-
-
-string CK2Character::getCapitalString()
-{
-	return capitalString;
 }

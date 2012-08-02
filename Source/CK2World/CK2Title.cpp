@@ -8,25 +8,7 @@
 
 
 
-CK2Title::CK2Title()
-{
-	titleString		= "";
-	holder			= NULL;
-	heir				= NULL;
-	successionLaw	= "";
-	genderLaw		= "";
-	history.clear();
-	liegeString		= "";
-	liege				= NULL;
-	vassals.clear();
-
-	independent		= true;
-	inHRE				= false;
-}
-
-
-
-void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
+CK2Title::CK2Title(Object* obj,  map<int, CK2Character*>& characters)
 {
 	titleString = obj->getKey();
 	vector<Object*> liegeObjs = obj->getValue("liege");
@@ -78,8 +60,7 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 		historyObjs = historyObjs[0]->getLeaves();
 		for (unsigned int i = 0; i < historyObjs.size(); i++)
 		{
-			CK2History* newHistory = new CK2History();
-			newHistory->init(historyObjs[i], characters);
+			CK2History* newHistory = new CK2History(historyObjs[i], characters);
 			history.push_back(newHistory);
 		}
 	}
@@ -104,18 +85,6 @@ void CK2Title::addVassal(CK2Title* vassal)
 void CK2Title::addToHRE()
 {
 	inHRE = true;
-}
-
-
-string CK2Title::getTitleString()
-{
-	return titleString;
-}
-
-
-CK2Character* CK2Title::getHolder()
-{
-	return holder;
 }
 
 
@@ -162,48 +131,6 @@ void CK2Title::determineHeir(map<int, CK2Character*>& characters)
 void CK2Title::setHeir(CK2Character* newHeir)
 {
 	heir = newHeir;
-}
-
-
-CK2Character* CK2Title::getHeir()
-{
-	return heir;
-}
-
-
-string CK2Title::getSuccessionLaw()
-{
-	return successionLaw;
-}
-
-
-vector<CK2History*> CK2Title::getHistory()
-{
-	return history;
-}
-
-
-string CK2Title::getLiegeString()
-{
-	return liegeString;
-}
-
-
-CK2Title* CK2Title::getLiege()
-{
-	return liege;
-}
-
-
-bool CK2Title::isIndependent()
-{
-	return independent;
-}
-
-
-bool CK2Title::isInHRE()
-{
-	return inHRE;
 }
 
 
@@ -327,17 +254,4 @@ CK2Character* CK2Title::getTurkishSuccessionHeir()
 	}
 
 	return heir;
-}
-
-
-
-CK2Title::~CK2Title()
-{
-	//TODO: learn why this crashes things
-/*	while (vassals.size() > 0)
-	{
-		CK2Title* currentTitle = vassals[vassals.size() - 1];
-		delete currentTitle;
-		vassals.pop_back();
-	}*/
 }

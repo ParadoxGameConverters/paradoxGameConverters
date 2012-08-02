@@ -3,14 +3,7 @@
 
 
 
-CK2History::CK2History()
-{
-	when		= (date)"1.1.1";
-	holder	= NULL;
-}
-
-
-void CK2History::init(Object* obj, map<int, CK2Character*>& characters)
+CK2History::CK2History(Object* obj, map<int, CK2Character*>& characters)
 {
 	when = obj->getKey();
 	vector<Object*> historyObj = obj->getLeaves();
@@ -24,16 +17,4 @@ void CK2History::init(Object* obj, map<int, CK2Character*>& characters)
 			holder = characters[ atoi( historyObj[i]->getLeaf().c_str() ) ];
 		}
 	}
-}
-
-
-date CK2History::getWhen()
-{
-	return when;
-}
-
-
-CK2Character* CK2History::getHolder()
-{
-	return holder;
 }

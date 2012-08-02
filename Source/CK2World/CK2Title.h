@@ -14,24 +14,24 @@ class CK2History;
 class CK2Title
 {
 	public:
-		CK2Title();
-		void						init(Object*, map<int, CK2Character*>&);
+		CK2Title(Object*, map<int, CK2Character*>&);
+
 		void						addLiege(CK2Title*);
-		void						addVassal(CK2Title*);
 		void						addToHRE();
-		string					getTitleString();
-		CK2Character*			getHolder();
 		void						determineHeir(map<int, CK2Character*>&);
 		void						setHeir(CK2Character*);
-		CK2Character*			getHeir();
-		string					getSuccessionLaw();
-		vector<CK2History*>	getHistory();
-		string					getLiegeString();
-		CK2Title*				getLiege();
-		bool						isIndependent();
-		bool						isInHRE();
-		~CK2Title();
+
+		string					getTitleString()		const { return titleString; };
+		CK2Character*			getHolder()				const { return holder; };
+		CK2Character*			getHeir()				const { return heir; };
+		string					getSuccessionLaw()	const { return successionLaw; };
+		vector<CK2History*>	getHistory()			const { return history; };
+		string					getLiegeString()		const { return liegeString; };
+		CK2Title*				getLiege()				const { return liege; };
+		bool						isIndependent()		const { return independent; };
+		bool						isInHRE()				const { return inHRE; };
 	private:
+		void								addVassal(CK2Title*);
 		CK2Character*					getFeudalElectiveHeir(map<int, CK2Character*>&);
 		CK2Character*					getTurkishSuccessionHeir();
 

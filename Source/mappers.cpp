@@ -7,7 +7,7 @@
 #include "EU3World\EU3Country.h"
 
 
-#pragma optimize("", off)
+
 provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 {
 	provinceMapping mapping;
@@ -70,7 +70,7 @@ provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 
 	return mapping;
 }
-#pragma optimize("", on)
+
 
 inverseProvinceMapping invertProvinceMap(provinceMapping& provinceMap)
 {

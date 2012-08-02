@@ -8,8 +8,7 @@ class Object;
 class CK2Trait
 {
 	public:
-		CK2Trait();
-		void	init(Object*);
+		CK2Trait(Object*);
 
 		int	diplomacy;
 		int	martial;

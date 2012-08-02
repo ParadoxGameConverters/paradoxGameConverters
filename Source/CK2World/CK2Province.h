@@ -15,10 +15,10 @@ class CK2Barony;
 class CK2Province
 {
 	public:
-		CK2Province();
-		void						init(Object*, map<string, CK2Title*>);
-		int						getNumber();
-		vector<CK2Barony*>	getBaronies();
+		CK2Province(Object*, map<string, CK2Title*>);
+
+		int						getNumber()		const { return number; };
+		vector<CK2Barony*>	getBaronies()	const { return baronies; };
 	private:
 		int						number;
 		vector<CK2Barony*>	baronies;
