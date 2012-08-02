@@ -16,6 +16,7 @@ CK2Dynasty::CK2Dynasty(Object* obj)
 	{
 		name = "";
 	}
+	members.clear();
 }
 
 

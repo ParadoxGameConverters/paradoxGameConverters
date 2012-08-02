@@ -138,3 +138,4 @@ Revision	Log Message
 135		Province mapping for 1.06, using version number in save to determine which set to use
 136		Add some bits to province history
 137		Clean up CK2 classes
+138		Add missing bits to constructors

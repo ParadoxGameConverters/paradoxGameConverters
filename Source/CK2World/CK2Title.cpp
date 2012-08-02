@@ -11,12 +11,7 @@
 CK2Title::CK2Title(Object* obj,  map<int, CK2Character*>& characters)
 {
 	titleString = obj->getKey();
-	vector<Object*> liegeObjs = obj->getValue("liege");
-	if (liegeObjs.size() > 0)
-	{
-		liegeString = liegeObjs[0]->getLeaf();
-	}
-
+	holder = NULL;
 	vector<Object*> holderObjs = obj->getValue("holder");
 	if (holderObjs.size() > 0)
 	{
@@ -26,9 +21,9 @@ CK2Title::CK2Title(Object* obj,  map<int, CK2Character*>& characters)
 			holder->addTitle(this);
 		}
 	}
-
-	genderLaw = obj->getLeaf("gender");
+	heir = NULL;
 	successionLaw = obj->getLeaf("succession");
+	genderLaw = obj->getLeaf("gender");
 
 	vector<Object*> leavesObj = obj->getLeaves();
 	for (unsigned int i = 0; i < leavesObj.size(); i++)
@@ -64,6 +59,18 @@ CK2Title::CK2Title(Object* obj,  map<int, CK2Character*>& characters)
 			history.push_back(newHistory);
 		}
 	}
+
+	vector<Object*> liegeObjs = obj->getValue("liege");
+	if (liegeObjs.size() > 0)
+	{
+		liegeString = liegeObjs[0]->getLeaf();
+	}
+	liege = NULL;
+
+	vassals.clear();
+
+	independent = true;
+	inHRE = false;
 }
 
 
