@@ -10,12 +10,13 @@ using namespace std;
 
 class Object;
 class CK2World;
+class CK2Version;
 class CK2Title;
 class EU3Country;
 
 typedef map< int, vector<int> > provinceMapping;			// < destProvince,	sourceProvinces	>
 typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince,	destProvinces		>
-provinceMapping initProvinceMap(Object* obj);
+provinceMapping initProvinceMap(Object* obj, CK2Version* version);
 inverseProvinceMapping invertProvinceMap(provinceMapping& provMap);
 
 vector<string> processBlockedNations(Object* obj);

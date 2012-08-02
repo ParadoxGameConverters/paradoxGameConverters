@@ -18,6 +18,10 @@ CK2Version::CK2Version(string versionString)
 		revision = tolower( versionString[versionString.size() - 1] );
 		minorLength--;
 	}
+	else
+	{
+		revision = 0;
+	}
 
 	minor = atoi( versionString.substr(periodPos, minorLength).c_str() );
 }
@@ -29,7 +33,7 @@ bool CK2Version::operator == (CK2Version& rhs)
 }
 
 
-bool CK2Version::operator >= (CK2Version& rhs)
+bool CK2Version::operator > (CK2Version& rhs)
 {
-	return ( (major >= rhs.major) && (minor >= rhs.minor) && (revision >= rhs.revision) );
+	return ( (major > rhs.major) || (minor > rhs.minor) || (revision > rhs.revision) );
 }

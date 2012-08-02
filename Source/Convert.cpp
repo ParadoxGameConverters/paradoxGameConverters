@@ -119,7 +119,7 @@ int main(int argc, char * argv[])
 	printf("Parsing province mappings.\n");
 	const char* mappingFile = "province_mappings.txt";
 	obj = doParseFile(mappingFile);
-	provinceMapping			provinceMap				= initProvinceMap(obj);
+	provinceMapping			provinceMap				= initProvinceMap(obj, srcWorld.getVersion());
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
 	map<int, CK2Province*> srcProvinces				= srcWorld.getProvinces();
 	for (map<int, CK2Province*>::iterator i = srcProvinces.begin(); i != srcProvinces.end(); i++)

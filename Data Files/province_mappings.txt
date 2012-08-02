@@ -1,4 +1,44 @@
-mappings = {
+v1.6 = 
+{
+link = { ck2 = 909 eu3 = 1795 eu3 = 1794 }	# Sahara Desert -> East Sahara, Central Sahara
+link = { ck2 = 350 ck2 = 349 eu3 = 119 }	# Ancona, Spoleto -> Ancona
+link = { ck2 = 335 ck2 = 929 eu3 = 120 }	# Benevento, Aprutium -> Abruzzi
+link = { ck2 = 930 eu3 = 1311 eu3 = 1307 }	# Golfo di Taranto -> Gulf of Taranto, Straits of Messina
+link = { ck2 = 1008 ck2 = 943 eu3 = 1253 }	# Gulf of Bothnia, Näsijärvi -> Ålands Hav
+link = { ck2 = 925 eu3 = 1121 eu3 = 1124 }	# Mali -> Bure, Wasuju
+link = { ck2 = 926 eu3 = 1120 }	# Bambuk -> Bambuk
+link = { ck2 = 924 eu3 = 1793 }	# Western Sahara -> El Djouf
+link = { ck2 = 915 eu3 = 1134 }	# Djenné -> Jenne
+link = { ck2 = 919 eu3 = 1132 }	# Oualata -> Timbuktu
+link = { ck2 = 914 ck2 = 922 eu3 = 1142 }	# Gao, Tadmekka -> Dendi
+link = { ck2 = 911 eu3 = 1133 }	# Timbuktu -> Gao
+link = { ck2 = 927 eu3 = 1143 }	# Zarma -> Borgu
+link = { ck2 = 928 eu3 = 1136 }	# Gurma -> Gurma
+link = { ck2 = 913 eu3 = 1135 }	# Ghana -> Yatenga
+link = { ck2 = 912 eu3 = 1131 }	# Aoudaghost -> Massina
+link = { ck2 = 918 eu3 = 1127 }	# Sijilmasa -> Tuat
+link = { ck2 = 916 eu3 = 1128 }	# Taghaza -> Taodeni
+link = { ck2 = 917 eu3 = 1130 }	# Araouane -> Tadimekket
+link = { ck2 = 923 ck2 = 920 ck2 = 921 eu3 = 1129 }	# Adrar Plateau, Ouadane, Idjil -> Azawadd
+link = { ck2 = 1011 ck2 = 1020 eu3 = 1294 }	# Mauretanian Coast, Western Mediterranean -> Gulf of Almeria
+link = { ck2 = 1021 eu3 = 1295 eu3 = 1299 }	# Golfo de Valencia -> Gulf of Valencia, Gulf of Mallorca
+link = { ck2 = 1022 eu3 = 1301 }	# Islas Baleares -> Barbary Coast
+link = { ck2 = 1025 eu3 = 1296 }	# Golfe du Lion -> Gulf of Lion
+link = { ck2 = 1024 eu3 = 1300 }	# Mediterranean Sea -> Western Mediterranean
+link = { ck2 = 1027 eu3 = 1297 }	# Côte d'Azur -> Cote D'Azur
+link = { ck2 = 1028 eu3 = 1298 }	# Ligurian Sea -> Ligurian Sea
+link = { ck2 = 1023 eu3 = 1302 }	# Ponant -> Cape Bon
+link = { ck2 = 1030 ck2 = 1029 eu3 = 1303 }	# Coast of Sardegna, Tyrrhenian Sea -> Tyrrenean Sea
+link = { ck2 = 1033 eu3 = 1305 }	# Golfe de Hammamet -> Gulf of Gabes
+link = { ck2 = 1034 eu3 = 1306 }	# Malta Channel -> Malta Channel
+link = { ck2 = 1031 ck2 = 1032 eu3 = 1304 }	# Golfo di Napoli, Strait di Messina -> Bay of Napoli
+link = { ck2 = 1035 eu3 = 1313 }	# Gulf of Sidra -> Gulf of Sirte
+link = { ck2 = 936 ck2 = 1017 eu3 = 1318 }	# Cyclades, Western Cyclades -> Sea of Crete
+link = { ck2 = 942 ck2 = 935 eu3 = 1319 }	# Western Aegean Sea, Aegean Sea -> Aegean Sea
+link = { ck2 = 1019 eu3 = 1284 }	# Irish Sea -> Irish Sea
+}
+
+v1.0 = {
 # Iceland
 link = { ck2 = 1 eu3 = 370 }	# Vestisland -> Reykjavik
 link = { ck2 = 2 eu3 = 371 }	# Austisland -> Akureyri
@@ -73,8 +113,8 @@ link = { ck2 = 836 eu3 = 335 }	# Snassen -> Melilla
 link = { ck2 = 838 ck2 = 840 ck2 = 837 eu3 = 343 }	# El Rif, Fes, Figuig -> Fez
 link = { ck2 = 839 eu3 = 1751 }	# Cebta -> Ceuta
 link = { ck2 = 842 ck2 = 844 eu3 = 342 }	# Infa, Massat -> Toubkhal
-link = { ck2 = 841 eu3 = 334 }	# Tangiers -> Tangiers
-link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Ifni, Tharasset -> Safi
+link = { ck2 = 841 eu3 = 334 }	# Tangier -> Tangiers
+link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Taroudant, Tamdoult -> Safi
 link = { ck2 = 849 eu3 = 366 }	# Canarias -> The Canarias
 link = { ck2 = 843 eu3 = 344 }	# Marrakech -> Marrakech
 link = { ck2 = 909 eu3 = 1795 eu3 = 1794 eu3 = 1793 }	# Sahara Desert -> East Sahara, Central Sahara, El Djouf
@@ -122,7 +162,7 @@ link = { ck2 = 893 eu3 = 1075 eu3 = 1076 }	# Surgut -> Tyumen, Kurgan
 link = { ck2 = 887 eu3 = 1074 }	# Yamalia -> Tobolsk
 link = { ck2 = 910 eu3 = 1780 eu3 = 1080 eu3 = 1073 eu3 = 1072 eu3 = 1069 }	# Siberia -> Komi, Idnakar, Berezov, Obdorsk, Surgut
 link = { ck2 = 766 ck2 = 764 ck2 = 763 ck2 = 765 eu3 = 377 }	# Tortosa, Antiocheia, Alexandretta, Archa -> Aleppo
-link = { ck2 = 735 ck2 = 707 ck2 = 734 ck2 = 699 ck2 = 702 ck2 = 701 eu3 = 332 }	# Teluch, Melitene, Aintab, Edessa, Mesopotamia, Taron -> Mus
+link = { ck2 = 735 ck2 = 707 ck2 = 734 ck2 = 699 ck2 = 702 ck2 = 701 eu3 = 332 }	# Teluch, Melitene, Aintab, Edessa, Khliat, Taron -> Mus
 link = { ck2 = 752 ck2 = 737 ck2 = 706 eu3 = 329 }	# Galatia, Kaisereia, Koloneia -> Sivas
 link = { ck2 = 704 ck2 = 678 eu3 = 330 }	# Theodosiopolis, Trapezous -> Trebizon
 link = { ck2 = 738 ck2 = 705 eu3 = 328 }	# Amisos, Chaldea -> Sinope
@@ -131,8 +171,8 @@ link = { ck2 = 703 ck2 = 681 eu3 = 331 }	# Karin, Ani -> Erserum
 link = { ck2 = 733 ck2 = 732 eu3 = 1849 }	# Aleppo, Hama -> Hammah
 link = { ck2 = 725 ck2 = 769 ck2 = 768 ck2 = 731 ck2 = 730 ck2 = 728 eu3 = 382 }	# Irbid, Safed, Baalbek, Homs, Palmyra, Damascus -> Damascus
 link = { ck2 = 691 ck2 = 655 ck2 = 690 eu3 = 409 }	# Al Nasiryah, Kufa, Al Amarah -> Karbala
-link = { ck2 = 693 ck2 = 695 ck2 = 712 ck2 = 727 ck2 = 726 ck2 = 713 ck2 = 714 ck2 = 724 ck2 = 715 ck2 = 694 ck2 = 692 eu3 = 406 }	# Baghdad, Deir, Suwaida, Syria, Al Mafraq, Druz, Az Zarqa, Amman, Al Habbariyah, Karbala, Al Nadjaf -> Badiyat Ash Sham
-link = { ck2 = 708 ck2 = 709 ck2 = 710 ck2 = 729 ck2 = 698 ck2 = 700 ck2 = 711 eu3 = 407 }	# Tell Bashir, Asas, Al Bichri, Tadmor, Al Jazira, Bira, Sinjar -> Dayr Az Zor
+link = { ck2 = 693 ck2 = 695 ck2 = 712 ck2 = 727 ck2 = 726 ck2 = 713 ck2 = 714 ck2 = 724 ck2 = 715 ck2 = 694 ck2 = 692 eu3 = 406 }	# Baghdad, Deir, Suwaida, Bostra, Al Mafraq, Druz, Az Zarqa, Amman, Al Habbariyah, Karbala, Al Nadjaf -> Badiyat Ash Sham
+link = { ck2 = 708 ck2 = 709 ck2 = 710 ck2 = 729 ck2 = 698 ck2 = 700 ck2 = 711 eu3 = 407 }	# Tell Bashir, Asas, Al Bichri, Al-Sukhnah, Al Jazira, Bira, Sinjar -> Dayr Az Zor
 link = { ck2 = 672 eu3 = 423 }	# Dwin -> Kartli
 link = { ck2 = 675 ck2 = 674 eu3 = 425 }	# Semender, Derbent -> Dagestan
 link = { ck2 = 669 ck2 = 673 eu3 = 424 }	# Shemakha, Albania -> Shirvan
@@ -145,14 +185,14 @@ link = { ck2 = 625 eu3 = 439 }	# Usturt -> Mangyshlak
 link = { ck2 = 627 ck2 = 629 ck2 = 628 eu3 = 438 }	# Kara-Kum, Turkmen, Bukhara -> Kara Kum
 link = { ck2 = 903 eu3 = 441 }	# Samarkand -> Khiva
 link = { ck2 = 631 ck2 = 630 ck2 = 905 eu3 = 437 }	# Dihistan, Merv, Herat -> Atak
-link = { ck2 = 906 ck2 = 632 ck2 = 635 ck2 = 637 eu3 = 436 }	# Birjand, Khorasan, Qohistan, Sistan -> Khurasan
+link = { ck2 = 906 ck2 = 632 ck2 = 635 ck2 = 637 eu3 = 436 }	# Birjand, Tus, Qohistan, Sistan -> Khurasan
 link = { ck2 = 852 ck2 = 639 ck2 = 853 eu3 = 432 }	# Zahedan, Kerman, Bam -> Kerman
 link = { ck2 = 634 ck2 = 636 ck2 = 638 ck2 = 646 ck2 = 660 eu3 = 433 }	# Nishapur, Lut, Yazd, Esfahan, Qwivir -> Dash-i-Lut
 link = { ck2 = 663 ck2 = 658 ck2 = 659 eu3 = 428 }	# Rayy, Hamadan, Qom -> Ajam
 link = { ck2 = 656 ck2 = 689 ck2 = 688 eu3 = 410 }	# Tigris, Ilam, Kermanshah -> Iraq-i-Arab
 link = { ck2 = 657 eu3 = 413 }	# Luristan -> Luristan
 link = { ck2 = 664 eu3 = 414 }	# Qazwin -> Hamadan
-link = { ck2 = 697 ck2 = 696 eu3 = 411 }	# Mosul, Euphrates -> Mosul
+link = { ck2 = 697 ck2 = 696 eu3 = 411 }	# Mosul, Samarra -> Mosul
 link = { ck2 = 687 ck2 = 686 ck2 = 685 eu3 = 415 }	# Kirkuk, Oromieh, Kurdistan -> Sharizhor
 link = { ck2 = 665 ck2 = 667 eu3 = 416 }	# Dailam, Tabriz -> Azerbaijan
 link = { ck2 = 671 ck2 = 670 eu3 = 420 }	# Suenik, Azerbaijan -> Qarabagh
@@ -182,8 +222,8 @@ link = { ck2 = 154 eu3 = 1745 }	# Asturias de Santillana -> Cantabria
 link = { ck2 = 155 eu3 = 207 }	# Asturias de Oviedo -> Asturias
 link = { ck2 = 202 ck2 = 175 ck2 = 174 eu3 = 214 }	# Zaragoza, Calatayud, Albarracin -> Aragón
 link = { ck2 = 201 ck2 = 199 eu3 = 1746 }	# Nájera, Burgos -> Burgos
-link = { ck2 = 190 ck2 = 189 eu3 = 208 }	# Leon, Astorga -> León
-link = { ck2 = 183 ck2 = 182 ck2 = 181 eu3 = 225 }	# Aracena, Sevilla, Cordoba -> Córdoba
+link = { ck2 = 190 ck2 = 189 eu3 = 208 }	# León, Astorga -> León
+link = { ck2 = 183 ck2 = 182 ck2 = 181 eu3 = 225 }	# Aracena, Seville, Cordoba -> Córdoba
 link = { ck2 = 185 ck2 = 184 eu3 = 218 }	# Mértola, Badajoz -> Badajoz
 link = { ck2 = 179 ck2 = 196 eu3 = 1748 }	# Almansa, Calatrava -> La Mancha
 link = { ck2 = 178 eu3 = 219 }	# La Mancha -> Toledo
@@ -228,7 +268,7 @@ link = { ck2 = 230 eu3 = 102 }	# Nice -> Nice
 link = { ck2 = 231 eu3 = 1875 }	# Saluzzo -> Cuneo
 link = { ck2 = 318 eu3 = 107 }	# Brescia -> Brescia
 link = { ck2 = 317 eu3 = 110 }	# Trent -> Trent
-link = { ck2 = 235 ck2 = 234 eu3 = 104 }	# Lombardia, Pavia -> Lombardia
+link = { ck2 = 235 ck2 = 234 eu3 = 104 }	# Lombardy, Pavia -> Lombardia
 link = { ck2 = 232 ck2 = 236 eu3 = 103 }	# Monferrato, Piemonte -> Piedmont
 link = { ck2 = 358 eu3 = 1769 eu3 = 111 }	# Aquileia -> Görz, Friuli
 # Nordic Countries
@@ -296,7 +336,7 @@ link = { ck2 = 108 eu3 = 177 eu3 = 1879 }	# Maine -> Maine, Alencon
 link = { ck2 = 107 eu3 = 178 }	# Anjou -> Anjou
 link = { ck2 = 77 eu3 = 88 }	# Artois -> Artois
 link = { ck2 = 229 ck2 = 223 ck2 = 228 eu3 = 204 }	# Forcalquier, Vivarais, Vienne -> Dauphiné
-link = { ck2 = 237 eu3 = 205 }	# Savoie -> Savoie
+link = { ck2 = 237 eu3 = 205 }	# Savoy -> Savoie
 link = { ck2 = 216 ck2 = 147 ck2 = 145 eu3 = 195 }	# Périgord, Limousin, La Marche -> Limousin
 link = { ck2 = 217 ck2 = 224 eu3 = 199 }	# Auvergne, Forez -> Auvergne
 link = { ck2 = 227 eu3 = 203 }	# Lyon -> Lyonnais
@@ -473,10 +513,10 @@ link = { ck2 = 415 eu3 = 311 }	# Velikiye Luki -> Kholm
 link = { ck2 = 410 ck2 = 417 eu3 = 275 }	# Toropets, Vitebsk -> Polotsk
 link = { ck2 = 416 eu3 = 273 }	# Daugava -> Wenden
 link = { ck2 = 550 ck2 = 418 eu3 = 276 }	# Minsk, Orsha -> Minsk
-link = { ck2 = 419 ck2 = 420 eu3 = 272 }	# Polotsk, Aukshayts -> Vilna
-link = { ck2 = 423 eu3 = 270 }	# Sudovia -> Trakai
+link = { ck2 = 419 ck2 = 420 eu3 = 272 }	# Polotsk, Vilnius -> Vilna
+link = { ck2 = 423 eu3 = 270 }	# Trakai -> Trakai
 link = { ck2 = 428 ck2 = 528 eu3 = 257 }	# Kujawy, Sieradzko-Leczyckie -> Mazovia
-link = { ck2 = 425 ck2 = 424 eu3 = 269 }	# Podlasie, Jacwiez -> Podlasie
+link = { ck2 = 425 ck2 = 424 eu3 = 269 }	# Podlasie, Grodno -> Podlasie
 link = { ck2 = 551 ck2 = 553 eu3 = 292 }	# Mstislavl, Lyubech -> Mogilyov
 link = { ck2 = 547 eu3 = 280 }	# Kiev -> Kiev
 link = { ck2 = 552 ck2 = 548 ck2 = 549 eu3 = 278 }	# Turov, Pinsk, Beresty -> Polesia
@@ -507,7 +547,7 @@ link = { ck2 = 470 ck2 = 469 ck2 = 471 eu3 = 143 }	# Dyrrachion, Zeta, Ochrid ->
 link = { ck2 = 493 ck2 = 494 ck2 = 495 ck2 = 487 eu3 = 149 }	# Philippopolis, Adrianopolis, Kaliopolis, Lesbos -> Edirne
 link = { ck2 = 468 eu3 = 138 }	# Ragusa -> Zeta
 link = { ck2 = 467 eu3 = 137 }	# Split -> Ragusa
-link = { ck2 = 496 eu3 = 151 }	# Byzantion -> Thrace
+link = { ck2 = 496 eu3 = 151 }	# Constantinople -> Thrace
 link = { ck2 = 497 ck2 = 498 eu3 = 1764 }	# Thrake, Mesembria -> Burgas
 # Rest of Turkey
 link = { ck2 = 739 ck2 = 751 ck2 = 740 ck2 = 750 eu3 = 325 }	# Sinope, Paphlagonia, Herakleia, Nikaea -> Kastamon

@@ -2,12 +2,13 @@
 #include "Log.h"
 #include "Configuration.h"
 #include "Parsers\Object.h"
+#include "CK2World\CK2Version.h"
 #include "CK2World\CK2Title.h"
 #include "EU3World\EU3Country.h"
 
 
-
-provinceMapping initProvinceMap(Object* obj)
+#pragma optimize("", off)
+provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 {
 	provinceMapping mapping;
 	provinceMapping::iterator mapIter;
@@ -21,48 +22,55 @@ provinceMapping initProvinceMap(Object* obj)
 		return mapping;
 	}
 
-	vector<Object*> data = leaves[0]->getLeaves();
-
-	for (unsigned int i = 0; i < data.size(); i++)
+	for (vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
 	{
-		vector<int> CK2nums;
-		vector<int> EU3nums;
-
-		vector<Object*> maps = data[i]->getLeaves();
-
-		for (unsigned int j = 0; j < maps.size(); j++)
+		if (  CK2Version( (*itr)->getKey() ) > *version  )
 		{
-			if (maps[j]->getKey().compare("ck2") == 0)
-			{
-				CK2nums.push_back(atoi(maps[j]->getLeaf().c_str()));
-			}
-			else if (maps[j]->getKey().compare("eu3") == 0)
-			{
-				EU3nums.push_back(atoi(maps[j]->getLeaf().c_str()));
-			}
-			else
-			{
-				log("Warning: unknown data while mapping provinces.\n");
-			}
+			continue;
 		}
+		vector<Object*> data = (*itr)->getLeaves();
 
-		if (CK2nums.size() == 0)
+		for (unsigned int i = 0; i < data.size(); i++)
 		{
-			CK2nums.push_back(0);
-		}
+			vector<int> CK2nums;
+			vector<int> EU3nums;
 
-		for (unsigned int k = 0; k < EU3nums.size(); k++)
-		{
-			pair< int, vector<int> > insertMe;
-			insertMe.first = EU3nums[k];
-			insertMe.second = CK2nums;
-			mapping.insert(insertMe);
+			vector<Object*> maps = data[i]->getLeaves();
+
+			for (unsigned int j = 0; j < maps.size(); j++)
+			{
+				if (maps[j]->getKey().compare("ck2") == 0)
+				{
+					CK2nums.push_back(atoi(maps[j]->getLeaf().c_str()));
+				}
+				else if (maps[j]->getKey().compare("eu3") == 0)
+				{
+					EU3nums.push_back(atoi(maps[j]->getLeaf().c_str()));
+				}
+				else
+				{
+					log("Warning: unknown data while mapping provinces.\n");
+				}
+			}
+
+			if (CK2nums.size() == 0)
+			{
+				CK2nums.push_back(0);
+			}
+
+			for (unsigned int k = 0; k < EU3nums.size(); k++)
+			{
+				pair< int, vector<int> > insertMe;
+				insertMe.first = EU3nums[k];
+				insertMe.second = CK2nums;
+				mapping.insert(insertMe);
+			}
 		}
 	}
 
 	return mapping;
 }
-
+#pragma optimize("", on)
 
 inverseProvinceMapping invertProvinceMap(provinceMapping& provinceMap)
 {

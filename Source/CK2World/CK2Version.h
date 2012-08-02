@@ -11,7 +11,7 @@ class CK2Version
 	public:
 		CK2Version(string versionString);
 		bool operator == (CK2Version& rhs);
-		bool operator >= (CK2Version& rhs);
+		bool operator > (CK2Version& rhs);
 	private:
 		int	major;
 		int	minor;

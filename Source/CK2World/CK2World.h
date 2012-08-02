@@ -25,6 +25,8 @@ class CK2World
 		void							init(Object*);
 		void							addDynasties(Object*);
 		void							addTraits(Object*);
+
+		CK2Version*					getVersion() const	{ return version; };
 		date							getEndDate();
 		vector<CK2Title*>			getIndependentTitles();
 		map<string, CK2Title*>	getAllTitles();
