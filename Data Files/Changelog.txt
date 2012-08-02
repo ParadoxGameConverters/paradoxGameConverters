@@ -134,3 +134,4 @@ Revision	Log Message
 131		Get version number from save game
 132		Add Hispania1399_10_17 save game
 133		Read all files in traits and dynasties directories
+134		Update readme file
