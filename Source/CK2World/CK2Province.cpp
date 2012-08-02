@@ -18,4 +18,14 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles)
 			baronies.push_back(newBarony);
 		}
 	}
+
+	vector<Object*> cultureObj	= obj->getValue("culture");
+	if (cultureObj.size() > 0)
+	{
+		culture  = cultureObj[0]->getLeaf();
+	}
+	else
+	{
+		culture = "";
+	}
 }

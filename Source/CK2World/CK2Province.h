@@ -19,9 +19,11 @@ class CK2Province
 
 		int						getNumber()		const { return number; };
 		vector<CK2Barony*>	getBaronies()	const { return baronies; };
+		string					getCulture()	const { return culture; };
 	private:
 		int						number;
 		vector<CK2Barony*>	baronies;
+		string					culture;
 };
 
 

@@ -239,3 +239,55 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, vector
 
 	return CK2Titles.size();
 }
+
+
+cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the distinguishers
+{
+	cultureMapping cultureMap;
+	vector<Object*> links = obj->getLeaves();
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		vector<Object*>			cultures	= (*i)->getLeaves();
+
+		vector<string>				srcCultures;
+		string						dstCulture;
+		vector< distinguisher > distinguishers;
+		for (vector<Object*>::iterator j = cultures.begin(); j != cultures.end(); j++)
+		{
+			if ( (*j)->getKey() == "eu3" )
+			{
+				dstCulture = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "ck2" )
+			{
+				srcCultures.push_back( (*j)->getLeaf() );
+			}
+			if ( (*j)->getKey() == "owner" )
+			{
+				distinguisher newD;
+				newD.first	= DTOwner;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "religion" )
+			{
+				distinguisher newD;
+				newD.first	= DTReligion;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+		}
+
+		for (vector<string>::iterator j = srcCultures.begin(); j != srcCultures.end(); j++)
+		{
+			cultureStruct rule;
+			rule.srcCulture		= (*j);
+			rule.dstCulture		= dstCulture;
+			rule.distinguishers	= distinguishers;
+			cultureMap.push_back(rule);
+		}
+	}
+
+	return cultureMap;
+}

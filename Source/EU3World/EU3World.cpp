@@ -141,8 +141,8 @@ void EU3World::convertCountries(countryMapping& countryMap)
 	mapSpreadStrings.insert( make_pair("new_world", newWorldTech) );
 }
 
-
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap)
+#pragma optimize("", off)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap)
 {
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
@@ -174,13 +174,12 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 				numBaronies++;
 			}
 		}
-		log("	,EU3 province ,%d, contains ,%d, CK2 baronies.\n", i->first, numBaronies);
 
 		bool inHRE = false;
-		vector< pair<CK2Title*, int > > owners;	// ownerTitle, numBaronies
+		vector< pair<const CK2Title*, int > > owners;	// ownerTitle, numBaronies
 		for (unsigned int j = 0; j < baronies.size(); j++)
 		{
-			CK2Title* title = baronies[j]->getTitle();
+			const CK2Title* title = baronies[j]->getTitle();
 			while( !title->isIndependent() )
 			{
 				title = title->getLiege();
@@ -208,8 +207,8 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		EU3Province* newProvince = new EU3Province;
 		newProvince->setNumber(i->first);
 
-		CK2Title*	greatestOwner;
-		int			greatestOwnerNum = 0;
+		const CK2Title*	greatestOwner;
+		int					greatestOwnerNum = 0;
 		for (unsigned int j = 0; j < owners.size(); j++)
 		{
 			newProvince->addCore( countryMap[owners[j].first]->getTag() );
@@ -226,10 +225,12 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		newProvince->setInHRE(inHRE);
 		newProvince->setDiscoveredBy(europeanCountries);
 
+		newProvince->determineCulture(cultureMap, srcProvinces, baronies);
+
 		provinces.insert( make_pair(i->first, newProvince) );
 	}
 }
-
+#pragma optimize("", on)
 
 void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provinceMapping& provinceMap, CK2World& srcWorld)
 {

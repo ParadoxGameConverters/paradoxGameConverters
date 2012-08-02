@@ -6,11 +6,14 @@
 #include <vector>
 #include <map>
 #include "..\Date.h"
+#include "..\Mappers.h"
 using namespace std;
 
 
 
 class Object;
+class CK2Barony;
+class CK2Province;
 class EU3History;
 class EU3Ruler;
 class EU3Advisor;
@@ -28,6 +31,7 @@ class EU3Province
 		void		setDiscoveredBy(vector<string>);
 		void		addAdvisor(EU3Advisor*);
 		string	getOwner();
+		void		determineCulture(cultureMapping& cultureMap, vector<CK2Province*>& srcProvinces, vector<CK2Barony*> baronies);
 	private:
 		int							num;
 		string						owner;
@@ -35,6 +39,7 @@ class EU3Province
 		bool							inHRE;
 		vector<string>				discoveredBy;
 		vector<EU3History*>		history;
+		string						culture;
 };
 
 

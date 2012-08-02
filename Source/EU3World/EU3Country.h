@@ -21,7 +21,7 @@ class EU3Country
 		EU3Country();
 		void		output(FILE*);
 		void		init(string tag, string countryFile, date startDate);
-		void		convert(CK2Title*);
+		void		convert(const CK2Title*);
 		string	getTag();
 		string	getTechGroup();
 	private:

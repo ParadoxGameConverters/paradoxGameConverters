@@ -15,9 +15,7 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 	num			= atoi( obj->getKey().c_str() );
 	name			= obj->getLeaf("birth_name");
 	religion		= obj->getLeaf("religion");
-	religion		= religion.substr(1, religion.size() - 2);
 	culture		= obj->getLeaf("culture");
-	culture		= culture.substr(1, culture.size() - 2);
 
 	dynasty		= NULL;
 	map<int, CK2Dynasty*>::iterator dynItr	= dynasties.find(  atoi( obj->getLeaf("dynasty").c_str() )  );

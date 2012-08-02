@@ -158,7 +158,7 @@ void EU3Country::init(string newTag, string newHistoryFile, date startDate)
 }
 
 
-void EU3Country::convert(CK2Title* src)
+void EU3Country::convert(const CK2Title* src)
 {
 	government = "";
 	monarch = NULL;

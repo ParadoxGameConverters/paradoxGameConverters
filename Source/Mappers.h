@@ -21,8 +21,24 @@ inverseProvinceMapping invertProvinceMap(provinceMapping& provMap);
 
 vector<string> processBlockedNations(Object* obj);
 
-typedef map< CK2Title*, EU3Country* > countryMapping;
+typedef map< const CK2Title*, EU3Country* > countryMapping;
 int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, vector<EU3Country*>& EU3Countries, vector<string>& blockedNations, Object* rulesObj);
+
+
+// Culture Mappings
+enum distinguisherType
+{
+	DTOwner,
+	DTReligion
+};
+typedef pair<distinguisherType, string> distinguisher;
+typedef struct {
+	string srcCulture;
+	string dstCulture;
+	vector<distinguisher> distinguishers;
+} cultureStruct;
+typedef vector<cultureStruct> cultureMapping;
+cultureMapping initCultureMap(Object* obj);
 
 
 

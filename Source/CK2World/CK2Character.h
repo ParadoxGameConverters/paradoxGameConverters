@@ -44,6 +44,7 @@ class CK2Character
 
 		int							getNum()					const { return num; };
 		string						getName()				const { return name; };
+		string						getCulture()			const { return culture; };
 		CK2Dynasty*					getDynasty()			const { return dynasty; };
 		date							getBirthDate()			const { return birthDate; };
 		bool							isDead()					const { return dead; };

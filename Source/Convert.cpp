@@ -172,6 +172,19 @@ int main(int argc, char * argv[])
 		return -1;
 	}
 
+	// Get culture mappings
+	log("Parsing culture mappings.\n");
+	printf("Parsing culture mappings.\n");
+	obj = doParseFile("culture_mappings.txt");
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse culture_mappings.txt.\n");
+		printf("Error: Failed to parse culture_mappings.txt.\n");
+		return 1;
+	}
+	cultureMapping cultureMap;
+	cultureMap = initCultureMap(obj->getLeaves()[0]);
+
 
 	// Convert
 	log("Converting countries.\n");
@@ -180,7 +193,7 @@ int main(int argc, char * argv[])
 
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap);
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap);
 
 	log("Setting up ROTW provinces.\n");
 	printf("Setting up ROTW provinces.\n");

@@ -21,7 +21,7 @@ class EU3World
 		void						output(FILE*);
 		void						init(CK2World*);
 		void						convertCountries(countryMapping&);
-		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&);
+		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap);
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void						setupRotwProvinces(provinceMapping&);
 		void						addPotentialCountries();
