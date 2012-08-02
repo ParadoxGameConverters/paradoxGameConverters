@@ -89,6 +89,18 @@ void EU3Province::output(FILE* output)
 	}
 	fprintf(output, "	history=\n");
 	fprintf(output, "	{\n");
+	for (unsigned int i = 0; i < cores.size(); i++)
+	{
+		fprintf(output, "\t\tadd_core=\"%s\"\n", cores[i].c_str());
+	}
+	if (owner != "")
+	{
+		fprintf(output, "\t\towner=\"%s\"\n", owner.c_str());
+	}
+	if (inHRE)
+	{
+		fprintf(output, "\t\thre=yes\n");
+	}
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
