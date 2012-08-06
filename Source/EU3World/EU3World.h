@@ -17,15 +17,18 @@ class EU3Advisor;
 class EU3World
 {
 	public:
-		EU3World();
+		EU3World(CK2World*);
+
 		void						output(FILE*);
-		void						init(CK2World*);
+		
+		void						addPotentialCountries();
+
 		void						convertCountries(countryMapping&);
 		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap);
-		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void						setupRotwProvinces(provinceMapping&);
-		void						addPotentialCountries();
-		vector<EU3Country*>	getCountries();
+		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
+		
+		vector<EU3Country*>	getCountries() const { return countries; };
 	private:
 		date									startDate;
 		map<int, EU3Province*>			provinces;

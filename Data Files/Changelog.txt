@@ -140,3 +140,4 @@ Revision	Log Message
 137		Clean up CK2 classes
 138		Add missing bits to constructors
 139		Initial culture conversion for provinces
+140		Refactor EU3 classes

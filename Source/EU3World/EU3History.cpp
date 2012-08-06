@@ -8,6 +8,7 @@
 
 EU3History::EU3History()
 {
+	when = date();
 	monarch	= NULL;
 	regent	= NULL;
 	heir		= NULL;
@@ -15,7 +16,7 @@ EU3History::EU3History()
 }
 
 
-void EU3History::init(CK2History* src)
+EU3History::EU3History(CK2History* src)
 {
 	when = src->getWhen();
 
@@ -41,47 +42,13 @@ void EU3History::init(CK2History* src)
 }
 
 
-void EU3History::initMonarch(EU3Ruler* newMonarch, date newWhen)
+EU3History::EU3History(date _when, EU3Ruler* _monarch, EU3Ruler* _regent, EU3Ruler* _heir, EU3Advisor* _advisor)
 {
-	when = newWhen;
-	
-	monarch	= newMonarch;
-	regent	= NULL;
-	heir		= NULL;
-	advisor	= NULL;
-}
-
-
-void EU3History::initRegent(EU3Ruler* newRegent, date newWhen)
-{
-	when = newWhen;
-	
-	monarch	= NULL;
-	regent	= newRegent;
-	heir		= NULL;
-	advisor	= NULL;
-}
-
-
-void EU3History::initHeir(EU3Ruler* newHeir, date newWhen)
-{
-	when = newWhen;
-
-	monarch	= NULL;
-	regent	= NULL;
-	heir		= newHeir;
-	advisor	= NULL;
-}
-
-
-void EU3History::initAdvisor(EU3Advisor* newAdvisor)
-{
-	when = newAdvisor->getDate();
-
-	monarch	= NULL;
-	regent	= NULL;
-	heir		= NULL;
-	advisor	= newAdvisor;
+	when		= _when;
+	monarch	= _monarch;
+	regent	= _regent;
+	heir		= _heir;
+	advisor	= _advisor;
 }
 
 
@@ -109,28 +76,4 @@ void EU3History::output(FILE* output)
 		advisor->outputInProvince(output);
 	}
 	fprintf(output, "		}\n");
-}
-
-
-date EU3History::getWhen()
-{
-	return when;
-}
-
-
-EU3Ruler* EU3History::getMonarch()
-{
-	return monarch;
-}
-
-
-EU3Ruler* EU3History::getRegent()
-{
-	return regent;
-}
-
-
-EU3Ruler* EU3History::getHeir()
-{
-	return heir;
 }

@@ -1,5 +1,6 @@
 #include "EU3Province.h"
 #include "EU3History.h"
+#include "EU3Advisor.h"
 #include "..\Log.h"
 #include "..\Parsers\Object.h"
 #include "..\CK2World\CK2Barony.h"
@@ -8,20 +9,22 @@
 #include "..\CK2World\CK2Character.h"
 
 
-EU3Province::EU3Province()
+
+EU3Province::EU3Province(int _num, bool _inHRE, vector<string> _discoveredBy)
 {
-	num	= -1;
-	owner	= "";
+	num				= _num;
+	owner				= "";
 	cores.clear();
-	inHRE	= false;
-	discoveredBy.clear();
+	inHRE				= _inHRE;
+	discoveredBy	= _discoveredBy;
 	history.clear();
+	culture			= "";
 }
 
 
-void EU3Province::init(int newNum, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings)
+EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings)
 {
-	num = newNum;
+	num = _num;
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
 	{
@@ -31,6 +34,9 @@ void EU3Province::init(int newNum, Object* obj, date startDate, map< string, vec
 	{
 		owner = "";
 	}
+
+	cores.clear();
+	inHRE = false;
 
 	vector<Object*> discoveredByObj = obj->getValue("discovered_by");
 	for (unsigned int i = 0; i < discoveredByObj.size(); i++)
@@ -42,6 +48,10 @@ void EU3Province::init(int newNum, Object* obj, date startDate, map< string, vec
 		}
 	}
 
+	history.clear();
+	culture = "";
+
+	// update based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
 	{
@@ -69,10 +79,6 @@ void EU3Province::init(int newNum, Object* obj, date startDate, map< string, vec
 			}
 		}
 	}
-
-	inHRE = false;
-
-	history.clear();
 }
 
 
@@ -131,54 +137,14 @@ void EU3Province::output(FILE* output)
 }
 
 
-
-void EU3Province::setNumber(int newNumber)
-{
-	num = newNumber;
-}
-
-
-void EU3Province::addCore(string newCore)
-{
-	cores.push_back(newCore);
-}
-
-
-void EU3Province::setOwner(string newOwner)
-{
-	owner = newOwner;
-}
-
-
-void EU3Province::setInHRE(bool input)
-{
-	inHRE = input;
-}
-
-
-void EU3Province::setDiscoveredBy(vector<string> input)
-{
-	for (unsigned int i = 0; i < input.size(); i++)
-	{
-		discoveredBy.push_back(input[i]);
-	}
-}
-
-
 void EU3Province::addAdvisor(EU3Advisor* newAdvisor)
 {
-	EU3History* newHistory = new EU3History;
-	newHistory->initAdvisor(newAdvisor);
+	EU3History* newHistory = new EU3History(newAdvisor->getStartDate(), NULL, NULL, NULL, newAdvisor);
 	history.push_back(newHistory);
 }
 
 
-string EU3Province::getOwner()
-{
-	return owner;
-}
-
-string determineEU3Culture(const cultureMapping& cultureMap, string CK2Culture)
+string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, string CK2Culture)
 {
 	if (CK2Culture[0] == '"')
 	{

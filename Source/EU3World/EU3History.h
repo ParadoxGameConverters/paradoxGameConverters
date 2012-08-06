@@ -14,16 +14,16 @@ class EU3Advisor;
 class EU3History {
 	public:
 		EU3History();
-		void				init(CK2History*);
-		void				initMonarch(EU3Ruler*, date);
-		void				initRegent(EU3Ruler*, date);
-		void				initHeir(EU3Ruler*, date);
-		void				initAdvisor(EU3Advisor*);
+		EU3History(CK2History*);
+		EU3History(date when, EU3Ruler* monarch, EU3Ruler* regent, EU3Ruler* heir, EU3Advisor* advisor);
+
 		void				output(FILE*);
-		date				getWhen();
-		EU3Ruler*		getMonarch();
-		EU3Ruler*		getRegent();
-		EU3Ruler*		getHeir();
+
+		date				getWhen()		const { return when; };
+		EU3Ruler*		getMonarch()	const { return monarch; };
+		EU3Ruler*		getRegent()		const { return regent ; };
+		EU3Ruler*		getHeir()		const { return heir; };
+
 	private:
 		date				when;
 		EU3Ruler*		monarch;

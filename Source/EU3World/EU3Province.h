@@ -21,18 +21,22 @@ class EU3Advisor;
 class EU3Province
 {
 	public:
-		EU3Province();
-		void		init(int num, Object* obj, date startDate, map< string, vector<string> >&);
+		EU3Province(int _num, bool _inHRE, vector<string> _discoveredBy);
+		EU3Province(int _num, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings);
+		
 		void		output(FILE*);
-		void		setNumber(int);
-		void		addCore(string);
-		void		setOwner(string);
-		void		setInHRE(bool);
-		void		setDiscoveredBy(vector<string>);
+
 		void		addAdvisor(EU3Advisor*);
-		string	getOwner();
 		void		determineCulture(cultureMapping& cultureMap, vector<CK2Province*>& srcProvinces, vector<CK2Barony*> baronies);
+
+		void		addCore(string core)			{ cores.push_back(core); };
+		void		setOwner(string _owner)		{ owner = _owner; };
+
+		string	getOwner()	const { return owner; };
+		
 	private:
+		string determineEU3Culture(const cultureMapping& cultureMap, string CK2Culture);
+
 		int							num;
 		string						owner;
 		vector<string>				cores;

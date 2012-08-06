@@ -15,15 +15,18 @@ class EU3Province;
 class EU3Advisor
 {
 	public:
-		EU3Advisor();
 		EU3Advisor(Object*, map<int, EU3Province*>&);
 		EU3Advisor(CK2Character*, inverseProvinceMapping&, map<int, EU3Province*>&, date);
+
 		void	outputInProvince(FILE*);
 		void	outputInActive(FILE*);
-		void	setLocation(int);
-		int	getLocation();
-		date	getDate();
-		date	getDeathDate();
+
+		void	setLocation(int _location)	{ location = _location; };
+
+		int	getLocation()	const { return location; };
+		date	getStartDate()	const { return startDate; };
+		date	getDeathDate()	const { return deathDate; };
+
 	private:
 		string	name;
 		int		id;

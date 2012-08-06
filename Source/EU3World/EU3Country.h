@@ -18,12 +18,15 @@ class CK2Province;
 class EU3Country
 {
 	public:
-		EU3Country();
+		EU3Country(string tag, string countryFile, date startDate);
+
 		void		output(FILE*);
-		void		init(string tag, string countryFile, date startDate);
+		
 		void		convert(const CK2Title*);
-		string	getTag();
-		string	getTechGroup();
+
+		string	getTag()			const { return tag; };
+		string	getTechGroup()	const { return techGroup; };
+
 	private:
 		string					tag;
 		string					historyFile;

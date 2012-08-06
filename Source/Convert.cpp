@@ -135,8 +135,7 @@ int main(int argc, char * argv[])
 		}
 	}
 
-	EU3World destWorld;
-	destWorld.init(&srcWorld);
+	EU3World destWorld(&srcWorld);
 
 
 	// Get potential EU3 countries
