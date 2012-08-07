@@ -26,7 +26,7 @@ CK2World::CK2World()
 	baronies.clear();
 }
 
-
+#pragma optimize("", off)
 void CK2World::init(Object* obj)
 {
 	// get version
@@ -92,8 +92,16 @@ void CK2World::init(Object* obj)
 		string key = leaves[i]->getKey();
 		if ( (key.substr(0, 2) == "e_") || (key.substr(0, 2) == "k_") || (key.substr(0, 2) == "d_") || (key.substr(0, 2) == "c_") || (key.substr(0, 2) == "b_") )
 		{
-			CK2Title* newTitle = new CK2Title(leaves[i], characters);
-			titles.insert( make_pair(newTitle->getTitleString(), newTitle) );
+			map<string, CK2Title*>::iterator titleItr = potentialTitles.find(key);
+			if (titleItr == potentialTitles.end())
+			{
+				log("Error: tried to create title %s, but it is not a potential title.\n", key.c_str());
+				CK2Title* newTitle = new CK2Title(key);
+				potentialTitles.insert( make_pair(key, newTitle) );
+				titleItr = potentialTitles.find(key);
+			}
+			titleItr->second->init(leaves[i], characters);
+			titles.insert( make_pair(titleItr->second->getTitleString(), titleItr->second) );
 		}
 	}
 
@@ -142,6 +150,12 @@ void CK2World::init(Object* obj)
 		}
 	}
 
+	// create tree of De Jure lieges
+	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
+	{
+		i->second->setDeJureLiege(potentialTitles);
+	}
+
 	// determine heirs
 	printf("	Determining heirs\n");
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
@@ -162,7 +176,7 @@ void CK2World::init(Object* obj)
 	log("	There are a total of %d independent titles\n", independentTitles.size());
 	log("	There are a total of %d hre members\n", hreMembers.size());
 }
-
+#pragma optimize("", on)
 
 void CK2World::addDynasties(Object* obj)
 {
@@ -185,3 +199,25 @@ void CK2World::addTraits(Object* obj)
 		traits.insert( make_pair(i + 1, newTrait) );
 	}
 }
+
+#pragma optimize ("", off)
+void CK2World::addPotentialTitles(Object* obj)
+{
+	vector<Object*> leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
+	{
+		map<string, CK2Title*>::iterator titleItr = potentialTitles.find( (*itr)->getKey() );
+		if (titleItr == potentialTitles.end())
+		{
+			CK2Title* newTitle = new CK2Title( (*itr)->getKey() );
+			potentialTitles.insert( make_pair((*itr)->getKey(), newTitle) );
+			titleItr = potentialTitles.find( (*itr)->getKey() );
+		}
+		else
+		{
+			log("Note! The CK2World::addPotentialTitles() condition is needed!\n");
+		}
+		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), potentialTitles, this );
+	}
+}
+#pragma optimize ("", on)

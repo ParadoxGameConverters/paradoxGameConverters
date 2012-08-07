@@ -141,3 +141,4 @@ Revision	Log Message
 138		Add missing bits to constructors
 139		Initial culture conversion for provinces
 140		Refactor EU3 classes
+141		Update culture conversion to allow distinguishers

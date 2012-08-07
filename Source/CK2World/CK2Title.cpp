@@ -1,5 +1,6 @@
 #include "CK2Title.h"
 #include "..\Parsers\Object.h"
+#include "CK2World.h"
 #include "CK2Character.h"
 #include "CK2Title.h"
 #include "CK2Dynasty.h"
@@ -8,7 +9,26 @@
 
 
 
-CK2Title::CK2Title(Object* obj,  map<int, CK2Character*>& characters)
+CK2Title::CK2Title(string _titleString)
+{
+	titleString			= _titleString;
+	holder				= NULL;
+	heir					= NULL;
+	successionLaw		= "";
+	genderLaw			= "";
+	nominees.clear();
+	history.clear();
+	liegeString			= "";
+	liege					= NULL;
+	vassals.clear();
+	deJureLiegeString	= "";
+	deJureLiege			= NULL;
+	independent			= true;
+	inHRE					= false;
+}
+
+
+void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 {
 	titleString = obj->getKey();
 	holder = NULL;
@@ -68,6 +88,20 @@ CK2Title::CK2Title(Object* obj,  map<int, CK2Character*>& characters)
 	liege = NULL;
 
 	vassals.clear();
+
+	vector<Object*> deJureLiegeObjs = obj->getValue("de_jure_liege");
+	if (deJureLiegeObjs.size() > 0)
+	{
+		deJureLiegeString = deJureLiegeObjs[0]->getLeaf();
+	}
+	else
+	{
+		deJureLiegeString = "";
+	}
+	if (deJureLiegeString[0] == '"')
+	{
+		deJureLiegeString = deJureLiegeString.substr(1, deJureLiegeString.size() - 2);
+	}
 
 	independent = true;
 	inHRE = false;
@@ -140,6 +174,45 @@ void CK2Title::setHeir(CK2Character* newHeir)
 	heir = newHeir;
 }
 
+
+void CK2Title::setDeJureLiege(const map<string, CK2Title*>& titles)
+{
+	if (  (deJureLiegeString != "") && (deJureLiegeString != "---") && ( (deJureLiege == NULL) || (deJureLiege->getTitleString() != deJureLiegeString ) )  )
+	{
+		map<string, CK2Title*>::const_iterator titleItr = titles.find(deJureLiegeString);
+		if (titleItr != titles.end())
+		{
+			deJureLiege = titleItr->second;
+		}
+	}
+}
+
+#pragma optimize("", off)
+void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& titles, CK2World* world)
+{
+	for (vector<Object*>::iterator itr = obj.begin(); itr < obj.end(); itr++)
+	{
+		string substr = (*itr)->getKey().substr(0, 2);
+		if ( (substr != "e_") && (substr != "k_") && (substr != "d_") && (substr != "c_") && (substr != "b_") )
+		{
+			continue;
+		}
+		map<string, CK2Title*>::iterator titleItr = titles.find( (*itr)->getKey() );
+		if (titleItr == titles.end())
+		{
+			CK2Title* newTitle = new CK2Title( (*itr)->getKey() );
+			titles.insert( make_pair((*itr)->getKey(), newTitle) );
+			titleItr = titles.find( (*itr)->getKey() );
+		}
+		else
+		{
+			log("Note! The CK2Title::addDeJureVassals() condition is needed!\n");
+		}
+		titleItr->second->setDeJureLiege(this);
+		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), titles, world );
+	}
+}
+#pragma optimize("", on)
 
 CK2Character* CK2Title::getFeudalElectiveHeir(map<int, CK2Character*>& characters)
 {

@@ -263,10 +263,17 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 			{
 				srcCultures.push_back( (*j)->getLeaf() );
 			}
-			if ( (*j)->getKey() == "owner" )
+			if ( (*j)->getKey() == "de_jure" )
 			{
 				distinguisher newD;
-				newD.first	= DTOwner;
+				newD.first	= DTDeJure;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "kingdom_culture" )
+			{
+				distinguisher newD;
+				newD.first	= DTKingdomCulture;
 				newD.second	= (*j)->getLeaf();
 				distinguishers.push_back(newD);
 			}
@@ -274,6 +281,13 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 			{
 				distinguisher newD;
 				newD.first	= DTReligion;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "hre_member" )
+			{
+				distinguisher newD;
+				newD.first	= DTHREMember;
 				newD.second	= (*j)->getLeaf();
 				distinguishers.push_back(newD);
 			}

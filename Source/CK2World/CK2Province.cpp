@@ -28,4 +28,14 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles)
 	{
 		culture = "";
 	}
+
+	vector<Object*> religionObj = obj->getValue("religion");
+	if (religionObj.size() > 0)
+	{
+		religion  = religionObj[0]->getLeaf();
+	}
+	else
+	{
+		religion = "";
+	}
 }

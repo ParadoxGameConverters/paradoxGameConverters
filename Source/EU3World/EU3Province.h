@@ -35,7 +35,7 @@ class EU3Province
 		string	getOwner()	const { return owner; };
 		
 	private:
-		string determineEU3Culture(const cultureMapping& cultureMap, string CK2Culture);
+		string determineEU3Culture(const cultureMapping& cultureMap, CK2Province* srcProvince);
 
 		int							num;
 		string						owner;

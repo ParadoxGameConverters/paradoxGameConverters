@@ -62,10 +62,32 @@ int main(int argc, char * argv[])
 	printf("Getting CK2 data.\n");
 	CK2World srcWorld;
 
+	log("Parsing landed titles.\n");
+	printf("Parsing landed titles.\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
+	srcWorld.addPotentialTitles(obj);
+	struct _finddata_t	landedTitlesdata;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\landed_titles\\*").c_str(), &landedTitlesdata)) == -1L)
+	{
+		log("\t\tError: Could not open landed_titles directory.\n");
+		printf("\t\tError: Could not open landed_titles directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(landedTitlesdata.name, ".") == 0 || strcmp(landedTitlesdata.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
+		srcWorld.addPotentialTitles(obj);
+	} while(_findnext(fileListing, &landedTitlesdata) == 0);
+	_findclose(fileListing);
+
 	log("\tGetting traits\n");
 	printf("\tGetting traits\n");
 	struct _finddata_t	traitsData;
-	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\traits\\*").c_str(), &traitsData)) == -1L)
 	{
 		log("\t\tError: Could not open traits directory.\n");
@@ -86,6 +108,7 @@ int main(int argc, char * argv[])
 	log("\tAdding dynasties from CK2 Install\n");
 	printf("\tAdding dynasties from CK2 Install\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
+	srcWorld.addDynasties(obj);
 	struct _finddata_t	dynastiesData;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\dynasties\\*").c_str(), &dynastiesData)) == -1L)
 	{
@@ -103,7 +126,6 @@ int main(int argc, char * argv[])
 		srcWorld.addDynasties(obj);
 	} while(_findnext(fileListing, &dynastiesData) == 0);
 	_findclose(fileListing);
-
 	
 	log("Parsing CK2 save.\n");
 	printf("Parsing CK2 save.\n");

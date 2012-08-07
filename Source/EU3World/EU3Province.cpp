@@ -143,31 +143,96 @@ void EU3Province::addAdvisor(EU3Advisor* newAdvisor)
 	history.push_back(newHistory);
 }
 
-
-string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, string CK2Culture)
+#pragma optimize("", off)
+string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, CK2Province* srcProvince)
 {
+	string CK2Culture = srcProvince->getCulture();
 	if (CK2Culture[0] == '"')
 	{
 		CK2Culture = CK2Culture.substr(1, CK2Culture.size() - 2);
 	}
 	for (cultureMapping::const_iterator itr = cultureMap.begin(); itr < cultureMap.end(); itr++)
 	{
-		if (itr->srcCulture == CK2Culture)
+		if (itr->srcCulture != CK2Culture)
 		{
-			return itr->dstCulture;
+			continue;
 		}
+
+		bool matchConditions = true;
+		for (vector<distinguisher>::const_iterator DTItr = itr->distinguishers.begin(); DTItr < itr->distinguishers.end(); DTItr++)
+		{
+			switch (DTItr->first)
+			{
+				case DTDeJure:
+					{
+						bool subCondition = false;
+						CK2Title* title = srcProvince->getBaronies()[0]->getTitle()->getLiege();
+						while(title != NULL)
+						{
+							if (title->getTitleString() == DTItr->second)
+							{
+								subCondition = true;
+								break;
+							}
+							title = title->getDeJureLiege();
+						}
+						matchConditions = subCondition;
+					}
+					break;
+				case DTKingdomCulture:
+					{
+						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
+						while (!kingdomTitle->isIndependent())
+						{
+							kingdomTitle = kingdomTitle->getLiege();
+						}
+						if (kingdomTitle->getHolder()->getCulture() != DTItr->second)
+						{
+							matchConditions = false;
+						}
+					}
+					break;
+				case DTReligion:
+					if (srcProvince->getReligion() != DTItr->second)
+					{
+						matchConditions = false;
+					}
+					break;
+				case DTHREMember:
+					{
+						bool subCondition = false;
+						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
+						while (!kingdomTitle->isIndependent())
+						{
+							if (kingdomTitle->getLiegeString() == "e_hre")
+							{
+								subCondition = true;
+								break;
+							}
+							kingdomTitle = kingdomTitle->getLiege();
+						}
+						matchConditions = subCondition;
+					}
+					break;
+			}
+		}
+		if (!matchConditions)
+		{
+			continue;
+		}
+		return itr->dstCulture;
 	}
 
 	return "";
 }
-
+#pragma optimize("", on)
 
 void EU3Province::determineCulture(cultureMapping& cultureMap, vector<CK2Province*>& srcProvinces, vector<CK2Barony*> baronies)
 {
 	map<string, int> cultureCounts;
 	for (vector<CK2Province*>::iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
-		string EU3Culture = determineEU3Culture( cultureMap, (*provItr)->getCulture() );
+		string EU3Culture = determineEU3Culture(cultureMap, *provItr);
 		map<string, int>::iterator cultureItr = cultureCounts.find(EU3Culture);
 		if (cultureItr == cultureCounts.end())
 		{
@@ -203,54 +268,54 @@ void EU3Province::determineCulture(cultureMapping& cultureMap, vector<CK2Provinc
 		}
 	}
 
-	if (tie == true)
-	{
-		log("\tCulture tie in province %d, using barons to distinguish.\n", num);
-		cultureCounts.clear();
-		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr < baronies.end(); baronyItr++)
-		{
-			string EU3Culture = determineEU3Culture( cultureMap, (*baronyItr)->getTitle()->getHolder()->getCulture() );
-			bool isATiedCulture = false;
-			for (vector<string>::iterator tiedItr = tiedCultures.begin(); tiedItr < tiedCultures.end(); tiedItr++)
-			{
-				if (EU3Culture == *tiedItr)
-				{
-					map<string, int>::iterator cultureItr = cultureCounts.find(EU3Culture);
-					if (cultureItr == cultureCounts.end())
-					{
-						cultureCounts[EU3Culture] = 1;
-					}
-					else
-					{
-						cultureItr->second++;
-					}
-				}
-			}
-		}
+	//if (tie == true)
+	//{
+	//	log("\tCulture tie in province %d, using barons to distinguish.\n", num);
+	//	cultureCounts.clear();
+	//	for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr < baronies.end(); baronyItr++)
+	//	{
+	//		string EU3Culture = determineEU3Culture( cultureMap, (*baronyItr)->getTitle()->getHolder()->getCulture() );
+	//		bool isATiedCulture = false;
+	//		for (vector<string>::iterator tiedItr = tiedCultures.begin(); tiedItr < tiedCultures.end(); tiedItr++)
+	//		{
+	//			if (EU3Culture == *tiedItr)
+	//			{
+	//				map<string, int>::iterator cultureItr = cultureCounts.find(EU3Culture);
+	//				if (cultureItr == cultureCounts.end())
+	//				{
+	//					cultureCounts[EU3Culture] = 1;
+	//				}
+	//				else
+	//				{
+	//					cultureItr->second++;
+	//				}
+	//			}
+	//		}
+	//	}
 
-		topCulture		= "";
-		highestCount	= 0;
-		tiedCultures.clear();
-		for (map<string, int>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
-		{
-			if (countsItr->second > highestCount)
-			{
-				topCulture		= countsItr->first;
-				highestCount	= countsItr->second;
-				tiedCultures.clear();
-				tie = false;
-			}
-			else if (countsItr->second == highestCount)
-			{
-				if (tiedCultures.size() == 0)
-				{
-					tiedCultures.push_back(topCulture);
-				}
-				tiedCultures.push_back(countsItr->first);
-				tie = true;
-			}
-		}
-	}
+	//	topCulture		= "";
+	//	highestCount	= 0;
+	//	tiedCultures.clear();
+	//	for (map<string, int>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
+	//	{
+	//		if (countsItr->second > highestCount)
+	//		{
+	//			topCulture		= countsItr->first;
+	//			highestCount	= countsItr->second;
+	//			tiedCultures.clear();
+	//			tie = false;
+	//		}
+	//		else if (countsItr->second == highestCount)
+	//		{
+	//			if (tiedCultures.size() == 0)
+	//			{
+	//				tiedCultures.push_back(topCulture);
+	//			}
+	//			tiedCultures.push_back(countsItr->first);
+	//			tie = true;
+	//		}
+	//	}
+	//}
 
 	if (tie == true)
 	{

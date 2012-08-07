@@ -27,6 +27,7 @@ class CK2World
 		void							init(Object*);
 		void							addDynasties(Object*);
 		void							addTraits(Object*);
+		void							addPotentialTitles(Object*);
 
 		CK2Version*					getVersion()				const	{ return version; };
 		date							getEndDate()				const { return endDate; };
@@ -41,6 +42,7 @@ class CK2World
 		map<int, CK2Dynasty*>	dynasties;
 		map<int, CK2Character*>	characters;
 		map<int, CK2Trait*>		traits;
+		map<string, CK2Title*>	potentialTitles;
 		map<string, CK2Title*>	titles;
 		map<int, CK2Province*>	provinces;
 		map<string, CK2Barony*>	baronies;

@@ -28,8 +28,10 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, vector
 // Culture Mappings
 enum distinguisherType
 {
-	DTOwner,
-	DTReligion
+	DTDeJure,
+	DTKingdomCulture,
+	DTReligion,
+	DTHREMember
 };
 typedef pair<distinguisherType, string> distinguisher;
 typedef struct {
