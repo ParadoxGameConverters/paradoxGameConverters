@@ -42,8 +42,8 @@ class EU3Province
 		vector<string>				cores;
 		bool							inHRE;
 		vector<string>				discoveredBy;
-		vector<EU3History*>		history;
 		string						culture;
+		vector<EU3History*>		history;
 };
 
 

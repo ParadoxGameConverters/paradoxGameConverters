@@ -142,3 +142,4 @@ Revision	Log Message
 139		Initial culture conversion for provinces
 140		Refactor EU3 classes
 141		Update culture conversion to allow distinguishers
+142		ROTW cultures

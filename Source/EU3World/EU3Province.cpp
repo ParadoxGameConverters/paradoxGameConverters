@@ -48,8 +48,17 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 		}
 	}
 
+	vector<Object*> cultureObj = obj->getValue("culture");
+	if (cultureObj.size() > 0)
+	{
+		culture = cultureObj[0]->getLeaf();
+	}
+	else
+	{
+		culture = "";
+	}
+
 	history.clear();
-	culture = "";
 
 	// update based on history
 	vector<Object*> objectList = obj->getLeaves();
@@ -75,6 +84,12 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 					{
 						discoveredBy.push_back( discoverers[j] );
 					}
+				}
+
+				vector<Object*> cultureObj = obj->getValue("culture");
+				if (cultureObj.size() > 0)
+				{
+					culture = cultureObj[0]->getLeaf();
 				}
 			}
 		}
@@ -143,7 +158,7 @@ void EU3Province::addAdvisor(EU3Advisor* newAdvisor)
 	history.push_back(newHistory);
 }
 
-#pragma optimize("", off)
+
 string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, CK2Province* srcProvince)
 {
 	string CK2Culture = srcProvince->getCulture();
@@ -225,7 +240,7 @@ string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, CK2Pro
 
 	return "";
 }
-#pragma optimize("", on)
+
 
 void EU3Province::determineCulture(cultureMapping& cultureMap, vector<CK2Province*>& srcProvinces, vector<CK2Barony*> baronies)
 {

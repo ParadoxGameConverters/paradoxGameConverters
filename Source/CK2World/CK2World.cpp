@@ -26,7 +26,7 @@ CK2World::CK2World()
 	baronies.clear();
 }
 
-#pragma optimize("", off)
+
 void CK2World::init(Object* obj)
 {
 	// get version
@@ -176,7 +176,7 @@ void CK2World::init(Object* obj)
 	log("	There are a total of %d independent titles\n", independentTitles.size());
 	log("	There are a total of %d hre members\n", hreMembers.size());
 }
-#pragma optimize("", on)
+
 
 void CK2World::addDynasties(Object* obj)
 {
@@ -200,7 +200,7 @@ void CK2World::addTraits(Object* obj)
 	}
 }
 
-#pragma optimize ("", off)
+
 void CK2World::addPotentialTitles(Object* obj)
 {
 	vector<Object*> leaves = obj->getLeaves();
@@ -220,4 +220,3 @@ void CK2World::addPotentialTitles(Object* obj)
 		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), potentialTitles, this );
 	}
 }
-#pragma optimize ("", on)

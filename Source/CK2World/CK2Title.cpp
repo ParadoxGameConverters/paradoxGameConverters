@@ -187,7 +187,7 @@ void CK2Title::setDeJureLiege(const map<string, CK2Title*>& titles)
 	}
 }
 
-#pragma optimize("", off)
+
 void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& titles, CK2World* world)
 {
 	for (vector<Object*>::iterator itr = obj.begin(); itr < obj.end(); itr++)
@@ -212,7 +212,7 @@ void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& tit
 		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), titles, world );
 	}
 }
-#pragma optimize("", on)
+
 
 CK2Character* CK2Title::getFeudalElectiveHeir(map<int, CK2Character*>& characters)
 {
