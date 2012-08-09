@@ -10,21 +10,20 @@
 
 
 
-EU3Province::EU3Province(int _num, bool _inHRE, vector<string> _discoveredBy)
-{
-	num				= _num;
-	owner				= "";
-	cores.clear();
-	inHRE				= _inHRE;
-	discoveredBy	= _discoveredBy;
-	history.clear();
-	culture			= "";
-}
-
-
 EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings)
 {
 	num = _num;
+
+	vector<Object*> capitalObj = obj->getValue("capital");
+	if (capitalObj.size() > 0)
+	{
+		capital = capitalObj[0]->getLeaf();
+	}
+	else
+	{
+		capital = "";
+	}
+
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
 	{
@@ -70,10 +69,20 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 			date histDate(key);
 			if (histDate <= startDate)
 			{
+				vector<Object*> capitalObj = obj->getValue("capital");
+				if (capitalObj.size() > 0)
+				{
+					capital = capitalObj[0]->getLeaf();
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, capital, "", "", vector<string>());
+					history.push_back(newHistory);
+				}
+
 				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
 				if (newOwnerObj.size() > 0)
 				{
 					owner = newOwnerObj[0]->getLeaf();
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", owner, "", vector<string>());
+					history.push_back(newHistory);
 				}
 
 				vector<Object*> discoveredByObj = obj->getValue("discovered_by");
@@ -84,12 +93,16 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 					{
 						discoveredBy.push_back( discoverers[j] );
 					}
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", "", "", discoverers);
+					history.push_back(newHistory);
 				}
 
 				vector<Object*> cultureObj = obj->getValue("culture");
 				if (cultureObj.size() > 0)
 				{
 					culture = cultureObj[0]->getLeaf();
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", "", culture, vector<string>());
+					history.push_back(newHistory);
 				}
 			}
 		}
@@ -117,6 +130,10 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\tculture=%s\n", culture.c_str());
 	}
+	if (capital != "")
+	{
+		fprintf(output, "\tcapital=\"%s\"\n", capital.c_str());
+	}
 	fprintf(output, "	history=\n");
 	fprintf(output, "	{\n");
 	for (unsigned int i = 0; i < cores.size(); i++)
@@ -126,6 +143,10 @@ void EU3Province::output(FILE* output)
 	if (owner != "")
 	{
 		fprintf(output, "\t\towner=\"%s\"\n", owner.c_str());
+	}
+	if (capital != "")
+	{
+		fprintf(output, "\t\tcapital=\"%s\"\n", capital.c_str());
 	}
 	if (culture != "")
 	{
@@ -152,9 +173,22 @@ void EU3Province::output(FILE* output)
 }
 
 
+void EU3Province::convert(int _num, bool _inHRE, vector<string> _discoveredBy)
+{
+	num				= _num;
+	//capital	-- leave it as it is from the history file
+	owner				= "";
+	cores.clear();
+	inHRE				= _inHRE;
+	discoveredBy	= _discoveredBy;
+	history.clear();
+	culture			= "";
+}
+
+
 void EU3Province::addAdvisor(EU3Advisor* newAdvisor)
 {
-	EU3History* newHistory = new EU3History(newAdvisor->getStartDate(), NULL, NULL, NULL, newAdvisor);
+	EU3History* newHistory = new EU3History(newAdvisor->getStartDate(), NULL, NULL, NULL, newAdvisor, "", "", "", vector<string>());
 	history.push_back(newHistory);
 }
 

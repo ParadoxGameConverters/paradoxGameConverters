@@ -21,11 +21,11 @@ class EU3Advisor;
 class EU3Province
 {
 	public:
-		EU3Province(int _num, bool _inHRE, vector<string> _discoveredBy);
 		EU3Province(int _num, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings);
 		
 		void		output(FILE*);
 
+		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy);
 		void		addAdvisor(EU3Advisor*);
 		void		determineCulture(cultureMapping& cultureMap, vector<CK2Province*>& srcProvinces, vector<CK2Barony*> baronies);
 
@@ -38,6 +38,7 @@ class EU3Province
 		string determineEU3Culture(const cultureMapping& cultureMap, CK2Province* srcProvince);
 
 		int							num;
+		string						capital;
 		string						owner;
 		vector<string>				cores;
 		bool							inHRE;

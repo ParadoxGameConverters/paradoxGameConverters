@@ -22,10 +22,10 @@ class EU3World
 		void						output(FILE*);
 		
 		void						addPotentialCountries();
+		void						setupProvinces(provinceMapping& provinceMap);
 
 		void						convertCountries(countryMapping&);
 		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap);
-		void						setupRotwProvinces(provinceMapping&);
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		
 		vector<EU3Country*>	getCountries() const { return countries; };

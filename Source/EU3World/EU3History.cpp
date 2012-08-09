@@ -13,6 +13,10 @@ EU3History::EU3History()
 	regent	= NULL;
 	heir		= NULL;
 	advisor	= NULL;
+	capital	= "";
+	owner		= "";
+	culture	= "";
+	discoverers.clear();
 }
 
 
@@ -39,23 +43,31 @@ EU3History::EU3History(CK2History* src)
 			monarch = new EU3Ruler(holder);
 		}
 	}
+	capital	= "";
+	owner		= "";
+	culture	= "";
+	discoverers.clear();
 }
 
 
-EU3History::EU3History(date _when, EU3Ruler* _monarch, EU3Ruler* _regent, EU3Ruler* _heir, EU3Advisor* _advisor)
+EU3History::EU3History(date _when, EU3Ruler* _monarch, EU3Ruler* _regent, EU3Ruler* _heir, EU3Advisor* _advisor, string _capital, string _owner, string _culture, vector<string> _discoverers)
 {
-	when		= _when;
-	monarch	= _monarch;
-	regent	= _regent;
-	heir		= _heir;
-	advisor	= _advisor;
+	when			= _when;
+	monarch		= _monarch;
+	regent		= _regent;
+	heir			= _heir;
+	advisor		= _advisor;
+	capital		= _capital;
+	owner			= _owner;
+	culture		= _culture;
+	discoverers	= _discoverers;
 }
 
 
 void EU3History::output(FILE* output)
 {
-	fprintf(output, "		%d.%d.%d=\n", when.year, when.month, when.day);
-	fprintf(output, "		{\n");
+	fprintf(output, "\t\t%d.%d.%d=\n", when.year, when.month, when.day);
+	fprintf(output, "\t\t{\n");
 	if (monarch != NULL)
 	{
 		monarch->outputAsMonarch(output);
@@ -63,9 +75,9 @@ void EU3History::output(FILE* output)
 	if (regent != NULL)
 	{
 		regent->outputAsRegent(output);
-		fprintf(output, "		}\n");
-		fprintf(output, "		%d.%d.%d=\n", when.year, when.month, when.day);
-		fprintf(output, "		{\n");
+		fprintf(output, "\t\t}\n");
+		fprintf(output, "\t\t%d.%d.%d=\n", when.year, when.month, when.day);
+		fprintf(output, "\t\t{\n");
 	}
 	if (heir != NULL)
 	{
@@ -75,5 +87,21 @@ void EU3History::output(FILE* output)
 	{
 		advisor->outputInProvince(output);
 	}
-	fprintf(output, "		}\n");
+	if (capital != "")
+	{
+		fprintf(output, "\t\t\tcapital=\"%s\"\n", capital.c_str());
+	}
+	if (owner != "")
+	{
+		fprintf(output, "\t\t\towner=\"%s\"\n", owner.c_str());
+	}
+	if (owner != "")
+	{
+		fprintf(output, "\t\t\tculture=%s\n", culture.c_str());
+	}
+	for (unsigned int i = 0; i < discoverers.size(); i++)
+	{
+		fprintf(output, "\t\t\tdiscovered_by=\"%s\"\n", discoverers[i].c_str());
+	}
+	fprintf(output, "\t\t}\n");
 }

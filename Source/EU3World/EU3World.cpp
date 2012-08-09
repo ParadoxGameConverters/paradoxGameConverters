@@ -101,6 +101,37 @@ void EU3World::addPotentialCountries()
 }
 
 
+void EU3World::setupProvinces(provinceMapping& provinceMap)
+{
+	for (provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
+	{
+		//parse relevant file
+		Object* obj;
+		char num[5];
+		_itoa_s(i->first, num, 5, 10);
+		
+		string filename = Configuration::getEU3Path() + "\\history\\provinces\\" + num + "*-*.txt";
+		struct _finddata_t	fileData;
+		intptr_t					fileListing;
+		if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
+		{
+			obj = doParseFile( (Configuration::getEU3Path() + "\\history\\provinces\\" + fileData.name).c_str() );
+			_findclose(fileListing);
+		}
+		else
+		{
+			obj = new Object("NULL Object");
+		}
+
+		//initialize province
+		EU3Province* newProvince = new EU3Province(i->first, obj, startDate, mapSpreadStrings);
+
+		//add to provinces list
+		provinces.insert( make_pair(i->first, newProvince) );
+	}
+}
+
+
 void EU3World::convertCountries(countryMapping& countryMap)
 {
 	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
@@ -236,13 +267,14 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			}
 		}
 
-		EU3Province* newProvince = new EU3Province(i->first, inHRE, europeanCountries);
+		map<int, EU3Province*>::iterator provItr = provinces.find(i->first);
+		provItr->second->convert(i->first, inHRE, europeanCountries);
 
 		const CK2Title*	greatestOwner;
 		int					greatestOwnerNum = 0;
 		for (unsigned int j = 0; j < owners.size(); j++)
 		{
-			newProvince->addCore( countryMap[owners[j].first]->getTag() );
+			provItr->second->addCore( countryMap[owners[j].first]->getTag() );
 			if (owners[j].second > greatestOwnerNum)
 			{
 				greatestOwner		= owners[j].first;
@@ -251,44 +283,10 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		if (owners.size() > 0)
 		{
-			newProvince->setOwner( countryMap[greatestOwner]->getTag() );
+			provItr->second->setOwner( countryMap[greatestOwner]->getTag() );
 		}
 
-		newProvince->determineCulture(cultureMap, srcProvinces, baronies);
-
-		provinces.insert( make_pair(i->first, newProvince) );
-	}
-}
-
-
-void EU3World::setupRotwProvinces(inverseProvinceMapping& inverseProvinceMap)
-{
-	vector<int> rotwProvinces = inverseProvinceMap[0];
-	for (unsigned int i = 0; i < rotwProvinces.size(); i++)
-	{
-		//parse relevant file
-		Object* obj;
-		char num[5];
-		_itoa_s(rotwProvinces[i], num, 5, 10);
-		
-		string filename = Configuration::getEU3Path() + "\\history\\provinces\\" + num + "*-*.txt";
-		struct _finddata_t	fileData;
-		intptr_t					fileListing;
-		if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
-		{
-			obj = doParseFile( (Configuration::getEU3Path() + "\\history\\provinces\\" + fileData.name).c_str() );
-			_findclose(fileListing);
-		}
-		else
-		{
-			obj = new Object("NULL Object");
-		}
-
-		//initialize province
-		EU3Province* newProvince = new EU3Province(rotwProvinces[i], obj, startDate, mapSpreadStrings);
-
-		//add to provinces list
-		provinces.insert( make_pair(rotwProvinces[i], newProvince) );
+		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 	}
 }
 

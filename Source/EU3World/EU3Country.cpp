@@ -63,7 +63,7 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 				{
 					monarch = new EU3Ruler(newMonarchObj[0]);
 					previousMonarchs.push_back(monarch);
-					newHistory = new EU3History(histDate, monarch, NULL, NULL, NULL);
+					newHistory = new EU3History(histDate, monarch, NULL, NULL, NULL, "", "", "", vector<string>());
 					history.push_back(newHistory);
 				}
 
@@ -71,7 +71,7 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 				if (newHeirObj.size() > 0)
 				{
 					heir = new EU3Ruler(newHeirObj[0]);
-					newHistory = new EU3History(histDate, NULL, NULL, heir, NULL);
+					newHistory = new EU3History(histDate, NULL, NULL, heir, NULL, "", "", "", vector<string>());
 					history.push_back(newHistory);
 				}
 
@@ -220,7 +220,7 @@ void EU3Country::convert(const CK2Title* src)
 				when = ascensionDate;
 			}
 
-			EU3History* newHistory = new EU3History(when, NULL, NULL, heir, NULL);
+			EU3History* newHistory = new EU3History(when, NULL, NULL, heir, NULL, "", "", "", vector<string>());
 			history.push_back(newHistory);
 		}
 	}

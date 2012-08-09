@@ -212,13 +212,13 @@ int main(int argc, char * argv[])
 	printf("Converting countries.\n");
 	destWorld.convertCountries(countryMap);
 
+	log("Setting up provinces.\n");
+	printf("Setting up provinces.\n");
+	destWorld.setupProvinces(provinceMap);
+
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
 	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap);
-
-	log("Setting up ROTW provinces.\n");
-	printf("Setting up ROTW provinces.\n");
-	destWorld.setupRotwProvinces(inverseProvinceMap);
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
