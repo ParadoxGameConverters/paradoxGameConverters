@@ -151,3 +151,4 @@ Revision	Log Message
 148		Religions for ROTW provinces
 149		Heresy modifier for heretic religions (only if ruler's religion different)
 150		Simplify the heretic modifier
+151		Update 'religion' culture distinguisher rules to include heretics

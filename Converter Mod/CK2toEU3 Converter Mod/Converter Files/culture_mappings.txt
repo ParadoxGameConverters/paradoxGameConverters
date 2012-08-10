@@ -285,6 +285,9 @@ link = { ck2 = alan eu3 = alan }
 link = { ck2 = maghreb_arabic eu3 = maghreb_arabic de_jure = d_marrakech }
 link = { ck2 = egyptian_arabic eu3 = al_misr_arabic }
 link = { ck2 = levantine_arabic eu3 = al_iraqiya_arabic religion = shiite }
+link = { ck2 = levantine_arabic eu3 = al_iraqiya_arabic religion = bektashi }
+link = { ck2 = levantine_arabic eu3 = al_iraqiya_arabic religion = druze }
+link = { ck2 = levantine_arabic eu3 = al_iraqiya_arabic religion = hurufi  }
 link = { ck2 = levantine_arabic eu3 = al_suryah_arabic }
 link = { ck2 = bedouin_arabic eu3 = bedouin_arabic }
 link = { ck2 = maghreb_arabic eu3 = berber }
@@ -340,8 +343,17 @@ link = { ck2 = mongol eu3 = tartar }
 #link = { ck2 = ?? eu3 = tuareg }
 #link = { ck2 = ?? eu3 = nubian }
 link = { ck2 = ethiopian eu3 = somali religion = sunni }
-link = { ck2 = ethiopian eu3 = somali religion = shia }
+link = { ck2 = ethiopian eu3 = somali religion = zikri }
+link = { ck2 = ethiopian eu3 = somali religion = yazidi }
+link = { ck2 = ethiopian eu3 = somali religion = ibadi }
+link = { ck2 = ethiopian eu3 = somali religion = shiite }
+link = { ck2 = ethiopian eu3 = somali religion = bektashi }
+link = { ck2 = ethiopian eu3 = somali religion = druze }
+link = { ck2 = ethiopian eu3 = somali religion = hurufi }
 link = { ck2 = ethiopian eu3 = ethiopian }
 link = { ck2 = manden eu3 = mali religion = sunni }
+link = { ck2 = manden eu3 = mali religion = zikri }
+link = { ck2 = manden eu3 = mali religion = yazidi }
+link = { ck2 = manden eu3 = mali religion = ibadi }
 link = { ck2 = manden eu3 = ashanti }
 }
