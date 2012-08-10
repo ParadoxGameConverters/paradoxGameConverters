@@ -124,6 +124,8 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 			}
 		}
 	}
+
+	modifiers.clear();
 }
 
 
@@ -194,6 +196,13 @@ void EU3Province::output(FILE* output)
 		fprintf(output, "%s ", discoveredBy[i].c_str());
 	}
 	fprintf(output, "	}\n");
+	for (unsigned int i = 0; i < modifiers.size(); i++)
+	{
+		fprintf(output, "\tmodifier=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tmodifier=\"%s\"\n", modifiers[i].c_str());
+		fprintf(output, "\t}\n");
+	}
 	fprintf(output, "}\n");
 }
 
@@ -399,20 +408,37 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 
 void EU3Province::determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces)
 {
+
 	map<string, int> religionCounts;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
 		religionMapping::const_iterator religionItr = religionMap.find( (*provItr)->getReligion() );
 		if (religionItr != religionMap.end())
 		{
-			map<string, int>::iterator countsItr = religionCounts.find(religionItr->second);
+			string _religion = religionItr->second;
+
+			CK2Title* rulerTitle = (*provItr)->getBaronies()[0]->getTitle();
+			while (rulerTitle->isIndependent())
+			{
+				rulerTitle = rulerTitle->getLiege();
+			}
+			if ( rulerTitle->getHolder()->getReligion() != (*provItr)->getReligion() )
+			{
+				religionMapping::const_iterator rulerReligionItr = religionMap.find( rulerTitle->getHolder()->getReligion() );
+				if (rulerReligionItr->second == religionItr->second)
+				{
+					_religion.append("_heretic");
+				}
+			}
+
+			map<string, int>::iterator countsItr = religionCounts.find(_religion);
 			if (countsItr != religionCounts.end())
 			{
 				countsItr->second++;
 			}
 			else
 			{
-				religionCounts[religionItr->second] = 1;
+				religionCounts[_religion] = 1;
 			}
 		}
 		else
@@ -421,7 +447,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		}
 	}
 
-	string			topReligion	= "";
+	string			topReligion;
 	int				topCount		= 0;
 	bool				tie			= false;
 	vector<string>	tiedReligions;
@@ -447,5 +473,14 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		log("\tError: tied for religions in province %d.\n", num);
 	}
 
-	religion = topReligion;
+	int underscorePos = topReligion.find_first_of('_');
+	if (underscorePos != string::npos)
+	{
+		religion = topReligion.substr(0, underscorePos);
+		modifiers.push_back("heresy");
+	}
+	else
+	{
+		religion = topReligion;
+	}
 }

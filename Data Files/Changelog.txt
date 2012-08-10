@@ -149,3 +149,4 @@ Revision	Log Message
 146		Update converter mod to make easy for mod directory use
 147		Initial religion conversion
 148		Religions for ROTW provinces
+149		Heresy modifier for heretic religions (only if ruler's religion different)

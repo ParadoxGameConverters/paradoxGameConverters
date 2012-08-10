@@ -47,6 +47,7 @@ class EU3Province
 		string						culture;
 		string						religion;
 		vector<EU3History*>		history;
+		vector<string>				modifiers;
 };
 
 
