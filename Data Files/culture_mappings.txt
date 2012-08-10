@@ -183,6 +183,7 @@ link = { ck2 = occitan eu3 = occitain de_jure = d_burgundy }
 link = { ck2 = occitan eu3 = occitain de_jure = d_savoie }
 link = { ck2 = occitan eu3 = occitain de_jure = d_dauphine }
 link = { ck2 = occitan eu3 = occitain de_jure = d_upper_burgundy }
+link = { ck2 = occitan eu3 = occitain }
 link = { ck2 = frankish eu3 = wallonian de_jure = d_holland }
 link = { ck2 = frankish eu3 = wallonian de_jure = d_gelre }
 link = { ck2 = frankish eu3 = wallonian de_jure = d_brabant }
@@ -194,24 +195,24 @@ link = { ck2 = basque eu3 = basque }
 
 ## Finno-Ugric
 link = { ck2 = ugricbaltic eu3 = ugricbaltic }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_esthonia }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_livonia }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_prussia }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_polotsk }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_lithuanians }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_courland }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_samogitia }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_novgorod }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_rostov }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_tver }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_yaroslavl }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_vladimir }
-link = { ck2 = finnsh eu3 = estonian de_jure = d_moskva }
+link = { ck2 = finnish eu3 = estonian de_jure = d_esthonia }
+link = { ck2 = finnish eu3 = estonian de_jure = d_livonia }
+link = { ck2 = finnish eu3 = estonian de_jure = d_prussia }
+link = { ck2 = finnish eu3 = estonian de_jure = d_polotsk }
+link = { ck2 = finnish eu3 = estonian de_jure = d_lithuanians }
+link = { ck2 = finnish eu3 = estonian de_jure = d_courland }
+link = { ck2 = finnish eu3 = estonian de_jure = d_samogitia }
+link = { ck2 = finnish eu3 = estonian de_jure = d_novgorod }
+link = { ck2 = finnish eu3 = estonian de_jure = d_rostov }
+link = { ck2 = finnish eu3 = estonian de_jure = d_tver }
+link = { ck2 = finnish eu3 = estonian de_jure = d_yaroslavl }
+link = { ck2 = finnish eu3 = estonian de_jure = d_vladimir }
+link = { ck2 = finnish eu3 = estonian de_jure = d_moskva }
 link = { ck2 = lappish eu3 = sapmi }
 #link = { ck2 = ?? eu3 = ingrian }
-link = { ck2 = finnsh eu3 = karelian de_jure = d_karelia }
-link = { ck2 = finnsh eu3 = karelian de_jure = d_bjarmia }
-link = { ck2 = finnsh eu3 = karelian de_jure = d_beloozero }
+link = { ck2 = finnish eu3 = karelian de_jure = d_karelia }
+link = { ck2 = finnish eu3 = karelian de_jure = d_bjarmia }
+link = { ck2 = finnish eu3 = karelian de_jure = d_beloozero }
 link = { ck2 = finnish eu3 = finnish }
 
 ## South Slavic
@@ -336,7 +337,8 @@ link = { ck2 = mongol eu3 = tartar }
 ## African
 #link = { ck2 = ?? eu3 = tuareg }
 #link = { ck2 = ?? eu3 = nubian }
-link = { ck2 = ethiopian eu3 = somali religion = muslim }
+link = { ck2 = ethiopian eu3 = somali religion = sunni }
+link = { ck2 = ethiopian eu3 = somali religion = shia }
 link = { ck2 = ethiopian eu3 = ethiopian }
 link = { ck2 = manden eu3 = mali religion = sunni }
 link = { ck2 = manden eu3 = ashanti }

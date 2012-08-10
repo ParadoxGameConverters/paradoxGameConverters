@@ -78,7 +78,7 @@ scandinavian = {
 }
 
 west_germanic = {
-	anglo-saxon = {
+	anglosaxon = {
 	}
 }
 

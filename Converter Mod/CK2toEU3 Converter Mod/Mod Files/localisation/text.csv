@@ -200,6 +200,7 @@ al_suryah_arabic;al Suryah Arabic;syrienne;al Suryah-Arabisch;syryjska;Árabe de 
 albanian;Albanian;albanaise;Albanisch;albañska;Albana;Albanese;Albánia;Albánský;;;;;;x;
 aleutian;Aleutian;aléoute;Aleutisch;aleucka;Aleutiana;Aleutina;Aleut;Aleutský;;;;;;x;
 altaic;Altaic;altaïque;Altaisch;a³tajska;de Altai;Altaica;Altaic;Altajský;;;;;;x;
+anglosaxon;Anglo Saxon;;;;;;;;;;;;;x;
 amazonian;Amazonian;amazonienne;Amazonisch;amazoñska;Amazónica;Amazzoniana;Amazónai;Amazonský;;;;;;x;
 american;American;américaine;Amerikanisch;amerykañska;Americana;Americana;Amerikai;Americký;;;;;;x;
 andalucian;Andalusian;andalouse;Andalusisch;andaluzyjska;Andaluza;Andalusa;Andalúz;Andaluský;;;;;;x;
@@ -388,6 +389,7 @@ hindusthani;Hindusthani;hindoustanie;Hindustani;hindustañska;Indostaní;Indostana
 kanauji;Kanauji;kanauji;Kanauji;kanaud¿i;de Kanauj;Kanauji;Kanauji;Kanaujský;;;;;;x;
 panjabi;Panjabi;punjabi;Pundschabisch;Pand¿abi;Punjabi;Panjabi;Panjabi;Pandžábský;;;;;;x;
 kashmiri;Kashmiri;cachemirienne;Kaschmiri;kaszmirska;Cachemira;Cashmiriana;Kashmiri;Kašmírský;;;;;;x;
+west_germanic;West Germanic;;;;;;;;;;;;;x;
 western_aryan;Western aryan;aryenne occidentale;Westarisch;zachodnioirañska;Aria occidental;Ariana occidentale;Nyugat-árja;Západoarijský;;;;;;x;
 sindhi;Sindhi;sindh;Sindhi;sindhi;de Sindh;Sindhi;Sindhi;Sindhijský;;;;;;x;
 rajput;Rajput;rajpoute;Rajput;rad¿pucka;Rajput;Rajput;Rajput;Rajputský;;;;;;x;
@@ -401,17 +403,11 @@ yorumba;Yorumba;yorumba;Yorumba;yorumba;Yorumba;Yorumba;Yorumba;Yorumbský;;;;;;x
 zapotek;Zapotek;zapotèque;Zapotek;zapotecka;Zapoteca;Zapoteca;Zapoték;Zapotécký;;;;;;x;
 chinese;Chinese;chinoise;Chinesisch;chiñska;China;Cinese;Kínai;Èínský;;;;;;x;
 noculture;noculture;acculturée;noculture;brak kultur;sin cultura;Senza cultura;nincs kultúra;bez kultury;;;;;;x;
-frankish;Frankish;;;;;;;;;;;;;x;
-italian;Italian;;;;;;;;;;;;;x;
 alan;Alan;;;;;;;;;;;;;x;
-lappish;Lappish;;;;;;;;;;;;;x;
 ugricbaltic;Ugric Baltic;;;;;;;;;;;;;x;
 komi;Komi;;;;;;;;;;;;;x;
-lettigallish;Lettigallish;;;;;;;;;;;;;x;
 cuman;Cuman;;;;;;;;;;;;;x;
 pecheneg;Pecheneg;;;;;;;;;;;;;x;
-levantine_arabic;Levantine Arabic;;;;;;;;;;;;;x;
-egyptian_arabic;Egyptian Arabic;;;;;;;;;;;;;x;
 Owned by $owner$, but currently occupied by $control$;Owned by $owner$, but currently occupied by $control$;Possédée par $owner$ mais actuellement sous le contrôle de $control$;Im Besitz von $owner$, aber momentan von $control$ besetzt;Nale¿y do $owner$, ale aktualnie jest okupowana przez $control$.;Propiedad de $owner$, actualmente ocupada por $control$.;Posseduto da: $owner$, ma attualmente occupato da: $control$;$owner$ tulajdona, de jelenleg $control$ birtokolja;Náleží $owner$, v souèasnosti okupováno $control$;;;;;;x;
 Owned by $owner$.;Owned by $owner$.;Province possédée par $OWNER$;Im Besitz von $owner$;Nale¿y do $owner$.;Propiedad de $owner$.;Posseduto da: $owner$.;$owner$ a tulajdonosa.;Náleží $owner$.;;;;;;x;
 TERRA_INCOGNITA;Terra Incognita;Terra Incognita;Terra Incognita;Ziemia nieznana;Terra Incognita;Terra Incognita;Ismeretlen terület;Terra Incognita;;;;;;x;

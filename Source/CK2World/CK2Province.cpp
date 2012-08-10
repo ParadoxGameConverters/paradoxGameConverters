@@ -1,6 +1,7 @@
 #include "CK2Province.h"
 #include "..\Parsers\Object.h"
 #include "CK2Barony.h"
+#include "..\Log.h"
 
 
 

@@ -145,3 +145,4 @@ Revision	Log Message
 142		ROTW cultures
 143		Province capital names from EU3 data. Also, much more province history is output.
 144		Add a few new cultures to converter mod. Also update mod culture mappings
+145		Updates to culture mappings and mod after some testing
