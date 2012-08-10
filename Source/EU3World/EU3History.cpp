@@ -16,6 +16,7 @@ EU3History::EU3History()
 	capital	= "";
 	owner		= "";
 	culture	= "";
+	religion = "";
 	discoverers.clear();
 }
 
@@ -50,7 +51,7 @@ EU3History::EU3History(CK2History* src)
 }
 
 
-EU3History::EU3History(date _when, EU3Ruler* _monarch, EU3Ruler* _regent, EU3Ruler* _heir, EU3Advisor* _advisor, string _capital, string _owner, string _culture, vector<string> _discoverers)
+EU3History::EU3History(date _when, EU3Ruler* _monarch, EU3Ruler* _regent, EU3Ruler* _heir, EU3Advisor* _advisor, string _capital, string _owner, string _culture, string _religion, vector<string> _discoverers)
 {
 	when			= _when;
 	monarch		= _monarch;
@@ -60,6 +61,7 @@ EU3History::EU3History(date _when, EU3Ruler* _monarch, EU3Ruler* _regent, EU3Rul
 	capital		= _capital;
 	owner			= _owner;
 	culture		= _culture;
+	religion		= _religion;
 	discoverers	= _discoverers;
 }
 
@@ -95,9 +97,13 @@ void EU3History::output(FILE* output)
 	{
 		fprintf(output, "\t\t\towner=\"%s\"\n", owner.c_str());
 	}
-	if (owner != "")
+	if (culture != "")
 	{
 		fprintf(output, "\t\t\tculture=%s\n", culture.c_str());
+	}
+	if (religion != "")
+	{
+		fprintf(output, "\t\t\treligion=%s\n", religion.c_str());
 	}
 	for (unsigned int i = 0; i < discoverers.size(); i++)
 	{

@@ -57,6 +57,16 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 		culture = "";
 	}
 
+	vector<Object*> religionObj = obj->getValue("religion");
+	if (religionObj.size() > 0)
+	{
+		religion = religionObj[0]->getLeaf();
+	}
+	else
+	{
+		religion = "";
+	}
+
 	history.clear();
 
 	// update based on history
@@ -73,7 +83,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 				if (capitalObj.size() > 0)
 				{
 					capital = capitalObj[0]->getLeaf();
-					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, capital, "", "", vector<string>());
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, capital, "", "", "", vector<string>());
 					history.push_back(newHistory);
 				}
 
@@ -81,7 +91,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 				if (newOwnerObj.size() > 0)
 				{
 					owner = newOwnerObj[0]->getLeaf();
-					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", owner, "", vector<string>());
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", owner, "", "", vector<string>());
 					history.push_back(newHistory);
 				}
 
@@ -93,7 +103,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 					{
 						discoveredBy.push_back( discoverers[j] );
 					}
-					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", "", "", discoverers);
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", "", "", "", discoverers);
 					history.push_back(newHistory);
 				}
 
@@ -101,8 +111,15 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 				if (cultureObj.size() > 0)
 				{
 					culture = cultureObj[0]->getLeaf();
-					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", "", culture, vector<string>());
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", "", "", culture, vector<string>());
 					history.push_back(newHistory);
+				}
+
+				vector<Object*> religionObj = obj->getValue("religion");
+				if (religionObj.size() > 0)
+				{
+					religion = religionObj[0]->getLeaf();
+					EU3History* newHistory = new EU3History(histDate, NULL, NULL, NULL, NULL, "", "", "", religion, vector<string>());
 				}
 			}
 		}
@@ -196,7 +213,7 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<string> _discovere
 
 void EU3Province::addAdvisor(EU3Advisor* newAdvisor)
 {
-	EU3History* newHistory = new EU3History(newAdvisor->getStartDate(), NULL, NULL, NULL, newAdvisor, "", "", "", vector<string>());
+	EU3History* newHistory = new EU3History(newAdvisor->getStartDate(), NULL, NULL, NULL, newAdvisor, "", "", "", "", vector<string>());
 	history.push_back(newHistory);
 }
 
