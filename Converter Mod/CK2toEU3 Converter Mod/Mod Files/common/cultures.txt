@@ -77,6 +77,11 @@ scandinavian = {
 	}
 }
 
+west_germanic = {
+	anglo-saxon = {
+	}
+}
+
 british	= {
 	union = GBR
 	english = {
@@ -132,10 +137,6 @@ latin = {
 	}
 	sicilian = {
 		primary = SIC
-	}
-	frankish = {
-	}
-	italian = {
 	}
 	dynasty_names = { 
 		"de' Medici" "di Savoia" "d'Este" Farnese Visconti Sforza Gonzaga "d'Ivrea" Orsini 
@@ -245,8 +246,6 @@ finno_ugric = {
 	}
 	karelian = {
 	}
-	lappish = {
-	}
 	ugricbaltic = {
 	}
 	komi = {
@@ -324,8 +323,7 @@ baltic	= {
 	latvian = {
 		primary = LIV
 	}
-	lettigallish = {
-	}
+
 	dynasty_names = { 
 		Gediminai Radziwill Gostautas Astikas Kesgaila Chodkiewicz Olshanski Chartoryski
 		Giedraiciai Pac Plater Tyzenhaus Sapieha Ostrogski Oginski
@@ -375,10 +373,6 @@ turko_semitic	= {
 	berber = {
 		primary = ALG
 	}
-	levantine_arabic = {
-	}
-	egyptian_arabic = {
-	}
 	turkish = {
 		primary = TUR
 		dynasty_names = {
@@ -401,6 +395,8 @@ iranian	= {
 	}
 	baluchi = {
 		primary = BAL
+	}
+	kurdish = {
 	}
 	
 	dynasty_names = {

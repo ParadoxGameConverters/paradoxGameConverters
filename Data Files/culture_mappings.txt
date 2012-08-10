@@ -193,6 +193,7 @@ link = { ck2 = frankish eu3 = cosmopolitan_french }
 link = { ck2 = basque eu3 = basque }
 
 ## Finno-Ugric
+link = { ck2 = ugricbaltic eu3 = ugricbaltic }
 link = { ck2 = finnsh eu3 = estonian de_jure = d_esthonia }
 link = { ck2 = finnsh eu3 = estonian de_jure = d_livonia }
 link = { ck2 = finnsh eu3 = estonian de_jure = d_prussia }
