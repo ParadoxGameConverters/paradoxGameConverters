@@ -30,8 +30,9 @@ class EU3Province
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 
-		void		addCore(string core)			{ cores.push_back(core); };
-		void		setOwner(string _owner)		{ owner = _owner; };
+		void		addCore(string core)							{ cores.push_back(core); };
+		void		setOwner(string _owner)						{ owner = _owner; };
+		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 
 		string	getOwner()	const { return owner; };
 		
@@ -41,6 +42,7 @@ class EU3Province
 		int							num;
 		string						capital;
 		string						owner;
+		const CK2Title*			srcOwner;
 		vector<string>				cores;
 		bool							inHRE;
 		vector<string>				discoveredBy;

@@ -284,6 +284,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		if (owners.size() > 0)
 		{
 			provItr->second->setOwner( countryMap[greatestOwner]->getTag() );
+			provItr->second->setSrcOwner(greatestOwner);
 		}
 
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);

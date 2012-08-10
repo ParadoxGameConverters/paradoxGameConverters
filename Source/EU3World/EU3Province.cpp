@@ -33,6 +33,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 	{
 		owner = "";
 	}
+	srcOwner = NULL;
 
 	cores.clear();
 	inHRE = false;
@@ -412,38 +413,15 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	map<string, int> religionCounts;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
-		religionMapping::const_iterator religionItr = religionMap.find( (*provItr)->getReligion() );
-		if (religionItr != religionMap.end())
+		string _religion = (*provItr)->getReligion();
+		map<string, int>::iterator countsItr = religionCounts.find(_religion);
+		if (countsItr != religionCounts.end())
 		{
-			string _religion = religionItr->second;
-
-			CK2Title* rulerTitle = (*provItr)->getBaronies()[0]->getTitle();
-			while (rulerTitle->isIndependent())
-			{
-				rulerTitle = rulerTitle->getLiege();
-			}
-			if ( rulerTitle->getHolder()->getReligion() != (*provItr)->getReligion() )
-			{
-				religionMapping::const_iterator rulerReligionItr = religionMap.find( rulerTitle->getHolder()->getReligion() );
-				if (rulerReligionItr->second == religionItr->second)
-				{
-					_religion.append("_heretic");
-				}
-			}
-
-			map<string, int>::iterator countsItr = religionCounts.find(_religion);
-			if (countsItr != religionCounts.end())
-			{
-				countsItr->second++;
-			}
-			else
-			{
-				religionCounts[_religion] = 1;
-			}
+			countsItr->second++;
 		}
 		else
 		{
-			log("\tError: Could not map CK2 religion %s to any EU3 religion.\n");
+			religionCounts[_religion] = 1;
 		}
 	}
 
@@ -470,17 +448,33 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 
 	if (tie)
 	{
-		log("\tError: tied for religions in province %d.\n", num);
+		log("\tError: tied for religions in province %d, and no method to distinguish.\n", num);
 	}
 
-	int underscorePos = topReligion.find_first_of('_');
-	if (underscorePos != string::npos)
+
+	const CK2Title* rulerTitle = srcOwner;
+	if (srcOwner != NULL)
 	{
-		religion = topReligion.substr(0, underscorePos);
-		modifiers.push_back("heresy");
+		while (!rulerTitle->isIndependent())
+		{
+			rulerTitle = rulerTitle->getLiege();
+		}
+		if ( rulerTitle->getHolder()->getReligion() != topReligion )
+		{
+			if ( religionMap.find(rulerTitle->getHolder()->getReligion())->second == religionMap.find(topReligion)->second )
+			{
+				modifiers.push_back("heresy");
+			}
+		}
+	}
+
+	religionMapping::const_iterator religionItr = religionMap.find(topReligion);
+	if (religionItr != religionMap.end())
+	{
+		religion = religionItr->second;
 	}
 	else
 	{
-		religion = topReligion;
+		log("\tError: could not map religion %s to any EU3 religions\n", topReligion.c_str());
 	}
 }
