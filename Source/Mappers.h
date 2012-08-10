@@ -42,6 +42,9 @@ typedef struct {
 typedef vector<cultureStruct> cultureMapping;
 cultureMapping initCultureMap(Object* obj);
 
+typedef map<string, string> religionMapping; // CK2 religion, EU3 religion
+religionMapping initReligionMap(Object* obj);
+
 
 
 #endif	// MAPPERS_H_

@@ -305,3 +305,33 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 
 	return cultureMap;
 }
+
+
+religionMapping initReligionMap(Object* obj)
+{
+	religionMapping religionMap;
+	vector<Object*> links = obj->getLeaves();
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		vector<Object*>			link	= (*i)->getLeaves();
+
+		string srcReligion;
+		string dstReligion;
+		for (vector<Object*>::iterator j = link.begin(); j != link.end(); j++)
+		{
+			if ( (*j)->getKey() == "eu3" )
+			{
+				dstReligion = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "ck2" )
+			{
+				srcReligion = (*j)->getLeaf();
+			}
+		}
+
+		religionMap.insert( make_pair(srcReligion, dstReligion) );
+	}
+
+	return religionMap;
+}

@@ -147,3 +147,4 @@ Revision	Log Message
 144		Add a few new cultures to converter mod. Also update mod culture mappings
 145		Updates to culture mappings and mod after some testing
 146		Update converter mod to make easy for mod directory use
+147		Initial religion conversion

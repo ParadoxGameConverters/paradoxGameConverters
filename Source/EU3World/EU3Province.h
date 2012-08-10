@@ -27,7 +27,8 @@ class EU3Province
 
 		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy);
 		void		addAdvisor(EU3Advisor*);
-		void		determineCulture(cultureMapping& cultureMap, vector<CK2Province*>& srcProvinces, vector<CK2Barony*> baronies);
+		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
+		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 
 		void		addCore(string core)			{ cores.push_back(core); };
 		void		setOwner(string _owner)		{ owner = _owner; };
@@ -35,7 +36,7 @@ class EU3Province
 		string	getOwner()	const { return owner; };
 		
 	private:
-		string determineEU3Culture(const cultureMapping& cultureMap, CK2Province* srcProvince);
+		string determineEU3Culture(const cultureMapping& cultureMap, const CK2Province* srcProvince);
 
 		int							num;
 		string						capital;
@@ -44,6 +45,7 @@ class EU3Province
 		bool							inHRE;
 		vector<string>				discoveredBy;
 		string						culture;
+		string						religion;
 		vector<EU3History*>		history;
 };
 

@@ -25,7 +25,7 @@ class EU3World
 		void						setupProvinces(provinceMapping& provinceMap);
 
 		void						convertCountries(countryMapping&);
-		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap);
+		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap, religionMapping& religionMap);
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		
 		vector<EU3Country*>	getCountries() const { return countries; };

@@ -206,7 +206,7 @@ void EU3World::convertCountries(countryMapping& countryMap)
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap)
 {
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
@@ -287,6 +287,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
+		provItr->second->determineReligion(religionMap, srcProvinces);
 	}
 }
 

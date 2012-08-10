@@ -206,6 +206,19 @@ int main(int argc, char * argv[])
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
+	// Get religion mappings
+	log("Parsing religion mappings.\n");
+	printf("Parsing religion mappings.\n");
+	obj = doParseFile("religion_mappings.txt");
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse religion_mappings.txt.\n");
+		printf("Error: Failed to parse religion_mappings.txt.\n");
+		return 1;
+	}
+	religionMapping religionMap;
+	religionMap = initReligionMap(obj->getLeaves()[0]);
+
 
 	// Convert
 	log("Converting countries.\n");
@@ -218,7 +231,7 @@ int main(int argc, char * argv[])
 
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap);
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap);
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
