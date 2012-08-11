@@ -153,3 +153,4 @@ Revision	Log Message
 150		Simplify the heretic modifier
 151		Update 'religion' culture distinguisher rules to include heretics
 152		Population conversion
+153		HelloGoodSir's recommendation about Saxon culture mapping to Scottish

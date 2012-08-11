@@ -97,6 +97,7 @@ link = { ck2 = danish eu3 = danish }
 link = { ck2 = norwegian eu3 = norwegian }
 
 ## British
+link = { ck2 = saxon eu3 = scottish de_jure = k_scotland }
 link = { ck2 = saxon eu3 = english }
 link = { ck2 = english eu3 = english }
 link = { ck2 = scottish eu3 = scottish }
