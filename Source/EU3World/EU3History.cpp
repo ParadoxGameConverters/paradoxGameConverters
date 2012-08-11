@@ -21,6 +21,22 @@ EU3History::EU3History()
 }
 
 
+EU3History::EU3History(date _when)
+{
+	when			= _when;
+	monarch		= NULL;
+	regent		= NULL;
+	heir			= NULL;
+	advisor		= NULL;
+	capital		= "";
+	population	= 0.0f;
+	owner			= "";
+	culture		= "";
+	religion		= "";
+	discoverers.clear();
+}
+
+
 EU3History::EU3History(CK2History* src)
 {
 	when = src->getWhen();
@@ -44,25 +60,11 @@ EU3History::EU3History(CK2History* src)
 			monarch = new EU3Ruler(holder);
 		}
 	}
-	capital	= "";
-	owner		= "";
-	culture	= "";
+	capital		= "";
+	population	= 0.0;
+	owner			= "";
+	culture		= "";
 	discoverers.clear();
-}
-
-
-EU3History::EU3History(date _when, EU3Ruler* _monarch, EU3Ruler* _regent, EU3Ruler* _heir, EU3Advisor* _advisor, string _capital, string _owner, string _culture, string _religion, vector<string> _discoverers)
-{
-	when			= _when;
-	monarch		= _monarch;
-	regent		= _regent;
-	heir			= _heir;
-	advisor		= _advisor;
-	capital		= _capital;
-	owner			= _owner;
-	culture		= _culture;
-	religion		= _religion;
-	discoverers	= _discoverers;
 }
 
 
@@ -92,6 +94,10 @@ void EU3History::output(FILE* output)
 	if (capital != "")
 	{
 		fprintf(output, "\t\t\tcapital=\"%s\"\n", capital.c_str());
+	}
+	if (population != 0.0)
+	{
+		fprintf(output, "\t\t\tcitysize=\"%f\"\n", population);
 	}
 	if (owner != "")
 	{

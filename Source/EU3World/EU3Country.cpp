@@ -56,23 +56,21 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 			date histDate(key);
 			if (histDate <= startDate)
 			{
-				EU3History* newHistory;
+				EU3History* newHistory = new EU3History(histDate);
 
 				vector<Object*> newMonarchObj = objectList[i]->getValue("monarch");
 				if (newMonarchObj.size() > 0)
 				{
 					monarch = new EU3Ruler(newMonarchObj[0]);
 					previousMonarchs.push_back(monarch);
-					newHistory = new EU3History(histDate, monarch, NULL, NULL, NULL, "", "", "", "", vector<string>());
-					history.push_back(newHistory);
+					newHistory->monarch = monarch;
 				}
 
 				vector<Object*> newHeirObj = objectList[i]->getValue("heir");
 				if (newHeirObj.size() > 0)
 				{
 					heir = new EU3Ruler(newHeirObj[0]);
-					newHistory = new EU3History(histDate, NULL, NULL, heir, NULL, "", "", "", "", vector<string>());
-					history.push_back(newHistory);
+					newHistory->heir = heir;
 				}
 
 				vector<Object*> techLeaves = obj->getValue("technology_group");
@@ -80,6 +78,8 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 				{
 					techGroup = techLeaves[0]->getLeaf();
 				}
+
+				history.push_back(newHistory);
 			}
 		}
 	}
@@ -167,28 +167,28 @@ void EU3Country::convert(const CK2Title* src)
 		EU3History* newHistory = new EU3History(oldHistory[i]);
 		history.push_back(newHistory);
 
-		if (newHistory->getRegent() != NULL)
+		if (newHistory->regent != NULL)
 		{
-			previousMonarchs.push_back(newHistory->getRegent());
+			previousMonarchs.push_back(newHistory->regent);
 		}
-		else if (newHistory->getMonarch() != NULL)
+		else if (newHistory->monarch != NULL)
 		{
-			previousMonarchs.push_back(newHistory->getMonarch());
+			previousMonarchs.push_back(newHistory->monarch);
 		}
 
 		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
 		{
-			EU3Ruler* newRegent = newHistory->getRegent();
+			EU3Ruler* newRegent = newHistory->regent;
 			if (newRegent != NULL)
 			{
 				monarch			= newRegent;
-				heir				= newHistory->getHeir();
-				ascensionDate	= newHistory->getWhen();
+				heir				= newHistory->heir;
+				ascensionDate	= newHistory->when;
 			}
 			else
 			{
-				monarch			= newHistory->getMonarch();
-				ascensionDate	= newHistory->getWhen();
+				monarch			= newHistory->monarch;
+				ascensionDate	= newHistory->when;
 			}
 		}
 	}
@@ -220,7 +220,8 @@ void EU3Country::convert(const CK2Title* src)
 				when = ascensionDate;
 			}
 
-			EU3History* newHistory = new EU3History(when, NULL, NULL, heir, NULL, "", "", "", "", vector<string>());
+			EU3History* newHistory = new EU3History(when);
+			newHistory->heir = heir;
 			history.push_back(newHistory);
 		}
 	}

@@ -13,28 +13,25 @@ class EU3Advisor;
 
 class EU3History {
 	public:
-		EU3History();
+		EU3History(date when);
 		EU3History(CK2History*);
-		EU3History(date when, EU3Ruler* monarch, EU3Ruler* regent, EU3Ruler* heir, EU3Advisor* advisor, string capital, string owner, string culture, string religion, vector<string> discoverers);
 
 		void				output(FILE*);
 
-		date				getWhen()		const { return when; };
-		EU3Ruler*		getMonarch()	const { return monarch; };
-		EU3Ruler*		getRegent()		const { return regent ; };
-		EU3Ruler*		getHeir()		const { return heir; };
-
-	private:
 		date				when;
 		EU3Ruler*		monarch;
 		EU3Ruler*		regent;
 		EU3Ruler*		heir;
 		EU3Advisor*		advisor;
 		string			capital;
+		double			population;
 		string			owner;
 		string			culture;
 		string			religion;
 		vector<string>	discoverers;
+
+	private:
+		EU3History();
 };
 
 

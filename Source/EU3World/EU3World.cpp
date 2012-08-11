@@ -208,6 +208,25 @@ void EU3World::convertCountries(countryMapping& countryMap)
 
 void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap)
 {
+	for (provinceMapping::const_iterator provItr = provinceMap.begin(); provItr != provinceMap.end(); provItr++)
+	{
+		if (provItr->second[0] != 0)
+		{
+			totalHistoricalPopulation += provinces.find(provItr->first)->second->getPopulation();
+		}
+	}
+	log("Total historical population is %f.\n", totalHistoricalPopulation);
+
+	double totalPopProxy = 0.0;
+	for (map<int, CK2Province*>::const_iterator srcItr = allSrcProvinces.begin(); srcItr != allSrcProvinces.end(); srcItr++)
+	{
+		vector<CK2Barony*> baronies = srcItr->second->getBaronies();
+		for (vector<CK2Barony*>::const_iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
+		{
+			totalPopProxy += (*baronyItr)->getPopProxy();
+		}
+	}
+
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
 		if (i->second[0] == 0)
@@ -238,10 +257,13 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			}
 		}
 
-		bool inHRE = false;
+		double	popProxy	= 0.0f;
+		bool		inHRE		= false;
 		vector< pair<const CK2Title*, int > > owners;	// ownerTitle, numBaronies
 		for (unsigned int j = 0; j < baronies.size(); j++)
 		{
+			popProxy += baronies[j]->getPopProxy();
+
 			const CK2Title* title = baronies[j]->getTitle();
 			while( !title->isIndependent() )
 			{
@@ -287,6 +309,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			provItr->second->setSrcOwner(greatestOwner);
 		}
 
+		provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 		provItr->second->determineReligion(religionMap, srcProvinces);
 	}

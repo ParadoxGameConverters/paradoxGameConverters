@@ -26,21 +26,23 @@ class EU3Province
 		void		output(FILE*);
 
 		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy);
-		void		addAdvisor(EU3Advisor*);
+		void		addAdvisor(EU3Advisor* advisor);
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 
+		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(string core)							{ cores.push_back(core); };
 		void		setOwner(string _owner)						{ owner = _owner; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 
-		string	getOwner()	const { return owner; };
-		
+		string	getOwner() const			{ return owner; };
+		double	getPopulation() const	{ return population; };
 	private:
 		string determineEU3Culture(const cultureMapping& cultureMap, const CK2Province* srcProvince);
 
 		int							num;
 		string						capital;
+		double						population;
 		string						owner;
 		const CK2Title*			srcOwner;
 		vector<string>				cores;
