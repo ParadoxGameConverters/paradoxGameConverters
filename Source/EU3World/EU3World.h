@@ -36,7 +36,6 @@ class EU3World
 		vector<string>						europeanCountries;
 		vector<EU3Advisor*>				advisors;
 		map< string, vector<string> >	mapSpreadStrings;
-		double								totalHistoricalPopulation;
 };
 
 

@@ -208,22 +208,28 @@ void EU3World::convertCountries(countryMapping& countryMap)
 
 void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap)
 {
+	double totalHistoricalPopulation = 0.0f;
+	double totalHistoricalManpower	= 0.0f;
 	for (provinceMapping::const_iterator provItr = provinceMap.begin(); provItr != provinceMap.end(); provItr++)
 	{
 		if (provItr->second[0] != 0)
 		{
-			totalHistoricalPopulation += provinces.find(provItr->first)->second->getPopulation();
+			totalHistoricalPopulation	+= provinces.find(provItr->first)->second->getPopulation();
+			totalHistoricalManpower		+= provinces.find(provItr->first)->second->getManpower();
 		}
 	}
 	log("Total historical population is %f.\n", totalHistoricalPopulation);
+	log("Total historical manpower is %f.\n", totalHistoricalManpower);
 
-	double totalPopProxy = 0.0;
+	double totalPopProxy			= 0.0f;
+	double totalManpowerProxy	= 0.0f;
 	for (map<int, CK2Province*>::const_iterator srcItr = allSrcProvinces.begin(); srcItr != allSrcProvinces.end(); srcItr++)
 	{
 		vector<CK2Barony*> baronies = srcItr->second->getBaronies();
 		for (vector<CK2Barony*>::const_iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
-			totalPopProxy += (*baronyItr)->getPopProxy();
+			totalPopProxy			+= (*baronyItr)->getPopProxy();
+			totalManpowerProxy	+= (*baronyItr)->getManpowerProxy();
 		}
 	}
 
@@ -257,12 +263,14 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			}
 		}
 
-		double	popProxy	= 0.0f;
+		double	popProxy			= 0.0f;
+		double	manpowerProxy	= 0.0f;
 		bool		inHRE		= false;
 		vector< pair<const CK2Title*, int > > owners;	// ownerTitle, numBaronies
 		for (unsigned int j = 0; j < baronies.size(); j++)
 		{
-			popProxy += baronies[j]->getPopProxy();
+			popProxy			+= baronies[j]->getPopProxy();
+			manpowerProxy	+= baronies[j]->getManpowerProxy();
 
 			const CK2Title* title = baronies[j]->getTitle();
 			while( !title->isIndependent() )
@@ -310,6 +318,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 
 		provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
+		provItr->second->setManpower(totalHistoricalManpower * manpowerProxy / totalManpowerProxy);
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 		provItr->second->determineReligion(religionMap, srcProvinces);
 	}

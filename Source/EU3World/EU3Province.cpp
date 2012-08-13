@@ -34,6 +34,15 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 		population = 0.0f;
 	}
 
+	vector<Object*> manpowerObj = obj->getValue("manpower");
+	if (manpowerObj.size() > 0)
+	{
+		manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
+	}
+	else {
+		manpower = 0;
+	}
+
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
 	{
@@ -103,6 +112,13 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 				{
 					population = atof( populationObj[0]->getLeaf().c_str() );
 					newHistory->population = population;					
+				}
+
+				vector<Object*> manpowerObj = obj->getValue("manpower");
+				if (manpowerObj.size() > 0)
+				{
+					manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
+					newHistory->manpower = manpower;
 				}
 
 				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
@@ -176,6 +192,10 @@ void EU3Province::output(FILE* output)
 	if (population != 0.0)
 	{
 		fprintf(output, "\tcitysize=%f\n", population);
+	}
+	if (manpower != 0)
+	{
+		fprintf(output, "\tmanpower=%d\n", manpower);
 	}
 	fprintf(output, "	history=\n");
 	fprintf(output, "	{\n");
@@ -500,5 +520,20 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	else
 	{
 		log("\tError: could not map religion %s to any EU3 religions\n", topReligion.c_str());
+	}
+}
+
+
+void EU3Province::setManpower(double _manpower)
+{
+	manpower = (int)(2 * _manpower);
+	if ( manpower % 2 == 0 )
+	{
+		manpower /= 2;
+	}
+	else
+	{
+		manpower /= 2;
+		manpower++;
 	}
 }

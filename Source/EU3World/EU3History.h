@@ -25,13 +25,11 @@ class EU3History {
 		EU3Advisor*		advisor;
 		string			capital;
 		double			population;
+		int				manpower;
 		string			owner;
 		string			culture;
 		string			religion;
 		vector<string>	discoverers;
-
-	private:
-		EU3History();
 };
 
 

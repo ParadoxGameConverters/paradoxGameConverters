@@ -29,6 +29,7 @@ class EU3Province
 		void		addAdvisor(EU3Advisor* advisor);
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
+		void		setManpower(double _manpower);
 
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(string core)							{ cores.push_back(core); };
@@ -37,12 +38,14 @@ class EU3Province
 
 		string	getOwner() const			{ return owner; };
 		double	getPopulation() const	{ return population; };
+		double	getManpower() const		{ return manpower; };
 	private:
 		string determineEU3Culture(const cultureMapping& cultureMap, const CK2Province* srcProvince);
 
 		int							num;
 		string						capital;
 		double						population;
+		int							manpower;
 		string						owner;
 		const CK2Title*			srcOwner;
 		vector<string>				cores;

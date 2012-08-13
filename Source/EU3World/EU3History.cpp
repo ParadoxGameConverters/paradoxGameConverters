@@ -6,21 +6,6 @@
 
 
 
-EU3History::EU3History()
-{
-	when = date();
-	monarch	= NULL;
-	regent	= NULL;
-	heir		= NULL;
-	advisor	= NULL;
-	capital	= "";
-	owner		= "";
-	culture	= "";
-	religion = "";
-	discoverers.clear();
-}
-
-
 EU3History::EU3History(date _when)
 {
 	when			= _when;
@@ -30,6 +15,7 @@ EU3History::EU3History(date _when)
 	advisor		= NULL;
 	capital		= "";
 	population	= 0.0f;
+	manpower		= 0;
 	owner			= "";
 	culture		= "";
 	religion		= "";
@@ -62,6 +48,7 @@ EU3History::EU3History(CK2History* src)
 	}
 	capital		= "";
 	population	= 0.0;
+	manpower		= 0;
 	owner			= "";
 	culture		= "";
 	discoverers.clear();
@@ -98,6 +85,10 @@ void EU3History::output(FILE* output)
 	if (population != 0.0)
 	{
 		fprintf(output, "\t\t\tcitysize=\"%f\"\n", population);
+	}
+	if (manpower != 0)
+	{
+		fprintf(output, "\t\t\tmanpower=\"%d\"\n", manpower);
 	}
 	if (owner != "")
 	{

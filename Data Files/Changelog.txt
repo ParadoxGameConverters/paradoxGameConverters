@@ -154,3 +154,4 @@ Revision	Log Message
 151		Update 'religion' culture distinguisher rules to include heretics
 152		Population conversion
 153		HelloGoodSir's recommendation about Saxon culture mapping to Scottish
+154		Manpower conversion
