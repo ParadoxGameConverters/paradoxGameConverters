@@ -14,6 +14,7 @@ EU3History::EU3History(date _when)
 	heir			= NULL;
 	advisor		= NULL;
 	capital		= "";
+	tradeGood	= "";
 	population	= 0.0f;
 	manpower		= 0;
 	owner			= "";
@@ -47,6 +48,7 @@ EU3History::EU3History(CK2History* src)
 		}
 	}
 	capital		= "";
+	tradeGood	= "";
 	population	= 0.0;
 	manpower		= 0;
 	owner			= "";
@@ -81,6 +83,10 @@ void EU3History::output(FILE* output)
 	if (capital != "")
 	{
 		fprintf(output, "\t\t\tcapital=\"%s\"\n", capital.c_str());
+	}
+	if (tradeGood != "")
+	{
+		fprintf(output, "\t\t\ttrade_goods = %s\n", tradeGood.c_str());
 	}
 	if (population != 0.0)
 	{

@@ -24,6 +24,7 @@ class EU3History {
 		EU3Ruler*		heir;
 		EU3Advisor*		advisor;
 		string			capital;
+		string			tradeGood;
 		double			population;
 		int				manpower;
 		string			owner;

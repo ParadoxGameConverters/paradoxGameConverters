@@ -24,6 +24,16 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 		capital = "";
 	}
 
+	vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
+	if (tradeGoodObj.size() > 0)
+	{
+		tradeGood = tradeGoodObj[0]->getLeaf().c_str();
+	}
+	else
+	{
+		tradeGood = "";
+	}
+
 	vector<Object*> populationObj = obj->getValue("citysize");
 	if (populationObj.size() > 0)
 	{
@@ -107,6 +117,13 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 					newHistory->capital = capital;
 				}
 
+				vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
+				if (tradeGoodObj.size() > 0)
+				{
+					tradeGood = tradeGoodObj[0]->getLeaf().c_str();
+					newHistory->tradeGood = tradeGood;
+				}
+
 				vector<Object*> populationObj = obj->getValue("citysize");
 				if (populationObj.size() > 0)
 				{
@@ -188,6 +205,10 @@ void EU3Province::output(FILE* output)
 	if (capital != "")
 	{
 		fprintf(output, "\tcapital=\"%s\"\n", capital.c_str());
+	}
+	if (tradeGood != "")
+	{
+		fprintf(output, "\ttrade_goods=%s\n", tradeGood.c_str());
 	}
 	if (population != 0.0)
 	{

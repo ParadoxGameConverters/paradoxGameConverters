@@ -44,6 +44,7 @@ class EU3Province
 
 		int							num;
 		string						capital;
+		string						tradeGood;
 		double						population;
 		int							manpower;
 		string						owner;

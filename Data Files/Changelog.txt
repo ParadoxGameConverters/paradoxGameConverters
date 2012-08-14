@@ -155,3 +155,4 @@ Revision	Log Message
 152		Population conversion
 153		HelloGoodSir's recommendation about Saxon culture mapping to Scottish
 154		Manpower conversion
+155		Trade goods
