@@ -20,6 +20,7 @@ class CK2Barony
 		CK2Title*		getTitle()		const { return title; };
 		CK2Province*	getProvince()	const { return province; };
 
+		float				getBaseTaxProxy() const;
 		float				getPopProxy() const;
 		float				getManpowerProxy() const;
 	private:

@@ -23,157 +23,372 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince)
 }
 
 
-float CK2Barony::getPopProxy() const
+float CK2Barony::getBaseTaxProxy() const
 {
-	float popProxy = 0;
+	float baseTaxProxy = 0.0f;
 	if (type == "city")
 	{
-		popProxy += 12.0f;
+		baseTaxProxy += 12.0f;
+		if (buildings.find("ct_wall_1")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ct_wall_2")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ct_wall_3")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ct_wall_4")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ct_wall_5")->second)
+		{
+			baseTaxProxy += 0.5f;
+		}
+		if (buildings.find("ct_marketplace_1")->second)
+		{
+			baseTaxProxy += 2.5f;
+		}
+		if (buildings.find("ct_marketplace_2")->second)
+		{
+			baseTaxProxy += 3.0f;
+		}
+		if (buildings.find("ct_marketplace_3")->second)
+		{
+			baseTaxProxy += 3.5f;
+		}
+		if (buildings.find("ct_marketplace_4")->second)
+		{
+			baseTaxProxy += 4.0f;
+		}
+		if (buildings.find("ct_marketplace_5")->second)
+		{
+			baseTaxProxy += 4.5f;
+		}
+		if (buildings.find("ct_marketplace_6")->second)
+		{
+			baseTaxProxy += 5.0f;
+		}
+		if (buildings.find("ct_port_1")->second)
+		{
+			baseTaxProxy += 2.5f;
+		}
+		if (buildings.find("ct_port_2")->second)
+		{
+			baseTaxProxy += 3.0f;
+		}
+		if (buildings.find("ct_port_3")->second)
+		{
+			baseTaxProxy += 3.5f;
+		}
+		if (buildings.find("ct_port_4")->second)
+		{
+			baseTaxProxy += 4.0f;
+		}
+		if (buildings.find("ct_port_5")->second)
+		{
+			baseTaxProxy += 4.5f;
+		}
+		if (buildings.find("ct_marketplace_1_mus")->second)
+		{
+			baseTaxProxy += 2.5f;
+		}
+		if (buildings.find("ct_marketplace_2_mus")->second)
+		{
+			baseTaxProxy += 3.0f;
+		}
+		if (buildings.find("ct_marketplace_3_mus")->second)
+		{
+			baseTaxProxy += 3.5f;
+		}
+		if (buildings.find("ct_marketplace_4_mus")->second)
+		{
+			baseTaxProxy += 4.0f;
+		}
+		if (buildings.find("ct_marketplace_5_mus")->second)
+		{
+			baseTaxProxy += 4.5f;
+		}
+		if (buildings.find("ct_marketplace_6_mus")->second)
+		{
+			baseTaxProxy += 5.0f;
+		}
 	}
 	else if (type == "castle")
 	{
-		popProxy += 4.0f;
+		baseTaxProxy += 4.0f;
+		if (buildings.find("ca_wall_1")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ca_wall_2")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ca_wall_3")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ca_wall_4")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("ca_wall_5")->second)
+		{
+			baseTaxProxy += 0.5f;
+		}
+		if (buildings.find("ca_town_1")->second)
+		{
+			baseTaxProxy += 1.5f;
+		}
+		if (buildings.find("ca_town_2")->second)
+		{
+			baseTaxProxy += 2.0f;
+		}
+		if (buildings.find("ca_town_3")->second)
+		{
+			baseTaxProxy += 2.5f;
+		}
+		if (buildings.find("ca_town_4")->second)
+		{
+			baseTaxProxy += 3.0f;
+		}
+		if (buildings.find("ca_town_5")->second)
+		{
+			baseTaxProxy += 3.5f;
+		}
 	}
 	else if (type == "temple")
 	{
-		popProxy += 8.0f;
+		baseTaxProxy += 8.0f;
+		if (buildings.find("tp_wall_1")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("tp_wall_2")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("tp_wall_3")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("tp_wall_4")->second)
+		{
+			baseTaxProxy += 0.2f;
+		}
+		if (buildings.find("tp_wall_5")->second)
+		{
+			baseTaxProxy += 0.5f;
+		}
+		if (buildings.find("tp_town_1")->second)
+		{
+			baseTaxProxy += 1.5f;
+		}
+		if (buildings.find("tp_town_2")->second)
+		{
+			baseTaxProxy += 2.0f;
+		}
+		if (buildings.find("tp_town_3")->second)
+		{
+			baseTaxProxy += 2.5f;
+		}
+		if (buildings.find("tp_town_4")->second)
+		{
+			baseTaxProxy += 3.0f;
+		}
+		if (buildings.find("tp_town_5")->second)
+		{
+			baseTaxProxy += 3.5f;
+		}
+		if (buildings.find("tp_town_1_mus")->second)
+		{
+			baseTaxProxy += 1.2f;
+		}
+		if (buildings.find("tp_town_2_mus")->second)
+		{
+			baseTaxProxy += 1.7f;
+		}
+		if (buildings.find("tp_town_3_mus")->second)
+		{
+			baseTaxProxy += 2.2f;
+		}
+		if (buildings.find("tp_town_4_mus")->second)
+		{
+			baseTaxProxy += 2.7f;
+		}
+		if (buildings.find("tp_town_5_mus")->second)
+		{
+			baseTaxProxy += 3.2f;
+		}
+		if (buildings.find("tp_town_1_mus")->second)
+		{
+			baseTaxProxy += 1.2f;
+		}
 	}
 	else
 	{
 		log("Note! Unhandled barony type %s\n", type.c_str());
 	}
 
-	if (buildings.find("ca_town_1")->second)
+	return baseTaxProxy;
+}
+
+
+float CK2Barony::getPopProxy() const
+{
+	float popProxy = 0;
+	if (type == "city")
 	{
-		popProxy += 1.5f;
+		popProxy += 12.0f;
+		if (buildings.find("ct_marketplace_1")->second)
+		{
+			popProxy += 2.5f;
+		}
+		if (buildings.find("ct_marketplace_2")->second)
+		{
+			popProxy += 3.0f;
+		}
+		if (buildings.find("ct_marketplace_3")->second)
+		{
+			popProxy += 3.5f;
+		}
+		if (buildings.find("ct_marketplace_4")->second)
+		{
+			popProxy += 4.0f;
+		}
+		if (buildings.find("ct_marketplace_5")->second)
+		{
+			popProxy += 4.5f;
+		}
+		if (buildings.find("ct_marketplace_6")->second)
+		{
+			popProxy += 5.0f;
+		}
+		if (buildings.find("ct_port_1")->second)
+		{
+			popProxy += 2.5f;
+		}
+		if (buildings.find("ct_port_2")->second)
+		{
+			popProxy += 3.0f;
+		}
+		if (buildings.find("ct_port_3")->second)
+		{
+			popProxy += 3.5f;
+		}
+		if (buildings.find("ct_port_4")->second)
+		{
+			popProxy += 4.0f;
+		}
+		if (buildings.find("ct_port_5")->second)
+		{
+			popProxy += 4.5f;
+		}
+		if (buildings.find("ct_marketplace_1_mus")->second)
+		{
+			popProxy += 2.5f;
+		}
+		if (buildings.find("ct_marketplace_2_mus")->second)
+		{
+			popProxy += 3.0f;
+		}
+		if (buildings.find("ct_marketplace_3_mus")->second)
+		{
+			popProxy += 3.5f;
+		}
+		if (buildings.find("ct_marketplace_4_mus")->second)
+		{
+			popProxy += 4.0f;
+		}
+		if (buildings.find("ct_marketplace_5_mus")->second)
+		{
+			popProxy += 4.5f;
+		}
+		if (buildings.find("ct_marketplace_6_mus")->second)
+		{
+			popProxy += 5.0f;
+		}
 	}
-	if (buildings.find("ca_town_2")->second)
-	{
-		popProxy += 2.0f;
-	}
-	if (buildings.find("ca_town_3")->second)
-	{
-		popProxy += 2.5f;
-	}
-	if (buildings.find("ca_town_4")->second)
-	{
-		popProxy += 3.0f;
-	}
-	if (buildings.find("ca_town_5")->second)
-	{
-		popProxy += 3.5f;
-	}
-	if (buildings.find("ct_marketplace_1")->second)
-	{
-		popProxy += 2.5f;
-	}
-	if (buildings.find("ct_marketplace_2")->second)
-	{
-		popProxy += 3.0f;
-	}
-	if (buildings.find("ct_marketplace_3")->second)
-	{
-		popProxy += 3.5f;
-	}
-	if (buildings.find("ct_marketplace_4")->second)
+	else if (type == "castle")
 	{
 		popProxy += 4.0f;
+		if (buildings.find("ca_town_1")->second)
+		{
+			popProxy += 1.5f;
+		}
+		if (buildings.find("ca_town_2")->second)
+		{
+			popProxy += 2.0f;
+		}
+		if (buildings.find("ca_town_3")->second)
+		{
+			popProxy += 2.5f;
+		}
+		if (buildings.find("ca_town_4")->second)
+		{
+			popProxy += 3.0f;
+		}
+		if (buildings.find("ca_town_5")->second)
+		{
+			popProxy += 3.5f;
+		}
 	}
-	if (buildings.find("ct_marketplace_5")->second)
+	else if (type == "temple")
 	{
-		popProxy += 4.5f;
+		popProxy += 8.0f;
+		if (buildings.find("tp_town_1")->second)
+		{
+			popProxy += 1.5f;
+		}
+		if (buildings.find("tp_town_2")->second)
+		{
+			popProxy += 2.0f;
+		}
+		if (buildings.find("tp_town_3")->second)
+		{
+			popProxy += 2.5f;
+		}
+		if (buildings.find("tp_town_4")->second)
+		{
+			popProxy += 3.0f;
+		}
+		if (buildings.find("tp_town_5")->second)
+		{
+			popProxy += 3.5f;
+		}
+		if (buildings.find("tp_town_1_mus")->second)
+		{
+			popProxy += 1.2f;
+		}
+		if (buildings.find("tp_town_2_mus")->second)
+		{
+			popProxy += 1.7f;
+		}
+		if (buildings.find("tp_town_3_mus")->second)
+		{
+			popProxy += 2.2f;
+		}
+		if (buildings.find("tp_town_4_mus")->second)
+		{
+			popProxy += 2.7f;
+		}
+		if (buildings.find("tp_town_5_mus")->second)
+		{
+			popProxy += 3.2f;
+		}
+		if (buildings.find("tp_town_1_mus")->second)
+		{
+			popProxy += 1.2f;
+		}
 	}
-	if (buildings.find("ct_marketplace_6")->second)
+	else
 	{
-		popProxy += 5.0f;
-	}
-	if (buildings.find("ct_port_1")->second)
-	{
-		popProxy += 2.5f;
-	}
-	if (buildings.find("ct_port_2")->second)
-	{
-		popProxy += 3.0f;
-	}
-	if (buildings.find("ct_port_3")->second)
-	{
-		popProxy += 3.5f;
-	}
-	if (buildings.find("ct_port_4")->second)
-	{
-		popProxy += 4.0f;
-	}
-	if (buildings.find("ct_port_5")->second)
-	{
-		popProxy += 4.5f;
-	}
-	if (buildings.find("ct_marketplace_1_mus")->second)
-	{
-		popProxy += 2.5f;
-	}
-	if (buildings.find("ct_marketplace_2_mus")->second)
-	{
-		popProxy += 3.0f;
-	}
-	if (buildings.find("ct_marketplace_3_mus")->second)
-	{
-		popProxy += 3.5f;
-	}
-	if (buildings.find("ct_marketplace_4_mus")->second)
-	{
-		popProxy += 4.0f;
-	}
-	if (buildings.find("ct_marketplace_5_mus")->second)
-	{
-		popProxy += 4.5f;
-	}
-	if (buildings.find("ct_marketplace_6_mus")->second)
-	{
-		popProxy += 5.0f;
-	}
-	if (buildings.find("tp_town_1")->second)
-	{
-		popProxy += 1.5f;
-	}
-	if (buildings.find("tp_town_2")->second)
-	{
-		popProxy += 2.0f;
-	}
-	if (buildings.find("tp_town_3")->second)
-	{
-		popProxy += 2.5f;
-	}
-	if (buildings.find("tp_town_4")->second)
-	{
-		popProxy += 3.0f;
-	}
-	if (buildings.find("tp_town_5")->second)
-	{
-		popProxy += 3.5f;
-	}
-	if (buildings.find("tp_town_1_mus")->second)
-	{
-		popProxy += 1.2f;
-	}
-	if (buildings.find("tp_town_2_mus")->second)
-	{
-		popProxy += 1.7f;
-	}
-	if (buildings.find("tp_town_3_mus")->second)
-	{
-		popProxy += 2.2f;
-	}
-	if (buildings.find("tp_town_4_mus")->second)
-	{
-		popProxy += 2.7f;
-	}
-	if (buildings.find("tp_town_5_mus")->second)
-	{
-		popProxy += 3.2f;
-	}
-	if (buildings.find("tp_town_1_mus")->second)
-	{
-		popProxy += 1.2f;
+		log("Note! Unhandled barony type %s\n", type.c_str());
 	}
 
 	return popProxy;

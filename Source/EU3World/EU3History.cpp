@@ -15,6 +15,7 @@ EU3History::EU3History(date _when)
 	advisor		= NULL;
 	capital		= "";
 	tradeGood	= "";
+	baseTax		= 0.0f;
 	population	= 0.0f;
 	manpower		= 0;
 	owner			= "";
@@ -49,6 +50,7 @@ EU3History::EU3History(CK2History* src)
 	}
 	capital		= "";
 	tradeGood	= "";
+	baseTax		= 0.0f;
 	population	= 0.0;
 	manpower		= 0;
 	owner			= "";
@@ -91,6 +93,10 @@ void EU3History::output(FILE* output)
 	if (population != 0.0)
 	{
 		fprintf(output, "\t\t\tcitysize=\"%f\"\n", population);
+	}
+	if (baseTax != 0.0)
+	{
+		fprintf(output, "\t\t\tbase_tax=%f\n", baseTax);
 	}
 	if (manpower != 0)
 	{

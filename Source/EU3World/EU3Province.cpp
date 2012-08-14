@@ -34,6 +34,16 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 		tradeGood = "";
 	}
 
+	vector<Object*> baseTaxObj = obj->getValue("base_tax");
+	if (baseTaxObj.size() > 0)
+	{
+		baseTax = atof( baseTaxObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		baseTax = 0.0f;
+	}
+
 	vector<Object*> populationObj = obj->getValue("citysize");
 	if (populationObj.size() > 0)
 	{
@@ -206,6 +216,10 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=\"%s\"\n", capital.c_str());
 	}
+	if (baseTax != 0.0)
+	{
+		fprintf(output, "\tbase_tax=%f\n", baseTax);
+	}
 	if (tradeGood != "")
 	{
 		fprintf(output, "\ttrade_goods=%s\n", tradeGood.c_str());
@@ -232,9 +246,21 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\t\tcapital=\"%s\"\n", capital.c_str());
 	}
+	if (baseTax != 0.0)
+	{
+		fprintf(output, "\t\tbase_tax=%f\n", baseTax);
+	}
+	if (tradeGood != "")
+	{
+		fprintf(output, "\t\ttrade_goods=%s\n", tradeGood.c_str());
+	}
 	if (population != 0.0)
 	{
 		fprintf(output, "\t\tcitysize=%f\n", population);
+	}
+	if (manpower != 0)
+	{
+		fprintf(output, "\t\tmanpower=%d\n", manpower);
 	}
 	if (culture != "")
 	{

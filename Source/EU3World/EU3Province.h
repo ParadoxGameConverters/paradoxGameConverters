@@ -31,12 +31,14 @@ class EU3Province
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 		void		setManpower(double _manpower);
 
+		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(string core)							{ cores.push_back(core); };
 		void		setOwner(string _owner)						{ owner = _owner; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 
 		string	getOwner() const			{ return owner; };
+		double	getBaseTax() const		{ return baseTax; };
 		double	getPopulation() const	{ return population; };
 		double	getManpower() const		{ return manpower; };
 	private:
@@ -45,6 +47,7 @@ class EU3Province
 		int							num;
 		string						capital;
 		string						tradeGood;
+		double						baseTax;
 		double						population;
 		int							manpower;
 		string						owner;

@@ -208,19 +208,23 @@ void EU3World::convertCountries(countryMapping& countryMap)
 
 void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap)
 {
+	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
 	double totalHistoricalManpower	= 0.0f;
 	for (provinceMapping::const_iterator provItr = provinceMap.begin(); provItr != provinceMap.end(); provItr++)
 	{
 		if (provItr->second[0] != 0)
 		{
+			totalHistoricalBaseTax		+= provinces.find(provItr->first)->second->getBaseTax();
 			totalHistoricalPopulation	+= provinces.find(provItr->first)->second->getPopulation();
 			totalHistoricalManpower		+= provinces.find(provItr->first)->second->getManpower();
 		}
 	}
+	log("Total historical base tax is %f.\n", totalHistoricalBaseTax);
 	log("Total historical population is %f.\n", totalHistoricalPopulation);
 	log("Total historical manpower is %f.\n", totalHistoricalManpower);
 
+	double totalBaseTaxProxy	= 0.0f;
 	double totalPopProxy			= 0.0f;
 	double totalManpowerProxy	= 0.0f;
 	for (map<int, CK2Province*>::const_iterator srcItr = allSrcProvinces.begin(); srcItr != allSrcProvinces.end(); srcItr++)
@@ -228,6 +232,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		vector<CK2Barony*> baronies = srcItr->second->getBaronies();
 		for (vector<CK2Barony*>::const_iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
+			totalBaseTaxProxy		+= (*baronyItr)->getBaseTaxProxy();
 			totalPopProxy			+= (*baronyItr)->getPopProxy();
 			totalManpowerProxy	+= (*baronyItr)->getManpowerProxy();
 		}
@@ -263,12 +268,14 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			}
 		}
 
+		double	baseTaxProxy	= 0.0f;
 		double	popProxy			= 0.0f;
 		double	manpowerProxy	= 0.0f;
 		bool		inHRE		= false;
 		vector< pair<const CK2Title*, int > > owners;	// ownerTitle, numBaronies
 		for (unsigned int j = 0; j < baronies.size(); j++)
 		{
+			baseTaxProxy	+= baronies[j]->getBaseTaxProxy();
 			popProxy			+= baronies[j]->getPopProxy();
 			manpowerProxy	+= baronies[j]->getManpowerProxy();
 
@@ -317,6 +324,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			provItr->second->setSrcOwner(greatestOwner);
 		}
 
+		provItr->second->setBaseTax(totalHistoricalBaseTax * baseTaxProxy / totalBaseTaxProxy);
 		provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
 		provItr->second->setManpower(totalHistoricalManpower * manpowerProxy / totalManpowerProxy);
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);

@@ -25,6 +25,7 @@ class EU3History {
 		EU3Advisor*		advisor;
 		string			capital;
 		string			tradeGood;
+		double			baseTax;
 		double			population;
 		int				manpower;
 		string			owner;
