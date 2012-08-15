@@ -159,7 +159,6 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 	}
 	locationNum				= -1;
 	capitalString			= "";
-	primaryTitleString	= "";
 	vector<Object*> demesneObj = obj->getValue("demesne");
 	if (demesneObj.size() > 0)
 	{
@@ -167,12 +166,6 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		if (capitalObj.size() > 0)
 		{
 			capitalString = capitalObj[0]->getLeaf();
-		}
-
-		vector<Object*> primaryTitleObj = demesneObj[0]->getValue("primary");
-		if (primaryTitleObj.size() > 0)
-		{
-			primaryTitleString = primaryTitleObj[0]->getLeaf();
 		}
 	}
 

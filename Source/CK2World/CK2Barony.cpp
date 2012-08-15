@@ -26,23 +26,25 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince)
 	proxyMultiplier = 1;
 	if (title->getTitleString() == title->getHolder()->getCapitalString())
 	{
-		string primaryTitle = title->getHolder()->getPrimaryTitleString();
-		primaryTitle = primaryTitle.substr(0, 2);
-		if (primaryTitle == "c_")
+		vector<CK2Title*> titles = title->getHolder()->getTitles();
+		for (vector<CK2Title*>::const_iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
 		{
-			proxyMultiplier = 2;
-		}
-		if (primaryTitle == "d_")
-		{
-			proxyMultiplier = 3;
-		}
-		if (primaryTitle == "k_")
-		{
-			proxyMultiplier = 4;
-		}
-		if (primaryTitle == "e_")
-		{
-			proxyMultiplier = 5;
+			if ( ((*titleItr)->getTitleString().substr(0,2) == "c_") && (proxyMultiplier < 2) )
+			{
+				proxyMultiplier = 2;
+			}
+			if ( ((*titleItr)->getTitleString().substr(0,2) == "d_") && (proxyMultiplier < 3) )
+			{
+				proxyMultiplier = 3;
+			}
+			if ( ((*titleItr)->getTitleString().substr(0,2) == "k_") && (proxyMultiplier < 4) )
+			{
+				proxyMultiplier = 4;
+			}
+			if ( ((*titleItr)->getTitleString().substr(0,2) == "e_") && (proxyMultiplier < 5) )
+			{
+				proxyMultiplier = 5;
+			}
 		}
 	}
 
