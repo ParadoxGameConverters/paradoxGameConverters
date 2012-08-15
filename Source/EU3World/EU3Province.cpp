@@ -404,26 +404,33 @@ string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, const 
 
 void EU3Province::determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies)
 {
-	map<string, int> cultureCounts;
+	map<string, double> cultureCounts;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
+		double popProxy = 0.0f;
+		vector<CK2Barony*> baronies = (*provItr)->getBaronies();
+		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
+		{
+			popProxy += (*baronyItr)->getPopProxy();
+		}
+
 		string EU3Culture = determineEU3Culture(cultureMap, *provItr);
-		map<string, int>::iterator cultureItr = cultureCounts.find(EU3Culture);
+		map<string, double>::iterator cultureItr = cultureCounts.find(EU3Culture);
 		if (cultureItr == cultureCounts.end())
 		{
-			cultureCounts[EU3Culture] = 1;
+			cultureCounts[EU3Culture] = popProxy;
 		}
 		else
 		{
-			cultureItr->second++;
+			cultureItr->second += popProxy;
 		}
 	}
 
 	string			topCulture		= "";
-	int				highestCount	= 0;
+	double			highestCount	= 0;
 	vector<string>	tiedCultures;
 	bool				tie;
-	for (map<string, int>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
+	for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
 	{
 		if (countsItr->second > highestCount)
 		{
@@ -440,55 +447,6 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		}
 	}
 
-	//if (tie == true)
-	//{
-	//	log("\tCulture tie in province %d, using barons to distinguish.\n", num);
-	//	cultureCounts.clear();
-	//	for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr < baronies.end(); baronyItr++)
-	//	{
-	//		string EU3Culture = determineEU3Culture( cultureMap, (*baronyItr)->getTitle()->getHolder()->getCulture() );
-	//		bool isATiedCulture = false;
-	//		for (vector<string>::iterator tiedItr = tiedCultures.begin(); tiedItr < tiedCultures.end(); tiedItr++)
-	//		{
-	//			if (EU3Culture == *tiedItr)
-	//			{
-	//				map<string, int>::iterator cultureItr = cultureCounts.find(EU3Culture);
-	//				if (cultureItr == cultureCounts.end())
-	//				{
-	//					cultureCounts[EU3Culture] = 1;
-	//				}
-	//				else
-	//				{
-	//					cultureItr->second++;
-	//				}
-	//			}
-	//		}
-	//	}
-
-	//	topCulture		= "";
-	//	highestCount	= 0;
-	//	tiedCultures.clear();
-	//	for (map<string, int>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
-	//	{
-	//		if (countsItr->second > highestCount)
-	//		{
-	//			topCulture		= countsItr->first;
-	//			highestCount	= countsItr->second;
-	//			tiedCultures.clear();
-	//			tie = false;
-	//		}
-	//		else if (countsItr->second == highestCount)
-	//		{
-	//			if (tiedCultures.size() == 0)
-	//			{
-	//				tiedCultures.push_back(topCulture);
-	//			}
-	//			tiedCultures.push_back(countsItr->first);
-	//			tie = true;
-	//		}
-	//	}
-	//}
-
 	if (tie == true)
 	{
 		log("\tError: could not decide on culture for EU3 province %d due to ties.\n", num);
@@ -501,26 +459,34 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 void EU3Province::determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces)
 {
 
-	map<string, int> religionCounts;
+	map<string, double> religionCounts;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
+		double popProxy = 0.0f;
+		vector<CK2Barony*> baronies = (*provItr)->getBaronies();
+		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
+		{
+			popProxy += (*baronyItr)->getPopProxy();
+		}
+
+
 		string _religion = (*provItr)->getReligion();
-		map<string, int>::iterator countsItr = religionCounts.find(_religion);
+		map<string, double>::iterator countsItr = religionCounts.find(_religion);
 		if (countsItr != religionCounts.end())
 		{
-			countsItr->second++;
+			countsItr->second += popProxy;
 		}
 		else
 		{
-			religionCounts[_religion] = 1;
+			religionCounts[_religion] = popProxy;
 		}
 	}
 
 	string			topReligion;
-	int				topCount		= 0;
+	double			topCount		= 0;
 	bool				tie			= false;
 	vector<string>	tiedReligions;
-	for (map<string, int>::const_iterator countsItr = religionCounts.begin(); countsItr != religionCounts.end(); countsItr++)
+	for (map<string, double>::const_iterator countsItr = religionCounts.begin(); countsItr != religionCounts.end(); countsItr++)
 	{
 		if (countsItr->second > topCount)
 		{
@@ -564,9 +530,12 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	{
 		religion = religionItr->second;
 	}
+	else if (topReligion == "")
+	{
+	}
 	else
 	{
-		log("\tError: could not map religion %s to any EU3 religions\n", topReligion.c_str());
+		log("\tError: could not map religion %s to any EU3 religions (province %d: %s)\n", topReligion.c_str(), num, capital.c_str());
 	}
 }
 

@@ -158,3 +158,4 @@ Revision	Log Message
 155		Trade goods
 156		Base Tax conversion
 157		Fix traits bug
+158		Use population proxy to determine culture and religion where needed
