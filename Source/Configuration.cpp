@@ -25,6 +25,9 @@ Configuration::Configuration()
 
 	CK2Path		= obj[0]->getLeaf("CK2directory");
 	EU3Path		= obj[0]->getLeaf("EU3directory");
+	manpower		= obj[0]->getLeaf("manpower");
+	basetax		= obj[0]->getLeaf("basetax");
+	population	= obj[0]->getLeaf("population");
 	HRETitle		= obj[0]->getLeaf("HRETitle");
 
 	id				= 1;

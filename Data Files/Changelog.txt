@@ -161,3 +161,4 @@ Revision	Log Message
 158		Use population proxy to determine culture and religion where needed
 159		Proxy multiplier for capitals
 160		Fix to make proxy multiplier work
+161		Allow manpower, basetax, and population to be converted to historical values (configuration option)

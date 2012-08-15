@@ -324,9 +324,18 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			provItr->second->setSrcOwner(greatestOwner);
 		}
 
-		provItr->second->setBaseTax(totalHistoricalBaseTax * baseTaxProxy / totalBaseTaxProxy);
-		provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
-		provItr->second->setManpower(totalHistoricalManpower * manpowerProxy / totalManpowerProxy);
+		if (Configuration::getBasetax() == "converted")
+		{
+			provItr->second->setBaseTax(totalHistoricalBaseTax * baseTaxProxy / totalBaseTaxProxy);
+		}
+		if (Configuration::getPopulation() == "converted")
+		{
+			provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
+		}
+		if (Configuration::getManpower() == "converted")
+		{
+			provItr->second->setManpower(totalHistoricalManpower * manpowerProxy / totalManpowerProxy);
+		}
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 		provItr->second->determineReligion(religionMap, srcProvinces);
 	}

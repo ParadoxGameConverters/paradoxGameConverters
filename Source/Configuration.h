@@ -22,6 +22,21 @@ public:
 		return getInstance()->EU3Path;
 	}
 
+	static string getManpower()
+	{
+		return getInstance()->manpower;
+	}
+
+	static string getBasetax()
+	{
+		return getInstance()->basetax;
+	}
+
+	static string getPopulation()
+	{
+		return getInstance()->population;
+	}
+
 	static string getHRETitle()
 	{
 		return getInstance()->HRETitle;
@@ -44,6 +59,9 @@ private:
 
 	string	CK2Path;
 	string	EU3Path;
+	string	manpower;
+	string	basetax;
+	string	population;
 	string	HRETitle;
 
 	int		id;
