@@ -157,3 +157,4 @@ Revision	Log Message
 154		Manpower conversion
 155		Trade goods
 156		Base Tax conversion
+157		Fix traits bug

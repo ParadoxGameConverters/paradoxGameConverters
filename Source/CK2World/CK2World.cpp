@@ -193,10 +193,11 @@ void CK2World::addDynasties(Object* obj)
 void CK2World::addTraits(Object* obj)
 {
 	vector<Object*> traitLeaves = obj->getLeaves();
+	int offset = traits.size() + 1;
 	for (unsigned int i = 0; i < traitLeaves.size(); i++)
 	{
 		CK2Trait* newTrait = new CK2Trait(traitLeaves[i]);
-		traits.insert( make_pair(i + 1, newTrait) );
+		traits.insert( make_pair(i + offset, newTrait) );
 	}
 }
 
