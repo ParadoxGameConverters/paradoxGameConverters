@@ -242,8 +242,9 @@ int main(int argc, char * argv[])
 	// Output results
 	printf("Outputting save.\n");
 	log("Outputting save.\n");
+	string outputFilename = inputFilename.substr(0, inputFilename.find_last_of('.')) + ".eu3";
 	FILE* output;
-	if (fopen_s(&output, "output.eu3", "w") != 0)
+	if (fopen_s(&output, outputFilename.c_str(), "w") != 0)
 	{
 		log("Error: could not open output.v2.\n");
 		printf("Error: could not open output.v2.\n");

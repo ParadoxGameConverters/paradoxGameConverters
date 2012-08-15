@@ -5,13 +5,13 @@ echo Testing %i% with the %j% configuration
 copy ..\CK2_Saves\%i%.zip .\%i%.zip
 set PWD=%~dp0
 "%IZARC_LOC%" -ef "%PWD%" "%i%.zip"
-copy "%i%\*.ck2" .\input.ck2
+copy "%i%\*.ck2" .\%i%.ck2
 del %i% /q
 del %i%.zip
 rmdir %i%
-call CK2ToEU3.exe
-del input.ck2 /q
-copy output.eu3 ..\testresults\%j%\%i%.eu3
+call CK2ToEU3.exe %i%.ck2
+del *.ck2 /q
+copy *.eu3 ..\testresults\%j%\
+del *.eu3 /q
 copy log.txt ..\testresults\%j%\%i%-Log.txt
-del output.eu3 /q
 del log.txt /q

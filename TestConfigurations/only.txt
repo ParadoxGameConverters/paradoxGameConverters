@@ -6,6 +6,18 @@ configuration =
 	# Crusader Kings 2 directory: a path on your computer where Crusader Kings 2 is installed
 	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
 
+	# manpower: Manpower conversion method. Options are:
+	#	"historical"	- just import the manpower from the EU3 history
+	#	"converted"	- convert the manpower from the CK2 game
+	manpower = "converted"
+	# basetax: Base Tax conversion method. Options are:
+	#	"historical"	- just import the manpower from the EU3 history
+	#	"converted"	- convert the manpower from the CK2 game
+	basetax = "converted"
+	# population: Population conversion method. Options are:
+	#	"historical"	- just import the manpower from the EU3 history
+	#	"converted"	- convert the manpower from the CK2 game
+	population = "converted"
 	# HRE Title: the CK2 Title that will convert are the HRE in EU3. All immediate vassals will be independent.
 	HRETitle = "e_hre"
 }
