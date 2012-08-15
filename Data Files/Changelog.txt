@@ -159,3 +159,4 @@ Revision	Log Message
 156		Base Tax conversion
 157		Fix traits bug
 158		Use population proxy to determine culture and religion where needed
+159		Proxy multiplier for capitals

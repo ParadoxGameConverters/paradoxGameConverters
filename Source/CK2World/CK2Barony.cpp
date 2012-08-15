@@ -1,4 +1,6 @@
 #include "CK2Barony.h"
+#include "CK2Title.h"
+#include "CK2Character.h"
 #include "..\Parsers\Object.h"
 #include "..\Log.h"
 
@@ -20,12 +22,39 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince)
 			buildings.insert( make_pair(key, true) );
 		}
 	}
+
+	proxyMultiplier = 1;
+	if (title->getTitleString() == title->getHolder()->getCapitalString())
+	{
+		string primaryTitle = title->getHolder()->getPrimaryTitleString();
+		primaryTitle = primaryTitle.substr(0, 2);
+		if (primaryTitle == "c_")
+		{
+			proxyMultiplier = 2;
+		}
+		if (primaryTitle == "d_")
+		{
+			proxyMultiplier = 3;
+		}
+		if (primaryTitle == "k_")
+		{
+			proxyMultiplier = 4;
+		}
+		if (primaryTitle == "e_")
+		{
+			proxyMultiplier = 5;
+		}
+	}
+
+	determineBaseTaxProxy();
+	determinePopProxy();
+	determineManpowerProxy();
 }
 
 
-float CK2Barony::getBaseTaxProxy() const
+void CK2Barony::determineBaseTaxProxy()
 {
-	float baseTaxProxy = 0.0f;
+	baseTaxProxy = 0.0f;
 	if (type == "city")
 	{
 		baseTaxProxy += 12.0f;
@@ -235,13 +264,13 @@ float CK2Barony::getBaseTaxProxy() const
 		log("Note! Unhandled barony type %s\n", type.c_str());
 	}
 
-	return baseTaxProxy;
+	baseTaxProxy *= proxyMultiplier;
 }
 
 
-float CK2Barony::getPopProxy() const
+void CK2Barony::determinePopProxy()
 {
-	float popProxy = 0;
+	popProxy = 0.0f;
 	if (type == "city")
 	{
 		popProxy += 12.0f;
@@ -391,13 +420,13 @@ float CK2Barony::getPopProxy() const
 		log("Note! Unhandled barony type %s\n", type.c_str());
 	}
 
-	return popProxy;
+	popProxy *= proxyMultiplier;
 }
 
 
-float CK2Barony::getManpowerProxy() const
+void CK2Barony::determineManpowerProxy()
 {
-	float manpowerProxy = 0;
+	manpowerProxy = 0.0f;
 	if (type == "castle")
 	{
 		manpowerProxy += 225;
@@ -1095,5 +1124,5 @@ float CK2Barony::getManpowerProxy() const
 		log("Note! Unhandled barony type %s\n", type.c_str());
 	}
 
-	return manpowerProxy;
+	manpowerProxy *= proxyMultiplier;
 }

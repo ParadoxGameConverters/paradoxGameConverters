@@ -42,28 +42,29 @@ class CK2Character
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
 
-		int							getNum()					const { return num; };
-		string						getName()				const { return name; };
-		string						getCulture()			const { return culture; };
-		string						getReligion()			const { return religion; };
-		CK2Dynasty*					getDynasty()			const { return dynasty; };
-		date							getBirthDate()			const { return birthDate; };
-		bool							isDead()					const { return dead; };
-		date							getDeathDate()			const { return deathDate; };
-		bool							isFemale()				const { return female; };
-		bool							isBastard()				const { return bastard; };
-		int*							getStats()				const { return (int*)stats; };
-		vector<CK2Title*>			getTitles()				const { return titles; };
-		CK2Character*				getFather()				const { return father; };
-		CK2Character*				getRegent()				const { return regent; };
-		CK2Character**				getAdvisors()			const { return (CK2Character**)advisors; };
-		advisorTypes				getJobType()			const { return jobType; };
-		string						getAction()				const { return action; };
-		int							getLocationNum()		const { return locationNum; };
+		int							getNum()						const { return num; };
+		string						getName()					const { return name; };
+		string						getCulture()				const { return culture; };
+		string						getReligion()				const { return religion; };
+		CK2Dynasty*					getDynasty()				const { return dynasty; };
+		date							getBirthDate()				const { return birthDate; };
+		bool							isDead()						const { return dead; };
+		date							getDeathDate()				const { return deathDate; };
+		bool							isFemale()					const { return female; };
+		bool							isBastard()					const { return bastard; };
+		int*							getStats()					const { return (int*)stats; };
+		vector<CK2Title*>			getTitles()					const { return titles; };
+		CK2Character*				getFather()					const { return father; };
+		CK2Character*				getRegent()					const { return regent; };
+		CK2Character**				getAdvisors()				const { return (CK2Character**)advisors; };
+		advisorTypes				getJobType()				const { return jobType; };
+		string						getAction()					const { return action; };
+		int							getLocationNum()			const { return locationNum; };
+		string						getCapitalString()		const { return capitalString; };
+		string						getPrimaryTitleString()	const { return primaryTitleString; };
 		
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
-		string						getCapitalString()	const { return capitalString; };
 
 		void							addChild(CK2Character*);
 		void							addAdvisor(CK2Character*, advisorTypes);
@@ -100,6 +101,7 @@ class CK2Character
 		int							hostNum;
 		int							locationNum;
 		string						capitalString;
+		string						primaryTitleString;
 };
 
 

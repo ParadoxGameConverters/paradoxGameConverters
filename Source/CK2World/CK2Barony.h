@@ -17,18 +17,25 @@ class CK2Barony
 	public:
 		CK2Barony(Object*, CK2Title*, CK2Province*);
 
-		CK2Title*		getTitle()		const { return title; };
-		CK2Province*	getProvince()	const { return province; };
-
-		float				getBaseTaxProxy() const;
-		float				getPopProxy() const;
-		float				getManpowerProxy() const;
+		CK2Title*		getTitle()				const { return title; };
+		CK2Province*	getProvince()			const { return province; };
+		double			getBaseTaxProxy()		const { return baseTaxProxy; };
+		double			getPopProxy()			const { return popProxy; };
+		double			getManpowerProxy()	const { return manpowerProxy; };
 	private:
+		void	determineBaseTaxProxy();
+		void	determinePopProxy();
+		void	determineManpowerProxy();
+
 		CK2Title*		title;
 		CK2Province*	province;
 
 		string				type;
 		map<string, bool>	buildings;
+		int					proxyMultiplier;
+		double				baseTaxProxy;
+		double				popProxy;
+		double				manpowerProxy;
 };
 
 
