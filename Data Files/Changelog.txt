@@ -165,3 +165,4 @@ Revision	Log Message
 162		Output name comes from input name if it's specified (works on drag-n-drops, too)
 163		Fix parser bug (in setRHSObjList())
 164		Add blended option for population conversion
+165		Fix unmapped provinces error
