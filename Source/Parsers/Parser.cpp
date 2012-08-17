@@ -286,13 +286,15 @@ void setRHSobject()
 
 void setRHSobjlist()
 {
+	Object* l = stack.back();
+	l->setValue(objstack);
+	objstack.clear();
+	stack.pop_back(); 
 	if (0 < stack.size())
 	{
 		Object* p = stack.back(); 
-		p->setValue(objstack); 
+		p->setValue(l); 
 	}
-	stack.pop_back(); 
-	objstack.clear(); 
 }
 
 Object* doParseFile(const char* filename)

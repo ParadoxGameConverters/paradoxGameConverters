@@ -96,9 +96,7 @@ void CK2World::init(Object* obj)
 			if (titleItr == potentialTitles.end())
 			{
 				log("Error: tried to create title %s, but it is not a potential title.\n", key.c_str());
-				CK2Title* newTitle = new CK2Title(key);
-				potentialTitles.insert( make_pair(key, newTitle) );
-				titleItr = potentialTitles.find(key);
+				continue;
 			}
 			titleItr->second->init(leaves[i], characters);
 			titles.insert( make_pair(titleItr->second->getTitleString(), titleItr->second) );
