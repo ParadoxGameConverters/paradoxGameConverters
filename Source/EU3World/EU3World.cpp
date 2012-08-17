@@ -220,9 +220,9 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			totalHistoricalManpower		+= provinces.find(provItr->first)->second->getManpower();
 		}
 	}
-	log("Total historical base tax is %f.\n", totalHistoricalBaseTax);
-	log("Total historical population is %f.\n", totalHistoricalPopulation);
-	log("Total historical manpower is %f.\n", totalHistoricalManpower);
+	log("\tTotal historical base tax is %f.\n", totalHistoricalBaseTax);
+	log("\tTotal historical population is %f.\n", totalHistoricalPopulation);
+	log("\tTotal historical manpower is %f.\n", totalHistoricalManpower);
 
 	double totalBaseTaxProxy	= 0.0f;
 	double totalPopProxy			= 0.0f;
@@ -331,6 +331,10 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		if (Configuration::getPopulation() == "converted")
 		{
 			provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
+		}
+		else if (Configuration::getPopulation() == "blended")
+		{
+			provItr->second->setPopulation( (0.9 * provItr->second->getPopulation()) + (0.1 * totalHistoricalPopulation * popProxy / totalPopProxy) );
 		}
 		if (Configuration::getManpower() == "converted")
 		{

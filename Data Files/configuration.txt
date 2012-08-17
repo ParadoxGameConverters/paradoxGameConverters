@@ -19,6 +19,7 @@ configuration =
 	# population: Population conversion method. Options are:
 	#	"historical"	- just import the manpower from the EU3 history
 	#	"converted"	- convert the manpower from the CK2 game
+	#	"blended"	- 90% of population is historical, 10% is converted
 	population = "converted"
 
 	# HRE Title: the CK2 Title that will convert are the HRE in EU3. All immediate vassals will be independent.

@@ -164,3 +164,4 @@ Revision	Log Message
 161		Allow manpower, basetax, and population to be converted to historical values (configuration option)
 162		Output name comes from input name if it's specified (works on drag-n-drops, too)
 163		Fix parser bug (in setRHSObjList())
+164		Add blended option for population conversion
