@@ -2,12 +2,13 @@
 #include "Log.h"
 #include "Configuration.h"
 #include "Parsers\Object.h"
+#include "CK2World\CK2Version.h"
 #include "CK2World\CK2Title.h"
 #include "EU3World\EU3Country.h"
 
 
 
-provinceMapping initProvinceMap(Object* obj)
+provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 {
 	provinceMapping mapping;
 	provinceMapping::iterator mapIter;
@@ -21,42 +22,49 @@ provinceMapping initProvinceMap(Object* obj)
 		return mapping;
 	}
 
-	vector<Object*> data = leaves[0]->getLeaves();
-
-	for (unsigned int i = 0; i < data.size(); i++)
+	for (vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
 	{
-		vector<int> CK2nums;
-		vector<int> EU3nums;
-
-		vector<Object*> maps = data[i]->getLeaves();
-
-		for (unsigned int j = 0; j < maps.size(); j++)
+		if (  CK2Version( (*itr)->getKey() ) > *version  )
 		{
-			if (maps[j]->getKey().compare("ck2") == 0)
-			{
-				CK2nums.push_back(atoi(maps[j]->getLeaf().c_str()));
-			}
-			else if (maps[j]->getKey().compare("eu3") == 0)
-			{
-				EU3nums.push_back(atoi(maps[j]->getLeaf().c_str()));
-			}
-			else
-			{
-				log("Warning: unknown data while mapping provinces.\n");
-			}
+			continue;
 		}
+		vector<Object*> data = (*itr)->getLeaves();
 
-		if (CK2nums.size() == 0)
+		for (unsigned int i = 0; i < data.size(); i++)
 		{
-			CK2nums.push_back(0);
-		}
+			vector<int> CK2nums;
+			vector<int> EU3nums;
 
-		for (unsigned int k = 0; k < EU3nums.size(); k++)
-		{
-			pair< int, vector<int> > insertMe;
-			insertMe.first = EU3nums[k];
-			insertMe.second = CK2nums;
-			mapping.insert(insertMe);
+			vector<Object*> maps = data[i]->getLeaves();
+
+			for (unsigned int j = 0; j < maps.size(); j++)
+			{
+				if (maps[j]->getKey().compare("ck2") == 0)
+				{
+					CK2nums.push_back(atoi(maps[j]->getLeaf().c_str()));
+				}
+				else if (maps[j]->getKey().compare("eu3") == 0)
+				{
+					EU3nums.push_back(atoi(maps[j]->getLeaf().c_str()));
+				}
+				else
+				{
+					log("Warning: unknown data while mapping provinces.\n");
+				}
+			}
+
+			if (CK2nums.size() == 0)
+			{
+				CK2nums.push_back(0);
+			}
+
+			for (unsigned int k = 0; k < EU3nums.size(); k++)
+			{
+				pair< int, vector<int> > insertMe;
+				insertMe.first = EU3nums[k];
+				insertMe.second = CK2nums;
+				mapping.insert(insertMe);
+			}
 		}
 	}
 
@@ -230,4 +238,100 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, vector
 	}
 
 	return CK2Titles.size();
+}
+
+
+cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the distinguishers
+{
+	cultureMapping cultureMap;
+	vector<Object*> links = obj->getLeaves();
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		vector<Object*>			cultures	= (*i)->getLeaves();
+
+		vector<string>				srcCultures;
+		string						dstCulture;
+		vector< distinguisher > distinguishers;
+		for (vector<Object*>::iterator j = cultures.begin(); j != cultures.end(); j++)
+		{
+			if ( (*j)->getKey() == "eu3" )
+			{
+				dstCulture = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "ck2" )
+			{
+				srcCultures.push_back( (*j)->getLeaf() );
+			}
+			if ( (*j)->getKey() == "de_jure" )
+			{
+				distinguisher newD;
+				newD.first	= DTDeJure;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "kingdom_culture" )
+			{
+				distinguisher newD;
+				newD.first	= DTKingdomCulture;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "religion" )
+			{
+				distinguisher newD;
+				newD.first	= DTReligion;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+			if ( (*j)->getKey() == "hre_member" )
+			{
+				distinguisher newD;
+				newD.first	= DTHREMember;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
+		}
+
+		for (vector<string>::iterator j = srcCultures.begin(); j != srcCultures.end(); j++)
+		{
+			cultureStruct rule;
+			rule.srcCulture		= (*j);
+			rule.dstCulture		= dstCulture;
+			rule.distinguishers	= distinguishers;
+			cultureMap.push_back(rule);
+		}
+	}
+
+	return cultureMap;
+}
+
+
+religionMapping initReligionMap(Object* obj)
+{
+	religionMapping religionMap;
+	vector<Object*> links = obj->getLeaves();
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		vector<Object*>			link	= (*i)->getLeaves();
+
+		string srcReligion;
+		string dstReligion;
+		for (vector<Object*>::iterator j = link.begin(); j != link.end(); j++)
+		{
+			if ( (*j)->getKey() == "eu3" )
+			{
+				dstReligion = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "ck2" )
+			{
+				srcReligion = (*j)->getLeaf();
+			}
+		}
+
+		religionMap.insert( make_pair(srcReligion, dstReligion) );
+	}
+
+	return religionMap;
 }

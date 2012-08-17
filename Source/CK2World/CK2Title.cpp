@@ -1,5 +1,6 @@
 #include "CK2Title.h"
 #include "..\Parsers\Object.h"
+#include "CK2World.h"
 #include "CK2Character.h"
 #include "CK2Title.h"
 #include "CK2Dynasty.h"
@@ -8,33 +9,29 @@
 
 
 
-CK2Title::CK2Title()
+CK2Title::CK2Title(string _titleString)
 {
-	titleString		= "";
-	holder			= NULL;
-	heir				= NULL;
-	successionLaw	= "";
-	genderLaw		= "";
+	titleString			= _titleString;
+	holder				= NULL;
+	heir					= NULL;
+	successionLaw		= "";
+	genderLaw			= "";
+	nominees.clear();
 	history.clear();
-	liegeString		= "";
-	liege				= NULL;
+	liegeString			= "";
+	liege					= NULL;
 	vassals.clear();
-
-	independent		= true;
-	inHRE				= false;
+	deJureLiegeString	= "";
+	deJureLiege			= NULL;
+	independent			= true;
+	inHRE					= false;
 }
-
 
 
 void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 {
 	titleString = obj->getKey();
-	vector<Object*> liegeObjs = obj->getValue("liege");
-	if (liegeObjs.size() > 0)
-	{
-		liegeString = liegeObjs[0]->getLeaf();
-	}
-
+	holder = NULL;
 	vector<Object*> holderObjs = obj->getValue("holder");
 	if (holderObjs.size() > 0)
 	{
@@ -44,9 +41,9 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 			holder->addTitle(this);
 		}
 	}
-
-	genderLaw = obj->getLeaf("gender");
+	heir = NULL;
 	successionLaw = obj->getLeaf("succession");
+	genderLaw = obj->getLeaf("gender");
 
 	vector<Object*> leavesObj = obj->getLeaves();
 	for (unsigned int i = 0; i < leavesObj.size(); i++)
@@ -78,11 +75,36 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 		historyObjs = historyObjs[0]->getLeaves();
 		for (unsigned int i = 0; i < historyObjs.size(); i++)
 		{
-			CK2History* newHistory = new CK2History();
-			newHistory->init(historyObjs[i], characters);
+			CK2History* newHistory = new CK2History(historyObjs[i], characters);
 			history.push_back(newHistory);
 		}
 	}
+
+	vector<Object*> liegeObjs = obj->getValue("liege");
+	if (liegeObjs.size() > 0)
+	{
+		liegeString = liegeObjs[0]->getLeaf();
+	}
+	liege = NULL;
+
+	vassals.clear();
+
+	vector<Object*> deJureLiegeObjs = obj->getValue("de_jure_liege");
+	if (deJureLiegeObjs.size() > 0)
+	{
+		deJureLiegeString = deJureLiegeObjs[0]->getLeaf();
+	}
+	else
+	{
+		deJureLiegeString = "";
+	}
+	if (deJureLiegeString[0] == '"')
+	{
+		deJureLiegeString = deJureLiegeString.substr(1, deJureLiegeString.size() - 2);
+	}
+
+	independent = true;
+	inHRE = false;
 }
 
 
@@ -104,18 +126,6 @@ void CK2Title::addVassal(CK2Title* vassal)
 void CK2Title::addToHRE()
 {
 	inHRE = true;
-}
-
-
-string CK2Title::getTitleString()
-{
-	return titleString;
-}
-
-
-CK2Character* CK2Title::getHolder()
-{
-	return holder;
 }
 
 
@@ -165,45 +175,42 @@ void CK2Title::setHeir(CK2Character* newHeir)
 }
 
 
-CK2Character* CK2Title::getHeir()
+void CK2Title::setDeJureLiege(const map<string, CK2Title*>& titles)
 {
-	return heir;
+	if (  (deJureLiegeString != "") && (deJureLiegeString != "---") && ( (deJureLiege == NULL) || (deJureLiege->getTitleString() != deJureLiegeString ) )  )
+	{
+		map<string, CK2Title*>::const_iterator titleItr = titles.find(deJureLiegeString);
+		if (titleItr != titles.end())
+		{
+			deJureLiege = titleItr->second;
+		}
+	}
 }
 
 
-string CK2Title::getSuccessionLaw()
+void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& titles, CK2World* world)
 {
-	return successionLaw;
-}
-
-
-vector<CK2History*> CK2Title::getHistory()
-{
-	return history;
-}
-
-
-string CK2Title::getLiegeString()
-{
-	return liegeString;
-}
-
-
-CK2Title* CK2Title::getLiege()
-{
-	return liege;
-}
-
-
-bool CK2Title::isIndependent()
-{
-	return independent;
-}
-
-
-bool CK2Title::isInHRE()
-{
-	return inHRE;
+	for (vector<Object*>::iterator itr = obj.begin(); itr < obj.end(); itr++)
+	{
+		string substr = (*itr)->getKey().substr(0, 2);
+		if ( (substr != "e_") && (substr != "k_") && (substr != "d_") && (substr != "c_") && (substr != "b_") )
+		{
+			continue;
+		}
+		map<string, CK2Title*>::iterator titleItr = titles.find( (*itr)->getKey() );
+		if (titleItr == titles.end())
+		{
+			CK2Title* newTitle = new CK2Title( (*itr)->getKey() );
+			titles.insert( make_pair((*itr)->getKey(), newTitle) );
+			titleItr = titles.find( (*itr)->getKey() );
+		}
+		else
+		{
+			log("Note! The CK2Title::addDeJureVassals() condition is needed!\n");
+		}
+		titleItr->second->setDeJureLiege(this);
+		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), titles, world );
+	}
 }
 
 
@@ -327,17 +334,4 @@ CK2Character* CK2Title::getTurkishSuccessionHeir()
 	}
 
 	return heir;
-}
-
-
-
-CK2Title::~CK2Title()
-{
-	//TODO: learn why this crashes things
-/*	while (vassals.size() > 0)
-	{
-		CK2Title* currentTitle = vassals[vassals.size() - 1];
-		delete currentTitle;
-		vassals.pop_back();
-	}*/
 }

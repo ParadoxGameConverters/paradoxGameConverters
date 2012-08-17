@@ -20,13 +20,14 @@ using namespace std;
 
 
 
-EU3World::EU3World()
+EU3World::EU3World(CK2World* srcWorld)
 {
-	startDate = (date)"1.1.1";
+	startDate = srcWorld->getEndDate();
 	provinces.clear();
 	countries.clear();
 	europeanCountries.clear();
 	advisors.clear();
+	mapSpreadStrings.clear();
 }
 
 
@@ -62,9 +63,72 @@ void EU3World::output(FILE* output)
 }
 
 
-void EU3World::init(CK2World* srcWorld)
+void EU3World::addPotentialCountries()
 {
-	startDate = srcWorld->getEndDate();
+	string EU3Loc = Configuration::getEU3Path();
+
+	struct _finddata_t	countryDirData;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (EU3Loc + "\\history\\countries\\*").c_str(), &countryDirData)) == -1L)
+	{
+		log("Error: Could not open country history directory.\n");
+		return;
+	}
+	do
+	{
+		if (strcmp(countryDirData.name, ".") == 0 || strcmp(countryDirData.name, "..") == 0 )
+		{
+				continue;
+		}
+
+		string filename;
+		filename = countryDirData.name;
+
+		string tag;
+		tag = filename.substr(0, 3);
+		transform(tag.begin(), tag.end(), tag.begin(), toupper);
+
+		if (tag == "REB")
+		{
+			continue;
+		}
+
+		EU3Country* newCountry = new EU3Country(tag, filename, startDate);
+		countries.push_back(newCountry);
+
+	} while(_findnext(fileListing, &countryDirData) == 0);
+	_findclose(fileListing);
+}
+
+
+void EU3World::setupProvinces(provinceMapping& provinceMap)
+{
+	for (provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
+	{
+		//parse relevant file
+		Object* obj;
+		char num[5];
+		_itoa_s(i->first, num, 5, 10);
+		
+		string filename = Configuration::getEU3Path() + "\\history\\provinces\\" + num + "*-*.txt";
+		struct _finddata_t	fileData;
+		intptr_t					fileListing;
+		if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
+		{
+			obj = doParseFile( (Configuration::getEU3Path() + "\\history\\provinces\\" + fileData.name).c_str() );
+			_findclose(fileListing);
+		}
+		else
+		{
+			obj = new Object("NULL Object");
+		}
+
+		//initialize province
+		EU3Province* newProvince = new EU3Province(i->first, obj, startDate, mapSpreadStrings);
+
+		//add to provinces list
+		provinces.insert( make_pair(i->first, newProvince) );
+	}
 }
 
 
@@ -142,15 +206,44 @@ void EU3World::convertCountries(countryMapping& countryMap)
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap)
 {
+	double totalHistoricalBaseTax		= 0.0f;
+	double totalHistoricalPopulation = 0.0f;
+	double totalHistoricalManpower	= 0.0f;
+	for (provinceMapping::const_iterator provItr = provinceMap.begin(); provItr != provinceMap.end(); provItr++)
+	{
+		if (provItr->second[0] != 0)
+		{
+			totalHistoricalBaseTax		+= provinces.find(provItr->first)->second->getBaseTax();
+			totalHistoricalPopulation	+= provinces.find(provItr->first)->second->getPopulation();
+			totalHistoricalManpower		+= provinces.find(provItr->first)->second->getManpower();
+		}
+	}
+	log("Total historical base tax is %f.\n", totalHistoricalBaseTax);
+	log("Total historical population is %f.\n", totalHistoricalPopulation);
+	log("Total historical manpower is %f.\n", totalHistoricalManpower);
+
+	double totalBaseTaxProxy	= 0.0f;
+	double totalPopProxy			= 0.0f;
+	double totalManpowerProxy	= 0.0f;
+	for (map<int, CK2Province*>::const_iterator srcItr = allSrcProvinces.begin(); srcItr != allSrcProvinces.end(); srcItr++)
+	{
+		vector<CK2Barony*> baronies = srcItr->second->getBaronies();
+		for (vector<CK2Barony*>::const_iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
+		{
+			totalBaseTaxProxy		+= (*baronyItr)->getBaseTaxProxy();
+			totalPopProxy			+= (*baronyItr)->getPopProxy();
+			totalManpowerProxy	+= (*baronyItr)->getManpowerProxy();
+		}
+	}
+
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
 		if (i->second[0] == 0)
 		{
 			continue;
 		}
-
 		
 		vector<int>	srcProvinceNums = i->second;
 		vector<CK2Province*> srcProvinces;
@@ -174,13 +267,19 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 				numBaronies++;
 			}
 		}
-		log("	,EU3 province ,%d, contains ,%d, CK2 baronies.\n", i->first, numBaronies);
 
-		bool inHRE = false;
-		vector< pair<CK2Title*, int > > owners;	// ownerTitle, numBaronies
+		double	baseTaxProxy	= 0.0f;
+		double	popProxy			= 0.0f;
+		double	manpowerProxy	= 0.0f;
+		bool		inHRE		= false;
+		vector< pair<const CK2Title*, int > > owners;	// ownerTitle, numBaronies
 		for (unsigned int j = 0; j < baronies.size(); j++)
 		{
-			CK2Title* title = baronies[j]->getTitle();
+			baseTaxProxy	+= baronies[j]->getBaseTaxProxy();
+			popProxy			+= baronies[j]->getPopProxy();
+			manpowerProxy	+= baronies[j]->getManpowerProxy();
+
+			const CK2Title* title = baronies[j]->getTitle();
 			while( !title->isIndependent() )
 			{
 				title = title->getLiege();
@@ -205,14 +304,14 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			}
 		}
 
-		EU3Province* newProvince = new EU3Province;
-		newProvince->setNumber(i->first);
+		map<int, EU3Province*>::iterator provItr = provinces.find(i->first);
+		provItr->second->convert(i->first, inHRE, europeanCountries);
 
-		CK2Title*	greatestOwner;
-		int			greatestOwnerNum = 0;
+		const CK2Title*	greatestOwner;
+		int					greatestOwnerNum = 0;
 		for (unsigned int j = 0; j < owners.size(); j++)
 		{
-			newProvince->addCore( countryMap[owners[j].first]->getTag() );
+			provItr->second->addCore( countryMap[owners[j].first]->getTag() );
 			if (owners[j].second > greatestOwnerNum)
 			{
 				greatestOwner		= owners[j].first;
@@ -221,12 +320,15 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		if (owners.size() > 0)
 		{
-			newProvince->setOwner( countryMap[greatestOwner]->getTag() );
+			provItr->second->setOwner( countryMap[greatestOwner]->getTag() );
+			provItr->second->setSrcOwner(greatestOwner);
 		}
-		newProvince->setInHRE(inHRE);
-		newProvince->setDiscoveredBy(europeanCountries);
 
-		provinces.insert( make_pair(i->first, newProvince) );
+		provItr->second->setBaseTax(totalHistoricalBaseTax * baseTaxProxy / totalBaseTaxProxy);
+		provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
+		provItr->second->setManpower(totalHistoricalManpower * manpowerProxy / totalManpowerProxy);
+		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
+		provItr->second->determineReligion(religionMap, srcProvinces);
 	}
 }
 
@@ -304,7 +406,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 		for (unsigned int i = 0; i < advisorsObj.size(); i++)
 		{
 			EU3Advisor* newAdvisor = new EU3Advisor(advisorsObj[i], provinces);
-			if ( (newAdvisor->getDate() < startDate) && (startDate < newAdvisor->getDeathDate()) )
+			if ( (newAdvisor->getStartDate() < startDate) && (startDate < newAdvisor->getDeathDate()) )
 			{
 				vector<int> srcLocationNums = provinceMap[newAdvisor->getLocation()];
 				if ( (srcLocationNums.size() == 1) && (srcLocationNums[0] == 0) )
@@ -317,82 +419,4 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 
 	} while(_findnext(fileListing, &advisorDirData) == 0);
 	_findclose(fileListing);
-}
-
-
-void EU3World::setupRotwProvinces(inverseProvinceMapping& inverseProvinceMap)
-{
-	vector<int> rotwProvinces = inverseProvinceMap[0];
-	for (unsigned int i = 0; i < rotwProvinces.size(); i++)
-	{
-		//parse relevant file
-		Object* obj;
-		char num[5];
-		_itoa_s(rotwProvinces[i], num, 5, 10);
-		
-		string filename = Configuration::getEU3Path() + "\\history\\provinces\\" + num + "*-*.txt";
-		struct _finddata_t	fileData;
-		intptr_t					fileListing;
-		if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
-		{
-			obj = doParseFile( (Configuration::getEU3Path() + "\\history\\provinces\\" + fileData.name).c_str() );
-			_findclose(fileListing);
-		}
-		else
-		{
-			obj = new Object("NULL Object");
-		}
-
-		//initialize province
-		EU3Province* newProvince = new EU3Province;;
-		newProvince->init(rotwProvinces[i], obj, startDate, mapSpreadStrings);
-
-		//add to provinces list
-		provinces.insert( make_pair(rotwProvinces[i], newProvince) );
-	}
-}
-
-
-void EU3World::addPotentialCountries()
-{
-	string EU3Loc = Configuration::getEU3Path();
-
-	struct _finddata_t	countryDirData;
-	intptr_t					fileListing;
-	if ( (fileListing = _findfirst( (EU3Loc + "\\history\\countries\\*").c_str(), &countryDirData)) == -1L)
-	{
-		log("Error: Could not open country history directory.\n");
-		return;
-	}
-	do
-	{
-		if (strcmp(countryDirData.name, ".") == 0 || strcmp(countryDirData.name, "..") == 0 )
-		{
-				continue;
-		}
-
-		string filename;
-		filename = countryDirData.name;
-
-		string tag;
-		tag = filename.substr(0, 3);
-		transform(tag.begin(), tag.end(), tag.begin(), toupper);
-
-		if (tag == "REB")
-		{
-			continue;
-		}
-
-		EU3Country* newCountry = new EU3Country;
-		newCountry->init(tag, filename, startDate);
-		countries.push_back(newCountry);
-
-	} while(_findnext(fileListing, &countryDirData) == 0);
-	_findclose(fileListing);
-}
-
-
-vector<EU3Country*>	EU3World::getCountries()
-{
-	return countries;
 }

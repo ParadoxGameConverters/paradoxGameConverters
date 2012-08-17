@@ -10,7 +10,7 @@ Sourceforge project: https://sourceforge.net/projects/ck2toeu3/
 ----
 REQUIREMENTS
 ----
-CK2 version 1.4 or later
+CK2 version 1.02 or later
 EU3:DW version 5.1 or later
 
 
@@ -18,14 +18,18 @@ EU3:DW version 5.1 or later
 INSTRUCTIONS
 ----
 
-1) Find the desired save file in "[YOUR CK2 DIRECTORY]/save games".
+1) Find the desired save file in "[YOUR CK2 SAVE DIRECTORY]/save games".
 2) Copy the save game in to the directory of this converter, and rename it to "input.ck2"
 3) Open the file "configuration.txt".  In the file there is a line that reads 
 	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
    Modify it so that it points to YOUR copy of Crusader Kings 2.
+   If using Steam, this is likely "C:\Program Files\Steam\steamapps\common\Crusader Kings II\"
+   Otherwise it is likely "C:\Program Files\Paradox Interactive\Crusader Kings II\"
 4) In "configuration.txt", there is a line that reads
 	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
    Modify it so that it points to YOUR copy of Europa Universalis III.
+   If using Steam, this is likely "C:\Program Files\Steam\steamapps\common\Europa Universalis III\"
+   Otherwise it is likely "C:\Program Files\Paradox Interactive\Europa Universalis III\"
 5) Run "CK2ToEU3.exe".  This will create a file in the converter's directory called "output.eu3".
 6) Copy output.eu3 to "[YOUR EU3 DIRECTORY]/save games".
 7) A file named log.txt will also be created. Immediately report any errors to the thread on the forums.

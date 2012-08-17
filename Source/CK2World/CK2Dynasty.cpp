@@ -4,15 +4,7 @@
 
 
 
-CK2Dynasty::CK2Dynasty()
-{
-	num	= -1;
-	name	= "";
-	members.clear();
-}
-
-
-void CK2Dynasty::init(Object* obj)
+CK2Dynasty::CK2Dynasty(Object* obj)
 {
 	num = atoi( obj->getKey().c_str() );
 	vector<Object*> nameLeaves = obj->getValue("name");
@@ -24,25 +16,14 @@ void CK2Dynasty::init(Object* obj)
 	{
 		name = "";
 	}
+	members.clear();
 }
 
 
-void CK2Dynasty::init(int newNum, string newName)
+CK2Dynasty::CK2Dynasty(int newNum, string newName)
 {
 	num	= newNum;
 	name	= newName;
-}
-
-
-int CK2Dynasty::getNum()
-{
-	return num;
-}
-
-
-string CK2Dynasty::getName()
-{
-	return name;
 }
 
 

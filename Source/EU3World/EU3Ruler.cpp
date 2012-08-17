@@ -8,23 +8,6 @@
 
 
 
-EU3Ruler::EU3Ruler()
-{
-	name				= "";
-	regnalNum		= -1;
-	diplomacy		= -1;
-	administration	= -1;
-	military			= -1;
-	id					= -1;
-	dynasty			= "";
-	birthDate		= (date)"1.1.1";
-	deathDate		= (date)"1.1.1";
-	claim				= -1;
-	monarchName		= "";
-	female			= false;
-}
-
-
 EU3Ruler::EU3Ruler(Object* obj)
 {
 	vector<Object*> nameObjs = obj->getValue("name");
@@ -87,6 +70,10 @@ EU3Ruler::EU3Ruler(Object* obj)
 	{
 		dynasty = dynastyObjs[0]->getLeaf();
 	}
+	else
+	{
+		dynasty = "";
+	}
 
 	vector<Object*> birthdateObjs = obj->getValue("birth_Date");
 	if (birthdateObjs.size() > 0)
@@ -142,13 +129,8 @@ EU3Ruler::EU3Ruler(Object* obj)
 
 EU3Ruler::EU3Ruler(CK2Character* src)
 {
-	name				= "";
 	regnalNum		= 1;
-	diplomacy		= 1;
-	administration	= 1;
-	military			= 1;
 	id					= Configuration::getID();
-	dynasty			= "";
 	birthDate		= src->getBirthDate();
 	deathDate		= src->getDeathDate();
 	claim				= 100;
@@ -163,6 +145,7 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	}
 	else
 	{
+		dynasty = "";
 		log("Error: %s does not have a dynasty!\n", name.c_str());
 	}
 
@@ -237,24 +220,6 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 		log("%s had a higher administration than 9 (%d) %d %d %d %d %d.\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		administration = 9;
 	}
-}
-
-
-string EU3Ruler::getName()
-{
-	return name;
-}
-
-
-void EU3Ruler::setRegnalNum(int newNum)
-{
-	regnalNum = newNum;
-}
-
-
-int EU3Ruler::getRegnalNum()
-{
-	return regnalNum;
 }
 
 
@@ -347,18 +312,6 @@ void EU3Ruler::outputAsHeir(FILE* output)
 		fprintf(output, "\"\n");
 	}
 	fprintf(output,"			}\n");
-}
-
-
-int EU3Ruler::getID()
-{
-	return id;
-}
-
-
-date EU3Ruler::getBirthDate()
-{
-	return birthDate;
 }
 
 

@@ -14,13 +14,13 @@ class CK2Character;
 class CK2Dynasty
 {
 	public:
-		CK2Dynasty();
-		void				init(Object*);
-		void				init(int, string);
-		int				getNum();
-		string			getName();
+		CK2Dynasty(Object*);
+		CK2Dynasty(int, string);
+
 		void				addMember(CK2Character*);
 		CK2Character*	getSenoirityHeir(string genderLaw);
+
+		string			getName()	const { return name; };
 	private:
 		int							num;
 		string						name;

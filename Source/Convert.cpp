@@ -1,6 +1,7 @@
 #include <fstream>
 #include <string>
 #include <sys/stat.h>
+#include <io.h>
 #include "Log.h"
 #include "Configuration.h"
 #include "Parsers/Parser.h"
@@ -59,15 +60,72 @@ int main(int argc, char * argv[])
 	// Input CK2 Data
 	log("Getting CK2 data.\n");
 	printf("Getting CK2 data.\n");
-
-	printf("	Getting traits\n");
-	obj = doParseFile((Configuration::getCK2Path() + "/common/traits/00_traits.txt").c_str());
 	CK2World srcWorld;
-	srcWorld.addTraits(obj);
 
-	printf("	Adding dynasties from dynasties.txt\n");
-	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
+	log("Parsing landed titles.\n");
+	printf("Parsing landed titles.\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
+	srcWorld.addPotentialTitles(obj);
+	struct _finddata_t	landedTitlesdata;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\landed_titles\\*").c_str(), &landedTitlesdata)) == -1L)
+	{
+		log("\t\tError: Could not open landed_titles directory.\n");
+		printf("\t\tError: Could not open landed_titles directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(landedTitlesdata.name, ".") == 0 || strcmp(landedTitlesdata.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
+		srcWorld.addPotentialTitles(obj);
+	} while(_findnext(fileListing, &landedTitlesdata) == 0);
+	_findclose(fileListing);
+
+	log("\tGetting traits\n");
+	printf("\tGetting traits\n");
+	struct _finddata_t	traitsData;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\traits\\*").c_str(), &traitsData)) == -1L)
+	{
+		log("\t\tError: Could not open traits directory.\n");
+		printf("\t\tError: Could not open traits directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(traitsData.name, ".") == 0 || strcmp(traitsData.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
+		srcWorld.addTraits(obj);
+	} while(_findnext(fileListing, &traitsData) == 0);
+	_findclose(fileListing);
+
+	log("\tAdding dynasties from CK2 Install\n");
+	printf("\tAdding dynasties from CK2 Install\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
 	srcWorld.addDynasties(obj);
+	struct _finddata_t	dynastiesData;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\dynasties\\*").c_str(), &dynastiesData)) == -1L)
+	{
+		log("\t\tError: Could not open dynasties directory.\n");
+		printf("\t\tError: Could not open dynasties directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(dynastiesData.name, ".") == 0 || strcmp(dynastiesData.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
+		srcWorld.addDynasties(obj);
+	} while(_findnext(fileListing, &dynastiesData) == 0);
+	_findclose(fileListing);
 	
 	log("Parsing CK2 save.\n");
 	printf("Parsing CK2 save.\n");
@@ -83,7 +141,7 @@ int main(int argc, char * argv[])
 	printf("Parsing province mappings.\n");
 	const char* mappingFile = "province_mappings.txt";
 	obj = doParseFile(mappingFile);
-	provinceMapping			provinceMap				= initProvinceMap(obj);
+	provinceMapping			provinceMap				= initProvinceMap(obj, srcWorld.getVersion());
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
 	map<int, CK2Province*> srcProvinces				= srcWorld.getProvinces();
 	for (map<int, CK2Province*>::iterator i = srcProvinces.begin(); i != srcProvinces.end(); i++)
@@ -99,8 +157,7 @@ int main(int argc, char * argv[])
 		}
 	}
 
-	EU3World destWorld;
-	destWorld.init(&srcWorld);
+	EU3World destWorld(&srcWorld);
 
 
 	// Get potential EU3 countries
@@ -136,19 +193,45 @@ int main(int argc, char * argv[])
 		return -1;
 	}
 
+	// Get culture mappings
+	log("Parsing culture mappings.\n");
+	printf("Parsing culture mappings.\n");
+	obj = doParseFile("culture_mappings.txt");
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse culture_mappings.txt.\n");
+		printf("Error: Failed to parse culture_mappings.txt.\n");
+		return 1;
+	}
+	cultureMapping cultureMap;
+	cultureMap = initCultureMap(obj->getLeaves()[0]);
+
+	// Get religion mappings
+	log("Parsing religion mappings.\n");
+	printf("Parsing religion mappings.\n");
+	obj = doParseFile("religion_mappings.txt");
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse religion_mappings.txt.\n");
+		printf("Error: Failed to parse religion_mappings.txt.\n");
+		return 1;
+	}
+	religionMapping religionMap;
+	religionMap = initReligionMap(obj->getLeaves()[0]);
+
 
 	// Convert
 	log("Converting countries.\n");
 	printf("Converting countries.\n");
 	destWorld.convertCountries(countryMap);
 
+	log("Setting up provinces.\n");
+	printf("Setting up provinces.\n");
+	destWorld.setupProvinces(provinceMap);
+
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap);
-
-	log("Setting up ROTW provinces.\n");
-	printf("Setting up ROTW provinces.\n");
-	destWorld.setupRotwProvinces(inverseProvinceMap);
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap);
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");

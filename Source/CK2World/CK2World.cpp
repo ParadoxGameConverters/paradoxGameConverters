@@ -2,6 +2,7 @@
 #include "..\Log.h"
 #include "..\Configuration.h"
 #include "..\Parsers\Object.h"
+#include "CK2Version.h"
 #include "CK2Title.h"
 #include "CK2Province.h"
 #include "CK2Barony.h"
@@ -13,7 +14,8 @@
 
 CK2World::CK2World()
 {
-	endDate = (date)"1.1.1";
+	version = NULL;
+	endDate = date();
 	independentTitles.clear();
 	hreMembers.clear();
 	dynasties.clear();
@@ -27,6 +29,19 @@ CK2World::CK2World()
 
 void CK2World::init(Object* obj)
 {
+	// get version
+	vector<Object*> versionObj = obj->getValue("version");
+	if (versionObj.size() > 0)
+	{
+		version = new CK2Version( versionObj[0]->getLeaf() );
+	}
+	else
+	{
+		log("\tError: Unknown version format.\n");
+		printf("\tError: Unknown version format.\n");
+		version = new CK2Version("0.0");
+	}
+
 	// get conversion date
 	vector<Object*> dateObj = obj->getValue("date");
 	if (dateObj.size() > 0)
@@ -46,12 +61,10 @@ void CK2World::init(Object* obj)
 	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
 	{
 		int number = atoi( dynastyLeaves[i]->getKey().c_str() );
-		CK2Dynasty* newDynasty = new CK2Dynasty;
-		newDynasty->init(dynastyLeaves[i]);
+		CK2Dynasty* newDynasty = new CK2Dynasty(dynastyLeaves[i]);
 		dynasties.insert( make_pair(number, newDynasty) );
 	}
-	CK2Dynasty* newDynasty = new CK2Dynasty;
-	newDynasty->init(0, "Lowborn");
+	CK2Dynasty* newDynasty = new CK2Dynasty(0, "Lowborn");
 	dynasties.insert( make_pair(0, newDynasty) );
 
 	// get characters
@@ -61,8 +74,7 @@ void CK2World::init(Object* obj)
 	for (unsigned int i = 0; i < characterLeaves.size(); i++)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
-		CK2Character* newCharacter = new CK2Character;
-		newCharacter->init(characterLeaves[i], dynasties, traits, endDate);
+		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, endDate);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
@@ -80,9 +92,16 @@ void CK2World::init(Object* obj)
 		string key = leaves[i]->getKey();
 		if ( (key.substr(0, 2) == "e_") || (key.substr(0, 2) == "k_") || (key.substr(0, 2) == "d_") || (key.substr(0, 2) == "c_") || (key.substr(0, 2) == "b_") )
 		{
-			CK2Title* newTitle = new CK2Title;
-			newTitle->init(leaves[i], characters);
-			titles.insert( make_pair(newTitle->getTitleString(), newTitle) );
+			map<string, CK2Title*>::iterator titleItr = potentialTitles.find(key);
+			if (titleItr == potentialTitles.end())
+			{
+				log("Error: tried to create title %s, but it is not a potential title.\n", key.c_str());
+				CK2Title* newTitle = new CK2Title(key);
+				potentialTitles.insert( make_pair(key, newTitle) );
+				titleItr = potentialTitles.find(key);
+			}
+			titleItr->second->init(leaves[i], characters);
+			titles.insert( make_pair(titleItr->second->getTitleString(), titleItr->second) );
 		}
 	}
 
@@ -93,8 +112,7 @@ void CK2World::init(Object* obj)
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province;
-			newProvince->init(leaves[i], titles);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();
@@ -132,6 +150,12 @@ void CK2World::init(Object* obj)
 		}
 	}
 
+	// create tree of De Jure lieges
+	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
+	{
+		i->second->setDeJureLiege(potentialTitles);
+	}
+
 	// determine heirs
 	printf("	Determining heirs\n");
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
@@ -160,8 +184,7 @@ void CK2World::addDynasties(Object* obj)
 	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
 	{
 		int number = atoi( dynastyLeaves[i]->getKey().c_str() );
-		CK2Dynasty* newDynasty = new CK2Dynasty;
-		newDynasty->init(dynastyLeaves[i]);
+		CK2Dynasty* newDynasty = new CK2Dynasty(dynastyLeaves[i]);
 		dynasties.insert( make_pair(number, newDynasty) );
 	}
 }
@@ -172,44 +195,28 @@ void CK2World::addTraits(Object* obj)
 	vector<Object*> traitLeaves = obj->getLeaves();
 	for (unsigned int i = 0; i < traitLeaves.size(); i++)
 	{
-		CK2Trait* newTrait = new CK2Trait;
-		newTrait->init(traitLeaves[i]);
+		CK2Trait* newTrait = new CK2Trait(traitLeaves[i]);
 		traits.insert( make_pair(i + 1, newTrait) );
 	}
 }
 
 
-date CK2World::getEndDate()
+void CK2World::addPotentialTitles(Object* obj)
 {
-	return endDate;
-}
-
-
-vector<CK2Title*> CK2World::getIndependentTitles()
-{
-	return independentTitles;
-}
-
-
-map<string, CK2Title*> CK2World::getAllTitles()
-{
-	return titles;
-}
-
-
-map<int, CK2Province*> CK2World::getProvinces()
-{
-	return provinces;
-}
-
-
-CK2World::~CK2World()
-{
-/*	TODO: determine why this crashes things
-	while (independentTitles.size() > 0)
+	vector<Object*> leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
 	{
-		CK2Title* currentTitle = independentTitles[independentTitles.size() - 1];
-		delete currentTitle;
-		independentTitles.pop_back();
-	}*/ 
+		map<string, CK2Title*>::iterator titleItr = potentialTitles.find( (*itr)->getKey() );
+		if (titleItr == potentialTitles.end())
+		{
+			CK2Title* newTitle = new CK2Title( (*itr)->getKey() );
+			potentialTitles.insert( make_pair((*itr)->getKey(), newTitle) );
+			titleItr = potentialTitles.find( (*itr)->getKey() );
+		}
+		else
+		{
+			log("Note! The CK2World::addPotentialTitles() condition is needed!\n");
+		}
+		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), potentialTitles, this );
+	}
 }

@@ -13,23 +13,25 @@ class EU3Advisor;
 
 class EU3History {
 	public:
-		EU3History();
-		void				init(CK2History*);
-		void				initMonarch(EU3Ruler*, date);
-		void				initRegent(EU3Ruler*, date);
-		void				initHeir(EU3Ruler*, date);
-		void				initAdvisor(EU3Advisor*);
+		EU3History(date when);
+		EU3History(CK2History*);
+
 		void				output(FILE*);
-		date				getWhen();
-		EU3Ruler*		getMonarch();
-		EU3Ruler*		getRegent();
-		EU3Ruler*		getHeir();
-	private:
+
 		date				when;
 		EU3Ruler*		monarch;
 		EU3Ruler*		regent;
 		EU3Ruler*		heir;
 		EU3Advisor*		advisor;
+		string			capital;
+		string			tradeGood;
+		double			baseTax;
+		double			population;
+		int				manpower;
+		string			owner;
+		string			culture;
+		string			religion;
+		vector<string>	discoverers;
 };
 
 

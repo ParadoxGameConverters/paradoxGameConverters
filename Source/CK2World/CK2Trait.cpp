@@ -3,22 +3,16 @@
 
 
 
-CK2Trait::CK2Trait()
-{
-	diplomacy	= 0;
-	martial		= 0;
-	stewardship	= 0;
-	intrigue		= 0;
-	learning		= 0;
-}
-
-
-void CK2Trait::init(Object* obj)
+CK2Trait::CK2Trait(Object* obj)
 {
 	vector<Object*> diplomacyObj = obj->getValue("diplomacy");
 	if (diplomacyObj.size() > 0)
 	{
 		diplomacy = atoi( diplomacyObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		diplomacy = 0;
 	}
 
 	vector<Object*> martialObj = obj->getValue("martial");
@@ -26,11 +20,19 @@ void CK2Trait::init(Object* obj)
 	{
 		martial = atoi( martialObj[0]->getLeaf().c_str() );
 	}
+	else
+	{
+		martial = 0;
+	}
 
 	vector<Object*> stewardshipObj = obj->getValue("stewardship");
 	if (stewardshipObj.size() > 0)
 	{
 		stewardship = atoi( stewardshipObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		stewardship = 0;
 	}
 
 	vector<Object*> intrigueObj = obj->getValue("intrigue");
@@ -38,10 +40,18 @@ void CK2Trait::init(Object* obj)
 	{
 		intrigue = atoi( intrigueObj[0]->getLeaf().c_str() );
 	}
+	else
+	{
+		intrigue = 0;
+	}
 
 	vector<Object*> learningObj = obj->getValue("learning");
 	if (learningObj.size() > 0)
 	{
 		learning = atoi( learningObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		learning = 0;
 	}
 }

@@ -10,50 +10,18 @@
 
 
 
-CK2Character::CK2Character()
-{
-	num			= -1;
-	name			= "";
-	religion		= "";
-	culture		= "";
-	dynasty		= NULL;
-	birthDate	= (string)"1.1.1";
-	dead			= true;
-	deathDate	= (string)"1.1.1";
-	female		= false;
-	bastard		= false;
-	traits.clear();
-	memset(stats, 0, sizeof(stats));
-	titles.clear();
-
-	fatherNum	= -1;
-	father		= NULL;
-	motherNum	= -1;
-	mother		= NULL;
-	children.clear();
-	guardianNum	= -1;
-	guardian		= NULL;
-	regentNum	= -1;
-	regent		= NULL;
-
-	memset(advisors, NULL, sizeof(advisors));
-	employerNum	= -1;
-	jobType		= NONE;
-	action		= "";
-	hostNum		= -1;
-	locationNum	= -1;
-}
-
-
-void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
+CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
 {
 	num			= atoi( obj->getKey().c_str() );
 	name			= obj->getLeaf("birth_name");
 	religion		= obj->getLeaf("religion");
 	culture		= obj->getLeaf("culture");
-	dynasty		= dynasties[ atoi( obj->getLeaf("dynasty").c_str() ) ];
-	if (dynasty != NULL)
+
+	dynasty		= NULL;
+	map<int, CK2Dynasty*>::iterator dynItr	= dynasties.find(  atoi( obj->getLeaf("dynasty").c_str() )  );
+	if (dynItr != dynasties.end())
 	{
+		dynasty = dynItr->second;
 		dynasty->addMember(this);
 	}
 	else
@@ -62,44 +30,6 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	}
 	birthDate	= obj->getLeaf("birth_date");
 	age			= theDate.diffInYears(birthDate);
-
-	vector<Object*> fatherObj = obj->getValue("father");
-	if (fatherObj.size() > 0)
-	{
-		fatherNum = atoi( fatherObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		fatherNum = -1;
-	}
-	vector<Object*> motherObj = obj->getValue("mother");
-	if (motherObj.size() > 0)
-	{
-		motherNum = atoi( motherObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		motherNum = -1;
-	}
-	vector<Object*> guardianObj = obj->getValue("guardian");
-	if (guardianObj.size() > 0)
-	{
-		guardianNum = atoi( guardianObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		guardianNum = -1;
-	}
-	vector<Object*> regentObj = obj->getValue("regent");
-	if (regentObj.size() > 0)
-	{
-		regentNum = atoi( regentObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		regentNum = -1;
-	}
-
 	vector<Object*> deathObj = obj->getValue("death_date");
 	if (deathObj.size() > 0)
 	{
@@ -111,7 +41,6 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 		dead			= false;
 		deathDate	= (string)"1.1.1";
 	}
-
 	vector<Object*> femaleObj = obj->getValue("female");
 	if (femaleObj.size() > 0)
 	{
@@ -121,7 +50,6 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	{
 		female = false;
 	}
-
 	vector<Object*> bastardObj = obj->getValue("is_bastard");
 	if (bastardObj.size() > 0)
 	{
@@ -131,19 +59,61 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 	{
 		bastard = false;
 	}
+	titles.clear();
 
+	vector<Object*> fatherObj = obj->getValue("father");
+	if (fatherObj.size() > 0)
+	{
+		fatherNum = atoi( fatherObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		fatherNum = -1;
+	}
+	father = NULL;
+	vector<Object*> motherObj = obj->getValue("mother");
+	if (motherObj.size() > 0)
+	{
+		motherNum = atoi( motherObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		motherNum = -1;
+	}
+	mother = NULL;
+	children.clear();
+	vector<Object*> guardianObj = obj->getValue("guardian");
+	if (guardianObj.size() > 0)
+	{
+		guardianNum = atoi( guardianObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		guardianNum = -1;
+	}
+	guardian = NULL;
+	vector<Object*> regentObj = obj->getValue("regent");
+	if (regentObj.size() > 0)
+	{
+		regentNum = atoi( regentObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		regentNum = -1;
+	}
+	regent = NULL;
+
+	memset(advisors, 0, sizeof(advisors));
 	vector<Object*> employerObj = obj->getValue("employer");
 	if (employerObj.size() > 0)
 	{
 		employerNum = atoi( employerObj[0]->getLeaf().c_str() );
 	}
-
-	vector<Object*> hostObj = obj->getValue("host");
-	if (hostObj.size() > 0)
+	else
 	{
-		hostNum = atoi( hostObj[0]->getLeaf().c_str() );
+		employerNum = -1;
 	}
-
+	jobType = NONE;
 	vector<Object*> jobObj = obj->getValue("job_title");
 	if (jobObj.size() > 0)
 	{
@@ -169,11 +139,34 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 			jobType = CHAPLAIN;
 		}
 	}
-
 	vector<Object*> actionObj = obj->getValue("action");
 	if (actionObj.size() > 0)
 	{
 		action = actionObj[0]->getLeaf();
+	}
+	else
+	{
+		action = "";
+	}
+	vector<Object*> hostObj = obj->getValue("host");
+	if (hostObj.size() > 0)
+	{
+		hostNum = atoi( hostObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		hostNum = -1;
+	}
+	locationNum = -1;
+	capitalString = "";
+	vector<Object*> demesneObj = obj->getValue("demesne");
+	if (demesneObj.size() > 0)
+	{
+		vector<Object*> capitalObj = demesneObj[0]->getValue("capital");
+		if (capitalObj.size() > 0)
+		{
+			capitalString = capitalObj[0]->getLeaf();
+		}
 	}
 
 	vector<Object*> attributesObj = obj->getValue("attributes");
@@ -233,62 +226,12 @@ void CK2Character::init(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, 
 			stats[i] = 0;
 		}
 	}
-
-
-	vector<Object*> demesneObj = obj->getValue("demesne");
-	if (demesneObj.size() > 0)
-	{
-		vector<Object*> capitalObj = demesneObj[0]->getValue("capital");
-		if (capitalObj.size() > 0)
-		{
-			capitalString = capitalObj[0]->getLeaf();
-		}
-	}
-}
-
-
-int CK2Character::getNum()
-{
-	return num;
-}
-
-
-string CK2Character::getName()
-{
-	return name;
-}
-
-
-CK2Dynasty* CK2Character::getDynasty()
-{
-	return dynasty;
-}
-
-
-date CK2Character::getBirthDate()
-{
-	return birthDate;
 }
 
 
 void CK2Character::addTitle(CK2Title* newTitle)
 {
 	titles.push_back(newTitle);
-}
-
-
-int CK2Character::getDemesneSize()
-{
-	int size = 0;
-	for (vector<CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
-	{
-		if ( (*i)->getTitleString().substr(0, 2) == "b_" )
-		{
-			size++;
-		}
-	}
-
-	return size;
 }
 
 
@@ -397,60 +340,6 @@ void CK2Character::addChild(CK2Character* newChild)
 void CK2Character::addAdvisor(CK2Character* newAdvisor, advisorTypes type)
 {
 	advisors[type] = newAdvisor;
-}
-
-
-CK2Character** CK2Character::getAdvisors()
-{
-	return advisors;
-}
-
-
-bool CK2Character::isDead()
-{
-	return dead;
-}
-
-
-date CK2Character::getDeathDate()
-{
-	return deathDate;
-}
-
-
-bool CK2Character::isFemale()
-{
-	return female;
-}
-
-
-bool CK2Character::isBastard()
-{
-	return bastard;
-}
-
-
-int* CK2Character::getStats()
-{
-	return stats;
-}
-
-
-vector<CK2Title*> CK2Character::getTitles()
-{
-	return titles;
-}
-
-
-CK2Character* CK2Character::getFather()
-{
-	return father;
-}
-
-
-CK2Character* CK2Character::getRegent()
-{
-	return regent;
 }
 
 
@@ -738,28 +627,4 @@ vector<CK2Character*> CK2Character::getGavelkindHeirs(string genderLaw)
 	}
 
 	return heirs;
-}
-
-
-advisorTypes CK2Character::getJobType()
-{
-	return jobType;
-}
-
-
-string CK2Character::getAction()
-{
-	return action;
-}
-
-
-int CK2Character::getLocationNum()
-{
-	return locationNum;
-}
-
-
-string CK2Character::getCapitalString()
-{
-	return capitalString;
 }

@@ -14,10 +14,10 @@ class CK2Character;
 class CK2History
 {
 	public:
-		CK2History();
-		void init(Object*, map<int, CK2Character*>&);
-		date				getWhen();
-		CK2Character*	getHolder();
+		CK2History(Object*, map<int, CK2Character*>&);
+
+		date				getWhen()	const { return when; };
+		CK2Character*	getHolder()	const { return holder; };
 	private:
 		date				when;
 		CK2Character*	holder;

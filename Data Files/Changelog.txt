@@ -131,4 +131,31 @@ Revision	Log Message
 128		Merge
 129		Sync Changelog.txt with repository
 130		Add Nyrael's Croatia 1453 game to sample saves
-131     Modified build.bat to use 7zip instead of IZARC
+<<<<<<< local
+131     Modified build.bat to use 7zip instead of IZARC=======
+131		Get version number from save game
+132		Add Hispania1399_10_17 save game
+133		Read all files in traits and dynasties directories
+134		Update readme file
+135		Province mapping for 1.06, using version number in save to determine which set to use
+136		Add some bits to province history
+137		Clean up CK2 classes
+138		Add missing bits to constructors
+139		Initial culture conversion for provinces
+140		Refactor EU3 classes
+141		Update culture conversion to allow distinguishers
+142		ROTW cultures
+143		Province capital names from EU3 data. Also, much more province history is output.
+144		Add a few new cultures to converter mod. Also update mod culture mappings
+145		Updates to culture mappings and mod after some testing
+146		Update converter mod to make easy for mod directory use
+147		Initial religion conversion
+148		Religions for ROTW provinces
+149		Heresy modifier for heretic religions (only if ruler's religion different)
+150		Simplify the heretic modifier
+151		Update 'religion' culture distinguisher rules to include heretics
+152		Population conversion
+153		HelloGoodSir's recommendation about Saxon culture mapping to Scottish
+154		Manpower conversion
+155		Trade goods
+156		Base Tax conversion>>>>>>> other

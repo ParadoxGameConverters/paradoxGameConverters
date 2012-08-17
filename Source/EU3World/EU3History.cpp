@@ -6,16 +6,26 @@
 
 
 
-EU3History::EU3History()
+EU3History::EU3History(date _when)
 {
-	monarch	= NULL;
-	regent	= NULL;
-	heir		= NULL;
-	advisor	= NULL;
+	when			= _when;
+	monarch		= NULL;
+	regent		= NULL;
+	heir			= NULL;
+	advisor		= NULL;
+	capital		= "";
+	tradeGood	= "";
+	baseTax		= 0.0f;
+	population	= 0.0f;
+	manpower		= 0;
+	owner			= "";
+	culture		= "";
+	religion		= "";
+	discoverers.clear();
 }
 
 
-void EU3History::init(CK2History* src)
+EU3History::EU3History(CK2History* src)
 {
 	when = src->getWhen();
 
@@ -38,57 +48,21 @@ void EU3History::init(CK2History* src)
 			monarch = new EU3Ruler(holder);
 		}
 	}
-}
-
-
-void EU3History::initMonarch(EU3Ruler* newMonarch, date newWhen)
-{
-	when = newWhen;
-	
-	monarch	= newMonarch;
-	regent	= NULL;
-	heir		= NULL;
-	advisor	= NULL;
-}
-
-
-void EU3History::initRegent(EU3Ruler* newRegent, date newWhen)
-{
-	when = newWhen;
-	
-	monarch	= NULL;
-	regent	= newRegent;
-	heir		= NULL;
-	advisor	= NULL;
-}
-
-
-void EU3History::initHeir(EU3Ruler* newHeir, date newWhen)
-{
-	when = newWhen;
-
-	monarch	= NULL;
-	regent	= NULL;
-	heir		= newHeir;
-	advisor	= NULL;
-}
-
-
-void EU3History::initAdvisor(EU3Advisor* newAdvisor)
-{
-	when = newAdvisor->getDate();
-
-	monarch	= NULL;
-	regent	= NULL;
-	heir		= NULL;
-	advisor	= newAdvisor;
+	capital		= "";
+	tradeGood	= "";
+	baseTax		= 0.0f;
+	population	= 0.0;
+	manpower		= 0;
+	owner			= "";
+	culture		= "";
+	discoverers.clear();
 }
 
 
 void EU3History::output(FILE* output)
 {
-	fprintf(output, "		%d.%d.%d=\n", when.year, when.month, when.day);
-	fprintf(output, "		{\n");
+	fprintf(output, "\t\t%d.%d.%d=\n", when.year, when.month, when.day);
+	fprintf(output, "\t\t{\n");
 	if (monarch != NULL)
 	{
 		monarch->outputAsMonarch(output);
@@ -96,9 +70,9 @@ void EU3History::output(FILE* output)
 	if (regent != NULL)
 	{
 		regent->outputAsRegent(output);
-		fprintf(output, "		}\n");
-		fprintf(output, "		%d.%d.%d=\n", when.year, when.month, when.day);
-		fprintf(output, "		{\n");
+		fprintf(output, "\t\t}\n");
+		fprintf(output, "\t\t%d.%d.%d=\n", when.year, when.month, when.day);
+		fprintf(output, "\t\t{\n");
 	}
 	if (heir != NULL)
 	{
@@ -108,29 +82,41 @@ void EU3History::output(FILE* output)
 	{
 		advisor->outputInProvince(output);
 	}
-	fprintf(output, "		}\n");
-}
-
-
-date EU3History::getWhen()
-{
-	return when;
-}
-
-
-EU3Ruler* EU3History::getMonarch()
-{
-	return monarch;
-}
-
-
-EU3Ruler* EU3History::getRegent()
-{
-	return regent;
-}
-
-
-EU3Ruler* EU3History::getHeir()
-{
-	return heir;
+	if (capital != "")
+	{
+		fprintf(output, "\t\t\tcapital=\"%s\"\n", capital.c_str());
+	}
+	if (tradeGood != "")
+	{
+		fprintf(output, "\t\t\ttrade_goods = %s\n", tradeGood.c_str());
+	}
+	if (population != 0.0)
+	{
+		fprintf(output, "\t\t\tcitysize=\"%f\"\n", population);
+	}
+	if (baseTax != 0.0)
+	{
+		fprintf(output, "\t\t\tbase_tax=%f\n", baseTax);
+	}
+	if (manpower != 0)
+	{
+		fprintf(output, "\t\t\tmanpower=\"%d\"\n", manpower);
+	}
+	if (owner != "")
+	{
+		fprintf(output, "\t\t\towner=\"%s\"\n", owner.c_str());
+	}
+	if (culture != "")
+	{
+		fprintf(output, "\t\t\tculture=%s\n", culture.c_str());
+	}
+	if (religion != "")
+	{
+		fprintf(output, "\t\t\treligion=%s\n", religion.c_str());
+	}
+	for (unsigned int i = 0; i < discoverers.size(); i++)
+	{
+		fprintf(output, "\t\t\tdiscovered_by=\"%s\"\n", discoverers[i].c_str());
+	}
+	fprintf(output, "\t\t}\n");
 }

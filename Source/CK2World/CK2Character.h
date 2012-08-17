@@ -32,36 +32,41 @@ enum advisorTypes
 class CK2Character
 {
 	public:
-		CK2Character();
-		void							init(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
-		int							getNum();
-		string						getName();
-		CK2Dynasty*					getDynasty();
-		date							getBirthDate();
+		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
+	
 		void							addTitle(CK2Title*);
-		int							getDemesneSize();
 		void							setParents(map<int, CK2Character*>&);
 		void							setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
-		void							addChild(CK2Character*);
-		void							addAdvisor(CK2Character*, advisorTypes);
-		CK2Character**				getAdvisors();
-		bool							isDead();
-		date							getDeathDate();
-		bool							isFemale();
-		bool							isBastard();
-		int*							getStats();
-		vector<CK2Title*>			getTitles();
-		CK2Character*				getFather();
-		CK2Character*				getRegent();
+		void							setGavelkindHeirs(string);
+
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
-		void							setGavelkindHeirs(string);
-		advisorTypes				getJobType();
-		string						getAction();
-		int							getLocationNum();
-		string						getCapitalString();
+
+		int							getNum()					const { return num; };
+		string						getName()				const { return name; };
+		string						getCulture()			const { return culture; };
+		string						getReligion()			const { return religion; };
+		CK2Dynasty*					getDynasty()			const { return dynasty; };
+		date							getBirthDate()			const { return birthDate; };
+		bool							isDead()					const { return dead; };
+		date							getDeathDate()			const { return deathDate; };
+		bool							isFemale()				const { return female; };
+		bool							isBastard()				const { return bastard; };
+		int*							getStats()				const { return (int*)stats; };
+		vector<CK2Title*>			getTitles()				const { return titles; };
+		CK2Character*				getFather()				const { return father; };
+		CK2Character*				getRegent()				const { return regent; };
+		CK2Character**				getAdvisors()			const { return (CK2Character**)advisors; };
+		advisorTypes				getJobType()			const { return jobType; };
+		string						getAction()				const { return action; };
+		int							getLocationNum()		const { return locationNum; };
+		
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
+		string						getCapitalString()	const { return capitalString; };
+
+		void							addChild(CK2Character*);
+		void							addAdvisor(CK2Character*, advisorTypes);
 
 		int					num;
 		string				name;

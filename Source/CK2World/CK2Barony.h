@@ -3,6 +3,11 @@
 
 
 
+#include <string>
+#include <map>
+using namespace std;
+
+
 class Object;
 class CK2Title;
 class CK2Province;
@@ -10,13 +15,20 @@ class CK2Province;
 class CK2Barony
 {
 	public:
-		CK2Barony();
-		void				init(Object*, CK2Title*, CK2Province*);
-		CK2Title*		getTitle();
-		CK2Province*	getProvince();
+		CK2Barony(Object*, CK2Title*, CK2Province*);
+
+		CK2Title*		getTitle()		const { return title; };
+		CK2Province*	getProvince()	const { return province; };
+
+		float				getBaseTaxProxy() const;
+		float				getPopProxy() const;
+		float				getManpowerProxy() const;
 	private:
 		CK2Title*		title;
 		CK2Province*	province;
+
+		string				type;
+		map<string, bool>	buildings;
 };
 
 

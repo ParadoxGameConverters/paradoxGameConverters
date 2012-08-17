@@ -10,19 +10,6 @@
 
 
 
-EU3Advisor::EU3Advisor()
-{
-	name				= "";
-	id					= -1;
-	dynasty			= "";
-	advisorType		= "";
-	advisorSkill	= -1;
-	location			= -1;
-	home				= "";
-	startDate		= (date)"1.1.1";
-}
-
-
 EU3Advisor::EU3Advisor(Object* advisorObj, map<int, EU3Province*>& provinces)
 {
 	vector<Object*> nameObj = advisorObj->getValue("name");
@@ -251,28 +238,4 @@ void EU3Advisor::outputInActive(FILE* output)
 	fprintf(output, "			id=%d\n", id);
 	fprintf(output, "			type=39\n");
 	fprintf(output, "		}\n");
-}
-
-
-void EU3Advisor::setLocation(int newLocation)
-{
-	location = newLocation;
-}
-
-
-int EU3Advisor::getLocation()
-{
-	return location;
-}
-
-
-date EU3Advisor::getDate()
-{
-	return startDate;
-}
-
-
-date EU3Advisor::getDeathDate()
-{
-	return deathDate;
 }
