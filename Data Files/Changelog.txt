@@ -172,3 +172,4 @@ Revision	Log Message
 169		Use basetax and manpower proxies to try to break ties in culture conversion
 170		Merge
 171		Update test batch files to use 7-zip
+172		Prepare converter mod for first releaseable version
