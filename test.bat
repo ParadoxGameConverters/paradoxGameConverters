@@ -3,10 +3,7 @@ set j=%~n2
 
 echo Testing %i% with the %j% configuration
 copy ..\CK2_Saves\%i%.zip .\%i%.zip
-set PWD=%~dp0
-"%IZARC_LOC%" -ef "%PWD%" "%i%.zip"
-copy "%i%\*.ck2" .\%i%.ck2
-del %i% /q
+"%SEVENZIP_LOC%\7z.exe" e -tzip "%i%.zip" "*.*" -mx5
 del %i%.zip
 rmdir %i%
 call CK2ToEU3.exe %i%.ck2

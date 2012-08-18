@@ -171,3 +171,4 @@ Revision	Log Message
 168		Merge
 169		Use basetax and manpower proxies to try to break ties in culture conversion
 170		Merge
+171		Update test batch files to use 7-zip
