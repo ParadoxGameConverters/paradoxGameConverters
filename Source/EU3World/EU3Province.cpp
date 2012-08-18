@@ -405,13 +405,19 @@ string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, const 
 void EU3Province::determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies)
 {
 	map<string, double> cultureCounts;
+	map<string, double> cultureCounts2;
+	map<string, double> cultureCounts3;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
-		double popProxy = 0.0f;
+		double popProxy		= 0.0f;
+		double basetaxProxy	= 0.0f;
+		double manpowerProxy	= 0.0f;
 		vector<CK2Barony*> baronies = (*provItr)->getBaronies();
 		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
-			popProxy += (*baronyItr)->getPopProxy();
+			popProxy			+= (*baronyItr)->getPopProxy();
+			basetaxProxy	+= (*baronyItr)->getBaseTaxProxy();
+			manpowerProxy	+= (*baronyItr)->getManpowerProxy();
 		}
 
 		string EU3Culture = determineEU3Culture(cultureMap, *provItr);
@@ -424,11 +430,32 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		{
 			cultureItr->second += popProxy;
 		}
+
+		cultureItr = cultureCounts2.find(EU3Culture);
+		if (cultureItr == cultureCounts2.end())
+		{
+			cultureCounts2[EU3Culture] = basetaxProxy;
+		}
+		else
+		{
+			cultureItr->second += basetaxProxy;
+		}
+
+		cultureItr = cultureCounts3.find(EU3Culture);
+		if (cultureItr == cultureCounts3.end())
+		{
+			cultureCounts3[EU3Culture] = manpowerProxy;
+		}
+		else
+		{
+			cultureItr->second += manpowerProxy;
+		}
 	}
 
 	string			topCulture		= "";
 	double			highestCount	= 0;
 	vector<string>	tiedCultures;
+	vector<string>	tiedCultures2;
 	bool				tie;
 	for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
 	{
@@ -444,6 +471,62 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		{
 			tiedCultures.push_back(countsItr->first);
 			tie = true;
+		}
+	}
+
+	if (tie == true)
+	{
+		topCulture		= "";
+		highestCount	= 0;
+		vector<string>	tiedCultures2;
+		for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
+		{
+			for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
+			{
+				if (countsItr->first == *cultureItr)
+				{
+					if (countsItr->second > highestCount)
+					{
+						topCulture		= countsItr->first;
+						highestCount	= countsItr->second;
+						tiedCultures2.clear();
+						tiedCultures2.push_back(countsItr->first);
+						tie = false;
+					}
+					else if (countsItr->second == highestCount)
+					{
+						tiedCultures2.push_back(countsItr->first);
+						tie = true;
+					}
+					break;
+				}
+			}
+		}
+	}
+
+	if (tie == true)
+	{
+		topCulture		= "";
+		highestCount	= 0;
+		for (map<string, double>::iterator countsItr = cultureCounts3.begin(); countsItr != cultureCounts3.end(); countsItr++)
+		{
+			for (vector<string>::iterator cultureItr = tiedCultures2.begin(); cultureItr != tiedCultures2.end(); cultureItr++)
+			{
+				if (countsItr->first == *cultureItr)
+				{
+					if (countsItr->second > highestCount)
+					{
+						topCulture		= countsItr->first;
+						highestCount	= countsItr->second;
+						tie = false;
+					}
+					else if (countsItr->second == highestCount)
+					{
+						tie = true;
+					}
+					break;
+				}
+			}
 		}
 	}
 
