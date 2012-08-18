@@ -166,4 +166,8 @@ Revision	Log Message
 163		Fix parser bug (in setRHSObjList())
 164		Add blended option for population conversion
 165		Fix unmapped provinces error
-166		Use basetax and manpower proxies to try to break ties in culture conversion
+166		Modified build.bat to use 7zip instead of IZARC
+167		Modified build.bat to use 7zip instead of IZARC
+168		Merge
+169		Use basetax and manpower proxies to try to break ties in culture conversion
+170		Merge
