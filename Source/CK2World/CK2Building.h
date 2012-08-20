@@ -17,10 +17,14 @@ class CK2Building
 	public:
 		CK2Building(Object* obj);
 
-		double	getFortLevel()			const { return fortLevel; };
-		double	getLevyMultiplier()	const { return levyMultiplier; };
-		double	getNumSoldiers()		const { return numSoldiers; };
-		double	getTaxIncome()			const { return taxIncome; };
+		double			getFortLevel()						const { return fortLevel; };
+		double			getLevyMultiplier()				const { return levyMultiplier; };
+		double			getNumSoldiers()					const { return numSoldiers; };
+		double			getTaxIncome()						const { return taxIncome; };
+		string			getForbiddenReligion()			const { return forbiddenReligion; };
+		string			getRequiredReligion()			const { return requiredReligion; };
+		vector<string>	getAcceptableCultures()			const { return acceptableCultures; };
+		vector<string>	getAcceptableCultureGroups()	const { return acceptableCultureGroups; };
 
 	private:
 		double	fortLevel;
