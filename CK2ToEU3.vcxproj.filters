@@ -93,6 +93,9 @@
     <ClCompile Include="Source\CK2World\CK2Version.cpp">
       <Filter>CK2World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\CK2World\CK2Building.cpp">
+      <Filter>CK2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -159,6 +162,9 @@
       <Filter>EU3World</Filter>
     </ClInclude>
     <ClInclude Include="Source\CK2World\CK2Version.h">
+      <Filter>CK2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\CK2World\CK2Building.h">
       <Filter>CK2World</Filter>
     </ClInclude>
   </ItemGroup>

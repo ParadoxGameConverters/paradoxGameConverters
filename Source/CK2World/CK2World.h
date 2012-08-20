@@ -10,6 +10,7 @@ using namespace std;
 
 
 class Object;
+class CK2BuildingFactory;
 class CK2Version;
 class CK2Title;
 class CK2Province;
@@ -25,6 +26,7 @@ class CK2World
 	public:
 		CK2World();
 		void							init(Object*);
+		void							addBuildingTypes(Object*);
 		void							addDynasties(Object*);
 		void							addTraits(Object*);
 		void							addPotentialTitles(Object*);
@@ -35,6 +37,8 @@ class CK2World
 		map<string, CK2Title*>	getAllTitles()				const { return titles; };
 		map<int, CK2Province*>	getProvinces()				const { return provinces; };
 	private:
+		CK2BuildingFactory*		buildingFactory;
+
 		CK2Version*					version;
 		date							endDate;
 		vector<CK2Title*>			independentTitles;

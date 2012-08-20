@@ -173,3 +173,4 @@ Revision	Log Message
 170		Merge
 171		Update test batch files to use 7-zip
 172		Prepare converter mod for first releaseable version
+173		Create and use CK2Building class

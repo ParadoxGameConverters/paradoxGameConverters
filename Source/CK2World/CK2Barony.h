@@ -4,18 +4,19 @@
 
 
 #include <string>
-#include <map>
 using namespace std;
 
 
 class Object;
+class CK2Building;
+class CK2BuildingFactory;
 class CK2Title;
 class CK2Province;
 
 class CK2Barony
 {
 	public:
-		CK2Barony(Object*, CK2Title*, CK2Province*);
+		CK2Barony(Object*, CK2Title*, CK2Province*, const CK2BuildingFactory*);
 
 		CK2Title*		getTitle()				const { return title; };
 		CK2Province*	getProvince()			const { return province; };
@@ -30,12 +31,12 @@ class CK2Barony
 		CK2Title*		title;
 		CK2Province*	province;
 
-		string				type;
-		map<string, bool>	buildings;
-		int					proxyMultiplier;
-		double				baseTaxProxy;
-		double				popProxy;
-		double				manpowerProxy;
+		string							type;
+		vector<const CK2Building*>	buildings;
+		int								proxyMultiplier;
+		double							baseTaxProxy;
+		double							popProxy;
+		double							manpowerProxy;
 };
 
 

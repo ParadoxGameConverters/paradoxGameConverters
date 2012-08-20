@@ -62,12 +62,34 @@ int main(int argc, char * argv[])
 	printf("Getting CK2 data.\n");
 	CK2World srcWorld;
 
+	log("Getting building types.\n");
+	printf("Getting building types.\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
+	srcWorld.addBuildingTypes(obj);
+	struct _finddata_t	buildingsData;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\buildings\\*").c_str(), &buildingsData)) == -1L)
+	{
+		log("\t\tError: Could not open buildings directory.\n");
+		printf("\t\tError: Could not open buildings directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(buildingsData.name, ".") == 0 || strcmp(buildingsData.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\buildings\\" + buildingsData.name).c_str());
+		srcWorld.addBuildingTypes(obj);
+	} while(_findnext(fileListing, &buildingsData) == 0);
+	_findclose(fileListing);
+	
 	log("Parsing landed titles.\n");
 	printf("Parsing landed titles.\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
 	srcWorld.addPotentialTitles(obj);
 	struct _finddata_t	landedTitlesdata;
-	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\landed_titles\\*").c_str(), &landedTitlesdata)) == -1L)
 	{
 		log("\t\tError: Could not open landed_titles directory.\n");

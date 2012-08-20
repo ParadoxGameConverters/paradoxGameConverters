@@ -1,11 +1,12 @@
 #include "CK2Province.h"
 #include "..\Parsers\Object.h"
+#include "CK2Building.h"
 #include "CK2Barony.h"
 #include "..\Log.h"
 
 
 
-CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles)
+CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory)
 {
 	number = atoi( obj->getKey().c_str() );
 
@@ -15,7 +16,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles)
 		string key = leaves[i]->getKey();
 		if (key[0] == 'b')
 		{
-			CK2Barony* newBarony = new CK2Barony( leaves[i], titles[key], this);
+			CK2Barony* newBarony = new CK2Barony( leaves[i], titles[key], this, buildingFactory);
 			baronies.push_back(newBarony);
 		}
 	}

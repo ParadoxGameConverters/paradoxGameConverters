@@ -2,6 +2,7 @@
 #include "..\Log.h"
 #include "..\Configuration.h"
 #include "..\Parsers\Object.h"
+#include "CK2Building.h"
 #include "CK2Version.h"
 #include "CK2Title.h"
 #include "CK2Province.h"
@@ -14,6 +15,8 @@
 
 CK2World::CK2World()
 {
+	buildingFactory = new CK2BuildingFactory;
+
 	version = NULL;
 	endDate = date();
 	independentTitles.clear();
@@ -110,7 +113,7 @@ void CK2World::init(Object* obj)
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province(leaves[i], titles);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles, buildingFactory);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();
@@ -173,6 +176,12 @@ void CK2World::init(Object* obj)
 
 	log("	There are a total of %d independent titles\n", independentTitles.size());
 	log("	There are a total of %d hre members\n", hreMembers.size());
+}
+
+
+void CK2World::addBuildingTypes(Object* obj)
+{
+	buildingFactory->addBuildingTypes(obj);
 }
 
 
