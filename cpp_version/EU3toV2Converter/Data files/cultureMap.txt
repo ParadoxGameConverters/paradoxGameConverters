@@ -6,55 +6,72 @@ link = { vic = north_german eu3 = pommeranian eu3 = prussian eu3 = hannoverian e
 link = { vic = swiss eu3 = rheinlaender owner = SWI }
 link = { vic = south_german eu3 = rheinlaender }
 link = { vic = south_german eu3 = hessian eu3 = bavarian eu3 = austrian }
+
 link = { vic = dutch eu3 = dutch }
 link = { vic = flemish eu3 = flemish }
 link = { vic = wallonian eu3 = wallonian }
+
 link = { vic = swedish eu3 = swedish }
 link = { vic = danish eu3 = danish }
 link = { vic = norwegian eu3 = norwegian }
+
 link = { vic = sami eu3 = sapmi }
 link = { vic = finnish eu3 = finnish eu3 = ingrian eu3 = karelian }
+
 link = { vic = british eu3 = english eu3 = scottish eu3 = welsh eu3 = breton }
+
 link = { vic = irish eu3 = irish }
+
 link = { vic = north_italian eu3 = lombard eu3 = umbrian }
 link = { vic = south_italian eu3 = sicilian }
 link = { vic = maltese eu3 = maltese }
+
 link = { vic = basque eu3 = basque }
 link = { vic = spanish eu3 = castillian eu3 = galician eu3 = andalucian }
 link = { vic = catalan eu3 = catalan }
 link = { vic = portuguese eu3 = portugese }
+
 link = { vic = french eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain }
 link = { vic = croat eu3 = croatian }
 link = { vic = serb eu3 = serbian }
 link = { vic = bulgarian eu3 = bulgarian }
 link = { vic = albanian eu3 = albanian }
+
 link = { vic = romanian eu3 = romanian }
+
 link = { vic = hungarian eu3 = hungarian }
+
 link = { vic = polish eu3 = polish eu3 = schlesian }
+
 link = { vic = czech eu3 = czech }
-link = { vic = russian eu3 = russian }
+
+link = { vic = russian eu3 = russian eu3 = ruthenian }
 link = { vic = ugrian eu3 = uralic }
-link = { vic = ukrainian eu3 = ruthenian }
 link = { vic = byelorussian eu3 = byelorussian }
 link = { vic = lithuanian eu3 = lithuanian }
+
 link = { vic = latvian eu3 = latvian eu3 = old_prussian }
 link = { vic = estonian eu3 = estonian }
+
 link = { vic = greek eu3 = greek }
 link = { vic = georgian eu3 = georgian }
 link = { vic = armenian eu3 = armenian }
+
 link = { vic = maghrebi eu3 = maghreb_arabic }
 link = { vic = misri eu3 = al_misr_arabic eu3 = al_suryah_arabic }
 link = { vic = mashriqi eu3 = al_iraqiya_arabic }
 link = { vic = bedouin eu3 = bedouin_arabic }
 link = { vic = berber eu3 = berber }
 link = { vic = turkish eu3 = turkish }
+
 link = { vic = azerbaijani eu3 = azerbadjani }
 link = { vic = persian eu3 = persian }
+link = { vic = pashtun eu3 = east_persian }
+link = { vic = baluchi eu3 = baluchi }
 link = { vic = uzbek eu3 = uzbehk }
 link = { vic = kazak eu3 = khazak }
 link = { vic = kirgiz eu3 = kirgiz }
-link = { vic = pashtun eu3 = east_persian }
-link = { vic = baluchi eu3 = baluchi }
+
 link = { vic = turkmen eu3 = turkmeni }
 link = { vic = tatar eu3 = tartar }
 link = { vic = mongol eu3 =  mongol }
@@ -96,11 +113,11 @@ link = { vic = nanfaren eu3 = cantonese }
 link = { vic = korean eu3 = korean }
 link = { vic = polynesian eu3 = polynesian }
 link = { vic = aborigine eu3 = aboriginal }
-link = { vic = melanesian eu3 = melanesian eu3 = papuan }
+link = { vic = melanesian eu3 = melanesian eu3 = papuan eu3 = madagascan }
 link = { vic = zapotec eu3 = zapotek }
 link = { vic = mayan eu3 = mayan }
 link = { vic = nahua eu3 = aztek }
-link = { vic = quechua eu3 = inca }
+link = { vic = tarascan eu3 = inca }
 link = { vic = guarani eu3 = guarani }
 link = { vic = aimara eu3 = aimara }
 link = { vic = amazonian eu3 = amazonian }
@@ -122,6 +139,7 @@ link = { vic = dyula eu3 = dyola }
 link = { vic = tuareg eu3 = tuareg }
 link = { vic = yoruba eu3 = yorumba }
 link = { vic = bakongo eu3 = kongolese }
+
 link = { vic = african_minor eu3 = senegambian eu3 = bantu eu3 = madagascan }
 link = { vic = malagasy eu3 = madagasque }
 link = { vic = oromo eu3 = ethiopian }

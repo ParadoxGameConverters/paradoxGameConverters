@@ -6,10 +6,11 @@ link = { vic = pommeranian eu3 = pommeranian }
 link = { vic = prussian eu3 = prussian }
 link = { vic = hannoverian eu3 = hannoverian }
 link = { vic = saxon eu3 = saxon }
+link = { vic = swiss eu3 = rheinlaender owner = SWI }
+link = { vic = rheinlaender eu3 = rheinlaender }
 link = { vic = hessian eu3 = hessian }
 link = { vic = bavarian eu3 = bavarian }
 link = { vic = austrian eu3 = austrian }
-link = { vic = rheinlaender eu3 = rheinlaender }
 
 link = { vic = dutch eu3 = dutch }
 link = { vic = flemish eu3 = flemish }
@@ -17,8 +18,7 @@ link = { vic = wallonian eu3 = wallonian }
 
 link = { vic = swedish eu3 = swedish }
 link = { vic = danish eu3 = danish }
-link = { vic = norwegian eu3 = norwegian eu3 = sapmi }
-link = { vic = sami eu3 = sapmi }
+link = { vic = norwegian eu3 = norwegian }
 
 link = { vic = sami eu3 = sapmi }
 link = { vic = finnish eu3 = finnish }
@@ -65,8 +65,7 @@ link = { vic = schlesian eu3 = schlesian }
 
 link = { vic = czech eu3 = czech }
 
-link = { vic = russian eu3 = russian eu3 = ruthenian}
-link = { vic = ruthenian eu3 = ruthenian}
+link = { vic = russian eu3 = russian eu3 = ruthenian }
 link = { vic = ugrian eu3 = uralic}
 link = { vic = byelorussian eu3 = byelorussian }
 link = { vic = lithuanian eu3 = lithuanian }
@@ -76,7 +75,6 @@ link = { vic = old_prussian eu3 = old_prussian }
 link = { vic = estonian eu3 = estonian }
 
 link = { vic = greek eu3 = greek }
-
 link = { vic = georgian eu3 = georgian }
 link = { vic = armenian eu3 = armenian }
 
@@ -90,11 +88,12 @@ link = { vic = turkish eu3 = turkish }
 
 link = { vic = azerbaijani eu3 = azerbadjani }
 link = { vic = persian eu3 = persian }
-link = { vic = east_persian eu3 = east_persian }
+link = { vic = pashtun eu3 = east_persian }
 link = { vic = baluchi eu3 = baluchi }
 link = { vic = uzbek eu3 = uzbehk }
 link = { vic = kazak eu3 = khazak }
 link = { vic = kirgiz eu3 = kirgiz }
+
 link = { vic = turkmen eu3 = turkmeni }
 link = { vic = tatar eu3 = tartar }
 
@@ -174,7 +173,7 @@ link = { vic = delaware eu3 = delaware }
 link = { vic = yankee eu3 = american }
 link = { vic = akan eu3 = aka eu3 = ashanti }
 link = { vic = bambara eu3 = mali }
-link = { vic = dyula deu3 = yola }
+link = { vic = dyula eu3 = dyola }
 link = { vic = tuareg eu3 = tuareg }
 link = { vic = yoruba eu3 = yorumba }
 link = { vic = bakongo eu3 = kongolese }
@@ -198,10 +197,6 @@ link = { eu3 = komi vic = komi }
 link = { eu3 = lettigallish vic = lettigallish }
 link = { eu3 = cuman vic = cuman }
 link = { eu3 = pecheneg vic = pecheneg }
-link = { eu3 = levantine_arabic vic = levantine_arabic }
-link = { eu3 = egyptian_arabic vic = egyptian_arabic }
-
-
 
 }
 

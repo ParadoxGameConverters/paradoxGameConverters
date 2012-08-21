@@ -416,3 +416,4 @@ Revision	Version Updated		Log Message
 478		C++			Fix error with HttT conversions
 479		C++			Fix missing culture problem with games from CK2 To Eu3 Lua converter
 480		C++			Reorder province mapping around madrid so capital stays in Madrid
+481		C++			Slight updates to culture mappings
