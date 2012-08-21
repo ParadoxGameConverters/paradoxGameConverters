@@ -960,7 +960,7 @@ link = { eu3 = 212 vic = 499 }	# Girona -> Gerona
 link = { eu3 = 213 vic = 501 vic = 498 }	# Barcelona -> Tarragona, Barcelona
 link = { eu3 = 220 vic = 504 vic = 503 vic = 490 }	# València -> Castellon, Valencia, Cuenca
 link = { eu3 = 1750 vic = 505 }	# Alicante -> Alicante
-link = { eu3 = 217 vic = 483 vic = 487 vic = 488 }	# Madrid -> Avila, Madrid, Siguenza
+link = { eu3 = 217 vic = 487 vic = 483 vic = 488 }	# Madrid -> Madrid, Avila, Siguenza
 link = { eu3 = 215 vic = 480 vic = 481 }	# Castilla La Vieja -> Valladolid, Soria
 link = { eu3 = 1746 vic = 479 vic = 494 }	# Burgos -> Burgos, Logrono
 link = { eu3 = 214 vic = 495 vic = 497 }	# Aragón -> Zaragoza, Teruel
