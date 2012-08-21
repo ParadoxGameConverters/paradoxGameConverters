@@ -11,7 +11,10 @@ void outputTempHeader(FILE* output)
 	fprintf(output, "advisor=6889\n");
 	fprintf(output, "rebel=41\n");
 	fprintf(output, "unit=1541\n");
-	fprintf(output, "\n");
+}
+
+void outputTempHeader2(FILE* output)
+{
 	fprintf(output, "id=\n");
 	fprintf(output, "{\n");
 	fprintf(output, "	id=%d\n", Configuration::getID());

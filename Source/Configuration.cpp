@@ -30,5 +30,19 @@ Configuration::Configuration()
 	population	= obj[0]->getLeaf("population");
 	HRETitle		= obj[0]->getLeaf("HRETitle");
 
+	advisors				= obj[0]->getLeaf("advisors");
+	leaders				= obj[0]->getLeaf("leaders");
+	colonists			= obj[0]->getLeaf("colonists");
+	merchants			= obj[0]->getLeaf("merchants");
+	missionaries		= obj[0]->getLeaf("missionaries");
+	inflation			= obj[0]->getLeaf("inflation");
+	colonist_size		= obj[0]->getLeaf("colonist_size");
+	difficulty			= obj[0]->getLeaf("difficulty");
+	AI_aggressiveness	= obj[0]->getLeaf("AI_aggressiveness");
+	land_spread			= obj[0]->getLeaf("land_spread");
+	sea_spread			= obj[0]->getLeaf("sea_spread");
+	spies					= obj[0]->getLeaf("spies");
+	lucky_nations		= obj[0]->getLeaf("lucky_nations");
+
 	id				= 1;
 }

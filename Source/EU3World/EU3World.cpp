@@ -28,6 +28,187 @@ EU3World::EU3World(CK2World* srcWorld)
 	europeanCountries.clear();
 	advisors.clear();
 	mapSpreadStrings.clear();
+
+	if (Configuration::getAdvisors() == "normal")
+	{
+		options[ADVISORS] = 0;
+	}
+	else if (Configuration::getAdvisors() == "historical")
+	{
+		options[ADVISORS] = 1;
+	}
+	else if (Configuration::getAdvisors() == "event")
+	{
+		options[ADVISORS] = 2;
+	}
+
+	if (Configuration::getLeaders() == "normal")
+	{
+		options[LEADERS] = 0;
+	}
+	else if (Configuration::getLeaders() == "historical")
+	{
+		options[LEADERS] = 1;
+	}
+	else if (Configuration::getLeaders() == "event")
+	{
+		options[LEADERS] = 2;
+	}
+
+	if (Configuration::getColonists() == "normal")
+	{
+		options[COLONISTS] = 0;
+	}
+	else if (Configuration::getColonists() == "free")
+	{
+		options[COLONISTS] = 1;
+	}
+
+	if (Configuration::getMerchants() == "normal")
+	{
+		options[MERCHANTS] = 0;
+	}
+	else if (Configuration::getMerchants() == "free")
+	{
+		options[MERCHANTS] = 1;
+	}
+
+	if (Configuration::getMissionaries() == "normal")
+	{
+		options[MISSIONARIES] = 0;
+	}
+	else if (Configuration::getMissionaries() == "free")
+	{
+		options[MISSIONARIES] = 1;
+	}
+
+	if (Configuration::getInflation() == "normal")
+	{
+		options[INFLATION] = 0;
+	}
+	else if (Configuration::getInflation() == "from gold")
+	{
+		options[INFLATION] = 1;
+	}
+	else if (Configuration::getInflation() == "none")
+	{
+		options[INFLATION] = 2;
+	}
+
+	if (Configuration::getColonist_size() == "normal")
+	{
+		options[COLONIST_SIZE] = 0;
+	}
+	else if (Configuration::getColonist_size() == "200")
+	{
+		options[COLONIST_SIZE] = 1;
+	}
+	else if (Configuration::getColonist_size() == "300")
+	{
+		options[COLONIST_SIZE] = 2;
+	}
+	else if (Configuration::getColonist_size() == "400")
+	{
+		options[COLONIST_SIZE] = 3;
+	}
+
+	if (Configuration::getDifficulty() == "very easy")
+	{
+		options[DIFFICULTY] = 0;
+	}
+	else if (Configuration::getDifficulty() == "easy")
+	{
+		options[DIFFICULTY] = 1;
+	}
+	else if (Configuration::getDifficulty() == "normal")
+	{
+		options[DIFFICULTY] = 2;
+	}
+	else if (Configuration::getDifficulty() == "hard")
+	{
+		options[DIFFICULTY] = 3;
+	}
+	else if (Configuration::getDifficulty() == "very hard")
+	{
+		options[DIFFICULTY] = 4;
+	}
+
+	if (Configuration::getAI_aggressiveness() == "normal")
+	{
+		options[AI_AGGRESSIVENESS] = 0;
+	}
+	else if (Configuration::getAI_aggressiveness() == "low")
+	{
+		options[AI_AGGRESSIVENESS] = 1;
+	}
+	else if (Configuration::getAI_aggressiveness() == "high")
+	{
+		options[AI_AGGRESSIVENESS] = 2;
+	}
+
+	if (Configuration::getLand_spread() == "25")
+	{
+		options[LAND_SPREAD] = 0;
+	}
+	else if (Configuration::getLand_spread() == "normal (50)")
+	{
+		options[LAND_SPREAD] = 1;
+	}
+	else if (Configuration::getLand_spread() == "75")
+	{
+		options[LAND_SPREAD] = 2;
+	}
+	else if (Configuration::getLand_spread() == "100")
+	{
+		options[LAND_SPREAD] = 3;
+	}
+	else if (Configuration::getLand_spread() == "200")
+	{
+		options[LAND_SPREAD] = 4;
+	}
+
+	if (Configuration::getSea_spread() == "25")
+	{
+		options[SEA_SPREAD] = 0;
+	}
+	else if (Configuration::getSea_spread() == "normal (50)")
+	{
+		options[SEA_SPREAD] = 1;
+	}
+	else if (Configuration::getSea_spread() == "75")
+	{
+		options[SEA_SPREAD] = 2;
+	}
+	else if (Configuration::getSea_spread() == "100")
+	{
+		options[SEA_SPREAD] = 3;
+	}
+	else if (Configuration::getSea_spread() == "200")
+	{
+		options[SEA_SPREAD] = 4;
+	}
+
+	if (Configuration::getSpies() == "normal")
+	{
+		options[SPIES] = 0;
+	}
+	else if (Configuration::getSpies() == "free")
+	{
+		options[SPIES] = 1;
+	}
+
+	if (Configuration::getLucky_nations() == "historical")
+	{
+		options[LUCKY_NATIONS] = 0;
+	}
+	else if (Configuration::getLucky_nations() == "random")
+	{
+		options[LUCKY_NATIONS] = 1;
+	}
+	else if (Configuration::getLucky_nations() == "none")
+	{
+		options[LUCKY_NATIONS] = 2;
+	}
 }
 
 
@@ -35,6 +216,19 @@ void EU3World::output(FILE* output)
 {
 	fprintf(output, "date=\"%s\"\n", startDate.toString().c_str());
 	outputTempHeader(output);
+	fprintf(output, "gameplaysettings=\n");
+	fprintf(output, "{\n");
+	fprintf(output, "\tsetgameplayoptions=\n");
+	fprintf(output, "\t{\n");
+	fprintf(output, "\t\t");
+	for (unsigned int i = 0; i < OPTIONS_END; i++)
+	{
+		fprintf(output, "%d ", options[i]);
+	}
+	fprintf(output, "\n");
+	fprintf(output, "\t}\n");
+	fprintf(output, "}\n");
+	outputTempHeader2(output);
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		if (i->second != NULL)

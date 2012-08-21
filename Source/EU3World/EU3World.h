@@ -14,6 +14,28 @@ class EU3Country;
 class EU3Province;
 class EU3Advisor;
 
+
+
+enum options
+{
+	ADVISORS	= 0,
+	LEADERS,
+	COLONISTS,
+	MERCHANTS,
+	MISSIONARIES,
+	INFLATION,
+	COLONIST_SIZE,
+	DIFFICULTY,
+	AI_AGGRESSIVENESS,
+	LAND_SPREAD,
+	SEA_SPREAD,
+	SPIES,
+	LUCKY_NATIONS,
+	OPTIONS_END
+};
+
+
+
 class EU3World
 {
 	public:
@@ -30,6 +52,7 @@ class EU3World
 		
 		vector<EU3Country*>	getCountries() const { return countries; };
 	private:
+		int									options[OPTIONS_END];
 		date									startDate;
 		map<int, EU3Province*>			provinces;
 		vector<EU3Country*>				countries;

@@ -24,4 +24,89 @@ configuration =
 
 	# HRE Title: the CK2 Title that will convert are the HRE in EU3. All immediate vassals will be independent.
 	HRETitle = "e_hre"
+
+
+	### EU3 Options ###
+
+	# advisors setting. Options are:
+	#	"normal"
+	#	"historical"
+	#	"event"
+	advisors = "normal"
+
+	# leaders setting. Options are:
+	#	"normal"
+	#	"historical"
+	#	"event"
+	leaders = "normal"
+
+	# colonists setting. Options are:
+	#	"normal"
+	#	"free"
+	colonists = "normal"
+
+	# merchants setting. Options are:
+	#	"normal"
+	#	"free"
+	merchants = "normal"
+
+	# missionaries setting. Options are:
+	#	"normal"
+	#	"free"
+	missionaries = "normal"
+
+	# inflation setting. Options are:
+	#	"normal"
+	#	"none"
+	#	"from gold"
+	inflation = "normal"
+
+	# colonist size setting. Options are:
+	#	"normal"
+	#	"200"
+	#	"300"
+	#	"400"
+	colonist_size = "normal"
+
+	# difficulty setting. Options are:
+	#	"very easy"
+	#	"easy"
+	#	"normal"
+	#	"hard"
+	#	"very hard"
+	difficulty = "normal"
+
+	# AI aggressiveness setting. Options are:
+	#	"low"
+	#	"normal"
+	#	"high"
+	AI_aggressiveness = "normal"
+
+	# spread of land provinces setting. Options are:
+	#	"25"
+	#	"normal (50)"
+	#	"75"
+	#	"100"
+	#	"200"
+	land_spread = "normal (50)"
+
+	# spread of sea provinces setting. Options are:
+	#	"25"
+	#	"normal (50)"
+	#	"75"
+	#	"100"
+	#	"200"
+	sea_spread = "normal (50)"
+
+	# spies setting. Options are:
+	#	"normal"
+	#	"free"
+	spies = "normal"
+
+	# lucky nations setting. Options are:
+	#	"historical"
+	#	"random"
+	#	"none"
+	lucky_nations = "historical"
+	
 }

@@ -42,6 +42,72 @@ public:
 		return getInstance()->HRETitle;
 	}
 
+	static string getAdvisors()
+	{
+		return getInstance()->advisors;
+	}
+
+	static string getLeaders()
+	{
+		return getInstance()->leaders;
+	}
+
+	static string getColonists()
+	{
+		return getInstance()->colonists;
+	}
+
+	static string getMerchants()
+	{
+		return getInstance()->merchants;
+	}
+
+	static string getMissionaries()
+	{
+		return getInstance()->missionaries;
+	}
+
+	static string getInflation()
+	{
+		return getInstance()->inflation;
+	}
+
+	static string getColonist_size()
+	{
+		return getInstance()->colonist_size;
+	}
+
+	static string getDifficulty()
+	{
+		return getInstance()->difficulty;
+	}
+
+	static string getAI_aggressiveness()
+	{
+		return getInstance()->AI_aggressiveness;
+	}
+
+	static string getLand_spread()
+	{
+		return getInstance()->land_spread;
+	}
+
+	static string getSea_spread()
+	{
+		return getInstance()->sea_spread;
+	}
+
+	static string getSpies()
+	{
+		return getInstance()->spies;
+	}
+
+	static string getLucky_nations()
+	{
+		return getInstance()->lucky_nations;
+	}
+
+
 	static int getID()
 	{
 		return getInstance()->id++;
@@ -63,6 +129,20 @@ private:
 	string	basetax;
 	string	population;
 	string	HRETitle;
+
+	string	advisors;
+	string	leaders;
+	string	colonists;
+	string	merchants;
+	string	missionaries;
+	string	inflation;
+	string	colonist_size;
+	string	difficulty;
+	string	AI_aggressiveness;
+	string	land_spread;
+	string	sea_spread;
+	string	spies;
+	string	lucky_nations;
 
 	int		id;
 };

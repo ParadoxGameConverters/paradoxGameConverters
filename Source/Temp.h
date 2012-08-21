@@ -3,6 +3,7 @@
 
 
 void outputTempHeader(FILE*);
+void outputTempHeader2(FILE*);
 
 
 #endif	// TEMP_H_
