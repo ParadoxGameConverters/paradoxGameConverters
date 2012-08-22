@@ -1,13 +1,13 @@
 v1.6 = 
 {
-link = { ck2 = 909 eu3 = 1795 eu3 = 1794 }	# Sahara Desert -> East Sahara, Central Sahara
+# link = { ck2 = 909 eu3 = 1795 eu3 = 1794 }	# Sahara Desert -> East Sahara, Central Sahara
 link = { ck2 = 350 ck2 = 349 eu3 = 119 }	# Ancona, Spoleto -> Ancona
 link = { ck2 = 335 ck2 = 929 eu3 = 120 }	# Benevento, Aprutium -> Abruzzi
 link = { ck2 = 930 eu3 = 1311 eu3 = 1307 }	# Golfo di Taranto -> Gulf of Taranto, Straits of Messina
 link = { ck2 = 1008 ck2 = 943 eu3 = 1253 }	# Gulf of Bothnia, Näsijärvi -> Ålands Hav
 link = { ck2 = 925 eu3 = 1121 eu3 = 1124 }	# Mali -> Bure, Wasuju
 link = { ck2 = 926 eu3 = 1120 }	# Bambuk -> Bambuk
-link = { ck2 = 924 ck2 = 923 eu3 = 1793 }	# Western Sahara, Adrar Plateau -> El Djouf
+# link = { ck2 = 924 ck2 = 923 eu3 = 1793 }	# Western Sahara, Adrar Plateau -> El Djouf
 link = { ck2 = 915 eu3 = 1134 }	# Djenné -> Jenne
 link = { ck2 = 919 eu3 = 1132 }	# Oualata -> Timbuktu
 link = { ck2 = 914 ck2 = 922 eu3 = 1142 }	# Gao, Tadmekka -> Dendi
@@ -117,7 +117,7 @@ link = { ck2 = 841 eu3 = 334 }	# Tangier -> Tangiers
 link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Taroudant, Tamdoult -> Safi
 link = { ck2 = 849 eu3 = 366 }	# Canarias -> The Canarias
 link = { ck2 = 843 eu3 = 344 }	# Marrakech -> Marrakech
-link = { ck2 = 909 eu3 = 1795 eu3 = 1794 eu3 = 1793 }	# Sahara Desert -> East Sahara, Central Sahara, El Djouf
+# link = { ck2 = 909 eu3 = 1795 eu3 = 1794 eu3 = 1793 }	# Sahara Desert -> East Sahara, Central Sahara, El Djouf
 # # Arabian Peninsula, Middle East and Eastern Boundary Provinces
 link = { ck2 = 788 ck2 = 787 eu3 = 364 }	# Farama, El-Arish -> Gaza
 link = { ck2 = 786 ck2 = 782 ck2 = 779 eu3 = 1854 }	# Eilat, Negev, Beersheb -> Negev

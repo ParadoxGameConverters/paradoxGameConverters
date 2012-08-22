@@ -177,3 +177,4 @@ Revision	Log Message
 174		Baronies no longer get wrong religion buildings
 175		Can set EU3 options via configuration.txt
 176		Make a bunch of province conversion things configurable
+177		Don't bother mapping wastelands to wastelands
