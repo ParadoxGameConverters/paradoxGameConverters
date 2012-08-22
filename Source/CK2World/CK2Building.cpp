@@ -162,7 +162,7 @@ void CK2BuildingFactory::addBuildingTypes(Object* obj)
 }
 
 
-const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder) const
+const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder, const religionGroupMapping& religionGroupMap) const
 {
 	const CK2Building* returnMe = NULL;
 
@@ -172,117 +172,17 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 		returnMe = itr->second;
 		if (itr->second->getForbiddenReligion() != "")
 		{
-			if	(itr->second->getForbiddenReligion() == "christian")
+			if	( itr->second->getForbiddenReligion() == religionGroupMap.find(baronyHolder->getReligion())->second )
 			{
-				if	(
-						(baronyHolder->getReligion() == "catholic") ||
-						(baronyHolder->getReligion() == "cathar") ||
-						(baronyHolder->getReligion() == "fraticelli") ||
-						(baronyHolder->getReligion() == "waldensian") ||
-						(baronyHolder->getReligion() == "lollard") ||
-						(baronyHolder->getReligion() == "orthodox") ||
-						(baronyHolder->getReligion() == "bogomilist") ||
-						(baronyHolder->getReligion() == "iconoclast") ||
-						(baronyHolder->getReligion() == "monophysite") ||
-						(baronyHolder->getReligion() == "nestorian")
-					)
-				{
-					returnMe = NULL;
-				}
-			}
-			else if (itr->second->getForbiddenReligion() == "muslim")
-			{
-				if	(
-						(baronyHolder->getReligion() == "sunni") ||
-						(baronyHolder->getReligion() == "zikri") ||
-						(baronyHolder->getReligion() == "yazidi") ||
-						(baronyHolder->getReligion() == "ibadi") ||
-						(baronyHolder->getReligion() == "shiite") ||
-						(baronyHolder->getReligion() == "bektashi") ||
-						(baronyHolder->getReligion() == "druze") ||
-						(baronyHolder->getReligion() == "hurufi")
-					)
-				{
-					returnMe = NULL;
-				}
-			}
-			else if (itr->second->getForbiddenReligion() == "pagan_group")
-			{
-				if	(
-						(baronyHolder->getReligion() == "pagan") ||
-						(baronyHolder->getReligion() == "norse_pagan") ||
-						(baronyHolder->getReligion() == "tengri_pagan") ||
-						(baronyHolder->getReligion() == "baltic_pagan") ||
-						(baronyHolder->getReligion() == "finnish_pagan")
-					)
-				{
-					returnMe = NULL;
-				}
-			}
-			else if (itr->second->getForbiddenReligion() == "zoroastrian_group")
-			{
-				if	(baronyHolder->getReligion() == "zoroastrian")
-				{
-					returnMe = NULL;
-				}
+				returnMe = NULL;
 			}
 		}
 
 		if (itr->second->getRequiredReligion() != "")
 		{
-			if	(itr->second->getRequiredReligion() == "christian")
+			if	( itr->second->getRequiredReligion() != religionGroupMap.find(baronyHolder->getReligion())->second )
 			{
-				if	(
-						(baronyHolder->getReligion() != "catholic") &&
-						(baronyHolder->getReligion() != "cathar") &&
-						(baronyHolder->getReligion() != "fraticelli") &&
-						(baronyHolder->getReligion() != "waldensian") &&
-						(baronyHolder->getReligion() != "lollard") &&
-						(baronyHolder->getReligion() != "orthodox") &&
-						(baronyHolder->getReligion() != "bogomilist") &&
-						(baronyHolder->getReligion() != "iconoclast") &&
-						(baronyHolder->getReligion() != "monophysite") &&
-						(baronyHolder->getReligion() != "nestorian")
-					)
-				{
-					returnMe = NULL;
-				}
-			}
-			else if (itr->second->getRequiredReligion() == "muslim")
-			{
-				if	(
-						(baronyHolder->getReligion() != "sunni") &&
-						(baronyHolder->getReligion() != "zikri") &&
-						(baronyHolder->getReligion() != "yazidi") &&
-						(baronyHolder->getReligion() != "ibadi") &&
-						(baronyHolder->getReligion() != "shiite") &&
-						(baronyHolder->getReligion() != "bektashi") &&
-						(baronyHolder->getReligion() != "druze") &&
-						(baronyHolder->getReligion() != "hurufi")
-					)
-				{
-					returnMe = NULL;
-				}
-			}
-			else if (itr->second->getRequiredReligion() == "pagan_group")
-			{
-				if	(
-						(baronyHolder->getReligion() != "pagan") &&
-						(baronyHolder->getReligion() != "norse_pagan") &&
-						(baronyHolder->getReligion() != "tengri_pagan") &&
-						(baronyHolder->getReligion() != "baltic_pagan") &&
-						(baronyHolder->getReligion() != "finnish_pagan")
-					)
-				{
-					returnMe = NULL;
-				}
-			}
-			else if (itr->second->getRequiredReligion() == "zoroastrian_group")
-			{
-				if	(baronyHolder->getReligion() != "zoroastrian")
-				{
-					returnMe = NULL;
-				}
+				returnMe = NULL;
 			}
 		}
 	}

@@ -2,6 +2,7 @@
 #define CK2PROVINCE_H_
 
 
+#include "..\Mappers.h"
 #include <vector>
 #include <map>
 using namespace std;
@@ -16,7 +17,7 @@ class CK2Barony;
 class CK2Province
 {
 	public:
-		CK2Province(Object*, map<string, CK2Title*>, const CK2BuildingFactory* buildingFactory);
+		CK2Province(Object*, map<string, CK2Title*>, const CK2BuildingFactory* buildingFactory, const religionGroupMapping& religionGroupMap);
 
 		int						getNumber()		const { return number; };
 		vector<CK2Barony*>	getBaronies()	const { return baronies; };

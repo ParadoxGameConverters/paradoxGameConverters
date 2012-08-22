@@ -45,6 +45,9 @@ cultureMapping initCultureMap(Object* obj);
 typedef map<string, string> religionMapping; // CK2 religion, EU3 religion
 religionMapping initReligionMap(Object* obj);
 
+typedef map<string, string> religionGroupMapping; // CK2 religion, CK2 religion group
+void addReligionGroupMappings(Object* obj, religionGroupMapping& map);
+
 
 
 #endif	// MAPPERS_H_

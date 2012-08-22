@@ -5,6 +5,7 @@
 #include <vector>
 #include <map>
 #include "..\Date.h"
+#include "..\Mappers.h"
 using namespace std;
 
 
@@ -25,7 +26,7 @@ class CK2World
 {
 	public:
 		CK2World();
-		void							init(Object*);
+		void							init(Object*, const religionGroupMapping& religionGroupMap);
 		void							addBuildingTypes(Object*);
 		void							addDynasties(Object*);
 		void							addTraits(Object*);

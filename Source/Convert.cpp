@@ -84,6 +84,29 @@ int main(int argc, char * argv[])
 		srcWorld.addBuildingTypes(obj);
 	} while(_findnext(fileListing, &buildingsData) == 0);
 	_findclose(fileListing);
+
+	log("\tGetting CK2 religions\n");
+	printf("\tGetting CK2 religions\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/religion.txt").c_str()); // for pre-1.06 installs
+	religionGroupMapping religionGroupMap;
+	addReligionGroupMappings(obj, religionGroupMap);
+	struct _finddata_t	religionsData;
+	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\religions\\*").c_str(), &religionsData)) == -1L)
+	{
+		log("\t\tError: Could not open religions directory.\n");
+		printf("\t\tError: Could not open religions directory.\n");
+		exit(1);
+	}
+	do
+	{
+		if (strcmp(religionsData.name, ".") == 0 || strcmp(religionsData.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
+		addReligionGroupMappings(obj, religionGroupMap);
+	} while(_findnext(fileListing, &religionsData) == 0);
+	_findclose(fileListing);
 	
 	log("Parsing landed titles.\n");
 	printf("Parsing landed titles.\n");
@@ -109,6 +132,8 @@ int main(int argc, char * argv[])
 
 	log("\tGetting traits\n");
 	printf("\tGetting traits\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/traits.txt").c_str()); // for pre-1.06 installs
+	srcWorld.addTraits(obj);
 	struct _finddata_t	traitsData;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\traits\\*").c_str(), &traitsData)) == -1L)
 	{
@@ -155,7 +180,7 @@ int main(int argc, char * argv[])
 
 	log("Importing parsed data.\n");
 	printf("Importing parsed data.\n");
-	srcWorld.init(obj);
+	srcWorld.init(obj, religionGroupMap);
 
 
 	// Parse province mappings

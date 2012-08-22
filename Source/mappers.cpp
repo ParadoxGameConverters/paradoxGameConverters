@@ -335,3 +335,17 @@ religionMapping initReligionMap(Object* obj)
 
 	return religionMap;
 }
+
+
+void addReligionGroupMappings(Object* obj, religionGroupMapping& map)
+{
+	vector<Object*> groups = obj->getLeaves();
+	for (vector<Object*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
+	{
+		vector<Object*> religions = (*groupsItr)->getLeaves();
+		for (vector<Object*>::iterator religionsItr = religions.begin(); religionsItr < religions.end(); religionsItr++)
+		{
+			map.insert( make_pair((*religionsItr)->getKey(), (*groupsItr)->getKey()) );
+		}
+	}
+}

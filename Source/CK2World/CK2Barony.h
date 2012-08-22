@@ -3,6 +3,7 @@
 
 
 
+#include "..\Mappers.h"
 #include <string>
 using namespace std;
 
@@ -16,7 +17,7 @@ class CK2Province;
 class CK2Barony
 {
 	public:
-		CK2Barony(Object*, CK2Title*, CK2Province*, const CK2BuildingFactory*);
+		CK2Barony(Object*, CK2Title*, CK2Province*, const CK2BuildingFactory*, const religionGroupMapping& religionGroupMap);
 
 		CK2Title*		getTitle()				const { return title; };
 		CK2Province*	getProvince()			const { return province; };

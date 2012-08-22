@@ -178,3 +178,4 @@ Revision	Log Message
 175		Can set EU3 options via configuration.txt
 176		Make a bunch of province conversion things configurable
 177		Don't bother mapping wastelands to wastelands
+178		Map CK2 religions to CK2 religion groups
