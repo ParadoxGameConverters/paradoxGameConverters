@@ -543,13 +543,19 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 {
 
 	map<string, double> religionCounts;
+	map<string, double> religionCounts2;
+	map<string, double> religionCounts3;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
-		double popProxy = 0.0f;
+		double	popProxy			= 0.0f;
+		double	baseTaxProxy	= 0.0f;
+		double	manpowerProxy	= 0.0f;
 		vector<CK2Barony*> baronies = (*provItr)->getBaronies();
 		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
-			popProxy += (*baronyItr)->getPopProxy();
+			popProxy			+= (*baronyItr)->getPopProxy();
+			baseTaxProxy	+= (*baronyItr)->getBaseTaxProxy();
+			manpowerProxy	+= (*baronyItr)->getManpowerProxy();
 		}
 
 
@@ -562,6 +568,26 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		else
 		{
 			religionCounts[_religion] = popProxy;
+		}
+
+		countsItr = religionCounts2.find(_religion);
+		if (countsItr != religionCounts2.end())
+		{
+			countsItr->second += baseTaxProxy;
+		}
+		else
+		{
+			religionCounts2[_religion] = baseTaxProxy;
+		}
+
+		countsItr = religionCounts3.find(_religion);
+		if (countsItr != religionCounts3.end())
+		{
+			countsItr->second += manpowerProxy;
+		}
+		else
+		{
+			religionCounts3[_religion] = manpowerProxy;
 		}
 	}
 
@@ -586,11 +612,67 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		}
 	}
 
-	if (tie)
+	vector<string>	tiedReligions2;
+	if (tie == true)
 	{
-		log("\tError: tied for religions in province %d, and no method to distinguish.\n", num);
+		topReligion	= "";
+		topCount		= 0;
+		vector<string>	tiedReligions2;
+		for (map<string, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
+		{
+			for (vector<string>::iterator cultureItr = tiedReligions.begin(); cultureItr != tiedReligions.end(); cultureItr++)
+			{
+				if (countsItr->first == *cultureItr)
+				{
+					if (countsItr->second > topCount)
+					{
+						topReligion	= countsItr->first;
+						topCount		= countsItr->second;
+						tiedReligions2.clear();
+						tiedReligions2.push_back(countsItr->first);
+						tie = false;
+					}
+					else if (countsItr->second == topCount)
+					{
+						tiedReligions2.push_back(countsItr->first);
+						tie = true;
+					}
+					break;
+				}
+			}
+		}
 	}
 
+	if (tie == true)
+	{
+		topReligion	= "";
+		topCount		= 0;
+		for (map<string, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
+		{
+			for (vector<string>::iterator religionItr = tiedReligions2.begin(); religionItr != tiedReligions2.end(); religionItr++)
+			{
+				if (countsItr->first == *religionItr)
+				{
+					if (countsItr->second > topCount)
+					{
+						topReligion	= countsItr->first;
+						topCount		= countsItr->second;
+						tie = false;
+					}
+					else if (countsItr->second == topCount)
+					{
+						tie = true;
+					}
+					break;
+				}
+			}
+		}
+	}
+
+	if (tie == true)
+	{
+		log("\tWarning: could not decide on religion for EU3 province %d due to ties.\n", num);
+	}
 
 	const CK2Title* rulerTitle = srcOwner;
 	if (srcOwner != NULL)
