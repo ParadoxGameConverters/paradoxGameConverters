@@ -4,6 +4,7 @@
 #include "CK2Character.h"
 #include "..\Parsers\Object.h"
 #include "..\Log.h"
+#include "..\Configuration.h"
 
 
 
@@ -29,26 +30,55 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 	}
 
 	proxyMultiplier = 1;
-	if (title->getTitleString() == title->getHolder()->getCapitalString())
+	if (Configuration::getProxyMultiplierMethod() == "counting")
 	{
-		vector<CK2Title*> titles = title->getHolder()->getTitles();
-		for (vector<CK2Title*>::const_iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+		if (title->getTitleString() == title->getHolder()->getCapitalString())
 		{
-			if ( ((*titleItr)->getTitleString().substr(0,2) == "c_") && (proxyMultiplier < 2) )
+			vector<CK2Title*> titles = title->getHolder()->getTitles();
+			for (vector<CK2Title*>::const_iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
 			{
-				proxyMultiplier = 2;
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "c_") && (proxyMultiplier < 2) )
+				{
+					proxyMultiplier = 2;
+				}
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "d_") && (proxyMultiplier < 3) )
+				{
+					proxyMultiplier = 3;
+				}
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "k_") && (proxyMultiplier < 4) )
+				{
+					proxyMultiplier = 4;
+				}
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "e_") && (proxyMultiplier < 5) )
+				{
+					proxyMultiplier = 5;
+				}
 			}
-			if ( ((*titleItr)->getTitleString().substr(0,2) == "d_") && (proxyMultiplier < 3) )
+		}
+	}
+	else if (Configuration::getProxyMultiplierMethod() == "exponential")
+	{
+		if (title->getTitleString() == title->getHolder()->getCapitalString())
+		{
+			vector<CK2Title*> titles = title->getHolder()->getTitles();
+			for (vector<CK2Title*>::const_iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
 			{
-				proxyMultiplier = 3;
-			}
-			if ( ((*titleItr)->getTitleString().substr(0,2) == "k_") && (proxyMultiplier < 4) )
-			{
-				proxyMultiplier = 4;
-			}
-			if ( ((*titleItr)->getTitleString().substr(0,2) == "e_") && (proxyMultiplier < 5) )
-			{
-				proxyMultiplier = 5;
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "c_") && (proxyMultiplier < 2) )
+				{
+					proxyMultiplier = 2;
+				}
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "d_") && (proxyMultiplier < 4) )
+				{
+					proxyMultiplier = 4;
+				}
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "k_") && (proxyMultiplier < 8) )
+				{
+					proxyMultiplier = 8;
+				}
+				if ( ((*titleItr)->getTitleString().substr(0,2) == "e_") && (proxyMultiplier < 16) )
+				{
+					proxyMultiplier = 16;
+				}
 			}
 		}
 	}

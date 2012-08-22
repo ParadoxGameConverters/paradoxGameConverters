@@ -498,6 +498,13 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			}
 		}
 
+		if (Configuration::getMultipleProvsMethod() == "average")
+		{
+			baseTaxProxy	/= srcProvinces.size();
+			popProxy			/= srcProvinces.size();
+			manpowerProxy	/= srcProvinces.size();
+		}
+
 		map<int, EU3Province*>::iterator provItr = provinces.find(i->first);
 		provItr->second->convert(i->first, inHRE, europeanCountries);
 
@@ -522,17 +529,28 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		{
 			provItr->second->setBaseTax(totalHistoricalBaseTax * baseTaxProxy / totalBaseTaxProxy);
 		}
+		else if (Configuration::getBasetax() == "blended")
+		{
+			double blendAmount = atof( Configuration::getBasetaxblendamount().c_str() );
+			provItr->second->setBaseTax( (blendAmount * provItr->second->getBaseTax()) + ((1 - blendAmount) * totalHistoricalBaseTax * baseTaxProxy / totalBaseTaxProxy) );
+		}
 		if (Configuration::getPopulation() == "converted")
 		{
 			provItr->second->setPopulation(totalHistoricalPopulation * popProxy / totalPopProxy);
 		}
 		else if (Configuration::getPopulation() == "blended")
 		{
-			provItr->second->setPopulation( (0.9 * provItr->second->getPopulation()) + (0.1 * totalHistoricalPopulation * popProxy / totalPopProxy) );
+			double blendAmount = atof( Configuration::getPopulationblendamount().c_str() );
+			provItr->second->setPopulation( (blendAmount * provItr->second->getPopulation()) + ((1 - blendAmount) * totalHistoricalPopulation * popProxy / totalPopProxy) );
 		}
 		if (Configuration::getManpower() == "converted")
 		{
 			provItr->second->setManpower(totalHistoricalManpower * manpowerProxy / totalManpowerProxy);
+		}
+		if (Configuration::getManpower() == "blended")
+		{
+			double blendAmount = atof( Configuration::getManpowerblendamount().c_str() );
+			provItr->second->setManpower( (blendAmount * provItr->second->getManpower()) + ((1 - blendAmount) * totalHistoricalManpower * manpowerProxy / totalManpowerProxy) );
 		}
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 		provItr->second->determineReligion(religionMap, srcProvinces);

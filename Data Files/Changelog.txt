@@ -176,3 +176,4 @@ Revision	Log Message
 173		Create and use CK2Building class
 174		Baronies no longer get wrong religion buildings
 175		Can set EU3 options via configuration.txt
+176		Make a bunch of province conversion things configurable

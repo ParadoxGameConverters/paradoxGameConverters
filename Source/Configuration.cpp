@@ -25,9 +25,14 @@ Configuration::Configuration()
 
 	CK2Path		= obj[0]->getLeaf("CK2directory");
 	EU3Path		= obj[0]->getLeaf("EU3directory");
+	proxyMultiplierMethod = obj[0]->getLeaf("proxyMultiplierMethod");
+	multipleProvsMethod = obj[0]->getLeaf("multipleProvsMethod");
 	manpower		= obj[0]->getLeaf("manpower");
+	manpowerblendamount		= obj[0]->getLeaf("manpowerblendamount");
 	basetax		= obj[0]->getLeaf("basetax");
+	basetaxblendamount		= obj[0]->getLeaf("basetaxblendamount");
 	population	= obj[0]->getLeaf("population");
+	populationblendamount	= obj[0]->getLeaf("populationblendamount");
 	HRETitle		= obj[0]->getLeaf("HRETitle");
 
 	advisors				= obj[0]->getLeaf("advisors");

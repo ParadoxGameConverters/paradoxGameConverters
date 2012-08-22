@@ -22,9 +22,24 @@ public:
 		return getInstance()->EU3Path;
 	}
 
+	static string getProxyMultiplierMethod()
+	{
+		return getInstance()->proxyMultiplierMethod;
+	}
+
+	static string getMultipleProvsMethod()
+	{
+		return getInstance()->multipleProvsMethod;
+	}
+
 	static string getManpower()
 	{
 		return getInstance()->manpower;
+	}
+
+	static string getManpowerblendamount()
+	{
+		return getInstance()->manpowerblendamount;
 	}
 
 	static string getBasetax()
@@ -32,9 +47,19 @@ public:
 		return getInstance()->basetax;
 	}
 
+	static string getBasetaxblendamount()
+	{
+		return getInstance()->basetaxblendamount;
+	}
+
 	static string getPopulation()
 	{
 		return getInstance()->population;
+	}
+
+	static string getPopulationblendamount()
+	{
+		return getInstance()->populationblendamount;
 	}
 
 	static string getHRETitle()
@@ -125,9 +150,14 @@ private:
 
 	string	CK2Path;
 	string	EU3Path;
+	string	proxyMultiplierMethod;
+	string	multipleProvsMethod;
 	string	manpower;
+	string	manpowerblendamount;
 	string	basetax;
+	string	basetaxblendamount;
 	string	population;
+	string	populationblendamount;
 	string	HRETitle;
 
 	string	advisors;
