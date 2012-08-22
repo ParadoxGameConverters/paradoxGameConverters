@@ -179,3 +179,4 @@ Revision	Log Message
 176		Make a bunch of province conversion things configurable
 177		Don't bother mapping wastelands to wastelands
 178		Map CK2 religions to CK2 religion groups
+179		Map CK2 cultures to CK2 culture groups, then disallow wrong culture buildings

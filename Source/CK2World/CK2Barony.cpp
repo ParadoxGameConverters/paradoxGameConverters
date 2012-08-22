@@ -8,7 +8,7 @@
 
 
 
-CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, const CK2BuildingFactory* buildingFactory, const religionGroupMapping& religionGroupMap)
+CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, const CK2BuildingFactory* buildingFactory, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap)
 {
 	title		= newTitle;
 	province	= newProvince;
@@ -21,7 +21,7 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 		string key = (*i)->getKey();
 		if ( (key.substr(0, 3) == "ca_") || (key.substr(0, 3) == "ct_") || (key.substr(0, 3) == "tp_") )
 		{
-			const CK2Building* newBuilding = buildingFactory->getBuilding(key, title->getHolder(), religionGroupMap);
+			const CK2Building* newBuilding = buildingFactory->getBuilding(key, title->getHolder(), religionGroupMap, cultureGroupMap);
 			if (newBuilding != NULL)
 			{
 				buildings.push_back(newBuilding);

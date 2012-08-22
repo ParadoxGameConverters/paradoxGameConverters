@@ -162,14 +162,38 @@ void CK2BuildingFactory::addBuildingTypes(Object* obj)
 }
 
 
-const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder, const religionGroupMapping& religionGroupMap) const
+const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap) const
 {
 	const CK2Building* returnMe = NULL;
 
 	map<string, const CK2Building*>::const_iterator itr = buildings.find(type);
 	if (itr != buildings.end())
 	{
-		returnMe = itr->second;
+		if ( (itr->second->getAcceptableCultureGroups().size() == 0) && (itr->second->getAcceptableCultures().size() == 0) )
+		{
+			returnMe = itr->second;
+		}
+		else
+		{
+			for (vector<string>::iterator cultureGroupsItr = itr->second->getAcceptableCultureGroups().begin(); cultureGroupsItr < itr->second->getAcceptableCultureGroups().end(); cultureGroupsItr++)
+			{
+				if ( *cultureGroupsItr == cultureGroupMap.find(baronyHolder->getCulture())->second )
+				{
+					returnMe = itr->second;
+					break;
+				}
+			}
+
+			for (vector<string>::iterator cultureItr = itr->second->getAcceptableCultures().begin(); cultureItr < itr->second->getAcceptableCultures().end(); cultureItr++)
+			{
+				if (*cultureItr == baronyHolder->getCulture())
+				{
+					returnMe = itr->second;
+					break;
+				}
+			}
+		}
+
 		if (itr->second->getForbiddenReligion() != "")
 		{
 			if	( itr->second->getForbiddenReligion() == religionGroupMap.find(baronyHolder->getReligion())->second )

@@ -6,7 +6,7 @@
 
 
 
-CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory, const religionGroupMapping& religionGroupMap)
+CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap)
 {
 	number = atoi( obj->getKey().c_str() );
 
@@ -16,7 +16,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2Bu
 		string key = leaves[i]->getKey();
 		if (key[0] == 'b')
 		{
-			CK2Barony* newBarony = new CK2Barony( leaves[i], titles[key], this, buildingFactory, religionGroupMap);
+			CK2Barony* newBarony = new CK2Barony( leaves[i], titles[key], this, buildingFactory, religionGroupMap, cultureGroupMap);
 			baronies.push_back(newBarony);
 		}
 	}

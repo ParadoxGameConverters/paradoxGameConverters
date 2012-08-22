@@ -46,7 +46,7 @@ class CK2BuildingFactory
 		CK2BuildingFactory();
 		
 		void						addBuildingTypes(Object* obj);
-		const CK2Building*	getBuilding(string type, const CK2Character* baronyHolder, const religionGroupMapping& religionGroupMap) const;
+		const CK2Building*	getBuilding(string type, const CK2Character* baronyHolder, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap) const;
 
 	private:
 		map<string, const CK2Building*> buildings;

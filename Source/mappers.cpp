@@ -307,6 +307,20 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 }
 
 
+void addCultureGroupMappings(Object* obj, cultureGroupMapping& map)
+{
+	vector<Object*> groups = obj->getLeaves();
+	for (vector<Object*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
+	{
+		vector<Object*> cultures = (*groupsItr)->getLeaves();
+		for (vector<Object*>::iterator culturesItr = cultures.begin(); culturesItr < cultures.end(); culturesItr++)
+		{
+			map.insert( make_pair((*culturesItr)->getKey(), (*groupsItr)->getKey()) );
+		}
+	}
+}
+
+
 religionMapping initReligionMap(Object* obj)
 {
 	religionMapping religionMap;
