@@ -312,7 +312,15 @@ int main(int argc, char * argv[])
 	// Output results
 	printf("Outputting save.\n");
 	log("Outputting save.\n");
-	string outputFilename = inputFilename.substr(0, inputFilename.find_last_of('.')) + ".eu3";
+	string outputFilename;
+	if (argc >= 2)
+	{
+		outputFilename = inputFilename.substr(0, inputFilename.find_last_of('.')) + ".eu3";
+	}
+	else
+	{
+		outputFilename = "output.eu3";
+	}
 	FILE* output;
 	if (fopen_s(&output, outputFilename.c_str(), "w") != 0)
 	{
