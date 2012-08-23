@@ -175,7 +175,8 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 		}
 		else
 		{
-			for (vector<string>::iterator cultureGroupsItr = itr->second->getAcceptableCultureGroups().begin(); cultureGroupsItr < itr->second->getAcceptableCultureGroups().end(); cultureGroupsItr++)
+			vector<string> acceptableCultureGroups = itr->second->getAcceptableCultureGroups();
+			for (vector<string>::iterator cultureGroupsItr = acceptableCultureGroups.begin(); cultureGroupsItr < acceptableCultureGroups.end(); cultureGroupsItr++)
 			{
 				if ( *cultureGroupsItr == cultureGroupMap.find(baronyHolder->getCulture())->second )
 				{
@@ -184,7 +185,8 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 				}
 			}
 
-			for (vector<string>::iterator cultureItr = itr->second->getAcceptableCultures().begin(); cultureItr < itr->second->getAcceptableCultures().end(); cultureItr++)
+			vector<string> acceptableCultures = itr->second->getAcceptableCultures();
+			for (vector<string>::iterator cultureItr = acceptableCultures.begin(); cultureItr < acceptableCultures.end(); cultureItr++)
 			{
 				if (*cultureItr == baronyHolder->getCulture())
 				{

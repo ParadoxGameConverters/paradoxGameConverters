@@ -22,7 +22,7 @@ class EU3Country
 
 		void		output(FILE*);
 		
-		void		convert(const CK2Title*);
+		void		convert(const CK2Title*, const religionMapping& religionMap);
 
 		string	getTag()			const { return tag; };
 		string	getTechGroup()	const { return techGroup; };
@@ -31,6 +31,7 @@ class EU3Country
 		string					tag;
 		string					historyFile;
 		string					government;
+		string					religion;
 		EU3Ruler*				monarch;
 		EU3Ruler*				heir;
 		EU3Ruler*				regent;

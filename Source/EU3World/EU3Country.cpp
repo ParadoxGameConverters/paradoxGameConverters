@@ -33,6 +33,16 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 		government = "";
 	}
 
+	vector<Object*> religionLeaves = obj->getValue("religion");
+	if (religionLeaves.size() > 0)
+	{
+		religion = religionLeaves[0]->getLeaf();
+	}
+	else
+	{
+		religion = "";
+	}
+
 	monarch	= NULL;
 	heir		= NULL;
 	regent	= NULL;
@@ -73,6 +83,13 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 					newHistory->heir = heir;
 				}
 
+				vector<Object*> religionLeaves = obj->getValue("religion");
+				if (religionLeaves.size() > 0)
+				{
+					religion = religionLeaves[0]->getLeaf();
+					newHistory->religion = religion;
+				}
+
 				vector<Object*> techLeaves = obj->getValue("technology_group");
 				if (techLeaves.size() > 0)
 				{
@@ -96,6 +113,14 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "{\n");
 	fprintf(output, "	history=\n");
 	fprintf(output, "	{\n");
+	if (government != "")
+	{
+		fprintf(output, "\t\tgovernment=%s\n", government.c_str());
+	}
+	if (religion != "")
+	{
+		fprintf(output, "\t\treligion=%s\n", religion.c_str());
+	}
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
@@ -108,6 +133,10 @@ void EU3Country::output(FILE* output)
 	else
 	{
 		fprintf(output, "	government=tribal_despotism\n");
+	}
+	if (religion != "")
+	{
+		fprintf(output, "\treligion=%s\n", religion.c_str());
 	}
 	if (regent != NULL)
 	{
@@ -153,12 +182,22 @@ void EU3Country::output(FILE* output)
 }
 	
 
-void EU3Country::convert(const CK2Title* src)
+void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap)
 {
 	government = "";
 	monarch = NULL;
 	history.clear();
 	previousMonarchs.clear();
+
+	map<string, string>::const_iterator religionItr = religionMap.find(src->getHolder()->getReligion());
+	if (religionItr != religionMap.end())
+	{
+		religion = religionItr->second;
+	}
+	else
+	{
+		religion = "";
+	}
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();

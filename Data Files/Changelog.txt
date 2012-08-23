@@ -184,3 +184,4 @@ Revision	Log Message
 181		Default output filename is again output.eu3
 182		Update credits in readme.txt
 183		Update religions in converter mod
+184		Country religion set

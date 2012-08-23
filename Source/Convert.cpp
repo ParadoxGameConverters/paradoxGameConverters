@@ -62,8 +62,8 @@ int main(int argc, char * argv[])
 	printf("Getting CK2 data.\n");
 	CK2World srcWorld;
 
-	log("Getting building types.\n");
-	printf("Getting building types.\n");
+	log("\tGetting building types.\n");
+	printf("\tGetting building types.\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
 	srcWorld.addBuildingTypes(obj);
 	struct _finddata_t	buildingsData;
@@ -131,8 +131,8 @@ int main(int argc, char * argv[])
 	} while(_findnext(fileListing, &culturesData) == 0);
 	_findclose(fileListing);
 	
-	log("Parsing landed titles.\n");
-	printf("Parsing landed titles.\n");
+	log("\tParsing landed titles.\n");
+	printf("\tParsing landed titles.\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
 	srcWorld.addPotentialTitles(obj);
 	struct _finddata_t	landedTitlesdata;
@@ -293,7 +293,7 @@ int main(int argc, char * argv[])
 	// Convert
 	log("Converting countries.\n");
 	printf("Converting countries.\n");
-	destWorld.convertCountries(countryMap);
+	destWorld.convertCountries(countryMap, religionMap);
 
 	log("Setting up provinces.\n");
 	printf("Setting up provinces.\n");

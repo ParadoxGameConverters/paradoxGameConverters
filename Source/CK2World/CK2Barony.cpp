@@ -15,6 +15,7 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 
 	type = obj->getLeaf("type");
 
+	buildings.clear();
 	vector<Object*> leaves = obj->getLeaves();
 	for (vector<Object*>::iterator i = leaves.begin(); i < leaves.end(); i++)
 	{
