@@ -182,3 +182,4 @@ Revision	Log Message
 179		Map CK2 cultures to CK2 culture groups, then disallow wrong culture buildings
 180		Use basetax and manpower proxies to try to break ties in religion conversion
 181		Default output filename is again output.eu3
+182		Update credits in readme.txt
