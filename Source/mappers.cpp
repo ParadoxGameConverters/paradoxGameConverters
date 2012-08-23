@@ -4,6 +4,9 @@
 #include "Parsers\Object.h"
 #include "CK2World\CK2Version.h"
 #include "CK2World\CK2Title.h"
+#include "CK2World\CK2Province.h"
+#include "CK2World\CK2Barony.h"
+#include "CK2World\CK2Character.h"
 #include "EU3World\EU3Country.h"
 
 
@@ -304,6 +307,88 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 	}
 
 	return cultureMap;
+}
+
+
+string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, const CK2Province* srcProvince)
+{
+	if (CK2Culture[0] == '"')
+	{
+		CK2Culture = CK2Culture.substr(1, CK2Culture.size() - 2);
+	}
+	for (cultureMapping::const_iterator itr = cultureMap.begin(); itr < cultureMap.end(); itr++)
+	{
+		if (itr->srcCulture != CK2Culture)
+		{
+			continue;
+		}
+
+		bool matchConditions = true;
+		for (vector<distinguisher>::const_iterator DTItr = itr->distinguishers.begin(); DTItr < itr->distinguishers.end(); DTItr++)
+		{
+			switch (DTItr->first)
+			{
+				case DTDeJure:
+					{
+						bool subCondition = false;
+						CK2Title* title = srcProvince->getBaronies()[0]->getTitle()->getLiege();
+						while(title != NULL)
+						{
+							if (title->getTitleString() == DTItr->second)
+							{
+								subCondition = true;
+								break;
+							}
+							title = title->getDeJureLiege();
+						}
+						matchConditions = subCondition;
+					}
+					break;
+				case DTKingdomCulture:
+					{
+						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
+						while (!kingdomTitle->isIndependent())
+						{
+							kingdomTitle = kingdomTitle->getLiege();
+						}
+						if (kingdomTitle->getHolder()->getCulture() != DTItr->second)
+						{
+							matchConditions = false;
+						}
+					}
+					break;
+				case DTReligion:
+					if (srcProvince->getReligion() != DTItr->second)
+					{
+						matchConditions = false;
+					}
+					break;
+				case DTHREMember:
+					{
+						bool subCondition = false;
+						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
+						while (!kingdomTitle->isIndependent())
+						{
+							if (kingdomTitle->getLiegeString() == "e_hre")
+							{
+								subCondition = true;
+								break;
+							}
+							kingdomTitle = kingdomTitle->getLiege();
+						}
+						matchConditions = subCondition;
+					}
+					break;
+			}
+		}
+		if (!matchConditions)
+		{
+			continue;
+		}
+		return itr->dstCulture;
+	}
+
+	return "";
 }
 
 

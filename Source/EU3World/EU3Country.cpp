@@ -43,6 +43,16 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 		religion = "";
 	}
 
+	vector<Object*> primaryCultureLeaves = obj->getValue("primary_culture");
+	if (primaryCultureLeaves.size() > 0)
+	{
+		primaryCulture = primaryCultureLeaves[0]->getLeaf();
+	}
+	else
+	{
+		primaryCulture = "";
+	}
+
 	monarch	= NULL;
 	heir		= NULL;
 	regent	= NULL;
@@ -90,6 +100,13 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 					newHistory->religion = religion;
 				}
 
+				vector<Object*> primaryCultureLeaves = obj->getValue("primary_culture");
+				if (primaryCultureLeaves.size() > 0)
+				{
+					primaryCulture = primaryCultureLeaves[0]->getLeaf();
+					newHistory->primaryCulture = primaryCulture;
+				}
+
 				vector<Object*> techLeaves = obj->getValue("technology_group");
 				if (techLeaves.size() > 0)
 				{
@@ -117,6 +134,10 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\t\tgovernment=%s\n", government.c_str());
 	}
+	if (primaryCulture != "")
+	{
+		fprintf(output, "\t\tprimary_culture=%s\n", primaryCulture.c_str());
+	}
 	if (religion != "")
 	{
 		fprintf(output, "\t\treligion=%s\n", religion.c_str());
@@ -133,6 +154,10 @@ void EU3Country::output(FILE* output)
 	else
 	{
 		fprintf(output, "	government=tribal_despotism\n");
+	}
+	if (primaryCulture != "")
+	{
+		fprintf(output, "\tprimary_culture=%s\n", primaryCulture.c_str());
 	}
 	if (religion != "")
 	{
@@ -181,15 +206,15 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "}\n");
 }
 	
-
-void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap)
+#pragma optimize("", off)
+void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap, const cultureMapping& cultureMap)
 {
 	government = "";
 	monarch = NULL;
 	history.clear();
 	previousMonarchs.clear();
 
-	map<string, string>::const_iterator religionItr = religionMap.find(src->getHolder()->getReligion());
+	religionMapping::const_iterator religionItr = religionMap.find(src->getHolder()->getReligion());
 	if (religionItr != religionMap.end())
 	{
 		religion = religionItr->second;
@@ -198,6 +223,20 @@ void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap
 	{
 		religion = "";
 	}
+
+	map<string, int> cultureWeights;
+	src->getCultureWeights(cultureWeights, cultureMap);
+	int highestWeight = 0;
+	primaryCulture		= "";
+	for (map<string, int>::iterator cultureItr = cultureWeights.begin(); cultureItr != cultureWeights.end(); cultureItr++)
+	{
+		if (cultureItr->second > highestWeight)
+		{
+			primaryCulture	= cultureItr->first;
+			highestWeight	= cultureItr->second;
+		}
+	}
+
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -265,3 +304,4 @@ void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap
 		}
 	}
 }
+#pragma optimize("", on)

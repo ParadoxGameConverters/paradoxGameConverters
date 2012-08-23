@@ -31,6 +31,7 @@ class EU3History {
 		string			owner;
 		string			culture;
 		string			religion;
+		string			primaryCulture;
 		vector<string>	discoverers;
 };
 

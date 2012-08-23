@@ -214,6 +214,43 @@ void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& tit
 }
 
 
+void CK2Title::getCultureWeights(map<string, int>& cultureWeights, const cultureMapping& cultureMap) const
+{
+	for (vector<CK2Title*>::const_iterator vassalItr = vassals.begin(); vassalItr < vassals.end(); vassalItr++)
+	{
+		(*vassalItr)->getCultureWeights(cultureWeights, cultureMap);
+	}
+
+	int weight = 0;
+	if (titleString.substr(0, 2) == "e_")
+	{
+		weight = 5;
+	}
+	else if (titleString.substr(0, 2) == "k_")
+	{
+		weight = 4;
+	}
+	else if (titleString.substr(0, 2) == "d_")
+	{
+		weight = 3;
+	}
+	else if (titleString.substr(0, 2) == "c_")
+	{
+		weight = 2;
+	}
+	else if (titleString.substr(0, 2) == "b_")
+	{
+		weight = 1;
+	}
+
+	CK2Province* capital = holder->getCapital();
+	if (capital != NULL)
+	{
+		string culture = determineEU3Culture(holder->getCulture(), cultureMap, capital);
+		cultureWeights[culture] += weight;
+	}
+}
+
 CK2Character* CK2Title::getFeudalElectiveHeir(map<int, CK2Character*>& characters)
 {
 	int nominee = -1;

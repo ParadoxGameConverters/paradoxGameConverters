@@ -2,6 +2,7 @@
 #define CK2TITLE_H_
 
 
+#include "..\mappers.h"
 #include <vector>
 #include <map>
 using namespace std;
@@ -23,8 +24,9 @@ class CK2Title
 		void						determineHeir(map<int, CK2Character*>&);
 		void						setHeir(CK2Character*);
 		void						setDeJureLiege(const map<string, CK2Title*>& titles);
-		
 		void						addDeJureVassals(vector<Object*>, map<string, CK2Title*>& titles, CK2World* world);
+
+		void						getCultureWeights(map<string, int>& cultureWeights, const cultureMapping& cultureMap) const;
 
 		string					getTitleString()		const { return titleString; };
 		CK2Character*			getHolder()				const { return holder; };

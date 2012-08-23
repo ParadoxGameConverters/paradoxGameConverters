@@ -319,89 +319,6 @@ void EU3Province::addAdvisor(EU3Advisor* advisor)
 }
 
 
-string EU3Province::determineEU3Culture(const cultureMapping& cultureMap, const CK2Province* srcProvince)
-{
-	string CK2Culture = srcProvince->getCulture();
-	if (CK2Culture[0] == '"')
-	{
-		CK2Culture = CK2Culture.substr(1, CK2Culture.size() - 2);
-	}
-	for (cultureMapping::const_iterator itr = cultureMap.begin(); itr < cultureMap.end(); itr++)
-	{
-		if (itr->srcCulture != CK2Culture)
-		{
-			continue;
-		}
-
-		bool matchConditions = true;
-		for (vector<distinguisher>::const_iterator DTItr = itr->distinguishers.begin(); DTItr < itr->distinguishers.end(); DTItr++)
-		{
-			switch (DTItr->first)
-			{
-				case DTDeJure:
-					{
-						bool subCondition = false;
-						CK2Title* title = srcProvince->getBaronies()[0]->getTitle()->getLiege();
-						while(title != NULL)
-						{
-							if (title->getTitleString() == DTItr->second)
-							{
-								subCondition = true;
-								break;
-							}
-							title = title->getDeJureLiege();
-						}
-						matchConditions = subCondition;
-					}
-					break;
-				case DTKingdomCulture:
-					{
-						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
-						while (!kingdomTitle->isIndependent())
-						{
-							kingdomTitle = kingdomTitle->getLiege();
-						}
-						if (kingdomTitle->getHolder()->getCulture() != DTItr->second)
-						{
-							matchConditions = false;
-						}
-					}
-					break;
-				case DTReligion:
-					if (srcProvince->getReligion() != DTItr->second)
-					{
-						matchConditions = false;
-					}
-					break;
-				case DTHREMember:
-					{
-						bool subCondition = false;
-						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
-						while (!kingdomTitle->isIndependent())
-						{
-							if (kingdomTitle->getLiegeString() == "e_hre")
-							{
-								subCondition = true;
-								break;
-							}
-							kingdomTitle = kingdomTitle->getLiege();
-						}
-						matchConditions = subCondition;
-					}
-					break;
-			}
-		}
-		if (!matchConditions)
-		{
-			continue;
-		}
-		return itr->dstCulture;
-	}
-
-	return "";
-}
-
-
 void EU3Province::determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies)
 {
 	map<string, double> cultureCounts;
@@ -420,7 +337,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 			manpowerProxy	+= (*baronyItr)->getManpowerProxy();
 		}
 
-		string EU3Culture = determineEU3Culture(cultureMap, *provItr);
+		string EU3Culture = determineEU3Culture((*provItr)->getCulture(), cultureMap, *provItr);
 		map<string, double>::iterator cultureItr = cultureCounts.find(EU3Culture);
 		if (cultureItr == cultureCounts.end())
 		{

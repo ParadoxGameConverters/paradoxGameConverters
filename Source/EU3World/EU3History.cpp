@@ -8,19 +8,20 @@
 
 EU3History::EU3History(date _when)
 {
-	when			= _when;
-	monarch		= NULL;
-	regent		= NULL;
-	heir			= NULL;
-	advisor		= NULL;
-	capital		= "";
-	tradeGood	= "";
-	baseTax		= 0.0f;
-	population	= 0.0f;
-	manpower		= 0;
-	owner			= "";
-	culture		= "";
-	religion		= "";
+	when				= _when;
+	monarch			= NULL;
+	regent			= NULL;
+	heir				= NULL;
+	advisor			= NULL;
+	capital			= "";
+	tradeGood		= "";
+	baseTax			= 0.0f;
+	population		= 0.0f;
+	manpower			= 0;
+	owner				= "";
+	culture			= "";
+	religion			= "";
+	primaryCulture	= "";
 	discoverers.clear();
 }
 
@@ -48,13 +49,15 @@ EU3History::EU3History(CK2History* src)
 			monarch = new EU3Ruler(holder);
 		}
 	}
-	capital		= "";
-	tradeGood	= "";
-	baseTax		= 0.0f;
-	population	= 0.0;
-	manpower		= 0;
-	owner			= "";
-	culture		= "";
+	capital			= "";
+	tradeGood		= "";
+	baseTax			= 0.0f;
+	population		= 0.0;
+	manpower			= 0;
+	owner				= "";
+	culture			= "";
+	religion			= "";
+	primaryCulture	= "";
 	discoverers.clear();
 }
 
@@ -113,6 +116,10 @@ void EU3History::output(FILE* output)
 	if (religion != "")
 	{
 		fprintf(output, "\t\t\treligion=%s\n", religion.c_str());
+	}
+	if (primaryCulture != "")
+	{
+		fprintf(output, "\t\t\tprimary_culture=%s\n", primaryCulture.c_str());
 	}
 	for (unsigned int i = 0; i < discoverers.size(); i++)
 	{

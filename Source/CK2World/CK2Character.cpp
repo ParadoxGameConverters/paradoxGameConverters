@@ -168,6 +168,7 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 			capitalString = capitalObj[0]->getLeaf();
 		}
 	}
+	capital = NULL;
 
 	vector<Object*> attributesObj = obj->getValue("attributes");
 	if (attributesObj.size() > 0)

@@ -12,6 +12,7 @@ class Object;
 class CK2World;
 class CK2Version;
 class CK2Title;
+class	CK2Province;
 class EU3Country;
 
 typedef map< int, vector<int> > provinceMapping;			// < destProvince,	sourceProvinces	>
@@ -41,6 +42,7 @@ typedef struct {
 } cultureStruct;
 typedef vector<cultureStruct> cultureMapping;
 cultureMapping initCultureMap(Object* obj);
+string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, const CK2Province* srcProvince);
 
 typedef map<string, string> cultureGroupMapping; // CK2 culture, CK2 culture group
 void addCultureGroupMappings(Object* obj, cultureGroupMapping& map);

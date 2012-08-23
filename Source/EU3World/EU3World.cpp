@@ -326,11 +326,11 @@ void EU3World::setupProvinces(provinceMapping& provinceMap)
 }
 
 
-void EU3World::convertCountries(countryMapping& countryMap, const religionMapping& religionMap)
+void EU3World::convertCountries(countryMapping& countryMap, const religionMapping& religionMap, const cultureMapping& cultureMap)
 {
 	for (countryMapping::iterator i = countryMap.begin(); i != countryMap.end(); i++)
 	{
-		i->second->convert(i->first, religionMap);
+		i->second->convert(i->first, religionMap, cultureMap);
 		europeanCountries.push_back(i->second->getTag());
 	}
 

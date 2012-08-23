@@ -42,6 +42,8 @@ class CK2Character
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
 
+		void							setCapital(CK2Province* _capital)	{ capital = _capital; };
+
 		int							getNum()						const { return num; };
 		string						getName()					const { return name; };
 		string						getCulture()				const { return culture; };
@@ -61,7 +63,7 @@ class CK2Character
 		string						getAction()					const { return action; };
 		int							getLocationNum()			const { return locationNum; };
 		string						getCapitalString()		const { return capitalString; };
-		
+		CK2Province*				getCapital()				const { return capital; };
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
 
@@ -100,6 +102,7 @@ class CK2Character
 		int							hostNum;
 		int							locationNum;
 		string						capitalString;
+		CK2Province*				capital;
 };
 
 

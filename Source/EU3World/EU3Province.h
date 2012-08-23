@@ -42,8 +42,6 @@ class EU3Province
 		double	getPopulation() const	{ return population; };
 		double	getManpower() const		{ return manpower; };
 	private:
-		string determineEU3Culture(const cultureMapping& cultureMap, const CK2Province* srcProvince);
-
 		int							num;
 		string						capital;
 		string						tradeGood;
