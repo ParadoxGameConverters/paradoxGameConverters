@@ -23,7 +23,7 @@ christian = {
 			tolerance_heretic = -1
 		}
 		
-		heretic = { BOGOMILIST WALDENSIAN FRATICELLI HUSSITE LOLLARD SOCINIAN }
+		heretic = { HUSSITE SOCINIAN }
 		
 		papacy = yes	#can play with papacy stuff..
 		
@@ -93,7 +93,7 @@ christian = {
 			missionary_placement_chance = 0.05
 		}
 		
-		heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY ICONOCLAST }
+		heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY }
 	}
 	
 	cathar = {
@@ -137,7 +137,7 @@ christian = {
 	waldensian = {
 		color = { 0.4 0.4 0.7 }
 		allowed_conversion = {
-			catholic
+			reformed
 		}
 		
 		province = {
@@ -155,7 +155,7 @@ christian = {
 	lollard = {
 		color = { 0.5 0.8 0.8 }
 		allowed_conversion = {
-			catholic
+			protestant
 		}
 		
 		province = {
@@ -193,7 +193,7 @@ christian = {
 		color = { 0.9 0.6 0.6 }
 		
 		allowed_conversion = {
-			catholic
+			orthodox
 		}
 		
 		province = {
@@ -212,7 +212,7 @@ christian = {
 		color = { 0.8 0.4 0.1 }
 		
 		allowed_conversion = {
-			catholic
+			orthodox
 		}
 		
 		province = {
@@ -231,7 +231,7 @@ christian = {
 		color = { 0.6 0.2 0.2 }
 		
 		allowed_conversion = {
-			catholic
+			orthodox
 		}
 		
 		province = {
@@ -261,7 +261,7 @@ muslim = {
 			missionary_placement_chance = 0.05
 		}
 		
-		heretic = { BEKTASHI AHMADI ZIKRI YAZIDI SIKH }
+		heretic = { AHMADI SIKH }
 		
 	}
 
@@ -279,7 +279,7 @@ muslim = {
 			tolerance_heathen = -1
 		}
 		
-		heretic = { DRUZE HURUFI ZAIDI }
+		heretic = { ZAIDI }
 	}
 	
 	zikri = {
@@ -480,7 +480,7 @@ pagan = {
 	}
 	
 	tengri_pagan = {
-		color = { 0.0 0.2 0.8 }
+		color = { 0.8 0.2 0.0 }
 		
 		province = {
 			stability_cost = 10
@@ -506,7 +506,7 @@ pagan = {
 	}
 	
 	finnish_pagan = {
-		color = { 0.5 0.5 0.0 }
+		color = { 0.5 0.2 0.0 }
 		
 		province = {
 			stability_cost = 10
