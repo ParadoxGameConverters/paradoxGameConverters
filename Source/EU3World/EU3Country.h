@@ -22,7 +22,7 @@ class EU3Country
 
 		void		output(FILE*);
 		
-		void		convert(const CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap);
+		void		convert(const CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap);
 
 		string	getTag()			const { return tag; };
 		string	getTechGroup()	const { return techGroup; };
@@ -39,6 +39,7 @@ class EU3Country
 		vector<EU3History*>	history;
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;
+		int						capital;
 };
 
 

@@ -186,3 +186,4 @@ Revision	Log Message
 183		Update religions in converter mod
 184		Country religion set
 185		Country primary culture set
+186		Convert capitals

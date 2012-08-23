@@ -4,6 +4,7 @@
 #include "..\Parsers\Object.h"
 #include "..\Configuration.h"
 #include "..\Date.h"
+#include "..\CK2World\CK2Province.h"
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2History.h"
 #include "..\CK2World\CK2Character.h"
@@ -64,6 +65,16 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 	if (techLeaves.size() > 0)
 	{
 		techGroup = techLeaves[0]->getLeaf();
+	}
+
+	vector<Object*> capitalObj = obj->getValue("capital");
+	if (capitalObj.size() > 0)
+	{
+		capital = atoi( capitalObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		capital = 0;
 	}
 
 	// update items based on history
@@ -142,6 +153,10 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\t\treligion=%s\n", religion.c_str());
 	}
+	if (capital != 0)
+	{
+		fprintf(output, "\t\tcapital=%d\n", capital);
+	}
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
@@ -162,6 +177,10 @@ void EU3Country::output(FILE* output)
 	if (religion != "")
 	{
 		fprintf(output, "\treligion=%s\n", religion.c_str());
+	}
+	if (capital != 0)
+	{
+		fprintf(output, "\tcapital=%d\n", capital);
 	}
 	if (regent != NULL)
 	{
@@ -206,8 +225,8 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "}\n");
 }
 	
-#pragma optimize("", off)
-void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap, const cultureMapping& cultureMap)
+
+void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap)
 {
 	government = "";
 	monarch = NULL;
@@ -237,6 +256,19 @@ void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap
 		}
 	}
 
+	CK2Province* srcCapital = src->getHolder()->getCapital();
+	if (srcCapital != NULL)
+	{
+		provinceMapping::const_iterator capitalItr = inverseProvinceMap.find( srcCapital->getNumber() );
+		if (capitalItr != inverseProvinceMap.end())
+		{
+			capital = capitalItr->second[0];
+		}
+		else
+		{
+			capital = 0;
+		}
+	}
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -304,4 +336,3 @@ void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap
 		}
 	}
 }
-#pragma optimize("", on)
