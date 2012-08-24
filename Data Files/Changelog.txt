@@ -188,3 +188,4 @@ Revision	Log Message
 185		Country primary culture set
 186		Convert capitals
 187		Convert accepted cultures
+188		Update religion icons to work correctly
