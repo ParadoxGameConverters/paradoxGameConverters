@@ -48,14 +48,15 @@ class EU3World
 
 		void						convertCountries(countryMapping&, const religionMapping& religionMap, const cultureMapping& cultureMap, const provinceMapping provinceMap);
 		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap, religionMapping& religionMap);
+		void						addAcceptedCultures();
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		
-		vector<EU3Country*>	getCountries() const { return countries; };
+		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:
 		int									options[OPTIONS_END];
 		date									startDate;
 		map<int, EU3Province*>			provinces;
-		vector<EU3Country*>				countries;
+		map<string, EU3Country*>		countries;
 		vector<string>						europeanCountries;
 		vector<EU3Advisor*>				advisors;
 		map< string, vector<string> >	mapSpreadStrings;

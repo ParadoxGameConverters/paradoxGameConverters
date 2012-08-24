@@ -13,6 +13,7 @@ using namespace std;
 class CK2Title;
 class EU3Ruler;
 class EU3History;
+class EU3Province;
 class CK2Province;
 
 class EU3Country
@@ -23,15 +24,21 @@ class EU3Country
 		void		output(FILE*);
 		
 		void		convert(const CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap);
+		void		addAcceptedCultures();
+
+		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 
 		string	getTag()			const { return tag; };
 		string	getTechGroup()	const { return techGroup; };
 
 	private:
+		vector<EU3Province*>	provinces;
+
 		string					tag;
 		string					historyFile;
 		string					government;
 		string					primaryCulture;
+		vector<string>			acceptedCultures;
 		string					religion;
 		EU3Ruler*				monarch;
 		EU3Ruler*				heir;

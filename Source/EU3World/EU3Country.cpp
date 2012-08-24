@@ -10,12 +10,15 @@
 #include "..\CK2World\CK2Character.h"
 #include "EU3Ruler.h"
 #include "EU3History.h"
+#include "EU3Province.h"
 #include <fstream>
 using namespace std;
 
 
 EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 {
+	provinces.clear();
+
 	tag			= newTag;
 	historyFile	= newHistoryFile;
 
@@ -52,6 +55,13 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 	else
 	{
 		primaryCulture = "";
+	}
+
+	acceptedCultures.clear();
+	vector<Object*> acceptedCulturesLeaves = obj->getValue("add_accepted_culture");
+	for (vector<Object*>::iterator i = acceptedCulturesLeaves.begin(); i < acceptedCulturesLeaves.end(); i++)
+	{
+		acceptedCultures.push_back( (*i)->getLeaf() );
 	}
 
 	monarch	= NULL;
@@ -149,6 +159,10 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\t\tprimary_culture=%s\n", primaryCulture.c_str());
 	}
+	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	{
+		fprintf(output, "\t\tadd_accepted_culture=%s\n", acceptedCultures[i].c_str());
+	}
 	if (religion != "")
 	{
 		fprintf(output, "\t\treligion=%s\n", religion.c_str());
@@ -173,6 +187,10 @@ void EU3Country::output(FILE* output)
 	if (primaryCulture != "")
 	{
 		fprintf(output, "\tprimary_culture=%s\n", primaryCulture.c_str());
+	}
+	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	{
+		fprintf(output, "\taccepted_culture=%s\n", acceptedCultures[i].c_str());
 	}
 	if (religion != "")
 	{
@@ -256,6 +274,8 @@ void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap
 		}
 	}
 
+	acceptedCultures.clear();
+
 	CK2Province* srcCapital = src->getHolder()->getCapital();
 	if (srcCapital != NULL)
 	{
@@ -333,6 +353,25 @@ void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap
 			EU3History* newHistory = new EU3History(when);
 			newHistory->heir = heir;
 			history.push_back(newHistory);
+		}
+	}
+}
+
+
+void EU3Country::addAcceptedCultures()
+{
+	map<string, double> cultureTaxes;
+	double totalTax = 0.0f;
+	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
+	{
+		cultureTaxes[ (*provItr)->getCulture() ] += (*provItr)->getBaseTax();
+		totalTax += (*provItr)->getBaseTax();
+	}
+	for (map<string, double>::iterator ctItr = cultureTaxes.begin(); ctItr != cultureTaxes.end(); ctItr++)
+	{
+		if ((ctItr->second >= 0.05 * totalTax) &&(ctItr->first != primaryCulture))
+		{
+			acceptedCultures.push_back(ctItr->first);
 		}
 	}
 }

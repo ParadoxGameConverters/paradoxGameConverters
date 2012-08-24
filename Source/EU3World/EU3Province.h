@@ -41,6 +41,7 @@ class EU3Province
 		double	getBaseTax() const		{ return baseTax; };
 		double	getPopulation() const	{ return population; };
 		double	getManpower() const		{ return manpower; };
+		string	getCulture() const		{ return culture; };
 	private:
 		int							num;
 		string						capital;

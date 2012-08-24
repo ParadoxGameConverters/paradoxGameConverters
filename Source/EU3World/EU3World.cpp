@@ -240,9 +240,9 @@ void EU3World::output(FILE* output)
 			log("	Error: EU3 province %d is unmapped!\n", i->first);
 		}
 	}
-	for (unsigned int i = 0; i < countries.size(); i++)
+	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
-		countries[i]->output(output);
+		i->second->output(output);
 	}
 	fprintf(output, "active_advisors=\n");
 	fprintf(output, "{\n");
@@ -288,7 +288,7 @@ void EU3World::addPotentialCountries()
 		}
 
 		EU3Country* newCountry = new EU3Country(tag, filename, startDate);
-		countries.push_back(newCountry);
+		countries.insert(make_pair(tag, newCountry));
 
 	} while(_findnext(fileListing, &countryDirData) == 0);
 	_findclose(fileListing);
@@ -343,49 +343,49 @@ void EU3World::convertCountries(countryMapping& countryMap, const religionMappin
 	vector<string> chineseTech;
 	vector<string> subSaharanTech;
 	vector<string> newWorldTech;
-	for (vector<EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
+	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
-		string techGroup = (*i)->getTechGroup();
+		string techGroup = i->second->getTechGroup();
 		if (techGroup == "nomad_group")
 		{
-			nomadTech.push_back( (*i)->getTag() );
+			nomadTech.push_back( i->first );
 		}
 		else if (techGroup == "western")
 		{
-			westernTech.push_back( (*i)->getTag() );
+			westernTech.push_back( i->first );
 		}
 		else if (techGroup == "eastern")
 		{
-			easternTech.push_back( (*i)->getTag() );
+			easternTech.push_back( i->first );
 		}
 		else if (techGroup == "ottoman")
 		{
-			ottomanTech.push_back( (*i)->getTag() );
+			ottomanTech.push_back( i->first );
 		}
 		else if (techGroup == "muslim")
 		{
-			muslimTech.push_back( (*i)->getTag() );
+			muslimTech.push_back( i->first );
 		}
 		else if (techGroup == "indian")
 		{
-			indianTech.push_back( (*i)->getTag() );
+			indianTech.push_back( i->first );
 		}
 		else if (techGroup == "chinese")
 		{
-			chineseTech.push_back( (*i)->getTag() );
+			chineseTech.push_back( i->first );
 		}
 		else if (techGroup == "sub_saharan")
 		{
-			subSaharanTech.push_back( (*i)->getTag() );
+			subSaharanTech.push_back( i->first );
 		}
 		else if (techGroup == "new_world")
 		{
-			newWorldTech.push_back( (*i)->getTag() );
+			newWorldTech.push_back( i->first );
 		}
 
 		vector<string> selfString;
-		selfString.push_back( (*i)->getTag() );
-		mapSpreadStrings.insert(  make_pair( (*i)->getTag(), selfString )  );
+		selfString.push_back( i->first );
+		mapSpreadStrings.insert(  make_pair( i->first, selfString )  );
 	}
 
 	mapSpreadStrings.insert( make_pair("nomad_group", nomadTech) );
@@ -523,6 +523,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		{
 			provItr->second->setOwner( countryMap[greatestOwner]->getTag() );
 			provItr->second->setSrcOwner(greatestOwner);
+			countries[countryMap[greatestOwner]->getTag()]->addProvince(provItr->second);
 		}
 
 		if (Configuration::getBasetax() == "converted")
@@ -554,6 +555,15 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 		provItr->second->determineReligion(religionMap, srcProvinces);
+	}
+}
+
+
+void EU3World::addAcceptedCultures()
+{
+	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		countryItr->second->addAcceptedCultures();
 	}
 }
 

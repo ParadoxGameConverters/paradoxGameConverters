@@ -303,6 +303,10 @@ int main(int argc, char * argv[])
 	printf("Converting provinces.\n");
 	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap);
 
+	log("Adding accepted cultures.\n");
+	printf("Adding accepted cultures.\n");
+	destWorld.addAcceptedCultures();
+
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
 	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);

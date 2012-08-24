@@ -187,3 +187,4 @@ Revision	Log Message
 184		Country religion set
 185		Country primary culture set
 186		Convert capitals
+187		Convert accepted cultures
