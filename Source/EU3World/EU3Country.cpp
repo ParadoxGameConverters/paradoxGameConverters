@@ -8,6 +8,7 @@
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2History.h"
 #include "..\CK2World\CK2Character.h"
+#include "..\CK2World\CK2Barony.h"
 #include "EU3Ruler.h"
 #include "EU3History.h"
 #include "EU3Province.h"
@@ -76,6 +77,10 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 	{
 		techGroup = techLeaves[0]->getLeaf();
 	}
+	else
+	{
+		techGroup = "";
+	}
 
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
@@ -114,6 +119,13 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 					newHistory->heir = heir;
 				}
 
+				vector<Object*> govLeaves = obj->getValue("government");
+				if (govLeaves.size() > 0)
+				{
+					government = govLeaves[0]->getLeaf();
+					newHistory->government = government;
+				}
+
 				vector<Object*> religionLeaves = obj->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
@@ -128,10 +140,24 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 					newHistory->primaryCulture = primaryCulture;
 				}
 
+				vector<Object*> acceptedCulturesLeaves = obj->getValue("add_accepted_culture");
+				for (vector<Object*>::iterator i = acceptedCulturesLeaves.begin(); i < acceptedCulturesLeaves.end(); i++)
+				{
+					acceptedCultures.push_back( (*i)->getLeaf() );
+					newHistory->acceptedCultures.push_back( (*i)->getLeaf() );
+				}
+
 				vector<Object*> techLeaves = obj->getValue("technology_group");
 				if (techLeaves.size() > 0)
 				{
 					techGroup = techLeaves[0]->getLeaf();
+					newHistory->techGroup = techGroup;
+				}
+
+				vector<Object*> capitalObj = obj->getValue("capital");
+				if (capitalObj.size() > 0)
+				{
+					capital = atoi( capitalObj[0]->getLeaf().c_str() );
 				}
 
 				history.push_back(newHistory);
@@ -244,8 +270,10 @@ void EU3Country::output(FILE* output)
 }
 	
 
-void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap)
+void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap)
 {
+	src = _src;
+
 	government = "";
 	monarch = NULL;
 	history.clear();
@@ -275,6 +303,7 @@ void EU3Country::convert(const CK2Title* src, const religionMapping& religionMap
 	}
 
 	acceptedCultures.clear();
+	techGroup = "";
 
 	CK2Province* srcCapital = src->getHolder()->getCapital();
 	if (srcCapital != NULL)
@@ -375,3 +404,102 @@ void EU3Country::addAcceptedCultures()
 		}
 	}
 }
+
+#pragma optimize("", off)
+void EU3Country::determineGovernment()
+{
+	string		srcTitleString			= src->getTitleString();
+	CK2Barony*	primaryHolding			= src->getHolder()->getPrimaryHolding();
+	CK2Title*	liege						= src->getLiege();
+	vector<CK2Title*> vassals			= src->getVassals();
+	string		highestVassalRank		= "b";
+	for (vector<CK2Title*>::iterator vassalItr = vassals.begin(); vassalItr < vassals.end(); vassalItr++)
+	{
+		if ((*vassalItr)->getHolder() == src->getHolder())
+		{
+			continue;
+		}
+		if ((*vassalItr)->getTitleString().substr(0,2) == "k_")
+		{
+			highestVassalRank = "k";
+		}
+		else if ( ((*vassalItr)->getTitleString().substr(0,2) == "d_") && (highestVassalRank != "k") )
+		{
+			highestVassalRank = "d";
+		}
+		else if ( ((*vassalItr)->getTitleString().substr(0,2) == "c_") && ((highestVassalRank != "k") || (highestVassalRank != "d")) )
+		{
+			highestVassalRank = "c";
+		}
+	}
+
+	if (srcTitleString == "k_papal_state")
+	{
+		government = "papal_government";
+	}
+	else if ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") )
+	{
+		government = "steppe_horde";
+	}
+	else if ( (primaryHolding != NULL) && (primaryHolding->getType() == "city") && (src->isInHRE()) )
+	{
+		government = "administrative_republic";
+		for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
+		{
+			if ((*provItr)->hasCOT())
+			{
+				government = "merchant_republic";
+			}
+		}
+	}
+	else if ( (primaryHolding != NULL) && (primaryHolding->getType() == "city") )
+	{
+		government = "noble_republic";
+		for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
+		{
+			if ((*provItr)->hasCOT())
+			{
+				government = "merchant_republic";
+			}
+		}
+	}
+	else if ( (primaryHolding != NULL) && (primaryHolding->getType() == "temple") )
+	{
+		government = "theocratic_government";
+	}
+	else if (srcTitleString.substr(0, 2) == "e_")
+	{
+		government = "imperial_government";
+	}
+	else if (techGroup == "western")
+	{
+		government = "feudal_monarchy";
+	}
+	else if (  (liege != NULL) && ( (liege->getTitleString() == "e_golden_horde") || (liege->getTitleString() == "e_il-khanate") || (liege->getTitleString() == "e_timurids"))  )
+	{
+		government = "despotic_monarchy";
+	}
+	else if (liege != NULL)
+	{
+		government = "feudal_monarchy";
+	}
+	else if ( (srcTitleString.substr(0,2) == "k_") && (highestVassalRank == "d") )
+	{
+		government = "feudal_monarchy";
+	}
+	else if ( (srcTitleString.substr(0,2) == "d_") && (highestVassalRank == "c") )
+	{
+		government = "feudal_monarchy";
+	}
+	else if (techGroup == "eastern")
+	{
+		government = "despotic_monarchy";
+	}
+	
+
+	else
+	{
+		government = "tribal_democracy";
+	}
+}
+#pragma optimize("", on)

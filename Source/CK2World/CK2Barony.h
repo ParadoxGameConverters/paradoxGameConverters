@@ -21,6 +21,7 @@ class CK2Barony
 
 		CK2Title*		getTitle()				const { return title; };
 		CK2Province*	getProvince()			const { return province; };
+		string			getType()				const { return type; };
 		double			getBaseTaxProxy()		const { return baseTaxProxy; };
 		double			getPopProxy()			const { return popProxy; };
 		double			getManpowerProxy()	const { return manpowerProxy; };

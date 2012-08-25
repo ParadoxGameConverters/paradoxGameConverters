@@ -29,9 +29,12 @@ class EU3History {
 		double			population;
 		int				manpower;
 		string			owner;
+		string			government;
 		string			culture;
 		string			religion;
 		string			primaryCulture;
+		vector<string>	acceptedCultures;
+		string			techGroup;
 		vector<string>	discoverers;
 };
 

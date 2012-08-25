@@ -310,6 +310,10 @@ int main(int argc, char * argv[])
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
 	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);
+
+	log("Converting governments.\n");
+	printf("Converting governments.\n");
+	destWorld.convertGovernments();
 	
 
 

@@ -655,3 +655,17 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 	} while(_findnext(fileListing, &advisorDirData) == 0);
 	_findclose(fileListing);
 }
+
+#pragma optimize("", off)
+void EU3World::convertGovernments()
+{
+	for (vector<string>::iterator itr = europeanCountries.begin(); itr < europeanCountries.end(); itr++)
+	{
+		map<string, EU3Country*>::iterator countryItr = countries.find(*itr);
+		if (countryItr != countries.end())
+		{
+			countryItr->second->determineGovernment();
+		}
+	}
+}
+#pragma optimize("", on)

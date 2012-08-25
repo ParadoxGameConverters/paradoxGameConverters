@@ -227,6 +227,8 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 			stats[i] = 0;
 		}
 	}
+
+	primaryHolding = NULL;
 }
 
 

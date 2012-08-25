@@ -19,9 +19,12 @@ EU3History::EU3History(date _when)
 	population		= 0.0f;
 	manpower			= 0;
 	owner				= "";
+	government		= "";
 	culture			= "";
 	religion			= "";
 	primaryCulture	= "";
+	techGroup		= "";
+	acceptedCultures.clear();
 	discoverers.clear();
 }
 
@@ -55,9 +58,12 @@ EU3History::EU3History(CK2History* src)
 	population		= 0.0;
 	manpower			= 0;
 	owner				= "";
+	government		= "";
 	culture			= "";
 	religion			= "";
 	primaryCulture	= "";
+	techGroup		= "";
+	acceptedCultures.clear();
 	discoverers.clear();
 }
 
@@ -109,9 +115,17 @@ void EU3History::output(FILE* output)
 	{
 		fprintf(output, "\t\t\towner=\"%s\"\n", owner.c_str());
 	}
+	if (government != "")
+	{
+		fprintf(output, "\t\t\tgovernment=\"%s\"\n", government.c_str());
+	}
 	if (culture != "")
 	{
 		fprintf(output, "\t\t\tculture=%s\n", culture.c_str());
+	}
+	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	{
+		fprintf(output, "\t\t\tadd_accepted_culture=%s\n", acceptedCultures[i].c_str());
 	}
 	if (religion != "")
 	{
@@ -120,6 +134,10 @@ void EU3History::output(FILE* output)
 	if (primaryCulture != "")
 	{
 		fprintf(output, "\t\t\tprimary_culture=%s\n", primaryCulture.c_str());
+	}
+	if (techGroup != "")
+	{
+		fprintf(output, "\t\t\ttechnology_group=%s\n", techGroup.c_str());
 	}
 	for (unsigned int i = 0; i < discoverers.size(); i++)
 	{

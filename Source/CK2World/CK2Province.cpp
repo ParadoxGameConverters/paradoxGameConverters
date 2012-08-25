@@ -22,6 +22,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2Bu
 			if (newBarony->getTitle()->getHolder()->getCapitalString() == newBarony->getTitle()->getTitleString())
 			{
 				newBarony->getTitle()->getHolder()->setCapital(this);
+				newBarony->getTitle()->getHolder()->setPrimaryHolding(newBarony);
 			}
 			baronies.push_back(newBarony);
 		}

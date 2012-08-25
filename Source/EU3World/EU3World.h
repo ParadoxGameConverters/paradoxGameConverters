@@ -50,6 +50,7 @@ class EU3World
 		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap, religionMapping& religionMap);
 		void						addAcceptedCultures();
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
+		void						convertGovernments();
 		
 		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:

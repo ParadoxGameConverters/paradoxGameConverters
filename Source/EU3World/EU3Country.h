@@ -25,6 +25,7 @@ class EU3Country
 		
 		void		convert(const CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap);
 		void		addAcceptedCultures();
+		void		determineGovernment();
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 
@@ -32,6 +33,7 @@ class EU3Country
 		string	getTechGroup()	const { return techGroup; };
 
 	private:
+		const CK2Title*		src;
 		vector<EU3Province*>	provinces;
 
 		string					tag;

@@ -42,7 +42,8 @@ class CK2Character
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
 
-		void							setCapital(CK2Province* _capital)	{ capital = _capital; };
+		void							setCapital(CK2Province* _capital)					{ capital = _capital; };
+		void							setPrimaryHolding(CK2Barony* _primaryHolding)	{ primaryHolding = _primaryHolding; };
 
 		int							getNum()						const { return num; };
 		string						getName()					const { return name; };
@@ -64,6 +65,7 @@ class CK2Character
 		int							getLocationNum()			const { return locationNum; };
 		string						getCapitalString()		const { return capitalString; };
 		CK2Province*				getCapital()				const { return capital; };
+		CK2Barony*					getPrimaryHolding()		const { return primaryHolding; };
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
 
@@ -103,6 +105,7 @@ class CK2Character
 		int							locationNum;
 		string						capitalString;
 		CK2Province*				capital;
+		CK2Barony*					primaryHolding;
 };
 
 

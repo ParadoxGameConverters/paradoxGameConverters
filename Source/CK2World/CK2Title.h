@@ -35,6 +35,7 @@ class CK2Title
 		vector<CK2History*>	getHistory()			const { return history; };
 		string					getLiegeString()		const { return liegeString; };
 		CK2Title*				getLiege()				const { return liege; };
+		vector<CK2Title*>		getVassals()			const { return vassals; };
 		CK2Title*				getDeJureLiege()		const { return deJureLiege; };
 		bool						isIndependent()		const { return independent; };
 		bool						isInHRE()				const { return inHRE; };
