@@ -189,3 +189,4 @@ Revision	Log Message
 186		Convert capitals
 187		Convert accepted cultures
 188		Update religion icons to work correctly
+189		Update credits in readme.txt
