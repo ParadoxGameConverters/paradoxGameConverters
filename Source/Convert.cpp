@@ -317,7 +317,7 @@ int main(int argc, char * argv[])
 
 	log("Converting governments.\n");
 	printf("Converting governments.\n");
-	destWorld.convertGovernments();
+	destWorld.convertGovernments(religionGroupMap);
 	
 
 	// Output results

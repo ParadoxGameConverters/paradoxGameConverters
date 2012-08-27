@@ -445,7 +445,7 @@ void EU3Country::addAcceptedCultures()
 }
 
 
-void EU3Country::determineGovernment()
+void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMap)
 {
 	string		srcTitleString			= src->getTitleString();
 	CK2Barony*	primaryHolding			= src->getHolder()->getPrimaryHolding();
@@ -476,7 +476,7 @@ void EU3Country::determineGovernment()
 	{
 		government = "papal_government";
 	}
-	else if ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") )
+	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (religionGroupMap.find(religion)->second != "christian")  )
 	{
 		government = "steppe_horde";
 	}

@@ -27,7 +27,7 @@ class EU3Country
 		void		convert(const CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap);
 		void		determineLearningScore();
 		void		addAcceptedCultures();
-		void		determineGovernment();
+		void		determineGovernment(const religionGroupMapping& religionGroupMap);
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };

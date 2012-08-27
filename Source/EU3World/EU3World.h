@@ -51,7 +51,7 @@ class EU3World
 		void						addAcceptedCultures();
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void						convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap);
-		void						convertGovernments();
+		void						convertGovernments(const religionGroupMapping& religionGroupMap);
 		
 		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:

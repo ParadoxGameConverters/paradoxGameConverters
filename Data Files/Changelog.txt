@@ -192,3 +192,4 @@ Revision	Log Message
 189		Update credits in readme.txt
 190		Initial work on government conversion
 191		Convert tech group
+192		Hordes that become Christian can get non-horde government types

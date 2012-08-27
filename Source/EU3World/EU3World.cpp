@@ -656,7 +656,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 	_findclose(fileListing);
 }
 
-#pragma optimize("", off)
+
 void EU3World::convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap)
 {
 	double highestLearningScore = 0.0f;
@@ -705,16 +705,16 @@ void EU3World::convertTech(countryMapping& countryMap, const religionGroupMappin
 		}
 	}
 }
-#pragma optimize("", off)
 
-void EU3World::convertGovernments()
+
+void EU3World::convertGovernments(const religionGroupMapping& religionGroupMap)
 {
 	for (vector<string>::iterator itr = europeanCountries.begin(); itr < europeanCountries.end(); itr++)
 	{
 		map<string, EU3Country*>::iterator countryItr = countries.find(*itr);
 		if (countryItr != countries.end())
 		{
-			countryItr->second->determineGovernment();
+			countryItr->second->determineGovernment(religionGroupMap);
 		}
 	}
 }
