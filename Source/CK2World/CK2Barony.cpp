@@ -87,6 +87,7 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 	determineBaseTaxProxy();
 	determinePopProxy();
 	determineManpowerProxy();
+	determineTechBonus();
 }
 
 
@@ -181,4 +182,14 @@ void CK2Barony::determineManpowerProxy()
 	manpowerProxy *= levyMultiplier;
 	
 	manpowerProxy *= proxyMultiplier;
+}
+
+
+void CK2Barony::determineTechBonus()
+{
+	techBonus = 0.0f;
+	for (vector<const CK2Building*>::iterator buildingItr = buildings.begin(); buildingItr != buildings.end(); buildingItr++)
+	{
+		techBonus	+= (*buildingItr)->getTechBonus();
+	}
 }

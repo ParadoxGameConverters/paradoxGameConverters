@@ -25,10 +25,12 @@ class CK2Barony
 		double			getBaseTaxProxy()		const { return baseTaxProxy; };
 		double			getPopProxy()			const { return popProxy; };
 		double			getManpowerProxy()	const { return manpowerProxy; };
+		double			getTechBonus()			const { return techBonus; };
 	private:
 		void	determineBaseTaxProxy();
 		void	determinePopProxy();
 		void	determineManpowerProxy();
+		void	determineTechBonus();
 
 		CK2Title*		title;
 		CK2Province*	province;
@@ -39,6 +41,7 @@ class CK2Barony
 		double							baseTaxProxy;
 		double							popProxy;
 		double							manpowerProxy;
+		double							techBonus;
 };
 
 

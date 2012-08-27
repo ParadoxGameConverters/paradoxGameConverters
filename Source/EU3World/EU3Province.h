@@ -25,7 +25,7 @@ class EU3Province
 		
 		void		output(FILE*);
 
-		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy);
+		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy, const vector<CK2Province*>& _srcProvinces);
 		void		addAdvisor(EU3Advisor* advisor);
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
@@ -37,13 +37,16 @@ class EU3Province
 		void		setOwner(string _owner)						{ owner = _owner; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 
-		string	getOwner() const			{ return owner; };
-		double	getBaseTax() const		{ return baseTax; };
-		double	getPopulation() const	{ return population; };
-		double	getManpower() const		{ return manpower; };
-		string	getCulture() const		{ return culture; };
-		bool		hasCOT() const				{ return false; }
+		string					getOwner() const			{ return owner; };
+		double					getBaseTax() const		{ return baseTax; };
+		double					getPopulation() const	{ return population; };
+		double					getManpower() const		{ return manpower; };
+		string					getCulture() const		{ return culture; };
+		bool						hasCOT() const				{ return false; }
+		vector<CK2Province*>	getSrcProvinces() const	{ return srcProvinces; };
 	private:
+		vector<CK2Province*>		srcProvinces;
+
 		int							num;
 		string						capital;
 		string						tradeGood;

@@ -73,6 +73,16 @@ CK2Building::CK2Building(Object* obj)
 		taxIncome = 0.0f;
 	}
 
+	vector<Object*> techObj = obj->getValue("tech_growth_modifier");
+	if (techObj.size() > 0)
+	{
+		techBonus = atof( techObj[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		techBonus = 0.0f;
+	}
+
 	forbiddenReligion			= "";
 	requiredReligion			= "";
 	acceptableCultures.clear();

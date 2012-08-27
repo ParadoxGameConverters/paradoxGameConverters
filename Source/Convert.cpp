@@ -311,11 +311,14 @@ int main(int argc, char * argv[])
 	printf("Converting advisors.\n");
 	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);
 
+	log("Converting tech.\n");
+	printf("Converting tech.\n");
+	destWorld.convertTech(countryMap, religionMap);
+
 	log("Converting governments.\n");
 	printf("Converting governments.\n");
 	destWorld.convertGovernments();
 	
-
 
 	// Output results
 	printf("Outputting save.\n");

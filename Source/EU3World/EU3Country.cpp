@@ -18,7 +18,9 @@ using namespace std;
 
 EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 {
+	src				= NULL;
 	provinces.clear();
+	learningScore	= 0.0;
 
 	tag			= newTag;
 	historyFile	= newHistoryFile;
@@ -181,6 +183,14 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\t\tgovernment=%s\n", government.c_str());
 	}
+	if (techGroup != "")
+	{
+		fprintf(output, "\t\ttechnology_group=%s\n", techGroup.c_str());
+	}
+	else
+	{
+		fprintf(output, "\t\ttechnology_group=new_world\n");
+	}
 	if (primaryCulture != "")
 	{
 		fprintf(output, "\t\tprimary_culture=%s\n", primaryCulture.c_str());
@@ -209,6 +219,14 @@ void EU3Country::output(FILE* output)
 	else
 	{
 		fprintf(output, "	government=tribal_despotism\n");
+	}
+	if (techGroup != "")
+	{
+		fprintf(output, "\ttechnology_group=%s\n", techGroup.c_str());
+	}
+	else
+	{
+		fprintf(output, "\ttechnology_group=new_world\n");
 	}
 	if (primaryCulture != "")
 	{
@@ -386,6 +404,27 @@ void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMa
 	}
 }
 
+#pragma optimize("", off)
+void EU3Country::determineLearningScore()
+{
+	int numBaronies = 0;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			vector<CK2Barony*> baronies = (*srcItr)->getBaronies();
+			for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr < baronies.end(); baronyItr++)
+			{
+				learningScore += (*baronyItr)->getTechBonus();
+				numBaronies++;
+			}
+		}
+	}
+
+	learningScore /= numBaronies;
+}
+#pragma optimize("", on)
 
 void EU3Country::addAcceptedCultures()
 {
@@ -405,7 +444,7 @@ void EU3Country::addAcceptedCultures()
 	}
 }
 
-#pragma optimize("", off)
+
 void EU3Country::determineGovernment()
 {
 	string		srcTitleString			= src->getTitleString();
@@ -502,4 +541,3 @@ void EU3Country::determineGovernment()
 		government = "tribal_democracy";
 	}
 }
-#pragma optimize("", on)

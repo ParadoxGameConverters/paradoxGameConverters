@@ -7,6 +7,7 @@
 #include <vector>
 #include "..\Date.h"
 #include "..\Mappers.h"
+#include "..\CK2World\CK2Title.h"
 using namespace std;
 
 
@@ -24,17 +25,23 @@ class EU3Country
 		void		output(FILE*);
 		
 		void		convert(const CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap);
+		void		determineLearningScore();
 		void		addAcceptedCultures();
 		void		determineGovernment();
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
+		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
 
-		string	getTag()			const { return tag; };
-		string	getTechGroup()	const { return techGroup; };
+		double	getLearningScore()	const { return learningScore; };
+		string	getTag()					const { return tag; };
+		string	getGovernment()		const { return government; };
+		string	getReligion()			const { return religion; };
+		string	getTechGroup()			const { return techGroup; };
 
 	private:
 		const CK2Title*		src;
 		vector<EU3Province*>	provinces;
+		double					learningScore;
 
 		string					tag;
 		string					historyFile;

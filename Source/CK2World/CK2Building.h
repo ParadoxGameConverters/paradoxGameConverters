@@ -22,6 +22,7 @@ class CK2Building
 		double			getLevyMultiplier()				const { return levyMultiplier; };
 		double			getNumSoldiers()					const { return numSoldiers; };
 		double			getTaxIncome()						const { return taxIncome; };
+		double			getTechBonus()						const { return techBonus; };
 		string			getForbiddenReligion()			const { return forbiddenReligion; };
 		string			getRequiredReligion()			const { return requiredReligion; };
 		vector<string>	getAcceptableCultures()			const { return acceptableCultures; };
@@ -32,6 +33,7 @@ class CK2Building
 		double	levyMultiplier;
 		double	numSoldiers;
 		double	taxIncome;
+		double	techBonus;
 		
 		string			forbiddenReligion;
 		string			requiredReligion;

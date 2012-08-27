@@ -506,7 +506,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 
 		map<int, EU3Province*>::iterator provItr = provinces.find(i->first);
-		provItr->second->convert(i->first, inHRE, europeanCountries);
+		provItr->second->convert(i->first, inHRE, europeanCountries, srcProvinces);
 
 		const CK2Title*	greatestOwner;
 		int					greatestOwnerNum = 0;
@@ -657,6 +657,56 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 }
 
 #pragma optimize("", off)
+void EU3World::convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap)
+{
+	double highestLearningScore = 0.0f;
+	for (countryMapping::iterator countryItr = countryMap.begin(); countryItr != countryMap.end(); countryItr++)
+	{
+		countryItr->second->determineLearningScore();
+		if (countryItr->second->getLearningScore() > highestLearningScore)
+		{
+			highestLearningScore = countryItr->second->getLearningScore();
+		}
+	}
+
+	for (countryMapping::iterator countryItr = countryMap.begin(); countryItr != countryMap.end(); countryItr++)
+	{
+		string religion	= countryItr->second->getReligion();
+		string title		= countryItr->first->getTitleString();
+		if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religionGroupMap.find(religion)->second != "christian")  )
+		{
+			countryItr->second->setTechGroup("nomad_group");
+			log("\t%s is in tech group nomad.\n", countryItr->second->getTag().c_str());
+		}
+		else if (countryItr->second->getLearningScore() <= 0.2 * highestLearningScore)
+		{
+			countryItr->second->setTechGroup("sub_saharan");
+			log("\t%s is in tech group sub saharan.\n", countryItr->second->getTag().c_str());
+		}
+		else if (countryItr->second->getLearningScore() <= 0.75 * highestLearningScore)
+		{
+			countryItr->second->setTechGroup("muslim");
+			log("\t%s is in tech group muslim.\n", countryItr->second->getTag().c_str());
+		}
+		else if (countryItr->second->getLearningScore() <= 0.8 * highestLearningScore)
+		{
+			countryItr->second->setTechGroup("ottoman");
+			log("\t%s is in tech group ottoman.\n", countryItr->second->getTag().c_str());
+		}
+		else if (countryItr->second->getLearningScore() <= 0.85 * highestLearningScore)
+		{
+			countryItr->second->setTechGroup("eastern");
+			log("\t%s is in tech group eastern.\n", countryItr->second->getTag().c_str());
+		}
+		else
+		{
+			countryItr->second->setTechGroup("western");
+			log("\t%s is in tech group western.\n", countryItr->second->getTag().c_str());
+		}
+	}
+}
+#pragma optimize("", off)
+
 void EU3World::convertGovernments()
 {
 	for (vector<string>::iterator itr = europeanCountries.begin(); itr < europeanCountries.end(); itr++)
@@ -668,4 +718,3 @@ void EU3World::convertGovernments()
 		}
 	}
 }
-#pragma optimize("", on)

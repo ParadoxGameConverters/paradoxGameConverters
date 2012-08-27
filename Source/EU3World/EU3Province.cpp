@@ -298,8 +298,10 @@ void EU3Province::output(FILE* output)
 }
 
 
-void EU3Province::convert(int _num, bool _inHRE, const vector<string> _discoveredBy)
+void EU3Province::convert(int _num, bool _inHRE, const vector<string> _discoveredBy, const vector<CK2Province*>& _srcProvinces)
 {
+	srcProvinces = _srcProvinces;
+
 	num				= _num;
 	//capital	-- leave it as it is from the history file
 	owner				= "";
