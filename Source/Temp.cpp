@@ -17,8 +17,8 @@ void outputTempHeader2(FILE* output)
 {
 	fprintf(output, "id=\n");
 	fprintf(output, "{\n");
-	fprintf(output, "	id=%d\n", Configuration::getID());
-	fprintf(output, "	type=4713\n");
+	fprintf(output, "\tid=%d\n", Configuration::getID());
+	fprintf(output, "\ttype=4713\n");
 	fprintf(output, "}\n");
 	fprintf(output, "\n");
 }

@@ -194,15 +194,15 @@ void EU3Province::output(FILE* output)
 	fprintf(output, "{\n");
 	if (owner != "")
 	{
-		fprintf(output, "	owner=\"%s\"\n", owner.c_str());
+		fprintf(output, "\towner=\"%s\"\n", owner.c_str());
 	}
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
-		fprintf(output, "	core=\"%s\"\n", cores[i].c_str());
+		fprintf(output, "\tcore=\"%s\"\n", cores[i].c_str());
 	}
 	if (inHRE)
 	{
-		fprintf(output, "	hre=yes\n");
+		fprintf(output, "\thre=yes\n");
 	}
 	if (culture != "")
 	{
@@ -232,8 +232,8 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\tmanpower=%d\n", manpower);
 	}
-	fprintf(output, "	history=\n");
-	fprintf(output, "	{\n");
+	fprintf(output, "\thistory=\n");
+	fprintf(output, "\t{\n");
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
 		fprintf(output, "\t\tadd_core=\"%s\"\n", cores[i].c_str());
@@ -278,15 +278,15 @@ void EU3Province::output(FILE* output)
 	{
 		history[i]->output(output);
 	}
-	fprintf(output, "	}\n");
-	fprintf(output, "	discovery_dates={9999.1.1 9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
-	fprintf(output, "	discovery_religion_dates={9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
-	fprintf(output, "	discovered_by={ ");
+	fprintf(output, "\t}\n");
+	fprintf(output, "\tdiscovery_dates={9999.1.1 9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
+	fprintf(output, "\tdiscovery_religion_dates={9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
+	fprintf(output, "\tdiscovered_by={ ");
 	for (unsigned int i = 0; i < discoveredBy.size(); i++)
 	{
 		fprintf(output, "%s ", discoveredBy[i].c_str());
 	}
-	fprintf(output, "	}\n");
+	fprintf(output, "\t}\n");
 	for (unsigned int i = 0; i < modifiers.size(); i++)
 	{
 		fprintf(output, "\tmodifier=\n");

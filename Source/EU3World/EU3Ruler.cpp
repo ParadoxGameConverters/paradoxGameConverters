@@ -225,93 +225,93 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 
 void EU3Ruler::outputAsMonarch(FILE* output)
 {
-	fprintf(output,"			monarch=\n");
-	fprintf(output,"			{\n");
-	fprintf(output,"				name=\"%s", name.c_str());
+	fprintf(output,"\t\t\tmonarch=\n");
+	fprintf(output,"\t\t\t{\n");
+	fprintf(output,"\t\t\t\tname=\"%s", name.c_str());
 	outputRegnalNum(output);
 	fprintf(output, "\"\n");
-	fprintf(output,"				DIP=%d\n", diplomacy);
-	fprintf(output,"				ADM=%d\n", administration);
-	fprintf(output,"				MIL=%d\n", military);
+	fprintf(output,"\t\t\t\tDIP=%d\n", diplomacy);
+	fprintf(output,"\t\t\t\tADM=%d\n", administration);
+	fprintf(output,"\t\t\t\tMIL=%d\n", military);
 	if (female)
 	{
-		fprintf(output, "				female=yes\n");
+		fprintf(output, "\t\t\t\tfemale=yes\n");
 	}
-	fprintf(output,"				id=\n");
-	fprintf(output,"				{\n");
-	fprintf(output,"					id=%d\n", id);
-	fprintf(output,"					type=37\n");
-	fprintf(output,"				}\n");
+	fprintf(output,"\t\t\t\tid=\n");
+	fprintf(output,"\t\t\t\t{\n");
+	fprintf(output,"\t\t\t\t\tid=%d\n", id);
+	fprintf(output,"\t\t\t\t\ttype=37\n");
+	fprintf(output,"\t\t\t\t}\n");
 	if (dynasty != "")
 	{
-		fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+		fprintf(output,"\t\t\t\tdynasty=\"%s\"\n", dynasty.c_str());
 	}
-	fprintf(output,"			}\n");
+	fprintf(output,"\t\t\t}\n");
 }
 
 
 void EU3Ruler::outputAsRegent(FILE* output)
 {
-	fprintf(output,"			monarch=\n");
-	fprintf(output,"			{\n");
-	fprintf(output,"				name=\"(Regent) %s", name.c_str());
+	fprintf(output,"\t\t\tmonarch=\n");
+	fprintf(output,"\t\t\t{\n");
+	fprintf(output,"\t\t\t\tname=\"(Regent) %s", name.c_str());
 	fprintf(output, "\"\n");
-	fprintf(output,"				DIP=%d\n", diplomacy);
-	fprintf(output,"				ADM=%d\n", administration);
-	fprintf(output,"				MIL=%d\n", military);
+	fprintf(output,"\t\t\t\tDIP=%d\n", diplomacy);
+	fprintf(output,"\t\t\t\tADM=%d\n", administration);
+	fprintf(output,"\t\t\t\tMIL=%d\n", military);
 	if (female)
 	{
-		fprintf(output, "				female=yes\n");
+		fprintf(output, "\t\t\t\tfemale=yes\n");
 	}
-	fprintf(output,"				regent=yes\n");
-	fprintf(output,"				id=\n");
-	fprintf(output,"				{\n");
-	fprintf(output,"					id=%d\n", id);
-	fprintf(output,"					type=37\n");
-	fprintf(output,"				}\n");
+	fprintf(output,"\t\t\t\tregent=yes\n");
+	fprintf(output,"\t\t\t\tid=\n");
+	fprintf(output,"\t\t\t\t{\n");
+	fprintf(output,"\t\t\t\t\tid=%d\n", id);
+	fprintf(output,"\t\t\t\t\ttype=37\n");
+	fprintf(output,"\t\t\t\t}\n");
 	if (dynasty != "")
 	{
-		fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+		fprintf(output,"\t\t\t\tdynasty=\"%s\"\n", dynasty.c_str());
 	}
-	fprintf(output,"			}\n");
+	fprintf(output,"\t\t\t}\n");
 }
 
 
 void EU3Ruler::outputAsHeir(FILE* output)
 {
-	fprintf(output,"			heir=\n");
-	fprintf(output,"			{\n");
-	fprintf(output,"				name=\"%s\"\n", name.c_str());
-	fprintf(output,"				DIP=%d\n", diplomacy);
-	fprintf(output,"				ADM=%d\n", administration);
-	fprintf(output,"				MIL=%d\n", military);
+	fprintf(output,"\t\t\their=\n");
+	fprintf(output,"\t\t\t{\n");
+	fprintf(output,"\t\t\t\tname=\"%s\"\n", name.c_str());
+	fprintf(output,"\t\t\t\tDIP=%d\n", diplomacy);
+	fprintf(output,"\t\t\t\tADM=%d\n", administration);
+	fprintf(output,"\t\t\t\tMIL=%d\n", military);
 	if (female)
 	{
-		fprintf(output, "				female=yes\n");
+		fprintf(output, "\t\t\t\tfemale=yes\n");
 	}
-	fprintf(output,"				id=\n");
-	fprintf(output,"				{\n");
-	fprintf(output,"					id=%d\n", id);
-	fprintf(output,"					type=37\n");
-	fprintf(output,"				}\n");
+	fprintf(output,"\t\t\t\tid=\n");
+	fprintf(output,"\t\t\t\t{\n");
+	fprintf(output,"\t\t\t\t\tid=%d\n", id);
+	fprintf(output,"\t\t\t\t\ttype=37\n");
+	fprintf(output,"\t\t\t\t}\n");
 	if (dynasty != "")
 	{
-		fprintf(output,"				dynasty=\"%s\"\n", dynasty.c_str());
+		fprintf(output,"\t\t\t\tdynasty=\"%s\"\n", dynasty.c_str());
 	}
-	fprintf(output,"				birth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
-	fprintf(output,"				death_date=\"%d.%d.%d\"\n", deathDate.year, deathDate.month, deathDate.day);
-	fprintf(output,"				claim=%d\n", claim);
+	fprintf(output,"\t\t\t\tbirth_date=\"%d.%d.%d\"\n", birthDate.year, birthDate.month, birthDate.day);
+	fprintf(output,"\t\t\t\tdeath_date=\"%d.%d.%d\"\n", deathDate.year, deathDate.month, deathDate.day);
+	fprintf(output,"\t\t\t\tclaim=%d\n", claim);
 	if (monarchName != "")
 	{
-		fprintf(output,"				monarch_name=\"%s\"\n", monarchName.c_str());
+		fprintf(output,"\t\t\t\tmonarch_name=\"%s\"\n", monarchName.c_str());
 	}
 	else
 	{
-		fprintf(output, "				monarch_name=\"%s", name.c_str());
+		fprintf(output, "\t\t\t\tmonarch_name=\"%s", name.c_str());
 		outputRegnalNum(output);
 		fprintf(output, "\"\n");
 	}
-	fprintf(output,"			}\n");
+	fprintf(output,"\t\t\t}\n");
 }
 
 

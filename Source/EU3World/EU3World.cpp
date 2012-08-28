@@ -237,7 +237,7 @@ void EU3World::output(FILE* output)
 		}
 		else
 		{
-			log("	Error: EU3 province %d is unmapped!\n", i->first);
+			log("\tError: EU3 province %d is unmapped!\n", i->first);
 		}
 	}
 	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
@@ -246,13 +246,13 @@ void EU3World::output(FILE* output)
 	}
 	fprintf(output, "active_advisors=\n");
 	fprintf(output, "{\n");
-	fprintf(output, "	notechgroup=\n");
-	fprintf(output, "	{\n");
+	fprintf(output, "\tnotechgroup=\n");
+	fprintf(output, "\t{\n");
 	for (unsigned int i = 0; i < advisors.size(); i++)
 	{
 		advisors[i]->outputInActive(output);
 	}
-	fprintf(output, "	}\n");
+	fprintf(output, "\t}\n");
 	fprintf(output, "}\n");
 }
 
@@ -621,7 +621,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 	intptr_t					fileListing;
 	if ( (fileListing = _findfirst( (EU3Loc + "\\history\\advisors\\*").c_str(), &advisorDirData)) == -1L)
 	{
-		log("	Error: Could not open advisors history directory.\n");
+		log("\tError: Could not open advisors history directory.\n");
 		return;
 	}
 	do

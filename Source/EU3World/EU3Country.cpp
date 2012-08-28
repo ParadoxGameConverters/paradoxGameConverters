@@ -177,8 +177,8 @@ void EU3Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
-	fprintf(output, "	history=\n");
-	fprintf(output, "	{\n");
+	fprintf(output, "\thistory=\n");
+	fprintf(output, "\t{\n");
 	if (government != "")
 	{
 		fprintf(output, "\t\tgovernment=%s\n", government.c_str());
@@ -211,14 +211,14 @@ void EU3Country::output(FILE* output)
 	{
 		history[i]->output(output);
 	}
-	fprintf(output, "	}\n");
+	fprintf(output, "\t}\n");
 	if (government != "")
 	{
-		fprintf(output, "	government=%s\n", government.c_str());
+		fprintf(output, "\tgovernment=%s\n", government.c_str());
 	}
 	else
 	{
-		fprintf(output, "	government=tribal_despotism\n");
+		fprintf(output, "\tgovernment=tribal_despotism\n");
 	}
 	if (techGroup != "")
 	{
@@ -246,43 +246,43 @@ void EU3Country::output(FILE* output)
 	}
 	if (regent != NULL)
 	{
-		fprintf(output, "	monarch=\n");
-		fprintf(output, "	{\n");
-		fprintf(output, "		id=%d\n", regent->getID());
-		fprintf(output, "		type=37\n");
-		fprintf(output, "	}\n");
+		fprintf(output, "\tmonarch=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tid=%d\n", regent->getID());
+		fprintf(output, "\t\ttype=37\n");
+		fprintf(output, "\t}\n");
 	}
 	else if (monarch != NULL)
 	{
-		fprintf(output, "	monarch=\n");
-		fprintf(output, "	{\n");
-		fprintf(output, "		id=%d\n", monarch->getID());
-		fprintf(output, "		type=37\n");
-		fprintf(output, "	}\n");
+		fprintf(output, "\tmonarch=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tid=%d\n", monarch->getID());
+		fprintf(output, "\t\ttype=37\n");
+		fprintf(output, "\t}\n");
 	}
 	for (unsigned int i = 0; i < previousMonarchs.size(); i++)
 	{
-		fprintf(output, "	previous_monarch=\n");
-		fprintf(output, "	{\n");
-		fprintf(output, "		id=%d\n", previousMonarchs[i]->getID());
-		fprintf(output, "		type=37\n");
-		fprintf(output, "	}\n");
+		fprintf(output, "\tprevious_monarch=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tid=%d\n", previousMonarchs[i]->getID());
+		fprintf(output, "\t\ttype=37\n");
+		fprintf(output, "\t}\n");
 	}
 	if (regent != NULL)
 	{
-		fprintf(output, "	heir=\n");
-		fprintf(output, "	{\n");
-		fprintf(output, "		id=%d\n", monarch->getID());
-		fprintf(output, "		type=37\n");
-		fprintf(output, "	}\n");
+		fprintf(output, "\their=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tid=%d\n", monarch->getID());
+		fprintf(output, "\t\ttype=37\n");
+		fprintf(output, "\t}\n");
 	}
 	else if (heir != NULL)
 	{
-		fprintf(output, "	heir=\n");
-		fprintf(output, "	{\n");
-		fprintf(output, "		id=%d\n", heir->getID());
-		fprintf(output, "		type=37\n");
-		fprintf(output, "	}\n");
+		fprintf(output, "\their=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tid=%d\n", heir->getID());
+		fprintf(output, "\t\ttype=37\n");
+		fprintf(output, "\t}\n");
 	}
 	fprintf(output, "}\n");
 }

@@ -58,7 +58,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	}
 
 	// get dynasties
-	printf("	Getting dynasties from save\n");
+	printf("\tGetting dynasties from save\n");
 	vector<Object*> dynastyLeaves = obj->getValue("dynasties");
 	dynastyLeaves = dynastyLeaves[0]->getLeaves();
 	for (unsigned int i = 0; i < dynastyLeaves.size(); i++)
@@ -71,7 +71,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	dynasties.insert( make_pair(0, newDynasty) );
 
 	// get characters
-	printf("	Getting characters\n");
+	printf("\tGetting characters\n");
 	vector<Object*> characterLeaves = obj->getValue("character");
 	characterLeaves = characterLeaves[0]->getLeaves();
 	for (unsigned int i = 0; i < characterLeaves.size(); i++)
@@ -81,14 +81,14 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
-	printf("	Creating family trees\n");
+	printf("\tCreating family trees\n");
 	for (map<int, CK2Character*>::iterator i = characters.begin(); i != characters.end(); i++)
 	{
 		i->second->setParents(characters);
 	}
 
 	// get titles
-	printf("	Getting titles\n");
+	printf("\tGetting titles\n");
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
@@ -98,7 +98,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 			map<string, CK2Title*>::iterator titleItr = potentialTitles.find(key);
 			if (titleItr == potentialTitles.end())
 			{
-				log("Error: tried to create title %s, but it is not a potential title.\n", key.c_str());
+				log("\t\tWarning: tried to create title %s, but it is not a potential title.\n", key.c_str());
 				continue;
 			}
 			titleItr->second->init(leaves[i], characters);
@@ -107,7 +107,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	}
 
 	// get provinces
-	printf("	Getting provinces\n");
+	printf("\tGetting provinces\n");
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		string key = leaves[i]->getKey();
@@ -126,7 +126,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	}
 
 	// create tree of vassal/liege relationships
-	printf("	Relating vassals and lieges\n");
+	printf("\tRelating vassals and lieges\n");
 	string hreTitle = Configuration::getHRETitle();
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
@@ -158,13 +158,13 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	}
 
 	// determine heirs
-	printf("	Determining heirs\n");
+	printf("\tDetermining heirs\n");
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
 		i->second->determineHeir(characters);
 	}
 
-	printf("	Setting employers\n");
+	printf("\tSetting employers\n");
 	for (map<int, CK2Character*>::iterator i = characters.begin(); i != characters.end(); i++)
 	{
 		CK2Character* character = i->second;
@@ -174,8 +174,8 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		}
 	}
 
-	log("	There are a total of %d independent titles\n", independentTitles.size());
-	log("	There are a total of %d hre members\n", hreMembers.size());
+	log("\tThere are a total of %d independent titles\n", independentTitles.size());
+	log("\tThere are a total of %d hre members\n", hreMembers.size());
 }
 
 

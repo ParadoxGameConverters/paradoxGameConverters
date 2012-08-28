@@ -46,7 +46,7 @@ EU3Advisor::EU3Advisor(Object* advisorObj, map<int, EU3Province*>& provinces)
 	}
 	else
 	{
-		log("	Error: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
+		log("\tError: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
 	}
 
 	vector<Object*> dateObj = advisorObj->getValue("date");
@@ -181,7 +181,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 		}
 		else
 		{
-			log("	Error: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
+			log("\tError: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
 		}
 
 		EU3Province* homeProvince = provinces[location];
@@ -191,7 +191,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 		}
 		else
 		{
-			log("	Error: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
+			log("\tError: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
 		}
 	}
 
@@ -202,40 +202,40 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 
 void EU3Advisor::outputInProvince(FILE* output)
 {
-	fprintf(output,"			advisor=\n");
-	fprintf(output,"			{\n");
+	fprintf(output,"\t\t\tadvisor=\n");
+	fprintf(output,"\t\t\t{\n");
 	if (dynasty != "")
 	{
-		fprintf(output,"				name=\"%s %s\"\n", name.c_str(), dynasty.c_str());
+		fprintf(output,"\t\t\t\tname=\"%s %s\"\n", name.c_str(), dynasty.c_str());
 	}
 	else
 	{
-		fprintf(output,"				name=\"%s\"\n", name.c_str());
+		fprintf(output,"\t\t\t\tname=\"%s\"\n", name.c_str());
 	}
-	fprintf(output,"				type=%s\n", advisorType.c_str());
-	fprintf(output,"				skill=%d\n", advisorSkill);
-	fprintf(output,"				location=%d\n", location);
+	fprintf(output,"\t\t\t\ttype=%s\n", advisorType.c_str());
+	fprintf(output,"\t\t\t\tskill=%d\n", advisorSkill);
+	fprintf(output,"\t\t\t\tlocation=%d\n", location);
 	if (home != "")
 	{
-		fprintf(output,"				home=\"%s\"\n", home.c_str());
+		fprintf(output,"\t\t\t\thome=\"%s\"\n", home.c_str());
 	}
-	fprintf(output,"				date=\"%d.%d.%d\"\n", startDate.year, startDate.month, startDate.day);
-	fprintf(output,"				hire_date=\"1.1.1\"\n");
-	fprintf(output,"				move=0\n");
-	fprintf(output,"				id=\n");
-	fprintf(output,"				{\n");
-	fprintf(output,"					id=%d\n", id);
-	fprintf(output,"					type=39\n");
-	fprintf(output,"				}\n");
-	fprintf(output,"			}\n");
+	fprintf(output,"\t\t\t\tdate=\"%d.%d.%d\"\n", startDate.year, startDate.month, startDate.day);
+	fprintf(output,"\t\t\t\thire_date=\"1.1.1\"\n");
+	fprintf(output,"\t\t\t\tmove=0\n");
+	fprintf(output,"\t\t\t\tid=\n");
+	fprintf(output,"\t\t\t\t{\n");
+	fprintf(output,"\t\t\t\t\tid=%d\n", id);
+	fprintf(output,"\t\t\t\t\ttype=39\n");
+	fprintf(output,"\t\t\t\t}\n");
+	fprintf(output,"\t\t\t}\n");
 }
 
 
 void EU3Advisor::outputInActive(FILE* output)
 {
-	fprintf(output, "		advisor=\n");
-	fprintf(output, "		{\n");
-	fprintf(output, "			id=%d\n", id);
-	fprintf(output, "			type=39\n");
-	fprintf(output, "		}\n");
+	fprintf(output, "\t\tadvisor=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\tid=%d\n", id);
+	fprintf(output, "\t\t\ttype=39\n");
+	fprintf(output, "\t\t}\n");
 }

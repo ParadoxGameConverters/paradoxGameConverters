@@ -219,11 +219,11 @@ int main(int argc, char * argv[])
 	//	inverseProvinceMapping::iterator p = inverseProvinceMap.find(i->first);
 	//	if ( p == inverseProvinceMap.end() )
 	//	{
-	//		log("	Error: CK2 province %d has no mapping specified!\n", i->first);
+	//		log("\tError: CK2 province %d has no mapping specified!\n", i->first);
 	//	}
 	//	else if ( p->second.size() == 0 )
 	//	{
-	//		log("	Warning: CK2 province %d is not mapped to any EU3 provinces!\n", i->first);
+	//		log("\tWarning: CK2 province %d is not mapped to any EU3 provinces!\n", i->first);
 	//	}
 	//}
 
