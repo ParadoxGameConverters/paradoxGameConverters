@@ -194,3 +194,4 @@ Revision	Log Message
 191		Convert tech group
 192		Hordes that become Christian can get non-horde government types
 193		Minor logging adjustments
+194		Remove titles that have neither de facto nor de jure lieges or vassals.

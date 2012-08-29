@@ -25,8 +25,11 @@ class CK2Title
 		void						setHeir(CK2Character*);
 		void						setDeJureLiege(const map<string, CK2Title*>& titles);
 		void						addDeJureVassals(vector<Object*>, map<string, CK2Title*>& titles, CK2World* world);
+		void						removeDeJureVassal(CK2Title* vassal);
 
 		void						getCultureWeights(map<string, int>& cultureWeights, const cultureMapping& cultureMap) const;
+
+		void						addDeJureVassal(CK2Title* vassal) { deJureVassals.push_back(vassal); };
 
 		string					getTitleString()		const { return titleString; };
 		CK2Character*			getHolder()				const { return holder; };
@@ -36,6 +39,7 @@ class CK2Title
 		string					getLiegeString()		const { return liegeString; };
 		CK2Title*				getLiege()				const { return liege; };
 		vector<CK2Title*>		getVassals()			const { return vassals; };
+		vector<CK2Title*>		getDeJureVassals()	const { return deJureVassals; };
 		CK2Title*				getDeJureLiege()		const { return deJureLiege; };
 		bool						isIndependent()		const { return independent; };
 		bool						isInHRE()				const { return inHRE; };
@@ -55,6 +59,7 @@ class CK2Title
 		string							liegeString;
 		CK2Title*						liege;
 		vector<CK2Title*>				vassals;
+		vector<CK2Title*>				deJureVassals;
 		string							deJureLiegeString;
 		CK2Title*						deJureLiege;
 

@@ -182,7 +182,12 @@ void CK2Title::setDeJureLiege(const map<string, CK2Title*>& titles)
 		map<string, CK2Title*>::const_iterator titleItr = titles.find(deJureLiegeString);
 		if (titleItr != titles.end())
 		{
+			if (deJureLiege != NULL)
+			{
+				deJureLiege->removeDeJureVassal(this);
+			}
 			deJureLiege = titleItr->second;
+			deJureLiege->addDeJureVassal(this);
 		}
 	}
 }
@@ -208,8 +213,22 @@ void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& tit
 		{
 			log("Note! The CK2Title::addDeJureVassals() else condition is needed!\n");
 		}
+		deJureVassals.push_back(titleItr->second);
 		titleItr->second->setDeJureLiege(this);
 		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), titles, world );
+	}
+}
+
+
+void CK2Title::removeDeJureVassal(CK2Title* vassal)
+{
+	for (vector<CK2Title*>::iterator itr = deJureVassals.begin(); itr < deJureVassals.end(); itr++)
+	{
+		if (*itr == vassal)
+		{
+			deJureVassals.erase(itr);
+			break;
+		}
 	}
 }
 

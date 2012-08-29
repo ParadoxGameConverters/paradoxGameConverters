@@ -404,7 +404,7 @@ void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMa
 	}
 }
 
-#pragma optimize("", off)
+
 void EU3Country::determineLearningScore()
 {
 	int numBaronies = 0;
@@ -424,7 +424,7 @@ void EU3Country::determineLearningScore()
 
 	learningScore /= numBaronies;
 }
-#pragma optimize("", on)
+
 
 void EU3Country::addAcceptedCultures()
 {
@@ -447,11 +447,12 @@ void EU3Country::addAcceptedCultures()
 
 void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMap)
 {
-	string		srcTitleString			= src->getTitleString();
-	CK2Barony*	primaryHolding			= src->getHolder()->getPrimaryHolding();
-	CK2Title*	liege						= src->getLiege();
-	vector<CK2Title*> vassals			= src->getVassals();
-	string		highestVassalRank		= "b";
+	string				srcTitleString		= src->getTitleString();
+	CK2Barony*			primaryHolding		= src->getHolder()->getPrimaryHolding();
+	CK2Title*			liege					= src->getLiege();
+	vector<CK2Title*>	vassals				= src->getVassals();
+	string				srcReligion			= src->getHolder()->getReligion();
+	string				highestVassalRank	= "b";
 	for (vector<CK2Title*>::iterator vassalItr = vassals.begin(); vassalItr < vassals.end(); vassalItr++)
 	{
 		if ((*vassalItr)->getHolder() == src->getHolder())
@@ -476,7 +477,7 @@ void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMa
 	{
 		government = "papal_government";
 	}
-	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (religionGroupMap.find(religion)->second != "christian")  )
+	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (religionGroupMap.find(srcReligion)->second != "christian")  )
 	{
 		government = "steppe_horde";
 	}

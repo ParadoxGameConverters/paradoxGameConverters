@@ -109,7 +109,7 @@ vector<string> processBlockedNations(Object* obj)
 }
 
 
-int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, map<string, EU3Country*>& EU3Countries, vector<string>& blockedNations, Object* rulesObj)
+int initCountryMap(countryMapping& mapping, map<string, CK2Title*>& CK2Titles, map<string, EU3Country*>& EU3Countries, vector<string>& blockedNations, Object* rulesObj)
 {
 	mapping.clear();
 	countryMapping::iterator mapIter;
@@ -146,15 +146,7 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, map<st
 		}
 
 		//find CK2 title from the rule
-		vector<CK2Title*>::iterator CK2TitlesPos = CK2Titles.end();
-		for (vector<CK2Title*>::iterator j = CK2Titles.begin(); j != CK2Titles.end(); j++)
-		{
-			if ((*j)->getTitleString() == rCK2Title)
-			{
-				CK2TitlesPos = j;
-				break;
-			}
-		}
+		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.find(rCK2Title);
 		if (CK2TitlesPos == CK2Titles.end())
 		{
 			continue;
@@ -191,8 +183,8 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, map<st
 		}
 
 		//add the mapping
-		mapping.insert( make_pair(*CK2TitlesPos, EU3CountryPos->second) );
-		log("\tAdded map %s -> %s (#%d)\n", (*CK2TitlesPos)->getTitleString().c_str(), EU3CountryPos->second->getTag().c_str() , distance);
+		mapping.insert(make_pair(CK2TitlesPos->second, EU3CountryPos->second));
+		log("\tAdded map %s -> %s (#%d)\n", CK2TitlesPos->first.c_str(), EU3CountryPos->second->getTag().c_str() , distance);
 
 		//remove tags from the lists
 		CK2Titles.erase(CK2TitlesPos);
@@ -213,26 +205,26 @@ int initCountryMap(countryMapping& mapping, vector<CK2Title*>& CK2Titles, map<st
 
 	while ( (CK2Titles.size() > 0) && (EU3Countries.size() > 0) )
 	{
-		vector<CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
-		if ((*CK2TitlesPos)->getTitleString() == "e_rebels")
+		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
+		if (CK2TitlesPos->first == "e_rebels")
 		{
 			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
 			CK2Titles.erase(CK2TitlesPos);
 		}
-		else if ((*CK2TitlesPos)->getTitleString() == "e_pirates")
+		else if (CK2TitlesPos->first == "e_pirates")
 		{
 			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
 			CK2Titles.erase(CK2TitlesPos);
 		}
-		else if ((*CK2TitlesPos)->getTitleString() == Configuration::getHRETitle())
+		else if (CK2TitlesPos->first == Configuration::getHRETitle())
 		{
 			CK2Titles.erase(CK2TitlesPos);
 		}
 		else
 		{
 			map<string, EU3Country*>::iterator EU3TagPos = EU3Countries.begin();
-			mapping.insert( make_pair(*CK2TitlesPos, EU3TagPos->second) );
-			log("\tAdded map %s -> %s (fallback)\n", (*CK2TitlesPos)->getTitleString().c_str(), EU3TagPos->second->getTag().c_str());
+			mapping.insert(make_pair(CK2TitlesPos->second, EU3TagPos->second));
+			log("\tAdded map %s -> %s (fallback)\n", CK2TitlesPos->first.c_str(), EU3TagPos->second->getTag().c_str());
 
 			//remove tags from the lists
 			CK2Titles.erase(CK2TitlesPos);

@@ -671,7 +671,7 @@ void EU3World::convertTech(countryMapping& countryMap, const religionGroupMappin
 
 	for (countryMapping::iterator countryItr = countryMap.begin(); countryItr != countryMap.end(); countryItr++)
 	{
-		string religion	= countryItr->second->getReligion();
+		string religion	= countryItr->first->getHolder()->getReligion();
 		string title		= countryItr->first->getTitleString();
 		if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religionGroupMap.find(religion)->second != "christian")  )
 		{

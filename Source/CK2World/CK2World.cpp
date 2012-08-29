@@ -137,13 +137,13 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		}
 		if (liege == "")
 		{
-			independentTitles.push_back(i->second);
+			independentTitles.insert(make_pair(i->first, i->second));
 		}
 		else if (liege == hreTitle)
 		{
 			i->second->addToHRE();
-			independentTitles.push_back(i->second);
-			hreMembers.push_back(i->second);
+			independentTitles.insert((make_pair(i->first, i->second)));
+			hreMembers.insert(make_pair(i->first, i->second));
 		}
 		else
 		{
@@ -227,4 +227,41 @@ void CK2World::addPotentialTitles(Object* obj)
 		}
 		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), potentialTitles, this );
 	}
+}
+
+
+void CK2World::removeDeadTitles()
+{
+	for(map<string, CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+	{
+		if (	(titleItr->second->getVassals().size() == 0) && 
+				(titleItr->second->getDeJureVassals().size() == 0) &&
+				(titleItr->second->getDeJureLiege() == NULL) &&
+				(titleItr->second->getLiege() == NULL)
+			)
+		{
+			log("\tRemoving %s from potential titles (has neither de facto nor de jure vassals or lieges).\n", titleItr->second->getTitleString().c_str());
+			map<string, CK2Title*>::iterator eraseItr = potentialTitles.find(titleItr->second->getTitleString());
+			if (eraseItr != potentialTitles.end())
+			{
+				potentialTitles.erase(eraseItr);
+			}
+			eraseItr = independentTitles.find(titleItr->second->getTitleString());
+			if (eraseItr != independentTitles.end())
+			{
+				independentTitles.erase(eraseItr);
+			}
+			eraseItr = hreMembers.find(titleItr->second->getTitleString());
+			if (eraseItr != hreMembers.end())
+			{
+				hreMembers.erase(eraseItr);
+			}
+
+			titleItr = titles.erase(titleItr);
+			titleItr--;
+		}
+	}
+
+	log("\tThere are a total of %d independent titles\n", independentTitles.size());
+	log("\tThere are a total of %d hre members\n", hreMembers.size());
 }

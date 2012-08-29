@@ -205,6 +205,10 @@ int main(int argc, char * argv[])
 	printf("Importing parsed data.\n");
 	srcWorld.init(obj, religionGroupMap, cultureGroupMap);
 
+	log("Removing extra titles.\n");
+	printf("Importing parsed data.\n");
+	srcWorld.removeDeadTitles();
+
 
 	// Parse province mappings
 	log("Parsing province mappings.\n");
