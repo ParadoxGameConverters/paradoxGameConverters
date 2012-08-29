@@ -1,0 +1,140 @@
+configuration =
+{
+	# Europa Universalis 3 directory: a path on your computer where Europa Universalis 3 is installed
+	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
+
+	# Crusader Kings 2 directory: a path on your computer where Crusader Kings 2 is installed
+	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
+
+	# proxyMultiplierMethod: is a holding is a ruler's capital, all proxies get a multiplier. Options are:
+	#	"ones"		- the multiplier is always one (no changes)
+	#	"counting"	- counts have a multiplier of 2
+	#			- dukes have a multiplier of 3
+	#			- kings have a multiplier of 4
+	#			- emperors have a multiplier of 5
+	#	"exponential"	- counts have a multiplier of 2
+	#			- dukes have a multiplier of 4
+	#			- kings have a multiplier of 8
+	#			- emperors have a multiplier of 16
+	proxyMultiplierMethod = "exponential"
+
+	# multipleProvsMethod: if multiple CK2 provinces become one EU3 province, which method used to get all the proxies. Options are:
+	#	"sum"		- just sum all the relevant data
+	#	"average"	- get the average of all the relevant data
+	multipleProvsMethod = "sum"
+
+	# manpower: Manpower conversion method. Options are:
+	#	"historical"	- just import the manpower from the EU3 history
+	#	"converted"	- convert the manpower from the CK2 game
+	#	"blended"	- a combination of historical and converted
+	manpower = "converted"
+
+	# manpowerblendamount - the amount of manpower that is historical when blended manpower is used
+	manpowerblendamount = "0.5"
+
+	# basetax: Base Tax conversion method. Options are:
+	#	"historical"	- just import the manpower from the EU3 history
+	#	"converted"	- convert the manpower from the CK2 game
+	#	"blended"	- a combination of historical and converted
+	basetax = "converted"
+
+	# basetaxblendamount - the amount of basetax that is historical when blended basetax is used
+	basetaxblendamount = "0.5"
+
+	# population: Population conversion method. Options are:
+	#	"historical"	- just import the manpower from the EU3 history
+	#	"converted"	- convert the manpower from the CK2 game
+	#	"blended"	- 90% of population is historical, 10% is converted
+	population = "converted"
+
+	# populationblendamount - the amount of population that is historical when blended population is used
+	populationblendamount = "0.9"
+
+	# HRE Title: the CK2 Title that will convert are the HRE in EU3. All immediate vassals will be independent.
+	HRETitle = "e_hre"
+
+
+	### EU3 Options ###
+
+	# advisors setting. Options are:
+	#	"normal"
+	#	"historical"
+	#	"event"
+	advisors = "normal"
+
+	# leaders setting. Options are:
+	#	"normal"
+	#	"historical"
+	#	"event"
+	leaders = "normal"
+
+	# colonists setting. Options are:
+	#	"normal"
+	#	"free"
+	colonists = "normal"
+
+	# merchants setting. Options are:
+	#	"normal"
+	#	"free"
+	merchants = "normal"
+
+	# missionaries setting. Options are:
+	#	"normal"
+	#	"free"
+	missionaries = "normal"
+
+	# inflation setting. Options are:
+	#	"normal"
+	#	"none"
+	#	"from gold"
+	inflation = "normal"
+
+	# colonist size setting. Options are:
+	#	"normal"
+	#	"200"
+	#	"300"
+	#	"400"
+	colonist_size = "normal"
+
+	# difficulty setting. Options are:
+	#	"very easy"
+	#	"easy"
+	#	"normal"
+	#	"hard"
+	#	"very hard"
+	difficulty = "normal"
+
+	# AI aggressiveness setting. Options are:
+	#	"low"
+	#	"normal"
+	#	"high"
+	AI_aggressiveness = "normal"
+
+	# spread of land provinces setting. Options are:
+	#	"25"
+	#	"normal (50)"
+	#	"75"
+	#	"100"
+	#	"200"
+	land_spread = "normal (50)"
+
+	# spread of sea provinces setting. Options are:
+	#	"25"
+	#	"normal (50)"
+	#	"75"
+	#	"100"
+	#	"200"
+	sea_spread = "normal (50)"
+
+	# spies setting. Options are:
+	#	"normal"
+	#	"free"
+	spies = "normal"
+
+	# lucky nations setting. Options are:
+	#	"historical"
+	#	"random"
+	#	"none"
+	lucky_nations = "historical"
+	
+}

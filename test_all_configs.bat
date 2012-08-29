@@ -1,14 +1,19 @@
 echo off
 
 copy Release\configuration.txt Release\configuration-backup.txt
-del Release\configuration.txt
+copy Release\culture_mappings.txt Release\culture_mappings-backup.txt
+copy Release\religion_mappings.txt Release\religion_mappings-backup.txt
 
 for /f %%p in ('dir /b testresults\') do call del testresults\%%p /q
 for /f %%p in ('dir /b testresults\') do call rmdir testresults\%%p
 del testResults /q
 rmdir testresults
 
-for /f %%n in ('dir /b TestConfigurations\*.txt') do call test_all_saves.bat "%%n"
+for /f %%n in ('dir /b TestConfigurations\') do call test_all_saves.bat "%%n"
 
 copy Release\configuration-backup.txt Release\configuration.txt
+copy Release\culture_mappings-backup.txt copy Release\culture_mappings.txt
+copy Release\religion_mappings-backup.txt copy Release\religion_mappings.txt
 del Release\configuration-backup.txt /q
+del Release\culture_mappings-backup.txt /q
+del Release\religion_mappings-backup.txt /q
