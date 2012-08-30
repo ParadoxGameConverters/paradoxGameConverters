@@ -196,3 +196,4 @@ Revision	Log Message
 193		Minor logging adjustments
 194		Remove titles that have neither de facto nor de jure lieges or vassals.
 195		Update automated tests.
+196		Log total number of titles.

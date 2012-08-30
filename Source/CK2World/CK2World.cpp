@@ -174,6 +174,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		}
 	}
 
+	log("\tThere are a total of %d titles\n", titles.size());
 	log("\tThere are a total of %d independent titles\n", independentTitles.size());
 	log("\tThere are a total of %d hre members\n", hreMembers.size());
 }
@@ -262,6 +263,7 @@ void CK2World::removeDeadTitles()
 		}
 	}
 
+	log("\tThere are a total of %d titles\n", titles.size());
 	log("\tThere are a total of %d independent titles\n", independentTitles.size());
 	log("\tThere are a total of %d hre members\n", hreMembers.size());
 }
