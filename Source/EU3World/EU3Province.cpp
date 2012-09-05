@@ -536,7 +536,6 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	{
 		topReligion	= "";
 		topCount		= 0;
-		vector<string>	tiedReligions2;
 		for (map<string, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
 		{
 			for (vector<string>::iterator cultureItr = tiedReligions.begin(); cultureItr != tiedReligions.end(); cultureItr++)

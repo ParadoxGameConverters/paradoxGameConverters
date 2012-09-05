@@ -26,6 +26,7 @@ EU3History::EU3History(date _when)
 	techGroup		= "";
 	acceptedCultures.clear();
 	discoverers.clear();
+	shogunPower		= -1.0f;
 }
 
 
@@ -65,6 +66,7 @@ EU3History::EU3History(CK2History* src)
 	techGroup		= "";
 	acceptedCultures.clear();
 	discoverers.clear();
+	shogunPower		= -1.0f;
 }
 
 
@@ -142,6 +144,10 @@ void EU3History::output(FILE* output)
 	for (unsigned int i = 0; i < discoverers.size(); i++)
 	{
 		fprintf(output, "\t\t\tdiscovered_by=\"%s\"\n", discoverers[i].c_str());
+	}
+	if (shogunPower != -1.0f)
+	{
+		fprintf(output, "\t\t\tshogun=%f\n", shogunPower);
 	}
 	fprintf(output, "\t\t}\n");
 }

@@ -15,12 +15,13 @@ class CK2Title;
 class EU3Ruler;
 class EU3History;
 class EU3Province;
+class EU3World;
 class CK2Province;
 
 class EU3Country
 {
 	public:
-		EU3Country(string tag, string countryFile, date startDate);
+		EU3Country(EU3World* world, string tag, string countryFile, date startDate);
 
 		void		output(FILE*);
 		
@@ -56,6 +57,9 @@ class EU3Country
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;
 		int						capital;
+
+		bool						daimyo;
+		bool						japaneseEmperor;
 };
 
 

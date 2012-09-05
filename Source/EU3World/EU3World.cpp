@@ -209,6 +209,11 @@ EU3World::EU3World(CK2World* srcWorld)
 	{
 		options[LUCKY_NATIONS] = 2;
 	}
+
+	japaneseEmperor	= "";
+	daimyos.clear();
+	shogun				= "";
+	shogunPower			= -1.0f;
 }
 
 
@@ -254,6 +259,39 @@ void EU3World::output(FILE* output)
 	}
 	fprintf(output, "\t}\n");
 	fprintf(output, "}\n");
+	if (shogunPower != -1.0f)
+	{
+		fprintf(output, "shogun=\n");
+		fprintf(output, "{\n");
+		fprintf(output, "\tshogun=%f\n", shogunPower);
+		fprintf(output, "\temperor=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tstatus=0\n");
+		fprintf(output, "\t\temperor=1\n");
+		fprintf(output, "\t\tback_kampaku=0\n");
+		fprintf(output, "\t\tactive=1\n");
+		fprintf(output, "\t\tcountry=\"%s\"\n", japaneseEmperor.c_str());
+		fprintf(output, "\t}\n");
+		for(unsigned int i = 0; i < daimyos.size(); i++)
+		{
+			fprintf(output, "\tdaimyo=\n");
+			fprintf(output, "\t{\n");
+			if (daimyos[i] == shogun)
+			{
+				fprintf(output, "\t\tstatus=3\n");
+			}
+			else
+			{
+				fprintf(output, "\t\tstatus=0\n");
+			}
+			fprintf(output, "\t\temperor=0\n");
+			fprintf(output, "\t\tback_kampaku=0\n");
+			fprintf(output, "\t\tactive=1\n");
+			fprintf(output, "\t\tcountry=\"%s\"\n", daimyos[i].c_str());
+			fprintf(output, "\t}\n");
+		}
+		fprintf(output, "}\n");
+	}
 }
 
 
@@ -287,7 +325,7 @@ void EU3World::addPotentialCountries()
 			continue;
 		}
 
-		EU3Country* newCountry = new EU3Country(tag, filename, startDate);
+		EU3Country* newCountry = new EU3Country(this, tag, filename, startDate);
 		countries.insert(make_pair(tag, newCountry));
 
 	} while(_findnext(fileListing, &countryDirData) == 0);

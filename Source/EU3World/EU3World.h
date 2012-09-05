@@ -52,6 +52,11 @@ class EU3World
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void						convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap);
 		void						convertGovernments(const religionGroupMapping& religionGroupMap);
+
+		void						setJapaneseEmperor(string tag)	{ japaneseEmperor = tag; };
+		void						addDamiyo(string tag)				{ daimyos.push_back(tag); };
+		void						setShogun(string tag)				{ shogun = tag; };
+		void						setShogunPower(double power)		{ shogunPower = power; };
 		
 		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:
@@ -62,6 +67,11 @@ class EU3World
 		vector<string>						europeanCountries;
 		vector<EU3Advisor*>				advisors;
 		map< string, vector<string> >	mapSpreadStrings;
+
+		string			japaneseEmperor;
+		vector<string>	daimyos;
+		string			shogun;
+		double			shogunPower;
 };
 
 

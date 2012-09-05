@@ -12,11 +12,12 @@
 #include "EU3Ruler.h"
 #include "EU3History.h"
 #include "EU3Province.h"
+#include "EU3World.h"
 #include <fstream>
 using namespace std;
 
 
-EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
+EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, date startDate)
 {
 	src				= NULL;
 	provinces.clear();
@@ -94,6 +95,29 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 		capital = 0;
 	}
 
+	vector<Object*> daimyoObj = obj->getValue("daimyo");
+	if (daimyoObj.size() > 0)
+	{
+		string leaf = daimyoObj[0]->getLeaf();
+		if (leaf == "emperor")
+		{
+			daimyo				= true;
+			japaneseEmperor	= true;
+			world->setJapaneseEmperor(tag);
+		}
+		else
+		{
+			daimyo				= true;
+			japaneseEmperor	= false;
+			world->addDamiyo(tag);
+		}
+	}
+	else
+	{
+		daimyo				= false;
+		japaneseEmperor	= false;
+	}
+
 	// update items based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
@@ -121,45 +145,54 @@ EU3Country::EU3Country(string newTag, string newHistoryFile, date startDate)
 					newHistory->heir = heir;
 				}
 
-				vector<Object*> govLeaves = obj->getValue("government");
+				vector<Object*> govLeaves = objectList[i]->getValue("government");
 				if (govLeaves.size() > 0)
 				{
 					government = govLeaves[0]->getLeaf();
 					newHistory->government = government;
 				}
 
-				vector<Object*> religionLeaves = obj->getValue("religion");
+				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
 					religion = religionLeaves[0]->getLeaf();
 					newHistory->religion = religion;
 				}
 
-				vector<Object*> primaryCultureLeaves = obj->getValue("primary_culture");
+				vector<Object*> primaryCultureLeaves = objectList[i]->getValue("primary_culture");
 				if (primaryCultureLeaves.size() > 0)
 				{
 					primaryCulture = primaryCultureLeaves[0]->getLeaf();
 					newHistory->primaryCulture = primaryCulture;
 				}
 
-				vector<Object*> acceptedCulturesLeaves = obj->getValue("add_accepted_culture");
-				for (vector<Object*>::iterator i = acceptedCulturesLeaves.begin(); i < acceptedCulturesLeaves.end(); i++)
+				vector<Object*> acceptedCulturesLeaves = objectList[i]->getValue("add_accepted_culture");
+				for (vector<Object*>::iterator j = acceptedCulturesLeaves.begin(); j < acceptedCulturesLeaves.end(); j++)
 				{
-					acceptedCultures.push_back( (*i)->getLeaf() );
-					newHistory->acceptedCultures.push_back( (*i)->getLeaf() );
+					acceptedCultures.push_back( (*j)->getLeaf() );
+					newHistory->acceptedCultures.push_back( (*j)->getLeaf() );
 				}
 
-				vector<Object*> techLeaves = obj->getValue("technology_group");
+				vector<Object*> techLeaves = objectList[i]->getValue("technology_group");
 				if (techLeaves.size() > 0)
 				{
 					techGroup = techLeaves[0]->getLeaf();
 					newHistory->techGroup = techGroup;
 				}
 
-				vector<Object*> capitalObj = obj->getValue("capital");
+				vector<Object*> capitalObj = objectList[i]->getValue("capital");
 				if (capitalObj.size() > 0)
 				{
 					capital = atoi( capitalObj[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> shogunObj = objectList[i]->getValue("shogun");
+				if(shogunObj.size() > 0)
+				{
+					world->setShogun(tag);
+					double shogunPower = atof( shogunObj[0]->getLeaf().c_str() );
+					world->setShogunPower(shogunPower);
+					newHistory->shogunPower = shogunPower;
 				}
 
 				history.push_back(newHistory);
@@ -179,6 +212,14 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "{\n");
 	fprintf(output, "\thistory=\n");
 	fprintf(output, "\t{\n");
+	if (daimyo && japaneseEmperor)
+	{
+		fprintf(output, "\t\tdaimyo=yes\n");
+	}
+	else if (daimyo)
+	{
+		fprintf(output, "\t\tdaimyo=no\n");
+	}
 	if (government != "")
 	{
 		fprintf(output, "\t\tgovernment=%s\n", government.c_str());
@@ -412,6 +453,9 @@ void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMa
 			history.push_back(newHistory);
 		}
 	}
+
+	daimyo				= false;
+	japaneseEmperor	= false;
 }
 
 

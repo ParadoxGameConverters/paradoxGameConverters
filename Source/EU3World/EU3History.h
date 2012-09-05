@@ -36,6 +36,7 @@ class EU3History {
 		vector<string>	acceptedCultures;
 		string			techGroup;
 		vector<string>	discoverers;
+		double			shogunPower;
 };
 
 
