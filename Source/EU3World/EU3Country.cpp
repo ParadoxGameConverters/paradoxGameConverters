@@ -244,6 +244,16 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=%d\n", capital);
 	}
+	fprintf(output, "\tinflation=0.000\n");
+	fprintf(output, "\tlast_bankrupt=\"1.1.1\"\n");
+	fprintf(output, "\twartax=\"1.1.1\"\n");
+	fprintf(output, "\twar_exhaustion=0.000\n");
+	fprintf(output, "\tland_maintenance=1.000\n");
+	fprintf(output, "\tnaval_maintenance=1.000\n");
+	fprintf(output, "\tcolonial_maintenance=1.000\n");
+	fprintf(output, "\tmissionary_maintenance=1.000\n");
+	fprintf(output, "\tbadboy=0.000\n");
+	fprintf(output, "\tlegitimacy=1.000\n");
 	if (regent != NULL)
 	{
 		fprintf(output, "\tmonarch=\n");

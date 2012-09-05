@@ -197,3 +197,4 @@ Revision	Log Message
 194		Remove titles that have neither de facto nor de jure lieges or vassals.
 195		Update automated tests.
 196		Log total number of titles.
+197		Added a bunch of fixed country outputs.
