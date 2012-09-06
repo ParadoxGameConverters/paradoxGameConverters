@@ -200,3 +200,4 @@ Revision	Log Message
 197		Added a bunch of fixed country outputs.
 198		Added daimyo system.
 		Fixed bug with importing coutnry history.
+199		Tamnius' culture suggestions
