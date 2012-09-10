@@ -57,6 +57,8 @@ class EU3Country
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;
 		int						capital;
+		double					stability;
+		double					stabilityInvestment;
 
 		bool						daimyo;
 		bool						japaneseEmperor;
