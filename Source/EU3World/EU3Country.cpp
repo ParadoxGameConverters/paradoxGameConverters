@@ -95,9 +95,6 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 		capital = 0;
 	}
 
-	stability				= 1.0f;
-	stabilityInvestment	= 0.0f;
-
 	vector<Object*> daimyoObj = obj->getValue("daimyo");
 	if (daimyoObj.size() > 0)
 	{
@@ -136,14 +133,9 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 				vector<Object*> newMonarchObj = objectList[i]->getValue("monarch");
 				if (newMonarchObj.size() > 0)
 				{
-					if (monarch != NULL)
-					{
-						stabilityInvestment -= monarch->getAdmin() * 2;
-					}
 					monarch = new EU3Ruler(newMonarchObj[0]);
 					previousMonarchs.push_back(monarch);
 					newHistory->monarch = monarch;
-					stabilityInvestment += monarch->getAdmin() * 2;
 				}
 
 				vector<Object*> newHeirObj = objectList[i]->getValue("heir");
@@ -293,8 +285,6 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=%d\n", capital);
 	}
-	fprintf(output, "\tstability=%f\n", stability);
-	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
 	fprintf(output, "\tinflation=0.000\n");
 	fprintf(output, "\tlast_bankrupt=\"1.1.1\"\n");
 	fprintf(output, "\twartax=\"1.1.1\"\n");
@@ -463,17 +453,6 @@ void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMa
 			history.push_back(newHistory);
 		}
 	}
-
-	stability = 1.0f;
-	if (monarch != NULL)
-	{
-		stabilityInvestment = monarch->getAdmin() * 2;
-	}
-	else
-	{
-		stabilityInvestment = 0;
-	}
-
 
 	daimyo				= false;
 	japaneseEmperor	= false;

@@ -27,7 +27,6 @@ class EU3Ruler
 		string	getName()			const { return name; };
 		int		getRegnalNum()		const { return regnalNum; };
 		int		getID()				const { return id; };
-		int		getAdmin()			const { return administration; };
 		
 	private:
 		void outputRegnalNum(FILE*);
