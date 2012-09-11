@@ -29,16 +29,20 @@ class EU3Country
 		void		determineLearningScore();
 		void		addAcceptedCultures();
 		void		determineGovernment(const religionGroupMapping& religionGroupMap);
-		void		determineEconomy();
+		void		determineEconomy(const cultureGroupMapping& cultureGroups);
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
 
-		double	getLearningScore()	const { return learningScore; };
-		string	getTag()					const { return tag; };
-		string	getGovernment()		const { return government; };
-		string	getReligion()			const { return religion; };
-		string	getTechGroup()			const { return techGroup; };
+		double			getLearningScore()		const { return learningScore; };
+		string			getTag()						const { return tag; };
+		string			getGovernment()			const { return government; };
+		string			getPrimaryCulture()		const { return primaryCulture; };
+		vector<string>	getAcceptedCultures()	const { return acceptedCultures; };
+		string			getReligion()				const { return religion; };
+		string			getTechGroup()				const { return techGroup; };
+		int				getCapital()				const { return capital; };
+		int				getStability()				const { return stability; };
 
 	private:
 		const CK2Title*		src;
@@ -58,8 +62,11 @@ class EU3Country
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;
 		int						capital;
-		double					stability;
+		int						stability;
 		double					stabilityInvestment;
+
+		double					estimatedIncome;
+		double					estimatedTax;
 
 		bool						daimyo;
 		bool						japaneseEmperor;

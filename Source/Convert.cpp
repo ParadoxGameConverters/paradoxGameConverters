@@ -111,8 +111,8 @@ int main(int argc, char * argv[])
 	log("\tGetting CK2 cultures\n");
 	printf("\tGetting CK2 cultures\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
-	cultureGroupMapping cultureGroupMap;
-	addCultureGroupMappings(obj, cultureGroupMap);
+	cultureGroupMapping CK2CultureGroupMap;
+	addCultureGroupMappings(obj, CK2CultureGroupMap);
 	struct _finddata_t	culturesData;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\cultures\\*").c_str(), &culturesData)) == -1L)
 	{
@@ -127,10 +127,10 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\cultures\\" + culturesData.name).c_str());
-		addCultureGroupMappings(obj, cultureGroupMap);
+		addCultureGroupMappings(obj, CK2CultureGroupMap);
 	} while(_findnext(fileListing, &culturesData) == 0);
 	_findclose(fileListing);
-	
+
 	log("\tParsing landed titles.\n");
 	printf("\tParsing landed titles.\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
@@ -203,7 +203,7 @@ int main(int argc, char * argv[])
 
 	log("Importing parsed data.\n");
 	printf("Importing parsed data.\n");
-	srcWorld.init(obj, religionGroupMap, cultureGroupMap);
+	srcWorld.init(obj, religionGroupMap, CK2CultureGroupMap);
 
 	log("Removing extra titles.\n");
 	printf("Importing parsed data.\n");
@@ -267,6 +267,13 @@ int main(int argc, char * argv[])
 		return -1;
 	}
 
+	// Get EU3 Culture Groups
+	log("Getting EU3 cultures\n");
+	printf("Getting EU3 cultures\n");
+	obj = doParseFile((Configuration::getEU3Path() + "/common/cultures.txt").c_str());
+	cultureGroupMapping EU3CultureGroupMap;
+	addCultureGroupMappings(obj, EU3CultureGroupMap);
+
 	// Get culture mappings
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
@@ -325,7 +332,7 @@ int main(int argc, char * argv[])
 
 	log("Converting economies.\n");
 	printf("Converting economies.\n");
-	destWorld.convertEconomies();
+	destWorld.convertEconomies(EU3CultureGroupMap);
 	
 
 	// Output results

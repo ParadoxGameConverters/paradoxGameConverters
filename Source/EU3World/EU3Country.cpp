@@ -95,8 +95,11 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 		capital = 0;
 	}
 
-	stability				= 1.0f;
+	stability				= 1;
 	stabilityInvestment	= 0.0f;
+
+	estimatedIncome		= 0.0f;
+	estimatedTax			= 0.0f;
 
 	vector<Object*> daimyoObj = obj->getValue("daimyo");
 	if (daimyoObj.size() > 0)
@@ -288,8 +291,10 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=%d\n", capital);
 	}
-	fprintf(output, "\tstability=%f\n", stability);
+	fprintf(output, "\tstability=%f\n", (double)stability);
 	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
+	fprintf(output, "\tcurrent_income=0.000\n");
+	fprintf(output, "\testimated_monthly_income=%f\n", estimatedIncome);
 	fprintf(output, "\tinflation=0.000\n");
 	fprintf(output, "\tlast_bankrupt=\"1.1.1\"\n");
 	fprintf(output, "\twartax=\"1.1.1\"\n");
@@ -298,6 +303,47 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tnaval_maintenance=1.000\n");
 	fprintf(output, "\tcolonial_maintenance=1.000\n");
 	fprintf(output, "\tmissionary_maintenance=1.000\n");
+	fprintf(output, "\tdistribution=\n");
+	fprintf(output, "\t{\n");
+	fprintf(output, "\t\t0.000 0.170 0.166 0.166 0.166 0.166 0.166\n");
+	fprintf(output, "\t}\n");
+	fprintf(output, "\tledger=\n");
+	fprintf(output, "\t{\n");
+	fprintf(output, "\t\tincome=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n", estimatedTax);
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\texpense=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tthismonthincome=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tthismonthexpense=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tlastmonthincometable=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n", estimatedTax);
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tlastmonthexpensetable=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tlastyearincome=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tlastyearexpense=\n");
+	fprintf(output, "\t\t{\n");
+	fprintf(output, "\t\t\t0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000\n");
+	fprintf(output, "\t\t}\n");
+	fprintf(output, "\t\tlastmonthincome=%f\n", estimatedIncome);
+	fprintf(output, "\t\tlastmonthexpense=0.000\n");
+	fprintf(output, "\t}\n");
 	fprintf(output, "\tbadboy=0.000\n");
 	fprintf(output, "\tlegitimacy=1.000\n");
 	if (regent != NULL)
@@ -349,7 +395,9 @@ void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMa
 	src = _src;
 
 	government = "";
-	monarch = NULL;
+	monarch	= NULL;
+	heir		= NULL;
+	regent	= NULL;
 	history.clear();
 	previousMonarchs.clear();
 
@@ -459,7 +507,7 @@ void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMa
 		}
 	}
 
-	stability = 1.0f;
+	stability = 1;
 
 	daimyo				= false;
 	japaneseEmperor	= false;
@@ -604,10 +652,16 @@ void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMa
 	}
 }
 
-
-void EU3Country::determineEconomy()
+#pragma optimize("", off)
+void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups)
 {
-	double estimatedIncome = 0.0f;
+	estimatedIncome = 0.0f;
+	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
+	{
+		estimatedTax += (*provItr)->determineTax(this, cultureGroups);
+	}
+
+	estimatedIncome += estimatedTax;
 
 	if (monarch != NULL)
 	{
@@ -615,3 +669,4 @@ void EU3Country::determineEconomy()
 	}
 	stabilityInvestment += estimatedIncome / 6;
 }
+#pragma optimize("", on)

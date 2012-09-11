@@ -1,4 +1,5 @@
 #include "EU3Province.h"
+#include "EU3Country.h"
 #include "EU3History.h"
 #include "EU3Advisor.h"
 #include "..\Log.h"
@@ -636,3 +637,97 @@ void EU3Province::setManpower(double _manpower)
 		manpower++;
 	}
 }
+
+#pragma optimize("", off)
+double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups)
+{
+	double tax = baseTax;
+	/*if (isCOT) TODO
+	{
+		tax += 2;
+		tax += 2 * (COTSize / 100);
+	}*/
+	//if (buildings[workshop]) TODO
+	//{
+	//	tax += 1;
+	//}
+	if (country->getCapital() == num)
+	{
+		tax += 2;
+	}
+
+	tax /= 12;
+	
+	if (population <= 100)
+	{
+		tax *= 0.10 * (population / 10);
+	}
+	if (country->getPrimaryCulture() != culture)
+	{
+		bool acceptedCulture = false;
+		vector<string> acceptedCultures = country->getAcceptedCultures();
+		for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+		{
+			if (culture == acceptedCultures[i])
+			{
+				acceptedCulture = true;
+				break;
+			}
+		}
+		if (!acceptedCulture)
+		{
+			if ( cultureGroups.find(culture) == cultureGroups.find(country->getPrimaryCulture()) )
+			{
+				tax *= 0.90;
+			}
+			else
+			{
+				tax *= 0.70;
+			}
+		}
+	}
+	if (religion != country->getReligion())
+	{
+		tax *= 0.70;
+	}
+	//tax *= 1 - (int(revoltRisk / .01) * 0.05); TODO
+	/*if (blockaded) TODO
+	{
+		tax *= 0.25;
+	}*/
+	/*if (looted) TODO
+	{
+		tax *= 0.50;
+	}*/
+	/*if (scorched) TODO
+	{
+		tax *= 0.25;
+	}*/
+	/*if (overseas) TODO
+	{
+		tax *= 0.10;
+	}*/
+
+	tax *= 1 + (0.10 * country->getStability());
+	//tax *= 1 + (country->getCentralizationDecentralization() * -0.04); TODO
+	/*if (overseas)
+	{
+		tax *= 1 + (country->getLandNaval() * 0.05);
+	}*/
+	if (	(religion == "shiite") ||
+			(religion == "bektashi") ||
+			(religion == "druze") ||
+			(religion == "hurufi") ||
+			(religion == "shinto") 
+		)
+	{
+		tax *= 0.80;
+	}
+	if (religion == "hinduism")
+	{
+		tax *= 1.05;
+	}
+
+	return tax;
+}
+#pragma optimize("", on)

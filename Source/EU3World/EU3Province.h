@@ -17,6 +17,7 @@ class CK2Province;
 class EU3History;
 class EU3Ruler;
 class EU3Advisor;
+class EU3Country;
 
 class EU3Province
 {
@@ -30,6 +31,7 @@ class EU3Province
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 		void		setManpower(double _manpower);
+		double	determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups);
 
 		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };

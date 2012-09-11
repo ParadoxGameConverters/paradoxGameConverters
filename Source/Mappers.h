@@ -44,7 +44,7 @@ typedef vector<cultureStruct> cultureMapping;
 cultureMapping initCultureMap(Object* obj);
 string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, const CK2Province* srcProvince);
 
-typedef map<string, string> cultureGroupMapping; // CK2 culture, CK2 culture group
+typedef map<string, string> cultureGroupMapping; // culture, culture group
 void addCultureGroupMappings(Object* obj, cultureGroupMapping& map);
 
 typedef map<string, string> religionMapping; // CK2 religion, EU3 religion
