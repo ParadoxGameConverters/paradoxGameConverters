@@ -52,6 +52,7 @@ class EU3World
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void						convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap);
 		void						convertGovernments(const religionGroupMapping& religionGroupMap);
+		void						convertEconomies();
 
 		void						setJapaneseEmperor(string tag)	{ japaneseEmperor = tag; };
 		void						addDamiyo(string tag)				{ daimyos.push_back(tag); };

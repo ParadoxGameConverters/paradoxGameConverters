@@ -29,6 +29,7 @@ class EU3Country
 		void		determineLearningScore();
 		void		addAcceptedCultures();
 		void		determineGovernment(const religionGroupMapping& religionGroupMap);
+		void		determineEconomy();
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
@@ -57,6 +58,8 @@ class EU3Country
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;
 		int						capital;
+		double					stability;
+		double					stabilityInvestment;
 
 		bool						daimyo;
 		bool						japaneseEmperor;

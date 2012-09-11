@@ -95,6 +95,9 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 		capital = 0;
 	}
 
+	stability				= 1.0f;
+	stabilityInvestment	= 0.0f;
+
 	vector<Object*> daimyoObj = obj->getValue("daimyo");
 	if (daimyoObj.size() > 0)
 	{
@@ -285,6 +288,8 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=%d\n", capital);
 	}
+	fprintf(output, "\tstability=%f\n", stability);
+	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
 	fprintf(output, "\tinflation=0.000\n");
 	fprintf(output, "\tlast_bankrupt=\"1.1.1\"\n");
 	fprintf(output, "\twartax=\"1.1.1\"\n");
@@ -454,6 +459,8 @@ void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMa
 		}
 	}
 
+	stability = 1.0f;
+
 	daimyo				= false;
 	japaneseEmperor	= false;
 }
@@ -595,4 +602,16 @@ void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMa
 	{
 		government = "tribal_democracy";
 	}
+}
+
+
+void EU3Country::determineEconomy()
+{
+	double estimatedIncome = 0.0f;
+
+	if (monarch != NULL)
+	{
+		stabilityInvestment = monarch->getAdmin() * 2;
+	}
+	stabilityInvestment += estimatedIncome / 6;
 }

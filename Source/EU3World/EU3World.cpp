@@ -756,3 +756,15 @@ void EU3World::convertGovernments(const religionGroupMapping& religionGroupMap)
 		}
 	}
 }
+
+
+void EU3World::convertEconomies()
+{
+	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		if (countryItr != countries.end())
+		{
+			countryItr->second->determineEconomy();
+		}
+	}
+}
