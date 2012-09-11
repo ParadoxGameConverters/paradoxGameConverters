@@ -199,7 +199,8 @@ Revision	Log Message
 196		Log total number of titles.
 197		Added a bunch of fixed country outputs.
 198		Added daimyo system.
-		Fixed bug with importing coutnry history.
+		Fixed bug with importing country history.
 199		Tamnius' culture suggestions
 200		Add Scotland1399_10_16 save
 201		More culture rule updates
+202		Change Scotland test save from rar to zip
