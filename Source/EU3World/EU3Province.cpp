@@ -638,7 +638,7 @@ void EU3Province::setManpower(double _manpower)
 	}
 }
 
-#pragma optimize("", off)
+
 double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups)
 {
 	double tax = baseTax;
@@ -658,7 +658,7 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 
 	tax /= 12;
 	
-	if (population <= 100)
+	if (population <= 1000)
 	{
 		tax *= 0.10 * (population / 10);
 	}
@@ -730,4 +730,41 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 
 	return tax;
 }
-#pragma optimize("", on)
+
+
+double EU3Province::determineTolls(EU3Country* country)
+{
+	//if (overseas == true) TODO
+	//{
+	//	return 0.0f;
+	//}
+
+	double popUnits;
+	if (population <= 1000)
+	{
+		popUnits = 0.1 * int(population / 100);
+	}
+	else
+	{
+		popUnits = 0.99 + population / 100000;
+		if (popUnits > 2)
+		{
+			popUnits = 2;
+		}
+		popUnits += baseTax / 20;
+	}
+
+	double tolls;
+	if (population <= 1000)
+	{
+		tolls = (10 * popUnits) / 12;
+	}
+	else
+	{
+		tolls = (10 + popUnits) / 12;
+	}
+
+	tolls *= country->getTradeEffeciency();
+
+	return tolls;
+}

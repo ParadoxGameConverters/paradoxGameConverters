@@ -32,6 +32,7 @@ class EU3Province
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 		void		setManpower(double _manpower);
 		double	determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups);
+		double	determineTolls(EU3Country* country);
 
 		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };

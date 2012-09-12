@@ -30,6 +30,7 @@ class EU3Country
 		void		addAcceptedCultures();
 		void		determineGovernment(const religionGroupMapping& religionGroupMap);
 		void		determineEconomy(const cultureGroupMapping& cultureGroups);
+		double	getTradeEffeciency();
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
@@ -67,6 +68,7 @@ class EU3Country
 
 		double					estimatedIncome;
 		double					estimatedTax;
+		double					estimatedTolls;
 
 		bool						daimyo;
 		bool						japaneseEmperor;
