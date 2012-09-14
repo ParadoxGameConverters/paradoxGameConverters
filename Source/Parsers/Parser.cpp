@@ -124,7 +124,7 @@ string bufferOneObject(ifstream& read)
 	while (read.good())
 	{
 		getline(read, buffer);
-		currObject += "\n" + buffer;
+		currObject += "\n";
 
 		bool opened = false;
 		bool isInLiteral = false;
@@ -138,6 +138,7 @@ string bufferOneObject(ifstream& read)
 			}
 			if (isInLiteral)
 			{
+				currObject += str[i];
 				continue;
 			}
 			if ('#' == str[i])
@@ -153,6 +154,7 @@ string bufferOneObject(ifstream& read)
 			{
 				--openBraces;
 			}
+			currObject += str[i];
 		}
 
 		if (openBraces > 0)

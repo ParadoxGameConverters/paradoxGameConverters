@@ -89,6 +89,25 @@ inverseProvinceMapping invertProvinceMap(provinceMapping& provinceMap)
 }
 
 
+continentMapping initContinentMap(Object* obj)
+{
+	continentMapping continentMap;
+
+	vector<Object*> continentObjs = obj->getLeaves();
+	for (vector<Object*>::iterator continentItr = continentObjs.begin(); continentItr < continentObjs.end(); continentItr++)
+	{
+		string continent = (*continentItr)->getKey();
+		vector<string> provinceObjs = (*continentItr)->getTokens();
+		for (vector<string>::iterator provItr = provinceObjs.begin(); provItr != provinceObjs.end(); provItr++)
+		{
+			continentMap.insert(make_pair( atoi(provItr->c_str()), continent ));
+		}
+	}
+
+	return continentMap;
+}
+
+
 vector<string> processBlockedNations(Object* obj)
 {
 	vector<string> blockedNations;

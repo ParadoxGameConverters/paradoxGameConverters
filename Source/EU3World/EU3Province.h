@@ -39,6 +39,7 @@ class EU3Province
 		void		addCore(string core)							{ cores.push_back(core); };
 		void		setOwner(string _owner)						{ owner = _owner; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
+		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 
 		string					getOwner() const			{ return owner; };
 		double					getBaseTax() const		{ return baseTax; };
@@ -65,6 +66,8 @@ class EU3Province
 		string						religion;
 		vector<EU3History*>		history;
 		vector<string>				modifiers;
+
+		bool	sameContinent;
 };
 
 

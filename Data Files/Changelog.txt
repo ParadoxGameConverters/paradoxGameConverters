@@ -207,3 +207,4 @@ Revision	Log Message
 203		Starting stability and investment
 204		Estimate taxation
 205		Estimate tolls
+206		Determine if provinces are on the same continent as the owner's capital

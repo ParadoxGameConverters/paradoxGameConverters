@@ -15,11 +15,18 @@ class CK2Title;
 class	CK2Province;
 class EU3Country;
 
+
+// Province Mappings
 typedef map< int, vector<int> > provinceMapping;			// < destProvince,	sourceProvinces	>
 typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince,	destProvinces		>
 provinceMapping initProvinceMap(Object* obj, CK2Version* version);
 inverseProvinceMapping invertProvinceMap(provinceMapping& provMap);
 
+typedef map<int, string> continentMapping;
+continentMapping initContinentMap(Object* obj);
+
+
+// Country Mappings
 vector<string> processBlockedNations(Object* obj);
 
 typedef map< const CK2Title*, EU3Country* > countryMapping;
@@ -47,6 +54,8 @@ string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, 
 typedef map<string, string> cultureGroupMapping; // culture, culture group
 void addCultureGroupMappings(Object* obj, cultureGroupMapping& map);
 
+
+// Religion Mappings
 typedef map<string, string> religionMapping; // CK2 religion, EU3 religion
 religionMapping initReligionMap(Object* obj);
 

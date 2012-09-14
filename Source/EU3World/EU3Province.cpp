@@ -186,6 +186,8 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 	}
 
 	modifiers.clear();
+
+	sameContinent = false;
 }
 
 

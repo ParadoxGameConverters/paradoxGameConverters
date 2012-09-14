@@ -438,7 +438,7 @@ void EU3World::convertCountries(countryMapping& countryMap, const religionMappin
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -559,9 +559,18 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		if (owners.size() > 0)
 		{
-			provItr->second->setOwner( countryMap[greatestOwner]->getTag() );
+			string ownerTag = countryMap[greatestOwner]->getTag();
+			provItr->second->setOwner( ownerTag );
 			provItr->second->setSrcOwner(greatestOwner);
-			countries[countryMap[greatestOwner]->getTag()]->addProvince(provItr->second);
+			countries[ownerTag]->addProvince(provItr->second);
+			if ( continentMap[countries[ownerTag]->getCapital()] == continentMap[provItr->first])
+			{
+				provItr->second->setSameContinent(true);
+			}
+			else
+			{
+				provItr->second->setSameContinent(false);
+			}
 		}
 
 		if (Configuration::getBasetax() == "converted")

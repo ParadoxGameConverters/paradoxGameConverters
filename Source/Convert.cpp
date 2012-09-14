@@ -300,6 +300,19 @@ int main(int argc, char * argv[])
 	religionMapping religionMap;
 	religionMap = initReligionMap(obj->getLeaves()[0]);
 
+	// Get continents
+	log("Parsing continents.\n");
+	printf("Parsing continents.\n");
+	obj = doParseFile((Configuration::getEU3Path() + "\\map\\continent.txt").c_str());
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse continent.txt.\n");
+		printf("Error: Failed to parse continent.txt.\n");
+		return 1;
+	}
+	continentMapping continentMap;
+	continentMap = initContinentMap(obj);
+
 
 	// Convert
 	log("Converting countries.\n");
@@ -312,7 +325,7 @@ int main(int argc, char * argv[])
 
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap);
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap, continentMap);
 
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");

@@ -660,10 +660,14 @@ void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups)
 	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
 	{
 		estimatedTax	+= (*provItr)->determineTax(this, cultureGroups);
+		//TODO: Harbor fees
+		//TODO: Manus
 		estimatedTolls	+= (*provItr)->determineTolls(this);
 	}
 
 	estimatedIncome += estimatedTax;
+	//TODO: Harbor fees
+	//TODO: Manus
 	estimatedIncome += estimatedTolls;
 
 	if (monarch != NULL)
