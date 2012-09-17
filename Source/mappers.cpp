@@ -8,6 +8,7 @@
 #include "CK2World\CK2Barony.h"
 #include "CK2World\CK2Character.h"
 #include "EU3World\EU3Country.h"
+#include <cstdio>
 
 
 
@@ -105,6 +106,52 @@ continentMapping initContinentMap(Object* obj)
 	}
 
 	return continentMap;
+}
+
+
+adjacencyMapping initAdjacencyMap()
+{
+	FILE* adjacenciesBin;
+	fopen_s( &adjacenciesBin, (Configuration::getEU3Path() + "\\map\\cache\\adjacencies.bin").c_str(), "rb");
+	if (adjacenciesBin == NULL)
+	{
+		log("Error: Could not open adjacencies.bin\n");
+		exit(1);
+	}
+
+	adjacencyMapping adjacencyMap;
+	while( !feof(adjacenciesBin) )
+	{
+		int numAdjacencies;
+		if (fread(&numAdjacencies, sizeof(numAdjacencies), 1, adjacenciesBin) != 1)
+		{
+			break;
+		}
+		vector<adjacency> adjacencies;
+		for(int i = 0; i < numAdjacencies; i++)
+		{
+			adjacency newAdjacency;
+			fread(&newAdjacency, sizeof(newAdjacency), 1, adjacenciesBin);
+			adjacencies.push_back(newAdjacency);
+		}
+		adjacencyMap.push_back(adjacencies);
+	}
+	fclose(adjacenciesBin);
+
+	/*FILE* adjacenciesData;
+	fopen_s(&adjacenciesData, "adjacenciesData.csv", "w");
+	fprintf(adjacenciesData, "From,To,Type,Via,Unknown1,PathX,PathY\n");
+	for (unsigned int from = 0; from < adjacencyMap.size(); from++)
+	{
+		vector<adjacency> adjacencies = adjacencyMap[from];
+		for (unsigned int i = 0; i < adjacencies.size(); i++)
+		{
+			fprintf(adjacenciesData, "%d,%d,%d,%d,%d,%d,%d\n", from, adjacencies[i].to, adjacencies[i].type, adjacencies[i].via, adjacencies[i].unknown1, adjacencies[i].pathX, adjacencies[i].pathY);
+		}
+	}
+	fclose(adjacenciesData);*/
+
+	return adjacencyMap;
 }
 
 

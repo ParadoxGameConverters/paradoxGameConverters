@@ -25,6 +25,18 @@ inverseProvinceMapping invertProvinceMap(provinceMapping& provMap);
 typedef map<int, string> continentMapping;
 continentMapping initContinentMap(Object* obj);
 
+typedef struct {
+	int type;
+	int to;
+	int via;
+	int unknown1;
+	int pathX;
+	int pathY;
+} adjacency;
+typedef vector< vector<adjacency> > adjacencyMapping;
+adjacencyMapping initAdjacencyMap();
+	
+
 
 // Country Mappings
 vector<string> processBlockedNations(Object* obj);

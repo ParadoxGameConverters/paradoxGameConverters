@@ -1,5 +1,6 @@
 #include "EU3World.h"
 #include <string>
+#include <queue>
 #include <algorithm>
 #include <io.h>
 #include "..\Log.h"
@@ -438,7 +439,7 @@ void EU3World::convertCountries(countryMapping& countryMap, const religionMappin
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -602,6 +603,48 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 		provItr->second->determineReligion(religionMap, srcProvinces);
+	}
+
+	// find all land connections to capitals
+	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		map<int, EU3Province*>	openProvinces = provinces;
+		queue<int>					goodProvinces;
+
+		map<int, EU3Province*>::iterator openItr = openProvinces.find(countryItr->second->getCapital());
+		if (openItr == openProvinces.end())
+		{
+			continue;
+		}
+		openItr->second->setLandConnection(true);
+		goodProvinces.push(openItr->first);
+		openProvinces.erase(openItr);
+
+		do 
+		{
+			int currentProvince = goodProvinces.front();
+			goodProvinces.pop();
+			vector<adjacency> adjacencies = adjacencyMap[currentProvince];
+			for (unsigned int i = 0; i < adjacencies.size(); i++)
+			{
+				map<int, EU3Province*>::iterator openItr = openProvinces.find(i);
+				if (openItr == openProvinces.end())
+				{
+					continue;
+				}
+				if (!openItr->second->isLand())
+				{
+					continue;
+				}
+				if (openItr->second->getOwner() != countryItr->second->getTag())
+				{
+					continue;
+				}
+				openItr->second->setLandConnection(true);
+				goodProvinces.push(openItr->first);
+				openProvinces.erase(openItr);
+			}
+		} while (goodProvinces.size() > 1);
 	}
 }
 

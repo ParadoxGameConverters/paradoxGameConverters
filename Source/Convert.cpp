@@ -313,6 +313,11 @@ int main(int argc, char * argv[])
 	continentMapping continentMap;
 	continentMap = initContinentMap(obj);
 
+	// Get adjacencies
+	log("Importing adjacencies\n");
+	printf("Importing adjacencies\n");
+	adjacencyMapping adjacencyMap = initAdjacencyMap();
+
 
 	// Convert
 	log("Converting countries.\n");
@@ -325,7 +330,7 @@ int main(int argc, char * argv[])
 
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap, continentMap);
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap, continentMap, adjacencyMap);
 
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");

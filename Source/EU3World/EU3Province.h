@@ -40,7 +40,9 @@ class EU3Province
 		void		setOwner(string _owner)						{ owner = _owner; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
+		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
 
+		bool						isLand() const				{ return land; };
 		string					getOwner() const			{ return owner; };
 		double					getBaseTax() const		{ return baseTax; };
 		double					getPopulation() const	{ return population; };
@@ -52,6 +54,8 @@ class EU3Province
 		vector<CK2Province*>		srcProvinces;
 
 		int							num;
+		bool							land;
+
 		string						capital;
 		string						tradeGood;
 		double						baseTax;
@@ -68,6 +72,7 @@ class EU3Province
 		vector<string>				modifiers;
 
 		bool	sameContinent;
+		bool	landConnection;
 };
 
 

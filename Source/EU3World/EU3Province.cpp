@@ -18,11 +18,13 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
 	{
-		capital = capitalObj[0]->getLeaf();
+		land		= true;
+		capital	= capitalObj[0]->getLeaf();
 	}
 	else
 	{
-		capital = "";
+		land		= false;
+		capital	= "";
 	}
 
 	vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
@@ -187,7 +189,8 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 
 	modifiers.clear();
 
-	sameContinent = false;
+	sameContinent	= false;
+	landConnection	= false;
 }
 
 
@@ -306,7 +309,7 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<string> _discovere
 	srcProvinces = _srcProvinces;
 
 	num				= _num;
-	//capital	-- leave it as it is from the history file
+	//capital	-- leave it as it is from the history file TODO?
 	owner				= "";
 	cores.clear();
 	inHRE				= _inHRE;

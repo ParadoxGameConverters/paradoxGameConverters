@@ -208,3 +208,4 @@ Revision	Log Message
 204		Estimate taxation
 205		Estimate tolls
 206		Determine if provinces are on the same continent as the owner's capital
+207		Determine if provinces are land connected to capital
