@@ -309,7 +309,7 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<string> _discovere
 	srcProvinces = _srcProvinces;
 
 	num				= _num;
-	//capital	-- leave it as it is from the history file TODO?
+	//capital	-- leave it as it is from the history file (TODO?)
 	owner				= "";
 	cores.clear();
 	inHRE				= _inHRE;
@@ -708,10 +708,10 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 	{
 		tax *= 0.25;
 	}*/
-	/*if (overseas) TODO
+	if (!sameContinent && !landConnection) // TODO: && distance > 250
 	{
 		tax *= 0.10;
-	}*/
+	}
 
 	tax *= 1 + (0.10 * country->getStability());
 	//tax *= 1 + (country->getCentralizationDecentralization() * -0.04); TODO
@@ -739,10 +739,10 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 
 double EU3Province::determineTolls(EU3Country* country)
 {
-	//if (overseas == true) TODO
-	//{
-	//	return 0.0f;
-	//}
+	if (!sameContinent && !landConnection) // TODO: && distance > 250
+	{
+		return 0.0f;
+	}
 
 	double popUnits;
 	if (population <= 1000)
