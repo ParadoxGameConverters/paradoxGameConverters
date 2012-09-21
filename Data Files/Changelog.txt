@@ -211,3 +211,4 @@ Revision	Log Message
 207		Determine if provinces are land connected to capital
 208		Taxes and tolls take into account distance overseas
 209		Estimate production income
+210		Estimate gold income

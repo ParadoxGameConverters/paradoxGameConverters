@@ -857,6 +857,7 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 		}
 	}
 
+	// find prices for various goods
 	map<string, double> unitPrices;
 	for (tradeGoodMapping::const_iterator tradeItr = tradeGoodMap.begin(); tradeItr != tradeGoodMap.end(); tradeItr++)
 	{
@@ -876,6 +877,7 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 		unitPrices.insert(make_pair(tradeItr->first, price));
 	}
 
+	// determine economies
 	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		if (countryItr != countries.end())

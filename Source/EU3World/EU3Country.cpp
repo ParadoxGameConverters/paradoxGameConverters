@@ -100,9 +100,10 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
-	estimatedTolls			= 0.0f;
+	estimatedGold			= 0.0f;
 	estimatedProduction	= 0.0f;
-
+	estimatedTolls			= 0.0f;
+	
 	vector<Object*> daimyoObj = obj->getValue("daimyo");
 	if (daimyoObj.size() > 0)
 	{
@@ -313,7 +314,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t{\n");
 	fprintf(output, "\t\tincome=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedProduction, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 0.000 %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedGold, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\texpense=\n");
 	fprintf(output, "\t\t{\n");
@@ -329,7 +330,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthincometable=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedProduction, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 0.000 %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedGold, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthexpensetable=\n");
 	fprintf(output, "\t\t{\n");
@@ -661,17 +662,23 @@ void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups, cons
 	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
 	{
 		estimatedTax			+= (*provItr)->determineTax(this, cultureGroups);
-		//TODO: Harbor fees
+		//TODO: Trade
 		//TODO: Manus
-		estimatedTolls			+= (*provItr)->determineTolls(this);
+		estimatedGold			+= (*provItr)->determineGold();
 		estimatedProduction	+= (*provItr)->determineProduction(this, unitPrices);
+		//TODO: Vassals
+		estimatedTolls			+= (*provItr)->determineTolls(this);
+		//TODO: Harbor fees
 	}
 
 	estimatedIncome += estimatedTax;
-	//TODO: Harbor fees
+	//TODO: Trade
 	//TODO: Manus
-	estimatedIncome += estimatedTolls;
+	estimatedIncome += estimatedGold;
 	estimatedIncome += estimatedProduction;
+	//TODO: Vassals
+	estimatedIncome += estimatedTolls;
+	//TODO: Harbor fees
 
 	if (monarch != NULL)
 	{

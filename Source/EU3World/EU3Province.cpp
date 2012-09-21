@@ -1201,3 +1201,16 @@ double EU3Province::determineProduction(EU3Country* country, const map<string, d
 
 	return production;
 }
+
+
+double EU3Province::determineGold()
+{
+	if (tradeGood == "gold")
+	{
+		return (10 / 3) * popUnits;
+	}
+	else
+	{
+		return 0.0f;
+	}
+}

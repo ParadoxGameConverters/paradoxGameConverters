@@ -69,8 +69,9 @@ class EU3Country
 
 		double					estimatedIncome;
 		double					estimatedTax;
-		double					estimatedTolls;
+		double					estimatedGold;
 		double					estimatedProduction;
+		double					estimatedTolls;
 
 		bool						daimyo;
 		bool						japaneseEmperor;

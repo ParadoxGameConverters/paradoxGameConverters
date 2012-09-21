@@ -39,6 +39,7 @@ class EU3Province
 		double	determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups);
 		double	determineTolls(EU3Country* country);
 		double	determineProduction(EU3Country* country, const map<string, double>& unitPrices);
+		double	determineGold();
 
 		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
