@@ -1207,7 +1207,7 @@ double EU3Province::determineGold()
 {
 	if (tradeGood == "gold")
 	{
-		return (10 / 3) * popUnits;
+		return (10.0 / 3.0) * popUnits;
 	}
 	else
 	{

@@ -212,3 +212,4 @@ Revision	Log Message
 208		Taxes and tolls take into account distance overseas
 209		Estimate production income
 210		Estimate gold income
+211		Fix for gold income estimate
