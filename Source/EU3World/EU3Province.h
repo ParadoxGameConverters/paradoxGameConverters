@@ -31,14 +31,21 @@ class EU3Province
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 		void		setManpower(double _manpower);
+		void		determinePopUnits();
+		void		determineGoodsSupply(const tradeGoodMapping& tradeGoodMap, const EU3Country* country);
+		void		determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, const EU3Country* country, const religionGroupMapping& EU3ReligionGroupMap);
+		void		addSupplyContribution(map<string, double>& goodsSupply);
+		void		addDemandContribution(map<string, double>& goodsDemand);
 		double	determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups);
 		double	determineTolls(EU3Country* country);
+		double	determineProduction(EU3Country* country, const map<string, double>& unitPrices);
 
 		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(string core)							{ cores.push_back(core); };
 		void		setOwner(string _owner)						{ owner = _owner; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
+		void		setContinent(string _continent)			{ continent = _continent; };
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
 
@@ -71,8 +78,13 @@ class EU3Province
 		vector<EU3History*>		history;
 		vector<string>				modifiers;
 
-		bool	sameContinent;
-		bool	landConnection;
+		string	continent;
+		bool		sameContinent;
+		bool		landConnection;
+
+		double					popUnits;
+		double					supply;
+		map<string, double>	demands;
 };
 
 

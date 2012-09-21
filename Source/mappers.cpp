@@ -506,3 +506,324 @@ void addReligionGroupMappings(Object* obj, religionGroupMapping& map)
 		}
 	}
 }
+
+
+tradeGoodMapping initTradeGoodMapping(Object* obj)
+{
+	tradeGoodMapping tradeGoodMap;
+
+	vector<Object*> tradeGoodObjs = obj->getLeaves();
+	for(vector<Object*>::iterator tradeItr = tradeGoodObjs.begin(); tradeItr < tradeGoodObjs.end(); tradeItr++)
+	{
+		tradeGood newTradeGood;
+		string tradeGoodName = (*tradeItr)->getKey();
+		newTradeGood.basePrice = atoi( (*tradeItr)->getValue("base_price")[0]->getLeaf().c_str() );
+		
+		vector<Object*> supplyObjs = (*tradeItr)->getValue("supply");
+		vector<Object*> modifierObjs;
+		if (supplyObjs.size() > 0)
+		{
+			modifierObjs = supplyObjs[0]->getLeaves();
+		}
+		for(vector<Object*>::iterator modsItr = modifierObjs.begin(); modsItr < modifierObjs.end(); modsItr++)
+		{
+			double factor		= 1.0f;
+			string modifier	= "";
+			vector<Object*> leaves = (*modsItr)->getLeaves();
+			for(vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
+			{
+				if ( (*itr)->getKey() == "factor" )
+				{
+					factor = atof( (*itr)->getLeaf().c_str() );
+				}
+				else if ( (*itr)->getKey() == "looted" )
+				{
+					modifier = "looted";
+				}
+				else if ( (*itr)->getKey() == "is_blockaded" )
+				{
+					modifier = "blockaded";
+				}
+				else if ( (*itr)->getKey() == "NOT" )
+				{
+					vector<Object*> subObjs = (*itr)->getLeaves();
+					if (subObjs[0]->getKey() == "controlled_by")
+					{
+						modifier = "other controller";
+					}
+					else if (subObjs[0]->getKey() == "owner")
+					{
+						vector<Object*> subSubObjs = subObjs[0]->getLeaves();
+						if (subSubObjs[0]->getKey() == "stability")
+						{
+							modifier = "stability not " + subSubObjs[0]->getLeaf();
+						}
+						else if (subSubObjs[0]->getKey() == "aristocracy_plutocracy")
+						{
+							modifier = "aristocracy_plutocracy not " + subSubObjs[0]->getLeaf();
+						}
+						else if (subSubObjs[0]->getKey() == "land_naval")
+						{
+							modifier = "land_naval not " + subSubObjs[0]->getLeaf();
+						}
+					}
+				}
+				else if ( (*itr)->getKey() == "owner" )
+				{
+					vector<Object*> subObjs = (*itr)->getLeaves();
+					if (subObjs[0]->getKey() == "serfdom_freesubjects")
+					{
+						modifier = "serfdom_freesubjects " + subObjs[0]->getLeaf();
+					}
+					else if (subObjs[0]->getKey() == "mercantilism_freetrade")
+					{
+						modifier = "mercantilism_freetrade " + subObjs[0]->getLeaf();
+					}
+					else if (subObjs[0]->getKey() == "aristocracy_plutocracy")
+					{
+						modifier = "aristocracy_plutocracy " + subObjs[0]->getLeaf();
+					}
+					else if (subObjs[0]->getKey() == "has_country_modifier")
+					{
+						modifier = "has country modifier " + subObjs[0]->getLeaf();
+					}
+				}
+				else if ( (*itr)->getKey() == "units_in_province" )
+				{
+					modifier = "units_in_province";
+				}
+			}
+			newTradeGood.supplyModifiers.push_back(make_pair(modifier, factor));
+		}
+
+		vector<Object*> demandObjs = (*tradeItr)->getValue("demand");
+		if (demandObjs.size() > 0)
+		{
+			modifierObjs = demandObjs[0]->getLeaves();
+		}
+		for(vector<Object*>::iterator modsItr = modifierObjs.begin(); modsItr < modifierObjs.end(); modsItr++)
+		{
+			double			factor = 1.0f;
+			vector<string>	modifiers;
+			vector<Object*> leaves = (*modsItr)->getLeaves();
+			for(vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
+			{
+				if ( (*itr)->getKey() == "factor" )
+				{
+					factor = atof( (*itr)->getLeaf().c_str() );
+				}
+				else if ( (*itr)->getKey() == "owner" )
+				{
+					vector<Object*> subObjs = (*itr)->getLeaves();
+					for(vector<Object*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
+					{
+						if ((*subItr)->getKey() == "war")
+						{
+							string modifier = "war";
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "stability")
+						{
+							string modifier = "stability is " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "government")
+						{
+							string modifier = "government is " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "land_naval")
+						{
+							string modifier = "land_naval is " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "big_ship")
+						{
+							string modifier = "has big_ships " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "artillery")
+						{
+							string modifier = "has artillery " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "infantry")
+						{
+							string modifier = "has infantry " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "land_tech")
+						{
+							string modifier = "has land tech " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "has_country_modifier")
+						{
+							string modifier = "has country modifier " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "gold_income_percentage")
+						{
+							string modifier = "gold income percent " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "prestige")
+						{
+							string modifier = "prestige " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "num_of_trade_embargos")
+						{
+							string modifier = "trade embargos " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ( (*subItr)->getKey() == "NOT" )
+						{
+							vector<Object*> subSubObjs = (*subItr)->getLeaves();
+							for(vector<Object*>::iterator subSubItr = subSubObjs.begin(); subSubItr < subSubObjs.end(); subSubItr++)
+							{
+								if ((*subSubItr)->getKey() == "trade_income_percentage")
+								{
+									string modifier = "trade income percentage not " + (*subSubItr)->getLeaf();
+									modifiers.push_back(modifier);
+								}
+								else if ((*subSubItr)->getKey() == "technology_group")
+								{
+									string modifier = "tech group not " + (*subSubItr)->getLeaf();
+									modifiers.push_back(modifier);
+								}
+								else if ((*subSubItr)->getKey() == "land_naval")
+								{
+									string modifier = "land_naval not " + (*subSubItr)->getLeaf();
+									modifiers.push_back(modifier);
+								}
+								else if ((*subSubItr)->getKey() == "mercantilism_freetrade")
+								{
+									string modifier = "mercantilism_freetrade not " + (*subSubItr)->getLeaf();
+									modifiers.push_back(modifier);
+								}
+							}
+						}
+					}
+				}
+				else if ( (*itr)->getKey() == "NOT" )
+				{
+					vector<Object*> subObjs = (*itr)->getLeaves();
+					for(vector<Object*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
+					{
+						if ((*subItr)->getKey() == "owner")
+						{
+							vector<Object*> subSubObjs = (*subItr)->getLeaves();
+							if (subSubObjs[0]->getKey() == "war")
+							{
+								string modifier = "not war";
+								modifiers.push_back(modifier);
+							}
+							else if (subSubObjs[0]->getKey() == "num_of_ports")
+							{
+								string modifier = "owner has this many ports: " + subSubObjs[0]->getLeaf();
+								modifiers.push_back(modifier);
+							}
+							else if (subSubObjs[0]->getKey() == "quality_quantity")
+							{
+								string modifier = "quality_quantity not " + subSubObjs[0]->getLeaf();
+								modifiers.push_back(modifier);
+							}
+							else if (subSubObjs[0]->getKey() == "serfdom_freesubjects")
+							{
+								string modifier = "serfdom_freesubjects not " + subSubObjs[0]->getLeaf();
+								modifiers.push_back(modifier);
+							}
+							else if (subSubObjs[0]->getKey() == "land_naval")
+							{
+								string modifier = "land_naval not " + subSubObjs[0]->getLeaf();
+								modifiers.push_back(modifier);
+							}
+							else if (subSubObjs[0]->getKey() == "technology_group")
+							{
+								string modifier = "tech group not " + subSubObjs[0]->getLeaf();
+								modifiers.push_back(modifier);
+							}
+						}
+						else if ((*subItr)->getKey() == "trade_goods")
+						{
+							string modifier = "trade goods not " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+						else if ((*subItr)->getKey() == "has_building")
+						{
+							string modifier = "has not building " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+					}
+				}
+				else if ((*itr)->getKey() == "OR") 
+				{
+					vector<Object*> subObjs = (*itr)->getLeaves();
+					for(vector<Object*>::iterator subItr = subObjs.begin(); subItr < subObjs.end(); subItr++)
+					{
+						if ((*subItr)->getKey() == "trade_goods")
+						{
+							string modifier = "OR trade goods " + (*subItr)->getLeaf();
+							modifiers.push_back(modifier);
+						}
+					}
+				}
+				else if ( (*itr)->getKey() == "has_building" )
+				{
+					string modifier = "has building " + (*itr)->getLeaf();
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "trade_goods" )
+				{
+					string modifier = "trade good " + (*itr)->getLeaf();
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "revolt_risk" )
+				{
+					string modifier = "revolt risk is " + (*itr)->getLeaf();
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "religion" )
+				{
+					string modifier = "religion is " + (*itr)->getLeaf();
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "religion_group" )
+				{
+					string modifier = "religion group is " + (*itr)->getLeaf();
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "is_overseas" )
+				{
+					string modifier = "overseas";
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "is_capital" )
+				{
+					string modifier = "capital";
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "looted" )
+				{
+					string modifier = "looted";
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "port" )
+				{
+					string modifier = "port";
+					modifiers.push_back(modifier);
+				}
+				else if ( (*itr)->getKey() == "continent" )
+				{
+					string modifier = "continent " + (*itr)->getLeaf();
+					modifiers.push_back(modifier);
+				}
+			}
+			newTradeGood.demandModifiers.push_back(make_pair(modifiers, factor));
+		}
+
+		tradeGoodMap.insert(make_pair(tradeGoodName, newTradeGood));
+	}
+	return tradeGoodMap;
+}

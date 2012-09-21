@@ -75,5 +75,14 @@ typedef map<string, string> religionGroupMapping; // CK2 religion, CK2 religion 
 void addReligionGroupMappings(Object* obj, religionGroupMapping& map);
 
 
+// Trade Goods
+typedef struct {
+	int														basePrice;
+	vector<  pair<string, double>  >					supplyModifiers;
+	vector<  pair< vector<string>, double >  >	demandModifiers;
+} tradeGood;
+typedef map<string, tradeGood> tradeGoodMapping;
+tradeGoodMapping initTradeGoodMapping(Object* obj);
+
 
 #endif	// MAPPERS_H_

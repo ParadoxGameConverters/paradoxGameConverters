@@ -88,8 +88,8 @@ int main(int argc, char * argv[])
 	log("\tGetting CK2 religions\n");
 	printf("\tGetting CK2 religions\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/religion.txt").c_str()); // for pre-1.06 installs
-	religionGroupMapping religionGroupMap;
-	addReligionGroupMappings(obj, religionGroupMap);
+	religionGroupMapping CK2ReligionGroupMap;
+	addReligionGroupMappings(obj, CK2ReligionGroupMap);
 	struct _finddata_t	religionsData;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\religions\\*").c_str(), &religionsData)) == -1L)
 	{
@@ -104,7 +104,7 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
-		addReligionGroupMappings(obj, religionGroupMap);
+		addReligionGroupMappings(obj, CK2ReligionGroupMap);
 	} while(_findnext(fileListing, &religionsData) == 0);
 	_findclose(fileListing);
 
@@ -203,7 +203,7 @@ int main(int argc, char * argv[])
 
 	log("Importing parsed data.\n");
 	printf("Importing parsed data.\n");
-	srcWorld.init(obj, religionGroupMap, CK2CultureGroupMap);
+	srcWorld.init(obj, CK2ReligionGroupMap, CK2CultureGroupMap);
 
 	log("Removing extra titles.\n");
 	printf("Importing parsed data.\n");
@@ -274,6 +274,15 @@ int main(int argc, char * argv[])
 	cultureGroupMapping EU3CultureGroupMap;
 	addCultureGroupMappings(obj, EU3CultureGroupMap);
 
+	// Get EU3 Religion Groups
+	log("Getting EU3 religions\n");
+	printf("Getting EU3 religions\n");
+	obj = doParseFile((Configuration::getEU3Path() + "/common/religion.txt").c_str());
+	religionGroupMapping EU3ReligionGroupMap;
+	addReligionGroupMappings(obj, EU3ReligionGroupMap);
+	obj = doParseFile((Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str());
+	addReligionGroupMappings(obj, EU3ReligionGroupMap);
+
 	// Get culture mappings
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
@@ -318,6 +327,18 @@ int main(int argc, char * argv[])
 	printf("Importing adjacencies\n");
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
 
+	// Get trade good data
+	log("Inporting trade good data.\n");
+	printf("Inporting trade good data.\n");
+	obj = doParseFile((Configuration::getEU3Path() + "\\common\\Prices.txt").c_str());
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse Prices.txt.\n");
+		printf("Error: Failed to parse Prices.txt.\n");
+		return 1;
+	}
+	tradeGoodMapping tradeGoodMap = initTradeGoodMapping(obj);
+
 
 	// Convert
 	log("Converting countries.\n");
@@ -330,7 +351,7 @@ int main(int argc, char * argv[])
 
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap, continentMap, adjacencyMap);
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap);
 
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");
@@ -346,11 +367,11 @@ int main(int argc, char * argv[])
 
 	log("Converting governments.\n");
 	printf("Converting governments.\n");
-	destWorld.convertGovernments(religionGroupMap);
+	destWorld.convertGovernments(CK2ReligionGroupMap);
 
 	log("Converting economies.\n");
 	printf("Converting economies.\n");
-	destWorld.convertEconomies(EU3CultureGroupMap);
+	destWorld.convertEconomies(EU3CultureGroupMap, tradeGoodMap);
 	
 
 	// Output results

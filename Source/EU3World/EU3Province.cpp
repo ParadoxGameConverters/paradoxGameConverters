@@ -191,6 +191,10 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 
 	sameContinent	= false;
 	landConnection	= false;
+
+	popUnits	= 0.0f;
+	supply	= 0.0f;
+	demands.clear();
 }
 
 
@@ -644,6 +648,415 @@ void EU3Province::setManpower(double _manpower)
 }
 
 
+void EU3Province::determinePopUnits()
+{
+	if (population <= 1000)
+	{
+		popUnits = 0.1 * int(population / 100);
+	}
+	else
+	{
+		popUnits = 0.99 + population / 100000;
+		if (popUnits > 2)
+		{
+			popUnits = 2;
+		}
+		popUnits += baseTax / 20;
+	}
+}
+
+
+void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap, const EU3Country* country)
+{
+	determinePopUnits();
+	supply = popUnits;
+	tradeGoodMapping::const_iterator goodItr = tradeGoodMap.find(tradeGood);
+	for (vector< pair<string, double> >::const_iterator modifierItr = goodItr->second.supplyModifiers.begin(); modifierItr < goodItr->second.supplyModifiers.end(); modifierItr++)
+	{
+		if (modifierItr->first == "looted")
+		{
+			//if (looted) TODO
+			//{
+			//	supply *= modifierItr->second;
+			//}
+		}
+		else if (modifierItr->first == "blockaded")
+		{
+			//if (blockaded) TODO
+			//{
+			//	supply *= modifierItr->second;
+			//}
+		}
+		else if (modifierItr->first == "other controller")
+		{
+			//if (owner != controller) TODO
+			//{
+			//	supply *= modifierItr->second;
+			//}
+		}
+		else if (modifierItr->first.substr(0, 14) == "stability not ")
+		{
+			int requiredStab = atoi( modifierItr->first.substr(14, 2).c_str() );
+			if (country->getStability() != requiredStab)
+			{
+				supply *= modifierItr->second;
+			}
+		}
+		else if (modifierItr->first.substr(0, 27) == "aristocracy_plutocracy not ")
+		{
+		//	int requiredSlider = atoi( modifierItr->first.substr(27, 2).c_str() );
+		//	if (country->getAristocracyPlutocracy() < requiredSlider) TODO
+		//	{
+		//		supply *= modifierItr->second;
+		//	}
+		}
+		else if (modifierItr->first.substr(0, 15) == "land_naval not ")
+		{
+		//	int requiredSlider = atoi( modifierItr->first.substr(15, 2).c_str() );
+		//	if (country->getLandNaval() < requiredSlider) TODO
+		//	{
+		//		supply *= modifierItr->second;
+		//	}
+		}
+		else if (modifierItr->first.substr(0, 21) == "serfdom_freesubjects ")
+		{
+		//	int requiredSlider = atoi( modifierItr->first.substr(21, 2).c_str() );
+		//	if (country->getSerfdomFreesubjects() >= requiredSlider) TODO
+		//	{
+		//		supply *= modifierItr->second;
+		//	}
+		}
+		else if (modifierItr->first.substr(0, 23) == "mercantilism_freetrade ")
+		{
+		//	int requiredSlider = atoi( modifierItr->first.substr(23, 2).c_str() );
+		//	if (country->getSerfdomFreesubjects() >= requiredSlider) TODO
+		//	{
+		//		supply *= modifierItr->second;
+		//	}
+		}
+		else if (modifierItr->first.substr(0, 23) == "aristocracy_plutocracy ")
+		{
+		//	int requiredSlider = atoi( modifierItr->first.substr(23, 2).c_str() );
+		//	if (country->getAristocracyPlutocracy() >= requiredSlider) TODO
+		//	{
+		//		supply *= modifierItr->second;
+		//	}
+		}
+		else if (modifierItr->first.substr(0, 21) == "has country modifier ")
+		{
+		//	if ( country->hasModifier(modifierItr->first.substr(21, 20)) ) TODO
+		//	{
+		//		supply *= modifierItr->second;
+		//	}
+		}
+		else if (modifierItr->first == "units_in_province")
+		{
+		//	if ( something to check that units are in this province ) TODO
+		//	{
+		//		supply *= modifierItr->second;
+		//	}
+		}
+	}
+}
+
+
+void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, const EU3Country* country, const religionGroupMapping& EU3ReligionGroupMap)
+{
+	for (tradeGoodMapping::const_iterator goodItr = tradeGoodMap.begin(); goodItr != tradeGoodMap.end(); goodItr++)
+	{
+		double demand = baseTax / 4000;
+		vector< pair<vector<string>, double> > modifiers = goodItr->second.demandModifiers;
+		for (vector< pair<vector<string>, double> >::iterator modItr = modifiers.begin(); modItr < modifiers.end(); modItr++)
+		{
+			vector<string> conditions = modItr->first;
+			bool allConditions = true;
+			for (vector<string>::iterator conditionItr = conditions.begin(); conditionItr < conditions.end(); conditionItr++)
+			{
+				if (*conditionItr == "war")
+				{
+					//if (!country->isAtWar()) TODO
+					//{
+						allConditions = false;
+					//}
+				} 
+				else if (*conditionItr == "not war")
+				{
+					//if (country->isAtWar()) TODO
+					//{
+					//	allConditions = false;
+					//}
+				} 
+				else if (conditionItr->substr(0, 13) == "stability is ")
+				{
+					int reqStability = atoi( conditionItr->substr(13, 2).c_str() );
+					if (country->getStability() < reqStability)
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 14) == "government is ")
+				{
+					string reqGov = conditionItr->substr(14, 20);
+					if (country->getGovernment() != reqGov)
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 14) == "land_naval is ")
+				{
+					//int reqSlider = atoi( conditionItr->substr(14, 2).c_str() ); TODO
+					//if (country->getLandNaval() < reqSlider)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 15) == "land_naval not ")
+				{
+					//int reqSlider = atoi( conditionItr->substr(15, 2).c_str() ); TODO
+					//if (country->getLandNaval() >= reqSlider)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 27) == "mercantilism_freetrade not ")
+				{
+					//int reqSlider = atoi( conditionItr->substr(27, 2).c_str() ); TODO
+					//if (country->getMercantilismFreetrade() >= reqSlider)
+					//{
+					allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 21) == "quality_quantity not ")
+				{
+					//int reqSlider = atoi( conditionItr->substr(21, 2).c_str() ); TODO
+					//if (country->getQualityQuantity() >= reqSlider)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 25) == "serfdom_freesubjects not ")
+				{
+					//int reqSlider = atoi( conditionItr->substr(25, 2).c_str() ); TODO
+					//if (country->getSerfdomFreesubjects() >= reqSlider)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 14) == "has big_ships ")
+				{
+					//int reqShips = atoi( conditionItr->substr(14, 4).c_str() ); TODO
+					//if (country->getBigShips() < reqShips)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 14) == "has artillery ")
+				{
+					//int reqUnits = atoi( conditionItr->substr(14, 4).c_str() ); TODO
+					//if (country->getArtillery() < reqUnits)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 13) == "has infantry ")
+				{
+					//int reqUnits = atoi( conditionItr->substr(13, 4).c_str() ); TODO
+					//if (country->getInfantry() < reqUnits)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 14) == "has land tech ")
+				{
+					//int reqTech = atoi( conditionItr->substr(14, 4).c_str() );TODO
+					//if (country->getLandTech() < reqTech)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 15) == "tech group not ")
+				{
+					string reqTechGroup = conditionItr->substr(15, 15).c_str();
+					if (country->getTechGroup() == reqTechGroup)
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 21) == "has country modifier ")
+				{
+				//	if ( !country->hasModifier(modifierItr->first.substr(21, 20)) ) TODO
+				//	{
+						allConditions = false;
+				//	}
+				}
+				else if (conditionItr->substr(0, 9) == "prestige ")
+				{
+					//double reqPrestige = atof( conditionItr->substr(9, 3).c_str() ); TODO
+					//if (country->getPrestige() < reqPrestige)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 27) == "owner has this many ports: ")
+				{
+					//double reqPorts = atof( conditionItr->substr(27, 4).c_str() ); TODO
+					//if (country->getNumPorts() < reqPorts)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 28) == "trade income percentage not ")
+				{
+					//double reqPercent			= atof( conditionItr->substr(28, 4).c_str() ); TODO
+					//double tradeIncPercent	= country->getTradeIncome() / country->getTotalIncome();
+					//if (tradeIncPercent >= reqPercent)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 20) == "gold income percent ")
+				{
+					//double reqPercent			= atof( conditionItr->substr(20, 4).c_str() ); TODO
+					//double tradeIncPercent	= country->getGoldIncome() / country->getTotalIncome();
+					//if (tradeIncPercent < reqPercent)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 15) == "trade embargos ")
+				{
+					//int reqEmbargos = atoi( conditionItr->substr(15, 2).c_str() ); TODO
+					//if (country->getNumEmbargos() < reqEmbargos)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 16) == "trade goods not ")
+				{
+					string reqGood = conditionItr->substr(16, 10);
+					if (tradeGood == reqGood)
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 12) == "trade goods ")
+				{
+					string reqGood = conditionItr->substr(12, 10);
+					if (tradeGood != reqGood)
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 15) == "OR trade goods ")
+				{
+					string reqGood = conditionItr->substr(15, 10);
+					if (tradeGood == reqGood)
+					{
+						break;
+					}
+				}
+				else if (conditionItr->substr(0, 13) == "has building ")
+				{
+					//string reqBuilding = conditionItr->substr(13, 10); TODO
+					//if (!hasBuilding(reqBuilding))
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 17) == "has not building ")
+				{
+					//string reqBuilding = conditionItr->substr(17, 10); TODO
+					//if (hasBuilding(reqBuilding))
+					//{
+					//	allConditions = false;
+					//}
+				}
+				else if (conditionItr->substr(0, 12) == "religion is ")
+				{
+					string reqReligion = conditionItr->substr(12, 10);
+					if (religion != reqReligion)
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 18) == "religion group is ")
+				{
+					string reqReligionGroup = conditionItr->substr(18, 10);
+					if (EU3ReligionGroupMap.find(religion)->second != reqReligionGroup)
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 15) == "revolt risk is ")
+				{
+					//int reqRisk = atoi( conditionItr->substr(15, 2).c_str() );
+					//if (revoltRisk < reqRisk)
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (*conditionItr == "overseas")
+				{
+					if (sameContinent || landConnection) // TODO: || distance <= 250
+					{
+						allConditions = false;
+					}
+				}
+				else if (conditionItr->substr(0, 10) == "continent ")
+				{
+					string reqContinent = conditionItr->substr(10, 10);
+					if (continent != reqContinent)
+					{
+						allConditions = false;
+					}
+				}
+				else if (*conditionItr == "capital")
+				{
+					if (num != country->getCapital())
+					{
+						allConditions = false;
+					}
+				}
+				else if (*conditionItr == "looted")
+				{
+					//if (!looted) TODO
+					//{
+						allConditions = false;
+					//}
+				}
+				else if (*conditionItr == "port")
+				{
+					//if (!port) TODO
+					//{
+						allConditions = false;
+					//}
+				}
+			}
+			if (allConditions)
+			{
+				demand *= modItr->second;
+			}
+		}
+		demands.insert(make_pair(goodItr->first, demand));
+	}
+}
+
+
+void EU3Province::addSupplyContribution(map<string, double>& goodsSupply)
+{
+	goodsSupply[tradeGood] += supply / 100;
+}
+
+
+void EU3Province::addDemandContribution(map<string, double>& goodsDemand)
+{
+	for (map<string, double>::const_iterator good = demands.begin(); good != demands.end(); good++)
+	{
+		goodsDemand[good->first] += good->second;
+	}
+}
+
+
 double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups)
 {
 	double tax = baseTax;
@@ -744,21 +1157,6 @@ double EU3Province::determineTolls(EU3Country* country)
 		return 0.0f;
 	}
 
-	double popUnits;
-	if (population <= 1000)
-	{
-		popUnits = 0.1 * int(population / 100);
-	}
-	else
-	{
-		popUnits = 0.99 + population / 100000;
-		if (popUnits > 2)
-		{
-			popUnits = 2;
-		}
-		popUnits += baseTax / 20;
-	}
-
 	double tolls;
 	if (population <= 1000)
 	{
@@ -772,4 +1170,34 @@ double EU3Province::determineTolls(EU3Country* country)
 	tolls *= country->getTradeEffeciency();
 
 	return tolls;
+}
+
+
+double EU3Province::determineProduction(EU3Country* country, const map<string, double>& unitPrices)
+{
+	double production = 0.0f;
+
+	map<string, double>::const_iterator good = unitPrices.find(tradeGood);
+	if (good != unitPrices.end())
+	{
+		production = popUnits * good->second;
+		//if (tropical) TODO
+		//{
+		//	production *= 0.5;
+		//}
+		/*double prestige = country->getPrestige(); TODO
+		if (prestige > 0.15)
+		{
+			prestige = 0.15;
+		}
+		else if (prestige < -0.15)
+		{
+			prestige = -0.15;
+		}
+		production *= 1.0 + prestige;*/
+		production *= country->getProductionEffeciency();
+		production /= 12;
+	}
+
+	return production;
 }

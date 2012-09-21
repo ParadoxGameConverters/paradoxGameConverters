@@ -439,7 +439,7 @@ void EU3World::convertCountries(countryMapping& countryMap, const religionMappin
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -564,6 +564,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			provItr->second->setOwner( ownerTag );
 			provItr->second->setSrcOwner(greatestOwner);
 			countries[ownerTag]->addProvince(provItr->second);
+			provItr->second->setContinent(continentMap[provItr->first]);
 			if ( continentMap[countries[ownerTag]->getCapital()] == continentMap[provItr->first])
 			{
 				provItr->second->setSameContinent(true);
@@ -645,6 +646,17 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 				openProvinces.erase(openItr);
 			}
 		} while (goodProvinces.size() > 1);
+	}
+
+	// Determine supply and demand
+	for(map<int, EU3Province*>::iterator itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		map<string, EU3Country*>::iterator owner = countries.find(itr->second->getOwner());
+		if (owner != countries.end())
+		{
+			itr->second->determineGoodsSupply(tradeGoodMap, owner->second);
+			itr->second->determineGoodsDemand(tradeGoodMap, owner->second, EU3ReligionGroupMap);
+		}
 	}
 }
 
@@ -810,13 +822,65 @@ void EU3World::convertGovernments(const religionGroupMapping& religionGroupMap)
 }
 
 
-void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups)
+void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap)
 {
+	// get goods supply and demand
+	map<string, double> goodsSupply;
+	map<string, double> goodsDemand;
+	for (map<int, EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		provItr->second->addSupplyContribution(goodsSupply);
+		provItr->second->addDemandContribution(goodsDemand);
+	}
+	for (map<string, double>::iterator goodItr = goodsSupply.begin(); goodItr != goodsSupply.end(); goodItr++)
+	{
+		log("\tSupply of %s: %f\n", goodItr->first.c_str(), goodItr->second);
+		if (goodItr->second < 0.01)
+		{
+			goodItr->second = 0.01;
+		}
+		if (goodItr->second > 2.00)
+		{
+			goodItr->second = 2.00;
+		}
+	}
+	for (map<string, double>::iterator goodItr = goodsDemand.begin(); goodItr != goodsDemand.end(); goodItr++)
+	{
+		log("\tDemand for %s: %f\n", goodItr->first.c_str(), goodItr->second);
+		if (goodItr->second < 0.01)
+		{
+			goodItr->second = 0.01;
+		}
+		if (goodItr->second > 2.00)
+		{
+			goodItr->second = 2.00;
+		}
+	}
+
+	map<string, double> unitPrices;
+	for (tradeGoodMapping::const_iterator tradeItr = tradeGoodMap.begin(); tradeItr != tradeGoodMap.end(); tradeItr++)
+	{
+		map<string, double>::iterator supplyItr = goodsSupply.find(tradeItr->first);
+		if (supplyItr == goodsSupply.end())
+		{
+			log("Error: no supply for trade good %s.\n", tradeItr->first);
+			continue;
+		}
+		map<string, double>::iterator demandItr = goodsDemand.find(tradeItr->first);
+		if (demandItr == goodsDemand.end())
+		{
+			log("Error: no demand for trade good %s.\n", tradeItr->first);
+			continue;
+		}
+		double price = tradeItr->second.basePrice * (2.25 - supplyItr->second) * demandItr->second;
+		unitPrices.insert(make_pair(tradeItr->first, price));
+	}
+
 	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		if (countryItr != countries.end())
 		{
-			countryItr->second->determineEconomy(cultureGroups);
+			countryItr->second->determineEconomy(cultureGroups, unitPrices);
 		}
 	}
 }

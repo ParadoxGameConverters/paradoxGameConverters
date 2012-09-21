@@ -47,12 +47,12 @@ class EU3World
 		void						setupProvinces(provinceMapping& provinceMap);
 
 		void						convertCountries(countryMapping&, const religionMapping& religionMap, const cultureMapping& cultureMap, const provinceMapping provinceMap);
-		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap);
+		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup);
 		void						addAcceptedCultures();
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void						convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap);
 		void						convertGovernments(const religionGroupMapping& religionGroupMap);
-		void						convertEconomies(const cultureGroupMapping& cultureGroups);
+		void						convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);
 
 		void						setJapaneseEmperor(string tag)	{ japaneseEmperor = tag; };
 		void						addDamiyo(string tag)				{ daimyos.push_back(tag); };

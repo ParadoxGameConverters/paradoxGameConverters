@@ -101,6 +101,7 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
 	estimatedTolls			= 0.0f;
+	estimatedProduction	= 0.0f;
 
 	vector<Object*> daimyoObj = obj->getValue("daimyo");
 	if (daimyoObj.size() > 0)
@@ -312,7 +313,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t{\n");
 	fprintf(output, "\t\tincome=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\texpense=\n");
 	fprintf(output, "\t\t{\n");
@@ -328,7 +329,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthincometable=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthexpensetable=\n");
 	fprintf(output, "\t\t{\n");
@@ -654,21 +655,23 @@ void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMa
 }
 
 
-void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups)
+void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices)
 {
 	estimatedIncome = 0.0f;
 	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
 	{
-		estimatedTax	+= (*provItr)->determineTax(this, cultureGroups);
+		estimatedTax			+= (*provItr)->determineTax(this, cultureGroups);
 		//TODO: Harbor fees
 		//TODO: Manus
-		estimatedTolls	+= (*provItr)->determineTolls(this);
+		estimatedTolls			+= (*provItr)->determineTolls(this);
+		estimatedProduction	+= (*provItr)->determineProduction(this, unitPrices);
 	}
 
 	estimatedIncome += estimatedTax;
 	//TODO: Harbor fees
 	//TODO: Manus
 	estimatedIncome += estimatedTolls;
+	estimatedIncome += estimatedProduction;
 
 	if (monarch != NULL)
 	{
@@ -690,4 +693,17 @@ double EU3Country::getTradeEffeciency()
 	}
 
 	return TE;
+}
+
+double EU3Country::getProductionEffeciency()
+{
+	double PE = 0.1f;
+	//TODO: tech bonus
+	//TODO: slider effects
+	if (government == "administrative_republic")
+	{
+		PE += 0.1;
+	}
+
+	return PE;
 }
