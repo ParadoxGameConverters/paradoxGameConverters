@@ -21,9 +21,11 @@ using namespace std;
 
 
 
-EU3World::EU3World(CK2World* srcWorld)
+EU3World::EU3World(CK2World* srcWorld, EU3Tech* _techData)
 {
 	startDate = srcWorld->getEndDate();
+	techData = _techData;
+
 	provinces.clear();
 	countries.clear();
 	europeanCountries.clear();
@@ -326,7 +328,7 @@ void EU3World::addPotentialCountries()
 			continue;
 		}
 
-		EU3Country* newCountry = new EU3Country(this, tag, filename, startDate);
+		EU3Country* newCountry = new EU3Country(this, tag, filename, startDate, techData);
 		countries.insert(make_pair(tag, newCountry));
 
 	} while(_findnext(fileListing, &countryDirData) == 0);

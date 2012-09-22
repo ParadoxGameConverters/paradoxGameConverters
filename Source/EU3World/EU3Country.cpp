@@ -13,11 +13,12 @@
 #include "EU3History.h"
 #include "EU3Province.h"
 #include "EU3World.h"
+#include "EU3Tech.h"
 #include <fstream>
 using namespace std;
 
 
-EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, date startDate)
+EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, date startDate, const EU3Tech* techData)
 {
 	src				= NULL;
 	provinces.clear();
@@ -84,6 +85,12 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 	{
 		techGroup = "";
 	}
+	governmentTech	= techData->getGovernmentTech(techGroup);
+	productionTech	= techData->getProductionTech(techGroup);
+	tradeTech		= techData->getTradeTech(techGroup);
+	navalTech		= techData->getNavalTech(techGroup);
+	landTech			= techData->getLandTech(techGroup);
+
 
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
@@ -278,6 +285,14 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\ttechnology_group=new_world\n");
 	}
+	fprintf(output, "\ttechnology=\n");
+	fprintf(output, "\t{\n");
+	fprintf(output, "\t\tland_tech={%d 0.000}\n", (int)landTech);
+	fprintf(output, "\tnaval_tech={%d 0.000}\n", (int)navalTech);
+	fprintf(output, "\ttrade_tech={%d 0.000}\n", (int)tradeTech);
+	fprintf(output, "\tproduction_tech={%d 0.000}\n", (int)productionTech);
+	fprintf(output, "\tgovernment_tech={%d 0.000}\n", (int)governmentTech);
+	fprintf(output, "\t}\n");
 	if (primaryCulture != "")
 	{
 		fprintf(output, "\tprimary_culture=%s\n", primaryCulture.c_str());
@@ -393,7 +408,7 @@ void EU3Country::output(FILE* output)
 }
 	
 
-void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap)
+void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
 	src = _src;
 

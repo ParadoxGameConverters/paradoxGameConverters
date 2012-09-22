@@ -13,6 +13,7 @@ class CK2World;
 class EU3Country;
 class EU3Province;
 class EU3Advisor;
+class EU3Tech;
 
 
 
@@ -39,7 +40,7 @@ enum options
 class EU3World
 {
 	public:
-		EU3World(CK2World*);
+		EU3World(CK2World*, EU3Tech*);
 
 		void						output(FILE*);
 		
@@ -63,6 +64,8 @@ class EU3World
 	private:
 		int									options[OPTIONS_END];
 		date									startDate;
+		EU3Tech*								techData;
+
 		map<int, EU3Province*>			provinces;
 		map<string, EU3Country*>		countries;
 		vector<string>						europeanCountries;

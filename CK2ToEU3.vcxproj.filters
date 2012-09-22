@@ -96,6 +96,9 @@
     <ClCompile Include="Source\CK2World\CK2Building.cpp">
       <Filter>CK2World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EU3World\EU3Tech.cpp">
+      <Filter>EU3World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -166,6 +169,9 @@
     </ClInclude>
     <ClInclude Include="Source\CK2World\CK2Building.h">
       <Filter>CK2World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU3World\EU3Tech.h">
+      <Filter>EU3World</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

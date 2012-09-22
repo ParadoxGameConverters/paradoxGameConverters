@@ -8,6 +8,7 @@
 #include "Parsers/Object.h"
 #include "EU3World\EU3World.h"
 #include "EU3World\EU3Country.h"
+#include "EU3World\EU3Tech.h"
 #include	"CK2World\CK2World.h"
 #include "Mappers.h"
 using namespace std;
@@ -231,9 +232,19 @@ int main(int argc, char * argv[])
 	//	}
 	//}
 
-	EU3World destWorld(&srcWorld);
+	// Parse techs
+	log("Setting up tech groups.\n");
+	printf("Setting up tech groups.\n");
+	obj					= doParseFile( (Configuration::getEU3Path() + "/common/technology.txt").c_str() );
+	Object* govObj		= doParseFile( (Configuration::getEU3Path() + "/common/technologies/government.txt").c_str() );
+	Object* prodObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/production.txt").c_str() );
+	Object* tradeObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/trade.txt").c_str() );
+	Object* navalObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/naval.txt").c_str() );
+	Object* landObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/land.txt").c_str() );
+	EU3Tech* techData = new EU3Tech(srcWorld.getEndDate(), obj, govObj, prodObj, tradeObj, navalObj, landObj);
 
-
+	EU3World destWorld(&srcWorld, techData);
+	
 	// Get potential EU3 countries
 	log("Getting potential EU3 nations.\n");
 	printf("Getting potential EU3 nations.\n");
@@ -248,7 +259,6 @@ int main(int argc, char * argv[])
 	// Get country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
-	initParser();
 	obj = doParseFile("country_mappings.txt");	
 
 	// Map CK2 nations to EU3 nations

@@ -213,3 +213,4 @@ Revision	Log Message
 209		Estimate production income
 210		Estimate gold income
 211		Fix for gold income estimate
+212		ROTW Tech levels (European ones are completely wrong)
