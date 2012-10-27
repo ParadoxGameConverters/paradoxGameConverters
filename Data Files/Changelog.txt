@@ -215,3 +215,4 @@ Revision	Log Message
 211		Fix for gold income estimate
 212		ROTW Tech levels (European ones are completely wrong)
 213		Change economy option defaults to historical
+214		1.06 saves don't lose muslim buildings when converted by a 1.07 install

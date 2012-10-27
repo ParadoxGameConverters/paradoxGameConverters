@@ -1,6 +1,7 @@
 #include "CK2Building.h"
 #include "CK2Character.h"
 #include "..\Parsers\Object.h"
+#include "..\Log.h"
 
 
 
@@ -176,7 +177,14 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 {
 	const CK2Building* returnMe = NULL;
 
+	string type2;
+
 	map<string, const CK2Building*>::const_iterator itr = buildings.find(type);
+	if (itr == buildings.end())
+	{
+		type2 = type.substr(0, type.find("_mus"));
+		itr = buildings.find(type2);
+	}
 	if (itr != buildings.end())
 	{
 		if ( (itr->second->getAcceptableCultureGroups().size() == 0) && (itr->second->getAcceptableCultures().size() == 0) )
@@ -221,6 +229,10 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 				returnMe = NULL;
 			}
 		}
+	}
+	else
+	{
+		log("\tError: Could not find building %s. Also tried %s\n", type.c_str(), type2.c_str());
 	}
 
 	return returnMe;
