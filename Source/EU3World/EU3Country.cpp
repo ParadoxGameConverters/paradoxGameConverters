@@ -91,6 +91,11 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 	tradeTech		= techData->getTradeTech(techGroup);
 	navalTech		= techData->getNavalTech(techGroup);
 	landTech			= techData->getLandTech(techGroup);
+	governmentTechInvestment	= 0.0f;
+	productionTechInvestment	= 0.0f;
+	tradeTechInvestment			= 0.0f;
+	navalTechInvestment			= 0.0f;
+	landTechInvestment			= 0.0f;
 
 
 	vector<Object*> capitalObj = obj->getValue("capital");
@@ -288,11 +293,11 @@ void EU3Country::output(FILE* output)
 	}
 	fprintf(output, "\ttechnology=\n");
 	fprintf(output, "\t{\n");
-	fprintf(output, "\t\tland_tech={%d 0.000}\n", (int)landTech);
-	fprintf(output, "\tnaval_tech={%d 0.000}\n", (int)navalTech);
-	fprintf(output, "\ttrade_tech={%d 0.000}\n", (int)tradeTech);
-	fprintf(output, "\tproduction_tech={%d 0.000}\n", (int)productionTech);
-	fprintf(output, "\tgovernment_tech={%d 0.000}\n", (int)governmentTech);
+	fprintf(output, "\t\tland_tech={%d %f}\n", (int)landTech, landTechInvestment);
+	fprintf(output, "\tnaval_tech={%d %f}\n", (int)navalTech, navalTechInvestment);
+	fprintf(output, "\ttrade_tech={%d %f}\n", (int)tradeTech, tradeTechInvestment);
+	fprintf(output, "\tproduction_tech={%d %f}\n", (int)productionTech, productionTechInvestment);
+	fprintf(output, "\tgovernment_tech={%d %f}\n", (int)governmentTech, governmentTechInvestment);
 	fprintf(output, "\t}\n");
 	if (primaryCulture != "")
 	{
@@ -761,7 +766,6 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 		}
 	}
 
-
 	double oldLandTech =
 		techLevels[TECH_BOWS] +
 		techLevels[TECH_LIGHT_ARMOUR] +
@@ -804,4 +808,51 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 	tradeTech		= techData->getTradeTech("western")			+ (oldTradeTech / 9);
 	navalTech		= techData->getNavalTech("western")			+ (oldNavalTech / 9);
 	landTech			= techData->getLandTech("western")			+ (oldLandTech / 9);
+}
+
+
+void EU3Country::determineTechInvestment(const EU3Tech* techData, date startDate)
+{
+	double groupModifier = 1.0f / techData->getGroupModifier(techGroup);
+
+	double sizeModifier;
+	int size = provinces.size();
+	if (size == 0)
+	{
+		sizeModifier = 0.2;
+	}
+	else if (size <= 3)
+	{
+		sizeModifier = 0.2 * (size - 1);
+	}
+	else if (size <= 5)
+	{
+		sizeModifier = 0.1 * (size - 3) + 0.4;
+	}
+	else if (size == 6)
+	{
+		sizeModifier = 0.2 * (size - 5) + 0.6;
+	}
+	else if (size <= 8)
+	{
+		sizeModifier = 0.1 * (size - 6) + 0.8;
+	}
+	else
+	{
+		sizeModifier = 0.025 * (size - 8) + 1.0;
+	}
+
+	//Todo: slider effects
+
+	double governmentTechCost	= techData->getGovernmentBaseCost(startDate, (int)governmentTech + 1) * groupModifier * sizeModifier;
+	double productionTechCost	= techData->getProductionBaseCost(startDate, (int)productionTech + 1) * groupModifier * sizeModifier;
+	double tradeTechCost			= techData->getTradeBaseCost(startDate, (int)tradeTech + 1) * groupModifier * sizeModifier;
+	double navalTechCost			= techData->getNavalBaseCost(startDate, (int)navalTech + 1) * groupModifier * sizeModifier;
+	double landTechCost			= techData->getLandBaseCost(startDate, (int)landTech + 1) * groupModifier * sizeModifier;
+
+	governmentTechInvestment	= governmentTechCost	* (governmentTech	- (int)governmentTech);
+	productionTechInvestment	= productionTechCost	* (productionTech	- (int)productionTech);
+	tradeTechInvestment			= tradeTechCost		* (tradeTech		- (int)tradeTech);
+	navalTechInvestment			= navalTechCost		* (navalTech		- (int)navalTech);
+	landTechInvestment			= landTechCost			* (landTech			- (int)landTech);
 }

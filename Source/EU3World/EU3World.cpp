@@ -812,6 +812,11 @@ void EU3World::convertTech(countryMapping& countryMap, const religionGroupMappin
 
 		countryItr->second->determineTechLevels(avgTechLevels, techData);
 	}
+
+	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		countryItr->second->determineTechInvestment(techData, startDate);
+	}
 }
 
 

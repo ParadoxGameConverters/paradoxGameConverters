@@ -34,6 +34,7 @@ class EU3Country
 		double	getTradeEffeciency();
 		double	getProductionEffeciency();
 		void		determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
+		void		determineTechInvestment(const EU3Tech* techData, date startDate);
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
@@ -70,6 +71,11 @@ class EU3Country
 		double					tradeTech;
 		double					navalTech;
 		double					landTech;
+		double					governmentTechInvestment;
+		double					productionTechInvestment;
+		double					tradeTechInvestment;
+		double					navalTechInvestment;
+		double					landTechInvestment;
 
 		int						capital;
 		int						stability;

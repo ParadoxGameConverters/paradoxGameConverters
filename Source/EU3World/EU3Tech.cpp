@@ -14,7 +14,6 @@ enum techCategory
 
 EU3Tech::EU3Tech(date startDate, Object* mainObj, Object* governmentObj, Object* productionObj, Object* tradeObj, Object* navalObj, Object* landObj)
 {
-	map<string, pair<int, double> >	groups; // name, start level, modifier
 	vector<Object*> groupsObjs = mainObj->getValue("groups")[0]->getLeaves();
 	for(vector<Object*>::iterator groupItr = groupsObjs.begin(); groupItr != groupsObjs.end(); groupItr++)
 	{
@@ -25,7 +24,6 @@ EU3Tech::EU3Tech(date startDate, Object* mainObj, Object* governmentObj, Object*
 	}
 
 	vector<Object*> governmentObjs = governmentObj->getLeaves();
-	vector<int> governmentYears;
 	governmentYears.resize(governmentObjs.size());
 	for (vector<Object*>::iterator techItr = governmentObjs.begin(); techItr != governmentObjs.end(); techItr++)
 	{
@@ -35,7 +33,6 @@ EU3Tech::EU3Tech(date startDate, Object* mainObj, Object* governmentObj, Object*
 	}
 
 	vector<Object*> productionObjs = productionObj->getLeaves();
-	vector<int> productionYears;
 	productionYears.resize(productionObjs.size());
 	for (vector<Object*>::iterator techItr = productionObjs.begin(); techItr != productionObjs.end(); techItr++)
 	{
@@ -45,7 +42,6 @@ EU3Tech::EU3Tech(date startDate, Object* mainObj, Object* governmentObj, Object*
 	}
 
 	vector<Object*> tradeObjs = tradeObj->getLeaves();
-	vector<int> tradeYears;
 	tradeYears.resize(tradeObjs.size());
 	for (vector<Object*>::iterator techItr = tradeObjs.begin(); techItr != tradeObjs.end(); techItr++)
 	{
@@ -55,7 +51,6 @@ EU3Tech::EU3Tech(date startDate, Object* mainObj, Object* governmentObj, Object*
 	}
 
 	vector<Object*> navalObjs = navalObj->getLeaves();
-	vector<int> navalYears;
 	navalYears.resize(navalObjs.size());
 	for (vector<Object*>::iterator techItr = navalObjs.begin(); techItr != navalObjs.end(); techItr++)
 	{
@@ -65,7 +60,6 @@ EU3Tech::EU3Tech(date startDate, Object* mainObj, Object* governmentObj, Object*
 	}
 
 	vector<Object*> landObjs = landObj->getLeaves();
-	vector<int> landYears;
 	landYears.resize(landObjs.size());
 	for (vector<Object*>::iterator techItr = landObjs.begin(); techItr != landObjs.end(); techItr++)
 	{
@@ -272,5 +266,125 @@ double EU3Tech::getLandTech(string techGroup) const
 	else
 	{
 		return 0.0f;
+	}
+}
+
+
+double EU3Tech::getGovernmentBaseCost(date startDate, int level) const
+{
+	int startDiff = governmentYears[level] - startDate.year;
+	if (startDiff < 0)
+	{
+		startDiff = 0;
+	}
+
+	double earlyPenalty = 0.2 * (governmentYears[level] - startDate.year);
+	if (earlyPenalty < 0)
+	{
+		earlyPenalty = 0.0f;
+	}
+	earlyPenalty += 1.0f;
+
+	int levelDiff = governmentYears[level] - governmentYears[level - 1];
+	double cost = (0.63*startDiff + 105)*levelDiff*earlyPenalty;
+	return cost;
+}
+
+
+double EU3Tech::getProductionBaseCost(date startDate, int level) const
+{
+	int startDiff = productionYears[level] - startDate.year;
+	if (startDiff < 0)
+	{
+		startDiff = 0;
+	}
+
+	double earlyPenalty = 0.2 * (governmentYears[level] - startDate.year);
+	if (earlyPenalty < 0)
+	{
+		earlyPenalty = 0.0f;
+	}
+	earlyPenalty += 1.0f;
+
+	int levelDiff = productionYears[level] - productionYears[level - 1];
+	double cost = (0.63*startDiff + 105)*levelDiff*earlyPenalty;
+	return cost;
+}
+
+
+double EU3Tech::getTradeBaseCost(date startDate, int level) const
+{
+	int startDiff = tradeYears[level] - startDate.year;
+	if (startDiff < 0)
+	{
+		startDiff = 0;
+	}
+
+	double earlyPenalty = 0.2 * (governmentYears[level] - startDate.year);
+	if (earlyPenalty < 0)
+	{
+		earlyPenalty = 0.0f;
+	}
+	earlyPenalty += 1.0f;
+
+	int levelDiff = tradeYears[level] - tradeYears[level - 1];
+	double cost = (0.63*startDiff + 105)*levelDiff*earlyPenalty;
+	return cost;
+}
+
+
+double EU3Tech::getNavalBaseCost(date startDate, int level) const
+{
+	int startDiff = navalYears[level] - startDate.year;
+	if (startDiff < 0)
+	{
+		startDiff = 0;
+	}
+
+	double earlyPenalty = 0.2 * (governmentYears[level] - startDate.year);
+	if (earlyPenalty < 0)
+	{
+		earlyPenalty = 0.0f;
+	}
+	earlyPenalty += 1.0f;
+
+	int levelDiff = navalYears[level] - navalYears[level - 1];
+	double cost = (0.63*startDiff + 105)*levelDiff*earlyPenalty;
+	return cost;
+}
+
+
+double EU3Tech::getLandBaseCost(date startDate, int level) const
+{
+	int startDiff = landYears[level] - startDate.year;
+	if (startDiff < 0)
+	{
+		startDiff = 0;
+	}
+
+	double earlyPenalty = 0.2 * (governmentYears[level] - startDate.year);
+	if (earlyPenalty < 0)
+	{
+		earlyPenalty = 0.0f;
+	}
+	earlyPenalty += 1.0f;
+
+	int levelDiff = landYears[level] - landYears[level - 1];
+	double cost = (0.63*startDiff + 105)*levelDiff*earlyPenalty;
+	return cost;
+}
+
+
+double EU3Tech::getGroupModifier(string group) const
+{
+	map<string, pair<int, double> >::const_iterator groupItr = groups.find(group);
+	if (groupItr != groups.end())
+	{
+		return groupItr->second.second;
+	}
+	else
+	{
+		log("Error: could not find tech group %s\n", group);
+		return 1.0f;
 	}
 }
