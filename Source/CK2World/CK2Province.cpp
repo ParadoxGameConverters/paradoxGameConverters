@@ -47,4 +47,28 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2Bu
 	{
 		religion = "";
 	}
+
+	techLevels.clear();
+	vector<Object*> techObj = obj->getValue("technology");
+	if (techObj.size() > 0)
+	{
+		vector<Object*> levelObj = techObj[0]->getValue("level");
+		if (levelObj.size() > 0)
+		{
+			vector<string> levelStrings = levelObj[0]->getTokens();
+			for (unsigned int i = 0; i < levelStrings.size(); i++)
+			{
+				techLevels.push_back( atoi(levelStrings[i].c_str()) );
+			}
+		}
+		vector<Object*> progressObj = techObj[0]->getValue("progress");
+		if (progressObj.size() > 0)
+		{
+			vector<string> progressStrings = progressObj[0]->getTokens();
+			for (unsigned int i = 0; i < progressStrings.size(); i++)
+			{
+				techLevels[i] += 0.1 * atoi(progressStrings[i].c_str());
+			}
+		}
+	}
 }

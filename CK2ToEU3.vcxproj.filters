@@ -173,5 +173,8 @@
     <ClInclude Include="Source\EU3World\EU3Tech.h">
       <Filter>EU3World</Filter>
     </ClInclude>
+    <ClInclude Include="Source\CK2World\CK2Techs.h">
+      <Filter>CK2World</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

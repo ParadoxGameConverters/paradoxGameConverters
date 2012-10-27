@@ -51,7 +51,7 @@ class EU3World
 		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, countryMapping&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup);
 		void						addAcceptedCultures();
 		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
-		void						convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap);
+		void						convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap, const CK2World& srcWorld);
 		void						convertGovernments(const religionGroupMapping& religionGroupMap);
 		void						convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);
 

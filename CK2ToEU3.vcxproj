@@ -123,6 +123,7 @@
     <ClInclude Include="Source\CK2World\CK2Dynasty.h" />
     <ClInclude Include="Source\CK2World\CK2History.h" />
     <ClInclude Include="Source\CK2World\CK2Province.h" />
+    <ClInclude Include="Source\CK2World\CK2Techs.h" />
     <ClInclude Include="Source\CK2World\CK2Title.h" />
     <ClInclude Include="Source\CK2World\CK2Trait.h" />
     <ClInclude Include="Source\CK2World\CK2Version.h" />

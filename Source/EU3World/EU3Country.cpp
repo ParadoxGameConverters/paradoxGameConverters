@@ -9,6 +9,7 @@
 #include "..\CK2World\CK2History.h"
 #include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2Barony.h"
+#include "..\CK2World\CK2Techs.h"
 #include "EU3Ruler.h"
 #include "EU3History.h"
 #include "EU3Province.h"
@@ -728,4 +729,79 @@ double EU3Country::getProductionEffeciency()
 	}
 
 	return PE;
+}
+
+void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData)
+{
+	vector<double> techLevels;
+	for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+	{
+		techLevels.push_back(0.0f);
+	}
+	int numProvinces = 0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<double> provinceTechLevels = (*itr2)->getTechLevels();
+			for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+			{
+				techLevels[i] += provinceTechLevels[i];
+			}
+			numProvinces++;
+		}
+	}
+	for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+	{
+		if (numProvinces > 0)
+		{
+			techLevels[i] /= numProvinces;
+			techLevels[i] -= avgTechLevels[i];
+		}
+	}
+
+
+	double oldLandTech =
+		techLevels[TECH_BOWS] +
+		techLevels[TECH_LIGHT_ARMOUR] +
+		techLevels[TECH_HEAVY_ARMOUR] +
+		techLevels[TECH_INFANTRY_MELEE_WEAPONS] +
+		techLevels[TECH_CAVALRY_MELEE_WEAPONS] +
+		techLevels[TECH_SIEGE_EQUIPMENT] +
+		techLevels[TECH_CASTLES] +
+		techLevels[TECH_TACTICS];
+	double oldNavalTech =
+		techLevels[TECH_BOWS] +
+		techLevels[TECH_LIGHT_ARMOUR] +
+		techLevels[TECH_HEAVY_ARMOUR] +
+		techLevels[TECH_INFANTRY_MELEE_WEAPONS] +
+		techLevels[TECH_SIEGE_EQUIPMENT] +
+		techLevels[TECH_TACTICS];
+	double oldTradeTech = 
+		techLevels[TECH_CASTLE_TAXES] +
+		techLevels[TECH_CITY_TAXES] +
+		techLevels[TECH_TEMPLE_TAXES];
+	double oldProdTech = 
+		techLevels[TECH_CASTLE_CONSTRUCTION] +
+		techLevels[TECH_CITY_CONSTRUCTION] +
+		techLevels[TECH_TEMPLE_CONSTRUCTION] +
+		techLevels[TECH_FORTIFICATIONS_CONSTRUCTION] +
+		techLevels[TECH_CONSTRUCTION];
+	double oldGovTech = 
+		techLevels[TECH_TEMPLE_TAXES] +
+		techLevels[TECH_NOBLE_CUSTOMS] +
+		techLevels[TECH_POPULAR_CUSTOMS] +
+		techLevels[TECH_RELIGIOUS_CUSTOMS] +
+		techLevels[TECH_MAJESTY] +
+		techLevels[TECH_SPIRITUAL_ART] +
+		techLevels[TECH_CULTURE_FLEX] +
+		techLevels[TECH_RELIGION_FLEX] +
+		techLevels[TECH_LEGALISM];
+
+	governmentTech	= techData->getGovernmentTech("western")	+ (oldGovTech / 9);
+	productionTech	= techData->getProductionTech("western")	+ (oldProdTech / 9);
+	tradeTech		= techData->getTradeTech("western")			+ (oldTradeTech / 9);
+	navalTech		= techData->getNavalTech("western")			+ (oldNavalTech / 9);
+	landTech			= techData->getLandTech("western")			+ (oldLandTech / 9);
 }

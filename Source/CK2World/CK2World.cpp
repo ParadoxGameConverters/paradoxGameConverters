@@ -10,6 +10,7 @@
 #include "CK2Character.h"
 #include "CK2Dynasty.h"
 #include "CK2Trait.h"
+#include "CK2Techs.h"
 
 
 
@@ -266,4 +267,29 @@ void CK2World::removeDeadTitles()
 	log("\tThere are a total of %d titles\n", titles.size());
 	log("\tThere are a total of %d independent titles\n", independentTitles.size());
 	log("\tThere are a total of %d hre members\n", hreMembers.size());
+}
+
+
+vector<double> CK2World::getAverageTechLevels() const
+{
+	vector<double> avgTechLevels;
+	avgTechLevels.resize(TECH_LEGALISM);
+	for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+	{
+		avgTechLevels[i] = 0.0f;
+	}
+	for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		vector<double> currentTechLevels = provItr->second->getTechLevels();
+		for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+		{
+			avgTechLevels[i] += currentTechLevels[i];
+		}
+	}
+	for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+	{
+		avgTechLevels[i] /= provinces.size();
+	}
+
+	return avgTechLevels;
 }

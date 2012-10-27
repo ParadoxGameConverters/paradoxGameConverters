@@ -373,7 +373,7 @@ int main(int argc, char * argv[])
 
 	log("Converting tech.\n");
 	printf("Converting tech.\n");
-	destWorld.convertTech(countryMap, religionMap);
+	destWorld.convertTech(countryMap, religionMap, srcWorld);
 
 	log("Converting governments.\n");
 	printf("Converting governments.\n");

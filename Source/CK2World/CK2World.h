@@ -38,6 +38,8 @@ class CK2World
 		map<string, CK2Title*>	getIndependentTitles()	const { return independentTitles; };
 		map<string, CK2Title*>	getAllTitles()				const { return titles; };
 		map<int, CK2Province*>	getProvinces()				const { return provinces; };
+
+		vector<double>				getAverageTechLevels() const;
 	private:
 		CK2BuildingFactory*		buildingFactory;
 

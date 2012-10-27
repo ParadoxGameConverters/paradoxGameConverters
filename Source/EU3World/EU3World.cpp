@@ -761,8 +761,10 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 }
 
 
-void EU3World::convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap)
+void EU3World::convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap, const CK2World& srcWorld)
 {
+	vector<double> avgTechLevels = srcWorld.getAverageTechLevels();
+
 	double highestLearningScore = 0.0f;
 	for (countryMapping::iterator countryItr = countryMap.begin(); countryItr != countryMap.end(); countryItr++)
 	{
@@ -807,6 +809,8 @@ void EU3World::convertTech(countryMapping& countryMap, const religionGroupMappin
 			countryItr->second->setTechGroup("western");
 			log("\t%s is in tech group western.\n", countryItr->second->getTag().c_str());
 		}
+
+		countryItr->second->determineTechLevels(avgTechLevels, techData);
 	}
 }
 
