@@ -226,6 +226,25 @@ christian = {
 		}
 		
 	}
+
+	miaphysite = {
+		color = { 0.8 0.4 0.1 }
+		
+		allowed_conversion = {
+			orthodox
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
 	
 	nestorian = {
 		color = { 0.6 0.2 0.2 }
