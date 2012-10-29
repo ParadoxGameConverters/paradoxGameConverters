@@ -14,7 +14,15 @@ Configuration::Configuration()
 	printf("Reading configuration file.\n");
 	log("Reading configuration file.\n");
 
-	vector<Object*> obj = doParseFile("configuration.txt")->getValue("configuration");
+	Object* oneObj = doParseFile("configuration.txt");
+	if (oneObj == NULL)
+	{
+		log("Error: Could not open configuration.txt\n");
+		printf("Error: Could not open configuration.txt\n");
+		exit(-1);
+	}
+
+	vector<Object*> obj = oneObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
 		printf("Configuration file must contain exactly one configuration section.");

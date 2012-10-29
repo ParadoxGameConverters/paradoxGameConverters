@@ -351,6 +351,12 @@ void EU3World::setupProvinces(provinceMapping& provinceMap)
 		if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
 		{
 			obj = doParseFile( (Configuration::getEU3Path() + "\\history\\provinces\\" + fileData.name).c_str() );
+			if (obj == NULL)
+			{
+				log("Error: Could not open %s\n", (Configuration::getEU3Path() + "\\history\\provinces\\" + fileData.name).c_str());
+				printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "\\history\\provinces\\" + fileData.name).c_str());
+				exit(-1);
+			}
 			_findclose(fileListing);
 		}
 		else
@@ -740,6 +746,12 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 
 		Object* obj;
 		obj = doParseFile((Configuration::getEU3Path() + "/history/advisors/" + filename).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/advisors/" + filename).c_str());
+			printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/advisors/" + filename).c_str());
+			exit(-1);
+		}
 
 		vector<Object*> advisorsObj = obj->getLeaves();
 		for (unsigned int i = 0; i < advisorsObj.size(); i++)

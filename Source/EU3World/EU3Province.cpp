@@ -467,7 +467,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 	culture = topCulture;
 }
 
-#pragma optimize("", off)
+
 void EU3Province::determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces)
 {
 
@@ -631,7 +631,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		log("\tError: could not map religion %s to any EU3 religions (province %d: %s)\n", topReligion.c_str(), num, capital.c_str());
 	}
 }
-#pragma optimize("", off)
+
 
 void EU3Province::setManpower(double _manpower)
 {

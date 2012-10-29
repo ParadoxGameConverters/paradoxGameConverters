@@ -314,9 +314,7 @@ Object* doParseFile(const char* filename)
 	read.open(filename); 
 	if (!read.is_open())
 	{
-		log("Error: Could not open %s\n", filename);
-		printf("Error: Could not open %s\n", filename);
-		exit(1);
+		return NULL;
 	}
 	readFile(read);  
 	read.close();

@@ -66,6 +66,12 @@ int main(int argc, char * argv[])
 	log("\tGetting building types.\n");
 	printf("\tGetting building types.\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/buildings.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/buildings.txt").c_str());
+		exit(-1);
+	}
 	srcWorld.addBuildingTypes(obj);
 	struct _finddata_t	buildingsData;
 	intptr_t					fileListing;
@@ -82,6 +88,12 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\buildings\\" + buildingsData.name).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\buildings\\" + buildingsData.name).c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\buildings\\" + buildingsData.name).c_str());
+			exit(-1);
+		}
 		srcWorld.addBuildingTypes(obj);
 	} while(_findnext(fileListing, &buildingsData) == 0);
 	_findclose(fileListing);
@@ -89,6 +101,12 @@ int main(int argc, char * argv[])
 	log("\tGetting CK2 religions\n");
 	printf("\tGetting CK2 religions\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/religion.txt").c_str()); // for pre-1.06 installs
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/religion.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/religion.txt").c_str());
+		exit(-1);
+	}
 	religionGroupMapping CK2ReligionGroupMap;
 	addReligionGroupMappings(obj, CK2ReligionGroupMap);
 	struct _finddata_t	religionsData;
@@ -105,6 +123,12 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
+			exit(-1);
+		}
 		addReligionGroupMappings(obj, CK2ReligionGroupMap);
 	} while(_findnext(fileListing, &religionsData) == 0);
 	_findclose(fileListing);
@@ -112,6 +136,12 @@ int main(int argc, char * argv[])
 	log("\tGetting CK2 cultures\n");
 	printf("\tGetting CK2 cultures\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/cultures.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/cultures.txt").c_str());
+		exit(-1);
+	}
 	cultureGroupMapping CK2CultureGroupMap;
 	addCultureGroupMappings(obj, CK2CultureGroupMap);
 	struct _finddata_t	culturesData;
@@ -128,6 +158,12 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\cultures\\" + culturesData.name).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\cultures\\" + culturesData.name).c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\cultures\\" + culturesData.name).c_str());
+			exit(-1);
+		}
 		addCultureGroupMappings(obj, CK2CultureGroupMap);
 	} while(_findnext(fileListing, &culturesData) == 0);
 	_findclose(fileListing);
@@ -135,6 +171,12 @@ int main(int argc, char * argv[])
 	log("\tParsing landed titles.\n");
 	printf("\tParsing landed titles.\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
+		exit(-1);
+	}
 	srcWorld.addPotentialTitles(obj);
 	struct _finddata_t	landedTitlesdata;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\landed_titles\\*").c_str(), &landedTitlesdata)) == -1L)
@@ -150,6 +192,12 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
+			exit(-1);
+		}
 		srcWorld.addPotentialTitles(obj);
 	} while(_findnext(fileListing, &landedTitlesdata) == 0);
 	_findclose(fileListing);
@@ -157,6 +205,12 @@ int main(int argc, char * argv[])
 	log("\tGetting traits\n");
 	printf("\tGetting traits\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/traits.txt").c_str()); // for pre-1.06 installs
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/traits.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/traits.txt").c_str());
+		exit(-1);
+	}
 	srcWorld.addTraits(obj);
 	struct _finddata_t	traitsData;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\traits\\*").c_str(), &traitsData)) == -1L)
@@ -172,6 +226,12 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
+			exit(-1);
+		}
 		srcWorld.addTraits(obj);
 	} while(_findnext(fileListing, &traitsData) == 0);
 	_findclose(fileListing);
@@ -179,6 +239,12 @@ int main(int argc, char * argv[])
 	log("\tAdding dynasties from CK2 Install\n");
 	printf("\tAdding dynasties from CK2 Install\n");
 	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/dynasties.txt").c_str());
+		exit(-1);
+	}
 	srcWorld.addDynasties(obj);
 	struct _finddata_t	dynastiesData;
 	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\dynasties\\*").c_str(), &dynastiesData)) == -1L)
@@ -194,6 +260,12 @@ int main(int argc, char * argv[])
 			continue;
 		}
 		obj = doParseFile((Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
+			exit(-1);
+		}
 		srcWorld.addDynasties(obj);
 	} while(_findnext(fileListing, &dynastiesData) == 0);
 	_findclose(fileListing);
@@ -201,6 +273,12 @@ int main(int argc, char * argv[])
 	log("Parsing CK2 save.\n");
 	printf("Parsing CK2 save.\n");
 	obj = doParseFile(inputFilename.c_str());
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", inputFilename.c_str());
+		printf("Error: Could not open %s\n", inputFilename.c_str());
+		exit(-1);
+	}
 
 	log("Importing parsed data.\n");
 	printf("Importing parsed data.\n");
@@ -216,6 +294,12 @@ int main(int argc, char * argv[])
 	printf("Parsing province mappings.\n");
 	const char* mappingFile = "province_mappings.txt";
 	obj = doParseFile(mappingFile);
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", mappingFile);
+		printf("Error: Could not open %s\n", mappingFile);
+		exit(-1);
+	}
 	provinceMapping			provinceMap				= initProvinceMap(obj, srcWorld.getVersion());
 	inverseProvinceMapping	inverseProvinceMap	= invertProvinceMap(provinceMap);
 	//map<int, CK2Province*> srcProvinces				= srcWorld.getProvinces();
@@ -236,11 +320,47 @@ int main(int argc, char * argv[])
 	log("Setting up tech groups.\n");
 	printf("Setting up tech groups.\n");
 	obj					= doParseFile( (Configuration::getEU3Path() + "/common/technology.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technology.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technology.txt").c_str());
+		exit(-1);
+	}
 	Object* govObj		= doParseFile( (Configuration::getEU3Path() + "/common/technologies/government.txt").c_str() );
+	if (govObj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/government.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/government.txt").c_str());
+		exit(-1);
+	}
 	Object* prodObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/production.txt").c_str() );
+	if (prodObj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/production.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/production.txt").c_str());
+		exit(-1);
+	}
 	Object* tradeObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/trade.txt").c_str() );
+	if (tradeObj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/trade.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/trade.txt").c_str());
+		exit(-1);
+	}
 	Object* navalObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/naval.txt").c_str() );
+	if (navalObj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/naval.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/naval.txt").c_str());
+		exit(-1);
+	}
 	Object* landObj	= doParseFile( (Configuration::getEU3Path() + "/common/technologies/land.txt").c_str() );
+	if (landObj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/land.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/technologies/land.txt").c_str());
+		exit(-1);
+	}
 	EU3Tech* techData = new EU3Tech(srcWorld.getEndDate(), obj, govObj, prodObj, tradeObj, navalObj, landObj);
 
 	EU3World destWorld(&srcWorld, techData);
@@ -254,12 +374,24 @@ int main(int argc, char * argv[])
 	log("Getting blocked EU3 nations.\n");
 	printf("Getting blocked EU3 nations.\n");
 	obj = doParseFile("blocked_nations.txt");
+	if (obj == NULL)
+	{
+		log("Error: Could not open blocked_nations.txt\n");
+		printf("Error: Could not open blocked_nations.txt\n");
+		exit(-1);
+	}
 	vector<string> blockedNations = processBlockedNations(obj);
 
 	// Get country mappings
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
-	obj = doParseFile("country_mappings.txt");	
+	obj = doParseFile("country_mappings.txt");
+	if (obj == NULL)
+	{
+		log("Error: Could not open country_mappings.txt\n");
+		printf("Error: Could not open country_mappings.txt\n");
+		exit(-1);
+	}
 
 	// Map CK2 nations to EU3 nations
 	log("Mapping CK2 nations to EU3 nations.\n");
@@ -281,6 +413,12 @@ int main(int argc, char * argv[])
 	log("Getting EU3 cultures\n");
 	printf("Getting EU3 cultures\n");
 	obj = doParseFile((Configuration::getEU3Path() + "/common/cultures.txt").c_str());
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/cultures.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/cultures.txt").c_str());
+		exit(-1);
+	}
 	cultureGroupMapping EU3CultureGroupMap;
 	addCultureGroupMappings(obj, EU3CultureGroupMap);
 
@@ -288,15 +426,35 @@ int main(int argc, char * argv[])
 	log("Getting EU3 religions\n");
 	printf("Getting EU3 religions\n");
 	obj = doParseFile((Configuration::getEU3Path() + "/common/religion.txt").c_str());
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/religion.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/religion.txt").c_str());
+		exit(-1);
+	}
 	religionGroupMapping EU3ReligionGroupMap;
 	addReligionGroupMappings(obj, EU3ReligionGroupMap);
-	obj = doParseFile((Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str());
-	addReligionGroupMappings(obj, EU3ReligionGroupMap);
+	obj = doParseFile((Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str()); // in case the mod is being used
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str());
+	}
+	else
+	{
+		addReligionGroupMappings(obj, EU3ReligionGroupMap);
+	}
 
 	// Get culture mappings
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
 	obj = doParseFile("culture_mappings.txt");
+	if (obj == NULL)
+	{
+		log("Error: Could not open culture_mappings.txt\n");
+		printf("Error: Could not open culture_mappings.txt\n");
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse culture_mappings.txt.\n");
@@ -310,6 +468,12 @@ int main(int argc, char * argv[])
 	log("Parsing religion mappings.\n");
 	printf("Parsing religion mappings.\n");
 	obj = doParseFile("religion_mappings.txt");
+	if (obj == NULL)
+	{
+		log("Error: Could not open religion_mappings.txt\n");
+		printf("Error: Could not open religion_mappings.txt\n");
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse religion_mappings.txt.\n");
@@ -323,6 +487,12 @@ int main(int argc, char * argv[])
 	log("Parsing continents.\n");
 	printf("Parsing continents.\n");
 	obj = doParseFile((Configuration::getEU3Path() + "\\map\\continent.txt").c_str());
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "\\map\\continent.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "\\map\\continent.txt").c_str());
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse continent.txt.\n");
@@ -338,9 +508,15 @@ int main(int argc, char * argv[])
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
 
 	// Get trade good data
-	log("Inporting trade good data.\n");
-	printf("Inporting trade good data.\n");
+	log("Importing trade good data.\n");
+	printf("Importing trade good data.\n");
 	obj = doParseFile((Configuration::getEU3Path() + "\\common\\Prices.txt").c_str());
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "\\common\\Prices.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "\\common\\Prices.txt").c_str());
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse Prices.txt.\n");

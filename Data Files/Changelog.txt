@@ -220,3 +220,4 @@ Revision	Log Message
 216		Convert tech
 217		Tech investment
 218		Add miaphysite religion mapping
+219		No longer need the mod in place to avoid crashing

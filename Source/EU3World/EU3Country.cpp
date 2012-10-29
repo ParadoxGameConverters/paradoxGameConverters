@@ -31,6 +31,12 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 	// Parse history file
 	Object* obj;
 	obj = doParseFile( (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str() );
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
+		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
+		exit(-1);
+	}
 
 	// Set objects from top of history file
 	vector<Object*> govLeaves = obj->getValue("government");
