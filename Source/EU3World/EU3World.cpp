@@ -601,6 +601,13 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			double blendAmount = atof( Configuration::getPopulationblendamount().c_str() );
 			provItr->second->setPopulation( (blendAmount * provItr->second->getPopulation()) + ((1 - blendAmount) * totalHistoricalPopulation * popProxy / totalPopProxy) );
 		}
+		else if (Configuration::getPopulation() == "historical")
+		{
+			if (provItr->second->getPopulation() < 1000.0f)
+			{
+				provItr->second->setPopulation(1000.0f);
+			}
+		}
 		if (Configuration::getManpower() == "converted")
 		{
 			provItr->second->setManpower(totalHistoricalManpower * manpowerProxy / totalManpowerProxy);
