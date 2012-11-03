@@ -3,10 +3,7 @@ set j=%~n2
 
 echo Testing %i% with the %j% configuration
 copy ..\..\EU3_Saves\%i%.zip .\%i%.zip
-set PWD=%~dp0
-"%IZARC_LOC%" -ef "%PWD%" "%i%.zip"
-copy "%i%\*.eu3" .\input.eu3
-del %i% /q
+"%SEVENZIP_LOC%\7z.exe" e -tzip "%i%.zip" "*.*" -mx5
 del %i%.zip
 rmdir %i%
 call EU3toV2Converter.exe
