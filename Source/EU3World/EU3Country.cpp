@@ -103,6 +103,72 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 	navalTechInvestment			= 0.0f;
 	landTechInvestment			= 0.0f;
 
+	//Set the prefferred unit types replace with something better later
+	if(techGroup == "western")
+	{
+		infantry = "western_medieval_infantry";
+		cavalry = "western_medieval_knights";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "eastern")
+	{
+		infantry="eastern_medieval_infantry";
+		cavalry="eastern_knights";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "ottoman")
+	{
+		infantry = "ottoman_yaya";
+		cavalry = "ottoman_musellem";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "muslim")
+	{
+		infantry = "mamluk_archer";
+		cavalry = "muslim_cavalry_archers";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "indian")
+	{
+		infantry = "indian_footsoldier";
+		cavalry = "indian_archers";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "chinese")
+	{
+		infantry = "chinese_longspear";
+		cavalry = "eastern_bow";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "sub_saharan")
+	{
+		infantry = "african_spearmen";
+		transport = "cog";
+	}
+	else if(techGroup == "new_world")
+	{
+		infantry = "south_american_spearmen";
+	}
+	else if(techGroup == "nomad_group")
+	{
+		infantry = "mongol_bow";
+		cavalry = "mongol_swarm";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
 
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
@@ -376,6 +442,26 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t}\n");
 	fprintf(output, "\tbadboy=0.000\n");
 	fprintf(output, "\tlegitimacy=1.000\n");
+	if(infantry != "")
+	{
+	fprintf(output, "\tinfantry=\"%s\"\n", infantry.c_str());
+	}
+	if(cavalry != "")
+	{
+		fprintf(output, "\tcavalry=\"%s\"\n", cavalry.c_str());
+	}
+	if(bigShip != "")
+	{
+		fprintf(output, "\tbig_ship=\"%s\"\n", bigShip.c_str());
+	}
+	if(galley != "")
+	{
+		fprintf(output, "\tgalley=\"%s\"\n", galley.c_str());
+	}
+	if(infantry != "")
+	{
+		fprintf(output, "\ttransport=\"%s\"\n", transport.c_str());
+	}
 	if (regent != NULL)
 	{
 		fprintf(output, "\tmonarch=\n");

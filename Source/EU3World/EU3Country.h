@@ -50,7 +50,7 @@ class EU3Country
 		int				getStability()				const { return stability; };
 
 	private:
-		const CK2Title*		src;
+		const CK2Title*			src;
 		vector<EU3Province*>	provinces;
 		double					learningScore;
 
@@ -63,7 +63,7 @@ class EU3Country
 		EU3Ruler*				monarch;
 		EU3Ruler*				heir;
 		EU3Ruler*				regent;
-		vector<EU3History*>	history;
+		vector<EU3History*>		history;
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;
 		double					governmentTech;
@@ -87,8 +87,14 @@ class EU3Country
 		double					estimatedProduction;
 		double					estimatedTolls;
 
-		bool						daimyo;
-		bool						japaneseEmperor;
+		bool					daimyo;
+		bool					japaneseEmperor;
+
+		string					infantry;
+		string					cavalry;
+		string					bigShip;
+		string					galley;
+		string					transport;
 };
 
 
