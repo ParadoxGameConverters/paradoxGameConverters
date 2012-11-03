@@ -142,6 +142,11 @@ V2World::V2World(string V2Loc)
 				if ( (*i)->getNum() == provNum )
 				{
 					Object* provinceObj = doParseFile((provDirPath + provFileData.name).c_str());
+					if (provinceObj == NULL)
+					{
+						log("Could not parse file %s\n", (provDirPath + provFileData.name).c_str());
+						exit(-1);
+					}
 					(*i)->importHistory(provinceObj);
 					break;
 				}
@@ -222,6 +227,11 @@ V2World::V2World(string V2Loc)
 	log("\tFinding coastal provinces.\n");
 	printf("\tFinding coastal provinces.\n");
 	Object*	obj2 = doParseFile((V2Loc + "\\map\\positions.txt").c_str());
+	if (obj2 == NULL)
+	{
+		log("Could not parse file %s\n", (V2Loc + "\\map\\positions.txt").c_str());
+		exit(-1);
+	}
 	vector<Object*> objProv = obj2->getLeaves();
 	if (objProv.size() == 0)
 	{
@@ -286,6 +296,11 @@ V2World::V2World(string V2Loc)
 		countryFileName	= line.substr(start, size);
 
 		Object* countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+		if (countryData == NULL)
+		{
+			log("Could not parse file %s\n", (Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+			exit(-1);
+		}
 
 		vector<Object*> partyData = countryData->getValue("party");
 		map<int, V2Party*> localParties;
@@ -1059,6 +1074,11 @@ void V2World::convertArmies(const EU3World& sourceWorld, const inverseProvinceMa
 	// get cost per regiment values
 	double cost_per_regiment[num_reg_categories] = { 0.0 };
 	Object*	obj2 = doParseFile("regiment_costs.txt");
+	if (obj2 == NULL)
+	{
+		log("Could not parse file regiment_costs.txt\n");
+		exit(-1);
+	}
 	vector<Object*> objTop = obj2->getLeaves();
 	if (objTop.size() == 0 || objTop[0]->getLeaves().size() == 0)
 	{

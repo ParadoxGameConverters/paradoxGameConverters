@@ -124,7 +124,7 @@ string bufferOneObject(ifstream& read)
 	while (read.good())
 	{
 		getline(read, buffer);
-		currObject += "\n" + buffer;
+		currObject += "\n";
 
 		bool opened = false;
 		bool isInLiteral = false;
@@ -138,6 +138,7 @@ string bufferOneObject(ifstream& read)
 			}
 			if (isInLiteral)
 			{
+				currObject += str[i];
 				continue;
 			}
 			if ('#' == str[i])
@@ -153,6 +154,7 @@ string bufferOneObject(ifstream& read)
 			{
 				--openBraces;
 			}
+			currObject += str[i];
 		}
 
 		if (openBraces > 0)
@@ -286,13 +288,15 @@ void setRHSobject()
 
 void setRHSobjlist()
 {
+	Object* l = stack.back();
+	l->setValue(objstack);
+	objstack.clear();
+	stack.pop_back(); 
 	if (0 < stack.size())
 	{
 		Object* p = stack.back(); 
-		p->setValue(objstack); 
+		p->setValue(l); 
 	}
-	stack.pop_back(); 
-	objstack.clear(); 
 }
 
 Object* doParseFile(const char* filename)
@@ -310,9 +314,7 @@ Object* doParseFile(const char* filename)
 	read.open(filename); 
 	if (!read.is_open())
 	{
-		log("Error: Could not open %s\n", filename);
-		printf("Error: Could not open %s\n", filename);
-		exit(1);
+		return NULL;
 	}
 	readFile(read);  
 	read.close();

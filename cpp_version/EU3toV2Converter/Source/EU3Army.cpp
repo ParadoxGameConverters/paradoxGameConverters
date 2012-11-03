@@ -225,6 +225,11 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap& rtm)
 {
 	Object* obj = doParseFile((directory + "\\" + name + ".txt").c_str());
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (directory + "\\" + name + ".txt").c_str());
+		exit(-1);
+	}
 
 	int rc = -1;
 	vector<Object*> typeObj = obj->getValue("type");

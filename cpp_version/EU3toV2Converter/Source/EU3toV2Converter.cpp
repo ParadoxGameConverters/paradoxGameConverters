@@ -61,6 +61,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("\tParsing save.\n");
 	printf("\tParsing save.\n");
 	obj = doParseFile(inputFilename.c_str());
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", inputFilename.c_str());
+		exit(-1);
+	}
 	log("\tExtracting data.\n");
 	printf("\tExtracting data.\n");
 	EU3World sourceWorld(obj);
@@ -104,6 +109,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		read.clear();
 		log("\tReading unit strengths from unit_strength.txt\n");
 		obj = doParseFile("unit_strength.txt");
+		if (obj == NULL)
+		{
+			log("Could not parse file unit_strength.txt\n");
+			exit(-1);
+		}
 		for (int i = 0; i < num_reg_categories; ++i)
 		{
 			AddCategoryToRegimentTypeMap(obj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
@@ -140,6 +150,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Merging nations.\n");
 	printf("Merging nations.\n");
 	obj = doParseFile("merge_nations.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file merge_nations.txt\n");
+		exit(-1);
+	}
 	mergeNations(sourceWorld, obj);
 
 
@@ -176,6 +191,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		fclose(testfp);
 	}
 	obj = doParseFile(mappingFile);
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", mappingFile);
+		exit(-1);
+	}
 	provinceMapping provinceMap = initProvinceMap(obj);
 	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
@@ -185,6 +205,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Getting blocked V2 nations.\n");
 	printf("Getting blocked V2 nations.\n");
 	obj = doParseFile("blocked_nations.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file blocked_nations.txt\n");
+		exit(-1);
+	}
 	vector<string> blockedNations = processBlockedNations(obj);
 
 	// Get country mappings
@@ -192,6 +217,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing country mappings.\n");
 	initParser();
 	obj = doParseFile("country_mappings.txt");	
+	if (obj == NULL)
+	{
+		log("Could not parse file country_mappings.txt\n");
+		exit(-1);
+	}
 
 	// Map EU3 nations to V2 nations
 	log("Mapping EU3 nations to V2 nations.\n");
@@ -245,6 +275,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
 	obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (V2Loc + "\\map\\region.txt").c_str());
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Could not parse region.txt.\n");
@@ -259,6 +294,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
 	obj = doParseFile("cultureMap.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file cultureMap.txt\n");
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse cultureMap.txt.\n");
@@ -269,6 +309,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
 	obj = doParseFile( (EU3Loc + "\\common\\cultures.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (EU3Loc + "\\common\\cultures.txt").c_str());
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse cultures.txt.\n");
@@ -282,6 +327,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing religion mappings.\n");
 	printf("Parsing religion mappings.\n");
 	obj = doParseFile("religionMap.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file religionMap.txt\n");
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse religionMap.txt.\n");
@@ -296,6 +346,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Parsing union mappings.\n");
 	printf("Parsing union mappings.\n");
 	obj = doParseFile("unions.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file unions.txt\n");
+		exit(-1);
+	}
 	if (obj->getLeaves().size() < 1)
 	{
 		log("Error: Failed to parse unions.txt.\n");
@@ -311,6 +366,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing governments mappings.\n");
 	initParser();
 	obj = doParseFile("governmentMapping.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file governmentMapping.txt\n");
+		exit(-1);
+	}
 	governmentMapping governmentMap;
 	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
 
@@ -320,10 +380,20 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing tech schools.\n");
 	initParser();
 	obj = doParseFile("blocked_tech_schools.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file blocked_tech_schools.txt\n");
+		exit(-1);
+	}
 	vector<string> blockedTechSchools;
 	blockedTechSchools = initBlockedTechSchools(obj);
 	initParser();
 	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (V2Loc + "\\common\\technology.txt").c_str());
+		exit(-1);
+	}
 	vector<techSchool> techSchools;
 	techSchools = initTechSchools(obj, blockedTechSchools);
 

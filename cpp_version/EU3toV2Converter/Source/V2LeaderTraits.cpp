@@ -88,6 +88,11 @@ bool V2TraitConversion::matches(int fire, int shock, int manuever, int siege) co
 V2LeaderTraits::V2LeaderTraits()
 {
 	Object* obj = doParseFile("leader_traits.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file leader_traits.txt\n");
+		exit(-1);
+	}
 
 	backgrounds.clear();
 	vector<Object*> traitObjs = obj->getValue("background");

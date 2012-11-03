@@ -9,7 +9,13 @@ Configuration::Configuration()
 	printf("Reading configuration file.\n");
 	log("Reading configuration file.\n");
 
-	vector<Object*> obj = doParseFile("configuration.txt")->getValue("configuration");
+	Object* tempObj = doParseFile("configuration.txt");
+	if (tempObj == NULL)
+	{
+		log("Could not parse file configuration.txt\n");
+		exit(-1);
+	}
+	vector<Object*> obj = tempObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
 		printf("Configuration file must contain exactly one configuration section.");

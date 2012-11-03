@@ -105,6 +105,11 @@ V2FactoryFactory::V2FactoryFactory(string V2Loc)
 	// load factory types
 	factoryTypes.clear();
 	Object* obj = doParseFile((V2Loc + "\\common\\production_types.txt").c_str());
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (V2Loc + "\\common\\production_types.txt").c_str());
+		exit(-1);
+	}
 	vector<Object*> factoryObjs = obj->getLeaves();
 	for (vector<Object*>::iterator itr = factoryObjs.begin(); itr != factoryObjs.end(); ++itr)
 	{
@@ -131,6 +136,11 @@ V2FactoryFactory::V2FactoryFactory(string V2Loc)
 
 	factoryCounts.clear();
 	obj = doParseFile("starting_factories.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file starting_factories.txt\n");
+		exit(-1);
+	}
 	vector<Object*> top = obj->getValue("starting_factories");
 	if (top.size() != 1)
 	{
@@ -173,6 +183,11 @@ deque<V2Factory*> V2FactoryFactory::buildFactories() const
 void V2FactoryFactory::loadRequiredTechs(string filename)
 {
 	Object* obj = doParseFile(filename.c_str());
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", filename.c_str());
+		exit(-1);
+	}
 	vector<Object*> techObjs = obj->getLeaves();
 	for (vector<Object*>::iterator itr = techObjs.begin(); itr != techObjs.end(); ++itr)
 	{
@@ -188,6 +203,11 @@ void V2FactoryFactory::loadRequiredTechs(string filename)
 void V2FactoryFactory::loadRequiredInventions(string filename)
 {
 	Object* obj = doParseFile(filename.c_str());
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", filename.c_str());
+		exit(-1);
+	}
 	vector<Object*> invObjs = obj->getLeaves();
 	for (vector<Object*>::iterator itr = invObjs.begin(); itr != invObjs.end(); ++itr)
 	{

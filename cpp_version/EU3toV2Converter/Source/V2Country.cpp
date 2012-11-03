@@ -675,6 +675,11 @@ void V2Country::initFromHistory()
 	if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
 	{
 		Object* obj = doParseFile( (V2Loc + "\\history\\countries\\" + fileData.name).c_str() );
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (V2Loc + "\\history\\countries\\" + fileData.name).c_str());
+			exit(-1);
+		}
 
 		vector<Object*> results = obj->getValue("primary_culture");
 		if (results.size() > 0)
