@@ -17,6 +17,7 @@ link = { CK2 = e_pirates  EU3 = PIR } # Pirates
 
 ## Empires
 # European Empires
+link = { CK2 = e_roman_empire EU3 = BYZ } # Byzantium 
 link = { CK2 = e_byzantium EU3 = BYZ } # Byzantium 
 link = { CK2 = e_hre  EU3 = HRE } # Holy Roman Empire
 
