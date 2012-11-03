@@ -418,3 +418,4 @@ Revision	Version Updated		Log Message
 480		C++			Reorder province mapping around madrid so capital stays in Madrid
 481		C++			Slight updates to culture mappings
 482		C++			Update test batch files to use 7-Zip
+483		C++			More updates to the test batch files

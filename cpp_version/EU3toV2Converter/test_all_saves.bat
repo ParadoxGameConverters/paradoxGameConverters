@@ -12,6 +12,6 @@ copy TestConfigurations\%m%\unions.txt Release\unions.txt
 
 copy test.bat Release\test.bat
 cd Release
-for /f %%k in ('dir /b ..\..\EU3_Saves\*.zip') do call test.bat %%k "%m%"
+for /f %%k in ('dir /b ..\..\EU3_Saves\*.zip') do call test.bat "%%k" "%m%"
 del test.bat /q
 cd ..
