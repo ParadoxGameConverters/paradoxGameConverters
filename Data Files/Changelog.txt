@@ -221,3 +221,4 @@ Revision	Log Message
 217		Tech investment
 218		Add miaphysite religion mapping
 219		No longer need the mod in place to avoid crashing
+220		Converted provinces have a minimum of 1000 population with historical pop conversion
