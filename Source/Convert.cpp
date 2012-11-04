@@ -2,6 +2,7 @@
 #include <string>
 #include <sys/stat.h>
 #include <io.h>
+#include <functional>
 #include "Log.h"
 #include "Configuration.h"
 #include "Parsers/Parser.h"
@@ -13,6 +14,35 @@
 #include "Mappers.h"
 using namespace std;
 
+
+bool doParseDirectoryContents(const std::string& directory, std::function<void(Object* obj)> predicate)
+{
+	Object*				obj;
+	struct _finddata_t	data;
+	intptr_t			fileListing;
+	if ( (fileListing = _findfirst( (directory + "*").c_str(), &data)) == -1L)
+	{
+		return false;
+	}
+	do
+	{
+		if (strcmp(data.name, ".") == 0 || strcmp(data.name, "..") == 0 )
+		{
+			continue;
+		}
+		obj = doParseFile((directory + data.name).c_str());
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (directory + data.name).c_str());
+			printf("Error: Could not open %s\n", (directory + data.name).c_str());
+			exit(-1);
+		}
+		predicate(obj);
+	} while(_findnext(fileListing, &data) == 0);
+	_findclose(fileListing);
+
+	return true;
+}
 
 
 int main(int argc, char * argv[])
@@ -73,30 +103,11 @@ int main(int argc, char * argv[])
 		exit(-1);
 	}
 	srcWorld.addBuildingTypes(obj);
-	struct _finddata_t	buildingsData;
-	intptr_t					fileListing;
-	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\buildings\\*").c_str(), &buildingsData)) == -1L)
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld.addBuildingTypes(eachobj); }))
 	{
-		log("\t\tError: Could not open buildings directory.\n");
-		printf("\t\tError: Could not open buildings directory.\n");
-		exit(1);
+		log("\t\tError: Could not open buildings directory (ok for pre-1.06).\n");
+		printf("\t\tError: Could not open buildings directory (ok for pre-1.06).\n");
 	}
-	do
-	{
-		if (strcmp(buildingsData.name, ".") == 0 || strcmp(buildingsData.name, "..") == 0 )
-		{
-			continue;
-		}
-		obj = doParseFile((Configuration::getCK2Path() + "\\common\\buildings\\" + buildingsData.name).c_str());
-		if (obj == NULL)
-		{
-			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\buildings\\" + buildingsData.name).c_str());
-			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\buildings\\" + buildingsData.name).c_str());
-			exit(-1);
-		}
-		srcWorld.addBuildingTypes(obj);
-	} while(_findnext(fileListing, &buildingsData) == 0);
-	_findclose(fileListing);
 
 	log("\tGetting CK2 religions\n");
 	printf("\tGetting CK2 religions\n");
@@ -109,29 +120,11 @@ int main(int argc, char * argv[])
 	}
 	religionGroupMapping CK2ReligionGroupMap;
 	addReligionGroupMappings(obj, CK2ReligionGroupMap);
-	struct _finddata_t	religionsData;
-	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\religions\\*").c_str(), &religionsData)) == -1L)
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\religions\\"), [&](Object* eachobj) { addReligionGroupMappings(eachobj, CK2ReligionGroupMap); }))
 	{
-		log("\t\tError: Could not open religions directory.\n");
-		printf("\t\tError: Could not open religions directory.\n");
-		exit(1);
+		log("\t\tError: Could not open religions directory (ok for pre-1.06).\n");
+		printf("\t\tError: Could not open religions directory (ok for pre-1.06).\n");
 	}
-	do
-	{
-		if (strcmp(religionsData.name, ".") == 0 || strcmp(religionsData.name, "..") == 0 )
-		{
-			continue;
-		}
-		obj = doParseFile((Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
-		if (obj == NULL)
-		{
-			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
-			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\religions\\" + religionsData.name).c_str());
-			exit(-1);
-		}
-		addReligionGroupMappings(obj, CK2ReligionGroupMap);
-	} while(_findnext(fileListing, &religionsData) == 0);
-	_findclose(fileListing);
 
 	log("\tGetting CK2 cultures\n");
 	printf("\tGetting CK2 cultures\n");
@@ -144,29 +137,11 @@ int main(int argc, char * argv[])
 	}
 	cultureGroupMapping CK2CultureGroupMap;
 	addCultureGroupMappings(obj, CK2CultureGroupMap);
-	struct _finddata_t	culturesData;
-	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\cultures\\*").c_str(), &culturesData)) == -1L)
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, CK2CultureGroupMap); }))
 	{
-		log("\t\tError: Could not open cultures directory.\n");
-		printf("\t\tError: Could not open cultures directory.\n");
-		exit(1);
+		log("\t\tError: Could not open cultures directory (ok for pre-1.06).\n");
+		printf("\t\tError: Could not open cultures directory (ok for pre-1.06).\n");
 	}
-	do
-	{
-		if (strcmp(culturesData.name, ".") == 0 || strcmp(culturesData.name, "..") == 0 )
-		{
-			continue;
-		}
-		obj = doParseFile((Configuration::getCK2Path() + "\\common\\cultures\\" + culturesData.name).c_str());
-		if (obj == NULL)
-		{
-			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\cultures\\" + culturesData.name).c_str());
-			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\cultures\\" + culturesData.name).c_str());
-			exit(-1);
-		}
-		addCultureGroupMappings(obj, CK2CultureGroupMap);
-	} while(_findnext(fileListing, &culturesData) == 0);
-	_findclose(fileListing);
 
 	log("\tParsing landed titles.\n");
 	printf("\tParsing landed titles.\n");
@@ -178,29 +153,11 @@ int main(int argc, char * argv[])
 		exit(-1);
 	}
 	srcWorld.addPotentialTitles(obj);
-	struct _finddata_t	landedTitlesdata;
-	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\landed_titles\\*").c_str(), &landedTitlesdata)) == -1L)
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); }))
 	{
-		log("\t\tError: Could not open landed_titles directory.\n");
-		printf("\t\tError: Could not open landed_titles directory.\n");
-		exit(1);
+		log("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+		printf("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
 	}
-	do
-	{
-		if (strcmp(landedTitlesdata.name, ".") == 0 || strcmp(landedTitlesdata.name, "..") == 0 )
-		{
-			continue;
-		}
-		obj = doParseFile((Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
-		if (obj == NULL)
-		{
-			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
-			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\landed_titles\\" + landedTitlesdata.name).c_str());
-			exit(-1);
-		}
-		srcWorld.addPotentialTitles(obj);
-	} while(_findnext(fileListing, &landedTitlesdata) == 0);
-	_findclose(fileListing);
 
 	log("\tGetting traits\n");
 	printf("\tGetting traits\n");
@@ -212,29 +169,11 @@ int main(int argc, char * argv[])
 		exit(-1);
 	}
 	srcWorld.addTraits(obj);
-	struct _finddata_t	traitsData;
-	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\traits\\*").c_str(), &traitsData)) == -1L)
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld.addTraits(eachobj); }))
 	{
-		log("\t\tError: Could not open traits directory.\n");
-		printf("\t\tError: Could not open traits directory.\n");
-		exit(1);
+		log("\t\tError: Could not open traits directory (ok for pre-1.06).\n");
+		printf("\t\tError: Could not open traits directory (ok for pre-1.06).\n");
 	}
-	do
-	{
-		if (strcmp(traitsData.name, ".") == 0 || strcmp(traitsData.name, "..") == 0 )
-		{
-			continue;
-		}
-		obj = doParseFile((Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
-		if (obj == NULL)
-		{
-			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
-			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\traits\\" + traitsData.name).c_str());
-			exit(-1);
-		}
-		srcWorld.addTraits(obj);
-	} while(_findnext(fileListing, &traitsData) == 0);
-	_findclose(fileListing);
 
 	log("\tAdding dynasties from CK2 Install\n");
 	printf("\tAdding dynasties from CK2 Install\n");
@@ -246,29 +185,11 @@ int main(int argc, char * argv[])
 		exit(-1);
 	}
 	srcWorld.addDynasties(obj);
-	struct _finddata_t	dynastiesData;
-	if ( (fileListing = _findfirst( (CK2Loc + "\\common\\dynasties\\*").c_str(), &dynastiesData)) == -1L)
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld.addDynasties(eachobj); }))
 	{
-		log("\t\tError: Could not open dynasties directory.\n");
-		printf("\t\tError: Could not open dynasties directory.\n");
-		exit(1);
+		log("\t\tError: Could not open dynasties directory (ok for pre-1.06).\n");
+		printf("\t\tError: Could not open dynasties directory (ok for pre-1.06).\n");
 	}
-	do
-	{
-		if (strcmp(dynastiesData.name, ".") == 0 || strcmp(dynastiesData.name, "..") == 0 )
-		{
-			continue;
-		}
-		obj = doParseFile((Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
-		if (obj == NULL)
-		{
-			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
-			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "\\common\\dynasties\\" + dynastiesData.name).c_str());
-			exit(-1);
-		}
-		srcWorld.addDynasties(obj);
-	} while(_findnext(fileListing, &dynastiesData) == 0);
-	_findclose(fileListing);
 	
 	log("Parsing CK2 save.\n");
 	printf("Parsing CK2 save.\n");
