@@ -496,8 +496,8 @@ int main(int argc, char * argv[])
 	FILE* output;
 	if (fopen_s(&output, outputFilename.c_str(), "w") != 0)
 	{
-		log("Error: could not open output.v2.\n");
-		printf("Error: could not open output.v2.\n");
+		log("Error: could not open output.eu3.\n");
+		printf("Error: could not open output.eu3.\n");
 	}
 	destWorld.output(output);
 	fclose(output);
