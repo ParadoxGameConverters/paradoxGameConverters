@@ -163,5 +163,13 @@ eu3 = KOJ
 eu3 = RUS
 eu3 = RFR
 eu3 = SPA
+eu3 = NED
+eu3 = IRE
+eu3 = PRU
+eu3 = BYZ
+eu3 = PER
+eu3 = ENG
+eu3 = FRA
+eu3 = SPI
 
 }
