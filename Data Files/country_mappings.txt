@@ -4,8 +4,9 @@ mappings={
 #This is essentially one-to-one country mappings to ensure that countries that are available in BOTH CK2 and EU3 get the correct tag.
 #For example, if the Kingdom of England (k_england) is active in CK2 it will always become England (ENG) in EU3 after conversion.
 
-#The links that come first in the list are executed before the links after it.  This means, for example, that EU3s Great Britain has the first chance to become the United Kingdom,
-# England has the second chance if Great Britain has not been formed. This comment needs to be updated for this converter.
+#The links that come first in the list are executed before the links after it.  This means, for example, that the Kingdom of Brittany,
+#if extant and independent, will get the BRI tag.
+#If it doesn't exist, the Duchy of Brittany will get BRI instead (since it comes later in the list).
 
 # link = { CK2 =  EU3 =  }
 
@@ -29,9 +30,9 @@ link = { CK2 = e_scandinavia EU3 = SCA } # Scandinavia
 
 # Eastern and African Empires
 link = { CK2 = e_golden_horde  EU3 = GOL } # Golden Horde
-link = { CK2 = e_timurids  EU3 =  TIM } # Timurids
+link = { CK2 = e_timurids  EU3 = TIM } # Timurids
 
-link = { CK2 = e_il-khanate  EU3 =  JAI } # Ilkhanate => Jalayirids
+link = { CK2 = e_il-khanate  EU3 = JAI } # Ilkhanate => Jalayirids
 link = { CK2 = e_persia EU3 = PER } # Persia
 link = { CK2 = e_arabia EU3 = HED } # Arabia => Hedjaz ???
 
@@ -59,9 +60,9 @@ link = { CK2 = k_egypt EU3 = MAM } # Egypt -> Mamluks
 link = { CK2 = k_wales EU3 = WLS } # Wales
 link = { CK2 = k_scotland EU3 = SCO } # Scotland
 link = { CK2 = k_ireland EU3 = IRE } # Ireland
-link = { CK2 = k_norway EU3 = NOR } #Norway
+link = { CK2 = k_norway EU3 = NOR } # Norway
 
-link = { CK2 = k_frisia EU3 = NED } #Frisa => The Netherlands
+link = { CK2 = k_frisia EU3 = NED } # Frisa => The Netherlands
 link = { CK2 = k_lotharingia EU3 = LOR } # Lotharingia => Lorraine
 link = { CK2 = k_pomerania EU3 = POM } # Pommerania
 link = { CK2 = k_bavaria EU3 = BAV } # Bavaria
@@ -163,10 +164,10 @@ link = { CK2 = d_mazovia EU3 = MAZ } # Mazovia
 link = { CK2 = d_greater_poland EU3 = POL } # Poland
 link = { CK2 = d_lesser_poland EU3 = POL } # Poland
 link = { CK2 = d_silesia EU3 = SIL } # Silesia
-link = { CK2 = d_prussia EU3 = PRU } # Prussia ???
+link = { CK2 = d_prussia EU3 = PRU } # Prussia
 link = { CK2 = d_polotsk EU3 = PLT } # Polotsk
 link = { CK2 = d_lithuanians EU3 = LIT } # Lithuania
-link = { CK2 = d_courland EU3 = Kur } # Courland
+link = { CK2 = d_courland EU3 = KUR } # Courland
 link = { CK2 = d_novgorod EU3 = NOV } # Novgorod
 link = { CK2 = d_tver EU3 = TVE } # Tver
 link = { CK2 = d_yaroslavl EU3 = YAR } # Yaroslav
@@ -205,14 +206,14 @@ link = { CK2 = d_navarra EU3 = NAV } # Navarra
 link = { CK2 = d_galicia EU3 = GAL } # Galicia
 link = { CK2 = d_porto EU3 = POR } # Portugal/Portucale
 link = { CK2 = d_granada EU3 = GRA } # Granada
-llink = { CK2 = d_northumberland EU3 = NOL } # Northumberland
+link = { CK2 = d_northumberland EU3 = NOL } # Northumberland
 link = { CK2 = d_lancaster EU3 = LAN } # Lancaster
 link = { CK2 = d_york EU3 = YOR } # York
-ink = { CK2 = d_cornwall EU3 = CRN } # Cornwall
+link = { CK2 = d_cornwall EU3 = CRN } # Cornwall
 link = { CK2 = d_connacht EU3 = CNN } # Connacht
 link = { CK2 = d_leinster EU3 = LEI } # Leinster
 link = { CK2 = d_munster EU3 = MNS } # Munster
-link = { CK2 = d_barcelona EU3 = CAT } # Barcelona => Catalunya ???
+link = { CK2 = d_barcelona EU3 = CAT } # Barcelona => Catalunya
 
 
 #Eastern and African Duchies
@@ -262,6 +263,7 @@ link = { CK2 = c_hainaut EU3 = HAI } # Hainaut
 link = { CK2 = c_luxembourg EU3 = LUX } # Luxembourg
 link = { CK2 = c_liege EU3 = LIE } # Liege
 link = { CK2 = c_lorraine EU3 = LOR } # Lorraine
+link = { CK2 = c_verdun EU3 = BAR } # Verdun => Bar
 link = { CK2 = c_trier EU3 = TRI } # Trier
 link = { CK2 = c_mecklemburg EU3 = MKL } # Mecklenburg
 link = { CK2 = c_danzig EU3 = DNZ } # Danzig
@@ -299,7 +301,7 @@ link = { CK2 = c_bremen EU3 = BRE } # Bremen
 link = { CK2 = c_finland EU3 = FIN } # Finland
 link = { CK2 = c_lower_silesia EU3 = SIL } # Silesia
 link = { CK2 = c_upper_silesia EU3 = SIL } # Silesia
-link = { CK2 = c_krakowskie EU3 = KRA } # ???
+link = { CK2 = c_krakowskie EU3 = KRA } # Krakow
 link = { CK2 = c_polotsk EU3 = PLT } # Polotsk
 link = { CK2 = c_novgorod EU3 = NOV } # Novgorod
 link = { CK2 = c_pskov EU3 = PSK } # Pskov
@@ -346,7 +348,7 @@ link = { CK2 = c_leinster EU3 = LEI } # Leinster
 #Eastern and African Counties
 link = { CK2 = c_khorasan EU3 = KHO } # Khorasan
 link = { CK2 = c_khiva EU3 = KHI } # Khiva
-link = { CK2 = c_hijaz EU3 = Hedjaz } # Hedjaz
+link = { CK2 = c_hijaz EU3 = HED } # Hedjaz
 link = { CK2 = c_al_hasa EU3 = ALH } # Haasa
 link = { CK2 = c_jerusalem EU3 = KOJ } # Jerusalem
 link = { CK2 = c_syria EU3 = SYR } # Syria
@@ -363,7 +365,7 @@ link = { CK2 = c_aden EU3 = ADE } # Aden
 link = { CK2 = c_julich EU3 = AAC } # Julich/Aachen
 link = { CK2 = c_evreux EU3 = ALE } # Evreux/Alencon
 link = { CK2 = c_bamberg EU3 = ANS } # Bamberg/Ansbach
-link = { CK2 = c_kempten EU3 = Augsburg } # Kempten/Augsberg
+link = { CK2 = c_kempten EU3 = AUG } # Kempten/Augsberg
 link = { CK2 = c_venaissin EU3 = AVI } # Venaissin/Avignon
 link = { CK2 = c_mainz EU3 = FRN } # Mainz/Frankfurt
 link = { CK2 = c_celle EU3 = HAN } # Celle/Hannover
@@ -373,5 +375,6 @@ link = { CK2 = c_methone EU3 = MOE } # Methone/Mystras/Morea
 link = { CK2 = c_leiningen EU3 = PAL } # Leiningen/Heidelberg/The Palatinate
 link = { CK2 = c_sticht EU3 = UTR } # Sticht/Utrecht/Utrecht
 link = { CK2 = c_dhu_zabi EU3 = SHR } # Dhu-Zabi/Sharjah/Sharjah
+link = { CK2 = c_zemigalians EU3 = RIG } # Zemigalians/Riga
 
 }
