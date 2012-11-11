@@ -47,6 +47,7 @@ class CK2Character
 
 		void							setCapital(CK2Province* _capital)					{ capital = _capital; };
 		void							setPrimaryHolding(CK2Barony* _primaryHolding)	{ primaryHolding = _primaryHolding; };
+		void							setPrimaryTitle(const map<string, CK2Title*>& titleMap);
 
 		int							getNum()						const { return num; };
 		string						getName()					const { return name; };
@@ -109,6 +110,8 @@ class CK2Character
 		string						capitalString;
 		CK2Province*				capital;
 		CK2Barony*					primaryHolding;
+		string						primaryTitleString;
+		CK2Title*					primaryTitle;
 };
 
 

@@ -107,6 +107,13 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		}
 	}
 
+	// set primary titles
+	for (map<int, CK2Character*>::iterator i = characters.begin(); i != characters.end(); i++)
+	{
+		if (!i->second) continue;
+		i->second->setPrimaryTitle(titles);
+	}
+
 	// get provinces
 	printf("\tGetting provinces\n");
 	for (unsigned int i = 0; i < leaves.size(); i++)

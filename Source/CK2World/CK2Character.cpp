@@ -160,6 +160,7 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 	}
 	locationNum				= -1;
 	capitalString			= "";
+	primaryTitleString		= "";
 	vector<Object*> demesneObj = obj->getValue("demesne");
 	if (demesneObj.size() > 0)
 	{
@@ -168,8 +169,14 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		{
 			capitalString = capitalObj[0]->getLeaf();
 		}
+		vector<Object*> primaryObj = demesneObj[0]->getValue("primary");
+		if (primaryObj.size() > 0)
+		{
+			primaryTitleString = primaryObj[0]->getLeaf();
+		}
 	}
 	capital = NULL;
+	primaryTitle = NULL;
 
 	vector<Object*> attributesObj = obj->getValue("attributes");
 	if (attributesObj.size() > 0)
@@ -646,6 +653,17 @@ void CK2Character::mergeTitles(bool useInheritance)
 {
 	if (titles.size() > 1) // can't merge 1 or fewer...
 	{
+		// first try merging everything into the primary title
+		if (primaryTitle != NULL)
+		{
+			for (vector<CK2Title*>::reverse_iterator titr = titles.rbegin(); titr != titles.rend(); ++titr)
+			{
+				if ((*titr) != primaryTitle)
+					primaryTitle->eatTitle((*titr), useInheritance);
+			}
+		}
+
+		// then merge anything that remains
 		for (vector<CK2Title*>::iterator sitr = titles.begin(); sitr != (titles.end() - 1); ++sitr)
 		{
 			for (vector<CK2Title*>::reverse_iterator titr = titles.rbegin(); (titr+1).base() != sitr; ++titr)
@@ -653,5 +671,20 @@ void CK2Character::mergeTitles(bool useInheritance)
 				(*sitr)->eatTitle((*titr), useInheritance);
 			}
 		}
+	}
+}
+
+
+void CK2Character::setPrimaryTitle(const map<string, CK2Title*>& titleMap)
+{
+	// find the title
+	map<string, CK2Title*>::const_iterator itr = titleMap.find(primaryTitleString);
+	if (itr != titleMap.end())
+	{
+		primaryTitle = itr->second;
+
+		// sanity check
+		if (primaryTitle->getHolder() != this)
+			log("Error: primary title of %s is %s, but s/he does not hold it.\n", getName().c_str(), primaryTitleString.c_str());
 	}
 }
