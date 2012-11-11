@@ -1,4 +1,5 @@
 #include "CK2Character.h"
+#include <algorithm>
 #include "..\log.h"
 #include "..\Configuration.h"
 #include "..\Parsers\Object.h"
@@ -235,6 +236,14 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 void CK2Character::addTitle(CK2Title* newTitle)
 {
 	titles.push_back(newTitle);
+}
+
+
+void CK2Character::removeTitle(CK2Title* oldTitle)
+{
+	vector<CK2Title*>::iterator itr = std::find(titles.begin(), titles.end(), oldTitle);
+	if (itr != titles.end())
+		titles.erase(itr);
 }
 
 
@@ -630,4 +639,19 @@ vector<CK2Character*> CK2Character::getGavelkindHeirs(string genderLaw)
 	}
 
 	return heirs;
+}
+
+
+void CK2Character::mergeTitles(bool useInheritance)
+{
+	if (titles.size() > 1) // can't merge 1 or fewer...
+	{
+		for (vector<CK2Title*>::iterator sitr = titles.begin(); sitr != (titles.end() - 1); ++sitr)
+		{
+			for (vector<CK2Title*>::reverse_iterator titr = titles.rbegin(); (titr+1).base() != sitr; ++titr)
+			{
+				(*sitr)->eatTitle((*titr), useInheritance);
+			}
+		}
+	}
 }

@@ -32,6 +32,7 @@ class CK2World
 		void							addTraits(Object*);
 		void							addPotentialTitles(Object*);
 		void							removeDeadTitles();
+		void							mergeTitles();
 
 		CK2Version*					getVersion()				const	{ return version; };
 		date							getEndDate()				const { return endDate; };

@@ -6,7 +6,8 @@
 #include "CK2Dynasty.h"
 #include "CK2History.h"
 #include "..\Log.h"
-
+#include <algorithm>
+#include "..\Configuration.h"
 
 
 CK2Title::CK2Title(string _titleString)
@@ -108,10 +109,14 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 }
 
 
-void CK2Title::addLiege(CK2Title* newLiege)
+void CK2Title::setLiege(CK2Title* newLiege)
 {
+	if (liege)
+		liege->removeVassal(this);
+
 	liege = newLiege;
 	liege->addVassal(this);
+	liegeString = newLiege->getTitleString();
 
 	independent = false;
 }
@@ -120,6 +125,14 @@ void CK2Title::addLiege(CK2Title* newLiege)
 void CK2Title::addVassal(CK2Title* vassal)
 {
 	vassals.push_back(vassal);
+}
+
+
+void CK2Title::removeVassal(CK2Title* vassal)
+{
+	vector<CK2Title*>::iterator itr = find(vassals.begin(), vassals.end(), vassal);
+	if (itr != vassals.end())
+		vassals.erase(itr);
 }
 
 
@@ -193,6 +206,17 @@ void CK2Title::setDeJureLiege(const map<string, CK2Title*>& titles)
 }
 
 
+void CK2Title::setDeJureLiege(CK2Title* _deJureLiege)
+{
+	if (deJureLiege)
+		deJureLiege->removeDeJureVassal(this);
+
+	 deJureLiege = _deJureLiege;
+	 deJureLiegeString = _deJureLiege->getTitleString();
+	 _deJureLiege->addDeJureVassal(this);
+}
+
+
 void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& titles, CK2World* world)
 {
 	for (vector<Object*>::iterator itr = obj.begin(); itr < obj.end(); itr++)
@@ -213,7 +237,6 @@ void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& tit
 		{
 			log("Note! The CK2Title::addDeJureVassals() else condition is needed!\n");
 		}
-		deJureVassals.push_back(titleItr->second);
 		titleItr->second->setDeJureLiege(this);
 		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), titles, world );
 	}
@@ -390,4 +413,82 @@ CK2Character* CK2Title::getTurkishSuccessionHeir()
 	}
 
 	return heir;
+}
+
+
+bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
+{
+	// see if it's valid to consume the target title
+
+	// can't autocephalate
+	if (target == this)
+	{
+		log("Assert: title attempted to autocephalate.\n");
+		return false;
+	}
+
+	// merged titles must have the same holder, and the holder must exist
+	if (!getHolder())
+		return false;
+	if (getHolder() != target->getHolder())
+		return false;
+
+	// don't merge barony titles (causes problems elsewhere, and there's no real reason to)
+	if (titleString.substr(0,2) == "b_" || target->titleString.substr(0,2) == "b_")
+		return false;
+
+	// don't merge anything with the designated hre title
+	if (titleString == Configuration::getHRETitle() || target->titleString == Configuration::getHRETitle())
+		return false;
+
+	// can't merge a vassal with an independent entity
+	if (isIndependent() != target->isIndependent())
+		return false;
+
+	// merged vassal titles must have the same liege
+	if (!isIndependent())
+	{
+		if (getLiegeString() != target->getLiegeString())
+			return false;
+	}
+
+	// if we are checking inheritance, merged titles must have the same heir, succession and gender laws, and neither can be elective, gavelkind, or bishoporic
+	if (checkInheritance)
+	{
+		if (getHeir() != target->getHeir())
+			return false;
+		if (successionLaw != target->successionLaw || genderLaw != target->genderLaw)
+			return false;
+		if (successionLaw == "feudal_elective" || successionLaw == "open_elective" || successionLaw == "gavelkind" || successionLaw == "catholic_bishopric")
+			return false;
+	}
+
+	// if we get here, it must be valid, so do the deed
+
+	// steal all vassals and de jure vassals from target
+	for (vector<CK2Title*>::reverse_iterator itr = target->vassals.rbegin(); itr != target->vassals.rend(); ++itr)
+		(*itr)->setLiege(this);
+	for (vector<CK2Title*>::reverse_iterator itr = target->deJureVassals.rbegin(); itr != target->deJureVassals.rend(); ++itr)
+		(*itr)->setDeJureLiege(this);
+
+	// remove the target from its holder and lieges
+	target->holder->removeTitle(target);
+	if (target->liege)
+		target->liege->removeVassal(target);
+	if (target->deJureLiege)
+		target->deJureLiege->removeDeJureVassal(target);
+
+	// destroy the target
+	target->vassals.clear();
+	target->deJureVassals.clear();
+	target->deJureLiege = NULL;
+	target->deJureLiegeString = "";
+	target->liege = NULL;
+	target->liegeString = "";
+	target->holder = NULL;
+	target->heir = NULL;
+
+	log("%s absorbed %s\n", this->getTitleString().c_str(), target->getTitleString().c_str());
+
+	return true;
 }

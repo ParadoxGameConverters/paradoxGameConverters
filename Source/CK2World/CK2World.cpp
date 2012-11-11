@@ -148,7 +148,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		}
 		else
 		{
-			i->second->addLiege(titles[liege]);
+			i->second->setLiege(titles[liege]);
 		}
 	}
 
@@ -267,6 +267,25 @@ void CK2World::removeDeadTitles()
 	log("\tThere are a total of %d titles\n", titles.size());
 	log("\tThere are a total of %d independent titles\n", independentTitles.size());
 	log("\tThere are a total of %d hre members\n", hreMembers.size());
+}
+
+
+void CK2World::mergeTitles()
+{
+	bool useInheritance = true; // default to "inheritance"
+	std::string mergeTitlesSetting = Configuration::getMergeTitles();
+	if (mergeTitlesSetting == "never")
+		return;
+	else if (mergeTitlesSetting == "inheritance")
+		useInheritance = true;
+	else if (mergeTitlesSetting == "always")
+		useInheritance = false;
+
+	for (map<int, CK2Character*>::iterator citr = characters.begin(); citr != characters.end(); ++citr)
+	{
+		if (!citr->second) continue;
+		citr->second->mergeTitles(useInheritance);
+	}
 }
 
 

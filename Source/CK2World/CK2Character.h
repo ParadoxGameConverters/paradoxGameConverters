@@ -35,12 +35,15 @@ class CK2Character
 		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
 	
 		void							addTitle(CK2Title*);
+		void							removeTitle(CK2Title*);
 		void							setParents(map<int, CK2Character*>&);
 		void							setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
 		void							setGavelkindHeirs(string);
 
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
+
+		void							mergeTitles(bool useInheritance);
 
 		void							setCapital(CK2Province* _capital)					{ capital = _capital; };
 		void							setPrimaryHolding(CK2Barony* _primaryHolding)	{ primaryHolding = _primaryHolding; };

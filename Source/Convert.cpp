@@ -205,6 +205,10 @@ int main(int argc, char * argv[])
 	printf("Importing parsed data.\n");
 	srcWorld.init(obj, CK2ReligionGroupMap, CK2CultureGroupMap);
 
+	log("Merging top-level titles.\n");
+	printf("Merging top-level titles.\n");
+	srcWorld.mergeTitles();
+
 	log("Removing extra titles.\n");
 	printf("Importing parsed data.\n");
 	srcWorld.removeDeadTitles();

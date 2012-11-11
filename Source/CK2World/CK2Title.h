@@ -19,7 +19,7 @@ class CK2Title
 		CK2Title(string _titleString);
 		void	init(Object*, map<int, CK2Character*>&);
 
-		void						addLiege(CK2Title*);
+		void						setLiege(CK2Title*);
 		void						addToHRE();
 		void						determineHeir(map<int, CK2Character*>&);
 		void						setHeir(CK2Character*);
@@ -43,9 +43,13 @@ class CK2Title
 		CK2Title*				getDeJureLiege()		const { return deJureLiege; };
 		bool						isIndependent()		const { return independent; };
 		bool						isInHRE()				const { return inHRE; };
+
+		bool						eatTitle(CK2Title* target, bool checkInheritance);
+
 	private:
-		void								setDeJureLiege(CK2Title* _deJureLiege) { deJureLiege = _deJureLiege; }
+		void								setDeJureLiege(CK2Title* _deJureLiege);
 		void								addVassal(CK2Title*);
+		void								removeVassal(CK2Title*);
 		CK2Character*					getFeudalElectiveHeir(map<int, CK2Character*>&);
 		CK2Character*					getTurkishSuccessionHeir();
 

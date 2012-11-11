@@ -67,6 +67,11 @@ public:
 		return getInstance()->HRETitle;
 	}
 
+	static string getMergeTitles()
+	{
+		return getInstance()->mergeTitles;
+	}
+
 	static string getAdvisors()
 	{
 		return getInstance()->advisors;
@@ -159,6 +164,7 @@ private:
 	string	population;
 	string	populationblendamount;
 	string	HRETitle;
+	string	mergeTitles;
 
 	string	advisors;
 	string	leaders;

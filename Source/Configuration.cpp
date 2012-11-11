@@ -42,6 +42,7 @@ Configuration::Configuration()
 	population	= obj[0]->getLeaf("population");
 	populationblendamount	= obj[0]->getLeaf("populationblendamount");
 	HRETitle		= obj[0]->getLeaf("HRETitle");
+	mergeTitles		= obj[0]->getLeaf("mergeTitles");
 
 	advisors				= obj[0]->getLeaf("advisors");
 	leaders				= obj[0]->getLeaf("leaders");
