@@ -407,7 +407,6 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 	{
 		topCulture		= "";
 		highestCount	= 0;
-		vector<string>	tiedCultures2;
 		for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
 		{
 			for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
