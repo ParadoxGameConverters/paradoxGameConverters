@@ -468,24 +468,24 @@ bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 	// steal all vassals and de jure vassals from target
 	for (vector<CK2Title*>::reverse_iterator itr = target->vassals.rbegin(); itr != target->vassals.rend(); ++itr)
 		(*itr)->setLiege(this);
-	for (vector<CK2Title*>::reverse_iterator itr = target->deJureVassals.rbegin(); itr != target->deJureVassals.rend(); ++itr)
-		(*itr)->setDeJureLiege(this);
+	/*for (vector<CK2Title*>::reverse_iterator itr = target->deJureVassals.rbegin(); itr != target->deJureVassals.rend(); ++itr)
+		(*itr)->setDeJureLiege(this);*/
 
 	// remove the target from its holder and lieges
 	target->holder->removeTitle(target);
 	if (target->liege)
 		target->liege->removeVassal(target);
-	if (target->deJureLiege)
-		target->deJureLiege->removeDeJureVassal(target);
+	/*if (target->deJureLiege)
+		target->deJureLiege->removeDeJureVassal(target);*/
 
 	// destroy the target
 	target->vassals.clear();
-	target->deJureVassals.clear();
+	/*target->deJureVassals.clear();
 	target->deJureLiege = NULL;
-	target->deJureLiegeString = "";
+	target->deJureLiegeString = "";*/
 	target->liege = NULL;
 	target->liegeString = "";
-	target->holder = NULL;
+	/*target->holder = NULL;*/
 	target->heir = NULL;
 
 	log("\t%s absorbed %s\n", this->getTitleString().c_str(), target->getTitleString().c_str());

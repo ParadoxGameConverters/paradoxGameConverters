@@ -26,7 +26,7 @@ class EU3Province
 		
 		void		output(FILE*);
 
-		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy, const vector<CK2Province*>& _srcProvinces);
+		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy, const vector<CK2Province*>& _srcProvinces, const vector<string> _cores);
 		void		addAdvisor(EU3Advisor* advisor);
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
@@ -49,6 +49,7 @@ class EU3Province
 		void		setContinent(string _continent)			{ continent = _continent; };
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
+		void		setInHRE(bool _inHRE)						{ inHRE = _inHRE; };
 
 		bool						isLand() const				{ return land; };
 		string					getOwner() const			{ return owner; };

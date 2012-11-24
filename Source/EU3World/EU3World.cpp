@@ -447,7 +447,7 @@ void EU3World::convertCountries(countryMapping& countryMap, const religionMappin
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, const countryMapping& countryMap, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -545,6 +545,31 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			}
 		}
 
+		vector<string> cores;
+		for (vector<CK2Province*>::iterator provItr = srcProvinces.begin(); provItr != srcProvinces.end(); provItr++)
+		{
+			vector<CK2Barony*> srcBaronies = (*provItr)->getBaronies();
+			if (srcBaronies.size() > 0)
+			{
+				const CK2Title* current	= srcBaronies[0]->getTitle();
+				const CK2Title* next		= current->getDeJureLiege();
+				while( (next != NULL) && /*( next->getHolder() != NULL) &&*/ (next->getTitleString() != Configuration::getHRETitle()) )
+				{
+					countryMapping::const_iterator liege = countryMap.find(next);
+					if( liege != countryMap.end())
+					{
+						cores.push_back( liege->second->getTag() );
+					}
+					current	= next;
+					next		= current->getDeJureLiege();
+				}
+				if ( (next != NULL) && (next->getTitleString() == Configuration::getHRETitle()) )
+				{
+					inHRE = true;
+				}
+			}
+		}
+
 		if (Configuration::getMultipleProvsMethod() == "average")
 		{
 			baseTaxProxy	/= srcProvinces.size();
@@ -553,13 +578,14 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 
 		map<int, EU3Province*>::iterator provItr = provinces.find(i->first);
-		provItr->second->convert(i->first, inHRE, europeanCountries, srcProvinces);
+		provItr->second->convert(i->first, inHRE, europeanCountries, srcProvinces, cores);
 
 		const CK2Title*	greatestOwner;
 		int					greatestOwnerNum = 0;
 		for (unsigned int j = 0; j < owners.size(); j++)
 		{
-			provItr->second->addCore( countryMap[owners[j].first]->getTag() );
+			countryMapping::const_iterator owner = countryMap.find(owners[j].first);
+			provItr->second->addCore( owner->second->getTag() );
 			if (owners[j].second > greatestOwnerNum)
 			{
 				greatestOwner		= owners[j].first;
@@ -568,7 +594,8 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		if (owners.size() > 0)
 		{
-			string ownerTag = countryMap[greatestOwner]->getTag();
+			countryMapping::const_iterator owner = countryMap.find(greatestOwner);
+			string ownerTag = owner->second->getTag();
 			provItr->second->setOwner( ownerTag );
 			provItr->second->setSrcOwner(greatestOwner);
 			countries[ownerTag]->addProvince(provItr->second);

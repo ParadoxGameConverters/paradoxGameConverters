@@ -237,3 +237,4 @@ Revision	Log Message
 233		Update changelog with latest changes.
 234		Update test configs with the title merging options
 235		Make log slightly easier to read
+236		Cores and HRE membership added for de jure relationships
