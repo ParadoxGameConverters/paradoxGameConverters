@@ -57,6 +57,12 @@ configuration =
 	# HRE Title: the CK2 Title that will convert are the HRE in EU3. All immediate vassals will be independent.
 	HRETitle = "e_hre"
 
+	# mergeTitles: specifies what to do when a single character holds multiple titles at the same tier
+	#	"never"		- titles remain independent, but ruled by a common ruler (PU)
+	#	"inheritance"	- titles are merged if and only if the inheritance laws GUARANTEE common rulership
+	#			  this means: same succession and gender laws, no gavelkind, no elective.
+	#	"always"	- titles are merged whereever possible
+	mergeTitles = "inheritance"
 
 
 	### EU3 Options ###
