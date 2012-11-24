@@ -236,3 +236,4 @@ Revision	Log Message
 232		Remove a shadowed variable that prevented manpower from being considered for culture mapping.
 233		Update changelog with latest changes.
 234		Update test configs with the title merging options
+235		Make log slightly easier to read

@@ -423,7 +423,7 @@ bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 	// can't autocephalate
 	if (target == this)
 	{
-		log("Assert: title attempted to autocephalate.\n");
+		log("\tAssert: title attempted to autocephalate.\n");
 		return false;
 	}
 
@@ -488,7 +488,7 @@ bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 	target->holder = NULL;
 	target->heir = NULL;
 
-	log("%s absorbed %s\n", this->getTitleString().c_str(), target->getTitleString().c_str());
+	log("\t%s absorbed %s\n", this->getTitleString().c_str(), target->getTitleString().c_str());
 
 	return true;
 }
