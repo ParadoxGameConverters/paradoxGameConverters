@@ -202,23 +202,36 @@ Revision	Log Message
 		Fixed bug with importing country history.
 199		Tamnius' culture suggestions
 200		Add Scotland1399_10_16 save
-201		More culture rule updates
-202		Change Scotland test save from rar to zip
-203		Starting stability and investment
-204		Estimate taxation
-205		Estimate tolls
-206		Determine if provinces are on the same continent as the owner's capital
-207		Determine if provinces are land connected to capital
-208		Taxes and tolls take into account distance overseas
-209		Estimate production income
-210		Estimate gold income
-211		Fix for gold income estimate
-212		ROTW Tech levels (European ones are completely wrong)
-213		Change economy option defaults to historical
-214		1.06 saves don't lose muslim buildings when converted by a 1.07 install
-215		Apply change 213 to test configs
-216		Convert tech
-217		Tech investment
-218		Add miaphysite religion mapping
-219		No longer need the mod in place to avoid crashing
-220		Converted provinces have a minimum of 1000 population with historical pop conversion
+201		Back out last change
+202		Add Scotland1399_10_16 save 
+203		More culture rule updates
+204		Change Scotland test save from rar to zip
+205		Starting stability and investment
+206		Estimate taxation
+207		Estimate tolls
+208		Determine if provinces are on the same continent as the owner's capital
+209		Determine if provinces are land connected to capital
+210		Taxes and tolls take into account distance overseas
+211		Estimate production income
+212		Estimate gold income
+213		Fix for gold income estimate
+214		ROTW Tech levels (European ones are completely wrong)
+215		Change economy option defaults to historical
+216		1.06 saves don't lose muslim buildings when converted by a 1.07 install
+217		Apply change 213 to test configs
+218		Convert tech
+219		Tech investment
+220		Add miaphysite religion mapping
+221		No longer need the mod in place to avoid crashing
+222		Converted provinces have a minimum of 1000 population with historical pop conversion
+223		Added Roman Empire mapping to country_mappings
+224		Added favored unit variable to Country class
+225		Merged changes
+226		block some additional nations that can be created by EU3 decision.
+227		Minor improvements to country mappings
+228		A little bit of refactoring, and being unable to open common/* directories is not a fatal error for pre-1.06 installs.
+229		fix error message.
+230		Add title merging function and options.
+231		Get primary titles and use them as the primary merge target for title merging.
+232		Remove a shadowed variable that prevented manpower from being considered for culture mapping.
+233		Update changelog with latest changes.
