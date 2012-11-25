@@ -225,13 +225,13 @@ link = { ck2 = 201 ck2 = 199 eu3 = 1746 }	# Nájera, Burgos -> Burgos
 link = { ck2 = 190 ck2 = 189 eu3 = 208 }	# León, Astorga -> León
 link = { ck2 = 183 ck2 = 182 ck2 = 181 eu3 = 225 }	# Aracena, Seville, Cordoba -> Córdoba
 link = { ck2 = 185 ck2 = 184 eu3 = 218 }	# Mértola, Badajoz -> Badajoz
-link = { ck2 = 179 ck2 = 196 eu3 = 1748 }	# Almansa, Calatrava -> La Mancha
-link = { ck2 = 178 eu3 = 219 }	# La Mancha -> Toledo
+link = { ck2 = 179 ck2 = 196 ck2 = 178 eu3 = 1748 }	# Almansa, Calatrava, La Mancha -> La Mancha
+link = { ck2 = 197 eu3 = 219 }	# Toledo -> Toledo
 link = { ck2 = 188 eu3 = 232 }	# Bragança -> Bragança
 link = { ck2 = 187 ck2 = 186 eu3 = 228 }	# Castelo Branco, Évora -> Beira
 link = { ck2 = 191 ck2 = 192 eu3 = 216 }	# Zamora, Salamanca -> Salamanca
 link = { ck2 = 198 ck2 = 200 ck2 = 176 eu3 = 215 }	# Valladolid, Soria, Molina -> Castilla La Vieja
-link = { ck2 = 177 ck2 = 197 eu3 = 217 }	# Cuenca, Toledo -> Madrid
+link = { ck2 = 177 eu3 = 217 }	# Cuenca -> Madrid
 link = { ck2 = 193 ck2 = 195 ck2 = 194 eu3 = 1747 }	# Alcantara, Caceres, Plasencia -> Caceres
 # Mediteranian Islands
 link = { ck2 = 826 ck2 = 827 eu3 = 333 }	# Menorca, Mallorca -> The Baleares
