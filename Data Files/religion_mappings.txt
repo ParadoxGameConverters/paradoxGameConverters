@@ -26,5 +26,6 @@ link = { ck2 = tengri_pagan  eu3 = shamanism }
 link = { ck2 = baltic_pagan  eu3 = shamanism}
 link = { ck2 = finnish_pagan  eu3 = shamanism }
 link = { ck2 = zoroastrian eu3 = shamanism }
+link = { ck2 = aztec eu3 = animism }
 
 }

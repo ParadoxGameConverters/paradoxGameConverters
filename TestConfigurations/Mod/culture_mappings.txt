@@ -357,4 +357,8 @@ link = { ck2 = manden eu3 = mali religion = zikri }
 link = { ck2 = manden eu3 = mali religion = yazidi }
 link = { ck2 = manden eu3 = mali religion = ibadi }
 link = { ck2 = manden eu3 = ashanti }
+
+## Mesoamerican
+link = { ck2 = nahuatl eu3 = nahuatl }
+
 }

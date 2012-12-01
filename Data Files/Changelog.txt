@@ -241,3 +241,4 @@ Revision	Log Message
 237		Upadted province mappings in Spain
 238		Add new test saves
 239		Update test configurations
+240		Update culture and religion mappings

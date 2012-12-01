@@ -264,6 +264,23 @@ christian = {
 		}
 		
 	}
+
+	monothelite = {
+		color = { 0.75 0.51 0.35 }
+		allowed_conversion = {
+			orthodox
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+	}
 	
 	crusade_name = CRUSADE
 }
@@ -527,6 +544,19 @@ pagan = {
 	finnish_pagan = {
 		color = { 0.5 0.2 0.0 }
 		
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+
+	aztec = {
+		color = { 0.8 0.2 0.2 }
+
 		province = {
 			stability_cost = 10
 			local_missionary_cost = -0.5

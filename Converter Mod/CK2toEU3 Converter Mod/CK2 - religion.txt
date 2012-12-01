@@ -67,6 +67,45 @@ christian = {
 		}
 		
 		investiture = no
+		autocephaly = yes
+		can_excommunicate = yes
+		can_grant_divorce = yes
+		can_grant_invasion_cb = invasion
+		can_grant_claim = yes
+		can_call_crusade = no
+	}
+	
+	miaphysite = {
+		graphical_culture = westerngfx
+		
+		icon = 11
+		color = { 0.7 0.7 0.4 }
+		
+		crusade_name = "CRUSADE"
+		scripture_name = THE_BIBLE
+		
+		god_names = {
+			GOD_GOD GOD_THE_LORD GOD_JESUS GOD_THE_BLESSED_VIRGIN
+		}
+		
+		investiture = no
+		autocephaly = yes
+		can_excommunicate = yes
+		can_grant_divorce = yes
+		can_grant_invasion_cb = invasion
+		can_grant_claim = yes
+		can_call_crusade = no
+	}
+	
+	monophysite = {
+		graphical_culture = westerngfx
+
+		icon = 13
+		color = { 0.8 0.4 0.1 }
+		parent = miaphysite
+		
+		investiture = no
+		autocephaly = yes
 		can_excommunicate = yes
 		can_grant_divorce = yes
 		can_grant_invasion_cb = invasion
@@ -81,6 +120,39 @@ christian = {
 		color = { 0.9 0.7 0 }
 		parent = orthodox
 	}
+	
+	nestorian = {
+		graphical_culture = westerngfx
+
+		icon = 7
+		color = { 0.6 0.2 0.2 }
+		parent = orthodox
+		
+		investiture = no
+		autocephaly = yes
+		can_excommunicate = yes
+		can_grant_divorce = yes
+		can_grant_invasion_cb = invasion
+		can_grant_claim = yes
+		can_call_crusade = no
+	}
+	
+	monothelite = {
+		graphical_culture = westerngfx
+
+		icon = 7
+		color = { 0.75 0.51 0.35 }
+		parent = orthodox
+		
+		investiture = no
+		autocephaly = yes
+		can_excommunicate = yes
+		can_grant_divorce = yes
+		can_grant_invasion_cb = invasion
+		can_grant_claim = yes
+		can_call_crusade = no
+	}
+	
 	iconoclast = {
 		graphical_culture = westerngfx
 
@@ -88,26 +160,14 @@ christian = {
 		color = { 0.9 0.6 0.6 }
 		parent = orthodox
 	}
-	monophysite = {
-		graphical_culture = westerngfx
-
-		icon = 7
-		color = { 0.8 0.4 0.1 }
-		parent = orthodox
-	}
-	nestorian = {
-		graphical_culture = westerngfx
-
-		icon = 7
-		color = { 0.6 0.2 0.2 }
-		parent = orthodox
-	}
+	
 }
 
 muslim = {
 	has_coa_on_barony_only = no
 	graphical_culture = muslimgfx
 	crusade_cb = crusade
+	playable = yes
 	
 	sunni = {
 		graphical_culture = muslimgfx
@@ -121,10 +181,11 @@ muslim = {
 			GOD_ALLAH GOD_THE_GREATEST
 		}
 		
-		can_grant_invasion_cb = invasion
 		can_grant_claim = yes
 		can_call_crusade = yes
 		priests_can_marry = yes
+		psc_marriage = no # Disallow uncle-nice and aunt-nephew marriages
+		max_wives = 4
 	}
 	zikri = {
 		graphical_culture = muslimgfx
@@ -133,6 +194,8 @@ muslim = {
 		color = { 0.2 0.6 0.2 }
 		parent = sunni
 		priests_can_marry = yes
+		psc_marriage = no
+		max_wives = 4
 	}
 	yazidi = {
 		graphical_culture = muslimgfx
@@ -141,6 +204,8 @@ muslim = {
 		color = { 0.1 0.7 0.1 }
 		parent = sunni
 		priests_can_marry = yes
+		psc_marriage = no
+		max_wives = 4
 	}
 	ibadi = {
 		graphical_culture = muslimgfx
@@ -149,6 +214,8 @@ muslim = {
 		color = { 0.3 0.6 0.3 }
 		parent = sunni
 		priests_can_marry = yes
+		psc_marriage = no
+		max_wives = 4
 	}
 	shiite = {
 		graphical_culture = muslimgfx
@@ -162,10 +229,11 @@ muslim = {
 			GOD_ALLAH GOD_THE_GREATEST
 		}
 		
-		can_grant_invasion_cb = invasion
 		can_grant_claim = yes
 		can_call_crusade = yes
 		priests_can_marry = yes
+		psc_marriage = no
+		max_wives = 4
 	}
 	bektashi = {
 		graphical_culture = muslimgfx
@@ -174,6 +242,8 @@ muslim = {
 		color = { 0.3 0.8 0.3 }
 		parent = shiite
 		priests_can_marry = yes
+		psc_marriage = no
+		max_wives = 4
 	}
 	druze = {
 		graphical_culture = muslimgfx
@@ -182,6 +252,8 @@ muslim = {
 		color = { 0.0 0.9 0.4 }
 		parent = shiite
 		priests_can_marry = yes
+		psc_marriage = no
+		max_wives = 4
 	}
 	hurufi = {
 		graphical_culture = muslimgfx
@@ -190,6 +262,8 @@ muslim = {
 		color = { 0.4 0.9 0.0 }
 		parent = shiite
 		priests_can_marry = yes
+		psc_marriage = no
+		max_wives = 4
 	}
 }
 
@@ -257,6 +331,17 @@ pagan_group = {
 		}
 		priests_can_marry = yes
 	}
+	aztec = {
+		graphical_culture = mesoamericangfx
+		icon = 15
+		color = { 0.8 0.2 0.2 }
+		god_names = {
+			GOD_HUITZILOPOCHTLI GOD_XIPE_TOTEC GOD_TEZCATLIPOCA GOD_QUETZALCOATL GOD_MICTLANTECUHTLI GOD_TLALOC
+		}
+		crusade_name = "HOLY_WAR"
+		scripture_name = THE_LEGENDS
+		priests_can_marry = yes
+	}
 }
 
 zoroastrian_group = {
@@ -265,7 +350,7 @@ zoroastrian_group = {
 
 	zoroastrian = {
 		graphical_culture = muslimgfx
-		icon = 5
+		icon = 10
 		color = { 0.5 0.7 0.2 }
 		crusade_name = "HOLY_WAR"
 		scripture_name = THE_GATHAS

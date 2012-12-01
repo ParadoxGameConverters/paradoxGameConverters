@@ -455,6 +455,8 @@ central_american = {
 	aztek = {
 		primary = AZT
 	}
+	nahuatl = {
+	}
 }
 	
 south_american = {
