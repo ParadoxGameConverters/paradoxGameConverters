@@ -105,6 +105,7 @@
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\EU3World\EU3Advisor.cpp" />
     <ClCompile Include="Source\EU3World\EU3Country.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Diplomacy.cpp" />
     <ClCompile Include="Source\EU3World\EU3History.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
     <ClCompile Include="Source\EU3World\EU3Ruler.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\EU3World\EU3Advisor.h" />
     <ClInclude Include="Source\EU3World\EU3Country.h" />
+    <ClInclude Include="Source\EU3World\EU3Diplomacy.h" />
     <ClInclude Include="Source\EU3World\EU3History.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />
     <ClInclude Include="Source\EU3World\EU3Ruler.h" />

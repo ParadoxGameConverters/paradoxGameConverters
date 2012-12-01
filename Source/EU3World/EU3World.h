@@ -14,6 +14,7 @@ class EU3Country;
 class EU3Province;
 class EU3Advisor;
 class EU3Tech;
+class EU3Diplomacy;
 
 
 
@@ -71,6 +72,7 @@ class EU3World
 		vector<string>						europeanCountries;
 		vector<EU3Advisor*>				advisors;
 		map< string, vector<string> >	mapSpreadStrings;
+		EU3Diplomacy*						diplomacy;
 
 		string			japaneseEmperor;
 		vector<string>	daimyos;

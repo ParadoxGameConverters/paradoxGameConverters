@@ -17,6 +17,7 @@
 #include "EU3Country.h"
 #include "EU3Ruler.h"
 #include "EU3Advisor.h"
+#include "EU3Diplomacy.h"
 using namespace std;
 
 
@@ -213,6 +214,8 @@ EU3World::EU3World(CK2World* srcWorld, EU3Tech* _techData)
 		options[LUCKY_NATIONS] = 2;
 	}
 
+	diplomacy = new EU3Diplomacy();
+
 	japaneseEmperor	= "";
 	daimyos.clear();
 	shogun				= "";
@@ -262,6 +265,9 @@ void EU3World::output(FILE* output)
 	}
 	fprintf(output, "\t}\n");
 	fprintf(output, "}\n");
+
+	diplomacy->output(output);
+
 	if (shogunPower != -1.0f)
 	{
 		fprintf(output, "shogun=\n");
