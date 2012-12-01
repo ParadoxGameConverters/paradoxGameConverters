@@ -240,3 +240,4 @@ Revision	Log Message
 236		Cores and HRE membership added for de jure relationships
 237		Upadted province mappings in Spain
 238		Add new test saves
+239		Update test configurations

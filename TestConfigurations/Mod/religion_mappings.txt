@@ -9,6 +9,7 @@ link = { ck2 = lollard  eu3 = lollard }
 link = { ck2 = orthodox  eu3 = orthodox }
 link = { ck2 = bogomilist  eu3 = bogomilist }
 link = { ck2 = iconoclast  eu3 = iconoclast }
+link = { ck2 = miaphysite  eu3 = misphysite }
 link = { ck2 = monophysite  eu3 = monophysite }
 link = { ck2 = nestorian  eu3 = nestorian }
 link = { ck2 = sunni  eu3 = sunni }
