@@ -6,7 +6,10 @@
 #include <vector>
 using namespace std;
 
+
+
 class Object;
+class EU3Country;
 
 
 
@@ -15,10 +18,10 @@ struct EU3Agreement
 	EU3Agreement();
 	void output(FILE*);
 
-	string	type;
-	string	country1;
-	string	country2;
-	date		startDate;
+	string		type;
+	EU3Country*	country1;
+	EU3Country*	country2;
+	date			startDate;
 };
 
 

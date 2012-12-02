@@ -11,6 +11,7 @@ using namespace std;
 class Object;
 class CK2Character;
 class EU3Province;
+class EU3Country;
 
 class EU3Advisor
 {
@@ -22,23 +23,24 @@ class EU3Advisor
 		void	outputInActive(FILE*);
 
 		void	setLocation(int _location)	{ location = _location; };
+		void	setHome(EU3Country* _home)	{ home = _home; };
 
 		int	getLocation()	const { return location; };
 		date	getStartDate()	const { return startDate; };
 		date	getDeathDate()	const { return deathDate; };
 
 	private:
-		string	name;
-		int		id;
-		string	dynasty;
+		string		name;
+		int			id;
+		string		dynasty;
 
-		string	advisorType;
-		int		advisorSkill;
-		int		location;
-		string	home;
+		string		advisorType;
+		int			advisorSkill;
+		int			location;
+		EU3Country*	home;
 
-		date		startDate;
-		date		deathDate;
+		date			startDate;
+		date			deathDate;
 };
 
 

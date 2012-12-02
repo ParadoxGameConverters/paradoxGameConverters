@@ -12,6 +12,7 @@ class Object;
 class CK2World;
 class CK2Character;
 class CK2History;
+class EU3Country;
 
 class CK2Title
 {
@@ -30,6 +31,7 @@ class CK2Title
 		void						getCultureWeights(map<string, int>& cultureWeights, const cultureMapping& cultureMap) const;
 
 		void						addDeJureVassal(CK2Title* vassal) { deJureVassals.push_back(vassal); };
+		void						setDstCountry(EU3Country* _dstCountry) { dstCountry = _dstCountry; };
 
 		string					getTitleString()		const { return titleString; };
 		CK2Character*			getHolder()				const { return holder; };
@@ -43,6 +45,7 @@ class CK2Title
 		CK2Title*				getDeJureLiege()		const { return deJureLiege; };
 		bool						isIndependent()		const { return independent; };
 		bool						isInHRE()				const { return inHRE; };
+		EU3Country*				getDstCountry()		const { return dstCountry; };
 
 		bool						eatTitle(CK2Title* target, bool checkInheritance);
 
@@ -69,6 +72,8 @@ class CK2Title
 
 		bool								independent;
 		bool								inHRE;
+
+		EU3Country*						dstCountry;
 };
 
 

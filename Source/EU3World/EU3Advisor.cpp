@@ -1,5 +1,6 @@
 #include "EU3Advisor.h"
 #include "EU3Province.h"
+#include "EU3Country.h"
 #include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2Dynasty.h"
 #include "..\CK2World\CK2Province.h"
@@ -215,9 +216,9 @@ void EU3Advisor::outputInProvince(FILE* output)
 	fprintf(output,"\t\t\t\ttype=%s\n", advisorType.c_str());
 	fprintf(output,"\t\t\t\tskill=%d\n", advisorSkill);
 	fprintf(output,"\t\t\t\tlocation=%d\n", location);
-	if (home != "")
+	if (home != NULL)
 	{
-		fprintf(output,"\t\t\t\thome=\"%s\"\n", home.c_str());
+		fprintf(output,"\t\t\t\thome=\"%s\"\n", home->getTag().c_str());
 	}
 	fprintf(output,"\t\t\t\tdate=\"%d.%d.%d\"\n", startDate.year, startDate.month, startDate.day);
 	fprintf(output,"\t\t\t\thire_date=\"1.1.1\"\n");

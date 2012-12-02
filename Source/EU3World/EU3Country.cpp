@@ -11,6 +11,7 @@
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Techs.h"
 #include "EU3Ruler.h"
+#include "EU3Advisor.h"
 #include "EU3History.h"
 #include "EU3Province.h"
 #include "EU3World.h"
@@ -19,13 +20,13 @@
 using namespace std;
 
 
-EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, date startDate, const EU3Tech* techData)
+EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date startDate, const EU3Tech* techData)
 {
 	src				= NULL;
 	provinces.clear();
 	learningScore	= 0.0;
 
-	tag			= newTag;
+	tag			= _tag;
 	historyFile	= newHistoryFile;
 
 	// Parse history file
@@ -103,7 +104,7 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 	navalTechInvestment			= 0.0f;
 	landTechInvestment			= 0.0f;
 
-	//Set the prefferred unit types replace with something better later
+	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
 	{
 		infantry = "western_medieval_infantry";
@@ -197,13 +198,13 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 		{
 			daimyo				= true;
 			japaneseEmperor	= true;
-			world->setJapaneseEmperor(tag);
+			world->setJapaneseEmperor(this);
 		}
 		else
 		{
 			daimyo				= true;
 			japaneseEmperor	= false;
-			world->addDamiyo(tag);
+			world->addDamiyo(this);
 		}
 	}
 	else
@@ -283,7 +284,7 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 				vector<Object*> shogunObj = objectList[i]->getValue("shogun");
 				if(shogunObj.size() > 0)
 				{
-					world->setShogun(tag);
+					world->setShogun(this);
 					double shogunPower = atof( shogunObj[0]->getLeaf().c_str() );
 					world->setShogunPower(shogunPower);
 					newHistory->shogunPower = shogunPower;
@@ -296,6 +297,159 @@ EU3Country::EU3Country(EU3World* world, string newTag, string newHistoryFile, da
 	if (previousMonarchs.size() > 0)
 	{
 		previousMonarchs.pop_back();
+	}
+}
+
+
+EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
+{
+	src = _src;
+	src->setDstCountry(this);
+	provinces.clear();
+	learningScore = 0.0f;
+
+	tag			= "";
+	historyFile	= "";
+	government	= "";
+	monarch		= NULL;
+	heir			= NULL;
+	regent		= NULL;
+	history.clear();
+	previousMonarchs.clear();
+
+	religionMapping::const_iterator religionItr = religionMap.find(src->getHolder()->getReligion());
+	if (religionItr != religionMap.end())
+	{
+		religion = religionItr->second;
+	}
+	else
+	{
+		religion = "";
+	}
+
+	map<string, int> cultureWeights;
+	src->getCultureWeights(cultureWeights, cultureMap);
+	int highestWeight = 0;
+	primaryCulture		= "";
+	for (map<string, int>::iterator cultureItr = cultureWeights.begin(); cultureItr != cultureWeights.end(); cultureItr++)
+	{
+		if (cultureItr->second > highestWeight)
+		{
+			primaryCulture	= cultureItr->first;
+			highestWeight	= cultureItr->second;
+		}
+	}
+
+	acceptedCultures.clear();
+
+	techGroup = "";
+	governmentTech					= 0.0f;
+	productionTech					= 0.0f;
+	tradeTech						= 0.0f;
+	navalTech						= 0.0f;
+	landTech							= 0.0f;
+	governmentTechInvestment	= 0.0f;
+	productionTechInvestment	= 0.0f;
+	tradeTechInvestment			= 0.0f;
+	navalTechInvestment			= 0.0f;
+	landTechInvestment			= 0.0f;
+
+	CK2Province* srcCapital = src->getHolder()->getCapital();
+	if (srcCapital != NULL)
+	{
+		provinceMapping::const_iterator capitalItr = inverseProvinceMap.find( srcCapital->getNumber() );
+		if (capitalItr != inverseProvinceMap.end())
+		{
+			capital = capitalItr->second[0];
+		}
+		else
+		{
+			capital = 0;
+		}
+	}
+
+	stability				= 1;
+	stabilityInvestment	= 0.0f;
+	estimatedIncome		= 0.0f;
+	estimatedTax			= 0.0f;
+	estimatedGold			= 0.0f;
+	estimatedProduction	= 0.0f;
+	estimatedTolls			= 0.0f;
+
+	daimyo				= false;
+	japaneseEmperor	= false;
+
+	// todo: replace with something better
+	infantry = "western_medieval_infantry";
+	cavalry = "western_medieval_knights";
+	bigShip = "carrack";
+	galley = "galley";
+	transport = "cog";
+
+	date ascensionDate;
+	vector<CK2History*> oldHistory = src->getHistory();
+	for (unsigned int i = 0; i < oldHistory.size(); i++)
+	{
+		EU3History* newHistory = new EU3History(oldHistory[i]);
+		history.push_back(newHistory);
+
+		if (newHistory->regent != NULL)
+		{
+			previousMonarchs.push_back(newHistory->regent);
+		}
+		else if (newHistory->monarch != NULL)
+		{
+			previousMonarchs.push_back(newHistory->monarch);
+		}
+
+		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
+		{
+			EU3Ruler* newRegent = newHistory->regent;
+			if (newRegent != NULL)
+			{
+				monarch			= newRegent;
+				heir				= newHistory->heir;
+				ascensionDate	= newHistory->when;
+			}
+			else
+			{
+				monarch			= newHistory->monarch;
+				ascensionDate	= newHistory->when;
+			}
+		}
+	}
+	for (vector<EU3Ruler*>::iterator i = previousMonarchs.begin(); i != previousMonarchs.end(); i++)
+	{
+		for(vector<EU3Ruler*>::iterator j = previousMonarchs.begin(); j != i; j++)
+		{
+			if ( (*i)->getName() == (*j)->getName())
+			{
+				(*i)->setRegnalNum( (*j)->getRegnalNum() + 1 );
+			}
+		}
+	}
+	if (previousMonarchs.size() > 0)
+	{
+		previousMonarchs.pop_back();
+	}
+
+	if (heir == NULL)
+	{
+		CK2Character* newHeir = src->getHeir();
+		if (newHeir != NULL)
+		{
+			heir = new EU3Ruler(newHeir);
+
+			date when = newHeir->getBirthDate();
+			if (when < ascensionDate)
+			{
+				when = ascensionDate;
+			}
+
+			EU3History* newHistory = new EU3History(when);
+			newHistory->heir = heir;
+			history.push_back(newHistory);
+		}
 	}
 }
 
@@ -504,130 +658,6 @@ void EU3Country::output(FILE* output)
 	}
 	fprintf(output, "}\n");
 }
-	
-
-void EU3Country::convert(const CK2Title* _src, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
-{
-	src = _src;
-
-	government = "";
-	monarch	= NULL;
-	heir		= NULL;
-	regent	= NULL;
-	history.clear();
-	previousMonarchs.clear();
-
-	religionMapping::const_iterator religionItr = religionMap.find(src->getHolder()->getReligion());
-	if (religionItr != religionMap.end())
-	{
-		religion = religionItr->second;
-	}
-	else
-	{
-		religion = "";
-	}
-
-	map<string, int> cultureWeights;
-	src->getCultureWeights(cultureWeights, cultureMap);
-	int highestWeight = 0;
-	primaryCulture		= "";
-	for (map<string, int>::iterator cultureItr = cultureWeights.begin(); cultureItr != cultureWeights.end(); cultureItr++)
-	{
-		if (cultureItr->second > highestWeight)
-		{
-			primaryCulture	= cultureItr->first;
-			highestWeight	= cultureItr->second;
-		}
-	}
-
-	acceptedCultures.clear();
-	techGroup = "";
-
-	CK2Province* srcCapital = src->getHolder()->getCapital();
-	if (srcCapital != NULL)
-	{
-		provinceMapping::const_iterator capitalItr = inverseProvinceMap.find( srcCapital->getNumber() );
-		if (capitalItr != inverseProvinceMap.end())
-		{
-			capital = capitalItr->second[0];
-		}
-		else
-		{
-			capital = 0;
-		}
-	}
-
-	date ascensionDate;
-	vector<CK2History*> oldHistory = src->getHistory();
-	for (unsigned int i = 0; i < oldHistory.size(); i++)
-	{
-		EU3History* newHistory = new EU3History(oldHistory[i]);
-		history.push_back(newHistory);
-
-		if (newHistory->regent != NULL)
-		{
-			previousMonarchs.push_back(newHistory->regent);
-		}
-		else if (newHistory->monarch != NULL)
-		{
-			previousMonarchs.push_back(newHistory->monarch);
-		}
-
-		if ( (oldHistory[i]->getHolder() != NULL) && (src->getHolder() == oldHistory[i]->getHolder()) )
-		{
-			EU3Ruler* newRegent = newHistory->regent;
-			if (newRegent != NULL)
-			{
-				monarch			= newRegent;
-				heir				= newHistory->heir;
-				ascensionDate	= newHistory->when;
-			}
-			else
-			{
-				monarch			= newHistory->monarch;
-				ascensionDate	= newHistory->when;
-			}
-		}
-	}
-	for (vector<EU3Ruler*>::iterator i = previousMonarchs.begin(); i != previousMonarchs.end(); i++)
-	{
-		for(vector<EU3Ruler*>::iterator j = previousMonarchs.begin(); j != i; j++)
-		{
-			if ( (*i)->getName() == (*j)->getName())
-			{
-				(*i)->setRegnalNum( (*j)->getRegnalNum() + 1 );
-			}
-		}
-	}
-	if (previousMonarchs.size() > 0)
-	{
-		previousMonarchs.pop_back();
-	}
-
-	if (heir == NULL)
-	{
-		CK2Character* newHeir = src->getHeir();
-		if (newHeir != NULL)
-		{
-			heir = new EU3Ruler(newHeir);
-
-			date when = newHeir->getBirthDate();
-			if (when < ascensionDate)
-			{
-				when = ascensionDate;
-			}
-
-			EU3History* newHistory = new EU3History(when);
-			newHistory->heir = heir;
-			history.push_back(newHistory);
-		}
-	}
-
-	stability = 1;
-
-	daimyo				= false;
-	japaneseEmperor	= false;
-}
 
 
 void EU3Country::determineLearningScore()
@@ -774,13 +804,13 @@ void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups, cons
 	estimatedIncome = 0.0f;
 	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
 	{
-		estimatedTax			+= (*provItr)->determineTax(this, cultureGroups);
+		estimatedTax			+= (*provItr)->determineTax(cultureGroups);
 		//TODO: Trade
 		//TODO: Manus
 		estimatedGold			+= (*provItr)->determineGold();
-		estimatedProduction	+= (*provItr)->determineProduction(this, unitPrices);
+		estimatedProduction	+= (*provItr)->determineProduction(unitPrices);
 		//TODO: Vassals
-		estimatedTolls			+= (*provItr)->determineTolls(this);
+		estimatedTolls			+= (*provItr)->determineTolls();
 		//TODO: Harbor fees
 	}
 
@@ -947,4 +977,94 @@ void EU3Country::determineTechInvestment(const EU3Tech* techData, date startDate
 	tradeTechInvestment			= tradeTechCost		* (tradeTech		- (int)tradeTech);
 	navalTechInvestment			= navalTechCost		* (navalTech		- (int)navalTech);
 	landTechInvestment			= landTechCost			* (landTech			- (int)landTech);
+}
+
+void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings)
+{
+	src								= convertedCountry->src;
+	advisors							= convertedCountry->advisors;
+	learningScore					= convertedCountry->learningScore;
+
+	//tag - keep the tag
+	//historyFile - keep the history file
+	government						= convertedCountry->government;
+	primaryCulture					= convertedCountry->primaryCulture;
+	acceptedCultures				= convertedCountry->acceptedCultures;
+	religion							= convertedCountry->religion;
+	monarch							= convertedCountry->monarch;
+	heir								= convertedCountry->heir;
+	regent							= convertedCountry->regent;
+	history							= convertedCountry->history;
+	previousMonarchs				= convertedCountry->previousMonarchs;
+	techGroup						= convertedCountry->techGroup;
+	governmentTech					= convertedCountry->governmentTech;
+	productionTech					= convertedCountry->productionTech;
+	tradeTech						= convertedCountry->tradeTech;
+	navalTech						= convertedCountry->navalTech;
+	landTech							= convertedCountry->landTech;
+	governmentTechInvestment	= convertedCountry->governmentTech;
+	productionTechInvestment	= convertedCountry->productionTech;
+	tradeTechInvestment			= convertedCountry->tradeTech;
+	navalTechInvestment			= convertedCountry->navalTech;
+	landTechInvestment			= convertedCountry->landTech;
+
+	capital							= convertedCountry->capital;
+	stability						= convertedCountry->stability;
+	stabilityInvestment			= convertedCountry->stabilityInvestment;
+
+	estimatedIncome				= convertedCountry->estimatedIncome;
+	estimatedTax					= convertedCountry->estimatedTax;
+	estimatedGold					= convertedCountry->estimatedGold;
+	estimatedProduction			= convertedCountry->estimatedProduction;
+	estimatedTolls					= convertedCountry->estimatedTolls;
+
+	daimyo							= convertedCountry->daimyo;
+	japaneseEmperor				= convertedCountry->japaneseEmperor;
+
+	infantry							= convertedCountry->infantry;
+	cavalry							= convertedCountry->cavalry;
+	bigShip							= convertedCountry->bigShip;
+	galley							= convertedCountry->galley;
+	transport						= convertedCountry->transport;
+
+	vector<EU3Province*> newProvinces;
+	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		provinceMapping::const_iterator provMap = provinceMappings.find( (*provItr)->getNum() );
+		if (provMap->second[0] > 0)
+		{
+			newProvinces.push_back(*provItr);
+			(*provItr)->setOwner(this);
+		}
+	}
+	for (vector<EU3Province*>::iterator provItr = convertedCountry->provinces.begin(); provItr != convertedCountry->provinces.end(); provItr++)
+	{
+		newProvinces.push_back(*provItr);
+		(*provItr)->setOwner(this);
+	}
+	provinces = newProvinces;
+
+	vector<EU3Province*> newCores;
+	for (vector<EU3Province*>::iterator provItr = cores.begin(); provItr != cores.end(); provItr++)
+	{
+		provinceMapping::const_iterator provMap = provinceMappings.find( (*provItr)->getNum() );
+		if (provMap->second[0] > 0)
+		{
+			newCores.push_back(*provItr);
+			(*provItr)->addCore(this);
+		}
+	}
+	for (vector<EU3Province*>::iterator provItr = convertedCountry->cores.begin(); provItr != convertedCountry->cores.end(); provItr++)
+	{
+		newCores.push_back(*provItr);
+		(*provItr)->removeCore(convertedCountry);
+		(*provItr)->addCore(this);
+	}
+	cores = newCores;
+
+	for (vector<EU3Advisor*>::iterator advisorItr = convertedCountry->advisors.begin(); advisorItr != convertedCountry->advisors.end(); advisorItr++)
+	{
+		advisors.push_back(*advisorItr);
+		(*advisorItr)->setHome(this);
+	}
 }

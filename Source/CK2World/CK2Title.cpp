@@ -8,6 +8,7 @@
 #include "..\Log.h"
 #include <algorithm>
 #include "..\Configuration.h"
+#include "..\EU3World\EU3Country.h"
 
 
 CK2Title::CK2Title(string _titleString)
@@ -26,6 +27,7 @@ CK2Title::CK2Title(string _titleString)
 	deJureLiege			= NULL;
 	independent			= true;
 	inHRE					= false;
+	dstCountry			= NULL;
 }
 
 

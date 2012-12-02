@@ -290,10 +290,10 @@ int main(int argc, char * argv[])
 
 	EU3World destWorld(&srcWorld, techData);
 	
-	// Get potential EU3 countries
-	log("Getting potential EU3 nations.\n");
-	printf("Getting potential EU3 nations.\n");
-	destWorld.addPotentialCountries();
+	// Add historical EU3 countries
+	log("Adding historical EU3 nations.\n");
+	printf("Adding historical EU3 nations.\n");
+	destWorld.addHistoricalCountries();
 	
 	// Get list of blocked nations
 	log("Getting blocked EU3 nations.\n");
@@ -306,33 +306,6 @@ int main(int argc, char * argv[])
 		exit(-1);
 	}
 	vector<string> blockedNations = processBlockedNations(obj);
-
-	// Get country mappings
-	log("Parsing country mappings.\n");
-	printf("Parsing country mappings.\n");
-	obj = doParseFile("country_mappings.txt");
-	if (obj == NULL)
-	{
-		log("Error: Could not open country_mappings.txt\n");
-		printf("Error: Could not open country_mappings.txt\n");
-		exit(-1);
-	}
-
-	// Map CK2 nations to EU3 nations
-	log("Mapping CK2 nations to EU3 nations.\n");
-	printf("Mapping CK2 nations to EU3 nations.\n");
-	countryMapping countryMap;
-	int leftoverNations = initCountryMap(countryMap, srcWorld.getIndependentTitles(), destWorld.getCountries(), blockedNations, obj);
-	if (leftoverNations == -1)
-	{
-		return 1;
-	}
-	else if (leftoverNations > 0)
-	{
-		log("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
-		printf("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
-		return -1;
-	}
 
 	// Get EU3 Culture Groups
 	log("Getting EU3 cultures\n");
@@ -454,7 +427,7 @@ int main(int argc, char * argv[])
 	// Convert
 	log("Converting countries.\n");
 	printf("Converting countries.\n");
-	destWorld.convertCountries(countryMap, religionMap, cultureMap, inverseProvinceMap);
+	destWorld.convertCountries(srcWorld.getIndependentTitles(), religionMap, cultureMap, inverseProvinceMap);
 
 	log("Setting up provinces.\n");
 	printf("Setting up provinces.\n");
@@ -462,7 +435,7 @@ int main(int argc, char * argv[])
 
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), countryMap, cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap);
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap);
 
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");
@@ -474,7 +447,7 @@ int main(int argc, char * argv[])
 
 	log("Converting tech.\n");
 	printf("Converting tech.\n");
-	destWorld.convertTech(countryMap, religionMap, srcWorld);
+	destWorld.convertTech(religionMap, srcWorld);
 
 	log("Converting governments.\n");
 	printf("Converting governments.\n");
@@ -483,6 +456,31 @@ int main(int argc, char * argv[])
 	log("Converting economies.\n");
 	printf("Converting economies.\n");
 	destWorld.convertEconomies(EU3CultureGroupMap, tradeGoodMap);
+
+	// Map CK2 nations to EU3 nations
+	log("Parsing country mappings.\n");
+	printf("Parsing country mappings.\n");
+	obj = doParseFile("country_mappings.txt");
+	if (obj == NULL)
+	{
+		log("Error: Could not open country_mappings.txt\n");
+		printf("Error: Could not open country_mappings.txt\n");
+		exit(-1);
+	}
+	log("Mapping CK2 nations to EU3 nations.\n");
+	printf("Mapping CK2 nations to EU3 nations.\n");
+	int leftoverNations = destWorld.assignTags(obj, blockedNations, provinceMap);
+	//int leftoverNations = initCountryMap(countryMap, srcWorld.getIndependentTitles(), destWorld.getCountries(), blockedNations, obj);
+	if (leftoverNations == -1)
+	{
+		return 1;
+	}
+	else if (leftoverNations > 0)
+	{
+		log("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
+		printf("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
+		return -1;
+	}
 	
 
 	// Output results

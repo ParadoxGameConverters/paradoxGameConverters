@@ -43,23 +43,24 @@ class EU3World
 	public:
 		EU3World(CK2World*, EU3Tech*);
 
-		void						output(FILE*);
+		void	output(FILE*);
 		
-		void						addPotentialCountries();
-		void						setupProvinces(provinceMapping& provinceMap);
+		void	addHistoricalCountries();
+		void	setupProvinces(provinceMapping& provinceMap);
 
-		void						convertCountries(countryMapping&, const religionMapping& religionMap, const cultureMapping& cultureMap, const provinceMapping provinceMap);
-		void						convertProvinces(provinceMapping&, map<int, CK2Province*>&, const countryMapping&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup);
-		void						addAcceptedCultures();
-		void						convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
-		void						convertTech(countryMapping& countryMap, const religionGroupMapping& religionGroupMap, const CK2World& srcWorld);
-		void						convertGovernments(const religionGroupMapping& religionGroupMap);
-		void						convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);
+		void	convertCountries(map<string, CK2Title*> CK2Titles, const religionMapping& religionMap, const cultureMapping& cultureMap, const provinceMapping provinceMap);
+		void	convertProvinces(provinceMapping&, map<int, CK2Province*>&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup);
+		void	addAcceptedCultures();
+		void	convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
+		void	convertTech(const religionGroupMapping& religionGroupMap, const CK2World& srcWorld);
+		void	convertGovernments(const religionGroupMapping& religionGroupMap);
+		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
+		int	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
 
-		void						setJapaneseEmperor(string tag)	{ japaneseEmperor = tag; };
-		void						addDamiyo(string tag)				{ daimyos.push_back(tag); };
-		void						setShogun(string tag)				{ shogun = tag; };
-		void						setShogunPower(double power)		{ shogunPower = power; };
+		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
+		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };
+		void	setShogun(EU3Country* _shogun)				{ shogun = _shogun; };
+		void	setShogunPower(double power)					{ shogunPower = power; };
 		
 		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:
@@ -69,15 +70,15 @@ class EU3World
 
 		map<int, EU3Province*>			provinces;
 		map<string, EU3Country*>		countries;
-		vector<string>						europeanCountries;
+		vector<EU3Country*>				convertedCountries;
 		vector<EU3Advisor*>				advisors;
 		map< string, vector<string> >	mapSpreadStrings;
 		EU3Diplomacy*						diplomacy;
 
-		string			japaneseEmperor;
-		vector<string>	daimyos;
-		string			shogun;
-		double			shogunPower;
+		EU3Country*				japaneseEmperor;
+		vector<EU3Country*>	daimyos;
+		EU3Country*				shogun;
+		double					shogunPower;
 };
 
 

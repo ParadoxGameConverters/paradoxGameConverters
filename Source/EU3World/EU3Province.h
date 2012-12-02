@@ -22,37 +22,41 @@ class EU3Country;
 class EU3Province
 {
 	public:
-		EU3Province(int _num, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings);
+		EU3Province(int _num, Object* obj, date startDate);
 		
 		void		output(FILE*);
 
-		void		convert(int _num, bool _inHRE, vector<string> _discoveredBy, const vector<CK2Province*>& _srcProvinces, const vector<string> _cores);
+		void		convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, const vector<EU3Country*> _cores);
 		void		addAdvisor(EU3Advisor* advisor);
 		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 		void		setManpower(double _manpower);
 		void		determinePopUnits();
-		void		determineGoodsSupply(const tradeGoodMapping& tradeGoodMap, const EU3Country* country);
-		void		determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, const EU3Country* country, const religionGroupMapping& EU3ReligionGroupMap);
+		void		determineGoodsSupply(const tradeGoodMapping& tradeGoodMap);
+		void		determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap);
 		void		addSupplyContribution(map<string, double>& goodsSupply);
 		void		addDemandContribution(map<string, double>& goodsDemand);
-		double	determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups);
-		double	determineTolls(EU3Country* country);
-		double	determineProduction(EU3Country* country, const map<string, double>& unitPrices);
+		double	determineTax(const cultureGroupMapping& cultureGroups);
+		double	determineTolls();
+		double	determineProduction(const map<string, double>& unitPrices);
 		double	determineGold();
+		void		setDiscoverers(map< string, vector<string> >& mapSpreadStrings);
+		void		removeCore(EU3Country*);
 
 		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
-		void		addCore(string core)							{ cores.push_back(core); };
-		void		setOwner(string _owner)						{ owner = _owner; };
+		void		addCore(EU3Country* core)					{ cores.push_back(core); };
+		void		setOwner(EU3Country* _owner)				{ owner = _owner; ownerStr = ""; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 		void		setContinent(string _continent)			{ continent = _continent; };
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
 		void		setInHRE(bool _inHRE)						{ inHRE = _inHRE; };
 
+		int						getNum() const				{ return num; };
 		bool						isLand() const				{ return land; };
-		string					getOwner() const			{ return owner; };
+		EU3Country*				getOwner() const			{ return owner; };
+		string					getOwnerStr() const		{ return ownerStr; };
 		double					getBaseTax() const		{ return baseTax; };
 		double					getPopulation() const	{ return population; };
 		double					getManpower() const		{ return manpower; };
@@ -70,10 +74,12 @@ class EU3Province
 		double						baseTax;
 		double						population;
 		int							manpower;
-		string						owner;
+		EU3Country*					owner;
+		string						ownerStr;
 		const CK2Title*			srcOwner;
-		vector<string>				cores;
+		vector<EU3Country*>		cores;
 		bool							inHRE;
+		vector<string>				rawDiscoverers;
 		vector<string>				discoveredBy;
 		string						culture;
 		string						religion;

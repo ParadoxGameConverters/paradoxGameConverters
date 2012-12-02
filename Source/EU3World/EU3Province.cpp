@@ -11,7 +11,7 @@
 
 
 
-EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vector<string> >& mapSpreadStrings)
+EU3Province::EU3Province(int _num, Object* obj, date startDate)
 {
 	num = _num;
 
@@ -66,14 +66,15 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 		manpower = 0;
 	}
 
+	owner = NULL;
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
 	{
-		owner = ownerObj[0]->getLeaf();
+		ownerStr = ownerObj[0]->getLeaf();
 	}
 	else
 	{
-		owner = "";
+		ownerStr = "";
 	}
 	srcOwner = NULL;
 
@@ -83,11 +84,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 	vector<Object*> discoveredByObj = obj->getValue("discovered_by");
 	for (unsigned int i = 0; i < discoveredByObj.size(); i++)
 	{
-		vector<string> discoverers = mapSpreadStrings[ discoveredByObj[i]->getLeaf() ];
-		for (unsigned int j = 0; j < discoverers.size(); j++)
-		{
-			discoveredBy.push_back( discoverers[j] );
-		}
+		rawDiscoverers.push_back(discoveredByObj[i]->getLeaf());
 	}
 
 	vector<Object*> cultureObj = obj->getValue("culture");
@@ -154,17 +151,20 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate, map< string, vec
 				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
 				if (newOwnerObj.size() > 0)
 				{
-					owner = newOwnerObj[0]->getLeaf();
-					newHistory->owner = owner;
+					ownerStr = newOwnerObj[0]->getLeaf();
+					newHistory->owner = ownerStr;
 				}
 
 				vector<Object*> discoveredByObj = obj->getValue("discovered_by");
 				for (unsigned int i = 0; i < discoveredByObj.size(); i++)
 				{
-					vector<string> discoverers = mapSpreadStrings[ discoveredByObj[i]->getLeaf() ];
-					for (unsigned int j = 0; j < discoverers.size(); j++)
+					for (unsigned int i = 0; i < discoveredByObj.size(); i++)
 					{
-						newHistory->discoverers.push_back( discoverers[j] );
+						rawDiscoverers.push_back(discoveredByObj[i]->getLeaf());
+					}
+					for (unsigned int j = 0; j < rawDiscoverers.size(); j++)
+					{
+						newHistory->discoverers.push_back( rawDiscoverers[j] );
 					}
 				}
 
@@ -202,13 +202,17 @@ void EU3Province::output(FILE* output)
 {
 	fprintf(output, "%d=\n", num);
 	fprintf(output, "{\n");
-	if (owner != "")
+	if (ownerStr != "")
 	{
-		fprintf(output, "\towner=\"%s\"\n", owner.c_str());
+		fprintf(output, "\towner=\"%s\"\n", ownerStr.c_str());
+	}
+	else if (owner != NULL)
+	{
+		fprintf(output, "\towner=\"%s\"\n", owner->getTag().c_str());
 	}
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
-		fprintf(output, "\tcore=\"%s\"\n", cores[i].c_str());
+		fprintf(output, "\tcore=\"%s\"\n", cores[i]->getTag().c_str());
 	}
 	if (inHRE)
 	{
@@ -246,11 +250,15 @@ void EU3Province::output(FILE* output)
 	fprintf(output, "\t{\n");
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
-		fprintf(output, "\t\tadd_core=\"%s\"\n", cores[i].c_str());
+		fprintf(output, "\t\tadd_core=\"%s\"\n", cores[i]->getTag().c_str());
 	}
-	if (owner != "")
+	if (ownerStr != "")
 	{
-		fprintf(output, "\t\towner=\"%s\"\n", owner.c_str());
+		fprintf(output, "\t\towner=\"%s\"\n", ownerStr.c_str());
+	}
+	else if (owner != NULL)
+	{
+		fprintf(output, "\t\towner=\"%s\"\n", owner->getTag().c_str());
 	}
 	if (capital != "")
 	{
@@ -308,16 +316,16 @@ void EU3Province::output(FILE* output)
 }
 
 
-void EU3Province::convert(int _num, bool _inHRE, const vector<string> _discoveredBy, const vector<CK2Province*>& _srcProvinces, vector<string> _cores)
+void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, vector<EU3Country*> _cores)
 {
 	srcProvinces = _srcProvinces;
 
 	num				= _num;
 	//capital	-- leave it as it is from the history file (TODO?)
-	owner				= "";
+	ownerStr			= "";
 	cores				= _cores;
 	inHRE				= _inHRE;
-	discoveredBy	= _discoveredBy;
+	discoveredBy.clear();
 	history.clear();
 	culture			= "";
 }
@@ -665,7 +673,7 @@ void EU3Province::determinePopUnits()
 }
 
 
-void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap, const EU3Country* country)
+void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap)
 {
 	determinePopUnits();
 	supply = popUnits;
@@ -696,7 +704,7 @@ void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap, con
 		else if (modifierItr->first.substr(0, 14) == "stability not ")
 		{
 			int requiredStab = atoi( modifierItr->first.substr(14, 2).c_str() );
-			if (country->getStability() != requiredStab)
+			if (owner->getStability() != requiredStab)
 			{
 				supply *= modifierItr->second;
 			}
@@ -759,7 +767,7 @@ void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap, con
 }
 
 
-void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, const EU3Country* country, const religionGroupMapping& EU3ReligionGroupMap)
+void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
 {
 	for (tradeGoodMapping::const_iterator goodItr = tradeGoodMap.begin(); goodItr != tradeGoodMap.end(); goodItr++)
 	{
@@ -788,7 +796,7 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				else if (conditionItr->substr(0, 13) == "stability is ")
 				{
 					int reqStability = atoi( conditionItr->substr(13, 2).c_str() );
-					if (country->getStability() < reqStability)
+					if (owner->getStability() < reqStability)
 					{
 						allConditions = false;
 					}
@@ -796,7 +804,7 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				else if (conditionItr->substr(0, 14) == "government is ")
 				{
 					string reqGov = conditionItr->substr(14, 20);
-					if (country->getGovernment() != reqGov)
+					if (owner->getGovernment() != reqGov)
 					{
 						allConditions = false;
 					}
@@ -876,7 +884,7 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				else if (conditionItr->substr(0, 15) == "tech group not ")
 				{
 					string reqTechGroup = conditionItr->substr(15, 15).c_str();
-					if (country->getTechGroup() == reqTechGroup)
+					if (owner->getTechGroup() == reqTechGroup)
 					{
 						allConditions = false;
 					}
@@ -1011,7 +1019,7 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (*conditionItr == "capital")
 				{
-					if (num != country->getCapital())
+					if (num != owner->getCapital())
 					{
 						allConditions = false;
 					}
@@ -1056,7 +1064,7 @@ void EU3Province::addDemandContribution(map<string, double>& goodsDemand)
 }
 
 
-double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping& cultureGroups)
+double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 {
 	double tax = baseTax;
 	/*if (isCOT) TODO
@@ -1068,7 +1076,7 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 	//{
 	//	tax += 1;
 	//}
-	if (country->getCapital() == num)
+	if (owner->getCapital() == num)
 	{
 		tax += 2;
 	}
@@ -1079,10 +1087,10 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 	{
 		tax *= 0.10 * (population / 10);
 	}
-	if (country->getPrimaryCulture() != culture)
+	if (owner->getPrimaryCulture() != culture)
 	{
 		bool acceptedCulture = false;
-		vector<string> acceptedCultures = country->getAcceptedCultures();
+		vector<string> acceptedCultures = owner->getAcceptedCultures();
 		for (unsigned int i = 0; i < acceptedCultures.size(); i++)
 		{
 			if (culture == acceptedCultures[i])
@@ -1093,7 +1101,7 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 		}
 		if (!acceptedCulture)
 		{
-			if ( cultureGroups.find(culture) == cultureGroups.find(country->getPrimaryCulture()) )
+			if ( cultureGroups.find(culture) == cultureGroups.find(owner->getPrimaryCulture()) )
 			{
 				tax *= 0.90;
 			}
@@ -1103,7 +1111,7 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 			}
 		}
 	}
-	if (religion != country->getReligion())
+	if (religion != owner->getReligion())
 	{
 		tax *= 0.70;
 	}
@@ -1125,7 +1133,7 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 		tax *= 0.10;
 	}
 
-	tax *= 1 + (0.10 * country->getStability());
+	tax *= 1 + (0.10 * owner->getStability());
 	//tax *= 1 + (country->getCentralizationDecentralization() * -0.04); TODO
 	/*if (overseas)
 	{
@@ -1149,7 +1157,7 @@ double EU3Province::determineTax(EU3Country* country, const cultureGroupMapping&
 }
 
 
-double EU3Province::determineTolls(EU3Country* country)
+double EU3Province::determineTolls()
 {
 	if (!sameContinent && !landConnection) // TODO: && distance > 250
 	{
@@ -1166,13 +1174,13 @@ double EU3Province::determineTolls(EU3Country* country)
 		tolls = (10 + popUnits) / 12;
 	}
 
-	tolls *= country->getTradeEffeciency();
+	tolls *= owner->getTradeEffeciency();
 
 	return tolls;
 }
 
 
-double EU3Province::determineProduction(EU3Country* country, const map<string, double>& unitPrices)
+double EU3Province::determineProduction(const map<string, double>& unitPrices)
 {
 	double production = 0.0f;
 
@@ -1194,7 +1202,7 @@ double EU3Province::determineProduction(EU3Country* country, const map<string, d
 			prestige = -0.15;
 		}
 		production *= 1.0 + prestige;*/
-		production *= country->getProductionEffeciency();
+		production *= owner->getProductionEffeciency();
 		production /= 12;
 	}
 
@@ -1211,5 +1219,31 @@ double EU3Province::determineGold()
 	else
 	{
 		return 0.0f;
+	}
+}
+
+void EU3Province::setDiscoverers(map< string, vector<string> >& mapSpreadStrings)
+{
+
+	for (unsigned int i = 0; i < rawDiscoverers.size(); i++)
+	{
+		vector<string> discoverers = mapSpreadStrings[ rawDiscoverers[i] ];
+		for (unsigned int j = 0; j < discoverers.size(); j++)
+		{
+			discoveredBy.push_back(discoverers[j]);
+		}
+	}
+}
+
+
+void EU3Province::removeCore(EU3Country* country)
+{
+	for (vector<EU3Country*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
+	{
+		if (*coreItr == country)
+		{
+			cores.erase(coreItr);
+			break;
+		}
 	}
 }

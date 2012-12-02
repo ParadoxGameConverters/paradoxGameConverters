@@ -13,6 +13,7 @@ using namespace std;
 
 class CK2Title;
 class EU3Ruler;
+class EU3Advisor;
 class EU3History;
 class EU3Province;
 class EU3World;
@@ -23,10 +24,9 @@ class EU3Country
 {
 	public:
 		EU3Country(EU3World* world, string tag, string countryFile, date startDate, const EU3Tech* techData);
+		EU3Country(CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 
 		void		output(FILE*);
-		
-		void		convert(const CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 		void		determineLearningScore();
 		void		addAcceptedCultures();
 		void		determineGovernment(const religionGroupMapping& religionGroupMap);
@@ -35,10 +35,15 @@ class EU3Country
 		double	getProductionEffeciency();
 		void		determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
 		void		determineTechInvestment(const EU3Tech* techData, date startDate);
+		void		replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
+		void		addCore(EU3Province* core)				{ cores.push_back(core); };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
+		void		setTag(string _tag)						{ tag = _tag; };
+		void		addAdvisor(EU3Advisor* _advisor)		{ advisors.push_back(_advisor); };
 
+		CK2Title*		getSrcCountry()			const { return src; };
 		double			getLearningScore()		const { return learningScore; };
 		string			getTag()						const { return tag; };
 		string			getGovernment()			const { return government; };
@@ -50,8 +55,10 @@ class EU3Country
 		int				getStability()				const { return stability; };
 
 	private:
-		const CK2Title*			src;
+		CK2Title*				src;
 		vector<EU3Province*>	provinces;
+		vector<EU3Province*> cores;
+		vector<EU3Advisor*>	advisors;
 		double					learningScore;
 
 		string					tag;
@@ -63,7 +70,7 @@ class EU3Country
 		EU3Ruler*				monarch;
 		EU3Ruler*				heir;
 		EU3Ruler*				regent;
-		vector<EU3History*>		history;
+		vector<EU3History*>	history;
 		vector<EU3Ruler*>		previousMonarchs;
 		string					techGroup;
 		double					governmentTech;

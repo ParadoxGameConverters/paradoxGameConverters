@@ -1,14 +1,15 @@
 #include "EU3Diplomacy.h"
 #include "..\Log.h"
 #include "..\Parsers\Object.h"
+#include "EU3Country.h"
 
 
 
 EU3Agreement::EU3Agreement()
 {
 	type		= "";
-	country1	= "";
-	country2	= "";
+	country1	= NULL;
+	country2	= NULL;
 }
 
 
@@ -16,8 +17,8 @@ void EU3Agreement::output(FILE* output)
 {
 	fprintf(output, "\t%s=\n", type.c_str());
 	fprintf(output, "\t{\n");
-	fprintf(output, "\t\tfirst=\"%s\"\n", country1.c_str());
-	fprintf(output, "\t\tsecond=\"%s\"\n", country2.c_str());
+	fprintf(output, "\t\tfirst=\"%s\"\n", country1->getTag().c_str());
+	fprintf(output, "\t\tsecond=\"%s\"\n", country2->getTag().c_str());
 	fprintf(output, "\t\tstart_date=\"%s\"\n", startDate.toString().c_str());
 	fprintf(output, "\t}\n");
 }
