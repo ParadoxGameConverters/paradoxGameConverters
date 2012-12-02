@@ -244,3 +244,4 @@ Revision	Log Message
 240		Update culture and religion mappings
 241		Add EU3 diplomacy
 242		Defer Mapping countries until last moment (breaks province discovery)
+243		Update localization text for converter mod
