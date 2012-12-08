@@ -609,26 +609,25 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		log("\tWarning: could not decide on religion for EU3 province %d due to ties.\n", num);
 	}
 
-	const CK2Title* rulerTitle = srcOwner;
-	if (srcOwner != NULL)
-	{
-		while (!rulerTitle->isIndependent())
-		{
-			rulerTitle = rulerTitle->getLiege();
-		}
-		if ( rulerTitle->getHolder()->getReligion() != topReligion )
-		{
-			if ( religionMap.find(rulerTitle->getHolder()->getReligion())->second == religionMap.find(topReligion)->second )
-			{
-				modifiers.push_back("heresy");
-			}
-		}
-	}
-
 	religionMapping::const_iterator religionItr = religionMap.find(topReligion);
 	if (religionItr != religionMap.end())
 	{
 		religion = religionItr->second;
+		const CK2Title* rulerTitle = srcOwner;
+		if (srcOwner != NULL)
+		{
+			while (!rulerTitle->isIndependent())
+			{
+				rulerTitle = rulerTitle->getLiege();
+			}
+			if ( rulerTitle->getHolder()->getReligion() != topReligion )
+			{
+				if ( religionMap.find(rulerTitle->getHolder()->getReligion())->second == religion )
+				{
+					modifiers.push_back("heresy");
+				}
+			}
+		}
 	}
 	else if (topReligion == "")
 	{

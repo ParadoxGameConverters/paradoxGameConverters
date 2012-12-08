@@ -246,3 +246,4 @@ Revision	Log Message
 242		Defer Mapping countries until last moment (breaks province discovery)
 243		Update localization text for converter mod
 244		Fix province discovery for land provinces
+245		Fix crash bug if religions tie in a province
