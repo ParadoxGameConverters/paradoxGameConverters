@@ -94,8 +94,8 @@ class EU3Country
 		double					estimatedProduction;
 		double					estimatedTolls;
 
-		bool					daimyo;
-		bool					japaneseEmperor;
+		bool						daimyo;
+		bool						japaneseEmperor;
 
 		string					infantry;
 		string					cavalry;

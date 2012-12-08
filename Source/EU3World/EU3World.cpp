@@ -1027,6 +1027,7 @@ int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const
 	}
 
 	// now that tags are known, can finish setting the map spread strings
+	vector<string> converted;
 	vector<string> nomadTech;
 	vector<string> westernTech;
 	vector<string> easternTech;
@@ -1039,7 +1040,11 @@ int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const
 	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
 		string techGroup = i->second->getTechGroup();
-		if (techGroup == "nomad_group")
+		if (i->second->getSrcCountry() != NULL)
+		{
+			converted.push_back( i->first );
+		}
+		else if (techGroup == "nomad_group")
 		{
 			nomadTech.push_back( i->first );
 		}
@@ -1081,6 +1086,7 @@ int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const
 		mapSpreadStrings.insert(  make_pair( i->first, selfString )  );
 	}
 
+	mapSpreadStrings.insert( make_pair("converted", converted) );
 	mapSpreadStrings.insert( make_pair("nomad_group", nomadTech) );
 	mapSpreadStrings.insert( make_pair("western", westernTech) );
 	mapSpreadStrings.insert( make_pair("eastern", easternTech) );
@@ -1090,6 +1096,11 @@ int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const
 	mapSpreadStrings.insert( make_pair("chinese", chineseTech) );
 	mapSpreadStrings.insert( make_pair("sub_saharan", subSaharanTech) );
 	mapSpreadStrings.insert( make_pair("new_world", newWorldTech) );
+
+	for (map<int, EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		provItr->second->setDiscoverers(mapSpreadStrings);
+	}
 
 	return CK2Titles.size();
 }

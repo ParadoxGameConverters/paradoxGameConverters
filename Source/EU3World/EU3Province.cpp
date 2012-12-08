@@ -1222,9 +1222,17 @@ double EU3Province::determineGold()
 	}
 }
 
+
 void EU3Province::setDiscoverers(map< string, vector<string> >& mapSpreadStrings)
 {
-
+	if (srcProvinces.size() > 0)
+	{
+		vector<string> discoverers = mapSpreadStrings["converted"];
+		for (unsigned int j = 0; j < discoverers.size(); j++)
+		{
+			discoveredBy.push_back(discoverers[j]);
+		}
+	}
 	for (unsigned int i = 0; i < rawDiscoverers.size(); i++)
 	{
 		vector<string> discoverers = mapSpreadStrings[ rawDiscoverers[i] ];
