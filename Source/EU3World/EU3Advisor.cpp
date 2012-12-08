@@ -176,15 +176,23 @@ EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseP
 	if (src->getLocationNum() != -1)
 	{
 		inverseProvinceMapping::const_iterator mapItr = inverseProvinceMap.find(src->getLocationNum());
-		vector<int> possibleLocations = mapItr->second;
-		if (possibleLocations.size() > 0)
+		if (mapItr != inverseProvinceMap.end())
 		{
-			location = possibleLocations[0];
+			vector<int> possibleLocations = mapItr->second;
+			if (possibleLocations.size() > 0)
+			{
+				location = possibleLocations[0];
+			}
+			else
+			{
+				log("\tError: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
+			}
 		}
 		else
 		{
 			log("\tError: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
 		}
+
 
 		map<int, EU3Province*>::const_iterator homeProvince = provinces.find(location);
 		if (homeProvince != provinces.end())

@@ -248,3 +248,4 @@ Revision	Log Message
 244		Fix province discovery for land provinces
 245		Fix crash bug if religions tie in a province
 246		Don't allow advisors to try to insert new provinces
+247		Fix crash bug from last change
