@@ -11,7 +11,7 @@
 
 
 
-EU3Advisor::EU3Advisor(Object* advisorObj, map<int, EU3Province*>& provinces)
+EU3Advisor::EU3Advisor(Object* advisorObj, const map<int, EU3Province*>& provinces)
 {
 	vector<Object*> nameObj = advisorObj->getValue("name");
 	if (nameObj.size() > 0)
@@ -40,10 +40,10 @@ EU3Advisor::EU3Advisor(Object* advisorObj, map<int, EU3Province*>& provinces)
 		location = atoi( locationObj[0]->getLeaf().c_str() );
 	}
 
-	EU3Province* homeProvince = provinces[location];
-	if (homeProvince != NULL)
+	map<int, EU3Province*>::const_iterator homeProvince = provinces.find(location);
+	if (homeProvince != provinces.end())
 	{
-		home = homeProvince->getOwner();
+		home = homeProvince->second->getOwner();
 	}
 	else
 	{
@@ -64,7 +64,7 @@ EU3Advisor::EU3Advisor(Object* advisorObj, map<int, EU3Province*>& provinces)
 }
 
 
-EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinceMap, map<int, EU3Province*>& provinces, date newStartDate)
+EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseProvinceMap, const map<int, EU3Province*>& provinces, date newStartDate)
 {
 	name				= "";
 	id					= Configuration::getID();
@@ -175,7 +175,8 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 
 	if (src->getLocationNum() != -1)
 	{
-		vector<int> possibleLocations = inverseProvinceMap[src->getLocationNum()];
+		inverseProvinceMapping::const_iterator mapItr = inverseProvinceMap.find(src->getLocationNum());
+		vector<int> possibleLocations = mapItr->second;
 		if (possibleLocations.size() > 0)
 		{
 			location = possibleLocations[0];
@@ -185,10 +186,10 @@ EU3Advisor::EU3Advisor(CK2Character* src, inverseProvinceMapping& inverseProvinc
 			log("\tError: no possible EU3 locations for %s %s (currently in CK2 Province %d)\n", name.c_str(), dynasty.c_str(), src->getLocationNum());
 		}
 
-		EU3Province* homeProvince = provinces[location];
-		if (homeProvince != NULL)
+		map<int, EU3Province*>::const_iterator homeProvince = provinces.find(location);
+		if (homeProvince != provinces.end())
 		{
-			home = homeProvince->getOwner();
+			home = homeProvince->second->getOwner();
 		}
 		else
 		{

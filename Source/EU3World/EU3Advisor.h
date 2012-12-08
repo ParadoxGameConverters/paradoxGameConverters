@@ -16,8 +16,8 @@ class EU3Country;
 class EU3Advisor
 {
 	public:
-		EU3Advisor(Object*, map<int, EU3Province*>&);
-		EU3Advisor(CK2Character*, inverseProvinceMapping&, map<int, EU3Province*>&, date);
+		EU3Advisor(Object*, const map<int, EU3Province*>&);
+		EU3Advisor(CK2Character*, const inverseProvinceMapping&, const map<int, EU3Province*>&, date);
 
 		void	outputInProvince(FILE*);
 		void	outputInActive(FILE*);
