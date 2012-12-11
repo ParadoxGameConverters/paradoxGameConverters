@@ -249,3 +249,4 @@ Revision	Log Message
 245		Fix crash bug if religions tie in a province
 246		Don't allow advisors to try to insert new provinces
 247		Fix crash bug from last change
+248		Add changes for CK2Plus to EU3

@@ -41,7 +41,7 @@ INSTRUCTIONS
 CREDITS
 ----
 
-A (incomplete) list of those who contributed effort to this mammoth undertaking
+An (incomplete) list of those who contributed effort to this mammoth undertaking
 
 Idhrendur	- Programming
 DasGuntLord01	- Analysis, Data Files
@@ -51,5 +51,6 @@ GreyHuge	- Tools
 tamius23	- Data Files
 rho		- Data Files
 Gimenez		- Data Files
+birdboy2000	- Data Files
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -
