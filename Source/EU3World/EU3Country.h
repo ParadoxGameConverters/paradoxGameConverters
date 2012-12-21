@@ -53,6 +53,7 @@ class EU3Country
 		string			getTechGroup()				const { return techGroup; };
 		int				getCapital()				const { return capital; };
 		int				getStability()				const { return stability; };
+		bool			hasProvinces()				const { return !provinces.empty(); };
 
 	private:
 		CK2Title*				src;

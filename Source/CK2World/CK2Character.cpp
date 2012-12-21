@@ -82,6 +82,13 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		motherNum = -1;
 	}
 	mother = NULL;
+
+	vector<Object*> spouseObj = obj->getValue("spouse");
+	for (vector<Object*>::iterator itr = spouseObj.begin(); itr != spouseObj.end(); ++itr)
+	{
+		spouseNums.push_back(atoi((*itr)->getLeaf().c_str()));
+	}
+
 	children.clear();
 	vector<Object*> guardianObj = obj->getValue("guardian");
 	if (guardianObj.size() > 0)
@@ -267,6 +274,10 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 		mother = characters[motherNum];
 		mother->addChild(this);
 	}
+
+	spouses.clear();
+	for (vector<int>::iterator itr = spouseNums.begin(); itr != spouseNums.end(); ++itr)
+		spouses.push_back(characters[*itr]);
 
 	if (guardianNum != -1)
 	{
@@ -687,4 +698,127 @@ void CK2Character::setPrimaryTitle(const map<string, CK2Title*>& titleMap)
 		if (primaryTitle->getHolder() != this)
 			log("Error: primary title of %s is %s, but s/he does not hold it.\n", getName().c_str(), primaryTitleString.c_str());
 	}
+}
+
+
+vector<CK2Character*> CK2Character::getCloseRelations() const
+{
+	vector<CK2Character*> rels;
+
+	// my mother and her children (my siblings and half-siblings)
+	if (mother != NULL)
+	{
+		rels.push_back(mother);
+		rels.insert(rels.end(), mother->children.begin(), mother->children.end());
+	}
+
+	// my father and his children by women other than my mother (my half-siblings)
+	if (father != NULL)
+	{
+		rels.push_back(father);
+		for (list<CK2Character*>::iterator itr = father->children.begin(); itr != father->children.end(); ++itr)
+		{
+			if ((*itr)->mother != mother)
+				rels.push_back((*itr));
+		}
+	}
+
+	// my children
+	rels.insert(rels.end(), children.begin(), children.end());
+
+	return rels;
+}
+
+
+bool CK2Character::isCloseRelationOf(CK2Character* other) const
+{
+	// my parent
+	if (other == mother || other == father)
+		return true;
+
+	// my child
+	if (other->mother == this || other->father == this)
+		return true;
+
+	// same mother (sibling or half-sibling)
+	if (mother != NULL && mother == other->mother)
+		return true;
+
+	// same father (half-sibling)
+	if (father != NULL && father == other->father)
+		return true;
+
+	return false;
+}
+
+
+bool CK2Character::isRMWith(CK2Character* other) const
+{
+	vector<CK2Character*>::const_iterator spouse = std::find(spouses.begin(), spouses.end(), other);
+	if (spouse != spouses.end())
+		return true;
+
+	for (vector<CK2Character*>::const_iterator itr = spouses.begin(); itr != spouses.end(); ++itr)
+	{
+		// RM with my spouse
+		if ((*itr) == other)
+			return true;
+
+		// RM with my living spouse's close relations (e.g. my father-in-law)
+		vector<CK2Character*> sRels = (*itr)->getCloseRelations();
+		for (vector<CK2Character*>::const_iterator scitr = sRels.begin(); scitr != sRels.end(); ++scitr)
+		{
+			if ((*scitr) == other)
+				return true;
+		}
+	}
+
+	vector<CK2Character*> myRels = getCloseRelations();
+	for (vector<CK2Character*>::const_iterator itr = myRels.begin(); itr != myRels.end(); ++itr)
+	{
+		// RM directly with my close relations (not of my dynasty...e.g. a half-brother on my mother's side)
+		if ((*itr) == other && (*itr)->dynasty != dynasty)
+			return true;
+
+		for (vector<CK2Character*>::const_iterator sitr = (*itr)->spouses.begin(); sitr != (*itr)->spouses.end(); ++sitr)
+		{
+			if (!(*sitr)->isDead())
+			{
+				// RM with my close relations' living spouses (e.g. my sister's husband)
+				if ((*sitr) == other)
+					return true;
+
+				// RM with my close relations' living spouses' close relations (e.g. my sister's husband's father)
+				vector<CK2Character*> sRels = (*sitr)->getCloseRelations();
+				for (vector<CK2Character*>::const_iterator scitr = sRels.begin(); scitr != sRels.end(); ++scitr)
+				{
+					if ((*scitr) == other)
+						return true;
+				}
+			}
+		}
+	}
+
+	return false;
+}
+
+
+bool CK2Character::isAlliedWith(CK2Character* other) const
+{
+	// same dynasty
+	if (this->dynasty == other->dynasty)
+		return true;
+
+	// or royal marriage
+	return isRMWith(other);
+}
+
+
+int CK2Character::getRelationsWith(CK2Character* other) const
+{
+	int relations = 0;
+	// FIXME - intrinsics (fixed opinion - e.g. same dynasty, lover, father of child...)
+	// FIXME - traits (complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
+	// FIXME - rel. blocks (timed - e.g. broke alliance, cuckolded)
+	return relations;
 }

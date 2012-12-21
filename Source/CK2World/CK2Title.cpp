@@ -494,3 +494,41 @@ bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 
 	return true;
 }
+
+bool CK2Title::hasUnionWith(CK2Title* other, bool& otherDominant) const
+{
+	// no unions between different holders
+	if (this->holder != other->holder)
+		return false;
+
+	// if this is the primary title, yes, and other is not dominant
+	if (holder->getPrimaryTitle() == this)
+	{
+		otherDominant = false;
+		return true;
+	}
+	// if the other title is the primary title, yes, but other is dominant
+	else if (holder->getPrimaryTitle() == other)
+	{
+		otherDominant = true;
+		return true;
+	}
+
+	// no unions between junior titles (senior title has union with ALL junior titles)
+	return false;
+}
+
+bool CK2Title::hasRMWith(CK2Title* other) const
+{
+	return (this->holder->isRMWith(other->holder));
+}
+
+bool CK2Title::hasAllianceWith(CK2Title* other) const
+{
+	return (this->holder->isAlliedWith(other->holder));
+}
+
+int CK2Title::getRelationsWith(CK2Title* other) const
+{
+	return (this->holder->getRelationsWith(other->holder));
+}
