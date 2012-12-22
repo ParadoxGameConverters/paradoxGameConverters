@@ -379,7 +379,7 @@ void EU3World::setupProvinces(provinceMapping& provinceMap)
 	}
 }
 
-#pragma optimize("", off)
+
 void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap)
 {
 	// create EU3 nations
@@ -416,7 +416,7 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 	convertedCountries.swap(independentCountries);
 	log("Total converted EU3 countries after blobbing: %d\n", convertedCountries.size());
 }
-#pragma optimize("", on)
+
 
 void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
 {
@@ -1131,4 +1131,64 @@ int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const
 	}
 
 	return CK2Titles.size();
+}
+
+
+void EU3World::convertDiplomacy()
+{
+	for (map<string, EU3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
+	{
+		map<string, EU3Country*>::iterator jtr = itr;
+		for (++jtr /*skip myself*/; jtr != countries.end(); ++jtr)
+		{
+			if (!itr->second->hasProvinces() || !jtr->second->hasProvinces())
+				continue; // no relations with non-extant countries
+
+			CK2Title *lhs = (*itr).second->getSrcCountry(), *rhs = (*jtr).second->getSrcCountry();
+			if (lhs == NULL || rhs == NULL)
+				continue;
+
+			// Personal Unions
+			bool rhsDominant = false;
+			if (lhs->hasUnionWith(rhs, rhsDominant))
+			{
+				EU3Agreement agr;
+				agr.type = "union";
+				agr.startDate = date("1.1.1"); // FIXME maybe?
+				if (rhsDominant)
+				{
+					agr.country1 = (*jtr).second;
+					agr.country2 = (*itr).second;
+				}
+				else
+				{
+					agr.country1 = (*itr).second;
+					agr.country2 = (*jtr).second;
+				}
+				diplomacy->addAgreement(agr);
+			}
+
+			// Royal Marriages
+			if (lhs->hasRMWith(rhs))
+			{
+				EU3Agreement agr;
+				agr.type = "royal_marriage";
+				agr.startDate = date("1.1.1"); // FIXME maybe?
+				agr.country1 = (*itr).second;
+				agr.country2 = (*jtr).second;
+				diplomacy->addAgreement(agr);
+			}
+
+			// Alliances
+			if (lhs->hasAllianceWith(rhs))
+			{
+				EU3Agreement agr;
+				agr.type = "alliance";
+				agr.startDate = date("1.1.1"); // FIXME maybe?
+				agr.country1 = (*itr).second;
+				agr.country2 = (*jtr).second;
+				diplomacy->addAgreement(agr);
+			}
+		}
+	}
 }

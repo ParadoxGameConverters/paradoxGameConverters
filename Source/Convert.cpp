@@ -481,7 +481,11 @@ int main(int argc, char * argv[])
 		printf("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
 		return -1;
 	}
-	
+
+	log("Converting diplomatic relations.\n");
+	printf("Converting diplomatic relations.\n");
+	destWorld.convertDiplomacy();
+
 
 	// Output results
 	printf("Outputting save.\n");

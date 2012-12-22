@@ -61,6 +61,7 @@ class CK2Character
 		bool							isBastard()					const { return bastard; };
 		int*							getStats()					const { return (int*)stats; };
 		vector<CK2Title*>			getTitles()					const { return titles; };
+		CK2Title*					getPrimaryTitle()			const { return primaryTitle; }
 		CK2Character*				getFather()					const { return father; };
 		CK2Character*				getRegent()					const { return regent; };
 		CK2Character**				getAdvisors()				const { return (CK2Character**)advisors; };
@@ -70,6 +71,13 @@ class CK2Character
 		string						getCapitalString()		const { return capitalString; };
 		CK2Province*				getCapital()				const { return capital; };
 		CK2Barony*					getPrimaryHolding()		const { return primaryHolding; };
+		vector<CK2Character*>		getSpouses()			const { return spouses; };
+		vector<CK2Character*>		getCloseRelations() const;
+
+		bool						isCloseRelationOf(CK2Character* other) const;
+		bool						isRMWith(CK2Character* other) const;
+		bool						isAlliedWith(CK2Character* other) const;
+		int							getRelationsWith(CK2Character* other) const;
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
 
@@ -100,6 +108,8 @@ class CK2Character
 		CK2Character*				guardian;
 		int							regentNum;
 		CK2Character*				regent;
+		vector<int>					spouseNums;
+		vector<CK2Character*>		spouses;
 
 		CK2Character*				advisors[6];
 		int							employerNum;

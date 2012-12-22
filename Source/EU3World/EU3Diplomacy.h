@@ -30,6 +30,7 @@ class EU3Diplomacy
 	public:
 		EU3Diplomacy();
 		void output(FILE*);
+		void addAgreement(EU3Agreement& agr) { agreements.push_back(agr); }
 	private:
 		vector<EU3Agreement>	agreements;
 };
