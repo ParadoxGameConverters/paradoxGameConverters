@@ -250,3 +250,5 @@ Revision	Log Message
 246		Don't allow advisors to try to insert new provinces
 247		Fix crash bug from last change
 248		Add changes for CK2Plus to EU3
+
+250		Defer determination of a nation being independent

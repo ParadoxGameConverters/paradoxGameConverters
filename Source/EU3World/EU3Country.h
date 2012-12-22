@@ -35,8 +35,11 @@ class EU3Country
 		double	getProductionEffeciency();
 		void		determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
 		void		determineTechInvestment(const EU3Tech* techData, date startDate);
+		void		eatVassals();
 		void		replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 
+		void		addLiege(EU3Country* _liege)			{ liege = _liege; _liege->addVassal(this); };
+		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		addCore(EU3Province* core)				{ cores.push_back(core); };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
@@ -56,6 +59,8 @@ class EU3Country
 
 	private:
 		CK2Title*				src;
+		EU3Country*				liege;
+		vector<EU3Country*>	vassals;
 		vector<EU3Province*>	provinces;
 		vector<EU3Province*> cores;
 		vector<EU3Advisor*>	advisors;

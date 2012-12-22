@@ -427,7 +427,7 @@ int main(int argc, char * argv[])
 	// Convert
 	log("Converting countries.\n");
 	printf("Converting countries.\n");
-	destWorld.convertCountries(srcWorld.getIndependentTitles(), religionMap, cultureMap, inverseProvinceMap);
+	destWorld.convertCountries(srcWorld.getAllTitles(), religionMap, cultureMap, inverseProvinceMap);
 
 	log("Setting up provinces.\n");
 	printf("Setting up provinces.\n");

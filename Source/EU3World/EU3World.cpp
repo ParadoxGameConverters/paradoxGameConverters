@@ -379,16 +379,44 @@ void EU3World::setupProvinces(provinceMapping& provinceMap)
 	}
 }
 
-
+#pragma optimize("", off)
 void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping inverseProvinceMap)
 {
+	// create EU3 nations
 	for (map<string, CK2Title*>::iterator titleItr = CK2Titles.begin(); titleItr != CK2Titles.end(); titleItr++)
 	{
-		EU3Country* newCountry = new EU3Country(titleItr->second, religionMap, cultureMap, inverseProvinceMap);
-		convertedCountries.push_back(newCountry);
+		if (titleItr->second->getHolder() != NULL)
+		{
+			EU3Country* newCountry = new EU3Country(titleItr->second, religionMap, cultureMap, inverseProvinceMap);
+			convertedCountries.push_back(newCountry);
+		}
 	}
-}
 
+	// create vassal/liege relationships
+	vector<EU3Country*> independentCountries;
+	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
+	{
+		CK2Title* CK2Liege = (*countryItr)->getSrcCountry()->getLiege();
+		if (CK2Liege != NULL)
+		{
+			(*countryItr)->addLiege(CK2Liege->getDstCountry());
+		}
+		else
+		{
+			independentCountries.push_back(*countryItr);
+		}
+	}
+	log("Total converted EU3 countries before blobbing: %d\n", convertedCountries.size());
+
+	// blobify
+	for (vector<EU3Country*>::iterator countryItr = independentCountries.begin(); countryItr != independentCountries.end(); countryItr++)
+	{
+		(*countryItr)->eatVassals();
+	}
+	convertedCountries.swap(independentCountries);
+	log("Total converted EU3 countries after blobbing: %d\n", convertedCountries.size());
+}
+#pragma optimize("", on)
 
 void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
 {

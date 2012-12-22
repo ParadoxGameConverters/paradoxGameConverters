@@ -979,6 +979,33 @@ void EU3Country::determineTechInvestment(const EU3Tech* techData, date startDate
 	landTechInvestment			= landTechCost			* (landTech			- (int)landTech);
 }
 
+
+void EU3Country::eatVassals()
+{
+	for (vector<EU3Country*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
+	{
+		(*vassalItr)->eatVassals();
+		for (vector<EU3Province*>::iterator provinceItr = (*vassalItr)->provinces.begin(); provinceItr != (*vassalItr)->provinces.end(); provinceItr++)
+		{
+			provinces.push_back(*provinceItr);
+			(*provinceItr)->setOwner(this);
+		}
+		for (vector<EU3Province*>::iterator coreItr = (*vassalItr)->cores.begin(); coreItr != (*vassalItr)->cores.end(); coreItr++)
+		{
+			cores.push_back(*coreItr);
+			(*coreItr)->removeCore(*vassalItr);
+			(*coreItr)->addCore(this);
+		}
+		for (vector<EU3Advisor*>::iterator advisorItr = (*vassalItr)->advisors.begin(); advisorItr != (*vassalItr)->advisors.end(); advisorItr++)
+		{
+			advisors.push_back(*advisorItr);
+			(*advisorItr)->setHome(this);
+		}
+	}
+	vassals.clear();
+}
+
+
 void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings)
 {
 	src								= convertedCountry->src;
