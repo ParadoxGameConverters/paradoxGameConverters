@@ -559,7 +559,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 
 		map<int, EU3Province*>::iterator provItr = provinces.find(i->first);
-		provItr->second->convert(i->first, inHRE, srcProvinces, cores);
+		provItr->second->convert(i->first, inHRE, srcProvinces, srcProvinceNums, cores);
 		for (vector<EU3Country*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
 		{
 			(*coreItr)->addCore(provItr->second);

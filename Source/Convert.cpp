@@ -210,7 +210,7 @@ int main(int argc, char * argv[])
 	srcWorld.mergeTitles();
 
 	log("Removing extra titles.\n");
-	printf("Importing parsed data.\n");
+	printf("Removing extra titles.\n");
 	srcWorld.removeDeadTitles();
 
 

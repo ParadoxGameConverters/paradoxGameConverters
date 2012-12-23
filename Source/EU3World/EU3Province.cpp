@@ -318,9 +318,10 @@ void EU3Province::output(FILE* output)
 }
 
 
-void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, vector<EU3Country*> _cores)
+void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, const vector<int>& _srcProvinceNums, vector<EU3Country*> _cores)
 {
 	srcProvinces = _srcProvinces;
+	srcProvinceNums = _srcProvinceNums;
 
 	num				= _num;
 	//capital	-- leave it as it is from the history file (TODO?)
@@ -1227,7 +1228,7 @@ double EU3Province::determineGold()
 
 void EU3Province::setDiscoverers(map< string, vector<string> >& mapSpreadStrings)
 {
-	if (srcProvinces.size() > 0)
+	if (srcProvinceNums.size() > 0)
 	{
 		vector<string> discoverers = mapSpreadStrings["converted"];
 		for (unsigned int j = 0; j < discoverers.size(); j++)
