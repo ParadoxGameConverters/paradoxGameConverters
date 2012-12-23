@@ -64,7 +64,7 @@ EU3Advisor::EU3Advisor(Object* advisorObj, const map<int, EU3Province*>& provinc
 }
 
 
-EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseProvinceMap, const map<int, EU3Province*>& provinces, date newStartDate)
+EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseProvinceMap, const map<int, EU3Province*>& provinces)
 {
 	name				= "";
 	id					= Configuration::getID();
@@ -173,6 +173,9 @@ EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseP
 			break;
 	}
 
+	if (advisorSkill > 6)
+		advisorSkill = 6;
+
 	if (src->getLocationNum() != -1)
 	{
 		inverseProvinceMapping::const_iterator mapItr = inverseProvinceMap.find(src->getLocationNum());
@@ -205,7 +208,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseP
 		}
 	}
 
-	startDate = newStartDate;
+	startDate = src->getBirthDate();
 	startDate.year += 16;
 }
 

@@ -716,7 +716,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 		{
 			if (srcAdvisors[i] != NULL)
 			{
-				EU3Advisor*	newAdvisor		= new EU3Advisor(srcAdvisors[i], inverseProvinceMap, provinces, startDate);
+				EU3Advisor*	newAdvisor		= new EU3Advisor(srcAdvisors[i], inverseProvinceMap, provinces);
 				int			CK2Location		= srcAdvisors[i]->getLocationNum();
 
 				vector<int>		provinceNums;

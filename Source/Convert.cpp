@@ -445,10 +445,6 @@ int main(int argc, char * argv[])
 	printf("Adding accepted cultures.\n");
 	destWorld.addAcceptedCultures();
 
-	log("Converting advisors.\n");
-	printf("Converting advisors.\n");
-	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);
-
 	log("Converting tech.\n");
 	printf("Converting tech.\n");
 	destWorld.convertTech(religionMap, srcWorld);
@@ -485,6 +481,10 @@ int main(int argc, char * argv[])
 		printf("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
 		return -1;
 	}
+
+	log("Converting advisors.\n");
+	printf("Converting advisors.\n");
+	destWorld.convertAdvisors(inverseProvinceMap, provinceMap, srcWorld);
 
 	log("Converting diplomatic relations.\n");
 	printf("Converting diplomatic relations.\n");
