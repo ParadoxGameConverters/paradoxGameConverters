@@ -317,7 +317,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	history.clear();
 	previousMonarchs.clear();
 
-	religionMapping::const_iterator religionItr = religionMap.find(src->getHolder()->getReligion());
+	religionMapping::const_iterator religionItr = religionMap.find(src->getLastHolder()->getReligion());
 	if (religionItr != religionMap.end())
 	{
 		religion = religionItr->second;
@@ -354,7 +354,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	navalTechInvestment			= 0.0f;
 	landTechInvestment			= 0.0f;
 
-	CK2Province* srcCapital = src->getHolder()->getCapital();
+	CK2Province* srcCapital = src->getLastHolder()->getCapital();
 	if (srcCapital != NULL)
 	{
 		provinceMapping::const_iterator capitalItr = inverseProvinceMap.find( srcCapital->getNumber() );
@@ -703,10 +703,10 @@ void EU3Country::addAcceptedCultures()
 void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMap)
 {
 	string				srcTitleString		= src->getTitleString();
-	CK2Barony*			primaryHolding		= src->getHolder()->getPrimaryHolding();
+	CK2Barony*			primaryHolding		= src->getLastHolder()->getPrimaryHolding();
 	CK2Title*			liege					= src->getLiege();
 	vector<CK2Title*>	vassals				= src->getVassals();
-	string				srcReligion			= src->getHolder()->getReligion();
+	string				srcReligion			= src->getLastHolder()->getReligion();
 	string				highestVassalRank	= "b";
 	for (vector<CK2Title*>::iterator vassalItr = vassals.begin(); vassalItr < vassals.end(); vassalItr++)
 	{

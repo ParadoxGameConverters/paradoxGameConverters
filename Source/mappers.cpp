@@ -282,7 +282,7 @@ string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, 
 						{
 							kingdomTitle = kingdomTitle->getLiege();
 						}
-						if (kingdomTitle->getHolder()->getCulture() != DTItr->second)
+						if (kingdomTitle->getLastHolder()->getCulture() != DTItr->second)
 						{
 							matchConditions = false;
 						}

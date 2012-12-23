@@ -35,6 +35,7 @@ class CK2Title
 
 		string					getTitleString()		const { return titleString; };
 		CK2Character*			getHolder()				const { return holder; };
+		CK2Character*			getLastHolder()			const;
 		CK2Character*			getHeir()				const { return heir; };
 		string					getSuccessionLaw()	const { return successionLaw; };
 		vector<CK2History*>	getHistory()			const { return history; };

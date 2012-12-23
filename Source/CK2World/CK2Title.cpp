@@ -287,11 +287,14 @@ void CK2Title::getCultureWeights(map<string, int>& cultureWeights, const culture
 		weight = 1;
 	}
 
-	CK2Province* capital = holder->getCapital();
-	if (capital != NULL)
+	if (holder != NULL)
 	{
-		string culture = determineEU3Culture(holder->getCulture(), cultureMap, capital);
-		cultureWeights[culture] += weight;
+		CK2Province* capital = holder->getCapital();
+		if (capital != NULL)
+		{
+			string culture = determineEU3Culture(holder->getCulture(), cultureMap, capital);
+			cultureWeights[culture] += weight;
+		}
 	}
 }
 
@@ -487,7 +490,7 @@ bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 	target->deJureLiegeString = "";*/
 	target->liege = NULL;
 	target->liegeString = "";
-	/*target->holder = NULL;*/
+	target->holder = NULL;
 	target->heir = NULL;
 
 	log("\t%s absorbed %s\n", this->getTitleString().c_str(), target->getTitleString().c_str());
@@ -531,4 +534,31 @@ bool CK2Title::hasAllianceWith(CK2Title* other) const
 int CK2Title::getRelationsWith(CK2Title* other) const
 {
 	return (this->holder->getRelationsWith(other->holder));
+}
+
+// sometimes we NEED a valid holder, but might not have one (if the title was destroyed by the player or eaten by the merge process)
+// this gets used for religion/culture/etc...they need to be set for even dead titles with de jure territory, so that released cores in EU3 work right.
+CK2Character* CK2Title::getLastHolder() const
+{
+	if (holder)
+		return holder;
+
+	for (vector<CK2History*>::const_reverse_iterator itr = history.rbegin(); itr != history.rend(); ++itr)
+	{
+		if ((*itr)->getHolder())
+			return (*itr)->getHolder();
+	}
+
+	// title never had a holder?  that's a small problem.
+	log("Warning: title %s never had a holder.  Using arbitrary de jure vassal for EU3 country parameters.\n", titleString.c_str());
+	// since we mostly just need a valid character to set religion, culture, etc, let's go through the de jure vassals until we find one.
+	for (vector<CK2Title*>::const_iterator itr = deJureVassals.begin(); itr != deJureVassals.end(); ++itr)
+	{
+		CK2Character* ret = (*itr)->getLastHolder(); // can recurse
+		if (ret)
+			return ret;
+	}
+
+	log("Error: couldn't find any character to use for title %s conversion.  I will probably crash now.\n", titleString.c_str());
+	return NULL;
 }

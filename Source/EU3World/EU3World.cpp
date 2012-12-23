@@ -385,11 +385,11 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 	// create EU3 nations
 	for (map<string, CK2Title*>::iterator titleItr = CK2Titles.begin(); titleItr != CK2Titles.end(); titleItr++)
 	{
-		if (titleItr->second->getHolder() != NULL)
-		{
-			EU3Country* newCountry = new EU3Country(titleItr->second, religionMap, cultureMap, inverseProvinceMap);
-			convertedCountries.push_back(newCountry);
-		}
+		// if our source has no holder, no vassals, and no de jure vassals, we can ignore it (completely dead title)
+		if (titleItr->second->getHolder() == NULL && titleItr->second->getVassals().empty() && titleItr->second->getDeJureVassals().empty())
+			continue;
+		EU3Country* newCountry = new EU3Country(titleItr->second, religionMap, cultureMap, inverseProvinceMap);
+		convertedCountries.push_back(newCountry);
 	}
 
 	// create vassal/liege relationships
@@ -534,7 +534,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			{
 				const CK2Title* current	= srcBaronies[0]->getTitle();
 				const CK2Title* next		= current->getDeJureLiege();
-				while( (next != NULL) && /*( next->getHolder() != NULL) &&*/ (next->getTitleString() != Configuration::getHRETitle()) )
+				while( (next != NULL) && (next->getTitleString() != Configuration::getHRETitle()) )
 				{
 					EU3Country* core = next->getDstCountry();
 					if (core != NULL)
@@ -806,7 +806,7 @@ void EU3World::convertTech(const religionGroupMapping& religionGroupMap, const C
 
 	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
 	{
-		string religion	= (*countryItr)->getSrcCountry()->getHolder()->getReligion();
+		string religion		= (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
 		string title		= (*countryItr)->getSrcCountry()->getTitleString();
 		if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religionGroupMap.find(religion)->second != "christian")  )
 		{
@@ -1191,4 +1191,34 @@ void EU3World::convertDiplomacy()
 			}
 		}
 	}
+}
+
+
+void EU3World::removeUnusedCountries()
+{
+	vector<EU3Country*> newConvertedCountries;
+	for (vector<EU3Country*>::iterator itr = convertedCountries.begin(); itr != convertedCountries.end(); ++itr)
+	{
+		bool keep = false;
+		// living country
+		if ((*itr)->hasProvinces())
+			keep = true;
+		// dead kingdom or higher, with remaining De Jure territory
+		else if ((*itr)->hasCores() && (*itr)->getSrcCountry())
+		{
+			string title = (*itr)->getSrcCountry()->getTitleString();
+			if (title[0] == 'e' || title[0] == 'k')
+				keep = true;
+		}
+
+		if (keep)
+			newConvertedCountries.push_back(*itr);
+		else
+		{
+			CK2Title* src = (*itr)->getSrcCountry();
+			if (src) src->setDstCountry(NULL);
+			delete (*itr);
+		}
+	}
+	convertedCountries.swap(newConvertedCountries);
 }

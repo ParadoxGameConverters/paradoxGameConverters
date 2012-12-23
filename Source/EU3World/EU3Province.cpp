@@ -212,7 +212,8 @@ void EU3Province::output(FILE* output)
 	}
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
-		fprintf(output, "\tcore=\"%s\"\n", cores[i]->getTag().c_str());
+		if (!cores[i]->getTag().empty())
+			fprintf(output, "\tcore=\"%s\"\n", cores[i]->getTag().c_str());
 	}
 	if (inHRE)
 	{
@@ -250,7 +251,8 @@ void EU3Province::output(FILE* output)
 	fprintf(output, "\t{\n");
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
-		fprintf(output, "\t\tadd_core=\"%s\"\n", cores[i]->getTag().c_str());
+		if (!cores[i]->getTag().empty())
+			fprintf(output, "\t\tadd_core=\"%s\"\n", cores[i]->getTag().c_str());
 	}
 	if (ownerStr != "")
 	{
@@ -620,9 +622,10 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 			{
 				rulerTitle = rulerTitle->getLiege();
 			}
-			if ( rulerTitle->getHolder()->getReligion() != topReligion )
+			const CK2Character* ruler = rulerTitle->getLastHolder();
+			if ( ruler->getReligion() != topReligion )
 			{
-				if ( religionMap.find(rulerTitle->getHolder()->getReligion())->second == religion )
+				if ( religionMap.find(ruler->getReligion())->second == religion )
 				{
 					modifiers.push_back("heresy");
 				}

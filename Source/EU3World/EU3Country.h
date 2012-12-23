@@ -57,6 +57,7 @@ class EU3Country
 		int				getCapital()				const { return capital; };
 		int				getStability()				const { return stability; };
 		bool			hasProvinces()				const { return !provinces.empty(); };
+		bool			hasCores()					const { return !cores.empty(); };
 
 	private:
 		CK2Title*				src;
