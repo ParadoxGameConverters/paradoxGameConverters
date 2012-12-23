@@ -85,7 +85,7 @@ link = { ck2 = 877 ck2 = 876 eu3 = 1230 }	# Kassala, Akordat -> Massawa
 link = { ck2 = 875 ck2 = 874 eu3 = 1215 }	# Aksum, Tadjoura -> Tajura
 link = { ck2 = 883 eu3 = 1226 eu3 = 1227 eu3 = 1214 }	# Gondar -> Taka, Tigre, Awsa
 link = { ck2 = 885 eu3 = 1224 }	# Matamma -> Gonder
-link = { ck2 = 793 eu3 = 1228 eu3 = 1231 }	# Makuria -> Dongola, Ibrim
+link = { ck2 = 793 eu3 = 1228 eu3 = 1231 eu3 = 1234 }	# Makuria -> Dongola, Ibrim, Nubia
 link = { ck2 = 791 ck2 = 794 ck2 = 795 eu3 = 360 }	# Quena, Aswan, Asyut -> Nile
 link = { ck2 = 800 eu3 = 1233 }	# Gizeh -> Kargah
 link = { ck2 = 785 eu3 = 365 }	# Sinai -> Sinai
@@ -110,11 +110,13 @@ link = { ck2 = 832 eu3 = 337 }	# Orania -> Oran
 link = { ck2 = 830 ck2 = 834 eu3 = 336 }	# Lemdiyya, Tlemcen -> Tlemcen
 link = { ck2 = 829 ck2 = 833 ck2 = 835 eu3 = 349 }	# Mzab, Atlas Mnt, Hanyan -> Atlas
 link = { ck2 = 836 eu3 = 335 }	# Snassen -> Melilla
-link = { ck2 = 838 ck2 = 840 ck2 = 837 eu3 = 343 }	# El Rif, Fes, Figuig -> Fez
+link = { ck2 = 838 ck2 = 840 eu3 = 343 }	# El Rif, Fes -> Fez
+link = { ck2 = 837 eu3 = 346 }	# Figuig -> Figuig
 link = { ck2 = 839 eu3 = 1751 }	# Cebta -> Ceuta
 link = { ck2 = 842 ck2 = 844 eu3 = 342 }	# Infa, Massat -> Toubkhal
 link = { ck2 = 841 eu3 = 334 }	# Tangier -> Tangiers
-link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Taroudant, Tamdoult -> Safi
+link = { ck2 = 845 ck2 = 846 eu3 = 345 }	# Anti-Atlas, Taroudant -> Safi
+link = { ck2 = 847 eu3 = 347 eu3 = 348 }	# Tharassat -> Ifni, Sus
 link = { ck2 = 849 eu3 = 366 }	# Canarias -> The Canarias
 link = { ck2 = 843 eu3 = 344 }	# Marrakech -> Marrakech
 # link = { ck2 = 909 eu3 = 1795 eu3 = 1794 eu3 = 1793 }	# Sahara Desert -> East Sahara, Central Sahara, El Djouf
@@ -1030,9 +1032,6 @@ link = { eu3 = 1244 }	# NOTHING -> Tahiti
 link = { eu3 = 1241 }	# NOTHING -> Kiribati
 link = { eu3 = 1240 }	# NOTHING -> Hawaii
 # # ROTW Africa
-link = { eu3 = 346 }	# NOTHING -> Figuig
-link = { eu3 = 348 }	# NOTHING -> Sus
-link = { eu3 = 347 }	# NOTHING -> Ifni
 link = { eu3 = 1110 }	# NOTHING -> Rio de Oro
 link = { eu3 = 1111 }	# NOTHING -> Arguin
 link = { eu3 = 368 }	# NOTHING -> Madeira
@@ -1040,7 +1039,6 @@ link = { eu3 = 1096 }	# NOTHING -> Cape Verde
 link = { eu3 = 1127 }	# NOTHING -> Tuat
 link = { eu3 = 1128 }	# NOTHING -> Taodeni
 link = { eu3 = 1325 }	# NOTHING -> Lake Balaton
-link = { eu3 = 1234 }	# NOTHING -> Nubia
 link = { eu3 = 1220 }	# NOTHING -> Dar Ja'al
 link = { eu3 = 1221 }	# NOTHING -> Taqali
 link = { eu3 = 1219 }	# NOTHING -> Kordofan
