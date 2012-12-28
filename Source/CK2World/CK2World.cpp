@@ -88,9 +88,26 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		i->second->setParents(characters);
 	}
 
+	printf("\tGetting opinion modifiers\n");
+	vector<Object*> leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); ++itr)
+	{
+		string key = (*itr)->getKey();
+		if (key.substr(0, 4) == "rel_")
+		{
+			int charId = atoi(key.c_str() + 4);
+			map<int, CK2Character*>::const_iterator chitr = characters.find(charId);
+			if (chitr == characters.end())
+			{
+				log("%s bad LHS character ID %d\n", key.c_str(), charId);
+				continue;
+			}
+			chitr->second->readOpinionModifiers(*itr);
+		}
+	}
+
 	// get titles
 	printf("\tGetting titles\n");
-	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		string key = leaves[i]->getKey();

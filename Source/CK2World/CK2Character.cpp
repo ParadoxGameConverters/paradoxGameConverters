@@ -247,6 +247,24 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 }
 
 
+void CK2Character::readOpinionModifiers(Object* obj)
+{
+	vector<Object*> leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); ++itr)
+	{
+		int charId = atoi((*itr)->getKey().c_str());
+		if (charId == 0)
+			continue;  // shouldn't happen
+		vector<Object*> modifiers = (*itr)->getLeaves();
+		for (vector<Object*>::iterator mitr = modifiers.begin(); mitr != modifiers.end(); ++mitr)
+		{
+			CK2Opinion opinion(*mitr);
+			opinionMods[charId].push_back(opinion);
+		}
+	}
+}
+
+
 void CK2Character::addTitle(CK2Title* newTitle)
 {
 	titles.push_back(newTitle);
@@ -814,11 +832,23 @@ bool CK2Character::isAlliedWith(CK2Character* other) const
 }
 
 
-int CK2Character::getRelationsWith(CK2Character* other) const
+int CK2Character::getOpinionOf(CK2Character* other) const
 {
 	int relations = 0;
-	// FIXME - intrinsics (fixed opinion - e.g. same dynasty, lover, father of child...)
+
+	// FIXME - intrinsics (variable - e.g. prestige, state diplomacy, piety...)
+	// FIXME - intrinsics (fixed opinion - e.g. same dynasty, father of child...)
 	// FIXME - traits (complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
-	// FIXME - rel. blocks (timed - e.g. broke alliance, cuckolded)
+
+	// rel. blocks (timed - e.g. broke alliance, lover, cuckolded)
+	map<int, vector<CK2Opinion>>::const_iterator opinions = opinionMods.find(other->getNum());
+	if (opinions != opinionMods.end())
+	{
+		for (vector<CK2Opinion>::const_iterator itr = opinions->second.begin(); itr != opinions->second.end(); ++itr)
+		{
+			relations += itr->getTotalOpinion();
+		}
+	}
+
 	return relations;
 }

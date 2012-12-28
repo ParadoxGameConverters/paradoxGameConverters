@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include "..\Date.h"
+#include "CK2Opinion.h"
 using namespace std;
 
 
@@ -33,6 +34,7 @@ class CK2Character
 {
 	public:
 		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
+		void							readOpinionModifiers(Object* obj);
 	
 		void							addTitle(CK2Title*);
 		void							removeTitle(CK2Title*);
@@ -77,7 +79,7 @@ class CK2Character
 		bool						isCloseRelationOf(CK2Character* other) const;
 		bool						isRMWith(CK2Character* other) const;
 		bool						isAlliedWith(CK2Character* other) const;
-		int							getRelationsWith(CK2Character* other) const;
+		int							getOpinionOf(CK2Character* other) const;
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
 
@@ -122,6 +124,8 @@ class CK2Character
 		CK2Barony*					primaryHolding;
 		string						primaryTitleString;
 		CK2Title*					primaryTitle;
+		
+		map<int, vector<CK2Opinion> >		opinionMods;
 };
 
 
