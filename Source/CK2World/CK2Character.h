@@ -41,6 +41,7 @@ class CK2Character
 		void							setParents(map<int, CK2Character*>&);
 		void							setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
 		void							setGavelkindHeirs(string);
+		void							setStateStats();
 
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
@@ -62,6 +63,7 @@ class CK2Character
 		bool							isFemale()					const { return female; };
 		bool							isBastard()					const { return bastard; };
 		int*							getStats()					const { return (int*)stats; };
+		int*							getStateStats()				const { return (int*)stateStats; };
 		vector<CK2Title*>			getTitles()					const { return titles; };
 		CK2Title*					getPrimaryTitle()			const { return primaryTitle; }
 		CK2Character*				getFather()					const { return father; };
@@ -99,6 +101,7 @@ class CK2Character
 		bool					bastard;
 		vector<int>			traits;
 		int					stats[5];
+		int					stateStats[5];
 		vector<CK2Title*>	titles;
 
 		int							fatherNum;

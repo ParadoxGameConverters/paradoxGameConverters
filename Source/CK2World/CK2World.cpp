@@ -199,6 +199,16 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		}
 	}
 
+	printf("\tCalculating state stats\n");
+	for (map<int, CK2Character*>::iterator itr = characters.begin(); itr != characters.end(); ++itr)
+	{
+		CK2Character* character = itr->second;
+		if (character != NULL)
+		{
+			character->setStateStats();
+		}
+	}
+
 	log("\tThere are a total of %d titles\n", titles.size());
 	log("\tThere are a total of %d independent titles\n", independentTitles.size());
 	log("\tThere are a total of %d hre members\n", hreMembers.size());

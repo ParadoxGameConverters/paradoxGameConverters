@@ -243,6 +243,8 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		}
 	}
 
+	memset(stateStats, 0, 5*sizeof(int));
+
 	primaryHolding = NULL;
 }
 
@@ -261,6 +263,34 @@ void CK2Character::readOpinionModifiers(Object* obj)
 			CK2Opinion opinion(*mitr);
 			opinionMods[charId].push_back(opinion);
 		}
+	}
+}
+
+
+void CK2Character::setStateStats()
+{
+	// start with regent's stats or mine
+	if (regent != NULL)
+		memcpy(stateStats, regent->getStats(), 5*sizeof(int));
+	else
+		memcpy(stateStats, stats, 5*sizeof(int));
+
+	// add 1/2 of primary spouse's stats (FIXME: is first living spouse always primary?)
+	for (vector<CK2Character*>::iterator itr = spouses.begin(); itr != spouses.end(); ++itr)
+	{
+		if (!(*itr)->isDead())
+		{
+			for (int i = 0; i < 5; ++i)
+				stateStats[i] += (*itr)->getStats()[i] / 2;
+			break;
+		}
+	}
+
+	// add relevant advisors
+	for (int i = 0; i < 5; ++i)
+	{
+		if (advisors[i] != NULL)
+			stateStats[i] += advisors[i]->getStats()[i];
 	}
 }
 
