@@ -78,6 +78,7 @@ class CK2Character
 		CK2Barony*					getPrimaryHolding()		const { return primaryHolding; };
 		vector<CK2Character*>		getSpouses()			const { return spouses; };
 		vector<CK2Character*>		getCloseRelations() const;
+		bool						hasTrait(string traitName) const;
 
 		bool						isCloseRelationOf(CK2Character* other) const;
 		bool						isRMWith(CK2Character* other) const;
@@ -101,7 +102,8 @@ class CK2Character
 		date					deathDate;
 		bool					female;
 		bool					bastard;
-		vector<int>			traits;
+		vector<int>			traitNums;
+		vector<CK2Trait*>	traits;
 		int					stats[5];
 		int					stateStats[5];
 		vector<CK2Title*>	titles;

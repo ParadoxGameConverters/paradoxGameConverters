@@ -223,13 +223,14 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		vector<string> traitsStrings = traitsObj[0]->getTokens();
 		for (unsigned int i = 0; i < traitsStrings.size(); i++)
 		{
-			traits.push_back( atoi(traitsStrings[i].c_str()) );
+			traitNums.push_back( atoi(traitsStrings[i].c_str()) );
 		}
 	}
 
 	for (unsigned int i = 0; i < traits.size(); i++)
 	{
-		CK2Trait* currentTrait = traitTypes[ traits[i] ];
+		CK2Trait* currentTrait = traitTypes[ traitNums[i] ];
+		traits.push_back(currentTrait);
 		if (currentTrait == NULL)
 		{
 			if (dynasty != NULL)
@@ -912,11 +913,127 @@ int CK2Character::getOpinionOf(CK2Character* other) const
 	// FIXME: Short Reign
 
 
-	// ***** FIXME - fixed intrinsics (fixed opinion - e.g. same dynasty, father of child...)
+	// ***** fixed intrinsics (fixed opinion - e.g. same dynasty, father of child...)
+	// These are not saved in the CK2 file, unfortunately
+
+	// Same Dynasty
+	if (dynasty == other->dynasty)
+		relations += CK2Opinion::getBaseValue("same_dynasty");
+
+	// Ally
+	if (this->isAlliedWith(other))
+		relations += CK2Opinion::getBaseValue("opinion_ally");
+
+	// FIXME: At War
+
+	// Mother or Father of Child
+	if (other->mother == this)
+		relations += CK2Opinion::getBaseValue("opinion_mother_child");
+	if (other->father == this)
+		relations += CK2Opinion::getBaseValue("opinion_father_of_child");
+
+	// Muslim brother or half-brother
+	if (religionGroup == "muslim")
+	{
+		if (this->mother == other->mother && this->father == other->father)
+		{
+			// Muslim Brother
+			relations += CK2Opinion::getBaseValue("opinion_brother_muslim");
+		}
+		else if (this->mother == other->mother || this->father == other->father)
+		{
+			// Muslim Half-brother
+			relations += CK2Opinion::getBaseValue("opinion_half_brother_muslim");
+		}
+	}
+
+	// FIXME: Claimant vs. Holder
+	// FIXME: De Jure Liege
+	// FIXME: De Jure Liege Hog ("wants control of...")
+	// FIXME: Pretender
+	// FIXME: Nominee
+	// FIXME: Non-liege Nominee
+	// FIXME: Foreign Culture
+	// FIXME: Related Culture
+
+	// Infidel
+	if (religionGroup != other->religionGroup)
+	{
+		relations += CK2Opinion::getBaseValue("opinion_infidel");
+	}
+	// FIXME: Heretic
+	// FIXME: Related Religion
+	// FIXME: Rightful Religious Head
+	// FIXME: Female Heir
+	// FIXME: Female Ruler
+	// FIXME: Defending My Titles
+	// FIXME: Defending Against Infidel
+	// FIXME: Pope vs. Antipope
+	// FIXME: Pope vs. Antipope's Controller
+	// FIXME: Cleric vs. Crusader (current crusade, not trait)
+	// FIXME: Cleric vs. Non-crusader (current crusade)
+	// FIXME: Wrong Government Type
 
 
-	// ***** FIXME - traits (complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
-
+	// Trait opinion modifers (incl. complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
+	for (vector<CK2Trait*>::const_iterator trait = other->traits.begin(); trait != other->traits.end(); ++trait)
+	{
+		if (primaryTitle->getLiege() && primaryTitle->getLiege()->getHolder() && primaryTitle->getLiege()->getHolder() == other)
+		{
+			relations += (*trait)->vassal_opinion;
+		}
+		if (other->primaryTitle->getLiege() && other->primaryTitle->getLiege()->getHolder() && other->primaryTitle->getLiege()->getHolder() == this)
+		{
+			relations += (*trait)->liege_opinion;
+		}
+		// sex appeal: both female and I'm gay, both male and I'm gay, or different gender and I'm straight
+		if ((this->isFemale() != other->isFemale()) == (!this->hasTrait("homosexual")))
+		{
+			relations += (*trait)->sex_appeal_opinion;
+		}
+		if (this->hasTrait((*trait)->name))
+		{
+			relations += (*trait)->same_opinion;
+			if (this->religion == other->religion)
+			{
+				relations += (*trait)->same_opinion_if_same_religion;
+			}
+		}
+		for (vector<CK2Trait*>::const_iterator itr = traits.begin(); itr != traits.end(); ++itr)
+		{
+			if ((*trait)->isOppositeOf(*itr))
+				relations += (*itr)->opposite_opinion;
+		}
+		if (primaryHolding && primaryHolding->getType() == "temple")
+		{
+			relations += (*trait)->church_opinion;
+		}
+		if (this->mother == other->mother && this->father == other->father && this->birthDate == other->birthDate)
+		{
+			relations += (*trait)->twin_opinion;
+		}
+		for (vector<CK2Character*>::const_iterator itr = spouses.begin(); itr != spouses.end(); ++itr)
+		{
+			if (*itr == other)
+				relations += (*trait)->spouse_opinion;
+		}
+		if (this->religion == other->religion)
+		{
+			relations += (*trait)->same_religion_opinion;
+		}
+		else if (this->religionGroup != other->religionGroup)
+		{
+			relations += (*trait)->infidel_opinion;
+		}
+		if (this->religionGroup == "muslim")
+		{
+			relations += (*trait)->muslim_opinion;
+		}
+		if (this->dynasty == other->dynasty)
+		{
+			relations += (*trait)->dynasty_opinion;
+		}
+	}
 
 	// ***** rel. blocks (timed - e.g. broke alliance, lover, cuckolded)
 	map<int, vector<CK2Opinion>>::const_iterator opinions = opinionMods.find(other->getNum());
@@ -929,4 +1046,15 @@ int CK2Character::getOpinionOf(CK2Character* other) const
 	}
 
 	return relations;
+}
+
+
+bool CK2Character::hasTrait(string traitName) const
+{
+	for (vector<CK2Trait*>::const_iterator itr = traits.begin(); itr != traits.end(); ++itr)
+	{
+		if ((*itr)->name == traitName)
+			return true;
+	}
+	return false;
 }
