@@ -78,7 +78,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	for (unsigned int i = 0; i < characterLeaves.size(); i++)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
-		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, endDate);
+		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, religionGroupMap, endDate);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 

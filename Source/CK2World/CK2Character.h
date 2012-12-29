@@ -7,6 +7,7 @@
 #include <map>
 #include <vector>
 #include "..\Date.h"
+#include "..\Mappers.h"
 #include "CK2Opinion.h"
 using namespace std;
 
@@ -33,7 +34,7 @@ enum advisorTypes
 class CK2Character
 {
 	public:
-		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
+		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, const religionGroupMapping& religionGroupMap, date theDate);
 		void							readOpinionModifiers(Object* obj);
 	
 		void							addTitle(CK2Title*);
@@ -91,6 +92,7 @@ class CK2Character
 		int					num;
 		string				name;
 		string				religion;
+		string				religionGroup;
 		string				culture;
 		CK2Dynasty*			dynasty;
 		date					birthDate;
@@ -103,6 +105,8 @@ class CK2Character
 		int					stats[5];
 		int					stateStats[5];
 		vector<CK2Title*>	titles;
+		double				piety;
+		double				prestige;
 
 		int							fatherNum;
 		CK2Character*				father;
