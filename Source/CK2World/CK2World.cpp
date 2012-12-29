@@ -78,7 +78,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	for (unsigned int i = 0; i < characterLeaves.size(); i++)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
-		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, endDate);
+		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, religionGroupMap, endDate);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
@@ -88,9 +88,26 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		i->second->setParents(characters);
 	}
 
+	printf("\tGetting opinion modifiers\n");
+	vector<Object*> leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); ++itr)
+	{
+		string key = (*itr)->getKey();
+		if (key.substr(0, 4) == "rel_")
+		{
+			int charId = atoi(key.c_str() + 4);
+			map<int, CK2Character*>::const_iterator chitr = characters.find(charId);
+			if (chitr == characters.end())
+			{
+				log("%s bad LHS character ID %d\n", key.c_str(), charId);
+				continue;
+			}
+			chitr->second->readOpinionModifiers(*itr);
+		}
+	}
+
 	// get titles
 	printf("\tGetting titles\n");
-	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
 		string key = leaves[i]->getKey();
@@ -179,6 +196,16 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		if (character != NULL)
 		{
 			character->setEmployer(characters, baronies);
+		}
+	}
+
+	printf("\tCalculating state stats\n");
+	for (map<int, CK2Character*>::iterator itr = characters.begin(); itr != characters.end(); ++itr)
+	{
+		CK2Character* character = itr->second;
+		if (character != NULL)
+		{
+			character->setStateStats();
 		}
 	}
 

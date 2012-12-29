@@ -7,6 +7,8 @@
 #include <map>
 #include <vector>
 #include "..\Date.h"
+#include "..\Mappers.h"
+#include "CK2Opinion.h"
 using namespace std;
 
 
@@ -32,13 +34,15 @@ enum advisorTypes
 class CK2Character
 {
 	public:
-		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
+		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, const religionGroupMapping& religionGroupMap, date theDate);
+		void							readOpinionModifiers(Object* obj);
 	
 		void							addTitle(CK2Title*);
 		void							removeTitle(CK2Title*);
 		void							setParents(map<int, CK2Character*>&);
 		void							setEmployer(map<int, CK2Character*>&, map<string, CK2Barony*>&);
 		void							setGavelkindHeirs(string);
+		void							setStateStats();
 
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
@@ -60,6 +64,7 @@ class CK2Character
 		bool							isFemale()					const { return female; };
 		bool							isBastard()					const { return bastard; };
 		int*							getStats()					const { return (int*)stats; };
+		int*							getStateStats()				const { return (int*)stateStats; };
 		vector<CK2Title*>			getTitles()					const { return titles; };
 		CK2Title*					getPrimaryTitle()			const { return primaryTitle; }
 		CK2Character*				getFather()					const { return father; };
@@ -77,7 +82,7 @@ class CK2Character
 		bool						isCloseRelationOf(CK2Character* other) const;
 		bool						isRMWith(CK2Character* other) const;
 		bool						isAlliedWith(CK2Character* other) const;
-		int							getRelationsWith(CK2Character* other) const;
+		int							getOpinionOf(CK2Character* other) const;
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
 
@@ -87,6 +92,7 @@ class CK2Character
 		int					num;
 		string				name;
 		string				religion;
+		string				religionGroup;
 		string				culture;
 		CK2Dynasty*			dynasty;
 		date					birthDate;
@@ -97,7 +103,10 @@ class CK2Character
 		bool					bastard;
 		vector<int>			traits;
 		int					stats[5];
+		int					stateStats[5];
 		vector<CK2Title*>	titles;
+		double				piety;
+		double				prestige;
 
 		int							fatherNum;
 		CK2Character*				father;
@@ -122,6 +131,8 @@ class CK2Character
 		CK2Barony*					primaryHolding;
 		string						primaryTitleString;
 		CK2Title*					primaryTitle;
+		
+		map<int, vector<CK2Opinion> >		opinionMods;
 };
 
 

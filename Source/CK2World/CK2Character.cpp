@@ -11,12 +11,24 @@
 
 
 
-CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
+CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, const religionGroupMapping& religionGroupMap, date theDate)
 {
 	num			= atoi( obj->getKey().c_str() );
 	name			= obj->getLeaf("birth_name");
 	religion		= obj->getLeaf("religion");
 	culture		= obj->getLeaf("culture");
+
+	vector<Object*> pobjs = obj->getValue("prestige");
+	if (pobjs.size() > 0)
+		prestige = atof(pobjs[0]->getLeaf().c_str());
+	else
+		prestige = 0.0;
+
+	pobjs = obj->getValue("piety");
+	if (pobjs.size() > 0)
+		piety = atof(pobjs[0]->getLeaf().c_str());
+	else
+		piety = 0.0;
 
 	dynasty		= NULL;
 	map<int, CK2Dynasty*>::iterator dynItr	= dynasties.find(  atoi( obj->getLeaf("dynasty").c_str() )  );
@@ -243,7 +255,59 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		}
 	}
 
+	memset(stateStats, 0, 5*sizeof(int));
+
+	religionGroupMapping::const_iterator itr = religionGroupMap.find(religion);
+	if (itr != religionGroupMap.end())
+		religionGroup = itr->second;
+
 	primaryHolding = NULL;
+}
+
+
+void CK2Character::readOpinionModifiers(Object* obj)
+{
+	vector<Object*> leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); ++itr)
+	{
+		int charId = atoi((*itr)->getKey().c_str());
+		if (charId == 0)
+			continue;  // shouldn't happen
+		vector<Object*> modifiers = (*itr)->getLeaves();
+		for (vector<Object*>::iterator mitr = modifiers.begin(); mitr != modifiers.end(); ++mitr)
+		{
+			CK2Opinion opinion(*mitr);
+			opinionMods[charId].push_back(opinion);
+		}
+	}
+}
+
+
+void CK2Character::setStateStats()
+{
+	// start with regent's stats or mine
+	if (regent != NULL)
+		memcpy(stateStats, regent->getStats(), 5*sizeof(int));
+	else
+		memcpy(stateStats, stats, 5*sizeof(int));
+
+	// add 1/2 of primary spouse's stats (FIXME: is first living spouse always primary?)
+	for (vector<CK2Character*>::iterator itr = spouses.begin(); itr != spouses.end(); ++itr)
+	{
+		if (!(*itr)->isDead())
+		{
+			for (int i = 0; i < 5; ++i)
+				stateStats[i] += (*itr)->getStats()[i] / 2;
+			break;
+		}
+	}
+
+	// add relevant advisors
+	for (int i = 0; i < 5; ++i)
+	{
+		if (advisors[i] != NULL)
+			stateStats[i] += advisors[i]->getStats()[i];
+	}
 }
 
 
@@ -814,11 +878,55 @@ bool CK2Character::isAlliedWith(CK2Character* other) const
 }
 
 
-int CK2Character::getRelationsWith(CK2Character* other) const
+int CK2Character::getOpinionOf(CK2Character* other) const
 {
 	int relations = 0;
-	// FIXME - intrinsics (fixed opinion - e.g. same dynasty, lover, father of child...)
-	// FIXME - traits (complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
-	// FIXME - rel. blocks (timed - e.g. broke alliance, cuckolded)
+
+	// ***** scaled intrinsics (variable - e.g. prestige, state diplomacy, piety...)
+
+	// State Diplomacy - anyone who's not my host
+	if (hostNum != other->num)
+		relations += other->getStateStats()[DIPLOMACY] / 2;
+
+	// Personal Diplomacy - my host only (for courtiers)
+	if (hostNum == other->num)
+		relations += other->getStats()[DIPLOMACY];
+
+	// Piety - if we're the same religion
+	if (religion == other->religion)
+	{
+		// and we're both muslim, or I'm a cleric
+		if (religionGroup == "muslim" || (primaryHolding && primaryHolding->getType() == "temple"))
+		{
+			// add 1/25 of piety, or 20, whichever is larger
+			relations += (int)floor(max(other->piety / 25.0, 20.0));
+		}
+	}
+
+	// Prestige - 1/100, or 20, whicherver is larger
+	relations += (int)floor(max(other->prestige / 100.0, 20.0));
+
+	// FIXME: Desmense Too Big
+	// FIXME: Too Many Held Duchies
+	// FIXME: Long Reign
+	// FIXME: Short Reign
+
+
+	// ***** FIXME - fixed intrinsics (fixed opinion - e.g. same dynasty, father of child...)
+
+
+	// ***** FIXME - traits (complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
+
+
+	// ***** rel. blocks (timed - e.g. broke alliance, lover, cuckolded)
+	map<int, vector<CK2Opinion>>::const_iterator opinions = opinionMods.find(other->getNum());
+	if (opinions != opinionMods.end())
+	{
+		for (vector<CK2Opinion>::const_iterator itr = opinions->second.begin(); itr != opinions->second.end(); ++itr)
+		{
+			relations += itr->getTotalOpinion();
+		}
+	}
+
 	return relations;
 }

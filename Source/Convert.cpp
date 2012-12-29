@@ -10,7 +10,8 @@
 #include "EU3World\EU3World.h"
 #include "EU3World\EU3Country.h"
 #include "EU3World\EU3Tech.h"
-#include	"CK2World\CK2World.h"
+#include "CK2World\CK2World.h"
+#include "CK2World\CK2Opinion.h"
 #include "Mappers.h"
 using namespace std;
 
@@ -174,6 +175,24 @@ int main(int argc, char * argv[])
 		log("\t\tError: Could not open traits directory (ok for pre-1.06).\n");
 		printf("\t\tError: Could not open traits directory (ok for pre-1.06).\n");
 	}
+
+
+	log("\tGetting opinion modifiers\n");
+	printf("\tGetting opinion modifiers\n");
+	obj = doParseFile((Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str());
+		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str());
+		exit(-1);
+	}
+	CK2Opinion::initOpinions(obj);
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { CK2Opinion::initOpinions(eachobj); }))
+	{
+		log("\t\tError: Could not open opinion_modifiers directory (ok for pre-1.06).\n");
+		printf("\t\tError: Could not open opinion_modifiers directory (ok for pre-1.06).\n");
+	}
+
 
 	log("\tAdding dynasties from CK2 Install\n");
 	printf("\tAdding dynasties from CK2 Install\n");
