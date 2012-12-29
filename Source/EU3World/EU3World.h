@@ -3,6 +3,7 @@
 
 
 #include <fstream>
+#include <tuple>
 #include "..\Mappers.h"
 #include "..\Date.h"
 
@@ -66,6 +67,8 @@ class EU3World
 		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:
 		void	removeUnusedCountries();
+		int	matchTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings);
+		void	determineMapSpread();
 
 		int									options[OPTIONS_END];
 		date									startDate;

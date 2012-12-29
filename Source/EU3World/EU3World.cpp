@@ -994,215 +994,31 @@ int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const
 		}
 	}
 	convertedCountries.swap(newConvertedCountries);
-
 	log("Total converted EU3 countries after blobbing: %d\n", convertedCountries.size());
 
-
-	// get CK2 Titles
-	map<string, CK2Title*> CK2Titles;
-	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
+	vector< tuple<EU3Country*, EU3Country*, string, string, int> > mappings;
+	int numTags = matchTags(rulesObj, blockedNations, provinceMap, mappings);
+	for (vector< tuple<EU3Country*, EU3Country*, string, string, int> >::iterator mappingsItr = mappings.begin(); mappingsItr != mappings.end(); mappingsItr++)
 	{
-		CK2Title* srcTitle = (*countryItr)->getSrcCountry();
-		CK2Titles.insert( make_pair(srcTitle->getTitleString(), srcTitle) );
-	}
-
-	// get EU3 tags
-	set<string> EU3tags;
-	for (map<string, EU3Country*>::iterator countryItr =	countries.begin(); countryItr != countries.end(); countryItr++)
-	{
-		EU3tags.insert(countryItr->first);
-	}
-
-	// get rules
-	vector<Object*> leaves = rulesObj->getLeaves();
-	if (leaves.size() < 1)
-	{
-		log ("Error: No country mapping definitions loaded.\n");
-		printf("Error: No country mapping definitions loaded.\n");
-		return -1;
-	}
-	vector<Object*> rules = leaves[0]->getLeaves();
-
-	// match titles and nations
-	for (unsigned int i = 0; i < rules.size(); ++i)
-	{
-		vector<Object*> rule = rules[i]->getLeaves();
-		string			rCK2Title;
-		vector<string>	rEU3Tags;
-		for (unsigned int j = 0; j < rule.size(); j++)
-		{
-			if (rule[j]->getKey().compare("CK2") == 0)
-			{		 
-				rCK2Title = rule[j]->getLeaf();
-			}
-			else if (rule[j]->getKey().compare("EU3") == 0)
-			{
-				rEU3Tags.push_back(rule[j]->getLeaf());
-			}
-			else
-			{
-				log("Warning: unknown data while mapping countries.\n");
-			}
-		}
-
-		//find CK2 title from the rule
-		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.find(rCK2Title);
-		if (CK2TitlesPos == CK2Titles.end())
-		{
-			continue;
-		}
-		if (rCK2Title == Configuration::getHRETitle())
-		{
-			CK2Titles.erase(CK2TitlesPos);
-			continue;
-		}
-
-		//find EU3 tag from the rule
-		set<string>::iterator EU3CountryPos;
-		unsigned int distance = 0;
-		for (vector<string>::reverse_iterator j = rEU3Tags.rbegin(); j != rEU3Tags.rend(); ++j)
-		{
-			++distance;
-			EU3CountryPos = EU3tags.find(*j);
-			if (EU3CountryPos != EU3tags.end())
-			{
-				break;
-			}
-		}
-		if (EU3CountryPos == EU3tags.end())
-		{
-			continue;
-		}
-
-		//map the countries
-		EU3Country* convertedCountry	= CK2TitlesPos->second->getDstCountry();
-		EU3Country* historicalCountry	= countries[*EU3CountryPos];
+		EU3Country* convertedCountry	= get<0>(*mappingsItr);//CK2TitlesPos->second->getDstCountry();
+		EU3Country* historicalCountry	= get<1>(*mappingsItr);//countries[*EU3CountryPos];
+		string		CK2TitleStr			= get<2>(*mappingsItr);
+		string		EU3TagStr			= get<3>(*mappingsItr);
+		int			distance				= get<4>(*mappingsItr);
 		historicalCountry->replaceWith(convertedCountry, provinceMap);
-		log("\tMapped countries %s -> %s (#%d)\n", CK2TitlesPos->first.c_str(), EU3CountryPos->c_str() , distance);
-
-		//remove tags from the lists
-		CK2Titles.erase(CK2TitlesPos);
-		EU3tags.erase(EU3CountryPos);
-	}
-
-	for (unsigned int j = 0; j < blockedNations.size(); ++j)
-	{
-		set<string>::iterator i = EU3tags.find(blockedNations[j]);
-		if (i != EU3tags.end())
+		if (distance > 0)
 		{
-			EU3tags.erase(i);
-			continue;
-		}
-	}
-
-	while ( (CK2Titles.size() > 0) && (EU3tags.size() > 0) )
-	{
-		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
-		if (CK2TitlesPos->first == "e_rebels")
-		{
-			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else if (CK2TitlesPos->first == "e_pirates")
-		{
-			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else if (CK2TitlesPos->first == Configuration::getHRETitle())
-		{
-			CK2Titles.erase(CK2TitlesPos);
+			log("\tMapped countries %s -> %s (#%d)\n", CK2TitleStr.c_str(), EU3TagStr.c_str(), distance);
 		}
 		else
 		{
-			set<string>::iterator EU3CountryPos = EU3tags.begin();
-			EU3Country* convertedCountry	= CK2TitlesPos->second->getDstCountry();
-			EU3Country* historicalCountry	= countries[*EU3CountryPos];
-			historicalCountry->replaceWith(convertedCountry, provinceMap);
-			log("\tMapped countries %s -> %s (fallback)\n", CK2TitlesPos->first.c_str(), EU3CountryPos->c_str());
-
-			//remove tags from the lists
-			CK2Titles.erase(CK2TitlesPos);
-			EU3tags.erase(EU3CountryPos);
+			log("\tMapped countries %s -> %s (fallback)\n", CK2TitleStr.c_str(), EU3TagStr.c_str());
 		}
 	}
 
-	// now that tags are known, can finish setting the map spread strings
-	vector<string> converted;
-	vector<string> nomadTech;
-	vector<string> westernTech;
-	vector<string> easternTech;
-	vector<string> ottomanTech;
-	vector<string> muslimTech;
-	vector<string> indianTech;
-	vector<string> chineseTech;
-	vector<string> subSaharanTech;
-	vector<string> newWorldTech;
-	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
-	{
-		string techGroup = i->second->getTechGroup();
-		if (i->second->getSrcCountry() != NULL)
-		{
-			converted.push_back( i->first );
-		}
-		else if (techGroup == "nomad_group")
-		{
-			nomadTech.push_back( i->first );
-		}
-		else if (techGroup == "western")
-		{
-			westernTech.push_back( i->first );
-		}
-		else if (techGroup == "eastern")
-		{
-			easternTech.push_back( i->first );
-		}
-		else if (techGroup == "ottoman")
-		{
-			ottomanTech.push_back( i->first );
-		}
-		else if (techGroup == "muslim")
-		{
-			muslimTech.push_back( i->first );
-		}
-		else if (techGroup == "indian")
-		{
-			indianTech.push_back( i->first );
-		}
-		else if (techGroup == "chinese")
-		{
-			chineseTech.push_back( i->first );
-		}
-		else if (techGroup == "sub_saharan")
-		{
-			subSaharanTech.push_back( i->first );
-		}
-		else if (techGroup == "new_world")
-		{
-			newWorldTech.push_back( i->first );
-		}
+	determineMapSpread();
 
-		vector<string> selfString;
-		selfString.push_back( i->first );
-		mapSpreadStrings.insert(  make_pair( i->first, selfString )  );
-	}
-
-	mapSpreadStrings.insert( make_pair("converted", converted) );
-	mapSpreadStrings.insert( make_pair("nomad_group", nomadTech) );
-	mapSpreadStrings.insert( make_pair("western", westernTech) );
-	mapSpreadStrings.insert( make_pair("eastern", easternTech) );
-	mapSpreadStrings.insert( make_pair("ottoman", ottomanTech) );
-	mapSpreadStrings.insert( make_pair("muslim", muslimTech) );
-	mapSpreadStrings.insert( make_pair("indian", indianTech) );
-	mapSpreadStrings.insert( make_pair("chinese", chineseTech) );
-	mapSpreadStrings.insert( make_pair("sub_saharan", subSaharanTech) );
-	mapSpreadStrings.insert( make_pair("new_world", newWorldTech) );
-
-	for (map<int, EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
-	{
-		provItr->second->setDiscoverers(mapSpreadStrings);
-	}
-
-	return CK2Titles.size();
+	return numTags;
 }
 
 
@@ -1290,4 +1106,212 @@ void EU3World::removeUnusedCountries()
 		}
 	}
 	convertedCountries.swap(newConvertedCountries);
+}
+
+
+int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings)
+{
+	// get CK2 Titles
+	map<string, CK2Title*> CK2Titles;
+	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
+	{
+		CK2Title* srcTitle = (*countryItr)->getSrcCountry();
+		CK2Titles.insert( make_pair(srcTitle->getTitleString(), srcTitle) );
+	}
+
+	// get EU3 tags
+	set<string> EU3tags;
+	for (map<string, EU3Country*>::iterator countryItr =	countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		EU3tags.insert(countryItr->first);
+	}
+
+	// get rules
+	vector<Object*> leaves = rulesObj->getLeaves();
+	if (leaves.size() < 1)
+	{
+		log ("Error: No country mapping definitions loaded.\n");
+		printf("Error: No country mapping definitions loaded.\n");
+		return -1;
+	}
+	vector<Object*> rules = leaves[0]->getLeaves();
+	// match titles and nations
+	for (unsigned int i = 0; i < rules.size(); ++i)
+	{
+		vector<Object*> rule = rules[i]->getLeaves();
+		string			rCK2Title;
+		vector<string>	rEU3Tags;
+		for (unsigned int j = 0; j < rule.size(); j++)
+		{
+			if (rule[j]->getKey().compare("CK2") == 0)
+			{		 
+				rCK2Title = rule[j]->getLeaf();
+			}
+			else if (rule[j]->getKey().compare("EU3") == 0)
+			{
+				rEU3Tags.push_back(rule[j]->getLeaf());
+			}
+			else
+			{
+				log("Warning: unknown data while mapping countries.\n");
+			}
+		}
+
+		//find CK2 title from the rule
+		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.find(rCK2Title);
+		if (CK2TitlesPos == CK2Titles.end())
+		{
+			continue;
+		}
+		if (rCK2Title == Configuration::getHRETitle())
+		{
+			CK2Titles.erase(CK2TitlesPos);
+			continue;
+		}
+
+		//find EU3 tag from the rule
+		set<string>::iterator EU3CountryPos;
+		unsigned int distance = 0;
+		for (vector<string>::reverse_iterator j = rEU3Tags.rbegin(); j != rEU3Tags.rend(); ++j)
+		{
+			++distance;
+			EU3CountryPos = EU3tags.find(*j);
+			if (EU3CountryPos != EU3tags.end())
+			{
+				break;
+			}
+		}
+		if (EU3CountryPos == EU3tags.end())
+		{
+			continue;
+		}
+
+		//map the countries
+		tuple<EU3Country*, EU3Country*, string, string, int> mapping = make_tuple(CK2TitlesPos->second->getDstCountry(), countries[*EU3CountryPos], CK2TitlesPos->first.c_str(), EU3CountryPos->c_str(), distance);
+		mappings.push_back(mapping);
+
+		//remove tags from the lists
+		CK2Titles.erase(CK2TitlesPos);
+		EU3tags.erase(EU3CountryPos);
+	}
+
+	for (unsigned int j = 0; j < blockedNations.size(); ++j)
+	{
+		set<string>::iterator i = EU3tags.find(blockedNations[j]);
+		if (i != EU3tags.end())
+		{
+			EU3tags.erase(i);
+			continue;
+		}
+	}
+
+	while ( (CK2Titles.size() > 0) && (EU3tags.size() > 0) )
+	{
+		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
+		if (CK2TitlesPos->first == "e_rebels")
+		{
+			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
+			CK2Titles.erase(CK2TitlesPos);
+		}
+		else if (CK2TitlesPos->first == "e_pirates")
+		{
+			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
+			CK2Titles.erase(CK2TitlesPos);
+		}
+		else if (CK2TitlesPos->first == Configuration::getHRETitle())
+		{
+			CK2Titles.erase(CK2TitlesPos);
+		}
+		else
+		{
+			set<string>::iterator EU3CountryPos = EU3tags.begin();
+			tuple<EU3Country*, EU3Country*, string, string, int> mapping = make_tuple(CK2TitlesPos->second->getDstCountry(), countries[*EU3CountryPos], CK2TitlesPos->first.c_str(), EU3CountryPos->c_str(), 0);
+			mappings.push_back(mapping);
+
+			//remove tags from the lists
+			CK2Titles.erase(CK2TitlesPos);
+			EU3tags.erase(EU3CountryPos);
+		}
+	}
+
+	return CK2Titles.size();
+}
+
+
+void EU3World::determineMapSpread()
+{
+	vector<string> converted;
+	vector<string> nomadTech;
+	vector<string> westernTech;
+	vector<string> easternTech;
+	vector<string> ottomanTech;
+	vector<string> muslimTech;
+	vector<string> indianTech;
+	vector<string> chineseTech;
+	vector<string> subSaharanTech;
+	vector<string> newWorldTech;
+	for (map<string, EU3Country*>::iterator i = countries.begin(); i != countries.end(); i++)
+	{
+		string techGroup = i->second->getTechGroup();
+		if (i->second->getSrcCountry() != NULL)
+		{
+			converted.push_back( i->first );
+		}
+		else if (techGroup == "nomad_group")
+		{
+			nomadTech.push_back( i->first );
+		}
+		else if (techGroup == "western")
+		{
+			westernTech.push_back( i->first );
+		}
+		else if (techGroup == "eastern")
+		{
+			easternTech.push_back( i->first );
+		}
+		else if (techGroup == "ottoman")
+		{
+			ottomanTech.push_back( i->first );
+		}
+		else if (techGroup == "muslim")
+		{
+			muslimTech.push_back( i->first );
+		}
+		else if (techGroup == "indian")
+		{
+			indianTech.push_back( i->first );
+		}
+		else if (techGroup == "chinese")
+		{
+			chineseTech.push_back( i->first );
+		}
+		else if (techGroup == "sub_saharan")
+		{
+			subSaharanTech.push_back( i->first );
+		}
+		else if (techGroup == "new_world")
+		{
+			newWorldTech.push_back( i->first );
+		}
+
+		vector<string> selfString;
+		selfString.push_back( i->first );
+		mapSpreadStrings.insert(  make_pair( i->first, selfString )  );
+	}
+
+	mapSpreadStrings.insert( make_pair("converted", converted) );
+	mapSpreadStrings.insert( make_pair("nomad_group", nomadTech) );
+	mapSpreadStrings.insert( make_pair("western", westernTech) );
+	mapSpreadStrings.insert( make_pair("eastern", easternTech) );
+	mapSpreadStrings.insert( make_pair("ottoman", ottomanTech) );
+	mapSpreadStrings.insert( make_pair("muslim", muslimTech) );
+	mapSpreadStrings.insert( make_pair("indian", indianTech) );
+	mapSpreadStrings.insert( make_pair("chinese", chineseTech) );
+	mapSpreadStrings.insert( make_pair("sub_saharan", subSaharanTech) );
+	mapSpreadStrings.insert( make_pair("new_world", newWorldTech) );
+
+	for (map<int, EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		provItr->second->setDiscoverers(mapSpreadStrings);
+	}
 }

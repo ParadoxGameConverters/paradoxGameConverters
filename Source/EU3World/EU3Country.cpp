@@ -373,6 +373,10 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 			capital = 0;
 		}
 	}
+	else
+	{
+		capital = 0;
+	}
 
 	stability				= 1;
 	stabilityInvestment	= 0.0f;

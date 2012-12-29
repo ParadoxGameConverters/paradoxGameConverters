@@ -270,3 +270,4 @@ Revision	Log Message
 265		Consider vassal opinion during vassal independence.
 266		No longer necessary to remove dead nations in the CK2World code.
 267		Vassal titles held by the liege are merged automatically
+268		Abstract away details of matching tags
