@@ -38,6 +38,7 @@ class CK2Title
 		CK2Character*			getLastHolder()			const;
 		CK2Character*			getHeir()				const { return heir; };
 		string					getSuccessionLaw()	const { return successionLaw; };
+		string					getCA()					const { return CA; };
 		vector<CK2History*>	getHistory()			const { return history; };
 		string					getLiegeString()		const { return liegeString; };
 		CK2Title*				getLiege()				const { return liege; };
@@ -68,6 +69,7 @@ class CK2Title
 		string							successionLaw;
 		string							genderLaw;
 		vector< pair<int, int> >	nominees;		// id, votes
+		string							CA;
 		vector<CK2History*>			history;
 		string							liegeString;
 		CK2Title*						liege;

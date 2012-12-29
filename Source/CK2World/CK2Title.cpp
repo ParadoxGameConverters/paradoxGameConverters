@@ -20,6 +20,7 @@ CK2Title::CK2Title(string _titleString)
 	genderLaw			= "";
 	nominees.clear();
 	history.clear();
+	CA						= "";
 	liegeString			= "";
 	liege					= NULL;
 	vassals.clear();
@@ -69,6 +70,16 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 			{
 				nominees.push_back( make_pair(nomineeId, 1) );
 			}
+		}
+	}
+
+	CA = "";
+	vector<Object*> lawObj = obj->getValue("law");
+	for (unsigned int i = 0; i < lawObj.size(); i++)
+	{
+		if (leavesObj[i]->getLeaf().substr(0, 14) == "centralization")
+		{
+			CA = leavesObj[i]->getLeaf();
 		}
 	}
 

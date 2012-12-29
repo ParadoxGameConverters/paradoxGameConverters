@@ -250,5 +250,12 @@ Revision	Log Message
 246		Don't allow advisors to try to insert new provinces
 247		Fix crash bug from last change
 248		Add changes for CK2Plus to EU3
-
+249		Read in spouses.  Convert diplomatic agreements (PUs, RMs, Alliances).
 250		Defer determination of a nation being independent
+251		Merge
+252		Finish functional merge between title-merging and coring.  Both seem to be working OK now.
+253		Fix discovery of sea provinces by converted nations.
+254		For cleanliness, map a little deeper into Morocco and Egypt.
+255		Convert advisors after tag mapping.  Cap advisor skill at 6 (7 breaks EU3).
+		Set advisor start date to 16 years after their birth, rather than 16 years after game start.
+256		Vassal independence (blobifying still happens due to too many tags)

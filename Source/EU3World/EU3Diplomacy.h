@@ -39,10 +39,10 @@ class EU3Diplomacy
 //open_market - eventually care
 //casus_belli - care
 //royal_marriage - care
-//guarantee - don't know
-//alliance - don't know
+//guarantee - care
+//alliance - care
 //union - care
-//sphere - don't know
+//sphere - care
 //vassal - care
 
 #endif
