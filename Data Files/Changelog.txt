@@ -259,3 +259,12 @@ Revision	Log Message
 255		Convert advisors after tag mapping.  Cap advisor skill at 6 (7 breaks EU3).
 		Set advisor start date to 16 years after their birth, rather than 16 years after game start.
 256		Vassal independence (blobifying still happens due to too many tags)
+257		Handle opinion modifiers from the CK2 file.
+258		Calculate state stats.
+259		Read prestige and piety.  Account for them, and for diplomacy, in opinion calc.
+260		Merge
+261		Consider traits and some fixed intrinsics when calculating relations.
+262		Merge
+263		Add a few more static modifiers to opinion, and a helper function for vassalage.
+264		Calculate demesne cap and add "Demesne Too Big" opinion modifier.  Cap relations at +/-100.
+265		Consider vassal opinion during vassal independence.

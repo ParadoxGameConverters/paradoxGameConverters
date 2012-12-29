@@ -1018,8 +1018,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 	for(vector<EU3Country*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
 	{
 		int vassalScore = score;
-		// TODO: get score from relationship between rulers
-		//		vassalScore += relationship;
+
+		CK2Character* liege	= this->getSrcCountry()->getHolder();
+		CK2Character* vassal	= (*vassalItr)->getSrcCountry()->getHolder();
+		vassalScore += vassal->getOpinionOf(liege);
 
 		vector<EU3Country*> newlyAbsorbed = (*vassalItr)->convertVassals(vassalScore + 1000, diplomacy);
 		for (vector<EU3Country*>::iterator newItr = newlyAbsorbed.begin(); newItr != newlyAbsorbed.end(); newItr++)
