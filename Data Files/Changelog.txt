@@ -269,3 +269,4 @@ Revision	Log Message
 264		Calculate demesne cap and add "Demesne Too Big" opinion modifier.  Cap relations at +/-100.
 265		Consider vassal opinion during vassal independence.
 266		No longer necessary to remove dead nations in the CK2World code.
+267		Vassal titles held by the liege are merged automatically

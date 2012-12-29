@@ -1017,6 +1017,37 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 	vector<EU3Country*> absorbedVassals;
 	for(vector<EU3Country*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
 	{
+		// one's own titles should generally just merge completely
+		if	(	(src->getHolder() == (*vassalItr)->getSrcCountry()->getHolder()) &&
+				(src->getHeir() == (*vassalItr)->getSrcCountry()->getHeir()) &&
+				(src->getSuccessionLaw() == (*vassalItr)->getSrcCountry()->getSuccessionLaw()) &&
+				(src->getTitleString() != Configuration::getHRETitle()) &&
+				((*vassalItr)->getSrcCountry()->getTitleString() != Configuration::getHRETitle())
+			)
+		{
+			vector<EU3Country*> newlyAbsorbed = (*vassalItr)->convertVassals(initialScore, diplomacy);
+			log("\t%s is completely absorbing %s (same holder).\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
+			for (vector<EU3Province*>::iterator provinceItr = (*vassalItr)->provinces.begin(); provinceItr != (*vassalItr)->provinces.end(); provinceItr++)
+			{
+				provinces.push_back(*provinceItr);
+				(*provinceItr)->setOwner(this);
+			}
+			for (vector<EU3Province*>::iterator coreItr = (*vassalItr)->cores.begin(); coreItr != (*vassalItr)->cores.end(); coreItr++)
+			{
+				cores.push_back(*coreItr);
+				(*coreItr)->removeCore(*vassalItr);
+				(*coreItr)->addCore(this);
+			}
+			for (vector<EU3Advisor*>::iterator advisorItr = (*vassalItr)->advisors.begin(); advisorItr != (*vassalItr)->advisors.end(); advisorItr++)
+			{
+				advisors.push_back(*advisorItr);
+				(*advisorItr)->setHome(this);
+			}
+			absorbedCountries.push_back(*vassalItr);
+			absorbedVassals.push_back(*vassalItr);
+			continue;
+		}
+
 		int vassalScore = score;
 
 		CK2Character* liege	= this->getSrcCountry()->getHolder();
