@@ -80,10 +80,11 @@ class CK2Character
 		vector<CK2Character*>		getCloseRelations() const;
 		bool						hasTrait(string traitName) const;
 
-		bool						isCloseRelationOf(CK2Character* other) const;
-		bool						isRMWith(CK2Character* other) const;
-		bool						isAlliedWith(CK2Character* other) const;
-		int							getOpinionOf(CK2Character* other) const;
+		bool						isCloseRelationOf(const CK2Character* other) const;
+		bool						isRMWith(const CK2Character* other) const;
+		bool						isAlliedWith(const CK2Character* other) const;
+		int							getOpinionOf(const CK2Character* other) const;
+		bool						isDirectVassalOf(const CK2Character* other) const;
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);
 

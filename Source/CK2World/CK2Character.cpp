@@ -795,7 +795,7 @@ vector<CK2Character*> CK2Character::getCloseRelations() const
 }
 
 
-bool CK2Character::isCloseRelationOf(CK2Character* other) const
+bool CK2Character::isCloseRelationOf(const CK2Character* other) const
 {
 	// my parent
 	if (other == mother || other == father)
@@ -817,7 +817,7 @@ bool CK2Character::isCloseRelationOf(CK2Character* other) const
 }
 
 
-bool CK2Character::isRMWith(CK2Character* other) const
+bool CK2Character::isRMWith(const CK2Character* other) const
 {
 	vector<CK2Character*>::const_iterator spouse = std::find(spouses.begin(), spouses.end(), other);
 	if (spouse != spouses.end())
@@ -868,7 +868,7 @@ bool CK2Character::isRMWith(CK2Character* other) const
 }
 
 
-bool CK2Character::isAlliedWith(CK2Character* other) const
+bool CK2Character::isAlliedWith(const CK2Character* other) const
 {
 	// same dynasty
 	if (this->dynasty == other->dynasty)
@@ -879,7 +879,14 @@ bool CK2Character::isAlliedWith(CK2Character* other) const
 }
 
 
-int CK2Character::getOpinionOf(CK2Character* other) const
+bool CK2Character::isDirectVassalOf(const CK2Character* other) const
+{
+	return (primaryTitle && primaryTitle->getLiege() && primaryTitle->getLiege()->getHolder()
+			&& primaryTitle->getLiege()->getHolder() == other);
+}
+
+
+int CK2Character::getOpinionOf(const CK2Character* other) const
 {
 	int relations = 0;
 
@@ -904,7 +911,7 @@ int CK2Character::getOpinionOf(CK2Character* other) const
 		}
 	}
 
-	// Prestige - 1/100, or 20, whicherver is larger
+	// Prestige - 1/100, or 20, whichever is larger
 	relations += (int)floor(max(other->prestige / 100.0, 20.0));
 
 	// FIXME: Desmense Too Big
@@ -948,7 +955,9 @@ int CK2Character::getOpinionOf(CK2Character* other) const
 	}
 
 	// FIXME: Claimant vs. Holder
-	// FIXME: De Jure Liege
+
+	// De Jure Liege - does not affect opinion modifier (just revolt chance), so we can ignore
+
 	// FIXME: De Jure Liege Hog ("wants control of...")
 	// FIXME: Pretender
 	// FIXME: Nominee
@@ -964,25 +973,47 @@ int CK2Character::getOpinionOf(CK2Character* other) const
 	// FIXME: Heretic
 	// FIXME: Related Religion
 	// FIXME: Rightful Religious Head
-	// FIXME: Female Heir
-	// FIXME: Female Ruler
+
+	// Female Heir
+	if (this->isDirectVassalOf(other) && primaryTitle->getLiege()->getHeir() && primaryTitle->getLiege()->getHeir()->isFemale())
+	{
+		relations += CK2Opinion::getBaseValue("opinion_female_heir");
+	}
+
+	// Female Ruler
+	if (this->isDirectVassalOf(other) && other->isFemale() && !this->isFemale())
+	{
+		relations += CK2Opinion::getBaseValue("opinion_female_ruler");
+	}
+
 	// FIXME: Defending My Titles
 	// FIXME: Defending Against Infidel
 	// FIXME: Pope vs. Antipope
 	// FIXME: Pope vs. Antipope's Controller
 	// FIXME: Cleric vs. Crusader (current crusade, not trait)
 	// FIXME: Cleric vs. Non-crusader (current crusade)
-	// FIXME: Wrong Government Type
+
+	// Wrong Government Type (counts and above only)
+	if (this->isDirectVassalOf(other) && this->primaryTitleString.substr(0,2) != "b_")
+	{
+		if (this->primaryHolding->getType() != other->primaryHolding->getType())
+		{
+			relations += CK2Opinion::getBaseValue("opinion_count_wrong_gov_vs_liege");
+		}
+	}
 
 
-	// Trait opinion modifers (incl. complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
+	// ***** FIXME: Crown law modifiers (levy law/tax law)
+
+
+	// ***** Trait opinion modifers (incl. complements and conflicts - e.g. Greedy/Charitable, Kind/Kind)
 	for (vector<CK2Trait*>::const_iterator trait = other->traits.begin(); trait != other->traits.end(); ++trait)
 	{
-		if (primaryTitle->getLiege() && primaryTitle->getLiege()->getHolder() && primaryTitle->getLiege()->getHolder() == other)
+		if (this->isDirectVassalOf(other))
 		{
 			relations += (*trait)->vassal_opinion;
 		}
-		if (other->primaryTitle->getLiege() && other->primaryTitle->getLiege()->getHolder() && other->primaryTitle->getLiege()->getHolder() == this)
+		else if (other->isDirectVassalOf(this))
 		{
 			relations += (*trait)->liege_opinion;
 		}
