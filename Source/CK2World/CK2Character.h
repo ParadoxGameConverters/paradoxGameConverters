@@ -52,6 +52,7 @@ class CK2Character
 		void							setCapital(CK2Province* _capital)					{ capital = _capital; };
 		void							setPrimaryHolding(CK2Barony* _primaryHolding)	{ primaryHolding = _primaryHolding; };
 		void							setPrimaryTitle(const map<string, CK2Title*>& titleMap);
+		void							addHolding(CK2Barony* holding)					{ holdings.push_back(holding); };
 
 		int							getNum()						const { return num; };
 		string						getName()					const { return name; };
@@ -77,8 +78,10 @@ class CK2Character
 		CK2Province*				getCapital()				const { return capital; };
 		CK2Barony*					getPrimaryHolding()		const { return primaryHolding; };
 		vector<CK2Character*>		getSpouses()			const { return spouses; };
+		CK2Character*				getPrimarySpouse()		const;
 		vector<CK2Character*>		getCloseRelations() const;
 		bool						hasTrait(string traitName) const;
+		int							getDemesneCap() const;
 
 		bool						isCloseRelationOf(const CK2Character* other) const;
 		bool						isRMWith(const CK2Character* other) const;
@@ -134,6 +137,7 @@ class CK2Character
 		CK2Barony*					primaryHolding;
 		string						primaryTitleString;
 		CK2Title*					primaryTitle;
+		vector<CK2Barony*>			holdings;
 		
 		map<int, vector<CK2Opinion> >		opinionMods;
 };

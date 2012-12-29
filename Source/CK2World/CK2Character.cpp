@@ -8,6 +8,7 @@
 #include "CK2Barony.h"
 #include "CK2Province.h"
 #include "CK2Title.h"
+#include "CK2Techs.h"
 
 
 
@@ -284,6 +285,20 @@ void CK2Character::readOpinionModifiers(Object* obj)
 }
 
 
+CK2Character* CK2Character::getPrimarySpouse() const
+{
+	// FIXME: is first living spouse always primary?
+	for (vector<CK2Character*>::const_iterator itr = spouses.begin(); itr != spouses.end(); ++itr)
+	{
+		if (!(*itr)->isDead())
+		{
+			return (*itr);
+		}
+	}
+	return NULL;
+}
+
+
 void CK2Character::setStateStats()
 {
 	// start with regent's stats or mine
@@ -292,15 +307,12 @@ void CK2Character::setStateStats()
 	else
 		memcpy(stateStats, stats, 5*sizeof(int));
 
-	// add 1/2 of primary spouse's stats (FIXME: is first living spouse always primary?)
-	for (vector<CK2Character*>::iterator itr = spouses.begin(); itr != spouses.end(); ++itr)
+	// add 1/2 of primary spouse's stats
+	CK2Character* spouse = getPrimarySpouse();
+	if (spouse != NULL)
 	{
-		if (!(*itr)->isDead())
-		{
-			for (int i = 0; i < 5; ++i)
-				stateStats[i] += (*itr)->getStats()[i] / 2;
-			break;
-		}
+		for (int i = 0; i < 5; ++i)
+			stateStats[i] += spouse->getStats()[i] / 2;
 	}
 
 	// add relevant advisors
@@ -914,10 +926,20 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 	// Prestige - 1/100, or 20, whichever is larger
 	relations += (int)floor(max(other->prestige / 100.0, 20.0));
 
-	// FIXME: Desmense Too Big
-	// FIXME: Too Many Held Duchies
-	// FIXME: Long Reign
-	// FIXME: Short Reign
+	// Vassal relations modifiers
+	if (this->isDirectVassalOf(other))
+	{
+		// Desmense Too Big
+		int exceededBy = other->holdings.size() - other->getDemesneCap();
+		if (exceededBy > 0)
+		{
+			relations += -10 * exceededBy;
+		}
+
+		// FIXME: Long Reign
+		// FIXME: Short Reign
+		// FIXME: Too Many Held Duchies
+	}
 
 
 	// ***** fixed intrinsics (fixed opinion - e.g. same dynasty, father of child...)
@@ -1076,7 +1098,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 		}
 	}
 
-	return relations;
+	return max(min(relations, -100), 100);
 }
 
 
@@ -1088,4 +1110,64 @@ bool CK2Character::hasTrait(string traitName) const
 			return true;
 	}
 	return false;
+}
+
+
+int CK2Character::getDemesneCap() const
+{
+	// http://forum.paradoxplaza.com/forum/showthread.php?584969-What-are-the-high-and-low-bound-demense-limits-for-different-ranks-authority-tech&p=13429280&viewfull=1#post13429280
+
+	int rulerTier = 0;
+	if (primaryTitleString.substr(0, 2) == "b_")
+		rulerTier = 1;
+	else if (primaryTitleString.substr(0, 2) == "c_")
+		rulerTier = 2;
+	else if (primaryTitleString.substr(0, 2) == "d_")
+		rulerTier = 3;
+	else if (primaryTitleString.substr(0, 2) == "k_")
+		rulerTier = 4;
+	else if (primaryTitleString.substr(0, 2) == "e_")
+		rulerTier = 5;
+	if (rulerTier == 0) // not a ruler - no demesne
+		return 0;
+
+	double stewardshipBonus = stats[STEWARDSHIP];
+	CK2Character* spouse = getPrimarySpouse();
+	if (spouse)
+		stewardshipBonus += floor(spouse->getStats()[STEWARDSHIP] / 2.0);
+	stewardshipBonus /= 4.0;
+
+	double successionFactor = 1.0;
+	if (primaryTitle->getSuccessionLaw() == "gavelkind")
+		successionFactor = 1.3;
+
+	int legalismBonus = 0;
+	double legalismTech = capital->getTechLevels()[TECH_LEGALISM];
+	if (legalismTech >= 1.0)
+	{
+		if (rulerTier >= 2)
+			legalismBonus++;
+	}
+	if (legalismTech >= 2.0)
+	{
+		if (rulerTier == 1 || rulerTier >= 3)
+			legalismBonus++;
+	}
+	if (legalismTech >= 3.0)
+	{
+		if (rulerTier == 2 || rulerTier >= 4)
+			legalismBonus++;
+	}
+	if (legalismTech >= 4.0)
+	{
+		if (rulerTier >= 3)
+			legalismBonus++;
+	}
+	if (legalismTech >= 5.0)
+	{
+		if (rulerTier == 5)
+			legalismBonus++;
+	}
+	
+	return (int)(floor( (rulerTier + stewardshipBonus) * successionFactor) + legalismBonus);
 }
