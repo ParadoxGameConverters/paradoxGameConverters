@@ -228,10 +228,6 @@ int main(int argc, char * argv[])
 	printf("Merging top-level titles.\n");
 	srcWorld.mergeTitles();
 
-	log("Removing extra titles.\n");
-	printf("Removing extra titles.\n");
-	srcWorld.removeDeadTitles();
-
 
 	// Parse province mappings
 	log("Parsing province mappings.\n");

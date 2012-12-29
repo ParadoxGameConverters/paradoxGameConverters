@@ -31,7 +31,6 @@ class CK2World
 		void							addDynasties(Object*);
 		void							addTraits(Object*);
 		void							addPotentialTitles(Object*);
-		void							removeDeadTitles();
 		void							mergeTitles();
 
 		CK2Version*					getVersion()				const	{ return version; };

@@ -268,3 +268,4 @@ Revision	Log Message
 263		Add a few more static modifiers to opinion, and a helper function for vassalage.
 264		Calculate demesne cap and add "Demesne Too Big" opinion modifier.  Cap relations at +/-100.
 265		Consider vassal opinion during vassal independence.
+266		No longer necessary to remove dead nations in the CK2World code.
