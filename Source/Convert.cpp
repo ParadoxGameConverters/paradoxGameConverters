@@ -437,10 +437,6 @@ int main(int argc, char * argv[])
 	printf("Converting provinces.\n");
 	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap);
 
-	log("Removing unused countries.\n");
-	printf("Removing unused countries.\n");
-	destWorld.removeUnusedCountries();
-
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");
 	destWorld.addAcceptedCultures();

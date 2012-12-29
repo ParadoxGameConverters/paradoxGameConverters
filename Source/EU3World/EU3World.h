@@ -57,8 +57,7 @@ class EU3World
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
 		int	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
 		void	convertDiplomacy();
-		void	removeUnusedCountries();
-
+		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };
 		void	setShogun(EU3Country* _shogun)				{ shogun = _shogun; };
@@ -66,6 +65,8 @@ class EU3World
 		
 		map<string, EU3Country*>	getCountries() const { return countries; };
 	private:
+		void	removeUnusedCountries();
+
 		int									options[OPTIONS_END];
 		date									startDate;
 		EU3Tech*								techData;

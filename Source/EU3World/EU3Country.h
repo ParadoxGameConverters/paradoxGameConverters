@@ -18,6 +18,7 @@ class EU3History;
 class EU3Province;
 class EU3World;
 class EU3Tech;
+class EU3Diplomacy;
 class CK2Province;
 
 class EU3Country
@@ -26,17 +27,19 @@ class EU3Country
 		EU3Country(EU3World* world, string tag, string countryFile, date startDate, const EU3Tech* techData);
 		EU3Country(CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 
-		void		output(FILE*);
-		void		determineLearningScore();
-		void		addAcceptedCultures();
-		void		determineGovernment(const religionGroupMapping& religionGroupMap);
-		void		determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices);
-		double	getTradeEffeciency();
-		double	getProductionEffeciency();
-		void		determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
-		void		determineTechInvestment(const EU3Tech* techData, date startDate);
-		void		eatVassals();
-		void		replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
+		void						output(FILE*);
+		void						determineLearningScore();
+		void						addAcceptedCultures();
+		void						determineGovernment(const religionGroupMapping& religionGroupMap);
+		void						determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices);
+		double					getTradeEffeciency();
+		double					getProductionEffeciency();
+		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
+		void						determineTechInvestment(const EU3Tech* techData, date startDate);
+		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy);
+		void						eatVassals();
+		void						eatVassal(EU3Country*);
+		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
@@ -46,18 +49,22 @@ class EU3Country
 		void		setTag(string _tag)						{ tag = _tag; };
 		void		addAdvisor(EU3Advisor* _advisor)		{ advisors.push_back(_advisor); };
 
-		CK2Title*		getSrcCountry()			const { return src; };
-		double			getLearningScore()		const { return learningScore; };
-		string			getTag()						const { return tag; };
-		string			getGovernment()			const { return government; };
-		string			getPrimaryCulture()		const { return primaryCulture; };
-		vector<string>	getAcceptedCultures()	const { return acceptedCultures; };
-		string			getReligion()				const { return religion; };
-		string			getTechGroup()				const { return techGroup; };
-		int				getCapital()				const { return capital; };
-		int				getStability()				const { return stability; };
-		bool			hasProvinces()				const { return !provinces.empty(); };
-		bool			hasCores()					const { return !cores.empty(); };
+		CK2Title*				getSrcCountry()			const { return src; };
+		EU3Country*				getLiege()					const { return liege; };
+		vector<EU3Province*>	getCores()					const { return cores; };
+		double					getLearningScore()		const { return learningScore; };
+		int						getAbsorbScore()			const	{ return absorbScore; };
+		string					getTag()						const { return tag; };
+		string					getGovernment()			const { return government; };
+		string					getPrimaryCulture()		const { return primaryCulture; };
+		vector<string>			getAcceptedCultures()	const { return acceptedCultures; };
+		string					getReligion()				const { return religion; };
+		string					getTechGroup()				const { return techGroup; };
+		int						getCapital()				const { return capital; };
+		int						getStability()				const { return stability; };
+		bool						hasProvinces()				const { return !provinces.empty(); };
+		bool						hasCores()					const { return !cores.empty(); };
+		bool						hasVassals()				const { return !vassals.empty(); };
 
 	private:
 		CK2Title*				src;
@@ -67,6 +74,7 @@ class EU3Country
 		vector<EU3Province*> cores;
 		vector<EU3Advisor*>	advisors;
 		double					learningScore;
+		int						absorbScore;
 
 		string					tag;
 		string					historyFile;
