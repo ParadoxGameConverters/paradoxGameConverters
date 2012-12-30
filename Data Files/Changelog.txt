@@ -272,3 +272,5 @@ Revision	Log Message
 267		Vassal titles held by the liege are merged automatically
 268		Abstract away details of matching tags
 269		Progressive blobification
+270		Read war data from CK2 save.  Account for "At War" opinion modifier.
+271		Allow configuration of progressive blobification

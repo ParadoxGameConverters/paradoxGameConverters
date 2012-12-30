@@ -918,7 +918,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 	log("Total converted EU3 countries after removing unused ones: %d\n", convertedCountries.size());
 
 	int leftoverCountries = convertedCountries.size();
-	int initialScore = 0;
+	int initialScore = atoi( Configuration::getVassalScore().c_str() );
 	vector< tuple<EU3Country*, EU3Country*, string, string, int> > mappings;
 	while(leftoverCountries > 0)
 	{

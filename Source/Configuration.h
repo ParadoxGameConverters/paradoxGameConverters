@@ -72,6 +72,11 @@ public:
 		return getInstance()->mergeTitles;
 	}
 
+	static string getVassalScore()
+	{
+		return getInstance()->vassalScore;
+	}
+
 	static string getAdvisors()
 	{
 		return getInstance()->advisors;
@@ -165,6 +170,7 @@ private:
 	string	populationblendamount;
 	string	HRETitle;
 	string	mergeTitles;
+	string	vassalScore;
 
 	string	advisors;
 	string	leaders;
