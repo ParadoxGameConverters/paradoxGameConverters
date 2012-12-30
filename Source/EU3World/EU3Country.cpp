@@ -1017,48 +1017,59 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 		score += 5000;
 	}
 
+	string srcTitle = this->getSrcCountry()->getTitleString();
+
 	vector<EU3Country*> absorbedCountries;
 	vector<EU3Country*> absorbedVassals;
-	for(vector<EU3Country*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
+	for(unsigned int i = 0; i < vassals.size(); i++)
 	{
 		// one's own titles should generally just merge completely
-		if	(	(src->getHolder() == (*vassalItr)->getSrcCountry()->getHolder()) &&
-				(src->getHeir() == (*vassalItr)->getSrcCountry()->getHeir()) &&
-				(src->getSuccessionLaw() == (*vassalItr)->getSrcCountry()->getSuccessionLaw()) &&
+		if	(	(src->getHolder() == vassals[i]->getSrcCountry()->getHolder()) &&
+				(src->getHeir() == vassals[i]->getSrcCountry()->getHeir()) &&
+				(src->getSuccessionLaw() == vassals[i]->getSrcCountry()->getSuccessionLaw()) &&
 				(src->getTitleString() != Configuration::getHRETitle()) &&
-				((*vassalItr)->getSrcCountry()->getTitleString() != Configuration::getHRETitle())
+				(vassals[i]->getSrcCountry()->getTitleString() != Configuration::getHRETitle())
 			)
 		{
-			vector<EU3Country*> newlyAbsorbed = (*vassalItr)->convertVassals(initialScore, diplomacy);
-			log("\t%s is completely absorbing %s (same holder).\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
-			for (vector<EU3Province*>::iterator provinceItr = (*vassalItr)->provinces.begin(); provinceItr != (*vassalItr)->provinces.end(); provinceItr++)
+			//vector<EU3Country*> newlyAbsorbed = vassals[i]->convertVassals(initialScore, diplomacy);
+			log("\t%s is completely absorbing %s (same holder).\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				provinces.push_back(*provinceItr);
 				(*provinceItr)->setOwner(this);
 			}
-			for (vector<EU3Province*>::iterator coreItr = (*vassalItr)->cores.begin(); coreItr != (*vassalItr)->cores.end(); coreItr++)
+			for (vector<EU3Province*>::iterator coreItr = vassals[i]->cores.begin(); coreItr != vassals[i]->cores.end(); coreItr++)
 			{
 				cores.push_back(*coreItr);
-				(*coreItr)->removeCore(*vassalItr);
+				(*coreItr)->removeCore(vassals[i]);
 				(*coreItr)->addCore(this);
 			}
-			for (vector<EU3Advisor*>::iterator advisorItr = (*vassalItr)->advisors.begin(); advisorItr != (*vassalItr)->advisors.end(); advisorItr++)
+			for (vector<EU3Advisor*>::iterator advisorItr = vassals[i]->advisors.begin(); advisorItr != vassals[i]->advisors.end(); advisorItr++)
 			{
 				advisors.push_back(*advisorItr);
 				(*advisorItr)->setHome(this);
 			}
-			absorbedCountries.push_back(*vassalItr);
-			absorbedVassals.push_back(*vassalItr);
+			for (vector<EU3Country*>::iterator subVassalItr = vassals[i]->vassals.begin(); subVassalItr != vassals[i]->vassals.end(); subVassalItr++)
+			{
+				vassals.push_back(*subVassalItr);
+				(*subVassalItr)->liege = this;
+			}
+			vassals[i]->provinces.clear();
+			vassals[i]->cores.clear();
+			vassals[i]->advisors.clear();
+			vassals[i]->vassals.clear();
+			absorbedCountries.push_back(vassals[i]);
+			absorbedVassals.push_back(vassals[i]);
 			continue;
 		}
 
 		int vassalScore = score;
 
 		CK2Character* liege	= this->getSrcCountry()->getHolder();
-		CK2Character* vassal	= (*vassalItr)->getSrcCountry()->getHolder();
+		CK2Character* vassal	= vassals[i]->getSrcCountry()->getHolder();
 		vassalScore += vassal->getOpinionOf(liege);
 
-		vector<EU3Country*> newlyAbsorbed = (*vassalItr)->convertVassals(vassalScore + 1000, diplomacy);
+		vector<EU3Country*> newlyAbsorbed = vassals[i]->convertVassals(vassalScore + 1000, diplomacy);
 		for (vector<EU3Country*>::iterator newItr = newlyAbsorbed.begin(); newItr != newlyAbsorbed.end(); newItr++)
 		{
 			absorbedCountries.push_back(*newItr);
@@ -1066,35 +1077,44 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 
 		if (vassalScore >= 5050)
 		{
-			log("\t%s is completely absorbing %s.\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
-			for (vector<EU3Province*>::iterator provinceItr = (*vassalItr)->provinces.begin(); provinceItr != (*vassalItr)->provinces.end(); provinceItr++)
+			log("\t%s is completely absorbing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				provinces.push_back(*provinceItr);
 				(*provinceItr)->setOwner(this);
 			}
-			for (vector<EU3Province*>::iterator coreItr = (*vassalItr)->cores.begin(); coreItr != (*vassalItr)->cores.end(); coreItr++)
+			for (vector<EU3Province*>::iterator coreItr = vassals[i]->cores.begin(); coreItr != vassals[i]->cores.end(); coreItr++)
 			{
 				cores.push_back(*coreItr);
-				(*coreItr)->removeCore(*vassalItr);
+				(*coreItr)->removeCore(vassals[i]);
 				(*coreItr)->addCore(this);
 			}
-			for (vector<EU3Advisor*>::iterator advisorItr = (*vassalItr)->advisors.begin(); advisorItr != (*vassalItr)->advisors.end(); advisorItr++)
+			for (vector<EU3Advisor*>::iterator advisorItr = vassals[i]->advisors.begin(); advisorItr != vassals[i]->advisors.end(); advisorItr++)
 			{
 				advisors.push_back(*advisorItr);
 				(*advisorItr)->setHome(this);
 			}
-			absorbedCountries.push_back(*vassalItr);
-			absorbedVassals.push_back(*vassalItr);
+			for (vector<EU3Country*>::iterator subVassalItr = vassals[i]->vassals.begin(); subVassalItr != vassals[i]->vassals.end(); subVassalItr++)
+			{
+				vassals.push_back(*subVassalItr);
+				(*subVassalItr)->liege = this;
+			}
+			vassals[i]->provinces.clear();
+			vassals[i]->cores.clear();
+			vassals[i]->advisors.clear();
+			vassals[i]->vassals.clear();
+			absorbedCountries.push_back(vassals[i]);
+			absorbedVassals.push_back(vassals[i]);
 		}
 		else if (vassalScore >= 4000)
 		{
-			log("\t%s is absorbing %s but leaving cores.\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
-			for (vector<EU3Province*>::iterator provinceItr = (*vassalItr)->provinces.begin(); provinceItr != (*vassalItr)->provinces.end(); provinceItr++)
+			log("\t%s is absorbing %s but leaving cores.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				provinces.push_back(*provinceItr);
 				(*provinceItr)->setOwner(this);
 			}
-			for (vector<EU3Advisor*>::iterator advisorItr = (*vassalItr)->advisors.begin(); advisorItr != (*vassalItr)->advisors.end(); advisorItr++)
+			for (vector<EU3Advisor*>::iterator advisorItr = vassals[i]->advisors.begin(); advisorItr != vassals[i]->advisors.end(); advisorItr++)
 			{
 				advisors.push_back(*advisorItr);
 				(*advisorItr)->setHome(this);
@@ -1102,8 +1122,8 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 		}
 		else if (vassalScore >= 2900)
 		{
-			log("\t%s is vassalizing %s and getting cores.\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
-			for (vector<EU3Province*>::iterator provinceItr = (*vassalItr)->provinces.begin(); provinceItr != (*vassalItr)->provinces.end(); provinceItr++)
+			log("\t%s is vassalizing %s and getting cores.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				cores.push_back(*provinceItr);
 				(*provinceItr)->addCore(this);
@@ -1111,46 +1131,46 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			EU3Agreement newAgreement;
 			newAgreement.type			= "vassal";
 			newAgreement.country1	= this;
-			newAgreement.country2	= *vassalItr;
+			newAgreement.country2	= vassals[i];
 			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
 		}
 		else if (vassalScore >= 1900)
 		{
-			log("\t%s is vassalizing %s.\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
+			log("\t%s is vassalizing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
 			EU3Agreement newAgreement;
 			newAgreement.type			= "vassal";
 			newAgreement.country1	= this;
-			newAgreement.country2	= *vassalItr;
+			newAgreement.country2	= vassals[i];
 			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
 		}
 		else if (vassalScore >= 1000)
 		{
-			log("\t%s is sphering and alliancing %s.\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
+			log("\t%s is sphering and alliancing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
 			EU3Agreement newAgreement;
 			newAgreement.type			= "sphere";
 			newAgreement.country1	= this;
-			newAgreement.country2	= *vassalItr;
+			newAgreement.country2	= vassals[i];
 			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
 			newAgreement.type			= "alliance";
 			newAgreement.country1	= this;
-			newAgreement.country2	= *vassalItr;
+			newAgreement.country2	= vassals[i];
 			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
 		}
 		else if (vassalScore >= 1000)
 		{
-			log("\t%s and %s and guaranteeing each other.\n", src->getTitleString().c_str(), (*vassalItr)->getSrcCountry()->getTitleString().c_str());
+			log("\t%s and %s and guaranteeing each other.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
 			EU3Agreement newAgreement;
 			newAgreement.type			= "guarantee";
 			newAgreement.country1	= this;
-			newAgreement.country2	= *vassalItr;
+			newAgreement.country2	= vassals[i];
 			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
 			newAgreement.type			= "guarantee";
-			newAgreement.country1	= *vassalItr;
+			newAgreement.country1	= vassals[i];
 			newAgreement.country2	= this;
 			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);

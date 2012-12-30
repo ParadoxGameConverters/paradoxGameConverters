@@ -480,18 +480,7 @@ int main(int argc, char * argv[])
 	}
 	log("Mapping CK2 nations to EU3 nations.\n");
 	printf("Mapping CK2 nations to EU3 nations.\n");
-	int leftoverNations = destWorld.assignTags(obj, blockedNations, provinceMap);
-	//int leftoverNations = initCountryMap(countryMap, srcWorld.getIndependentTitles(), destWorld.getCountries(), blockedNations, obj);
-	if (leftoverNations == -1)
-	{
-		return 1;
-	}
-	else if (leftoverNations > 0)
-	{
-		log("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
-		printf("Error: Too many CK2 nations (%d). Aborting.\n", leftoverNations);
-		return -1;
-	}
+	destWorld.assignTags(obj, blockedNations, provinceMap);
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");

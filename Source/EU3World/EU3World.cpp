@@ -910,94 +910,59 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 }
 
 
-int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap)
+void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap)
 {
 	log("Total converted EU3 countries: %d\n", convertedCountries.size());
 
 	removeUnusedCountries();
 	log("Total converted EU3 countries after removing unused ones: %d\n", convertedCountries.size());
 
-	vector<EU3Country*> independentCountries;
-	for (vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
-	{
-		if ((*convertedItr)->getLiege() == NULL)
-		{
-			independentCountries.push_back(*convertedItr);
-		}
-	}
-	for (vector<EU3Country*>::iterator independentItr = independentCountries.begin(); independentItr != independentCountries.end(); independentItr++)
-	{
-		vector<EU3Country*> absorbedCountries = (*independentItr)->convertVassals(0, diplomacy);
-		for (vector<EU3Country*>::iterator absorbedItr = absorbedCountries.begin(); absorbedItr != absorbedCountries.end(); absorbedItr++)
-		{
-			for(vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
-			{
-				if (*absorbedItr == *convertedItr)
-				{
-					convertedCountries.erase(convertedItr);
-					continue;
-				}
-			}
-		}
-	}
-	log("Total converted EU3 countries after absorbing: %d\n", convertedCountries.size());
-
-	// blobify
-	independentCountries.clear();
-	for (vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
-	{
-		if ((*convertedItr)->getLiege() == NULL)
-		{
-			independentCountries.push_back(*convertedItr);
-		}
-	}
-	for (vector<EU3Country*>::iterator countryItr = independentCountries.begin(); countryItr != independentCountries.end(); countryItr++)
-	{
-		(*countryItr)->eatVassals();
-	}
-	convertedCountries.swap(independentCountries);
-	vector<EU3Country*> newConvertedCountries;
-	for (vector<EU3Country*>::iterator itr = convertedCountries.begin(); itr != convertedCountries.end(); ++itr)
-	{
-		bool keep = false;
-		// living country
-		if ((*itr)->hasProvinces())
-			keep = true;
-		// dead kingdom or higher, with remaining De Jure territory
-		else if ((*itr)->hasCores() && (*itr)->getSrcCountry())
-		{
-			string title = (*itr)->getSrcCountry()->getTitleString();
-			if (title[0] == 'e' || title[0] == 'k')
-				keep = true;
-		}
-
-		if (keep)
-			newConvertedCountries.push_back(*itr);
-		else
-		{
-			EU3Country* liege = (*itr)->getLiege();
-			if (liege != NULL)
-			{
-				liege->eatVassal(*itr);
-			}
-			else
-			{
-				vector<EU3Province*> cores = (*itr)->getCores();
-				for(vector<EU3Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
-				{
-					(*coreItr)->removeCore(*itr);
-				}
-			}
-			CK2Title* src = (*itr)->getSrcCountry();
-			if (src) src->setDstCountry(NULL);
-			delete (*itr);
-		}
-	}
-	convertedCountries.swap(newConvertedCountries);
-	log("Total converted EU3 countries after blobbing: %d\n", convertedCountries.size());
-
+	int leftoverCountries = convertedCountries.size();
+	int initialScore = 0;
 	vector< tuple<EU3Country*, EU3Country*, string, string, int> > mappings;
-	int numTags = matchTags(rulesObj, blockedNations, provinceMap, mappings);
+	while(leftoverCountries > 0)
+	{
+		vector<EU3Country*> independentCountries;
+		for (vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
+		{
+			if ((*convertedItr)->getLiege() == NULL)
+			{
+				independentCountries.push_back(*convertedItr);
+			}
+		}
+		for (vector<EU3Country*>::iterator independentItr = independentCountries.begin(); independentItr != independentCountries.end(); independentItr++)
+		{
+			vector<EU3Country*> absorbedCountries = (*independentItr)->convertVassals(initialScore, diplomacy);
+			for (vector<EU3Country*>::iterator absorbedItr = absorbedCountries.begin(); absorbedItr != absorbedCountries.end(); absorbedItr++)
+			{
+				for(vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
+				{
+					if (*absorbedItr == *convertedItr)
+					{
+						convertedCountries.erase(convertedItr);
+						break;
+					}
+				}
+			}
+		}
+		log("Total converted EU3 countries after absorbing: %d\n", convertedCountries.size());
+
+		mappings.clear();
+		leftoverCountries = matchTags(rulesObj, blockedNations, provinceMap, mappings);
+		if (leftoverCountries == -1)
+		{
+			log("Error while matching tags. Aborting!\n");
+			exit (-1);
+		}
+		initialScore++;
+		if (initialScore > 5200)
+		{
+			log("Too many independent CK2 countries (%d left over). Aborting!\n", leftoverCountries);
+			exit(-1);
+		}
+	}
+	log("Final merge score: %d\n", initialScore);
+
 	for (vector< tuple<EU3Country*, EU3Country*, string, string, int> >::iterator mappingsItr = mappings.begin(); mappingsItr != mappings.end(); mappingsItr++)
 	{
 		EU3Country* convertedCountry	= get<0>(*mappingsItr);//CK2TitlesPos->second->getDstCountry();
@@ -1017,8 +982,6 @@ int EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const
 	}
 
 	determineMapSpread();
-
-	return numTags;
 }
 
 
@@ -1088,11 +1051,13 @@ void EU3World::removeUnusedCountries()
 	for (vector<EU3Country*>::iterator itr = convertedCountries.begin(); itr != convertedCountries.end(); ++itr)
 	{
 		bool keep = false;
-		if ((*itr)->hasProvinces() || (*itr)->hasCores() || (*itr)->hasVassals())
-			keep = true;
-
-		if (keep)
+		if (
+				( (*itr)->getSrcCountry()->getHolder() != NULL) &&
+				( (*itr)->hasProvinces() || (*itr)->hasCores() || (*itr)->hasVassals())
+			)
+		{
 			newConvertedCountries.push_back(*itr);
+		}
 		else
 		{
 			EU3Country* liege = (*itr)->getLiege();
@@ -1100,8 +1065,19 @@ void EU3World::removeUnusedCountries()
 			{
 				liege->eatVassal(*itr);
 			}
+			else
+			{
+				vector<EU3Province*> cores = (*itr)->getCores();
+				for (vector<EU3Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
+				{
+					(*coreItr)->removeCore(*itr);
+				}
+			}
 			CK2Title* src = (*itr)->getSrcCountry();
-			if (src) src->setDstCountry(NULL);
+			if (src)
+			{
+				src->setDstCountry(NULL);
+			}
 			delete (*itr);
 		}
 	}

@@ -41,7 +41,7 @@ class EU3Country
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 
-		void		addLiege(EU3Country* _liege)			{ liege = _liege; _liege->addVassal(this); };
+		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		addCore(EU3Province* core)				{ cores.push_back(core); };
@@ -51,7 +51,10 @@ class EU3Country
 
 		CK2Title*				getSrcCountry()			const { return src; };
 		EU3Country*				getLiege()					const { return liege; };
+		vector<EU3Country*>	getVassals()				const { return vassals; };
+		vector<EU3Province*>	getProvinces()				const { return provinces; };
 		vector<EU3Province*>	getCores()					const { return cores; };
+		vector<EU3Advisor*>	getAdvisors()				const { return advisors; };
 		double					getLearningScore()		const { return learningScore; };
 		int						getAbsorbScore()			const	{ return absorbScore; };
 		string					getTag()						const { return tag; };

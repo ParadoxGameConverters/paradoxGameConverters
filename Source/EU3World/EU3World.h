@@ -56,7 +56,7 @@ class EU3World
 		void	convertTech(const religionGroupMapping& religionGroupMap, const CK2World& srcWorld);
 		void	convertGovernments(const religionGroupMapping& religionGroupMap);
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
-		int	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
+		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
 		void	convertDiplomacy();
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
