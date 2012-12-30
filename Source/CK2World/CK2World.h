@@ -19,6 +19,7 @@ class CK2Barony;
 class CK2Dynasty;
 class CK2Character;
 class CK2Trait;
+class CK2War;
 
 
 
@@ -54,6 +55,7 @@ class CK2World
 		map<string, CK2Title*>	titles;
 		map<int, CK2Province*>	provinces;
 		map<string, CK2Barony*>	baronies;
+		vector<CK2War*>			wars;
 };
 
 

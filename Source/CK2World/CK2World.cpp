@@ -11,6 +11,7 @@
 #include "CK2Dynasty.h"
 #include "CK2Trait.h"
 #include "CK2Techs.h"
+#include "CK2War.h"
 
 
 
@@ -103,6 +104,30 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 				continue;
 			}
 			chitr->second->readOpinionModifiers(*itr);
+		}
+	}
+
+	printf("\tGetting wars\n");
+	leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); ++itr)
+	{
+		string key = (*itr)->getKey();
+		if (key == "active_war")
+		{
+			CK2War* war = new CK2War(*itr);
+			wars.push_back(war);
+			for (vector<int>::iterator witr = war->attackers.begin(); witr != war->attackers.end(); ++witr)
+			{
+				map<int, CK2Character*>::iterator attacker = characters.find(*witr);
+				if (attacker != characters.end())
+					attacker->second->addWar(war);
+			}
+			for (vector<int>::iterator witr = war->defenders.begin(); witr != war->defenders.end(); ++witr)
+			{
+				map<int, CK2Character*>::iterator defender = characters.find(*witr);
+				if (defender != characters.end())
+					defender->second->addWar(war);
+			}
 		}
 	}
 

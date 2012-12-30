@@ -9,6 +9,7 @@
 #include "CK2Province.h"
 #include "CK2Title.h"
 #include "CK2Techs.h"
+#include "CK2War.h"
 
 
 
@@ -953,7 +954,12 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 	if (this->isAlliedWith(other))
 		relations += CK2Opinion::getBaseValue("opinion_ally");
 
-	// FIXME: At War
+	// At War
+	for (vector<CK2War*>::const_iterator itr = wars.begin(); itr != wars.end(); ++itr)
+	{
+		if ((*itr)->areEnemies(this->num, other->num))
+			relations += CK2Opinion::getBaseValue("opinion_at_war");
+	}
 
 	// Mother or Father of Child
 	if (other->mother == this)
