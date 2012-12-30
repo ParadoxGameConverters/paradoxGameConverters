@@ -19,6 +19,7 @@ class		CK2Trait;
 class		CK2Province;
 class		CK2Barony;
 class		CK2Title;
+class		CK2War;
 
 enum advisorTypes
 {
@@ -53,6 +54,7 @@ class CK2Character
 		void							setPrimaryHolding(CK2Barony* _primaryHolding)	{ primaryHolding = _primaryHolding; };
 		void							setPrimaryTitle(const map<string, CK2Title*>& titleMap);
 		void							addHolding(CK2Barony* holding)					{ holdings.push_back(holding); };
+		void							addWar(CK2War* war)								{ wars.push_back(war); };
 
 		int							getNum()						const { return num; };
 		string						getName()					const { return name; };
@@ -138,6 +140,7 @@ class CK2Character
 		string						primaryTitleString;
 		CK2Title*					primaryTitle;
 		vector<CK2Barony*>			holdings;
+		vector<CK2War*>				wars;
 		
 		map<int, vector<CK2Opinion> >		opinionMods;
 };
