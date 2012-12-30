@@ -1003,18 +1003,18 @@ void EU3World::convertDiplomacy()
 			bool rhsDominant = false;
 			if (lhs->hasUnionWith(rhs, rhsDominant))
 			{
-				EU3Agreement agr;
-				agr.type = "union";
-				agr.startDate = date("1.1.1"); // FIXME maybe?
+				EU3Agreement* agr = new EU3Agreement;
+				agr->type = "union";
+				agr->startDate = date("1.1.1"); // FIXME maybe?
 				if (rhsDominant)
 				{
-					agr.country1 = (*jtr).second;
-					agr.country2 = (*itr).second;
+					agr->country1 = (*jtr).second;
+					agr->country2 = (*itr).second;
 				}
 				else
 				{
-					agr.country1 = (*itr).second;
-					agr.country2 = (*jtr).second;
+					agr->country1 = (*itr).second;
+					agr->country2 = (*jtr).second;
 				}
 				diplomacy->addAgreement(agr);
 			}
@@ -1022,22 +1022,22 @@ void EU3World::convertDiplomacy()
 			// Royal Marriages
 			if (lhs->hasRMWith(rhs))
 			{
-				EU3Agreement agr;
-				agr.type = "royal_marriage";
-				agr.startDate = date("1.1.1"); // FIXME maybe?
-				agr.country1 = (*itr).second;
-				agr.country2 = (*jtr).second;
+				EU3Agreement* agr = new EU3Agreement;
+				agr->type = "royal_marriage";
+				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->country1 = (*itr).second;
+				agr->country2 = (*jtr).second;
 				diplomacy->addAgreement(agr);
 			}
 
 			// Alliances
 			if (lhs->hasAllianceWith(rhs))
 			{
-				EU3Agreement agr;
-				agr.type = "alliance";
-				agr.startDate = date("1.1.1"); // FIXME maybe?
-				agr.country1 = (*itr).second;
-				agr.country2 = (*jtr).second;
+				EU3Agreement* agr = new EU3Agreement;
+				agr->type = "alliance";
+				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->country1 = (*itr).second;
+				agr->country2 = (*jtr).second;
 				diplomacy->addAgreement(agr);
 			}
 		}

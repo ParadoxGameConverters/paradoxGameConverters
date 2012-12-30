@@ -34,9 +34,22 @@ void EU3Diplomacy::output(FILE* output)
 {
 	fprintf(output, "diplomacy=\n");
 	fprintf(output, "{\n");
-	for (vector<EU3Agreement>::iterator agreementItr = agreements.begin(); agreementItr != agreements.end(); agreementItr++)
+	for (vector<EU3Agreement*>::iterator agreementItr = agreements.begin(); agreementItr != agreements.end(); agreementItr++)
 	{
-		agreementItr->output(output);
+		(*agreementItr)->output(output);
 	}
 	fprintf(output, "}\n");
+}
+
+
+void EU3Diplomacy::removeAgreement(EU3Agreement* agr)
+{
+	for (vector<EU3Agreement*>::iterator agreementItr = agreements.begin(); agreementItr != agreements.end(); agreementItr++)
+	{
+		if (*agreementItr == agr)
+		{
+			agreements.erase(agreementItr);
+			break;
+		}
+	}
 }

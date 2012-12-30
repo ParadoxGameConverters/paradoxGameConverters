@@ -274,3 +274,5 @@ Revision	Log Message
 269		Progressive blobification
 270		Read war data from CK2 save.  Account for "At War" opinion modifier.
 271		Allow configuration of progressive blobification
+272		When absorbing vassals, destroy any agreements they had
+273		Merge

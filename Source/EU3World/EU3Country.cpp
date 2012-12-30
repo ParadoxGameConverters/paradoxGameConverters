@@ -107,6 +107,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	tradeTechInvestment			= 0.0f;
 	navalTechInvestment			= 0.0f;
 	landTechInvestment			= 0.0f;
+	agreements.clear();
 
 	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
@@ -359,6 +360,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	tradeTechInvestment			= 0.0f;
 	navalTechInvestment			= 0.0f;
 	landTechInvestment			= 0.0f;
+	agreements.clear();
 
 	CK2Province* srcCapital = src->getLastHolder()->getCapital();
 	if (srcCapital != NULL)
@@ -1054,6 +1056,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 				vassals.push_back(*subVassalItr);
 				(*subVassalItr)->liege = this;
 			}
+			for (vector<EU3Agreement*>::iterator agreementItr = vassals[i]->agreements.begin(); agreementItr != vassals[i]->agreements.end(); agreementItr++)
+			{
+				diplomacy->removeAgreement(*agreementItr);
+			}
 			vassals[i]->provinces.clear();
 			vassals[i]->cores.clear();
 			vassals[i]->advisors.clear();
@@ -1128,52 +1134,59 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 				cores.push_back(*provinceItr);
 				(*provinceItr)->addCore(this);
 			}
-			EU3Agreement newAgreement;
-			newAgreement.type			= "vassal";
-			newAgreement.country1	= this;
-			newAgreement.country2	= vassals[i];
-			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			EU3Agreement* newAgreement = new EU3Agreement;
+			newAgreement->type			= "vassal";
+			newAgreement->country1	= this;
+			newAgreement->country2	= vassals[i];
+			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
+			agreements.push_back(newAgreement);
 		}
 		else if (vassalScore >= 1900)
 		{
 			log("\t%s is vassalizing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
-			EU3Agreement newAgreement;
-			newAgreement.type			= "vassal";
-			newAgreement.country1	= this;
-			newAgreement.country2	= vassals[i];
-			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			EU3Agreement* newAgreement = new EU3Agreement;
+			newAgreement->type			= "vassal";
+			newAgreement->country1	= this;
+			newAgreement->country2	= vassals[i];
+			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
 		}
 		else if (vassalScore >= 1000)
 		{
 			log("\t%s is sphering and alliancing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
-			EU3Agreement newAgreement;
-			newAgreement.type			= "sphere";
-			newAgreement.country1	= this;
-			newAgreement.country2	= vassals[i];
-			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			EU3Agreement* newAgreement = new EU3Agreement;
+			newAgreement->type			= "sphere";
+			newAgreement->country1	= this;
+			newAgreement->country2	= vassals[i];
+			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
-			newAgreement.type			= "alliance";
-			newAgreement.country1	= this;
-			newAgreement.country2	= vassals[i];
-			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			agreements.push_back(newAgreement);
+			newAgreement = new EU3Agreement;
+			newAgreement->type			= "alliance";
+			newAgreement->country1	= this;
+			newAgreement->country2	= vassals[i];
+			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
+			agreements.push_back(newAgreement);
 		}
 		else if (vassalScore >= 1000)
 		{
 			log("\t%s and %s and guaranteeing each other.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
-			EU3Agreement newAgreement;
-			newAgreement.type			= "guarantee";
-			newAgreement.country1	= this;
-			newAgreement.country2	= vassals[i];
-			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			EU3Agreement* newAgreement = new EU3Agreement;
+			newAgreement->type			= "guarantee";
+			newAgreement->country1	= this;
+			newAgreement->country2	= vassals[i];
+			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
-			newAgreement.type			= "guarantee";
-			newAgreement.country1	= vassals[i];
-			newAgreement.country2	= this;
-			newAgreement.startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			agreements.push_back(newAgreement);
+			newAgreement = new EU3Agreement;
+			newAgreement->type			= "guarantee";
+			newAgreement->country1	= vassals[i];
+			newAgreement->country2	= this;
+			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
+			agreements.push_back(newAgreement);
 		}
 	}
 
