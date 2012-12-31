@@ -1040,6 +1040,11 @@ void EU3World::convertDiplomacy()
 				agr->country2 = (*jtr).second;
 				diplomacy->addAgreement(agr);
 			}
+
+			// Relations (bilateral)
+			int rel = lhs->getRelationsWith(rhs);
+			(*itr).second->setRelations((*jtr).second, rel);
+			(*jtr).second->setRelations((*itr).second, rel);
 		}
 	}
 }

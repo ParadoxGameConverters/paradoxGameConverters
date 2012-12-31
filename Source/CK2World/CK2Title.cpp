@@ -544,7 +544,10 @@ bool CK2Title::hasAllianceWith(CK2Title* other) const
 
 int CK2Title::getRelationsWith(CK2Title* other) const
 {
-	return (this->holder->getOpinionOf(other->holder));
+	// FIXME: forum suggests taking vassal relations into account too
+	int ltr = this->holder->getOpinionOf(other->holder);
+	int rtl = other->holder->getOpinionOf(this->holder);
+	return ((ltr + rtl) / 2);
 }
 
 // sometimes we NEED a valid holder, but might not have one (if the title was destroyed by the player or eaten by the merge process)

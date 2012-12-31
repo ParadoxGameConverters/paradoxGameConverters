@@ -49,6 +49,7 @@ class EU3Country
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
 		void		setTag(string _tag)						{ tag = _tag; };
 		void		addAdvisor(EU3Advisor* _advisor)		{ advisors.push_back(_advisor); };
+		void		setRelations(EU3Country* other, int value)	{ relations.insert(make_pair(other, value)); };
 
 		CK2Title*				getSrcCountry()			const { return src; };
 		EU3Country*				getLiege()					const { return liege; };
@@ -103,6 +104,7 @@ class EU3Country
 		double						navalTechInvestment;
 		double						landTechInvestment;
 		vector<EU3Agreement*>	agreements;
+		map<EU3Country*, int>	relations;
 
 		int						capital;
 		int						stability;

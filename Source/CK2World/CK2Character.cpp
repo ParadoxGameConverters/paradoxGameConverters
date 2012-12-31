@@ -1104,7 +1104,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 		}
 	}
 
-	return max(min(relations, -100), 100);
+	return min(max(relations, -100), 100);
 }
 
 

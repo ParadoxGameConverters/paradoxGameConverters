@@ -628,6 +628,13 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\ttransport=\"%s\"\n", transport.c_str());
 	}
+	for (map<EU3Country*, int>::const_iterator itr = relations.begin(); itr != relations.end(); ++itr)
+	{
+		fprintf(output, "\t%s=\n", itr->first->getTag().c_str());
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tvalue=%d\n", itr->second);
+		fprintf(output, "\t}\n");
+	}
 	if (regent != NULL)
 	{
 		fprintf(output, "\tmonarch=\n");
