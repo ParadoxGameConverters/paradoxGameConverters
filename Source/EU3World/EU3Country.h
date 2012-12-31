@@ -31,7 +31,7 @@ class EU3Country
 		void						output(FILE*);
 		void						determineLearningScore();
 		void						addAcceptedCultures();
-		void						determineGovernment();
+		void						determineGovernment(double prestigeFactor);
 		void						determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices);
 		double					getTradeEffeciency();
 		double					getProductionEffeciency();
@@ -110,6 +110,7 @@ class EU3Country
 		int						capital;
 		int						stability;
 		double					stabilityInvestment;
+		double					prestige;
 
 		double					estimatedIncome;
 		double					estimatedTax;

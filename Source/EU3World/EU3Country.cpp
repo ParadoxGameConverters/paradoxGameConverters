@@ -187,6 +187,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		capital = 0;
 	}
 
+	prestige				= 0.0;
 	stability				= 1;
 	stabilityInvestment	= 0.0f;
 
@@ -382,6 +383,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 		capital = 0;
 	}
 
+	prestige				= 0.0;
 	stability				= 1;
 	stabilityInvestment	= 0.0f;
 	estimatedIncome		= 0.0f;
@@ -555,6 +557,7 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=%d\n", capital);
 	}
+	fprintf(output, "\tprecise_prestige=%f\n", prestige);
 	fprintf(output, "\tstability=%f\n", (double)stability);
 	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
 	fprintf(output, "\tcurrent_income=0.000\n");
@@ -727,7 +730,7 @@ void EU3Country::addAcceptedCultures()
 }
 
 
-void EU3Country::determineGovernment()
+void EU3Country::determineGovernment(double prestigeFactor)
 {
 	string				srcTitleString		= src->getTitleString();
 	CK2Barony*			primaryHolding		= src->getLastHolder()->getPrimaryHolding();
@@ -821,6 +824,12 @@ void EU3Country::determineGovernment()
 	else
 	{
 		government = "tribal_democracy";
+	}
+
+	CK2Character* holder = src->getHolder();
+	if (holder)
+	{
+		prestige = holder->getTotalScore() / prestigeFactor;
 	}
 }
 
@@ -1329,6 +1338,7 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 	capital							= convertedCountry->capital;
 	stability						= convertedCountry->stability;
 	stabilityInvestment			= convertedCountry->stabilityInvestment;
+	prestige						= convertedCountry->prestige;
 
 	estimatedIncome				= convertedCountry->estimatedIncome;
 	estimatedTax					= convertedCountry->estimatedTax;

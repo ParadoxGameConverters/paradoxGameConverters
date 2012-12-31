@@ -33,6 +33,12 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 	else
 		piety = 0.0;
 
+	pobjs = obj->getValue("score");
+	if (pobjs.size() > 0)
+		score = atof(pobjs[0]->getLeaf().c_str());
+	else
+		score = 0.0;
+
 	dynasty		= NULL;
 	map<int, CK2Dynasty*>::iterator dynItr	= dynasties.find(  atoi( obj->getLeaf("dynasty").c_str() )  );
 	if (dynItr != dynasties.end())

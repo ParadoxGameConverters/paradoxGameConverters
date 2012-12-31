@@ -85,6 +85,7 @@ class CK2Character
 		vector<CK2Character*>		getCloseRelations() const;
 		bool						hasTrait(string traitName) const;
 		int							getDemesneCap() const;
+		double						getTotalScore() const { return prestige + piety + score; };
 
 		bool						isCloseRelationOf(const CK2Character* other) const;
 		bool						isRMWith(const CK2Character* other) const;
@@ -115,6 +116,7 @@ class CK2Character
 		vector<CK2Title*>	titles;
 		double				piety;
 		double				prestige;
+		double				score;
 
 		int							fatherNum;
 		CK2Character*				father;

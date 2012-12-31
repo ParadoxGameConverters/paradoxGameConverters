@@ -837,11 +837,26 @@ void EU3World::convertTech(const CK2World& srcWorld)
 }
 
 
+#define MAX_PRESTIGE 50.0
 void EU3World::convertGovernments()
 {
+	// find prestige factor
+	double maxScore = 0.0;
 	for (vector<EU3Country*>::iterator itr = convertedCountries.begin(); itr < convertedCountries.end(); itr++)
 	{
-		(*itr)->determineGovernment();
+		CK2Character* ruler = (*itr)->getSrcCountry()->getHolder();
+		if (ruler)
+		{
+			double score = ruler->getTotalScore();
+			if (score > maxScore)
+				maxScore = score;
+		}
+	}
+	double prestigeFactor = maxScore / MAX_PRESTIGE;
+
+	for (vector<EU3Country*>::iterator itr = convertedCountries.begin(); itr < convertedCountries.end(); itr++)
+	{
+		(*itr)->determineGovernment(prestigeFactor);
 	}
 }
 
