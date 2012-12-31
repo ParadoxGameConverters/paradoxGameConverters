@@ -64,6 +64,8 @@ class EU3Province
 		bool						hasCOT() const				{ return false; }
 		vector<CK2Province*>	getSrcProvinces() const	{ return srcProvinces; };
 	private:
+		vector<string>			getCoreTags() const;
+
 		vector<CK2Province*>		srcProvinces;
 		vector<int>					srcProvinceNums;
 

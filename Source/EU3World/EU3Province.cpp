@@ -9,7 +9,7 @@
 #include "..\CK2World\Ck2Province.h"
 #include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2Religion.h"
-
+#include <algorithm>
 
 
 EU3Province::EU3Province(int _num, Object* obj, date startDate)
@@ -199,6 +199,24 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 }
 
 
+// get UNIQUE tags from all cores
+vector<string> EU3Province::getCoreTags() const
+{
+	vector<string> out;
+	for (unsigned int i = 0; i < cores.size(); i++)
+	{
+		string tag = cores[i]->getTag();
+		if (!tag.empty())
+		{
+			vector<string>::const_iterator itr = find(out.begin(), out.end(), tag);
+			if (itr == out.end())
+				out.push_back(tag);
+		}
+	}
+	return out;
+}
+
+
 void EU3Province::output(FILE* output)
 {
 	fprintf(output, "%d=\n", num);
@@ -211,10 +229,10 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\towner=\"%s\"\n", owner->getTag().c_str());
 	}
-	for (unsigned int i = 0; i < cores.size(); i++)
+	vector<string> coreTags = getCoreTags();
+	for (vector<string>::iterator itr = coreTags.begin(); itr != coreTags.end(); ++itr)
 	{
-		if (!cores[i]->getTag().empty())
-			fprintf(output, "\tcore=\"%s\"\n", cores[i]->getTag().c_str());
+		fprintf(output, "\tcore=\"%s\"\n", itr->c_str());
 	}
 	if (inHRE)
 	{
@@ -250,10 +268,9 @@ void EU3Province::output(FILE* output)
 	}
 	fprintf(output, "\thistory=\n");
 	fprintf(output, "\t{\n");
-	for (unsigned int i = 0; i < cores.size(); i++)
+	for (vector<string>::iterator itr = coreTags.begin(); itr != coreTags.end(); ++itr)
 	{
-		if (!cores[i]->getTag().empty())
-			fprintf(output, "\t\tadd_core=\"%s\"\n", cores[i]->getTag().c_str());
+		fprintf(output, "\t\tadd_core=\"%s\"\n", itr->c_str());
 	}
 	if (ownerStr != "")
 	{
