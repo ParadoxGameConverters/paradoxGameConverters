@@ -230,7 +230,7 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		}
 	}
 
-	for (unsigned int i = 0; i < traits.size(); i++)
+	for (unsigned int i = 0; i < traitNums.size(); i++)
 	{
 		CK2Trait* currentTrait = traitTypes[ traitNums[i] ];
 		traits.push_back(currentTrait);
