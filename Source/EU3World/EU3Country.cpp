@@ -610,9 +610,15 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t}\n");
 	fprintf(output, "\tbadboy=0.000\n");
 	fprintf(output, "\tlegitimacy=1.000\n");
+	fprintf(output, "\tcolonists=%f\n", colonists);
+	fprintf(output, "\tmerchants=%f\n", merchants);
+	fprintf(output, "\tmissionaries=%f\n", missionaries);
+	fprintf(output, "\tspies=%f\n", spies);
+	fprintf(output, "\tdiplomats=%f\n", diplomats);
+	fprintf(output, "\tofficials=%f\n", magistrates);
 	if(infantry != "")
 	{
-	fprintf(output, "\tinfantry=\"%s\"\n", infantry.c_str());
+		fprintf(output, "\tinfantry=\"%s\"\n", infantry.c_str());
 	}
 	if(cavalry != "")
 	{
@@ -1000,6 +1006,27 @@ void EU3Country::determineTechInvestment(const EU3Tech* techData, date startDate
 }
 
 
+void EU3Country::determineStartingAgents()
+{
+	CK2Character* holder = src->getHolder();
+	if (!holder)
+	{
+		merchants = colonists = diplomats = missionaries = spies = magistrates = 0.0;
+		return;
+	}
+
+	if (src->getTitleString() == "k_scotland")
+		holder = holder;
+
+	merchants		= min(holder->getStateStats()[STEWARDSHIP]	/ 15.0, 5.0);
+	colonists		= min(holder->getStateStats()[MARTIAL]		/ 15.0, 5.0);
+	diplomats		= min(holder->getStateStats()[DIPLOMACY]	/ 15.0, 5.0);
+	missionaries	= min(holder->getStateStats()[LEARNING]		/ 15.0, 5.0);
+	spies			= min(holder->getStateStats()[INTRIGUE]		/ 15.0, 5.0);
+	magistrates		= min(holder->getStateStats()[STEWARDSHIP]	/ 15.0, 5.0);
+}
+
+
 vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* diplomacy)
 {
 	absorbScore = initialScore;
@@ -1317,6 +1344,13 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 	bigShip							= convertedCountry->bigShip;
 	galley							= convertedCountry->galley;
 	transport						= convertedCountry->transport;
+
+	merchants		= convertedCountry->merchants;
+	colonists		= convertedCountry->colonists;
+	diplomats		= convertedCountry->diplomats;
+	missionaries	= convertedCountry->missionaries;
+	spies			= convertedCountry->spies;
+	magistrates		= convertedCountry->magistrates;
 
 	vector<EU3Province*> newProvinces;
 	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)

@@ -37,6 +37,7 @@ class EU3Country
 		double					getProductionEffeciency();
 		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
 		void						determineTechInvestment(const EU3Tech* techData, date startDate);
+		void						determineStartingAgents();
 		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy);
 		void						eatVassals();
 		void						eatVassal(EU3Country*);
@@ -124,6 +125,13 @@ class EU3Country
 		string					bigShip;
 		string					galley;
 		string					transport;
+
+		double					merchants;
+		double					colonists;
+		double					diplomats;
+		double					missionaries;
+		double					spies;
+		double					magistrates;
 };
 
 

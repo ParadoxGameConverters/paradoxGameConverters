@@ -390,6 +390,7 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 		if (titleItr->second->getHolder() == NULL && titleItr->second->getVassals().empty() && titleItr->second->getDeJureVassals().empty())
 			continue;
 		EU3Country* newCountry = new EU3Country(titleItr->second, religionMap, cultureMap, inverseProvinceMap);
+		newCountry->determineStartingAgents();
 		convertedCountries.push_back(newCountry);
 	}
 
