@@ -1,5 +1,6 @@
 #include "CK2Building.h"
 #include "CK2Character.h"
+#include "CK2Religion.h"
 #include "..\Parsers\Object.h"
 #include "..\Log.h"
 
@@ -173,7 +174,7 @@ void CK2BuildingFactory::addBuildingTypes(Object* obj)
 }
 
 
-const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap) const
+const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder, const cultureGroupMapping& cultureGroupMap) const
 {
 	const CK2Building* returnMe = NULL;
 
@@ -216,7 +217,7 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 
 		if (itr->second->getForbiddenReligion() != "")
 		{
-			if	( itr->second->getForbiddenReligion() == religionGroupMap.find(baronyHolder->getReligion())->second )
+			if	( itr->second->getForbiddenReligion() == baronyHolder->getReligion()->getGroup() )
 			{
 				returnMe = NULL;
 			}
@@ -224,7 +225,7 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 
 		if (itr->second->getRequiredReligion() != "")
 		{
-			if	( itr->second->getRequiredReligion() != religionGroupMap.find(baronyHolder->getReligion())->second )
+			if	( itr->second->getRequiredReligion() != baronyHolder->getReligion()->getGroup() )
 			{
 				returnMe = NULL;
 			}

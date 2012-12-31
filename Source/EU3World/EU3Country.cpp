@@ -10,6 +10,7 @@
 #include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Techs.h"
+#include "..\CK2World\CK2Religion.h"
 #include "EU3Ruler.h"
 #include "EU3Advisor.h"
 #include "EU3History.h"
@@ -324,14 +325,15 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	history.clear();
 	previousMonarchs.clear();
 
-	religionMapping::const_iterator religionItr = religionMap.find(src->getLastHolder()->getReligion());
-	if (religionItr != religionMap.end())
+	religion = "";
+	CK2Religion* oldReligion = src->getLastHolder()->getReligion();
+	if (oldReligion)
 	{
-		religion = religionItr->second;
-	}
-	else
-	{
-		religion = "";
+		religionMapping::const_iterator religionItr = religionMap.find(oldReligion->getName());
+		if (religionItr != religionMap.end())
+		{
+			religion = religionItr->second;
+		}
 	}
 
 	map<string, int> cultureWeights;
@@ -719,13 +721,12 @@ void EU3Country::addAcceptedCultures()
 }
 
 
-void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMap)
+void EU3Country::determineGovernment()
 {
 	string				srcTitleString		= src->getTitleString();
 	CK2Barony*			primaryHolding		= src->getLastHolder()->getPrimaryHolding();
 	CK2Title*			liege					= src->getLiege();
 	vector<CK2Title*>	srcVassals			= src->getVassals();
-	string				srcReligion			= src->getLastHolder()->getReligion();
 	string				highestVassalRank	= "b";
 	for (vector<CK2Title*>::iterator vassalItr = srcVassals.begin(); vassalItr < srcVassals.end(); vassalItr++)
 	{
@@ -751,7 +752,7 @@ void EU3Country::determineGovernment(const religionGroupMapping& religionGroupMa
 	{
 		government = "papal_government";
 	}
-	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (religionGroupMap.find(srcReligion)->second != "christian")  )
+	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (src->getLastHolder()->getReligion()->getGroup() != "christian")  )
 	{
 		government = "steppe_horde";
 	}

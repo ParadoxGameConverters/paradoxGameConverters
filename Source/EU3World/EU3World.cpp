@@ -12,8 +12,9 @@
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\CK2Province.h"
-#include	"..\CK2World\CK2World.h"
+#include "..\CK2World\CK2World.h"
 #include "..\CK2World\CK2Character.h"
+#include "..\CK2World\CK2Religion.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
 #include "EU3Ruler.h"
@@ -776,7 +777,7 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 }
 
 
-void EU3World::convertTech(const religionGroupMapping& religionGroupMap, const CK2World& srcWorld)
+void EU3World::convertTech(const CK2World& srcWorld)
 {
 	vector<double> avgTechLevels = srcWorld.getAverageTechLevels();
 
@@ -792,9 +793,9 @@ void EU3World::convertTech(const religionGroupMapping& religionGroupMap, const C
 
 	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
 	{
-		string religion		= (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
-		string title		= (*countryItr)->getSrcCountry()->getTitleString();
-		if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religionGroupMap.find(religion)->second != "christian")  )
+		CK2Religion* religion = (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
+		string title = (*countryItr)->getSrcCountry()->getTitleString();
+		if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religion->getGroup() != "christian")  )
 		{
 			(*countryItr)->setTechGroup("nomad_group");
 			log("\t%s is in tech group nomad.\n", (*countryItr)->getSrcCountry()->getTitleString().c_str());
@@ -835,11 +836,11 @@ void EU3World::convertTech(const religionGroupMapping& religionGroupMap, const C
 }
 
 
-void EU3World::convertGovernments(const religionGroupMapping& religionGroupMap)
+void EU3World::convertGovernments()
 {
 	for (vector<EU3Country*>::iterator itr = convertedCountries.begin(); itr < convertedCountries.end(); itr++)
 	{
-		(*itr)->determineGovernment(religionGroupMap);
+		(*itr)->determineGovernment();
 	}
 }
 

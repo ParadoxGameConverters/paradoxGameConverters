@@ -10,14 +10,15 @@
 #include "CK2Title.h"
 #include "CK2Techs.h"
 #include "CK2War.h"
+#include "CK2Religion.h"
 
 
 
-CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, const religionGroupMapping& religionGroupMap, date theDate)
+CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
 {
 	num			= atoi( obj->getKey().c_str() );
 	name			= obj->getLeaf("birth_name");
-	religion		= obj->getLeaf("religion");
+	religion		= CK2Religion::getReligion(obj->getLeaf("religion"));
 	culture		= obj->getLeaf("culture");
 
 	vector<Object*> pobjs = obj->getValue("prestige");
@@ -259,10 +260,6 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 	}
 
 	memset(stateStats, 0, 5*sizeof(int));
-
-	religionGroupMapping::const_iterator itr = religionGroupMap.find(religion);
-	if (itr != religionGroupMap.end())
-		religionGroup = itr->second;
 
 	primaryHolding = NULL;
 }
@@ -914,10 +911,10 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 		relations += other->getStats()[DIPLOMACY];
 
 	// Piety - if we're the same religion
-	if (religion == other->religion)
+	if (religion->isSameReligion(other->religion))
 	{
 		// and we're both muslim, or I'm a cleric
-		if (religionGroup == "muslim" || (primaryHolding && primaryHolding->getType() == "temple"))
+		if (religion->getGroup() == "muslim" || (primaryHolding && primaryHolding->getType() == "temple"))
 		{
 			// add 1/25 of piety, or 20, whichever is larger
 			relations += (int)floor(max(other->piety / 25.0, 20.0));
@@ -968,7 +965,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 		relations += CK2Opinion::getBaseValue("opinion_father_of_child");
 
 	// Muslim brother or half-brother
-	if (religionGroup == "muslim")
+	if (religion->getGroup() == "muslim")
 	{
 		if (this->mother == other->mother && this->father == other->father)
 		{
@@ -994,12 +991,23 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 	// FIXME: Related Culture
 
 	// Infidel
-	if (religionGroup != other->religionGroup)
+	if (religion->isInfidelTo(other->religion))
 	{
 		relations += CK2Opinion::getBaseValue("opinion_infidel");
 	}
-	// FIXME: Heretic
-	// FIXME: Related Religion
+
+	// Heretic
+	if (religion->isHereticTo(other->religion))
+	{
+		relations += CK2Opinion::getBaseValue("opinion_heretic");
+	}
+
+	// Related Religion
+	if (religion->isRelatedTo(other->religion))
+	{
+		relations += CK2Opinion::getBaseValue("opinion_related_religion");
+	}
+
 	// FIXME: Rightful Religious Head
 
 	// Female Heir
@@ -1053,7 +1061,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 		if (this->hasTrait((*trait)->name))
 		{
 			relations += (*trait)->same_opinion;
-			if (this->religion == other->religion)
+			if (this->religion->isSameReligion(other->religion))
 			{
 				relations += (*trait)->same_opinion_if_same_religion;
 			}
@@ -1076,15 +1084,15 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 			if (*itr == other)
 				relations += (*trait)->spouse_opinion;
 		}
-		if (this->religion == other->religion)
+		if (this->religion->isSameReligion(other->religion))
 		{
 			relations += (*trait)->same_religion_opinion;
 		}
-		else if (this->religionGroup != other->religionGroup)
+		else if (this->religion->isInfidelTo(other->religion))
 		{
 			relations += (*trait)->infidel_opinion;
 		}
-		if (this->religionGroup == "muslim")
+		if (this->religion->getGroup() == "muslim")
 		{
 			relations += (*trait)->muslim_opinion;
 		}

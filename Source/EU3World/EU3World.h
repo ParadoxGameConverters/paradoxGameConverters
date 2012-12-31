@@ -53,8 +53,8 @@ class EU3World
 		void	convertProvinces(provinceMapping&, map<int, CK2Province*>&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup);
 		void	addAcceptedCultures();
 		void	convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
-		void	convertTech(const religionGroupMapping& religionGroupMap, const CK2World& srcWorld);
-		void	convertGovernments(const religionGroupMapping& religionGroupMap);
+		void	convertTech(const CK2World& srcWorld);
+		void	convertGovernments();
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
 		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
 		void	convertDiplomacy();

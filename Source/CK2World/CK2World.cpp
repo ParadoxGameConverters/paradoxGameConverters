@@ -32,7 +32,7 @@ CK2World::CK2World()
 }
 
 
-void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap)
+void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 {
 	// get version
 	vector<Object*> versionObj = obj->getValue("version");
@@ -79,7 +79,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 	for (unsigned int i = 0; i < characterLeaves.size(); i++)
 	{
 		int number = atoi( characterLeaves[i]->getKey().c_str() );
-		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, religionGroupMap, endDate);
+		CK2Character* newCharacter = new CK2Character(characterLeaves[i], dynasties, traits, endDate);
 		characters.insert( make_pair(number, newCharacter) );
 	}
 
@@ -163,7 +163,7 @@ void CK2World::init(Object* obj, const religionGroupMapping& religionGroupMap, c
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province(leaves[i], titles, buildingFactory, religionGroupMap, cultureGroupMap);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles, buildingFactory, cultureGroupMap);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();

@@ -8,6 +8,7 @@
 #include "..\CK2World\CK2Title.h"
 #include "..\CK2World\Ck2Province.h"
 #include "..\CK2World\CK2Character.h"
+#include "..\CK2World\CK2Religion.h"
 
 
 
@@ -481,9 +482,9 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 void EU3Province::determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces)
 {
 
-	map<string, double> religionCounts;
-	map<string, double> religionCounts2;
-	map<string, double> religionCounts3;
+	map<CK2Religion*, double> religionCounts;
+	map<CK2Religion*, double> religionCounts2;
+	map<CK2Religion*, double> religionCounts3;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
 		double	popProxy			= 0.0f;
@@ -498,8 +499,8 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		}
 
 
-		string _religion = (*provItr)->getReligion();
-		map<string, double>::iterator countsItr = religionCounts.find(_religion);
+		CK2Religion* _religion = (*provItr)->getReligion();
+		map<CK2Religion*, double>::iterator countsItr = religionCounts.find(_religion);
 		if (countsItr != religionCounts.end())
 		{
 			countsItr->second += popProxy;
@@ -530,11 +531,11 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		}
 	}
 
-	string			topReligion;
+	CK2Religion*		topReligion;
 	double			topCount		= 0;
 	bool				tie			= false;
-	vector<string>	tiedReligions;
-	for (map<string, double>::const_iterator countsItr = religionCounts.begin(); countsItr != religionCounts.end(); countsItr++)
+	vector<CK2Religion*>	tiedReligions;
+	for (map<CK2Religion*, double>::const_iterator countsItr = religionCounts.begin(); countsItr != religionCounts.end(); countsItr++)
 	{
 		if (countsItr->second > topCount)
 		{
@@ -551,14 +552,14 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		}
 	}
 
-	vector<string>	tiedReligions2;
+	vector<CK2Religion*>	tiedReligions2;
 	if (tie == true)
 	{
-		topReligion	= "";
+		topReligion	= NULL;
 		topCount		= 0;
-		for (map<string, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
+		for (map<CK2Religion*, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
 		{
-			for (vector<string>::iterator cultureItr = tiedReligions.begin(); cultureItr != tiedReligions.end(); cultureItr++)
+			for (vector<CK2Religion*>::iterator cultureItr = tiedReligions.begin(); cultureItr != tiedReligions.end(); cultureItr++)
 			{
 				if (countsItr->first == *cultureItr)
 				{
@@ -583,11 +584,11 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 
 	if (tie == true)
 	{
-		topReligion	= "";
+		topReligion	= NULL;
 		topCount		= 0;
-		for (map<string, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
+		for (map<CK2Religion*, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
 		{
-			for (vector<string>::iterator religionItr = tiedReligions2.begin(); religionItr != tiedReligions2.end(); religionItr++)
+			for (vector<CK2Religion*>::iterator religionItr = tiedReligions2.begin(); religionItr != tiedReligions2.end(); religionItr++)
 			{
 				if (countsItr->first == *religionItr)
 				{
@@ -612,33 +613,38 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		log("\tWarning: could not decide on religion for EU3 province %d due to ties.\n", num);
 	}
 
-	religionMapping::const_iterator religionItr = religionMap.find(topReligion);
-	if (religionItr != religionMap.end())
+	if (topReligion == NULL)
 	{
-		religion = religionItr->second;
-		const CK2Title* rulerTitle = srcOwner;
-		if (srcOwner != NULL)
-		{
-			while (!rulerTitle->isIndependent())
-			{
-				rulerTitle = rulerTitle->getLiege();
-			}
-			const CK2Character* ruler = rulerTitle->getLastHolder();
-			if ( ruler->getReligion() != topReligion )
-			{
-				if ( religionMap.find(ruler->getReligion())->second == religion )
-				{
-					modifiers.push_back("heresy");
-				}
-			}
-		}
-	}
-	else if (topReligion == "")
-	{
+		// do nothing?
 	}
 	else
 	{
-		log("\tError: could not map religion %s to any EU3 religions (province %d: %s)\n", topReligion.c_str(), num, capital.c_str());
+		religionMapping::const_iterator religionItr = religionMap.find(topReligion->getName());
+		if (religionItr != religionMap.end())
+		{
+			religion = religionItr->second;
+			const CK2Title* rulerTitle = srcOwner;
+			if (srcOwner != NULL)
+			{
+				while (!rulerTitle->isIndependent())
+				{
+					rulerTitle = rulerTitle->getLiege();
+				}
+				const CK2Character* ruler = rulerTitle->getLastHolder();
+				if ( ruler->getReligion() != topReligion )
+				{
+					// FIXME: this should probably check for actual heresy (orthodox ruler in a catholic realm is not heresy)
+					if ( religionMap.find(ruler->getReligion()->getName())->second == religion )
+					{
+						modifiers.push_back("heresy");
+					}
+				}
+			}
+		}
+		else
+		{
+			log("\tError: could not map religion %s to any EU3 religions (province %d: %s)\n", topReligion->getName().c_str(), num, capital.c_str());
+		}
 	}
 }
 

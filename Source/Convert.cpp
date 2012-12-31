@@ -12,6 +12,7 @@
 #include "EU3World\EU3Tech.h"
 #include "CK2World\CK2World.h"
 #include "CK2World\CK2Opinion.h"
+#include "CK2World\CK2Religion.h"
 #include "Mappers.h"
 using namespace std;
 
@@ -119,9 +120,8 @@ int main(int argc, char * argv[])
 		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/religion.txt").c_str());
 		exit(-1);
 	}
-	religionGroupMapping CK2ReligionGroupMap;
-	addReligionGroupMappings(obj, CK2ReligionGroupMap);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\religions\\"), [&](Object* eachobj) { addReligionGroupMappings(eachobj, CK2ReligionGroupMap); }))
+	CK2Religion::parseReligions(obj);
+	if (!doParseDirectoryContents((CK2Loc + "\\common\\religions\\"), [&](Object* eachobj) { CK2Religion::parseReligions(eachobj); }))
 	{
 		log("\t\tError: Could not open religions directory (ok for pre-1.06).\n");
 		printf("\t\tError: Could not open religions directory (ok for pre-1.06).\n");
@@ -222,7 +222,7 @@ int main(int argc, char * argv[])
 
 	log("Importing parsed data.\n");
 	printf("Importing parsed data.\n");
-	srcWorld.init(obj, CK2ReligionGroupMap, CK2CultureGroupMap);
+	srcWorld.init(obj, CK2CultureGroupMap);
 
 	log("Merging top-level titles.\n");
 	printf("Merging top-level titles.\n");
@@ -458,11 +458,11 @@ int main(int argc, char * argv[])
 
 	log("Converting tech.\n");
 	printf("Converting tech.\n");
-	destWorld.convertTech(religionMap, srcWorld);
+	destWorld.convertTech(srcWorld);
 
 	log("Converting governments.\n");
 	printf("Converting governments.\n");
-	destWorld.convertGovernments(CK2ReligionGroupMap);
+	destWorld.convertGovernments();
 
 	log("Converting economies.\n");
 	printf("Converting economies.\n");

@@ -4,11 +4,12 @@
 #include "CK2Barony.h"
 #include "CK2Title.h"
 #include "CK2Character.h"
+#include "CK2Religion.h"
 #include "..\Log.h"
 
 
 
-CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap)
+CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory, const cultureGroupMapping& cultureGroupMap)
 {
 	number = atoi( obj->getKey().c_str() );
 
@@ -18,7 +19,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2Bu
 		string key = leaves[i]->getKey();
 		if (key[0] == 'b')
 		{
-			CK2Barony* newBarony = new CK2Barony( leaves[i], titles[key], this, buildingFactory, religionGroupMap, cultureGroupMap);
+			CK2Barony* newBarony = new CK2Barony( leaves[i], titles[key], this, buildingFactory, cultureGroupMap);
 			if (newBarony->getTitle()->getHolder()->getCapitalString() == newBarony->getTitle()->getTitleString())
 			{
 				newBarony->getTitle()->getHolder()->setCapital(this);
@@ -42,11 +43,11 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2Bu
 	vector<Object*> religionObj = obj->getValue("religion");
 	if (religionObj.size() > 0)
 	{
-		religion  = religionObj[0]->getLeaf();
+		religion  = CK2Religion::getReligion(religionObj[0]->getLeaf());
 	}
 	else
 	{
-		religion = "";
+		religion = NULL;
 	}
 
 	techLevels.clear();

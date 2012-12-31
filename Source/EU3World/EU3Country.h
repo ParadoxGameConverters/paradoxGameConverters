@@ -31,7 +31,7 @@ class EU3Country
 		void						output(FILE*);
 		void						determineLearningScore();
 		void						addAcceptedCultures();
-		void						determineGovernment(const religionGroupMapping& religionGroupMap);
+		void						determineGovernment();
 		void						determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices);
 		double					getTradeEffeciency();
 		double					getProductionEffeciency();

@@ -27,7 +27,7 @@ class CK2World
 {
 	public:
 		CK2World();
-		void							init(Object*, const religionGroupMapping& religionGroupMap, const cultureGroupMapping& cultureGroupMap);
+		void							init(Object*, const cultureGroupMapping& cultureGroupMap);
 		void							addBuildingTypes(Object*);
 		void							addDynasties(Object*);
 		void							addTraits(Object*);

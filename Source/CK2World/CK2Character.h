@@ -20,6 +20,7 @@ class		CK2Province;
 class		CK2Barony;
 class		CK2Title;
 class		CK2War;
+class		CK2Religion;
 
 enum advisorTypes
 {
@@ -35,7 +36,7 @@ enum advisorTypes
 class CK2Character
 {
 	public:
-		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, const religionGroupMapping& religionGroupMap, date theDate);
+		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
 		void							readOpinionModifiers(Object* obj);
 	
 		void							addTitle(CK2Title*);
@@ -59,7 +60,7 @@ class CK2Character
 		int							getNum()						const { return num; };
 		string						getName()					const { return name; };
 		string						getCulture()				const { return culture; };
-		string						getReligion()				const { return religion; };
+		CK2Religion*				getReligion()				const { return religion; };
 		CK2Dynasty*					getDynasty()				const { return dynasty; };
 		date							getBirthDate()				const { return birthDate; };
 		bool							isDead()						const { return dead; };
@@ -98,8 +99,7 @@ class CK2Character
 
 		int					num;
 		string				name;
-		string				religion;
-		string				religionGroup;
+		CK2Religion*		religion;
 		string				culture;
 		CK2Dynasty*			dynasty;
 		date					birthDate;
