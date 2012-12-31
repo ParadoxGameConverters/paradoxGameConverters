@@ -51,8 +51,8 @@ bool CK2Religion::isHereticTo(const CK2Religion* other) const
 	if (isSameReligion(other))
 		return false;
 
-	// same parent, my child, or my parent == heresy
-	if (parent == other->name || name == other->parent || parent == other->parent)
+	// my parent, my child, or we're both children of the same parent == heresy
+	if (parent == other->name || name == other->parent || ((parent != "") && (parent == other->parent)))
 		return true;
 
 	return false;
