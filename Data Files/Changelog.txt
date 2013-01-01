@@ -287,3 +287,4 @@ Revision	Log Message
 281		merge independent baronies with their de jure liege
 282		Clean up logging a little
 283		Each step of progressive blobbing only happens once
+284		Vassals and lieges will always at least cross-guarantee each other

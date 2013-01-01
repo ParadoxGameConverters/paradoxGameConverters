@@ -1217,7 +1217,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 		}
-		else if ((vassalScore >= 1000) && (vassals[i]->getAbsorbScore() < 1000))
+		else if (vassals[i]->getAbsorbScore() <= 0)
 		{
 			log("\t%s and %s and guaranteeing each other.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
 			vassals[i]->setAbsorbScore(vassalScore);
