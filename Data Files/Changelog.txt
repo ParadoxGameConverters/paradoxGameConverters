@@ -285,3 +285,4 @@ Revision	Log Message
 279		Read score and use it to determine prestige (note: EU3 seems to muck with this when the file is loaded).
 280		Uniquify province core output to quiet down EU3 debug logs.
 281		merge independent baronies with their de jure liege
+282		Clean up logging a little

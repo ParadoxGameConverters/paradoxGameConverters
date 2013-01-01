@@ -504,7 +504,7 @@ bool CK2Title::eatTitle(CK2Title* target, bool checkInheritance)
 	target->holder = NULL;
 	target->heir = NULL;
 
-	log("\t%s absorbed %s\n", this->getTitleString().c_str(), target->getTitleString().c_str());
+	target->setLiege(this);
 
 	return true;
 }
@@ -564,7 +564,7 @@ CK2Character* CK2Title::getLastHolder() const
 	}
 
 	// title never had a holder?  that's a small problem.
-	log("Warning: title %s never had a holder.  Using arbitrary de jure vassal for EU3 country parameters.\n", titleString.c_str());
+	log("\tWarning: title %s never had a holder.  Using arbitrary de jure vassal for EU3 country parameters.\n", titleString.c_str());
 	// since we mostly just need a valid character to set religion, culture, etc, let's go through the de jure vassals until we find one.
 	for (vector<CK2Title*>::const_iterator itr = deJureVassals.begin(); itr != deJureVassals.end(); ++itr)
 	{

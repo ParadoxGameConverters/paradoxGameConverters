@@ -214,7 +214,6 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		if (titleItr->first.substr(0, 1) == "b")
 		{
 			titleItr->second->setLiege(titleItr->second->getDeJureLiege());
-			log("\tAdded de jure liege\n");
 		}
 		else
 		{
@@ -323,6 +322,19 @@ void CK2World::mergeTitles()
 		if (!citr->second) continue;
 		citr->second->mergeTitles(useInheritance);
 	}
+
+	independentTitles.clear();
+	for (map<string, CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+	{
+		if ((titleItr->second->getLiege() == NULL) && (titleItr->second->getHolder() != NULL))
+		{
+			independentTitles.insert(*titleItr);
+		}
+	}
+
+	log("\tThere are a total of %d titles\n", titles.size());
+	log("\tThere are a total of %d independent titles\n", independentTitles.size());
+	log("\tThere are a total of %d hre members\n", hreMembers.size());
 }
 
 

@@ -799,32 +799,26 @@ void EU3World::convertTech(const CK2World& srcWorld)
 		if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religion->getGroup() != "christian")  )
 		{
 			(*countryItr)->setTechGroup("nomad_group");
-			log("\t%s is in tech group nomad.\n", (*countryItr)->getSrcCountry()->getTitleString().c_str());
 		}
 		else if ((*countryItr)->getLearningScore() <= 0.2 * highestLearningScore)
 		{
 			(*countryItr)->setTechGroup("sub_saharan");
-			log("\t%s is in tech group sub saharan.\n", (*countryItr)->getSrcCountry()->getTitleString().c_str());
 		}
 		else if ((*countryItr)->getLearningScore() <= 0.75 * highestLearningScore)
 		{
 			(*countryItr)->setTechGroup("muslim");
-			log("\t%s is in tech group muslim.\n", (*countryItr)->getSrcCountry()->getTitleString().c_str());
 		}
 		else if ((*countryItr)->getLearningScore() <= 0.8 * highestLearningScore)
 		{
 			(*countryItr)->setTechGroup("ottoman");
-			log("\t%s is in tech group ottoman.\n", (*countryItr)->getSrcCountry()->getTitleString().c_str());
 		}
 		else if ((*countryItr)->getLearningScore() <= 0.85 * highestLearningScore)
 		{
 			(*countryItr)->setTechGroup("eastern");
-			log("\t%s is in tech group eastern.\n", (*countryItr)->getSrcCountry()->getTitleString().c_str());
 		}
 		else
 		{
 			(*countryItr)->setTechGroup("western");
-			log("\t%s is in tech group western.\n", (*countryItr)->getSrcCountry()->getTitleString().c_str());
 		}
 
 		(*countryItr)->determineTechLevels(avgTechLevels, techData);
@@ -962,7 +956,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 				}
 			}
 		}
-		log("Total converted EU3 countries after absorbing: %d\n", convertedCountries.size());
+		log("Total converted EU3 countries after absorbing: %d. Merge score is %d\n", convertedCountries.size(), initialScore);
 
 		mappings.clear();
 		leftoverCountries = matchTags(rulesObj, blockedNations, provinceMap, mappings);
@@ -978,7 +972,6 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 			exit(-1);
 		}
 	}
-	log("Final merge score: %d\n", initialScore);
 
 	for (vector< tuple<EU3Country*, EU3Country*, string, string, int> >::iterator mappingsItr = mappings.begin(); mappingsItr != mappings.end(); mappingsItr++)
 	{
