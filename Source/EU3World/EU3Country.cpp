@@ -1038,8 +1038,6 @@ void EU3Country::determineStartingAgents()
 
 vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* diplomacy)
 {
-	absorbScore = initialScore;
-
 	int score = initialScore;
 	string CA = src->getCA();
 	if ( CA == "centralization_0")
@@ -1125,9 +1123,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			absorbedCountries.push_back(*newItr);
 		}
 
-		if (vassalScore >= 5050)
+		if ((vassalScore >= 5050) && (vassals[i]->getAbsorbScore() < 5050))
 		{
 			log("\t%s is completely absorbing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			vassals[i]->setAbsorbScore(vassalScore);
 			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				provinces.push_back(*provinceItr);
@@ -1156,9 +1155,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			absorbedCountries.push_back(vassals[i]);
 			absorbedVassals.push_back(vassals[i]);
 		}
-		else if (vassalScore >= 4000)
+		else if ((vassalScore >= 4000) && (vassals[i]->getAbsorbScore() < 4000))
 		{
 			log("\t%s is absorbing %s but leaving cores.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			vassals[i]->setAbsorbScore(vassalScore);
 			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				provinces.push_back(*provinceItr);
@@ -1170,9 +1170,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 				(*advisorItr)->setHome(this);
 			}
 		}
-		else if (vassalScore >= 2900)
+		else if ((vassalScore >= 2900) && (vassals[i]->getAbsorbScore() < 2900))
 		{
 			log("\t%s is vassalizing %s and getting cores.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			vassals[i]->setAbsorbScore(vassalScore);
 			for (vector<EU3Province*>::iterator provinceItr = vassals[i]->provinces.begin(); provinceItr != vassals[i]->provinces.end(); provinceItr++)
 			{
 				cores.push_back(*provinceItr);
@@ -1186,9 +1187,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 		}
-		else if (vassalScore >= 1900)
+		else if ((vassalScore >= 1900) && (vassals[i]->getAbsorbScore() < 1900))
 		{
 			log("\t%s is vassalizing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			vassals[i]->setAbsorbScore(vassalScore);
 			EU3Agreement* newAgreement = new EU3Agreement;
 			newAgreement->type			= "vassal";
 			newAgreement->country1	= this;
@@ -1196,9 +1198,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
 			diplomacy->addAgreement(newAgreement);
 		}
-		else if (vassalScore >= 1000)
+		else if ((vassalScore >= 1000) && (vassals[i]->getAbsorbScore() < 1000))
 		{
 			log("\t%s is sphering and alliancing %s.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			vassals[i]->setAbsorbScore(vassalScore);
 			EU3Agreement* newAgreement = new EU3Agreement;
 			newAgreement->type			= "sphere";
 			newAgreement->country1	= this;
@@ -1214,9 +1217,10 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 		}
-		else if (vassalScore >= 1000)
+		else if ((vassalScore >= 1000) && (vassals[i]->getAbsorbScore() < 1000))
 		{
 			log("\t%s and %s and guaranteeing each other.\n", src->getTitleString().c_str(), vassals[i]->getSrcCountry()->getTitleString().c_str());
+			vassals[i]->setAbsorbScore(vassalScore);
 			EU3Agreement* newAgreement = new EU3Agreement;
 			newAgreement->type			= "guarantee";
 			newAgreement->country1	= this;

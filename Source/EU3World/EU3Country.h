@@ -47,6 +47,7 @@ class EU3Country
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
 		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		addCore(EU3Province* core)				{ cores.push_back(core); };
+		void		setAbsorbScore(int _score)				{ absorbScore = _score; };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
 		void		setTag(string _tag)						{ tag = _tag; };
 		void		addAdvisor(EU3Advisor* _advisor)		{ advisors.push_back(_advisor); };
