@@ -276,3 +276,12 @@ Revision	Log Message
 271		Allow configuration of progressive blobification
 272		When absorbing vassals, destroy any agreements they had
 273		Merge
+274		Write relationships between countries into the EU3 file.
+275		Thoroughly rework religion handling on the CK2 side so we have more information about relationships between religions.
+		Account for "Heretic" and "Religious Differences" opinion modifiers.
+276		Related religions (e.g. catholic/orthodox) are not heresies of each other.
+277		Fix trait->stat mapping.
+278		Starting agents from state stats for converted countries.
+279		Read score and use it to determine prestige (note: EU3 seems to muck with this when the file is loaded).
+280		Uniquify province core output to quiet down EU3 debug logs.
+281		merge independent baronies with their de jure liege

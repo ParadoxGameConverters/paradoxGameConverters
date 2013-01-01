@@ -207,6 +207,22 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		i->second->setDeJureLiege(potentialTitles);
 	}
 
+	// merge independent baronies with their de jure liege
+	map<string, CK2Title*> newIndependentTitles;
+	for (map<string, CK2Title*>::iterator titleItr = independentTitles.begin(); titleItr != independentTitles.end(); titleItr++)
+	{
+		if (titleItr->first.substr(0, 1) == "b")
+		{
+			titleItr->second->setLiege(titleItr->second->getDeJureLiege());
+			log("\tAdded de jure liege\n");
+		}
+		else
+		{
+			newIndependentTitles.insert(*titleItr);
+		}
+	}
+	independentTitles.swap(newIndependentTitles);
+
 	// determine heirs
 	printf("\tDetermining heirs\n");
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
