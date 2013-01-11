@@ -288,3 +288,4 @@ Revision	Log Message
 282		Clean up logging a little
 283		Each step of progressive blobbing only happens once
 284		Vassals and lieges will always at least cross-guarantee each other
+285		Comradebot's updates to east Africa

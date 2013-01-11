@@ -73,18 +73,21 @@ link = { ck2 = 22 eu3 = 239 }	# Oxford -> Gloucestershire
 link = { ck2 = 72 eu3 = 238 }	# Essex -> Essex
 link = { ck2 = 32 eu3 = 236 }	# Middlesex -> London
 # Africa
-link = { ck2 = 871 eu3 = 1206 eu3 = 1099 }	# Busaso -> Majerteen, Socotra
+link = { ck2 = 871 eu3 = 1208 }	# Busaso -> Haud
 link = { ck2 = 872 eu3 = 1209 }	# Berbera -> Berbera
-link = { ck2 = 873 eu3 = 1212 }	# Harer -> Zeila
-link = { ck2 = 882 ck2 = 884 eu3 = 1211 }	# Ankober, Antalo -> Harer
-link = { ck2 = 881 eu3 = 1210 }	# Asosa -> Ifat
-link = { ck2 = 880 eu3 = 1213 eu3 = 1223 eu3 = 1225 }	# Sennar -> Shoa, Gojjam, Butana
+link = { ck2 = 873 eu3 = 1211 eu3 = 1212 }	# Harer -> Harer, Zeila
+link = { ck2 = 882 eu3 = 1210 eu3 = 1213 }	# Ankober -> Ifat, Shoa
+link = { ck2 = 884 eu3 = 1214 }	# Antalo -> Awsa
+link = { ck2 = 881 eu3 = 1218 }	# Asosa -> Kefa
+link = { ck2 = 880  eu3 = 1225 }	# Sennar -> Butana
 link = { ck2 = 879 eu3 = 1229 }	# Atbara -> Berber
 link = { ck2 = 792 ck2 = 878 eu3 = 1232 }	# Nubia, Hayya -> Suakin
-link = { ck2 = 877 ck2 = 876 eu3 = 1230 }	# Kassala, Akordat -> Massawa
-link = { ck2 = 875 ck2 = 874 eu3 = 1215 }	# Aksum, Tadjoura -> Tajura
-link = { ck2 = 883 eu3 = 1226 eu3 = 1227 eu3 = 1214 }	# Gondar -> Taka, Tigre, Awsa
-link = { ck2 = 885 eu3 = 1224 }	# Matamma -> Gonder
+link = { ck2 = 877 eu3 = 1226 }	# Kassala -> Taka
+link = { ck2 = 876 eu3 = 1230 }	# Akordat -> Massawa
+link = { ck2 = 875 eu3 = 1227 }	# Aksum -> Tigre
+link = { ck2 = 874 eu3 = 1215 }	# Tadjoura -> Tajura
+link = { ck2 = 883 eu3 = 1224 }	# Gondar -> Gonder
+link = { ck2 = 885 eu3 = 1223 }	# Matamma -> Gojjam
 link = { ck2 = 793 eu3 = 1228 eu3 = 1231 eu3 = 1234 }	# Makuria -> Dongola, Ibrim, Nubia
 link = { ck2 = 791 ck2 = 794 ck2 = 795 eu3 = 360 }	# Quena, Aswan, Asyut -> Nile
 link = { ck2 = 800 eu3 = 1233 }	# Gizeh -> Kargah
@@ -130,7 +133,7 @@ link = { ck2 = 861 eu3 = 386 }	# Asir -> Asir
 link = { ck2 = 860 ck2 = 859 eu3 = 387 }	# Sanaa, Taizz -> Mocha
 link = { ck2 = 858 ck2 = 857 eu3 = 388 }	# Aden, Bayda -> Aden
 link = { ck2 = 856 ck2 = 855 eu3 = 389 }	# Kathiri, Mahra -> Hadramut
-link = { ck2 = 866 eu3 = 402 }	# Dhofar -> Mahra
+link = { ck2 = 866 eu3 = 402 eu3 = 1099 }	# Dhofar -> Mahra, Socotra
 link = { ck2 = 867 eu3 = 401 }	# Duqm -> Dhofar
 link = { ck2 = 868 eu3 = 400 }	# Muscat -> Muscat
 link = { ck2 = 869 eu3 = 399 }	# Hajar -> Suhar

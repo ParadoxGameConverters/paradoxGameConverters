@@ -372,15 +372,15 @@ link = { ck2 = mongol eu3 = tartar }
 
 ## African
 #link = { ck2 = ?? eu3 = tuareg }
-#link = { ck2 = ?? eu3 = nubian }
-link = { ck2 = ethiopian eu3 = somali religion = sunni }
-link = { ck2 = ethiopian eu3 = somali religion = zikri }
-link = { ck2 = ethiopian eu3 = somali religion = yazidi }
-link = { ck2 = ethiopian eu3 = somali religion = ibadi }
-link = { ck2 = ethiopian eu3 = somali religion = shiite }
-link = { ck2 = ethiopian eu3 = somali religion = bektashi }
-link = { ck2 = ethiopian eu3 = somali religion = druze }
-link = { ck2 = ethiopian eu3 = somali religion = hurufi }
+link = { ck2 = ethiopian eu3 = nubian de_jure = d_aswan }
+link = { ck2 = ethiopian eu3 = nubian de_jure = c_kassala }
+link = { ck2 = ethiopian eu3 = nubian de_jure = c_hayya }
+link = { ck2 = ethiopian eu3 = nubian de_jure = c_atbara }
+link = { ck2 = ethiopian eu3 = nubian de_jure = c_sennar }
+link = { ck2 = ethiopian eu3 = ethiopian de_jure = d_gondar }
+link = { ck2 = ethiopian eu3 = ethiopian de_jure = c_aksum }
+link = { ck2 = ethiopian eu3 = ethiopian de_jure = c_akordat }
+link = { ck2 = ethiopian eu3 = somali de_jure = d_harer }
 link = { ck2 = ethiopian eu3 = ethiopian }
 link = { ck2 = manden eu3 = mali religion = sunni }
 link = { ck2 = manden eu3 = mali religion = zikri }
