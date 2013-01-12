@@ -292,3 +292,4 @@ Revision	Log Message
 286		Update religion mappings
 287		A little starting money
 288		Owned provinces get a level one fort
+289		Starting agents for ROTW countries

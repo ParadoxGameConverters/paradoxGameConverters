@@ -305,6 +305,13 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	{
 		previousMonarchs.pop_back();
 	}
+
+	merchants		= 2.0f;
+	colonists		= 2.0f;
+	diplomats		= 2.0f;
+	missionaries	= 2.0f;
+	spies				= 2.0f;
+	magistrates		= 2.0f;
 }
 
 
@@ -467,6 +474,13 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 			history.push_back(newHistory);
 		}
 	}
+
+	merchants		= 2.0f;
+	colonists		= 2.0f;
+	diplomats		= 2.0f;
+	missionaries	= 2.0f;
+	spies				= 2.0f;
+	magistrates		= 2.0f;
 }
 
 
@@ -536,10 +550,10 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\ttechnology=\n");
 	fprintf(output, "\t{\n");
 	fprintf(output, "\t\tland_tech={%d %f}\n", (int)landTech, landTechInvestment);
-	fprintf(output, "\tnaval_tech={%d %f}\n", (int)navalTech, navalTechInvestment);
-	fprintf(output, "\ttrade_tech={%d %f}\n", (int)tradeTech, tradeTechInvestment);
-	fprintf(output, "\tproduction_tech={%d %f}\n", (int)productionTech, productionTechInvestment);
-	fprintf(output, "\tgovernment_tech={%d %f}\n", (int)governmentTech, governmentTechInvestment);
+	fprintf(output, "\t\tnaval_tech={%d %f}\n", (int)navalTech, navalTechInvestment);
+	fprintf(output, "\t\ttrade_tech={%d %f}\n", (int)tradeTech, tradeTechInvestment);
+	fprintf(output, "\t\tproduction_tech={%d %f}\n", (int)productionTech, productionTechInvestment);
+	fprintf(output, "\t\tgovernment_tech={%d %f}\n", (int)governmentTech, governmentTechInvestment);
 	fprintf(output, "\t}\n");
 	if (primaryCulture != "")
 	{
@@ -1343,7 +1357,7 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 	capital							= convertedCountry->capital;
 	stability						= convertedCountry->stability;
 	stabilityInvestment			= convertedCountry->stabilityInvestment;
-	prestige						= convertedCountry->prestige;
+	prestige							= convertedCountry->prestige;
 
 	estimatedIncome				= convertedCountry->estimatedIncome;
 	estimatedTax					= convertedCountry->estimatedTax;
@@ -1364,7 +1378,7 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 	colonists		= convertedCountry->colonists;
 	diplomats		= convertedCountry->diplomats;
 	missionaries	= convertedCountry->missionaries;
-	spies			= convertedCountry->spies;
+	spies				= convertedCountry->spies;
 	magistrates		= convertedCountry->magistrates;
 
 	vector<EU3Province*> newProvinces;
