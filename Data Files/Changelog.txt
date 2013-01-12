@@ -290,3 +290,4 @@ Revision	Log Message
 284		Vassals and lieges will always at least cross-guarantee each other
 285		Comradebot's updates to east Africa
 286		Update religion mappings
+287		A little starting money

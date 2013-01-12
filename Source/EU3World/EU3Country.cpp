@@ -560,6 +560,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tprecise_prestige=%f\n", prestige);
 	fprintf(output, "\tstability=%f\n", (double)stability);
 	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
+	fprintf(output, "\ttreasury=%f\n", estimatedIncome * 13); // TODO: put in real money calculations
 	fprintf(output, "\tcurrent_income=0.000\n");
 	fprintf(output, "\testimated_monthly_income=%f\n", estimatedIncome);
 	fprintf(output, "\tinflation=0.000\n");
