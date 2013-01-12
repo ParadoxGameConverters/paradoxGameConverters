@@ -250,7 +250,7 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=\"%s\"\n", capital.c_str());
 	}
-	if (ownerStr != "")
+	if ((ownerStr != "") || (owner != NULL))
 	{
 		fprintf(output, "\tgarrison=1000.000\n");
 		fprintf(output, "\tfort1=yes\n");
