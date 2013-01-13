@@ -294,3 +294,4 @@ Revision	Log Message
 288		Owned provinces get a level one fort
 289		Starting agents for ROTW countries
 290		Fix for change 288
+291		Cores for ROTW provinces

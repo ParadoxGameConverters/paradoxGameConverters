@@ -452,6 +452,17 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			{
 				provItr->second->setOwner(NULL);
 			}
+
+			vector<string> coreStrings = provItr->second->getCoreStrings();
+			for (vector<string>::iterator coreItr = coreStrings.begin(); coreItr != coreStrings.end(); coreItr++)
+			{
+				map<string, EU3Country*>::iterator country = countries.find(*coreItr);
+				if (country != countries.end())
+				{
+					provItr->second->addCore(country->second);
+				}
+			}
+
 			continue;
 		}
 		

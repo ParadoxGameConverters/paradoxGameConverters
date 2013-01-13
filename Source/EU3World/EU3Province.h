@@ -57,6 +57,7 @@ class EU3Province
 		bool						isLand() const				{ return land; };
 		EU3Country*				getOwner() const			{ return owner; };
 		string					getOwnerStr() const		{ return ownerStr; };
+		vector<string>			getCoreStrings() const	{ return coreStrings; };
 		double					getBaseTax() const		{ return baseTax; };
 		double					getPopulation() const	{ return population; };
 		double					getManpower() const		{ return manpower; };
@@ -80,6 +81,7 @@ class EU3Province
 		EU3Country*					owner;
 		string						ownerStr;
 		const CK2Title*			srcOwner;
+		vector<string>				coreStrings;
 		vector<EU3Country*>		cores;
 		bool							inHRE;
 		vector<string>				rawDiscoverers;

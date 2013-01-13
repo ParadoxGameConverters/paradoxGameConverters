@@ -14,6 +14,8 @@
 
 EU3Province::EU3Province(int _num, Object* obj, date startDate)
 {
+	srcProvinces.clear();
+	srcProvinceNums.clear();
 	num = _num;
 
 	vector<Object*> capitalObj = obj->getValue("capital");
@@ -80,6 +82,12 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 	srcOwner = NULL;
 
 	cores.clear();
+	coreStrings.clear();
+	vector<Object*> coreObj = obj->getValue("add_core");
+	for (vector<Object*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
+	{
+		coreStrings.push_back( (*itr)->getLeaf() );
+	}
 	inHRE = false;
 
 	vector<Object*> discoveredByObj = obj->getValue("discovered_by");
@@ -154,6 +162,27 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 				{
 					ownerStr = newOwnerObj[0]->getLeaf();
 					newHistory->owner = ownerStr;
+				}
+
+				coreObj = obj->getValue("add_core");
+				for (vector<Object*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
+				{
+					coreStrings.push_back( (*itr)->getLeaf() );
+					newHistory->add_core = (*itr)->getLeaf();
+				}
+
+				coreObj = obj->getValue("remove_core");
+				for (vector<Object*>::iterator itr = coreObj.begin(); itr != coreObj.end(); itr++)
+				{
+					for (vector<string>::iterator coreItr = coreStrings.begin(); coreItr != coreStrings.end(); coreItr++)
+					{
+						if (*coreItr == (*itr)->getLeaf())
+						{
+							coreStrings.erase(coreItr);
+							newHistory->remove_core = (*itr)->getLeaf();
+							break;
+						}
+					}
 				}
 
 				vector<Object*> discoveredByObj = obj->getValue("discovered_by");

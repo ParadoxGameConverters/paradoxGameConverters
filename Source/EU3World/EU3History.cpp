@@ -19,6 +19,8 @@ EU3History::EU3History(date _when)
 	population		= 0.0f;
 	manpower			= 0;
 	owner				= "";
+	add_core			= "";
+	remove_core		= "";
 	government		= "";
 	culture			= "";
 	religion			= "";
@@ -116,6 +118,14 @@ void EU3History::output(FILE* output)
 	if (owner != "")
 	{
 		fprintf(output, "\t\t\towner=\"%s\"\n", owner.c_str());
+	}
+	if (add_core != "")
+	{
+		fprintf(output, "\t\t\tadd_core=\"%s\"\n", add_core.c_str());
+	}
+	if (remove_core != "")
+	{
+		fprintf(output, "\t\t\tremove_core=\"%s\"\n", remove_core.c_str());
 	}
 	if (government != "")
 	{

@@ -29,6 +29,8 @@ class EU3History {
 		double			population;
 		int				manpower;
 		string			owner;
+		string			add_core;
+		string			remove_core;
 		string			government;
 		string			culture;
 		string			religion;
