@@ -14,7 +14,7 @@
 
 
 
-CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<int, CK2Trait*>& traitTypes, date theDate)
+CK2Character::CK2Character(Object* obj, const map<int, CK2Dynasty*>& dynasties, const map<int, CK2Trait*>& traitTypes, date theDate)
 {
 	num			= atoi( obj->getKey().c_str() );
 	name			= obj->getLeaf("birth_name");
@@ -40,7 +40,7 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 		score = 0.0;
 
 	dynasty		= NULL;
-	map<int, CK2Dynasty*>::iterator dynItr	= dynasties.find(  atoi( obj->getLeaf("dynasty").c_str() )  );
+	map<int, CK2Dynasty*>::const_iterator dynItr	= dynasties.find(  atoi( obj->getLeaf("dynasty").c_str() )  );
 	if (dynItr != dynasties.end())
 	{
 		dynasty = dynItr->second;
@@ -238,23 +238,22 @@ CK2Character::CK2Character(Object* obj, map<int, CK2Dynasty*>& dynasties, map<in
 
 	for (unsigned int i = 0; i < traitNums.size(); i++)
 	{
-		CK2Trait* currentTrait = traitTypes[ traitNums[i] ];
-		traits.push_back(currentTrait);
-		if (currentTrait == NULL)
+		map<int, CK2Trait*>::const_iterator itr = traitTypes.find(traitNums[i]);
+		if (itr == traitTypes.end())
 		{
 			if (dynasty != NULL)
-				log("Error: %s %s had extra trait %d\n", name.c_str(), dynasty->getName().c_str(), traits[i]);
+				log("Error: %s %s had extra trait %d\n", name.c_str(), dynasty->getName().c_str(), traitNums[i]);
 			else
-				log("Error: %s had extra trait %d\n", name.c_str(), traits[i]);
+				log("Error: %s had extra trait %d\n", name.c_str(), traitNums[i]);
+			continue;
 		}
-		else
-		{
-			stats[DIPLOMACY]		+= currentTrait->diplomacy;
-			stats[MARTIAL]			+= currentTrait->martial;
-			stats[STEWARDSHIP]	+= currentTrait->stewardship;
-			stats[INTRIGUE]		+= currentTrait->intrigue;
-			stats[LEARNING]		+= currentTrait->learning;
-		}
+		CK2Trait* currentTrait = itr->second;
+		traits.push_back(currentTrait);
+		stats[DIPLOMACY]		+= currentTrait->diplomacy;
+		stats[MARTIAL]			+= currentTrait->martial;
+		stats[STEWARDSHIP]	+= currentTrait->stewardship;
+		stats[INTRIGUE]		+= currentTrait->intrigue;
+		stats[LEARNING]		+= currentTrait->learning;
 	}
 
 	for (unsigned int i = 0; i < 5; i++)

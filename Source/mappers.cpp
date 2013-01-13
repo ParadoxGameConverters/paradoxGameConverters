@@ -263,6 +263,8 @@ string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, 
 				case DTDeJure:
 					{
 						bool subCondition = false;
+						if (srcProvince->getBaronies().empty())
+							break;
 						CK2Title* title = srcProvince->getBaronies()[0]->getTitle()->getLiege();
 						while(title != NULL)
 						{
@@ -278,6 +280,8 @@ string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, 
 					break;
 				case DTKingdomCulture:
 					{
+						if (srcProvince->getBaronies().empty())
+							break;
 						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
 						while (!kingdomTitle->isIndependent())
 						{
@@ -298,6 +302,8 @@ string determineEU3Culture(string CK2Culture, const cultureMapping& cultureMap, 
 				case DTHREMember:
 					{
 						bool subCondition = false;
+						if (srcProvince->getBaronies().empty())
+							break;
 						CK2Title* kingdomTitle = srcProvince->getBaronies()[0]->getTitle();
 						while (!kingdomTitle->isIndependent())
 						{

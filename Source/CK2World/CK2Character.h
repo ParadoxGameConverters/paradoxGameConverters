@@ -36,7 +36,7 @@ enum advisorTypes
 class CK2Character
 {
 	public:
-		CK2Character(Object*, map<int, CK2Dynasty*>&, map<int, CK2Trait*>&, date theDate);
+		CK2Character(Object*, const map<int, CK2Dynasty*>&, const map<int, CK2Trait*>&, date theDate);
 		void							readOpinionModifiers(Object* obj);
 	
 		void							addTitle(CK2Title*);

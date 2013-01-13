@@ -197,7 +197,13 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		}
 		else
 		{
-			i->second->setLiege(titles[liege]);
+			map<string, CK2Title*>::iterator title = titles.find(liege);
+			if (title == titles.end())
+			{
+				log("Error: title %s is used in your save as a liege, but does not exist in your CK2 install.\n", liege.c_str());
+				continue;
+			}
+			i->second->setLiege(title->second);
 		}
 	}
 

@@ -297,3 +297,4 @@ Revision	Log Message
 291		Cores for ROTW provinces
 292		Natives
 293		Trailing slash in CK2 and EU3 locations now acceptable
+294		Avoid some potential crashes from CK2 installs that don't match the save version
