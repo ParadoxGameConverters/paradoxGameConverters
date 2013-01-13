@@ -57,6 +57,10 @@ int main(int argc, char * argv[])
 
 	//Get CK2 install location
 	string CK2Loc = Configuration::getCK2Path();
+	if (CK2Loc[CK2Loc.length() - 1] == '\\')
+	{
+		CK2Loc = CK2Loc.substr(0, CK2Loc.length() - 1);
+	}
 	struct stat st;
 	if (CK2Loc.empty() || (stat(CK2Loc.c_str(), &st) != 0))
 	{
@@ -67,6 +71,10 @@ int main(int argc, char * argv[])
 
 	//Verify EU3 install location
 	string EU3Loc = Configuration::getEU3Path();
+	if (EU3Loc[EU3Loc.length() - 1] == '\\')
+	{
+		EU3Loc = EU3Loc.substr(0, EU3Loc.length() - 1);
+	}
 	if (EU3Loc.empty() || (stat(EU3Loc.c_str(), &st) != 0))
 	{
 		log("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
