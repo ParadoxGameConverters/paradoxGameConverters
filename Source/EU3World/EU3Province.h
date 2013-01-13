@@ -98,6 +98,10 @@ class EU3Province
 		double					popUnits;
 		double					supply;
 		map<string, double>	demands;
+
+		double	nativeSize;
+		int		nativeFerocity;
+		int		nativeHostility;
 };
 
 

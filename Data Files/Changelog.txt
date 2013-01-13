@@ -295,3 +295,4 @@ Revision	Log Message
 289		Starting agents for ROTW countries
 290		Fix for change 288
 291		Cores for ROTW provinces
+292		Natives

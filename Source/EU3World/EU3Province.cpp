@@ -118,6 +118,36 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 
 	history.clear();
 
+	vector<Object*> nativeSizeObj = obj->getValue("native_size");
+	if (nativeSizeObj.size() > 0)
+	{
+		nativeSize = atof(nativeSizeObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		nativeSize = 0.0f;
+	}
+
+	vector<Object*> nativeFerocityObj = obj->getValue("native_ferocity");
+	if (nativeFerocityObj.size() > 0)
+	{
+		nativeFerocity = atoi(nativeFerocityObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		nativeFerocity = 0;
+	}
+
+	vector<Object*> nativeHostilityObj = obj->getValue("native_hostileness");
+	if (nativeHostilityObj.size() > 0)
+	{
+		nativeHostility = atoi(nativeHostilityObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		nativeHostility = 0;
+	}
+
 	// update based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
@@ -300,6 +330,18 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\tmanpower=%d\n", manpower);
 	}
+	if (nativeSize > 0.0)
+	{
+		fprintf(output, "\tnative_size=%f\n", nativeSize);
+	}
+	if (nativeFerocity > 0)
+	{
+		fprintf(output, "\tnative_ferocity=%d\n", nativeFerocity);
+	}
+	if (nativeHostility > 0)
+	{
+		fprintf(output, "\tnative_hostileness=%d\n", nativeHostility);
+	}
 	fprintf(output, "\thistory=\n");
 	fprintf(output, "\t{\n");
 	for (vector<string>::iterator itr = coreTags.begin(); itr != coreTags.end(); ++itr)
@@ -345,6 +387,18 @@ void EU3Province::output(FILE* output)
 	if (inHRE)
 	{
 		fprintf(output, "\t\thre=yes\n");
+	}
+	if (nativeSize > 0.0)
+	{
+		fprintf(output, "\t\tnative_size=%f\n", nativeSize);
+	}
+	if (nativeFerocity > 0)
+	{
+		fprintf(output, "\t\tnative_ferocity=%d\n", nativeFerocity);
+	}
+	if (nativeHostility > 0)
+	{
+		fprintf(output, "\t\tnative_hostileness=%d\n", nativeHostility);
 	}
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
