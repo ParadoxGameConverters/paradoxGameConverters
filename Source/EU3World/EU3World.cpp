@@ -241,6 +241,7 @@ void EU3World::output(FILE* output)
 	fprintf(output, "\n");
 	fprintf(output, "\t}\n");
 	fprintf(output, "}\n");
+	fprintf(output, "start_date=\"%s\"\n", startDate.toString().c_str());
 	outputTempHeader2(output);
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{

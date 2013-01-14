@@ -531,13 +531,21 @@ void EU3Country::output(FILE* output)
 		history[i]->output(output);
 	}
 	fprintf(output, "\t}\n");
-	if (government != "")
+	if (capital != 0)
 	{
-		fprintf(output, "\tgovernment=%s\n", government.c_str());
+		fprintf(output, "\tcapital=%d\n", capital);
 	}
-	else
+	if (primaryCulture != "")
 	{
-		fprintf(output, "\tgovernment=tribal_despotism\n");
+		fprintf(output, "\tprimary_culture=%s\n", primaryCulture.c_str());
+	}
+	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	{
+		fprintf(output, "\taccepted_culture=%s\n", acceptedCultures[i].c_str());
+	}
+	if (religion != "")
+	{
+		fprintf(output, "\treligion=%s\n", religion.c_str());
 	}
 	if (techGroup != "")
 	{
@@ -555,22 +563,6 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t\tproduction_tech={%d %f}\n", (int)productionTech, productionTechInvestment);
 	fprintf(output, "\t\tgovernment_tech={%d %f}\n", (int)governmentTech, governmentTechInvestment);
 	fprintf(output, "\t}\n");
-	if (primaryCulture != "")
-	{
-		fprintf(output, "\tprimary_culture=%s\n", primaryCulture.c_str());
-	}
-	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
-	{
-		fprintf(output, "\taccepted_culture=%s\n", acceptedCultures[i].c_str());
-	}
-	if (religion != "")
-	{
-		fprintf(output, "\treligion=%s\n", religion.c_str());
-	}
-	if (capital != 0)
-	{
-		fprintf(output, "\tcapital=%d\n", capital);
-	}
 	fprintf(output, "\tprecise_prestige=%f\n", prestige);
 	fprintf(output, "\tstability=%f\n", (double)stability);
 	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
@@ -628,6 +620,14 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t}\n");
 	fprintf(output, "\tbadboy=0.000\n");
 	fprintf(output, "\tlegitimacy=1.000\n");
+	if (government != "")
+	{
+		fprintf(output, "\tgovernment=%s\n", government.c_str());
+	}
+	else
+	{
+		fprintf(output, "\tgovernment=tribal_despotism\n");
+	}
 	fprintf(output, "\tcolonists=%f\n", colonists);
 	fprintf(output, "\tmerchants=%f\n", merchants);
 	fprintf(output, "\tmissionaries=%f\n", missionaries);
