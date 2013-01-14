@@ -293,10 +293,6 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\tcore=\"%s\"\n", itr->c_str());
 	}
-	if (inHRE)
-	{
-		fprintf(output, "\thre=yes\n");
-	}
 	if (culture != "")
 	{
 		fprintf(output, "\tculture=%s\n", culture.c_str());
@@ -309,26 +305,33 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\tcapital=\"%s\"\n", capital.c_str());
 	}
+	if (population != 0.0)
+	{
+		fprintf(output, "\tcitysize=%f\n", population);
+	}
 	if ((ownerStr != "") || (owner != NULL))
 	{
 		fprintf(output, "\tgarrison=1000.000\n");
-		fprintf(output, "\tfort1=yes\n");
 	}
 	if (baseTax != 0.0)
 	{
 		fprintf(output, "\tbase_tax=%f\n", baseTax);
 	}
+	if (manpower != 0)
+	{
+		fprintf(output, "\tmanpower=%d\n", manpower);
+	}
+	if (inHRE)
+	{
+		fprintf(output, "\thre=yes\n");
+	}
 	if (tradeGood != "")
 	{
 		fprintf(output, "\ttrade_goods=%s\n", tradeGood.c_str());
 	}
-	if (population != 0.0)
+	if ((ownerStr != "") || (owner != NULL))
 	{
-		fprintf(output, "\tcitysize=%f\n", population);
-	}
-	if (manpower != 0)
-	{
-		fprintf(output, "\tmanpower=%d\n", manpower);
+		fprintf(output, "\tfort1=yes\n");
 	}
 	if (nativeSize > 0.0)
 	{
@@ -400,6 +403,7 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\t\tnative_hostileness=%d\n", nativeHostility);
 	}
+	std::sort(history.begin(), history.end(), [](EU3History* a, EU3History* b) { return a->when < b->when; } ); // by date
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
