@@ -736,13 +736,9 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 					rulerTitle = rulerTitle->getLiege();
 				}
 				const CK2Character* ruler = rulerTitle->getLastHolder();
-				if ( ruler->getReligion() != topReligion )
+				if ( ruler->getReligion()->isHereticTo(topReligion) )
 				{
-					// FIXME: this should probably check for actual heresy (orthodox ruler in a catholic realm is not heresy)
-					if ( religionMap.find(ruler->getReligion()->getName())->second == religion )
-					{
-						modifiers.push_back("heresy");
-					}
+					modifiers.push_back("heresy");
 				}
 			}
 		}
