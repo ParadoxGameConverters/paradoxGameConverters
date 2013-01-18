@@ -303,3 +303,4 @@ Revision	Log Message
 297		More output order matching.
 298		Still assign a primary title, even if the save doesn't define one
 299		Output the HRE Emperor
+300		Rename CK2+ readme file
