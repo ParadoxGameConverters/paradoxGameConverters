@@ -1328,6 +1328,7 @@ void EU3Country::eatVassal(EU3Country* vassal)
 void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings)
 {
 	src								= convertedCountry->src;
+	src->setDstCountry(this);
 	advisors							= convertedCountry->advisors;
 	learningScore					= convertedCountry->learningScore;
 

@@ -38,6 +38,7 @@ class CK2World
 		date							getEndDate()				const { return endDate; };
 		map<string, CK2Title*>	getIndependentTitles()	const { return independentTitles; };
 		map<string, CK2Title*>	getAllTitles()				const { return titles; };
+		CK2Title*					getHRETitle()				const { return hreTitle; };
 		map<int, CK2Province*>	getProvinces()				const { return provinces; };
 
 		vector<double>				getAverageTechLevels() const;
@@ -53,6 +54,7 @@ class CK2World
 		map<int, CK2Trait*>		traits;
 		map<string, CK2Title*>	potentialTitles;
 		map<string, CK2Title*>	titles;
+		CK2Title*					hreTitle;
 		map<int, CK2Province*>	provinces;
 		map<string, CK2Barony*>	baronies;
 		vector<CK2War*>			wars;

@@ -70,6 +70,7 @@ class EU3World
 		int	matchTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings);
 		void	determineMapSpread();
 
+		CK2World*							srcWorld;
 		int									options[OPTIONS_END];
 		date									startDate;
 		EU3Tech*								techData;
@@ -80,6 +81,7 @@ class EU3World
 		vector<EU3Advisor*>				advisors;
 		map< string, vector<string> >	mapSpreadStrings;
 		EU3Diplomacy*						diplomacy;
+		EU3Country*							hreEmperor;
 
 		EU3Country*				japaneseEmperor;
 		vector<EU3Country*>	daimyos;

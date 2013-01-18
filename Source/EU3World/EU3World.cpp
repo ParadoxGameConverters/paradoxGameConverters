@@ -24,10 +24,11 @@ using namespace std;
 
 
 
-EU3World::EU3World(CK2World* srcWorld, EU3Tech* _techData)
+EU3World::EU3World(CK2World* _srcWorld, EU3Tech* _techData)
 {
-	startDate = srcWorld->getEndDate();
-	techData = _techData;
+	srcWorld		= _srcWorld;
+	startDate	= srcWorld->getEndDate();
+	techData		= _techData;
 
 	provinces.clear();
 	countries.clear();
@@ -243,6 +244,9 @@ void EU3World::output(FILE* output)
 	fprintf(output, "}\n");
 	fprintf(output, "start_date=\"%s\"\n", startDate.toString().c_str());
 	outputTempHeader2(output);
+	fprintf(output, "emperor=\"%s\"\n", hreEmperor->getTag().c_str());
+	fprintf(output, "imperial_influence=20.000\n");
+	fprintf(output, "internal_hre_cb=yes\n");
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		if (i->second != NULL)
@@ -1004,6 +1008,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 	}
 
 	determineMapSpread();
+	hreEmperor = srcWorld->getHRETitle()->getHolder()->getPrimaryTitle()->getDstCountry();
 }
 
 

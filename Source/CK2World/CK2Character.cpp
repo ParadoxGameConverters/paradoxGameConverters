@@ -765,7 +765,7 @@ void CK2Character::mergeTitles(bool useInheritance)
 	}
 }
 
-#pragma optimize("",off)
+
 void CK2Character::setPrimaryTitle(const map<string, CK2Title*>& titleMap)
 {
 	// find the title
@@ -826,7 +826,7 @@ void CK2Character::setPrimaryTitle(const map<string, CK2Title*>& titleMap)
 		log("Warning: %s %s does not have a primary title.\n", name.c_str(), dynasty->getName().c_str());
 	}
 }
-#pragma optimize("",on)
+
 
 vector<CK2Character*> CK2Character::getCloseRelations() const
 {

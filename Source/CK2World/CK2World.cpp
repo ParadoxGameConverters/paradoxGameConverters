@@ -177,7 +177,7 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 
 	// create tree of vassal/liege relationships
 	printf("\tRelating vassals and lieges\n");
-	string hreTitle = Configuration::getHRETitle();
+	string hreTitleString = Configuration::getHRETitle();
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)
 	{
 		string liege = i->second->getLiegeString();
@@ -185,11 +185,15 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		{
 			continue;
 		}
+		if (i->first == hreTitleString)
+		{
+			hreTitle = i->second;
+		}
 		if (liege == "")
 		{
 			independentTitles.insert(make_pair(i->first, i->second));
 		}
-		else if (liege == hreTitle)
+		else if (liege == hreTitleString)
 		{
 			i->second->addToHRE();
 			independentTitles.insert((make_pair(i->first, i->second)));

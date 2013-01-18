@@ -299,4 +299,7 @@ Revision	Log Message
 293		Trailing slash in CK2 and EU3 locations now acceptable
 294		Avoid some potential crashes from CK2 installs that don't match the save version
 295		Use the global heresy check to determine whether the province heresy flag should be set.
-296		Still assign a primary title, even if the save doesn't define one
+296		Make province output match EU3 save output more closely.
+297		More output order matching.
+298		Still assign a primary title, even if the save doesn't define one
+299		Output the HRE Emperor
