@@ -765,12 +765,12 @@ void CK2Character::mergeTitles(bool useInheritance)
 	}
 }
 
-
+#pragma optimize("",off)
 void CK2Character::setPrimaryTitle(const map<string, CK2Title*>& titleMap)
 {
 	// find the title
 	map<string, CK2Title*>::const_iterator itr = titleMap.find(primaryTitleString);
-	if (itr != titleMap.end())
+	if ((itr != titleMap.end()) && (itr->first != Configuration::getHRETitle()))
 	{
 		primaryTitle = itr->second;
 
@@ -778,8 +778,55 @@ void CK2Character::setPrimaryTitle(const map<string, CK2Title*>& titleMap)
 		if (primaryTitle->getHolder() != this)
 			log("Error: primary title of %s is %s, but s/he does not hold it.\n", getName().c_str(), primaryTitleString.c_str());
 	}
+	else
+	{
+		for (vector<CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+		{
+			if (((*titleItr)->getTitleString().substr(0,2) == "e_") && ((*titleItr)->getTitleString() != Configuration::getHRETitle()))
+			{
+				primaryTitle = *titleItr;
+				return;
+			}
+		}
+		for (vector<CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+		{
+			if (((*titleItr)->getTitleString().substr(0,2) == "k_") && ((*titleItr)->getTitleString() != Configuration::getHRETitle()))
+			{
+				primaryTitle = *titleItr;
+				return;
+			}
+		}
+		for (vector<CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+		{
+			if (((*titleItr)->getTitleString().substr(0,2) == "d_") && ((*titleItr)->getTitleString() != Configuration::getHRETitle()))
+			{
+				primaryTitle = *titleItr;
+				return;
+			}
+		}
+		for (vector<CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+		{
+			if (((*titleItr)->getTitleString().substr(0,2) == "c_") && ((*titleItr)->getTitleString() != Configuration::getHRETitle()))
+			{
+				primaryTitle = *titleItr;
+				return;
+			}
+		}
+		for (vector<CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+		{
+			if (((*titleItr)->getTitleString().substr(0,2) == "b_") && ((*titleItr)->getTitleString() != Configuration::getHRETitle()))
+			{
+				primaryTitle = *titleItr;
+				return;
+			}
+		}
+	}
+	if ((primaryTitle == NULL) && (titles.size() > 0))
+	{
+		log("Warning: %s %s does not have a primary title.\n", name.c_str(), dynasty->getName().c_str());
+	}
 }
-
+#pragma optimize("",on)
 
 vector<CK2Character*> CK2Character::getCloseRelations() const
 {
