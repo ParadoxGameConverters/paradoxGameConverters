@@ -39,7 +39,7 @@ class EU3Country
 		void						determineTechInvestment(const EU3Tech* techData, date startDate);
 		void						determineStartingAgents();
 		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy);
-		void						eatVassals();
+		vector<EU3Country*>	eatVassals();
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 

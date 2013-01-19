@@ -1127,17 +1127,17 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			continue;
 		}
 
-		int vassalScore = score;
-
-		CK2Character* liege	= this->getSrcCountry()->getHolder();
-		CK2Character* vassal	= vassals[i]->getSrcCountry()->getHolder();
-		vassalScore += vassal->getOpinionOf(liege);
-
-		vector<EU3Country*> newlyAbsorbed = vassals[i]->convertVassals(vassalScore + 1000, diplomacy);
+		// If held by another ruler, a vassal should have no sub-vassals
+		vector<EU3Country*> newlyAbsorbed = vassals[i]->eatVassals();
 		for (vector<EU3Country*>::iterator newItr = newlyAbsorbed.begin(); newItr != newlyAbsorbed.end(); newItr++)
 		{
 			absorbedCountries.push_back(*newItr);
 		}
+
+		int vassalScore = score;
+		CK2Character* liege	= this->getSrcCountry()->getHolder();
+		CK2Character* vassal	= vassals[i]->getSrcCountry()->getHolder();
+		vassalScore += vassal->getOpinionOf(liege);
 
 		if ((vassalScore >= 5050) && (vassals[i]->getAbsorbScore() < 5050))
 		{
@@ -1270,11 +1270,16 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 }
 
 
-void EU3Country::eatVassals()
+vector<EU3Country*> EU3Country::eatVassals()
 {
+	vector<EU3Country*> absorbedCountries = vassals;
 	for (vector<EU3Country*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
 	{
-		(*vassalItr)->eatVassals();
+		vector<EU3Country*> newAbsorbedCountries = (*vassalItr)->eatVassals();
+		for (vector<EU3Country*>::iterator absorbedItr = newAbsorbedCountries.begin(); absorbedItr != newAbsorbedCountries.end();  absorbedItr++)
+		{
+			absorbedCountries.push_back(*absorbedItr);
+		}
 		for (vector<EU3Province*>::iterator provinceItr = (*vassalItr)->provinces.begin(); provinceItr != (*vassalItr)->provinces.end(); provinceItr++)
 		{
 			provinces.push_back(*provinceItr);
@@ -1293,6 +1298,8 @@ void EU3Country::eatVassals()
 		}
 	}
 	vassals.clear();
+
+	return absorbedCountries;
 }
 
 

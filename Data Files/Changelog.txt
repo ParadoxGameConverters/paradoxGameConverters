@@ -305,3 +305,4 @@ Revision	Log Message
 299		Output the HRE Emperor
 300		Rename CK2+ readme file
 301		Log when government gets default conversion
+302		EU3 vassals never have vassals
