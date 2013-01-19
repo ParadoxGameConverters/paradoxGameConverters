@@ -1054,6 +1054,20 @@ void EU3Country::determineStartingAgents()
 
 vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* diplomacy)
 {
+	if (vassals.size() == 0)
+	{
+		vector<EU3Country*> absorbedCountries;
+		return absorbedCountries;
+	}
+
+	// Am I a junior in a PU?
+	if (src->isIndependent() && (src != src->getHolder()->getPrimaryTitle()))
+	{
+		log("\t%s is completely absorbing all vassals (junior in PU).\n", src->getTitleString().c_str());
+		vector<EU3Country*> absorbedCountries = eatVassals();
+		return absorbedCountries;
+	}
+
 	int score = initialScore;
 	string CA = src->getCA();
 	if ( CA == "centralization_0")
