@@ -839,6 +839,7 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	else
 	{
 		government = "tribal_democracy";
+		log("\tWarning: was not able to assign a government for %s\n", src->getTitleString().c_str());
 	}
 
 	CK2Character* holder = src->getHolder();

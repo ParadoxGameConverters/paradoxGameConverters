@@ -304,3 +304,4 @@ Revision	Log Message
 298		Still assign a primary title, even if the save doesn't define one
 299		Output the HRE Emperor
 300		Rename CK2+ readme file
+301		Log when government gets default conversion

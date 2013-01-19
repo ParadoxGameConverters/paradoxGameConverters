@@ -186,38 +186,38 @@ EU3Ruler::EU3Ruler(CK2Character* src)
 	if (diplomacy < 3)
 	{
 		int* stats = src->getStats();
-		log("%s had a lower diplomacy than 3 (%d) %d %d %d %d %d.\n", name.c_str(), diplomacy, stats[0], stats[1], stats[2], stats[3], stats[4]);
+		log("\t%s had a lower diplomacy than 3 (%d) %d %d %d %d %d.\n", name.c_str(), diplomacy, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		diplomacy = 3;
 	}
 	if (military < 3)
 	{
 		int* stats = src->getStats();
-		log("%s had a lower military than 3 (%d) %d %d %d %d %d.\n", name.c_str(), military, stats[0], stats[1], stats[2], stats[3], stats[4]);
+		log("\t%s had a lower military than 3 (%d) %d %d %d %d %d.\n", name.c_str(), military, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		military = 3;
 	}
 	if (administration < 3)
 	{
 		int* stats = src->getStats();
-		log("%s had a lower administration than 3 (%d) %d %d %d %d %d.\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
+		log("\t%s had a lower administration than 3 (%d) %d %d %d %d %d.\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		administration = 3;
 	}
 
 	if (diplomacy > 9)
 	{
 		int* stats = src->getStats();
-		log("%s had a higher diplomacy than 9 (%d) %d %d %d %d %d.\n", name.c_str(), diplomacy, stats[0], stats[1], stats[2], stats[3], stats[4]);
+		log("\t%s had a higher diplomacy than 9 (%d) %d %d %d %d %d.\n", name.c_str(), diplomacy, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		diplomacy = 9;
 	}
 	if (military > 9)
 	{
 		int* stats = src->getStats();
-		log("%s had a higher military than 9. (%d) %d %d %d %d %d.\n", name.c_str(), military, stats[0], stats[1], stats[2], stats[3], stats[4]);
+		log("\t%s had a higher military than 9. (%d) %d %d %d %d %d.\n", name.c_str(), military, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		military = 9;
 	}
 	if (administration > 9)
 	{
 		int* stats = src->getStats();
-		log("%s had a higher administration than 9 (%d) %d %d %d %d %d.\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
+		log("\t%s had a higher administration than 9 (%d) %d %d %d %d %d.\n", name.c_str(), administration, stats[0], stats[1], stats[2], stats[3], stats[4]);
 		administration = 9;
 	}
 }
