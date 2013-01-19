@@ -307,3 +307,4 @@ Revision	Log Message
 301		Log when government gets default conversion
 302		EU3 vassals never have vassals
 303		Juniors in a PU never have vassals
+304		Update readme for converter mod
