@@ -308,3 +308,5 @@ Revision	Log Message
 302		EU3 vassals never have vassals
 303		Juniors in a PU never have vassals
 304		Update readme for converter mod
+305		Added tag 0.6 Release for changeset 9489bf5e37c5
+306		Incorporate years_ruled opinion modifier
