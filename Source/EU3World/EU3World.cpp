@@ -1008,7 +1008,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 	}
 
 	determineMapSpread();
-	hreEmperor = srcWorld->getHRETitle()->getHolder()->getPrimaryTitle()->getDstCountry();
+	convertHRE();
 }
 
 
@@ -1323,3 +1323,25 @@ void EU3World::determineMapSpread()
 		provItr->second->setDiscoverers(mapSpreadStrings);
 	}
 }
+
+#pragma optimize("",off)
+void EU3World::convertHRE()
+{
+	hreEmperor = srcWorld->getHRETitle()->getHolder()->getPrimaryTitle()->getDstCountry();
+	map<string, CK2Title*> hreMembers = srcWorld->getHREMembers();
+	vector<CK2Title*> potentialElectors;
+	for (map<string, CK2Title*>::iterator itr = hreMembers.begin(); itr != hreMembers.end(); itr++)
+	{
+		if (itr->second->isIndependent())
+		{
+			potentialElectors.push_back(itr->second);
+		}
+	}
+	sort(potentialElectors.begin(), potentialElectors.end(), [](CK2Title* a, CK2Title* b) { return a->getHolder()->getTotalScore() < b->getHolder()->getTotalScore(); } );
+	
+	for (int electors = 0; electors < 6; electors++)
+	{
+		potentialElectors[electors]->getDstCountry()->setElector(true);
+	}
+}
+#pragma optimize("",on)

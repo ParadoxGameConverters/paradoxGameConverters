@@ -219,6 +219,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		daimyo				= false;
 		japaneseEmperor	= false;
 	}
+	elector = false;
 
 	// update items based on history
 	vector<Object*> objectList = obj->getLeaves();
@@ -401,6 +402,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 
 	daimyo				= false;
 	japaneseEmperor	= false;
+	elector				= false;
 
 	// todo: replace with something better
 	infantry = "western_medieval_infantry";
@@ -563,6 +565,11 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t\tproduction_tech={%d %f}\n", (int)productionTech, productionTechInvestment);
 	fprintf(output, "\t\tgovernment_tech={%d %f}\n", (int)governmentTech, governmentTechInvestment);
 	fprintf(output, "\t}\n");
+	if (elector)
+	{
+		fprintf(output, "elector=yes\n");
+		fprintf(output, "last_hre_vote=\"1.1.1\"\n");
+	}
 	fprintf(output, "\tprecise_prestige=%f\n", prestige);
 	fprintf(output, "\tstability=%f\n", (double)stability);
 	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);

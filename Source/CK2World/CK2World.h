@@ -40,6 +40,7 @@ class CK2World
 		map<string, CK2Title*>	getAllTitles()				const { return titles; };
 		CK2Title*					getHRETitle()				const { return hreTitle; };
 		map<int, CK2Province*>	getProvinces()				const { return provinces; };
+		map<string, CK2Title*>	getHREMembers()			const { return hreMembers; };
 
 		vector<double>				getAverageTechLevels() const;
 	private:
