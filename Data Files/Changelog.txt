@@ -310,3 +310,5 @@ Revision	Log Message
 304		Update readme for converter mod
 305		Added tag 0.6 Release for changeset 9489bf5e37c5
 306		Incorporate years_ruled opinion modifier
+
+308		Add Jerusalem1401 save (from 1.09)
