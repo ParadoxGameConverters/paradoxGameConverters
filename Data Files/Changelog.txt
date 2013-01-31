@@ -314,3 +314,4 @@ Revision	Log Message
 
 
 310		Fix crash bug from HRE title being destroyed
+311		Fix resaving bug
