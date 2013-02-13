@@ -384,7 +384,7 @@ double EU3Tech::getGroupModifier(string group) const
 	}
 	else
 	{
-		log("Error: could not find tech group %s\n", group);
+		log("Error: could not find tech group %s\n", group.c_str());
 		return 1.0f;
 	}
 }

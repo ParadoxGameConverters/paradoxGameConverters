@@ -989,6 +989,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 		}
 	}
 
+	convertedCountries.clear();
 	for (vector< tuple<EU3Country*, EU3Country*, string, string, int> >::iterator mappingsItr = mappings.begin(); mappingsItr != mappings.end(); mappingsItr++)
 	{
 		EU3Country* convertedCountry	= get<0>(*mappingsItr);//CK2TitlesPos->second->getDstCountry();
@@ -997,6 +998,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 		string		EU3TagStr			= get<3>(*mappingsItr);
 		int			distance				= get<4>(*mappingsItr);
 		historicalCountry->replaceWith(convertedCountry, provinceMap);
+		convertedCountries.push_back(historicalCountry);
 		if (distance > 0)
 		{
 			log("\tMapped countries %s -> %s (#%d)\n", CK2TitleStr.c_str(), EU3TagStr.c_str(), distance);
@@ -1324,7 +1326,7 @@ void EU3World::determineMapSpread()
 	}
 }
 
-#pragma optimize("",off)
+
 void EU3World::convertHRE()
 {
 	hreEmperor = srcWorld->getHRETitle()->getHolder()->getPrimaryTitle()->getDstCountry();
@@ -1344,4 +1346,3 @@ void EU3World::convertHRE()
 		potentialElectors[electors]->getDstCountry()->setElector(true);
 	}
 }
-#pragma optimize("",on)

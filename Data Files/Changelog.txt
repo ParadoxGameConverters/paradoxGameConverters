@@ -313,3 +313,6 @@ Revision	Log Message
 307		HRE Electors
 
 309		Better warning message when unable to determine culture or religion.
+
+
+312		Process many things only after assigning tags
