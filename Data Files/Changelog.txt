@@ -316,3 +316,4 @@ Revision	Log Message
 
 
 312		Process many things only after assigning tags
+313		Solve some cases of governments not being assigned

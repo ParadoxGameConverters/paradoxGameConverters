@@ -756,7 +756,7 @@ void EU3Country::determineGovernment(double prestigeFactor)
 {
 	string				srcTitleString		= src->getTitleString();
 	CK2Barony*			primaryHolding		= src->getLastHolder()->getPrimaryHolding();
-	CK2Title*			liege					= src->getLiege();
+	CK2Title*			srcLiege				= src->getLiege();
 	vector<CK2Title*>	srcVassals			= src->getVassals();
 	string				highestVassalRank	= "b";
 	for (vector<CK2Title*>::iterator vassalItr = srcVassals.begin(); vassalItr < srcVassals.end(); vassalItr++)
@@ -765,15 +765,15 @@ void EU3Country::determineGovernment(double prestigeFactor)
 		{
 			continue;
 		}
-		if ((*vassalItr)->getTitleString().substr(0,2) == "k_")
+		if ((srcTitleString.substr(0,2) != "k_") && (*vassalItr)->getTitleString().substr(0,2) == "k_")
 		{
 			highestVassalRank = "k";
 		}
-		else if ( ((*vassalItr)->getTitleString().substr(0,2) == "d_") && (highestVassalRank != "k") )
+		else if ( (srcTitleString.substr(0,2) != "d_") && ((*vassalItr)->getTitleString().substr(0,2) == "d_") && (highestVassalRank != "k") )
 		{
 			highestVassalRank = "d";
 		}
-		else if ( ((*vassalItr)->getTitleString().substr(0,2) == "c_") && ((highestVassalRank != "k") || (highestVassalRank != "d")) )
+		else if ( (srcTitleString.substr(0,2) != "c_") && ((*vassalItr)->getTitleString().substr(0,2) == "c_") && ((highestVassalRank != "k") || (highestVassalRank != "d")) )
 		{
 			highestVassalRank = "c";
 		}
@@ -821,11 +821,15 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "feudal_monarchy";
 	}
-	else if (  (liege != NULL) && ( (liege->getTitleString() == "e_golden_horde") || (liege->getTitleString() == "e_il-khanate") || (liege->getTitleString() == "e_timurids"))  )
+	else if (  (srcLiege != NULL) && ( (srcLiege->getTitleString() == "e_golden_horde") || (srcLiege->getTitleString() == "e_il-khanate") || (srcLiege->getTitleString() == "e_timurids"))  )
 	{
 		government = "despotic_monarchy";
 	}
-	else if (liege != NULL)
+	else if (srcLiege != NULL)
+	{
+		government = "feudal_monarchy";
+	}
+	else if (src->isInHRE())
 	{
 		government = "feudal_monarchy";
 	}
