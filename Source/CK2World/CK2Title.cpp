@@ -172,6 +172,19 @@ void CK2Title::determineHeir(map<int, CK2Character*>& characters)
 				}
 			} while (heir == NULL);
 		}
+		else if (successionLaw == "ultimogeniture")
+		{
+			CK2Character* tempHolder = holder;
+			do
+			{
+				heir = tempHolder->getUltimogenitureHeir(genderLaw, holder);
+				tempHolder = tempHolder->getFather();
+				if (tempHolder == NULL)
+				{
+					break;
+				}
+			} while (heir == NULL);
+		}
 		else if (successionLaw == "gavelkind")
 		{
 			if(heir == NULL) // if the heir is not null, we've already set this

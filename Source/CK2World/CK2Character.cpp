@@ -518,6 +518,71 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 }
 
 
+CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character* currentHolder)
+{
+	CK2Character* heir = NULL;
+
+	// unless absolute cognatic, consider male children first
+	for (list<CK2Character*>::reverse_iterator i = children.rbegin(); i != children.rend(); i++)
+	{
+		if (	( (*i) != currentHolder ) &&
+			   ( !(*i)->isDead() ) && !(*i)->isBastard() &&
+				( !(*i)->isFemale() || (genderLaw == "true_cognatic") ) 
+			)
+		{
+			heir = *i;
+		}
+	}
+
+	// unless absolute cognatic, consider only male lines
+	if (heir == NULL)
+	{
+		for (list<CK2Character*>::reverse_iterator i = children.rbegin(); i != children.rend(); i++)
+		{
+			if ( ( (*i) != currentHolder ) &&
+				  ( !(*i)->isBastard() ) &&
+				  ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
+				)
+			{
+				heir = *i;
+			}
+		}
+	}
+
+	// no heirs in male lines, so consider female children
+	if (heir == NULL)
+	{
+		for (list<CK2Character*>::reverse_iterator i = children.rbegin(); i != children.rend(); i++)
+		{
+			if (  ( (*i) != currentHolder ) &&
+				   ( !(*i)->isDead() ) && !(*i)->isBastard() &&
+					( !(*i)->isFemale() || (genderLaw == "cognatic") )
+				)
+			{
+				heir = *i;
+			}
+		}
+	}
+
+	// no heirs in male lines, so consider female lines
+	if (heir == NULL)
+	{
+		for (list<CK2Character*>::reverse_iterator i = children.rbegin(); i != children.rend(); i++)
+		{
+			if (	( (*i) != currentHolder ) &&
+				   ( !(*i)->isDead() ) && (*i)->isBastard() &&
+					( !(*i)->isFemale() || (genderLaw == "cognatic") )
+				)
+			{
+				heir = *i;
+			}
+		}
+	}
+
+	return heir;
+}
+
+
 vector<CK2Character*> CK2Character::getPotentialOpenHeirs(string genderLaw, CK2Character* currentHolder)
 {
 	vector<CK2Character*> potentialHeirs;

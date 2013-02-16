@@ -312,3 +312,10 @@ Revision	Log Message
 306		Incorporate years_ruled opinion modifier
 
 308		Add Jerusalem1401 save (from 1.09)
+
+
+
+
+
+
+315		Ultimogeniture succession
