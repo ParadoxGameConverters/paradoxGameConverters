@@ -787,6 +787,10 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "steppe_horde";
 	}
+	else if ( src->getSuccessionLaw() == "patrician_elective")
+	{
+		government = "merchant_republic";
+	}
 	else if ( (primaryHolding != NULL) && (primaryHolding->getType() == "city") && (src->isInHRE()) )
 	{
 		government = "administrative_republic";
@@ -845,12 +849,9 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "despotic_monarchy";
 	}
-	
-
 	else
 	{
-		government = "tribal_democracy";
-		log("\tWarning: was not able to assign a government for %s\n", src->getTitleString().c_str());
+		government = "despotic_monarchy";
 	}
 
 	CK2Character* holder = src->getHolder();
