@@ -26,9 +26,12 @@ CK2World::CK2World()
 	dynasties.clear();
 	characters.clear();
 	traits.clear();
+	potentialTitles.clear();
 	titles.clear();
+	hreTitle = NULL;
 	provinces.clear();
 	baronies.clear();
+	wars.clear();
 }
 
 

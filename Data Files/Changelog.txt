@@ -313,8 +313,8 @@ Revision	Log Message
 307		HRE Electors
 308		Add Jerusalem1401 save (from 1.09)
 309		Better warning message when unable to determine culture or religion.
-
-
+310		Fix crash bug from HRE title being destroyed
+311		Fix resaving bug
 312		Process many things only after assigning tags
 313		Solve some cases of governments not being assigned
 314		More government adjustments
