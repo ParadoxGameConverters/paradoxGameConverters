@@ -196,9 +196,9 @@ void CK2Title::determineHeir(map<int, CK2Character*>& characters)
 		{
 			heir = holder->getDynasty()->getSenoirityHeir(genderLaw);
 		}
-		else if (successionLaw == "feudal_elective")
+		else if ( (successionLaw == "feudal_elective") || (successionLaw == "tanistry") )
 		{
-			heir = getFeudalElectiveHeir(characters);
+			heir = getElectiveHeir(characters);
 		}
 		else if (successionLaw == "turkish_succession")
 		{
@@ -322,7 +322,7 @@ void CK2Title::getCultureWeights(map<string, int>& cultureWeights, const culture
 	}
 }
 
-CK2Character* CK2Title::getFeudalElectiveHeir(map<int, CK2Character*>& characters)
+CK2Character* CK2Title::getElectiveHeir(map<int, CK2Character*>& characters)
 {
 	int nominee = -1;
 	int mostVotes = 0;

@@ -319,3 +319,6 @@ Revision	Log Message
 
 
 315		Ultimogeniture succession
+316		Tanistry succession
+317		Merge in minor features
+318		Merge in bugfixes
