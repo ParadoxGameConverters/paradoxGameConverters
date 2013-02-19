@@ -52,6 +52,7 @@ class EU3Country
 		void		setTag(string _tag)						{ tag = _tag; };
 		void		addAdvisor(EU3Advisor* _advisor)		{ advisors.push_back(_advisor); };
 		void		setRelations(EU3Country* other, int value)	{ relations.insert(make_pair(other, value)); };
+		void		setElector(bool _elector)				{ elector = _elector; };
 
 		CK2Title*				getSrcCountry()			const { return src; };
 		EU3Country*				getLiege()					const { return liege; };
@@ -121,6 +122,7 @@ class EU3Country
 
 		bool						daimyo;
 		bool						japaneseEmperor;
+		bool						elector;
 
 		string					infantry;
 		string					cavalry;
