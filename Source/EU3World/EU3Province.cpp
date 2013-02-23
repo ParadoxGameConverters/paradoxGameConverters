@@ -664,7 +664,6 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	vector<CK2Religion*>	tiedReligions2;
 	if (tie == true)
 	{
-		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
 		{
@@ -693,7 +692,6 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 
 	if (tie == true)
 	{
-		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
 		{
