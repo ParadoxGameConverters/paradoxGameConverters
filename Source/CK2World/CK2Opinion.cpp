@@ -21,6 +21,18 @@ CK2Opinion::CK2Opinion(Object* obj) : value(0), multiplier(1)
 		int raised_days = atoi(obj->getLeaf().c_str());
 		value = -raised_days / 90; // FIXME: there's some other factor here that I don't know.
 	}
+	else if (obj->getKey() == "ruled_years")
+	{
+		int yearsRuled = atoi(obj->getLeaf().c_str());
+		if (yearsRuled < 10)
+		{
+			value = 2 * (10 - yearsRuled); // TODO: legalism decreases this penalty by one year per point
+		}
+		else
+		{
+			value = yearsRuled - 10;
+		}
+	}
 	else // opinion modifier
 	{
 		vector<Object*> modifierObjs = obj->getValue("modifier");
@@ -30,7 +42,7 @@ CK2Opinion::CK2Opinion(Object* obj) : value(0), multiplier(1)
 		}
 		else
 		{
-			log("Error: bad relationship modifier in %s\n", obj->getKey().c_str());
+			log("\tError: bad relationship modifier in %s\n", obj->getKey().c_str());
 		}
 
 		vector<Object*> multObjs = obj->getValue("multiplier");

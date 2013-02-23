@@ -219,6 +219,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		daimyo				= false;
 		japaneseEmperor	= false;
 	}
+	elector = false;
 
 	// update items based on history
 	vector<Object*> objectList = obj->getLeaves();
@@ -401,6 +402,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 
 	daimyo				= false;
 	japaneseEmperor	= false;
+	elector				= false;
 
 	// todo: replace with something better
 	infantry = "western_medieval_infantry";
@@ -563,6 +565,11 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t\tproduction_tech={%d %f}\n", (int)productionTech, productionTechInvestment);
 	fprintf(output, "\t\tgovernment_tech={%d %f}\n", (int)governmentTech, governmentTechInvestment);
 	fprintf(output, "\t}\n");
+	if (elector)
+	{
+		fprintf(output, "elector=yes\n");
+		fprintf(output, "last_hre_vote=\"1.1.1\"\n");
+	}
 	fprintf(output, "\tprecise_prestige=%f\n", prestige);
 	fprintf(output, "\tstability=%f\n", (double)stability);
 	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
@@ -749,7 +756,7 @@ void EU3Country::determineGovernment(double prestigeFactor)
 {
 	string				srcTitleString		= src->getTitleString();
 	CK2Barony*			primaryHolding		= src->getLastHolder()->getPrimaryHolding();
-	CK2Title*			liege					= src->getLiege();
+	CK2Title*			srcLiege				= src->getLiege();
 	vector<CK2Title*>	srcVassals			= src->getVassals();
 	string				highestVassalRank	= "b";
 	for (vector<CK2Title*>::iterator vassalItr = srcVassals.begin(); vassalItr < srcVassals.end(); vassalItr++)
@@ -758,15 +765,15 @@ void EU3Country::determineGovernment(double prestigeFactor)
 		{
 			continue;
 		}
-		if ((*vassalItr)->getTitleString().substr(0,2) == "k_")
+		if ((srcTitleString.substr(0,2) != "k_") && (*vassalItr)->getTitleString().substr(0,2) == "k_")
 		{
 			highestVassalRank = "k";
 		}
-		else if ( ((*vassalItr)->getTitleString().substr(0,2) == "d_") && (highestVassalRank != "k") )
+		else if ( (srcTitleString.substr(0,2) != "d_") && ((*vassalItr)->getTitleString().substr(0,2) == "d_") && (highestVassalRank != "k") )
 		{
 			highestVassalRank = "d";
 		}
-		else if ( ((*vassalItr)->getTitleString().substr(0,2) == "c_") && ((highestVassalRank != "k") || (highestVassalRank != "d")) )
+		else if ( (srcTitleString.substr(0,2) != "c_") && ((*vassalItr)->getTitleString().substr(0,2) == "c_") && ((highestVassalRank != "k") || (highestVassalRank != "d")) )
 		{
 			highestVassalRank = "c";
 		}
@@ -779,6 +786,10 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (src->getLastHolder()->getReligion()->getGroup() != "christian")  )
 	{
 		government = "steppe_horde";
+	}
+	else if ( src->getSuccessionLaw() == "patrician_elective")
+	{
+		government = "merchant_republic";
 	}
 	else if ( (primaryHolding != NULL) && (primaryHolding->getType() == "city") && (src->isInHRE()) )
 	{
@@ -814,11 +825,15 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "feudal_monarchy";
 	}
-	else if (  (liege != NULL) && ( (liege->getTitleString() == "e_golden_horde") || (liege->getTitleString() == "e_il-khanate") || (liege->getTitleString() == "e_timurids"))  )
+	else if (  (srcLiege != NULL) && ( (srcLiege->getTitleString() == "e_golden_horde") || (srcLiege->getTitleString() == "e_il-khanate") || (srcLiege->getTitleString() == "e_timurids"))  )
 	{
 		government = "despotic_monarchy";
 	}
-	else if (liege != NULL)
+	else if (srcLiege != NULL)
+	{
+		government = "feudal_monarchy";
+	}
+	else if (src->isInHRE())
 	{
 		government = "feudal_monarchy";
 	}
@@ -834,12 +849,9 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "despotic_monarchy";
 	}
-	
-
 	else
 	{
-		government = "tribal_democracy";
-		log("\tWarning: was not able to assign a government for %s\n", src->getTitleString().c_str());
+		government = "despotic_monarchy";
 	}
 
 	CK2Character* holder = src->getHolder();

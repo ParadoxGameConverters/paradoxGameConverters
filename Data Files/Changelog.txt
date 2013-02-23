@@ -307,11 +307,18 @@ Revision	Log Message
 301		Log when government gets default conversion
 302		EU3 vassals never have vassals
 303		Juniors in a PU never have vassals
-
-
-
-
-
-
+304		Update readme for converter mod
+305		Added tag 0.6 Release for changeset 9489bf5e37c5
+306		Incorporate years_ruled opinion modifier
+307		HRE Electors
+308		Add Jerusalem1401 save (from 1.09)
+309		Better warning message when unable to determine culture or religion.
 310		Fix crash bug from HRE title being destroyed
 311		Fix resaving bug
+312		Process many things only after assigning tags
+313		Solve some cases of governments not being assigned
+314		More government adjustments
+315		Ultimogeniture succession
+316		Tanistry succession
+317		Merge in minor features
+318		Merge in bugfixes

@@ -460,22 +460,6 @@ int main(int argc, char * argv[])
 	printf("Converting provinces.\n");
 	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap);
 
-	log("Adding accepted cultures.\n");
-	printf("Adding accepted cultures.\n");
-	destWorld.addAcceptedCultures();
-
-	log("Converting tech.\n");
-	printf("Converting tech.\n");
-	destWorld.convertTech(srcWorld);
-
-	log("Converting governments.\n");
-	printf("Converting governments.\n");
-	destWorld.convertGovernments();
-
-	log("Converting economies.\n");
-	printf("Converting economies.\n");
-	destWorld.convertEconomies(EU3CultureGroupMap, tradeGoodMap);
-
 	// Map CK2 nations to EU3 nations
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
@@ -489,6 +473,22 @@ int main(int argc, char * argv[])
 	log("Mapping CK2 nations to EU3 nations.\n");
 	printf("Mapping CK2 nations to EU3 nations.\n");
 	destWorld.assignTags(obj, blockedNations, provinceMap);
+
+	log("Adding accepted cultures.\n");
+	printf("Adding accepted cultures.\n");
+	destWorld.addAcceptedCultures();
+	
+	log("Converting economies.\n");
+	printf("Converting economies.\n");
+	destWorld.convertEconomies(EU3CultureGroupMap, tradeGoodMap);
+
+	log("Converting tech.\n");
+	printf("Converting tech.\n");
+	destWorld.convertTech(srcWorld);
+
+	log("Converting governments.\n");
+	printf("Converting governments.\n");
+	destWorld.convertGovernments();
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");
