@@ -657,7 +657,7 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\tgalley=\"%s\"\n", galley.c_str());
 	}
-	if(infantry != "")
+	if(transport != "")
 	{
 		fprintf(output, "\ttransport=\"%s\"\n", transport.c_str());
 	}

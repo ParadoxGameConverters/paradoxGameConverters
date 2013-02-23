@@ -9,3 +9,6 @@ Instructions:
 Version 0.1
 	- Added new religions for the old world
 	- Added new cultures for the old world
+
+Version 0.2
+	- Brought up to date with 1.09

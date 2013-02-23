@@ -217,8 +217,8 @@ EU3World::EU3World(CK2World* _srcWorld, EU3Tech* _techData)
 		options[LUCKY_NATIONS] = 2;
 	}
 
-	diplomacy = new EU3Diplomacy();
-
+	diplomacy			= new EU3Diplomacy();
+	hreEmperor			= NULL;
 	japaneseEmperor	= NULL;
 	daimyos.clear();
 	shogun				= NULL;
@@ -244,7 +244,10 @@ void EU3World::output(FILE* output)
 	fprintf(output, "}\n");
 	fprintf(output, "start_date=\"%s\"\n", startDate.toString().c_str());
 	outputTempHeader2(output);
-	fprintf(output, "emperor=\"%s\"\n", hreEmperor->getTag().c_str());
+	if (hreEmperor != NULL)
+	{
+		fprintf(output, "emperor=\"%s\"\n", hreEmperor->getTag().c_str());
+	}
 	fprintf(output, "imperial_influence=20.000\n");
 	fprintf(output, "internal_hre_cb=yes\n");
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)

@@ -47,6 +47,7 @@ class CK2Character
 		void							setStateStats();
 
 		CK2Character*				getPrimogenitureHeir(string, CK2Character*);
+		CK2Character*				getUltimogenitureHeir(string, CK2Character*);
 		vector<CK2Character*>	getPotentialOpenHeirs(string, CK2Character*);
 
 		void							mergeTitles(bool useInheritance);

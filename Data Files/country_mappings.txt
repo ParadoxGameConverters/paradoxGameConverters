@@ -85,6 +85,12 @@ link = { CK2 = k_brittany EU3 = BRI } # Brittany
 link = { CK2 = k_leon EU3 = CAS } # Leon => Castille ???
 link = { CK2 = k_andalusia EU3 = GRA } # Andalusia => Granada ???
 
+# Merchant republics
+link = { CK2 = k_genoa EU3 = GEN } # Genoa
+link = { CK2 = k_hansa EU3 = HSA } # The Hansa
+link = { CK2 = k_pisa EU3 = PIS } # Pisa
+link = { CK2 = k_venice EU3 = VEN } # Venice
+
 # Eastern and African Kingdoms
 link = { CK2 = k_georgia EU3 = GEO } # Georgia
 link = { CK2 = k_persia EU3 = PER } # Persia
@@ -115,7 +121,6 @@ link = { CK2 = k_ottoman EU3 = TUR } # Ottomans
 link = { CK2 = k_saruhan EU3 = SRU } # Saruhan 
 link = { CK2 = k_spanish_galicia EU3 = GAL } # Galicia
 link = { CK2 = k_trebizond EU3 = TRE } # Trebizond
-link = { CK2 = k_venice EU3 = VEN } # Venice
 
 link = { CK2 = k_cyprus EU3 = CYP } # Cyprus
 link = { CK2 = k_naples EU3 = NAP } # Naples
@@ -250,6 +255,11 @@ link = { CK2 = d_mamluks EU3 = MAM } # The Mamluks
 link = { CK2 = d_krakow EU3 = KRA } # Krakow
 link = { CK2 = d_milano EU3 = MLO } # Milano
 link = { CK2 = d_swiss EU3 = SWI } # Switzerland
+link = { CK2 = d_catalonia EU3 = CAT } # Catalonia => Catalunya
+
+# Merchant Republics
+link = { CK2 = d_hansa EU3 = HSA } # Hansa
+link = { CK2 = d_gotland EU3 = GOT } # Gotland
 
 ##Counties
 #European Counties

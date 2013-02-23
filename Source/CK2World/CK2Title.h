@@ -35,7 +35,7 @@ class CK2Title
 
 		string					getTitleString()		const { return titleString; };
 		CK2Character*			getHolder()				const { return holder; };
-		CK2Character*			getLastHolder()			const;
+		CK2Character*			getLastHolder()		const;
 		CK2Character*			getHeir()				const { return heir; };
 		string					getSuccessionLaw()	const { return successionLaw; };
 		string					getCA()					const { return CA; };
@@ -54,13 +54,13 @@ class CK2Title
 		bool						hasUnionWith(CK2Title* other, bool& otherDominant /* out */) const;
 		bool						hasRMWith(CK2Title* other) const;
 		bool						hasAllianceWith(CK2Title* other) const;
-		int							getRelationsWith(CK2Title* other) const;
+		int						getRelationsWith(CK2Title* other) const;
 
 	private:
 		void								setDeJureLiege(CK2Title* _deJureLiege);
 		void								addVassal(CK2Title*);
 		void								removeVassal(CK2Title*);
-		CK2Character*					getFeudalElectiveHeir(map<int, CK2Character*>&);
+		CK2Character*					getElectiveHeir(map<int, CK2Character*>&);
 		CK2Character*					getTurkishSuccessionHeir();
 
 		string							titleString;
