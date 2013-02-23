@@ -152,8 +152,12 @@ CK2Building::CK2Building(Object* obj)
 }
 
 
-CK2BuildingFactory::CK2BuildingFactory()
+map<string, const CK2Building*> CK2BuildingFactory::buildings;
+
+
+CK2BuildingFactory::CK2BuildingFactory(const cultureGroupMapping* _cultureGroupMap)
 {
+	cultureGroupMap = _cultureGroupMap;
 	buildings.clear();
 }
 
@@ -174,7 +178,7 @@ void CK2BuildingFactory::addBuildingTypes(Object* obj)
 }
 
 
-const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder, const cultureGroupMapping& cultureGroupMap) const
+const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Character* baronyHolder) const
 {
 	const CK2Building* returnMe = NULL;
 
@@ -197,7 +201,7 @@ const CK2Building* CK2BuildingFactory::getBuilding(string type, const CK2Charact
 			vector<string> acceptableCultureGroups = itr->second->getAcceptableCultureGroups();
 			for (vector<string>::iterator cultureGroupsItr = acceptableCultureGroups.begin(); cultureGroupsItr < acceptableCultureGroups.end(); cultureGroupsItr++)
 			{
-				if ( *cultureGroupsItr == cultureGroupMap.find(baronyHolder->getCulture())->second )
+				if ( *cultureGroupsItr == cultureGroupMap->find(baronyHolder->getCulture())->second )
 				{
 					returnMe = itr->second;
 					break;

@@ -419,10 +419,14 @@ void CK2Character::setEmployer(map<int, CK2Character*>& characters, map<string, 
 		if (host != NULL)
 		{
 			string hostCapitalString = host->getCapitalString();
-			CK2Barony* homeBarony = baronies[hostCapitalString];
-			if (homeBarony != NULL)
+			map<string, CK2Barony*>::iterator itr = baronies.find(hostCapitalString);
+			if (itr != baronies.end())
 			{
-				locationNum = homeBarony->getProvince()->getNumber();
+				CK2Barony* homeBarony = itr->second;
+				if (homeBarony != NULL)
+				{
+					locationNum = homeBarony->getProvince()->getNumber();
+				}
 			}
 		}
 	}

@@ -12,13 +12,15 @@ class Object;
 class CK2World;
 class CK2Character;
 class CK2History;
+class CK2Barony;
+class CK2BuildingFactory;
 class EU3Country;
 
 class CK2Title
 {
 	public:
 		CK2Title(string _titleString);
-		void	init(Object*, map<int, CK2Character*>&);
+		void	init(Object*, map<int, CK2Character*>&, const CK2BuildingFactory* buildingFactory);
 
 		void						setLiege(CK2Title*);
 		void						addToHRE();
@@ -47,6 +49,7 @@ class CK2Title
 		CK2Title*				getDeJureLiege()		const { return deJureLiege; };
 		bool						isIndependent()		const { return independent; };
 		bool						isInHRE()				const { return inHRE; };
+		bool						isActive()				const { return active; };
 		EU3Country*				getDstCountry()		const { return dstCountry; };
 
 		bool						eatTitle(CK2Title* target, bool checkInheritance);
@@ -77,9 +80,12 @@ class CK2Title
 		vector<CK2Title*>				deJureVassals;
 		string							deJureLiegeString;
 		CK2Title*						deJureLiege;
+		
+		CK2Barony*							settlement;
 
 		bool								independent;
 		bool								inHRE;
+		bool								active;
 
 		EU3Country*						dstCountry;
 };

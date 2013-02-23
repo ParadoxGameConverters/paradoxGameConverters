@@ -5,6 +5,7 @@
 #include "CK2Title.h"
 #include "CK2Dynasty.h"
 #include "CK2History.h"
+#include "CK2Barony.h"
 #include "..\Log.h"
 #include <algorithm>
 #include "..\Configuration.h"
@@ -28,11 +29,13 @@ CK2Title::CK2Title(string _titleString)
 	deJureLiege			= NULL;
 	independent			= true;
 	inHRE					= false;
+	active					= false;
 	dstCountry			= NULL;
+	settlement			= NULL;
 }
 
 
-void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
+void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory)
 {
 	titleString = obj->getKey();
 	holder = NULL;
@@ -115,6 +118,26 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters)
 	if (deJureLiegeString[0] == '"')
 	{
 		deJureLiegeString = deJureLiegeString.substr(1, deJureLiegeString.size() - 2);
+	}
+
+	active = true;
+	vector<Object*> activeObjs = obj->getValue("active");
+	if (activeObjs.size() > 0)
+	{
+		if (activeObjs[0]->getLeaf() == "no")
+			active = false;
+	}
+
+	vector<Object*> settlementObjs = obj->getValue("settlement");
+	if (settlementObjs.size() > 0)
+	{
+		settlement = new CK2Barony(settlementObjs[0], this, NULL, buildingFactory);
+		if (holder != NULL)
+		{
+			holder->addHolding(settlement);
+			if (holder->getPrimaryHolding() == NULL)	// if no other capital, a title holding will work
+				holder->setPrimaryHolding(settlement);
+		}
 	}
 
 	independent = true;

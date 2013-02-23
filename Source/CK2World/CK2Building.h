@@ -45,13 +45,14 @@ class CK2Building
 class CK2BuildingFactory
 {
 	public:
-		CK2BuildingFactory();
+		CK2BuildingFactory(const cultureGroupMapping* _cultureGroupMap);
 		
-		void						addBuildingTypes(Object* obj);
-		const CK2Building*	getBuilding(string type, const CK2Character* baronyHolder, const cultureGroupMapping& cultureGroupMap) const;
+		static void						addBuildingTypes(Object* obj);
+		const CK2Building*	getBuilding(string type, const CK2Character* baronyHolder) const;
 
 	private:
-		map<string, const CK2Building*> buildings;
+		const cultureGroupMapping* cultureGroupMap;
+		static map<string, const CK2Building*> buildings;
 };
 
 

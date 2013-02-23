@@ -9,7 +9,7 @@
 
 
 
-CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory, const cultureGroupMapping& cultureGroupMap)
+CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory)
 {
 	number = atoi( obj->getKey().c_str() );
 
@@ -25,7 +25,7 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2Bu
 				log("Error: baron-level title %s is used in your save, but does not exist in your CK2 install.\n", key.c_str());
 				continue;
 			}
-			CK2Barony* newBarony = new CK2Barony( leaves[i], title->second, this, buildingFactory, cultureGroupMap);
+			CK2Barony* newBarony = new CK2Barony( leaves[i], title->second, this, buildingFactory);
 			if (newBarony->getTitle()->getHolder()->getCapitalString() == newBarony->getTitle()->getTitleString())
 			{
 				newBarony->getTitle()->getHolder()->setCapital(this);
