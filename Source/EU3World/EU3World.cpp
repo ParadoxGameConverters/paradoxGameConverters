@@ -811,6 +811,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 		}
 	}
 
+	log("Highest tech score is %f\n", highestLearningScore);
 	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
 	{
 		CK2Religion* religion = (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
@@ -839,6 +840,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 		{
 			(*countryItr)->setTechGroup("western");
 		}
+		log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), (*countryItr)->getLearningScore(), (*countryItr)->getTechGroup().c_str());
 
 		(*countryItr)->determineTechLevels(avgTechLevels, techData);
 	}

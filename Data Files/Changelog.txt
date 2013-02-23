@@ -322,3 +322,8 @@ Revision	Log Message
 316		Tanistry succession
 317		Merge in minor features
 318		Merge in bugfixes
+319		Added tag 0.6A Release for changeset 480cef6655c2
+320		Map tags for some new 1.09 titles.
+321		Merge main to minor
+322		Merge main to bugfixes
+323		Extra logging for tech group conversion
