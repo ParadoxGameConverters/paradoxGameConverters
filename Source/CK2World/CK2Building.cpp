@@ -158,7 +158,6 @@ map<string, const CK2Building*> CK2BuildingFactory::buildings;
 CK2BuildingFactory::CK2BuildingFactory(const cultureGroupMapping* _cultureGroupMap)
 {
 	cultureGroupMap = _cultureGroupMap;
-	buildings.clear();
 }
 
 
