@@ -32,6 +32,7 @@ CK2Title::CK2Title(string _titleString)
 	active					= false;
 	dstCountry			= NULL;
 	settlement			= NULL;
+	dynamic				= false;
 }
 
 
@@ -126,6 +127,13 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 	{
 		if (activeObjs[0]->getLeaf() == "no")
 			active = false;
+	}
+
+	vector<Object*> dynObjs = obj->getValue("dynamic");
+	if (dynObjs.size() > 0)
+	{
+		if (dynObjs[0]->getLeaf() == "yes")
+			dynamic = true;
 	}
 
 	vector<Object*> settlementObjs = obj->getValue("settlement");

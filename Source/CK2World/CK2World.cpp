@@ -146,11 +146,20 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 			map<string, CK2Title*>::iterator titleItr = potentialTitles.find(key);
 			if (titleItr == potentialTitles.end())
 			{
-				log("\t\tWarning: tried to create title %s, but it is not a potential title.\n", key.c_str());
-				continue;
+				CK2Title* dynTitle = new CK2Title(key);
+				dynTitle->init(leaves[i], characters, buildingFactory);
+				if (!dynTitle->isDynamic())
+				{
+					log("\t\tWarning: tried to create title %s, but it is neither a potential title nor a dynamic title.\n", key.c_str());
+					continue;
+				}
+				titles.insert( make_pair(dynTitle->getTitleString(), dynTitle) );
 			}
-			titleItr->second->init(leaves[i], characters, buildingFactory);
-			titles.insert( make_pair(titleItr->second->getTitleString(), titleItr->second) );
+			else
+			{
+				titleItr->second->init(leaves[i], characters, buildingFactory);
+				titles.insert( make_pair(titleItr->second->getTitleString(), titleItr->second) );
+			}
 		}
 	}
 

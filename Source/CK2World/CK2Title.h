@@ -50,6 +50,7 @@ class CK2Title
 		bool						isIndependent()		const { return independent; };
 		bool						isInHRE()				const { return inHRE; };
 		bool						isActive()				const { return active; };
+		bool						isDynamic()				const { return dynamic; };
 		EU3Country*				getDstCountry()		const { return dstCountry; };
 
 		bool						eatTitle(CK2Title* target, bool checkInheritance);
@@ -86,6 +87,7 @@ class CK2Title
 		bool								independent;
 		bool								inHRE;
 		bool								active;
+		bool								dynamic;
 
 		EU3Country*						dstCountry;
 };
