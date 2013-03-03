@@ -106,6 +106,10 @@ void CK2Barony::determineBaseTaxProxy()
 	{
 		baseTaxProxy += 8.0f;
 	}
+	else if (type == "family_palace")
+	{
+		baseTaxProxy += 10.0f;
+	}
 	else
 	{
 		log("Note! Unhandled barony type %s\n", type.c_str());
@@ -139,6 +143,10 @@ void CK2Barony::determinePopProxy()
 	{
 		popProxy += 8.0f;
 	}
+	else if (type == "family_palace")
+	{
+		popProxy += 10.0f;
+	}
 	else
 	{
 		log("Note! Unhandled barony type %s\n", type.c_str());
@@ -166,7 +174,11 @@ void CK2Barony::determineManpowerProxy()
 	}
 	else if (type == "temple")
 	{
-		manpowerProxy += 125;
+		manpowerProxy += 130;
+	}
+	else if (type == "family_palace")
+	{
+		manpowerProxy += 50;
 	}
 	else
 	{
