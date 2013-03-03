@@ -327,3 +327,12 @@ Revision	Log Message
 321		Merge main to minor
 322		Merge main to bugfixes
 323		Extra logging for tech group conversion
+324		Don't crash if religions tie on multiple criteria.
+325		Read titular settlements and allow them to be a character's primary holding.
+326		Read dynamic titles and their settlements.
+327		Don't erase the buildings from the building map after adding them.
+328		If the title specified for HRETitle doesn't exist, don't try to set up the HRE mechanics.
+329		Add tax/pop/manpower proxies for family palaces (unused, but silences an error).
+		Correct manpower proxy for temples.
+330		Don't generate EU3 supply for the null tradegood.
+331		Merge bugfixes to minor.

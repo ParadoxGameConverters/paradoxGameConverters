@@ -1334,6 +1334,9 @@ void EU3World::determineMapSpread()
 
 void EU3World::convertHRE()
 {
+	if (srcWorld->getHRETitle() == NULL)
+		return;
+
 	hreEmperor = srcWorld->getHRETitle()->getHolder()->getPrimaryTitle()->getDstCountry();
 	map<string, CK2Title*> hreMembers = srcWorld->getHREMembers();
 	vector<CK2Title*> potentialElectors;

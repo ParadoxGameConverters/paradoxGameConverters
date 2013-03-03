@@ -664,7 +664,6 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	vector<CK2Religion*>	tiedReligions2;
 	if (tie == true)
 	{
-		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
 		{
@@ -693,7 +692,6 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 
 	if (tie == true)
 	{
-		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
 		{
@@ -1165,7 +1163,8 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 
 void EU3Province::addSupplyContribution(map<string, double>& goodsSupply)
 {
-	goodsSupply[tradeGood] += supply / 100;
+	if (!tradeGood.empty())
+		goodsSupply[tradeGood] += supply / 100;
 }
 
 
