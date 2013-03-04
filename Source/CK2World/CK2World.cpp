@@ -237,7 +237,14 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 	{
 		if (titleItr->first.substr(0, 1) == "b")
 		{
-			titleItr->second->setLiege(titleItr->second->getDeJureLiege());
+			if (titleItr->second->getDeJureLiege())
+			{
+				titleItr->second->setLiege(titleItr->second->getDeJureLiege());
+			}
+			else
+			{
+				log("Error: barony %s is independent and has no de jure liege.\n", titleItr->first.c_str());
+			}
 		}
 		else
 		{
