@@ -336,3 +336,4 @@ Revision	Log Message
 		Correct manpower proxy for temples.
 330		Don't generate EU3 supply for the null tradegood.
 331		Merge bugfixes to minor.
+332		More province mappings adjustments.
