@@ -337,3 +337,4 @@ Revision	Log Message
 330		Don't generate EU3 supply for the null tradegood.
 331		Merge bugfixes to minor.
 332		More province mappings adjustments.
+333		More province mappings adjustments, Arabian Peninsula and Horn of Africa.
