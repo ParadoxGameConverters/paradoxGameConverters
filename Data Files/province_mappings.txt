@@ -74,18 +74,21 @@ link = { ck2 = 72 eu3 = 238 }	# Essex -> Essex
 link = { ck2 = 32 ck2 = 24 eu3 = 236 }	# Middlesex, Surrey -> London
 # Africa
 link = { ck2 = 871 eu3 = 1206 eu3 = 1099 }	# Busaso -> Majerteen, Socotra
-link = { ck2 = 872 eu3 = 1209 }	# Berbera -> Berbera
-link = { ck2 = 873 eu3 = 1212 }	# Harer -> Zeila
-link = { ck2 = 882 ck2 = 884 eu3 = 1211 }	# Ankober, Antalo -> Harer
-link = { ck2 = 881 eu3 = 1210 }	# Asosa -> Ifat
-link = { ck2 = 880 eu3 = 1213 eu3 = 1223 eu3 = 1225 }	# Sennar -> Shoa, Gojjam, Butana
+link = { ck2 = 872 eu3 = 1209 eu3 = 1208 }	# Berbera -> Berbera, Haud
+link = { ck2 = 873 eu3 = 1211 eu3 = 1212 }	# Harer -> Harer, Zeila
+link = { ck2 = 882 eu3 = 1210 eu3 = 1213 }	# Ankober -> Ifat, Shoa
+link = { ck2 = 884 eu3 = 1214 }	# Antalo -> Awsa
+link = { ck2 = 881 eu3 = 1218 }	# Asosa -> Kefa
+link = { ck2 = 880  eu3 = 1225 }	# Sennar -> Butana
 link = { ck2 = 879 eu3 = 1229 }	# Atbara -> Berber
 link = { ck2 = 792 ck2 = 878 eu3 = 1232 }	# Nubia, Hayya -> Suakin
-link = { ck2 = 877 ck2 = 876 ck2 = 875 eu3 = 1230 }	# Kassala, Akordat, Aksum -> Massawa
+link = { ck2 = 877 eu3 = 1226 }	# Kassala -> Taka
+link = { ck2 = 876 eu3 = 1230 }	# Akordat -> Massawa
+link = { ck2 = 875 eu3 = 1227 }	# Aksum -> Tigre
 link = { ck2 = 874 eu3 = 1215 }	# Tadjoura -> Tajura
-link = { ck2 = 883 eu3 = 1226 eu3 = 1227 eu3 = 1214 }	# Gondar -> Taka, Tigre, Awsa
-link = { ck2 = 885 eu3 = 1224 }	# Matamma -> Gonder
-link = { ck2 = 793 eu3 = 1228 eu3 = 1231 }	# Makuria -> Dongola, Ibrim
+link = { ck2 = 883 eu3 = 1224 }	# Gondar -> Gonder
+link = { ck2 = 885 eu3 = 1223 }	# Matamma -> Gojjam
+link = { ck2 = 793 eu3 = 1228 eu3 = 1231 eu3 = 1234 }	# Makuria -> Dongola, Ibrim, Nubia
 link = { ck2 = 791 ck2 = 794 ck2 = 795 eu3 = 360 }	# Quena, Aswan, Asyut -> Nile
 link = { ck2 = 800 eu3 = 1233 }	# Gizeh -> Kargah
 link = { ck2 = 785 eu3 = 365 }	# Sinai -> Sinai
@@ -110,11 +113,13 @@ link = { ck2 = 832 eu3 = 337 }	# Orania -> Oran
 link = { ck2 = 830 ck2 = 834 eu3 = 336 }	# Lemdiyya, Tlemcen -> Tlemcen
 link = { ck2 = 829 ck2 = 833 ck2 = 835 eu3 = 349 }	# Mzab, Atlas Mnt, Hanyan -> Atlas
 link = { ck2 = 836 eu3 = 335 }	# Snassen -> Melilla
-link = { ck2 = 838 ck2 = 840 ck2 = 837 eu3 = 343 }	# El Rif, Fes, Figuig -> Fez
+link = { ck2 = 838 ck2 = 840 eu3 = 343 }	# El Rif, Fes -> Fez.
+link = { ck2 = 837 eu3 = 346 }	# Figuig -> Figuig
 link = { ck2 = 839 eu3 = 1751 }	# Cebta -> Ceuta
 link = { ck2 = 842 ck2 = 844 eu3 = 342 }	# Infa, Massat -> Toubkhal
 link = { ck2 = 841 eu3 = 334 }	# Tangier -> Tangiers
-link = { ck2 = 845 ck2 = 846 ck2 = 847 eu3 = 345 }	# Anti-Atlas, Taroudant, Tamdoult -> Safi
+link = { ck2 = 845 ck2 = 846 eu3 = 345 }	# Anti-Atlas, Taroudant -> Safi
+link = { ck2 = 847 eu3 = 347 eu3 = 348 }	#Tamdoult -> Ifni, Sus
 link = { ck2 = 849 eu3 = 366 }	# Canarias -> The Canarias
 link = { ck2 = 843 eu3 = 344 }	# Marrakech -> Marrakech
 # link = { ck2 = 909 eu3 = 1795 eu3 = 1794 eu3 = 1793 }	# Sahara Desert -> East Sahara, Central Sahara, El Djouf
