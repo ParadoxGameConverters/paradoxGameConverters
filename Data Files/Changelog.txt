@@ -340,3 +340,5 @@ Revision	Log Message
 334
 335		Initial army conversion
 336		Army position and movement
+337
+338		Properly handle when armies are in provinces that do not map to EU3
