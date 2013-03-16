@@ -58,7 +58,7 @@ class EU3World
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
 		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
 		void	convertDiplomacy();
-		void	convertArmies();
+		void	convertArmies(const inverseProvinceMapping inverseProvinceMap);
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };

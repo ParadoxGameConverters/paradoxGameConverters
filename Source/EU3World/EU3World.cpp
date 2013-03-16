@@ -1082,11 +1082,11 @@ void EU3World::convertDiplomacy()
 }
 
 
-void EU3World::convertArmies()
+void EU3World::convertArmies(const inverseProvinceMapping inverseProvinceMap)
 {
 	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
-		countryItr->second->convertArmies();
+		countryItr->second->convertArmies(inverseProvinceMap);
 	}
 }
 

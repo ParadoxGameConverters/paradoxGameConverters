@@ -20,12 +20,16 @@ class CK2Army
 	public:
 		CK2Army(const Object* obj);
 
-		string					getName()		const { return name; };
-		vector<CK2Subunit*>	getSubunits()	const { return subunits; };
-		int						getLocation()	const { return location; };
+		string					getName()					const { return name; };
+		vector<CK2Subunit*>	getSubunits()				const { return subunits; };
+		double					getMovementProgress()	const { return movementProgress; };
+		vector<int>				getPath()					const { return path; };
+		int						getLocation()				const { return location; };
 	private:
 		string					name;
 		vector<CK2Subunit*>	subunits;
+		double					movementProgress;
+		vector<int>				path;
 		int						location;
 };
 

@@ -500,7 +500,7 @@ int main(int argc, char * argv[])
 
 	log("Converting armies.\n");
 	printf("Converting armies.\n");
-	destWorld.convertArmies();
+	destWorld.convertArmies(inverseProvinceMap);
 
 	// Output results
 	printf("Outputting save.\n");

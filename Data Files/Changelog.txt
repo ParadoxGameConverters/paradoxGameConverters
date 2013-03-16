@@ -339,3 +339,4 @@ Revision	Log Message
 333
 334
 335		Initial army conversion
+336		Army position and movement

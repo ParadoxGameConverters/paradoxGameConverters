@@ -43,7 +43,7 @@ class EU3Country
 		vector<EU3Country*>	eatVassals();
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
-		void						convertArmies();
+		void						convertArmies(inverseProvinceMapping inverseProvinceMap);
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
