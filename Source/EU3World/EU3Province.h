@@ -69,6 +69,7 @@ class EU3Province
 
 		vector<CK2Province*>		srcProvinces;
 		vector<int>					srcProvinceNums;
+		date							startDate;
 
 		int							num;
 		bool							land;
