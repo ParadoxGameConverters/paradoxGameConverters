@@ -148,6 +148,11 @@ public:
 		return getInstance()->id++;
 	}
 
+	static int getArmyID()
+	{
+		return getInstance()->armyId++;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -187,6 +192,7 @@ private:
 	string	lucky_nations;
 
 	int		id;
+	int		armyId;
 };
 
 #endif // CONFIGURATION_H_

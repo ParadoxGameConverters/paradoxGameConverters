@@ -322,3 +322,20 @@ Revision	Log Message
 316		Tanistry succession
 317		Merge in minor features
 318		Merge in bugfixes
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335		Initial army conversion

@@ -498,6 +498,9 @@ int main(int argc, char * argv[])
 	printf("Converting diplomatic relations.\n");
 	destWorld.convertDiplomacy();
 
+	log("Converting armies.\n");
+	printf("Converting armies.\n");
+	destWorld.convertArmies();
 
 	// Output results
 	printf("Outputting save.\n");

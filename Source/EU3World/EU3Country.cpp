@@ -11,6 +11,7 @@
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Techs.h"
 #include "..\CK2World\CK2Religion.h"
+#include "..\CK2World\CK2Army.h"
 #include "EU3Ruler.h"
 #include "EU3Advisor.h"
 #include "EU3History.h"
@@ -18,6 +19,7 @@
 #include "EU3World.h"
 #include "EU3Tech.h"
 #include "EU3Diplomacy.h"
+#include "EU3Army.h"
 #include <fstream>
 using namespace std;
 
@@ -110,6 +112,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	landTechInvestment			= 0.0f;
 	agreements.clear();
 
+	armies.clear();
 	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
 	{
@@ -660,6 +663,10 @@ void EU3Country::output(FILE* output)
 	if(transport != "")
 	{
 		fprintf(output, "\ttransport=\"%s\"\n", transport.c_str());
+	}
+	for (unsigned int i = 0; i < armies.size(); i++)
+	{
+		armies[i]->output(output);
 	}
 	for (map<EU3Country*, int>::const_iterator itr = relations.begin(); itr != relations.end(); ++itr)
 	{
@@ -1455,5 +1462,19 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 	{
 		advisors.push_back(*advisorItr);
 		(*advisorItr)->setHome(this);
+	}
+}
+
+
+void EU3Country::convertArmies()
+{
+	if (src != NULL)
+	{
+		vector<CK2Army*> srcArmies = src->getHolder()->getArmies();
+		for (unsigned int i = 0; i < srcArmies.size(); i++)
+		{
+			EU3Army* newArmy = new EU3Army(srcArmies[i]);
+			armies.push_back(newArmy);
+		}
 	}
 }

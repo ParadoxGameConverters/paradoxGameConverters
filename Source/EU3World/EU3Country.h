@@ -21,6 +21,7 @@ class EU3Tech;
 class EU3Diplomacy;
 struct EU3Agreement;
 class CK2Province;
+class EU3Army;
 
 class EU3Country
 {
@@ -42,6 +43,7 @@ class EU3Country
 		vector<EU3Country*>	eatVassals();
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
+		void						convertArmies();
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
@@ -124,6 +126,7 @@ class EU3Country
 		bool						japaneseEmperor;
 		bool						elector;
 
+		vector<EU3Army*>		armies;
 		string					infantry;
 		string					cavalry;
 		string					bigShip;

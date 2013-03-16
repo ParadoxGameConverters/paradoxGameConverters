@@ -1082,6 +1082,15 @@ void EU3World::convertDiplomacy()
 }
 
 
+void EU3World::convertArmies()
+{
+	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		countryItr->second->convertArmies();
+	}
+}
+
+
 void EU3World::removeUnusedCountries()
 {
 	vector<EU3Country*> newConvertedCountries;
