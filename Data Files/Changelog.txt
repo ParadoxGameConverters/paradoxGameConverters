@@ -342,3 +342,5 @@ Revision	Log Message
 336		Army position and movement
 337
 338		Properly handle when armies are in provinces that do not map to EU3
+339
+340		Proper regiment types and strength

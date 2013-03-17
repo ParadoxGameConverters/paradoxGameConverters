@@ -827,7 +827,7 @@ void CK2Character::mergeTitles(bool useInheritance)
 		}
 
 		// then merge anything that remains
-		for (vector<CK2Title*>::iterator sitr = titles.begin(); sitr != (titles.end() - 1); ++sitr)
+		for (vector<CK2Title*>::iterator sitr = titles.begin(); (sitr != (titles.end() - 1)) && (sitr != titles.end()); ++sitr)
 		{
 			for (vector<CK2Title*>::reverse_iterator titr = titles.rbegin(); (titr+1).base() != sitr; ++titr)
 			{

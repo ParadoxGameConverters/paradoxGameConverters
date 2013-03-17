@@ -1474,7 +1474,10 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap)
 		for (unsigned int i = 0; i < srcArmies.size(); i++)
 		{
 			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap);
-			armies.push_back(newArmy);
+			if (newArmy->getNumRegiments() > 0)
+			{
+				armies.push_back(newArmy);
+			}
 		}
 	}
 }
