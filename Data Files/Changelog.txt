@@ -343,4 +343,5 @@ Revision	Log Message
 337
 338		Properly handle when armies are in provinces that do not map to EU3
 339
-340		Proper regiment types and strength
+340		Proper regiment types and number
+341		Convert army troop strength
