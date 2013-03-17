@@ -341,3 +341,4 @@ Revision	Log Message
 335
 336
 337		No longer lose a bunch of cores on loading
+338		Fix possible crash bug when merging titles
