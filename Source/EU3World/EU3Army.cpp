@@ -34,7 +34,7 @@ void EU3Regiment::output(FILE* output)
 }
 
 
-EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap)
+EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType)
 {
 	id							= Configuration::getArmyID();
 	name						= srcArmy->getName();
@@ -69,7 +69,7 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 	}
 	for (int i = 0; i < numInfantry; i++)
 	{
-		EU3Regiment* newRegiment = new EU3Regiment("western_medieval_infantry", strength);
+		EU3Regiment* newRegiment = new EU3Regiment(infantryType, strength);
 		regiments.push_back(newRegiment);
 	}
 
@@ -83,7 +83,7 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 	}
 	for (int i = 0; i < numCavalry; i++)
 	{
-		EU3Regiment* newRegiment = new EU3Regiment("western_medieval_knights", strength);
+		EU3Regiment* newRegiment = new EU3Regiment(cavalryType, strength);
 		regiments.push_back(newRegiment);
 	}
 	//stagingProvince;

@@ -36,6 +36,7 @@ class EU3Country
 		void						determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices);
 		double					getTradeEffeciency();
 		double					getProductionEffeciency();
+		void						setPreferredUnitType();
 		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
 		void						determineTechInvestment(const EU3Tech* techData, date startDate);
 		void						determineStartingAgents();

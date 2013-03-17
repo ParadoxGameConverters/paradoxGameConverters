@@ -63,7 +63,7 @@ class EU3Regiment // also Ship
 class EU3Army // also Navy
 {
 	public:
-		EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap);
+		EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType);
 
 		int	getNumRegiments()	const { return regiments.size(); };
 

@@ -840,6 +840,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			(*countryItr)->setTechGroup("western");
 		}
 
+		(*countryItr)->setPreferredUnitType();
 		(*countryItr)->determineTechLevels(avgTechLevels, techData);
 	}
 

@@ -928,6 +928,83 @@ double EU3Country::getProductionEffeciency()
 	return PE;
 }
 
+
+void EU3Country::setPreferredUnitType()
+{
+	if(techGroup == "western")
+	{
+		infantry = "western_medieval_infantry";
+		cavalry = "western_medieval_knights";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "eastern")
+	{
+		infantry="eastern_medieval_infantry";
+		cavalry="eastern_knights";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "ottoman")
+	{
+		infantry = "ottoman_yaya";
+		cavalry = "ottoman_musellem";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "muslim")
+	{
+		infantry = "mamluk_archer";
+		cavalry = "muslim_cavalry_archers";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "indian")
+	{
+		infantry = "indian_footsoldier";
+		cavalry = "indian_archers";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "chinese")
+	{
+		infantry = "chinese_longspear";
+		cavalry = "eastern_bow";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "sub_saharan")
+	{
+		infantry = "african_spearmen";
+		cavalry = "";
+		bigShip = "";
+		galley = "";
+		transport = "cog";
+	}
+	else if(techGroup == "new_world")
+	{
+		infantry = "south_american_spearmen";
+		cavalry = "";
+		bigShip = "";
+		galley = "";
+		transport = "";
+	}
+	else if(techGroup == "nomad_group")
+	{
+		infantry = "mongol_bow";
+		cavalry = "mongol_swarm";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+}
+
 void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData)
 {
 	vector<double> techLevels;
@@ -1473,7 +1550,7 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap)
 		vector<CK2Army*> srcArmies = src->getHolder()->getArmies();
 		for (unsigned int i = 0; i < srcArmies.size(); i++)
 		{
-			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap);
+			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap, infantry, cavalry);
 			if (newArmy->getNumRegiments() > 0)
 			{
 				armies.push_back(newArmy);
