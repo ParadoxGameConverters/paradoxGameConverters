@@ -128,6 +128,7 @@ class EU3Country
 		bool						elector;
 
 		vector<EU3Army*>		armies;
+		double					manpower;
 		string					infantry;
 		string					cavalry;
 		string					bigShip;

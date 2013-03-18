@@ -26,6 +26,7 @@ class CK2Barony
 		double			getPopProxy()			const { return popProxy; };
 		double			getManpowerProxy()	const { return manpowerProxy; };
 		double			getTechBonus()			const { return techBonus; };
+		double			getPSE()					const { return PSE; };
 	private:
 		void	determineBaseTaxProxy();
 		void	determinePopProxy();
@@ -42,6 +43,8 @@ class CK2Barony
 		double							popProxy;
 		double							manpowerProxy;
 		double							techBonus;
+
+		double	PSE;
 };
 
 

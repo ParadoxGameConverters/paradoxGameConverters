@@ -113,6 +113,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	agreements.clear();
 
 	armies.clear();
+	manpower = 0.0F;
 	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
 	{
@@ -644,6 +645,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tspies=%f\n", spies);
 	fprintf(output, "\tdiplomats=%f\n", diplomats);
 	fprintf(output, "\tofficials=%f\n", magistrates);
+	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
 		fprintf(output, "\tinfantry=\"%s\"\n", infantry.c_str());
@@ -1554,6 +1556,19 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap)
 			if (newArmy->getNumRegiments() > 0)
 			{
 				armies.push_back(newArmy);
+			}
+		}
+
+		for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+		{
+			vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+			for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+			{
+				vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+				for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+				{
+					manpower += 0.20 * ((*itr3)->getPSE() / 3000);
+				}
 			}
 		}
 	}

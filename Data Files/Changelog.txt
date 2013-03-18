@@ -346,3 +346,4 @@ Revision	Log Message
 340		Proper regiment types and number
 341		Convert army troop strength
 342		Correct unit types
+343		Manpower from unraised levies
