@@ -350,3 +350,4 @@ Revision	Log Message
 344		Regiment homes and names
 345		Minor improvements from forum
 		'Leftover' men from subunits applied to manpower
+346		Readme file updates
