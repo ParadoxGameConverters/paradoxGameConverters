@@ -255,6 +255,8 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 	popUnits	= 0.0f;
 	supply	= 0.0f;
 	demands.clear();
+
+	numRegiments = 0;
 }
 
 

@@ -1,6 +1,8 @@
 #include "EU3Army.h"
+#include "EU3Province.h"
 #include "..\CK2World\CK2Army.h"
 #include "..\Configuration.h"
+#include "..\Log.h"
 #include <fstream>
 
 
@@ -11,7 +13,7 @@ EU3Regiment::EU3Regiment(const string _type, const double _strength)
 	name		= "";
 	home		= 1;
 	type		= _type;
-	morale	= 1.904;
+	morale	= 0.0F;
 	strength	= _strength;
 }
 
@@ -34,7 +36,7 @@ void EU3Regiment::output(FILE* output)
 }
 
 
-EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType)
+EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces)
 {
 	id							= Configuration::getArmyID();
 	name						= srcArmy->getName();
@@ -86,6 +88,68 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 		EU3Regiment* newRegiment = new EU3Regiment(cavalryType, strength);
 		regiments.push_back(newRegiment);
 	}
+
+	vector<int> srcHomeProvinces = srcArmy->getHomeProvinces();
+	vector<int> homeProvinces;
+	for (unsigned int i = 0; i < srcHomeProvinces.size(); i++)
+	{
+		inverseProvinceMapping::const_iterator locItr = inverseProvinceMap.find(srcHomeProvinces[i]);
+		if (locItr != inverseProvinceMap.end())
+		{
+			for (unsigned int j = 0; j < locItr->second.size(); j++)
+			{
+				homeProvinces.push_back(locItr->second[j]);
+			}
+		}
+	}
+	for (unsigned int i = 0; i < regiments.size(); i++)
+	{
+		int homeProvince = homeProvinces[int(homeProvinces.size() * ((double)rand() / RAND_MAX))];
+		regiments[i]->setHomeProvince( homeProvince );
+		
+		string name;
+		map<int, EU3Province*>::iterator provItr = provinces.find(homeProvince);
+		if (provItr != provinces.end())
+		{
+			int num = provItr->second->getNumRegiments();
+			name	 = to_string((long long)num);
+
+			int hundredRemainder = num % 100;
+			if (hundredRemainder >= 10 && hundredRemainder <= 20)
+			{
+				name += "th";
+			}
+			else
+			{
+				int tenRemainder = num % 10;
+				switch (tenRemainder)
+				{
+					case 1:
+						name +=  "st";
+						break;
+					case 2:
+						name +=  "nd";
+						break;
+					case 3:
+						name +=  "rd";
+						break;
+					default:
+						name +=  "th";
+						break;
+				}
+			}
+
+			name += " ";
+			name += provItr->second->getCapital();
+		}
+		else
+		{
+			log("\t\tWarning: No home province for regiment!");
+		}
+		name += " Regiment";
+		regiments[i]->setName(name);
+	}
+
 	//stagingProvince;
 	//base;
 	//at_sea;

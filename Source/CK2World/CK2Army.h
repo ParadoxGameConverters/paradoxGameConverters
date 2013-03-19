@@ -11,11 +11,15 @@ class CK2Subunit
 {
 	public:
 		CK2Subunit(const Object* obj);
+
+		int		getHome()					const { return home; };
 		double	getCurrentInfantryPSE()	const { return currentInfantryPSE; };
 		double	getMaxInfantryPSE()		const { return maxInfantryPSE; };
 		double	getCurrentCavalryPSE()	const { return currentCavalryPSE; };
 		double	getMaxCavalryPSE()		const { return maxCavalryPSE; };
 	private:
+		int		home;
+
 		double	currentInfantryPSE;
 		double	maxInfantryPSE;
 		double	currentCavalryPSE;
@@ -28,10 +32,12 @@ class CK2Army
 	public:
 		CK2Army(const Object* obj);
 
-		string					getName()					const { return name; };
-		double					getMovementProgress()	const { return movementProgress; };
-		vector<int>				getPath()					const { return path; };
-		int						getLocation()				const { return location; };
+		vector<int>	getHomeProvinces() const;
+
+		string		getName()					const { return name; };
+		double		getMovementProgress()	const { return movementProgress; };
+		vector<int>	getPath()					const { return path; };
+		int			getLocation()				const { return location; };
 
 		double	getCurrentInfantryPSE()	const { return currentInfantryPSE; };
 		double	getMaxInfantryPSE()		const { return maxInfantryPSE; };

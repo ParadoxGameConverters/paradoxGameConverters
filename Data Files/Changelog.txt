@@ -347,3 +347,4 @@ Revision	Log Message
 341		Convert army troop strength
 342		Correct unit types
 343		Manpower from unraised levies
+344		Regiment homes and names

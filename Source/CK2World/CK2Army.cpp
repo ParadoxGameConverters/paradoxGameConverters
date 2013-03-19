@@ -5,6 +5,9 @@
 
 CK2Subunit::CK2Subunit(const Object* obj)
 {
+	home = atoi( obj->getLeaf("home").c_str() );
+
+
 	currentInfantryPSE	= 0.0F;
 	maxInfantryPSE			= 0.0F;
 	currentCavalryPSE		= 0.0F;
@@ -101,4 +104,16 @@ CK2Army::CK2Army(const Object* obj)
 		currentCavalryPSE		+= subunits[i]->getCurrentCavalryPSE();
 		maxCavalryPSE			+= subunits[i]->getMaxCavalryPSE();
 	}
+}
+
+
+vector<int> CK2Army::getHomeProvinces() const
+{
+	vector<int> homeProvinces;
+	for (unsigned int i = 0; i < subunits.size(); i++)
+	{
+		homeProvinces.push_back(subunits[i]->getHome());
+	}
+
+	return homeProvinces;
 }

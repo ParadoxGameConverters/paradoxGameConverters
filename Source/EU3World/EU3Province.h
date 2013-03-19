@@ -43,6 +43,8 @@ class EU3Province
 		void		setDiscoverers(map< string, vector<string> >& mapSpreadStrings);
 		void		removeCore(EU3Country*);
 
+		int		getNumRegiments()	{ return ++numRegiments; };
+
 		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(EU3Country* core)					{ cores.push_back(core); };
@@ -55,6 +57,7 @@ class EU3Province
 
 		int						getNum() const				{ return num; };
 		bool						isLand() const				{ return land; };
+		string					getCapital() const		{ return capital; };
 		EU3Country*				getOwner() const			{ return owner; };
 		string					getOwnerStr() const		{ return ownerStr; };
 		vector<string>			getCoreStrings() const	{ return coreStrings; };
@@ -102,6 +105,8 @@ class EU3Province
 		double	nativeSize;
 		int		nativeFerocity;
 		int		nativeHostility;
+
+		int	numRegiments;
 };
 
 

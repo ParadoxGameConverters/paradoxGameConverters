@@ -1545,14 +1545,14 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 }
 
 
-void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap)
+void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> allProvinces)
 {
 	if (src != NULL)
 	{
 		vector<CK2Army*> srcArmies = src->getHolder()->getArmies();
 		for (unsigned int i = 0; i < srcArmies.size(); i++)
 		{
-			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap, infantry, cavalry);
+			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap, infantry, cavalry, allProvinces);
 			if (newArmy->getNumRegiments() > 0)
 			{
 				armies.push_back(newArmy);

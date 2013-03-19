@@ -9,6 +9,9 @@
 using namespace std;
 
 
+class EU3Province;
+
+
 
 typedef enum
 {
@@ -48,8 +51,10 @@ class EU3Regiment // also Ship
 {
 	public:
 		EU3Regiment(const string _type, const double _strength);
-
 		void	output(FILE*);
+
+		void	setHomeProvince(int _home)		{ home = _home; };
+		void	setName(string _name)			{ name = _name; };
 	private:
 		int						id;
 		string					name;
@@ -63,7 +68,7 @@ class EU3Regiment // also Ship
 class EU3Army // also Navy
 {
 	public:
-		EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType);
+		EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces);
 
 		int	getNumRegiments()	const { return regiments.size(); };
 
