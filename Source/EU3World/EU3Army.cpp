@@ -36,7 +36,7 @@ void EU3Regiment::output(FILE* output)
 }
 
 
-EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces)
+EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces, double& manpower)
 {
 	id							= Configuration::getArmyID();
 	name						= srcArmy->getName();
@@ -74,6 +74,7 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 		EU3Regiment* newRegiment = new EU3Regiment(infantryType, strength);
 		regiments.push_back(newRegiment);
 	}
+	manpower += currentInfantryPSE - (strength * numInfantry);
 
 	double	currentCavalryPSE	= srcArmy->getCurrentCavalryPSE();
 	double	maxCavalryPSE		= srcArmy->getMaxCavalryPSE();
@@ -88,6 +89,7 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 		EU3Regiment* newRegiment = new EU3Regiment(cavalryType, strength);
 		regiments.push_back(newRegiment);
 	}
+	manpower += currentCavalryPSE - (strength * numCavalry);
 
 	vector<int> srcHomeProvinces = srcArmy->getHomeProvinces();
 	vector<int> homeProvinces;

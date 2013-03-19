@@ -348,3 +348,5 @@ Revision	Log Message
 342		Correct unit types
 343		Manpower from unraised levies
 344		Regiment homes and names
+345		Minor improvements from forum
+		'Leftover' men from subunits applied to manpower

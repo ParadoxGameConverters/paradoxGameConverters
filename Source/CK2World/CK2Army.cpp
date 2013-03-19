@@ -19,26 +19,26 @@ CK2Subunit::CK2Subunit(const Object* obj)
 		if (troopsObjs[i]->getKey() == "light_infantry")
 		{
 			vector<string> tokens = troopsObjs[i]->getTokens();
-			currentInfantryPSE	+= 0.50 * atoi(tokens[0].c_str());
-			maxInfantryPSE			+= 0.50 * atoi(tokens[1].c_str());
+			currentInfantryPSE	+= 0.305 * atoi(tokens[0].c_str());
+			maxInfantryPSE			+= 0.305 * atoi(tokens[1].c_str());
 		}
 		else if (troopsObjs[i]->getKey() == "archers")
 		{
 			vector<string> tokens = troopsObjs[i]->getTokens();
-			currentInfantryPSE	+= 0.63 * atoi(tokens[0].c_str());
-			maxInfantryPSE			+= 0.63 * atoi(tokens[1].c_str());
+			currentInfantryPSE	+= 0.384 * atoi(tokens[0].c_str());
+			maxInfantryPSE			+= 0.384 * atoi(tokens[1].c_str());
 		}
 		else if (troopsObjs[i]->getKey() == "heavy_infantry")
 		{
 			vector<string> tokens = troopsObjs[i]->getTokens();
-			currentInfantryPSE	+= 1.00 * atoi(tokens[0].c_str());
-			maxInfantryPSE			+= 1.00 * atoi(tokens[1].c_str());
+			currentInfantryPSE	+= 0.610 * atoi(tokens[0].c_str());
+			maxInfantryPSE			+= 0.610 * atoi(tokens[1].c_str());
 		}
 		else if (troopsObjs[i]->getKey() == "pikemen")
 		{
 			vector<string> tokens = troopsObjs[i]->getTokens();
-			currentInfantryPSE	+= 1.64 * atoi(tokens[0].c_str());
-			maxInfantryPSE			+= 1.64 * atoi(tokens[1].c_str());
+			currentInfantryPSE	+= 1.00 * atoi(tokens[0].c_str());
+			maxInfantryPSE			+= 1.00 * atoi(tokens[1].c_str());
 		}
 		else if (troopsObjs[i]->getKey() == "light_cavalry")
 		{

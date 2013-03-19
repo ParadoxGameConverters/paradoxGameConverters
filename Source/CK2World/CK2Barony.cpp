@@ -96,22 +96,22 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 		if (levyObjs[i]->getKey() == "light_infantry")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 0.50 * atoi(tokens[0].c_str());
+			PSE += 0.305 * atoi(tokens[0].c_str());
 		}
 		else if (levyObjs[i]->getKey() == "archers")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 0.63 * atoi(tokens[0].c_str());
+			PSE += 0.384 * atoi(tokens[0].c_str());
 		}
 		else if (levyObjs[i]->getKey() == "heavy_infantry")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 1.00 * atoi(tokens[0].c_str());
+			PSE += 0.610 * atoi(tokens[0].c_str());
 		}
 		else if (levyObjs[i]->getKey() == "pikemen")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 1.64 * atoi(tokens[0].c_str());
+			PSE += 1.00 * atoi(tokens[0].c_str());
 		}
 		else if (levyObjs[i]->getKey() == "light_cavalry")
 		{

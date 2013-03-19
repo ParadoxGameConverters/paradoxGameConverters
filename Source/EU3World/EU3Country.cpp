@@ -1552,13 +1552,30 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap, 
 		vector<CK2Army*> srcArmies = src->getHolder()->getArmies();
 		for (unsigned int i = 0; i < srcArmies.size(); i++)
 		{
-			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap, infantry, cavalry, allProvinces);
+			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap, infantry, cavalry, allProvinces, manpower);
 			if (newArmy->getNumRegiments() > 0)
 			{
 				armies.push_back(newArmy);
 			}
 		}
 
+		double levyMultiplier = 1.0;
+		if (src->getTitleString().substr(0,1) == "e")
+		{
+			levyMultiplier = 1.0 / 2.0;
+		}
+		else if (src->getTitleString().substr(0,1) == "k")
+		{
+			levyMultiplier = 2.0 / 3.0;
+		}
+		else if (src->getTitleString().substr(0,1) == "d")
+		{
+			levyMultiplier = 3.0 / 4.0;
+		}
+		else if (src->getTitleString().substr(0,1) == "c")
+		{
+			levyMultiplier = 4.0 / 5.0;
+		}
 		for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
 		{
 			vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
@@ -1567,7 +1584,7 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap, 
 				vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
 				for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
 				{
-					manpower += 0.20 * ((*itr3)->getPSE() / 3000);
+					manpower += levyMultiplier * ((*itr3)->getPSE() / 3000);
 				}
 			}
 		}
