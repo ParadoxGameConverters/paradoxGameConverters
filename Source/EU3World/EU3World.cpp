@@ -820,19 +820,15 @@ void EU3World::convertTech(const CK2World& srcWorld)
 		{
 			(*countryItr)->setTechGroup("nomad_group");
 		}
-		else if ((*countryItr)->getLearningScore() <= 0.2 * highestLearningScore)
-		{
-			(*countryItr)->setTechGroup("sub_saharan");
-		}
-		else if ((*countryItr)->getLearningScore() <= 0.75 * highestLearningScore)
+		else if ((*countryItr)->getLearningScore() <= 0.23 * highestLearningScore)
 		{
 			(*countryItr)->setTechGroup("muslim");
 		}
-		else if ((*countryItr)->getLearningScore() <= 0.8 * highestLearningScore)
+		else if ((*countryItr)->getLearningScore() <= 0.28 * highestLearningScore)
 		{
 			(*countryItr)->setTechGroup("ottoman");
 		}
-		else if ((*countryItr)->getLearningScore() <= 0.85 * highestLearningScore)
+		else if ((*countryItr)->getLearningScore() <= 0.48 * highestLearningScore)
 		{
 			(*countryItr)->setTechGroup("eastern");
 		}
