@@ -112,6 +112,7 @@
     <ClCompile Include="Source\EU3World\EU3Country.cpp" />
     <ClCompile Include="Source\EU3World\EU3Diplomacy.cpp" />
     <ClCompile Include="Source\EU3World\EU3History.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Navy.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
     <ClCompile Include="Source\EU3World\EU3Ruler.cpp" />
     <ClCompile Include="Source\EU3World\EU3Tech.cpp" />
@@ -145,6 +146,7 @@
     <ClInclude Include="Source\EU3World\EU3Country.h" />
     <ClInclude Include="Source\EU3World\EU3Diplomacy.h" />
     <ClInclude Include="Source\EU3World\EU3History.h" />
+    <ClInclude Include="Source\EU3World\EU3Navy.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />
     <ClInclude Include="Source\EU3World\EU3Ruler.h" />
     <ClInclude Include="Source\EU3World\EU3Tech.h" />

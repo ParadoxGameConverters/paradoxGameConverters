@@ -498,8 +498,8 @@ int main(int argc, char * argv[])
 	printf("Converting diplomatic relations.\n");
 	destWorld.convertDiplomacy();
 
-	log("Converting armies.\n");
-	printf("Converting armies.\n");
+	log("Converting armies and navies.\n");
+	printf("Converting armies and navies.\n");
 	destWorld.convertArmies(inverseProvinceMap);
 
 	// Output results

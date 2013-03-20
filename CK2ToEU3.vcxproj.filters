@@ -117,6 +117,9 @@
     <ClCompile Include="Source\EU3World\EU3Army.cpp">
       <Filter>EU3World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EU3World\EU3Navy.cpp">
+      <Filter>EU3World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -210,6 +213,9 @@
       <Filter>CK2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\EU3World\EU3Army.h">
+      <Filter>EU3World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\EU3World\EU3Navy.h">
       <Filter>EU3World</Filter>
     </ClInclude>
   </ItemGroup>

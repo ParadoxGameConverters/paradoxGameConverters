@@ -17,6 +17,8 @@ class CK2Subunit
 		double	getMaxInfantryPSE()		const { return maxInfantryPSE; };
 		double	getCurrentCavalryPSE()	const { return currentCavalryPSE; };
 		double	getMaxCavalryPSE()		const { return maxCavalryPSE; };
+		double	getCurrentShips()			const { return currentShips; };
+		double	getMaxShips()				const { return maxShips; };
 	private:
 		int		home;
 
@@ -24,6 +26,8 @@ class CK2Subunit
 		double	maxInfantryPSE;
 		double	currentCavalryPSE;
 		double	maxCavalryPSE;
+		double	currentShips;
+		double	maxShips;
 };
 
 
@@ -43,6 +47,8 @@ class CK2Army
 		double	getMaxInfantryPSE()		const { return maxInfantryPSE; };
 		double	getCurrentCavalryPSE()	const { return currentCavalryPSE; };
 		double	getMaxCavalryPSE()		const { return maxCavalryPSE; };
+		double	getCurrentShips()			const { return currentShips; };
+		double	getMaxShips()				const { return maxShips; };
 	private:
 		string					name;
 		vector<CK2Subunit*>	subunits;
@@ -54,6 +60,8 @@ class CK2Army
 		double	maxInfantryPSE;
 		double	currentCavalryPSE;
 		double	maxCavalryPSE;
+		double	currentShips;
+		double	maxShips;
 };
 
 

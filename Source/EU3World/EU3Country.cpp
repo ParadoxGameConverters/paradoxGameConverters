@@ -20,6 +20,7 @@
 #include "EU3Tech.h"
 #include "EU3Diplomacy.h"
 #include "EU3Army.h"
+#include "EU3Navy.h"
 #include <fstream>
 using namespace std;
 
@@ -113,6 +114,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	agreements.clear();
 
 	armies.clear();
+	navies.clear();
 	manpower = 0.0F;
 	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
@@ -669,6 +671,10 @@ void EU3Country::output(FILE* output)
 	for (unsigned int i = 0; i < armies.size(); i++)
 	{
 		armies[i]->output(output);
+	}
+	for (unsigned int i = 0; i < navies.size(); i++)
+	{
+		navies[i]->output(output);
 	}
 	for (map<EU3Country*, int>::const_iterator itr = relations.begin(); itr != relations.end(); ++itr)
 	{
@@ -1586,6 +1592,16 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap, 
 				{
 					manpower += levyMultiplier * ((*itr3)->getPSE() / 3000);
 				}
+			}
+		}
+
+		vector<CK2Army*> srcNavies = src->getHolder()->getNavies();
+		for (unsigned int i = 0; i < srcNavies.size(); i++)
+		{
+			EU3Navy* newNavy = new EU3Navy(srcNavies[i], inverseProvinceMap, transport, allProvinces, manpower);
+			if (newNavy->getNumShips() > 0)
+			{
+				navies.push_back(newNavy);
 			}
 		}
 	}

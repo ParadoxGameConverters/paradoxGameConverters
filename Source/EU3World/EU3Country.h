@@ -22,6 +22,7 @@ class EU3Diplomacy;
 struct EU3Agreement;
 class CK2Province;
 class EU3Army;
+class EU3Navy;
 
 class EU3Country
 {
@@ -128,6 +129,7 @@ class EU3Country
 		bool						elector;
 
 		vector<EU3Army*>		armies;
+		vector<EU3Navy*>		navies;
 		double					manpower;
 		string					infantry;
 		string					cavalry;

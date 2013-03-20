@@ -89,6 +89,7 @@ class CK2Character
 		int							getDemesneCap()			const;
 		double						getTotalScore()			const { return prestige + piety + score; };
 		vector<CK2Army*>			getArmies()					const { return armies; };
+		vector<CK2Army*>			getNavies()					const { return navies; };
 
 		bool						isCloseRelationOf(const CK2Character* other) const;
 		bool						isRMWith(const CK2Character* other) const;
@@ -145,6 +146,7 @@ class CK2Character
 		string						primaryTitleString;
 		CK2Title*					primaryTitle;
 		vector<CK2Army*>			armies;
+		vector<CK2Army*>			navies;
 		vector<CK2Barony*>		holdings;
 		vector<CK2War*>			wars;
 		

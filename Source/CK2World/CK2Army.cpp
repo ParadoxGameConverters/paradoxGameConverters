@@ -12,6 +12,8 @@ CK2Subunit::CK2Subunit(const Object* obj)
 	maxInfantryPSE			= 0.0F;
 	currentCavalryPSE		= 0.0F;
 	maxCavalryPSE			= 0.0F;
+	currentShips			= 0.0F;
+	maxShips					= 0.0F;
 
 	vector<Object*> troopsObjs = obj->getValue("troops")[0]->getLeaves();
 	for (unsigned int i = 0; i < troopsObjs.size(); i++)
@@ -58,6 +60,12 @@ CK2Subunit::CK2Subunit(const Object* obj)
 			currentCavalryPSE		+= 0.42 * atoi(tokens[0].c_str());
 			maxCavalryPSE			+= 0.42 * atoi(tokens[1].c_str());
 		}
+		else if (troopsObjs[i]->getKey() == "galleys")
+		{
+			vector<string> tokens = troopsObjs[i]->getTokens();
+			currentShips			+= atoi(tokens[0].c_str());
+			maxShips					+= atoi(tokens[1].c_str());
+		}
 	}
 }
 
@@ -97,12 +105,16 @@ CK2Army::CK2Army(const Object* obj)
 	maxInfantryPSE			= 0.0F;
 	currentCavalryPSE		= 0.0F;
 	maxCavalryPSE			= 0.0F;
+	currentShips			= 0.0F;
+	maxShips					= 0.0F;
 	for (unsigned int i = 0; i < subunits.size(); i++)
 	{
 		currentInfantryPSE	+= subunits[i]->getCurrentInfantryPSE();
 		maxInfantryPSE			+= subunits[i]->getMaxInfantryPSE();
 		currentCavalryPSE		+= subunits[i]->getCurrentCavalryPSE();
 		maxCavalryPSE			+= subunits[i]->getMaxCavalryPSE();
+		currentShips			+= subunits[i]->getCurrentShips();
+		maxShips					+= subunits[i]->getMaxShips();
 	}
 }
 

@@ -209,6 +209,12 @@ CK2Character::CK2Character(Object* obj, const map<int, CK2Dynasty*>& dynasties, 
 			CK2Army* newArmy = new CK2Army(armyObjs[i]);
 			armies.push_back(newArmy);
 		}
+		vector<Object*> navyObjs = demesneObj[0]->getValue("navy");
+		for (unsigned int i = 0; i < navyObjs.size(); i++)
+		{
+			CK2Army* newNavy = new CK2Army(navyObjs[i]);
+			navies.push_back(newNavy);
+		}
 	}
 	capital = NULL;
 	primaryTitle = NULL;

@@ -351,3 +351,5 @@ Revision	Log Message
 345		Minor improvements from forum
 		'Leftover' men from subunits applied to manpower
 346		Readme file updates
+347
+348		Convert raised navies

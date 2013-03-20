@@ -44,6 +44,7 @@ class EU3Province
 		void		removeCore(EU3Country*);
 
 		int		getNumRegiments()	{ return ++numRegiments; };
+		int		getNumShips()		{ return ++numShips; };
 
 		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
@@ -107,6 +108,7 @@ class EU3Province
 		int		nativeHostility;
 
 		int	numRegiments;
+		int	numShips;
 };
 
 

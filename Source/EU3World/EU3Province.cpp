@@ -256,7 +256,8 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 	supply	= 0.0f;
 	demands.clear();
 
-	numRegiments = 0;
+	numRegiments	= 0;
+	numShips			= 0;
 }
 
 

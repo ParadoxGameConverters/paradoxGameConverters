@@ -10,44 +10,11 @@ using namespace std;
 
 
 class EU3Province;
-
-
-
-typedef enum
-{
-	// ground units
-	infantry = 0,
-	cavalry,
-	artillery,
-	// navy units
-	big_ship,
-	light_ship,
-	galley,
-	transport,
-	// end of enum
-	num_reg_categories
-} RegimentCategory;
-
-
-static const char* RegimentCategoryNames[] = {
-	"infantry",
-	"cavalry",
-	"artillery",
-	"big_ship",
-	"light_ship",
-	"galley",
-	"transport"
-};
-
-
-typedef map<string, pair<RegimentCategory, int> > RegimentTypeMap;
-
-
 class CK2Subunit;
 class CK2Army;
 
 
-class EU3Regiment // also Ship
+class EU3Regiment
 {
 	public:
 		EU3Regiment(const string _type, const double _strength);
@@ -87,7 +54,6 @@ class EU3Army // also Navy
 
 		//int						leaderID;
 };
-
 
 
 #endif // EU3ARMY_H_
