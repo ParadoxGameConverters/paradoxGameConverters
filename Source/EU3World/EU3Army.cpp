@@ -64,7 +64,15 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 	double	currentInfantryPSE	= srcArmy->getCurrentInfantryPSE();
 	double	maxInfantryPSE			= srcArmy->getMaxInfantryPSE();
 	int		numInfantry				= int(maxInfantryPSE / 1000);
-	double	strength					= currentInfantryPSE / (numInfantry * 1000);
+	double	strength;
+	if (numInfantry > 0)
+	{
+			strength = currentInfantryPSE / (numInfantry * 1000);
+	}
+	else
+	{
+		strength = 0.0F;
+	}
 	if (strength > 1.0)
 	{
 		strength = 1.0F;
@@ -79,7 +87,14 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 	double	currentCavalryPSE	= srcArmy->getCurrentCavalryPSE();
 	double	maxCavalryPSE		= srcArmy->getMaxCavalryPSE();
 	int		numCavalry			= int(maxCavalryPSE / 1000);
-	strength							= currentCavalryPSE / (numCavalry * 1000);
+	if (numCavalry > 0)
+	{
+		strength	= currentCavalryPSE / (numCavalry * 1000);
+	}
+	else
+	{
+		strength = 0.0F;
+	}
 	if (strength > 1.0)
 	{
 		strength = 1.0F;

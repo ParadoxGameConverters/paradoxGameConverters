@@ -329,27 +329,14 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	liege = NULL;
 	vassals.clear();
 	provinces.clear();
-	learningScore = 0.0f;
+	cores.clear();
+	advisors.clear();
+	learningScore = 0.0F;
+	absorbScore = 0;
 
 	tag			= "";
 	historyFile	= "";
 	government	= "";
-	monarch		= NULL;
-	heir			= NULL;
-	regent		= NULL;
-	history.clear();
-	previousMonarchs.clear();
-
-	religion = "";
-	CK2Religion* oldReligion = src->getLastHolder()->getReligion();
-	if (oldReligion)
-	{
-		religionMapping::const_iterator religionItr = religionMap.find(oldReligion->getName());
-		if (religionItr != religionMap.end())
-		{
-			religion = religionItr->second;
-		}
-	}
 
 	map<string, int> cultureWeights;
 	src->getCultureWeights(cultureWeights, cultureMap);
@@ -363,8 +350,24 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 			highestWeight	= cultureItr->second;
 		}
 	}
-
 	acceptedCultures.clear();
+
+	religion = "";
+	CK2Religion* oldReligion = src->getLastHolder()->getReligion();
+	if (oldReligion)
+	{
+		religionMapping::const_iterator religionItr = religionMap.find(oldReligion->getName());
+		if (religionItr != religionMap.end())
+		{
+			religion = religionItr->second;
+		}
+	}
+
+	monarch		= NULL;
+	heir			= NULL;
+	regent		= NULL;
+	history.clear();
+	previousMonarchs.clear();
 
 	techGroup = "";
 	governmentTech					= 0.0f;
@@ -378,6 +381,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	navalTechInvestment			= 0.0f;
 	landTechInvestment			= 0.0f;
 	agreements.clear();
+	relations.clear();
 
 	CK2Province* srcCapital = src->getLastHolder()->getCapital();
 	if (srcCapital != NULL)
@@ -397,9 +401,10 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 		capital = 0;
 	}
 
-	prestige				= 0.0;
 	stability				= 1;
 	stabilityInvestment	= 0.0f;
+	prestige					= 0.0;
+
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
 	estimatedGold			= 0.0f;
@@ -410,12 +415,22 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	japaneseEmperor	= false;
 	elector				= false;
 
+	armies.clear();
+	navies.clear();
+	manpower	= 0.0F;
 	// todo: replace with something better
 	infantry = "western_medieval_infantry";
 	cavalry = "western_medieval_knights";
 	bigShip = "carrack";
 	galley = "galley";
 	transport = "cog";
+
+	merchants		= 2.0f;
+	colonists		= 2.0f;
+	diplomats		= 2.0f;
+	missionaries	= 2.0f;
+	spies				= 2.0f;
+	magistrates		= 2.0f;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -482,13 +497,6 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 			history.push_back(newHistory);
 		}
 	}
-
-	merchants		= 2.0f;
-	colonists		= 2.0f;
-	diplomats		= 2.0f;
-	missionaries	= 2.0f;
-	spies				= 2.0f;
-	magistrates		= 2.0f;
 }
 
 
