@@ -414,7 +414,7 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -636,6 +636,28 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		provItr->second->determineCulture(cultureMap, srcProvinces, baronies);
 		provItr->second->determineReligion(religionMap, srcProvinces);
+	}
+
+	//find all coastal provinces
+	for (map<int, EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		if (!provItr->second->isLand())
+		{
+			provItr->second->setCoastal(false);
+		}
+		else
+		{
+			provItr->second->setCoastal(false);
+			vector<adjacency> adjacencies = adjacencyMap[provItr->first];
+			for (unsigned int i = 0; i < adjacencies.size(); i++)
+			{
+				map<int, EU3Province*>::iterator provItr2 = provinces.find(adjacencies[i].to);
+				if ((provItr2 != provinces.end()) && (!provItr2->second->isLand()))
+				{
+					provItr->second->setCoastal(true);
+				}
+			}
+		}
 	}
 
 	// find all land connections to capitals

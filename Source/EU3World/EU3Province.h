@@ -46,7 +46,8 @@ class EU3Province
 		int		getNumRegiments()	{ return ++numRegiments; };
 		int		getNumShips()		{ return ++numShips; };
 
-		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
+		void		setCoastal(bool _coastal)					{ coastal = _coastal; };
+		void		setBaseTax(double _baseTax)				{ baseTax = _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(EU3Country* core)					{ cores.push_back(core); };
 		void		setOwner(EU3Country* _owner)				{ owner = _owner; ownerStr = ""; };
@@ -58,6 +59,7 @@ class EU3Province
 
 		int						getNum() const				{ return num; };
 		bool						isLand() const				{ return land; };
+		bool						isCoastal() const			{ return coastal; };
 		string					getCapital() const		{ return capital; };
 		EU3Country*				getOwner() const			{ return owner; };
 		string					getOwnerStr() const		{ return ownerStr; };
@@ -76,6 +78,7 @@ class EU3Province
 
 		int							num;
 		bool							land;
+		bool							coastal;
 
 		string						capital;
 		string						tradeGood;

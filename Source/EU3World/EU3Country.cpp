@@ -1604,7 +1604,7 @@ void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProv
 					numSrcShips	+=	(*itr3)->getShips();
 				}
 			}
-			if (numSrcShips > 0)
+			if (((*itr)->isCoastal()) && (numSrcShips > 0))
 			{
 				EU3Navy* newNavy = new EU3Navy(numNavies, 1, (*itr)->getNum(), transport, allProvinces);
 				navies.push_back(newNavy);

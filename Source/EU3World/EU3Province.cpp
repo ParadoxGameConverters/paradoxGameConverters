@@ -29,6 +29,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 		land		= false;
 		capital	= "";
 	}
+	coastal = false;
 
 	vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
 	if (tradeGoodObj.size() > 0)
