@@ -1598,7 +1598,7 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap, 
 		vector<CK2Army*> srcNavies = src->getHolder()->getNavies();
 		for (unsigned int i = 0; i < srcNavies.size(); i++)
 		{
-			EU3Navy* newNavy = new EU3Navy(srcNavies[i], inverseProvinceMap, transport, allProvinces, manpower);
+			EU3Navy* newNavy = new EU3Navy(srcNavies[i], inverseProvinceMap, transport, infantry, cavalry, allProvinces, manpower);
 			if (newNavy->getNumShips() > 0)
 			{
 				navies.push_back(newNavy);

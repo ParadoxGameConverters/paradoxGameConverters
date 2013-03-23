@@ -101,6 +101,14 @@ CK2Army::CK2Army(const Object* obj)
 
 	location = atoi( obj->getLeaf("location").c_str() );
 
+	transportedArmies.clear();
+	vector<Object*> armyObjs = obj->getValue("army");
+	for (unsigned int i = 0; i < armyObjs.size(); i++)
+	{
+		CK2Army* newArmy = new CK2Army(armyObjs[i]);
+		transportedArmies.push_back(newArmy);
+	}
+
 	currentInfantryPSE	= 0.0F;
 	maxInfantryPSE			= 0.0F;
 	currentCavalryPSE		= 0.0F;

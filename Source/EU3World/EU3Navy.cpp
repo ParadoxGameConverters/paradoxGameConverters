@@ -1,5 +1,6 @@
 #include "EU3Navy.h"
 #include "EU3Province.h"
+#include "EU3Army.h"
 #include "..\Configuration.h"
 #include "..\CK2World\CK2Army.h"
 #include "..\Log.h"
@@ -34,7 +35,7 @@ void EU3Ship::output(FILE* output)
 }
 
 
-EU3Navy::EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inverseProvinceMap, const string transportType, map<int, EU3Province*> provinces, double& manpower)
+EU3Navy::EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inverseProvinceMap, const string transportType, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces, double& manpower)
 {
 	id							= Configuration::getArmyID();
 	name						= srcNavy->getName();
@@ -87,6 +88,23 @@ EU3Navy::EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inversePro
 			}
 		}
 	}
+
+	vector<CK2Army*> srcTransported = srcNavy->getTransportedArmies();
+	for (unsigned int i = 0; i < srcTransported.size(); i++)
+	{
+		EU3Army* newArmy = new EU3Army(srcTransported[i], inverseProvinceMap, infantryType, cavalryType, provinces, manpower);
+		transportedArmies.push_back(newArmy);
+	}
+	int extraArmies = transportedArmies.size() - ships.size();
+	if (extraArmies > 0)
+	{
+		for (int i = 0; i < extraArmies; i++)
+		{
+			EU3Ship* newship = new EU3Ship(transportType, strength);
+			ships.push_back(newship);
+		}
+	}
+
 	for (unsigned int i = 0; i < ships.size(); i++)
 	{
 		int homeProvince = homeProvinces[int(homeProvinces.size() * ((double)rand() / RAND_MAX))];
@@ -135,8 +153,6 @@ EU3Navy::EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inversePro
 		ships[i]->setName(name);
 	}
 
-	//at_sea;
-
 	//leaderID;
 }
 
@@ -164,6 +180,10 @@ void EU3Navy::output(FILE* output)
 	for (unsigned int i = 0; i < ships.size(); i++)
 	{
 		ships[i]->output(output);
+	}
+	for (unsigned int i = 0; i < transportedArmies.size(); i++)
+	{
+		transportedArmies[i]->output(output);
 	}
 	if (atSea)
 	{

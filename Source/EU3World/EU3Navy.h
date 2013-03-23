@@ -11,6 +11,7 @@ using namespace std;
 class CK2Subunit;
 class CK2Army;
 class EU3Province;
+class EU3Army;
 
 
 
@@ -35,7 +36,7 @@ class EU3Ship
 class EU3Navy // also Navy
 {
 	public:
-		EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inverseProvinceMap, const string transportType, map<int, EU3Province*> provinces, double& manpower);
+		EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inverseProvinceMap, const string transportType, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces, double& manpower);
 
 		int	getNumShips()	const { return ships.size(); };
 
@@ -49,7 +50,7 @@ class EU3Navy // also Navy
 		vector<EU3Ship*>		ships;
 		bool						atSea;
 
-		//int						leaderID;
+		vector<EU3Army*>		transportedArmies;
 };
 
 

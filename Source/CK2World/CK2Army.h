@@ -43,18 +43,21 @@ class CK2Army
 		vector<int>	getPath()					const { return path; };
 		int			getLocation()				const { return location; };
 
-		double	getCurrentInfantryPSE()	const { return currentInfantryPSE; };
-		double	getMaxInfantryPSE()		const { return maxInfantryPSE; };
-		double	getCurrentCavalryPSE()	const { return currentCavalryPSE; };
-		double	getMaxCavalryPSE()		const { return maxCavalryPSE; };
-		double	getCurrentShips()			const { return currentShips; };
-		double	getMaxShips()				const { return maxShips; };
+		vector<CK2Army*>	getTransportedArmies()	const { return transportedArmies; };
+		double				getCurrentInfantryPSE()	const { return currentInfantryPSE; };
+		double				getMaxInfantryPSE()		const { return maxInfantryPSE; };
+		double				getCurrentCavalryPSE()	const { return currentCavalryPSE; };
+		double				getMaxCavalryPSE()		const { return maxCavalryPSE; };
+		double				getCurrentShips()			const { return currentShips; };
+		double				getMaxShips()				const { return maxShips; };
 	private:
 		string					name;
 		vector<CK2Subunit*>	subunits;
 		double					movementProgress;
 		vector<int>				path;
 		int						location;
+
+		vector<CK2Army*>		transportedArmies;
 
 		double	currentInfantryPSE;
 		double	maxInfantryPSE;
