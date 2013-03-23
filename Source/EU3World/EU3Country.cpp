@@ -1551,7 +1551,7 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 }
 
 
-void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> allProvinces)
+void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> allProvinces)
 {
 	if (src != NULL)
 	{
@@ -1582,16 +1582,25 @@ void EU3Country::convertArmies(const inverseProvinceMapping inverseProvinceMap, 
 		{
 			levyMultiplier = 4.0 / 5.0;
 		}
+		int numNavies = 0;
 		for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
 		{
+			int numSrcShips = 0;
 			vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
 			for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
 			{
 				vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
 				for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
 				{
-					manpower += levyMultiplier * ((*itr3)->getPSE() / 3000);
+					manpower		+= levyMultiplier * ((*itr3)->getPSE() / 3000);
+					numSrcShips	+=	(*itr3)->getShips();
 				}
+			}
+			if (numSrcShips > 0)
+			{
+				EU3Navy* newNavy = new EU3Navy(numNavies, 1, (*itr)->getNum(), transport, allProvinces);
+				navies.push_back(newNavy);
+				numNavies++;
 			}
 		}
 

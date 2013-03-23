@@ -110,17 +110,17 @@ EU3Navy::EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inversePro
 		int homeProvince = homeProvinces[int(homeProvinces.size() * ((double)rand() / RAND_MAX))];
 		ships[i]->setHomeProvince( homeProvince );
 		
-		string name;
+		string shipName;
 		map<int, EU3Province*>::iterator provItr = provinces.find(homeProvince);
 		if (provItr != provinces.end())
 		{
-			int num = provItr->second->getNumShips();
-			name	 = to_string((long long)num);
+			int num		= provItr->second->getNumShips();
+			shipName		= to_string((long long)num);
 
 			int hundredRemainder = num % 100;
 			if (hundredRemainder >= 10 && hundredRemainder <= 20)
 			{
-				name += "th";
+				shipName += "th";
 			}
 			else
 			{
@@ -128,29 +128,125 @@ EU3Navy::EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inversePro
 				switch (tenRemainder)
 				{
 					case 1:
-						name +=  "st";
+						shipName +=  "st";
 						break;
 					case 2:
-						name +=  "nd";
+						shipName +=  "nd";
 						break;
 					case 3:
-						name +=  "rd";
+						shipName +=  "rd";
 						break;
 					default:
-						name +=  "th";
+						shipName +=  "th";
 						break;
 				}
 			}
 
-			name += " ";
-			name += provItr->second->getCapital();
+			shipName += " ";
+			shipName += provItr->second->getCapital();
 		}
 		else
 		{
 			log("\t\tWarning: No home province for ship!");
 		}
-		name += " Transport";
-		ships[i]->setName(name);
+		shipName += " Transport";
+		ships[i]->setName(shipName);
+	}
+
+	//leaderID;
+}
+
+
+EU3Navy::EU3Navy(int numNavies, int numShips, int provNum, const string transportType, map<int, EU3Province*> provinces)
+{
+	id							= Configuration::getArmyID();
+	name						= "";
+	movementProgress		= 0.0F;
+	path.clear();
+	location					= provNum;
+	atSea						= false;
+
+	double strength = 1.0F;
+	for (int i = 0; i < numShips; i++)
+	{
+		EU3Ship* newship = new EU3Ship(transportType, strength);
+		ships.push_back(newship);
+	}
+
+	numNavies++;
+	name = to_string((long long)numNavies);
+	int hundredRemainder = numNavies % 100;
+	if (hundredRemainder >= 10 && hundredRemainder <= 20)
+	{
+		name += "th";
+	}
+	else
+	{
+		int tenRemainder = numNavies % 10;
+		switch (tenRemainder)
+		{
+			case 1:
+				name +=  "st";
+				break;
+			case 2:
+				name +=  "nd";
+				break;
+			case 3:
+				name +=  "rd";
+				break;
+			default:
+				name +=  "th";
+				break;
+		}
+	}
+	name += " ";
+	name += "Fleet";
+
+	for (unsigned int i = 0; i < ships.size(); i++)
+	{
+		ships[i]->setHomeProvince( provNum );
+		
+		string shipName;
+		map<int, EU3Province*>::iterator provItr = provinces.find(provNum);
+		if (provItr != provinces.end())
+		{
+			int num	= provItr->second->getNumShips();
+			shipName	= to_string((long long)num);
+
+			int hundredRemainder = num % 100;
+			if (hundredRemainder >= 10 && hundredRemainder <= 20)
+			{
+				shipName += "th";
+			}
+			else
+			{
+				int tenRemainder = num % 10;
+				switch (tenRemainder)
+				{
+					case 1:
+						shipName +=  "st";
+						break;
+					case 2:
+						shipName +=  "nd";
+						break;
+					case 3:
+						shipName +=  "rd";
+						break;
+					default:
+						shipName +=  "th";
+						break;
+				}
+			}
+
+			shipName += " ";
+			shipName += provItr->second->getCapital();
+		}
+		else
+		{
+			log("\t\tWarning: No home province for ship!");
+		}
+		shipName += " Transport";
+		ships[i]->setName(shipName);
 	}
 
 	//leaderID;

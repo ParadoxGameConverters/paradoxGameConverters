@@ -89,7 +89,8 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 	determineManpowerProxy();
 	determineTechBonus();
 
-	PSE = 0.0F;
+	PSE	= 0.0F;
+	ships	= 0;
 	vector<Object*> levyObjs = obj->getValue("levy")[0]->getLeaves();
 	for (unsigned int i = 0; i < levyObjs.size(); i++)
 	{
@@ -127,6 +128,11 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
 			PSE += 0.42 * atoi(tokens[0].c_str());
+		}
+		else if (levyObjs[i]->getKey() == "galleys")
+		{
+			vector<string> tokens = levyObjs[i]->getTokens();
+			ships += atoi(tokens[0].c_str());
 		}
 	}
 }

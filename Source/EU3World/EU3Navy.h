@@ -37,6 +37,7 @@ class EU3Navy // also Navy
 {
 	public:
 		EU3Navy(const CK2Army* srcNavy, const inverseProvinceMapping inverseProvinceMap, const string transportType, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces, double& manpower);
+		EU3Navy(int numNavies, int numShips, int provNum, const string transportType, map<int, EU3Province*> provinces);
 
 		int	getNumShips()	const { return ships.size(); };
 
