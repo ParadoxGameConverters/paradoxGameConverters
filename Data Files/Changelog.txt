@@ -357,3 +357,4 @@ Revision	Log Message
 350		Ships from unraised ships
 351		Fix bug with manpower sometimes being FUBAR
 352		Ships from unraised ships only in coastal provinces
+353		Better detect coastal provinces
