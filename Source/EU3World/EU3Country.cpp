@@ -732,6 +732,27 @@ void EU3Country::determineLearningScore()
 	learningScore /= numBaronies;
 }
 
+void EU3Country::determineTechScore()
+{
+	int numProvinces = 0;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			vector<double> techLevels = (*srcItr)->getTechLevels();
+			for (unsigned int i = 0; i < techLevels.size(); i++)
+			{
+				techScore += techLevels[i] / 24;
+			}
+			numProvinces++;
+		}
+	}
+
+	techScore /= numProvinces;
+}
+
+
 
 void EU3Country::addAcceptedCultures()
 {

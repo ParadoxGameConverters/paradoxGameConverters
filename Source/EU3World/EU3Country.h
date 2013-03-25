@@ -30,6 +30,7 @@ class EU3Country
 
 		void						output(FILE*);
 		void						determineLearningScore();
+		void						determineTechScore();
 		void						addAcceptedCultures();
 		void						determineGovernment(double prestigeFactor);
 		void						determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices);
@@ -61,6 +62,7 @@ class EU3Country
 		vector<EU3Province*>	getCores()					const { return cores; };
 		vector<EU3Advisor*>	getAdvisors()				const { return advisors; };
 		double					getLearningScore()		const { return learningScore; };
+		double					getTechScore()				const { return techScore; };
 		int						getAbsorbScore()			const	{ return absorbScore; };
 		string					getTag()						const { return tag; };
 		string					getGovernment()			const { return government; };
@@ -82,6 +84,7 @@ class EU3Country
 		vector<EU3Province*> cores;
 		vector<EU3Advisor*>	advisors;
 		double					learningScore;
+		double					techScore;
 		int						absorbScore;
 
 		string						tag;

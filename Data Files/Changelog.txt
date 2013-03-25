@@ -359,3 +359,4 @@ Revision	Log Message
 352
 353
 354		Unlanded countries inherit tech group from holder of their potential capital
+355		Add second method of tech group conversion
