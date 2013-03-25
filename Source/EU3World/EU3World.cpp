@@ -796,18 +796,26 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 	_findclose(fileListing);
 }
 
-
+#pragma optimize("",off)
 void EU3World::convertTech(const CK2World& srcWorld)
 {
 	vector<double> avgTechLevels = srcWorld.getAverageTechLevels();
 
+	vector<EU3Country*> unlandedCountries;
 	double highestLearningScore = 0.0f;
 	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
 	{
-		(*countryItr)->determineLearningScore();
-		if ((*countryItr)->getLearningScore() > highestLearningScore)
+		if ((*countryItr)->getProvinces().size() > 0)
 		{
-			highestLearningScore = (*countryItr)->getLearningScore();
+			(*countryItr)->determineLearningScore();
+			if ((*countryItr)->getLearningScore() > highestLearningScore)
+			{
+				highestLearningScore = (*countryItr)->getLearningScore();
+			}
+		}
+		else
+		{
+			unlandedCountries.push_back(*countryItr);
 		}
 	}
 
@@ -840,13 +848,28 @@ void EU3World::convertTech(const CK2World& srcWorld)
 
 		(*countryItr)->determineTechLevels(avgTechLevels, techData);
 	}
+	for (vector<EU3Country*>::iterator countryItr = unlandedCountries.begin(); countryItr != unlandedCountries.end(); countryItr++)
+	{
+		map<int, EU3Province*>::iterator capitalItr = provinces.find( (*countryItr)->getCapital() );
+		if (capitalItr != provinces.end())
+		{
+			(*countryItr)->setTechGroup( capitalItr->second->getOwner()->getTechGroup() );
+		}
+		else
+		{
+			(*countryItr)->setTechGroup("western");
+			log("\tWarning: %s had no capital, defaulting tech group to western\n", (*countryItr)->getTag().c_str());
+		}
+		(*countryItr)->determineTechLevels(avgTechLevels, techData);
+		log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
+	}
 
 	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		countryItr->second->determineTechInvestment(techData, startDate);
 	}
 }
-
+#pragma optimize("",on)
 
 #define MAX_PRESTIGE 50.0
 void EU3World::convertGovernments()

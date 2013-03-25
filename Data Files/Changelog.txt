@@ -352,3 +352,10 @@ Revision	Log Message
 345
 346
 347		Tech group improvments
+348
+349
+350
+351
+352
+353
+354		Unlanded countries inherit tech group from holder of their potential capital
