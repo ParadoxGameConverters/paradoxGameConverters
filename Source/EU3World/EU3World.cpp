@@ -1041,7 +1041,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			else if (category == "catholic")
 			{
-				if (techScore >= catholicTech)
+				if (techScore >= greekTech)
 				{
 					(*countryItr)->setTechGroup("western");
 				}
@@ -1071,7 +1071,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 				{
 					(*countryItr)->setTechGroup("western");
 				}
-				else if (techScore >= otherTech)
+				else if (techScore >= muslimTech)
 				{
 					(*countryItr)->setTechGroup("eastern");
 				}
