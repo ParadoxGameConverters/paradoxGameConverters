@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <io.h>
 #include <set>
+#include <boost/algorithm/string.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
 #include "..\Log.h"
 #include "..\temp.h"
 #include "..\Configuration.h"
@@ -1212,6 +1215,8 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 	int leftoverCountries = convertedCountries.size();
 	int initialScore = atoi( Configuration::getVassalScore().c_str() );
 	vector< tuple<EU3Country*, EU3Country*, string, string, int> > mappings;
+	vector<EU3Country*> modCountries;
+	set<string> mappedTags;
 	while(leftoverCountries > 0)
 	{
 		vector<EU3Country*> independentCountries;
@@ -1241,6 +1246,28 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 
 		mappings.clear();
 		leftoverCountries = matchTags(rulesObj, blockedNations, provinceMap, mappings);
+		if (true)
+		{
+			for (vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
+			{
+				bool mapped = false;
+				for (unsigned int i = 0; i < mappings.size(); i++)
+				{
+					if (get<2>(mappings[i]) == (*convertedItr)->getSrcCountry()->getTitleString())
+					{
+						mapped = true;
+						mappedTags.insert(get<2>(mappings[i]));
+						break;
+					}
+				}
+				if (!mapped)
+				{
+					modCountries.push_back(*convertedItr);
+				}
+			}
+			leftoverCountries = 0;
+		}
+
 		if (leftoverCountries == -1)
 		{
 			log("Error while matching tags. Aborting!\n");
@@ -1253,6 +1280,8 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 			exit(-1);
 		}
 	}
+
+	addModCountries(modCountries, mappedTags);
 
 	convertedCountries.clear();
 	for (vector< tuple<EU3Country*, EU3Country*, string, string, int> >::iterator mappingsItr = mappings.begin(); mappingsItr != mappings.end(); mappingsItr++)
@@ -1480,32 +1509,35 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 		}
 	}
 
-	while ( (CK2Titles.size() > 0) && (EU3tags.size() > 0) )
+	if (false)
 	{
-		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
-		if (CK2TitlesPos->first == "e_rebels")
+		while ( (CK2Titles.size() > 0) && (EU3tags.size() > 0) )
 		{
-			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else if (CK2TitlesPos->first == "e_pirates")
-		{
-			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else if (CK2TitlesPos->first == Configuration::getHRETitle())
-		{
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else
-		{
-			set<string>::iterator EU3CountryPos = EU3tags.begin();
-			tuple<EU3Country*, EU3Country*, string, string, int> mapping = make_tuple(CK2TitlesPos->second->getDstCountry(), countries[*EU3CountryPos], CK2TitlesPos->first.c_str(), EU3CountryPos->c_str(), 0);
-			mappings.push_back(mapping);
+			map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
+			if (CK2TitlesPos->first == "e_rebels")
+			{
+				//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
+				CK2Titles.erase(CK2TitlesPos);
+			}
+			else if (CK2TitlesPos->first == "e_pirates")
+			{
+				//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
+				CK2Titles.erase(CK2TitlesPos);
+			}
+			else if (CK2TitlesPos->first == Configuration::getHRETitle())
+			{
+				CK2Titles.erase(CK2TitlesPos);
+			}
+			else
+			{
+				set<string>::iterator EU3CountryPos = EU3tags.begin();
+				tuple<EU3Country*, EU3Country*, string, string, int> mapping = make_tuple(CK2TitlesPos->second->getDstCountry(), countries[*EU3CountryPos], CK2TitlesPos->first.c_str(), EU3CountryPos->c_str(), 0);
+				mappings.push_back(mapping);
 
-			//remove tags from the lists
-			CK2Titles.erase(CK2TitlesPos);
-			EU3tags.erase(EU3CountryPos);
+				//remove tags from the lists
+				CK2Titles.erase(CK2TitlesPos);
+				EU3tags.erase(EU3CountryPos);
+			}
 		}
 	}
 
@@ -1614,3 +1646,123 @@ void EU3World::convertHRE()
 		potentialElectors[electors]->getDstCountry()->setElector(true);
 	}
 }
+
+#pragma optimize("", off)
+void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags)
+{
+	vector<EU3Country*> sortedCountries;
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "e_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "k_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "d_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "c_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+
+
+	FILE* countriesList;
+	fopen_s(&countriesList, "mod\\converter\\common\\countries.txt", "a");
+	fprintf(countriesList, "\n");
+	char first	= 'A';
+	char second	= 'A';
+	char third	= 'A';
+	for (vector<EU3Country*>::iterator countryItr = sortedCountries.begin(); countryItr != sortedCountries.end(); countryItr++)
+	{
+		string titleString = (*countryItr)->getSrcCountry()->getTitleString();
+
+		// determine tag
+		string potentialTag = boost::to_upper_copy(titleString.substr(2,3));
+		string tag;
+
+		map<string, EU3Country*>::iterator	itr	= countries.find(potentialTag);
+		set<string>::iterator					itr2	= mappedTags.find(potentialTag);
+		while ((itr != countries.end()) || (itr2 != mappedTags.end()) )
+		{
+			potentialTag = "";
+			potentialTag += first;
+			potentialTag += second;
+			potentialTag += third;
+			third++;
+			if (third > 'Z')
+			{
+				third = 'A';
+				second++;
+				if (second > 'Z')
+				{
+					second = 'A';
+					first++;
+					if (first > 'Z')
+					{
+						log("\tError: ran out of possible tags!\n");
+						exit(0);
+					}
+				}
+			}
+			itr	= countries.find(potentialTag);
+			itr2	= mappedTags.find(potentialTag);
+		}
+		tag = potentialTag;
+		mappedTags.insert(tag);
+			
+		// determine filename
+		string filename = Configuration::getEU3Path();
+		filename += "\\common\\countries\\";
+		filename	+= titleString.substr(2, titleString.size());
+		filename += ".txt";
+		int number = 0;
+		while( boost::filesystem::exists( filename ) )
+		{
+			number++;
+			filename	=  Configuration::getEU3Path();
+			filename	+= "\\common\\countries\\";
+			filename += titleString.substr(2, titleString.size());
+			filename	+= boost::lexical_cast<string>(number);
+			filename	+= ".txt";
+		}
+		filename	=  "mod\\converter\\common\\countries\\";
+		filename += titleString.substr(2, titleString.size());
+		if (number > 0)
+		{
+			filename	+= boost::lexical_cast<string>(number);
+		}
+		filename	+= ".txt";
+
+		FILE* countryFile;
+		fopen_s(&countryFile, filename.c_str(), "wt");
+		fclose(countryFile);
+
+		string shortFilename = "countries\\";
+		shortFilename += titleString.substr(2, titleString.size());
+		if (number > 0)
+		{
+			shortFilename	+= boost::lexical_cast<string>(number);
+		}
+		shortFilename	+= ".txt";
+		fprintf(countriesList, "%s\t= \"%s\"\n", tag.c_str(), shortFilename.c_str());
+		
+		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
+	}
+	fclose(countriesList);
+}
+#pragma optimize("", on)

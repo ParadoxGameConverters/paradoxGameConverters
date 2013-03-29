@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <tuple>
+#include <set>
 #include "..\Mappers.h"
 #include "..\Date.h"
 
@@ -70,6 +71,7 @@ class EU3World
 		int	matchTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings);
 		void	determineMapSpread();
 		void	convertHRE();
+		void	addModCountries(const vector<EU3Country*>& countries, set<string> mappedTags);
 
 		CK2World*							srcWorld;
 		int									options[OPTIONS_END];

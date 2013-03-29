@@ -361,3 +361,4 @@ Revision	Log Message
 354		Unlanded countries inherit tech group from holder of their potential capital
 355		Add second method of tech group conversion
 356		Updates to second method
+357		Mod output creates country files
