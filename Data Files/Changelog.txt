@@ -361,3 +361,4 @@ Revision	Log Message
 355
 356
 357		Log when EU3 country information doesn't exist during output.
+358		If there are no potential HRE electors, make the emperor one instead of crashing.
