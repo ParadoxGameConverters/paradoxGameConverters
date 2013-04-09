@@ -342,3 +342,22 @@ Revision	Log Message
 336
 337		No longer lose a bunch of cores on loading
 338		Fix possible crash bug when merging titles
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357		Log when EU3 country information doesn't exist during output.
