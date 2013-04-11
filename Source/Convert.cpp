@@ -472,7 +472,7 @@ int main(int argc, char * argv[])
 	}
 	log("Mapping CK2 nations to EU3 nations.\n");
 	printf("Mapping CK2 nations to EU3 nations.\n");
-	destWorld.assignTags(obj, blockedNations, provinceMap);
+	destWorld.assignTags(obj, blockedNations, provinceMap, religionMap, cultureMap, inverseProvinceMap);
 
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");

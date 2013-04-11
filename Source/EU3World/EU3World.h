@@ -57,7 +57,7 @@ class EU3World
 		void	convertTech(const CK2World& srcWorld);
 		void	convertGovernments();
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
-		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
+		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 		void	convertDiplomacy();
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
@@ -71,7 +71,8 @@ class EU3World
 		int	matchTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings);
 		void	determineMapSpread();
 		void	convertHRE();
-		void	addModCountries(const vector<EU3Country*>& countries, set<string> mappedTags);
+		void	addModCountries(const vector<EU3Country*>& countries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
+		void	outputCountryFile(FILE* countryFile, EU3Country* country);
 
 		CK2World*							srcWorld;
 		int									options[OPTIONS_END];

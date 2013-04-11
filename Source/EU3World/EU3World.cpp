@@ -1205,7 +1205,7 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 }
 
 
-void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap)
+void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
 	log("Total converted EU3 countries: %d\n", convertedCountries.size());
 
@@ -1281,7 +1281,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 		}
 	}
 
-	addModCountries(modCountries, mappedTags);
+	addModCountries(modCountries, mappedTags, mappings, religionMap, cultureMap, inverseProvinceMap);
 
 	convertedCountries.clear();
 	for (vector< tuple<EU3Country*, EU3Country*, string, string, int> >::iterator mappingsItr = mappings.begin(); mappingsItr != mappings.end(); mappingsItr++)
@@ -1647,8 +1647,8 @@ void EU3World::convertHRE()
 	}
 }
 
-#pragma optimize("", off)
-void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags)
+
+void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
 	vector<EU3Country*> sortedCountries;
 	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
@@ -1679,7 +1679,6 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			sortedCountries.push_back(*countryItr);
 		}
 	}
-
 
 	FILE* countriesList;
 	fopen_s(&countriesList, "mod\\converter\\common\\countries.txt", "a");
@@ -1724,6 +1723,11 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		}
 		tag = potentialTag;
 		mappedTags.insert(tag);
+
+		EU3Country* newCountry = new EU3Country((*countryItr)->getSrcCountry(), religionMap, cultureMap, inverseProvinceMap);
+		newCountry->setTag(tag);
+		countries.insert(make_pair(tag, newCountry));
+		mappings.push_back( make_tuple(*countryItr, newCountry, (*countryItr)->getSrcCountry()->getTitleString().c_str(), tag, 1) );
 			
 		// determine filename
 		string filename = Configuration::getEU3Path();
@@ -1750,6 +1754,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 
 		FILE* countryFile;
 		fopen_s(&countryFile, filename.c_str(), "wt");
+		outputCountryFile(countryFile, *countryItr);
 		fclose(countryFile);
 
 		string shortFilename = "countries\\";
@@ -1765,4 +1770,14 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 	}
 	fclose(countriesList);
 }
-#pragma optimize("", on)
+
+
+void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
+{
+	fprintf(countryFile, "#Country Name: Please see filename.\n");
+	fprintf(countryFile, "\n");
+	fprintf(countryFile, "graphical_culture = latingfx\n"); //TODO: have variable graphical culture type
+	fprintf(countryFile, "\n");
+	const int* color = country->getSrcCountry()->getColor();
+	fprintf(countryFile, "Color = { %d %d %d }\n", color[0], color[1], color[2]);
+}

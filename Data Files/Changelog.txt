@@ -362,3 +362,4 @@ Revision	Log Message
 355		Add second method of tech group conversion
 356		Updates to second method
 357		Mod output creates country files
+358		Mod output creates working mod + save
