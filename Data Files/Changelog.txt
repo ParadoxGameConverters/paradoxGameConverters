@@ -364,3 +364,4 @@ Revision	Log Message
 357		Mod output creates country files
 358		Mod output creates working mod + save
 359		Stuff for mod creation located in converter mod directory
+360		Mod files directory removed
