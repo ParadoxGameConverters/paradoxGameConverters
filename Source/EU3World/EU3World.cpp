@@ -1752,6 +1752,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		}
 		filename	+= ".txt";
 
+		// create country file
 		FILE* countryFile;
 		fopen_s(&countryFile, filename.c_str(), "wt");
 		outputCountryFile(countryFile, *countryItr);
@@ -1765,6 +1766,25 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		}
 		shortFilename	+= ".txt";
 		fprintf(countriesList, "%s\t= \"%s\"\n", tag.c_str(), shortFilename.c_str());
+
+		//copy flag
+		string srcFlag	=  "\"";
+		srcFlag			+= Configuration::getCK2Path();
+		srcFlag			+= "\\gfx\\flags\\";
+		srcFlag			+= titleString;
+		srcFlag			+= ".tga\"";
+
+		string dstFlag	=  "\"";
+		dstFlag			+= "mod\\Converter\\gfx\\flags\\";
+		dstFlag			+= tag;
+		dstFlag			+= ".tga\"";
+
+		string command	=  "copy ";
+		command			+= srcFlag;
+		command			+= " ";
+		command			+= dstFlag;
+
+		system(command.c_str());
 		
 		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
 	}
