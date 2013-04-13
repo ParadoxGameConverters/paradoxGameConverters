@@ -366,3 +366,4 @@ Revision	Log Message
 359		Stuff for mod creation located in converter mod directory
 360		Mod files directory removed
 361		Create flags for new EU3 countries
+362		Merge in new empires

@@ -18,18 +18,29 @@ link = { CK2 = e_pirates  EU3 = PIR } # Pirates
 
 ## Empires
 # European Empires
+link = { CK2 = e_roman_empire EU3 = ROM } # Roman Empire
 link = { CK2 = e_byzantium EU3 = BYZ } # Byzantium 
 link = { CK2 = e_hre  EU3 = HRE } # Holy Roman Empire
+
 link = { CK2 = e_spain EU3 = SPA } # Hispania => Spain
 link = { CK2 = e_russia EU3 = RUS } # Russia
 link = { CK2 = e_britannia EU3 = GBR } # Britannia => Great Britain
-link = { CK2 = e_france EU3 = FRA } # Francia => France
+link = { CK2 = e_france EU3 = FCI } # Francia
 link = { CK2 = e_scandinavia EU3 = SCA } # Scandinavia
+
 
 # Eastern and African Empires
 link = { CK2 = e_golden_horde  EU3 = GOL } # Golden Horde
 link = { CK2 = e_timurids  EU3 = TIM } # Timurids
+
+link = { CK2 = e_il-khanate  EU3 = ILK } # Ilkhanate
 link = { CK2 = e_persia EU3 = PER } # Persia
+link = { CK2 = e_arabia EU3 = ARA } # Arabia
+
+# Titular Empires
+link = { CK2 = e_latin_empire EU3 = LAT } # Latin Empire
+link = { CK2 = e_mexikha EU3 = MXC } # Sunset Invasion
+#link = { CK2 = e_mexikha EU3 = AZT } # Sunset Invasion => Aztecs
 
 
 ##Kingdoms
@@ -69,9 +80,13 @@ link = { CK2 = k_sicily EU3 = SIC } # Sicily
 link = { CK2 = k_rus EU3 = RUS } # Russia
 link = { CK2 = k_ruthenia EU3 = UKR } # Ruthenia => Ukraine
 
+link = { CK2 = k_cuman EU3 = AST } # Cumania => Astrakhan ???
+link = { CK2 = k_alania EU3 = AST } # Alania => Astrakhan ???
 link = { CK2 = k_taurica EU3 = CRI } # Taurica => Crimea
+link = { CK2 = k_aquitaine EU3 = GUY } # Aquitaine => Guyenne ???
 link = { CK2 = k_brittany EU3 = BRI } # Brittany
-link = { CK2 = k_andalusia EU3 = GRA } # Andalusia => Granada
+link = { CK2 = k_leon EU3 = CAS } # Leon => Castille ???
+link = { CK2 = k_andalusia EU3 = GRA } # Andalusia => Granada ???
 
 # Merchant republics
 link = { CK2 = k_genoa EU3 = GEN } # Genoa
