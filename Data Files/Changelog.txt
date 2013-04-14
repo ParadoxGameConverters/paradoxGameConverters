@@ -368,3 +368,4 @@ Revision	Log Message
 361		Create flags for new EU3 countries
 362		Merge in new empires
 363		Make countries included with the mod properly work
+364		Simplify mod layout and instructions
