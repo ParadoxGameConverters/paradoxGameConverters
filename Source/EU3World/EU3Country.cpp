@@ -22,7 +22,7 @@
 using namespace std;
 
 
-EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date startDate, const EU3Tech* techData)
+EU3Country::EU3Country(EU3World* world, string _tag, string _historyFile, date startDate, const EU3Tech* techData)
 {
 	src				= NULL;
 	liege				= NULL;
@@ -32,15 +32,15 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	absorbScore		= INT_MAX;
 
 	tag			= _tag;
-	historyFile	= newHistoryFile;
+	historyFile	= _historyFile;
 
 	// Parse history file
 	Object* obj;
-	obj = doParseFile( (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str() );
+	obj = doParseFile(historyFile.c_str());
 	if (obj == NULL)
 	{
-		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
-		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
+		log("Error: Could not open %s\n", historyFile.c_str());
+		printf("Error: Could not open %s\n", historyFile.c_str());
 		exit(-1);
 	}
 

@@ -25,7 +25,7 @@ class CK2Province;
 class EU3Country
 {
 	public:
-		EU3Country(EU3World* world, string tag, string countryFile, date startDate, const EU3Tech* techData);
+		EU3Country(EU3World* world, string tag, string historyFile, date startDate, const EU3Tech* techData);
 		EU3Country(CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 
 		void						output(FILE*);

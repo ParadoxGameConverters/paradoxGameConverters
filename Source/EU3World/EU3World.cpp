@@ -336,10 +336,11 @@ void EU3World::addHistoricalCountries()
 		}
 
 		string filename;
-		filename = countryDirData.name;
+		filename	=  EU3Loc + "\\history\\countries\\";
+		filename	+= countryDirData.name;
 
 		string tag;
-		tag = filename.substr(0, 3);
+		tag = string(countryDirData.name).substr(0, 3);
 		transform(tag.begin(), tag.end(), tag.begin(), toupper);
 
 		if (tag == "REB")
@@ -352,6 +353,42 @@ void EU3World::addHistoricalCountries()
 
 	} while(_findnext(fileListing, &countryDirData) == 0);
 	_findclose(fileListing);
+
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		struct _finddata_t	countryDirData;
+		intptr_t					fileListing;
+		if ( (fileListing = _findfirst( "mod\\converter\\history\\countries\\*", &countryDirData)) == -1L)
+		{
+			log("Error: Could not open country history directory.\n");
+			return;
+		}
+		do
+		{
+			if (strcmp(countryDirData.name, ".") == 0 || strcmp(countryDirData.name, "..") == 0 )
+			{
+					continue;
+			}
+
+			string filename;
+			filename	=  string("mod\\converter\\history\\countries\\");
+			filename	+= countryDirData.name;
+
+			string tag;
+			tag = string(countryDirData.name).substr(0, 3);
+			transform(tag.begin(), tag.end(), tag.begin(), toupper);
+
+			if (tag == "REB")
+			{
+				continue;
+			}
+
+			EU3Country* newCountry = new EU3Country(this, tag, filename, startDate, techData);
+			countries.insert(make_pair(tag, newCountry));
+
+		} while(_findnext(fileListing, &countryDirData) == 0);
+		_findclose(fileListing);
+	}
 }
 
 
@@ -1246,7 +1283,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 
 		mappings.clear();
 		leftoverCountries = matchTags(rulesObj, blockedNations, provinceMap, mappings);
-		if (true)
+		if (Configuration::getUseConverterMod() == "yes")
 		{
 			for (vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
 			{
@@ -1281,6 +1318,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 		}
 	}
 
+	log("%d tags were mapped. %d countries will be added to the mod.\n", mappedTags.size(), modCountries.size());
 	addModCountries(modCountries, mappedTags, mappings, religionMap, cultureMap, inverseProvinceMap);
 
 	convertedCountries.clear();
@@ -1509,7 +1547,7 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 		}
 	}
 
-	if (false)
+	if (Configuration::getUseConverterMod() == "no")
 	{
 		while ( (CK2Titles.size() > 0) && (EU3tags.size() > 0) )
 		{

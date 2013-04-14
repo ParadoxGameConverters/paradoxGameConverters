@@ -62,5 +62,7 @@ Configuration::Configuration()
 	spies					= obj[0]->getLeaf("spies");
 	lucky_nations		= obj[0]->getLeaf("lucky_nations");
 
+	useConverterMod	= obj[0]->getLeaf("useConverterMod");
+
 	id				= 1;
 }

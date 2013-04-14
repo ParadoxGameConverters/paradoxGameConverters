@@ -333,11 +333,20 @@ int main(int argc, char * argv[])
 	// Get EU3 Culture Groups
 	log("Getting EU3 cultures\n");
 	printf("Getting EU3 cultures\n");
-	obj = doParseFile((Configuration::getEU3Path() + "/common/cultures.txt").c_str());
+	string cultureFile;
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		cultureFile = "mod\\converter\\common\\cultures.txt";
+	}
+	else
+	{
+		cultureFile = Configuration::getEU3Path() + "\\common\\cultures.txt";
+	}
+	obj = doParseFile(cultureFile.c_str());
 	if (obj == NULL)
 	{
-		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/cultures.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/cultures.txt").c_str());
+		log("Error: Could not open %s\n", cultureFile.c_str());
+		printf("Error: Could not open %s\n", cultureFile.c_str());
 		exit(-1);
 	}
 	cultureGroupMapping EU3CultureGroupMap;
@@ -346,25 +355,24 @@ int main(int argc, char * argv[])
 	// Get EU3 Religion Groups
 	log("Getting EU3 religions\n");
 	printf("Getting EU3 religions\n");
-	obj = doParseFile((Configuration::getEU3Path() + "/common/religion.txt").c_str());
+	string religionFile;
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		cultureFile = "mod\\converter\\common\\religion.txt";
+	}
+	else
+	{
+		cultureFile = Configuration::getEU3Path() + "\\common\\religion.txt";
+	}
+	obj = doParseFile(cultureFile.c_str());
 	if (obj == NULL)
 	{
-		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/religion.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/common/religion.txt").c_str());
+		log("Error: Could not open %s\n", cultureFile.c_str());
+		printf("Error: Could not open %s\n", cultureFile.c_str());
 		exit(-1);
 	}
 	religionGroupMapping EU3ReligionGroupMap;
 	addReligionGroupMappings(obj, EU3ReligionGroupMap);
-	obj = doParseFile((Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str()); // in case the mod is being used
-	if (obj == NULL)
-	{
-		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/mod/Converter/common/religion.txt").c_str());
-	}
-	else
-	{
-		addReligionGroupMappings(obj, EU3ReligionGroupMap);
-	}
 
 	// Get culture mappings
 	log("Parsing culture mappings.\n");
