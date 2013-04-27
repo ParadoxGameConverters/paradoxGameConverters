@@ -113,7 +113,7 @@ void EU3History::output(FILE* output)
 	}
 	if (manpower != 0)
 	{
-		fprintf(output, "\t\t\tmanpower=\"%d\"\n", manpower);
+		fprintf(output, "\t\t\tmanpower=%d\n", manpower);
 	}
 	if (owner != "")
 	{

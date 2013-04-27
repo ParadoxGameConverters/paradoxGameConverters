@@ -65,4 +65,5 @@ Configuration::Configuration()
 	useConverterMod	= obj[0]->getLeaf("useConverterMod");
 
 	id				= 1;
+	armyId		= 1;
 }

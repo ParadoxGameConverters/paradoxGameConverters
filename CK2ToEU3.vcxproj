@@ -93,6 +93,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\CK2World\CK2Army.cpp" />
     <ClCompile Include="Source\CK2World\CK2Barony.cpp" />
     <ClCompile Include="Source\CK2World\CK2Building.cpp" />
     <ClCompile Include="Source\CK2World\CK2Character.cpp" />
@@ -110,9 +111,11 @@
     <ClCompile Include="Source\Convert.cpp" />
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\EU3World\EU3Advisor.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Army.cpp" />
     <ClCompile Include="Source\EU3World\EU3Country.cpp" />
     <ClCompile Include="Source\EU3World\EU3Diplomacy.cpp" />
     <ClCompile Include="Source\EU3World\EU3History.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Navy.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
     <ClCompile Include="Source\EU3World\EU3Ruler.cpp" />
     <ClCompile Include="Source\EU3World\EU3Tech.cpp" />
@@ -124,6 +127,7 @@
     <ClCompile Include="Source\Temp.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\CK2World\CK2Army.h" />
     <ClInclude Include="Source\CK2World\CK2Barony.h" />
     <ClInclude Include="Source\CK2World\CK2Building.h" />
     <ClInclude Include="Source\CK2World\CK2Character.h" />
@@ -141,9 +145,11 @@
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\EU3World\EU3Advisor.h" />
+    <ClInclude Include="Source\EU3World\EU3Army.h" />
     <ClInclude Include="Source\EU3World\EU3Country.h" />
     <ClInclude Include="Source\EU3World\EU3Diplomacy.h" />
     <ClInclude Include="Source\EU3World\EU3History.h" />
+    <ClInclude Include="Source\EU3World\EU3Navy.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />
     <ClInclude Include="Source\EU3World\EU3Ruler.h" />
     <ClInclude Include="Source\EU3World\EU3Tech.h" />

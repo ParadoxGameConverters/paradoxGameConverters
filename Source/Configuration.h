@@ -152,10 +152,14 @@ public:
 	return getInstance()->useConverterMod;
 	}
 
-
 	static int getID()
 	{
 		return getInstance()->id++;
+	}
+
+	static int getArmyID()
+	{
+		return getInstance()->armyId++;
 	}
 
 	static Configuration* getInstance()
@@ -202,6 +206,7 @@ private:
 	string	useConverterMod;
 
 	int		id;
+	int		armyId;
 };
 
 #endif // CONFIGURATION_H_
