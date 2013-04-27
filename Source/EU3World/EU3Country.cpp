@@ -11,6 +11,7 @@
 #include "..\CK2World\CK2Barony.h"
 #include "..\CK2World\CK2Techs.h"
 #include "..\CK2World\CK2Religion.h"
+#include "..\CK2World\CK2Army.h"
 #include "EU3Ruler.h"
 #include "EU3Advisor.h"
 #include "EU3History.h"
@@ -18,6 +19,8 @@
 #include "EU3World.h"
 #include "EU3Tech.h"
 #include "EU3Diplomacy.h"
+#include "EU3Army.h"
+#include "EU3Navy.h"
 #include <fstream>
 using namespace std;
 
@@ -110,6 +113,9 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	landTechInvestment			= 0.0f;
 	agreements.clear();
 
+	armies.clear();
+	navies.clear();
+	manpower = 0.0F;
 	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
 	{
@@ -323,7 +329,10 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	liege = NULL;
 	vassals.clear();
 	provinces.clear();
-	learningScore = 0.0f;
+	cores.clear();
+	advisors.clear();
+	learningScore = 0.0F;
+	absorbScore = 0;
 
 	tag			= "";
 	historyFile	= "";
@@ -372,6 +381,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	navalTechInvestment			= 0.0f;
 	landTechInvestment			= 0.0f;
 	agreements.clear();
+	relations.clear();
 
 	CK2Province* srcCapital = src->getLastHolder()->getCapital();
 	if (srcCapital != NULL)
@@ -404,12 +414,22 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	japaneseEmperor	= false;
 	elector				= false;
 
+	armies.clear();
+	navies.clear();
+	manpower	= 0.0F;
 	// todo: replace with something better
 	infantry = "western_medieval_infantry";
 	cavalry = "western_medieval_knights";
 	bigShip = "carrack";
 	galley = "galley";
 	transport = "cog";
+
+	merchants		= 2.0f;
+	colonists		= 2.0f;
+	diplomats		= 2.0f;
+	missionaries	= 2.0f;
+	spies				= 2.0f;
+	magistrates		= 2.0f;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -476,13 +496,6 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 			history.push_back(newHistory);
 		}
 	}
-
-	merchants		= 2.0f;
-	colonists		= 2.0f;
-	diplomats		= 2.0f;
-	missionaries	= 2.0f;
-	spies				= 2.0f;
-	magistrates		= 2.0f;
 }
 
 
@@ -658,6 +671,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tspies=%f\n", spies);
 	fprintf(output, "\tdiplomats=%f\n", diplomats);
 	fprintf(output, "\tofficials=%f\n", magistrates);
+	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
 		fprintf(output, "\tinfantry=\"%s\"\n", infantry.c_str());
@@ -677,6 +691,14 @@ void EU3Country::output(FILE* output)
 	if(transport != "")
 	{
 		fprintf(output, "\ttransport=\"%s\"\n", transport.c_str());
+	}
+	for (unsigned int i = 0; i < armies.size(); i++)
+	{
+		armies[i]->output(output);
+	}
+	for (unsigned int i = 0; i < navies.size(); i++)
+	{
+		navies[i]->output(output);
 	}
 	for (map<EU3Country*, int>::const_iterator itr = relations.begin(); itr != relations.end(); ++itr)
 	{
@@ -747,6 +769,27 @@ void EU3Country::determineLearningScore()
 	}
 
 	learningScore /= numBaronies;
+}
+
+
+void EU3Country::determineTechScore()
+{
+	int numProvinces = 0;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			vector<double> techLevels = (*srcItr)->getTechLevels();
+			for (unsigned int i = 0; i < techLevels.size(); i++)
+			{
+				techScore += techLevels[i] / 24;
+			}
+			numProvinces++;
+		}
+	}
+
+	techScore /= numProvinces;
 }
 
 
@@ -936,6 +979,83 @@ double EU3Country::getProductionEffeciency()
 	}
 
 	return PE;
+}
+
+
+void EU3Country::setPreferredUnitType()
+{
+	if(techGroup == "western")
+	{
+		infantry = "western_medieval_infantry";
+		cavalry = "western_medieval_knights";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "eastern")
+	{
+		infantry="eastern_medieval_infantry";
+		cavalry="eastern_knights";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "ottoman")
+	{
+		infantry = "ottoman_yaya";
+		cavalry = "ottoman_musellem";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "muslim")
+	{
+		infantry = "mamluk_archer";
+		cavalry = "muslim_cavalry_archers";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "indian")
+	{
+		infantry = "indian_footsoldier";
+		cavalry = "indian_archers";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "chinese")
+	{
+		infantry = "chinese_longspear";
+		cavalry = "eastern_bow";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
+	else if(techGroup == "sub_saharan")
+	{
+		infantry = "african_spearmen";
+		cavalry = "";
+		bigShip = "";
+		galley = "";
+		transport = "cog";
+	}
+	else if(techGroup == "new_world")
+	{
+		infantry = "south_american_spearmen";
+		cavalry = "";
+		bigShip = "";
+		galley = "";
+		transport = "";
+	}
+	else if(techGroup == "nomad_group")
+	{
+		infantry = "mongol_bow";
+		cavalry = "mongol_swarm";
+		bigShip = "carrack";
+		galley = "galley";
+		transport = "cog";
+	}
 }
 
 void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData)
@@ -1472,5 +1592,71 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 	{
 		advisors.push_back(*advisorItr);
 		(*advisorItr)->setHome(this);
+	}
+}
+
+
+void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> allProvinces)
+{
+	if (src != NULL)
+	{
+		vector<CK2Army*> srcArmies = src->getHolder()->getArmies();
+		for (unsigned int i = 0; i < srcArmies.size(); i++)
+		{
+			EU3Army* newArmy = new EU3Army(srcArmies[i], inverseProvinceMap, infantry, cavalry, allProvinces, manpower);
+			if (newArmy->getNumRegiments() > 0)
+			{
+				armies.push_back(newArmy);
+			}
+		}
+
+		double levyMultiplier = 1.0;
+		if (src->getTitleString().substr(0,1) == "e")
+		{
+			levyMultiplier = 1.0 / 2.0;
+		}
+		else if (src->getTitleString().substr(0,1) == "k")
+		{
+			levyMultiplier = 2.0 / 3.0;
+		}
+		else if (src->getTitleString().substr(0,1) == "d")
+		{
+			levyMultiplier = 3.0 / 4.0;
+		}
+		else if (src->getTitleString().substr(0,1) == "c")
+		{
+			levyMultiplier = 4.0 / 5.0;
+		}
+		int numNavies = 0;
+		for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+		{
+			int numSrcShips = 0;
+			vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+			for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+			{
+				vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+				for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+				{
+					manpower		+= levyMultiplier * ((*itr3)->getPSE() / 3000);
+					numSrcShips	+=	(*itr3)->getShips();
+				}
+			}
+			if (((*itr)->isCoastal()) && (numSrcShips > 0))
+			{
+				EU3Navy* newNavy = new EU3Navy(numNavies, 1, (*itr)->getNum(), transport, allProvinces);
+				navies.push_back(newNavy);
+				numNavies++;
+			}
+		}
+
+		vector<CK2Army*> srcNavies = src->getHolder()->getNavies();
+		for (unsigned int i = 0; i < srcNavies.size(); i++)
+		{
+			EU3Navy* newNavy = new EU3Navy(srcNavies[i], inverseProvinceMap, transport, infantry, cavalry, allProvinces, manpower);
+			if (newNavy->getNumShips() > 0)
+			{
+				navies.push_back(newNavy);
+			}
+		}
 	}
 }

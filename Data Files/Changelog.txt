@@ -322,43 +322,56 @@ Revision	Log Message
 316		Tanistry succession
 317		Merge in minor features
 318		Merge in bugfixes
-319
-320
-321
-322
-323
-324
-325
-326
-327
-328
-329
-330
-331
-332
-333
-334
-335
-336
-337		No longer lose a bunch of cores on loading
-338		Fix possible crash bug when merging titles
-339
-340
-341
-342
-343
-344
-345
-346
-347
-348
-349
-350
-351
-352
-353
-354
-355
-356
+319		Added tag 0.6A Release for changeset 480cef6655c2
+320		Map tags for some new 1.09 titles.
+321		Merge main to minor
+322		Merge main to bugfixes
+323		Extra logging for tech group conversion
+324		Don't crash if religions tie on multiple criteria.
+325		Read titular settlements and allow them to be a character's primary holding.
+326		Read dynamic titles and their settlements.
+327		Don't erase the buildings from the building map after adding them.
+328		If the title specified for HRETitle doesn't exist, don't try to set up the HRE mechanics.
+329		Add tax/pop/manpower proxies for family palaces (unused, but silences an error).
+		Correct manpower proxy for temples.
+330		Don't generate EU3 supply for the null tradegood.
+331		Merge bugfixes to minor.
+332		Added tag 0.6C Release for changeset 3187b3d90d69
+333		More province mappings adjustments.
+334		More province mappings adjustments, Arabian Peninsula and Horn of Africa.
+335		Initial army conversion
+336		Army position and movement
+337		Properly handle when armies are in provinces that do not map to EU3
+338		No longer lose a bunch of cores on loading
+339		Fix possible crash bug when merging titles
+340		Proper regiment types and number
+341		Convert army troop strength (and add missing files)
+342		Correct unit types
+343		Manpower from unraised levies
+344		Regiment homes and names
+345		'Leftover' men from subunits applied to manpower
+346		Readme file updates
+347		Tech group improvments
+348		Convert raised navies
+349		Convert transported armies
+350		Ships from unraised ships
+351		Fix bug with manpower sometimes being FUBAR
+352		Ships from unraised ships only in coastal provinces
+353		Better detect coastal provinces
+354		Unlanded countries inherit tech group from holder of their potential capital
+355		Add second method of tech group conversion
+356		Updates to second method
 357		Log when EU3 country information doesn't exist during output.
 358		If there are no potential HRE electors, make the emperor one instead of crashing.
+359
+360
+361
+362
+363
+364
+365
+366
+367		Merge minor into main
+368		Merge bugfixes into main
+369		Updates and fixes from merge
+370		Fix crash bug with cultural tech conversion

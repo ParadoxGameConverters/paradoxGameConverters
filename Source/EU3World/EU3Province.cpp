@@ -30,6 +30,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		land		= false;
 		capital	= "";
 	}
+	coastal = false;
 
 	vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
 	if (tradeGoodObj.size() > 0)
@@ -256,6 +257,9 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	popUnits	= 0.0f;
 	supply	= 0.0f;
 	demands.clear();
+
+	numRegiments	= 0;
+	numShips			= 0;
 }
 
 
@@ -672,6 +676,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	vector<CK2Religion*>	tiedReligions2;
 	if (tie == true)
 	{
+		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
 		{
@@ -700,6 +705,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 
 	if (tie == true)
 	{
+		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
 		{
@@ -1172,7 +1178,9 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 void EU3Province::addSupplyContribution(map<string, double>& goodsSupply)
 {
 	if (!tradeGood.empty())
+	{
 		goodsSupply[tradeGood] += supply / 100;
+	}
 }
 
 

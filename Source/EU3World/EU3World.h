@@ -50,7 +50,7 @@ class EU3World
 		void	setupProvinces(provinceMapping& provinceMap);
 
 		void	convertCountries(map<string, CK2Title*> CK2Titles, const religionMapping& religionMap, const cultureMapping& cultureMap, const provinceMapping provinceMap);
-		void	convertProvinces(provinceMapping&, map<int, CK2Province*>&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup);
+		void	convertProvinces(provinceMapping&, map<int, CK2Province*>&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup, Object* positionObj);
 		void	addAcceptedCultures();
 		void	convertAdvisors(inverseProvinceMapping&, provinceMapping&, CK2World&);
 		void	convertTech(const CK2World& srcWorld);
@@ -58,6 +58,7 @@ class EU3World
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
 		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
 		void	convertDiplomacy();
+		void	convertArmies(const inverseProvinceMapping inverseProvinceMap);
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };

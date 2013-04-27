@@ -22,6 +22,11 @@ public:
 		return getInstance()->EU3Path;
 	}
 
+	static string getTechGroupMethod()
+	{
+		return getInstance()->techGroupMethod;
+	}
+
 	static string getProxyMultiplierMethod()
 	{
 		return getInstance()->proxyMultiplierMethod;
@@ -148,6 +153,11 @@ public:
 		return getInstance()->id++;
 	}
 
+	static int getArmyID()
+	{
+		return getInstance()->armyId++;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -160,6 +170,9 @@ private:
 
 	string	CK2Path;
 	string	EU3Path;
+
+	string	techGroupMethod;
+
 	string	proxyMultiplierMethod;
 	string	multipleProvsMethod;
 	string	manpower;
@@ -187,6 +200,7 @@ private:
 	string	lucky_nations;
 
 	int		id;
+	int		armyId;
 };
 
 #endif // CONFIGURATION_H_

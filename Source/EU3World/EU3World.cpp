@@ -414,7 +414,7 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap, Object* positionObj)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -638,6 +638,21 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		provItr->second->determineReligion(religionMap, srcProvinces);
 	}
 
+	//find all coastal provinces
+	vector<Object*> provPositionObj = positionObj->getLeaves();
+	for (unsigned int i = 0; i < provPositionObj.size(); i++)
+	{
+		vector<Object*> portObjs = provPositionObj[i]->getValue("port");
+		if (portObjs.size() > 0)
+		{
+			map<int, EU3Province*>::iterator provItr = provinces.find( atoi(provPositionObj[i]->getKey().c_str()) );
+			if (provItr != provinces.end())
+			{
+				provItr->second->setCoastal(true);
+			}
+		}
+	}
+
 	// find all land connections to capitals
 	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -799,49 +814,310 @@ void EU3World::convertAdvisors(inverseProvinceMapping& inverseProvinceMap, provi
 
 void EU3World::convertTech(const CK2World& srcWorld)
 {
-	vector<double> avgTechLevels = srcWorld.getAverageTechLevels();
-
-	double highestLearningScore = 0.0f;
-	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
+	if (Configuration::getTechGroupMethod() == "learningRate")
 	{
-		(*countryItr)->determineLearningScore();
-		if ((*countryItr)->getLearningScore() > highestLearningScore)
+		vector<double> avgTechLevels = srcWorld.getAverageTechLevels();
+
+		vector<EU3Country*> unlandedCountries;
+		double highestLearningScore = 0.0f;
+		for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
 		{
-			highestLearningScore = (*countryItr)->getLearningScore();
+			if ((*countryItr)->getProvinces().size() > 0)
+			{
+				(*countryItr)->determineLearningScore();
+				if ((*countryItr)->getLearningScore() > highestLearningScore)
+				{
+					highestLearningScore = (*countryItr)->getLearningScore();
+				}
+			}
+			else
+			{
+				unlandedCountries.push_back(*countryItr);
+			}
+		}
+
+		log("Highest tech score is %f\n", highestLearningScore);
+		for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
+		{
+			if ((*countryItr)->getProvinces().size() <= 0)
+			{
+				continue;
+			}
+			CK2Religion* religion = (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
+			string title = (*countryItr)->getSrcCountry()->getTitleString();
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religion->getGroup() != "christian")  )
+			{
+				(*countryItr)->setTechGroup("nomad_group");
+			}
+			else if ((*countryItr)->getLearningScore() <= 0.23 * highestLearningScore)
+			{
+				(*countryItr)->setTechGroup("muslim");
+			}
+			else if ((*countryItr)->getLearningScore() <= 0.28 * highestLearningScore)
+			{
+				(*countryItr)->setTechGroup("ottoman");
+			}
+			else if ((*countryItr)->getLearningScore() <= 0.48 * highestLearningScore)
+			{
+				(*countryItr)->setTechGroup("eastern");
+			}
+			else
+			{
+				(*countryItr)->setTechGroup("western");
+			}
+			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), (*countryItr)->getLearningScore(), (*countryItr)->getTechGroup().c_str());
+
+			(*countryItr)->determineTechLevels(avgTechLevels, techData);
+		}
+		for (vector<EU3Country*>::iterator countryItr = unlandedCountries.begin(); countryItr != unlandedCountries.end(); countryItr++)
+		{
+			map<int, EU3Province*>::iterator capitalItr = provinces.find( (*countryItr)->getCapital() );
+			if (capitalItr != provinces.end())
+			{
+				(*countryItr)->setTechGroup( capitalItr->second->getOwner()->getTechGroup() );
+			}
+			else
+			{
+				(*countryItr)->setTechGroup("western");
+				log("\tWarning: %s had no capital, defaulting tech group to western\n", (*countryItr)->getTag().c_str());
+			}
+			(*countryItr)->determineTechLevels(avgTechLevels, techData);
+			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
+		}
+
+		for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+		{
+			countryItr->second->determineTechInvestment(techData, startDate);
 		}
 	}
-
-	for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
+	else // (Configuration::getTechGroupMethod() == "culturalTech")
 	{
-		CK2Religion* religion = (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
-		string title = (*countryItr)->getSrcCountry()->getTitleString();
-		if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religion->getGroup() != "christian")  )
-		{
-			(*countryItr)->setTechGroup("nomad_group");
-		}
-		else if ((*countryItr)->getLearningScore() <= 0.2 * highestLearningScore)
-		{
-			(*countryItr)->setTechGroup("sub_saharan");
-		}
-		else if ((*countryItr)->getLearningScore() <= 0.75 * highestLearningScore)
-		{
-			(*countryItr)->setTechGroup("muslim");
-		}
-		else if ((*countryItr)->getLearningScore() <= 0.8 * highestLearningScore)
-		{
-			(*countryItr)->setTechGroup("ottoman");
-		}
-		else if ((*countryItr)->getLearningScore() <= 0.85 * highestLearningScore)
-		{
-			(*countryItr)->setTechGroup("eastern");
-		}
-		else
-		{
-			(*countryItr)->setTechGroup("western");
-		}
+		double catholicTech	=	1.0		+ ( ((double)(startDate.year - 1066) / (1453 - 1066)) * (3.5 - 1.0));
+		double greekTech		=	(6.5/3)	+ ( ((double)(startDate.year - 1066) / (1453 - 1066)) * (3.5 - (6.5/3)) );
+		double muslimTech		=	(6.2/3)	+ ( ((double)(startDate.year - 1066) / (1453 - 1066)) * (3.0 - (6.2/3)) );
+		double otherTech		=	0.0		+ ( ((double)(startDate.year - 1066) / (1453 - 1066)) * (2.5 - 0.0) );
+		log("\tCatholicTech: %f\n", catholicTech);
+		log("\tgreekTech: %f\n", greekTech);
+		log("\tmuslimTech: %f\n", muslimTech);
+		log("\totherTech: %f\n", otherTech);
 
-		(*countryItr)->determineTechLevels(avgTechLevels, techData);
-	}
+		for (vector<EU3Country*>::iterator countryItr = convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
+		{
+			// get tech score
+			double techScore;
+			if ((*countryItr)->getProvinces().size() <= 0)
+			{
+				map<int, EU3Province*>::iterator capitalItr = provinces.find( (*countryItr)->getCapital() );
+				if (capitalItr != provinces.end())
+				{
+					capitalItr->second->getOwner()->determineTechScore();
+					techScore = capitalItr->second->getOwner()->getTechScore();
+				}
+				else
+				{
+					(*countryItr)->setTechGroup("western");
+					log("\tWarning: %s had no capital, defaulting tech group to western\n", (*countryItr)->getTag().c_str());
+					(*countryItr)->determineTechLevels(srcWorld.getAverageTechLevels(), techData);
+					log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
+					continue;
+				}
+			}
+			else
+			{
+				(*countryItr)->determineTechScore();
+				techScore = (*countryItr)->getTechScore();
+			}
+
+			// determine which decision category to use
+			CK2Title* srcCountry = (*countryItr)->getSrcCountry();
+			string category;
+			if (srcCountry->getHolder()->getReligion()->getGroup() == "muslim")
+			{
+				category = "muslim";
+			}
+			else if (srcCountry->getHolder()->getReligion()->getGroup() == "pagan_group")
+			{
+				category = "other";
+			}
+			else if (srcCountry->getHolder()->getReligion()->getGroup() == "zoroastrian_group")
+			{
+				category = "greek";
+			}
+			else if (srcCountry->getHolder()->getReligion()->getName() == "miaphysite")
+			{
+				category = "greek";
+			}
+			else if (srcCountry->getHolder()->getReligion()->getName() == "monophysite")
+			{
+				category = "greek";
+			}
+			else if (srcCountry->getHolder()->getReligion()->getName() == "monothelite")
+			{
+				category = "greek";
+			}
+			else if (srcCountry->getHolder()->getCulture() == "greek")
+			{
+				category = "greek";
+			}
+			else if (srcCountry->getHolder()->getCulture() == "georgian")
+			{
+				category = "greek";
+			}
+			else if (srcCountry->getHolder()->getCulture() == "armenian")
+			{
+				category = "greek";
+			}
+			else if	(
+							(srcCountry->getHolder()->getReligion()->getName() == "catholic") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "cathar") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "fraticelli") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "waldensian") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "lollard")
+						)
+			{
+				if (srcCountry->getHolder()->getCulture() == "german")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "english")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "saxon")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "dutch")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "frankish")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "norman")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "italian")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "occitan")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "basque")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "castillan")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "catalan")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "portuguese")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "irish")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "scottish")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "welsh")
+				{
+					category = "catholic";
+				}
+				else if (srcCountry->getHolder()->getCulture() == "breton")
+				{
+					category = "catholic";
+				}
+				else
+				{
+					category = "other";
+				}
+			}
+			else
+			{
+				category = "other";
+			}
+
+			//determine tech
+			string title = (*countryItr)->getSrcCountry()->getTitleString();
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
+			{
+				(*countryItr)->setTechGroup("nomad_group");
+			}
+			else if (category == "catholic")
+			{
+				if (techScore >= greekTech)
+				{
+					(*countryItr)->setTechGroup("western");
+				}
+				else
+				{
+					(*countryItr)->setTechGroup("eastern");
+				}
+			}
+			else if (category == "greek")
+			{
+				if (techScore >= catholicTech + 1.0)
+				{
+					(*countryItr)->setTechGroup("western");
+				}
+				else if (techScore >= muslimTech)
+				{
+					(*countryItr)->setTechGroup("eastern");
+				}
+				else
+				{
+					(*countryItr)->setTechGroup("ottoman");
+				}
+			}
+			else if (category == "other")
+			{
+				if (techScore >= catholicTech + 0.5)
+				{
+					(*countryItr)->setTechGroup("western");
+				}
+				else if (techScore >= muslimTech)
+				{
+					(*countryItr)->setTechGroup("eastern");
+				}
+				else
+				{
+					(*countryItr)->setTechGroup("ottoman");
+				}
+			}
+			else // category == "muslim"
+			{
+				if (techScore >= catholicTech + 1.0)
+				{
+					(*countryItr)->setTechGroup("western");
+				}
+				else if (techScore >= catholicTech + 0.5)
+				{
+					(*countryItr)->setTechGroup("eastern");
+				}
+				else if (techScore >= greekTech)
+				{
+					(*countryItr)->setTechGroup("ottoman");
+				}
+				else
+				{
+					(*countryItr)->setTechGroup("muslim");
+				}
+			}
+			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), techScore, (*countryItr)->getTechGroup().c_str());
+		}
+	}	
 
 	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -1078,6 +1354,15 @@ void EU3World::convertDiplomacy()
 			(*itr).second->setRelations((*jtr).second, rel);
 			(*jtr).second->setRelations((*itr).second, rel);
 		}
+	}
+}
+
+
+void EU3World::convertArmies(const inverseProvinceMapping inverseProvinceMap)
+{
+	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		countryItr->second->convertArmiesandNavies(inverseProvinceMap, provinces);
 	}
 }
 
@@ -1333,7 +1618,9 @@ void EU3World::determineMapSpread()
 void EU3World::convertHRE()
 {
 	if (srcWorld->getHRETitle() == NULL)
+	{
 		return;
+	}
 
 	hreEmperor = srcWorld->getHRETitle()->getHolder()->getPrimaryTitle()->getDstCountry();
 	map<string, CK2Title*> hreMembers = srcWorld->getHREMembers();
