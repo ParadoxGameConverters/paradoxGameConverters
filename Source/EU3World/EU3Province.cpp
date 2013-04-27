@@ -12,11 +12,12 @@
 #include <algorithm>
 
 
-EU3Province::EU3Province(int _num, Object* obj, date startDate)
+EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 {
 	srcProvinces.clear();
 	srcProvinceNums.clear();
-	num = _num;
+	startDate	= _startDate;
+	num			= _num;
 
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
@@ -412,6 +413,13 @@ void EU3Province::output(FILE* output)
 	{
 		history[i]->output(output);
 	}
+	fprintf(output, "\t\t%s=\n", startDate.toString().c_str());
+	fprintf(output, "\t\t{\n");
+	for(unsigned int i = 0; i < cores.size(); i++)
+	{
+		fprintf(output, "\t\t\tadd_core=\"%s\"\n", cores[i]->getTag().c_str());
+	}
+	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t}\n");
 	fprintf(output, "\tdiscovery_dates={9999.1.1 9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
 	fprintf(output, "\tdiscovery_religion_dates={9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");

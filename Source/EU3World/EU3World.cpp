@@ -1633,8 +1633,15 @@ void EU3World::convertHRE()
 	}
 	sort(potentialElectors.begin(), potentialElectors.end(), [](CK2Title* a, CK2Title* b) { return a->getHolder()->getTotalScore() < b->getHolder()->getTotalScore(); } );
 	
-	for (int electors = 0; electors < 6; electors++)
+	if (potentialElectors.size() > 0)
 	{
-		potentialElectors[electors]->getDstCountry()->setElector(true);
+		for (int electors = 0; electors < 6; electors++)
+		{
+			potentialElectors[electors]->getDstCountry()->setElector(true);
+		}
+	}
+	else
+	{
+		hreEmperor->setElector(true);
 	}
 }

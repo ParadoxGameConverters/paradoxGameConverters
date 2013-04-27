@@ -517,6 +517,10 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\t\tgovernment=%s\n", government.c_str());
 	}
+	else
+	{
+		log("\tWarning: No government for %s\n", tag.c_str());
+	}
 	if (techGroup != "")
 	{
 		fprintf(output, "\t\ttechnology_group=%s\n", techGroup.c_str());
@@ -524,10 +528,15 @@ void EU3Country::output(FILE* output)
 	else
 	{
 		fprintf(output, "\t\ttechnology_group=new_world\n");
+		log("\tWarning: No tech group for %s (defaulting to new world)\n", tag.c_str());
 	}
 	if (primaryCulture != "")
 	{
 		fprintf(output, "\t\tprimary_culture=%s\n", primaryCulture.c_str());
+	}
+	else
+	{
+		log("\tWarning: No primary culture for %s\n", tag.c_str());
 	}
 	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
 	{
@@ -537,9 +546,17 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "\t\treligion=%s\n", religion.c_str());
 	}
+	else
+	{
+		log("\tWarning: No religion for %s\n", tag.c_str());
+	}
 	if (capital != 0)
 	{
 		fprintf(output, "\t\tcapital=%d\n", capital);
+	}
+	else
+	{
+		log("\tWarning: No capital for %s\n", tag.c_str());
 	}
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
