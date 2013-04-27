@@ -12,7 +12,7 @@ configuration =
 	# techGroupMethod: the method by which tech groups are determined. Options are:
 	#	"learningRate" - use the CK2 learning rate to determine tech groups
 	#	"culturalTech" - use the amount of tech gained in CK2, broken down by relious and culture groups, to determine tech. NOTE: do not use this option along with mods, as it relies heavily on default religions and cultures
-	techGroupMethod = "learningRate"
+	techGroupMethod = "culturalTech"
 
 
 	### Economy (base tax, manpower, and population) Options

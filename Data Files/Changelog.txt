@@ -336,32 +336,41 @@ Revision	Log Message
 		Correct manpower proxy for temples.
 330		Don't generate EU3 supply for the null tradegood.
 331		Merge bugfixes to minor.
-332		More province mappings adjustments.
-333		More province mappings adjustments, Arabian Peninsula and Horn of Africa.
-334
+332		Added tag 0.6C Release for changeset 3187b3d90d69
+333		More province mappings adjustments.
+334		More province mappings adjustments, Arabian Peninsula and Horn of Africa.
 335		Initial army conversion
 336		Army position and movement
-337		No longer lose a bunch of cores on loading
-338		Fix possible crash bug when merging titles
-339		Properly handle when armies are in provinces that do not map to EU3
-340
-341		Proper regiment types and number
-342		Convert army troop strength
-343		Correct unit types
-344		Manpower from unraised levies
-345		Regiment homes and names
-346		Minor improvements from forum
-		'Leftover' men from subunits applied to manpower
-347		Readme file updates
-348		Tech group improvments
-349		Convert raised navies
-350		Convert transported armies
-351		Ships from unraised ships
-352		Fix bug with manpower sometimes being FUBAR
-353		Ships from unraised ships only in coastal provinces
-354		Better detect coastal provinces
-355		Unlanded countries inherit tech group from holder of their potential capital
-356		Add second method of tech group conversion
-357		Updates to second method
-358		Log when EU3 country information doesn't exist during output.
-359		If there are no potential HRE electors, make the emperor one instead of crashing.
+337		Properly handle when armies are in provinces that do not map to EU3
+338		No longer lose a bunch of cores on loading
+339		Fix possible crash bug when merging titles
+340		Proper regiment types and number
+341		Convert army troop strength (and add missing files)
+342		Correct unit types
+343		Manpower from unraised levies
+344		Regiment homes and names
+345		'Leftover' men from subunits applied to manpower
+346		Readme file updates
+347		Tech group improvments
+348		Convert raised navies
+349		Convert transported armies
+350		Ships from unraised ships
+351		Fix bug with manpower sometimes being FUBAR
+352		Ships from unraised ships only in coastal provinces
+353		Better detect coastal provinces
+354		Unlanded countries inherit tech group from holder of their potential capital
+355		Add second method of tech group conversion
+356		Updates to second method
+357		Log when EU3 country information doesn't exist during output.
+358		If there are no potential HRE electors, make the emperor one instead of crashing.
+359
+360
+361
+362
+363
+364
+365
+366
+367		Merge minor into main
+368		Merge bugfixes into main
+369		Updates and fixes from merge
