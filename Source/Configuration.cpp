@@ -63,4 +63,5 @@ Configuration::Configuration()
 	lucky_nations		= obj[0]->getLeaf("lucky_nations");
 
 	id				= 1;
+	armyId		= 1;
 }

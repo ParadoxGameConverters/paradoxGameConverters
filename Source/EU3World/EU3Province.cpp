@@ -12,11 +12,12 @@
 #include <algorithm>
 
 
-EU3Province::EU3Province(int _num, Object* obj, date startDate)
+EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 {
 	srcProvinces.clear();
 	srcProvinceNums.clear();
-	num = _num;
+	startDate	= _startDate;
+	num			= _num;
 
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
@@ -29,6 +30,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 		land		= false;
 		capital	= "";
 	}
+	coastal = false;
 
 	vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
 	if (tradeGoodObj.size() > 0)
@@ -255,6 +257,9 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 	popUnits	= 0.0f;
 	supply	= 0.0f;
 	demands.clear();
+
+	numRegiments	= 0;
+	numShips			= 0;
 }
 
 
@@ -408,6 +413,13 @@ void EU3Province::output(FILE* output)
 	{
 		history[i]->output(output);
 	}
+	fprintf(output, "\t\t%s=\n", startDate.toString().c_str());
+	fprintf(output, "\t\t{\n");
+	for(unsigned int i = 0; i < cores.size(); i++)
+	{
+		fprintf(output, "\t\t\tadd_core=\"%s\"\n", cores[i]->getTag().c_str());
+	}
+	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t}\n");
 	fprintf(output, "\tdiscovery_dates={9999.1.1 9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
 	fprintf(output, "\tdiscovery_religion_dates={9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
@@ -664,6 +676,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	vector<CK2Religion*>	tiedReligions2;
 	if (tie == true)
 	{
+		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
 		{
@@ -692,6 +705,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 
 	if (tie == true)
 	{
+		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
 		{
@@ -1164,7 +1178,9 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 void EU3Province::addSupplyContribution(map<string, double>& goodsSupply)
 {
 	if (!tradeGood.empty())
+	{
 		goodsSupply[tradeGood] += supply / 100;
+	}
 }
 
 

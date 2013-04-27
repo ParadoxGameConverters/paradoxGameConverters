@@ -21,6 +21,8 @@ class EU3Tech;
 class EU3Diplomacy;
 struct EU3Agreement;
 class CK2Province;
+class EU3Army;
+class EU3Navy;
 
 class EU3Country
 {
@@ -36,6 +38,7 @@ class EU3Country
 		void						determineEconomy(const cultureGroupMapping& cultureGroups, const map<string, double>& unitPrices);
 		double					getTradeEffeciency();
 		double					getProductionEffeciency();
+		void						setPreferredUnitType();
 		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
 		void						determineTechInvestment(const EU3Tech* techData, date startDate);
 		void						determineStartingAgents();
@@ -43,6 +46,7 @@ class EU3Country
 		vector<EU3Country*>	eatVassals();
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
+		void						convertArmiesandNavies(inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> provinces);
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
@@ -127,6 +131,9 @@ class EU3Country
 		bool						japaneseEmperor;
 		bool						elector;
 
+		vector<EU3Army*>		armies;
+		vector<EU3Navy*>		navies;
+		double					manpower;
 		string					infantry;
 		string					cavalry;
 		string					bigShip;

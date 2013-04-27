@@ -458,7 +458,8 @@ int main(int argc, char * argv[])
 
 	log("Converting provinces.\n");
 	printf("Converting provinces.\n");
-	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap);
+	Object* positionsObj = doParseFile((Configuration::getEU3Path() + "\\map\\positions.txt").c_str());
+	destWorld.convertProvinces(provinceMap, srcWorld.getProvinces(), cultureMap, religionMap, continentMap, adjacencyMap, tradeGoodMap, EU3ReligionGroupMap, positionsObj);
 
 	// Map CK2 nations to EU3 nations
 	log("Parsing country mappings.\n");
@@ -498,6 +499,9 @@ int main(int argc, char * argv[])
 	printf("Converting diplomatic relations.\n");
 	destWorld.convertDiplomacy();
 
+	log("Converting armies and navies.\n");
+	printf("Converting armies and navies.\n");
+	destWorld.convertArmies(inverseProvinceMap);
 
 	// Output results
 	printf("Outputting save.\n");
