@@ -337,6 +337,22 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	tag			= "";
 	historyFile	= "";
 	government	= "";
+	monarch		= NULL;
+	heir			= NULL;
+	regent		= NULL;
+	history.clear();
+	previousMonarchs.clear();
+
+	religion = "";
+	CK2Religion* oldReligion = src->getLastHolder()->getReligion();
+	if (oldReligion)
+	{
+		religionMapping::const_iterator religionItr = religionMap.find(oldReligion->getName());
+		if (religionItr != religionMap.end())
+		{
+			religion = religionItr->second;
+		}
+	}
 
 	map<string, int> cultureWeights;
 	src->getCultureWeights(cultureWeights, cultureMap);
@@ -350,24 +366,8 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 			highestWeight	= cultureItr->second;
 		}
 	}
+
 	acceptedCultures.clear();
-
-	religion = "";
-	CK2Religion* oldReligion = src->getLastHolder()->getReligion();
-	if (oldReligion)
-	{
-		religionMapping::const_iterator religionItr = religionMap.find(oldReligion->getName());
-		if (religionItr != religionMap.end())
-		{
-			religion = religionItr->second;
-		}
-	}
-
-	monarch		= NULL;
-	heir			= NULL;
-	regent		= NULL;
-	history.clear();
-	previousMonarchs.clear();
 
 	techGroup = "";
 	governmentTech					= 0.0f;
@@ -401,10 +401,9 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 		capital = 0;
 	}
 
+	prestige				= 0.0;
 	stability				= 1;
 	stabilityInvestment	= 0.0f;
-	prestige					= 0.0;
-
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
 	estimatedGold			= 0.0f;
@@ -753,6 +752,27 @@ void EU3Country::determineLearningScore()
 	}
 
 	learningScore /= numBaronies;
+}
+
+
+void EU3Country::determineTechScore()
+{
+	int numProvinces = 0;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			vector<double> techLevels = (*srcItr)->getTechLevels();
+			for (unsigned int i = 0; i < techLevels.size(); i++)
+			{
+				techScore += techLevels[i] / 24;
+			}
+			numProvinces++;
+		}
+	}
+
+	techScore /= numProvinces;
 }
 
 

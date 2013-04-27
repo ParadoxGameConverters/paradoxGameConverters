@@ -22,6 +22,11 @@ public:
 		return getInstance()->EU3Path;
 	}
 
+	static string getTechGroupMethod()
+	{
+		return getInstance()->techGroupMethod;
+	}
+
 	static string getProxyMultiplierMethod()
 	{
 		return getInstance()->proxyMultiplierMethod;
@@ -165,6 +170,9 @@ private:
 
 	string	CK2Path;
 	string	EU3Path;
+
+	string	techGroupMethod;
+
 	string	proxyMultiplierMethod;
 	string	multipleProvsMethod;
 	string	manpower;

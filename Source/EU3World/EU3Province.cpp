@@ -1169,7 +1169,10 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 
 void EU3Province::addSupplyContribution(map<string, double>& goodsSupply)
 {
-	goodsSupply[tradeGood] += supply / 100;
+	if (!tradeGood.empty())
+	{
+		goodsSupply[tradeGood] += supply / 100;
+	}
 }
 
 

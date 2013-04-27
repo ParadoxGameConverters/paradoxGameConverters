@@ -18,7 +18,7 @@ class CK2Religion;
 class CK2Province
 {
 	public:
-		CK2Province(Object*, map<string, CK2Title*>, const CK2BuildingFactory* buildingFactory, const cultureGroupMapping& cultureGroupMap);
+		CK2Province(Object*, map<string, CK2Title*>, const CK2BuildingFactory* buildingFactory);
 
 		int						getNumber()			const { return number; };
 		vector<CK2Barony*>	getBaronies()		const { return baronies; };

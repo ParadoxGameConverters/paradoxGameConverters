@@ -17,7 +17,7 @@
 
 CK2World::CK2World()
 {
-	buildingFactory = new CK2BuildingFactory;
+	buildingFactory = NULL;
 
 	version = NULL;
 	endDate = date();
@@ -37,6 +37,8 @@ CK2World::CK2World()
 
 void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 {
+	buildingFactory = new CK2BuildingFactory(&cultureGroupMap);
+
 	// get version
 	vector<Object*> versionObj = obj->getValue("version");
 	if (versionObj.size() > 0)
@@ -144,11 +146,20 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 			map<string, CK2Title*>::iterator titleItr = potentialTitles.find(key);
 			if (titleItr == potentialTitles.end())
 			{
-				log("\t\tWarning: tried to create title %s, but it is not a potential title.\n", key.c_str());
-				continue;
+				CK2Title* dynTitle = new CK2Title(key);
+				dynTitle->init(leaves[i], characters, buildingFactory);
+				if (!dynTitle->isDynamic())
+				{
+					log("\t\tWarning: tried to create title %s, but it is neither a potential title nor a dynamic title.\n", key.c_str());
+					continue;
+				}
+				titles.insert( make_pair(dynTitle->getTitleString(), dynTitle) );
 			}
-			titleItr->second->init(leaves[i], characters);
-			titles.insert( make_pair(titleItr->second->getTitleString(), titleItr->second) );
+			else
+			{
+				titleItr->second->init(leaves[i], characters, buildingFactory);
+				titles.insert( make_pair(titleItr->second->getTitleString(), titleItr->second) );
+			}
 		}
 	}
 
@@ -166,7 +177,7 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province(leaves[i], titles, buildingFactory, cultureGroupMap);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles, buildingFactory);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();
@@ -270,7 +281,7 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 
 void CK2World::addBuildingTypes(Object* obj)
 {
-	buildingFactory->addBuildingTypes(obj);
+	CK2BuildingFactory::addBuildingTypes(obj);
 }
 
 
