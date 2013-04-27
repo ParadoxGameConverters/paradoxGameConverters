@@ -374,3 +374,4 @@ Revision	Log Message
 367		Merge minor into main
 368		Merge bugfixes into main
 369		Updates and fixes from merge
+370		Fix crash bug with cultural tech conversion

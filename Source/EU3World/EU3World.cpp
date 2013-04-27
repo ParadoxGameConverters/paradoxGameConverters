@@ -929,112 +929,113 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 
 			// determine which decision category to use
+			CK2Title* srcCountry = (*countryItr)->getSrcCountry();
 			string category;
-			if (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() == "muslim")
+			if (srcCountry->getHolder()->getReligion()->getGroup() == "muslim")
 			{
 				category = "muslim";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() == "pagan_group")
+			else if (srcCountry->getHolder()->getReligion()->getGroup() == "pagan_group")
 			{
 				category = "other";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() == "zoroastrian_group")
+			else if (srcCountry->getHolder()->getReligion()->getGroup() == "zoroastrian_group")
 			{
 				category = "greek";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "miaphysite")
+			else if (srcCountry->getHolder()->getReligion()->getName() == "miaphysite")
 			{
 				category = "greek";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "monophysite")
+			else if (srcCountry->getHolder()->getReligion()->getName() == "monophysite")
 			{
 				category = "greek";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "monothelite")
+			else if (srcCountry->getHolder()->getReligion()->getName() == "monothelite")
 			{
 				category = "greek";
 			}
-			else if ((*countryItr)->getPrimaryCulture() == "greek")
+			else if (srcCountry->getHolder()->getCulture() == "greek")
 			{
 				category = "greek";
 			}
-			else if ((*countryItr)->getPrimaryCulture() == "georgian")
+			else if (srcCountry->getHolder()->getCulture() == "georgian")
 			{
 				category = "greek";
 			}
-			else if ((*countryItr)->getPrimaryCulture() == "armenian")
+			else if (srcCountry->getHolder()->getCulture() == "armenian")
 			{
 				category = "greek";
 			}
 			else if	(
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "catholic") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "cathar") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "fraticelli") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "waldensian") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "lollard")
+							(srcCountry->getHolder()->getReligion()->getName() == "catholic") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "cathar") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "fraticelli") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "waldensian") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "lollard")
 						)
 			{
-				if ((*countryItr)->getPrimaryCulture() == "german")
+				if (srcCountry->getHolder()->getCulture() == "german")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "english")
+				else if (srcCountry->getHolder()->getCulture() == "english")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "saxon")
+				else if (srcCountry->getHolder()->getCulture() == "saxon")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "dutch")
+				else if (srcCountry->getHolder()->getCulture() == "dutch")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "frankish")
+				else if (srcCountry->getHolder()->getCulture() == "frankish")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "norman")
+				else if (srcCountry->getHolder()->getCulture() == "norman")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "italian")
+				else if (srcCountry->getHolder()->getCulture() == "italian")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "occitan")
+				else if (srcCountry->getHolder()->getCulture() == "occitan")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "basque")
+				else if (srcCountry->getHolder()->getCulture() == "basque")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "castillan")
+				else if (srcCountry->getHolder()->getCulture() == "castillan")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "catalan")
+				else if (srcCountry->getHolder()->getCulture() == "catalan")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "portuguese")
+				else if (srcCountry->getHolder()->getCulture() == "portuguese")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "irish")
+				else if (srcCountry->getHolder()->getCulture() == "irish")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "scottish")
+				else if (srcCountry->getHolder()->getCulture() == "scottish")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "welsh")
+				else if (srcCountry->getHolder()->getCulture() == "welsh")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "breton")
+				else if (srcCountry->getHolder()->getCulture() == "breton")
 				{
 					category = "catholic";
 				}
@@ -1050,7 +1051,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 
 			//determine tech
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}
