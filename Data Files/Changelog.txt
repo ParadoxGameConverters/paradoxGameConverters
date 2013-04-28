@@ -381,3 +381,4 @@ Revision	Log Message
 374		
 375		
 376		Manpower numbers are less insane
+377		Fix crashbug with independent republic families

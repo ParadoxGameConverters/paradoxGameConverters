@@ -237,7 +237,11 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 	{
 		if (titleItr->first.substr(0, 1) == "b")
 		{
-			titleItr->second->setLiege(titleItr->second->getDeJureLiege());
+			CK2Title* deJureLiege = titleItr->second->getDeJureLiege();
+			if (deJureLiege != NULL)
+			{
+				titleItr->second->setLiege(deJureLiege);
+			}
 		}
 		else
 		{
