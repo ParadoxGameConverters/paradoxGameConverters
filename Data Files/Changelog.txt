@@ -375,3 +375,9 @@ Revision	Log Message
 368		Merge bugfixes into main
 369		Updates and fixes from merge
 370		Fix crash bug with cultural tech conversion
+371		Added tag 0.7 Release for changeset 57ebf3239b88
+372		Merge main into bugfixes
+373		
+374		
+375		
+376		Manpower numbers are less insane

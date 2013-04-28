@@ -82,7 +82,7 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 		EU3Regiment* newRegiment = new EU3Regiment(infantryType, strength);
 		regiments.push_back(newRegiment);
 	}
-	manpower += currentInfantryPSE - (strength * numInfantry);
+	manpower += (currentInfantryPSE - (strength * numInfantry)) / 1000;
 
 	double	currentCavalryPSE	= srcArmy->getCurrentCavalryPSE();
 	double	maxCavalryPSE		= srcArmy->getMaxCavalryPSE();
@@ -104,7 +104,7 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 		EU3Regiment* newRegiment = new EU3Regiment(cavalryType, strength);
 		regiments.push_back(newRegiment);
 	}
-	manpower += currentCavalryPSE - (strength * numCavalry);
+	manpower += (currentCavalryPSE - (strength * numCavalry)) / 1000;
 
 	vector<int> srcHomeProvinces = srcArmy->getHomeProvinces();
 	vector<int> homeProvinces;
