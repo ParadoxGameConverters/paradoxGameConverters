@@ -71,6 +71,8 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		manpower = 0;
 	}
 
+	buildings.clear();
+
 	owner = NULL;
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
@@ -97,6 +99,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	{
 		rawDiscoverers.push_back(discoveredByObj[i]->getLeaf());
 	}
+	discoveredBy.clear();
 
 	vector<Object*> cultureObj = obj->getValue("culture");
 	if (cultureObj.size() > 0)
@@ -251,6 +254,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 
 	modifiers.clear();
 
+	continent		= "";
 	sameContinent	= false;
 	landConnection	= false;
 
@@ -334,9 +338,9 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\ttrade_goods=%s\n", tradeGood.c_str());
 	}
-	if ((ownerStr != "") || (owner != NULL))
+	for (vector<string>::iterator i = buildings.begin(); i != buildings.end(); i++)
 	{
-		fprintf(output, "\tfort1=yes\n");
+		fprintf(output, "\t%s=yes\n", (*i).c_str());
 	}
 	if (nativeSize > 0.0)
 	{

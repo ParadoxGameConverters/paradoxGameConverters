@@ -81,6 +81,8 @@ class EU3Country
 		bool						hasVassals()				const { return !vassals.empty(); };
 
 	private:
+		void	addBuildings();
+
 		CK2Title*				src;
 		EU3Country*				liege;
 		vector<EU3Country*>	vassals;

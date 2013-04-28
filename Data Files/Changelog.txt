@@ -375,3 +375,11 @@ Revision	Log Message
 368		Merge bugfixes into main
 369		Updates and fixes from merge
 370		Fix crash bug with cultural tech conversion
+371
+372
+373
+374
+375
+376
+377
+378		Convert buildings

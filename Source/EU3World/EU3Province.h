@@ -52,6 +52,7 @@ class EU3Province
 		void		addCore(EU3Country* core)					{ cores.push_back(core); };
 		void		setOwner(EU3Country* _owner)				{ owner = _owner; ownerStr = ""; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
+		void		addBuilding(const string building)		{ buildings.push_back(building); };
 		void		setContinent(string _continent)			{ continent = _continent; };
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
@@ -86,6 +87,7 @@ class EU3Province
 		double						baseTax;
 		double						population;
 		int							manpower;
+		vector<string>				buildings;
 		EU3Country*					owner;
 		string						ownerStr;
 		const CK2Title*			srcOwner;

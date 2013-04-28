@@ -1130,6 +1130,8 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 	tradeTech		= techData->getTradeTech("western")			+ (oldTradeTech / 9);
 	navalTech		= techData->getNavalTech("western")			+ (oldNavalTech / 9);
 	landTech			= techData->getLandTech("western")			+ (oldLandTech / 9);
+
+	addBuildings();
 }
 
 
@@ -1658,5 +1660,58 @@ void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProv
 				navies.push_back(newNavy);
 			}
 		}
+	}
+}
+
+
+void EU3Country::addBuildings()
+{
+	for (vector<EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		if (governmentTech > 8.0)
+		{
+			(*i)->addBuilding("courthouse");
+		}
+		else if (governmentTech > 4.0)
+		{
+			(*i)->addBuilding("temple");
+		}
+		if (productionTech > 8.0)
+		{
+			(*i)->addBuilding("workshop");
+		}
+		else if (productionTech > 4.0)
+		{
+			(*i)->addBuilding("constable");
+		}
+		if (tradeTech > 8.0)
+		{
+			(*i)->addBuilding("trade_depot");
+		}
+		else if (tradeTech > 4.0)
+		{
+			(*i)->addBuilding("marketplace");
+		}
+		if ((*i)->isCoastal())
+		{
+			if (navalTech > 8.0)
+			{
+				(*i)->addBuilding("drydock");
+			}
+			else if (navalTech > 4.0)
+			{
+				(*i)->addBuilding("dock");
+			}
+		}
+		if (landTech > 8.0)
+		{
+			(*i)->addBuilding("training_fields");
+		}
+		else if (landTech > 4.0)
+		{
+			(*i)->addBuilding("armory");
+		}
+
+		(*i)->addBuilding("fort1");
 	}
 }
