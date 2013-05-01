@@ -383,3 +383,4 @@ Revision	Log Message
 376		Manpower numbers are less insane
 377		Fix crashbug with independent republic families
 378		Fix bug with culturalTech option
+379		Fix crashbug when holders of only titular titles are vassals
