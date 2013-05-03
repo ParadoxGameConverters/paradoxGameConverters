@@ -88,6 +88,7 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 	determinePopProxy();
 	determineManpowerProxy();
 	determineTechBonus();
+	determineFortLevel();
 
 	PSE	= 0.0F;
 	ships	= 0;
@@ -250,5 +251,15 @@ void CK2Barony::determineTechBonus()
 	for (vector<const CK2Building*>::iterator buildingItr = buildings.begin(); buildingItr != buildings.end(); buildingItr++)
 	{
 		techBonus	+= (*buildingItr)->getTechBonus();
+	}
+}
+
+
+void CK2Barony::determineFortLevel()
+{
+	fortLevel = 0.0f;
+	for (vector<const CK2Building*>::iterator buildingItr = buildings.begin(); buildingItr != buildings.end(); buildingItr++)
+	{
+		fortLevel	+= (*buildingItr)->getFortLevel();
 	}
 }

@@ -1711,7 +1711,5 @@ void EU3Country::addBuildings()
 		{
 			(*i)->addBuilding("armory");
 		}
-
-		(*i)->addBuilding("fort1");
 	}
 }

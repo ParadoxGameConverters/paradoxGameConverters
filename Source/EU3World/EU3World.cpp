@@ -705,6 +705,39 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		itr->second->determineGoodsSupply(tradeGoodMap);
 		itr->second->determineGoodsDemand(tradeGoodMap, EU3ReligionGroupMap);
 	}
+
+	for(map<int, EU3Province*>::iterator itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = itr->second->getSrcProvinces();
+		if (srcProvinces.size() > 0)
+		{
+			bool fort2 = false;
+			for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr != srcProvinces.end(); srcItr++)
+			{
+				vector<CK2Barony*> baronies = (*srcItr)->getBaronies();
+				for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
+				{
+					if ((*baronyItr)->getFortLevel() > 6.9)
+					{
+						fort2 = true;
+						break;
+					}
+				}
+				if (fort2)
+				{
+					break;
+				}
+			}
+			if (fort2)
+			{
+				itr->second->addBuilding("fort2");
+			}
+			else
+			{
+				itr->second->addBuilding("fort1");
+			}
+		}
+	}
 }
 
 
