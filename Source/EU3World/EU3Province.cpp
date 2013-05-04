@@ -72,6 +72,19 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	}
 
 	buildings.clear();
+	vector<Object*> fortObj = obj->getValue("fort2");
+	if (fortObj.size() > 0)
+	{
+		buildings.push_back("fort2");
+	}
+	else
+	{
+		vector<Object*> fortObj = obj->getValue("fort1");
+		if (fortObj.size() > 0)
+		{
+			buildings.push_back("fort1");
+		}
+	}
 
 	owner = NULL;
 	vector<Object*> ownerObj = obj->getValue("owner");
@@ -190,6 +203,21 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 				{
 					manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
 					newHistory->manpower = manpower;
+				}
+
+				vector<Object*> fortObj = obj->getValue("fort2");
+				if (fortObj.size() > 0)
+				{
+					buildings.clear();
+					buildings.push_back("fort2");
+				}
+				else
+				{
+					vector<Object*> fortObj = obj->getValue("fort1");
+					if (fortObj.size() > 0)
+					{
+						buildings.push_back("fort1");
+					}
 				}
 
 				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
@@ -451,6 +479,7 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _sr
 
 	num				= _num;
 	//capital	-- leave it as it is from the history file (TODO?)
+	buildings.clear();
 	ownerStr			= "";
 	cores				= _cores;
 	inHRE				= _inHRE;
