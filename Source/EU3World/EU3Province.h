@@ -62,6 +62,7 @@ class EU3Province
 		bool						isLand() const				{ return land; };
 		bool						isCoastal() const			{ return coastal; };
 		string					getCapital() const		{ return capital; };
+		string					getTradeGood() const		{ return tradeGood; };
 		EU3Country*				getOwner() const			{ return owner; };
 		string					getOwnerStr() const		{ return ownerStr; };
 		vector<string>			getCoreStrings() const	{ return coreStrings; };

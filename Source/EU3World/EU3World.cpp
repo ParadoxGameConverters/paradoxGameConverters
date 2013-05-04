@@ -711,6 +711,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		vector<CK2Province*> srcProvinces = itr->second->getSrcProvinces();
 		if (srcProvinces.size() > 0)
 		{
+			bool	textile		= false;
 			bool	university	= false;
 			bool	fort2			= false;
 			for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr != srcProvinces.end(); srcItr++)
@@ -726,15 +727,30 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 					{
 						university = true;
 					}
+					if ((*baronyItr)->getBaseTaxProxy() > 42.5)
+					{
+						textile = true;
+					}
+				}
+			}
+			if (textile)
+			{
+				if ((itr->second->getTradeGood() == "wool") || (itr->second->getTradeGood() == "cloth"))
+				{
+					university = false;
+					itr->second->addBuilding("textile");
+					log ("\tTextile manu added to province %d\n", itr->first);
 				}
 			}
 			if (university)
 			{
 				itr->second->addBuilding("university");
+				log ("\tUniversity added to province %d\n", itr->first);
 			}
 			if (fort2)
 			{
 				itr->second->addBuilding("fort2");
+				log ("\tFort 2 added to province %d\n", itr->first);
 			}
 			else
 			{
