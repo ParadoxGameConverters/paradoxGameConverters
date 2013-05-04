@@ -479,14 +479,6 @@ int main(int argc, char * argv[])
 	printf("Adding accepted cultures.\n");
 	destWorld.addAcceptedCultures();
 
-	log("Converting centes of trade\n");
-	printf("Converting centes of trade\n");
-	destWorld.convertCoTs();
-	
-	log("Converting economies.\n");
-	printf("Converting economies.\n");
-	destWorld.convertEconomies(EU3CultureGroupMap, tradeGoodMap);
-
 	log("Converting tech.\n");
 	printf("Converting tech.\n");
 	destWorld.convertTech(srcWorld);
@@ -494,6 +486,14 @@ int main(int argc, char * argv[])
 	log("Converting governments.\n");
 	printf("Converting governments.\n");
 	destWorld.convertGovernments();
+
+	log("Converting centes of trade\n");
+	printf("Converting centes of trade\n");
+	destWorld.convertCoTs();
+	
+	log("Converting economies.\n");
+	printf("Converting economies.\n");
+	destWorld.convertEconomies(EU3CultureGroupMap, tradeGoodMap);
 
 	log("Converting advisors.\n");
 	printf("Converting advisors.\n");

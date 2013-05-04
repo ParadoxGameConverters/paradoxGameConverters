@@ -1721,4 +1721,34 @@ void EU3World::convertCoTs()
 			centersOfTrade.push_back(provItr->first);
 		}
 	}
+
+	for (map<string, EU3Country*>	::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		if (countryItr->second->getGovernment() == "merchant_republic")
+		{
+			bool addCot = true;
+			vector<EU3Province*> republicProvs = countryItr->second->getProvinces();
+			if (republicProvs.size() == 0)
+			{
+				addCot = false;
+			}
+			for (vector<EU3Province*>::iterator provItr = republicProvs.begin(); provItr != republicProvs.end(); provItr++)
+			{
+				if ((*provItr)->hasCOT())
+				{
+					addCot = false;
+				}
+			}
+			if (addCot)
+			{
+				int capital = countryItr->second->getCapital();
+				map<int, EU3Province*>::iterator provItr = provinces.find(capital);
+				if (provItr != provinces.end())
+				{
+					provItr->second->setCot(true);
+					centersOfTrade.push_back(provItr->first);
+				}
+			}
+		}
+	}
 }

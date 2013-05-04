@@ -392,3 +392,4 @@ Revision	Log Message
 385		Historical forts for the ROTW
 386		Historical CoTs
 387		Add Empire_of_Britannia to test suite
+388		Merchant republics get a CoT if they didn't already have one

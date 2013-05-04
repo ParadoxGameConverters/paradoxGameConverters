@@ -57,6 +57,7 @@ class EU3Province
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
 		void		setInHRE(bool _inHRE)						{ inHRE = _inHRE; };
+		void		setCot(bool _cot)								{ cot = _cot; };
 
 		int						getNum() const				{ return num; };
 		bool						isLand() const				{ return land; };
