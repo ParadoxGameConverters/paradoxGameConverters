@@ -711,7 +711,8 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		vector<CK2Province*> srcProvinces = itr->second->getSrcProvinces();
 		if (srcProvinces.size() > 0)
 		{
-			bool fort2 = false;
+			bool	university	= false;
+			bool	fort2			= false;
 			for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr != srcProvinces.end(); srcItr++)
 			{
 				vector<CK2Barony*> baronies = (*srcItr)->getBaronies();
@@ -720,13 +721,16 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 					if ((*baronyItr)->getFortLevel() > 6.9)
 					{
 						fort2 = true;
-						break;
+					}
+					if ((*baronyItr)->getTechBonus() > 0.7)
+					{
+						university = true;
 					}
 				}
-				if (fort2)
-				{
-					break;
-				}
+			}
+			if (university)
+			{
+				itr->second->addBuilding("university");
 			}
 			if (fort2)
 			{
