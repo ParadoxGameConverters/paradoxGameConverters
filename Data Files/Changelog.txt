@@ -391,3 +391,4 @@ Revision	Log Message
 384		Convert textile manufactories
 385		Historical forts for the ROTW
 386		Historical CoTs
+387		Add Empire_of_Britannia to test suite
