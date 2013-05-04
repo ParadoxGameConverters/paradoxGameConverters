@@ -59,6 +59,7 @@ class EU3World
 		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
 		void	convertDiplomacy();
 		void	convertArmies(const inverseProvinceMapping inverseProvinceMap);
+		void	convertCoTs();
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };
@@ -77,6 +78,7 @@ class EU3World
 		date									startDate;
 		EU3Tech*								techData;
 
+		vector<int>							centersOfTrade;
 		map<int, EU3Province*>			provinces;
 		map<string, EU3Country*>		countries;
 		vector<EU3Country*>				convertedCountries;

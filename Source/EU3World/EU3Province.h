@@ -70,7 +70,7 @@ class EU3Province
 		double					getPopulation() const	{ return population; };
 		double					getManpower() const		{ return manpower; };
 		string					getCulture() const		{ return culture; };
-		bool						hasCOT() const				{ return false; }
+		bool						hasCOT() const				{ return cot; }
 		vector<CK2Province*>	getSrcProvinces() const	{ return srcProvinces; };
 	private:
 		vector<string>			getCoreTags() const;
@@ -101,6 +101,7 @@ class EU3Province
 		string						religion;
 		vector<EU3History*>		history;
 		vector<string>				modifiers;
+		bool							cot;
 
 		string	continent;
 		bool		sameContinent;

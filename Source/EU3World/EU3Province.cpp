@@ -166,6 +166,16 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		nativeHostility = 0;
 	}
 
+	cot = false;
+	vector<Object*> cotObj = obj->getValue("cot");
+	if (cotObj.size() > 0)
+	{
+		if (cotObj[0]->getLeaf() == "yes")
+		{
+			cot = true;
+		}
+	}
+
 	// update based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
@@ -273,6 +283,15 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 				{
 					religion = religionObj[0]->getLeaf();
 					newHistory->religion = religion;
+				}
+
+				vector<Object*> cotObj = obj->getValue("cot");
+				if (cotObj.size() > 0)
+				{
+					if (cotObj[0]->getLeaf() == "yes")
+					{
+						cot = true;
+					}
 				}
 
 				history.push_back(newHistory);

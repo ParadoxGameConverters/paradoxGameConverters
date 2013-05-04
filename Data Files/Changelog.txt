@@ -390,3 +390,4 @@ Revision	Log Message
 383		Convert universities
 384		Convert textile manufactories
 385		Historical forts for the ROTW
+386		Historical CoTs

@@ -217,6 +217,7 @@ EU3World::EU3World(CK2World* _srcWorld, EU3Tech* _techData)
 		options[LUCKY_NATIONS] = 2;
 	}
 
+	centersOfTrade.clear();
 	diplomacy			= new EU3Diplomacy();
 	hreEmperor			= NULL;
 	japaneseEmperor	= NULL;
@@ -250,6 +251,16 @@ void EU3World::output(FILE* output)
 	}
 	fprintf(output, "imperial_influence=20.000\n");
 	fprintf(output, "internal_hre_cb=yes\n");
+	fprintf(output, "trade=\n");
+	fprintf(output, "{\n");
+	for (vector<int>::iterator cotItr = centersOfTrade.begin(); cotItr != centersOfTrade.end(); cotItr++)
+	{
+		fprintf(output, "\tcot=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tlocation=%d\n", *cotItr);
+		fprintf(output, "\t}\n");
+	}
+	fprintf(output, "}\n");
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		if (i->second != NULL)
@@ -1697,5 +1708,17 @@ void EU3World::convertHRE()
 	else
 	{
 		hreEmperor->setElector(true);
+	}
+}
+
+
+void EU3World::convertCoTs()
+{
+	for (map<int, EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		if (provItr->second->hasCOT())
+		{
+			centersOfTrade.push_back(provItr->first);
+		}
 	}
 }

@@ -478,6 +478,10 @@ int main(int argc, char * argv[])
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");
 	destWorld.addAcceptedCultures();
+
+	log("Converting centes of trade\n");
+	printf("Converting centes of trade\n");
+	destWorld.convertCoTs();
 	
 	log("Converting economies.\n");
 	printf("Converting economies.\n");
