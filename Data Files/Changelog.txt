@@ -384,3 +384,13 @@ Revision	Log Message
 377		Fix crashbug with independent republic families
 378		Fix bug with culturalTech option
 379		Fix crashbug when holders of only titular titles are vassals
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389		Levy multiplier has a minimum of 1.0
