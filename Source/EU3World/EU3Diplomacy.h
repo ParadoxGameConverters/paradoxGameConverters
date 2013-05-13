@@ -38,6 +38,7 @@ class EU3Diplomacy
 
 // Types of agreements:
 //open_market - care
+//trade_agreement - care
 //casus_belli - care
 //royal_marriage - care
 //guarantee - care

@@ -177,7 +177,7 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province(leaves[i], titles, buildingFactory);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles, characters, buildingFactory);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();

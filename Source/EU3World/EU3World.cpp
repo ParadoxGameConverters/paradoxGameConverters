@@ -1459,6 +1459,74 @@ void EU3World::convertDiplomacy()
 			int rel = lhs->getRelationsWith(rhs);
 			(*itr).second->setRelations((*jtr).second, rel);
 			(*jtr).second->setRelations((*itr).second, rel);
+
+			// trade agreements
+			if (itr->second->getGovernment() == "merchant_republic")
+			{
+				int coastalProvinces	= 0;
+				int tradePosts			= 0;
+				vector<EU3Province*> EU3SrcProvinces = jtr->second->getProvinces();
+				for (vector<EU3Province*>::iterator provItr = EU3SrcProvinces.begin(); provItr != EU3SrcProvinces.end(); provItr++)
+				{
+					if (!(*provItr)->isCoastal())
+					{
+						continue;
+					}
+					coastalProvinces++;
+					vector<CK2Province*> CK2SrcProvinces = (*provItr)->getSrcProvinces();
+					for (vector<CK2Province*>::iterator prov2Itr = CK2SrcProvinces.begin(); prov2Itr != CK2SrcProvinces.end(); prov2Itr++)
+					{
+						if (((*prov2Itr)->hasTradePost()) && ((*prov2Itr)->getTPOwner() == itr->second->getSrcCountry()))
+						{
+							tradePosts++;
+							log("Found trade post\n");
+							break;
+						}
+					}
+				}
+				if ((coastalProvinces > 0) && (tradePosts * 2 >= coastalProvinces))
+				{
+					EU3Agreement* agr = new EU3Agreement;
+					agr->type = "trade_agreement";
+					agr->startDate = startDate; // FIXME maybe?
+					agr->country1 = (*itr).second;
+					agr->country2 = (*jtr).second;
+					diplomacy->addAgreement(agr);
+				}
+			}
+			if (jtr->second->getGovernment() == "merchant_republic")
+			{
+				int coastalProvinces	= 0;
+				int tradePosts			= 0;
+				vector<EU3Province*> EU3SrcProvinces = itr->second->getProvinces();
+				for (vector<EU3Province*>::iterator provItr = EU3SrcProvinces.begin(); provItr != EU3SrcProvinces.end(); provItr++)
+				{
+					if (!(*provItr)->isCoastal())
+					{
+						continue;
+					}
+					coastalProvinces++;
+					vector<CK2Province*> CK2SrcProvinces = (*provItr)->getSrcProvinces();
+					for (vector<CK2Province*>::iterator prov2Itr = CK2SrcProvinces.begin(); prov2Itr != CK2SrcProvinces.end(); prov2Itr++)
+					{
+						if (((*prov2Itr)->hasTradePost()) && ((*prov2Itr)->getTPOwner() == jtr->second->getSrcCountry()))
+						{
+							tradePosts++;
+							log("Found trade post\n");
+							break;
+						}
+					}
+				}
+				if ((coastalProvinces > 0) && (tradePosts * 2 >= coastalProvinces))
+				{
+					EU3Agreement* agr = new EU3Agreement;
+					agr->type = "trade_agreement";
+					agr->startDate = startDate; // FIXME maybe?
+					agr->country1 = (*jtr).second;
+					agr->country2 = (*itr).second;
+					diplomacy->addAgreement(agr);
+				}
+			}
 		}
 	}
 }
