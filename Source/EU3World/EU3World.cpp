@@ -1364,12 +1364,54 @@ void EU3World::convertDiplomacy()
 		map<string, EU3Country*>::iterator jtr = itr;
 		for (++jtr /*skip myself*/; jtr != countries.end(); ++jtr)
 		{
-			if (!itr->second->hasProvinces() || !jtr->second->hasProvinces())
-				continue; // no relations with non-extant countries
+			// Open Markets
+			map<int, EU3Province*>::iterator provItr = provinces.find(itr->second->getCapital());
+			if (provItr != provinces.end())
+			{
+				vector<string> discoverers = provItr->second->getDiscoveredBy();
+				for (vector<string>::iterator i = discoverers.begin(); i != discoverers.end(); i++)
+				{
+					if (jtr->first == *i)
+					{
+						EU3Agreement* agr = new EU3Agreement;
+						agr->type = "open_market";
+						agr->startDate = date("1.1.1");
+						agr->country1 = (*itr).second;
+						agr->country2 = (*jtr).second;
+						diplomacy->addAgreement(agr);
+						break;
+					}
+				}
+			}
+			provItr = provinces.find(jtr->second->getCapital());
+			if (provItr != provinces.end())
+			{
+				vector<string> discoverers = provItr->second->getDiscoveredBy();
+				for (vector<string>::iterator i = discoverers.begin(); i != discoverers.end(); i++)
+				{
+					if (itr->first == *i)
+					{
+						EU3Agreement* agr = new EU3Agreement;
+						agr->type = "open_market";
+						agr->startDate = date("1.1.1");
+						agr->country1 = (*jtr).second;
+						agr->country2 = (*itr).second;
+						diplomacy->addAgreement(agr);
+						break;
+					}
+				}
+			}
 
 			CK2Title *lhs = (*itr).second->getSrcCountry(), *rhs = (*jtr).second->getSrcCountry();
 			if (lhs == NULL || rhs == NULL)
+			{
 				continue;
+			}
+
+			if (!itr->second->hasProvinces() || !jtr->second->hasProvinces())
+			{
+				continue; // no relations with non-extant countries
+			}
 
 			// Personal Unions
 			bool rhsDominant = false;

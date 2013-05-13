@@ -70,6 +70,7 @@ class EU3Province
 		double					getBaseTax() const		{ return baseTax; };
 		double					getPopulation() const	{ return population; };
 		double					getManpower() const		{ return manpower; };
+		vector<string>			getDiscoveredBy() const	{ return discoveredBy; };
 		string					getCulture() const		{ return culture; };
 		bool						hasCOT() const				{ return cot; }
 		vector<CK2Province*>	getSrcProvinces() const	{ return srcProvinces; };

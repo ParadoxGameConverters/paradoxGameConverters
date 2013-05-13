@@ -393,3 +393,8 @@ Revision	Log Message
 386		Historical CoTs
 387		Add Empire_of_Britannia to test suite
 388		Merchant republics get a CoT if they didn't already have one
+389
+390
+391
+392
+393		Open market agreements
