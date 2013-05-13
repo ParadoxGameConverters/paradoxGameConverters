@@ -233,7 +233,7 @@ void CK2Barony::determineManpowerProxy()
 		log("Note! Unhandled barony type %s\n", type.c_str());
 	}
 
-	double levyMultiplier = 0.0f;
+	double levyMultiplier = 1.0f;
 	for (vector<const CK2Building*>::iterator buildingItr = buildings.begin(); buildingItr != buildings.end(); buildingItr++)
 	{
 		manpowerProxy	+= (*buildingItr)->getNumSoldiers();

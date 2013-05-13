@@ -1808,7 +1808,12 @@ void EU3World::convertHRE()
 	
 	if (potentialElectors.size() > 0)
 	{
-		for (int electors = 0; electors < 6; electors++)
+		unsigned int maxElectors = 6;
+		if (potentialElectors.size() < maxElectors)
+		{
+			maxElectors = potentialElectors.size();
+		}
+		for (unsigned int electors = 0; electors < maxElectors; electors++)
 		{
 			potentialElectors[electors]->getDstCountry()->setElector(true);
 		}

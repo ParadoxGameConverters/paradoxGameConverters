@@ -502,6 +502,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	}
 }
 
+
 void EU3Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -798,7 +799,8 @@ void EU3Country::determineLearningScore()
 
 void EU3Country::determineTechScore()
 {
-	int numProvinces = 0;
+	int numProvinces	= 0;
+	techScore			= 0;
 	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
 	{
 		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
