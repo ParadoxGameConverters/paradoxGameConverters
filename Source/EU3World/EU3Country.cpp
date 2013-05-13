@@ -183,6 +183,8 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		transport = "cog";
 	}
 
+	flags.clear();
+
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
 	{
@@ -383,6 +385,8 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	agreements.clear();
 	relations.clear();
 
+	flags.clear();
+
 	CK2Province* srcCapital = src->getLastHolder()->getCapital();
 	if (srcCapital != NULL)
 	{
@@ -498,7 +502,6 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	}
 }
 
-
 void EU3Country::output(FILE* output)
 {
 	fprintf(output, "%s=\n", tag.c_str());
@@ -561,6 +564,17 @@ void EU3Country::output(FILE* output)
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
+	}
+	fprintf(output, "\t}\n");
+	fprintf(output, "\tflags=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < flags.size(); i++)
+	{
+		fprintf(output, "\t\t%s=\n", flags[i].c_str());
+		fprintf(output, "\t\t{\n");
+		fprintf(output, "\t\tstatus=yes\n");
+		fprintf(output, "\t\tdate=\"1.1.1\"\n");
+		fprintf(output, "\t\t}\n");
 	}
 	fprintf(output, "\t}\n");
 	if (capital != 0)
@@ -748,6 +762,16 @@ void EU3Country::output(FILE* output)
 		fprintf(output, "\t}\n");
 	}
 	fprintf(output, "}\n");
+}
+
+
+void EU3Country::addProvince(EU3Province* province)
+{
+	provinces.push_back(province);
+	if (province->hasTradeStation())
+	{
+		flags.push_back("league_kontors");
+	}
 }
 
 
@@ -1487,6 +1511,10 @@ void EU3Country::eatVassal(EU3Country* vassal)
 		advisors.push_back(*advisorItr);
 		(*advisorItr)->setHome(this);
 	}
+	for (vector<string>::iterator flagItr = vassal->flags.begin(); flagItr != vassal->flags.end(); flagItr++)
+	{
+		flags.push_back(*flagItr);
+	}
 	for (vector<EU3Country*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
 	{
 		if (*vassalItr == vassal)
@@ -1594,6 +1622,11 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 	{
 		advisors.push_back(*advisorItr);
 		(*advisorItr)->setHome(this);
+	}
+
+	for (vector<string>::iterator flagItr = convertedCountry->flags.begin(); flagItr != convertedCountry->flags.end(); flagItr++)
+	{
+		flags.push_back(*flagItr);
 	}
 }
 

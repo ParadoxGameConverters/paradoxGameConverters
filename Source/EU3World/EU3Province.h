@@ -73,6 +73,7 @@ class EU3Province
 		vector<string>			getDiscoveredBy() const	{ return discoveredBy; };
 		string					getCulture() const		{ return culture; };
 		bool						hasCOT() const				{ return cot; }
+		bool						hasTradeStation() const	{ return tradeStation; };
 		vector<CK2Province*>	getSrcProvinces() const	{ return srcProvinces; };
 	private:
 		vector<string>			getCoreTags() const;
@@ -104,6 +105,7 @@ class EU3Province
 		vector<EU3History*>		history;
 		vector<string>				modifiers;
 		bool							cot;
+		bool							tradeStation;
 
 		string	continent;
 		bool		sameContinent;

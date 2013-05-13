@@ -399,3 +399,4 @@ Revision	Log Message
 392
 393		Open market agreements
 394		Trade leagues
+395		Trade stations

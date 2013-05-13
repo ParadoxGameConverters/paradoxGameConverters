@@ -31,6 +31,7 @@ class EU3Country
 		EU3Country(CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 
 		void						output(FILE*);
+		void						addProvince(EU3Province* province);
 		void						determineLearningScore();
 		void						determineTechScore();
 		void						addAcceptedCultures();
@@ -50,7 +51,6 @@ class EU3Country
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
-		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		addCore(EU3Province* core)				{ cores.push_back(core); };
 		void		setAbsorbScore(int _score)				{ absorbScore = _score; };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
@@ -118,6 +118,7 @@ class EU3Country
 		vector<EU3Agreement*>	agreements;
 		map<EU3Country*, int>	relations;
 
+		vector<string>			flags;
 		int						capital;
 		int						stability;
 		double					stabilityInvestment;

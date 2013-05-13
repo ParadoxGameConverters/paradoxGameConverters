@@ -1479,7 +1479,6 @@ void EU3World::convertDiplomacy()
 						if (((*prov2Itr)->hasTradePost()) && ((*prov2Itr)->getTPOwner() == itr->second->getSrcCountry()))
 						{
 							tradePosts++;
-							log("Found trade post\n");
 							break;
 						}
 					}
@@ -1512,7 +1511,6 @@ void EU3World::convertDiplomacy()
 						if (((*prov2Itr)->hasTradePost()) && ((*prov2Itr)->getTPOwner() == jtr->second->getSrcCountry()))
 						{
 							tradePosts++;
-							log("Found trade post\n");
 							break;
 						}
 					}

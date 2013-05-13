@@ -505,6 +505,17 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _sr
 	discoveredBy.clear();
 	history.clear();
 	culture			= "";
+	tradeStation	= false;
+
+	for (vector<CK2Province*>::iterator provItr = srcProvinces.begin(); provItr != srcProvinces.end(); provItr++)
+	{
+		if ((*provItr)->hasTradePost())
+		{
+			modifiers.push_back("league_kontor");
+			tradeStation = true;
+			break;
+		}
+	}
 }
 
 
