@@ -1720,6 +1720,45 @@ void EU3World::convertHRE()
 
 void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
+	// get CK2 localisations
+	map<string, string>	localisations;
+	struct _finddata_t	data;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (Configuration::getCK2Path() + "\\localisation\\*").c_str(), &data)) != -1L)
+	{
+		do
+		{
+			if (strcmp(data.name, ".") == 0 || strcmp(data.name, "..") == 0 )
+			{
+				continue;
+			}
+			FILE* localisationsFile;
+			fopen_s( &localisationsFile, (Configuration::getCK2Path() + "\\localisation\\" + data.name).c_str(), "rb");
+			if (localisationsFile == NULL)
+			{
+				continue;
+			}
+			while (!feof(localisationsFile))
+			{
+				char line[4096];
+				fgets(line, sizeof(line), localisationsFile);
+				if ((line[0] == '#') || (line[0] == '\0'))
+				{
+					continue;
+				}
+				string fullLine = line;
+				int pos = fullLine.find_first_of(';');
+				if (pos == string::npos)
+				{
+					continue;
+				}
+				localisations.insert( make_pair(fullLine.substr(0, pos), fullLine.substr(pos, fullLine.size())) );
+			}
+		} while(_findnext(fileListing, &data) == 0);
+		_findclose(fileListing);
+	}
+
+	// sort titles by rank
 	vector<EU3Country*> sortedCountries;
 	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
 	{
@@ -1750,6 +1789,14 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		}
 	}
 
+	FILE* EU3Localisations;
+	fopen_s(&EU3Localisations, "mod\\Converter\\localisation\\converter.csv", "a");
+	if (EU3Localisations == NULL)
+	{
+		log("\tError: Could not open mod\\Converter\\localisation\\converter.csv\n");
+	}
+
+	// assign tags
 	FILE* countriesList;
 	fopen_s(&countriesList, "mod\\converter\\common\\countries.txt", "a");
 	fprintf(countriesList, "\n");
@@ -1798,6 +1845,45 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		newCountry->setTag(tag);
 		countries.insert(make_pair(tag, newCountry));
 		mappings.push_back( make_tuple(*countryItr, newCountry, (*countryItr)->getSrcCountry()->getTitleString().c_str(), tag, 1) );
+
+		// Add localisations
+		if (EU3Localisations != NULL)
+		{
+			map<string, string>::iterator localisation = localisations.find(titleString);
+			if (localisation == localisations.end())
+			{
+				log("\tWarning: could not find CK2 localisation for %s\n", titleString.c_str());
+				string newLocalisation = tag;
+				newLocalisation += ";";
+				newLocalisation += tag;
+				newLocalisation += ";x\n";
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else
+			{
+				string newLocalisation = tag;
+				newLocalisation += localisation->second;
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+
+			localisation = localisations.find(titleString + "_adj");
+			if (localisation == localisations.end())
+			{
+				log("\tWarning: could not find CK2 localisation for %s\n", (titleString + "_adj").c_str());
+				string newLocalisation = tag;
+				newLocalisation += ";";
+				newLocalisation += tag;
+				newLocalisation += ";x\n";
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else
+			{
+				string newLocalisation = tag;
+				newLocalisation += "_ADJ";
+				newLocalisation += localisation->second;
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+		}
 			
 		// determine filename
 		string filename = Configuration::getEU3Path();
@@ -1858,6 +1944,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		
 		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
 	}
+	fclose(EU3Localisations);
 	fclose(countriesList);
 }
 

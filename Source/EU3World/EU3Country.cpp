@@ -39,11 +39,11 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 
 	// Parse history file
 	Object* obj;
-	obj = doParseFile( (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str() );
+	obj = doParseFile( historyFile.c_str() );
 	if (obj == NULL)
 	{
-		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
-		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
+		log("Error: Could not open %s\n", historyFile.c_str());
+		printf("Error: Could not open %s\n", historyFile.c_str());
 		exit(-1);
 	}
 
