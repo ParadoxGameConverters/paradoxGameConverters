@@ -385,17 +385,22 @@ Revision	Log Message
 378		Convert buildings
 379		Fix bug with culturalTech option
 380		Fix crashbug when holders of only titular titles are vassals
-381		Convert forts
-382		Convert universities
-383		Convert textile manufactories
-384		Historical forts for the ROTW
-385		Historical CoTs
-386		Add Empire_of_Britannia to test suite
-387		Merchant republics get a CoT if they didn't already have one
-388		Levy multiplier has a minimum of 1.0
-389		Localisations for added countries
-390		Avoid crash if fewer than six potential electors
-391		Roman Empire can no longer restore Byzantium
-392		Open market agreements
-393		Trade leagues
-394		Trade stations
+381		Added tag 0.7A Release for changeset 56a327aaa9eb
+382		Convert forts
+383		Convert universities
+384		Convert textile manufactories
+385		Historical forts for the ROTW
+386		Historical CoTs
+387		Add Empire_of_Britannia to test suite
+388		Merchant republics get a CoT if they didn't already have one
+389		Levy multiplier has a minimum of 1.0
+390		Localisations for added countries
+391		Avoid crash if fewer than six potential electors
+392		Roman Empire can no longer restore Byzantium
+393		Open market agreements
+394		Trade leagues
+395		Trade stations
+396		Update testing scripts for new mod stuff
+397		Merge bugfixes to main
+398		Merge mod into main
+399		Merge mod into main with latest commit
