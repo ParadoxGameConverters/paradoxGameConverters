@@ -395,3 +395,5 @@ Revision	Log Message
 388
 389
 390		Localisations for added countries
+391
+392		Roman Empire can no longer restore Byzantium
