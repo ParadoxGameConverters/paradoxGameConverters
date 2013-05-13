@@ -394,3 +394,5 @@ Revision	Log Message
 387
 388
 389		Levy multiplier has a minimum of 1.0
+390
+391		Avoid crash if fewer than six potential electors
