@@ -9,10 +9,10 @@ configuration =
 
 	### Mod Options
 
-	# useConverterMod: whether or not to use the converter mod. Options are:
+	# useConverterMod: wheter or not to use the converter mod. Options are:
 	#	"yes"
 	#	"no"
-	useConverterMod = "no"
+	useConverterMod = "yes"
 
 
 	### Tech Options

@@ -146,7 +146,8 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 			map<string, CK2Title*>::iterator titleItr = potentialTitles.find(key);
 			if (titleItr == potentialTitles.end())
 			{
-				CK2Title* dynTitle = new CK2Title(key);
+				int color[3] = {0,0,0};
+				CK2Title* dynTitle = new CK2Title(key, color);
 				dynTitle->init(leaves[i], characters, buildingFactory);
 				if (!dynTitle->isDynamic())
 				{
@@ -321,7 +322,15 @@ void CK2World::addPotentialTitles(Object* obj)
 		map<string, CK2Title*>::iterator titleItr = potentialTitles.find( (*itr)->getKey() );
 		if (titleItr == potentialTitles.end())
 		{
-			CK2Title* newTitle = new CK2Title( (*itr)->getKey() );
+			int color[3] = {0, 0, 0};
+			vector<Object*> colorObjs = (*itr)->getValue("color");
+			if (colorObjs.size() > 0)
+			{
+				color[0] = atoi(colorObjs[0]->getTokens()[0].c_str() );
+				color[1] = atoi(colorObjs[0]->getTokens()[1].c_str() );
+				color[2] = atoi(colorObjs[0]->getTokens()[2].c_str() );
+			}
+			CK2Title* newTitle = new CK2Title( (*itr)->getKey(), color);
 			potentialTitles.insert( make_pair((*itr)->getKey(), newTitle) );
 			titleItr = potentialTitles.find( (*itr)->getKey() );
 		}

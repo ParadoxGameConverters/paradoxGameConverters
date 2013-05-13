@@ -147,6 +147,10 @@ public:
 		return getInstance()->lucky_nations;
 	}
 
+	static string getUseConverterMod()
+	{
+	return getInstance()->useConverterMod;
+	}
 
 	static int getID()
 	{
@@ -198,6 +202,8 @@ private:
 	string	sea_spread;
 	string	spies;
 	string	lucky_nations;
+
+	string	useConverterMod;
 
 	int		id;
 	int		armyId;
