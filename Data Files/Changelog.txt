@@ -404,3 +404,5 @@ Revision	Log Message
 397		Merge bugfixes to main
 398		Merge mod into main
 399		Merge mod into main with latest commit
+400		Add base mod to test configuration
+401		Added tag 0.8 Release for changeset xxxx

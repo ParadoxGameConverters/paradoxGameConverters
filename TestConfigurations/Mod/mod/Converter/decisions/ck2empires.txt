@@ -1,0 +1,298 @@
+country_decisions = {
+
+	arabian_nation = {
+	
+		potential = {
+			culture_group = turko_semitic
+			NOT = { exists = ABI }
+			religion_group = muslim
+		}
+		
+		allow = {
+			owns = 340 # Constantine
+			owns = 343 # Fez
+			owns = 354 # Tripolitania
+			owns = 358 # Alexandria
+			owns = 361 # Cairo
+			owns = 379 # Judea
+			owns = 382 # Damascus
+			owns = 384 # Medina
+			owns = 385 # Mecca
+			
+			is_core = 340
+			is_core = 343
+			is_core = 354
+			is_core = 358
+			is_core = 361
+			is_core = 379
+			is_core = 382
+			is_core = 384
+			is_core = 385
+			
+			war = no
+		}
+		
+		effect = {
+			ABI = {
+				north_africa = {
+					add_core = ABI
+				}
+				add_core = 1849 # Hamah
+				add_core = 1855 # Sidon
+				add_core = 377 # Aleppo
+				add_core = 378 # Beirut
+				add_core = 380 # Al Karak
+				add_core = 381 # Hawran
+				add_core = 383 # Tabouk
+				add_core = 387 # Mocha
+				add_core = 388 # Aden
+				add_core = 389 # Hadramut
+				add_core = 390 # Sana'a
+				add_core = 391 # Najran
+				add_core = 392 # Najd
+				add_core = 393 # Jabal Shammar
+				add_core = 394 # Al Hasa
+				add_core = 395 # Qatar
+				add_core = 397 # Beni Yas
+				add_core = 398 # Qawasim
+				add_core = 399 # Suhar
+				add_core = 400 # Muscat
+				add_core = 401 # Dhofar
+				add_core = 402 # Mahra
+				add_core = 403 # Nizwa
+				add_core = 404 # Liwa
+				add_core = 405 # Al Jawf
+				add_core = 406 # Badiyat Ash Sham
+				add_core = 407 # Dayr Az Zor
+				add_core = 408 # Basra
+				add_core = 409 # Karbala
+				add_core = 410 # Iraq-I-Arab
+				add_core = 411 # Mosul
+			}
+			
+			prestige = 0.25
+			change_tag = ABI
+			centralization_decentralization = -2
+			government = imperial_government
+			capital = 385 # Mecca
+		}
+	}
+	
+	francia_nation = {
+		
+		potential = {
+			culture_group = french
+			NOT = { exists = FCI }
+			religion = catholic
+		}
+		allow = {
+			OR = {
+				NOT = { exists = FRA }
+				tag = FRA
+			}
+			OR = {
+				NOT = { exists = BUR }
+				tag = BUR
+			}
+			owns = 165 # Bern
+			owns = 168 # Normandie
+			owns = 169 # Armor
+			owns = 176 # Bearn
+			owns = 183 # Paris
+			owns = 190 # Bourbon
+			owns = 192 # Bourgogne
+			owns = 196 # Toulouse
+			is_core = 165
+			is_core = 168
+			is_core = 169
+			is_core = 176
+			is_core = 183
+			is_core = 190
+			is_core = 192
+			is_core = 196
+			
+			war = no
+		}
+		effect = {
+			FCI = {
+				french_region = {
+					add_core = FCI
+				}
+				helvetia = {
+					add_core = FCI
+				}
+				add_core = 205 # Savoie
+				add_core = 1880 # Sundgau
+			}
+			
+			prestige = 0.25
+			change_tag = FCI
+			centralization_decentralization = -2
+			government = imperial_government
+			capital = 183 # Paris
+		}
+	}
+	
+	ilkhanate_nation = {
+	
+		potential = {
+			culture_group = altaic
+			NOT = { exists = ILK }
+		}
+		allow = {
+			OR = {
+				NOT = { exists = JAI }
+				tag = JAI
+			}
+			OR = {
+				NOT = { exists = QAR }
+				tag = QAR
+			}
+			OR = {
+				NOT = { exists = DUL }
+				tag = DUL
+			}
+			OR = {
+				NOT = { exists = TRE }
+				tag = TRE
+			}
+			owns = 326 # Angora
+			owns = 412 # Khuzestan
+			owns = 416 # Azerbaijan
+			owns = 424 # Shirvan
+			owns = 438 # Kara Kum
+			owns = 577 # Quetta
+			
+			war = no
+		}
+		effect = {
+			ILK = {
+				persian_region = {
+					add_core = ILK
+				}
+				anatolia = {
+					add_core = ILK
+				}
+				add_core = 415 # Sharizhor
+				add_core = 418 # Van
+				add_core = 419 # Armenia
+				add_core = 420 # Qarabagh
+				add_core = 421 # Murgan
+				add_core = 422 # Imerti
+				add_core = 423 # Kartli
+			}
+			
+			prestige = 0.25
+			change_tag = ILK
+			government = steppe_horde
+			capital = 416 # Azerbaijan
+		}
+	}
+	
+	latin_nation = {
+		potential = {
+			religion = catholic
+			NOT = { exists = LAT }
+			exists = BYZ
+			BYZ = { controls = 151 }
+		}
+		allow = {
+			controls = 151 # Constantinople
+			ADM = 7
+			DIP = 7
+			is_monarch_leader = yes
+			relation = { who = PAP value = 100 }
+		}
+		effect = {
+			change_tag = LAT
+			151 = { secede_province = LAT }
+			LAT = {
+				greece = {
+					add_core = LAT
+				}
+			}
+			prestige = 0.25
+			government = imperial_government
+			capital = 151 # Constantinople
+			PAP = { relation = { who = THIS value = 100 }}
+			BYZ = { relation = { who = THIS value = -400 }}
+		}
+	}
+	
+	roman_nation = {
+		potential = {
+			OR = {
+				religion = orthodox
+				religion = catholic
+			}
+			NOT = { exists = ROM }
+			tag = BYZ
+		}
+		allow = {
+			owns = 101 # Ligura
+			owns = 112 # Venezia
+			owns = 118 # Rome
+			owns = 121 # Napoli
+			owns = 125 # Palermo
+			owns = 131 # Croatia
+			owns = 146 # Athens
+			owns = 151 # Constantinople
+			owns = 341 # Tunis
+			owns = 358 # Alexandria
+			owns = 377 # Aleppo
+			owns = 379 # Judea
+			is_core = 101
+			is_core = 112
+			is_core = 118
+			is_core = 121
+			is_core = 125
+			is_core = 131
+			is_core = 146
+			is_core = 151
+			is_core = 341
+			is_core = 358
+			is_core = 377
+			is_core = 379
+			
+			war = no
+		}
+		effect = {
+			ROM = {
+				north_africa = {
+					add_core = ROM
+				}
+				italian_region = {
+					add_core = ROM
+				}
+				western_balkans = {
+					add_core = ROM
+				}
+				greece = {
+					add_core = ROM
+				}
+				bulgaria = {
+					add_core = ROM
+				}
+				asia_minor = {
+					add_core = ROM
+				}
+				anatolia = {
+					add_core = ROM
+				}
+				add_core = 1849 # Hammah
+				add_core = 382 # Damascus
+				add_core = 378 # Beirut
+				add_core = 1855 # Sidon
+				add_core = 381 # Hawran
+				add_core = 380 # Al Karak
+			}
+			
+			prestige = 0.50
+			change_tag = ROM
+			centralization_decentralization = -2
+			capital = 118 # Rome
+		}
+	}
+}
+			
+			

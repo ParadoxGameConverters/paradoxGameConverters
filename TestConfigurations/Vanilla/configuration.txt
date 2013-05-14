@@ -7,6 +7,14 @@ configuration =
 	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
 
 
+	### Mod Options
+
+	# useConverterMod: wheter or not to use the converter mod. Options are:
+	#	"yes"
+	#	"no"
+	useConverterMod = "no"
+
+
 	### Tech Options
 
 	# techGroupMethod: the method by which tech groups are determined. Options are:

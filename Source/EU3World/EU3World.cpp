@@ -1396,8 +1396,11 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 		}
 	}
 
-	log("%d tags were mapped. %d countries will be added to the mod.\n", mappedTags.size(), modCountries.size());
-	addModCountries(modCountries, mappedTags, mappings, religionMap, cultureMap, inverseProvinceMap);
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		log("%d tags were mapped. %d countries will be added to the mod.\n", mappedTags.size(), modCountries.size());
+		addModCountries(modCountries, mappedTags, mappings, religionMap, cultureMap, inverseProvinceMap);
+	}
 
 	convertedCountries.clear();
 	for (vector< tuple<EU3Country*, EU3Country*, string, string, int> >::iterator mappingsItr = mappings.begin(); mappingsItr != mappings.end(); mappingsItr++)
