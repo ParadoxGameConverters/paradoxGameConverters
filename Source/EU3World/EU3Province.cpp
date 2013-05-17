@@ -71,6 +71,21 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		manpower = 0;
 	}
 
+	buildings.clear();
+	vector<Object*> fortObj = obj->getValue("fort2");
+	if (fortObj.size() > 0)
+	{
+		buildings.push_back("fort2");
+	}
+	else
+	{
+		vector<Object*> fortObj = obj->getValue("fort1");
+		if (fortObj.size() > 0)
+		{
+			buildings.push_back("fort1");
+		}
+	}
+
 	owner = NULL;
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
@@ -97,6 +112,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	{
 		rawDiscoverers.push_back(discoveredByObj[i]->getLeaf());
 	}
+	discoveredBy.clear();
 
 	vector<Object*> cultureObj = obj->getValue("culture");
 	if (cultureObj.size() > 0)
@@ -150,6 +166,16 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		nativeHostility = 0;
 	}
 
+	cot = false;
+	vector<Object*> cotObj = obj->getValue("cot");
+	if (cotObj.size() > 0)
+	{
+		if (cotObj[0]->getLeaf() == "yes")
+		{
+			cot = true;
+		}
+	}
+
 	// update based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
@@ -187,6 +213,21 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 				{
 					manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
 					newHistory->manpower = manpower;
+				}
+
+				vector<Object*> fortObj = obj->getValue("fort2");
+				if (fortObj.size() > 0)
+				{
+					buildings.clear();
+					buildings.push_back("fort2");
+				}
+				else
+				{
+					vector<Object*> fortObj = obj->getValue("fort1");
+					if (fortObj.size() > 0)
+					{
+						buildings.push_back("fort1");
+					}
 				}
 
 				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
@@ -244,6 +285,15 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 					newHistory->religion = religion;
 				}
 
+				vector<Object*> cotObj = obj->getValue("cot");
+				if (cotObj.size() > 0)
+				{
+					if (cotObj[0]->getLeaf() == "yes")
+					{
+						cot = true;
+					}
+				}
+
 				history.push_back(newHistory);
 			}
 		}
@@ -251,6 +301,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 
 	modifiers.clear();
 
+	continent		= "";
 	sameContinent	= false;
 	landConnection	= false;
 
@@ -334,9 +385,9 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\ttrade_goods=%s\n", tradeGood.c_str());
 	}
-	if ((ownerStr != "") || (owner != NULL))
+	for (vector<string>::iterator i = buildings.begin(); i != buildings.end(); i++)
 	{
-		fprintf(output, "\tfort1=yes\n");
+		fprintf(output, "\t%s=yes\n", (*i).c_str());
 	}
 	if (nativeSize > 0.0)
 	{
@@ -447,12 +498,24 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _sr
 
 	num				= _num;
 	//capital	-- leave it as it is from the history file (TODO?)
+	buildings.clear();
 	ownerStr			= "";
 	cores				= _cores;
 	inHRE				= _inHRE;
 	discoveredBy.clear();
 	history.clear();
 	culture			= "";
+	tradeStation	= false;
+
+	for (vector<CK2Province*>::iterator provItr = srcProvinces.begin(); provItr != srcProvinces.end(); provItr++)
+	{
+		if ((*provItr)->hasTradePost())
+		{
+			modifiers.push_back("league_kontor");
+			tradeStation = true;
+			break;
+		}
+	}
 }
 
 

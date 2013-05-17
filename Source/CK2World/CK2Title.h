@@ -19,7 +19,7 @@ class EU3Country;
 class CK2Title
 {
 	public:
-		CK2Title(string _titleString);
+		CK2Title(string _titleString, int* color);
 		void	init(Object*, map<int, CK2Character*>&, const CK2BuildingFactory* buildingFactory);
 
 		void						setLiege(CK2Title*);
@@ -51,6 +51,7 @@ class CK2Title
 		bool						isInHRE()				const { return inHRE; };
 		bool						isActive()				const { return active; };
 		bool						isDynamic()				const { return dynamic; };
+		const int*				getColor()				const { return color; };
 		EU3Country*				getDstCountry()		const { return dstCountry; };
 
 		bool						eatTitle(CK2Title* target, bool checkInheritance);
@@ -82,12 +83,14 @@ class CK2Title
 		string							deJureLiegeString;
 		CK2Title*						deJureLiege;
 		
-		CK2Barony*							settlement;
+		CK2Barony*						settlement;
 
 		bool								independent;
 		bool								inHRE;
 		bool								active;
 		bool								dynamic;
+
+		int								color[3];
 
 		EU3Country*						dstCountry;
 };

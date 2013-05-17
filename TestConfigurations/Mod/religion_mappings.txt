@@ -7,11 +7,12 @@ link = { ck2 = fraticelli  eu3 = fraticelli }
 link = { ck2 = waldensian  eu3 = waldensian }
 link = { ck2 = lollard  eu3 = lollard }
 link = { ck2 = orthodox  eu3 = orthodox }
-link = { ck2 = bogomilist  eu3 = bogomilist }
-link = { ck2 = iconoclast  eu3 = iconoclast }
 link = { ck2 = miaphysite  eu3 = miaphysite }
 link = { ck2 = monophysite  eu3 = monophysite }
+link = { ck2 = bogomilist  eu3 = bogomilist }
 link = { ck2 = nestorian  eu3 = nestorian }
+link = { ck2 = monothelite eu3 = monothelite }
+link = { ck2 = iconoclast  eu3 = iconoclast }
 link = { ck2 = sunni  eu3 = sunni }
 link = { ck2 = zikri  eu3 = zikri }
 link = { ck2 = yazidi  eu3 = yazidi }
@@ -25,7 +26,7 @@ link = { ck2 = norse_pagan eu3 = norse_pagan }
 link = { ck2 = tengri_pagan  eu3 = tengri_pagan }
 link = { ck2 = baltic_pagan  eu3 = baltic_pagan }
 link = { ck2 = finnish_pagan  eu3 = finnish_pagan }
-link = { ck2 = zoroastrian eu3 = zoroastrian }
 link = { ck2 = aztec eu3 = aztec }
+link = { ck2 = zoroastrian eu3 = zoroastrian }
 
 }

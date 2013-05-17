@@ -1,0 +1,581 @@
+# If you add religions, and use those tags, do not change them without changing everywhere they are used.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+christian = {
+
+	catholic = {
+		color = { 0.8 0.8 0 }
+	
+		allowed_conversion = {
+			reformed
+			protestant
+		}
+		province = {
+			stability_cost = 20
+		}
+		country = {
+			colonists = 1
+			colonist_placement_chance = 0.2
+			diplomats = 2
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = -1
+		}
+		
+		heretic = { HUSSITE SOCINIAN }
+		
+		papacy = yes	#can play with papacy stuff..
+		
+	}
+
+	protestant = {
+		color = { 0 0 0.7 }
+		allowed_conversion = {
+			reformed
+			catholic
+			}
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			production_efficiency = 0.1
+			global_tax_modifier = 0.1
+			colonists =  0.5
+			diplomats = 1
+			missionaries = 0.2
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+		heretic = { PENTECOSTAL PURITAN CONGREGATIONALIST }
+		
+		date = 1517.10.31
+		
+
+	}
+
+	reformed = {
+		color = { 0.3 0.3 0.9 }
+		allowed_conversion = {
+			protestant
+			catholic
+		}
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			trade_efficiency = 0.1
+			global_tax_modifier = -0.1
+			colonists = 1
+			global_colonial_growth = 0.1	# +10 people per year in colonies.
+			diplomats = 1
+			missionaries = 0.2
+			missionary_placement_chance = 0.045
+			tolerance_heretic = 1
+		}
+		
+		heretic = { METHODIST BAPTIST QUAKER }
+		
+		date = 1536.5.1
+	}
+	
+	
+	orthodox = {
+		color = { 0.7 0.5 0 }
+
+		province = {
+			stability_cost = 15
+		}
+		country = {
+			colonists = 1
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+		
+		heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY }
+	}
+	
+	cathar = {
+		color = { 0.5 0.5 0.9 }
+		
+		allowed_conversion = {
+			catholic
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+	
+	fraticelli = {
+		color = { 0.7 0.7 0.4 }
+		
+		allowed_conversion = {
+			catholic
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+	
+	waldensian = {
+		color = { 0.4 0.4 0.7 }
+		allowed_conversion = {
+			reformed
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+	
+	lollard = {
+		color = { 0.5 0.8 0.8 }
+		allowed_conversion = {
+			protestant
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+	
+	bogomilist = {
+		color = { 0.9 0.7 0 }
+		
+		allowed_conversion = {
+			catholic
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+	
+	iconoclast = {
+		color = { 0.9 0.6 0.6 }
+		
+		allowed_conversion = {
+			orthodox
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+	
+	monophysite = {
+		color = { 0.8 0.4 0.1 }
+		
+		allowed_conversion = {
+			orthodox
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+
+	miaphysite = {
+		color = { 0.8 0.4 0.1 }
+		
+		allowed_conversion = {
+			orthodox
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+	
+	nestorian = {
+		color = { 0.6 0.2 0.2 }
+		
+		allowed_conversion = {
+			orthodox
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+		
+	}
+
+	monothelite = {
+		color = { 0.75 0.51 0.35 }
+		allowed_conversion = {
+			orthodox
+		}
+		
+		province = {
+			stability_cost = 30
+		}
+			
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 1
+		}
+	}
+	
+	crusade_name = CRUSADE
+}
+
+muslim = {
+	sunni = {
+		color = { 0 0.6 0 }
+		province = {
+			stability_cost = 20
+			local_missionary_placement_chance = -0.02
+		}
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+		
+		heretic = { AHMADI SIKH }
+		
+	}
+
+	shiite = {
+		color = { 0 0.8 0 }
+		province = {
+			stability_cost = 20
+			local_missionary_placement_chance = -0.02
+		}
+		country = {
+			global_tax_modifier = -0.2
+			land_morale = 0.5
+			missionaries = 0.25
+			missionary_placement_chance = 0.045
+			tolerance_heathen = -1
+		}
+		
+		heretic = { ZAIDI }
+	}
+	
+	zikri = {
+		color = { 0.2 0.6 0.2 }
+		
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+	}
+	
+	yazidi = {
+		color = { 0.1 0.7 0.1 }
+		
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+	}
+	
+	ibadi = {
+		color = { 0.3 0.6 0.3 }
+		
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+	}
+	
+	bektashi = {
+		color = { 0.3 0.8 0.3 }
+		
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+	}
+	
+	druze = {
+		color = { 0.0 0.9 0.4 }
+		
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+	}
+	
+	hurufi = {
+		color = { 0.4 0.9 0.0 }
+		
+		province = {
+			stability_cost = 30
+		}
+		country = {
+			missionaries = 0.25
+			missionary_placement_chance = 0.05
+		}
+	}
+	
+	crusade_name = JIHAD
+}
+
+eastern = {
+	buddhism = {
+	
+		color = { 0.8 0.3 0 }
+		province = {
+			stability_cost = 15
+		}
+		country = {
+			missionaries = 0.2
+			missionary_placement_chance = 0.05
+			tolerance_heretic = 2
+			tolerance_heathen = 1
+		}
+		
+		heretic = { ZEN }
+	}
+
+	hinduism = {
+		color = { 0 0.8 0.8 }
+		province = {
+			stability_cost = 25
+		}
+		country = {
+			global_tax_modifier = 0.05
+			missionaries = 0.2
+			missionary_placement_chance = 0.059
+			tolerance_heretic = 1
+		}
+		
+		heretic = { BHAKTI SIKH }
+	}
+
+	confucianism = {
+		color = { 0.8 0 0.8 }
+		province = {
+			stability_cost = 15
+		}
+		country = {
+			missionaries = 0.15
+			missionary_placement_chance = 0.034
+			tolerance_heretic = 2
+			tolerance_heathen = 1
+		}
+		heretic = { TAOIST }
+	}
+
+	shinto = {
+		color = { 0.8 0 0 }
+		province = {
+			stability_cost = 15
+			local_missionary_placement_chance = -0.015
+			}
+		country = {
+			land_morale = 0.5
+			global_tax_modifier = -0.2
+			missionaries = 0.2
+			missionary_placement_chance = 0.034
+			tolerance_heathen = -1
+		}
+		heretic = { SHUGENDO }
+	}
+	
+	crusade_name = CRUSADE
+}
+
+pagan = {
+	animism = {
+		color = { 0.5 0.0 0.0 }
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+		heretic = { BEAR_SPIRIT SNAKE_CLAN }
+		
+		annex = yes
+	}
+	shamanism = {
+		color = { 0.5 0.3 0.3 }
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+		
+		heretic = { GOAT_SKULL }
+		
+		annex = yes		
+	}
+	
+	generic_pagan = {
+		color = { 0.6 0.0 0.0 }
+		
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+	
+	norse_pagan = {
+		color = { 0.7 0.7 0.7 }
+		
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+	
+	tengri_pagan = {
+		color = { 0.8 0.2 0.0 }
+		
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+	
+	baltic_pagan = {
+		color = { 0.6 0.4 0.3 }
+		
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+	
+	finnish_pagan = {
+		color = { 0.5 0.2 0.0 }
+		
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+
+	aztec = {
+		color = { 0.8 0.2 0.2 }
+
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+	
+	crusade_name = CRUSADE
+}
+
+zoroastrian_group = {
+	zoroastrian = {
+		color = { 0.5 0.7 0.2 }
+	}
+
+}
+
+
+
