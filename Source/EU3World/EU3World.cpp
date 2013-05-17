@@ -988,11 +988,6 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			(*countryItr)->determineTechLevels(avgTechLevels, techData);
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
 		}
-
-		for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
-		{
-			countryItr->second->determineTechInvestment(techData, startDate);
-		}
 	}
 	else // (Configuration::getTechGroupMethod() == "culturalTech")
 	{
@@ -1226,6 +1221,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
 		countryItr->second->determineTechInvestment(techData, startDate);
+		countryItr->second->setPreferredUnitType();
 	}
 }
 
