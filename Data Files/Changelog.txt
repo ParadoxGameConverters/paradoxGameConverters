@@ -408,3 +408,4 @@ Revision	Log Message
 401		Added tag 0.8 Release for changeset 43929ab67b4f
 402		Merge main into bugfixes
 403		Actually set preferred unit type
+404		Get vassals to appear

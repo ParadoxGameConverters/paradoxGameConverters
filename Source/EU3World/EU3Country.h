@@ -56,6 +56,7 @@ class EU3Country
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
 		void		setTag(string _tag)						{ tag = _tag; };
 		void		addAdvisor(EU3Advisor* _advisor)		{ advisors.push_back(_advisor); };
+		void		addAgreement(EU3Agreement* _agr)		{ agreements.push_back(_agr); };
 		void		setRelations(EU3Country* other, int value)	{ relations.insert(make_pair(other, value)); };
 		void		setElector(bool _elector)				{ elector = _elector; };
 

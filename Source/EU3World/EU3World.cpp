@@ -560,10 +560,6 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			manpowerProxy	+= baronies[j]->getManpowerProxy();
 
 			const CK2Title* title = baronies[j]->getTitle();
-			while( !title->isIndependent() )
-			{
-				title = title->getLiege();
-			}
 
 			bool ownerFound = false;
 			for(unsigned int k = 0; k < owners.size(); k++)
@@ -1442,9 +1438,11 @@ void EU3World::convertDiplomacy()
 						EU3Agreement* agr = new EU3Agreement;
 						agr->type = "open_market";
 						agr->startDate = date("1.1.1");
-						agr->country1 = (*itr).second;
-						agr->country2 = (*jtr).second;
+						agr->country1 = itr->second;
+						agr->country2 = jtr->second;
 						diplomacy->addAgreement(agr);
+						itr->second->addAgreement(agr);
+						jtr->second->addAgreement(agr);
 						break;
 					}
 				}
@@ -1460,9 +1458,11 @@ void EU3World::convertDiplomacy()
 						EU3Agreement* agr = new EU3Agreement;
 						agr->type = "open_market";
 						agr->startDate = date("1.1.1");
-						agr->country1 = (*jtr).second;
-						agr->country2 = (*itr).second;
+						agr->country1 = jtr->second;
+						agr->country2 = itr->second;
 						diplomacy->addAgreement(agr);
+						itr->second->addAgreement(agr);
+						jtr->second->addAgreement(agr);
 						break;
 					}
 				}
@@ -1488,15 +1488,17 @@ void EU3World::convertDiplomacy()
 				agr->startDate = date("1.1.1"); // FIXME maybe?
 				if (rhsDominant)
 				{
-					agr->country1 = (*jtr).second;
-					agr->country2 = (*itr).second;
+					agr->country1 = jtr->second;
+					agr->country2 = itr->second;
 				}
 				else
 				{
-					agr->country1 = (*itr).second;
-					agr->country2 = (*jtr).second;
+					agr->country1 = itr->second;
+					agr->country2 = jtr->second;
 				}
 				diplomacy->addAgreement(agr);
+				itr->second->addAgreement(agr);
+				jtr->second->addAgreement(agr);
 			}
 
 			// Royal Marriages
@@ -1505,9 +1507,11 @@ void EU3World::convertDiplomacy()
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "royal_marriage";
 				agr->startDate = date("1.1.1"); // FIXME maybe?
-				agr->country1 = (*itr).second;
-				agr->country2 = (*jtr).second;
+				agr->country1 = itr->second;
+				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
+				itr->second->addAgreement(agr);
+				jtr->second->addAgreement(agr);
 			}
 
 			// Alliances
@@ -1516,9 +1520,11 @@ void EU3World::convertDiplomacy()
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "alliance";
 				agr->startDate = date("1.1.1"); // FIXME maybe?
-				agr->country1 = (*itr).second;
-				agr->country2 = (*jtr).second;
+				agr->country1 = itr->second;
+				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
+				itr->second->addAgreement(agr);
+				jtr->second->addAgreement(agr);
 			}
 
 			// Relations (bilateral)
@@ -1554,9 +1560,11 @@ void EU3World::convertDiplomacy()
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
 					agr->startDate = startDate; // FIXME maybe?
-					agr->country1 = (*itr).second;
-					agr->country2 = (*jtr).second;
+					agr->country1 = itr->second;
+					agr->country2 = jtr->second;
 					diplomacy->addAgreement(agr);
+					itr->second->addAgreement(agr);
+					jtr->second->addAgreement(agr);
 				}
 			}
 			if (jtr->second->getGovernment() == "merchant_republic")
@@ -1586,9 +1594,11 @@ void EU3World::convertDiplomacy()
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
 					agr->startDate = startDate; // FIXME maybe?
-					agr->country1 = (*jtr).second;
-					agr->country2 = (*itr).second;
+					agr->country1 = jtr->second;
+					agr->country2 = itr->second;
 					diplomacy->addAgreement(agr);
+					itr->second->addAgreement(agr);
+					jtr->second->addAgreement(agr);
 				}
 			}
 		}
