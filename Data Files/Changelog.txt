@@ -409,3 +409,4 @@ Revision	Log Message
 402		Merge main into bugfixes
 403		Actually set preferred unit type
 404		Get vassals to appear
+405		Rulers properly absorb all their own holdings
