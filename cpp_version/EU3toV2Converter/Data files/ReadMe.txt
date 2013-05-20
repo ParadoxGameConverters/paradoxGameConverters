@@ -41,7 +41,7 @@ Zonix's CONVERTER MOD for VICTORIA 2 adds all the nations that exist in EU3 whic
 As of version 0.2, the mod also contains missing cultures.
 As of version 0.3 the mod comes with Magc8Balls flag pack as standard
 
-You can get it here: http://www.megaupload.com/?d=LTJ8U66N
+You can get it here: https://sourceforge.net/projects/eu3tovic2/files/Mods/EU3toVIC2%20Mod/
 
 INSTRUCTIONS
 1) Make a second copy of your VICTORIA 2 directory.  This will be the modified copy of victoria 2.  (Be sure to name it accordingly, so you don't get confused!)
