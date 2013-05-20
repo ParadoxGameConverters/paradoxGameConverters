@@ -41,3 +41,5 @@
 429	All nations get a theatre; nations with >100 provinces get one per continent
 430	Distribute IC based on production pops.  A bit generous at the moment.
 431	Add V2Pop.* to solution
+434	Update parser with fixes from CK2ToEU3/EU3ToVic2.
+435	Fix manual faction assignment for countries whose tags have changed between V2 and HOI3.
