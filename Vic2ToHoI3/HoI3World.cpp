@@ -965,7 +965,7 @@ void HoI3World::checkManualFaction(const countryMapping& countryMap, const vecto
 				else
 				{
 					log("%s added to %s faction\n", itr->c_str(), logName.c_str());
-					destination.push_back(*itr);
+					destination.push_back(hoiTag);
 				}
 				found = true;
 				break;
