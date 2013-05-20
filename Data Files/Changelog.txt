@@ -410,3 +410,4 @@ Revision	Log Message
 403		Actually set preferred unit type
 404		Get vassals to appear
 405		Rulers properly absorb all their own holdings
+406		Actually read in crown authority

@@ -85,9 +85,9 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 	vector<Object*> lawObj = obj->getValue("law");
 	for (unsigned int i = 0; i < lawObj.size(); i++)
 	{
-		if (leavesObj[i]->getLeaf().substr(0, 14) == "centralization")
+		if (lawObj[i]->getLeaf().substr(0, 14) == "centralization")
 		{
-			CA = leavesObj[i]->getLeaf();
+			CA = lawObj[i]->getLeaf();
 		}
 	}
 
