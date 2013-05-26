@@ -363,15 +363,46 @@ Revision	Log Message
 356		Updates to second method
 357		Log when EU3 country information doesn't exist during output.
 358		If there are no potential HRE electors, make the emperor one instead of crashing.
-359
-360
-361
-362
-363
-364
-365
-366
+359		Mod output creates country files
+360		Mod output creates working mod + save
+361		Stuff for mod creation located in converter mod directory
+362		Mod files directory removed
+363		Create flags for new EU3 countries
+364		Merge in new empires
+365		Make countries included with the mod properly work
+366		Simplify mod layout and instructions
 367		Merge minor into main
 368		Merge bugfixes into main
 369		Updates and fixes from merge
 370		Fix crash bug with cultural tech conversion
+371		Added tag 0.7 Release for changeset 57ebf3239b88
+372		Merge main into bugfixes
+373		Merge main into minor
+374		Merge main into mod
+375		Fixes from merge
+376		Manpower numbers are less insane
+377		Fix crashbug with independent republic families
+378		Convert buildings
+379		Fix bug with culturalTech option
+380		Fix crashbug when holders of only titular titles are vassals
+381		Added tag 0.7A Release for changeset 56a327aaa9eb
+382		Convert forts
+383		Convert universities
+384		Convert textile manufactories
+385		Historical forts for the ROTW
+386		Historical CoTs
+387		Add Empire_of_Britannia to test suite
+388		Merchant republics get a CoT if they didn't already have one
+389		Levy multiplier has a minimum of 1.0
+390		Localisations for added countries
+391		Avoid crash if fewer than six potential electors
+392		Roman Empire can no longer restore Byzantium
+393		Open market agreements
+394		Trade leagues
+395		Trade stations
+396		Update testing scripts for new mod stuff
+397		Merge bugfixes to main
+398		Merge mod into main
+399		Merge mod into main with latest commit
+400		Add base mod to test configuration
+401		Added tag 0.8 Release for changeset xxxx

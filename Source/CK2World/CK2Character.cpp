@@ -1166,7 +1166,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 	// Wrong Government Type (counts and above only)
 	if (this->isDirectVassalOf(other) && this->primaryTitleString.substr(0,2) != "b_")
 	{
-		if (this->primaryHolding->getType() != other->primaryHolding->getType())
+		if ((this->primaryHolding != NULL) && (this->primaryHolding->getType() != other->primaryHolding->getType()))
 		{
 			relations += CK2Opinion::getBaseValue("opinion_count_wrong_gov_vs_liege");
 		}

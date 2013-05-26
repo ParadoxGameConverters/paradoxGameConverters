@@ -39,11 +39,11 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 
 	// Parse history file
 	Object* obj;
-	obj = doParseFile( (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str() );
+	obj = doParseFile( historyFile.c_str() );
 	if (obj == NULL)
 	{
-		log("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
-		printf("Error: Could not open %s\n", (Configuration::getEU3Path() + "/history/countries/" + historyFile).c_str());
+		log("Error: Could not open %s\n", historyFile.c_str());
+		printf("Error: Could not open %s\n", historyFile.c_str());
 		exit(-1);
 	}
 
@@ -182,6 +182,8 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		galley = "galley";
 		transport = "cog";
 	}
+
+	flags.clear();
 
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
@@ -383,6 +385,8 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	agreements.clear();
 	relations.clear();
 
+	flags.clear();
+
 	CK2Province* srcCapital = src->getLastHolder()->getCapital();
 	if (srcCapital != NULL)
 	{
@@ -561,6 +565,17 @@ void EU3Country::output(FILE* output)
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
+	}
+	fprintf(output, "\t}\n");
+	fprintf(output, "\tflags=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < flags.size(); i++)
+	{
+		fprintf(output, "\t\t%s=\n", flags[i].c_str());
+		fprintf(output, "\t\t{\n");
+		fprintf(output, "\t\tstatus=yes\n");
+		fprintf(output, "\t\tdate=\"1.1.1\"\n");
+		fprintf(output, "\t\t}\n");
 	}
 	fprintf(output, "\t}\n");
 	if (capital != 0)
@@ -751,6 +766,16 @@ void EU3Country::output(FILE* output)
 }
 
 
+void EU3Country::addProvince(EU3Province* province)
+{
+	provinces.push_back(province);
+	if (province->hasTradeStation())
+	{
+		flags.push_back("league_kontors");
+	}
+}
+
+
 void EU3Country::determineLearningScore()
 {
 	int numBaronies = 0;
@@ -774,7 +799,8 @@ void EU3Country::determineLearningScore()
 
 void EU3Country::determineTechScore()
 {
-	int numProvinces = 0;
+	int numProvinces	= 0;
+	techScore			= 0;
 	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
 	{
 		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
@@ -1058,6 +1084,7 @@ void EU3Country::setPreferredUnitType()
 	}
 }
 
+
 void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData)
 {
 	vector<double> techLevels;
@@ -1130,6 +1157,8 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 	tradeTech		= techData->getTradeTech("western")			+ (oldTradeTech / 9);
 	navalTech		= techData->getNavalTech("western")			+ (oldNavalTech / 9);
 	landTech			= techData->getLandTech("western")			+ (oldLandTech / 9);
+
+	addBuildings();
 }
 
 
@@ -1485,6 +1514,10 @@ void EU3Country::eatVassal(EU3Country* vassal)
 		advisors.push_back(*advisorItr);
 		(*advisorItr)->setHome(this);
 	}
+	for (vector<string>::iterator flagItr = vassal->flags.begin(); flagItr != vassal->flags.end(); flagItr++)
+	{
+		flags.push_back(*flagItr);
+	}
 	for (vector<EU3Country*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
 	{
 		if (*vassalItr == vassal)
@@ -1593,6 +1626,11 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 		advisors.push_back(*advisorItr);
 		(*advisorItr)->setHome(this);
 	}
+
+	for (vector<string>::iterator flagItr = convertedCountry->flags.begin(); flagItr != convertedCountry->flags.end(); flagItr++)
+	{
+		flags.push_back(*flagItr);
+	}
 }
 
 
@@ -1657,6 +1695,57 @@ void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProv
 			{
 				navies.push_back(newNavy);
 			}
+		}
+	}
+}
+
+
+void EU3Country::addBuildings()
+{
+	for (vector<EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		if (governmentTech > 8.0)
+		{
+			(*i)->addBuilding("courthouse");
+		}
+		else if (governmentTech > 4.0)
+		{
+			(*i)->addBuilding("temple");
+		}
+		if (productionTech > 8.0)
+		{
+			(*i)->addBuilding("workshop");
+		}
+		else if (productionTech > 4.0)
+		{
+			(*i)->addBuilding("constable");
+		}
+		if (tradeTech > 8.0)
+		{
+			(*i)->addBuilding("trade_depot");
+		}
+		else if (tradeTech > 4.0)
+		{
+			(*i)->addBuilding("marketplace");
+		}
+		if ((*i)->isCoastal())
+		{
+			if (navalTech > 8.0)
+			{
+				(*i)->addBuilding("drydock");
+			}
+			else if (navalTech > 4.0)
+			{
+				(*i)->addBuilding("dock");
+			}
+		}
+		if (landTech > 8.0)
+		{
+			(*i)->addBuilding("training_fields");
+		}
+		else if (landTech > 4.0)
+		{
+			(*i)->addBuilding("armory");
 		}
 	}
 }

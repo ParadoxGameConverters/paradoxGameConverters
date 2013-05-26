@@ -2,11 +2,11 @@ del *.zip /q
 
 call "%VSTUDIO_LOC%\VC\vcvarsall.bat"
 
-del Release /q
-rmdir Release
+del Release /s /q
+rmdir Release /s /q
 
-del ReleaseIntermediate/q
-rmdir ReleaseIntermediate
+del ReleaseIntermediate /s /q
+rmdir ReleaseIntermediate /s /q
 
 msbuild.exe CK2ToEU3.sln /p:Configuration=Release
 cd Release

@@ -9,9 +9,11 @@
 
 
 
-CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2BuildingFactory* buildingFactory)
+CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory)
 {
 	number = atoi( obj->getKey().c_str() );
+	tradePost	= false;
+	tpOwner		= NULL;
 
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
@@ -33,6 +35,16 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*> titles, const CK2Bu
 			}
 			newBarony->getTitle()->getHolder()->addHolding(newBarony);
 			baronies.push_back(newBarony);
+		}
+		if (key == "tradepost")
+		{
+			tradePost = true;
+			int ownerNum = atoi(leaves[i]->getLeaf("owner").c_str());
+			map<int, CK2Character*>::iterator owner = characters.find(ownerNum);
+			if (owner != characters.end())
+			{
+				tpOwner = owner->second->getPrimaryTitle();
+			}
 		}
 	}
 

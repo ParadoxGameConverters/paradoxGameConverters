@@ -4,6 +4,7 @@
 
 #include <fstream>
 #include <tuple>
+#include <set>
 #include "..\Mappers.h"
 #include "..\Date.h"
 
@@ -56,9 +57,10 @@ class EU3World
 		void	convertTech(const CK2World& srcWorld);
 		void	convertGovernments();
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
-		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap);
+		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 		void	convertDiplomacy();
 		void	convertArmies(const inverseProvinceMapping inverseProvinceMap);
+		void	convertCoTs();
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };
@@ -71,12 +73,15 @@ class EU3World
 		int	matchTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings);
 		void	determineMapSpread();
 		void	convertHRE();
+		void	addModCountries(const vector<EU3Country*>& countries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
+		void	outputCountryFile(FILE* countryFile, EU3Country* country);
 
 		CK2World*							srcWorld;
 		int									options[OPTIONS_END];
 		date									startDate;
 		EU3Tech*								techData;
 
+		vector<int>							centersOfTrade;
 		map<int, EU3Province*>			provinces;
 		map<string, EU3Country*>		countries;
 		vector<EU3Country*>				convertedCountries;
