@@ -1647,6 +1647,10 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 			newProvinces.push_back(*provItr);
 			(*provItr)->setOwner(this);
 		}
+		else if (provMap->second[0] == 0)
+		{
+			(*provItr)->setReligion(religion);
+		}
 	}
 	for (vector<EU3Province*>::iterator provItr = convertedCountry->provinces.begin(); provItr != convertedCountry->provinces.end(); provItr++)
 	{

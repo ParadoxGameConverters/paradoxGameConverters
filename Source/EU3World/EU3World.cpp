@@ -506,6 +506,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			if (owner != countries.end())
 			{
 				provItr->second->setOwner(owner->second);
+				owner->second->addProvince(provItr->second);
 			}
 			else
 			{
