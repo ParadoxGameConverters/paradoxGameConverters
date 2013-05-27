@@ -22,6 +22,8 @@ class EU3Regiment
 
 		void	setHomeProvince(int _home)		{ home = _home; };
 		void	setName(string _name)			{ name = _name; };
+
+		string	getType()	const { return type; };
 	private:
 		int						id;
 		string					name;
@@ -36,10 +38,10 @@ class EU3Army // also Navy
 {
 	public:
 		EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inverseProvinceMap, const string infantryType, const string cavalryType, map<int, EU3Province*> provinces, double& manpower);
+		void		output(FILE*);
 
 		int	getNumRegiments()	const { return regiments.size(); };
-
-		void		output(FILE*);
+		int	getNumInfantry()	const;
 	private:
 		int						id;
 		string					name;

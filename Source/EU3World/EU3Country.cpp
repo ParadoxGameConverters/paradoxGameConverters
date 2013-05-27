@@ -116,7 +116,6 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	armies.clear();
 	navies.clear();
 	manpower = 0.0F;
-	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
 	{
 		infantry = "western_medieval_infantry";
@@ -201,6 +200,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
+	estimatedManu			= 0.0f;
 	estimatedGold			= 0.0f;
 	estimatedProduction	= 0.0f;
 	estimatedTolls			= 0.0f;
@@ -427,6 +427,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	stabilityInvestment	= 0.0f;
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
+	estimatedManu			= 0.0f;
 	estimatedGold			= 0.0f;
 	estimatedProduction	= 0.0f;
 	estimatedTolls			= 0.0f;
@@ -441,7 +442,6 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	armies.clear();
 	navies.clear();
 	manpower	= 0.0F;
-	// todo: replace with something better
 	infantry = "western_medieval_infantry";
 	cavalry = "western_medieval_knights";
 	bigShip = "carrack";
@@ -685,7 +685,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t{\n");
 	fprintf(output, "\t\tincome=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedGold, estimatedProduction, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 %f %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedManu, estimatedGold, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\texpense=\n");
 	fprintf(output, "\t\t{\n");
@@ -701,7 +701,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthincometable=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedGold, estimatedProduction, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 %f %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedManu, estimatedGold, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthexpensetable=\n");
 	fprintf(output, "\t\t{\n");
@@ -1006,23 +1006,17 @@ void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups, cons
 	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
 	{
 		estimatedTax			+= (*provItr)->determineTax(cultureGroups);
-		//TODO: Trade
-		//TODO: Manus
+		estimatedManu			+= (*provItr)->determineManu();
 		estimatedGold			+= (*provItr)->determineGold();
 		estimatedProduction	+= (*provItr)->determineProduction(unitPrices);
-		//TODO: Vassals
 		estimatedTolls			+= (*provItr)->determineTolls();
-		//TODO: Harbor fees
 	}
 
 	estimatedIncome += estimatedTax;
-	//TODO: Trade
-	//TODO: Manus
+	estimatedIncome += estimatedManu;
 	estimatedIncome += estimatedGold;
 	estimatedIncome += estimatedProduction;
-	//TODO: Vassals
 	estimatedIncome += estimatedTolls;
-	//TODO: Harbor fees
 
 	if (monarch != NULL)
 	{
@@ -1036,7 +1030,14 @@ void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups, cons
 double EU3Country::getTradeEffeciency()
 {
 	double TE = 0.1f;
-	//TODO: tech bonus
+	if (tradeTech > 0)
+	{
+		TE += 0.10;
+	}
+	if (tradeTech > 1)
+	{
+		TE += 0.03 + tradeTech / 100.0;
+	}
 	//TODO: slider effects
 	if (government == "administrative_republic")
 	{
@@ -1049,8 +1050,14 @@ double EU3Country::getTradeEffeciency()
 double EU3Country::getProductionEffeciency()
 {
 	double PE = 0.1f;
-	//TODO: tech bonus
-	//TODO: slider effects
+	if (productionTech > 0)
+	{
+		PE += 0.10;
+	}
+	if (productionTech > 1)
+	{
+		PE += 0.03 + tradeTech / 100.0;
+	}
 	if (government == "administrative_republic")
 	{
 		PE += 0.1;
@@ -1443,7 +1450,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "vassal";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 		}
@@ -1455,7 +1462,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "vassal";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 		}
 		else if ((vassalScore >= 1000) && (vassals[i]->getAbsorbScore() < 1000))
@@ -1466,14 +1473,14 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "sphere";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			newAgreement = new EU3Agreement;
 			newAgreement->type			= "alliance";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 		}
@@ -1485,14 +1492,14 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "guarantee";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			newAgreement = new EU3Agreement;
 			newAgreement->type			= "guarantee";
 			newAgreement->country1	= vassals[i];
 			newAgreement->country2	= this;
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 		}
@@ -1618,6 +1625,7 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 
 	estimatedIncome				= convertedCountry->estimatedIncome;
 	estimatedTax					= convertedCountry->estimatedTax;
+	estimatedManu					= convertedCountry->estimatedManu;
 	estimatedGold					= convertedCountry->estimatedGold;
 	estimatedProduction			= convertedCountry->estimatedProduction;
 	estimatedTolls					= convertedCountry->estimatedTolls;
@@ -1804,4 +1812,29 @@ void EU3Country::addBuildings()
 			(*i)->addBuilding("armory");
 		}
 	}
+}
+
+
+int EU3Country::getInfantry() const
+{
+	int infantry = 0;
+	for (unsigned int i = 0 ; i < armies.size(); i++)
+	{
+		infantry += armies[i]->getNumInfantry();
+	}
+	return infantry;
+}
+
+
+int EU3Country::getNumPorts() const
+{
+	int ports = 0;
+	for (unsigned int i = 0; i < provinces.size(); i++)
+	{
+		if (provinces[i]->isCoastal())
+		{
+			ports++;
+		}
+	}
+	return ports;
 }

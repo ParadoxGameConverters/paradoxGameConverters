@@ -1497,7 +1497,7 @@ void EU3World::convertDiplomacy()
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "union";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				if (rhsDominant)
 				{
 					agr->country1 = (*jtr).second;
@@ -1516,7 +1516,7 @@ void EU3World::convertDiplomacy()
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "royal_marriage";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = (*itr).second;
 				agr->country2 = (*jtr).second;
 				diplomacy->addAgreement(agr);
@@ -1527,7 +1527,7 @@ void EU3World::convertDiplomacy()
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "alliance";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = (*itr).second;
 				agr->country2 = (*jtr).second;
 				diplomacy->addAgreement(agr);
@@ -1565,7 +1565,7 @@ void EU3World::convertDiplomacy()
 				{
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
-					agr->startDate = startDate; // FIXME maybe?
+					agr->startDate = date("1.1.1");
 					agr->country1 = (*itr).second;
 					agr->country2 = (*jtr).second;
 					diplomacy->addAgreement(agr);
@@ -1597,7 +1597,7 @@ void EU3World::convertDiplomacy()
 				{
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
-					agr->startDate = startDate; // FIXME maybe?
+					agr->startDate = date("1.1.1");
 					agr->country1 = (*jtr).second;
 					agr->country2 = (*itr).second;
 					diplomacy->addAgreement(agr);
