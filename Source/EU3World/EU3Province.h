@@ -50,6 +50,7 @@ class EU3Province
 		void		setBaseTax(double _baseTax)				{ baseTax = _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(EU3Country* core)					{ cores.push_back(core); };
+		void		clearCores()									{ cores.clear(); };
 		void		setOwner(EU3Country* _owner)				{ owner = _owner; ownerStr = ""; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 		void		addBuilding(const string building)		{ buildings.push_back(building); };

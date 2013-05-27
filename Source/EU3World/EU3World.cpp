@@ -499,6 +499,13 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
+		if (i->second[0] == -1)
+		{
+			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);
+			provItr->second->setOwner(NULL);
+			provItr->second->clearCores();
+			provItr->second->setPopulation(0);
+		}
 		if (i->second[0] == 0)
 		{
 			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);

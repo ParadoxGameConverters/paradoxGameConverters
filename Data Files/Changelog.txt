@@ -414,3 +414,4 @@ Revision	Log Message
 407		Aztecs convert as a horde
 408		Include chinese faction system
 409		If a converted nation has ROTW provinces, make those provinces the nation's religion
+410		Some provinces forced to always start unsettled
