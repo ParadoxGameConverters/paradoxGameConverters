@@ -229,6 +229,23 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	}
 	elector = false;
 
+	factions.clear();
+	mainFaction			= "";
+	mainFactionScore	= 0;
+	vector<Object*> factionObj = obj->getValue("faction");
+	for(vector<Object*>::iterator factionItr = factionObj.begin(); factionItr != factionObj.end(); factionItr++)
+	{
+		string newFaction = (*factionItr)->getLeaf();
+		factions.push_back(newFaction);
+		vector<Object*> mainFactionObj = obj->getValue(newFaction);
+		if (mainFactionObj.size() > 0)
+		{
+			mainFaction			= newFaction;
+			mainFactionScore	= atoi( mainFactionObj[0]->getLeaf().c_str() );
+		}
+	}
+
+
 	// update items based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
@@ -417,6 +434,9 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	daimyo				= false;
 	japaneseEmperor	= false;
 	elector				= false;
+	factions.clear();
+	mainFaction			= "";
+	mainFactionScore	= 0;
 
 	armies.clear();
 	navies.clear();
@@ -562,6 +582,14 @@ void EU3Country::output(FILE* output)
 	{
 		log("\tWarning: No capital for %s\n", tag.c_str());
 	}
+	for (unsigned int i = 0; i < factions.size(); i++)
+	{
+		fprintf(output, "\t\tfaction=%s\n", factions[i].c_str());
+	}
+	if (mainFaction != "")
+	{
+		fprintf(output, "\t\t%s=\"%d\"\n", mainFaction.c_str(), mainFactionScore);
+	}
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
@@ -614,6 +642,26 @@ void EU3Country::output(FILE* output)
 	{
 		fprintf(output, "elector=yes\n");
 		fprintf(output, "last_hre_vote=\"1.1.1\"\n");
+	}
+	if (mainFaction != "")
+	{
+		for (unsigned int i = 0; i < factions.size(); i++)
+		{
+			fprintf(output, "\tfaction=\n");
+			fprintf(output, "\t{\n");
+			fprintf(output, "\t\ttype=%s\n", factions[i].c_str());
+			if (factions[i] == mainFaction)
+			{
+				fprintf(output, "\t\tinfluence=%2.3f\n", mainFactionScore/1.0);
+				fprintf(output, "\t\told_influence=%2.3f\n", mainFactionScore/1.0);
+			}
+			else
+			{
+				fprintf(output, "\t\tinfluence=%2.3f\n", (100.0-mainFactionScore) / 2.0);
+				fprintf(output, "\t\told_influence=0.000\n");
+			}
+			fprintf(output, "\t}\n");
+		}
 	}
 	fprintf(output, "\tprecise_prestige=%f\n", prestige);
 	fprintf(output, "\tstability=%f\n", (double)stability);

@@ -133,6 +133,9 @@ class EU3Country
 		bool						daimyo;
 		bool						japaneseEmperor;
 		bool						elector;
+		vector<string>			factions;
+		string					mainFaction;
+		int						mainFactionScore;
 
 		vector<EU3Army*>		armies;
 		vector<EU3Navy*>		navies;

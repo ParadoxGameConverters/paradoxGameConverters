@@ -412,3 +412,4 @@ Revision	Log Message
 405
 406		Merge main into minor
 407		Aztecs convert as a horde
+408		Include chinese faction system
