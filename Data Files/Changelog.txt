@@ -405,4 +405,10 @@ Revision	Log Message
 398		Merge mod into main
 399		Merge mod into main with latest commit
 400		Add base mod to test configuration
-401		Added tag 0.8 Release for changeset xxxx
+401		Added tag 0.8 Release for changeset 43929ab67b4f
+402
+403
+404
+405
+406		Merge main into minor
+407		Aztecs convert as a horde
