@@ -147,10 +147,19 @@ public:
 		return getInstance()->lucky_nations;
 	}
 
+	static string getUseConverterMod()
+	{
+	return getInstance()->useConverterMod;
+	}
 
 	static int getID()
 	{
 		return getInstance()->id++;
+	}
+
+	static int getArmyID()
+	{
+		return getInstance()->armyId++;
 	}
 
 	static Configuration* getInstance()
@@ -194,7 +203,10 @@ private:
 	string	spies;
 	string	lucky_nations;
 
+	string	useConverterMod;
+
 	int		id;
+	int		armyId;
 };
 
 #endif // CONFIGURATION_H_

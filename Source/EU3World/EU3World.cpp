@@ -4,6 +4,9 @@
 #include <algorithm>
 #include <io.h>
 #include <set>
+#include <boost/algorithm/string.hpp>
+#include <boost/filesystem.hpp>
+#include <boost/lexical_cast.hpp>
 #include "..\Log.h"
 #include "..\temp.h"
 #include "..\Configuration.h"
@@ -217,6 +220,7 @@ EU3World::EU3World(CK2World* _srcWorld, EU3Tech* _techData)
 		options[LUCKY_NATIONS] = 2;
 	}
 
+	centersOfTrade.clear();
 	diplomacy			= new EU3Diplomacy();
 	hreEmperor			= NULL;
 	japaneseEmperor	= NULL;
@@ -250,6 +254,16 @@ void EU3World::output(FILE* output)
 	}
 	fprintf(output, "imperial_influence=20.000\n");
 	fprintf(output, "internal_hre_cb=yes\n");
+	fprintf(output, "trade=\n");
+	fprintf(output, "{\n");
+	for (vector<int>::iterator cotItr = centersOfTrade.begin(); cotItr != centersOfTrade.end(); cotItr++)
+	{
+		fprintf(output, "\tcot=\n");
+		fprintf(output, "\t{\n");
+		fprintf(output, "\t\tlocation=%d\n", *cotItr);
+		fprintf(output, "\t}\n");
+	}
+	fprintf(output, "}\n");
 	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		if (i->second != NULL)
@@ -333,10 +347,11 @@ void EU3World::addHistoricalCountries()
 		}
 
 		string filename;
-		filename = countryDirData.name;
+		filename	=  EU3Loc + "\\history\\countries\\";
+		filename	+= countryDirData.name;
 
 		string tag;
-		tag = filename.substr(0, 3);
+		tag = string(countryDirData.name).substr(0, 3);
 		transform(tag.begin(), tag.end(), tag.begin(), toupper);
 
 		if (tag == "REB")
@@ -349,6 +364,42 @@ void EU3World::addHistoricalCountries()
 
 	} while(_findnext(fileListing, &countryDirData) == 0);
 	_findclose(fileListing);
+
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		struct _finddata_t	countryDirData;
+		intptr_t					fileListing;
+		if ( (fileListing = _findfirst( "mod\\converter\\history\\countries\\*", &countryDirData)) == -1L)
+		{
+			log("Error: Could not open country history directory.\n");
+			return;
+		}
+		do
+		{
+			if (strcmp(countryDirData.name, ".") == 0 || strcmp(countryDirData.name, "..") == 0 )
+			{
+					continue;
+			}
+
+			string filename;
+			filename	=  string("mod\\converter\\history\\countries\\");
+			filename	+= countryDirData.name;
+
+			string tag;
+			tag = string(countryDirData.name).substr(0, 3);
+			transform(tag.begin(), tag.end(), tag.begin(), toupper);
+
+			if (tag == "REB")
+			{
+				continue;
+			}
+
+			EU3Country* newCountry = new EU3Country(this, tag, filename, startDate, techData);
+			countries.insert(make_pair(tag, newCountry));
+
+		} while(_findnext(fileListing, &countryDirData) == 0);
+		_findclose(fileListing);
+	}
 }
 
 
@@ -414,7 +465,7 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 }
 
 
-void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap)
+void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Province*>& allSrcProvinces, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroupMap, Object* positionObj)
 {
 	double totalHistoricalBaseTax		= 0.0f;
 	double totalHistoricalPopulation = 0.0f;
@@ -448,6 +499,13 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
+		if (i->second[0] == -1)
+		{
+			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);
+			provItr->second->setOwner(NULL);
+			provItr->second->clearCores();
+			provItr->second->setPopulation(0);
+		}
 		if (i->second[0] == 0)
 		{
 			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);
@@ -455,6 +513,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			if (owner != countries.end())
 			{
 				provItr->second->setOwner(owner->second);
+				owner->second->addProvince(provItr->second);
 			}
 			else
 			{
@@ -638,6 +697,21 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		provItr->second->determineReligion(religionMap, srcProvinces);
 	}
 
+	//find all coastal provinces
+	vector<Object*> provPositionObj = positionObj->getLeaves();
+	for (unsigned int i = 0; i < provPositionObj.size(); i++)
+	{
+		vector<Object*> portObjs = provPositionObj[i]->getValue("port");
+		if (portObjs.size() > 0)
+		{
+			map<int, EU3Province*>::iterator provItr = provinces.find( atoi(provPositionObj[i]->getKey().c_str()) );
+			if (provItr != provinces.end())
+			{
+				provItr->second->setCoastal(true);
+			}
+		}
+	}
+
 	// find all land connections to capitals
 	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -689,6 +763,59 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		}
 		itr->second->determineGoodsSupply(tradeGoodMap);
 		itr->second->determineGoodsDemand(tradeGoodMap, EU3ReligionGroupMap);
+	}
+
+	for(map<int, EU3Province*>::iterator itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = itr->second->getSrcProvinces();
+		if (srcProvinces.size() > 0)
+		{
+			bool	textile		= false;
+			bool	university	= false;
+			bool	fort2			= false;
+			for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr != srcProvinces.end(); srcItr++)
+			{
+				vector<CK2Barony*> baronies = (*srcItr)->getBaronies();
+				for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
+				{
+					if ((*baronyItr)->getFortLevel() > 6.9)
+					{
+						fort2 = true;
+					}
+					if ((*baronyItr)->getTechBonus() > 0.7)
+					{
+						university = true;
+					}
+					if ((*baronyItr)->getBaseTaxProxy() > 42.5)
+					{
+						textile = true;
+					}
+				}
+			}
+			if (textile)
+			{
+				if ((itr->second->getTradeGood() == "wool") || (itr->second->getTradeGood() == "cloth"))
+				{
+					university = false;
+					itr->second->addBuilding("textile");
+					log ("\tTextile manu added to province %d\n", itr->first);
+				}
+			}
+			if (university)
+			{
+				itr->second->addBuilding("university");
+				log ("\tUniversity added to province %d\n", itr->first);
+			}
+			if (fort2)
+			{
+				itr->second->addBuilding("fort2");
+				log ("\tFort 2 added to province %d\n", itr->first);
+			}
+			else
+			{
+				itr->second->addBuilding("fort1");
+			}
+		}
 	}
 }
 
@@ -830,7 +957,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			CK2Religion* religion = (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religion->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mexikha") ) && (religion->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}
@@ -914,112 +1041,113 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 
 			// determine which decision category to use
+			CK2Title* srcCountry = (*countryItr)->getSrcCountry();
 			string category;
-			if (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() == "muslim")
+			if (srcCountry->getHolder()->getReligion()->getGroup() == "muslim")
 			{
 				category = "muslim";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() == "pagan_group")
+			else if (srcCountry->getHolder()->getReligion()->getGroup() == "pagan_group")
 			{
 				category = "other";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() == "zoroastrian_group")
+			else if (srcCountry->getHolder()->getReligion()->getGroup() == "zoroastrian_group")
 			{
 				category = "greek";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "miaphysite")
+			else if (srcCountry->getHolder()->getReligion()->getName() == "miaphysite")
 			{
 				category = "greek";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "monophysite")
+			else if (srcCountry->getHolder()->getReligion()->getName() == "monophysite")
 			{
 				category = "greek";
 			}
-			else if (CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "monothelite")
+			else if (srcCountry->getHolder()->getReligion()->getName() == "monothelite")
 			{
 				category = "greek";
 			}
-			else if ((*countryItr)->getPrimaryCulture() == "greek")
+			else if (srcCountry->getHolder()->getCulture() == "greek")
 			{
 				category = "greek";
 			}
-			else if ((*countryItr)->getPrimaryCulture() == "georgian")
+			else if (srcCountry->getHolder()->getCulture() == "georgian")
 			{
 				category = "greek";
 			}
-			else if ((*countryItr)->getPrimaryCulture() == "armenian")
+			else if (srcCountry->getHolder()->getCulture() == "armenian")
 			{
 				category = "greek";
 			}
 			else if	(
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "catholic") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "cathar") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "fraticelli") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "waldensian") ||
-							(CK2Religion::getReligion((*countryItr)->getReligion())->getName() == "lollard")
+							(srcCountry->getHolder()->getReligion()->getName() == "catholic") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "cathar") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "fraticelli") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "waldensian") ||
+							(srcCountry->getHolder()->getReligion()->getName() == "lollard")
 						)
 			{
-				if ((*countryItr)->getPrimaryCulture() == "german")
+				if (srcCountry->getHolder()->getCulture() == "german")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "english")
+				else if (srcCountry->getHolder()->getCulture() == "english")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "saxon")
+				else if (srcCountry->getHolder()->getCulture() == "saxon")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "dutch")
+				else if (srcCountry->getHolder()->getCulture() == "dutch")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "frankish")
+				else if (srcCountry->getHolder()->getCulture() == "frankish")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "norman")
+				else if (srcCountry->getHolder()->getCulture() == "norman")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "italian")
+				else if (srcCountry->getHolder()->getCulture() == "italian")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "occitan")
+				else if (srcCountry->getHolder()->getCulture() == "occitan")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "basque")
+				else if (srcCountry->getHolder()->getCulture() == "basque")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "castillan")
+				else if (srcCountry->getHolder()->getCulture() == "castillan")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "catalan")
+				else if (srcCountry->getHolder()->getCulture() == "catalan")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "portuguese")
+				else if (srcCountry->getHolder()->getCulture() == "portuguese")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "irish")
+				else if (srcCountry->getHolder()->getCulture() == "irish")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "scottish")
+				else if (srcCountry->getHolder()->getCulture() == "scottish")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "welsh")
+				else if (srcCountry->getHolder()->getCulture() == "welsh")
 				{
 					category = "catholic";
 				}
-				else if ((*countryItr)->getPrimaryCulture() == "breton")
+				else if (srcCountry->getHolder()->getCulture() == "breton")
 				{
 					category = "catholic";
 				}
@@ -1035,7 +1163,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 
 			//determine tech
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (CK2Religion::getReligion((*countryItr)->getReligion())->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mexikha") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}
@@ -1101,13 +1229,11 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), techScore, (*countryItr)->getTechGroup().c_str());
 		}
-		
+	}	
 
-		// determine tech investment
-		for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
-		{
-			countryItr->second->determineTechInvestment(techData, startDate);
-		}
+	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		countryItr->second->determineTechInvestment(techData, startDate);
 	}
 }
 
@@ -1202,7 +1328,7 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 }
 
 
-void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap)
+void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
 	log("Total converted EU3 countries: %d\n", convertedCountries.size());
 
@@ -1212,6 +1338,8 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 	int leftoverCountries = convertedCountries.size();
 	int initialScore = atoi( Configuration::getVassalScore().c_str() );
 	vector< tuple<EU3Country*, EU3Country*, string, string, int> > mappings;
+	vector<EU3Country*> modCountries;
+	set<string> mappedTags;
 	while(leftoverCountries > 0)
 	{
 		vector<EU3Country*> independentCountries;
@@ -1241,6 +1369,28 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 
 		mappings.clear();
 		leftoverCountries = matchTags(rulesObj, blockedNations, provinceMap, mappings);
+		if (Configuration::getUseConverterMod() == "yes")
+		{
+			for (vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
+			{
+				bool mapped = false;
+				for (unsigned int i = 0; i < mappings.size(); i++)
+				{
+					if (get<2>(mappings[i]) == (*convertedItr)->getSrcCountry()->getTitleString())
+					{
+						mapped = true;
+						mappedTags.insert(get<2>(mappings[i]));
+						break;
+					}
+				}
+				if (!mapped)
+				{
+					modCountries.push_back(*convertedItr);
+				}
+			}
+			leftoverCountries = 0;
+		}
+
 		if (leftoverCountries == -1)
 		{
 			log("Error while matching tags. Aborting!\n");
@@ -1252,6 +1402,12 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 			log("Too many independent CK2 countries (%d left over). Aborting!\n", leftoverCountries);
 			exit(-1);
 		}
+	}
+
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		log("%d tags were mapped. %d countries will be added to the mod.\n", mappedTags.size(), modCountries.size());
+		addModCountries(modCountries, mappedTags, mappings, religionMap, cultureMap, inverseProvinceMap);
 	}
 
 	convertedCountries.clear();
@@ -1286,12 +1442,54 @@ void EU3World::convertDiplomacy()
 		map<string, EU3Country*>::iterator jtr = itr;
 		for (++jtr /*skip myself*/; jtr != countries.end(); ++jtr)
 		{
-			if (!itr->second->hasProvinces() || !jtr->second->hasProvinces())
-				continue; // no relations with non-extant countries
+			// Open Markets
+			map<int, EU3Province*>::iterator provItr = provinces.find(itr->second->getCapital());
+			if (provItr != provinces.end())
+			{
+				vector<string> discoverers = provItr->second->getDiscoveredBy();
+				for (vector<string>::iterator i = discoverers.begin(); i != discoverers.end(); i++)
+				{
+					if (jtr->first == *i)
+					{
+						EU3Agreement* agr = new EU3Agreement;
+						agr->type = "open_market";
+						agr->startDate = date("1.1.1");
+						agr->country1 = (*itr).second;
+						agr->country2 = (*jtr).second;
+						diplomacy->addAgreement(agr);
+						break;
+					}
+				}
+			}
+			provItr = provinces.find(jtr->second->getCapital());
+			if (provItr != provinces.end())
+			{
+				vector<string> discoverers = provItr->second->getDiscoveredBy();
+				for (vector<string>::iterator i = discoverers.begin(); i != discoverers.end(); i++)
+				{
+					if (itr->first == *i)
+					{
+						EU3Agreement* agr = new EU3Agreement;
+						agr->type = "open_market";
+						agr->startDate = date("1.1.1");
+						agr->country1 = (*jtr).second;
+						agr->country2 = (*itr).second;
+						diplomacy->addAgreement(agr);
+						break;
+					}
+				}
+			}
 
 			CK2Title *lhs = (*itr).second->getSrcCountry(), *rhs = (*jtr).second->getSrcCountry();
 			if (lhs == NULL || rhs == NULL)
+			{
 				continue;
+			}
+
+			if (!itr->second->hasProvinces() || !jtr->second->hasProvinces())
+			{
+				continue; // no relations with non-extant countries
+			}
 
 			// Personal Unions
 			bool rhsDominant = false;
@@ -1299,7 +1497,7 @@ void EU3World::convertDiplomacy()
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "union";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				if (rhsDominant)
 				{
 					agr->country1 = (*jtr).second;
@@ -1318,7 +1516,7 @@ void EU3World::convertDiplomacy()
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "royal_marriage";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = (*itr).second;
 				agr->country2 = (*jtr).second;
 				diplomacy->addAgreement(agr);
@@ -1329,7 +1527,7 @@ void EU3World::convertDiplomacy()
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "alliance";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = (*itr).second;
 				agr->country2 = (*jtr).second;
 				diplomacy->addAgreement(agr);
@@ -1339,7 +1537,82 @@ void EU3World::convertDiplomacy()
 			int rel = lhs->getRelationsWith(rhs);
 			(*itr).second->setRelations((*jtr).second, rel);
 			(*jtr).second->setRelations((*itr).second, rel);
+
+			// trade agreements
+			if (itr->second->getGovernment() == "merchant_republic")
+			{
+				int coastalProvinces	= 0;
+				int tradePosts			= 0;
+				vector<EU3Province*> EU3SrcProvinces = jtr->second->getProvinces();
+				for (vector<EU3Province*>::iterator provItr = EU3SrcProvinces.begin(); provItr != EU3SrcProvinces.end(); provItr++)
+				{
+					if (!(*provItr)->isCoastal())
+					{
+						continue;
+					}
+					coastalProvinces++;
+					vector<CK2Province*> CK2SrcProvinces = (*provItr)->getSrcProvinces();
+					for (vector<CK2Province*>::iterator prov2Itr = CK2SrcProvinces.begin(); prov2Itr != CK2SrcProvinces.end(); prov2Itr++)
+					{
+						if (((*prov2Itr)->hasTradePost()) && ((*prov2Itr)->getTPOwner() == itr->second->getSrcCountry()))
+						{
+							tradePosts++;
+							break;
+						}
+					}
+				}
+				if ((coastalProvinces > 0) && (tradePosts * 2 >= coastalProvinces))
+				{
+					EU3Agreement* agr = new EU3Agreement;
+					agr->type = "trade_agreement";
+					agr->startDate = date("1.1.1");
+					agr->country1 = (*itr).second;
+					agr->country2 = (*jtr).second;
+					diplomacy->addAgreement(agr);
+				}
+			}
+			if (jtr->second->getGovernment() == "merchant_republic")
+			{
+				int coastalProvinces	= 0;
+				int tradePosts			= 0;
+				vector<EU3Province*> EU3SrcProvinces = itr->second->getProvinces();
+				for (vector<EU3Province*>::iterator provItr = EU3SrcProvinces.begin(); provItr != EU3SrcProvinces.end(); provItr++)
+				{
+					if (!(*provItr)->isCoastal())
+					{
+						continue;
+					}
+					coastalProvinces++;
+					vector<CK2Province*> CK2SrcProvinces = (*provItr)->getSrcProvinces();
+					for (vector<CK2Province*>::iterator prov2Itr = CK2SrcProvinces.begin(); prov2Itr != CK2SrcProvinces.end(); prov2Itr++)
+					{
+						if (((*prov2Itr)->hasTradePost()) && ((*prov2Itr)->getTPOwner() == jtr->second->getSrcCountry()))
+						{
+							tradePosts++;
+							break;
+						}
+					}
+				}
+				if ((coastalProvinces > 0) && (tradePosts * 2 >= coastalProvinces))
+				{
+					EU3Agreement* agr = new EU3Agreement;
+					agr->type = "trade_agreement";
+					agr->startDate = date("1.1.1");
+					agr->country1 = (*jtr).second;
+					agr->country2 = (*itr).second;
+					diplomacy->addAgreement(agr);
+				}
+			}
 		}
+	}
+}
+
+
+void EU3World::convertArmies(const inverseProvinceMapping inverseProvinceMap)
+{
+	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		countryItr->second->convertArmiesandNavies(inverseProvinceMap, provinces);
 	}
 }
 
@@ -1480,32 +1753,35 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 		}
 	}
 
-	while ( (CK2Titles.size() > 0) && (EU3tags.size() > 0) )
+	if (Configuration::getUseConverterMod() == "no")
 	{
-		map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
-		if (CK2TitlesPos->first == "e_rebels")
+		while ( (CK2Titles.size() > 0) && (EU3tags.size() > 0) )
 		{
-			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else if (CK2TitlesPos->first == "e_pirates")
-		{
-			//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else if (CK2TitlesPos->first == Configuration::getHRETitle())
-		{
-			CK2Titles.erase(CK2TitlesPos);
-		}
-		else
-		{
-			set<string>::iterator EU3CountryPos = EU3tags.begin();
-			tuple<EU3Country*, EU3Country*, string, string, int> mapping = make_tuple(CK2TitlesPos->second->getDstCountry(), countries[*EU3CountryPos], CK2TitlesPos->first.c_str(), EU3CountryPos->c_str(), 0);
-			mappings.push_back(mapping);
+			map<string, CK2Title*>::iterator CK2TitlesPos = CK2Titles.begin();
+			if (CK2TitlesPos->first == "e_rebels")
+			{
+				//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "REB")); // TODO: map rebels nation
+				CK2Titles.erase(CK2TitlesPos);
+			}
+			else if (CK2TitlesPos->first == "e_pirates")
+			{
+				//mapping.insert(make_pair<string, string>(*CK2TitlesPos, "PIR")); // TODO: map pirates nation
+				CK2Titles.erase(CK2TitlesPos);
+			}
+			else if (CK2TitlesPos->first == Configuration::getHRETitle())
+			{
+				CK2Titles.erase(CK2TitlesPos);
+			}
+			else
+			{
+				set<string>::iterator EU3CountryPos = EU3tags.begin();
+				tuple<EU3Country*, EU3Country*, string, string, int> mapping = make_tuple(CK2TitlesPos->second->getDstCountry(), countries[*EU3CountryPos], CK2TitlesPos->first.c_str(), EU3CountryPos->c_str(), 0);
+				mappings.push_back(mapping);
 
-			//remove tags from the lists
-			CK2Titles.erase(CK2TitlesPos);
-			EU3tags.erase(EU3CountryPos);
+				//remove tags from the lists
+				CK2Titles.erase(CK2TitlesPos);
+				EU3tags.erase(EU3CountryPos);
+			}
 		}
 	}
 
@@ -1595,7 +1871,9 @@ void EU3World::determineMapSpread()
 void EU3World::convertHRE()
 {
 	if (srcWorld->getHRETitle() == NULL)
+	{
 		return;
+	}
 
 	hreEmperor = srcWorld->getHRETitle()->getHolder()->getPrimaryTitle()->getDstCountry();
 	map<string, CK2Title*> hreMembers = srcWorld->getHREMembers();
@@ -1609,8 +1887,304 @@ void EU3World::convertHRE()
 	}
 	sort(potentialElectors.begin(), potentialElectors.end(), [](CK2Title* a, CK2Title* b) { return a->getHolder()->getTotalScore() < b->getHolder()->getTotalScore(); } );
 	
-	for (int electors = 0; electors < 6; electors++)
+	if (potentialElectors.size() > 0)
 	{
-		potentialElectors[electors]->getDstCountry()->setElector(true);
+		unsigned int maxElectors = 6;
+		if (potentialElectors.size() < maxElectors)
+		{
+			maxElectors = potentialElectors.size();
+		}
+		for (unsigned int electors = 0; electors < maxElectors; electors++)
+		{
+			potentialElectors[electors]->getDstCountry()->setElector(true);
+		}
+	}
+	else
+	{
+		hreEmperor->setElector(true);
+	}
+}
+
+
+void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
+{
+	// get CK2 localisations
+	map<string, string>	localisations;
+	struct _finddata_t	data;
+	intptr_t					fileListing;
+	if ( (fileListing = _findfirst( (Configuration::getCK2Path() + "\\localisation\\*").c_str(), &data)) != -1L)
+	{
+		do
+		{
+			if (strcmp(data.name, ".") == 0 || strcmp(data.name, "..") == 0 )
+			{
+				continue;
+			}
+			FILE* localisationsFile;
+			fopen_s( &localisationsFile, (Configuration::getCK2Path() + "\\localisation\\" + data.name).c_str(), "rb");
+			if (localisationsFile == NULL)
+			{
+				continue;
+			}
+			while (!feof(localisationsFile))
+			{
+				char line[4096];
+				fgets(line, sizeof(line), localisationsFile);
+				if ((line[0] == '#') || (line[0] == '\0'))
+				{
+					continue;
+				}
+				string fullLine = line;
+				int pos = fullLine.find_first_of(';');
+				if (pos == string::npos)
+				{
+					continue;
+				}
+				localisations.insert( make_pair(fullLine.substr(0, pos), fullLine.substr(pos, fullLine.size())) );
+			}
+		} while(_findnext(fileListing, &data) == 0);
+		_findclose(fileListing);
+	}
+
+	// sort titles by rank
+	vector<EU3Country*> sortedCountries;
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "e_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "k_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "d_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+	for (vector<EU3Country*>::const_iterator countryItr = modCountries.begin(); countryItr != modCountries.end(); countryItr++)
+	{
+		if ((*countryItr)->getSrcCountry()->getTitleString().substr(0,2) == "c_")
+		{
+			sortedCountries.push_back(*countryItr);
+		}
+	}
+
+	FILE* EU3Localisations;
+	fopen_s(&EU3Localisations, "mod\\Converter\\localisation\\converter.csv", "a");
+	if (EU3Localisations == NULL)
+	{
+		log("\tError: Could not open mod\\Converter\\localisation\\converter.csv\n");
+	}
+
+	// assign tags
+	FILE* countriesList;
+	fopen_s(&countriesList, "mod\\converter\\common\\countries.txt", "a");
+	fprintf(countriesList, "\n");
+	char first	= 'A';
+	char second	= 'A';
+	char third	= 'A';
+	for (vector<EU3Country*>::iterator countryItr = sortedCountries.begin(); countryItr != sortedCountries.end(); countryItr++)
+	{
+		string titleString = (*countryItr)->getSrcCountry()->getTitleString();
+
+		// determine tag
+		string potentialTag = boost::to_upper_copy(titleString.substr(2,3));
+		string tag;
+
+		map<string, EU3Country*>::iterator	itr	= countries.find(potentialTag);
+		set<string>::iterator					itr2	= mappedTags.find(potentialTag);
+		while ((itr != countries.end()) || (itr2 != mappedTags.end()) )
+		{
+			potentialTag = "";
+			potentialTag += first;
+			potentialTag += second;
+			potentialTag += third;
+			third++;
+			if (third > 'Z')
+			{
+				third = 'A';
+				second++;
+				if (second > 'Z')
+				{
+					second = 'A';
+					first++;
+					if (first > 'Z')
+					{
+						log("\tError: ran out of possible tags!\n");
+						exit(0);
+					}
+				}
+			}
+			itr	= countries.find(potentialTag);
+			itr2	= mappedTags.find(potentialTag);
+		}
+		tag = potentialTag;
+		mappedTags.insert(tag);
+
+		EU3Country* newCountry = new EU3Country((*countryItr)->getSrcCountry(), religionMap, cultureMap, inverseProvinceMap);
+		newCountry->setTag(tag);
+		countries.insert(make_pair(tag, newCountry));
+		mappings.push_back( make_tuple(*countryItr, newCountry, (*countryItr)->getSrcCountry()->getTitleString().c_str(), tag, 1) );
+
+		// Add localisations
+		if (EU3Localisations != NULL)
+		{
+			map<string, string>::iterator localisation = localisations.find(titleString);
+			if (localisation == localisations.end())
+			{
+				log("\tWarning: could not find CK2 localisation for %s\n", titleString.c_str());
+				string newLocalisation = tag;
+				newLocalisation += ";";
+				newLocalisation += tag;
+				newLocalisation += ";x\n";
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else
+			{
+				string newLocalisation = tag;
+				newLocalisation += localisation->second;
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+
+			localisation = localisations.find(titleString + "_adj");
+			if (localisation == localisations.end())
+			{
+				log("\tWarning: could not find CK2 localisation for %s\n", (titleString + "_adj").c_str());
+				string newLocalisation = tag;
+				newLocalisation += ";";
+				newLocalisation += tag;
+				newLocalisation += ";x\n";
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else
+			{
+				string newLocalisation = tag;
+				newLocalisation += "_ADJ";
+				newLocalisation += localisation->second;
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+		}
+			
+		// determine filename
+		string filename = Configuration::getEU3Path();
+		filename += "\\common\\countries\\";
+		filename	+= titleString.substr(2, titleString.size());
+		filename += ".txt";
+		int number = 0;
+		while( boost::filesystem::exists( filename ) )
+		{
+			number++;
+			filename	=  Configuration::getEU3Path();
+			filename	+= "\\common\\countries\\";
+			filename += titleString.substr(2, titleString.size());
+			filename	+= boost::lexical_cast<string>(number);
+			filename	+= ".txt";
+		}
+		filename	=  "mod\\converter\\common\\countries\\";
+		filename += titleString.substr(2, titleString.size());
+		if (number > 0)
+		{
+			filename	+= boost::lexical_cast<string>(number);
+		}
+		filename	+= ".txt";
+
+		// create country file
+		FILE* countryFile;
+		fopen_s(&countryFile, filename.c_str(), "wt");
+		outputCountryFile(countryFile, *countryItr);
+		fclose(countryFile);
+
+		string shortFilename = "countries\\";
+		shortFilename += titleString.substr(2, titleString.size());
+		if (number > 0)
+		{
+			shortFilename	+= boost::lexical_cast<string>(number);
+		}
+		shortFilename	+= ".txt";
+		fprintf(countriesList, "%s\t= \"%s\"\n", tag.c_str(), shortFilename.c_str());
+
+		//copy flag
+		string srcFlag	=  "\"";
+		srcFlag			+= Configuration::getCK2Path();
+		srcFlag			+= "\\gfx\\flags\\";
+		srcFlag			+= titleString;
+		srcFlag			+= ".tga\"";
+
+		string dstFlag	=  "\"";
+		dstFlag			+= "mod\\Converter\\gfx\\flags\\";
+		dstFlag			+= tag;
+		dstFlag			+= ".tga\"";
+
+		string command	=  "copy ";
+		command			+= srcFlag;
+		command			+= " ";
+		command			+= dstFlag;
+
+		system(command.c_str());
+		
+		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
+	}
+	fclose(EU3Localisations);
+	fclose(countriesList);
+}
+
+
+void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
+{
+	fprintf(countryFile, "#Country Name: Please see filename.\n");
+	fprintf(countryFile, "\n");
+	fprintf(countryFile, "graphical_culture = latingfx\n"); //TODO: have variable graphical culture type
+	fprintf(countryFile, "\n");
+	const int* color = country->getSrcCountry()->getColor();
+	fprintf(countryFile, "Color = { %d %d %d }\n", color[0], color[1], color[2]);
+}
+
+
+void EU3World::convertCoTs()
+{
+	for (map<int, EU3Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		if (provItr->second->hasCOT())
+		{
+			centersOfTrade.push_back(provItr->first);
+		}
+	}
+
+	for (map<string, EU3Country*>	::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		if (countryItr->second->getGovernment() == "merchant_republic")
+		{
+			bool addCot = true;
+			vector<EU3Province*> republicProvs = countryItr->second->getProvinces();
+			if (republicProvs.size() == 0)
+			{
+				addCot = false;
+			}
+			for (vector<EU3Province*>::iterator provItr = republicProvs.begin(); provItr != republicProvs.end(); provItr++)
+			{
+				if ((*provItr)->hasCOT())
+				{
+					addCot = false;
+				}
+			}
+			if (addCot)
+			{
+				int capital = countryItr->second->getCapital();
+				map<int, EU3Province*>::iterator provItr = provinces.find(capital);
+				if (provItr != provinces.end())
+				{
+					provItr->second->setCot(true);
+					centersOfTrade.push_back(provItr->first);
+				}
+			}
+		}
 	}
 }

@@ -11,6 +11,7 @@
 #include "CK2Techs.h"
 #include "CK2War.h"
 #include "CK2Religion.h"
+#include "CK2Army.h"
 
 
 
@@ -201,6 +202,18 @@ CK2Character::CK2Character(Object* obj, const map<int, CK2Dynasty*>& dynasties, 
 		if (primaryObj.size() > 0)
 		{
 			primaryTitleString = primaryObj[0]->getLeaf();
+		}
+		vector<Object*> armyObjs = demesneObj[0]->getValue("army");
+		for (unsigned int i = 0; i < armyObjs.size(); i++)
+		{
+			CK2Army* newArmy = new CK2Army(armyObjs[i]);
+			armies.push_back(newArmy);
+		}
+		vector<Object*> navyObjs = demesneObj[0]->getValue("navy");
+		for (unsigned int i = 0; i < navyObjs.size(); i++)
+		{
+			CK2Army* newNavy = new CK2Army(navyObjs[i]);
+			navies.push_back(newNavy);
 		}
 	}
 	capital = NULL;
@@ -1153,7 +1166,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 	// Wrong Government Type (counts and above only)
 	if (this->isDirectVassalOf(other) && this->primaryTitleString.substr(0,2) != "b_")
 	{
-		if (this->primaryHolding->getType() != other->primaryHolding->getType())
+		if ((this->primaryHolding != NULL) && (this->primaryHolding->getType() != other->primaryHolding->getType()))
 		{
 			relations += CK2Opinion::getBaseValue("opinion_count_wrong_gov_vs_liege");
 		}

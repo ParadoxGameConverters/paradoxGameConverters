@@ -12,11 +12,12 @@
 #include <algorithm>
 
 
-EU3Province::EU3Province(int _num, Object* obj, date startDate)
+EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 {
 	srcProvinces.clear();
 	srcProvinceNums.clear();
-	num = _num;
+	startDate	= _startDate;
+	num			= _num;
 
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
@@ -29,6 +30,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 		land		= false;
 		capital	= "";
 	}
+	coastal = false;
 
 	vector<Object*> tradeGoodObj = obj->getValue("trade_goods");
 	if (tradeGoodObj.size() > 0)
@@ -69,6 +71,21 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 		manpower = 0;
 	}
 
+	buildings.clear();
+	vector<Object*> fortObj = obj->getValue("fort2");
+	if (fortObj.size() > 0)
+	{
+		buildings.push_back("fort2");
+	}
+	else
+	{
+		vector<Object*> fortObj = obj->getValue("fort1");
+		if (fortObj.size() > 0)
+		{
+			buildings.push_back("fort1");
+		}
+	}
+
 	owner = NULL;
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
@@ -95,6 +112,7 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 	{
 		rawDiscoverers.push_back(discoveredByObj[i]->getLeaf());
 	}
+	discoveredBy.clear();
 
 	vector<Object*> cultureObj = obj->getValue("culture");
 	if (cultureObj.size() > 0)
@@ -148,6 +166,16 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 		nativeHostility = 0;
 	}
 
+	cot = false;
+	vector<Object*> cotObj = obj->getValue("cot");
+	if (cotObj.size() > 0)
+	{
+		if (cotObj[0]->getLeaf() == "yes")
+		{
+			cot = true;
+		}
+	}
+
 	// update based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
@@ -185,6 +213,21 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 				{
 					manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
 					newHistory->manpower = manpower;
+				}
+
+				vector<Object*> fortObj = obj->getValue("fort2");
+				if (fortObj.size() > 0)
+				{
+					buildings.clear();
+					buildings.push_back("fort2");
+				}
+				else
+				{
+					vector<Object*> fortObj = obj->getValue("fort1");
+					if (fortObj.size() > 0)
+					{
+						buildings.push_back("fort1");
+					}
 				}
 
 				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
@@ -242,6 +285,15 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 					newHistory->religion = religion;
 				}
 
+				vector<Object*> cotObj = obj->getValue("cot");
+				if (cotObj.size() > 0)
+				{
+					if (cotObj[0]->getLeaf() == "yes")
+					{
+						cot = true;
+					}
+				}
+
 				history.push_back(newHistory);
 			}
 		}
@@ -249,12 +301,17 @@ EU3Province::EU3Province(int _num, Object* obj, date startDate)
 
 	modifiers.clear();
 
+	continent		= "";
 	sameContinent	= false;
 	landConnection	= false;
 
 	popUnits	= 0.0f;
 	supply	= 0.0f;
 	demands.clear();
+	armyHere	= false;
+
+	numRegiments	= 0;
+	numShips			= 0;
 }
 
 
@@ -329,9 +386,9 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\ttrade_goods=%s\n", tradeGood.c_str());
 	}
-	if ((ownerStr != "") || (owner != NULL))
+	for (vector<string>::iterator i = buildings.begin(); i != buildings.end(); i++)
 	{
-		fprintf(output, "\tfort1=yes\n");
+		fprintf(output, "\t%s=yes\n", (*i).c_str());
 	}
 	if (nativeSize > 0.0)
 	{
@@ -408,6 +465,13 @@ void EU3Province::output(FILE* output)
 	{
 		history[i]->output(output);
 	}
+	fprintf(output, "\t\t%s=\n", startDate.toString().c_str());
+	fprintf(output, "\t\t{\n");
+	for(unsigned int i = 0; i < cores.size(); i++)
+	{
+		fprintf(output, "\t\t\tadd_core=\"%s\"\n", cores[i]->getTag().c_str());
+	}
+	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t}\n");
 	fprintf(output, "\tdiscovery_dates={9999.1.1 9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
 	fprintf(output, "\tdiscovery_religion_dates={9999.1.1 1458.4.30 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 9999.1.1 }\n");
@@ -434,13 +498,24 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _sr
 	srcProvinceNums = _srcProvinceNums;
 
 	num				= _num;
-	//capital	-- leave it as it is from the history file (TODO?)
+	buildings.clear();
 	ownerStr			= "";
 	cores				= _cores;
 	inHRE				= _inHRE;
 	discoveredBy.clear();
 	history.clear();
 	culture			= "";
+	tradeStation	= false;
+
+	for (vector<CK2Province*>::iterator provItr = srcProvinces.begin(); provItr != srcProvinces.end(); provItr++)
+	{
+		if ((*provItr)->hasTradePost())
+		{
+			modifiers.push_back("league_kontor");
+			tradeStation = true;
+			break;
+		}
+	}
 }
 
 
@@ -664,6 +739,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 	vector<CK2Religion*>	tiedReligions2;
 	if (tie == true)
 	{
+		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts2.begin(); countsItr != religionCounts2.end(); countsItr++)
 		{
@@ -692,6 +768,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 
 	if (tie == true)
 	{
+		topReligion	= NULL;
 		topCount		= 0;
 		for (map<CK2Religion*, double>::iterator countsItr = religionCounts3.begin(); countsItr != religionCounts3.end(); countsItr++)
 		{
@@ -801,10 +878,7 @@ void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap)
 		}
 		else if (modifierItr->first == "blockaded")
 		{
-			//if (blockaded) TODO
-			//{
-			//	supply *= modifierItr->second;
-			//}
+			// can't happen
 		}
 		else if (modifierItr->first == "other controller")
 		{
@@ -863,17 +937,14 @@ void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap)
 		}
 		else if (modifierItr->first.substr(0, 21) == "has country modifier ")
 		{
-		//	if ( country->hasModifier(modifierItr->first.substr(21, 20)) ) TODO
-		//	{
-		//		supply *= modifierItr->second;
-		//	}
+			// no relevant modifiers at conversion
 		}
 		else if (modifierItr->first == "units_in_province")
 		{
-		//	if ( something to check that units are in this province ) TODO
-		//	{
-		//		supply *= modifierItr->second;
-		//	}
+			if (armyHere)
+			{
+				supply *= modifierItr->second;
+			}
 		}
 	}
 }
@@ -971,27 +1042,23 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (conditionItr->substr(0, 14) == "has artillery ")
 				{
-					//int reqUnits = atoi( conditionItr->substr(14, 4).c_str() ); TODO
-					//if (country->getArtillery() < reqUnits)
-					//{
 						allConditions = false;
-					//}
 				}
 				else if (conditionItr->substr(0, 13) == "has infantry ")
 				{
-					//int reqUnits = atoi( conditionItr->substr(13, 4).c_str() ); TODO
-					//if (country->getInfantry() < reqUnits)
-					//{
+					int reqUnits = atoi( conditionItr->substr(13, 4).c_str() );
+					if (owner->getInfantry() < reqUnits)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 14) == "has land tech ")
 				{
-					//int reqTech = atoi( conditionItr->substr(14, 4).c_str() );TODO
-					//if (country->getLandTech() < reqTech)
-					//{
+					int reqTech = atoi( conditionItr->substr(14, 4).c_str() );
+					if (owner->getLandTech() < reqTech)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 15) == "tech group not ")
 				{
@@ -1003,52 +1070,40 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (conditionItr->substr(0, 21) == "has country modifier ")
 				{
-				//	if ( !country->hasModifier(modifierItr->first.substr(21, 20)) ) TODO
-				//	{
-						allConditions = false;
-				//	}
+					// no relevant modifiers at conversion
 				}
 				else if (conditionItr->substr(0, 9) == "prestige ")
 				{
-					//double reqPrestige = atof( conditionItr->substr(9, 3).c_str() ); TODO
-					//if (country->getPrestige() < reqPrestige)
-					//{
+					double reqPrestige = atof( conditionItr->substr(9, 3).c_str() );
+					if (owner->getPrestige() < reqPrestige)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 27) == "owner has this many ports: ")
 				{
-					//double reqPorts = atof( conditionItr->substr(27, 4).c_str() ); TODO
-					//if (country->getNumPorts() < reqPorts)
-					//{
+					double reqPorts = atof( conditionItr->substr(27, 4).c_str() );
+					if (owner->getNumPorts() < reqPorts)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 28) == "trade income percentage not ")
 				{
-					//double reqPercent			= atof( conditionItr->substr(28, 4).c_str() ); TODO
-					//double tradeIncPercent	= country->getTradeIncome() / country->getTotalIncome();
-					//if (tradeIncPercent >= reqPercent)
-					//{
-						allConditions = false;
-					//}
+					// trade income always starts at 0 (no merchants)
 				}
 				else if (conditionItr->substr(0, 20) == "gold income percent ")
 				{
-					//double reqPercent			= atof( conditionItr->substr(20, 4).c_str() ); TODO
-					//double tradeIncPercent	= country->getGoldIncome() / country->getTotalIncome();
-					//if (tradeIncPercent < reqPercent)
-					//{
+					double reqPercent			= atof( conditionItr->substr(20, 4).c_str() );
+					double tradeIncPercent	= owner->getGoldIncome() / owner->getIncome();
+					if (tradeIncPercent < reqPercent)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 15) == "trade embargos ")
 				{
-					//int reqEmbargos = atoi( conditionItr->substr(15, 2).c_str() ); TODO
-					//if (country->getNumEmbargos() < reqEmbargos)
-					//{
-						allConditions = false;
-					//}
+					// no trade embargos at conversion
 				}
 				else if (conditionItr->substr(0, 16) == "trade goods not ")
 				{
@@ -1076,19 +1131,37 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (conditionItr->substr(0, 13) == "has building ")
 				{
-					//string reqBuilding = conditionItr->substr(13, 10); TODO
-					//if (!hasBuilding(reqBuilding))
-					//{
+					string reqBuilding = conditionItr->substr(13, 10);
+					bool hasBuilding = false;
+					for (unsigned int i = 0; i < buildings.size(); i++)
+					{
+						if (buildings[i] == reqBuilding)
+						{
+							hasBuilding = true;
+							break;
+						}
+					}
+					if (!hasBuilding)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 17) == "has not building ")
 				{
-					//string reqBuilding = conditionItr->substr(17, 10); TODO
-					//if (hasBuilding(reqBuilding))
-					//{
-					//	allConditions = false;
-					//}
+					string reqBuilding = conditionItr->substr(17, 10);
+					bool hasBuilding = false;
+					for (unsigned int i = 0; i < buildings.size(); i++)
+					{
+						if (buildings[i] == reqBuilding)
+						{
+							hasBuilding = true;
+							break;
+						}
+					}
+					if (hasBuilding)
+					{
+						allConditions = false;
+					}
 				}
 				else if (conditionItr->substr(0, 12) == "religion is ")
 				{
@@ -1145,10 +1218,10 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (*conditionItr == "port")
 				{
-					//if (!port) TODO
-					//{
+					if (!coastal)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 			}
 			if (allConditions)
@@ -1164,7 +1237,9 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 void EU3Province::addSupplyContribution(map<string, double>& goodsSupply)
 {
 	if (!tradeGood.empty())
+	{
 		goodsSupply[tradeGood] += supply / 100;
+	}
 }
 
 
@@ -1180,15 +1255,18 @@ void EU3Province::addDemandContribution(map<string, double>& goodsDemand)
 double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 {
 	double tax = baseTax;
-	/*if (isCOT) TODO
+	if (cot)
 	{
 		tax += 2;
-		tax += 2 * (COTSize / 100);
-	}*/
-	//if (buildings[workshop]) TODO
-	//{
-	//	tax += 1;
-	//}
+		// tax += 2 * (COTSize / 100); TODO
+	}
+	for (unsigned int i = 0; i < buildings.size(); i++)
+	{
+		if (buildings[i] == "workshop")
+		{
+			tax += 1;
+		}
+	}
 	if (owner->getCapital() == num)
 	{
 		tax += 2;
@@ -1229,10 +1307,6 @@ double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 		tax *= 0.70;
 	}
 	//tax *= 1 - (int(revoltRisk / .01) * 0.05); TODO
-	/*if (blockaded) TODO
-	{
-		tax *= 0.25;
-	}*/
 	/*if (looted) TODO
 	{
 		tax *= 0.50;
@@ -1267,6 +1341,31 @@ double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 	}
 
 	return tax;
+}
+
+
+double EU3Province::determineManu()
+{
+	for(unsigned int i = 0; i < buildings.size(); i++)
+	{
+		if (buildings[i] == "university")
+		{
+			return 0.5;
+		}
+		else if (buildings[i] == "textile")
+		{
+			if ((tradeGood == "wool") || (tradeGood == "cloth"))
+			{
+				return 1.0;
+			}
+			else
+			{
+				return 0.5;
+			}
+		}
+	}
+
+	return 0.0;
 }
 
 
@@ -1305,7 +1404,7 @@ double EU3Province::determineProduction(const map<string, double>& unitPrices)
 		//{
 		//	production *= 0.5;
 		//}
-		/*double prestige = country->getPrestige(); TODO
+		double prestige = owner->getPrestige();
 		if (prestige > 0.15)
 		{
 			prestige = 0.15;
@@ -1314,7 +1413,7 @@ double EU3Province::determineProduction(const map<string, double>& unitPrices)
 		{
 			prestige = -0.15;
 		}
-		production *= 1.0 + prestige;*/
+		production *= 1.0 + prestige;
 		production *= owner->getProductionEffeciency();
 		production /= 12;
 	}

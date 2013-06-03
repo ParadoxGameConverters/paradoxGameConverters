@@ -1,0 +1,945 @@
+spriteTypes = {	
+
+	spriteType = {
+		name = "GFX_domesticpanel_bg"
+		texturefile = "gfx\\interface\\domesticpanel_bg.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+	spriteType = {
+		name = "GFX_domesticpanel_financial_bg"
+		texturefile = "gfx\\interface\\domestic_financial_bg.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+	spriteType = {
+		name = "GFX_great_men_exclusive_overlay"
+		texturefile = "gfx\\interface\\great_men_exclusive_overlay.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+	spriteType = {
+		name = "GFX_advisor_banner"
+		texturefile = "gfx\\interface\\advisor_banner.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+
+
+	spriteType = {
+		name = "GFX_circle"
+		texturefile = "gfx\\interface\\circle.tga"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_domesticpanel_overlay"
+		texturefile = "gfx\\interface\\domesticpanel_overlay.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+	
+	spriteType = {
+		name = "GFX_domesticpanel_overlay_ideas"
+		texturefile = "gfx\\interface\\in_nomine_interface\\domesticpanel_overlay_ideas.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+
+	spriteType = {
+		name = "GFX_tech_circle"
+		texturefile = "gfx\\interface\\tech_level_circle.tga"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_military_overview_banner"
+		texturefile = "gfx\\interface\\military_info_banner.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+	spriteType = {
+		name = "GFX_leader_banner"
+		texturefile = "gfx\\interface\\leader_band.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+	
+	spriteType = {
+		name = "GFX_leader_banner2"
+		texturefile = "gfx\\interface\\leader_banner.tga"
+		loadType = "INGAME"
+	}
+	
+	spriteType = {
+		name = "GFX_religion_decision_banner"
+		texturefile = "gfx\\interface\\in_nomine_interface\\religion_decision_banner.tga"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_shield_vatican"
+		texturefile = "gfx\\interface\\shield_vatican.tga"
+		#effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	
+	spriteType = {
+		name = "button_defender_of_faith"
+		texturefile = "gfx\\interface\\in_nomine_interface\\button_defender_of_faith.tga"
+		#effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_shield_hre"
+		texturefile = "gfx\\interface\\shield_hre.tga"
+		#effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	textSpriteType = {
+		name = "GFX_button_military_overview"
+		texturefile = "gfx\\interface\\military_info_button.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	
+
+	spriteType = {
+		name = "GFX_leader_types"
+		texturefile = "gfx\\interface\\leader_types.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+		norefcount = yes
+	}
+
+
+	spriteType = {
+		name = "GFX_modifier_icons"
+		texturefile = "gfx\\interface\\modifiers.tga"
+		noOfFrames = 16
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_military_overview_frame"
+		texturefile = "gfx\\interface\\military_info_frames.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+	
+	spriteType = {	
+		name = "GFX_unit_types_strip_mil_view"
+		texturefile = "gfx\\interface\\unit_types_strip.tga"
+		noOfFrames = 8
+		loadType = "INGAME"
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		transparencecheck = yes
+		allwaystransparent = yes
+	}
+
+	spriteType = {
+		name = "GFX_tab_overview"
+		texturefile = "gfx\\interface\\tab_domestic_overview.tga"
+		noOfFrames = 2
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_tab_culture"
+		texturefile = "gfx\\interface\\httt_interface\\tab_domestic_culture.tga"
+		noOfFrames = 2
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_tab_leaders"
+		texturefile = "gfx\\interface\\tab_domestic_leaders.tga"
+		noOfFrames = 2
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_tab_overview_selected"
+		texturefile = "gfx\\interface\\tab_domestic_overview_selected.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_ideas"
+		texturefile = "gfx\\interface\\ideas.tga"
+		noOfFrames = 36
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+		norefcount = yes
+	}
+
+	spriteType = {
+		name = "GFX_ideas_small"
+		texturefile = "gfx\\interface\\ideas_small.tga"
+		noOfFrames = 36
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_ideas_button"
+		texturefile = "gfx\\interface\\ideas_button.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+	}
+
+
+	spriteType = {
+		name = "GFX_tab_religion"
+		texturefile = "gfx\\interface\\tab_domestic_religion.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		noOfFrames = 2
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_tab_court"
+		texturefile = "gfx\\interface\\tab_domestic_court.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		noOfFrames = 2
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_tab_military"
+		texturefile = "gfx\\interface\\tab_domestic_military.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		noOfFrames = 2
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_tab_policies"
+		texturefile = "gfx\\interface\\tab_domestic_policies.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		noOfFrames = 2
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_tab_economy"
+		texturefile = "gfx\\interface\\tab_domestic_economy.tga"
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		noOfFrames = 2
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_overview_bg"
+		texturefile = "gfx\\interface\\domestic_overview_bg.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+	spriteType = {
+		name = "GFX_icon_religion"
+		texturefile = "mod\\converter\\gfx\\interface\\icon_religion.tga"
+		noOfFrames = 32
+###		loadType = "INGAME"
+		norefcount = yes
+	}
+
+	spriteType = {
+		name = "GFX_icon_religion_small"
+		texturefile = "mod\\converter\\gfx\\interface\\icon_religion_small.tga"
+		noOfFrames = 32
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_religion_bg"
+		texturefile = "gfx\\interface\\domestic_religion_bg.tga"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_illustration_religion_cathlic"
+		texturefile = "gfx\\interface\\illustration_religion.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_court_bg"
+		texturefile = "gfx\\interface\\domestic_court_bg.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+	spriteType = {
+		name = "GFX_court_heir_bg"
+		texturefile = "gfx\\interface\\httt_interface\\domestic_court_heir_bg.tga"
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+	
+	spriteType = {
+		name = "GFX_scrollbar_limiter"
+		texturefile = "gfx\\interface\\scrollbar_limiter.tga"
+		noOfFrames = 2
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "techslider_leftbutton"
+		texturefile = "gfx\\interface\\scrollbar_leftbutton_type_2.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+		norefcount = yes
+	}
+
+
+	spriteType = {
+		name = "techslider_rightbutton"
+		texturefile = "gfx\\interface\\scrollbar_rightbutton_type_2.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+		norefcount = yes
+	}
+
+	corneredTileSpriteType = {
+		name = "religionslider_background"
+		size= {x =320 y = 32 }
+		texturefile = "gfx\\interface\\scrollbar_sliderbackground.tga"
+		borderSize = { x=16 y=16 }
+		loadType = "INGAME"
+	}
+
+	corneredTileSpriteType = {
+		name = "techslider_background"
+		size= {x =320 y = 32 }
+		texturefile = "gfx\\interface\\scrollbar_sliderbackground_3.tga"
+		borderSize = { x=4 y=4 }
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "religionslider_leftbutton"
+		texturefile = "gfx\\interface\\scrollbar_leftbutton.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "religionslider_rightbutton"
+		texturefile = "gfx\\interface\\scrollbar_rightbutton.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "religionslider_slider"
+		texturefile = "gfx\\interface\\scrollbar_slider.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+
+	corneredTileSpriteType = {
+		name = "slider_background"
+		size= {x =24 y = 24 }
+		texturefile = "gfx\\interface\\scrollbar_sliderbackground_2.tga"
+		borderSize = { x=8 y=8 }
+#		loadType = "INGAME"
+	}
+
+	corneredTileSpriteType = {
+		name = "slider_nobackground"
+		size= {x =24 y = 24 }
+		texturefile = "gfx\\interface\\transparency.tga"
+		borderSize = { x=8 y=8 }
+#		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "slider_noslider"
+		texturefile = "gfx\\interface\\transparency.tga"
+		noOfFrames = 4
+#		loadType = "INGAME"
+	}
+
+
+
+	spriteType = {
+		name = "slider_slider"
+		texturefile = "gfx\\interface\\scrollbar_slider_2.tga"
+		noOfFrames = 4
+#		loadType = "INGAME"
+	}
+
+
+
+	spriteType = {
+		name = "slider_upbutton"
+		texturefile = "gfx\\interface\\scrollbar_upbutton.tga"
+		noOfFrames = 4
+#		loadType = "INGAME"
+		norefcount = yes
+	}
+
+	spriteType = {
+		name = "slider_downbutton"
+		texturefile = "gfx\\interface\\scrollbar_downbutton.tga"
+		noOfFrames = 4
+#		loadType = "INGAME"
+		norefcount = yes
+	}
+
+	spriteType = {
+		name = "GFX_vertical_divider"
+		texturefile = "gfx\\interface\\divider_vertical.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_unittype_icons"
+		texturefile = "gfx\\interface\\unit_types.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_greendots"
+		texturefile = "gfx\\interface\\dots_green.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_reddots"
+		texturefile = "gfx\\interface\\dots_red.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_greatmen"
+		texturefile = "gfx\\interface\\great_men.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+	}
+
+	spriteType = {
+		name = "GFX_greatmen_button"
+		texturefile = "gfx\\interface\\great_men.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_divider"
+		texturefile = "gfx\\interface\\divider.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_divider_type_2"
+		texturefile = "gfx\\interface\\divider_type_2.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_court_selection_frame"
+		texturefile = "gfx\\interface\\court_selection_frame.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		transparencecheck = yes
+	}
+
+	spriteType = {
+		name = "GFX_boost_button"
+		texturefile = "gfx\\interface\\boost.tga"
+		noOfFrames = 1
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	progressbartype = {
+		name = "testbar"
+		color = { 0.0 0.5 0.0 }
+		colortwo = { 1.0 0.0 0.0 }
+		size = { x = 92 y = 3 }
+		effectFile = "gfx\\FX\\progress.fx"
+		loadType = "INGAME"
+	}
+
+	progressbartype = {
+		name = "traditionbar"
+		color = { 0.0 0.5 0.0 }
+		colortwo = { 1.0 0.0 0.0 }
+		size = { x = 100 y = 3 }
+		effectFile = "gfx\\FX\\progress.fx"
+		loadType = "INGAME"
+	}
+
+	corneredTileSpriteType = {
+		name = "investmentmentslider_background"
+		size= {x =320 y = 16 }
+		texturefile = "gfx\\interface\\scrollbar_sliderbackground.tga"
+		borderSize = { x=16 y=16 }
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "investmentmentslider_leftbutton"
+		texturefile = "gfx\\interface\\scrollbar_leftbutton.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "investmentmentslider_rightbutton"
+		texturefile = "gfx\\interface\\scrollbar_rightbutton.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "investmentmentslider_slider"
+		texturefile = "gfx\\interface\\scrollbar_slider.tga"
+		noOfFrames = 4
+		loadType = "INGAME"
+	}
+	
+	spriteType = {
+		name = "GFX_tab_mission"
+		texturefile = "gfx\\interface\\in_nomine_interface\\tab_mission_overview.tga"
+		noOfFrames = 2
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	
+	spriteType = {
+		name = "GFX_execute_decision"
+		texturefile = "gfx\\interface\\in_nomine_interface\\execute_decision.tga"
+		transparencecheck = yes 
+	}
+	
+	spriteType = {
+		name = "GFX_accept_rebel_terms"
+		texturefile = "gfx\\interface\\in_nomine_interface\\accept_rebel_terms.tga"
+		transparencecheck = yes 
+	}
+	
+	spriteType = {
+		name = "GFX_mission_trigger"
+		texturefile = "gfx\\interface\\in_nomine_interface\\mission_trigger.tga"
+		transparencecheck = yes 
+	}
+	
+	spriteType = {
+		name = "GFX_bg_domestic_mission"
+		texturefile = "gfx\\interface\\in_nomine_interface\\bg_domestic_mission.tga"
+		transparencecheck = yes 
+	}
+	
+	spriteType = {
+		name = "GFX_info_decision"
+		texturefile = "gfx\\interface\\in_nomine_interface\\info_decision.tga"
+		transparencecheck = yes
+	}
+	
+	spriteType = {
+		name = "GFX_rebel_regiments"
+		texturefile = "gfx\\interface\\in_nomine_interface\\rebel_regiments.tga"
+		transparencecheck = yes
+	}
+	
+	spriteType = {	
+		name = "GFX_nation_decisions_banner"
+		texturefile = "gfx\\interface\\in_nomine_interface\\nation_decision_banner.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+		transparencecheck = yes
+	}
+	spriteType = {	
+		name = "GFX_culture_decision_banner"
+		texturefile = "gfx\\interface\\httt_interface\\culture_decision_banner.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+		transparencecheck = yes
+	}
+	spriteType = {	
+		name = "GFX_banner_culture"
+		texturefile = "gfx\\interface\\httt_interface\\banner_culture.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+		transparencecheck = yes
+	}
+	spriteType = {	
+		name = "GFX_bg_culture"
+		texturefile = "gfx\\interface\\httt_interface\\bg_culture.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+		transparencecheck = yes
+	}
+	
+		spriteType = {	
+		name = "GFX_banner_decision_label"
+		texturefile = "gfx\\interface\\in_nomine_interface\\banner_decision_label.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+	}
+	
+	spriteType = {	
+		name = "GFX_bg_domestic_mission_banner"
+		texturefile = "gfx\\interface\\in_nomine_interface\\bg_domestic_mission_banner.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+	}
+	
+	spriteType = {	
+		name = "GFX_rebel_banner"
+		texturefile = "gfx\\interface\\in_nomine_interface\\rebel_banner.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+	}
+	
+	spriteType = {	
+		name = "GFX_rebel_bg"
+		texturefile = "gfx\\interface\\in_nomine_interface\\rebel_bg.tga"
+		noOfFrames = 1
+		loadType = "INGAME"
+		norefcount = yes
+	}
+
+	spriteType = {
+		name = "GFX_advisor_noAdvisorType"
+		texturefile = "gfx\\interface\\advisors\\noAdvisorType.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+
+	spriteType = {
+		name = "GFX_advisor_philosopher"
+		texturefile = "gfx\\interface\\advisors\\philosopher.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_natural_scientist"
+		texturefile = "gfx\\interface\\advisors\\natural_scientist.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+		
+	spriteType = {
+		name = "GFX_advisor_artist"
+		texturefile = "gfx\\interface\\advisors\\artist.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_statesman"
+		texturefile = "gfx\\interface\\advisors\\statesman.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_treasurer"
+		texturefile = "gfx\\interface\\advisors\\treasurer.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_naval_reformer"
+		texturefile = "gfx\\interface\\advisors\\naval_reformer.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_army_reformer"
+		texturefile = "gfx\\interface\\advisors\\army_reformer.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_trader"
+		texturefile = "gfx\\interface\\advisors\\trader.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_theologian"
+		texturefile = "gfx\\interface\\advisors\\theologian.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_spymaster"
+		texturefile = "gfx\\interface\\advisors\\spymaster.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_colonial_governor"
+		texturefile = "gfx\\interface\\advisors\\colonial_governor.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_diplomat"
+		texturefile = "gfx\\interface\\advisors\\diplomat.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}	
+	
+	##
+	
+	spriteType = {
+		name = "GFX_advisor_sheriff"
+		texturefile = "gfx\\interface\\advisors\\sheriff.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}	
+	spriteType = {
+		name = "GFX_advisor_high_judge"
+		texturefile = "gfx\\interface\\advisors\\high_judge.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_alderman"
+		texturefile = "gfx\\interface\\advisors\\alderman.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_colonel"
+		texturefile = "gfx\\interface\\advisors\\colonel.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_collector"
+		texturefile = "gfx\\interface\\advisors\\collector.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_master_of_mint"
+		texturefile = "gfx\\interface\\advisors\\master_of_mint.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_banker"
+		texturefile = "gfx\\interface\\advisors\\banker.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_lord_proprietor"
+		texturefile = "gfx\\interface\\advisors\\lord_proprietor.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_pioneer"
+		texturefile = "gfx\\interface\\advisors\\pioneer.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_grand_admiral"
+		texturefile = "gfx\\interface\\advisors\\grand_admiral.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_naval_organiser"
+		texturefile = "gfx\\interface\\advisors\\naval_organiser.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_navigator"
+		texturefile = "gfx\\interface\\advisors\\navigator.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}		
+	spriteType = {
+		name = "GFX_advisor_rear_admiral"
+		texturefile = "gfx\\interface\\advisors\\rear_admiral.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_privateer"
+		texturefile = "gfx\\interface\\advisors\\privateer.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_sergeant_major_general"
+		texturefile = "gfx\\interface\\advisors\\sergeant_major_general.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_grand_captain"
+		texturefile = "gfx\\interface\\advisors\\grand_captain.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_army_organiser"
+		texturefile = "gfx\\interface\\advisors\\army_organiser.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}	
+	spriteType = {
+		name = "GFX_advisor_commandant"
+		texturefile = "gfx\\interface\\advisors\\commandant.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_quartermaster"
+		texturefile = "gfx\\interface\\advisors\\quartermaster.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_recruitmaster"
+		texturefile = "gfx\\interface\\advisors\\recruitmaster.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_fortification_expert"
+		texturefile = "gfx\\interface\\advisors\\fortification_expert.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_inquisitor"
+		texturefile = "gfx\\interface\\advisors\\inquisitor.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}	
+	spriteType = {
+		name = "GFX_advisor_ambassador"
+		texturefile = "gfx\\interface\\advisors\\ambassador.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+	spriteType = {
+		name = "GFX_advisor_grand_marshal"
+		texturefile = "gfx\\interface\\advisors\\grand_marshal.tga"
+		noOfFrames = 1
+		norefcount = yes
+		effectFile = "gfx\\FX\\buttonstate.fx"
+		loadType = "INGAME"
+	}
+}

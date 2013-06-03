@@ -336,28 +336,83 @@ Revision	Log Message
 		Correct manpower proxy for temples.
 330		Don't generate EU3 supply for the null tradegood.
 331		Merge bugfixes to minor.
-332		More province mappings adjustments.
-333		More province mappings adjustments, Arabian Peninsula and Horn of Africa.
-334
-335
-336
-337
-338
-339
-340
-341
-342
-343
-344
-345
-346
+332		Added tag 0.6C Release for changeset 3187b3d90d69
+333		More province mappings adjustments.
+334		More province mappings adjustments, Arabian Peninsula and Horn of Africa.
+335		Initial army conversion
+336		Army position and movement
+337		Properly handle when armies are in provinces that do not map to EU3
+338		No longer lose a bunch of cores on loading
+339		Fix possible crash bug when merging titles
+340		Proper regiment types and number
+341		Convert army troop strength (and add missing files)
+342		Correct unit types
+343		Manpower from unraised levies
+344		Regiment homes and names
+345		'Leftover' men from subunits applied to manpower
+346		Readme file updates
 347		Tech group improvments
-348
-349
-350
-351
-352
-353
+348		Convert raised navies
+349		Convert transported armies
+350		Ships from unraised ships
+351		Fix bug with manpower sometimes being FUBAR
+352		Ships from unraised ships only in coastal provinces
+353		Better detect coastal provinces
 354		Unlanded countries inherit tech group from holder of their potential capital
 355		Add second method of tech group conversion
 356		Updates to second method
+357		Log when EU3 country information doesn't exist during output.
+358		If there are no potential HRE electors, make the emperor one instead of crashing.
+359		Mod output creates country files
+360		Mod output creates working mod + save
+361		Stuff for mod creation located in converter mod directory
+362		Mod files directory removed
+363		Create flags for new EU3 countries
+364		Merge in new empires
+365		Make countries included with the mod properly work
+366		Simplify mod layout and instructions
+367		Merge minor into main
+368		Merge bugfixes into main
+369		Updates and fixes from merge
+370		Fix crash bug with cultural tech conversion
+371		Added tag 0.7 Release for changeset 57ebf3239b88
+372		Merge main into bugfixes
+373		Merge main into minor
+374		Merge main into mod
+375		Fixes from merge
+376		Manpower numbers are less insane
+377		Fix crashbug with independent republic families
+378		Convert buildings
+379		Fix bug with culturalTech option
+380		Fix crashbug when holders of only titular titles are vassals
+381		Added tag 0.7A Release for changeset 56a327aaa9eb
+382		Convert forts
+383		Convert universities
+384		Convert textile manufactories
+385		Historical forts for the ROTW
+386		Historical CoTs
+387		Add Empire_of_Britannia to test suite
+388		Merchant republics get a CoT if they didn't already have one
+389		Levy multiplier has a minimum of 1.0
+390		Localisations for added countries
+391		Avoid crash if fewer than six potential electors
+392		Roman Empire can no longer restore Byzantium
+393		Open market agreements
+394		Trade leagues
+395		Trade stations
+396		Update testing scripts for new mod stuff
+397		Merge bugfixes to main
+398		Merge mod into main
+399		Merge mod into main with latest commit
+400		Add base mod to test configuration
+401		Added tag 0.8 Release for changeset 43929ab67b4f
+402
+403
+404
+405
+406		Merge main into minor
+407		Aztecs convert as a horde
+408		Include chinese faction system
+409		If a converted nation has ROTW provinces, make those provinces the nation's religion
+410		Some provinces forced to always start unsettled
+411		Improvments to economic estimations

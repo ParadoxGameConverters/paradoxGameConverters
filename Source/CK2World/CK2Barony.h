@@ -26,11 +26,15 @@ class CK2Barony
 		double			getPopProxy()			const { return popProxy; };
 		double			getManpowerProxy()	const { return manpowerProxy; };
 		double			getTechBonus()			const { return techBonus; };
+		double			getPSE()					const { return PSE; };
+		int				getShips()				const { return ships; };
+		double			getFortLevel()			const { return fortLevel; };
 	private:
 		void	determineBaseTaxProxy();
 		void	determinePopProxy();
 		void	determineManpowerProxy();
 		void	determineTechBonus();
+		void	determineFortLevel();
 
 		CK2Title*		title;
 		CK2Province*	province;
@@ -42,6 +46,10 @@ class CK2Barony
 		double							popProxy;
 		double							manpowerProxy;
 		double							techBonus;
+		double							fortLevel;
+
+		double	PSE;
+		int		ships;
 };
 
 

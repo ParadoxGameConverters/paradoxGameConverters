@@ -37,47 +37,65 @@ class EU3Province
 		void		addSupplyContribution(map<string, double>& goodsSupply);
 		void		addDemandContribution(map<string, double>& goodsDemand);
 		double	determineTax(const cultureGroupMapping& cultureGroups);
+		double	determineManu();
 		double	determineTolls();
 		double	determineProduction(const map<string, double>& unitPrices);
 		double	determineGold();
 		void		setDiscoverers(map< string, vector<string> >& mapSpreadStrings);
 		void		removeCore(EU3Country*);
 
-		void		setBaseTax(double _baseTax)				{ baseTax= _baseTax; };
+		int		getNumRegiments()	{ return ++numRegiments; };
+		int		getNumShips()		{ return ++numShips; };
+
+		void		setCoastal(bool _coastal)					{ coastal = _coastal; };
+		void		setBaseTax(double _baseTax)				{ baseTax = _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(EU3Country* core)					{ cores.push_back(core); };
+		void		clearCores()									{ cores.clear(); };
 		void		setOwner(EU3Country* _owner)				{ owner = _owner; ownerStr = ""; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
+		void		addBuilding(const string building)		{ buildings.push_back(building); };
 		void		setContinent(string _continent)			{ continent = _continent; };
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
 		void		setInHRE(bool _inHRE)						{ inHRE = _inHRE; };
+		void		setReligion(string _religion)				{ religion = _religion; };
+		void		setCot(bool _cot)								{ cot = _cot; };
+		void		setArmyHere(bool _armyHere)				{ armyHere = _armyHere; };
 
 		int						getNum() const				{ return num; };
 		bool						isLand() const				{ return land; };
+		bool						isCoastal() const			{ return coastal; };
+		string					getCapital() const		{ return capital; };
+		string					getTradeGood() const		{ return tradeGood; };
 		EU3Country*				getOwner() const			{ return owner; };
 		string					getOwnerStr() const		{ return ownerStr; };
 		vector<string>			getCoreStrings() const	{ return coreStrings; };
 		double					getBaseTax() const		{ return baseTax; };
 		double					getPopulation() const	{ return population; };
 		double					getManpower() const		{ return manpower; };
+		vector<string>			getDiscoveredBy() const	{ return discoveredBy; };
 		string					getCulture() const		{ return culture; };
-		bool						hasCOT() const				{ return false; }
+		bool						hasCOT() const				{ return cot; }
+		bool						hasTradeStation() const	{ return tradeStation; };
 		vector<CK2Province*>	getSrcProvinces() const	{ return srcProvinces; };
 	private:
 		vector<string>			getCoreTags() const;
 
 		vector<CK2Province*>		srcProvinces;
 		vector<int>					srcProvinceNums;
+		date							startDate;
 
 		int							num;
 		bool							land;
+		bool							coastal;
 
 		string						capital;
 		string						tradeGood;
 		double						baseTax;
 		double						population;
 		int							manpower;
+		vector<string>				buildings;
 		EU3Country*					owner;
 		string						ownerStr;
 		const CK2Title*			srcOwner;
@@ -90,6 +108,8 @@ class EU3Province
 		string						religion;
 		vector<EU3History*>		history;
 		vector<string>				modifiers;
+		bool							cot;
+		bool							tradeStation;
 
 		string	continent;
 		bool		sameContinent;
@@ -98,10 +118,14 @@ class EU3Province
 		double					popUnits;
 		double					supply;
 		map<string, double>	demands;
+		bool						armyHere;
 
 		double	nativeSize;
 		int		nativeFerocity;
 		int		nativeHostility;
+
+		int	numRegiments;
+		int	numShips;
 };
 
 
