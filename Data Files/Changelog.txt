@@ -423,3 +423,4 @@ Revision	Log Message
 416
 417
 418		Update culture and religion mappings for 1.10
+419		Replace hard coded path with system variable
