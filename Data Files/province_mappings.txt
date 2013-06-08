@@ -1,3 +1,9 @@
+v1.10={
+link = { ck2 = 298 ck2 = 300 ck2 = 931 eu3 = 3 }	# Värend, Öland, Möre -> Småland
+link = { ck2 = 851 ck2 = 334 ck2 = 336 ck2 = 935 eu3 = 121 }	# Capua, Napoli, Salerno, Amalfi -> Napoli
+link = { ck2 = 129 ck2 = 133 ck2 = 930 eu3 = 187 }	# Verdun, Saintois, Bar -> Barrois
+link = { ck2 = 293 ck2 = 932 eu3 = 2 }	# Östergötland, Tjust -> Östergötland
+}
 v1.6 = 
 {
 # link = { ck2 = 909 eu3 = 1795 eu3 = 1794 }	# Sahara Desert -> East Sahara, Central Sahara

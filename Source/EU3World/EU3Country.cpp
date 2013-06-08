@@ -1191,7 +1191,6 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 		oldNavalTech =
 			techLevels[TECH_LIGHT_INFANTRY] +
 			techLevels[TECH_HEAVY_INFANTRY] +
-			techLevels[TECH_HEAVY_ARMOUR] +
 			techLevels[TECH_NAVAL] +
 			techLevels[TECH_SIEGE_EQUIPMENT] +
 			techLevels[TECH_RECRUITMENT];
