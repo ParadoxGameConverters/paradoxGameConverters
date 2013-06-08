@@ -434,3 +434,4 @@ Revision	Log Message
 427		Resolve problems with merge
 428		Add 1.10 saves to test suite
 429		Update CK2 version information
+430		Update test configurations
