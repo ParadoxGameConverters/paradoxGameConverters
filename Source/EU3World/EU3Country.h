@@ -21,6 +21,7 @@ class EU3Tech;
 class EU3Diplomacy;
 struct EU3Agreement;
 class CK2Province;
+class CK2Version;
 class EU3Army;
 class EU3Navy;
 
@@ -40,10 +41,10 @@ class EU3Country
 		double					getTradeEffeciency();
 		double					getProductionEffeciency();
 		void						setPreferredUnitType();
-		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
+		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData, CK2Version& version);
 		void						determineTechInvestment(const EU3Tech* techData, date startDate);
 		void						determineStartingAgents();
-		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy);
+		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy, CK2Version& version);
 		vector<EU3Country*>	eatVassals();
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);

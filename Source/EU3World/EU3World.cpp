@@ -920,7 +920,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 {
 	if (Configuration::getTechGroupMethod() == "learningRate")
 	{
-		vector<double> avgTechLevels = srcWorld.getAverageTechLevels();
+		vector<double> avgTechLevels = srcWorld.getAverageTechLevels( *(srcWorld.getVersion()) );
 
 		vector<EU3Country*> unlandedCountries;
 		double highestLearningScore = 0.0f;
@@ -971,7 +971,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), (*countryItr)->getLearningScore(), (*countryItr)->getTechGroup().c_str());
 
-			(*countryItr)->determineTechLevels(avgTechLevels, techData);
+			(*countryItr)->determineTechLevels(avgTechLevels, techData, *(srcWorld.getVersion()));
 		}
 		for (vector<EU3Country*>::iterator countryItr = unlandedCountries.begin(); countryItr != unlandedCountries.end(); countryItr++)
 		{
@@ -985,7 +985,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 				(*countryItr)->setTechGroup("western");
 				log("\tWarning: %s had no capital, defaulting tech group to western\n", (*countryItr)->getTag().c_str());
 			}
-			(*countryItr)->determineTechLevels(avgTechLevels, techData);
+			(*countryItr)->determineTechLevels(avgTechLevels, techData, *(srcWorld.getVersion()));
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
 		}
 
@@ -1021,7 +1021,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 				{
 					(*countryItr)->setTechGroup("western");
 					log("\tWarning: %s had no capital, defaulting tech group to western\n", (*countryItr)->getTag().c_str());
-					(*countryItr)->determineTechLevels(srcWorld.getAverageTechLevels(), techData);
+					(*countryItr)->determineTechLevels(srcWorld.getAverageTechLevels(*(srcWorld.getVersion())), techData, *(srcWorld.getVersion()));
 					log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
 					continue;
 				}
@@ -1320,7 +1320,7 @@ void EU3World::convertEconomies(const cultureGroupMapping& cultureGroups, const 
 }
 
 
-void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
+void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap, CK2Version& version)
 {
 	log("Total converted EU3 countries: %d\n", convertedCountries.size());
 
@@ -1344,7 +1344,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 		}
 		for (vector<EU3Country*>::iterator independentItr = independentCountries.begin(); independentItr != independentCountries.end(); independentItr++)
 		{
-			vector<EU3Country*> absorbedCountries = (*independentItr)->convertVassals(initialScore, diplomacy);
+			vector<EU3Country*> absorbedCountries = (*independentItr)->convertVassals(initialScore, diplomacy, version);
 			for (vector<EU3Country*>::iterator absorbedItr = absorbedCountries.begin(); absorbedItr != absorbedCountries.end(); absorbedItr++)
 			{
 				for(vector<EU3Country*>::iterator convertedItr = convertedCountries.begin(); convertedItr != convertedCountries.end(); convertedItr++)
@@ -1427,7 +1427,7 @@ void EU3World::assignTags(Object* rulesObj, vector<string>& blockedNations, cons
 }
 
 
-void EU3World::convertDiplomacy()
+void EU3World::convertDiplomacy(CK2Version& version)
 {
 	for (map<string, EU3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
@@ -1526,7 +1526,7 @@ void EU3World::convertDiplomacy()
 			}
 
 			// Relations (bilateral)
-			int rel = lhs->getRelationsWith(rhs);
+			int rel = lhs->getRelationsWith(rhs, version);
 			(*itr).second->setRelations((*jtr).second, rel);
 			(*jtr).second->setRelations((*itr).second, rel);
 

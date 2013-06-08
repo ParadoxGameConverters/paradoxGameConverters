@@ -598,11 +598,11 @@ bool CK2Title::hasAllianceWith(CK2Title* other) const
 	return (this->holder->isAlliedWith(other->holder));
 }
 
-int CK2Title::getRelationsWith(CK2Title* other) const
+int CK2Title::getRelationsWith(CK2Title* other, CK2Version& version) const
 {
 	// FIXME: forum suggests taking vassal relations into account too
-	int ltr = this->holder->getOpinionOf(other->holder);
-	int rtl = other->holder->getOpinionOf(this->holder);
+	int ltr = this->holder->getOpinionOf(other->holder, version);
+	int rtl = other->holder->getOpinionOf(this->holder, version);
 	return ((ltr + rtl) / 2);
 }
 

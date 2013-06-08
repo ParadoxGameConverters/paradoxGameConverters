@@ -15,11 +15,12 @@ class CK2BuildingFactory;
 class CK2Barony;
 class CK2Religion;
 class CK2Character;
+class CK2Version;
 
 class CK2Province
 {
 	public:
-		CK2Province(Object*, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory);
+		CK2Province(Object*, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory, CK2Version& version);
 
 		int						getNumber()			const { return number; };
 		vector<CK2Barony*>	getBaronies()		const { return baronies; };

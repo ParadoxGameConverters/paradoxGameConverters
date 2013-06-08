@@ -59,7 +59,7 @@ class CK2Title
 		bool						hasUnionWith(CK2Title* other, bool& otherDominant /* out */) const;
 		bool						hasRMWith(CK2Title* other) const;
 		bool						hasAllianceWith(CK2Title* other) const;
-		int						getRelationsWith(CK2Title* other) const;
+		int						getRelationsWith(CK2Title* other, CK2Version& version) const;
 
 	private:
 		void								setDeJureLiege(CK2Title* _deJureLiege);

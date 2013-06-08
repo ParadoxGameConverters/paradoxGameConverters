@@ -5,11 +5,12 @@
 #include "CK2Title.h"
 #include "CK2Character.h"
 #include "CK2Religion.h"
+#include "CK2Version.h"
 #include "..\Log.h"
 
 
 
-CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory)
+CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory, CK2Version& version)
 {
 	number = atoi( obj->getKey().c_str() );
 	tradePost	= false;
@@ -69,25 +70,44 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 	}
 
 	techLevels.clear();
-	vector<Object*> techObj = obj->getValue("technology");
-	if (techObj.size() > 0)
+	if (CK2Version("1.10") > version)
 	{
-		vector<Object*> levelObj = techObj[0]->getValue("level");
-		if (levelObj.size() > 0)
+		vector<Object*> techObj = obj->getValue("technology");
+		if (techObj.size() > 0)
 		{
-			vector<string> levelStrings = levelObj[0]->getTokens();
-			for (unsigned int i = 0; i < levelStrings.size(); i++)
+			vector<Object*> levelObj = techObj[0]->getValue("level");
+			if (levelObj.size() > 0)
 			{
-				techLevels.push_back( atoi(levelStrings[i].c_str()) );
+				vector<string> levelStrings = levelObj[0]->getTokens();
+				for (unsigned int i = 0; i < levelStrings.size(); i++)
+				{
+					techLevels.push_back( atoi(levelStrings[i].c_str()) );
+				}
+			}
+			vector<Object*> progressObj = techObj[0]->getValue("progress");
+			if (progressObj.size() > 0)
+			{
+				vector<string> progressStrings = progressObj[0]->getTokens();
+				for (unsigned int i = 0; i < progressStrings.size(); i++)
+				{
+					techLevels[i] += 0.1 * atoi(progressStrings[i].c_str());
+				}
 			}
 		}
-		vector<Object*> progressObj = techObj[0]->getValue("progress");
-		if (progressObj.size() > 0)
+	}
+	else
+	{
+		vector<Object*> techObj = obj->getValue("technology");
+		if (techObj.size() > 0)
 		{
-			vector<string> progressStrings = progressObj[0]->getTokens();
-			for (unsigned int i = 0; i < progressStrings.size(); i++)
+			vector<Object*> levelObj = techObj[0]->getValue("tech_levels");
+			if (levelObj.size() > 0)
 			{
-				techLevels[i] += 0.1 * atoi(progressStrings[i].c_str());
+				vector<string> levelStrings = levelObj[0]->getTokens();
+				for (unsigned int i = 0; i < levelStrings.size(); i++)
+				{
+					techLevels.push_back( atof(levelStrings[i].c_str()) );
+				}
 			}
 		}
 	}

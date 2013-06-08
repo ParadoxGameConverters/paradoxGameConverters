@@ -424,3 +424,4 @@ Revision	Log Message
 417
 418		Update culture and religion mappings for 1.10
 419		Replace hard coded path with system variable
+420		Adjust tech for 1.10
