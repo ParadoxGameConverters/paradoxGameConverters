@@ -1,8 +1,27 @@
 v1.10={
-link = { ck2 = 298 ck2 = 300 ck2 = 931 eu3 = 3 }	# Värend, Öland, Möre -> Småland
 link = { ck2 = 851 ck2 = 334 ck2 = 336 ck2 = 935 eu3 = 121 }	# Capua, Napoli, Salerno, Amalfi -> Napoli
+link = { ck2 = 298 ck2 = 300 ck2 = 931 ck2 = 932 eu3 = 3 }	# Värend, Öland, Möre, Tjust -> Småland
+link = { ck2 = 419 ck2 = 420 ck2 = 934 eu3 = 272 }	# Polotsk, Vilnius, Lepiel -> Vilna
+link = { ck2 = 551 ck2 = 553 ck2 = 933 eu3 = 292 }	# Mstislavl, Lyubech, Roslavl -> Mogilyov
 link = { ck2 = 129 ck2 = 133 ck2 = 930 eu3 = 187 }	# Verdun, Saintois, Bar -> Barrois
-link = { ck2 = 293 ck2 = 932 eu3 = 2 }	# Östergötland, Tjust -> Östergötland
+link = { ck2 = 952 ck2 = 972 ck2 = 1062 ck2 = 1064 eu3 = 1326 }	# Caspian Sea, Kara-Bogaz Gol, Northern Caspian Sea, Southern Caspian Sea -> Caspian Sea
+link = { ck2 = 942 ck2 = 1111 eu3 = 1319 }	# Western Aegean Sea, Aegean Sea -> Aegean Sea
+link = { ck2 = 1110 eu3 = 1308 }	# Gulf of Venice -> Gulf of Venice
+link = { ck2 = 1109 eu3 = 1309 }	# Adriatic Sea -> Adriatic Sea
+link = { ck2 = 1036 eu3 = 1307 eu3 = 1311 }	# Golfo di Taranto -> Straits of Messina, Gulf of Taranto
+link = { ck2 = 1038 eu3 = 1310 }	# Strait of Otranto -> Straits of Otranto
+link = { ck2 = 1037 eu3 = 1312 }	# Ionian Sea -> Ionian Sea
+link = { ck2 = 969 ck2 = 1088 ck2 = 1089 ck2 = 1090 ck2 = 1091 eu3 = 1323 }	# Sea of Azov, Don, Don, Don, Don -> Sea of Azov
+link = { ck2 = 949 ck2 = 1013 ck2 = 1070 ck2 = 1071 ck2 = 1072 ck2 = 1073 ck2 = 1076 ck2 = 1079 ck2 = 1077 ck2 = 1078 ck2 = 1075 ck2 = 1074 ck2 = 1056 ck2 = 1057 eu3 = 1322 }	# Coast of Taurida, Yalpug, Dnieper, Dnieper, Dnieper, Desna, Dnieper, Pripyat, Dnieper, Dnieper, Desna, Desna, Dniester, Dniester -> Gulf of Odessa
+link = { ck2 = 950 ck2 = 948 ck2 = 1058 ck2 = 1059 ck2 = 1060 ck2 = 1061 ck2 = 1063 ck2 = 1065 ck2 = 1066 ck2 = 1067 ck2 = 1068 ck2 = 1069 eu3 = 1321 }	# Black Sea, Gulf of Varna, Danube, Danube, Danube, Danube, Danube, Danube, Danube, Danube, Danube, Danube -> Gulf of Varna
+link = { ck2 = 974 ck2 = 1107 ck2 = 1108 eu3 = 1276 }	# Bay of Biscay, Garonne, Garonne -> Cote D'Argent
+link = { ck2 = 1015 ck2 = 1039 ck2 = 1040 eu3 = 1275 eu3 = 1277 }	# MANY-TO-MANY: Northern Bay of Biscay, Loire, Loire -> Quiberon Bay, Bay of Biscay
+link = { ck2 = 1009 ck2 = 966 ck2 = 1041 ck2 = 1042 eu3 = 1272 }	# Baie de la Seine, The Solent, Seine, Seine -> The Channel
+link = { ck2 = 1000 ck2 = 1046 ck2 = 1047 ck2 = 1048 ck2 = 1049 ck2 = 1050 eu3 = 1267 eu3 = 1268 }	# MANY-TO-MANY: Gulf of Heligoland, Elbe, Elbe, Elbe, Elbe, Elbe -> Skagerrack, Helgoland Bight
+link = { ck2 = 1002 ck2 = 1003 ck2 = 1051 ck2 = 1052 ck2 = 1053 ck2 = 1054 ck2 = 1055 eu3 = 1257 }	# Gulf of Danzig, Bight of Hanö, Vistula, Vistula, Vistula, Vistula, Vistula -> Southern Baltic Sea
+link = { ck2 = 1004 ck2 = 1080 ck2 = 1081 ck2 = 1082 eu3 = 1256 }	# Baltic Sea, Daugava, Daugava, Dwina -> Gulf of Riga
+link = { ck2 = 1006 ck2 = 1083 ck2 = 958 ck2 = 1085 ck2 = 1086 ck2 = 1087 ck2 = 1084 ck2 = 997 ck2 = 1101 ck2 = 1106 ck2 = 1105 ck2 = 1100 ck2 = 1099 ck2 = 1104 ck2 = 1098 ck2 = 1102 ck2 = 1097 ck2 = 1103 ck2 = 1096 ck2 = 1095 ck2 = 1094 ck2 = 1093 ck2 = 1092 eu3 = 1254 }	# Gulf of Finland, Neva, Ladoga, Volkhov, Lake Ilmen, Lovat, Svir, Onega, Volga, Volga, Volga, Volga, Volga, Oka, Volga, Oka, Volga, Oka, Volga, Volga, Volga, Volga, Volga -> Gulf of Finland
+link = { ck2 = 973 ck2 = 1043 ck2 = 1044 ck2 = 1045 eu3 = 1269 }	# Waddenzee, Rhine, Rhine, Rhine -> Coast of Holland
 }
 v1.6 = 
 {

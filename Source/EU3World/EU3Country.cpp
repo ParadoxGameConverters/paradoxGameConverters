@@ -776,7 +776,7 @@ void EU3Country::addProvince(EU3Province* province)
 	}
 }
 
-
+#pragma optimize("", off)
 void EU3Country::determineLearningScore()
 {
 	int numBaronies = 0;
@@ -796,7 +796,7 @@ void EU3Country::determineLearningScore()
 
 	learningScore /= numBaronies;
 }
-
+#pragma optimize("", on)
 
 void EU3Country::determineTechScore()
 {
@@ -1089,10 +1089,6 @@ void EU3Country::setPreferredUnitType()
 void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData, CK2Version& version)
 {
 	vector<double> techLevels;
-	for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
-	{
-		techLevels.push_back(0.0f);
-	}
 	int numProvinces = 0;
 	double oldLandTech;
 	double oldNavalTech;
@@ -1101,6 +1097,10 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 	double oldGovTech;
 	if (CK2Version("1.10") > version)
 	{
+		for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
+		{
+			techLevels.push_back(0.0f);
+		}
 		for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
 		{
 			vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
@@ -1161,6 +1161,10 @@ void EU3Country::determineTechLevels(const vector<double>& avgTechLevels, const 
 	}
 	else
 	{
+		for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+		{
+			techLevels.push_back(0.0f);
+		}
 		for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
 		{
 			vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
