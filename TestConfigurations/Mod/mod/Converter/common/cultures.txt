@@ -79,9 +79,10 @@ scandinavian = {
 		dynasty_names = {
 			"Bonde" "Vasa" "Tre Rosor" "Oxenstierna" "Sparre" "Sture" "Tott" "Trolle" "Bielke" "Brahe"
 			"Horn" "Ribbing" "Skytte" "Banér" "Fleming" "Gyllenstierna" "de la Gardie" "Leijonhufvud" 
-			"Natt och Dag" "Grip" "Stenbock" Hvide" "Galen" "Due" "Saltensee" "Urup" "Neb" "Brahe" "Gøye" "Trolle" "Rantzau"
+			"Natt och Dag" "Grip" "Stenbock" "Hvide" "Galen" "Due" "Saltensee" "Urup" "Neb" "Brahe" "Gøye" "Trolle" "Rantzau"
 			"Friis" "Gyllenstierna" "Bille" "Kaas" "Hårfagreætta" "Bielke" "Bildt" "Galte" "Paus" "Smør" "Benkestok" "Kane" "Bonde"
 		}
+	}
 }
 
 west_germanic = {
