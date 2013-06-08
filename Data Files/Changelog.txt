@@ -429,3 +429,4 @@ Revision	Log Message
 422		Update province mappings for 1.10
 423		Fix minor tech bug
 424		Add hellenic religion and update localizations
+425		Don't try to set culture in water provinces

@@ -532,6 +532,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 	map<string, double> cultureCounts;
 	map<string, double> cultureCounts2;
 	map<string, double> cultureCounts3;
+	bool hadSrc = false;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
 		double popProxy		= 0.0f;
@@ -540,6 +541,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		vector<CK2Barony*> baronies = (*provItr)->getBaronies();
 		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
+			hadSrc			=  true;
 			popProxy			+= (*baronyItr)->getPopProxy();
 			basetaxProxy	+= (*baronyItr)->getBaseTaxProxy();
 			manpowerProxy	+= (*baronyItr)->getManpowerProxy();
@@ -577,89 +579,92 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		}
 	}
 
-	string			topCulture		= "";
-	double			highestCount	= 0;
-	vector<string>	tiedCultures;
-	vector<string>	tiedCultures2;
-	bool				tie;
-	for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
+	if (hadSrc)
 	{
-		if (countsItr->second > highestCount)
+		string			topCulture		= "";
+		double			highestCount	= 0;
+		vector<string>	tiedCultures;
+		vector<string>	tiedCultures2;
+		bool				tie;
+		for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
 		{
-			topCulture		= countsItr->first;
-			highestCount	= countsItr->second;
-			tiedCultures.clear();
-			tiedCultures.push_back(countsItr->first);
-			tie = false;
-		}
-		else if (countsItr->second == highestCount)
-		{
-			tiedCultures.push_back(countsItr->first);
-			tie = true;
-		}
-	}
-
-	if (tie == true)
-	{
-		topCulture		= "";
-		highestCount	= 0;
-		for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
-		{
-			for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
+			if (countsItr->second > highestCount)
 			{
-				if (countsItr->first == *cultureItr)
+				topCulture		= countsItr->first;
+				highestCount	= countsItr->second;
+				tiedCultures.clear();
+				tiedCultures.push_back(countsItr->first);
+				tie = false;
+			}
+			else if (countsItr->second == highestCount)
+			{
+				tiedCultures.push_back(countsItr->first);
+				tie = true;
+			}
+		}
+
+		if (tie == true)
+		{
+			topCulture		= "";
+			highestCount	= 0;
+			for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
+			{
+				for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
 				{
-					if (countsItr->second > highestCount)
+					if (countsItr->first == *cultureItr)
 					{
-						topCulture		= countsItr->first;
-						highestCount	= countsItr->second;
-						tiedCultures2.clear();
-						tiedCultures2.push_back(countsItr->first);
-						tie = false;
+						if (countsItr->second > highestCount)
+						{
+							topCulture		= countsItr->first;
+							highestCount	= countsItr->second;
+							tiedCultures2.clear();
+							tiedCultures2.push_back(countsItr->first);
+							tie = false;
+						}
+						else if (countsItr->second == highestCount)
+						{
+							tiedCultures2.push_back(countsItr->first);
+							tie = true;
+						}
+						break;
 					}
-					else if (countsItr->second == highestCount)
-					{
-						tiedCultures2.push_back(countsItr->first);
-						tie = true;
-					}
-					break;
 				}
 			}
 		}
-	}
 
-	if (tie == true)
-	{
-		topCulture		= "";
-		highestCount	= 0;
-		for (map<string, double>::iterator countsItr = cultureCounts3.begin(); countsItr != cultureCounts3.end(); countsItr++)
+		if (tie == true)
 		{
-			for (vector<string>::iterator cultureItr = tiedCultures2.begin(); cultureItr != tiedCultures2.end(); cultureItr++)
+			topCulture		= "";
+			highestCount	= 0;
+			for (map<string, double>::iterator countsItr = cultureCounts3.begin(); countsItr != cultureCounts3.end(); countsItr++)
 			{
-				if (countsItr->first == *cultureItr)
+				for (vector<string>::iterator cultureItr = tiedCultures2.begin(); cultureItr != tiedCultures2.end(); cultureItr++)
 				{
-					if (countsItr->second > highestCount)
+					if (countsItr->first == *cultureItr)
 					{
-						topCulture		= countsItr->first;
-						highestCount	= countsItr->second;
-						tie = false;
+						if (countsItr->second > highestCount)
+						{
+							topCulture		= countsItr->first;
+							highestCount	= countsItr->second;
+							tie = false;
+						}
+						else if (countsItr->second == highestCount)
+						{
+							tie = true;
+						}
+						break;
 					}
-					else if (countsItr->second == highestCount)
-					{
-						tie = true;
-					}
-					break;
 				}
 			}
 		}
-	}
 
-	if (tie == true)
-	{
-		log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitralrily assigned.\n", num, topCulture.c_str());
-	}
+		if (tie == true)
+		{
+			log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitralrily assigned.\n", num, topCulture.c_str());
+		}
 
-	culture = topCulture;
+		culture = topCulture;
+	}
 }
 
 
