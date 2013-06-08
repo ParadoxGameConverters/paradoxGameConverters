@@ -660,7 +660,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 
 		if (tie == true)
 		{
-			log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitralrily assigned.\n", num, topCulture.c_str());
+			log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitrarily assigned.\n", num, topCulture.c_str());
 		}
 
 		culture = topCulture;

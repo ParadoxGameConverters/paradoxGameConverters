@@ -85,9 +85,9 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 	vector<Object*> lawObj = obj->getValue("law");
 	for (unsigned int i = 0; i < lawObj.size(); i++)
 	{
-		if (leavesObj[i]->getLeaf().substr(0, 14) == "centralization")
+		if (lawObj[i]->getLeaf().substr(0, 14) == "centralization")
 		{
-			CA = leavesObj[i]->getLeaf();
+			CA = lawObj[i]->getLeaf();
 		}
 	}
 
@@ -160,7 +160,9 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 void CK2Title::setLiege(CK2Title* newLiege)
 {
 	if (liege)
+	{
 		liege->removeVassal(this);
+	}
 
 	liege = newLiege;
 	liege->addVassal(this);
@@ -173,6 +175,10 @@ void CK2Title::setLiege(CK2Title* newLiege)
 void CK2Title::addVassal(CK2Title* vassal)
 {
 	vassals.push_back(vassal);
+	if ((vassal->getTitleString().substr(0,2) != "e_") || (vassal->getTitleString().substr(0,2) != "k_"))
+	{
+		vassal->setSuccessionLaw(successionLaw);
+	}
 }
 
 
@@ -246,6 +252,19 @@ void CK2Title::determineHeir(map<int, CK2Character*>& characters)
 void CK2Title::setHeir(CK2Character* newHeir)
 {
 	heir = newHeir;
+}
+
+
+void CK2Title::setSuccessionLaw(string _successionLaw)
+{
+	successionLaw = _successionLaw;
+	for (vector<CK2Title*>::iterator vassalItr = vassals.begin(); vassalItr != vassals.end(); vassalItr++)
+	{
+		if (((*vassalItr)->getTitleString().substr(0,2) != "e_") || ((*vassalItr)->getTitleString().substr(0,2) != "k_"))
+		{
+			(*vassalItr)->setSuccessionLaw(successionLaw);
+		}
+	}
 }
 
 

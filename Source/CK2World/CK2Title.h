@@ -26,6 +26,7 @@ class CK2Title
 		void						addToHRE();
 		void						determineHeir(map<int, CK2Character*>&);
 		void						setHeir(CK2Character*);
+		void						setSuccessionLaw(string _successionLaw);
 		void						setDeJureLiege(const map<string, CK2Title*>& titles);
 		void						addDeJureVassals(vector<Object*>, map<string, CK2Title*>& titles, CK2World* world);
 		void						removeDeJureVassal(CK2Title* vassal);

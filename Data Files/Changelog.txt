@@ -406,12 +406,12 @@ Revision	Log Message
 399		Merge mod into main with latest commit
 400		Add base mod to test configuration
 401		Added tag 0.8 Release for changeset 43929ab67b4f
-402
-403
-404
-405
-406
-407
+402		Merge main into bugfixes
+403		Actually set preferred unit type
+404		Get vassals to appear
+405		Rulers properly absorb all their own holdings
+406		Actually read in crown authority
+407		Fix some typos
 408
 409
 410
@@ -430,3 +430,4 @@ Revision	Log Message
 423		Fix minor tech bug
 424		Add hellenic religion and update localizations
 425		Don't try to set culture in water provinces
+426		Merge bugfixes into main
