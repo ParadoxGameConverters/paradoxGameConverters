@@ -427,3 +427,4 @@ Revision	Log Message
 420		Adjust tech for 1.10
 421		Handle new relationship modifiers in 1.10
 422		Update province mappings for 1.10
+423		Fix minor tech bug

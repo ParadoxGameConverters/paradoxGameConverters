@@ -776,7 +776,7 @@ void EU3Country::addProvince(EU3Province* province)
 	}
 }
 
-#pragma optimize("", off)
+
 void EU3Country::determineLearningScore()
 {
 	int numBaronies = 0;
@@ -796,7 +796,7 @@ void EU3Country::determineLearningScore()
 
 	learningScore /= numBaronies;
 }
-#pragma optimize("", on)
+
 
 void EU3Country::determineTechScore()
 {

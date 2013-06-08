@@ -380,40 +380,40 @@ vector<double> CK2World::getAverageTechLevels(CK2Version& version) const
 	vector<double> avgTechLevels;
 	if (CK2Version("1.10") > version)
 	{
-		avgTechLevels.resize(TECH_LEGALISM_OLD);
-		for (unsigned int i = 0; i < TECH_LEGALISM_OLD; i++)
+		avgTechLevels.resize(TECH_LEGALISM_OLD + 1);
+		for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
 		{
 			avgTechLevels[i] = 0.0f;
 		}
 		for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
 		{
 			vector<double> currentTechLevels = provItr->second->getTechLevels();
-			for (unsigned int i = 0; i < TECH_LEGALISM_OLD; i++)
+			for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
 			{
 				avgTechLevels[i] += currentTechLevels[i];
 			}
 		}
-		for (unsigned int i = 0; i < TECH_LEGALISM_OLD; i++)
+		for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
 		{
 			avgTechLevels[i] /= provinces.size();
 		}
 	}
 	else
 	{
-		avgTechLevels.resize(TECH_LEGALISM);
-		for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+		avgTechLevels.resize(TECH_LEGALISM + 1);
+		for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
 		{
 			avgTechLevels[i] = 0.0f;
 		}
 		for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
 		{
 			vector<double> currentTechLevels = provItr->second->getTechLevels();
-			for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+			for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
 			{
 				avgTechLevels[i] += currentTechLevels[i];
 			}
 		}
-		for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+		for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
 		{
 			avgTechLevels[i] /= provinces.size();
 		}
