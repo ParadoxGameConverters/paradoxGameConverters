@@ -1528,7 +1528,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			}
 
 			// Relations (bilateral)
-			int rel = lhs->getRelationsWith(rhs);
+			int rel = lhs->getRelationsWith(rhs, version);
 			(*itr).second->setRelations((*jtr).second, rel);
 			(*jtr).second->setRelations((*itr).second, rel);
 
