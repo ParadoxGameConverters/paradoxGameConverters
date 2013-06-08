@@ -14,7 +14,7 @@ CK2Version::CK2Version(string versionString)
 	
 		periodPos++;
 		minor = atoi( versionString.substr(periodPos, 2).c_str() );
-		if (versionString.size() > periodPos + 3)
+		if (versionString.size() > (unsigned int)(periodPos + 3))
 		{
 			revision = atoi( versionString.substr(periodPos + 3, 1).c_str() );
 		}
@@ -29,7 +29,7 @@ CK2Version::CK2Version(string versionString)
 	
 		periodPos++;
 		minor = atoi( versionString.substr(periodPos, 2).c_str() );
-		if (versionString.size() > periodPos + 3)
+		if (versionString.size() > (unsigned int)(periodPos + 3))
 		{
 			revision = atoi( versionString.substr(periodPos + 3, 1).c_str() );
 		}

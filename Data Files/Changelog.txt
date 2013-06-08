@@ -436,3 +436,4 @@ Revision	Log Message
 429		Update CK2 version information
 430		Update test configurations
 431		Fix typos in converter mod
+432		Eliminate signed/unsigned mismatch in CK2Version
