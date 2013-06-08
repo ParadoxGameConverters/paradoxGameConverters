@@ -36,6 +36,7 @@ link = { ck2 = slavic_pagan_reformed eu3 = shamanism }
 link = { ck2 = slavic_pagan eu3 = shamanism }
 link = { ck2 = west_african_pagan_reformed eu3 = animism }
 link = { ck2 = west_african_pagan eu3 = animism }
+link = { ck2 = hellenic_pagan eu3 = shamanism }
 link = { ck2 = zoroastrian eu3 = shamanism }
 link = { ck2 = mazdaki eu3 = shamanism }
 link = { ck2 = manichean eu3 = shamanism }

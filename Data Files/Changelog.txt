@@ -428,3 +428,4 @@ Revision	Log Message
 421		Handle new relationship modifiers in 1.10
 422		Update province mappings for 1.10
 423		Fix minor tech bug
+424		Add hellenic religion and update localizations

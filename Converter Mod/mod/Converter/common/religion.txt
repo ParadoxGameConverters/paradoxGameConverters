@@ -590,6 +590,18 @@ pagan = {
 			tolerance_heretic = 2
 		}
 	}
+
+	hellenic_pagan = {
+		color = { 0.6 0.1 0.1 }
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
 	
 	crusade_name = CRUSADE
 }
