@@ -61,6 +61,7 @@ class EU3World
 		void	convertDiplomacy(CK2Version& version);
 		void	convertArmies(const inverseProvinceMapping inverseProvinceMap);
 		void	convertCoTs();
+		void	convertSliders();
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };

@@ -498,6 +498,10 @@ int main(int argc, char * argv[])
 	log("Converting centes of trade\n");
 	printf("Converting centes of trade\n");
 	destWorld.convertCoTs();
+
+	log("Converting sliders\n");
+	printf("Converting sliders\n");
+	destWorld.convertSliders();
 	
 	log("Converting economies.\n");
 	printf("Converting economies.\n");

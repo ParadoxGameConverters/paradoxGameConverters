@@ -59,6 +59,16 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		government = "";
 	}
 
+	vector<Object*> centralLeaves = obj->getValue("centralization_decentralization");
+	if (centralLeaves.size() > 0)
+	{
+		centralization = atoi( centralLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		centralization = 0;
+	}
+
 	vector<Object*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
@@ -264,6 +274,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 					newHistory->government = government;
 				}
 
+				vector<Object*> centralLeaves = obj->getValue("centralization_decentralization");
+				if (centralLeaves.size() > 0)
+				{
+					centralization = atoi( centralLeaves[0]->getLeaf().c_str() );
+				}
+
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
@@ -435,6 +451,8 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	missionaries	= 2.0f;
 	spies				= 2.0f;
 	magistrates		= 2.0f;
+
+	centralization	= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -687,6 +705,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tspies=%f\n", spies);
 	fprintf(output, "\tdiplomats=%f\n", diplomats);
 	fprintf(output, "\tofficials=%f\n", magistrates);
+	fprintf(output, "\tcentralization_decentralization=%d\n", centralization);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -1813,6 +1832,92 @@ void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProv
 			}
 		}
 	}
+}
+
+
+void EU3Country::convertSliders()
+{
+	// Centralization/Decentralization
+	int	rulerTitles			= 0;
+	int	totalRealmTitles	= 0;
+	list<CK2Title*> unprocessedVassals;
+	unprocessedVassals.push_back(src);
+	while (unprocessedVassals.size() > 0)
+	{
+		list<CK2Title*>::iterator	currentTitle	= unprocessedVassals.begin();
+		vector<CK2Title*>				newVassals		= (*currentTitle)->getVassals();
+		for (unsigned int i = 0; i < newVassals.size(); i++)
+		{
+			unprocessedVassals.push_back(newVassals[i]);
+		}
+
+		int titleScore = 0;
+		if ((*currentTitle)->getTitleString().substr(0, 2) == "e_")
+		{
+			titleScore = 8;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "k_")
+		{
+			titleScore = 4;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "d_")
+		{
+			titleScore = 2;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "c_")
+		{
+			titleScore = 1;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "b_")
+		{
+			titleScore = 0;
+		}
+
+		totalRealmTitles += titleScore;
+		if ((*currentTitle)->getHolder() == src->getHolder())
+		{
+			rulerTitles += titleScore;
+		}
+
+		unprocessedVassals.pop_front();
+	}
+	if (totalRealmTitles > 0)
+	{
+		string CA = "";
+		CK2Title* current = src;
+		while (CA == "")
+		{
+			CA	= current->getCA();
+			current = current->getLiege();
+			if (current == NULL)
+			{
+				break;
+			}
+		}
+		if (CA == "")
+		{
+			CK2Title* current = src;
+			while (CA == "")
+			{
+				CA	= current->getCA();
+				current = current->getDeJureLiege();
+				if (current == NULL)
+				{
+					break;
+				}
+			}
+		}
+		if (CA == "")
+		{
+			CA = "1";
+		}
+		int crownAuthority = atoi( CA.substr(CA.size() - 1, 1).c_str() );
+		centralization = 5 - ( 2 * crownAuthority * (rulerTitles / totalRealmTitles) );
+	}
+
+
+	// log results
+	log("\t;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), centralization, 0,0,0,0,0,0,0);
 }
 
 

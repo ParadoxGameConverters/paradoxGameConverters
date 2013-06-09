@@ -49,6 +49,7 @@ class EU3Country
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 		void						convertArmiesandNavies(inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> provinces);
+		void						convertSliders();
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
@@ -151,6 +152,8 @@ class EU3Country
 		double					missionaries;
 		double					spies;
 		double					magistrates;
+
+		int						centralization;
 };
 
 
