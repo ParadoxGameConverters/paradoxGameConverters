@@ -1995,6 +1995,10 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 
 		// determine tag
 		string potentialTag = boost::to_upper_copy(titleString.substr(2,3));
+		while (potentialTag.size() < 3)
+		{
+			potentialTag += '_';
+		}
 		string tag;
 
 		map<string, EU3Country*>::iterator	itr	= countries.find(potentialTag);
