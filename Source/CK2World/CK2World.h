@@ -20,6 +20,7 @@ class CK2Dynasty;
 class CK2Character;
 class CK2Trait;
 class CK2War;
+class CK2Version;
 
 
 
@@ -42,7 +43,7 @@ class CK2World
 		map<int, CK2Province*>	getProvinces()				const { return provinces; };
 		map<string, CK2Title*>	getHREMembers()			const { return hreMembers; };
 
-		vector<double>				getAverageTechLevels() const;
+		vector<double>				getAverageTechLevels(CK2Version& version) const;
 	private:
 		CK2BuildingFactory*		buildingFactory;
 

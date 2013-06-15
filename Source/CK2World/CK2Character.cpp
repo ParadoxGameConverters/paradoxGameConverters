@@ -12,6 +12,7 @@
 #include "CK2War.h"
 #include "CK2Religion.h"
 #include "CK2Army.h"
+#include "CK2Version.h"
 
 
 
@@ -1030,7 +1031,7 @@ bool CK2Character::isDirectVassalOf(const CK2Character* other) const
 }
 
 
-int CK2Character::getOpinionOf(const CK2Character* other) const
+int CK2Character::getOpinionOf(const CK2Character* other, CK2Version& version) const
 {
 	int relations = 0;
 
@@ -1062,7 +1063,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 	if (this->isDirectVassalOf(other))
 	{
 		// Desmense Too Big
-		int exceededBy = other->holdings.size() - other->getDemesneCap();
+		int exceededBy = other->holdings.size() - other->getDemesneCap(version);
 		if (exceededBy > 0)
 		{
 			relations += -10 * exceededBy;
@@ -1166,7 +1167,7 @@ int CK2Character::getOpinionOf(const CK2Character* other) const
 	// Wrong Government Type (counts and above only)
 	if (this->isDirectVassalOf(other) && this->primaryTitleString.substr(0,2) != "b_")
 	{
-		if (this->primaryHolding->getType() != other->primaryHolding->getType())
+		if ((this->primaryHolding != NULL) && (this->primaryHolding->getType() != other->primaryHolding->getType()))
 		{
 			relations += CK2Opinion::getBaseValue("opinion_count_wrong_gov_vs_liege");
 		}
@@ -1261,7 +1262,7 @@ bool CK2Character::hasTrait(string traitName) const
 }
 
 
-int CK2Character::getDemesneCap() const
+int CK2Character::getDemesneCap(CK2Version& version) const
 {
 	// http://forum.paradoxplaza.com/forum/showthread.php?584969-What-are-the-high-and-low-bound-demense-limits-for-different-ranks-authority-tech&p=13429280&viewfull=1#post13429280
 
@@ -1290,7 +1291,15 @@ int CK2Character::getDemesneCap() const
 		successionFactor = 1.3;
 
 	int legalismBonus = 0;
-	double legalismTech = capital->getTechLevels()[TECH_LEGALISM];
+	double legalismTech;
+	if (CK2Version("1.10") > version)
+	{
+		legalismTech = capital->getTechLevels()[TECH_LEGALISM_OLD];
+	}
+	else
+	{
+		legalismTech = capital->getTechLevels()[TECH_LEGALISM];
+	}
 	if (legalismTech >= 1.0)
 	{
 		if (rulerTier >= 2)

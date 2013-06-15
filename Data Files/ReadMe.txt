@@ -42,12 +42,14 @@ CREDITS
 
 An (incomplete) list of those who contributed effort to this mammoth undertaking
 
-Idhrendur	- Programming
+Idhrendur	- Programming, Project Lead
 dtremenak	- Programming, Analysis, Tools
+kvess		- Frontend
 DasGuntLord01	- Analysis, Data Files
 Puking Panda	- Analysis
 Pode		- Analysis
 johnjohansson	- Analysis
+M0rdred		- Analysis
 GreyHuge	- Tools
 tamius23	- Data Files
 rho		- Data Files

@@ -21,6 +21,7 @@ class EU3Tech;
 class EU3Diplomacy;
 struct EU3Agreement;
 class CK2Province;
+class CK2Version;
 class EU3Army;
 class EU3Navy;
 
@@ -31,6 +32,7 @@ class EU3Country
 		EU3Country(CK2Title*, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 
 		void						output(FILE*);
+		void						addProvince(EU3Province* province);
 		void						determineLearningScore();
 		void						determineTechScore();
 		void						addAcceptedCultures();
@@ -39,23 +41,24 @@ class EU3Country
 		double					getTradeEffeciency();
 		double					getProductionEffeciency();
 		void						setPreferredUnitType();
-		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
+		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData, CK2Version& version);
 		void						determineTechInvestment(const EU3Tech* techData, date startDate);
 		void						determineStartingAgents();
-		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy);
+		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy, CK2Version& version);
 		vector<EU3Country*>	eatVassals();
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 		void						convertArmiesandNavies(inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> provinces);
+		void						convertSliders();
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
-		void		addProvince(EU3Province* province)	{ provinces.push_back(province); };
 		void		addCore(EU3Province* core)				{ cores.push_back(core); };
 		void		setAbsorbScore(int _score)				{ absorbScore = _score; };
 		void		setTechGroup(string _techGroup)		{ techGroup = _techGroup; };
 		void		setTag(string _tag)						{ tag = _tag; };
 		void		addAdvisor(EU3Advisor* _advisor)		{ advisors.push_back(_advisor); };
+		void		addAgreement(EU3Agreement* _agr)		{ agreements.push_back(_agr); };
 		void		setRelations(EU3Country* other, int value)	{ relations.insert(make_pair(other, value)); };
 		void		setElector(bool _elector)				{ elector = _elector; };
 
@@ -81,6 +84,8 @@ class EU3Country
 		bool						hasVassals()				const { return !vassals.empty(); };
 
 	private:
+		void	addBuildings();
+
 		CK2Title*				src;
 		EU3Country*				liege;
 		vector<EU3Country*>	vassals;
@@ -116,6 +121,7 @@ class EU3Country
 		vector<EU3Agreement*>	agreements;
 		map<EU3Country*, int>	relations;
 
+		vector<string>			flags;
 		int						capital;
 		int						stability;
 		double					stabilityInvestment;
@@ -146,6 +152,8 @@ class EU3Country
 		double					missionaries;
 		double					spies;
 		double					magistrates;
+
+		int						centralization;
 };
 
 

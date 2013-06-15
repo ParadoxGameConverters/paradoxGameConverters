@@ -71,6 +71,21 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		manpower = 0;
 	}
 
+	buildings.clear();
+	vector<Object*> fortObj = obj->getValue("fort2");
+	if (fortObj.size() > 0)
+	{
+		buildings.push_back("fort2");
+	}
+	else
+	{
+		vector<Object*> fortObj = obj->getValue("fort1");
+		if (fortObj.size() > 0)
+		{
+			buildings.push_back("fort1");
+		}
+	}
+
 	owner = NULL;
 	vector<Object*> ownerObj = obj->getValue("owner");
 	if (ownerObj.size() > 0)
@@ -97,6 +112,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	{
 		rawDiscoverers.push_back(discoveredByObj[i]->getLeaf());
 	}
+	discoveredBy.clear();
 
 	vector<Object*> cultureObj = obj->getValue("culture");
 	if (cultureObj.size() > 0)
@@ -150,6 +166,16 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 		nativeHostility = 0;
 	}
 
+	cot = false;
+	vector<Object*> cotObj = obj->getValue("cot");
+	if (cotObj.size() > 0)
+	{
+		if (cotObj[0]->getLeaf() == "yes")
+		{
+			cot = true;
+		}
+	}
+
 	// update based on history
 	vector<Object*> objectList = obj->getLeaves();
 	for (unsigned int i = 0; i < objectList.size(); i++)
@@ -187,6 +213,21 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 				{
 					manpower = atoi ( manpowerObj[0]->getLeaf().c_str() );
 					newHistory->manpower = manpower;
+				}
+
+				vector<Object*> fortObj = obj->getValue("fort2");
+				if (fortObj.size() > 0)
+				{
+					buildings.clear();
+					buildings.push_back("fort2");
+				}
+				else
+				{
+					vector<Object*> fortObj = obj->getValue("fort1");
+					if (fortObj.size() > 0)
+					{
+						buildings.push_back("fort1");
+					}
 				}
 
 				vector<Object*> newOwnerObj = objectList[i]->getValue("owner");
@@ -244,6 +285,15 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 					newHistory->religion = religion;
 				}
 
+				vector<Object*> cotObj = obj->getValue("cot");
+				if (cotObj.size() > 0)
+				{
+					if (cotObj[0]->getLeaf() == "yes")
+					{
+						cot = true;
+					}
+				}
+
 				history.push_back(newHistory);
 			}
 		}
@@ -251,6 +301,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 
 	modifiers.clear();
 
+	continent		= "";
 	sameContinent	= false;
 	landConnection	= false;
 
@@ -334,9 +385,9 @@ void EU3Province::output(FILE* output)
 	{
 		fprintf(output, "\ttrade_goods=%s\n", tradeGood.c_str());
 	}
-	if ((ownerStr != "") || (owner != NULL))
+	for (vector<string>::iterator i = buildings.begin(); i != buildings.end(); i++)
 	{
-		fprintf(output, "\tfort1=yes\n");
+		fprintf(output, "\t%s=yes\n", (*i).c_str());
 	}
 	if (nativeSize > 0.0)
 	{
@@ -447,12 +498,24 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _sr
 
 	num				= _num;
 	//capital	-- leave it as it is from the history file (TODO?)
+	buildings.clear();
 	ownerStr			= "";
 	cores				= _cores;
 	inHRE				= _inHRE;
 	discoveredBy.clear();
 	history.clear();
 	culture			= "";
+	tradeStation	= false;
+
+	for (vector<CK2Province*>::iterator provItr = srcProvinces.begin(); provItr != srcProvinces.end(); provItr++)
+	{
+		if ((*provItr)->hasTradePost())
+		{
+			modifiers.push_back("league_kontor");
+			tradeStation = true;
+			break;
+		}
+	}
 }
 
 
@@ -469,6 +532,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 	map<string, double> cultureCounts;
 	map<string, double> cultureCounts2;
 	map<string, double> cultureCounts3;
+	bool hadSrc = false;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
 		double popProxy		= 0.0f;
@@ -477,6 +541,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		vector<CK2Barony*> baronies = (*provItr)->getBaronies();
 		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
+			hadSrc			=  true;
 			popProxy			+= (*baronyItr)->getPopProxy();
 			basetaxProxy	+= (*baronyItr)->getBaseTaxProxy();
 			manpowerProxy	+= (*baronyItr)->getManpowerProxy();
@@ -514,89 +579,92 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		}
 	}
 
-	string			topCulture		= "";
-	double			highestCount	= 0;
-	vector<string>	tiedCultures;
-	vector<string>	tiedCultures2;
-	bool				tie;
-	for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
+	if (hadSrc)
 	{
-		if (countsItr->second > highestCount)
+		string			topCulture		= "";
+		double			highestCount	= 0;
+		vector<string>	tiedCultures;
+		vector<string>	tiedCultures2;
+		bool				tie;
+		for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
 		{
-			topCulture		= countsItr->first;
-			highestCount	= countsItr->second;
-			tiedCultures.clear();
-			tiedCultures.push_back(countsItr->first);
-			tie = false;
-		}
-		else if (countsItr->second == highestCount)
-		{
-			tiedCultures.push_back(countsItr->first);
-			tie = true;
-		}
-	}
-
-	if (tie == true)
-	{
-		topCulture		= "";
-		highestCount	= 0;
-		for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
-		{
-			for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
+			if (countsItr->second > highestCount)
 			{
-				if (countsItr->first == *cultureItr)
+				topCulture		= countsItr->first;
+				highestCount	= countsItr->second;
+				tiedCultures.clear();
+				tiedCultures.push_back(countsItr->first);
+				tie = false;
+			}
+			else if (countsItr->second == highestCount)
+			{
+				tiedCultures.push_back(countsItr->first);
+				tie = true;
+			}
+		}
+
+		if (tie == true)
+		{
+			topCulture		= "";
+			highestCount	= 0;
+			for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
+			{
+				for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
 				{
-					if (countsItr->second > highestCount)
+					if (countsItr->first == *cultureItr)
 					{
-						topCulture		= countsItr->first;
-						highestCount	= countsItr->second;
-						tiedCultures2.clear();
-						tiedCultures2.push_back(countsItr->first);
-						tie = false;
+						if (countsItr->second > highestCount)
+						{
+							topCulture		= countsItr->first;
+							highestCount	= countsItr->second;
+							tiedCultures2.clear();
+							tiedCultures2.push_back(countsItr->first);
+							tie = false;
+						}
+						else if (countsItr->second == highestCount)
+						{
+							tiedCultures2.push_back(countsItr->first);
+							tie = true;
+						}
+						break;
 					}
-					else if (countsItr->second == highestCount)
-					{
-						tiedCultures2.push_back(countsItr->first);
-						tie = true;
-					}
-					break;
 				}
 			}
 		}
-	}
 
-	if (tie == true)
-	{
-		topCulture		= "";
-		highestCount	= 0;
-		for (map<string, double>::iterator countsItr = cultureCounts3.begin(); countsItr != cultureCounts3.end(); countsItr++)
+		if (tie == true)
 		{
-			for (vector<string>::iterator cultureItr = tiedCultures2.begin(); cultureItr != tiedCultures2.end(); cultureItr++)
+			topCulture		= "";
+			highestCount	= 0;
+			for (map<string, double>::iterator countsItr = cultureCounts3.begin(); countsItr != cultureCounts3.end(); countsItr++)
 			{
-				if (countsItr->first == *cultureItr)
+				for (vector<string>::iterator cultureItr = tiedCultures2.begin(); cultureItr != tiedCultures2.end(); cultureItr++)
 				{
-					if (countsItr->second > highestCount)
+					if (countsItr->first == *cultureItr)
 					{
-						topCulture		= countsItr->first;
-						highestCount	= countsItr->second;
-						tie = false;
+						if (countsItr->second > highestCount)
+						{
+							topCulture		= countsItr->first;
+							highestCount	= countsItr->second;
+							tie = false;
+						}
+						else if (countsItr->second == highestCount)
+						{
+							tie = true;
+						}
+						break;
 					}
-					else if (countsItr->second == highestCount)
-					{
-						tie = true;
-					}
-					break;
 				}
 			}
 		}
-	}
 
-	if (tie == true)
-	{
-		log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitralrily assigned.\n", num, topCulture.c_str());
-	}
+		if (tie == true)
+		{
+			log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitrarily assigned.\n", num, topCulture.c_str());
+		}
 
-	culture = topCulture;
+		culture = topCulture;
+	}
 }
 
 
