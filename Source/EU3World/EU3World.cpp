@@ -2195,7 +2195,7 @@ void EU3World::convertCoTs()
 void EU3World::convertSliders()
 {
 	// get EU3 tags
-	log("\t;tag;centralization;nothing;nothing;nothing;nothing;nothing;nothing;nothing\n");
+	log("\t;tag;centralization/decentraliztion;aristocracy/plutocracy;nothing;nothing;nothing;nothing;nothing;nothing\n");
 	for (vector<EU3Country*>::iterator countryItr =	convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
 	{
 		(*countryItr)->convertSliders();

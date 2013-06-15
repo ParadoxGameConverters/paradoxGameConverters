@@ -69,6 +69,16 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		centralization = 0;
 	}
 
+	vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
+	if (centralLeaves.size() > 0)
+	{
+		aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		aristocracy = 0;
+	}
+
 	vector<Object*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
@@ -280,6 +290,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 					centralization = atoi( centralLeaves[0]->getLeaf().c_str() );
 				}
 
+				vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
+				if (centralLeaves.size() > 0)
+				{
+					aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
+				}
+
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
@@ -422,7 +438,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 		capital = 0;
 	}
 
-	prestige				= 0.0;
+	prestige					= 0.0;
 	stability				= 1;
 	stabilityInvestment	= 0.0f;
 	estimatedIncome		= 0.0f;
@@ -453,6 +469,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	magistrates		= 2.0f;
 
 	centralization	= 0;
+	aristocracy		= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -706,6 +723,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tdiplomats=%f\n", diplomats);
 	fprintf(output, "\tofficials=%f\n", magistrates);
 	fprintf(output, "\tcentralization_decentralization=%d\n", centralization);
+	fprintf(output, "\taristocracy_plutocracy=%d\n", aristocracy);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -1915,9 +1933,72 @@ void EU3Country::convertSliders()
 		centralization = 5 - ( 2 * crownAuthority * (rulerTitles / totalRealmTitles) );
 	}
 
+	// Centralization/Decentralization
+	int	sliderScore	= 0;
+	int	totalScore	= 0;
+	unprocessedVassals.clear();
+	unprocessedVassals.push_back(src);
+	while (unprocessedVassals.size() > 0)
+	{
+		list<CK2Title*>::iterator	currentTitle	= unprocessedVassals.begin();
+		vector<CK2Title*>				newVassals		= (*currentTitle)->getVassals();
+		for (unsigned int i = 0; i < newVassals.size(); i++)
+		{
+			unprocessedVassals.push_back(newVassals[i]);
+		}
+
+		int titleScore = 0;
+		if ((*currentTitle)->getTitleString().substr(0, 2) == "e_")
+		{
+			titleScore = 8;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "k_")
+		{
+			titleScore = 4;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "d_")
+		{
+			titleScore = 2;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "c_")
+		{
+			titleScore = 1;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "b_")
+		{
+			titleScore = 0;
+		}
+
+		totalScore += titleScore;
+		CK2Barony* primaryHolding = (*currentTitle)->getLastHolder()->getPrimaryHolding();
+		if ( (primaryHolding != NULL) && (primaryHolding->getType() == "city") )
+		{
+			sliderScore += titleScore;
+		}
+		else if ( (primaryHolding != NULL) && (primaryHolding->getType() == "castle") )
+		{
+			sliderScore -= titleScore;
+		}
+
+		unprocessedVassals.pop_front();
+	}
+	double rawAristocracy = 2.5 * sliderScore / totalScore;
+	if (rawAristocracy < 0)
+	{
+		rawAristocracy -= 1;
+	}
+	if (rawAristocracy > 0)
+	{
+		rawAristocracy += 0.5;
+	}
+	if (government == "administrative_republic")
+	{
+		rawAristocracy += 1;
+	}
+	aristocracy = (int)rawAristocracy;
 
 	// log results
-	log("\t;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), centralization, 0,0,0,0,0,0,0);
+	log("\t;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), centralization, aristocracy, 0,0,0,0,0,0);
 }
 
 

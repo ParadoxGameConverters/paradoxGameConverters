@@ -154,6 +154,7 @@ class EU3Country
 		double					magistrates;
 
 		int						centralization;
+		int						aristocracy;
 };
 
 
