@@ -1,0 +1,64 @@
+country_decisions = {
+
+	english_nation = {
+		potential = {
+			NOT = { exists = ENG }
+			NOT = { exists = GBR }
+			NOT = { tag = HRE }
+			NOT = { tag = PAP }
+			primary_culture = english
+			culture_group = west_germanic
+			culture_group = scandinavian
+		}
+		allow = 
+		{
+			owns = 236		# London
+			owns = 237		# Oxfordshire
+			owns = 234		# Wessex
+			owns = 235		# Kent
+			owns = 238		# East Anglia
+			
+			is_core = 236		# London
+			is_core = 237		# Oxfordshire
+			is_core = 234		# Wessex
+			is_core = 235		# Kent
+			is_core = 238		# East Anglia
+			
+			war = no
+		}
+	  effect = {
+			ENG = {
+				add_core = 233		# Cornwall
+				add_core = 234		# Wessex
+				add_core = 236		# London
+				add_core = 237		# Oxfordshire
+				add_core = 238		# East Anglia
+				add_core = 239		# Gloucestershire
+				add_core = 240		# Marches
+				add_core = 241		# Glamorgan
+				add_core = 243		# Lincoln
+				add_core = 244		# Lancashire
+				add_core = 245		# Yorkshire
+				add_core = 246		# Northumberland
+				add_core = 247		# Cumbria
+				add_core = 1860		# Norfolk
+				add_core = 1861		# Derby
+			}
+			colonists = 1
+			random_owned = {
+				base_tax = 1
+			}
+			centralization_decentralization = -2
+			prestige = 0.05
+			change_tag = ENG
+			ENG = {
+				capital = 236
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	
+}

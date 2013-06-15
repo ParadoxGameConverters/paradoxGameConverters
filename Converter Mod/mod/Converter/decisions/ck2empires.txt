@@ -194,7 +194,7 @@ country_decisions = {
 			religion = catholic
 			NOT = { exists = LAT }
 			exists = BYZ
-			BYZ = { controls = 151 }
+			BYZ = { owns = 151 }
 		}
 		allow = {
 			controls = 151 # Constantinople
