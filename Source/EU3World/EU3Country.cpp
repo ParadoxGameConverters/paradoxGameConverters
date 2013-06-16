@@ -79,6 +79,16 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		aristocracy = 0;
 	}
 
+	vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
+	if (centralLeaves.size() > 0)
+	{
+		innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		innovative = 0;
+	}
+
 	vector<Object*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
@@ -296,6 +306,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 					aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
 				}
 
+				vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
+				if (centralLeaves.size() > 0)
+				{
+					innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
+				}
+
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
@@ -470,6 +486,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 
 	centralization	= 0;
 	aristocracy		= 0;
+	innovative		= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -724,6 +741,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tofficials=%f\n", magistrates);
 	fprintf(output, "\tcentralization_decentralization=%d\n", centralization);
 	fprintf(output, "\taristocracy_plutocracy=%d\n", aristocracy);
+	fprintf(output, "\tinnovative_narrowminded=%d\n", innovative);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -1932,8 +1950,16 @@ void EU3Country::convertSliders()
 		int crownAuthority = atoi( CA.substr(CA.size() - 1, 1).c_str() );
 		centralization = 5 - ( 2 * crownAuthority * (rulerTitles / totalRealmTitles) );
 	}
+	if (centralization > 5)
+	{
+		centralization = 5;
+	}
+	if (centralization < -5)
+	{
+		centralization = -5;
+	}
 
-	// Centralization/Decentralization
+	// Aristocracy/Plutocracy
 	int	sliderScore	= 0;
 	int	totalScore	= 0;
 	unprocessedVassals.clear();
@@ -1996,9 +2022,112 @@ void EU3Country::convertSliders()
 		rawAristocracy += 1;
 	}
 	aristocracy = (int)rawAristocracy;
+	if (aristocracy > 5)
+	{
+		aristocracy = 5;
+	}
+	if (aristocracy < -5)
+	{
+		aristocracy = -5;
+	}
+
+	// Serfdom/Freesubjects
+	// Innovative/Narrowminded
+	double	cityLearning		= 0.0f;
+	double	religiousLearning	= 0.0f;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			vector<CK2Barony*> baronies = (*srcItr)->getBaronies();
+			for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr < baronies.end(); baronyItr++)
+			{
+				if ((*baronyItr)->getType() == "city")
+				{
+					cityLearning += (*baronyItr)->getTechBonus();
+				}
+				else if ((*baronyItr)->getType() == "temple")
+				{
+					religiousLearning += (*baronyItr)->getTechBonus();
+				}
+			}
+		}
+	}
+	double totalLearning = cityLearning + religiousLearning;
+
+	double rawInnovative = 0.0f;
+	if (cityLearning > religiousLearning)
+	{
+		rawInnovative = -4.0 * cityLearning / totalLearning;
+	}
+	else if (cityLearning < religiousLearning)
+	{
+		rawInnovative = 4.0 * religiousLearning / totalLearning;
+	}
+
+	int bishophricsScore	= 0;
+	totalScore				= 0;
+	unprocessedVassals.clear();
+	unprocessedVassals.push_back(src);
+	while (unprocessedVassals.size() > 0)
+	{
+		list<CK2Title*>::iterator	currentTitle	= unprocessedVassals.begin();
+		vector<CK2Title*>				newVassals		= (*currentTitle)->getVassals();
+		for (unsigned int i = 0; i < newVassals.size(); i++)
+		{
+			unprocessedVassals.push_back(newVassals[i]);
+		}
+
+		int titleScore = 0;
+		if ((*currentTitle)->getTitleString().substr(0, 2) == "e_")
+		{
+			titleScore = 8;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "k_")
+		{
+			titleScore = 4;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "d_")
+		{
+			titleScore = 2;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "c_")
+		{
+			titleScore = 1;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "b_")
+		{
+			titleScore = 0;
+		}
+		totalScore += titleScore;
+
+		CK2Barony* primaryHolding = (*currentTitle)->getLastHolder()->getPrimaryHolding();
+		if ( (primaryHolding != NULL) && (primaryHolding->getType() == "temple") )
+		{
+			bishophricsScore += titleScore;
+		}
+
+		unprocessedVassals.pop_front();
+	}
+	rawInnovative += 3.0 * bishophricsScore / totalScore;
+	innovative = (int)rawInnovative;
+	if (innovative > 5)
+	{
+		innovative = 5;
+	}
+	else if (innovative < -5)
+	{
+		innovative = -5;
+	}
+
+	// Mercantilism/Freetrade
+	// Offensive/Defensive
+	// Land/Naval
+	// Quality/Quantity
 
 	// log results
-	log("\t;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), centralization, aristocracy, 0,0,0,0,0,0);
+	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, 0, innovative, 0,0,0,0);
 }
 
 

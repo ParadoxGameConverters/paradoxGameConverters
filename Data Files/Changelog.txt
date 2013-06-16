@@ -443,3 +443,5 @@ Revision	Log Message
 436
 437
 438		Aristocracy/Plutocracy slider
+439
+440		Innovative/Narrowminded slider
