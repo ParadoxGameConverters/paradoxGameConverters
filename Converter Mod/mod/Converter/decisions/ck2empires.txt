@@ -76,6 +76,9 @@ country_decisions = {
 			government = imperial_government
 			capital = 385 # Mecca
 		}
+		ai_will_do = {
+			factor = 1
+		}
 	}
 	
 	francia_nation = {
@@ -130,6 +133,9 @@ country_decisions = {
 			centralization_decentralization = -2
 			government = imperial_government
 			capital = 183 # Paris
+		}
+		ai_will_do = {
+			factor = 1
 		}
 	}
 	
@@ -187,6 +193,9 @@ country_decisions = {
 			government = steppe_horde
 			capital = 416 # Azerbaijan
 		}
+		ai_will_do = {
+			factor = 1
+		}
 	}
 	
 	latin_nation = {
@@ -194,7 +203,9 @@ country_decisions = {
 			religion = catholic
 			NOT = { exists = LAT }
 			exists = BYZ
+			NOT = { tag = BYZ }
 			BYZ = { owns = 151 }
+			controls = 151 # Constantinople
 		}
 		allow = {
 			controls = 151 # Constantinople
@@ -216,6 +227,9 @@ country_decisions = {
 			capital = 151 # Constantinople
 			PAP = { relation = { who = THIS value = 100 }}
 			BYZ = { relation = { who = THIS value = -400 }}
+		}
+		ai_will_do = {
+			factor = 1
 		}
 	}
 	
@@ -292,7 +306,343 @@ country_decisions = {
 			centralization_decentralization = -2
 			capital = 118 # Rome
 		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	italia_nation = {
+		potential = {
+			OR = {
+				culture_group = latin
+				AND = {
+					culture_group = byzantine
+					NOT = {
+						two_sicilies = {
+							NOT = {
+								owned_by = THIS
+							}
+						}
+					}
+				}
+			}
+			NOT = { exists = ITL }
+		}
+		allow = {
+			NOT = {
+				italian_region = {
+					NOT = {
+						owned_by = THIS
+					}
+				}
+			}
+			is_core = 101
+			is_core = 103
+			is_core = 104
+			is_core = 112
+			is_core = 115
+			is_core = 116
+			is_core = 118
+			is_core = 121
+			is_core = 125
+			
+			war = no
+		}
+		effect = {
+			ITL = {
+				italian_region = {
+					add_core = ITL
+				}
+				
+				add_core = 110 # Trent
+				add_core = 130 # Istria
+				add_core = 1769 # Gorz
+			}
+			
+			prestige = 0.20
+			change_tag = ITL
+			centralization_decentralization = -2
+			capital = 118 # Rome
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	carpathian_nation = {
+		potential = {
+			OR = {
+				primary_culture = hungarian
+				primary_culture = romanian
+				tag = HUN
+			}
+			NOT = { exists = CAR }
+		}
+		allow = {
+			owns = 153 # Pecs
+			owns = 158 # Transylvania
+			owns = 161 # Wallachia
+			owns = 162 # Carpathia
+			owns = 268 # Besserabia
+			is_core = 153
+			is_core = 158
+			is_core = 161
+			is_core = 162
+			is_core = 268
+			
+			war = no
+		}
+		effect = {
+			CAR = {
+				dacia = {
+					add_core = CAR
+				}
+				hungary = {
+					add_core = CAR
+				}
+				slovakia = {
+					add_core = CAR
+				}
+			}
+			
+			prestige = 0.20
+			change_tag = CAR
+			centralization_decentralization = -2
+			capital = 153 # Pecs
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	malian_nation = {
+		potential = {
+			OR = {
+				primary_culture = mali
+				tag = MAL
+			}
+			NOT = { exists = MLI }
+		}
+		allow = {
+			owns = 1123 # Segu
+			owns = 1128 # Taodeni			
+			owns = 1132 # Timbuktu
+			owns = 1142 # Dendi
+			is_core = 1123
+			is_core = 1128
+			is_core = 1132
+			is_core = 1142
+			
+			war = no
+		}
+		effect = {
+			MLI = {
+				add_core = 1115 # Brakna				
+				add_core = 1120 # Bambuk
+				add_core = 1121 # Bure
+				add_core = 1124 # Wasuji
+				add_core = 1129 # Azawadd
+				add_core = 1130 # Tadimekket
+				add_core = 1133 # Gao
+				add_core = 1134 # Jenne
+				add_core = 1135 # Yatenga
+				add_core = 1136 # Gurma
+				add_core = 1137 # Wagadugi
+			}
+			
+			prestige = 0.20
+			change_tag = MLI
+			centralization_decentralization = -2
+			capital = 1132 # Timbuktu
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	wendish_nation = {
+		potential = {
+			OR = {
+				culture_group = baltic
+				primary_culture = polish
+				primary_culture = pommeranian
+				primary_culture = czech
+			}
+			NOT = { exists = WEN }
+		}
+		allow = {
+			owns = 38 # Riga
+			owns = 41 # Ostpreussen
+			owns = 257 # Mazovia
+			owns = 262 # Krakow
+			owns = 272 # Vilna
+			owns = 1858 # Stettin
+			is_core = 41
+			is_core = 257
+			is_core = 262
+			is_core = 269
+			is_core = 272
+			is_core = 1858
+			
+			war = no
+		}
+		effect = {
+			WEN = {
+				add_core = 35 # Osel
+				add_core = 37 # Livland
+				add_core = 39 # Kurland
+				add_core = 40 # Memel
+				add_core = 42 # Warmia
+				add_core = 43 # Danzig
+				add_core = 46 # Mecklenburg
+				add_core = 47 # Vorpommern
+				add_core = 48 # Hinterpommern
+				add_core = 254 # Poznan
+				add_core = 255 # Kalisz
+				add_core = 256 # Plock
+				add_core = 256 # Plock
+				add_core = 258 # Sieradz
+				add_core = 259 # Lublin
+				add_core = 259 # Sandomirez
+				add_core = 263 # Ratibor
+				add_core = 264 # Breslau
+				add_core = 269 # Podlasie
+				add_core = 270 # Trakai
+				add_core = 271 # Samogitia
+				add_core = 273 # Wenden
+				add_core = 275 # Polotsk
+				add_core = 276 # Minsk
+				add_core = 277 # Grodno
+				add_core = 1859 # Torun
+			}
+			
+			prestige = 0.20
+			change_tag = WEN
+			centralization_decentralization = -2
+			capital = 257 # Mazovia
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	tartar_nation = {
+		potential = {
+			OR = {
+				primary_culture = tartar
+				primary_culture = yakut
+				primary_culture = siberian
+				primary_culture = uralic
+			}
+			NOT = { exists = TAR }
+		}
+		allow = {
+			OR = {
+				AND = {
+					NOT = { exists = GOL }
+				}
+				AND = {
+					tag = GOL
+					stability = 2
+				}
+			}
+			MIL = 6
+			owns = 283 # Zaporozhia
+			owns = 443 # Ust Yurt
+			owns = 464 # Astrakhan
+			owns = 468 # Kalmykia
+			owns = 1078 # North Ufa
+			
+			war = no
+		}
+		effect = {
+			TAR = {
+				add_core = 282 # Cherson
+				add_core = 284 # Crimea
+				add_core = 285 # Kaffa
+				add_core = 286 # Azow
+				add_core = 287 # Kouban
+				add_core = 465 # Bersh
+				add_core = 466 # Sarai
+				add_core = 470 # Baybaktu
+				add_core = 471 # Alimuly
+				add_core = 472 # Zheteru
+				add_core = 474 # Uralsk
+				add_core = 475 # Ufa
+				add_core = 1070 # Kurgan
+			}
+			
+			prestige = 0.20
+			change_tag = TAR
+			centralization_decentralization = -2
+			capital = 468 # Kalmykia
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	abyssinian_nation = {
+		potential = {
+			OR = {
+				primary_culture = nubian
+				primary_culture = somali
+				primary_culture = ethiopian
+			}
+			NOT = { exists = ABY }
+		}
+		allow = {
+			OR = {
+				NOT = { exists = ETH }
+				tag = ETH
+			}
+			OR = {
+				NOT = { exists = ADA }
+				tag = ADA
+			}
+			owns = 1206 # Majerteen
+			owns = 1224 # Gonder
+			owns = 1234 # Nubia
+			is_core = 1206
+			is_core = 1224
+			is_core = 1234
+			
+			war = no
+		}
+		effect = {
+			ABY = {
+				add_core = 1208 # Haud
+				add_core = 1209 # Berbera
+				add_core = 1210 # Ifat
+				add_core = 1211 # Harer
+				add_core = 1212 # Zeila
+				add_core = 1213 # Shoa
+				add_core = 1214 # Awsa
+				add_core = 1215 # Tajura
+				add_core = 1217 # Fazughli
+				add_core = 1218 # Kefa
+				add_core = 1220 # Dar Ja'Al
+				add_core = 1221 # Taqali
+				add_core = 1222 # Gezira
+				add_core = 1223 # Gojjam
+				add_core = 1225 # Butana
+				add_core = 1226 # Taka
+				add_core = 1227 # Tigre
+				add_core = 1228 # Dongola
+				add_core = 1229 # Berber
+				add_core = 1230 # Massawa
+				add_core = 1231 # Ibrim
+				add_core = 1232 # Suakin
+				add_core = 1233 # Kargah
+			}
+			
+			prestige = 0.20
+			change_tag = ABY
+			centralization_decentralization = -2
+			capital = 1224 # Gonder
+		}
+		ai_will_do = {
+			factor = 1
+		}
 	}
 }
-			
-			
