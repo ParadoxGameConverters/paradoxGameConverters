@@ -89,6 +89,16 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		innovative = 0;
 	}
 
+	vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
+	if (centralLeaves.size() > 0)
+	{
+		serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		serfdom = 0;
+	}
+
 	vector<Object*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
@@ -312,6 +322,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 					innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
 				}
 
+				vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
+				if (centralLeaves.size() > 0)
+				{
+					serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
+				}
+
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
@@ -487,6 +503,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	centralization	= 0;
 	aristocracy		= 0;
 	innovative		= 0;
+	serfdom			= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -742,6 +759,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tcentralization_decentralization=%d\n", centralization);
 	fprintf(output, "\taristocracy_plutocracy=%d\n", aristocracy);
 	fprintf(output, "\tinnovative_narrowminded=%d\n", innovative);
+	fprintf(output, "\tserfdom_freesubjects=%d\n", serfdom);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -2032,6 +2050,34 @@ void EU3Country::convertSliders()
 	}
 
 	// Serfdom/Freesubjects
+	double freeTroops	= 0.0f;
+	double serfTroops	= 0.0f;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				freeTroops	+= (*itr3)->getFreeTroops();
+				serfTroops	+= (*itr3)->getSerfTroops();
+			}
+		}
+	}
+	if (freeTroops + serfTroops > 0)
+	{
+		serfdom = (int)(25*(freeTroops - serfTroops)/(freeTroops + serfTroops));
+	}
+	if (serfdom > 5)
+	{
+		serfdom = 5;
+	}
+	else if (serfdom < -5)
+	{
+		serfdom = -5;
+	}
+
 	// Innovative/Narrowminded
 	double	cityLearning		= 0.0f;
 	double	religiousLearning	= 0.0f;
@@ -2127,7 +2173,7 @@ void EU3Country::convertSliders()
 	// Quality/Quantity
 
 	// log results
-	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, 0, innovative, 0,0,0,0);
+	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, 0,0,0,0);
 }
 
 

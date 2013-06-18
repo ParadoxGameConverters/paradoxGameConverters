@@ -90,35 +90,42 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 	determineTechBonus();
 	determineFortLevel();
 
-	PSE	= 0.0F;
-	ships	= 0;
+	PSE				= 0.0F;
+	ships				= 0;
+	freeTroops		= 0.0F;
+	serfTroops		= 0.0F;
 	vector<Object*> levyObjs = obj->getValue("levy")[0]->getLeaves();
 	for (unsigned int i = 0; i < levyObjs.size(); i++)
 	{
 		if (levyObjs[i]->getKey() == "light_infantry")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 0.305 * atoi(tokens[0].c_str());
+			PSE			+= atoi(tokens[0].c_str()) * 0.305;
+			serfTroops	+= atoi(tokens[0].c_str()) * 2.000;
 		}
 		else if (levyObjs[i]->getKey() == "archers")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 0.384 * atoi(tokens[0].c_str());
+			PSE			+= atoi(tokens[0].c_str()) * 0.384;
+			freeTroops	+=	atoi(tokens[0].c_str()) * 1.000;
 		}
 		else if (levyObjs[i]->getKey() == "heavy_infantry")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 0.610 * atoi(tokens[0].c_str());
+			PSE			+= atoi(tokens[0].c_str()) * 0.610;
+			freeTroops	+= atoi(tokens[0].c_str()) * 0.500;
 		}
 		else if (levyObjs[i]->getKey() == "pikemen")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 1.00 * atoi(tokens[0].c_str());
+			PSE			+= atoi(tokens[0].c_str()) * 1.00;
+			freeTroops	+= atoi(tokens[0].c_str()) * 0.75;
 		}
 		else if (levyObjs[i]->getKey() == "light_cavalry")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 0.23 * atoi(tokens[0].c_str());
+			PSE			+= atoi(tokens[0].c_str()) * 0.23;
+			freeTroops	+= atoi(tokens[0].c_str()) * 0.25;
 		}
 		else if (levyObjs[i]->getKey() == "knights")
 		{
@@ -128,7 +135,8 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 		else if (levyObjs[i]->getKey() == "horse_archers")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			PSE += 0.42 * atoi(tokens[0].c_str());
+			PSE			+= atoi(tokens[0].c_str()) * 0.42;
+			freeTroops	+= atoi(tokens[0].c_str()) * 0.50;
 		}
 		else if (levyObjs[i]->getKey() == "galleys")
 		{

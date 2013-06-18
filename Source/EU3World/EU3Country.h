@@ -155,6 +155,7 @@ class EU3Country
 
 		int						centralization;
 		int						aristocracy;
+		int						serfdom;
 		int						innovative;
 };
 

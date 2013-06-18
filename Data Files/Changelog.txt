@@ -445,3 +445,4 @@ Revision	Log Message
 438		Aristocracy/Plutocracy slider
 439
 440		Innovative/Narrowminded slider
+441		Serfdom/Freesubject slider

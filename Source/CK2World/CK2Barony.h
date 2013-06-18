@@ -27,6 +27,8 @@ class CK2Barony
 		double			getManpowerProxy()	const { return manpowerProxy; };
 		double			getTechBonus()			const { return techBonus; };
 		double			getPSE()					const { return PSE; };
+		double			getFreeTroops()		const { return freeTroops; };
+		double			getSerfTroops()		const	{ return serfTroops; };
 		int				getShips()				const { return ships; };
 		double			getFortLevel()			const { return fortLevel; };
 	private:
@@ -50,6 +52,8 @@ class CK2Barony
 
 		double	PSE;
 		int		ships;
+		double	freeTroops;
+		double	serfTroops;
 };
 
 
