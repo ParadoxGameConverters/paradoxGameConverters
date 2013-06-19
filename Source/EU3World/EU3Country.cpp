@@ -70,7 +70,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	}
 
 	vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
-	if (centralLeaves.size() > 0)
+	if (aristocracyLeaves.size() > 0)
 	{
 		aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
 	}
@@ -80,7 +80,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	}
 
 	vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
-	if (centralLeaves.size() > 0)
+	if (innovativeLeaves.size() > 0)
 	{
 		innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
 	}
@@ -90,13 +90,23 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	}
 
 	vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
-	if (centralLeaves.size() > 0)
+	if (serfdomLeaves.size() > 0)
 	{
 		serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
 	}
 	else
 	{
 		serfdom = 0;
+	}
+
+	vector<Object*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
+	if (mercantilismLeaves.size() > 0)
+	{
+		mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		mercantilism = 0;
 	}
 
 	vector<Object*> religionLeaves = obj->getValue("religion");
@@ -311,21 +321,27 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 				}
 
 				vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
-				if (centralLeaves.size() > 0)
+				if (aristocracyLeaves.size() > 0)
 				{
 					aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
 				}
 
 				vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
-				if (centralLeaves.size() > 0)
+				if (innovativeLeaves.size() > 0)
 				{
 					innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
 				}
 
 				vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
-				if (centralLeaves.size() > 0)
+				if (serfdomLeaves.size() > 0)
 				{
 					serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
+				if (mercantilismLeaves.size() > 0)
+				{
+					mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
 				}
 
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
@@ -504,6 +520,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	aristocracy		= 0;
 	innovative		= 0;
 	serfdom			= 0;
+	mercantilism	= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -760,6 +777,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\taristocracy_plutocracy=%d\n", aristocracy);
 	fprintf(output, "\tinnovative_narrowminded=%d\n", innovative);
 	fprintf(output, "\tserfdom_freesubjects=%d\n", serfdom);
+	fprintf(output, "\tmercantilism_freetrade=%d\n", mercantilism);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -2168,12 +2186,48 @@ void EU3Country::convertSliders()
 	}
 
 	// Mercantilism/Freetrade
+	int	totalTPGarrisons	= 0;
+	int	totalSrcProvinces	= 0;
+	int	numCoTs				= 0;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			totalTPGarrisons += (*srcItr)->getTpGarrisonSize();
+			totalSrcProvinces++;
+		}
+		if ((*provinceItr)->hasCOT())
+		{
+			numCoTs++;
+		}
+	}
+	double garrisonRatio = 0;
+	if (totalSrcProvinces > 0)
+	{
+		garrisonRatio	+= (-1.0 * totalTPGarrisons / totalSrcProvinces);
+	}
+	int mercantilismModifier = -1 * numCoTs;
+	if ((government == "merchant_republic") || (government == "noble_republic") || (government == "administrative_republic"))
+	{
+		mercantilismModifier--;
+	}
+	mercantilism = (int)(-3.0 + (sqrt((double)totalSrcProvinces)/1.5) + mercantilismModifier + garrisonRatio);
+	if (mercantilism > 5)
+	{
+		mercantilism = 5;
+	}
+	if (mercantilism < -5)
+	{
+		mercantilism = -5;
+	}
+
 	// Offensive/Defensive
 	// Land/Naval
 	// Quality/Quantity
 
 	// log results
-	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, 0,0,0,0);
+	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, 0,0,0);
 }
 
 

@@ -157,6 +157,7 @@ class EU3Country
 		int						aristocracy;
 		int						serfdom;
 		int						innovative;
+		int						mercantilism;
 };
 
 
