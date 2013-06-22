@@ -21,6 +21,7 @@ namespace Converter.UI.Providers
         private IList<GameConfiguration> sourceGames;
         private IList<GameConfiguration> targetGames;
         private IList<PreferenceCategory> preferenceCategories;
+        private Dictionary<string, PreferenceType> types;
 
         #endregion
 
@@ -62,6 +63,23 @@ namespace Converter.UI.Providers
 
         #endregion
 
+        #region [ Private Properties ]
+
+        private Dictionary<string, PreferenceType> Types 
+        {
+            get
+            {
+                if (this.types == null)
+                {
+                    this.types = Enum.GetValues(typeof(PreferenceType)).Cast<PreferenceType>().ToDictionary(t => t.ToString(), t => t);
+                }
+
+                return this.types;
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region [ Methods ]
@@ -69,6 +87,32 @@ namespace Converter.UI.Providers
         #region [ Private Methods ]
 
         #region [ Preference Retrieval ]
+
+        private PreferenceType DeterminePreferenceType(string type)
+        {
+            if (this.Types.ContainsKey(type))
+            {
+                return this.Types[type];
+            }
+
+            return PreferenceType.PlainString;
+        }
+
+        private IPreference CreatePreferenceObject(PreferenceType preferenceType)
+        {
+            IPreference preference;
+
+            if (preferenceType == PreferenceType.Numerical || preferenceType == PreferenceType.NumericPredefinedWithOverride)
+            {
+                preference = new Preference<double>(preferenceType);
+            }
+            else
+            {
+                preference = new Preference<string>(preferenceType);
+            }
+
+            return preference;
+        }
 
         private IList<PreferenceCategory> ReadCategoryConfig()
         {
@@ -96,18 +140,9 @@ namespace Converter.UI.Providers
 
                     foreach (var foundPreference in foundPreferences)
                     {
-                        var preferenceType = foundPreference.Descendants("type").First().Value.ToString() == PreferenceType.PreDefined.ToString() ? PreferenceType.PreDefined : PreferenceType.Numerical;
+                        var preferenceType = this.DeterminePreferenceType(foundPreference.Descendants("type").First().Value.ToString());
 
-                        IPreference preference;
-
-                        if (preferenceType == PreferenceType.Numerical)
-                        {
-                            preference = new Preference<double>();
-                        }
-                        else
-                        {
-                            preference = new Preference<string>();
-                        }
+                        IPreference preference = this.CreatePreferenceObject(preferenceType);
 
                         preference.Name = XElementHelper.ReadStringValue(foundPreference, "name");
                         preference.FriendlyName = XElementHelper.ReadStringValue(foundPreference, "friendlyName");
@@ -126,10 +161,15 @@ namespace Converter.UI.Providers
                                     var castPreferences = ((Preference<double>)preference);
                                     castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundEntry, PreferenceType.Numerical) as PreferenceEntry<double>);
                                 }
-                                else
+                                else if (preferenceType == PreferenceType.PreDefined)
                                 {
                                     var castPreferences = ((Preference<string>)preference);
                                     castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundEntry, PreferenceType.PreDefined) as PreferenceEntry<string>);
+                                }
+                                else if (preferenceType == PreferenceType.NumericPredefinedWithOverride)
+                                {
+                                    var castPreferences = ((Preference<double>)preference);
+                                    castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundEntry, PreferenceType.NumericPredefinedWithOverride) as PreferenceEntry<double>);
                                 }
                             }
                         }
@@ -139,6 +179,11 @@ namespace Converter.UI.Providers
                             {
                                 var castPreferences = ((Preference<double>)preference);
                                 castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundPreference, PreferenceType.Numerical) as PreferenceEntry<double>);
+                            }
+                            else if (preferenceType == PreferenceType.PlainString)
+                            {
+                                var castPreferences = ((Preference<string>)preference);
+                                castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundPreference, PreferenceType.PlainString) as PreferenceEntry<string>);
                             }
                         }                        
                     }
@@ -186,9 +231,18 @@ namespace Converter.UI.Providers
 
                 entry = new NumericPreferenceEntry(name, friendlyName, description, minValue, maxValue, defaultValue, parent);
             }
+            else if (preferenceType == PreferenceType.PlainString)
+            {
+                var defaultValue = XElementHelper.ReadStringValue(foundEntry, "defaultValue");
+                entry = new PlainStringPreferenceEntry(name, friendlyName, description, parent, defaultValue);
+            }
+            else if (preferenceType == PreferenceType.NumericPredefinedWithOverride)
+            {
+                entry = new NumericPredefinedWithOverridePreferenceEntry(name, friendlyName, description, parent) { IsSelected = isSelectedByDefault };
+            }
             else
             {
-                entry = new StringPreferenceEntry(name, friendlyName, description, parent) { IsSelected = isSelectedByDefault };
+                entry = new PredefinedPreferenceEntry(name, friendlyName, description, parent) { IsSelected = isSelectedByDefault };
             }
 
             return entry;

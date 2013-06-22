@@ -22,17 +22,9 @@ namespace Converter.UI
 
         public MainWindow()
         {
-            //try
-            //{
-                InitializeComponent();
-                this.DataContext = this;
-                this.OnLoad();
-            //}
-            //catch (Exception e)
-            //{
-            //    // Serves no real purpose beyond preventing VS complaints about unused variables.
-            //    throw (e);
-            //}
+            InitializeComponent();
+            this.DataContext = this;
+            this.OnLoad();
         }
 
         #region [ Properties ]
@@ -72,7 +64,7 @@ namespace Converter.UI
             this.ConverterOptions = new ConverterOptions();
 
             // Add tabs. The first tab will display the paths tab, and will be selected by default.
-            this.Tabs.Add(new SaveGamePickerViewModel(this.ConverterOptions, new SaveGamePickerView()));
+            this.Tabs.Add(new PathPickerViewModel(this.ConverterOptions, new PathPickerView()));
             this.tabControl.SelectedIndex = 0;
 
             // Add one or more preference views

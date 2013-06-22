@@ -30,7 +30,18 @@
         
         <Style x:Key="headerTextBoxStyle"></Style>
 
-        <DataTemplate x:Key="StringEntryTemplate">
+        <DataTemplate x:Key="PredefinedStringEntryTemplate">
+            <Border Style="{StaticResource entryBorderStyle}">
+                <Grid>
+                    <RadioButton GroupName="{Binding Parent.Name}" 
+                                 Content="{Binding FriendlyName}"
+                                 IsChecked="{Binding IsSelected}">
+                    </RadioButton>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="NumericPredefinedWithOverridePreferenceEntryTemplate">
             <Border Style="{StaticResource entryBorderStyle}">
                 <Grid>
                     <RadioButton GroupName="{Binding Parent.Name}" 
@@ -48,6 +59,17 @@
                         <TextBlock Text="{TemplateBinding Name}"/>
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                                  Style="{StaticResource textboxWithDataValidationSupport}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="PlainStringEntryTemplate">
+            <Border Style="{StaticResource entryBorderStyle}">
+                <Grid>
+                    <StackPanel>
+                        <TextBlock Text="{TemplateBinding Name}"/>
+                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                     </StackPanel>
                 </Grid>
             </Border>

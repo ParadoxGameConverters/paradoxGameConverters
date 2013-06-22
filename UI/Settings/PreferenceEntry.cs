@@ -6,7 +6,7 @@ namespace Converter.UI.Settings
 {
     public abstract class PreferenceEntry<T> : NotifiableBase, IPreferenceEntry, IDataErrorInfo
     {
-        protected PreferenceEntry(string name, string friendlyName, string description, PreferenceType type, IPreference parent) //, IList<T> defaultChoices
+        protected PreferenceEntry(string name, string friendlyName, string description, PreferenceType type, IPreference parent)
         {
             this.Name = name;
             this.Description = description;

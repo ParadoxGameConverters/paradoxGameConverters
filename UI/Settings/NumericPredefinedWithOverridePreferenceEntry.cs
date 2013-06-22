@@ -1,13 +1,17 @@
-﻿using Converter.UI.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using Converter.UI.Enums;
 
 namespace Converter.UI.Settings
 {
-    public class StringPreferenceEntry : PreferenceEntry<string>
+    public class NumericPredefinedWithOverridePreferenceEntry : PreferenceEntry<double>
     {
         private bool isSelected;
 
-        public StringPreferenceEntry(string name, string friendlyName, string description, IPreference parent) //, IList<string> predefinedChoices
-            : base(name, friendlyName, description, PreferenceType.PreDefined, parent) // , predefinedChoices
+        public NumericPredefinedWithOverridePreferenceEntry(string name, string friendlyName, string description, IPreference parent)
+            : base(name, friendlyName, description, PreferenceType.NumericPredefinedWithOverride, parent)
         {
         }
 
@@ -20,11 +24,6 @@ namespace Converter.UI.Settings
 
             set
             {
-                ////if (Comparer<T>.Equals(this.isSelected, value))
-                ////{
-                ////    return;
-                ////}
-
                 if (this.isSelected == value)
                 {
                     return;
@@ -39,6 +38,11 @@ namespace Converter.UI.Settings
 
                 this.RaisePropertyChanged("IsSelected");
             }
+        }
+
+        public override string ToString()
+        {
+            return this.Name.ToString();
         }
     }
 }

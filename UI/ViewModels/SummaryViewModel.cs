@@ -2,12 +2,18 @@
 using System.Windows.Input;
 using Converter.UI.Framework;
 using Converter.UI.Settings;
+using Converter.UI.Commands;
+using System.Linq;
 
 namespace Converter.UI.ViewModels
 {
     public class SummaryViewModel : BaseViewModel, IViewModel
     {
         private string summary;
+
+        private ICommand saveCommand;
+
+        private ICommand convertCommand;
 
         public SummaryViewModel(IView view, ConverterOptions options)
             : base(view, "Summary", options)
@@ -34,9 +40,21 @@ namespace Converter.UI.ViewModels
             }
         }
 
-        public ICommand SaveCommand { get; set; }
+        public ICommand SaveCommand
+        {
+            get
+            {
+                return this.saveCommand ?? (this.saveCommand = new SaveCommand(this.Options, this.Summary));
+            }
+        }
 
-        public ICommand ConvertCommand { get; set; }
+        public ICommand ConvertCommand
+        {
+            get
+            {
+                return this.convertCommand ?? (this.convertCommand = new ConvertCommand(this.Options));
+            }
+        }
 
         protected override void OnTabSelected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
@@ -52,8 +70,12 @@ namespace Converter.UI.ViewModels
 
             // Output source and target game settings
             sb.AppendLine("# Installation paths:");
-            sb.AppendLine(this.Options.SourceGame.ConfigurationFileDirectoryTagName + " = " + this.Options.SourceGame.InstallationPath);
-            sb.AppendLine(this.Options.TargetGame.ConfigurationFileDirectoryTagName + " = " + this.Options.TargetGame.InstallationPath);
+            sb.AppendLine(this.Options.SourceGame.ConfigurationFileDirectoryTagName + " = \"" + this.Options.SourceGame.InstallationPath + "\"");
+            sb.AppendLine(this.Options.TargetGame.ConfigurationFileDirectoryTagName + " = \"" + this.Options.TargetGame.InstallationPath + "\"");
+            
+            sb.AppendLine();
+            sb.AppendLine("# Use converter mod: ");
+            sb.AppendLine("useConverterMod = " + "\"" + (this.Options.UseConverterMod ? "yes" : "no") + "\"");
 
             // Preferences
             foreach (PreferenceCategory category in this.Options.ConfigurationProvider.PreferenceCategories)
@@ -62,23 +84,7 @@ namespace Converter.UI.ViewModels
                 sb.AppendLine("# " + category.FriendlyName);
                 sb.AppendLine();
 
-                foreach (IPreference preference in category.Preferences)
-                {
-                    sb.AppendLine(" # " + preference.FriendlyName + ": " + preference.Description);
-
-                    var preferenceAsDouble = preference as Preference<double>;
-                    var preferenceAsString = preference as Preference<string>;
-
-                    if (preferenceAsDouble != null)
-                    {
-                        var userChoice = preferenceAsDouble.UserChoice as NumericPreferenceEntry;
-                        sb.AppendLine(preferenceAsDouble.Name + " = " + userChoice.Value);
-                    }
-                    else if (preferenceAsString != null)
-                    {
-                        sb.AppendLine(preferenceAsString.Name + " = " + preferenceAsString.UserChoice.Name);
-                    }
-                }
+                category.Preferences.ForEach(p => sb.AppendLine(p.ToString()));
             }
 
             sb.AppendLine("}");

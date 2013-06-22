@@ -15,6 +15,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -27,7 +28,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -85,8 +85,10 @@
     </ApplicationDefinition>
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConvertCommand.cs" />
+    <Compile Include="Commands\OpenConverterCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
+    <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Enums\DefaultSaveGameLocationType.cs" />
     <Compile Include="Factories\PreferenceViewModelFactory.cs" />
     <Compile Include="Framework\EntryTemplateSelector.cs" />
@@ -94,6 +96,8 @@
     <Compile Include="Framework\MissingRequiredXMLPropertyException.cs" />
     <Compile Include="Framework\UnParsableDataValueException.cs" />
     <Compile Include="Framework\XMLParseExceptionBase.cs" />
+    <Compile Include="Helpers\DiskPermissionHelper.cs" />
+    <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
     <Compile Include="Providers\ConfigurationProvider.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
@@ -102,20 +106,22 @@
     <Compile Include="Settings\IPreference.cs" />
     <Compile Include="Settings\IPreferenceEntry.cs" />
     <Compile Include="Settings\LogEntry.cs" />
+    <Compile Include="Settings\NumericPredefinedWithOverridePreferenceEntry.cs" />
     <Compile Include="Settings\NumericPreferenceEntry.cs" />
+    <Compile Include="Settings\PlainStringPreferenceEntry.cs" />
     <Compile Include="Settings\Preference.cs" />
     <Compile Include="Settings\PreferenceCategory.cs" />
     <Compile Include="Settings\PreferenceEntry.cs" />
     <Compile Include="Enums\PreferenceType.cs" />
-    <Compile Include="Settings\StringPreferenceEntry.cs" />
+    <Compile Include="Settings\PredefinedPreferenceEntry.cs" />
     <Compile Include="ViewModels\PreferencesViewModel.cs" />
-    <Compile Include="ViewModels\SaveGamePickerViewModel.cs" />
+    <Compile Include="ViewModels\PathPickerViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
     <Compile Include="Views\PreferencesView.xaml.cs">
       <DependentUpon>PreferencesView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\SaveGamePickerView.xaml.cs">
-      <DependentUpon>SaveGamePickerView.xaml</DependentUpon>
+    <Compile Include="Views\PathPickerView.xaml.cs">
+      <DependentUpon>PathPickerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SummaryView.xaml.cs">
       <DependentUpon>SummaryView.xaml</DependentUpon>
@@ -141,7 +147,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\SaveGamePickerView.xaml">
+    <Page Include="Views\PathPickerView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

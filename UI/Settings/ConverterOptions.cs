@@ -9,7 +9,9 @@ namespace Converter.UI.Settings
         private GameConfiguration sourceGame;
         private GameConfiguration targetGame;
         private string sourceSaveGame;
+        private string converter;
         private ConfigurationProvider configurationProvider;
+        private bool useConverterMod;
 
         public ConverterOptions()
         {
@@ -52,6 +54,44 @@ namespace Converter.UI.Settings
 
                 this.targetGame = value;
                 this.RaisePropertyChanged("TargetGame");
+            }
+        }
+
+        public string Converter
+        {
+            get
+            {
+                return this.converter;
+            }
+
+            set
+            {
+                if (this.converter == value)
+                {
+                    return;
+                }
+
+                this.converter = value;
+                this.RaisePropertyChanged("Converter");
+            }
+        }
+
+        public bool UseConverterMod
+        {
+            get
+            {
+                return this.useConverterMod;
+            }
+
+            set
+            {
+                if (this.useConverterMod == value)
+                {
+                    return;
+                }
+
+                this.useConverterMod = value;
+                this.RaisePropertyChanged("UseConverterMod");
             }
         }
 

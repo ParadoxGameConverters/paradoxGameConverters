@@ -15,14 +15,24 @@ namespace Converter.UI.Framework
                 return null;
             }
 
-            if (item is StringPreferenceEntry)
+            if (item is PredefinedPreferenceEntry)
             {
-                return element.FindResource("StringEntryTemplate") as DataTemplate;
+                return element.FindResource("PredefinedStringEntryTemplate") as DataTemplate;
             }
 
             else if (item is NumericPreferenceEntry)
             {
                 return element.FindResource("NumericEntryTemplate") as DataTemplate;
+            }
+
+            else if (item is PlainStringPreferenceEntry)
+            {
+                return element.FindResource("PlainStringEntryTemplate") as DataTemplate;
+            }
+
+            else if (item is NumericPredefinedWithOverridePreferenceEntry)
+            {
+                return element.FindResource("NumericPredefinedWithOverridePreferenceEntryTemplate") as DataTemplate;
             }
 
             else
