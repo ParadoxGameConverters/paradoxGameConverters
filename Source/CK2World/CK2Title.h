@@ -42,6 +42,9 @@ class CK2Title
 		CK2Character*			getHeir()				const { return heir; };
 		string					getSuccessionLaw()	const { return successionLaw; };
 		string					getCA()					const { return CA; };
+		int						getFeudalContract()	const { return feudalContract; };
+		int						getTempleContract()	const { return templeContract; };
+		int						getCityContract()		const { return cityContract; };
 		vector<CK2History*>	getHistory()			const { return history; };
 		string					getLiegeString()		const { return liegeString; };
 		CK2Title*				getLiege()				const { return liege; };
@@ -76,6 +79,9 @@ class CK2Title
 		string							genderLaw;
 		vector< pair<int, int> >	nominees;		// id, votes
 		string							CA;
+		int								feudalContract;
+		int								templeContract;
+		int								cityContract;
 		vector<CK2History*>			history;
 		string							liegeString;
 		CK2Title*						liege;

@@ -14,7 +14,8 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 	province	= newProvince;
 
 	type = obj->getLeaf("type");
-
+	
+	qualityBuildings = 0;
 	buildings.clear();
 	vector<Object*> leaves = obj->getLeaves();
 	for (vector<Object*>::iterator i = leaves.begin(); i < leaves.end(); i++)
@@ -27,6 +28,10 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 			{
 				buildings.push_back(newBuilding);
 			}
+		}
+		if ( (key.substr(3, 8) == "training") || (key.substr(3, 7) == "culture") )
+		{
+			qualityBuildings++;
 		}
 	}
 

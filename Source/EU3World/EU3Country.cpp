@@ -119,6 +119,16 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		land = 0;
 	}
 
+	vector<Object*> qualityLeaves = obj->getValue("quality_quantity");
+	if (qualityLeaves.size() > 0)
+	{
+		quality = atoi( qualityLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		quality = 0;
+	}
+
 	vector<Object*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
@@ -360,6 +370,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 					land = atoi( landLeaves[0]->getLeaf().c_str() );
 				}
 
+				vector<Object*> qualityLeaves = obj->getValue("quality_quantity");
+				if (qualityLeaves.size() > 0)
+				{
+					quality = atoi( qualityLeaves[0]->getLeaf().c_str() );
+				}
+
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
@@ -538,6 +554,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	serfdom			= 0;
 	mercantilism	= 0;
 	land				= 0;
+	quality			= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -796,6 +813,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tserfdom_freesubjects=%d\n", serfdom);
 	fprintf(output, "\tmercantilism_freetrade=%d\n", mercantilism);
 	fprintf(output, "\tland_naval=%d\n", land);
+	fprintf(output, "\tquality_quantity=%d\n", quality);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -2279,9 +2297,58 @@ void EU3Country::convertSliders()
 	}
 
 	// Quality/Quantity
+	int		qualityBuildings	= 0;
+	double	castleTroops		= 0.0;
+	double	templeTroops		= 0.0;
+	double	cityTroops			= 0.0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				if ((*itr3)->getType() == "castle")
+				{
+					castleTroops += (*itr3)->getPSE();
+				}
+				else if ((*itr3)->getType() == "temple")
+				{
+					templeTroops += (*itr3)->getPSE();
+				}
+				else if ((*itr3)->getType() == "city")
+				{
+					cityTroops += (*itr3)->getPSE();
+				}
+				qualityBuildings += (*itr3)->getQualityBuildings();
+			}
+		}
+	}
+	castleTroops			*= 0.6 + (0.10 * src->getFeudalContract());
+	templeTroops			*= 0.5 + (0.10 * src->getTempleContract());
+	cityTroops				*= 0.5 + (0.15 * src->getCityContract());
+	double totalTroops	 = castleTroops + templeTroops + cityTroops;
+
+	if (totalTroops > 0)
+	{
+		quality = (int)(totalTroops / qualityBuildings / 40 - 7);
+	}
+	else
+	{
+		quality = 0;
+	}
+	if (quality > 5)
+	{
+		quality = 5;
+	}
+	if (quality < -5)
+	{
+		quality = -5;
+	}
 
 	// log results
-	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, 0, land, 0);
+	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, 0, land, quality);
 }
 
 

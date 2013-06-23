@@ -448,3 +448,4 @@ Revision	Log Message
 441		Serfdom/Freesubjects slider
 442		Mercantilism/Freetrade slider
 443		Land/Naval slider
+444		Quality/Quantity slider

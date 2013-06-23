@@ -159,6 +159,7 @@ class EU3Country
 		int						innovative;
 		int						mercantilism;
 		int						land;
+		int						quality;
 };
 
 
