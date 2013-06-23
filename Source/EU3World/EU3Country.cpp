@@ -109,6 +109,16 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		mercantilism = 0;
 	}
 
+	vector<Object*> offensiveLeaves = obj->getValue("offensive_defensive");
+	if (offensiveLeaves.size() > 0)
+	{
+		offensive = atoi( offensiveLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		offensive = 0;
+	}
+
 	vector<Object*> landLeaves = obj->getValue("land_naval");
 	if (landLeaves.size() > 0)
 	{
@@ -364,6 +374,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 					mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
 				}
 
+				vector<Object*> offensiveLeaves = obj->getValue("offensive_defensive");
+				if (offensiveLeaves.size() > 0)
+				{
+					offensive = atoi( offensiveLeaves[0]->getLeaf().c_str() );
+				}
+
 				vector<Object*> landLeaves = obj->getValue("land_naval");
 				if (landLeaves.size() > 0)
 				{
@@ -553,6 +569,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	innovative		= 0;
 	serfdom			= 0;
 	mercantilism	= 0;
+	quality			= 0;
 	land				= 0;
 	quality			= 0;
 
@@ -812,6 +829,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tinnovative_narrowminded=%d\n", innovative);
 	fprintf(output, "\tserfdom_freesubjects=%d\n", serfdom);
 	fprintf(output, "\tmercantilism_freetrade=%d\n", mercantilism);
+	fprintf(output, "\toffensive_defensive=%d\n", offensive);
 	fprintf(output, "\tland_naval=%d\n", land);
 	fprintf(output, "\tquality_quantity=%d\n", quality);
 	fprintf(output, "\tmanpower=%f\n", manpower);
@@ -2259,6 +2277,38 @@ void EU3Country::convertSliders()
 	}
 
 	// Offensive/Defensive
+	double fortLevel	= 0.0;
+	double troops		= 0.0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				fortLevel	+= (*itr3)->getFortLevel();
+				troops		+= (*itr3)->getPSE();
+			}
+		}
+	}
+	if (fortLevel > 0)
+	{
+		offensive = (int)( troops / fortLevel / 28 - 7 );
+	}
+	else
+	{
+		offensive = 0;
+	}
+	if (offensive > 5)
+	{
+		offensive = 5;
+	}
+	if (offensive < -5)
+	{
+		offensive = -5;
+	}
+
 	// Land/Naval
 	int numBaronies	= 0;
 	int totalShips		= 0;
@@ -2348,7 +2398,7 @@ void EU3Country::convertSliders()
 	}
 
 	// log results
-	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, 0, land, quality);
+	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, offensive, land, quality);
 }
 
 

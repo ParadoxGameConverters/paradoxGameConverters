@@ -449,3 +449,4 @@ Revision	Log Message
 442		Mercantilism/Freetrade slider
 443		Land/Naval slider
 444		Quality/Quantity slider
+445		Offensive/Defensive slider
