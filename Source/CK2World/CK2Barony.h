@@ -30,6 +30,7 @@ class CK2Barony
 		double			getFreeTroops()		const { return freeTroops; };
 		double			getSerfTroops()		const	{ return serfTroops; };
 		int				getShips()				const { return ships; };
+		int				getMaxShips()			const { return maxShips; };
 		double			getFortLevel()			const { return fortLevel; };
 	private:
 		void	determineBaseTaxProxy();
@@ -52,6 +53,7 @@ class CK2Barony
 
 		double	PSE;
 		int		ships;
+		int		maxShips;
 		double	freeTroops;
 		double	serfTroops;
 };

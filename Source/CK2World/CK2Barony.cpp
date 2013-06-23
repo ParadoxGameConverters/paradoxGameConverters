@@ -92,6 +92,7 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 
 	PSE				= 0.0F;
 	ships				= 0;
+	maxShips			= 0;
 	freeTroops		= 0.0F;
 	serfTroops		= 0.0F;
 	vector<Object*> levyObjs = obj->getValue("levy")[0]->getLeaves();
@@ -141,7 +142,8 @@ CK2Barony::CK2Barony(Object* obj, CK2Title* newTitle, CK2Province* newProvince, 
 		else if (levyObjs[i]->getKey() == "galleys")
 		{
 			vector<string> tokens = levyObjs[i]->getTokens();
-			ships += atoi(tokens[0].c_str());
+			ships		+= atoi(tokens[0].c_str());
+			maxShips	+= atoi(tokens[1].c_str());
 		}
 	}
 }

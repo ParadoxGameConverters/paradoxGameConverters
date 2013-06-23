@@ -109,6 +109,16 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		mercantilism = 0;
 	}
 
+	vector<Object*> landLeaves = obj->getValue("land_naval");
+	if (landLeaves.size() > 0)
+	{
+		land = atoi( landLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		land = 0;
+	}
+
 	vector<Object*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
@@ -344,6 +354,12 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 					mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
 				}
 
+				vector<Object*> landLeaves = obj->getValue("land_naval");
+				if (landLeaves.size() > 0)
+				{
+					land = atoi( landLeaves[0]->getLeaf().c_str() );
+				}
+
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
 				if (religionLeaves.size() > 0)
 				{
@@ -521,6 +537,7 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	innovative		= 0;
 	serfdom			= 0;
 	mercantilism	= 0;
+	land				= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -778,6 +795,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tinnovative_narrowminded=%d\n", innovative);
 	fprintf(output, "\tserfdom_freesubjects=%d\n", serfdom);
 	fprintf(output, "\tmercantilism_freetrade=%d\n", mercantilism);
+	fprintf(output, "\tland_naval=%d\n", land);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -2224,10 +2242,46 @@ void EU3Country::convertSliders()
 
 	// Offensive/Defensive
 	// Land/Naval
+	int numBaronies	= 0;
+	int totalShips		= 0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				totalShips += (*itr3)->getMaxShips();
+				numBaronies++;
+			}
+		}
+	}
+	if (numBaronies > 0)
+	{
+		double ratio = (2.5 * totalShips / numBaronies);
+		ratio -= 4.0;
+		ratio *= -1.0;
+		double raw = 1 / (1 + pow(2.71828182845904523536 * 0.25, ratio));
+		land = (int)(12 * raw) - 5;
+	}
+	else
+	{
+		land = -5;
+	}
+	if (land > 5)
+	{
+		land = 5;
+	}
+	if (land < -5)
+	{
+		land = -5;
+	}
+
 	// Quality/Quantity
 
 	// log results
-	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, 0,0,0);
+	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, 0, land, 0);
 }
 
 

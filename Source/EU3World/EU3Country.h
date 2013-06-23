@@ -158,6 +158,7 @@ class EU3Country
 		int						serfdom;
 		int						innovative;
 		int						mercantilism;
+		int						land;
 };
 
 
