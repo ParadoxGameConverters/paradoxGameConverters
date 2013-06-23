@@ -945,7 +945,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			CK2Religion* religion = (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religion->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mongol_empire") ) && (religion->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}
@@ -1146,7 +1146,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 
 			//determine tech
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mongol_empire") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}

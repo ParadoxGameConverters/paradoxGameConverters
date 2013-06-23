@@ -1015,7 +1015,7 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "papal_government";
 	}
-	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (src->getLastHolder()->getReligion()->getGroup() != "christian")  )
+	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") || (srcTitleString == "e_mongol_empire") ) && (src->getLastHolder()->getReligion()->getGroup() != "christian")  ) 
 	{
 		government = "steppe_horde";
 	}
@@ -1057,7 +1057,7 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "feudal_monarchy";
 	}
-	else if (  (srcLiege != NULL) && ( (srcLiege->getTitleString() == "e_golden_horde") || (srcLiege->getTitleString() == "e_il-khanate") || (srcLiege->getTitleString() == "e_timurids"))  )
+	else if (  (srcLiege != NULL) && ( (srcLiege->getTitleString() == "e_golden_horde") || (srcLiege->getTitleString() == "e_il-khanate") || (srcLiege->getTitleString() == "e_timurids") || (srcTitleString == "e_mongol_empire"))  )
 	{
 		government = "despotic_monarchy";
 	}
