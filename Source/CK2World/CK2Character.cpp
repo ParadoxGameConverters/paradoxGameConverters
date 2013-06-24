@@ -483,6 +483,7 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 			)
 		{
 			heir = *i;
+			break;
 		}
 	}
 
@@ -496,7 +497,8 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 				  ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getPrimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}
@@ -512,6 +514,7 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 				)
 			{
 				heir = *i;
+				break;
 			}
 		}
 	}
@@ -526,7 +529,8 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 					( !(*i)->isFemale() || (genderLaw == "cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getPrimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}
@@ -548,6 +552,7 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 			)
 		{
 			heir = *i;
+			break;
 		}
 	}
 
@@ -561,7 +566,8 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 				  ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getUltimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}
@@ -577,6 +583,7 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 				)
 			{
 				heir = *i;
+				break;
 			}
 		}
 	}
@@ -591,7 +598,8 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 					( !(*i)->isFemale() || (genderLaw == "cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getUltimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}
