@@ -451,3 +451,5 @@ Revision	Log Message
 444		Quality/Quantity slider
 445		Offensive/Defensive slider
 446		Update for 1.10 titles, including horde mechanics for Mongol empire
+447		Fix primogeniture and ultimogeniture succession
+448		Put advisers in correct tech groups
