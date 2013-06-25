@@ -77,12 +77,17 @@ class EU3Country
 		vector<string>			getAcceptedCultures()	const { return acceptedCultures; };
 		string					getReligion()				const { return religion; };
 		string					getTechGroup()				const { return techGroup; };
+		double					getLandTech()				const { return landTech; };
 		int						getCapital()				const { return capital; };
+		double					getPrestige()				const { return prestige; };
+		double					getIncome()					const { return estimatedIncome; };
+		double					getGoldIncome()			const { return estimatedGold; };
 		int						getStability()				const { return stability; };
 		bool						hasProvinces()				const { return !provinces.empty(); };
 		bool						hasCores()					const { return !cores.empty(); };
 		bool						hasVassals()				const { return !vassals.empty(); };
-
+		int						getInfantry() const;
+		int						getNumPorts() const;
 	private:
 		void	addBuildings();
 
@@ -129,6 +134,7 @@ class EU3Country
 
 		double					estimatedIncome;
 		double					estimatedTax;
+		double					estimatedManu;
 		double					estimatedGold;
 		double					estimatedProduction;
 		double					estimatedTolls;
@@ -136,6 +142,9 @@ class EU3Country
 		bool						daimyo;
 		bool						japaneseEmperor;
 		bool						elector;
+		vector<string>			factions;
+		string					mainFaction;
+		int						mainFactionScore;
 
 		vector<EU3Army*>		armies;
 		vector<EU3Navy*>		navies;

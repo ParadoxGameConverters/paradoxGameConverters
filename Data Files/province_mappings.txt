@@ -890,7 +890,7 @@ link = { eu3 = 501 }	# NOTHING -> Barbados
 link = { eu3 = 500 }	# NOTHING -> St. Lucia
 link = { eu3 = 502 }	# NOTHING -> Trinidad
 link = { eu3 = 481 }	# NOTHING -> Bermuda
-link = { eu3 = 367 }	# NOTHING -> The Azores
+link = { eu3 = 367 ck2 = -1 }	# NOTHING -> The Azores
 # #ROTW South America
 link = { eu3 = 826 }	# NOTHING -> Choco
 link = { eu3 = 823 }	# NOTHING -> Cauca
@@ -1064,7 +1064,7 @@ link = { eu3 = 1240 }	# NOTHING -> Hawaii
 # # ROTW Africa
 link = { eu3 = 1110 }	# NOTHING -> Rio de Oro
 link = { eu3 = 1111 }	# NOTHING -> Arguin
-link = { eu3 = 368 }	# NOTHING -> Madeira
+link = { eu3 = 368 ck2 = -1}	# NOTHING -> Madeira
 link = { eu3 = 1096 }	# NOTHING -> Cape Verde
 link = { eu3 = 1127 }	# NOTHING -> Tuat
 link = { eu3 = 1128 }	# NOTHING -> Taodeni

@@ -37,6 +37,7 @@ class EU3Province
 		void		addSupplyContribution(map<string, double>& goodsSupply);
 		void		addDemandContribution(map<string, double>& goodsDemand);
 		double	determineTax(const cultureGroupMapping& cultureGroups);
+		double	determineManu();
 		double	determineTolls();
 		double	determineProduction(const map<string, double>& unitPrices);
 		double	determineGold();
@@ -50,6 +51,7 @@ class EU3Province
 		void		setBaseTax(double _baseTax)				{ baseTax = _baseTax; };
 		void		setPopulation(double _population)		{ population = _population; };
 		void		addCore(EU3Country* core)					{ cores.push_back(core); };
+		void		clearCores()									{ cores.clear(); };
 		void		setOwner(EU3Country* _owner)				{ owner = _owner; ownerStr = ""; };
 		void		setSrcOwner(const CK2Title* _srcOwner)	{ srcOwner = _srcOwner; };
 		void		addBuilding(const string building)		{ buildings.push_back(building); };
@@ -57,7 +59,9 @@ class EU3Province
 		void		setSameContinent(bool _same)				{ sameContinent = _same; };
 		void		setLandConnection(bool _connected)		{ landConnection = _connected; };
 		void		setInHRE(bool _inHRE)						{ inHRE = _inHRE; };
+		void		setReligion(string _religion)				{ religion = _religion; };
 		void		setCot(bool _cot)								{ cot = _cot; };
+		void		setArmyHere(bool _armyHere)				{ armyHere = _armyHere; };
 
 		int						getNum() const				{ return num; };
 		bool						isLand() const				{ return land; };
@@ -114,6 +118,7 @@ class EU3Province
 		double					popUnits;
 		double					supply;
 		map<string, double>	demands;
+		bool						armyHere;
 
 		double	nativeSize;
 		int		nativeFerocity;

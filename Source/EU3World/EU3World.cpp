@@ -593,6 +593,13 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
+		if (i->second[0] == -1)
+		{
+			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);
+			provItr->second->setOwner(NULL);
+			provItr->second->clearCores();
+			provItr->second->setPopulation(0);
+		}
 		if (i->second[0] == 0)
 		{
 			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);
@@ -600,6 +607,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			if (owner != countries.end())
 			{
 				provItr->second->setOwner(owner->second);
+				owner->second->addProvince(provItr->second);
 			}
 			else
 			{
@@ -1078,6 +1086,11 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			(*countryItr)->determineTechLevels(avgTechLevels, techData, *(srcWorld.getVersion()));
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
 		}
+
+		for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+		{
+			countryItr->second->determineTechInvestment(techData, startDate);
+		}
 	}
 	else // (Configuration::getTechGroupMethod() == "culturalTech")
 	{
@@ -1240,7 +1253,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 
 			//determine tech
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mongol_empire") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mexikha") || (title == "e_mongol_empire") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}
@@ -1579,7 +1592,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "union";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				if (rhsDominant)
 				{
 					agr->country1 = jtr->second;
@@ -1600,7 +1613,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "royal_marriage";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = itr->second;
 				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
@@ -1613,7 +1626,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "alliance";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = itr->second;
 				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
@@ -1653,7 +1666,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				{
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
-					agr->startDate = startDate; // FIXME maybe?
+					agr->startDate = startDate;
 					agr->country1 = itr->second;
 					agr->country2 = jtr->second;
 					diplomacy->addAgreement(agr);
@@ -1687,7 +1700,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				{
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
-					agr->startDate = startDate; // FIXME maybe?
+					agr->startDate = startDate;
 					agr->country1 = jtr->second;
 					agr->country2 = itr->second;
 					diplomacy->addAgreement(agr);

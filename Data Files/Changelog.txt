@@ -412,12 +412,12 @@ Revision	Log Message
 405		Rulers properly absorb all their own holdings
 406		Actually read in crown authority
 407		Fix some typos
-408
-409
-410
-411
-412
-413
+408		Merge main into minor
+409		Aztecs convert as a horde
+410		Include chinese faction system
+411		If a converted nation has ROTW provinces, make those provinces the nation's religion
+412		Some provinces forced to always start unsettled
+413		Improvments to economic estimations
 414
 415
 416
