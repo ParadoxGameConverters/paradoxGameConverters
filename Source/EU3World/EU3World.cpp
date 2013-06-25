@@ -281,11 +281,105 @@ void EU3World::output(FILE* output)
 	}
 	fprintf(output, "active_advisors=\n");
 	fprintf(output, "{\n");
+	fprintf(output, "\tnomad_group=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "nomad_group"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\twestern=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "western"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\teastern=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "eastern"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tottoman=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "ottoman"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tmuslim=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "muslim"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tindian=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "indian"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tchinese=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "chinese"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tsub_saharan=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "sub_saharan"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tnew_world=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "new_world"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
 	fprintf(output, "\tnotechgroup=\n");
 	fprintf(output, "\t{\n");
 	for (unsigned int i = 0; i < advisors.size(); i++)
 	{
-		advisors[i]->outputInActive(output);
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "notechgroup"))
+		{
+			advisors[i]->outputInActive(output);
+		}
 	}
 	fprintf(output, "\t}\n");
 	fprintf(output, "}\n");

@@ -452,3 +452,4 @@ Revision	Log Message
 445
 446
 447		Fix primogeniture and ultimogeniture succession
+448		Put advisers in correct tech groups
