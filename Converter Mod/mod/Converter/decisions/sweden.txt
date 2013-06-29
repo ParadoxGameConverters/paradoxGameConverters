@@ -1,0 +1,103 @@
+# Indelningsverket.. +25% manpower, -10% recruit speed.)
+# absolutism = stab_cost - 5%, rr = -1
+# finnish cavalry = cheaper cavalry.
+# swedish_steel
+
+country_decisions = {
+
+	create_indelningsverket = {
+		potential = {
+			primary_culture = swedish
+			OR = {
+				tag = SWE
+				tag = SCA
+			}
+			NOT = { has_country_modifier = indelningsverket }
+		}
+		allow = {
+			is_subject = no
+			land_tech = 30
+			MIL = 7
+		}
+		effect = {
+			add_country_modifier = {
+				name = "indelningsverket"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	institute_the_absolutism = {
+		potential = {
+			primary_culture = swedish
+			NOT = { has_country_modifier = the_absolutism }
+		}
+		allow = {
+			ADM = 8
+			is_subject = no
+			government = absolute_monarchy
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_absolutism"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	use_finnish_cavalry = {
+		potential = {
+			primary_culture = swedish
+			OR = {
+				tag = SWE
+				tag = SCA
+			}
+			NOT = { has_country_modifier = finnish_cavalry }
+		}
+		allow = {
+			is_subject = no
+			finland = {
+				owned_by = THIS 
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = "finnish_cavalry"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	use_swedish_steel = {
+		potential = {
+			primary_culture = swedish
+			OR = {
+				tag = SWE
+				tag = SCA
+			}
+			NOT = { has_country_modifier = swedish_steel }
+		}
+		allow = {
+			MIL = 7
+			monthly_income = 30
+			is_subject = no
+		}
+		effect = {
+			add_country_modifier = {
+				name = "swedish_steel"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}	
+}

@@ -1,0 +1,52 @@
+religion_decisions = {
+	establish_spanish_inquisition = {
+		potential = {
+			tag = SPA
+			NOT = { has_country_modifier = spanish_inquisition }
+		}
+		allow = {
+			innovative_narrowminded = 3
+			religion = catholic
+		}
+		effect = {
+			add_country_modifier = {
+				name = "spanish_inquisition"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+country_decisions = {
+
+	commission_gold_fleet = {
+		potential = {
+			tag = SPA
+			NOT = { has_country_modifier = gold_fleet }
+			any_owned_province = {
+				trade_goods = gold
+				OR = {
+					continent = south_america
+					continent = north_america
+				}
+			}
+		}
+		allow = {
+			land_naval = 1
+			gold = 3
+		}
+		effect = {	
+			add_country_modifier = {
+				name = "gold_fleet"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}	
+
+	
+}

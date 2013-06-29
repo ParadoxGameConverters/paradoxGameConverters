@@ -1,0 +1,100 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 242  149  0 }
+
+historical_ideas = {
+	national_conscripts
+	excellent_shipwrights
+	merchant_adventures
+	superior_seamanship
+	espionage
+	military_drill
+	glorious_arms
+	national_trade_policy
+	patron_of_art
+	shrewd_commerce_practise
+	grand_army
+	cabinet
+}
+
+historical_units = {
+	japanese_archer
+	eastern_bow
+	japanese_footsoldier
+	japanese_samurai
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Sanetomo #0" = 40
+	"Kimisai #1" = 25
+	"Yorinobu #1" = 25
+	"Akimitsu #1" = 25
+	"Takamochi #1" = 25
+	"Masakado #1" = 25
+	"Yorimichi #0" = 20
+	"Shigehira #0" = 20
+	"Tsunekiyo #0" = 20
+	"Koretada #0" = 20
+	"Yoshimitsu #0" = 20
+	"Chikazane #0" = 10
+	"Tomomori #0" = 10
+	"Moromichi #0" = 10
+	"Sanesuke #0" = 10
+	"Ujikimi #0" = 10
+	"Kaneie #0" = 5
+	"Yukiie #0" = 5
+	"Tadahira #0" = 5
+	"Hiromi #0" = 5
+	"Noritsune #0" = 5
+	"Shunzei	" = 5
+	"Kiyohira " = 1
+	"Takafuji " = 1
+	"Michisada " = 1
+	"Iesada " = 1
+	"Yoriie " = 1
+	"Korehisa " = 1
+	"Tametoki " = 1
+	"Yasunori " = 0
+	"Michikane " = 0
+	"Nobuyori " = 0
+	"Momozono " = 0
+	"Tsuchimikado" = 0
+}
+
+leader_names = {
+	Akizane Atsumoto
+	Kanezane Kinsue Kanetaka Konoe Kujo Kanemoto Korefusa Kanetsugu Kanetsune 
+	Fusazane Fumimaro  
+	Hisamichi Hisatsugu Hisatada Haruyoshi Harutaka
+	Iehira Iehiro Iehisa Iemoto Iezane 
+	Masaie Michitsugu Motohira Motohiro Munemoto Morotaka Mitsumoto Mochimichi
+	Morotada Morotsugu Moroyoshi Motohiro Motonori Munehira 
+	Nobuhiro Nobutada Nagayoshi Nakafumi Nakamaro Nakayama Nijo Narinobu 
+	Sakihisa 
+	Tadafusa Tadahiro Tadatsugu Taneie Tsunehira Tsunehiro Tsunetada 
+	Uchisaki 
+	Yoritsugu Yasumichi Yoshimoto Yoshitada Yoshizane Yoshiko
+}
+
+ship_names = {
+	"Akizane Maru" "Atsumoto Maru"
+	"Kanezane Maru" "Kinsue Maru" "Kanetaka Maru" "Konoe Maru" "Kujo Maru" "Kanemoto Maru" "Korefusa Maru" "Kanetsugu Maru" "Kanetsune Maru"
+	"Fusazane Maru" "Fumimaro Maru"
+	"Hisamichi Maru" "Hisatsugu Maru" "Hisatada Maru" "Haruyoshi Maru" "Harutaka Maru"
+	"Iehira Maru" "Iehiro Maru" "Iehisa Maru" "Iemoto Maru" "Iezane Maru"
+	"Masaie Maru" "Michitsugu Maru" "Motohira Maru" "Motohiro Maru" "Munemoto Maru" "Morotaka Maru" "Mitsumoto Maru" "Mochimichi Maru"
+	"Morotada Maru" "Morotsugu Maru" "Moroyoshi Maru" "Motohiro Maru" "Motonori Maru" "Munehira Maru" 
+	"Nobuhiro Maru" "Nobutada Maru" "Nagayoshi Maru" "Nakafumi Maru" "Nakamaro Maru" "Nakayama Maru" "Nijo Maru" "Narinobu Maru"
+	"Sakihisa Maru"
+	"Tadafusa Maru" "Tadahiro Maru" "Tadatsugu Maru" "Taneie Maru" "Tsunehira Maru" "Tsunehiro Maru" "Tsunetada Maru"
+	"Uchisaki Maru"
+	"Yoritsugu Maru" "Yasumichi Maru" "Yoshimoto Maru" "Yoshitada Maru" "Yoshizane Maru" "Yoshiko Maru"
+}

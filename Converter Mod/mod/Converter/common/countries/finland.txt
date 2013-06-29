@@ -1,0 +1,116 @@
+#Finland
+
+graphical_culture = latingfx
+
+color = { 182  134  100 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	national_trade_policy
+	military_drill
+	glorious_arms
+	national_bank
+	grand_army
+	cabinet
+	bill_of_rights
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+leader_names = {
+	Adlercreutz Ahlqvist
+	Berg Björn Blom 
+	Cronstedt
+	Dufva
+	Ehrensvärd "von Essen" 
+	Glad
+	Haataja Helander Helin Hiltunen Horn
+	Ilkka Isotalo
+	Järvelä Järnberg
+	Kesäläinen Klingspor Kortelainen Krouvari Kyrö
+	Liljencrantz Länkinen
+	Pentti Pietilä 
+	Rehnskiöld Renner Rokka Rutanen
+	Sakari Sjögren Stålhandske Stoor
+	Tapani Termonen Turunen
+	Wilander
+}
+
+ship_names = {
+	Agricola Aura
+	Borgå "Birger Jarl"
+	Helsingfors Hakkapeliitta
+	Ilmarinen
+	Kullervo Karelen Kymi
+	Lemminkäinen Lapland
+	Nyland
+	Oulu
+	"Per Brahe"
+	Sampo "St. Henrik" Savolax
+	Tavastehus Tavastland
+	Väinämöinen Vasa Viborg Vanda Vuoksi
+	Åbo
+	Österbotten
+}
+
+monarch_names = {
+	"Eerikki #0" = 20
+	"Niklas #0" = 20
+	"Väinämöinen #0" = 20
+	"Aato #0" = 10
+	"Fredrik #0" = 10
+	"Jani #0" = 10
+	"Aleksanteri #0" = 5
+	"Edvard #0" = 5
+	"Jaakko #0" = 5
+	"Juha #0" = 5
+	"Aapeli #0" = 0
+	"Alpertti #0" = 0
+	"Antero #0" = 0
+	"Arvo #0" = 0
+	"Eino #0" = 0
+	"Erno #0" = 0
+	"Heikki #0" = 0
+	"Jooseppi #0" = 0
+	"Jyri #0" = 0
+	"Kaarle #0" = 0
+	"Kristian #0" = 0
+	"Lauri #0" = 0
+	"Mainio #0" = 0
+	"Mikael #0" = 0
+	"Onni #0" = 0
+	"Otso #0" = 0
+	"Paavo #0" = 0
+	"Petteri #0" = 0
+	"Ransu #0" = 0
+	"Reino #0" = 0
+	"Samuli #0" = 0
+	"Taavi #0" = 0
+	"Tauno #0" = 0
+	"Tuomas #0" = 0
+	"Valto #0" = 0
+	"Veli #0" = 0
+	"Vieno #0" = 0
+	"Vilhelmi #0" = 0
+	"Voitto #0" = 0
+}

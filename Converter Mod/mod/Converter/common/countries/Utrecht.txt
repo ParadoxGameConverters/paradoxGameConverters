@@ -1,0 +1,106 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 223  198  64 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	military_drill
+	patron_of_art
+	shrewd_commerce_practise 
+	national_trade_policy
+	cabinet
+	national_bank 
+	smithian_economics
+	scientific_revolution
+	improved_foraging
+	bureaucracy	
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	french_bluecoat
+	french_dragoon
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Frederik #2" = 40
+	"Hendrik #1" = 20
+	"David #0" = 20
+	"Filips #0" = 20
+	"Gijsbert #0" = 20
+	"Rudolf #0" = 20
+	"Engelbert #0" = 10
+	"Johan #5" = 5
+	"Arnold #2" = 5
+	"Boudewijn #2" = 5
+	"Dedrick #2" = 5
+	"Willem #2" = 5
+	"Andries #1" = 5
+	"Floris #1" = 5
+	"Godfried #1" = 5
+	"Jakob #1" = 5
+	"Koenraad #1" = 5
+	"Nikolaas #1" = 5
+	"Adriaan #0" = 0
+	"Alexander #0" = 0
+	"Augustijn #0" = 0
+	"Bartholomeus #0" = 0
+	"Christiaan #0" = 0
+	"Constantijn #0" = 0
+	"Daniël #0" = 0
+	"Dominicus #0" = 0
+	"Fabian #0" = 0
+	"Frans #0" = 0
+	"Gillis #0" = 0
+	"Herman #0" = 0
+	"Ignaas #0" = 0
+	"Ivo #0" = 0
+	"Jurriaan #0" = 0
+	"Luuk #0" = 0
+	"Martijn #0" = 0
+	"Matthijs #0" = 0
+	"Michaël #0" = 0
+	"Sieuwed #0" = 0
+	"Thomas #0" = 0
+	"Valentijn #0" = 0
+}
+
+leader_names = {	
+	"van Aduard" "van Carnbee" "van Coehoorn"
+	"van der Oije" "van Giessenburg" "van Grovestins"
+	"van Schoonheten" "van Steenwijk" "van Welderen"
+	"van Zoelen" Agterberg Bailly Beekmann Bernard
+	Brenninkmeyer Conring Cordewiender Cubes "de Arthuysen" 
+	"de Geer" "de Groot" Edelkoort Elsendoorn Geitenbeek
+	Gildemeester Hartog Kuijper Laan "van Pelt" Leicher
+	Ligteringe Makkink Osti Pylsweert Rekkae Rijke
+	"van Selmont" "van Amerongen"
+}
+
+ship_names = {
+	"Alberik I" Amersfoort
+	"De dom van Utrecht" Duifje
+	Muiden
+	"Sticht van Utrecht"
+	Utrecht
+	Wachter "Wapen van Amersfoort" "Wapen van Utrecht" "Wijk bij Duurstede" Willibrord 
+}
+
+army_names = {
+	"Leger van $PROVINCE$"  }
+
+fleet_names = {  "Vloot van $PROVINCE$" 
+	 }

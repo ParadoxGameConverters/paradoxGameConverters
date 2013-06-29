@@ -1,0 +1,96 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 131  141  142 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	merchant_adventures
+	quest_for_the_new_world
+	battlefield_commisions
+	grand_army
+	engineer_corps
+	espionage
+	national_trade_policy
+	vetting
+	smithian_economics
+}
+
+historical_units = {
+	bardiche_infantry
+	druzhina_cavalry
+	slavic_stradioti
+	eastern_militia
+	muscovite_musketeer
+	muscovite_caracolle
+	muscovite_soldaty
+	muscovite_cossack
+	russian_petrine
+	russian_lancer
+	russian_green_coat
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Aleksandr #2" = 20
+	"Dmitriy #1" = 20
+	"Ivan #0" = 20
+	"Semen #0" = 15
+	"Fyodor #2" = 10
+	"Vasiliy #2" = 10
+	"David #1" = 10
+	"Adrian #0" = 0
+	"Afanasiy #0" = 0
+	"Anatoliy #0" = 0
+	"Arseniy #0" = 0
+	"Daniil #0" = 0
+	"Dorofey #0" = 0
+	"Eduard #0" = 0
+	"Faddey #0" = 0
+	"Feodosiy #0" = 0
+	"Feofil #0" = 0
+	"Ferapont #0" = 0
+	"Foka #0" = 0
+	"Foma #0" = 0
+	"Gavriil #0" = 0
+	"Grigoriy #0" = 0
+	"Igor #0" = 0
+	"Kliment #0" = 0
+	"Mefodiy #0" = 0
+	"Mikhail #0" = 0
+	"Naum #0" = 0
+	"Nikita #0" = 0
+	"Nikolai #0" = 0
+	"Pankrati #0" = 0
+	"Prokhor #0" = 0
+	"Radoslav #0" = 0
+	"Ruslan #0" = 0
+	"Serafim #0" = 0
+	"Sevastian #0" = 0
+	"Stanislav #0" = 0
+	"Timofeiy #0" = 0
+	"Varfolomeiy #0" = 0
+	"Vikentiy #0" = 0
+	"Viktor #0" = 0
+}
+
+leader_names = { 
+	Alabyshe Alenkin Belsky Velikogagin Golygin Dulov Deyev 
+	Zhirovy Zaozersky Zasekin Zubaty Kubensky Kurbsky 
+	Mulozhsky Mortkin Okhlyabinin Pnekov Siseev Sitsky Sontsov
+	Sudsky Temnosiny Troekurov Ukhorsky Ushaty Yukhotsky Shchetinin
+}
+
+ship_names = {
+	Danilov Lyubim Myshkin Petrovskoye Rybinsk Uglich
+	Borok Itolar Karabikha Borisoglebsky Berendeyevo
+	Varegove Tunoshna Kurba Nekouz Pesochnoye Prechistoye
+	Nekrasovskoye Semibratovo
+}

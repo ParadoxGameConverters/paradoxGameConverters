@@ -1,0 +1,101 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 89  140  176 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	revolution_and_counter
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Camilo #0" = 20
+	"Custodio #0" = 20
+	"José #0" = 20
+	"José #0 Miguel" = 20
+	"Simón #0" = 20
+	"Fernando #0" = 15
+	"Francisco #0 de Paula" = 15
+	"José #0 María" = 15
+	"Manuel #0" = 15
+	"Antonio #0" = 10
+	"Jorge Tadeo #0" = 10
+	"José #0 Joaquín" = 10
+	"Liborio #0" = 10
+	"Manuel #0 Benito" = 10
+	"Manuel #0 Bernardo" = 10
+	"Alfredo #0" = 0
+	"Álvaro #0" = 0
+	"Arturo #0" = 0
+	"Blas #0" = 0
+	"Calixto #0" = 0
+	"Carlos #0" = 0
+	"Daniel #0" = 0
+	"Elías #0" = 0
+	"Enrique #0" = 0
+	"Félix #0" = 0
+	"Gerardo #0" = 0
+	"Horacio #0" = 0
+	"Ignacio #0" = 0
+	"Jaime #0" = 0
+	"José #0 Manuel" = 0
+	"Lucio #0" = 0
+	"Marcos #0" = 0
+	"Natalio #0" = 0
+	"Osvaldo #0" = 0
+	"Porfirio #0" = 0
+	"Ramón #0" = 0
+	"Sandalio #0" = 0
+	"Toribio #0" = 0
+	"Vicente #0" = 0
+	"Zacarías #0" = 0
+}
+
+leader_names = {
+	Alcantuz Alfaro Anzoátegui Bello Beltrán Berbeo Betancur Bolívar Carreño Díaz Flores
+	Gaitán Galán "García de Toledo" Gómez "Gutiérrez de Piñeres"
+	Marño Márquez Méndez Michelena Mier "de Miranda" Molina Monagas Monsalve Montúfar
+	Nariño Narvarte O'Baal O'Leary Ortíz Páez Paredo Pastrana Pinilla Pizarro Plata Plaza
+	Roa Rodríguez Rojas Rondón Rosillo Santander Soublette Torres
+	Urbaneja Uribe Vargas Viscardo
+}
+
+
+ship_names = {
+	Antioquia
+	Barranquilla
+	Caldas "Cartegena de Indias"
+	Independiente Indomable Intrepido 
+	"Pedro Gonzalez" Pijao
+	"Rio Hacha"
+	Tayrona
+}

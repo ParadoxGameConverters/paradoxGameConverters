@@ -1,0 +1,92 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 180  137  148 }
+
+historical_ideas = {
+	national_conscripts
+	shrewd_commerce_practise
+	divine_supremacy
+	national_trade_policy
+	military_drill
+	engineer_corps
+	battlefield_commisions
+	merchant_adventures
+	grand_army
+	espionage
+	glorious_arms
+	bureaucracy
+}
+
+historical_units = {
+	african_spearmen
+	bantu_tribal_warfare
+	african_hill_warfare
+	adal_gunpowder_warfare
+	westernized_adal
+	adal_guerilla_warfare
+}
+
+monarch_names = {
+	"Mohammed #0" = 100
+	"Ahmad #0" = 60
+	"Ibrahim #0" = 60
+	"'Ali #0" = 40
+	"Talha #0" = 40
+	"Abd al-Rahman #0" = 20
+	"Umar Din #0" = 20
+	"Barakat Bin Umar #0" = 20
+	"Bat'iah Dël Wanbara #0" = 20
+	"Nur #0" = 20
+	"'Uthman #0" = 20
+	"Nasr #0" = 20
+	"Sa'ad al-Din #0" = 20
+	"Sabr al-Din #0" = 20
+	"Sabir al-Din #0" = 20
+	"Sadiq #0" = 20
+	"Malaq Adam #0" = 20
+	"Hashim #0" = 20
+	"Abdallah #0" = 20
+	"Abu Bakr #0" = 20
+	"Khalaf #0" = 20
+	"Hamid #0" = 20
+	"Yusuf #0" = 20
+	"Kadhafo #0" = 0 
+	"Kadhafo Muhammad #0" = 0 
+	"Aydahis #0" = 0 
+	"Anfari #0" = 0
+	"Aydays #0" = 0
+	"Haqq al-Din #0" = 0
+	"Jamal al-Din #0" = 0
+	"Badlay #0" = 0
+	"Shams al-Din #0" = 0
+	"Hanfadhe #0" = 0
+	"Yahya #0" = 0
+	"Abd al-Shakur #0" = 0
+	"Abd al-Karim #0" = 0
+	"Fakhr al-Din #0" = 0
+	"Mansur #0" = 0
+	"Husayn #0" = 0
+	"Baziwi #0" = 0
+	"Fasil #0" = 0
+}
+
+leader_names = {
+	Tsige
+	Barré
+	Bol
+	Deng
+	Abdelrashid
+	Semer
+	Yagoub
+	Leta
+	Lemn
+	Teka
+}
+
+ship_names = {
+	Aura Awash Asayita Berahle Chifra
+	Dallol Dubti Dulecha Elidar Ewa Gewane
+	Koneba Mille Semera Simurobi Yalo
+}

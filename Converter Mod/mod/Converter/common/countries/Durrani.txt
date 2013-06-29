@@ -1,0 +1,70 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 102  128  52 } 
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	durrani_swivel
+	durrani_rifled_musketeer
+	durrani_dragoon
+}
+
+monarch_names = {
+	"Mir Ways #0" = 20
+	"Humayun #0" = 20
+	"Ahmad #0" = 30
+	"Timur #0" = 20
+	"Shoja al-Mulk #0" = 10
+	"Muhammad #0" = 20
+	"Shoja #0" = 20
+	"Fath Jang #0" = 20
+	"Shahpur #0" = 20
+	"Zaman #0" = 20
+	"Mahmud #0" = 20
+	"Ayub #0" = 20
+}
+
+leader_names = {
+	Hotaki
+	Taraki
+	Amin
+	Karmal
+	Najibullah
+	Akhund
+	Rahman
+	Ghazi
+	Ahmad
+	Qadir
+}
+
+ship_names = {
+	Arghandab Khash Farah Harut Harirud
+	Murghab Balkh Kowkcheh Kabol Zhob
+	Kech Dasht Hingol
+}

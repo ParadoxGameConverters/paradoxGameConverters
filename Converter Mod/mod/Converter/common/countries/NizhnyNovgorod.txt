@@ -1,0 +1,109 @@
+#Nizhny Novgorod
+
+graphical_culture = easterngfx
+
+color = { 176  72  77 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	military_drill
+	battlefield_commisions
+	quest_for_the_new_world
+	national_trade_policy
+	regimental_system
+	engineer_corps
+	grand_army
+	grand_navy
+	glorious_arms
+	excellent_shipwrights
+}
+
+historical_units = {
+	bardiche_infantry
+	druzhina_cavalry
+	slavic_stradioti
+	eastern_militia
+	muscovite_musketeer
+	muscovite_caracolle
+	muscovite_soldaty
+	muscovite_cossack
+	russian_petrine
+	russian_lancer
+	russian_green_coat
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+leader_names = {
+	Apraksin
+	Bagration "Barclay de Tolly" Bibikoff Bodisco Boruffsin
+	Golitzin
+	Kaibula Kamenski Kolzoff
+	Mensjikov Mustislavski
+	"Ostermann Tolstoy"
+	Paletskij
+	Rajevski
+	Schuvalov Sjeremetjev Sjtjenjatvev
+	Tiesenhusen
+	Vasiljevitj "von Buxhoevden" "von Knorring" "von Lascy"
+}
+
+monarch_names = {
+	"Konstantin #1" = 40
+	"Dmitry #1" = 40
+	"Vasily #1" = 30
+	"Iurii #0" = 4
+	"Sviatoslav #0" = 1
+	"Rostislav #0" = 1
+	"Davyd #0" = 4
+	"Igor #0" = 1
+	"Fedor #0" = 4
+	"Ivan #0" = 4
+	"Dmitriy #0" = 4
+	"Andrei #0" = 4
+	"Vladimir #0" = 4
+	"Semen #0" = 2
+	"Boris #0" = 2
+	"Afanasiy #0" = 0
+	"Akim #0" = 0
+	"Aleksandr #0" = 0
+	"Alexei #0" = 0
+	"Anatoliy #0" = 0
+	"Arkadiy #0" = 0
+	"Daniil #0" = 0
+	"Dorofey #0" = 0
+	"Feodosiy #0" = 0
+	"Feofilakt #0" = 0
+	"Gavriil #0" = 0
+	"Innokentiy #0" = 0
+	"Iosif #0" = 0
+	"Lavrentiy #0" = 0
+	"Makariy #0" = 0
+	"Matveiy #0" = 0
+	"Mikhail #0" = 0
+	"Nazariy #0" = 0
+	"Nikifor #0" = 0
+	"Oleg #0" = 0
+	"Onisim #0" = 0
+	"Pavel #0" = 0
+	"Prokopiy #0" = 0
+	"Pyotr #0" = 0
+	"Radomir #0" = 0
+	"Saveliy #0" = 0
+	"Sergei #0" = 0
+	"Terentiy #0" = 0
+	"Valeriy #0" = 0
+	"Yakim #0" = 0
+	"Yevgeniy #0" = 0
+}
+
+ship_names = {
+	"Dmitri Donskoi" "Konstantin I" "Suzdal" "Nizhny Novgorod" 
+	Rurik "Ivan Kalita" Moscha Volga Schorna Coluna
+	Cortiza Mosnisk Olescho Piersek Troitzkoy Wolok
+	Klin Iausa
+}

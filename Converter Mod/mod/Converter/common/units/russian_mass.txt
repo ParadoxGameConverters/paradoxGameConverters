@@ -1,0 +1,12 @@
+# Russian Mass
+
+type = infantry
+unit_type = eastern
+
+maneuver = 1
+offensive_morale = 10
+defensive_morale = 10
+offensive_fire = 7
+defensive_fire = 7
+offensive_shock = 9
+defensive_shock = 9

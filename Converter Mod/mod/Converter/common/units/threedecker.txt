@@ -1,0 +1,6 @@
+#Three-Decker
+type = big_ship
+
+hull_size = 60
+base_cannons = 120
+sail_speed = 5

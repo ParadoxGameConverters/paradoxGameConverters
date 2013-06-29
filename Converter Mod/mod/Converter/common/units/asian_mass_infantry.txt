@@ -1,0 +1,12 @@
+# Asian Mass Infantry
+
+type = infantry
+unit_type = chinese
+
+maneuver = 1
+offensive_morale = 4
+defensive_morale = 3	
+offensive_fire = 4
+defensive_fire = 2
+offensive_shock = 2
+defensive_shock = 1

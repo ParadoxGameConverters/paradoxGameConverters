@@ -1,0 +1,105 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 146  155  156}
+
+historical_ideas = {
+	shrewd_commerce_practise
+	merchant_adventures
+	patron_of_art
+	military_drill
+	national_bank
+	national_conscripts
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	bureaucracy
+	engineer_corps
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Johann Friedrich #0" = 40
+	"Wilhelm #3" = 20
+	"Friedrich #2" = 20
+	"Ernst #0" = 20
+	"Johann #0" = 20
+	"Johann Ernst #0" = 20
+	"Balthasar #0" = 20
+	"Friedrich Wilhelm #0" = 15
+	"Albrecht #4" = 10
+	"Wilhelm Ernst #0" = 10
+	"Wolfgang #0" = 10
+	"Adolf #0" = 0
+	"Alfred #0" = 0
+	"Andreas #0" = 0
+	"Anton #0" = 0
+	"Bruno #0" = 0
+	"Burkhard #0" = 0
+	"Christian #0" = 0
+	"Christoph #0" = 0
+	"Dietrich #0" = 0
+	"Ekkehardt #0" = 0
+	"Günther #0" = 0
+	"Harmann #0" = 0
+	"Helmfried #0" = 0
+	"Hermann #0" = 0
+	"Joachim #0" = 0
+	"Kajetan #0" = 0
+	"Konrad #0" = 0
+	"Lambert #0" = 0
+	"Lukas #0" = 0
+	"Marius #0" = 0
+	"Michael #0" = 0
+	"Reimund #0" = 0
+	"Otto #0" = 0
+	"Reimund #0" = 0
+	"Rudolf #0" = 0
+	"Thomas #0" = 0
+	"Ulrich #0" = 0
+	"Wenzel #0" = 0
+	"Wilfried #0" = 0
+	"Wolfram #0" = 0
+}
+
+leader_names = {
+	Söll Langheinrich Burgberg
+	Schmidt Bohn Möser Jauch
+	Bär Berndt Blochberger
+	Brosius Eisenschmid Hofmann
+	Gäbelein Grieser Grimm
+	Horn Meier Meisgeier Oswald
+	Rank Rauh Ritter Schilling
+	Schreuser Taut Brendelin 
+	Trögel Becher Eisenschmid 
+}
+
+ship_names = {
+	Marbod Katwalda "König Bisinus" "König Baderich"
+	"König Herminafried" "König Berthachar" "Herzog Radulf"
+	"Herzog Heden" "Markgraf Ekkehard I"
+	"Landgraf Hermann" "Heinrich Raspe"
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

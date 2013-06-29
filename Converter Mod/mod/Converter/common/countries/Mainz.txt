@@ -1,0 +1,100 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 178  145  87 }
+
+historical_ideas = {
+	church_attendance_duty
+	merchant_adventures
+	patron_of_art
+	military_drill
+	national_bank
+	national_conscripts
+	national_trade_policy
+	ecumenism
+	cabinet
+	smithian_economics
+	engineer_corps
+	battlefield_commisions
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Albrecht #1" = 40
+	"Konrad #2" = 20
+	"Adolf #1" = 20
+	"Johann #1" = 20
+	"Anselm Franz #0" = 20
+	"Anselm Kasimir #0" = 20
+	"Berthold #0" = 20
+	"Damian Hartrad #0" = 20
+	"Daniel Brendel #0" = 20
+	"Dieter #0" = 20
+	"Dietrich #0" = 20
+	"Emmerich Joseph #0" = 20
+	"Franz Ludwig #0" = 20
+	"Friedrich Karl Joseph #0" = 20
+	"Georg Friedrich #0" = 20
+	"Jakob #0" = 20
+	"Johann Adam #0" = 20
+	"Johann Friedrich Karl #0" = 20
+	"Johann Philipp #0" = 20
+	"Johann Schweikhard #0" = 20
+	"Karl Heinrich #0" = 20
+	"Karl Theodor #0" = 20
+	"Lothar Franz #0" = 20
+	"Lothar Friedrich #0" = 20
+	"Philipp Karl #0" = 20
+	"Sebastian #0" = 20
+	"Uriel #0" = 20
+	"Wolfgang #0" = 20
+	"Heinrich #3" = 10
+	"Ludwig #1" = 15
+	"Matthias #1" = 15
+	"Peter #1" = 15
+	"Christian #3" = 10
+	"Siegfried #3" = 10
+	"Gerhard #2" = 10
+	"Werner #2" = 10
+	"Gottfried #0" = 0
+	"Hieronymus #0" = 0
+	"Markus #0" = 0
+	"Raphael #0" = 0
+}
+
+leader_names = { 
+	Alfter Allendorf Assmann Barth Becker Betz
+	Bopp Bornschlegel Dörrenbecher Dude Fust Eins
+	Göhler Grob Haas Heidelberger Ickstadt Lawall
+	Pittschaft Schmitt Schoeneberger Storck Volz
+}
+
+ship_names = {
+	"St. Theonest" "St. Georg" "St. Peter"
+	Udenmünster "St. Christoph" "St. Lambert"
+	"St. Quintin" "St. Maria" "St. Johannes"
+	"St. Emmeran" "St. Ignaz" Hagenmünster
+	"St. Aureus" "St. Nicomedes" "St. Alban"
+}
+
+army_names = {
+	"Erzbischofliche Garde" "Armee von $PROVINCE$" 
+}

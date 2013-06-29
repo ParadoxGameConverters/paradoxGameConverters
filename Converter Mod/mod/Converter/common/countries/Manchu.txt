@@ -1,0 +1,134 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 165  132  57 }
+
+historical_ideas = {
+	national_conscripts
+	espionage
+	military_drill
+	national_trade_policy
+	patron_of_art
+	grand_army
+	engineer_corps
+	battlefield_commisions
+	glorious_arms
+	deus_vult
+	cabinet
+}
+
+historical_units = {
+	chinese_longspear
+	eastern_bow
+	chinese_footsoldier
+	chinese_steppe
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	manchu_banner
+	han_banner
+	asian_musketeer
+	chinese_dragoon
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+	reformed_manchu_rifle
+}
+
+monarch_names = {
+	"Taizu #0" = 40 		#Special exception made because his name is so famous
+	"Tolo #0" = 20
+	"Sibeoci Fiyanggu #0" = 20
+	"Fuman #0" = 20
+	"Giocangga #0" = 20
+	"Taksi #0" = 20
+	"Huang Taiji #0" = 20
+	"Shunzhi #0" = 20
+	"Kangxi #0" = 20
+	"Yangzheng #0" = 20
+	"Qianlong #0" = 20
+	"Jiaqing #0" = 20
+	"Daoguang #0" = 20
+	"Cungsan #0" = 20
+	"Mongke Temur #0" = 20
+	"Fanca #0" = 10
+	"Dorgon #0" = 10
+	"Hoogle #0" = 10
+	"Yinzhi #0" = 10
+	"Yinreng #0" = 10
+	"Yinti #0" = 10
+	"Daisan #0" = 5
+	"Abatai #0" = 5
+	"Ajige #0" = 5
+	"Dodo #0" = 5
+	"Yinxiang #0" = 5
+	"Yinsi #0" = 5
+	"Yintang #0" = 5
+	"Hongshi #0" = 5
+	"Hongzhou #0" = 5
+	"Yongqi #0" = 5
+	"Hejing #0" = -5
+	"Hejia #0" = -5
+	"Hexiao #0" = -5
+	"Zhuangjing #0" = -5
+	"Bukuri Yongson #1" = 1
+	"Akjan #0" = 0
+	"Ayan #0" = 0
+	"Baohu #0" = 0
+	"Chengjun #0" = 0
+	"Dorgide #0" = 0
+	"Eje #0" = 0
+	"Encehen #0" = 0
+	"Fisin #0" = 0
+	"Fulu #0" = 0
+	"Ganyong #0" = 0
+	"Ganzhan #0" = 0
+	"Hurong #0" = 0
+	"Jabsan #0" = 0
+	"Jakdan #0" = 0
+	"Leli #0" = 0
+	"Liyi #0" = 0
+	"Lung #0" = 0
+	"Mergen #0" = 0
+	"Muduri #0" = 0
+	"Mujin #0" = 0
+	"Oori #0" = 0
+	"Radi #0" = 0
+	"Talman #0" = 0
+	"Wehe #0" = 0
+	"Yelu #0" = 0
+	"Yongyi #0" = 0
+	"Zhanhung #0" = 0
+	"Zhenghu #0" = 0
+	"Zhengrong #0" = 0
+	"Zhongcheng #0" = 0
+	"Zhongchun #0" = 0
+	"Zhongho #0" = 0
+	"Zhonghu #0" = 0
+	"Zhonghung #0" = 0
+	"Zongqian #0" = 0
+	"Zhongxian #0" = 0
+	"Zhongyong #0" = 0
+	"Zhongyu #0" = 0
+}
+
+leader_names = {
+	Nurhaci
+	Xi
+	Ji
+	Zhengzhi
+	Deyi
+	Guozho
+	Zhifang
+	Alantai
+	Yuanwen
+	Dian
+	Folun
+	Tianfu
+}
+
+ship_names = {
+	"Aisin Gioro" Niuhuru Yehenala Heseri
+	Uya Waliuha Janggiya Guwalgiya Tunggiya
+	Magiya Hata Ula Huifa Haixi
+}

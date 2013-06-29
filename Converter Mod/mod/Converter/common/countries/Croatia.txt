@@ -1,0 +1,110 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 174  227  95 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	military_drill
+	grand_army
+	espionage
+	glorious_arms
+	engineer_corps 
+	battlefield_commisions
+	shrewd_commerce_practise
+	national_trade_policy
+	patron_of_art
+	cabinet
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Kresimir #4" = 80
+	"Stjepan #2" = 40
+	"Almos #1" = 20
+	"Dimitrije Zvonimir #1" = 20
+	"Trpimir #2" = 15
+	"Goislav #1" = 15
+	"Helena #1" = -15
+	"Slavic #1" = 15
+	"Svetoslav #1" = 15
+	"Miroslav #1" = 10
+	"Mutimir #1" = 10
+	"Tomislav #1" = 10
+	"Caspar #5" = 5
+	"Ladislav #3" = 5
+	"Karlo #2" = 5
+	"Andrej #1" = 5
+	"Luj #1" = 5
+	"Pero #1" = 5
+	"Vladislav #1" = 5
+	"Vjenceslav #1" = 5
+	"Aleksandar #0" = 0
+	"Dragutin #0" = 0
+	"Fauszty #0" = 0
+	"Franjo #0" = 0
+	"Gavrilo #0" = 0
+	"Ivan #0" = 0
+	"Josip #0" = 0
+	"Juraj #0" = 0
+	"Luka #0" = 0
+	"Matija #0" = 0
+	"Marko #0" = 0
+	"Mihajlo #0" = 0
+	"Milan #0" = 0
+	"Mirko #0" = 0
+	"Nenad #0" = 0
+	"Nikola #0" = 0
+	"Slavko #0" = 0
+	"Toma #0" = 0
+	"Vladko #0" = 0
+	"Zvonomir #0" = 0
+}
+
+leader_names = {
+	Blagai Bot Buzimski
+	Celjski Cesnegic Coronini Crnkovic 
+	Derencin Draškovic
+	Eltz
+	Frankopan
+	Gorjanski 
+	Horvat
+	Kaniski Krbavski 
+	Lackovic 
+	Radic 
+	Subic
+	Talovac
+	Zrinski
+}
+
+ship_names = {
+	Cres
+	"Dugi Otok"
+	Goli
+	Krl
+	Pag Plavnik
+	Susak "Sveti Grgur"
+	Tijat
+	Unije
+	"Vele Srankane"
+	Zlarin Zmajan
+}

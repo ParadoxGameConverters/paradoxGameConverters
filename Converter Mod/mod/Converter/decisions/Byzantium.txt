@@ -1,0 +1,55 @@
+
+country_decisions = {
+	reestablish_the_theme_system = {
+	
+		potential = {
+			tag = BYZ
+			NOT = { has_country_modifier = the_theme_system }
+		}
+		allow = {
+			owns = 149 # Edirne
+			owns = 316 # Bithynia
+			owns = 317 # Bursa
+			owns = 318 # Smyrna
+			owns = 319 # Antalya
+			owns = 322 # Anatolia
+			owns = 323 # Konya
+			owns = 324 # Karaman
+			owns = 325 # Kastamon
+			owns = 326 # Angora
+			owns = 328 # Sinope
+			owns = 329 # Sivas
+			owns = 330 # Trebizon
+			owns = 327 # Adana
+			owns = 1846 # Yazgod
+			owns = 1848 # Hamid
+		}
+		effect = {
+			149 = { change_province_name = Adrianople  rename_capital = Adrianople }
+			316 = { change_province_name = Optimatoi }
+			317 = { change_province_name = Opsikion  rename_capital = Nicaea }
+			318 = { change_province_name = Samos  rename_capital = Smyrna }
+			319 = { change_province_name = Kibyrrhaiotai rename_capital = Attaleia }
+			322 = { change_province_name = Anatolikon }
+			323 = { change_province_name = Iconium  rename_capital = Iconium }
+			324 = { change_province_name = Seleukeia  rename_capital = Seleucea }
+			325 = { change_province_name = Paphlagonia  rename_capital = Amastris }
+			326 = { change_province_name = Kappadokia rename_capital = Podandus }
+			328 = { change_province_name = Armeniakon }
+			329 = { change_province_name = Sebasteia  rename_capital = Sebastea }
+			330 = { change_province_name = Chaldia  rename_capital = Trapezus }
+			327 = { change_province_name = Cilicia  rename_capital = Tarsus }
+			1846 = { change_province_name = Boukellarion  rename_capital = Ancyra }
+			1848 = { change_province_name = Thrakesion  rename_capital = Choani }
+			add_country_modifier = {
+				name = "the_theme_system"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	
+}

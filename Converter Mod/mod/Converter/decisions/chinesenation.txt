@@ -1,0 +1,27 @@
+country_decisions = {
+
+	chinese_nation = {
+		potential = {
+			tag = MNG
+			year = 1644
+			NOT = { exists = MCH }
+		}
+		allow = {
+			owns = 1816			# Beijing
+			is_core = 1816		# Beijing
+			war = no
+		}
+		effect = {
+			ming_china = { add_core = MCH }
+			random_owned = { base_tax = 1 }
+			centralization_decentralization = -1
+			capital = 1816		# Beijing
+			prestige = 0.02
+			government = despotic_monarchy
+			change_tag = MCH
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

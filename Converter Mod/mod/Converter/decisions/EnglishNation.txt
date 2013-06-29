@@ -6,9 +6,11 @@ country_decisions = {
 			NOT = { exists = GBR }
 			NOT = { tag = HRE }
 			NOT = { tag = PAP }
-			primary_culture = english
-			culture_group = west_germanic
-			culture_group = scandinavian
+			OR = {
+				primary_culture = english
+				culture_group = west_germanic
+				culture_group = scandinavian
+			}
 		}
 		allow = 
 		{

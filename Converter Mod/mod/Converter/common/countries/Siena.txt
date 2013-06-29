@@ -1,0 +1,112 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 165  171  115 }
+
+historical_ideas = {
+	patron_of_art
+	merchant_adventures
+	shrewd_commerce_practise
+	national_trade_policy
+	national_bank
+	national_conscripts
+	military_drill
+	engineer_corps 
+	smithian_economics
+	scientific_revolution
+	espionage
+	battlefield_commisions
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Borghese #0" = 20
+	"Cesare #0" = 20
+	"Pandolfo #0" = 20
+	"Rafaello #0" = 20
+	"Francesco #0" = 20
+	"Fabio #0" = 20
+	"Gian Galeazzo #0" = 20
+	"Giovanni Maria #0" = 20
+	"Carlo #2" = 15
+	"Azzone #0" = 15
+	"Filippo Maria #0" = 15
+	"Gaspare #0" = 15
+	"Adriano #0" = 0
+	"Alessio #0" = 0
+	"Baldovino #0" = 0
+	"Beniamino #0" = 0
+	"Biagio #0" = 0
+	"Constantino #0" = 0
+	"Damiano #0" = 0
+	"Danilo #0" = 0
+	"Eustachio #0" = 0
+	"Evangelista #0" = 0
+	"Fortunato #0" = 0
+	"Gennaro #0" = 0
+	"Gianpaolo #0" = 0
+	"Giovanni #0" = 0
+	"Giustino #0" = 0
+	"Innocenzo #0" = 0
+	"Marco #0" = 0
+	"Mauro #0" = 0
+	"Orfeo #0" = 0
+	"Pasquale #0" = 0
+	"Rinaldo #0" = 0
+	"Roberto #0" = 0
+	"Sergio #0" = 0
+	"Severino #0" = 0
+	"Ugo #0" = 0
+	"Valerio #0" = 0
+	"Vincenzo #0" = 0
+	"Vitale #0" = 0
+}
+
+leader_names = {
+        Accarigi Alighieri Amelia Barone Barzagli Borghese Borgia
+        Castro Cecchereni Compagnoni Damiani "Di Stefano"
+	Fossombroni Galilei Gallo Gentile "Golia di Siena" Griccioli
+	Grosso Guerra Idoni Labriola Nardi Neri Oddo Orlando Palumbo
+	Pannocchieschi Petrucci Pianella Piccolomini "del Piero" Pirlo "da Porcari"
+	Quercegrossa Riario "de Rossi" Salimbeni "da Sangallo" Segni "da Staggia"
+	Testa Torricelli Uccello Vagliagli Visconti Vitali Viviani Zaccardo  Zeti
+}
+
+ship_names = {
+	"Ambrogio Lorenzetti" Asciano
+	"Bartolomeo Guidi" "Bonaguida Lucari"
+	"Carlo IV" "Castelnuovo Berardenga" Chianti  Costalpino "Crete Senesi"
+	Donatello "Duccio di Buoninsegna" 
+	Elsa
+	"fiumi Arbia" "Francesco di Rinaldo"
+	"Ghibellini" "Giovanni di Balduccio"
+	"Isola d'Arbia" 
+	Merse "Minuccio di Rinaldo" "Misser santo Micchele arcangelo" Montagnola
+	Montaperti Monteriggioni "Monteroni d'Arbia"
+	"Orlando Bonsignori"
+	"San Bernardino" "San Domenico" "San Francesco" "San Galgano"
+	"San Giovanni" "San Miniato" "Sant'Ansano" "Santa Caterina"
+	"Santa Maria dei Servi" "Santissima Annunziata" Senius Sovicille 
+	"Taverne d'Arbia" 
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

@@ -1,0 +1,108 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 61  152  180 }
+
+historical_ideas = {
+	national_conscripts
+	shrewd_commerce_practise
+	patron_of_art
+	merchant_adventures
+	national_trade_policy
+	military_drill
+	national_bank
+	cabinet
+	engineer_corps
+	scientific_revolution
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Guidobaldo #0" = 40
+	"Francesco Maria #0" = 40
+	"Federigo #1" = 40
+	"Antonio #0" = 20
+	"Francesco Ubaldo #0" = 20
+	"Guidantonio #0" = 20
+	"Lorenzo #0" = 20
+	"Oddantonio #0" = 20
+	"Caterina #0" = -15
+	"Cesare #0" = 15
+	"Giovanna #0" = -15
+	"Giovanni Maria #0" = 15
+	"Giulio #0" = 15
+	"Federigo Ubaldo #0" = 15
+	"Alessandro #0" = 10
+	"Giovanni Pietro #0" = 10
+	"Girolamo #0" = 10
+	"Lucrezia #0" = -10
+	"Guido #1" = 5
+	"Aldo #0" = 0
+	"Alfonso #0" = 0
+	"Baldovino #0" = 0
+	"Cirillo #0" = 0
+	"Cosimo #0" = 0
+	"Damiano #0" = 0
+	"Egidio #0" = 0
+	"Franco #0" = 0
+	"Giambattista #0" = 0
+	"Giuseppe #0" = 0
+	"Ippolito #0" = 0
+	"Leandro #0" = 0
+	"Marzio #0" = 0
+	"Ovidio #0" = 0
+	"Paolo #0" = 0
+	"Pietro #0" = 0
+	"Prospero #0" = 0
+	"Rafaello #0" = 0
+	"Scipione #0" = 0
+	"Teodosio #0" = 0
+	"Vittorio #0" = 0
+}
+
+leader_names = {
+        Albani Aldobrandini Altieri Barberini Barbo Boncompagni
+        Borghese Borgia Braschi "di Campofregoso" Carafa Castagna
+        Cervini Chiaramonti Chigi Colonna Condulmeri Conti Corsini Cybo
+	Doria-Landi Doria-Pamphili "di Farnese" "Gaetani dell'Aquila"
+	Gangagnelli Ghislieri Gonzaga Lambertini Lante Ludovisi "di Medici"
+	Melzi "Melzi de Rimini" "del Monte" "di Montefeltro" Odescalchi Orsini
+	Ottoboni Pallavicino Pamphili Parentucelli Peretti Piccolomini Pignatelli
+	Prignano Rezzonico Rospigliosi "della Rovere" Sfondrati "da Varano"
+}
+
+ship_names = {
+	Acqualagna Auditore 
+	Colbordolo Colonna
+	Federico Fermignano Fossombrone  
+	ghibellini "Giordano Orsini" "Giovanni Santi"
+	"Isola del Piano" 
+	Lunano 
+	Mondaino Montefeltro 
+	Oddantonio Orsini 
+	Peglio "Piero della Francesca"
+	"San Crescentino" "Sant'Angelo in Vado" 
+	Tavoleto 
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

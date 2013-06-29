@@ -1,0 +1,110 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 121  162  109 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	cabinet
+	national_bank
+	press_gangs
+	smithian_economics
+	scientific_revolution
+	glorious_arms
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_longbow
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+ship_names = {
+        Amberry Amounderness
+        Blackburn Bowland
+        Chester
+        Delamere Deva "Duke of Lancaster"
+        Furness Fylde
+        "Henry of Lancaster" Heysham Hornby
+        Irwell
+        "John o' Gaunt"
+        "Lancaster Castle" Lancastrian Leasowe Leyland Liverpool Lonsdale Lune
+        Makerfield Manchester Manxman Mersey "Morecambe Bay"
+        Northwestern
+        Pendle Pennine Preston
+        "Red Rose" Ribble "River Dee"
+        Salford Stopfordian
+        Trafford 
+        "West Derby" Wirral Wyre
+}
+
+monarch_names = {
+	"Charles #0" = 80
+	"Henry #0" = 60
+	"Edmund #0" = 20
+	"Lewis #0" = 20
+	"James #0" = 20
+	"John #0" = 20
+	"Esmé #0" = 10
+	"George #0" = 10
+	"Thomas #0" = 10
+	"Ashton #0" = 0
+	"Bruce #0" = 0
+	"Clarence #0" = 0
+	"Curtis #0" = 0
+	"Darrell #0" = 0
+	"Edgar #0" = 0
+	"Edward #0" = 0
+	"Fulk #0" = 0
+	"Gabriel #0" = 0
+	"Harold #0" = 0
+	"Hector #0" = 0
+	"Jason #0" = 0
+	"Jasper #0" = 0
+	"Keith #0" = 0
+	"David #0" = 0
+	"Malcolm #0" = 0
+	"Michael #0" = 0
+	"Nathan #0" = 0
+	"Ned #0" = 0
+	"Osborn #0" = 0
+	"Patrick #0" = 0
+	"Randall #0" = 0
+	"Richard #0" = 0
+	"Sean #0" = 0
+	"Timothy #0" = 0
+	"Robert #0" = 0
+	"Victor #0" = 0
+	"Walter #0" = 0
+	"William #0" = 0
+	"Xavier #0" = 0
+	"Zachariah #0" = 0
+}
+
+leader_names = {
+	Beaufirt Bolingbroke
+	Crouchback
+	Dudley
+	Gaunt Grosmont
+	Lancaster
+	Monmouth
+	Percy
+	Sidney
+}

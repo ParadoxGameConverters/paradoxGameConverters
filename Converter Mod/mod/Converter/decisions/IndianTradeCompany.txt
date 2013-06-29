@@ -1,0 +1,46 @@
+country_decisions = {
+	indian_trade_company = {
+
+		potential = {
+			NOT = { tag = NED }
+			NOT = { has_country_flag = trade_company }
+			religion_group = christian
+			capital_scope = {
+				continent = europe
+			}
+			eastasian_trade_ports = {
+				has_discovered = THIS
+			}
+			num_of_ports = 2
+		}
+
+		allow = {
+			naval_tech = 20	
+			eastasian_trade_ports = {
+				owned_by = THIS
+			}
+		}
+
+		effect = {
+			set_country_flag = trade_company
+			treasury = 200
+			merchants = 1
+			random_owned = {
+				limit = {
+					continent = europe
+					port = yes
+					NOT = { has_building = shipyard }
+					is_core = this
+				}
+				add_building = grand_shipyard
+			}
+			add_country_modifier = {
+				name = "india_trade_co"
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

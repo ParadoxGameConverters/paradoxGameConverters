@@ -1,0 +1,117 @@
+graphical_culture = easterngfx
+
+color = { 138  193  231 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	glorious_arms
+	national_trade_policy
+	military_drill
+	cabinet
+	national_bank
+	grand_army
+	engineer_corps
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	bardiche_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	hungarian_hussar
+	polish_musketeer
+	polish_hussar
+	polish_tercio
+	polish_winged_hussar
+	russian_lancer
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Boleslaw #5" = 20
+	"Wladislaw #4" = 20
+	"Kazimiersz #3" = 15
+	"Mieszko #3" = 15
+	"Leszek #2" = 10
+	"Przemyslaw #2" = 10
+	"Waclaw #2" = 10
+        "Adrian #0" = 0
+	"Aleksander #0" = 0
+        "Aleksy #0" = 0
+	"Andrezj #0" = 0
+	"Antoni #0" = 0
+	"Aron #0" = 0
+	"Bartlomiej #0" = 0
+	"Borys #0" = 0
+	"Cezar #0" = 0
+	"Czcibor #0" = 0
+        "Dawid #0" = 0
+	"Eliasz #0" = 0
+	"Iwan #0" = 0
+	"Izaak #0" = 0
+	"Jakub #0" = 0
+	"Józef #0" = 0
+        "Lech #0" = 0
+	"Ludwik #0" = 0
+        "Lukasz #0" = 0
+	"Marek #0" = 0
+	"Mateusz #0" = 0
+	"Michal #0" = 0
+	"Miroslaw #0" = 0
+	"Nikodem #0" = 0
+	"Pawel #0" = 0
+        "Rafal #0" = 0
+	"Samuel #0" = 0
+	"Sebastian #0" = 0
+	"Stanislaw #0" = 0
+	"Szymon #0" = 0
+	"Tadeusz #0" = 0
+	"Tomasz #0" = 0
+	"Zachariasz #0" = 0
+}
+
+leader_names = {
+	Arciszewski
+	Benyowski Bidziñski Branicki
+	Czarniecki Chometowski
+	Dunin Denhoff Drzewicki
+	Grodzicki Górka
+	Houwaldt
+	Jablonowski Jazlowiecki
+	Kurozwecki Kurbski Koniecpolski Kosciuszko Krasinski Kalinowski Korycki Kazanowski Kmita
+	Lubomirski Lisowski Lanckoroñski Leszczyñski Lacki
+	Malski Mniszech Matczyñski Mlodziejowski
+	Ostroróg Olesnicki Opacki Ozarowski Ossolinski
+	Paniewski Patkul Poniatowski Pulaski Przyjemski Piaseczyñski Potocki
+	Rytwiañski Rzewuski
+	Sobieski Sahajdaczny Siemienowicz Sulkowski Stadnicki Sieniawski
+	Tarnowski
+	Wyhowski Wielopolski
+	Zamoyski Zebrzydowski Zaswilichowski Zborowski Zbaraski
+}
+
+ship_names = {
+	"Arka Noego"
+        "Bialy Orzel" Burza "Bialy Lew" "Brzesko-Kujawskie" Belzkie Braclawskie
+        Charitas "Czarny Orzel" "Czarny Kruk" Chelmin'skie Czernichowskie
+        Fortuna
+        Gryf Gwiazda Gnieznien'skie
+	Inoworclawskie
+	"Król Dawid" Kaliskie Krakowskie Kijowskie Kraków
+        Lublin "Latajacy Jelen'" Lwów Leczyckie Lubelskie
+        "Maly Bialy Orzel" Malborskie Mazowieckie
+        Niewrazliwy "Nowy Czarny Orzel"
+        "Prorok Samuel" "Panna Wodna" Plomien' Poznanskie Plockie Podlaskie Podolskie
+	"Rycerz Swiety Jerzy" Rawskie Ruskie
+        Strzelec Suwerenny "Swiety Piotr" Sieradzkie Sandomierskie "Swiety Kazimierz"
+        "Wielkie Slonce" Wodnik Warmin'skie Wolyn'skie Warszawa
+        Zwyciestwo "Zólty Lew"
+}
