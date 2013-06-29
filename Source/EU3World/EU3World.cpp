@@ -1806,7 +1806,7 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 			}
 			else
 			{
-				log("Warning: unknown data while mapping countries.\n");
+				log("Warning: unknown data while mapping countries: %s.\n", rule[j]->getKey().c_str());
 			}
 		}
 

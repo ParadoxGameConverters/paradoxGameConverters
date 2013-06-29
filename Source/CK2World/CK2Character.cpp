@@ -188,7 +188,7 @@ CK2Character::CK2Character(Object* obj, const map<int, CK2Dynasty*>& dynasties, 
 	{
 		hostNum = -1;
 	}
-	locationNum				= -1;
+	locationNum				= -2;
 	capitalString			= "";
 	primaryTitleString		= "";
 	vector<Object*> demesneObj = obj->getValue("demesne");

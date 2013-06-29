@@ -136,7 +136,7 @@ link = { CK2 = k_nubia EU3 = NUB } # Nubia => Funj
 link = { CK2 = k_trinacria EU3 = SIC } # Trinacria => Sicily
 link = { CK2 = k_pechenegs EU3 = CRI } 
 link = { CK2 = k_magyar EU3 = HUN }
-link = { CK2 = k_moravia Eu3 = BOH }
+link = { CK2 = k_moravia EU3 = BOH }
 
 ## Duchies, Holy Orders, and Mercenaries
 # European Duchies
