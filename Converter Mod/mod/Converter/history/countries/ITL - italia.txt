@@ -1,0 +1,13 @@
+government = imperial_government
+aristocracy_plutocracy = -3
+centralization_decentralization = -3
+innovative_narrowminded = 1
+mercantilism_freetrade = -3
+offensive_defensive = 1
+land_naval = 1
+quality_quantity = -1
+serfdom_freesubjects = -2
+technology_group = western
+religion = catholic
+primary_culture = lombard
+capital = 118		# Roma
