@@ -11,5 +11,5 @@ rmdir ReleaseIntermediate /s /q
 msbuild.exe CK2ToEU3.sln /p:Configuration=Release
 cd Release
 del *.pdb
-call "%SEVENZIP_LOC%\7z.exe" a -tzip "..\CK2ToEU3.zip" "*.*" -mx5
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\CK2ToEU3.zip" "*.*" -mx5
 cd ..

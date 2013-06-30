@@ -3,7 +3,10 @@ country_decisions = {
 	reestablish_the_theme_system = {
 	
 		potential = {
-			tag = BYZ
+			OR = {
+				tag = BYZ
+				tag = ROM
+			}
 			NOT = { has_country_modifier = the_theme_system }
 		}
 		allow = {

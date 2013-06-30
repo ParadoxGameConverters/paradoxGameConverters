@@ -16,3 +16,7 @@ Version 0.2
 Version 0.3
 	- Added CK2 empires
 	- Converter adds countries to mod as needed
+
+Version 04
+	- Added ToG empires
+	- Various updates
