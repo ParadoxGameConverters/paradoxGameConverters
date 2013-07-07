@@ -461,3 +461,5 @@ Revision	Log Message
 454		Converter mod fixes
 455		Build and test script automatically zips up test results
 456		More improvements to converter mod
+457		Added tag 0.9 Release for changeset 8c5b60d89cf0
+458		Don't add meaningless localizations

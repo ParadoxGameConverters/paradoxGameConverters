@@ -2150,11 +2150,6 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			if (localisation == localisations.end())
 			{
 				log("\tWarning: could not find CK2 localisation for %s\n", titleString.c_str());
-				string newLocalisation = tag;
-				newLocalisation += ";";
-				newLocalisation += tag;
-				newLocalisation += ";x\n";
-				fprintf(EU3Localisations, newLocalisation.c_str());
 			}
 			else
 			{
@@ -2167,11 +2162,6 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			if (localisation == localisations.end())
 			{
 				log("\tWarning: could not find CK2 localisation for %s\n", (titleString + "_adj").c_str());
-				string newLocalisation = tag;
-				newLocalisation += ";";
-				newLocalisation += tag;
-				newLocalisation += ";x\n";
-				fprintf(EU3Localisations, newLocalisation.c_str());
 			}
 			else
 			{
