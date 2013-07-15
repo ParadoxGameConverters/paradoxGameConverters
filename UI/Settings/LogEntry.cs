@@ -1,4 +1,5 @@
 ﻿using System;
+using Converter.UI.Enums;
 
 namespace Converter.UI.Settings
 {
@@ -7,10 +8,12 @@ namespace Converter.UI.Settings
         private string logText;
         private DateTime logStamp;
 
-        public LogEntry(string text)
+        public LogEntry(string text, LogEntrySeverity severity, LogEntrySource source)
         {
             this.logText = text;
             this.logStamp = DateTime.Now;
+            this.Severity = severity;
+            this.Source = source;
         }
 
         public string LogText
@@ -28,6 +31,10 @@ namespace Converter.UI.Settings
                 return this.logStamp;
             }
         }
+
+        public LogEntrySource Source { get; set; }
+
+        public LogEntrySeverity Severity { get; set; }
 
         public override string ToString()
         {

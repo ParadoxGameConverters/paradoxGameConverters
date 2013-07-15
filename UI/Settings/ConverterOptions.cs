@@ -1,6 +1,8 @@
 ﻿using System.Linq;
 using Converter.UI.Framework;
 using Converter.UI.Providers;
+using System.Text;
+using System.Collections.ObjectModel;
 
 namespace Converter.UI.Settings
 {
@@ -10,8 +12,10 @@ namespace Converter.UI.Settings
         private GameConfiguration targetGame;
         private string sourceSaveGame;
         private string converter;
+        private string outputConfiguration;
         private ConfigurationProvider configurationProvider;
         private bool useConverterMod;
+        private Logger logger;
 
         public ConverterOptions()
         {
@@ -120,6 +124,63 @@ namespace Converter.UI.Settings
             {
                 return this.configurationProvider ?? (this.configurationProvider = new ConfigurationProvider());
             }
+        }
+
+        public Logger Logger
+        {
+            get
+            {
+                return this.logger ?? (this.logger = new Logger());
+            }
+        }
+
+        public string OutputConfiguration
+        {
+            get
+            {
+                return this.outputConfiguration ?? (this.outputConfiguration = this.BuiltOutputString());
+            }
+
+            //set
+            //{
+            //    if (this.outputConfiguration == value)
+            //    {
+            //        return;
+            //    }
+
+            //    this.outputConfiguration = value;
+            //    this.RaisePropertyChanged("OutputConfiguration");
+            //}
+        }
+        
+        private string BuiltOutputString()
+        {
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("configuration =");
+            sb.AppendLine("{");
+
+            // Output source and target game settings
+            sb.AppendLine("\t# Installation paths:");
+            sb.AppendLine("\t" + this.SourceGame.ConfigurationFileDirectoryTagName + " = \"" + this.SourceGame.InstallationPath + "\"");
+            sb.AppendLine("\t" + this.TargetGame.ConfigurationFileDirectoryTagName + " = \"" + this.TargetGame.InstallationPath + "\"");
+            
+            sb.AppendLine();
+            sb.AppendLine("\t# Use converter mod: ");
+            sb.AppendLine("\tuseConverterMod = " + "\"" + (this.UseConverterMod ? "yes" : "no") + "\"");
+
+            // Preferences
+            foreach (PreferenceCategory category in this.ConfigurationProvider.PreferenceCategories)
+            {
+                sb.AppendLine();
+                sb.AppendLine("\t# " + category.FriendlyName);
+                sb.AppendLine();
+
+                category.Preferences.ForEach(p => sb.AppendLine("\t" + p.ToString()));
+            }
+
+            sb.AppendLine("}");
+            return sb.ToString();
         }
     }
 }

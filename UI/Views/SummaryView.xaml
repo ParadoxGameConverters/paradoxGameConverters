@@ -6,12 +6,6 @@
              xmlns:local="clr-namespace:Converter.UI.Framework"
              mc:Ignorable="d" 
              MinWidth="850">
-    <local:ViewModelUserControl.Resources>
-        <Style x:Key="summaryButtonStyle" TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="300"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-        </Style>
-    </local:ViewModelUserControl.Resources>
     
     <Grid VerticalAlignment="Top">
         <Grid.RowDefinitions>
@@ -26,8 +20,6 @@
         </Grid.ColumnDefinitions>
         
         <TextBlock Text="Output configuration file:"/>
-        <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Summary}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto"/>
-        <Button Grid.Row="2" Grid.Column="1" Content="Save configuration file" Style="{StaticResource summaryButtonStyle}" Margin="5, 5, 5, 0" Command="{Binding SaveCommand}"/>
-        <Button Grid.Row="3" Grid.Column="1" Content="Convert" Style="{StaticResource summaryButtonStyle}" Margin="5" Command="{Binding ConvertCommand}"/>
+        <TextBox Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Options.OutputConfiguration, Mode=OneWay}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" VerticalScrollBarVisibility="Auto"/>
     </Grid>
 </local:ViewModelUserControl>

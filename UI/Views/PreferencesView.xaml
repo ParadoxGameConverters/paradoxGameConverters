@@ -8,6 +8,7 @@
              MinWidth="850">
     <local:ViewModelUserControl.Resources>
         <local:EntryTemplateSelector x:Key="entryTemplateSelector"/>
+        <local:PreferenceTemplateSelector x:Key="preferenceTemplateSelector"/>
 
         <Style x:Key="entryBorderStyle" TargetType="{x:Type Border}">
             <!--<Setter Property="BorderBrush" Value="Black"/>
@@ -56,26 +57,14 @@
             <Border Style="{StaticResource entryBorderStyle}">
                 <Grid>
                     <StackPanel>
-                        <TextBlock Text="{TemplateBinding Name}"/>
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
                                  Style="{StaticResource textboxWithDataValidationSupport}"/>
                     </StackPanel>
                 </Grid>
             </Border>
         </DataTemplate>
-        
-        <DataTemplate x:Key="PlainStringEntryTemplate">
-            <Border Style="{StaticResource entryBorderStyle}">
-                <Grid>
-                    <StackPanel>
-                        <TextBlock Text="{TemplateBinding Name}"/>
-                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                    </StackPanel>
-                </Grid>
-            </Border>
-        </DataTemplate>
 
-        <DataTemplate x:Key="PreferenceTemplate">
+        <DataTemplate x:Key="NumericPreferenceTemplate">
             <Border Style="{StaticResource preferenceBorderStyle}" Margin="2">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -90,7 +79,81 @@
 
                     <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0"/>
                     <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" IsEnabled="False" TextWrapping="Wrap"/>
-                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="0" ItemTemplateSelector="{StaticResource entryTemplateSelector}"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource textboxWithDataValidationSupport}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PlainStringPreferenceTemplate">
+            <Border Style="{StaticResource preferenceBorderStyle}" Margin="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0"/>
+                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" IsEnabled="False" TextWrapping="Wrap"/>
+
+                    <StackPanel Grid.Row="1" Grid.Column="0">
+                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PredefinedValuesWithDirectOverrideTemplate">
+            <Border Style="{StaticResource preferenceBorderStyle}" Margin="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0"/>
+                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" IsEnabled="False" TextWrapping="Wrap"/>
+                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="0" ItemTemplate="{StaticResource PredefinedStringEntryTemplate}"/>
+
+                    <StackPanel Grid.Row="2" Grid.Column="0">
+                        <TextBlock Text="{Binding Name}"/>
+                        <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" 
+                                 Style="{StaticResource textboxWithDataValidationSupport}"/>
+                    </StackPanel>
+                </Grid>
+            </Border>
+        </DataTemplate>
+
+        <DataTemplate x:Key="PredefinedItemsPreferenceTemplate">
+            <Border Style="{StaticResource preferenceBorderStyle}" Margin="2">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0"/>
+                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="0" Grid.Column="1" Grid.RowSpan="2" IsEnabled="False" TextWrapping="Wrap"/>
+                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="0" ItemTemplate="{StaticResource PredefinedStringEntryTemplate}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -105,7 +168,7 @@
 
         <TextBlock Grid.Row="0" Text="{Binding Category.FriendlyName}" Style="{StaticResource headerTextBoxStyle}"/>
         <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding Category.Preferences}" ItemTemplate="{StaticResource PreferenceTemplate}"/>
+            <ItemsControl ItemsSource="{Binding Category.Preferences}" ItemTemplateSelector="{StaticResource preferenceTemplateSelector}"/>
         </ScrollViewer>
     </Grid>
 </local:ViewModelUserControl>

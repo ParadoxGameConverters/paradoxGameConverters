@@ -5,6 +5,7 @@ using Converter.UI.Commands;
 using Converter.UI.Framework;
 using Converter.UI.Settings;
 using Microsoft.Win32;
+using Converter.UI.Enums;
 
 namespace Converter.UI.ViewModels
 {
@@ -100,7 +101,7 @@ namespace Converter.UI.ViewModels
                         if (Directory.Exists(steamInstallationPath))
                         {
                             gameConfiguration.InstallationPath = steamInstallationPath;
-                            ////this.LogItems.Add(new LogEntry("Located Steam game files: " + steamInstallationPath));
+                            this.Options.Logger.AddLogEntry(new LogEntry("Located Steam game files: " + steamInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI));
                         }
                     }
                 }
@@ -126,7 +127,7 @@ namespace Converter.UI.ViewModels
                 {
                     string value = regKey.GetValue("Installed").ToString();
                     gameConfiguration.IsInstalled = value.Equals("1");
-                    //this.LogItems.Add(new LogEntry("Found Steam installation of " + gameConfiguration.FriendlyName));
+                    this.Options.Logger.AddLogEntry(new LogEntry("Found Steam installation of " + gameConfiguration.FriendlyName, LogEntrySeverity.Info, LogEntrySource.UI));
                 }
             }
         }        

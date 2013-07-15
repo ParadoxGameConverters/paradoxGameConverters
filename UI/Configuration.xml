@@ -10,7 +10,7 @@
         <steamId>203770</steamId>
         <defaultSaveGameLocationType>UsersFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
-        <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+        <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
       </sourceGameConfiguration>
     </sourceGameConfigurations>
     <!--List of target games-->
@@ -21,7 +21,7 @@
         <steamId>25800</steamId>
         <defaultSaveGameLocationType>Steam</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
-        <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
+        <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
       </targetGameConfiguration>
     </targetGameConfigurations>
   </gameConfigurations>
@@ -36,7 +36,6 @@
             <name>techGroupMethod</name>
             <friendlyName>Tech group method</friendlyName>
             <description>The method by which tech groups are determined</description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>learningRate</name>
@@ -60,7 +59,6 @@
             <name>proxyMultiplierMethod</name>
             <friendlyName>Proxy Multiplier Method</friendlyName>
             <description>is a holding is a ruler's capital, all proxies get a multiplier</description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>ones</name>
@@ -86,7 +84,6 @@
             <name>multipleProvsMethod</name>
             <friendlyName>Multiple provinces merge method</friendlyName>
             <description>if multiple CK2 provinces become one EU3 province, which method used to get all the proxies</description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>sum</name>
@@ -105,7 +102,6 @@
             <name>manpower</name>
             <friendlyName>Manpower</friendlyName>
             <description>Manpower conversion method</description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>historical</name>
@@ -129,8 +125,8 @@
             <name>manpowerblendamount</name>
             <friendlyName>Manpower Blend Amount</friendlyName>
             <description>The amount of manpower that is historical when blended manpower is used</description>
-            <type>Numerical</type>
-            <defaultValue>0.5</defaultValue>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.5</value>
             <minValue>0</minValue>
             <maxValue>1</maxValue>
           </preference>
@@ -138,7 +134,6 @@
             <name>basetax</name>
             <friendlyName>Base tax</friendlyName>
             <description>Base Tax conversion method</description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>historical</name>
@@ -162,8 +157,8 @@
             <name>basetaxblendamount</name>
             <friendlyName>Base Tax Blend Amount</friendlyName>
             <description>the amount of basetax that is historical when blended basetax is used</description>
-            <type>Numerical</type>
-            <defaultValue>0.5</defaultValue>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.5</value>
             <minValue>0</minValue>
             <maxValue>1</maxValue>
           </preference>
@@ -171,8 +166,8 @@
             <name>populationblendamount</name>
             <friendlyName>Population blend amount</friendlyName>
             <description>the amount of population that is historical when blended population is used</description>
-            <type>Numerical</type>
-            <defaultValue>0.9</defaultValue>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.9</value>
             <minValue>0</minValue>
             <maxValue>1</maxValue>
           </preference>
@@ -180,7 +175,6 @@
             <name>population</name>
             <friendlyName>Population</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>historical</name>
@@ -203,15 +197,14 @@
           <preference>
             <name>HRETitle</name>
             <friendlyName>HRE Title</friendlyName>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
             <description></description>
-            <type>PlainString</type>
-            <defaultValue>e_hre</defaultValue>
+            <value>e_hre</value>
           </preference>
           <preference>
             <name>mergeTitles</name>
             <friendlyName>Merge Titles</friendlyName>
             <description>specifies what to do when a single character holds multiple titles at the same tier</description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>never</name>
@@ -235,7 +228,11 @@
             <name>vassalScore</name>
             <friendlyName>Vassal Score</friendlyName>
             <description></description>
-            <type>NumericPredefinedWithOverride</type>
+            <minValue>0</minValue>
+            <maxValue>100000</maxValue>
+            <value>4950</value><!--I would suggest updating this if you change the default option below-->
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <!--<allowDirectOverride>true</allowDirectOverride>--> <!--This element is only necessary when having BOTH a list of pre-defined options and a directly editable value-->
             <entryOptions>
               <entryOption>
                 <name>1800</name>
@@ -256,7 +253,7 @@
                 <name>4950</name>
                 <friendlyName>4950</friendlyName>
                 <description>all vassals are absorbed in EU3, and cores are removed</description>
-                <isDefault>true</isDefault>
+                <isDefault>true</isDefault><!--I would suggest updating the value on the parent preference as well.-->
               </entryOption>
             </entryOptions>
           </preference>
@@ -269,7 +266,6 @@
             <name>advisors</name>
             <friendlyName>Advisors</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -293,7 +289,6 @@
             <name>leaders</name>
             <friendlyName>Leaders</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -317,7 +312,6 @@
             <name>colonists</name>
             <friendlyName>Colonits</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -336,7 +330,6 @@
             <name>merchants</name>
             <friendlyName>Merchants</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -355,7 +348,6 @@
             <name>missionaries</name>
             <friendlyName>Missionaries</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -374,7 +366,6 @@
             <name>inflation</name>
             <friendlyName>Inflation</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -398,7 +389,6 @@
             <name>colonist_size</name>
             <friendlyName>Colonist Size</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -427,7 +417,6 @@
             <name>difficulty</name>
             <friendlyName>Difficulty</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>very easy</name>
@@ -465,7 +454,6 @@
             <name>AI_aggressiveness</name>
             <friendlyName>AI aggressiveness</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>low</name>
@@ -491,7 +479,6 @@
             <name>land_spread</name>
             <friendlyName>Spread of land procinces</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>25</name>
@@ -529,7 +516,6 @@
             <name>sea_spread</name>
             <friendlyName>Spread of sea provinces</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>25</name>
@@ -567,7 +553,6 @@
             <name>spies</name>
             <friendlyName>Spies</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>normal</name>
@@ -587,7 +572,6 @@
             <name>lucky_nations</name>
             <friendlyName>Lucky nations</friendlyName>
             <description></description>
-            <type>PreDefined</type>
             <entryOptions>
               <entryOption>
                 <name>historical</name>

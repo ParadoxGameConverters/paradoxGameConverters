@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Converter.UI.Settings;
 using Microsoft.Win32;
+using Converter.UI.Enums;
 
 namespace Converter.UI.Commands
 {
@@ -26,6 +27,7 @@ namespace Converter.UI.Commands
             if (result == true)
             {
                 this.Options.Converter = dialog.FileName;
+                this.Options.Logger.AddLogEntry(new LogEntry("Converter .exe found at " + this.Options.Converter, LogEntrySeverity.Info, LogEntrySource.UI));
             }
         }
     }

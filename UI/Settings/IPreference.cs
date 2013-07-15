@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Converter.UI.Settings
 {
@@ -7,10 +8,13 @@ namespace Converter.UI.Settings
         string Name { get; set; }
         string FriendlyName { get; set; }
         string Description { get; set; }
-    }
-
-    public interface IPreference<T> : IPreference
-    {
-        IList<PreferenceEntry<T>> Entries { get; }
+        bool HasPreDefinedChoices { get; }
+        bool HasDirectlyEditableValue { get; set; }
+        bool IsNumeric { get; }
+        IList<IPreferenceEntry> Entries { get; }
+        double MinValue { get; set; }
+        double MaxValue { get; set; }
+        string Value { get; set; }
+        IPreferenceEntry SelectedEntry { get; set; }
     }
 }

@@ -89,15 +89,20 @@
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
+    <Compile Include="Enums\AllowDirectUserOverride.cs" />
     <Compile Include="Enums\DefaultSaveGameLocationType.cs" />
+    <Compile Include="Enums\LogEntrySeverity.cs" />
+    <Compile Include="Enums\LogEntrySource.cs" />
     <Compile Include="Factories\PreferenceViewModelFactory.cs" />
     <Compile Include="Framework\EntryTemplateSelector.cs" />
     <Compile Include="Framework\MalformedXMLException.cs" />
     <Compile Include="Framework\MissingRequiredXMLPropertyException.cs" />
+    <Compile Include="Framework\PreferenceTemplateSelector.cs" />
     <Compile Include="Framework\UnParsableDataValueException.cs" />
     <Compile Include="Framework\XMLParseExceptionBase.cs" />
     <Compile Include="Helpers\DiskPermissionHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
+    <Compile Include="Helpers\NumberParserHelper.cs" />
     <Compile Include="Providers\ConfigurationProvider.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
@@ -106,17 +111,17 @@
     <Compile Include="Settings\IPreference.cs" />
     <Compile Include="Settings\IPreferenceEntry.cs" />
     <Compile Include="Settings\LogEntry.cs" />
-    <Compile Include="Settings\NumericPredefinedWithOverridePreferenceEntry.cs" />
-    <Compile Include="Settings\NumericPreferenceEntry.cs" />
-    <Compile Include="Settings\PlainStringPreferenceEntry.cs" />
+    <Compile Include="Settings\Logger.cs" />
     <Compile Include="Settings\Preference.cs" />
     <Compile Include="Settings\PreferenceCategory.cs" />
     <Compile Include="Settings\PreferenceEntry.cs" />
-    <Compile Include="Enums\PreferenceType.cs" />
-    <Compile Include="Settings\PredefinedPreferenceEntry.cs" />
+    <Compile Include="ViewModels\LogViewModel.cs" />
     <Compile Include="ViewModels\PreferencesViewModel.cs" />
     <Compile Include="ViewModels\PathPickerViewModel.cs" />
     <Compile Include="ViewModels\SummaryViewModel.cs" />
+    <Compile Include="Views\LogView.xaml.cs">
+      <DependentUpon>LogView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PreferencesView.xaml.cs">
       <DependentUpon>PreferencesView.xaml</DependentUpon>
     </Compile>
@@ -143,6 +148,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\LogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\PreferencesView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

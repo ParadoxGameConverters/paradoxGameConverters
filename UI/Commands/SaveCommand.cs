@@ -10,16 +10,15 @@ using Converter.UI.Settings;
     using System.IO;
     using Converter.UI.Helpers;
     using System.Windows;
+    using Converter.UI.Enums;
 
     public class SaveCommand : CommandBase
     {
         private const string configurationFileName = "configuration.txt";
-        private string configuration;
 
-        public SaveCommand(ConverterOptions options, string configuration)
+        public SaveCommand(ConverterOptions options)
             : base(options)
         {
-            this.configuration = configuration;
         }
 
         protected override bool OnCanExecute(object parameter)
@@ -50,11 +49,13 @@ using Converter.UI.Settings;
                 // Check permissions
                 if (true)//DiskPermissionHelper.CanWriteFileToFolder(outputPath))
                 {
-                    File.WriteAllText(combinedPath, this.configuration); //TODO: Consider encoding problems
+                    File.WriteAllText(combinedPath, this.Options.OutputConfiguration); //TODO: Consider encoding problems
+                    this.Options.Logger.AddLogEntry(new LogEntry("Configuration file saved correctly!", LogEntrySeverity.Info, LogEntrySource.UI));
                 }
                 else
                 {
                     // No permitted to write to folder, ask user for elevated permission
+                    this.Options.Logger.AddLogEntry(new LogEntry("Failed to save log entry!", LogEntrySeverity.Error, LogEntrySource.UI));
                 }
             }
             catch (Exception e)

@@ -50,7 +50,7 @@
         <TextBlock Text="{Binding Options.SourceGame.FriendlyName}" Grid.Row="1" Style="{StaticResource FolderPathTextBlockStyle}"/>
         <TextBlock Text="{Binding Options.TargetGame.FriendlyName}" Grid.Row="2" Style="{StaticResource FolderPathTextBlockStyle}"/>
         <TextBlock Text="Save game: " Grid.Row="3" Style="{StaticResource FolderPathTextBlockStyle}"/>
-        <TextBlock Text="Converter: " Grid.Row="4" Style="{StaticResource FolderPathTextBlockStyle}"/>
+        <TextBlock Text="Converter location: " Grid.Row="4" Style="{StaticResource FolderPathTextBlockStyle}"/>
         <TextBlock Text="Use converter mod: " Grid.Row="5" Style="{StaticResource FolderPathTextBlockStyle}"/>
 
         <TextBox Name="SourceGamePathTextBox" Text="{Binding Options.SourceGame.InstallationPath, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Style="{StaticResource FolderPathTextBoxStyle}"/>

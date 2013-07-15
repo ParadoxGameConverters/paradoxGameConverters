@@ -8,6 +8,8 @@ using Converter.UI.ViewModels;
 using Converter.UI.Views;
 using System.Windows.Controls;
 using System.Linq;
+using System.Threading;
+using System;
 
 namespace Converter.UI
 {
@@ -24,7 +26,6 @@ namespace Converter.UI
         {
             InitializeComponent();
             this.DataContext = this;
-            this.OnLoad();
         }
 
         #region [ Properties ]
@@ -59,8 +60,12 @@ namespace Converter.UI
 
         #region [ Methods ]
 
-        private void OnLoad()
+        protected override void OnInitialized(EventArgs e)
         {
+            base.OnInitialized(e);
+
+            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+
             this.ConverterOptions = new ConverterOptions();
 
             // Add tabs. The first tab will display the paths tab, and will be selected by default.
@@ -75,7 +80,9 @@ namespace Converter.UI
                 this.Tabs.Add(viewModel);
             }
 
-            this.Tabs.Add(new SummaryViewModel(new SummaryView(), this.ConverterOptions));
+            //this.Tabs.Add(new SummaryViewModel(new SummaryView(), this.ConverterOptions));
+            this.Tabs.Add(new LogViewModel(new LogView(), this.ConverterOptions));
+
             this.tabControl.SelectionChanged += new SelectionChangedEventHandler(tabControl_SelectionChanged);
         }
 

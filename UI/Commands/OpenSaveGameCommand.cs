@@ -1,6 +1,7 @@
 ﻿using System;
 using Converter.UI.Settings;
 using Microsoft.Win32;
+using Converter.UI.Enums;
 
 namespace Converter.UI.Commands
 {
@@ -28,6 +29,7 @@ namespace Converter.UI.Commands
             if (result == true)
             {
                 this.Options.SourceSaveGame = dialog.FileName;
+                this.Options.Logger.AddLogEntry(new LogEntry("Selected savegame " + this.Options.SourceSaveGame, LogEntrySeverity.Info, LogEntrySource.UI));
             }
         }
     }
