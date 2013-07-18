@@ -10,6 +10,8 @@ using System.Windows.Controls;
 using System.Linq;
 using System.Threading;
 using System;
+using System.Globalization;
+using System.Windows.Markup;
 
 namespace Converter.UI
 {
@@ -64,7 +66,8 @@ namespace Converter.UI
         {
             base.OnInitialized(e);
 
-            Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+            //Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             this.ConverterOptions = new ConverterOptions();
 

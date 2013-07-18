@@ -12,17 +12,26 @@ namespace Converter.UI.Commands
     public class ConvertCommand : CommandBase
     {
         private const string configurationFileName = "configuration.txt";
+        private Stopwatch sw;
 
         public ConvertCommand(ConverterOptions options)
             : base(options)
         {
         }
 
+        private Stopwatch Stopwatch
+        {
+            get
+            {
+                return this.sw ?? (this.sw = new Stopwatch());
+            }
+        }
+
         protected override bool OnCanExecute(object parameter)
         {
             var outputPath = Path.GetDirectoryName(this.Options.Converter);
 
-            if (outputPath == null)
+            if (outputPath == null || this.Options.SourceSaveGame == null)
             {
                 return false;
             }
@@ -39,21 +48,6 @@ namespace Converter.UI.Commands
             this.Log("Savegame (" + this.Options.SourceSaveGame + ") has been copied to " + destination + " and as input.ck2", LogEntrySeverity.Info, LogEntrySource.UI);
 
             // Step 2: run the converter
-            //var converterProcessInfo = new ProcessStartInfo
-            //{
-            //    FileName = this.Options.Converter,
-            //    UseShellExecute = false, // According to http://msdn.microsoft.com/en-us/library/system.diagnostics.process.standardoutput.aspx
-            //    RedirectStandardOutput = true // these two properties must be set to true to capture any standard output from the converter.
-            //};
-
-            //using (Process process = Process.Start(converterProcessInfo))
-            //{
-            //    using (StreamReader reader = process.StandardOutput)
-            //    {
-            //        this.log
-            //    }
-            //}
-
             using (var process = new Process())
             {
                 process.StartInfo = new ProcessStartInfo
@@ -68,36 +62,27 @@ namespace Converter.UI.Commands
 
                 process.OutputDataReceived += (sendingProcess, outLine) => this.Log(outLine.Data, LogEntrySeverity.Info, LogEntrySource.Converter);
                 process.ErrorDataReceived += (sendingProcess, outLine) => this.Log(outLine.Data, LogEntrySeverity.Error, LogEntrySource.Converter);
-                process.Exited += new EventHandler(process_Exited);
+                process.Exited += new EventHandler(this.process_Exited);
 
-                this.Log("Starting conversion...", LogEntrySeverity.Info, LogEntrySource.UI);
-                //Thread.Sleep(100);
-
-                process.Start(); 
+                this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI);
                 Thread.Sleep(100);
+
+                this.Stopwatch.Restart();
+                process.Start();
 
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
 
-                int timeout = 100000;
+                //int timeout = 1000000;
 
-                if (process.WaitForExit(timeout))
-                {
-                }
-                else
-                {
-                    process.Kill();
-                    var t = TimeSpan.FromMilliseconds(timeout);
-                    this.Log("Conversion timed out after " + string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", t.Hours, t.Minutes, t.Seconds, t.Milliseconds), LogEntrySeverity.Error, LogEntrySource.UI);
-                }
-
-                
-
-                //var result = process.StandardOutput.ReadToEnd();
-
-                //while (!process.StandardOutput.EndOfStream)
+                //if (process.WaitForExit(timeout))
                 //{
-                //    this.Options.Logger.AddLogEntry(new LogEntry(process.StandardOutput.BeginReadLine(), LogEntrySeverity.Info));
+                //}
+                //else
+                //{
+                //    process.Kill();
+                //    var t = TimeSpan.FromMilliseconds(timeout);
+                //    this.Log("Conversion timed out after " + this.BuildTimeSpanString(t), LogEntrySeverity.Error, LogEntrySource.UI);
                 //}
             }
         }
@@ -105,15 +90,24 @@ namespace Converter.UI.Commands
         private void process_Exited(object sender, EventArgs e)
         {
             var process = sender as Process;
+            this.Stopwatch.Stop();
 
             if (process.ExitCode == 0)
             {
-                this.Log("Conversion complete", LogEntrySeverity.Info, LogEntrySource.UI);
+                this.Log("Conversion complete after " + this.BuildTimeSpanString(this.Stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI);
             }
             else
             {
-                this.Log("Conversion failed", LogEntrySeverity.Error, LogEntrySource.UI);
+                this.Log("Conversion failed after" + this.BuildTimeSpanString(this.Stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI);
             }
+
+            process.CancelOutputRead();
+            process.CancelErrorRead();
+        }
+
+        private string BuildTimeSpanString(TimeSpan timespan)
+        {
+            return string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", timespan.Hours, timespan.Minutes, timespan.Seconds, timespan.Milliseconds);
         }
 
         private void Log(string text, LogEntrySeverity severity, LogEntrySource source)

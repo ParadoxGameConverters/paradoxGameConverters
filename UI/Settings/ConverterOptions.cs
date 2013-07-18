@@ -152,7 +152,21 @@ namespace Converter.UI.Settings
             //    this.RaisePropertyChanged("OutputConfiguration");
             //}
         }
+
+        /// <summary>
+        /// This resets the output configuration text string. 
+        /// TODO: Fix hack.
+        /// <remarks>Essentially a hack in lieu of a more architectural sound way.</remarks>
+        /// </summary>
+        public void InvalidateOutputConfiguration()
+        {
+            this.outputConfiguration = null;
+        }
         
+        /// <summary>
+        /// Constructs the string that will be saved to disk as the config file.
+        /// </summary>
+        /// <returns></returns>
         private string BuiltOutputString()
         {
             StringBuilder sb = new StringBuilder();

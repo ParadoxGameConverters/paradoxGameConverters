@@ -30,6 +30,9 @@ using Converter.UI.Settings;
 
         protected override void OnExecute(object parameter)
         {
+            // Reset configuration setting to make sure it's updated with the latest user choices.
+            this.Options.InvalidateOutputConfiguration();
+
             var outputPath = Path.GetDirectoryName(this.Options.Converter);
 
             //TODO:
@@ -50,20 +53,22 @@ using Converter.UI.Settings;
                 if (true)//DiskPermissionHelper.CanWriteFileToFolder(outputPath))
                 {
                     File.WriteAllText(combinedPath, this.Options.OutputConfiguration); //TODO: Consider encoding problems
-                    this.Options.Logger.AddLogEntry(new LogEntry("Configuration file saved correctly!", LogEntrySeverity.Info, LogEntrySource.UI));
+                    this.Options.Logger.AddLogEntry(new LogEntry("Configuration file saved successfully", LogEntrySeverity.Info, LogEntrySource.UI));
                 }
                 else
                 {
-                    // No permitted to write to folder, ask user for elevated permission
-                    this.Options.Logger.AddLogEntry(new LogEntry("Failed to save log entry!", LogEntrySeverity.Error, LogEntrySource.UI));
                 }
             }
             catch (Exception e)
             {
-                MessageBox.Show("Failed to save configuration file. The error given by the OS was: " + e.Message, 
-                    "Error saving configuration", 
-                    MessageBoxButton.OK, 
-                    MessageBoxImage.Error);
+                // No permitted to write to folder, ask user for elevated permission
+                this.Options.Logger.AddLogEntry(new LogEntry("Failed to save configuration file", LogEntrySeverity.Error, LogEntrySource.UI));
+                this.Options.Logger.AddLogEntry(new LogEntry("Try running this application with administrator permissions", LogEntrySeverity.Error, LogEntrySource.UI));
+
+                //MessageBox.Show("Failed to save configuration file. The error given by the OS was: " + e.Message, 
+                //    "Error saving configuration", 
+                //    MessageBoxButton.OK, 
+                //    MessageBoxImage.Error);
             }
         }
     }

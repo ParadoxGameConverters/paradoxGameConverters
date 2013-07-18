@@ -26,7 +26,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Log:"/>
-        <DataGrid Grid.Row="1" Grid.ColumnSpan="2" 
+        <DataGrid Grid.Row="1" Grid.ColumnSpan="2"
                   ItemsSource="{Binding Options.Logger.LogEntries}" 
                   VerticalAlignment="Stretch" 
                   HorizontalAlignment="Stretch" 
@@ -53,17 +53,17 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Source" Width="60" IsReadOnly="True">
+                <DataGridTemplateColumn Header="Source" Width="70" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Source}" Margin="5, 0, 5, 0"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Text" IsReadOnly="True">
+                <DataGridTemplateColumn Header="Text" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding LogText}" Margin="5, 0, 5, 0"/>
+                            <TextBlock Text="{Binding LogText}" Margin="5, 0, 5, 0" TextWrapping="Wrap"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

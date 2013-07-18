@@ -70,6 +70,16 @@ namespace Converter.UI.ViewModels
 
         #region [ Methods ]
 
+        protected override void OnTabSelected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            // If the converter .exe happens to be in the same directory as the UI, there is no reason to ask the user to find it anyway. 
+            var converterLocation = Path.Combine(Environment.CurrentDirectory, "CK2ToEU3.exe");
+            if (File.Exists(converterLocation))
+            {
+                this.Options.Converter = converterLocation;
+            }
+        }
+
         private void BuildConversionOptions()
         {
             //TODO: Finding installation paths makes little sense if the game isn't installed. Should probably be fixed
