@@ -29,61 +29,46 @@ namespace Converter.UI.Commands
 
         protected override bool OnCanExecute(object parameter)
         {
-            var outputPath = Path.GetDirectoryName(this.Options.Converter);
+            bool converterExists = File.Exists(this.Options.Converter);
+            bool configurationFileExists = File.Exists(Path.Combine(Path.GetDirectoryName(this.Options.Converter), configurationFileName));
+            bool saveGameExists = File.Exists(this.Options.SourceSaveGame);
 
-            if (outputPath == null || this.Options.SourceSaveGame == null)
+            if (converterExists && configurationFileExists && saveGameExists)
             {
-                return false;
+                return true;
             }
-
-            return File.Exists(Path.Combine(outputPath, configurationFileName));
+            
+            return false;
         }
 
         protected override void OnExecute(object parameter)
         {
-            // Step 1: Copy the selected savegame to the working directory
-            var destination = Path.Combine(Path.GetDirectoryName(this.Options.Converter), "input.ck2");
-            File.Copy(this.Options.SourceSaveGame, destination, true);
-
-            this.Log("Savegame (" + this.Options.SourceSaveGame + ") has been copied to " + destination + " and as input.ck2", LogEntrySeverity.Info, LogEntrySource.UI);
-
-            // Step 2: run the converter
             using (var process = new Process())
             {
                 process.StartInfo = new ProcessStartInfo
                 {
                     FileName = this.Options.Converter,
+                    Arguments = "\"" + Path.GetDirectoryName(this.Options.SourceSaveGame) + "\\" + Path.GetFileName(this.Options.SourceSaveGame) + "\"",
                     CreateNoWindow = true,
                     RedirectStandardError = true,
                     RedirectStandardInput = true,
-                    UseShellExecute = false, // According to http://msdn.microsoft.com/en-us/library/system.diagnostics.process.standardoutput.aspx
-                    RedirectStandardOutput = true // these two properties must be set to true to capture any standard output from the converter.
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true
                 };
 
                 process.OutputDataReceived += (sendingProcess, outLine) => this.Log(outLine.Data, LogEntrySeverity.Info, LogEntrySource.Converter);
                 process.ErrorDataReceived += (sendingProcess, outLine) => this.Log(outLine.Data, LogEntrySeverity.Error, LogEntrySource.Converter);
-                process.Exited += new EventHandler(this.process_Exited);
+                process.Exited += this.process_Exited;
 
                 this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI);
                 Thread.Sleep(100);
 
                 this.Stopwatch.Restart();
+                process.EnableRaisingEvents = true;
                 process.Start();
 
                 process.BeginOutputReadLine();
                 process.BeginErrorReadLine();
-
-                //int timeout = 1000000;
-
-                //if (process.WaitForExit(timeout))
-                //{
-                //}
-                //else
-                //{
-                //    process.Kill();
-                //    var t = TimeSpan.FromMilliseconds(timeout);
-                //    this.Log("Conversion timed out after " + this.BuildTimeSpanString(t), LogEntrySeverity.Error, LogEntrySource.UI);
-                //}
             }
         }
 
