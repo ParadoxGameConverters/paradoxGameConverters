@@ -122,7 +122,7 @@ namespace Converter.UI.Settings
         {
             get
             {
-                return this.configurationProvider ?? (this.configurationProvider = new ConfigurationProvider());
+                return this.configurationProvider ?? (this.configurationProvider = new ConfigurationProvider(this));
             }
         }
 

@@ -25,7 +25,7 @@ namespace Converter.UI.Views
             InitializeComponent();
         }
 
-        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        public void ScrollDataGridToEnd()
         {
             var border = VisualTreeHelper.GetChild(this.LogDataGrid, 0) as Decorator;
 

@@ -79,11 +79,49 @@ namespace Converter.UI.Commands
                 if (process.ExitCode == 0)
                 {
                     this.Log("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI);
+                    this.OnSuccessfulConversion();
                 }
                 else
                 {
                     this.Log("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI);
                 }
+            }
+        }
+
+        private void OnSuccessfulConversion()
+        {
+            // Copy the newly created save to the target game output directory.
+            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + "_Converted.eu3";
+            var canOverWrite = false;
+            var expectedOutputDirectoryAndFile = Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName);
+
+            // Don't blindly overwrite any existing saves
+            if (File.Exists(Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName)))
+            {
+                var result = MessageBox.Show("Do you want to overwrite the existing file named " + expectedOutputDirectoryAndFile + "?", "Confirmation Required", MessageBoxButton.YesNo);
+
+                if (result == MessageBoxResult.No)
+                {
+                    this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + Path.Combine(Environment.CurrentDirectory, "output.eu3") 
+                        + "\" to \"" + this.Options.TargetGame.SaveGamePath + "\" to load the converted save.", LogEntrySeverity.Warning, LogEntrySource.UI);
+                    return;
+                }
+
+                // Permission granted, continue
+                canOverWrite = true;
+            }
+
+            try
+            {
+                File.Copy(Path.Combine(Environment.CurrentDirectory, "output.eu3"), expectedOutputDirectoryAndFile, canOverWrite);
+                this.Log(desiredFileName + " has been written to \"" + this.Options.TargetGame.SaveGamePath + "\".", LogEntrySeverity.Info, LogEntrySource.UI);
+
+                File.Delete(Path.Combine(Environment.CurrentDirectory, "output.eu3"));
+                this.Log("Deleted temporary files.", LogEntrySeverity.Info, LogEntrySource.UI);
+            }
+            catch (Exception e)
+            {
+                this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI);
             }
         }
 

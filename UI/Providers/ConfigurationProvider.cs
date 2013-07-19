@@ -21,13 +21,15 @@ namespace Converter.UI.Providers
         private IList<GameConfiguration> sourceGames;
         private IList<GameConfiguration> targetGames;
         private IList<PreferenceCategory> preferenceCategories;
+        private ConverterOptions options;
 
         #endregion
 
         #region [ Constructor ]
 
-        public ConfigurationProvider()
+        public ConfigurationProvider(ConverterOptions options)
         {
+            this.options = options;
         }
 
         #endregion
@@ -131,7 +133,7 @@ namespace Converter.UI.Providers
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " - " + ex.InnerException, "Configuration file error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.options.Logger.AddLogEntry(new LogEntry(ex.Message + " - " + ex.InnerException, LogEntrySeverity.Error, LogEntrySource.UI));
             }
 
             return categories;
@@ -232,7 +234,7 @@ namespace Converter.UI.Providers
                     {
                         if (Directory.Exists(steamInstallationPath))
                         {
-                            //this.LogItems.Add(new LogEntry("Located Steam game files: " + steamInstallationPath));
+                            //this.options.Logger.AddLogEntry(new LogEntry("Located Steam game files: " + steamInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI));
                             return steamInstallationPath;
                         }
                     }

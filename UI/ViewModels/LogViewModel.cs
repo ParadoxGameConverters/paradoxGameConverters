@@ -7,6 +7,8 @@ using Converter.UI.Settings;
 using System.Windows.Input;
 using Converter.UI.Commands;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using Converter.UI.Views;
 
 namespace Converter.UI.ViewModels
 {
@@ -43,6 +45,25 @@ namespace Converter.UI.ViewModels
             {
                 return this.Options.Logger.LogEntries;
             }
+        }
+
+        protected override void OnTabSelected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            // Hack to monitor the LogEntries collection for collectionchange events to facilitate auto-scrolling in the datagrid. Yeah, it's ugly.
+            var logEntries = this.LogEntries as INotifyCollectionChanged;
+            logEntries.CollectionChanged += logEntries_CollectionChanged;
+        }
+
+        protected override void OnTabDeselected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
+            var logEntries = this.LogEntries as INotifyCollectionChanged;
+            logEntries.CollectionChanged -= logEntries_CollectionChanged;
+        }
+
+        private void logEntries_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            var logView = this.View as LogView;
+            logView.ScrollDataGridToEnd();
         }
     }
 }

@@ -37,6 +37,15 @@ namespace Converter.UI.Framework
             this.OnTabSelected(sender, e);
         }
 
+        public void DeactivateTab(object sender, SelectionChangedEventArgs e)
+        {
+            this.OnTabSelected(sender, e);
+        }
+
+        protected virtual void OnTabDeselected(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
         protected virtual void OnTabSelected(object sender, SelectionChangedEventArgs e)
         {
         }

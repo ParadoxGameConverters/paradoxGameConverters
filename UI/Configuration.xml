@@ -19,7 +19,7 @@
         <name>EuropaUniversalis3</name>
         <friendlyName>Europa Universalis 3</friendlyName>
         <steamId>25800</steamId>
-        <defaultSaveGameLocationType>Steam</defaultSaveGameLocationType>
+        <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
         <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
       </targetGameConfiguration>

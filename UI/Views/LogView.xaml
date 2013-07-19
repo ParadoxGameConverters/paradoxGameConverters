@@ -37,8 +37,7 @@
                   CanUserReorderColumns="False"
                   CanUserResizeColumns="True"
                   CanUserResizeRows="True"
-                  CanUserSortColumns="False"
-                  LoadingRow="DataGrid_LoadingRow">
+                  CanUserSortColumns="False">
             <DataGrid.Columns>
                 <DataGridTemplateColumn Header="Time stamp" Width="75" IsReadOnly="True">
                     <DataGridTemplateColumn.CellTemplate>
