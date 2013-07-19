@@ -17,7 +17,7 @@ namespace Converter.UI.ViewModels
         private ICommand convertCommand;
 
         public LogViewModel(IView view, ConverterOptions options)
-            : base(view, "Log", options)
+            : base(view, "Convert", options)
         {
         }
 

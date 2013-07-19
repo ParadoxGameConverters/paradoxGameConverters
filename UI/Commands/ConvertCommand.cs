@@ -6,24 +6,26 @@ using Converter.UI.Enums;
 using System.Windows.Threading;
 using System.Windows;
 using System.Threading;
+using System.ComponentModel;
+using System.Collections.Generic;
 
 namespace Converter.UI.Commands
 {
-    public class ConvertCommand : CommandBase
+    public class ConvertCommand : AsyncCommandBase
     {
         private const string configurationFileName = "configuration.txt";
-        private Stopwatch sw;
+        private IList<string> propertiesToMonitor;
 
         public ConvertCommand(ConverterOptions options)
             : base(options)
         {
         }
 
-        private Stopwatch Stopwatch
+        private IList<string> PropertiesToMonitor 
         {
             get
             {
-                return this.sw ?? (this.sw = new Stopwatch());
+                return this.propertiesToMonitor ?? (this.propertiesToMonitor = new List<string>() { "Converter", "SourceSaveGame" });
             }
         }
 
@@ -43,6 +45,7 @@ namespace Converter.UI.Commands
 
         protected override void OnExecute(object parameter)
         {
+            // Reading process output syncronously. The async part is already handled by the command
             using (var process = new Process())
             {
                 process.StartInfo = new ProcessStartInfo
@@ -56,43 +59,37 @@ namespace Converter.UI.Commands
                     RedirectStandardOutput = true
                 };
 
-                process.OutputDataReceived += (sendingProcess, outLine) => this.Log(outLine.Data, LogEntrySeverity.Info, LogEntrySource.Converter);
-                process.ErrorDataReceived += (sendingProcess, outLine) => this.Log(outLine.Data, LogEntrySeverity.Error, LogEntrySource.Converter);
-                process.Exited += this.process_Exited;
-
                 this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI);
                 Thread.Sleep(100);
 
-                this.Stopwatch.Restart();
-                process.EnableRaisingEvents = true;
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
+
                 process.Start();
+                
+                while (!process.StandardOutput.EndOfStream)
+                {
+                    this.Log(process.StandardOutput.ReadLine(), LogEntrySeverity.Info, LogEntrySource.Converter);
+                }
 
-                process.BeginOutputReadLine();
-                process.BeginErrorReadLine();
+                process.WaitForExit();
+
+                stopwatch.Stop();
+
+                if (process.ExitCode == 0)
+                {
+                    this.Log("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI);
+                }
+                else
+                {
+                    this.Log("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI);
+                }
             }
-        }
-
-        private void process_Exited(object sender, EventArgs e)
-        {
-            var process = sender as Process;
-            this.Stopwatch.Stop();
-
-            if (process.ExitCode == 0)
-            {
-                this.Log("Conversion complete after " + this.BuildTimeSpanString(this.Stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI);
-            }
-            else
-            {
-                this.Log("Conversion failed after" + this.BuildTimeSpanString(this.Stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI);
-            }
-
-            process.CancelOutputRead();
-            process.CancelErrorRead();
         }
 
         private string BuildTimeSpanString(TimeSpan timespan)
         {
-            return string.Format("{0:D2}h:{1:D2}m:{2:D2}s:{3:D3}ms", timespan.Hours, timespan.Minutes, timespan.Seconds, timespan.Milliseconds);
+            return string.Format("{1:D2}m:{2:D2}s:{3:D3}ms", timespan.Hours, timespan.Minutes, timespan.Seconds, timespan.Milliseconds);
         }
 
         private void Log(string text, LogEntrySeverity severity, LogEntrySource source)
@@ -104,6 +101,13 @@ namespace Converter.UI.Commands
 
             this.MarshallMethod(() =>
                 {
+                    //Hack to catch error messages from the converter
+                    if (text.StartsWith("Error: "))
+                    {
+                        this.Options.Logger.AddLogEntry(new LogEntry(text, LogEntrySeverity.Error, LogEntrySource.Converter));
+                        return;
+                    }
+
                     this.Options.Logger.AddLogEntry(new LogEntry(text, severity, source));
                 }, DispatcherPriority.Send);
         }
