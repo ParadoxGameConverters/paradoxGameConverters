@@ -31,6 +31,11 @@ namespace Converter.UI.Commands
 
         protected override bool OnCanExecute(object parameter)
         {
+            if (this.Options.Converter == null)
+            {
+                return false;
+            }
+
             bool converterExists = File.Exists(this.Options.Converter);
             bool configurationFileExists = File.Exists(Path.Combine(Path.GetDirectoryName(this.Options.Converter), configurationFileName));
             bool saveGameExists = File.Exists(this.Options.SourceSaveGame);
@@ -90,19 +95,34 @@ namespace Converter.UI.Commands
 
         private void OnSuccessfulConversion()
         {
+            this.MoveSaveGame();
+
+            if (this.Options.UseConverterMod)
+            {
+                this.InstallConverterMod();
+            }
+        }
+
+        private void InstallConverterMod()
+        {
+
+        }
+
+        private void MoveSaveGame()
+        {
             // Copy the newly created save to the target game output directory.
             var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + "_Converted.eu3";
             var canOverWrite = false;
             var expectedOutputDirectoryAndFile = Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName);
 
-            // Don't blindly overwrite any existing saves
+            // Don't blindly overwrite any existing saves - that's just rude
             if (File.Exists(Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName)))
             {
                 var result = MessageBox.Show("Do you want to overwrite the existing file named " + expectedOutputDirectoryAndFile + "?", "Confirmation Required", MessageBoxButton.YesNo);
 
                 if (result == MessageBoxResult.No)
                 {
-                    this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + Path.Combine(Environment.CurrentDirectory, "output.eu3") 
+                    this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + Path.Combine(Environment.CurrentDirectory, "output.eu3")
                         + "\" to \"" + this.Options.TargetGame.SaveGamePath + "\" to load the converted save.", LogEntrySeverity.Warning, LogEntrySource.UI);
                     return;
                 }
