@@ -47,6 +47,7 @@ namespace Converter.UI.Settings
 
         public string Name { get; set; }
         public string FriendlyName { get; set; }
+        public string SaveGameExtension { get; set; }
         public string SteamId { get; set; }
         public bool IsInstalled { get; set; }
         public string Version { get; set; }

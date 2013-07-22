@@ -23,6 +23,8 @@ namespace Converter.UI.Settings
             this.TargetGame = this.ConfigurationProvider.TargetGames.First();
         }
 
+        public bool WasConversionSuccessful { get; set; }
+
         public GameConfiguration SourceGame
         {
             get

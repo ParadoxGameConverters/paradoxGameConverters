@@ -83,13 +83,25 @@ namespace Converter.UI.Commands
 
                 if (process.ExitCode == 0)
                 {
+                    this.Options.WasConversionSuccessful = true;
                     this.Log("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI);
-                    this.OnSuccessfulConversion();
                 }
                 else
                 {
                     this.Log("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI);
                 }
+            }
+        }
+
+        protected override void AfterExecute(object parameter, Exception error)
+        {
+            if (this.Options.WasConversionSuccessful)
+            {
+                this.OnSuccessfulConversion();
+            }
+            else
+            {
+                //TODO: Consider error handling here.
             }
         }
 
@@ -111,18 +123,20 @@ namespace Converter.UI.Commands
         private void MoveSaveGame()
         {
             // Copy the newly created save to the target game output directory.
-            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + "_Converted.eu3";
+            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + "_Converted" + this.Options.TargetGame.SaveGameExtension;
             var canOverWrite = false;
             var expectedOutputDirectoryAndFile = Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName);
 
             // Don't blindly overwrite any existing saves - that's just rude
-            if (File.Exists(Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName)))
+            if (File.Exists(expectedOutputDirectoryAndFile))
             {
-                var result = MessageBox.Show("Do you want to overwrite the existing file named " + expectedOutputDirectoryAndFile + "?", "Confirmation Required", MessageBoxButton.YesNo);
+                var overwriteQuestion = "A " + this.Options.TargetGame.FriendlyName + " save with the same name (" + desiredFileName + ") exists already. " + Environment.NewLine + Environment.NewLine
+                    + "Do you want to overwrite this file? " + Environment.NewLine + "Full path: " + expectedOutputDirectoryAndFile;
+                var result = MessageBox.Show(overwriteQuestion, "Confirmation Required", MessageBoxButton.YesNo);
 
                 if (result == MessageBoxResult.No)
                 {
-                    this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + Path.Combine(Environment.CurrentDirectory, "output.eu3")
+                    this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + this.DetermineOutputSavePath()
                         + "\" to \"" + this.Options.TargetGame.SaveGamePath + "\" to load the converted save.", LogEntrySeverity.Warning, LogEntrySource.UI);
                     return;
                 }
@@ -133,16 +147,23 @@ namespace Converter.UI.Commands
 
             try
             {
-                File.Copy(Path.Combine(Environment.CurrentDirectory, "output.eu3"), expectedOutputDirectoryAndFile, canOverWrite);
+                var outputSavePath = this.DetermineOutputSavePath();
+                File.Copy(outputSavePath, expectedOutputDirectoryAndFile, canOverWrite);
                 this.Log(desiredFileName + " has been written to \"" + this.Options.TargetGame.SaveGamePath + "\".", LogEntrySeverity.Info, LogEntrySource.UI);
 
-                File.Delete(Path.Combine(Environment.CurrentDirectory, "output.eu3"));
-                this.Log("Deleted temporary files.", LogEntrySeverity.Info, LogEntrySource.UI);
+                File.Delete(outputSavePath);
+                this.Log("Deleted temporary file(s).", LogEntrySeverity.Info, LogEntrySource.UI);
             }
             catch (Exception e)
             {
                 this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI);
             }
+        }
+
+        private string DetermineOutputSavePath()
+        {
+            var outputSaveName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + this.Options.TargetGame.SaveGameExtension;
+            return Path.Combine(Path.GetDirectoryName(this.Options.SourceSaveGame), outputSaveName);
         }
 
         private string BuildTimeSpanString(TimeSpan timespan)

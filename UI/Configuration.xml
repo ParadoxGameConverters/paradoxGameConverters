@@ -11,6 +11,7 @@
         <defaultSaveGameLocationType>UsersFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
         <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
+        <saveGameExtension>.ck2</saveGameExtension>
       </sourceGameConfiguration>
     </sourceGameConfigurations>
     <!--List of target games-->
@@ -22,6 +23,7 @@
         <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
         <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+        <saveGameExtension>.eu3</saveGameExtension>
       </targetGameConfiguration>
     </targetGameConfigurations>
   </gameConfigurations>

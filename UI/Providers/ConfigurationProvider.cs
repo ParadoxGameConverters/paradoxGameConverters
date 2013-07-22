@@ -191,6 +191,7 @@ namespace Converter.UI.Providers
                 var steamId = XElementHelper.ReadStringValue(game, "steamId");
                 var installationFolder = this.GetSteamInstallationFolder(steamId);
                 var configurationFileDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileDirectoryTagName");
+                var saveGameExtension = XElementHelper.ReadStringValue(game, "saveGameExtension");
 
                 gameConfigurations.Add(new GameConfiguration()
                 {
@@ -198,7 +199,8 @@ namespace Converter.UI.Providers
                     FriendlyName = XElementHelper.ReadStringValue(game, "friendlyName"),
                     SaveGamePath = (type == DefaultSaveGameLocationType.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation"),
                     SteamId = steamId,
-                    ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName
+                    ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName,
+                    SaveGameExtension = saveGameExtension
                 });
             }
 
