@@ -48,6 +48,31 @@ namespace Converter.UI.Commands
             return false;
         }
 
+        //protected override void BeforeExecute(object parameter)
+        //{
+        //    // Copy configuration files to working directory.
+
+        //    if (!this.Options.UseConverterMod)
+        //    {
+        //        return;
+        //        //TODO: Add code to reverse this as well
+        //    }
+
+        //    // Copy configuration files to working folder
+
+        //    var conflicts = new List<string>();
+
+        //    foreach (var file in this.Options.ModFilesProvider.ConfigurationFiles)
+        //    {
+        //        var path = Path.Combine(Environment.CurrentDirectory, file.FileName);
+
+        //        if (File.Exists(path))
+        //        {
+        //            conflicts.Add(path);
+        //        }
+        //    }
+        //}
+
         protected override void OnExecute(object parameter)
         {
             // Reading process output syncronously. The async part is already handled by the command

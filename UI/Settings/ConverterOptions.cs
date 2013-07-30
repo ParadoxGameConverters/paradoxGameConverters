@@ -14,6 +14,7 @@ namespace Converter.UI.Settings
         private string converter;
         private string outputConfiguration;
         private ConfigurationProvider configurationProvider;
+        private ModFilesProvider modFilesProvider;
         private bool useConverterMod;
         private Logger logger;
 
@@ -153,6 +154,14 @@ namespace Converter.UI.Settings
             //    this.outputConfiguration = value;
             //    this.RaisePropertyChanged("OutputConfiguration");
             //}
+        }
+
+        public ModFilesProvider ModFilesProvider
+        {
+            get
+            {
+                return this.modFilesProvider ?? (this.modFilesProvider = new ModFilesProvider(this));
+            }
         }
 
         /// <summary>
