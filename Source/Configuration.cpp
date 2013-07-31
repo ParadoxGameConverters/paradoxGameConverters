@@ -33,6 +33,7 @@ Configuration::Configuration()
 
 	CK2Path		= obj[0]->getLeaf("CK2directory");
 	EU3Path		= obj[0]->getLeaf("EU3directory");
+	CK2ModPath	= obj[0]->getLeaf("CK2ModPath");
 
 	techGroupMethod	= obj[0]->getLeaf("techGroupMethod");
 
@@ -63,6 +64,7 @@ Configuration::Configuration()
 	lucky_nations		= obj[0]->getLeaf("lucky_nations");
 
 	useConverterMod	= obj[0]->getLeaf("useConverterMod");
+	CK2Mod				= obj[0]->getLeaf("CK2Mod");
 
 	id				= 1;
 	armyId		= 1;
