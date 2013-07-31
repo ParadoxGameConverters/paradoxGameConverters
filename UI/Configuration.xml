@@ -11,6 +11,7 @@
         <defaultSaveGameLocationType>UsersFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
         <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
+        <saveGameExtension>.ck2</saveGameExtension>
       </sourceGameConfiguration>
     </sourceGameConfigurations>
     <!--List of target games-->
@@ -19,12 +20,39 @@
         <name>EuropaUniversalis3</name>
         <friendlyName>Europa Universalis 3</friendlyName>
         <steamId>25800</steamId>
-        <defaultSaveGameLocationType>Steam</defaultSaveGameLocationType>
+        <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
         <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+        <saveGameExtension>.eu3</saveGameExtension>
       </targetGameConfiguration>
     </targetGameConfigurations>
   </gameConfigurations>
+  <modInstallation>
+    <converterModFiles>
+      <converterModFile>
+        <fileName>country_mapping.txt</fileName>
+        <sourcePath>Converter Mod</sourcePath>
+        <targetPath>.</targetPath>
+      </converterModFile>
+      <converterModFile>
+        <fileName>culture_mapping.txt</fileName>
+        <sourcePath>Converter Mod</sourcePath>
+        <targetPath>.</targetPath>
+      </converterModFile>
+      <converterModFile>
+        <fileName>religion_mapping.txt</fileName>
+        <sourcePath>Converter Mod</sourcePath>
+        <targetPath>.</targetPath>
+      </converterModFile>
+    </converterModFiles>
+    <targetGameModFolder>
+      <modFolder>
+        <folderName>mod</folderName>
+        <sourcePath>Converter Mod</sourcePath>
+        <targetPath>mod</targetPath>
+      </modFolder>
+    </targetGameModFolder>
+  </modInstallation>
   <!--END Game configuration-->
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
   <converterOptions>
@@ -69,14 +97,16 @@
               <entryOption>
                 <name>counting</name>
                 <friendlyName>Counting</friendlyName>
-                <description>- counts have a multiplier of 2 - dukes have a multiplier of 3 - kings have a multiplier of 4 - emperors have a multiplier of 5
+                <description>
+                  - counts have a multiplier of 2 - dukes have a multiplier of 3 - kings have a multiplier of 4 - emperors have a multiplier of 5
                 </description>
               </entryOption>
               <entryOption>
                 <name>exponential</name>
                 <friendlyName>Exponential</friendlyName>
-                <description>- dukes have a multiplier of 4 - kings have a multiplier of 8 - emperors have a multiplier of 16
-                </description>                
+                <description>
+                  - dukes have a multiplier of 4 - kings have a multiplier of 8 - emperors have a multiplier of 16
+                </description>
               </entryOption>
             </entryOptions>
           </preference>
@@ -224,15 +254,17 @@
               </entryOption>
             </entryOptions>
           </preference>
-          <preference> 
+          <preference>
             <name>vassalScore</name>
             <friendlyName>Vassal Score</friendlyName>
             <description></description>
             <minValue>0</minValue>
             <maxValue>100000</maxValue>
-            <value>4950</value><!--I would suggest updating this if you change the default option below-->
+            <value>4950</value>
+            <!--I would suggest updating this if you change the default option below-->
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <!--<allowDirectOverride>true</allowDirectOverride>--> <!--This element is only necessary when having BOTH a list of pre-defined options and a directly editable value-->
+            <!--<allowDirectOverride>true</allowDirectOverride>-->
+            <!--This element is only necessary when having BOTH a list of pre-defined options and a directly editable value-->
             <entryOptions>
               <entryOption>
                 <name>1800</name>
@@ -253,7 +285,8 @@
                 <name>4950</name>
                 <friendlyName>4950</friendlyName>
                 <description>all vassals are absorbed in EU3, and cores are removed</description>
-                <isDefault>true</isDefault><!--I would suggest updating the value on the parent preference as well.-->
+                <isDefault>true</isDefault>
+                <!--I would suggest updating the value on the parent preference as well.-->
               </entryOption>
             </entryOptions>
           </preference>

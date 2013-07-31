@@ -24,5 +24,20 @@ namespace Converter.UI.Views
         {
             InitializeComponent();
         }
+
+        public void ScrollDataGridToEnd()
+        {
+            var border = VisualTreeHelper.GetChild(this.LogDataGrid, 0) as Decorator;
+
+            if (border != null)
+            {
+                var scrollViewer = border.Child as ScrollViewer;
+
+                if (scrollViewer != null)
+                {
+                    scrollViewer.ScrollToEnd();
+                }
+            }
+        }
     }
 }

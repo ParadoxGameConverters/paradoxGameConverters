@@ -7,5 +7,6 @@ namespace Converter.UI.Framework
         IView View { get; }
 
         void ActivateTab(object sender, SelectionChangedEventArgs e);
+        void DeactivateTab(object sender, SelectionChangedEventArgs e);
     }
 }

@@ -51,18 +51,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Practices.Prism, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\Microsoft.Practices.Prism.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Practices.Prism.UnityExtensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\Microsoft.Practices.Prism.UnityExtensions.dll</HintPath>
-    </Reference>
-    <Reference Include="PrismMVVMLibrary, Version=1.0.22.42, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>Library\PrismMVVMLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
@@ -83,8 +71,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\ConvertCommand.cs" />
+    <Compile Include="Commands\InstallConverterModCommand.cs" />
     <Compile Include="Commands\OpenConverterCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
@@ -100,18 +90,21 @@
     <Compile Include="Framework\PreferenceTemplateSelector.cs" />
     <Compile Include="Framework\UnParsableDataValueException.cs" />
     <Compile Include="Framework\XMLParseExceptionBase.cs" />
+    <Compile Include="Helpers\DirectoryCopyHelper.cs" />
     <Compile Include="Helpers\DiskPermissionHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
     <Compile Include="Helpers\NumberParserHelper.cs" />
     <Compile Include="Providers\ConfigurationProvider.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XmlHelper.cs" />
+    <Compile Include="Providers\ModFilesProvider.cs" />
     <Compile Include="Settings\ConverterOptions.cs" />
     <Compile Include="Settings\GameConfiguration.cs" />
     <Compile Include="Settings\IPreference.cs" />
     <Compile Include="Settings\IPreferenceEntry.cs" />
     <Compile Include="Settings\LogEntry.cs" />
     <Compile Include="Settings\Logger.cs" />
+    <Compile Include="Settings\ModFile.cs" />
     <Compile Include="Settings\Preference.cs" />
     <Compile Include="Settings\PreferenceCategory.cs" />
     <Compile Include="Settings\PreferenceEntry.cs" />

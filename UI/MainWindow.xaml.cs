@@ -91,11 +91,24 @@ namespace Converter.UI
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IViewModel vm = e.AddedItems[0] as IViewModel;
-
-            if (vm != null)
+            if (e.AddedItems.Count > 0)
             {
-                vm.ActivateTab(sender, e);
+                IViewModel addedItems = e.AddedItems[0] as IViewModel;
+
+                if (addedItems != null)
+                {
+                    addedItems.ActivateTab(sender, e);
+                }
+            }
+
+            if (e.RemovedItems.Count > 0)
+            {
+                IViewModel removedItems = e.RemovedItems[0] as IViewModel;
+
+                if (removedItems != null)
+                {
+                    removedItems.DeactivateTab(sender, e);
+                }
             }
         }
 

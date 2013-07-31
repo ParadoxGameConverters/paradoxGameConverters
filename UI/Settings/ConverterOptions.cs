@@ -14,6 +14,7 @@ namespace Converter.UI.Settings
         private string converter;
         private string outputConfiguration;
         private ConfigurationProvider configurationProvider;
+        private ModFilesProvider modFilesProvider;
         private bool useConverterMod;
         private Logger logger;
 
@@ -22,6 +23,8 @@ namespace Converter.UI.Settings
             this.SourceGame = this.ConfigurationProvider.SourceGames.First();
             this.TargetGame = this.ConfigurationProvider.TargetGames.First();
         }
+
+        public bool WasConversionSuccessful { get; set; }
 
         public GameConfiguration SourceGame
         {
@@ -122,7 +125,7 @@ namespace Converter.UI.Settings
         {
             get
             {
-                return this.configurationProvider ?? (this.configurationProvider = new ConfigurationProvider());
+                return this.configurationProvider ?? (this.configurationProvider = new ConfigurationProvider(this));
             }
         }
 
@@ -151,6 +154,14 @@ namespace Converter.UI.Settings
             //    this.outputConfiguration = value;
             //    this.RaisePropertyChanged("OutputConfiguration");
             //}
+        }
+
+        public ModFilesProvider ModFilesProvider
+        {
+            get
+            {
+                return this.modFilesProvider ?? (this.modFilesProvider = new ModFilesProvider(this));
+            }
         }
 
         /// <summary>
