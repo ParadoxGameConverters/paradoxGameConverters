@@ -108,12 +108,12 @@ int main(int argc, char * argv[])
 	printf("\tGetting building types.\n");
 	if (Configuration::getCK2Mod() != "")
 	{
-		obj = doParseFile((Configuration::getCK2Path() + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			srcWorld.addBuildingTypes(obj);
 		}
-		doParseDirectoryContents((CK2Loc + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld.addBuildingTypes(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld.addBuildingTypes(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
@@ -133,12 +133,12 @@ int main(int argc, char * argv[])
 	printf("\tGetting CK2 religions\n");
 	if (Configuration::getCK2Mod() != "")
 	{
-		obj = doParseFile((Configuration::getCK2Path() + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "/common/religion.txt").c_str()); // for pre-1.06 installs
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/religion.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			CK2Religion::parseReligions(obj);
 		}
-		doParseDirectoryContents((CK2Loc + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "\\common\\religions\\"), [&](Object* eachobj) { CK2Religion::parseReligions(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\religions\\"), [&](Object* eachobj) { CK2Religion::parseReligions(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/religion.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
@@ -159,12 +159,12 @@ int main(int argc, char * argv[])
 	cultureGroupMapping CK2CultureGroupMap;
 	if (Configuration::getCK2Mod() != "")
 	{
-		obj = doParseFile((Configuration::getCK2Path() + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			addCultureGroupMappings(obj, CK2CultureGroupMap);
 		}
-		doParseDirectoryContents((CK2Loc + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, CK2CultureGroupMap); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, CK2CultureGroupMap); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
@@ -184,12 +184,12 @@ int main(int argc, char * argv[])
 	printf("\tParsing landed titles.\n");
 	if (Configuration::getCK2Mod() != "")
 	{
-		obj = doParseFile((Configuration::getCK2Path() + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			srcWorld.addPotentialTitles(obj);
 		}
-		doParseDirectoryContents((CK2Loc + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
@@ -209,12 +209,12 @@ int main(int argc, char * argv[])
 	printf("\tGetting traits\n");
 	if (Configuration::getCK2Mod() != "")
 	{
-		obj = doParseFile((Configuration::getCK2Path() + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "/common/traits.txt").c_str()); // for pre-1.06 installs
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/traits.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			srcWorld.addTraits(obj);
 		}
-		doParseDirectoryContents((CK2Loc + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld.addTraits(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld.addTraits(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/traits.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
@@ -235,12 +235,12 @@ int main(int argc, char * argv[])
 	printf("\tGetting opinion modifiers\n");
 	if (Configuration::getCK2Mod() != "")
 	{
-		obj = doParseFile((Configuration::getCK2Path() + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			CK2Opinion::initOpinions(obj);
 		}
-		doParseDirectoryContents((CK2Loc + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { CK2Opinion::initOpinions(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { CK2Opinion::initOpinions(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
@@ -261,12 +261,12 @@ int main(int argc, char * argv[])
 	printf("\tAdding dynasties from CK2 Install\n");
 	if (Configuration::getCK2Mod() != "")
 	{
-		obj = doParseFile((Configuration::getCK2Path() + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			srcWorld.addDynasties(obj);
 		}
-		doParseDirectoryContents((CK2Loc + Configuration::getCK2ModPath() + Configuration::getCK2Mod() + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld.addDynasties(eachobj); });
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld.addDynasties(eachobj); });
 	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
