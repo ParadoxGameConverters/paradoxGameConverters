@@ -1,0 +1,132 @@
+country_decisions = {
+
+	italian_nation = {
+		potential = {
+			NOT = { exists = ITA }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			culture_group = latin
+		}
+		allow = 
+		{
+			owns = 104	# Lombardia
+			owns = 116	# Firenze
+			owns = 117	# Siena
+			owns = 118	# Roma
+			owns = 119	# Ancona
+			is_core = 104	# Lombardia
+			is_core = 116	# Firenze
+			is_core = 117	# Siena
+			is_core = 118	# Roma
+			is_core = 119	# Ancona
+			war = no
+		}
+	  effect = {
+			ITA = {
+				add_core = 101		# Liguria
+				add_core = 103		# Piedmont
+				add_core = 104		# Lombardia
+				add_core = 105		# Parma
+				add_core = 106		# Modena
+				add_core = 107		# Brescia
+				add_core = 108		# Verona
+				add_core = 109		# Mantua
+				add_core = 111		# Friuli
+				add_core = 112		# Venezia
+				add_core = 113		# Ferrara
+				add_core = 114		# Romagna
+				add_core = 115		# Pisa
+				add_core = 116		# Firenze
+				add_core = 117		# Siena
+				add_core = 118		# Roma
+				add_core = 119		# Ancona
+				add_core = 130		# Istria
+				add_core = 1774		# Treviso
+				add_core = 1862		# Cremona
+				add_core = 1875		# Cuneo
+			}
+			centralization_decentralization = -2
+			missionaries = 1
+			random_owned = {
+				limit = { culture_group = latin }
+				base_tax = 1
+			}
+			prestige = 0.05
+			change_tag = ITA
+			ITA = {
+				capital = 118
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	gods_kingdom = {
+		potential = {
+			NOT = { exists = ITA }
+			tag = PAP
+			NOT = { has_country_modifier = kingdom_of_god }
+		}
+		allow = 
+		{
+			owns = 101		# Liguria
+			owns = 103		# Piedmont
+			owns = 104		# Lombardia
+			owns = 105		# Parma
+			owns = 106		# Modena
+			owns = 107		# Brescia
+			owns = 108		# Verona
+			owns = 109		# Mantua
+			owns = 111		# Friuli
+			owns = 112		# Venezia
+			owns = 113		# Ferrara
+			owns = 114		# Romagna
+			owns = 115		# Pisa
+			owns = 116		# Firenze
+			owns = 117		# Siena
+			owns = 118		# Roma
+			owns = 119		# Ancona
+			owns = 130		# Istria
+			owns = 1774		# Treviso
+			owns = 1862		# Cremona
+			owns = 1875		# Cuneo
+			war = no
+		}
+	  effect = {
+			PAP = {
+				add_core = 101		# Liguria
+				add_core = 103		# Piedmont
+				add_core = 104		# Lombardia
+				add_core = 105		# Parma
+				add_core = 106		# Modena
+				add_core = 107		# Brescia
+				add_core = 108		# Verona
+				add_core = 109		# Mantua
+				add_core = 111		# Friuli
+				add_core = 112		# Venezia
+				add_core = 113		# Ferrara
+				add_core = 114		# Romagna
+				add_core = 115		# Pisa
+				add_core = 116		# Firenze
+				add_core = 117		# Siena
+				add_core = 118		# Roma
+				add_core = 119		# Ancona
+				add_core = 130		# Istria
+				add_core = 1774		# Treviso
+				add_core = 1862		# Cremona
+				add_core = 1875		# Cuneo
+			}
+			culture_group_union = latin
+			118 = { base_tax = 1 }
+			add_country_modifier = {
+				name = "kingdom_of_god"
+				duration = -1
+			}
+			country_event = 2021
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

@@ -1,0 +1,12 @@
+# Ottoman Lancer
+
+type = cavalry
+unit_type = ottoman
+
+maneuver = 2
+offensive_morale = 9
+defensive_morale = 7
+offensive_fire = 0
+defensive_fire = 0
+offensive_shock = 9
+defensive_shock = 5

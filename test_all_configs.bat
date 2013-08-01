@@ -17,3 +17,6 @@ copy Release\religion_mappings-backup.txt copy Release\religion_mappings.txt
 del Release\configuration-backup.txt /s /q
 del Release\culture_mappings-backup.txt /s /q
 del Release\religion_mappings-backup.txt /s /q
+
+cd testresults
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\testresults.zip" "*.*" -mx5

@@ -1,0 +1,59 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 193  179  127 }
+
+historical_ideas = {
+	glorious_arms 
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Temur Qutlugh #0" = 20
+	"Shadi Beg #0" = 20
+	"Pulad Khan #0" = 20
+	"Temür #0" = 20
+	"Jalal Al-Din #0" = 20
+	"Karim Berdi #0" = 20
+	"Kebek #0" = 20
+	"Kuchuk Muhammad #0" = 40
+	"Mahmud #0" = 80
+	"Ahmad #0" = 50
+	"Sayid Ahmad #0" = 60
+	"Baraq #0" = 30
+	"Devlat Berdi #0" = 20
+	"Ulug Muhammad #0" = 40
+	"Jabbar Berdi #0" = 20
+}
+
+leader_names = {
+	"Boke Temur" "Qutlugh Vachir" "Suren Chinua" "Delger Bayar"
+	"Shria Gan" "Bora Chinua" Nasange Temur-chi Chinuagene Toluilun
+	Qutughqan "Koke Burilgi" Surenchar Bayangge
+}
+
+ship_names = {
+	Batu Sartaq Ulaghchi Berke "Mengu-Timur" "Tuda-Mengu"
+	Talabuga "Nogai Khan" Tokhta "Öz Beg" "Tini Beg" "Jani Beg" 
+	"Berdi Beg" Qulpa "Nawruz Beg" Khidr "Timur Khwaja" Abdallah
+	"Muhammad Bolak" "Mamai Khan" Toqtamish "Temür Qutlugh" Ediguh
+	"Shadi Beg" "Polad Khan" Temür "Jalal ad-Din" "Karim Berdi" Kebek
+	"Jabbar Berdi" "Ulugh Muhammad" "Dawlat Berdi" Baraq "Sayud Ahmad"
+}

@@ -1,0 +1,94 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 115  142  205 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	patron_of_art
+	shrewd_commerce_practise
+	military_drill
+	national_bank
+	cabinet
+	smithian_economics
+	bureaucracy
+	scientific_revolution
+	engineer_corps
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Charles #0" = 80
+	"François #0" = 40
+	"René #0" = 40
+	"Charles #1 Léopold" = 20
+	"François #1 Éttiene" = 20
+	"Jean #1" = 20
+	"Antoine #0" = 20
+	"Léopold #0 Joseph" = 20
+	"Nicolas #0" = 20
+	"Stanislas #0" = 20
+	"Charles #1 Alexandre" = 15
+	"Charles #1 Joseph" = 15
+	"Claude #0" = 15
+	"Ferdinand Philippe #0" = 15
+	"Isabelle #0" = -15
+	"Léopold #0" = 15
+	"Léopold #0 Clément" = 15
+	"Louis #0" = 15
+	"Rodolphe #0" = 15
+	"Charles #1 Ferdinand" = 10
+	"Charles #1 Henri" = 10
+	"François #1 Antoine" = 10
+	"Joseph #0" = 10
+	"Joseph #0 Innocent" = 10
+	"Alfred #0" = 0
+	"Bernard #0" = 0
+	"David #0" = 0
+	"Eric #0" = 0
+	"Fernand #0" = 0
+	"Gaétan #0" = 0
+	"Gérard #0" = 0
+	"Henri #0" = 0
+	"Jacques #0" = 0
+	"Lucas #0" = 0
+	"Martin #0" = 0
+	"Maximiliem #0" = 0
+	"Olivier #0" = 0
+	"Raymond #0" = 0
+	"Serge #0" = 0
+	"Théodore #0" = 0
+}
+
+leader_names = { 
+	Bickling Braun Detemple "von Elsass" Fent Feyerabend
+	Forthober Freymuth Kathrein Krogloth Limburg Neubert
+	Oberlothringen Wolferseder
+}
+
+ship_names = {
+	"Emperor Lothar" "Lotharingen"
+	"Rene II Lothringen" Barrois Metz
+	Toul Verdun Warding Skirmjan
+	Bera Scoc Sekjan
+}

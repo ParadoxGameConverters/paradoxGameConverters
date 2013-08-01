@@ -1,0 +1,12 @@
+# Prussian Drill
+
+type = infantry
+unit_type = western
+
+maneuver = 1
+offensive_morale = 10
+defensive_morale = 10
+offensive_fire = 10
+defensive_fire = 10
+offensive_shock = 7
+defensive_shock = 7

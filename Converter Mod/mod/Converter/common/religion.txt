@@ -554,9 +554,45 @@ pagan = {
 		}
 	}
 
+	slavic_pagan = {
+		color = { 0.85 0.73 0.4 }
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+
+	west_african_pagan = {
+		color = { 91 49 13 }
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+
 	aztec = {
 		color = { 0.8 0.2 0.2 }
 
+		province = {
+			stability_cost = 10
+			local_missionary_cost = -0.5
+		}
+		country = {
+			missionary_placement_chance = 0.084
+			tolerance_heretic = 2
+		}
+	}
+
+	hellenic_pagan = {
+		color = { 0.6 0.1 0.1 }
 		province = {
 			stability_cost = 10
 			local_missionary_cost = -0.5
@@ -574,7 +610,12 @@ zoroastrian_group = {
 	zoroastrian = {
 		color = { 0.5 0.7 0.2 }
 	}
-
+	mazdaki = {
+		color = { 0.3 0.65 0.25 }
+	}
+	manichean = {
+		color = { 0.7 0.7 0.4 }
+	}
 }
 
 

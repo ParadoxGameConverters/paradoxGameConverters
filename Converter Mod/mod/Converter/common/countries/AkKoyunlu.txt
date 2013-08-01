@@ -1,0 +1,72 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 4  144  178 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	persian_footsoldier
+	muslim_cavalry_archers
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Qara Yoluq #0" = 10
+	"'Ali Djalal #0" = 20
+	"Ya'qub #0" = 20
+	"Jahangir Mu'izz #0" = 20
+	"Usun Hasan #0" = 20
+	"Khalîl #0" = 20
+	"Baisunqur #0" = 20
+	"Rustam #0" = 20
+	"Ahmad #0" = 20
+	"Murad #0" = 20
+	"Alwand #0" = 20
+	"Khalilullah 'Ali #0" = 10
+	"Qasim Shah #0" = 10
+	"Islam Shah #0" = 10
+	"Abd as-Salaam #0" = 10
+	"Muhammad #1" = 20
+}
+
+leader_names = {
+	Hasan
+	Yülük
+	Fakhr
+	Muhammad
+	Ya'qûb
+	Mirza
+	Gövde
+	Maqsud
+	Uzun
+	Ali
+}
+
+ship_names = {
+	"Qara Yülük" Hamza Ali "Tur Ali" "Kutlu Beg" 
+	"Kara Osman" "Diyar Bakr" Akkoyunlular Dicle "Van Gölu" Kurtalan Kura 
+	"Qareh Su" Ahar Talkheh Murat Buyukzap
+}

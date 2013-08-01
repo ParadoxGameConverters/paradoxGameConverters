@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 166  68  72 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	merchant_adventures
+	divine_supremacy
+	colonial_ventures
+	shrewd_commerce_practise
+	military_drill
+	national_bank
+	engineer_corps
+	scientific_revolution
+	glorious_arms
+	grand_army
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	french_caracolle
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Ferran #0" = 40
+	"Alfons #4" = 20
+	"Joan #1" = 20
+	"Carles #0" = 10
+	"Pere #4" = 5
+	"Sanç #1" = 5
+	"Enric #0" = 5
+        "Jaume #2" = 5
+	"Martí #0" = 20
+	"Andreu #0" = 0
+	"Antoni #0" = 0
+        "Arnau #0" = 0
+	"Ausiàs #0" = 0
+        "Bartomeu #0" = 0
+	"Bernat #0" = 0
+	"Cèsar #0" = 0
+	"Domènec #0" = 0
+	"Felip #0" = 0
+	"Francesc #0" = 0
+	"Frederic #0" = 0
+        "Gaspar #0" = 0
+	"Gil #0" = 0
+	"Gonçal #0" = 0
+	"Guillem #0" = 0
+	"Hug #0" = 0
+        "Ignasi #0" = 0
+	"Ildefons #0" = 0
+	"Jeroni #0" = 0
+	"Jordi #0" = 0
+	"Josep #0" = 0
+	"Llorenç #0" = 0
+	"Lluís #0" = 0
+        "Pere Lluís #0" = 0
+	"Ponç #0" = 0
+	"Ramon #0" = 0
+	"Roderic #0" = 0
+	"Simeó #0" = 0
+	"Tomàs #0" = 0
+	"Dídac #0" = 0
+	"García #0" = 0
+}
+
+leader_names = {
+	"de Alagón" Amic d'Aragó Arbués d'Àustria "de Ayerbe"
+	Balaguer Barceló "de Belchite" Berguedà Bielsa "de Borja" "de Cabrera" Cajal Colom
+	Domènec d'Empúries "Fernández de Hijar" Ferrer "Folc de Cardona" Franco
+	Galindo "Gil de Biedma" Gisbert "de Guimerà" "de Gotor" "de Gurrea" d'Ixer Loaisa "de Luna"
+	Martorell "de Montcada" Monteagudo Muntaner Oliva Ordovás d'Ors Peña "Pérez de Coloma" Piquer
+	"de Requesens" "de la Riba" Ripoll "de Ripperdá" 
+	Sastre d'Urgell Vallès Veldrán Vilamarí Villarroya "de Zaporta" 
+}
+
+ship_names = {
+	"Blanca Aurora" "Sant Jacob" Flama Lleona Falcó "La Bonaventura" "Sant Antoni" 
+	"Sant Miquel" "Sant Bernat" "Sant Francesc" "Santa Ágata" "Santa Eulàlia" 
+	"Sant Gabriel" "Sant Climent" "Sant Jordi" "La Reial" Trinitat "Santa Creu" 
+	"Santa Maria" "Santa Caterina" "Sant Joan Evangelista" "Santa Bàrbara" 
+	"Sant Pere de Roma" "La Gasela" "Santa Magdalena" "Sant Víctor" Magnana 
+	"Santa Ventura" "Santa Coloma" "Sant Ambrós" "La Garsa"  
+}
+
+army_names = {
+	"Terç de $PROVINCE$"
+}

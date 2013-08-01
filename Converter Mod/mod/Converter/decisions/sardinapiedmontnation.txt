@@ -1,0 +1,128 @@
+country_decisions = {
+
+	sardinia_piedmont_nation = {
+		potential = {
+			NOT = { exists = SPI }
+			government = monarchy
+			OR = {
+				tag = SAV
+				tag = SAR
+			}
+		}
+		allow = {
+			OR = {
+				AND = {
+					tag = SAR
+					NOT = { exists = SAV }
+				}
+				AND = {
+					tag = SAV
+					NOT = { exists = SAR }
+				}
+			}
+			owns = 102		# Nice
+			owns = 103		# Piedmont
+			owns = 127		# Sardinia
+			owns = 205		# Savoie
+			owns = 1875		# Cuneo
+
+			is_core = 102	# Nice
+			is_core = 103	# Piedmont
+			is_core = 127	# Sardinia
+			is_core = 205	# Savoie
+			is_core = 1875	# Cuneo
+			
+			war = no
+		}
+		effect = {
+			prestige = 0.05
+			SPI = {	
+				add_core = 102	# Nice
+				add_core = 103	# Piedmont
+				add_core = 127	# Sardinia
+				add_core = 205	# Savoie
+				add_core = 1875	# Cuneo
+			}
+			change_tag = SPI
+			capital = 103		# Piedmont
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	sardinia_piedmont_nation_inherit = {
+		potential = {
+			NOT = { exists = SPI }
+			government = monarchy
+			OR = {
+				tag = SAV
+				tag = SAR
+			}
+		}
+		allow = {
+			OR = {
+				AND = {
+					war = no
+					tag = SAR
+					DIP = 6
+					ADM = 6
+					owns = 127			# Sardinia
+					is_core = 127		# Sardinia
+					relation = { who = SAV value = 150 }
+					senior_union_with = SAV
+					SAV = {
+						war = no
+						owns = 103		# Piedmont
+						is_core = 103	# Piedmont
+					}
+				}
+				AND = {
+					tag = SAV
+					war = no
+					DIP = 7
+					ADM = 7
+					prestige = 0.1
+					owns = 103			# Piedmont
+					is_core = 103		# Piedmont
+					relation = { who = SAR value = 150 }
+					senior_union_with = SAR
+					SAR = {
+						
+						owns = 127		# Sardinia
+						is_core = 127	# Sardinia
+						war = no
+					}
+				}
+			}
+		}
+		effect = {
+			inherit = SAV
+			inherit = SAR
+			SPI = {	
+				add_core = 102	# Nice
+				add_core = 103	# Piedmont
+				add_core = 127	# Sardinia
+				add_core = 205	# Savoie
+				add_core = 1875	# Cuneo
+			}
+			change_tag = SPI
+			capital = 103	# Piedmont
+			prestige = 0.05
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				tag = SAV
+				SAR = { ai = no }
+				factor = 0
+			}
+			modifier = {
+				tag = SAR
+				SAV = { ai = no }
+				factor = 0
+			}
+		}
+	}
+
+}

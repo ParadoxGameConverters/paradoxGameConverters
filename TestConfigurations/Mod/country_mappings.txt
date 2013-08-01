@@ -17,6 +17,16 @@ link = { CK2 = e_pirates  EU3 = PIR } # Pirates
 
 
 ## Empires
+
+# New empires
+link = { CK2 = e_wendish_empire EU3 = WEN } # Wendia
+link = { CK2 = e_tartatia EU3 = TAR } # Tartaria
+link = { CK2 = e_carpathia EU3 = CAR } # Carpathia
+link = { CK2 = e_italy EU3 = ITL } # Italia
+
+link = { CK2 = e_abyssinia EU3 = ABY } # Abyssinia
+link = { CK2 = e_mali EU3 = MLI } # Malia
+
 # European Empires
 link = { CK2 = e_roman_empire EU3 = ROM } # Roman Empire
 link = { CK2 = e_byzantium EU3 = BYZ } # Byzantium 
@@ -27,7 +37,6 @@ link = { CK2 = e_russia EU3 = RUS } # Russia
 link = { CK2 = e_britannia EU3 = GBR } # Britannia => Great Britain
 link = { CK2 = e_france EU3 = FCI } # Francia
 link = { CK2 = e_scandinavia EU3 = SCA } # Scandinavia
-
 
 # Eastern and African Empires
 link = { CK2 = e_golden_horde  EU3 = GOL } # Golden Horde

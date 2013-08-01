@@ -1,0 +1,89 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 194  205  83 }
+
+historical_ideas = {
+	church_attendance_duty
+	patron_of_art
+	national_conscripts
+	divine_supremacy
+	colonial_ventures
+	national_trade_policy
+	superior_seamanship
+	national_bank
+	cabinet
+	scientific_revolution
+	espionage
+	engineer_corps
+}
+
+historical_units = {
+	mamluk_archer
+	mamluk_cavalry_charge
+	mamluk_duel
+	mamluk_musket_charge
+	muslim_mass_infantry
+	muslim_dragoon
+	ali_bey_reformed_infantry
+}
+
+monarch_names = {
+	"Muhammad #6" = 140
+	"Yûsuf #2" = 60
+	"'Alî #0" = 20
+	"Sa'd #0" = 20
+	"Isma'îl #2" = 10
+	"Nasr #1" = 5
+	"'Abd al-Karim #0" = 0
+	"Ayman #0" = 0
+	"Barakat #0" = 0
+	"Basir #0" = 0
+	"Dawud #0" = 0
+	"Fahd #0" = 0
+	"Faris #0" = 0
+	"Faruq #0" = 0
+	"Firdaus #0" = 0
+	"Fuad #0" = 0
+	"Haidar #0" = 0
+	"Hashim #0" = 0
+	"Husam #0" = 0
+	"Iqbal #0" = 0
+	"Jabbar #0" = 0
+	"Ja'far #0" = 0
+	"Jamal #0" = 0
+	"Junayd #0" = 0
+	"Khaliq #0" = 0
+	"Malik #0" = 0
+	"Mansur #0" = 0
+	"Mustafa #0" = 0
+	"Najib #0" = 0
+	"Qasim #0" = 0
+	"Qusay #0" = 0
+	"Rahim #0" = 0
+	"Rashîd #0" = 0
+	"Safi #0" = 0
+	"Sakhr #0" = 0
+	"Samir #0" = 0
+	"Tariq #0" = 0
+	"Umar #0" = 0
+	"Wahid #0" = 0
+	"Zahir #0" = 0
+}
+
+leader_names = {
+	"Ibn Abd al-Rahman" "Ibn Abbad" "Ibn Abd Allah" "Ibn Abi Hafs" "Ibn al-Azafi" "Ibn Ali"
+	"Ibn Hakan" "Ibn Hammud" "Ibn Hisam" "Ibn Husayn"
+	"Ibn Idris" "Ibn Ishaq" "Ibn Isma'il"
+	"Ibn Marwan" "Ibn Muhammad" "Ibn Nasr" "Ibn Qasim" "Ibn Sa'd" "Ibn Sulayman"
+	"Ibn Umar" "Ibn Ummay" "Ibn Utman" "Ibn Ya'far" "Ibn Yahyà" "Ibn Yusuf"
+}
+
+ship_names = {
+	"Muhammed ibn Nasr" "Muhammed al-Faqih"
+	"Muhammed III" Nasr "Ismail I" "Muhammed IV"
+	"Yusuf I" "Muhammed V" "Ismail II" "Muhammed VI"
+	"Yusuf II" "Muhammed VII" "Yusuf III" "Muhammed VIII"
+	"Muhammed IX" "Yusuf IV" "Yusuf V" "Muhammed X"
+}

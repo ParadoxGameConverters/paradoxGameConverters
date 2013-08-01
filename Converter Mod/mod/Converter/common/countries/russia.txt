@@ -1,0 +1,148 @@
+#Russia
+
+graphical_culture = easterngfx
+
+color = { 96  131  80 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	quest_for_the_new_world
+	merchant_adventures
+	battlefield_commisions
+	national_trade_policy
+	regimental_system
+	grand_army
+	espionage
+	grand_navy
+	glorious_arms
+	napoleonic_warfare
+}
+
+historical_units = {
+	bardiche_infantry
+	druzhina_cavalry
+	slavic_stradioti
+	eastern_militia
+	muscovite_musketeer
+	muscovite_caracolle
+	muscovite_soldaty
+	muscovite_cossack
+	russian_petrine
+	russian_lancer
+	russian_green_coat
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Ivan #3" = 60
+	"Fyodor #1" = 60
+	"Pyotr #0" = 60
+	"Vasiliy #2" = 20
+	"Aleksandr #0" = 20
+	"Alexei #0" = 20
+	"Boris #0" = 20
+	"Mikhail #0" = 20
+	"Pavel #0" = 20
+	"Yekaterina #0" = -20
+	"Dmitriy #6" = 15
+	"Yuriy #4" = 15
+	"Anna #0" = -15
+	"Elizaveta #0" = -15
+	"Konstantin #0" = 15
+	"Andrei #3" = 10
+	"Semen #1" = 10
+	"Nikolai #0" = 10
+	"Afanasiy #0" = 0
+	"Anatoliy #0" = 0
+	"Anton #0" = 0
+	"Arseniy #0" = 0
+	"Artamon #0" = 0
+	"Artemiy #0" = 0
+	"Bogdan #0" = 0
+	"Demyan #0" = 0
+	"Epifaniy #0" = 0
+	"Feofan #0" = 0
+	"Gavriil #0" = 0
+	"Grigoriy #0" = 0
+	"Iosif #0" = 0
+	"Isaak #0" = 0
+	"Kirill #0" = 0
+	"Lavrentiy #0" = 0
+	"Lazar #0" = 0
+	"Lev #0" = 0
+	"Malyuta #0" = 0
+	"Mark #0" = 0
+	"Mefodiy #0" = 0
+	"Nikifor #0" = 0
+	"Nikita #0" = 0
+	"Nikodim #0" = 0
+	"Oleg #0" = 0
+	"Platon #0" = 0
+	"Prokopiy #0" = 0
+	"Sergei #0" = 0
+	"Stanislav #0" = 0
+	"Varfolomey #0" = 0
+	"Yefim #0" = 0
+	"Yulian #0" = 0
+}
+
+leader_names = {
+	Adashev Apraxine Atlasov
+	Basmanov Baryatiski Bibikov Beketov Baranov
+	Chernigovets Chelyuskin Chuiski
+	Dolgorukov Dubenski Dezhnev
+	Ermolov
+	Fermor
+	Godunov Golitsyn Gagarin Glinski
+	Kasimovskiy Kurbski Khovanski Kutuzov Koltsov-Mosalski Khabarov
+	Mikulinski Menshikov Minih Mansurov Moskvitin
+	Ovchina-Obolenski Osterman-Tolstoy Orlov
+	Pozharski Potemkin Petrov Poyarkov Patrikeev
+	Romodanovski Rumyantsev Repnin Rebrov
+	Shuiski Sheremetev Skopin Shein Soltikov Spiridof Senyavin Stroganov Semenov
+	Tottleben "de Tolly" Tomasov
+	Ushakov
+	Vorotinski Vishnevetski
+	Wittgenstein
+	Yalichev Yermak
+}
+
+ship_names = {
+	"Sv.Nestor" "Maria Magdalena" "Sv.Ekaterina" "Sv.Petr i Pavel" "Apostol Petr"
+	"Apostol Pavel" "Sv.Mark" "Sv.Matfei" "Sv.Georgiy Pobedonosetz" "Sv.Alxander Nevskiy"
+	"Sv.Ioann Krestitel" "Sv.Andrey Pervozvanniy" "Sv.Vladmir" "Sv.Boris i Gleb"
+	"Sv.Kirill i Mefodiy" Mstislav Yaroslav Sviatoslav Sudislav Stanislav Vsevolod
+	Vladislav Rurik Rostislav Vladimir Izyaslav Vseslav Boleslav Mecheslav Rodislav
+	Ratibor Branimir Gavriil Mihail Uriil Rafail Salafail Varakhail Yagudiil Kastor
+	Yaroslavets Pallada Passat Perekat Predanny Priboy Liman Primerny Provorny
+	Ivanovets Speshniy Kreyser Pylky Zhemchug Nadezhda Neva Diana Merkuriy Vostok
+	Mirniy Yunona Alexander Pollux Opyt Avos Kamchatka Desna Dnepr Taganrog Yevstafiy
+	"Rozhdestvo Hristovo" Preobrazheniye "Dvenadsat Apostolov" "Tri Sviatitelya" Burya
+	Yevropa Krym Tavrida Groza Tverdiy Ezekiel
+}
+
+army_names = {
+	"Russian Imperial Army"
+	"Army of Finland"
+	"Army of Poland"
+	"Army of Ukraine"
+	"Army of Crimea"
+	"Army of the Ural"
+	"Army of the Caucasus"
+	"Army of Siberia"
+	"Army of the Baltic"
+}
+
+fleet_names = {
+	"Blue Squadron"
+	"Red Squadron"
+	"White Squadron"
+	"Baltic Squadron"
+	"Black Sea Squadron"
+
+}

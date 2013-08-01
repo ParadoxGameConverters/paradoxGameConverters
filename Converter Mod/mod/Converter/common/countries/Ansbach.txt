@@ -1,0 +1,99 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 120  77  119 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	smithian_economics
+	ecumenism
+	bureaucracy
+	grand_army
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	prussian_drill
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Friedrich #5" = 60
+	"Georg Friedrich #0" = 40
+	"Albrecht #1" = 20
+	"Albrecht #1 Achilles" = 20
+	"Christian Albrecht #0" = 20
+	"Karl Alexander #0" = 20
+	"Georg #0" = 20
+	"Joachim Ernst #0" = 20
+	"Johann Friedrich #0" = 20
+	"Karl Wilhelm Friedrich #0" = 20
+	"Wilhelm Friedrich #0" = 20
+	"Johann #3" = 15
+	"Albrecht Ernst #0" = 15
+	"Georg Albrecht #0" = 15
+	"Johann Cicero #0" = 15
+	"Karl Friedrich August #0" = 15
+	"Kasimir #0" = 15
+	"Leopold Friedrich #0" = 15
+	"Friedrich Albrecht #0" = 10
+	"Friedrich August #0" = 10
+	"Friedrich Karl #0" = 10
+	"Gumprecht #0" = 10
+	"Johann Albrecht #0" = 10
+	"Johann Georg #0" = 10
+	"Siegmund #0" = 10
+	"Wilhelm #0" = 10
+	"Gottfried #2" = 5
+	"Adolf #0" = 0
+	"Clemens #0" = 0
+	"Diederik #0" = 0
+	"Eberhard #0" = 0
+	"Helmut #0" = 0
+	"Hermann #0" = 0
+	"Jakob #0" = 0
+	"Luitpold #0" = 0
+	"Markus #0" = 0
+	"Rainer #0" = 0
+	"Siegfried #0" = 0
+	"Stefan #0" = 0
+	"Viktor #0" = 0
+}
+
+leader_names = { 
+	Fichtelmann Grimm Schmidt Söll Däumler
+	Dick Dietsch Ernst Fischer Födisch Franck
+	Hofmann Höhrer Knörnschild Langheinrich Maier Narr
+	Ott Ranck Rudl Sack Schwager Seel Sell 
+	Teichmann Weinrich
+}
+
+ship_names = {
+	"Friedrich von Ansbach" "Albrecht Achilles"
+	"Friedrich V" Georg "Georg Friedrich" Rezat
+	Onoldsbach Hohenzollern Kulmbach Bayreuth
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

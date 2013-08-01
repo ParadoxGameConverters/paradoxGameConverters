@@ -7,21 +7,35 @@ CK2Version::CK2Version(string versionString)
 	int vPos			= versionString.find_first_of('v');
 	int periodPos	= versionString.find_first_of('.');
 
-	vPos++;
-	major = atoi( versionString.substr(vPos, periodPos - vPos).c_str() );
-	
-	periodPos++;
-	int minorLength = versionString.size() - periodPos;
-
-	if ( isalpha(versionString[versionString.size() - 1]) )
+	if (vPos != string::npos)
 	{
-		revision = tolower( versionString[versionString.size() - 1] );
-		minorLength--;
+		vPos++;
+		major = atoi( versionString.substr(vPos, periodPos - vPos).c_str() );
+	
+		periodPos++;
+		minor = atoi( versionString.substr(periodPos, 2).c_str() );
+		if (versionString.size() > (unsigned int)(periodPos + 3))
+		{
+			revision = atoi( versionString.substr(periodPos + 3, 1).c_str() );
+		}
+		else
+		{
+			revision = 0;
+		}
 	}
 	else
 	{
-		revision = 0;
+		major = atoi( versionString.substr(0, periodPos).c_str() );
+	
+		periodPos++;
+		minor = atoi( versionString.substr(periodPos, 2).c_str() );
+		if (versionString.size() > (unsigned int)(periodPos + 3))
+		{
+			revision = atoi( versionString.substr(periodPos + 3, 1).c_str() );
+		}
+		else
+		{
+			revision = 0;
+		}
 	}
-
-	minor = atoi( versionString.substr(periodPos, minorLength).c_str() );
 }

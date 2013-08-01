@@ -1,0 +1,13 @@
+# Eastern Uhlan
+
+type = cavalry
+unit_type = eastern
+unit_type = ottoman
+
+maneuver = 2
+offensive_morale = 8
+defensive_morale = 6
+offensive_fire = 5
+defensive_fire = 2
+offensive_shock = 7
+defensive_shock = 6

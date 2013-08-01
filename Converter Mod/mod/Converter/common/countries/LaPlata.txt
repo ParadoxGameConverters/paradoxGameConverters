@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 101  102  163 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	revolution_and_counter
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"José #0" = 20
+	"Juan #0 José" = 20
+	"Juan #0 Martín" = 20
+	"Nicolás #0" = 20
+	"Antonio #0" = 15
+	"Feliciano Antonio #0" = 15
+	"Gervasio Antonio #0" = 15
+	"Matías #0" = 15
+	"Carlos María #0" = 10
+	"Cornelio #0" = 10
+	"Domingo #0" = 10
+	"Ignacio #0" = 10
+	"Manuel #0" = 10
+	"Adrián #0" = 0
+	"Alfonso #0" = 0
+	"Benigno #0" = 0
+	"Bernardino #0" = 0
+	"Camilo #0" = 0
+	"Carlos #0" = 0
+	"Desiderio #0" = 0
+	"Diego #0" = 0
+	"Eduardo #0" = 0
+	"Emilio #0" = 0
+	"Federico #0" = 0
+	"Germán #0" = 0
+	"Hipólito #0" = 0
+	"Ismael #0" = 0
+	"Joaquín #0" = 0
+	"Juan #0" = 0
+	"Luis #0" = 0
+	"Marcelino #0" = 0
+	"Martín #0" = 0
+	"Ovidio #0" = 0
+	"Porfirio #0" = 0
+	"Rufino #0" = 0
+	"Sergio #0" = 0
+	"Teófilo #0" = 0
+	"Urbano #0" = 0
+	"Vicente #0" = 0
+	"Víctor #0" = 0
+}
+
+leader_names = {
+	Alberti Álvarez "de Alvear" Artigas Azcuenaga Balcarce Bazán Belgrano Brown Bustos
+	Cabral Castro Chiclana Costa Derqui Dorrego González Goyeneche Guazurary "de Güemes"
+	Heredia Jonte "Kaunitz de Holmberg" "de Laprida" Larrea "de las Heras" López
+	Mansilla Matheu Monteagudo Moreno Paso Paz Peña Pérez Planes Posadas "de Pueyrredón"
+	Ramírez Riglos Robinson Rodríguez Rondeau "de Rosas"
+	Saavedra Sáenz "de San Martín" Sarratea Urquiza Warnes
+}
+
+ship_names = {
+	"Buenos Aries"
+	"Diego Armando Maradona"
+	"El Plata"
+	"General Belgrano"
+	Independencia
+	Libertad "Los Andes"
+	Moreno 
+	Patagonia
+	Rivalda
+}
+	

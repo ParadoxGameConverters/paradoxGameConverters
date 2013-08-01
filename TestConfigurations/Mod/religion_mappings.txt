@@ -22,11 +22,23 @@ link = { ck2 = bektashi  eu3 = bektashi }
 link = { ck2 = druze  eu3 = druze }
 link = { ck2 = hurufi  eu3 = hurufi }
 link = { ck2 = pagan  eu3 = generic_pagan }
-link = { ck2 = norse_pagan eu3 = norse_pagan }
-link = { ck2 = tengri_pagan  eu3 = tengri_pagan }
-link = { ck2 = baltic_pagan  eu3 = baltic_pagan }
-link = { ck2 = finnish_pagan  eu3 = finnish_pagan }
-link = { ck2 = aztec eu3 = aztec }
+link = { ck2 = norse_pagan eu3 = shamanism }
+link = { ck2 = norse_pagan_reformed eu3 = norse_pagan }
+link = { ck2 = tengri_pagan  eu3 = shamanism }
+link = { ck2 = tengri_pagan_reformed  eu3 = tengri_pagan }
+link = { ck2 = baltic_pagan  eu3 = shamanism }
+link = { ck2 = baltic_pagan_reformed  eu3 = baltic_pagan }
+link = { ck2 = finnish_pagan  eu3 = shamanism }
+link = { ck2 = finnish_pagan_reformed  eu3 = finnish_pagan }
+link = { ck2 = aztec eu3 = animism }
+link = { ck2 = aztec_reformed eu3 = aztec }
+link = { ck2 = slavic_pagan_reformed eu3 = slavic_pagan }
+link = { ck2 = slavic_pagan eu3 = shamanism }
+link = { ck2 = west_african_pagan_reformed eu3 = west_african_pagan }
+link = { ck2 = west_african_pagan eu3 = animism }
+link = { ck2 = hellenic_pagan eu3 = hellenic_pagan }
 link = { ck2 = zoroastrian eu3 = zoroastrian }
+link = { ck2 = mazdaki eu3 = zoroastrian }
+link = { ck2 = manichean eu3 = zoroastrian }
 
 }

@@ -1,0 +1,136 @@
+country_decisions = {
+
+	imperial_administration = {
+		potential = {
+			OR = {
+				technology_group = western
+				technology_group = eastern
+				technology_group = ottoman
+				technology_group = muslim
+			}
+			OR = {
+				government = feudal_monarchy
+				government = despotic_monarchy
+			}
+		}
+		allow =  {
+			stability = 1
+			num_of_cities = 30
+			war = no 
+			is_subject = false
+		}
+	  effect = {
+			government = imperial_government
+			stability = -3
+			prestige = 0.05
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				religion = catholic
+			}
+			modifier = {
+				factor = 0
+				religion = protestant
+			}
+			modifier = {
+				factor = 0
+				religion = reformed
+			}
+		}
+	}
+	
+	plutocratic_administration = {
+		potential = {
+			NOT = { government = merchant_republic }
+			OR = {
+				technology_group = western
+				technology_group = eastern
+				technology_group = ottoman
+				technology_group = muslim
+			}
+			OR = {
+				government = noble_republic
+				government = administrative_republic
+				government = republican_dictatorship
+				tag = HSA
+				tag = GEN
+				tag = VEN
+			}
+		}
+		allow =  {
+			stability = 1
+			placed_merchants = 25
+			capital_scope = {
+					cot = yes
+				}
+			war = no 
+			is_subject = false
+		}
+	  effect = {
+			government = merchant_republic
+			stability = -2
+			merchants = 5
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				num_of_cities = 3
+			}
+		}
+	}
+	
+	formalize_separation_of_powers = {
+		potential = {
+			government = constitutional_monarchy
+			NOT = {
+				has_country_modifier = separation_of_powers
+			}
+		}
+		
+		allow = {
+			stability = 2
+			advisor = statesman
+			war = no
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = "separation_of_powers"
+				duration = -1
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	go_cult_of_reason = {
+		potential = {
+			government = revolutionary_republic
+			NOT = {
+				has_country_modifier = cult_of_reason
+			}
+		}
+		
+		allow = {
+			NOT = {
+				stability = -1
+			}
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = "cult_of_reason"
+				duration = -1
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

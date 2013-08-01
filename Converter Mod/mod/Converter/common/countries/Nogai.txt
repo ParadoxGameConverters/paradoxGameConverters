@@ -1,0 +1,68 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 144  181  106 }
+
+historical_ideas = {
+	glorious_arms 
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	humanist_tolerance
+	cabinet
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Yadigai #0" = 10
+	"'Isa Beg #0" = 10
+	"Mansur #0" = 10
+	"Kai Qubad #0" = 10
+	"Nur #0" = 10
+	"Mustafa #0" = 10
+	"Osman #0" = 10
+	"Yamguchi #0" = 10
+	"Musa Mirza #0" = 10
+	"Shigai #0" = 10
+	"Seydyak #0" = 10
+	"Shig-Mamai #0" = 10
+	"Ishey #0" = 10
+	"Yusuf #0" = 10
+        "Il Murza #0" = 10
+        "Isma'il #0" = 10
+        "Yunus #0" = 10
+        "Tin-Ahmad #0" = 10
+        "Mirza Urus #0" = 10
+        "Yeni Bey #0" = 10
+        "Ishterek #0" = 10
+        "Yan Arslan #0" = 10
+        "Alba Murza #0" = 10
+        "Kana Bey Mirza #0" = 10
+        "Djan Mambet Bey #0" = 10
+	
+}
+
+leader_names = { 
+	"Ulagan Temur" "Bora Chinua" "Suren Unegen" "Qara Erdene" 
+	"Delger Cheren" Chaganchar Qorchigene Burilgidai Qadantai 
+	Temurcher Tegus-chi Berkegene Yekechar Batu-tu
+}
+
+ship_names = {
+	"Kara Nojaj" Edigü Saraycik Yayik
+	"Chinggis Khan" "Batu Khan" "Tartar Khan"
+	"Möngke Timur" "Waqqas Bej" Chaka Buri
+	"Qara Quchuq" Mangyt
+}

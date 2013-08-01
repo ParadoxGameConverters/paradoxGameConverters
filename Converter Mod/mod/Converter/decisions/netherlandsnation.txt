@@ -1,0 +1,57 @@
+country_decisions = {
+
+	netherlands_nation = {
+		potential = {
+			NOT = { exists = NED }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			OR = {
+				primary_culture = dutch
+				primary_culture = flemish
+			}
+		}
+		allow = 
+		{
+			owns = 96 # Zeeland
+			owns = 97 # Holland
+			owns = 98 # Utrecht
+			owns = 100 # Friesland
+			is_core = 96 # Zeeland
+			is_core = 97 # Holland
+			is_core = 98 # Utrecht
+			is_core = 100 # Friesland
+			war = no
+		}
+	  effect = {
+			NED = {
+				add_core = 90		# Vlaanderen
+				add_core = 95		# Breda
+				add_core = 96		# Zeeland
+				add_core = 97		# Holland
+				add_core = 98		# Utrecht
+				add_core = 99		# Gelre
+				add_core = 100		# Friesland
+				add_core = 1742		# Limburg
+				add_core = 1744		# Antwerp
+			}
+			centralization_decentralization = -2
+			merchants = 1
+			random_owned = {
+				limit = {
+					OR = {
+						culture = dutch
+						culture = flemish
+					}
+				}
+				base_tax = 1
+			}
+			prestige = 0.05
+			change_tag = NED
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	
+}

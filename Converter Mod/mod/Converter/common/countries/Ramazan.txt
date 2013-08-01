@@ -1,0 +1,140 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 138  126  53 } 
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	divine_supremacy
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	engineer_corps
+	espionage
+	shrewd_commerce_practise
+	national_trade_policy
+	scientific_revolution
+	national_bank
+}
+
+historical_units = {
+	ottoman_yaya
+	ottoman_musellem
+	ottoman_azab
+	ottoman_timariot
+	ottoman_janissary
+	ottoman_spahi
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Ramazan #1" = 20
+	"Ibrahim #1" = 40
+	"Mehmet #0" = 30
+	"Ahmet #0" = 20
+	"Hamza #0" = 20
+	"Eylük #0" = 10
+	"Dündar #0" = 10
+	"Ömer #0" = 10
+	"Khalil #0" = 10
+	"Selim #0" = 10
+	"Kubad #0" = 10
+	"Ishak #0" = 0
+	"Ilyas #0" = 0
+	"Hizir #0" = 0
+	"Süleyman #0" = 0
+	"Abdülhamid #0" = 0
+	"Abdullah #0" = 0
+	"Abdülmecid #0" = 0
+	"Cihangir #0" = 0
+	"Giyasuddin #0" = 0
+	"Isa #0" = 0
+	"Numan #0" = 0
+	"Mûsa #0" = 0
+	"Jem #0" = 0
+	"Orkhan #1" = 0
+	"Abdulaziz #0" = 0
+	"Abdulmecid #0" = 0
+	"Abdulmalik #0" = 0
+	"Abdulrahman #0" = 0
+	"Alauddin #0" = 0
+	"Ali #0" = 0
+	"Alam #0" = 0
+	"Davud #0" = 0
+	"Hasan #0" = 0
+	"Hüseyin #0" = 0
+	"Ishak #0" = 0
+	"Kamar #0" = 0
+	"Kasim #0" = 0
+	"Korkud #0" = 0
+	"Murad #0" = 0
+	"Seyfettin #0" = 0
+	"Shahanshah #0" = 0
+	"Yakub #0" = 0
+	"Yusuf #0" = 0
+	"Aydin #0" = 0
+	"Burcu #0" = 0
+	"Direnç #0" = 0
+	"Emin #0" = 0
+	"Erol #0" = 0
+	"Ilhami #0" = 0
+	"Iskender #0" = 0
+	"Koray #0" = 0
+	"Onur #0" = 0
+	"Özgür #0" = 0
+	"Savas #0" = 0
+	"Temel #0" = 0
+	"Tunç #0" = 0
+}
+
+leader_names = {
+	Alemdar Amasyali Ayas
+	Bali Barbaros Bayram
+	Cezzar Çandarli Çelebi Cerrah Çerkes
+	Damat Dervis
+	Ekrem
+	Gedik Gazi Gümülcineli Gürcü
+	Hadim Hekimoglu Hersekli
+	Köprülü Kemal Kucuk Koca Karamanli Kara Kanijeli Kemankes
+	Íshak
+	Lala Lefkeli
+	Mezzamorto Malkoç Müezzinzade Melek
+	Nevsehirli
+	Oruç Uluç Osmancikli Ohrili
+	Rum
+	Piri Pargali Piyale
+	Salih Sokullu Sissaou Silahdar Semiz Serdar
+	Topal Tabaniyassi Tayyar Turgut
+	Veli
+	Yemisçi
+	Özdemir Özdemiroglu Öküz
+}
+
+ship_names = {
+	"Kari Alemdar" "Arnaud Ali" "Dragud Ali" "Ferhad Ali" "Hamid Ali" "Iusuf Ali"
+	"Karl Ali" "Karaman Ali" "Macasir Ali" "Seydi Ali" "Tartar Ali" "Uluch Ali"
+	"Selim Basti" "Ramazan Bey" "Ishak Bey"
+	"Sinian Celebi"
+	"Murad Darius" "Salim Deli"
+	"Nasur Ferhad" "Magyar Fehrad" "Nasur Ferhad"
+	"Kafir Hajji"  "Kiafi Hajji" "Kos Hajji" "Mustafa Hajji" "Murad Hasan" "Karaman Hyder"
+	"Chios Mehemet" "Uschiufly Memy" "Kos Mend" "Kari Mora" "Amdjazade Mustafa"
+	"Cademly Mustafa" "Chendereli Mustafa" "Hignau Mustafa"
+	"Ionas Osman" "Piali Osman" "Piri Osman" "Tursun Osman"
+	"Iosul Piali" "Alemdar Pasha" "Darius Pasha" "Karaman Pasha"
+	"Celebi Reis" "Kasam Reis" "Karali Reis" "Nasi Reis" "Osman Reis" "Piri Reis"
+	"Piriman Reis" "Sali Reis" "Seydi Reis" "Talatagi Reis" "Uluj Reis" "Kara Rhodi"
+	"Peri Selim" "Keduk Seydi" "Hazuli Sinian"
+}

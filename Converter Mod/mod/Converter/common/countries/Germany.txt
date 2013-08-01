@@ -1,0 +1,120 @@
+graphical_culture = latingfx
+
+color = { 150  177  161 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	humanist_tolerance
+	merchant_adventures
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	military_drill
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Friedrich #2" = 60
+	"Albrecht #1" = 50
+	"Friedrich #2 Wilhelm" = 40
+	"Friedrich #2 August" = 30
+	"Ferdinand #0" = 30
+	"Wilhelm #0" = 30
+	"Karl #4" = 20
+	"Christian #0" = 20
+	"Johann #0 Georg" = 20
+	"Maximilian #0" = 20
+        "Franz #0" = 20
+        "Joseph #0" = 20
+        "Heinrich #7" = 15
+	"Karl #4 Albrecht" = 15
+	"Karl #4 Theodor" = 15
+	"Friedrich #2 Albrecht" = 15
+	"Friedrich #2 Christian" = 15
+	"Albrecht #1 Achilles" = 15
+	"August #0" = 15
+	"Ernest #0" = 15
+	"Ferdinand #0 Maria" = 15
+	"Franz #0 Stefan" = 15
+	"Georg #0" = 15
+	"Georg #0 Wilhelm" = 15
+	"Joachim #0 Hector" = 15
+	"Joachim #0 Nestor" = 15
+	"Johann #0" = 15
+	"Johann #0 Cicero" = 15
+	"Johann #0 Friedrich" = 15
+	"Johann #0 Siegmund" = 15
+	"Ladislav #0" = 15
+	"Leopold #0" = 15
+	"Matthias #0" = 15
+	"Mortiz #0" = 15
+	"Siegmund #0" = 15
+	"Karl #4 Joseph" = 10
+        "Ludwig #4" = 10
+	"August #0 Wilhelm" = 10
+	"Wilhelm #0 Friedrich" = 10
+	"Alexander #0" = 10
+	"Anton #0" = 10
+	"Christian #0 Albrecht" = 10
+	"Hektor #0" = 10
+	"Johann #0 Karl" = 10
+	"Johann #0 Leopold" = 10
+	"Leopold #0 Ferdinand" = 10 
+	"Leopold #0 Johann" = 10
+	"Maximilian #0 Philipp" = 10
+	"Ruprecht #0" = 10
+	"Wenzel #0" = 10
+}
+
+leader_names = { 
+	Adam Angermann Appelt Arndt Beck Becker Bening Blasius
+	Brilz Bröser Büttner Carl Dahm Deneke Eckstein Edelmann 
+	Elsner Feil Fischer Franke Giewer Haase Hafner Hertel 
+	Hirsch Höhn Kammel Keller Kessler Koeppe Kohn Krämer
+	Kuhn Lindner Mertesdorf Meyer Mick Müller Necker Noell 
+	Oelgemöller Raabe Rainer Scharfbillig Schave Scheler 
+	Schmitt Schneider Schumann Stephan Thelen Trierweiler
+	Uhlig "von Franken" "von Rothenburg" "von Schwaben"
+	"von Vitzgau" "von Weimar" Wachsmuth Wacht "von Werl"
+	Walther Wecker
+}
+
+ship_names = {
+	Ariadne Habicht Adler Albatross Amazone
+	Arcona Basilisk Beowulf Biene Wespe Wolf
+	Nautilus Natter Otter Pelikan Pfeil Meteor
+	Möwe Mücke Luchs König Kaiser Eber Drache
+	Falke Frauenlob Freya Fuchs Gazelle Geier
+	Greif Condor Cormoran Comet Wacht Tiger
+	Seeadler Jaguar Hyäne Blitz Bremse Brummer
+	Bussard Vulkan
+}
+
+army_names = {
+	"Kaiserliche Armee" "Armee von $PROVINCE$" 
+}
+
+fleet_names = {
+	"Kaiserliche Flotte"
+}

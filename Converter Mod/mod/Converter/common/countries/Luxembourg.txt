@@ -1,0 +1,96 @@
+#Country Name: Seeee the Name of this File.
+
+graphical_culture = latingfx
+
+color = { 53  140  73 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	military_drill
+	patron_of_art
+	shrewd_commerce_practise 
+	national_trade_policy
+	cabinet
+	national_bank 
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Johann #1" = 20
+	"Wenzel #1" = 20
+	"Anton #0" = 20
+	"Jobst #0" = 20
+	"Sigmund #0" = 20
+	"Elizabeth #0" = -15
+	"Karl #1" = 5
+	"Heinrich #7" = 5
+	"Konrad #2" = 5
+	"Wilhelm #1" = 5
+	"Albrecht #0" = 0
+	"Andreas #0" = 0
+	"Bernhard #0" = 0
+	"Claudius #0" = 0
+	"Cristoph #0" = 0
+	"Diederik #0" = 0
+	"Engelbert #0" = 0
+	"Ferdinand #0" = 0
+	"Franz #0" = 0
+	"Georg #0" = 0
+	"Hans #0" = 0
+	"Isaak #0" = 0
+	"Jakob #0" = 0
+	"Joachim #0" = 0
+	"Joseph #0" = 0
+	"Klemens #0" = 0
+	"Konstantin #0" = 0
+	"Leopold #0" = 0
+	"Lothair #0" = 0
+	"Ludwig #0" = 0
+	"Mathias #0" = 0
+	"Maximiliam #0" = 0
+	"Odo #0" = 0
+	"Pascal #0" = 0
+	"Peter #0" = 0
+	"Philipp #0" = 0
+	"Rudolf #0" = 0
+	"Ruprecht #0" = 0
+	"Sigismund #0" = 0
+	"Viktor #0" = 0
+}
+
+leader_names = {
+	"von Bettborn" "von Bous" "von Capellen" "von Grevenmach"
+	"von Grosbous" "von Pontpierre" "von Reisdorf" "von Redange"
+	"von Diekirch" "von Schuttrange" Borchert Bültel Dumont
+	Genot Hoscheit Mersch Nissar Riener Schannen Pinkernell
+	Petilliot Paguet "von Sommerfeld" Voigt Weiler Winen Biberen
+	Clees Cemmerer Croye Delhaes "du Carme" Gonderinger Greff Herrig
+	Maussen Bourscheidt 
+}
+
+ship_names = {
+	Clervaux Diekirch Redange Vianden Wiltz
+	Echternach Grevenmacher Remich Capellen
+	Mersch Feulen "Esch-sur-Alzette"
+}

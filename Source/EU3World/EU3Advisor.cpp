@@ -47,6 +47,7 @@ EU3Advisor::EU3Advisor(Object* advisorObj, const map<int, EU3Province*>& provinc
 	}
 	else
 	{
+		home = NULL;
 		log("\tError: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
 	}
 
@@ -176,7 +177,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseP
 	if (advisorSkill > 6)
 		advisorSkill = 6;
 
-	if (src->getLocationNum() != -1)
+	if (src->getLocationNum() != -2)
 	{
 		inverseProvinceMapping::const_iterator mapItr = inverseProvinceMap.find(src->getLocationNum());
 		if (mapItr != inverseProvinceMap.end())
@@ -204,6 +205,7 @@ EU3Advisor::EU3Advisor(CK2Character* src, const inverseProvinceMapping& inverseP
 		}
 		else
 		{
+			home = NULL;
 			log("\tError: Trying to place %s %s in province %d, but it is not a valid province.\n", name.c_str(), dynasty.c_str(), location);
 		}
 	}

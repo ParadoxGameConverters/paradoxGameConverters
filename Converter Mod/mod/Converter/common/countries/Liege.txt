@@ -1,0 +1,97 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 149  186  37 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	military_drill
+	patron_of_art
+	shrewd_commerce_practise 
+	national_trade_policy
+	cabinet
+	national_bank 
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Jean #5" = 80
+	"Robert #1" = 20
+	"Corneille #0" = 20
+	"Ferdinand #0" = 20
+	"François-Antoine #0" = 20
+	"François-Charles #0" = 20
+	"Gérard #0" = 20
+	"Érard #0" = 20
+	"Ernest #0" = 20
+	"Jean-Louis #0" = 20
+	"Jean-Théodore #0" = 20		
+	"Georges #0" = 20
+	"Georges-Louis #0" = 20
+	"Joseph-Clément #0" = 20
+	"César-Constantin #0" = 20
+	"Charles #0" = 20
+	"Louis #0" = 20
+	"Maximilien-Henri #0" = 20
+	"Guillaume #3" = 5
+	"Alexandre #2" = 5
+	"Théoduin #1" = 5
+	"Henri #1" = 5
+	"Adriaan #0" = 0
+	"Andries #0" = 0
+	"Augustijn #0" = 0
+	"Bartholomeus #0" = 0
+	"Boudewijn #0" = 0
+	"Christiaan #0" = 0
+	"Constantijn #0" = 0
+	"Daniël #0" = 0
+	"Dominicus #0" = 0
+	"Fabian #0" = 0
+	"Frans #0" = 0
+	"Gillis #0" = 0
+	"Godfried #0" = 0
+	"Herman #0" = 0
+	"Ignaas #0" = 0
+	"Ivo #0" = 0
+	"Jacob #0" = 0
+	"Stefanus #0" = 0
+}
+
+leader_names = {
+	Aubry Bouchet Chauchet Digneffe Fabry
+	Gérard Hauzeur Henkart Josias Nannan
+	Bastin Bauduinet Bitha Cloet Colson
+	"da Franquinet" "de Donnea" "de Finesse"
+	"de Haxhe" "de Lacu" "de Spirlet" Haeck
+	Lambermont Paulet Philippens Reul Reynier
+	Vanhove "la Vignette" 
+}
+
+ship_names = {
+	"St. Lambert" "St. Hubert" "St. Martin"
+	Meuse "Notger of Liege" "Place du Queer"
+	"Saint Jaques" "Saint Bartholomew" Seraing
+	"Sart-Tilman" Luik "Saint-Nicolas" Ans
+}

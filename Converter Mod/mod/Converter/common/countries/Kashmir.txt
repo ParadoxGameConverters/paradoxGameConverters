@@ -1,0 +1,86 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 63  150  30 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	smithian_economics
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	indian_elephant
+	mughal_musketeer
+	mughal_mansabdar
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	sikh_hit_and_run
+	sikh_rifle
+}
+
+monarch_names = {
+	"Sikandar #0" = 10
+	"Ali Shah #0" = 10
+	"Zayn al-'Abidin #0" = 10
+	"Haydar Shah #0" = 10
+	"Hasan Shah #0" = 10
+	"Muhammad Shah #0" = 10
+	"Sayyid Hassan #0" = 10
+	"Fath Shah #0" = 10
+	"Ibrahim Shah #0" = 30
+	"Nazuk Shah #0" = 10
+	"Shams ad-Din #1" = 10
+	"Ismail Shah #0" = 20
+	"Ghazi Shah #0" = 10
+	"Husayn Shah #0" = 10
+	"Yusuf Shah #0" = 10
+	"Lohir Shah #0" = 10
+	"Nabib Shah #0" = 10
+	"Ya'qub Shah #0" = 10
+}
+
+leader_names = {
+	Bahadur
+	Bhalla
+	Das
+	Dev
+	Gahunia
+	Gobind
+	Granth
+	Hoora
+	Jhol
+	Jhotti
+	Krishan
+	Lohaar
+	Parmanand
+	Rajsingh
+	Shergill
+	Singh
+	Sodhi
+	Sohal
+	Rai
+	Udasi
+}
+
+ship_names = {
+	Alia Alisha Aziza Beas Chenab
+	Fatimah Guru Indus Jalsena Jhelum
+	Khan Nausena "Nav ka Yudh" Niknaz
+	Niloufa Ravi Sagar Sutlej Yasmine Zahira
+}

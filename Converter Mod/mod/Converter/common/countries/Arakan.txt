@@ -1,0 +1,109 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 212  211  151 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	espionage
+	patron_of_art
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Radzathu #0" = 20
+	"Thinggathu #0" = 20
+	"Mengtsaumwun #0" = 20
+	"'Alî Khân #0" = 20
+	"Kalima #0" = 20
+	"Dawliya #0" = 20
+	"Basawnyo #0" = 20
+	"Yanaung #0" = 20
+	"Salingathu #0" = 20
+	"Minyaza #0" = 20
+	"Kasabadi #0" = 20
+	"Minsaw O #0" = 20
+	"Thatasa #0" = 20
+	"Minbin #0" = 20
+	"Dikha #0" = 20
+	"Sawla #0" = 20
+	"Minsetya #0" = 20
+	"Minpalaung #0" = 20
+	"Salim #0" = 20
+	"Husayn #0" = 20
+	"Narapatikyi #0" = 20
+	"Thado #0" = 20
+	"Sandathudamma #0" = 20
+	"Thirithuriya #0" = 20
+	"Waradhammaraza #0" = 20
+	"Munithudhammaraza #0" = 20
+	"Sandathuriyadhamma #0" = 20
+	"Nawrahtazaw #0" = 20
+	"Kalamandat #0" = 20
+	"Sandawimala #0" = 20
+	"Sandathuriya #0" = 20
+	"Sandawizaya #0" = 20
+	"Minsani #0" = 20
+	"Naradipati #0" = 20
+	"Narapawara #0" = 20
+	"Katya #0" = 20
+	"Madarit #0" = 20
+	"Thirithu #0" = 20
+	"Apaya #0" = 20
+	"Sandathumana #0" = 20
+	"Sandaditha #0" = 20
+	"Ranoung #0" = 20
+	"Tsalenggathu #0" = 20
+	"Dik-Kha #0" = 20
+	"Thirithudhamma #0" = 20
+	"Radzathugyi #0" = 20
+}
+
+leader_names = {
+	Aung-Hla Aung-San 
+	Hla-Thein 
+	Khin-Nyunt Khun-Sa Kwan-Kywa 
+	Maung-Gyi Maung-Win Min-Tun 
+	Ohn-Myint 
+	Sein-Win 
+	Than-Htay Thet-Naung 
+	U-Nu 
+}
+
+ship_names = {
+	Alaumaphru "Athinkhara Raza" 
+	Candasuriya
+	Datharaza
+	Foonthan
+	Gandakudi
+	Koliya
+	Lakkyamunnan
+	Mahamuni "Mong Saw Mon" "Mrauk U"
+	"Mong Khaki" "Mong Ba" "Mong Razagree"
+	"Mahataing Candra"
+	Ngahnaloon
+	Suriya "Suriya Candra"
+	Thiharaza Thakyawangree Thakyawannge
+	Ukkabala
+	Waradhamma
+}

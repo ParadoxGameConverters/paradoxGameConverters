@@ -1,0 +1,12 @@
+# Ottoman Reformed Spahi
+
+type = cavalry
+unit_type = ottoman
+
+maneuver = 2
+offensive_morale = 4
+defensive_morale = 3
+offensive_fire = 3
+defensive_fire = 1
+offensive_shock = 3
+defensive_shock = 1

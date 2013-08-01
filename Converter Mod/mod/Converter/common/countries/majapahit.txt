@@ -1,0 +1,69 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 201  28  54 }
+
+historical_ideas = {
+	merchant_adventures
+	excellent_shipwrights 
+	shrewd_commerce_practise 
+	superior_seamanship
+	national_trade_policy
+	naval_fighting_instruction
+	sea_hawks
+	national_conscripts
+	military_drill
+	naval_glory
+	espionage
+	battlefield_commisions
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+}
+
+monarch_names = {
+	"Girindrawardhana #0" = 20
+	"Girishawardhana #0" = 20
+	"Kertabumi #0" = 20
+	"Kertawijaya #0" = 20
+	"Rajasawardhana #0" = 20
+	"Suraprabhawa #0" = 20
+	"Wikramawardhana #0" = 20
+	"Hayam Wuruk #1" = 15
+	"Kalagamet #1" = 15
+	"Raden Wijaya #1" = 15
+	"Suhita #0" = -15
+	"Sri Gitarja #1" = -10
+	"Kertawardhana #0" = 10
+	"Raden Sotor #0" = 10
+	"Raden Sumirat #0" = 10
+	"Singhawardhana #0" = 10
+}
+
+leader_names = {
+	Hamengku
+	Agung
+	Slamet
+	Budi
+	Harto
+	Karno
+	Wani
+	Mas
+	Kencono
+	Ratri
+}
+
+ship_names = {
+	Pendet Legong Baris Topeng Barong
+	Kecak Batur Catur Bratan Pohen Lesong
+	Sangyang Batukaru Patas Musi Mesehe
+	Agong Seraya Merbuk Sanglang Kelatakan
+}

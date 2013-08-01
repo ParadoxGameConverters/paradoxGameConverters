@@ -1,0 +1,75 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 132  70  102 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	cabinet
+	patron_of_art
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	south_indian_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	tipu_sultan_rocket
+	indian_rifle
+}
+
+monarch_names = {
+	"Muhammad Sa'adat #0" = 20
+	"Dust 'Ali #0" = 20
+	"Safdar 'Ali #0" = 20
+	"Anwar ad-Din Muhammad #0" = 20
+	"Wala Jah Muhammad 'Ali #0" = 20
+	"Umdat Ul-Umra #0" = 20
+	"Azimuddaula #0" = 20
+	"Azam Jah #0" = 20
+	"Singhana #0" = 10
+	"Ktishna #0" = 10
+	"Mandaeva #0" = 10
+	"Amana #0" = 10
+	"Ramachandra #0" = 10
+	"Sankaradeva #0" = 10
+	"Hanapaladeva #0" = 10
+}
+
+leader_names = {
+	Trishna
+	Sashi
+	Revati
+	Patachli
+	Omkar
+	Nidhi
+	Nidra
+	Puranjay
+	Vishaal
+	Yaksha
+}
+
+ship_names = {
+	Chambal Devi Durga Ganga
+	Gayatri Jalsena "Kala Jahazi"
+	Lakshmi "Lal Jahazi" Nausena
+	"Nav ka Yudh" "Nila Jahazi"
+	Parvati Radha Ratri Sagar
+	Sarasvati Sita Spiti Yamuna
+}

@@ -1,0 +1,92 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 191  110  62 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	shrewd_commerce_practise
+	divine_supremacy
+	excellent_shipwrights
+	superior_seamanship
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	grand_army
+	espionage
+	sea_hawks
+}
+
+historical_units = {
+	mamluk_archer
+	mamluk_cavalry_charge
+	mamluk_duel
+	mamluk_musket_charge
+	muslim_mass_infantry
+	muslim_dragoon
+	ali_bey_reformed_infantry
+}
+
+monarch_names = {
+	"Muhammad #2" = 20
+	"'Abdallâh #1" = 20
+	"'Abd al-Malik #1" = 20
+	"Ahmad #0" = 20
+	"Sulaymân #0" = 20
+	"Yazîd #0" = 0
+	"Zaydân #0" = 20
+	"Alim #1" = 15
+	"al-Walîd #0" = 0
+	"Ataullah #0" = 0
+	"Azhar #0" = 0
+	"Barakat #0" = 0
+	"Dawud #0" = 0
+	"Fahd #0" = 0
+	"Faraj #0" = 0
+	"Faruq #0" = 0
+	"Firuz #0" = 0
+	"Habib #0" = 0
+	"Hafiz #0" = 0
+	"Hakim #0" = 0
+	"Hashim #0" = 0
+	"Ibrahim #0" = 0
+	"Imtiyaz #0" = 0
+	"Jabril #0" = 0
+	"Khalil #0" = 0
+	"Latif #0" = 0
+	"Lutfi #0" = 0
+	"Maram #0" = 0
+	"Muhsin #0" = 0
+	"Najib #0" = 0
+	"Qismat #0" = 0
+	"Qusay #0" = 0
+	"Rashad #0" = 0
+	"Rasul #0" = 0
+	"Ridwan #0" = 0
+	"Shafaqat #0" = 0
+	"Sharif #0" = 0
+	"Yasir #0" = 0
+	"Yûsuf #0" = 0
+	"Zulfiqar #0" = 0
+}
+
+leader_names = {
+	Hadji
+	Sediki
+	Alami
+	Aouita
+	Behar
+	Berui
+	Barek
+	Hadda
+	Sellami
+	Bidouane
+}
+
+ship_names = {
+	Majid Wadid Hakim Wasi Mujib Raqib
+	Karim Jalil Hasib Muqit Hafiz Kabir Ali
+	Shakur Ghafur Azim Halim Khabir Latif Adl
+}

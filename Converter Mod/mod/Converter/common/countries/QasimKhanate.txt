@@ -1,0 +1,62 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 82  135  124 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	national_trade_policy
+	merchant_adventures
+	bureaucracy
+	glorious_arms
+	cabinet
+}
+
+historical_units = {
+	ottoman_yaya
+	ottoman_musellem
+	muscovite_musketeer
+	muscovite_caracolle
+	muscovite_soldaty
+	muscovite_cossack
+	russian_green_coat
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"al-Qasim #0" = 10
+	"Dan'yar #0" = 10
+	"Nur Devlet #0" = 10
+	"Saltighan #0" = 10
+	"Janai #0" = 10
+	"Shikh Awliar #0" = 10
+	"Shah 'Ali #0" = 10
+	"Jan 'Ali #0" = 10
+	"Sayin Bulat #0" = 10
+	"Mustafa 'Ali #0" = 10
+	"Urus Mohammed #0" = 10
+	"Arslan #0" = 10
+	"Sayyid Burhan #0" = 10
+}
+
+leader_names = {
+	"Al Tolui" "Mongke Bayar" "Qara Erdene" "Koke Qadan" Qacha-jin
+	Oyugungene Burilginai Qadanteni Qutughqai "Altan Chinua" "Yeke Sube"
+	"Arigh Qorchi" "Boke Unegen"
+}
+
+ship_names = {
+	"Qasim xanligi" Oka "Mishar Yurt" Meshchyora
+	Muroma Mangit Argin Jalair Qipchaq "Han-Kirman"
+}

@@ -1,0 +1,12 @@
+# Prussian Uhlan
+
+type = cavalry
+unit_type = western
+
+maneuver = 2
+offensive_morale = 8
+defensive_morale = 8
+offensive_fire = 5
+defensive_fire = 5
+offensive_shock = 7
+defensive_shock = 6

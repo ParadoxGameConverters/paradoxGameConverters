@@ -1,0 +1,97 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 211  184  179 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	military_drill
+	national_conscripts
+	merchant_adventures
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	bureaucracy
+	cabinet
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	african_clubmen
+	niger_kongolese_tribal_warfare
+	niger_kongolese_forest_warfare
+	niger_kongolese_gunpowder_warfare
+	westernized_niger_kongolese
+	niger_kongolese_guerilla_warfare
+}
+
+
+monarch_names = {
+	"Oranyan #0" = 20
+	"Sango #0" = 20
+	"Ajaka #0" = 20
+	"Aganju #0" = 20
+	"Kari #0" = 20
+	"Oluaso #0" = 20
+	"Onigbogi #0" = 20
+	"Ofinran #0" = 20
+	"Eguguoju #0" = 20
+	"Orompoto #0" = 20
+	"Ajiboyede #0" = 20
+	"Abipa #0" = 20
+	"Obalokun #0" = 20
+	"Ajagbo #0" = 20
+	"Odorawu #0" = 20
+	"Kanran #0" = 20
+	"Jayin #0" = 20
+	"Ayibi #0" = 20
+	"Osiyago #0" = 20
+	"Ojigi #0" = 20
+	"Gberu #0" = 20
+	"Amuniwaiye #0" = 20
+	"Onisle #0" = 20
+	"Labisi #0" = 20
+	"Agboluaje #0" = 20
+	"Majeogbe #0" = 20
+	"Abiodun #0" = 20
+	"Awole Arongangan #0" = 20
+	"Adebo #0" = 20
+	"Maaku #0" = 20
+	"Aburumaku #0" = 20
+	"Majotu #0" = 20
+	"Do Aklim #0" = 0
+	"Dakondunu #0" = 0
+	"Ganye Hessu #0" = 0
+	"Wegbaja #0" = 0
+	"Akaba #0" = 0
+	"Agaja #0" = 0
+	"Tegbesu #0" = 0
+	"Kpengla #0" = 0
+	"Anonglo #0" = 0
+	"Haholo #0" = 0
+	"Kpasse #0" = 0
+	"Ayohuan #0" = 0
+	"Agbangia #0" = 0
+}
+
+leader_names = {
+	Ubah
+	Umaru
+	Aliu
+	Solaja
+	Okara
+	Ajuwa
+	Ezinwa
+	Kanu
+	Opara
+	Rufai
+}
+
+ship_names = {
+	Oranyan Ajaka Sango "Oyo-Ille" Oduduwa
+	"Olorun Olodumare" "Ille-Ife" Odudua
+	Obatala "O'odua" "Ile n'fe"
+}

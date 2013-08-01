@@ -1,0 +1,99 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 117  161  67 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	military_drill
+	battlefield_commisions
+}
+
+historical_units = {
+	halberd_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Bernhard #0" = 70
+	"Christoph #0" = 40
+	"Karl #0" = 40
+	"Jakob #0" = 50
+	"Philipp #1" = 30
+	"August Georg #0" = 20
+	"Eduard Fortunat #0" = 20
+	"Ernst Friedrich #0" = 20
+	"Georg Friedrich #0" = 20
+	"Karl Friedrich #0" = 20
+	"Ludwig #0" = 20
+	"Ludwig Georg #0" = 20
+	"Ludwig Wilhelm #0" = 20
+	"Philibert #0" = 20
+	"Wilhelm #0" = 20
+	"Ferdinand Maximilian #0" = 15
+	"Hermann Fortunat #0" = 15
+	"Karl Joseph #0" = 15
+	"Karl Leopold #0" = 15
+	"Karl Ludwig #0" = 15
+	"Leopold Wilhelm #0" = 15
+	"Wilhelm Georg #0" = 15
+	"Rudolf #4" = 10
+	"Albrecht #0" = 10
+	"Albrecht Karl #0" = 10
+	"Christoph Gustav #0" = 10
+	"Ernst #0" = 10
+	"Georg #0" = 10
+	"Johann #0" = 10
+	"Johann Karl #0" = 10
+	"Markus #0" = 10
+	"Philipp Siegmund #0" = 10
+	"Wilhelm Ludwig #0" = 10
+	"Wolfgang #0" = 10
+	"Albrecht #0" = 0
+	"Erich #0" = 0
+	"Gregor #0" = 0
+	"Isaak #0" = 0
+	"Oskar #0" = 0
+	"Wolfram #0" = 0
+}
+
+leader_names = { 
+	Albers Bächtold Baehr Beer Benthens Breh Eisenkolb Erb
+	Ferstenfeld Fischer Göhringer Grether Heitzmann Helff 
+	Kempf Klee Mackensen Römermann Schüßler Steinmann 
+	Tientjen Tuve Wachsmuth
+}
+
+ship_names = {
+	"Markgraf Hermann" "Markgraf Bernard I" "Markgraf Karl I"
+	Linzgau Lörrach Freiburg Karlsruhe Mannheim Tauber Rhein
+	Bruchsal Bretten Constance Eberbach Feldberg Heidelberg
+	Kinzig Lahr Offenburg Rastatt Villingen
+}
+
+army_names = {
+	"Markgräfische Garde" "Armee von $PROVINCE$" 
+}

@@ -1,0 +1,63 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 189  123  130 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	humanist_tolerance
+	bureaucracy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Binya-Nwe #0" = 20
+	"Binya Dhamma #0" = 20
+	"Binya Rankit #0" = 20
+	"Binya Waru #0" = 20
+	"Binya Keng #0" = 20
+	"Shengtsaubu #0" = 20
+	"Dhamma Dzedi #0" = 20
+	"Binya Ran #0" = 20
+	"Takarwutbi #0" = 20
+	"Buddha Thi Gwe Meng #0" = 20
+	"Binya Dala #0" = 20
+}
+
+leader_names = {
+	Daw
+	Hwae
+	The
+	Tin
+	Tchin
+	U-nu
+	Tun-Aung
+	Min-Tun
+	Kwei
+	Maung-Gyi
+}
+
+ship_names = {
+	Salween Taunggyi Kengtong Tachileik Nam Thanlwin
+	Saluen Lui Hsim Teng Myitnge Pilu Inle Shweli
+}

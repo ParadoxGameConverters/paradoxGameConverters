@@ -1,0 +1,12 @@
+# Qizilbash Cavalry
+	
+type = cavalry
+unit_type = muslim
+
+maneuver = 2	
+offensive_morale = 3
+defensive_morale = 2	
+offensive_fire = 0
+defensive_fire = 0
+offensive_shock = 3
+defensive_shock = 2

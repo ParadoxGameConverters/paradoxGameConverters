@@ -1,0 +1,126 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 54  167  156 }
+
+historical_ideas = {
+	merchant_adventures
+	excellent_shipwrights
+	shrewd_commerce_practise
+	divine_supremacy
+	superior_seamanship
+	patron_of_art  
+	national_bank
+	national_trade_policy
+	naval_fighting_instruction 
+	cabinet
+	espionage
+	scientific_revolution
+	
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Antonio #0" = 20
+	"Michele #0" = 20
+	"Tomasso #0" = 20
+	"Mosé #0" = 40
+	"Niccolò #0" = 40
+	"Domenico #0" = 20
+	"Francesco #0" = 20
+	"Giovanni #0" = 20
+	"Marco #0" = 20
+	"Vittore #0" = 20
+	"Agostino #0" = 0
+	"Alfredo #0" = 0
+	"Alvise #0" = 0
+	"Andrea #0" = 0
+	"Anselmo #0" = 0
+	"Bertucci #0" = 0
+	"Bruno #0" = 0
+	"Carlo #0" = 0
+	"Constanzo #0" = 0
+	"Cristoforo #0" = 0
+	"Enzo #0" = 0
+	"Fabrizio #0" = 0
+	"Gianpiero #0" = 0
+	"Girolamo #0" = 0
+	"Giuseppe #0" = 0
+	"Jacopo #0" = 0
+	"Leonardo #0" = 0
+	"Lorenzo #0" = 0
+	"Ludovico #0" = 0
+	"Luigi #0" = 0
+	"Marco Antonio #0" = 0
+	"Marino #0" = 0
+	"Mario #0" = 0
+	"Ottavio #0" = 0
+	"Pasquale #0" = 0
+	"Pietro #0" = 0
+	"Sebastiano #0" = 0
+	"Silvestro #0" = 0
+	"Simone #0" = 0
+	"Teodoro #0" = 0
+	"Urbano #0" = 0
+	"Vitale #0" = 0
+}
+
+leader_names = {
+	"d'Alviano" Alvise
+	Barbarigo Bembo Barilla Bassano Bardolino
+	Cornaro Contarini Cassandro Casanova Commachio Chiogga
+	Donato Dolfin "de Blazio"
+	Emo Erizzo Ermelli
+	Foscolo Flangini Foscarini
+	Grimani Giustinani Gritti Garda
+	Loredan Labia Lomellini Lando
+	Moceningo Marcello Morosini Molin Moro Memmo Magno Mestre Modigliano
+	Quirini
+	Polani Priuli Pisani Pesaro Pezzini Pordenone
+	Riva Ruzzini Rovigo Rovereto
+	"San Paulo" Schio Sugaina
+	Trevisano Toscani
+	Veniero Valieri Vittorio
+	Zeno Zustiniani
+}
+
+ship_names = {
+	"Amazzone Guerriera" Amburgense "Anna Bonaventura" Apollo "Aquila Coronato" 
+	"Aquila d'Oro" "Aquila Valiera" "Arma di Colognia" "Arma di Midelborgo" 
+	"Capitana d'Algeri" Carita "Casa di Nassau" "Concordia" "Conte Sdrin" 
+	"Croce Dorata" "Drago Volante" "Ercole Vittorioso" Esperienza "Fama Volante" 
+	"Fede Guerriera" Fenice Francese "Fregata Contarini" "Gallo d'Oro" 
+	"Genovese grande" Giove "Giove Fulminante" "Giudizio di Salomon" Iride 
+	"Leon Coronato" "Madonna della Salute" "Madonna della Vigna" Margarita 
+	"Mercante Diletto" Nettuno "Orca Negro" "Orsola Bonaventura" "Pace ed Abbondanza" 
+	Paramore "Piccola Fortuna" "Pinco Tremartino" Pomerlan "Principe di Venezia" 
+	Principessa "Principessa Reale" "Principessa Grande" "Principessa Piccola" 
+	"Profeta Elia" "Profeta Samuel" "Redentore del Mundo" "Rizzo d'Oro" Rosa 
+	"Rosa Moceniga" "Rotta Fortuna" "Sacra Lega" "Sacrificio d'Abram" 
+	"San Andrea" "San Antonio di Padova" "San Bartolamio" "San Domenico" "San Felippe" 
+	"San Giovanni" "San Giovanni Battista Grande" "San Giovanni Battista Piccolo" 
+	"San Giorgio Grande" "San Lorenzo Giustinian" "San Michiel" "San Nicolo" 
+	"San Sebastiano" "San Vittorio" "San Zorzi Giccolo" "Sole d'Oro" "Spirito Santo" 
+	"Stella Maris" Tamburlano Tigre "Tre Re" "Valor Coronato" "Venere Armata" Vittoria 
+	"Zardin d'Olanda" 
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

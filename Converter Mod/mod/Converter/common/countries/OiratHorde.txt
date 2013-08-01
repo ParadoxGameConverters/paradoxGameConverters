@@ -1,0 +1,90 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 204  184  177 }
+
+historical_ideas = {
+	glorious_arms
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	humanist_tolerance
+	cabinet
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Galdan #0" = 40
+	"Tsewang #0" = 40
+	"Amursana #0" = 20
+	"Erdeni #0" = 20
+	"Choghtu #0" = 20
+	"Dalai #0" = 20
+	"Dawa #0" = 20
+	"Esen #0" = 20
+	"Güshi #0" = 20
+	"Lama #0" = 20
+	"Lha-bzang #0" = 20
+	"Khara Khula #0" = 20
+	"Kho #0" = 20
+	"Sengge #0" = 20
+	"Tseten #0" = 20
+	"Tsewang #0" = 20
+	"Kundelung #0" = 15
+	"Lobzang #0" = 15
+	"Sutai #0" = 15
+	"Tsobasa #0" = 15
+	"Ubasi #0" = 15
+	"Quduqa #0" = 10
+	"Toghto #0" = 10
+	"Altai #0" = 0
+	"Bäki #0" = 0
+	"Bayan #0" = 0
+	"Dayan #0" = 0
+	"Hami #0" = 0
+	"Molon #0" = 0
+	"Oori #0" = 0
+	"Orlök #0" = 0
+	"Sechen #0" = 0
+	"Radi #0" = 0
+	"Talman #0" = 0
+	"Todo #0" = 0
+	"Tumen #0" = 0
+	"Tumu #0" = 0
+	"Ubashi #0" = 0
+	"Ulan #0" = 0
+	"Wehe #0" = 0
+	"Yelu #0" = 0
+	"Zaya #0" = 0
+}
+
+leader_names = {
+	Jasray
+	Gonbat
+	Hattori
+	Olzvoi
+	Bira
+	Batmunkh
+	Ganbold
+	Saihan
+	Ochirbal
+	Davaa
+}
+
+ship_names = {
+	Bargut Buzav Kerait Naiman "Dörvn Öörd"
+	Khoshut Olo Dzungar Torgut Dorbot
+	Amdo "Altan Khan" Khoshot Olöts Güshi
+}

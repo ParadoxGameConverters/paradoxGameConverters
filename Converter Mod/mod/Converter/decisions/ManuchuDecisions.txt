@@ -1,0 +1,117 @@
+country_decisions = {
+
+	form_manchu_dynasty = {
+		potential = {
+			tag = MCH
+			owns = 704		# Liaoxi
+			owns = 723		# Xilin Gol
+			owns = 726		# Liaodong			
+			NOT = { has_country_flag = manchu_dynasty_formed }
+		}
+		allow = {
+			owns = 1816		# Beijing
+			war = no
+			is_lesser_in_union = no
+			is_subject = no
+		}
+		effect = {
+			ming_china = { add_core = MCH }
+			random_owned = { base_tax = 1 }
+			centralization_decentralization = -1
+			capital = 1816 # Beijing
+			prestige = 0.02
+			government = despotic_monarchy
+			set_country_flag = manchu_dynasty_formed
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	create_green_standard_army = {
+		potential = {
+			tag = MCH
+			NOT = { has_country_modifier = green_standard_army }
+		}
+		allow = {
+			is_subject = no
+			is_monarch_leader = yes
+			MIL = 7
+			owns = 725		# Hinggan
+			war_with = MNG
+			MNG = {
+				OR = {
+					revolt_risk = 6
+					NOT = { stability = 0 }
+					NOT = { war_score = -10 }
+				}
+			}
+		}
+		effect = {
+			prestige = 0.05
+			relation = { who = MNG value = -100 }
+			badboy = 2
+			MNG = { manpower = -8 }
+			infantry = 725
+			infantry = 725
+			infantry = 725
+			infantry = 725
+			cavalry = 725
+			cavalry = 725
+			cavalry = 725
+			cavalry = 725
+			add_country_modifier = {
+				name = "green_standard_army"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	create_manchu_alphabet = {
+		potential = {
+			tag = MCH
+			NOT = { has_country_flag = manchu_alphabet }
+		}
+		allow = {
+			is_subject = no
+			ADM = 7
+		}
+		effect = {
+			prestige = 0.05
+			add_country_modifier = {
+				name = "manchu_alphabet"
+				duration = 1825
+			}
+			set_country_flag = manchu_alphabet
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	create_eight_banners = {
+		potential = {
+			tag = MCH
+			NOT = { has_country_modifier = eight_banners }
+		}
+		allow = {
+			is_subject = no
+			land_tech = 4
+			MIL = 7
+			is_monarch_leader = yes
+		}
+		effect = {
+			add_country_modifier = {
+				name = "eight_banners"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+} #End of country decisions

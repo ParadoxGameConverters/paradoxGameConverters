@@ -1,0 +1,96 @@
+# Würzburg
+
+graphical_culture = latingfx
+
+color = { 147  146  106 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	humanist_tolerance
+	merchant_adventures
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	military_drill
+	engineer_corps
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Johann #0" = 60
+	"Konrad #1" = 40
+	"Johann Gottfried #0" = 40
+	"Johann Philipp #0" = 40
+	"Gottfried #3" = 20
+	"Rudolf #1" = 20
+	"Adam Friedrich #0" = 20
+	"Anselm Franz #0" = 20
+	"Christoph Franz #0" = 20
+	"Ferdinand #0" = 20
+	"Franz #0" = 20
+	"Franz Ludwig #0" = 20
+	"Friedrich #0" = 20
+	"Friedrich Karl #0" = 20
+	"Georg Karl #0" = 20
+	"Johann Hartmann #0" = 20
+	"Julius Echter #0" = 20
+	"Karl Philipp #0" = 20
+	"Konrad Wilhelm #0" = 20
+	"Lorenz #0" = 20
+	"Melchior #0" = 20
+	"Peter Philipp #0" = 20
+	"Philipp Adolf #0" = 20
+	"Philipp Franz #0" = 20
+	"Siegmund #0" = 20
+	"Albrecht #3" = 15
+	"Hermann #2" = 15
+	"Otto #2" = 15
+	"Gerhard #1" = 15
+	"Wolfram #1" = 15
+	"Leopold #0" = 15
+	"Heinrich #5" = 10
+	"Poppo #3" = 10
+	"Berthold #2" = 10
+	"Andreas #1" = 10
+	"Dietrich #1" = 10
+	"Friedrich #1" = 10
+	"Alfred #0" = 0
+	"Christian #0" = 0
+	"Jürgen #0" = 0
+}
+
+leader_names = {
+	Dick Sell Söll Schwager Fichtelmann Höhrer Rank
+	Gäbelein Bär Degen Färber Simon Wirth Sack
+	Blochberger Födisch Egelkraut Hager Hofmann
+}
+
+ship_names = {
+	Marienberg "Julius Echter" Main Höchberg
+	Rimpar Biebelried Eigelstadt Uettingen
+	Gramschatz Wern Bergtheim Kietzingen Ochsenfurth
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

@@ -1,0 +1,5 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+Color = { 242 255 197 }

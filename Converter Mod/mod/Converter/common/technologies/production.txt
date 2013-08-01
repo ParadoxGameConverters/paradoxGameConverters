@@ -1,0 +1,75 @@
+technology = { id = 0   average_year = 1300          production_efficiency = 0.10            }
+technology = { id = 1   average_year = 1360          production_efficiency = 0.20            }
+technology = { id = 2   average_year = 1380          production_efficiency = 0.25            }
+technology = { id = 3   average_year = 1400          production_efficiency = 0.26            }
+technology = { id = 4   average_year = 1410          production_efficiency = 0.27  constable = yes           }
+technology = { id = 5   average_year = 1420          production_efficiency = 0.28            }
+technology = { id = 6   average_year = 1430          production_efficiency = 0.29            }
+technology = { id = 7   average_year = 1440          production_efficiency = 0.30            }
+technology = { id = 8   average_year = 1450          production_efficiency = 0.31   workshop = yes          }
+technology = { id = 9   average_year = 1465          production_efficiency = 0.32            }
+technology = { id = 10  average_year = 1475          production_efficiency = 0.34            }
+technology = { id = 11  average_year = 1485          production_efficiency = 0.36            }
+technology = { id = 12  average_year = 1495          production_efficiency = 0.38            }
+technology = { id = 13  average_year = 1497          production_efficiency = 0.40   counting_house = yes         }
+technology = { id = 14  average_year = 1498          production_efficiency = 0.42   textile = yes         }
+technology = { id = 15  average_year = 1502          production_efficiency = 0.44            }
+technology = { id = 16  average_year = 1508          production_efficiency = 0.46            }
+technology = { id = 17  average_year = 1518          production_efficiency = 0.48            }
+technology = { id = 18  average_year = 1530          production_efficiency = 0.50            }
+technology = { id = 19  average_year = 1540          production_efficiency = 0.51 treasury_office = yes           }
+technology = { id = 20  average_year = 1545          production_efficiency = 0.52            }
+technology = { id = 21  average_year = 1550          production_efficiency = 0.53            }
+technology = { id = 22  average_year = 1565          production_efficiency = 0.54            }
+technology = { id = 23  average_year = 1585          production_efficiency = 0.55 mint = yes           }
+technology = { id = 24  average_year = 1600          production_efficiency = 0.56            }
+technology = { id = 25  average_year = 1610          production_efficiency = 0.57            }
+technology = { id = 26  average_year = 1620          production_efficiency = 0.58            }
+technology = { id = 27  average_year = 1625          production_efficiency = 0.59 stock_exchange = yes           }
+technology = { id = 28  average_year = 1636          production_efficiency = 0.60            }
+technology = { id = 29  average_year = 1644          production_efficiency = 0.61            }
+technology = { id = 30  average_year = 1655          production_efficiency = 0.62            }
+technology = { id = 31  average_year = 1660          production_efficiency = 0.63 grain_depot = yes           }
+technology = { id = 32  average_year = 1675          production_efficiency = 0.64            }
+technology = { id = 33  average_year = 1690          production_efficiency = 0.65            }
+technology = { id = 34  average_year = 1700          production_efficiency = 0.66            }
+technology = { id = 35  average_year = 1709          production_efficiency = 0.67            }
+technology = { id = 36  average_year = 1714          production_efficiency = 0.68            }
+technology = { id = 37  average_year = 1719          production_efficiency = 0.69            }
+technology = { id = 38  average_year = 1723          production_efficiency = 0.70            }
+technology = { id = 39  average_year = 1725          production_efficiency = 0.71            }
+technology = { id = 40  average_year = 1727          production_efficiency = 0.72            }
+technology = { id = 41  average_year = 1730          production_efficiency = 0.73            }
+technology = { id = 42  average_year = 1732          production_efficiency = 0.74            }
+technology = { id = 43  average_year = 1735          production_efficiency = 0.75            }
+technology = { id = 44  average_year = 1737          production_efficiency = 0.76            }
+technology = { id = 45  average_year = 1743          production_efficiency = 0.77            }
+technology = { id = 46  average_year = 1747          production_efficiency = 0.78            }
+technology = { id = 47  average_year = 1750          production_efficiency = 0.79            }
+technology = { id = 48  average_year = 1755          production_efficiency = 0.80            }
+technology = { id = 49  average_year = 1760          production_efficiency = 0.81            }
+technology = { id = 50  average_year = 1765          production_efficiency = 0.82            }
+technology = { id = 51  average_year = 1770          production_efficiency = 0.83            }
+technology = { id = 52  average_year = 1775          production_efficiency = 0.84            }
+technology = { id = 53  average_year = 1780          production_efficiency = 0.85            }
+technology = { id = 54  average_year = 1785          production_efficiency = 0.86            }
+technology = { id = 55  average_year = 1790          production_efficiency = 0.87            }
+technology = { id = 56  average_year = 1791          production_efficiency = 0.88            }
+technology = { id = 57  average_year = 1792          production_efficiency = 0.89            }
+technology = { id = 58  average_year = 1795          production_efficiency = 0.90            }
+technology = { id = 59  average_year = 1798          production_efficiency = 0.91            }
+technology = { id = 60  average_year = 1801          production_efficiency = 0.92            }
+technology = { id = 61  average_year = 1803          production_efficiency = 0.93            }
+technology = { id = 62  average_year = 1805          production_efficiency = 0.94            }
+technology = { id = 63  average_year = 1807          production_efficiency = 0.95            }
+technology = { id = 64  average_year = 1809          production_efficiency = 0.96            }
+technology = { id = 65  average_year = 1811          production_efficiency = 0.97            }
+technology = { id = 66  average_year = 1813          production_efficiency = 0.98            }
+technology = { id = 67  average_year = 1815          production_efficiency = 0.99            }
+technology = { id = 68  average_year = 1820          production_efficiency = 1.00            }
+technology = { id = 69  average_year = 1830          production_efficiency = 1.01            }
+technology = { id = 70  average_year = 1840          production_efficiency = 1.02            }
+technology = { id = 71  average_year = 1850          production_efficiency = 1.03            }
+technology = { id = 72  average_year = 1880          production_efficiency = 1.04            }
+               
+               

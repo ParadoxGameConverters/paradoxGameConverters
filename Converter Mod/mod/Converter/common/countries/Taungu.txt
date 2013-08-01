@@ -1,0 +1,74 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 165  151  80 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	bureaucracy	
+	national_bank
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+leader_names = {
+	Aung-Hla Aung-San 
+	Hla-Thein 
+	Khin-Nyunt Khun-Sa Kwan-Kywa 
+	Maung-Gyi Maung-Win Min-Tun 
+	Ohn-Myint 
+	Sein-Win 
+	Than-Htay Thet-Naung 
+	U-Nu 
+}
+
+monarch_names = {
+	"Zalahtinyan #0" = 10
+	"Sithukyawhtin #0" = 10
+	"Minkyinyo #0" = 10
+	"Tabinshwehti #0" = 10
+	"Thamindwut #0" = 10
+	"Thaminhatau #0" = 10
+	"Bayinnaug #0" = 10
+	"Handabayin #0" = 10
+	"Anaukpetlun #0" = 10
+	"Minradeippa #0" = 10
+	"Thalun #0" = 10
+	"Pindale #0" = 10
+	"Pye #0" = 10
+	"Narawara #0" = 10
+	"Minredyawdin #0" = 10
+	"Sane #0" = 10
+	"Taninganwe #0" = 10
+	"Hamdammayaza #0" = 10
+}
+
+ship_names = {
+	Ava Ayeyarwady Anawrahta Alaungsithu Ananda
+	Bagan Htilominlo Kyanzittha Kyaswa Kyawswa
+	Lokananda "Mali Hka" Narathu Naratheinkha
+	Narapatisithu Narathihapati Nyima "N'Mai Hka"
+	Pyinbya Pegu Sawlu Sawhnit Sawmunnit "Sula-mani"
+	"Sein-nyet Ama" "Shwe-gu-gyi" "Shwe-hsan-daw"
+	"Shwe-zigon" Toungoo Tambadipa Thamudarit Tharaba
+	"Tan-chi-daung Paya" "That-byin-nyu" Uzana
+}

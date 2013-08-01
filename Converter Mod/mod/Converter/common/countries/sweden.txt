@@ -1,0 +1,134 @@
+#Sweden
+	 
+graphical_culture = latingfx	 
+	 
+color = { 8  82  165 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	national_trade_policy
+	military_drill
+	glorious_arms
+	national_bank
+	grand_army
+	cabinet
+	bill_of_rights
+	scientific_revolution
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	french_caracolle
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Karl #7" = 100
+	"Gustav #0" = 60
+	"Erik #12" = 40
+	"Johan #1" = 40
+	"Gustav #0 Adolf" = 40
+	"Karl #7 Gustav" = 20
+	"Karl #7 Johan" = 20
+	"Christian #0" = 20
+	"Christoph #0" = 20
+	"Adolf Fredrik #0" = 10
+	"Karl #7 Filip" = 10
+	"Magnus #3" = 10
+	"Adolf Johan #0" = 10
+	"Christina #0" = -10
+	"Oskar #0" = 10
+	"Ulrika Eleonora #0" = -10
+	"Fredrik #0" = 5
+	"Fredrik Adolf #0" = 5
+	"Fredrik August #0" = 5
+	"Göran Love #0" = 5
+	"Hedwig #0" = -5
+	"Sigismund #0" = 5
+	"Björn #3" = 1
+	"Knut #2" = 1
+	"Inge #2" = 1
+	"Sven #1" = 1
+	"Alfred #0" = 0
+	"Axel #0" = 0
+	"Bengt #0" = 0
+	"Edvard #0" = 0
+	"Einar #0" = 0
+	"Folke #0" = 0
+	"Gottfrid #0" = 0
+	"Henrik #0" = 0
+	"Jakob #0" = 0
+	"Lars #0" = 0
+	"Ludvig #0" = 0
+	"Mikael #0" = 0
+	"Nils #0" = 0
+	"Olof #0" = 0
+	"Patrik #0" = 0
+	"Rangvald #0" = 0
+	"Rettil #0" = 0
+	"Sigvard #0" = 0
+	"Simon #0" = 0
+	"Sten Sture #0" = 0
+	"Svante #0" = 0
+	"Tomas #0" = 0
+	"Ulrik #0" = 0
+}
+	 
+leader_names = {
+	Andersson Armfeldt "von Ascheberg" Adlercreutz Adlersparre Alkmaar Anckarström
+	Bagge Banér Bielke Brahe
+	Cronstedt
+	"von Döbeln" Dahlbergh Dufwa
+	Engelbrekt Eriksson Ehrensvärd "von Essen" Eka Ehrenstrahl
+	Fleming "von Fersen"
+ 	Gadh Grip "af Gennäs" "de la Gardie" Gyllenhielm Gathenhielm Gustavsson
+	Horn Hård Hahn Hastfer Hjärne
+	Jägerhorn
+	Königsmarck Klingspor
+	Lewenhaupt Leijonhufvud Liljencrantz Lindschöld
+	Oxenstierna
+	Palmstruch Piper Prinz
+	Rehnskiöld Ribbing
+	Stenbock Sandels Skytte Sture
+	"Tre Rosor" Torstensson "af Trolle" Toll
+	Wrangel Wachtmeister Wallenberg
+	Åkerhielm
+}
+
+ship_names = {
+	Akilles Amarant Andromeda Anklam Bohus "Böse Lejon" Calmar Camilla Carolus Charlotte Cossacken 
+	Crono-Solen David Disa Draken Drottningen Elefanten Elfsborg Elisabet Engel "Engel Gabriel" 
+	Enighet Euridice Falk Fenix Finland "Flygande Wargen" Fortuna Fredrika "Fredrika Amalia" 
+	Fröija Galathe "Gamla Fortuna" "Gamla Rikssvärdet" "Gotha Lejon" Grip Gustavus "Gyllende Lejon" 
+	Göta Göteborg Halland Havsfru Hektor Herkules Hieronymus Hjalmar Hök Illerim Ingeborg Jomfru 
+	Jupiter Jägare "Kalmar Nyckel" Kalmarkastell Karlskrona Kronan Laxen Leopard Lejon Lodbrok 
+	Mars Mercurius Morgonstjärna Norden Nordstjärna Nyckeln Nyland Oden Pelikanen Postillion 
+	"Prins Carl" Prinsessan Regina Rosa Skåne Småland Solen "St. Erik" "St. Göran" "St. Johannes" 
+	"St. Thomas" Starkoster Stenbock Stockholm "Stora Cronan" Svan "Svenska Falk" "Svenska Lejonet" 
+	Sverige Svärdet Södermanland Tapper Thetis Tigern "Tre Kronor" Troilus Ulrica Uppland 
+	Vasen Victoria Warberg Wasa Wenden Werden Vestervik Wästmanland Victoria Witduve Öland Örn
+}
+
+
+
+army_names = {
+	"Kungliga Arméen" "Skånska Arméen" "Finska Arméen" "Livländska Arméen"
+}
+
+fleet_names = {
+	"Högsjöflottan" "Skärgårdsflottan"
+}

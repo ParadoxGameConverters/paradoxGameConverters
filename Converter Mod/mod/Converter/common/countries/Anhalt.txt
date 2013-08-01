@@ -1,0 +1,101 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 203  93  124 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	humanist_tolerance
+	merchant_adventures
+	patron_of_art
+	national_bank
+	national_conscripts
+	national_trade_policy
+	ecumenism
+	smithian_economics
+	scientific_revolution
+	bureaucracy
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Johann Georg #0" = 40
+	"Leopold #0" = 40
+	"Georg #0" = 20
+	"Jakob Ernst #0" = 20
+	"Joachim Ernst #0" = 20
+	"Johann Kasimir #0" = 20
+	"Leopold #0 Friedrich" = 20
+	"Leopold #0 Maximilian" = 20
+	"Ernst #0" = 20
+	"Siegmund #0" = 20
+	"Bernhard #6" = 15
+	"Waldemar #5" = 15
+	"Johann #4" = 15
+	"Rudolf #3" = 15
+	"Friedrich #0" = 15
+	"Friedrich Kasimir #0" = 15
+	"Georg Aribert #0" = 15
+	"Karl #0" = 15
+	"Moritz #0" = 15
+	"Thomas #0" = 15
+	"Wilhelm Gustav #0" = 15
+	"Albrecht #5" = 15
+	"Heinrich #4" = 10
+	"Albrecht Friedrich #0" = 10
+	"August #0" = 10
+	"Christian #0" = 10
+	"Dietrich #0" = 10
+	"Friedrich Heinrich #0" = 10
+	"Friedrich Moritz #0" = 10
+	"Heinrich Waldemar #0" = 10
+	"Joachim #0" = 10
+	"Joachim Christoph #0" = 10
+	"Johann Ernst #0" = 10
+	"Lorenz #0" = 10
+	"Ludwig #0" = 10
+	"Paul #0" = 10
+	"Wilhelm #0" = 10
+	"Andreas #0" = 0
+	"Günther #0" = 0
+	"Michael #0" = 0
+	"Ulrich #0" = 0
+}
+
+leader_names = {
+	Hoppe Herzburg Ackermann Alberti 
+	Albrecht Alvensleben Amman Annecke Anthe
+	Bauer Bause Ehrenberg Erxleben Feuerstack 
+	Flachsbart Genthe Gerstung Held Isaack
+	Janeck Jantke Kersten Kleinau März Nehmiz 
+	Rumpf Scharfe Schauseil Schieck "von Zerbst"
+}
+
+ship_names = {
+	"Albrecht der Bär" Aschersleben "Hermann Orlamünde"
+	"Bischof Siegfried" "Dietrich Werben" "Albrecht Ballenstedt"
+	"Bernhard Wittenberg" "Heinrich I" Zerbst Coswig Dessau Köthen
+	Bernburg Brocken Hartz Plötzkau Ramberg Rosslau
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

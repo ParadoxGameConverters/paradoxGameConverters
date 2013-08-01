@@ -1,0 +1,97 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 199  177  128 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	divine_supremacy
+	engineer_corps
+	grand_army
+	merchant_adventures
+	shrewd_commerce_practise
+	patron_of_art
+	national_trade_policy
+	espionage
+	glorious_arms
+	national_bank
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Joneid #0" = 30
+	"Haidar #0" = 30
+	"Ismâ'îl #0" = 30
+	"Tamâshp #0" = 20
+	"Mohammad Kodabânda #0" = 10
+	"'Abbâs #0" = 30
+	"Safi #0" = 15
+        "Solaymân #0" = 20
+        "Hosayn #0" = 10
+        "Nâder #0 Shâh" = 10
+        "'Âdel #0 Shâh" = 10
+        "Ebrâhim #0" = 10
+	"Shâh Rukh #0" = 10
+	"Nâder Mirza #0" = 5
+	"Karim #0 Khân" = 10
+	"Abu'l Fath #0" = 10
+	"Mohammad Ali #0" = 10
+        "Mohammad Sâdiq #0" = 10
+        "'Ali Morâd #0" = 10
+        "Ja'far #0" = 10
+	"Loft Ali #0" = 10
+	"Aga Muhammad #0" = 10
+	"Fath Alî #0" = 10
+}
+
+leader_names = {
+	Sabiri
+	Jalili
+	Azizi
+	Shahy
+	Daei
+	Qazai
+	Dalwand
+	Ahrari
+	Fatemi
+	Sabet
+	Ansari
+}
+
+ship_names = {
+	Abathur "Adamn Kasia" "Aesma Daeva" Agas
+	Ahriman Ahura "Ahura Mazda" Ahurani Airyaman
+	"Aka Manah" Aladdin Allatum Amashaspan Ameratat
+	"Amesha Spentas" Anahita "Angra Mainyu" Anjuman
+	"Apam-natat" Apaosa Aredvi Arishtat Armaiti Arsaces
+	"Asha vahista" Asman "Asto Vidatu" "Astvat-Ereta"
+	Atar "Azi Dahaka" Baga Bahram Burijas Bushyasta Buyasta
+	Camros Daena Daevas Ahaka Dahhak Dena Dev Diwe Drug
+	Drvaspa Frashegird Fravashis Gandarewa "Gao-kerena"
+	Gayomard Gayomart "Geus-Tasan" "Geus-Urvan" Haoma
+	Haurvatat Humay Hvar Hvarekhshaeta Indar Indra Izha
+	Jamshid Jeh Karshipta Kavi Khara "Khshathra vairya"
+	Kundrav Mah Mahre Mahrianag Manu Manuchihir Mao 
+	Mashyane Mashye Menog Mithra Nairyosangha Nanghaithya
+	Neriosang Ormazd Peris Peshdadians Rapithwin Rashnu
+	Rustam Saurva Simurgh "Spenta Mainyu" Sraosa Srosh
+	Tawrich Thunaupa Tistrya Tushnamatay Vanant Vata
+	Verethragna "Vohu Manah" Vouruskasha Yam Yasht Yazata
+	Yezidi Yima Zal Zam "Zam-Armatay" Zarathustra Zarich
+	"Zend-Avesta" Zurvan
+}
