@@ -463,3 +463,7 @@ Revision	Log Message
 456		More improvements to converter mod
 457		Added tag 0.9 Release for changeset 8c5b60d89cf0
 458		Don't add meaningless localizations
+
+
+
+475		Make text more clear for vassalSocre setting
