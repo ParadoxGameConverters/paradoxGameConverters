@@ -18,7 +18,7 @@ configuration =
 	useConverterMod = "no"
 
 	# CK2Mod: a CK2 mod to use for conversion
-	CK2Mod = "CK2Plus"
+	CK2Mod = ""
 
 
 	### Tech Options

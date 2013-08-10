@@ -479,3 +479,4 @@ Revision	Log Message
 		Culture-setting bugfix - the timestamps in the log are no longer hardcoded to american date format.
 		Various other minor fixes.
 463		Initial code for CK2 mod support
+464		Fix bugs with province history
