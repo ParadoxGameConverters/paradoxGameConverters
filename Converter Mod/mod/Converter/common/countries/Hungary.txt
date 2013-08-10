@@ -1,0 +1,112 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 152  85  92 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	espionage
+	battlefield_commisions
+	engineer_corps
+	national_trade_policy
+	vetting
+	cabinet
+	shrewd_commerce_practise
+	national_bank
+}
+
+historical_units = {
+	bardiche_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	hungarian_hussar
+	germanized_pike
+	polish_musketeer
+	polish_hussar
+	polish_tercio
+	polish_winged_hussar
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+}
+
+monarch_names = {
+	"Ulászló #0" = 40
+	"Lászlo #4" = 20
+	"Lájos #1" = 20
+	"Albert #0" = 20
+	"János #0" = 20
+	"Mátyás #0" = 20
+	"Zsigmond #0" = 20
+	"András #3" = 15
+	"Károly #2" = 15
+	"István #5" = 10
+	"Anna #0" = -10
+	"Béla #4" = 5
+	"Anasztáz #0" = 0
+	"Branabás #0" = 0
+	"Betalan #0" = 0
+	"Boldiszár #0" = 0
+	"Dávid #0" = 0
+	"Dömötör #0" = 0
+	"Edvárd #0" = 0
+	"Ernö #0" = 0
+	"Ferenc #0" = 0
+	"Gábor #0" = 0
+	"György #0" = 0
+	"Iszák #0" = 0
+	"Jenö #0" = 0
+	"Jószef #0" = 0
+	"Kálmán #0" = 0
+	"Kázmér #0" = 0
+	"Kelemen #0" = 0
+	"Lörinc #0" = 0
+	"Lukäcs #0" = 0
+	"Márk #0" = 0
+	"Miklós #0" = 0
+	"Oszkár #0" = 0
+	"Otto #0" = 0
+	"Patrik #0" = 0
+	"Péter #0" = 0
+	"Simon #0" = 0
+	"Tamás #0" = 0
+	"Vencel #0" = 0
+}
+
+leader_names = {
+	Andrássy Alvinczy
+	Bocskay Bethlen Báthory Batthyány Benovský Beleznay
+	Csák
+	Dessewffy
+	Esterházy
+	Festetics Frangepán
+	Garay
+	Hunyadi Hadik Horthy
+	Kinizsi Károlyi Kán "de Kovats" Kemeny
+	Lackovic' Losonci
+	Mészáros Milványi
+	Nadasdy
+	Ozoray
+	Rákóczi Rozgonyi
+	Šubic' Széchenyi
+	Thököly Teleki
+	Zrinski Zápolya Zichy
+}
+
+ship_names = {
+	Aranybulla 
+	Arpad
+	Magyar
+	Sigismund
+	"Szent Istvan kiraly"
+	"Hunyadi Matyas"
+	"Karoly Robert"
+	"Nagy Lajos"
+	Laszlo
+	Kalman
+}

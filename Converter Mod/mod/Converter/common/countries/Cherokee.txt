@@ -1,0 +1,65 @@
+#Country Name: Please see filename.
+
+graphical_culture = northamericagfx
+
+color = { 105  145  40 } 
+
+historical_ideas = {
+	humanist_tolerance
+	national_conscripts
+	battlefield_commisions
+	grand_army
+	national_trade_policy
+	military_drill
+	cabinet
+	engineer_corps
+	bill_of_rights
+	patron_of_art
+	espionage
+	smithian_economics
+	
+}
+
+historical_units = {
+	native_indian_archer
+	native_indian_tribal_warfare
+	algonkin_tomahawk_charge
+	commanche_swarm
+	native_indian_mountain_warfare
+	sioux_dragoon
+	american_western_franchise_warfare
+}
+
+monarch_names = {
+	"Sequoyah #0" = 20
+	"Attakullaculla #0" = 20
+	"Johan Ross #0" = 10
+	"Moytoy #0" = 20
+	"Yonaguska #0" = 20
+	"Dragging Canoe #0" = 20
+	"Agi It #0" = 20
+	"Boudinot #0" = 20	
+}
+
+leader_names = {
+	Mohe
+	Diwali
+	Waya
+	Tsiyi
+	Onacona
+	Atagulkalu
+	Degataga
+	Cheasequah
+	Adahy
+	Atagulkalu
+}
+
+ship_names = {
+	"Ani-kutani" "Ah-ni-ga-to-ge-wi" "Ah-ni-gi-lo-hi" "Ah-ni-ka-wi" 
+	"Ah-ni-tsi-sk-wa" "Ah-ni-sa-ho-ni" "Ah-ni-wo-di" "Ah-ni-wa-ya" 
+	Kana'ti
+	Selu
+	"Tsul Kalu" "Oonawieh Unggi" "Ani Yuntikwalaski" "Asgaya Gigagei" 
+	"I'nage-utasvhi" "Anisga'ya Tsunsdi" "Nv-da u-no-le" "Nv-da ko-la"
+	"Nv-da ka-na-wo-ga" "Nv-da gu-ti-ha"
+}

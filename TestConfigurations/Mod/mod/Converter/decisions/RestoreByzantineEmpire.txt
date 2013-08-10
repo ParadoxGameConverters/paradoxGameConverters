@@ -5,6 +5,7 @@ country_decisions = {
 			NOT = { exists = BYZ }
 			NOT = { tag = HRE }
 			NOT = { tag = ROM }
+			NOT = { tag = LAT }
 			primary_culture = greek
 			religion = orthodox
 		}

@@ -9,7 +9,7 @@ configuration =
 
 	### Mod Options
 
-	# useConverterMod: wheter or not to use the converter mod. Options are:
+	# useConverterMod: whether or not to use the converter mod. Options are:
 	#	"yes"
 	#	"no"
 	useConverterMod = "yes"
@@ -84,7 +84,7 @@ configuration =
 	#	2800 - all vassals become vassals in EU3 and the liege gets cores
 	#	3900 - all vassals are absorbed in EU3, but cores remain
 	#	4950 - all vassals are absorbed in EU3, and cores are removed
-	vassalScore = "4950"
+	vassalScore = "0"
 
 
 	### EU3 Options ###

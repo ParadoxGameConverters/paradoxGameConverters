@@ -1,0 +1,12 @@
+# Ottoman Nizam-i Cedid
+
+type = infantry
+unit_type = ottoman
+
+maneuver = 1
+offensive_morale = 7
+defensive_morale = 6
+offensive_fire = 4
+defensive_fire = 5
+offensive_shock = 5
+defensive_shock = 4

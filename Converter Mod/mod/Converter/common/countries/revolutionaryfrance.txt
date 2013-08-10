@@ -1,0 +1,137 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 39  100  157 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	national_bank
+	grand_army
+	cabinet
+	regimental_system
+	bureaucracy
+	battlefield_commisions
+	liberty_egalite_fraternity
+	revolution_and_counter 
+	improved_foraging
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	chevauchee
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Napoléon #0" = 20
+	"Napoléon #0 Louis" = 15
+	"Napoléon #0 Achille" = 10
+	"Napoléon #0 Charles" = 10
+	"Napoléon #0 Félix" = 10
+	"Napoléon #0 Frédéric" = 10
+	"Napoléon #0 Jérôme" = 10
+        "Napoléon #0 Joseph" = 10
+	"Napoléon #0 Lucien" = 10
+	"Adrien #0 Marie" = 0
+	"André #0" = 0
+	"André #0 Marie" = 0
+        "Auguste #0" = 0
+	"Auguste #0 Frédéric" = 0
+	"Bon Adrien #0" = 0
+        "Charles #0" = 0
+	"Édouard #0" = 0
+	"Emmanuel #0" = 0
+	"Eugéne #0" = 0
+	"Félix #0" = 0
+        "François #0" = 0
+	"François #0 Christophe" = 0
+	"François #0 Joseph" = 0
+	"Georges #0" = 0
+	"Guillaume #0" = 0
+        "Henri #0" = 0
+	"Jacques #0" = 0
+	"Jean #0" = 0
+	"Jean #0 Baptiste" = 0
+	"Jean #0 Mathieu" = 0
+	"Jean #0 Paul" = 0
+	"Jérôme #0" = 0
+        "Joachim #0" = 0
+	"Joseph #0" = 0
+	"Joseph #0 Antoine" = 0
+	"Jules #0" = 0
+	"Laurent #0" = 0
+        "Louis #0" = 0
+	"Louis #0 Alexandre" = 0
+	"Louis #0 Gabriel" = 0
+	"Louis #0 Nicolas" = 0
+	"Lucien #0" = 0
+	"Maximiliem #0" = 0
+	"Michel #0" = 0
+        "Nicolas #0" = 0
+	"Nicolas #0 François" = 0
+	"Philippe #0" = 0
+	"Robert #0" = 0
+	"Théodore #0" = 0
+        "Victor #0" = 0
+}
+
+leader_names = {
+        d'Ambleteuse d'Aulnay
+        "de Beauharnais" "de Bercy" "de Béthune" "de Boissieu" "de Bonnefoy" "de Bonneuil" "du Bosquet" "de la Bretonnière" "de Broglie"
+        "de Castaing" "de Caumartin" "de Chambly" "de Chambronne" "de Champmartin" "de Chevigny" "des Coulons" "de Crèvecoeur" "de Crussol"
+        "de Dampierre" Desgouttes Duquesne
+        "des Ecures" d'Entraigues d'Estrées
+        "du Fournay"
+        "de Galard"
+        "des Herbiers"
+        "de La Barthe" "de La Ferrandie" "de La Galissonière" "de La Mothe" "de La Motte d'Airan" "de La Porte" "Le Tellier" "de Lhéry" "de Luynes"
+        "de Marguerye" "de Maurepas"
+        "de Neufchâtel"
+        "d'Ornano"
+        "de Pellefort"
+        "de Richemont" "de Rochechouart" "de Rochemaure" "de Rieu"
+        "de Saint Chamond" "de Saint Esprit" "de Saint Germain" "de Saint Omer" "de Siorac"
+        "de Tocqueville" "de la Tour d'Auvergne" "de Tréville"
+        "d'Usson"
+        "du Valentinois" "de Vergennes" "de Vibien" "de Vigny" "de Villeneuve"
+}
+
+ship_names = {
+        l'Actif l'Actionnaire l'Aigle l'Alcide l'Alexandre l'Ambitieux l'Amphion l'Ardente l'Arrogant l'Artésien l'Assuré l'Astrée
+        "la Belle Poule" "le Bourbon" "le Brillant" "le Bien Aimé" "la Bizarre" "la Bretagne" "la Borée" "la Bourgogne" "le Brave" 
+        "le Caton" "le Conquérant" "le Content" "la Couronne" 
+        "le Dauphin Royal" "le Destin" "le Diadème" "le Duc de Bourgogne" 
+        "l'Eveillé" "l'Emérillon"
+        "le Fantasque" "le Fendant" "le Fier" "le Flamant" "la Fleur de Lis" "le Fleuron" "le Foudroyant"
+        "le Glorieux"
+        "le Hardi" l'Hermione
+        "le Gaillard" "la Grande Hermine" "le Héros"
+        "l'Illustre" "l'Indien" "l'Intrépide" "l'Invincible" 
+        "le Languedoc" "la Licorne" "le Lys"
+        "le Magnanime" "le Magnifique" "le Majestueux" "la Marie-Catherine" "le Marquis" "le Mars" "le Marseillais" "le Minotaure" "le Monarque"
+        "le Neptune"
+        l'Océan l'Oiseau l'Orient
+        "le Pélican" "le Protecteur" "le Prothée" "la Provence" 
+        "la Railleuse" "le Redoutable" "le Réfléchi" "la Régente" "le Robuste" "le Roland" "le Royal Louis"
+        "le Sagittaire" "la Sainte Anne" "le Saint Esprit" "le Saint Michel" "le Saint Philippe" "le Sceptre" "le Seigneur Chat" "le Sévère" "le Soleil Royal" "le Solitaire" "le Souverain" "le Sphinx" "la Superbe"
+        "le Téméraire" "le Terrible" "la Thérèse" "le Triomphant" "le Tonnant"
+        "la Trombe" "le Triton" 
+        "Union" 
+        "la Victoire" "Ville de Paris" 
+        "le Zélé" "le Zodiaque"
+}

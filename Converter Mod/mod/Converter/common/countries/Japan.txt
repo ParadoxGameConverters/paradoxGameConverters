@@ -1,0 +1,241 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+		
+color = { 194  53  60 }
+
+historical_ideas = {
+	national_conscripts
+	excellent_shipwrights
+	merchant_adventures
+	superior_seamanship
+	espionage
+	military_drill
+	glorious_arms
+	national_trade_policy
+	patron_of_art
+	shrewd_commerce_practise
+	grand_army
+	cabinet
+}
+
+historical_units = {
+	japanese_archer
+	eastern_bow
+	japanese_footsoldier
+	japanese_samurai
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Momozono #0" = 40
+	"Tsuchimikado #1" = 20
+	"Kashiwabara #0" = 20
+	"Nara #0" = 20
+	"Oogimachi #0" = 20
+	"Yozei #1" = 20
+	"Misunoo #0" = 20
+	"Meisho #0" = -10
+	"Komyo #1" = 20
+	"Saiin #0" = 20
+	"Reigen #0" = 20
+	"Higashiyama #0" = 20
+	"Nakamikado #0" = 20
+	"Sakuramachi #0" = 20
+	"Sakuramachi #0" = -10
+	"Kokaku #0" = 20
+	"Ninko #0" = 20
+	"Shoko #0" = 20
+	"Hanazono #1" = 20
+	"Yoshito #0" = 10
+	"Yukihito #0" = 10
+	"Tadahito #0" = 10
+	"Orihito #0" = 10
+	"Yukikatsu #1" = 10
+	"Nagahito #0" = 10
+	"Naohito #1" = 10
+	"Sadatsune #0" = 10
+	"Kunitaka #0" = 10
+	"Sadaatsu #0" = 10
+	"Kunisuke #0" = 10
+	"Sadayasu #0" = 10
+	"Kuninobu #0" = 10
+	"Sadakiyo #0" = 10
+	"Kuninari #0" = 10
+	"Kunimichi #0" = 10
+	"Sadayuki #0" = 10
+	"Kuninaga #0" = 10
+	"Sadatake #0" = 10
+	"Kunitada #0" = 10
+	"Sadamochi #0" = 10
+	"Kuniyori #0" = 10
+	"Ogawa #0" = 10
+	"Sadamochi #0" = 5
+	"Ayanari #0" = -5
+	"Akiko #0" = -5
+	"Yukiko #0" = -5
+	"Riei #0" = -5
+	"Kiyohiko #0" = 5
+	"Masahito #0" = 5
+	"Yoshinobu #0" = 5
+	"Tenshin #0" = 5
+	"Kotobuki #0" = 5
+	"Nobu #0" = 5
+	"Hikohito #0" = 5
+	"Sumiko #0" = -5
+	"Chikako #0" = -5
+	"Komatsu #3" = 1
+	"Kameyama #2" = 1
+	"Chokei #1" = 1
+	"Murakami #2" = 1
+	"En'yu #2" = 1
+	"Kogon #2" = 1
+	"Suko #1" = 1
+	"Daigo #2" = 1
+	"Nijo #2" = 1
+	"Fushimi #2" = 1
+	"Uda #2" = 1
+	"Fukakusa #1" = 1
+	"Saga #2" = 1
+	"Shijo #1" = 1
+	"Horikawa #2" = 1
+	"Chukyo #1" = 1
+	"Juntoku #1" = 1
+	"Toba #2" = 1
+	"Antoku #1" = 1
+	"Takakura #1" = 1
+	"Rokujo #1" = 1
+	"Shirakawa #2" = 1
+	"Konoe #1" = 1
+	"Sutoku #1" = 1
+	"Sanjo #2" = 1
+	"Reizei #2" = 1
+	"Suzaku #2" = 1
+	"Ichijo #2" = 1
+	"Kanzen #1" = 1
+	"Koko #1" = 1
+	"Seiwa #1" = 1
+	"Montoku #1" = 1
+	"Nimmyo #1" = 1
+	"Junna #1" = 1
+	"Heizei #1" = 1
+	"Kammu #1" = 1
+	"Konin #1" = 1
+	"Shotoku #1" = -1
+	"Junnin #1" = 1
+	"Koken #1" = -1
+	"Shomu #1" = 1
+	"Gensho #1" = -1
+	"Gemmei #1" = -1
+	"Mommu #1" = 1
+	"Jito #1" = -1
+	"Temmu #1" = 1
+	"Kobun #1" = 1
+	"Tenji #1" = 1
+	"Saimei #1" = -1
+	"Kotuko #1" = 1
+	"Kogyoku #1" = -1
+	"Jomei #1" = 1
+	"Suiko #1" = -1
+	"Sushun #1" = 1
+	"Yomei #1" = 1
+	"Bidatsu #1" = 1
+	"Kimmei #1" = 1
+	"Senka #1" = 1
+	"Ankan #1" = 1
+	"Keitai #1" = 1
+	"Buretsu #1" = 1
+	"Ninken #1" = 1
+	"Kenzo #1" = 1
+	"Seinei #1" = 1
+	"Yuryaku #1" = 1
+	"Anko #1" = 1
+	"Ingyo #1" = 1
+	"Hanzai #1" = 1
+	"Richu #1" = 1
+	"Nintoku #1" = 1
+	"Ojin #1" = 1
+	"Jingu #1" = -1
+	"Chuai #1" = 1
+	"Seimu #1" = 1
+	"Keiko #1" = 1
+	"Suinin #1" = 1
+	"Sujin #1" = 1
+	"Kaika #1" = 1
+	"Kogen #1" = 1
+	"Korei #1" = 1
+	"Koan #1" = 1
+	"Kosho #1" = 1
+	"Itoku #1" = 1
+	"Annei #1" = 1
+	"Suizei #1" = 1
+	"Jimmu #1" = 1
+	"Akio #0" = 0
+	"Akira #0" = 0
+	"Daisuke #0" = 0
+	"Hanzo #0" = 0
+	"Hideaki #0" = 0
+	"Katsuo #0" = 0
+	"Masuyo #0" = 0
+	"Musashi #0" = 0
+	"Ryo #0" = 0
+	"Ryoukan #0" = 0
+	"Sojun #0" = 0
+	"Sho #0" = 0
+	"Susumu #0" = 0
+	"Takashi #0" = 0
+	"Tenkai #0" = 0
+	"Yoshio #0" = 0
+	"Yuki #0" = 0
+}
+
+leader_names = {
+	Asai Abe Adachi Akamatsu Akechi Akita Akiyama Akizuki Amago
+	Ando Anayama Asakura Ashikaga Asahina
+	Chosokabe
+	Date
+	Hara Hatakeyama Hatano Hayashi Honda Hojo Hosokawa
+	Idaten Ii Ikeda Imagawa Inoue Ishida Ishikawa Ishimaki Ito
+	Kikkawa Kiso Kitabatake
+	Maeda Matsuda Matsudaira Miura Mikumo Miyoshi Mogami Mõri
+	Nanbu Nitta Niwa
+	Oda Õtomo Ouchi
+	Rokkaku
+	Sakai Sakuma Shimazu Shiba Sanada Sogo Suwa
+	Takeda Takigawa Toda Toki Tokugawa Toyotomi Tsutsui
+	Uesugi Ukita
+	Yagyu Yamana
+}
+
+ship_names = {
+	"Asai Maru" "Abe Maru" "Adachi Maru" "Akamatsu Maru" "Akechi Maru"
+	"Akita Maru" "Akiyama Maru" "Akizuki Maru" "Amago Maru" "Ando Maru"
+	"Anayama Maru" "Asakura Maru" "Ashikaga Maru" "Asano Maru" "Ashina Maru"
+	"Atagi Maru" "Azai Maru"
+	"Bito Maru" "Byakko Maru"
+	"Chiba Maru" "Chousokabe Maru"
+	"Date Maru" "Doi Maru"
+	"Fujiwara Maru" "Fuji-san Maru"
+	"Genbu maru"
+	"Haga Maru" "Hatakeyama Maru" "Hatano Maru" "Honda Maru" "Hojo Maru"
+	"Hosokawa Maru" "Hachisuka Maru" "Hayashi Maru" "Hiki Maru"
+	"Idaten Maru" "Ikeda Maru" "Imagawa Maru" "Ishida Maru" "Ishikawa Maru"
+	"Ishimaki Maru" "Ii Maru" "Inoue Maru" "Ito Maru"
+	"Kikkawa Maru" "Kiso Maru" "Kisona Maru" "Kitabatake Maru" "Kyogoku Maru"
+	"Maeda Maru" "Matsuda Maru" "Matsudaira Maru" "Miura Maru" "Mikumo Maru"
+	"Miyoshi Maru" "Mogami Maru" "Mori Maru"
+	"Nitta Maru" "Niwa Maru" "Nihon Maru" "Nanbu Maru"
+	"Oda Maru" "Otomo Maru" "Ouchi Maru"
+	"Rokkaku Maru"
+	"Sakai Maru" "Sakuma Maru" "Satake Maru" "Shimazu Maru" "Shiba Maru"
+	"Sanada Maru" "Sogo Maru" "Suwa Maru" "Seiryu Maru" "Suzaku Maru"
+	"Takeda Maru" "Tokugawa Maru" "Taira Maru" "Toyotomi Maru" "Tada Maru"
+	"Toki Maru" "Tsugaru Maru" "Tsutsui Maru" "Tenno Maru"
+	"Uesugi Maru" "Ukita Maru" "Uchia Maru"
+	"Yamana Maru" "Yagyu Maru"
+}

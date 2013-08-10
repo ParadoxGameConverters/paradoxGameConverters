@@ -1,0 +1,656 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new buildings, make sure they are uniquely named.
+
+# 
+# cost = x #==> cost in $ to build (subject to other modifiers)
+# time = x #==> number of months to build.
+# officials = x #==> number of magistrates to build (default 1)
+# previous = x # a building that is the prerequisite of this building
+# modifier = m # a modifier on the province that the building gives
+# trigger = t # an and trigger that needs to be fullfilled to build and keep the building
+# one_per_country = yes/no # if yes, only one of these can exist in a country
+# manufactory = { trade_good trade_good } # list of trade goods that get a production bonus
+# destroy_on_conquest = yes/no # destroy this building if conquered
+# onmap = yes/no # show as a sprite on the map
+# category = x # the category used for labels and such
+
+# Government
+temple = {
+	cost = 50
+	time = 12
+	modifier = {
+		stability_cost = -4 #reduces stability cost by 4$
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+	category = 1
+}
+
+courthouse = {
+	previous = temple
+	cost = 75
+	time = 12
+	modifier = {
+		local_revolt_risk = -1
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+spy_agency = {
+	previous = courthouse
+	cost = 100
+	time = 12
+	modifier = {
+		local_spy_defence = 0.50
+		stability_cost = -2
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+town_hall = {
+	previous = spy_agency
+	cost = 150
+	time = 12
+	modifier = {
+		local_tax_modifier = 0.25
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+college = {
+	previous = town_hall
+	cost = 200
+	time = 24
+	modifier = {
+		local_revolt_risk = -2
+		local_spy_defence = 0.25
+		spies = 0.05
+		officials = 0.05
+	}
+	destroy_on_conquest = yes
+}
+
+cathedral = {
+	previous = college
+	cost = 300
+	time = 24
+	modifier = {
+		stability_investment = 10
+		local_spy_defence = 0.25
+		local_missionary_placement_chance = 0.01
+		missionaries = 0.05
+	}
+	destroy_on_conquest = yes
+	category = 1
+}
+
+# Land
+armory = {
+	cost = 50
+	time = 12
+	modifier = {
+		regiment_recruit_speed = -0.1
+		local_regiment_cost = -0.05
+		local_manpower = 0.25
+	}
+	destroy_on_conquest = yes
+	category = 2
+	spare_on_core = yes
+}
+
+training_fields = {
+	previous = armory
+	cost = 75
+	time = 12
+	modifier = {
+		regiment_recruit_speed = -0.1
+		local_regiment_cost = -0.05
+		local_manpower = 0.25
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+barracks = {
+	previous = training_fields
+	cost = 100
+	time = 12
+	modifier = {
+		local_regiment_cost = -0.1
+		local_manpower = 1
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+regimental_camp = {
+	previous = barracks
+	cost = 150
+	time = 24
+	modifier = {
+		local_manpower_modifier = 0.2
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+arsenal = {
+	previous = regimental_camp
+	cost = 200
+	time = 24
+	modifier = {
+		regiment_recruit_speed = -0.3
+		local_manpower_modifier = 0.3
+	}
+	destroy_on_conquest = yes
+}
+
+conscription_center = {
+	previous = arsenal
+	cost = 300
+	time = 24
+	modifier = {
+		local_manpower = 5
+		land_forcelimit = 5
+	}
+	destroy_on_conquest = yes
+	category = 2
+}
+
+# Naval
+dock = {
+	cost = 50
+	time = 12
+	trigger = {
+		port = yes
+	}
+	modifier = {
+		local_ship_repair = 0.25
+		local_production_efficiency = 0.25
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+ 	category = 3
+}
+
+drydock = {
+ 	previous = dock
+	cost = 75
+	time = 12
+	modifier = {
+		ship_recruit_speed = -0.1
+		naval_forcelimit = 1
+	}
+	destroy_on_conquest = yes
+ 	spare_on_core = yes
+}
+
+shipyard = {
+	previous = drydock
+	cost = 100
+	time = 12
+	modifier = {
+		local_ship_cost = -0.1
+		naval_forcelimit = 1
+
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+grand_shipyard = {
+ 	previous = shipyard
+	cost = 150
+	time = 12
+	modifier = {
+		local_ship_cost = -0.1
+		ship_recruit_speed = -0.1
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+naval_arsenal = {
+ 	previous = grand_shipyard
+	cost = 200
+	time = 24
+	modifier = {
+		local_ship_cost = -0.2
+		ship_recruit_speed = -0.2
+		naval_forcelimit = 5
+	}
+	destroy_on_conquest = yes
+}
+
+naval_base = {
+ 	previous = naval_arsenal
+	cost = 300
+	time = 24
+	modifier = {
+		local_ship_cost = -0.2
+		ship_recruit_speed = -0.2
+		naval_forcelimit = 5
+	}
+	destroy_on_conquest = yes
+	category = 3
+}
+
+# Production
+constable = {
+	
+	cost = 50
+	time = 12
+	modifier = {
+		direct_tax_percentage = 0.25		#25% more direct tax
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+	category = 5
+}
+
+workshop = {
+	previous = constable
+	cost = 75
+	time = 12
+	modifier = {
+		tax_income = 1	#increase tax
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+counting_house = {
+	previous = workshop
+	cost = 100
+	time = 12
+	modifier = {
+		local_production_efficiency = 0.25
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+treasury_office = {
+	previous = counting_house
+	cost = 150
+	time = 12
+	modifier = {
+		direct_tax_percentage = 0.25		#25% more direct tax
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+mint = {
+	previous = treasury_office
+	cost = 200
+	time = 24
+	modifier = {
+		local_tax_modifier = 0.5
+	}
+	destroy_on_conquest = yes
+}
+
+stock_exchange = {
+	previous = mint
+	cost = 300
+	time = 24
+	modifier = {
+		tax_income = 5	#increase tax with 5$
+	}
+	destroy_on_conquest = yes
+}
+
+# Trade
+marketplace = {
+	cost = 50
+	time = 12
+	modifier = {
+		local_trade_income_modifier = 0.10
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+	category = 6
+}
+
+trade_depot = {
+	previous = marketplace
+	cost = 75
+	time = 12
+	modifier = {
+		trade_income = 1
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+canal = {
+	previous = trade_depot
+	cost = 100
+	time = 12
+	modifier = {
+		local_trade_income_modifier = 0.10
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+road_network = {
+	previous = canal
+	cost = 150
+	time = 12
+	modifier = {
+		trade_income = 1
+		local_movement_speed = 0.1
+	}
+	destroy_on_conquest = yes
+	spare_on_core = yes
+}
+
+post_office = {
+	previous = road_network
+	cost = 200
+	time = 24
+	modifier = {
+		global_trade_income_modifier = 0.01
+	}
+	destroy_on_conquest = yes
+}
+
+customs_house = {
+	previous = post_office
+	cost = 300
+	time = 24
+	modifier = {
+		trade_efficiency = 0.01
+	}
+	destroy_on_conquest = yes
+}
+
+# Fortresses
+fort1 = {
+	cost = 50
+	time = 12
+	modifier = {
+		fort_level = 1
+		local_missionary_placement_chance = 0.004
+		supply_limit = 0.5
+	}
+	destroy_on_conquest = no
+	category = 4
+}
+
+fort2 = {
+	previous = fort1
+	cost = 75
+	time = 12
+	modifier = {
+		fort_level = 1
+		local_missionary_placement_chance = 0.007
+		supply_limit = 0.5
+	}
+	destroy_on_conquest = no
+}
+
+fort3 = {
+	previous = fort2
+	cost = 100
+	time = 12
+	modifier = {
+		fort_level = 1
+		local_missionary_placement_chance = 0.01
+		supply_limit = 0.5
+	}
+	destroy_on_conquest = no
+}
+
+fort4 = {
+	previous = fort3
+	cost = 150
+	time = 12
+	modifier = {
+		fort_level = 1
+		local_missionary_placement_chance = 0.014
+		supply_limit = 0.5
+	}
+	destroy_on_conquest = no
+}
+
+fort5 = {
+	previous = fort4
+	cost = 200
+	time = 24
+	modifier = {
+		fort_level = 1
+		local_defensiveness = 1
+		local_missionary_placement_chance = 0.017
+		supply_limit = 1
+	}
+	destroy_on_conquest = yes
+}
+
+fort6 = {
+	previous = fort5
+	cost = 300
+	time = 24
+	modifier = {
+		fort_level = 1
+		local_defensiveness = 1
+		local_missionary_placement_chance = 0.02
+		supply_limit = 1
+	}
+	destroy_on_conquest = yes
+}
+
+# One per country
+tax_assessor = {
+	cost = 1000
+	time = 12
+	trigger = {
+		OR = {
+			is_capital = yes
+			base_tax = 10
+		}
+	}
+	modifier = {
+		inflation_reduction = 0.05
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+embassy = {
+	cost = 500
+	time = 12
+	trigger = {
+		any_neighbor_province = {
+			NOT = { owned_by = THIS }
+		}
+		NOT = { is_core = THIS }
+
+	}
+	
+	modifier = {
+		diplomats = 1
+		badboy = -0.4
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+glorious_monument = {
+	cost = 1000
+	time = 12
+	modifier = {
+		cultural_tradition = 0.01
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+march = {
+	cost = 500
+	time = 12
+	trigger = {
+		is_core = THIS
+		any_neighbor_province = {
+			NOT = { owned_by = THIS }
+		}		
+	}
+	modifier = {
+		local_defensiveness = 2.0
+		local_manpower = 0.5
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+grain_depot = {
+	cost = 1000
+	time = 12
+	trigger = {
+			is_core = THIS
+			trade_goods = grain
+		}
+	modifier = {
+		land_forcelimit_modifier = 0.20
+		land_maintenance_modifier = -0.20
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+royal_palace = {
+	cost = 1000
+	time = 12
+	trigger = {
+		government = monarchy
+		is_capital = yes
+	}
+	modifier = {
+		legitimacy = 0.01
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+war_college = {
+	cost = 1000
+	time = 12
+	modifier = {
+		army_tradition = 0.01
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+admiralty = {
+	cost = 1000
+	time = 12
+	trigger = {
+		port = yes
+	}
+	modifier = {
+		navy_tradition = 0.01
+	}
+	destroy_on_conquest = yes
+	one_per_country = yes
+	category = 8
+}
+
+#Manufactories
+refinery = {
+	cost = 1000
+	time = 60
+	manufactory = {
+		wine
+		sugar
+	}
+	modifier = {
+		trade_tech_investment = 5
+		population_growth = 0.01
+	}
+	onmap = yes
+	category = 7
+}
+
+wharf = {
+	cost = 1000
+	time = 60
+	modifier = {
+		naval_tech_investment = 5
+		population_growth = 0.01
+	}
+	manufactory = {
+		naval_supplies
+	}
+	onmap = yes
+	category = 7
+}
+
+weapons = {
+	cost = 1000
+	time = 60
+	modifier = {
+		land_tech_investment = 5
+		population_growth = 0.01
+	}
+	manufactory = {
+		copper
+		iron
+	}
+	onmap = yes	
+	category = 7
+}
+
+textile = {
+	cost = 1000
+	time = 60
+	modifier = {
+		production_tech_investment = 5
+		population_growth = 0.01
+	}
+	manufactory = {
+		wool
+		cloth
+	}
+	onmap = yes
+	category = 7
+}
+
+fine_arts_academy = {
+	cost = 1000
+	time = 60
+	modifier = {
+		stability_investment = 5
+		population_growth = 0.01
+		cultural_tradition = 0.01
+	}
+	manufactory = {
+	}
+	onmap = yes
+	category = 7
+}
+
+university = {
+	cost = 1000
+	time = 60
+	modifier = {
+		government_tech_investment = 5
+		population_growth = 0.01
+	}
+	manufactory = {
+	}
+	onmap = yes
+	category = 7
+}

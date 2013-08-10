@@ -1,0 +1,76 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 87  92  104 }
+
+historical_ideas = {
+	glorious_arms
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	patron_of_art
+	cabinet
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Shams-I-Jahan #0" = 20
+	"Muhammad #0" = 20
+	"Naqsh-I-Jahan #0" = 20
+	"Awais #0" = 20
+	"Shir Muhammad #0" = 20
+	"Esen Buqa #0" = 20
+	"Yûsuf #0" = 20
+	"Mahmud #0" = 20
+	"Mansûr #0" = 20
+	"'Abd ar-Rashîd #0" = 20
+	"'Abd al-Karîm #0" = 20
+	"'Abd al-Latîf #0" = 20
+	"'Abd Allâh #0" = 20
+	"Ilbars #0" = 20
+	"Ismâ'îl #0" = 20
+	"Muhammad Amîn #0" = 20
+	"Galdan #0" = 20
+	"Chagatai #1" = 10
+	"Alghu #1" = 20
+	"Mubarak #1" = 20
+	"Yesü #0" = 20
+	"Qara #0" = 20
+	"Baraq #0" = 20
+	"Negübei #0" = 20
+}
+
+leader_names = { 
+	Altanqai Boketei Tegusteni Qadancher Tolui-gene 
+	Bayardai Yekedai "Suren Chinua" "Altan Unegen" 
+	"Boke Qorchi" "Arigh Erdene" "Bayan Vachir" "Delger Dash"
+}
+
+ship_names = {
+	"Alghu Khan"
+	"Baraq Khan"
+	Chagatai
+	Orghina 
+	"Genghis Khan"
+	"Mubarak Shah"
+	"Yesünto'a"
+	Qipchaq
+	"Jagatai Khan" "Amo Darya"
+	"Syr Darya" "Ögedai Khan"
+	Güyük "Möngke Khan" "Qubilai Khan"
+	Duwa "Qazan Khan" "Tughlugh Timur"
+	Irtysh "Amir Husayn" "Timur i Leng"
+	Samarqand
+}

@@ -1,0 +1,92 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 78  75  39 }
+
+historical_ideas = {
+	military_drill
+	national_conscripts
+	divine_supremacy
+	church_attendance_duty
+	grand_army
+	battlefield_commisions
+	glorious_arms
+	engineer_corps
+	espionage
+	national_trade_policy
+	merchant_adventures
+	shrewd_commerce_practise
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Godfrey #1" = 60
+	"Baldwin #5" = 60
+	"Henry #2" = 40
+	"Amalric #2" = 30
+	"John #2" = 10
+	"Fulk #1" = 10
+	"Conrad #3" = 10
+	"Sibylla #1" = -5
+	"Isabella #2" = -10
+	"Melisende #1" = -5
+	"Maria #1" = -5
+	"Guy #1" = 5
+	"Hugues #1" = 5
+}
+
+ship_names = {
+	"The Holy Cross"
+	"The Grail"
+	"The Faithful"
+	"Hammer of God"
+	"True Believer"
+	"The Cleansing"
+	"Baldwin's Gate"
+	"The Rapture"
+	"God Will Know His Own"
+	Paladin
+	Purifier
+Crusader
+Guardian
+Pilgrim
+Absolution
+Avenger
+Vindicator
+The Scourge
+
+}
+
+leader_names = { 
+	Bragadin 
+	Crispo
+	Doria	
+	Fadrigue
+	Lusignans
+	Melissinos 
+	Plethon
+	Rendis
+	Saraceno 
+	Tocco
+	Maxwell
+	Duncan Douglas Selkirk
+	Schrüder Sauerzapff Minucci Sulerzycki Stichsenstein Hagedorn Arenberg
+	"de La Barthe" "de La Ferrandie" "de La Galissonière" "de La Mothe" "de La Motte d'Airan" "de La Porte" "Le Tellier" "de Lhéry" "de Luynes"
+	"di Paesana" "Paleologi Montferrato" Pallavicini Paradisi Petrucci Pico Pignatelli "dalla Rosa" "della Rovere"
+}

@@ -1,0 +1,104 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 124  140  162 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	revolution_and_counter
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Juan #0" = 20
+	"Manuel #0" = 20
+	"José #0 Bernardo" = 15
+	"José #0 Francisco" = 15
+	"Luis #0 José" = 10
+	"Juan #0 José" = 10
+	"Adalberto #0" = 0
+	"Adán #0" = 0
+	"Agustín #0" = 0
+	"Alberto #0" = 0
+	"Alejandro #0" = 0
+	"Ambrosio #0" = 0
+	"Andrés #0" = 0
+	"Antonio #0" = 0
+	"Augusto #0" = 0
+	"David #0" = 0
+	"Eduardo #0" = 0
+	"Emilio #0" = 0
+	"Felipe #0" = 0
+	"Fernando #0" = 0
+	"Francisco #0" = 0
+	"Francisco Javier #0" = 0
+	"Guillermo #0" = 0
+	"Javier #0" = 0
+	"José #0" = 0
+	"Juan #0 Antonio" = 0
+	"Juan #0 Francisco" = 0
+	"Luis #0" = 0
+	"Mariano #0" = 0
+	"Martín #0" = 0
+	"Miguel #0" = 0
+	"Melchor #0" = 0
+	"Nicolás #0" = 0
+	"Óscar #0" = 0
+	"Pedro #0" = 0
+	"Pedro #0 Pablo" = 0
+	"Remigio #0" = 0
+	"Ricardo #0" = 0
+	"Sergio #0" = 0
+	"Valentín #0" = 0
+}
+
+leader_names = {
+	Aguilar "Álvarez de Arenales" Angulo Ara Astete Barahona Barrios Béjar
+	"Cacma Condori" Carreño Carrión Castelli "Chimo Capac" Condorcanqui Córdoba
+	Galán Gamarra González Guise "Hurtado de Mendoza" Lara "de Luna"
+	"del Mar" Melgar Mendoza Miller Monteagudo Moscoso "Orco Huaranca"
+	Pallardelli Paz Pizarro Pumacahua Quiroga "del Río" "de la Riva Agüero" Rojas
+	Salaverry Sánchez Suárez "de Sucre" "de la Torre" Tovar Ubalde Unánue
+	Velarde Velasco "Vélez de Cordova" "de Vivanco" "de Zela"
+}
+
+ship_names = {
+	Antofagstsa
+	Callao Casma Chipana
+	"De Los Heroes"
+	Eten
+	Herrera
+	Larrea
+	Mariategui Montero
+	Paita Pisagua
+	"Sanchez Carrion" Santillana 
+	Velarde
+}

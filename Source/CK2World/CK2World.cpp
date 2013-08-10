@@ -178,7 +178,7 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province(leaves[i], titles, characters, buildingFactory);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles, characters, buildingFactory, *version);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();
@@ -375,25 +375,48 @@ void CK2World::mergeTitles()
 }
 
 
-vector<double> CK2World::getAverageTechLevels() const
+vector<double> CK2World::getAverageTechLevels(CK2Version& version) const
 {
 	vector<double> avgTechLevels;
-	avgTechLevels.resize(TECH_LEGALISM);
-	for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+	if (CK2Version("1.10") > version)
 	{
-		avgTechLevels[i] = 0.0f;
-	}
-	for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
-	{
-		vector<double> currentTechLevels = provItr->second->getTechLevels();
-		for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+		avgTechLevels.resize(TECH_LEGALISM_OLD + 1);
+		for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
 		{
-			avgTechLevels[i] += currentTechLevels[i];
+			avgTechLevels[i] = 0.0f;
+		}
+		for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+		{
+			vector<double> currentTechLevels = provItr->second->getTechLevels();
+			for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
+			{
+				avgTechLevels[i] += currentTechLevels[i];
+			}
+		}
+		for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
+		{
+			avgTechLevels[i] /= provinces.size();
 		}
 	}
-	for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+	else
 	{
-		avgTechLevels[i] /= provinces.size();
+		avgTechLevels.resize(TECH_LEGALISM + 1);
+		for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+		{
+			avgTechLevels[i] = 0.0f;
+		}
+		for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+		{
+			vector<double> currentTechLevels = provItr->second->getTechLevels();
+			for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+			{
+				avgTechLevels[i] += currentTechLevels[i];
+			}
+		}
+		for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+		{
+			avgTechLevels[i] /= provinces.size();
+		}
 	}
 
 	return avgTechLevels;

@@ -1,0 +1,94 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 129  204  96 } 
+
+historical_ideas = {
+	excellent_shipwrights
+	merchant_adventures
+	military_drill
+	national_conscripts
+	sea_hawks
+	superior_seamanship
+	shrewd_commerce_practise
+	naval_fighting_instruction
+	national_trade_policy
+	battlefield_commisions
+	naval_glory
+	grand_navy
+}
+
+historical_units = {
+	mamluk_archer
+	mamluk_cavalry_charge
+	mamluk_duel
+	mamluk_musket_charge
+	muslim_mass_infantry
+	muslim_dragoon
+	ali_bey_reformed_infantry
+}
+
+monarch_names = {
+	"'Alî #0" = 60
+	"Ahmad #0" = 40
+	"Muhammad #0" = 40
+	"Yûsuf #0" = 40
+	"'Abdallâh #0" = 20
+	"Mammi #0" = 20
+	"Mansur #0" = 20
+	"Yahyâ #0" = 20
+	"Thabit #2" = 10
+	"'Abd al-'Aziz #0" = 0
+	"Abû Bakr #0" = 0
+	"Ala ad-Din #0" = 0
+	"Butrus #0" = 0
+	"Fakhri #0" = 0
+	"Fayiz #0" = 0
+	"Hadj #0" = 0
+	"Hafiz #0" = 0
+	"Haidar #0" = 0
+	"Harun #0" = 0
+	"Hasan #0" = 0
+	"Hashim #0" = 0
+	"Husayn #0" = 0
+	"Ibrahim #0" = 0
+	"Ja'far #0" = 0
+	"Khalil #0" = 0
+	"Mahir #0" = 0
+	"Mas'ud #0" = 0
+	"Mukhtar #0" = 0
+	"Murad #0" = 0
+	"Mustafa #0" = 0
+	"Nizar #0" = 0
+	"Qadir #0" = 0
+	"Rasim #0" = 0
+	"Salah #0" = 0
+	"Shadi #0" = 0
+	"Tahir #0" = 0
+	"Tariq #0" = 0
+	"Torgud #0" = 0
+	"Ziyad #0" = 0
+	"'Usman #0" = 0
+}
+
+leader_names = {
+	Negib
+	Reis
+	Emin
+	Asker
+	Asim
+	Izzet
+	Nedim
+	Nazhar
+	Halid
+	Nuri
+}
+
+ship_names = {
+	Ba'ith Shahid Haqq Wakil Qawiyy Matin
+	Waliyy Hamid Muhsi Mubdi Mu'id Muhyi Mumit
+	Hayy Qayyum Wajid Majid Wahid Samad Qadir
+	Muqtadir Muqaddim Mu'akhkhir Awwal Akhir
+	Zahir Batin Wali Muta'al Barr Tawwab
+}

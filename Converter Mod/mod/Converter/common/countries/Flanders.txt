@@ -1,0 +1,113 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 43  141  172 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	military_drill
+	patron_of_art
+	shrewd_commerce_practise 
+	national_trade_policy
+	national_bank
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	french_bluecoat
+	french_dragoon
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Margareta #3" = -15
+	"Filips #1" = 15
+	"Jan #0" = 15
+	"Boudewijn #9" = 5
+	"Arnolf #3" = 5
+	"Lodewijk #3" = 5
+	"Robrecht #3" = 5
+	"Willem #2" = 5
+	"Diederik #1" = 5	
+	"Gwijde #1" = 5	
+	"Karel #1" = 5
+	"Antoon #0" = 5
+	"Abraham #0" = 0
+	"Alexander #0" = 0
+	"Alfons #0" = 0
+	"Andries #0" = 0
+	"Balthasar #0" = 0
+	"Bartholomeus #0" = 0
+	"Christoffel #0" = 0
+	"Constantijn #0" = 0
+	"Cornelis #0" = 0
+	"Daniël #0" = 0
+	"David #0" = 0
+	"Ernst #0" = 0
+	"Erwin #0" = 0
+	"Ewoud #0" = 0
+	"Floris #0" = 0
+	"Gabriel #0" = 0
+	"Godfried #0" = 0
+	"Hans #0" = 0
+	"Jacob #0" = 0
+	"Kasper #0" = 0
+	"Ludger #0" = 0
+	"Luuk #0" = 0
+	"Marinus #0" = 0
+	"Pieter #0" = 0
+	"Renate #0" = 0
+	"Rodolf #0" = 0
+	"Roeland #0" = 0
+	"Valentijn #0" = 0
+}
+
+leader_names = {
+	Dampierre Deconinck
+	Goethals
+	Nevers
+	Penen
+	"Van Bellegem" "Van Gulik"
+	"Van Herstal" "Van Leeuwergem"
+	"Van Lichtervelde" "Van Nieuwland"
+	"Van Oudenaarde" "Van Petershem"
+	"Van Raveschoot" "Van Renesse"
+}
+
+ship_names = {
+	Antwerpen
+	"Boudewijn I" Brugge
+	"De Vlaamse leeuw"
+	Gent Guldensporenslag "Gwijde van Dampierre" 
+	Hasselt
+	"Jacob van Artevelde"
+	"Karel de Goede" "Kerel van Vlaanderen"
+	Leuven
+	"Manneken Pis" Mechelen
+	"Pieter de Coninck"
+	Schelde
+	"Tijl Uilenspiegel"
+	Vlaanderen
+}
+
+army_names = {
+	"Leger van $PROVINCE$"  }
+
+fleet_names = {  "Vloot van $PROVINCE$" 
+	 }

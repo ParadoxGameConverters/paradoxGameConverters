@@ -1,0 +1,88 @@
+country_decisions = {
+
+	spanish_nation = {
+		potential = {
+			NOT = { tag = FRA }		# Basque is a valid culture for both FRA and SPA
+			NOT = { exists = SPA }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			OR = {
+				culture_group = iberian
+				primary_culture = basque
+			}
+		}
+		allow = 
+		{
+			owns = 213	# Barcelona
+			owns = 214	# Aragón
+			owns = 215	# Castilla La Vieja
+			owns = 216	# Salamanca
+			owns = 224	# Andalucia
+			owns = 219	# Toledo
+			owns = 220	# Valencia
+			
+			is_core = 213	# Barcelona
+			is_core = 214	# Aragón
+			is_core = 215	# Castilla La Vieja
+			is_core = 216	# Salamanca
+			is_core = 224	# Andalucia
+			is_core = 219	# Toledo
+			is_core = 220	# Valencia
+			
+			war = no
+		}
+	  effect = {
+			SPA = {
+				add_core = 197		# Roussillon
+				add_core = 206		# Galicia
+				add_core = 207		# Asturias
+				add_core = 208		# León
+				add_core = 209		# Vizcaya
+				add_core = 210		# Navarra
+				add_core = 211		# Pirineo
+				add_core = 212		# Girona
+				add_core = 213		# Barcelona
+				add_core = 214		# Aragon
+				add_core = 215		# Castilla la Vieja
+				add_core = 216		# Salamanca
+				add_core = 217		# Madrid
+				add_core = 218		# Badajoz
+				add_core = 219		# Toledo
+				add_core = 220		# Valencia
+				add_core = 221		# Murcia
+				add_core = 222		# Almeria
+				add_core = 223		# Granada
+				add_core = 224		# Andalucia
+				add_core = 225		# Córdoba
+				add_core = 226		# Gibraltar
+				add_core = 333		# The Baleares
+				add_core = 366		# The Canarias
+				add_core = 1745		# Cantabria
+				add_core = 1746		# Burgos
+				add_core = 1747		# Caceres
+				add_core = 1748		# La Mancha
+				add_core = 1749		# Cadiz
+				add_core = 1750		# Alicante
+			}	
+			
+			centralization_decentralization = -2
+			colonists = 1
+			random_owned = {
+				base_tax = 1
+			}
+			prestige = 0.05
+			change_tag = SPA
+			SPA = {
+				any_owned = {
+					limit = { province_id = 217 owned_by = THIS }
+					capital = 217	# Madrid
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 600
+	}
+	
+}

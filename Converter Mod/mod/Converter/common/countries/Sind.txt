@@ -1,0 +1,99 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 135  104  85 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	grand_army
+	battlefield_commisions
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	espionage
+	cabinet
+	national_bank
+}
+
+historical_units = {
+	indian_footsoldier
+	indian_archers
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	indian_rifle
+}
+
+monarch_names = {
+	"Ali Sher #0" = 20
+	"Fath Khan #0" = 20
+	"Tughluq #0" = 20
+	"Sikandar #0" = 20
+	"Nizam ad-Din #1" = 20
+	"Furuz Salah ad-Din #0" = 20
+	"Shah Shuja' Beg #0" = 20
+	"Sanjar #0" = 20
+	"Nanda #0" = 20
+	"Shah Husayn #0" = 20
+	"Mirza Muhammad 'Isa #0" = 20
+	"Mirza Muhammad Baqi #0" = 20
+	"Mirza Jani Beg #0" = 20
+	"Yar Muhammad Khan #0" = 20
+	"Muhammad Murad #0" = 20
+	"Gulam Shah #0" = 20
+	"Sarfaraz Khan #0" = 20
+	"Gulam Nabi Khan #0" = 20
+	"'Abd an-Nabi Khan #0" = 20
+	"'Abd Allah Khan Talpur #0" = 20
+	"Mir Fath Ali #0" = 20
+	"Thara #0" = 20
+	"Mohammed 'Isa #0" = 20
+	"Mohammed Baqi #0" = 20
+	"Nur Mahammad #0" = 20
+}
+
+leader_names = {
+	Ali
+	Arghun
+	Desai
+	Jinnah
+	Ferozdar
+	Golani
+	Kalhora
+	Majmudar
+	Mohammad
+	Munshi
+	Muzzafar
+	Parikh
+	Pandya
+	Patel
+	Patidar
+	Vanik
+	Vyas
+	Rushi
+	Samma
+	Saraiya
+	Shah
+	Sindhi
+	Shrivastav
+	Tarkhan
+	Tilak
+	Zamindar
+}
+
+ship_names = {
+	Alia Arusa Baran Fatimah Haleji
+	Indus Kalri Khan Malir Manchhar
+	Mol Niknaz Niloufa Noor Salima
+	Sari Shameena Suhalia Suk
+	Yasmine Zahira
+}

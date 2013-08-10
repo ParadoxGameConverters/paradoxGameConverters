@@ -22,6 +22,9 @@ CK2Title::CK2Title(string _titleString, int* _color)
 	nominees.clear();
 	history.clear();
 	CA						= "";
+	feudalContract		= 0;
+	templeContract		= 0;
+	cityContract		= 0;
 	liegeString			= "";
 	liege					= NULL;
 	vassals.clear();
@@ -81,13 +84,28 @@ void CK2Title::init(Object* obj,  map<int, CK2Character*>& characters, const CK2
 		}
 	}
 
-	CA = "";
+	CA					= "";
+	feudalContract	= 0;
+	templeContract	= 0;
+	cityContract	= 0;
 	vector<Object*> lawObj = obj->getValue("law");
 	for (unsigned int i = 0; i < lawObj.size(); i++)
 	{
 		if (lawObj[i]->getLeaf().substr(0, 14) == "centralization")
 		{
 			CA = lawObj[i]->getLeaf();
+		}
+		else if (lawObj[i]->getLeaf().substr(0, 15) == "feudal_contract")
+		{
+			feudalContract = atoi( lawObj[i]->getLeaf().substr(16,1).c_str() );
+		}
+		else if (lawObj[i]->getLeaf().substr(0, 15) == "temple_contract")
+		{
+			templeContract = atoi( lawObj[i]->getLeaf().substr(16,1).c_str() );
+		}
+		else if (lawObj[i]->getLeaf().substr(0, 13) == "city_contract")
+		{
+			cityContract = atoi( lawObj[i]->getLeaf().substr(14,1).c_str() );
 		}
 	}
 
@@ -617,11 +635,11 @@ bool CK2Title::hasAllianceWith(CK2Title* other) const
 	return (this->holder->isAlliedWith(other->holder));
 }
 
-int CK2Title::getRelationsWith(CK2Title* other) const
+int CK2Title::getRelationsWith(CK2Title* other, CK2Version& version) const
 {
 	// FIXME: forum suggests taking vassal relations into account too
-	int ltr = this->holder->getOpinionOf(other->holder);
-	int rtl = other->holder->getOpinionOf(this->holder);
+	int ltr = this->holder->getOpinionOf(other->holder, version);
+	int rtl = other->holder->getOpinionOf(this->holder, version);
 	return ((ltr + rtl) / 2);
 }
 

@@ -1,0 +1,62 @@
+country_decisions = {
+
+	persian_nation = {
+		potential = {
+			NOT = { exists = PER }
+			NOT = { tag = MUG }
+			OR = {
+				culture_group = iranian
+				primary_culture = azerbadjani
+			}
+		}
+		allow = 
+		{
+			owns = 413		# Luristan
+			owns = 414		# Hamadan
+			owns = 416		# Azerbaijan	
+			owns = 426		# Mazandaran
+			owns = 429		# Fars
+			owns = 434		# Makran
+			owns = 436		# Khurasan
+			is_core = 413		# Luristan
+			is_core = 414		# Hamadan
+			is_core = 416		# Azerbaijan	
+			is_core = 426		# Mazandaran
+			is_core = 429		# Fars
+			is_core = 434		# Makran
+			is_core = 436		# Khurasan
+			war = no
+		}
+	  effect = {
+			PER = {
+				add_core = 413 # Luristan
+				add_core = 414 # Hamadan
+				add_core = 416 # Azerbaijan
+				add_core = 426 # Mazandaran
+				add_core = 428 # Ajam
+				add_core = 429 # Fars
+				add_core = 412 # Khuzestan
+				add_core = 417 # Gilan
+				add_core = 427 # Gurgan
+				add_core = 432 # Khurasan
+				add_core = 433 # Dash-i-Lut
+				add_core = 434 # Makran
+				add_core = 436 # Kerman
+			}
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			centralization_decentralization = -2
+			prestige = 0.05
+			change_tag = PER
+			PER = {
+				government = theocratic_government
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

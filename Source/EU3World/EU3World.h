@@ -57,10 +57,11 @@ class EU3World
 		void	convertTech(const CK2World& srcWorld);
 		void	convertGovernments();
 		void	convertEconomies(const cultureGroupMapping& cultureGroups, const tradeGoodMapping& tradeGoodMap);	
-		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
-		void	convertDiplomacy();
+		void	assignTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap, CK2Version& version);
+		void	convertDiplomacy(CK2Version& version);
 		void	convertArmies(const inverseProvinceMapping inverseProvinceMap);
 		void	convertCoTs();
+		void	convertSliders();
 		
 		void	setJapaneseEmperor(EU3Country* emperor)	{ japaneseEmperor = emperor; };
 		void	addDamiyo(EU3Country* daimyo)					{ daimyos.push_back(daimyo); };

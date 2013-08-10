@@ -1,0 +1,12 @@
+# French Blue Coat
+
+type = infantry
+unit_type = western
+
+maneuver = 1
+offensive_morale = 9
+defensive_morale = 9
+offensive_fire = 7
+defensive_fire = 6
+offensive_shock = 7
+defensive_shock = 6

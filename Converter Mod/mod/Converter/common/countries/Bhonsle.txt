@@ -1,0 +1,75 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 154  129  35 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	maharathan_guerilla_warfare
+	maharathan_cavalry
+	bhonsle_infantry
+	bhonsle_cavalry
+	indian_rifle
+}
+
+monarch_names = {
+	"Raghuji #0" = 20
+	"Janoji #0" = 20
+	"Sabaji #0" = 20
+	"Mudhoji #1" = 20
+	"Shivaji #0" = 20
+	"Sambahji #0" = 20
+	"Rajaram #0" = 20
+	"Shahu #0" = 20
+	"Ramajara #0" = 20
+	"Shahu #0" = 30
+}
+
+leader_names = {
+	Virmani
+	Sugriva
+	Purujit
+	Rajal
+	Nirmal
+	Muthuswami
+	Vish
+	Viraj
+	Tyagri
+	Lahiri
+}
+
+ship_names = {
+	Agni Bhim Brahma Devi Durga
+	Ganesh Gayatri Hanumaun
+	Indra Jalsena "Kala Jahazi"
+	Kali Kubera Krishna Lakshmi
+	"Lal Jahazi" Nausena "Nav ka Yudh"
+	"Nila Jahazi" Parvati Radha Ratri
+	Sagar Sarasvati Shiva Sita Soma
+	Surya Varuna Vayu Vishnu Yama
+}

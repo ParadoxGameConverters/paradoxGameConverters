@@ -1,0 +1,113 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 112  150  105 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	cabinet
+	national_bank
+	press_gangs
+	smithian_economics
+	scientific_revolution
+	revolution_and_counter
+	national_trade_policy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	gaelic_galloglaigh
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+leader_names = {
+	Annesley Alexander
+	Butler "de Burgh" Burke Boyle Browne Bourke Barry Balfour Blayney
+	Cholmondeley Chichester Coote Caulfeild
+	Dillon Dongan Duff Digby
+	FitzGerald FitzWilliam FitzOliver Feilding FitzMaurice FitzPatrick Fortescue
+	Guelph Gardiner Grimston
+	Hamilton Hare Hervey
+	Keating Keane Kavanagh
+	Lambart
+	Martyn McCarthy Moore Meade Macartney
+	Nugent
+	O'Neill O'Brien O'Connell O'Hara O'Malley O'Donnell O'Carroll 
+	Parsons Pakenham Plunkett Preston
+	Ridgeway
+	Sterne
+	Touchet Taaffe
+	Vaughan Villiers
+	Wentworth Wesley
+}
+
+monarch_names = {
+	"Turlough #2" = 60
+	"Donal #5" = 40
+	"Muireadhach #2" = 40
+	"Conchobhar #1" = 40
+	"Feidlimidh #1" = 40
+	"Cathaoir #0" = 40
+	"Muchadh #0" = 40
+	"Áed #6" = 20
+	"Fonnchadh #3" = 20
+	"Brian #2" = 20
+	"Criomhthann #2" = 20
+	"Art #1" = 20
+	"Cathal #0" = 20
+	"Gearóid #0" = 20
+	"Muiris #0" = 20
+	"Tadhg #0" = 20
+	"Seán #0" = 20
+	"Niall #4" = 15
+	"Einrí #0" = 15
+	"Conn #1" = 10
+	"Eoghan #1" = 10
+	"Aonghus #2" = 5
+	"Comhghall #2" = 5
+	"Maeleachlain #2" = 5
+	"Diarmaid #1" = 5
+	"Flann #1" = 5
+	"Aerdghal #0" = 0
+	"Bearach #0" = 0
+	"Caoímhin #0" = 0
+	"Donnabhain #0" = 0
+	"Eíhmhín #0" = 0
+	"Fearghal #0" = 0
+	"Iarfhlaith #0" = 0
+	"Lorccán #0" = 0
+	"Mathúin #0" = 0
+	"Naomhán #0" = 0
+	"Oisín #0" = 0
+	"Pádraig #0" = 0
+	"Ríagáin #0" = 0
+	"Somhairle #0" = 0
+}
+
+ship_names = {
+	Aoife
+	Ciara Connacht
+	Eithne Emer
+	Leinster
+	Munster
+	Niamh
+	Orla
+	Roisin
+	Ulster
+} 

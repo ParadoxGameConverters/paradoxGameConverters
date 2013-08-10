@@ -1,0 +1,192 @@
+cultural_decisions = {
+	support_temple_faction = {
+		potential = {
+			NOT = { faction_in_power = temples }
+			OR = {
+				faction_in_power = bureaucrats
+				faction_in_power = enuchs
+			}			
+		}
+		allow = {
+			officials = 3
+		}
+		effect = {
+			faction_influence = {
+				faction = temples
+				influence = 5
+			}
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	support_enuchs_faction = {
+		potential = {
+			NOT = { faction_in_power = enuchs }
+			OR = {
+				faction_in_power = temples
+				faction_in_power = bureaucrats
+			}
+		}
+		allow = {
+			officials = 3
+		}
+		effect = {
+			faction_influence = {
+				faction = enuchs
+				influence = 5
+			}
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	support_crats_faction = {
+		potential = {
+			NOT = { faction_in_power = bureaucrats }
+			OR = {
+				faction_in_power = temples
+				faction_in_power = enuchs
+			}
+		}
+		allow = {
+			officials = 3
+		}
+		effect = {
+			faction_influence = {
+				faction = bureaucrats
+				influence = 5
+			}
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}		
+}
+
+province_decisions = {
+	reparations_of_the_great_wall = {
+		potential = {
+			not = { has_province_modifier = great_wall_reparations }
+			owner = {
+				or = {
+					tag = MCH
+					tag = MNG
+				}
+				owns = 693
+				owns = 695
+				owns = 696
+				owns = 697
+				owns = 699
+				owns = 700
+				owns = 707
+				owns = 709
+				owns = 1816
+			}
+			or = {
+				province_id = 693
+				province_id = 695
+				province_id = 696
+				province_id = 697
+				province_id = 699
+				province_id = 700
+				province_id = 707
+				province_id = 709
+				province_id = 1816
+			}
+		}
+		allow = {
+			owner = {
+				or = {
+					advisor = army_reformer
+					mil = 7
+				}
+				treasury  = 100
+				officials = 1
+			}
+		}
+		effect = {
+			owner = { 
+				treasury = -100 
+				officials = -1
+			}
+			add_province_modifier = {
+				name = "great_wall_reparations"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { owner = { treasury  = 500 } }
+			}
+		}
+	}
+
+	build_the_forbidden_city = {
+		potential = {
+			OR = {
+				province_id = 1816
+				province_id = 1821
+			}
+			is_capital = yes
+			owner = {
+				OR = {
+					tag = MCH
+					tag = MNG
+				}
+				has_country_flag = no_forbidden_city
+			}
+			NOT = { has_province_modifier = construct_the_forbidden_city }
+			NOT = { has_province_flag = the_forbidden_city }
+		}
+		allow = {
+			owner = {
+				war = no
+				OR = {
+					statesman = 4
+					adm = 7
+				}
+				OR = {
+					faction_in_power = bureaucrats
+					has_factions = no
+					}
+				stability = 1
+				treasury  = 300
+				officials = 3
+			}
+			NOT = {
+				any_neighbor_province = {
+					NOT = { owned_by = THIS }
+					NOT = { controlled_by = THIS }
+				}
+			}
+		}
+		effect = {
+			owner = { 
+				treasury = -300 
+				officials = -3
+			}
+			set_province_flag = construct_the_forbidden_city
+			add_province_modifier = {
+				name = "construct_the_forbidden_city"
+				duration = 1825
+			}
+			clr_country_flag = no_forbidden_city
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = { owner = { treasury  = 600 } }
+			}
+		}
+	}
+
+}

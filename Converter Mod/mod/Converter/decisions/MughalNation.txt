@@ -1,0 +1,152 @@
+country_decisions = {
+
+	mughal_nation = {
+		potential = {
+			NOT = { exists = MUG }
+			NOT = { tag = PER }
+			NOT = { tag = TUR }
+			OR = {
+				culture_group = altaic
+				culture_group = iranian
+			}
+			is_subject = no
+			NOT = { technology_group = nomad_group }
+		}
+		allow = {
+			owns = 519			# Jaipur
+			owns = 521			# Panipat
+			owns = 522			# Delhi
+			owns = 523			# Lucknow
+			owns = 524			# Agra
+			is_core = 519		# Jaipur
+			is_core = 521		# Panipat
+			is_core = 522		# Delhi
+			is_core = 523		# Lucknow
+			is_core = 524		# Agra
+			MIL = 6
+			war = no
+		}
+		effect = {
+			MUG = {
+				add_core = 448		# Gazni
+				add_core = 450		# Balkh
+				add_core = 451		# Kabulistan
+				add_core = 452		# Badakhshan
+				add_core = 504		# Sind
+				add_core = 505		# Bakkar
+				add_core = 506		# Multan
+				add_core = 507		# Lahore
+				add_core = 510		# Chandigarh
+				add_core = 511		# Sutlej
+				add_core = 512		# Thar
+				add_core = 513		# Jaisalmer
+				add_core = 514		# Jodphur
+				add_core = 519		# Jaipur
+				add_core = 520		# Bikaner
+				add_core = 521		# Panipat
+				add_core = 522		# Delhi
+				add_core = 524		# Agra
+				add_core = 550		# Mandla
+				add_core = 555		# Oudh
+				add_core = 556		# Allahabad
+				add_core = 575		# Balushistan
+				add_core = 576		# Indus
+				add_core = 577		# Quetta
+				add_core = 578		# Kohistan
+				add_core = 740		# Ladakh
+				add_core = 523		# Lucknow
+			}	
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			centralization_decentralization = -2
+			prestige = 0.05
+			government = despotic_monarchy
+			change_tag = MUG
+			MUG = {
+				technology_group = muslim
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	mughal_nation_nomad = {
+		potential = {
+			NOT = { exists = MUG }
+			NOT = { tag = PER }
+			NOT = { tag = TUR }
+			OR = {
+				culture_group = altaic
+				culture_group = iranian
+			}
+			is_subject = no
+			technology_group = nomad_group
+		}
+		allow = {
+			government_tech = 4
+			MIL = 6
+			OR = {
+				AND = {
+					controls = 519		# Jaipur
+					controls = 521		# Panipat
+					controls = 522		# Delhi
+					controls = 523		# Lucknow
+					controls = 524		# Agra
+				}
+				AND = {
+					KSH = { vassal_of = THIS }
+					DLH = { vassal_of = THIS }
+					SND = { vassal_of = THIS }
+				}
+			}
+		}
+		effect = {
+			MUG = {
+				add_core = 448		# Gazni
+				add_core = 450		# Balkh
+				add_core = 451		# Kabulistan
+				add_core = 452		# Badakhshan
+				add_core = 504		# Sind
+				add_core = 505		# Bakkar
+				add_core = 506		# Multan
+				add_core = 507		# Lahore
+				add_core = 510		# Chandigarh
+				add_core = 511		# Sutlej
+				add_core = 512		# Thar
+				add_core = 513		# Jaisalmer
+				add_core = 514		# Jodphur
+				add_core = 519		# Jaipur
+				add_core = 520		# Bikaner
+				add_core = 521		# Panipat
+				add_core = 522		# Delhi
+				add_core = 524		# Agra
+				add_core = 550		# Mandla
+				add_core = 555		# Oudh
+				add_core = 556		# Allahabad
+				add_core = 575		# Balushistan
+				add_core = 576		# Indus
+				add_core = 577		# Quetta
+				add_core = 578		# Kohistan
+				add_core = 740		# Ladakh
+			}
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			centralization_decentralization = -1
+			prestige = 0.05
+			government = despotic_monarchy
+			change_tag = MUG
+			MUG = {
+				technology_group = muslim
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

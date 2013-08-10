@@ -1,0 +1,94 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 56  120  191 }
+
+historical_ideas = {
+	national_conscripts
+	shrewd_commerce_practise
+	divine_supremacy
+	national_trade_policy
+	military_drill
+	engineer_corps
+	battlefield_commisions
+	merchant_adventures
+	grand_army
+	espionage
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	african_spearmen
+	bantu_tribal_warfare
+	ethiopian_mountain_warfare
+	ethiopian_gunpowder_warfare
+	westernized_ethiopian
+	ethiopian_guerilla_warfare
+}
+
+monarch_names = {
+	"Iyâsû #0" = 60
+	"Taqla Hâymânôt #0" = 60
+	"Salômôn #2" = 40
+	"Yôhannes #0" = 40
+	"Hezqeyâs #0"= 40
+	"Zar'a Yâqob #0" = 20
+	"Ba'eda Mâryâm #1" = 20
+	"Quastantînôs #3" = 20
+	"'Amda Seyôn #1" = 20
+	"Nâ'ôd #0" = 20
+	"Lebna Dengel #0" = 20
+	"Galâwdêwôs #0" = 20
+	"Mînâs #0" = 20
+	"Sarsa Dengel #0" = 20
+	"Yâ'qob #0" = 20
+	"Sûsenyôs #0" = 20
+	"Fâsîladas #0" = 20
+	"Têwôflôs #0" = 20
+	"Yôstôs #0" = 20
+	"Yônas #0" = 20
+	"Dâwît #0" = 20
+	"'Amsa Gîyôrgîs #0" = 20
+	"Tuqla Gîyôrgîs #0" = 20
+	"Demetros #0" = 20
+	"Gîyôrgîs #0" = 20
+	"Fiqtor #0" = 5
+	"Menas #0" = 5
+	"Marqos #0" = 5
+	"Hamalmal #0" = 5
+	"Saga Krestos #0" = 5
+	"Malta Krestos #0" = 5
+	"Fâsîl #0" = 5
+	"'Endreyâs #1" = 1
+	"Yeshaq #1" = 1
+	"Mika'el #0" = 0
+	"Amda Seyon #0" = 0
+	"Antenatewos #0" = 0
+	"Welde Giyorgis #0" = 0
+	"Mika'el Sehul #0" = 0
+	"Gusho #0" = 0
+	"Wand Bewossen #0" = 0
+	"Haile #0" = 0
+	"Wolda Gabrael #0" = 0
+}
+
+leader_names = {
+	Bayisa
+	Dereje
+	Ambo
+	Asres
+	Wami
+	Eshete
+	Ezana
+	Eyob
+	Asfaw
+	Degife
+}
+
+ship_names = {
+	Yodit Shewa "Mara Takla" Lalibela
+	"Yekuno Amlak" Tigray Tatadum Seyum
+	"Kedus Harbe" "Na'akueto La'ab" Yetbarak
+}

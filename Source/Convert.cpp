@@ -481,7 +481,7 @@ int main(int argc, char * argv[])
 	}
 	log("Mapping CK2 nations to EU3 nations.\n");
 	printf("Mapping CK2 nations to EU3 nations.\n");
-	destWorld.assignTags(obj, blockedNations, provinceMap, religionMap, cultureMap, inverseProvinceMap);
+	destWorld.assignTags(obj, blockedNations, provinceMap, religionMap, cultureMap, inverseProvinceMap, *(srcWorld.getVersion()));
 
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");
@@ -498,6 +498,10 @@ int main(int argc, char * argv[])
 	log("Converting centes of trade\n");
 	printf("Converting centes of trade\n");
 	destWorld.convertCoTs();
+
+	log("Converting sliders\n");
+	printf("Converting sliders\n");
+	destWorld.convertSliders();
 	
 	log("Converting economies.\n");
 	printf("Converting economies.\n");
@@ -509,7 +513,7 @@ int main(int argc, char * argv[])
 
 	log("Converting diplomatic relations.\n");
 	printf("Converting diplomatic relations.\n");
-	destWorld.convertDiplomacy();
+	destWorld.convertDiplomacy(*(srcWorld.getVersion()));
 
 	log("Converting armies and navies.\n");
 	printf("Converting armies and navies.\n");

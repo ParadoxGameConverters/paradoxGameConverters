@@ -1,0 +1,67 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 81  144  126 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	bureaucracy	
+	national_bank	
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Kiem #0" = 10
+	"Coi #0" = 10
+	"Tung #0" = 10
+	"Trang #0" = 10
+	"Tac #0" = 10
+	"Con #0" = 10
+	"Cuong #0" = 10
+	"Giang #0" = 10
+	"Dinh #0" = 10
+	"Sam #0" = 10
+	"Man #0" = 10
+	"Can #0" = 10
+	"Khai #0" = 10
+}
+
+leader_names = {
+	Lwin
+	Moe
+	Nanda
+	Soe
+	Than
+	Thida
+	Tun
+	Ye
+	Zeya
+	Zeyar
+}
+
+ship_names = {
+	"Lê Loi" "Thái Tông" "Thánh Tông" "Nhân Tông"
+	"Anh Tông" "Minh Tông" "Hien Tông" "Du Tông"
+	"Nghe Tông" "Due Tông" "Thuan Tông" "Tha(ng Long"
+	"Dông Kinh" "?ai Nam"
+}

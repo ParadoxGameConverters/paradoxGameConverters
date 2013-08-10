@@ -1,0 +1,25 @@
+#moved to triggered_modifier
+#
+#country_decisions = {
+#	use_highland_charge = {
+#		potential = {
+#			tag = SCO
+#			NOT = { has_country_modifier = highland_charge }
+#		}
+#		allow = {
+#			owns = 252	#highlands..
+#			#MIL = 7
+#			#land_tech = 5
+#		}
+#		effect = {	
+#			add_country_modifier = {
+#				name = "highland_charge"
+#				duration = -1
+#			}
+#		}
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
+#	
+#}

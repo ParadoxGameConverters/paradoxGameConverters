@@ -1,0 +1,106 @@
+#Danzig
+
+graphical_culture = latingfx
+
+color = { 78  129  151 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	national_trade_policy
+	engineer_corps
+	cabinet
+	espionage
+	scientific_revolution
+	bureaucracy
+	national_bank
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	prussian_frederickian
+	prussian_uhlan
+	prussian_drill
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Franz Joseph #0" = 20
+	"Christian #0" = 15
+	"Karl #0" = 15
+	"Kasimir #0" = 15
+	"Friedrich #0" = 10
+	"Jakob #0" = 10
+	"Joachim #0" = 10
+        "Kaspar #0" = 10
+	"Adolf #0" = 0
+	"Adrian #0" = 0
+	"Albrecht #0" = 0
+        "Andreas #0" = 0
+	"August #0" = 0
+        "Bernhard #0" = 0
+	"Cornelius #0" = 0
+	"Dietrich #0" = 0
+	"Ferdinand #0" = 0
+	"Georg #0" = 0
+	"Gerhard #0" = 0
+	"Günther #0" = 0
+        "Heinrich #0" = 0
+	"Ignatz #0" = 0
+	"Isidor #0" = 0
+	"Joseph #0" = 0
+	"Konstantin #0" = 0
+        "Lorenz #0" = 0
+	"Ludwig #0" = 0
+	"Lukas #0" = 0
+	"Marius #0" = 0
+	"Markus #0" = 0
+	"Matthias #0" = 0
+	"Michael #0" = 0
+        "Nicolaus #0" = 0
+	"Paul #0" = 0
+	"Raphael #0" = 0
+	"Rudolf #0" = 0
+	"Sigmund #0" = 0
+	"Stephan #0" = 0
+	"Thomas #0" = 0
+	"Wenzel #0" = 0
+}
+
+leader_names = {	
+	"von Taubeneck"
+	"von Kyau"
+	Knobelsdorf
+	Linkendorf
+	Briesen
+	Riwotzki
+	Schnittern
+	Schach
+	"von Seel"
+	"von Hohenzollern"
+}
+
+ship_names = {
+	Dirschau
+	Starogard
+	Marienwerder
+	Stolp
+	Konitz
+	Lauenburg
+	Neustadt
+	Tuchel
+	Stolpmünde
+	Zoppot
+}

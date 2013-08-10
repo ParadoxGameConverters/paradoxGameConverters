@@ -1,0 +1,96 @@
+country_decisions = {
+
+	malayan_nation = {
+		potential = {
+			NOT = { exists = MSA }
+			culture_group = malay
+			NOT = { technology_group = nomad_group }
+		}
+		allow = 
+		{
+			war = no
+			owns = 624
+			owns = 625
+			owns = 629
+			owns = 630
+			OR = {
+				AND = {
+					owns = 595
+					owns = 598
+					owns = 596
+					owns = 597
+					owns = 617
+					owns = 618
+					owns = 619
+					owns = 620
+					owns = 621
+					owns = 622
+					owns = 623
+					owns = 659
+				}
+				AND = {
+					owns = 595
+					owns = 598
+					owns = 596
+					owns = 597
+					owns = 637
+					owns = 636
+					owns = 638
+					owns = 640
+					owns = 639
+				}
+				AND = {
+					owns = 637
+					owns = 636
+					owns = 638
+					owns = 640
+					owns = 639
+					owns = 617
+					owns = 618
+					owns = 619
+					owns = 620
+					owns = 621
+					owns = 622
+					owns = 623
+					owns = 659
+				}
+			}
+		}
+	  effect = {
+			MSA = {
+				add_core = 624
+				add_core = 625
+				add_core = 629
+				add_core = 630
+				add_core = 595
+				add_core = 598
+				add_core = 596
+				add_core = 597
+				add_core = 617
+				add_core = 618
+				add_core = 619
+				add_core = 620
+				add_core = 621
+				add_core = 622
+				add_core = 623
+				add_core = 659
+				add_core = 637
+				add_core = 636
+				add_core = 638
+				add_core = 640
+				add_core = 639
+			}
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			centralization_decentralization = -1
+			prestige = 0.05
+			change_tag = MSA
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+}

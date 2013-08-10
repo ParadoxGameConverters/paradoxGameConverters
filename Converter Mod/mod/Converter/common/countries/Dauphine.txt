@@ -1,0 +1,125 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 93  194  122 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	liberty_egalite_fraternity
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Guigues #8" = 40
+	"Humbert #2" = 40
+	"Jean #2" = 40
+	"Huges #2" = 10
+	"Anne #1" = -10
+	"Adhémar #0" = 0
+	"Arnaud #0" = 0
+	"Aymeric #0" = 0
+	"Bartomiu #0" = 0
+	"Bernat #0" = 0
+	"Bertran #0" = 0		
+	"Charles #0" = 0
+	"Damián #0" = 0
+	"Enric #0" = 0
+	"Estève #0" = 0
+	"Ferrán #0" = 0
+	"Folquet #0" = 0
+	"Frances #0" = 0
+	"Gastó #0" = 0
+	"Gaufré #0" = 0
+	"Guilhem #0" = 0
+	"Ignaci #0" = 0
+	"Jacme #0" = 0
+	"Jordan #0" = 0
+	"Loys #0" = 0
+	"Martí #0" = 0
+	"Matheu #0" = 0
+	"Miqueu #0" = 0
+	"Nicolau #0" = 0
+	"Per #0" = 0
+	"Pol #0" = 0
+	"Pons #0" = 0
+	"Ramond #0" = 0
+	"Ricard #0" = 0
+	"Sanc #0" = 0
+	"Simos #0" = 0
+	"Vicentz #0" = 0
+	"Victor #0" = 0
+	"Xavier #0" = 0
+	"Victor #0" = 0
+	"John #0" = 0
+}
+
+leader_names = {
+        d'Abon d'Agoult "Agrain des Ubaz" d'Alande-Mirabel d'Alauzon d'Albon Alleman d'Andrevet d'Angerès d'Arbalestier d'Arcilay Artaud d'Aspremont
+        "de Balathier" "de Bardonnenche" "de Beaumont" "de Belmont" "de Bernard" "de Bocsozel" "de Bompart" "de Bonlieu" "de Boulieu" "de Bressieu"
+        "de Calignon" "de Chalendar" "de Chambarlhac" "de Chambly" "de la Chambre" "de Champiney" "de Cheilus" "de Clérieux"
+        "de Dié" "de Domaine"
+        "de l'Espine"
+        "de Forbin"
+        "de Gandil" "de Genève" "de Granges"
+        "de La Balme" "de La Farge" "de La Porte" "de La Tour du Pin" Lesdiguières
+        "de Marcieu" "de Mérins" "de Miribel" "de Mollin" "de Montchenu" "de Montferrat"
+        "Pape de Saint Auban" "de Peccat" "de Peloux" "de Périssol" "de Perdrix" "de Pracomtal"
+        "de Révilasc"
+        "de Sassenage" "de Seyssel"
+        "du Terrail"
+        "de Virieu"
+}
+
+ship_names = {
+        Apprieu 
+        Barnave Beaurepaire Bellegarde-Poussieu Bourg-de-Péage "Bourg d'Oisans" "Bourgoin" "Briançon"
+        Cessieu Clelles Crolles
+        Dieu-le-Fit
+        Embrun
+        Gap Grenoble
+        Huez
+        "La Côte Saint André" "La Mure" "La Tour du Pin" "Le Poet-Laval" "Le Pont de Claix" "Le Teil" Livet-et-Gavet "Les Abrets" Loriol "Lus la Croix Haute"
+        Mens Moirans Montélimar
+        Rochemaure Roussillon
+        Saillans "Saint Clair de la Tour" "Saint Etienne en Dévoluy" "Saint Geoir" "Saint Jean de Bournay" "Saint Laurent en Royan" "Saint Roman" Sauzet Serres
+        Tullin
+        Valbonnais Valence Venosc Veynes Vienne Vif Vizille Voiron Voreppe
+}
+
+
+army_names = {
+         "Armée du Dauphin"     "Armée du Viennois"  "Armée du Grésivaudan"
+         "Armée du Valentinois" "Armée du Royans"    "Armée du Queyras"   
+         "Armée de l'Embrunais" "Armée du Gapençais" "Armée du Briançonnais" 
+         "Armée du Diois"       "Armée du Dévoluy"   "Armée du Vercors"   
+         "Armée des Baronnies"  "Armée du Trièves"   "Armée du Champsaur"
+	 "Armée de $PROVINCE$" 
+}

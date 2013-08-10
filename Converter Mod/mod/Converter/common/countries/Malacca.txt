@@ -1,0 +1,77 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 100  96  197 }
+
+historical_ideas = {
+	merchant_adventures  
+	excellent_shipwrights 
+	shrewd_commerce_practise 
+	superior_seamanship
+	national_conscripts
+	national_trade_policy
+	sea_hawks
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	engineer_corps
+	battlefield_commisions
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+leader_names = {
+	Abdulfatah Ahmad Amir Anwar Azmi 
+	Batuta 
+	Chairul 
+	Hamzah Hasanuddin 
+	Ibnu 
+	Kyai 
+	Mahat Mukhtar 
+	Najamuddin Natzar Nazmizan 
+	Roem 
+	Syarifuddin 
+	Zulkifli 
+}
+
+monarch_names = {
+	"Sam Agi #0" = 10
+	"Paramesvara #0" = 10
+	"Megat Iskander #0" = 10
+	"Muhammad Shâh #0" = 10
+	"Abu Syahid #0" = 10
+	"Muzaffar Shâh #0" = 10
+	"Mansûr Shâh #0" = 10
+	"Riayat Shah #0" = 10
+	"Mahmûd Shâh #0" = 10
+	"'Abd al-Jalîl Shâh #0" = 10
+	"Ma'ayat Shâh #0" = 10
+	"Ibrâhîm Shâh #0" = 10
+	"Rahmat Shâh #0" = 10
+	"Sulaymân Badr Shâh #0" = 10
+	"Mu'azzam Shâh #0" = 10
+	"Mahmûd Ri'âyat Shâh #0" = 10
+	"'Abd ar-Rahmân Shâh #0" = 10
+	"Rajah Qasim #0" = 10
+}
+
+ship_names = {
+	Parameswara "Sultan Iskandar" Bendahara Laksamana
+	Temenggung "Penghulu bendahari" Shahbandar
+	"Hukum Kanun" "Undang-Undang" "Pulau Bakung"
+	"Pulau Lingga" Kepulauan "Pulau Singkep" "Kepulauan Riau"
+	"Pulau Rempang" "Pulau Kundur" "Pulau Padang"
+	"Pulau Bengkaus" "Pulau Tinggi" "Pulau Sibu"
+	"Pulau Tioman" "Pulau Aur" "Pulau Rupat"
+	"Pulau Rangsang" "Pulau Tebing Tinggi"
+}

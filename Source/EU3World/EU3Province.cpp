@@ -308,6 +308,7 @@ EU3Province::EU3Province(int _num, Object* obj, date _startDate)
 	popUnits	= 0.0f;
 	supply	= 0.0f;
 	demands.clear();
+	armyHere	= false;
 
 	numRegiments	= 0;
 	numShips			= 0;
@@ -497,7 +498,6 @@ void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _sr
 	srcProvinceNums = _srcProvinceNums;
 
 	num				= _num;
-	//capital	-- leave it as it is from the history file (TODO?)
 	buildings.clear();
 	ownerStr			= "";
 	cores				= _cores;
@@ -532,6 +532,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 	map<string, double> cultureCounts;
 	map<string, double> cultureCounts2;
 	map<string, double> cultureCounts3;
+	bool hadSrc = false;
 	for (vector<CK2Province*>::const_iterator provItr = srcProvinces.begin(); provItr < srcProvinces.end(); provItr++)
 	{
 		double popProxy		= 0.0f;
@@ -540,6 +541,7 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		vector<CK2Barony*> baronies = (*provItr)->getBaronies();
 		for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr != baronies.end(); baronyItr++)
 		{
+			hadSrc			=  true;
 			popProxy			+= (*baronyItr)->getPopProxy();
 			basetaxProxy	+= (*baronyItr)->getBaseTaxProxy();
 			manpowerProxy	+= (*baronyItr)->getManpowerProxy();
@@ -577,89 +579,92 @@ void EU3Province::determineCulture(const cultureMapping& cultureMap, const vecto
 		}
 	}
 
-	string			topCulture		= "";
-	double			highestCount	= 0;
-	vector<string>	tiedCultures;
-	vector<string>	tiedCultures2;
-	bool				tie;
-	for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
+	if (hadSrc)
 	{
-		if (countsItr->second > highestCount)
+		string			topCulture		= "";
+		double			highestCount	= 0;
+		vector<string>	tiedCultures;
+		vector<string>	tiedCultures2;
+		bool				tie;
+		for (map<string, double>::iterator countsItr = cultureCounts.begin(); countsItr != cultureCounts.end(); countsItr++)
 		{
-			topCulture		= countsItr->first;
-			highestCount	= countsItr->second;
-			tiedCultures.clear();
-			tiedCultures.push_back(countsItr->first);
-			tie = false;
-		}
-		else if (countsItr->second == highestCount)
-		{
-			tiedCultures.push_back(countsItr->first);
-			tie = true;
-		}
-	}
-
-	if (tie == true)
-	{
-		topCulture		= "";
-		highestCount	= 0;
-		for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
-		{
-			for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
+			if (countsItr->second > highestCount)
 			{
-				if (countsItr->first == *cultureItr)
+				topCulture		= countsItr->first;
+				highestCount	= countsItr->second;
+				tiedCultures.clear();
+				tiedCultures.push_back(countsItr->first);
+				tie = false;
+			}
+			else if (countsItr->second == highestCount)
+			{
+				tiedCultures.push_back(countsItr->first);
+				tie = true;
+			}
+		}
+
+		if (tie == true)
+		{
+			topCulture		= "";
+			highestCount	= 0;
+			for (map<string, double>::iterator countsItr = cultureCounts2.begin(); countsItr != cultureCounts2.end(); countsItr++)
+			{
+				for (vector<string>::iterator cultureItr = tiedCultures.begin(); cultureItr != tiedCultures.end(); cultureItr++)
 				{
-					if (countsItr->second > highestCount)
+					if (countsItr->first == *cultureItr)
 					{
-						topCulture		= countsItr->first;
-						highestCount	= countsItr->second;
-						tiedCultures2.clear();
-						tiedCultures2.push_back(countsItr->first);
-						tie = false;
+						if (countsItr->second > highestCount)
+						{
+							topCulture		= countsItr->first;
+							highestCount	= countsItr->second;
+							tiedCultures2.clear();
+							tiedCultures2.push_back(countsItr->first);
+							tie = false;
+						}
+						else if (countsItr->second == highestCount)
+						{
+							tiedCultures2.push_back(countsItr->first);
+							tie = true;
+						}
+						break;
 					}
-					else if (countsItr->second == highestCount)
-					{
-						tiedCultures2.push_back(countsItr->first);
-						tie = true;
-					}
-					break;
 				}
 			}
 		}
-	}
 
-	if (tie == true)
-	{
-		topCulture		= "";
-		highestCount	= 0;
-		for (map<string, double>::iterator countsItr = cultureCounts3.begin(); countsItr != cultureCounts3.end(); countsItr++)
+		if (tie == true)
 		{
-			for (vector<string>::iterator cultureItr = tiedCultures2.begin(); cultureItr != tiedCultures2.end(); cultureItr++)
+			topCulture		= "";
+			highestCount	= 0;
+			for (map<string, double>::iterator countsItr = cultureCounts3.begin(); countsItr != cultureCounts3.end(); countsItr++)
 			{
-				if (countsItr->first == *cultureItr)
+				for (vector<string>::iterator cultureItr = tiedCultures2.begin(); cultureItr != tiedCultures2.end(); cultureItr++)
 				{
-					if (countsItr->second > highestCount)
+					if (countsItr->first == *cultureItr)
 					{
-						topCulture		= countsItr->first;
-						highestCount	= countsItr->second;
-						tie = false;
+						if (countsItr->second > highestCount)
+						{
+							topCulture		= countsItr->first;
+							highestCount	= countsItr->second;
+							tie = false;
+						}
+						else if (countsItr->second == highestCount)
+						{
+							tie = true;
+						}
+						break;
 					}
-					else if (countsItr->second == highestCount)
-					{
-						tie = true;
-					}
-					break;
 				}
 			}
 		}
-	}
 
-	if (tie == true)
-	{
-		log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitrarily assigned.\n", num, topCulture.c_str());
-	}
+		if (tie == true)
+		{
+			log("\tWarning: could not decide on culture for EU3 province %d due to ties. %s arbitrarily assigned.\n", num, topCulture.c_str());
+		}
 
-	culture = topCulture;
+		culture = topCulture;
+	}
 }
 
 
@@ -878,10 +883,7 @@ void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap)
 		}
 		else if (modifierItr->first == "blockaded")
 		{
-			//if (blockaded) TODO
-			//{
-			//	supply *= modifierItr->second;
-			//}
+			// can't happen
 		}
 		else if (modifierItr->first == "other controller")
 		{
@@ -940,17 +942,14 @@ void EU3Province::determineGoodsSupply(const tradeGoodMapping& tradeGoodMap)
 		}
 		else if (modifierItr->first.substr(0, 21) == "has country modifier ")
 		{
-		//	if ( country->hasModifier(modifierItr->first.substr(21, 20)) ) TODO
-		//	{
-		//		supply *= modifierItr->second;
-		//	}
+			// no relevant modifiers at conversion
 		}
 		else if (modifierItr->first == "units_in_province")
 		{
-		//	if ( something to check that units are in this province ) TODO
-		//	{
-		//		supply *= modifierItr->second;
-		//	}
+			if (armyHere)
+			{
+				supply *= modifierItr->second;
+			}
 		}
 	}
 }
@@ -1048,27 +1047,23 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (conditionItr->substr(0, 14) == "has artillery ")
 				{
-					//int reqUnits = atoi( conditionItr->substr(14, 4).c_str() ); TODO
-					//if (country->getArtillery() < reqUnits)
-					//{
 						allConditions = false;
-					//}
 				}
 				else if (conditionItr->substr(0, 13) == "has infantry ")
 				{
-					//int reqUnits = atoi( conditionItr->substr(13, 4).c_str() ); TODO
-					//if (country->getInfantry() < reqUnits)
-					//{
+					int reqUnits = atoi( conditionItr->substr(13, 4).c_str() );
+					if (owner->getInfantry() < reqUnits)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 14) == "has land tech ")
 				{
-					//int reqTech = atoi( conditionItr->substr(14, 4).c_str() );TODO
-					//if (country->getLandTech() < reqTech)
-					//{
+					int reqTech = atoi( conditionItr->substr(14, 4).c_str() );
+					if (owner->getLandTech() < reqTech)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 15) == "tech group not ")
 				{
@@ -1080,52 +1075,40 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (conditionItr->substr(0, 21) == "has country modifier ")
 				{
-				//	if ( !country->hasModifier(modifierItr->first.substr(21, 20)) ) TODO
-				//	{
-						allConditions = false;
-				//	}
+					// no relevant modifiers at conversion
 				}
 				else if (conditionItr->substr(0, 9) == "prestige ")
 				{
-					//double reqPrestige = atof( conditionItr->substr(9, 3).c_str() ); TODO
-					//if (country->getPrestige() < reqPrestige)
-					//{
+					double reqPrestige = atof( conditionItr->substr(9, 3).c_str() );
+					if (owner->getPrestige() < reqPrestige)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 27) == "owner has this many ports: ")
 				{
-					//double reqPorts = atof( conditionItr->substr(27, 4).c_str() ); TODO
-					//if (country->getNumPorts() < reqPorts)
-					//{
+					double reqPorts = atof( conditionItr->substr(27, 4).c_str() );
+					if (owner->getNumPorts() < reqPorts)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 28) == "trade income percentage not ")
 				{
-					//double reqPercent			= atof( conditionItr->substr(28, 4).c_str() ); TODO
-					//double tradeIncPercent	= country->getTradeIncome() / country->getTotalIncome();
-					//if (tradeIncPercent >= reqPercent)
-					//{
-						allConditions = false;
-					//}
+					// trade income always starts at 0 (no merchants)
 				}
 				else if (conditionItr->substr(0, 20) == "gold income percent ")
 				{
-					//double reqPercent			= atof( conditionItr->substr(20, 4).c_str() ); TODO
-					//double tradeIncPercent	= country->getGoldIncome() / country->getTotalIncome();
-					//if (tradeIncPercent < reqPercent)
-					//{
+					double reqPercent			= atof( conditionItr->substr(20, 4).c_str() );
+					double tradeIncPercent	= owner->getGoldIncome() / owner->getIncome();
+					if (tradeIncPercent < reqPercent)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 15) == "trade embargos ")
 				{
-					//int reqEmbargos = atoi( conditionItr->substr(15, 2).c_str() ); TODO
-					//if (country->getNumEmbargos() < reqEmbargos)
-					//{
-						allConditions = false;
-					//}
+					// no trade embargos at conversion
 				}
 				else if (conditionItr->substr(0, 16) == "trade goods not ")
 				{
@@ -1153,19 +1136,37 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (conditionItr->substr(0, 13) == "has building ")
 				{
-					//string reqBuilding = conditionItr->substr(13, 10); TODO
-					//if (!hasBuilding(reqBuilding))
-					//{
+					string reqBuilding = conditionItr->substr(13, 10);
+					bool hasBuilding = false;
+					for (unsigned int i = 0; i < buildings.size(); i++)
+					{
+						if (buildings[i] == reqBuilding)
+						{
+							hasBuilding = true;
+							break;
+						}
+					}
+					if (!hasBuilding)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 				else if (conditionItr->substr(0, 17) == "has not building ")
 				{
-					//string reqBuilding = conditionItr->substr(17, 10); TODO
-					//if (hasBuilding(reqBuilding))
-					//{
-					//	allConditions = false;
-					//}
+					string reqBuilding = conditionItr->substr(17, 10);
+					bool hasBuilding = false;
+					for (unsigned int i = 0; i < buildings.size(); i++)
+					{
+						if (buildings[i] == reqBuilding)
+						{
+							hasBuilding = true;
+							break;
+						}
+					}
+					if (hasBuilding)
+					{
+						allConditions = false;
+					}
 				}
 				else if (conditionItr->substr(0, 12) == "religion is ")
 				{
@@ -1222,10 +1223,10 @@ void EU3Province::determineGoodsDemand(const tradeGoodMapping& tradeGoodMap, con
 				}
 				else if (*conditionItr == "port")
 				{
-					//if (!port) TODO
-					//{
+					if (!coastal)
+					{
 						allConditions = false;
-					//}
+					}
 				}
 			}
 			if (allConditions)
@@ -1259,15 +1260,18 @@ void EU3Province::addDemandContribution(map<string, double>& goodsDemand)
 double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 {
 	double tax = baseTax;
-	/*if (isCOT) TODO
+	if (cot)
 	{
 		tax += 2;
-		tax += 2 * (COTSize / 100);
-	}*/
-	//if (buildings[workshop]) TODO
-	//{
-	//	tax += 1;
-	//}
+		// tax += 2 * (COTSize / 100); TODO
+	}
+	for (unsigned int i = 0; i < buildings.size(); i++)
+	{
+		if (buildings[i] == "workshop")
+		{
+			tax += 1;
+		}
+	}
 	if (owner->getCapital() == num)
 	{
 		tax += 2;
@@ -1308,10 +1312,6 @@ double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 		tax *= 0.70;
 	}
 	//tax *= 1 - (int(revoltRisk / .01) * 0.05); TODO
-	/*if (blockaded) TODO
-	{
-		tax *= 0.25;
-	}*/
 	/*if (looted) TODO
 	{
 		tax *= 0.50;
@@ -1346,6 +1346,31 @@ double EU3Province::determineTax(const cultureGroupMapping& cultureGroups)
 	}
 
 	return tax;
+}
+
+
+double EU3Province::determineManu()
+{
+	for(unsigned int i = 0; i < buildings.size(); i++)
+	{
+		if (buildings[i] == "university")
+		{
+			return 0.5;
+		}
+		else if (buildings[i] == "textile")
+		{
+			if ((tradeGood == "wool") || (tradeGood == "cloth"))
+			{
+				return 1.0;
+			}
+			else
+			{
+				return 0.5;
+			}
+		}
+	}
+
+	return 0.0;
 }
 
 
@@ -1384,7 +1409,7 @@ double EU3Province::determineProduction(const map<string, double>& unitPrices)
 		//{
 		//	production *= 0.5;
 		//}
-		/*double prestige = country->getPrestige(); TODO
+		double prestige = owner->getPrestige();
 		if (prestige > 0.15)
 		{
 			prestige = 0.15;
@@ -1393,7 +1418,7 @@ double EU3Province::determineProduction(const map<string, double>& unitPrices)
 		{
 			prestige = -0.15;
 		}
-		production *= 1.0 + prestige;*/
+		production *= 1.0 + prestige;
 		production *= owner->getProductionEffeciency();
 		production /= 12;
 	}

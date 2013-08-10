@@ -1,0 +1,239 @@
+# INSTRUCTIONS:
+# -------------
+# Specifies the basic rules of the shogunate.
+# The possible diplomatic actions to take at different levels of shogun influence
+# needs to be specified for each member class ( ie Daimyo, Emperor, Shogun ).
+# External is for actions with non-shogunate countries, internal for actions between the daimyos
+# First value is lower limit and second upper
+
+
+daimyo = {
+	declarewar = 
+	{ 
+		internal = { -1 50 }
+	}
+	
+	callaction =
+	{
+		internal = { -1 100 }
+	}
+ 
+	weaken_shogunate =
+	{
+		internal = { 0 100 }
+	}
+	
+	requestpeace =
+	{
+		internal = { -1 100 }
+		external = { -1 100 }
+	}
+	
+	royal_marriage =
+	{
+		internal = { -1 75 }
+	}
+	
+	claimaction =
+	{
+		internal = { -1 50 }
+	}
+	
+	warningaction =
+	{
+		internal = { -1 70 }
+	}
+	
+	insultaction =
+	{
+		internal = { -1 95 }
+	}
+	
+	allianceaction =
+	{
+		internal = { -1 60 }
+	}
+	
+	vassalaction =
+	{
+		internal = { -1 25 }
+	}
+	
+	annexationaction =
+	{
+		internal = { -1 -1 }
+	}
+	
+	giftaction =
+	{
+		internal = { -1 100 }
+	}
+	
+	open_market =
+	{
+		internal = { -1 100 }
+	}
+	
+	guaranteeaction =
+	{
+		internal = { -1 60 }
+	}
+	
+	milaccess =
+	{
+		internal = { -1 100 }
+	}
+
+	warsubsidy =
+	{
+		internal = { -1 100 }
+	}
+	
+	_tradeagreementaction_ =
+	{
+		internal = { -1 75 }
+	}
+	
+	_traderightsaction_ =
+	{
+		internal = { -1 75 }
+	}
+	_embargoaction_
+	{
+		internal = { -1 30 }
+	}
+	_sphereaction_
+	{
+		internal = { -1 50 }
+	}
+}
+
+emperor = {
+	weaken_shogunate =
+	{
+		internal = { 0 100 }
+	}
+	
+	strengthen_shogunate =
+	{
+		internal = { 0 100 }
+	}
+}
+
+shogun = {
+	declarewar = 
+	{
+		internal = { -1 70 }
+		external = { 70 100 }
+	}
+	
+	callaction =
+	{
+		internal = { -1 100 }
+		external = { -1 100 }
+	}
+
+	requestpeace =
+	{
+		internal = { -1 100 }
+		external = { -1 100 }
+	}
+
+	strengthen_shogunate =
+	{
+		internal = { 0 100 }
+	}
+	
+	milaccess =
+	{
+		external = { -1 100 }
+		internal = { -1 100 }
+	}
+	
+	royal_marriage =
+	{
+		internal = { -1 100 }
+	}
+	
+	claimaction =
+	{
+		internal = { -1 100 }
+	}
+	
+	warningaction =
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+	
+	insultaction =
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+	
+	allianceaction =
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+	
+	vassalaction =
+	{
+		internal = { -1 100 }
+		external = { 75 100 }
+	}
+	
+	annexationaction =
+	{
+		internal = { 50 100 }
+		external = { 50 100 }
+	}
+	
+	giftaction =
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+	
+	open_market =
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+	
+	guaranteeaction =
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+	
+	warsubsidy =
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+	
+	_tradeagreementaction_ =
+	{
+		internal = { -1 75 }
+		external = { 50 100 }
+	}
+	
+	_traderightsaction_ =
+	{
+		internal = { -1 75 }
+		external = { 50 100 }
+	}
+	_embargoaction_
+	{
+		internal = { -1 30 }
+		external = { 50 100 }
+	}
+	_sphereaction_
+	{
+		internal = { -1 100 }
+		external = { 50 100 }
+	}
+
+}

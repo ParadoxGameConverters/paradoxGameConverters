@@ -22,6 +22,7 @@ class		CK2Title;
 class		CK2War;
 class		CK2Religion;
 class		CK2Army;
+class		CK2Version;
 
 enum advisorTypes
 {
@@ -86,7 +87,7 @@ class CK2Character
 		CK2Character*				getPrimarySpouse()		const;
 		vector<CK2Character*>	getCloseRelations()		const;
 		bool							hasTrait(string traitName) const;
-		int							getDemesneCap()			const;
+		int							getDemesneCap(CK2Version& version)			const;
 		double						getTotalScore()			const { return prestige + piety + score; };
 		vector<CK2Army*>			getArmies()					const { return armies; };
 		vector<CK2Army*>			getNavies()					const { return navies; };
@@ -94,7 +95,7 @@ class CK2Character
 		bool						isCloseRelationOf(const CK2Character* other) const;
 		bool						isRMWith(const CK2Character* other) const;
 		bool						isAlliedWith(const CK2Character* other) const;
-		int						getOpinionOf(const CK2Character* other) const;
+		int						getOpinionOf(const CK2Character* other, CK2Version& version) const;
 		bool						isDirectVassalOf(const CK2Character* other) const;
 	private:
 		vector<CK2Character*>	getGavelkindHeirs(string);

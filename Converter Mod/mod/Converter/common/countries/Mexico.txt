@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 219  124  139 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	espionage
+	revolution_and_counter
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Agustín #0" = 20
+	"Ángel #0" = 10
+	"Felipe #0" = 10
+	"Jesús #0" = 10
+	"Salvador #0" = 10
+	"Alfredo #0" = 0
+	"Álvaro #0" = 0
+	"Armando #0" = 0
+	"Arturo #0" = 0
+	"Blas #0" = 0
+	"Calixto #0" = 0
+	"Carlos #0" = 0
+	"Daniel #0" = 0
+	"Elías #0" = 0
+	"Emiliano #0" = 0
+	"Enrique #0" = 0
+	"Eugenio #0" = 0
+	"Félix #0" = 0
+	"Francisco #0" = 0
+	"Gerardo #0" = 0
+	"Horacio #0" = 0
+	"Ignacio #0" = 0
+	"Jaime #0" = 0
+	"José Manuel #0" = 0
+	"José María #0" = 0
+	"José Miguel #0" = 0
+	"José Sixto #0" = 0
+	"Lucio #0" = 0
+	"Manuel #0" = 0
+	"Marcos #0" = 0
+	"Melchor #0" = 0
+	"Natalio #0" = 0
+	"Osvaldo #0" = 0
+	"Porfirio #0" = 0
+	"Ramón #0" = 0
+	"Sandalio #0" = 0
+	"Toribio #0" = 0
+	"Vicente #0" = 0
+	"Víctor #0" = 0
+	"Zacarías #0" = 0
+}
+
+leader_names = {
+	Aldama Allende Álvarez Benavente Bravo Bustamante Cárdenas Carranza Comonfort
+	Díaz Domingo Echávarri Elías Elizondo Galeana García Gómez Gonzalez Guerrero
+	Hidalgo Huerta Iglesias Itúrbide Juárez "León de la Barra" "Lerdo de Tejada" López
+	Madero Matamoros Mejía Mendoza Mina Miramón Mora Morelos Moreno Negrete
+	Obregón Ortíz Pino "Ramírez de Arellano" Rayón "Ruíz de Apodaca" "Santa Anna" Suárez
+	Torres Victoria Villa Zaragoza "de Zavala"
+}
+
+ship_names = {
+	Abasolo Allende
+	Bravo
+	Durango
+	Galeana Guanjuato
+	Ilhunicamina
+	Juarez
+	Netzahualcoyotl
+	Romero
+	Serria Sonora
+	Veracruz Victoria 
+}

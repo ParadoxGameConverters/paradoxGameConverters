@@ -1,0 +1,12 @@
+# Manchu Banner Army
+
+type = cavalry
+unit_type = chinese
+
+maneuver = 2
+offensive_morale = 4
+defensive_morale = 5
+offensive_fire = 4
+defensive_fire = 5
+offensive_shock = 3
+defensive_shock = 5

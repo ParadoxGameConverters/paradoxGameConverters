@@ -1,0 +1,74 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 213  155  81 }
+
+historical_ideas = {
+	national_conscripts
+	superior_seamanship
+	military_drill
+	naval_fighting_instruction
+	divine_supremacy
+	battlefield_commisions
+	shrewd_commerce_practise
+	excellent_shipwrights
+	merchant_adventures
+	national_bank
+	bureaucracy
+	grand_navy
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Isma'il #0" = 10
+	"Saladin Ahmad #0" = 10
+	"'Abdallah #0" = 10
+	"Yahya #0" = 10
+	"Yusuf #1" = 10
+	"Salâh ad-Din 'Amir #0" = 10
+	"'Alî #0" = 10
+	"'Abd al-Wahhâb #0" = 10
+	"'Umar #0" = 10
+	"al-Mutahhar #3" = 10
+	"Muhammad #0" = 10
+	"al-Qâsim #0" = 10
+	"Ahmad #0" = 10
+	"al-Husayn #0" = 10
+	"al-'Abbâs #0" = 10
+	"Abdallah #0" = 10
+}
+
+leader_names = {
+	Ali
+	Ibrahim
+	Issa
+	Jomaa
+	Khalil
+	Mansour
+	Saad
+	Shammas
+	Saleh
+	Saab
+}
+
+ship_names = {
+	"Ali ibn Rasul" "Mansur Umar" Zaizz Zabid
+	"Muzaffar Yusuf" "Malik al-Mujahid" 
+	"Shaykh Uthman" "Al-Kawd" Whaqra "Wadi Bana"
+	Ta'izz "At-Tubah" Dhubab "Jabal Kharaz" Musaymir
+	Mawiyah "Jabal al-Hasha" Ibb Qa'tabah "Jabal Thamar"
+}

@@ -1,0 +1,113 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 114  154  143 } 
+
+historical_ideas = {
+	church_attendance_duty
+	shrewd_commerce_practise
+	patron_of_art
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	national_conscripts
+	national_bank
+	cabinet
+	scientific_revolution
+	battlefield_commisions
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Lodovico #0" = 40
+	"Carlo #0" = 10
+	"Carlotta #0" = -10
+	"Carolina #0" = -10
+	"Ferdinando #0" = 10
+	"Francesco #0" = 10
+	"Maria Antonietta #0" = -10
+        "Maria Luigia #0" = -10
+	"Adriano #0" = 0
+	"Alessandro #0" = 0
+	"Alfredo #0" = 0
+        "Amedeo #0" = 0
+	"Benedetto #0" = 0
+        "Bonifacio #0" = 0
+	"Cesare #0" = 0
+	"Claudio #0" = 0
+	"Demetrio #0" = 0
+	"Edoardo #0" = 0
+	"Enzo #0" = 0
+	"Fabio #0" = 0
+        "Fabrizio #0" = 0
+	"Filippo #0" = 0
+	"Gaspare #0" = 0
+	"Giuseppe #0" = 0
+	"Graziano #0" = 0
+        "Ilario #0" = 0
+	"Leandro #0" = 0
+	"Leonardo #0" = 0
+	"Marco #0" = 0
+	"Nestore #0" = 0
+	"Orlando #0" = 0
+	"Paolo #0" = 0
+        "Patrizio #0" = 0
+	"Pietro #0" = 0
+	"Roberto #0" = 0
+	"Ruggiero #0" = 0
+	"Salvatore #0" = 0
+	"Saverio #0" = 0
+	"Umberto #0" = 0
+	"Vicenzo #0" = 0
+}
+
+leader_names = {
+        "degli Albizzi" Allori "d'Appiani d'Aragona" "d'Asburgo"
+	Barberini Bartolini Benciveni Bizzelli Boncompagni
+	Botta-Adorno Buontalenti Buti Butteri "di Campofregoso"
+	Cercignani Chiastavelli Chigi Corsini Cybo-Malaspina
+	"di Farnese" Gori Grimaldi "Grimaldi di Busca" Lanzi Lessi
+	Ludovisi Malaspina Mancinetti "di Medici" "del Moro" Nasini
+	Orsini Piccolomini Pico Pierallini Pieroni Piombante Pontelli
+	Rivani Rospigliosi "del Rosso" Savaranola Soderini Tempesta
+	Terreni Tonelli Traballesi Ulivelli Vasari Zucchi
+}
+
+ship_names = {
+	Arezzo
+	Bisenzio
+	"Corso Donati"
+	"Dino Compagni"
+	Firenze
+	"Francesco Petrarca"
+	Giotto
+	Impruneta
+	Medici Mugnone
+	Orsanmichele
+	Pistoia Prato
+	Ripoli
+	"San Lorenzo"
+	"Santa Trinita"
+	"Sesto Fiorentino"
+}
+
+army_names = {
+	"Armata de $PROVINCE$"
+}

@@ -1,0 +1,67 @@
+country_decisions = {
+	build_lubeck_krantor = {
+		potential = {	
+			TAG = HSA
+			owns = 45
+			total_merchants = 20
+			government = merchant_republic
+			45 = {
+				cot = yes
+				NOT = { has_province_modifier = "krantor_crane" }
+			}
+		}
+		allow = {
+			total_merchants = 30
+			years_of_income = 1
+			officials = 2
+		}
+		effect = {
+			years_of_income = -1
+			officials = -2
+			45 = {
+				add_province_modifier = {
+					name = "krantor_crane"
+					duration = -1
+				}
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	commission_adler_von_lubeck = {
+		potential = {
+			TAG = HSA
+			owns = 45
+			controls = 45
+			any_neighbor_country = {
+				war = yes
+			}
+			NOT = {
+				has_country_flag = adler_built
+			}
+		}
+		allow = {
+			years_of_income = 0.7
+			officials = 3
+		}
+		effect = {
+			years_of_income = -0.7
+			officials = -3
+			45 = {
+				big_ship = current
+			}
+			set_country_flag = adler_built
+			add_country_modifier = {
+				name = "adler_von_lubeck"
+				duration = 10950
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+		
+}

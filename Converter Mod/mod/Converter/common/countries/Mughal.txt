@@ -1,0 +1,118 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 154  133  153 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms  
+	grand_army
+	military_drill
+	patron_of_art
+	merchant_adventures
+	battlefield_commisions
+	shrewd_commerce_practise
+	engineer_corps
+	national_trade_policy
+	smithian_economics
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	indian_rifle
+}
+
+monarch_names = {
+	"Shâh Jahân #0" = 60
+	"'Âlamgîr #0" = 40
+	"Shâh 'Alam #0" = 40
+	"Muhammad #4" = 20
+	"Ibrâhîm #2 Khân" = 20
+	"Sikandar #2 Shâh" = 20	
+	"Akbar #0" = 20
+	"Bâbur #0" = 20
+	"Bahâdur Shâh #0" = 20
+	"Dâwar Bakhsh #0" = 20
+	"Farrukh-siyar #0" = 20
+	"Humâyûn #0" = 20
+	"Islâm Shâh #0" = 20
+	"Jahândâr Shâh #0" = 20
+	"Jahângîr #0" = 20
+	"Muhammad Shâh #0" = 20
+	"Nîkû-siyar #0" = 20
+	"Râfi' #0" = 20	
+	"Shîr Shâh #0" = 20
+	"Ibrâhim #2 Shâh" = 10
+	"'Azim-ash Sha'n #0" = 10
+	"A'zam Shâh #0" = 10
+	"Dârâ Shikûh #0" = 10
+	"Kâm Bakhsh #0" = 10
+	"Murâd Bakhsh #0" = 10
+	"Shâh Sujâh #0" = 10
+	"'Abu Nasr #0" = 5
+	"'Alaman #0" = 5
+	"Ahd Bahâdur #0" = 5
+	"Ahmad Shâh #0" = 5
+	"Bîdar Bakht #0" = 5
+	"Daulat Shâh #0" = 5
+	"Farrukh Shâh #0" = 5
+	"Garshasp #0" = 5
+	"Hakim Shâh #0" = 5
+	"Hasan Shâh #0" = 5
+	"Husain Shâh #0" = 5
+	"Jawan Bakht #0" = 5
+	"Kâmrân #0" = 5
+	"Kushruh #0" = 5
+	"Mahmud Shâh #0" = 5
+	"Murad Shâh #0" = 5
+	"Shahariyar Shâh #0" = 5
+	"Adel #0" = 0
+	"Fakhri #0" = 0
+	"Harun #0" = 0
+	"Jabir #0" = 0
+	"Mazin #0" = 0
+	"Rashid #0" = 0
+	"Samad #0" = 0
+}
+
+leader_names = {
+	Ameerun
+	Beg
+	Bhutto
+	Chughtai
+	Jahan
+	Kamaluddin
+	Khan
+	Mirza
+	Musharif
+	Nagar
+	Nasseruddin
+	Nazirun
+	Radhidun
+	Ra'ana
+	Shahabuddin
+	Sharif
+	Sinan
+	Singh
+	Wazirun
+	Zahiruddin
+}
+
+ship_names = {
+	Alia Arusa Chambal Fatimah Jalsena
+	Ganges "Kala Jahazi" Khan "Lal Jahazi"
+	Nausena "Nav ka Yudh" Niknaz "Nila Jahazi"
+	Niloufa Noor Sagar Salima Shameena Spiti
+	Suhalia Yamuna Yasmine Zahira
+}

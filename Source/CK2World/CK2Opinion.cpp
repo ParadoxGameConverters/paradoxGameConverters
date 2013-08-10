@@ -33,6 +33,14 @@ CK2Opinion::CK2Opinion(Object* obj) : value(0), multiplier(1)
 			value = yearsRuled - 10;
 		}
 	}
+	else if (obj->getKey() == "looter_hostility_days")
+	{
+		// do nothing
+	}
+	else if (obj->getKey() == "is_looter")
+	{
+		// do nothing
+	}
 	else // opinion modifier
 	{
 		vector<Object*> modifierObjs = obj->getValue("modifier");

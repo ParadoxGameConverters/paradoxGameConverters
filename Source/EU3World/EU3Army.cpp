@@ -60,6 +60,11 @@ EU3Army::EU3Army(const CK2Army* srcArmy, const inverseProvinceMapping inversePro
 	{
 		location = 1;
 	}
+	map<int, EU3Province*>::iterator provItr = provinces.find(location);
+	if (provItr != provinces.end())
+	{
+		provItr->second->setArmyHere(true);
+	}
 
 	double	currentInfantryPSE	= srcArmy->getCurrentInfantryPSE();
 	double	maxInfantryPSE			= srcArmy->getMaxInfantryPSE();
@@ -203,4 +208,18 @@ void EU3Army::output(FILE* output)
 	fprintf(output, "\t\tstaging_province=0\n");
 	fprintf(output, "\t\tbase=1\n");
 	fprintf(output, "\t}\n");
+}
+
+
+int EU3Army::getNumInfantry()	const
+{
+	int infantry = 0;
+	for (unsigned int i = 0; i < regiments.size(); i++)
+	{
+		if (regiments[i]->getType() == "infantry")
+		{
+			infantry++;
+		}
+	}
+	return infantry;
 }

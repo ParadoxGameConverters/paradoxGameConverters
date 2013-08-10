@@ -15,7 +15,7 @@ class CK2Version
 	private:
 		int	major;
 		int	minor;
-		char	revision;
+		int	revision;
 };
 
 

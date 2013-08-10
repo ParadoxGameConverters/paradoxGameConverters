@@ -75,6 +75,14 @@ scandinavian = {
 			"Hårfagreætta" "Bielke" "Bildt" "Galte" "Paus" "Smør" "Benkestok" "Kane" "Bonde"
 		}
 	}
+	norse = {
+		dynasty_names = {
+			"Bonde" "Vasa" "Tre Rosor" "Oxenstierna" "Sparre" "Sture" "Tott" "Trolle" "Bielke" "Brahe"
+			"Horn" "Ribbing" "Skytte" "Banér" "Fleming" "Gyllenstierna" "de la Gardie" "Leijonhufvud" 
+			"Natt och Dag" "Grip" "Stenbock" "Hvide" "Galen" "Due" "Saltensee" "Urup" "Neb" "Brahe" "Gøye" "Trolle" "Rantzau"
+			"Friis" "Gyllenstierna" "Bille" "Kaas" "Hårfagreætta" "Bielke" "Bildt" "Galte" "Paus" "Smør" "Benkestok" "Kane" "Bonde"
+		}
+	}
 }
 
 west_germanic = {
@@ -137,6 +145,8 @@ latin = {
 	}
 	sicilian = {
 		primary = SIC
+	}
+	roman = {
 	}
 	dynasty_names = { 
 		"de' Medici" "di Savoia" "d'Este" Farnese Visconti Sforza Gonzaga "d'Ivrea" Orsini 
@@ -249,6 +259,10 @@ finno_ugric = {
 	ugricbaltic = {
 	}
 	komi = {
+	}
+	samoyed = {
+	}
+	mordvin = {
 	}
 }
 	
@@ -439,6 +453,12 @@ altaic = {
 	cuman = {
 	}
 	pecheneg = {
+	}
+	khazar = {
+	}
+	bolghar = {
+	}
+	avar = {
 	}
 	dynasty_names = {
 		"Qara Koyunlu" "Ak Koyunlu" "Chagatayid" "Edigüid" "Giray" "Borjigin" "Shaybanid"

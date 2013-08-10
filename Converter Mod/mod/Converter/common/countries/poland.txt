@@ -1,0 +1,133 @@
+#Poland
+
+graphical_culture = easterngfx
+
+color = { 197  92  106 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	glorious_arms
+	national_trade_policy
+	military_drill
+	cabinet
+	national_bank
+	grand_army
+	engineer_corps 
+	bureaucracy
+	espionage
+}
+
+historical_units = {
+	bardiche_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	hungarian_hussar
+	polish_musketeer
+	polish_hussar
+	polish_tercio
+	polish_winged_hussar
+	russian_lancer
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"August #1" = 60
+	"Wladyslaw #1" = 60
+	"Stanislaw #0" = 40
+	"Kazimierz #3" = 20
+	"Aleksander #0" = 20
+	"Henryk #0" = 20
+	"Jan #0" = 20
+	"Jan #0 Albert" = 20
+	"Jan #0 Kazimierz" = 20
+	"Michal #0 Korybut" = 20
+	"Stefan #0" = 20
+	"Zygmunt #0" = 20
+	"Zygmunt #0 August" = 20
+	"Aleksander #0 Karol" = 15
+	"Zygmunt #0 Kazimierz" = 15
+	"Krzysztof #0" = 10
+	"Fryderyk #0" = 10
+	"Jan #0 Olbracht" = 10
+	"Jan #0 Zygmunt" = 10
+	"Karol #0 Ferdynand" = 10
+	"Olbracht #0" = 10
+	"Albert #0" = 0
+	"Aleksy #0" = 0
+	"Andrzej #0" = 0
+	"Bartlomiej #0" = 0
+	"Bogumil #0" = 0
+	"Bronislaw #0" = 0
+	"Dawid #0" = 0
+	"Dominik #0" = 0
+	"Emil #0" = 0
+	"Eugeniusz #0" = 0
+	"Ferdynand #0" = 0
+	"Gustaw #0" = 0
+	"Igor #0" = 0
+	"Iwan #0" = 0
+	"Krystian #0" = 0
+	"Lech #0" = 0
+	"Lucjusz #0" = 0
+	"Ludwik #0" = 0
+	"Lukasz #0" = 0
+	"Maksym #0" = 0
+	"Mariusz #0" = 0
+	"Mieszko #0" = 0
+	"Miroslaw #0" = 0
+	"Oskar #0" = 0
+	"Patryk #0" = 0
+	"Rafal #0" = 0
+	"Sylwester #0" = 0
+	"Szymon #0" = 0
+	"Zygfryd #0" = 0
+}
+
+leader_names = {
+	Arciszewski
+	Benyowski Bidziñski Branicki
+	Czarniecki Chometowski
+	Dunin Denhoff Drzewicki
+	Grodzicki Górka
+	Houwaldt
+	Jablonowski Jazlowiecki
+	Kurozwecki Kurbski Koniecpolski Kosciuszko Krasinski Kalinowski Korycki Kazanowski Kmita
+	Lubomirski Lisowski Lanckoroñski Leszczyñski Lacki
+	Malski Mniszech Matczyñski Mlodziejowski
+	Ostroróg Olesnicki Opacki Ozarowski Ossolinski
+	Paniewski Patkul Poniatowski Pulaski Przyjemski Piaseczyñski Potocki
+	Rytwiañski Rzewuski
+	Sobieski Sahajdaczny Siemienowicz Sulkowski Stadnicki Sieniawski
+	Tarnowski
+	Wyhowski Wielopolski
+	Zamoyski Zebrzydowski Zaswilichowski Zborowski Zbaraski
+}
+
+ship_names = {
+	"Arka Noego"
+        "Bialy Orzel" Burza "Bialy Lew" "Brzesko-Kujawskie" Belzkie Braclawskie
+        Charitas "Czarny Orzel" "Czarny Kruk" Chelminskie Czernichowskie
+        Fortuna
+        Gryf Gwiazda Gnieznienskie
+	Inoworclawskie
+	"Król Dawid" Kaliskie Krakowskie Kijowskie Kraków
+        Lublin "Latajacy Jelen" Lwów Leczyckie Lubelskie
+        "Maly Bialy Orzel" Malborskie Mazowieckie
+        Niewrazliwy "Nowy Czarny Orzel"
+        "Prorok Samuel" "Panna Wodna" Plomien Poznanskie Plockie Podlaskie Podolskie
+	"Rycerz Swiety Jerzy" Rawskie Ruskie
+        Strzelec Suwerenny "Swiety Piotr" Sieradzkie Sandomierskie "Swiety Kazimierz"
+        "Wielkie Slonce" Wodnik Warminskie Wolynskie Warszawa
+        Zwyciestwo "Zólty Lew"
+}
+
+army_names = {
+	"Armia z $PROVINCE$"
+}

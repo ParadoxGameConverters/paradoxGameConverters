@@ -1,0 +1,107 @@
+# Country name see file name.
+
+graphical_culture = latingfx
+
+color = { 193  237  85 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	cabinet
+	national_bank
+	espionage
+	ecumenism
+	smithian_economics
+	glorious_arms
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	gaelic_galloglaigh
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Feidlimidh #1" = 40
+	"Áed #16" = 20
+	"Cathal #6" = 20
+	"Turlough #3" = 20
+	"Brian #1" = 20
+	"Tadhg #4" = 10
+	"Donal #4" = 1
+	"Aindriú #0" = 0
+	"Alaois #0" = 0
+	"Alastar #0" = 0
+	"Alonghus #0" = 0
+	"Berach #0" = 0
+	"Bradáin #0" = 0
+	"Brennan #0" = 0
+	"Brody #0" = 0
+	"Brónach #0" = 0
+	"Calbhach #0" = 0
+	"Caolan #0" = 0
+	"Carroll #0" = 0
+	"Ceallach #0" = 0
+	"Caerbhall #0" = 0
+	"Cian #0" = 0
+	"Conan #0" = 0
+	"Connor #0" = 0
+	"Diarmaid #0" = 0
+	"Dubhghall #0" = 0
+	"Éamonn #0" = 0
+	"Eoghan #0" = 0
+	"Fearchar #0" = 0
+	"Fearghas #0" = 0
+	"Fionnlagh #0" = 0
+	"Flann #0" = 0
+	"Gallchobhair #0" = 0
+	"Gobán #0" = 0
+	"Grádaigh #0" = 0
+	"Lommán #0" = 0
+	"Maeleachlain #0" = 0
+	"Murchadha #0" = 0
+	"Naomhán #0" = 0
+	"Niall #0" = 0
+}
+
+leader_names = {
+	"Mac Branain" "Mac Conraoi" "Mac Cuille" "Mac Diarmada"
+	"Mac Donnchadha" "Mac Eochaidh" "Mac Maghnais"
+	"Ó Birn" "Ó Breislein" "Ó Cadhla" "Ó Caithniadh"
+	"Ó Cathail" "Ó Cearbhaill" "Ó Céirín" "Ó Cléirigh"
+	"Ó Coigligh" "Ó Concheannain" "Ó Conghailaigh" "Ó Cuana"
+	"Ó Doibhilin" "Ó Domhnalláin" "Ó Dorchaidhe" "Ó Diubháin"
+	"Ó Dúnadhaigh" "Ó Fionn" "Ó Fionnachta" "Ó Fionnagáin"
+	"Ó Fionnáin" "Ó Flaithbheartach" "Ó Gadhra" "Ó hAllmhuráin"
+	"Ó hEaghra" "Ó hUigín" "Ó Leannain" "Ó Maoldúin" "Ó Manachain"
+	"Ó Mughráin" "Ó Reachtagáin" "Ó Seachnasaigh" "Ó Tarpaigh"
+	"Ó Tighearnaigh"
+}
+
+ship_names = {
+	Athlone
+	Ballina
+	Ballinrobe
+	Ballyhaunis
+	Boyle
+	Castlebar
+	Galway
+	Connemara
+	Mayo
+	Roscommon	
+}

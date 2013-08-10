@@ -1,0 +1,337 @@
+#country
+on_battle_won =  {
+}
+
+#country
+on_battle_lost =  {
+}
+
+#country
+on_siege_won =  {
+	events = {
+		9205		#tribes can sack stuff.
+	}
+}
+
+#country 
+on_new_monarch = {
+	events = {
+		600		#harsh anti-tribals.
+		9492 	#remove some event modifiers
+	}
+}
+
+#country 
+on_regent = {
+	events = {
+		600		#harsh anti-tribals.
+	}
+}
+
+#country 
+on_new_term_election = {
+	events = {
+		700		# Election event
+	}
+}
+
+#country 
+on_death_election = {
+	events = {
+		701		# Election event
+	}
+}
+
+#country  (country annexing, this = target)
+on_diplomatic_annex = {
+	events = {
+		610
+	}
+}
+
+#country 
+on_weak_heir_claim = {
+	events = {
+		611		#Pretenders rise up
+	}
+}
+
+# Emperor from same dynasty
+on_successive_emperor = {
+	events = {
+		900
+	}
+}
+
+# HRE Prince released by the emperor
+on_released_hre_member = {
+	events = {
+		901
+	}
+}
+
+# HRE Prince converts to non-Emperor religion
+on_hre_member_false_religion = {
+	events = {
+		902
+	}
+}
+
+# HRE Prince converts to non-Emperor religion
+on_hre_member_true_religion = {
+	events = {
+		903
+	}
+}
+
+# Emperor wins HRE defensive war
+on_hre_wins_defensive_war = {
+	events = {
+		904
+	}
+}
+
+# HRE member annexed by non-HRE country
+on_hre_member_annexed = {
+	events = {
+		905
+	}
+}
+
+# HRE member removed from non-HRE country SoI
+on_hre_member_released_soi = {
+	events = {
+		906
+	}
+}
+
+# HRE member released from non-HRE vassalage
+on_hre_released_vassal = {
+	events = {
+		907
+	}
+}
+
+# Emperor coming to the defense of a HRE member
+on_hre_defense = {
+	events = {
+		908
+	}
+}
+
+# Emperor NOT coming to the defense of a HRE member
+on_hre_non_defense = {
+	events = {
+		909
+	}
+}
+
+# HRE Member takes a HRE province from an outs100e country in a peace (province scope)
+on_hre_province_reconquest = {
+	events = {
+		950
+	}
+}
+
+# A new daimyo becomes kampaku all allied to him gets to dec100e what s100e they're on
+on_allied_kampaku = {
+	events = {
+		10022
+	}
+}
+
+# A peace treaty to revoke the most recent imperial eform takes effect
+on_reform_revoked = {
+	events = {
+		766
+		767
+		768
+		769
+		770
+		771
+		772
+	}
+}
+
+# Nation is integrated after being in union
+on_integrate = {
+	events = {
+		610
+	}
+}
+
+# country random events
+on_bi_yearly_pulse = 
+{
+	random_events = {
+
+	#randomevents.txt		
+		100 = 5008
+		100 = 5014
+		100 = 5015
+		100 = 5017
+		100 = 5018
+		100 = 5019
+		100 = 5020
+		100 = 5021
+		100 = 5022
+		100 = 5023
+		100 = 5024
+		100 = 5025
+		100 = 5027
+		100 = 5032
+		100 = 5040
+		100 = 5045
+		100 = 5050
+		100 = 5051
+		100 = 5052
+		100 = 5053
+		100 = 5054
+		100 = 5055
+		100 = 5056
+		100 = 5058
+		100 = 5059
+		100 = 5060
+		100 = 5061
+		100 = 5064
+		100 = 5065
+		100 = 5066
+		100 = 5068
+		100 = 5070
+		100 = 5071
+		100 = 5072
+		100 = 5074
+		100 = 5075
+		100 = 5076
+		100 = 5077
+		100 = 5082
+		100 = 5083
+		100 = 5084
+		100 = 5085
+		100 = 5086
+		100 = 5088
+		100 = 5089
+		100 = 5090
+		100 = 5091
+		100 = 5092
+		100 = 5093
+		100 = 5094
+		100 = 5095
+		100 = 5096
+		100 = 5097
+		100 = 5098
+		100 = 5099
+		100 = 6000
+		100 = 6001
+		100 = 6002
+		100 = 6003
+		100 = 6004
+		100 = 6005
+		100 = 6006
+		100 = 6012
+		100 = 6013
+		100 = 6015
+		100 = 710
+		100 = 711
+		100 = 712
+		100 = 713
+		100 = 714
+		100 = 715
+		100 = 716
+		100 = 717
+		100 = 718
+		100 = 719
+		100 = 720
+		100 = 722
+		100 = 723
+		100 = 724
+		100 = 725
+		100 = 726
+		100 = 727
+		100 = 728
+		100 = 729
+		100 = 730
+		100 = 731
+		100 = 732
+		100 = 733
+		100 = 734
+		100 = 735
+		100 = 736
+		100 = 737
+		100 = 738
+		100 = 739
+		100 = 740
+		100 = 741
+		100 = 742
+		100 = 850
+		100 = 851
+		100 = 852
+		100 = 853
+		100 = 854
+		100 = 855
+		100 = 857
+		100 = 858
+		100 = 859
+		100 = 860
+		100 = 861
+		100 = 862
+		100 = 863
+		100 = 864
+		100 = 865
+		100 = 866
+		100 = 867
+		100 = 868
+		100 = 869
+		100 = 870
+		
+		100 = 871
+		100 = 872
+		100 = 873
+		100 = 874
+		100 = 875
+		100 = 876
+		100 = 877
+		100 = 878
+		100 = 879
+		100 = 880
+		100 = 881
+		100 = 882
+		100 = 883
+		100 = 884
+		100 = 885
+		
+	#sliders
+		100 = 6300
+		100 = 6301
+		100 = 6302
+		100 = 6303
+		100 = 6304
+		100 = 6305
+		100 = 6306
+		100 = 6307
+		100 = 6308
+		100 = 6309
+		100 = 6310
+		100 = 6311
+		100 = 6312
+		100 = 6313
+		100 = 6319
+		100 = 6325
+		100 = 6326
+		100 = 6327
+		100 = 6328
+		100 = 6329
+		100 = 6330
+		100 = 6332
+		100 = 6333
+		100 = 6334
+		100 = 6335
+		100 = 6337
+		100 = 6338
+		100 = 6339
+		100 = 6340
+		100 = 6341
+		
+	}
+}
+

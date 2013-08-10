@@ -1,0 +1,125 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 220  220  220 }
+#color = { 170  43  21 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	patron_of_art
+	grand_army
+	divine_supremacy
+	national_bank
+	engineer_corps
+	regimental_system
+	vetting
+	scientific_revolution
+	glorious_arms
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Ferdinand #0" = 60
+	"Albrecht #3" = 40
+	"Franz #0" = 40
+	"Joseph #0" = 40
+	"Karl #0" = 40
+	"Maximilian #0" = 40
+	"Leopold #7" = 20
+	"Friedrich #4" = 20
+	"Franz #0 Stefan" = 20
+	"Ladislav #0" = 20
+	"Matthias #0" = 20
+	"Leopold #7 Johann" = 15
+	"Ernst #1" = 15
+	"Ferdinand #0 Wenzel" = 15
+	"Georg #0" = 15
+	"Philipp #0" = 15
+	"Johann Karl #0" = 15
+	"Johann Leopold #0" = 15
+	"Karl #0 Joseph" = 15
+	"Maria Theresia #0" = -15
+	"Leopold #7 Wilhelm" = 10
+	"Rudolf #4" = 10
+	"Alexander #0" = 10
+	"Anton #0" = 10
+	"Franz Karl #0" = 10
+	"Johann #0" = 10
+	"Ludwig #0" = 10
+	"Rainer #0" = 10
+	"Adolf #0" = 0
+	"Alfred #0" = 0
+	"Benno #0" = 0
+	"Bruno #0" = 0
+	"Cristoph #0" = 0
+	"Clemens #0" = 0
+	"Florian #0" = 0
+	"Gerhard #0" = 0
+	"Günther #0" = 0
+	"Heinrich #0" = 0
+	"Jakob #0" = 0
+	"Joachim #0" = 0
+	"Jörg #0" = 0
+	"Michael #0" = 0
+	"Oskar #0" = 0
+	"Otto #0" = 0
+	"Siegfried #0" = 0
+	"Stefan #0" = 0
+	"Ulrich #0" = 0
+	"Viktor #0" = 0
+	"Wilhelm #0" = 0
+	"Wolfgang #0" = 0
+}
+
+leader_names = {	
+	"von Habsburg" "von Waldstein" "von Ihering" Seyssel
+	Haemrich "von Esterhazy" "von Oberg" "von Schönburg"
+	"von Quadt" Ketterer "von Stubenrauch" "von Hatzfeldt"
+	"von Neippberg" Lobkowitz Mittelbach "von Laudon"
+	Alvintzky "von Hohenberg" Erlmayr "von Stark" Meinl
+	Bethmann Kolin Heinrich "von Riedesel" Freystadt
+	"von Guttenberg" Frantsits "von Stauffenberg"
+	"von Kapfenberg" Zakrzewsky Schrüder Sauerzapff
+	Minucci Sulerzycki Stichsenstein Hagedorn Arenberg
+	Boroewitsch Steiger Tegethoff Buseck Byszynski Zwerger
+	Casper "von Schönbrunn" Poll "von Schwarzenberg"
+}
+
+ship_names = {
+	"Viribus Unitis" Theresia Austria Habsburg Tirol "Baron Bruck" "Baron Call" Belvedre
+	Pannonia Salzach Wien Pustazer Traisen "Erzherzog Ferdinand" Herkules Lacroma
+	Triest "Plus Ultra" Aurora Albatros Saida Novara Imperator Trinitas Doppeladler 
+	"Sankt Stephan" Felix "Austria Imperare" Lachs Leitha Goliath Samson Vindobona
+	Inexhaustus Invulnerabilis Pavidarus Fortitas Emenentius "Sankt Wolfgang" 
+	Vigilatia Möwe "Fides et Spes" Nixe Natter Nymphe Taurus "Kaiserin Maria Theresia" Wachau Donau Inn Lindwurm Zenta Zara Fiume Arpad Babenberg Zrinyi
+	Pola Tiger Panther Leopard Trabant Satellit
+}
+
+army_names = {
+	"K.u.K Armee" "Habsburgische Armee" "Kaiserliche Armee" "Armee von Böhmen" "Armee von Ungarn" "Armee von Italien" "Armee von Schlesien" "Armee von $PROVINCE$"
+}
+
+fleet_names = {
+	"Adriatik Flotte" "Habsburgische Flotte" "Kaiserliche Flotte"
+}
+
+

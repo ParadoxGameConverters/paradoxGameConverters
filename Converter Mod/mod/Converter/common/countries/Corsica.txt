@@ -1,0 +1,112 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 106  178  46 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	national_bank
+	improved_foraging
+
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	swiss_landsknechten
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Tiadoru #0" = 20
+	"Ericcu Ghjilormu #0" = 15
+	"Federicu #0" = 15
+	"Leopoldu #0" = 15
+	"Albanu #0" = 0
+	"Alfonsu #1" = 0
+	"Amadeu #0" = 0
+	"Ambrosgiu #0" = 0
+	"Andria #0" = 0
+	"Antone #0" = 0
+	"Attilio #0" = 0
+	"Basiliu #0" = 0
+	"Bernardu #0" = 0
+	"Boniface #0" = 0
+	"Brunu #0" = 0
+	"Carlu #0" = 0
+	"Claudiu #0" = 0
+	"Clemente #0" = 0
+	"Conradu #0" = 0
+	"Ernestu #0" = 0
+	"Felice #0" = 0
+	"Francescu #0" = 0
+	"Ghjuva #0" = 0
+	"Leandru #0" = 0
+	"Leone #0" = 0
+	"Ludovicu #0" = 0
+	"Lurenzu #0" = 0
+	"Patriziu #0" = 0
+	"Paulu #0" = 0
+	"Petru #0" = 0
+	"Prosperu #0" = 0
+	"Raimondu #0" = 0
+	"Renatu #0" = 0
+	"Salbadore #0" = 0
+	"Samperu #0" = 0
+	"Savieru #0" = 0
+	"Stefanu #0" = 0
+	"Tristanu #0" = 0
+	"Ubertu #0" = 0
+	"Zaccaria #0" = 0
+}
+
+leader_names = {
+        Acquaviva Agostini Albertini Angeli Appietto Astolfi
+        Bartoli Batesti Biancchini Buonaparte
+        Cardi Castelli Ceccaldi Cesari Cipriani Colonna Corsofieru Cucchi
+        "Della Rocca" "Della Serra"
+        Franceschetti Franceschini
+        Grafferi Graziani Guidoni
+        Leca Lucchini Luciani 
+        Mancini Marcaggi Mariani Mondolini Moracchini
+        Natalini
+        Orsini Orsoni
+        Palazzo Paoli Peretti
+        Raffaeli Rivarola Rossi
+        Salicetti Sampiero Sanguinetti Santoni Scarbonchi 
+        Torre
+}
+
+ship_names = {
+        "Aria Marina" Attunante Bucarone Corsica "Corso Fieru"
+        Galleotta Gregale Independenzia Indumevule Inflessibile
+        Intraprendente Libecciu Libertà Livante Maria
+        Maistrale Nazione Orgugliosu Patriota "Pruch'ella Duri"
+        Punente "St'Antonio di Padova" "Sant'Abele" "Sant'Apebe" "Santa Brigita" 
+        "Santu Briziu" Sant'Egidiu "Santu Ghjambattista" "Santu Landericu" "Santu Lanfrancu"
+        "Santu Mauru" "Santa Prudenzia" "Santu Prutasiu" "Santa Teresa" "Santa Tassiana"
+        "Santu Tavianu" "Santa Zita" "Santissima Concezzione" Sbuffulera Scioru
+        Sciroccu Sculapratu Stella Terribile Terrore
+        Timevule Timpesta Tramuntana Tunizata Ventizata
+}

@@ -21,6 +21,7 @@ class EU3Tech;
 class EU3Diplomacy;
 struct EU3Agreement;
 class CK2Province;
+class CK2Version;
 class EU3Army;
 class EU3Navy;
 
@@ -40,14 +41,15 @@ class EU3Country
 		double					getTradeEffeciency();
 		double					getProductionEffeciency();
 		void						setPreferredUnitType();
-		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData);
+		void						determineTechLevels(const vector<double>& avgTechLevels, const EU3Tech* techData, CK2Version& version);
 		void						determineTechInvestment(const EU3Tech* techData, date startDate);
 		void						determineStartingAgents();
-		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy);
+		vector<EU3Country*>	convertVassals(int initialScore, EU3Diplomacy* diplomacy, CK2Version& version);
 		vector<EU3Country*>	eatVassals();
 		void						eatVassal(EU3Country*);
 		void						replaceWith(EU3Country* convertedCountry, const provinceMapping& provinceMappings);
 		void						convertArmiesandNavies(inverseProvinceMapping inverseProvinceMap, map<int, EU3Province*> provinces);
+		void						convertSliders();
 
 		void		addLiege(EU3Country* _liege)			{ liege = _liege; if (liege != NULL) _liege->addVassal(this); };
 		void		addVassal(EU3Country* _vassal)		{ vassals.push_back(_vassal); };
@@ -75,12 +77,17 @@ class EU3Country
 		vector<string>			getAcceptedCultures()	const { return acceptedCultures; };
 		string					getReligion()				const { return religion; };
 		string					getTechGroup()				const { return techGroup; };
+		double					getLandTech()				const { return landTech; };
 		int						getCapital()				const { return capital; };
+		double					getPrestige()				const { return prestige; };
+		double					getIncome()					const { return estimatedIncome; };
+		double					getGoldIncome()			const { return estimatedGold; };
 		int						getStability()				const { return stability; };
 		bool						hasProvinces()				const { return !provinces.empty(); };
 		bool						hasCores()					const { return !cores.empty(); };
 		bool						hasVassals()				const { return !vassals.empty(); };
-
+		int						getInfantry() const;
+		int						getNumPorts() const;
 	private:
 		void	addBuildings();
 
@@ -127,6 +134,7 @@ class EU3Country
 
 		double					estimatedIncome;
 		double					estimatedTax;
+		double					estimatedManu;
 		double					estimatedGold;
 		double					estimatedProduction;
 		double					estimatedTolls;
@@ -134,6 +142,9 @@ class EU3Country
 		bool						daimyo;
 		bool						japaneseEmperor;
 		bool						elector;
+		vector<string>			factions;
+		string					mainFaction;
+		int						mainFactionScore;
 
 		vector<EU3Army*>		armies;
 		vector<EU3Navy*>		navies;
@@ -150,6 +161,15 @@ class EU3Country
 		double					missionaries;
 		double					spies;
 		double					magistrates;
+
+		int						centralization;
+		int						aristocracy;
+		int						serfdom;
+		int						innovative;
+		int						mercantilism;
+		int						offensive;
+		int						land;
+		int						quality;
 };
 
 

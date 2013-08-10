@@ -1,0 +1,81 @@
+country_decisions = {
+
+	statute_of_monopolies = {
+		potential = {
+			num_of_cots = 1
+			NOT = { has_country_modifier = the_statute_of_monopolies }
+		}
+		allow = {
+			mercantilism_freetrade = 1
+			not = { mercantilism_freetrade = 5 }
+			trade_efficiency = 0.5
+		}
+		effect = {
+			mercantilism_freetrade = 1
+			add_country_modifier = {
+				name = "the_statute_of_monopolies"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	close_foreign_trade = {
+		potential = {
+			technology_group = chinese
+			any_known_country = {
+				technology_group = western
+				east_asian_cot = {
+					cot = yes
+					placed_merchants = 1
+				}
+			}
+			not = { has_country_modifier = condemn_western_influences }
+		}
+		allow = {
+			any_known_country = {
+				technology_group = western
+				east_asian_cot = {
+					cot = yes
+					placed_merchants = 1
+				}
+				not = { relation = { who = this value = -100 } }
+			}
+			mil = 6
+		}
+		effect = {
+			innovative_narrowminded = 1
+			mercantilism_freetrade = -1
+			add_country_modifier = {
+				name = "condemn_western_influences"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+#province_decisions = {
+#	promote_national_merchants = {
+#		potential = {
+#			cot = yes
+#			owner = { trade_tech = 15 }
+#			not = { has_province_modifier = national_merchants }
+#		}
+#		allow = {
+#			owner = { not = { mercantilism_freetrade = -2 } }
+#		}
+#		effect = {
+#			add_province_modifier = {
+#				name = "national_merchants"
+#				duration = -1
+#			}
+#		}
+#		ai_will_do = {
+#			factor = 1
+#		}
+#	}
+#}

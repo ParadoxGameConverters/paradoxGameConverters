@@ -1,0 +1,33 @@
+country_decisions = {
+
+
+	kingdom_of_jerusalem = {
+		potential = {
+			NOT = { exists = KOJ }
+			religion = catholic
+			government = monarchy
+			owns = 379
+			NOT = { is_religion_enabled = protestant }
+		}
+		allow = {
+			war = no
+			379 = { religion = catholic }
+			OR = {
+				AND = {
+					papacy_active = yes
+					papal_influence = 0.1
+				}
+				papacy_active = no
+			}
+		}
+		effect = {
+			prestige = 0.25
+			KOJ = { add_core = 379 }
+			release = KOJ
+			KOJ = { primary_culture = THIS }
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}

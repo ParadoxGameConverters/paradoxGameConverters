@@ -1,0 +1,53 @@
+temples =
+{
+	rule = 
+	{
+		can_not_build_buildings = yes
+		can_not_build_colonies = yes
+		can_not_send_merchants = yes
+
+		capped_by_forcelimit = yes
+	}
+
+	modifier = 
+	{
+		naval_forcelimit_modifier = -0.6
+		land_forcelimit_modifier = -0.6
+	}
+}
+
+enuchs =
+{
+	rule = 
+	{
+		can_not_build_buildings = yes
+		can_not_build_missionaries = yes
+
+		can_not_declare_war = yes
+		capped_by_forcelimit = yes
+	}
+
+	modifier = 
+	{
+		land_forcelimit_modifier = -0.6
+	}
+}
+
+bureaucrats =
+{
+	rule = 
+	{
+		can_not_build_colonies = yes
+		can_not_send_merchants = yes
+		can_not_build_missionaries = yes
+
+		can_not_declare_war = yes
+		capped_by_forcelimit = yes
+	}
+
+	modifier = 
+	{
+		naval_forcelimit_modifier = -0.6
+		officials = 0.25
+	}
+}
