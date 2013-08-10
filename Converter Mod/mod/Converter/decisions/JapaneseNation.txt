@@ -284,7 +284,8 @@ shogunate_decisions = {
 				}
 				casus_belli = {
 					target = THIS
-					type = jap_civil_war					
+					type = jap_civil_war
+					months = 12
 				}
 			}
 			any_country = {
@@ -297,7 +298,7 @@ shogunate_decisions = {
 			}
 		}
 		ai_will_do = {
-			factor = 0.5
+			factor = 1
 		}
 	}
 

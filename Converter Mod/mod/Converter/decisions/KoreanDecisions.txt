@@ -3,22 +3,22 @@ country_decisions = {
 	found_hall_of_worthies = {
 		potential = {
 			tag = KOR
+			NOT = { has_country_modifier = hall_of_worthies }
+		}
+		allow = {
 			OR = {
 				advisor = philosopher
 				advisor = natural_scientist
 				advisor = theologian
 				ADM = 7
 			}
-			NOT = { has_country_modifier = hall_of_worthies }
-		}
-		allow = {
 			treasury = 50
 			officials = 3
 		}
 		effect = {
 			add_country_modifier = {
 				name = "hall_of_worthies"
-				duration = 3650
+				duration = -1
 			}
 			treasury = -50
 			officials = -3
@@ -31,6 +31,9 @@ country_decisions = {
 	introduce_hangul_writing_system = {
 		potential = {
 			tag = KOR
+			NOT = { has_country_flag = hangul_introduced }
+		}
+		allow = {
 			OR = {
 				advisor = philosopher
 				advisor = natural_scientist
@@ -38,9 +41,6 @@ country_decisions = {
 				ADM = 7
 			}
 			has_country_modifier = hall_of_worthies
-			NOT = { has_country_modifier = hangul_writing_system }
-		}
-		allow = {
 			treasury = 50
 			officials = 3
 		}
@@ -49,6 +49,7 @@ country_decisions = {
 				name = "hangul_writing_system"
 				duration = 3650
 			}
+			set_country_flag = hangul_introduced
 			treasury = -50
 			officials = -3
 		}

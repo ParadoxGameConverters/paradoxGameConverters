@@ -8,7 +8,7 @@ fabricate_claims = {
 	cost = 100			#costs 100$ ducats  (inflation modified)
 	difficulty = 2		#2/10
 	prestige = -0.1		#lose 20 prestige if discovered..
-	badboy	= 1 		#small badboy increase if discovered.
+	scaled_badboy = 0.25	#badboy per province of target country if discovered.
 	capital = yes		#can only be done in a capital
 	ai_will_do = {
 		factor = 1
@@ -77,8 +77,6 @@ incite_against_merchant = {
 	}
 }
 
-
-
 weaken_rival_league = {
 	cost = 25		#costs 25$ ducats  (inflation modified)
 	difficulty = 3		#3/10 = semi-easy..
@@ -124,6 +122,7 @@ infiltrate_administration = {
 		factor = 0
 	}
 }
+
 sow_discontent = {
 	cost = 100		#costs 100$ ducats  (inflation modified)
 	difficulty = 5		#8/10
@@ -132,7 +131,7 @@ sow_discontent = {
 	capital = yes		#can only be done in a capital
 
 	trigger = {
-		government_tech = 6
+		THIS = { government_tech = 6 }
 		owner = { NOT = { has_country_modifier = "discontent_sowed" } }
 	}
 
@@ -143,9 +142,6 @@ sow_discontent = {
 		}
 	}
 }
-
-
-
 
 sabotage_reputation = {
 	cost = 200		#costs 200$ ducats  (inflation modified)
@@ -161,17 +157,15 @@ sabotage_reputation = {
 	}
 }
 
-
-
-
 counterfeit_currency = {
 	cost = 100			#costs 100$ ducats  (inflation modified)
 	difficulty = 4		#8/10
 	prestige = -0.1		#lose 20 prestige if discovered..
-	badboy	= 1 		#small badboy increase if discovered.
+	scaled_badboy = 0.05	#badboy per province of target country if discovered.
+
 	capital = yes		#can only be done in a capital
 	trigger = {
-		government_tech = 23
+		THIS = { government_tech = 23 }
 	}
 	effect = {
 		inflation = 1
@@ -191,7 +185,6 @@ assassinate_advisor = {
 		remove_advisor = random
 	}
 }
-
 
 
 # Port only ones here.
@@ -223,10 +216,12 @@ comission_privateer = {
 	}
 	trigger = {
 		PIR = { naval_tech = 9 } 
-		NOT = {
-			OR = { 
-				technology_group = sub_saharan	
-				technology_group = new_world 
+		THIS = {
+			NOT = {
+				OR = { 
+					technology_group = sub_saharan	
+					technology_group = new_world 
+				}
 			}
 		}
 		range = yes
@@ -237,9 +232,6 @@ comission_privateer = {
 		sea_zone = { create_pirate = -1 }
 	}
 }
-
-
-
 
 
 # Everywhere ones here...
@@ -255,7 +247,6 @@ bribe_defenders = {
 		change_siege = 2
 	}
 }
-
 
 support_revolt = {
 	cost = 25		#costs 25$ ducats  (inflation modified)
@@ -343,6 +334,7 @@ sponsor_patriots = {
 		}
 	}
 }
+
 sponsor_nationalists = {
 	cost = 100
 	difficulty = 3		#1/10 = super-easy..
@@ -389,7 +381,6 @@ sponsor_pretender = {
 	}
 }
 
-
 sponsor_heretics = {
 	cost = 100
 	difficulty = 2		#1/10 = super-easy..
@@ -415,8 +406,8 @@ sponsor_heretics = {
 	}
 }
 
-#daimyo only missions
 
+#daimyo only missions
 daimyo_fab_claim = {
 	cost = 50		#costs 25$ ducats  (inflation modified)
 	difficulty = 3		#3/10 = semi-easy..

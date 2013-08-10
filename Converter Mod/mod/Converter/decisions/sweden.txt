@@ -16,7 +16,10 @@ country_decisions = {
 		}
 		allow = {
 			is_subject = no
-			land_tech = 30
+			OR = {
+				num_of_cities = 21
+				barracks = 5
+			}
 			MIL = 7
 		}
 		effect = {

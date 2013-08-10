@@ -29,7 +29,7 @@ country_decisions = {
 				limit = {
 					continent = europe
 					port = yes
-					NOT = { has_building = shipyard }
+					NOT = { has_building = grand_shipyard }
 					is_core = this
 				}
 				add_building = grand_shipyard

@@ -692,12 +692,12 @@ innovation_wave = {
 
 centralised_state = {
 	global_tax_modifier = 0.025
-	icon = 6
+	icon = 5
 }
 
 happy_provinces = {
 	global_tax_modifier = 0.025
-	icon = 6
+	icon = 5
 }
 
 unhappy_merchants = {
@@ -783,8 +783,7 @@ the_court_of_wards_and_liveries = {
 }
 
 the_dissolution_act = {
-	global_revolt_risk = -1
-	production_efficiency = -0.05
+	stability_cost_modifier = -0.05
 	icon = 1
 }
 
@@ -844,7 +843,7 @@ the_judiciary_act = {
 	global_revolt_risk = -1
 	global_tax_modifier = -0.03
 	diplomats = 0.05
-	icon = 6
+	icon = 5
 }
 
 the_joint_stock_companies_act = {
@@ -855,8 +854,7 @@ the_joint_stock_companies_act = {
 }
 
 the_combination_act = {
-	global_revolt_risk = -1
-	production_efficiency = -0.05
+	production_efficiency = 0.05
 	icon = 2
 }
 
@@ -939,7 +937,7 @@ the_house_of_trade = {
 	bigship_cost = 0.04
 	merchant_cost = 0.03
 	colonist_cost = 0.03
-	icon = 6
+	icon = 5
 }
 
 the_mining_act = {
@@ -948,7 +946,7 @@ the_mining_act = {
 	merchants = -0.04
 	merchant_placement_chance = -0.03
 	merchant_compete_chance = -0.03
-	icon = 6
+	icon = 5
 }
 
 hire_privateers = {
@@ -997,7 +995,7 @@ the_land_recruiting_act = {
 ottoman_tolerance = {
  	tolerance_heretic = 3
  	tolerance_heathen = 3
- 	stability_cost_modifier = 0.10
+ 	stability_cost_modifier = -0.10
 	icon = 10
 }
 
@@ -1053,7 +1051,7 @@ the_provincial_system = {
 
 state_controlled_guilds = {
 	local_trade_income_modifier = 0.05
-	local_revolt_risk = 1
+#	local_revolt_risk = 1 can't see justification here, and too great a penalty for the weak rewards
 	icon = 5
 }
 
@@ -1100,8 +1098,7 @@ fugger_banks = {
 }
 
 hofkriegsrat = {
-	garrison_growth = 0.2
-	reinforce_speed = 0.2
+	reinforce_speed = 0.3
 	icon = 7
 }
 
@@ -1134,7 +1131,8 @@ the_societas_jesu = {
 }
 
 great_wall_reparations = {
-	local_defensiveness = 0.1
+	local_defensiveness = 0.2
+	fort_level = 1
 	icon = 7
 }
 
@@ -1180,7 +1178,7 @@ prussian_military_reforms = {
 
 indelningsverket = {
 	global_regiment_recruit_speed = -0.1
-	global_manpower = 0.1
+	global_manpower_modifier = 0.1
 	icon = 7	
 }
 
@@ -1642,7 +1640,7 @@ improved_fortifications = {
 
 per_capita_tax = {
 	global_tax_modifier = 0.06
-	stability_cost_modifier = 0.2
+	stability_cost_modifier = 0.1
 	icon = 1
 }
 
@@ -1691,8 +1689,10 @@ godly_inspiration = {
 }
 
 religious_sacrifices = {
-	badboy = -0.01
-	global_revolt_risk = 1
+	# badboy = -0.1
+	cultural_tradition = 0.05
+	stability_cost_modifier = -0.20
+	# global_revolt_risk = 1
 	icon = 1
 }
 
@@ -1724,9 +1724,7 @@ denounce_taoism = {
 }
 
 sunday_schools = {
-	global_tax_modifier = -0.07
-	missionary_placement_chance = 0.02
-	global_revolt_risk = -1
+	missionary_placement_chance = 0.05
 	icon = 9
 }
 
@@ -1776,7 +1774,6 @@ expanded_bureaucracy = {
 
 formalized_measures = {
 	global_tax_modifier = 0.05
-	global_revolt_risk = -0.5
 	trade_efficiency = 0.1
 	production_efficiency = 0.1
 	icon = 5
@@ -1788,7 +1785,7 @@ black_sea_free_trade = {
 }
 
 free_shipping_through_the_sound = {
-	global_trade_income_modifier = 0.15
+	direct_tax_percentage = 0.15
 	icon = 5
 }
 
@@ -1834,7 +1831,6 @@ gold_standard = {
 }
 
 separation_of_powers = {
-	global_revolt_risk = -2
 	prestige = 0.01
 	officials = 0.5
 	icon = 11
@@ -1875,8 +1871,6 @@ blooming_renaissance = {
 }
 
 the_sound_of_music = {
-	global_tax_modifier = -0.10
-	global_revolt_risk = -3
 	cultural_tradition = 0.05
 	icon = 3
 }
@@ -1960,7 +1954,7 @@ epic_to_monarch = {
 
 commedia_dellarte = {
 	cultural_tradition = 0.01
-	global_revolt_risk = -2
+	prestige = 0.01
 	icon = 3
 }
 
@@ -2014,7 +2008,6 @@ polish_grain_trade = {
 }
 
 south_german_organ_tradition = {
-	global_revolt_risk = -1
 	cultural_tradition = 0.01
 	icon = 9
 }
@@ -2376,6 +2369,18 @@ unlawful_territory = {
 braveheart = {
 	icon = 7
 }
+
+#for the toll
+black_sea_trade = {
+	local_trade_income_modifier = 0.25
+	icon = 5
+}
+
+baltic_sea_trade = {
+	local_trade_income_modifier = 0.18
+	icon = 5
+}
+
 
 #obsolete ones.
 census_conducted = {}

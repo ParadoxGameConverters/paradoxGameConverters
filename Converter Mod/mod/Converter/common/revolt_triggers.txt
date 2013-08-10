@@ -18,7 +18,6 @@ GER = {
 	always = no
 }
 
-
 # France
 FRA = {
 	NOT = { exists = RFR }

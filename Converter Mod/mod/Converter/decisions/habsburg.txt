@@ -7,10 +7,8 @@ country_decisions = {
 		allow = {
 			DIP = 6
 			prestige = 0.1
-			NOT = { 
-				exists = TIR
-				exists = STY
-			}
+			NOT = { exists = TIR }
+			NOT = {	exists = STY }
 		}
 		effect = {
 			add_country_modifier = {

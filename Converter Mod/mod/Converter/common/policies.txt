@@ -12,7 +12,7 @@ centralization_decentralization =
 	
 	global_tax_modifier = -0.04
 	production_efficiency = -0.03
-	spy_efficiency = -0.01
+	spy_efficiency = -0.05
 	global_spy_defence = -0.01
 	
 	left_specific = {
@@ -42,7 +42,7 @@ centralization_decentralization =
 aristocracy_plutocracy = {
 	cavalry_cost = 0.05
 		
-	Left_specific = {
+	left_specific = {
 		diplomats = 0.6
 		leader_shock = 0.2
 		global_regiment_cost = -0.01
@@ -75,7 +75,7 @@ serfdom_freesubjects = {
 	infantry_cost = 0.06
 	
 	land_morale = 0.04
-	global_spy_defence = 0.05
+	global_spy_defence = 0.025
 	
 	government_tech_cost_modifier = -0.04
 	production_tech_cost_modifier = -0.04
@@ -148,7 +148,7 @@ mercantilism_freetrade = {
 	left_specific = {
 		spies = 0.2
 		merchant_compete_chance = -0.05
-		modifier_province_owner_trade_chance = 0.12
+		modifier_province_owner_trade_chance = 0.25
 		trade_range_modifier = -0.04
 	}
 	
@@ -156,7 +156,7 @@ mercantilism_freetrade = {
 		merchant_compete_chance = 0.05
 		modifier_province_owner_trade_chance = -0.06
 		trade_range_modifier = 0.04
-		trade_efficiency = 0.02
+		trade_efficiency = 0.01
 		merchants = 0.4
 	}
 	
@@ -263,5 +263,3 @@ quality_quantity = {
 	
 	temples_influence = 0.25		# Changed from 0.5
 }
-
-

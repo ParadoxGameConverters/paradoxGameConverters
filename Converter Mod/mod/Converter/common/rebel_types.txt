@@ -20,14 +20,12 @@ anti_tax_rebels = {
 	defection = any					# Will defect to the "best" alternative.
 	independence = none				# Does not strive for independence
 	defect_delay = 120
-	unit_transfer = no
+	unit_transfer = no				# Units do not remain after enforcing demands.
 	
 	resilient = no					# Disbands on retreat
 	reinforcing = no				# Does not receive reinforcements
 	general = no					# Does not use generals
 	smart = no						# Does not assault forts, tactically withdraw from battle, etc.
-	unit_transfer = no				# Units do not remain after enforcing demands.
-	
 	
 	artillery = 0.0
 	infantry = 0.9
@@ -48,11 +46,15 @@ anti_tax_rebels = {
 		}
 		modifier = {
 			factor = 2.0
-			war_exhaustion = 4
+			owner = {
+				war_exhaustion = 4
+			}
 		}
 		modifier = {
 			factor = 10.0
-			has_country_flag = peasant_war
+			owner = {
+				has_country_flag = peasant_war
+			}
 		}
 		modifier = {
 			factor = 1.2
@@ -173,13 +175,12 @@ particularist_rebels = {
 	government = any				# Don't care about gov type				
 	defection = none				# Will not defect
 	independence = none				# Does not strive for independence
-	unit_transfer = no
+	unit_transfer = no				# Units do not remain after enforcing demands.
 	
 	resilient = yes					# Can retreat
 	reinforcing = yes				# Can reinforce
 	general = yes					# Does use generals
 	smart = yes						# Do assault forts, tactically withdraw from battle, etc.
-	unit_transfer = no				# Units do not remain after enforcing demands.
 	
 	artillery = 0.1
 	infantry = 0.6
@@ -302,9 +303,11 @@ particularist_rebels = {
 		}
 		modifier = {
 			factor = 2.0
-			OR = {
-				government = tribal_despotism
-				government = tribal_federation
+			owner = {
+				OR = {
+					government = tribal_despotism
+					government = tribal_federation
+				}
 			}
 		}
 	}
@@ -363,7 +366,8 @@ particularist_rebels = {
 ####################################
 # Nationalist rebels. Freedom!!!
 ####################################
-nationalist_rebels = {	
+nationalist_rebels = {
+
 	area = culture 				# Stays within provinces of their culture
 	government = any			# No special preference
 	defection = culture			# If the country seeks independence, defection specifies what type of provinces it wants.
@@ -383,7 +387,6 @@ nationalist_rebels = {
 	# The rebel type with the highest modifier for this province gets picked
 	spawn_chance = {
 		factor = 10
-		
 		modifier = {
 			factor = 0.0
 			owner = {
@@ -391,7 +394,6 @@ nationalist_rebels = {
 			}
 			is_core = THIS
 		}
-		
 		modifier = {
 			factor = 0.001
 			NOT = {
@@ -418,7 +420,6 @@ nationalist_rebels = {
 				exists = no
 	 		}
 		}
-	 	
 	 	modifier = {
 			factor = 0.001
 			is_colony = yes
@@ -438,11 +439,15 @@ nationalist_rebels = {
 		}
 		modifier = {
 			factor = 1.5
-			NOT = { stability = 0 }
+			owner = {
+				NOT = { stability = 0 }
+			}
 		}
 		modifier = {
 			factor = 1.5
-			NOT = { stability = -2 }
+			owner = {
+				NOT = { stability = -2 }
+			}
 		}
 		modifier = {
 			factor = 2
@@ -545,7 +550,8 @@ nationalist_rebels = {
 ##########################################################
 # Patriots, yearning for a return to their mother nation.
 ##########################################################
-patriot_rebels = {	
+patriot_rebels = {
+
 	area = culture 			# Stays within cultural borders
 	government = any		# No special preference
 	defection = culture		# Will defect to countries of their culture, or, failing that, their culture group.
@@ -610,11 +616,15 @@ patriot_rebels = {
 		}
 		modifier = {
 			factor = 1.5
-			NOT = { stability = 0 }
+			owner = {
+				NOT = { stability = 0 }
+			}
 		}
 		modifier = {
 			factor = 1.5
-			NOT = { stability = -2 }
+			owner = {
+				NOT = { stability = -2 }
+			}
 		}
 		modifier = {
 			factor = 1.9
@@ -710,7 +720,6 @@ patriot_rebels = {
 		}
 	}
 
-
 	# Country scope
 	demands_enforced_effect = {
 		random_owned = {
@@ -735,11 +744,12 @@ patriot_rebels = {
 ####################################
 # Colonial separatists.
 ####################################
-colonial_rebels = {	
-	area = all 							# Will move freely to all provinces.
+colonial_rebels = {
+
+	area = all 						# Will move freely to all provinces.
 	government = anti				# Desires an opposing government type
-	defection = colonial		# If the country seeks independence, defection specifies what type of provinces it wants.
-	independence = colonial	# Will accept any nearby possible colonial tags. Will not spawn at all if there is no suitable tag.
+	defection = colonial			# If the country seeks independence, defection specifies what type of provinces it wants.
+	independence = colonial			# Will accept any nearby possible colonial tags. Will not spawn at all if there is no suitable tag.
 	defect_delay = 36				# Can spontaneously declare independence after 18 months (earliest)
 	unit_transfer = yes
 	
@@ -773,11 +783,15 @@ colonial_rebels = {
 		}
 		modifier = {
 			factor = 2
-			NOT = { stability = 0 }
+			owner = {
+				NOT = { stability = 0 }
+			}
 		}
 		modifier = {
 			factor = 2
-			NOT = { stability = -2 }
+			owner = {
+				NOT = { stability = -2 }
+			}
 		}
 		modifier = {
 			factor = 4
@@ -791,7 +805,6 @@ colonial_rebels = {
 			factor = 2.0
 			has_province_modifier = founding_father
 		}
-		
 	}
  
  	#This is checked for EACH province in the Area of Operations
@@ -875,9 +888,10 @@ colonial_rebels = {
 ##########################################################
 # Colonial Patriots, yearning for freedom
 ##########################################################
-colonial_patriot_rebels = {	
+colonial_patriot_rebels = {
+
 	area = all 						
-	government = any			# No special preference
+	government = any		# No special preference
 	defection = colonial	# Will defect to suitable nearby colonial tags
 	defect_delay = 36		# Held provinces will auto-defect after 18 months, regardless of accept/enforce demands.
 	independence = none 	# Does not seek independence
@@ -939,11 +953,15 @@ colonial_patriot_rebels = {
 		}
 		modifier = {
 			factor = 2
-			NOT = { stability = 0 }
+			owner = {
+				NOT = { stability = 0 }
+			}
 		}
 		modifier = {
 			factor = 2
-			NOT = { stability = -2 }
+			owner = {
+				NOT = { stability = -2 }
+			}
 		}
 		modifier = {
 			factor = 4
@@ -1032,9 +1050,6 @@ colonial_patriot_rebels = {
 		}
 	}
 }
-
-
-
 
 ##############################################
 # Revolutionary rebels. Civil War factions.
@@ -1177,6 +1192,7 @@ revolutionary_rebels = {
 # Disgruntled nobles.
 ##############################################
 noble_rebels = {
+
 	area = nation 				# Stays within the nation
 	government = monarchy	# Likes monarchy
 	defection = none			# Does not defect
@@ -1313,6 +1329,7 @@ noble_rebels = {
 # Religious rebels. Disgruntled fanatics.
 ############################################
 religious_rebels = {
+
 	area = all 							# Moves around freely
 	government = theocracy 	# Desires Theocracy
 	defection = religion		# Defects to countries of their religion
@@ -1458,6 +1475,7 @@ religious_rebels = {
 # Heretics
 ############
 heretic_rebels = {
+
 	area = religion 			# Sticks to provinces of their religion
 	government = theocracy 		# Desires Theocracy
 	defection = any				# Will defect to the "best" alternative.
@@ -1505,7 +1523,6 @@ heretic_rebels = {
 			factor = 5
 			has_province_modifier = "heresy"
 		}
-		
 		modifier = {
 			factor = 3.0
 			year = 1450
@@ -1513,7 +1530,6 @@ heretic_rebels = {
 			NOT = { is_religion_enabled = protestant }
 			NOT = { is_religion_enabled = reformed }
 		}
-		
 		modifier = {
 			factor = 1.2
 			owner = {
@@ -1641,11 +1657,11 @@ pretender_rebels = {
 	independence = none	
 	unit_transfer = yes
 	
-	resilient = yes				# Will not disband on defeat.
-	reinforcing = yes			# Will reinforce (double rate in rebel controlled provinces)
-	general = yes				# Does use generals. The 'define_ruler' effect with 'rebel' argument will pick the rebel leader as new King.
+	resilient = yes					# Will not disband on defeat.
+	reinforcing = yes				# Will reinforce (double rate in rebel controlled provinces)
+	general = yes					# Does use generals. The 'define_ruler' effect with 'rebel' argument will pick the rebel leader as new King.
 	smart = yes
-	disband_on_leader_death = yes # The Cause dies with the Pretender.
+	disband_on_leader_death = yes 	# The Cause dies with the Pretender.
 	
 	artillery = 0.1
 	infantry = 0.4
@@ -1653,12 +1669,12 @@ pretender_rebels = {
 	
 	spawn_chance = {
 		factor = 1
-		
 		modifier = {
 			factor = 0
-			NOT = { num_of_cities = 3 }
+			owner = {
+				NOT = { num_of_cities = 3 }
+			}
 		}
-		
 		modifier = {
 			factor = 2
 			owner = {
@@ -1752,7 +1768,7 @@ pretender_rebels = {
 		}
 		modifier = {
 			factor = 4
-			has_country_flag = time_of_troubles
+			owner = { has_country_flag = time_of_troubles }
 		}
 		modifier = {
 			factor = 10
@@ -1760,9 +1776,11 @@ pretender_rebels = {
 		}
 		modifier = {
 			factor = 2.5
-			OR = {
-				government = tribal_despotism
-				government = tribal_federation
+			owner = {
+				OR = {
+					government = tribal_despotism
+					government = tribal_federation
+				}
 			}
 		}
 	}
@@ -1841,10 +1859,10 @@ pretender_rebels = {
 ##############################################
 ronin_rebels = {
 
-	area = nation 				# Stays within the nation
+	area = nation 					# Stays within the nation
 	government = feudal_monarchy			
-	defection = none			# Does not defect
-	independence = none		# Does not strive for independence
+	defection = none				# Does not defect
+	independence = none				# Does not strive for independence
 	unit_transfer = yes
 	
 	resilient = yes
@@ -1884,6 +1902,14 @@ ronin_rebels = {
 			owner = {
 				government = republic
 			}
+		}
+		modifier = {
+			factor = 0
+			not = { owner = { primary_culture = japanese } }
+		}
+		modifier = {
+			factor = 0
+			not = { culture = japanese }
 		}
 		modifier = {
 			factor = 0.1
@@ -1978,10 +2004,10 @@ ronin_rebels = {
 ##############################################
 ikko_ikki = {
 
-	area = nation 				# Stays within the nation
-	government = feudal_monarchy			
-	defection = none			# Does not defect
-	independence = none		# Does not strive for independence
+	area = nation 					# Stays within the nation
+	government = feudal_monarchy
+	defection = none				# Does not defect
+	independence = none				# Does not strive for independence
 	unit_transfer = yes
 	
 	resilient = yes
@@ -2021,6 +2047,14 @@ ikko_ikki = {
 			owner = {
 				government = republic
 			}
+		}
+		modifier = {
+			factor = 0
+			not = { owner = { primary_culture = japanese } }
+		}
+		modifier = {
+			factor = 0
+			not = { culture = japanese }
 		}
 		modifier = {
 			factor = 0.1
@@ -2119,13 +2153,12 @@ reactionary_rebels = {
 	government = any				# Don't care about gov type				
 	defection = none				# Will not defect
 	independence = none				# Does not strive for independence
-	unit_transfer = no
+	unit_transfer = no				# Units do not remain after enforcing demands.
 
 	resilient = yes					# Can retreat
 	reinforcing = yes				# Can reinforce
 	general = yes					# Does use generals
 	smart = yes						# Do assault forts, tactically withdraw from battle, etc.
-	unit_transfer = no				# Units do not remain after enforcing demands.
 
 	artillery = 0.1
 	infantry = 0.5
@@ -2178,10 +2211,12 @@ reactionary_rebels = {
 		}
 		modifier = {
 			factor = 2.0
-			OR = {
-				government = steppe_horde
-				government = tribal_despotism
-				government = tribal_federation
+			owner = {
+				OR = {
+					government = steppe_horde
+					government = tribal_despotism
+					government = tribal_federation
+				}
 			}
 		}
 	}

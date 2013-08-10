@@ -2,7 +2,6 @@
 
 type = cavalry
 unit_type = eastern
-unit_type = ottoman
 
 maneuver = 2
 offensive_morale = 8

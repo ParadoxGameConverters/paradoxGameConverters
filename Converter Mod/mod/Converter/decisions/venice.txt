@@ -73,6 +73,7 @@ country_decisions = {
 				tag = VEN
 				tag = GEN
 				tag = HSA
+				tag = RAG
 			}
 			government = merchant_republic
 			not = { 

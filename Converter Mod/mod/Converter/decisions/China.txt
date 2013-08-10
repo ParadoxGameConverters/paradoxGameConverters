@@ -112,7 +112,7 @@ province_decisions = {
 		}
 		effect = {
 			owner = { 
-				treasury = -100 
+				treasury = -50 
 				officials = -1
 			}
 			add_province_modifier = {
@@ -178,7 +178,7 @@ province_decisions = {
 				name = "construct_the_forbidden_city"
 				duration = 1825
 			}
-			clr_country_flag = no_forbidden_city
+			owner = { clr_country_flag = no_forbidden_city }
 		}
 		ai_will_do = {
 			factor = 1
