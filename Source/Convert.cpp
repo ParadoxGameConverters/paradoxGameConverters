@@ -99,6 +99,24 @@ int main(int argc, char * argv[])
 	}
 
 
+	//Copy mod folder
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		string modFolderName;
+		if (argc >= 2)
+		{
+			modFolderName = inputFilename.substr(0, inputFilename.find_last_of('.'));
+		}
+		else
+		{
+			modFolderName = "output";
+		}
+		Configuration::setModPath(modFolderName);
+		string copyCommand = "xcopy mod \"" + modFolderName + "\" /E /C /I /Y";
+		system(copyCommand.c_str());
+	}
+	
+
 	// Input CK2 Data
 	log("Getting CK2 data.\n");
 	printf("Getting CK2 data.\n");
@@ -410,7 +428,7 @@ int main(int argc, char * argv[])
 	string cultureFile;
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		cultureFile = "mod\\converter\\common\\cultures.txt";
+		cultureFile = Configuration::getModPath() + "\\converter\\common\\cultures.txt";
 	}
 	else
 	{
@@ -432,7 +450,7 @@ int main(int argc, char * argv[])
 	string religionFile;
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		cultureFile = "mod\\converter\\common\\religion.txt";
+		cultureFile = Configuration::getModPath() + "\\converter\\common\\religion.txt";
 	}
 	else
 	{
@@ -596,20 +614,38 @@ int main(int argc, char * argv[])
 	// Output results
 	printf("Outputting save.\n");
 	log("Outputting save.\n");
-	string outputFilename;
-	if (argc >= 2)
+	string outputFilename = "";
+	if (Configuration::getUseConverterMod() == "yes")
 	{
-		outputFilename = inputFilename.substr(0, inputFilename.find_last_of('.')) + ".eu3";
+		outputFilename += Configuration::getModPath() + "\\Converter\\save games\\";
+		if (argc >= 2)
+		{
+			string filename = inputFilename.substr(0, inputFilename.find_last_of('.'));
+			filename = filename.substr(filename.find_last_of('\\'), filename.length());
+			outputFilename += filename + ".eu3";
+		}
+		else
+		{
+			outputFilename += "output.eu3";
+		}
 	}
 	else
 	{
-		outputFilename = "output.eu3";
+		if (argc >= 2)
+		{
+			outputFilename += inputFilename.substr(0, inputFilename.find_last_of('.'));
+			outputFilename += ".eu3";
+		}
+		else
+		{
+			outputFilename += "output.eu3";
+		}
 	}
 	FILE* output;
 	if (fopen_s(&output, outputFilename.c_str(), "w") != 0)
 	{
-		log("Error: could not open output.eu3.\n");
-		printf("Error: could not open output.eu3.\n");
+		log("Error: could not open %s.\n", outputFilename.c_str());
+		printf("Error: could not open %s.\n", outputFilename.c_str());
 	}
 	destWorld.output(output);
 	fclose(output);

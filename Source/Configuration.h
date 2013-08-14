@@ -162,6 +162,16 @@ public:
 		return getInstance()->CK2Mod;
 	}
 
+	static string getModPath()
+	{
+		return getInstance()->modPath;
+	}
+
+	static void setModPath(string _modPath)
+	{
+		getInstance()->modPath = _modPath;
+	}
+
 	static int getID()
 	{
 		return getInstance()->id++;
@@ -216,6 +226,7 @@ private:
 
 	string	useConverterMod;
 	string	CK2Mod;
+	string	modPath;
 
 	int		id;
 	int		armyId;

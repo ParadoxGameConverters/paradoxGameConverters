@@ -34,7 +34,7 @@ CK2World::CK2World()
 	wars.clear();
 }
 
-#pragma optimize("", off)
+
 void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 {
 	buildingFactory = new CK2BuildingFactory(&cultureGroupMap);
@@ -311,7 +311,7 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 	log("\tThere are a total of %d independent titles\n", independentTitles.size());
 	log("\tThere are a total of %d hre members\n", hreMembers.size());
 }
-#pragma optimize("", on)
+
 
 void CK2World::addBuildingTypes(Object* obj)
 {

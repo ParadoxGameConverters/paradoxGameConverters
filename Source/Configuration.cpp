@@ -34,6 +34,7 @@ Configuration::Configuration()
 	CK2Path		= obj[0]->getLeaf("CK2directory");
 	EU3Path		= obj[0]->getLeaf("EU3directory");
 	CK2ModPath	= obj[0]->getLeaf("CK2ModPath");
+	modPath		= "";
 
 	techGroupMethod	= obj[0]->getLeaf("techGroupMethod");
 

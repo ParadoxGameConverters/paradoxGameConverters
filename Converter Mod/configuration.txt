@@ -6,6 +6,8 @@ configuration =
 	# Crusader Kings 2 directory: a path on your computer where Crusader Kings 2 is installed
 	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
 
+	# Crusader Kings 2 Mod path: a path on your computer where Crusader Kings 2 mods are installed (typically under "My Documents")
+	CK2ModPath = "C:\Users\user\Documents\Paradox Interactive\Crusader Kings II\mod"
 
 	### Mod Options
 
@@ -13,6 +15,9 @@ configuration =
 	#	"yes"
 	#	"no"
 	useConverterMod = "yes"
+
+	# CK2Mod: a CK2 mod to use for conversion
+	CK2Mod = ""
 
 
 	### Tech Options

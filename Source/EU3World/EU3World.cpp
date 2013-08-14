@@ -463,7 +463,7 @@ void EU3World::addHistoricalCountries()
 	{
 		struct _finddata_t	countryDirData;
 		intptr_t					fileListing;
-		if ( (fileListing = _findfirst( "mod\\converter\\history\\countries\\*", &countryDirData)) == -1L)
+		if ( (fileListing = _findfirst( (Configuration::getModPath() + "\\converter\\history\\countries\\*").c_str(), &countryDirData)) == -1L)
 		{
 			log("Error: Could not open country history directory.\n");
 			return;
@@ -476,7 +476,7 @@ void EU3World::addHistoricalCountries()
 			}
 
 			string filename;
-			filename	=  string("mod\\converter\\history\\countries\\");
+			filename	=  Configuration::getModPath() + "\\converter\\history\\countries\\";
 			filename	+= countryDirData.name;
 
 			string tag;
@@ -2083,15 +2083,15 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 	}
 
 	FILE* EU3Localisations;
-	fopen_s(&EU3Localisations, "mod\\Converter\\localisation\\converter.csv", "a");
+	fopen_s(&EU3Localisations, (Configuration::getModPath() + "\\Converter\\localisation\\converter.csv").c_str(), "a");
 	if (EU3Localisations == NULL)
 	{
-		log("\tError: Could not open mod\\Converter\\localisation\\converter.csv\n");
+		log("\tError: Could not open %s\\Converter\\localisation\\converter.csv\n", Configuration::getModPath().c_str());
 	}
 
 	// assign tags
 	FILE* countriesList;
-	fopen_s(&countriesList, "mod\\converter\\common\\countries.txt", "a");
+	fopen_s(&countriesList, (Configuration::getModPath() + "\\converter\\common\\countries.txt").c_str(), "a");
 	fprintf(countriesList, "\n");
 	char first	= 'A';
 	char second	= 'A';
@@ -2187,7 +2187,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			filename	+= boost::lexical_cast<string>(number);
 			filename	+= ".txt";
 		}
-		filename	=  "mod\\converter\\common\\countries\\";
+		filename	=  Configuration::getModPath() + "\\converter\\common\\countries\\";
 		filename += titleString.substr(2, titleString.size());
 		if (number > 0)
 		{
@@ -2218,7 +2218,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		srcFlag			+= ".tga\"";
 
 		string dstFlag	=  "\"";
-		dstFlag			+= "mod\\Converter\\gfx\\flags\\";
+		dstFlag			+= Configuration::getModPath() + "\\Converter\\gfx\\flags\\";
 		dstFlag			+= tag;
 		dstFlag			+= ".tga\"";
 
