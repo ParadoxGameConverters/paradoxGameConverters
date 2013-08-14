@@ -499,3 +499,4 @@ Revision	Log Message
 
 
 477		Remove dead titles
+478		Various fixes for better mod support

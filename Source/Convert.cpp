@@ -182,27 +182,37 @@ int main(int argc, char * argv[])
 
 	log("\tParsing landed titles.\n");
 	printf("\tParsing landed titles.\n");
+	bool modHasFiles = false;
 	if (Configuration::getCK2Mod() != "")
 	{
 		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
 		if (obj != NULL)
 		{
 			srcWorld.addPotentialTitles(obj);
+			modHasFiles = true;
 		}
-		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); });
+		DWORD dwAttrib = GetFileAttributes((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\").c_str());
+		if (dwAttrib != INVALID_FILE_ATTRIBUTES && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY))
+		{
+			doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); });
+			modHasFiles = true;
+		}
 	}
-	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
+	if (!modHasFiles)
 	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
-		exit(-1);
-	}
-	srcWorld.addPotentialTitles(obj);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); }))
-	{
-		log("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
-		printf("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+		obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
+			exit(-1);
+		}
+		srcWorld.addPotentialTitles(obj);
+		if (!doParseDirectoryContents((CK2Loc + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); }))
+		{
+			log("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+			printf("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+		}
 	}
 
 	log("\tGetting traits\n");
