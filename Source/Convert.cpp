@@ -469,7 +469,16 @@ int main(int argc, char * argv[])
 	// Get culture mappings
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
-	obj = doParseFile("culture_mappings.txt");
+	string filename;
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		filename = "culture_mappings_mod.txt";
+	}
+	else
+	{
+		filename = "culture_mappings.txt";
+	}
+	obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		log("Error: Could not open culture_mappings.txt\n");
@@ -488,7 +497,15 @@ int main(int argc, char * argv[])
 	// Get religion mappings
 	log("Parsing religion mappings.\n");
 	printf("Parsing religion mappings.\n");
-	obj = doParseFile("religion_mappings.txt");
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		filename = "religion_mappings_mod.txt";
+	}
+	else
+	{
+		filename = "religion_mappings.txt";
+	}
+	obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		log("Error: Could not open religion_mappings.txt\n");
@@ -564,7 +581,15 @@ int main(int argc, char * argv[])
 	// Map CK2 nations to EU3 nations
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
-	obj = doParseFile("country_mappings.txt");
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		filename = "country_mappings_mod.txt";
+	}
+	else
+	{
+		filename = "country_mappings.txt";
+	}
+	obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		log("Error: Could not open country_mappings.txt\n");
