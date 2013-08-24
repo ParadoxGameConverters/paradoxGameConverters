@@ -97,7 +97,7 @@ ship_names = {
 	Denore
 	Ezzelino
 	Focomorto Francolino
-	Gaibana"Gaibanella Sant'Egidio" "Guglielmo Adelardi" 
+	Gaibana "Gaibanella Sant'Egidio" "Guglielmo Adelardi" 
 	"Malborghetto di Boara" "Malborghetto di Correggio" Marrara Mezzavia
 	Monestirolo Montalbano
 	"Niccoló III"

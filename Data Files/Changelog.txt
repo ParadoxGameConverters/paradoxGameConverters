@@ -466,3 +466,5 @@ Revision	Log Message
 
 
 476		Update converter mod to match 5.2
+
+480		More converter mod updates to match 5.2

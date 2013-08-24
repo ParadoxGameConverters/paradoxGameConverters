@@ -31,7 +31,7 @@ country_decisions = {
 			
 			war = no
 		}
-	  effect = {
+		effect = {
 			SPA = {
 				add_core = 197		# Roussillon
 				add_core = 206		# Galicia
