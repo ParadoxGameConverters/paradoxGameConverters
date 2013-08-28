@@ -1,12 +1,14 @@
 mappings = {
 # Great Britain
-link = { eu4 = 252 v2 = 267 v2 = 270 }	# Highlands -> Inverness, Stirling
-link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
+# Ireland
 link = { eu4 = 375 v2 = 261 v2 = 260 }	# Munster -> Limerick, Cork
 link = { eu4 = 376 v2 = 258 v2 = 259 }	# Connaught -> Galway, Sligo
 link = { eu4 = 372 v2 = 257 v2 = 255 v2 = 254 }	# Ulster -> Donegal, Londonderry, Belfast
 link = { eu4 = 373 v2 = 256 v2 = 263 }	# Meath -> Armagh, Dublin
 link = { eu4 = 374 v2 = 262 v2 = 265 v2 = 264 }	# Leinster -> Waterford, Wexford, Kildare
+# England & Scotland
+link = { eu4 = 252 v2 = 267 v2 = 270 }	# Highlands -> Inverness, Stirling
+link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
 link = { eu4 = 233 v2 = 299 v2 = 298 }	# Cornwall -> Plymouth, Bath
 link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
 link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
@@ -81,8 +83,6 @@ link = { eu4 = 1981 v2 = 374 }	# Bornholm -> Bornholm
 link = { eu4 = 1775 v2 = 369 }	# Holstein -> Kiel
 link = { eu4 = 13 v2 = 371 v2 = 370 }	# Slesvig -> Aabenraa, Flensburg
 # 1983 - no match in v2
-# Russia
-link = { eu4 = 1780 v2 = 2589 v2 = 985 v2 = 986 v2 = 2699 v2 = 2687 v2 = 2688 }	# Komi -> Shoyna, Mezen, Naryn Mar, Izhma, Amderma, Inta
 # Japan
 link = { eu4 = 1032 v2 = 1088 v2 = 1089 }	# Kurils -> Shumshu, Etorofu
 link = { eu4 = 1033 v2 = 1086 v2 = 1087 }	# Sakhalin -> Pogobi, Ootomari
@@ -124,8 +124,6 @@ link = { eu4 = 733 v2 = 1627 v2 = 1626 v2 = 1625 }	# Pyeongan -> Sariwon, Haeju,
 link = { eu4 = 1845 v2 = 1620 v2 = 1619 }	# Uiji -> Chonchon, Pyongyang
 link = { eu4 = 734 v2 = 1630 v2 = 1631 v2 = 1629 }	# Gangwon -> Kangnung, Wonju, Wonsan
 link = { eu4 = 732 v2 = 1621 v2 = 1623 v2 = 1622 }	# Hamgyeong -> Hamhung, Kimchaek, Chongjin
-# Chinese Region
-link = { eu4 = 738 v2 = 1485 v2 = 2562 }	# Taiwan -> Taibei, Tainan
 # Oceania
 # Australia
 link = { eu4 = 1084 v2 = 2498 v2 = 2497 v2 = 2499 }	# Wadjuk -> Kojonup, Perth, Geraldton
@@ -222,4 +220,208 @@ link = { eu4 = 592 v2 = 1353 }	# Ratchaburi -> Ratchaburi
 link = { eu4 = 593 v2 = 1354 }	# Ligore -> Nakhon Si Thammarat
 link = { eu4 = 591 v2 = 1344 }	# Tenasserim -> Mergui
 link = { eu4 = 590 v2 = 1343 }	# Moulmein -> Moulmein
+# Russia
+link = { eu4 = 1780 v2 = 2589 v2 = 985 v2 = 986 v2 = 2699 v2 = 2687 v2 = 2688 }	# Komi -> Shoyna, Mezen, Naryn Mar, Izhma, Amderma, Inta
+link = { eu4 = 1060 v2 = 1075 }	# Irkutsk -> Irkutsk
+# Africa
+# South Africa
+link = { eu4 = 1177 v2 = 2090 v2 = 2087 v2 = 2089 v2 = 2091 }	# Cape -> Swettenham, Cape Town, Worcester, Mossel Bay
+link = { eu4 = 1182 v2 = 2049 v2 = 2050 }	# Delagoa Bay -> Lourenzo Marques, Chaimate
+link = { eu4 = 1183 v2 = 2051 }	# Inhambane -> Inhambane
+link = { eu4 = 1181 v2 = 2113 v2 = 2114 v2 = 2111 v2 = 2112 }	# Natal -> Ulundi, Mbabane, Durban, Ladysmith
+link = { eu4 = 1180 v2 = 2100 }	# Transkei -> Umtata
+link = { eu4 = 1179 v2 = 2098 v2 = 2096 v2 = 2099 }	# Little Karoo -> Bisho, Port Elizabeth, Mathele
+link = { eu4 = 1178 v2 = 2558 v2 = 2092 v2 = 2097 }	# Great Karoo -> De Aar, Beaufort, Graaf Reinet
+link = { eu4 = 1176 v2 = 2093 }	# Roggeveld -> Calvinia
+link = { eu4 = 1175 v2 = 2088 }	# Lesser Namaqualand -> Springbok
+link = { eu4 = 1174 v2 = 2084 }	# Greater Namaqualand -> Angra Pequena
+link = { eu4 = 1801 v2 = 2086 v2 = 2085 v2 = 2080 v2 = 2078 v2 = 2082 v2 = 2076 v2 = 2081 v2 = 2077 v2 = 2095 v2 = 2094 v2 = 2101 v2 = 2104 v2 = 2103 v2 = 2102 v2 = 2107 v2 = 2106 v2 = 2105 v2 = 2109 v2 = 2110 v2 = 2108 v2 = 2074 v2 = 2574 v2 = 2075 v2 = 2072 v2 = 2071 }	# Kalahari -> Karasburg, Nu-gouses, Tsumeb, Windhoek, Otjinene, Nokaneng, Linyati, Tsabong, Dikathong, Kimberley, Bloemfontein, Thaba Bosiu, Philippolis, Winburg, Klerksdorp, Witwatersrand, Pretoria, Lydenburg, Thohoyandu, Mosega, Gaborone, Mochudi, Serowe, Hwange, Bulawayo
+# Congo
+link = { eu4 = 1173 v2 = 2079 v2 = 2083 }	# Damaraland -> Swakopmund, Walvis Bay
+link = { eu4 = 1172 v2 = 2004 }	# Benguela -> Moçâmedes
+link = { eu4 = 1168 v2 = 2003 }	# Kisarna -> Benguela
+link = { eu4 = 1167 v2 = 1999 }	# Luanda -> Luanda
+link = { eu4 = 1166 v2 = 2000 v2 = 2624 }	# Loango -> Cabinda, Loango
+link = { eu4 = 1165 v2 = 1974 v2 = 1972 v2 = 1954 }	# Gabon -> Mayumbe, Libreville, São Tomé
+link = { eu4 = 1169 v2 = 1983 }	# Mayombe -> Boma
+link = { eu4 = 1170 v2 = 2001 }	# Kongo -> Mbanza
+link = { eu4 = 1171 v2 = 2002 }	# Ndongo -> Quibala
+link = { eu4 = 1164 v2 = 1956 v2 = 1958 v2 = 1973 v2 = 1957 }	# Cameroon -> Douala, Kribi, Bata, Buea
+link = { eu4 = 1097 v2 = 1955 }	# Fernando Po -> Fernando Pó
+link = { eu4 = 1800 v2 = 2005 v2 = 2008 v2 = 2006 v2 = 2007 v2 = 2013 v2 = 2009 v2 = 2010 v2 = 1984 v2 = 1986 v2 = 1989 v2 = 1987 v2 = 1988 v2 = 2011 v2 = 2014 v2 = 790 v2 = 2015 v2 = 2012 }	# Zambia -> Huambo, Ondjiva, Kuito, Mavinga, Mongu, Malanje, Saurimo, Kananga, Lusambo, Munza, Bunkeya, Mussumba, Kubanda, Kasempa, Kitwe, Monzo, Lusaka
+link = { eu4 = 1797 v2 = 1978 v2 = 1975 v2 = 1976 v2 = 1981 v2 = 1980 v2 = 1977 v2 = 1993 v2 = 1994 v2 = 1982 v2 = 1985 v2 = 1992 v2 = 1995 v2 = 1996 v2 = 1990 v2 = 1991 v2 = 1997 v2 = 1998 }	# Inner Kongo -> Madingou, Moanda, Makokou, Impfondo, Djambala, Nkuna, Irebu, Nsheng, Kinshasa, Kumbana, Basoko, Gemena, Kisangani, Nyangwe, Uvira, Mungbane, Baramo
+# Ivory Coast
+link = { eu4 = 1147 v2 = 1931 v2 = 1928 v2 = 1923 }	# Benin -> Warri, Benin, Lagos
+link = { eu4 = 1151 v2 = 1932 }	# Bonny -> Bonny
+link = { eu4 = 1163 v2 = 1934 }	# Calabar -> Calabar
+link = { eu4 = 1119 v2 = 1888 v2 = 1887 v2 = 1891 v2 = 1890 v2 = 1889 }	# Grain Coast -> Harper, Monrovia, Zwedru, Gbarnga, Bopolu
+link = { eu4 = 1118 v2 = 1884 v2 = 1886 v2 = 1885 }	# Sierra Leone -> Freetown, Bo, Falaba
+link = { eu4 = 1114 v2 = 1877 v2 = 1785 v2 = 1878 v2 = 1879 v2 = 1792 }	# Gabu -> Bissau, Banjul, Gabu, Boffa, Ziguinchor
+link = { eu4 = 1113 v2 = 1783 v2 = 2573 v2 = 1787 v2 = 1788 }	# Cayor -> Dakar, Mboul, Diourbel, Kaolack
+link = { eu4 = 1126 v2 = 1893 v2 = 1892 }	# Ivory Coast -> Sassandra, Grand Lahou
+link = { eu4 = 1139 v2 = 1909 v2 = 1894 v2 = 1908 v2 = 1907 }	# Gold Coast -> Sekondi, Grand Bassam, Cape Coast, Accra
+link = { eu4 = 1141 v2 = 1924 v2 = 1919 v2 = 1914 }	# Whydah -> Abeokuta, Cotonou, Lome
+link = { eu4 = 1796 v2 = 1845 v2 = 1844 v2 = 1843 v2 = 1969 v2 = 1970 v2 = 1965 v2 = 1968 v2 = 1966 v2 = 1962 v2 = 1959 v2 = 1960 v2 = 1963 v2 = 1967 v2 = 1971 v2 = 1841 v2 = 1822 v2 = 1823 }	# Central Africa -> Yambio, Bor, Waw, Zemio, Bangassou, Bangui, Bossangoa, Nola, Bertoua, Yaounde, Bafoussam, Ngaoundere, Bouar, Ndele, Fasher, Am Timan, Mongo
+link = { eu4 = 1158 v2 = 1824 }	# Kanem -> Mao
+link = { eu4 = 1159 v2 = 1818 v2 = 1964 v2 = 1820 v2 = 1819 }	# Bagirmi -> Massenya, Maroua, Bongor, Moundou
+link = { eu4 = 1157 v2 = 1816 }	# Damasak -> Kufe
+link = { eu4 = 1160 v2 = 1951 v2 = 1953 }	# Bornu -> Kuka, Dikoa
+link = { eu4 = 1249 v2 = 1950 v2 = 1944 }	# Yola -> Yola, Gombe
+link = { eu4 = 1162 v2 = 1937 v2 = 1961 }	# Wukari -> Tukari, Bamenda
+link = { eu4 = 1142 v2 = 1810 v2 = 1808 }	# Dendi -> Dosso, Niamey
+link = { eu4 = 1156 v2 = 1815 }	# Damagaram -> Zinder
+link = { eu4 = 1148 v2 = 1811 }	# Gobir -> Maradi
+link = { eu4 = 1155 v2 = 1945 v2 = 1949 }	# Kano -> Kano, Hadejia
+link = { eu4 = 1149 v2 = 1947 v2 = 1948 }	# Katsina -> Katsina, Sokoto
+link = { eu4 = 1152 v2 = 1933 v2 = 1935 v2 = 1930 }	# Idah -> Awka, Aruchukwu, Lokoja
+link = { eu4 = 1153 v2 = 1936 }	# Pindinga -> Makurdi
+link = { eu4 = 1161 v2 = 1952 v2 = 1942 v2 = 1943 }	# Bauchi -> Nguru, Bauchi, Jos
+link = { eu4 = 1154 v2 = 1939 }	# Zazzau -> Zaria
+link = { eu4 = 1150 v2 = 1946 }	# Zamfara -> Kebbi
+link = { eu4 = 1115 v2 = 1778 v2 = 1795 }	# Brakna -> Maghama, Kayes
+link = { eu4 = 1116 v2 = 1786 v2 = 1790 }	# Wolof -> Linguere, Matam
+link = { eu4 = 1123 v2 = 1796 v2 = 1797 v2 = 1794 }	# Segu -> Nioro, Kita, Bamako
+link = { eu4 = 1117 v2 = 1880 v2 = 1793 }	# Futa Jallon -> Timbo, Velingara
+link = { eu4 = 1122 v2 = 1883 v2 = 1896 }	# Konian -> Beyla, Man
+link = { eu4 = 1125 v2 = 1895 v2 = 1897 v2 = 1899 }	# Worodugu -> Bouake, Akoupe, Bondouku
+link = { eu4 = 1135 v2 = 1804 v2 = 1902 }	# Yatenga -> Bandiagara, Wahiguya
+link = { eu4 = 1137 v2 = 1901 v2 = 1912 v2 = 1916 v2 = 1913 }	# Wagadugi -> Wagadugu, Wa, Yendi, Tamale
+link = { eu4 = 1138 v2 = 1911 v2 = 1910 }	# Kumasi -> Kintampo, Kumasi
+link = { eu4 = 1146 v2 = 1926 v2 = 1929 }	# Ife -> Ife, Akure
+link = { eu4 = 1145 v2 = 1941 v2 = 1940 }	# Nupe -> Abuja, Bida
+link = { eu4 = 1144 v2 = 1925 v2 = 1927 }	# Oyo -> Ibadan, Ilorin
+link = { eu4 = 1143 v2 = 1938 v2 = 1921 v2 = 1922 }	# Borgu -> Bussa, Nikki, Jugu
+link = { eu4 = 1140 v2 = 1915 v2 = 1917 v2 = 1920 v2 = 1918 }	# Abomey -> Ho, Atakpame, Abomey, Sokode
+link = { eu4 = 1136 v2 = 1809 v2 = 1903 v2 = 1904 }	# Gurma -> Say, Dori, Fada Ngourma
+link = { eu4 = 1134 v2 = 1905 v2 = 1906 v2 = 1799 }	# Jenne -> Bobo Dioulasso, Orodaro, Sikasso
+link = { eu4 = 1131 v2 = 1802 v2 = 1800 v2 = 1801 }	# Massina -> Jenne, Segu, Mourdiah
+link = { eu4 = 1124 v2 = 1900 v2 = 1898 v2 = 1798 }	# Wasuju -> Odienne, Kong, Bougouni
+link = { eu4 = 1121 v2 = 1882 v2 = 1881 }	# Bure -> Kankan, Dinguiraye
+link = { eu4 = 1120 v2 = 1791 }	# Bambuk -> Bakel
+link = { eu4 = 1098 v2 = 2130 }	# St. Helena -> Ascension
+# Madagascar
+link = { eu4 = 1193 v2 = 2117 v2 = 2122 }	# Menabe -> Ampanihy, Toliara
+link = { eu4 = 1792 v2 = 2119 v2 = 2115 v2 = 2116 v2 = 2118 }	# Antananarivo -> Toamasina, Tananarive, Fianarantsoa, Tolanaro
+link = { eu4 = 1194 v2 = 2120 v2 = 2121 v2 = 2124 v2 = 2123 }	# Boina -> Antsiranana, Mahajanga, Mayotte, Comoros
+link = { eu4 = 1103 v2 = 2126 }	# Bourbon -> Bourbon
+link = { eu4 = 1102 v2 = 2125 }	# Mauritius -> Mauritius
+# Zanzibar
+link = { eu4 = 1186 v2 = 2057 }	# Sofala -> Sofala
+link = { eu4 = 1195 v2 = 2060 v2 = 2063 v2 = 2064 }	# Mozambique -> Moçambique, Ibo, Nampula
+link = { eu4 = 1192 v2 = 2061 v2 = 2059 v2 = 2065 }	# Quelimane -> Angoche, Quelimane, Milange
+link = { eu4 = 1799 v2 = 2067 v2 = 2066 v2 = 2581 v2 = 2040 v2 = 2041 v2 = 2042 v2 = 2017 v2 = 2018 v2 = 2016 }	# Malawi -> Lilongwe, Zomba, Mataka, Songea, Masasi, Iringa, Kasema, Chipata, Kazembe
+link = { eu4 = 1191 v2 = 2053 v2 = 2058 }	# Sena -> Sena, Mossurize
+link = { eu4 = 1190 v2 = 2056 }	# Zumbo -> Zumbo
+link = { eu4 = 1188 v2 = 2054 v2 = 2055 }	# Tete -> Tete, Songo
+link = { eu4 = 1187 v2 = 2635 }	# Urungwe -> Kariba
+link = { eu4 = 1184 v2 = 2068 v2 = 2069 }	# Zimbabwe -> Harare, Gweru
+link = { eu4 = 1189 v2 = 2052 v2 = 2070 }	# Barwe -> Massekisse, Mutare
+link = { eu4 = 1185 v2 = 2073 }	# Uteve -> Masvingo
+link = { eu4 = 1196 v2 = 2038 v2 = 2039 }	# Kilwa -> Kilwa, Lindi
+link = { eu4 = 1199 v2 = 2036 v2 = 2045 }	# Bagamoyo -> Dar Es Salaam, Morogoro
+link = { eu4 = 1201 v2 = 2048 }	# Zanzibar -> Zanzibar
+link = { eu4 = 1200 v2 = 2037 }	# Tanga -> Tanga
+link = { eu4 = 1202 v2 = 2029 v2 = 2033 }	# Mombasa -> Mombasa, Voi
+link = { eu4 = 1198 v2 = 2043 }	# Tabora -> Tabora
+link = { eu4 = 1197 v2 = 2046 }	# Ujiji -> Ujiji
+link = { eu4 = 1203 v2 = 2030 v2 = 2032 }	# Malindi -> Lamu, Garissa
+link = { eu4 = 1798 v2 = 2034 v2 = 2035 v2 = 2020 v2 = 2044 v2 = 2047 v2 = 2027 v2 = 2028 v2 = 2023 v2 = 2019 v2 = 2021 v2 = 1846 v2 = 2022 v2 = 2026 v2 = 2024 v2 = 2025 v2 = 1847 v2 = 2031 v2 = 1864 v2 = 1862 }	# Uganda -> Kigali, Usumbura, Mbarara, Mwanza, Arusha, Nakuru, Kisumu, Jinja, Entebbe, Masindi, Lado, Kitgum, Lodwar, Nairobi, Marsabit, Kapoeta, Wajir, Negele, Bonga
+# Horn of Africa
+link = { eu4 = 1205 v2 = 1868 v2 = 1869 }	# Mogadishu -> Mogadishu, Baidoa
+link = { eu4 = 1208 v2 = 1867 }	# Haud -> Werder
+link = { eu4 = 1204 v2 = 1870 }	# Chisimayo -> Kismayo
+link = { eu4 = 1211 v2 = 1865 v2 = 1861 }	# Harer -> Harer, Aselia
+link = { eu4 = 1212 v2 = 1874 }	# Zeila -> Zeyla
+link = { eu4 = 1206 v2 = 1872 v2 = 1871 }	# Mayertern -> Bosaso, Hobyo
+link = { eu4 = 1209 v2 = 1873 }	# Berbera -> Berbera
+link = { eu4 = 1215 v2 = 1875 v2 = 1851 }	# Tajura -> Djibuti, Assab
+link = { eu4 = 1207 v2 = 1866 }	# Ogaden -> Goba
+link = { eu4 = 1214 v2 = 1858 }	# Awsa -> Awsa
+# Berber Coast
+link = { eu4 = 334 v2 = 1686 }	# Tangiers -> Tangier
+link = { eu4 = 1751 v2 = 1687 }	# Ceuta -> Tetouan
+link = { eu4 = 342 v2 = 1685 v2 = 1691 }	# Toubkhal -> Rabat, Casablanca
+link = { eu4 = 345 v2 = 2563 v2 = 1693 }	# Safi -> Safi, Sawira
+link = { eu4 = 347 v2 = 1695 v2 = 1694 v2 = 1696 v2 = 1773 }	# Ifni -> Ifni, Agadir, Tarfaya, Aaiun
+link = { eu4 = 366 v2 = 2136 }	# The Canarias -> Canary Islands
+link = { eu4 = 368 v2 = 2135 }	# Madeira -> Madeira
+link = { eu4 = 367 v2 = 2134 }	# The Azores -> Azores
+link = { eu4 = 343 v2 = 1688 v2 = 1683 v2 = 1681 v2 = 1680 v2 = 1682 }	# Fez -> Ajdir, Taza, Wazzan, Fez, Meknes
+link = { eu4 = 344 v2 = 1692 v2 = 1690 }	# Marrakech -> Huribka, Marrakesh
+link = { eu4 = 348 v2 = 1699 }	# Sus -> Warzazat
+link = { eu4 = 346 v2 = 1698 v2 = 1716 }	# Figuig -> Rashidia, Tindouf
+link = { eu4 = 335 v2 = 1689 }	# Mellila -> Melilla
+link = { eu4 = 336 v2 = 1684 v2 = 1705 v2 = 1707 }	# Tlemcen -> Wujda, Tlemcen, Mascara
+link = { eu4 = 337 v2 = 1704 }	# Oran -> Oran
+link = { eu4 = 349 v2 = 1697 v2 = 1715 }	# Atlas -> Figuig, Naama
+link = { eu4 = 338 v2 = 1706 v2 = 1703 v2 = 1700 }	# Al-Djazair -> Mustaghanim, Medea, Algiers
+link = { eu4 = 339 v2 = 1701 v2 = 1702 }	# Kabylia -> Bougie, Setif
+link = { eu4 = 1882 v2 = 1709 }	# Bône -> Bone
+link = { eu4 = 341 v2 = 1725 v2 = 1726 v2 = 1728 }	# Tunis -> Tunis, Bizerte, Kairouan
+link = { eu4 = 353 v2 = 1730 v2 = 1729 }	# Gabes -> Gabes, Tozeur
+link = { eu4 = 352 v2 = 1727 }	# Gafsa -> Gafsa
+link = { eu4 = 340 v2 = 1708 }	# Constantine -> Constantine
+link = { eu4 = 351 v2 = 1710 }	# Biskra -> Biskra
+link = { eu4 = 350 v2 = 1713 }	# Aures -> Laghwat
+link = { eu4 = 354 v2 = 1731 v2 = 1732 }	# Tripolitania -> Tripoli, Gharyan
+link = { eu4 = 355 v2 = 1734 v2 = 1740 }	# Sirt -> Sirt, Waddan
+link = { eu4 = 356 v2 = 1735 v2 = 1736 v2 = 1737 }	# Cyrenaica -> Benghazi, Darna, Tobruk
+link = { eu4 = 357 v2 = 1753 v2 = 1754 v2 = 1759 }	# Libya -> Sidi Barrani, Siwa, Bawiti
+link = { eu4 = 1128 v2 = 1806 }	# Taodeni -> Taoudenni
+link = { eu4 = 1127 v2 = 1717 v2 = 1714 }	# Tuat -> Chenachene, Bechar
+link = { eu4 = 1132 v2 = 1803 }	# Timbuktu -> Timbuktu
+link = { eu4 = 1129 v2 = 2609 }	# Azawadd -> Araouane
+link = { eu4 = 1130 v2 = 1807 }	# Tadimekket -> Tessalit
+link = { eu4 = 1133 v2 = 1805 }	# Gao -> Gao
+link = { eu4 = 1793 v2 = 1782 v2 = 1780 v2 = 1779 v2 = 1781 }	# El Djouf -> Bir Murghayn, Tichit, Shingit, Walata
+link = { eu4 = 1096 v2 = 1876 }	# Cape Verde -> Cape Verde
+link = { eu4 = 1111 v2 = 1775 }	# Arguin -> Nouakchott
+link = { eu4 = 1110 v2 = 1774 }	# Rio de Oro -> Dakhla
+link = { eu4 = 1112 v2 = 1776 v2 = 1784 v2 = 1777 v2 = 1789 }	# Trarza -> Rosso, Saint-Louis, Aleg, Podor
+link = { eu4 = 1794 v2 = 1720 v2 = 1711 v2 = 1712 v2 = 1719 v2 = 1724 v2 = 1718 v2 = 1722 v2 = 1721 v2 = 1813 v2 = 1742 v2 = 1741 v2 = 1744 v2 = 1743 v2 = 1814 v2 = 1817 v2 = 1812 }	# Central Sahara -> Timimoun, Ouargla, Tuggurt, Ilizi, Tamanrasset, In Salah, Tin Zawatene, In Guezzam, Arlit, Sabha, Murzuk, Ghadamis, Ghat, Madama, Bilma, Agades
+link = { eu4 = 1795 v2 = 1738 v2 = 1739 v2 = 2585 v2 = 1825 v2 = 1826 v2 = 1842 v2 = 1758 v2 = 2564 v2 = 1821 }	# East Sahara -> Jaghbub, Kufra, Matan as Sarah, Zouar, Faya, Junaynah, Farafra, Salima, Abeche
+# Egypt & Ethiopia
+link = { eu4 = 358 v2 = 1752 v2 = 1751 v2 = 1747 v2 = 1750 }	# Alexandria -> Matruh, Alexandria, Tanta, Giza
+link = { eu4 = 360 v2 = 1770 v2 = 1769 v2 = 2559 }	# Nile -> Qusayr, Qina, Suhaj
+link = { eu4 = 361 v2 = 1772 v2 = 1763 v2 = 1764 v2 = 1745 }	# Cairo -> Ras Gharib, Bani Suwayf, Minya, Cairo
+link = { eu4 = 365 v2 = 1757 }	# Sinai -> Sharm al-Shaykh
+link = { eu4 = 364 v2 = 920 }	# Gaza -> Gaza
+link = { eu4 = 1854 v2 = 921 }	# Negev -> Beersheba
+link = { eu4 = 363 v2 = 1756 v2 = 1755 v2 = 1749 }	# Diamientia -> Al Arish, Suez, Ziqaziq
+link = { eu4 = 362 v2 = 1746 v2 = 1748 }	# Delta -> Dumyat, Mansura
+link = { eu4 = 359 v2 = 1765 v2 = 1762 }	# Asyut -> Fayyum, Asyut
+link = { eu4 = 1233 v2 = 1760 }	# Kargah -> Mut
+link = { eu4 = 1232 v2 = 1833 v2 = 1834 v2 = 1771 }	# Suakin -> Suakin, Halaib, Marsa Alam
+link = { eu4 = 1231 v2 = 1768 v2 = 1766 }	# Ibrim -> Idfu, Aswan
+link = { eu4 = 1228 v2 = 1835 }	# Dongola -> Dongola
+link = { eu4 = 1234 v2 = 1761 v2 = 1767 }	# Nubia -> Baris, Luxor
+link = { eu4 = 1229 v2 = 1836 }	# Berber -> Hayya
+link = { eu4 = 1230 v2 = 1849 }	# Massawa -> Massawa
+link = { eu4 = 1099 v2 = 1177 }	# Socotra -> Socotra
+link = { eu4 = 1226 v2 = 1850 v2 = 1848 }	# Taka -> Akordat, Asmara
+link = { eu4 = 1227 v2 = 1856 v2 = 1857 }	# Tigre -> Aksum, Antalo
+link = { eu4 = 1224 v2 = 1852 v2 = 1853 }	# Gonder -> Gonder, Debre Tabor
+link = { eu4 = 1223 v2 = 1854 }	# Gojjam -> Matamma
+link = { eu4 = 1210 v2 = 1860 }	# Ifat -> Awasa
+link = { eu4 = 1213 v2 = 1859 }	# Shoa -> Ankober
+link = { eu4 = 1218 v2 = 1855 }	# Kefa -> Debre Markos
+link = { eu4 = 1217 v2 = 1863 v2 = 1832 }	# Fazughli -> Asosa, Fashoda
+link = { eu4 = 1225 v2 = 1829 }	# Butana -> Kassala
+link = { eu4 = 1220 v2 = 1837 v2 = 1827 }	# Dar Ja'al -> Atbara, Khartoum
+link = { eu4 = 1222 v2 = 1830 v2 = 1828 }	# Gezira -> Sennar, Wad Madani
+link = { eu4 = 1221 v2 = 1838 }	# Taqali -> Obeid
+link = { eu4 = 1219 v2 = 1839 }	# Kordofan -> Nuhud
+link = { eu4 = 1216 v2 = 1840 v2 = 1831 }	# Dar Nuba -> Kaduqli, Rabak
+# Chinese Region
+# Taiwan
+link = { eu4 = 738 v2 = 1485 v2 = 2562 }	# Taiwan -> Taibei, Tainan
+# Manchu
+link = { eu4 = 1850 v2 = 1082 }	# Mudanjiang -> Haishenwai
+link = { eu4 = 726 v2 = 1479 v2 = 1481 }	# Liaodong -> Mukden, Port Arthur
+link = { eu4 = 730 v2 = 1555 }	# Haixi -> Jilin
+link = { eu4 = 731 v2 = 1554 }	# Ninguta -> Ninguta
+link = { eu4 = 729 v2 = 1083 }	# Wusuli -> Boli
+link = { eu4 = 1049 v2 = 2617 }	# Saghalian Oula -> Saghalian Oula
+link = { eu4 = 1048 v2 = 1084 }	# Udskoye -> Utchan
+link = { eu4 = 1057 v2 = 1078 }	# Udinsky -> Chita
 }
