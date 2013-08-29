@@ -662,15 +662,6 @@ link = { eu4 = 501 v2 = 2229 }	# Barbados -> Barbados
 link = { eu4 = 741 v2 = 2233 v2 = 2269 v2 = 2276 v2 = 2267 }	# Cumana -> Grenada, Güiria, Curiapo, Cumaná
 link = { eu4 = 502 v2 = 2237 v2 = 2238 }	# Trinidad -> Trinidad, Tobago
 link = { eu4 = 481 v2 = 203 }	# Bermuda -> Bermuda
-# South America
-# Venezuela
-link = { eu4 = 491 v2 = 2235 }	# Curacao -> Aruba
-link = { eu4 = 831 v2 = 2272 v2 = 2234 v2 = 2273 v2 = 2265 v2 = 2268 v2 = 2264 v2 = 2266 }	# Caracas -> Coro, Curacao, Barquisimeto, Guanare, San Felipe, Caracas, Calabozo
-link = { eu4 = 830 v2 = 2270 v2 = 2271 }	# Maracaibo -> Maracaibo, Valera
-link = { eu4 = 834 v2 = 2274 }	# Barinas -> Barinas
-# Colombia
-link = { eu4 = 829 v2 = 2255 }	# Magdalena -> Barranquilla
-link = { eu4 = 828 v2 = 2254 }	# Cartagena -> Cartagena de Indias
 # Panama
 link = { eu4 = 826 v2 = 2208 }	# Choco -> Yaviza
 link = { eu4 = 835 v2 = 2204 v2 = 1723 v2 = 2206 v2 = 2205 }	# Panama -> Panama City, Balboa, Penonomé, David
@@ -875,7 +866,6 @@ link = { eu4 = 948 v2 = 183 v2 = 182 }	# Ohio -> Marietta, Cincinnati
 link = { eu4 = 940 v2 = 185 }	# Kentucky -> Lexington
 link = { eu4 = 941 v2 = 218 }	# Cumberland -> Huntington
 link = { eu4 = 949 v2 = 216 }	# Monacan -> Roanoke
-# North America
 # South America
 # Brazil
 link = { eu4 = 747 v2 = 2415 }	# Tucujulandia -> Macapá
@@ -902,6 +892,12 @@ link = { eu4 = 1803 v2 = 2411 v2 = 2600 v2 = 2413 v2 = 2423 v2 = 2418 v2 = 2417 
 link = { eu4 = 1802 v2 = 2404 v2 = 2402 v2 = 2412 v2 = 2408 v2 = 1979 v2 = 2403 v2 = 2278 v2 = 2261 v2 = 2401 v2 = 2407 v2 = 2262 v2 = 2260 v2 = 2263 v2 = 2289 v2 = 2288 v2 = 2286 v2 = 2284 v2 = 2549 }	# Northern Amazonas -> Tefe, Manaus, Óbidos, Oriximina, Biloka, Cachoeira, San Fernando de Atabapo, Obando, Marabitanas, Tabatinga, Casanare, San José del Guaviare, El Encanto, Puca Urco, Yuncos, Iquitos, Tena, Tarauacá
 link = { eu4 = 771 v2 = 2463 v2 = 2464 }	# Patos -> Porto Alegre, Pelotas
 link = { eu4 = 769 v2 = 2461 v2 = 2457 }	# Santana -> Desterro, Curitiba
-
-# Carry On
+# Venezuela
+link = { eu4 = 491 v2 = 2235 }	# Curacao -> Aruba
+link = { eu4 = 831 v2 = 2272 v2 = 2234 v2 = 2273 v2 = 2265 v2 = 2268 v2 = 2264 v2 = 2266 }	# Caracas -> Coro, Curacao, Barquisimeto, Guanare, San Felipe, Caracas, Calabozo
+link = { eu4 = 830 v2 = 2270 v2 = 2271 }	# Maracaibo -> Maracaibo, Valera
+link = { eu4 = 834 v2 = 2274 }	# Barinas -> Barinas
+# Colombia
+link = { eu4 = 829 v2 = 2255 }	# Magdalena -> Barranquilla
+link = { eu4 = 828 v2 = 2254 }	# Cartagena -> Cartagena de Indias
 }
