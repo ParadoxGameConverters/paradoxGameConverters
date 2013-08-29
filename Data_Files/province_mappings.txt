@@ -668,6 +668,240 @@ link = { eu4 = 491 v2 = 2235 }	# Curacao -> Aruba
 link = { eu4 = 831 v2 = 2272 v2 = 2234 v2 = 2273 v2 = 2265 v2 = 2268 v2 = 2264 v2 = 2266 }	# Caracas -> Coro, Curacao, Barquisimeto, Guanare, San Felipe, Caracas, Calabozo
 link = { eu4 = 830 v2 = 2270 v2 = 2271 }	# Maracaibo -> Maracaibo, Valera
 link = { eu4 = 834 v2 = 2274 }	# Barinas -> Barinas
+# Colombia
+link = { eu4 = 829 v2 = 2255 }	# Magdalena -> Barranquilla
+link = { eu4 = 828 v2 = 2254 }	# Cartagena -> Cartagena de Indias
+# Panama
+link = { eu4 = 826 v2 = 2208 }	# Choco -> Yaviza
+link = { eu4 = 835 v2 = 2204 v2 = 1723 v2 = 2206 v2 = 2205 }	# Panama -> Panama City, Balboa, Penonomé, David
+# Costa Rica
+link = { eu4 = 836 v2 = 2201 v2 = 2203 v2 = 2202 }	# Chorotega -> San José, Limón, Liberia
+# Nicaragua
+link = { eu4 = 837 v2 = 2198 v2 = 2197 v2 = 2199 }	# Nicaragua -> Rivas, Managua, León
+link = { eu4 = 838 v2 = 2200 }	# Mosquito -> Bluefields
+# Honduras
+link = { eu4 = 840 v2 = 2196 v2 = 2195 v2 = 2194 v2 = 2193 }	# Honduras -> Puerto Lempira, La Ceiba, San Pedro Sula, Comayagua
+# El Salvador
+link = { eu4 = 839 v2 = 2192 v2 = 2191 }	# Pipil -> San Miguel, San Salvador
+# Belize
+link = { eu4 = 843 v2 = 2190 }	# Belize -> Belize
+# Guatemala
+link = { eu4 = 841 v2 = 2186 v2 = 2187 v2 = 2188 }	# Guatemala -> Guatemala, Quetzaltenango, Puerto Barrios
+link = { eu4 = 842 v2 = 2189 }	# Petén -> Sayaxché
+# Mexico
+link = { eu4 = 846 v2 = 2185 v2 = 2183 }	# Yucatan -> Bacalar, Mérida
+link = { eu4 = 845 v2 = 2184 v2 = 2165 }	# Campeche -> Campeche, Villahermosa
+link = { eu4 = 844 v2 = 2181 v2 = 2182 }	# Zapotec -> Tuxtla, Tapachula
+link = { eu4 = 848 v2 = 2162 v2 = 2164 }	# Tohancapan -> Veracruz, Minatitlán
+link = { eu4 = 847 v2 = 2178 v2 = 2177 v2 = 2179 }	# Mixtec -> Collataro, Oaxaca, Acapulco
+link = { eu4 = 850 v2 = 2176 v2 = 2175 }	# Tlaxcala -> Puebla, Tulancingo
+link = { eu4 = 849 v2 = 2180 v2 = 2171 v2 = 2170 }	# Tlapanec -> Chilpancingo, Los Albañiles, Morelia
+link = { eu4 = 854 v2 = 2161 v2 = 2168 }	# Sayultecas -> Tepic, Puerto Vallarta
+link = { eu4 = 852 v2 = 2172 v2 = 2174 }	# Mexico -> Mexico City, Toluca
+link = { eu4 = 851 v2 = 2169 v2 = 2166 v2 = 2160 }	# Tarasco -> Colima, Guadalajara, Aguascalientes
+link = { eu4 = 853 v2 = 2173 v2 = 2167 }	# Huastec -> Querétaro, Guanajuato
+link = { eu4 = 858 v2 = 2163 v2 = 2150 v2 = 2149 v2 = 2148 v2 = 2146 }	# Tamaulipas -> Tampico, Ciudad Victoria, Matamoros, Reynosa, Monterrey
+link = { eu4 = 866 v2 = 2138 }	# Guaycura -> Loreto
+link = { eu4 = 865 v2 = 2139 }	# Cochimi -> Rosarito
+link = { eu4 = 862 v2 = 2140 v2 = 2137 }	# Yaqui -> Nogales, Hermosillo
+link = { eu4 = 861 v2 = 2147 v2 = 2152 }	# Coahuila -> Morelos, Monclova
+link = { eu4 = 864 v2 = 2144 }	# Concho -> Delicias
+link = { eu4 = 863 v2 = 2143 v2 = 2142 }	# Suma -> Paso del Norte, Chihuahua
+link = { eu4 = 859 v2 = 2141 v2 = 2157 }	# Sinaloa -> Guaymas, Culiacán
+link = { eu4 = 855 v2 = 2156 v2 = 2153 }	# Huichol -> Mazatlán, Durango
+link = { eu4 = 856 v2 = 2158 v2 = 2155 }	# Zacatecas -> Zacatecas, Torreón
+link = { eu4 = 857 v2 = 2159 v2 = 2151 }	# Guachichil -> San Luis Potosí, Saltillo
+link = { eu4 = 860 v2 = 2145 v2 = 2154 }	# Tepehuan -> Parral, Santa María del Oro
+# North America
+# Texas
+link = { eu4 = 884 v2 = 138 }	# Karankawa -> Laredo
+link = { eu4 = 888 v2 = 133 }	# Atakapa -> Austin
+link = { eu4 = 886 v2 = 134 }	# Waco -> Dallas
+link = { eu4 = 882 v2 = 136 }	# Mescalero -> El Paso
+link = { eu4 = 885 v2 = 135 }	# Comanche -> Lubbock
+link = { eu4 = 887 v2 = 132 }	# Tonkawa -> Houston
+link = { eu4 = 883 v2 = 137 }	# Lipan -> San Antonio
+link = { eu4 = 926 v2 = 200 }	# Seminole -> Tampa
+# Florida
+link = { eu4 = 927 v2 = 199 }	# Timucua -> St Augustine
+link = { eu4 = 928 v2 = 198 }	# Apalachee -> Tallahassee
+link = { eu4 = 923 v2 = 197 }	# Pensacola -> Mobile
+link = { eu4 = 922 v2 = 194 }	# Mobile -> Biloxi
+link = { eu4 = 921 v2 = 140 }	# Bayougoula -> Baton Rouge
+link = { eu4 = 893 v2 = 141 v2 = 139 }	# Chitimacha -> Lake Charles, New Orleans
+link = { eu4 = 894 v2 = 142 }	# Caddo -> Shreveport
+link = { eu4 = 920 v2 = 192 }	# Choctaw -> Jackson
+link = { eu4 = 930 v2 = 202 }	# Yamasee -> Valdosta
+link = { eu4 = 929 v2 = 204 v2 = 2555 }	# Muskogee -> Savannah, Augusta
+link = { eu4 = 932 v2 = 205 }	# Santee -> Charleston
+link = { eu4 = 938 v2 = 210 v2 = 207 }	# Pamlico -> Wilmington, Greenville
+link = { eu4 = 950 v2 = 214 v2 = 213 v2 = 211 }	# Powhatan -> Norfolk, Fredericksburg, Richmond
+link = { eu4 = 957 v2 = 219 v2 = 222 v2 = 220 v2 = 231 }	# Delaware -> Baltimore, Dover, Washington, Atlantic City
+link = { eu4 = 953 v2 = 221 v2 = 212 }	# Conoy -> Hagerstown, Manassas
+link = { eu4 = 962 v2 = 230 v2 = 229 v2 = 224 }	# Unami -> Trenton, Newark, Scranton
+link = { eu4 = 965 v2 = 233 v2 = 232 }	# Manhattan -> Long Island, New York
+link = { eu4 = 967 v2 = 242 }	# Narraganset -> Providence
+link = { eu4 = 968 v2 = 244 v2 = 243 v2 = 245 }	# Massachusetts -> New Bedford, Boston, Pittsfield
+link = { eu4 = 966 v2 = 241 }	# Connecticut -> Hartford
+link = { eu4 = 970 v2 = 247 v2 = 246 }	# Pennacook -> Concord, Burlington
+link = { eu4 = 971 v2 = 248 v2 = 249 v2 = 250 }	# Abnaki -> Lewiston, Bangor, Caribou
+link = { eu4 = 969 v2 = 240 }	# Pocumtuk -> Plattsburgh
+# Canada
+link = { eu4 = 985 v2 = 69 v2 = 68 }	# Micmac -> Bathurst, Fredericton
+link = { eu4 = 984 v2 = 71 v2 = 72 }	# Acadia -> Halifax, Truro
+link = { eu4 = 983 v2 = 70 }	# Epekwitk -> Prince Edward Island
+link = { eu4 = 982 v2 = 73 }	# Unamakik -> Cape Breton Island
+link = { eu4 = 981 v2 = 75 }	# Taqamkuk -> Millertown
+link = { eu4 = 980 v2 = 74 v2 = 77 }	# Beothuk -> Saint Johns, St Pierre & Miquelon
+link = { eu4 = 996 v2 = 62 }	# Innu -> Sept-Îles
+link = { eu4 = 997 v2 = 2625 v2 = 76 }	# Labrador -> Port Hope Simpson, Hopedale
+link = { eu4 = 998 v2 = 2627 }	# Ungava -> Fort Chimo
+link = { eu4 = 1807 v2 = 45 v2 = 44 }	# Baffin Island -> Baffin Island, Coral Harbour
+link = { eu4 = 999 v2 = 2592 v2 = 2626 }	# Nunavik -> Ungava, Port Harrison
+link = { eu4 = 1000 v2 = 2593 v2 = 60 }	# Cree -> Fort George, Fort Rupert
+link = { eu4 = 995 v2 = 61 v2 = 59 }	# Atiamekw -> Chicoutimi, Nitchequon
+link = { eu4 = 986 v2 = 67 }	# Kespek -> Rimouski
+link = { eu4 = 990 v2 = 66 v2 = 58 v2 = 57 v2 = 56 }	# Kwedech -> Sherbrooke, Montreal, Ottawa, Kingston
+link = { eu4 = 994 v2 = 65 }	# Stadacona -> Quebec City
+link = { eu4 = 988 v2 = 53 }	# Huron -> Barrie
+link = { eu4 = 987 v2 = 54 v2 = 55 }	# Niagara -> Windsor, Hamilton
+link = { eu4 = 989 v2 = 46 }	# Ontario -> Toronto
+link = { eu4 = 1004 eu4 = 1806 v2 = 47 v2 = 2594 }	# MANY-TO-MANY: Attawapiskat, Weagamow -> Fort Severn, Pickle
+link = { eu4 = 1003 v2 = 2628 }	# Moose Cree -> Attawapiskat
+link = { eu4 = 1811 v2 = 2595 }	# Nunavut -> Nunavut
+link = { eu4 = 1006 v2 = 43 v2 = 38 }	# Chipewyan -> Arviat, Indian Lakes
+link = { eu4 = 1005 v2 = 37 }	# Swampy Cree -> Churchill
+link = { eu4 = 1011 v2 = 39 }	# Woods Cree -> Norway House
+link = { eu4 = 1812 v2 = 6 v2 = 7 v2 = 8 v2 = 10 v2 = 2598 v2 = 9 v2 = 11 v2 = 12 v2 = 2596 }	# Northwest Territories -> Whitehorse, Dawson, Ross River, Inuvik, Fort Liard, Fort Simpson, Echo Bay, Reliance, Fort Resolution
+link = { eu4 = 1810 v2 = 2599 v2 = 2631 v2 = 5 }	# Alaska -> Fairbanks, Unalakeet, Bethel
+link = { eu4 = 979 v2 = 4 v2 = 3 }	# Aleut -> Dutch Harbor, Kenai
+link = { eu4 = 976 v2 = 1 }	# Tlingit -> Sitka
+link = { eu4 = 978 v2 = 2630 }	# Kenai -> Cordova
+link = { eu4 = 977 v2 = 2 }	# Yakutat -> Yakutat
+link = { eu4 = 975 v2 = 15 }	# Tsimshian -> Prince Rupert
+link = { eu4 = 974 v2 = 13 }	# Kwakiutl -> Vancouver
+link = { eu4 = 972 v2 = 14 }	# Nootka -> Vancouver Island
+link = { eu4 = 973 v2 = 20 }	# Squamish -> Kelowna
+link = { eu4 = 1814 v2 = 17 v2 = 16 v2 = 2629 v2 = 18 v2 = 19 v2 = 21 }	# Columbia -> Atlin, Glenora, Beatton River, Fort Saint John, Prince George, Vernon
+link = { eu4 = 1813 v2 = 2597 v2 = 23 v2 = 24 v2 = 25 v2 = 22 v2 = 26 v2 = 28 v2 = 29 v2 = 27 v2 = 31 v2 = 32 v2 = 33 v2 = 34 v2 = 35 v2 = 30 }	# Saskatchewan -> Fort Vermilion, Athabaska Landing, Jasper, Banff, Edmonton, Calgary, Fort MacLeod, Medicine Hat, Denwood, Stanley, Prince Albert, Asquith, Saskatoon, Maple Creek, Regina
+link = { eu4 = 1010 v2 = 40 v2 = 41 }	# Manitoba -> Dauphin, Brandon
+link = { eu4 = 1009 v2 = 36 }	# Atikaki -> Winnipeg
+link = { eu4 = 1008 v2 = 42 v2 = 49 }	# Winnipeg -> Pembina, Dryden
+link = { eu4 = 1007 v2 = 50 }	# Ojibwa -> Thunder Bay
+link = { eu4 = 1001 v2 = 51 }	# Sault -> Sault Ste Marie
+link = { eu4 = 991 v2 = 52 }	# Ottawa -> Sudbury
+link = { eu4 = 993 v2 = 64 }	# Hochelega -> Trois-Rivières
+link = { eu4 = 992 v2 = 63 }	# Algonquin -> Temiscaming
+link = { eu4 = 1002 v2 = 48 }	# Abitbi -> Fort Albany
+# Greenland
+link = { eu4 = 1105 v2 = 2591 }	# Vestbygden -> Holsteinsborg
+link = { eu4 = 1104 v2 = 251 }	# Eiriksfjord -> Godthab
+link = { eu4 = 1804 v2 = 2636 v2 = 2632 }	# Greenland -> Egedesminde, Ammassalik
+# Western Coast
+link = { eu4 = 874 v2 = 78 v2 = 79 v2 = 80 }	# Salish -> Seattle, Spokane, Walla Walla
+link = { eu4 = 873 v2 = 81 v2 = 82 v2 = 83 }	# Chinook -> Portland, Baker City, Klamath Falls
+link = { eu4 = 872 v2 = 85 }	# Kalapuya -> Eureka
+link = { eu4 = 871 v2 = 84 v2 = 86 }	# Pomo -> San Francisco, Sacramento
+link = { eu4 = 869 v2 = 87 }	# Salinan -> Monterey
+link = { eu4 = 868 v2 = 89 }	# Chumash -> Los Angeles
+link = { eu4 = 867 v2 = 90 }	# Mojave -> San Diego
+link = { eu4 = 870 v2 = 88 }	# Yorkuts -> Mariposa
+# Central US
+link = { eu4 = 1808 v2 = 92 v2 = 91 v2 = 93 v2 = 94 v2 = 95 v2 = 96 v2 = 97 v2 = 98 v2 = 99 }	# Great Basin -> Coeur D'Alene, Boise, Pocatello, Carson City, Elko, Las Vegas, Salt Lake City, Loa, Moab
+link = { eu4 = 1809 v2 = 114 v2 = 113 v2 = 115 v2 = 116 v2 = 112 v2 = 111 v2 = 110 }	# Great Plains -> Missoula, Bozeman, Great Falls, Billings, Casper, Cody, Cheyenne
+link = { eu4 = 910 v2 = 158 }	# Chippewa -> Duluth
+link = { eu4 = 911 v2 = 177 }	# Menominee -> Marquette
+link = { eu4 = 912 v2 = 160 v2 = 161 }	# Sauk -> Eau Claire, Green Bay
+link = { eu4 = 914 v2 = 159 }	# Winnebago -> Milwaukee
+link = { eu4 = 913 v2 = 162 }	# Fox -> Madison
+link = { eu4 = 906 v2 = 119 v2 = 121 v2 = 122 }	# Lakota -> Dickinson, Dupree, Rapid City
+link = { eu4 = 909 v2 = 118 v2 = 157 }	# Mandan -> Minot, Moorhead
+link = { eu4 = 907 v2 = 117 v2 = 120 }	# Dakota -> Bismarck, Sioux Falls
+link = { eu4 = 898 v2 = 127 v2 = 126 }	# Kansas -> Goodland, Topeka
+link = { eu4 = 890 v2 = 128 }	# Kiowa -> Wichita
+link = { eu4 = 903 v2 = 124 v2 = 123 }	# Omaha -> Alliance, Omaha
+link = { eu4 = 901 v2 = 125 }	# Pawnee -> North Platte
+link = { eu4 = 908 v2 = 155 }	# Minnesota -> Minneapolis
+link = { eu4 = 904 v2 = 156 v2 = 154 }	# Nakota -> Granite Falls, Sioux City
+link = { eu4 = 905 v2 = 153 v2 = 152 }	# Iowa -> Cedar Rapids, Oskaloosa
+link = { eu4 = 902 v2 = 151 v2 = 150 v2 = 146 }	# Missouri -> Des Moines, Kansas City, St Louis
+link = { eu4 = 875 v2 = 101 }	# Canyon -> Flagstaff
+link = { eu4 = 876 v2 = 100 }	# Yavapai -> Phoenix
+link = { eu4 = 877 v2 = 102 }	# Pima -> Tucson
+link = { eu4 = 878 v2 = 108 }	# Navajo -> Alamosa
+link = { eu4 = 889 v2 = 106 v2 = 107 }	# Arapaho -> Denver, Grand Junction
+link = { eu4 = 880 v2 = 103 v2 = 109 }	# Pueblo -> Santa Fe, Pueblo
+link = { eu4 = 879 v2 = 104 }	# Apache -> Albuquerque
+link = { eu4 = 881 v2 = 105 }	# Piro -> Las Cruces
+link = { eu4 = 891 v2 = 129 }	# Jicarilla -> Oklahoma City
+link = { eu4 = 896 v2 = 130 }	# Ozark -> Tahlequah
+link = { eu4 = 892 v2 = 131 }	# Wichita -> Okmulgee
+link = { eu4 = 945 v2 = 176 v2 = 174 }	# Michigan -> Traverse City, Grand Rapids
+link = { eu4 = 944 v2 = 175 v2 = 173 }	# Potawatomi -> Saginaw, Detroit
+link = { eu4 = 943 v2 = 171 v2 = 172 }	# Miami -> South Bend, Fort Wayne
+link = { eu4 = 946 v2 = 180 v2 = 181 v2 = 179 }	# Wyandot -> Sandusky, Dayton, Columbus
+link = { eu4 = 915 v2 = 164 v2 = 163 v2 = 166 }	# Illinois -> Rockford, Chicago, Peoria
+link = { eu4 = 916 v2 = 165 v2 = 167 }	# Kaskaskia -> Champaign, Springfield
+link = { eu4 = 899 v2 = 149 v2 = 147 }	# Osage -> Jefferson City, Joplin
+link = { eu4 = 900 v2 = 148 }	# Tamaroa -> Malden
+link = { eu4 = 897 v2 = 145 }	# Quapaw -> Fayetteville
+link = { eu4 = 895 v2 = 144 v2 = 143 }	# Arkansas -> Hot Springs, Little Rock
+link = { eu4 = 919 v2 = 193 }	# Chickasaw -> Vicksburg
+link = { eu4 = 925 v2 = 196 }	# Tuskegee -> Tuscaloosa
+link = { eu4 = 924 v2 = 195 }	# Alabama -> Montgomery
+link = { eu4 = 931 v2 = 201 }	# Chiaha -> Atlanta
+link = { eu4 = 933 v2 = 206 }	# Catawba -> Columbia
+link = { eu4 = 937 v2 = 208 v2 = 209 }	# Tuscarora -> Raleigh, Charlotte
+link = { eu4 = 936 v2 = 2556 }	# Cheraw -> Asheville
+link = { eu4 = 935 v2 = 190 v2 = 191 }	# Cherokee -> Knoxville, Chattanooga
+link = { eu4 = 934 v2 = 188 v2 = 186 }	# Shawnee -> Nashville, Bowling Green
+link = { eu4 = 918 v2 = 189 v2 = 187 }	# Tennessee -> Memphis, Paducah
+link = { eu4 = 917 v2 = 168 }	# Cahokia -> Carbondale
+link = { eu4 = 942 v2 = 169 }	# Wea -> Indianapolis
+link = { eu4 = 939 v2 = 184 v2 = 170 }	# Pennyrile -> Louisville, Evansville
+link = { eu4 = 964 v2 = 239 }	# Mohawk -> Watertown
+link = { eu4 = 961 v2 = 238 }	# Oneida -> Syracuse
+link = { eu4 = 958 v2 = 236 }	# Seneca -> Buffalo
+link = { eu4 = 959 v2 = 237 }	# Cayuga -> Rochester
+link = { eu4 = 963 v2 = 234 }	# Mahican -> Albany
+link = { eu4 = 960 v2 = 235 }	# Onondaga -> Binghamton
+link = { eu4 = 947 v2 = 178 }	# Erie -> Cleveland
+link = { eu4 = 954 v2 = 228 }	# Allegheny -> Erie
+link = { eu4 = 956 v2 = 223 v2 = 226 }	# Lenape -> Philadelphia, Harrisburg
+link = { eu4 = 955 v2 = 225 v2 = 227 }	# Susquehanna -> Williamsport, Pittsburgh
+link = { eu4 = 952 v2 = 215 }	# Manahoac -> Staunton
+link = { eu4 = 951 v2 = 217 }	# Kanawha -> Wheeling
+link = { eu4 = 948 v2 = 183 v2 = 182 }	# Ohio -> Marietta, Cincinnati
+link = { eu4 = 940 v2 = 185 }	# Kentucky -> Lexington
+link = { eu4 = 941 v2 = 218 }	# Cumberland -> Huntington
+link = { eu4 = 949 v2 = 216 }	# Monacan -> Roanoke
+# North America
+# South America
+# Brazil
+link = { eu4 = 747 v2 = 2415 }	# Tucujulandia -> Macapá
+link = { eu4 = 748 v2 = 2410 }	# Grao Para -> Belém
+link = { eu4 = 749 v2 = 2424 v2 = 2426 }	# Maranhao -> São Luís, Teresina
+link = { eu4 = 751 v2 = 2429 v2 = 2430 }	# Ceara -> Fortaleza, Crato
+link = { eu4 = 753 v2 = 2431 }	# Rio Grande -> Natal
+link = { eu4 = 754 v2 = 2428 }	# Itamaraca -> Paraíba
+link = { eu4 = 755 v2 = 2432 v2 = 2433 }	# Pernambuco -> Recife, Cabrobo
+link = { eu4 = 757 v2 = 2436 }	# Ilheus -> Salvador de Bahia
+link = { eu4 = 760 v2 = 2439 }	# Porto Seguro -> Porto Seguro
+link = { eu4 = 761 v2 = 2449 }	# Espirito Santo -> Vitória
+link = { eu4 = 762 v2 = 2448 }	# Sao Tome -> Campos
+link = { eu4 = 763 v2 = 2447 }	# Rio de Janeiro -> Rio de Janeiro
+link = { eu4 = 764 v2 = 2451 v2 = 2446 }	# Santo Amaro -> Santos, São João del Rey
+link = { eu4 = 766 v2 = 2455 v2 = 2450 }	# Sao Vicente -> Iguape, São Paulo
+link = { eu4 = 756 v2 = 2434 v2 = 2435 }	# Bahia -> Maceió, Aracaju
+link = { eu4 = 750 v2 = 2425 }	# Alpercatas -> Chapada
+link = { eu4 = 752 v2 = 2427 }	# Oeiras -> Oeiras
+link = { eu4 = 759 v2 = 2437 v2 = 2440 }	# Diamentina -> Juazeiro, Vitória da Conquista
+link = { eu4 = 758 v2 = 2438 }	# Goias -> Vila do Barra
+link = { eu4 = 765 v2 = 2443 v2 = 2442 }	# Minas Gerais -> Januária, Sabará
+link = { eu4 = 1803 v2 = 2411 v2 = 2600 v2 = 2413 v2 = 2423 v2 = 2418 v2 = 2417 v2 = 2550 v2 = 2405 }	# Southern Amazonas -> Santarém, Altamira, Marabá, Palmas, Cuiabá, Vila Bela, Forte do Príncipe, Borba
+link = { eu4 = 1802 v2 = 2404 v2 = 2402 v2 = 2412 v2 = 2408 v2 = 1979 v2 = 2403 v2 = 2278 v2 = 2261 v2 = 2401 v2 = 2407 v2 = 2262 v2 = 2260 v2 = 2263 v2 = 2289 v2 = 2288 v2 = 2286 v2 = 2284 v2 = 2549 }	# Northern Amazonas -> Tefe, Manaus, Óbidos, Oriximina, Biloka, Cachoeira, San Fernando de Atabapo, Obando, Marabitanas, Tabatinga, Casanare, San José del Guaviare, El Encanto, Puca Urco, Yuncos, Iquitos, Tena, Tarauacá
+link = { eu4 = 771 v2 = 2463 v2 = 2464 }	# Patos -> Porto Alegre, Pelotas
+link = { eu4 = 769 v2 = 2461 v2 = 2457 }	# Santana -> Desterro, Curitiba
 
-
+# Carry On
 }
