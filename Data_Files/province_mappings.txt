@@ -659,7 +659,7 @@ link = { eu4 = 498 v2 = 2228 }	# Dominica -> Martinique
 link = { eu4 = 499 v2 = 2231 }	# Martinique -> Saint Lucia
 link = { eu4 = 500 v2 = 2409 }	# St. Lucia -> Saint Vincent
 link = { eu4 = 501 v2 = 2229 }	# Barbados -> Barbados
-link = { eu4 = 741 v2 = 2233 v2 = 2269 v2 = 2276 v2 = 2267 }	# Cumana -> Grenada, Güiria, Curiapo, Cumaná
+link = { eu4 = 741 v2 = 2233 v2 = 2269 v2 = 2267 }	# Cumana -> Grenada, Güiria, Cumaná
 link = { eu4 = 502 v2 = 2237 v2 = 2238 }	# Trinidad -> Trinidad, Tobago
 link = { eu4 = 481 v2 = 203 }	# Bermuda -> Bermuda
 # Panama
@@ -868,7 +868,7 @@ link = { eu4 = 941 v2 = 218 }	# Cumberland -> Huntington
 link = { eu4 = 949 v2 = 216 }	# Monacan -> Roanoke
 # South America
 # Brazil
-link = { eu4 = 747 v2 = 2415 }	# Tucujulandia -> Macapá
+link = { eu4 = 747 v2 = 2415 v2 = 2414 }	# Tucujulandia -> Macapá, Amapá
 link = { eu4 = 748 v2 = 2410 }	# Grao Para -> Belém
 link = { eu4 = 749 v2 = 2424 v2 = 2426 }	# Maranhao -> São Luís, Teresina
 link = { eu4 = 751 v2 = 2429 v2 = 2430 }	# Ceara -> Fortaleza, Crato
@@ -881,23 +881,139 @@ link = { eu4 = 761 v2 = 2449 }	# Espirito Santo -> Vitória
 link = { eu4 = 762 v2 = 2448 }	# Sao Tome -> Campos
 link = { eu4 = 763 v2 = 2447 }	# Rio de Janeiro -> Rio de Janeiro
 link = { eu4 = 764 v2 = 2451 v2 = 2446 }	# Santo Amaro -> Santos, São João del Rey
-link = { eu4 = 766 v2 = 2455 v2 = 2450 }	# Sao Vicente -> Iguape, São Paulo
+link = { eu4 = 766 v2 = 2455 v2 = 2450 v2 = 2452 }	# Sao Vicente -> Iguape, São Paulo, Campinas
 link = { eu4 = 756 v2 = 2434 v2 = 2435 }	# Bahia -> Maceió, Aracaju
 link = { eu4 = 750 v2 = 2425 }	# Alpercatas -> Chapada
 link = { eu4 = 752 v2 = 2427 }	# Oeiras -> Oeiras
 link = { eu4 = 759 v2 = 2437 v2 = 2440 }	# Diamentina -> Juazeiro, Vitória da Conquista
-link = { eu4 = 758 v2 = 2438 }	# Goias -> Vila do Barra
-link = { eu4 = 765 v2 = 2443 v2 = 2442 }	# Minas Gerais -> Januária, Sabará
+link = { eu4 = 758 v2 = 2438 v2 = 2444 }	# Goias -> Vila do Barra, Paracatu
+link = { eu4 = 765 v2 = 2443 v2 = 2442 v2 = 2441 }	# Minas Gerais -> Januária, Sabará, Ouro Preto
 link = { eu4 = 1803 v2 = 2411 v2 = 2600 v2 = 2413 v2 = 2423 v2 = 2418 v2 = 2417 v2 = 2550 v2 = 2405 }	# Southern Amazonas -> Santarém, Altamira, Marabá, Palmas, Cuiabá, Vila Bela, Forte do Príncipe, Borba
-link = { eu4 = 1802 v2 = 2404 v2 = 2402 v2 = 2412 v2 = 2408 v2 = 1979 v2 = 2403 v2 = 2278 v2 = 2261 v2 = 2401 v2 = 2407 v2 = 2262 v2 = 2260 v2 = 2263 v2 = 2289 v2 = 2288 v2 = 2286 v2 = 2284 v2 = 2549 }	# Northern Amazonas -> Tefe, Manaus, Óbidos, Oriximina, Biloka, Cachoeira, San Fernando de Atabapo, Obando, Marabitanas, Tabatinga, Casanare, San José del Guaviare, El Encanto, Puca Urco, Yuncos, Iquitos, Tena, Tarauacá
+link = { eu4 = 1802 v2 = 2404 v2 = 2402 v2 = 2412 v2 = 2408 v2 = 2403 v2 = 2278 v2 = 2261 v2 = 2401 v2 = 2407 v2 = 2262 v2 = 2260 v2 = 2263 v2 = 2289 v2 = 2288 v2 = 2286 v2 = 2549 }	# Northern Amazonas -> Tefe, Manaus, Óbidos, Oriximina, Cachoeira, San Fernando de Atabapo, Obando, Marabitanas, Tabatinga, Casanare, San José del Guaviare, El Encanto, Puca Urco, Yuncos, Iquitos, Tarauacá
 link = { eu4 = 771 v2 = 2463 v2 = 2464 }	# Patos -> Porto Alegre, Pelotas
 link = { eu4 = 769 v2 = 2461 v2 = 2457 }	# Santana -> Desterro, Curitiba
+link = { eu4 = 768 v2 = 2458 v2 = 2460 v2 = 2306 }	# Guayra -> Guarapuava, Castro, Sorocaba
+link = { eu4 = 767 v2 = 2422 v2 = 2421 v2 = 2445 }	# Mato Grosso -> Aganja, Vila Boa, Uberaba
 # Venezuela
 link = { eu4 = 491 v2 = 2235 }	# Curacao -> Aruba
 link = { eu4 = 831 v2 = 2272 v2 = 2234 v2 = 2273 v2 = 2265 v2 = 2268 v2 = 2264 v2 = 2266 }	# Caracas -> Coro, Curacao, Barquisimeto, Guanare, San Felipe, Caracas, Calabozo
 link = { eu4 = 830 v2 = 2270 v2 = 2271 }	# Maracaibo -> Maracaibo, Valera
-link = { eu4 = 834 v2 = 2274 }	# Barinas -> Barinas
+link = { eu4 = 834 v2 = 2274 v2 = 2277 }	# Barinas -> Barinas, El Jobal
 # Colombia
 link = { eu4 = 829 v2 = 2255 }	# Magdalena -> Barranquilla
 link = { eu4 = 828 v2 = 2254 }	# Cartagena -> Cartagena de Indias
+link = { eu4 = 822 v2 = 2259 v2 = 2257 }	# Caqueta -> Pasto, Popayán
+link = { eu4 = 823 v2 = 2258 }	# Cauca -> Buenaventura
+link = { eu4 = 827 v2 = 2253 }	# Antioquía -> Quibdó
+link = { eu4 = 824 v2 = 2256 }	# Mariquita -> Cali
+link = { eu4 = 832 v2 = 2252 }	# Chiancon -> Medellín
+link = { eu4 = 833 v2 = 2251 v2 = 2249 }	# Tunja -> Cúcuta, Tunja
+link = { eu4 = 825 v2 = 2250 v2 = 2247 v2 = 2248 }	# Bogota -> Manizales, Bogotá, Ibagué
+# Chile
+link = { eu4 = 782 v2 = 2400 v2 = 2335 }	# Tierra del Fuego -> Río Grande, Porvenir
+link = { eu4 = 783 v2 = 2334 v2 = 2333 }	# Patagonia Occidental -> Punta Arenas, Puerto Aisén
+link = { eu4 = 784 v2 = 2332 v2 = 2328 v2 = 2329 }	# Huillimapu -> Osorno, Valdivia, Temuco
+link = { eu4 = 787 v2 = 2330 v2 = 2331 v2 = 2327 v2 = 2324 v2 = 2325 v2 = 2326 }	# Pincunmapu -> Cauquenes, Chillán, Talca, Santiago, Valparaíso, Viña del Mar
+link = { eu4 = 792 v2 = 2322 v2 = 2323 }	# Copiapo -> Copiapó, La Serena
+link = { eu4 = 793 v2 = 2305 v2 = 2309 }	# Atacama -> Antofagasta, Calama
+link = { eu4 = 796 v2 = 2307 v2 = 2308 v2 = 2578 }	# Arica -> Iquique, Arica, Tacna
+# Falklands
+link = { eu4 = 1095 v2 = 2131 }	# Falklands -> Falkland Islands
+# Argentina
+link = { eu4 = 781 v2 = 2399 v2 = 2398 }	# Patagonia Oriental -> Río Gallegos, Puerto Deseado
+link = { eu4 = 780 v2 = 2397 v2 = 2396 v2 = 2392 }	# Tehuelmapu -> Esquel, Rawson, Viedma
+link = { eu4 = 785 v2 = 2391 v2 = 2394 v2 = 2390 v2 = 2384 }	# Pehuenmapu -> Neuquén, Bariloche, San Rafael, Mercedes
+link = { eu4 = 786 v2 = 2393 v2 = 2353 v2 = 2395 }	# Salinas Grande -> Telén, Trenque Lauquen, Curacó
+link = { eu4 = 788 v2 = 2389 v2 = 2388 v2 = 2387 v2 = 2385 v2 = 2386 v2 = 2383 }	# Cuyo -> Mendoza, Calingasta, San Juan, La Rioja, Santa Rita, San Luis
+link = { eu4 = 791 v2 = 2375 v2 = 2368 v2 = 2374 v2 = 2373 }	# Catamarca -> Vinchina, Salta, Catamarca, Tucumán
+link = { eu4 = 779 v2 = 2355 v2 = 2354 v2 = 2352 v2 = 2351 v2 = 2350 }	# Serranos -> Carmen, Bahía Blanca, Mar del Plata, La Plata, Azul
+link = { eu4 = 778 v2 = 2348 v2 = 2360 v2 = 2359 v2 = 2345 }	# Rio de la Plata -> Buenos Aires, Paraná, Colón, Paysandú
+link = { eu4 = 773 v2 = 2347 v2 = 2344 v2 = 2346 }	# Banda Oriente -> Melo, Montevideo, Tacuarembó
+link = { eu4 = 772 v2 = 2467 v2 = 2466 }	# Uruguay -> Alegrete, Santa Maria
+link = { eu4 = 777 v2 = 2357 v2 = 2356 v2 = 2358 v2 = 2361 v2 = 2554 }	# Parana -> Curuzú Cuatiá, Corrientes, Santo Tomás, Sancti Spiritu, Posadas
+link = { eu4 = 789 v2 = 2349 v2 = 2363 v2 = 2382 v2 = 2381 }	# Pampas -> Junín, Rosario, Renancó, Río Cuarto
+link = { eu4 = 790 v2 = 2379 v2 = 2380 v2 = 2362 v2 = 2378 v2 = 2377 v2 = 2376 v2 = 2365 v2 = 2364 }	# Chaco Austral -> Córdoba de Argentina, Villa Nueva, Reconquista, Mailín, Añatuya, Santiago del Estero, Villa Ángela, Resistencia
+link = { eu4 = 794 v2 = 2370 v2 = 2369 v2 = 2371 v2 = 2372 }	# Jujuy -> Cochinoca, Jujuy, Equia, Rivadavia
+# Bolivia
+link = { eu4 = 799 v2 = 2367 v2 = 2366 v2 = 2337 v2 = 2338 }	# Chaco Boreal -> Xolotas, Formosa, Fortin Falcon, Puerto Guaraní
+link = { eu4 = 795 v2 = 2314 v2 = 2315 v2 = 2313 }	# Chichas -> Potosí, Tarija, Chuquisaca
+link = { eu4 = 797 v2 = 2312 }	# Caracara -> Oruro
+link = { eu4 = 802 v2 = 2310 }	# Chuquiabo -> La Paz
+link = { eu4 = 803 v2 = 2321 }	# Moxos -> Cobija
+link = { eu4 = 800 v2 = 2318 v2 = 2317 v2 = 2320 }	# Chiquitos -> Roboré, San Ignacio, Riberalta
+link = { eu4 = 801 v2 = 2319 }	# Caranga -> Santa Ana
+link = { eu4 = 798 v2 = 2311 v2 = 2316 }	# Charcas -> Cochabamba, Santa Cruz
+# Paraguay
+link = { eu4 = 775 v2 = 2419 v2 = 2416 v2 = 2420 }	# Xeres -> Corumbá, Dourados, Iguatemi
+link = { eu4 = 776 v2 = 2340 v2 = 2339 v2 = 2341 v2 = 2342 v2 = 2343 }	# Itenines -> Pilar, Asuncion, Encarnación, San Pedro, Concepción
+link = { eu4 = 770 v2 = 2465 v2 = 2462 v2 = 2459 }	# Tape -> Passo Fundo, São Miguel, Lajes
+link = { eu4 = 774 v2 = 2453 v2 = 2456 }	# Mbaracayu -> Assis, Araraquara
+# Peru
+link = { eu4 = 804 v2 = 2303 }	# Puno -> Puno
+link = { eu4 = 805 v2 = 2304 }	# Arequipa -> Arequipa
+link = { eu4 = 806 v2 = 2297 }	# Nazca -> Ica
+link = { eu4 = 807 v2 = 2299 }	# Huamanga -> Ayacucho
+link = { eu4 = 809 v2 = 2295 v2 = 2298 }	# Lima -> Lima, Huaraz
+link = { eu4 = 816 v2 = 2291 }	# Tumbes -> Piura
+link = { eu4 = 812 v2 = 2292 }	# Chanchan -> Trujillo
+link = { eu4 = 811 v2 = 2293 v2 = 2300 }	# Tarma -> Huánuco, Pucallpa
+link = { eu4 = 810 v2 = 2296 }	# Huancavelica -> Huancavelica
+link = { eu4 = 808 v2 = 2302 v2 = 2301 }	# Cuzco -> Cusco, Puerto Maldonado
+link = { eu4 = 813 v2 = 2290 }	# Cajamarca -> Cajamarca
+link = { eu4 = 814 v2 = 2294 }	# Huanuco -> Moyobamba
+link = { eu4 = 815 v2 = 2287 }	# Maynas -> Yurimaguas
+# Ecuador
+link = { eu4 = 2002 v2 = 2285 }	# Galápagos Islands -> Galápagos
+link = { eu4 = 819 v2 = 2280 }	# Guayaquil -> Guayaquil
+link = { eu4 = 820 v2 = 2281 }	# Quito -> Esmereldas
+link = { eu4 = 821 v2 = 2279 v2 = 2284 }	# Quijos -> Quito, Tena
+link = { eu4 = 818 v2 = 2283 }	# Canelos -> Zamora
+link = { eu4 = 817 v2 = 2282 }	# Cuenca -> Loja
+# Guyana, Suriname, French Guiana
+link = { eu4 = 746 v2 = 2246 v2 = 2241 }	# Cayenne -> Maripasoula, Cayenne
+link = { eu4 = 745 v2 = 2240 v2 = 2245 }	# Suriname -> Paramaribo, Apetina
+link = { eu4 = 744 v2 = 2239 v2 = 1979 v2 = 2242 v2 = 2243 }	# Demerara -> Georgetown, Biloka, Mahdia, Essequibo
+link = { eu4 = 743 v2 = 2276 }	# Essequibo -> Curiapo
+link = { eu4 = 742 v2 = 2275 v2 = 2532 }	# Guayana -> Angostura, Forte São Joaquim
+# Middle East
+link = { eu4 = 400 v2 = 1171 v2 = 1166 }	# Muscat -> Sur, Muscat
+link = { eu4 = 401 v2 = 1172 }	# Dhofar -> Duqm
+link = { eu4 = 402 v2 = 1174 v2 = 1175 }	# Mahra -> Salalah, Ghayda
+link = { eu4 = 389 v2 = 1173 v2 = 1176 }	# Hadramut -> Mukalla, Bayda
+link = { eu4 = 388 v2 = 1412 }	# Aden -> Aden
+link = { eu4 = 387 v2 = 1180 }	# Mocha -> Taizz
+link = { eu4 = 386 v2 = 1179 }	# Asir -> Hodeida
+link = { eu4 = 385 v2 = 1151 v2 = 1155 }	# Mecca -> Mecca, Abha
+link = { eu4 = 383 v2 = 1154 v2 = 922 }	# Tabouk -> Tabuk, Aqaba
+link = { eu4 = 384 v2 = 1153 v2 = 1152 }	# Medina -> Medina, Jidda
+link = { eu4 = 390 v2 = 1178 }	# Sana'a -> Sana
+link = { eu4 = 391 v2 = 1161 }	# Najran -> Sharurah
+link = { eu4 = 392 v2 = 1159 }	# Nejd -> Halaban
+link = { eu4 = 393 v2 = 1160 v2 = 1158 }	# Jabal Shammar -> Hail, Rafha
+link = { eu4 = 405 v2 = 1156 }	# Al Jawf -> Kaf
+link = { eu4 = 398 v2 = 1168 }	# Qawasim -> Dubai
+link = { eu4 = 399 v2 = 1169 }	# Suhar -> Sohar
+link = { eu4 = 403 v2 = 1170 }	# Nizwa -> Nizwa
+link = { eu4 = 397 v2 = 1167 }	# Beni Yas -> Abu Dhabi
+link = { eu4 = 404 v2 = 2586 }	# Liwa -> Al-Ahsa
+link = { eu4 = 395 v2 = 1165 v2 = 1164 }	# Qatar -> Doha, Hufuf
+link = { eu4 = 396 v2 = 1162 }	# Bahrain -> Bahrain
+link = { eu4 = 394 v2 = 1163 v2 = 1157 }	# Al Hasa -> Qatif, Riyadh
+link = { eu4 = 408 v2 = 935 v2 = 932 v2 = 933 }	# Basra -> Kuwait, Basra, Nasiriyya
+link = { eu4 = 409 v2 = 934 }	# Karbala -> Najaf
+link = { eu4 = 379 v2 = 919 v2 = 918 v2 = 917 }	# Judea -> Jaffa, Nablus, Jerusalem
+link = { eu4 = 1855 v2 = 915 v2 = 916 }	# Sidon -> Sidon, Acre
+link = { eu4 = 377 v2 = 900 v2 = 898 v2 = 897 }	# Aleppo -> Antioch, Antep, Aleppo
+link = { eu4 = 378 v2 = 905 v2 = 914 v2 = 913 }	# Beirut -> Latakia, Askaleh, Beirut
+link = { eu4 = 1849 v2 = 904 }	# Hamah  -> Hama
+link = { eu4 = 380 v2 = 911 v2 = 908 }	# Al Karak -> Maan, Amman
+link = { eu4 = 381 v2 = 909 v2 = 906 v2 = 910 }	# Hawran -> Jerash, Suwayda, Ruwayshid
+link = { eu4 = 382 v2 = 903 v2 = 902 v2 = 912 }	# Damascus -> Homs, Damascus, Baalbeck
+link = { eu4 = 406 v2 = 907 v2 = 931 v2 = 929 }	# Badiyat Ash Sham -> Palmyra, Rutbah, Karbala
+link = { eu4 = 407 v2 = 899 v2 = 893 v2 = 901 }	# Dayr Az Zor -> Urfa, Diyarbakir, Dayr al-Zour
+link = { eu4 = 411 v2 = 923 v2 = 892 }	# Mosul -> Mosul, Hakkari
+link = { eu4 = 410 v2 = 927 v2 = 925 v2 = 926 v2 = 928 v2 = 930 }	# Iraq-i-Arab -> Samarra, Kirkuk, Baghdad, Mendeli, Kut
+link = { eu4 = 412 v2 = 1132 v2 = 1131 v2 = 1133 }	# Khuzestan -> Abadan, Ahvaz, Dezful
+link = { eu4 = 413 v2 = 1120 v2 = 1117 v2 = 1119 }	# Luristan -> Khoramabad, Kermanshah, Ilam
+link = { eu4 = 415 v2 = 924 v2 = 1110 }	# Sharizhor -> Arbil, Urumia
 }
