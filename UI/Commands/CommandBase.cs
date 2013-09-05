@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Input;
 using Converter.UI.Settings;
+using System.Windows.Threading;
 
 namespace Converter.UI.Commands
 {
-    public abstract class CommandBase : ICommand
+    public abstract class CommandBase : DispatcherObject, ICommand
     {
         private ConverterOptions options;
 
@@ -15,11 +16,9 @@ namespace Converter.UI.Commands
 
         public event EventHandler CanExecuteChanged
         {
-
             add { CommandManager.RequerySuggested += value; }
 
             remove { CommandManager.RequerySuggested -= value; }
-
         }
 
         protected ConverterOptions Options
@@ -47,6 +46,17 @@ namespace Converter.UI.Commands
 
         protected virtual void OnExecute(object parameter)
         {
+        }
+
+        protected void MarshallMethod(Action action, DispatcherPriority priority)
+        {
+            if (!this.Dispatcher.CheckAccess())
+            {
+                this.Dispatcher.Invoke(action, priority);
+                return;
+            }
+
+            action();
         }
     }
 }

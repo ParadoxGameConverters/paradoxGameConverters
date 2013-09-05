@@ -21,13 +21,15 @@ namespace Converter.UI.Providers
         private IList<GameConfiguration> sourceGames;
         private IList<GameConfiguration> targetGames;
         private IList<PreferenceCategory> preferenceCategories;
+        private ConverterOptions options;
 
         #endregion
 
         #region [ Constructor ]
 
-        public ConfigurationProvider()
+        public ConfigurationProvider(ConverterOptions options)
         {
+            this.options = options;
         }
 
         #endregion
@@ -61,7 +63,7 @@ namespace Converter.UI.Providers
         }
 
         #endregion
-
+        
         #endregion
 
         #region [ Methods ]
@@ -85,7 +87,7 @@ namespace Converter.UI.Providers
             try
             {
                 var foundCategories = config.Descendants("category");
-
+                
                 foreach (var foundCategory in foundCategories)
                 {
                     var category = new PreferenceCategory();
@@ -96,51 +98,23 @@ namespace Converter.UI.Providers
 
                     foreach (var foundPreference in foundPreferences)
                     {
-                        var preferenceType = foundPreference.Descendants("type").First().Value.ToString() == PreferenceType.PreDefined.ToString() ? PreferenceType.PreDefined : PreferenceType.Numerical;
-
-                        IPreference preference;
-
-                        if (preferenceType == PreferenceType.Numerical)
-                        {
-                            preference = new Preference<double>();
-                        }
-                        else
-                        {
-                            preference = new Preference<string>();
-                        }
+                        IPreference preference = new Preference();
 
                         preference.Name = XElementHelper.ReadStringValue(foundPreference, "name");
                         preference.FriendlyName = XElementHelper.ReadStringValue(foundPreference, "friendlyName");
                         preference.Description = XElementHelper.ReadStringValue(foundPreference, "description", false);
-
+                        preference.MinValue = XElementHelper.ReadDoubleValue(foundPreference, "minValue", false);
+                        preference.MaxValue = XElementHelper.ReadDoubleValue(foundPreference, "maxValue", false);
+                        preference.Value = XElementHelper.ReadStringValue(foundPreference, "value", false);
+                        preference.HasDirectlyEditableValue = XElementHelper.ReadBoolValue(foundPreference, "hasDirectlyEditableValue", false);
+                        
                         category.Preferences.Add(preference);
 
                         var foundEntries = XElementHelper.ReadEnumerable(foundPreference, "entryOption", false);
-
-                        if (foundEntries.Count() > 0)
+                        foreach (var entry in foundEntries)
                         {
-                            foreach (var foundEntry in foundEntries)
-                            {
-                                if (preferenceType == PreferenceType.Numerical)
-                                {
-                                    var castPreferences = ((Preference<double>)preference);
-                                    castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundEntry, PreferenceType.Numerical) as PreferenceEntry<double>);
-                                }
-                                else
-                                {
-                                    var castPreferences = ((Preference<string>)preference);
-                                    castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundEntry, PreferenceType.PreDefined) as PreferenceEntry<string>);
-                                }
-                            }
+                            preference.Entries.Add(this.BuildPreferenceEntry(preference, entry));
                         }
-                        else
-                        {
-                            if (preferenceType == PreferenceType.Numerical)
-                            {
-                                var castPreferences = ((Preference<double>)preference);
-                                castPreferences.Entries.Add(this.BuildPreferenceEntry(preference, foundPreference, PreferenceType.Numerical) as PreferenceEntry<double>);
-                            }
-                        }                        
                     }
                 }
             }
@@ -159,7 +133,7 @@ namespace Converter.UI.Providers
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + " - " + ex.InnerException, "Configuration file error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.options.Logger.AddLogEntry(new LogEntry(ex.Message + " - " + ex.InnerException, LogEntrySeverity.Error, LogEntrySource.UI));
             }
 
             return categories;
@@ -169,27 +143,26 @@ namespace Converter.UI.Providers
 
         #region [ Preference Entry Construction ]
 
-        private IPreferenceEntry BuildPreferenceEntry(IPreference parent, XElement foundEntry, PreferenceType preferenceType)
+        private IPreferenceEntry BuildPreferenceEntry(IPreference parent, XElement foundEntry)
         {
-            IPreferenceEntry entry;
-
             var name = XElementHelper.ReadStringValue(foundEntry, "name");
             var friendlyName = XElementHelper.ReadStringValue(foundEntry, "friendlyName");
             var description = XElementHelper.ReadStringValue(foundEntry, "description", false);
             var isSelectedByDefault = XElementHelper.ReadBoolValue(foundEntry, "isDefault", false);
 
-            if (preferenceType == PreferenceType.Numerical)
+            if (isSelectedByDefault && parent.HasDirectlyEditableValue)
             {
-                var minValue = XElementHelper.ReadDoubleValue(foundEntry, "minValue");
-                var maxValue = XElementHelper.ReadDoubleValue(foundEntry, "maxValue");
-                var defaultValue = XElementHelper.ReadDoubleValue(foundEntry, "defaultValue");
+                /*
+                 * This preference has both a list of pre-defined entries - one of which are selected by default - 
+                 * and a default value specified in the config file. There is really no obvious way to know which
+                 * the user actually wanted to be the default value, so log this as a warning, and let the 
+                 * pre-defined option override the directly specified default value.
+                 */
 
-                entry = new NumericPreferenceEntry(name, friendlyName, description, minValue, maxValue, defaultValue, parent);
+                parent.Value = name;
             }
-            else
-            {
-                entry = new StringPreferenceEntry(name, friendlyName, description, parent) { IsSelected = isSelectedByDefault };
-            }
+            
+            var entry = new PreferenceEntry(name, friendlyName, description, parent) { IsSelected = isSelectedByDefault };
 
             return entry;
         }
@@ -218,6 +191,7 @@ namespace Converter.UI.Providers
                 var steamId = XElementHelper.ReadStringValue(game, "steamId");
                 var installationFolder = this.GetSteamInstallationFolder(steamId);
                 var configurationFileDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileDirectoryTagName");
+                var saveGameExtension = XElementHelper.ReadStringValue(game, "saveGameExtension");
 
                 gameConfigurations.Add(new GameConfiguration()
                 {
@@ -225,7 +199,8 @@ namespace Converter.UI.Providers
                     FriendlyName = XElementHelper.ReadStringValue(game, "friendlyName"),
                     SaveGamePath = (type == DefaultSaveGameLocationType.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation"),
                     SteamId = steamId,
-                    ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName
+                    ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName,
+                    SaveGameExtension = saveGameExtension
                 });
             }
 
@@ -261,7 +236,7 @@ namespace Converter.UI.Providers
                     {
                         if (Directory.Exists(steamInstallationPath))
                         {
-                            //this.LogItems.Add(new LogEntry("Located Steam game files: " + steamInstallationPath));
+                            //this.options.Logger.AddLogEntry(new LogEntry("Located Steam game files: " + steamInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI));
                             return steamInstallationPath;
                         }
                     }

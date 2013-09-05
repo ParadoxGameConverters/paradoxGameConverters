@@ -463,9 +463,44 @@ Revision	Log Message
 456		More improvements to converter mod
 457		Added tag 0.9 Release for changeset 8c5b60d89cf0
 458		Don't add meaningless localizations
-
+459		Added support for missing preference entry types (mostly - one requires further work)
+		Added support for saving configuration.txt to disk
+460		Completed configuration file support.
+		Saves configuration file to disk.
+		Asyncrously executes converter process.
+		Added logging functionality to give the user some more feedback
+		Hid the summary view due to logical user interface inconsistency. Might reintroduce later.
+		Completed preferencetype/xml reading refactor.
+461		Added Source column to log.
+		Logging/conversion is actually usable, but is effectively synchronous.
+462		Added working (but not very fancy) asynchronous running of the converter.
+		Various bugfixes.
+		Automatically finds the converter .exe if stored in the same directory as the UI executable.
+		Culture-setting bugfix - the timestamps in the log are no longer hardcoded to american date format.
+		Various other minor fixes.
+463		Initial code for CK2 mod support
+464		Now reads the source savegame directly, without copying it to the working folder.
+465		Fixed an issue where the user could start multiple conversion processes at the same time. The "Convert" button is now blocked while running.
+		The log now scrolls to the bottom when new items are added.
+466		Now copies output save game to eu3 save game folder, then deletes the temp copy in the working directory. The new converted save is named <ck2savename>_converted.eu3
+		Fixed bug with output save game directory in Configuration.xml
+		Implemented non-obtrusive auto-scrolling mechanism.
+		Forced some more error handling(xml parsing related) into using the logging mechanism
+467		Removed unnecessary dependencies from UI projet.
+		Fixed one crash that would occur if the UI was ran without the converter in the same folder.
+		Adjusted some logging output
+468		Fixed various issues with copying save games after conversion.
+		Added save game file extension to game configuration.
+469		Initial work on automated mod installation.
+470		Merge
+471		Merge main into minor
+472		CK2Plus saves convert without crashing (but with errors)
+473		Fix bugs with province history
 475		Make text more clear for vassalSocre setting
 476		Update converter mod to match 5.2
-
+477		Remove dead titles
+478		Various fixes for better mod support
+479		Converter mod output now more convenient
 480		More converter mod updates to match 5.2
 481		Remove extraneous country files
+482		Finish integrating mod into normal release

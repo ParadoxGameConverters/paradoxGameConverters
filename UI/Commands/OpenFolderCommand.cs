@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows.Forms;
 using Converter.UI.Settings;
+using Converter.UI.Enums;
 
 namespace Converter.UI.Commands
 {
@@ -39,6 +40,7 @@ namespace Converter.UI.Commands
             if(result == DialogResult.OK)
             {
                 game.InstallationPath = dialog.SelectedPath;
+                this.Options.Logger.AddLogEntry(new LogEntry("Updated installation folder for " + game.FriendlyName + "; new directory is " + game.InstallationPath, LogEntrySeverity.Info, LogEntrySource.UI));
             }
         }
     }

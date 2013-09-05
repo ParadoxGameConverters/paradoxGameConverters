@@ -13,6 +13,6 @@ copy *.eu3 ..\testresults\%j%\
 del *.eu3 /q
 copy log.txt ..\testresults\%j%\%i%-Log.txt
 del log.txt /q
-xcopy .\mod\* ..\testresults\%j%\%i%-mod\  /E
-del mod /q /s
-rmdir mod /s /q
+xcopy .\%i%\* ..\testresults\%j%\%i%\  /E
+del %i% /q /s
+rmdir %i% /s /q

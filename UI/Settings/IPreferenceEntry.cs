@@ -2,12 +2,11 @@
 
 namespace Converter.UI.Settings
 {
-    interface IPreferenceEntry
+    public interface IPreferenceEntry
     {
         string Description { get; }
         string FriendlyName { get; }
         string Name { get; }
         IPreference Parent { get; }
-        PreferenceType Type { get; }
     }
 }

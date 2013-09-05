@@ -4,13 +4,14 @@ using Converter.UI.Framework;
 
 namespace Converter.UI.Settings
 {
-    public abstract class PreferenceEntry<T> : NotifiableBase, IPreferenceEntry, IDataErrorInfo
+    public class PreferenceEntry : NotifiableBase, IPreferenceEntry
     {
-        protected PreferenceEntry(string name, string friendlyName, string description, PreferenceType type, IPreference parent) //, IList<T> defaultChoices
+        private bool isSelected;
+
+        public PreferenceEntry(string name, string friendlyName, string description, IPreference parent)
         {
             this.Name = name;
             this.Description = description;
-            this.Type = type;
             this.FriendlyName = friendlyName;
             this.Parent = parent;
         }
@@ -18,36 +19,37 @@ namespace Converter.UI.Settings
         public string Name { get; private set; }
         public string FriendlyName { get; private set; }
         public string Description { get; private set; }
-        public PreferenceType Type { get; private set; }
         public IPreference Parent { get; private set; }
-        
-        public string Error
+
+        public bool IsSelected
         {
             get
             {
-                return null;
+                return this.isSelected;
             }
-        }
 
-        public string this[string name]
-        {
-            get
+            set
             {
-                string result = this.OnValidateProperty(name);
+                if (this.isSelected == value)
+                {
+                    return;
+                }
 
-                return result;
+                this.isSelected = value;
+
+                if (value)
+                {
+                    this.UpdateParentUserChoice();
+                }
+
+                this.RaisePropertyChanged("IsSelected");
             }
-        }
-
-        protected virtual string OnValidateProperty(string propertyName)
-        {
-            return null;
         }
 
         protected void UpdateParentUserChoice()
         {
-            Preference<T> parent = this.Parent as Preference<T>;
-            parent.UserChoice = this;
+            var parent = this.Parent as IPreference;
+            parent.SelectedEntry = this;
         }
     }
 }

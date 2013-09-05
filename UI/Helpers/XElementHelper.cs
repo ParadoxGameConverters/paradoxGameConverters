@@ -36,7 +36,7 @@ namespace Converter.UI.Helpers
             if (matches.Count() > 0)
             {
                 match = matches.First();
-                foundMatch = double.TryParse(match.Value, NumberStyles.Number, new CultureInfo("en-US"), out value);
+                foundMatch = NumberParserHelper.TryParseDouble(match.Value, out value);
 
                 return value;
             }
@@ -46,7 +46,7 @@ namespace Converter.UI.Helpers
             }
             else
             {
-                throw new MissingRequiredXMLPropertyException(parentElement, propertyName, isPropertyRequired);
+                return 0d;
             }
         }
 

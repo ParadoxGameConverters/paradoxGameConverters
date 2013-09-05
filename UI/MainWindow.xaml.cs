@@ -8,6 +8,10 @@ using Converter.UI.ViewModels;
 using Converter.UI.Views;
 using System.Windows.Controls;
 using System.Linq;
+using System.Threading;
+using System;
+using System.Globalization;
+using System.Windows.Markup;
 
 namespace Converter.UI
 {
@@ -22,17 +26,8 @@ namespace Converter.UI
 
         public MainWindow()
         {
-            //try
-            //{
-                InitializeComponent();
-                this.DataContext = this;
-                this.OnLoad();
-            //}
-            //catch (Exception e)
-            //{
-            //    // Serves no real purpose beyond preventing VS complaints about unused variables.
-            //    throw (e);
-            //}
+            InitializeComponent();
+            this.DataContext = this;
         }
 
         #region [ Properties ]
@@ -67,12 +62,17 @@ namespace Converter.UI
 
         #region [ Methods ]
 
-        private void OnLoad()
+        protected override void OnInitialized(EventArgs e)
         {
+            base.OnInitialized(e);
+
+            //Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+            FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+
             this.ConverterOptions = new ConverterOptions();
 
             // Add tabs. The first tab will display the paths tab, and will be selected by default.
-            this.Tabs.Add(new SaveGamePickerViewModel(this.ConverterOptions, new SaveGamePickerView()));
+            this.Tabs.Add(new PathPickerViewModel(this.ConverterOptions, new PathPickerView()));
             this.tabControl.SelectedIndex = 0;
 
             // Add one or more preference views
@@ -83,17 +83,32 @@ namespace Converter.UI
                 this.Tabs.Add(viewModel);
             }
 
-            this.Tabs.Add(new SummaryViewModel(new SummaryView(), this.ConverterOptions));
+            //this.Tabs.Add(new SummaryViewModel(new SummaryView(), this.ConverterOptions));
+            this.Tabs.Add(new LogViewModel(new LogView(), this.ConverterOptions));
+
             this.tabControl.SelectionChanged += new SelectionChangedEventHandler(tabControl_SelectionChanged);
         }
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            IViewModel vm = e.AddedItems[0] as IViewModel;
-
-            if (vm != null)
+            if (e.AddedItems.Count > 0)
             {
-                vm.ActivateTab(sender, e);
+                IViewModel addedItems = e.AddedItems[0] as IViewModel;
+
+                if (addedItems != null)
+                {
+                    addedItems.ActivateTab(sender, e);
+                }
+            }
+
+            if (e.RemovedItems.Count > 0)
+            {
+                IViewModel removedItems = e.RemovedItems[0] as IViewModel;
+
+                if (removedItems != null)
+                {
+                    removedItems.DeactivateTab(sender, e);
+                }
             }
         }
 

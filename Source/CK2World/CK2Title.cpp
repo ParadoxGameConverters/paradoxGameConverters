@@ -341,7 +341,7 @@ void CK2Title::addDeJureVassals(vector<Object*> obj, map<string, CK2Title*>& tit
 		}
 		else
 		{
-			log("Note! The CK2Title::addDeJureVassals() else condition is needed!\n");
+			log("\t\tMultiple definitions of de jure title! %s\n", titleItr->first.c_str());
 		}
 		titleItr->second->setDeJureLiege(this);
 		titleItr->second->addDeJureVassals( (*itr)->getLeaves(), titles, world );
