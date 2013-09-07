@@ -8,18 +8,34 @@ using Converter.UI.Helpers;
 
 namespace Converter.UI.Commands
 {
+    /// <summary>
+    /// Command responsible for installing the converter mod to the users target game mod folder
+    /// </summary>
     public class InstallConverterModCommand : CommandBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="InstallConverterModCommand"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public InstallConverterModCommand(ConverterOptions options)
             : base(options)
         {
         }
 
+        /// <summary>
+        /// CanExecute check. Called to verify that the Execute method is allowed to run.
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
         protected override bool OnCanExecute(object parameter)
         {
             return this.Options.UseConverterMod;
         }
 
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
             var modFolder = this.Options.ModFilesProvider.ModFolder;

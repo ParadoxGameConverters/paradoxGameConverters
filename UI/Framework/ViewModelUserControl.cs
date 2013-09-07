@@ -3,12 +3,27 @@ using System.Windows.Controls;
 
 namespace Converter.UI.Framework
 {
+    /// <summary>
+    /// Base class for all Views, mainly used to avoid more code in the code behind files than strictly necessary.
+    /// </summary>
     public class ViewModelUserControl : UserControl, IView, INotifyPropertyChanged
     {
-        private IViewModel viewModel; 
-        
+        /// <summary>
+        /// The view model
+        /// </summary>
+        private IViewModel viewModel;
+
+        /// <summary>
+        /// Occurs when a property value changes.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Gets or sets the view model.
+        /// </summary>
+        /// <value>
+        /// The view model.
+        /// </value>
         public IViewModel ViewModel
         {
             get
@@ -29,6 +44,10 @@ namespace Converter.UI.Framework
             }
         }
 
+        /// <summary>
+        /// Raises the property changed.
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
         protected void RaisePropertyChanged(string propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;

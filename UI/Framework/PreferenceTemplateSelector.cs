@@ -8,8 +8,20 @@ using Converter.UI.Settings;
 
 namespace Converter.UI.Framework
 {
+    /// <summary>
+    /// TemplateSelector for the IPreference objects, used to determine how to display them in the dynamically built preference views
+    /// </summary>
     public class PreferenceTemplateSelector : DataTemplateSelector
     {
+        /// <summary>
+        /// When overridden in a derived class, returns a <see cref="T:System.Windows.DataTemplate" /> based on custom logic.
+        /// </summary>
+        /// <param name="item">The data object for which to select the template.</param>
+        /// <param name="container">The data-bound object.</param>
+        /// <returns>
+        /// Returns a <see cref="T:System.Windows.DataTemplate" /> or null. The default value is null.
+        /// </returns>
+        /// <exception cref="System.NotImplementedException">PreferenceTemplateSelector support missing for this type of preference</exception>
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             FrameworkElement element = container as FrameworkElement;

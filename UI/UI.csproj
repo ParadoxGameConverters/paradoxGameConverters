@@ -79,7 +79,6 @@
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
-    <Compile Include="Enums\AllowDirectUserOverride.cs" />
     <Compile Include="Enums\DefaultSaveGameLocationType.cs" />
     <Compile Include="Enums\LogEntrySeverity.cs" />
     <Compile Include="Enums\LogEntrySource.cs" />

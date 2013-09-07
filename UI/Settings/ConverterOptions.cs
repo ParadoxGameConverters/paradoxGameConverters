@@ -6,6 +6,10 @@ using System.Collections.ObjectModel;
 
 namespace Converter.UI.Settings
 {
+    /// <summary>
+    /// This class is in some ways the core of the converter UI. Every choice the user makes is stored here, 
+    /// and this object is passed along to most viewmodels/commands for various types of interactions.
+    /// </summary>
     public class ConverterOptions : NotifiableBase
     {
         private GameConfiguration sourceGame;
@@ -18,14 +22,30 @@ namespace Converter.UI.Settings
         private bool useConverterMod;
         private Logger logger;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConverterOptions"/> class.
+        /// </summary>
         public ConverterOptions()
         {
+            // Assumption: Only one source and target game.
             this.SourceGame = this.ConfigurationProvider.SourceGames.First();
             this.TargetGame = this.ConfigurationProvider.TargetGames.First();
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether conversion was successful.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if conversion was successful; otherwise, <c>false</c>.
+        /// </value>
         public bool WasConversionSuccessful { get; set; }
 
+        /// <summary>
+        /// Gets or sets the source game. This is the game the converter converts -from-. 
+        /// </summary>
+        /// <value>
+        /// The source game.
+        /// </value>
         public GameConfiguration SourceGame
         {
             get
@@ -45,6 +65,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets or sets the target game. This is the game the converter converts -to-.
+        /// </summary>
+        /// <value>
+        /// The target game.
+        /// </value>
         public GameConfiguration TargetGame
         {
             get
@@ -64,6 +90,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets or sets the converter path.
+        /// </summary>
+        /// <value>
+        /// The converter.
+        /// </value>
         public string Converter
         {
             get
@@ -83,6 +115,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether to use the converter mod.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if [use converter mod]; otherwise, <c>false</c>.
+        /// </value>
         public bool UseConverterMod
         {
             get
@@ -102,6 +140,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets or sets the source save game.
+        /// </summary>
+        /// <value>
+        /// The source save game.
+        /// </value>
         public string SourceSaveGame
         {
             get
@@ -121,6 +165,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets the configuration provider. The current provider is responsible for turning the configuration.xml file into something sensible.
+        /// </summary>
+        /// <value>
+        /// The configuration provider.
+        /// </value>
         public ConfigurationProvider ConfigurationProvider
         {
             get
@@ -129,6 +179,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets the logger. 
+        /// </summary>
+        /// <value>
+        /// The logger.
+        /// </value>
         public Logger Logger
         {
             get
@@ -137,6 +193,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets the output configuration. This is essentially all the text that becomes configuration.txt.
+        /// </summary>
+        /// <value>
+        /// The output configuration.
+        /// </value>
         public string OutputConfiguration
         {
             get
@@ -144,6 +206,7 @@ namespace Converter.UI.Settings
                 return this.outputConfiguration ?? (this.outputConfiguration = this.BuiltOutputString());
             }
 
+            // Permitting the user to change the output configuration while in-memory raises all sorts of issues. Unless explicitly needed, I'm not adding that functionality. 
             //set
             //{
             //    if (this.outputConfiguration == value)
@@ -156,6 +219,12 @@ namespace Converter.UI.Settings
             //}
         }
 
+        /// <summary>
+        /// Gets the mod files provider. It is responsible for turning the list of mod-related files in configuration.xml into a list of paths for files that needs copying.
+        /// </summary>
+        /// <value>
+        /// The mod files provider.
+        /// </value>
         public ModFilesProvider ModFilesProvider
         {
             get
@@ -166,8 +235,7 @@ namespace Converter.UI.Settings
 
         /// <summary>
         /// This resets the output configuration text string. 
-        /// TODO: Fix hack.
-        /// <remarks>Essentially a hack in lieu of a more architectural sound way.</remarks>
+        /// <remarks>Essentially a hack in lieu of a more architectural sound way to mark the output configuration as 'dirty'.</remarks>
         /// </summary>
         public void InvalidateOutputConfiguration()
         {

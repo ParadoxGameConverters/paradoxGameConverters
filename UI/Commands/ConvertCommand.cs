@@ -11,24 +11,42 @@ using System.Collections.Generic;
 
 namespace Converter.UI.Commands
 {
+    /// <summary>
+    /// The command that triggers the conversion process.
+    /// </summary>
     public class ConvertCommand : AsyncCommandBase
     {
         private const string configurationFileName = "configuration.txt";
         private IList<string> propertiesToMonitor;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConvertCommand"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public ConvertCommand(ConverterOptions options)
             : base(options)
         {
         }
 
-        private IList<string> PropertiesToMonitor 
-        {
-            get
-            {
-                return this.propertiesToMonitor ?? (this.propertiesToMonitor = new List<string>() { "Converter", "SourceSaveGame" });
-            }
-        }
+        /////// <summary>
+        /////// Gets the properties automatic monitor.
+        /////// </summary>
+        /////// <value>
+        /////// The properties automatic monitor.
+        /////// </value>
+        ////private IList<string> PropertiesToMonitor 
+        ////{
+        ////    get
+        ////    {
+        ////        return this.propertiesToMonitor ?? (this.propertiesToMonitor = new List<string>() { "Converter", "SourceSaveGame" });
+        ////    }
+        ////}
 
+        /// <summary>
+        /// Called when [can execute].
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
         protected override bool OnCanExecute(object parameter)
         {
             if (this.Options.Converter == null)
@@ -36,6 +54,7 @@ namespace Converter.UI.Commands
                 return false;
             }
 
+            // Check various requirements
             bool converterExists = File.Exists(this.Options.Converter);
             bool configurationFileExists = File.Exists(Path.Combine(Path.GetDirectoryName(this.Options.Converter), configurationFileName));
             bool saveGameExists = File.Exists(this.Options.SourceSaveGame);
@@ -73,6 +92,11 @@ namespace Converter.UI.Commands
         //    }
         //}
 
+        /// <summary>
+        /// When overridden in a derived class, performs operations in a background
+        /// thread when the <c>Execute</c> method is invoked.
+        /// </summary>
+        /// <param name="parameter">The paramter passed to the <c>Execute</c> method of the command.</param>
         protected override void OnExecute(object parameter)
         {
             // Reading process output syncronously. The async part is already handled by the command
@@ -90,13 +114,15 @@ namespace Converter.UI.Commands
                 };
 
                 this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI);
-                Thread.Sleep(100);
+                Thread.Sleep(100); // Sleeping may let the UI actually display the above message before starting the conversion process
 
                 Stopwatch stopwatch = new Stopwatch();
                 stopwatch.Start();
 
                 process.Start();
                 
+                // A non-working attempt to actually log the converter output while converting. 
+                // As of this writing, I don't know if this fails due to the converter or something on the frontend side - it could be both.
                 while (!process.StandardOutput.EndOfStream)
                 {
                     this.Log(process.StandardOutput.ReadLine(), LogEntrySeverity.Info, LogEntrySource.Converter);
@@ -118,6 +144,12 @@ namespace Converter.UI.Commands
             }
         }
 
+        /// <summary>
+        /// When overridden in a derived class, performs operations when the
+        /// background execution has completed.
+        /// </summary>
+        /// <param name="parameter">The parameter passed to the <c>Execute</c> method of the command.</param>
+        /// <param name="error">The error object that was thrown during the background operation, or null if no error was thrown.</param>
         protected override void AfterExecute(object parameter, Exception error)
         {
             if (this.Options.WasConversionSuccessful)
@@ -130,6 +162,9 @@ namespace Converter.UI.Commands
             }
         }
 
+        /// <summary>
+        /// Called when [successful conversion].
+        /// </summary>
         private void OnSuccessfulConversion()
         {
             this.MoveSaveGame();
@@ -140,11 +175,17 @@ namespace Converter.UI.Commands
             }
         }
 
+        /// <summary>
+        /// Installs the converter mod.
+        /// </summary>
         private void InstallConverterMod()
         {
 
         }
 
+        /// <summary>
+        /// Moves the save game.
+        /// </summary>
         private void MoveSaveGame()
         {
             // Copy the newly created save to the target game output directory.
@@ -185,17 +226,32 @@ namespace Converter.UI.Commands
             }
         }
 
+        /// <summary>
+        /// Determines the output save path.
+        /// </summary>
+        /// <returns></returns>
         private string DetermineOutputSavePath()
         {
             var outputSaveName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + this.Options.TargetGame.SaveGameExtension;
             return Path.Combine(Path.GetDirectoryName(this.Options.SourceSaveGame), outputSaveName);
         }
 
+        /// <summary>
+        /// Builds the time span string.
+        /// </summary>
+        /// <param name="timespan">The timespan.</param>
+        /// <returns></returns>
         private string BuildTimeSpanString(TimeSpan timespan)
         {
             return string.Format("{1:D2}m:{2:D2}s:{3:D3}ms", timespan.Hours, timespan.Minutes, timespan.Seconds, timespan.Milliseconds);
         }
 
+        /// <summary>
+        /// Logs the specified text. This is marshalled to the UI thread if necessary.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="severity">The severity.</param>
+        /// <param name="source">The source.</param>
         private void Log(string text, LogEntrySeverity severity, LogEntrySource source)
         {
             if (String.IsNullOrEmpty(text))

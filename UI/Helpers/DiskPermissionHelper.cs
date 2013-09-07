@@ -8,8 +8,16 @@ using System.Security.Principal;
 
 namespace Converter.UI.Helpers
 {
+    /// <summary>
+    /// A helper class that handles various disk permission tasks
+    /// </summary>
     public static class DiskPermissionHelper
     {
+        /// <summary>
+        /// Determines whether this instance [can write file automatic folder] the specified path.
+        /// </summary>
+        /// <param name="path">The path.</param>
+        /// <returns></returns>
         public static bool CanWriteFileToFolder(string path)
         {
             bool canWrite = false;

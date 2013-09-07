@@ -7,6 +7,9 @@ using Converter.UI.Helpers;
 
 namespace Converter.UI.Providers
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public class ModFilesProvider
     {
         private ConverterOptions options;

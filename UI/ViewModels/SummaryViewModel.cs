@@ -8,35 +8,18 @@ using System.Windows.Controls;
 
 namespace Converter.UI.ViewModels
 {
+    /// <summary>
+    /// Currently unused summary viewmodel. Belongs to the equally unused SummaryView
+    /// </summary>
     public class SummaryViewModel : BaseViewModel, IViewModel
     {
-        //private string summary;
-
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SummaryViewModel"/> class.
+        /// </summary>
+        /// <param name="view">The view.</param>
+        /// <param name="options">The options.</param>
         public SummaryViewModel(IView view, ConverterOptions options)
             : base(view, "Summary", options)
-        {
-        }
-
-        ////public string Summary
-        ////{
-        ////    get
-        ////    {
-        ////        return this.Options.OutputConfiguration;
-        ////    }
-
-        ////    //set
-        ////    //{
-        ////    //    if (this.summary == value)
-        ////    //    {
-        ////    //        return;
-        ////    //    }
-
-        ////    //    this.summary = value;
-        ////    //    this.RaisePropertyChanged("Summary");
-        ////    //}
-        ////}
-
-        protected override void OnTabSelected(object sender, SelectionChangedEventArgs e)
         {
         }
     }

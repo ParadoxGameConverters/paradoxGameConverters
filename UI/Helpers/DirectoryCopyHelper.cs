@@ -6,8 +6,19 @@ using System.IO;
 
 namespace Converter.UI.Helpers
 {
+    /// <summary>
+    /// Helper class meant to facilitate directory copy operations
+    /// </summary>
     public static class DirectoryCopyHelper
     {
+        /// <summary>
+        /// Copies a directory.
+        /// </summary>
+        /// <param name="sourceDirName">Name of the source dir.</param>
+        /// <param name="destDirName">Name of the dest dir.</param>
+        /// <param name="copySubDirs">if set to <c>true</c> [copy sub dirs].</param>
+        /// <exception cref="System.IO.DirectoryNotFoundException">Source directory does not exist or could not be found: 
+        ///                     + sourceDirName</exception>
         public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
             // Get the subdirectories for the specified directory.

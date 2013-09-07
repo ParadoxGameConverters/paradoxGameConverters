@@ -27,7 +27,7 @@
       </targetGameConfiguration>
     </targetGameConfigurations>
   </gameConfigurations>
-  <modInstallation>
+  <!--<modInstallation> WIP MOD INSTALLATION RULES
     <converterModFiles>
       <converterModFile>
         <fileName>country_mapping.txt</fileName>
@@ -52,7 +52,7 @@
         <targetPath>mod</targetPath>
       </modFolder>
     </targetGameModFolder>
-  </modInstallation>
+  </modInstallation>-->
   <!--END Game configuration-->
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
   <converterOptions>

@@ -12,7 +12,9 @@ namespace Converter.UI.Commands
 {
     /// <summary>
     /// Implementation of <c>ICommand</c> that allows for asynchronous operation.
-    /// <remarks>Much of this was copied from http://kendoll.net/async_wpf_command</remarks>
+    /// <remarks>
+    /// Much of this was copied from http://kendoll.net/async_wpf_command
+    /// </remarks>
     /// </summary>
     public class AsyncCommandBase : DispatcherObject, ICommand
     {

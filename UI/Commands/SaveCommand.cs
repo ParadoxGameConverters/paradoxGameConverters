@@ -12,22 +12,37 @@ using Converter.UI.Settings;
     using System.Windows;
     using Converter.UI.Enums;
 
+    /// <summary>
+    /// This command is used to save the configuration.txt file to disk in the working directory
+    /// </summary>
     public class SaveCommand : CommandBase
     {
         private const string configurationFileName = "configuration.txt";
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="SaveCommand"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public SaveCommand(ConverterOptions options)
             : base(options)
         {
         }
 
+        /// <summary>
+        /// Called when [can execute].
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
         protected override bool OnCanExecute(object parameter)
         {
             //TODO: Validate options object
-            //NOTE: Careful not to judge based on incorrect data, esp. if user has edited the configuration output manually
             return true;
         }
 
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
             // Reset configuration setting to make sure it's updated with the latest user choices.
