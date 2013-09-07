@@ -2017,7 +2017,17 @@ void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProv
 		for (unsigned int i = 0; i < srcNavies.size(); i++)
 		{
 			EU3Navy* newNavy = new EU3Navy(srcNavies[i], inverseProvinceMap, transport, infantry, cavalry, allProvinces, manpower);
-			if (newNavy->getNumShips() > 0)
+			bool inland = false;
+			map<int, EU3Province*>::iterator itr = allProvinces.find(newNavy->getLocation());
+			if (itr != allProvinces.end())
+			{
+				if (itr->second->isLand() && !itr->second->isCoastal())
+				{
+					inland = true;
+					break;
+				}
+			}
+			if ((newNavy->getNumShips() > 0) && !inland)
 			{
 				navies.push_back(newNavy);
 			}
