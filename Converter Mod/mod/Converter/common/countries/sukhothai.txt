@@ -1,0 +1,69 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 159  127  255 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	patron_of_art
+	bureaucracy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Thammaracha #2" = 40
+	"Loethai #1" = 15
+	"Nguanamthom #1" = 15
+	"Saisongkhram #1" = 15
+	"Ban Muang #1" = 10
+	"Sri Indraditya #1" = 10
+	"Ramkhamhaeng #1" = 10
+}
+
+leader_names = {
+	Akradej Ariyanuntaka 
+	Boonmee 
+	Chaipatana Chakrabonse Chuasiriporn 
+	Diskul 
+	Ekaluck 
+	Hitapot 
+	Inchareon 
+	Kawrungruang Khuntilanont Klinpraneet Kriangsak 
+	Monkoltham 
+	Nitpattanasai Noppachorn Nut 
+	Panomyaong Phatipatanawong 
+	Sitdhirasdr Sivaraksa Srichure Supachai Supasawat 
+	Tantasatityanon Thabchumpon Tomson 
+	Wongrutiyan 
+	Yongchaiyudh 
+}
+
+ship_names = {
+	Ramithibodi Ramesuan Borommaracha "Thong Chan"
+	Ramaratcha Intharatcha Boromtrailokanat Ratsada
+	Chairacha Yotfa Worawongsa Chakkraphat Mahin
+	Sanpet Naresuan Ekathotsarot "Si Saowaphak"
+	Songtham Chehha "Somdet Phra" "Prasat Thong" Chai
+	Suthammaracha Narai Petratcha Süa Phumintharacha
+	Uthumpon Ekkathat
+}

@@ -1,0 +1,95 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 30  131  162 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	bureaucracy
+	glorious_arms
+}
+
+historical_units = {
+	african_spearmen
+	niger_kongolese_tribal_warfare
+	bantu_plains_warfare
+	adal_gunpowder_warfare
+	westernized_adal
+	adal_guerilla_warfare
+}
+
+monarch_names = {
+	"Dunama #3" = 120
+	"Muhammad #1" = 160
+	"Amir #0" = 20
+	"Ghaji #0" = 20
+	"'Uthman #0" = 20
+	"'Umar #0" = 20
+	"'Ali #0" = 80
+	"Idris #1" = 60
+	"'Abd Allah #3" = 20
+	"Ibrahim #2" = 40
+	"Hamdan #0" = 20
+	"Othman Kalinuama #0" = 20
+	"Abdullah #1" = 20
+	"Biri #1" = 20
+	"'Abd al-Karim #0" = 0
+	"Kharut #0" = 0
+	"Kharif #0" = 0
+	"Ya'qub #0" = 0
+	"Salih #0" = 0
+	"Birni Besse #0" = 0
+	"Dalai #0" = 0
+	"Burkomanda #0" = 0
+	"Dalo #0" = 0
+	"'Abd al-Qadir #0" = 0
+	"Wanja #0" = 0
+	"Abu Sekkin #0" = 0
+	"Rifaya #0" = 0
+	"Sharud #0" = 0
+	"Tindhim #0" = 0
+	"Musa #0" = 0
+	"Sulbuta #0" = 0
+	"Ishaq #0" = 0
+	"Kade Alunu #0" = 0
+	"Abu Bakr #0" = 0
+	"Da'ud #0" = 0
+	"Kure #0" = 0
+	"Bikoru #0" = 0
+	"Humayy #0" = 0
+	"Sa'id #0" = 0
+	"Nasr #0" = 0
+	"Yahya #0" = 0
+	"Yusuf #0" = 0
+}
+
+leader_names = {
+	Oueddai
+	Ahmat
+	Ardoum
+	Terap
+	Kabadi
+	Yorassem
+	Nahor
+	Deby
+	Djammous
+	Malloum
+}
+
+ship_names = {
+	Dugu Fune Aritso Kature Ayoma Bulu
+	Arki Shu "Bad al-Djel" Hume Dunama
+	Biri Birkoru "Abd al-Djel Selma"
+	"Dunama Dibbalem" Kade "Kachim Biri"
+	Djil Dari "Kure Kura" "Kure Gana"
+}

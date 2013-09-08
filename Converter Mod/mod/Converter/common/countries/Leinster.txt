@@ -1,0 +1,103 @@
+# Country name see file name.
+
+graphical_culture = latingfx
+
+color = { 48  164  51 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	cabinet
+	national_bank
+	espionage  
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	gaelic_galloglaigh
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+leader_names = {
+	"Caomhanach" "Conchobhair"
+	"Mac Amhalghaidh" "Mac an tSionnaigh" "Mac Cochláin" "Mac Coibheanaigh"
+	"Mac Conshnámha" "Mac Fhlannchaidh" "Mac Fionbhair" "Mac Giolla Phadraig"
+	"Mac Raghnaill" "Mac Tighearnáin" "Mag Eochagáin" 
+	"Ó hAimheirgin" "Ó Braoin" "Ó Cairbre" "Ó Caoindealbháin" "Ó Catharnaigh"
+	"Ó Ceallaigh" "Ó Ciardha" "Ó Cearbhaill" "Ó Comhraidhe" "Ó Congalaig"
+	"Ó Cosraigh" "Ó Diubhgeannáin" "Ó Doinn" "Ó Donnchadha" "Ó Dubhghaill"
+	"Ó Dubhuidhe" "Ó Faolain" "Ó Fhearghaill" "Ó Fionnaláin" "Ó Finntighearn"
+	"Ó hAonghusa" "Ó Lorcáin" "Ó Maolmhuaidh" "Ó Ruairc" "Ó Seaghdha" "Ó Seanáin"
+	"Ó Tuathail"
+}
+
+monarch_names = {
+	"Donal #7" = 40
+	"Muchadh #3" = 40
+	"Art #1" = 40
+	"Cathaoir #0" = 40
+	"Gearóid #1" = 20
+	"Muiris #1" = 20
+	"Muireadhach #1" = 20
+	"Criomhthann #0" = 20
+	"Diarmaid #5" = 1
+	"Donnchad #5" = 1
+	"Ádhamh #0" = 0
+	"Cadwgwan #0" = 0
+	"Caoimhín #0" = 0
+	"Cinnéidigh #0" = 0
+	"Deaglán #0" = 0
+	"Dougal #0" = 0
+	"Fionnlagh #0" = 0
+	"Garbhán #0" = 0
+	"Lachtna #0" = 0
+	"Lorccán #0" = 0
+	"Mainchín #0" = 0
+	"Mathúin #0" = 0
+	"Meallán #0" = 0
+	"Naomhán #0" = 0
+	"Niall #0" = 0
+	"Odhrán #0" = 0
+	"Pádraig #0" = 0
+	"Quinn #0" = 0
+	"Riain #0" = 0
+	"Ríoghnán #0" = 0
+	"Rórdan #0" = 0
+	"Ruaidhrí #0" = 0
+	"Ruarc #0" = 0
+	"Séaghdhá #0" = 0
+	"Seanán #0" = 0
+	"Sechnall #0" = 0
+	"Tighearnach #0" = 0
+	"Tuathal #0" = 0
+	"Uilliam #0" = 0
+	"Uinseann #0" = 0
+}
+
+ship_names = {
+	Carlow
+	Dublin
+	Kildare Kilkenny
+	Laios Longford Louth
+	Meath
+	Offaly 
+	Westmeath Wexford Wicklow
+}

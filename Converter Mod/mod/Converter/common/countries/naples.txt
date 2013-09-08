@@ -1,0 +1,113 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 160  30  154 } 
+
+historical_ideas = {
+	shrewd_commerce_practise
+	patron_of_art
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	national_conscripts
+	sea_hawks
+	national_bank
+	cabinet
+	scientific_revolution
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Carlo #3" = 80
+	"Ferrante #0" = 80
+	"Filippo #0" = 60
+	"Alfonso #0" = 40
+	"Federigo #0" = 20
+	"Ladislao #0" = 20
+	"Gioachino #0" = 20
+	"Giuseppe #0" = 20
+	"Giovanna #1" = -15
+	"Achille #0" = 15
+	"Gabriele #0" = 15
+	"Alberto #0" = 10
+	"Antonio #0" = 10
+	"Cesare #0" = 10
+	"Francesco #0" = 10
+	"Giovanni #0" = 10
+	"Giuseppe #0" = 10
+	"Leopoldo #0" = 10
+	"Adriano #0" = 0
+	"Alessandro #0" = 0
+	"Alfredo #0" = 0
+	"Bartolomeo #0" = 0
+	"Benedetto #0" = 0
+	"Claudio #0" = 0
+	"Enzo #0" = 0
+	"Fabio #0" = 0
+        "Fabrizio #0" = 0
+	"Gaspare #0" = 0
+	"Leandro #0" = 0
+	"Marco #0" = 0
+        "Martino #0" = 0
+	"Nestore #0" = 0
+	"Paolo #0" = 0
+	"Pietro #0" = 0
+	"Raniero #0" = 0
+	"Roberto #0" = 0
+	"Salvatore #0" = 0
+	"Vicenzo #0" = 0
+}
+
+leader_names = {
+        "degli Albizzi" Allori "d'Appiani d'Aragona" "d'Asburgo"
+	Barberini Bartolini Benciveni Bizzelli Boncompagni
+	Botta-Adorno Buontalenti Buti Butteri "di Campofregoso"
+	Cercignani Chiastavelli Chigi Corsini Cybo-Malaspina
+	"di Farnese" Gori Grimaldi "Grimaldi di Busca" Lanzi Lessi
+	Ludovisi Malaspina Mancinetti "di Medici" "del Moro" Nasini
+	Orsini Piccolomini Pico Pierallini Pieroni Piombante Pontelli
+	Rivani Rospigliosi "del Rosso" Savaranola Soderini Tempesta
+	Terreni Tonelli Traballesi Ulivelli Vasari Zucchi
+}
+
+ship_names = {
+	Albizi  Arcetri Arezzo
+	Bellosguardo Bisenzio
+	Careggi "Corso Donati" "Cosimo de' Medici"
+	"Dante Alighieri" "Dino Compagni"
+	Fiesole "Filippo Brunelleschi" Firenze "fiume Arno"
+	"fiume Greve" "Francesco Petrarca"
+	Galluzzo "Giano della Bella" Giotto
+	Impruneta
+	Medici Mugnone
+	Orsanmichele
+	Pistoia Prato
+	Ripoli
+	"San Frediano" "San Giovanni Battista" "San Lorenzo"
+	"San Marco" "Santa Maria del Fiore" "Santa Trinita"
+	Scandicci Settignano "Sesto Fiorentino"
+	Terzolle
+	"Vieri de Cerchi"
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

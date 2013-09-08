@@ -1,0 +1,121 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 81  122  125 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	liberty_egalite_fraternity
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Bertrand #0" = 40
+	"Jean #2" = 20
+	"Charles #0" = 20
+	"Charles-Philippe #0" = 20
+	"Guy #2" = 10
+	"Anne #0" = -10
+	"Catherine #0" = -10
+        "Joanna #1" = -10
+        "Marguerite #0" = -10
+	"Marie #0" = -10
+        "Guillaume #13" = 1
+        "Robert #7" = 1
+	"Bernard #2" = 1
+	"Aimeric #0" = 0
+        "Andriu #0" = 0
+	"Arnaud #0" = 0
+	"Beránger #0" = 0
+	"Bernat #0" = 0
+	"Borel #0" = 0
+        "Domenc #0" = 0
+	"Emeric #0" = 0
+        "Enric #0" = 0
+	"Estève #0" = 0
+	"Felip #0" = 0
+	"Guilhem #0" = 0
+        "Gui #0" = 0
+	"Jaufré #0" = 0
+	"Joan #0" = 0
+	"Jordi #0" = 0
+	"Jules #0" = 0
+	"Pere #0" = 0
+	"Pons #0" = 0
+        "Raimond #0" = 0
+	"Rotger #0" = 0
+	"Sergi #0" = 0
+	"Sicard #0" = 0
+	"Thibaud #0" = 0
+	"Thomas #0" = 0
+	"Victor #0" = 0
+	"Xavier #0" = 0
+}
+
+leader_names = {
+	"d'Alègre" "d'Altier de Borne" "d'Apchon" "d'Arfeuille" Arnauld "d'Arpajon"
+	"de Baffie" "de Balzac" Barbey "de Basredon" "de Beauverger" "de Blanchefort" "Bouillé du Chariol" "Brachet" "de Brossadol" "de Brugière"
+	"de Canilhac" "Carbonnières de La Barthe" "de Cardaillac" "de Carlat" "de Casteras" "de Chalençon" "de Chazeron" "de Clermont" "de Cressac" "du Croc"
+	"de Fougères"
+	"de Grandsaigne"
+	"d'Humières"
+	"de Lavie"
+	"de Magnac" "de Massebeau" "de Mercoeur" "de Montboissier" "de Montgascon" "de Montpensier" "de Montvert"
+	"de Nérestang"
+	"d'Oliergues"
+	"de Pennautier" "de Pascal" "de Polignac"
+	"de la Queuille"
+	"de Rochefort-d'Ailly" "de Rogier-Beaufort"
+	"de Saint Nectaire" "de Scorailles"
+	"de Terreveire" "de Thiers"
+	"d'Ussel"
+}
+
+ship_names = {
+        Aiguiller Artense "Banne d'Ordanche" Cézailler Chaudefour
+        Cliergue Cliersoux "Dent de la Rancune" "Gour de Tazenat" "Lac Chauvet"
+        "Lac de Guéry" "Lac du Joland" "Lac Pavin" "Lac de Servières" Mandailles
+        "Mont Dore" "Narse d'Espinasse" "Orgues de Bort" "Peyre Arse" "Plomb du Cantal"
+        "Puy Chavaroche" "Puy de l'Angle" "Puy de Bort" "Puy de Côme" "Puy de Dôme"
+        "Puy des Goules" "Puy de la Grousse" "Puy de Lassolas" "Puy de Monne" "Puy de Montchal"
+        "Puy de Montcineyre" "Puy de Monténard" "Puy de Paillaret" "Puy de la Perdrix" "Puy de Sancy"
+        "Puy de Seycheuse" "Puy de la Tache" "Puy de Tartaret" "Puy de la Vache" "Puy en Velay" 
+        "Puy Ferrand" "Puy Griou" "Puy Gros" "Puy Mary" "Puy Violent"
+        "Rochefort Montagne" "Roches Tuilière" Sanadoire Sarcouy "Signal du Luguet"
+}
+
+army_names = {
+         "Armée d'Auvergne"        "Armée de Clermont"  "Armée de Montpensier"
+         "Armée du Velay"          "Armée du Brivadois" "Armée du Dauphin d'Auvergne"  
+         "Armée de Grande Limagne" "Armée du Livradois" "Armée du Cantal"     
+         "Armée de la Margeride"  
+	 "Armée de $PROVINCE$" 
+}

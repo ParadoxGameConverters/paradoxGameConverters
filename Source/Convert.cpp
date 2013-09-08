@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <io.h>
 #include <functional>
+#include <ShlObj.h>
 #include "Log.h"
 #include "Configuration.h"
 #include "Parsers/Parser.h"
@@ -98,6 +99,24 @@ int main(int argc, char * argv[])
 	}
 
 
+	//Copy mod folder
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		string modFolderName;
+		if (argc >= 2)
+		{
+			modFolderName = inputFilename.substr(0, inputFilename.find_last_of('.'));
+		}
+		else
+		{
+			modFolderName = "output";
+		}
+		Configuration::setModPath(modFolderName);
+		string copyCommand = "xcopy mod \"" + modFolderName + "\" /E /C /I /Y";
+		system(copyCommand.c_str());
+	}
+	
+
 	// Input CK2 Data
 	log("Getting CK2 data.\n");
 	printf("Getting CK2 data.\n");
@@ -105,6 +124,15 @@ int main(int argc, char * argv[])
 
 	log("\tGetting building types.\n");
 	printf("\tGetting building types.\n");
+	if (Configuration::getCK2Mod() != "")
+	{
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			srcWorld.addBuildingTypes(obj);
+		}
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\buildings\\"), [&](Object* eachobj) { srcWorld.addBuildingTypes(eachobj); });
+	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/buildings.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
 	{
@@ -121,6 +149,15 @@ int main(int argc, char * argv[])
 
 	log("\tGetting CK2 religions\n");
 	printf("\tGetting CK2 religions\n");
+	if (Configuration::getCK2Mod() != "")
+	{
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/religion.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			CK2Religion::parseReligions(obj);
+		}
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\religions\\"), [&](Object* eachobj) { CK2Religion::parseReligions(eachobj); });
+	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/religion.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
 	{
@@ -137,6 +174,16 @@ int main(int argc, char * argv[])
 
 	log("\tGetting CK2 cultures\n");
 	printf("\tGetting CK2 cultures\n");
+	cultureGroupMapping CK2CultureGroupMap;
+	if (Configuration::getCK2Mod() != "")
+	{
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			addCultureGroupMappings(obj, CK2CultureGroupMap);
+		}
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, CK2CultureGroupMap); });
+	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/cultures.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
 	{
@@ -144,7 +191,6 @@ int main(int argc, char * argv[])
 		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/cultures.txt").c_str());
 		exit(-1);
 	}
-	cultureGroupMapping CK2CultureGroupMap;
 	addCultureGroupMappings(obj, CK2CultureGroupMap);
 	if (!doParseDirectoryContents((CK2Loc + "\\common\\cultures\\"), [&](Object* eachobj) { addCultureGroupMappings(eachobj, CK2CultureGroupMap); }))
 	{
@@ -154,22 +200,50 @@ int main(int argc, char * argv[])
 
 	log("\tParsing landed titles.\n");
 	printf("\tParsing landed titles.\n");
-	obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
-	if (obj == NULL)
+	bool modHasFiles = false;
+	if (Configuration::getCK2Mod() != "")
 	{
-		log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
-		printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
-		exit(-1);
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			srcWorld.addPotentialTitles(obj);
+			modHasFiles = true;
+		}
+		DWORD dwAttrib = GetFileAttributes((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\").c_str());
+		if (dwAttrib != INVALID_FILE_ATTRIBUTES && (dwAttrib & FILE_ATTRIBUTE_DIRECTORY))
+		{
+			doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); });
+			modHasFiles = true;
+		}
 	}
-	srcWorld.addPotentialTitles(obj);
-	if (!doParseDirectoryContents((CK2Loc + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); }))
+	if (!modHasFiles)
 	{
-		log("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
-		printf("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+		obj = doParseFile((Configuration::getCK2Path() + "/common/landed_titles.txt").c_str()); // for pre-1.06 installs
+		if (obj == NULL)
+		{
+			log("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
+			printf("Error: Could not open %s\n", (Configuration::getCK2Path() + "/common/landed_titles.txt").c_str());
+			exit(-1);
+		}
+		srcWorld.addPotentialTitles(obj);
+		if (!doParseDirectoryContents((CK2Loc + "\\common\\landed_titles\\"), [&](Object* eachobj) { srcWorld.addPotentialTitles(eachobj); }))
+		{
+			log("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+			printf("\t\tError: Could not open landed_titles directory (ok for pre-1.06).\n");
+		}
 	}
 
 	log("\tGetting traits\n");
 	printf("\tGetting traits\n");
+	if (Configuration::getCK2Mod() != "")
+	{
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/traits.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			srcWorld.addTraits(obj);
+		}
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\traits\\"), [&](Object* eachobj) { srcWorld.addTraits(eachobj); });
+	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/traits.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
 	{
@@ -187,6 +261,15 @@ int main(int argc, char * argv[])
 
 	log("\tGetting opinion modifiers\n");
 	printf("\tGetting opinion modifiers\n");
+	if (Configuration::getCK2Mod() != "")
+	{
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			CK2Opinion::initOpinions(obj);
+		}
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\opinion_modifiers\\"), [&](Object* eachobj) { CK2Opinion::initOpinions(eachobj); });
+	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/opinion_modifiers.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
 	{
@@ -204,6 +287,15 @@ int main(int argc, char * argv[])
 
 	log("\tAdding dynasties from CK2 Install\n");
 	printf("\tAdding dynasties from CK2 Install\n");
+	if (Configuration::getCK2Mod() != "")
+	{
+		obj = doParseFile((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
+		if (obj != NULL)
+		{
+			srcWorld.addDynasties(obj);
+		}
+		doParseDirectoryContents((Configuration::getCK2ModPath() + "\\" + Configuration::getCK2Mod() + "\\common\\dynasties\\"), [&](Object* eachobj) { srcWorld.addDynasties(eachobj); });
+	}
 	obj = doParseFile((Configuration::getCK2Path() + "/common/dynasties.txt").c_str()); // for pre-1.06 installs
 	if (obj == NULL)
 	{
@@ -336,7 +428,7 @@ int main(int argc, char * argv[])
 	string cultureFile;
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		cultureFile = "mod\\converter\\common\\cultures.txt";
+		cultureFile = Configuration::getModPath() + "\\converter\\common\\cultures.txt";
 	}
 	else
 	{
@@ -358,7 +450,7 @@ int main(int argc, char * argv[])
 	string religionFile;
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		cultureFile = "mod\\converter\\common\\religion.txt";
+		cultureFile = Configuration::getModPath() + "\\converter\\common\\religion.txt";
 	}
 	else
 	{
@@ -377,7 +469,16 @@ int main(int argc, char * argv[])
 	// Get culture mappings
 	log("Parsing culture mappings.\n");
 	printf("Parsing culture mappings.\n");
-	obj = doParseFile("culture_mappings.txt");
+	string filename;
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		filename = "culture_mappings_mod.txt";
+	}
+	else
+	{
+		filename = "culture_mappings.txt";
+	}
+	obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		log("Error: Could not open culture_mappings.txt\n");
@@ -396,7 +497,15 @@ int main(int argc, char * argv[])
 	// Get religion mappings
 	log("Parsing religion mappings.\n");
 	printf("Parsing religion mappings.\n");
-	obj = doParseFile("religion_mappings.txt");
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		filename = "religion_mappings_mod.txt";
+	}
+	else
+	{
+		filename = "religion_mappings.txt";
+	}
+	obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		log("Error: Could not open religion_mappings.txt\n");
@@ -472,7 +581,15 @@ int main(int argc, char * argv[])
 	// Map CK2 nations to EU3 nations
 	log("Parsing country mappings.\n");
 	printf("Parsing country mappings.\n");
-	obj = doParseFile("country_mappings.txt");
+	if (Configuration::getUseConverterMod() == "yes")
+	{
+		filename = "country_mappings_mod.txt";
+	}
+	else
+	{
+		filename = "country_mappings.txt";
+	}
+	obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
 		log("Error: Could not open country_mappings.txt\n");
@@ -481,7 +598,7 @@ int main(int argc, char * argv[])
 	}
 	log("Mapping CK2 nations to EU3 nations.\n");
 	printf("Mapping CK2 nations to EU3 nations.\n");
-	destWorld.assignTags(obj, blockedNations, provinceMap, religionMap, cultureMap, inverseProvinceMap);
+	destWorld.assignTags(obj, blockedNations, provinceMap, religionMap, cultureMap, inverseProvinceMap, *(srcWorld.getVersion()));
 
 	log("Adding accepted cultures.\n");
 	printf("Adding accepted cultures.\n");
@@ -498,6 +615,10 @@ int main(int argc, char * argv[])
 	log("Converting centes of trade\n");
 	printf("Converting centes of trade\n");
 	destWorld.convertCoTs();
+
+	log("Converting sliders\n");
+	printf("Converting sliders\n");
+	destWorld.convertSliders();
 	
 	log("Converting economies.\n");
 	printf("Converting economies.\n");
@@ -509,7 +630,7 @@ int main(int argc, char * argv[])
 
 	log("Converting diplomatic relations.\n");
 	printf("Converting diplomatic relations.\n");
-	destWorld.convertDiplomacy();
+	destWorld.convertDiplomacy(*(srcWorld.getVersion()));
 
 	log("Converting armies and navies.\n");
 	printf("Converting armies and navies.\n");
@@ -518,20 +639,38 @@ int main(int argc, char * argv[])
 	// Output results
 	printf("Outputting save.\n");
 	log("Outputting save.\n");
-	string outputFilename;
-	if (argc >= 2)
+	string outputFilename = "";
+	if (Configuration::getUseConverterMod() == "yes")
 	{
-		outputFilename = inputFilename.substr(0, inputFilename.find_last_of('.')) + ".eu3";
+		outputFilename += Configuration::getModPath() + "\\Converter\\save games\\";
+		if (argc >= 2)
+		{
+			string filename = inputFilename.substr(0, inputFilename.find_last_of('.'));
+			filename = filename.substr(filename.find_last_of('\\'), filename.length());
+			outputFilename += filename + ".eu3";
+		}
+		else
+		{
+			outputFilename += "output.eu3";
+		}
 	}
 	else
 	{
-		outputFilename = "output.eu3";
+		if (argc >= 2)
+		{
+			outputFilename += inputFilename.substr(0, inputFilename.find_last_of('.'));
+			outputFilename += ".eu3";
+		}
+		else
+		{
+			outputFilename += "output.eu3";
+		}
 	}
 	FILE* output;
 	if (fopen_s(&output, outputFilename.c_str(), "w") != 0)
 	{
-		log("Error: could not open output.eu3.\n");
-		printf("Error: could not open output.eu3.\n");
+		log("Error: could not open %s.\n", outputFilename.c_str());
+		printf("Error: could not open %s.\n", outputFilename.c_str());
 	}
 	destWorld.output(output);
 	fclose(output);

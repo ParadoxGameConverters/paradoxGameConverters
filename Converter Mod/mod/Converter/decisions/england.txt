@@ -1,0 +1,125 @@
+country_decisions = {
+	establish_british_merchant_navy = {
+		potential = {
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+			trade_tech = 30
+			NOT = { has_country_modifier = british_merchant_navy }
+		}
+		allow = {
+			land_naval = 3
+			monthly_income = 60
+			trade_income_percentage = 0.33
+			idea = grand_navy
+			idea = national_trade_policy
+		}
+		effect = {
+			add_country_modifier = {
+				name = "british_merchant_navy"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+
+	acknowledge_britanna_rules_the_waves = {
+		potential = {
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+			NOT = { has_country_modifier = britanna_rules_the_waves }
+		}
+		allow = {
+			total_num_of_ports = 30
+			big_ship = 100
+		}
+		effect = {
+			add_country_modifier = {
+				name = "britanna_rules_the_waves"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	establish_the_wooden_wall = {
+		potential = {
+			OR = {
+				tag = ENG
+				tag = GBR
+			}
+			NOT = { has_country_modifier = the_wooden_wall }
+		}
+		allow = {
+			idea = sea_hawks
+			idea = superior_seamanship
+			NOT = {
+				british_isles = {
+					NOT = { owned_by = THIS }
+				}
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_wooden_wall"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+
+province_decisions = {
+	designate_the_staple_port = {
+		potential = {
+			province_id = 87
+			owner = {
+				tag = ENG
+			}
+			NOT = { has_province_modifier = the_staple_port }
+
+		}
+		allow = {
+			owner = {
+				war = no
+				ADM = 5
+				officials = 4
+			}
+			NOT = {
+				1744 = {
+					owned_by = THIS
+				}
+			}
+			1744 = {
+				cot = yes
+			}
+		
+		}
+		effect = {
+			1744 = {
+				 owner = {
+					relation = { who = ENG value = -150 }
+				}
+			}
+			owner = {
+				mercantilism_freetrade = -1
+				officials = -4
+			}
+			add_province_modifier = {
+				name = "the_staple_port"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

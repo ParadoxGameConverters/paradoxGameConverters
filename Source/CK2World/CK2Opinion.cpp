@@ -33,6 +33,14 @@ CK2Opinion::CK2Opinion(Object* obj) : value(0), multiplier(1)
 			value = yearsRuled - 10;
 		}
 	}
+	else if (obj->getKey() == "looter_hostility_days")
+	{
+		// do nothing
+	}
+	else if (obj->getKey() == "is_looter")
+	{
+		// do nothing
+	}
 	else // opinion modifier
 	{
 		vector<Object*> modifierObjs = obj->getValue("modifier");
@@ -61,9 +69,15 @@ void CK2Opinion::initOpinions(Object* root)
 	{
 		string name = (*itr)->getKey();
 		vector<Object*> opinionObjs = (*itr)->getValue("opinion");
-		int value = atoi(opinionObjs[0]->getLeaf().c_str());
+		int value = 0;
+		if (opinionObjs.size() > 0)
+		{
+				value = atoi(opinionObjs[0]->getLeaf().c_str());
+		}
 		if (!name.empty() && value != 0)
+		{
 			opinionVals[name] = value;
+		}
 	}
 }
 

@@ -1,0 +1,175 @@
+country_decisions = {
+
+	naval_recruiting_act = {
+		potential = {
+			NOT = { has_country_modifier = the_recruiting_act }
+			land_naval = 2
+			num_of_ports = 1
+		}
+		allow = {
+			not = { innovative_narrowminded = 0 }
+			quality_quantity = 1
+			war = yes
+		}
+		effect = {
+			innovative_narrowminded = -1
+			quality_quantity = 1
+			add_country_modifier = {
+				name = "the_recruiting_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	militia_act = {
+		potential = {
+			not = { has_country_modifier = the_military_act }
+			government = monarchy
+		}
+		allow = {
+			not = { centralization_decentralization = -1 }
+			mil = 7
+			is_monarch_leader = yes
+			not = { has_country_modifier = the_military_act }			
+		}
+		effect = {
+			quality_quantity = 1
+			centralization_decentralization = -1
+			add_country_modifier = {
+				name = "the_military_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	navigation_act = {
+		potential = {
+			not = { has_country_modifier = the_navigation_act }
+			overseas_provinces_percentage = 0.4
+			not = { mercantilism_freetrade = 0 }
+		}
+		allow = {
+			idea = national_trade_policy
+			advisor = collector
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_navigation_act"
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	enlist_privateers = {
+		potential = {
+			not = { has_country_modifier = hire_privateers }
+			not = { has_country_modifier = the_anti_piracy_act }
+			or = {
+				technology_group = western
+				technology_group = eastern
+				technology_group = ottoman
+				technology_group = muslim
+			}
+			or = {
+				idea = superior_seamanship
+				idea = naval_fighting_instruction
+				idea = sea_hawks
+			}
+			num_of_ports = 1
+			naval_tech = 15
+		}
+		allow = {
+			navy_size_percentage = 0.5
+			advisor = privateer
+			mil = 6
+		}
+		effect = {
+			add_country_modifier = {
+				name = "hire_privateers"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			# England, France, Barbary Coast
+		}
+	}
+	naval_convoy_system = {
+		potential = {
+			not = { has_country_modifier = convoy_system }
+			overseas_provinces_percentage = 0.3
+			year = 1500
+			gold = 2
+		}
+		allow =  {
+			advisor = naval_reformer
+			mil = 7
+		}
+		effect = {
+			inflation = 5
+			add_country_modifier = {
+				name = "convoy_system"
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+			# England, France, Barbary Coast
+		}
+	}
+	anti_piracy_act = {
+		potential = {
+			not = { has_country_modifier = the_anti_piracy_act }
+			not = { has_country_modifier = hire_privateers }
+			or = {
+				technology_group = western
+				technology_group = eastern
+				technology_group = ottoman
+				technology_group = muslim
+			}
+			num_of_ports = 1
+			naval_tech = 15
+		}
+		allow = {
+			not = { badboy = 0.15 }
+			war = no
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_anti_piracy_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	land_recruiting_act = {
+		potential = {
+			not = { has_country_modifier = the_land_recruiting_act }
+			not = { land_naval = -1 }
+		}
+		allow = {
+			not = { innovative_narrowminded = 0 }
+			quality_quantity = 1
+			war = yes
+		}
+		effect = {
+			innovative_narrowminded = -1
+			quality_quantity = 1
+			add_country_modifier = {
+				name = "the_land_recruiting_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

@@ -1,0 +1,13 @@
+# Eastern Carabinier
+
+type = infantry
+unit_type = eastern
+unit_type = ottoman
+
+maneuver = 1
+offensive_morale = 7
+defensive_morale = 6
+offensive_fire = 7
+defensive_fire = 4
+offensive_shock = 6
+defensive_shock = 4

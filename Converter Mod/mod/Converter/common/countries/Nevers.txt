@@ -1,0 +1,124 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 207  111  64 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	liberty_egalite_fraternity
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Charles #0" = 80
+	"François #0" = 40		
+	"Philippe #0" = 40
+	"Louis #3" = 20
+	"Pierre #1" = 20
+	"Engelbert #0" = 20
+	"Jacques #0" = 20
+	"Jean #0" = 20
+	"Julius #0" = 20
+	"Louis Julius #0" = 20
+	"Philippe Julian #0" = 20
+	"Philippe Julius #0" = 20
+	"Adolphe #0" = 10
+	"Fernand #0" = 10
+	"Frédéric #0" = 10
+	"Henriette #0" = -10
+	"Marie #0" = -10
+	"Guillaume #5" = 5
+	"Henri #0" = 5
+	"Thierry #0" = 5
+	"Robert #3" = 1
+	"Rénaud #2" = 1
+	"Guy #1" = 1
+	"Hervé #1" = 1
+	"Alexandre #0" = 0
+	"Armand #0" = 0
+	"Barthélémy #0" = 0
+	"Bernard #0" = 0
+	"Claude #0" = 0
+	"Denis #0" = 0
+	"Étienne #0" = 0
+	"Gaston #0" = 0
+	"Georges #0" = 0
+	"Jean-Baptiste #0" = 0
+	"Joseph #0" = 0
+	"Marc #0" = 0
+	"Maurice #0" = 0
+	"Michel #0" = 0
+	"Nicolas #0" = 0
+	"Pierre #0" = 0
+}
+
+ship_names = {
+        Brinon
+        "Cercy la Tour" Charité "Châtillon en Bazois" Chevenon Clamecy Corbigny Cossaye
+        Decize Dompierre Donzy Dornes
+        Fourchambault Fours Frasnay-Reugny
+        Garchy Goulanges Guérigny
+        Imphy
+        "La Machine" "Luthenay Uxeloup" Luzy
+        Magny-Cours Marzy Menou Montambert Moulins-Engilbert
+        Nevers
+        Pouilly Pouques Prémery
+        "Saint Aubin" "Saint Benin d'Azy" "Saint Eloi" "Saint Franchy" "Saint Germain" "St Gratien Savigny" "Saint Honoré" "Saint Imbert" "Sainte Marie" "St Malo en Donziers" "Saint Ouen" "Saint Parize en Viry" "St Pierre le Moutier" "Saint Révérien" "Saint Saulge"
+        Tannay
+        Vandenesse "Varennes-Vauzelle" "Varzy"
+}
+
+leader_names = {
+        d'Ailly d'Alixand "Andrault de Langeron" "Angrand d'Alleray" d'Anlazy d'Armes
+        "de Bélanger" "de Berthier" "de Bèze" "de Bonnay" "de Borniol" "de Bourgoing" "du Broc" 
+        "de Chabannes" "de Chassy" "de Chevenon"
+        "de Damas" "Des Prez"
+        "Eon de Beaumont" d'Estutt
+        "de la Ferté-Meun"
+        Gascoing "de Gonzague"
+        "de Husson"
+        d'Inteville
+        "de La Boulaye" "de La Buxières" "La Vaux"
+        "de Maulnoury" "de Maumigny" "de Mesgriny"
+        "de Norry"
+        "de Paris" Perreau
+        "de Remigny" "de Rouffignac" "Rousseau de Chamoy"
+        "de Saincy" "de Sainte Maure" "de Saint Verrain" "de Sandras" "de Serent"
+        Tenaille "de Toucy" "de Troussebois"
+        "Vaillant de Guélis" "de Vaux" "du Verne" "de Viau" "de Villars"
+}
+
+army_names = { 
+         "Armée du Nivernais"  "Armée de La Ferté-Langeron"
+         "Armée du Bazois" "Armée du Dionzais" "Armée du Corbigeois"
+         "Armée du Charitois"
+	 "Armée de $PROVINCE$" 
+}

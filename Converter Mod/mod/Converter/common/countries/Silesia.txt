@@ -1,0 +1,92 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 84  166  93 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	merchant_adventures
+	patron_of_art
+	military_drill
+	national_bank
+	national_conscripts
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Fryderyk #0" = 80
+	"Jan #0" = 40
+	"Henryk #8" = 40
+	"Ludwik #2" = 20
+	"Jan Krystian #0" = 20
+	"Jerzy #0" = 20
+	"Jerzy Rudolf #0" = 20
+	"Jerzy Wilhelm #0" = 20
+	"Joachim Fryderyk #0" = 20
+	"Krystian #0" = 20
+	"Ruprecht #1" = 20
+	"Jan Jerzy #0" = 15
+	"Jerzy Ernest #0" = 15
+	"August #0" = 10
+	"Ernest #0" = 10
+	"Joachim #0" = 10
+	"Krystian Ludwik #0" = 10
+	"Rudolf #0" = 10
+	"Wladislaw #1" = 5
+	"Albert #0" = 0
+	"Aleksander #0" = 0
+	"Andel #0" = 0
+	"Branko #0" = 0
+	"Bruno #0" = 0
+	"Cezar #0" = 0
+	"Dietrich #0" = 0
+	"Eugeniusz #0" = 0
+	"Filip #0" = 0
+	"Hermann #0" = 0
+	"Joachim #0" = 0
+	"Krzysztof #0" = 0
+	"Lech #0" = 0
+	"Libor #0" = 0
+	"Markus #0" = 0
+	"Maurycy #0" = 0
+	"Radomir #0" = 0
+	"Siegfried #0" = 0
+	"Tomás #0" = 0
+	"Václav #0" = 0
+	"Wilhelm #0" = 0
+}
+
+leader_names = { 
+	Schwarz Hergesell Heintzel Hoppe
+	Kahl Tilch Greve Abeln Liegnitz
+	Jauernik Wiehle Gronau Sterner
+}
+
+ship_names = {
+	Teschen Falkenberg "Cosel-Beuthen" Oppeln Ratibor
+	Breslau Sagan Oels Steinau "Liegnitz-Brieg" Glogau
+	Münsterberg "Neisse-Ottmachau" "Schweidnitz-Jauer"
+}

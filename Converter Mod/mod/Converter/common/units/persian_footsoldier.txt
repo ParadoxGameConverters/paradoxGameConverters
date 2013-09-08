@@ -1,0 +1,12 @@
+# Persian Footsoldier
+
+type = infantry
+unit_type = muslim
+
+maneuver = 1
+offensive_morale = 1
+defensive_morale = 1
+offensive_fire = 0
+defensive_fire = 0
+offensive_shock = 1
+defensive_shock = 0

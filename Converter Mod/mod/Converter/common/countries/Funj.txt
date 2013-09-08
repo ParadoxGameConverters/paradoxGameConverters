@@ -1,0 +1,92 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 84  80  152 }
+
+historical_ideas = {
+	national_conscripts
+	shrewd_commerce_practise
+	divine_supremacy
+	national_trade_policy
+	military_drill
+	engineer_corps
+	battlefield_commisions
+	merchant_adventures
+	grand_army
+	espionage
+	glorious_arms
+	national_trade_policy
+}
+
+historical_units = {
+	african_spearmen
+	bantu_tribal_warfare
+	african_hill_warfare
+	adal_gunpowder_warfare
+	westernized_adal
+	adal_guerilla_warfare
+}
+
+monarch_names = {
+	"'Amâra #0" = 40
+	"'Abd al-Qâdir #0" = 40
+	"Nâ'l #0" = 20
+	"Dakîn al-'Adil #0" = 20
+	"Dûra #0" = 20
+	"Taiyîb #0" = 40
+	"Unsa #0" = 60
+	"Adlân #0" = 40
+	"Bâdî #0" = 140
+	"Rubât #0" = 20
+	"Nûl #0" = 20
+	"Nâsir #0" = 20
+	"Ranfi #0" = 20
+	"Eltecit #0" = 20
+	"Joel #0" = 20
+	"Koudlaniel #0" = 20
+	"Agban #0" = 20
+	"Ranfi #0" = 20
+	"Isawi #0" = 0
+	"Hashim #0" = 0
+	"Maqdum #0" = 0
+	"Awkal #0" = 0
+	"Hassan #0" = 0
+	"Agban #0" = 0
+	"Abu Likayik #0" = 0
+	"Rajab #0" = 0
+	"Ahmad #0" = 0
+	"Rifaya #0" = 0
+	"Ibrahim #0" = 0
+	"Idris #0" = 0
+	"Tindhim #0" = 0
+	"'Abd al-Rahman #0" = 0
+	"Sulayman #0" = 0
+	"Yusuf #0" = 0
+	"Ya'qub #0" = 0
+	"Ismâ'îl #0" = 0
+	"Musa #0" = 0
+	"Muhammad #0" = 0
+	"Ishaq #0" = 0
+	"Halim #0" = 0
+	"Mustafa #0" = 0
+	"Abu Bakr #0" = 0
+}
+
+leader_names = {
+	Abboud
+	Fung
+	Garang
+	Kayra
+	Keira
+	Kelueljang
+	Lugor
+	Nuer
+	Shol
+	Taha
+}
+
+ship_names = {
+	Apedemak Bes Dedwen Arensnuphis Amon
+	Mandulis Amenirdis Taweret Mut Tefnut Khnum
+}

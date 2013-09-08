@@ -1,0 +1,13 @@
+government = imperial_government
+aristocracy_plutocracy = -5
+centralization_decentralization = 5
+innovative_narrowminded = 4
+mercantilism_freetrade = -3
+offensive_defensive = -4
+land_naval = -5
+quality_quantity = 5
+serfdom_freesubjects = 0
+primary_culture = turkish
+religion = shamanism
+technology_group = nomad_group
+capital = 468	# Kalmykia

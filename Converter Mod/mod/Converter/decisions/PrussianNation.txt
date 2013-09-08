@@ -1,0 +1,98 @@
+country_decisions = {
+
+	prussian_nation = {
+		potential = {
+			tag = TEU
+			NOT = { exists = PRU }
+			NOT = { tag = HRE }
+			NOT = { tag = GER }
+			is_religion_enabled = protestant
+		}
+		allow = 
+		{
+			owns = 41			# Ostpreussen
+			war = no
+		}
+	  effect = {
+			random_owned = {
+				base_tax = 1
+			}
+			centralization_decentralization = -1
+			prestige = 0.03
+			change_tag = PRU
+			PRU = { 
+				government = feudal_monarchy
+				add_core = 41			# Ostpreussen
+				add_core = 42			# Warmia
+				add_core = 43			# Danzig
+				add_core = 40			# Memel
+				add_core = 39			# Kurland
+				add_core = 271			# Samogitia
+				capital = 41 			# Ostpreussen
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	prussian_nation_general = {
+		potential = {
+			is_religion_enabled = protestant
+			OR = {
+				primary_culture = pommeranian
+				primary_culture = saxon
+				primary_culture = prussian
+			}
+			NOT = { tag = GER }
+			NOT = { tag = HRE }
+			NOT = { tag = BRA }
+			NOT = { tag = TEU }
+			NOT = { exists = PRU }
+		}
+		allow = 
+		{
+			owns = 41			# Ostpreussen
+			owns = 42			# Warmia
+			owns = 43			# Danzig
+			is_core = 41		# Ostpreussen
+			is_core = 42		# Warmia
+			is_core = 43		# Danzig
+			war = no
+		}
+	  effect = {
+			random_owned = {
+				base_tax = 1
+			}
+			centralization_decentralization = -1
+			prestige = 0.05
+			primary_culture = prussian
+			change_tag = PRU
+			PRU = {
+				add_core = 41			# Ostpreussen
+				add_core = 42			# Warmia
+				add_core = 43			# Danzig
+				add_core = 40			# Memel
+				add_core = 39			# Kurland
+				add_core = 271			# Samogitia
+				random_owned = {
+					limit = { 
+						is_capital = no 
+						OR = {
+							culture = saxon
+							culture = pommeranian
+						}
+					} 
+					culture = prussian
+				}
+			}
+			capital_scope = {
+				culture = prussian
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

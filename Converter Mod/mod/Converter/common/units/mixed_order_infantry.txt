@@ -1,0 +1,12 @@
+# Mixed Order Infantry
+
+unit_type = western	
+type = infantry
+
+maneuver = 1
+offensive_morale = 11
+defensive_morale = 10
+offensive_fire = 11
+defensive_fire = 8
+offensive_shock = 9
+defensive_shock = 8

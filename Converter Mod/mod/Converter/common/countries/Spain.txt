@@ -1,0 +1,126 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 231  181  12 }
+
+historical_ideas = {
+	divine_supremacy
+	quest_for_the_new_world
+	colonial_ventures
+	land_of_opportunity
+	national_conscripts
+	vice_roys
+	superior_seamanship
+	regimental_system
+	national_bank
+	excellent_shipwrights
+	improved_foraging
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Carlos #0" = 80
+	"Felipe #1" = 60
+	"Fernando #5" = 40
+	"Luis #0" = 20
+	"José #0" = 20
+	"Diego #0" = 15
+	"Baltasar Carlos #0" = 15
+        "Ana #0" = -15
+	"María Teresa #0" = -10
+	"Alfonso #11" = 10
+	"Enrique #4" = 10
+	"Juan #2" = 10
+        "Isabel #1" = -10
+	"Francisco #0" = 10
+	"Tomás #0" = 10
+        "Antonio #0" = 10
+	"Francisco #0 de Paula" = 10
+	"Gabriel #0" = 10
+	"Sancho #4" = 5
+	"Jaime #2" = 5
+        "Ramiro #2" = 5
+	"Pedro #1" = 5
+	"Pelayo #1" = 5
+	"Alonso #0" = 0
+	"Baltasar #0" = 0
+        "Bartolomé #0" = 0
+	"Claudio #0" = 0
+	"Cristobal #0" = 0
+	"Domingo #0" = 0
+	"Emilio #0" = 0
+	"Fadrique #0" = 0
+	"Fausto #0" = 0
+        "García #0" = 0
+	"Gaspar #0" = 0
+	"Gonzalo #0" = 0
+	"Guillermo #0" = 0
+	"Hermenegildo #0" = 0
+        "Hernando #0" = 0
+	"Ignacio #0" = 0
+	"Jorge #0" = 0
+	"Juan Bautista #0" = 0
+	"Juan José #0" = 0
+	"Leopoldo #0" = 0
+	"Lope #0" = 0
+        "Manuel #0" = 0
+	"Miguel #0" = 0
+	"Ramón #0" = 0
+	"Rodrigo #0" = 0
+	"Sebastián #0" = 0
+        "Vicente #0" = 0
+}
+
+leader_names = {
+	"Abarca de Bolea" "de Aguirre" "de Alarcón" "Álvarez de Toledo" "de Aragón" "de Austria" "de Ayala"
+	"de Bazán" "de Beaumont" "de Benavides" "de Borbón" "de Borja"
+	"Cabeza de Vaca" "Cagigal de la Vega" Campomanes "de la Cerda" Colón Coronado Cortés Dávila
+	"de Egmont" Elcano Elhuyar "Fadrique de Toledo" "Fernández de Castro" "Fernández de Córdoba" "de Figueroa" Fitz-James "Folch de Cardona" Fonseca
+	Gálvez Gómez Gravina "de Grijalva" Grimaldi "de Guzmán" "de Jovellanos" "de Leiva"
+	"Lópe de Haro" "Manrique de Lara" "Manrique de Velasco" "de Mendoza" "de Montcada" "Nuñez de Balboa"
+	"de Ojeda" Orellana Osorio Palafox Patiño Pimentel Pizarro "Ponce de León" Portocarrero
+	"de Requesens" "de Ripperdá" "de Rojas" Sastre Tellez-Girón "de la Vega" "de Zúñiga"
+}
+
+ship_names = {
+	Andalucía Anunciación Argonauta Aurora Aventurero Bizarra Brillante Burlando
+	Cacafuego Caimán Castilla Catalina "Conde de Tolosa" Conquistador Constante "Cuervo Marino"
+	Dorada Dragón "El Retiro" Esmeralda Esperanza Fuerte Galicia Gavilán Gaviota Glorioso Griega
+	Hércules Hermiona Infante Intrépido Iris Jassón Juno Júpiter
+	"La Carlota" "La Cazadora" "La Tetis" León Luz Mercurio Neptuno
+	Pena Penélope Peregrina "Perla de España" Princesa "Príncipe de Asturias" Puercoespín
+	"Real Carlos" "Real Familia" "Real Felipe" "Real Jorge" "Rubí" "Saeta"
+	"San Andrés" "San Antonio" "San Carlos" "San Esteban" "San Felipe" "San Fernando" "San Francisco"
+	"San Gabriel" "San Gil" "San Isidoro" "San Isidro" "San Jerónimo" "San Joaquín" "San José" "San Juan" "San Juan Bautista"
+	"San Leandro" "San Luis" "San Marcos" "San Martín" "San Miguel" "San Pío"
+	"Santa Ana" "Santa Bárbara" "Santa Eulalia" "Santa Irene" "Santa Isabel" "Santa Justa"
+	"Santa Natalia" "Santa Rita" "Santa Rosa" "Santa Susana" "Santa Teresa"
+	Santiago "Santísima Trinidad" Sebastiana Soberano Susana Trinidad Triunfo Unicornio
+	Venganza Vichero Victoria Vigilante Volante Vulcano Zara
+}
+
+
+army_names = {
+	"Guardia Real" "Ejército de $PROVINCE$"
+}
+
+fleet_names = {
+	"Armada Real"	"Flota de $PROVINCE$"
+}

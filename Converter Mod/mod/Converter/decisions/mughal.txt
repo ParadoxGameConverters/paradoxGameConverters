@@ -1,0 +1,27 @@
+country_decisions = {
+	move_capital_to_delhi = {
+		potential = {
+			tag = MUG
+			NOT = { capital = 522 }
+			NOT = { has_country_flag = relocated_capital_delhi }
+		}
+		allow = {
+			owns = 522
+			war = no
+			prestige = 0.2
+		}
+		effect = {
+			set_country_flag = relocated_capital_delhi
+			stability = 1
+			capital = 522
+			prestige = 0.10
+			522 = {
+			 	base_tax = 2
+			 	change_manpower = 1
+			 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

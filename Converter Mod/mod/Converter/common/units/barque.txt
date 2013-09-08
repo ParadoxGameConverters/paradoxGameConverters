@@ -1,0 +1,6 @@
+#Barque
+type = light_ship
+
+hull_size = 10
+base_cannons = 15 
+sail_speed = 10

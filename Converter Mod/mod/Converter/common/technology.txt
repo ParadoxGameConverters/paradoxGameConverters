@@ -1,0 +1,69 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new technology, make sure they are uniquely named.
+
+# Armies get a combined arms bonus when the ratio cav / (inf+cav) is _less_ than "cav_to_inf_ratio". This applies for the "unit_type" of a country.
+
+#groups must be defined BEFORE tables.
+
+
+groups = {
+	nomad_group = {
+		modifier = 0.1
+		start_level = 3
+		cav_to_inf_ratio = 1.0
+		slow_limit = 6
+	}
+	western = {
+		modifier = 1.0
+		start_level = 3
+		cav_to_inf_ratio = 0.5
+	}
+	eastern = {
+		modifier = 0.85
+		start_level = 3
+		cav_to_inf_ratio = 0.6
+		slow_limit = 6
+	}
+	ottoman = {
+		modifier = 0.80
+		start_level = 5
+		cav_to_inf_ratio = 0.5
+	}
+	muslim = {
+		modifier = 0.75
+		start_level = 5
+		cav_to_inf_ratio = 0.8
+	}
+	indian = {
+		modifier = 0.5
+		start_level = 3
+		cav_to_inf_ratio = 0.5
+		slow_limit = 7
+	}
+	chinese = {
+		modifier = 0.4
+		start_level = 3
+		cav_to_inf_ratio = 0.5
+		slow_limit = 7
+	}
+	sub_saharan = {
+		modifier = 0.2
+		start_level = 1
+		cav_to_inf_ratio = 0.5
+		slow_limit = 4
+	}
+	new_world = {
+		modifier = 0.1
+		start_level = 0
+		cav_to_inf_ratio = 0.5
+		slow_limit = 3
+	}
+}
+
+tables = {
+	land_tech = "technologies/land.txt"
+	naval_tech = "technologies/naval.txt"
+	trade_tech = "technologies/trade.txt"
+	production_tech = "technologies/production.txt"
+	government_tech = "technologies/government.txt"
+}

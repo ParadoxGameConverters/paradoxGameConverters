@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 177  207  205 }
+
+historical_ideas = {
+	church_attendance_duty
+	divine_supremacy
+	battlefield_commisions
+	national_trade_policy
+	military_drill
+	patron_of_art
+	national_conscripts
+	bureaucracy
+	merchant_adventures
+	engineer_corps
+	humanist_tolerance
+	glorious_arms
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Gendun Drup #0" = 20
+	"Trakpa Chunge #0" = 20
+	"Sangye Gyantesen Pal Zangpo #0" = 20
+	"Dön-yö Dorje #0" = 20
+	"Ngawang Namgyal #0" = 20
+	"Töndup Tseten #0" = 20
+	"Phüntso Namgye #0" = 20
+	"Karma Tseten #0" = 20
+	"Lhawang Dorje #0" = 20
+	"Karma Ten-Kyong #0" = 20
+	"Gusri #0" = 20
+	"Dayan #0" = 20
+	"Tenzin Dalai #0" = 20
+	"Lhabzang #0" = 20
+	"Tsewang Arabtan #0" = 20
+	"Phola Sonam Topbgye #0" = 20
+	"Gyurme Namgyal #0" = 20
+	"Lozang Gyastro #0" = 20
+	"Tsangyang Gyatso #0" = 20
+	"Kelzang Gyatso #0" = 20
+	"Jamphel Gyatso #0" = 20
+	"Lungtok Gyatso #0" = 20
+	"Tsultrim Gyatso #0" = 20
+	"Gendun Gyastro #0" = 10	# 2nd Dalai Llama
+	"Sonam Gyastro #0" = 10		# 3rd & 4th Dalai Llama
+	"Desi Sangay Gyatso #0" = 5	# Regent between 5th & 6th Dalai Llama
+	"Ngwaang Yeshi Gyatso #0" = 5	# Attempted Mongolian coup over 6th Dalai Llama
+	"Chang-chub #1" = 1
+	"Sakya Gyantsen #1" = 1
+	"Trakpa Richen #1" = 1
+	"Trakpa Chang-chub #1" = 1
+	"Trakpa Chungne #1" = 1
+	"Sangye Gyamtso #0" = 0
+	"Lobsang Yeshe #0" = 0
+	"Palden Yeshi #0" = 0
+	"Ngapoi Takna #0" = 0
+	"Jigme Wangyal #0" = 0
+	"Tashi Chophel #0" = 0
+	"Bapu Gendun #0" = 0
+	"Rabtan #0" = 0
+	"Sengge #0" = 0
+	"Galdan #0" = 0
+	"Gushi #0" = 0
+}
+
+leader_names = {
+	Gampo
+	Srong
+	Sregs
+	Thekchen
+	Sonam
+	Tashi
+	Tsewang
+	Wangdue
+	Wangdak
+	Phuntsok
+}
+
+ship_names = {
+	Barkam
+	Dartsendo
+	Gyantse Gartse
+	Lhasa Lhotse
+	Makalu 
+	Nagqu Nyingchi Nedong
+	Pelbar
+	Qamdo
+	Shigatse Sakya
+	Tinggri
+}

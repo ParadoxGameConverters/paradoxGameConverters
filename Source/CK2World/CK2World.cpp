@@ -178,7 +178,7 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		string key = leaves[i]->getKey();
 		if (atoi(key.c_str()) > 0)
 		{
-			CK2Province* newProvince = new CK2Province(leaves[i], titles, characters, buildingFactory);
+			CK2Province* newProvince = new CK2Province(leaves[i], titles, characters, buildingFactory, *version);
 			provinces.insert( make_pair(atoi(key.c_str()), newProvince) );
 
 			vector<CK2Barony*> newBaronies = newProvince->getBaronies();
@@ -250,6 +250,35 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 		}
 	}
 	independentTitles.swap(newIndependentTitles);
+
+	// remove de jure titles with no de jure territory and no de jure liege
+	map<string, CK2Title*> newTitles;
+	newIndependentTitles.clear();
+	map<string, CK2Title*> newHreMembers;
+	for (map<string, CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+	{
+		if ((titleItr->second->getVassals().size() == 0) && (titleItr->second->getDeJureLiege() == NULL) && (titleItr->second->getDeJureVassals().size() == 0))
+		{
+			log("\tRemoving dead title %s\n", titleItr->first.c_str());
+		}
+		else
+		{
+			newTitles.insert(*titleItr);
+			map<string, CK2Title*>::iterator independentItr = independentTitles.find(titleItr->first);
+			if (independentItr != independentTitles.end())
+			{
+				newIndependentTitles.insert(*titleItr);
+			}
+			map<string, CK2Title*>::iterator hreItr = hreMembers.find(titleItr->first);
+			if (hreItr != hreMembers.end())
+			{
+				newHreMembers.insert(*titleItr);
+			}
+		}
+	}
+	titles.swap(newTitles);
+	independentTitles.swap(newIndependentTitles);
+	hreMembers.swap(newHreMembers);
 
 	// determine heirs
 	printf("\tDetermining heirs\n");
@@ -375,25 +404,48 @@ void CK2World::mergeTitles()
 }
 
 
-vector<double> CK2World::getAverageTechLevels() const
+vector<double> CK2World::getAverageTechLevels(CK2Version& version) const
 {
 	vector<double> avgTechLevels;
-	avgTechLevels.resize(TECH_LEGALISM);
-	for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+	if (CK2Version("1.10") > version)
 	{
-		avgTechLevels[i] = 0.0f;
-	}
-	for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
-	{
-		vector<double> currentTechLevels = provItr->second->getTechLevels();
-		for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+		avgTechLevels.resize(TECH_LEGALISM_OLD + 1);
+		for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
 		{
-			avgTechLevels[i] += currentTechLevels[i];
+			avgTechLevels[i] = 0.0f;
+		}
+		for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+		{
+			vector<double> currentTechLevels = provItr->second->getTechLevels();
+			for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
+			{
+				avgTechLevels[i] += currentTechLevels[i];
+			}
+		}
+		for (unsigned int i = 0; i <= TECH_LEGALISM_OLD; i++)
+		{
+			avgTechLevels[i] /= provinces.size();
 		}
 	}
-	for (unsigned int i = 0; i < TECH_LEGALISM; i++)
+	else
 	{
-		avgTechLevels[i] /= provinces.size();
+		avgTechLevels.resize(TECH_LEGALISM + 1);
+		for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+		{
+			avgTechLevels[i] = 0.0f;
+		}
+		for(map<int, CK2Province*>::const_iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+		{
+			vector<double> currentTechLevels = provItr->second->getTechLevels();
+			for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+			{
+				avgTechLevels[i] += currentTechLevels[i];
+			}
+		}
+		for (unsigned int i = 0; i <= TECH_LEGALISM; i++)
+		{
+			avgTechLevels[i] /= provinces.size();
+		}
 	}
 
 	return avgTechLevels;

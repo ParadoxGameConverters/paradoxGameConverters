@@ -1,0 +1,100 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 58  174  61 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	humanist_tolerance
+	merchant_adventures
+	patron_of_art
+	national_bank
+	national_conscripts
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	bureaucracy
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Friedrich #3" = 30
+	"Wilhelm #0" = 20
+	"Balthasar #0" = 15
+	"Georg #0" = 15
+	"Albrecht #2" = 10
+	"Ernst #0" = 10
+	"Siegmund #0" = 10
+	"Konrad #1" = 5
+	"Otto #1" = 5
+	"Alfred #0" = 0
+	"August #0" = 0
+	"Bernhard #0" = 0
+	"Berthold #0" = 0
+	"Burkhard #0" = 0
+	"Christian #0" = 0
+	"Christoph #0" = 0
+	"Dietrich #0" = 0
+	"Günther #0" = 0
+	"Andreas #0" = 0
+	"Gustav #0" = 0
+	"Heinrich #0" = 0
+	"Joachim #0" = 0
+	"Johann #0" = 0
+	"Karl #0" = 0
+	"Kasimir #0" = 0
+	"Leonhard #0" = 0
+	"Leopold #0" = 0
+	"Lorenz #0" = 0
+	"Ludwig #0" = 0
+	"Maximilian #0" = 0
+	"Michael #0" = 0
+	"Moritz #0" = 0
+	"Nicolaus #0" = 0
+	"Paul #0" = 0
+	"Reiner #0" = 0
+	"Rudolf #0" = 0
+	"Thomas #0" = 0
+	"Ulrich #0" = 0
+	"Viktor #0" = 0
+	"Waldemar #0" = 0
+}
+
+leader_names = {
+	Hoppe Herzburg Ackermann Alberti 
+	Albrecht Alvensleben Amman Annecke Anthe
+	Bauer Bause Ehrenberg Erxleben Feuerstack 
+	Flachsbart Genthe Gerstung Held Isaack
+	Janeck Jantke Kersten Kleinau März Nehmiz 
+	Rumpf Scharfe SChauseil Schieck "von Zerbst"
+}
+
+ship_names = {
+	"Albrecht der Bär" Aschersleben "Hermann Orlamünde"
+	"Bischof Siegfried" "Dietrich Werben" "Albrecht Ballenstedt"
+	"Bernhard Wittenberg" "Heinrich I" Zerbst Coswig Dessau Köthen
+	Bernburg Brocken Hartz Plötzkau Ramberg Rosslau
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

@@ -1,0 +1,116 @@
+# Country name see file name.
+
+graphical_culture = latingfx
+
+color = { 83  149  105 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	press_gangs
+	national_bank
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	glorious_arms
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_longbow
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+leader_names = { 
+	Atkinson Armstrong
+	Ball Bell Birkett Braithwaite Burdon
+	Carlisle Cavendish Carr Charlton
+	Dacre Dixon Dodd
+	Elliott 
+	Featherstonehaugh Fenwick
+	Graham Grey
+	Hall Heron Hodgson Hume
+	Lambton Liddell Lowther Lumley
+	Marley Milburn Musgrave
+	Neville 
+	Percy
+	Radcliffe Robinson Robson
+	Scott Shafto Swinburne
+	Todhunter Tyson	
+}
+
+monarch_names = {
+	"Henry #0" = 140
+	"Algernon #0" = 40
+	"Hugh #0" = 20
+	"Henry Algernon #0" = 20
+	"Josceline #0" = 20
+	"Thomas #0" = 20
+	"Charles #0" = 10
+	"George #0" = 10
+	"William #0" = 10
+	"Richard #0" = 5
+	"Alan #0" = 5
+	"Ingelram #0" = 5
+	"Ralph #0" = 5
+	"John #0" = 1
+	"Ashton #0" = 0
+	"Bruce #0" = 0
+	"Clarence #0" = 0
+	"Curtis #0" = 0
+	"Darrell #0" = 0
+	"Edgar #0" = 0
+	"Edward #0" = 0
+	"Fulk #0" = 0
+	"Gabriel #0" = 0
+	"Hector #0" = 0
+	"Jasper #0" = 0
+	"Keith #0" = 0
+	"Daniel #0" = 0
+	"Malcolm #0" = 0
+	"Michael #0" = 0
+	"Nathan #0" = 0
+	"Ned #0" = 0
+	"Osborn #0" = 0
+	"Patrick #0" = 0
+	"David #0" = 0
+	"Sean #0" = 0
+	"Timothy #0" = 0
+	"Robert #0" = 0
+	"Victor #0" = 0
+	"Walter #0" = 0
+	"Zachariah #0" = 0
+}
+
+ship_names = {
+          Aethelfrith Alnwick
+          Bamburgh Bede Bernicia Berwick Blackadder Borderer Bowes
+          Carlisle Cheviot Cumberland
+          Derwent Durham
+          Eden
+          Hadrian Helvellyn
+          Jarrow
+          Lindisfarne
+          Morpeth
+          Newcastle Northumbria
+          Penrith Percy
+          Reiver Rheged
+          Scafell Shap Skiddaw Solway "St Cuthbert" "St Edwin" "St Oswald" Sunderland
+          Tees Tweed Tyne
+          Wear Westmorland Windermere
+}

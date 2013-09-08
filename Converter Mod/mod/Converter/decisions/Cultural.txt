@@ -1,0 +1,124 @@
+country_decisions = {
+
+	cultural_shift = {
+		potential = {
+			capital_scope = {
+				NOT = { culture = THIS }
+			}
+			NOT = { tag = FRA }
+			NOT = { tag = GBR }
+			NOT = { tag = SCA }
+			NOT = { tag = GER }
+			NOT = { tag = HRE }
+			NOT = { tag = PAP }
+			NOT = { tag = ITA }
+			NOT = { tag = SPA }
+			NOT = { tag = RUS }
+			NOT = { tag = BYZ }
+			NOT = { tag = PER }
+			NOT = { tag = KHA }
+			NOT = { tag = JAP }
+			NOT = { tag = MCH }
+			NOT = { tag = MNG }
+			NOT = { tag = PRU }
+		}
+		allow =  {
+			dominant_culture = CAPITAL
+			stability = 1
+			war = no 
+			is_subject = false
+		}
+	  	effect = {
+			primary_culture = CAPITAL
+			stability = -5
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+province_decisions = {
+	support_local_customs = {
+		potential = {
+			has_national_focus = yes
+			has_owner_culture = no
+			has_owner_religion = yes
+			NOT = { has_province_modifier = local_customs }
+			owner = { 
+				NOT = { 
+					innovative_narrowminded = 0 
+				} 
+			}
+		}
+		allow = {
+			owner = { 
+				dip = 5
+				officials = 4
+			}
+		}
+		effect = {
+			add_province_modifier = {
+				name = "local_customs"
+				duration = -1
+			}
+			owner = {
+				officials = -4
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				has_owner_culture = yes
+			}
+			modifier = {
+				factor = 0.0
+				has_owner_religion = yes
+			}
+			modifier = {
+				factor = 0.0
+				is_core = THIS
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { revolt_risk = 6 }
+			}
+		}
+	}
+	
+	promote_cultural_unity = {
+		
+		potential = {
+			owner = { culture_group = THIS }
+			has_owner_religion = yes
+			
+			any_core = {
+				exists = no
+	 		}
+		}
+		
+		allow = {
+			has_national_focus = yes
+			owner = { 
+				officials = 2
+			}
+		}
+		
+		effect = {
+			any_core = { 
+				limit = { exists = no }
+				remove_core = THIS
+			}
+			
+			owner = {
+				officials = -2
+			}
+		}
+		
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+}

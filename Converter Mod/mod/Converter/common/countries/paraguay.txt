@@ -1,0 +1,102 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 75  188  60 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	national_trade_policy
+	revolution_and_counter
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Fulgencio #0" = 20
+	"José #0 Gaspar" = 20
+	"Juan #0 José" = 15
+	"Manuel #0 Antonio" = 15
+	"Carlos #0 Antonio" = 10
+	"Mariano #0" = 10
+	"Abel #0" = 0
+	"Agustín #0" = 0
+	"Alberto #0" = 0
+	"Álvaro #0" = 0
+	"Antonio #0" = 0
+	"Asdrúbal #0" = 0
+	"Bartolomé #0" = 0
+	"Carlos #0" = 0
+	"Daniel #0" = 0
+        "David #0" = 0
+	"Domingo #0" = 0
+	"Emiliano #0" = 0
+	"Enrique #0" = 0
+        "Evaristo #0" = 0
+	"Fabricio #0" = 0
+	"Fernando #0" = 0
+        "Fidel #0" = 0
+	"Gabriel #0" = 0
+        "José #0" = 0
+	"Juan #0" = 0
+	"Leonardo #0" = 0
+	"Manuel #0" = 0
+	"Marcos #0" = 0
+        "Miguel #0" = 0
+	"Narciso #0" = 0
+	"Octavio #0" = 0
+	"Pablo #0" = 0
+	"Patricio #0" = 0
+	"Pedro #0" = 0
+	"Roberto #0" = 0
+        "Rufino #0" = 0
+	"Santiago #0" = 0
+	"Tadeo #0" = 0
+	"Ulíses #0" = 0
+}
+
+leader_names = {
+	Alberti Álvarez "de Alvear" Artigas Azcuenaga Balcarce Bazán Belgrano Brown Bustos
+	Cabral Castro Chiclana Costa Derqui Dorrego González Goyeneche Guazurary "de Güemes"
+	Heredia Jonte "Kaunitz de Holmberg" "de Laprida" Larrea "de las Heras" López
+	Mansilla Matheu Monteagudo Moreno Paso Paz Peña Pérez Planes Posadas "de Pueyrredón"
+	Ramírez Riglos Robinson Rodríguez Rondeau "de Rosas"
+	Saavedra Sáenz "de San Martín" Sarratea Urquiza Warnes
+}
+
+ship_names = {
+	"Asunción"
+	"Gaspar"
+	"El Plata"
+	"Fulgencio"
+	Independencia
+	Libertad "Yegros"
+	Moreno 
+	"Gran Chaco"
+	Rivalda
+}

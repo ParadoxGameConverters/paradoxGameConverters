@@ -1,0 +1,58 @@
+#Pirates
+
+graphical_culture = latingfx
+
+color = { 110  109  94 }
+
+monarch_names = {
+	"Woodes  #0" = 10
+	"Black  #0" = 10
+	"Howell  #0" = 10
+	"Calico  #0" = 10
+	"Lessone  #0" = 10
+	"Lawrence  #0" = 10
+	"Lewis  #0" = 10
+	"John  #0" = 10	
+	"Roche  #0" = 10
+	"James  #0" = 10
+	"Assan  #0" = 10
+	"Dirck #0" = 10
+}
+	
+leader_names = {
+	Alvel Cavendish "de Bouff" Brower Barton
+	Hein Noort Easton Rais Verney Rous Reis
+	Davis Collier Greaves Bellamy Every Vane
+	Rogers Taylor Vorley Kelly Howard Halsey
+}
+
+ship_names = {
+	"Captain's Horror"
+	"Death"
+	"Disgraceful Strumpet"
+	"Dragon's Gold"
+	"Executioner"
+	"Killer's Fearful Storm"
+	"Murderer's Death"
+	"Privateer's Strumpet"
+	"The Damned Killer"
+	"The Dark Dagger"
+	"The Dirty Blade"
+	"The Dirty Scream"
+	"The Doom of the Ocean"
+	"The Dreaming Demon"
+	"The Fallen Raider"
+	"The Fear of the Demon"
+	"The Foul Whore"
+	"The Gold Cutlass"
+	"The Hell-born"
+	"The Horrid Compass"
+	"The Horrible Raider"
+	"The Howling Wolf"
+	"The Lustful Hangman"
+	"The Nightmare"
+	"The Poison Death"
+	"The Serpent"
+	"The Vicious Murderer"
+	"The Vile Saber"
+}

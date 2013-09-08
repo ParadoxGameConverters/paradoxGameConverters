@@ -1,0 +1,11 @@
+# Flying Battery
+
+type = artillery
+
+maneuver = 2
+offensive_morale = 9
+defensive_morale = 6
+offensive_fire = 8
+defensive_fire = 5
+offensive_shock = 7
+defensive_shock = 5

@@ -1,0 +1,82 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 67  124  181 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	patron_of_art
+	national_bank
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	maharathan_guerilla_warfare
+	maharathan_cavalry
+	bhonsle_infantry
+	bhonsle_cavalry
+	indian_rifle
+}
+
+monarch_names = {
+	"Shivaji #0" = 10
+	"Shambaji #0" = 10
+	"Rajaram #0" = 10
+	"Sahuji #0" = 10
+	"Balaji #0" = 10
+	"Baji Rao #0" = 10
+	"Madhu Rao #0" = 10
+	"Narayan Rao #0" = 10
+	"Ragunath Rao #0" = 10
+	"Pratap Singh #0" = 10
+	"Humayun Zalim Shah #0" = 10
+	"Nizam Shah #0" = 10
+	"Mohammed Shah #2" = 10
+	"Mahmud Shah #0" = 10
+	"Ahmad Shah #3" = 10
+	"Aladdin #0" = 10
+	"Wali-Allah Shah #0" = 10
+	"Kalim-Allah Shah #0" = 10
+}
+
+leader_names = {
+	Sahadev
+	Prabhat
+	Kaushal
+	Khursh
+	Narsala
+	Krishnamma
+	Lolaksi
+	Maruthi
+	Nagaraj
+	Ramiah
+}
+
+ship_names = {
+	Agni Bhim Brahma Devi Durga
+	Ganesh Gayatri Hanumaun Indra
+	Jalsena "Kala Jahazi" Kali Kubera
+	Krishna Lakshmi "Lal Jahazi" Nausena
+	"Nav ka Yudh" "Nila Jahazi" Parvati
+	Radha Ratri Sagar Sarasvati Shiva
+	Sita Soma Surya Varuna Vayu Vishnu Yama
+}

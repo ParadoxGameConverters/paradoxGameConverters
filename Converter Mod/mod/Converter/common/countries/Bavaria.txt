@@ -1,0 +1,120 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 178  163  143 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	military_drill
+	patron_of_art
+	engineer_corps
+	national_bank
+	espionage
+	cabinet 
+	battlefield_commisions
+	scientific_revolution
+	napoleonic_warfare
+	bureaucracy
+}
+
+historical_units = {
+	halberd_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Albrecht #2" = 60
+	"Wilhelm #3" = 40
+	"Johann #3" = 20
+	"Ernst #0" = 20
+	"Ferdinand Maria #0" = 20
+	"Karl Albrecht #0" = 20
+	"Karl Theodor #0" = 20
+	"Maximilian #0" = 20
+	"Maximilian #0 Joseph" = 40
+	"Maximilian #0 Emanuel" = 20
+	"Siegmund #0" = 20
+	"Ludwig #9" = 15
+	"Anton #0" = 15
+	"Christoph #0" = 15
+	"Ferdinand #0" = 15
+	"Joseph Clemens #0" = 15
+	"Joseph Ferdinand #0" = 15
+	"Karl #0" = 15
+	"Leopold Ferdinand #0" = 15
+	"Maximilian #0 Philipp" = 15
+	"Philipp Wilhelm #0" = 15
+	"Theodor #0" = 15
+	"Adalbert #0" = 10
+	"Alois Johann #0" = 10
+	"Clemens August #0" = 10
+	"Friedrich #0" = 10
+	"Johann Theodor #0" = 10
+	"Joseph Ludwig #0" = 10
+	"Kajetan Maria #0" = 10
+	"Luitpold #0" = 10
+	"Otto #0" = 10
+	"Philipp Moritz #0" = 10
+	"Wolfgang #0" = 10
+	"Engelbert #0" = 0
+	"Gottfried #0" = 0
+	"Hieronymus #0" = 0
+	"Ignatz #0" = 0
+	"Markus #0" = 0
+	"Meinhard #0" = 0
+	"Raphael #0" = 0
+}
+
+leader_names = {
+	"von Armansperg"
+	Wilsenhütten
+	Asch
+	Dulac
+	Chlingensperg
+	Gumpenberg
+	Hafenbrädl
+	Hannet
+	Scherer
+	Hugenpoet
+	Livizzani
+	Lechner
+	"von Seckendorf"
+	Morawitzky
+	"von Zentner"
+	Moshamm
+	"von Pappenheim"
+	Pfretschner
+	Maximillian
+	Riedesel
+	Rickauer
+	Satzenhofen
+	Vieregg
+	Treuberg
+}
+
+army_names = {
+	 "Armee von $PROVINCE$" 
+}
+
+ship_names = {
+	"St. Kilian" "Tassilo III" "Kaiser Ludwig IV"
+	"König Arnulf" "Graf von Bogen" "Graf von Andechs"
+	"Graf von Sulzbach" Wittelsbach "Graf von Diepolding"
+	"König Konrad III" "König Friedrich I" "Pfalzgraf Otto"
+	Augsburg Andechs Burgau Diessen Friedberg Kempten Lindau
+	Memmingen Mindel Oettingen Straubing Wolfstein
+}

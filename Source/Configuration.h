@@ -22,6 +22,11 @@ public:
 		return getInstance()->EU3Path;
 	}
 
+	static string getCK2ModPath()
+	{
+		return getInstance()->CK2ModPath;
+	}
+
 	static string getTechGroupMethod()
 	{
 		return getInstance()->techGroupMethod;
@@ -149,7 +154,22 @@ public:
 
 	static string getUseConverterMod()
 	{
-	return getInstance()->useConverterMod;
+		return getInstance()->useConverterMod;
+	}
+
+	static string getCK2Mod()
+	{
+		return getInstance()->CK2Mod;
+	}
+
+	static string getModPath()
+	{
+		return getInstance()->modPath;
+	}
+
+	static void setModPath(string _modPath)
+	{
+		getInstance()->modPath = _modPath;
 	}
 
 	static int getID()
@@ -174,6 +194,7 @@ private:
 
 	string	CK2Path;
 	string	EU3Path;
+	string	CK2ModPath;
 
 	string	techGroupMethod;
 
@@ -204,6 +225,8 @@ private:
 	string	lucky_nations;
 
 	string	useConverterMod;
+	string	CK2Mod;
+	string	modPath;
 
 	int		id;
 	int		armyId;

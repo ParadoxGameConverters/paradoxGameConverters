@@ -1,0 +1,119 @@
+province_decisions = {
+	enact_settlement_policy = {
+		potential = {
+			not = { 
+				has_province_modifier = settlement_policy
+			}
+			has_owner_culture = no
+			has_national_focus = yes
+		}
+		allow = {
+			owner = {
+				officials = 3
+				colonists = 2
+			}
+		}
+		effect = {
+			owner = {
+				officials = -3
+				colonists = -2
+			}
+			add_province_modifier = {
+				name = "settlement_policy"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				owner = { infamy = 8 }
+			}
+			modifier = {
+				factor = 0
+				cot = no
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					owner = { officials = 3 }
+				}
+			}
+		}
+	}
+	
+	revoke_settlement_policy = {
+		potential = {
+			has_province_modifier = settlement_policy
+		}
+		allow = {}
+		effect = {
+			remove_province_modifier = settlement_policy
+			prestige = -0.15
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	
+	expand_bureaucracy = {
+		potential = {
+			NOT = {
+				owner = {
+					has_country_modifier = expanded_bureaucracy
+				}
+			}
+			is_capital = yes
+			}
+		allow = {
+		has_national_focus = yes
+			owner = {
+				officials = 4
+			}
+		}
+		effect = {
+			owner = {
+				add_country_modifier = {
+					name = "expanded_bureaucracy"
+					duration = -1
+				}
+			
+				officials = -4
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	formalize_measures = {
+		potential = {
+			NOT = {
+				owner = {
+					has_country_modifier = formalized_measures
+				}
+			}
+			is_capital = yes
+		}
+		allow = {
+			owner = {
+				officials = 5
+				government_tech = 10
+			}
+			has_national_focus = yes
+		}
+		effect = {
+			owner = {
+				add_country_modifier = {
+					name = "formalized_measures"
+					duration = -1
+				}
+				
+				officials = -5
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

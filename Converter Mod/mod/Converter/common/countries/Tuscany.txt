@@ -1,0 +1,115 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 84  96  136 } 
+
+historical_ideas = {
+	church_attendance_duty
+	shrewd_commerce_practise
+	patron_of_art
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	national_conscripts
+	national_bank
+	cabinet
+	scientific_revolution
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Cosimo #0" = 60
+	"Ferdinando #0" = 60
+	"Alessandro #0" = 20
+	"Francesco #0" = 20
+	"Francesco Stefano #0" = 20
+	"Gian Gastone #0" = 20
+	"Pietro Leopoldo #0" = 20
+	"Antonio #0" = 15
+	"Carlo #0" = 15
+	"Filippo #0" = 15
+	"Gian Carlo #0" = 15
+	"Pietro #0" = 15
+	"Alberto #0" = 10
+	"Giovanni #0" = 10
+	"Giuseppe #0" = 10
+	"Leopoldo #0" = 10
+	"Luigi #0" = 10
+	"Massimiliano #0" = 10
+	"Matteo #0" = 10
+	"Raniero #0" = 10
+	"Rodolfo #0" = 10
+	"Adriano #0" = 0
+	"Biagio #0" = 0
+	"Bonaventura #0" = 0
+	"Constantino #0" = 0
+	"Danilo #0" = 0
+	"Eustachio #0" = 0
+	"Evangelista #0" = 0
+	"Giancarlo #0" = 0
+	"Girolamo #0" = 0
+	"Giuliano #0" = 0
+	"Innocenzo #0" = 0
+	"Ippolito #0" = 0
+	"Lorenzo #0" = 0
+	"Piero #0" = 0
+	"Salvestro #0" = 0
+	"Marco #0" = 0
+	"Pasquale #0" = 0
+	"Sergio #0" = 0
+	"Vitale #0" = 0
+}
+
+leader_names = {
+        "degli Albizzi" Allori "d'Appiani d'Aragona" "d'Asburgo"
+	Barberini Bartolini Benciveni Bizzelli Boncompagni
+	Botta-Adorno Buontalenti Buti Butteri "di Campofregoso"
+	Cercignani Chiastavelli Chigi Corsini Cybo-Malaspina
+	"di Farnese" Gori Grimaldi "Grimaldi di Busca" Lanzi Lessi
+	Ludovisi Malaspina Mancinetti "di Medici" "del Moro" Nasini
+	Orsini Piccolomini Pico Pierallini Pieroni Piombante Pontelli
+	Rivani Rospigliosi "del Rosso" Savaranola Soderini Tempesta
+	Terreni Tonelli Traballesi Ulivelli Vasari Zucchi
+}
+
+ship_names = {
+	Albizi  Arcetri Arezzo
+	Bellosguardo Bisenzio
+	Careggi "Corso Donati" "Cosimo de' Medici"
+	"Dante Alighieri" "Dino Compagni"
+	Fiesole "Filippo Brunelleschi" Firenze "fiume Arno"
+	"fiume Greve" "Francesco Petrarca"
+	Galluzzo "Giano della Bella" Giotto
+	Impruneta
+	Medici Mugnone
+	Orsanmichele
+	Pistoia Prato
+	Ripoli
+	"San Frediano" "San Giovanni Battista" "San Lorenzo"
+	"San Marco" "Santa Maria del Fiore" "Santa Trinita"
+	Scandicci Settignano "Sesto Fiorentino"
+	Terzolle
+	"Vieri de Cerchi"
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}
