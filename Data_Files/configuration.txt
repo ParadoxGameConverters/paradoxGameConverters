@@ -5,7 +5,15 @@ configuration =
 
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	V2directory = ""
-
+	
+	### CK2 to EU4 Mod Options
+	
+	# For future purposes, using the CK2->EU4 mod directory to bring over nations that don't exist in EU4. Options are:
+	#	"yes"
+	#	"no"
+	useCK2ModDirectory = "no"
+	# Europa Universalis 4 mod directory: a path on your computer where Europa Universalis 4 mod from Crusader Kings 2 is installed
+	EU4modfromCK2directory = ""
 
 	### Mod Options
 
