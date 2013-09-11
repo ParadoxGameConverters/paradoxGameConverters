@@ -415,6 +415,13 @@ link = { eu4 = 1216 v2 = 1840 v2 = 1831 }	# Dar Nuba -> Kaduqli, Rabak
 # Chinese Region
 # Taiwan
 link = { eu4 = 738 v2 = 1485 v2 = 2562 }	# Taiwan -> Taibei, Tainan
+# China
+link = { eu4 = 668 v2 = 1498 } # Macua -> Macao
+link = { eu4 = 664 v2 = 1504 } # Guangxi -> Pingle
+link = { eu4 = 667 v2 = 1473 v2 = 1494 v2 = 1496 } # Guangzhou -> Chaozhou, Huizhou, Hong Kong
+link = { eu4 = 1840 v2 = 1500 } # Guilin -> Shaozhou
+link = { eu4 = 665 v2 = 1544 v2 = 1493 v2 = 1501 } # Jiangmen -> Canton, Zhaoqing, Zhenjiang
+link = { eu4 = 1816 v2 = 1612 v2 = 1617 } # Beijing -> Beijing, Tianjin
 # Manchu
 link = { eu4 = 1850 v2 = 1082 }	# Mudanjiang -> Haishenwai
 link = { eu4 = 726 v2 = 1479 v2 = 1481 }	# Liaodong -> Mukden, Port Arthur
