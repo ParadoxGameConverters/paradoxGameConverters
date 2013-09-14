@@ -220,9 +220,6 @@ link = { eu4 = 592 v2 = 1353 }	# Ratchaburi -> Ratchaburi
 link = { eu4 = 593 v2 = 1354 }	# Ligore -> Nakhon Si Thammarat
 link = { eu4 = 591 v2 = 1344 }	# Tenasserim -> Mergui
 link = { eu4 = 590 v2 = 1343 }	# Moulmein -> Moulmein
-# Russia
-link = { eu4 = 1780 v2 = 2589 v2 = 985 v2 = 986 v2 = 2699 v2 = 2687 v2 = 2688 }	# Komi -> Shoyna, Mezen, Naryn Mar, Izhma, Amderma, Inta
-link = { eu4 = 1060 v2 = 1075 }	# Irkutsk -> Irkutsk
 # Africa
 # South Africa
 link = { eu4 = 1177 v2 = 2090 v2 = 2087 v2 = 2089 v2 = 2091 }	# Cape -> Swettenham, Cape Town, Worcester, Mossel Bay
@@ -412,25 +409,6 @@ link = { eu4 = 1222 v2 = 1830 v2 = 1828 }	# Gezira -> Sennar, Wad Madani
 link = { eu4 = 1221 v2 = 1838 }	# Taqali -> Obeid
 link = { eu4 = 1219 v2 = 1839 }	# Kordofan -> Nuhud
 link = { eu4 = 1216 v2 = 1840 v2 = 1831 }	# Dar Nuba -> Kaduqli, Rabak
-# Chinese Region
-# Taiwan
-link = { eu4 = 738 v2 = 1485 v2 = 2562 }	# Taiwan -> Taibei, Tainan
-# China
-link = { eu4 = 668 v2 = 1498 } # Macua -> Macao
-link = { eu4 = 664 v2 = 1504 } # Guangxi -> Pingle
-link = { eu4 = 667 v2 = 1473 v2 = 1494 v2 = 1496 } # Guangzhou -> Chaozhou, Huizhou, Hong Kong
-link = { eu4 = 1840 v2 = 1500 } # Guilin -> Shaozhou
-link = { eu4 = 665 v2 = 1544 v2 = 1493 v2 = 1501 } # Jiangmen -> Canton, Zhaoqing, Zhenjiang
-link = { eu4 = 1816 v2 = 1612 v2 = 1617 } # Beijing -> Beijing, Tianjin
-# Manchu
-link = { eu4 = 1850 v2 = 1082 }	# Mudanjiang -> Haishenwai
-link = { eu4 = 726 v2 = 1479 v2 = 1481 }	# Liaodong -> Mukden, Port Arthur
-link = { eu4 = 730 v2 = 1555 }	# Haixi -> Jilin
-link = { eu4 = 731 v2 = 1554 }	# Ninguta -> Ninguta
-link = { eu4 = 729 v2 = 1083 }	# Wusuli -> Boli
-link = { eu4 = 1049 v2 = 2617 }	# Saghalian Oula -> Saghalian Oula
-link = { eu4 = 1048 v2 = 1084 }	# Udskoye -> Utchan
-link = { eu4 = 1057 v2 = 1078 }	# Udinsky -> Chita
 # Europe
 # Portugal
 link = { eu4 = 230 v2 = 527 }	# Algarve -> Faro
@@ -1023,4 +1001,140 @@ link = { eu4 = 410 v2 = 927 v2 = 925 v2 = 926 v2 = 928 v2 = 930 }	# Iraq-i-Arab 
 link = { eu4 = 412 v2 = 1132 v2 = 1131 v2 = 1133 }	# Khuzestan -> Abadan, Ahvaz, Dezful
 link = { eu4 = 413 v2 = 1120 v2 = 1117 v2 = 1119 }	# Luristan -> Khoramabad, Kermanshah, Ilam
 link = { eu4 = 415 v2 = 924 v2 = 1110 }	# Sharizhor -> Arbil, Urumia
+# Europe Redux
+# Germanic States
+link = { eu4 = 35 v2 = 353 }	# Ösel -> Ösel
+link = { eu4 = 36 v2 = 349 }	# Estland -> Reval
+link = { eu4 = 1842 v2 = 350 }	# Narva -> Narva
+link = { eu4 = 1834 v2 = 352 }	# Dorpat -> Dorpat
+link = { eu4 = 37 v2 = 351 }	# Livland -> Pärnu
+link = { eu4 = 38 v2 = 354 }	# Riga -> Riga
+link = { eu4 = 1935 v2 = 357 }	# Semigallia -> Jelgava
+link = { eu4 = 39 v2 = 358 }	# Kurland -> Ventspils
+link = { eu4 = 41 v2 = 698 v2 = 695 v2 = 697 }	# Ostpreussen -> Memel, Königsberg, Gumbinnen
+link = { eu4 = 40 v2 = 359 v2 = 365 }	# Memel -> Liepaja, Palanga
+link = { eu4 = 1931 v2 = 543 }	# East Frisia -> Emden
+link = { eu4 = 55 v2 = 540 v2 = 541 }	# Oldenburg -> Oldenburg, Cloppenburg
+link = { eu4 = 1874 v2 = 539 }	# Bremen -> Bremen
+link = { eu4 = 54 v2 = 531 }	# Bremen -> Stade
+link = { eu4 = 44 v2 = 528 }	# Hamburg -> Hamburg
+link = { eu4 = 1857 v2 = 529 }	# Lauenburg -> Lauenburg
+link = { eu4 = 45 v2 = 530 }	# Lübeck -> Lübeck
+link = { eu4 = 46 v2 = 544 }	# Mecklenburg -> Schwerin
+link = { eu4 = 47 v2 = 548 v2 = 547 }	# Vorpommern -> Stralsund, Swinemünde
+link = { eu4 = 1858 v2 = 546 }	# Stettin -> Stettin
+link = { eu4 = 48 v2 = 680 v2 = 679 }	# Hinterpommern -> Köslin, Kolberg
+link = { eu4 = 43 v2 = 690 v2 = 691 }	# Danzig -> Danzig, Tuchel
+link = { eu4 = 1841 v2 = 693 }	# Marienburg -> Elbing
+link = { eu4 = 42 v2 = 696 }	# Warmia -> Allenstein
+link = { eu4 = 56 v2 = 542 v2 = 538 }	# Osnabrück -> Lingen, Osnabrück
+link = { eu4 = 1758 v2 = 535 v2 = 534 }	# Hannover -> Nienburg, Hanover
+link = { eu4 = 53 v2 = 532 }	# Lüneburg -> Lüneburg
+link = { eu4 = 86 v2 = 581 v2 = 580 }	# Münster -> Münster, Dortmund
+link = { eu4 = 1742 v2 = 381 v2 = 396 }	# Limburg -> Maastricht, Spa
+link = { eu4 = 85 v2 = 575 }	# Köln -> Cologne
+link = { eu4 = 84 v2 = 577 v2 = 578 v2 = 2561 }	# Berg -> Cleves, Düsseldorf, Siegburg
+link = { eu4 = 1878 v2 = 576 }	# Aachen -> Aachen
+link = { eu4 = 1760 v2 = 574 v2 = 579 }	# Koblenz -> Kreuznach, Koblenz
+link = { eu4 = 80 v2 = 572 }	# Trier -> Trier
+link = { eu4 = 1761 v2 = 573 v2 = 571 }	# Alzey -> Saarbrücken, Kaiserslautern
+link = { eu4 = 1876 v2 = 564 }	# Frankfurt -> Frankfurt
+link = { eu4 = 1762 v2 = 566 }	# Kassel -> Kassel
+link = { eu4 = 81 v2 = 567 }	# Hessen -> Giessen
+link = { eu4 = 1872 v2 = 593 }	# Ulm -> Ulm
+link = { eu4 = 69 v2 = 588 }	# Konstanz -> Konstanz
+link = { eu4 = 1868 v2 = 592 }	# Augsburg -> Augsburg
+link = { eu4 = 65 v2 = 599 }	# München -> Munich
+link = { eu4 = 64 v2 = 600 }	# Niederbayern -> Landshut
+link = { eu4 = 267 v2 = 629 v2 = 630 }	# Plsen -> Plzen, Budejovice
+link = { eu4 = 72 v2 = 587 }	# Breisgau -> Freiburg
+link = { eu4 = 74 v2 = 586 }	# Baden -> Karlsruhe
+link = { eu4 = 70 v2 = 591 v2 = 594 }	# Württemberg -> Tübingen, Sigmaringen
+link = { eu4 = 254 v2 = 699 v2 = 700 }	# Poznan -> Posen, Bromberg
+link = { eu4 = 49 v2 = 692 v2 = 681 }	# Neumark -> Deutsch Krone, Küstrin
+link = { eu4 = 50 v2 = 545 v2 = 550 }	# Brandenburg -> Neustrelitz, Prenzlau
+link = { eu4 = 51 v2 = 551 }	# Ruppin -> Pritzwalk
+link = { eu4 = 1763 v2 = 552 }	# Niederlausitz -> Cottbus
+link = { eu4 = 1759 v2 = 549 }	# Potsdam -> Berlin
+link = { eu4 = 52 v2 = 557 v2 = 553 }	# Altmark -> Stendal, Magdeburg
+link = { eu4 = 57 v2 = 536 v2 = 537 }	# Hannover -> Brunswick, Göttingen
+link = { eu4 = 82 v2 = 585 v2 = 582 v2 = 584 }	# Lippe -> Detmold, Minden, Korbach
+link = { eu4 = 83 v2 = 583 v2 = 565 }	# Nassau -> Siegen, Wiesbaden
+link = { eu4 = 78 v2 = 570 v2 = 2560 v2 = 596 }	# Pfalz -> Mainz, Darmstadt, Aschaffenburg
+link = { eu4 = 77 v2 = 569 v2 = 590 }	# Worms -> Mannheim, Heilbronn
+link = { eu4 = 71 v2 = 589 }	# Leiningen -> Stuttgart
+link = { eu4 = 68 v2 = 601 }	# Schwaben -> Ingolstadt
+link = { eu4 = 61 v2 = 558 v2 = 560 v2 = 559 }	# Dresden -> Dresden, Chemnitz, Leipzig
+link = { eu4 = 1771 v2 = 628 v2 = 627 }	# Erz -> Aussig, Karlsbad
+link = { eu4 = 60 v2 = 687 }	# Lausitz -> Görlitz
+link = { eu4 = 66 v2 = 598 }	# Bamberg -> Bayreuth
+link = { eu4 = 67 v2 = 595 }	# Franken -> Nuremberg
+link = { eu4 = 1757 v2 = 602 }	# Oberpfalz -> Regensburg
+link = { eu4 = 79 v2 = 597 v2 = 568 }	# Würzburg -> Würzburg, Fulda
+link = { eu4 = 63 v2 = 562 v2 = 563 }	# Erfurt -> Gotha, Meiningen
+link = { eu4 = 62 v2 = 561 }	# Leipzig -> Weimar
+link = { eu4 = 59 v2 = 555 v2 = 556 }	# Meissen -> Dessau, Halle
+link = { eu4 = 58 v2 = 554 }	# Anhalt -> Erfurt
+# Czech
+link = { eu4 = 266 v2 = 625 v2 = 626 }	# Bohemia -> Prague, Hradec Králové
+link = { eu4 = 264 v2 = 682 v2 = 683 }	# Breslau -> Breslau, Liegnitz
+link = { eu4 = 265 v2 = 631 }	# Moravia -> Brno
+# Hungary
+link = { eu4 = 135 v2 = 624 v2 = 623 v2 = 639 v2 = 642 }	# Sopron -> Eisenstadt, Sopron, Zalaegerszeg, Gyor
+link = { eu4 = 1864 v2 = 643 v2 = 644 v2 = 640 }	# Somogy -> Székesfehérvár, Kaposvár, Pécs
+# Russia
+link = { eu4 = 1783 v2 = 2590 v2 = 2637 v2 = 2634 v2 = 2666 v2 = 2661 v2 = 2662 }	# Koryak -> Ugolnoye, Novo Mariinsk, Rassvet, Pevek, Nizhnekolymsk, Cherskiy
+link = { eu4 = 1780 v2 = 2589 v2 = 985 v2 = 986 v2 = 2699 v2 = 2687 v2 = 2688 }	# Komi -> Shoyna, Mezen, Naryn Mar, Izhma, Amderma, Inta
+link = { eu4 = 1060 v2 = 1075 }	# Irkutsk -> Irkutsk
+link = { eu4 = 34 v2 = 996 v2 = 997 }	# Ingermanland -> Luga, Gdov
+link = { eu4 = 274 v2 = 1006 }	# Pskov -> Pskov
+link = { eu4 = 1961 v2 = 2580 }	# Ladoga -> Stara Ladoga
+link = { eu4 = 310 v2 = 1003 v2 = 1004 }	# Novgorod -> Novgorod, Tikhvin
+link = { eu4 = 312 v2 = 992 }	# Vologda -> Belozersk
+link = { eu4 = 1034 v2 = 1074 v2 = 2633 }	# Kamchatka -> Petropavlovsk, Ossora
+link = { eu4 = 1035 v2 = 2616 v2 = 2663 v2 = 1073 }	# Penchisky -> Tilichiki, Kamenskoye, Yevensk
+link = { eu4 = 1041 v2 = 2638 }	# Gizhiga -> Omsukchan
+link = { eu4 = 1044 v2 = 2618 v2 = 2639 }	# Tauisk -> Talaya, Susuman
+link = { eu4 = 1043 v2 = 1072 }	# Okhotsk -> Okhotsk
+link = { eu4 = 1047 v2 = 2641 }	# Jugjur -> Ayan
+# Chinese Region
+# Taiwan
+link = { eu4 = 738 v2 = 1485 v2 = 2562 }	# Taiwan -> Taibei, Tainan
+# Manchu
+link = { eu4 = 1850 v2 = 1082 }	# Mudanjiang -> Haishenwai
+link = { eu4 = 726 v2 = 1481 v2 = 1479 v2 = 1480 }	# Liaodong -> Port Arthur, Mukden, Jinzhou
+link = { eu4 = 730 v2 = 1555 }	# Haixi -> Jilin
+link = { eu4 = 731 v2 = 1554 }	# Ninguta -> Ninguta
+link = { eu4 = 729 v2 = 1083 }	# Wusuli -> Boli
+link = { eu4 = 1049 v2 = 2617 }	# Saghalian Oula -> Saghalian Oula
+link = { eu4 = 1048 v2 = 1084 }	# Udskoye -> Utchan
+link = { eu4 = 1057 v2 = 1078 }	# Udinsky -> Chita
+# China
+link = { eu4 = 695 v2 = 1617 v2 = 1612 v2 = 1615 }	# Beijing -> Tianjin, Beijing, Jizhou
+link = { eu4 = 691 v2 = 1570 v2 = 1567 v2 = 1563 }	# Jinan -> Wuding, Qingzhou, Jinan
+link = { eu4 = 690 v2 = 1569 v2 = 1565 v2 = 1566 v2 = 1571 v2 = 1568 }	# Shandong Bandao -> Weihaiwei, Laizhou, Qingdao, Yizhou, Taian
+link = { eu4 = 685 v2 = 1542 v2 = 1536 }	# Huai'an -> Xuzhou, Huaian
+link = { eu4 = 1821 v2 = 1540 v2 = 1543 v2 = 1541 v2 = 1544 }	# Nanjing -> Taicangzhou, Yangzhou, Tongzhou, Zhenjiang
+link = { eu4 = 1822 v2 = 1538 v2 = 1539 v2 = 1606 v2 = 1605 v2 = 1537 }	# Shangai -> Shanghai, Suzhou, Jiaxing, Huzhou, Changzhou
+link = { eu4 = 684 v2 = 1608 v2 = 1609 v2 = 1604 v2 = 1610 }	# Hangzhou -> Ningbo, Shaoxing, Hangzhou, Taizhou
+link = { eu4 = 1824 v2 = 1607 v2 = 1611 v2 = 1473 }	# Wenzhou -> Jinhua, Wenzhou, Huizhou
+link = { eu4 = 669 v2 = 1482 v2 = 1483 v2 = 1546 }	# Fuzhou -> Fuzhou, Jianning, Guangxin
+link = { eu4 = 1829 v2 = 1484 v2 = 1486 }	# Xiamen -> Quanzhou, Tingzhou
+link = { eu4 = 666 v2 = 1499 }	# Hainan -> Hainan
+link = { eu4 = 664 v2 = 1502 }	# Guangxi -> Nanning
+link = { eu4 = 1840 v2 = 1503 v2 = 1504 }	# Guilin -> Guilin, Pingle
+link = { eu4 = 671 v2 = 1524 v2 = 1527 v2 = 1530 v2 = 1528 }	# Changsha -> Changsha, Hengzhou, Yongzhou, Yuezhou
+link = { eu4 = 670 v2 = 1550 v2 = 1547 v2 = 1548 }	# Ganzhou -> Ganzhou, Jian, Jianchang
+link = { eu4 = 683 v2 = 1551 v2 = 1545 }	# Nanchang -> Raozhou, Nanchang
+link = { eu4 = 686 v2 = 1470 v2 = 1474 v2 = 1471 v2 = 1475 v2 = 1477 v2 = 2221 }	# Anqing -> Anqing, Luzhou, Chizhou, Ningguo, Taiping, Nanjing
+link = { eu4 = 1838 v2 = 1476 v2 = 1472 v2 = 1478 v2 = 1509 }	# Hefei -> Sizhou, Fengyang, Yingzhou, Guide
+link = { eu4 = 1833 v2 = 1522 v2 = 1549 }	# Ji'an -> Wuchang, Jiujiang
+link = { eu4 = 682 v2 = 1516 v2 = 1518 v2 = 1514 }	# Hanyang -> Hanyang, Huangzhou, Runing
+link = { eu4 = 687 v2 = 1512 v2 = 1508 }	# Running -> Chenzhou, Kaifeng
+link = { eu4 = 688 v2 = 1564 v2 = 1614 v2 = 1515 }	# Kaifeng -> Caozhou, Daming, Weihui
+link = { eu4 = 668 v2 = 1496 }	# Macau -> Hong Kong
+link = { eu4 = 665 v2 = 1495 v2 = 1501 v2 = 1498 v2 = 1493 }	# XXX -> Zhanjiang, Zhaoqing, Macao, Canton
+link = { eu4 = 667 v2 = 1497 v2 = 1500 v2 = 1494 v2 = 1487 }	# Guangzhou -> Huizhou, Shaozhou, Chaozhou, Zhangzhou
+link = { eu4 = 704 v2 = 1613 }	# Liaoxi -> Chengde
+link = { eu4 = 1816 v2 = 1616 }	# Hejian -> Tangshan
 }
