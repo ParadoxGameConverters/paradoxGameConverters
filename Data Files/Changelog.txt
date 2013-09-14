@@ -507,3 +507,4 @@ Revision	Log Message
 483		Finish integrating mod into normal release
 484		Merge minor into main
 485		Fix crash bug with navies in river-based ports
+486		Output newCountries.txt for use by molave's tool

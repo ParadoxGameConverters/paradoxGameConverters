@@ -2089,6 +2089,13 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		log("\tError: Could not open %s\\Converter\\localisation\\converter.csv\n", Configuration::getModPath().c_str());
 	}
 
+	FILE* resultsFile;
+	fopen_s(&resultsFile, "newCountries.txt", "w");
+	if (EU3Localisations == NULL)
+	{
+		log("\tError: Could not open newCountries.txt\n");
+	}
+
 	// assign tags
 	FILE* countriesList;
 	fopen_s(&countriesList, (Configuration::getModPath() + "\\converter\\common\\countries.txt").c_str(), "a");
@@ -2228,6 +2235,17 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		command			+= dstFlag;
 
 		system(command.c_str());
+
+		// record in newCountries.txt
+		fprintf(resultsFile, "# Country mapping: CK2=%s -> EU3=%s\n", titleString.c_str(), tag.c_str());
+		fprintf(resultsFile, "%s=\n", tag.c_str());
+		fprintf(resultsFile, "{\n");
+		fprintf(resultsFile, "\tprimary_culture=%s\n", newCountry->getPrimaryCulture().c_str());
+		fprintf(resultsFile, "\tcapital_culture=%s\n", provinces[newCountry->getCapital()]->getCulture().c_str());
+		fprintf(resultsFile, "\tsuccession=%s\n", (*countryItr)->getSrcCountry()->getSuccessionLaw().c_str());
+		fprintf(resultsFile, "\tgender=%s\n", (*countryItr)->getSrcCountry()->getGenderLaw().c_str());
+		fprintf(resultsFile, "}\n");
+		fprintf(resultsFile, "\n");
 		
 		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
 	}
