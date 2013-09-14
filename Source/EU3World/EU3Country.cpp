@@ -1678,6 +1678,9 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 				advisors.push_back(*advisorItr);
 				(*advisorItr)->setHome(this);
 			}
+			vassals[i]->provinces.clear();
+			vassals[i]->advisors.clear();
+			vassals[i]->vassals.clear();
 		}
 		else if ((vassalScore >= 2900) && (vassals[i]->getAbsorbScore() < 2900))
 		{
