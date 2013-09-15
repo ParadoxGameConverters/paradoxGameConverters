@@ -95,7 +95,7 @@ link = { eu4 = LUX v2 = LUX }  # Luxemburg
 link = { eu4 = NED v2 = NET }  # Netherlands
 link = { eu4 = SWI v2 = SWI }  # Switzerland
 link = { eu4 = UTR v2 = UTR }  # Utrecht
-link = { eu4 = EFR v2 = EFR } #East Frisia
+link = { eu4 = EFR v2 = EFR }  # East Frisia
 
 # Scandinavia
 
