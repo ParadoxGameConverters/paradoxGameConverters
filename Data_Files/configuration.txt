@@ -6,6 +6,29 @@ configuration =
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	V2directory = ""
 	
+	# The maximum literacy a converted nation will have, Default 80%
+	max_literacy = 0.80
+	
+	# EU4 Game Type ignore this for now as no Expansions/Major DLCs have been released yet
+	#	auto	detects the game version automatically
+	EU4gametype = auto
+	
+	# V2 Game Type: what version of V2 to convert to. Possible values:
+	#	vanilla 	Vanilla V2 (1.x)
+	#	AHD		A House Divided (2.x)
+	#	HOD		Heart of Darkness (3.x)
+	v2gametype = HOD
+	
+	# Remove type: Which landless nations to remove. Possible values:
+	#	none	remove none of them
+	#	dead	remove ones without cultural backing
+	#	all		remove all of them
+	# Note: if there are not enough V2 tags, some or all of these will be done anyway
+	removetype = dead
+	
+	# Note: if converting into vanilla V2, you may want to merge some EU4 nations id order to make some tags to make sense
+	# Merge settings are found in merge_nations.txt
+	
 	### CK2 to EU4 Mod Options
 	
 	# For future purposes, using the CK2->EU4 mod directory to bring over nations that don't exist in EU4. Options are:
