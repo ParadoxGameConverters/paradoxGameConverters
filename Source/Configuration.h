@@ -3,6 +3,7 @@
 
 
 #include <string>
+#include "Date.h"
 using namespace std;
 
 
@@ -12,174 +13,39 @@ class Configuration // Singleton
 public:
 	Configuration();
 
-	static string getCK2Path()
+	static string getEU4Path()
 	{
-		return getInstance()->CK2Path;
+		return getInstance()->EU4Path;
 	}
 
-	static string getEU3Path()
+	static string getV2Path()
 	{
-		return getInstance()->EU3Path;
+		return getInstance()->V2Path;
 	}
 
-	static string getCK2ModPath()
+	static string getEU4Gametype()
 	{
-		return getInstance()->CK2ModPath;
+		return getInstance()->EU4Gametype;
 	}
 
-	static string getTechGroupMethod()
+	static string getV2Gametype()
 	{
-		return getInstance()->techGroupMethod;
+		return getInstance()->V2Gametype;
 	}
 
-	static string getProxyMultiplierMethod()
+	static date getStartDate()
 	{
-		return getInstance()->proxyMultiplierMethod;
+		return getInstance()->StartDate;
 	}
 
-	static string getMultipleProvsMethod()
+	static double getMaxLiteracy()
 	{
-		return getInstance()->multipleProvsMethod;
+		return getInstance()->MaxLiteracy;
 	}
 
-	static string getManpower()
+	static string getRemovetype()
 	{
-		return getInstance()->manpower;
-	}
-
-	static string getManpowerblendamount()
-	{
-		return getInstance()->manpowerblendamount;
-	}
-
-	static string getBasetax()
-	{
-		return getInstance()->basetax;
-	}
-
-	static string getBasetaxblendamount()
-	{
-		return getInstance()->basetaxblendamount;
-	}
-
-	static string getPopulation()
-	{
-		return getInstance()->population;
-	}
-
-	static string getPopulationblendamount()
-	{
-		return getInstance()->populationblendamount;
-	}
-
-	static string getHRETitle()
-	{
-		return getInstance()->HRETitle;
-	}
-
-	static string getMergeTitles()
-	{
-		return getInstance()->mergeTitles;
-	}
-
-	static string getVassalScore()
-	{
-		return getInstance()->vassalScore;
-	}
-
-	static string getAdvisors()
-	{
-		return getInstance()->advisors;
-	}
-
-	static string getLeaders()
-	{
-		return getInstance()->leaders;
-	}
-
-	static string getColonists()
-	{
-		return getInstance()->colonists;
-	}
-
-	static string getMerchants()
-	{
-		return getInstance()->merchants;
-	}
-
-	static string getMissionaries()
-	{
-		return getInstance()->missionaries;
-	}
-
-	static string getInflation()
-	{
-		return getInstance()->inflation;
-	}
-
-	static string getColonist_size()
-	{
-		return getInstance()->colonist_size;
-	}
-
-	static string getDifficulty()
-	{
-		return getInstance()->difficulty;
-	}
-
-	static string getAI_aggressiveness()
-	{
-		return getInstance()->AI_aggressiveness;
-	}
-
-	static string getLand_spread()
-	{
-		return getInstance()->land_spread;
-	}
-
-	static string getSea_spread()
-	{
-		return getInstance()->sea_spread;
-	}
-
-	static string getSpies()
-	{
-		return getInstance()->spies;
-	}
-
-	static string getLucky_nations()
-	{
-		return getInstance()->lucky_nations;
-	}
-
-	static string getUseConverterMod()
-	{
-		return getInstance()->useConverterMod;
-	}
-
-	static string getCK2Mod()
-	{
-		return getInstance()->CK2Mod;
-	}
-
-	static string getModPath()
-	{
-		return getInstance()->modPath;
-	}
-
-	static void setModPath(string _modPath)
-	{
-		getInstance()->modPath = _modPath;
-	}
-
-	static int getID()
-	{
-		return getInstance()->id++;
-	}
-
-	static int getArmyID()
-	{
-		return getInstance()->armyId++;
+		return getInstance()->Removetype;
 	}
 
 	static Configuration* getInstance()
@@ -192,44 +58,14 @@ public:
 private:
 	static Configuration* instance;
 
-	string	CK2Path;
-	string	EU3Path;
-	string	CK2ModPath;
+	string	EU4Path;
+	string	V2Path;
+	string	EU4Gametype;
+	string	V2Gametype;
+	string	Removetype;
+	date		StartDate;
+	double	MaxLiteracy;
 
-	string	techGroupMethod;
-
-	string	proxyMultiplierMethod;
-	string	multipleProvsMethod;
-	string	manpower;
-	string	manpowerblendamount;
-	string	basetax;
-	string	basetaxblendamount;
-	string	population;
-	string	populationblendamount;
-	string	HRETitle;
-	string	mergeTitles;
-	string	vassalScore;
-
-	string	advisors;
-	string	leaders;
-	string	colonists;
-	string	merchants;
-	string	missionaries;
-	string	inflation;
-	string	colonist_size;
-	string	difficulty;
-	string	AI_aggressiveness;
-	string	land_spread;
-	string	sea_spread;
-	string	spies;
-	string	lucky_nations;
-
-	string	useConverterMod;
-	string	CK2Mod;
-	string	modPath;
-
-	int		id;
-	int		armyId;
 };
 
 #endif // CONFIGURATION_H_
