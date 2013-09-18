@@ -35,3 +35,4 @@ Revision	Who		Log Message
 32		Ztaesek		Updated with working conditions used for current build
 33		Idhrendur	Add Source files to project file
 34		Idhrendur	Update data files
+35		Idhrendur	Fix crash bug in converting tech
