@@ -1,6 +1,37 @@
-Revision	Log Message
----------	----------------
-1		Initial commit
-2		Check in parser code
-3		Culture, Religion, Government data
-4		Countries, Buildings, CK2 Conversions, Leader Traits
+Revision	Who		Log Message
+---------	-----		----------------
+0		Idhrendur	Initial Commit
+1		Idhrendur	Check in parser code
+2		Ztaesek		Initial: GB, Scand, Japan, Oceania, Malay
+3		Ztaesek		Moved to Data_Files
+4		Ztaesek		Moved to Data_Files
+5		Ztaesek		Africa Added
+6		Ztaesek		Southern Europe + Some Americas
+7		Ztaesek		Sourthern Europe
+8		Ztaesek		North America and More South
+9		Idhrendur	Merge
+10		Ztaesek		rest of south america, some middle east
+11		Ztaesek		Merge
+12		Ztaesek		Updated with me
+13		Ztaesek		Updated for eu4
+14		Ztaesek		update 3
+15		Ztaesek		Addition for Pulling from CK2 Mod Dir
+16		Ztaesek		Rename for version ctrl
+17		Idhrendur	Add solution file and some useful bits and pieces from CK2->EU3
+18		TheSpartanD	Added Building Mappings
+19		TheSpartanD	Added some more of china
+20		TheSpartanD	Updated with me
+21		TheSpartanD	Temporary files for CK2 converted games
+22		TheSpartanD	Country Mappings from EU3-V2 Converter updated for EU4-V2
+23		TheSpartanD	Added Converted CK2 Titles
+24		TheSpartanD	Reduced Number of possible CK2 Titles
+25		TheSpartanD	Leader Trait files from EU3-VIC2 converter
+26		TheSpartanD	Update 4
+27		Ztaesek		Expanded on China/Eastern Coast of Asia, Added Greater German area
+28		Ztaesek		Merge
+29		TheSpartanD	Added more config options
+30		Ztaesek		Updated Source for working on the parser.
+31		Ztaesek		Merge
+32		Ztaesek		Updated with working conditions used for current build
+33		Idhrendur	Add Source files to project file
+34		Idhrendur	Update data files
