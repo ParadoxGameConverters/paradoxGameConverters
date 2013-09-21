@@ -1,16 +1,6 @@
-# This file maps buildings from eu4 into the ones the ones in v2, converting many into factories.
+# This file maps buildings from eu4 into the ones the ones in v2
 
-buildingMap = [
-
-# Manufactory --> Factories
-
-link = { v2 = liquor_distillery eu4 = refinery }
-link = { v2 = clipper_shipyard eu4 = wharf }
-link = { v2 = small_arms_factory eu4 = weapons }
-link = { v2 = regular_clothes_factory eu4 = textile }
-link = { v2 = canned_food_factory eu4 = farm_estate }
-# plantations - no match in v2
-# tradecompany - no match in v2
+buildingMap = {
 
 # eu4 Military Buildings/Infrastructure --> v2 Province Improvements
 
@@ -18,6 +8,4 @@ link = { v2 = fort eu4 = fort6 }
 link = { v2 = naval_base eu4 = grand_shipyard }
 link = { v2 = railroad eu4 = road_network }
 
-
-
-
+}
