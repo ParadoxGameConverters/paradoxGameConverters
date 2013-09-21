@@ -1428,7 +1428,9 @@ link = { eu3 = 554 vic = 1327 }	# Gorka -> Jumla
 
 ## Japan
 link = { eu3 = 1015 vic = 1678 vic = 1679 vic = 1654 }	# Okinawa -> Okinawa, Amari, Bonin
-link = { eu3 = 1031 vic = 1642 vic = 1644 vic = 1643 }	# Kamikawa -> Hakodate, Nemuru, Ishikara
+link = { eu3 = 1031 vic = 1643 }	# Kamikawa -> Ishikara
+link = { eu3 = 1847 vic = 1642 }	# Shiribeshi -> Hakodate
+link = { eu3 = 1852 vic = 1644 }	# Tokachi -> Nemuru
 link = { eu3 = 1025 vic = 1671 vic = 1673 }	# Dewa -> Akita, Yamagata
 link = { eu3 = 1026 vic = 1668 vic = 1669 vic = 1670 vic = 1672 }	# Mutsu -> Sendai, Fukushima, Morioka, Aomori
 link = { eu3 = 1027 vic = 1653 }	# Hitachi -> Mito
@@ -1462,7 +1464,8 @@ link = { eu3 = 1815 vic = 1663 }	# Hyuga -> Miyazaki
 
 ## Korea
 link = { eu3 = 732 vic = 1621 vic = 1622 vic = 1623 vic = 1629 }	# Hamgyeong -> Hamhung, Chongjin, Kimchaek, Wonsan
-link = { eu3 = 733 vic = 1619 vic = 1620 vic = 1627 vic = 1626 vic = 1625 }	# Pyeongan -> Pyongyang, Chonchon, Sariwon, Haeju, Kaesong
+link = { eu3 = 733 vic = 1620 vic = 1627 vic = 1626 vic = 1625 }	# Pyeongan -> Pyongyang, Sariwon, Haeju, Kaesong
+link = { eu3 = 1845 vic = 1619 }	# Uiji -> Chonchon
 link = { eu3 = 735 vic = 1624 vic = 1628 vic = 1636 }	# Chungcheong -> Seoul, Inchon, Taejon
 link = { eu3 = 734 vic = 1630 vic = 1631 }	# Gangwon -> Kangnung, Wonju
 link = { eu3 = 736 vic = 1632 vic = 1633 vic = 1634 }	# Gyeongsang -> Pusan, Taegu, Pohang
