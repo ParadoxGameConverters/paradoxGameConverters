@@ -483,7 +483,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 			slaves += 500;
 		}
 
-		soldiers	+= armyBuilding * 10;
+		soldiers	+= (armyBuilding + 1) * 8;
 		if (oldCountry->hasNationalIdea("grand_army")
 			|| oldCountry->hasNationalIdea("glorious_arms"))
 		{
