@@ -1949,7 +1949,6 @@ void V2Country::sortRelations(const vector<string>& order)
 
 void V2Country::addLoan(string creditor, double size, double interest)
 {
-	bool found = false;
 	map<string, V2Creditor*>::iterator itr = creditors.find(creditor);
 	if (itr != creditors.end())
 	{

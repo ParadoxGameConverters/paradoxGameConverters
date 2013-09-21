@@ -636,11 +636,11 @@ void EU3Country::eatCountry(EU3Country* target)
 		tradeTech			= myWeight * tradeTech					+ targetWeight * target->tradeTech;
 		productionTech		= myWeight * productionTech			+ targetWeight * target->productionTech;
 		governmentTech		= myWeight * governmentTech			+ targetWeight * target->governmentTech;
-		estMonthlyIncome	= myWeight * landInvestment			+ targetWeight * target->landInvestment;
-		estMonthlyIncome	= myWeight * navalInvestment			+ targetWeight * target->navalInvestment;
-		estMonthlyIncome	= myWeight * tradeInvestment			+ targetWeight * target->tradeInvestment;
-		estMonthlyIncome	= myWeight * productionInvestment	+ targetWeight * target->productionInvestment;
-		estMonthlyIncome	= myWeight * governmentInvestment	+ targetWeight * target->governmentInvestment;
+		landInvestment	= myWeight * landInvestment			+ targetWeight * target->landInvestment;
+		navalInvestment	= myWeight * navalInvestment			+ targetWeight * target->navalInvestment;
+		tradeInvestment	= myWeight * tradeInvestment			+ targetWeight * target->tradeInvestment;
+		productionInvestment	= myWeight * productionInvestment	+ targetWeight * target->productionInvestment;
+		governmentInvestment	= myWeight * governmentInvestment	+ targetWeight * target->governmentInvestment;
 		estMonthlyIncome	= myWeight * estMonthlyIncome			+ targetWeight * target->estMonthlyIncome;
 	}
 

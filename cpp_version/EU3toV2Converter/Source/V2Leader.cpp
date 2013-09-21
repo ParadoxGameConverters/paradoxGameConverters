@@ -40,10 +40,10 @@ void V2Leader::output(FILE *output) const
 	fprintf(output, "\t\tbackground=\"%s\"\n", background.c_str());
 	fprintf(output, "\t\tcountry=\"%s\"\n", country.c_str());
 	//fprintf(output, "\t\tpicture=\"%s\"\n", picture.c_str());
-	fprintf(output, "\t\tid=\n", country.c_str());
-	fprintf(output, "\t\t{\n", country.c_str());
+	fprintf(output, "\t\tid=\n");
+	fprintf(output, "\t\t{\n");
 	fprintf(output, "\t\t\tid=%d\n", id);
 	fprintf(output, "\t\t\ttype=37\n");
-	fprintf(output, "\t\t}\n", country.c_str());
+	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t}\n");
 }

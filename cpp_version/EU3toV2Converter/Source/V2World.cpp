@@ -134,7 +134,6 @@ V2World::V2World(string V2Loc)
 			string filename(provFileData.name);
 			int provNum = atoi( filename.substr(0, filename.find_first_of(' ')).c_str() );
 			int delimiter = filename.find_last_of(' ');
-			string provName = filename.substr(delimiter + 1, filename.find_first_of('.') - delimiter - 1);
 
 			vector<V2Province*>::iterator i;
 			for(i = provinces.begin(); i != provinces.end(); i++)
@@ -1093,7 +1092,6 @@ void V2World::convertArmies(const EU3World& sourceWorld, const inverseProvinceMa
 	}
 
 	// convert armies
-	map<string, EU3Country*> sourceCountries = sourceWorld.getCountries();
 	for (vector<V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		(*itr)->convertArmies(leaderIDMap, cost_per_regiment, inverseProvinceMap, provinces, port_whitelist);

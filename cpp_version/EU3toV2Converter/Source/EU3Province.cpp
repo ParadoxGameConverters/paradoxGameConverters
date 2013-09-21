@@ -353,7 +353,6 @@ void EU3Province::buildPopRatios()
 			}
 			pr.popRatio		= 0.5;
 			pr.culture		= cItr->second;
-			curCulture		= cItr->second;
 			lastLoopDate	= cDate;
 			++cItr;
 		}
@@ -369,8 +368,6 @@ void EU3Province::buildPopRatios()
 			pr.popRatio		= 0.5;
 			pr.culture		= cItr->second;
 			pr.religion		= rItr->second;
-			curCulture		= cItr->second;
-			curReligion		= rItr->second;
 			lastLoopDate	= cDate;
 			++cItr;
 			++rItr;
@@ -385,7 +382,6 @@ void EU3Province::buildPopRatios()
 			}
 			pr.popRatio		= 0.5;
 			pr.religion		= rItr->second;
-			curReligion		= rItr->second;
 			lastLoopDate	= rDate;
 			++rItr;
 		}
