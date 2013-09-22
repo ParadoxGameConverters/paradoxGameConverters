@@ -3,6 +3,7 @@ using Converter.UI.Framework;
 using Converter.UI.Providers;
 using System.Text;
 using System.Collections.ObjectModel;
+using System.Collections.Generic;
 
 namespace Converter.UI.Settings
 {
@@ -254,12 +255,33 @@ namespace Converter.UI.Settings
             sb.AppendLine("{");
 
             // Output source and target game settings
-            sb.AppendLine("\t# Installation paths:");
-            sb.AppendLine("\t" + this.SourceGame.ConfigurationFileDirectoryTagName + " = \"" + this.SourceGame.InstallationPath + "\"");
-            sb.AppendLine("\t" + this.TargetGame.ConfigurationFileDirectoryTagName + " = \"" + this.TargetGame.InstallationPath + "\"");
+            sb.AppendLine("\t# Installation and mod folder paths:");
+
+            var games = new List<GameConfiguration>() { this.SourceGame, this.TargetGame };
+
+            foreach (var game in games)
+            {
+                sb.AppendLine("\t" + game.ConfigurationFileDirectoryTagName + " = \"" + game.InstallationPath + "\"");
+
+                if (game.IsConfiguredToUseMods)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("\t" + game.ConfigurationFileModDirectoryTagName + " = \"" + game.ModPath + "\"");
+                    sb.AppendLine();
+                }
+            }
             
             sb.AppendLine();
-            sb.AppendLine("\t# Use converter mod: ");
+            sb.AppendLine("\t# Mod Options: ");
+
+            foreach (var game in games.FindAll(g => g.IsConfiguredToUseMods))
+            {
+                sb.AppendLine();
+                sb.AppendLine("\t# " + game.CurrentModTagName + ": the mod used while playing the source game");
+                sb.AppendLine("\t" + game.CurrentModTagName + " = \"" + (!game.CurrentMod.IsDummyItem ?  game.CurrentMod.Name : string.Empty) + "\"");
+                sb.AppendLine();
+            }
+
             sb.AppendLine("\tuseConverterMod = " + "\"" + (this.UseConverterMod ? "yes" : "no") + "\"");
 
             // Preferences

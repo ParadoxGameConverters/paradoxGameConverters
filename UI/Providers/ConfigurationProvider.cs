@@ -236,22 +236,54 @@ namespace Converter.UI.Providers
             // For each game, read the various properties we need, and store the result in a new GameConfiguration object
             foreach (var game in foundGames)
             {
-                var saveGameFolderType = XElementHelper.ReadStringValue(game, "defaultSaveGameLocationType");
-                var type = saveGameFolderType.Equals(DefaultSaveGameLocationType.SteamFolder.ToString()) ? DefaultSaveGameLocationType.SteamFolder : DefaultSaveGameLocationType.WindowsUsersFolder;
+                // Save game related
+                var saveGameFolderTypeAsString = XElementHelper.ReadStringValue(game, "defaultSaveGameLocationType");
+                var saveGameFolderType = saveGameFolderTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+                var saveGameExtension = XElementHelper.ReadStringValue(game, "saveGameExtension");
+
+                // Installation directory related
                 var steamId = XElementHelper.ReadStringValue(game, "steamId");
                 var installationFolder = this.GetSteamInstallationFolder(steamId);
                 var configurationFileDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileDirectoryTagName");
-                var saveGameExtension = XElementHelper.ReadStringValue(game, "saveGameExtension");
+                
+                // Mod related
+                var defaultModFolderLocationTypeAsString = XElementHelper.ReadStringValue(game, "defaultModFolderLocationType", false);
+                var defaultModFolderLocationType = defaultModFolderLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+                var configurationFileModDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileModDirectoryTagName", false);
+                var currentModTagName = XElementHelper.ReadStringValue(game, "currentModTagName", false);
 
-                gameConfigurations.Add(new GameConfiguration()
+                //if (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder)
+                //{
+                //    this.options.Logger.AddLogEntry(new LogEntry("The \"defaultModFolderLocationType\" tag cannot have the value \"SteamFolder\". This value isn't supported in the frontend yet.", LogEntrySeverity.Error, LogEntrySource.UI));
+                //}
+
+                var supportedModsAsString = game.Descendants("supportedMod");
+
+                var gameConfig = new GameConfiguration()
                 {
                     Name = XElementHelper.ReadStringValue(game, "name"),
                     FriendlyName = XElementHelper.ReadStringValue(game, "friendlyName"),
-                    SaveGamePath = (type == DefaultSaveGameLocationType.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation"),
+                    SaveGamePath = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation"),
                     SteamId = steamId,
                     ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName,
-                    SaveGameExtension = saveGameExtension
-                });
+                    SaveGameExtension = saveGameExtension,
+                    ConfigurationFileModDirectoryTagName = configurationFileModDirectoryTagName,
+                    CurrentModTagName = currentModTagName,
+                    ModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultModFolderLocation", false)
+                };
+
+                // Dummy item so that the user can undo selecting a mod
+                var dummyMod = new SupportedMod() { Name = "No mod", IsDummyItem = true };
+                gameConfig.SupportedMods.Add(dummyMod);
+                gameConfig.CurrentMod = dummyMod;
+
+                // Add proper mods
+                if (supportedModsAsString.Count() > 0)
+                {
+                    supportedModsAsString.ForEach(m => gameConfig.SupportedMods.Add(new SupportedMod() { Name = XElementHelper.ReadStringValue(m, "modName") }));
+                }
+
+                gameConfigurations.Add(gameConfig);
             }
 
             return gameConfigurations;

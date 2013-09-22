@@ -59,7 +59,7 @@ namespace Converter.UI.Commands
 
             try
             {
-                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, absoluteTargetPath, true);
+                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, absoluteTargetPath, true, true);
                 // Log success
             }
             catch

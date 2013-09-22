@@ -6,6 +6,7 @@ using Converter.UI.Framework;
 using Converter.UI.Settings;
 using Microsoft.Win32;
 using Converter.UI.Enums;
+using Converter.UI.Views;
 
 namespace Converter.UI.ViewModels
 {

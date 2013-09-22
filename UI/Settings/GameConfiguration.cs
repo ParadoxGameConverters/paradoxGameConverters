@@ -1,4 +1,5 @@
 ﻿using Converter.UI.Framework;
+using System.Collections.Generic;
 
 namespace Converter.UI.Settings
 {
@@ -9,6 +10,34 @@ namespace Converter.UI.Settings
     {
         private string installationPath;
         private string saveGamePath;
+        private string modPath;
+        private IList<SupportedMod> supportedMods;
+        private SupportedMod currentMod;
+
+        /// <summary>
+        /// Gets or sets the mod path.
+        /// </summary>
+        /// <value>
+        /// The mod path.
+        /// </value>
+        public string ModPath
+        {
+            get
+            {
+                return this.modPath;
+            }
+
+            set
+            {
+                if (this.modPath == value)
+                {
+                    return;
+                }
+
+                this.modPath = value;
+                this.RaisePropertyChanged("ModPath");
+            }
+        }
 
         /// <summary>
         /// Gets or sets the installation path.
@@ -115,5 +144,75 @@ namespace Converter.UI.Settings
         /// The name of the configuration file directory tag.
         /// </value>
         public string ConfigurationFileDirectoryTagName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the configuration file mod directory tag.
+        /// </summary>
+        /// <value>
+        /// The name of the configuration file mod directory tag.
+        /// </value>
+        public string ConfigurationFileModDirectoryTagName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the name of the current mod tag.
+        /// </summary>
+        /// <value>
+        /// The name of the current mod tag.
+        /// </value>
+        public string CurrentModTagName { get; set; }
+
+        /// <summary>
+        /// Gets a list of supported mods, as read from Configuration.xml
+        /// </summary>
+        /// <value>
+        /// The supported mods.
+        /// </value>
+        public IList<SupportedMod> SupportedMods
+        {
+            get
+            {
+                return this.supportedMods ?? (this.supportedMods = new List<SupportedMod>());
+            }
+        }
+
+        /// <summary>
+        /// Gets a value indicating whether this game is configured use mods. This depends on the information available in Configuration.xml
+        /// </summary>
+        public bool IsConfiguredToUseMods
+        {
+            get
+            {
+                return this.SupportedMods.Count > 0 
+                    && !string.IsNullOrEmpty(this.CurrentModTagName) 
+                    && this.CurrentMod != null 
+                    && !string.IsNullOrEmpty(this.ConfigurationFileModDirectoryTagName)
+                    && !string.IsNullOrEmpty(this.ModPath);
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the selected mod.
+        /// </summary>
+        /// <value>
+        /// The selected mod.
+        /// </value>
+        public SupportedMod CurrentMod
+        {
+            get
+            {
+                return this.currentMod;
+            }
+
+            set
+            {
+                if (this.currentMod == value)
+                {
+                    return;
+                }
+
+                this.currentMod = value;
+                this.RaisePropertyChanged("CurrentMod");
+            }
+        }
     }
 }
