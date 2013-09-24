@@ -105,6 +105,9 @@ namespace Converter.UI.Commands
         /// </param>
         public void Execute(object parameter)
         {
+            this.worker.Dispose();
+            this.worker = new BackgroundWorker();
+
             BeforeExecute(parameter);
             
             this.worker.DoWork += (s, e) =>
@@ -120,6 +123,11 @@ namespace Converter.UI.Commands
             this.worker.RunWorkerAsync();
         }
 
+        /// <summary>
+        /// Marshalls the method.
+        /// </summary>
+        /// <param name="action">The action.</param>
+        /// <param name="priority">The priority.</param>
         protected void MarshallMethod(Action action, DispatcherPriority priority)
         {
             if (!this.Dispatcher.CheckAccess())

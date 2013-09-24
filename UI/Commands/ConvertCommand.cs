@@ -145,8 +145,7 @@ namespace Converter.UI.Commands
         }
 
         /// <summary>
-        /// When overridden in a derived class, performs operations when the
-        /// background execution has completed.
+        /// When overridden in a derived class, performs operations when the background execution has completed.
         /// </summary>
         /// <param name="parameter">The parameter passed to the <c>Execute</c> method of the command.</param>
         /// <param name="error">The error object that was thrown during the background operation, or null if no error was thrown.</param>
