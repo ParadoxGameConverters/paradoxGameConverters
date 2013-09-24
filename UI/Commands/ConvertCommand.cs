@@ -162,7 +162,7 @@ namespace Converter.UI.Commands
                 StringBuilder sb = new StringBuilder();
                 sb.Append("The converter crashed.");
 
-                if (this.Options.SourceGame.CurrentMod != null)
+                if (!this.Options.SourceGame.CurrentMod.IsDummyItem)
                 {
                     sb.Append(" You configured the converter to use the mod \"" + this.Options.SourceGame.CurrentMod.Name + "\" - are you SURE the game was saved using this mod?");
                 }
