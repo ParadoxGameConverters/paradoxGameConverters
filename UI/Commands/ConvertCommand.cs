@@ -9,6 +9,7 @@ using System.Threading;
 using System.ComponentModel;
 using System.Collections.Generic;
 using Converter.UI.Helpers;
+using System.Text;
 
 namespace Converter.UI.Commands
 {
@@ -139,6 +140,7 @@ namespace Converter.UI.Commands
                 }
                 else
                 {
+                    this.Options.WasConversionSuccessful = false;
                     this.Log("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI);
                 }
             }
@@ -157,7 +159,27 @@ namespace Converter.UI.Commands
             }
             else
             {
-                //TODO: Consider error handling here.
+                StringBuilder sb = new StringBuilder();
+                sb.Append("The converter crashed.");
+
+                if (this.Options.SourceGame.CurrentMod != null)
+                {
+                    sb.Append(" You configured the converter to use the mod \"" + this.Options.SourceGame.CurrentMod.Name + "\" - are you SURE the game was saved using this mod?");
+                }
+
+                this.Log(sb.ToString(), LogEntrySeverity.Error, LogEntrySource.UI);
+
+                var log = Path.Combine(Environment.CurrentDirectory, "log.txt");
+
+                if (File.Exists(log))
+                {
+                    var result = MessageBox.Show("The conversion failed. Do you want to show the internal conversion log?", "Conversion log", MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.Yes);
+
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        Process.Start(log);
+                    }
+                }
             }
         }
 
