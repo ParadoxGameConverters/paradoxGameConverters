@@ -520,3 +520,4 @@ Revision	Log Message
 495		Give cores on absorbed vassals
 496		Update converter mod
 497		Merge minor to main
+498		Put saves in the correct places
