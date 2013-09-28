@@ -517,3 +517,4 @@ Revision	Log Message
 		Only copies save of conversion was successful
 493		The error handling now properly detects whether a mod is selected
 494		Update test scripts
+495		Give cores on absorbed vassals

@@ -1672,6 +1672,8 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			{
 				provinces.push_back(*provinceItr);
 				(*provinceItr)->setOwner(this);
+				cores.push_back(*provinceItr);
+				(*provinceItr)->addCore(this);
 			}
 			for (vector<EU3Advisor*>::iterator advisorItr = vassals[i]->advisors.begin(); advisorItr != vassals[i]->advisors.end(); advisorItr++)
 			{
