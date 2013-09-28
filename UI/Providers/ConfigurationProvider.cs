@@ -14,6 +14,9 @@ using Microsoft.Win32;
 
 namespace Converter.UI.Providers
 {
+    /// <summary>
+    /// This class is responsible for turning the data in configuration.xml into a set of properties on the ConverterOPtions object
+    /// </summary>
     public class ConfigurationProvider
     {
         #region [ Fields ]
@@ -27,6 +30,10 @@ namespace Converter.UI.Providers
 
         #region [ Constructor ]
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ConfigurationProvider"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public ConfigurationProvider(ConverterOptions options)
         {
             this.options = options;
@@ -38,6 +45,12 @@ namespace Converter.UI.Providers
 
         #region [ Public Properties ]
 
+        /// <summary>
+        /// Gets the list of source games.
+        /// </summary>
+        /// <value>
+        /// The source games.
+        /// </value>
         public IList<GameConfiguration> SourceGames
         {
             get
@@ -46,6 +59,12 @@ namespace Converter.UI.Providers
             }
         }
 
+        /// <summary>
+        /// Gets the list of target games.
+        /// </summary>
+        /// <value>
+        /// The target games.
+        /// </value>
         public IList<GameConfiguration> TargetGames
         {
             get
@@ -54,6 +73,12 @@ namespace Converter.UI.Providers
             }
         }
 
+        /// <summary>
+        /// Gets the list of preference categories.
+        /// </summary>
+        /// <value>
+        /// The preference categories.
+        /// </value>
         public IList<PreferenceCategory> PreferenceCategories
         {
             get
@@ -72,6 +97,10 @@ namespace Converter.UI.Providers
 
         #region [ Preference Retrieval ]
 
+        /// <summary>
+        /// Reads the category configuration.
+        /// </summary>
+        /// <returns></returns>
         private IList<PreferenceCategory> ReadCategoryConfig()
         {
             var categories = new List<PreferenceCategory>();
@@ -86,16 +115,20 @@ namespace Converter.UI.Providers
 
             try
             {
+                // Read the list of categories from the xml
                 var foundCategories = config.Descendants("category");
                 
+                // For each category, store the values in a new PreferenceCategory object.
                 foreach (var foundCategory in foundCategories)
                 {
                     var category = new PreferenceCategory();
                     category.FriendlyName = XElementHelper.ReadStringValue(foundCategory, "friendlyName");
                     categories.Add(category);
 
+                    // Read the list of Preference tags
                     var foundPreferences = XElementHelper.ReadEnumerable(foundCategory, "preference");
 
+                    // For each preference Tag, store the values into a new Preference object
                     foreach (var foundPreference in foundPreferences)
                     {
                         IPreference preference = new Preference();
@@ -110,7 +143,10 @@ namespace Converter.UI.Providers
                         
                         category.Preferences.Add(preference);
 
+                        // Read the list of entryOption tags
                         var foundEntries = XElementHelper.ReadEnumerable(foundPreference, "entryOption", false);
+
+                        // For each tag, read the values into a new PreferenceEntry object
                         foreach (var entry in foundEntries)
                         {
                             preference.Entries.Add(this.BuildPreferenceEntry(preference, entry));
@@ -143,6 +179,12 @@ namespace Converter.UI.Providers
 
         #region [ Preference Entry Construction ]
 
+        /// <summary>
+        /// Builds a preference entry for the provided parent based on the provided XElement node
+        /// </summary>
+        /// <param name="parent">The parent.</param>
+        /// <param name="foundEntry">The found entry.</param>
+        /// <returns></returns>
         private IPreferenceEntry BuildPreferenceEntry(IPreference parent, XElement foundEntry)
         {
             var name = XElementHelper.ReadStringValue(foundEntry, "name");
@@ -171,10 +213,16 @@ namespace Converter.UI.Providers
 
         #region [ Game Configuration/Folder Retrieval ]
 
+        /// <summary>
+        /// Reads the game configuration for a particular xml node name.
+        /// </summary>
+        /// <param name="xmlNodeName">Name of the XML node.</param>
+        /// <returns></returns>
         private IList<GameConfiguration> ReadGameConfig(string xmlNodeName)
         {
             IList<GameConfiguration> gameConfigurations = new List<GameConfiguration>();
 
+            // Read file to memory
             var config = XmlHelper.ReadXmlFile("Configuration.xml");
 
             if (config == null)
@@ -182,26 +230,60 @@ namespace Converter.UI.Providers
                 return null;
             }
 
+            // Read the games. Most likely only one (source or target), but the code here supports multiple
             var foundGames = config.Descendants(xmlNodeName);
 
+            // For each game, read the various properties we need, and store the result in a new GameConfiguration object
             foreach (var game in foundGames)
             {
-                var saveGameFolderType = XElementHelper.ReadStringValue(game, "defaultSaveGameLocationType");
-                var type = saveGameFolderType.Equals(DefaultSaveGameLocationType.SteamFolder.ToString()) ? DefaultSaveGameLocationType.SteamFolder : DefaultSaveGameLocationType.WindowsUsersFolder;
+                // Save game related
+                var saveGameFolderTypeAsString = XElementHelper.ReadStringValue(game, "defaultSaveGameLocationType");
+                var saveGameFolderType = saveGameFolderTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+                var saveGameExtension = XElementHelper.ReadStringValue(game, "saveGameExtension");
+
+                // Installation directory related
                 var steamId = XElementHelper.ReadStringValue(game, "steamId");
                 var installationFolder = this.GetSteamInstallationFolder(steamId);
                 var configurationFileDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileDirectoryTagName");
-                var saveGameExtension = XElementHelper.ReadStringValue(game, "saveGameExtension");
+                
+                // Mod related
+                var defaultModFolderLocationTypeAsString = XElementHelper.ReadStringValue(game, "defaultModFolderLocationType", false);
+                var defaultModFolderLocationType = defaultModFolderLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+                var configurationFileModDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileModDirectoryTagName", false);
+                var currentModTagName = XElementHelper.ReadStringValue(game, "currentModTagName", false);
 
-                gameConfigurations.Add(new GameConfiguration()
+                //if (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder)
+                //{
+                //    this.options.Logger.AddLogEntry(new LogEntry("The \"defaultModFolderLocationType\" tag cannot have the value \"SteamFolder\". This value isn't supported in the frontend yet.", LogEntrySeverity.Error, LogEntrySource.UI));
+                //}
+
+                var supportedModsAsString = game.Descendants("supportedMod");
+
+                var gameConfig = new GameConfiguration()
                 {
                     Name = XElementHelper.ReadStringValue(game, "name"),
                     FriendlyName = XElementHelper.ReadStringValue(game, "friendlyName"),
-                    SaveGamePath = (type == DefaultSaveGameLocationType.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation"),
+                    SaveGamePath = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation"),
                     SteamId = steamId,
                     ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName,
-                    SaveGameExtension = saveGameExtension
-                });
+                    SaveGameExtension = saveGameExtension,
+                    ConfigurationFileModDirectoryTagName = configurationFileModDirectoryTagName,
+                    CurrentModTagName = currentModTagName,
+                    ModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultModFolderLocation", false)
+                };
+
+                // Dummy item so that the user can undo selecting a mod
+                var dummyMod = new SupportedMod() { Name = "No mod", IsDummyItem = true };
+                gameConfig.SupportedMods.Add(dummyMod);
+                gameConfig.CurrentMod = dummyMod;
+
+                // Add proper mods
+                if (supportedModsAsString.Count() > 0)
+                {
+                    supportedModsAsString.ForEach(m => gameConfig.SupportedMods.Add(new SupportedMod() { Name = XElementHelper.ReadStringValue(m, "modName") }));
+                }
+
+                gameConfigurations.Add(gameConfig);
             }
 
             return gameConfigurations;
@@ -267,6 +349,11 @@ namespace Converter.UI.Providers
 
         #region [ Helper Methods ]
 
+        /// <summary>
+        /// Shows an (helpful?) error message if something goes wrong during parsing.
+        /// </summary>
+        /// <param name="xmlFileName">Name of the XML file.</param>
+        /// <param name="exception">The exception.</param>
         private void ShowMalformedOrMissingXMLElementError(string xmlFileName, XMLParseExceptionBase exception)
         {
             var lineInfo = FindExpectedLineNumber(exception.ParentElement);
@@ -285,6 +372,11 @@ namespace Converter.UI.Providers
             MessageBox.Show(message, "Configuration file error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
+        /// <summary>
+        /// Finds the expected line number. Useful for the user if something went wrong during parsing
+        /// </summary>
+        /// <param name="parentElement">The parent element.</param>
+        /// <returns></returns>
         private Tuple<int, int> FindExpectedLineNumber(XElement parentElement)
         {
             IXmlLineInfo info = parentElement;

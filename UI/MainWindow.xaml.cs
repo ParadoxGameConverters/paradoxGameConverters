@@ -20,10 +20,19 @@ namespace Converter.UI
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary>
+        /// The log items collection
+        /// </summary>
         private ObservableCollection<LogEntry> logItems;
 
+        /// <summary>
+        /// The tabs
+        /// </summary>
         private IList<IViewModel> tabs;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MainWindow"/> class.
+        /// </summary>
         public MainWindow()
         {
             InitializeComponent();
@@ -32,6 +41,12 @@ namespace Converter.UI
 
         #region [ Properties ]
 
+        /// <summary>
+        /// Gets the collection of log entries recorded so far.
+        /// </summary>
+        /// <value>
+        /// The log items.
+        /// </value>
         public ObservableCollection<LogEntry> LogItems
         {
             get
@@ -40,6 +55,12 @@ namespace Converter.UI
             }
         }
 
+        /// <summary>
+        /// Gets the list of tabs to display
+        /// </summary>
+        /// <value>
+        /// The tabs.
+        /// </value>
         public IList<IViewModel> Tabs
         {
             get
@@ -48,8 +69,20 @@ namespace Converter.UI
             }
         }
 
+        /// <summary>
+        /// Gets or sets the converter options object that contains pretty much all the user choices and configuration options the converter needs.
+        /// </summary>
+        /// <value>
+        /// The converter options.
+        /// </value>
         public ConverterOptions ConverterOptions { get; set; }
 
+        /// <summary>
+        /// Gets the title of the converter, as displayed in the title bar.
+        /// </summary>
+        /// <value>
+        /// The converter title.
+        /// </value>
         public string ConverterTitle
         {
             get
@@ -62,11 +95,15 @@ namespace Converter.UI
 
         #region [ Methods ]
 
+        /// <summary>
+        /// Raises the <see cref="E:System.Windows.FrameworkElement.Initialized" /> event. This method is invoked whenever <see cref="P:System.Windows.FrameworkElement.IsInitialized" /> is set to true internally.
+        /// </summary>
+        /// <param name="e">The <see cref="T:System.Windows.RoutedEventArgs" /> that contains the event data.</param>
         protected override void OnInitialized(EventArgs e)
         {
             base.OnInitialized(e);
-
-            //Thread.CurrentThread.CurrentCulture = Thread.CurrentThread.CurrentUICulture;
+            
+            // Set the frontend culture to the users current culture.
             FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
 
             this.ConverterOptions = new ConverterOptions();
@@ -75,7 +112,7 @@ namespace Converter.UI
             this.Tabs.Add(new PathPickerViewModel(this.ConverterOptions, new PathPickerView()));
             this.tabControl.SelectedIndex = 0;
 
-            // Add one or more preference views
+            // Add one or more preference tabs
             var factory = new PreferenceViewModelFactory(this.ConverterOptions);
 
             foreach (var viewModel in factory.BuildPreferenceViewModels())
@@ -83,12 +120,21 @@ namespace Converter.UI
                 this.Tabs.Add(viewModel);
             }
 
+            // Currently not used: Summary tab
             //this.Tabs.Add(new SummaryViewModel(new SummaryView(), this.ConverterOptions));
+
+            // Add the log tab
             this.Tabs.Add(new LogViewModel(new LogView(), this.ConverterOptions));
 
+            // Listen for tab selection changes, as some tabs needs to know
             this.tabControl.SelectionChanged += new SelectionChangedEventHandler(tabControl_SelectionChanged);
         }
 
+        /// <summary>
+        /// Handles the SelectionChanged event of the tabControl control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="SelectionChangedEventArgs"/> instance containing the event data.</param>
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (e.AddedItems.Count > 0)

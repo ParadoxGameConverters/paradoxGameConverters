@@ -4,8 +4,20 @@ using Converter.UI.Settings;
 
 namespace Converter.UI.Framework
 {
+    /// <summary>
+    /// This template selector is used when dynamically building the preference viewmodels based on the configuration.xml file.
+    /// Basically, this templateselector selects the right datatemplate to use for each IPreferenceEntry
+    /// </summary>
     public class EntryTemplateSelector : DataTemplateSelector
     {
+        /// <summary>
+        /// When overridden in a derived class, returns a <see cref="T:System.Windows.DataTemplate" /> based on custom logic.
+        /// </summary>
+        /// <param name="item">The data object for which to select the template.</param>
+        /// <param name="container">The data-bound object.</param>
+        /// <returns>
+        /// Returns a <see cref="T:System.Windows.DataTemplate" /> or null. The default value is null.
+        /// </returns>
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             FrameworkElement element = container as FrameworkElement;

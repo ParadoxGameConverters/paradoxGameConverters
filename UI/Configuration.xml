@@ -8,10 +8,19 @@
         <name>CrusaderKings2</name>
         <friendlyName>Crusader Kings 2</friendlyName>
         <steamId>203770</steamId>
-        <defaultSaveGameLocationType>UsersFolder</defaultSaveGameLocationType>
+        <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
+        <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
         <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
+        <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
+        <currentModTagName>CK2Mod</currentModTagName>
         <saveGameExtension>.ck2</saveGameExtension>
+        <supportedMods>
+          <supportedMod>
+            <modName>CK2Plus</modName>
+          </supportedMod>
+        </supportedMods>
       </sourceGameConfiguration>
     </sourceGameConfigurations>
     <!--List of target games-->
@@ -23,37 +32,12 @@
         <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
         <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+        <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\mod</defaultModFolderLocation>
         <saveGameExtension>.eu3</saveGameExtension>
       </targetGameConfiguration>
     </targetGameConfigurations>
   </gameConfigurations>
-  <modInstallation>
-    <converterModFiles>
-      <converterModFile>
-        <fileName>country_mapping.txt</fileName>
-        <sourcePath>Converter Mod</sourcePath>
-        <targetPath>.</targetPath>
-      </converterModFile>
-      <converterModFile>
-        <fileName>culture_mapping.txt</fileName>
-        <sourcePath>Converter Mod</sourcePath>
-        <targetPath>.</targetPath>
-      </converterModFile>
-      <converterModFile>
-        <fileName>religion_mapping.txt</fileName>
-        <sourcePath>Converter Mod</sourcePath>
-        <targetPath>.</targetPath>
-      </converterModFile>
-    </converterModFiles>
-    <targetGameModFolder>
-      <modFolder>
-        <folderName>mod</folderName>
-        <sourcePath>Converter Mod</sourcePath>
-        <targetPath>mod</targetPath>
-      </modFolder>
-    </targetGameModFolder>
-  </modInstallation>
-  <!--END Game configuration-->
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
   <converterOptions>
     <categories>

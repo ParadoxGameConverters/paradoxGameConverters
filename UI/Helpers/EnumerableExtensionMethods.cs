@@ -2,8 +2,19 @@
 
 namespace System.Linq
 {
+    /// <summary>
+    /// Extension methods for IEnumerable
+    /// </summary>
     public static class EnumerableExtensionMethods
     {
+        /// <summary>
+        /// Fors the each.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="source">The source.</param>
+        /// <param name="action">The action.</param>
+        /// <returns></returns>
+        /// <exception cref="System.ArgumentNullException">action</exception>
         public static IEnumerable<T> ForEach<T>(this IEnumerable<T> source, Action<T> action)
         {
             if (action == null)

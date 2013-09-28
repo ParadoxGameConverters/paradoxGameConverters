@@ -11,19 +11,62 @@ using Converter.UI.Helpers;
 
 namespace Converter.UI.Settings
 {
+    /// <summary>
+    /// Implementation of IPreference. 
+    /// <remarks>Also implements IDataErrorInfo, which is used for validating some user input in user interface, such as minimum and maximum values.</remarks>
+    /// </summary>
     public class Preference : NotifiableBase, IPreference, IDataErrorInfo
     {
         private IList<IPreferenceEntry> entries;
         private IPreferenceEntry selectedEntry;
         private string value;
-        
-        public string Name { get; set; }
-        public string FriendlyName { get; set; }
-        public string Description { get; set; }
-        public double MinValue { get; set; }
-        public double MaxValue { get; set; }
-        public bool AllowDirectOverride { get; set; }
 
+        /// <summary>
+        /// Gets or sets the preference name. Must match the name of the preference in configuration.txt
+        /// </summary>
+        /// <value>
+        /// The name.
+        /// </value>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// Gets or sets the friendly preference name. Usually more readable to humans than the normal name, which tends to lack - for instance - spaces.
+        /// </summary>
+        /// <value>
+        /// The name of the friendly.
+        /// </value>
+        public string FriendlyName { get; set; }
+
+        /// <summary>
+        /// Gets or sets the description.
+        /// </summary>
+        /// <value>
+        /// The description.
+        /// </value>
+        public string Description { get; set; }
+
+        /// <summary>
+        /// Gets or sets the minimum value.
+        /// </summary>
+        /// <value>
+        /// The minimum value.
+        /// </value>
+        public double MinValue { get; set; }
+
+        /// <summary>
+        /// Gets or sets the maximum value.
+        /// </summary>
+        /// <value>
+        /// The maximum value.
+        /// </value>
+        public double MaxValue { get; set; }
+        
+        /// <summary>
+        /// Gets the list of pre-defined IPreferenceEntry objects. These are the pre-defined user choices, if not null.
+        /// </summary>
+        /// <value>
+        /// The entries.
+        /// </value>
         public IList<IPreferenceEntry> Entries
         {
             get
@@ -32,6 +75,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets or sets the selected entry. Only relevant if this list has a list of Entries to choose from.
+        /// </summary>
+        /// <value>
+        /// The selected entry.
+        /// </value>
         public IPreferenceEntry SelectedEntry
         {
             get
@@ -52,6 +101,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets or sets the current value.
+        /// </summary>
+        /// <value>
+        /// The value.
+        /// </value>
         public string Value
         {
             get
@@ -71,6 +126,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this preference has a set of predefined choices.
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if yes; otherwise, <c>false</c>.
+        /// </value>
         public bool HasPreDefinedChoices
         {
             get
@@ -79,8 +140,20 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets or sets a value indicating whether this preference has a directly editable value (as opposed to pre-defined choices, for instance)
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if yes; otherwise, <c>false</c>.
+        /// </value>
         public bool HasDirectlyEditableValue { get; set; }
 
+        /// <summary>
+        /// Gets a value indicating whether this preference contains a numeric value
+        /// </summary>
+        /// <value>
+        ///   <c>true</c> if yes, otherwise, <c>false</c>.
+        /// </value>
         public bool IsNumeric
         {
             get
@@ -93,6 +166,10 @@ namespace Converter.UI.Settings
         #region [ Validation ]
 
 
+        /// <summary>
+        /// Gets an error message indicating what is wrong with this object. 
+        /// </summary>
+        /// <returns>An error message indicating what is wrong with this object. The default is an empty string ("").</returns>
         public string Error
         {
             get
@@ -101,6 +178,14 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets the <see cref="System.String"/> with the specified name. Used by IDataErrorInfo
+        /// </summary>
+        /// <value>
+        /// The <see cref="System.String"/>.
+        /// </value>
+        /// <param name="name">The name.</param>
+        /// <returns></returns>
         public string this[string name]
         {
             get
@@ -111,6 +196,12 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Gets a value indicating whether this preference has minimum and maximum values.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if [has minimum maximum values]; otherwise, <c>false</c>.
+        /// </value>
         private bool HasMinMaxValues
         {
             get
@@ -119,6 +210,11 @@ namespace Converter.UI.Settings
             }
         }
 
+        /// <summary>
+        /// Called when [validate property].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns></returns>
         protected virtual string OnValidateProperty(string propertyName)
         {
             if (!this.HasMinMaxValues)
@@ -146,6 +242,12 @@ namespace Converter.UI.Settings
             return null;
         }
 
+        /// <summary>
+        /// Returns a <see cref="System.String" /> that represents this instance.
+        /// </summary>
+        /// <returns>
+        /// A <see cref="System.String" /> that represents this instance.
+        /// </returns>
         public override string ToString()
         {
             return this.Name + " = \"" + this.Value + "\"";

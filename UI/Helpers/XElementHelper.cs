@@ -6,13 +6,16 @@ using Converter.UI.Framework;
 
 namespace Converter.UI.Helpers
 {
+    /// <summary>
+    /// Helper class for various XElement reading tasks
+    /// </summary>
     public static class XElementHelper
     {
         /// <summary>
-        /// 
+        /// Reads the double value.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
         /// <returns></returns>
         public static double ReadDoubleValue(XElement parentElement, string propertyName)
         {
@@ -20,12 +23,13 @@ namespace Converter.UI.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Reads the double value.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="isPropertyRequired"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         /// <returns></returns>
+        /// <exception cref="Converter.UI.Framework.MissingRequiredXMLPropertyException"></exception>
         public static double ReadDoubleValue(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
             double value;
@@ -51,10 +55,10 @@ namespace Converter.UI.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Reads the string value.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
         /// <returns></returns>
         public static string ReadStringValue(XElement parentElement, string propertyName)
         {
@@ -62,12 +66,14 @@ namespace Converter.UI.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Reads the string value.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="isPropertyRequired"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         /// <returns></returns>
+        /// <exception cref="Converter.UI.Framework.MissingRequiredXMLPropertyException">
+        /// </exception>
         public static string ReadStringValue(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
             string value;
@@ -99,10 +105,10 @@ namespace Converter.UI.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Reads the bool value.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
         /// <returns></returns>
         public static bool ReadBoolValue(XElement parentElement, string propertyName)
         {
@@ -110,12 +116,14 @@ namespace Converter.UI.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Reads the bool value.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="isPropertyRequired"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         /// <returns></returns>
+        /// <exception cref="Converter.UI.Framework.MissingRequiredXMLPropertyException"></exception>
+        /// <exception cref="Converter.UI.Framework.UnParsableDataValueException">bool</exception>
         public static bool ReadBoolValue(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
             bool value = false;
@@ -146,10 +154,10 @@ namespace Converter.UI.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Reads the enumerable.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
         /// <returns></returns>
         public static IEnumerable<XElement> ReadEnumerable(XElement parentElement, string propertyName)
         {
@@ -157,12 +165,13 @@ namespace Converter.UI.Helpers
         }
 
         /// <summary>
-        /// 
+        /// Reads the enumerable.
         /// </summary>
-        /// <param name="parentElement"></param>
-        /// <param name="propertyName"></param>
-        /// <param name="isPropertyRequired"></param>
+        /// <param name="parentElement">The parent element.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         /// <returns></returns>
+        /// <exception cref="Converter.UI.Framework.MissingRequiredXMLPropertyException"></exception>
         public static IEnumerable<XElement> ReadEnumerable(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
             IEnumerable<XElement> elements = parentElement.Descendants(propertyName);

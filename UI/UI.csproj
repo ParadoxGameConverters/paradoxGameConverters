@@ -79,8 +79,7 @@
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
-    <Compile Include="Enums\AllowDirectUserOverride.cs" />
-    <Compile Include="Enums\DefaultSaveGameLocationType.cs" />
+    <Compile Include="Enums\RelativeFolderLocationRoot.cs" />
     <Compile Include="Enums\LogEntrySeverity.cs" />
     <Compile Include="Enums\LogEntrySource.cs" />
     <Compile Include="Factories\PreferenceViewModelFactory.cs" />
@@ -108,6 +107,7 @@
     <Compile Include="Settings\Preference.cs" />
     <Compile Include="Settings\PreferenceCategory.cs" />
     <Compile Include="Settings\PreferenceEntry.cs" />
+    <Compile Include="Settings\SupportedMod.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
     <Compile Include="ViewModels\PreferencesViewModel.cs" />
     <Compile Include="ViewModels\PathPickerViewModel.cs" />

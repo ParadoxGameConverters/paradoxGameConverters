@@ -6,15 +6,24 @@ using Converter.UI.Framework;
 using Converter.UI.Settings;
 using Microsoft.Win32;
 using Converter.UI.Enums;
+using Converter.UI.Views;
 
 namespace Converter.UI.ViewModels
 {
+    /// <summary>
+    /// The PathPickerViewModel lets the user select paths to various stuff the converter needs to know where to find.
+    /// </summary>
     public class PathPickerViewModel : BaseViewModel, IViewModel
     {
         private ICommand openSaveGameCommand;
         private ICommand openConverterCommand;
         private ICommand openFolderCommand;
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="PathPickerViewModel"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
+        /// <param name="view">The view.</param>
         public PathPickerViewModel(ConverterOptions options, IView view)
             : base(view, "File/Folder paths", options)
         {
@@ -23,6 +32,12 @@ namespace Converter.UI.ViewModels
 
         #region [ Properties ]
 
+        /// <summary>
+        /// Gets the open converter command.
+        /// </summary>
+        /// <value>
+        /// The open converter command.
+        /// </value>
         public ICommand OpenConverterCommand
         {
             get
@@ -31,6 +46,12 @@ namespace Converter.UI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the open save game command.
+        /// </summary>
+        /// <value>
+        /// The open save game command.
+        /// </value>
         public ICommand OpenSaveGameCommand
         {
             get
@@ -39,6 +60,12 @@ namespace Converter.UI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Gets the open folder command.
+        /// </summary>
+        /// <value>
+        /// The open folder command.
+        /// </value>
         public ICommand OpenFolderCommand
         {
             get
@@ -46,7 +73,13 @@ namespace Converter.UI.ViewModels
                 return this.openFolderCommand ?? (this.openFolderCommand = new OpenFolderCommand(this.Options));
             }
         }
-        
+
+        /// <summary>
+        /// Gets or sets the source save game path.
+        /// </summary>
+        /// <value>
+        /// The source save game path.
+        /// </value>
         public string SourceSaveGamePath
         {
             get
@@ -70,9 +103,14 @@ namespace Converter.UI.ViewModels
 
         #region [ Methods ]
 
+        /// <summary>
+        /// Called when [tab selected].
+        /// </summary>
+        /// <param name="sender">The sender.</param>
+        /// <param name="e">The <see cref="System.Windows.Controls.SelectionChangedEventArgs"/> instance containing the event data.</param>
         protected override void OnTabSelected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
-            // If the converter .exe happens to be in the same directory as the UI, there is no reason to ask the user to find it anyway. 
+            // If the converter .exe happens to be in the same directory as the UI, there is no reason to ask the user to find it anyway. So let's just do it for them.
             var converterLocation = Path.Combine(Environment.CurrentDirectory, "CK2ToEU3.exe");
             if (File.Exists(converterLocation))
             {
@@ -80,6 +118,9 @@ namespace Converter.UI.ViewModels
             }
         }
 
+        /// <summary>
+        /// Builds the conversion options.
+        /// </summary>
         private void BuildConversionOptions()
         {
             //TODO: Finding installation paths makes little sense if the game isn't installed. Should probably be fixed
@@ -89,6 +130,10 @@ namespace Converter.UI.ViewModels
             this.FindGameInstallationPath(this.Options.TargetGame);
         }
 
+        /// <summary>
+        /// Attempts to find the game installation path for the provided game configuration
+        /// </summary>
+        /// <param name="gameConfiguration">The game configuration.</param>
         private void FindGameInstallationPath(GameConfiguration gameConfiguration)
         {
             if (!gameConfiguration.IsInstalled)

@@ -5,18 +5,34 @@ using Converter.UI.Enums;
 
 namespace Converter.UI.Commands
 {
+    /// <summary>
+    /// Command used to select a particular folder
+    /// </summary>
     public class OpenFolderCommand : CommandBase
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="OpenFolderCommand"/> class.
+        /// </summary>
+        /// <param name="options">The options.</param>
         public OpenFolderCommand(ConverterOptions options)
             : base(options)
         {
         }
 
+        /// <summary>
+        /// Called when [can execute].
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
+        /// <returns></returns>
         protected override bool OnCanExecute(object parameter)
         {
             return true;
         }
 
+        /// <summary>
+        /// Called when [execute].
+        /// </summary>
+        /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
             GameConfiguration game = (GameConfiguration)parameter;
