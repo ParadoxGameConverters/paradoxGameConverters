@@ -521,3 +521,4 @@ Revision	Log Message
 496		Update converter mod
 497		Merge minor to main
 498		Put saves in the correct places
+499		Fix frontend's copy routines

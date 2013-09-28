@@ -188,11 +188,13 @@ namespace Converter.UI.Commands
         /// </summary>
         private void OnSuccessfulConversion()
         {
-            var wasMoveSuccessful = this.MoveSaveGame();
-
-            if (this.Options.UseConverterMod && wasMoveSuccessful)
+            if (this.Options.UseConverterMod)
             {
                 this.InstallConverterMod();
+            }
+            else
+            {
+                this.MoveSaveGame();
             }
         }
 
@@ -209,24 +211,24 @@ namespace Converter.UI.Commands
             if (!Directory.Exists(absoluteSourcePath))
             {
                 // Log error
-                this.Log("Could not find mod folder (" + absoluteSourcePath + "), making it somewhat hard to copy said folder to " + this.Options.TargetGame.ModPath + ". This means that the converter mod isn't installed, so you might want to try to do it manually instead.", LogEntrySeverity.Error, LogEntrySource.UI);
+                this.Log("Could not find mod folder (" + absoluteSourcePath + "), making it somewhat hard to copy said folder to " + this.Options.TargetGame.InstallationPath + "\\mod" + ". This means that the converter mod isn't installed, so you might want to try to do it manually instead.", LogEntrySeverity.Error, LogEntrySource.UI);
                 return;
             }
 
             // Overwrite needed?
-            if (!File.Exists(this.Options.TargetGame.ModPath))
+            if (!File.Exists(this.Options.TargetGame.InstallationPath + "\\mod"))
             {
                 // Ask permission for overwrite (or delete whole thing, then recopy?)
             }
 
             try
             {
-                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.TargetGame.ModPath, true, true);
-                this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.TargetGame.ModPath, LogEntrySeverity.Info, LogEntrySource.UI);
+                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.TargetGame.InstallationPath + "\\mod", true, true);
+                this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.TargetGame.InstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI);
             }
             catch (Exception ex)
             {
-                this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.TargetGame.ModPath + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI);
+                this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.TargetGame.InstallationPath + "\\mod" + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI);
             }
         }
 
@@ -238,9 +240,9 @@ namespace Converter.UI.Commands
             bool wasMoveSuccessful = false;
 
             // Copy the newly created save to the target game output directory.
-            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + "_Converted" + this.Options.TargetGame.SaveGameExtension;
+            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + this.Options.TargetGame.SaveGameExtension;
             var canOverWrite = false;
-            var expectedOutputDirectoryAndFile = Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName);
+            var expectedOutputDirectoryAndFile = Path.Combine(this.Options.TargetGame.InstallationPath + this.Options.TargetGame.SaveGamePath, desiredFileName);
 
             // Don't blindly overwrite any existing saves - that's just rude
             if (File.Exists(expectedOutputDirectoryAndFile))
@@ -264,7 +266,7 @@ namespace Converter.UI.Commands
             {
                 var outputSavePath = this.DetermineOutputSavePath();
                 File.Copy(outputSavePath, expectedOutputDirectoryAndFile, canOverWrite);
-                this.Log(desiredFileName + " has been written to \"" + this.Options.TargetGame.SaveGamePath + "\".", LogEntrySeverity.Info, LogEntrySource.UI);
+                this.Log(desiredFileName + " has been written to \"" + this.Options.TargetGame.InstallationPath + this.Options.TargetGame.SaveGamePath + "\".", LogEntrySeverity.Info, LogEntrySource.UI);
 
                 //File.Delete(outputSavePath);
                 //this.Log("Deleted temporary file(s).", LogEntrySeverity.Info, LogEntrySource.UI);
@@ -285,8 +287,7 @@ namespace Converter.UI.Commands
         /// <returns></returns>
         private string DetermineOutputSavePath()
         {
-            var outputSaveName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + this.Options.SourceGame.SaveGameExtension;
-            return Path.Combine(Path.GetDirectoryName(this.Options.SourceSaveGame), outputSaveName);
+            return Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + this.Options.TargetGame.SaveGameExtension;
         }
 
         /// <summary>
