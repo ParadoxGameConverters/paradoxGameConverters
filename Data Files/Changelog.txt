@@ -518,3 +518,5 @@ Revision	Log Message
 493		The error handling now properly detects whether a mod is selected
 494		Update test scripts
 495		Give cores on absorbed vassals
+496		Update converter mod
+497		Merge minor to main
