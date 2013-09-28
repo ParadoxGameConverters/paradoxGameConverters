@@ -666,6 +666,7 @@ int main(int argc, char * argv[])
 			outputFilename += "output.eu3";
 		}
 	}
+	log("\tFilename: %s\n", outputFilename.c_str());
 	FILE* output;
 	if (fopen_s(&output, outputFilename.c_str(), "w") != 0)
 	{

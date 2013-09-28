@@ -509,3 +509,11 @@ Revision	Log Message
 485		Fix crash bug with navies in river-based ports
 486		Output newCountries.txt for use by molave's tool
 487		Fix bug with absorbing vassals but leaving cores
+488		Added comments and some (disabled) work on automated mod installation.
+489		Merge
+490		Feature development more or less complete. Pre-bugfixing commit.
+491		Fixed an event handler related bug that caused conversion to be run multiple times after the first conversion.
+492		Added error handling for when the converter itself crashes (ExitCode != 0)
+		Only copies save of conversion was successful
+493		The error handling now properly detects whether a mod is selected
+494		Update test scripts
