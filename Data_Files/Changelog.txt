@@ -44,3 +44,4 @@ Revision	Who		Log Message
 41		Ztaesek		It's a tidal wave of sea provinces, all the ocean blue.
 42		Ztaesek		Code updates
 43		Ztaesek		Changelog
+44		Ztaesek		Configuration File is important.

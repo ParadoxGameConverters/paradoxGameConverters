@@ -8,13 +8,13 @@ configuration =
 
 	# EU4 Game Type: what version of EU4 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!
-	#	base	version (1.x)
+	#	base	Release EU4 (1.x)
 	EU4gametype = "base"
 
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	vanilla	vanilla V2 (1.x)
-	#	AHD		A House Divided (2.x)
-	#	HOD		Heart of Darkness (3.x)
+	#	base	Release V2 (1.x)
+	#	AHD		A House Divided Expansion (2.x)
+	#	HOD		Heart of Darkness Expansion (3.x)
 	V2gametype = "AHD"
 
 	# The date on which the game is to start.  Default: 1835.12.1
@@ -30,6 +30,9 @@ configuration =
 	#	all		remove all of them
 	# Note: if there are not enough V2 tags, some or all of these will be done anyway
 	Removetype = "dead"
+
+	# Victoria 2 mod name: The name of the mod that will be created by this code
+	V2OutputModName = "test1"
 	
 	### CK2 to EU4 Mod Options
 	
