@@ -22,6 +22,7 @@ class V2World {
 	public:
 		V2World(string V2Loc);
 		void output(FILE*) const;
+		void createProvinceFiles(const EU4World& sourceWorld, const provinceMapping& provinceMap);
 		
 		void convertCountries(const EU4World& sourceWorld, const countryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void convertDiplomacy(const EU4World& sourceWorld, const countryMapping& countryMap);
@@ -38,13 +39,13 @@ class V2World {
 	private:
 		void			outputHeader(FILE*) const;
 		void			getProvinceLocalizations(string file);
-		vector<int>	getPortProvinces(vector<int> provinces);
-		V2Country*	getCountry(string tag);
+		vector<int>		getPortProvinces(vector<int> provinces);
+		V2Country*		getCountry(string tag);
 
-		vector<V2Province*>	provinces;
-		vector<V2Country*>	countries;
-		vector<V2Country*>	potentialCountries;
-		map<int, V2Party*>	parties;
+		vector<V2Province*>		provinces;
+		vector<V2Country*>		countries;
+		vector<V2Country*>		potentialCountries;
+		map<int, V2Party*>		parties;
 		V2Diplomacy				diplomacy;
 		int						equalityLeft;
 		int						libertyLeft;

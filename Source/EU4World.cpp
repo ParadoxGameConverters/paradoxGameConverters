@@ -1,4 +1,5 @@
 #include "EU4World.h"
+#include <fstream>
 #include "Log.h"
 #include "Configuration.h"
 #include "Mapper.h"
@@ -11,53 +12,109 @@ EU4World::EU4World(Object* obj)
 {
 	cachedWorldType = Unknown;
 
-	string key;
+	string keyProv;
+	string keyCoun;
 
-	// Get Provinces
+	// Get Provinces and then get Countries
 	provinces.clear();
 	countries.clear();
-
-	vector<Object*> leavesProvinces = obj->getValue("provinces");
-	for (unsigned int i = 0; i < leavesProvinces.size(); i++) // loop through all the sections marked provinces
-//	if (leavesProvinces.size() > 0)
+	
+	vector<Object*> provincesObj = obj->getValue("provinces");				// Set object to be base leaf named provinces
+	if (provincesObj.size() > 0)											// If object leaf exists, proceed
 	{
-		vector<Object*> lowerProvinces = obj->getLeaves();
-		for (unsigned int j = 0; j < lowerProvinces.size(); j++)
+		vector<Object*> provincesLeaves = provincesObj[0]->getLeaves();		// Set object to be leaves of listed object
+		for (unsigned int j = 0; j < provincesLeaves.size(); j++)			// For entire set of leaves, preform following
 		{
-			key = lowerProvinces[j]->getKey();
-
-			// Is this a negative value? If so, must be a province
-//			if (key.substr(0, 1) == "-")
-			if (atoi(key.c_str()) < 0)
+			keyProv = (provincesLeaves[j])->getKey();						// Get key for current province.  In this case a negative number.
+		
+			if (atoi(keyProv.c_str()) < 0)									// Check if key is a negative value (EU4 style)
 			{
-				EU4Province* province = new EU4Province(lowerProvinces[j]);
+				EU4Province* province = new EU4Province((provincesLeaves[j]));		// Set values of leaf to the class province
+				provinces.insert(make_pair(province->getNum(), province));			// insert num indentifier (made to be positive in EU4Province now)
+			}
+		}
+	}
+
+	vector<Object*> countriesObj = obj->getValue("countries");
+	if (countriesObj.size() > 0)											// If object leaf exists, proceed
+	{
+		vector<Object*> countriesLeaves = countriesObj[0]->getLeaves();
+		for (unsigned int j = 0; j < countriesLeaves.size(); j++)
+		{
+			keyCoun = countriesLeaves[j]->getKey();
+
+			if ((keyCoun.size() == 3) &&									// Countries are three uppercase characters
+					(keyCoun.c_str()[0] >= 'A') && (keyCoun.c_str()[0] <= 'Z') && 
+					(keyCoun.c_str()[1] >= 'A') && (keyCoun.c_str()[1] <= 'Z') && 
+					(keyCoun.c_str()[2] >= 'A') && (keyCoun.c_str()[2] <= 'Z')
+				  )
+			{
+				EU4Country* country = new EU4Country(countriesLeaves[j]);
+				countries.insert(make_pair(country->getTag(), country));
+			}
+		}
+	}
+	
+/*	vector<Object*> provinceObj = obj->getValue("provinces");
+	if (provinceObj.size() > 0)
+	{
+		vector<Object*> lowerProvinces = provinceObj[0]->getLeaves();
+		for (vector<Object*>::iterator i = lowerProvinces.begin(); i != lowerProvinces.end(); i++)
+		{
+			keyProv = (*i)->getKey();
+			
+			// Is this a negative value? If so, must be a province
+			if (atoi(keyProv.c_str()) < 0)
+			{
+				EU4Province* province = new EU4Province((*i));
+				provinces.insert(make_pair(province->getNum(), province));
+			}
+		}
+	}
+	*/
+
+	/*	vector<Object*> provinceObj = obj->getValue("provinces");
+	for (unsigned int i = 0; i < provinceObj.size(); i++) // loop through all the sections marked provinces
+	if (provinceObj.size() > 0)
+	{
+		vector<Object*> provinceObjlist = provinceObj[0]->getLeaves();
+		for (unsigned int j = 0; j < provinceObjlist.size(); j++)
+		{
+			keyProv = (provinceObjlist[j])->getKey();
+			
+			// Is this a negative value? If so, must be a province
+			if (atoi(keyProv.c_str()) < 0)
+			{
+				EU4Province* province = new EU4Province((provinceObjlist[j]));
 				provinces.insert(make_pair(province->getNum(), province));
 			}
 		}
 	}
 
-	vector<Object*> leavesCountries = obj->getValue("countries");
-	for (unsigned int i = 0; i < leavesCountries.size(); i++) // loop through all the sections marked countries
+	vector<Object*> countriesObj = obj->getValue("countries");
+	if (countriesObj.size() > 0)
 	{
-		vector<Object*> lowerCountries = obj->getLeaves();
-		for (unsigned int j = 0; j < lowerCountries.size(); j++)
+		vector<Object*> lowerCountries = countriesObj[0]->getLeaves();
+		for (vector<Object*>::iterator i = lowerCountries.begin(); i != lowerCountries.end(); i++)
 		{
-			key = lowerCountries[j]->getKey();
+			keyCoun = (*i)->getKey();
 
 			// Countries are three uppercase characters
-			if ((key.size() == 3) && 
-					(key.c_str()[0] >= 'A') && (key.c_str()[0] <= 'Z') && 
-					(key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') && 
-					(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z')
+			if ((keyCoun.size() == 3) && 
+					(keyCoun.c_str()[0] >= 'A') && (keyCoun.c_str()[0] <= 'Z') && 
+					(keyCoun.c_str()[1] >= 'A') && (keyCoun.c_str()[1] <= 'Z') && 
+					(keyCoun.c_str()[2] >= 'A') && (keyCoun.c_str()[2] <= 'Z')
 				  )
 			{
-				EU4Country* country = new EU4Country(lowerCountries[j]);
+				EU4Country* country = new EU4Country((*i));
 				countries.insert(make_pair(country->getTag(), country));
 			}
 		}
 	}
+	*/
 
 /*	// Old Code
+	string key;
 	vector<Object*> leaves = obj->getLeaves();
 
 	provinces.clear();

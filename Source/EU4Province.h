@@ -33,10 +33,10 @@ class EU4Province {
 		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;
 		date						getLastPossessedDate(string tag) const;
 
-		int						getNum()				const { return num; };
-		string					getOwnerString()	const { return ownerString; };
-		EU4Country*				getOwner()			const { return owner; };
-		int						getPopulation()	const { return population; };
+		int							getNum()				const { return num; };
+		string						getOwnerString()	const { return ownerString; };
+		EU4Country*					getOwner()			const { return owner; };
+		int							getPopulation()	const { return population; };
 		bool						isColony()			const { return colony; };
 		bool						isCOT()				const { return centerOfTrade; };
 		vector<EU4PopRatio>	getPopRatios()		const { return popRatios; };

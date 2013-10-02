@@ -13,7 +13,7 @@ using namespace std;
 
 V2Province::V2Province(int newNumber)
 {
-	land					= false;
+	land				= false;
 	coastal				= false;
 	num					= newNumber;
 	name					= "";
@@ -364,7 +364,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 	int capitalists	= 0;
 	int aristocrats	= 0;
 	
-	if (game == Base) // Gametype == dw
+	if (game == Base) // Gametype == 1.x
 	{
 		int govBuilding = 0;
 		if (oldProvince->hasBuilding("temple"))

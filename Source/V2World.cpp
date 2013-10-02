@@ -330,11 +330,11 @@ V2World::V2World(string V2Loc)
 	libertyLeft		= 30;
 }
 
-
+// The majority of the output changes will take place here.  See comments for the plan of action:
 void V2World::output(FILE* output) const
 {
-	outputHeader(output);
-	outputTempHeader(output);
+	outputHeader(output);		//  This information will now generate new book bookmark data for the mod, effectively removing the second bookmark.
+	outputTempHeader(output);	//	Not needed as a mod.
 	for (unsigned int i = 0; i < provinces.size(); i++)
 	{
 		provinces[i]->sortPops();
@@ -1132,10 +1132,6 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 
 	int num = 2;
 	map<string, EU4Country*>::iterator i = sourceCountries.begin();
-	if (sourceCountries.size() == 0)
-	{
-		return;
-	}
 	while (i->second->getProvinces().size() == 0)
 	{
 		i++;

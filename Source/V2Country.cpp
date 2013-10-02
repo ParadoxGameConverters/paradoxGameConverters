@@ -1172,7 +1172,7 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 	double newTechLevel = (scale * (srcCountry->getMilTech() - mean) / stdDev) + 2.5;
 	log("	%s has army tech of %f\n", tag.c_str(), newTechLevel);
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if ( (Configuration::getV2Gametype() == "base") || (civilized == true) )
 	{
 		if (newTechLevel >= 0)
 		{
@@ -1219,7 +1219,7 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 	double newTechLevel = scale * (srcCountry->getDipTech() - mean) / stdDev;
 	log("	%s has navy tech of %f\n", tag.c_str(), newTechLevel);
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if ( (Configuration::getV2Gametype() == "base") || (civilized == true) )
 	{
 		if (newTechLevel >= 0)
 		{
@@ -1317,7 +1317,7 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 	double newTechLevel = (scale * (srcCountry->getDipTech() - mean) / stdDev) + 4.5;
 	log("	%s has commerce tech of %f\n", tag.c_str(), newTechLevel);
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if ( (Configuration::getV2Gametype() == "base") || (civilized == true) )
 	{
 		techs.push_back("no_standard");
 		if (newTechLevel >= 1)
@@ -1440,7 +1440,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 	double newTechLevel = (scale * (srcCountry->getAdmTech() - mean) / stdDev) + 3.5;
 	log("	%s has industry tech of %f\n", tag.c_str(), newTechLevel);
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if ( (Configuration::getV2Gametype() == "base") || (civilized == true) )
 	{
 		if (newTechLevel >= 0)
 		{
@@ -1562,7 +1562,7 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 	double newTechLevel = ((scale * (srcCountry->getAdmTech() - mean) / stdDev) + 3);
 	log("	%s has culture tech of %f\n", tag.c_str(), newTechLevel);
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if ( (Configuration::getV2Gametype() == "base") || (civilized == true) )
 	{
 		techs.push_back("classicism_n_early_romanticism");
 		techs.push_back("late_enlightenment_philosophy");

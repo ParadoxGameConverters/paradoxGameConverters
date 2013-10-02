@@ -1,5 +1,6 @@
 #include <fstream>
 #include <sys/stat.h>
+//#include <Windows.h>
 #include <io.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
@@ -36,8 +37,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	string EU4Loc = Configuration::getEU4Path();
 	if (EU4Loc.empty() || (stat(EU4Loc.c_str(), &st) != 0))
 	{
-		log("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("No EuropaUniversalis4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No EuropaUniversalis4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 
@@ -87,7 +88,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 			exit(1);
 	}
 
+/*	//Get Mods new Name
+	log("Get the name of the Mod.\n");
+	string OutputFolderName = Configuration::getV2OutputModName();
+	if (OutputFolderName.empty() || (stat(OutputFolderName.c_str(), &st) != 0))
+	{
+		log("No Mod name was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Mod name was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
 
+*/
 	// Resolve unit types
 	log("Resolving unit types.\n");
 	printf("Resolving unit types.\n");
@@ -420,6 +431,23 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 
+/*	// Generate Mod Directory Structure
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName).c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history").c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\countries").c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\diplomacy").c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops").c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops\\1836.1.1").c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces").c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\units").c_str(), NULL);
+	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\wars").c_str(), NULL);
+
+	// Create Province History Files
+	printf("Creating Province History Files.\n");
+	log("Creating Province History Files.\n");
+	obj = doParseFile("input.eu4");
+//	destWorld.createProvinceFiles();
+*/
 
 	// Output results
 	printf("Outputting save.\n");

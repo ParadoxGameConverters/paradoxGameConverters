@@ -11,7 +11,6 @@ struct EU4Agreement;
 typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
 
-
 enum WorldType
 {
 	Unknown = 0,
