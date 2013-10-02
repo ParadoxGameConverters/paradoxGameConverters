@@ -36,3 +36,11 @@ Revision	Who		Log Message
 33		Idhrendur	Add Source files to project file
 34		Idhrendur	Update data files
 35		Idhrendur	Fix crash bug in converting tech
+36		TheSpartanD	Added Japanese Daimyos
+37		TheSpartanD	Removed Manufactory Conversions
+38		Ztaesek		Coasts and Islands - Russian Block and Inland Asia is all that is left
+39		Ztaesek		Merge
+40		Ztaesek		More Eastern Block:someone with more knowledge of Russia and China, please finish!
+41		Ztaesek		It's a tidal wave of sea provinces, all the ocean blue.
+42		Ztaesek		Code updates
+43		Ztaesek		Changelog
