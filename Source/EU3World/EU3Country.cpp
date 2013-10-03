@@ -69,6 +69,76 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		centralization = 0;
 	}
 
+	vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
+	if (aristocracyLeaves.size() > 0)
+	{
+		aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		aristocracy = 0;
+	}
+
+	vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
+	if (innovativeLeaves.size() > 0)
+	{
+		innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		innovative = 0;
+	}
+
+	vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
+	if (serfdomLeaves.size() > 0)
+	{
+		serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		serfdom = 0;
+	}
+
+	vector<Object*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
+	if (mercantilismLeaves.size() > 0)
+	{
+		mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		mercantilism = 0;
+	}
+
+	vector<Object*> offensiveLeaves = obj->getValue("offensive_defensive");
+	if (offensiveLeaves.size() > 0)
+	{
+		offensive = atoi( offensiveLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		offensive = 0;
+	}
+
+	vector<Object*> landLeaves = obj->getValue("land_naval");
+	if (landLeaves.size() > 0)
+	{
+		land = atoi( landLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		land = 0;
+	}
+
+	vector<Object*> qualityLeaves = obj->getValue("quality_quantity");
+	if (qualityLeaves.size() > 0)
+	{
+		quality = atoi( qualityLeaves[0]->getLeaf().c_str() );
+	}
+	else
+	{
+		quality = 0;
+	}
+
 	vector<Object*> religionLeaves = obj->getValue("religion");
 	if (religionLeaves.size() > 0)
 	{
@@ -127,7 +197,6 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 	armies.clear();
 	navies.clear();
 	manpower = 0.0F;
-	// Todo: Set the prefferred unit types replace with something better later
 	if(techGroup == "western")
 	{
 		infantry = "western_medieval_infantry";
@@ -212,6 +281,7 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
+	estimatedManu			= 0.0f;
 	estimatedGold			= 0.0f;
 	estimatedProduction	= 0.0f;
 	estimatedTolls			= 0.0f;
@@ -239,6 +309,23 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 		japaneseEmperor	= false;
 	}
 	elector = false;
+
+	factions.clear();
+	mainFaction			= "";
+	mainFactionScore	= 0;
+	vector<Object*> factionObj = obj->getValue("faction");
+	for(vector<Object*>::iterator factionItr = factionObj.begin(); factionItr != factionObj.end(); factionItr++)
+	{
+		string newFaction = (*factionItr)->getLeaf();
+		factions.push_back(newFaction);
+		vector<Object*> mainFactionObj = obj->getValue(newFaction);
+		if (mainFactionObj.size() > 0)
+		{
+			mainFaction			= newFaction;
+			mainFactionScore	= atoi( mainFactionObj[0]->getLeaf().c_str() );
+		}
+	}
+
 
 	// update items based on history
 	vector<Object*> objectList = obj->getLeaves();
@@ -278,6 +365,48 @@ EU3Country::EU3Country(EU3World* world, string _tag, string newHistoryFile, date
 				if (centralLeaves.size() > 0)
 				{
 					centralization = atoi( centralLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> aristocracyLeaves = obj->getValue("aristocracy_plutocracy");
+				if (aristocracyLeaves.size() > 0)
+				{
+					aristocracy = atoi( aristocracyLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> innovativeLeaves = obj->getValue("innovative_narrowminded");
+				if (innovativeLeaves.size() > 0)
+				{
+					innovative = atoi( innovativeLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> serfdomLeaves = obj->getValue("serfdom_freesubjects");
+				if (serfdomLeaves.size() > 0)
+				{
+					serfdom = atoi( serfdomLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> mercantilismLeaves = obj->getValue("mercantilism_freetrade");
+				if (mercantilismLeaves.size() > 0)
+				{
+					mercantilism = atoi( mercantilismLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> offensiveLeaves = obj->getValue("offensive_defensive");
+				if (offensiveLeaves.size() > 0)
+				{
+					offensive = atoi( offensiveLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> landLeaves = obj->getValue("land_naval");
+				if (landLeaves.size() > 0)
+				{
+					land = atoi( landLeaves[0]->getLeaf().c_str() );
+				}
+
+				vector<Object*> qualityLeaves = obj->getValue("quality_quantity");
+				if (qualityLeaves.size() > 0)
+				{
+					quality = atoi( qualityLeaves[0]->getLeaf().c_str() );
 				}
 
 				vector<Object*> religionLeaves = objectList[i]->getValue("religion");
@@ -422,11 +551,12 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 		capital = 0;
 	}
 
-	prestige				= 0.0;
+	prestige					= 0.0;
 	stability				= 1;
 	stabilityInvestment	= 0.0f;
 	estimatedIncome		= 0.0f;
 	estimatedTax			= 0.0f;
+	estimatedManu			= 0.0f;
 	estimatedGold			= 0.0f;
 	estimatedProduction	= 0.0f;
 	estimatedTolls			= 0.0f;
@@ -434,11 +564,13 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	daimyo				= false;
 	japaneseEmperor	= false;
 	elector				= false;
+	factions.clear();
+	mainFaction			= "";
+	mainFactionScore	= 0;
 
 	armies.clear();
 	navies.clear();
 	manpower	= 0.0F;
-	// todo: replace with something better
 	infantry = "western_medieval_infantry";
 	cavalry = "western_medieval_knights";
 	bigShip = "carrack";
@@ -453,6 +585,13 @@ EU3Country::EU3Country(CK2Title* _src, const religionMapping& religionMap, const
 	magistrates		= 2.0f;
 
 	centralization	= 0;
+	aristocracy		= 0;
+	innovative		= 0;
+	serfdom			= 0;
+	mercantilism	= 0;
+	quality			= 0;
+	land				= 0;
+	quality			= 0;
 
 	date ascensionDate;
 	vector<CK2History*> oldHistory = src->getHistory();
@@ -581,6 +720,14 @@ void EU3Country::output(FILE* output)
 	{
 		log("\tWarning: No capital for %s\n", tag.c_str());
 	}
+	for (unsigned int i = 0; i < factions.size(); i++)
+	{
+		fprintf(output, "\t\tfaction=%s\n", factions[i].c_str());
+	}
+	if (mainFaction != "")
+	{
+		fprintf(output, "\t\t%s=\"%d\"\n", mainFaction.c_str(), mainFactionScore);
+	}
 	for (unsigned int i = 0; i < history.size(); i++)
 	{
 		history[i]->output(output);
@@ -634,6 +781,26 @@ void EU3Country::output(FILE* output)
 		fprintf(output, "elector=yes\n");
 		fprintf(output, "last_hre_vote=\"1.1.1\"\n");
 	}
+	if (mainFaction != "")
+	{
+		for (unsigned int i = 0; i < factions.size(); i++)
+		{
+			fprintf(output, "\tfaction=\n");
+			fprintf(output, "\t{\n");
+			fprintf(output, "\t\ttype=%s\n", factions[i].c_str());
+			if (factions[i] == mainFaction)
+			{
+				fprintf(output, "\t\tinfluence=%2.3f\n", mainFactionScore/1.0);
+				fprintf(output, "\t\told_influence=%2.3f\n", mainFactionScore/1.0);
+			}
+			else
+			{
+				fprintf(output, "\t\tinfluence=%2.3f\n", (100.0-mainFactionScore) / 2.0);
+				fprintf(output, "\t\told_influence=0.000\n");
+			}
+			fprintf(output, "\t}\n");
+		}
+	}
 	fprintf(output, "\tprecise_prestige=%f\n", prestige);
 	fprintf(output, "\tstability=%f\n", (double)stability);
 	fprintf(output, "\tstability_investment=%f\n", stabilityInvestment);
@@ -656,7 +823,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t{\n");
 	fprintf(output, "\t\tincome=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedGold, estimatedProduction, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 %f %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedManu, estimatedGold, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\texpense=\n");
 	fprintf(output, "\t\t{\n");
@@ -672,7 +839,7 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthincometable=\n");
 	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t%f 0.000 0.000 %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedGold, estimatedProduction, estimatedTolls);
+	fprintf(output, "\t\t\t%f 0.000 %f %f %f 0.000 0.000 0.000 0.000 0.000 0.000 0.000 %f 0.000 0.000 0.000 0.000\n", estimatedTax, estimatedManu, estimatedGold, estimatedProduction, estimatedTolls);
 	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tlastmonthexpensetable=\n");
 	fprintf(output, "\t\t{\n");
@@ -706,6 +873,13 @@ void EU3Country::output(FILE* output)
 	fprintf(output, "\tdiplomats=%f\n", diplomats);
 	fprintf(output, "\tofficials=%f\n", magistrates);
 	fprintf(output, "\tcentralization_decentralization=%d\n", centralization);
+	fprintf(output, "\taristocracy_plutocracy=%d\n", aristocracy);
+	fprintf(output, "\tinnovative_narrowminded=%d\n", innovative);
+	fprintf(output, "\tserfdom_freesubjects=%d\n", serfdom);
+	fprintf(output, "\tmercantilism_freetrade=%d\n", mercantilism);
+	fprintf(output, "\toffensive_defensive=%d\n", offensive);
+	fprintf(output, "\tland_naval=%d\n", land);
+	fprintf(output, "\tquality_quantity=%d\n", quality);
 	fprintf(output, "\tmanpower=%f\n", manpower);
 	if(infantry != "")
 	{
@@ -889,7 +1063,12 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "papal_government";
 	}
-	else if (  ( (srcTitleString == "e_golden_horde") || (srcTitleString == "e_il-khanate") || (srcTitleString == "e_timurids") ) && (src->getLastHolder()->getReligion()->getGroup() != "christian")  )
+	else if (  ( (srcTitleString == "e_golden_horde") || 
+					 (srcTitleString == "e_il-khanate") || 
+					 (srcTitleString == "e_timurids") ||
+					 (srcTitleString == "e_mexikha") ||
+					 (srcTitleString == "e_mongol_empire") ) &&
+				  (src->getLastHolder()->getReligion()->getGroup() != "christian")  )
 	{
 		government = "steppe_horde";
 	}
@@ -931,7 +1110,7 @@ void EU3Country::determineGovernment(double prestigeFactor)
 	{
 		government = "feudal_monarchy";
 	}
-	else if (  (srcLiege != NULL) && ( (srcLiege->getTitleString() == "e_golden_horde") || (srcLiege->getTitleString() == "e_il-khanate") || (srcLiege->getTitleString() == "e_timurids"))  )
+	else if (  (srcLiege != NULL) && ( (srcLiege->getTitleString() == "e_golden_horde") || (srcLiege->getTitleString() == "e_il-khanate") || (srcLiege->getTitleString() == "e_timurids") || (srcTitleString == "e_mongol_empire"))  )
 	{
 		government = "despotic_monarchy";
 	}
@@ -974,23 +1153,17 @@ void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups, cons
 	for (vector<EU3Province*>::iterator provItr = provinces.begin(); provItr < provinces.end(); provItr++)
 	{
 		estimatedTax			+= (*provItr)->determineTax(cultureGroups);
-		//TODO: Trade
-		//TODO: Manus
+		estimatedManu			+= (*provItr)->determineManu();
 		estimatedGold			+= (*provItr)->determineGold();
 		estimatedProduction	+= (*provItr)->determineProduction(unitPrices);
-		//TODO: Vassals
 		estimatedTolls			+= (*provItr)->determineTolls();
-		//TODO: Harbor fees
 	}
 
 	estimatedIncome += estimatedTax;
-	//TODO: Trade
-	//TODO: Manus
+	estimatedIncome += estimatedManu;
 	estimatedIncome += estimatedGold;
 	estimatedIncome += estimatedProduction;
-	//TODO: Vassals
 	estimatedIncome += estimatedTolls;
-	//TODO: Harbor fees
 
 	if (monarch != NULL)
 	{
@@ -1004,7 +1177,14 @@ void EU3Country::determineEconomy(const cultureGroupMapping& cultureGroups, cons
 double EU3Country::getTradeEffeciency()
 {
 	double TE = 0.1f;
-	//TODO: tech bonus
+	if (tradeTech > 0)
+	{
+		TE += 0.10;
+	}
+	if (tradeTech > 1)
+	{
+		TE += 0.03 + tradeTech / 100.0;
+	}
 	//TODO: slider effects
 	if (government == "administrative_republic")
 	{
@@ -1017,8 +1197,14 @@ double EU3Country::getTradeEffeciency()
 double EU3Country::getProductionEffeciency()
 {
 	double PE = 0.1f;
-	//TODO: tech bonus
-	//TODO: slider effects
+	if (productionTech > 0)
+	{
+		PE += 0.10;
+	}
+	if (productionTech > 1)
+	{
+		PE += 0.03 + tradeTech / 100.0;
+	}
 	if (government == "administrative_republic")
 	{
 		PE += 0.1;
@@ -1486,12 +1672,17 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			{
 				provinces.push_back(*provinceItr);
 				(*provinceItr)->setOwner(this);
+				cores.push_back(*provinceItr);
+				(*provinceItr)->addCore(this);
 			}
 			for (vector<EU3Advisor*>::iterator advisorItr = vassals[i]->advisors.begin(); advisorItr != vassals[i]->advisors.end(); advisorItr++)
 			{
 				advisors.push_back(*advisorItr);
 				(*advisorItr)->setHome(this);
 			}
+			vassals[i]->provinces.clear();
+			vassals[i]->advisors.clear();
+			vassals[i]->vassals.clear();
 		}
 		else if ((vassalScore >= 2900) && (vassals[i]->getAbsorbScore() < 2900))
 		{
@@ -1506,7 +1697,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "vassal";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1519,7 +1710,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "vassal";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1532,7 +1723,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "sphere";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1540,7 +1731,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "alliance";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1553,7 +1744,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "guarantee";
 			newAgreement->country1	= this;
 			newAgreement->country2	= vassals[i];
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1561,7 +1752,7 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			newAgreement->type			= "guarantee";
 			newAgreement->country1	= vassals[i];
 			newAgreement->country2	= this;
-			newAgreement->startDate	= (date)"1066.9.15";	//TODO: add better starting date
+			newAgreement->startDate	= date("1.1.1");
 			diplomacy->addAgreement(newAgreement);
 			agreements.push_back(newAgreement);
 			vassals[i]->addAgreement(newAgreement);
@@ -1688,6 +1879,7 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 
 	estimatedIncome				= convertedCountry->estimatedIncome;
 	estimatedTax					= convertedCountry->estimatedTax;
+	estimatedManu					= convertedCountry->estimatedManu;
 	estimatedGold					= convertedCountry->estimatedGold;
 	estimatedProduction			= convertedCountry->estimatedProduction;
 	estimatedTolls					= convertedCountry->estimatedTolls;
@@ -1716,6 +1908,10 @@ void EU3Country::replaceWith(EU3Country* convertedCountry, const provinceMapping
 		{
 			newProvinces.push_back(*provItr);
 			(*provItr)->setOwner(this);
+		}
+		else if (provMap->second[0] == 0)
+		{
+			(*provItr)->setReligion(religion);
 		}
 	}
 	for (vector<EU3Province*>::iterator provItr = convertedCountry->provinces.begin(); provItr != convertedCountry->provinces.end(); provItr++)
@@ -1826,7 +2022,17 @@ void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProv
 		for (unsigned int i = 0; i < srcNavies.size(); i++)
 		{
 			EU3Navy* newNavy = new EU3Navy(srcNavies[i], inverseProvinceMap, transport, infantry, cavalry, allProvinces, manpower);
-			if (newNavy->getNumShips() > 0)
+			bool inland = false;
+			map<int, EU3Province*>::iterator itr = allProvinces.find(newNavy->getLocation());
+			if (itr != allProvinces.end())
+			{
+				if (itr->second->isLand() && !itr->second->isCoastal())
+				{
+					inland = true;
+					break;
+				}
+			}
+			if ((newNavy->getNumShips() > 0) && !inland)
 			{
 				navies.push_back(newNavy);
 			}
@@ -1914,10 +2120,365 @@ void EU3Country::convertSliders()
 		int crownAuthority = atoi( CA.substr(CA.size() - 1, 1).c_str() );
 		centralization = 5 - ( 2 * crownAuthority * (rulerTitles / totalRealmTitles) );
 	}
+	if (centralization > 5)
+	{
+		centralization = 5;
+	}
+	if (centralization < -5)
+	{
+		centralization = -5;
+	}
 
+	// Aristocracy/Plutocracy
+	int	sliderScore	= 0;
+	int	totalScore	= 0;
+	unprocessedVassals.clear();
+	unprocessedVassals.push_back(src);
+	while (unprocessedVassals.size() > 0)
+	{
+		list<CK2Title*>::iterator	currentTitle	= unprocessedVassals.begin();
+		vector<CK2Title*>				newVassals		= (*currentTitle)->getVassals();
+		for (unsigned int i = 0; i < newVassals.size(); i++)
+		{
+			unprocessedVassals.push_back(newVassals[i]);
+		}
+
+		int titleScore = 0;
+		if ((*currentTitle)->getTitleString().substr(0, 2) == "e_")
+		{
+			titleScore = 8;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "k_")
+		{
+			titleScore = 4;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "d_")
+		{
+			titleScore = 2;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "c_")
+		{
+			titleScore = 1;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "b_")
+		{
+			titleScore = 0;
+		}
+
+		totalScore += titleScore;
+		CK2Barony* primaryHolding = (*currentTitle)->getLastHolder()->getPrimaryHolding();
+		if ( (primaryHolding != NULL) && (primaryHolding->getType() == "city") )
+		{
+			sliderScore += titleScore;
+		}
+		else if ( (primaryHolding != NULL) && (primaryHolding->getType() == "castle") )
+		{
+			sliderScore -= titleScore;
+		}
+
+		unprocessedVassals.pop_front();
+	}
+	double rawAristocracy = 2.5 * sliderScore / totalScore;
+	if (rawAristocracy < 0)
+	{
+		rawAristocracy -= 1;
+	}
+	if (rawAristocracy > 0)
+	{
+		rawAristocracy += 0.5;
+	}
+	if (government == "administrative_republic")
+	{
+		rawAristocracy += 1;
+	}
+	aristocracy = (int)rawAristocracy;
+	if (aristocracy > 5)
+	{
+		aristocracy = 5;
+	}
+	if (aristocracy < -5)
+	{
+		aristocracy = -5;
+	}
+
+	// Serfdom/Freesubjects
+	double freeTroops	= 0.0f;
+	double serfTroops	= 0.0f;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				freeTroops	+= (*itr3)->getFreeTroops();
+				serfTroops	+= (*itr3)->getSerfTroops();
+			}
+		}
+	}
+	if (freeTroops + serfTroops > 0)
+	{
+		serfdom = (int)(25*(freeTroops - serfTroops)/(freeTroops + serfTroops));
+	}
+	if (serfdom > 5)
+	{
+		serfdom = 5;
+	}
+	else if (serfdom < -5)
+	{
+		serfdom = -5;
+	}
+
+	// Innovative/Narrowminded
+	double	cityLearning		= 0.0f;
+	double	religiousLearning	= 0.0f;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			vector<CK2Barony*> baronies = (*srcItr)->getBaronies();
+			for (vector<CK2Barony*>::iterator baronyItr = baronies.begin(); baronyItr < baronies.end(); baronyItr++)
+			{
+				if ((*baronyItr)->getType() == "city")
+				{
+					cityLearning += (*baronyItr)->getTechBonus();
+				}
+				else if ((*baronyItr)->getType() == "temple")
+				{
+					religiousLearning += (*baronyItr)->getTechBonus();
+				}
+			}
+		}
+	}
+	double totalLearning = cityLearning + religiousLearning;
+
+	double rawInnovative = 0.0f;
+	if (cityLearning > religiousLearning)
+	{
+		rawInnovative = -4.0 * cityLearning / totalLearning;
+	}
+	else if (cityLearning < religiousLearning)
+	{
+		rawInnovative = 4.0 * religiousLearning / totalLearning;
+	}
+
+	int bishophricsScore	= 0;
+	totalScore				= 0;
+	unprocessedVassals.clear();
+	unprocessedVassals.push_back(src);
+	while (unprocessedVassals.size() > 0)
+	{
+		list<CK2Title*>::iterator	currentTitle	= unprocessedVassals.begin();
+		vector<CK2Title*>				newVassals		= (*currentTitle)->getVassals();
+		for (unsigned int i = 0; i < newVassals.size(); i++)
+		{
+			unprocessedVassals.push_back(newVassals[i]);
+		}
+
+		int titleScore = 0;
+		if ((*currentTitle)->getTitleString().substr(0, 2) == "e_")
+		{
+			titleScore = 8;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "k_")
+		{
+			titleScore = 4;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "d_")
+		{
+			titleScore = 2;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "c_")
+		{
+			titleScore = 1;
+		}
+		else if ((*currentTitle)->getTitleString().substr(0, 2) == "b_")
+		{
+			titleScore = 0;
+		}
+		totalScore += titleScore;
+
+		CK2Barony* primaryHolding = (*currentTitle)->getLastHolder()->getPrimaryHolding();
+		if ( (primaryHolding != NULL) && (primaryHolding->getType() == "temple") )
+		{
+			bishophricsScore += titleScore;
+		}
+
+		unprocessedVassals.pop_front();
+	}
+	rawInnovative += 3.0 * bishophricsScore / totalScore;
+	innovative = (int)rawInnovative;
+	if (innovative > 5)
+	{
+		innovative = 5;
+	}
+	else if (innovative < -5)
+	{
+		innovative = -5;
+	}
+
+	// Mercantilism/Freetrade
+	int	totalTPGarrisons	= 0;
+	int	totalSrcProvinces	= 0;
+	int	numCoTs				= 0;
+	for (vector<EU3Province*>::iterator provinceItr = provinces.begin(); provinceItr < provinces.end(); provinceItr++)
+	{
+		vector<CK2Province*> srcProvinces = (*provinceItr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator srcItr = srcProvinces.begin(); srcItr < srcProvinces.end(); srcItr++)
+		{
+			totalTPGarrisons += (*srcItr)->getTpGarrisonSize();
+			totalSrcProvinces++;
+		}
+		if ((*provinceItr)->hasCOT())
+		{
+			numCoTs++;
+		}
+	}
+	double garrisonRatio = 0;
+	if (totalSrcProvinces > 0)
+	{
+		garrisonRatio	+= (-1.0 * totalTPGarrisons / totalSrcProvinces);
+	}
+	int mercantilismModifier = -1 * numCoTs;
+	if ((government == "merchant_republic") || (government == "noble_republic") || (government == "administrative_republic"))
+	{
+		mercantilismModifier--;
+	}
+	mercantilism = (int)(-3.0 + (sqrt((double)totalSrcProvinces)/1.5) + mercantilismModifier + garrisonRatio);
+	if (mercantilism > 5)
+	{
+		mercantilism = 5;
+	}
+	if (mercantilism < -5)
+	{
+		mercantilism = -5;
+	}
+
+	// Offensive/Defensive
+	double fortLevel	= 0.0;
+	double troops		= 0.0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				fortLevel	+= (*itr3)->getFortLevel();
+				troops		+= (*itr3)->getPSE();
+			}
+		}
+	}
+	if (fortLevel > 0)
+	{
+		offensive = (int)( troops / fortLevel / 28 - 7 );
+	}
+	else
+	{
+		offensive = 0;
+	}
+	if (offensive > 5)
+	{
+		offensive = 5;
+	}
+	if (offensive < -5)
+	{
+		offensive = -5;
+	}
+
+	// Land/Naval
+	int numBaronies	= 0;
+	int totalShips		= 0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				totalShips += (*itr3)->getMaxShips();
+				numBaronies++;
+			}
+		}
+	}
+	if (numBaronies > 0)
+	{
+		double ratio = (2.5 * totalShips / numBaronies);
+		ratio -= 4.0;
+		ratio *= -1.0;
+		double raw = 1 / (1 + pow(2.71828182845904523536 * 0.25, ratio));
+		land = (int)(12 * raw) - 5;
+	}
+	else
+	{
+		land = -5;
+	}
+	if (land > 5)
+	{
+		land = 5;
+	}
+	if (land < -5)
+	{
+		land = -5;
+	}
+
+	// Quality/Quantity
+	int		qualityBuildings	= 0;
+	double	castleTroops		= 0.0;
+	double	templeTroops		= 0.0;
+	double	cityTroops			= 0.0;
+	for (vector<EU3Province*>::iterator itr = provinces.begin(); itr < provinces.end(); itr++)
+	{
+		vector<CK2Province*> srcProvinces = (*itr)->getSrcProvinces();
+		for (vector<CK2Province*>::iterator itr2 = srcProvinces.begin(); itr2 < srcProvinces.end(); itr2++)
+		{
+			vector<CK2Barony*> srcBaronies = (*itr2)->getBaronies();
+			for (vector<CK2Barony*>::iterator itr3 = srcBaronies.begin(); itr3 != srcBaronies.end(); itr3++)
+			{
+				if ((*itr3)->getType() == "castle")
+				{
+					castleTroops += (*itr3)->getPSE();
+				}
+				else if ((*itr3)->getType() == "temple")
+				{
+					templeTroops += (*itr3)->getPSE();
+				}
+				else if ((*itr3)->getType() == "city")
+				{
+					cityTroops += (*itr3)->getPSE();
+				}
+				qualityBuildings += (*itr3)->getQualityBuildings();
+			}
+		}
+	}
+	castleTroops			*= 0.6 + (0.10 * src->getFeudalContract());
+	templeTroops			*= 0.5 + (0.10 * src->getTempleContract());
+	cityTroops				*= 0.5 + (0.15 * src->getCityContract());
+	double totalTroops	 = castleTroops + templeTroops + cityTroops;
+
+	if (totalTroops > 0)
+	{
+		quality = (int)(totalTroops / qualityBuildings / 40 - 7);
+	}
+	else
+	{
+		quality = 0;
+	}
+	if (quality > 5)
+	{
+		quality = 5;
+	}
+	if (quality < -5)
+	{
+		quality = -5;
+	}
 
 	// log results
-	log("\t;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), centralization, 0,0,0,0,0,0,0);
+	log("\t;%s;%s;%d;%d;%d;%d;%d;%d;%d;%d\n", tag.c_str(), government.c_str(), centralization, aristocracy, serfdom, innovative, mercantilism, offensive, land, quality);
 }
 
 
@@ -1969,4 +2530,29 @@ void EU3Country::addBuildings()
 			(*i)->addBuilding("armory");
 		}
 	}
+}
+
+
+int EU3Country::getInfantry() const
+{
+	int infantry = 0;
+	for (unsigned int i = 0 ; i < armies.size(); i++)
+	{
+		infantry += armies[i]->getNumInfantry();
+	}
+	return infantry;
+}
+
+
+int EU3Country::getNumPorts() const
+{
+	int ports = 0;
+	for (unsigned int i = 0; i < provinces.size(); i++)
+	{
+		if (provinces[i]->isCoastal())
+		{
+			ports++;
+		}
+	}
+	return ports;
 }

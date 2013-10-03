@@ -1,0 +1,66 @@
+# Country name see file name.
+
+graphical_culture = indiangfx
+
+color = { 60  123  65 }
+
+historical_ideas = {
+	merchant_adventures  
+	excellent_shipwrights 
+	shrewd_commerce_practise 
+	superior_seamanship
+	national_conscripts
+	national_trade_policy
+	sea_hawks
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	engineer_corps
+	smithian_economics
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	indian_shock_cavalry
+	south_indian_musketeer
+	indian_rifle
+}
+
+monarch_names = {
+	"Parakramabahu #6" = 30
+	"Jayabahu #1" = 20
+	"Bhuvanaikabahu #4" = 20
+	"Vijayabahu #6" = 20
+	"Dharmapalabahu #0" = 20
+	"Vimala Dharmasuriya #0" = 10
+	"Senarut #0" = 10
+	"Rajasimha #0" = 10
+	"Narenda #0" = 10
+	"Sri Vijaya Rajasimha #0" = 10
+	"Kitri Sri Rajasimha #0" = 10
+	"Sri Rajadhiraja Simha #0" = 10
+	"Dhatmapala #0" = 10
+}
+
+leader_names = {
+	Thilakaratne
+	Kalpage
+	Pushpakumara
+	Ratnayake
+	Atapattu
+	Chandana
+	Ranga
+	Jayaratne
+	Tillekaratne
+	Jayawardene
+}
+
+ship_names = {
+	Anaradhapura Anula Jaffna Kandy
+	Mahaweli Mannar "Nil Manel" Palk
+	Siddhartha Sinharaja Sigiriya
+	Sirimavo "Sri Maha Bodhi"
+	"Sri Pada" Pidurutalagala
+}

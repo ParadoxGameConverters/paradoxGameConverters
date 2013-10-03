@@ -188,7 +188,7 @@ CK2Character::CK2Character(Object* obj, const map<int, CK2Dynasty*>& dynasties, 
 	{
 		hostNum = -1;
 	}
-	locationNum				= -1;
+	locationNum				= -2;
 	capitalString			= "";
 	primaryTitleString		= "";
 	vector<Object*> demesneObj = obj->getValue("demesne");
@@ -484,6 +484,7 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 			)
 		{
 			heir = *i;
+			break;
 		}
 	}
 
@@ -497,7 +498,8 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 				  ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getPrimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}
@@ -513,6 +515,7 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 				)
 			{
 				heir = *i;
+				break;
 			}
 		}
 	}
@@ -527,7 +530,8 @@ CK2Character* CK2Character::getPrimogenitureHeir(string genderLaw, CK2Character*
 					( !(*i)->isFemale() || (genderLaw == "cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getPrimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}
@@ -549,6 +553,7 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 			)
 		{
 			heir = *i;
+			break;
 		}
 	}
 
@@ -562,7 +567,8 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 				  ( !(*i)->isFemale() || (genderLaw == "true_cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getUltimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}
@@ -578,6 +584,7 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 				)
 			{
 				heir = *i;
+				break;
 			}
 		}
 	}
@@ -592,7 +599,8 @@ CK2Character* CK2Character::getUltimogenitureHeir(string genderLaw, CK2Character
 					( !(*i)->isFemale() || (genderLaw == "cognatic") )
 				)
 			{
-				heir = *i;
+				heir = (*i)->getUltimogenitureHeir(genderLaw, currentHolder);
+				break;
 			}
 		}
 	}

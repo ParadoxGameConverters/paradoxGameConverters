@@ -69,9 +69,15 @@ void CK2Opinion::initOpinions(Object* root)
 	{
 		string name = (*itr)->getKey();
 		vector<Object*> opinionObjs = (*itr)->getValue("opinion");
-		int value = atoi(opinionObjs[0]->getLeaf().c_str());
+		int value = 0;
+		if (opinionObjs.size() > 0)
+		{
+				value = atoi(opinionObjs[0]->getLeaf().c_str());
+		}
 		if (!name.empty() && value != 0)
+		{
 			opinionVals[name] = value;
+		}
 	}
 }
 

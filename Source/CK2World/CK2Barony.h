@@ -19,16 +19,20 @@ class CK2Barony
 	public:
 		CK2Barony(Object*, CK2Title*, CK2Province*, const CK2BuildingFactory*);
 
-		CK2Title*		getTitle()				const { return title; };
-		CK2Province*	getProvince()			const { return province; };
-		string			getType()				const { return type; };
-		double			getBaseTaxProxy()		const { return baseTaxProxy; };
-		double			getPopProxy()			const { return popProxy; };
-		double			getManpowerProxy()	const { return manpowerProxy; };
-		double			getTechBonus()			const { return techBonus; };
-		double			getPSE()					const { return PSE; };
-		int				getShips()				const { return ships; };
-		double			getFortLevel()			const { return fortLevel; };
+		CK2Title*		getTitle()					const { return title; };
+		CK2Province*	getProvince()				const { return province; };
+		string			getType()					const { return type; };
+		double			getBaseTaxProxy()			const { return baseTaxProxy; };
+		double			getPopProxy()				const { return popProxy; };
+		double			getManpowerProxy()		const { return manpowerProxy; };
+		double			getTechBonus()				const { return techBonus; };
+		double			getPSE()						const { return PSE; };
+		double			getFreeTroops()			const { return freeTroops; };
+		double			getSerfTroops()			const	{ return serfTroops; };
+		int				getShips()					const { return ships; };
+		int				getMaxShips()				const { return maxShips; };
+		double			getFortLevel()				const { return fortLevel; };
+		int				getQualityBuildings()	const { return qualityBuildings; };
 	private:
 		void	determineBaseTaxProxy();
 		void	determinePopProxy();
@@ -47,9 +51,13 @@ class CK2Barony
 		double							manpowerProxy;
 		double							techBonus;
 		double							fortLevel;
+		int								qualityBuildings;
 
 		double	PSE;
 		int		ships;
+		int		maxShips;
+		double	freeTroops;
+		double	serfTroops;
 };
 
 

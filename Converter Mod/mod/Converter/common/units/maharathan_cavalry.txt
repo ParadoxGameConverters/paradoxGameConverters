@@ -1,0 +1,12 @@
+# Maharathan Cavalry
+
+type = cavalry
+unit_type = indian
+
+maneuver = 2
+offensive_morale = 5
+defensive_morale = 2
+offensive_fire = 5
+defensive_fire = 2
+offensive_shock = 5
+defensive_shock = 2

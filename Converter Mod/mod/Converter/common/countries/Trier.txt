@@ -1,0 +1,97 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 208  104  44 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	humanist_tolerance
+	merchant_adventures
+	patron_of_art
+	national_bank
+	national_conscripts
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+	military_drill
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Johann #1" = 100
+	"Jakob #0" = 60
+	"Clemens Wenzel #0" = 20
+	"Franz Georg #0" = 20
+	"Franz Ludwig #0" = 20
+	"Johann Hugo #0" = 20
+	"Johann Ludwig #0" = 20
+	"Johann Philipp #0" = 20
+	"Karl Joseph #0" = 20
+	"Karl Kaspar #0" = 20
+	"Lothar #0" = 20
+	"Otto #0" = 20
+	"Philipp Christoph #0" = 20
+	"Rhaban #0" = 20
+	"Richard #0" = 20
+	"Werner #0" = 20
+	"Bohemond #2" = 15
+	"Kuno #2" = 15
+	"Heinrich #3" = 10
+	"Arnold #2" = 10
+	"Dieter #1" = 10
+	"Alexander #0" = 0
+	"Andreas #0" = 0
+	"Baldur #0" = 0
+	"Bruno #0" = 0
+	"Clemens #0" = 0
+	"Denis #0" = 0
+	"Eckhard #0" = 0
+	"Ernst #0" = 0
+	"Florian #0" = 0
+	"Gregor #0" = 0
+	"Guntram #0" = 0
+	"Helmfried #0" = 0
+	"Jürgen #0" = 0
+	"Martin #0" = 0
+	"Maximilian #0" = 0
+	"Michael #0" = 0
+	"Rainer #0" = 0
+	"Siegert #0" = 0
+	"Siegmund #0" = 0
+}
+
+leader_names = {
+	Backes Corgell Dahnfels Feltes Haerig Hecker Herrich
+	Kettler Lohmann Longnich Pinkernell SChmitt Tristant
+	Wellner Zimmer	
+}
+
+ship_names = {
+	Schweich Kenn Longuich Mertesdorf Kasel
+	Waldrach Morscheid Korlingen Gusterath
+	Hockweiler Igel Aach Newel Kordel Zemmer
+}
+
+army_names = {
+	"Erzbischofliche Garde" "Armee von $PROVINCE$" 
+}

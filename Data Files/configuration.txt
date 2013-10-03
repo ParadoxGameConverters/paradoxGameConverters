@@ -6,6 +6,9 @@ configuration =
 	# Crusader Kings 2 directory: a path on your computer where Crusader Kings 2 is installed
 	CK2directory = "D:\Paradox Interactive\Crusader Kings II"
 
+	# Crusader Kings 2 Mod path: a path on your computer where Crusader Kings 2 mods are installed (typically under "My Documents")
+	CK2ModPath = "C:\Users\user\Documents\Paradox Interactive\Crusader Kings II\mod"
+
 
 	### Mod Options
 
@@ -13,6 +16,9 @@ configuration =
 	#	"yes"
 	#	"no"
 	useConverterMod = "no"
+
+	# CK2Mod: a CK2 mod to use for conversion
+	CK2Mod = ""
 
 
 	### Tech Options
@@ -80,11 +86,13 @@ configuration =
 	mergeTitles = "inheritance"
 
 	# vassalScore: specifies the starting score for determining the results for CK2 vassals
-	#	1800 - all vassals become vassals in EU3
-	#	2800 - all vassals become vassals in EU3 and the liege gets cores
-	#	3900 - all vassals are absorbed in EU3, but cores remain
-	#	4950 - all vassals are absorbed in EU3, and cores are removed
-	vassalScore = "4950"
+	#	   0 - all vassals and lieges guarantee each other
+	#	1100 - all vassals will be sphered and in an alliance
+	#	2000 - all vassals become vassals in EU3
+	#	3000 - all vassals become vassals in EU3 and the liege gets cores
+	#	4100 - all vassals are absorbed in EU3, but cores remain
+	#	5150 - all vassals are absorbed in EU3, and cores are removed
+	vassalScore = "1800"
 
 
 	### EU3 Options ###

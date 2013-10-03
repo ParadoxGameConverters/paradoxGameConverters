@@ -1,0 +1,489 @@
+#Unite Japan
+
+shogunate_decisions = {
+
+	unite_japan = {
+		potential = {
+			is_daimyo = yes
+			is_shogun = yes
+			NOT = {
+				has_country_flag = united_daimyos_of_japan
+				tag = JAP
+			}
+		}
+		allow = {
+			war = no
+			NOT = {
+				num_of_daimyos = 2
+			}
+		}
+		effect = {
+			#MIN provinces
+			remove_core = 1017
+			remove_core = 1018
+			remove_core = 1019
+			remove_core = 1823
+			remove_core = 1825
+			remove_core = 1826
+			remove_core = 1827
+			remove_core = 1828
+			remove_core = 1830
+			remove_core = 1831
+			
+			#TAI provinces
+			remove_core = 1021
+			remove_core = 1022
+			remove_core = 1023
+			remove_core = 1029
+			remove_core = 1030
+			remove_core = 1832
+			remove_core = 1834
+			remove_core = 1835
+			remove_core = 1837
+						
+			#FUJ provinces
+			remove_core = 1024
+			remove_core = 1025
+			remove_core = 1026
+			remove_core = 1027
+			remove_core = 1028
+			remove_core = 1031
+			remove_core = 1839
+			remove_core = 1841
+			remove_core = 1842
+			remove_core = 1843
+			remove_core = 1847
+			remove_core = 1852
+			
+			#TAC provinces
+			remove_core = 1012
+			remove_core = 1013
+			remove_core = 1014
+			remove_core = 1016
+			remove_core = 1815
+			remove_core = 1817
+			remove_core = 1818
+			remove_core = 1819
+			remove_core = 1820
+			
+			inherit = JAP
+			change_tag = JAP
+			capital = 1020
+			
+			add_core = 1017
+			add_core = 1018
+			add_core = 1019
+			add_core = 1823
+			add_core = 1825
+			add_core = 1826
+			add_core = 1827
+			add_core = 1828
+			add_core = 1830
+			add_core = 1831
+			add_core = 1021
+			add_core = 1022
+			add_core = 1023
+			add_core = 1029
+			add_core = 1030
+			add_core = 1832
+			add_core = 1834
+			add_core = 1835
+			add_core = 1837
+			add_core = 1024
+			add_core = 1025
+			add_core = 1026
+			add_core = 1027
+			add_core = 1028
+			add_core = 1031
+			add_core = 1839
+			add_core = 1841
+			add_core = 1842
+			add_core = 1843
+			add_core = 1847
+			add_core = 1852
+			add_core = 1012
+			add_core = 1013
+			add_core = 1014
+			add_core = 1016
+			add_core = 1815
+			add_core = 1817
+			add_core = 1818
+			add_core = 1819
+			add_core = 1820
+
+			set_country_flag = united_daimyos_of_japan
+			prestige = 0.15
+			add_country_modifier = {
+				name = united_japan
+				duration = 365
+			}
+			remove_country_modifier = sankin_kotai
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	restore_emperor = {
+		potential = {
+			is_daimyo = yes
+			is_shogun = no
+			NOT = {
+				has_country_flag = united_daimyos_of_japan
+				tag = JAP
+			}
+		}
+		allow = {
+			war = yes
+			NOT = {
+				num_of_daimyos = 3
+			}
+			any_country = {
+				is_shogun = yes
+				war_with = THIS
+				NOT = {
+					any_owned_province = {
+						controlled_by = owner
+					}
+				}
+			}
+		}
+		effect = {
+			#MIN provinces
+			remove_core = 1017
+			remove_core = 1018
+			remove_core = 1019
+			remove_core = 1823
+			remove_core = 1825
+			remove_core = 1826
+			remove_core = 1827
+			remove_core = 1828
+			remove_core = 1830
+			remove_core = 1831
+			
+			#TAI provinces
+			remove_core = 1021
+			remove_core = 1022
+			remove_core = 1023
+			remove_core = 1029
+			remove_core = 1030
+			remove_core = 1832
+			remove_core = 1834
+			remove_core = 1835
+			remove_core = 1837
+						
+			#FUJ provinces
+			remove_core = 1024
+			remove_core = 1025
+			remove_core = 1026
+			remove_core = 1027
+			remove_core = 1028
+			remove_core = 1031
+			remove_core = 1839
+			remove_core = 1841
+			remove_core = 1842
+			remove_core = 1843
+			remove_core = 1847
+			remove_core = 1852
+			
+			#TAC provinces
+			remove_core = 1012
+			remove_core = 1013
+			remove_core = 1014
+			remove_core = 1016
+			remove_core = 1815
+			remove_core = 1817
+			remove_core = 1818
+			remove_core = 1819
+			remove_core = 1820
+			
+			inherit = JAP
+			change_tag = JAP
+			capital = 1020
+
+			inherit = MIN
+			inherit = TAI
+			inherit = FUJ
+			inherit = TAC
+			
+			add_core = 1017
+			add_core = 1018
+			add_core = 1019
+			add_core = 1823
+			add_core = 1825
+			add_core = 1826
+			add_core = 1827
+			add_core = 1828
+			add_core = 1830
+			add_core = 1831
+			add_core = 1021
+			add_core = 1022
+			add_core = 1023
+			add_core = 1029
+			add_core = 1030
+			add_core = 1832
+			add_core = 1834
+			add_core = 1835
+			add_core = 1837
+			add_core = 1024
+			add_core = 1025
+			add_core = 1026
+			add_core = 1027
+			add_core = 1028
+			add_core = 1031
+			add_core = 1839
+			add_core = 1841
+			add_core = 1842
+			add_core = 1843
+			add_core = 1847
+			add_core = 1852
+			add_core = 1012
+			add_core = 1013
+			add_core = 1014
+			add_core = 1016
+			add_core = 1815
+			add_core = 1817
+			add_core = 1818
+			add_core = 1819
+			add_core = 1820
+
+			set_country_flag = united_daimyos_of_japan
+			prestige = 0.2
+			add_country_modifier = {
+				name = united_japan
+				duration = 365
+			}
+			remove_country_modifier = sankin_kotai_daimyo
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	#Become Kampaku
+		
+	kampaku = {
+		potential = {
+			is_daimyo = yes
+			shogun_exists = no
+			kampaku_exists = no
+		}
+		allow = {
+			prestige = 0.2
+			NOT = { war_exhaustion = 5 }
+			stability = 2
+			legitimacy = 0.7
+			is_subject = no
+		}
+		effect = {
+			become_kampaku = yes
+			any_country = {
+				limit = {
+					is_daimyo = yes
+					NOT = { tag = THIS }
+				}
+				casus_belli = {
+					target = THIS
+					type = jap_civil_war
+					months = 12
+				}
+			}
+			any_country = {
+				limit = {
+					is_daimyo = yes
+					NOT = { tag = THIS }
+					alliance_with = THIS
+				}
+				country_event = 10022
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	#Sword Hunt
+	
+	sword_hunt = {
+		potential = {
+			is_daimyo = yes
+			NOT = {
+				has_country_modifier = sword_hunter
+				has_country_flag = sword_hunt
+			}
+		}
+		allow = {
+			is_shogun = yes
+			stability = 1
+			shogun_influence = 40
+		}
+		effect = {
+			add_country_modifier = {
+				name = sword_hunter
+				duration = 365
+			}
+			set_country_flag = sword_hunt
+			any_country = {
+				limit = { is_daimyo = yes is_shogun = no }
+				relation = { who = THIS value = -50 }
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = {
+					any_country = {
+						is_daimyo = yes
+						is_shogun = no
+						OR = {
+							NOT = { relation = { who = THIS value = 0 } }
+							relation = { who = THIS value = 170 }
+						}
+					}
+				}
+			}
+		}
+	}
+
+	#Sakoku
+
+	enforce_sakoku_law = {
+		potential = {
+			has_global_flag = japan_has_encountered_the_west
+			NOT = { has_country_modifier = sakoku_law }
+			NOT = { has_country_flag = sakoku_law }
+			is_shogun = yes
+			any_country = {
+				is_daimyo = yes
+				has_country_modifier = "western_trade"
+			}
+		}
+		allow = {
+			shogun_influence = 80
+		}
+		effect = {
+			add_shogun_influence = -40
+			any_country = {
+				limit = { is_daimyo = yes }
+				mercantilism_freetrade = -2
+				remove_country_modifier = "western_trade"
+				add_country_modifier = {
+					name = "sakoku_law"
+					duration = -1
+				}
+			}
+			set_country_flag = sakoku_law
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				mercantilism_freetrade = 0
+			}
+			modifier = {
+				factor = 0
+				missionaries = 1
+			}
+			modifier = {
+				factor = 0
+				has_country_modifier = western_trade
+				NOT = {
+					any_owned_province = {
+						religion = catholic
+						has_missionary = no
+					}
+				}
+			}
+		}
+	}
+
+	#Sankin Kotai
+
+	enforce_sankin_kotai = {
+		potential = {
+			NOT = { has_country_flag = sankin_kotai }
+			is_shogun = yes
+		}
+		allow = {
+			shogun_influence = 80
+			NOT = {
+				has_country_modifier = sankin_kotai
+			}
+		}
+		effect = {
+			add_shogun_influence = -40
+			add_country_modifier = {
+				name = "sankin_kotai"
+				duration = -1
+			}
+			any_country = {
+				limit = { is_daimyo = yes is_shogun = no }
+				relation = { who = THIS value = -50 }
+				add_country_modifier = {
+					name = "sankin_kotai_daimyo"
+					duration = -1
+				}
+			}
+			set_country_flag = sankin_kotai
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+
+country_decisions = {
+
+	send_western_embassy_mission = {
+		potential = {
+			NOT = {
+				has_global_flag = japan_is_closed
+				has_country_modifier = western_embassy_mission
+			}
+			is_daimyo = yes
+			has_global_flag = japan_has_encountered_the_west
+			any_known_country = {
+				technology_group = western
+			}
+		}
+	
+		allow = {
+			treasury = 200
+			missionaries = 2
+			officials = 3
+		}
+	
+		effect = {
+			add_country_modifier = {
+				name = western_embassy_mission
+				duration = 3650
+			}
+			treasury = -200
+			missionaries = -2
+			officials = -3
+		}
+	}
+	
+	hire_ninjas = {
+		potential = {
+			is_daimyo = yes
+			NOT = { has_country_modifier = ninjas }
+			advisor = spymaster
+			}
+	
+		allow = {
+			treasury = 100
+		}
+	
+		effect = {
+			add_country_modifier = {
+				name = ninjas
+				duration = 1825
+			}
+			treasury = -100
+		}
+	}
+
+}

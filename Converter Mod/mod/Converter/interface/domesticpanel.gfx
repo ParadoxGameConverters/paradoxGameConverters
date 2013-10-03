@@ -257,7 +257,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_icon_religion"
 		texturefile = "mod\\converter\\gfx\\interface\\icon_religion.tga"
-		noOfFrames = 32
+		noOfFrames = 40
 ###		loadType = "INGAME"
 		norefcount = yes
 	}
@@ -265,7 +265,7 @@ spriteTypes = {
 	spriteType = {
 		name = "GFX_icon_religion_small"
 		texturefile = "mod\\converter\\gfx\\interface\\icon_religion_small.tga"
-		noOfFrames = 32
+		noOfFrames = 40
 		loadType = "INGAME"
 	}
 

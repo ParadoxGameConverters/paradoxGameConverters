@@ -1,0 +1,52 @@
+country_decisions = {
+
+	romanian_nation = {
+		potential = {
+			NOT = { tag = HRE }
+			NOT = { tag = PAP }
+			NOT = { exists = RMN }
+			primary_culture = romanian
+		}
+		allow = 
+		{
+			NOT = { exists = BYZ }
+			owns = 158	# Transylvania
+			owns = 159	# Silistria
+			owns = 160	# Oltenia
+			owns = 161	# Wallachia
+			owns = 268	# Bessarabia
+			owns = 1756	# Budjak
+			is_core = 158
+			is_core = 159
+			is_core = 160
+			is_core = 161
+			is_core = 268
+			is_core = 1756
+			war = no
+		}
+		effect = {
+			RMN = {
+				add_core = 158
+				add_core = 159
+				add_core = 160
+				add_core = 161
+				add_core = 268
+				add_core = 1756
+			}
+			merchants = 1
+			random_owned = {
+				base_tax = 1
+			}
+			centralization_decentralization = -2
+			prestige = 0.05
+			change_tag = RMN
+			RMN = {
+				capital = 161
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

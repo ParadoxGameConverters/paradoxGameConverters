@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 249  206  173 }
+
+historical_ideas = {
+	church_attendance_duty
+	national_conscripts
+	espionage
+	military_drill
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy	
+	grand_army
+	national_bank
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_spahi
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Georgios #0" = 40
+	"Alexandros #0" = 20
+	"Konstantinos #0" = 20
+	"Pavlos #0" = 15
+	"Andreas #0" = 10
+	"Alexandra #0" = -10
+	"Nikolaos #0" = 10
+	"Aineias #0" = 0
+	"Alexeios #0" = 0
+	"Ambrosios #0" = 0
+	"Bartholomaios #0" = 0
+	"Basileios #0" = 0
+	"Chrysanthos #0" = 0
+	"David #0" = 0
+	"Demetrios #0" = 0
+	"Diogenes #0" = 0
+	"Dionysos #0" = 0
+	"Eirenaios #0" = 0
+	"Elpidios #0" = 0
+	"Gregorios #0" = 0
+	"Hektor #0" = 0
+	"Herakles #0" = 0
+	"Iason #0" = 0
+	"Ioannes #0" = 0
+	"Kastor #0" = 0
+	"Manuel #0" = 0
+	"Matthaios #0" = 0
+	"Nestor #0" = 0
+	"Nikomedes #0" = 0
+	"Orestes #0" = 0
+	"Palaemon #0" = 0
+	"Pelagios #0" = 0
+	"Petros #0" = 0
+	"Philemon #0" = 0
+	"Philippos #0" = 0
+	"Prokopios #0" = 0
+	"Skantarios #0" = 0
+	"Stefanos #0" = 0
+	"Theodoros #0" = 0
+	"Thomas #0" = 0
+}
+
+leader_names = {
+	Argyrus Artavasdus
+	Basileus
+	Diogenes Ducas
+	Monomachus
+	Romanus
+	Stauracius Stratioticus
+	Vataces
+	Zimisces
+}
+
+ship_names = {
+	Hydra
+	Lesbos Limnos
+	Mikonios
+	Pezopoulos
+	Salamis Samos Simitzopoulos
+	Themistoklis
+	Votsis
+}

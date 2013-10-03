@@ -1,0 +1,51 @@
+country_decisions = {
+
+	rely_on_polish_hussars = {
+		potential = {
+			tag = POL
+			NOT = { has_country_modifier = polish_hussars }
+			land_tech = 26
+		}
+		allow = {
+			army_tradition = 0.8
+			prestige = 0.1
+			cavalry_fraction = 0.5
+		}
+		effect = {
+			add_country_modifier = {
+				name = "polish_hussars"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	move_capital_to_warsawa = {
+		potential = {
+			tag = POL
+			owns = 257
+			NOT = { capital = 257 }
+			NOT = { has_country_flag = relocated_capital_warsawa }
+		}
+		allow = {
+			is_core = 257
+			war = no
+		}
+		effect = {
+			set_country_flag = relocated_capital_warsawa
+			stability = 3
+			capital = 257
+			prestige = 0.10
+			257 = {
+				change_province_name = "Warszawa"
+			 	base_tax = 1 
+			 	change_manpower = 1
+			 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

@@ -1,0 +1,11 @@
+# Coehorn Mortar
+
+type = artillery
+
+maneuver = 2
+offensive_morale = 5
+defensive_morale = 5
+offensive_fire = 4
+defensive_fire = 4
+offensive_shock = 3
+defensive_shock = 3

@@ -251,6 +251,35 @@ void CK2World::init(Object* obj, const cultureGroupMapping& cultureGroupMap)
 	}
 	independentTitles.swap(newIndependentTitles);
 
+	// remove de jure titles with no de jure territory and no de jure liege
+	map<string, CK2Title*> newTitles;
+	newIndependentTitles.clear();
+	map<string, CK2Title*> newHreMembers;
+	for (map<string, CK2Title*>::iterator titleItr = titles.begin(); titleItr != titles.end(); titleItr++)
+	{
+		if ((titleItr->second->getVassals().size() == 0) && (titleItr->second->getDeJureLiege() == NULL) && (titleItr->second->getDeJureVassals().size() == 0))
+		{
+			log("\tRemoving dead title %s\n", titleItr->first.c_str());
+		}
+		else
+		{
+			newTitles.insert(*titleItr);
+			map<string, CK2Title*>::iterator independentItr = independentTitles.find(titleItr->first);
+			if (independentItr != independentTitles.end())
+			{
+				newIndependentTitles.insert(*titleItr);
+			}
+			map<string, CK2Title*>::iterator hreItr = hreMembers.find(titleItr->first);
+			if (hreItr != hreMembers.end())
+			{
+				newHreMembers.insert(*titleItr);
+			}
+		}
+	}
+	titles.swap(newTitles);
+	independentTitles.swap(newIndependentTitles);
+	hreMembers.swap(newHreMembers);
+
 	// determine heirs
 	printf("\tDetermining heirs\n");
 	for (map<string, CK2Title*>::iterator i = titles.begin(); i != titles.end(); i++)

@@ -1,0 +1,100 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 252  233  58 }
+
+historical_ideas = {
+	superior_seamanship
+	church_attendance_duty
+	quest_for_the_new_world
+	divine_supremacy
+	colonial_ventures
+	national_conscripts
+	vice_roys
+	national_bank
+	excellent_shipwrights
+	scientific_revolution
+	espionage
+	improved_foraging
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	french_caracolle
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Enrique #1" = 40
+	"Carlos #2" = 20
+	"Francisco #0 Febo" = 20
+	"Juana #2" = -10
+	"Juan #1" = 10
+	"Luis #1" = 10
+	"Andrés #0 Febo" = 10
+	"Catalina #0" = -10
+        "Gastón #0" = 10
+	"Leonor #0" = -10
+	"Blanca #1" = -10
+        "Pedro #1" = 5
+	"Buenaventura #0" = 5
+        "Francisco #0" = 5
+	"Godofredo #0" = 5
+	"Jaime #0" = 5
+	"Lanzarote #0" = 5
+	"Leonel #0" = 5
+	"Martín #0" = 5
+	"Sancho #7" = 1
+	"García #5" = 1
+	"Felipe #3" = 1
+	"Teobaldo #2" = 1
+        "Alfonso #1" = 1
+	"Agustín #0" = 0
+	"Alejandro #0" = 0
+	"Álvaro #0" = 0
+        "Andrés #0" = 0
+	"Antonio #0" = 0
+	"Bernardo #0" = 0
+	"César #0" = 0
+	"Cristóbal #0" = 0
+	"Diego #0" = 0
+	"Esteban #0" = 0
+        "Fernando #0" = 0
+	"Gaspar #0" = 0
+	"José #0" = 0
+	"Melchor #0" = 0
+	"Nicolás #0" = 0
+	"Simón #0" = 0
+}
+
+leader_names = {
+	"de Aguirre" "de Albret" "de Antillón" "de Aranda" "de Armendariz" "de Azagra" "de Azpilcueta"
+	"de Beaumont" "de Beortegui" Bergera "de Borbón" "de Carranza"	Elizalde
+	"de Garay" "de Goñi" Goyeneche "de Heredia" "de Hijar"
+	"de Jaso" "Jiménez de Rada" Jimeno "de Landívar" Navarro
+	Palafox "Pérez de Zabalza" "de Salazar" "de Uribe" "de Ursúa"
+	"de Yanguas" "de Zárate"
+}
+
+ship_names = {
+	Atlántida "Conde de Evreux" "Conde de Foix" "Conde de Guenduláin" "Conde de Lerín"
+	"Don Jimeno" "Duque de Armagnac" "Duque de Champaña"
+	"El Agramontés" "El Beaomontés" "El Bearnés" "El Cruzado Navarro" "El Montañés" "El Navarro" "El Salvador" "El Trobador" "El Viñador" "Emperador Hispánico" Europa
+	"Mar de Navarra" "Nuestra Sra de Leyre" "Príncipe de Viana"
+	"Reina Juana" "Rey Enrique" "Rey García" "Rey Sancho" "Reyno de Navarra" "Reyno de Pamplona"
+	"San Agustín" "San Andrés" "San Antonio" "San Carlos" "San Enrique" "San Esteban" "San Fermín" "San Francisco" "San Francisco Xabier" "San Gregorio" "San Juan" "San León" "San Miguel Arcángel" "San Raimundo" "San Virila"
+	"Santa Ana" "Santa Catalina" "Santa Juana" "Santa Leonor" "Santísima Trinidad" "Señor de Tudela"
+	Vasconia
+}

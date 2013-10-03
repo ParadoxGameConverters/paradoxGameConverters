@@ -1,0 +1,210 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new groups or ideas, make sure they are unique.
+
+
+
+naval_ideas = {
+	press_gangs = {
+		global_ship_cost = -0.5
+	}	
+	grand_navy = {
+		naval_forcelimit_modifier = 1.0
+	}
+	sea_hawks = {
+		navy_tradition = 0.01
+	}
+	superior_seamanship = {
+		naval_morale = 1.0
+	}
+	naval_glory = {
+		prestige_from_naval = 1.00	#100% extra prestige  from naval battles
+	}
+
+	excellent_shipwrights = {
+		trigger = {
+			naval_tech = 7
+		}
+		leader_naval_manuever = 2
+	}
+	naval_fighting_instruction = {
+		trigger = {
+			naval_tech = 30
+		}
+		blockade_efficiency = 0.5
+	}
+	naval_provisioning = {
+		trigger = {
+			naval_tech = 53
+		}
+		sea_repair = yes
+	}
+}
+
+land_ideas = {
+
+	grand_army = {
+		land_forcelimit_modifier = 0.33
+	}
+	military_drill = {
+		land_morale = 1.0
+	}
+	engineer_corps = {
+		leader_siege = 1
+		defensiveness = 0.25
+	}
+	battlefield_commisions = {
+		army_tradition = 0.01
+	}
+	glorious_arms = {
+		prestige_from_land = 1.0	#100% extra prestige  from land battles
+	}
+	
+	national_conscripts = {
+		trigger = {
+			land_tech = 7
+		}
+		global_manpower_modifier = 0.5
+	}
+	regimental_system = {
+		trigger = {
+			land_tech = 30
+		}
+		land_maintenance_modifier = -0.20
+	}	
+
+	napoleonic_warfare = {
+		trigger = {
+			land_tech = 53
+		}
+		discipline = 0.25
+	}
+	
+}
+
+exploration_ideas = {
+	land_of_opportunity = {
+		global_colonial_growth = 0.33	# more people per year in colonies.
+	}
+	merchant_adventures = {
+		merchant_cost = -0.33		#1/3rd cheaper merchants
+	}
+	colonial_ventures = {
+		colonists = 1		# 1 extra colonist each year.
+	}
+	
+	shrewd_commerce_practise = {
+ 		merchant_compete_chance = 0.1
+  	}
+	vice_roys  = {
+ 		global_tariffs = 0.33
+ 	}
+ 	
+
+	quest_for_the_new_world	= {
+		trigger = {
+			trade_tech = 7
+		}
+		may_explore = yes	#may recruit explorers/conquistadors
+		range = 0.5		#can colonist 50% further.
+
+	}
+
+	scientific_revolution = { 
+		trigger = {
+			trade_tech = 30
+		}
+		technology_cost = -0.1
+		papal_influence = -0.05;
+	}
+
+	improved_foraging = {
+		trigger = {
+			trade_tech = 53
+		}
+		land_attrition = -0.5
+	}
+}
+
+state_business_ideas = {
+	vetting = {
+		global_spy_defence = 0.3
+	}
+	bureaucracy = {
+		global_tax_modifier = 0.10	#10% extra tax income
+	}
+	national_bank = {
+		inflation_reduction = 0.1	# nice inflation reduction
+	}
+	national_trade_policy = {
+		trade_efficiency = 0.1
+	}
+	espionage  = {
+		spies = 1		#1 extra spy each year
+		spy_efficiency = 0.1
+ 
+	}
+	bill_of_rights = {
+		trigger = {
+			production_tech = 7
+		}
+		global_revolt_risk = -2
+	}
+
+	smithian_economics = {
+		trigger = {
+			production_tech = 30
+		}
+		production_efficiency = 0.2
+ 	}
+	liberty_egalite_fraternity = {
+		trigger = {
+			production_tech = 53
+		}
+		tolerance_heathen = 3
+		tolerance_heretic = 3
+		papal_influence = -0.1;
+	}
+}
+
+culture_ideas = {
+	ecumenism = {
+		tolerance_heretic = 4
+		papal_influence = -0.025;
+	}
+	church_attendance_duty = { 
+		stability_cost_modifier = -0.33	#reduces stability costs by 33%
+		papal_influence = 0.05;
+	}
+	divine_supremacy = { 
+		missionaries = 0.5	# 0.5 extra missionary each year
+		papal_influence = 0.05;
+	}
+	patron_of_art  = { 
+		cultural_tradition = 0.03
+	}
+	deus_vult = {
+		cb_on_religious_enemies = yes
+		papal_influence = 0.05;
+	}
+
+	humanist_tolerance = {
+		trigger = {
+			government_tech = 7
+		}
+		tolerance_heathen = 2
+		papal_influence = -0.05;
+	}
+
+	cabinet = {
+		trigger = {
+			government_tech = 30
+		}
+		badboy = -1
+	}
+	revolution_and_counter = {
+		trigger = {
+			government_tech = 53
+		}
+		cb_on_government_enemies = yes
+	}
+}

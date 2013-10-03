@@ -1,0 +1,105 @@
+#Holstein
+
+graphical_culture = latingfx
+
+color = { 220  150  158 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	national_trade_policy
+	military_drill
+	glorious_arms
+	national_bank
+	grand_army
+	cabinet
+	bill_of_rights
+	espionage
+	scientific_revolution
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Christian #0" = 60
+	"Friedrich #0" = 60
+	"Friedrich Wilhelm #0" = 40
+	"Johann #0" = 40
+	"Adolf #7" = 20
+	"Gerhard #6" = 20
+	"Heinrich #2" = 20
+	"Albrecht #1" = 20
+	"Alexander #0" = 20
+	"August #0" = 20
+	"August Philip #0" = 20
+	"Friedrich Ludwig #0" = 20
+	"Karl #0" = 20
+	"Karl Anton #0" = 20
+	"Karl Ludwig #0" = 20
+	"Peter August #0" = 20
+	"Eugen #0" = 10
+	"Franz #0" = 10
+	"Johann Christian #0" = 10
+	"Karl Friedrich #0" = 10
+	"Magnus #0" = 10
+	"Philip Ludwig #0" = 10
+	"Anton #0" = 5
+	"Ernst #0" = 5
+	"Ernst Kasimir #0" = 5
+	"Karl Gustav #0" = 5
+	"Maximilian #0" = 5
+	"Philip Wilhelm #0" = 5
+	"Adelmar #0" = 0
+	"Bruno #0" = 0
+	"Conrad #0" = 0
+	"Florian #0" = 0
+	"Harald #0" = 0
+	"Joachim #0" = 0
+	"Kaspar #0" = 0
+	"Leonhard #0" = 0
+	"Oskar #0" = 0
+	"Peter #0" = 0
+	"Thomas #0" = 0
+	"Waldemar #0" = 0
+}
+
+leader_names = {
+	Albert Augustenborg
+	Günther
+	Holstein Holstein-Gottorp
+	Oldenburg
+	Philip	
+	Rantzau
+	Von Barner
+	Von Dellwigh
+}
+
+ship_names = {
+	Dahme
+	Grömtz Grossenbrode
+	Keil Kellenhusen
+	Neustadt
+	Ostsee 
+	Scharbeutz Sierksdorf
+	Wedel
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

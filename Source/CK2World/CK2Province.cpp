@@ -12,9 +12,10 @@
 
 CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, CK2Character*>& characters, const CK2BuildingFactory* buildingFactory, CK2Version& version)
 {
-	number = atoi( obj->getKey().c_str() );
-	tradePost	= false;
-	tpOwner		= NULL;
+	number			= atoi( obj->getKey().c_str() );
+	tradePost		= false;
+	tpGarrisonSize	= 0;
+	tpOwner			= NULL;
 
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); i++)
@@ -45,6 +46,21 @@ CK2Province::CK2Province(Object* obj, map<string, CK2Title*>& titles, map<int, C
 			if (owner != characters.end())
 			{
 				tpOwner = owner->second->getPrimaryTitle();
+			}
+			vector<Object*> garrison1Obj = leaves[i]->getValue("tr_garrison_1");
+			if (garrison1Obj.size() > 0)
+			{
+				tpGarrisonSize += 2;
+			}
+			vector<Object*> garrison2Obj = leaves[i]->getValue("tr_garrison_2");
+			if (garrison2Obj.size() > 0)
+			{
+				tpGarrisonSize += 3;
+			}
+			vector<Object*> garrison3Obj = leaves[i]->getValue("tr_garrison_3");
+			if (garrison3Obj.size() > 0)
+			{
+				tpGarrisonSize += 4;
 			}
 		}
 	}

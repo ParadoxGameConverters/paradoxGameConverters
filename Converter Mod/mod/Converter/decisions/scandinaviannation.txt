@@ -1,0 +1,86 @@
+country_decisions = {
+
+	scandinavian_nation = {
+		potential = {
+			NOT = { exists = SCA }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			culture_group = scandinavian
+		}
+		allow = 
+		{
+			owns = 1		# Uppland
+			owns = 6		# Skane
+			owns = 7		# Vastergotland
+			owns = 12		# Sjaelland
+			owns = 15		# Jylland
+			owns = 17		# Akershus
+			is_core = 1		# Uppland
+			is_core = 6		# Skane
+			is_core = 7		# Vastergotland
+			is_core = 12	# Sjaelland
+			is_core = 15	# Jylland
+			is_core = 17	# Akershus
+			war = no
+		}
+	  effect = {
+			SCA = {
+				add_core = 1		# Uppland
+				add_core = 2		# Ostergotland
+				add_core = 3		# Smaland
+				add_core = 4		# Bergslagen
+				add_core = 5		# Varmland
+				add_core = 6		# Skane
+				add_core = 7		# Vastergotland
+				add_core = 8		# Dalaskogen
+				add_core = 9		# Halsingland
+				add_core = 10		# Jamtland
+				add_core = 11		# Vasterbotten
+				add_core = 12		# Sjaelland
+				add_core = 13		# Slesvig
+				add_core = 14		# Fyn
+				add_core = 15		# Jylland
+				add_core = 16		# Bohuslan
+				add_core = 17		# Akershus
+				add_core = 18		# Lappland
+				add_core = 19		# Osterbotten
+				add_core = 20		# Trondelag
+				add_core = 21		# Halogaland
+				add_core = 22		# Eisdiva
+				add_core = 23		# Bergenshus
+				add_core = 24		# Agder
+				add_core = 25		# Gotland
+				add_core = 26		# Halland
+				add_core = 27		# Finland
+				add_core = 28		# Nyland
+				add_core = 29		# Tavastland
+				add_core = 30		# Viborg
+				add_core = 31		# Savolaks
+				add_core = 315		# Finnmark
+				add_core = 369		# Orkney
+				add_core = 370		# Reykjavik
+				add_core = 371		# Akureyri
+				add_core = 1104		# Eiriksfjord
+				add_core = 1105		# Vestbygden
+			}	
+			random_owned = {
+				limit = { 
+					is_capital = no 
+					culture_group = scandinavian
+				}
+				base_tax = 1
+			}
+			capital_scope = {
+				base_tax = 1
+			}
+			centralization_decentralization = -2
+			prestige = 0.05
+			change_tag = SCA
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 100
+	}
+	
+}

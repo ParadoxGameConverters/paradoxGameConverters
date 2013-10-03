@@ -1,0 +1,84 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 74  87  138 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	indian_rifle
+}
+
+monarch_names = {
+	"Malik Ahmad #0" = 20
+	"Burhan I Nizam #0" = 20
+	"Husayn #0" = 20
+	"Murtaza #0" = 20
+	"Maran Husayn #1" = 20
+	"Isma'il #0" = 20
+	"Burhan Shah #1" = 20
+	"Ibrahim #0" = 20
+	"Ahmad #0" = 20
+	"Bahadur #0" = 20
+	"Burhan #0" = 20
+	"Husayn #0" = 20
+	"Annam Dev #0" = 20
+	"Hamir Dev #0" = 20
+	"Purushottam Dev #0" = 20
+	"Rajpal Deo #0" = 20
+	"Dalpat Deo #0" = 20
+	"Daryao Deo #0" = 20
+}
+
+leader_names = {
+	Desai
+	Jain
+	Gandhi
+	Majmudar
+	Munshi
+	Muzzafar
+	Parikh
+	Pandya
+	Patel
+	Patidar
+	Vanik
+	Vyas
+	Rushi
+	Saraiya 
+	Shaw 
+	Shrivastav
+	Tilak
+}
+
+ship_names = {
+	Alia Arusa Bori Fatimah
+	Jalsena Girna "Kala Jahazi"
+	Khan "Lal Jahazi" Narmada Nausena
+	"Nav ka Yudh" Niknaz "Nila Jahazi"
+	Niloufa Noor Panjhra Sagar Salima
+	Shameena Suhalia Tapi Yasmine Zahira
+}

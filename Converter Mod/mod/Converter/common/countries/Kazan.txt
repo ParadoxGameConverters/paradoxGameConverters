@@ -1,0 +1,64 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 97  102  135 }
+
+historical_ideas = {
+	glorious_arms
+	military_drill
+	merchant_adventures
+	national_conscripts
+	battlefield_commisions
+	grand_army
+	engineer_corps
+	espionage
+	grand_navy
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Abdullah Pasha #1" = 40
+	"Talich #1" = 40
+	"'Ali Beg #1" = 40
+	"Ulugh Muhammad #1" = 40
+	"Mahmudak #0" = 50
+	"Khalil #0" = 30
+	"Ibrahim #0" = 50
+	"Ilham #4" = 30
+	"Muhammad #0" = 50
+	"Mamuk #0" = 30
+	"Abd-al-Latif #0" = 20
+	"Shah Ali #0" = 10
+        "Sahib Girai #0" = 30
+        "Safa Girai #0" = 30
+        "Yan Ali #0" = 10
+        "Utemish Girai #0" = 30
+        "Yadigar Muhammad #0" = 20
+}
+
+leader_names = { 
+	Aqcurin Cälil
+	Gällameva Göbäydullina
+	Nasiri Näcmetdin
+	Nigmätin Nurgäl
+	Isxaqi Märcani
+	Qabayeva Qamay "Qol-Gäli"
+	Qursawi Sägdiev Tuqay 
+	Xäbibullin Yusupow
+	Zemfira
+}
+
+ship_names = {
+	Qazgan Qazan Söyembikä Qazansu Ghiasetdin 
+	"Tas Ayaq" Alat Arca Gärec Cöri Nugay
+	Säyet Säyex Qazi
+}

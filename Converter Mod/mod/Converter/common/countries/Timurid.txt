@@ -1,0 +1,72 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 213 0 39 }
+
+historical_ideas = {
+	glorious_arms 
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Bâbur #2" = 20
+	"'Mîrzâ #1" = 10
+	"Abû Sâ'id #1" = 10
+        "Shâh Rukh #1" = 10
+	"Ahmad #1" = 10
+	"Mahmud #1" = 10
+	"Mas'ud #1" = 10
+	"Bây Sunqur #1" = 10
+	"'Alî #1" = 10
+        "Hussain #0" = 10
+        "Uways #0" = 10
+        "Nasîr #0" = 10
+        "Ulugh #1" = 10
+        "Têmôr #1" = 1
+}
+
+leader_names = {
+	Abbâs
+	Abû Bakr
+	Akbar
+	Jahagir
+	Jalâl
+	Jâmî
+	Khalil
+	Mohsin
+	"ud-Dîn"
+	Zaman
+}
+
+ship_names = {
+	Ardabil
+	Bakhura Baluches Balkh
+	Herat
+	Ispahan
+	Kirman Kish Kharesm Kandahar
+	Lahore
+	Merv
+	Nishupur
+	Ormuz
+	Rustam
+	Sikandar Sebzewar Slurax Samarqand
+	Tamerlane Tahriz
+	"Shah Rukh"
+}

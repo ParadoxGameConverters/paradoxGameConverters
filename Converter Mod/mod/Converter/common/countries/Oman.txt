@@ -1,0 +1,76 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 98  134  153 }
+
+historical_ideas = {
+	national_conscripts
+	superior_seamanship
+	military_drill
+	naval_fighting_instruction
+	divine_supremacy
+	battlefield_commisions
+	shrewd_commerce_practise
+	excellent_shipwrights
+	merchant_adventures
+	national_bank
+	bureaucracy
+	grand_navy
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Sulaymân #0" = 10
+	"'Umar #0" = 10
+	"Abu'l-Hasan #0" = 10
+	"Barakât #0" = 10
+	"Makhzûm #0" = 10
+	"Nabhân #0" = 10
+	"Nâsir #0" = 10
+	"Muhannâ #0" = 10
+	"Sâlim #0" = 10
+	"Sultân #0" = 30
+	"Ab'ul-Arab #0" = 10
+	"Sayf #0" = 20
+	"Muhammad #0" = 10
+	"Ya'rub #0" = 10
+	"Ahmad #0" = 10
+}
+
+leader_names = {
+	Bazzi
+	Abbas
+	Moustafa
+	Moussa
+	Jomaa
+	Issa
+	Nasser
+	Sakr
+	Mourad
+	Khoury
+}
+
+ship_names = {
+	Masqat Matrah "Al-Hajar" "Ash-Sharqi" Sür
+	"Ra's Al-Hadd" Masirah "Al-Akhdar" "Al-Jabal"
+	"Al-Batinah" Nizwä "Al-Gharbi" "Wadi Aswad"
+	"Wadi Andam" "Wadi al-Bahta" "Ra's Abu Daud"
+	"Jabal ash-Shäm" "Ramlat al Wahibah" "Al-Hadd"
+	Tiwi Fins Ibrä Quraqqät "As-Sib" Sarür Maskin
+	Shinas Suhar "Al-Khaburah" Tan'am Dank
+	"Umm As-Samim" "Tur at Masirah" "Al-Huqf"
+}

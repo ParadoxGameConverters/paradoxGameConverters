@@ -1,0 +1,113 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 139  179  207 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	espionage
+	shrewd_commerce_practise
+	engineer_corps
+	grand_army
+	glorious_arms
+	cabinet
+	scientific_revolution
+	bureaucracy
+	revolution_and_counter
+	merchant_adventures
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Henri #0" = 20
+	"Jacques #0" = 20
+	"Jacques #0 Victor" = 10
+	"Louis #0" = 10
+	"Joseph #0" = 5
+	"Raymond #0" = 5
+	"Achille #0" = 0
+	"Albert #0" = 0
+        "Alexandre #0" = 0
+	"Ambroise #0" = 0
+	"Bernard #0" = 0
+        "Bruno #0" = 0
+	"Charles #0" = 0
+	"Claude #0" = 0
+	"Denis #0" = 0
+	"Édouard #0" = 0
+	"Emmanuel #0" = 0
+	"Eustache #0" = 0
+	"Fabien #0" = 0
+        "Faustin #0" = 0
+	"Félix #0" = 0
+	"Florian #0" = 0
+	"Georges #0" = 0
+        "Géraud #0" = 0
+	"Honoré #0" = 0
+	"Horace #0" = 0
+	"Jean #0 Baptiste" = 0
+        "Jean #0 Jacques" = 0
+	"Jean #0 Louis" = 0
+	"Juan #0 Pierre" = 0
+	"Marius #0" = 0
+        "Mathieu #0" = 0
+	"Maurice #0" = 0
+	"Olivier #0" = 0
+	"Pascal #0" = 0
+	"Philippe #0" = 0
+	"Renaud #0" = 0
+	"Séraphin #0" = 0
+	"Sylvain #0" = 0
+	"Vincent #0" = 0
+}
+
+leader_names = {
+        Biassou
+        François
+        d'Aulnay
+        "de Boissieu" "de Bonnefoy"
+        "de Chambronne" "de Champmartin"
+        "des Ecures"
+        "de Galard"
+        "des Herbiers"
+        "de Marguerye" "de Maurepas"
+        "d'Ornano"
+        "de Pellefort"
+        "de Siorac"
+        "de Tréville"
+        "de Vibien" "de Vigny"
+        "Le Tellier"
+}
+
+ship_names = {
+        "la Belle Poule"
+        "le Magnifique"
+        "le Neptune"
+        l'Océan
+        "la Provence" 
+        "le Robuste"
+        "le Sceptre" "la Superbe"
+        "la Trombe" "le Triton" 
+        "la Victoire" 
+}

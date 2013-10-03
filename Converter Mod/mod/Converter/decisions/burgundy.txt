@@ -1,0 +1,47 @@
+country_decisions = {
+	establish_golden_fleece = {
+	
+		potential = {
+			tag = BUR
+			NOT = { has_country_modifier = golden_fleece }
+		}
+		allow = {
+			religion = catholic
+			NOT = {  aristocracy_plutocracy = -3 }
+			prestige = 0.70
+			government = feudal_monarchy
+		}
+		effect = {
+			add_country_modifier = {
+				name = "golden_fleece"
+				duration = -1
+			}
+			aristocracy_plutocracy = -1
+			centralization_decentralization = -1
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	create_the_compagnies_ordonnance = {
+	
+		potential = {
+			tag = BUR
+			NOT = { has_country_modifier = compagnies_ordonnance }
+		}
+		allow = {
+			MIL = 7
+		}
+		effect = {
+			add_country_modifier = {
+				name = "compagnies_ordonnance"
+				duration = -1
+			}
+
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}	
+}

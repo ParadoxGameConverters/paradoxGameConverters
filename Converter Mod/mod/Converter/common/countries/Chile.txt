@@ -1,0 +1,105 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 236  159  89 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	revolution_and_counter
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Agustín #0" = 20
+	"Fernando #0" = 20
+	"José #0 Miguel" = 20
+	"Martín #0" = 20
+	"Bernardo #0" = 15
+	"Francisco #0" = 15
+	"José #0 Santiago" = 15
+	"Pedro José #0" = 15
+	"Antonio José #0" = 10
+	"Francisco #0 Antonio" = 10
+	"Juan #0" = 10
+	"Juan #0 Antonio" = 10
+	"Juan #0 Enrique" = 10
+	"Mateo #0" = 10
+	"Adrián #0" = 0
+	"Alfonso #0" = 0
+	"Antonio #0" = 0
+	"Benigno #0" = 0
+	"Camilo #0" = 0
+	"Carlos #0" = 0
+	"Desiderio #0" = 0
+	"Diego #0" = 0
+	"Eduardo #0" = 0
+	"Emilio #0" = 0
+	"Federico #0" = 0
+	"Germán #0" = 0
+	"Hipólito #0" = 0
+	"Ismael #0" = 0
+	"Joaquín #0" = 0
+	"José #0" = 0
+	"Luis #0" = 0
+	"Marcelino #0" = 0
+	"Nicolás #0" = 0
+	"Ovidio #0" = 0
+	"Porfirio #0" = 0
+	"Rufino #0" = 0
+	"Sergio #0" = 0
+	"Teófilo #0" = 0
+	"Urbano #0" = 0
+	"Víctor #0" = 0
+}
+
+leader_names = {
+	Álvarez Argomedo Balmaceda Barros Bello Bilbao Blanco Borgoño Bulnes
+	Carrera "de Carrera" Cochrane "de la Cruz" Echevarría Egaña Errázuriz Freire
+	Henríquez Herrera Infante "de Irisarri" "de Lasta" Lastarria "de la Lastra"
+	Mackenna Marín "Márquez de la Plata" "Martínez de Aldunate" "Martínez de Rozas" Montt
+	O'Higgins Ovalle Pérez Pinto Portales Prieto "de la Reina" Rengifo Rodríguez Rosales
+	"de San Martín" Sarmiento Soler Tocornal "de Toro" Varas Vidaurre "de Villegas"
+	Zañartu Zenteno
+}
+
+ship_names = {
+	Abtao
+	"Blanco Encalada"
+	Chacubuco
+	Esmeralda
+	Huascar
+	Latorre 
+	Orella
+	Riquelme
+	Serrano
+	Valparaiso "Virgilio Uribe"
+}
+	

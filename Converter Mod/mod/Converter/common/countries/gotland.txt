@@ -1,0 +1,119 @@
+#Gotland
+
+graphical_culture = latingfx
+
+color = { 191  113  133 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	national_trade_policy
+	military_drill
+	glorious_arms
+	national_bank
+	grand_army
+	cabinet
+	bill_of_rights
+	improved_foraging
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Johan #0" = 40
+	"Fredrik #0" = 40
+	"Chris #0" = 20
+	"Thomas #0" = 20
+	"Henrik #0" = 20
+	"Olof #0" = 20
+	"Dan #0" = 20
+	"Jonas #0" = 20
+	"Sara #0" = -20
+	"Linda #0" = -20
+	"David #0" = 20 
+	"Niklas #0" = 20 
+	"Artur #0" = 20 
+
+	"Mikael #0" = 5
+	"Dick #0" = 5
+	"Marcus #0" = 5
+	"Joachim #0" = 5
+	"Patric #0" = 5
+	"Pontus #0" = 5
+	"Adam #0" = 5
+	"Viktor #0" = 2
+	"Stefan #0" = 5
+	"Björn #0" = 5
+	"Nina #0" = -1
+	"Anna #0" = -5
+}
+
+leader_names = {
+    Andersson
+    Backlund
+	Ballantyne 
+    Bergqwist
+	Björk
+	Drevendal
+	Edström
+	Eriksson
+	Foxander
+	Fåhraeus
+	Jakobsson
+	Johansson
+	Johannesson
+	Kiby
+	King
+	Lerström
+	Lind
+	Olsson
+	Persson
+	Skoglund
+	Sjöström
+	Strid
+	Thulin
+	Zetterman
+	Åberg
+	Sarell
+	Wendel-Örtqvist
+}
+
+ship_names = {
+	Burgsvik
+	Djauvik
+	Fårösund
+	Gnisvärd
+	Klintehamn
+	Hoburgen
+	Katthamra
+	Drake
+	Ljugarn
+	Slite
+    Västergarn
+    Visby
+   	Forumtrollet
+    "Spanien är inte Kejsare"
+    "Obalanserade Sverige"
+    "Stor Blå Blob"
+    "Komet Siktad"
+	"Gråtande Jesusbarnet"
+	"My Heir is Dead"
+	"Endless AI Wars!"
+}

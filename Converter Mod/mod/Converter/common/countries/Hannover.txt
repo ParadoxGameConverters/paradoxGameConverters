@@ -1,0 +1,101 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 164  217  127 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	ecumenism
+	smithian_economics
+	improved_foraging
+	battlefield_commisions
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Ernst August #0" = 20
+	"Georg #0" = 20
+	"Georg #0 August" = 20
+	"Georg #0 Ludwig" = 20
+	"Adolf Friedrich #0" = 15
+	"Alfred #0" = 15
+	"August Friedrich #0" = 10
+	"Christian #0" = 10
+	"Eduard August #0" = 10
+	"Friedrich #0 August" = 10
+	"Friedrich #0 Ludwig" = 10
+	"Georg #0 Wilhelm" = 10
+	"Karl Philipp #0" = 10
+	"Maximilian Wilhelm #0" = 10
+	"Octavius #0" = 10
+	"Wilhelm #0" = 10
+	"Wilhelm August #0" = 10
+	"Alexander #0" = 0
+	"Alois #0" = 0
+	"Anton #0" = 0
+	"Bruno #0" = 0
+	"Clemens #0" = 0
+	"Denis #0" = 0
+	"Gerfried #0" = 0
+	"Gottfried #0" = 0
+	"Günther #0" = 0
+	"Helmut #0" = 0
+	"Herbert #0" = 0
+	"Ignatz #0" = 0
+	"Isidor #0" = 0
+	"Jakob #0" = 0
+	"Konstantin #0" = 0
+	"Kuno #0" = 0
+	"Markus #0" = 0
+	"Martin #0" = 0
+	"Oskar #0" = 0
+	"Reinhard #0" = 0
+	"Silvester #0" = 0
+	"Stefan #0" = 0
+	"Waldemar #0" = 0
+}
+
+leader_names = {
+	Aller
+	Detmold
+	Hamelm Hildesheim
+	Kapp
+	Minden
+	Oldenburg
+	Salzgitter
+	Werden Wernigerode
+}
+
+ship_names = {
+	"Georg von Calenberg" Leine Weser Deister
+	Süntel Wedemark Wunstorf Langenhagen
+	Stadthagen Lehrte Burgdorf Sarstedt
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

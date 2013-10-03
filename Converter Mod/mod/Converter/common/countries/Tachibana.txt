@@ -1,0 +1,98 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 35  220  30   }
+
+historical_ideas = {
+	national_conscripts
+	excellent_shipwrights
+	merchant_adventures
+	superior_seamanship
+	espionage
+	military_drill
+	glorious_arms
+	national_trade_policy
+	patron_of_art
+	shrewd_commerce_practise
+	grand_army
+	cabinet
+}
+
+historical_units = {
+	japanese_archer
+	eastern_bow
+	japanese_footsoldier
+	japanese_samurai
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Kiminaga #0" = 40
+	"Michiyo #1" = 20
+	"Nagayasu #1" = 20
+	"Tadamori #0" = 20
+	"Ronin #0" = 25
+	"Kamatari #0" = 25
+	"Yoriyoshi #0" = 25
+	"Asatada #0" = 25
+	"Teika #0" = 25
+	"Yoshitomo #1" = 20
+	"Michitaka #0" = 20
+	"Sadayoshi #0" = 20
+	"Tadataka #0" = 20
+	"Narichika #0" = 20
+	"Kugyo #0" = 20
+	"Fusasaki #0" = 10
+	"Tamenaka #0" = 10
+	"Motozane #0" = 10
+	"Sai #1" = 10
+	"Yoshinaka #0" = 10
+	"Kanesuke #0" = 10
+	"Toshiyuki #0" = 5
+	"Hidesato #0" = 5
+	"Yoshimochi #0" = 5
+	"Koremori #0" = 5
+	"Tameie #1" = 5
+	"Sukemasa #0" = 1
+	"Uona #0" = 1
+	"Muchimaro #0" = 1
+	"Korechika #0" = 1
+	"Yoritada #0" = 1
+	"Tsunemoto #0" = 1
+}
+
+leader_names = {
+	Akechi
+	Fusahira Fusahiro Fusasuke Fuyuhira Fuyuie Fuyumichi Fuyunori Fusatsugu
+	Gozen Gracia
+	Hiromichi Hisasuke Hisamoto Hidemitsu Hosokawa
+	Itakura
+	Kanehira Kanehiro Kanesuke Kanetada Katsuaki Katsukiyo Katsushige Shigemasa 
+	Shigenori Shigemune
+	Masahira Masahiro Masamichi Morohira Mototada Mototeru Motomichi Motosaki Mitsuyoshi Mitsuharu
+	Mototsugu Motozane Masamaro Masatsugu Michihira Mitsuhira Mitsutsuna
+	Nariyuki Nobunaga Naotake Nobufusa Nobuhisa Nobusuke Norihira Naoshige
+	Sukehira Sukehiro Sukemasa Sukenobu
+	Tadafuyu Toshimichi Tokiwa Tsunahira
+}
+
+ship_names = {
+	"Akechi Maru"
+	"Fusahira Maru" "Fusahiro Maru" "Fusasuke Maru" "Fuyuhira Maru" "Fuyuie Maru" "Fuyumichi Maru" "Fuyunori Maru" "Fusatsugu Maru"
+	"Gozen Maru" "Gracia Maru"
+	"Hiromichi Maru" "Hisasuke Maru" "Hisamoto Maru" "Hidemitsu Maru" "Hosokawa Maru"
+	"Itakura Maru"
+	"Kanehira Maru" "Kanehiro Maru" "Kanesuke Maru" "Kanetada Maru" "Katsuaki Maru" "Katsukiyo Maru" "Katsushige Maru" "Shigemasa Maru"
+	"Shigenori Maru" "Shigemune Maru"
+	"Masahira Maru" "Masahiro Maru" "Masamichi Maru" "Morohira Maru" "Mototada Maru" "Mototeru Maru" "Motomichi Maru" "Motosaki Maru"
+	"Mitsuyoshi Maru" "Mitsuharu Maru" "Mototsugu Maru" "Motozane Maru" "Masamaro Maru" "Masatsugu Maru" "Michihira Maru" "Mitsuhira Maru" "Mitsutsuna Maru"
+	"Nariyuki Maru" "Nobunaga Maru" "Naotake Maru" "Nobufusa Maru" "Nobuhisa Maru" "Nobusuke Maru" "Norihira Maru" "Naoshige Maru"
+	"Sukehira Maru" "Sukehiro Maru" "Sukemasa Maru" "Sukenobu Maru"
+	"Tadafuyu Maru" "Toshimichi Maru" "Tokiwa Maru" "Tsunahira Maru"
+}

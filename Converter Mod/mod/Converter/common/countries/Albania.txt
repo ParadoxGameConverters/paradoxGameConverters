@@ -1,0 +1,155 @@
+#Albania
+
+graphical_culture = easterngfx
+
+color = { 181  72  106 }
+
+historical_ideas = {
+	church_attendance_duty
+	national_conscripts
+	espionage
+	military_drill
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy	
+	grand_army
+	national_bank
+	cabinet
+	patron_of_art
+}
+
+historical_units = {
+	bardiche_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Gjergj #0" = 20
+	"Lekë #0" = 20
+	"Gjon #0" = 10
+	"Kostandin #0" = 10
+	"Lulëzim #0" = 10
+	"Pal #0" = 0
+	"Tanush #1" = 10
+	"Aleksandër #0" = 10
+	"Karolus #2" = 1
+	"Filippo #1" = 1
+	"Adnan #0" = 1
+	"Agim #0" = 1
+	"Bashkim #0" = 1
+	"Besnik #0" = 1
+	"Bujar #0" = 1
+	"Dardan #0" = 1
+	"Dhurim #0" = 1
+	"Dritëro #0" = 1
+	"Elidon #0" = 1
+	"Erjon #0" = 1
+	"Fatmir #0" = 1
+	"Flamur #0" = 1
+	"Florin #0" = 1
+	"Hekuran #0" = 1
+	"Ilir #0" = 1
+	"Ismail #0" = 5
+	"Klodian #0" = 1
+	"Luigj #0" = 1
+	"Milaim #0" = 1
+	"Nikolla #0" = 1
+	"Pashko #0" = 1
+	"Pëllumb #1" = 5
+	"Përparim #0" = 1
+	"Pjetër #0" = 5
+	"Rrok #0" = 1
+	"Shpëtim #0" = 1
+	"Tahir #0" = 1
+	"Viktor #0" = 1
+	"Xhevat #0" = 1
+	"Ylli #0" = 1
+	"Zenel #0" = 1
+	"Gjylo #0" = -1
+	"Halil #0" = 1
+	"Ali #0" = 10
+	"Mustafa #0" = 10
+	"Qemal #0" = 1
+	"Enver #0" = 1
+	"Mehmet #0" = 1
+	"Ramiz #0" = 1
+	"Edi #0" = 1
+	"Demaci #0" = 1
+	"Edon #0" = 1
+	"Dukagjin #0" = 10
+	"Haxhi #0" = 10
+	"Lishëndri #0" = 1
+	"Mensur #0" = 1
+	"Kreshnik #0" = 1
+	"Rahman #0" = 1
+	"Nxhiku #0" = 1
+	"Riza #0" = 1
+	"Rexhep #0" = 1
+	"Ramadan #0" = 1
+	"Sulejman #0" = 10
+	"Selim #0" = 1
+	"Sadik #0" = 1
+}
+
+leader_names = {
+	Arianit
+	Badera Balsha Bua
+	Cervota Comneniates
+	Dukagjini
+	Faqemiri
+	Gojcin Golemi
+	Kastrioti
+	Losha
+	Musaki
+	Sguros Shpata Spani
+	Thopia
+	Toptani
+	Vishanj
+	Zenevisi Zogu
+	Hoxha
+	Çarçani
+	Chani
+	Dosti
+	Elezi
+	Duka
+	Fakaj
+	Corbajram
+	Halili
+	Hamza
+	Gecaj
+	Hajdaraga
+	Gjokaj
+	Gjika
+	Shehu
+	Alia
+	Vata
+	Veseli
+	Xhumba
+	Xhaferi
+	Ziberi
+	Useni
+	Ymeri
+}
+
+ship_names = {
+	"Bishti i Palles"
+	"Gjiri i Drinit" "Gjiri i Rondonit"
+	Jube
+	"Kalaja e Turres" "Kepi i Rodonit" Kyrekuq
+	Shengjin Shetaj
+	Velipoje
+}

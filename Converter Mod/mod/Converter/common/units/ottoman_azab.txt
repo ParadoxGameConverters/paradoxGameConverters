@@ -1,0 +1,12 @@
+# Ottoman Azab
+
+type = infantry
+unit_type = ottoman
+
+maneuver = 1
+offensive_morale = 3
+defensive_morale = 1
+offensive_fire = 0
+defensive_fire = 0
+offensive_shock = 2
+defensive_shock = 2

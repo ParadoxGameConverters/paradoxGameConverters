@@ -281,11 +281,105 @@ void EU3World::output(FILE* output)
 	}
 	fprintf(output, "active_advisors=\n");
 	fprintf(output, "{\n");
+	fprintf(output, "\tnomad_group=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "nomad_group"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\twestern=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "western"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\teastern=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "eastern"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tottoman=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "ottoman"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tmuslim=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "muslim"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tindian=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "indian"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tchinese=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "chinese"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tsub_saharan=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "sub_saharan"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
+	fprintf(output, "\tnew_world=\n");
+	fprintf(output, "\t{\n");
+	for (unsigned int i = 0; i < advisors.size(); i++)
+	{
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "new_world"))
+		{
+			advisors[i]->outputInActive(output);
+		}
+	}
 	fprintf(output, "\tnotechgroup=\n");
 	fprintf(output, "\t{\n");
 	for (unsigned int i = 0; i < advisors.size(); i++)
 	{
-		advisors[i]->outputInActive(output);
+		map<int, EU3Province*>::iterator home = provinces.find(advisors[i]->getLocation());
+		if ((home != provinces.end()) &&(home->second->getOwner()->getTechGroup() == "notechgroup"))
+		{
+			advisors[i]->outputInActive(output);
+		}
 	}
 	fprintf(output, "\t}\n");
 	fprintf(output, "}\n");
@@ -369,7 +463,7 @@ void EU3World::addHistoricalCountries()
 	{
 		struct _finddata_t	countryDirData;
 		intptr_t					fileListing;
-		if ( (fileListing = _findfirst( "mod\\converter\\history\\countries\\*", &countryDirData)) == -1L)
+		if ( (fileListing = _findfirst( (Configuration::getModPath() + "\\converter\\history\\countries\\*").c_str(), &countryDirData)) == -1L)
 		{
 			log("Error: Could not open country history directory.\n");
 			return;
@@ -382,7 +476,7 @@ void EU3World::addHistoricalCountries()
 			}
 
 			string filename;
-			filename	=  string("mod\\converter\\history\\countries\\");
+			filename	=  Configuration::getModPath() + "\\converter\\history\\countries\\";
 			filename	+= countryDirData.name;
 
 			string tag;
@@ -499,6 +593,13 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 
 	for(provinceMapping::iterator i = provinceMap.begin(); i != provinceMap.end(); i++)
 	{
+		if (i->second[0] == -1)
+		{
+			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);
+			provItr->second->setOwner(NULL);
+			provItr->second->clearCores();
+			provItr->second->setPopulation(0);
+		}
 		if (i->second[0] == 0)
 		{
 			map<int, EU3Province*>::iterator		provItr	= provinces.find(i->first);
@@ -506,6 +607,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			if (owner != countries.end())
 			{
 				provItr->second->setOwner(owner->second);
+				owner->second->addProvince(provItr->second);
 			}
 			else
 			{
@@ -945,7 +1047,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			CK2Religion* religion = (*countryItr)->getSrcCountry()->getLastHolder()->getReligion();
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (religion->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mongol_empire") ) && (religion->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}
@@ -983,6 +1085,11 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			(*countryItr)->determineTechLevels(avgTechLevels, techData, *(srcWorld.getVersion()));
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), 0.0F, (*countryItr)->getTechGroup().c_str());
+		}
+
+		for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+		{
+			countryItr->second->determineTechInvestment(techData, startDate);
 		}
 	}
 	else // (Configuration::getTechGroupMethod() == "culturalTech")
@@ -1146,7 +1253,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 
 			//determine tech
 			string title = (*countryItr)->getSrcCountry()->getTitleString();
-			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
+			if (  ( (title == "e_golden_horde") || (title == "e_il-khanate") || (title == "e_timurids") || (title == "e_mexikha") || (title == "e_mongol_empire") ) && (srcCountry->getHolder()->getReligion()->getGroup() != "christian")  )
 			{
 				(*countryItr)->setTechGroup("nomad_group");
 			}
@@ -1485,7 +1592,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "union";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				if (rhsDominant)
 				{
 					agr->country1 = jtr->second;
@@ -1506,7 +1613,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "royal_marriage";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = itr->second;
 				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
@@ -1519,7 +1626,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 			{
 				EU3Agreement* agr = new EU3Agreement;
 				agr->type = "alliance";
-				agr->startDate = date("1.1.1"); // FIXME maybe?
+				agr->startDate = date("1.1.1");
 				agr->country1 = itr->second;
 				agr->country2 = jtr->second;
 				diplomacy->addAgreement(agr);
@@ -1559,7 +1666,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				{
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
-					agr->startDate = startDate; // FIXME maybe?
+					agr->startDate = startDate;
 					agr->country1 = itr->second;
 					agr->country2 = jtr->second;
 					diplomacy->addAgreement(agr);
@@ -1593,7 +1700,7 @@ void EU3World::convertDiplomacy(CK2Version& version)
 				{
 					EU3Agreement* agr = new EU3Agreement;
 					agr->type = "trade_agreement";
-					agr->startDate = startDate; // FIXME maybe?
+					agr->startDate = startDate;
 					agr->country1 = jtr->second;
 					agr->country2 = itr->second;
 					diplomacy->addAgreement(agr);
@@ -1699,7 +1806,7 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 			}
 			else
 			{
-				log("Warning: unknown data while mapping countries.\n");
+				log("Warning: unknown data while mapping countries: %s.\n", rule[j]->getKey().c_str());
 			}
 		}
 
@@ -1976,15 +2083,22 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 	}
 
 	FILE* EU3Localisations;
-	fopen_s(&EU3Localisations, "mod\\Converter\\localisation\\converter.csv", "a");
+	fopen_s(&EU3Localisations, (Configuration::getModPath() + "\\Converter\\localisation\\converter.csv").c_str(), "a");
 	if (EU3Localisations == NULL)
 	{
-		log("\tError: Could not open mod\\Converter\\localisation\\converter.csv\n");
+		log("\tError: Could not open %s\\Converter\\localisation\\converter.csv\n", Configuration::getModPath().c_str());
+	}
+
+	FILE* resultsFile;
+	fopen_s(&resultsFile, "newCountries.txt", "w");
+	if (EU3Localisations == NULL)
+	{
+		log("\tError: Could not open newCountries.txt\n");
 	}
 
 	// assign tags
 	FILE* countriesList;
-	fopen_s(&countriesList, "mod\\converter\\common\\countries.txt", "a");
+	fopen_s(&countriesList, (Configuration::getModPath() + "\\converter\\common\\countries.txt").c_str(), "a");
 	fprintf(countriesList, "\n");
 	char first	= 'A';
 	char second	= 'A';
@@ -2043,11 +2157,6 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			if (localisation == localisations.end())
 			{
 				log("\tWarning: could not find CK2 localisation for %s\n", titleString.c_str());
-				string newLocalisation = tag;
-				newLocalisation += ";";
-				newLocalisation += tag;
-				newLocalisation += ";x\n";
-				fprintf(EU3Localisations, newLocalisation.c_str());
 			}
 			else
 			{
@@ -2060,11 +2169,6 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			if (localisation == localisations.end())
 			{
 				log("\tWarning: could not find CK2 localisation for %s\n", (titleString + "_adj").c_str());
-				string newLocalisation = tag;
-				newLocalisation += ";";
-				newLocalisation += tag;
-				newLocalisation += ";x\n";
-				fprintf(EU3Localisations, newLocalisation.c_str());
 			}
 			else
 			{
@@ -2090,7 +2194,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			filename	+= boost::lexical_cast<string>(number);
 			filename	+= ".txt";
 		}
-		filename	=  "mod\\converter\\common\\countries\\";
+		filename	=  Configuration::getModPath() + "\\converter\\common\\countries\\";
 		filename += titleString.substr(2, titleString.size());
 		if (number > 0)
 		{
@@ -2121,7 +2225,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		srcFlag			+= ".tga\"";
 
 		string dstFlag	=  "\"";
-		dstFlag			+= "mod\\Converter\\gfx\\flags\\";
+		dstFlag			+= Configuration::getModPath() + "\\Converter\\gfx\\flags\\";
 		dstFlag			+= tag;
 		dstFlag			+= ".tga\"";
 
@@ -2131,6 +2235,17 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		command			+= dstFlag;
 
 		system(command.c_str());
+
+		// record in newCountries.txt
+		fprintf(resultsFile, "# Country mapping: CK2=%s -> EU3=%s\n", titleString.c_str(), tag.c_str());
+		fprintf(resultsFile, "%s=\n", tag.c_str());
+		fprintf(resultsFile, "{\n");
+		fprintf(resultsFile, "\tprimary_culture=%s\n", newCountry->getPrimaryCulture().c_str());
+		fprintf(resultsFile, "\tcapital_culture=%s\n", provinces[newCountry->getCapital()]->getCulture().c_str());
+		fprintf(resultsFile, "\tsuccession=%s\n", (*countryItr)->getSrcCountry()->getSuccessionLaw().c_str());
+		fprintf(resultsFile, "\tgender=%s\n", (*countryItr)->getSrcCountry()->getGenderLaw().c_str());
+		fprintf(resultsFile, "}\n");
+		fprintf(resultsFile, "\n");
 		
 		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
 	}
@@ -2195,7 +2310,7 @@ void EU3World::convertCoTs()
 void EU3World::convertSliders()
 {
 	// get EU3 tags
-	log("\t;tag;centralization;nothing;nothing;nothing;nothing;nothing;nothing;nothing\n");
+	log("\t;tag;government;centralization/decentraliztion;aristocracy/plutocracy;serfdom/freesubjects;innovative/narrowminded;mercantilism/freetrade;offensive/defensive;land/naval;quality/quantity\n");
 	for (vector<EU3Country*>::iterator countryItr =	convertedCountries.begin(); countryItr != convertedCountries.end(); countryItr++)
 	{
 		(*countryItr)->convertSliders();

@@ -1,0 +1,149 @@
+country_decisions = {
+	
+	tribal_despotism_reform = {
+		potential = {
+			government = tribal_despotism
+			NOT = { centralization_decentralization = 2 }
+			NOT = { innovative_narrowminded = 2 }
+			OR = {
+				OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+				}
+				any_neighbor_country = {
+					OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+					}
+				}
+			}
+		}
+		allow = {
+			ADM = 7
+			legitimacy = 0.7
+			government_tech = 10
+			stability = 2
+			war = no
+		}
+		effect = {
+			government = despotic_monarchy
+			stability = -5
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	tribal_federation_reform = {
+		potential = {
+			government = tribal_federation
+			NOT = { centralization_decentralization = 2 }
+			NOT = { innovative_narrowminded = 2 }
+			OR = {
+				OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+				}
+				any_neighbor_country = {
+					OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+					}
+				}
+			}
+		}
+		allow = {
+			ADM = 7
+			government_tech = 10
+			legitimacy = 0.7
+			stability = 2
+			war = no
+		}
+		effect = {
+			government = feudal_monarchy
+			stability = -5
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	tribal_democracy_reform = {
+		potential = {
+			government = tribal_democracy
+			NOT = { centralization_decentralization = 2 }
+			NOT = { innovative_narrowminded = 2 }
+			OR = {
+				OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+				}
+				any_neighbor_country = {
+					OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+					}
+				}
+			}
+		}
+		allow = {
+			ADM = 7
+			government_tech = 10
+			stability = 2
+			war = no
+		}
+		effect = {
+			government = noble_republic
+			stability = -5
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	steppe_horde_reform = {
+		potential = {
+			government = steppe_horde
+		}
+		allow = {
+		NOT = { centralization_decentralization = 2 }
+			NOT = { innovative_narrowminded = 2 }
+			OR = {
+				OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+				}
+				any_neighbor_country = {
+					OR = {
+						technology_group = western
+						technology_group = eastern
+						technology_group = ottoman
+						technology_group = muslim
+					}
+				}
+			}
+			ADM = 7
+			legitimacy = 0.7
+			government_tech = 10
+			stability = 2
+		}
+		effect = {
+			government = despotic_monarchy
+			stability = -5
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

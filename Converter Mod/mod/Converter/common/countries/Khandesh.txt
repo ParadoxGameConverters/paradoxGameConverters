@@ -1,0 +1,76 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 138  151  103 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	espionage
+	engineer_corps
+	national_trade_policy
+	patron_of_art
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	indian_elephant
+	mughal_musketeer
+	mughal_mansabdar
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	maharathan_guerilla_warfare
+	maharathan_cavalry
+	bhonsle_infantry
+	bhonsle_cavalry
+	indian_rifle
+}
+
+monarch_names = {
+	"Nasir Khan #0" = 15
+	"Miran Adil Khan #0" = 15
+	"Miran Mubarak Khan #0" = 15
+	"Da'ud Khan #0" = 10
+	"Ghazni Khan #0" = 10
+	"Alam Khan #0" = 10
+	"'Adil Khan #0" = 10
+	"Miran Muhammand Khan #0" = 15
+	"Miran Mubarak Shah #0" = 15
+	"Miran Muhammad Shah #0" = 15
+	"Alam Khan #0" = 15
+	"Rajah 'Ali Khan #0" = 15
+	"Miran Bahadur Shah #0" = 15
+}
+
+leader_names = {
+	Kriti 
+	Latersh
+	Chirag
+	Bonjani
+	Bhatti
+	Buchar	
+	Durai
+	Eswara
+	Kota
+	Murti
+}
+
+ship_names = {
+	Alia Arusa Bori Fatimah
+	Jalsena Girna "Kala Jahazi"
+	Khan "Lal Jahazi" Narmada Nausena
+	"Nav ka Yudh" Niknaz "Nila Jahazi"
+	Niloufa Noor Panjhra Sagar Salima
+	Shameena Suhalia Tapi Yasmine Zahira
+}

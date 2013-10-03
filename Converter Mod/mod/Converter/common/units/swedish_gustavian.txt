@@ -1,0 +1,12 @@
+# Swedish Gustavian
+
+type = infantry
+unit_type = western
+
+maneuver = 1
+offensive_morale = 7
+defensive_morale = 5
+offensive_fire = 5
+defensive_fire = 4
+offensive_shock = 4
+defensive_shock = 3
