@@ -45,3 +45,4 @@ Revision	Who		Log Message
 42		Ztaesek		Code updates
 43		Ztaesek		Changelog
 44		Ztaesek		Configuration File is important.
+45		Idhrendur	Add Observer-1.1.0.eu4 to test saves

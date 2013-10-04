@@ -1,20 +1,20 @@
 configuration =
 {
 	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
-	EU4directory = "C:\Program Files (x86)\Steam\steamapps\common\europa_universalis_iv"
+	EU4directory = "D:\Steam\steamapps\common\Europa Universalis IV"
 
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
-	V2directory = "C:\Program Files (x86)\Steam\steamapps\common\victoria 2"
+	V2directory = "D:\Paradox Interactive\Victoria 2"
 
 	# EU4 Game Type: what version of EU4 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!
-	#	base	Release EU4 (1.x)
+	#	base	version (1.x)
 	EU4gametype = "base"
 
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	base	Release V2 (1.x)
-	#	AHD		A House Divided Expansion (2.x)
-	#	HOD		Heart of Darkness Expansion (3.x)
+	#	vanilla	vanilla V2 (1.x)
+	#	AHD		A House Divided (2.x)
+	#	HOD		Heart of Darkness (3.x)
 	V2gametype = "AHD"
 
 	# The date on which the game is to start.  Default: 1835.12.1
@@ -30,9 +30,6 @@ configuration =
 	#	all		remove all of them
 	# Note: if there are not enough V2 tags, some or all of these will be done anyway
 	Removetype = "dead"
-
-	# Victoria 2 mod name: The name of the mod that will be created by this code
-	V2OutputModName = "test1"
 	
 	### CK2 to EU4 Mod Options
 	
