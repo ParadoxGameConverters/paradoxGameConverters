@@ -41,7 +41,7 @@ void V2Reforms::output(FILE* output) const
 	fprintf(output, "	pensions=no_pensions\n");
 	fprintf(output, "	health_care=no_health_care\n");
 
-	if (Configuration::getV2Gametype() == "AHD")
+	if ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD"))
 	{
 		if (school_reforms >= 10)
 		{

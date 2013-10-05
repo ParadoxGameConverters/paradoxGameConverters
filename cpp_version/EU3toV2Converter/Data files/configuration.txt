@@ -23,6 +23,7 @@ configuration =
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
 	#	vanilla	vanilla V2 (1.x)
 	#	AHD	A House Divided (2.x)
+	#	HOD	Heart of Darkness (3.x)
 	V2gametype = AHD
 
 	# Remove type: which landless nations to remove. Possible values:

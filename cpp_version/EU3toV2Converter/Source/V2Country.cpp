@@ -1092,7 +1092,7 @@ void V2Country::addRailroadtoCapitalState()
 
 void V2Country::convertUncivReforms()
 {
-	if ( (srcCountry != NULL) && (Configuration::getV2Gametype() == "AHD") )
+	if ( (srcCountry != NULL) && ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD")))
 	{
 		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
 				(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
