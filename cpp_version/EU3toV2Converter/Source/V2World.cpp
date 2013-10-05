@@ -37,7 +37,6 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-
 V2World::V2World(string V2Loc)
 {
 	log("\tImporting provinces.\n");
@@ -281,7 +280,7 @@ V2World::V2World(string V2Loc)
 		string line;
 		getline(V2CountriesInput, line);
 
-		if ( (line[0] == '#') | (line.size() < 3) )
+		if ( (line[0] == '#') || (line.size() < 3) || (line.substr(0,12) == "dynamic_tags") )
 		{
 			continue;
 		}
@@ -290,8 +289,8 @@ V2World::V2World(string V2Loc)
 		tag = line.substr(0, 3);
 
 		string countryFileName;
-		int start		= line.find_first_of('/');
-		int size		= line.find_last_of('\"') - start;
+		int start			= line.find_first_of('/');
+		int size				= line.find_last_of('\"') - start;
 		countryFileName	= line.substr(start, size);
 
 		Object* countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
@@ -1218,7 +1217,7 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 
 	for (unsigned int i = 0; i < countries.size(); i++)
 	{
-		if( countries[i]->isCivilized() || (Configuration::getV2Gametype() != "AHD") )
+		if( (Configuration::getV2Gametype() == "vanilla") || countries[i]->isCivilized() )
 		{
 			countries[i]->setArmyTech(landMean, landScale, landStdDev);
 			countries[i]->setNavyTech(navalMean, navalScale, navalStdDev);

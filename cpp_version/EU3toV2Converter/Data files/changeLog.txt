@@ -425,3 +425,4 @@ Revision	Version Updated		Log Message
 490		C++			Fix unmapped DW provinces in Hokkaido and northern Korea
 491		C++			Fix various small errors (unused variables and such)
 492		C++			Add HOD to V2 game types
+493		C++			Don't choke when reading countries.txt
