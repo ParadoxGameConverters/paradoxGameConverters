@@ -1727,7 +1727,6 @@ void EU3World::removeUnusedCountries()
 	vector<EU3Country*> newConvertedCountries;
 	for (vector<EU3Country*>::iterator itr = convertedCountries.begin(); itr != convertedCountries.end(); ++itr)
 	{
-		bool keep = false;
 		if (
 				( (*itr)->getSrcCountry()->getHolder() != NULL) &&
 				( (*itr)->hasProvinces() || (*itr)->hasCores() || (*itr)->hasVassals())

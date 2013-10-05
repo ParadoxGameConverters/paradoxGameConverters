@@ -26,9 +26,9 @@ class EU3Province
 		
 		void		output(FILE*);
 
-		void		convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, const vector<int>& _srcProvinceNums, const vector<EU3Country*> _cores);
+		void		convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, const vector<int>& _srcProvinceNums, const vector<EU3Country*>& _cores);
 		void		addAdvisor(EU3Advisor* advisor);
-		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies);
+		void		determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*>& baronies);
 		void		determineReligion(const religionMapping& religionMap, const vector<CK2Province*>& srcProvinces);
 		void		setManpower(double _manpower);
 		void		determinePopUnits();

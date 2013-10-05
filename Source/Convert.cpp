@@ -53,8 +53,6 @@ int main(int argc, char * argv[])
 	initLog();
 
 	Object*	obj;				// generic object
-	ifstream	read;				// ifstream for reading files
-
 
 	//Get CK2 install location
 	string CK2Loc = Configuration::getCK2Path();
@@ -451,17 +449,17 @@ int main(int argc, char * argv[])
 	string religionFile;
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		cultureFile = Configuration::getModPath() + "\\converter\\common\\religion.txt";
+		religionFile = Configuration::getModPath() + "\\converter\\common\\religion.txt";
 	}
 	else
 	{
-		cultureFile = Configuration::getEU3Path() + "\\common\\religion.txt";
+		religionFile = Configuration::getEU3Path() + "\\common\\religion.txt";
 	}
-	obj = doParseFile(cultureFile.c_str());
+	obj = doParseFile(religionFile.c_str());
 	if (obj == NULL)
 	{
-		log("Error: Could not open %s\n", cultureFile.c_str());
-		printf("Error: Could not open %s\n", cultureFile.c_str());
+		log("Error: Could not open %s\n", religionFile.c_str());
+		printf("Error: Could not open %s\n", religionFile.c_str());
 		exit(-1);
 	}
 	religionGroupMapping EU3ReligionGroupMap;

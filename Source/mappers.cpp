@@ -16,7 +16,6 @@
 provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 {
 	provinceMapping mapping;
-	provinceMapping::iterator mapIter;
 
 	vector<Object*> leaves = obj->getLeaves();
 

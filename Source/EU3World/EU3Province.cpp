@@ -494,7 +494,7 @@ void EU3Province::output(FILE* output)
 }
 
 
-void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, const vector<int>& _srcProvinceNums, vector<EU3Country*> _cores)
+void EU3Province::convert(int _num, bool _inHRE, const vector<CK2Province*>& _srcProvinces, const vector<int>& _srcProvinceNums, const vector<EU3Country*>& _cores)
 {
 	srcProvinces = _srcProvinces;
 	srcProvinceNums = _srcProvinceNums;
@@ -529,7 +529,7 @@ void EU3Province::addAdvisor(EU3Advisor* advisor)
 }
 
 
-void EU3Province::determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*> baronies)
+void EU3Province::determineCulture(const cultureMapping& cultureMap, const vector<CK2Province*>& srcProvinces, const vector<CK2Barony*>& baronies)
 {
 	map<string, double> cultureCounts;
 	map<string, double> cultureCounts2;
