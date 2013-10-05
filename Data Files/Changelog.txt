@@ -522,3 +522,5 @@ Revision	Log Message
 497		Merge minor to main
 498		Put saves in the correct places
 499		Fix frontend's copy routines
+500		Merge main into mod
+501		Updated project file for VS12 compatibility
