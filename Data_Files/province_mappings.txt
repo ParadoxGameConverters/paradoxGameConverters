@@ -1913,8 +1913,7 @@ link = { eu4 = 1063 v2 = 1469 }	# Sayan -> Kyzyl
 link = { eu4 = 716 v2 = 2608 }	# Tannu Tuva -> Khatgal
 link = { eu4 = 1066 v2 = 2679 v2 = 1596 }	# Altai -> Khovd, Tulta
 link = { eu4 = 480 v2 = 1068 v2 = 2698 }	# Kulunda -> Ulala, Slavgorod
-link = { eu4 = 461 v2 = 1186 }	# Zhetysu -> Alma Ata
-link = { eu4 = 1784 v2 = 1597 v2 = 1190 v2 = 1203 v2 = 1202 }	# Tiam Shan -> Aksu, Naryn, Osh, Kokand
+link = { eu4 = 461 v2 = 1186 v2 = 1190 }	# Zhetysu -> Alma Ata, Naryn
 link = { eu4 = 454 v2 = 1199 }	# Samarkand -> Samarkand
 link = { eu4 = 1967 v2 = 1201 }	# Khujand -> Khojand
 link = { eu4 = 457 v2 = 1195 }	# Tashkent -> Tashkent
@@ -1956,4 +1955,117 @@ link = { eu4 = 435 v2 = 1144 }	# Sistan -> Zahedan
 link = { eu4 = 447 v2 = 1220 v2 = 1215 }	# Kandahar -> Dalbandin, Kandahar
 link = { eu4 = 449 v2 = 1213 }	# Gharchistan -> Bamyan
 link = { eu4 = 505 v2 = 1289 }	# Upper Sind -> Sukkur
+link = { eu4 = 2000 v2 = 3234 }	# Qinghai Lake -> Qinghai Lake
+link = { eu4 = 718 v2 = 1599 }	# Govi Altay -> Kumul
+link = { eu4 = 720 v2 = 1466 }	# Dorno Govi -> Dalandzadgad
+link = { eu4 = 706 v2 = 1557 }	# Amdo -> Balekungomi
+link = { eu4 = 708 v2 = 1490 }	# Gansu -> Lanzhou
+link = { eu4 = 707 v2 = 1488 }	# Yumen -> Jiayuguan
+link = { eu4 = 1947 v2 = 1313 }	# Carnatic -> Bangalore
+# India
+link = { eu4 = 1949 v2 = 1308 }	# Rayalaseema -> Kurnool
+link = { eu4 = 533 v2 = 1314 }	# Mysore -> Mysore
+link = { eu4 = 541 v2 = 1315 }	# Vijayanagar -> Chitaldroog
+link = { eu4 = 532 v2 = 1286 }	# Raichur Doab -> Gulbarga
+link = { eu4 = 569 v2 = 1300 }	# Bijapur -> Bijapur
+link = { eu4 = 1946 v2 = 1299 }	# Desh -> Poona
+link = { eu4 = 1948 v2 = 1283 }	# Bidar -> Hyderabad
+link = { eu4 = 542 v2 = 1287 }	# Telingana -> Warangal
+link = { eu4 = 544 v2 = 1284 }	# Ahmadnagar -> Aurangabad
+link = { eu4 = 545 v2 = 1298 }	# Maharastra -> Nasik
+link = { eu4 = 527 v2 = 1276 }	# Khandesh -> Hoshangabad
+link = { eu4 = 526 v2 = 1271 }	# Mandu -> Indore
+link = { eu4 = 548 v2 = 1285 v2 = 1278 }	# West Berar -> Nizamabad, Amarati
+link = { eu4 = 547 v2 = 1279 }	# Bastar -> Jagdalpur
+# -stans
+link = { eu4 = 577 v2 = 1219 }	# Quetta -> Quetta
+link = { eu4 = 448 v2 = 1217 }	# Gazni -> Ghazni
+link = { eu4 = 451 v2 = 1209 }	# Kabulistan -> Kabul
+link = { eu4 = 513 v2 = 1265 }	# Jaisalmer -> Jaisalmer
+link = { eu4 = 506 v2 = 1228 v2 = 1231 }	# Multan -> Multan, Bahawalpur
+# Himilayas
+link = { eu4 = 1787 v2 = 1592 v2 = 1591 v2 = 1226 }	# Himalaya -> Ngari, Changtang, Leh
+link = { eu4 = 676 v2 = 1589 }	# U-Tsang -> Shigatse
+link = { eu4 = 565 v2 = 1326 v2 = 1328 v2 = 1329 }	# Bhutan -> Katmandu, Tumlong, Thimpu
+# Tibet
+link = { eu4 = 557 v2 = 1327 }	# Katmandu -> Jumla
+link = { eu4 = 554 v2 = 1238 }	# Baisi Rayja -> Dehra Dun
+link = { eu4 = 511 v2 = 1235 }	# Garhwal -> Simla
+link = { eu4 = 739 v2 = 1594 }	# Kashgar -> Kashgar
+link = { eu4 = 710 v2 = 1598 }	# Hotan -> Khotan
+link = { eu4 = 509 v2 = 1224 }	# Kangra -> Srinagar
+link = { eu4 = 460 v2 = 1203 }	# Uzkend -> Osh
+link = { eu4 = 712 v2 = 1597 }	# Uighuristan -> Aksu
+link = { eu4 = 458 v2 = 1202 }	# Kokand -> Kokand
+link = { eu4 = 1785 v2 = 1208 v2 = 1210 }	# Karakoram -> Khorug, Faizabad
+link = { eu4 = 452 v2 = 1216 }	# Badakhshan -> Jalalabad
+link = { eu4 = 508 v2 = 1225 v2 = 1223 }	# Kashmir -> Gilgit, Chitral
+link = { eu4 = 578 v2 = 1218 }	# Khyber -> Peshawar
+link = { eu4 = 507 v2 = 1230 v2 = 1232 v2 = 1229 v2 = 1227 }	# Punjab -> Attock, Shahpur, Sialkot, Lahore
+link = { eu4 = 510 v2 = 1233 v2 = 1234 }	# Sirhind -> Amritsar, Firozpur
+link = { eu4 = 512 v2 = 1267 }	# Jangladesh -> Bikaner
+link = { eu4 = 522 v2 = 1239 }	# Upper Doab -> Meerut
+link = { eu4 = 520 v2 = 1268 }	# Mewat -> Jaipur
+link = { eu4 = 514 v2 = 1266 }	# Marwar -> Jodhpur
+link = { eu4 = 518 v2 = 1294 }	# Mewar -> Patan
+link = { eu4 = 519 v2 = 1264 }	# Dundhar -> Ajmer
+link = { eu4 = 740 v2 = 1272 }	# Malwa -> Bhopal
+link = { eu4 = 528 v2 = 1269 }	# Hadoti -> Udaipur
+link = { eu4 = 546 v2 = 1277 }	# East Berar -> Nagpur
+link = { eu4 = 550 v2 = 1275 }	# Mahakoshal -> Jubbulpore
+link = { eu4 = 559 v2 = 1273 v2 = 1241 v2 = 1274 }	# Bundelkhand -> Chhatarpur, Cawnpore, Rewa
+link = { eu4 = 525 v2 = 1270 }	# Gird -> Gwalior
+link = { eu4 = 524 v2 = 1237 v2 = 1236 }	# Central Doab -> Panipat, Delhi
+link = { eu4 = 523 v2 = 1242 }	# Oudh -> Lucknow
+link = { eu4 = 556 v2 = 1240 }	# Lower Doab -> Agra
+link = { eu4 = 555 v2 = 1244 v2 = 1243 v2 = 1246 }	# Jaunpur -> Fyzabad, Allahabad, Gorakhpur
+link = { eu4 = 558 v2 = 1247 v2 = 1248 v2 = 1245 }	# Bihar -> Patna, Gaya, Benares
+link = { eu4 = 551 v2 = 1280 v2 = 1281 }	# Mandla -> Raipur, Bilaspur
+link = { eu4 = 560 v2 = 1282 v2 = 1249 }	# Jharkand -> Raigarh, Kharswari
+# China Reduxalot
+link = { eu4 = 713 v2 = 2607 }	# Kuruk Tag -> Lop Nur
+link = { eu4 = 711 v2 = 1556 }	# Qarqan -> Makhai
+link = { eu4 = 709 v2 = 1535 }	# Ningxia -> Yeke Juu Chuulghan
+link = { eu4 = 702 v2 = 1532 }	# Ulaanchab -> Guihua Tumed
+link = { eu4 = 701 v2 = 1491 }	# Ordos -> Ningxia
+link = { eu4 = 698 v2 = 1492 v2 = 1559 }	# Guyuan -> Pingliang, Xian
+link = { eu4 = 696 v2 = 1618 }	# Xuan Fu -> Zhongding
+link = { eu4 = 697 v2 = 1572 }	# Datong -> Taiyuan
+link = { eu4 = 692 v2 = 1574 v2 = 1511 }	# Handan -> Luan, Zhengzhou
+link = { eu4 = 693 v2 = 1573 }	# Sanguan -> Fenzhou
+link = { eu4 = 700 v2 = 1561 v2 = 2062 }	# Shaanxi -> Yenan, Shangzhou
+link = { eu4 = 694 v2 = 1575 v2 = 1510 }	# Changzhi -> Pingyang, Luoyang
+link = { eu4 = 1836 v2 = 1513 }	# Nanyang -> Nanyang
+link = { eu4 = 1897 v2 = 3108 }	# Dongting -> Lake Dongting
+link = { eu4 = 699 v2 = 1489 }	# Lanzhou -> Gongchang
+link = { eu4 = 681 v2 = 1517 v2 = 1519 v2 = 1523 }	# Yichuan -> Dean, Anlu, Xiangyang
+link = { eu4 = 689 v2 = 1562 v2 = 1579 }	# Fengyuan -> Hanzhong, Baotung
+link = { eu4 = 672 v2 = 1525 v2 = 1520 }	# Chenzhou -> Changde, Jingzhou
+link = { eu4 = 673 v2 = 1529 v2 = 1526 }	# Bozhou -> Yongshun, Baoqing
+link = { eu4 = 674 v2 = 1505 v2 = 1507 }	# Guiyang -> Guiyang, Zhenyuan
+link = { eu4 = 680 v2 = 1521 v2 = 1581 }	# Shenquing -> Shinan, Kuizhou
+link = { eu4 = 679 v2 = 1583 v2 = 1577 v2 = 1584 v2 = 1580 }	# Sichuan Pendi -> Shunqing, Chongqing, Tongchuan, Jiading
+link = { eu4 = 678 v2 = 1578 v2 = 1582 v2 = 1586 }	# Kham -> Chengdu, Longan, Yazhou
+link = { eu4 = 705 v2 = 1558 }	# Dangla -> Kegudo
+link = { eu4 = 677 v2 = 1588 v2 = 1590 v2 = 1587 }	# Qamdo -> Chamdo, Lhodrak, Lhasa
+link = { eu4 = 675 v2 = 1585 }	# Liangshan -> Yibin
+link = { eu4 = 662 v2 = 1601 }	# Yunnan -> Kunming
+link = { eu4 = 663 v2 = 1506 }	# Wenshan -> Anshun
+link = { eu4 = 660 v2 = 1603 }	# Xishuan Banna -> Puer
+link = { eu4 = 661 v2 = 1602 }	# Dali -> Dali
+link = { eu4 = 1788 v2 = 1593 }	# Arunachal -> Tawang
+link = { eu4 = 562 v2 = 1252 v2 = 1255 }	# Koch -> Darjeeling, Rajshahi
+link = { eu4 = 571 v2 = 1258 }	# Darrang -> Gauhati
+link = { eu4 = 566 v2 = 1260 }	# Assam -> Dibrugarh
+link = { eu4 = 1950 v2 = 1254 }	# Meghalaya -> Dacca
+link = { eu4 = 567 v2 = 2566 }	# Sylhet -> Agartala
+link = { eu4 = 580 v2 = 1336 }	# Chin -> Magwe
+link = { eu4 = 588 v2 = 1334 }	# Mongnai -> Ava
+link = { eu4 = 587 v2 = 1338 }	# Keng Tung -> Taunggyi
+link = { eu4 = 583 v2 = 1340 }	# Hsenwi -> Lashio
+link = { eu4 = 582 v2 = 1341 }	# Kachin -> Putao
+link = { eu4 = 581 v2 = 1342 }	# Sagaing -> Myitkyina
+link = { eu4 = 573 v2 = 1339 }	# Kachar -> Haka
+link = { eu4 = 570 v2 = 1259 }	# Naga -> Imphal
+# It's hideous and will take some revising I'm sure... but it's DONE!!!
 }

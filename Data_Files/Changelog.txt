@@ -46,3 +46,6 @@ Revision	Who		Log Message
 43		Ztaesek		Changelog
 44		Ztaesek		Configuration File is important.
 45		Idhrendur	Add Observer-1.1.0.eu4 to test saves
+46		Ztaesek		Only noncoastal India and China Left
+47		Ztaesek		Inserted Mod Folder creation code
+48		Ztaesek		Finished province_mappings!
