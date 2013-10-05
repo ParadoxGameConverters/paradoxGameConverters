@@ -64,13 +64,8 @@ country_decisions = {
 			NOT = { has_country_modifier = the_provincial_system }
 		}
 		allow = {
-			OR = {
-				tax_assessor = 1
-				AND = {
-					government_tech = 10
-					ADM = 7
-				}
-			}
+			government_tech = 10
+			ADM = 7
 			officials = 3
 		}
 		effect = {

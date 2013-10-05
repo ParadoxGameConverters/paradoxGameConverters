@@ -169,6 +169,7 @@ religion_decisions = {
 		potential = {
 			not = { has_country_modifier = church_taxes }
 			religion_group = christian
+			NOT = { tag = PAP }
 		}
 		allow = {
 			# Raises the king to be the legal authority in all religious matters

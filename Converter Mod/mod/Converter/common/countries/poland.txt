@@ -47,7 +47,7 @@ monarch_names = {
 	"Jan #0" = 20
 	"Jan #0 Albert" = 20
 	"Jan #0 Kazimierz" = 20
-	"Michal #0 Korybut" = 20
+	"Michal #0" = 20
 	"Stefan #0" = 20
 	"Zygmunt #0" = 20
 	"Zygmunt #0 August" = 20
@@ -80,7 +80,7 @@ monarch_names = {
 	"Lukasz #0" = 0
 	"Maksym #0" = 0
 	"Mariusz #0" = 0
-	"Mieszko #0" = 0
+	"Mieszko #3" = 0
 	"Miroslaw #0" = 0
 	"Oskar #0" = 0
 	"Patryk #0" = 0
@@ -107,7 +107,7 @@ leader_names = {
 	Sobieski Sahajdaczny Siemienowicz Sulkowski Stadnicki Sieniawski
 	Tarnowski
 	Wyhowski Wielopolski
-	Zamoyski Zebrzydowski Zaswilichowski Zborowski Zbaraski
+	Zamoyski Zebrzydowski Zacwilichowski Zborowski Zbaraski
 }
 
 ship_names = {

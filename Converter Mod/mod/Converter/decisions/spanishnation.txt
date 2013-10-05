@@ -31,7 +31,7 @@ country_decisions = {
 			
 			war = no
 		}
-	  effect = {
+		effect = {
 			SPA = {
 				add_core = 197		# Roussillon
 				add_core = 206		# Galicia
@@ -74,8 +74,8 @@ country_decisions = {
 			change_tag = SPA
 			SPA = {
 				any_owned = {
-					limit = { province_id = 217 owned_by = THIS }
-					capital = 217	# Madrid
+					limit = { province_id = 217 }
+					owner = { capital = 217 }	# Madrid
 				}
 			}
 		}

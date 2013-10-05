@@ -5,7 +5,7 @@ country_decisions = {
 		potential = {
 			NOT = { exists = KOJ }
 			religion = catholic
-			government = monarchy
+			NOT = { government = republic }
 			owns = 379
 			NOT = { is_religion_enabled = protestant }
 		}

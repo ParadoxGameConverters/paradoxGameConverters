@@ -94,7 +94,7 @@ leader_names = {
 
 ship_names = {
 	"Akiyoshi Maru"
-	"Fusaie Maru" Fusamichi Maru" Fuyuyoshi Maru" "Fuyumoto Maru"
+	"Fusaie Maru" "Fusamichi Maru" "Fuyuyoshi Maru" "Fuyumoto Maru"
 	"Hisatsune Maru"
 	"Ichijo Maru" "Ietsune Maru" "Iratsume Maru"
 	"Kanefuyu Maru" "Kaneka Maru" "Kaneteru Maru" "Kaneyoshi Maru" "Kujo Maru" "Kaneharu Maru"

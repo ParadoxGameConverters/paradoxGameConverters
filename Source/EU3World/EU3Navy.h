@@ -40,6 +40,7 @@ class EU3Navy // also Navy
 		EU3Navy(int numNavies, int numShips, int provNum, const string transportType, map<int, EU3Province*> provinces);
 
 		int	getNumShips()	const { return ships.size(); };
+		int	getLocation()	const { return location; };
 
 		void		output(FILE*);
 	private:

@@ -50,7 +50,7 @@ province_decisions = {
 		allow = {
 			owner = { 
 				advisor = master_of_mint
-				officials = 2
+				officials = 1
 			}
 		}
 		effect = {
@@ -59,7 +59,7 @@ province_decisions = {
 				duration = -1
 			}
 			owner = {
-				officials = -2
+				officials = -1
 			}
 		}
 		ai_will_do = {
@@ -103,7 +103,7 @@ religion_decisions = {
 			}
 			modifier = {
 				factor = 0
-				owner = { innovative_narrowminded = 3 }
+				innovative_narrowminded = 3
 			}
 		}
 	}

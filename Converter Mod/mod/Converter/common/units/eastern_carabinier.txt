@@ -2,7 +2,6 @@
 
 type = infantry
 unit_type = eastern
-unit_type = ottoman
 
 maneuver = 1
 offensive_morale = 7

@@ -51,14 +51,14 @@ economy = {
 
 military = {
 	1000	#GARRISON_SIZE
-	0.4	#MDEF_ASSAULT_ATTACKER_LOSS_,
-	0.1	#_MDEF_ASSAULT_DEFENDER_LOSS_,
-	4	#_MDEF_ASSAULT_DICE_MODIFIER_
+	1.0	#MDEF_ASSAULT_ATTACKER_LOSS_,
+	0.05	#_MDEF_ASSAULT_DEFENDER_LOSS_,
+	5	#_MDEF_ASSAULT_DICE_MODIFIER_
 	1	#_MDEF_REGIMENT_MANPOWER_COST_
-	2	#_MDEF_MAX_MANPOWER_
+	10	#_MDEF_MAX_MANPOWER_
 	1.0	#MDEF_INFANTRY_SPEED_,
 	1.0	#_MDEF_CAVALRY_SPEED_,
-	0.75	#_MDEF_ARTILLERY_SPEED_,
+	1.0	#_MDEF_ARTILLERY_SPEED_,
 	6.0	#_MDEF_BIG_SHIP_SPEED_,
 	10.0	#_MDEF_LIGHT_SHIP_SPEED_,
 	4.0	#_MDEF_GALLEY_SPEED_,
@@ -80,7 +80,7 @@ military = {
 	3.0	#_MDEF_MERCENARY_MAINTENANCE_
 	0.1	# Amount of regiment strength reinforced each month.
 	0.1	# Ship repair speed.
-	0.3	# Tradition gain base value from combats.  
+	0.4	# Tradition gain base value from combats.  
 	0.2	# Tradition cost in percentage to recruit a leader.
 	12	# Maximum sized mercenary pool
 	1.0	#	_MDEF_FRONT_LINE_MODIFIER_
@@ -112,7 +112,7 @@ diplomacy = {
 	1650 # End of Crusade/Excommunicate actions. AI might also befriend old religious enemies.
 	-0.05 # _DDEF_CANCEL_MISSION_PRESTIGE_LOSS_
 	60 # _DDEF_EMPEROR_VOTE_DAYS_; "Cooldown" until Electors can change their vote again.
-	5 	# _DDEF_TRUCE_YEARS_; Years of Truce
+	10 	# _DDEF_TRUCE_YEARS_; Years of Truce
 	
 	# Peace Option Effects, base values for the winner. The loser gets the inverse.
 	8		# _DDEF_PO_ANNEX_BADBOY_, (No effect on loser :)
@@ -147,7 +147,7 @@ diplomacy = {
 	5		# _DDEF_PEACE_COST_RELEASE_ Base Peace cost for releasing an annexed country (also increases with nr of provinces)
 	5		# _DDEF_PEACE_COST_CONCEDE_ Base Peace cost for conceding defeat
 	1		# _DDEF_PEACE_COST_GOLD_STEP_ Peace Cost for 1 month of income
-	20		# _DDEF_PEACE_COST_SPHERE_ Peace cost for removing a country from a Sphere of Influence
+	5		# _DDEF_PEACE_COST_SPHERE_ Peace cost for removing a country from a Sphere of Influence
 	10		# _DDEF_PEACE_COST_ANNUL_ Peace cost for annulment of treaties
 	10		# _DDEF_PEACE_COST_JOIN_LEAGUE_ Peace Cost for Joining a Trade League
 	

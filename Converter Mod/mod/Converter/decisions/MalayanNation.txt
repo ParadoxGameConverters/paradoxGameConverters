@@ -4,6 +4,8 @@ country_decisions = {
 		potential = {
 			NOT = { exists = MSA }
 			culture_group = malay
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
 			NOT = { technology_group = nomad_group }
 		}
 		allow = 

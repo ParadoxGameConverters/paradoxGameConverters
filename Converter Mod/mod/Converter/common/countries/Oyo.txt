@@ -16,7 +16,6 @@ historical_ideas = {
 	bureaucracy
 	cabinet
 	espionage
-	bureaucracy
 }
 
 historical_units = {

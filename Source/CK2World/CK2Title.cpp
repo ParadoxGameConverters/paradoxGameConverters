@@ -300,6 +300,10 @@ void CK2Title::setDeJureLiege(const map<string, CK2Title*>& titles)
 			deJureLiege = titleItr->second;
 			deJureLiege->addDeJureVassal(this);
 		}
+		else
+		{
+			log("Error: Could not find de jure liege %s for %s.\n", deJureLiegeString.c_str(), titleString.c_str());
+		}
 	}
 }
 

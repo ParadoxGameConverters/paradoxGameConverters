@@ -393,6 +393,7 @@ base_values = {
 	tolerance_heretic = -2
 	officials = 0.3
 	mercenary_cost = 0.5
+	global_manpower = 0.4
 }
 
 war_taxes = {
@@ -486,7 +487,7 @@ war_exhaustion = {
 	stability_cost_modifier = 0.05
 	global_regiment_recruit_speed = 0.1
 	global_ship_recruit_speed = 0.1
-	legitimacy = -0.002
+	legitimacy = -0.003
 }
 
 monarch_adm = {
@@ -562,7 +563,7 @@ emperor = {
 states_in_hre = {				#bonuses for each state with capital in HRE.. as emperor
 	land_forcelimit	= 2			#each state increases forcelimit by 5
 	stability_investment = 1		#and province 2$ each month to stability investments.
-	global_manpower = 0.5			#each gives 0.5 MP to the emperor.
+	global_manpower = 0.1			#each gives 0.5 MP to the emperor.
 	prestige = 0.001
 }
 
@@ -609,6 +610,7 @@ luck = {
 	stability_cost_modifier = -0.50
 	officials = 0.25
 	defensiveness = 0.25
+	land_attrition = -0.25
 
 }
 
@@ -686,9 +688,8 @@ production_leader =
 	local_production_efficiency = 0.05
 }
 
-#Applied for max 5 provinces
 nomad_neighbour_bonus = {
-	colonists = 0.33					# 33% for each province bordering a nomad province
+	colonists = 0.25					# 0.25 for bordering a nomad province
 }
 
 good_relation_daimyo = {
@@ -702,9 +703,12 @@ shogun_influence = {
 	global_tax_modifier = 0.003			# for each point of influence
 }
 
+
 ##################################################################################################
 # Scripted and used from Spies
 ##################################################################################################
+# Note: these can be removed
+
 troop_desertions = {
 	attrition = 5				#Attrition increased by 10 weights
 	max_attrition = 5			#Maximum Attrition is increased by 10
@@ -726,7 +730,6 @@ foreign_support_for_rebels = {
 	local_revolt_risk = 3			#3% revolt risk!
 	icon = 2
 }
-
 
 discontent_sowed = {
 	stability_cost_modifier = 0.50

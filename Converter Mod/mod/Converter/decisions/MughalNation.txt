@@ -5,6 +5,8 @@ country_decisions = {
 			NOT = { exists = MUG }
 			NOT = { tag = PER }
 			NOT = { tag = TUR }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
 			OR = {
 				culture_group = altaic
 				culture_group = iranian
@@ -65,7 +67,19 @@ country_decisions = {
 			government = despotic_monarchy
 			change_tag = MUG
 			MUG = {
-				technology_group = muslim
+				random_owned = {
+					limit = {
+						owner = {
+							OR = {
+								technology_group = new_world
+								technology_group = sub_saharan
+								technology_group = chinese
+								technology_group = indian
+							}
+						}
+					}
+					owner = { technology_group = muslim }
+				}
 			}
 		}
 		ai_will_do = {

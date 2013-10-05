@@ -20,9 +20,12 @@ sound_toll = {
 		owns = 6  # Skåne
 		owns = 12 # Sjaelland
 		owns = 14 # Fyn
+		controls = 6  # Skåne
+		controls = 12 # Sjaelland
+		controls = 14 # Fyn		
 	}
 	
-	global_trade_income_modifier = 0.20	#20% more trade income.
+	merchants = 0.5
 }
 
 
@@ -45,9 +48,13 @@ bosphorous_sound_toll = {
 		owns = 317 # Bursa
 		owns = 151 # Thrace
 		owns = 316 # Bithynia
+		controls = 149
+		controls = 317
+		controls = 151
+		controls = 316		
 	}
 
-	global_trade_income_modifier = 0.15	#15% more trade income.
+	merchants = 0.5
 }
 
 
@@ -647,7 +654,7 @@ big_hre = {
 	
 	technology_cost = -0.1
 	stability_cost_modifier = -0.1
-	global_revolt_risk = -3
+	global_revolt_risk = -1
 	global_manpower_modifier = 0.10
 	icon = 3
 }
@@ -704,6 +711,7 @@ daimyo_navy = {
 	naval_forcelimit_modifier = -0.5
 	icon = 2
 }
+
 
 ##################################################
 # Some help for scotland in early game

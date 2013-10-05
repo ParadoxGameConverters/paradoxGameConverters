@@ -9,7 +9,7 @@ country_decisions = {
 		}
 		allow = {
 			#war = no
-			#technology_group = western
+			treasury = 300
 		}
 		effect = {
 			set_country_flag = relocated_capital_st_petersburg
@@ -25,7 +25,57 @@ country_decisions = {
 			 	change_manpower = 2
 				culture = russian
 				citysize = 20000
-				religion = orthodox
+				owner = {
+					random_owned = { 
+						limit = { owner = { religion = catholic } }
+						33 = { religion = catholic }
+					}
+					random_owned = { 
+						limit = { owner = { religion = protestant } }
+						33 = { religion = protestant }
+					}
+					random_owned = { 
+						limit = { owner = { religion = reformed } }
+						33 = { religion = reformed }
+					}
+					random_owned = { 
+						limit = { owner = { religion = orthodox } }
+						33 = { religion = orthodox }
+					}
+					random_owned = { 
+						limit = { owner = { religion = sunni } }
+						33 = { religion = sunni }
+					}
+					random_owned = { 
+						limit = { owner = { religion = shiite } }
+						33 = { religion = shiite }
+					}
+					random_owned = { 
+						limit = { owner = { religion = buddhism } }
+						33 = { religion = buddhism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = hinduism } }
+						33 = { religion = hinduism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = confucianism } }
+						33 = { religion = confucianism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = shinto } }
+						33 = { religion = shinto }
+					}
+					random_owned = { 
+						limit = { owner = { religion = animism } }
+						33 = { religion = animism }
+					}
+					random_owned = { 
+						limit = { owner = { religion = shamanism } }
+						33 = { religion = shamanism }
+					}
+				}
+
 			 }
 		}
 		ai_will_do = {

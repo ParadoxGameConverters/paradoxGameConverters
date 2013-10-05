@@ -38,7 +38,7 @@ historical_units = {
 monarch_names = {
 	"Boleslaw #5" = 20
 	"Wladislaw #4" = 20
-	"Kazimiersz #3" = 15
+	"Kazimierz #3" = 15
 	"Mieszko #3" = 15
 	"Leszek #2" = 10
 	"Przemyslaw #2" = 10
@@ -46,7 +46,7 @@ monarch_names = {
         "Adrian #0" = 0
 	"Aleksander #0" = 0
         "Aleksy #0" = 0
-	"Andrezj #0" = 0
+	"Andrzej #0" = 0
 	"Antoni #0" = 0
 	"Aron #0" = 0
 	"Bartlomiej #0" = 0
@@ -58,7 +58,7 @@ monarch_names = {
 	"Iwan #0" = 0
 	"Izaak #0" = 0
 	"Jakub #0" = 0
-	"Józef #0" = 0
+	"Jozef #0" = 0
         "Lech #0" = 0
 	"Ludwik #0" = 0
         "Lukasz #0" = 0
@@ -80,10 +80,10 @@ monarch_names = {
 
 leader_names = {
 	Arciszewski
-	Benyowski Bidziñski Branicki
+	Benyowski Bidzinski Branicki
 	Czarniecki Chometowski
 	Dunin Denhoff Drzewicki
-	Grodzicki Górka
+	Grodzicki Gorka
 	Houwaldt
 	Jablonowski Jazlowiecki
 	Kurozwecki Kurbski Koniecpolski Kosciuszko Krasinski Kalinowski Korycki Kazanowski Kmita
@@ -95,23 +95,23 @@ leader_names = {
 	Sobieski Sahajdaczny Siemienowicz Sulkowski Stadnicki Sieniawski
 	Tarnowski
 	Wyhowski Wielopolski
-	Zamoyski Zebrzydowski Zaswilichowski Zborowski Zbaraski
+	Zamoyski Zebrzydowski Zacwilichowski Zborowski Zbaraski
 }
 
 ship_names = {
 	"Arka Noego"
         "Bialy Orzel" Burza "Bialy Lew" "Brzesko-Kujawskie" Belzkie Braclawskie
-        Charitas "Czarny Orzel" "Czarny Kruk" Chelmin'skie Czernichowskie
+        Charitas "Czarny Orzel" "Czarny Kruk" Chelminskie Czernichowskie
         Fortuna
-        Gryf Gwiazda Gnieznien'skie
+        Gryf Gwiazda Gnieznienskie
 	Inoworclawskie
 	"Król Dawid" Kaliskie Krakowskie Kijowskie Kraków
         Lublin "Latajacy Jelen'" Lwów Leczyckie Lubelskie
         "Maly Bialy Orzel" Malborskie Mazowieckie
         Niewrazliwy "Nowy Czarny Orzel"
-        "Prorok Samuel" "Panna Wodna" Plomien' Poznanskie Plockie Podlaskie Podolskie
+        "Prorok Samuel" "Panna Wodna" Plomien Poznanskie Plockie Podlaskie Podolskie
 	"Rycerz Swiety Jerzy" Rawskie Ruskie
         Strzelec Suwerenny "Swiety Piotr" Sieradzkie Sandomierskie "Swiety Kazimierz"
-        "Wielkie Slonce" Wodnik Warmin'skie Wolyn'skie Warszawa
+        "Wielkie Slonce" Wodnik Warminskie Wolynskie Warszawa
         Zwyciestwo "Zólty Lew"
 }
