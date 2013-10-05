@@ -1092,7 +1092,7 @@ link = { eu4 = 1961 v2 = 2580 }	# Ladoga -> Stara Ladoga
 link = { eu4 = 310 v2 = 1003 v2 = 1004 }	# Novgorod -> Novgorod, Tikhvin
 link = { eu4 = 312 v2 = 992 }	# Vologda -> Belozersk
 link = { eu4 = 1034 v2 = 1074 v2 = 2633 }	# Kamchatka -> Petropavlovsk, Ossora
-link = { eu4 = 1035 v2 = 2616 v2 = 2663 v2 = 1073 }	# Penchisky -> Tilichiki, Kamenskoye, Yevensk
+link = { eu4 = 1035 v2 = 2616 v2 = 1073 v2 = 2663 }	# Penchisky -> Tilichiki, Yevensk, Kamenskoye
 link = { eu4 = 1041 v2 = 2638 }	# Gizhiga -> Omsukchan
 link = { eu4 = 1044 v2 = 2618 v2 = 2639 }	# Tauisk -> Talaya, Susuman
 link = { eu4 = 1043 v2 = 1072 }	# Okhotsk -> Okhotsk
@@ -1106,7 +1106,7 @@ link = { eu4 = 726 v2 = 1481 v2 = 1479 v2 = 1480 }	# Liaodong -> Port Arthur, Mu
 link = { eu4 = 730 v2 = 1555 }	# Haixi -> Jilin
 link = { eu4 = 731 v2 = 1554 }	# Ninguta -> Ninguta
 link = { eu4 = 729 v2 = 1083 }	# Wusuli -> Boli
-link = { eu4 = 1049 v2 = 2617 }	# Saghalian Oula -> Saghalian Oula
+link = { eu4 = 1049 v2 = 1085 v2 = 2617 }	# Saghalian Oula -> Ulusamudan, Saghalian Oula
 link = { eu4 = 1048 v2 = 1084 }	# Udskoye -> Utchan
 link = { eu4 = 1057 v2 = 1078 }	# Udinsky -> Chita
 # China
@@ -1167,7 +1167,7 @@ link = { eu4 = 615 v2 = 1356 }	# Luang Prabang -> Luang Prabang
 # Russia Wastelands
 link = { eu4 = 1072 v2 = 2614 v2 = 2684 }	# Obdorsk -> Mordiyakha, Yar Sale
 link = { eu4 = 1781 v2 = 2659 v2 = 2613 v2 = 2615 v2 = 2680 v2 = 2657 v2 = 2658 v2 = 2654 v2 = 2693 }	# Western Siberia -> Napalkovo, Nyda, Krasnoselkup, Dudinka, Svetlogorsk, Kheta, Khatanga, Uchami
-link = { eu4 = 1782 v2 = 2674 v2 = 2655 v2 = 2675 v2 = 2653 v2 = 2651 v2 = 2673 v2 = 2670 v2 = 2671 v2 = 2652 v2 = 2649 v2 = 2667 v2 = 1071 }	# Eastern Siberia -> Essey, Tura, Yekonda, Saskylah, Udanchniy, Olenyok, Tiksi, Zhilinda, Kular, Zhigansk, Bulun, Bytantaysk
+link = { eu4 = 1782 v2 = 2674 v2 = 2655 v2 = 2675 v2 = 2653 v2 = 2651 v2 = 2673 v2 = 2670 v2 = 2671 v2 = 2652 v2 = 2649 v2 = 2667 }	# Eastern Siberia -> Essey, Tura, Yekonda, Saskylah, Udanchniy, Olenyok, Tiksi, Zhilinda, Kular, Zhigansk, Bulun
 # India
 # Sri Lanke
 link = { eu4 = 572 v2 = 1322 v2 = 1321 v2 = 1323 v2 = 1324 }	# Ceylon -> Jaffna, Colombo, Kandy, Trincomalee
@@ -1225,22 +1225,22 @@ link = { eu4 = 430 v2 = 1136 v2 = 1135 v2 = 1138 }	# Laristan -> Bushire, Shiraz
 link = { eu4 = 431 v2 = 1142 v2 = 1141 }	# Hormuz -> Bandar Abbas, Lengeh
 link = { eu4 = 434 v2 = 1145 }	# Makran -> Jask
 link = { eu4 = 575 v2 = 1146 }	# Baluchistan -> Chabahar
-link = { eu4 = 576 v2 = 1222 }	# Indus -> Bela
-link = { eu4 = 504 v2 = 1288 }	# Lower Sind -> Karachi
+link = { eu4 = 576 v2 = 1222 v2 = 1221 }	# Indus -> Bela, Kalat
+link = { eu4 = 504 v2 = 1288 v2 = 1290 }	# Lower Sind -> Karachi, Umarkot
 link = { eu4 = 1101 v2 = 2128 }	# Diego Garcia -> Diego Garcia
 # Eastern Block
 link = { eu4 = 283 v2 = 974 v2 = 972 v2 = 971 }	# Zaporozhia -> Kramatorsk, Ekaterinoslav, Krivoy Rog
 link = { eu4 = 290 v2 = 963 }	# Poltava -> Poltava
 link = { eu4 = 289 v2 = 962 }	# Chernigov -> Chernigov
-link = { eu4 = 292 v2 = 948 }	# Mogilyov -> Mogilev
+link = { eu4 = 292 v2 = 948 v2 = 945 }	# Mogilyov -> Mogilev, Vitebsk
 link = { eu4 = 275 v2 = 946 }	# Polotsk -> Polotsk
 link = { eu4 = 293 v2 = 943 }	# Smolensk -> Smolensk
 link = { eu4 = 294 v2 = 998 }	# Tver -> Tver
-link = { eu4 = 295 v2 = 1008 }	# Moskva -> Moscow
+link = { eu4 = 295 v2 = 1008 v2 = 1009 }	# Moskva -> Moscow, Borodino
 link = { eu4 = 307 v2 = 1013 }	# Vladimir -> Vladimir
 link = { eu4 = 308 v2 = 1001 }	# Yaroslavl -> Yaroslavl
-link = { eu4 = 1752 v2 = 999 }	# Rzhev -> Rzhev
-link = { eu4 = 276 v2 = 718 }	# Minsk -> Minsk
+link = { eu4 = 1752 v2 = 999 v2 = 1000 }	# Rzhev -> Rzhev, Staritsa
+link = { eu4 = 276 v2 = 718 v2 = 941 }	# Minsk -> Minsk, Slutsk
 link = { eu4 = 280 v2 = 958 }	# Kiev -> Kiev
 link = { eu4 = 1944 v2 = 961 }	# Cherkasy -> Cherkassy
 link = { eu4 = 1942 v2 = 960 }	# Zhytomyr -> Zhitomir
@@ -1261,7 +1261,7 @@ link = { eu4 = 1753 v2 = 1023 }	# Kostroma -> Kostorma
 link = { eu4 = 1957 v2 = 1024 }	# Galich -> Galich
 link = { eu4 = 1964 v2 = 987 }	# Ust-Sysolsk -> Ust Sysolsk
 link = { eu4 = 1079 v2 = 1028 }	# Viatka -> Vyatkha
-link = { eu4 = 473 v2 = 1034 }	# Samara -> Samara
+link = { eu4 = 473 v2 = 1034 v2 = 1035 }	# Samara -> Samara, Syzran
 link = { eu4 = 303 v2 = 1037 }	# Saratow -> Saratov
 link = { eu4 = 288 v2 = 1046 }	# Cherkassk -> Chirskaya
 link = { eu4 = 464 v2 = 1036 }	# Astrakhan -> Astrakhan
@@ -1288,7 +1288,7 @@ link = { eu4 = 314 v2 = 989 v2 = 991 }	# Ustyug -> Vologda, Uglich
 link = { eu4 = 1755 v2 = 990 }	# Ustyug -> Kotlas
 link = { eu4 = 1083 v2 = 1027 }	# Zavolochye -> Vetluga
 link = { eu4 = 1754 v2 = 1017 }	# Orel -> Orel
-link = { eu4 = 296 v2 = 1010 }	# Kaluga -> Kaluga
+link = { eu4 = 296 v2 = 1010 v2 = 1014 }	# Kaluga -> Kaluga, Vyazma
 link = { eu4 = 1972 v2 = 1031 }	# Udmurtia -> Sarapul
 link = { eu4 = 1963 v2 = 2689 }	# Cherdyn -> Mulda
 link = { eu4 = 1962 v2 = 1029 }	# Kudymkar -> Glasov
@@ -1609,7 +1609,7 @@ link = { eu4 = 1444 v2 = 2897 }	# Bay of Anadyr -> Bay of Anadyr
 link = { eu4 = 1679 v2 = 2898 }	# Northern Pacific #3 -> Yekaterina Plains
 link = { eu4 = 1443 v2 = 2896 }	# Bay of Oljut -> Bay of Oljut
 link = { eu4 = 1382 v2 = 2835 }	# Bay of Komenskoie -> Bay of Komenskoie
-link = { eu4 = 1383 v2 = 2836 v2 = 2620 }	# Coast of Kamchatska -> Coast of Kamchatska, Syasir
+link = { eu4 = 1383 v2 = 2836 }	# Coast of Kamchatska -> Coast of Kamchatska
 link = { eu4 = 1380 v2 = 2833 }	# Amur Delta -> Amur Delta
 link = { eu4 = 1381 v2 = 2834 }	# Baj of Ayan -> Bay of Ayan
 link = { eu4 = 1379 v2 = 2832 }	# Tatar Straits -> Tatar Straits
@@ -1825,4 +1825,135 @@ link = { eu4 = 1975 v2 = 3209 }	# Sea of Jutland -> Bahamas Basin
 link = { eu4 = 1925 v2 = 3205 }	# Bält sound -> West Demerara Plain
 # Add 1925 to that
 # Note to self: Need to clean up comments and locations!!!!!!!
+link = { eu4 = 1038 v2 = 2622 }	# Anadyrsk -> Markovo
+link = { eu4 = 1037 v2 = 2660 }	# Nizhe-Kolymsk -> Bereyezovka
+link = { eu4 = 1036 v2 = 2620 }	# Podzhiversk -> Syasir
+link = { eu4 = 1954 v2 = 791 v2 = 2538 }	# Torontal -> Mitrovica, Novi Sad
+link = { eu4 = 156 v2 = 792 v2 = 652 v2 = 653 }	# Banat -> Pancevo, Temesvar, Resicabánya
+link = { eu4 = 1951 v2 = 665 v2 = 656 }	# Hunyad -> Tirgu Jiu, Deva
+link = { eu4 = 158 v2 = 659 v2 = 657 v2 = 2533 v2 = 660 }	# Transylvania -> Brasso, Nagyszeben, Targu Mures, Udvarhely
+link = { eu4 = 268 v2 = 676 v2 = 677 v2 = 671 v2 = 670 v2 = 673 v2 = 672 }	# Bessarabia -> Chisinau, Balti, Botosani, Iasi, Galati, Bacau
+link = { eu4 = 1943 v2 = 954 v2 = 955 }	# Bratslav -> Vinnitsa, Proskorov
+link = { eu4 = 155 v2 = 645 v2 = 649 v2 = 650 }	# Szolnok -> Kecskemét, Szeged, Békéscsaba
+link = { eu4 = 153 v2 = 641 v2 = 646 }	# Pecs -> Budapest, Miskolc
+link = { eu4 = 1772 v2 = 633 v2 = 634 }	# Presburg -> Bratislava, Trencín
+link = { eu4 = 154 v2 = 635 v2 = 636 v2 = 638 }	# Ersekujvar -> Nitra, Banská Bystrica, Rožnava
+link = { eu4 = 263 v2 = 632 v2 = 688 v2 = 689 }	# Ratibor -> Olomouc, Troppau, Tesin
+link = { eu4 = 258 v2 = 685 v2 = 712 v2 = 684 }	# Lodz -> Kattowitz, Lodz, Oppeln
+link = { eu4 = 1939 v2 = 710 }	# Leczyca -> Skierniewice
+link = { eu4 = 257 v2 = 706 }	# Mazovia -> Warsaw
+link = { eu4 = 259 v2 = 713 v2 = 716 }	# Sandomir -> Radom, Kielce
+link = { eu4 = 262 v2 = 2584 v2 = 703 v2 = 714 v2 = 704 v2 = 705 }	# Krakow -> Bielsko, Krakow, Tarnow, Novy Sacz, Przemysl
+link = { eu4 = 261 v2 = 663 v2 = 953 v2 = 662 }	# Ruthenia -> Suceava, Stanislavov, Cernauti
+link = { eu4 = 1952 v2 = 661 v2 = 950 }	# Maramaros -> Beszterce, Uzgorord
+link = { eu4 = 157 v2 = 654 v2 = 655 }	# Partium -> Cluj, Gyulafehervar
+link = { eu4 = 1953 v2 = 647 v2 = 651 }	# Szabolcs -> Oradea, Szatmár
+link = { eu4 = 162 v2 = 637 v2 = 648 }	# Carpathia -> Košice, Debrecen
+link = { eu4 = 281 v2 = 952 }	# Podolia -> Ternopil
+link = { eu4 = 279 v2 = 956 v2 = 957 }	# Volhynia -> Rovne, Kovel
+link = { eu4 = 1940 v2 = 715 v2 = 711 }	# Belz -> Lublin, Siedlice
+link = { eu4 = 277 v2 = 937 }	# Grodno -> Brest-Litovsk
+link = { eu4 = 269 v2 = 719 v2 = 707 }	# Podlasia -> Bialystock, Suwalki
+link = { eu4 = 1938 v2 = 709 }	# Wizna -> Lomza
+link = { eu4 = 1941 v2 = 942 v2 = 959 }	# Turov -> Mozyr, Korosten
+link = { eu4 = 297 v2 = 1016 v2 = 1015 }	# Bryansk -> Bryansk, Peremyshl
+link = { eu4 = 1945 v2 = 949 v2 = 944 }	# Novgorod-Seversky -> Gomel, Orsha
+link = { eu4 = 278 v2 = 940 }	# Polesia -> Pinsk
+link = { eu4 = 1937 v2 = 936 }	# Grodno -> Grodno
+link = { eu4 = 260 v2 = 702 v2 = 951 }	# Galicien -> Lvov, Stryi
+link = { eu4 = 271 v2 = 364 }	# Samogitia -> Siauliai
+link = { eu4 = 1936 v2 = 363 }	# Kovno -> Panevezys
+link = { eu4 = 270 v2 = 939 }	# Troki -> Baranovichi
+link = { eu4 = 272 v2 = 938 }	# Lithuania -> Lida
+link = { eu4 = 273 v2 = 361 v2 = 362 v2 = 360 }	# Wenden -> Kaunas, Marijampole, Vilnius
+link = { eu4 = 1960 v2 = 356 }	# Ostrov -> Daugavpils
+link = { eu4 = 311 v2 = 947 }	# Kholm -> Pastavy
+link = { eu4 = 1959 v2 = 1007 }	# Torzhok -> Velikiye Luki
+link = { eu4 = 1956 v2 = 1005 }	# Suzdal -> Borovichi
+link = { eu4 = 1778 v2 = 1022 }	# Kasimov -> Ivanovo
+link = { eu4 = 467 v2 = 980 v2 = 1045 }	# Borisoglebsk -> Luhansk, Migolinskaya
+link = { eu4 = 468 v2 = 1050 v2 = 1041 }	# Khazaria -> Stavropol, Elitsa
+link = { eu4 = 469 v2 = 1038 }	# Ryn -> Novo Uzensk
+link = { eu4 = 474 v2 = 2610 }	# Yaik -> Uralsk
+link = { eu4 = 1073 v2 = 2682 }	# Berezov -> Aksarka
+link = { eu4 = 1080 v2 = 2685 }	# North Urals -> Muzhi
+link = { eu4 = 1078 v2 = 1058 v2 = 1062 }	# Middle Urals -> Ekaterinburg, Berezov
+link = { eu4 = 1069 v2 = 1065 }	# Surgut -> Nizhnevartovsk
+link = { eu4 = 1070 v2 = 2681 v2 = 2646 }	# Koda -> Kikkiakki, Ases Igan
+link = { eu4 = 1067 v2 = 2692 }	# Narym -> Kostino
+link = { eu4 = 1061 v2 = 1070 v2 = 2701 v2 = 2656 }	# Yeniseysk -> Bryanka, Surinda, Tayimba
+link = { eu4 = 1059 v2 = 2694 v2 = 2677 v2 = 1076 }	# Bratsk -> Vanavara, Dotkon, Bratsk
+link = { eu4 = 1062 v2 = 1077 }	# Kachinsk -> Krasnoyarsk
+link = { eu4 = 1054 v2 = 2650 v2 = 2695 }	# Ilimsk -> Nyurba, Mukhtuya
+link = { eu4 = 1045 v2 = 1069 v2 = 2672 }	# Yakutsk -> Vilyuysk, Pokrovsk
+link = { eu4 = 1042 v2 = 1071 v2 = 2648 v2 = 2668 }	# Kamnuskoye -> Bytantaysk, Yakutsk, Verkhoyansk
+link = { eu4 = 1039 v2 = 2643 }	# Verkhoyansk -> Honuu
+link = { eu4 = 1040 v2 = 2642 v2 = 2640 }	# Suntar Khayat -> Ust Nera, Ziryanka
+link = { eu4 = 1046 v2 = 2669 v2 = 1080 }	# Butalsk -> Amga, Chernomin
+link = { eu4 = 1051 v2 = 2644 v2 = 2696 }	# Uchurskoye -> Olyekminsk, Aldan
+link = { eu4 = 1055 v2 = 2676 }	# Verkne-Angarsky -> Kirensk
+link = { eu4 = 1052 v2 = 2697 v2 = 1081 }	# Verkohzehkoye -> Magdagachi, Yaksa
+link = { eu4 = 1056 v2 = 2645 }	# Barguzinsky -> Chilchi
+link = { eu4 = 1058 v2 = 1079 }	# Nerchinsky -> Nerchinsk
+link = { eu4 = 1053 v2 = 1553 }	# Albazinsky -> Aigun
+link = { eu4 = 728 v2 = 1552 }	# Sanxing -> Qiqihar
+link = { eu4 = 727 v2 = 1002 }	# Heilongjiang -> Manzhouli
+link = { eu4 = 725 v2 = 1533 }	# Hinggan -> Jirim Chuulgan
+link = { eu4 = 724 v2 = 1467 }	# Yakesa -> Bayan Tumen
+link = { eu4 = 722 v2 = 1534 }	# Chahar -> Ulaan Chab Chuulghan
+link = { eu4 = 721 v2 = 1465 }	# Dornod -> Urga
+link = { eu4 = 723 v2 = 2207 }	# Xilin Gol -> Sainshand
+link = { eu4 = 703 v2 = 1576 }	# Chengde -> Datong
+link = { eu4 = 717 v2 = 2678 }	# Selenge -> Bulgan
+link = { eu4 = 719 v2 = 1468 }	# Khangai -> Uliastai
+link = { eu4 = 1064 v2 = 1063 }	# Tomsk -> Tomsk
+link = { eu4 = 1068 v2 = 2691 }	# Pegaya Orda -> Vorgovo
+link = { eu4 = 1065 v2 = 1067 }	# Kuznetsk -> Barnaul
+link = { eu4 = 1063 v2 = 1469 }	# Sayan -> Kyzyl
+link = { eu4 = 716 v2 = 2608 }	# Tannu Tuva -> Khatgal
+link = { eu4 = 1066 v2 = 2679 v2 = 1596 }	# Altai -> Khovd, Tulta
+link = { eu4 = 480 v2 = 1068 v2 = 2698 }	# Kulunda -> Ulala, Slavgorod
+link = { eu4 = 461 v2 = 1186 }	# Zhetysu -> Alma Ata
+link = { eu4 = 1784 v2 = 1597 v2 = 1190 v2 = 1203 v2 = 1202 }	# Tiam Shan -> Aksu, Naryn, Osh, Kokand
+link = { eu4 = 454 v2 = 1199 }	# Samarkand -> Samarkand
+link = { eu4 = 1967 v2 = 1201 }	# Khujand -> Khojand
+link = { eu4 = 457 v2 = 1195 }	# Tashkent -> Tashkent
+link = { eu4 = 442 v2 = 1198 }	# Bukhara -> Bukhara
+link = { eu4 = 441 v2 = 1191 }	# Khiva -> Khiva
+link = { eu4 = 1327 v2 = 2780 }	# Aral Sea -> Aral Sea
+link = { eu4 = 445 v2 = 1206 }	# Marv -> Merv
+link = { eu4 = 453 v2 = 1200 }	# Qarshi -> Qarshi
+link = { eu4 = 1968 v2 = 1207 }	# Kulob -> Kulob
+link = { eu4 = 714 v2 = 1188 v2 = 1595 }	# Dzungaria -> Qaratal, Ili
+link = { eu4 = 715 v2 = 1600 }	# Urumqi -> Díhuà
+link = { eu4 = 1074 v2 = 2690 v2 = 1066 }	# Sibir -> Verkhniy Ufaley, Tobolsk
+link = { eu4 = 1071 v2 = 2683 v2 = 1064 }	# Tara -> Bakchar, Omsk
+link = { eu4 = 1075 v2 = 1061 }	# Tyumen -> Tyumen
+link = { eu4 = 1076 v2 = 2611 }	# Kurgan -> Turgay
+link = { eu4 = 479 v2 = 2686 v2 = 1184 }	# Kerey -> Ishim, Kokshetau
+link = { eu4 = 478 v2 = 1187 }	# Argyn -> Semipalatinsk
+link = { eu4 = 472 v2 = 1060 }	# Jetyru -> Orsk
+link = { eu4 = 470 v2 = 1044 }	# Bayuly -> Orenburg
+link = { eu4 = 471 v2 = 1183 v2 = 2702 }	# Alimuly -> Aqtobe, Aralsk
+link = { eu4 = 476 v2 = 1181 }	# Kypshak -> Qaraganda
+link = { eu4 = 477 v2 = 2606 }	# Nadym -> Zhambyl
+link = { eu4 = 459 v2 = 1189 }	# Taraz -> Bishkek
+link = { eu4 = 1969 v2 = 1185 }	# Sozak -> Yasi
+link = { eu4 = 455 v2 = 1197 }	# Kyrzyl-Kum -> Shymkent
+link = { eu4 = 1970 v2 = 1193 }	# Syghnak -> Kyzylorda
+link = { eu4 = 456 v2 = 2612 }	# Turkestan -> Aktash
+link = { eu4 = 440 v2 = 1192 }	# Qaraqalpak -> Nukus
+link = { eu4 = 443 v2 = 1205 }	# Ust Yurt -> Kyzyl Arvat
+link = { eu4 = 1973 v2 = 1196 }	# Urgench -> Dashhowuz
+link = { eu4 = 438 v2 = 1204 }	# Kara Kum -> Ashkhabad
+link = { eu4 = 437 v2 = 1150 v2 = 1149 }	# Atak -> Bojnurd, Sabzevar
+link = { eu4 = 450 v2 = 1211 }	# Balkh -> Balkh
+link = { eu4 = 436 v2 = 1148 v2 = 1140 }	# Khurasan -> Birjand, Kerman
+link = { eu4 = 444 v2 = 1147 }	# Charjuy -> Mashhad
+link = { eu4 = 432 v2 = 1137 v2 = 1139 v2 = 1143 }	# Kerman -> Yasuj, Sirjan, Bam
+link = { eu4 = 446 v2 = 1212 v2 = 1214 }	# Herat -> Herat, Farrah
+link = { eu4 = 435 v2 = 1144 }	# Sistan -> Zahedan
+link = { eu4 = 447 v2 = 1220 v2 = 1215 }	# Kandahar -> Dalbandin, Kandahar
+link = { eu4 = 449 v2 = 1213 }	# Gharchistan -> Bamyan
+link = { eu4 = 505 v2 = 1289 }	# Upper Sind -> Sukkur
 }
