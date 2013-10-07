@@ -8,37 +8,37 @@ using namespace std;
 
 
 
-#define INVENTION_UNION(DO) \
+#define VANILLA_INVENTION_UNION(DO) \
 	/*ARMY_INVENTIONS*/ \
  \
 	/*post_napoleonic_thought*/ \
 	/*strategic_mobility*/ \
-	DO(field_fortifications) \
-	DO(railroad_transport_groups) \
-	DO(signal_detachments) \
+	DO(VANILLA_, field_fortifications) \
+	DO(VANILLA_, railroad_transport_groups) \
+	DO(VANILLA_, signal_detachments) \
  \
 	/*point_defense_system*/ \
-	DO(flexible_firepower) \
-	DO(synchronized_heavy_support) \
-	DO(staff_command_support) \
+	DO(VANILLA_, flexible_firepower) \
+	DO(VANILLA_, synchronized_heavy_support) \
+	DO(VANILLA_, staff_command_support) \
  \
 	/*deep_defense_system*/ \
-	DO(trench_systems) \
-	DO(gas_attack_capability) \
-	DO(gas_defense_capability) \
-	DO(elastic_defense_system) \
-	DO(flexible_counterattacks) \
+	DO(VANILLA_, trench_systems) \
+	DO(VANILLA_, gas_attack_capability) \
+	DO(VANILLA_, gas_defense_capability) \
+	DO(VANILLA_, elastic_defense_system) \
+	DO(VANILLA_, flexible_counterattacks) \
  \
 	/*infiltration*/ \
-	DO(low_echelon_fire_support) \
-	DO(stormtrooper_training) \
-	DO(tank_experiments) \
-	DO(tank_exploits) \
+	DO(VANILLA_, low_echelon_fire_support) \
+	DO(VANILLA_, stormtrooper_training) \
+	DO(VANILLA_, tank_experiments) \
+	DO(VANILLA_, tank_exploits) \
  \
 	/*modern_army_doctrine*/ \
-	DO(firepower_vs_mobility) \
-	DO(grand_battle_plan_vs_superior_firepower) \
-	DO(human_wave_vs_spearhead) \
+	DO(VANILLA_, firepower_vs_mobility) \
+	DO(VANILLA_, grand_battle_plan_vs_superior_firepower) \
+	DO(VANILLA_, human_wave_vs_spearhead) \
  \
 	/*flintlock_rifles*/ \
 	/*muzzle_loaded_rifles*/ \
@@ -46,9 +46,9 @@ using namespace std;
 	/*machine_guns*/ \
 	/*bolt_action_rifles*/ \
 	/*modern_divisional_structure*/ \
-	DO(interwar_infantry) \
-	DO(interwar_cavalry) \
-	DO(rear_area_dumps) \
+	DO(VANILLA_, interwar_infantry) \
+	DO(VANILLA_, interwar_cavalry) \
+	DO(VANILLA_, rear_area_dumps) \
  \
 	/*bronze_muzzle_loaded_artillery*/ \
 	/*iron_muzzle_loaded_artillery*/ \
@@ -56,68 +56,68 @@ using namespace std;
 	/*steel_breech_loaded_artillery*/ \
 	/*indirect_artillery_fire*/ \
 	/*heavy_armament*/ \
-	DO(tankette) \
-	DO(light_tank) \
-	DO(armoured_cars) \
-	DO(anti_aircraft_artillery) \
-	DO(improved_anti_aircraft_artillery) \
-	DO(light_artillery) \
-	DO(medium_artillery) \
-	DO(heavy_artillery) \
+	DO(VANILLA_, tankette) \
+	DO(VANILLA_, light_tank) \
+	DO(VANILLA_, armoured_cars) \
+	DO(VANILLA_, anti_aircraft_artillery) \
+	DO(VANILLA_, improved_anti_aircraft_artillery) \
+	DO(VANILLA_, light_artillery) \
+	DO(VANILLA_, medium_artillery) \
+	DO(VANILLA_, heavy_artillery) \
  \
 	/*military_staff_system*/ \
 	/*military_plans*/ \
-	DO(telegraph_coordination) \
-	DO(mobilization_time_tables) \
-	DO(personnel_category_tables) \
+	DO(VANILLA_, telegraph_coordination) \
+	DO(VANILLA_, mobilization_time_tables) \
+	DO(VANILLA_, personnel_category_tables) \
  \
 	/*military_statistics*/ \
-	DO(ammunition_area_effect_calculations) \
-	DO(empirical_combat_efficiency_matrix) \
-	DO(combat_loss_evaluation_schemata) \
+	DO(VANILLA_, ammunition_area_effect_calculations) \
+	DO(VANILLA_, empirical_combat_efficiency_matrix) \
+	DO(VANILLA_, combat_loss_evaluation_schemata) \
  \
 	/*military_logistics*/ \
-	DO(pre_planned_depot_systems) \
-	DO(logistical_calculations) \
-	DO(replenishment_transport_organisation) \
+	DO(VANILLA_, pre_planned_depot_systems) \
+	DO(VANILLA_, logistical_calculations) \
+	DO(VANILLA_, replenishment_transport_organisation) \
  \
 	/*military_directionism*/ \
-	DO(army_political_lobbying) \
-	DO(army_military_political_decision_making) \
-	DO(army_local_military_government) \
+	DO(VANILLA_, army_political_lobbying) \
+	DO(VANILLA_, army_military_political_decision_making) \
+	DO(VANILLA_, army_local_military_government) \
  \
 	/*aeronautics*/ \
-	DO(early_interwar_bombers) \
-	DO(late_interwar_bombers) \
-	DO(early_interwar_fighters) \
-	DO(late_interwar_fighters) \
-	DO(t_air_superiority) \
-	DO(flying_circus_doctrine) \
-	DO(force_substitution_doctrine) \
-	DO(battlefield_destruction_doctrine) \
-	DO(operational_destruction_doctrine) \
-	DO(strategic_destruction_doctrine) \
+	DO(VANILLA_, early_interwar_bombers) \
+	DO(VANILLA_, late_interwar_bombers) \
+	DO(VANILLA_, early_interwar_fighters) \
+	DO(VANILLA_, late_interwar_fighters) \
+	DO(VANILLA_, t_air_superiority) \
+	DO(VANILLA_, flying_circus_doctrine) \
+	DO(VANILLA_, force_substitution_doctrine) \
+	DO(VANILLA_, battlefield_destruction_doctrine) \
+	DO(VANILLA_, operational_destruction_doctrine) \
+	DO(VANILLA_, strategic_destruction_doctrine) \
  \
 	/*army_command_principle*/ \
 	/*army_professionalism*/ \
-	DO(army_academic_training) \
-	DO(field_training) \
-	DO(army_societal_status) \
+	DO(VANILLA_, army_academic_training) \
+	DO(VANILLA_, field_training) \
+	DO(VANILLA_, army_societal_status) \
  \
 	/*army_decision_making*/ \
-	DO(army_independent_command) \
-	DO(army_continuous_issuing_of_orders) \
-	DO(army_delegated_power) \
+	DO(VANILLA_, army_independent_command) \
+	DO(VANILLA_, army_continuous_issuing_of_orders) \
+	DO(VANILLA_, army_delegated_power) \
  \
 	/*army_risk_management*/ \
-	DO(army_wargames) \
-	DO(army_alternative_plans) \
-	DO(saddle_orders) \
+	DO(VANILLA_, army_wargames) \
+	DO(VANILLA_, army_alternative_plans) \
+	DO(VANILLA_, saddle_orders) \
  \
 	/*army_nco_training*/ \
-	DO(army_literate_ncos) \
-	DO(nco_field_training) \
-	DO(army_nco_tactical_training) \
+	DO(VANILLA_, army_literate_ncos) \
+	DO(VANILLA_, nco_field_training) \
+	DO(VANILLA_, army_nco_tactical_training) \
  \
 	/*great_war_experience*/ \
  \
@@ -126,272 +126,272 @@ using namespace std;
  \
 	/*private_banks*/ \
 	/*stock_exchange*/ \
-	DO(multitude_of_financial_instruments) \
-	DO(insurance_companies) \
-	DO(regulated_buying_and_selling_of_stocks) \
+	DO(VANILLA_, multitude_of_financial_instruments) \
+	DO(VANILLA_, insurance_companies) \
+	DO(VANILLA_, regulated_buying_and_selling_of_stocks) \
  \
 	/*business_banks*/ \
-	DO(liquidation_of_assets) \
-	DO(capital_for_investors) \
-	DO(distribution_channels) \
+	DO(VANILLA_, liquidation_of_assets) \
+	DO(VANILLA_, capital_for_investors) \
+	DO(VANILLA_, distribution_channels) \
  \
 	/*investment_banks*/ \
-	DO(industrial_rnd_investments) \
-	DO(industrial_production_investments) \
-	DO(industrial_distribution_investments) \
+	DO(VANILLA_, industrial_rnd_investments) \
+	DO(VANILLA_, industrial_production_investments) \
+	DO(VANILLA_, industrial_distribution_investments) \
  \
 	/*bank_inspection_board*/ \
-	DO(private_bank_monitoring) \
-	DO(market_behaviour_monitoring) \
+	DO(VANILLA_, private_bank_monitoring) \
+	DO(VANILLA_, market_behaviour_monitoring) \
  \
 	/*mutual_funds*/ \
-	DO(buying_on_margin) \
+	DO(VANILLA_, buying_on_margin) \
 	 \
 	/*no_standard*/ \
 	/*ad_hoc_money_bill_printing*/ \
-	DO(silver_standard) \
-	DO(decimal_monetary_system) \
+	DO(VANILLA_, silver_standard) \
+	DO(VANILLA_, decimal_monetary_system) \
  \
 	/*private_bank_money_bill_printing*/ \
-	DO(double_standard) \
-	DO(fixed_intramonetary_exchange_rates) \
+	DO(VANILLA_, double_standard) \
+	DO(VANILLA_, fixed_intramonetary_exchange_rates) \
  \
 	/*central_bank_money_bill_printing*/ \
-	DO(gold_standard) \
-	DO(international_monetary_exchange_rates) \
+	DO(VANILLA_, gold_standard) \
+	DO(VANILLA_, international_monetary_exchange_rates) \
  \
 	/*modern_central_bank_system*/ \
-	DO(state_bond_monetary_mechanism) \
-	DO(interest_inflation_weapon) \
+	DO(VANILLA_, state_bond_monetary_mechanism) \
+	DO(VANILLA_, interest_inflation_weapon) \
  \
 	/*market_determined_exchange_rates*/ \
-	DO(hyperinflation) \
+	DO(VANILLA_, hyperinflation) \
  \
 	/*eary_classical_theory*/ \
-	DO(john_ramsay_mcculloch) \
-	DO(nassau_william_sr) \
-	DO(james_mill) \
+	DO(VANILLA_, john_ramsay_mcculloch) \
+	DO(VANILLA_, nassau_william_sr) \
+	DO(VANILLA_, james_mill) \
  \
 	/*late_classical_theory*/ \
-	DO(john_elliot_cairnes) \
-	DO(robert_torrens) \
-	DO(john_stuart_mill) \
+	DO(VANILLA_, john_elliot_cairnes) \
+	DO(VANILLA_, robert_torrens) \
+	DO(VANILLA_, john_stuart_mill) \
  \
 	/*collectivist_theory*/ \
-	DO(pierre_joseph_proudhon) \
-	DO(karl_marx) \
-	DO(friedrich_engels) \
-	DO(eduard_bernstein) \
-	DO(sidney_webb) \
-	DO(karl_kautsky) \
-	DO(jean_jaurès) \
+	DO(VANILLA_, pierre_joseph_proudhon) \
+	DO(VANILLA_, karl_marx) \
+	DO(VANILLA_, friedrich_engels) \
+	DO(VANILLA_, eduard_bernstein) \
+	DO(VANILLA_, sidney_webb) \
+	DO(VANILLA_, karl_kautsky) \
+	DO(VANILLA_, jean_jaurès) \
  \
 	/*the_historical_theory*/ \
-	DO(friedrich_list) \
-	DO(wilhelm_roscher) \
-	DO(bruno_hildebrand) \
-	DO(karl_knies) \
-	DO(gustav_von_schmoller) \
-	DO(adolph_wagner) \
-	DO(william_cunningham) \
+	DO(VANILLA_, friedrich_list) \
+	DO(VANILLA_, wilhelm_roscher) \
+	DO(VANILLA_, bruno_hildebrand) \
+	DO(VANILLA_, karl_knies) \
+	DO(VANILLA_, gustav_von_schmoller) \
+	DO(VANILLA_, adolph_wagner) \
+	DO(VANILLA_, william_cunningham) \
  \
 	/*neoclassical_theory*/ \
-	DO(johann_heinrich_von_thünen) \
-	DO(léon_walras) \
-	DO(stanley_jevons) \
-	DO(carl_menger) \
-	DO(thorstein_veblen) \
-	DO(alfred_marshall) \
-	DO(augustin_cournot) \
-	DO(jules_dupuit) \
-	DO(vilfredo_pareto) \
-	DO(knut_wicksell) \
-	DO(irving_fischer) \
-	DO(joseph_schumpeter) \
-	DO(eugen_von_böhm_bawerk) \
+	DO(VANILLA_, johann_heinrich_von_thünen) \
+	DO(VANILLA_, léon_walras) \
+	DO(VANILLA_, stanley_jevons) \
+	DO(VANILLA_, carl_menger) \
+	DO(VANILLA_, thorstein_veblen) \
+	DO(VANILLA_, alfred_marshall) \
+	DO(VANILLA_, augustin_cournot) \
+	DO(VANILLA_, jules_dupuit) \
+	DO(VANILLA_, vilfredo_pareto) \
+	DO(VANILLA_, knut_wicksell) \
+	DO(VANILLA_, irving_fischer) \
+	DO(VANILLA_, joseph_schumpeter) \
+	DO(VANILLA_, eugen_von_böhm_bawerk) \
  \
 	/*keynesian_economics*/ \
-	DO(john_maynard_keynes) \
-	DO(richard_kahn) \
-	DO(ludwig_von_mises) \
-	DO(friedrich_hayek) \
+	DO(VANILLA_, john_maynard_keynes) \
+	DO(VANILLA_, richard_kahn) \
+	DO(VANILLA_, ludwig_von_mises) \
+	DO(VANILLA_, friedrich_hayek) \
  \
 	/*freedom_of_trade*/ \
 	/*market_structure*/ \
-	DO(polypoly_structure) \
-	DO(oligopoly_structure) \
-	DO(monopoly_structure) \
+	DO(VANILLA_, polypoly_structure) \
+	DO(VANILLA_, oligopoly_structure) \
+	DO(VANILLA_, monopoly_structure) \
  \
 	/*business_regulations*/ \
-	DO(limited_partnership_company) \
-	DO(joint_stock_company) \
-	DO(patent) \
-	DO(trademark) \
+	DO(VANILLA_, limited_partnership_company) \
+	DO(VANILLA_, joint_stock_company) \
+	DO(VANILLA_, patent) \
+	DO(VANILLA_, trademark) \
  \
 	/*market_regulations*/ \
-	DO(anti_trust_laws) \
-	DO(financial_regulations) \
-	DO(banking_regulations) \
+	DO(VANILLA_, anti_trust_laws) \
+	DO(VANILLA_, financial_regulations) \
+	DO(VANILLA_, banking_regulations) \
  \
 	/*economic_responsibility*/ \
-	DO(working_board_of_directors) \
-	DO(bankruptcy_proceedings) \
-	DO(annual_report_proceedings) \
+	DO(VANILLA_, working_board_of_directors) \
+	DO(VANILLA_, bankruptcy_proceedings) \
+	DO(VANILLA_, annual_report_proceedings) \
  \
 	/*government_interventionism*/ \
-	DO(priming_the_pump_) \
-	DO(mixed_economy) \
-	DO(centralized_economic_planning) \
-	DO(autarky) \
-	DO(import_substitution_industrialization) \
+	DO(VANILLA_, priming_the_pump_) \
+	DO(VANILLA_, mixed_economy) \
+	DO(VANILLA_, centralized_economic_planning) \
+	DO(VANILLA_, autarky) \
+	DO(VANILLA_, import_substitution_industrialization) \
  \
 	/*guild_based_production*/ \
 	/*organized_factories*/ \
-	DO(work_classification) \
-	DO(work_specialization) \
-	DO(work_control_and_hierarchy) \
+	DO(VANILLA_, work_classification) \
+	DO(VANILLA_, work_specialization) \
+	DO(VANILLA_, work_control_and_hierarchy) \
  \
 	/*scientific_management*/ \
-	DO(sequence_planning) \
-	DO(inventory_planning) \
-	DO(quality_assurance_procedure) \
+	DO(VANILLA_, sequence_planning) \
+	DO(VANILLA_, inventory_planning) \
+	DO(VANILLA_, quality_assurance_procedure) \
  \
 	/*time_saving_measures*/ \
-	DO(time_studies) \
-	DO(time_clock) \
-	DO(lighting) \
+	DO(VANILLA_, time_studies) \
+	DO(VANILLA_, time_clock) \
+	DO(VANILLA_, lighting) \
  \
 	/*management_strategy*/ \
-	DO(old_style_family_business) \
-	DO(anynomous_investor_business) \
-	DO(marketized_smallholder_business) \
+	DO(VANILLA_, old_style_family_business) \
+	DO(VANILLA_, anynomous_investor_business) \
+	DO(VANILLA_, marketized_smallholder_business) \
  \
 	/*organizational_development*/ \
-	DO(i_scientific_management) \
-	DO(human_resource_development) \
+	DO(VANILLA_, i_scientific_management) \
+	DO(VANILLA_, human_resource_development) \
  \
  \
 	/*CULTURE_INVENTIONS*/ \
 	/*classicism_n_early_romanticism*/ \
 	/*romanticism*/ \
-	DO(romanticist_literature) \
-	DO(romanticist_art) \
-	DO(romanticist_music) \
+	DO(VANILLA_, romanticist_literature) \
+	DO(VANILLA_, romanticist_art) \
+	DO(VANILLA_, romanticist_music) \
  \
 	/*realism*/ \
-	DO(realist_literature) \
-	DO(realist_art) \
-	DO(realist_music) \
+	DO(VANILLA_, realist_literature) \
+	DO(VANILLA_, realist_art) \
+	DO(VANILLA_, realist_music) \
  \
 	/*impressionism*/ \
-	DO(impressionist_literature) \
-	DO(impressionist_art) \
-	DO(impressionist_music) \
+	DO(VANILLA_, impressionist_literature) \
+	DO(VANILLA_, impressionist_art) \
+	DO(VANILLA_, impressionist_music) \
  \
 	/*expressionism*/ \
-	DO(expressionist_literature) \
-	DO(expressionist_art) \
-	DO(expressionist_music) \
+	DO(VANILLA_, expressionist_literature) \
+	DO(VANILLA_, expressionist_art) \
+	DO(VANILLA_, expressionist_music) \
  \
 	/*mass_culture_n_the_avant_garde*/ \
-	DO(avantgarde_literature) \
-	DO(avantgarde_art) \
-	DO(avantgarde_music) \
-	DO(surrealism) \
-	DO(modern_design) \
-	DO(jazz) \
-	DO(socialist_realism) \
+	DO(VANILLA_, avantgarde_literature) \
+	DO(VANILLA_, avantgarde_art) \
+	DO(VANILLA_, avantgarde_music) \
+	DO(VANILLA_, surrealism) \
+	DO(VANILLA_, modern_design) \
+	DO(VANILLA_, jazz) \
+	DO(VANILLA_, socialist_realism) \
  \
 	/*late_enlightenment_philosophy*/ \
 	/*idealism*/ \
-	DO(neokantian_idealism) \
-	DO(hegelian_idealism) \
-	DO(proto_existentialism) \
+	DO(VANILLA_, neokantian_idealism) \
+	DO(VANILLA_, hegelian_idealism) \
+	DO(VANILLA_, proto_existentialism) \
  \
 	/*empiricism*/ \
-	DO(pragmatism) \
-	DO(i_empiricism) \
+	DO(VANILLA_, pragmatism) \
+	DO(VANILLA_, i_empiricism) \
  \
 	/*analytic_philosophy*/ \
-	DO(i_analytic_philosophy) \
-	DO(modern_logics) \
-	DO(logical_positivism) \
-	DO(philosophy_of_language) \
+	DO(VANILLA_, i_analytic_philosophy) \
+	DO(VANILLA_, modern_logics) \
+	DO(VANILLA_, logical_positivism) \
+	DO(VANILLA_, philosophy_of_language) \
  \
 	/*phenomenology_n_hermeneutic*/ \
-	DO(phenomenology) \
-	DO(hermeneutics) \
+	DO(VANILLA_, phenomenology) \
+	DO(VANILLA_, hermeneutics) \
  \
 	/*anti__rationalism*/ \
-	DO(existentialism) \
-	DO(nihilism_and_the_will) \
-	DO(futurism) \
-	DO(quantum_theory) \
+	DO(VANILLA_, existentialism) \
+	DO(VANILLA_, nihilism_and_the_will) \
+	DO(VANILLA_, futurism) \
+	DO(VANILLA_, quantum_theory) \
  \
 	/*malthusian_thought*/ \
 	/*positivism*/ \
 	/*functionalism*/ \
 	/*biologism*/ \
-	DO(darwinism) \
-	DO(social_darwinism) \
+	DO(VANILLA_, darwinism) \
+	DO(VANILLA_, social_darwinism) \
  \
 	/*social_science*/ \
-	DO(sociology) \
-	DO(social_psychology) \
-	DO(political_science) \
-	DO(social_anthropology) \
+	DO(VANILLA_, sociology) \
+	DO(VANILLA_, social_psychology) \
+	DO(VANILLA_, political_science) \
+	DO(VANILLA_, social_anthropology) \
  \
 	/*social_alienation*/ \
-	DO(the_revolt_of_the_masses) \
-	DO(the_decline_of_the_west_and_the_lost_generation) \
+	DO(VANILLA_, the_revolt_of_the_masses) \
+	DO(VANILLA_, the_decline_of_the_west_and_the_lost_generation) \
  \
 	/*enlightenment_thought*/ \
 	/*ideological_thought*/ \
-	DO(authoritarianism) \
-	DO(hierarchical_order) \
-	DO(traditionalism) \
-	DO(political_religion) \
-	DO(paternalism) \
-	DO(constitutionalism) \
-	DO(individualism) \
-	DO(rationalism) \
-	DO(secularization) \
-	DO(social_conscience) \
-	DO(egalitarianism) \
-	DO(collectivism) \
-	DO(determinism) \
-	DO(atheism) \
-	DO(social_justice) \
+	DO(VANILLA_, authoritarianism) \
+	DO(VANILLA_, hierarchical_order) \
+	DO(VANILLA_, traditionalism) \
+	DO(VANILLA_, political_religion) \
+	DO(VANILLA_, paternalism) \
+	DO(VANILLA_, constitutionalism) \
+	DO(VANILLA_, individualism) \
+	DO(VANILLA_, rationalism) \
+	DO(VANILLA_, secularization) \
+	DO(VANILLA_, social_conscience) \
+	DO(VANILLA_, egalitarianism) \
+	DO(VANILLA_, collectivism) \
+	DO(VANILLA_, determinism) \
+	DO(VANILLA_, atheism) \
+	DO(VANILLA_, social_justice) \
  \
 	/*state_n_government*/ \
-	DO(populism_vs_establishment) \
-	DO(clericalism_vs_anticlericalism) \
-	DO(bureaucracy_vs_nepotism) \
-	DO(meritocracy_vs_aristocracy) \
+	DO(VANILLA_, populism_vs_establishment) \
+	DO(VANILLA_, clericalism_vs_anticlericalism) \
+	DO(VANILLA_, bureaucracy_vs_nepotism) \
+	DO(VANILLA_, meritocracy_vs_aristocracy) \
  \
 	/*nationalism_n_imperialism*/ \
-	DO(national_fraternity) \
-	DO(biased_multiculturalism) \
-	DO(manifest_destiny) \
-	DO(expansionism) \
-	DO(mission_to_civilize) \
-	DO(separatism) \
+	DO(VANILLA_, national_fraternity) \
+	DO(VANILLA_, biased_multiculturalism) \
+	DO(VANILLA_, manifest_destiny) \
+	DO(VANILLA_, expansionism) \
+	DO(VANILLA_, mission_to_civilize) \
+	DO(VANILLA_, separatism) \
  \
 	/*revolution_n_counterrevolution*/ \
-	DO(dogma_of_violence) \
-	DO(dogma_of_mass_action) \
-	DO(terrorism) \
-	DO(secret_police) \
-	DO(womens_suffrage_movement) \
-	DO(rhetoric_of_hate) \
-	DO(nostalgic_romanticism) \
-	DO(anti_egalitarianism) \
-	DO(vangaurd_party) \
+	DO(VANILLA_, dogma_of_violence) \
+	DO(VANILLA_, dogma_of_mass_action) \
+	DO(VANILLA_, terrorism) \
+	DO(VANILLA_, secret_police) \
+	DO(VANILLA_, womens_suffrage_movement) \
+	DO(VANILLA_, rhetoric_of_hate) \
+	DO(VANILLA_, nostalgic_romanticism) \
+	DO(VANILLA_, anti_egalitarianism) \
+	DO(VANILLA_, vangaurd_party) \
  \
 	/*mass_politics*/ \
-	DO(the_doctrine_of_fascism) \
-	DO(paramilitary_groups) \
-	DO(the_police_state) \
+	DO(VANILLA_, the_doctrine_of_fascism) \
+	DO(VANILLA_, paramilitary_groups) \
+	DO(VANILLA_, the_police_state) \
  \
 	/*introspectionism*/ \
 	/*associationism*/ \
@@ -399,9 +399,9 @@ using namespace std;
 	/*experimental_psychology*/ \
 	/*psychoanalysis*/ \
 	/*behaviorism*/ \
-	DO(mass_advertising) \
-	DO(national_radio_networks) \
-	DO(the_talkies) \
+	DO(VANILLA_, mass_advertising) \
+	DO(VANILLA_, national_radio_networks) \
+	DO(VANILLA_, the_talkies) \
  \
  \
 	/*INDUSTRY INVENTIONS */ \
@@ -412,72 +412,72 @@ using namespace std;
 	/*high_and_low_pressure_steam_engines*/ \
 	/*steam_turbines*/ \
 	/*combustion_engine*/ \
-	DO(daimlers_automobile) \
-	DO(wright_n_langleys_aeroplanes) \
-	DO(tractors) \
+	DO(VANILLA_, daimlers_automobile) \
+	DO(VANILLA_, wright_n_langleys_aeroplanes) \
+	DO(VANILLA_, tractors) \
  \
 	/*electrical_power_generation*/ \
-	DO(direct_current) \
-	DO(alternating_current) \
-	DO(polyphase_system) \
+	DO(VANILLA_, direct_current) \
+	DO(VANILLA_, alternating_current) \
+	DO(VANILLA_, polyphase_system) \
  \
 	/*publishing_industry*/ \
 	/*mechanical_production*/ \
-	DO(sharp_n_roberts_power_loom) \
-	DO(jacquard_power_loom) \
-	DO(northrop_power_loom) \
-	DO(mechanical_saw) \
-	DO(mechanical_precision_saw) \
-	DO(hussey_n_mccormicks_reaping_machine) \
-	DO(pitts_threshing_machine) \
-	DO(mechanized_slaughtering_block) \
+	DO(VANILLA_, sharp_n_roberts_power_loom) \
+	DO(VANILLA_, jacquard_power_loom) \
+	DO(VANILLA_, northrop_power_loom) \
+	DO(VANILLA_, mechanical_saw) \
+	DO(VANILLA_, mechanical_precision_saw) \
+	DO(VANILLA_, hussey_n_mccormicks_reaping_machine) \
+	DO(VANILLA_, pitts_threshing_machine) \
+	DO(VANILLA_, mechanized_slaughtering_block) \
  \
 	/*interchangeable_parts*/ \
-	DO(precision_work) \
-	DO(machine_tools) \
-	DO(whitney_n_colts_standardized_small_arms) \
-	DO(food_packing_system) \
-	DO(integral_distillery_process) \
-	DO(jiggs) \
+	DO(VANILLA_, precision_work) \
+	DO(VANILLA_, machine_tools) \
+	DO(VANILLA_, whitney_n_colts_standardized_small_arms) \
+	DO(VANILLA_, food_packing_system) \
+	DO(VANILLA_, integral_distillery_process) \
+	DO(VANILLA_, jiggs) \
  \
 	/*semi_automatization*/ \
-	DO(electric_machinery) \
-	DO(oil_pumping_machinery) \
-	DO(drying_techniques) \
+	DO(VANILLA_, electric_machinery) \
+	DO(VANILLA_, oil_pumping_machinery) \
+	DO(VANILLA_, drying_techniques) \
  \
 	/*assembly_line*/ \
-	DO(fordism) \
-	DO(industrialized_armament_industry) \
-	DO(refrigerator_technology) \
+	DO(VANILLA_, fordism) \
+	DO(VANILLA_, industrialized_armament_industry) \
+	DO(VANILLA_, refrigerator_technology) \
  \
 	/*shift_work*/ \
  \
 	/*Mechanized_mining*/ \
-	DO(ammunition_production) \
-	DO(small_arms_production) \
-	DO(explosives_production) \
-	DO(artillery_production) \
+	DO(VANILLA_, ammunition_production) \
+	DO(VANILLA_, small_arms_production) \
+	DO(VANILLA_, explosives_production) \
+	DO(VANILLA_, artillery_production) \
  \
 	/*clean_coal*/ \
-	DO(pit_coal) \
-	DO(coke) \
+	DO(VANILLA_, pit_coal) \
+	DO(VANILLA_, coke) \
  \
 	/*cheap_iron*/ \
-	DO(advanced_ore_roasting_processes) \
-	DO(advanced_ore_grinding_processes) \
-	DO(advanced_ore_smelting_processes) \
-	DO(bessemer_steel) \
+	DO(VANILLA_, advanced_ore_roasting_processes) \
+	DO(VANILLA_, advanced_ore_grinding_processes) \
+	DO(VANILLA_, advanced_ore_smelting_processes) \
+	DO(VANILLA_, bessemer_steel) \
  \
 	/*cheap_steel*/ \
-	DO(martin_steel) \
-	DO(thomas_steel) \
+	DO(VANILLA_, martin_steel) \
+	DO(VANILLA_, thomas_steel) \
  \
 	/*advanced_metallurgy*/ \
-	DO(electric_rolling_techniques) \
-	DO(steel_alloys) \
+	DO(VANILLA_, electric_rolling_techniques) \
+	DO(VANILLA_, steel_alloys) \
  \
 	/*electric_furnace*/ \
-	DO(stainless_steel) \
+	DO(VANILLA_, stainless_steel) \
  \
 	/*experimental_railroad*/ \
 	/*early_railroad*/ \
@@ -488,179 +488,821 @@ using namespace std;
  \
 	/*basic_chemistry*/ \
 	/*medicine*/ \
-	DO(combat_medicine) \
-	DO(aerial_bacteria_and_antiseptic_principle) \
-	DO(vaccination) \
-	DO(chemotherapy) \
-	DO(genetics_heredity) \
-	DO(clinical_thermometers_and_binaural_stethoscopes) \
-	DO(prophylaxis_against_malaria) \
-	DO(pressure_chambers_for_thorax_surgery) \
+	DO(VANILLA_, combat_medicine) \
+	DO(VANILLA_, aerial_bacteria_and_antiseptic_principle) \
+	DO(VANILLA_, vaccination) \
+	DO(VANILLA_, chemotherapy) \
+	DO(VANILLA_, genetics_heredity) \
+	DO(VANILLA_, clinical_thermometers_and_binaural_stethoscopes) \
+	DO(VANILLA_, prophylaxis_against_malaria) \
+	DO(VANILLA_, pressure_chambers_for_thorax_surgery) \
  \
 	/*inorganic_chemistry*/ \
-	DO(artificial_fertilizers) \
-	DO(nitroglycerin) \
-	DO(chemical_wood_pulp_process) \
-	DO(rubber_vulcanization) \
-	DO(catalytic_fermentative_process) \
+	DO(VANILLA_, artificial_fertilizers) \
+	DO(VANILLA_, nitroglycerin) \
+	DO(VANILLA_, chemical_wood_pulp_process) \
+	DO(VANILLA_, rubber_vulcanization) \
+	DO(VANILLA_, catalytic_fermentative_process) \
  \
 	/*organic_chemistry*/ \
-	DO(synthetic_dye) \
-	DO(gaslights) \
-	DO(carbon_soil_enrichment) \
-	DO(cracking) \
+	DO(VANILLA_, synthetic_dye) \
+	DO(VANILLA_, gaslights) \
+	DO(VANILLA_, carbon_soil_enrichment) \
+	DO(VANILLA_, cracking) \
  \
 	/*electricity*/ \
-	DO(x_rays) \
-	DO(edison_light_bulb) \
-	DO(bell_n_greys_telephones) \
-	DO(electrical_lighting) \
+	DO(VANILLA_, x_rays) \
+	DO(VANILLA_, edison_light_bulb) \
+	DO(VANILLA_, bell_n_greys_telephones) \
+	DO(VANILLA_, electrical_lighting) \
  \
 	/*synthetic_polymers*/ \
-	DO(rayon) \
-	DO(bakelite) \
+	DO(VANILLA_, rayon) \
+	DO(VANILLA_, bakelite) \
  \
  \
 	/*NAVY INVENTIONS*/ \
  \
 	/*post_nelsonian_thought*/ \
 	/*battleship_column_doctrine*/ \
-	DO(long_range_fire_tactic) \
-	DO(speedy_maneuvering_tactic) \
+	DO(VANILLA_, long_range_fire_tactic) \
+	DO(VANILLA_, speedy_maneuvering_tactic) \
  \
 	/*raider_group_doctrine*/ \
-	DO(sealane_hunters) \
-	DO(fast_ship_killer) \
-	DO(big_ship_competitor) \
-	DO(standard_raider_group_doctrine) \
+	DO(VANILLA_, sealane_hunters) \
+	DO(VANILLA_, fast_ship_killer) \
+	DO(VANILLA_, big_ship_competitor) \
+	DO(VANILLA_, standard_raider_group_doctrine) \
  \
 	/*blue_and_brown_water_schools*/ \
-	DO(blue_water_school) \
-	DO(brown_water_school) \
+	DO(VANILLA_, blue_water_school) \
+	DO(VANILLA_, brown_water_school) \
  \
 	/*high_sea_battle_fleet*/ \
-	DO(offensive_attitude) \
-	DO(defensive_attitude) \
+	DO(VANILLA_, offensive_attitude) \
+	DO(VANILLA_, defensive_attitude) \
  \
 	/*modern_naval_doctrine*/ \
-	DO(decisive_firepower_doctrine) \
-	DO(naval_firepower_doctrine) \
+	DO(VANILLA_, decisive_firepower_doctrine) \
+	DO(VANILLA_, naval_firepower_doctrine) \
  \
 	/*clipper_design*/ \
-	DO(building_station_shipyards) \
+	DO(VANILLA_, building_station_shipyards) \
  \
 	/*steamers*/ \
-	DO(mechanized_fishing_vessels) \
-	DO(steamer_automatic_construction_plants) \
-	DO(steamer_transports) \
-	DO(commerce_raiders) \
+	DO(VANILLA_, mechanized_fishing_vessels) \
+	DO(VANILLA_, steamer_automatic_construction_plants) \
+	DO(VANILLA_, steamer_transports) \
+	DO(VANILLA_, commerce_raiders) \
  \
 	/*iron_steamers*/ \
-	DO(ironclads) \
-	DO(monitors) \
+	DO(VANILLA_, ironclads) \
+	DO(VANILLA_, monitors) \
  \
 	/*steel_steamers*/ \
-	DO(protected_cruisers) \
-	DO(pre_dreadnought) \
+	DO(VANILLA_, protected_cruisers) \
+	DO(VANILLA_, pre_dreadnought) \
  \
 	/*steam_turbine_ships*/ \
-	DO(dreadnoughts) \
+	DO(VANILLA_, dreadnoughts) \
  \
 	/*oil_driven_ships*/ \
-	DO(advanced_cruisers) \
-	DO(modern_cruisers) \
-	DO(advanced_battleships) \
-	DO(modern_battleships) \
+	DO(VANILLA_, advanced_cruisers) \
+	DO(VANILLA_, modern_cruisers) \
+	DO(VANILLA_, advanced_battleships) \
+	DO(VANILLA_, modern_battleships) \
  \
 	/*naval_design_bureaus*/ \
 	/*fire_control_systems*/ \
-	DO(optical_rangefinders) \
-	DO(gyrostabilized_fire_control) \
+	DO(VANILLA_, optical_rangefinders) \
+	DO(VANILLA_, gyrostabilized_fire_control) \
  \
 	/*weapon_platforms*/ \
-	DO(armour_piercing_projectiles) \
-	DO(armour_piercing_exploding_projectiles) \
-	DO(armoured_turrets) \
+	DO(VANILLA_, armour_piercing_projectiles) \
+	DO(VANILLA_, armour_piercing_exploding_projectiles) \
+	DO(VANILLA_, armoured_turrets) \
  \
 	/*main_armament*/ \
-	DO(bomb_guns) \
-	DO(rifled_guns) \
-	DO(quick_firing_guns) \
-	DO(armoured_citadels) \
-	DO(heavy_caliber_guns) \
+	DO(VANILLA_, bomb_guns) \
+	DO(VANILLA_, rifled_guns) \
+	DO(VANILLA_, quick_firing_guns) \
+	DO(VANILLA_, armoured_citadels) \
+	DO(VANILLA_, heavy_caliber_guns) \
  \
 	/*advanced_naval_design*/ \
-	DO(on_board_recon_aircraft) \
-	DO(gun_hydraulics) \
-	DO(heavy_armour_plates) \
-	DO(large_hull_form) \
+	DO(VANILLA_, on_board_recon_aircraft) \
+	DO(VANILLA_, gun_hydraulics) \
+	DO(VANILLA_, heavy_armour_plates) \
+	DO(VANILLA_, large_hull_form) \
  \
 	/*modern_naval_design*/ \
-	DO(wireless) \
-	DO(advanced_fire_control) \
-	DO(fifteen_inch_main_armament) \
+	DO(VANILLA_, wireless) \
+	DO(VANILLA_, advanced_fire_control) \
+	DO(VANILLA_, fifteen_inch_main_armament) \
  \
 	/*alphabetic_flag_signaling*/ \
 	/*naval_plans*/ \
-	DO(night_training) \
-	DO(enemy_plotting_cards) \
-	DO(target_hit_profile_analysis) \
+	DO(VANILLA_, night_training) \
+	DO(VANILLA_, enemy_plotting_cards) \
+	DO(VANILLA_, target_hit_profile_analysis) \
  \
 	/*naval_statistics*/ \
-	DO(hit_evaluation_reports) \
-	DO(empirical_interdiction_reports) \
-	DO(naval_strike_success_criterium) \
+	DO(VANILLA_, hit_evaluation_reports) \
+	DO(VANILLA_, empirical_interdiction_reports) \
+	DO(VANILLA_, naval_strike_success_criterium) \
  \
 	/*naval_logistics*/ \
-	DO(underway_refueling) \
-	DO(ammunition_conservation_system) \
-	DO(radio_telegraphy) \
+	DO(VANILLA_, underway_refueling) \
+	DO(VANILLA_, ammunition_conservation_system) \
+	DO(VANILLA_, radio_telegraphy) \
  \
 	/*naval_directionism*/ \
-	DO(political_lobbying) \
-	DO(military_political_decision_making) \
-	DO(local_military_government) \
+	DO(VANILLA_, political_lobbying) \
+	DO(VANILLA_, military_political_decision_making) \
+	DO(VANILLA_, local_military_government) \
  \
 	/*naval_integration*/ \
-	DO(war_gamming) \
-	DO(combined_arms_planning) \
+	DO(VANILLA_, war_gamming) \
+	DO(VANILLA_, combined_arms_planning) \
  \
 	/*the_command_principle*/ \
 	/*naval_professionalism*/ \
-	DO(academic_training) \
-	DO(combat_station_training) \
-	DO(societal_status) \
+	DO(VANILLA_, academic_training) \
+	DO(VANILLA_, combat_station_training) \
+	DO(VANILLA_, societal_status) \
  \
 	/*naval_decision_making*/ \
-	DO(independent_command) \
-	DO(continuous_issuing_of_orders) \
-	DO(delegated_power) \
+	DO(VANILLA_, independent_command) \
+	DO(VANILLA_, continuous_issuing_of_orders) \
+	DO(VANILLA_, delegated_power) \
  \
 	/*naval_risk_management*/ \
-	DO(wargames) \
-	DO(alternative_plans) \
-	DO(n_saddle_orders) \
+	DO(VANILLA_, wargames) \
+	DO(VANILLA_, alternative_plans) \
+	DO(VANILLA_, n_saddle_orders) \
  \
 	/*naval_nco_training*/ \
-	DO(literate_ncos) \
-	DO(nco_combat_station_training) \
-	DO(nco_tactical_training) \
+	DO(VANILLA_, literate_ncos) \
+	DO(VANILLA_, nco_combat_station_training) \
+	DO(VANILLA_, nco_tactical_training) \
  \
  	/*modern_naval_training*/ \
-	DO(amphibious_warfare_training) \
-	DO(naval_exercises)
+	DO(VANILLA_, amphibious_warfare_training) \
+	DO(VANILLA_, naval_exercises)
 
 
 
-#define MAKE_UNION(VAR) VAR,
-enum inventionType {
-    INVENTION_UNION(MAKE_UNION)
+#define MAKE_UNION(TYPE, VAR) TYPE ## VAR,
+enum vanillaInventionType {
+    VANILLA_INVENTION_UNION(MAKE_UNION)
 };
 
 
-#define MAKE_STRINGS(VAR) #VAR,
-const char* const inventionNames[naval_exercises+1] = {
-    INVENTION_UNION(MAKE_STRINGS)
+#define MAKE_STRINGS(TYPE, VAR) #VAR,
+const char* const vanillaInventionNames[VANILLA_naval_exercises+1] = {
+    VANILLA_INVENTION_UNION(MAKE_STRINGS)
+};
+
+
+#define HOD_INVENTION_UNION(DO) \
+	/*ARMY_INVENTIONS*/ \
+ \
+	/*post_napoleonic_thought*/ \
+	DO(HOD_, post_napoleonic_army_doctrine) \
+ \
+	/*strategic_mobility*/ \
+	DO(HOD_, field_fortifications) \
+	DO(HOD_, railroad_transport_groups) \
+ \
+	/*point_defense_system*/ \
+	DO(HOD_, signal_detachments) \
+	DO(HOD_, flexible_firepower) \
+	DO(HOD_, synchronized_heavy_support) \
+	DO(HOD_, staff_command_support) \
+ \
+	/*deep_defense_system*/ \
+	DO(HOD_, trench_systems) \
+	DO(HOD_, gas_attack_capability) \
+	DO(HOD_, gas_defense_capability) \
+	DO(HOD_, elastic_defense_system) \
+	DO(HOD_, flexible_counterattacks) \
+ \
+	/*infiltration*/ \
+	DO(HOD_, low_echelon_fire_support) \
+	DO(HOD_, stormtrooper_training) \
+	DO(HOD_, tank_experiments) \
+	DO(HOD_, tank_exploits) \
+ \
+	/*modern_army_doctrine*/ \
+	DO(HOD_, firepower_vs_mobility) \
+	DO(HOD_, grand_battle_plan_vs_superior_firepower) \
+	DO(HOD_, human_wave_vs_spearhead) \
+ \
+	/*flintlock_rifles*/ \
+	DO(HOD_, flintlock_rifle_armament) \
+ \
+	/*muzzle_loaded_rifles*/ \
+	DO(HOD_, muzzle_loaded_rifle_armament) \
+ \
+	/*breech_loaded_rifles*/ \
+	DO(HOD_, breech_loaded_rifle_armament) \
+	DO(HOD_, colonial_negotiations) \
+ \
+	/*machine_guns*/ \
+	DO(HOD_, machine_gun_armament) \
+ \
+	/*bolt_action_rifles*/ \
+	DO(HOD_, bolt_action_rifle_armament) \
+ \
+	/*modern_divisional_structure*/ \
+	DO(HOD_, interwar_infantry) \
+	DO(HOD_, interwar_cavalry) \
+	DO(HOD_, rear_area_dumps) \
+ \
+	/*iron_breech_loaded_artillery*/ \
+	/*indirect_artillery_fire*/ \
+	/*heavy_armament*/ \
+	DO(HOD_, tankette) \
+	DO(HOD_, light_tank) \
+	DO(HOD_, armoured_cars) \
+	DO(HOD_, anti_aircraft_artillery) \
+	DO(HOD_, improved_anti_aircraft_artillery) \
+	DO(HOD_, light_artillery) \
+	DO(HOD_, medium_artillery) \
+	DO(HOD_, heavy_artillery) \
+ \
+	/*military_staff_system*/ \
+	DO(HOD_, cuirassier_activation) \
+	DO(HOD_, dragoon_activation) \
+	DO(HOD_, hussar_activation) \
+ \
+	/*military_plans*/ \
+	DO(HOD_, telegraph_coordination) \
+	DO(HOD_, mobilization_time_tables) \
+	DO(HOD_, personnel_category_tables) \
+ \
+	/*military_statistics*/ \
+	DO(HOD_, ammunition_area_effect_calculations) \
+	DO(HOD_, empirical_combat_efficiency_matrix) \
+	DO(HOD_, combat_loss_evaluation_schemata) \
+ \
+	/*military_logistics*/ \
+	DO(HOD_, pre_planned_depot_systems) \
+	DO(HOD_, logistical_calculations) \
+	DO(HOD_, replenishment_transport_organisation) \
+ \
+	/*military_directionism*/ \
+	DO(HOD_, army_political_lobbying) \
+	DO(HOD_, army_military_political_decision_making) \
+	DO(HOD_, army_local_military_government) \
+ \
+	/*aeronautics*/ \
+	DO(HOD_, military_aviation) \
+	DO(HOD_, early_interwar_bombers) \
+	DO(HOD_, late_interwar_bombers) \
+	DO(HOD_, early_interwar_fighters) \
+	DO(HOD_, late_interwar_fighters) \
+	DO(HOD_, t_air_superiority) \
+	DO(HOD_, flying_circus_doctrine) \
+	DO(HOD_, force_substitution_doctrine) \
+	DO(HOD_, battlefield_destruction_doctrine) \
+	DO(HOD_, operational_destruction_doctrine) \
+	DO(HOD_, strategic_destruction_doctrine) \
+ \
+	/*army_professionalism*/ \
+	DO(HOD_, army_academic_training) \
+	DO(HOD_, field_training) \
+	DO(HOD_, army_societal_status) \
+ \
+	/*army_decision_making*/ \
+	DO(HOD_, army_independent_command) \
+	DO(HOD_, army_continuous_issuing_of_orders) \
+	DO(HOD_, army_delegated_power) \
+ \
+	/*army_risk_management*/ \
+	DO(HOD_, army_wargames) \
+	DO(HOD_, army_alternative_plans) \
+	DO(HOD_, saddle_orders) \
+ \
+	/*army_nco_training*/ \
+	DO(HOD_, army_literate_ncos) \
+	DO(HOD_, nco_field_training) \
+	DO(HOD_, army_nco_tactical_training) \
+ \
+ \
+	/*COMMERCE INVENTIONS*/ \
+ \
+	/*stock_exchange*/ \
+	DO(HOD_, multitude_of_financial_instruments) \
+	DO(HOD_, insurance_companies) \
+	DO(HOD_, regulated_buying_and_selling_of_stocks) \
+ \
+	/*business_banks*/ \
+	DO(HOD_, liquidation_of_assets) \
+	DO(HOD_, capital_for_investors) \
+	DO(HOD_, distribution_channels) \
+ \
+	/*investment_banks*/ \
+	DO(HOD_, industrial_rnd_investments) \
+	DO(HOD_, industrial_production_investments) \
+	DO(HOD_, industrial_distribution_investments) \
+ \
+	/*bank_inspection_board*/ \
+	DO(HOD_, private_bank_monitoring) \
+	DO(HOD_, market_behaviour_monitoring) \
+ \
+	/*mutual_funds*/ \
+	DO(HOD_, buying_on_margin) \
+ \
+	/*ad_hoc_money_bill_printing*/ \
+	DO(HOD_, silver_standard) \
+	DO(HOD_, decimal_monetary_system) \
+ \
+	/*private_bank_money_bill_printing*/ \
+	DO(HOD_, double_standard) \
+	DO(HOD_, fixed_intramonetary_exchange_rates) \
+ \
+	/*central_bank_money_bill_printing*/ \
+	DO(HOD_, gold_standard) \
+	DO(HOD_, international_monetary_exchange_rates) \
+ \
+	/*modern_central_bank_system*/ \
+	DO(HOD_, state_bond_monetary_mechanism) \
+	DO(HOD_, interest_inflation_weapon) \
+ \
+	/*market_determined_exchange_rates*/ \
+	DO(HOD_, hyperinflation) \
+ \
+	/*eary_classical_theory*/ \
+	DO(HOD_, john_ramsay_mcculloch) \
+	DO(HOD_, nassau_william_sr) \
+	DO(HOD_, james_mill) \
+ \
+	/*late_classical_theory*/ \
+	DO(HOD_, john_elliot_cairnes) \
+	DO(HOD_, robert_torrens) \
+	DO(HOD_, john_stuart_mill) \
+ \
+	/*collectivist_theory*/ \
+	DO(HOD_, pierre_joseph_proudhon) \
+	DO(HOD_, karl_marx) \
+	DO(HOD_, friedrich_engels) \
+	DO(HOD_, eduard_bernstein) \
+	DO(HOD_, sidney_webb) \
+	DO(HOD_, karl_kautsky) \
+	DO(HOD_, jean_jaurès) \
+ \
+	/*the_historical_theory*/ \
+	DO(HOD_, friedrich_list) \
+	DO(HOD_, wilhelm_roscher) \
+	DO(HOD_, bruno_hildebrand) \
+	DO(HOD_, karl_knies) \
+	DO(HOD_, gustav_von_schmoller) \
+	DO(HOD_, adolph_wagner) \
+	DO(HOD_, william_cunningham) \
+ \
+	/*neoclassical_theory*/ \
+	DO(HOD_, johann_heinrich_von_thünen) \
+	DO(HOD_, léon_walras) \
+	DO(HOD_, stanley_jevons) \
+	DO(HOD_, carl_menger) \
+	DO(HOD_, thorstein_veblen) \
+	DO(HOD_, alfred_marshall) \
+	DO(HOD_, augustin_cournot) \
+	DO(HOD_, jules_dupuit) \
+	DO(HOD_, vilfredo_pareto) \
+	DO(HOD_, knut_wicksell) \
+	DO(HOD_, irving_fischer) \
+	DO(HOD_, joseph_schumpeter) \
+	DO(HOD_, eugen_von_böhm_bawerk) \
+ \
+	/*keynesian_economics*/ \
+	DO(HOD_, john_maynard_keynes) \
+	DO(HOD_, richard_kahn) \
+	DO(HOD_, ludwig_von_mises) \
+	DO(HOD_, friedrich_hayek) \
+ \
+	/*market_structure*/ \
+	DO(HOD_, polypoly_structure) \
+	DO(HOD_, oligopoly_structure) \
+	DO(HOD_, monopoly_structure) \
+ \
+	/*business_regulations*/ \
+	DO(HOD_, limited_partnership_company) \
+	DO(HOD_, joint_stock_company) \
+	DO(HOD_, patent) \
+	DO(HOD_, trademark) \
+ \
+	/*market_regulations*/ \
+	DO(HOD_, anti_trust_laws) \
+	DO(HOD_, financial_regulations) \
+	DO(HOD_, banking_regulations) \
+ \
+	/*economic_responsibility*/ \
+	DO(HOD_, working_board_of_directors) \
+	DO(HOD_, bankruptcy_proceedings) \
+	DO(HOD_, annual_report_proceedings) \
+ \
+	/*government_interventionism*/ \
+	DO(HOD_, priming_the_pump_) \
+	DO(HOD_, mixed_economy) \
+	DO(HOD_, centralized_economic_planning) \
+	DO(HOD_, autarky) \
+	DO(HOD_, import_substitution_industrialization) \
+ \
+	/*organized_factories*/ \
+	DO(HOD_, work_classification) \
+	DO(HOD_, work_specialization) \
+	DO(HOD_, work_control_and_hierarchy) \
+ \
+	/*scientific_management*/ \
+	DO(HOD_, sequence_planning) \
+	DO(HOD_, inventory_planning) \
+	DO(HOD_, quality_assurance_procedure) \
+ \
+	/*time_saving_measures*/ \
+	DO(HOD_, time_studies) \
+	DO(HOD_, time_clock) \
+	DO(HOD_, lighting) \
+ \
+	/*management_strategy*/ \
+	DO(HOD_, old_style_family_business) \
+	DO(HOD_, anynomous_investor_business) \
+	DO(HOD_, marketized_smallholder_business) \
+ \
+	/*organizational_development*/ \
+	DO(HOD_, i_scientific_management) \
+	DO(HOD_, human_resource_development) \
+ \
+ \
+	/*CULTURE INVENTIONS*/ \
+ \
+	/*romanticism*/ \
+	DO(HOD_, romanticist_literature) \
+	DO(HOD_, romanticist_art) \
+	DO(HOD_, romanticist_music) \
+ \
+	/*realism*/ \
+	DO(HOD_, realist_literature) \
+	DO(HOD_, realist_art) \
+	DO(HOD_, realist_music) \
+ \
+	/*impressionism*/ \
+	DO(HOD_, impressionist_literature) \
+	DO(HOD_, impressionist_art) \
+	DO(HOD_, impressionist_music) \
+ \
+	/*expressionism*/ \
+	DO(HOD_, expressionist_literature) \
+	DO(HOD_, expressionist_art) \
+	DO(HOD_, expressionist_music) \
+ \
+	/*mass_culture_n_the_avant_garde*/ \
+	DO(HOD_, avantgarde_literature) \
+	DO(HOD_, avantgarde_art) \
+	DO(HOD_, avantgarde_music) \
+	DO(HOD_, surrealism) \
+	DO(HOD_, modern_design) \
+	DO(HOD_, jazz) \
+	DO(HOD_, socialist_realism) \
+ \
+	/*idealism*/ \
+	DO(HOD_, neokantian_idealism) \
+	DO(HOD_, hegelian_idealism) \
+	DO(HOD_, proto_existentialism) \
+ \
+	/*empiricism*/ \
+	DO(HOD_, pragmatism) \
+	DO(HOD_, i_empiricism) \
+ \
+	/*analytic_philosophy*/ \
+	DO(HOD_, i_analytic_philosophy) \
+	DO(HOD_, modern_logics) \
+	DO(HOD_, logical_positivism) \
+	DO(HOD_, philosophy_of_language) \
+ \
+	/*phenomenology_n_hermeneutic*/ \
+	DO(HOD_, phenomenology) \
+	DO(HOD_, hermeneutics) \
+ \
+	/*anti__rationalism*/ \
+	DO(HOD_, existentialism) \
+	DO(HOD_, nihilism_and_the_will) \
+	DO(HOD_, futurism) \
+	DO(HOD_, quantum_theory) \
+ \
+	/*biologism*/ \
+	DO(HOD_, darwinism) \
+	DO(HOD_, social_darwinism) \
+ \
+	/*social_science*/ \
+	DO(HOD_, sociology) \
+	DO(HOD_, social_psychology) \
+	DO(HOD_, political_science) \
+	DO(HOD_, social_anthropology) \
+ \
+	/*social_alienation*/ \
+	DO(HOD_, the_revolt_of_the_masses) \
+	DO(HOD_, the_decline_of_the_west_and_the_lost_generation) \
+ \
+	/*the rights of man - called enlightenment_thought in files...*/ \
+	DO(HOD_, paternalism) \
+	DO(HOD_, constitutionalism) \
+	DO(HOD_, atheism) \
+	DO(HOD_, egalitarianism) \
+	DO(HOD_, rationalism) \
+ \
+	/*ideological_thought*/ \
+	DO(HOD_, authoritarianism) \
+	DO(HOD_, hierarchical_order) \
+	DO(HOD_, traditionalism) \
+	DO(HOD_, political_religion) \
+	DO(HOD_, individualism) \
+	DO(HOD_, secularization) \
+	DO(HOD_, social_conscience) \
+	DO(HOD_, collectivism) \
+	DO(HOD_, determinism) \
+	DO(HOD_, social_justice) \
+ \
+	/*state_n_government*/ \
+	DO(HOD_, populism_vs_establishment) \
+	DO(HOD_, clericalism_vs_anticlericalism) \
+	DO(HOD_, bureaucracy_vs_nepotism) \
+	DO(HOD_, meritocracy_vs_aristocracy) \
+ \
+	/*nationalism_n_imperialism*/ \
+	DO(HOD_, national_fraternity) \
+	DO(HOD_, biased_multiculturalism) \
+	DO(HOD_, manifest_destiny) \
+	DO(HOD_, expansionism) \
+	DO(HOD_, mission_to_civilize) \
+	DO(HOD_, separatism) \
+ \
+	/*revolution_n_counterrevolution*/ \
+	DO(HOD_, dogma_of_violence) \
+	DO(HOD_, dogma_of_mass_action) \
+	DO(HOD_, terrorism) \
+	DO(HOD_, secret_police) \
+	DO(HOD_, womens_suffrage_movement) \
+	DO(HOD_, rhetoric_of_hate) \
+	DO(HOD_, nostalgic_romanticism) \
+	DO(HOD_, anti_egalitarianism) \
+	DO(HOD_, vangaurd_party) \
+ \
+	/*mass_politics*/ \
+	DO(HOD_, the_doctrine_of_fascism) \
+	DO(HOD_, paramilitary_groups) \
+	DO(HOD_, the_police_state) \
+ \
+	/*behaviorism*/ \
+	DO(HOD_, mass_advertising) \
+	DO(HOD_, national_radio_networks) \
+	DO(HOD_, the_talkies) \
+ \
+ \
+	/*INDUSTRY INVENTIONS*/ \
+\
+	/*combustion_engine*/ \
+	DO(HOD_, daimlers_automobile) \
+	DO(HOD_, wright_n_langleys_aeroplanes) \
+	DO(HOD_, tractors) \
+\
+	/*electrical_power_generation*/ \
+	DO(HOD_, direct_current) \
+	DO(HOD_, alternating_current) \
+	DO(HOD_, polyphase_system) \
+\
+	/*mechanical_production*/ \
+	DO(HOD_, sharp_n_roberts_power_loom) \
+	DO(HOD_, jacquard_power_loom) \
+	DO(HOD_, northrop_power_loom) \
+	DO(HOD_, mechanical_saw) \
+	DO(HOD_, mechanical_precision_saw) \
+	DO(HOD_, hussey_n_mccormicks_reaping_machine) \
+	DO(HOD_, pitts_threshing_machine) \
+	DO(HOD_, mechanized_slaughtering_block) \
+\
+	/*interchangeable_parts*/ \
+	DO(HOD_, precision_work) \
+	DO(HOD_, machine_tools) \
+	DO(HOD_, whitney_n_colts_standardized_small_arms) \
+	DO(HOD_, food_packing_system) \
+	DO(HOD_, integral_distillery_process) \
+	DO(HOD_, jiggs) \
+\
+	/*semi_automatization*/ \
+	DO(HOD_, electric_machinery) \
+	DO(HOD_, oil_pumping_machinery) \
+	DO(HOD_, drying_techniques) \
+\
+	/*assembly_line*/ \
+	DO(HOD_, fordism) \
+	DO(HOD_, industrialized_armament_industry) \
+	DO(HOD_, refrigerator_technology) \
+\
+	/*Metulurgy*/ \
+	DO(HOD_, ammunition_production) \
+	DO(HOD_, small_arms_production) \
+	DO(HOD_, explosives_production) \
+	DO(HOD_, artillery_production) \
+\
+	/*clean_coal*/ \
+	DO(HOD_, pit_coal) \
+	DO(HOD_, coke) \
+\
+	/*cheap_iron*/ \
+	DO(HOD_, advanced_ore_roasting_processes) \
+	DO(HOD_, advanced_ore_grinding_processes) \
+	DO(HOD_, advanced_ore_smelting_processes) \
+	DO(HOD_, bessemer_steel) \
+\
+	/*cheap_steel*/ \
+	DO(HOD_, martin_steel) \
+	DO(HOD_, thomas_steel) \
+\
+	/*advanced_metallurgy*/ \
+	DO(HOD_, electric_rolling_techniques) \
+	DO(HOD_, steel_alloys) \
+\
+	/*electric_furnace*/ \
+	DO(HOD_, stainless_steel) \
+\
+	/*early_railroad*/ \
+	/*iron_railroad*/ \
+	/*steel_railroad*/ \
+	/*medicine*/ \
+	DO(HOD_, combat_medicine) \
+	DO(HOD_, aerial_bacteria_and_antiseptic_principle) \
+	DO(HOD_, vaccination) \
+	DO(HOD_, chemotherapy) \
+	DO(HOD_, genetics_heredity) \
+	DO(HOD_, clinical_thermometers_and_binaural_stethoscopes) \
+	DO(HOD_, prophylaxis_against_malaria) \
+	DO(HOD_, pressure_chambers_for_thorax_surgery) \
+\
+	/*inorganic_chemistry*/ \
+	DO(HOD_, artificial_fertilizers) \
+	DO(HOD_, nitroglycerin) \
+	DO(HOD_, chemical_wood_pulp_process) \
+	DO(HOD_, rubber_vulcanization) \
+	DO(HOD_, catalytic_fermentative_process) \
+\
+	/*organic_chemistry*/ \
+	DO(HOD_, synthetic_dye) \
+	DO(HOD_, gaslights) \
+	DO(HOD_, carbon_soil_enrichment) \
+	DO(HOD_, cracking) \
+\
+	/*electricity*/ \
+	DO(HOD_, x_rays) \
+	DO(HOD_, edison_light_bulb) \
+	DO(HOD_, bell_n_greys_telephones) \
+	DO(HOD_, electrical_lighting) \
+\
+	/*synthetic_polymers*/ \
+	DO(HOD_, rayon) \
+	DO(HOD_, bakelite) \
+	DO(HOD_, vacuum_tube) \
+	DO(HOD_, tulls_seed_drill) \
+	DO(HOD_, rotherham_plough) \
+	DO(HOD_, telephone_switchboard) \
+ \
+ \
+	/*NAVY INVENTIONS*/ \
+\
+	/*torpedo attacks*/ \
+	DO(HOD_, torpedo_attacks) \
+\
+	/*battleship_column_doctrine*/ \
+	DO(HOD_, long_range_fire_tactic) \
+	DO(HOD_, speedy_maneuvering_tactic) \
+\
+	/*raider_group_doctrine*/ \
+	DO(HOD_, sealane_hunters) \
+	DO(HOD_, fast_ship_killer) \
+	DO(HOD_, big_ship_competitor) \
+	DO(HOD_, standard_raider_group_doctrine) \
+\
+	/*blue_and_brown_water_schools*/ \
+	DO(HOD_, blue_water_school) \
+	DO(HOD_, brown_water_school) \
+\
+	/*high_sea_battle_fleet*/ \
+	DO(HOD_, offensive_attitude) \
+	DO(HOD_, defensive_attitude) \
+\
+	/*modern_naval_doctrine*/ \
+	DO(HOD_, decisive_firepower_doctrine) \
+	DO(HOD_, naval_firepower_doctrine) \
+\
+	/*clipper_design*/ \
+	DO(HOD_, building_station_shipyards) \
+\
+	/*steamers*/ \
+	DO(HOD_, mechanized_fishing_vessels) \
+	DO(HOD_, steamer_automatic_construction_plants) \
+	DO(HOD_, steamer_transports) \
+	DO(HOD_, commerce_raiders) \
+\
+	/*iron_steamers*/ \
+	DO(HOD_, ironclads) \
+	DO(HOD_, monitors) \
+	DO(HOD_, torpedo_boats) \
+\
+	/*steel_steamers*/ \
+	DO(HOD_, protected_cruisers) \
+	DO(HOD_, pre_dreadnought) \
+\
+	/*steam_turbine_ships*/ \
+	DO(HOD_, dreadnoughts) \
+	DO(HOD_, advanced_cruisers) \
+	DO(HOD_, modern_cruisers) \
+	DO(HOD_, advanced_battleships) \
+	DO(HOD_, modern_battleships) \
+\
+	/*fire_control_systems*/ \
+	DO(HOD_, optical_rangefinders) \
+	DO(HOD_, gyrostabilized_fire_control) \
+	DO(HOD_, armour_piercing_projectiles) \
+	DO(HOD_, armour_piercing_exploding_projectiles) \
+	DO(HOD_, armoured_turrets) \
+\
+	/*main_armament*/ \
+	DO(HOD_, bomb_guns) \
+	DO(HOD_, rifled_guns) \
+	DO(HOD_, quick_firing_guns) \
+	DO(HOD_, armoured_citadels) \
+	DO(HOD_, heavy_caliber_guns) \
+\
+	/*advanced_naval_design*/ \
+	DO(HOD_, on_board_recon_aircraft) \
+	DO(HOD_, gun_hydraulics) \
+	DO(HOD_, heavy_armour_plates) \
+	DO(HOD_, large_hull_form) \
+\
+	/*modern_naval_design*/ \
+	DO(HOD_, wireless) \
+	DO(HOD_, advanced_fire_control) \
+	DO(HOD_, 15_inch_main_armament) \
+\
+	/*naval_plans*/ \
+	DO(HOD_, night_training) \
+	DO(HOD_, enemy_plotting_cards) \
+	DO(HOD_, target_hit_profile_analysis) \
+\
+	/*naval_statistics*/ \
+	DO(HOD_, hit_evaluation_reports) \
+	DO(HOD_, empirical_interdiction_reports) \
+	DO(HOD_, naval_strike_success_criterium) \
+\
+	/*naval_logistics*/ \
+	DO(HOD_, underway_refueling) \
+	DO(HOD_, ammunition_conservation_system) \
+	DO(HOD_, radio_telegraphy) \
+\
+	/*naval_directionism*/ \
+	DO(HOD_, political_lobbying) \
+	DO(HOD_, military_political_decision_making) \
+	DO(HOD_, local_military_government) \
+\
+	/*naval_integration*/ \
+	DO(HOD_, war_gamming) \
+	DO(HOD_, combined_arms_planning) \
+\
+	/*naval_professionalism*/ \
+	DO(HOD_, academic_training) \
+	DO(HOD_, combat_station_training) \
+	DO(HOD_, societal_status) \
+\
+	/*naval_decision_making*/ \
+	DO(HOD_, independent_command) \
+	DO(HOD_, continuous_issuing_of_orders) \
+	DO(HOD_, delegated_power) \
+\
+	/*naval_risk_management*/ \
+	DO(HOD_, wargames) \
+	DO(HOD_, alternative_plans) \
+	DO(HOD_, n_saddle_orders) \
+\
+	/*naval_nco_training*/ \
+	DO(HOD_, literate_ncos) \
+	DO(HOD_, nco_combat_station_training) \
+	DO(HOD_, nco_tactical_training) \
+\
+	/*modern_naval_training*/ \
+	DO(HOD_, amphibious_warfare_training) \
+	DO(HOD_, naval_exercises)
+
+
+#define MAKE_UNION(TYPE,VAR) TYPE ## VAR,
+enum HODInventionType {
+    HOD_INVENTION_UNION(MAKE_UNION)
+};
+
+
+#define MAKE_STRINGS(TYPE,VAR) #VAR,
+const char* const HODInventionNames[HOD_naval_exercises+1] = {
+    HOD_INVENTION_UNION(MAKE_STRINGS)
 };
 
 

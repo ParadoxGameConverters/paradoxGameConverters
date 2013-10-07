@@ -1230,19 +1230,40 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 	int numRomanticLit = 0;
 	int numRomanticArt = 0;
 	int numRomanticMusic = 0;
-	for (unsigned int i = 0; i < countries.size(); i++)
+	if (Configuration::getV2Gametype() != "HOD")
 	{
-		if (countries[i]->getInventionState(romanticist_literature) == active)
+		for (unsigned int i = 0; i < countries.size(); i++)
 		{
-			numRomanticLit++;
+			if (countries[i]->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				numRomanticLit++;
+			}
+			if (countries[i]->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				numRomanticArt++;
+			}
+			if (countries[i]->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				numRomanticMusic++;
+			}
 		}
-		if (countries[i]->getInventionState(romanticist_art) == active)
+	}
+	else if (Configuration::getV2Gametype() == "HOD")
+	{
+		for (unsigned int i = 0; i < countries.size(); i++)
 		{
-			numRomanticArt++;
-		}
-		if (countries[i]->getInventionState(romanticist_music) == active)
-		{
-			numRomanticMusic++;
+			if (countries[i]->getInventionState(HOD_romanticist_literature) == active)
+			{
+				numRomanticLit++;
+			}
+			if (countries[i]->getInventionState(HOD_romanticist_literature) == active)
+			{
+				numRomanticArt++;
+			}
+			if (countries[i]->getInventionState(HOD_romanticist_literature) == active)
+			{
+				numRomanticMusic++;
+			}
 		}
 	}
 
@@ -1270,19 +1291,40 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 	romanticMusicPrestige *= 20;
 	romanticMusicPrestige /= numRomanticMusic;
 
-	for (unsigned int i = 0; i < countries.size(); i++)
+	if (Configuration::getV2Gametype() != "HOD")
 	{
-		if (countries[i]->getInventionState(romanticist_literature) == active)
+		for (unsigned int i = 0; i < countries.size(); i++)
 		{
-			countries[i]->addPrestige(romanticLitPrestige);
+			if (countries[i]->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				countries[i]->addPrestige(romanticLitPrestige);
+			}
+			if (countries[i]->getInventionState(VANILLA_romanticist_art) == active)
+			{
+				countries[i]->addPrestige(romanticArtPrestige);
+			}
+			if (countries[i]->getInventionState(VANILLA_romanticist_music) == active)
+			{
+				countries[i]->addPrestige(romanticMusicPrestige);
+			}
 		}
-		if (countries[i]->getInventionState(romanticist_art) == active)
+	}
+	else if (Configuration::getV2Gametype() == "HOD")
+	{
+		for (unsigned int i = 0; i < countries.size(); i++)
 		{
-			countries[i]->addPrestige(romanticArtPrestige);
-		}
-		if (countries[i]->getInventionState(romanticist_music) == active)
-		{
-			countries[i]->addPrestige(romanticMusicPrestige);
+			if (countries[i]->getInventionState(HOD_romanticist_literature) == active)
+			{
+				countries[i]->addPrestige(romanticLitPrestige);
+			}
+			if (countries[i]->getInventionState(HOD_romanticist_art) == active)
+			{
+				countries[i]->addPrestige(romanticArtPrestige);
+			}
+			if (countries[i]->getInventionState(HOD_romanticist_music) == active)
+			{
+				countries[i]->addPrestige(romanticMusicPrestige);
+			}
 		}
 	}
 }

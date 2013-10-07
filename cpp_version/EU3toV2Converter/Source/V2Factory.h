@@ -17,12 +17,13 @@ struct V2FactoryType
 {
 	V2FactoryType(Object* factory);
 
-	string				name;
-	bool					requireCoastal;
-	string				requireTech;
-	inventionType		requireInvention;
-	bool					requireLocalInput;
-	map<string,float>	inputs;
+	string						name;
+	bool							requireCoastal;
+	string						requireTech;
+	vanillaInventionType		vanillaRequiredInvention;
+	HODInventionType			HODRequiredInvention;
+	bool							requireLocalInput;
+	map<string,float>			inputs;
 };
 
 
@@ -33,10 +34,11 @@ class V2Factory
 		void					output(FILE* output) const;
 		map<string,float>	getRequiredRGO() const;
 
-		bool				requiresCoastal()			const { return type->requireCoastal; }
-		string			getRequiredTech()			const { return type->requireTech; }
-		inventionType	getRequiredInvention()	const { return type->requireInvention; }
-		string			getTypeName()				const { return type->name; }
+		bool						requiresCoastal()					const { return type->requireCoastal; }
+		string					getRequiredTech()					const { return type->requireTech; }
+		vanillaInventionType	getVanillaRequiredInvention()	const { return type->vanillaRequiredInvention; }
+		HODInventionType		getHODRequiredInvention()		const { return type->HODRequiredInvention; }
+		string					getTypeName()						const { return type->name; }
 	private:
 		const V2FactoryType* type;
 };

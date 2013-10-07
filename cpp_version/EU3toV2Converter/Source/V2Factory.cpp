@@ -1,6 +1,7 @@
 #include "V2Factory.h"
 #include "Parsers/Parser.h"
 #include "Log.h"
+#include "Configuration.h"
 
 
 
@@ -18,8 +19,9 @@ V2FactoryType::V2FactoryType(Object* factory)
 		requireCoastal = false;
 	}
 
-	requireTech			= "";
-	requireInvention = (inventionType)-1;
+	requireTech						= "";
+	vanillaRequiredInvention	= (vanillaInventionType)-1;
+	HODRequiredInvention			= (HODInventionType)-1;
 
 	vector<Object*> local_supply = factory->getValue("limit_by_local_supply");
 	if ((local_supply.size() > 0) && (local_supply[0]->getLeaf() == "yes"))
@@ -122,11 +124,16 @@ V2FactoryFactory::V2FactoryFactory(string V2Loc)
 		reqitr = factoryInventionReqs.find(ft->name);
 		if (reqitr != factoryInventionReqs.end())
 		{
-			for (int i = 0; i <= naval_exercises; ++i)
+			for (int i = 0; i <= VANILLA_naval_exercises; ++i)
 			{
-				if (reqitr->second == inventionNames[i])
+				if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == vanillaInventionNames[i])) 
 				{
-					ft->requireInvention = (inventionType)i;
+					ft->vanillaRequiredInvention = (vanillaInventionType)i;
+					break;
+				}
+				else if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == HODInventionNames[i])) 
+				{
+					ft->HODRequiredInvention = (HODInventionType)i;
 					break;
 				}
 			}

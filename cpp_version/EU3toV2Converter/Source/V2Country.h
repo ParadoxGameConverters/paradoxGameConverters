@@ -60,7 +60,8 @@ class V2Country
 		string							getPrimaryCulture() const { return primaryCulture; };
 		vector<string>					getAcceptedCultures() const { return acceptedCultures; };
 		const EU3Country*				getSourceCountry() const { return srcCountry; };
-		inventionStatus				getInventionState(inventionType invention) const { return inventions[invention]; };
+		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; };
+		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; };
 		double							getReactionary() const { return upperHouseReactionary; };
 		double							getConservative() const { return upperHouseConservative; };
 		double							getLiberal() const { return upperHouseLiberal; };
@@ -100,7 +101,8 @@ class V2Country
 		double							leadership;
 		double							plurality;
 		vector<string>					techs;
-		inventionStatus				inventions[naval_exercises];
+		inventionStatus				vanillaInventions[VANILLA_naval_exercises];
+		inventionStatus				HODInventions[HOD_naval_exercises];
 		V2UncivReforms*				uncivReforms;
 		double							researchPoints;
 		string							techSchool;
