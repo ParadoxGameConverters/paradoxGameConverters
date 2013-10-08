@@ -1,0 +1,20 @@
+culture_override={
+
+# Culture override: Explicitly define a primary culture for a CK2 title
+# It is possible to use custom culture rules.
+# Available rules listed in culture_rules.txt
+
+link = { title = k_orthodox culture = greek_orthodox }
+link = { title = d_aztec_reformed culture = aztek }
+link = { title = d_knights_templar culture = french_knight }
+link = { title = d_monothelite culture = greek_orthodox}
+
+}
+
+locale_override={
+
+# Locale override: Define new localization
+
+link = { title = d_aztec_reformed locale = "The Aztec Church" }
+
+}

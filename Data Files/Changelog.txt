@@ -524,3 +524,4 @@ Revision	Log Message
 499		Fix frontend's copy routines
 500		Merge main into mod
 501		Updated project file for VS12 compatibility
+502		Dynamically assigned graphical cultures for mod countries

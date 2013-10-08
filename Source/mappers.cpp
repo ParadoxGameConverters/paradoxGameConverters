@@ -707,3 +707,26 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 	}
 	return tradeGoodMap;
 }
+
+cultureRuleOverrideMapping initCultureRuleOverrideMap(Object* obj, cultureRuleOverrideMapping cultureRules)
+{
+	cultureRuleOverrideMapping mapping;
+
+	vector<Object*> leaves = obj->getLeaves();
+
+	if (leaves.size() < 1)
+	{
+		log ("Error: No culture rule override definitions loaded.\n");
+		printf("Error: No culture rule override definitions loaded.\n");
+		return mapping;
+	}
+
+	for (vector<Object*>::iterator itr = leaves.begin(); itr < leaves.end(); itr++)
+	{
+		vector<Object*> data = (*itr)->getLeaves();
+
+		mapping.insert(make_pair(data[0]->getLeaf(), cultureRules[data[1]->getLeaf()]));
+	}
+
+	return mapping;
+}

@@ -14,6 +14,7 @@ class CK2Version;
 class CK2Title;
 class	CK2Province;
 class EU3Country;
+class ModCultureRule;
 
 
 // Province Mappings
@@ -81,6 +82,11 @@ typedef struct {
 } tradeGood;
 typedef map<string, tradeGood> tradeGoodMapping;
 tradeGoodMapping initTradeGoodMapping(Object* obj);
+
+
+// Culture Rule Override
+typedef map<string, ModCultureRule*> cultureRuleOverrideMapping;
+cultureRuleOverrideMapping initCultureRuleOverrideMap(Object* obj, map<string, ModCultureRule*> cultureRules);
 
 
 #endif	// MAPPERS_H_

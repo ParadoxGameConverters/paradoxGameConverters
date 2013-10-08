@@ -7,6 +7,7 @@
 #include <set>
 #include "..\Mappers.h"
 #include "..\Date.h"
+#include "..\ModWorld\ModCultureRule.h"
 
 
 
@@ -49,6 +50,7 @@ class EU3World
 		
 		void	addHistoricalCountries();
 		void	setupProvinces(provinceMapping& provinceMap);
+		void	getCultureRules();
 
 		void	convertCountries(map<string, CK2Title*> CK2Titles, const religionMapping& religionMap, const cultureMapping& cultureMap, const provinceMapping provinceMap);
 		void	convertProvinces(provinceMapping&, map<int, CK2Province*>&, cultureMapping& cultureMap, religionMapping& religionMap, continentMapping& continentMap, const adjacencyMapping& adjacencyMap, const tradeGoodMapping& tradeGoodMap, const religionGroupMapping& EU3ReligionGroup, Object* positionObj);
@@ -85,6 +87,7 @@ class EU3World
 		vector<int>							centersOfTrade;
 		map<int, EU3Province*>			provinces;
 		map<string, EU3Country*>		countries;
+		map<string, ModCultureRule*>	cultureRules;
 		vector<EU3Country*>				convertedCountries;
 		vector<EU3Advisor*>				advisors;
 		map< string, vector<string> >	mapSpreadStrings;

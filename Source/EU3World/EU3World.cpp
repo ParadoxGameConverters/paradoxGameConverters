@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <io.h>
 #include <set>
+#include <vector>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
@@ -18,12 +19,12 @@
 #include "..\CK2World\CK2World.h"
 #include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2Religion.h"
+#include "..\ModWorld\ModCultureRule.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
 #include "EU3Ruler.h"
 #include "EU3Advisor.h"
 #include "EU3Diplomacy.h"
-using namespace std;
 
 
 
@@ -505,7 +506,7 @@ void EU3World::setupProvinces(provinceMapping& provinceMap)
 		Object* obj;
 		char num[5];
 		_itoa_s(i->first, num, 5, 10);
-		
+
 		string filename = Configuration::getEU3Path() + "\\history\\provinces\\" + num + "*-*.txt";
 		struct _finddata_t	fileData;
 		intptr_t					fileListing;
@@ -556,6 +557,57 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 			(*countryItr)->addLiege(CK2Liege->getDstCountry());
 		}
 	}
+}
+
+
+void EU3World::getCultureRules()
+{
+	// get mod culture rules
+    Object* obj = doParseFile( (Configuration::getModPath() + "\\config\\culture_rules.txt").c_str() );
+	if (obj == NULL)
+	{
+		log( ("Error: Could not open" + Configuration::getModPath() + "\\config\\culture_rules.txt\n").c_str() );
+		printf("Error: Could not open culture_rules.txt\n");
+		exit(-1);
+	}
+
+	vector<Object*> objectList = obj->getLeaves();
+
+	if (objectList.size() >0)
+	{
+		vector<Object*> cultureRuleObj = objectList[0]->getLeaves(); // Get culture rules
+		for (unsigned int i = 0; i < cultureRuleObj.size(); i++) // Loop through each culture rule
+		{
+			//initialize culture rule
+			ModCultureRule* newCultureRule = new ModCultureRule(cultureRuleObj[i]->getKey(), cultureRuleObj[i]);
+
+			//add to culture rules list
+			cultureRules.insert( make_pair(cultureRuleObj[i]->getKey(), newCultureRule) );
+		}
+	}
+
+	/*vector<Object*> objectList = obj->getLeaves(); // Get
+	vector<Object*> cultureRuleObj; // Stores culture rules
+	vector<Object*> ruleAttributes; // Stores attributes for each culture rule
+	vector<Object*> graphicalCultureObj;
+	string graphicalCulture;
+
+	for (unsigned int i = 0; i < objectList.size(); i++) // Loop each top-level node
+	{
+		vector<Object*> cultureRuleObj = objectList[i]->getLeaves(); // Get culture rules
+		for (unsigned int j = 0; j < cultureRuleObj.size(); j++) // Loop through each culture rule
+		{
+			string key2 = cultureRuleObj[j]->getKey();
+			printf("%s\n",key2.c_str());
+			ruleAttributes = cultureRuleObj[j]->getLeaves();
+			vector<Object*> graphicalCultureObj = cultureRuleObj[j]->getValue("graphical_culture");
+			if (graphicalCultureObj.size() > 0)
+			{
+				graphicalCulture	= graphicalCultureObj[0]->getLeaf();
+			}
+		}
+	}
+	obj->printTopLevel();*/
 }
 
 
@@ -626,7 +678,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 
 			continue;
 		}
-		
+
 		vector<int>	srcProvinceNums = i->second;
 		vector<CK2Province*> srcProvinces;
 		for (unsigned j = 0; j < srcProvinceNums.size(); j++)
@@ -817,7 +869,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		goodProvinces.push(openItr->first);
 		openProvinces.erase(openItr);
 
-		do 
+		do
 		{
 			int currentProvince = goodProvinces.front();
 			goodProvinces.pop();
@@ -1319,7 +1371,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), techScore, (*countryItr)->getTechGroup().c_str());
 		}
-	}	
+	}
 
 	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -1797,7 +1849,7 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 		for (unsigned int j = 0; j < rule.size(); j++)
 		{
 			if (rule[j]->getKey().compare("CK2") == 0)
-			{		 
+			{
 				rCK2Title = rule[j]->getLeaf();
 			}
 			else if (rule[j]->getKey().compare("EU3") == 0)
@@ -1991,7 +2043,7 @@ void EU3World::convertHRE()
 		}
 	}
 	sort(potentialElectors.begin(), potentialElectors.end(), [](CK2Title* a, CK2Title* b) { return a->getHolder()->getTotalScore() < b->getHolder()->getTotalScore(); } );
-	
+
 	if (potentialElectors.size() > 0)
 	{
 		unsigned int maxElectors = 6;
@@ -2010,9 +2062,30 @@ void EU3World::convertHRE()
 	}
 }
 
-
+#define MAX_SHIPS 40
+#define MAX_LEADER_NAMES 40
+#define MULTIPLIER 3
 void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
+    // get mod culture rules
+    getCultureRules();
+
+	// parse override file
+	Object* obj = doParseFile( (Configuration::getModPath() + "\\config\\overrides.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n",(Configuration::getModPath() + "\\config\\overrides.txt").c_str()) ;
+		printf("Error: Could not open %s\n",(Configuration::getModPath() + "\\config\\overrides.txt").c_str()) ;
+		exit(-1);
+	}
+	vector<Object*> cultureRuleOverrideObj = obj->getValue("culture_rule_override");
+	cultureRuleOverrideMapping croMap;
+	if (cultureRuleOverrideObj.size() > 0)
+	{
+		croMap = initCultureRuleOverrideMap(cultureRuleOverrideObj[0],cultureRules);
+	}
+	//vector<string> temp = cultureRules["greek"]->getMaleNames();
+
 	// get CK2 localisations
 	map<string, string>	localisations;
 	struct _finddata_t	data;
@@ -2150,6 +2223,126 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		countries.insert(make_pair(tag, newCountry));
 		mappings.push_back( make_tuple(*countryItr, newCountry, (*countryItr)->getSrcCountry()->getTitleString().c_str(), tag, 1) );
 
+		// Get culture rules for new country
+
+		ModCultureRule *rulingCulture, *commonCulture;
+		string primaryCulture = (*countryItr)->getPrimaryCulture().c_str();
+		string capitalCulture = provinces[(*countryItr)->getCapital()]->getCulture().c_str();
+		
+		if(croMap.count(titleString.c_str()) !=0 ) // check if CK2 title is in overrides
+		{
+			primaryCulture = croMap[titleString.c_str()]->getKey();
+			if(cultureRules.count(primaryCulture) == 0)
+			{
+				log("\tWarning: could not find culture rule for \"%s\"\n",primaryCulture.c_str());
+			}
+			else
+			{
+				rulingCulture = croMap[titleString.c_str()];
+				commonCulture = rulingCulture;
+			}
+		}
+		else
+		{
+			if(cultureRules.count(primaryCulture) == 0)
+			{
+				log("\tWarning: could not find culture rule for \"%s\"\n",primaryCulture.c_str());
+			}
+			else
+			{
+				rulingCulture = cultureRules[primaryCulture];
+			}
+			if(cultureRules.count(capitalCulture) == 0)
+			{
+				log("\tWarning: could not find culture rule for \"%s\"\n",capitalCulture.c_str());
+			}
+			else
+			{
+				commonCulture = cultureRules[capitalCulture];
+			}
+		}
+
+		// Set graphical culture
+		(*countryItr)->setGraphicalCulture(commonCulture->getGraphicalCulture().c_str());
+
+		//printf("gfx: %s\n",commonCulture->getGraphicalCulture().c_str());
+
+		// Determine names
+		string gender = (*countryItr)->getSrcCountry()->getGenderLaw().c_str();
+		double maleRatio = -1;
+		if(gender == "agnatic")
+		{
+			maleRatio = 1;
+		}
+		if(gender == "cognatic")
+		{
+			maleRatio = 0.8;
+		}
+		if(gender == "true_cognatic")
+		{
+			maleRatio = 0.5;
+		}
+		if(gender == "enatic_cognatic")
+		{
+			maleRatio = 0.2;
+		}
+		if(gender == "enatic")
+		{
+			maleRatio = 0;
+		}
+		int rulers = 10;
+		int commoners = 30;
+		if(rulingCulture->getKey() == commonCulture->getKey())
+		{
+			vector<string> nameListM(rulingCulture->getMaleNames());
+			vector<string> nameListF(rulingCulture->getFemaleNames());
+			vector<string> mixed;
+			mixed.reserve(nameListM.size() + nameListF.size());
+			mixed.insert(mixed.end(), nameListM.begin(), nameListM.end());
+			mixed.insert(mixed.end(), nameListF.begin(), nameListF.end());
+			//random_shuffle(nameListM.begin(),nameListM.end());
+			//random_shuffle(nameListF.begin(),nameListF.end());
+			random_shuffle(mixed.begin(),mixed.end());
+
+			vector<string> surnames(rulingCulture->getLeaderNames());
+			random_shuffle(surnames.begin(),surnames.end());
+		}
+		else
+		{
+			// Rulers of a country are foreign
+			// Ex: Duchy of Athens (ATH): Italian rulers, Greek commoners
+
+			vector<string> rulingNameListM(rulingCulture->getMaleNames());
+			vector<string> rulingNameListF(rulingCulture->getFemaleNames());
+			vector<string> rulingMixed;
+			rulingMixed.reserve(rulingNameListM.size() + rulingNameListF.size());
+			rulingMixed.insert(rulingMixed.end(), rulingNameListM.begin(), rulingNameListM.end());
+			rulingMixed.insert(rulingMixed.end(), rulingNameListF.begin(), rulingNameListF.end());
+			vector<string> commonNameListM(commonCulture->getMaleNames());
+			vector<string> commonNameListF(commonCulture->getFemaleNames());
+			vector<string> commonMixed;
+			commonMixed.reserve(commonNameListM.size() + commonNameListF.size());
+			commonMixed.insert(commonMixed.end(), commonNameListM.begin(), commonNameListM.end());
+			commonMixed.insert(commonMixed.end(), commonNameListF.begin(), commonNameListF.end());
+			//random_shuffle(rulingNameListM.begin(),rulingNameListM.end());
+			//random_shuffle(rulingNameListF.begin(),rulingNameListF.end());
+			random_shuffle(rulingMixed.begin(),rulingMixed.end());
+			//random_shuffle(commonNameListM.begin(),commonNameListM.end());
+			//random_shuffle(commonNameListF.begin(),commonNameListF.end());
+			random_shuffle(commonMixed.begin(),commonMixed.end());
+
+			vector<string> rulingSurnames(rulingCulture->getLeaderNames());
+			vector<string> commonSurnames(commonCulture->getLeaderNames());
+			vector<string> surnames;
+			surnames.reserve(rulingSurnames.size() + commonSurnames.size());
+			surnames.insert(surnames.end(),rulingSurnames.begin(),rulingSurnames.end());
+			surnames.insert(surnames.end(),commonSurnames.begin(),commonSurnames.end());
+			random_shuffle(surnames.begin(),surnames.end());
+		}
+
+		vector<string> ships(commonCulture->getShipNames());
+		random_shuffle(ships.begin(),ships.end());
+
 		// Add localisations
 		if (EU3Localisations != NULL)
 		{
@@ -2178,7 +2371,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 				fprintf(EU3Localisations, newLocalisation.c_str());
 			}
 		}
-			
+
 		// determine filename
 		string filename = Configuration::getEU3Path();
 		filename += "\\common\\countries\\";
@@ -2246,7 +2439,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		fprintf(resultsFile, "\tgender=%s\n", (*countryItr)->getSrcCountry()->getGenderLaw().c_str());
 		fprintf(resultsFile, "}\n");
 		fprintf(resultsFile, "\n");
-		
+
 		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
 	}
 	fclose(EU3Localisations);
@@ -2258,7 +2451,7 @@ void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
 {
 	fprintf(countryFile, "#Country Name: Please see filename.\n");
 	fprintf(countryFile, "\n");
-	fprintf(countryFile, "graphical_culture = latingfx\n"); //TODO: have variable graphical culture type
+	fprintf(countryFile, "graphical_culture = %s\n",country->getGraphicalCulture().c_str()); //TODO: have variable graphical culture type
 	fprintf(countryFile, "\n");
 	const int* color = country->getSrcCountry()->getColor();
 	fprintf(countryFile, "Color = { %d %d %d }\n", color[0], color[1], color[2]);

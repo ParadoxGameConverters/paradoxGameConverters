@@ -22,6 +22,9 @@
     <Filter Include="CK2World">
       <UniqueIdentifier>{02fc5e8a-8876-4bbc-975f-8b7d081070bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ModWorld">
+      <UniqueIdentifier>{607513ec-e4bc-4b45-9dcc-9bd5c9ca3030}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source\Convert.cpp">
@@ -120,6 +123,9 @@
     <ClCompile Include="Source\EU3World\EU3Navy.cpp">
       <Filter>EU3World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ModWorld\ModCultureRule.cpp">
+      <Filter>ModWorld</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Log.h">
@@ -217,6 +223,9 @@
     </ClInclude>
     <ClInclude Include="Source\EU3World\EU3Navy.h">
       <Filter>EU3World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ModWorld\ModCultureRule.h">
+      <Filter>ModWorld</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

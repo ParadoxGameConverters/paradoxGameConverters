@@ -61,6 +61,7 @@ class EU3Country
 		void		addAgreement(EU3Agreement* _agr)		{ agreements.push_back(_agr); };
 		void		setRelations(EU3Country* other, int value)	{ relations.insert(make_pair(other, value)); };
 		void		setElector(bool _elector)				{ elector = _elector; };
+		void		setGraphicalCulture(string gfx)			{ graphicalCulture = gfx; };
 
 		CK2Title*				getSrcCountry()			const { return src; };
 		EU3Country*				getLiege()					const { return liege; };
@@ -88,6 +89,7 @@ class EU3Country
 		bool						hasVassals()				const { return !vassals.empty(); };
 		int						getInfantry() const;
 		int						getNumPorts() const;
+		string					getGraphicalCulture()	const { return graphicalCulture; };
 	private:
 		void	addBuildings();
 
@@ -170,6 +172,8 @@ class EU3Country
 		int						offensive;
 		int						land;
 		int						quality;
+
+		string					graphicalCulture;
 };
 
 
