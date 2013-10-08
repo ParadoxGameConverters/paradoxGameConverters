@@ -423,21 +423,26 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 
-	// Generate Mod Directory Structure
+/*	// Generate Mod Directory Structure
 	printf("Outputting mod.\n");
 	log("Outputting mod.\n");
 	printf("\tGenerating mod directory structure.\n");
 	log("\tGenerating mod directory structure.\n");
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName).c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\common").c_str(), NULL);
+	// Function to Generate bookmark so there is only 1 time period 1836.1.1
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\common\\countries").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\gfx").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\gfx\\flags").c_str(), NULL);
+	// Function to create country files for V2 that only exist in EU4 directory.  Move base flag and make generic for all parties.
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\countries").c_str(), NULL);
+	// Generate country history files
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\diplomacy").c_str(), NULL);
+	// Current diplomatic relations goes here
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops\\1836.1.1").c_str(), NULL);
+	// Current populations are sent here
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\africa").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\asia").c_str(), NULL);
@@ -464,16 +469,14 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\spain").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\united kingdom").c_str(), NULL);
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\usa").c_str(), NULL);
+	// Run province generation script for the new owners and cores on these provinces base on the V2_province_reference file.
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\units").c_str(), NULL);
+	// Generate file for the armies and navies
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\wars").c_str(), NULL);
+	// Transfer ongoing wars
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\localisation").c_str(), NULL);
-
-	// Create Province History Files
-	printf("\tCreating Province History Files.\n");
-	log("\tCreating Province History Files.\n");
-	obj = doParseFile("input.eu4");
-//	destWorld.createProvinceFiles();
-
+	// Generate english localization file for the names of the countries and anything else needed.
+*/
 	// Output results
 	printf("Outputting save.\n");
 	log("Outputting save.\n");
