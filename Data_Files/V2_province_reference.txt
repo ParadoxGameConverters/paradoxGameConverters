@@ -1,0 +1,71 @@
+V2_province_reference=
+{
+
+# A reference for the file generation routine. This is painful.
+
+# Africa
+
+760 = "africa/790 - Kitwe.txt"
+1680 = "africa/1680 - Fex.txt"
+
+# Asia
+
+# Australia
+
+
+# Austria
+
+# Balkan
+
+# Canada
+
+# Carribean
+
+# Central Asia
+
+# China
+
+# France
+
+# Germany
+
+# India
+
+# Indonesia
+
+# Italy
+
+# Japan
+
+# Low Countries
+
+# Mexico
+
+# Pacific Island
+
+# Portugal
+
+518 = "portugal/518 - Oporto.txt"
+519 = "portugal/519 - Vila Real.txt"
+520 = "portugal/520 - Covilha.txt"
+521 = "portugal/521 - Lisbon.txt"
+522 = "portugal/522 - Coimbra.txt"
+523 = "portugal/523 - Abrantes.txt"
+524 = "portugal/524 - Setubal.txt"
+525 = "portugal/525 - Evora.txt"
+526 = "portugal/526 - Beja.txt"
+527 = "portugal/527 - Faro.txt"
+
+# Scandinavia
+
+# South America
+
+# Soviet
+
+# Spain
+
+# United Kingdom
+
+# USA
+
+}

@@ -49,3 +49,4 @@ Revision	Who		Log Message
 46		Ztaesek		Only noncoastal India and China Left
 47		Ztaesek		Inserted Mod Folder creation code
 48		Ztaesek		Finished province_mappings!
+49		Ztaesek		History file province reference
