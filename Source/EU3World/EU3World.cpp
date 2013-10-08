@@ -585,29 +585,6 @@ void EU3World::getCultureRules()
 			cultureRules.insert( make_pair(cultureRuleObj[i]->getKey(), newCultureRule) );
 		}
 	}
-
-	/*vector<Object*> objectList = obj->getLeaves(); // Get
-	vector<Object*> cultureRuleObj; // Stores culture rules
-	vector<Object*> ruleAttributes; // Stores attributes for each culture rule
-	vector<Object*> graphicalCultureObj;
-	string graphicalCulture;
-
-	for (unsigned int i = 0; i < objectList.size(); i++) // Loop each top-level node
-	{
-		vector<Object*> cultureRuleObj = objectList[i]->getLeaves(); // Get culture rules
-		for (unsigned int j = 0; j < cultureRuleObj.size(); j++) // Loop through each culture rule
-		{
-			string key2 = cultureRuleObj[j]->getKey();
-			printf("%s\n",key2.c_str());
-			ruleAttributes = cultureRuleObj[j]->getLeaves();
-			vector<Object*> graphicalCultureObj = cultureRuleObj[j]->getValue("graphical_culture");
-			if (graphicalCultureObj.size() > 0)
-			{
-				graphicalCulture	= graphicalCultureObj[0]->getLeaf();
-			}
-		}
-	}
-	obj->printTopLevel();*/
 }
 
 
@@ -2062,9 +2039,135 @@ void EU3World::convertHRE()
 	}
 }
 
-#define MAX_SHIPS 40
-#define MAX_LEADER_NAMES 40
-#define MULTIPLIER 3
+
+void EU3World::populateCountryFileData(EU3Country* country, cultureRuleOverrideMapping croMap, string titleString)
+{
+		ModCultureRule *rulingCulture = NULL, *commonCulture = NULL;
+		string primaryCulture = country->getPrimaryCulture().c_str();
+		string capitalCulture = provinces[country->getCapital()]->getCulture().c_str();
+		
+		if(croMap.count(titleString.c_str()) !=0 ) // check if CK2 title is in overrides
+		{
+			primaryCulture = croMap[titleString.c_str()]->getKey();
+			if(cultureRules.count(primaryCulture) == 0)
+			{
+				log("\tWarning: could not find culture rule for \"%s\"\n",primaryCulture.c_str());
+				country->setGraphicalCulture(DEFAULT_GFX);
+				return;
+			}
+			else
+			{
+				rulingCulture = croMap[titleString.c_str()];
+				commonCulture = rulingCulture;
+			}
+		}
+		else
+		{
+			if(cultureRules.count(primaryCulture) == 0)
+			{
+				log("\tWarning: could not find culture rule for \"%s\"\n",primaryCulture.c_str());
+				country->setGraphicalCulture(DEFAULT_GFX);
+				return;
+			}
+			else
+			{
+				rulingCulture = cultureRules[primaryCulture];
+			}
+			if(cultureRules.count(capitalCulture) == 0)
+			{
+				log("\tWarning: could not find culture rule for \"%s\"\n",capitalCulture.c_str());
+				country->setGraphicalCulture(DEFAULT_GFX);
+				return;
+			}
+			else
+			{
+				commonCulture = cultureRules[capitalCulture];
+			}
+		}
+
+		// Set graphical culture
+		country->setGraphicalCulture(commonCulture->getGraphicalCulture().c_str());
+
+		//printf("gfx: %s\n",commonCulture->getGraphicalCulture().c_str());
+
+		// Determine names
+		string gender = country->getSrcCountry()->getGenderLaw().c_str();
+		double maleRatio = -1;
+		if(gender == "agnatic")
+		{
+			maleRatio = 1;
+		}
+		if(gender == "cognatic")
+		{
+			maleRatio = 0.8;
+		}
+		if(gender == "true_cognatic")
+		{
+			maleRatio = 0.5;
+		}
+		if(gender == "enatic_cognatic")
+		{
+			maleRatio = 0.2;
+		}
+		if(gender == "enatic")
+		{
+			maleRatio = 0;
+		}
+		int rulers = 10;
+		int commoners = 30;
+		if(rulingCulture->getKey() == commonCulture->getKey())
+		{
+			vector<string> nameListM(rulingCulture->getMaleNames());
+			vector<string> nameListF(rulingCulture->getFemaleNames());
+			vector<string> mixed;
+			mixed.reserve(nameListM.size() + nameListF.size());
+			mixed.insert(mixed.end(), nameListM.begin(), nameListM.end());
+			mixed.insert(mixed.end(), nameListF.begin(), nameListF.end());
+			//random_shuffle(nameListM.begin(),nameListM.end());
+			//random_shuffle(nameListF.begin(),nameListF.end());
+			random_shuffle(mixed.begin(),mixed.end());
+
+			vector<string> surnames(rulingCulture->getLeaderNames());
+			random_shuffle(surnames.begin(),surnames.end());
+		}
+		else
+		{
+			// Rulers of a country are foreign
+			// Ex: Duchy of Athens (ATH): Italian rulers, Greek commoners
+
+			vector<string> rulingNameListM(rulingCulture->getMaleNames());
+			vector<string> rulingNameListF(rulingCulture->getFemaleNames());
+			vector<string> rulingMixed;
+			rulingMixed.reserve(rulingNameListM.size() + rulingNameListF.size());
+			rulingMixed.insert(rulingMixed.end(), rulingNameListM.begin(), rulingNameListM.end());
+			rulingMixed.insert(rulingMixed.end(), rulingNameListF.begin(), rulingNameListF.end());
+			vector<string> commonNameListM(commonCulture->getMaleNames());
+			vector<string> commonNameListF(commonCulture->getFemaleNames());
+			vector<string> commonMixed;
+			commonMixed.reserve(commonNameListM.size() + commonNameListF.size());
+			commonMixed.insert(commonMixed.end(), commonNameListM.begin(), commonNameListM.end());
+			commonMixed.insert(commonMixed.end(), commonNameListF.begin(), commonNameListF.end());
+			//random_shuffle(rulingNameListM.begin(),rulingNameListM.end());
+			//random_shuffle(rulingNameListF.begin(),rulingNameListF.end());
+			random_shuffle(rulingMixed.begin(),rulingMixed.end());
+			//random_shuffle(commonNameListM.begin(),commonNameListM.end());
+			//random_shuffle(commonNameListF.begin(),commonNameListF.end());
+			random_shuffle(commonMixed.begin(),commonMixed.end());
+
+			vector<string> rulingSurnames(rulingCulture->getLeaderNames());
+			vector<string> commonSurnames(commonCulture->getLeaderNames());
+			vector<string> surnames;
+			surnames.reserve(rulingSurnames.size() + commonSurnames.size());
+			surnames.insert(surnames.end(),rulingSurnames.begin(),rulingSurnames.end());
+			surnames.insert(surnames.end(),commonSurnames.begin(),commonSurnames.end());
+			random_shuffle(surnames.begin(),surnames.end());
+		}
+
+		vector<string> ships(commonCulture->getShipNames());
+		random_shuffle(ships.begin(),ships.end());
+}
+
+
 void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
     // get mod culture rules
@@ -2079,12 +2182,11 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		exit(-1);
 	}
 	vector<Object*> cultureRuleOverrideObj = obj->getValue("culture_rule_override");
-	cultureRuleOverrideMapping croMap;
+	cultureRuleOverrideMapping croMap; // Culture Rule Override Mapping
 	if (cultureRuleOverrideObj.size() > 0)
 	{
 		croMap = initCultureRuleOverrideMap(cultureRuleOverrideObj[0],cultureRules);
 	}
-	//vector<string> temp = cultureRules["greek"]->getMaleNames();
 
 	// get CK2 localisations
 	map<string, string>	localisations;
@@ -2225,7 +2327,9 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 
 		// Get culture rules for new country
 
-		ModCultureRule *rulingCulture, *commonCulture;
+		populateCountryFileData((*countryItr), croMap, titleString);
+
+		/*ModCultureRule *rulingCulture = NULL, *commonCulture = NULL;
 		string primaryCulture = (*countryItr)->getPrimaryCulture().c_str();
 		string capitalCulture = provinces[(*countryItr)->getCapital()]->getCulture().c_str();
 		
@@ -2341,7 +2445,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		}
 
 		vector<string> ships(commonCulture->getShipNames());
-		random_shuffle(ships.begin(),ships.end());
+		random_shuffle(ships.begin(),ships.end());*/
 
 		// Add localisations
 		if (EU3Localisations != NULL)

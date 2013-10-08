@@ -722,7 +722,7 @@ void EU3Province::determineReligion(const religionMapping& religionMap, const ve
 		}
 	}
 
-	CK2Religion*		topReligion;
+	CK2Religion*		topReligion = NULL;
 	double			topCount		= 0;
 	bool				tie			= false;
 	vector<CK2Religion*>	tiedReligions;

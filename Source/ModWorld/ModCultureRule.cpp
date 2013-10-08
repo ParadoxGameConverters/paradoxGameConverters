@@ -28,43 +28,34 @@ vector<string> ModCultureRule::processRawNames(vector<Object*> nameListObj)
 			name=tok_iter->c_str();
 			first = name.front();
 			last = name.back();
-			//printf("<%c%c> ",first,last);
-			if( (first==GROUPING_SYMBOL) && (last==GROUPING_SYMBOL) ) // "name"
+			if( (first==GROUPING_SYMBOL) && (last==GROUPING_SYMBOL) ) // Entry: "name"
 			{
-				//printf("Case <**>\n");
-				name.erase(remove(name.begin(), name.end(), GROUPING_SYMBOL), name.end()); // strip grouping symbol
+				name.erase(remove(name.begin(), name.end(), GROUPING_SYMBOL), name.end()); // Strip grouping symbol
 				nameList.push_back(name);
 			}
-			else if( (first==GROUPING_SYMBOL) && (last!=GROUPING_SYMBOL) ) // "First...
+			else if( (first==GROUPING_SYMBOL) && (last!=GROUPING_SYMBOL) ) // Entry: "First...
 			{
-				//printf("Case <* >\n");
 				ss << name;
 				group = true;
 			}
-			else if(last==GROUPING_SYMBOL) // ...third"
+			else if(last==GROUPING_SYMBOL) // Entry: ...third"
 			{
-				//printf("Case < *>\n");
 				ss << " " << name;
 				temp = ss.str();
 				ss.str(string());
 				temp.erase(remove(temp.begin(), temp.end(), GROUPING_SYMBOL), temp.end());
 				nameList.push_back(temp);
-				//printf("<%s>\n",temp.c_str());
 				temp = "";
 				group = false;
 			}
-			else if(group==true) // ...second...
+			else if(group==true) // Entry: ...second...
 			{
-				//printf("Case *< >*\n");
 				ss << " " << name;
 			}
-			else // name
+			else // Entry: name
 			{
-				//printf("Case < >\n");
 				nameList.push_back(name);
 			}
-			//printf("%s ",nameList.back().c_str());
-
 		}
 	}
 	return nameList;
@@ -74,7 +65,6 @@ ModCultureRule::ModCultureRule(string _key, Object* obj)
 {
 	key			= _key;
 
-	#define DEFAULT_GFX "latingfx"
 	vector<Object*> graphicalCultureObj = obj->getValue("graphical_culture");
 	if (graphicalCultureObj.size() > 0)
 	{

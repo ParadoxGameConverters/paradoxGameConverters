@@ -76,6 +76,7 @@ class EU3World
 		int	matchTags(Object* rulesObj, vector<string>& blockedNations, const provinceMapping& provinceMap, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings);
 		void	determineMapSpread();
 		void	convertHRE();
+		void	populateCountryFileData(EU3Country* country, cultureRuleOverrideMapping croMap, string titleString);
 		void	addModCountries(const vector<EU3Country*>& countries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap);
 		void	outputCountryFile(FILE* countryFile, EU3Country* country);
 

@@ -8,6 +8,8 @@ using namespace std;
 
 class Object;
 
+#define DEFAULT_GFX "latingfx"
+
 // Culture Rules
 class ModCultureRule
 {
