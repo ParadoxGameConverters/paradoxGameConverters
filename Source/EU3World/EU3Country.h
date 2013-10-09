@@ -5,6 +5,8 @@
 
 #include <string>
 #include <vector>
+#include <queue>
+#include <tuple>
 #include "..\Date.h"
 #include "..\Mappers.h"
 #include "..\CK2World\CK2Title.h"
@@ -62,6 +64,11 @@ class EU3Country
 		void		setRelations(EU3Country* other, int value)	{ relations.insert(make_pair(other, value)); };
 		void		setElector(bool _elector)				{ elector = _elector; };
 		void		setGraphicalCulture(string gfx)			{ graphicalCulture = gfx; };
+		void		setMonarchNames(deque<tuple<string,int>> list)	{ monarchNames = list; };
+		void		setLeaderNames(vector<string> list)		{ leaderNames = list; };
+		void		setShipNames(vector<string> list)		{ shipNames = list; };
+		void		setArmyNames(vector<string> list)		{ armyNames = list; };
+		void		setFleetNames(vector<string> list)		{ fleetNames = list; };
 
 		CK2Title*				getSrcCountry()			const { return src; };
 		EU3Country*				getLiege()					const { return liege; };
@@ -90,6 +97,11 @@ class EU3Country
 		int						getInfantry() const;
 		int						getNumPorts() const;
 		string					getGraphicalCulture()	const { return graphicalCulture; };
+		deque<tuple<string,int>>	getMonarchNames()	const { return monarchNames; }
+		vector<string>			getLeaderNames()		const { return leaderNames; }
+		vector<string>			getShipNames()			const { return shipNames; };
+		vector<string>			getArmyNames()			const { return armyNames; };
+		vector<string>			getFleetNames()			const { return fleetNames; };
 	private:
 		void	addBuildings();
 
@@ -174,6 +186,11 @@ class EU3Country
 		int						quality;
 
 		string					graphicalCulture;
+		deque<tuple<string,int>>	monarchNames;
+		vector<string>			leaderNames;
+		vector<string>			shipNames;
+		vector<string>			armyNames;
+		vector<string>			fleetNames;
 };
 
 

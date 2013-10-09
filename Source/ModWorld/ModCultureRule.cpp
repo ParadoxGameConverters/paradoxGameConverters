@@ -30,7 +30,14 @@ vector<string> ModCultureRule::processRawNames(vector<Object*> nameListObj)
 			last = name.back();
 			if( (first==GROUPING_SYMBOL) && (last==GROUPING_SYMBOL) ) // Entry: "name"
 			{
-				name.erase(remove(name.begin(), name.end(), GROUPING_SYMBOL), name.end()); // Strip grouping symbol
+				if (nameListObj[0]->getKey() == "leader_names" || nameListObj[0]->getKey() == "ship_names" || nameListObj[0]->getKey() == "army_names" || nameListObj[0]->getKey() == "fleet_names")
+				{
+					replace(name.begin(), name.end(), GROUPING_SYMBOL,'"');
+				}
+				else
+				{
+					name.erase(remove(name.begin(), name.end(), GROUPING_SYMBOL), name.end()); // Strip grouping symbol
+				}
 				nameList.push_back(name);
 			}
 			else if( (first==GROUPING_SYMBOL) && (last!=GROUPING_SYMBOL) ) // Entry: "First...
@@ -43,7 +50,14 @@ vector<string> ModCultureRule::processRawNames(vector<Object*> nameListObj)
 				ss << " " << name;
 				temp = ss.str();
 				ss.str(string());
-				temp.erase(remove(temp.begin(), temp.end(), GROUPING_SYMBOL), temp.end());
+				if (nameListObj[0]->getKey() == "leader_names" || nameListObj[0]->getKey() == "ship_names" || nameListObj[0]->getKey() == "army_names" || nameListObj[0]->getKey() == "fleet_names")
+				{
+					replace(temp.begin(), temp.end(), GROUPING_SYMBOL,'"');
+				}
+				else
+				{
+					temp.erase(remove(temp.begin(), temp.end(), GROUPING_SYMBOL), temp.end()); // Strip grouping symbol
+				}
 				nameList.push_back(temp);
 				temp = "";
 				group = false;

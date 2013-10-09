@@ -526,3 +526,4 @@ Revision	Log Message
 501		Updated project file for VS12 compatibility
 502		Dynamically assigned graphical cultures for mod countries
 503		Code optimization. Minor bugfixes. Added some missing files in converter mod.
+504		Dynamically generated details for mod country files.
