@@ -1,7 +1,8 @@
 V2_province_reference=
 {
 
-# A reference for the file generation routine. This is painful.
+# A reference for the file generation routine. This is painful. Very, Very Painful.
+# Sidenote - Accents must be removed work with all operating systems
 
 # Africa
 
@@ -15,6 +16,19 @@ V2_province_reference=
 
 # Austria
 
+612 = "austria/612 - Innsbruck.txt"
+735 = "austria/735 - Bozen.txt"
+614 = "austria/614 - Bregenz.txt"
+615 = "austria/615 - Lienz.txt"
+619 = "austria/619 - Vienna.txt"
+620 = "austria/620 - Sankt Polten.txt"
+622 = "austria/622 - Linz.txt"
+616 = "austria/616 - Graz.txt"
+617 = "austria/617 - Judenburg.txt"
+618 = "austria/618 - Klagenfurt.txt"
+613 = "austria/613 - Salzburg.txt"
+621 = "austria/621 - Krems.txt"
+
 # Balkan
 
 # Canada
@@ -27,7 +41,86 @@ V2_province_reference=
 
 # France
 
+460 = "france/460 - Pau.txt"
+458 = "france/458 - Bordeaux.txt"
+442 = "france/442 - La Rochelle.txt"
+437 = "france/437 - La Roche.txt"
+443 = "france/443 - Poitiers.txt"
+423 = "france/423 - Nantes.txt"
+422 = "france/422 - Vannes.txt"
+420 = "france/420 - Brest.txt"
+421 = "france/421 - St Brieuc.txt"
+424 = "france/424 - Rennes.txt"
+418 = "france/418 - Caen.txt"
+419 = "france/419 - Channel Islands.txt"
+417 = "france/417 - Alencon.txt"
+426 = "france/426 - Chartres.txt"
+457 = "france/457 - Foix.txt"
+464 = "france/464 - Perpignan.txt"
+455 = "france/455 - Toulouse.txt"
+456 = "france/456 - Montauban.txt"
+459 = "france/459 - Mont de Marsan.txt"
+463 = "france/463 - Carcassonne.txt"
+461 = "france/461 - Montpellier.txt"
+471 = "france/471 - Frejus.txt"
+469 = "france/469 - Digne.txt"
+470 = "france/470 - Toulon.txt"
+467 = "france/467 - Marseilles.txt"
+468 = "france/468 - Avignon.txt"
+454 = "france/454 - Grenoble.txt"
+453 = "france/453 - Valence.txt"
+451 = "france/451 - Lyon.txt"
+472 = "france/472 - Nice.txt"
+465 = "france/465 - Annecy.txt"
+466 = "france/466 - Chambery.txt"
+433 = "france/433 - Lons.txt"
+432 = "france/432 - Besancon.txt"
+415 = "france/415 - Rouen.txt"
+416 = "france/416 - Evreux.txt"
+402 = "france/402 - Amiens.txt"
+400 = "france/400 - Dunkirk.txt"
+399 = "france/399 - Lille.txt"
+401 = "france/401 - Arras.txt"
+404 = "france/404 - Cambrai.txt"
+405 = "france/405 - Charleville.txt"
+413 = "france/413 - Verdun.txt"
+411 = "france/411 - Nancy.txt"
+407 = "france/407 - Chaumont.txt"
+412 = "france/412 - Metz.txt"
+414 = "france/414 - Epinal.txt"
+2570 = "france/2570 - Beauvais.txt"
+425 = "france/425 - Paris.txt"
+427 = "france/427 - Melun.txt"
+403 = "france/403 - Laon.txt"
+438 = "france/438 - Orleans.txt"
+440 = "france/440 - Blois.txt"
+435 = "france/435 - Laval.txt" 
+436 = "france/436 - Le Mans.txt"
+434 = "france/434 - Angers.txt"
+441 = "france/441 - Tours.txt"
+452 = "france/452 - St Etienne.txt"
+448 = "france/448 - Clermont-Ferrand.txt"
+449 = "france/449 - Aurillac.txt"
+462 = "france/462 - Rodez.txt"
+450 = "france/450 - Cahors.txt"
+447 = "france/447 - Tulle.txt"
+444 = "france/444 - Angouleme.txt"
+445 = "france/445 - Limoges.txt"
+431 = "france/431 - Macon.txt"
+408 = "france/408 - Chalons.txt"
+406 = "france/406 - Troyes.txt"
+428 = "france/428 - Dijon.txt"
+439 = "france/439 - Bourges.txt"
+430 = "france/430 - Moulins.txt"
+446 = "france/446 - Chateauroux.txt"
+429 = "france/429 - Auxerre.txt"
+409 = "france/409 - Strasbourg.txt"
+410 = "france/410 - Colmar.txt"
+473 = "france/473 - Corsica.txt"
+
 # Germany
+
+397 = "germany/397 - Luxembourg"
 
 # India
 
