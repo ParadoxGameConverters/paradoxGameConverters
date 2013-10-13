@@ -22,7 +22,7 @@ country_decisions = {
 	}
 	
 	move_capital_to_warsawa = {
-		potentiaL = {
+		potential = {
 			tag = POL
 			owns = 257
 			NOT = { capital = 257 }
@@ -47,7 +47,5 @@ country_decisions = {
 			factor = 1
 		}
 	}
-
-	
 	
 }

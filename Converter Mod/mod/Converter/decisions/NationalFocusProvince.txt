@@ -48,8 +48,18 @@ province_decisions = {
 		}
 		allow = {}
 		effect = {
+			set_province_flag = revoking_settlement_policy
 			remove_province_modifier = settlement_policy
-			prestige = -0.15
+			owner = {
+				random_owned = {
+					limit = {
+						has_province_flag = revoking_settlement_policy
+						has_owner_culture = no
+					}
+					owner = { prestige = -0.15 }
+				}
+			}
+			clr_province_flag = revoking_settlement_policy
 		}
 		ai_will_do = {
 			factor = 0

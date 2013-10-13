@@ -140,6 +140,8 @@ state_business_ideas = {
 	}
 	espionage  = {
 		spies = 1		#1 extra spy each year
+		spy_efficiency = 0.1
+ 
 	}
 	bill_of_rights = {
 		trigger = {

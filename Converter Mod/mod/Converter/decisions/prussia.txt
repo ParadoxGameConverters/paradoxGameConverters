@@ -9,7 +9,6 @@ country_decisions = {
 		}
 		allow = {
 			MIL = 7
-			capital = 50
 			land_tech = 30
 			army_tradition = 0.5
 		}
@@ -44,8 +43,18 @@ country_decisions = {
 			war = no
 		}
 		effect = {
+			random_owned = {
+				limit = {
+					OR = {
+						culture = pommeranian
+						culture = saxon
+						culture = prussian
+					}
+				}
+				base_tax = 1
+			}
 			centralization_decentralization = -1
-			prestige = 0.02
+			prestige = 0.05
 			primary_culture = prussian
 			change_tag = PRU
 			PRU = {
@@ -53,6 +62,18 @@ country_decisions = {
 				add_core = 42			# Warmia
 				add_core = 43			# Danzig
 				add_core = 40			# Memel
+				add_core = 39			# Kurland
+				add_core = 271			# Samogitia
+				random_owned = {
+					limit = { 
+						is_capital = no 
+						OR = {
+							culture = saxon
+							culture = pommeranian
+						}
+					} 
+					culture = prussian
+				}
 			}
 			capital_scope = {
 				culture = prussian

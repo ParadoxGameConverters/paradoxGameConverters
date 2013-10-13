@@ -41,7 +41,6 @@ country_decisions = {
 			war_with = MNG
 			MNG = {
 				OR = {
-					revolt_risk = 6
 					NOT = { stability = 0 }
 					NOT = { war_score = -10 }
 				}

@@ -1,5 +1,0 @@
-#Country Name: Please see filename.
-
-graphical_culture = latingfx
-
-Color = { 180 200 90 }

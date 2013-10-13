@@ -17,22 +17,26 @@ country_decisions = {
 			stability = 3
 			ADM = 6
 		}
-	  effect = {
+		effect = {
 			#Set new flag
 			set_country_flag = hidden_tooltip
 			random_owned = {
 				limit = {
-					owner = { has_country_flag = hidden_tooltip }
-					technology_group = eastern
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = eastern
+					}
 				}
-				set_country_flag = western_from_eastern
+				owner = { set_country_flag = western_from_eastern }
 			}
 			random_owned = {
 				limit = {
-					owner = { has_country_flag = hidden_tooltip }
-					technology_group = ottoman
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = ottoman
+					}
 				}
-				set_country_flag = western_from_ottoman
+				owner = { set_country_flag = western_from_ottoman }
 			}
 			clr_country_flag = hidden_tooltip
 			#Remove any old flags
@@ -125,38 +129,48 @@ country_decisions = {
 			set_country_flag = hidden_tooltip
 			random_owned = {
 				limit = {
-					owner = { has_country_flag = hidden_tooltip }
-					technology_group = sub_saharan
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = sub_saharan
+					}
 				}
-				set_country_flag = muslim_from_sub_saharan
+				owner = { set_country_flag = muslim_from_sub_saharan }
 			}
 			random_owned = {
 				limit = {
-					owner = { has_country_flag = hidden_tooltip }
-					technology_group = new_world
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = new_world
+					}
 				}
-				set_country_flag = muslim_from_new_world
+				owner = { set_country_flag = muslim_from_new_world }
 			}
 			random_owned = {
 				limit = {
-					owner = { has_country_flag = hidden_tooltip }
-					technology_group = indian
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = indian
+					}
 				}
-				set_country_flag = muslim_from_indian
+				owner = { set_country_flag = muslim_from_indian }
 			}
 			random_owned = {
 				limit = {
-					owner = { has_country_flag = hidden_tooltip }
-					technology_group = chinese
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = chinese
+					}
 				}
-				set_country_flag = muslim_from_chinese
+				owner = { set_country_flag = muslim_from_chinese }
 			}
 			random_owned = {
 				limit = {
-					owner = { has_country_flag = hidden_tooltip }
-					technology_group = nomad_group
+					owner = {
+						has_country_flag = hidden_tooltip
+						technology_group = nomad_group
+					}
 				}
-				set_country_flag = muslim_from_nomad_group
+				owner = { set_country_flag = muslim_from_nomad_group }
 			}
 			clr_country_flag = hidden_tooltip
 			technology_group = muslim
@@ -166,10 +180,14 @@ country_decisions = {
 			}
 			innovative_narrowminded = -1
 			stability = -5
+			remove_faction = temples
+			remove_faction = bureaucrats
+			remove_faction = enuchs			
 			add_country_modifier = {
 				name = "western_influences"
 				duration = -1
 			}
+			
 		}
 		ai_will_do = {
 			factor = 1

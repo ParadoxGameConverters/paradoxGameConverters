@@ -5,17 +5,47 @@ country_decisions = {
 			capital_scope = {
 				NOT = { culture = THIS }
 			}
-			NOT = { tag = FRA }
-			NOT = { tag = GBR }
+			OR = {
+				NOT = { tag = FRA }
+				AND = {
+					tag = FRA
+					capital_scope = { culture_group = french }  # could have been formed by basque or breton
+				}
+			}
+			OR = {
+				NOT = { tag = GBR }
+				AND = {
+					tag = GBR
+					capital_scope = { culture_group = british }  # could have been formed by welsh
+				}
+			}
 			NOT = { tag = SCA }
 			NOT = { tag = GER }
-			NOT = { tag = HRE }
+			OR = {
+				NOT = { tag = HRE }
+				AND = {
+					tag = HRE
+					capital_scope = { culture_group = germanic }  # could have been formed by any culture
+				}
+			}
 			NOT = { tag = PAP }
 			NOT = { tag = ITA }
-			NOT = { tag = SPA }
+			OR = {
+				NOT = { tag = SPA }
+				AND = {
+					tag = SPA
+					capital_scope = { culture_group = iberian }  # could have been formed by basque
+				}
+			}
 			NOT = { tag = RUS }
 			NOT = { tag = BYZ }
-			NOT = { tag = PER }
+			OR = {
+				NOT = { tag = PER }
+				AND = {
+					tag = PER
+					capital_scope = { culture_group = iranian }  # could have been formed by azerbadjani
+				}
+			}
 			NOT = { tag = KHA }
 			NOT = { tag = JAP }
 			NOT = { tag = MCH }
@@ -100,6 +130,7 @@ province_decisions = {
 		
 		allow = {
 			has_national_focus = yes
+			NOT = { nationalism = 1 }
 			owner = { 
 				officials = 2
 			}

@@ -147,7 +147,6 @@ cb_hre_attacked = {
 	po_concede_defeat = yes
 	
 	war_name = HRE_DEFENSE_WAR_NAME
-	
 }
 
 # Guaranteeing Independence
@@ -359,6 +358,23 @@ cb_border_war = {
 	war_name = BORDER_WAR_NAME
 }
 
+# Japanese civil war
+jap_civil_war = {
+
+	mutual = yes
+	is_triggered_only = yes
+	nomad = no
+	
+	prestige_factor = 1.5
+	peace_cost_factor = 0.75
+	
+	po_endorse_shogun = yes
+	po_stop_endorse_shogun = yes
+	po_become_kampaku = yes
+		
+	war_name = JAPANESE_CB_NAME
+}
+
 # AUTOMATIC - Constantly in effect while 'prerequisites' is true
 # --------------------------------------------------------------
 
@@ -371,8 +387,6 @@ cb_conquest = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		temp_claim = THIS
 	}
 	
@@ -388,6 +402,7 @@ cb_conquest = {
 
 # We can take core provinces at no badboy
 cb_core = {
+
 	mutual = yes
 
 	badboy_factor = 0
@@ -396,8 +411,6 @@ cb_core = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		core_claim = THIS
 	}
 	
@@ -421,8 +434,6 @@ cb_offensive_call = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		any_ally = {
 			war_with = THIS
 		}
@@ -442,6 +453,7 @@ cb_offensive_call = {
 
 # Nationalism
 cb_nationalist = {
+
 	mutual = yes
 
 	badboy_factor = 0.5
@@ -450,8 +462,6 @@ cb_nationalist = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		government_tech = 30
 		culture_group_claim = THIS
 	}
@@ -470,6 +480,7 @@ cb_nationalist = {
 
 # Napoleonic era imperialism
 cb_imperial = {
+
 	mutual = yes
 
 	badboy_factor = 0.5
@@ -478,8 +489,6 @@ cb_imperial = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		OR = {
 			government = revolutionary_empire
 			government = revolutionary_republic
@@ -503,6 +512,7 @@ cb_imperial = {
 
 # Revolutionary CB
 cb_revolutionary = {
+
 	mutual = yes
 
 	badboy_factor = 0.25
@@ -511,8 +521,6 @@ cb_revolutionary = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		idea = revolution_and_counter
 		OR = {
 			AND = {
@@ -540,6 +548,7 @@ cb_revolutionary = {
 
 # Colonialist CB
 cb_colonial = {
+
 	mutual = yes
 
 	badboy_factor = 0.25
@@ -548,8 +557,6 @@ cb_colonial = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		idea = quest_for_the_new_world
 		colony_claim = THIS
 	}
@@ -576,8 +583,6 @@ cb_liberation = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		idea = bill_of_rights
 		THIS = {
 			OR = {
@@ -597,6 +602,7 @@ cb_liberation = {
 
 # Holy War
 cb_crusade = {
+
 	mutual = yes
 
 	badboy_factor = 0.25
@@ -605,8 +611,6 @@ cb_crusade = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		OR = {
 			religion_group = christian
 			religion_group = muslim
@@ -640,6 +644,7 @@ cb_crusade = {
 
 # Liberation of same-faith provinces
 cb_religious_liberation = {
+
 	mutual = yes
 
 	badboy_factor = 0.25
@@ -648,8 +653,6 @@ cb_religious_liberation = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		NOT = { religion_group = christian } # Christians and Muslims get Holy War instead
 		NOT = { religion_group = muslim }
 		NOT = { religion_group = THIS }
@@ -676,6 +679,7 @@ cb_religious_liberation = {
 
 # Purging of Heresy
 cb_heretic = {
+
 	mutual = yes
 
 	badboy_factor = 0.5
@@ -684,8 +688,6 @@ cb_heretic = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		idea = deus_vult # Actually "Unam Sanctam"
 		religion_group = THIS
 		OR = {
@@ -706,7 +708,6 @@ cb_heretic = {
 	country_desc = ALL_HERETICS
 	prov_desc = ALL_PROVS
 	war_name = HERETIC_WAR_NAME
-
 }
 
 # Excommunication War
@@ -718,8 +719,6 @@ cb_excommunication = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		THIS = {
 			excommunicated = yes
 			religion = catholic
@@ -751,6 +750,7 @@ cb_excommunication = {
 
 # Trade War
 cb_trade_war = {
+
 	mutual = yes
 
 	badboy_factor = 0
@@ -761,7 +761,6 @@ cb_trade_war = {
 	prerequisites = {
 		nomad = no				#Do not remove!
 		THIS = { nomad = no }	#Do not remove!
-		
 		OR = {
 			trade_embargo_by = THIS
 			AND = {
@@ -788,8 +787,6 @@ cb_imperial_ban = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		is_emperor = yes
 		has_global_flag = Reichsreform
 		THIS = {
@@ -825,8 +822,6 @@ cb_super_badboy = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		THIS = { badboy = 1.001 }
 	}
 	
@@ -856,8 +851,6 @@ cb_primitives = {
 	nomad = no
 	
 	prerequisites = {
-
-
 		primitives = no
 		THIS = { primitives = yes }
 	}
@@ -890,7 +883,6 @@ cb_claim_throne = {
 	prerequisites = {
 		nomad = no				#Do not remove!
 		THIS = { nomad = no }	#Do not remove!
-
 		succession_claim = THIS
 	}
 	
@@ -906,6 +898,7 @@ cb_claim_throne = {
 
 # Horde vs Horde Conquest
 cb_horde_conquest = {
+
 	mutual = yes
 
 	badboy_factor = 0.25
@@ -914,8 +907,6 @@ cb_horde_conquest = {
 	nomad = no
 	
 	prerequisites = {
-
-
 		OR = {
 			government = tribal_despotism
 			government = tribal_federation
@@ -947,6 +938,7 @@ cb_horde_conquest = {
 
 # Horde vs Civilized
 cb_horde_vs_civ = {
+
 	mutual = yes
 
 	badboy_factor = 0.5
@@ -955,8 +947,6 @@ cb_horde_vs_civ = {
 	nomad = no
 	
 	prerequisites = {
-
-		
 		OR = {
 			AND = {
 				OR = {
@@ -1008,25 +998,9 @@ cb_horde_vs_civ = {
 	war_name = PRIMITIVE_WAR_NAME
 }
 
-# Japanese civil war
-jap_civil_war = {
-	mutual = yes
-	
-	prestige_factor = 1.5
-	peace_cost_factor = 0.75
-	nomad = no
-	
-	is_triggered_only = yes
-	
-	po_endorse_shogun = yes
-	po_stop_endorse_shogun = yes
-	po_become_kampaku = yes
-		
-	war_name = JAPANESE_CB_NAME
-}
-
 # Horde vs Horde Conquest (nomads)
 cb_nomad_conquest = {
+
 	mutual = yes
 
 	badboy_factor = 0.25
@@ -1035,7 +1009,6 @@ cb_nomad_conquest = {
 	
 	
 	prerequisites = {
-
 		government = steppe_horde
 		THIS = {
 				government = steppe_horde

@@ -1672,12 +1672,17 @@ vector<EU3Country*> EU3Country::convertVassals(int initialScore, EU3Diplomacy* d
 			{
 				provinces.push_back(*provinceItr);
 				(*provinceItr)->setOwner(this);
+				cores.push_back(*provinceItr);
+				(*provinceItr)->addCore(this);
 			}
 			for (vector<EU3Advisor*>::iterator advisorItr = vassals[i]->advisors.begin(); advisorItr != vassals[i]->advisors.end(); advisorItr++)
 			{
 				advisors.push_back(*advisorItr);
 				(*advisorItr)->setHome(this);
 			}
+			vassals[i]->provinces.clear();
+			vassals[i]->advisors.clear();
+			vassals[i]->vassals.clear();
 		}
 		else if ((vassalScore >= 2900) && (vassals[i]->getAbsorbScore() < 2900))
 		{
@@ -2017,7 +2022,17 @@ void EU3Country::convertArmiesandNavies(const inverseProvinceMapping inverseProv
 		for (unsigned int i = 0; i < srcNavies.size(); i++)
 		{
 			EU3Navy* newNavy = new EU3Navy(srcNavies[i], inverseProvinceMap, transport, infantry, cavalry, allProvinces, manpower);
-			if (newNavy->getNumShips() > 0)
+			bool inland = false;
+			map<int, EU3Province*>::iterator itr = allProvinces.find(newNavy->getLocation());
+			if (itr != allProvinces.end())
+			{
+				if (itr->second->isLand() && !itr->second->isCoastal())
+				{
+					inland = true;
+					break;
+				}
+			}
+			if ((newNavy->getNumShips() > 0) && !inland)
 			{
 				navies.push_back(newNavy);
 			}

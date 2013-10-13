@@ -41,6 +41,7 @@ class CK2Title
 		CK2Character*			getLastHolder()		const;
 		CK2Character*			getHeir()				const { return heir; };
 		string					getSuccessionLaw()	const { return successionLaw; };
+		string					getGenderLaw()			const { return genderLaw; };
 		string					getCA()					const { return CA; };
 		int						getFeudalContract()	const { return feudalContract; };
 		int						getTempleContract()	const { return templeContract; };

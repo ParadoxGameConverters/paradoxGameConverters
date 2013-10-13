@@ -87,7 +87,7 @@ monarch_names = {
 }
 
 leader_names = {
-	"d'Appiani d'Aragona" "Arborio Mella" 
+	"Appiani d'Aragona" "Arborio Mella" 
 	Barberini Barzagli Boncompagni Borghese Borromeo Buonarroti "di Busca"
 	"di Campofregoso" Carafa "di Cardé" "del Carreto" Casanova Castagna
 	Castagnaro "di Cavour" Chigi Colonna Contarini Conti Corsini Cybo 

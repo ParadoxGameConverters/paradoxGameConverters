@@ -496,10 +496,29 @@ Revision	Log Message
 471		Merge main into minor
 472		CK2Plus saves convert without crashing (but with errors)
 473		Fix bugs with province history
-
-
+475		Make text more clear for vassalSocre setting
+476		Update converter mod to match 5.2
 477		Remove dead titles
 478		Various fixes for better mod support
 479		Converter mod output now more convenient
-
-482		Finish integrating mod into normal release
+480		More converter mod updates to match 5.2
+481		Remove extraneous country files
+482		Merge bugfixes to main
+483		Finish integrating mod into normal release
+484		Merge minor into main
+485		Fix crash bug with navies in river-based ports
+486		Output newCountries.txt for use by molave's tool
+487		Fix bug with absorbing vassals but leaving cores
+488		Added comments and some (disabled) work on automated mod installation.
+489		Merge
+490		Feature development more or less complete. Pre-bugfixing commit.
+491		Fixed an event handler related bug that caused conversion to be run multiple times after the first conversion.
+492		Added error handling for when the converter itself crashes (ExitCode != 0)
+		Only copies save of conversion was successful
+493		The error handling now properly detects whether a mod is selected
+494		Update test scripts
+495		Give cores on absorbed vassals
+496		Update converter mod
+497		Merge minor to main
+498		Put saves in the correct places
+499		Fix frontend's copy routines

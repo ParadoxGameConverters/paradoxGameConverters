@@ -3,7 +3,6 @@ set j=%~n2
 
 echo Testing %i% with the %j% configuration
 copy ..\CK2_Saves\%i%.zip .\%i%.zip
-xcopy ..\TestConfigurations\%j%\mod\* .\mod\ /E
 
 "%SEVENZIP_LOC%\7z.exe" e -tzip "%i%.zip" "*.*" -mx5
 del %i%.zip

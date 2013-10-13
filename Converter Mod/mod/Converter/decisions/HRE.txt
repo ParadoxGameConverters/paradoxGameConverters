@@ -13,10 +13,7 @@ province_decisions = {
 			}
 		}
 		allow = {
-			OR = {
-				is_emperor = yes
-				emperor = { relation = { who = THIS value = 100 } }
-			}
+			emperor = { relation = { who = THIS value = 100 } }
 			owner = {
 				officials = 1
 			}
@@ -84,7 +81,7 @@ province_decisions = {
 			}
 			modifier = {
 				factor = 0 
-				num_of_cities = 5
+				owner = { num_of_cities = 5 }
 			}
 		}
 	}
@@ -123,9 +120,8 @@ province_decisions = {
 	leave_hre = {
 		potential = {
 			hre = yes
-			capital_scope = { hre = no }
-
 			owner = {
+				capital_scope = { hre = no }
 				is_emperor = no
 				elector = no
 			}
@@ -150,18 +146,7 @@ province_decisions = {
 				country_event = 9496
 			}
 		}
-		ai_will_do = {
-			factor = 1
-			modifier = {
-				factor = 0
-				OR = {
-					NOT = {
-						has_global_flag = Privileges_Revoked
-					}
-					owner = { relation = { who = emperor value = 0 } }
-				}
-			}
-		}
+		ai_will_do = { factor = 0 }
 	}
 
 	return_unlawful_territory = {
@@ -218,11 +203,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9057
 			}
@@ -255,11 +238,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9059
 			}
@@ -291,11 +272,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9061
 			}
@@ -305,6 +284,7 @@ hre_decisions = {
 			factor = 1
 		}
 	}
+	
 	vote_on_gemeinerpfennig = {
 		potential = {
 			is_emperor = yes
@@ -326,11 +306,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9063
 			}
@@ -362,11 +340,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9065
 			}
@@ -398,11 +374,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9069
 			}
@@ -412,7 +386,6 @@ hre_decisions = {
 			factor = 1
 		}
 	}
-
 	
 	vote_on_privilegia_de_non_appelando = {
 		potential = {
@@ -435,11 +408,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9067
 			}
@@ -472,11 +443,9 @@ hre_decisions = {
 			add_imperial_influence = -50
 			any_country = {
 				limit = {
-					AND = {
-						capital_scope = { hre = yes }
-						is_emperor = no
-						num_of_cities = 1
-					}
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
 				}
 				country_event = 9071
 			}
@@ -487,4 +456,3 @@ hre_decisions = {
 		}
 	}
 }
-

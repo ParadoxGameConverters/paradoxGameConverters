@@ -16,7 +16,6 @@ historical_ideas = {
 	espionage
 	grand_army
 	glorious_arms
-	national_trade_policy
 }
 
 historical_units = {

@@ -4,6 +4,8 @@ country_decisions = {
 		potential = {
 			NOT = { exists = HIN }
 			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
 			culture_group = dravidian
 			NOT = { technology_group = nomad_group }
 		}
@@ -82,11 +84,6 @@ country_decisions = {
 				add_core = 529
 				add_core = 545
 				add_core = 546
-				add_core = 527
-				add_core = 528
-				add_core = 517
-				add_core = 516
-				add_core = 515
 				add_core = 550
 				add_core = 526
 				add_core = 524
@@ -119,9 +116,6 @@ country_decisions = {
 				add_core = 549
 				add_core = 557
 				add_core = 554
-				add_core = 434
-				add_core = 435
-				add_core = 446
 				add_core = 1248
 			}	
 			random_owned = {
@@ -141,6 +135,8 @@ country_decisions = {
 		potential = {
 			NOT = { exists = HIN }
 			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
 			culture_group = western_aryan
 			NOT = { technology_group = nomad_group }
 		}
@@ -229,11 +225,6 @@ country_decisions = {
 				add_core = 529
 				add_core = 545
 				add_core = 546
-				add_core = 527
-				add_core = 528
-				add_core = 517
-				add_core = 516
-				add_core = 515
 				add_core = 550
 				add_core = 526
 				add_core = 524
@@ -266,9 +257,6 @@ country_decisions = {
 				add_core = 549
 				add_core = 557
 				add_core = 554
-				add_core = 434
-				add_core = 435
-				add_core = 446
 				add_core = 1248
 			}	
 			random_owned = {
@@ -288,6 +276,8 @@ country_decisions = {
 		potential = {
 			NOT = { exists = HIN }
 			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
 			culture_group = hindusthani
 			NOT = { technology_group = nomad_group }
 		}
@@ -364,11 +354,6 @@ country_decisions = {
 				add_core = 529
 				add_core = 545
 				add_core = 546
-				add_core = 527
-				add_core = 528
-				add_core = 517
-				add_core = 516
-				add_core = 515
 				add_core = 550
 				add_core = 526
 				add_core = 524
@@ -401,9 +386,6 @@ country_decisions = {
 				add_core = 549
 				add_core = 557
 				add_core = 554
-				add_core = 434
-				add_core = 435
-				add_core = 446
 				add_core = 1248
 			}	
 			random_owned = {
@@ -423,6 +405,8 @@ country_decisions = {
 		potential = {
 			NOT = { exists = HIN }
 			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
 			culture_group = eastern_aryan
 			NOT = { technology_group = nomad_group }
 		}
@@ -491,11 +475,6 @@ country_decisions = {
 				add_core = 529
 				add_core = 545
 				add_core = 546
-				add_core = 527
-				add_core = 528
-				add_core = 517
-				add_core = 516
-				add_core = 515
 				add_core = 550
 				add_core = 526
 				add_core = 524
@@ -528,9 +507,6 @@ country_decisions = {
 				add_core = 549
 				add_core = 557
 				add_core = 554
-				add_core = 434
-				add_core = 435
-				add_core = 446
 				add_core = 1248
 			}	
 			random_owned = {

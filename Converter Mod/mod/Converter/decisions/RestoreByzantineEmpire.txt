@@ -24,7 +24,7 @@ country_decisions = {
 			owns = 1853	# Kozani
 			war = no
 		}
-		effect = {
+	  effect = {
 			BYZ = {
 				add_core = 151	# Thrace
 				add_core = 149	# Edirne

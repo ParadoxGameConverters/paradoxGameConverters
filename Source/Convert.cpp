@@ -100,12 +100,13 @@ int main(int argc, char * argv[])
 
 
 	//Copy mod folder
+	string modFolderName;
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		string modFolderName;
 		if (argc >= 2)
 		{
 			modFolderName = inputFilename.substr(0, inputFilename.find_last_of('.'));
+			modFolderName = modFolderName.substr(modFolderName.find_last_of('\\') + 1, modFolderName.length());
 		}
 		else
 		{
@@ -642,11 +643,11 @@ int main(int argc, char * argv[])
 	string outputFilename = "";
 	if (Configuration::getUseConverterMod() == "yes")
 	{
-		outputFilename += Configuration::getModPath() + "\\Converter\\save games\\";
+		outputFilename = modFolderName + "\\Converter\\save games\\";
 		if (argc >= 2)
 		{
 			string filename = inputFilename.substr(0, inputFilename.find_last_of('.'));
-			filename = filename.substr(filename.find_last_of('\\'), filename.length());
+			filename = filename.substr(filename.find_last_of('\\') + 1, filename.length());
 			outputFilename += filename + ".eu3";
 		}
 		else
@@ -658,14 +659,16 @@ int main(int argc, char * argv[])
 	{
 		if (argc >= 2)
 		{
-			outputFilename += inputFilename.substr(0, inputFilename.find_last_of('.'));
-			outputFilename += ".eu3";
+			string filename = inputFilename.substr(0, inputFilename.find_last_of('.'));
+			filename = filename.substr(filename.find_last_of('\\') + 1, filename.length());
+			outputFilename += filename + ".eu3";
 		}
 		else
 		{
 			outputFilename += "output.eu3";
 		}
 	}
+	log("\tFilename: %s\n", outputFilename.c_str());
 	FILE* output;
 	if (fopen_s(&output, outputFilename.c_str(), "w") != 0)
 	{

@@ -65,7 +65,6 @@ college = {
 	cost = 200
 	time = 24
 	modifier = {
-		local_revolt_risk = -2
 		local_spy_defence = 0.25
 		spies = 0.05
 		officials = 0.05
@@ -94,7 +93,7 @@ armory = {
 	modifier = {
 		regiment_recruit_speed = -0.1
 		local_regiment_cost = -0.05
-		local_manpower = 0.25
+		local_manpower = 0.05
 	}
 	destroy_on_conquest = yes
 	category = 2
@@ -108,7 +107,7 @@ training_fields = {
 	modifier = {
 		regiment_recruit_speed = -0.1
 		local_regiment_cost = -0.05
-		local_manpower = 0.25
+		local_manpower = 0.05
 	}
 	destroy_on_conquest = yes
 	spare_on_core = yes
@@ -120,7 +119,7 @@ barracks = {
 	time = 12
 	modifier = {
 		local_regiment_cost = -0.1
-		local_manpower = 1
+		local_manpower = 0.25
 	}
 	destroy_on_conquest = yes
 	spare_on_core = yes
@@ -129,7 +128,7 @@ barracks = {
 regimental_camp = {
 	previous = barracks
 	cost = 150
-	time = 24
+	time = 12
 	modifier = {
 		local_manpower_modifier = 0.2
 	}
@@ -143,7 +142,7 @@ arsenal = {
 	time = 24
 	modifier = {
 		regiment_recruit_speed = -0.3
-		local_manpower_modifier = 0.3
+		local_manpower_modifier = 0.25
 	}
 	destroy_on_conquest = yes
 }
@@ -153,8 +152,8 @@ conscription_center = {
 	cost = 300
 	time = 24
 	modifier = {
-		local_manpower = 5
-		land_forcelimit = 5
+		local_manpower_modifier = 0.25
+		land_forcelimit = 2
 	}
 	destroy_on_conquest = yes
 	category = 2
@@ -220,7 +219,7 @@ naval_arsenal = {
 	modifier = {
 		local_ship_cost = -0.2
 		ship_recruit_speed = -0.2
-		naval_forcelimit = 5
+		naval_forcelimit = 2
 	}
 	destroy_on_conquest = yes
 }
@@ -232,7 +231,7 @@ naval_base = {
 	modifier = {
 		local_ship_cost = -0.2
 		ship_recruit_speed = -0.2
-		naval_forcelimit = 5
+		naval_forcelimit = 2
 	}
 	destroy_on_conquest = yes
 	category = 3
@@ -358,6 +357,14 @@ post_office = {
 		global_trade_income_modifier = 0.01
 	}
 	destroy_on_conquest = yes
+	
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			trade_efficiency = 2.0
+		}
+	}
 }
 
 customs_house = {
@@ -368,6 +375,13 @@ customs_house = {
 		trade_efficiency = 0.01
 	}
 	destroy_on_conquest = yes
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			trade_efficiency = 2.0
+		}
+	}
 }
 
 # Fortresses

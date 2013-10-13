@@ -49,7 +49,6 @@ link = { CK2 = e_arabia EU3 = ARA } # Arabia
 # Titular Empires
 link = { CK2 = e_latin_empire EU3 = LAT } # Latin Empire
 link = { CK2 = e_mexikha EU3 = MXC } # Sunset Invasion
-#link = { CK2 = e_mexikha EU3 = AZT } # Sunset Invasion => Aztecs
 
 
 ##Kingdoms
@@ -94,7 +93,6 @@ link = { CK2 = k_alania EU3 = AST } # Alania => Astrakhan ???
 link = { CK2 = k_taurica EU3 = CRI } # Taurica => Crimea
 link = { CK2 = k_aquitaine EU3 = GUY } # Aquitaine => Guyenne ???
 link = { CK2 = k_brittany EU3 = BRI } # Brittany
-link = { CK2 = k_leon EU3 = CAS } # Leon => Castille ???
 link = { CK2 = k_andalusia EU3 = GRA } # Andalusia => Granada ???
 
 # Merchant republics
@@ -146,12 +144,9 @@ link = { CK2 = d_gelre EU3 = GEL } # Gelre
 link = { CK2 = d_brabant EU3 = BRB } # Brabant
 link = { CK2 = d_flanders EU3 = FLA } # Flanders
 link = { CK2 = d_luxembourg EU3 = LUX } # Lexembourg
-link = { CK2 = d_lower_lorraine EU3 = LOR } # Lower Lorraine => Lorraine
-link = { CK2 = d_upper_lorraine EU3 = LOR } # Upper Lorraine => Lorraine
 link = { CK2 = d_alsace EU3 = ALS } # Alsace
 link = { CK2 = d_mecklemburg EU3 = MKL } # Mecklenburg
 link = { CK2 = d_pommerania EU3 = POM } # Pommerania
-link = { CK2 = d_pomeralia EU3 = POM } # Pomeralia => Pommerania
 link = { CK2 = d_saxony EU3 = SAX } # Saxony
 link = { CK2 = d_brandenburg EU3 = BRA } # Brandenburg
 link = { CK2 = d_meissen EU3 = MEI } # Meissen
@@ -178,8 +173,6 @@ link = { CK2 = d_sicily EU3 = SIC } # Sicily
 link = { CK2 = d_holstein EU3 = SHL } # Holstein
 link = { CK2 = d_finland EU3 = FIN } # Finland
 link = { CK2 = d_mazovia EU3 = MAZ } # Mazovia
-link = { CK2 = d_greater_poland EU3 = POL } # Poland
-link = { CK2 = d_lesser_poland EU3 = POL } # Poland
 link = { CK2 = d_silesia EU3 = SIL } # Silesia
 link = { CK2 = d_prussia EU3 = PRU } # Prussia
 link = { CK2 = d_polotsk EU3 = PLT } # Polotsk
