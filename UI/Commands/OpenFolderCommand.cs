@@ -37,7 +37,7 @@ namespace Converter.UI.Commands
         {
             GameConfiguration game = (GameConfiguration)parameter;
 
-            if (game == null || string.IsNullOrEmpty(game.InstallationPath))
+            if (game == null)
             {
                 return;
             }
