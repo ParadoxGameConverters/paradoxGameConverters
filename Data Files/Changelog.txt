@@ -527,5 +527,12 @@ Revision	Log Message
 502		Dynamically assigned graphical cultures for mod countries
 503		Code optimization. Minor bugfixes. Added some missing files in converter mod.
 504		Dynamically generated details for mod country files
+
+
+
+
+
+515		Add copyright and license to source files
 516		Handle missing localisation when generating new countries
 517		Commiting files not included in revision 516
+518		Merge main into mod
