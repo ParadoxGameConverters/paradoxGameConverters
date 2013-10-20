@@ -1,4 +1,4 @@
-culture_override={
+culture_rule_override={
 
 # Culture override: Explicitly define a primary culture for a CK2 title
 # It is possible to use custom culture rules.
@@ -14,7 +14,117 @@ link = { title = d_monothelite culture = greek_orthodox}
 locale_override={
 
 # Locale override: Define new localization
+# Example:
+# link = { key = c_new_country english = New_Country french = Nouveau_Pays german = Neu_Land  spanish = Nuevo_País ...}
+# If no string for a particular language is specified, the string will be based
+# on the CK2 title
 
-link = { title = d_aztec_reformed locale = "The Aztec Church" }
+link = { code = k_seljuk_turks english = The_Seljuk_Turks french = Les_Turcs_seldjoukides german = Die_Seldschuken spanish = Los_Turcos_Selyúcidas}
+link = { code = d_hashshashin english = The_Hashshashin }
+link = { code = d_genoese_navy english = The_Ligurian_Galleys french = Les_galères_ligures german = Die_Ligurische_Galleren spanish = Las_Galeras_Ligurias } 
+link = { code = d_knights_templar english = The_Knights_Templar german = Die_Tempelritter spanish = La_Orden_del_Templo }
+link = { code = d_scottish_band english = The_Scottish_Band }
+link = { code = d_tavasts english = The_Tavastians }
+link = { code = c_aargau french = Argovie spanish = Argovia }
+link = { code = c_al_amarah spanish = Alamarahia }
+link = { code = c_al_jazira spanish = Aljazira }
+link = { code = c_al_nasiryah spanish = Nasiriya }
+link = { code = c_alcacer_do_sal english = Alcácer_do_Sal french = Alcácer_do_Sal german = Alcácer_do_Sal spanish = Alcácer_do_Sal }
+link = { code = c_aland english = Åland french = Åland german = Åland spanish = Åland }
+link = { code = c_algeciras french = Algésiras }
+link = { code = c_alto_aragon english = Alto_Aragón french = Haut-Aragon german = Alto_Aragón spanish = Bajoaragon }
+link = { code = c_angermanland english = Ångermanland french = Ångermanland german = Ångermanland spanish = Angermanland }
+link = { code = c_anti-atlas english = Anti-Atlas french = Anti-Atlas german = Antiatlas spanish = Anti-Atlas }
+link = { code = c_ar_ar english = Shaka french = Shaka german = Shaka spanish = Shaka }
+link = { code = c_asturias_de_oviedo english = Asturias_de_Oviedo french = Asturies_de_Oviedo german = Asturias_de_Oviedo spanish = Asturias_de_Oviedo }
+link = { code = c_asturias_de_santillana english = Asturias_de_Santillana french = Asturies_de_Santillana german = Asturias_de_Santillana spanish = Asturias_de_Santillana }
+link = { code = c_atheniai english = Athens french = Athènes german = Athen spanish = Atenas }
+link = { code = c_aukshayts english = Vilnius french = Vilnius german = Vilnius spanish = Vilna }
+link = { code = c_austisland english = East_Iceland french = Est-Islande german = Ostisländ spanish = Islandés_del_Este }
+link = { code = c_azerbaijan french = Azerbaïdjan german = Aserbaidschan }
+link = { code = c_bashkirs english = Bashkir french = Bashkir german = Bashkir spanish = Bashkir }
+link = { code = c_beloozero english = Belo_Ozero german = Belosersk }
+link = { code = c_bezhetsky_verh english = Ladoga french = Ladoga german = Ladoga spanish = Ladoga }
+link = { code = c_braganza english = Bragança french = Bragança german = Bragança }
+link = { code = c_brno english = Brünn french = Brünn german = Brünn spanish = Berno }
+link = { code = c_byzantion english = Constantinople french = Constantinople german = Konstantinopel spanish = Constantinopla }
+link = { code = c_canarias english = The_Canaries french = Les_Canaries german = Die_Kanaren spanish = Las_Canarias }
+link = { code = c_consenza english = Catanzaro }
+link = { code = c_coruna english = Coruña french = Corogne german = Coruña spanish = Coruña} 
+link = { code = c_cremona french = Crémone }
+link = { code = c_denia english = Dénia french = Dénia german = Dénia spanish = Dénia }
+link = { code = c_desht-i-kipchak english = Desht-i-Kipchak french = Desht-i-Kipchak german = Desht-i-Kipchak spanish = Desht-i-Kipchak }
+link = { code = c_el-arish english = El-Arish french = El-Arish german = El-Arish spanish = El-Arish }
+link = { code = c_epeiros  english = Epirus french = Épire german = Epirus spanish = Epiro }
+link = { code = c_euphrates english = Samarra french = Samarra german = Samarra spanish = Samarra }
+link = { code = c_evora english = Évora french= Évora german = Évora spanish = Evora }
+link = { code = c_french_leon english = Saint-Pol-de-Léon french= Saint-Pol-de-Léon german = Saint-Pol-de-Léon spanish = Saint-Pol-de-Léon }
+link = { code = c_furstenberg english = Fürstenberg french = Fürstenberg german = Fürstenberg }
+link = { code = c_galich_mersky french = Galitch-Mersky }
+link = { code = c_grassland_cheremisa english = Kerzhenets french = Kerjenets german = Kerzhenets spanish = Kerzhenets }
+link = { code = c_guryev french = Gouriev german = Gurjew }
+link = { code = c_halogaland english = Hålogaland french = Hålogaland german = Hålogaland }
+link = { code = c_halsingland english = Hälsingland french = Hälsingland german = Hälsingland }
+link = { code = c_ifni english = Taroudant german = Taroudannte spanish = Tarudant }
+link = { code = c_isle_of_man english = Isle_of_Man french = Île_de_Man german = Insel_Man spanish = Isla_de_Man }
+link = { code = c_ile_de_france english = Ile_de_France french = Île_de_France german = Ile_de_France spanish = Isla_de_Francia }
+link = { code = c_jacwiez english = Grodno french = Grodno german = Grodno spanish = Grodno }
+link = { code = c_kara-kum english = Kara-Kum french = Karakum german = Kara-Kum spanish = Karakum }
+link = { code = c_khopyor french = Khopior german = Chopjor }
+link = { code = c_koloneia english = Coloneia french = Colonée german = Coloneia spanish = Colonia } 
+link = { code = c_leon english = Léon french= Léon german = Léon spanish = Leon }
+link = { code = c_livs english = Livonia french = Livonie german = Livland spanish = Livonia }
+link = { code = c_mallorca french = Majorque }
+link = { code = c_manych german = Manytsch }
+link = { code = c_meissen german = Meißen }
+link = { code = c_menorca french = Minorque }
+link = { code = c_mertola english = Mértola french = Mértola german = Mértola }
+link = { code = c_more english = Möre french = Möre german = Möre spanish = Möre } 
+link = { code = c_mountain_cheremisa english = Cheremisa french = Tchérémise german = Cheremisa spanish = Cheremisa }
+link = { code = c_najera english = Nájera french = Nájera german = Nájera }
+link = { code = c_narke english = Närke }
+link = { code = c_nitra english = Nyitra french = Nyitra german = Nyitra }
+link = { code = c_oland english = Öland french = Öland german = Öland spanish = Öland }
+link = { code = c_onega english = Ääninen french = Ääninen german = Ääninen }
+link = { code = c_orava english = Zvolen french = Zlovene german = Zvolen spanish = Zvolen }
+link = { code = c_osel english = Ösel french = Ösel german = Ösel }
+link = { code = c_osterbotten english = Österbotten french = Österbotten german = Österbotten spanish = Österbotten }
+link = { code = c_ostergotland english = East_Geatland french = Ostrogothie german = Ostgautland spanish = Gauta_Oriental }
+link = { code = c_penthievre english = Penthièvre french = Penthièvre german = Penthièvre }
+link = { code = c_plzen german = Pilsen spanish = Pilsen }
+link = { code = c_praha english = Prague french = Prague german = Prag spanish = Praga }
+link = { code = c_reval english = Kalevania french = Kalevan german = Kalevan spanish = Kalevan } 
+link = { code = c_saris english = Spisia french = Spis german = Spis spanish = Spis } 
+link = { code = c_schwaben english = Swabia french = Souabe german = Schwaben spanish = Suabia }
+link = { code = c_sinjar german = Sindschar }
+link = { code = c_smaland english = Värend french = Värend german = Värend spanish = Värend }
+link = { code = c_sodermanland english = Södermannia french = Sudermannie german = Södermannia spanish = Södermanland }
+link = { code = c_southern_ural french = Sud_de_lOural german = Südural spanish = Urales_del_Sur }
+link = { code = c_st_gallen french = St._Gallen german = Saint-Gallen german = St._Gallen spanish = Gallenia }
+link = { code = c_sudovia english = Trakai french = Trakai german = Traken spanish = Trakai }
+link = { code = c_tadmor english = Al-Sukhnah french = Al-Sukhnah german = Al-Sukhnah spanish = Al-Sukhnah }
+link = { code = c_tavasts english = Tavastland french = Tavastie german = Tavastland spanish = Tavastia }
+link = { code = c_tharasset english = Tamdoult french = Tamdoult german = Tamdoult spanish = Tamdult }
+link = { code = c_thuringen english = Thüringen french = Thüringen german = Thüringen spanish = Thüringen }
+link = { code = c_tirol english = Tyrol french = Tyrol german = Tirol spanish = Tirol }
+link = { code = c_toledo english = Toledo french = Tolède german = Toledo spanish = Toledo }
+link = { code = c_trans-portage english = Onegia french = Onégie german = Onegian spanish = Onegian }
+link = { code = c_trencin english = Trencín french = Trencín german = Trencín spanish = Trencin }
+link = { code = c_turkmen english = Ashkabad french = Ashkabad german = Aschgabat spanish = Asjabad }
+link = { code = c_ugra french = Ougra }
+link = { code = c_uzens french = Ouzens }
+link = { code = c_varmland english = Värmland french = Värmland german = Värmland }
+link = { code = c_vasterbotten english = Västerbotten french = Västerbotten german = Västerbotten }
+link = { code = c_vastmanland english = Västmanland french = Västmanland german = Västmanland }
+link = { code = c_vodi english = Ingria french = Ingrie german = Ingermanland spanish = Ingria }
+link = { code = c_valencia english = València french = Valence }
+link = { code = c_vastergotland english = West_Geatland french = Wisigothie german = Westgautland spanish = Gauta_Occidenal }
+link = { code = c_vestisland english = West_Iceland french = Ouest-Islande german = Westisländ spanish = Islandés_del_Oeste }
+link = { code = c_vodi english = Ingria french = Ingrie german = Ingermanland spanish = Ingria }
+link = { code = c_wurttemberg english = Württemberg french = Württemberg german = Württemberg spanish = Württemberg }
+link = { code = c_zhmud english = Lithuania german = Litauen }
+    
+   
+link = { code = d_aztec_reformed_adj english = Aztec_Ecclesiastical french = Aztèque_Ecclésiastique german = aztekische_Kirchlichen spanish = Azteca_Eclesiástica }
 
 }

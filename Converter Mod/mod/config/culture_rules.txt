@@ -12,8 +12,8 @@ culture_rules=
 			Muaddam Muhammad Muhsin Mukhtar Murad Musa Muzaffar Muzaffaraddin Nasraddin Nuraddin Nuri Radhi Rasul Sa'ud Salahaddin Seyfullah Sharaf
 			Sirhan Taimur Tawfiq Umaya Wahid Yahya Ya'qub Yasar Youkhanna Zahir
 			al-Nasr al-Mu'azzam al-Salih al-'Adil al-Kamil al-Ashraf al-Afdal Tadj
-			"Mujir ud-Din" "Djamal ud-Din" "Shihab ud-Din" Shams Saif 'Abbas
-			'Abd al-Rahman Anwar Atuf Bakr Fahd Hakim Harun Hikmat Hisham Husayn
+			*Mujir ud-Din* *Djamal ud-Din* *Shihab ud-Din* Shams Saif 'Abbas
+			*'Abd al-Rahman* Anwar Atuf Bakr Fahd Hakim Harun Hikmat Hisham Husayn
 			Isma'il Jafar Jamaal Karim Malîk Mirza Rashîd Rusul Shimun Tarîq Usama
 			Yasir Yusuf Zaid Zîyad
 			Abdullah Fuat 
@@ -56,25 +56,25 @@ culture_rules=
 			Said
 			Sefveti
 			Shukri
-			"Muhammad Ali" Ibrahim Ismail Said "Salah al-Din" "Baybars Abu al-Futuh"
-			"Qalawun al-Salihi" Barquq "Qansuh al-Ghawri" "Al-Nil al-Kabir"
-			"Al-Qahira" "Al-Iskandariyya" Dumyat Mansura Tanta "Al-Uqsur" "Al-Suyut" Aswan 
-			"Al-Fayyum" Khartum Qusayr Suways Minya 
-			"Abd al-Aziz" "Abd al-Hadi" "Abd al-Haqq" "Abd al-Jalil" "Abd al-Latif" 
-			"Abd al-Hafiz" "Abd al-Hakim" "Abd al-Nasir" "Abd al-Quddus" "Abd al-Rahim" "Abd al-Malik"
-			"Abd al-Rashid" "Abd al-Rahman" "Abd al-Sami" "Abd al-Wadud" "Abd al-Wahhab"
-			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid 
+			*Muhammad Ali* Ibrahim Ismail Said *Salah al-Din* *Baybars Abu al-Futuh*
+			*Qalawun al-Salihi* Barquq *Qansuh al-Ghawri* *Al-Nil al-Kabir*
+			*Al-Qahira* *Al-Iskandariyya* Dumyat Mansura Tanta *Al-Uqsur* *Al-Suyut* Aswan
+			*Al-Fayyum* Khartum Qusayr Suways Minya
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif* 
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid
 			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir
-	lif Amin Anwar Ayham Bahir Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd 
-			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr 
+			Alif Amin Anwar Ayham Bahir Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr
 		}
 		army_names=
 		{
-			"Jaysh mn $PROVINCE$" 
+			*Jaysh mn $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Astoul mn $PROVINCE$"
+			*Astoul mn $PROVINCE$*
 		}
 	}
 	al_misr_arabic=
@@ -144,36 +144,36 @@ culture_rules=
 		}
 		ship_names=
 		{
-			"Zaher Barqooq" "Farag Ben Barqooq"
-			"Ben Barqooq" "Muyaid Sheikh" "Ahmen Muyaid" 
-			"Zaher Tatar" "Nasser Muhamed" "Ashraf Barsbay"
-			"Aziz Gamal" "Nahr an-Nil" "Al-Farafirah"
-			"Ad-Däkhilah" "Al-Kharijah" "Al-Ali" "Al-Bahriyah"
+			*Zaher Barqooq* *Farag Ben Barqooq*
+			*Ben Barqooq* *Muyaid Sheikh* *Ahmen Muyaid*
+			*Zaher Tatar* *Nasser Muhamed* *Ashraf Barsbay*
+			*Aziz Gamal* *Nahr an-Nil* *Al-Farafirah*
+			*Ad-Däkhilah* *Al-Kharijah* *Al-Ali* *Al-Bahriyah*
 			Rahman Rahim Malik Quddus Salam Mu'min Muhaymin
-			Aziz Jabbar Mutakabbir Khaliq Bari Musawwir 
+			Aziz Jabbar Mutakabbir Khaliq Bari Musawwir
 			Ghaffar Qahhar Wahhab Razzaq Fattah Alim Qabid
 			Basit Khafid Rafi Mu'izz Mudhill Sami Basir Hakam Adl
-			"Muhammad Ali" Ibrahim Ismail Said "Salah al-Din" "Baybars Abu al-Futuh"
-			"Qalawun al-Salihi" Barquq Qaitbay "Qansuh al-Ghawri" "Al-Nil al-Kabir"
-			"Ala al-Din" "Husam al-Din" "Izz al-Din" "Jalal al-Din" "Khayr al-Din" "Majid al-Din" "Nasir al-Din" "Nur al-Din" "Safi al-Din" "Siraj al-Din"
-			"Al-Qahira" "Al-Iskandariyya" Dumyat Mansura Tanta "Al-Uqsur" "Al-Suyut" Aswan 
-			"Al-Fayyum" Qusayr Suways Minya
-			"Abd al-Aziz" "Abd al-Hadi" "Abd al-Haqq" "Abd al-Jalil" "Abd al-Latif" 
-			"Abd al-Hafiz" "Abd al-Hakim" "Abd al-Nasir" "Abd al-Quddus" "Abd al-Rahim" "Abd al-Malik"
-			"Abd al-Rashid" "Abd al-Rahman" "Abd al-Sami" "Abd al-Wadud" "Abd al-Wahhab"
-			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jawhar Kamal Khalid 
+			*Muhammad Ali* Ibrahim Ismail Said *Salah al-Din* *Baybars Abu al-Futuh*
+			*Qalawun al-Salihi* Barquq Qaitbay *Qansuh al-Ghawri* *Al-Nil al-Kabir*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din* *Safi al-Din* *Siraj al-Din*
+			*Al-Qahira* *Al-Iskandariyya* Dumyat Mansura Tanta *Al-Uqsur* *Al-Suyut* Aswan
+			*Al-Fayyum* Qusayr Suways Minya
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif*
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jawhar Kamal Khalid
 			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir
-			"Badr al-Din" "Diya al-Din" "Baha al-Din" "Imad al-Din" "Jamal al-Din" "Lutf al-Din" "Najm al-Din" "Sayf al-Din"
-			Alif Amin Anwar Ayham Dhakwan Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd 
-			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr 
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din*
+			Alif Amin Anwar Ayham Dhakwan Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr
 		}
 		army_names=
 		{
-			"Jaysh mn $PROVINCE$" 
+			*Jaysh mn $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Astoul mn $PROVINCE$"
+			*Astoul mn $PROVINCE$*
 		}
 	}
 	andalucian=
@@ -187,7 +187,7 @@ culture_rules=
 			Abu-Bakr Adfuns Ahmad Ali Amr Ayyub Balashk Bilal Fadl Fath Galind Garsiya Hakam Hilal Ibrahim Isma'îl
 			Jyad Lubb Ma'n Mubashir Muhammad Mundir Musa Muyahid Raf Rashid Rasiq Sa'd Sanyo Siddray Sulayman Tariq Tifilwit
 			Umar Utman Wannaqo Ya'far Yahaff Yahyà Yûsuf
-			'Alî Nasr "'Abd al-Karim" Ayman Barakat Basir Dawud Fahd Faris Faruq Firdaus Fuad Haidar Hashim Husam Iqbal
+			'Alî Nasr *'Abd al-Karim* Ayman Barakat Basir Dawud Fahd Faris Faruq Firdaus Fuad Haidar Hashim Husam Iqbal
 			Jabbar Jamal Junayd Khaliq Malik Mansur Mustafa Najib Qasim Qusay Rahim Rashîd Safi Sakhr Samir Wahid Zahir
 		}
 		female_names=
@@ -198,33 +198,33 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"Ibn Abd al-Rahman" "Ibn Abbad" "Ibn Abd Allah" "Ibn Abi Hafs" "Ibn al-Azafi" "Ibn Ali"
-			"Ibn Hakan" "Ibn Hammud" "Ibn Hisam" "Ibn Husayn"
-			"Ibn Idris" "Ibn Ishaq" "Ibn Isma'il"
-			"Ibn Marwan" "Ibn Muhammad" "Ibn Nasr" "Ibn Qasim" "Ibn Sa'd" "Ibn Sulayman"
-			"Ibn Umar" "Ibn Ummay" "Ibn Utman" "Ibn Ya'far" "Ibn Yahyà" "Ibn Yusuf"
+			*Ibn Abd al-Rahman* *Ibn Abbad* *Ibn Abd Allah* *Ibn Abi Hafs* *Ibn al-Azafi* *Ibn Ali*
+			*Ibn Hakan* *Ibn Hammud* *Ibn Hisam* *Ibn Husayn*
+			*Ibn Idris* *Ibn Ishaq* *Ibn Isma'il*
+			*Ibn Marwan* *Ibn Muhammad* *Ibn Nasr* *Ibn Qasim* *Ibn Sa'd* *Ibn Sulayman*
+			*Ibn Umar* *Ibn Ummay* *Ibn Utman* *Ibn Ya'far* *Ibn Yahyà* *Ibn Yusuf*
 		}
 		ship_names=
 		{
-			"Muhammed" al-Faqih
-			Nasr "Ismail"
-			"Mulay al-Rashid" "Ismail ibn Sharif" "Muhammad al-Thalith" "Abd al-Rahman" "Muhammad al-Rabi" "Hasan al-Alawiyyin"
-			"Al-Mansur al-Dhahbi" "Abd Allal al-Ghalib" "Muhammad al-Shaikh al-Saghir" "Abu Yusuf Yaqub" "Abu Sa'id Uthman" "Al-Mariniyyun" "Al-Idrisiyyun"
-			"Ala al-Din" "Husam al-Din" "Izz al-Din" "Jalal al-Din" "Khayr al-Din" "Majid al-Din" "Nasir al-Din" "Nur al-Din" 
-			"Safi al-Din" "Salah al-Din" "Siraj al-Din"
+			*Muhammed* al-Faqih
+			Nasr *Ismail*
+			*Mulay al-Rashid* *Ismail ibn Sharif* *Muhammad al-Thalith* *Abd al-Rahman* *Muhammad al-Rabi* *Hasan al-Alawiyyin*
+			*Al-Mansur al-Dhahbi* *Abd Allal al-Ghalib* *Muhammad al-Shaikh al-Saghir* *Abu Yusuf Yaqub* *Abu Sa'id Uthman* *Al-Mariniyyun* *Al-Idrisiyyun*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din* 
+			*Safi al-Din* *Salah al-Din* *Siraj al-Din*
 			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid 
 			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir 
-			"Badr al-Din" "Diya al-Din" "Baha al-Din" "Imad al-Din" "Jamal al-Din" "Lutf al-Din" "Najm al-Din" "Sayf al-Din" 
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din* 
 			Alif Amin Anwar Ayham Bahir Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd 
 			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr 
 		}
 		army_names=
 		{
-			"Jaysh mn $PROVINCE$" 
+			*Jaysh mn $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Astoul mn $PROVINCE$"
+			*Astoul mn $PROVINCE$*
 		}
 	}
 	aquitaine=
@@ -281,91 +281,91 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"d'Arnal" Assézat
-			"de Bacalan" "de Barbasan" "de Bernuy" "de Bezons" "de Boulbène"
-			"de Casteras" "de Caussade" "de Corneillan"
+			*d'Arnal* Assézat
+			*de Bacalan* *de Barbasan* *de Bernuy* *de Bezons* *de Boulbène*
+			*de Casteras* *de Caussade* *de Corneillan*
 			Delguy Delpuech
-			"d'Espagne" "d'Estadens" "d'Estissac"
+			*d'Espagne* *d'Estadens* *d'Estissac*
 			Fabre Faure
-			"de Galard" "de Goth" "de Grossoles"
-			Imbert "de l'Isle-Jourdain"
-			"de La Broue de Gandelon" "de Lacaze" "de Ladevèze" "de Loupiac" 
-			"de Madaillan" "Malvin de Montazet" "Martin de Viviès"
-			"de Nogarède" "de Nogaret" Noguès
-			"d'Ouvrier"
-			Pandaries "de Pelamourgues" Perès "de Perricard" Pons "de Pradines" "de Puechgarric"
-			"de Rabastens" "de Roux d'Alzonne"
-			Sabatier "de Saint Félix"
-			Teyssier "de Tholozany" "de Toulouse-Foissac" "de Toulouse-Lautrec"
-			"de Villemur"
-			"de Xaintrailles"
-			Delat Bachelier Chassier Gorio Gulden Hervé Largan "le Taro" Leconig Monic Roullaud "de Lizane"
-			"de Bourgues" Delalo "de Caudeyran" Luceau "de la Panse" "de Maurommet" Dethoailhe Jourdain Stoard Parenchieres
-			Bourgade Olier Bonvisy Lorguilleulx Haltevite "de Zailies" Faicheur Vezee Gombault Joffre Beauperrin Gally
+			*de Galard* *de Goth* *de Grossoles*
+			Imbert *de l'Isle-Jourdain*
+			*de La Broue de Gandelon* *de Lacaze* *de Ladevèze* *de Loupiac* 
+			*de Madaillan* *Malvin de Montazet* *Martin de Viviès*
+			*de Nogarède* *de Nogaret* Noguès
+			*d'Ouvrier*
+			Pandaries *de Pelamourgues* Perès *de Perricard* Pons *de Pradines* *de Puechgarric*
+			*de Rabastens* *de Roux d'Alzonne*
+			Sabatier *de Saint Félix*
+			Teyssier *de Tholozany* *de Toulouse-Foissac* *de Toulouse-Lautrec*
+			*de Villemur*
+			*de Xaintrailles*
+			Delat Bachelier Chassier Gorio Gulden Hervé Largan *le Taro* Leconig Monic Roullaud *de Lizane*
+			*de Bourgues* Delalo *de Caudeyran* Luceau *de la Panse* *de Maurommet* Dethoailhe Jourdain Stoard Parenchieres
+			Bourgade Olier Bonvisy Lorguilleulx Haltevite *de Zailies* Faicheur Vezee Gombault Joffre Beauperrin Gally
 
 		}
 		ship_names=
 		{
-			Aucamville Auzeville-Tolosane Balma Beauzelle "Le Busca"
+			Aucamville Auzeville-Tolosane Balma Beauzelle *Le Busca*
 			Blagnac Capitole Castanet-Tolosan Colomiers Cugneaux
-			"Ile du Ramier" Labège Labruc "La Cépière" "La Pasquière"
-			Laran Lardenne Launaguet "Le Grand Rond" "Le Mirail"
-			"Les Demoiselles" "Les Minimes" "Les Paradous" L'Union Marquisat
+			*Ile du Ramier* Labège Labruc *La Cépière* *La Pasquière*
+			Laran Lardenne Launaguet *Le Grand Rond* *Le Mirail*
+			*Les Demoiselles* *Les Minimes* *Les Paradous* L'Union Marquisat
 			Montaudran Montrabé Muret Pechbonnieu Pechbusque
-			"Pech David" Pibrac Plaisance-du-Touch "Portet sur Garonne" Quint-Fonsegrives
-			"Patte d'Oie" Ramonville-St-Agne Rangueil Tournefeuille "Saint Aubin"
-			"St Geniès Bellevue" "St Martin du Touch" "Saint Orens" "Saint Sernin" "Saint Simon"
-			Salvetat-St-Gilles Soulé "Stade Toulousain" "Vieille Toulouse" "Villeneuve-Tolosane"
-			"Poincare"
-			"Louis" "Dévastation"
-			"Courbet" "Amiral Duperré" "Terrible" "Indomptable" "Caiman" "Requin" "Admiral Baudin"
-			"Formidable" "Hoche" "Marceau" "Magenta" "Neptune" "Brennus" "Charles Martel" "Carnot"
-			"Jauréguiberry" "Masséna" "Bouvet" "Charlemagne" "Saint Louis" "Gaulois" "Henri"
-			"Iéna" "Suffren" "Patrie" "Justice" "Verité"
-			"Vergniaud" "Condorcet" "France"
-			"Jean Bart" "Fleurus"
-			"Congreve" "Foudroyante" "Lave" "Tonnante" "Gloire" "Invincible" "Couronne"
-			"Solferino" "Gauloise" "Magnanime" "Provence" "Revanche" "Savoie"
-			"Surveillante" "Valeureuse" "Héroïne"
-			"Alexandre" "Breslaw" "Prince Jérôme" "Duguay-Trouin"
-			"Tage" "Donawerth" "Fontenoy" "Turenne" "Castiglione"
-			"Bayard" "Ville de Lyon"
-			"Clovis" "Vercingetorix" "Richemont" "Dunois" "Leger" "Vauban"
-			"Conde" "Montebello" "Souverain" "Navarin"
-			"Algésiras" "Arcole" "Friedland" "Impérial" "Eylau" "Tilsitt"
-			"Marengo" "Toulon" "Bellone" "Glorieuse" "Gracieuse" "Audacieuse" "Impétueuse" "Ardente"
-			"Victoire" "Guerrière" "Téméraire" "Triomphant" "Tigre" "Persévérante" "Vigilant"
-			"Tenace" "Élan" "Lamotte-Picquet" "Primaguet" "Duquesne" "Tourville"
-			"Colbert" "Foch" "Algérie" "Maroc" "Davout" "Suchet" "Forbin"
-			"Surcouf" "Cosmao" "Lalande" "Galilée" "Linois" "La Galissionere"
-			"Jean de Vienne" "Gloire" "Georges Leygues" "De Grasse" "La Fantasque"
-			"Iphigenie" "Naiade" "Arethuse" "Dubourdieu" "Belliqueuse" "Tage"
-			"Amiral Cécille" "Davout" "Suchet" "Coëtlogon" "Forbin" "Surcouf" "Cosmao" "Lalande"
-			"Troude" "Galilée" "Lavoisier" "Linois" "Tunisié" "Isly" "Bugeaud" 
-			"Friant" "Descartes" "Pascal" "Cassard" "D'Assas" "Du Chayla" "Catinat" "Protet"
-			"D'Entrecasteaux" "Guichen" "Châteaurenault" "D'Estrées" "Infernet" "Jurien de la Gravière"
-			"Pluton" "Emile Bertin" "Dupuy de Lome" "Admiral Charner" "Bruix" "Chanzy" "Latouche-Treville"
-			"Pothau" "Dupetit-Thouars" "Gueydon" "Montcalm" "Desaix" "Dupleix" "Kleber"
-			"Amiral Aube" "Conde" "Sully" "Leon Gambetta" "Victor Hugo" "Jules Michelet"
-			"Ernest Renan" "Edgar Quinet" "Waldeck-Rousseau" "Thionville" "Metz" "Mulhouse" "Colmar"
-			"D'Assas" "Du Chayla" "Catinat" "Protet" "D'Entrecasteaux" "Guichen" "Châteaurenault"
-			"Condor" "Epervier" "Faucon" "Vautour" "Wattignies" "Levrier" "Casablanca" "D'Iberville"
-			"Cassini" "Lahire" "Circé" "Hermione" "Pallas" "Sémiramis" "Armorique" "Junon"
-			"Magicienne" "Thémis" "Flore"
-			"Océan" "Suffren" "Trident"
-			"Asmodée" "Gomer" "Darien" "Labrador" "Ulloa" "Cacique"
-			"Eldorado" "Magellan" "Montezuma" "Orénoque" "Panama" "Albatros" "Descartes" "Vauban"
-			"Caffarelli" "Mogador" "Pomone" "Isly" "Bellone" "Foudre" "Impératrice Eugénie"
-			"Souveraine" "Renommée"
-			"Danaé" "Pandore" "Zénobie" "Clorinde" "Astrée"
+			*Pech David* Pibrac Plaisance-du-Touch *Portet sur Garonne* Quint-Fonsegrives
+			*Patte d'Oie* Ramonville-St-Agne Rangueil Tournefeuille *Saint Aubin*
+			*St Geniès Bellevue* *St Martin du Touch* *Saint Orens* *Saint Sernin* *Saint Simon*
+			Salvetat-St-Gilles Soulé *Stade Toulousain* *Vieille Toulouse* *Villeneuve-Tolosane*
+			*Poincare*
+			*Louis* *Dévastation*
+			*Courbet* *Amiral Duperré* *Terrible* *Indomptable* *Caiman* *Requin* *Admiral Baudin*
+			*Formidable* *Hoche* *Marceau* *Magenta* *Neptune* *Brennus* *Charles Martel* *Carnot*
+			*Jauréguiberry* *Masséna* *Bouvet* *Charlemagne* *Saint Louis* *Gaulois* *Henri*
+			*Iéna* *Suffren* *Patrie* *Justice* *Verité*
+			*Vergniaud* *Condorcet* *France*
+			*Jean Bart* *Fleurus*
+			*Congreve* *Foudroyante* *Lave* *Tonnante* *Gloire* *Invincible* *Couronne*
+			*Solferino* *Gauloise* *Magnanime* *Provence* *Revanche* *Savoie*
+			*Surveillante* *Valeureuse* *Héroïne*
+			*Alexandre* *Breslaw* *Prince Jérôme* *Duguay-Trouin*
+			*Tage* *Donawerth* *Fontenoy* *Turenne* *Castiglione*
+			*Bayard* *Ville de Lyon*
+			*Clovis* *Vercingetorix* *Richemont* *Dunois* *Leger* *Vauban*
+			*Conde* *Montebello* *Souverain* *Navarin*
+			*Algésiras* *Arcole* *Friedland* *Impérial* *Eylau* *Tilsitt*
+			*Marengo* *Toulon* *Bellone* *Glorieuse* *Gracieuse* *Audacieuse* *Impétueuse* *Ardente*
+			*Victoire* *Guerrière* *Téméraire* *Triomphant* *Tigre* *Persévérante* *Vigilant*
+			*Tenace* *Élan* *Lamotte-Picquet* *Primaguet* *Duquesne* *Tourville*
+			*Colbert* *Foch* *Algérie* *Maroc* *Davout* *Suchet* *Forbin*
+			*Surcouf* *Cosmao* *Lalande* *Galilée* *Linois* *La Galissionere*
+			*Jean de Vienne* *Gloire* *Georges Leygues* *De Grasse* *La Fantasque*
+			*Iphigenie* *Naiade* *Arethuse* *Dubourdieu* *Belliqueuse* *Tage*
+			*Amiral Cécille* *Davout* *Suchet* *Coëtlogon* *Forbin* *Surcouf* *Cosmao* *Lalande*
+			*Troude* *Galilée* *Lavoisier* *Linois* *Tunisié* *Isly* *Bugeaud* 
+			*Friant* *Descartes* *Pascal* *Cassard* *D'Assas* *Du Chayla* *Catinat* *Protet*
+			*D'Entrecasteaux* *Guichen* *Châteaurenault* *D'Estrées* *Infernet* *Jurien de la Gravière*
+			*Pluton* *Emile Bertin* *Dupuy de Lome* *Admiral Charner* *Bruix* *Chanzy* *Latouche-Treville*
+			*Pothau* *Dupetit-Thouars* *Gueydon* *Montcalm* *Desaix* *Dupleix* *Kleber*
+			*Amiral Aube* *Conde* *Sully* *Leon Gambetta* *Victor Hugo* *Jules Michelet*
+			*Ernest Renan* *Edgar Quinet* *Waldeck-Rousseau* *Thionville* *Metz* *Mulhouse* *Colmar*
+			*D'Assas* *Du Chayla* *Catinat* *Protet* *D'Entrecasteaux* *Guichen* *Châteaurenault*
+			*Condor* *Epervier* *Faucon* *Vautour* *Wattignies* *Levrier* *Casablanca* *D'Iberville*
+			*Cassini* *Lahire* *Circé* *Hermione* *Pallas* *Sémiramis* *Armorique* *Junon*
+			*Magicienne* *Thémis* *Flore*
+			*Océan* *Suffren* *Trident*
+			*Asmodée* *Gomer* *Darien* *Labrador* *Ulloa* *Cacique*
+			*Eldorado* *Magellan* *Montezuma* *Orénoque* *Panama* *Albatros* *Descartes* *Vauban*
+			*Caffarelli* *Mogador* *Pomone* *Isly* *Bellone* *Foudre* *Impératrice Eugénie*
+			*Souveraine* *Renommée*
+			*Danaé* *Pandore* *Zénobie* *Clorinde* *Astrée*
 		}
 		army_names=
 		{
-			"Armée de $PROVINCE$" 
+			*Armée de $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Flotte de $PROVINCE$"
+			*Flotte de $PROVINCE$*
 		}
 	}
 	ashanti=
@@ -375,53 +375,53 @@ culture_rules=
 		base_country_V2=SOK
 		male_names=
 		{
-			"Beriguwiemda"
-			"Zolgo"
-			"Zongman"
-			"Nengmitoni"
-			"Dimani"
-			"Yanza"
-			"Dariziogo"
-			"Luro"
-			"Tutugri"
-			"Zagale"
-			"Zokuli"
-			"Gungoble"
-			"Boadu Akofu Berempon"
-			"Boa Amponsem"
-			"Ntim Gyakari"
-			"Ose Tutu"
-			"Opoku Fofie"
-			"Opoku Ware"
-			"Kusi Obodum"
-			"Osei Bonsu"
-			"Osei Kojo"
-			"Osei Kwame"
-			"Osei Fofie"
-			"Osei Bonsu"
-			"Osei Yaw"
-			"Kwaku Dua"
-			"Salifu Saatankugri"
-			"Mahama Kuluguba"
-			"Nyagse"
-			"Zulande"
-			"Zangina"
-			"Andan Sigili"
-			"Jimli"
-			"Zibirim"
-			"Gariba"
-			"Yakuba"
-			"Ayekeraa"
-			"Kokobo"
-			"Ahaha"
-			"Warembe Ampen"
-			"Agyinamoa"
-			"Twum"
-			"Kobla Amana"
-			"Akenten"
-			"Obiri Yeboa"
-			"Opoku"
-			"Antwi"
+			*Beriguwiemda*
+			*Zolgo*
+			*Zongman*
+			*Nengmitoni*
+			*Dimani*
+			*Yanza*
+			*Dariziogo*
+			*Luro*
+			*Tutugri*
+			*Zagale*
+			*Zokuli*
+			*Gungoble*
+			*Boadu Akofu Berempon*
+			*Boa Amponsem*
+			*Ntim Gyakari*
+			*Ose Tutu*
+			*Opoku Fofie*
+			*Opoku Ware*
+			*Kusi Obodum*
+			*Osei Bonsu*
+			*Osei Kojo*
+			*Osei Kwame*
+			*Osei Fofie*
+			*Osei Bonsu*
+			*Osei Yaw*
+			*Kwaku Dua*
+			*Salifu Saatankugri*
+			*Mahama Kuluguba*
+			*Nyagse*
+			*Zulande*
+			*Zangina*
+			*Andan Sigili*
+			*Jimli*
+			*Zibirim*
+			*Gariba*
+			*Yakuba*
+			*Ayekeraa*
+			*Kokobo*
+			*Ahaha*
+			*Warembe Ampen*
+			*Agyinamoa*
+			*Twum*
+			*Kobla Amana*
+			*Akenten*
+			*Obiri Yeboa*
+			*Opoku*
+			*Antwi*
 			Amanquatia Agyeman Onsei Kwaku Kofi Atakora Kwabena Mensa Owusu Akyampon Kwame Opoku
 		}
 		female_names=
@@ -446,17 +446,17 @@ culture_rules=
 		}
 		ship_names=
 		{
-			Nyame "Asase Yaa" Bia Tano
+			Nyame *Asase Yaa* Bia Tano
 			Dwoada Benada Wukuada Yawoada
 			Fiada Memeneda Kwasiada
 		}
 		army_names=
 		{
-			"Dom fi $PROVINCE$" 
+			*Dom fi $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Henkuw fi $PROVINCE$"
+			*Henkuw fi $PROVINCE$*
 		}
 	}
 	azerbadjani=
@@ -467,7 +467,7 @@ culture_rules=
 		male_names=
 		{
 			Çagri Çaka
-			Afsin Ahmet Aksonqor Alaeddin Alkan "Alp Arslan" "Alp Yurek" Alptigin Artuk Ayaz Aydin Aydogan Aydogdu Aytekin
+			Afsin Ahmet Aksonqor Alaeddin Alkan *Alp Arslan* *Alp Yurek* Alptigin Artuk Ayaz Aydin Aydogan Aydogdu Aytekin
 			Böru Bulend Bahadir Balaban Basbuga Batuhan Baturay Baybars Bayezid Baytas Belek Berkan Berkiyaruk Bozan Budaq Bugra Burak
 			Cuneyd
 			Dundar Danismend Davud Demir Dogan Dogukan Dukak
@@ -531,19 +531,19 @@ culture_rules=
 		}
 		ship_names=
 		{
-			Herat "Qara Yusuf" "Qara Muhammad" "Iskander Yusuf"
-			Kura Sumgait Bazard'uz'u "Qareh Sü" Sevan "Bälän Safar"
+			Herat *Qara Yusuf* *Qara Muhammad* *Iskander Yusuf*
+			Kura Sumgait Bazard'uz'u *Qareh Sü* Sevan *Bälän Safar*
 			Agdam K'urdamir Udzary
-			"Hasan Zardabi" Mammadguluzadeh "Mirza Alakbar Sabir" Baku Shirvan Karabakh 	
+			*Hasan Zardabi* Mammadguluzadeh *Mirza Alakbar Sabir* Baku Shirvan Karabakh 	
 			Ganja Quba Shaki Talysh Erivan Nakchivan
 		}
 		army_names=
 		{
-			"$PROVINCE$ ordusu" 
+			*$PROVINCE$ ordusu* 
 		}
 		fleet_names=
 		{
-			"$PROVINCE$ donanmasi"
+			*$PROVINCE$ donanmasi*
 		}
 	}
 	aztek=
@@ -601,12 +601,12 @@ culture_rules=
 		}
 		ship_names=
 		{
-			Acolmiztli Acolnahuacat "Ah Hoya" "Ah Tzenul" Amimitl Apanecatl Atl Atlau Axoloa
+			Acolmiztli Acolnahuacat *Ah Hoya* *Ah Tzenul* Amimitl Apanecatl Atl Atlau Axoloa
 			Camaxtli Centeot Centzonuiznaua Chalchiuhtlatonal Chalchiuhtlicue Chalchiutotolin Chalmecalt Chalmecaucihuilt
 			Chantico Chichomexochtli Chicomecoatl Chiconahuai Chihalma Chualchihuitlcue Cihuacaotyl Cinteotl
 			Citlalatonac Citlalicue Ciucoatl Coatlicue Cochimetl Coyolxauhqui Cuauhcoatl 
 			Ehehcatl Eueucoyotl
-			"Hopop Can" Huehueteotl Huitzilopochtli Huixtocihuatl
+			*Hopop Can* Huehueteotl Huitzilopochtli Huixtocihuatl
 			Itzcoliuhqui Itzli Itzpapalotl Itzpzpalotl Ixtlilton Iztamixcoatzin
 			Macuilxochitl Mahayuel Malinalxochi Matalcueye Metztli Mictlan Mictlancihuntl Mictlantechtle
 			Mictlantechupi Mictlantecihuatl Mixcoatl
@@ -616,16 +616,16 @@ culture_rules=
 			Quetzalcoatl
 			Tecciztecatl Teoyaomqui Tepeyollotl Teteoinnan Tezacoatl Tezcatlipoca Tillan-Tlapallan Tlaloc
 			Tlalocan Tlaltechhtlii Tlazolteotl Tonacatecuhtli Tonatiuhican Tonatiuth Tzitmime
-			Xilonen "Xipe Totec" Xiucoatl Xiuhtecuhtli Xochipilli Xochiquetzal Xolotl Xonecuilli
+			Xilonen *Xipe Totec* Xiucoatl Xiuhtecuhtli Xochipilli Xochiquetzal Xolotl Xonecuilli
 			Yacatechutli
 		}
 		army_names=
 		{
-			"Yaotihuapa den $PROVINCE$" 
+			*Yaotihuapa den $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Acalli den $PROVINCE$"
+			*Acalli den $PROVINCE$*
 		}
 	}
 	basque=
@@ -638,8 +638,8 @@ culture_rules=
 			Alfontso Alvar Antso Aurelio Aznar Belasko Beltran Dato Diego Egidio Eneko Erramun Fernando Fortun Galindo Gartzia Gilen Gomez Gontzal Henrike
 			Joanes Karlos Ladron Lope Luis Manrike Martín Mentzio Munio Nuño Ordoño Otxoa Paskoal Pelaio Piarres Ramiro Rodrigo Suero Tello Tibalt Ximeno
 			Agustín Aitor Alberto Ander Andoni Andrés Ángel Antonio Arturo
-			Endika "Francisco Javier" Imanol Iñaki Jesús
-			Jon "José Antonio" "José María" Joseba Josu Julen Koldobika Manuel
+			Endika *Francisco Javier* Imanol Iñaki Jesús
+			Jon *José Antonio* *José María* Joseba Josu Julen Koldobika Manuel
 			Marino Miguel Paulino Pedro Rafael Ramón Sabino Tomás
 		}
 		female_names=
@@ -649,34 +649,34 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"de Aguirre" "de Albret" "de Antillón" "de Aranda" "de Armendariz" "de Azagra" "de Azpilcueta"
-			"de Beaumont" "de Beortegui" Bergera "de Borbón" "de Carranza"	Elizalde
-			"de Garay" "de Goñi" Goyeneche "de Heredia" "de Hijar"
-			"de Jaso" "Jiménez de Rada" Jimeno "de Landívar" Navarro
-			Palafox "Pérez de Zabalza" "de Salazar" "de Uribe" "de Ursúa"
-			"de Yanguas" "de Zárate"
+			*de Aguirre* *de Albret* *de Antillón* *de Aranda* *de Armendariz* *de Azagra* *de Azpilcueta*
+			*de Beaumont* *de Beortegui* Bergera *de Borbón* *de Carranza*	Elizalde
+			*de Garay* *de Goñi* Goyeneche *de Heredia* *de Hijar*
+			*de Jaso* *Jiménez de Rada* Jimeno *de Landívar* Navarro
+			Palafox *Pérez de Zabalza* *de Salazar* *de Uribe* *de Ursúa*
+			*de Yanguas* *de Zárate*
 			Aguirre Ajuriaguerra Aldecoa Arana Aranzadi Arizmendiarrieta Armendáriz Aznar Balenciaga Berasategui 
-			Bilbao Campión Churruca "de Amésquita" "de Azpilicueta" "de Erauso" "de Rentería" "de Ubisztongo" Echagüe Echave
+			Bilbao Campión Churruca *de Amésquita* *de Azpilicueta* *de Erauso* *de Rentería* *de Ubisztongo* Echagüe Echave
 			Echegaray Echevarría Elorza Gaztañeta Ibarrola Ibárruri Irujo Lazcano Mendizabal Moneo 
 			Nárdiz Olano Olave Oyarzábal Rotaeche Uzcudun Zamárraga Zárate Zavala Zumalacárregui
 		}
 		ship_names=
 		{
-			Atlántida "Conde de Evreux" "Conde de Foix" "Conde de Guenduláin" "Conde de Lerín"
-			"Don Jimeno" "Duque de Armagnac" "Duque de Champaña"
-			"El Agramontés" "El Beaomontés" "El Bearnés" "El Cruzado Navarro" "El Montañés" "El Navarro" "El Salvador" "El Trobador" "El Viñador" "Emperador Hispánico" Europa
-			"Mar de Navarra" "Nuestra Sra de Leyre" "Príncipe de Viana"
-			"Reina Juana" "Rey Enrique" "Rey García" "Rey Sancho" "Reyno de Navarra" "Reyno de Pamplona"
-			"San Agustín" "San Andrés" "San Antonio" "San Carlos" "San Enrique" "San Esteban" "San Fermín" "San Francisco" "San Francisco Xabier" "San Gregorio" "San Juan" "San León" "San Miguel Arcángel" "San Raimundo" "San Virila"
-			"Santa Ana" "Santa Catalina" "Santa Juana" "Santa Leonor" "Santísima Trinidad" "Señor de Tudela"
+			Atlántida *Conde de Evreux* *Conde de Foix* *Conde de Guenduláin* *Conde de Lerín*
+			*Don Jimeno* *Duque de Armagnac* *Duque de Champaña*
+			*El Agramontés* *El Beaomontés* *El Bearnés* *El Cruzado Navarro* *El Montañés* *El Navarro* *El Salvador* *El Trobador* *El Viñador* *Emperador Hispánico* Europa
+			*Mar de Navarra* *Nuestra Sra de Leyre* *Príncipe de Viana*
+			*Reina Juana* *Rey Enrique* *Rey García* *Rey Sancho* *Reyno de Navarra* *Reyno de Pamplona*
+			*San Agustín* *San Andrés* *San Antonio* *San Carlos* *San Enrique* *San Esteban* *San Fermín* *San Francisco* *San Francisco Xabier* *San Gregorio* *San Juan* *San León* *San Miguel Arcángel* *San Raimundo* *San Virila*
+			*Santa Ana* *Santa Catalina* *Santa Juana* *Santa Leonor* *Santísima Trinidad* *Señor de Tudela*
 		}
 		army_names=
 		{
-			"$PROVINCE$ armada"
+			*$PROVINCE$ armada*
 		}
 		fleet_names=
 		{
-			"$PROVINCE$ flota"
+			*$PROVINCE$ flota*
 		}
 	}
 	bavarian=
@@ -706,10 +706,10 @@ culture_rules=
 			Udo Ulrich
 			Viktor
 			Waldemar Walram Walther Welf Wenzel Werner Widukind Wigerich Wilhelm Wolfgang Wolfram
-			"Ferdinand Maria" "Karl Albrecht" "Karl Theodor" Maximilian "Maximilian Joseph"
-			"Maximilian Emanuel" Siegmund Anton Ferdinand "Joseph Clemens" "Joseph Ferdinand"
-			"Leopold Ferdinand" "Maximilian Philipp" "Philipp Wilhelm" "Alois Johann"
-			"Clemens August" "Johann Theodor" "Joseph Ludwig" "Kajetan Maria" "Philipp Moritz"
+			*Ferdinand Maria* *Karl Albrecht* *Karl Theodor* Maximilian *Maximilian Joseph*
+			*Maximilian Emanuel* Siegmund Anton Ferdinand *Joseph Clemens* *Joseph Ferdinand*
+			*Leopold Ferdinand* *Maximilian Philipp* *Philipp Wilhelm* *Alois Johann*
+			*Clemens August* *Johann Theodor* *Joseph Ludwig* *Kajetan Maria* *Philipp Moritz*
 			Engelbert Hieronymus Ignatz Markus Raphael
 			Alexander Alfons Arthur Christian
 			Edmund Eduard Erwin Friedrich
@@ -741,7 +741,7 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"von Armansperg"
+			*von Armansperg*
 			Wilsenhütten
 			Asch
 			Dulac
@@ -753,11 +753,11 @@ culture_rules=
 			Hugenpoet
 			Livizzani
 			Lechner
-			"von Seckendorf"
+			*von Seckendorf*
 			Morawitzky
-			"von Zentner"
+			*von Zentner*
 			Moshamm
-			"von Pappenheim"
+			*von Pappenheim*
 			Pfretschner
 			Maximillian
 			Riedesel
@@ -767,34 +767,34 @@ culture_rules=
 			Treuberg
 			Beck-Rzikowsky Blos Dankl Eisner Geiss Goering Hainisch Haus Held Hellpach
 			Hoffmann Hummel Köhler Mergenthaler Miklas Remmele Schmitt Schobber Seitz Steeb
-			Stolzer Trunk "von Baden" "von Benedek" "von Böhm-Ermolli" "von Brudermann" "von Clam-Gallas" "von der Tann" "von Dietrich" "von Gablenz"
-			"von Grünne" "von Habsburg" "von Hartmann" "von Haynau" "von Hess" "von Hohenhausen" "d'Aspre von Hoobreuk" "von Hortstein" "von Hötzendorf" "von Kirbach"
-			"von Kobratin" "von Schönburg" "von Tegetthoff" "von Uchatius" "von Wittelsbach" "von Württemberg" "von Zahringen" Wagner Wittmann "zu Hohenlohe"
+			Stolzer Trunk *von Baden* *von Benedek* *von Böhm-Ermolli* *von Brudermann* *von Clam-Gallas* *von der Tann* *von Dietrich* *von Gablenz*
+			*von Grünne* *von Habsburg* *von Hartmann* *von Haynau* *von Hess* *von Hohenhausen* *d'Aspre von Hoobreuk* *von Hortstein* *von Hötzendorf* *von Kirbach*
+			*von Kobratin* *von Schönburg* *von Tegetthoff* *von Uchatius* *von Wittelsbach* *von Württemberg* *von Zahringen* Wagner Wittmann *zu Hohenlohe*
 		}
 		ship_names=
 		{
-			"St. Kilian" "Tassilo III" "Kaiser Ludwig IV"
-			"König Arnulf" "Graf von Bogen" "Graf von Andechs"
-			"Graf von Sulzbach" Wittelsbach "Graf von Diepolding"
-			"König Konrad III" "König Friedrich I" "Pfalzgraf Otto"
+			*St. Kilian* *Tassilo III* *Kaiser Ludwig IV*
+			*König Arnulf* *Graf von Bogen* *Graf von Andechs*
+			*Graf von Sulzbach* Wittelsbach *Graf von Diepolding*
+			*König Konrad III* *König Friedrich I* *Pfalzgraf Otto*
 			Augsburg Andechs Burgau Diessen Friedberg Kempten Lindau
 			Memmingen Mindel Oettingen Straubing Wolfstein
-			Bayern "Von der Tann" "Prinzregent Luitpold" Welf Nibelungen Walküre Babenberg
-			"Maximilian Joseph" "Ludwig" "Maximilian" "Graf Montgelas" "Graf von Horn" "Von der Mark" "Von Le Suire" "Von Wrede" 
+			Bayern *Von der Tann* *Prinzregent Luitpold* Welf Nibelungen Walküre Babenberg
+			*Maximilian Joseph* *Ludwig* *Maximilian* *Graf Montgelas* *Graf von Horn* *Von der Mark* *Von Le Suire* *Von Wrede* 
 			Graf Herzog König Kaiser Kurfürst Pfalzgraf Prinz Odin Wotan Balder Donar
 			Fuchs Hyäne Leopard Löwe Luchs Marder Panther Tiger Wolf 
-			Höchstädt Landshut Lechfeld "Herzog Albrecht" "Prinz Ludwig" "Von Utzschneider" Steinheil
+			Höchstädt Landshut Lechfeld *Herzog Albrecht* *Prinz Ludwig* *Von Utzschneider* Steinheil
 			Altmühl Donau Fellach Iller Inn Isar Lech Naab Pegnitz Regen Saale Windach
-			"Sankt Erhard" "Sankt Georg" "Sankt Hubertus" "Sankt Michaël" "Sankt Peter" "Sankt Rupert" "Sankt Valentin" "Sankt Willibald" "Sankt Wolfgang"
+			*Sankt Erhard* *Sankt Georg* *Sankt Hubertus* *Sankt Michaël* *Sankt Peter* *Sankt Rupert* *Sankt Valentin* *Sankt Willibald* *Sankt Wolfgang*
 			Siegfried Kriemhild Gunther Gernot Giselher Siegmund Alberich Brünhild Hagen 
 		}
 		army_names=
 		{
-			"Armee von $PROVINCE$"
+			*Armee von $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotte von $PROVINCE$"
+			*Flotte von $PROVINCE$*
 		}
 	}
 	bedouin_arabic=
@@ -808,11 +808,11 @@ culture_rules=
 			Fadil Fadl Faruk Ghalib Hafiz Halil Hasan Husam Hussayn Ibrahim Idris Is'mail Isa Jabir Jalil Jibril Khaireddin Khalil Mahdi Mahmud
 			Mansur Mirza Mubarak Muhammad Mukhtar Murad Musa Muslihiddin Muzaffaraddin Najib Nasr Nizam Qawurd Ramadan Sa'daddin Sadiq Sami Samir Shaiban
 			Shamir Shujah Sulayman Talib Ubayd Uways Yahya Ya'qub Youkhanna Yusuf Zeyd
-			Barakât Hazza Ahmad Humaida Qa'it Takaba "Abu Talib" "Abu Aun Idris" Mushin Mas'ud Zaid Sa'ad Sa'id Abdul-Karim 'Abul Muhsin
+			Barakât Hazza Ahmad Humaida Qa'it Takaba *Abu Talib* *Abu Aun Idris* Mushin Mas'ud Zaid Sa'ad Sa'id Abdul-Karim 'Abul Muhsin
 			'Abd al-Ilah Masa'id Djafar
-			"Abd Allah" "Abd al-Karim" "Abd al-Malik" "Abd al-Qadir" "Abd al-Rahman" "Abu Bakr" 
+			*Abd Allah* *Abd al-Karim* *Abd al-Malik* *Abd al-Qadir* *Abd al-Rahman* *Abu Bakr* 
 			Fawzi Fuad Hisham Ishaq Iskandar Ja'far Jamal Kamil Khalid 
-			Mustafa "Nur al-Din" "Sa'd al-Din" Salim  Sa'ud Shukri
+			Mustafa *Nur al-Din* *Sa'd al-Din* Salim  Sa'ud Shukri
 			Tawfiq Umar Uthman Zafir
 		}
 		female_names=
@@ -833,39 +833,39 @@ culture_rules=
 			Mansour	
 			Abbas
 			Hammoud
-			"ibn Abd Allah" "ibn Abd al-Qadir" "ibn Abu Bakr" "ibn Ahmad" "ibn Ali"
-			"ibn Fuad" "ibn Halil" "ibn Hasan" "ibn Hisham" "ibn Ishaq" "ibn Ja'far" "ibm Kamil" "ibn Khalid" 
-			"ibn Muhammad" "ibn Mustafa" "ibn Salim"  
-			"ibn Umar" "ibn Uthman" "ibn Yusuf"
-			"al-Najdi" "al-Hijazi" 
+			*ibn Abd Allah* *ibn Abd al-Qadir* *ibn Abu Bakr* *ibn Ahmad* *ibn Ali*
+			*ibn Fuad* *ibn Halil* *ibn Hasan* *ibn Hisham* *ibn Ishaq* *ibn Ja'far* *ibm Kamil* *ibn Khalid* 
+			*ibn Muhammad* *ibn Mustafa* *ibn Salim*  
+			*ibn Umar* *ibn Uthman* *ibn Yusuf*
+			*al-Najdi* *al-Hijazi* 
 		}
 		ship_names=
 		{
-			"Jabal Baydan"
-			"Jabal Sawda" "Jabal Abu Hasan" "Jabal al-Jurayrah" 
-			"Harrat Al-Kishb" "Harrat Rahat" "Harrat Nawasif"
-			"Harrat Hadan" "Harrat Al-Buqum" "Harrat Khaybar"
-			"Harrat Kurama" "Harrat al-Unayyir"
-			"Abu Bakr" Uthman Umar Ali Al-Rashidun Muawiya Hashimiyyun "Barakat Affindi" "Muhammad Abu al-Nubaj" "Masud bin Said" "Ghalib Affindi"
-			"Ala al-Din" "Husam al-Din" "Izz al-Din" "Jalal al-Din" "Khayr al-Din" "Majid al-Din" "Nasir al-Din" "Nur al-Din" 
-			"Safi al-Din" "Salah al-Din" "Siraj al-Din"
-			Jidda Taif Yanbu Tabuk "Madina al-Munawwara"
-			Abd al-Aziz" "Abd al-Hadi" "Abd al-Haqq" "Abd al-Jalil" "Abd al-Latif" 
-			"Abd al-Hafiz" "Abd al-Hakim" "Abd al-Nasir" "Abd al-Quddus" "Abd al-Rahim" "Abd al-Malik"
-			"Abd al-Rashid" "Abd al-Rahman" "Abd al-Sami" "Abd al-Wadud" "Abd al-Wahhab"
-			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid 
-			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir 
-			"Badr al-Din" "Diya al-Din" "Baha al-Din" "Imad al-Din" "Jamal al-Din" "Lutf al-Din" "Najm al-Din" "Sayf al-Din" 
-			Alif Amin Anwar Ayham Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd 
-			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr 
+			*Jabal Baydan*
+			*Jabal Sawda* *Jabal Abu Hasan* *Jabal al-Jurayrah*
+			*Harrat Al-Kishb* *Harrat Rahat* *Harrat Nawasif*
+			*Harrat Hadan* *Harrat Al-Buqum* *Harrat Khaybar*
+			*Harrat Kurama* *Harrat al-Unayyir*
+			*Abu Bakr* Uthman Umar Ali Al-Rashidun Muawiya Hashimiyyun *Barakat Affindi* *Muhammad Abu al-Nubaj* *Masud bin Said* *Ghalib Affindi*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din*
+			*Safi al-Din* *Salah al-Din* *Siraj al-Din*
+			Jidda Taif Yanbu Tabuk *Madina al-Munawwara*
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif*
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid
+			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din*
+			Alif Amin Anwar Ayham Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr
 		}
 		army_names=
 		{
-			"Jaysh mn $PROVINCE$" 
+			*Jaysh mn $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Astoul mn $PROVINCE$"
+			*Astoul mn $PROVINCE$*
 		}
 	}
 	berber=
@@ -890,11 +890,11 @@ culture_rules=
 			Sayyid Seghada Sekla Shamsaddin Sifaks Sifal Sinbad Sisso Stembanos Suggut Sultan T'ar'iq Tabat Tacfin Taffounnout Tahir Takfarinas Tanan Tariq
 			Tegama Thabitah Tifan Tiljad Ugdada Ugwistan Umar Uqess'un Uregh Urtilian Urz'ig Uzmir Uzza Wahab Watt'as Xamida Yabdas Yaghmurasen
 			Yahyâ Yattuy Yeften Yeh'lem Yiliyen Yuba Yugerten Yugurthen Youkhanna_John Yunes Yusuf Yuva Z'effun Zafir Zalelsan Zayar Zer'wal Zigza Ziri Zubeyr
-			Muhammad Ahmad Abdallâh 'Abd al-Malik 'Alî 'Uthmân 'Abd al-Haqq 'al-Walîd al-Mustadî al-Rashîd Hishâm Idrîsid Sulaymân Zaydân Zayn "'Abd ar-Rahmân"
-			al-Yazîd Mansur Muhraz Nasir "Abû Faris" "Abû Merwan" "al-Talib" Hammada Hasam Ja'far Maimun Maslama Said Yûsuf Ataullah Jabril Rasul Zulfiqar
-			"Abd Allah" "Abd al-Karim" "Abd al-Qadir" 
+			Muhammad Ahmad Abdallâh 'Abd al-Malik 'Alî 'Uthmân 'Abd al-Haqq 'al-Walîd al-Mustadî al-Rashîd Hishâm Idrîsid Sulaymân Zaydân Zayn *'Abd ar-Rahmân*
+			al-Yazîd Mansur Muhraz Nasir *Abû Faris* *Abû Merwan* *al-Talib* Hammada Hasam Ja'far Maimun Maslama Said Yûsuf Ataullah Jabril Rasul Zulfiqar
+			*Abd Allah* *Abd al-Karim* *Abd al-Qadir* 
 			Fawzi Fuad Halil Hasan Hisham Iskandar Kamil Mahmud
-			"Nur al-Din" "Sa'd al-Din" Salim Shukri
+			*Nur al-Din* *Sa'd al-Din* Salim Shukri
 			Tawfiq Uthman 
 		}
 		female_names=
@@ -922,41 +922,41 @@ culture_rules=
 			Barek
 			Alami
 			Behar
-			"al-Annabi" "al-Araishi" "al-Asfawi" "al-Binzarti" "al-Fasi" "al-Gharyani"
-			"al-Jaza'iri" "al-Miknasi" "al-Misurati" "al-Murrakushi" "al-Qabisi" "al-Qayrawani" "al-Ribati" "al-Safaqisi"
-			"al-Silawi" "al-Sirti" "al-Susawi" "al-Tilimsani" "al-Tanjawi" "al-Tatwani" "al-Trablusi" "al-Tunusi" 
-			"al-Wahrani" "al-Warqali" "al-Wujdi"
-			"ibn Abd Allah" "ibn Abd al-Qadir" "ibn Abu Bakr" "ibn Ahmad" "ibn Ali"
-			"ibn Fuad" "ibn Halil" "ibn Hasan" "ibn Hisham" "ibn Ishaq" "ibn Ja'far" "ibm Kamil" "ibn Khalid" 
-			"ibn Muhammad" "ibn Mustafa" "ibn Salim"   
-			"ibn Umar" "ibn Uthman" "ibn Yusuf"  
+			*al-Annabi* *al-Araishi* *al-Asfawi* *al-Binzarti* *al-Fasi* *al-Gharyani*
+			*al-Jaza'iri* *al-Miknasi* *al-Misurati* *al-Murrakushi* *al-Qabisi* *al-Qayrawani* *al-Ribati* *al-Safaqisi*
+			*al-Silawi* *al-Sirti* *al-Susawi* *al-Tilimsani* *al-Tanjawi* *al-Tatwani* *al-Trablusi* *al-Tunusi* 
+			*al-Wahrani* *al-Warqali* *al-Wujdi*
+			*ibn Abd Allah* *ibn Abd al-Qadir* *ibn Abu Bakr* *ibn Ahmad* *ibn Ali*
+			*ibn Fuad* *ibn Halil* *ibn Hasan* *ibn Hisham* *ibn Ishaq* *ibn Ja'far* *ibm Kamil* *ibn Khalid* 
+			*ibn Muhammad* *ibn Mustafa* *ibn Salim*   
+			*ibn Umar* *ibn Uthman* *ibn Yusuf*  
 		}
 		ship_names=
 		{
-			Tawwab Muntaqim Afuww Fa'uf "Malik Mulk"
-			"Jalal Ikram" Muqsit Jami Ghani Mughni
+			Tawwab Muntaqim Afuww Fa'uf *Malik Mulk*
+			*Jalal Ikram* Muqsit Jami Ghani Mughni
 			Mani Darr Nafi Nur Hadi Badi Baqi Warith
-			Rashid Sabur "Fazl Azim"
-			"Mulay al-Rashid" "Ismail ibn Sharif" "Muhammad al-Thalith" "Abd al-Rahman" "Muhammad al-Rabi" "Hasan al-Alawiyyin"
-			"Al-Mansur al-Dhahbi" "Abd Allal al-Ghalib" "Muhammad al-Shaikh al-Saghir" "Abu Yusuf Yaqub" "Abu Sa'id Uthman" "Al-Mariniyyun" "Al-Idrisiyyun"
-			"Ala al-Din" "Husam al-Din" "Izz al-Din" "Jalal al-Din" "Khayr al-Din" "Majid al-Din" "Nasir al-Din" "Nur al-Din" 
-			"Safi al-Din" "Salah al-Din" "Siraj al-Din"
-			"Abd al-Aziz" "Abd al-Hadi" "Abd al-Haqq" "Abd al-Jalil" "Abd al-Latif" 
-			"Abd al-Hafiz" "Abd al-Hakim" "Abd al-Nasir" "Abd al-Quddus" "Abd al-Rahim" "Abd al-Malik"
-			"Abd al-Rashid" "Abd al-Rahman" "Abd al-Sami" "Abd al-Wadud" "Abd al-Wahhab"
+			Rashid Sabur *Fazl Azim*
+			*Mulay al-Rashid* *Ismail ibn Sharif* *Muhammad al-Thalith* *Abd al-Rahman* *Muhammad al-Rabi* *Hasan al-Alawiyyin*
+			*Al-Mansur al-Dhahbi* *Abd Allal al-Ghalib* *Muhammad al-Shaikh al-Saghir* *Abu Yusuf Yaqub* *Abu Sa'id Uthman* *Al-Mariniyyun* *Al-Idrisiyyun*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din* 
+			*Safi al-Din* *Salah al-Din* *Siraj al-Din*
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif* 
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
 			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid 
 			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir 
-			"Badr al-Din" "Diya al-Din" "Baha al-Din" "Imad al-Din" "Jamal al-Din" "Lutf al-Din" "Najm al-Din" "Sayf al-Din"
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din*
 			Alif Amin Anwar Ayham Bahir Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd 
 			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr 
 		}
 		army_names=
 		{
-			"Jaysh mn $PROVINCE$" 
+			*Jaysh mn $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Astoul mn $PROVINCE$"
+			*Astoul mn $PROVINCE$*
 		}
 	}
 	burgundian=
@@ -989,8 +989,8 @@ culture_rules=
 			Georges Gustave Hubert Hugo
 			Joseph Jules Lazare Léopold Leroy Lucien Matthieu Michel
 			Patrice Paul Thomas
-			"Louis-Henri" "Louis-Joseph" "Henri-Jules" Barthélemy
-			Claude Gui Isidore "Jean-Baptiste" Marc Pascal René
+			*Louis-Henri* *Louis-Joseph* *Henri-Jules* Barthélemy
+			Claude Gui Isidore *Jean-Baptiste* Marc Pascal René
 			Sébastien
 		}
 		female_names=
@@ -1015,88 +1015,88 @@ culture_rules=
 		leader_names=
 		{
 			d'Aban d'Abonde Arbelot d'Auxy
-			"de Balay" "de Bauffremont" "de Beaumont" "de Beugre" "de Boulay" "de Bourgeois" Bourgogne-Montaigu "de Brachet" "de Brimeu"
-			"de Castaing" "de Chabot" "de Châlon" "de Châlon-Arlay" "de Chandieu" "de Chastellux" "de Chin" "de Cicon" "de Coligny" "de Créquy" "de Cuiseaux"
-			"de Damas" "de Dammartin" "de Donzy" "de Dyo"
-			"d'Egmont"
-			"de Ferrette"
-			"de Lalaing" "de Lannoy" "Le Corgne" "de Lugny"
-			"de Marle" "de Melun" "de Montfaucon"
-			"Nagu de Varennes" "de Nanton" "de Neufchâtel" "de Noyelles"
-			"de Pontailler" "de la Porte"
-			"Pot de la Roche" "de Rochebaron" "de Rochechouart" "de Roye"
-			"de Scorailles" "de Sémur"
-			"de Ternant" "de Tonnerre" "de Toucy" "de Toulonjon"
-			"de Vaubresson" "de Vaudrey" "de Vellexon" "de Vergy" "de Vienne" "de Villaines" "de Villiers"
-			Anthoine "Baraguey d'Hilliers" Bazaine Billot Bosquet "Boué de Lapeyrère" Bouët-Willaumez Boulanger Bourbaki
-			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout "de Bourbon" "de Castellane" "de Castelnau" "de Gaulle" 
-			"de Langle de Cary" "de MacMahon" "de Montaignac" "de Saint Arnaud" d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
-			Foch Forey "Franchet d'Espèrey" Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
-			Jaurès Joffre Lebouef Lyautey Murat "Ney d'Elchingen" Nivelle Péllissier Petain Vaillant
+			*de Balay* *de Bauffremont* *de Beaumont* *de Beugre* *de Boulay* *de Bourgeois* Bourgogne-Montaigu *de Brachet* *de Brimeu*
+			*de Castaing* *de Chabot* *de Châlon* *de Châlon-Arlay* *de Chandieu* *de Chastellux* *de Chin* *de Cicon* *de Coligny* *de Créquy* *de Cuiseaux*
+			*de Damas* *de Dammartin* *de Donzy* *de Dyo*
+			*d'Egmont*
+			*de Ferrette*
+			*de Lalaing* *de Lannoy* *Le Corgne* *de Lugny*
+			*de Marle* *de Melun* *de Montfaucon*
+			*Nagu de Varennes* *de Nanton* *de Neufchâtel* *de Noyelles*
+			*de Pontailler* *de la Porte*
+			*Pot de la Roche* *de Rochebaron* *de Rochechouart* *de Roye*
+			*de Scorailles* *de Sémur*
+			*de Ternant* *de Tonnerre* *de Toucy* *de Toulonjon*
+			*de Vaubresson* *de Vaudrey* *de Vellexon* *de Vergy* *de Vienne* *de Villaines* *de Villiers*
+			Anthoine *Baraguey d'Hilliers* Bazaine Billot Bosquet *Boué de Lapeyrère* Bouët-Willaumez Boulanger Bourbaki
+			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout *de Bourbon* *de Castellane* *de Castelnau* *de Gaulle* 
+			*de Langle de Cary* *de MacMahon* *de Montaignac* *de Saint Arnaud* d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
+			Foch Forey *Franchet d'Espèrey* Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
+			Jaurès Joffre Lebouef Lyautey Murat *Ney d'Elchingen* Nivelle Péllissier Petain Vaillant
 		}
 		ship_names=
 		{
 			Armançon Arroux
 			Bourgogne Brugge
-			Cambrai "Castrum Divionense" Childebert "Childebert II" Chilperic Citeaux Chlothar Cluny Comtesse "Côte-d'Or" 
+			Cambrai *Castrum Divionense* Childebert *Childebert II* Chilperic Citeaux Chlothar Cluny Comtesse *Côte-d'Or* 
 			Duchesse 
-			Gebicca Giselher Godegisel Godomar Gunderic Gundobad Gundomar "Gundomar II" Gunther Guntram
-			"Jean sans Peur"
-			"Marie de Bourgogne"
-			"Richard de Bourgogne"
+			Gebicca Giselher Godegisel Godomar Gunderic Gundobad Gundomar *Gundomar II* Gunther Guntram
+			*Jean sans Peur*
+			*Marie de Bourgogne*
+			*Richard de Bourgogne*
 			Saône Sigismund
-			Theudebert "Theuderic II"
+			Theudebert *Theuderic II*
 			Vézelay
-			"Poincare"
-			"Louis" "Dévastation"
-			"Courbet" "Amiral Duperré" "Terrible" "Indomptable" "Caiman" "Requin" "Admiral Baudin"
-			"Formidable" "Hoche" "Marceau" "Magenta" "Neptune" "Brennus" "Charles Martel" "Carnot"
-			"Jauréguiberry" "Masséna" "Bouvet" "Charlemagne" "Saint Louis" "Gaulois" "Henri"
-			"Iéna" "Suffren" "Patrie" "Justice" "Verité"
-			"Vergniaud" "Condorcet" "France"
-			"Jean Bart" "Fleurus"
-			"Congreve" "Foudroyante" "Lave" "Tonnante" "Gloire" "Invincible" "Couronne"
-			"Solferino" "Gauloise" "Magnanime" "Provence" "Revanche" "Savoie"
-			"Surveillante" "Valeureuse" "Héroïne"
-			"Alexandre" "Breslaw" "Prince Jérôme" "Duguay-Trouin"
-			"Tage" "Donawerth" "Fontenoy" "Turenne" "Castiglione"
-			"Bayard" "Ville de Lyon"
-			"Clovis" "Vercingetorix" "Richemont" "Dunois" "Leger" "Vauban"
-			"Conde" "Montebello" "Souverain" "Navarin"
-			"Algésiras" "Arcole" "Friedland" "Impérial" "Eylau" "Tilsitt"
-			"Marengo" "Toulon" "Bellone" "Glorieuse" "Gracieuse" "Audacieuse" "Impétueuse" "Ardente"
-			"Victoire" "Guerrière" "Téméraire" "Triomphant" "Tigre" "Persévérante" "Vigilant"
-			"Tenace" "Élan" "Lamotte-Picquet" "Primaguet" "Duquesne" "Tourville"
-			"Colbert" "Foch" "Algérie" "Maroc" "Davout" "Suchet" "Forbin"
-			"Surcouf" "Cosmao" "Lalande" "Galilée" "Linois" "La Galissionere"
-			"Jean de Vienne" "Gloire" "Georges Leygues" "De Grasse" "La Fantasque"
-			"Iphigenie" "Naiade" "Arethuse" "Dubourdieu" "Belliqueuse" "Tage"
-			"Amiral Cécille" "Davout" "Suchet" "Coëtlogon" "Forbin" "Surcouf" "Cosmao" "Lalande"
-			"Troude" "Galilée" "Lavoisier" "Linois" "Tunisié" "Isly" "Bugeaud" 
-			"Friant" "Descartes" "Pascal" "Cassard" "D'Assas" "Du Chayla" "Catinat" "Protet"
-			"D'Entrecasteaux" "Guichen" "Châteaurenault" "D'Estrées" "Infernet" "Jurien de la Gravière"
-			"Pluton" "Emile Bertin" "Dupuy de Lome" "Admiral Charner" "Bruix" "Chanzy" "Latouche-Treville"
-			"Pothau" "Dupetit-Thouars" "Gueydon" "Montcalm" "Desaix" "Dupleix" "Kleber"
-			"Amiral Aube" "Conde" "Sully" "Leon Gambetta" "Victor Hugo" "Jules Michelet"
-			"Ernest Renan" "Edgar Quinet" "Waldeck-Rousseau" "Thionville" "Metz" "Mulhouse" "Colmar"
-			"D'Assas" "Du Chayla" "Catinat" "Protet" "D'Entrecasteaux" "Guichen" "Châteaurenault"
-			"Condor" "Epervier" "Faucon" "Vautour" "Wattignies" "Levrier" "Casablanca" "D'Iberville"
-			"Cassini" "Lahire" "Circé" "Hermione" "Pallas" "Sémiramis" "Armorique" "Junon"
-			"Magicienne" "Thémis" "Flore"
-			"Océan" "Suffren" "Trident"
-			"Asmodée" "Gomer" "Darien" "Labrador" "Ulloa" "Cacique"
-			"Eldorado" "Magellan" "Montezuma" "Orénoque" "Panama" "Albatros" "Descartes" "Vauban"
-			"Caffarelli" "Mogador" "Pomone" "Isly" "Bellone" "Foudre" "Impératrice Eugénie"
-			"Souveraine" "Renommée"
-			"Danaé" "Pandore" "Zénobie" "Clorinde" "Astrée"
+			*Poincare*
+			*Louis* *Dévastation*
+			*Courbet* *Amiral Duperré* *Terrible* *Indomptable* *Caiman* *Requin* *Admiral Baudin*
+			*Formidable* *Hoche* *Marceau* *Magenta* *Neptune* *Brennus* *Charles Martel* *Carnot*
+			*Jauréguiberry* *Masséna* *Bouvet* *Charlemagne* *Saint Louis* *Gaulois* *Henri*
+			*Iéna* *Suffren* *Patrie* *Justice* *Verité*
+			*Vergniaud* *Condorcet* *France*
+			*Jean Bart* *Fleurus*
+			*Congreve* *Foudroyante* *Lave* *Tonnante* *Gloire* *Invincible* *Couronne*
+			*Solferino* *Gauloise* *Magnanime* *Provence* *Revanche* *Savoie*
+			*Surveillante* *Valeureuse* *Héroïne*
+			*Alexandre* *Breslaw* *Prince Jérôme* *Duguay-Trouin*
+			*Tage* *Donawerth* *Fontenoy* *Turenne* *Castiglione*
+			*Bayard* *Ville de Lyon*
+			*Clovis* *Vercingetorix* *Richemont* *Dunois* *Leger* *Vauban*
+			*Conde* *Montebello* *Souverain* *Navarin*
+			*Algésiras* *Arcole* *Friedland* *Impérial* *Eylau* *Tilsitt*
+			*Marengo* *Toulon* *Bellone* *Glorieuse* *Gracieuse* *Audacieuse* *Impétueuse* *Ardente*
+			*Victoire* *Guerrière* *Téméraire* *Triomphant* *Tigre* *Persévérante* *Vigilant*
+			*Tenace* *Élan* *Lamotte-Picquet* *Primaguet* *Duquesne* *Tourville*
+			*Colbert* *Foch* *Algérie* *Maroc* *Davout* *Suchet* *Forbin*
+			*Surcouf* *Cosmao* *Lalande* *Galilée* *Linois* *La Galissionere*
+			*Jean de Vienne* *Gloire* *Georges Leygues* *De Grasse* *La Fantasque*
+			*Iphigenie* *Naiade* *Arethuse* *Dubourdieu* *Belliqueuse* *Tage*
+			*Amiral Cécille* *Davout* *Suchet* *Coëtlogon* *Forbin* *Surcouf* *Cosmao* *Lalande*
+			*Troude* *Galilée* *Lavoisier* *Linois* *Tunisié* *Isly* *Bugeaud* 
+			*Friant* *Descartes* *Pascal* *Cassard* *D'Assas* *Du Chayla* *Catinat* *Protet*
+			*D'Entrecasteaux* *Guichen* *Châteaurenault* *D'Estrées* *Infernet* *Jurien de la Gravière*
+			*Pluton* *Emile Bertin* *Dupuy de Lome* *Admiral Charner* *Bruix* *Chanzy* *Latouche-Treville*
+			*Pothau* *Dupetit-Thouars* *Gueydon* *Montcalm* *Desaix* *Dupleix* *Kleber*
+			*Amiral Aube* *Conde* *Sully* *Leon Gambetta* *Victor Hugo* *Jules Michelet*
+			*Ernest Renan* *Edgar Quinet* *Waldeck-Rousseau* *Thionville* *Metz* *Mulhouse* *Colmar*
+			*D'Assas* *Du Chayla* *Catinat* *Protet* *D'Entrecasteaux* *Guichen* *Châteaurenault*
+			*Condor* *Epervier* *Faucon* *Vautour* *Wattignies* *Levrier* *Casablanca* *D'Iberville*
+			*Cassini* *Lahire* *Circé* *Hermione* *Pallas* *Sémiramis* *Armorique* *Junon*
+			*Magicienne* *Thémis* *Flore*
+			*Océan* *Suffren* *Trident*
+			*Asmodée* *Gomer* *Darien* *Labrador* *Ulloa* *Cacique*
+			*Eldorado* *Magellan* *Montezuma* *Orénoque* *Panama* *Albatros* *Descartes* *Vauban*
+			*Caffarelli* *Mogador* *Pomone* *Isly* *Bellone* *Foudre* *Impératrice Eugénie*
+			*Souveraine* *Renommée*
+			*Danaé* *Pandore* *Zénobie* *Clorinde* *Astrée*
 		}
 		army_names=
 		{
-			"Armée de $PROVINCE$" 
+			*Armée de $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Flotte de $PROVINCE$"
+			*Flotte de $PROVINCE$*
 		}
 	}
 	byelorussian=
@@ -1136,22 +1136,22 @@ culture_rules=
 		{
 			Velikaya Chudskoye Pskovskoye Polotsk
 			Rakovor Bolotovo Kulikovo Ostrov Izborsk
-			Pechory Porhov "Velikiye Luki" Sebezh
-			Mariya Ekaterina Aleksander Gangut Soyuz Alekseev Potemkin "General Alexeiev" Retivisan Kulikovo 
-			Minin "Kniaz Pozharskii" Pervenets Kreml "Ne Tron Menia" Smerch Lazarev "Pyotr Velikyy" Chesma Kyiv Minsk "Zaria Svobody" "Admiral Butakov" Kreiser Ladoga Georgii "Sissoi Veliky" Navarin "Pamiat Merkuria" Tsesarevich Narodnaya "Poluostrov Kamchatka" Kama Voronezh Bityug
-			Sviatoslav Vola Andrei Fershampenuaz Konstantin Gavriil Selafail Varna Yagudiil Sviatoslav "Dvenadtsat Apostolov" Rostislav Khrabryi Sinop Bosfor Uriil "Tri Sviatitelia" Arsis Smolensk Oriol Finland Vola Prokhor Varshava Retvisan Iezekiil Azov Kul’m Lesnoye Brien Berezino Ostroloenka Vladimir Fershampenuaz
-			Pallada Diana Askold Novik Boyarin Nakhimov Bogatyr Oleg Vityaz "General-Admiral" "Alexander Nevski" "Pamiyat Azova" Bayan Varyag Izmail Kinburn Navarin "Admiral Kornilov" Almaz  Asia Aurora Gromoboi Volga "Novaya Zemlya" Dnepr Desna Zarya
-			Uragan Veschun Koldun Lava Perun Strelets Tifon "Admiral Ushakov" "Admiral Senivain" Edinorog "Admiral Graf Apraksin" Pushkin "Semion Chelyuskin" Yenisei "Ozero Baykal" Vyazma Valdai Topozero
+			Pechory Porhov *Velikiye Luki* Sebezh
+			Mariya Ekaterina Aleksander Gangut Soyuz Alekseev Potemkin *General Alexeiev* Retivisan Kulikovo 
+			Minin *Kniaz Pozharskii* Pervenets Kreml *Ne Tron Menia* Smerch Lazarev *Pyotr Velikyy* Chesma Kyiv Minsk *Zaria Svobody* *Admiral Butakov* Kreiser Ladoga Georgii *Sissoi Veliky* Navarin *Pamiat Merkuria* Tsesarevich Narodnaya *Poluostrov Kamchatka* Kama Voronezh Bityug
+			Sviatoslav Vola Andrei Fershampenuaz Konstantin Gavriil Selafail Varna Yagudiil Sviatoslav *Dvenadtsat Apostolov* Rostislav Khrabryi Sinop Bosfor Uriil *Tri Sviatitelia* Arsis Smolensk Oriol Finland Vola Prokhor Varshava Retvisan Iezekiil Azov Kul’m Lesnoye Brien Berezino Ostroloenka Vladimir Fershampenuaz
+			Pallada Diana Askold Novik Boyarin Nakhimov Bogatyr Oleg Vityaz *General-Admiral* *Alexander Nevski* *Pamiyat Azova* Bayan Varyag Izmail Kinburn Navarin *Admiral Kornilov* Almaz  Asia Aurora Gromoboi Volga *Novaya Zemlya* Dnepr Desna Zarya
+			Uragan Veschun Koldun Lava Perun Strelets Tifon *Admiral Ushakov* *Admiral Senivain* Edinorog *Admiral Graf Apraksin* Pushkin *Semion Chelyuskin* Yenisei *Ozero Baykal* Vyazma Valdai Topozero
 			Razboinik Strelok Dzhigit Oprichnik Nayezdnik Plastun Gaidamak Abrek Vsadnik Almaz Zhemchug Izumrud Yakhont
 			Kem Yug Voronya Mezha Okhta Ravan Kunya Svir Seim Sestra Don Yeya Terek Sok Istra Dubna Ob Ket Nadym Indigirka Amur Bereya Sestra
 		}
 		army_names=
 		{
-			"Vojska z $PROVINCE$"
+			*Vojska z $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flot z $PROVINCE$"
+			*Flot z $PROVINCE$*
 		}
 	}
 	castillian=
@@ -1167,11 +1167,11 @@ culture_rules=
 			Martín Menendo Mendo Muño Nuño Osorio Ordoño Oveco Pedro Pelayo Piñolo Ponce Raimundo Ramiro Ramón Rodrigo Román Rosendo Salvador Sancho
 			Sebastián Tello Teobaldo Vela Velasco Vermudo
 			Carlos Baltasar Bertrán Cristobal Francisco Hernando Ignacio Laín Miguel Odón Ramón Tomás Valeriano
-			Agustín Alberto Alejandro "Antonio María" Arsenio Augusto Baldomero
+			Agustín Alberto Alejandro *Antonio María* Arsenio Augusto Baldomero
 			Bernardino Calixto Celestino Claudio Dámaso
 			Dionisio Eduardo Emilio Estanislao Federico Félix
-			"Francisco Javier" Gabino Gabriel Gaspar Genaro Isidro
-			Joaquín José "José Antonio" "José Manuel" "José María" "Juan Bautista" Julio Leopoldo 
+			*Francisco Javier* Gabino Gabriel Gaspar Genaro Isidro
+			Joaquín José *José Antonio* *José Manuel* *José María* *Juan Bautista* Julio Leopoldo 
 			Marcelo Mariano Mateo Melchor Nicolás Pablo Pascual
 			Rafael Raimundo Ricardo Santiago Segismundo Vicente
 
@@ -1187,77 +1187,77 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"de Aguirre" "de Alarcón" "de Toledo" "de Andrade" "de Ayala"
-			"de Bazán" "de Benavides" Campomanes "de Castilla" "de la Cerda" Cienfuegos Colón Coronado Cortés
-			"de Toledo" "de Córdoba" "de la Cueva" "de Figueroa" Fonseca
-			Gálvez Gómez "de Guzmán" "Jiménez de Cisneros"
-			"de Leiva" "López de Haro" "de Luna"
-			"de Lara" "de Velasco" "de Villena" "de Mendoza"
-			Narváez "de Nebrija" "Nuñez de Balboa" "de Ojeda" Orellana Osorio 
-			Pimentel Pinzón Pizarro "Ponce de León" Portocarrero
-			"de Rojas" Tellez-Girón "de la Vega" "de Zúñiga"
-			Acuña Aguirre Alcalá-Zamora Allendesalazar Alonso Álvarez "Álvarez de Toledo" Aranda Argüelles-Meres Asensio
-			Aznar Barradas Bugallal Cabrera "Cagigal de la Vega" Cano Cervera "de Albornoz" "de Borbón"
-			"de Carvajal" "de la Fuente" "de Orleans" Díaz Espartero Fernández "Fernández de Córdoba" Franco 
-			García "García de la Noceda" González Heredia Hernández Herrera Hevia "Hidalgo de Cisneros" Linares López 
+			*de Aguirre* *de Alarcón* *de Toledo* *de Andrade* *de Ayala*
+			*de Bazán* *de Benavides* Campomanes *de Castilla* *de la Cerda* Cienfuegos Colón Coronado Cortés
+			*de Toledo* *de Córdoba* *de la Cueva* *de Figueroa* Fonseca
+			Gálvez Gómez *de Guzmán* *Jiménez de Cisneros*
+			*de Leiva* *López de Haro* *de Luna*
+			*de Lara* *de Velasco* *de Villena* *de Mendoza*
+			Narváez *de Nebrija* *Nuñez de Balboa* *de Ojeda* Orellana Osorio 
+			Pimentel Pinzón Pizarro *Ponce de León* Portocarrero
+			*de Rojas* Tellez-Girón *de la Vega* *de Zúñiga*
+			Acuña Aguirre Alcalá-Zamora Allendesalazar Alonso Álvarez *Álvarez de Toledo* Aranda Argüelles-Meres Asensio
+			Aznar Barradas Bugallal Cabrera *Cagigal de la Vega* Cano Cervera *de Albornoz* *de Borbón*
+			*de Carvajal* *de la Fuente* *de Orleans* Díaz Espartero Fernández *Fernández de Córdoba* Franco 
+			García *García de la Noceda* González Heredia Hernández Herrera Hevia *Hidalgo de Cisneros* Linares López 
 			Maroto Márquez Martínez-Campos Maura Menéndez Miaja Millán-Astray Mina Mola Muñoz 
-			Ortega Pavía Pérez "Primo de Rivera" "Queipo de Llano" Rodríguez Rojo Ruiz 
+			Ortega Pavía Pérez *Primo de Rivera* *Queipo de Llano* Rodríguez Rojo Ruiz 
 			Sanjurjo Serrano Silvestre Topete Valdés Villapol Villar Weyler Yagüe
 		}
 		ship_names=
 		{
 			Argonauta Asunción Atrevido Azor
-			Cartagonova "Castillo Negro" Castor "Ciervo Volante"
-			Doncella Dragón 
-			"El Gran Grin" "El Retiro" Eneas Eolo Esperanza "Espíritu Santo" Extremadura
-			Furor Galicia "Gran Grifón" Halcón Hércules Isabela Júpiter
-			"La Concepción" "La Magdalena" "La Manuela" León Ligera "Lobo Marino"
+			Cartagonova *Castillo Negro* Castor *Ciervo Volante*
+			Doncella Dragón
+			*El Gran Grin* *El Retiro* Eneas Eolo Esperanza *Espíritu Santo* Extremadura
+			Furor Galicia *Gran Grifón* Halcón Hércules Isabela Júpiter
+			*La Concepción* *La Magdalena* *La Manuela* León Ligera *Lobo Marino*
 			Marte Mercurio Neptuno Niña Orión
-			"Paloma Blanca" Pegaso "Perro Marino" Pinta Plutón Pollux "Príncipe de Asturias"
-			Rayo "Real Alfonso" "Real Enrique" "Real Juan" "Rey Pelayo" "Rey Rodrigo"
-			"San Andrés" "San Antonio" "San Bartolomé" "San Bernabé" "San Cristobal" "San Enrique"
-			"San Esteban" "San Fernando" "San Francisco" "San Gabriel" "San Isidoro" "San Jerónimo"
-			"San José" "San Juan" "San Juan Bautista" "San Leandro" "San Miguel" "San Pedro"
-			"San Rafael" "San Salvador" "San Sebastian" "Santa Ana" "Santa Bárbara" "Santa Beatriz"
-			"Santa Catalina" "Santa Cruz" "Santa Fe" "Santa Isabel" "Santa Justa" "Santa María"
-			"Santa Marta" "Santa Rita" "Santa Teresa" Santiago "Santísima Trinidad" "Santo Domingo" Sirena
+			*Paloma Blanca* Pegaso *Perro Marino* Pinta Plutón Pollux *Príncipe de Asturias*
+			Rayo *Real Alfonso* *Real Enrique* *Real Juan* *Rey Pelayo* *Rey Rodrigo*
+			*San Andrés* *San Antonio* *San Bartolomé* *San Bernabé* *San Cristobal* *San Enrique*
+			*San Esteban* *San Fernando* *San Francisco* *San Gabriel* *San Isidoro* *San Jerónimo*
+			*San José* *San Juan* *San Juan Bautista* *San Leandro* *San Miguel* *San Pedro*
+			*San Rafael* *San Salvador* *San Sebastian* *Santa Ana* *Santa Bárbara* *Santa Beatriz*
+			*Santa Catalina* *Santa Cruz* *Santa Fe* *Santa Isabel* *Santa Justa* *Santa María*
+			*Santa Marta* *Santa Rita* *Santa Teresa* Santiago *Santísima Trinidad* *Santo Domingo* Sirena
 			Terror Toledo Trinidad Tritón Unicornio
 			Vencedora Ventura Victoria Vigilante Vizcaya Vulcano Zúñiga
-			"Álvaro de Bazán" "Brigadier Topete" Castañeta "Ciudad de Cartagena" "Ciudad de Sevilla" "Ciudad de Valencia" "Duque de Alba" "Duque de Medina-Sidonia" "Duque de Parma" 
-			"El Gran Capitán" España "Estrella de los Mares" "Fadrique Álvarez de Toledo" "Fernando de Magallanes" "Infante de España" "Jaime I" Lángara "Luis de Córdova" "María de Molina"
-			"Marqués de la Victoria" Pelayo "Príncipe de Asturias" Requesens "Reyes Católicos" "Rodrigo Díaz de Vivar" "Sánchez de Tovar" "Sancho" "Villa de Barcelona" "Villa de Madrid"
+			*Álvaro de Bazán* *Brigadier Topete* Castañeta *Ciudad de Cartagena* *Ciudad de Sevilla* *Ciudad de Valencia* *Duque de Alba* *Duque de Medina-Sidonia* *Duque de Parma*
+			*El Gran Capitán* España *Estrella de los Mares* *Fadrique Álvarez de Toledo* *Fernando de Magallanes* *Infante de España* *Jaime I* Lángara *Luis de Córdova* *María de Molina*
+			*Marqués de la Victoria* Pelayo *Príncipe de Asturias* Requesens *Reyes Católicos* *Rodrigo Díaz de Vivar* *Sánchez de Tovar* *Sancho* *Villa de Barcelona* *Villa de Madrid*
 			Arapiles Bailén Barcelona Cazadora Covadonga Duero Ebro Galerna Giralda Guadalete
-			"Mar Caribe" Mistral "Navas de Tolosa" Numancia Resolución Sagunto "San Quintín" "Santa María" Segura Sella
+			*Mar Caribe* Mistral *Navas de Tolosa* Numancia Resolución Sagunto *San Quintín* *Santa María* Segura Sella
 			Siroco Tajo Tambre Tetuán Tramontana Turia Vencedora Viriato Vitoria Zaragoza
-			Águila "Águila de Nantes" "Águila Volante" Astrolabio Aurora Concepción Cornelia Cortes Diana Esmeralda
+			Águila *Águila de Nantes* *Águila Volante* Astrolabio Aurora Concepción Cornelia Cortes Diana Esmeralda
 			Esperanza Fama Fénix Fidela Flecha Flora Gloria Gusana Hermione Iberia
-			Ifigenia Iris Juno Ligera Mahonesa "María Isabel" Medea Mercurio Minerva Ninfa
-			"Ntra. Sra. de Aránzazu" "Ntra. Sra. de Atocha" "Ntra. Sra. de Guadalupe" "Ntra. Sra. del Pilar" "Ntra. Sra. del Rosario" Palas Paloma Perla "Perla de España" Pronta
-			Providencia Prueba "San Jorge" "San José" "San Juan" "San Miguel" "Santa Ana" "Santa Bárbara" "Santa Catalina" "Santa Leocadia"
+			Ifigenia Iris Juno Ligera Mahonesa *María Isabel* Medea Mercurio Minerva Ninfa
+			*Ntra. Sra. de Aránzazu* *Ntra. Sra. de Atocha* *Ntra. Sra. de Guadalupe* *Ntra. Sra. del Pilar* *Ntra. Sra. del Rosario* Palas Paloma Perla *Perla de España* Pronta
+			Providencia Prueba *San Jorge* *San José* *San Juan* *San Miguel* *Santa Ana* *Santa Bárbara* *Santa Catalina* *Santa Leocadia*
 			Sirena Soledad Sorpresa Tetis Tigre Triunfo Unicornio Venganza Victoria Viva
-			"Alcalá Galiano" "Almirante Antequera" "Almirante Ferrándiz" "Almirante Valdés" Alsedo Audaz Bustamante Cadarso Churruca Ciscar
-			Destructor Escaño Furor Guarda Guerrero Huesca "Jorge Juan" "José Luis Díez" Lazaga Liebre
-			Osado Plutón Proserpina "Sánchez Barcáiztegui" Terror Teruel Triunfante Ulloa Velasco Villamil
-			"Alfonso" "Almirante Oquendo" "Cardenal Cisneros" "Ciudad de Oviedo" "Conde de Venadito" "Cristóbal Colón" "Don Antonio de Ulloa" 
-			"Don Juan de Austria" "Carlos" Gravina "Infanta Isabel"
-			"Lepanto" "Marqués de la Ensenada" "Princesa de Asturias" "Reina Cristina" "Reina Mercedes" "Reina Regente" "Río de la Plata"
-			Almirante Cervera" Andalucía Asturias Atrevida Baleares "Blas de Lezo" Canarias Diana Eolo Galicia
-			"Juan de la Cosa" Legazpi Marte "Martín Alonso Pinzón" "Méndez Núñez" "Miguel de Cervantes" Neptuno
-			Pizarro Princesa "Príncipe Alfonso" "Reina Victoia Eugenia" "Sarmiento de Gamboa" "Tritón" "Vicente Yáñez Pinzón" "Villa de Bilbao"
-			"Ambrosio Spinola" "Bernardo Gálvez" "Cantabria" "Ciudad de Cádiz" "Ciudad de Las Palmas" "Ciudad de Mahón" "Ciudad de Palma" "Ciudad de Santa Cruz" "Ciudad de Vigo" "Duque de Tetuán" 
-			"García Álvarez de Toledo" Hespérides Hevia "Hidalgo de Cisneros" "Ignacio María de Álava" "Marqués del Socorro" "Menéndez de Avilés"
-			"Meteoro" "Pedro Navarro" Porter Puigcerdá Rayo Relámpago Somiedo Tornado Valdés "Vicealmirante Pareja" "Villa de Gijón"
-			"Ángel de la Guarda" "Aquíles" "Argonauta" "Buen Consejo" "Firme" "Glorioso" "Héroe" "Intrépido"
-			"Monarca" "Ntra. Sra. del Patrocinio" "Real Familia" "Rey Francisco de Asís" "San Bernardo" "San Carlos" "San Fermín" "San Fernando" "San Francisco de Paula"
-			"San Gregorio" "San Idelfonso" "San Isidro" "San José" "San Juan Bautista" "San Julián" "San Telmo" "Victorioso"
+			*Alcalá Galiano* *Almirante Antequera* *Almirante Ferrándiz* *Almirante Valdés* Alsedo Audaz Bustamante Cadarso Churruca Ciscar
+			Destructor Escaño Furor Guarda Guerrero Huesca *Jorge Juan* *José Luis Díez* Lazaga Liebre
+			Osado Plutón Proserpina *Sánchez Barcáiztegui* Terror Teruel Triunfante Ulloa Velasco Villamil
+			*Alfonso* *Almirante Oquendo* *Cardenal Cisneros* *Ciudad de Oviedo* *Conde de Venadito* *Cristóbal Colón* *Don Antonio de Ulloa*
+			*Don Juan de Austria* *Carlos* Gravina *Infanta Isabel*
+			*Lepanto* *Marqués de la Ensenada* *Princesa de Asturias* *Reina Cristina* *Reina Mercedes* *Reina Regente*
+			Almirante Cervera* Andalucía Asturias Atrevida Baleares *Blas de Lezo* Canarias Diana Eolo
+			*Juan de la Cosa* Legazpi Marte *Martín Alonso Pinzón* *Méndez Núñez* *Miguel de Cervantes* Neptuno
+			Pizarro Princesa *Príncipe Alfonso* *Reina Victoia Eugenia* *Sarmiento de Gamboa* *Tritón* *Vicente Yáñez Pinzón* *Villa de Bilbao*
+			*Ambrosio Spinola* *Bernardo Gálvez* *Cantabria* *Ciudad de Cádiz* *Ciudad de Las Palmas* *Ciudad de Mahón* *Ciudad de Palma* *Ciudad de Santa Cruz* *Ciudad de Vigo* *Duque de Tetuán*
+			*García Álvarez de Toledo* Hespérides Hevia *Hidalgo de Cisneros* *Ignacio María de Álava* *Marqués del Socorro* *Menéndez de Avilés*
+			*Meteoro* *Pedro Navarro* Porter Puigcerdá Rayo Relámpago Somiedo Tornado Valdés *Vicealmirante Pareja* *Villa de Gijón*
+			*Ángel de la Guarda* *Aquíles* *Argonauta* *Buen Consejo* *Firme* *Glorioso* *Héroe* *Intrépido*
+			*Monarca* *Ntra. Sra. del Patrocinio* *Real Familia* *Rey Francisco de Asís* *San Bernardo* *San Carlos* *San Fermín* *San Fernando* *San Francisco de Paula*
+			*San Gregorio* *San Idelfonso* *San Isidro* *San José* *San Juan Bautista* *San Julián* *San Telmo* *Victorioso*
 		}
 		army_names=
 		{
-			"Ejército de $PROVINCE$"
+			*Ejército de $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flota de $PROVINCE$"
+			*Flota de $PROVINCE$*
 		}
 	}
 	cosmopolitan_french=
@@ -1290,7 +1290,7 @@ culture_rules=
 			Georges Gustave Hubert Hugo
 			Joseph Jules Lazare Léopold Leroy Lucien Matthieu Michel
 			Patrice Paul
-			Gaston "Nicolas Henri" "Louis François" Joachim Xavier Hughes Alexandre
+			Gaston *Nicolas Henri* *Louis François* Joachim Xavier Hughes Alexandre
 			Ambroise Armand Augustin Barthélémy Blaise Claude Clément Firmin
 			Gui Guillaume Ignace Jean-Antoine Jean-Baptiste Jean-Jacques
 			Jean-Philippe Josquin Marc Maximiliem Pascal René Sébastien
@@ -1318,103 +1318,103 @@ culture_rules=
 		leader_names=
 		{
 			d'Ambleteuse d'Aulnay
-			"de Beauharnais" "de Bercy" "de Béthune" "de Boissieu" "de Bonnefoy" "de Bonneuil" "du Bosquet" "de la Bretonnière" "de Broglie"
-			"de Castaing" "de Caumartin" "de Chambly" "de Chambronne" "de Champmartin" "de Chevigny" "des Coulons" "de Crèvecoeur" "de Crussol"
-			"de Dampierre" Desgouttes Duquesne
-			"des Ecures" d'Entraigues d'Estrées
-			"du Fournay"
-			"de Galard"
-			"des Herbiers"
-			"de La Barthe" "de La Ferrandie" "de La Galissonière" "de La Mothe" "de La Motte d'Airan" "de La Porte" "Le Tellier" "de Lhéry" "de Luynes"
-			"de Marguerye" "de Maurepas"
-			"de Neufchâtel"
-			"d'Ornano"
-			"de Pellefort"
-			"de Richemont" "de Rochechouart" "de Rochemaure" "de Rieu"
-			"de Saint Chamond" "de Saint Esprit" "de Saint Germain" "de Saint Omer" "de Siorac"
-			"de Tocqueville" "de la Tour d'Auvergne" "de Tréville"
-			"d'Usson"
-			"du Valentinois" "de Vergennes" "de Vibien" "de Vigny" "de Villeneuve"
-			Anthoine "Baraguey d'Hilliers" Bazaine Billot Bosquet "Boué de Lapeyrère" Bouët-Willaumez Boulanger Bourbaki
-			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout "de Bourbon" "de Castellane" "de Castelnau" "de Gaulle" 
-			"de Langle de Cary" "de MacMahon" "de Montaignac" "de Saint Arnaud" d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
-			Foch Forey "Franchet d'Espèrey" Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
-			Jaurès Joffre Lebouef Lyautey Murat "Ney d'Elchingen" Nivelle Péllissier Petain Vaillant
+			*de Beauharnais* *de Bercy* *de Béthune* *de Boissieu* *de Bonnefoy* *de Bonneuil* *du Bosquet* *de la Bretonnière* *de Broglie*
+			*de Castaing* *de Caumartin* *de Chambly* *de Chambronne* *de Champmartin* *de Chevigny* *des Coulons* *de Crèvecoeur* *de Crussol*
+			*de Dampierre* Desgouttes Duquesne
+			*des Ecures* d'Entraigues d'Estrées
+			*du Fournay*
+			*de Galard*
+			*des Herbiers*
+			*de La Barthe* *de La Ferrandie* *de La Galissonière* *de La Mothe* *de La Motte d'Airan* *de La Porte* *Le Tellier* *de Lhéry* *de Luynes*
+			*de Marguerye* *de Maurepas*
+			*de Neufchâtel*
+			*d'Ornano*
+			*de Pellefort*
+			*de Richemont* *de Rochechouart* *de Rochemaure* *de Rieu*
+			*de Saint Chamond* *de Saint Esprit* *de Saint Germain* *de Saint Omer* *de Siorac*
+			*de Tocqueville* *de la Tour d'Auvergne* *de Tréville*
+			*d'Usson*
+			*du Valentinois* *de Vergennes* *de Vibien* *de Vigny* *de Villeneuve*
+			Anthoine *Baraguey d'Hilliers* Bazaine Billot Bosquet *Boué de Lapeyrère* Bouët-Willaumez Boulanger Bourbaki
+			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout *de Bourbon* *de Castellane* *de Castelnau* *de Gaulle* 
+			*de Langle de Cary* *de MacMahon* *de Montaignac* *de Saint Arnaud* d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
+			Foch Forey *Franchet d'Espèrey* Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
+			Jaurès Joffre Lebouef Lyautey Murat *Ney d'Elchingen* Nivelle Péllissier Petain Vaillant
 		}
 		ship_names=
 		{
 			l'Actif l'Actionnaire l'Aigle l'Alcide l'Alexandre l'Ambitieux l'Amphion l'Ardente l'Arrogant l'Artésien l'Assuré l'Astrée
-			"la Belle Poule" "le Bourbon" "le Brillant" "le Bien Aimé" "la Bizarre" "la Bretagne" "la Borée" "la Bourgogne" "le Brave" 
-			"le Caton" "le Conquérant" "le Content" "la Couronne" 
-			"le Dauphin Royal" "le Destin" "le Diadème" "le Duc de Bourgogne" 
-			"l'Eveillé" "l'Emérillon"
-			"le Fantasque" "le Fendant" "le Fier" "le Flamant" "la Fleur de Lis" "le Fleuron" "le Foudroyant"
-			"le Glorieux"
-			"le Hardi" l'Hermione
-			"le Gaillard" "la Grande Hermine" "le Héros"
-			"l'Illustre" "l'Indien" "l'Intrépide" "l'Invincible" 
-			"le Languedoc" "la Licorne" "le Lys"
-			"le Magnanime" "le Magnifique" "le Majestueux" "la Marie-Catherine" "le Marquis" "le Mars" "le Marseillais" "le Minotaure" "le Monarque"
-			"le Neptune"
+			*la Belle Poule* *le Bourbon* *le Brillant* *le Bien Aimé* *la Bizarre* *la Bretagne* *la Borée* *la Bourgogne* *le Brave* 
+			*le Caton* *le Conquérant* *le Content* *la Couronne* 
+			*le Dauphin Royal* *le Destin* *le Diadème* *le Duc de Bourgogne* 
+			*l'Eveillé* *l'Emérillon*
+			*le Fantasque* *le Fendant* *le Fier* *le Flamant* *la Fleur de Lis* *le Fleuron* *le Foudroyant*
+			*le Glorieux*
+			*le Hardi* l'Hermione
+			*le Gaillard* *la Grande Hermine* *le Héros*
+			*l'Illustre* *l'Indien* *l'Intrépide* *l'Invincible* 
+			*le Languedoc* *la Licorne* *le Lys*
+			*le Magnanime* *le Magnifique* *le Majestueux* *la Marie-Catherine* *le Marquis* *le Mars* *le Marseillais* *le Minotaure* *le Monarque*
+			*le Neptune*
 			l'Océan l'Oiseau l'Orient
-			"le Pélican" "le Protecteur" "le Prothée" "la Provence" 
-			"la Railleuse" "le Redoutable" "le Réfléchi" "la Régente" "le Robuste" "le Roland" "le Royal Louis"
-			"le Sagittaire" "la Sainte Anne" "le Saint Esprit" "le Saint Michel" "le Saint Philippe" "le Sceptre" "le Seigneur Chat" "le Sévère" "le Soleil Royal" "le Solitaire" "le Souverain" "le Sphinx" "la Superbe"
-			"le Téméraire" "le Terrible" "la Thérèse" "le Triomphant" "le Tonnant"
-			"la Trombe" "le Triton" 
-			"Union" 
-			"la Victoire" "Ville de Paris" 
-			"le Zélé" "le Zodiaque"
-			"Poincare"
-			"Louis" "Dévastation"
-			"Courbet" "Amiral Duperré" "Terrible" "Indomptable" "Caiman" "Requin" "Admiral Baudin"
-			"Formidable" "Hoche" "Marceau" "Magenta" "Neptune" "Brennus" "Charles Martel" "Carnot"
-			"Jauréguiberry" "Masséna" "Bouvet" "Charlemagne" "Saint Louis" "Gaulois" "Henri"
-			"Iéna" "Suffren" "Patrie" "Justice" "Verité"
-			"Vergniaud" "Condorcet" "France"
-			"Jean Bart" "Fleurus"
-			"Congreve" "Foudroyante" "Lave" "Tonnante" "Gloire" "Invincible" "Couronne"
-			"Solferino" "Gauloise" "Magnanime" "Provence" "Revanche" "Savoie"
-			"Surveillante" "Valeureuse" "Héroïne"
-			"Alexandre" "Breslaw" "Prince Jérôme" "Duguay-Trouin"
-			"Tage" "Donawerth" "Fontenoy" "Turenne" "Castiglione"
-			"Bayard" "Ville de Lyon"
-			"Clovis" "Vercingetorix" "Richemont" "Dunois" "Leger" "Vauban"
-			"Conde" "Montebello" "Souverain" "Navarin"
-			"Algésiras" "Arcole" "Friedland" "Impérial" "Eylau" "Tilsitt"
-			"Marengo" "Toulon" "Bellone" "Glorieuse" "Gracieuse" "Audacieuse" "Impétueuse" "Ardente"
-			"Victoire" "Guerrière" "Téméraire" "Triomphant" "Tigre" "Persévérante" "Vigilant"
-			"Tenace" "Élan" "Lamotte-Picquet" "Primaguet" "Duquesne" "Tourville"
-			"Colbert" "Foch" "Algérie" "Maroc" "Davout" "Suchet" "Forbin"
-			"Surcouf" "Cosmao" "Lalande" "Galilée" "Linois" "La Galissionere"
-			"Jean de Vienne" "Gloire" "Georges Leygues" "De Grasse" "La Fantasque"
-			"Iphigenie" "Naiade" "Arethuse" "Dubourdieu" "Belliqueuse" "Tage"
-			"Amiral Cécille" "Davout" "Suchet" "Coëtlogon" "Forbin" "Surcouf" "Cosmao" "Lalande"
-			"Troude" "Galilée" "Lavoisier" "Linois" "Tunisié" "Isly" "Bugeaud" 
-			"Friant" "Descartes" "Pascal" "Cassard" "D'Assas" "Du Chayla" "Catinat" "Protet"
-			"D'Entrecasteaux" "Guichen" "Châteaurenault" "D'Estrées" "Infernet" "Jurien de la Gravière"
-			"Pluton" "Emile Bertin" "Dupuy de Lome" "Admiral Charner" "Bruix" "Chanzy" "Latouche-Treville"
-			"Pothau" "Dupetit-Thouars" "Gueydon" "Montcalm" "Desaix" "Dupleix" "Kleber"
-			"Amiral Aube" "Conde" "Sully" "Leon Gambetta" "Victor Hugo" "Jules Michelet"
-			"Ernest Renan" "Edgar Quinet" "Waldeck-Rousseau" "Thionville" "Metz" "Mulhouse" "Colmar"
-			"D'Assas" "Du Chayla" "Catinat" "Protet" "D'Entrecasteaux" "Guichen" "Châteaurenault"
-			"Condor" "Epervier" "Faucon" "Vautour" "Wattignies" "Levrier" "Casablanca" "D'Iberville"
-			"Cassini" "Lahire" "Circé" "Hermione" "Pallas" "Sémiramis" "Armorique" "Junon"
-			"Magicienne" "Thémis" "Flore"
-			"Océan" "Suffren" "Trident"
-			"Asmodée" "Gomer" "Darien" "Labrador" "Ulloa" "Cacique"
-			"Eldorado" "Magellan" "Montezuma" "Orénoque" "Panama" "Albatros" "Descartes" "Vauban"
-			"Caffarelli" "Mogador" "Pomone" "Isly" "Bellone" "Foudre" "Impératrice Eugénie"
-			"Souveraine" "Renommée"
-			"Danaé" "Pandore" "Zénobie" "Clorinde" "Astrée"
+			*le Pélican* *le Protecteur* *le Prothée* *la Provence* 
+			*la Railleuse* *le Redoutable* *le Réfléchi* *la Régente* *le Robuste* *le Roland* *le Royal Louis*
+			*le Sagittaire* *la Sainte Anne* *le Saint Esprit* *le Saint Michel* *le Saint Philippe* *le Sceptre* *le Seigneur Chat* *le Sévère* *le Soleil Royal* *le Solitaire* *le Souverain* *le Sphinx* *la Superbe*
+			*le Téméraire* *le Terrible* *la Thérèse* *le Triomphant* *le Tonnant*
+			*la Trombe* *le Triton* 
+			*Union* 
+			*la Victoire* *Ville de Paris* 
+			*le Zélé* *le Zodiaque*
+			*Poincare*
+			*Louis* *Dévastation*
+			*Courbet* *Amiral Duperré* *Terrible* *Indomptable* *Caiman* *Requin* *Admiral Baudin*
+			*Formidable* *Hoche* *Marceau* *Magenta* *Neptune* *Brennus* *Charles Martel* *Carnot*
+			*Jauréguiberry* *Masséna* *Bouvet* *Charlemagne* *Saint Louis* *Gaulois* *Henri*
+			*Iéna* *Suffren* *Patrie* *Justice* *Verité*
+			*Vergniaud* *Condorcet* *France*
+			*Jean Bart* *Fleurus*
+			*Congreve* *Foudroyante* *Lave* *Tonnante* *Gloire* *Invincible* *Couronne*
+			*Solferino* *Gauloise* *Magnanime* *Provence* *Revanche* *Savoie*
+			*Surveillante* *Valeureuse* *Héroïne*
+			*Alexandre* *Breslaw* *Prince Jérôme* *Duguay-Trouin*
+			*Tage* *Donawerth* *Fontenoy* *Turenne* *Castiglione*
+			*Bayard* *Ville de Lyon*
+			*Clovis* *Vercingetorix* *Richemont* *Dunois* *Leger* *Vauban*
+			*Conde* *Montebello* *Souverain* *Navarin*
+			*Algésiras* *Arcole* *Friedland* *Impérial* *Eylau* *Tilsitt*
+			*Marengo* *Toulon* *Bellone* *Glorieuse* *Gracieuse* *Audacieuse* *Impétueuse* *Ardente*
+			*Victoire* *Guerrière* *Téméraire* *Triomphant* *Tigre* *Persévérante* *Vigilant*
+			*Tenace* *Élan* *Lamotte-Picquet* *Primaguet* *Duquesne* *Tourville*
+			*Colbert* *Foch* *Algérie* *Maroc* *Davout* *Suchet* *Forbin*
+			*Surcouf* *Cosmao* *Lalande* *Galilée* *Linois* *La Galissionere*
+			*Jean de Vienne* *Gloire* *Georges Leygues* *De Grasse* *La Fantasque*
+			*Iphigenie* *Naiade* *Arethuse* *Dubourdieu* *Belliqueuse* *Tage*
+			*Amiral Cécille* *Davout* *Suchet* *Coëtlogon* *Forbin* *Surcouf* *Cosmao* *Lalande*
+			*Troude* *Galilée* *Lavoisier* *Linois* *Tunisié* *Isly* *Bugeaud* 
+			*Friant* *Descartes* *Pascal* *Cassard* *D'Assas* *Du Chayla* *Catinat* *Protet*
+			*D'Entrecasteaux* *Guichen* *Châteaurenault* *D'Estrées* *Infernet* *Jurien de la Gravière*
+			*Pluton* *Emile Bertin* *Dupuy de Lome* *Admiral Charner* *Bruix* *Chanzy* *Latouche-Treville*
+			*Pothau* *Dupetit-Thouars* *Gueydon* *Montcalm* *Desaix* *Dupleix* *Kleber*
+			*Amiral Aube* *Conde* *Sully* *Leon Gambetta* *Victor Hugo* *Jules Michelet*
+			*Ernest Renan* *Edgar Quinet* *Waldeck-Rousseau* *Thionville* *Metz* *Mulhouse* *Colmar*
+			*D'Assas* *Du Chayla* *Catinat* *Protet* *D'Entrecasteaux* *Guichen* *Châteaurenault*
+			*Condor* *Epervier* *Faucon* *Vautour* *Wattignies* *Levrier* *Casablanca* *D'Iberville*
+			*Cassini* *Lahire* *Circé* *Hermione* *Pallas* *Sémiramis* *Armorique* *Junon*
+			*Magicienne* *Thémis* *Flore*
+			*Océan* *Suffren* *Trident*
+			*Asmodée* *Gomer* *Darien* *Labrador* *Ulloa* *Cacique*
+			*Eldorado* *Magellan* *Montezuma* *Orénoque* *Panama* *Albatros* *Descartes* *Vauban*
+			*Caffarelli* *Mogador* *Pomone* *Isly* *Bellone* *Foudre* *Impératrice Eugénie*
+			*Souveraine* *Renommée*
+			*Danaé* *Pandore* *Zénobie* *Clorinde* *Astrée*
 		}
 		army_names=
 		{
-			"Armée de $PROVINCE$" 
+			*Armée de $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Flotte de $PROVINCE$"
+			*Flotte de $PROVINCE$*
 		}
 	}
 	czech=
@@ -1429,11 +1429,11 @@ culture_rules=
 			Markvart Matous Mikulás Milic Mojmír Ojír Oldrich Ondrej Ota Otakar Pelhrim Petr Premysl Prokop Rajmund Rostislav Sezima Slavibor
 			Slavomír Smil Sobieslav Spytihnev Strachkvas Svatobor Svatopluk Tobiás Václav Viktorín Vítek Vanek Vilem Vladimír Vladislav Vojtech
 			Vratislav Vseborr Závis Zbynek Zdík Zdirad Zikmund 
-			Ladislav Ferdinand "Fridrich Falcký" Jiri Ludvík "Jindrich Fridrich" Viktorin "Karel Ludvík" Boczek Eduard Ruprecht Alexandr Alojz
+			Ladislav Ferdinand *Fridrich Falcký* Jiri Ludvík *Jindrich Fridrich* Viktorin *Karel Ludvík* Boczek Eduard Ruprecht Alexandr Alojz
 			Bronislav Ctibor David Drahoslav Ignác Jakub Jozef Kliment Leos Lubomir Lukás Marek Mikolás Miroslav Otokar Pavol Zdislav
 			Abraham Alfred Alois Antonín August Benedikt Borivoj
-			Emanuel Emil Evzen Frantisek "Frantisek Jozef" "Frantisek Xaver"
-			Hermenegild "Jan Krtitel" "Jan Nepomuk" Jindrich Jozef Kajetan
+			Emanuel Emil Evzen Frantisek *Frantisek Jozef* *Frantisek Xaver*
+			Hermenegild *Jan Krtitel* *Jan Nepomuk* Jindrich Jozef Kajetan
 			Konstantin Maxmilián Olbram Pavel Petr
 			Radola Rafael Tomás Vincenc Vitezslav Vlastimil Zdenek
 		}
@@ -1456,20 +1456,20 @@ culture_rules=
 			Hrdlicka Jirecek Kadlec Kafka Koller Krízkovský Kucera Kuchar Lederer Makosky
 			Mik Morávec Nemecek Neruda Novácek Novotný Popper Radecký Rokytanský Safárik
 			Safránek Schack Schubert Skoda Skuherský Smetana Snejdárek Suk Svoboda Syrový
-			Tomásek Tyl Vitásek "von Mittrowitz-Nettolitzky" Vorisek Wankel Weber Zíbrt Zívr Zoubek
+			Tomásek Tyl Vitásek *von Mittrowitz-Nettolitzky* Vorisek Wankel Weber Zíbrt Zívr Zoubek
 		}
 		ship_names=
 		{
-			"Svatý Vaclav"
-			"Svatý Mikulás"
-			"Svatý Jirí"
-			"Svatá Anezká"
-			"Nejsvatejsí Trojice"
-			"Král Karel"
-			"Král Boleslav"
-			"Král Premysl"
-			"Panna Maria Vitezná"
-			"Jan Hus"
+			*Svatý Vaclav*
+			*Svatý Mikulás*
+			*Svatý Jirí*
+			*Svatá Anezká*
+			*Nejsvatejsí Trojice*
+			*Král Karel*
+			*Král Boleslav*
+			*Král Premysl*
+			*Panna Maria Vitezná*
+			*Jan Hus*
 			Sárka
 			Ctirad
 			Cechý
@@ -1482,20 +1482,20 @@ culture_rules=
 			Slezko
 			Sipká
 			Hvezdá
-			"Karel" "Prokop Veliký" "Jan Žižka" "Josef Ressel"
-			Milešovka Lovos Hazmburk Koštálov "Ceské Stredohorí" 
+			*Karel* *Prokop Veliký* *Jan Žižka* *Josef Ressel*
+			Milešovka Lovos Hazmburk Koštálov *Ceské Stredohorí* 
 			Jizera Metuje Morava Svratka Olza  
-			"Jan Dismas Zelenka" "Šimon Brixi" "František Tuma" "Antonín Kraft" "František Xaver Dušek" 
-			"Petr Brandl" "Václav Hollar" "Jan Jahn" "Jan Kupecký" "Karel Škréta"
-			"Pražský hrad" Vyšehrad Zbraslav Kolodeje Chvaly 
+			*Jan Dismas Zelenka* *Šimon Brixi* *František Tuma* *Antonín Kraft* *František Xaver Dušek* 
+			*Petr Brandl* *Václav Hollar* *Jan Jahn* *Jan Kupecký* *Karel Škréta*
+			*Pražský hrad* Vyšehrad Zbraslav Kolodeje Chvaly 
 		}
 		army_names=
 		{
-			"Armády z $PROVINCE$" 
+			*Armády z $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Flotila z $PROVINCE$"
+			*Flotila z $PROVINCE$*
 		}
 	}
 	danish=
@@ -1541,44 +1541,44 @@ culture_rules=
 			Pedersen Povlsen Pallesen Pil
 			Rantzau Reventlow Rosenkrantz Rosenørn
 			Schlentz Schack Scholten Sehested Skram
-			Thomsen "von Trampe" Trolle
+			Thomsen *von Trampe* Trolle
 			Ulfeldt
-			Asp-Persson Berger Bonde Carlsen Dannemand Danneskjold-Samso "de Meza" Eberlin Falsen
+			Asp-Persson Berger Bonde Carlsen Dannemand Danneskjold-Samso *de Meza* Eberlin Falsen
 			Folsach Güntelberg Gyldenfeldt Haack Hambro Haxthausen Juul Klauman Krogh Laessoe
 			Leuenbach Lovenbalk Michaelsen Mylius Neergaard Obelitz Oxholm Rosenkrantz Schack-Schackenborg
-			Stemman Suenson Thygeson Trampe Urne "von Holstein" "von Oldenburg" Wadenstierna Wedel-Heinen Zytphen-Adeler
+			Stemman Suenson Thygeson Trampe Urne *von Holstein* *von Oldenburg* Wadenstierna Wedel-Heinen Zytphen-Adeler
 		}
 		ship_names=
 		{
-			Achilles "Arche Noa" Arken Beskjermer "Byens Løffue" Caritas "Charlotte Amalie" 
-			Christiania Christiansand Christiansø "Christianus" Churprindsen 
-			Concordia Cæsar Dannebroge David Delmenhorst Ditmarsken Draken "Dronning Louisa" 
-			Ebenetzer Elefanten Enighed "Engelske Fortuna" Enhiørningen Fides Flores 
-			"Flygende Hjorten" Fortuna "Fredericus" Fyen Gravenstein Griffe 
-			Gyldenløve Hannibal Havfru Havhest Havmand Hector Hercules "Hertug Olufs Pincke" 
-			Hiælperen Hjort Høyenhald Hummer "Hvide Ørn" Højenhald Jernvågen Jægermester 
-			Justitia "Kongens Jagt Krone" "Kronet Fisk" Lamprenen Leopard Lindorm Loss Lovisa 
-			"Løvendals Gallej" Makaløs Mars Merkurius Morian Najaden Nelleblad Neptunus 
-			"Norske Løve" Oldenborg Papegoye Patienta Pelican Phønix "Prinds Carl" 
-			"Prinds Christian" "Prinds Wilhelm" Raae Samson Solen 
-			"Sophia Amalia" "Sophia Hedvig" "St. Erik" "St. Georg" "St. Oluf" Stormar Stralsund 
-			Svaerdfisk Svan "Svenske Jomfru" Søridder Tomler "To Løver" "Tre Løver" Trefoldighed 
+			Achilles *Arche Noa* Arken Beskjermer *Byens Løffue* Caritas *Charlotte Amalie* 
+			Christiania Christiansand Christiansø *Christianus* Churprindsen 
+			Concordia Cæsar Dannebroge David Delmenhorst Ditmarsken Draken *Dronning Louisa* 
+			Ebenetzer Elefanten Enighed *Engelske Fortuna* Enhiørningen Fides Flores 
+			*Flygende Hjorten* Fortuna *Fredericus* Fyen Gravenstein Griffe 
+			Gyldenløve Hannibal Havfru Havhest Havmand Hector Hercules *Hertug Olufs Pincke* 
+			Hiælperen Hjort Høyenhald Hummer *Hvide Ørn* Højenhald Jernvågen Jægermester 
+			Justitia *Kongens Jagt Krone* *Kronet Fisk* Lamprenen Leopard Lindorm Loss Lovisa 
+			*Løvendals Gallej* Makaløs Mars Merkurius Morian Najaden Nelleblad Neptunus 
+			*Norske Løve* Oldenborg Papegoye Patienta Pelican Phønix *Prinds Carl* 
+			*Prinds Christian* *Prinds Wilhelm* Raae Samson Solen 
+			*Sophia Amalia* *Sophia Hedvig* *St. Erik* *St. Georg* *St. Oluf* Stormar Stralsund 
+			Svaerdfisk Svan *Svenske Jomfru* Søridder Tomler *To Løver* *Tre Løver* Trefoldighed 
 			Victoria Vindhunden Wenden Ørnen
-			Ulrik Christian Fredriksberg Esbjerg "Nørrejyske Ø" Fyn Jótlandshaf 
-			Lindormen Odin "Rolf Krake" Tordenskjold "Peder Skram" Gorm "Olfert Fischer" Absalon
-			"Prinds Christian Frederik" Skjold Ingolf Dagmar Gesjer "Dronning Marie" Waldemar Fredrik
-			Fyen Geiser Heimdal Hekla "St. Thomas" Valkyrien "Herluf Trolle" Søeormen Susåen Gudenåen
-			"Esbern Snare" Sjælland Gefion Thetis "Niels Juel" Rota
+			Ulrik Christian Fredriksberg Esbjerg *Nørrejyske Ø* Fyn Jótlandshaf 
+			Lindormen Odin *Rolf Krake* Tordenskjold *Peder Skram* Gorm *Olfert Fischer* Absalon
+			*Prinds Christian Frederik* Skjold Ingolf Dagmar Gesjer *Dronning Marie* Waldemar Fredrik
+			Fyen Geiser Heimdal Hekla *St. Thomas* Valkyrien *Herluf Trolle* Søeormen Susåen Gudenåen
+			*Esbern Snare* Sjælland Gefion Thetis *Niels Juel* Rota
 			Freia Diana Støren Stubberkøbing Gejser Kiel Falster Narhvalen Tumleren
-			Fylla Færøerne Grønland Víkingr "Harald Klak" "Svend Tveskæg" Kattegat Øresund Silkeborg
+			Fylla Færøerne Grønland Víkingr *Harald Klak* *Svend Tveskæg* Kattegat Øresund Silkeborg
 		}
 		army_names=
 		{
-			"Hær af $PROVINCE$"
+			*Hær af $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flåde af $PROVINCE$"
+			*Flåde af $PROVINCE$*
 		}
 	}
 	east_persian=
@@ -1593,14 +1593,14 @@ culture_rules=
 			Faruq Farrukhzad Farzad Fath Ferdows Fereedun Ghobad Gholam Godarz Goshtasb Hafez Hassan Hazarasp Hedayat Hooshyar Hormazd Hormoz Husayn
 			Humayun Jahandar Jahangir Jahanshah Jamshid Javeed Kambiz Kamran Kavoos Keyghobad Keykhosrau Kharmandar Khashayar Kavadh Khodadad Khosrau
 			Khudayar Khurshid Kurush Mahmûd Manuchihr Manushihr Marzuban Mashad Maziar Mehrab Mehrzad Mohammed Morad Morteza Mozaffar Nard Naveed Nawid Nezam Parviz Pashang Peroz
-			Pujman Reza Rostam Ruhollah Sadri Salman Shahab Shahbaz Shahin Shahram "Shâh Rukh" Shahruz Shahryar Shapur Shayan Sina Tahmasb Vahhab Vahid
+			Pujman Reza Rostam Ruhollah Sadri Salman Shahab Shahbaz Shahin Shahram *Shâh Rukh* Shahruz Shahryar Shapur Shayan Sina Tahmasb Vahhab Vahid
 			Vali Vandad Varshasb Vishtasb Yazdegerd Yousef Zahak Zakaria Zand Zartosht Zia
 			Abolghasem Abdolhossein Abdolsamad Abdolazim
-			"Fath Ali" Fazlollah Hamzeh Hasan Karim "Lotf Ali" 
-			Massoud "Moin ed-Din" "Mozzafer ed-Din" Muhsin 
-			"Naser ed-Din" Nosret "Abû Sa'îd" Bâbur "Badî al-Zamân"
-			"Husayn Bâyqarâ" Mahmûd  "Abu al-Qasim" "Ulugh Beg" "'Abd al-Karim"
-			"'Abd al-Rahman" 'Alî 'Abdallâh Anwar Bakr Fahd Fouad Hakim Harun
+			*Fath Ali* Fazlollah Hamzeh Hasan Karim *Lotf Ali* 
+			Massoud *Moin ed-Din* *Mozzafer ed-Din* Muhsin 
+			*Naser ed-Din* Nosret *Abû Sa'îd* Bâbur *Badî al-Zamân*
+			*Husayn Bâyqarâ* Mahmûd  *Abu al-Qasim* *Ulugh Beg* *'Abd al-Karim*
+			*'Abd al-Rahman* 'Alî 'Abdallâh Anwar Bakr Fahd Fouad Hakim Harun
 			Hisham Isma'il Jafar Jamaal Khalil Malîk Mirza Qasim Rashîd Sulayman
 			Tarîq 'Umar Usama Yasir Yusuf Zaid Zîyad Zulqifar
 		}
@@ -1640,20 +1640,20 @@ culture_rules=
 			Kondor
 			Tabas
 			Torud
-			Iran "Esmail Yekom" "Abbas Bozorg" "Safieddin Ardabili" "Tahmasp Yekom" "Abbas Duvam"
-			"Fathali Shah" "Abbas Mirza" "Nasireddin" "Mozaffareddin" "Mohammad Ali" "Shah Ahmad"
-			Ferhumand Jelaleddin Nureddin Danesh Zureddin Nirumand Khosthaneshdani "Sahib-i Azam" Dalir
-			Karun Zab Aras Helmand Diyala "Zab-e Kuchek" Zayande Atrek Alamut 
-			Alborz Damavand Kholeno "Azad Koh" Tochal Sarakchal Kharsang Zagros "Zard Koh"
-			Arzu Fatima Nilofer Omid Laleh "Koh-i Nor" Jaleh Firuz Darya Roshan Shahrazad Shirin Yasmin Ziba Zuleika Behruz Farid Humayun Kambiz Kamyar Ruzbeh
+			Iran *Esmail Yekom* *Abbas Bozorg* *Safieddin Ardabili* *Tahmasp Yekom* *Abbas Duvam*
+			*Fathali Shah* *Abbas Mirza* *Nasireddin* *Mozaffareddin* *Mohammad Ali* *Shah Ahmad*
+			Ferhumand Jelaleddin Nureddin Danesh Zureddin Nirumand Khosthaneshdani *Sahib-i Azam* Dalir
+			Karun Zab Aras Helmand Diyala *Zab-e Kuchek* Zayande Atrek Alamut 
+			Alborz Damavand Kholeno *Azad Koh* Tochal Sarakchal Kharsang Zagros *Zard Koh*
+			Arzu Fatima Nilofer Omid Laleh *Koh-i Nor* Jaleh Firuz Darya Roshan Shahrazad Shirin Yasmin Ziba Zuleika Behruz Farid Humayun Kambiz Kamyar Ruzbeh
 		}
 		army_names=
 		{
-			"Artesh-e-$PROVINCE$"
+			*Artesh-e-$PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Naogan-e-$PROVINCE$"
+			*Naogan-e-$PROVINCE$*
 		}
 	}
 	english=
@@ -1665,12 +1665,12 @@ culture_rules=
 		{
 			Adam Alan Albert Alexander Alfred Ambrose Andrew Anselm Anthony Archibald Arnold Arthur Aubrey
 			Benjamin
-			Charles "Charles James" Christopher
+			Charles *Charles James* Christopher
 			Daniel David
 			Edgar Edmund Edward Eric Ernest Eustace
 			Francis Fulk
 			Geoffrey George Gerald Gilbert Godfrey Gregory Guy
-			Henry "Henry Frederick" Horatio Hugh Humphrey
+			Henry *Henry Frederick* Horatio Hugh Humphrey
 			Isaac
 			James Jeremy Jocelyn John Jonathan Jordan Joseph
 			Lawrence Lionel
@@ -1705,7 +1705,7 @@ culture_rules=
 		{
 			Albemarle Amherst Anson
 			Buckingham Braddock Byron Burgoyne Beresford Brock Benbow Blake Bedford Boscawen Baffin Button
-			Clarence "de Clifford" Cromwell Cumberland Clinton Cornwallis Clive Cabot Carleton Cavendish Cook
+			Clarence *de Clifford* Cromwell Cumberland Clinton Cornwallis Clive Cabot Carleton Cavendish Cook
 			Dampier Davis Drake
 			Essex
 			Fairfax Frobisher
@@ -1722,50 +1722,50 @@ culture_rules=
 			Warwick Wolfe
 			York
 			Allenby Battemberg Beatty Brown Buller Butler Campbell Cardigan Churchill
-			Cochrane Cockburn "de Robeck" Dundas Fisher French Gough Grant Grenfell Haig
+			Cochrane Cockburn *de Robeck* Dundas Fisher French Gough Grant Grenfell Haig
 			Hamilton Hardinge Havelock Hope Jellicoe Kitchener Lyons Madden Milne Montgomery
-			Moresby Mundy Napier Odoni "of Hannover" "of Saxe-Coburg-Gotha" Plummer Ragland Roberts Seaton Seymour
+			Moresby Mundy Napier Odoni *of Hannover* *of Saxe-Coburg-Gotha* Plummer Ragland Roberts Seaton Seymour
 			Smith-Dorrien Stewart Thesiger Tyron Tyrwhitt Williams Windsor Wolseley Wood
 		}
 		ship_names=
 		{
-			Adventure Ajax Albemarle Alexander "Anne Gallant" Antelope "Ark Royal" Assurance Audacious
+			Adventure Ajax Albemarle Alexander *Anne Gallant* Antelope *Ark Royal* Assurance Audacious
 			Bear Bellerophon Bonaventure Boyne
 			Charles Christ Constant Convertine Culloden
 			Defence Defiance Destiny Dragon Dreadnought
-			"Edward Howard" Elizabeth Eltham Essex Expedition
+			*Edward Howard* Elizabeth Eltham Essex Expedition
 			Foresight Foudroyant
-			"Gabriel Royal" Garland George Gibraltar Gloucester Goliath "Grace Dieu" Grafton "Grand Mistress" "Great Barbara" "Great Bark" "Great Elizabeth" "Great Harry" "Great Nicholas"
-			Haarlem "Happy Entrance" Hector "Henrietta Maria" Hope
-			James "John Baptist"
-			"Katherine Forteleza" Kent
+			*Gabriel Royal* Garland George Gibraltar Gloucester Goliath *Grace Dieu* Grafton *Grand Mistress* *Great Barbara* *Great Bark* *Great Elizabeth* *Great Harry* *Great Nicholas*
+			Haarlem *Happy Entrance* Hector *Henrietta Maria* Hope
+			James *John Baptist*
+			*Katherine Forteleza* Kent
 			Leander Leopard Lion
-			Majestic Margaret Mary "Mary Rose" Mercury Merhonour Michael Minion Minotaur 
+			Majestic Margaret Mary *Mary Rose* Mercury Merhonour Michael Minion Minotaur 
 			Nonpareil Nonsuch Northumberland Nottingham
 			Orion
-			Peter Providence "Prince Frederick"
-			"Queen Charlotte"
-			Rainbow "Red Lion" Regent Renown Repulse Revenge "Royal Anne" "Royal Charles" "Royal Prince" 
-			"Scourge of Malice" Sovereign "Sovereign o the Seas" "St Andrew" "St Esprit" "St George" "St Matthew" Suffolk Superb Swallow Swiftsure 
+			Peter Providence *Prince Frederick*
+			*Queen Charlotte*
+			Rainbow *Red Lion* Regent Renown Repulse Revenge *Royal Anne* *Royal Charles* *Royal Prince* 
+			*Scourge of Malice* Sovereign *Sovereign o the Seas* *St Andrew* *St Esprit* *St George* *St Matthew* Suffolk Superb Swallow Swiftsure 
 			Theseus Tigre Tramontana Triumph
 			Unicorn Union
 			Vanguard Victory
 			Warspite Worcester
-			"Temeraire" "St Vincent" "Collingwood" "Neptune" "Colossus" "Hercules" "Monarch" "Conqueror" "Thunderer" "George" "Centurion" "Iron Duke" "Benbow" "Emperor" "Erin" "Queen Elizabeth" "Barham" "Valiant" "Royal Oak" "Royal Sovereign" "Revenge" "Resolution" "Ramillies" "Resistance" "Rodney" "Prince" "Duke" "Anson" "Howe" "Lion"
-			"Warrior" "Black Prince" "Achilles" "Prince Consort" "Ocean" "Royal Alfred" "Research" "Enterprise" "Favorite" "Zealous" "Lord Clyde" "Lord Warden" "Pallas" "Penelope" "Captain" "Audacious" "Invincible" "Sultan" "Devastation" "Alexandra" "Inflexible" "Agamemnon"
-			"Royal Albert" "Castle" "Royal Sovereign" "Queen" "Victoria" "Frederick William" "Albion" "Aboukir" "Saint Jean D'Acre" "Hannibal" "Princess Royal" "Caesar" "Suberb" "Meeanee" "Mars" "Irresistible" "Brunswick" "Hood" "Edgar" "Sans Pareil" "Boscawen"
-			"Imperieuse" "Orlando" "Undaunted" "Narcissus" "Galatea" "Immortalite" "Aurora" "Blake" "Blenheim" "Hawke" "Endymion" "Royal Arthur" "St George" "Cresent" "Powerful" "Terrible" "Diadem" "Niobe" "Europa" "Andromeda" "Amphitrite" "Argonaut" "Ariadne" "Spartiate" "Cressy" "Sutlej" "Aboukir" "Hogue" "Bacchante" "Euryalus" "Drake" "Good Hope" "Alfred" "Leviathan" "Donegal" "Carnarvon" "Antrim" "Roxburgh" "Argyll" "Warrior" "Cochrane" "Shannon"
-			"Cyclops" "Vulture" "Firebrand" "Gladiator" "Sampson" "Centaur" "Dragon" "Penelope" "Retribution" "Terrible" "Avenger" "Birkenhead" "Odin" "Sidon" "Leopard" "Tiger" "Magicienne" "Valorous" "Furious" "Resolute" "Amphion" "Arrogant" "Dauntless" "Vigilant" "Termagant" "Euphrates" "Tribune" "Curacoa" "Imperieuse" "Euryalus" "Aurora" "Forte" "Liffey" "Shannon" "Topaze" "Bacchante" "Diadem" "Dons" "Ariadne" "Galatea" "Emerald" "Melpomene" "Immortalite" "Orlando" "Mersey" "Narcissus" "Undaunted" "Dryad" "Belvidera" "Pomone" "Briton" "Barham" "Boadicea" "Bucephalus" "Dextrous" "Endymion" "Ister" "Blonde" "Astrea" "Dartmouth" "Inconstant" "Shah" "Raleigh"
-			"Prince Albert" "Scorpion" "Wivern" "Cyclops" "Gorgon" "Hecate" "Hydra" "Cerberus" "Magdala" "Abyssinia" "Glatton" "Hotspur" "Rupert" "Belleisle" "Orion" "Conqueror" "Hero" "Severn" "Humber" "Mersey" "Abercrombie" "Havelock" "Raglan" "Roberts" "Lord Clive" "General Craufurd" "Sir Thomas Picton" "Prince Eugene" "Prince Rupert" "Sir John Moore" "General Wolfe" "Marshal Ney" "Marshal Soult" "Gorgon" "Glatton" "Medusa" "Erebus" "Terror" "Robert" "Abercrombie"
-			"Prince Charles" "Inverlyon" "Baralong" "Prize" "Alcantara" "Almanzora" "Alsation" "Ambrose" "Andes" "Aquitania" "Arlanza" "Aramadale" "Avenger" "Avoca" "Bayano" "Berrida" "Calyx" "Carmania" "Caronia" "Cedric" "Celtic" "Changuinola" "City of London" "Clan MacNaughton" "Columbella" "Digby" "Empress of Asia" "Empress of Britain" "Empress of Japan" "Empress of Russia" "Eskimo" "Hilary" "Hildebrand" "Laconia" "Laurentic" "Lusitania" "Macedonia" "Mantua" "Marmora" "Mauretania" "Moldavia" "Montezuma" "Morea" "Motagua" "Mount Temple" "Naldera" "Narkunda" "Oceanic" "Olympic" "Ophir" "Orama" "Orbita" "Princess" "Scotia" "Teutonic" "Victorian" "Viknor"
+			*Temeraire* *St Vincent* *Collingwood* *Neptune* *Colossus* *Hercules* *Monarch* *Conqueror* *Thunderer* *George* *Centurion* *Iron Duke* *Benbow* *Emperor* *Erin* *Queen Elizabeth* *Barham* *Valiant* *Royal Oak* *Royal Sovereign* *Revenge* *Resolution* *Ramillies* *Resistance* *Rodney* *Prince* *Duke* *Anson* *Howe* *Lion*
+			*Warrior* *Black Prince* *Achilles* *Prince Consort* *Ocean* *Royal Alfred* *Research* *Enterprise* *Favorite* *Zealous* *Lord Clyde* *Lord Warden* *Pallas* *Penelope* *Captain* *Audacious* *Invincible* *Sultan* *Devastation* *Alexandra* *Inflexible* *Agamemnon*
+			*Royal Albert* *Castle* *Royal Sovereign* *Queen* *Victoria* *Frederick William* *Albion* *Aboukir* *Saint Jean D'Acre* *Hannibal* *Princess Royal* *Caesar* *Suberb* *Meeanee* *Mars* *Irresistible* *Brunswick* *Hood* *Edgar* *Sans Pareil* *Boscawen*
+			*Imperieuse* *Orlando* *Undaunted* *Narcissus* *Galatea* *Immortalite* *Aurora* *Blake* *Blenheim* *Hawke* *Endymion* *Royal Arthur* *St George* *Cresent* *Powerful* *Terrible* *Diadem* *Niobe* *Europa* *Andromeda* *Amphitrite* *Argonaut* *Ariadne* *Spartiate* *Cressy* *Sutlej* *Aboukir* *Hogue* *Bacchante* *Euryalus* *Drake* *Good Hope* *Alfred* *Leviathan* *Donegal* *Carnarvon* *Antrim* *Roxburgh* *Argyll* *Warrior* *Cochrane* *Shannon*
+			*Cyclops* *Vulture* *Firebrand* *Gladiator* *Sampson* *Centaur* *Dragon* *Penelope* *Retribution* *Terrible* *Avenger* *Birkenhead* *Odin* *Sidon* *Leopard* *Tiger* *Magicienne* *Valorous* *Furious* *Resolute* *Amphion* *Arrogant* *Dauntless* *Vigilant* *Termagant* *Euphrates* *Tribune* *Curacoa* *Imperieuse* *Euryalus* *Aurora* *Forte* *Liffey* *Shannon* *Topaze* *Bacchante* *Diadem* *Dons* *Ariadne* *Galatea* *Emerald* *Melpomene* *Immortalite* *Orlando* *Mersey* *Narcissus* *Undaunted* *Dryad* *Belvidera* *Pomone* *Briton* *Barham* *Boadicea* *Bucephalus* *Dextrous* *Endymion* *Ister* *Blonde* *Astrea* *Dartmouth* *Inconstant* *Shah* *Raleigh*
+			*Prince Albert* *Scorpion* *Wivern* *Cyclops* *Gorgon* *Hecate* *Hydra* *Cerberus* *Magdala* *Abyssinia* *Glatton* *Hotspur* *Rupert* *Belleisle* *Orion* *Conqueror* *Hero* *Severn* *Humber* *Mersey* *Abercrombie* *Havelock* *Raglan* *Roberts* *Lord Clive* *General Craufurd* *Sir Thomas Picton* *Prince Eugene* *Prince Rupert* *Sir John Moore* *General Wolfe* *Marshal Ney* *Marshal Soult* *Gorgon* *Glatton* *Medusa* *Erebus* *Terror* *Robert* *Abercrombie*
+			*Prince Charles* *Inverlyon* *Baralong* *Prize* *Alcantara* *Almanzora* *Alsation* *Ambrose* *Andes* *Aquitania* *Arlanza* *Aramadale* *Avenger* *Avoca* *Bayano* *Berrida* *Calyx* *Carmania* *Caronia* *Cedric* *Celtic* *Changuinola* *City of London* *Clan MacNaughton* *Columbella* *Digby* *Empress of Asia* *Empress of Britain* *Empress of Japan* *Empress of Russia* *Eskimo* *Hilary* *Hildebrand* *Laconia* *Laurentic* *Lusitania* *Macedonia* *Mantua* *Marmora* *Mauretania* *Moldavia* *Montezuma* *Morea* *Motagua* *Mount Temple* *Naldera* *Narkunda* *Oceanic* *Olympic* *Ophir* *Orama* *Orbita* *Princess* *Scotia* *Teutonic* *Victorian* *Viknor*
 		}
 		army_names=
 		{
-			"Army of $PROVINCE$" 
+			*Army of $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Fleet of $PROVINCE$"
+			*Fleet of $PROVINCE$*
 		}
 	}
 	estonian=
@@ -1793,7 +1793,7 @@ culture_rules=
 			Kangro Kint Klaasen Koern Kõiv Kotli Kumari Kupine Kuusik Leppik
 			Lipping Lohk Mäe Männil Moora Natus Nurkse Nurmekund Õkva Öpik
 			Orkivu Päts Perna Piiper Poska Puusepp Ränk Rei Reinman Siinmaa
-			Sikkar Sirk Tõnisson Uluots Vaga Veske Vilbaste Vilms "von Uexküll" Warma
+			Sikkar Sirk Tõnisson Uluots Vaga Veske Vilbaste Vilms *von Uexküll* Warma
 		}
 		ship_names=
 		{
@@ -1801,11 +1801,11 @@ culture_rules=
 		}
 		army_names=
 		{
-			"Armee pärit $PROVINCE$" 
+			*Armee pärit $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Laevastiku pärit $PROVINCE$" 
+			*Laevastiku pärit $PROVINCE$* 
 		}
 	}
 	ethiopian=
@@ -1816,9 +1816,9 @@ culture_rules=
 		male_names=
 		{
 			Amare Dahnay Desta Getachew Geteye Girma Iskinder Abai Abebe Afework Aman Assefa Atoberhan Azmera Bekele Benaim Berhanu Berhanua Berihun Berta Bworo Daniachew Dâwît Demissie Eremias Ezana Fâsîladas Fethee Gabra Gebereal Gebre Gondar Hackeem Haeran Hagos Hakeem Hakiem Hakim Hakym Iskander Iskinder Iyâsû Jima Kafa Kaleb Kelile Kelyle Kifle Lebna Lema Loua Mamo Mekonnen Melaku Mengesha Merille Miruts Negash Negasi Negus Ogbae Ogbai Oromo Rahad Selassie Semer Semere Sisay Tamirat Tariku Taye Tefere Teferi Teka Tekle Tengene Teruworq Tesfaye Tessema Tewodros Yâ'qob Yôhannes Yonas Zula
-			"Taqla Hâymânôt" Salômôn Hezqeyâs "Zar'a Yâqob" "Ba'eda Mâryâm" Quastantînôs "'Amda Seyôn" "Nâ'ôd" "Lebna Dengel" Galâwdêwôs Mînâs  Sûsenyôs Têwôflôs Yôstôs Yônas "'Amsa Gîyôrgîs"
-			"Tuqla Gîyôrgîs" Demetros Gîyôrgîs Fiqtor Menas Marqos Hamalmal "Saga Krestos" "Malta Krestos" Fâsîl 'Endreyâs Yeshaq Mika'el "Amda Seyon" Antenatewos "Welde Giyorgis" "Mika'el Sehul"
-			Gusho "Wand Bewossen" Haile "Wolda Gabrael"
+			*Taqla Hâymânôt* Salômôn Hezqeyâs *Zar'a Yâqob* *Ba'eda Mâryâm* Quastantînôs *'Amda Seyôn* *Nâ'ôd* *Lebna Dengel* Galâwdêwôs Mînâs  Sûsenyôs Têwôflôs Yôstôs Yônas *'Amsa Gîyôrgîs*
+			*Tuqla Gîyôrgîs* Demetros Gîyôrgîs Fiqtor Menas Marqos Hamalmal *Saga Krestos* *Malta Krestos* Fâsîl 'Endreyâs Yeshaq Mika'el *Amda Seyon* Antenatewos *Welde Giyorgis* *Mika'el Sehul*
+			Gusho *Wand Bewossen* Haile *Wolda Gabrael*
 			Ras Debela Alemayehu Dirribi Gobana Tsegaye Tilahun Waqo Ahmad Galasa Hailu Yilma Abadula Abdus
 		}
 		female_names=
@@ -1844,17 +1844,17 @@ culture_rules=
 		}
 		ship_names=
 		{
-			Yodit Shewa "Mara Takla" Lalibela
-			"Yekuno Amlak" Tigray Tatadum Seyum
-			"Kedus Harbe" "Na'akueto La'ab" Yetbarak
+			Yodit Shewa *Mara Takla* Lalibela
+			*Yekuno Amlak* Tigray Tatadum Seyum
+			*Kedus Harbe* *Na'akueto La'ab* Yetbarak
 		}
 		army_names=
 		{
-			"Särawit käza $PROVINCE$" 
+			*Särawit käza $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Märkäb-occ käza $PROVINCE$"
+			*Märkäb-occ käza $PROVINCE$*
 		}
 	}
 	finnish=
@@ -1888,7 +1888,7 @@ culture_rules=
 			Berg Björn Blom 
 			Cronstedt
 			Dufva
-			Ehrensvärd "von Essen" 
+			Ehrensvärd *von Essen* 
 			Glad
 			Haataja Helander Helin Hiltunen Horn
 			Ilkka Isotalo
@@ -1902,31 +1902,31 @@ culture_rules=
 			Wilander
 			Airo Alopaeus Aspara Cajander Ehrnrooth Heinrichs Heiskanen Holsti Ignatius Järnefält
 			Linder Mannerheim Multamäki Nenonen Oesch Öquist Österman Paasikivi Raappana Ramsay
-			Sihvo Siilasvuo Talvela Thesleff Tujulin Tuompo "von Hesse-Kassel" Walden Wallenius Wetzer
+			Sihvo Siilasvuo Talvela Thesleff Tujulin Tuompo *von Hesse-Kassel* Walden Wallenius Wetzer
 		}
 		ship_names=
 		{
 			Agricola Aura
-			Borgå "Birger Jarl"
+			Borgå *Birger Jarl*
 			Helsingfors Hakkapeliitta
 			Ilmarinen
 			Kullervo Kymi
 			Lemminkäinen
 			Oulu
-			"Per Brahe"
-			Sampo "St. Henrik" Savolax
+			*Per Brahe*
+			Sampo *St. Henrik* Savolax
 			Väinämöinen Vasa Vanda Vuoksi
 			Åbo
-			"Uusimaa" "Joukahainen" "Tapio" "Turku" "Kemi" "Maarianhamina" "Vaasa" "Viipuri" "Kotka"
-			"Rauma" "Åbo"
+			*Uusimaa* *Joukahainen* *Tapio* *Turku* *Kemi* *Maarianhamina* *Vaasa* *Viipuri* *Kotka*
+			*Rauma* *Åbo*
 		}
 		army_names=
 		{
-			"Armeija alkaen $PROVINCE$"
+			*Armeija alkaen $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Laivaston alkaen $PROVINCE$" 
+			*Laivaston alkaen $PROVINCE$* 
 		}
 	}
 	flemish=
@@ -1968,50 +1968,50 @@ culture_rules=
 			Dampierre Deconinck
 			Nevers
 			Penen
-			"Van Bellegem" "Van Gulik"
-			"Van Herstal" "Van Leeuwergem"
-			"Van Lichtervelde" "Van Nieuwland"
-			"Van Oudenaarde" "Van Petershem"
-			"Van Raveschoot" "Van Renesse"
-			Andries "Annez de Zillebroeck" Barbanson Barthélémy Beaucarne Beernaert Berthels Bethune Beyts Bischoff Blomme Bosmans 
-			"Boucqueau de Villeraye" Buylaert Buyse Claes Claus Cogels Cols Coppens Coppieters Corten Cruts "d'Arschot Schoonhoven" 
-			d'Ansembourg d'Hanens "de Brouckère" "de Celles" "de Coninck" "de Decker" "de Foere" "de Gaesebeke" "de Ghellink" "de Grez" 
-			"de Haerne" "de Jonghe" "de Jonghe d'Ardoye" "de Langhe" "de Leeuw" "de Leuze" "de Man" "de Meer de Moorsel" 
-			"de Meester" "de Mérode" "de Muelenaere" "de Pelichy" "de Renesse" "de Robiano" "de Rodes" "de Roo" "de Ryckere" 
-			"de Smet" "de Theux de Meylandt" "de Tiecken" "de Viron" "de Woelmont" Dayeneux Delberke Delehaye Delwarde "Desmanet de Biesme" 
-			Destouvelles Deswert Devaux Dhanis Domis "du Bois" Fransman Gelders Geudens Goethals Hennequin "Huysman d'Annecroix" 
+			*Van Bellegem* *Van Gulik*
+			*Van Herstal* *Van Leeuwergem*
+			*Van Lichtervelde* *Van Nieuwland*
+			*Van Oudenaarde* *Van Petershem*
+			*Van Raveschoot* *Van Renesse*
+			Andries *Annez de Zillebroeck* Barbanson Barthélémy Beaucarne Beernaert Berthels Bethune Beyts Bischoff Blomme Bosmans 
+			*Boucqueau de Villeraye* Buylaert Buyse Claes Claus Cogels Cols Coppens Coppieters Corten Cruts *d'Arschot Schoonhoven* 
+			d'Ansembourg d'Hanens *de Brouckère* *de Celles* *de Coninck* *de Decker* *de Foere* *de Gaesebeke* *de Ghellink* *de Grez* 
+			*de Haerne* *de Jonghe* *de Jonghe d'Ardoye* *de Langhe* *de Leeuw* *de Leuze* *de Man* *de Meer de Moorsel* 
+			*de Meester* *de Mérode* *de Muelenaere* *de Pelichy* *de Renesse* *de Robiano* *de Rodes* *de Roo* *de Ryckere* 
+			*de Smet* *de Theux de Meylandt* *de Tiecken* *de Viron* *de Woelmont* Dayeneux Delberke Delehaye Delwarde *Desmanet de Biesme* 
+			Destouvelles Deswert Devaux Dhanis Domis *du Bois* Fransman Gelders Geudens Goethals Hennequin *Huysman d'Annecroix* 
 			Jacobs Janssens Joos Jottrand Kockaert Ledeganck Lefebvre Liedts Marcq Meeus Morel Moyersoen Mulle Nypels 
 			Ooms Osy Peemans Peeters Petens Rodenbach Roels Rosseuw Rouppe Rutten Serruys Schollaert Speelman Simons Struye 
-			"Surlet de Chokier" "Surmont de Volsberghe" Terlinden Teuwens Tilkens Thienpont "van Caloen" "van Casteel" "van Crombrugghe" 
-			"van de Kerchove" "van de Werve de Vorselaar" "van de Weyer" "van den Broucke" "van den Hove" "van der Belen" "van der Bruggen" 
-			"van der Burch" "van der Eecken" "van der Linden" "van der Linden d'Hooghvorst" "van der Looy" "van Dievoet" "van Dorpe" 
-			"van Havre" "van Hoobrouck" "van Innis" "van Meenen" "van Neste" "van Snick" "van Tongerloo" "van Volden de Lombeke" "van Zeeland" 
-			Vandive Verbeke Vercruysse Verduyn Vergauwen "Verseyden de Varick" Verwilghen "Vilain XIIII" Wallaert Wannaar Werbrouck Wyvekens
+			*Surlet de Chokier* *Surmont de Volsberghe* Terlinden Teuwens Tilkens Thienpont *van Caloen* *van Casteel* *van Crombrugghe* 
+			*van de Kerchove* *van de Werve de Vorselaar* *van de Weyer* *van den Broucke* *van den Hove* *van der Belen* *van der Bruggen* 
+			*van der Burch* *van der Eecken* *van der Linden* *van der Linden d'Hooghvorst* *van der Looy* *van Dievoet* *van Dorpe* 
+			*van Havre* *van Hoobrouck* *van Innis* *van Meenen* *van Neste* *van Snick* *van Tongerloo* *van Volden de Lombeke* *van Zeeland* 
+			Vandive Verbeke Vercruysse Verduyn Vergauwen *Verseyden de Varick* Verwilghen *Vilain XIIII* Wallaert Wannaar Werbrouck Wyvekens
 		}
 		ship_names=
 		{
-			"Boudewijn"
-			"De Vlaamse leeuw"
-			Gent Guldensporenslag "Gwijde van Dampierre" 
+			*Boudewijn*
+			*De Vlaamse leeuw*
+			Gent Guldensporenslag *Gwijde van Dampierre* 
 			Hasselt
-			"Jacob van Artevelde"
-			"Karel de Goede" "Kerel van Vlaanderen"
+			*Jacob van Artevelde*
+			*Karel de Goede* *Kerel van Vlaanderen*
 			Leuven
-			"Manneken Pis" Mechelen
-			"Pieter de Coninck"
+			*Manneken Pis* Mechelen
+			*Pieter de Coninck*
 			Schelde
-			"Tijl Uilenspiegel"
-			"De Vlaamse Leeuw" Ambiorix "Godfried van Boullion" "Guldensporenslag" "Gwijde van Dampierre" 
-			"Jacob van Artevelde" "Graaf Boudewijn" "Graaf van Vlaanderen" "Jan Baert" "Jacob van Brugge" 
-			"Willem van Rubroeck" "Simon van Salingen" "Joris van Spilbergen" "Willem Usselincx" Mercator
+			*Tijl Uilenspiegel*
+			*De Vlaamse Leeuw* Ambiorix *Godfried van Boullion* *Guldensporenslag* *Gwijde van Dampierre* 
+			*Jacob van Artevelde* *Graaf Boudewijn* *Graaf van Vlaanderen* *Jan Baert* *Jacob van Brugge* 
+			*Willem van Rubroeck* *Simon van Salingen* *Joris van Spilbergen* *Willem Usselincx* Mercator
 		}
 		army_names=
 		{
-			"Leger van $PROVINCE$"
+			*Leger van $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Vloot van $PROVINCE$" 
+			*Vloot van $PROVINCE$* 
 		}
 	}
 	french_knight=
@@ -2066,55 +2066,55 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"d'Aubusson" "d'Amboise"
-			"de Blanchefort"
-			"del Carretto" "de la Cassière" "de Clermont-Gessant" Cotoner Carafa Caracciolo "de Corneillan"
+			*d'Aubusson* *d'Amboise*
+			*de Blanchefort*
+			*del Carretto* *de la Cassière* *de Clermont-Gessant* Cotoner Carafa Caracciolo *de Corneillan*
 			Despuig
-			"de Fonseca"
-			Garzez "de Gozon"
-			"de Homedes" "von Hormpesch" "de Heredia"
-			"de Juilliac"
-			"de Lastic" "de L'Isle-Adam" "de Lascaris-Castellar"
-			"de Milly" "del Monte"
-			"de Naillac"
+			*de Fonseca*
+			Garzez *de Gozon*
+			*de Homedes* *von Hormpesch* *de Heredia*
+			*de Juilliac*
+			*de Lastic* *de L'Isle-Adam* *de Lascaris-Castellar*
+			*de Milly* *del Monte*
+			*de Naillac*
 			Orsini
-			"del Ponte" "de Paule" "Perellos y Roccaful" "de Pins"
-			"de la Rivère" "de Redin" "de Rohan-Polduc"
-			"de Saint-Jaille" "de la Sengle"
-			"de Texada"
-			"de La Vallette-Parisot" "de Verdala" "de Vasconcellos" "de Vilhena" "de Villaret"
-			"de Wignacourt"
+			*del Ponte* *de Paule* *Perellos y Roccaful* *de Pins*
+			*de la Rivère* *de Redin* *de Rohan-Polduc*
+			*de Saint-Jaille* *de la Sengle*
+			*de Texada*
+			*de La Vallette-Parisot* *de Verdala* *de Vasconcellos* *de Vilhena* *de Villaret*
+			*de Wignacourt*
 			Zacosta Zondadari
-			Anthoine "Baraguey d'Hilliers" Bazaine Billot Bosquet "Boué de Lapeyrère" Bouët-Willaumez Boulanger Bourbaki
-			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout "de Bourbon" "de Castellane" "de Castelnau" "de Gaulle" 
-			"de Langle de Cary" "de MacMahon" "de Montaignac" "de Saint Arnaud" d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
-			Foch Forey "Franchet d'Espèrey" Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
-			Jaurès Joffre Lebouef Lyautey Murat "Ney d'Elchingen" Nivelle Péllissier Petain Vaillant
+			Anthoine *Baraguey d'Hilliers* Bazaine Billot Bosquet *Boué de Lapeyrère* Bouët-Willaumez Boulanger Bourbaki
+			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout *de Bourbon* *de Castellane* *de Castelnau* *de Gaulle* 
+			*de Langle de Cary* *de MacMahon* *de Montaignac* *de Saint Arnaud* d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
+			Foch Forey *Franchet d'Espèrey* Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
+			Jaurès Joffre Lebouef Lyautey Murat *Ney d'Elchingen* Nivelle Péllissier Petain Vaillant
 		}
 		ship_names=
 		{
-			"The Blessed Gerard"
-			"Raymond du Puy de Provence"
-			"Auger de Balben"
-			"Arnaud de Comps"
-			"Gilbert d'Aissailly"
-			"Gastone de Murols"
-			"Gilbert of Syria"
-			"Roger de Moulins"
-			"Hélion de Villeneuve"
-			"Hermangard d'Asp"
-			"Garnier de Naplous"
-			"Geoffroy de Donjon"
-			"Alfonse of Portugal"
-			"Geoffrey le Rat"
+			*The Blessed Gerard*
+			*Raymond du Puy de Provence*
+			*Auger de Balben*
+			*Arnaud de Comps*
+			*Gilbert d'Aissailly*
+			*Gastone de Murols*
+			*Gilbert of Syria*
+			*Roger de Moulins*
+			*Hélion de Villeneuve*
+			*Hermangard d'Asp*
+			*Garnier de Naplous*
+			*Geoffroy de Donjon*
+			*Alfonse of Portugal*
+			*Geoffrey le Rat*
 		}
 		army_names=
 		{
-			"Armée de $PROVINCE$" 
+			*Armée de $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Flotte de $PROVINCE$"
+			*Flotte de $PROVINCE$*
 		}
 	}
 	georgian=
@@ -2127,7 +2127,7 @@ culture_rules=
 			Adarnase Aghsartan Aleksandre Andronik Anzori Archil Ashot Bagrat Bakar Davit Demetre Demna Djavakhi Erekle Gabrieli Gagiki Giorgi Grigoli Guaram Gubaz
 			Gurgen Iese Ioane Ishkhanik Iveri Jarji Kaikhosro Kakhi Koba Konstantine Kvarkvare Kvirike Levan Luarsab Malkhazi Mamia Merab Mikheil Mukhran Nerse Nikoloz Okhropir Orbeli
 			Padla Samoeli Shanshe Shota Simon Stefanoz Sumbat Teimuraz Tornike Ushisha Vache Vakhtang Zurab Zviad
-			Iesse Kaihosro "Rostom-Mirza" Bebur Birtveli Djurkha Gulikho Kartlos Koki Kviria Lukhum Mushni Revaz Takha Torgva Tsotne Xareba Zviadi
+			Iesse Kaihosro *Rostom-Mirza* Bebur Birtveli Djurkha Gulikho Kartlos Koki Kviria Lukhum Mushni Revaz Takha Torgva Tsotne Xareba Zviadi
 			Akaki Andria Besarion Eduard Ekvtime Evgeni
 			Filipp Galaktion German Givi Grigol Ilia Ioseb Ivane
 			Jansung Jemal Konstantine Leo Luka Meliton Murman
@@ -2184,11 +2184,11 @@ culture_rules=
 		}
 		army_names=
 		{
-			"armiis dan $PROVINCE$" 
+			*armiis dan $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"gemebis dan $PROVINCE$"
+			*gemebis dan $PROVINCE$*
 		}
 	}
 	greek_orthodox=
@@ -2228,41 +2228,41 @@ culture_rules=
 			Monomachos
 			Romanos
 			Staurakios Stratiotikos
-			Vatakeseva
+			Vatakes
 			Tzimiskes
 			Charalambes Christakis-Zografos Dangles Dousmanes Foumes Gonatas Hatzianestes Kallerges Kanares Katsimiros
 			Kolokotrones Kondyles Kountouriotes Kriezes Makriyannes Manos Mavrocordatos Mavrovouniotis Metaxas Mouskos
 			Nider Othonaios Palaskas Pangalos Papadiamantopoulos Papadopoulos Papagos Papoulas Parakevopouolos Plapoutas
-			Plastiras Sapountzakis Sarafes Smolenskes Sofoules Soutsos Spyromilios Staikopoulos Stanotas "tes Elladas"
+			Plastiras Sapountzakis Sarafes Smolenskes Sofoules Soutsos Spyromilios Staikopoulos Stanotas *tes Elladas*
 			Trikoupes Tsakalotos Tsolakoglou Typaldos-Alfonsatos Tzavelas Vassos Venizelos Voulgares Zaimes Zymvrakakes
 		}
 		ship_names=
 		{
-			Abraham Adam Angeloi Archangeloi "Archangelos Gabriel" "Archangelos Mikhael" "Archangelos Raphail"
-			Cherouveim "Soma tou Christou" "David Basilia" Kyriarkes
-			"Hellenas Episkopos" Eva "Ioannes ho Vaptistes" Hierousalim
-			"Iesous Christos Sotiras" "Hagios Georgios" Iob Isaakios Moyses Noe
-			"Pateras kai Voskos" "Oikoumenikos Patriarches" Arches Kyvernesi
-			"Basilias Solomon" "Hagios Eustratios" "Hagios Theodosios" "Hagios Konstantinos" "Hagios Maximos"
-			"Hagios Ioannes" "Hagios Makarios" "Hagios Bartholomaios" "Hagios Antonios"
-			"Hagios Athanasios" "Hagios Kyrillos" "Hagios Markos" "Hagios Euthymios"
-			"Hagios Neophytos" "Hagios Anastasios" "Hagios Klemes" "Hagia Xenia"
-			"Hagios Iosephos" "Hagios Gregorios" "Hagios Xenophon" "Hagios Petros" "Hagios Isaakios"
-			"Hagios Matthaios" "Hagios Ignatios" "Hagios Hippolytos" "Hagios Pavlos" "Hagia Eudokia"
-			"Hagios Philippos" "Hagios Symeon" "Hagia Anna" "Hagios Isidoros" "Hagia Agatha"
-			Serapheim "Hagios Photios" "Hagios Parthenios" "Hagios Tryphon" "Hagios Gavriil"
-			"Hagios Nikephoros" "Hagios Haralambos" "Hagia Theodora" "Hagios Meletios"
-			"Hagia Sophia" "Hagios Martinianos" "Hagios Auxentios" "Hagios Onesimos"
-			"Hagios Flavianos" "Hagia Maria Isapostola" "Hagios Leon Megas"
-			Thronos "Parthenos Maria" Aretes
+			Abraham Adam Angeloi Archangeloi *Archangelos Gabriel* *Archangelos Mikhael* *Archangelos Raphail*
+			Cherouveim *Soma tou Christou* *David Basilia* Kyriarkes
+			*Hellenas Episkopos* Eva *Ioannes ho Vaptistes* Hierousalim
+			*Iesous Christos Sotiras* *Hagios Georgios* Iob Isaakios Moyses Noe
+			*Pateras kai Voskos* *Oikoumenikos Patriarches* Arches Kyvernesi
+			*Basilias Solomon* *Hagios Eustratios* *Hagios Theodosios* *Hagios Konstantinos* *Hagios Maximos*
+			*Hagios Ioannes* *Hagios Makarios* *Hagios Bartholomaios* *Hagios Antonios*
+			*Hagios Athanasios* *Hagios Kyrillos* *Hagios Markos* *Hagios Euthymios*
+			*Hagios Neophytos* *Hagios Anastasios* *Hagios Klemes* *Hagia Xenia*
+			*Hagios Iosephos* *Hagios Gregorios* *Hagios Xenophon* *Hagios Petros* *Hagios Isaakios*
+			*Hagios Matthaios* *Hagios Ignatios* *Hagios Hippolytos* *Hagios Pavlos* *Hagia Eudokia*
+			*Hagios Philippos* *Hagios Symeon* *Hagia Anna* *Hagios Isidoros* *Hagia Agatha*
+			Serapheim *Hagios Photios* *Hagios Parthenios* *Hagios Tryphon* *Hagios Gavriil*
+			*Hagios Nikephoros* *Hagios Haralambos* *Hagia Theodora* *Hagios Meletios*
+			*Hagia Sophia* *Hagios Martinianos* *Hagios Auxentios* *Hagios Onesimos*
+			*Hagios Flavianos* *Hagia Maria Isapostola* *Hagios Leon Megas*
+			Thronos *Parthenos Maria* Aretes
 		}
 		army_names=
 		{
-			"Strato ek $PROVINCE$" 
+			*Strato ek $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Stolo ek $PROVINCE$"
+			*Stolo ek $PROVINCE$*
 		}
 	}
 	greek=
@@ -2311,7 +2311,7 @@ culture_rules=
 			Charalambes Christakis-Zografos Dangles Dousmanes Foumes Gonatas Hatzianestes Kallerges Kanares Katsimiros
 			Kolokotrones Kondyles Kountouriotes Kriezes Makriyannes Manos Mavrocordatos Mavrovouniotis Metaxas Mouskos
 			Nider Othonaios Palaskas Pangalos Papadiamantopoulos Papadopoulos Papagos Papoulas Parakevopouolos Plapoutas
-			Plastiras Sapountzakis Sarafes Smolenskes Sofoules Soutsos Spyromilios Staikopoulos Stanotas "tes Elladas"
+			Plastiras Sapountzakis Sarafes Smolenskes Sofoules Soutsos Spyromilios Staikopoulos Stanotas *tes Elladas*
 			Trikoupes Tsakalotos Tsolakoglou Typaldos-Alfonsatos Tzavelas Vassos Venizelos Voulgares Zaimes Zymvrakakes
 		}
 		ship_names=
@@ -2322,20 +2322,20 @@ culture_rules=
 			Simitzopoulos
 			Themistokles
 			Votsis
-			Aspes "Basileus Konstantinos" Constantinopolis Sparta Leonidas "Mégas Aléxandros" Pericles Olympias
-			Karteria Panopi Pliksavra Afroessa Sfendoni Spetsai Psara "Basilissa Theodora" 
-			"Nikolis Apostolis" Tombazis Poros "Andreas Vokos" "Laskarina Bouboulina" "Constantine Kanares" Plixavra Averou 
-			"Navarchos Miaoules" "Georgios Averou" Helle "Antinaurkos Condoriotes" "Lambros Katsonis" Agamemnon Gyáros Tilemachos
-			Hellas Navarino Psara "Prinkeps" Maxamillianos "Mount Othrys" Thíva Skirka Heratos Aeolus
+			Aspes *Basileus Konstantinos* Constantinopolis Sparta Leonidas *Mégas Aléxandros* Pericles Olympias
+			Karteria Panopi Pliksavra Afroessa Sfendoni Spetsai Psara *Basilissa Theodora* 
+			*Nikolis Apostolis* Tombazis Poros *Andreas Vokos* *Laskarina Bouboulina* *Constantine Kanares* Plixavra Averou 
+			*Navarchos Miaoules* *Georgios Averou* Helle *Antinaurkos Condoriotes* *Lambros Katsonis* Agamemnon Gyáros Tilemachos
+			Hellas Navarino Psara *Prinkeps* Maxamillianos *Mount Othrys* Thíva Skirka Heratos Aeolus
 			Aetos Ierax Leon Panthir Hephaistos Makedonía Évia Zakynthos
 		}
 		army_names=
 		{
-			"Strato ek $PROVINCE$" 
+			*Strato ek $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Stolo ek $PROVINCE$"
+			*Stolo ek $PROVINCE$*
 		}
 	}
 	hessian=
@@ -2365,7 +2365,7 @@ culture_rules=
 			Udo Ulrich
 			Viktor
 			Waldemar Walram Walther Welf Wenzel Werner Widukind Wigerich Wilhelm Wolfgang Wolfram
-			Moritz Christian Georg Leopold Maximilian "Philipp Ludwig" Adelmar Barnabas
+			Moritz Christian Georg Leopold Maximilian *Philipp Ludwig* Adelmar Barnabas
 			Denis Egon Gottlieb Gregor Hagan Helmut Isaak Isidor Ivo Joachim Joseph
 			Kreszens Oskar
 			Alexander Alfons Alois Anton Arthur
@@ -2407,26 +2407,26 @@ culture_rules=
 			Lippstadt
 			Münden
 			Paderborn
-			"von Scheideck"
+			*von Scheideck*
 			Beck-Rzikowsky Blos Dankl Eisner Geiss Goering Hainisch Haus Held Hellpach
 			Hoffmann Hummel Köhler Mergenthaler Miklas Remmele Schmitt Schobber Seitz Steeb
-			Stolzer Trunk "von Baden" "von Benedek" "von Böhm-Ermolli" "von Brudermann" "von Clam-Gallas" "von der Tann" "von Dietrich" "von Gablenz"
-			"von Grünne" "von Habsburg" "von Hartmann" "von Haynau" "von Hess" "von Hohenhausen" "d'Aspre von Hoobreuk" "von Hortstein" "von Hötzendorf" "von Kirbach"
-			"von Kobratin" "von Schönburg" "von Tegetthoff" "von Uchatius" "von Wittelsbach" "von Württemberg" "von Zahringen" Wagner Wittmann "zu Hohenlohe"
+			Stolzer Trunk *von Baden* *von Benedek* *von Böhm-Ermolli* *von Brudermann* *von Clam-Gallas* *von der Tann* *von Dietrich* *von Gablenz*
+			*von Grünne* *von Habsburg* *von Hartmann* *von Haynau* *von Hess* *von Hohenhausen* *d'Aspre von Hoobreuk* *von Hortstein* *von Hötzendorf* *von Kirbach*
+			*von Kobratin* *von Schönburg* *von Tegetthoff* *von Uchatius* *von Wittelsbach* *von Württemberg* *von Zahringen* Wagner Wittmann *zu Hohenlohe*
 		}
 		ship_names=
 		{
-			"Heinrich" Kassel Werra Lahn Fulda
+			*Heinrich* Kassel Werra Lahn Fulda
 			Wasserkuppe Stirnberg Hanau Marburg Wetzlar
-			"Ludwig" Gießen Landgraf "Von Gagern" "Philipp der Großmütige" Fridericus
+			*Ludwig* Gießen Landgraf *Von Gagern* *Philipp der Großmütige* Fridericus
 		}
 		army_names=
 		{
-			"Armee von $PROVINCE$"
+			*Armee von $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotte von $PROVINCE$"
+			*Flotte von $PROVINCE$*
 		}
 	}
 	hungarian=
@@ -2444,7 +2444,7 @@ culture_rules=
 			Ulászló Albert Anasztáz Branabás Betalan Boldiszár Dávid Edvárd Ernö Jenö Jószef Kázmér Kelemen Lörinc Lukäcs Otto Patrik Simon
 			Arisztid Aurél Béni
 			Dániel Éliás
-			Ignác Izidor "József Manes"
+			Ignác Izidor *József Manes*
 			Krisztian Lajos László Manó Mór Myklós
 			Ödön Péter Rafael
 
@@ -2467,7 +2467,7 @@ culture_rules=
 			Festetics Frangepán
 			Garay
 			Hunyadi Hadik Horthy
-			Kinizsi Károlyi Kán "de Kovats" Kemeny
+			Kinizsi Károlyi Kán *de Kovats* Kemeny
 			Lackovic' Losonci
 			Mészáros Milványi
 			Nadasdy
@@ -2477,10 +2477,10 @@ culture_rules=
 			Thököly Teleki
 			Zrinski Zápolya Zichy
 			Apponyi Aulich Bacher Baross Beöthy Bothmer Damjanich
-			Egressy "Erényi Ullmann" Farkas "Frakasházi Fischer" Goldziher Gungl Hauszmann Heller Izsó
+			Egressy *Erényi Ullmann* Farkas *Frakasházi Fischer* Goldziher Gungl Hauszmann Heller Izsó
 			Joseffy Katona Kaufman Kéler Kiss Knezich Kogutowicz Lahner Lázár Leiningen-Westerburg
 			Lichtenstein Liszt Mikszáth Molnár Nagy-Sándor Österreicher Ottinger Perczel Poeltenberg Reményi
-			Rohr Schweidel Szemere Szlávic Tersztyansky Török Varga Vécsey "von Benedek"
+			Rohr Schweidel Szemere Szlávic Tersztyansky Török Varga Vécsey *von Benedek*
 		}
 		ship_names=
 		{
@@ -2488,20 +2488,20 @@ culture_rules=
 			Arpad
 			Magyar
 			Sigismund
-			"Szent Istvan kiraly"
-			"Karoly Robert"
-			"Nagy Lajos"
+			*Szent Istvan kiraly*
+			*Karoly Robert*
+			*Nagy Lajos*
 			Laszlo
 			Kalman
-			"Szent Istvan" Zrinyi Szigetvár Sava Bodrog Szamos Körös Maros Leitha Csepel Lika Orjen Tátra Triglav Dinara Csikós Pandúr Réka Turul Huszár Ulan 
+			*Szent Istvan* Zrinyi Szigetvár Sava Bodrog Szamos Körös Maros Leitha Csepel Lika Orjen Tátra Triglav Dinara Csikós Pandúr Réka Turul Huszár Ulan 
 		}
 		army_names=
 		{
-			"Hadsereg a $PROVINCE$"
+			*Hadsereg a $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotta a $PROVINCE$"
+			*Flotta a $PROVINCE$*
 		}
 	}
 	karelian=
@@ -2523,7 +2523,7 @@ culture_rules=
 			Berg Björn Blom 
 			Cronstedt
 			Dufva
-			Ehrensvärd "von Essen" 
+			Ehrensvärd *von Essen* 
 			Glad
 			Haataja Helander Helin Hiltunen Horn
 			Ilkka Isotalo
@@ -2545,8 +2545,8 @@ culture_rules=
 			Kullervo Karelen Kymi
 			Lemminkäinen
 			Oulu
-			"Per Brahe"
-			Sampo "St. Henrik"
+			*Per Brahe*
+			Sampo *St. Henrik*
 			Tavastehus
 			Väinämöinen Vasa Vanda Vuoksi
 			Åbo
@@ -2581,8 +2581,8 @@ culture_rules=
 			Faustino
 			Fiorenzo Gennaro
 			Raffaele Silvio Tancredi
-			"Gian Galeazzo" "Filippo Maria" "Galeazzo Maria" "Giancarlo" "Giovanni Maria" "Lodovico Maria" "Massimiliano" Ermes "Ascanio Maria" Ottaviano
-			"Sforza Maria" Emanuele Geronimo Marcello Raniero Timoteo
+			*Gian Galeazzo* *Filippo Maria* *Galeazzo Maria* *Giancarlo* *Giovanni Maria* *Lodovico Maria* *Massimiliano* Ermes *Ascanio Maria* Ottaviano
+			*Sforza Maria* Emanuele Geronimo Marcello Raniero Timoteo
 		}
 		female_names=
 		{
@@ -2599,42 +2599,42 @@ culture_rules=
 		leader_names=
 		{
 			Acton Albricci Badoglio Baldissera Baratieri Bava-Beccaris Cadorna Cagni Canevaro Capello
-			Caviglia Ceccherini Cialdini Cusani d'Absburgo-Toscana d'Austria-Este Dezza "di Borbone di Parma" "di Robilant" "di Savoia"
-			"di Savoia-Aosta" Emo Fanti Fara Filomarino Garibaldi Giardino Govone "La Màrmora" Mambretti 
-			Menabrea Orengo "Pacoret de Saint Bon" Pecori-Giraldi "Pellion di Persano" Pelloux Perruchetti Pianelli Porro
-			Presbitero Ramorino Ricotti-Magnani Sacchi Saletta Sanna Solari "Thaon di Revel" Vaccari Zupelli
-			Adelasio Aldini Alessandri "Arborio Mella" "Barbiano Belgioioso" Bargnani "Bigliori di Lava" Birago Borromeo Brunetti
-			Caetani "di Campofregoso" Caracciolo Carafa "di Cardé" "del Carreto" Containi Franchi Ghislieri Gonzaga "Grimaldi di Busca" "de Guzman"
-			Lamberti "de Leiva" Luosi "Luserna Bigliori" "Luserna della Torre" Mancini "Medici di Marignano" Melzi "del Monte" Moscati
-			Odescalchi "Paleologi Montferrato" Paradisi Pico Ruga Sabbati "di Saluzzo" Savoldi "della Scalla" Serbelloni Sfondrati Sforza Sommariva Sopransi Spinola
+			Caviglia Ceccherini Cialdini Cusani d'Absburgo-Toscana d'Austria-Este Dezza *di Borbone di Parma* *di Robilant* *di Savoia*
+			*di Savoia-Aosta* Emo Fanti Fara Filomarino Garibaldi Giardino Govone *La Màrmora* Mambretti 
+			Menabrea Orengo *Pacoret de Saint Bon* Pecori-Giraldi *Pellion di Persano* Pelloux Perruchetti Pianelli Porro
+			Presbitero Ramorino Ricotti-Magnani Sacchi Saletta Sanna Solari *Thaon di Revel* Vaccari Zupelli
+			Adelasio Aldini Alessandri *Arborio Mella* *Barbiano Belgioioso* Bargnani *Bigliori di Lava* Birago Borromeo Brunetti
+			Caetani *di Campofregoso* Caracciolo Carafa *di Cardé* *del Carreto* Containi Franchi Ghislieri Gonzaga *Grimaldi di Busca* *de Guzman*
+			Lamberti *de Leiva* Luosi *Luserna Bigliori* *Luserna della Torre* Mancini *Medici di Marignano* Melzi *del Monte* Moscati
+			Odescalchi *Paleologi Montferrato* Paradisi Pico Ruga Sabbati *di Saluzzo* Savoldi *della Scalla* Serbelloni Sfondrati Sforza Sommariva Sopransi Spinola
 			Testi Tizzone Visconti
 		}
 		ship_names=
 		{
-			Alliata "Ariberto d'Intimiano" Ansperto "Azzone Visconti"
-			Celentano "come Angilberto" Como Cremona
-			"Filippo Maria" "Fiumi Lambro" "Fiumi l'Olona" "Fiume Seveso" "Francesco Sforza"
-			"Gian Galeazzo Visconti"
+			Alliata *Ariberto d'Intimiano* Ansperto *Azzone Visconti*
+			Celentano *come Angilberto* Como Cremona
+			*Filippo Maria* *Fiumi Lambro* *Fiumi l'Olona* *Fiume Seveso* *Francesco Sforza*
+			*Gian Galeazzo Visconti*
 			Lecco Lodi
 			Pavia
-			"Re Alboino"
-			"San Babila" "San Bernardino alle Ossa" "San Cristoforo sul Naviglio" "San Giovanni in Conca" "San Gottardo" "San Lorenzo" "San Marco" "San Nazaro Maggiore" "San Simpliciano" "San Satiro" "Santa Maria dei Miracoli" Sant'Agostino Sant'Ambrogio Sant'Eustorgio "Santo Stefano" Sondrio
+			*Re Alboino*
+			*San Babila* *San Bernardino alle Ossa* *San Cristoforo sul Naviglio* *San Giovanni in Conca* *San Gottardo* *San Lorenzo* *San Marco* *San Nazaro Maggiore* *San Simpliciano* *San Satiro* *Santa Maria dei Miracoli* Sant'Agostino Sant'Ambrogio Sant'Eustorgio *Santo Stefano* Sondrio
 			Terragni Teodolinda Torriani
 			Valperto Varese Virgilio
-			"Dante Alighieri" "Giulio Cesare" "Andrea Doria" Duilio "Francesco Caracciolo" Littorio Roma Terribile Formidabile "Principe di Carignano" "Conte Verde" "Re di Portogallo" "Regina Maria Pia" "San Martino" Castelfidardo Ancona Affondatore "Principe Amedeo" "Ruggiero di Lauria" "Francesco Morosini" "Emanuele Filiberto"
-			Libia Basilicata Quarto "Valle d'Aosta" Trentino Marche Lazio Abruzzo Molise
-			"Marco Polo" "Carlo Alberto" "Vettor Pisani" "General San Martin" "General Belgrano" "General Pueyrredon" "San Giorgio" "San Marco" "Nino Bixio" Fiume Gorizia Pola Zara Bolzano
+			*Dante Alighieri* *Giulio Cesare* *Andrea Doria* Duilio *Francesco Caracciolo* Littorio Roma Terribile Formidabile *Principe di Carignano* *Conte Verde* *Re di Portogallo* *Regina Maria Pia* *San Martino* Castelfidardo Ancona Affondatore *Principe Amedeo* *Ruggiero di Lauria* *Francesco Morosini* *Emanuele Filiberto*
+			Libia Basilicata Quarto *Valle d'Aosta* Trentino Marche Lazio Abruzzo Molise
+			*Marco Polo* *Carlo Alberto* *Vettor Pisani* *General San Martin* *General Belgrano* *General Pueyrredon* *San Giorgio* *San Marco* *Nino Bixio* Fiume Gorizia Pola Zara Bolzano
 			Fulmine Lampo Freccia Dardo Strale Euro Ostro Nembo Turbine Aquilone Borea Zeffiro Espero Artigliere Bersagliere Corazziere Garibaldino
 			Granatiere Lanciere Alpino Pontiere Ascaro Indomito Impavido Impetuoso Insidioso Intrepido Irrequieto Ardito Ardente Audace Animoso
-			Rosolino Pilo" "Giuseppe Cesare Abba" "Pilade Bronzetti" "Giuseppe Missori" "Antonio Mosto" "Ippolito Nievo" "Francesco Nullo" "Simone Schiaffino" "Giuseppe Sirtori" "Giovanni Acerbi" "Vincenzo Giordano Orsini" "Francesco Stucco"  
+			Rosolino Pilo* *Giuseppe Cesare Abba* *Pilade Bronzetti* *Giuseppe Missori* *Antonio Mosto* *Ippolito Nievo* *Francesco Nullo* *Simone Schiaffino* *Giuseppe Sirtori* *Giovanni Acerbi* *Vincenzo Giordano Orsini* *Francesco Stucco*  
 		}
 		army_names=
 		{
-			"Armata di $PROVINCE$"
+			*Armata di $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotta di $PROVINCE$"
+			*Flotta di $PROVINCE$*
 		}
 	}
 	mali=
@@ -2651,9 +2651,9 @@ culture_rules=
 			Mahmud Majan Malla Mamadi Mamoudou Manding-Bory Mari-Djata Maÿroumfa Missi-Izé Morobani Musa
 			Nintasanay Nuh Ouali Ouankoÿ Ouati Reidja Sakoura Salman Samsou-Béri Samsou-Keïna Sandaki Soumaba
 			Soumaoro Soundiata Sulayman Takoi Tib Tomo Tunka Umar Yama Yaqub Yasiboy Zakoi Zenku
-			Mule Mamadu Al-Hajj Muhammad Bakari "'Abd al-Rahman" Al-Mukhtar Birahim "Amada Sire" Nguia Hammadi
-			Bubu Ilo Kanta Al-Mansur 'Ammar "Sa'ud 'Arjud" Haddu Sa'id "Dhu al-Nun" "'Abd Allah" Nasr Yahya
-			Sanibar 'Abbas Benkano Zenka Mami Ba-Bakribin "'Abd al-Qadir" Yusuf Santa'a "Al-Fa' Ibrahim"
+			Mule Mamadu Al-Hajj Muhammad Bakari *'Abd al-Rahman* Al-Mukhtar Birahim *Amada Sire* Nguia Hammadi
+			Bubu Ilo Kanta Al-Mansur 'Ammar *Sa'ud 'Arjud* Haddu Sa'id *Dhu al-Nun* *'Abd Allah* Nasr Yahya
+			Sanibar 'Abbas Benkano Zenka Mami Ba-Bakribin *'Abd al-Qadir* Yusuf Santa'a *Al-Fa' Ibrahim*
 			Kaladian Mamari Biton Do Tyefolo Nyenemba Ben Kuma Masala Turukoro Bina Kege Mamuru Masaloma Karamoko Bodyan
 		}
 		female_names=
@@ -2678,18 +2678,18 @@ culture_rules=
 		}
 		ship_names=
 		{
-			Kiringa Timbuktu "Koumbi Saleh" Gao
-			Jenne "Sundiata Keita" "Kankan Musa"
-			"Kouroukan Fouga" "Wali Keita" "Quati Keita"
-			"Khalifa Keita" Sakura
+			Kiringa Timbuktu *Koumbi Saleh* Gao
+			Jenne *Sundiata Keita* *Kankan Musa*
+			*Kouroukan Fouga* *Wali Keita* *Quati Keita*
+			*Khalifa Keita* Sakura
 		}
 		army_names=
 		{
-			"Kelebolo mà $PROVINCE$"
+			*Kelebolo mà $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Jikankurunw mà $PROVINCE$"
+			*Jikankurunw mà $PROVINCE$*
 		}
 	}
 	norwegian=
@@ -2744,7 +2744,7 @@ culture_rules=
 			Torgeirsson Torsson 
 			Adeler Balchen Berg Bloch Borresen Bratzland Brentzon Dhal Egge Fleicher
 			Frisvold Hákonarson Hansen Hund Kaldager Konow Lambrechts Morgenstierne Munthe Petersen
-			Rye Sissener Skjalgsson Tambarskjelve "von Holstein-Glücksburg" "von Klenow" Wedel-Jarlsberg Wiborg With Zeiner-Gundersen
+			Rye Sissener Skjalgsson Tambarskjelve *von Holstein-Glücksburg* *von Klenow* Wedel-Jarlsberg Wiborg With Zeiner-Gundersen
 		}
 		ship_names=
 		{
@@ -2756,18 +2756,18 @@ culture_rules=
 			Trondheim
 			Áss Vanr Álfr Jötunn
 			Ellida Sleipner Viking Frithjof Rjukan Sarpen Lougen Glommen 
-			Freia Desideira "St Olaf" "Kong Sverre" Ellida Nordssthernen Nornen Nidaros Ørnen
+			Freia Desideira *St Olaf* *Kong Sverre* Ellida Nordssthernen Nornen Nidaros Ørnen
 			Thor Odin Njord Freyr Tyr Bragl Heimdall Hoder Vidar Ale Ullr Forseti
 			Skorpionen Mjølner Thrudvang
-			Heimdal "Fridtjof Nansen" Nordkapp
+			Heimdal *Fridtjof Nansen* Nordkapp
 		}
 		army_names=
 		{
-			"Hær av $PROVINCE$"
+			*Hær av $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flåte av $PROVINCE$"
+			*Flåte av $PROVINCE$*
 		}
 	}
 	nubian=
@@ -2777,48 +2777,48 @@ culture_rules=
 		base_country_V2=ETH
 		male_names=
 		{
-			"'Amâra"
-			"'Abd al-Qâdir"
-			"Nâ'l"
-			"Dakîn al-'Adil"
-			"Dûra"
-			"Taiyîb"
-			"Unsa"
-			"Adlân"
-			"Bâdî"
-			"Rubât"
-			"Nûl"
-			"Nâsir"
-			"Ranfi"
-			"Eltecit"
-			"Joel"
-			"Koudlaniel"
-			"Agban"
-			"Ranfi"
-			"Isawi"
-			"Hashim"
-			"Maqdum"
-			"Awkal"
-			"Hassan"
-			"Agban"
-			"Abu Likayik"
-			"Rajab"
-			"Ahmad"
-			"Rifaya"
-			"Ibrahim"
-			"Idris"
-			"Tindhim"
-			"'Abd al-Rahman"
-			"Sulayman"
-			"Yusuf"
-			"Ya'qub"
-			"Ismâ'îl"
-			"Musa"
-			"Muhammad"
-			"Ishaq"
-			"Halim"
-			"Mustafa" 
-			"Abu Bakr"
+			*'Amâra*
+			*'Abd al-Qâdir*
+			*Nâ'l*
+			*Dakîn al-'Adil*
+			*Dûra*
+			*Taiyîb*
+			*Unsa*
+			*Adlân*
+			*Bâdî*
+			*Rubât*
+			*Nûl*
+			*Nâsir*
+			*Ranfi*
+			*Eltecit*
+			*Joel*
+			*Koudlaniel*
+			*Agban*
+			*Ranfi*
+			*Isawi*
+			*Hashim*
+			*Maqdum*
+			*Awkal*
+			*Hassan*
+			*Agban*
+			*Abu Likayik*
+			*Rajab*
+			*Ahmad*
+			*Rifaya*
+			*Ibrahim*
+			*Idris*
+			*Tindhim*
+			*'Abd al-Rahman*
+			*Sulayman*
+			*Yusuf*
+			*Ya'qub*
+			*Ismâ'îl*
+			*Musa*
+			*Muhammad*
+			*Ishaq*
+			*Halim*
+			*Mustafa* 
+			*Abu Bakr*
 			Abdullah Abbas Said Ismail Mansur Rahman Abdallahi Malusi Tahir Wiraj Amsalu Nijam Bakri
 		}
 		female_names=
@@ -2859,11 +2859,11 @@ culture_rules=
 		}
 		army_names=
 		{
-			"Jaysh mn $PROVINCE$" 
+			*Jaysh mn $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Astoul mn $PROVINCE$"
+			*Astoul mn $PROVINCE$*
 		}
 	}
 	old_prussian=
@@ -2882,22 +2882,22 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"von Altenbockum" Ascheberg
-			"von Bach" Behr Bilderling Blomberg "von Boetticher" Borch Brincken  Brüggen Buchholtz
+			*von Altenbockum* Ascheberg
+			*von Bach* Behr Bilderling Blomberg *von Boetticher* Borch Brincken  Brüggen Buchholtz
 			Derschau Drachenfels Düsterlohe
 			Engelhardt
 			Fircks Fölkersam Funck
 			Grotthuss
-			Haaren Hahn Heyking "von Hoerner" Howen
+			Haaren Hahn Heyking *von Hoerner* Howen
 			Kleist Klopmann Komorowski Koskull
-			Lambsdorff "von der Launitz" "von Lysander"
+			Lambsdorff *von der Launitz* *von Lysander*
 			Mirbach
 			Nettelhorst Nolcken
 			Oelsen Offenberg Osten-Sacken
 			Pahlen
-			Raczynski Recke Ropp Rosenberg "von Rummel"
-			Schlippenbach "von Schroeders" Seefeld Stackelberg Stromberg
-			Taube "von Timroth"
+			Raczynski Recke Ropp Rosenberg *von Rummel*
+			Schlippenbach *von Schroeders* Seefeld Stackelberg Stromberg
+			Taube *von Timroth*
 		}
 		ship_names=
 		{
@@ -2906,7 +2906,7 @@ culture_rules=
 		}
 		army_names=
 		{
-			"Karîs iš $PROVINCE$" 
+			*Karîs iš $PROVINCE$* 
 		}
 	}
 	persian=
@@ -2921,11 +2921,11 @@ culture_rules=
 			Faruq Farrukhzad Farzad Fath Ferdows Fereedun Ghobad Gholam Godarz Goshtasb Hafez Hassan Hazarasp Hedayat Hooshyar Hormazd Hormoz Husayn
 			Humayun Jahandar Jahangir Jahanshah Jamshid Javeed Kambiz Kamran Kavoos Keyghobad Keykhosrau Kharmandar Khashayar Kavadh Khodadad Khosrau
 			Khudayar Khurshid Kurush Mahmûd Manuchihr Manushihr Marzuban Mashad Maziar Mehrab Mehrzad Mohammad Morad Morteza Mozaffar Nard Naveed Nawid Nezam Parviz Pashang Peroz
-			Pujman Reza Rostam Ruhollah Sadri Salman Shahab Shahbaz Shahin Shahram "Shâh Rukh" Shahruz Shahryar Shapur Shayan Sina Tamâshp Vahhab Vahid
+			Pujman Reza Rostam Ruhollah Sadri Salman Shahab Shahbaz Shahin Shahram *Shâh Rukh* Shahruz Shahryar Shapur Shayan Sina Tamâshp Vahhab Vahid
 			Vali Vandad Varshasb Vishtasb Yazdegerd Yousef Zahak Zakaria Zand Zartosht Zia
 			Abolghasem Abdolhossein Abdolsamad Abdolazim
-			Joneid Haidar "Mohammad Kodabânda" 'Abbâs Safi Solaymân Hosayn Nâder 'Âdel "Nâder Mirza" Karim "Abu'l Fath" "Mohammad Ali" "Mohammad Sâdiq"
-			Ja'far "Loft Ali" "Aga Muhammad" "Fath Alî"
+			Joneid Haidar *Mohammad Kodabânda* 'Abbâs Safi Solaymân Hosayn Nâder 'Âdel *Nâder Mirza* Karim *Abu'l Fath* *Mohammad Ali* *Mohammad Sâdiq*
+			Ja'far *Loft Ali* *Aga Muhammad* *Fath Alî*
 		}
 		female_names=
 		{
@@ -2953,40 +2953,40 @@ culture_rules=
 		}
 		ship_names=
 		{
-			Abathur "Adamn Kasia" "Aesma Daeva" Agas
-			Ahriman Ahura "Ahura Mazda" Ahurani Airyaman
-			"Aka Manah" Aladdin Allatum Amashaspan Ameratat
-			"Amesha Spentas" Anahita "Angra Mainyu" Anjuman
-			"Apam-natat" Apaosa Aredvi Arishtat Armaiti Arsaces
-			"Asha vahista" Asman "Asto Vidatu" "Astvat-Ereta"
-			Atar "Azi Dahaka" Baga Bahram Burijas Bushyasta Buyasta
+			Abathur *Adamn Kasia* *Aesma Daeva* Agas
+			Ahriman Ahura *Ahura Mazda* Ahurani Airyaman
+			*Aka Manah* Aladdin Allatum Amashaspan Ameratat
+			*Amesha Spentas* Anahita *Angra Mainyu* Anjuman
+			*Apam-natat* Apaosa Aredvi Arishtat Armaiti Arsaces
+			*Asha vahista* Asman *Asto Vidatu* *Astvat-Ereta*
+			Atar *Azi Dahaka* Baga Bahram Burijas Bushyasta Buyasta
 			Camros Daena Daevas Ahaka Dahhak Dena Dev Diwe Drug
-			Drvaspa Frashegird Fravashis Gandarewa "Gao-kerena"
-			Gayomard Gayomart "Geus-Tasan" "Geus-Urvan" Haoma
+			Drvaspa Frashegird Fravashis Gandarewa *Gao-kerena*
+			Gayomard Gayomart *Geus-Tasan* *Geus-Urvan* Haoma
 			Haurvatat Humay Hvar Hvarekhshaeta Indar Indra Izha
-			Jamshid Jeh Karshipta Kavi Khara "Khshathra vairya"
+			Jamshid Jeh Karshipta Kavi Khara *Khshathra vairya*
 			Kundrav Mah Mahre Mahrianag Manu Manuchihir Mao 
 			Mashyane Mashye Menog Mithra Nairyosangha Nanghaithya
 			Neriosang Ormazd Peris Peshdadians Rapithwin Rashnu
-			Rustam Saurva Simurgh "Spenta Mainyu" Sraosa Srosh
+			Rustam Saurva Simurgh *Spenta Mainyu* Sraosa Srosh
 			Tawrich Thunaupa Tistrya Tushnamatay Vanant Vata
-			Verethragna "Vohu Manah" Vouruskasha Yam Yasht Yazata
-			Yezidi Yima Zal Zam "Zam-Armatay" Zarathustra Zarich
-			"Zend-Avesta" Zurvan
-			Iran "Esmail Yekom" "Abbas Bozorg" "Safieddin Ardabili" "Tahmasp Yekom" "Abbas Duvam"
-			"Fathali Shah" "Abbas Mirza" "Nasireddin" "Mozaffareddin" "Mohammad Ali" "Shah Ahmad"
-			Ferhumand Jelaleddin Nureddin Danesh Zureddin Nirumand Khosthaneshdani "Sahib-i Azam" Dalir
-			Karun Zab Aras Helmand Diyala "Zab-e Kuchek" Zayande Atrek Alamut 
-			Alborz Damavand Kholeno "Azad Koh" Tochal Sarakchal Kharsang Zagros "Zard Koh"
-			Arzu Fatima Nilofer Omid Laleh "Koh-i Nor" Jaleh Firuz Darya Roshan Shahrazad Shirin Yasmin Ziba Zuleika Behruz Farid Humayun Kambiz Kamyar Ruzbeh
+			Verethragna *Vohu Manah* Vouruskasha Yam Yasht Yazata
+			Yezidi Yima Zal Zam *Zam-Armatay* Zarathustra Zarich
+			*Zend-Avesta* Zurvan
+			Iran *Esmail Yekom* *Abbas Bozorg* *Safieddin Ardabili* *Tahmasp Yekom* *Abbas Duvam*
+			*Fathali Shah* *Abbas Mirza* *Nasireddin* *Mozaffareddin* *Mohammad Ali* *Shah Ahmad*
+			Ferhumand Jelaleddin Nureddin Danesh Zureddin Nirumand Khosthaneshdani *Sahib-i Azam* Dalir
+			Karun Zab Aras Helmand Diyala *Zab-e Kuchek* Zayande Atrek Alamut 
+			Alborz Damavand Kholeno *Azad Koh* Tochal Sarakchal Kharsang Zagros *Zard Koh*
+			Arzu Fatima Nilofer Omid Laleh *Koh-i Nor* Jaleh Firuz Darya Roshan Shahrazad Shirin Yasmin Ziba Zuleika Behruz Farid Humayun Kambiz Kamyar Ruzbeh
 		}
 		army_names=
 		{
-			"Artesh-e-$PROVINCE$"
+			*Artesh-e-$PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Naogan-e-$PROVINCE$"
+			*Naogan-e-$PROVINCE$*
 		}
 	}
 	polish=
@@ -3016,8 +3016,8 @@ culture_rules=
 			Usciech
 			Waclaw Wanko Wawrzyniec Wielislaw Wieslaw Wincenty Wit Witosz Wladyslaw Wojciech Wojuta Wszebor
 			Zbigniew Zbyszko Zegota Zelibrat Zygmunt
-			August "Jan Albert" "Jan Kazimierz" "Michal Korybut" "Zygmunt August" "Aleksander Karol"
-			"Zygmunt Kazimierz" Krzysztof Fryderyk "Jan Olbracht" "Jan Zygmunt" "Karol Ferdynand"
+			August *Jan Albert* *Jan Kazimierz* *Michal Korybut* *Zygmunt August* *Aleksander Karol*
+			*Zygmunt Kazimierz* Krzysztof Fryderyk *Jan Olbracht* *Jan Zygmunt* *Karol Ferdynand*
 			Olbracht Albert Aleksy Bartlomiej Bronislaw Dawid Dominik Emil Eugeniusz Ferdynand
 			Gustaw Igor Iwan Lech Lucjusz Ludwik Lukasz Maksym Mariusz Oskar Patryk Rafal Sylwester
 			Szymon Zygfryd
@@ -3071,35 +3071,35 @@ culture_rules=
 		}
 		ship_names=
 		{
-			"Arka Noego"
-			"Bialy Orzel" Burza "Bialy Lew" "Brzesko-Kujawskie" Belzkie Braclawskie
-			Charitas "Czarny Orzel" "Czarny Kruk" Chelminskie Czernichowskie
+			*Arka Noego*
+			*Bialy Orzel* Burza *Bialy Lew* *Brzesko-Kujawskie* Belzkie Braclawskie
+			Charitas *Czarny Orzel* *Czarny Kruk* Chelminskie Czernichowskie
 			Fortuna
 			Gryf Gwiazda Gnieznienskie
 			Inoworclawskie
-			"Król Dawid" Kaliskie Krakowskie Kijowskie Kraków
-			Lublin "Latajacy Jelen" Lwów Leczyckie Lubelskie
-			"Maly Bialy Orzel" Malborskie Mazowieckie
-			Niewrazliwy "Nowy Czarny Orzel"
-			"Prorok Samuel" "Panna Wodna" Plomien Poznanskie Plockie Podlaskie Podolskie
-			"Rycerz Swiety Jerzy" Rawskie Ruskie
-			Strzelec Suwerenny "Swiety Piotr" Sieradzkie Sandomierskie "Swiety Kazimierz"
-			"Wielkie Slonce" Wodnik Warminskie Wolynskie Warszawa
-			Zwyciestwo "Zólty Lew"
-			"Boleslaw" "Jan Kostka" "Michal Figenow" "Mateusz Schapring" "Jakob Mora"
+			*Król Dawid* Kaliskie Krakowskie Kijowskie Kraków
+			Lublin *Latajacy Jelen* Lwów Leczyckie Lubelskie
+			*Maly Bialy Orzel* Malborskie Mazowieckie
+			Niewrazliwy *Nowy Czarny Orzel*
+			*Prorok Samuel* *Panna Wodna* Plomien Poznanskie Plockie Podlaskie Podolskie
+			*Rycerz Swiety Jerzy* Rawskie Ruskie
+			Strzelec Suwerenny *Swiety Piotr* Sieradzkie Sandomierskie *Swiety Kazimierz*
+			*Wielkie Slonce* Wodnik Warminskie Wolynskie Warszawa
+			Zwyciestwo *Zólty Lew*
+			*Boleslaw* *Jan Kostka* *Michal Figenow* *Mateusz Schapring* *Jakob Mora*
 			Wisla Odra Warta Narew San Notec Bug
-			"Jan Heweliusz" "Jan Sniadecki" "Jan Brozek" "Jan Mikolaj Smogulecki" "Albert Brudzewski" "Stanislaw Lubieniecki"  
+			*Jan Heweliusz* *Jan Sniadecki* *Jan Brozek* *Jan Mikolaj Smogulecki* *Albert Brudzewski* *Stanislaw Lubieniecki*  
 			Anna Maria Katarzyna Barbara Ewa Zofia Monika
-			"Jan Sarkander" "Andrzej Bobola" "Jan Kety" " Stanislaus Kostka" "Stanislaw Szczepanowski" "Swieta Kinga"
-			"Krzysztof Arciszewski" "Jedrzej Sniadecki" "Hugo Kollataj" "Jan Dlugosz" "Adam Naruszewicz" "Samuel Linde" "Mikolaj Rej" 
+			*Jan Sarkander* *Andrzej Bobola* *Jan Kety* * Stanislaus Kostka* *Stanislaw Szczepanowski* *Swieta Kinga*
+			*Krzysztof Arciszewski* *Jedrzej Sniadecki* *Hugo Kollataj* *Jan Dlugosz* *Adam Naruszewicz* *Samuel Linde* *Mikolaj Rej* 
 		}
 		army_names=
 		{
-			"Armia z $PROVINCE$"
+			*Armia z $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flota z $PROVINCE$"
+			*Flota z $PROVINCE$*
 		}
 	}
 	portugese=
@@ -3112,8 +3112,8 @@ culture_rules=
 			Abril Álvaro Ângelo Abel Afonso Aires Alexandre Alvito António Bermudo Bernardo Damião Dinis Diogo Duarte Egas Estêvão Eugénio Filipe Fernão Fernando Francisco
 			Frederico Garcia Gil Gomes Gonçalo Gregório Guilherme Heitor Henrique Hermenegildo Hermígio Hugo Igor Inácio Júlio Jerónimo João José Julião Lopo Lucídio Luís Manoel Manuel Marcelo
 			Marco Martim Martinho Mem Mendo Miguel Monio Muno Nuno Octávio Ordonho Paio Pedro Pero Raimundo Ramiro Ricardo Roberto Rodrigo Rui Sancho Sebastião Soeiro Telmo Tiago Tomás Vasco Vicente Vímara Xelmirio
-			Teodósio Carlos Diego Jaime André "António Francisco"  Bartolomeu Caetano
-			Estevão "Francisco Xavier" Gabriel Gaspar Joaquim Jorge "José Manuel"
+			Teodósio Carlos Diego Jaime André *António Francisco*  Bartolomeu Caetano
+			Estevão *Francisco Xavier* Gabriel Gaspar Joaquim Jorge *José Manuel*
 			Lourenço Nicolau Paulo Rafael Rogério Simão Uriel
 			Adriano Alberto Alfredo Aquilino 
 			Artur Augusto Bernardo Bruno Cândido Christovão Cláudio
@@ -3131,30 +3131,30 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"Machado"
+			*Machado*
 			Cabral Coelho Corte-Real Coutinho
-			"da Câmara" "da Costa" "da Cunha" "da Fonseca" "de Albuquerque"
-			"de Almeida" "de Andrade" "de Aveiro" "de Ataíde" "de Azevedo"
-			"de Bragança" "de Brito" "de Carvalho" "de Castelo-Branco" "de Castro"
-			"de Correia" "de Faria" "da Gama" "de Guimarães" "de Lemos" "de Magalhães"
-			"de Marialva" "de Melo" "de Mendonça" "de Meneses" "de Noronha"
-			"de Oliveira" "de Paiva" "de Penamacor" "de Pimentel" "de Queiróz"
-			"de Sá" "de Sampaio" "de Sequeira" "de Sousa" "de Souto" "de Tavares"
-			"de Távora" "de Vilhena" Dias
+			*da Câmara* *da Costa* *da Cunha* *da Fonseca* *de Albuquerque*
+			*de Almeida* *de Andrade* *de Aveiro* *de Ataíde* *de Azevedo*
+			*de Bragança* *de Brito* *de Carvalho* *de Castelo-Branco* *de Castro*
+			*de Correia* *de Faria* *da Gama* *de Guimarães* *de Lemos* *de Magalhães*
+			*de Marialva* *de Melo* *de Mendonça* *de Meneses* *de Noronha*
+			*de Oliveira* *de Paiva* *de Penamacor* *de Pimentel* *de Queiróz*
+			*de Sá* *de Sampaio* *de Sequeira* *de Sousa* *de Souto* *de Tavares*
+			*de Távora* *de Vilhena* Dias
 			Eanes
-			"Ferreira Martins"
+			*Ferreira Martins*
 			Gomes Gonçalves
-			"Lemos de Brito"
-			"Martins de Mascarenhas" "de Vasconcelos" "Mendonça Furtado"
-			"Nunes Barreto"
+			*Lemos de Brito*
+			*Martins de Mascarenhas* *de Vasconcelos* *Mendonça Furtado*
+			*Nunes Barreto*
 			Pereira
 			Rebelo Rodrigues
 			Sarmento
-			Teixeira "Teles de Meneses"
+			Teixeira *Teles de Meneses*
 			Amaral Barreto Bleck Braga Cabral Capelo Carmona Coelho Correia Coutinho
-			"da Silva" "de Arriaga" "de Bragança-Coburgo"
-			"de Gusmão" "de Lacerda" "de Mesquita" "de Moura"
-			"dos Reis" "dos Santos" Fernandes Figueira "Freire de Andrade" Gago Gil
+			*da Silva* *de Arriaga* *de Bragança-Coburgo*
+			*de Gusmão* *de Lacerda* *de Mesquita* *de Moura*
+			*dos Reis* *dos Santos* Fernandes Figueira *Freire de Andrade* Gago Gil
 			Herculano Ivens Keil Lopes Mendes Moniz Mouzinho Nogueira 
 			Ortigão Pinheiro Pinto Pires Pomar Pulido Queiroz Quintanilha
 			Ribeiro Salazar Sérgio Silveira Vidigal Vieira
@@ -3162,33 +3162,33 @@ culture_rules=
 		ship_names=
 		{
 			Anunciada
-			Bérrio "Boa Viagem" "Bom Jesus" "Bom Jesus do Carmo" "Bom Jesus de Marzagão" "Bom Jesus da Vidigueira" Bretão
-			Cambaia Chagas "Correio d'Ásia"
-			El-Rei Enxobregas "Espírito Santo" Estrela
-			"Flor do Mar"
+			Bérrio *Boa Viagem* *Bom Jesus* *Bom Jesus do Carmo* *Bom Jesus de Marzagão* *Bom Jesus da Vidigueira* Bretão
+			Cambaia Chagas *Correio d'Ásia*
+			El-Rei Enxobregas *Espírito Santo* Estrela
+			*Flor do Mar*
 			Garça
-			"Imaculada Conceição"
+			*Imaculada Conceição*
 			Jóia
-			"Monte Carvalho"
-			"Nazaré" "Nossa Senhora" "N. Sra. da Aparecida" "N. Sra. da Atalaia" "N. Sra. da Batalha" "N. Sra. da Boa Hora" "N. Sra. da Boa Memória" "N. Sra. da Boa Viagem" "N. Sra. da Candalaria" "N. Sra. da Caridade" "N.Sra. da Conceição" "N. Sra. da Consolação" "N. Sra. da Esperança" "N. Sra. da Glória" "N. Sra. da Graça" "N. Sra. da Guia" "N. Sra. d'Ajuda Lusitana" "N. Sra. da Luz" "N. Sra. da Nazaré" "N. Sra. da Oliveira" "N. Sra. da Palma" "N. Sra. da Penha de França" "N. Sra. da Quietação" "N. Sra. da Salvação" "N. Sra. da Saúde" "N. Sra. da Visitação" "N. Sra. da Vitória" "N. Sra. das Ondas" "N. Sra. das Portas do Céu" "N. Sra. das Relíquias" "N. Sra. de Belém" "N. Sra. de Guadalupe" "N. Sra. do Castelo" "N. Sra. do Livramento" "N. Sra. do Loreto" "N. Sra do Paraíso" "N. Sra. do Pilar" "N. Sra. do Rosário" "N. Sra. dos Prazeres" "N. Sra. dos Ramos"
-			"Princesa do Céu"
-			Raínha "Reis Magos"
-			"Sacramento" "Santa Ana" "Santa Catarina" "Santa Cruz" "Santa Fé" "Santa Helena" "Santa Joana" "Santa Madre de Deus" "S. Maria de Sabóia" "Santo Milagre" "Santiago Maior" "Santíssima Trindade" "Santíssimo Sacramento" "Santo Alberto" "Santo António" "Santo Espírito" "Santo Inácio" "São Bartolomeu" "São Bento" "São Bernardo" "São Carlos" "São Cristovão" "São Domingos" "São Filipe" "São Francisco" "São Francisco de Borja" "São Gabriel" "São Gonçalo" "São João" "São João de Deus" "São Jorge" "S. José" "São Julião" "São Lourenço" "São Lucas" "São Luís" "São Mateus" "São Paulo" "São Pedro" "São Rafael" "São Roque" "São Salvador" "São Tomé" "São Valentim" "S. António de Lisboa" "S. Catarina de Ribamar" "S. Francisco de Assis" "S. Francisco Xavier" "S. João Baptista" "S. João Evangelista" "S. Pedro de Rates" "S. Pedro da Ribeira" "S. Salvador do Mundo" "S. Teresa de Jesus" "S. Tomé da Cantuária"
+			*Monte Carvalho*
+			*Nazaré* *Nossa Senhora* *N. Sra. da Aparecida* *N. Sra. da Atalaia* *N. Sra. da Batalha* *N. Sra. da Boa Hora* *N. Sra. da Boa Memória* *N. Sra. da Boa Viagem* *N. Sra. da Candalaria* *N. Sra. da Caridade* *N.Sra. da Conceição* *N. Sra. da Consolação* *N. Sra. da Esperança* *N. Sra. da Glória* *N. Sra. da Graça* *N. Sra. da Guia* *N. Sra. d'Ajuda Lusitana* *N. Sra. da Luz* *N. Sra. da Nazaré* *N. Sra. da Oliveira* *N. Sra. da Palma* *N. Sra. da Penha de França* *N. Sra. da Quietação* *N. Sra. da Salvação* *N. Sra. da Saúde* *N. Sra. da Visitação* *N. Sra. da Vitória* *N. Sra. das Ondas* *N. Sra. das Portas do Céu* *N. Sra. das Relíquias* *N. Sra. de Belém* *N. Sra. de Guadalupe* *N. Sra. do Castelo* *N. Sra. do Livramento* *N. Sra. do Loreto* *N. Sra do Paraíso* *N. Sra. do Pilar* *N. Sra. do Rosário* *N. Sra. dos Prazeres* *N. Sra. dos Ramos*
+			*Princesa do Céu*
+			Raínha *Reis Magos*
+			*Sacramento* *Santa Ana* *Santa Catarina* *Santa Cruz* *Santa Fé* *Santa Helena* *Santa Joana* *Santa Madre de Deus* *S. Maria de Sabóia* *Santo Milagre* *Santiago Maior* *Santíssima Trindade* *Santíssimo Sacramento* *Santo Alberto* *Santo António* *Santo Espírito* *Santo Inácio* *São Bartolomeu* *São Bento* *São Bernardo* *São Carlos* *São Cristovão* *São Domingos* *São Filipe* *São Francisco* *São Francisco de Borja* *São Gabriel* *São Gonçalo* *São João* *São João de Deus* *São Jorge* *S. José* *São Julião* *São Lourenço* *São Lucas* *São Luís* *São Mateus* *São Paulo* *São Pedro* *São Rafael* *São Roque* *São Salvador* *São Tomé* *São Valentim* *S. António de Lisboa* *S. Catarina de Ribamar* *S. Francisco de Assis* *S. Francisco Xavier* *S. João Baptista* *S. João Evangelista* *S. Pedro de Rates* *S. Pedro da Ribeira* *S. Salvador do Mundo* *S. Teresa de Jesus* *S. Tomé da Cantuária*
 			Taforeia Trindade
 			Visitação
-			"Antónia Rodrigues" "Duarte Pacheco Pereira" "Duarte de Almeida" "João da Nova" "Lopo Barriga" "Mem Moniz de Gandarei" "Munio Viegas" "Nuno Álvares Pereira"
-			"Príncipe Real" "Príncipe" "Rainha" "Infante Dom Pedro" Medusa "Maria Primeira" "São Sebastião" "Príncipe Regente" Golfinho Amazónia Pérola
-			"S. Gabriel" "S. Rafael" "Adamastor" "Rainha D. Amélia" "Almirante Reis" "República" "Pedro Nunes" "Gil Eannes"
-			"Fénix" "Amazona" "Cisne" "Minerva" "N.Sra. da Graça" "Princesa Carlota" "Princesa" "Tristão" "Ulisses" "Vénus" "S. João Príncipe" "Thétis" "Activa" "Princesa de Abiena" Andorinha "Real Fonsor" "BoaVentura" Serpente Diligente Gaivota "Real Fonza" Benjamim Tritão
-			"Estefânia" "Duque da Terceira" "Sá da Bandeira" "Mindelo"
+			*Antónia Rodrigues* *Duarte Pacheco Pereira* *Duarte de Almeida* *João da Nova* *Lopo Barriga* *Mem Moniz de Gandarei* *Munio Viegas* *Nuno Álvares Pereira*
+			*Príncipe Real* *Príncipe* *Rainha* *Infante Dom Pedro* Medusa *Maria Primeira* *São Sebastião* *Príncipe Regente* Golfinho Amazónia Pérola
+			*S. Gabriel* *S. Rafael* *Adamastor* *Rainha D. Amélia* *Almirante Reis* *República* *Pedro Nunes* *Gil Eannes*
+			*Fénix* *Amazona* *Cisne* *Minerva* *N.Sra. da Graça* *Princesa Carlota* *Princesa* *Tristão* *Ulisses* *Vénus* *S. João Príncipe* *Thétis* *Activa* *Princesa de Abiena* Andorinha *Real Fonsor* *BoaVentura* Serpente Diligente Gaivota *Real Fonza* Benjamim Tritão
+			*Estefânia* *Duque da Terceira* *Sá da Bandeira* *Mindelo*
 		}
 		army_names=
 		{
-			"Terço de $PROVINCE$" "Exército de $PROVINCE$" "Bandeira de $PROVINCE$"
+			*Terço de $PROVINCE$* *Exército de $PROVINCE$* *Bandeira de $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Armada de $PROVINCE$" "Esquadra de $PROVINCE$" "Frota de $PROVINCE$"
+			*Armada de $PROVINCE$* *Esquadra de $PROVINCE$* *Frota de $PROVINCE$*
 		}
 	}
 	rheinlaender=
@@ -3253,28 +3253,28 @@ culture_rules=
 			Eugster Frei Frisch Gasenzer Grüneisen Heberlin
 			Helberingen Hertzler Hiltbrand Honegger Luz Miller
 			Munzinger Oberholzer Schwendimann Spörri Vogt
-			"von Baltharsar" Wächter "von Hasseln" Zumbach
+			*von Baltharsar* Wächter *von Hasseln* Zumbach
 			Beck-Rzikowsky Blos Dankl Eisner Geiss Goering Hainisch Haus Held Hellpach
 			Hoffmann Hummel Köhler Mergenthaler Miklas Remmele Schmitt Schobber Seitz Steeb
-			Stolzer Trunk "von Baden" "von Benedek" "von Böhm-Ermolli" "von Brudermann" "von Clam-Gallas" "von der Tann" "von Dietrich" "von Gablenz"
-			"von Grünne" "von Habsburg" "von Hartmann" "von Haynau" "von Hess" "von Hohenhausen" "d'Aspre von Hoobreuk" "von Hortstein" "von Hötzendorf" "von Kirbach"
-			"von Kobratin" "von Schönburg" "von Tegetthoff" "von Uchatius" "von Wittelsbach" "von Württemberg" "von Zahringen" Wagner Wittmann "zu Hohenlohe"
+			Stolzer Trunk *von Baden* *von Benedek* *von Böhm-Ermolli* *von Brudermann* *von Clam-Gallas* *von der Tann* *von Dietrich* *von Gablenz*
+			*von Grünne* *von Habsburg* *von Hartmann* *von Haynau* *von Hess* *von Hohenhausen* *d'Aspre von Hoobreuk* *von Hortstein* *von Hötzendorf* *von Kirbach*
+			*von Kobratin* *von Schönburg* *von Tegetthoff* *von Uchatius* *von Wittelsbach* *von Württemberg* *von Zahringen* Wagner Wittmann *zu Hohenlohe*
 		}
 		ship_names=
 		{
 			Uri Unterwalden Glarus Zug
-			Lucerne "Wilhelm Tell"
+			Lucerne *Wilhelm Tell*
 			Dufour Rhein Rhöne Inn Ticino
-			"Werner Stauffacher" "Walter Fürst" "Arnold von Melchtal"
+			*Werner Stauffacher* *Walter Fürst* *Arnold von Melchtal*
 			Bellinzona Freiburg Fricktal Léman Linth Lugano Luzern Oberland Rätien Säntis Schaffhausen Solothurn Thurgau Waldstätte Wallis
 		}
 		army_names=
 		{
-			"Armee von $PROVINCE$"
+			*Armee von $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotte von $PROVINCE$"
+			*Flotte von $PROVINCE$*
 		}
 	}
 	russian=
@@ -3307,16 +3307,16 @@ culture_rules=
 		leader_names=
 		{
 			Apraksin
-			Bagration "Barclay de Tolly" Bibikoff Bodisco Boruffsin
+			Bagration *Barclay de Tolly* Bibikoff Bodisco Boruffsin
 			Golitzin
 			Kaibula Kamenski Kolzoff
 			Mensjikov Mustislavski
-			"Ostermann Tolstoy"
+			*Ostermann Tolstoy*
 			Paletskij
 			Rajevski
 			Schuvalov Sjeremetjev Sjtjenjatvev
 			Tiesenhusen
-			Vasiljevitj "von Buxhoevden" "von Knorring" "von Lascy"
+			Vasiljevitj *von Buxhoevden* *von Knorring* *von Lascy*
 			Alexseyev Antonov Azarov Badanov Brusilov Budyonny Chibisov Denikin 
 			Dragomirov Frolov Golivin Grishin Gurko Ivanov Konev Konstantinov Kornilov 
 			Kolchak Kuropatkin Lazarev Makarov Menshikov Nakhimov Nebogatov 
@@ -3325,25 +3325,25 @@ culture_rules=
 		}
 		ship_names=
 		{
-			"Dmitri Donskoi" "Vasiliy" "D. Aleksandrovich"
-			Rurik "Ivan Kalita" Schorna Coluna
+			*Dmitri Donskoi* *Vasiliy* *D. Aleksandrovich*
+			Rurik *Ivan Kalita* Schorna Coluna
 			Cortiza Olescho Piersek Troitzkoy Wolok
 			Klin Iausa
-			Mariya Ekaterina Aleksander Gangut Soyuz Alekseev Potemkin "General Alexeiev" Retivisan Kulikovo 
-			Minin "Kniaz Pozharskii" Pervenets Kreml "Ne Tron Menia" Smerch Lazarev "Pyotr Velikyy" Chesma Kyiv Minsk "Zaria Svobody" "Admiral Butakov" Kreiser Ladoga Georgii "Sissoi Veliky" Navarin "Pamiat Merkuria" Tsesarevich Narodnaya "Poluostrov Kamchatka" Kama Voronezh Bityug
-			Sviatoslav Vola Andrei Fershampenuaz Konstantin Gavriil Selafail Varna Yagudiil Sviatoslav "Dvenadtsat Apostolov" Rostislav Khrabryi Sinop Bosfor Uriil "Tri Sviatitelia" Arsis Smolensk Oriol Finland Vola Prokhor Varshava Retvisan Iezekiil Azov Kul’m Lesnoye Brien Berezino Ostroloenka Vladimir Fershampenuaz
-			Pallada Diana Askold Novik Boyarin Nakhimov Bogatyr Oleg Vityaz "General-Admiral" "Alexander Nevski" "Pamiyat Azova" Bayan Varyag Izmail Kinburn Navarin "Admiral Kornilov" Almaz  Asia Aurora Gromoboi Volga "Novaya Zemlya" Dnepr Desna Zarya
-			Uragan Veschun Koldun Lava Perun Strelets Tifon "Admiral Ushakov" "Admiral Senivain" Edinorog "Admiral Graf Apraksin" Pushkin "Semion Chelyuskin" Yenisei "Ozero Baykal" Vyazma Valdai Topozero
+			Mariya Ekaterina Aleksander Gangut Soyuz Alekseev Potemkin *General Alexeiev* Retivisan Kulikovo 
+			Minin *Kniaz Pozharskii* Pervenets Kreml *Ne Tron Menia* Smerch Lazarev *Pyotr Velikyy* Chesma Kyiv Minsk *Zaria Svobody* *Admiral Butakov* Kreiser Ladoga Georgii *Sissoi Veliky* Navarin *Pamiat Merkuria* Tsesarevich Narodnaya *Poluostrov Kamchatka* Kama Voronezh Bityug
+			Sviatoslav Vola Andrei Fershampenuaz Konstantin Gavriil Selafail Varna Yagudiil Sviatoslav *Dvenadtsat Apostolov* Rostislav Khrabryi Sinop Bosfor Uriil *Tri Sviatitelia* Arsis Smolensk Oriol Finland Vola Prokhor Varshava Retvisan Iezekiil Azov Kul’m Lesnoye Brien Berezino Ostroloenka Vladimir Fershampenuaz
+			Pallada Diana Askold Novik Boyarin Nakhimov Bogatyr Oleg Vityaz *General-Admiral* *Alexander Nevski* *Pamiyat Azova* Bayan Varyag Izmail Kinburn Navarin *Admiral Kornilov* Almaz  Asia Aurora Gromoboi Volga *Novaya Zemlya* Dnepr Desna Zarya
+			Uragan Veschun Koldun Lava Perun Strelets Tifon *Admiral Ushakov* *Admiral Senivain* Edinorog *Admiral Graf Apraksin* Pushkin *Semion Chelyuskin* Yenisei *Ozero Baykal* Vyazma Valdai Topozero
 			Razboinik Strelok Dzhigit Oprichnik Nayezdnik Plastun Gaidamak Abrek Vsadnik Almaz Zhemchug Izumrud Yakhont
 			Kem Yug Voronya Mezha Okhta Ravan Kunya Svir Seim Sestra Don Yeya Terek Sok Istra Dubna Ob Ket Nadym Indigirka Amur Bereya Sestra
 		}
 		army_names=
 		{
-			"Armiya iz $PROVINCE$"
+			*Armiya iz $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flot iz $PROVINCE$"
+			*Flot iz $PROVINCE$*
 		}
 	}
 	saxon=
@@ -3373,8 +3373,8 @@ culture_rules=
 			Udo Ulrich
 			Viktor
 			Waldemar Walram Walther Welf Wenzel Werner Widukind Wigerich Wilhelm Wolfgang Wolfram
-			"Johann Georg" "Friedrich August" "Christian" "August" "Friedrich Christian" Moritz
-			Alexander Anton "Christian Albrecht" Hektor "Clemens Wenzel" "Franz Xaver" Joachim
+			*Johann Georg* *Friedrich August* *Christian* *August* *Friedrich Christian* Moritz
+			Alexander Anton *Christian Albrecht* Hektor *Clemens Wenzel* *Franz Xaver* Joachim
 			Joseph Maximilian Severinus Alfred Burkhard Günther Kajetan Lukas Micharl Reimund
 			Ulrich Wilfried
 			Adelbert Dieter
@@ -3409,32 +3409,32 @@ culture_rules=
 		{
 			Hergesell Oelssner Rank Teichmann Taut
 			Harzer Dietze Tellig Pilz Winkler Uhlich
-			Uebigau Kranke Bieber "von Rath" Arnim
+			Uebigau Kranke Bieber *von Rath* Arnim
 			Hamann Kirbach Gödel Oertel Schönfeld
 			Deitz Kuhn Sehm Fischer Bretfeld Rabs
-			Behncke Brommy Cordemann Dreyer Droste Groener "Herwarth von Bittenfeld" Heppendorf Hoffmann Krohn Ludendorff Schree
-			"Vogel von Falkenstein" "von Alten" "von Anhalt" "von Arentschildt" "von Bülow" "von Bismarck-Bohlen" "von Blumenthal" "von Blomberg" 
-			"von Boyen" "von Braunschweig" "von dem Knesebeck" "von Gebser" "von Fritsch" "von Halkett" "von Hannover" 
-			"von Hessen-Darmstadt" "von Hessen-Kassel" "von Hindenburg" "von Hohenzollern" "von Holstein-Gottorp" "von Knorr" "von Kleefeld"
-			"von Manteuffel" "von Mecklenburg-Schwerin" "von Mecklenburg-Strelitz" "von Moltke" "von Oldenburg" "von Rauch" "von Ravensberg" 
-			"von Reuter" "von Richthofen" "von Sachsen-Altenburg" "von Sachsen-Coburg-Gotha" "von Sachsen-Meiningen" 
-			"von Sachsen-Weimar-Eisenach" "von Schlieffen" "von Schwarzburg" "von Spee" "von Tirpitz" "von Waldeck und Pyrmont" "von Wettin" 
-			"von Wrangel" "von Zieten" "zur Lippe" "von Roon"
+			Behncke Brommy Cordemann Dreyer Droste Groener *Herwarth von Bittenfeld* Heppendorf Hoffmann Krohn Ludendorff Schree
+			*Vogel von Falkenstein* *von Alten* *von Anhalt* *von Arentschildt* *von Bülow* *von Bismarck-Bohlen* *von Blumenthal* *von Blomberg* 
+			*von Boyen* *von Braunschweig* *von dem Knesebeck* *von Gebser* *von Fritsch* *von Halkett* *von Hannover* 
+			*von Hessen-Darmstadt* *von Hessen-Kassel* *von Hindenburg* *von Hohenzollern* *von Holstein-Gottorp* *von Knorr* *von Kleefeld*
+			*von Manteuffel* *von Mecklenburg-Schwerin* *von Mecklenburg-Strelitz* *von Moltke* *von Oldenburg* *von Rauch* *von Ravensberg* 
+			*von Reuter* *von Richthofen* *von Sachsen-Altenburg* *von Sachsen-Coburg-Gotha* *von Sachsen-Meiningen* 
+			*von Sachsen-Weimar-Eisenach* *von Schlieffen* *von Schwarzburg* *von Spee* *von Tirpitz* *von Waldeck und Pyrmont* *von Wettin* 
+			*von Wrangel* *von Zieten* *zur Lippe* *von Roon*
 		}
 		ship_names=
 		{
 			Widukind Edberg Wichman Billing Liedolf
-			Brun "Otto" "Heinrich" "Bernhard"
-			Ordulf Manus Lothar Lothar "Heinrich"
-			"August der Starke" "Heinrich der Löwe" "König von Polen" Wettin "Friedrich August" "König Albert" Kurfürst Askanien Aurora 
+			Brun *Otto* *Heinrich* *Bernhard*
+			Ordulf Manus Lothar Lothar *Heinrich*
+			*August der Starke* *Heinrich der Löwe* *König von Polen* Wettin *Friedrich August* *König Albert* Kurfürst Askanien Aurora 
 		}
 		army_names=
 		{
-			"Armee von $PROVINCE$"
+			*Armee von $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotte von $PROVINCE$"
+			*Flotte von $PROVINCE$*
 		}
 	}
 	schlesian=
@@ -3452,8 +3452,8 @@ culture_rules=
 			Stefan Stoigniew Strasz Sulislaw Sulistryj Swietopelk Swietoslaw Szczesny Tomasz Trojden Twardomir Usciech Waclaw Wanko Wawrzyniec
 			Wielislaw Wieslaw Wincenty Wit Witosz Wladyslaw Wojciech Wojuta Wszebor Zbigniew Zbyszko Zegota Zelibrat
 			Zygmunt
-			Fryderyk Ludwik "Jan Krystian" "Jerzy Rudolf" "Jerzy Wilhelm" "Joachim Fryderyk" "Krystian" Ruprecht "Jan Jerzy" "Jerzy Ernest"
-			August Ernest Joachim "Krystian Ludwik" Rudolf Wladislaw Albert Andel Branko Bruno Cezar Dietrich Eugeniusz Filip Hermann
+			Fryderyk Ludwik *Jan Krystian* *Jerzy Rudolf* *Jerzy Wilhelm* *Joachim Fryderyk* *Krystian* Ruprecht *Jan Jerzy* *Jerzy Ernest*
+			August Ernest Joachim *Krystian Ludwik* Rudolf Wladislaw Albert Andel Branko Bruno Cezar Dietrich Eugeniusz Filip Hermann
 			Krzysztof Lech Libor Markus Maurycy Radomir Siegfried Tomás Václav
 			Adam Antoni Bonawentura Bronislaw Dezydery Edmund Edward Emil
 			Felicjan Franciszek Gustaw Ignacy Jedrzej
@@ -3479,7 +3479,7 @@ culture_rules=
 			Lippstadt
 			Münden
 			Paderborn
-			"von Scheideck"
+			*von Scheideck*
 			Bem Bór-Komorowski Brzóska Chalasinski Chlaposwski Chlopicki Chrzanowski Dabrowski Dembinski Fabryvy
 			Hauke-Boask Iszikowski Jasinski Klicki Konopczynski Krukowiecki Kruszewski Langiewicz Madalinski Mierolawski
 			Mikolajczyk Mokronowski Niepokólczycki Ostrowski Pac Pilsudski Poniatowski Potocki Preadzynski Radziwill
@@ -3488,22 +3488,22 @@ culture_rules=
 		}
 		ship_names=
 		{
-			"Heinrich" Kassel Werra Lahn Fulda
+			*Heinrich* Kassel Werra Lahn Fulda
 			Wasserkuppe Stirnberg Hanau Marburg Wetzlar
-			"Karel" "Prokop Veliký" "Jan Žižka" "Josef Ressel" 
-			Milešovka Lovos Hazmburk Koštálov "Ceské Stredohorí" 
+			*Karel* *Prokop Veliký* *Jan Žižka* *Josef Ressel* 
+			Milešovka Lovos Hazmburk Koštálov *Ceské Stredohorí* 
 			Jizera Metuje Morava Svratka Olza  
-			"Jan Dismas Zelenka" "Šimon Brixi" "František Tuma" "Antonín Kraft" "František Xaver Dušek"
-			"Petr Brandl" "Václav Hollar" "Jan Jahn" "Jan Kupecký" "Karel Škréta"
-			"Pražský hrad" Vyšehrad Zbraslav Kolodeje Chvaly 
+			*Jan Dismas Zelenka* *Šimon Brixi* *František Tuma* *Antonín Kraft* *František Xaver Dušek*
+			*Petr Brandl* *Václav Hollar* *Jan Jahn* *Jan Kupecký* *Karel Škréta*
+			*Pražský hrad* Vyšehrad Zbraslav Kolodeje Chvaly 
 		}
 		army_names=
 		{
-			"Armee von $PROVINCE$"
+			*Armee von $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotte von $PROVINCE$"
+			*Flotte von $PROVINCE$*
 		}
 	}
 	scottish=
@@ -3559,7 +3559,7 @@ culture_rules=
 			Adam Alexander
 			Bruce Beaton Boyd
 			Cameron Campbell Cochrane Crichton Cunynghame Crawford Carnegie Colyear
-			Douglas Duncan "de Dunbar" Dalzell Drummond
+			Douglas Duncan *de Dunbar* Dalzell Drummond
 			Erskine
 			Forbes Ferguson Fletcher Fleming
 			Gordon Graham Gilchrist
@@ -3577,43 +3577,43 @@ culture_rules=
 		}
 		ship_names=
 		{
-			Advantage "Ann of Anstruther"
+			Advantage *Ann of Anstruther*
 			Bonaventure Bruce
-			Charles "Christian of Boness" Christopher Cuckoo
+			Charles *Christian of Boness* Christopher Cuckoo
 			Flower Fortune
-			"Good Fortune" Green-tree
-			"Great Michael"
-			James Janet "Jenny Pirwin"
-			"King's Caravel"
-			"Lamb of Leith" Lesley Lion
-			Margaret "Margaret of Peterhead" "Mary Willoughby" "Mary Walsingham" Mercury Moon Morton
-			Pelican "Prince Rupert" "Providence of Dundee"
-			"Rainbow of Dundee" Rothes
-			Salamander "St. Salvator"
+			*Good Fortune* Green-tree
+			*Great Michael*
+			James Janet *Jenny Pirwin*
+			*King's Caravel*
+			*Lamb of Leith* Lesley Lion
+			Margaret *Margaret of Peterhead* *Mary Willoughby* *Mary Walsingham* Mercury Moon Morton
+			Pelican *Prince Rupert* *Providence of Dundee*
+			*Rainbow of Dundee* Rothes
+			Salamander *St. Salvator*
 			Thistle
 			Unicorn
 			Venture
 			Wemyss
-			"Yellow Caravel"
-			"Duke"
-			"Arran" "Islay" "Jura" "Lewis" "Harris" "Skye"
-			"Hamilton" "Buccleuch" "Lennox" "Roxburghe" "Lothian"
-			"Selkirk"
-			"Loch Lomond" "Loch Ness" "Loch Morar" "Loch Tay" "Loch Awe"
-			"Flying Spur" "Cutty Sark" "Falls of Clyde" "Glenlee" "Mull of Kintyre" "Walter Scott"
-			"William Wallace" Parkhead Govan Gorgie Leith "James Bruce"
-			"David Douglas" "Alexander Gordon Laing" "Patrick Miller" "William Symington"
-			"Archibald Cochrane" "Andrew Moray" "Water of Leith" "River Tay" "Alexander Dalzeel"
-			"John Gow" "William Kidd" "William Greaves"
-			"Enterprise" "Ossian" "Tweed" "Stornoway"
+			*Yellow Caravel*
+			*Duke*
+			*Arran* *Islay* *Jura* *Lewis* *Harris* *Skye*
+			*Hamilton* *Buccleuch* *Lennox* *Roxburghe* *Lothian*
+			*Selkirk*
+			*Loch Lomond* *Loch Ness* *Loch Morar* *Loch Tay* *Loch Awe*
+			*Flying Spur* *Cutty Sark* *Falls of Clyde* *Glenlee* *Mull of Kintyre* *Walter Scott*
+			*William Wallace* Parkhead Govan Gorgie Leith *James Bruce*
+			*David Douglas* *Alexander Gordon Laing* *Patrick Miller* *William Symington*
+			*Archibald Cochrane* *Andrew Moray* *Water of Leith* *River Tay* *Alexander Dalzeel*
+			*John Gow* *William Kidd* *William Greaves*
+			*Enterprise* *Ossian* *Tweed* *Stornoway*
 		}
 		army_names=
 		{
-			"Armailt na $PROVINCE$"
+			*Armailt na $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Cabhlach na $PROVINCE$"
+			*Cabhlach na $PROVINCE$*
 		}
 	}
 	siberian=
@@ -3644,16 +3644,16 @@ culture_rules=
 		ship_names=
 		{
 			Orda Kochu Bayan Sasibuga
-			Ilbasan "Mubarrak Kwaja" Chimtai Urus Tuqtaqiya
-			"Timur Malik" Toqtamish "Timur Qutlugh" "Shadi Beg"
-			Pulad "Jalal Ad-Din" "Karim Berdi" Kebek "Jabbar Berdi"
-			"Ulugh Muhammad" "Devlat Berdi" Baraq "Sayyid Ahmad"
-			"Çürük Suv" "Chufut Kale" Hansaray "Haci Giray" "Meli Giray"  "Zincilri Medrese" Kyrym  "Qirq Yer"  "Cufut Qale" 
-			"Chingiz Khan"
+			Ilbasan *Mubarrak Kwaja* Chimtai Urus Tuqtaqiya
+			*Timur Malik* Toqtamish *Timur Qutlugh* *Shadi Beg*
+			Pulad *Jalal Ad-Din* *Karim Berdi* Kebek *Jabbar Berdi*
+			*Ulugh Muhammad* *Devlat Berdi* Baraq *Sayyid Ahmad*
+			*Çürük Suv* *Chufut Kale* Hansaray *Haci Giray* *Meli Giray*  *Zincilri Medrese* Kyrym  *Qirq Yer*  *Cufut Qale* 
+			*Chingiz Khan*
 		}
 		army_names=
 		{
-			"Tumen irsen $PROVINCE$" 
+			*Tumen irsen $PROVINCE$* 
 		}
 	}
 	swedish=
@@ -3668,9 +3668,9 @@ culture_rules=
 			Helgi Henrik Hjalmar Holmger Håkan Inge Ingemar Ingvar Jedvard Johan Karl Kettil Kettilmund Klas Knut Kol Kolbjörn Lars Magnus Markus 
 			Mats Nils Niklas Odd Olaf Orvar Peder Ragnar Rolf Rörek Ragnvald Sämund Sörkver Sigbjörn Sigtrygg Sigurd Starkad Sten Styrbjörn Sune Sven
 			Sverker Sölvi Thomas Tjudmund Toke Tolir Torbjörn Tord Torbrand Torfinn Torkel Torolf Torsten Toste Totil Tyke Ulf Valdemar Åke Östen
-			"Gustav Adolf" "Carl Gustav" "Carl Johan" Christian Christoph "Adolf Fredrik" "Karl Filip" "Adolf Johan" Oskar "Fredrik Adolf"
-			"Fredrik August" "Göran Love" Sigismund Alfred Axel Edvard Gottfrid Jakob Ludvig Mikael Olof Patrik Rangvald Rettil Sigvard
-			Simon "Sten Sture" Svante Tomas Ulrik
+			*Gustav Adolf* *Carl Gustav* *Carl Johan* Christian Christoph *Adolf Fredrik* *Karl Filip* *Adolf Johan* Oskar *Fredrik Adolf*
+			*Fredrik August* *Göran Love* Sigismund Alfred Axel Edvard Gottfrid Jakob Ludvig Mikael Olof Patrik Rangvald Rettil Sigvard
+			Simon *Sten Sture* Svante Tomas Ulrik
 			Alexander Arnold August Baltzar Carl Christofer Didrik
 			Elias Emil Esaias Fabian Frans Gunnar Gustav
 			Jesper Julius Michael Nikolaus
@@ -3681,17 +3681,17 @@ culture_rules=
 			Aleta Alfhild Alfridh Anna Asta Astrid Beata Birgitta Bothild Cecilia Edla Elin Elisabet Freja Gunhild Gyla Gurli Gytha Hafrid 
 			Helena Holmfrid Iliana Inga Ingeborg Ingegerd Ingfrid Ingrid Karin Katarina Kristina Linda Maer Malmfrid
 			Margareta Märta Ragnfrid Ragnhild Rikissa Saga Sara Sigrid Sofia Svanhild Thordis Ulvhilde Ylva Åsa
-			Christina "Ulrika Eleonora" Hedwig
+			Christina *Ulrika Eleonora* Hedwig
 		}
 		leader_names=
 		{
-			Andersson Armfeldt "von Ascheberg" Adlercreutz Adlersparre Alkmaar Anckarström
+			Andersson Armfeldt *von Ascheberg* Adlercreutz Adlersparre Alkmaar Anckarström
 			Bagge Banér Bielke Brahe
 			Cronstedt
-			"von Döbeln" Dahlbergh Dufwa
-			Engelbrekt Eriksson Ehrensvärd "von Essen" Eka Ehrenstrahl
-			Fleming "von Fersen"
-			Gadh Grip "af Gennäs" "de la Gardie" Gyllenhielm Gathenhielm Gustavsson
+			*von Döbeln* Dahlbergh Dufwa
+			Engelbrekt Eriksson Ehrensvärd *von Essen* Eka Ehrenstrahl
+			Fleming *von Fersen*
+			Gadh Grip *af Gennäs* *de la Gardie* Gyllenhielm Gathenhielm Gustavsson
 			Horn Hård Hahn Hastfer Hjärne
 			Jägerhorn
 			Königsmarck Klingspor
@@ -3700,41 +3700,41 @@ culture_rules=
 			Palmstruch Piper Prinz
 			Rehnskiöld Ribbing
 			Stenbock Sandels Skytte Sture
-			"Tre Rosor" Torstensson "af Trolle" Toll
+			*Tre Rosor* Torstensson *af Trolle* Toll
 			Wrangel Wachtmeister Wallenberg
 			Åkerhielm
 			Abelin Bildt Björnstjerna Brakenhielm Breitholtz Chrsiterson Crusebjörn Dyrssen
-			Ehnemark Ehrenstam Gyllengranat Gyndestolpe Ingelman Lindman Mörner Nordenskiöld "Palanger af Vega"
+			Ehnemark Ehrenstam Gyllengranat Gyndestolpe Ingelman Lindman Mörner Nordenskiöld *Palanger af Vega*
 			Palmstierna Peyron Rappe Reuterskiöld Rosensvärd Ryding Sprengtportem Ström Taube Tawast
-			Thörnell Thulstrup Tingsten Ulner Virgin "von Essen" "von Hohenhausen" "von Otter" "von Platen" Weidenhielm
+			Thörnell Thulstrup Tingsten Ulner Virgin *von Essen* *von Hohenhausen* *von Otter* *von Platen* Weidenhielm
 		}
 		ship_names=
 		{
-			Akilles Amarant Andromeda Anklam Bohus "Böse Lejon" Calmar Camilla Carolus Charlotte Cossacken 
-			Crono-Solen David Disa Draken Drottningen Elefanten Elfsborg Elisabet Engel "Engel Gabriel" 
-			Enighet Euridice Falk Fenix Finland "Flygande Wargen" Fortuna Fredrika "Fredrika Amalia" 
-			Fröija Galathe "Gamla Fortuna" "Gamla Rikssvärdet" "Gotha Lejon" Grip Gustavus "Gyllende Lejon" 
+			Akilles Amarant Andromeda Anklam Bohus *Böse Lejon* Calmar Camilla Carolus Charlotte Cossacken 
+			Crono-Solen David Disa Draken Drottningen Elefanten Elfsborg Elisabet Engel *Engel Gabriel* 
+			Enighet Euridice Falk Fenix Finland *Flygande Wargen* Fortuna Fredrika *Fredrika Amalia* 
+			Fröija Galathe *Gamla Fortuna* *Gamla Rikssvärdet* *Gotha Lejon* Grip Gustavus *Gyllende Lejon* 
 			Göta Havsfru Hektor Herkules Hieronymus Hjalmar Hök Illerim Ingeborg Jomfru 
-			Jupiter Jägare "Kalmar Nyckel" Kalmarkastell Karlskrona Kronan Laxen Leopard Lejon Lodbrok 
+			Jupiter Jägare *Kalmar Nyckel* Kalmarkastell Karlskrona Kronan Laxen Leopard Lejon Lodbrok 
 			Mars Mercurius Morgonstjärna Norden Nordstjärna Nyckeln Nyland Oden Pelikanen Postillion 
-			"Prins Carl" Prinsessan Regina Rosa Skåne Småland Solen "St. Erik" "St. Göran" "St. Johannes" 
-			"St. Thomas" Starkoster Stenbock "Stora Cronan" Svan "Svenska Falk" "Svenska Lejonet" 
-			Sverige Svärdet Södermanland Tapper Thetis Tigern "Tre Kronor" Troilus Ulrica Uppland 
+			*Prins Carl* Prinsessan Regina Rosa Skåne Småland Solen *St. Erik* *St. Göran* *St. Johannes* 
+			*St. Thomas* Starkoster Stenbock *Stora Cronan* Svan *Svenska Falk* *Svenska Lejonet* 
+			Sverige Svärdet Södermanland Tapper Thetis Tigern *Tre Kronor* Troilus Ulrica Uppland 
 			Vasen Victoria Warberg Wasa Wenden Werden Vestervik Wästmanland Victoria Witduve Öland Örn
-			"Clas Eriksson Fleming" "Axel Nilsson Ryning" "Carl Carlsson Gyllenhielm" "Gustaf Otto Stenbock" "Lorentz Creutz" "Hans Wachtmeister af Johannishus" "Henrik af Trolle" "Carl August Ehrensvärd" Fredrik Johan "Manligheten" "Dristigheten" "Sverige"
+			*Clas Eriksson Fleming* *Axel Nilsson Ryning* *Carl Carlsson Gyllenhielm* *Gustaf Otto Stenbock* *Lorentz Creutz* *Hans Wachtmeister af Johannishus* *Henrik af Trolle* *Carl August Ehrensvärd* Fredrik Johan *Manligheten* *Dristigheten* *Sverige*
 			Nynäshamn Karlshamn Halmstad Blenda Astrid
-			"Carl" "Karl Johan" "Prins Oscar" "Gustav den Store" Försiktigheten Tapperheten "Kung Adolph Fredric" Henrik Tomas
-			"Claes Uggla" Psilander "Claes Horn" "Jacob Bakke" Ornen Fylgia "Tre Kronor" "Göta Lejon" Östersund Borgholm
-			Packa "Svarta Örn" Jarramas Vainqueur Delphin "Lilla Phoenix" Växjö Gävle "Baron Gustaf Bonde" 
-			"John Ericsson" Loke Sköld Tirfing Tordön Berserk Björn Folke Sölve Ulf Fenris Garmer Gerda Hildur
+			*Carl* *Karl Johan* *Prins Oscar* *Gustav den Store* Försiktigheten Tapperheten *Kung Adolph Fredric* Henrik Tomas
+			*Claes Uggla* Psilander *Claes Horn* *Jacob Bakke* Ornen Fylgia *Tre Kronor* *Göta Lejon* Östersund Borgholm
+			Packa *Svarta Örn* Jarramas Vainqueur Delphin *Lilla Phoenix* Växjö Gävle *Baron Gustaf Bonde* 
+			*John Ericsson* Loke Sköld Tirfing Tordön Berserk Björn Folke Sölve Ulf Fenris Garmer Gerda Hildur
 		}
 		army_names=
 		{
-			"Armé af $PROVINCE$"
+			*Armé af $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotta af $PROVINCE$"
+			*Flotta af $PROVINCE$*
 		}
 	}
 	tartar=
@@ -3787,24 +3787,24 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"Boke Temur" "Qutlugh Vachir" "Suren Chinua" "Delger Bayar"
-			"Shria Gan" "Bora Chinua" Nasange Temur-chi Chinuagene Toluilun
-			Qutughqan "Koke Burilgi" Surenchar Bayangge
+			*Boke Temur* *Qutlugh Vachir* *Suren Chinua* *Delger Bayar*
+			*Shria Gan* *Bora Chinua* Nasange Temur-chi Chinuagene Toluilun
+			Qutughqan *Koke Burilgi* Surenchar Bayangge
 		}
 		ship_names=
 		{
-			Batu Sartaq Ulaghchi Berke "Mengu-Timur" "Tuda-Mengu"
-			Talabuga "Nogai Khan" Tokhta "Öz Beg" "Tini Beg" "Jani Beg" 
-			"Berdi Beg" Qulpa "Nawruz Beg" Khidr "Timur Khwaja" Abdallah
-			"Muhammad Bolak" "Mamai Khan" Toqtamish "Temür Qutlugh" Ediguh
-			"Shadi Beg" "Polad Khan" Temür "Jalal ad-Din" "Karim Berdi" Kebek
-			"Jabbar Berdi" "Ulugh Muhammad" "Dawlat Berdi" Baraq "Sayud Ahmad"
-			"Çürük Suv" "Chufut Kale" Hansaray "Haci Giray" "Meli Giray"  "Zincilri Medrese" Kyrym  "Qirq Yer"  "Cufut Qale" 
-			"Chingiz Khan"
+			Batu Sartaq Ulaghchi Berke *Mengu-Timur* *Tuda-Mengu*
+			Talabuga *Nogai Khan* Tokhta *Öz Beg* *Tini Beg* *Jani Beg* 
+			*Berdi Beg* Qulpa *Nawruz Beg* Khidr *Timur Khwaja* Abdallah
+			*Muhammad Bolak* *Mamai Khan* Toqtamish *Temür Qutlugh* Ediguh
+			*Shadi Beg* *Polad Khan* Temür *Jalal ad-Din* *Karim Berdi* Kebek
+			*Jabbar Berdi* *Ulugh Muhammad* *Dawlat Berdi* Baraq *Sayud Ahmad*
+			*Çürük Suv* *Chufut Kale* Hansaray *Haci Giray* *Meli Giray*  *Zincilri Medrese* Kyrym  *Qirq Yer*  *Cufut Qale* 
+			*Chingiz Khan*
 		}
 		army_names=
 		{
-			"Tumen irsen $PROVINCE$" 
+			*Tumen irsen $PROVINCE$* 
 		}
 	}
 	turkmeni=
@@ -3815,23 +3815,23 @@ culture_rules=
 		male_names=
 		{
 			Çagri Çaka
-			"Abd al-Khalik" "Abd'ullah Qara" "Abu'l Khair" Abu'l-Ghazi "Abu Muhammad" Afsin Aqim Aksonqor Alaeddin 'Ali Alkan "Alp Arslan" "Alp Yurek" Alptigin Anusha Aqatay Arang Artuk Avanesh Ayaz Aydin Aydogan Aydogdu Aytekin
+			*Abd al-Khalik* *Abd'ullah Qara* *Abu'l Khair* Abu'l-Ghazi *Abu Muhammad* Afsin Aqim Aksonqor Alaeddin 'Ali Alkan *Alp Arslan* *Alp Yurek* Alptigin Anusha Aqatay Arang Artuk Avanesh Ayaz Aydin Aydogan Aydogdu Aytekin
 			Bölekey Böru Bulend Bahadur Balaban Basbuga Batuhan Baturay Baybars Bayezid Baytas Belek Berkan Berkiyaruk Bozan Buchagha Bugra Bujunga Burak
 			Chichaq Cuneyd
 			Dundar Danismend Davud Demir Dogan Dogukan Dost
 			Dukak
 			Erdem Ertan Ertekin Ertugrul Gunduz
 			Ghayib Ghazi
-			Habash Haidar Hajji Hasan "Hasan Quli" Hizir
+			Habash Haidar Hajji Hasan *Hasan Quli* Hizir
 			Ibrahim Ilbars Ilgazi Inal Ishi Isfandiyar Iskender
 			Jahangir
 			Kal Kurboga Kaikaus Kaikhusraw Kaiqobad Kara Karatay Kasim Kaya Kaytun Kemal Khdaydad Kiliç Korkut Kutalmis Kutay Kutlug
 			Mursel Mahmud Mehmed Meliksah Mengucek Mesud Muhammad Murad Musa Mustafa
-			"Nizay Ishaq Aga" Nurali
+			*Nizay Ishaq Aga* Nurali
 			Orhan
 			Porsuk Rustem Ramazan Ridvan
-			Söbuk Sökmen Sönmez Suleyman Saim Saltuk "Sarigh Ayghir" Saruca Savtekin Savur Sehinsah Selçuk Selim Sencer "Sharif Sufi" "Shir Grazi" Sinan Sufiyan
-			Tahir Tanrivermis Tawke Tekin Timurtas "Timur Ghazi" Togay Togtekin Toktamis Tolun Toruntay Tugrul Tunga Turgut Turhan Tutus
+			Söbuk Sökmen Sönmez Suleyman Saim Saltuk *Sarigh Ayghir* Saruca Savtekin Savur Sehinsah Selçuk Selim Sencer *Sharif Sufi* *Shir Grazi* Sinan Sufiyan
+			Tahir Tanrivermis Tawke Tekin Timurtas *Timur Ghazi* Togay Togtekin Toktamis Tolun Toruntay Tugrul Tunga Turgut Turhan Tutus
 			Uluç Umur Usman
 			Vali
 			Yadigar Yakut Yaman Yinal Yunus
@@ -3865,27 +3865,27 @@ culture_rules=
 		}
 		leader_names=
 		{
-			"Bayan Arslan" "Mongke Cheren" "Mongke Bayar" "Suren Chinua" "Oyugun Nasan"
-			"Bora Tolui" Qadancher Batulun Batutai Bokejin Arighqan Burilgiteni
+			*Bayan Arslan* *Mongke Cheren* *Mongke Bayar* *Suren Chinua* *Oyugun Nasan*
+			*Bora Tolui* Qadancher Batulun Batutai Bokejin Arighqan Burilgiteni
 			Bayarnai Subegene Tegusdai Yekedei
 			Beg Khan
 		}
 		ship_names=
 		{
-			Khwarezm Urganj "Din Muhammad" "Yelu Dashi"
-			Kunya "Amu Darya" "Anush Tigin" "Ala Aziz"
-			"Ahmed Sanjar" "Ala Takish" "Jaxartes"
-			"Syr Darya" "Bukhara" "Jalal Mingburnu"
-			"Abu Mamun" "Abu Hasan Ali" "Altun Yash"
-			Harun "Ismail Khandan"
+			Khwarezm Urganj *Din Muhammad* *Yelu Dashi*
+			Kunya *Amu Darya* *Anush Tigin* *Ala Aziz*
+			*Ahmed Sanjar* *Ala Takish* *Jaxartes*
+			*Syr Darya* *Bukhara* *Jalal Mingburnu*
+			*Abu Mamun* *Abu Hasan Ali* *Altun Yash*
+			Harun *Ismail Khandan*
 		}
 		army_names=
 		{
-			"$PROVINCE$ gosun"
+			*$PROVINCE$ gosun*
 		}
 		fleet_names=
 		{
-			"$PROVINCE$ flot"
+			*$PROVINCE$ flot*
 		}
 	}
 	turkish=
@@ -3895,7 +3895,7 @@ culture_rules=
 		base_country_V2=TUR
 		male_names=
 		{
-			Çagri Çaka Afsin Ahmet Aksonqor Alaeddin Ali Alkan "Alp Arslan" "Alp Yurek" Alptigin Artuk Ayaz Aydin Aydogan Aydogdu Aytekin Böru Bulend Bahadir Balaban Basbuga Batuhan Baturay Baybars Bayezid Baytas Belek Berkan Berkiyaruk Bozan Bugra Burak Cuneyd Dundar Danismend
+			Çagri Çaka Afsin Ahmet Aksonqor Alaeddin Ali Alkan *Alp Arslan* *Alp Yurek* Alptigin Artuk Ayaz Aydin Aydogan Aydogdu Aytekin Böru Bulend Bahadir Balaban Basbuga Batuhan Baturay Baybars Bayezid Baytas Belek Berkan Berkiyaruk Bozan Bugra Burak Cuneyd Dundar Danismend
 			Davud Demir Dogan Dogukan Dukak Erdem Ertan Ertekin Ertugrul Gunduz Hasan_Hasan Hizir Ibrahim Ilgazi Inal Iskender Kurboga Kaikaus Kaikhusraw Kaiqobad Kara Karatay Kasim Kaya Kaytun Kemal Kiliç Korkut Kutalmis Kutay Kutlug Mursel Mahmud Mehmed Meliksah Mengucek Mesud Murad Mustafa Orhan Osman Porsuk Rustem Ramazan Ridvan Söbuk Sökmen Sönmez Suleyman Saim Saltuk Saruca Savtekin Savur Sehinsah Selçuk Selim Sencer Sinan Tanrivermis Tekin Timurtas Togay Togtekin Toktamis Tolun Toruntay Tugrul Tunga Turgut Turhan Tutus Uluç Umur Yakut Yaman Yinal Yunus
 			Mehmet Süleyman Abdülhamid Abdullah Abdülmecid Cihangir Giyasuddin Isa
 			Numan Mûsa Jem Orkhan Abdulaziz Abdulmecid Abdulmalik Abdulrahman
@@ -3963,44 +3963,44 @@ culture_rules=
 		}
 		ship_names=
 		{
-			"Kari Alemdar" "Arnaud Ali" "Dragud Ali" "Ferhad Ali" "Hamid Ali" "Iusuf Ali"
-			"Karl Ali" "Karaman Ali" "Macasir Ali" "Seydi Ali" "Tartar Ali" "Uluch Ali"
-			"Selim Basti" "Dermat Bey" "Kara Bey" "Karam Bey" "Memi Bey" "Osman Bey"
-			"Sinian Celebi"
-			"Murad Darius" "Salim Deli"
-			"Nasur Ferhad" "Magyar Fehrad" "Nasur Ferhad"
-			"Kafir Hajji"  "Kiafi Hajji" "Kos Hajji" "Mustafa Hajji" "Murad Hasan" "Karaman Hyder"
-			"Chios Mehemet" "Uschiufly Memy" "Kos Mend" "Kari Mora" "Amdjazade Mustafa"
-			"Cademly Mustafa" "Chendereli Mustafa" "Hignau Mustafa"
-			"Ionas Osman" "Piali Osman" "Piri Osman" "Tursun Osman"
-			"Iosul Piali" "Alemdar Pasha" "Darius Pasha" "Karaman Pasha"
-			"Celebi Reis" "Kasam Reis" "Karali Reis" "Nasi Reis" "Osman Reis" "Piri Reis"
-			"Piriman Reis" "Sali Reis" "Seydi Reis" "Talatagi Reis" "Uluj Reis" "Kara Rhodi"
-			"Peri Selim" "Keduk Seydi" "Hazuli Sinian"
-			"Turgut Reis" Hamidiye Reshadiye "Barbaros Hayreddin" Mesudiye 
-			Abdülkader Abdülaziz "Suleyman Kanuni" "Mehmet Fatih" "Osman" "Bayezid" "Ahmed" "Selim Yavuz"
-			Abdülmecid "Selim" "Mahmud" "Murat Hudavendigar" "Devlet-i Aliye" Çaldiran
+			*Kari Alemdar* *Arnaud Ali* *Dragud Ali* *Ferhad Ali* *Hamid Ali* *Iusuf Ali*
+			*Karl Ali* *Karaman Ali* *Macasir Ali* *Seydi Ali* *Tartar Ali* *Uluch Ali*
+			*Selim Basti* *Dermat Bey* *Kara Bey* *Karam Bey* *Memi Bey* *Osman Bey*
+			*Sinian Celebi*
+			*Murad Darius* *Salim Deli*
+			*Nasur Ferhad* *Magyar Fehrad* *Nasur Ferhad*
+			*Kafir Hajji*  *Kiafi Hajji* *Kos Hajji* *Mustafa Hajji* *Murad Hasan* *Karaman Hyder*
+			*Chios Mehemet* *Uschiufly Memy* *Kos Mend* *Kari Mora* *Amdjazade Mustafa*
+			*Cademly Mustafa* *Chendereli Mustafa* *Hignau Mustafa*
+			*Ionas Osman* *Piali Osman* *Piri Osman* *Tursun Osman*
+			*Iosul Piali* *Alemdar Pasha* *Darius Pasha* *Karaman Pasha*
+			*Celebi Reis* *Kasam Reis* *Karali Reis* *Nasi Reis* *Osman Reis* *Piri Reis*
+			*Piriman Reis* *Sali Reis* *Seydi Reis* *Talatagi Reis* *Uluj Reis* *Kara Rhodi*
+			*Peri Selim* *Keduk Seydi* *Hazuli Sinian*
+			*Turgut Reis* Hamidiye Reshadiye *Barbaros Hayreddin* Mesudiye 
+			Abdülkader Abdülaziz *Suleyman Kanuni* *Mehmet Fatih* *Osman* *Bayezid* *Ahmed* *Selim Yavuz*
+			Abdülmecid *Selim* *Mahmud* *Murat Hudavendigar* *Devlet-i Aliye* Çaldiran
 			Hudavendigar Biga Rumeli Ardahan Halep Sam Sehrizor Ruha Girit 
 			Yanya Eflak Özü Bosna Içel	
-			Osmaniye Mahmudiye Orhaniye Abdülaziz "Asar-i Tevfik" "Asar-i Sevket" "Nijimi Sevket"
-			"Avni Illah" Idjalieh "Fethi Belund" "Mukaddeme-i Hayir" "Gayret-i Vataniye" "Yadigar-i Millet"
-			"Muavenet-i Millet" "Numune-i Hamiyet" Adatepe Kocatepe Tinaztepe Zafer Demirhisar Sultanhisar
-			"Yavuz Sultan Selim" Adatepe Kocatepe "Mehmet Selim" Heibetnuma "Lutf-i Humayun" "Abdul Hamid"
-			Medjidieh "Mukaddem-i Hayir" Berkefsan Basra Tayyar Samsun "Muavanet-i Milliye" Midilli
-			Timsah "Simir-i Hidsum" Gilyom Nasir Ejder Yunus Draç Sivrihisar Nilüfer Rana 
-			"Doruk Reis" "Hizir Reis" "Timur Hisar" Kos Nuribar "Pelenk-i Derya" Ceyhan "Yar Hisar"
-			"Mahmud Sevket Pasha" Malatya Kütahya Yozgat
-			"Hersekli Ahmad" "Gedik Ahmad" "Rum Mehmed" Ishak "Çelebi Lutfi" Rustem "Sokollu Mehmed" "Koca Sinan"
-			"Ozdemiroglu Osman" "Damat Ibrahim" "Filibeli Hafiz" "Koprulu Mehmed" "Merzifonlu Kara Mustafa" "Amcazade Koprulu Huseyin"
-			"Yirmisekizade Mehmed Said" "Cezayirli Gazi Hasan" "Koca Yusuf" 
+			Osmaniye Mahmudiye Orhaniye Abdülaziz *Asar-i Tevfik* *Asar-i Sevket* *Nijimi Sevket*
+			*Avni Illah* Idjalieh *Fethi Belund* *Mukaddeme-i Hayir* *Gayret-i Vataniye* *Yadigar-i Millet*
+			*Muavenet-i Millet* *Numune-i Hamiyet* Adatepe Kocatepe Tinaztepe Zafer Demirhisar Sultanhisar
+			*Yavuz Sultan Selim* Adatepe Kocatepe *Mehmet Selim* Heibetnuma *Lutf-i Humayun* *Abdul Hamid*
+			Medjidieh *Mukaddem-i Hayir* Berkefsan Basra Tayyar Samsun *Muavanet-i Milliye* Midilli
+			Timsah *Simir-i Hidsum* Gilyom Nasir Ejder Yunus Draç Sivrihisar Nilüfer Rana 
+			*Doruk Reis* *Hizir Reis* *Timur Hisar* Kos Nuribar *Pelenk-i Derya* Ceyhan *Yar Hisar*
+			*Mahmud Sevket Pasha* Malatya Kütahya Yozgat
+			*Hersekli Ahmad* *Gedik Ahmad* *Rum Mehmed* Ishak *Çelebi Lutfi* Rustem *Sokollu Mehmed* *Koca Sinan*
+			*Ozdemiroglu Osman* *Damat Ibrahim* *Filibeli Hafiz* *Koprulu Mehmed* *Merzifonlu Kara Mustafa* *Amcazade Koprulu Huseyin*
+			*Yirmisekizade Mehmed Said* *Cezayirli Gazi Hasan* *Koca Yusuf* 
 		}
 		army_names=
 		{
-			"$PROVINCE$ ordusu"
+			*$PROVINCE$ ordusu*
 		}
 		fleet_names=
 		{
-			"$PROVINCE$ filosu"
+			*$PROVINCE$ filosu*
 		}
 	}
 	umbrian=
@@ -4028,7 +4028,7 @@ culture_rules=
 			Rosso Ruggiero Salinguerra Salvatore Salvestro Sante Saverio Sciarra Sebastiano Secondotto Serafino Sergio Sesto Settimio Severino Severo
 			Silvano Silvestro Simone Simonetto Sinibaldo Sinucello Sozzo Spinetto Stefano Stentore Taddeo Tedaldo Tedice Teodoro Tibaldo Tiziano Tommaso
 			Torgodorio Torquato Ubaldo Uberto Ugo Ugoccione Ugolino Umberto Urbano Valentino Valerio Vincentello Vincenzo Virginio Vitale Vittore Vittorio Zaccaria
-			Guidobaldo "Francesco Maria" "Francesco Ubaldo" Guidantonio Oddantonio "Giovanni Maria" "Federigo Ubaldo" "Giovanni Pietro" Girolamo Aldo
+			Guidobaldo *Francesco Maria* *Francesco Ubaldo* Guidantonio Oddantonio *Giovanni Maria* *Federigo Ubaldo* *Giovanni Pietro* Girolamo Aldo
 			Alfonso Cirillo Egidio Franco Giambattista Leandro Marzio Ovidio Scipione Teodosio
 			Alessandro Benito
 			Faustino
@@ -4050,46 +4050,46 @@ culture_rules=
 		leader_names=
 		{
 			Albani Aldobrandini Altieri Barberini Barbo Boncompagni
-			Borghese Borgia Braschi "di Campofregoso" Carafa Castagna
+			Borghese Borgia Braschi *di Campofregoso* Carafa Castagna
 			Cervini Chiaramonti Chigi Colonna Condulmeri Conti Corsini Cybo
-			Doria-Landi Doria-Pamphili "di Farnese" "Gaetani dell'Aquila"
-			Gangagnelli Ghislieri Gonzaga Lambertini Lante Ludovisi "di Medici"
-			Melzi "Melzi de Rimini" "del Monte" "di Montefeltro" Odescalchi Orsini
+			Doria-Landi Doria-Pamphili *di Farnese* *Gaetani dell'Aquila*
+			Gangagnelli Ghislieri Gonzaga Lambertini Lante Ludovisi *di Medici*
+			Melzi *Melzi de Rimini* *del Monte* *di Montefeltro* Odescalchi Orsini
 			Ottoboni Pallavicino Pamphili Parentucelli Peretti Piccolomini Pignatelli
-			Prignano Rezzonico Rospigliosi "della Rovere" Sfondrati "da Varano"
+			Prignano Rezzonico Rospigliosi *della Rovere* Sfondrati *da Varano*
 			Acton Albricci Badoglio Baldissera Baratieri Bava-Beccaris Cadorna Cagni Canevaro Capello
-			Caviglia Ceccherini Cialdini Cusani d'Absburgo-Toscana d'Austria-Este Dezza "di Borbone di Parma" "di Robilant" "di Savoia"
-			"di Savoia-Aosta" Emo Fanti Fara Filomarino Garibaldi Giardino Govone "La Màrmora" Mambretti 
-			Menabrea Orengo "Pacoret de Saint Bon" Pecori-Giraldi "Pellion di Persano" Pelloux Perruchetti Pianelli Porro
-			Presbitero Ramorino Ricotti-Magnani Sacchi Saletta Sanna Solari "Thaon di Revel" Vaccari Zupelli
+			Caviglia Ceccherini Cialdini Cusani d'Absburgo-Toscana d'Austria-Este Dezza *di Borbone di Parma* *di Robilant* *di Savoia*
+			*di Savoia-Aosta* Emo Fanti Fara Filomarino Garibaldi Giardino Govone *La Màrmora* Mambretti 
+			Menabrea Orengo *Pacoret de Saint Bon* Pecori-Giraldi *Pellion di Persano* Pelloux Perruchetti Pianelli Porro
+			Presbitero Ramorino Ricotti-Magnani Sacchi Saletta Sanna Solari *Thaon di Revel* Vaccari Zupelli
 		}
 		ship_names=
 		{
-			Acqualagna Auditore 
+			Acqualagna Auditore
 			Colbordolo Colonna
-			Federico Fermignano Fossombrone  
-			ghibellini "Giordano Orsini" "Giovanni Santi"
-			"Isola del Piano" 
-			Lunano 
-			Mondaino Montefeltro 
-			Oddantonio Orsini 
-			Peglio "Piero della Francesca"
-			"San Crescentino" "Sant'Angelo in Vado" 
+			Federico Fermignano Fossombrone 
+			Ghibellini *Giordano Orsini* *Giovanni Santi*
+			*Isola del Piano*
+			Lunano
+			Mondaino Montefeltro
+			Oddantonio Orsini
+			Peglio *Piero della Francesca*
+			*San Crescentino* *Sant'Angelo in Vado*
 			Tavoleto
-			"Dante Alighieri" "Giulio Cesare" "Andrea Doria" Duilio "Francesco Caracciolo" Littorio Roma Terribile Formidabile "Principe di Carignano" "Conte Verde" "Re di Portogallo" "Regina Maria Pia" "San Martino" Castelfidardo Ancona Affondatore "Principe Amedeo" "Ruggiero di Lauria" "Francesco Morosini" "Emanuele Filiberto"
-			Libia Basilicata Quarto "Valle d'Aosta" Trentino Marche Lazio Abruzzo Molise
-			"Marco Polo" "Carlo Alberto" "Vettor Pisani" "General San Martin" "General Belgrano" "General Pueyrredon" "San Giorgio" "San Marco" "Nino Bixio" Fiume Gorizia Pola Zara Bolzano
+			*Dante Alighieri* *Giulio Cesare* *Andrea Doria* Duilio *Francesco Caracciolo* Littorio Roma Terribile Formidabile *Principe di Carignano* *Conte Verde* *Re di Portogallo* *Regina Maria Pia* *San Martino* Castelfidardo Ancona Affondatore *Principe Amedeo* *Ruggiero di Lauria* *Francesco Morosini* *Emanuele Filiberto*
+			Libia Basilicata Quarto *Valle d'Aosta* Trentino Marche Lazio Abruzzo Molise
+			*Marco Polo* *Carlo Alberto* *Vettor Pisani* *General San Martin* *General Belgrano* *General Pueyrredon* *San Giorgio* *San Marco* *Nino Bixio* Fiume Gorizia Pola Zara Bolzano
 			Fulmine Lampo Freccia Dardo Strale Euro Ostro Nembo Turbine Aquilone Borea Zeffiro Espero Artigliere Bersagliere Corazziere Garibaldino
 			Granatiere Lanciere Alpino Pontiere Ascaro Indomito Impavido Impetuoso Insidioso Intrepido Irrequieto Ardito Ardente Audace Animoso
-			Rosolino Pilo" "Giuseppe Cesare Abba" "Pilade Bronzetti" "Giuseppe Missori" "Antonio Mosto" "Ippolito Nievo" "Francesco Nullo" "Simone Schiaffino" "Giuseppe Sirtori" "Giovanni Acerbi" "Vincenzo Giordano Orsini" "Francesco Stucco"  
+			*Rosolino Pilo* *Giuseppe Cesare Abba* *Pilade Bronzetti* *Giuseppe Missori* *Antonio Mosto* *Ippolito Nievo* *Francesco Nullo* *Simone Schiaffino* *Giuseppe Sirtori* *Giovanni Acerbi* *Vincenzo Giordano Orsini* *Francesco Stucco*
 		}
 		army_names=
 		{
-			"Armata di $PROVINCE$"
+			*Armata di $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Flotta di $PROVINCE$"
+			*Flotta di $PROVINCE$*
 		}
 	}
 	wallonian=
@@ -4145,69 +4145,69 @@ culture_rules=
 		leader_names=
 		{
 			d'Ambleteuse d'Aulnay
-			"de Beauharnais" "de Bercy" "de Béthune" "de Boissieu" "de Bonnefoy" "de Bonneuil" "du Bosquet" "de la Bretonnière" "de Broglie"
-			"de Castaing" "de Caumartin" "de Chambly" "de Chambronne" "de Champmartin" "de Chevigny" "des Coulons" "de Crèvecoeur" "de Crussol"
-			"de Dampierre" Desgouttes Duquesne
-			"des Ecures" d'Entraigues d'Estrées
-			"du Fournay"
-			"de Galard"
-			"des Herbiers"
-			"de La Barthe" "de La Ferrandie" "de La Galissonière" "de La Mothe" "de La Motte d'Airan" "de La Porte" "Le Tellier" "de Lhéry" "de Luynes"
-			"de Marguerye" "de Maurepas"
-			"de Neufchâtel"
-			"d'Ornano"
-			"de Pellefort"
-			"de Richemont" "de Rochechouart" "de Rochemaure" "de Rieu"
-			"de Saint Chamond" "de Saint Esprit" "de Saint Germain" "de Saint Omer" "de Siorac"
-			"de Tocqueville" "de la Tour d'Auvergne" "de Tréville"
-			"d'Usson"
-			"du Valentinois" "de Vergennes" "de Vibien" "de Vigny" "de Villeneuve"
+			*de Beauharnais* *de Bercy* *de Béthune* *de Boissieu* *de Bonnefoy* *de Bonneuil* *du Bosquet* *de la Bretonnière* *de Broglie*
+			*de Castaing* *de Caumartin* *de Chambly* *de Chambronne* *de Champmartin* *de Chevigny* *des Coulons* *de Crèvecoeur* *de Crussol*
+			*de Dampierre* Desgouttes Duquesne
+			*des Ecures* d'Entraigues d'Estrées
+			*du Fournay*
+			*de Galard*
+			*des Herbiers*
+			*de La Barthe* *de La Ferrandie* *de La Galissonière* *de La Mothe* *de La Motte d'Airan* *de La Porte* *Le Tellier* *de Lhéry* *de Luynes*
+			*de Marguerye* *de Maurepas*
+			*de Neufchâtel*
+			*d'Ornano*
+			*de Pellefort*
+			*de Richemont* *de Rochechouart* *de Rochemaure* *de Rieu*
+			*de Saint Chamond* *de Saint Esprit* *de Saint Germain* *de Saint Omer* *de Siorac*
+			*de Tocqueville* *de la Tour d'Auvergne* *de Tréville*
+			*d'Usson*
+			*du Valentinois* *de Vergennes* *de Vibien* *de Vigny* *de Villeneuve*
 			Allard Barbanson Barthélémy Baugniet Beaucarne Berger Berthels Beyts Biver Blargnies Brialmont Bredart Cauvin Collet 
-			Cols Claus Clerix Coquilhat d'Arenberg d'Huart d'Omalius d'Oreye d'Oultremont David Davignon "de Baillet" "de Beaufort" 
-			"de Behr" "de Bocarmé" "de Bousies" "de Brouckère" "de Broqueville" "de Burlet" "de Celles" "de Chasteler" "de Coppin de Falaen"
-			"de Croÿ" "de Decker" "de Dixmude" "de Gerlache" "de Grez" "de Hemptinne" "de Labbeville" "de Lannoy" "de Ligne" "de Leuze" "de Melin" 
-			"de Mérode" "de Pelichy" "de Quarre" "de Riquet" "de Robaulx" "de Rouille" "de Sauvage" "de Sécus" "de Selys Longchamps" 
-			"de Stassart" "de Stockem" "de Theux de Meylandt" "de Trazegnies" "de Trooz" "de Viron" "de Waha" Defacqz Deguise Delacroix 
-			"Desmanet de Biesme" Destriveaux Dethier Devaux Deville Dewandre Dhanis Dreze "du Bois" "du Bus" "du Pont" "du Val de Beaulieu" Dumont
-			Fallon Fendius Figeys Fleury-Dubay Fleussu Forgeur Frison Fuchs Gendebien Goffint Henry "Huysman d'Annecroix" Jacques Joos Jottrand 
-			Lahure Lardinois "le Cocq" "le Hon" Lebeau Leclercq Lefebvre Leman Malou Marcq Marlet Masbourg Nagelmackers Nalinne Nothomb 
-			Orban Pétillon Picquet Pirmez Pirson Raikem Roeser Rogier Rouen Rouppe Seron Thonus Thorn "van Snick" Wahis Wangermée Wyvekens Zoude
+			Cols Claus Clerix Coquilhat d'Arenberg d'Huart d'Omalius d'Oreye d'Oultremont David Davignon *de Baillet* *de Beaufort* 
+			*de Behr* *de Bocarmé* *de Bousies* *de Brouckère* *de Broqueville* *de Burlet* *de Celles* *de Chasteler* *de Coppin de Falaen*
+			*de Croÿ* *de Decker* *de Dixmude* *de Gerlache* *de Grez* *de Hemptinne* *de Labbeville* *de Lannoy* *de Ligne* *de Leuze* *de Melin* 
+			*de Mérode* *de Pelichy* *de Quarre* *de Riquet* *de Robaulx* *de Rouille* *de Sauvage* *de Sécus* *de Selys Longchamps* 
+			*de Stassart* *de Stockem* *de Theux de Meylandt* *de Trazegnies* *de Trooz* *de Viron* *de Waha* Defacqz Deguise Delacroix 
+			*Desmanet de Biesme* Destriveaux Dethier Devaux Deville Dewandre Dhanis Dreze *du Bois* *du Bus* *du Pont* *du Val de Beaulieu* Dumont
+			Fallon Fendius Figeys Fleury-Dubay Fleussu Forgeur Frison Fuchs Gendebien Goffint Henry *Huysman d'Annecroix* Jacques Joos Jottrand 
+			Lahure Lardinois *le Cocq* *le Hon* Lebeau Leclercq Lefebvre Leman Malou Marcq Marlet Masbourg Nagelmackers Nalinne Nothomb 
+			Orban Pétillon Picquet Pirmez Pirson Raikem Roeser Rogier Rouen Rouppe Seron Thonus Thorn *van Snick* Wahis Wangermée Wyvekens Zoude
 		}
 		ship_names=
 		{
 			l'Actif l'Actionnaire l'Aigle l'Alcide l'Alexandre l'Ambitieux l'Amphion l'Ardente l'Arrogant l'Artésien l'Assuré l'Astrée
-			"la Belle Poule" "le Bourbon" "le Brillant" "le Bien Aimé" "la Bizarre" "la Bretagne" "la Borée" "la Bourgogne" "le Brave" 
-			"le Caton" "le Conquérant" "le Content" "la Couronne" 
-			"le Dauphin Royal" "le Destin" "le Diadème" "le Duc de Bourgogne" 
-			"l'Eveillé" "l'Emérillon"
-			"le Fantasque" "le Fendant" "le Fier" "le Flamant" "la Fleur de Lis" "le Fleuron" "le Foudroyant"
-			"le Glorieux"
-			"le Hardi" l'Hermione
-			"le Gaillard" "la Grande Hermine" "le Héros"
-			"l'Illustre" "l'Indien" "l'Intrépide" "l'Invincible" 
-			"la Licorne" "le Lys"
-			"le Magnanime" "le Magnifique" "le Majestueux" "la Marie-Catherine" "le Marquis" "le Mars" "le Marseillais" "le Minotaure" "le Monarque"
-			"le Neptune"
+			*la Belle Poule* *le Bourbon* *le Brillant* *le Bien Aimé* *la Bizarre* *la Bretagne* *la Borée* *la Bourgogne* *le Brave* 
+			*le Caton* *le Conquérant* *le Content* *la Couronne* 
+			*le Dauphin Royal* *le Destin* *le Diadème* *le Duc de Bourgogne* 
+			*l'Eveillé* *l'Emérillon*
+			*le Fantasque* *le Fendant* *le Fier* *le Flamant* *la Fleur de Lis* *le Fleuron* *le Foudroyant*
+			*le Glorieux*
+			*le Hardi* l'Hermione
+			*le Gaillard* *la Grande Hermine* *le Héros*
+			*l'Illustre* *l'Indien* *l'Intrépide* *l'Invincible* 
+			*la Licorne* *le Lys*
+			*le Magnanime* *le Magnifique* *le Majestueux* *la Marie-Catherine* *le Marquis* *le Mars* *le Marseillais* *le Minotaure* *le Monarque*
+			*le Neptune*
 			l'Océan l'Oiseau l'Orient
-			"le Pélican" "le Protecteur" "le Prothée"
-			"la Railleuse" "le Redoutable" "le Réfléchi" "la Régente" "le Robuste" "le Roland" "le Royal Louis"
-			"le Sagittaire" "la Sainte Anne" "le Saint Esprit" "le Saint Michel" "le Saint Philippe" "le Sceptre" "le Seigneur Chat" "le Sévère" "le Soleil Royal" "le Solitaire" "le Souverain" "le Sphinx" "la Superbe"
-			"le Téméraire" "le Terrible" "la Thérèse" "le Triomphant" "le Tonnant"
-			"la Trombe" "le Triton" 
-			"Union" 
-			"la Victoire"
-			"le Zélé" "le Zodiaque"
+			*le Pélican* *le Protecteur* *le Prothée*
+			*la Railleuse* *le Redoutable* *le Réfléchi* *la Régente* *le Robuste* *le Roland* *le Royal Louis*
+			*le Sagittaire* *la Sainte Anne* *le Saint Esprit* *le Saint Michel* *le Saint Philippe* *le Sceptre* *le Seigneur Chat* *le Sévère* *le Soleil Royal* *le Solitaire* *le Souverain* *le Sphinx* *la Superbe*
+			*le Téméraire* *le Terrible* *la Thérèse* *le Triomphant* *le Tonnant*
+			*la Trombe* *le Triton* 
+			*Union* 
+			*la Victoire*
+			*le Zélé* *le Zodiaque*
 			Vallonia Henogovia 
-			"Louis Boisot" "Olivier Brunel" "Simon de Cordes" "Albert Dorville" "Jessé de Forest" "Louis Hennepin" 
-			Meuse Ourthe Sambre "l'Escaut" Semois
+			*Louis Boisot* *Olivier Brunel* *Simon de Cordes* *Albert Dorville* *Jessé de Forest* *Louis Hennepin* 
+			Meuse Ourthe Sambre *l'Escaut* Semois
 		}
 		army_names=
 		{
-			"Armée de $PROVINCE$" 
+			*Armée de $PROVINCE$* 
 		}
 		fleet_names=
 		{
-			"Flotte de $PROVINCE$"
+			*Flotte de $PROVINCE$*
 		}
 	}
 	welsh=
@@ -4285,24 +4285,24 @@ culture_rules=
 		{
 			Bedwyr Brycheiniog
 			Cadwaladr Caerdydd Caernarfon Caradoc Ceredigion Conwy Culhwch  
-			Deheubarth "Dewi Sant" Dolbadarn Dolwyddelan Dyfed
+			Deheubarth *Dewi Sant* Dolbadarn Dolwyddelan Dyfed
 			Eryri
-			Glywysing Gwalchmei "Gwenan Gorn" Gwydion Gwyn Gwynedd
-			Lleu "Llewellyn Fawr"
+			Glywysing Gwalchmei *Gwenan Gorn* Gwydion Gwyn Gwynedd
+			Lleu *Llewellyn Fawr*
 			Mabinogi Math Meirionydd Morgannwg
-			Olwen "Owain Glyndwr"
-			Penfro Powys "Preiddeu Annwn" Pryderi Pwyll
+			Olwen *Owain Glyndwr*
+			Penfro Powys *Preiddeu Annwn* Pryderi Pwyll
 			Rhiannon
 			Taff Teifi Teirnon Tywi
-			"Ynys Môn"
+			*Ynys Môn*
 		}
 		army_names=
 		{
-			"Fyddin o $PROVINCE$"
+			*Fyddin o $PROVINCE$*
 		}
 		fleet_names=
 		{
-			"Fflyd o $PROVINCE$"
+			*Fflyd o $PROVINCE$*
 		}
 	}
 }
