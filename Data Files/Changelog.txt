@@ -536,3 +536,6 @@ Revision	Log Message
 516		Handle missing localisation when generating new countries
 517		Commiting files not included in revision 516
 518		Merge main into mod
+
+
+520		The parser now handles Windows-1252
