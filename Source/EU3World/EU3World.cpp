@@ -2444,7 +2444,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
     // get mod culture rules
     getCultureRules();
 
-	// parse override file
+	// parse overrides file
 	Object* obj = doParseFile( (Configuration::getModPath() + "\\config\\overrides.txt").c_str() );
 	if (obj == NULL)
 	{
@@ -2452,11 +2452,19 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		printf("Error: Could not open %s\n",(Configuration::getModPath() + "\\config\\overrides.txt").c_str()) ;
 		exit(-1);
 	}
+
 	vector<Object*> cultureRuleOverrideObj = obj->getValue("culture_rule_override");
 	cultureRuleOverrideMapping croMap; // Culture Rule Override Mapping
 	if (cultureRuleOverrideObj.size() > 0)
 	{
 		croMap = initCultureRuleOverrideMap(cultureRuleOverrideObj[0],cultureRules);
+	}
+	
+	vector<Object*> localeOverrideObj = obj->getValue("locale_override");
+	localeOverrideMapping locMap; // Locale Override Mapping
+	if (localeOverrideObj.size() > 0)
+	{
+		locMap = initLocaleOverrideMap(localeOverrideObj[0]);
 	}
 
 	// Initialize RNG
@@ -2607,9 +2615,33 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		if (EU3Localisations != NULL)
 		{
 			map<string, string>::iterator localisation = localisations.find(titleString);
-			if (localisation == localisations.end())
+			if (locMap.count(titleString) !=0 ) // check if CK2 title is locale-overriden
+			{
+				string newLocalisation = tag;
+				newLocalisation += locMap[titleString];
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else if (localisation == localisations.end())
 			{
 				log("\tWarning: could not find CK2 localisation for %s\n", titleString.c_str());
+				string genLocalisation = titleString;
+				stringstream ss;
+				for (unsigned int i = 0; i<genLocalisation.size(); i++) // c_country_name -> c_Country_Name
+				{
+					if (genLocalisation[i] == '_')
+					{
+						genLocalisation[i+1] = toupper(genLocalisation[i+1]);
+					}
+				}
+				genLocalisation = genLocalisation.substr(2); // c_Country_Name -> Country_Name
+				replace(genLocalisation.begin(), genLocalisation.end(), '_',' '); // Country_Name = Country Name
+				ss << tag;
+				ss << ";" << genLocalisation;	 // English
+				ss << ";" << genLocalisation;	 // French
+				ss << ";" << genLocalisation;	 // German
+				ss << ";;" << genLocalisation;	 // Spanish
+				ss << ";;;;;;;;;x\r\n";
+				fprintf(EU3Localisations, ss.str().c_str());
 			}
 			else
 			{
@@ -2619,9 +2651,37 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			}
 
 			localisation = localisations.find(titleString + "_adj");
-			if (localisation == localisations.end())
+			if (locMap.count( (titleString + "_adj") ) !=0 ) // check if CK2 title demonym is locale-overriden
 			{
+				string newLocalisation = tag;
+				newLocalisation += "_ADJ";
+				newLocalisation += locMap[(titleString + "_adj")];
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else if (localisation == localisations.end())
+			{
+				string newLocalisation = tag;
+				string genLocalisation = titleString;
+				stringstream ss;
 				log("\tWarning: could not find CK2 localisation for %s\n", (titleString + "_adj").c_str());
+				for (unsigned int i = 0; i<genLocalisation.size(); i++) // c_country_name -> c_Country_Name
+				{
+					if (genLocalisation[i] == '_')
+					{
+						genLocalisation[i+1] = toupper(genLocalisation[i+1]);
+					}
+				}
+				genLocalisation = genLocalisation.substr(2); // c_Country_Name -> Country_Name
+				replace(genLocalisation.begin(), genLocalisation.end(), '_',' '); // Country_Name = Country Name
+				ss << tag << "_ADJ";
+				ss << ";" << genLocalisation;	 // English
+				ss << ";" << genLocalisation;	 // French
+				ss << ";" << genLocalisation;	 // German
+				ss << ";" << genLocalisation;	 // Spanish
+				ss << ";" << genLocalisation;	 // French
+				ss << ";;;;;;;;;x\r\n";
+				newLocalisation += ss.str();
+				fprintf(EU3Localisations, ss.str().c_str());
 			}
 			else
 			{

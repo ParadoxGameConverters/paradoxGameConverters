@@ -89,4 +89,9 @@ typedef map<string, ModCultureRule*> cultureRuleOverrideMapping;
 cultureRuleOverrideMapping initCultureRuleOverrideMap(Object* obj, map<string, ModCultureRule*> cultureRules);
 
 
+// Locale Override
+typedef map<string, string> localeOverrideMapping;
+localeOverrideMapping initLocaleOverrideMap(Object* obj);
+
+
 #endif	// MAPPERS_H_
