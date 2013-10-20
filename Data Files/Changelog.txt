@@ -467,3 +467,6 @@ Revision	Log Message
 
 
 475		Make text more clear for vassalSocre setting
+
+
+519		Don't use an OS-reserved name for tags (http://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx)
