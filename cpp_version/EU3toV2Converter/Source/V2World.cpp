@@ -985,8 +985,8 @@ void V2World::setupStates(const stateMapping& stateMap)
 		{
 			neighbors = stateItr->second;
 		}
-		bool colonial				= (*iter)->isColonial();
-		newState->setColonial(colonial);
+		bool colonised = (*iter)->wasColonised();
+		newState->setColonised(colonised);
 		iter = unassignedProvs.erase(iter);
 
 		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
@@ -997,7 +997,7 @@ void V2World::setupStates(const stateMapping& stateMap)
 				{
 					if ((*iter)->getOwner() == owner)
 					{
-						if ((*iter)->isColonial() == colonial)
+						if ((*iter)->wasColonised() == colonised)
 						{
 							newState->addProvince(*iter);
 							iter = unassignedProvs.erase(iter);

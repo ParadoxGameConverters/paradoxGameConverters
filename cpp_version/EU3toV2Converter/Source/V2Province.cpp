@@ -87,7 +87,20 @@ void V2Province::output(FILE* output) const
 	}
 	if (colonial)
 	{
-		fprintf(output, "\tcolonial=yes\n");
+		if (Configuration::getV2Gametype() != "HOD")
+		{
+		}
+	}
+	if (colonised)
+	{
+		if(Configuration::getV2Gametype() == "HOD")
+		{
+			fprintf(output, "\tcolonial=2\n");
+		}
+		else
+		{
+			fprintf(output, "\tcolonial=yes\n");
+		}
 	}
 	if (land)
 	{

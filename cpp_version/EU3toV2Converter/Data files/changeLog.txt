@@ -427,3 +427,4 @@ Revision	Version Updated		Log Message
 492		C++			Add HOD to V2 game types
 493		C++			Don't choke when reading countries.txt
 494		C++			Handle HOD inventions
+495		C++			Dominions instead of colonies
