@@ -8,7 +8,7 @@ configuration =
 
 	# The date on which the game is to start.  Default: 1835.12.1
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
-	start_date = 1835.12.1
+	start_date = 1836.1.1
 
 	# The maximum literacy a nation will start with. Default 80%
 	max_literacy = 0.80
