@@ -13,6 +13,8 @@ using namespace std;
 
 V2Province::V2Province(int newNumber)
 {
+	srcProvince			= NULL;
+
 	land					= false;
 	coastal				= false;
 	num					= newNumber;
@@ -323,6 +325,8 @@ void V2Province::importHistory(Object* obj)
 
 void V2Province::convertFromOldProvince(const EU3Province* oldProvince)
 {
+	srcProvince			= oldProvince;
+
 	colonial				= oldProvince->isColony();
 	colonised			= oldProvince->wasColonised();
 	originallyPagan	= oldProvince->wasPaganConquest();

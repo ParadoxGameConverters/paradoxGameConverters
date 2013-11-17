@@ -772,11 +772,56 @@ void V2Country::initFromHistory()
 
 void V2Country::addState(V2State* newState)
 {
+	int				highestNavalLevel = 0;
+	unsigned int	hasHighestLevel	= -1;
+	bool				hasNavalBase		= false;
+
 	states.push_back(newState);
 	vector<V2Province*> newProvinces = newState->getProvinces();
 	for (unsigned int i = 0; i < newProvinces.size(); i++)
 	{
 		provinces.push_back(newProvinces[i]);
+
+		// find the province with the highest naval base level
+		if (Configuration::getV2Gametype() == "HOD")
+		{
+			if (provinces[i]->hasNavalBase())
+			{
+				int navalLevel = 0;
+				const EU3Province* srcProvince = newProvinces[i]->getSrcProvince();
+				if (srcProvince != NULL)
+				{
+					if (srcProvince->hasBuilding("shipyard"))
+					{
+						navalLevel += 1;
+					}
+					if (srcProvince->hasBuilding("grand_shipyard"))
+					{
+						navalLevel += 1;
+					}
+					if (srcProvince->hasBuilding("naval_arsenal"))
+					{
+						navalLevel += 1;
+					}
+					if (srcProvince->hasBuilding("naval_base"))
+					{
+						navalLevel += 1;
+					}
+				}
+				if (navalLevel > highestNavalLevel)
+				{
+					highestNavalLevel	= navalLevel;
+					hasHighestLevel	= i;
+				}
+
+				provinces[i]->setNavalBaseLevel(0);
+			}
+		}
+	}
+
+	if ((Configuration::getV2Gametype() == "HOD") && (highestNavalLevel > 0))
+	{
+		provinces[hasHighestLevel]->setNavalBaseLevel(1);
 	}
 }
 

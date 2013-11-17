@@ -55,17 +55,19 @@ class V2Province
 		void				setNavalBaseLevel(int level)			{ navalBaseLevel = level; };
 		void				setRailLevel(int level)					{ railLevel = level; };
 
-		bool				isLand()					const { return land; };
-		int				getOldPopulation()	const	{ return oldPopulation; };
-		bool				getCOT()					const { return COT; };
-		bool				wasPaganConquest()	const { return originallyPagan; };
-		bool				wasColonised()			const { return colonised; };
-		bool				isColonial()			const { return colonial; };
-		string			getRgoType()			const { return rgoType; };
-		string			getOwner()				const { return owner; };
-		int				getNum()					const { return num; };
-		string			getName()				const { return name; };
-		bool				isCoastal()				const { return coastal; };
+		const EU3Province*	getSrcProvince()		const { return srcProvince; };
+		bool						isLand()					const { return land; };
+		int						getOldPopulation()	const	{ return oldPopulation; };
+		bool						getCOT()					const { return COT; };
+		bool						wasPaganConquest()	const { return originallyPagan; };
+		bool						wasColonised()			const { return colonised; };
+		bool						isColonial()			const { return colonial; };
+		string					getRgoType()			const { return rgoType; };
+		string					getOwner()				const { return owner; };
+		int						getNum()					const { return num; };
+		string					getName()				const { return name; };
+		bool						isCoastal()				const { return coastal; };
+		bool						hasNavalBase()			const { return (navalBaseLevel > 0); };
 	private:
 		void outputPops(FILE*) const;
 		void outputRGO(FILE*) const;
@@ -73,6 +75,8 @@ class V2Province
 		void createPops(WorldType game, const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
+
+		const EU3Province*		srcProvince;
 
 		bool							land;
 		bool							coastal;
