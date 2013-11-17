@@ -437,27 +437,25 @@ void removeLandlessNations(EU3World& world)
 }
 
 
-stateMapping initStateMap(Object* obj)
+void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap)
 {
-	stateMapping stateMap;
 	vector<Object*> leaves = obj->getLeaves();
 
-	for (vector<Object*>::iterator i = leaves.begin(); i != leaves.end(); i++)
+	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
-		vector<string> provinces = (*i)->getTokens();
+		vector<string> provinces = leaves[i]->getTokens();
 		vector<int>		neighbors;
 
 		for (vector<string>::iterator j = provinces.begin(); j != provinces.end(); j++)
 		{
 			neighbors.push_back( atoi(j->c_str()) );
+			stateIndexMap.insert( make_pair(atoi(j->c_str()), i) );
 		}
 		for (vector<int>::iterator j = neighbors.begin(); j != neighbors.end(); j++)
 		{
 			stateMap.insert(make_pair(*j, neighbors));
 		}
 	}
-
-	return stateMap;
 }
 
 

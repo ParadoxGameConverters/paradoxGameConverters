@@ -286,8 +286,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("Error: Could not parse region.txt.\n");
 		return 1;
 	}
-	stateMapping stateMap;
-	stateMap = initStateMap(obj);
+	stateMapping		stateMap;
+	stateIndexMapping stateIndexMap;
+	initStateMap(obj, stateMap, stateIndexMap);
 
 
 	// Parse Culture Mappings
@@ -414,7 +415,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap, stateIndexMap);
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);
