@@ -113,7 +113,7 @@ vector<string> processBlockedNations(Object* obj)
 	return blockedNations;
 }
 
-
+#pragma optimize("", off)
 int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2World& destWorld, const vector<string>& blockedNations, Object* rulesObj)
 {
 	mapping.clear();
@@ -129,8 +129,9 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 	}
 	vector<Object*> rules = leaves[0]->getLeaves();
 
-	map<string, EU3Country*>	EU3Countries	= srcWorld.getCountries();
-	map<string, V2Country*>		V2Countries		= destWorld.getPotentialCountries();
+	map<string, EU3Country*>	EU3Countries		= srcWorld.getCountries();
+	map<string, V2Country*>		V2Countries			= destWorld.getPotentialCountries();
+	map<string, V2Country*>		dynamicCountries	= destWorld.getDynamicCountries();
 	for (vector<Object*>::iterator i = rules.begin(); i != rules.end(); ++i)
 	{
 		vector<Object*> rule = (*i)->getLeaves();
@@ -208,6 +209,23 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 		}
 	}
 
+	while ( (EU3Countries.size() > 0) && (dynamicCountries.size() > 0) )
+	{
+		map<string, EU3Country*>::iterator	EU3Country		= EU3Countries.begin();
+		map<string, V2Country*>::iterator	dynamicCountry	= dynamicCountries.begin();
+		map<string, V2Country*>::iterator	V2Country		= V2Countries.find(dynamicCountry->first);
+		if (V2Country == V2Countries.end())
+		{
+			log("Error: dynamic country was not also a V2 country. I will likely crash now\n");
+		}
+		mapping.insert(make_pair(EU3Country->first, V2Country->first));
+		log("\tAdded map %s -> %s (dynamic fallback)\n", EU3Country->first.c_str(), V2Country->first.c_str());
+
+		EU3Countries.erase(EU3Country);
+		dynamicCountries.erase(dynamicCountry);
+		V2Countries.erase(V2Country);
+	}
+
 	while ( (EU3Countries.size() > 0) && (V2Countries.size() > 0) )
 	{
 		map<string, EU3Country*>::iterator EU3Country = EU3Countries.begin();
@@ -221,7 +239,7 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 
 	return EU3Countries.size();
 }
-
+#pragma optimize("", on)
 
 void mergeNations(EU3World& world, Object* mergeObj)
 {

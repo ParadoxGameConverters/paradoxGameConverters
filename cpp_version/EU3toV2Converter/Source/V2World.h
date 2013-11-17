@@ -36,6 +36,7 @@ class V2World {
 		void allocateFactories(const EU3World& sourceWorld, const V2FactoryFactory& factoryBuilder);
 
 		map<string, V2Country*>	getPotentialCountries()	const;
+		map<string, V2Country*>	getDynamicCountries()	const;
 	private:
 		void			outputHeader(FILE*) const;
 		void			getProvinceLocalizations(string file);
@@ -45,6 +46,7 @@ class V2World {
 		vector<V2Province*>		provinces;
 		vector<V2Country*>		countries;
 		vector<V2Country*>		potentialCountries;
+		vector<V2Country*>		dynamicCountries;
 		map<int, V2Party*>		parties;
 		V2Diplomacy					diplomacy;
 		int							equalityLeft;

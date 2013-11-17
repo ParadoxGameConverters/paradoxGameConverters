@@ -264,6 +264,7 @@ V2World::V2World(string V2Loc)
 	printf("\tGetting potential countries and building political parties.\n");
 	parties.clear();
 	potentialCountries.clear();
+	dynamicCountries.clear();
 	const date FirstStartDate = Configuration::getStartDate();
 	ifstream V2CountriesInput;
 	V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
@@ -274,14 +275,20 @@ V2World::V2World(string V2Loc)
 		exit(1);
 	}
 
-	int partiesIndex = 1;
+	int	partiesIndex = 1;
+	bool	staticSection = true;
 	while (!V2CountriesInput.eof())
 	{
 		string line;
 		getline(V2CountriesInput, line);
 
-		if ( (line[0] == '#') || (line.size() < 3) || (line.substr(0,12) == "dynamic_tags") )
+		if ( (line[0] == '#') || (line.size() < 3) )
 		{
+			continue;
+		}
+		else if (line.substr(0,12) == "dynamic_tags")
+		{
+			staticSection = false;
 			continue;
 		}
 		
@@ -315,7 +322,15 @@ V2World::V2World(string V2Loc)
 			continue;
 		}
 		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
-		potentialCountries.push_back(newCountry);
+		if (staticSection)
+		{
+			potentialCountries.push_back(newCountry);
+		}
+		else
+		{
+			potentialCountries.push_back(newCountry);
+			dynamicCountries.push_back(newCountry);
+		}
 	}
 	V2CountriesInput.close();
 
@@ -1508,6 +1523,18 @@ map<string, V2Country*> V2World::getPotentialCountries() const
 {
 	map<string, V2Country*> retVal;
 	for (vector<V2Country*>::const_iterator i = potentialCountries.begin(); i != potentialCountries.end(); i++)
+	{
+		retVal[ (*i)->getTag() ] = *i;
+	}
+
+	return retVal;
+}
+
+
+map<string, V2Country*> V2World::getDynamicCountries() const
+{
+	map<string, V2Country*> retVal;
+	for (vector<V2Country*>::const_iterator i = dynamicCountries.begin(); i != dynamicCountries.end(); i++)
 	{
 		retVal[ (*i)->getTag() ] = *i;
 	}
