@@ -432,3 +432,4 @@ Revision	Version Updated		Log Message
 497		C++			No need to start before 1836
 498		C++			In HOD, limit naval bases to one per state
 499		C++			When mapping countries, prefer dynamic nations for fallbacks
+500		C++			Updates for building, testing, releasing
