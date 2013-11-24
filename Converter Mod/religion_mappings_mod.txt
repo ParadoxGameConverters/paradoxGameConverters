@@ -40,5 +40,8 @@ link = { ck2 = hellenic_pagan eu3 = hellenic_pagan }
 link = { ck2 = zoroastrian eu3 = zoroastrian }
 link = { ck2 = mazdaki eu3 = zoroastrian }
 link = { ck2 = manichean eu3 = zoroastrian }
+link = { ck2 = jewish eu3 = jewish }
+link = { ck2 = samaritan eu3 = samaritan }
+link = { ck2 = karaite eu3 = karaite }
 
 }

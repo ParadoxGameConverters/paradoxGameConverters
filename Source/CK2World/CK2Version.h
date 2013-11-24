@@ -34,7 +34,7 @@ class CK2Version
 	public:
 		CK2Version(string versionString);
 
-		bool operator > (CK2Version& rhs) const { return ( (major > rhs.major) || (minor > rhs.minor) || (revision > rhs.revision) ); };
+		bool operator > (CK2Version& rhs) const;
 	private:
 		int	major;
 		int	minor;

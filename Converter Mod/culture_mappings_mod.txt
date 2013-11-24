@@ -368,4 +368,8 @@ link = { ck2 = manden eu3 = ashanti }
 ## Mesoamerican
 link = { ck2 = nahuatl eu3 = nahuatl }
 
+## Israelite
+link = { ck2 = ashkenazi eu3 = ashkenazi }
+link = { ck2 = sephardi eu3 = sephardi }
+
 }

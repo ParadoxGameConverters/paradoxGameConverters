@@ -27,19 +27,20 @@
 
 CK2Version::CK2Version(string versionString)
 {
-	int vPos			= versionString.find_first_of('v');
-	int periodPos	= versionString.find_first_of('.');
+	int vPos					= versionString.find_first_of('v');
+	int firstPeriodPos	= versionString.find_first_of('.');
+	int lastPeriodPos		= versionString.find_last_of('.');
 
 	if (vPos != string::npos)
 	{
 		vPos++;
-		major = atoi( versionString.substr(vPos, periodPos - vPos).c_str() );
+		major = atoi( versionString.substr(vPos, firstPeriodPos - vPos).c_str() );
 	
-		periodPos++;
-		minor = atoi( versionString.substr(periodPos, 2).c_str() );
-		if (versionString.size() > (unsigned int)(periodPos + 3))
+		firstPeriodPos++;
+		minor = atoi( versionString.substr(firstPeriodPos, 2).c_str() );
+		if (versionString.size() > (unsigned int)(firstPeriodPos + 3))
 		{
-			revision = atoi( versionString.substr(periodPos + 3, 1).c_str() );
+			revision = atoi( versionString.substr(firstPeriodPos + 3, 1).c_str() );
 		}
 		else
 		{
@@ -48,17 +49,21 @@ CK2Version::CK2Version(string versionString)
 	}
 	else
 	{
-		major = atoi( versionString.substr(0, periodPos).c_str() );
+		major = atoi( versionString.substr(0, firstPeriodPos).c_str() );
 	
-		periodPos++;
-		minor = atoi( versionString.substr(periodPos, 2).c_str() );
-		if (versionString.size() > (unsigned int)(periodPos + 3))
-		{
-			revision = atoi( versionString.substr(periodPos + 3, 1).c_str() );
-		}
-		else
-		{
-			revision = 0;
-		}
+		firstPeriodPos++;
+		minor = atoi( versionString.substr(firstPeriodPos, (lastPeriodPos - firstPeriodPos)).c_str() );
+
+		lastPeriodPos++;
+		revision = atoi( versionString.substr(lastPeriodPos, (lastPeriodPos - versionString.length())).c_str() );
 	}
+}
+
+
+bool CK2Version::operator > (CK2Version& rhs) const
+{
+	return ( (major > rhs.major) ||
+				((major == rhs.major) && (minor > rhs.minor)) ||
+				((major == rhs.major) && (minor == rhs.minor) && (revision > rhs.revision))
+			 );
 }

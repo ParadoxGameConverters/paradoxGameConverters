@@ -804,3 +804,10 @@ african = {
 		}
 	}
 }
+
+israelite = {
+	ashkenazi = {
+	}
+	sephardi = {
+	}
+}

@@ -622,6 +622,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 			provItr->second->setOwner(NULL);
 			provItr->second->clearCores();
 			provItr->second->setPopulation(0);
+			continue;
 		}
 		if (i->second[0] == 0)
 		{

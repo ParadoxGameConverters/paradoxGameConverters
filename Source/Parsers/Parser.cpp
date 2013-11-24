@@ -191,6 +191,10 @@ string bufferOneObject(ifstream& read)
 	while (read.good())
 	{
 		getline(read, buffer);
+		if (buffer == "CK2txt")
+		{
+			continue;
+		}
 		currObject += "\n";
 
 		bool opened = false;

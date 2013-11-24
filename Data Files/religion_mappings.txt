@@ -40,5 +40,8 @@ link = { ck2 = hellenic_pagan eu3 = shamanism }
 link = { ck2 = zoroastrian eu3 = shamanism }
 link = { ck2 = mazdaki eu3 = shamanism }
 link = { ck2 = manichean eu3 = shamanism }
+link = { ck2 = jewish eu3 = shamanism }
+link = { ck2 = samaritan eu3 = shamanism }
+link = { ck2 = karaite eu3 = shamanism }
 
 }

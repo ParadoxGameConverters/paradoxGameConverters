@@ -528,3 +528,6 @@ Revision	Log Message
 
 
 515		Add copyright and license to source files
+
+
+519		Update for CK2 2.0.1
