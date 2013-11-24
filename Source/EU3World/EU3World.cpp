@@ -27,6 +27,7 @@
 #include <algorithm>
 #include <io.h>
 #include <set>
+#include <vector>
 #include <boost/algorithm/string.hpp>
 #include <boost/filesystem.hpp>
 #include <boost/lexical_cast.hpp>
@@ -41,6 +42,7 @@
 #include "..\CK2World\CK2World.h"
 #include "..\CK2World\CK2Character.h"
 #include "..\CK2World\CK2Religion.h"
+#include "..\ModWorld\ModCultureRule.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
 #include "EU3Ruler.h"
@@ -528,7 +530,7 @@ void EU3World::setupProvinces(provinceMapping& provinceMap)
 		Object* obj;
 		char num[5];
 		_itoa_s(i->first, num, 5, 10);
-		
+
 		string filename = Configuration::getEU3Path() + "\\history\\provinces\\" + num + "*-*.txt";
 		struct _finddata_t	fileData;
 		intptr_t					fileListing;
@@ -577,6 +579,34 @@ void EU3World::convertCountries(map<string, CK2Title*> CK2Titles, const religion
 		if (CK2Liege != NULL)
 		{
 			(*countryItr)->addLiege(CK2Liege->getDstCountry());
+		}
+	}
+}
+
+
+void EU3World::getCultureRules()
+{
+	// get mod culture rules
+    Object* obj = doParseFile( (Configuration::getModPath() + "\\config\\culture_rules.txt").c_str() );
+	if (obj == NULL)
+	{
+		log( ("Error: Could not open" + Configuration::getModPath() + "\\config\\culture_rules.txt\n").c_str() );
+		printf("Error: Could not open culture_rules.txt\n");
+		exit(-1);
+	}
+
+	vector<Object*> objectList = obj->getLeaves();
+
+	if (objectList.size() >0)
+	{
+		vector<Object*> cultureRuleObj = objectList[0]->getLeaves(); // Get culture rules
+		for (unsigned int i = 0; i < cultureRuleObj.size(); i++) // Loop through each culture rule
+		{
+			//initialize culture rule
+			ModCultureRule* newCultureRule = new ModCultureRule(cultureRuleObj[i]->getKey(), cultureRuleObj[i]);
+
+			//add to culture rules list
+			cultureRules.insert( make_pair(cultureRuleObj[i]->getKey(), newCultureRule) );
 		}
 	}
 }
@@ -650,7 +680,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 
 			continue;
 		}
-		
+
 		vector<int>	srcProvinceNums = i->second;
 		vector<CK2Province*> srcProvinces;
 		for (unsigned j = 0; j < srcProvinceNums.size(); j++)
@@ -841,7 +871,7 @@ void EU3World::convertProvinces(provinceMapping& provinceMap, map<int, CK2Provin
 		goodProvinces.push(openItr->first);
 		openProvinces.erase(openItr);
 
-		do 
+		do
 		{
 			int currentProvince = goodProvinces.front();
 			goodProvinces.pop();
@@ -1343,7 +1373,7 @@ void EU3World::convertTech(const CK2World& srcWorld)
 			}
 			log("\t,%s,%f,%s\n", (*countryItr)->getTag().c_str(), techScore, (*countryItr)->getTechGroup().c_str());
 		}
-	}	
+	}
 
 	for(map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -1820,7 +1850,7 @@ int EU3World::matchTags(Object* rulesObj, vector<string>& blockedNations, const 
 		for (unsigned int j = 0; j < rule.size(); j++)
 		{
 			if (rule[j]->getKey().compare("CK2") == 0)
-			{		 
+			{
 				rCK2Title = rule[j]->getLeaf();
 			}
 			else if (rule[j]->getKey().compare("EU3") == 0)
@@ -2014,7 +2044,7 @@ void EU3World::convertHRE()
 		}
 	}
 	sort(potentialElectors.begin(), potentialElectors.end(), [](CK2Title* a, CK2Title* b) { return a->getHolder()->getTotalScore() < b->getHolder()->getTotalScore(); } );
-	
+
 	if (potentialElectors.size() > 0)
 	{
 		unsigned int maxElectors = 6;
@@ -2034,8 +2064,436 @@ void EU3World::convertHRE()
 }
 
 
+#define RULERS 10
+#define COMMONERS 30
+#define MAX_SHIPNAMES 40
+#define MAX_LEADERNAMES 40
+#define MULTIPLIER 3
+void EU3World::populateCountryFileData(EU3Country* country, cultureRuleOverrideMapping croMap, string titleString)
+{
+	ModCultureRule *rulingCulture = NULL, *commonCulture = NULL;
+	string primaryCulture = country->getPrimaryCulture().c_str();
+	string capitalCulture = provinces[country->getCapital()]->getCulture().c_str();
+		
+	if (croMap.count(titleString.c_str()) !=0 ) // check if CK2 title is in overrides
+	{
+		primaryCulture = croMap[titleString.c_str()]->getKey();
+		if (cultureRules.count(primaryCulture) == 0)
+		{
+			log("\tWarning: could not find culture rule for \"%s\"\n",primaryCulture.c_str());
+			country->setGraphicalCulture(DEFAULT_GFX);
+			return;
+		}
+		else
+		{
+			rulingCulture = croMap[titleString.c_str()];
+			commonCulture = rulingCulture;
+		}
+	}
+	else
+	{
+		if (cultureRules.count(primaryCulture) == 0)
+		{
+			log("\tWarning: could not find culture rule for \"%s\"\n",primaryCulture.c_str());
+			country->setGraphicalCulture(DEFAULT_GFX);
+			return;
+		}
+		else
+		{
+			rulingCulture = cultureRules[primaryCulture];
+		}
+		if (cultureRules.count(capitalCulture) == 0)
+		{
+			log("\tWarning: could not find culture rule for \"%s\"\n",capitalCulture.c_str());
+			country->setGraphicalCulture(DEFAULT_GFX);
+			return;
+		}
+		else
+		{
+			commonCulture = cultureRules[capitalCulture];
+		}
+	}
+
+	// Set graphical culture
+	country->setGraphicalCulture(commonCulture->getGraphicalCulture().c_str());
+
+	// Determine names
+	string gender = country->getSrcCountry()->getGenderLaw().c_str();
+	deque<tuple<string,int>> firstNames;
+	vector<string> insertMe;
+	int weight = -1;
+	double maleRatio = -1;
+
+	if (gender == "agnatic")
+	{
+		maleRatio = 1;
+	}
+	if (gender == "cognatic")
+	{
+		maleRatio = 0.8;
+	}
+	if (gender == "true_cognatic")
+	{
+		maleRatio = 0.5;
+	}
+	if (gender == "enatic_cognatic")
+	{
+		maleRatio = 0.2;
+	}
+	if (gender == "enatic")
+	{
+		maleRatio = 0;
+	}
+	double rulers = RULERS;
+	double commoners = COMMONERS;
+	firstNames.clear();
+	if (rulingCulture->getKey() == commonCulture->getKey())
+	{
+		vector<string> nameListM(rulingCulture->getMaleNames());
+		vector<string> nameListF(rulingCulture->getFemaleNames());
+		vector<string> mixed;
+		mixed.reserve(nameListM.size() + nameListF.size());
+		mixed.insert(mixed.end(), nameListM.begin(), nameListM.end());
+		mixed.insert(mixed.end(), nameListF.begin(), nameListF.end());
+		random_shuffle(nameListM.begin(),nameListM.end());
+		random_shuffle(nameListF.begin(),nameListF.end());
+		random_shuffle(mixed.begin(),mixed.end());
+
+		for (double i=0; i<rulers; i++)
+		{
+			// Monarch names
+			if (i < 0.1*rulers) // First 10%
+			{
+				weight = (rand()%10+31)*MULTIPLIER;
+			}
+			else if (i < 0.3*rulers) // Next 20%
+			{
+				weight = (rand()%10+21)*MULTIPLIER;
+			}
+			else if (i < 0.6*rulers) // Next 30%
+			{
+				weight = (rand()%10+11)*MULTIPLIER;
+			}
+			else // Last 40%
+			{
+				weight = (rand()%10+1)*MULTIPLIER;
+			}
+			if (gender=="agnatic" || gender=="cognatic")
+			{
+				if(i < maleRatio*rulers)
+				{
+					if (nameListM.empty()) continue;
+					firstNames.push_back( make_tuple(nameListM.back(),weight) );
+					nameListM.pop_back();
+				}
+				else
+				{
+					if (nameListF.empty()) continue;
+					firstNames.push_back( make_tuple(nameListF.back(),weight*-1) );
+					nameListF.pop_back();
+				}
+			}
+			else if (gender == "true_cognatic")
+			{
+				if (mixed.empty()) continue;
+				string name = mixed.back();
+				mixed.pop_back();
+				if(find(nameListM.begin(), nameListM.end(), name) != nameListM.end())
+				{
+					firstNames.push_back( make_tuple(name,weight) );
+				}
+				else
+				{
+					firstNames.push_back( make_tuple(name,weight*-1) );
+				}
+			}
+			else if (gender=="enatic" || gender=="enatic_cognatic")
+			{
+				if(i >= (1-maleRatio)*rulers)
+				{
+					if (nameListM.empty()) continue;
+					firstNames.push_back( make_tuple(nameListM.back(),weight) );
+					nameListM.pop_back();
+				}
+				else
+				{
+					if (nameListF.empty()) continue;
+					firstNames.push_back( make_tuple(nameListF.back(),weight*-1) );
+					nameListF.pop_back();
+				}
+			}
+		}
+		for (double i=0; i<commoners; i++)
+		{
+			if(gender=="agnatic" || gender=="cognatic")
+			{
+				if(i < maleRatio*commoners)
+				{
+					if (nameListM.empty()) continue;
+					firstNames.push_back( make_tuple(nameListM.back(),0) );
+					nameListM.pop_back();
+				}
+				else
+				{
+					if (nameListF.empty()) continue;
+					firstNames.push_back( make_tuple(nameListF.back(),-1) );
+					nameListF.pop_back();
+				}
+			}
+			else if (gender == "true_cognatic")
+			{
+				if (mixed.empty()) continue;
+				string name = mixed.back();
+				mixed.pop_back();
+				if (find(nameListM.begin(), nameListM.end(), name) != nameListM.end())
+				{
+					firstNames.push_back( make_tuple(name,0) );
+				}
+				else
+				{
+					firstNames.push_back( make_tuple(name,-1) );
+				}
+			}
+			else if (gender=="enatic" || gender=="enatic_cognatic")
+			{
+				if(i >= (1-maleRatio)*commoners)
+				{
+					if (nameListM.empty()) continue;
+					firstNames.push_back( make_tuple(nameListM.back(),0) );
+					nameListM.pop_back();
+				}
+				else
+				{
+					if (nameListF.empty()) continue;
+					firstNames.push_back( make_tuple(nameListF.back(),-1) );
+					nameListF.pop_back();
+				}
+			}
+		}
+		country->setMonarchNames(firstNames);
+
+		// Leader names
+		vector<string> surnames(rulingCulture->getLeaderNames());
+		random_shuffle(surnames.begin(),surnames.end());
+
+		for(unsigned int i=0; i < MAX_LEADERNAMES; i++)
+		{
+			insertMe.push_back(surnames.back());
+			surnames.pop_back();
+			if (surnames.size() == 0) break;
+		}
+		country -> setLeaderNames(insertMe);
+
+	}
+	else
+	{
+		// Rulers of a country are foreign
+		// Ex: Duchy of Athens (ATH): Italian rulers, Greek commoners
+
+		vector<string> rulingNameListM(rulingCulture->getMaleNames());
+		vector<string> rulingNameListF(rulingCulture->getFemaleNames());
+		vector<string> rulingMixed;
+		rulingMixed.reserve(rulingNameListM.size() + rulingNameListF.size());
+		rulingMixed.insert(rulingMixed.end(), rulingNameListM.begin(), rulingNameListM.end());
+		rulingMixed.insert(rulingMixed.end(), rulingNameListF.begin(), rulingNameListF.end());
+		vector<string> commonNameListM(commonCulture->getMaleNames());
+		vector<string> commonNameListF(commonCulture->getFemaleNames());
+		vector<string> commonMixed;
+		commonMixed.reserve(commonNameListM.size() + commonNameListF.size());
+		commonMixed.insert(commonMixed.end(), commonNameListM.begin(), commonNameListM.end());
+		commonMixed.insert(commonMixed.end(), commonNameListF.begin(), commonNameListF.end());
+		random_shuffle(rulingNameListM.begin(),rulingNameListM.end());
+		random_shuffle(rulingNameListF.begin(),rulingNameListF.end());
+		random_shuffle(rulingMixed.begin(),rulingMixed.end());
+		random_shuffle(commonNameListM.begin(),commonNameListM.end());
+		random_shuffle(commonNameListF.begin(),commonNameListF.end());
+		random_shuffle(commonMixed.begin(),commonMixed.end());
+
+		for (double i=0; i<rulers; i++)
+		{
+			// Monarch names
+			if (i < 0.1*rulers) // First 10%
+			{
+				weight = (rand()%10+31)*MULTIPLIER;
+			}
+			else if (i < 0.3*rulers) // Next 20%
+			{
+				weight = (rand()%10+21)*MULTIPLIER;
+			}
+			else if (i < 0.6*rulers) // Next 30%
+			{
+				weight = (rand()%10+11)*MULTIPLIER;
+			}
+			else // Last 40%
+			{
+				weight = (rand()%10+1)*MULTIPLIER;
+			}
+			if (gender=="agnatic" || gender=="cognatic")
+			{
+				if(i < maleRatio*rulers)
+				{
+					if (rulingNameListM.empty()) {printf ("empty: %s\n",country->getTag()); continue;}
+					firstNames.push_back( make_tuple(rulingNameListM.back(),weight) );
+					rulingNameListM.pop_back();
+				}
+				else
+				{
+					if (rulingNameListF.empty()) {printf ("empty: %s\n",country->getTag()); continue;}
+					firstNames.push_back( make_tuple(rulingNameListF.back(),weight*-1) );
+					rulingNameListF.pop_back();
+				}
+			}
+			else if (gender == "true_cognatic")
+			{
+				if (rulingMixed.empty()) continue;
+				string name = rulingMixed.back();
+				rulingMixed.pop_back();
+				if(find(rulingNameListM.begin(), rulingNameListM.end(), name) != rulingNameListM.end())
+				{
+					firstNames.push_back( make_tuple(name,weight) );
+				}
+				else
+				{
+					firstNames.push_back( make_tuple(name,weight*-1) );
+				}
+			}
+			else if (gender=="enatic" || gender=="enatic_cognatic")
+			{
+				if(i >= (1-maleRatio)*rulers)
+				{
+					if (rulingNameListM.empty()) continue;
+					firstNames.push_back( make_tuple(rulingNameListM.back(),weight) );
+					rulingNameListM.pop_back();
+				}
+				else
+				{
+					if (rulingNameListF.empty()) continue;
+					firstNames.push_back( make_tuple(rulingNameListF.back(),weight*-1) );
+					rulingNameListF.pop_back();
+				}
+			}
+		}
+		for (double i=0; i<commoners; i++)
+		{
+			if(gender=="agnatic" || gender=="cognatic")
+			{
+				if(i < maleRatio*commoners)
+				{
+					if (commonNameListM.empty()) continue;
+					firstNames.push_back( make_tuple(commonNameListM.back(),0) );
+					commonNameListM.pop_back();
+				}
+				else
+				{
+					if (commonNameListF.empty()) continue;
+					firstNames.push_back( make_tuple(commonNameListF.back(),-1) );
+					commonNameListF.pop_back();
+				}
+			}
+			else if (gender == "true_cognatic")
+			{
+				if (commonMixed.empty()) continue;
+				string name = commonMixed.back();
+				commonMixed.pop_back();
+				if (find(commonNameListM.begin(), commonNameListM.end(), name) != commonNameListM.end())
+				{
+					firstNames.push_back( make_tuple(name,0) );
+				}
+				else
+				{
+					firstNames.push_back( make_tuple(name,-1) );
+				}
+			}
+			else if (gender=="enatic" || gender=="enatic_cognatic")
+			{
+				if(i >= (1-maleRatio)*commoners)
+				{
+					if (commonNameListM.empty()) continue;
+					firstNames.push_back( make_tuple(commonNameListM.back(),0) );
+					commonNameListM.pop_back();
+				}
+				else
+				{
+					if (commonNameListF.empty()) continue;
+					firstNames.push_back( make_tuple(commonNameListF.back(),-1) );
+					commonNameListF.pop_back();
+				}
+			}
+		}
+		country->setMonarchNames(firstNames);
+
+		// Leader names
+		vector<string> rulingSurnames(rulingCulture->getLeaderNames());
+		vector<string> commonSurnames(commonCulture->getLeaderNames());
+		vector<string> surnames;
+
+		for(unsigned int i=0; i < MAX_LEADERNAMES; i++)
+		{
+			if (i < 0.8*MAX_LEADERNAMES)
+			{
+				if (rulingSurnames.size() == 0) continue;
+				insertMe.push_back(rulingSurnames.back());
+				rulingSurnames.pop_back();
+			}
+			else
+			{
+				if (commonSurnames.size() == 0) break;
+				insertMe.push_back(commonSurnames.back());
+				commonSurnames.pop_back();
+			}
+		}
+		country -> setLeaderNames(insertMe);
+	}
+
+	insertMe.clear();
+	vector<string> ships(commonCulture->getShipNames());
+	random_shuffle(ships.begin(),ships.end());
+	for(unsigned int i=0; i < MAX_SHIPNAMES; i++)
+	{
+		if (ships.size() == 0) break;
+		insertMe.push_back(ships.back());
+		ships.pop_back();
+	}
+	country -> setShipNames(insertMe);
+
+	country -> setArmyNames(commonCulture->getArmyNames());
+
+	country -> setFleetNames(commonCulture->getFleetNames());
+
+}
+
+
 void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<string> mappedTags, vector< tuple<EU3Country*, EU3Country*, string, string, int> >& mappings, const religionMapping& religionMap, const cultureMapping& cultureMap, const inverseProvinceMapping& inverseProvinceMap)
 {
+    // get mod culture rules
+    getCultureRules();
+
+	// parse overrides file
+	Object* obj = doParseFile( (Configuration::getModPath() + "\\config\\overrides.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Error: Could not open %s\n",(Configuration::getModPath() + "\\config\\overrides.txt").c_str()) ;
+		printf("Error: Could not open %s\n",(Configuration::getModPath() + "\\config\\overrides.txt").c_str()) ;
+		exit(-1);
+	}
+
+	vector<Object*> cultureRuleOverrideObj = obj->getValue("culture_rule_override");
+	cultureRuleOverrideMapping croMap; // Culture Rule Override Mapping
+	if (cultureRuleOverrideObj.size() > 0)
+	{
+		croMap = initCultureRuleOverrideMap(cultureRuleOverrideObj[0],cultureRules);
+	}
+	
+	vector<Object*> localeOverrideObj = obj->getValue("locale_override");
+	localeOverrideMapping locMap; // Locale Override Mapping
+	if (localeOverrideObj.size() > 0)
+	{
+		locMap = initLocaleOverrideMap(localeOverrideObj[0]);
+	}
+
+	// Initialize RNG
+	srand((unsigned int)time(NULL));
+
 	// get CK2 localisations
 	map<string, string>	localisations;
 	struct _finddata_t	data;
@@ -2173,13 +2631,41 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		countries.insert(make_pair(tag, newCountry));
 		mappings.push_back( make_tuple(*countryItr, newCountry, (*countryItr)->getSrcCountry()->getTitleString().c_str(), tag, 1) );
 
+		// Get culture rules for new country
+
+		populateCountryFileData((*countryItr), croMap, titleString);
+
 		// Add localisations
 		if (EU3Localisations != NULL)
 		{
 			map<string, string>::iterator localisation = localisations.find(titleString);
-			if (localisation == localisations.end())
+			if (locMap.count(titleString) !=0 ) // check if CK2 title is locale-overriden
+			{
+				string newLocalisation = tag;
+				newLocalisation += locMap[titleString];
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else if (localisation == localisations.end())
 			{
 				log("\tWarning: could not find CK2 localisation for %s\n", titleString.c_str());
+				string genLocalisation = titleString;
+				stringstream ss;
+				for (unsigned int i = 0; i<genLocalisation.size(); i++) // c_country_name -> c_Country_Name
+				{
+					if (genLocalisation[i] == '_')
+					{
+						genLocalisation[i+1] = toupper(genLocalisation[i+1]);
+					}
+				}
+				genLocalisation = genLocalisation.substr(2); // c_Country_Name -> Country_Name
+				replace(genLocalisation.begin(), genLocalisation.end(), '_',' '); // Country_Name = Country Name
+				ss << tag;
+				ss << ";" << genLocalisation;	 // English
+				ss << ";" << genLocalisation;	 // French
+				ss << ";" << genLocalisation;	 // German
+				ss << ";;" << genLocalisation;	 // Spanish
+				ss << ";;;;;;;;;x\r\n";
+				fprintf(EU3Localisations, ss.str().c_str());
 			}
 			else
 			{
@@ -2189,9 +2675,37 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 			}
 
 			localisation = localisations.find(titleString + "_adj");
-			if (localisation == localisations.end())
+			if (locMap.count( (titleString + "_adj") ) !=0 ) // check if CK2 title demonym is locale-overriden
 			{
+				string newLocalisation = tag;
+				newLocalisation += "_ADJ";
+				newLocalisation += locMap[(titleString + "_adj")];
+				fprintf(EU3Localisations, newLocalisation.c_str());
+			}
+			else if (localisation == localisations.end())
+			{
+				string newLocalisation = tag;
+				string genLocalisation = titleString;
+				stringstream ss;
 				log("\tWarning: could not find CK2 localisation for %s\n", (titleString + "_adj").c_str());
+				for (unsigned int i = 0; i<genLocalisation.size(); i++) // c_country_name -> c_Country_Name
+				{
+					if (genLocalisation[i] == '_')
+					{
+						genLocalisation[i+1] = toupper(genLocalisation[i+1]);
+					}
+				}
+				genLocalisation = genLocalisation.substr(2); // c_Country_Name -> Country_Name
+				replace(genLocalisation.begin(), genLocalisation.end(), '_',' '); // Country_Name = Country Name
+				ss << tag << "_ADJ";
+				ss << ";" << genLocalisation;	 // English
+				ss << ";" << genLocalisation;	 // French
+				ss << ";" << genLocalisation;	 // German
+				ss << ";" << genLocalisation;	 // Spanish
+				ss << ";" << genLocalisation;	 // French
+				ss << ";;;;;;;;;x\r\n";
+				newLocalisation += ss.str();
+				fprintf(EU3Localisations, ss.str().c_str());
 			}
 			else
 			{
@@ -2201,7 +2715,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 				fprintf(EU3Localisations, newLocalisation.c_str());
 			}
 		}
-			
+
 		// determine filename
 		string filename = Configuration::getEU3Path();
 		filename += "\\common\\countries\\";
@@ -2269,7 +2783,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 		fprintf(resultsFile, "\tgender=%s\n", (*countryItr)->getSrcCountry()->getGenderLaw().c_str());
 		fprintf(resultsFile, "}\n");
 		fprintf(resultsFile, "\n");
-		
+
 		log("\t%s will become %s. Filename is %s\n", titleString.c_str(), tag.c_str(), filename.c_str());
 	}
 	fclose(EU3Localisations);
@@ -2281,10 +2795,86 @@ void EU3World::outputCountryFile(FILE* countryFile, EU3Country* country)
 {
 	fprintf(countryFile, "#Country Name: Please see filename.\n");
 	fprintf(countryFile, "\n");
-	fprintf(countryFile, "graphical_culture = latingfx\n"); //TODO: have variable graphical culture type
+	fprintf(countryFile, "graphical_culture = %s\n",country->getGraphicalCulture().c_str());
 	fprintf(countryFile, "\n");
 	const int* color = country->getSrcCountry()->getColor();
 	fprintf(countryFile, "Color = { %d %d %d }\n", color[0], color[1], color[2]);
+
+	// monarch_names
+	deque<tuple<string,int>> monarchNames = country->getMonarchNames();
+	if (monarchNames.size() > 0)
+	{
+		fprintf(countryFile, "\nmonarch_names = {\n");
+		for (deque<tuple<string,int>>::iterator itr = monarchNames.begin(); itr < monarchNames.end(); ++itr)
+		{
+			fprintf(countryFile, "\t\"%s #0\" = %d\n", get<0>((*itr)).c_str(), get<1>((*itr)) );
+		}
+		fprintf(countryFile, "}\n");
+	}
+
+	vector<string> leaderNames = country->getLeaderNames();
+	if (leaderNames.size() > 0)
+	{
+		fprintf(countryFile, "\nleader_names = {\n\t");
+		int dist = -1;
+		for (vector<string>::iterator itr = leaderNames.begin(); itr < leaderNames.end(); ++itr)
+		{
+			fprintf(countryFile, "%s ", (*itr).c_str() );
+			if ( (distance(leaderNames.begin(),itr)+1)%10 == 0 )
+			{
+				fprintf(countryFile, "\n\t");
+			}
+		}
+		fprintf(countryFile, "\n}\n");
+	}
+
+	vector<string> shipNames = country->getShipNames();
+	if (shipNames.size() > 0)
+	{
+		fprintf(countryFile, "\nship_names = {\n\t");
+		int dist = -1;
+		for (vector<string>::iterator itr = shipNames.begin(); itr < shipNames.end(); ++itr)
+		{
+			fprintf(countryFile, "%s ", (*itr).c_str() );
+			if ( (distance(shipNames.begin(),itr)+1)%10 == 0 )
+			{
+				fprintf(countryFile, "\n\t");
+			}
+		}
+		fprintf(countryFile, "\n}\n");
+	}
+
+	vector<string> armyNames = country->getArmyNames();
+	if (armyNames.size() > 0)
+	{
+		fprintf(countryFile, "\narmy_names = {\n\t");
+		int dist = -1;
+		for (vector<string>::iterator itr = armyNames.begin(); itr < armyNames.end(); ++itr)
+		{
+			fprintf(countryFile, "%s ", (*itr).c_str() );
+			if ( (distance(armyNames.begin(),itr)+1)%10 == 0 )
+			{
+				fprintf(countryFile, "\n\t");
+			}
+		}
+		fprintf(countryFile, "\n}\n");
+	}
+
+	vector<string> fleetNames = country->getFleetNames();
+	if (fleetNames.size() > 0)
+	{
+		fprintf(countryFile, "\nfleet_names = {\n\t");
+		int dist = -1;
+		for (vector<string>::iterator itr = fleetNames.begin(); itr < fleetNames.end(); ++itr)
+		{
+			fprintf(countryFile, "%s ", (*itr).c_str() );
+			if ( (distance(fleetNames.begin(),itr)+1)%10 == 0 )
+			{
+				fprintf(countryFile, "\n\t");
+			}
+		}
+		fprintf(countryFile, "\n}\n");
+	}
 }
 
 

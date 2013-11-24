@@ -33,12 +33,14 @@
 #include "CK2World\CK2Religion.h"
 #include "EU3World\EU3Country.h"
 #include <cstdio>
+#include <sstream>
 
 
 
 provinceMapping initProvinceMap(Object* obj, CK2Version* version)
 {
 	provinceMapping mapping;
+	provinceMapping::iterator mapIter;
 
 	vector<Object*> leaves = obj->getLeaves();
 
@@ -728,4 +730,177 @@ tradeGoodMapping initTradeGoodMapping(Object* obj)
 		tradeGoodMap.insert(make_pair(tradeGoodName, newTradeGood));
 	}
 	return tradeGoodMap;
+}
+
+
+cultureRuleOverrideMapping initCultureRuleOverrideMap(Object* obj, cultureRuleOverrideMapping cultureRules)
+{
+	cultureRuleOverrideMapping mapping;
+
+	vector<Object*> links = obj->getLeaves();
+
+	if (links.size() < 1)
+	{
+		return mapping;
+	}
+
+	for (vector<Object*>::iterator itr = links.begin(); itr < links.end(); itr++)
+	{
+		vector<Object*> data = (*itr)->getLeaves();
+
+		mapping.insert(make_pair(data[0]->getLeaf(), cultureRules[data[1]->getLeaf()]));
+	}
+
+	return mapping;
+}
+
+
+localeOverrideMapping initLocaleOverrideMap(Object* obj)
+{
+	localeOverrideMapping mapping;
+
+	vector<Object*> links = obj->getLeaves();
+
+	if (links.size() < 1)
+	{
+		return mapping;
+	}
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		//vector<Object*> data = (*itr)->getLeaves();
+
+		//mapping.insert( make_pair(data[0]->getLeaf(), data[1] -> getLeaf()) );
+
+		vector<Object*>			locales	= (*i)->getLeaves();
+
+		if (locales.size()<=1) continue;
+		string						code;
+		string						english;
+		string						french;
+		string						german;
+		string						polski;
+		string						spanish;
+		string						italian;
+		string						swedish;
+		string						czech;
+		string						hungarian;
+		string						dutch;
+		string						portugese;
+		string						russian;
+		string						finnish;
+		string						default;
+		stringstream				ss;
+		for (vector<Object*>::iterator j = locales.begin(); j != locales.end(); j++)
+		{
+			if ( (*j)->getKey() == "code" )
+			{
+				code = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "english" )
+			{
+				english = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "french" )
+			{
+				french = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "german" )
+			{
+				german = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "polski" )
+			{
+				polski = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "spanish" )
+			{
+				spanish = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "italian" )
+			{
+				italian = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "swedish" )
+			{
+				swedish = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "czech" )
+			{
+				czech = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "hungarian" )
+			{
+				hungarian = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "dutch" )
+			{
+				dutch = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "portugese" )
+			{
+				portugese = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "russian" )
+			{
+				russian = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "finnish" )
+			{
+				finnish = (*j)->getLeaf();
+			}
+		}
+		default = code;
+		for (unsigned int i = 0; i<default.size(); i++) // c_country_name -> c_Country_Name
+		{
+			if (default[i] == '_')
+			{
+				default[i+1] = toupper(default[i+1]);
+			}
+		}
+		default = default.substr(2); // c_Country_Name -> Country_Name
+		const string adj = "_Adj";
+		if ( default != adj &&
+			 default.size() > adj.size() &&
+			 default.substr( default.size() - adj.size() ) == "_Adj" ) // Remove "_Adj" from default value;
+		{
+		   default = default.substr(0, default.size() - adj.size());
+		}
+		if (english.size() == 0)
+		{
+			english = default;
+		}
+		if (french.size() == 0)
+		{
+			french = default;
+		}
+		if (german.size() == 0)
+		{
+			german = default;
+		}
+		if (spanish.size() == 0)
+		{
+			spanish = default;
+		}
+		ss << ";" << english;
+		ss << ";" << french;
+		ss << ";" << german;
+		ss << ";" << polski;
+		ss << ";" << spanish;
+		ss << ";" << italian;
+		ss << ";" << swedish;
+		ss << ";" << czech;
+		ss << ";" << hungarian;
+		ss << ";" << dutch;
+		ss << ";" << portugese;
+		ss << ";" << russian;
+		ss << ";" << finnish;
+		ss << ";x;;;;;;;;;;;;\r\n";
+		string str = ss.str();
+		replace(str.begin(), str.end(), '_',' '); // Country_Name = Country Name
+
+		mapping.insert( make_pair(code, str) );
+	}
+
+	return mapping;
 }

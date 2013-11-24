@@ -19,13 +19,15 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
+    <PlatformToolset>v110</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -40,12 +42,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <IntDir>$(SolutionDir)\DebugIntermediate\</IntDir>
-    <IncludePath>$(BOOST_INCLUDE);$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath>$(OTHER_INCLUDE);$(BOOST_INCLUDE);$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
-    <IncludePath>$(BOOST_INCLUDE);$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include;</IncludePath>
+    <IncludePath>$(OTHER_INCLUDE);$(BOOST_INCLUDE);$(VCInstallDir)include;$(VCInstallDir)atlmfc\include;$(WindowsSdkDir)include;$(FrameworkSDKDir)\include</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -122,6 +124,7 @@
     <ClCompile Include="Source\EU3World\EU3World.cpp" />
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\mappers.cpp" />
+    <ClCompile Include="Source\ModWorld\ModCultureRule.cpp" />
     <ClCompile Include="Source\Parsers\Object.cpp" />
     <ClCompile Include="Source\Parsers\Parser.cpp" />
     <ClCompile Include="Source\Temp.cpp" />
@@ -156,6 +159,7 @@
     <ClInclude Include="Source\EU3World\EU3World.h" />
     <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\mappers.h" />
+    <ClInclude Include="Source\ModWorld\ModCultureRule.h" />
     <ClInclude Include="Source\Parsers\Object.h" />
     <ClInclude Include="Source\Parsers\Parser.h" />
     <ClInclude Include="Source\Temp.h" />

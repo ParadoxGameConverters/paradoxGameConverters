@@ -522,12 +522,17 @@ Revision	Log Message
 497		Merge minor to main
 498		Put saves in the correct places
 499		Fix frontend's copy routines
+500		Merge main into mod
+501		Updated project file for VS12 compatibility
+502		Dynamically assigned graphical cultures for mod countries
+503		Code optimization. Minor bugfixes. Added some missing files in converter mod.
+504		Dynamically generated details for mod country files
 
 
 
 
 
 515		Add copyright and license to source files
-
-
-519		Update for CK2 2.0.1
+516		Handle missing localisation when generating new countries
+517		Commiting files not included in revision 516
+518		Merge main into mod
