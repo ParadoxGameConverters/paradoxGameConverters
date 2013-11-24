@@ -545,3 +545,4 @@ Revision	Log Message
 520		Merge minor into main
 521		Merge mod into main
 522		Update changelog
+523		Don't use an OS-reserved name for tags (http://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx)

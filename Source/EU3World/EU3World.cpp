@@ -2598,7 +2598,7 @@ void EU3World::addModCountries(const vector<EU3Country*>& modCountries, set<stri
 
 		map<string, EU3Country*>::iterator	itr	= countries.find(potentialTag);
 		set<string>::iterator					itr2	= mappedTags.find(potentialTag);
-		while ((itr != countries.end()) || (itr2 != mappedTags.end()) )
+		while ((itr != countries.end()) || (itr2 != mappedTags.end()) || (potentialTag == "AUX") || (potentialTag == "CON") || (potentialTag == "NUL") || (potentialTag == "PRN"))
 		{
 			potentialTag = "";
 			potentialTag += first;
