@@ -123,50 +123,12 @@ namespace Converter.UI.ViewModels
         /// </summary>
         private void BuildConversionOptions()
         {
-            //TODO: Finding installation paths makes little sense if the game isn't installed. Should probably be fixed
             this.VerifyInstallation(this.Options.SourceGame);
             this.VerifyInstallation(this.Options.TargetGame);
-            this.FindGameInstallationPath(this.Options.SourceGame);
-            this.FindGameInstallationPath(this.Options.TargetGame);
         }
-
-        /// <summary>
-        /// Attempts to find the game installation path for the provided game configuration
-        /// </summary>
-        /// <param name="gameConfiguration">The game configuration.</param>
-        private void FindGameInstallationPath(GameConfiguration gameConfiguration)
-        {
-            if (!gameConfiguration.IsInstalled)
-            {
-                return;
-            }
-
-            // If installed via Steam, find game installation path.
-            // Easiest way I've found so far is to look at the uninstall settings.
-            if (!string.IsNullOrEmpty(gameConfiguration.SteamId))
-            {
-                RegistryKey regKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Steam App " + gameConfiguration.SteamId);
-
-                if (regKey != null)
-                {
-                    string steamInstallationPath = regKey.GetValue("InstallLocation").ToString();
-
-                    if (!String.IsNullOrEmpty(steamInstallationPath))
-                    {
-                        if (Directory.Exists(steamInstallationPath))
-                        {
-                            gameConfiguration.InstallationPath = steamInstallationPath;
-                            this.Options.Logger.AddLogEntry(new LogEntry("Located Steam game files: " + steamInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI));
-                        }
-                    }
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Attempts to figure out whether the game is installed.
-        /// 
-        /// Currently, only steam installs are supported.
         /// </summary>
         /// <param name="gameConfiguration">The game configuration</param>
         /// <returns>True if found, false if not</returns>
@@ -184,7 +146,18 @@ namespace Converter.UI.ViewModels
                     gameConfiguration.IsInstalled = value.Equals("1");
                     this.Options.Logger.AddLogEntry(new LogEntry("Found Steam installation of " + gameConfiguration.FriendlyName, LogEntrySeverity.Info, LogEntrySource.UI));
                 }
+                else
+                {
+                    // not a steam game - if the registry key correctly points us to the app directory, then it's installed
+                    if (!string.IsNullOrEmpty(gameConfiguration.InstallationPath))
+                        gameConfiguration.IsInstalled = true;
+                    this.Options.Logger.AddLogEntry(new LogEntry("Found non-Steam installation of " + gameConfiguration.FriendlyName, LogEntrySeverity.Info, LogEntrySource.UI));
+                }
             }
+
+            // If the game is not really installed, clear the installation folder
+            if (!gameConfiguration.IsInstalled)
+                gameConfiguration.InstallationPath = String.Empty;
         }        
 
         #endregion
