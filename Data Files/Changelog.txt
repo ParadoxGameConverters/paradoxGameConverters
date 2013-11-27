@@ -547,3 +547,5 @@ Revision	Log Message
 522		Update changelog
 523		Don't use an OS-reserved name for tags (http://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx)
 524		The parser now handles Windows-1252
+525		Add logic for finding non-Steam installations of games, and fix finding games on 32-bit windows.
+526		Add files to build for VS2013
