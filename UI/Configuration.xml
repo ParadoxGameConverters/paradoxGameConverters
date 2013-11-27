@@ -29,6 +29,7 @@
         <name>EuropaUniversalis3</name>
         <friendlyName>Europa Universalis 3</friendlyName>
         <steamId>25800</steamId>
+        <nonsteamRegistryName>Europa Universalis III</nonsteamRegistryName>
         <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
         <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
         <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
@@ -70,7 +71,7 @@
           <preference>
             <name>proxyMultiplierMethod</name>
             <friendlyName>Proxy Multiplier Method</friendlyName>
-            <description>is a holding is a ruler's capital, all proxies get a multiplier</description>
+            <description>if a holding is a ruler's capital, all proxies get a multiplier</description>
             <entryOptions>
               <entryOption>
                 <name>ones</name>

@@ -243,7 +243,12 @@ namespace Converter.UI.Providers
 
                 // Installation directory related
                 var steamId = XElementHelper.ReadStringValue(game, "steamId");
+                var nonsteamRegistryName = XElementHelper.ReadStringValue(game, "nonsteamRegistryName", false);
                 var installationFolder = this.GetSteamInstallationFolder(steamId);
+                if (String.IsNullOrEmpty(installationFolder))
+                {
+                    installationFolder = this.GetNonSteamInstallationFolder(nonsteamRegistryName);
+                }
                 var configurationFileDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileDirectoryTagName");
                 
                 // Mod related
@@ -269,7 +274,8 @@ namespace Converter.UI.Providers
                     SaveGameExtension = saveGameExtension,
                     ConfigurationFileModDirectoryTagName = configurationFileModDirectoryTagName,
                     CurrentModTagName = currentModTagName,
-                    ModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultModFolderLocation", false)
+                    ModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultModFolderLocation", false),
+                    InstallationPath = installationFolder
                 };
 
                 // Dummy item so that the user can undo selecting a mod
@@ -295,6 +301,49 @@ namespace Converter.UI.Providers
         }
 
         /// <summary>
+        /// Attempts to locate the folder where a non-steam game (GamersGate, Impulse, etc) is installed.
+        /// There might be cleaner ways of doing this, but this seems to do the job for EU3 at least.
+        /// </summary>
+        /// <param name="nonsteamRegistryName">The registry name of the game we want to look up. To find the registry name of a game,
+        /// run regedit32, and navigate to [HKEY_LOCAL_MACHINE\SOFTWARE\Wow6432Node\Paradox Interactive] (64-bit Windows) or 
+        /// [HKEY_LOCAL_MACHINE\SOFTWARE\Paradox Interactive] (32-bit Windows), and check the subkey names.
+        /// Known registry names: "Hearts of Iron III", "Europa Universalis III", "Victoria 2", "Europa Universalis - Rome"
+        /// </param>
+        /// <returns>The path to where the game is installed</returns>
+        public string GetNonSteamInstallationFolder(string nonsteamRegistryName)
+        {
+            // If not installed via Steam, find game installation path.
+            if (!string.IsNullOrEmpty(nonsteamRegistryName))
+            {
+                RegistryKey regKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Paradox Interactive\" + nonsteamRegistryName);
+
+                if (regKey == null)
+                {
+                    // try again for 32-bit Windows
+                    regKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Paradox Interactive\" + nonsteamRegistryName);
+                }
+
+                if (regKey != null)
+                {
+                    string exePath = regKey.GetValue("app").ToString();
+
+                    if (!String.IsNullOrEmpty(exePath))
+                    {
+                        string installationPath = Path.GetDirectoryName(exePath);
+
+                        if (Directory.Exists(installationPath))
+                        {
+                            this.options.Logger.AddLogEntry(new LogEntry("Located non-Steam game files: " + installationPath, LogEntrySeverity.Info, LogEntrySource.UI));
+                            return installationPath;
+                        }
+                    }
+                }
+            }
+
+            return string.Empty;
+        }
+
+        /// <summary>
         /// Attempts to locate the folder where a steam game is installed.
         /// There might be cleaner ways of doing this, but this seems to do the job for EU3 at least.
         /// </summary>
@@ -302,13 +351,19 @@ namespace Converter.UI.Providers
         /// then create a shortcut on your desktop (from within steam), , show properties for the shortcut, 
         /// and get the number at the end of the URL. Ex: "steam://rungameid/25800"</param>
         /// <returns>The path to where the game is installed</returns>
-        private string GetSteamInstallationFolder(string steamId)
+        public string GetSteamInstallationFolder(string steamId)
         {
             // If installed via Steam, find game installation path.
             // The Easiest way I've found so far is to look at the uninstall keys. 
             if (!string.IsNullOrEmpty(steamId))
             {
                 RegistryKey regKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Wow6432Node\Microsoft\Windows\CurrentVersion\Uninstall\Steam App " + steamId);
+
+                if (regKey == null)
+                {
+                    // try again for 32-bit Windows
+                    regKey = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall\Steam App " + steamId);
+                }
 
                 if (regKey != null)
                 {
@@ -318,7 +373,7 @@ namespace Converter.UI.Providers
                     {
                         if (Directory.Exists(steamInstallationPath))
                         {
-                            //this.options.Logger.AddLogEntry(new LogEntry("Located Steam game files: " + steamInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI));
+                            this.options.Logger.AddLogEntry(new LogEntry("Located Steam game files: " + steamInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI));
                             return steamInstallationPath;
                         }
                     }
