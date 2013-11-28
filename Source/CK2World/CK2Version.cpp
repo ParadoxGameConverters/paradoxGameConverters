@@ -27,35 +27,39 @@
 
 CK2Version::CK2Version(string versionString)
 {
-	int vPos					= versionString.find_first_of('v');
-	int firstPeriodPos	= versionString.find_first_of('.');
-	int lastPeriodPos		= versionString.find_last_of('.');
+	int vPos = versionString.find_first_of('v');
 
 	if (vPos != string::npos)
 	{
+		// grossly chop off anything before (and including) the first "v", if it exists
+		// handles cases like "CK2 v1.05g"
 		vPos++;
-		major = atoi( versionString.substr(vPos, firstPeriodPos - vPos).c_str() );
-	
-		firstPeriodPos++;
-		minor = atoi( versionString.substr(firstPeriodPos, 2).c_str() );
-		if (versionString.size() > (unsigned int)(firstPeriodPos + 3))
-		{
-			revision = atoi( versionString.substr(firstPeriodPos + 3, 1).c_str() );
-		}
-		else
-		{
-			revision = 0;
-		}
+		versionString = versionString.substr(vPos, (versionString.length() - vPos));
 	}
-	else
-	{
-		major = atoi( versionString.substr(0, firstPeriodPos).c_str() );
+
+	// now we have a clean version string, like "1.05g" or "2.0.1"
+
+	int firstPeriodPos	= versionString.find_first_of('.');
+	int lastPeriodPos		= versionString.find_last_of('.');
+
+	major = atoi( versionString.substr(0, firstPeriodPos).c_str() );
 	
+	if (firstPeriodPos != lastPeriodPos)
+	{
+		// three part version number
 		firstPeriodPos++;
 		minor = atoi( versionString.substr(firstPeriodPos, (lastPeriodPos - firstPeriodPos)).c_str() );
 
 		lastPeriodPos++;
-		revision = atoi( versionString.substr(lastPeriodPos, (lastPeriodPos - versionString.length())).c_str() );
+		revision = atoi( versionString.substr(lastPeriodPos, (versionString.length() - lastPeriodPos)).c_str() );
+	}
+	else
+	{
+		// two part version number
+		firstPeriodPos++;
+		minor = atoi( versionString.substr(firstPeriodPos, (versionString.length() - lastPeriodPos)).c_str() );
+
+		revision = 0;
 	}
 }
 
