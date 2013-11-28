@@ -378,28 +378,52 @@ void CK2Character::removeTitle(CK2Title* oldTitle)
 }
 
 
+static CK2Character* GetCharacterNoInsert(map<int, CK2Character*>& characters, int num)
+{
+	// std::map<>::Operator[] has the side effect of inserting the default value if the key is not found.
+	// use std::map<>::find() instead, and return NULL if not found, to prevent adding NULL characters to the character map.
+	map<int, CK2Character*>::iterator itr = characters.find(num);
+	if (itr != characters.end())
+		return itr->second;
+	log("Error: Character %d has a relationship with another character, but could not be found.\n", num);
+	return NULL;
+}
+
+
 void CK2Character::setParents(map<int, CK2Character*>& characters)
 {
 	if (fatherNum != -1)
 	{
-		father = characters[fatherNum];
-		father->addChild(this);
+		father = GetCharacterNoInsert(characters, fatherNum);
+		if (father != NULL)
+		{
+			father->addChild(this);
+		}
 	}
 
 	if (motherNum != -1)
 	{
-		mother = characters[motherNum];
-		mother->addChild(this);
+		mother = GetCharacterNoInsert(characters, motherNum);
+		if (mother != NULL)
+		{
+			mother->addChild(this);
+		}
 	}
 
 	spouses.clear();
 	for (vector<int>::iterator itr = spouseNums.begin(); itr != spouseNums.end(); ++itr)
-		spouses.push_back(characters[*itr]);
+	{
+		CK2Character* spouse = GetCharacterNoInsert(characters, *itr);
+		if (spouse != NULL)
+		{
+			spouses.push_back(spouse);
+		}
+	}
 
 	if (guardianNum != -1)
 	{
-		guardian = characters[guardianNum];
-		if (age < 16)
+		guardian = GetCharacterNoInsert(characters, guardianNum);
+		if (guardian != NULL && age < 16)
 		{
 			int* guardianStats = guardian->getStats();
 			for (unsigned int i = 0; i < 5; i++)
@@ -430,7 +454,7 @@ void CK2Character::setParents(map<int, CK2Character*>& characters)
 
 	if (regentNum != -1)
 	{
-		regent = characters[regentNum];
+		regent = GetCharacterNoInsert(characters, regentNum);
 	}
 }
 
