@@ -61,6 +61,15 @@ CK2Version::CK2Version(string versionString)
 
 		revision = 0;
 	}
+
+	// cheesy workaround for 1.091, 1.092, 1.101, 1.102, 1.103, and 1.111 (patches to 1.09, 1.10, and 1.11)
+	// we will represent them as 1.9.1, 1.10.1, etc
+	// c'mon, Paradox, pick a versioning scheme and stick to it...
+	if (major == 1 && minor > 50 && revision == 0)
+	{
+		revision = minor % 10;
+		minor /= 10;
+	}
 }
 
 
