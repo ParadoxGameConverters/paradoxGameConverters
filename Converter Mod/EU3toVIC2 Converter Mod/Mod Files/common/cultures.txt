@@ -2007,6 +2007,20 @@ east_asian = {
 		last_names = { Zhanshan Tiemei Shangzhi Linge Xiangying Xingde Kang'an
 		}
 	}
+	beifaren = {
+		color = {145 30 30}
+		first_names = { Wang Li Zhang Liu Chen Huang Liang Luo Kwong Hsia Zhu Mao Hu Liao Tan Deng Cheng Yang Gao Xie Ma Kong Dong Pan Yu
+		}
+		last_names = { Zhao Wu Sun Ma Hu Peng Dong Ye Lü Tian Jiang Wei Ting Shen Fang Jin Qiu
+		}
+	}
+	nanfaren = {
+		color = {181 106 106}
+		first_names = { Wang Li Zhang Liu Chen Huang Liang Luo Kwong Hsia Zhu Mao Hu Liao Tan Deng Cheng Yang Gao Xie Ma Kong Dong Pan Yu
+		}
+		last_names = { Zhao Wu Sun Ma Hu Peng Dong Ye Lü Tian Jiang Wei Ting Shen Fang Jin Qiu
+		}
+	}
 	korean = {
 		color = {87 89 25}
 		first_names = { Yi Jo Bak Yun Sim Kim Hong Seo Jeong Kwon Han 
@@ -3107,7 +3121,7 @@ southern_african = {
 	}
 	nguni = {
 		color = {165 43 18}
-		first_names = { Kinjikitile Fambaltate Songea Ebabruma Mputa Mbemchapa Atepa Matola Magobi Rjoroza Wasesse Rinyizea Chapwanya Chakoma Kapola Kapungu Kindunda Kinjalla Kiwanga Mahengu Mburu Mhavanginonya Namkina Ngosingosi Schabruma Sentambandu songea Uawula Ulanga 
+		first_names = { Kinjikitile Fambaltate Songea Ebabruma Mputa Mbemchapa Atepa Matola Magobi Rjoroza Wasesse Rinyizea Chapwanya Chakoma Kapola Kapungu Kindunda Kinjalla Kiwanga Mahengu Mburu Mhavanginonya Namkina Ngosingosi Schabruma Sentambandu Uawula Ulanga 
 		}
 
 		last_names = { Ngwale Farhenga Chimai Amari Kwira Mtemi Hanga Mwanawalifa Mbano
@@ -3185,4 +3199,16 @@ southern_african = {
 		last_names = { kaMpande kaMahole KaMdlela waMswati Buthelezei Khoza kaSihayo kaMvundlana kaZikhala kaMaphitha
 		}
 	}
+}
+
+bears = {
+	leader = polar_bear
+	unit = EuropeanGC
+	polar_bears = {
+		color = { 200 200 200}
+		first_names = { Nanuk Ursus Isbjorn Grrrowr Bjorn Grrgrrr Rawr Bamse }
+		
+		last_names = { Beliy Medved Bjorn Rawrrorr Rrrrr Grrr Gyp Qoi Styrbjorn Blomstfjellet }
+	}
+	union = SCA
 }

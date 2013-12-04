@@ -433,3 +433,4 @@ Revision	Version Updated		Log Message
 498		C++			In HOD, limit naval bases to one per state
 499		C++			When mapping countries, prefer dynamic nations for fallbacks
 500		C++			Updates for building, testing, releasing
+501		C++			Update converter mod for HoD
