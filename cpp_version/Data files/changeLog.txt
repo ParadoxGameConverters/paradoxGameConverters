@@ -434,3 +434,4 @@ Revision	Version Updated		Log Message
 499		C++			When mapping countries, prefer dynamic nations for fallbacks
 500		C++			Updates for building, testing, releasing
 501		C++			Update converter mod for HoD
+502		C++			CK2 converted saves no longer have only dominions

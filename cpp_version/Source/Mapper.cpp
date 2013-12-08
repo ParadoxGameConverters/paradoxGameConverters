@@ -113,7 +113,7 @@ vector<string> processBlockedNations(Object* obj)
 	return blockedNations;
 }
 
-#pragma optimize("", off)
+
 int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2World& destWorld, const vector<string>& blockedNations, Object* rulesObj)
 {
 	mapping.clear();
@@ -239,7 +239,7 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 
 	return EU3Countries.size();
 }
-#pragma optimize("", on)
+
 
 void mergeNations(EU3World& world, Object* mergeObj)
 {

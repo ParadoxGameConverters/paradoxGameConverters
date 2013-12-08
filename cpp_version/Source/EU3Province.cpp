@@ -216,7 +216,7 @@ bool EU3Province::wasColonised() const
 	// but acquired it later through colonization
 	if (ownershipHistory.size() > 0)
 	{
-		if (ownershipHistory[0].first != date())
+		if ((ownershipHistory[0].first != date()) && (ownershipHistory[0].first != date("1399.10.14")))
 		{
 			return true;
 		}
