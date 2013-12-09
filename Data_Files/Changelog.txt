@@ -50,3 +50,4 @@ Revision	Who		Log Message
 47		Ztaesek		Inserted Mod Folder creation code
 48		Ztaesek		Finished province_mappings!
 49		Ztaesek		History file province reference
+50		Lanceparte	Added V2 Province References for Balkans and Canada
