@@ -1298,5 +1298,5 @@ V2_province_reference=
 304 = "britain/304 - Isle of Man.txt"
 
 # USA
-
+1 = "usa/1 - Sitka.txt"
 }
