@@ -111,7 +111,7 @@ namespace Converter.UI.ViewModels
         protected override void OnTabSelected(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             // If the converter .exe happens to be in the same directory as the UI, there is no reason to ask the user to find it anyway. So let's just do it for them.
-            var converterLocation = Path.Combine(Environment.CurrentDirectory, "CK2ToEU3.exe");
+            var converterLocation = Path.Combine(Environment.CurrentDirectory, "EU3toV2Converter.exe");
             if (File.Exists(converterLocation))
             {
                 this.Options.Converter = converterLocation;
@@ -182,10 +182,18 @@ namespace Converter.UI.ViewModels
                 {
                     string value = regKey.GetValue("Installed").ToString();
                     gameConfiguration.IsInstalled = value.Equals("1");
-                    this.Options.Logger.AddLogEntry(new LogEntry("Found Steam installation of " + gameConfiguration.FriendlyName, LogEntrySeverity.Info, LogEntrySource.UI));
+
+                    if (gameConfiguration.IsInstalled)
+                    {
+                        this.Options.Logger.AddLogEntry(new LogEntry("Found Steam installation of " + gameConfiguration.FriendlyName, LogEntrySeverity.Info, LogEntrySource.UI));
+                    }
+                    else
+                    {
+                        this.Options.Logger.AddLogEntry(new LogEntry("Did not find Steam installation of " + gameConfiguration.FriendlyName + ", location must be specified manually.", LogEntrySeverity.Warning, LogEntrySource.UI));
+                    }
                 }
             }
-        }        
+        }
 
         #endregion
     }

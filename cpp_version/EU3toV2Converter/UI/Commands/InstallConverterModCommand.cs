@@ -29,7 +29,9 @@ namespace Converter.UI.Commands
         /// <returns></returns>
         protected override bool OnCanExecute(object parameter)
         {
-            return this.Options.UseConverterMod;
+            return false;
+
+            //return this.Options.UseConverterMod;
         }
 
         /// <summary>

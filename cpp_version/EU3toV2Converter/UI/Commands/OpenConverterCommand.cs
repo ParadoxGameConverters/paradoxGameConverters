@@ -31,7 +31,7 @@ namespace Converter.UI.Commands
             OpenFileDialog dialog = new OpenFileDialog();
 
             dialog.DefaultExt = ".exe";
-            dialog.Filter = "CK2ToEU3.exe | CK2ToEU3.exe";
+            dialog.Filter = "EU3toV2Converter.exe | EU3toV2Converter.exe";
             dialog.InitialDirectory = Environment.CurrentDirectory;
             Nullable<bool> result = dialog.ShowDialog();
 

@@ -11,7 +11,7 @@ namespace Converter.UI.Settings
     /// This class is in some ways the core of the converter UI. Every choice the user makes is stored here, 
     /// and this object is passed along to most viewmodels/commands for various types of interactions.
     /// </summary>
-    public class ConverterOptions : NotifiableBase
+    public class ConverterOptions : NotifiableBase//, IConverterOptions
     {
         private GameConfiguration sourceGame;
         private GameConfiguration targetGame;

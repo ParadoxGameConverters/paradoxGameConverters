@@ -5,8 +5,8 @@
     <!--List of source games-->
     <sourceGameConfigurations>
       <!--<sourceGameConfiguration>-->
-		<!--CRUSADER KING 2-->
-        <!--<name>CrusaderKings2</name>
+      <!--CRUSADER KING 2-->
+      <!--<name>CrusaderKings2</name>
         <friendlyName>Crusader Kings 2</friendlyName>
         <steamId>203770</steamId>
         <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
@@ -23,10 +23,10 @@
           </supportedMod>
         </supportedMods>
       </sourceGameConfiguration>-->
-	  
-	  <sourceGameConfiguration>
-		<!--EUROPA UNIVERSALIS 3-->
-		<name>EuropaUniversalis3</name>
+
+      <sourceGameConfiguration>
+        <!--EUROPA UNIVERSALIS 3-->
+        <name>EuropaUniversalis3</name>
         <friendlyName>Europa Universalis 3</friendlyName>
         <steamId>25800</steamId>
         <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
@@ -40,8 +40,8 @@
     <!--List of target games-->
     <targetGameConfigurations>
       <!--<targetGameConfiguration>-->
-		<!--EUROPA UNIVERSALIS 3-->
-        <!--<name>EuropaUniversalis3</name>
+      <!--EUROPA UNIVERSALIS 3-->
+      <!--<name>EuropaUniversalis3</name>
         <friendlyName>Europa Universalis 3</friendlyName>
         <steamId>25800</steamId>
         <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
@@ -51,9 +51,9 @@
         <defaultModFolderLocation>\mod</defaultModFolderLocation>
         <saveGameExtension>.eu3</saveGameExtension>
       </targetGameConfiguration>-->
-      
-	  <targetGameConfiguration>
-		<!--VICTORIA 2-->
+
+      <targetGameConfiguration>
+        <!--VICTORIA 2-->
         <name>Victoria2</name>
         <friendlyName>Victoria 2</friendlyName>
         <steamId>42960</steamId>
@@ -61,24 +61,27 @@
         <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
         <saveGameExtension>.v2</saveGameExtension>
         <configurationFileDirectoryTagName>v2directory</configurationFileDirectoryTagName>
+        <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\mod</defaultModFolderLocation>
       </targetGameConfiguration>
     </targetGameConfigurations>
   </gameConfigurations>
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
-  <converterOptions>    
+  <converterOptions>
     <categories>
       <category>
         <friendlyName>Configuration</friendlyName>
         <preferences>
-		  <preference>
+          <preference>
             <name>start_date</name>
             <friendlyName>Start Date</friendlyName>
-            <description>The date on which the game is to start. Default: 1836.1.1</description>
+            <description>The date on which the game is to start. Default: Januar 1st, 1836</description>
             <value>1836.1.1</value>
             <minDateValue>1821.1.1</minDateValue>
-			<dateFormat>yyyy.m.d</dateFormat> <!-- Only for parsing from config file -->
-			<isDate>true</isDate>
-		  </preference>
+            <dateFormat>yyyy.m.d</dateFormat>
+            <!-- Only for parsing from config file -->
+            <isDate>true</isDate>
+          </preference>
           <preference>
             <name>max_literacy</name>
             <friendlyName>Max Literacy</friendlyName>
@@ -88,7 +91,7 @@
             <minValue>0.1</minValue>
             <maxValue>1</maxValue>
           </preference>
-		  <preference>
+          <preference>
             <name>EU3gametype</name>
             <friendlyName>Eu3 Game Type</friendlyName>
             <description>EU3 Game Type: what version of EU3 generated the save.</description>
@@ -116,7 +119,7 @@
               </entryOption>
             </entryOptions>
           </preference>
-		  <preference>
+          <preference>
             <name>V2gametype</name>
             <friendlyName>V2 Game Type</friendlyName>
             <description>V2 Game Type: what version of V2 to convert to.</description>
@@ -137,8 +140,14 @@
                 <description>Heart of Darkness (3.x)</description>
                 <isDefault>true</isDefault>
               </entryOption>
+              <entryOption>
+                <name>HoD-NNM</name>
+                <friendlyName>Heart of Darkness - New Nations Mod</friendlyName>
+                <description>Heart of Darkness with the New Nations Mod</description>
+              </entryOption>
             </entryOptions>
-          </preference><preference>
+          </preference>
+          <preference>
             <name>removetype</name>
             <friendlyName>Remove Type</friendlyName>
             <description>Which landless nations to remove.</description>
@@ -161,8 +170,8 @@
               </entryOption>
             </entryOptions>
           </preference>
-		</preferences>
-	  </category>
-	</categories>
+        </preferences>
+      </category>
+    </categories>
   </converterOptions>
 </configuration>

@@ -27,7 +27,7 @@ namespace Converter.UI.Helpers
         /// <returns></returns>
         public static bool TryParseDate(string s, out DateTime result)
         {
-            return DateTime.TryParse(s, CultureInfo.InvariantCulture, DateTimeStyles.None, out result);
+            return DateTime.TryParse(s, out result);
         }
     }
 }

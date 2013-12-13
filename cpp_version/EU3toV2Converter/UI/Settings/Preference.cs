@@ -20,6 +20,16 @@ namespace Converter.UI.Settings
         private IList<IPreferenceEntry> entries;
         private IPreferenceEntry selectedEntry;
         private string value;
+        private IConverterOptions options;
+
+        ///// <summary>
+        ///// Initializes a new instance of the Preference class.
+        ///// </summary>
+        ///// <param name="options">The IConverterOptions object</param>
+        //public Preference(IConverterOptions options)
+        //{
+        //    this.options = options;
+        //}
 
         /// <summary>
         /// Gets or sets the preference name. Must match the name of the preference in configuration.txt
@@ -279,6 +289,14 @@ namespace Converter.UI.Settings
         /// </returns>
         public override string ToString()
         {
+            DateTime output;
+            bool isDate = DateParseHelper.TryParseDate(this.Value, out output);
+
+            if (isDate)
+            {
+                return this.Name + "= \"" + String.Format("{0:yyyy/MM/dd}", output) + "\"";
+            }
+
             return this.Name + " = \"" + this.Value + "\"";
         }
 

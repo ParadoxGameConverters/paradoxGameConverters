@@ -2,6 +2,7 @@
 using Converter.UI.Settings;
 using Microsoft.Win32;
 using Converter.UI.Enums;
+using System.IO;
 
 namespace Converter.UI.Commands
 {
@@ -15,7 +16,7 @@ namespace Converter.UI.Commands
         /// </summary>
         /// <param name="options">The options.</param>
         public OpenSaveGameCommand(ConverterOptions options)
-            : base (options)
+            : base(options)
         {
         }
 
@@ -37,10 +38,10 @@ namespace Converter.UI.Commands
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
-            // TODO: Read this from gameconfiguration instead.
             dialog.DefaultExt = this.Options.SourceGame.SaveGameExtension;
             dialog.Filter = this.Options.SourceGame.FriendlyName + " save games (*" + this.Options.SourceGame.SaveGameExtension + ") | *" + this.Options.SourceGame.SaveGameExtension;
-            dialog.InitialDirectory = this.Options.SourceGame.SaveGamePath;
+            dialog.InitialDirectory = Directory.Exists(this.Options.SourceGame.SaveGamePath) ? this.Options.SourceGame.SaveGamePath : Environment.CurrentDirectory;
+
             Nullable<bool> result = dialog.ShowDialog();
 
             if (result == true)

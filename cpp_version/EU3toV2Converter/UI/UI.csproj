@@ -100,6 +100,7 @@
     <Compile Include="Providers\ModFilesProvider.cs" />
     <Compile Include="Settings\ConverterOptions.cs" />
     <Compile Include="Settings\GameConfiguration.cs" />
+    <Compile Include="Settings\IConverterOptions.cs" />
     <Compile Include="Settings\IPreference.cs" />
     <Compile Include="Settings\IPreferenceEntry.cs" />
     <Compile Include="Settings\LogEntry.cs" />
@@ -221,7 +222,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>..\..\..\CopyUIFiles.bat</PostBuildEvent>
+    <PostBuildEvent>rem ..\..\..\CopyUIFiles.bat</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

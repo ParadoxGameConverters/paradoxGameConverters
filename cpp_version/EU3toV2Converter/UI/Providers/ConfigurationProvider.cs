@@ -131,7 +131,7 @@ namespace Converter.UI.Providers
                     // For each preference Tag, store the values into a new Preference object
                     foreach (var foundPreference in foundPreferences)
                     {
-                        IPreference preference = new Preference();
+                        IPreference preference = new Preference();//this.options);
 
                         preference.Name = XElementHelper.ReadStringValue(foundPreference, "name");
                         preference.FriendlyName = XElementHelper.ReadStringValue(foundPreference, "friendlyName");
@@ -254,7 +254,7 @@ namespace Converter.UI.Providers
                 var configurationFileDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileDirectoryTagName");
                 
                 // Mod related
-                var defaultModFolderLocationTypeAsString = XElementHelper.ReadStringValue(game, "defaultModFolderLocationType", false);
+                var defaultModFolderLocationTypeAsString = XElementHelper.ReadStringValue(game, "defaultModFolderLocationType", true);
                 var defaultModFolderLocationType = defaultModFolderLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
                 var configurationFileModDirectoryTagName = XElementHelper.ReadStringValue(game, "configurationFileModDirectoryTagName", false);
                 var currentModTagName = XElementHelper.ReadStringValue(game, "currentModTagName", false);
@@ -265,18 +265,20 @@ namespace Converter.UI.Providers
                 //}
 
                 var supportedModsAsString = game.Descendants("supportedMod");
+                var saveGamePath = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation");
+                var modPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultModFolderLocation", false);
 
                 var gameConfig = new GameConfiguration()
                 {
                     Name = XElementHelper.ReadStringValue(game, "name"),
                     FriendlyName = XElementHelper.ReadStringValue(game, "friendlyName"),
-                    SaveGamePath = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultSaveGameSubLocation"),
+                    SaveGamePath = saveGamePath,
                     SteamId = steamId,
                     ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName,
                     SaveGameExtension = saveGameExtension,
                     ConfigurationFileModDirectoryTagName = configurationFileModDirectoryTagName,
                     CurrentModTagName = currentModTagName,
-                    ModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : GetUsersFolder()) + XElementHelper.ReadStringValue(game, "defaultModFolderLocation", false)
+                    ModPath = modPath
                 };
 
                 // Dummy item so that the user can undo selecting a mod

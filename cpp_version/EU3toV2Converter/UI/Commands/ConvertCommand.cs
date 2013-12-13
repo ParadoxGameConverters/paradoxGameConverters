@@ -203,9 +203,7 @@ namespace Converter.UI.Commands
         /// </summary>
         private void InstallConverterMod()
         {
-            //var modFolder = this.Options.ModFilesProvider.ModFolder;
-
-            var absoluteSourcePath = Path.Combine(Environment.CurrentDirectory, "Mod");
+            var absoluteSourcePath = Path.Combine(Environment.CurrentDirectory, "Mod Files");
 
             // Verify source data
             if (!Directory.Exists(absoluteSourcePath))
@@ -223,8 +221,13 @@ namespace Converter.UI.Commands
 
             try
             {
-                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.TargetGame.InstallationPath + "\\mod", true, true);
-                this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.TargetGame.InstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI);
+                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.TargetGame.InstallationPath, true, true);
+                this.Log("Converter mod copied successfully from " 
+                    + absoluteSourcePath 
+                    + " to "
+                    + this.Options.TargetGame.InstallationPath,
+                    LogEntrySeverity.Info, 
+                    LogEntrySource.UI);
             }
             catch (Exception ex)
             {
@@ -242,7 +245,7 @@ namespace Converter.UI.Commands
             // Copy the newly created save to the target game output directory.
             var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.SourceSaveGame) + this.Options.TargetGame.SaveGameExtension;
             var canOverWrite = false;
-            var expectedOutputDirectoryAndFile = Path.Combine(this.Options.TargetGame.InstallationPath + this.Options.TargetGame.SaveGamePath, desiredFileName);
+            var expectedOutputDirectoryAndFile = Path.Combine(this.Options.TargetGame.SaveGamePath, desiredFileName);
 
             // Don't blindly overwrite any existing saves - that's just rude
             if (File.Exists(expectedOutputDirectoryAndFile))
@@ -264,9 +267,9 @@ namespace Converter.UI.Commands
 
             try
             {
-                var outputSavePath = this.DetermineOutputSavePath();
+                var outputSavePath = "output" + this.Options.TargetGame.SaveGameExtension;
                 File.Copy(outputSavePath, expectedOutputDirectoryAndFile, canOverWrite);
-                this.Log(desiredFileName + " has been written to \"" + this.Options.TargetGame.InstallationPath + this.Options.TargetGame.SaveGamePath + "\".", LogEntrySeverity.Info, LogEntrySource.UI);
+                this.Log(desiredFileName + " has been written to \"" + this.Options.TargetGame.SaveGamePath + "\".", LogEntrySeverity.Info, LogEntrySource.UI);
 
                 //File.Delete(outputSavePath);
                 //this.Log("Deleted temporary file(s).", LogEntrySeverity.Info, LogEntrySource.UI);
