@@ -435,3 +435,11 @@ Revision	Version Updated		Log Message
 500		C++			Updates for building, testing, releasing
 501		C++			Update converter mod for HoD
 502		C++			CK2 converted saves no longer have only dominions
+503		Frontend		UI branch, initial checkin
+504		Frontend		Added UI project to solution.
+					Various changes to facilitate configuring dates. (Still unfinished)
+					Updated configuration.xml to work for Eu3->Vic2 instead.
+505		Frontend		Re-added build script in ui project post-build event
+					Added missing DateParseHelper
+506		Frontend		Various bugfixes and improvements.
+507		C++			Add files for VS2013
