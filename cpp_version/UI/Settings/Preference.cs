@@ -20,7 +20,7 @@ namespace Converter.UI.Settings
         private IList<IPreferenceEntry> entries;
         private IPreferenceEntry selectedEntry;
         private string value;
-        private IConverterOptions options;
+        private ConverterOptions options;
 
         ///// <summary>
         ///// Initializes a new instance of the Preference class.
