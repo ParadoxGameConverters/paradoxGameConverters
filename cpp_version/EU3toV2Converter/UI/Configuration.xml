@@ -1,0 +1,177 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+  <!--This part contains the game configurations-->
+  <gameConfigurations>
+    <!--List of source games-->
+    <sourceGameConfigurations>
+      <!--<sourceGameConfiguration>-->
+      <!--CRUSADER KING 2-->
+      <!--<name>CrusaderKings2</name>
+        <friendlyName>Crusader Kings 2</friendlyName>
+        <steamId>203770</steamId>
+        <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
+        <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
+        <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
+        <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
+        <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
+        <currentModTagName>CK2Mod</currentModTagName>
+        <saveGameExtension>.ck2</saveGameExtension>
+        <supportedMods>
+          <supportedMod>
+            <modName>CK2Plus</modName>
+          </supportedMod>
+        </supportedMods>
+      </sourceGameConfiguration>-->
+
+      <sourceGameConfiguration>
+        <!--EUROPA UNIVERSALIS 3-->
+        <name>EuropaUniversalis3</name>
+        <friendlyName>Europa Universalis 3</friendlyName>
+        <steamId>25800</steamId>
+        <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+        <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+        <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+        <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\mod</defaultModFolderLocation>
+        <saveGameExtension>.eu3</saveGameExtension>
+      </sourceGameConfiguration>
+    </sourceGameConfigurations>
+    <!--List of target games-->
+    <targetGameConfigurations>
+      <!--<targetGameConfiguration>-->
+      <!--EUROPA UNIVERSALIS 3-->
+      <!--<name>EuropaUniversalis3</name>
+        <friendlyName>Europa Universalis 3</friendlyName>
+        <steamId>25800</steamId>
+        <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+        <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+        <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+        <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\mod</defaultModFolderLocation>
+        <saveGameExtension>.eu3</saveGameExtension>
+      </targetGameConfiguration>-->
+
+      <targetGameConfiguration>
+        <!--VICTORIA 2-->
+        <name>Victoria2</name>
+        <friendlyName>Victoria 2</friendlyName>
+        <steamId>42960</steamId>
+        <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+        <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+        <saveGameExtension>.v2</saveGameExtension>
+        <configurationFileDirectoryTagName>v2directory</configurationFileDirectoryTagName>
+        <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+        <defaultModFolderLocation>\mod</defaultModFolderLocation>
+      </targetGameConfiguration>
+    </targetGameConfigurations>
+  </gameConfigurations>
+  <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
+  <converterOptions>
+    <categories>
+      <category>
+        <friendlyName>Configuration</friendlyName>
+        <preferences>
+          <preference>
+            <name>start_date</name>
+            <friendlyName>Start Date</friendlyName>
+            <description>The date on which the game is to start. Default: Januar 1st, 1836</description>
+            <value>1836.1.1</value>
+            <minDateValue>1821.1.1</minDateValue>
+            <dateFormat>yyyy.m.d</dateFormat>
+            <!-- Only for parsing from config file -->
+            <isDate>true</isDate>
+          </preference>
+          <preference>
+            <name>max_literacy</name>
+            <friendlyName>Max Literacy</friendlyName>
+            <description>The maximum literacy a nation will start with. Default 80%</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.8</value>
+            <minValue>0.1</minValue>
+            <maxValue>1</maxValue>
+          </preference>
+          <preference>
+            <name>EU3gametype</name>
+            <friendlyName>Eu3 Game Type</friendlyName>
+            <description>EU3 Game Type: what version of EU3 generated the save.</description>
+            <entryOptions>
+              <entryOption>
+                <name>auto</name>
+                <friendlyName>Auto</friendlyName>
+                <description>Detect version automatically - vanilla only!</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>in</name>
+                <friendlyName>In Nomine</friendlyName>
+                <description>Force version to In Nomine (3.x) - experimental!</description>
+              </entryOption>
+              <entryOption>
+                <name>httt</name>
+                <friendlyName>Heir to the Throne</friendlyName>
+                <description>Force version to Heir To The Throne (4.x)</description>
+              </entryOption>
+              <entryOption>
+                <name>dw</name>
+                <friendlyName>Divine Wind</friendlyName>
+                <description>Force version to Divine Wind (5.x)</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>V2gametype</name>
+            <friendlyName>V2 Game Type</friendlyName>
+            <description>V2 Game Type: what version of V2 to convert to.</description>
+            <entryOptions>
+              <entryOption>
+                <name>vanilla</name>
+                <friendlyName>Vanilla</friendlyName>
+                <description>Detectvanilla V2 (1.x)</description>
+              </entryOption>
+              <entryOption>
+                <name>AHD</name>
+                <friendlyName>A House Divided</friendlyName>
+                <description>A House Divided (2.x)</description>
+              </entryOption>
+              <entryOption>
+                <name>HOD</name>
+                <friendlyName>Heart of Darkness</friendlyName>
+                <description>Heart of Darkness (3.x)</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>HoD-NNM</name>
+                <friendlyName>Heart of Darkness - New Nations Mod</friendlyName>
+                <description>Heart of Darkness with the New Nations Mod</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
+            <name>removetype</name>
+            <friendlyName>Remove Type</friendlyName>
+            <description>Which landless nations to remove.</description>
+            <entryOptions>
+              <entryOption>
+                <name>none</name>
+                <friendlyName>None</friendlyName>
+                <description>remove none of them</description>
+              </entryOption>
+              <entryOption>
+                <name>dead</name>
+                <friendlyName>Dead</friendlyName>
+                <description>Remove ones without a cultural backing</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>all</name>
+                <friendlyName>All</friendlyName>
+                <description>Remove all of them</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+        </preferences>
+      </category>
+    </categories>
+  </converterOptions>
+</configuration>
