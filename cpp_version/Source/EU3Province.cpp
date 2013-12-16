@@ -2,6 +2,7 @@
 #include "EU3Country.h"
 #include "Log.h"
 #include "Parsers/Object.h"
+#include "Configuration.h"
 #include <algorithm>
 
 
@@ -117,6 +118,11 @@ EU3Province::EU3Province(Object* obj) {
 	sort(cultureHistory.begin(), cultureHistory.end());
 	sort(religionHistory.begin(), religionHistory.end());
 
+	if (num == 1)
+	{
+		Configuration::setFirstEU3Date(ownershipHistory[0].first);
+	}
+
 	if (cultureHistory.size() == 0)
 	{
 		vector<Object*> culObj = obj->getValue("culture");
@@ -216,7 +222,7 @@ bool EU3Province::wasColonised() const
 	// but acquired it later through colonization
 	if (ownershipHistory.size() > 0)
 	{
-		if ((ownershipHistory[0].first != date()) && (ownershipHistory[0].first != date("1399.10.14")))
+		if ((ownershipHistory[0].first != date()) && (ownershipHistory[0].first != Configuration::getFirstEU3Date()))
 		{
 			return true;
 		}
