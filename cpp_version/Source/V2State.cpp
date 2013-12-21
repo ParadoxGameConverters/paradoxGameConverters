@@ -44,7 +44,7 @@ void V2State::output(FILE* output) const
 	}
 	if (colonised)
 	{
-		if (Configuration::getV2Gametype() == "HOD")
+		if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
 		{
 			fprintf(output, "\t\tis_colonial=2\n");
 		}

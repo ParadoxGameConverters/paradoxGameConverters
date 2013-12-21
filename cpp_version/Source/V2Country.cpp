@@ -47,6 +47,10 @@ V2Country::V2Country(string _tag, string _countryFile, map<int, V2Party*> _parti
 	{
 		HODInventions[i] = illegal;
 	}
+	for (unsigned int i = 0; i < HOD_NNM_naval_exercises; i++)
+	{
+		HODNNMInventions[i] = illegal;
+	}
 
 	leadership		= 0.0;
 	plurality		= 0.0;
@@ -201,7 +205,7 @@ void V2Country::outputInventions(FILE* output) const
 	fprintf(output, "	active_inventions=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		");
-	if (Configuration::getV2Gametype() != "HOD")
+	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
 	{
 		for (unsigned int i = 0; i < VANILLA_naval_exercises; i++)
 		{
@@ -221,12 +225,22 @@ void V2Country::outputInventions(FILE* output) const
 			}
 		}
 	}
+	else if (Configuration::getV2Gametype() == "HoD-NNM")
+	{
+		for (unsigned int i = 0; i < HOD_NNM_naval_exercises; i++)
+		{
+			if (HODNNMInventions[i] == active)
+			{
+				fprintf(output, "%d ", i + 1);
+			}
+		}
+	}
 	fprintf(output, "\n	}\n");
 
 	fprintf(output, "	possible_inventions=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		");
-	if (Configuration::getV2Gametype() != "HOD")
+	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
 	{
 		for (unsigned int i = 0; i < VANILLA_naval_exercises; i++)
 		{
@@ -246,12 +260,22 @@ void V2Country::outputInventions(FILE* output) const
 			}
 		}
 	}
+	else if (Configuration::getV2Gametype() == "HoD-NNM")
+	{
+		for (unsigned int i = 0; i < HOD_NNM_naval_exercises; i++)
+		{
+			if (HODNNMInventions[i] == possible)
+			{
+				fprintf(output, "%d ", i + 1);
+			}
+		}
+	}
 	fprintf(output, "\n	}\n");
 
 	fprintf(output, "	illegal_inventions=\n");
 	fprintf(output, "	{\n");
 	fprintf(output, "		");
-	if (Configuration::getV2Gametype() != "HOD")
+	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
 	{
 		for (unsigned int i = 0; i < VANILLA_naval_exercises; i++)
 		{
@@ -266,6 +290,16 @@ void V2Country::outputInventions(FILE* output) const
 		for (unsigned int i = 0; i < HOD_naval_exercises; i++)
 		{
 			if (HODInventions[i] == illegal)
+			{
+				fprintf(output, "%d ", i + 1);
+			}
+		}
+	}
+	else if (Configuration::getV2Gametype() == "HoD-NNM")
+	{
+		for (unsigned int i = 0; i < HOD_NNM_naval_exercises; i++)
+		{
+			if (HODNNMInventions[i] == illegal)
 			{
 				fprintf(output, "%d ", i + 1);
 			}
@@ -783,7 +817,7 @@ void V2Country::addState(V2State* newState)
 		provinces.push_back(newProvinces[i]);
 
 		// find the province with the highest naval base level
-		if (Configuration::getV2Gametype() == "HOD")
+		if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
 		{
 			int navalLevel = 0;
 			const EU3Province* srcProvince = newProvinces[i]->getSrcProvince();
@@ -815,7 +849,7 @@ void V2Country::addState(V2State* newState)
 		}
 	}
 
-	if ((Configuration::getV2Gametype() == "HOD") && (highestNavalLevel > 0))
+	if (( (Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM") ) && (highestNavalLevel > 0))
 	{
 		newProvinces[hasHighestLevel]->setNavalBaseLevel(1);
 	}
@@ -1105,7 +1139,7 @@ bool V2Country::addFactory(V2Factory* factory)
 	}
 	
 	// check factory inventions
-	if (Configuration::getV2Gametype() != "HOD")
+	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
 	{
 		vanillaInventionType requiredInvention = factory->getVanillaRequiredInvention();
 		if (requiredInvention >= 0 && vanillaInventions[requiredInvention] != active)
@@ -1120,6 +1154,15 @@ bool V2Country::addFactory(V2Factory* factory)
 		if (requiredInvention >= 0 && HODInventions[requiredInvention] != active)
 		{
 			log("%s rejected %s (missing reqd invention: %s)\n", tag.c_str(), factory->getTypeName().c_str(), HODInventionNames[requiredInvention]);
+			return false;
+		}
+	}
+	else if (Configuration::getV2Gametype() == "HoD-NNM")
+	{
+		HODNNMInventionType requiredInvention = factory->getHODNNMRequiredInvention();
+		if (requiredInvention >= 0 && HODNNMInventions[requiredInvention] != active)
+		{
+			log("%s rejected %s (missing reqd invention: %s)\n", tag.c_str(), factory->getTypeName().c_str(), HODNNMInventionNames[requiredInvention]);
 			return false;
 		}
 	}
@@ -1188,7 +1231,7 @@ void V2Country::addRailroadtoCapitalState()
 
 void V2Country::convertUncivReforms()
 {
-	if ( (srcCountry != NULL) && ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD")))
+	if ((srcCountry != NULL) && ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")))
 	{
 		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
 				(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
@@ -1278,20 +1321,24 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 		{
 			techs.push_back("flintlock_rifles");
 			HODInventions[HOD_flintlock_rifle_armament] = possible;
+			HODNNMInventions[HOD_NNM_flintlock_rifle_armament] = possible;
 		}
 		if (newTechLevel >= 0.25)
 		{
 			HODInventions[HOD_flintlock_rifle_armament] = active;
+			HODNNMInventions[HOD_NNM_flintlock_rifle_armament] = active;
 			techs.push_back("bronze_muzzle_loaded_artillery");
 		}
 		if (newTechLevel >= 2)
 		{
 			techs.push_back("post_napoleonic_thought");
-			HODInventions[HOD_post_napoleonic_army_doctrine] = possible;
+			HODInventions[HOD_post_napoleonic_army_doctrine]			= possible;
+			HODNNMInventions[HOD_NNM_post_napoleonic_army_doctrine]	= possible;
 		}
 		if (newTechLevel >= 2.5)
 		{
-			HODInventions[HOD_post_napoleonic_army_doctrine] = active;
+			HODInventions[HOD_post_napoleonic_army_doctrine]			= active;
+			HODNNMInventions[HOD_NNM_post_napoleonic_army_doctrine]	= active;
 		}
 		if (newTechLevel >= 3)
 		{
@@ -1300,15 +1347,21 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 4)
 		{
 			techs.push_back("military_staff_system");
-			HODInventions[HOD_cuirassier_activation]	= possible;
-			HODInventions[HOD_dragoon_activation]		= possible;
-			HODInventions[HOD_hussar_activation]		= possible;
+			HODInventions[HOD_cuirassier_activation]			= possible;
+			HODInventions[HOD_dragoon_activation]				= possible;
+			HODInventions[HOD_hussar_activation]				= possible;
+			HODNNMInventions[HOD_NNM_cuirassier_activation]	= possible;
+			HODNNMInventions[HOD_NNM_dragoon_activation]		= possible;
+			HODNNMInventions[HOD_NNM_hussar_activation]		= possible;
 		}
 		if (newTechLevel >= 4.5)
 		{
-			HODInventions[HOD_cuirassier_activation]	= active;
-			HODInventions[HOD_dragoon_activation]		= active;
-			HODInventions[HOD_hussar_activation]		= active;
+			HODInventions[HOD_cuirassier_activation]			= active;
+			HODInventions[HOD_dragoon_activation]				= active;
+			HODInventions[HOD_hussar_activation]				= active;
+			HODNNMInventions[HOD_NNM_cuirassier_activation]	= active;
+			HODNNMInventions[HOD_NNM_dragoon_activation]		= active;
+			HODNNMInventions[HOD_NNM_hussar_activation]		= active;
 		}
 		if (newTechLevel >= 5)
 		{
@@ -1319,6 +1372,9 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_army_academic_training]				= active;
 			HODInventions[HOD_field_training]						= active;
 			HODInventions[HOD_army_societal_status]				= active;
+			HODNNMInventions[HOD_NNM_army_academic_training]	= active;
+			HODNNMInventions[HOD_NNM_field_training]				= active;
+			HODNNMInventions[HOD_NNM_army_societal_status]		= active;
 		}
 	}
 }
@@ -1339,13 +1395,17 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 0)
 		{
 			techs.push_back("post_nelsonian_thought");
-			HODInventions[HOD_long_range_fire_tactic]		= possible;
-			HODInventions[HOD_speedy_maneuvering_tactic]	= possible;
+			HODInventions[HOD_long_range_fire_tactic]					= possible;
+			HODInventions[HOD_speedy_maneuvering_tactic]				= possible;
+			HODNNMInventions[HOD_NNM_long_range_fire_tactic]		= possible;
+			HODNNMInventions[HOD_NNM_speedy_maneuvering_tactic]	= possible;
 		}
 		if (newTechLevel >= 0.25)
 		{
-			HODInventions[HOD_long_range_fire_tactic]		= active;
-			HODInventions[HOD_speedy_maneuvering_tactic]	= active;
+			HODInventions[HOD_long_range_fire_tactic]					= active;
+			HODInventions[HOD_speedy_maneuvering_tactic]				= active;
+			HODNNMInventions[HOD_NNM_long_range_fire_tactic]		= active;
+			HODNNMInventions[HOD_NNM_speedy_maneuvering_tactic]	= active;
 			techs.push_back("the_command_principle");
 		}
 		if (newTechLevel >= 4)
@@ -1355,11 +1415,13 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 			techs.push_back("alphabetic_flag_signaling");
 			vanillaInventions[VANILLA_building_station_shipyards]	= possible;
 			HODInventions[HOD_building_station_shipyards]			= possible;
+			HODNNMInventions[HOD_NNM_building_station_shipyards]	= possible;
 		}
 		if (newTechLevel >= 4.5)
 		{
 			vanillaInventions[VANILLA_building_station_shipyards]	= active;
 			HODInventions[HOD_building_station_shipyards]			= active;
+			HODNNMInventions[HOD_NNM_building_station_shipyards]	= active;
 		}
 		if (newTechLevel >= 6)
 		{
@@ -1377,36 +1439,48 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_steamer_automatic_construction_plants]				= possible;
 			HODInventions[HOD_steamer_transports]										= possible;
 			HODInventions[HOD_commerce_raiders]											= possible;
+			HODNNMInventions[HOD_NNM_long_range_fire_tactic]						= possible;
+			HODNNMInventions[HOD_NNM_speedy_maneuvering_tactic]					= possible;
+			HODNNMInventions[HOD_NNM_mechanized_fishing_vessels]					= possible;
+			HODNNMInventions[HOD_NNM_steamer_automatic_construction_plants]	= possible;
+			HODNNMInventions[HOD_NNM_steamer_transports]								= possible;
+			HODNNMInventions[HOD_NNM_commerce_raiders]								= possible;
 		}
 		if (newTechLevel >= 6 + (1/7.0))
 		{
 			vanillaInventions[VANILLA_long_range_fire_tactic]						= active;
 			HODInventions[HOD_long_range_fire_tactic]									= active;
+			HODNNMInventions[HOD_NNM_long_range_fire_tactic]						= active;
 		}
 		if (newTechLevel >= 6 + (2/7.0))
 		{
 			vanillaInventions[VANILLA_speedy_maneuvering_tactic]					= active;
 			HODInventions[HOD_speedy_maneuvering_tactic]								= active;
+			HODNNMInventions[HOD_NNM_speedy_maneuvering_tactic]					= active;
 		}
 		if (newTechLevel >= 6 + (3/7.0))
 		{
 			vanillaInventions[VANILLA_mechanized_fishing_vessels]					= active;
 			HODInventions[HOD_mechanized_fishing_vessels]							= active;
+			HODNNMInventions[HOD_NNM_mechanized_fishing_vessels]					= active;
 		}
 		if (newTechLevel >= 6 + (4/7.0))
 		{
 			vanillaInventions[VANILLA_steamer_automatic_construction_plants]	= active;
 			HODInventions[HOD_steamer_automatic_construction_plants]				= active;
+			HODNNMInventions[HOD_NNM_steamer_automatic_construction_plants]	= active;
 		}
 		if (newTechLevel >= 6 + (5/7.0))
 		{
 			vanillaInventions[VANILLA_steamer_transports]							= active;
 			HODInventions[HOD_steamer_transports]										= active;
+			HODNNMInventions[HOD_NNM_steamer_transports]								= active;
 		}
 		if (newTechLevel >= 6 + (6/7.0))
 		{
 			vanillaInventions[VANILLA_commerce_raiders]								= active;
 			HODInventions[HOD_commerce_raiders]											= active;
+			HODNNMInventions[HOD_NNM_commerce_raiders]								= active;
 		}
 		if (newTechLevel >= 7)
 		{
@@ -1417,6 +1491,9 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_academic_training]					= active;
 			HODInventions[HOD_combat_station_training]			= active;
 			HODInventions[HOD_societal_status]						= active;
+			HODNNMInventions[HOD_NNM_academic_training]			= active;
+			HODNNMInventions[HOD_NNM_combat_station_training]	= active;
+			HODNNMInventions[HOD_NNM_societal_status]				= active;
 		}
 	}
 }
@@ -1456,21 +1533,27 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_john_ramsay_mcculloch]				= possible;
 			HODInventions[HOD_nassau_william_sr]					= possible;
 			HODInventions[HOD_james_mill]								= possible;
+			HODNNMInventions[HOD_NNM_john_ramsay_mcculloch]		= possible;
+			HODNNMInventions[HOD_NNM_nassau_william_sr]			= possible;
+			HODNNMInventions[HOD_NNM_james_mill]					= possible;
 		}
 		if (newTechLevel >= 3.9375)
 		{
 			vanillaInventions[VANILLA_john_ramsay_mcculloch]	= active;
 			HODInventions[HOD_john_ramsay_mcculloch]				= active;
+			HODNNMInventions[HOD_NNM_john_ramsay_mcculloch]		= active;
 		}
 		if (newTechLevel >= 4.625)
 		{
 			vanillaInventions[VANILLA_nassau_william_sr]			= active;
 			HODInventions[HOD_nassau_william_sr]					= active;
+			HODNNMInventions[HOD_NNM_nassau_william_sr]			= active;
 		}
 		if (newTechLevel >= 5.3125)
 		{
 			vanillaInventions[VANILLA_james_mill]					= active;
 			HODInventions[HOD_james_mill]								= active;
+			HODNNMInventions[HOD_NNM_james_mill]					= active;
 		}
 		if (newTechLevel >= 6)
 		{
@@ -1481,21 +1564,27 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_multitude_of_financial_instruments]					= possible;
 			HODInventions[HOD_insurance_companies]										= possible;
 			HODInventions[HOD_regulated_buying_and_selling_of_stocks]			= possible;
+			HODNNMInventions[HOD_NNM_multitude_of_financial_instruments]		= possible;
+			HODNNMInventions[HOD_NNM_insurance_companies]							= possible;
+			HODNNMInventions[HOD_NNM_regulated_buying_and_selling_of_stocks]	= possible;
 		}
 		if (newTechLevel >= 6.25)
 		{
 			vanillaInventions[VANILLA_multitude_of_financial_instruments]		= active;
 			HODInventions[HOD_multitude_of_financial_instruments]					= active;
+			HODNNMInventions[HOD_NNM_multitude_of_financial_instruments]		= active;
 		}
 		if (newTechLevel >= 6.5)
 		{
 			vanillaInventions[VANILLA_insurance_companies]							= active;
 			HODInventions[HOD_insurance_companies]										= active;
+			HODNNMInventions[HOD_NNM_insurance_companies]							= active;
 		}
 		if (newTechLevel >= 6.75)
 		{
 			vanillaInventions[VANILLA_regulated_buying_and_selling_of_stocks]	= active;
 			HODInventions[HOD_regulated_buying_and_selling_of_stocks]			= active;
+			HODNNMInventions[HOD_NNM_regulated_buying_and_selling_of_stocks]	= active;
 		}
 		if (newTechLevel >= 8)
 		{
@@ -1511,31 +1600,41 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_polypoly_structure]					= possible;
 			HODInventions[HOD_oligopoly_structure]					= possible;
 			HODInventions[HOD_monopoly_structure]					= possible;
+			HODNNMInventions[HOD_NNM_silver_standard]				= possible;
+			HODNNMInventions[HOD_NNM_decimal_monetary_system]	= possible;
+			HODNNMInventions[HOD_NNM_polypoly_structure]			= possible;
+			HODNNMInventions[HOD_NNM_oligopoly_structure]		= possible;
+			HODNNMInventions[HOD_NNM_monopoly_structure]			= possible;
 		}
 		if (newTechLevel >= 8 + (1/6.0))
 		{
 			vanillaInventions[VANILLA_silver_standard]			= active;
 			HODInventions[HOD_silver_standard]						= active;
+			HODNNMInventions[HOD_NNM_silver_standard]				= active;
 		}
 		if (newTechLevel >= 8 + (2/6.0))
 		{
 			vanillaInventions[VANILLA_decimal_monetary_system]	= active;
 			HODInventions[HOD_decimal_monetary_system]			= active;
+			HODNNMInventions[HOD_NNM_decimal_monetary_system]	= active;
 		}
 		if (newTechLevel >= 8 + (3/6.0))
 		{
 			vanillaInventions[VANILLA_polypoly_structure]		= active;
 			HODInventions[HOD_polypoly_structure]					= active;
+			HODNNMInventions[HOD_NNM_polypoly_structure]			= active;
 		}
 		if (newTechLevel >= 8 + (4/6.0))
 		{
 			vanillaInventions[VANILLA_oligopoly_structure]		= active;
 			HODInventions[HOD_oligopoly_structure]					= active;
+			HODNNMInventions[HOD_NNM_oligopoly_structure]		= active;
 		}
 		if (newTechLevel >= 8 + (5/6.0))
 		{
 			vanillaInventions[VANILLA_monopoly_structure]		= active;
 			HODInventions[HOD_monopoly_structure]					= active;
+			HODNNMInventions[HOD_NNM_monopoly_structure]			= active;
 		}
 		if (newTechLevel >= 9)
 		{
@@ -1546,6 +1645,9 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_john_elliot_cairnes]				= active;
 			HODInventions[HOD_robert_torrens]					= active;
 			HODInventions[HOD_john_stuart_mill]					= active;
+			HODNNMInventions[HOD_NNM_john_elliot_cairnes]	= active;
+			HODNNMInventions[HOD_NNM_robert_torrens]			= active;
+			HODNNMInventions[HOD_NNM_john_stuart_mill]		= active;
 		}
 	}
 }
@@ -1588,35 +1690,45 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_small_arms_production]				= possible;
 			HODInventions[HOD_explosives_production]				= possible;
 			HODInventions[HOD_artillery_production]				= possible;
+			HODNNMInventions[HOD_NNM_ammunition_production]		= possible;
+			HODNNMInventions[HOD_NNM_small_arms_production]		= possible;
+			HODNNMInventions[HOD_NNM_explosives_production]		= possible;
+			HODNNMInventions[HOD_NNM_artillery_production]		= possible;
 		}
 		if (newTechLevel >= 3.2)
 		{
 			vanillaInventions[VANILLA_ammunition_production]	= active;
 			HODInventions[HOD_ammunition_production]				= active;
+			HODNNMInventions[HOD_NNM_ammunition_production]		= active;
 		}
 		if (newTechLevel >= 3.4)
 		{
 			vanillaInventions[VANILLA_small_arms_production]	= active;
 			HODInventions[HOD_small_arms_production]				= active;
+			HODNNMInventions[HOD_NNM_small_arms_production]		= active;
 		}
 		if (newTechLevel >= 3.6)
 		{
 			vanillaInventions[VANILLA_explosives_production]	= active;
 			HODInventions[HOD_explosives_production]				= active;
+			HODNNMInventions[HOD_NNM_explosives_production]		= active;
 		}
 		if (newTechLevel >= 3.8)
 		{
 			vanillaInventions[VANILLA_artillery_production]		= active;
 			HODInventions[HOD_artillery_production]				= active;
+			HODNNMInventions[HOD_NNM_artillery_production]		= active;
 		}
 		if (newTechLevel >= 4)
 		{
 			techs.push_back("practical_steam_engine");
-			HODInventions[HOD_rotherham_plough]	= possible;
+			HODInventions[HOD_rotherham_plough]						= possible;
+			HODNNMInventions[HOD_NNM_rotherham_plough]			= possible;
 		}
 		if (newTechLevel >= 4.5)
 		{
-			HODInventions[HOD_rotherham_plough]	= active;
+			HODInventions[HOD_rotherham_plough]						= active;
+			HODNNMInventions[HOD_NNM_rotherham_plough]			= active;
 		}
 		if (newTechLevel >= 5)
 		{
@@ -1642,10 +1754,20 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_pitts_threshing_machine]							= possible;
 			HODInventions[HOD_mechanized_slaughtering_block]					= possible;
 			HODInventions[HOD_precision_work]										= possible;
+			HODNNMInventions[HOD_NNM_sharp_n_roberts_power_loom]				= possible;
+			HODNNMInventions[HOD_NNM_jacquard_power_loom]						= possible;
+			HODNNMInventions[HOD_NNM_northrop_power_loom]						= possible;
+			HODNNMInventions[HOD_NNM_mechanical_saw]								= possible;
+			HODNNMInventions[HOD_NNM_mechanical_precision_saw]					= possible;
+			HODNNMInventions[HOD_NNM_hussey_n_mccormicks_reaping_machine]	= possible;
+			HODNNMInventions[HOD_NNM_pitts_threshing_machine]					= possible;
+			HODNNMInventions[HOD_NNM_mechanized_slaughtering_block]			= possible;
+			HODNNMInventions[HOD_NNM_precision_work] = possible;
 		}
 		if (newTechLevel >= 6.1)
 		{
 			HODInventions[HOD_sharp_n_roberts_power_loom]						= active;
+			HODNNMInventions[HOD_NNM_sharp_n_roberts_power_loom]				= active;
 		}
 		if (newTechLevel >= 6 + (1/9.0))
 		{
@@ -1654,6 +1776,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.2)
 		{
 			HODInventions[HOD_jacquard_power_loom]									= active;
+			HODNNMInventions[HOD_NNM_jacquard_power_loom]						= active;
 		}
 		if (newTechLevel >= 6 + (2/9.0))
 		{
@@ -1662,6 +1785,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.3)
 		{
 			HODInventions[HOD_northrop_power_loom]									= active;
+			HODNNMInventions[HOD_NNM_northrop_power_loom]						= active;
 		}
 		if (newTechLevel >= 6 + (3/9.0))
 		{
@@ -1670,6 +1794,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.4)
 		{
 			HODInventions[HOD_mechanical_saw]										= active;
+			HODNNMInventions[HOD_NNM_mechanical_saw]								= active;
 		}
 		if (newTechLevel >= 6 + (4/9.0))
 		{
@@ -1678,6 +1803,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.5)
 		{
 			HODInventions[HOD_mechanical_precision_saw]							= active;
+			HODNNMInventions[HOD_NNM_mechanical_precision_saw]					= active;
 		}
 		if (newTechLevel >= 6 + (5/9.0))
 		{
@@ -1686,6 +1812,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.6)
 		{
 			HODInventions[HOD_hussey_n_mccormicks_reaping_machine]			= active;
+			HODNNMInventions[HOD_NNM_hussey_n_mccormicks_reaping_machine]	= active;
 		}
 		if (newTechLevel >= 6 + (6/9.0))
 		{
@@ -1694,6 +1821,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.7)
 		{
 			HODInventions[HOD_pitts_threshing_machine]							= active;
+			HODNNMInventions[HOD_NNM_pitts_threshing_machine]					= active;
 		}
 		if (newTechLevel >= 6 + (7/9.0))
 		{
@@ -1702,6 +1830,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.8)
 		{
 			HODInventions[HOD_mechanized_slaughtering_block]					= active;
+			HODNNMInventions[HOD_NNM_mechanized_slaughtering_block]			= active;
 		}
 		if (newTechLevel >= 6 + (8/9.0))
 		{
@@ -1710,6 +1839,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 		if (newTechLevel >= 6.9)
 		{
 			HODInventions[HOD_precision_work]										= active;
+			HODNNMInventions[HOD_NNM_precision_work]								= active;
 		}
 		if (newTechLevel >= 7)
 		{
@@ -1718,6 +1848,8 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 			vanillaInventions[VANILLA_coke]		= active;
 			HODInventions[HOD_pit_coal]			= active;
 			HODInventions[HOD_coke]					= active;
+			HODNNMInventions[HOD_NNM_pit_coal]	= active;
+			HODNNMInventions[HOD_NNM_coke]		= active;
 		}
 	}
 }
@@ -1736,6 +1868,7 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
 		techs.push_back("classicism_n_early_romanticism");
+		HODNNMInventions[HOD_NNM_carlism] = active;
 		techs.push_back("late_enlightenment_philosophy");
 		if (newTechLevel >= 2)
 		{
@@ -1745,26 +1878,73 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_atheism]					= possible;
 			HODInventions[HOD_egalitarianism]		= possible;
 			HODInventions[HOD_rationalism]			= possible;
+			
+
+			HODNNMInventions[HOD_NNM_declaration_of_the_rights_of_man]	= possible;
+			HODNNMInventions[HOD_NNM_caste_privileges]						= possible;
+			HODNNMInventions[HOD_NNM_sati_abolished]							= possible;
+			HODNNMInventions[HOD_NNM_pig_fat_cartridges]						= possible;
+			HODNNMInventions[HOD_NNM_paternalism]								= possible;
+			HODNNMInventions[HOD_NNM_constitutionalism]						= possible;
+			HODNNMInventions[HOD_NNM_atheism]									= possible;
+			HODNNMInventions[HOD_NNM_egalitarianism]							= possible;
+			HODNNMInventions[HOD_NNM_rationalism]								= possible;
+		}
+		if (newTechLevel >= 2.1)
+		{
+			HODNNMInventions[HOD_NNM_declaration_of_the_rights_of_man]	= active;
 		}
 		if (newTechLevel >= 2 + (1/6.0))
 		{
 			HODInventions[HOD_paternalism]			= active;
 		}
+		if (newTechLevel >= 2.2)
+		{
+			HODNNMInventions[HOD_NNM_caste_privileges] = active;
+		}
+		if (newTechLevel >= 2.3)
+		{
+			HODNNMInventions[HOD_NNM_sati_abolished] = active;
+		}
 		if (newTechLevel >= 2 + (2/6.0))
 		{
 			HODInventions[HOD_constitutionalism]	= active;
+		}
+		if (newTechLevel >= 2.4)
+		{
+			HODNNMInventions[HOD_NNM_pig_fat_cartridges] = active;
 		}
 		if (newTechLevel >= 2 + (3/6.0))
 		{
 			HODInventions[HOD_atheism]					= active;
 		}
+		if (newTechLevel >= 2.5)
+		{
+			HODNNMInventions[HOD_NNM_paternalism] = possible;
+		}
+		if (newTechLevel >= 2.6)
+		{
+			HODNNMInventions[HOD_NNM_constitutionalism] = possible;
+		}
 		if (newTechLevel >= 2 + (4/6.0))
 		{
 			HODInventions[HOD_egalitarianism]		= active;
 		}
+		if (newTechLevel >= 2.7)
+		{
+			HODNNMInventions[HOD_NNM_atheism] = possible;
+		}
+		if (newTechLevel >= 2.8)
+		{
+			HODNNMInventions[HOD_NNM_egalitarianism] = possible;
+		}
 		if (newTechLevel >= 2 + (5/6.0))
 		{
 			HODInventions[HOD_rationalism]			= active;
+		}
+		if (newTechLevel >= 2.9)
+		{
+			HODNNMInventions[HOD_NNM_rationalism] = possible;
 		}
 		if (newTechLevel >= 4)
 		{
@@ -1783,21 +1963,27 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_romanticist_literature]				= possible;
 			HODInventions[HOD_romanticist_art]						= possible;
 			HODInventions[HOD_romanticist_music]					= possible;
+			HODNNMInventions[HOD_NNM_romanticist_literature]	= possible;
+			HODNNMInventions[HOD_NNM_romanticist_art]				= possible;
+			HODNNMInventions[HOD_NNM_romanticist_music]			= possible;
 		}
 		if (newTechLevel >= 5 + (1/3))
 		{
 			vanillaInventions[VANILLA_romanticist_literature]	= active;
-			HODInventions[HOD_romanticist_literature]				= active;
+			HODNNMInventions[HOD_NNM_romanticist_literature]	= active;
+			HODNNMInventions[HOD_NNM_romanticist_literature]	= active;
 		}
 		if (newTechLevel >= 5 + (2/3))
 		{
 			vanillaInventions[VANILLA_romanticist_art]			= active;
-			HODInventions[HOD_romanticist_art]						= active;
+			HODNNMInventions[HOD_NNM_romanticist_art]				= active;
+			HODNNMInventions[HOD_NNM_romanticist_art]				= active;
 		}
 		if (newTechLevel >= 6)
 		{
 			vanillaInventions[VANILLA_romanticist_music]			= active;
-			HODInventions[HOD_romanticist_music]					= active;
+			HODNNMInventions[HOD_NNM_romanticist_music]			= active;
+			HODNNMInventions[HOD_NNM_romanticist_music]			= active;
 		}
 	}
 }

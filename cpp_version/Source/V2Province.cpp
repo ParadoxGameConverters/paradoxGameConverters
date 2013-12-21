@@ -89,13 +89,13 @@ void V2Province::output(FILE* output) const
 	}
 	if (colonial)
 	{
-		if (Configuration::getV2Gametype() != "HOD")
+		if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
 		{
 		}
 	}
 	if (colonised)
 	{
-		if(Configuration::getV2Gametype() == "HOD")
+		if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
 		{
 			fprintf(output, "\tcolonial=2\n");
 		}

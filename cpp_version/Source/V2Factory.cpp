@@ -22,6 +22,7 @@ V2FactoryType::V2FactoryType(Object* factory)
 	requireTech						= "";
 	vanillaRequiredInvention	= (vanillaInventionType)-1;
 	HODRequiredInvention			= (HODInventionType)-1;
+	HODNNMRequiredInvention		= (HODNNMInventionType)-1;
 
 	vector<Object*> local_supply = factory->getValue("limit_by_local_supply");
 	if ((local_supply.size() > 0) && (local_supply[0]->getLeaf() == "yes"))
@@ -126,14 +127,19 @@ V2FactoryFactory::V2FactoryFactory(string V2Loc)
 		{
 			for (int i = 0; i <= VANILLA_naval_exercises; ++i)
 			{
-				if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == vanillaInventionNames[i])) 
+				if (((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD")) && (reqitr->second == vanillaInventionNames[i]))
 				{
 					ft->vanillaRequiredInvention = (vanillaInventionType)i;
 					break;
 				}
-				else if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == HODInventionNames[i])) 
+				else if ((Configuration::getV2Gametype() == "HOD") && (reqitr->second == HODInventionNames[i])) 
 				{
 					ft->HODRequiredInvention = (HODInventionType)i;
+					break;
+				}
+				else if ((Configuration::getV2Gametype() == "HoD-NNM") && (reqitr->second == HODNNMInventionNames[i]))
+				{
+					ft->HODNNMRequiredInvention = (HODNNMInventionType)i;
 					break;
 				}
 			}
