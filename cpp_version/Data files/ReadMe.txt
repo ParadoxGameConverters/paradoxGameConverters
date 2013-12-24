@@ -31,6 +31,10 @@ INSTRUCTIONS
 6) Copy "output.v2" to "[YOUR VICTORIA DIRECTORY]/save games" and run Victoria 2
 7) Load the output game and immediately save the game.  Then resign, and load that game.  Enjoy!
 
+If you get an error complaining about MSVCP120.dll, go to Visual Studio Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=40784
+	then click Download and select vcredist_x86.exe.
+	Once it has downloaded, install it and run the converter again.
+
 
 ----
 THE CONVERTER MOD for VICTORIA 2
