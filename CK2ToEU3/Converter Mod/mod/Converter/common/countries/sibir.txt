@@ -1,0 +1,74 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 139  138  160 }
+
+historical_ideas = {
+	glorious_arms 
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	persian_footsoldier
+	muslim_cavalry_archers
+	shaybani
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	durrani_swivel
+	durrani_rifled_musketeer
+	durrani_dragoon
+}
+
+monarch_names = {
+	"Taybuga Khan #0" = 20
+	"Khwajâ' Khan #0" = 20
+	"Mar Khan #0" = 20
+	"Obder Khan #0" = 20
+	"Ibaq Khan #0" = 20
+	"Mamuk Khan #0" = 20
+	"Abalak Khan #0" = 20
+	"Aguis Khan #0" = 20
+	"Qasim Khan #0" = 20
+	"Bekbulat Khan #0" = 20
+	"Yadiger Khan #0" = 20
+	"Kucum Khan #0" = 20
+	"Aley Khan #0" = 20
+	"Seidyak Khan #0" = 20
+	"Suker Khan #0" = 20
+	"Boibegus Khan #0" = 20
+	"Kuldalang Khan #0" = 20
+	"Ucirtu Khan #0" = 20
+	"Dagal Khan #0" = 20
+	"Aldark Khan #0" = 20
+	"Dsungar Khan #0" = 20
+}
+
+leader_names = { 
+	Balna Salmiianov Ravna Taiborey Vylka
+	Kanin Maimbava Arinin Aven Tsoy
+}
+
+ship_names = {
+	"Ghengis Khan" Orda Kochu Bayan Sasibuga
+	Ilbasan "Mubarrak Kwaja" Chimtai Urus Tuqtaqiya
+	"Timur Malik" Toqtamish "Timur Qutlugh" "Shadi Beg"
+	Pulad "Jalal Ad-Din" "Karim Berdi" Kebek "Jabbar Berdi"
+	"Ulugh Muhammad" "Devlat Berdi" Baraq "Sayyid Ahmad"
+}

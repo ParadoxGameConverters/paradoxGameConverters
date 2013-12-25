@@ -1,0 +1,102 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 114  171  184 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	ecumenism
+	smithian_economics
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Wilhelm #0" = 170
+	"Ludwig #1" = 40
+	"Friedrich #0" = 40
+	"Hermann #1" = 20
+	"Karl #0" = 20
+	"Moritz #0" = 20
+	"Philipp #0" = 20
+	"Heinrich #1" = 15
+	"Otto #1" = 15
+	"Adolf #0" = 10
+	"Christian #0" = 10
+	"Georg #0" = 10
+	"Leopold #0" = 10
+	"Maximilian #0" = 10
+	"Philipp Ludwig #0" = 10
+	"Adelmar #0" = 0
+	"Albrecht #0" = 0
+	"Barnabas #0" = 0
+	"Denis #0" = 0
+	"Egon #0" = 0
+	"Erich #0" = 0
+	"Gerhard #0" = 0
+	"Gottlieb #0" = 0
+	"Gregor #0" = 0
+	"Hagan #0" = 0
+	"Helmut #0" = 0
+	"Isaak #0" = 0
+	"Isidor #0" = 0
+	"Ivo #0" = 0
+	"Joachim #0" = 0
+	"Joseph #0" = 0
+	"Kreszens #0" = 0
+	"Lothar #0" = 0
+	"Oskar #0" = 0
+	"Siegfried #0" = 0
+	"Stefan #0" = 0
+	"Thomas #0" = 0
+	"Wenzel #0" = 0
+	"Werner #0" = 0
+	"Wolfram #0" = 0
+}
+
+leader_names = {
+	Arnsberg
+	Bebra
+	Eder
+	Fulda
+	Hamm
+	Kassel Knyphausen
+	Lippstadt
+	Münden
+	Paderborn
+	"von Scheideck"
+}
+
+ship_names = {
+	"Heinrich I" Kassel Werra Lahn Fulda
+	Wasserkuppe Stirnberg Hanau Marburg Wetzlar
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

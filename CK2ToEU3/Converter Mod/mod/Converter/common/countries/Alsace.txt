@@ -1,0 +1,127 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 246  223  15 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	national_bank
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Wilhelm #1" = 40
+	"Armand #0" = 40
+	"Johann #3" = 20
+	"Konrad #3" = 20
+	"Albrecht #0" = 20
+	"Erasmus #0" = 20
+	"Franz Egon #0" = 20
+	"Johann Georg #0" = 20
+        "Karl #0" = 20
+        "Leopold #0" = 20
+        "Leopold Wilhelm #0" = 20
+	"Louis Constantine #0" = 20		
+        "Louis René #0" = 20
+	"Rupprecht #0" = 20
+        "Wilhelm Egon #0" = 20
+	"Berthold #2" = 10
+	"Burkhard #2" = 10
+	"Friedrich #2" = 10
+        "Rudolf #2" = 10
+	"Ludwig #1" = 10
+        "Heinrich #4" = 5
+	"Werner #2" = 5
+	"Balduin #1" = 5
+	"Bruno #1" = 5
+	"Eberhard #1" = 5
+        "Gebhard #1" = 5
+	"Gottfried #1" = 5
+	"Kuno #1" = 5
+	"Lambert #1" = 5
+	"Otto #1" = 5
+	"Walter #1" = 5
+	"Adolf #0" = 0
+        "Alfred #0" = 0
+	"Baldur #0" = 0
+	"Erich #0" = 0
+	"Ferdinand #0" = 0
+	"Franz #0" = 0
+	"Günther #0" = 0
+	"Rainer #0" = 0
+	"Stefan #0" = 0
+}
+
+leader_names = {
+        d'Andleau d'Arnsberg
+        "de Bainville" "de Baltis" "de Berenfelz" "de Berckheim" "de Béonholdt" "de Beroldingen" "Bock de Blasheim" "Bock de Erlenburg" "de Bocklinsau"
+        "de Dalberg" "de Deux-Ponts-Bitche" "de Dornach"
+        "de Falkenstein" "de Fleckenstein" "de Furstenberg"
+        "Gailing d'Altheim" "de Gielsberg"
+        "de Hagenbach" "de Hanau-Lichtenberg" "de Hohenstein" "de Hungerstein"
+        "de Kippenheim" "de Kircheim"
+        "de Landeck" "de Landenberg"  "Linange-Westerburg" "de Lupfen" "de Lutzelburg"
+        "de Morimont" "de Mullenheim" "de Munck"
+        "de Pfasttatt"
+        "de Ramstein" "de Rathsamhausen"  "de Réguisheim" "de Reichenstein" "zu Rhein" "de Rheinfeld" "de Ribeaupierre"
+        "de Schaunburg" "de Schmitzbourg" "de Schoenau" "de Sickingen"
+        "de Thierstein" "de Turckheim"
+        "d'Uttenheim"
+        "de Wasselnheim" "de Weitersheim" "de Wildsberg" "de Winterbescher" Wolff "de Wormser"
+        "de Zurlauben"
+}
+
+ship_names = {
+        Altkirch Ammerschwihr Andolsheim
+        Barr Benfeld Bischwiller Bitche Bollwiller Brumath
+        Cernay Colmar 
+        Dieffenthal
+        Ensisheim Erstein
+        Guebwiller
+        Haguenau Honwald Horbourg-Wihr Hunspach
+        Kanterbrau Kaysersberg
+        Lautenbach Lauterburg Lembach
+        Marckolsheim Molsheim Mulhausen Munster Mutzig
+        Neuf-Brisach
+        Oberhaslach Obernai Olsheim Orbey
+        Reichshoffen Riquewihr Rouffach
+        Saverne Scherwiller Schirmeck Sélestat Souffelweyer Soufflenheim Soultzmatt Strassburg
+        Thann Turckheim
+        Vendenheim
+        Wissemburg Wittelsheim
+}
+
+army_names = {
+         "Armée d'Alsace"    "Armée du Rhin"        "Armée des Vosges"      
+         "Armée du Sundgau"  "Armée du Jura"        "Armée de l'Ochsenfeld" 
+         "Armée de la Hardt" "Armée de la Décapole" "Armée de Strasbourg"
+	 "Armée de $PROVINCE$" 
+}

@@ -1,0 +1,126 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 154  182  242}
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	liberty_egalite_fraternity
+	revolution_and_counter
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	swedish_gustavian
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Jean #3" = 40
+	"Charles #0" = 40
+	"Bernard #6" = 20
+	"Henri #0" = 10
+	"Marguerite #0" = -10
+	"Geraud #6" = 5
+	"Guillaume #1" = 5
+        "Arnaud-Bernard #2" = 1
+        "Mascarose #1" = 1
+        "Esquivat #1" = 1
+	"Pierre-Geraud #1" = 1		
+        "Armand #0" = 0
+	"Arnaud #0" = 0
+        "Aymeric #0" = 0
+	"Bartomiu #0" = 0
+	"Bernat #0" = 0
+	"Bertrand #0" = 0
+	"Domejon #0" = 0
+        "Eneco #0" = 0
+	"Estève #0" = 0
+        "Exemen #0" = 0
+	"Ferrán #0" = 0
+	"Folquet #0" = 0
+	"Frix #0" = 0
+	"Gastó #0" = 0
+        "Gaufré #0" = 0
+	"Guilhem #0" = 0
+	"Jacme #0" = 0
+	"Jordan #0" = 0
+	"Loys #0" = 0
+	"Martí #0" = 0
+	"Matheu #0" = 0
+        "Miqueu #0" = 0
+	"Oth #0" = 0
+	"Per #0" = 0
+	"Pol #0" = 0
+	"Romeu #0" = 0
+	"Thomas #0" = 0
+	"Vicentz #0" = 0
+	"Vives #0" = 0
+}
+
+leader_names = {
+	"d'Artagnan" "d'Astarac" "d'Avensac" "d'Avezan" 
+	"Barry de Puyol" "de Batz" "de Broque" "de Burosse" 
+	"de Calbiac" "de Cambairac" "de Castanet" "de Castelbajac" "de Catellan" "Chastenet de Puységur" "de Cheveny" "de Corneillan" "du Cos de la Hitte" 
+	"d'Esclignac" "d'Esparbez" 
+	"de Faudoas" "de Forcade"
+	"de Galard de Brassac" "de Gestas" "de Goth" "de Grossoles" 
+	"de La Barthe" "de La Briffe" "de Lacaze" "de Lasseran" "de Lavardac" "de L'Isle Jourdain" "de Lizarey" "de Lomagne" "de Loupiac" "de Luppé"
+	"de Mauléon" "de Maupas" "de Montcorneil" "de Montégut" "de Montluc" "de Montpezat"
+	"de Nogaret"
+	"de Pardaillan"
+	"de Roquelaure"
+	"de Salles" "de Sensacq" "de Sérignac" "de Solages"
+	"de la Tour-Maubourg"
+	"de Voisins"
+}
+
+ship_names = {
+        Aignan Auch Auterive
+        Brugnens
+        Castera-Verduran Casteljaloux Castillon-Massas Condom Couloume-Mondebat
+        Duran
+        Eauze Esparebent
+        Fleurance
+        Grailly
+        Hagetmau
+        Jegun
+        Lalanne Larroumiouac Lasserade Lasseube-Propre "La Testère" Laurensan Lavardens Lectoure Lupiac
+        Massin Miramont-Latour Mirande Mirepoix Montaut-les-Créneaux Montesquiou Montestruc
+        Nogaro
+        Pauilhac Peyrusse-Massas Preignan
+        Rambert Roquefort Roquelaure
+        "Saint Aunix-Langros" "Saint Clar" "Sainte Christie" "Saint Griède" "Saint Lary" "Saint Puy" "Sainte Radegonde" "Saint Sever"
+        Tournecoupe Tudelle
+        Vic-Fézensac
+}
+
+army_names = {
+         "Armée d'Armagnac"   "Armée de Lomagne"     "Armée du Condomois" 
+         "Armée de l'Astarac" "Armée du Fézensaguet" "Armée du Gimois"    
+         "Armée de Gascogne"              
+	 "Armée de $PROVINCE$" 
+}

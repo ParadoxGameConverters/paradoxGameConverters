@@ -1,0 +1,65 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 88  137  172 }
+
+historical_ideas = {
+	merchant_adventures  
+	excellent_shipwrights 
+	shrewd_commerce_practise 
+	superior_seamanship
+	national_conscripts
+	national_trade_policy
+	sea_hawks
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	espionage
+	cabinet
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Inayat #0" = 20
+	"'Alî Mugâyat #0" = 20
+	"Iskandar Tanî #0" = 20
+	"Husayn 'Alî Ri'âyat #0" = 20
+	"Menradza #0" = 20
+	"Tsalenggathu #0" = 20
+	"Gadzabadi #0" = 20
+	"Tsau-Lha #0" = 20
+	"Mengtsekya #0" = 20
+}
+
+leader_names = {
+	Abdulfatah Ahmad Amir Anwar Azmi 
+	Batuta 
+	Chairul 
+	Hamzah Hasanuddin 
+	Ibnu 
+	Kyai 
+	Mahat Mukhtar 
+	Najamuddin Natzar Nazmizan 
+	Roem 
+	Syarifuddin 
+	Zulkifli 
+}
+
+ship_names = {
+	Siak Samandara
+	"Malik ul Salih" "Malik Al-Salih"
+	Teunom Peusangen Jamboaye Alas Tripa "Simpang-kiri"
+	"Peg Serbeulangit" "Peg Pusat" "Gunung Peuetsagoe"
+	"Pulau we" "Pulau Breueh"
+}

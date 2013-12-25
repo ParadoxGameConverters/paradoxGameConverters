@@ -1,0 +1,59 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 130  25  74 }
+
+historical_ideas = {
+	merchant_adventures  
+	excellent_shipwrights 
+	shrewd_commerce_practise 
+	superior_seamanship
+	national_conscripts
+	national_trade_policy
+	sea_hawks
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	battlefield_commisions
+	espionage
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+}
+
+monarch_names = {
+	"Maulana Hasanudin #0" = 20
+	"Abdul Mufakir #0" = 20
+	"Nur ud-Din Ibrahim #0" = 20
+	"Yusuf Pasaran #0" = 20
+	"Muhammad Sedo Ning Rana #0" = 20
+	"Fatima #0" = 10
+	"Fath Muhammad #0" = 20
+}
+
+leader_names = {
+	Adi
+	Purnomo
+	Raharjo
+	Santoso
+	Aman
+	Damar
+	Bimo
+	Harjuno
+	Kresno
+	Puntodewo
+}
+
+ship_names = {
+	Lebak Pandeglang Serang Tangerang Cilegon
+	Kujang "Selat Sunda" Panaitan Krakatau
+	Sebuku Sabesi Sangiang Tundo Panjang Tinjal Deli
+}

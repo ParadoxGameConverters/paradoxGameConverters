@@ -1,0 +1,458 @@
+province_decisions = {
+	
+	join_hre = {
+		potential = {
+			hre = no
+			owner = { is_emperor = no }
+			religion_group = christian
+			owner = {
+				religion_group = christian
+			}
+			any_neighbor_province = {
+				hre = yes
+			}
+		}
+		allow = {
+			emperor = { relation = { who = THIS value = 100 } }
+			owner = {
+				officials = 1
+			}
+			is_core = THIS
+		}
+		effect = {
+			owner = { 
+				prestige = 0.02 
+				officials = -1
+			}
+			emperor = { 
+				country_event = 9493
+#				set_province_flag = asked_join_hre
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				emperor = { ai = no } # Simply do not want to join player-controlled HRE
+#				has_province_flag = asked_join_hre
+#				NOT = {
+#					had_province_flag = { 
+#						flag = asked_join_hre
+#						days = 3650
+#					}
+#				}
+			}
+			modifier = {
+				factor = 0
+				owner = {
+					tag = PAP
+				}
+			}
+			modifier = {
+				factor = 0
+				owner = {
+					NOT = {
+						emperor = {
+							religion = this
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				NOT = {
+					emperor = {
+						relation = {
+							who = THIS
+							value = 150
+						}
+					}
+				}
+			}
+			modifier = {
+				factor = 0
+				has_global_flag = Privileges_Revoked
+			}
+			modifier = {
+				factor = 0
+				emperor = {
+					badboy = 8
+				}
+			}
+			modifier = {
+				factor = 0 
+				owner = { num_of_cities = 5 }
+			}
+		}
+	}
+	
+	join_hre_emp = {
+		potential = {
+			hre = no
+			owner = { is_emperor = yes }
+			religion_group = christian
+			owner = {
+				religion_group = christian
+			}
+			any_neighbor_province = {
+				hre = yes
+			}
+		}
+		allow = {
+			owner = {
+				officials = 1
+			}
+			is_core = THIS
+		}
+		effect = {
+			owner = { 
+				prestige = 0.02
+				officials = -1
+				add_imperial_influence = 1
+			}
+			hre = yes
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	leave_hre = {
+		potential = {
+			hre = yes
+			owner = {
+				capital_scope = { hre = no }
+				is_emperor = no
+				elector = no
+			}
+		}
+		allow = {
+			emperor = { 
+				NOT = { relation = { who = THIS value = 0 } }
+			}
+			owner = {
+				officials = 1
+				war = no
+			}
+		}
+		effect = {
+			hre = no
+			owner = { 
+				prestige = -0.01 
+				officials = -1
+			}
+			emperor = { 
+				relation = { who = THIS value = -100 }
+				country_event = 9496
+			}
+		}
+		ai_will_do = { factor = 0 }
+	}
+
+	return_unlawful_territory = {
+		potential = {
+			hre = yes
+			NOT = { is_core = THIS }
+			is_capital = no
+			has_province_flag = emperor_nagged_for_it
+			owner = {
+				is_emperor = no
+			}
+			emperor = {
+				exists = yes
+				war = no
+			}
+		}
+		allow = {
+			owner = {
+				war = no
+			}
+		}
+		effect = {
+			clr_province_flag = emperor_nagged_for_it
+			set_province_flag = given_to_the_emperor
+			emperor = {
+				country_event = 9090
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+}
+
+hre_decisions = {
+
+	vote_on_reichsreform = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = reichsreform }
+		}
+		allow = {
+			imperial_influence = 50
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9057
+			}
+
+			possible_province_event = 9058
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	vote_on_reichsregiment = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = reichsregiment }
+		}
+		allow = {
+			has_global_flag = Reichsreform
+			imperial_influence = 50
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9059
+			}
+			possible_province_event = 9060
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	vote_on_hofgericht = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = Hofgericht }
+		}
+		allow = {
+			has_global_flag = Reichsregiment
+			imperial_influence = 50
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9061
+			}
+			possible_province_event = 9062
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	vote_on_gemeinerpfennig = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = Gemeinerpfennig }
+		}
+		allow = {
+			has_global_flag = Hofgericht
+			imperial_influence = 50
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9063
+			}
+			possible_province_event = 9064
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	vote_on_landfriede = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = Landfriede }
+		}
+		allow = {
+			has_global_flag = Gemeinerpfennig
+			imperial_influence = 50
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9065
+			}
+			possible_province_event = 9066
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	vote_on_erbkaisertum = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = Erbkaisertum }
+		}
+		allow = {
+			has_global_flag = Landfriede
+			imperial_influence = 50
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9069
+			}
+			possible_province_event = 9070
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	vote_on_privilegia_de_non_appelando = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = Privileges_Revoked }
+		}
+		allow = {
+			has_global_flag = Erbkaisertum
+			imperial_influence = 50
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9067
+			}
+			possible_province_event = 9068
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	vote_on_renovatio = {
+		potential = {
+			is_emperor = yes
+			NOT = { has_global_flag = Renovatio }
+		}
+		allow = {
+			has_global_flag = Privileges_Revoked
+			imperial_influence = 50
+			war = no
+			OR = {
+				NOT = { has_global_flag = Voting } 
+				had_global_flag = { 
+					flag = Voting
+					days = 30
+				}
+			}
+		}
+		effect = {
+			set_global_flag = Voting
+			add_imperial_influence = -50
+			any_country = {
+				limit = {
+					capital_scope = { hre = yes }
+					is_emperor = no
+					num_of_cities = 1
+				}
+				country_event = 9071
+			}
+			possible_province_event = 9072
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

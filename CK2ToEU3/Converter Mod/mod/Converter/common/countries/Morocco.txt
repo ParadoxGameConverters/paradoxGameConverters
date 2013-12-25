@@ -1,0 +1,93 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 224  146  113 } 
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	shrewd_commerce_practise
+	divine_supremacy
+	excellent_shipwrights
+	superior_seamanship
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	grand_army
+	sea_hawks
+	naval_fighting_instruction
+}
+
+historical_units = {
+	mamluk_archer
+	mamluk_cavalry_charge
+	mamluk_duel
+	mamluk_musket_charge
+	muslim_mass_infantry
+	muslim_dragoon
+	ali_bey_reformed_infantry
+}
+
+monarch_names = {
+	"Muhammad #0" = 200
+	"Ahmad #0" = 80
+	"'Abdallâh #0" = 60
+	"'Abd al-Malik #0" = 40
+	"'Alî #0" = 40
+	"'Uthmân #2" = 20
+	"'Abd al-Haqq #1" = 20
+	"Isma'îl #1" = 20
+	"Yahyâ #1" = 20
+	"'al-Walîd #0" = 20
+	"al-Mustadî #0" = 20
+	"al-Rashîd #0" = 20
+	"Hishâm #0" = 20
+	"Idrîsid #0" = 20
+	"Sulaymân #0" = 20
+	"Zaydân #0" = 20
+	"Zayn #0" = 20
+	"'Abd ar-Rahmân #0" = 15
+	"al-Yazîd #0" = 15
+	"Mansur #0" = 15
+	"Muhraz #0" = 15
+	"Nasir #0" = 15
+	"Abû Faris #0" = 10
+	"Abbas #0" = 10
+	"Abû Merwan #0" = 10
+	"al-Talib #0" = 10
+	"Hammada #0" = 10
+	"Hasam #0" = 10
+	"Hashim #0" = 10
+	"Ibrahim #0" = 10
+	"Ja'far #0" = 10
+	"Maimun #0" = 10
+	"Maslama #0" = 10
+	"Said #0" = 10
+	"Umar #0" = 10
+	"Yûsuf #0" = 10
+	"Ataullah #0" = 0
+	"Jabril #0" = 0
+	"Rasul #0" = 0
+	"Zulfiqar #0" = 0
+}
+
+leader_names = {
+	Sahiri
+	Haida
+	Sellami
+	Arazi
+	Berui
+	Lahsini
+	Skah
+	Barek
+	Alami
+	Behar
+}
+
+ship_names = {
+	Tawwab Muntaqim Afuww Fa'uf "Malik Mulk"
+	"Jalal Ikram" Muqsit Jami Ghani Mughni
+	Mani Darr Nafi Nur Hadi Badi Baqi Warith
+	Rashid Sabur "Fazl Azim"
+}

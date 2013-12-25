@@ -1,0 +1,152 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new resources, make sure they are uniquely named.
+# Please add price definitions to prices.txt as well.
+
+#Base resources
+grain = {
+	color = { 0.7 0.7 0 }
+	modifier = {
+		land_forcelimit_modifier = 0.25
+	}
+}
+
+wine = {
+	color = { 0.7 0.0 0 }
+	modifier = {
+		stability_cost_modifier = -0.25
+	}
+}
+
+wool = {
+	color = { 0.7 0.4 0 }
+	modifier = {
+		global_ship_cost=  -0.1
+	}
+}
+
+cloth = {
+	color = { 0.7 1.0 1.0 }
+	modifier = {
+		merc_maintenance_modifier = -0.25
+	}
+}
+
+fish = {
+	color = { 0.0 1.0 0 }
+	modifier = {
+		global_revolt_risk = -1
+	}
+	}
+
+fur = {
+	color = { 1.0 1.0 1 }
+	modifier = {
+		prestige = 0.01
+	}
+}
+
+salt = {
+	color = { 1.0 0.0 1 }
+	modifier = {
+		land_maintenance_modifier = -0.10
+	}
+}
+
+naval_supplies = {
+	color = { 1.0 0.4 0.4 }
+	modifier = {
+		naval_forcelimit_modifier = 0.25
+	}
+}
+
+
+# metals
+copper = {
+	color = { 0.0 0.4 0.4 }
+	modifier = {
+		global_regiment_recruit_speed = -0.1
+	}
+}
+
+gold = {
+	color = { 0.0 0.0 0.4 }
+}
+
+iron = {
+	color = { 0.0 1.0 0.0 }
+	modifier = {
+		global_regiment_cost = -0.1
+	}
+}
+
+
+#African Resources
+slaves = {
+	color = { 0.0 0.0 0.0 }
+	modifier = {
+		global_tariffs = 0.25
+	}
+}
+
+ivory = {
+	color = { 1.0 1.0 1.0 }
+	modifier = {
+		diplomatic_skill = 2
+	}
+}
+
+#Eastern Resources
+tea = {
+	color = { 1.0 1.0 1.0 }
+	modifier = {
+		advisor_cost = -0.33
+	}
+}
+
+chinaware = {
+	color = { 1.0 1.0 1.0 }
+	modifier = {
+		legitimacy = 0.05
+		}
+}
+
+spices = {
+	color = { 1.0 1.0 1.0 }
+	modifier = {
+		spies_cost = -0.33
+	}
+}
+
+
+#New World Resources
+coffee = {
+	color = { 1.0 0.0 1.0 }
+	modifier = {
+		defensiveness = 0.1
+	}
+}
+
+cotton = {
+	color = { 1.0 0.0 0.0 }
+	modifier = {
+		colonist_placement_chance = 0.25
+	}
+}
+
+sugar = {
+	color = { 0.1 0.7 0.5 }
+	modifier = {
+		max_war_exhaustion = -2
+	}
+}
+
+tobacco = {
+	color = { 0.0 0.7 0.5 }
+	modifier = {
+		global_spy_defence = 0.25
+	}
+}
+
+unknown = {
+	color = { 0.5 0.5 0.5 }
+}

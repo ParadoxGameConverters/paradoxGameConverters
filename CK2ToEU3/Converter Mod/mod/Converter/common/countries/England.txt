@@ -1,0 +1,147 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 193  26  14 }
+
+historical_ideas = {
+	bill_of_rights
+	superior_seamanship
+	quest_for_the_new_world
+	excellent_shipwrights
+	merchant_adventures
+	colonial_ventures
+	land_of_opportunity
+	press_gangs
+	national_bank
+	ecumenism
+	smithian_economics
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	chevauchee
+	western_longbow
+	gaelic_mercenary
+	gaelic_free_shooter
+	french_caracolle
+	irish_charge
+	anglofrench_line
+	french_dragoon
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Henry #3" = 100
+	"Edward #3" = 60
+	"Charles #0" = 40
+	"James #0" = 40
+	"William #2" = 20
+	"Richard #2" = 20
+	"Mary #0" = -20
+	"Philip #0" = 20
+	"Henry #3 Frederick" = 10
+	"Anne #0" = -10
+	"Arthur #0" = 10
+	"Charles #0 James" = 10
+	"Edgar #0" = 10
+	"Elizabeth #0" = -10
+	"Jane #0" = -10
+	"Thomas #0" = 10
+	"Edmund #0" = 5
+	"George #0" = 5
+	"John #1" = 1
+	"Humphrey #0" = 0
+	"Robert #0" = 0
+	"Stephen #1" = 1
+	"Adam #0" = 0
+	"Alexander #0" = 0
+	"Albert #0" = 0
+	"Alfred #0" = 0
+	"Ambrose #0" = 0
+	"Andrew #0" = 0
+	"Anthony #0" = 0
+	"Archibald #0" = 0
+	"Benjamin #0" = 0
+	"Christopher #0" = 0
+	"Daniel #0" = 0
+	"David #0" = 0
+	"Ernest #0" = 0
+	"Francis #0" = 0
+	"Geoffrey #0" = 0
+	"Guy #0" = 0
+	"Horatio #0" = 0
+	"Hugh #0" = 0
+	"Isaac #0" = 0
+	"Jeremy #0" = 0
+	"Jonathan #0" = 0
+	"Joseph #0" = 0
+	"Lawrence #0" = 0
+	"Matthew #0" = 0
+	"Nehemiah #0" = 0
+	"Oliver #0" = 0
+	"Samuel #0" = 0
+	"Sydney #0" = 0
+}
+
+leader_names = {
+	Albemarle Amherst Anson
+	Buckingham Braddock Byron Burgoyne Beresford Brock Benbow Blake Bedford Boscawen Baffin Button
+	Clarence "de Clifford" Cromwell Cumberland Clinton Cornwallis Clive Cabot Carleton Cavendish Cook
+	Dampier Davis Drake
+	Essex
+	Fairfax Frobisher
+	Gloucester Gilbert
+	Howe Howard Herbert Hawke Hood Hastings Hudson
+	Leicester
+	Marlborough Middleton Moore
+	Northumberland Norfolk
+	Procter
+	Rooke Rodney Raleigh
+	Salisbury Somerset Suffolk Saunders Smith
+	Talbot Tarleton
+	Uxbridge
+	Warwick Wolfe
+	York
+}
+
+ship_names = {
+        Achille Adventure Ajax Albemarle Alexander "Anne Gallant" Antelope "Ark Royal" Assurance Audacious
+        Bear Bellerophon Bonaventure Boyne Britannia Buckingham
+        Charles Christ Constant Convertine Culloden Cumberland
+        Defence Defiance Destiny Dragon Dreadnought
+        "Edward Howard" Elizabeth Eltham Essex Expedition
+        Foresight Foudroyant
+        "Gabriel Royal" Garland George Gibraltar Gloucester Goliath "Grace Dieu" Grafton "Grand Mistress" "Great Barbara" "Great Bark" "Great Elizabeth" "Great Harry" "Great Nicholas" Guernsey
+        Haarlem "Happy Entrance" Hector "Henrietta Maria" Hope
+        James "John Baptist"
+        "Katherine Forteleza" Kent
+        Leander Leopard Lion
+        Majestic Margaret Mary "Mary Rose" Mercury Merhonour Michael Minion Minotaur 
+        Nonpareil Nonsuch Northumberland Nottingham
+        Orion
+        Peter Providence "Prince Frederick"
+        "Queen Charlotte"
+        Rainbow "Red Lion" Regent Renown Repulse Revenge "Royal Anne" "Royal Charles" "Royal Prince" 
+        "Scourge of Malice" Sovereign "Sovereign o the Seas" "St Andrew" "St Esprit" "St George" "St Matthew" Suffolk Superb Swallow Swiftsure 
+        Theseus Tigre Tramontana Triumph
+        Unicorn Union
+        Vanguard Victory
+        Warspite Worcester
+}
+
+army_names = {
+	"Royal Army" "Army of Scotland" "Army of Ireland"
+
+}
+
+fleet_names = {
+	"Royal Navy" "Blue Squadron" "Red Squadron" "White Squadron" "North Sea Squadron" "Channel Squadron"
+}

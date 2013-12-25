@@ -1,0 +1,111 @@
+#Gefürstete Grafschaft Tirol
+
+graphical_culture = latingfx
+
+color = { 170 43 21 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	patron_of_art
+	grand_army
+	engineer_corps
+	national_bank
+	vetting
+	battlefield_commisions
+	scientific_revolution
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Ferdinand #0" = 40
+	"Friedrich #0" = 40
+	"Maximilian #0" = 40
+	"Albrecht #5" = 20
+	"Leopold #1" = 20
+	"Ernst #0" = 20
+	"Ferdinand Karl #0" = 20
+	"Sigmund #0" = 20
+	"Sigmund Franz #0" = 20
+	"Wilhelm #0" = 20
+	"Johann #0" = 15
+	"Wolfgang #0" = 15
+	"Adalbert #0" = 0
+	"Adolf #0" = 0
+	"Alfred #0" = 0
+	"Benedikt #0" = 0
+	"Benno #0" = 0
+	"Bruno #0" = 0
+	"Christian #0" = 0
+	"Cristoph #0" = 0
+	"Clemens #0" = 0
+	"Florian #0" = 0
+	"Gerhard #0" = 0
+	"Gregor #0" = 0
+	"Günther #0" = 0
+	"Heinrich #0" = 0
+	"Hermann #0" = 0
+	"Humbert #0" = 0
+	"Isaak #0" = 0
+	"Isidor #0" = 0
+	"Jakob #0" = 0
+	"Jörg #0" = 0
+	"Michael #0" = 0
+	"Oskar #0" = 0
+	"Otto #0" = 0
+	"Raphael #0" = 0
+	"Siegfried #0" = 0
+	"Stefan #0" = 0
+	"Ulrich #0" = 0
+	"Viktor #0" = 0
+}
+
+leader_names = { 
+	Abenthung Aschbacher 
+	Blattl Bucher 
+	Eisenstecken 
+	Hagleitner Haspinger Hofer 
+	Krismer
+	Luger 
+	Oblasser 
+	Pfurtscheller 
+	Rapp 
+	Santer Scholl Speckbacher Straub 
+	Thalguter 
+}
+
+ship_names = { 
+	Innsbruck 
+	Inn 
+	Kufstein 
+	Bozen 
+	Meran 
+	Brixen 
+	Brenner 
+	Stubaital 
+	Öztal 
+	Zillertal 
+}
+
+army_names = {
+	"Armee von $PROVINCE$"
+}

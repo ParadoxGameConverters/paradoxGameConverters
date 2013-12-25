@@ -1,0 +1,101 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 121  159  109 } 
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	persian_footsoldier
+	muslim_cavalry_archers
+	shaybani
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Usman #0" = 10
+	"Abd al-Khalik #0" = 10
+	"Sharif Sufi #0" = 10
+	"Abbu'l Khayr #0" = 10
+	"Haidar #0" = 10
+	"Ilbars Khán #0" = 20
+	"Sultan Hajji Khan #0" = 10
+	"Buchagha Khan #0" = 10
+	"Hasan Quli Khan #0" = 10
+	"Bujunga Khan #0" = 10
+	"Sufiyan Khan #0" = 10
+	"Avanesh Khan #0" = 10
+	"Kal Khan #0" = 10
+	"Aqatay Khan #0" = 10
+	"Yunus Khan #0" = 10 
+	"Dost Khan #0" = 10
+	"'Ali Sultann #0" = 10
+	"Ishi Sultan #0" = 10
+	"Hajji Muhammad #0" = 10
+	"Arab Mohammed #0" = 10
+	"Ilbars #1" = 10
+	"Habash Sultan #0" = 10
+	"Isfandiyar #0" = 10
+	"Abu'l-Ghazi Khan #0" = 30
+	"Anusha Khan #0" = 10
+	"Khdaydad Khan #0" = 10
+	"Arang Kahn #0" = 30
+	"Chichaq Khan #0" = 10
+	"Vali Khan #0" = 10
+	"Shah Nizay Ishaq Aga #0" = 10
+ 	"Musa Khan #0" = 10
+	"Yadigar Khan #0" = 10
+	"Haji Muhammad Khan #0" = 10
+	"Shir Grazi Khan #0" = 10
+	"Sarigh Ayghir Khan #0" = 10 
+	"Bahadur Khan #0" = 10
+	"Abu'l Khair #0" = 10
+	"Tahir Khan #0" = 10
+	"Nurali Khan #0" = 20
+	"Abu Muhammad #0" = 10
+	"Ghayib Khan #0" = 10
+	"Abd'ullah Qara Beg #0" = 10
+	"Timur Ghazi Kjan #0" = 10
+	"Tawke Khan #0" = 10
+	"Shah Ghazi Khan #0" = 10
+	"Jahangir Khan #0" = 10
+	"Bölekey Khan #0" = 10
+	"Aqim Khan #0" = 10
+}
+
+leader_names = { 
+	"Bayan Arslan" "Mongke Cheren" "Mongke Bayar" "Suren Chinua" "Oyugun Nasan"
+	"Bora Tolui" Qadancher Batulun Batutai Bokejin Arighqan Burilgiteni
+	Bayarnai Subegene Tegusdai Yekedei
+}
+
+ship_names = {
+	Khwarezm Urganj "Din Muhammad" "Yelu Dashi"
+	Kunya "Amu Darya" "Anush Tigin" "Ala Aziz"
+	"Ahmed Sanjar" "Ala Takish" "Jaxartes"
+	"Syr Darya" "Bukhara" "Jalal Mingburnu"
+	"Abu Mamun" "Abu Hasan Ali" "Altun Yash"
+	Harun "Ismail Khandan"
+}

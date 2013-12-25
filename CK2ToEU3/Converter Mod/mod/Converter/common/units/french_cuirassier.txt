@@ -1,0 +1,12 @@
+# French Cuirassier
+
+type = cavalry
+unit_type = western
+
+maneuver = 2
+offensive_morale = 8
+defensive_morale = 6
+offensive_fire = 4
+defensive_fire = 5
+offensive_shock = 9
+defensive_shock = 7

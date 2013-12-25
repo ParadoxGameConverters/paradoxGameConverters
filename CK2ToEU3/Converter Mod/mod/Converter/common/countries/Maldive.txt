@@ -1,0 +1,89 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 79  166  103 }
+
+historical_ideas = {
+	merchant_adventures  
+	excellent_shipwrights 
+	shrewd_commerce_practise 
+	superior_seamanship
+	national_conscripts
+	national_trade_policy
+	sea_hawks
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	engineer_corps
+	battlefield_commisions
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+}
+
+monarch_names = {
+	"Hussan #0" = 50
+	"Nasr ud-Din #0" = 40
+	"Ibrahim #0" = 20
+	"Danna Mohammed #0" = 10
+	"Muhammad #4" = 20
+	"'Umar #1" = 10
+	"Yusuf #2" = 10
+	"'Ali #3" = 30
+	"Ahmad #0" = 30
+	"Abu Bakr #1" = 30
+	"Kamanfa'anu #0" = 30
+	"'Imad ad-Din #0" = 20
+	"Iskandar #0" = 20
+	"Muhi ad-Din #0" = 10 
+	"Shams ad-Din #0" = 10
+	"'Izz ad-Din #0" = 10
+	"Muin ad-Din Iskander #0" = 10
+	"al-Haj Hassan #2" = 10
+	"Sayyid Mohammed #0" = 10
+	"al-Haj Mohammed #0" = 10
+	"Hilali Mohammed #0" = 10
+	"Hilali Kalu Mohammed #0" = 10
+	"Sayyid Ahmed #0" = 10
+	"Mohammed Idn Omar #0" = 10
+	"Hasain #1 Famuderi" = 10
+	"Ibrahim Iskandir #0" = 20
+}
+
+leader_names = {
+	Abdulla
+	Didi
+	Dhiyamigili
+	Ibrahim
+	Gayoom
+	Ghiyasuddin
+	Hilaalee
+	Huraa
+	Imaduddin
+	Isdhoo
+	Iskandar
+	Kilegefan
+	Koimala
+	"Maha Radun"
+	Mueenuddeen
+	Moosa
+	Nasir
+	Nooraddeen
+	Seedhi
+	Thakurufaan
+	Utheemu
+}
+
+ship_names = {
+	Alia Alisha Ari Aziza Fadhippolhu
+	Fatimah Felidhoo Goidhoo Kolhumadulu
+	Male Maalhosmadulu Niknaz Niloufa
+	Yasmine Zahira
+}

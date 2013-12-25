@@ -1,0 +1,123 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 32  144  204 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	colonial_ventures
+	military_drill
+	quest_for_the_new_world
+	cabinet
+	bureaucracy
+	scientific_revolution
+	liberty_egalite_fraternity
+	napoleonic_warfare
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Henri #2" = 60
+	"Edouard #4" = 10
+	"Thomas #0" = 10
+	"Guillaume #10" = 5
+	"Richard #2" = 5
+	"Jean #1" = 5
+	"Edmond #0" = 5
+	"Humphrey #0" = 5
+	"Armand #0" = 0
+	"Arnaud #0" = 0
+	"Aymeric #0" = 0
+	"Bartomiu #0" = 0
+	"Benedit #0" = 0
+	"Bernat #0" = 0
+	"Bertran #0" = 0
+	"Brun #0" = 0
+	"Carles #0" = 0	
+	"Eneco #0" = 0
+	"Enric #0" = 0
+	"Estève #0" = 0
+	"Folquet #0" = 0
+	"Frances #0" = 0
+	"Frédol #0" = 0
+	"Gastó #0" = 0
+	"Gaufré #0" = 0
+	"Guilhem #0" = 0
+	"Hug #0" = 0
+	"Jacme #0" = 0
+	"Jordan #0" = 0
+	"Loys #0" = 0
+	"Matheu #0" = 0
+	"Miqueu #0" = 0
+	"Nicolau #0" = 0
+	"Per #0" = 0
+	"Pol #0" = 0
+	"Pons #0" = 0
+	"Thomas #0" = 0
+	"Vicentz #0" = 0
+	"Vivian #0" = 0
+	"Xavier #0" = 0
+}
+
+leader_names = {
+	Aller
+	Detmold
+	Hamelm Hildesheim
+	Kapp
+	Minden
+	Oldenburg
+	Salzgitter
+	Werden Wernigerode
+}
+
+ship_names = {
+        Adour Africain Aigle "Aigle d'Or" "Aimable Nanon"
+        "Aimable Marthe" "Aimable Rose" Alexandre "Ste Anne de Bordeaux" Amitié
+        Angélique Américain Amphitrite "Arc en Ciel" Bayonnaise 
+         "Belle Poule" Bienfaisant Biscayenne Bizarre "Bonnes Amies" 
+        Bordelais Brillant Caroline Castor Catiche
+        Charente "Charmante Manon" "Charmante Nancy" "Charmante Rachel" "Château de Bayonne"
+        Chézine "Commerce de Bordeaux" "Comte de Toulouse" Content Débonnaire
+        Dédaigneuse "Deux Frères" Diamant Diligente "Duc d'Aquitaine"
+        Elisabeth Entreprenante Espérance Extravagante Favori
+        Fendant Flamand Gaillard Galant Godichon
+        "Grand Coureur" "Grand Sirius" "Gros Ventre" Hercule Hermine 
+        Impérieuse Indien Intrépide Jolie Joseph
+        Labourt Laurence Légère Licorne Lion
+        Machault Marchand Mars Mascarin Maure
+        Mégère Mélampe Mignon Neptune "Nouvelle Victoire"
+        Oiseau Opale Pélican Phénix Pollux
+        "Quatre Frères" Rameau "Reine Marie" Renommée Rostan
+        "Royal Daim" "Saint Jacques" "Saint Pierre" Sirène "Soleil Royal"
+        Swinton Tamponne "Toison d'Or" Tourterelle Trinité
+        Triton Utile Valeur Vénus "Ville de Bayonne"
+}
+
+army_names = {
+         "Armée d'Aquitaine"     "Armée du Bordelais"  "Armée du Blayais"
+         "Armée du Pays de Buch" "Armée du Bazadais"   "Armée du Queyran"
+         "Armée du Fronsadais"   "Armée du Libournais" "Armée de Castillon" 
+         "Armée d'Albret"        "Armée de la Garonne" "Armée de l'Agenais"
+	 "Armée de $PROVINCE$" 
+}

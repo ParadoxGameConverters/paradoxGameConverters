@@ -1,0 +1,117 @@
+graphical_culture = latingfx
+
+color = { 125  171  84 }
+
+historical_ideas = {
+	national_conscripts
+	patron_of_art
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	national_bank
+	cabinet
+	military_drill
+	scientific_revolution
+	bureaucracy
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Cosimo #0" = 60
+	"Ferdinando #0" = 60
+	"Francesco #0" = 60
+	"Lodovico #2" = 40
+	"Carlo #4 Emmanuele" = 20
+	"Carlo #4 Felice" = 20
+	"Lodovico #2 Maria" = 20
+	"Alessandre #0" = 20
+	"Francesco #0 Stefano" = 20
+	"Galeazzo Maria #0" = 20
+	"Gian Galeazzo #0" = 20
+	"Gian Gastone #0" = 20
+	"Massimiliano #0" = 20
+	"Napoleone #0" = 20
+	"Pietro Leopoldo #0" = 20
+	"Vittorio Amedeo #0" = 20
+	"Carlo #4" = 10
+	"Antonio #0" = 10
+	"Ermes #0" = 10
+	"Eugenio #0" = 10
+	"Filippo #0" = 10
+	"Gian Carlo #0" = 10
+	"Giovanni #0 Maria" = 10
+	"Pietro #0" = 10
+	"Alberto #1" = 5
+	"Rodolfo #1" = 5
+	"Ascanio Maria #0" = 5
+	"Augusto #0" = 5
+	"Benedetto #0" = 5
+	"Emmanuele Filiberto #0" = 5
+	"Filippo #0 Maria" = 5
+	"Giovanni #0" = 5
+	"Giuseppe #0" = 5
+	"Leopoldo #0" = 5
+	"Matteo #0" = 5
+	"Maurizio #0" = 5
+	"Ottaviano #0" = 5
+	"Raniero #0" = 5
+	"Sforza Maria #0" = 5
+	"Agostino #0" = 0
+	"Constanzo #0" = 0
+	"Demetrio #0" = 0
+	"Fabio #0" = 0
+	"Giordano #0" = 0
+	"Isidoro #0" = 0
+	"Niccolò #0" = 0
+	"Paolo #0" = 0
+	"Romeo #0" = 0
+	"Severino #0" = 0
+	"Vittorio #0" = 0
+}
+
+leader_names = {
+	"Appiani d'Aragona" "Arborio Mella" 
+	Barberini Barzagli Boncompagni Borghese Borromeo Buonarroti "di Busca"
+	"di Campofregoso" Carafa "di Cardé" "del Carreto" Casanova Castagna
+	Castagnaro "di Cavour" Chigi Colonna Contarini Conti Corsini Cybo 
+	"Doria di Cirié" Doria-Landi Doria-Pamphili
+	d'Este 	"di Farnese" "di Ferrari"
+	"Gaetani dell'Aquila" Galilei Gambacorta Gentileschi Giustiniani Gonzaga Grimaldi
+	Ludovisi Malaspina "di Medici" Melzi Montefeltro Orsini
+	"di Paesana" "Paleologi Montferrato" Pallavicini Paradisi Petrucci Pico Pignatelli
+	"dalla Rosa" "della Rovere"
+	"di Saluzzo" "di Savoia" Sfondrati Sforza Spinola
+	"della Torre" "della Ubaldini" Vico Visconti
+}
+
+ship_names = {
+	Medea Vulcano Gloria Minerva Laatea
+	Diligenza Vittoria Eolo Concordia Forza 
+	Fama Sirena Falcon Ercole Idra "San Andrea"
+	"San Zaccaria" "San Spiridon" "San Gaetano"
+	"Fortuna Guerriera" Terror Aquileta Constanza
+	"Regina del Mar" "San Nicolo" Nettuno Rosa
+	Fenice Iride Aurora Tigre Giove "Rizzo d'Oro"
+	"Amazzone Guerriera"
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

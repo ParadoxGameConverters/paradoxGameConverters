@@ -1,0 +1,24 @@
+#Rebels
+
+graphical_culture = latingfx
+
+color = { 30  30  30 }
+	
+monarch_names = {
+	"Corneles #0" = 10
+	"Moise #0" = 10
+	"Mahieu #0" = 10
+	"Daniel #0" = 10
+	"Jacob #0" = 10
+	"Piet #0" = 10
+	"Hendrik #0" = 10
+	"David #0" = 10	
+	"John #0" = 10	
+	"Eric #0" = 10	
+}
+
+leader_names = {
+	Lowther Quelch Condent Dalzeel
+	Spriggs Condon Angre Anstis Chivers
+	Searle Hout Coxon Vynne Vane Worley
+}

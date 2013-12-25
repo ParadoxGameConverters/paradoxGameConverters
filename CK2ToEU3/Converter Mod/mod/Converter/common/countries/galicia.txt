@@ -1,0 +1,114 @@
+#Country Name: Galicia
+
+graphical_culture = latingfx
+
+color = { 240  167  130 }
+
+historical_ideas = {
+	divine_supremacy
+	superior_seamanship
+	quest_for_the_new_world
+	colonial_ventures
+	land_of_opportunity
+	vice_roys
+	national_conscripts
+	national_bank
+	excellent_shipwrights
+	scientific_revolution
+	espionage
+	patron_of_art
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"García #1" = 20
+	"Ordoño #2" = 20
+	"Afonso #5" = 15
+	"Sancho #1" = 15
+        "Ramiro #3" = 10
+	"Bermudo #2" = 10
+	"Froila #2" = 10
+        "Aleixo #0" = 0
+	"Alvaro #0" = 0
+	"Anxo #0" = 0
+	"Baltasar #0" = 0
+	"Bernaldo #0" = 0
+	"Brais #0" = 0
+	"Carlos #0" = 0
+	"Cristovo #0" = 0
+        "Domingos #0" = 0
+	"Estevo #0" = 0
+	"Felipe #0" = 0
+	"Fernán #0" = 0
+	"Francisco #0" = 0
+	"Frederico #0" = 0
+	"Gonzalo #0" = 0
+ 	"Guillerme #0" = 0
+	"Gumersindo #0" = 0
+	"Henrique #0" = 0
+	"Hermenexildo #0" = 0
+	"Hixinio #0" = 0
+        "Hugo #0" = 0
+	"Iago #0" = 0
+	"Ignacio #0" = 0
+	"Leandro #0" = 0
+        "Lope #0" = 0
+	"Miguel #0" = 0
+	"Nuno #0" = 0
+	"Odón #0" = 0
+	"Paulo #0" = 0
+	"Pedro #0" = 0
+	"Ramón #0" = 0
+	"Roi #0" = 0
+	"Tomé #0" = 0
+	"Vitor #0" = 0
+	"Xoan #0" = 0
+	"Xorxe #0" = 0
+}
+
+leader_names = {
+	"de Aguirre" "de Alarcón" "de Toledo" "de Andrade" "de Ayala"
+	"de Bazán" "de Benavides" Campomanes "de Castilla" "de la Cerda" Cienfuegos Colón Coronado Cortés
+	"de Toledo" "de Córdoba" "de la Cueva" "de Figueroa" Fonseca
+	Gálvez Gómez "de Guzmán" "Jiménez de Cisneros"
+	"de Leiva" "López de Haro" "de Luna"
+	"de Lara" "de Velasco" "de Villena" "de Mendoza"
+	Narváez "de Nebrija" "Nuñez de Balboa" "de Ojeda" Orellana Osorio 
+	Pimentel Pinzón Pizarro "Ponce de León" Portocarrero
+	"de Rojas" Tellez-Girón "de la Vega" "de Zúñiga"
+}
+
+ship_names = {
+	Galicia Argonauta Asturias Asunción Atrevido Azor
+	Cartagonova Castilla "Castillo Negro" Castor "Ciervo Volante"
+	Doncella Dragón 
+	"El Gran Grin" "El Retiro" Eneas Eolo Esperanza "Espíritu Santo" Extremadura
+	Furor Galicia "Gran Grifón" Halcón Hércules Isabela Júpiter
+	"La Concepción" "La Magdalena" "La Manuela" León Ligera "Lobo Marino"
+	Marte Mercurio Neptuno Niña Orión
+	"Paloma Blanca" Pegaso "Perro Marino" Pinta Plutón Pollux "Príncipe de Asturias"
+	Rayo "Real Alfonso" "Real Enrique" "Real Juan" "Rey Pelayo" "Rey Rodrigo"
+	"San Andrés" "San Antonio" "San Bartolomé" "San Bernabé" "San Cristobal" "San Enrique"
+	"San Esteban" "San Fernando" "San Francisco" "San Gabriel" "San Isidoro" "San Jerónimo"
+	"San José" "San Juan" "San Juan Bautista" "San Leandro" "San Miguel" "San Pedro"
+	"San Rafael" "San Salvador" "San Sebastian" "Santa Ana" "Santa Bárbara" "Santa Beatriz"
+	"Santa Catalina" "Santa Cruz" "Santa Fe" "Santa Isabel" "Santa Justa" "Santa María"
+	"Santa Marta" "Santa Rita" "Santa Teresa" Santiago "Santísima Trinidad" "Santo Domingo" Sirena
+	Terror Toledo Trinidad Tritón Unicornio
+	Vencedora Ventura Victoria Vigilante Vizcaya Vulcano Zúñiga
+}

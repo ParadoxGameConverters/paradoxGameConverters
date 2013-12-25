@@ -1,0 +1,136 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 26  53  177 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	excellent_shipwrights
+	merchant_adventures
+	espionage
+	superior_seamanship
+	military_drill
+	national_trade_policy
+	patron_of_art
+	shrewd_commerce_practise
+	cabinet
+	grand_army
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"In #0" = 40
+	"Se #0" = 40
+	"Ye #0" = 20
+	"Seong #1" = 20
+	"Yonsan #0" = 20
+	"Jung #0" = 20
+	"Myeon #0" = 20
+	"Seon #0" = 20
+	"Gwanghae #0" = 20
+	"Hyo #0" = 20
+	"Hyeon #0" = 20
+	"Suk #0" = 20
+	"Gyeong #0" = 20
+	"Yeong #0" = 20
+	"Jeong #1" = 20
+	"Sun #0" = 20
+	"Dan #0" = 20
+	"Mun #0" = 20
+	"Tae #1" = 20
+	"Imhae #0" = 10
+	"Uian #0" = 10
+	"Bokseong #0" = 10
+	"Geumwon #0" = 10
+	"Yeongyang #0" = 10
+	"Yeongchang #0" = 10
+	"Yuenrueng #0" = 10
+	"Sado #0" = 10
+	"Munhyo #0" = 10
+	"Bongseong #0" = 5
+	"Deokheung #0" = 5
+	"Sinseong #0" = 5
+	"Uichang #0" = 5
+	"Jeongwon #0" = 5
+	"Hyesun #0" = -5
+	"Hyejeong #0" = -5
+	"Hyohye #0" = -5
+	"Uihye #0" = -5
+	"Hyosun #0" = -5
+	"Gyeonghyeon #0" = -5
+	"Insun #0" = -5
+	"Jeongsin #0" = -5
+	"Jeonghye #0" = -5
+	"Jeongsuk #0" = -5
+	"Jeong-an #0" = -5
+	"Jeonghyu #0" = -5
+	"Jeongmyeong #0" = -5
+	"Hwan #1" = 1
+	"Do #1" = 1
+	"Ik #1" = 1
+	"Mok #1" = 1
+	"Si #1" = 1
+	"I #0" = 0
+	"Guem #0" = 0
+	"Sun #0" = 0
+	"Rip #0" = 0
+	"Il #0" = 0
+	"Dong #0" = 0
+	"Gwai #0" = 0
+	"Sang #0" = 0
+	"Ji #0" = 0
+	"U #0" = 0
+	"Gyu #0" = 0
+	"Dae #0" = 0
+	"Gu #0" = 0
+}
+
+leader_names = {
+	An
+	Bin
+	Choe
+	Geyong
+	Gyun
+	Jae-u
+	Jung
+	Kim
+	Lip
+	Myung
+	O 
+	Pak
+	Shi-min
+	Shin
+	Sun-sin
+	Won
+	Yi Yu Yun
+	Young
+	Yúl
+}
+
+ship_names = {
+	Baekdu Baekje 
+	Changbai
+	Duman Daedeok Dongmyeongseong
+	Gayasan Geumgang Geumho Goguryeo "Gyeon Hwon"
+	Jirisan Jeongjong
+	Kumgangsan
+	Nakdong
+	Sincheon Silla Sobaek
+	Taebaek Taejo 
+	Hanseong Haemosu Habaek Hwaeomsa
+	Worak
+	Yuhwa Yeong 
+	"Jeong Do-jeon" "Yi Seong-gye"
+}

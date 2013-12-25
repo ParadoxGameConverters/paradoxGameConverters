@@ -1,0 +1,6 @@
+#Carrack
+type = big_ship
+
+hull_size = 20
+base_cannons = 40 
+sail_speed = 5

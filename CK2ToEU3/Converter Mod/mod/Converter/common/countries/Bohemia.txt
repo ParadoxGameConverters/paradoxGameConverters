@@ -1,0 +1,114 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 161  139  40 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	engineer_corps
+	patron_of_art
+	grand_army
+	national_bank
+	espionage 
+	battlefield_commisions
+	scientific_revolution
+	glorious_arms
+	napoleonic_warfare
+	improved_foraging
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Ladislav #1" = 40
+	"Václav #3" = 20
+	"Vladislav #2" = 20
+	"Ferdinand #0" = 20
+	"Fridrich #0 Falcký" = 20
+	"Jiri #0" = 20
+	"Ludvík #0" = 20
+	"Zikmund #0" = 20
+	"Jindrich #1 Fridrich" = 15
+	"Viktorin #0" = 15
+	"Karel #4 Ludvík" = 10
+	"Jan #1" = 10
+	"Jindrich #1" = 10
+	"Boczek #0" = 10
+	"Eduard #0" = 10
+	"Fridrich #0" = 10
+	"Ruprecht #0" = 10
+	"Karel #4" = 5
+	"Premysl #2" = 5
+	"Alexandr #0" = 0
+	"Alojz #0" = 0
+	"Bronislav #0" = 0
+	"Ctibor #0" = 0
+	"David #0" = 0
+	"Drahoslav #0" = 0
+	"Ignác #0" = 0
+	"Jakub #0" = 0
+	"Jozef #0" = 0
+	"Kliment #0" = 0
+	"Leos #0" = 0
+	"Lubomir #0" = 0
+	"Lukás #0" = 0
+	"Marek #0" = 0
+	"Mikolás #0" = 0
+	"Miroslav #0" = 0
+	"Ondrej #0" = 0
+	"Otokar #0" = 0
+	"Pavol #0" = 0
+	"Vilem #0" = 0
+	"Zdislav #0" = 0
+}
+
+leader_names = {
+	Boleslav Brno
+	Kladno
+	Lablonec Liberec
+	Pardubice Plzen Praha
+	Trutnov
+	Zatec
+}
+
+ship_names = {
+	"Svatý Vaclav"
+	"Svatý Mikulás"
+	"Svatý Jirí"
+	"Svatá Anezká"
+	"Nejsvatejsí Trojice"
+	"Král Karel"
+	"Král Boleslav"
+	"Král Premysl"
+	"Panna Maria Vitezná"
+	"Jan Hus"
+	Sárka
+	Ctirad
+	Cechý
+	Moravy
+	Budvar
+	Libuse
+	Odvázný
+	Orel
+	Sokol
+	Slezko
+	Sipká
+	Hvezdá
+}

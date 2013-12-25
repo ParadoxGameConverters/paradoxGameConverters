@@ -1,0 +1,119 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 157  51  167 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	ecumenism
+	cabinet
+	smithian_economics
+	scientific_revolution
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Friedrich #0" = 100
+	"Ludwig #2" = 80
+	"Ruprecht #2" = 20
+	"Johann Wilhelm #0" = 20
+	"Karl #0" = 20
+	"Karl #0 Ludwig" = 20
+	"Karl #0 Philipp" = 20
+	"Karl #0 Theodor" = 20
+	"Otto Heinrich #0" = 20
+	"Philipp #0" = 20
+	"Philipp Wilhelm #0" = 20
+	"Heinrich #6 Friedrich" = 15
+	"Alexander Siegmund #0" = 15
+	"Friedrich #0 Philipp" = 15
+	"Johann Friedrich #0" = 15
+	"Ludwig Anton #0" = 15
+	"Ludwig Philipp #0" = 15
+	"Hermann #3 Ludwig" = 10
+	"Wilhelm #1" = 10
+	"Albrecht #0" = 10
+	"Christoph #0" = 10
+	"Eduard #0" = 10
+	"Franz Ludwig #0" = 10
+	"Friedrich #0 Wilhelm" = 10
+	"Georg #0" = 10
+	"Gustav Adolf #0" = 10
+	"Johann Kasimir #0" = 10
+	"Ludwig Wilhelm #0" = 10
+	"Moritz #0" = 10
+	"Moritz Christian #0" = 10
+	"Richard #0" = 10
+	"Wolfgang Georg #0" = 10
+	"Gottfried #1" = 5
+	"Bruno #0" = 0
+	"Gottschalk #0" = 0
+	"Hieronymus #0" = 0
+	"Ignatz #0" = 0
+	"Markus #0" = 0
+	"Raphael #0" = 0
+	"Rüdiger #0" = 0
+}
+
+leader_names = {
+	Blittersdorf
+	"von Gelnhausen"
+	"von Schöneck"
+	"von Dieblich"
+	Cölln
+	Bensenraede
+	Adenau
+	Gruithausen
+	Hohenfeld
+	"von Namedy"
+	Falkenberg
+	"von Clausbruch"
+	Hillensberg
+	Dammerscheidt
+	Elmpt
+	Naxleden
+	Schaluyn
+	"von Leyen"
+	Ansembourg
+	Zebnitsch
+}
+
+ship_names = {
+	Neustadt Kaiserslautern Elmstein Landstuhl
+	Rhodt Deidesheim Hochspeyer Neunkirchen
+	Wolfstein Winnweiler
+}
+
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}
+
+fleet_names = {
+	"Stadtflotte"
+}

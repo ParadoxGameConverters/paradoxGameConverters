@@ -1,0 +1,4308 @@
+culture_rules=
+{
+	al_suryah_arabic=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=EGY
+		male_names=
+		{
+			Abdul-Azeem Abdul-Hamid Abdul-Lateef Abdul-Razzaq Abdul-Wahad Abdullah Adhid Adil Akab Ala'i Ali Amir Ashraf Aziz Bashar Boutros Da'ud Faisal
+			Fayiz Ghazi Hakam Hamdan Hashmaddin Hussayn Ibrahim Imamaddin Isa Is'mail Ismat Jahan Jamil Kamran Khalid Khudayar Majid Mas'ud
+			Muaddam Muhammad Muhsin Mukhtar Murad Musa Muzaffar Muzaffaraddin Nasraddin Nuraddin Nuri Radhi Rasul Sa'ud Salahaddin Seyfullah Sharaf
+			Sirhan Taimur Tawfiq Umaya Wahid Yahya Ya'qub Yasar Youkhanna Zahir
+			al-Nasr al-Mu'azzam al-Salih al-'Adil al-Kamil al-Ashraf al-Afdal Tadj
+			*Mujir ud-Din* *Djamal ud-Din* *Shihab ud-Din* Shams Saif 'Abbas
+			*'Abd al-Rahman* Anwar Atuf Bakr Fahd Hakim Harun Hikmat Hisham Husayn
+			Isma'il Jafar Jamaal Karim Malîk Mirza Rashîd Rusul Shimun Tarîq Usama
+			Yasir Yusuf Zaid Zîyad
+			Abdullah Fuat 
+			Hasan Iskender Ismet Izzet Kazim Kemal 
+			Mustafa Nazim Omar 
+			Rauf Rifat Shukru Suleyman Urabi Yunus Ziya
+		}
+		female_names=
+		{
+			Aisha Aziza Duha Farida Golbahar Gulnar Gulnaz Gulpari Hafsa Hasti Huma Ibtisam Jalila Kamala Karima Khandan Khaterah Khatira Kinah Lala Madiha Mahdokht
+			Mahsa Mahwash Marwa Mastana Mehri Mina Minoo Munawwar Muzhdah Nahal Najela Nasiba Nastaran Nazaneen Nazy Neelab Negar Niki Nikoo Noushin Rabiya
+			Rajiya Sadiya Salma Sitara Thana Zahra Zuhayra
+		}
+		leader_names=
+		{
+			Damad
+			Esad
+			Farhad
+			Hafiz
+			Fazil
+			Ismail
+			Mehmed
+			Murad
+			Nasuh
+			Osman
+			Salih
+			Sinan
+		}
+		ship_names=
+		{
+			Arif
+			Azmi
+			Dervish
+			Fuad
+			Haci
+			Haydar
+			Mulish
+			Nuri
+			Salih
+			Said
+			Sefveti
+			Shukri
+			*Muhammad Ali* Ibrahim Ismail Said *Salah al-Din* *Baybars Abu al-Futuh*
+			*Qalawun al-Salihi* Barquq *Qansuh al-Ghawri* *Al-Nil al-Kabir*
+			*Al-Qahira* *Al-Iskandariyya* Dumyat Mansura Tanta *Al-Uqsur* *Al-Suyut* Aswan
+			*Al-Fayyum* Khartum Qusayr Suways Minya
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif* 
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid
+			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir
+			Alif Amin Anwar Ayham Bahir Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr
+		}
+		army_names=
+		{
+			*Jaysh mn $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Astoul mn $PROVINCE$*
+		}
+	}
+	al_misr_arabic=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=EGY
+		male_names=
+		{
+			Aaron Abanoub 'Abd Abderahman Abdul-Aziz Abdul-Haq Abdul-Madjid Abdul-Salaam Abdullah Abianos Abisalom Ablarion Abraam Abu-Bakr Adnan Agathon Agathonikos Agathos Ahmad Akbar al-Hasan al-Mahmudi al-Malik al-Musta'in al-Nasr Alam 'Alî Amr Androus Anthinos Arsenios Ashraf Asim Athanasios
+			Badr Barsbay Barqûq Basir Baybars Biktor Binyamin Bishoi Boutros
+			Danyal Dawlat Da’oud
+			Ezra Farhan
+			Fadl Faraj Firuz
+			Gabri’el Georgios Ghayth Ghiyasaddin
+			Habil Hâjjî Hakam Hammud Hanri Haroun Hatim Hisham Hussayn
+			Ibrahim Ilyas Inâl Isma'îl Izzaddin
+			Jabir Jalaaladdin Jaqmaq Jânbulât Jawdat Jerjer
+			Kemaladdin Khalil Khusqadam Krystafer Kûjûk
+			Latif Lot
+			Matta Mehtar Mikail Mikhael Milad Mina Muammar Muhammad Mukhtar Murad Murshid Musa Muzaffaraddin
+			Nabil Nadim Nasir Nassib Nizar Nuraddin
+			Pamin
+			Qadir Qânsawh Qasim Qâyit
+			Ra'uf Rafiq Ridwan
+			Sabah Sa'di Sâlih Salim Sayyid Sha'bân Sharif Suhail
+			Tadros Tajaddin Tayyib Timurbughâ Tûmân
+			Usama 'Uthman
+			Walid Yahya Yared Yassir Youkhanna Youssef Yunus
+			Yalbay Yûsuf
+			Zaia Zakariyah
+			Abdullah Abdulhamid Abdulkerim Ahmet Ali Bekir Cemal Enver Fevzi Fuat Halil 
+			Hasan Iskender Ismet Izzet Kamil Kazim Kemal 
+			Mehmet Murat Mustafa Nazim Nurettin Omar Osman 
+			Nuri Rauf Rifat Selim Shukru Suleyman Urabi Yusuf Ziya
+		}
+		female_names=
+		{
+			Acenith Alia Amunet Andali Asanet Asenath Asenet Azenet
+			Badiat
+			Cena
+			Fatima
+			Halima 
+			Jamila
+			Khadija
+			Majida
+			Mariam
+			Nabila Nura
+			Radiya Rana
+			Sacmis Safiya Samira Suhaila
+			Tawaret Taweret Titi Thuriya
+			Zara Zahra
+		}
+		leader_names=
+		{
+			Ali
+			Aybak
+			Baibars
+			Bay
+			Bey
+			Bugha
+			Inâl
+			Kansur
+			Sayfuddin
+			Zangi
+			Pasha
+		}
+		ship_names=
+		{
+			*Zaher Barqooq* *Farag Ben Barqooq*
+			*Ben Barqooq* *Muyaid Sheikh* *Ahmen Muyaid*
+			*Zaher Tatar* *Nasser Muhamed* *Ashraf Barsbay*
+			*Aziz Gamal* *Nahr an-Nil* *Al-Farafirah*
+			*Ad-Däkhilah* *Al-Kharijah* *Al-Ali* *Al-Bahriyah*
+			Rahman Rahim Malik Quddus Salam Mu'min Muhaymin
+			Aziz Jabbar Mutakabbir Khaliq Bari Musawwir
+			Ghaffar Qahhar Wahhab Razzaq Fattah Alim Qabid
+			Basit Khafid Rafi Mu'izz Mudhill Sami Basir Hakam Adl
+			*Muhammad Ali* Ibrahim Ismail Said *Salah al-Din* *Baybars Abu al-Futuh*
+			*Qalawun al-Salihi* Barquq Qaitbay *Qansuh al-Ghawri* *Al-Nil al-Kabir*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din* *Safi al-Din* *Siraj al-Din*
+			*Al-Qahira* *Al-Iskandariyya* Dumyat Mansura Tanta *Al-Uqsur* *Al-Suyut* Aswan
+			*Al-Fayyum* Qusayr Suways Minya
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif*
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jawhar Kamal Khalid
+			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din*
+			Alif Amin Anwar Ayham Dhakwan Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr
+		}
+		army_names=
+		{
+			*Jaysh mn $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Astoul mn $PROVINCE$*
+		}
+	}
+	andalucian=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MoroccoGC
+		base_country_V2=MOR
+		male_names=
+		{
+			Abbad Abbas Abdallah Abdul-Aziz Abdul-Hakam Abdul-Hasan Abdul-Hazm Abdul-Rahman Abdul-Razzaq Abdul Abu
+			Abu-Bakr Adfuns Ahmad Ali Amr Ayyub Balashk Bilal Fadl Fath Galind Garsiya Hakam Hilal Ibrahim Isma'îl
+			Jyad Lubb Ma'n Mubashir Muhammad Mundir Musa Muyahid Raf Rashid Rasiq Sa'd Sanyo Siddray Sulayman Tariq Tifilwit
+			Umar Utman Wannaqo Ya'far Yahaff Yahyà Yûsuf
+			'Alî Nasr *'Abd al-Karim* Ayman Barakat Basir Dawud Fahd Faris Faruq Firdaus Fuad Haidar Hashim Husam Iqbal
+			Jabbar Jamal Junayd Khaliq Malik Mansur Mustafa Najib Qasim Qusay Rahim Rashîd Safi Sakhr Samir Wahid Zahir
+		}
+		female_names=
+		{
+			Abda Ahu Aiza Aliyah Butayna Daniyah Dima Fahra Fahriya Fatima Gamila Ghada Habiba Huda Ibtisam Isra Karima Kera Khadija Layla 
+			Maha Malika Mariam Munya Nadia Naila Nur Rafiqa Rahat Raisa Randa Safiya Salma Shakira Suraya Tahira Tarifa Thashim Umm Wahida
+			Yasmin Zahida Zahra
+		}
+		leader_names=
+		{
+			*Ibn Abd al-Rahman* *Ibn Abbad* *Ibn Abd Allah* *Ibn Abi Hafs* *Ibn al-Azafi* *Ibn Ali*
+			*Ibn Hakan* *Ibn Hammud* *Ibn Hisam* *Ibn Husayn*
+			*Ibn Idris* *Ibn Ishaq* *Ibn Isma'il*
+			*Ibn Marwan* *Ibn Muhammad* *Ibn Nasr* *Ibn Qasim* *Ibn Sa'd* *Ibn Sulayman*
+			*Ibn Umar* *Ibn Ummay* *Ibn Utman* *Ibn Ya'far* *Ibn Yahyà* *Ibn Yusuf*
+		}
+		ship_names=
+		{
+			*Muhammed* al-Faqih
+			Nasr *Ismail*
+			*Mulay al-Rashid* *Ismail ibn Sharif* *Muhammad al-Thalith* *Abd al-Rahman* *Muhammad al-Rabi* *Hasan al-Alawiyyin*
+			*Al-Mansur al-Dhahbi* *Abd Allal al-Ghalib* *Muhammad al-Shaikh al-Saghir* *Abu Yusuf Yaqub* *Abu Sa'id Uthman* *Al-Mariniyyun* *Al-Idrisiyyun*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din* 
+			*Safi al-Din* *Salah al-Din* *Siraj al-Din*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid 
+			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir 
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din* 
+			Alif Amin Anwar Ayham Bahir Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd 
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr 
+		}
+		army_names=
+		{
+			*Jaysh mn $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Astoul mn $PROVINCE$*
+		}
+	}
+	aquitaine=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=FrenchGC
+		base_country_V2=FRA
+		male_names=
+		{
+			Adhémar Acfred Aimeric Alberic Albert Aldebert Alias Alphonse Amalric Amaneus Ancelmes Andiru André Anfòs Antoine Archambaut Arnaut Artau Aton Audoïn Aymar Aymeric Aznar
+			Borel Barral Baudoïn Beneset Berenguié Bermond Bernard-Aton Bernard-Ezi Bernard Bertrand Blasi Boson 
+			Charles Centolh Claude Clamenç
+			Dàvi Dat Dodon Doumenge Duran 
+			Ebles Emmanuèl Ermengau Eugène Evrard
+			Ferrand Florènç Foilan Folquet François Frédéric Filip
+			Garcia Gaston Gausbert Gautier Gilbèrt Gilles Girard Girvais Godefroi Gui Guichard Guigues Guillaume Guiraud Guitart
+			Huc
+			Ignace Ives 
+			Jacques Jacme Jean Jordan Jorge Josselin Jules Julian
+			Leon Léopold Lop
+			Mamert Marçau Martin Matfre Matias Maurice Milo Miquel
+			Odo Olivier
+			Patrici Pèire Péire Peranudet Pol Pons
+			Raolf Raymond Raymond-Berenguié Rainaut Rainer Robèrt Richartz Roger
+			Toumas
+			Sancho Sauson Simon Savarics 
+			Ubald Ubert Ugues
+			Valeray Vézian Vicenç
+			Xavier
+			Adrian Alphonce Bartholomé Berdot Corneilhe Denys Durand Esteven
+			Eugramet Girolamme Hanrri Huget Jacmes Jehan Kanuet Laurens Loys Mathieu
+			Nycolas Noel Phelip Pierre Ramon Robert Sebastien Symon Thibault Thierry Vidault Yvon Ythier
+		}
+		female_names=
+		{
+			Adèla Adalaïda Adeltrudis Agata Aïna Ainès Alaïs Alienòr Aliç Almòdis Alpaïs Ana Arsenda Assalhida Ava Azalaïs Azelma
+			Bòna Beatritz Berenguela Berta Blanca Brandimena Bregida Brunissenda
+			Camila Carlòta Caterina Cecilia Clara Clarmonda Clemència Cloutilda Constància
+			Dolça
+			Eisabèu Elena Elisa Elisabèta Ermengarda Ermessentz Esclarmonda Estefania Eufèmia Eufrosina
+			Faidida Filipa Filomena Flòra Francesa
+			Garcenda Geneviva Gerbèrga Gersenda Gisla Guigone Guilheumina 
+			Heloise
+			Ioulanda Isabèu Isabèla
+			Jeanne Juliana
+			Lúcia Laura Louise 
+			Mabila Madalena Margarida Maria Marquisa Marta Mascaròsa Matilda Melisènda 
+			Navar
+			Patricia Peironèla Petronilha Puelle
+			Raisenda Raimonda Richènda_Ricarda Rosèla Rosa
+			Sança Sibilla
+			Terèsa Tiborg
+			Verounica Violent
+		}
+		leader_names=
+		{
+			*d'Arnal* Assézat
+			*de Bacalan* *de Barbasan* *de Bernuy* *de Bezons* *de Boulbène*
+			*de Casteras* *de Caussade* *de Corneillan*
+			Delguy Delpuech
+			*d'Espagne* *d'Estadens* *d'Estissac*
+			Fabre Faure
+			*de Galard* *de Goth* *de Grossoles*
+			Imbert *de l'Isle-Jourdain*
+			*de La Broue de Gandelon* *de Lacaze* *de Ladevèze* *de Loupiac* 
+			*de Madaillan* *Malvin de Montazet* *Martin de Viviès*
+			*de Nogarède* *de Nogaret* Noguès
+			*d'Ouvrier*
+			Pandaries *de Pelamourgues* Perès *de Perricard* Pons *de Pradines* *de Puechgarric*
+			*de Rabastens* *de Roux d'Alzonne*
+			Sabatier *de Saint Félix*
+			Teyssier *de Tholozany* *de Toulouse-Foissac* *de Toulouse-Lautrec*
+			*de Villemur*
+			*de Xaintrailles*
+			Delat Bachelier Chassier Gorio Gulden Hervé Largan *le Taro* Leconig Monic Roullaud *de Lizane*
+			*de Bourgues* Delalo *de Caudeyran* Luceau *de la Panse* *de Maurommet* Dethoailhe Jourdain Stoard Parenchieres
+			Bourgade Olier Bonvisy Lorguilleulx Haltevite *de Zailies* Faicheur Vezee Gombault Joffre Beauperrin Gally
+
+		}
+		ship_names=
+		{
+			Aucamville Auzeville-Tolosane Balma Beauzelle *Le Busca*
+			Blagnac Capitole Castanet-Tolosan Colomiers Cugneaux
+			*Ile du Ramier* Labège Labruc *La Cépière* *La Pasquière*
+			Laran Lardenne Launaguet *Le Grand Rond* *Le Mirail*
+			*Les Demoiselles* *Les Minimes* *Les Paradous* L'Union Marquisat
+			Montaudran Montrabé Muret Pechbonnieu Pechbusque
+			*Pech David* Pibrac Plaisance-du-Touch *Portet sur Garonne* Quint-Fonsegrives
+			*Patte d'Oie* Ramonville-St-Agne Rangueil Tournefeuille *Saint Aubin*
+			*St Geniès Bellevue* *St Martin du Touch* *Saint Orens* *Saint Sernin* *Saint Simon*
+			Salvetat-St-Gilles Soulé *Stade Toulousain* *Vieille Toulouse* *Villeneuve-Tolosane*
+			*Poincare*
+			*Louis* *Dévastation*
+			*Courbet* *Amiral Duperré* *Terrible* *Indomptable* *Caiman* *Requin* *Admiral Baudin*
+			*Formidable* *Hoche* *Marceau* *Magenta* *Neptune* *Brennus* *Charles Martel* *Carnot*
+			*Jauréguiberry* *Masséna* *Bouvet* *Charlemagne* *Saint Louis* *Gaulois* *Henri*
+			*Iéna* *Suffren* *Patrie* *Justice* *Verité*
+			*Vergniaud* *Condorcet* *France*
+			*Jean Bart* *Fleurus*
+			*Congreve* *Foudroyante* *Lave* *Tonnante* *Gloire* *Invincible* *Couronne*
+			*Solferino* *Gauloise* *Magnanime* *Provence* *Revanche* *Savoie*
+			*Surveillante* *Valeureuse* *Héroïne*
+			*Alexandre* *Breslaw* *Prince Jérôme* *Duguay-Trouin*
+			*Tage* *Donawerth* *Fontenoy* *Turenne* *Castiglione*
+			*Bayard* *Ville de Lyon*
+			*Clovis* *Vercingetorix* *Richemont* *Dunois* *Leger* *Vauban*
+			*Conde* *Montebello* *Souverain* *Navarin*
+			*Algésiras* *Arcole* *Friedland* *Impérial* *Eylau* *Tilsitt*
+			*Marengo* *Toulon* *Bellone* *Glorieuse* *Gracieuse* *Audacieuse* *Impétueuse* *Ardente*
+			*Victoire* *Guerrière* *Téméraire* *Triomphant* *Tigre* *Persévérante* *Vigilant*
+			*Tenace* *Élan* *Lamotte-Picquet* *Primaguet* *Duquesne* *Tourville*
+			*Colbert* *Foch* *Algérie* *Maroc* *Davout* *Suchet* *Forbin*
+			*Surcouf* *Cosmao* *Lalande* *Galilée* *Linois* *La Galissionere*
+			*Jean de Vienne* *Gloire* *Georges Leygues* *De Grasse* *La Fantasque*
+			*Iphigenie* *Naiade* *Arethuse* *Dubourdieu* *Belliqueuse* *Tage*
+			*Amiral Cécille* *Davout* *Suchet* *Coëtlogon* *Forbin* *Surcouf* *Cosmao* *Lalande*
+			*Troude* *Galilée* *Lavoisier* *Linois* *Tunisié* *Isly* *Bugeaud* 
+			*Friant* *Descartes* *Pascal* *Cassard* *D'Assas* *Du Chayla* *Catinat* *Protet*
+			*D'Entrecasteaux* *Guichen* *Châteaurenault* *D'Estrées* *Infernet* *Jurien de la Gravière*
+			*Pluton* *Emile Bertin* *Dupuy de Lome* *Admiral Charner* *Bruix* *Chanzy* *Latouche-Treville*
+			*Pothau* *Dupetit-Thouars* *Gueydon* *Montcalm* *Desaix* *Dupleix* *Kleber*
+			*Amiral Aube* *Conde* *Sully* *Leon Gambetta* *Victor Hugo* *Jules Michelet*
+			*Ernest Renan* *Edgar Quinet* *Waldeck-Rousseau* *Thionville* *Metz* *Mulhouse* *Colmar*
+			*D'Assas* *Du Chayla* *Catinat* *Protet* *D'Entrecasteaux* *Guichen* *Châteaurenault*
+			*Condor* *Epervier* *Faucon* *Vautour* *Wattignies* *Levrier* *Casablanca* *D'Iberville*
+			*Cassini* *Lahire* *Circé* *Hermione* *Pallas* *Sémiramis* *Armorique* *Junon*
+			*Magicienne* *Thémis* *Flore*
+			*Océan* *Suffren* *Trident*
+			*Asmodée* *Gomer* *Darien* *Labrador* *Ulloa* *Cacique*
+			*Eldorado* *Magellan* *Montezuma* *Orénoque* *Panama* *Albatros* *Descartes* *Vauban*
+			*Caffarelli* *Mogador* *Pomone* *Isly* *Bellone* *Foudre* *Impératrice Eugénie*
+			*Souveraine* *Renommée*
+			*Danaé* *Pandore* *Zénobie* *Clorinde* *Astrée*
+		}
+		army_names=
+		{
+			*Armée de $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Flotte de $PROVINCE$*
+		}
+	}
+	ashanti=
+	{
+		graphical_culture=africangfx
+		graphical_culture_V2=AfricanGC
+		base_country_V2=SOK
+		male_names=
+		{
+			*Beriguwiemda*
+			*Zolgo*
+			*Zongman*
+			*Nengmitoni*
+			*Dimani*
+			*Yanza*
+			*Dariziogo*
+			*Luro*
+			*Tutugri*
+			*Zagale*
+			*Zokuli*
+			*Gungoble*
+			*Boadu Akofu Berempon*
+			*Boa Amponsem*
+			*Ntim Gyakari*
+			*Ose Tutu*
+			*Opoku Fofie*
+			*Opoku Ware*
+			*Kusi Obodum*
+			*Osei Bonsu*
+			*Osei Kojo*
+			*Osei Kwame*
+			*Osei Fofie*
+			*Osei Bonsu*
+			*Osei Yaw*
+			*Kwaku Dua*
+			*Salifu Saatankugri*
+			*Mahama Kuluguba*
+			*Nyagse*
+			*Zulande*
+			*Zangina*
+			*Andan Sigili*
+			*Jimli*
+			*Zibirim*
+			*Gariba*
+			*Yakuba*
+			*Ayekeraa*
+			*Kokobo*
+			*Ahaha*
+			*Warembe Ampen*
+			*Agyinamoa*
+			*Twum*
+			*Kobla Amana*
+			*Akenten*
+			*Obiri Yeboa*
+			*Opoku*
+			*Antwi*
+			Amanquatia Agyeman Onsei Kwaku Kofi Atakora Kwabena Mensa Owusu Akyampon Kwame Opoku
+		}
+		female_names=
+		{
+			Adja Aichata Aissata Alima Aminata Amita Aoua Barakissa Bintou Deye Djeneba Djenly Djire Fadima
+			Fatim Fatoumata Halima Hawa Ina Kadi Kilia Kolonkan Lorane Mariam Nafissa Namandjé Namiss Nana
+			Safiatou Salimata Sassouma Sidibé Siya Sogolon Tekhaye Youma Zeïnab
+		}
+		leader_names=
+		{
+			Addy
+			Afrifa
+			Sadami
+			Sabah
+			Zakari
+			Offei
+			Donkor
+			Akoto
+			Sribor
+			Moyoyo
+			Prempeh Bonsu Dua Karikari Dwomo Panyin Sekyere Fofie Asiba
+		}
+		ship_names=
+		{
+			Nyame *Asase Yaa* Bia Tano
+			Dwoada Benada Wukuada Yawoada
+			Fiada Memeneda Kwasiada
+		}
+		army_names=
+		{
+			*Dom fi $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Henkuw fi $PROVINCE$*
+		}
+	}
+	azerbadjani=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=AZB
+		male_names=
+		{
+			Çagri Çaka
+			Afsin Ahmet Aksonqor Alaeddin Alkan *Alp Arslan* *Alp Yurek* Alptigin Artuk Ayaz Aydin Aydogan Aydogdu Aytekin
+			Böru Bulend Bahadir Balaban Basbuga Batuhan Baturay Baybars Bayezid Baytas Belek Berkan Berkiyaruk Bozan Budaq Bugra Burak
+			Cuneyd
+			Dundar Danismend Davud Demir Dogan Dogukan Dukak
+			Erdem Ertan Ertekin Ertugrul
+			Gunduz
+			Hasan Hizir
+			Jahân
+			Ibrahim Ilgazi Inal Iskender
+			Kurboga Kaikaus Kaikhusraw Kaiqobad Kara Karatay Kasim Kaya Kaytun Kemal Kiliç Korkut Kutalmis Kutay Kutlug
+			Mursel Mahmud Mehmed Meliksah Mengucek Mesud Murad Mustafa Orhan Osman
+			Porsuk
+			Rustem Ramazan Ridvan
+			Söbuk Sökmen Sönmez Suleyman Saim Saltuk Saruca Savtekin Savur Sehinsah Selçuk Selim Sencer Sinan
+			Tanrivermis Tekin Timurtas Togay Togtekin Toktamis Tolun Toruntay Tugrul Tunga Turgut Turhan Tutus
+			Uluç Umur
+			Yakut Yaman Yinal Yunus Yûsuf
+			Ahmad Aliagha Ali Bahram Elbay Farhad Firudin Hamid Heydar
+			Huseyin Ismayil Jalil Malik Mehdi Mohammad Samad 
+			Tahir Zahid
+		}
+		female_names=
+		{
+			Çiçek Çilen Çiltanesi
+			Özgul Özlem
+			Akgul Asli Aslihan Ayasun Ayla Ayse Ayten Azize
+			Bahar Banu Bozçin
+			Canan Ceylan
+			Dunya Dilber Dilek
+			Emine Esin Fatma
+			Firuze
+			Gulçiçek Gulay Gulbahar Gulfem Gulsum Gumus Gunduz Gundes Gunes
+			Hatice Hayat Huriye
+			Ilkay Ilknur Ipek Ipekel Irge
+			Karacik
+			Lale Leyla
+			Mala Mansure Merve Mutlu
+			Nagihan Nergis Neslihan Nilufer Nur
+			Peksen
+			Terkhen
+			Samur Sarica Sati Sehnaz Serap Serife Sevilay Sevindik Sibel Sirin Sirma Songul Sumru
+			Tekçe Tura
+			Umay Usunbike
+			Vahide
+			Yasar Yeldem Yildiz
+			Zehra Zuhal
+		}
+		leader_names=
+		{
+			Jahan
+			Nyuan
+			Khwaja
+			Yûsuf
+			Turmush
+			Bairam
+			Muhammad
+			Muzaffar
+			Hasan
+			Nasr
+			Ahmadbek Ahmadzade Akbarzade Edigar Ganjavi Ibrahimbek Mehmandar Nakhchivani 
+			Qasimbek Qasimzade Rasulzade Tahirzade Talishkhan Topchubashi Zardabi
+		}
+		ship_names=
+		{
+			Herat *Qara Yusuf* *Qara Muhammad* *Iskander Yusuf*
+			Kura Sumgait Bazard'uz'u *Qareh Sü* Sevan *Bälän Safar*
+			Agdam K'urdamir Udzary
+			*Hasan Zardabi* Mammadguluzadeh *Mirza Alakbar Sabir* Baku Shirvan Karabakh 	
+			Ganja Quba Shaki Talysh Erivan Nakchivan
+		}
+		army_names=
+		{
+			*$PROVINCE$ ordusu* 
+		}
+		fleet_names=
+		{
+			*$PROVINCE$ donanmasi*
+		}
+	}
+	aztek=
+	{
+		graphical_culture=southamericagfx
+		graphical_culture_V2=Generic
+		base_country_V2=CAN
+		male_names=
+		{
+			Acalan Acacitli Acamapichtli Acolmiztli Aculnahuacatl Ahcambal Ahuiliztli Ahuitzotl Atl Axacaya Axayacatl
+			Cacamatzin Chimalli Chimalpilli Chimalpopoca Cipac Coanacoch Coatl Cozahtli Cuauhtemoc Cuauhtl Cuetlachtli Cuetzpalli Cuixtli Cuitlahuac
+			Eyahue
+			Huanitzin Huicton Huitzilin Huitzilihuitl Huitzitl Huitztecol
+			Ilhuicamina Iquehuacatzin Itzcoatl Itzli Itzcuintli Itzquautzin Ixtlilxochitl
+			Mahchimaleh Matlal Mazatl Matlalihuitl Matlatzincatzin Maxtla Miztli Moctezuma Moquihuix Motelchiuh
+			Necuametl Nezahualcoyotl Nezahualpilli Nochehuatl Nopaltzin
+			Ocuil Ohimalpopoca Olintecke Olli Opochtli Ozomatli
+			Panitzin
+			Quauhtli Quetzalmantzin Quimichetl
+			Tapayaxi Tecocoltzin Tecolotl Tehuetstiquitzin Tenoch Tetlepanquetzaltzin Texcoyo Tezozomoc Timas Tizoc Tizocic Tlacaelel Tlacotzin Tlacaeleltzin Tlalli Tlaloc Tlotzin Tochtli Tototl Tzompantzin Tlilpotonqui Topiltzin Totoquihuaztli 
+			Ueman
+			Xicohtencatl Xiuhpilli Xihuitl Xipil Xipilli Xiuhcozcatl Xochitl Xochipepe Xochipilli Xochiquentzin Xocoyol
+			Yaotl Yayauhqui Yaztachimal Yolotli Yolyamanitzin
+			Zipactonal Zolin Zolton
+		}
+		female_names=
+		{
+			Achcauhtli Acxocueitl Ahuiliztli Amoxtli Atl Atotoztli Ayauhcihuatl Azcalxochitzin
+			Centehua Cihuaton Citlalmina Chalchiuitl Chicahua Chichimecacihuatzin Chipahua Chicomecoatl Chimalma Cihuaton Citlali Citlalli Citlalmina Coaxoch Coszcatl Cozamalotl Cuicatl
+			Eleuia Eloxochitl Etalpalli Eztli
+			Huehue-Zaca
+			Itotia Iuitl Ixcatzin Izel
+			Malinalxochitl Manauia Matlalatzin Mecatl Meztli Miahuaxiuitl Miyaoaxochitl Mizquixahual Momoztli
+			Nahuatl Necahual Nelli
+			Ohtli
+			Papa Patli
+			Quiauhxochitl
+			Sacnite
+			Techichpotzin Tezozomoc Tziquetzalpoztectzin Teiuc Teicuih Teyacapan Tepin Tezcatlan Tlacotl Tlahco Tlahcoehua Toltecatl Tonalnan Tlazozomizqui
+			Xilonen Xiloxoch Xiuhtomiyauhtzin Xochitl Xocoh Xocoyotl 
+			Yoltzin Yaretzi
+			Zeltzin Zyanya
+		}
+		leader_names=
+		{
+			Acatlotzin Ahuítzotl Axayacátl Axoquetzin Cacamatzin Chalchiutlatonac Cuauhtemoc Cuitlahuac Cuitlalpitoc
+			Ecatzin Eyahue Ezhuahuacatl Huemac Huestzin Huitzilihuitl Itzcoatl Ixtlilxochitl Izquemitl
+			Mazatl Maxixcatzin Moctezuma Motelchiuh Nauyotl Nezahualpilli Nopaltzin
+			Ocelopan Olintecke Opochtli Oquitzin Panitzin Pimotl Popopoyotl
+			Quahcoatl Qualpopoca Quilaztli Quimichetl Temilotecatl Tezozomoc Tizoc Totoquihuatzin Tzompantli
+			Xiconocatzin Xochipanitzin Xolotl Xomimitl Yaomauhitzin Yaztachimal Zincicha Zoanacochtzin Zolton
+			Ahuactzin Coyotl Cuautlaxahue
+			Huanitzin Itzel Matlacuahuac Mayahuel Moxo Nahui Ocelotl
+			Panecatl Tlaxca Tletla Tzehe Xaxalpa Zicoténcatl Xochitl Zapotitla
+		}
+		ship_names=
+		{
+			Acolmiztli Acolnahuacat *Ah Hoya* *Ah Tzenul* Amimitl Apanecatl Atl Atlau Axoloa
+			Camaxtli Centeot Centzonuiznaua Chalchiuhtlatonal Chalchiuhtlicue Chalchiutotolin Chalmecalt Chalmecaucihuilt
+			Chantico Chichomexochtli Chicomecoatl Chiconahuai Chihalma Chualchihuitlcue Cihuacaotyl Cinteotl
+			Citlalatonac Citlalicue Ciucoatl Coatlicue Cochimetl Coyolxauhqui Cuauhcoatl 
+			Ehehcatl Eueucoyotl
+			*Hopop Can* Huehueteotl Huitzilopochtli Huixtocihuatl
+			Itzcoliuhqui Itzli Itzpapalotl Itzpzpalotl Ixtlilton Iztamixcoatzin
+			Macuilxochitl Mahayuel Malinalxochi Matalcueye Metztli Mictlan Mictlancihuntl Mictlantechtle
+			Mictlantechupi Mictlantecihuatl Mixcoatl
+			Nanauatzin
+			Ococaltzin Omecihuatl Ometecuhlti Ometeotl Omeyocan
+			Patecatli Paynal
+			Quetzalcoatl
+			Tecciztecatl Teoyaomqui Tepeyollotl Teteoinnan Tezacoatl Tezcatlipoca Tillan-Tlapallan Tlaloc
+			Tlalocan Tlaltechhtlii Tlazolteotl Tonacatecuhtli Tonatiuhican Tonatiuth Tzitmime
+			Xilonen *Xipe Totec* Xiucoatl Xiuhtecuhtli Xochipilli Xochiquetzal Xolotl Xonecuilli
+			Yacatechutli
+		}
+		army_names=
+		{
+			*Yaotihuapa den $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Acalli den $PROVINCE$*
+		}
+	}
+	basque=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=SpanishGC
+		base_country_V2=EU3_basque
+		male_names=
+		{
+			Alfontso Alvar Antso Aurelio Aznar Belasko Beltran Dato Diego Egidio Eneko Erramun Fernando Fortun Galindo Gartzia Gilen Gomez Gontzal Henrike
+			Joanes Karlos Ladron Lope Luis Manrike Martín Mentzio Munio Nuño Ordoño Otxoa Paskoal Pelaio Piarres Ramiro Rodrigo Suero Tello Tibalt Ximeno
+			Agustín Aitor Alberto Ander Andoni Andrés Ángel Antonio Arturo
+			Endika *Francisco Javier* Imanol Iñaki Jesús
+			Jon *José Antonio* *José María* Joseba Josu Julen Koldobika Manuel
+			Marino Miguel Paulino Pedro Rafael Ramón Sabino Tomás
+		}
+		female_names=
+		{
+			Aines Aldontza Ana Anderkina Andregoto Antsa Auro Belaskita Berengaria Blanka Eilo Elbira Elida Elisabet Eliza Emili Endulcia Ermesinda Estefania Fakilo Fronilde Guntroda
+			Joana Konstantzia Lopa Maior Margarita Maria Markesa Mentzia Munia Nuña Oneka Plazentzia Tekla Teresa Toda Urraka Ximena
+		}
+		leader_names=
+		{
+			*de Aguirre* *de Albret* *de Antillón* *de Aranda* *de Armendariz* *de Azagra* *de Azpilcueta*
+			*de Beaumont* *de Beortegui* Bergera *de Borbón* *de Carranza*	Elizalde
+			*de Garay* *de Goñi* Goyeneche *de Heredia* *de Hijar*
+			*de Jaso* *Jiménez de Rada* Jimeno *de Landívar* Navarro
+			Palafox *Pérez de Zabalza* *de Salazar* *de Uribe* *de Ursúa*
+			*de Yanguas* *de Zárate*
+			Aguirre Ajuriaguerra Aldecoa Arana Aranzadi Arizmendiarrieta Armendáriz Aznar Balenciaga Berasategui 
+			Bilbao Campión Churruca *de Amésquita* *de Azpilicueta* *de Erauso* *de Rentería* *de Ubisztongo* Echagüe Echave
+			Echegaray Echevarría Elorza Gaztañeta Ibarrola Ibárruri Irujo Lazcano Mendizabal Moneo 
+			Nárdiz Olano Olave Oyarzábal Rotaeche Uzcudun Zamárraga Zárate Zavala Zumalacárregui
+		}
+		ship_names=
+		{
+			Atlántida *Conde de Evreux* *Conde de Foix* *Conde de Guenduláin* *Conde de Lerín*
+			*Don Jimeno* *Duque de Armagnac* *Duque de Champaña*
+			*El Agramontés* *El Beaomontés* *El Bearnés* *El Cruzado Navarro* *El Montañés* *El Navarro* *El Salvador* *El Trobador* *El Viñador* *Emperador Hispánico* Europa
+			*Mar de Navarra* *Nuestra Sra de Leyre* *Príncipe de Viana*
+			*Reina Juana* *Rey Enrique* *Rey García* *Rey Sancho* *Reyno de Navarra* *Reyno de Pamplona*
+			*San Agustín* *San Andrés* *San Antonio* *San Carlos* *San Enrique* *San Esteban* *San Fermín* *San Francisco* *San Francisco Xabier* *San Gregorio* *San Juan* *San León* *San Miguel Arcángel* *San Raimundo* *San Virila*
+			*Santa Ana* *Santa Catalina* *Santa Juana* *Santa Leonor* *Santísima Trinidad* *Señor de Tudela*
+		}
+		army_names=
+		{
+			*$PROVINCE$ armada*
+		}
+		fleet_names=
+		{
+			*$PROVINCE$ flota*
+		}
+	}
+	bavarian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=BAY
+		male_names=
+		{
+			Adalbert Adam Adolf Albrecht Almerich Amadeus Andreas Anselm Arnold Arnulf Augustin 
+			Baldemar Baldewin Berengar Bernhard Berthold Bruno Burchard
+			Caspar Christoph
+			Diether Dietmar Dietpold Dietrich Dietwin
+			Eberhard Eckhard Ehrenfried Eginolf Ekbert Emelrich Emich Engelbrecht Erich Ernst Ezzo
+			Folkhard Folkmar Franz Friedrich
+			Gebhard Georg Gerhard Gerlach Giselbert Gottfried Gotthard Gottschalk Gotzelo Guntram Günzel
+			Hartmann Hartwig Heinrich Herbert Hermann Hesso Hugo Humbert
+			Jakob Johann
+			Karl Karloman Konrad Kuno
+			Lambert Leopold Lothar Ludolf Ludwig Luitpold Lutbert
+			Magnus Manfred Markward Martin Mathias Meinhard Michael Nikolaus Norbert
+			Ordulf Otto
+			Peter Philipp Poppo
+			Rudger Reinhard Rudolf Ruprecht
+			Siegfried Sieghard Siegmund Simon Stefan
+			Theodorich Thietmar Thomas
+			Udo Ulrich
+			Viktor
+			Waldemar Walram Walther Welf Wenzel Werner Widukind Wigerich Wilhelm Wolfgang Wolfram
+			*Ferdinand Maria* *Karl Albrecht* *Karl Theodor* Maximilian *Maximilian Joseph*
+			*Maximilian Emanuel* Siegmund Anton Ferdinand *Joseph Clemens* *Joseph Ferdinand*
+			*Leopold Ferdinand* *Maximilian Philipp* *Philipp Wilhelm* *Alois Johann*
+			*Clemens August* *Johann Theodor* *Joseph Ludwig* *Kajetan Maria* *Philipp Moritz*
+			Engelbert Hieronymus Ignatz Markus Raphael
+			Alexander Alfons Arthur Christian
+			Edmund Eduard Erwin Friedrich
+			Günther Gustav Horst Joachim Joseph
+			Julius Kurt Leonhard Lorenz
+			Reinhold Theodor Walter
+		}
+		female_names=
+		{
+			Adela Adelheid Adelinde Agathe Agnes Alberade Amalberga Amalie
+			Barbara Beatrix Benedicta Berchte Berta Binhilde Brunhilde
+			Cecilie Cothilda Christine
+			Dorothea
+			Elisabeth Emma Engeltraud Ermengard Eufemia
+			Friedrica Frida 
+			Gerberga Gerhild Gertrude Gisela Gudrun Gunhilda
+			Hedwig Heilwiva Heike Helene Helga Henrike Hildeburg Hildegard
+			Ida Ilsa Inge Irmele Irmeltrud Irmgard Isentrude
+			Judith Jutte
+			Katharina Karlotte Klara Klementia Konstanze Kriemhild Kunigunde 
+			Luitgard
+			Margarete Maria Mathilde Mechtild
+			Oda Osterhild
+			Richara Richenza Richwara Romilda 
+			Serhilda Sofie Sybille
+			Trude
+			Ulrike Ursula Ute
+			Walpurga Wilhelmina Winfrida Wulfhilde
+		}
+		leader_names=
+		{
+			*von Armansperg*
+			Wilsenhütten
+			Asch
+			Dulac
+			Chlingensperg
+			Gumpenberg
+			Hafenbrädl
+			Hannet
+			Scherer
+			Hugenpoet
+			Livizzani
+			Lechner
+			*von Seckendorf*
+			Morawitzky
+			*von Zentner*
+			Moshamm
+			*von Pappenheim*
+			Pfretschner
+			Maximillian
+			Riedesel
+			Rickauer
+			Satzenhofen
+			Vieregg
+			Treuberg
+			Beck-Rzikowsky Blos Dankl Eisner Geiss Goering Hainisch Haus Held Hellpach
+			Hoffmann Hummel Köhler Mergenthaler Miklas Remmele Schmitt Schobber Seitz Steeb
+			Stolzer Trunk *von Baden* *von Benedek* *von Böhm-Ermolli* *von Brudermann* *von Clam-Gallas* *von der Tann* *von Dietrich* *von Gablenz*
+			*von Grünne* *von Habsburg* *von Hartmann* *von Haynau* *von Hess* *von Hohenhausen* *d'Aspre von Hoobreuk* *von Hortstein* *von Hötzendorf* *von Kirbach*
+			*von Kobratin* *von Schönburg* *von Tegetthoff* *von Uchatius* *von Wittelsbach* *von Württemberg* *von Zahringen* Wagner Wittmann *zu Hohenlohe*
+		}
+		ship_names=
+		{
+			*St. Kilian* *Tassilo III* *Kaiser Ludwig IV*
+			*König Arnulf* *Graf von Bogen* *Graf von Andechs*
+			*Graf von Sulzbach* Wittelsbach *Graf von Diepolding*
+			*König Konrad III* *König Friedrich I* *Pfalzgraf Otto*
+			Augsburg Andechs Burgau Diessen Friedberg Kempten Lindau
+			Memmingen Mindel Oettingen Straubing Wolfstein
+			Bayern *Von der Tann* *Prinzregent Luitpold* Welf Nibelungen Walküre Babenberg
+			*Maximilian Joseph* *Ludwig* *Maximilian* *Graf Montgelas* *Graf von Horn* *Von der Mark* *Von Le Suire* *Von Wrede* 
+			Graf Herzog König Kaiser Kurfürst Pfalzgraf Prinz Odin Wotan Balder Donar
+			Fuchs Hyäne Leopard Löwe Luchs Marder Panther Tiger Wolf 
+			Höchstädt Landshut Lechfeld *Herzog Albrecht* *Prinz Ludwig* *Von Utzschneider* Steinheil
+			Altmühl Donau Fellach Iller Inn Isar Lech Naab Pegnitz Regen Saale Windach
+			*Sankt Erhard* *Sankt Georg* *Sankt Hubertus* *Sankt Michaël* *Sankt Peter* *Sankt Rupert* *Sankt Valentin* *Sankt Willibald* *Sankt Wolfgang*
+			Siegfried Kriemhild Gunther Gernot Giselher Siegmund Alberich Brünhild Hagen 
+		}
+		army_names=
+		{
+			*Armee von $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotte von $PROVINCE$*
+		}
+	}
+	bedouin_arabic=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=HEJ
+		male_names=
+		{
+			Aarif Abdul-Gafur Abdul-Jaleel Abdul-Qadir Abdul-Wahab Abdul Abdullah Aghlab Akin Ali Alim Aram Azam Bahir Burhanaddin
+			Fadil Fadl Faruk Ghalib Hafiz Halil Hasan Husam Hussayn Ibrahim Idris Is'mail Isa Jabir Jalil Jibril Khaireddin Khalil Mahdi Mahmud
+			Mansur Mirza Mubarak Muhammad Mukhtar Murad Musa Muslihiddin Muzaffaraddin Najib Nasr Nizam Qawurd Ramadan Sa'daddin Sadiq Sami Samir Shaiban
+			Shamir Shujah Sulayman Talib Ubayd Uways Yahya Ya'qub Youkhanna Yusuf Zeyd
+			Barakât Hazza Ahmad Humaida Qa'it Takaba *Abu Talib* *Abu Aun Idris* Mushin Mas'ud Zaid Sa'ad Sa'id Abdul-Karim 'Abul Muhsin
+			'Abd al-Ilah Masa'id Djafar
+			*Abd Allah* *Abd al-Karim* *Abd al-Malik* *Abd al-Qadir* *Abd al-Rahman* *Abu Bakr* 
+			Fawzi Fuad Hisham Ishaq Iskandar Ja'far Jamal Kamil Khalid 
+			Mustafa *Nur al-Din* *Sa'd al-Din* Salim  Sa'ud Shukri
+			Tawfiq Umar Uthman Zafir
+		}
+		female_names=
+		{
+			Adila Amsha Asiya Faghira Habiba Hanifa Jahaira Kamala Layla Maryam Nafisa Nyawela Parand Parween Paymaneh Paywand Qamara Rafiqa Rasa Rashida Reshawna
+			Saaman Sabba Saghar Sahba Sajida Samira Semeah Setara Shahrbano Shahzadah Shameem Shararah Sheeftah Sheeva Shogofa Shokouh Shola Sholah Simin Souzan
+			Taliba Tanaz Taneen Yagana Yakta Yasmin Zaynab
+		}
+		leader_names=
+		{
+			Youssef
+			Taleb
+			Ibrahim
+			Khalil
+			Saleh
+			Farhat
+			Chammas
+			Mansour	
+			Abbas
+			Hammoud
+			*ibn Abd Allah* *ibn Abd al-Qadir* *ibn Abu Bakr* *ibn Ahmad* *ibn Ali*
+			*ibn Fuad* *ibn Halil* *ibn Hasan* *ibn Hisham* *ibn Ishaq* *ibn Ja'far* *ibm Kamil* *ibn Khalid* 
+			*ibn Muhammad* *ibn Mustafa* *ibn Salim*  
+			*ibn Umar* *ibn Uthman* *ibn Yusuf*
+			*al-Najdi* *al-Hijazi* 
+		}
+		ship_names=
+		{
+			*Jabal Baydan*
+			*Jabal Sawda* *Jabal Abu Hasan* *Jabal al-Jurayrah*
+			*Harrat Al-Kishb* *Harrat Rahat* *Harrat Nawasif*
+			*Harrat Hadan* *Harrat Al-Buqum* *Harrat Khaybar*
+			*Harrat Kurama* *Harrat al-Unayyir*
+			*Abu Bakr* Uthman Umar Ali Al-Rashidun Muawiya Hashimiyyun *Barakat Affindi* *Muhammad Abu al-Nubaj* *Masud bin Said* *Ghalib Affindi*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din*
+			*Safi al-Din* *Salah al-Din* *Siraj al-Din*
+			Jidda Taif Yanbu Tabuk *Madina al-Munawwara*
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif*
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid
+			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din*
+			Alif Amin Anwar Ayham Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr
+		}
+		army_names=
+		{
+			*Jaysh mn $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Astoul mn $PROVINCE$*
+		}
+	}
+	berber=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MoroccoGC
+		base_country_V2=MOR
+		male_names=
+		{
+			Abakada Abazza Abbas Abdul Abdul-Azeem Abdul-Haleem Abdul-Kareem Abdul-Rahmân Abdullah Abidin Adal Adam Aderbal Adergazuz
+			Adherbal Admer Adrir Adum Afaghis Afalawas Afalku Afer Afulay Agafay Agama Agdada Agdun Agellid Aggur Aghali Aghecher Aghilas Agwillul
+			Ahamatu Aheyyad Ahmad_Ahmad Ajdir Ajeddig Akaday Akateiaji Akli Akorakor Aksel Aksil Akutla Akzer Al'a'addin Ali Alyamas Amawal
+			Amayas Amaz'uz' Ambay Amdegh Amellal Amennay Ameska Amessan Amin Amma Ammuc Amray Amri Amud Anaba Annaber Antalas Anwa Aras
+			Asad Asaru Asirem Aszellay Atissi Awdia Awgustin_August Awinagh Awlagh Awfzal Aylal Ayt'ere Az'ar Az'regh Azenkwed Azim Azrur Badda Badis
+			Bagay Barakat Beddis Berkan Bezz'i Br'ir'uc Bukkus Buwayh Buxtuc Capussa Cucung Dali Fahd Fath Fella Firhun Firmus Frawsen Gaia Galussa Gauda
+			Gaya Ghani Ghanim Ghaysan Ghumer Gildun Gulusa H'emmu Haidar Hamad Hashim Hiba Hiempsal Himmi Hotha Hussamaddin Ibiza Ibrahim Iccaam
+			Ifni Ifser Ighlaf Igider Igmi Iher Iken Ilyas Immeghar Immel Irgen Isma'îl Isalcas Ishaq Isli Issam It'ij Itber Itri Ixfensen Ixzi Izri Jaffar Jamal Kadidu
+			Kamal Karidenna Kawsen Kenan Keraja Khalid Khanchla Khenchela Khidr Kussil Lacumaces Laweye Lewnis Luki_Lucius Madidu Magsen Mahtar Malik
+			Marwan Masgaba Masgava Masinissa Masmud Masnsen Massinissa Massiva Massnsen Mastan Mastanabal Matiya Maysar Maziba Mazigh
+			Medjan Mellal Mennad Menzu Meq'wran Mez'yan Mezwar Micipsa Misagenes Misibsen Mu'izz Muh'end Muhammad_Muhammad Mukhtar Mula Murad Musa_Moses Mustafa
+			Muzaffaraddin N'Guna Nasr Nazar Niptasan Nizamaddin Ptolemee_Ptolemy Qutaiba Rashid Sa'id Salah Salla Salomon Sammer
+			Sayyid Seghada Sekla Shamsaddin Sifaks Sifal Sinbad Sisso Stembanos Suggut Sultan T'ar'iq Tabat Tacfin Taffounnout Tahir Takfarinas Tanan Tariq
+			Tegama Thabitah Tifan Tiljad Ugdada Ugwistan Umar Uqess'un Uregh Urtilian Urz'ig Uzmir Uzza Wahab Watt'as Xamida Yabdas Yaghmurasen
+			Yahyâ Yattuy Yeften Yeh'lem Yiliyen Yuba Yugerten Yugurthen Youkhanna_John Yunes Yusuf Yuva Z'effun Zafir Zalelsan Zayar Zer'wal Zigza Ziri Zubeyr
+			Muhammad Ahmad Abdallâh 'Abd al-Malik 'Alî 'Uthmân 'Abd al-Haqq 'al-Walîd al-Mustadî al-Rashîd Hishâm Idrîsid Sulaymân Zaydân Zayn *'Abd ar-Rahmân*
+			al-Yazîd Mansur Muhraz Nasir *Abû Faris* *Abû Merwan* *al-Talib* Hammada Hasam Ja'far Maimun Maslama Said Yûsuf Ataullah Jabril Rasul Zulfiqar
+			*Abd Allah* *Abd al-Karim* *Abd al-Qadir* 
+			Fawzi Fuad Halil Hasan Hisham Iskandar Kamil Mahmud
+			*Nur al-Din* *Sa'd al-Din* Salim Shukri
+			Tawfiq Uthman 
+		}
+		female_names=
+		{
+			Aaliyah Aamina Aamira Aaqila Aarifa Aazzi Adelah Adiba Adilah Adilia Adiva Adjan Aeesha Aesha Aisha Amira Badeea Badia Badra Bahac
+			Bahiyya Bajila Bakka Baraah Barakah Baria Bashira Basilie Basima Basimah Bghnat Bibya Bilqis Cala Canh'a Cantara D'r'ifa Daisha Dalal Dasin
+			Dema Dimah Dinara Dua Durra Durriyya Edza Eleonorka Faghissa Fahriya Fariza Fedada Fer'r'udja Gedduda Ghida Ghnima Guraya Gwejda H'edda
+			Hadiya Hawwa Hemu Herru Iija Iiju Ittû Izza Jaida Jdira Jeddjiga Kahina Kamila Kanimana Kella Kenwa Kisa Kulla Kwella Lalla Laysa Lem'an Lemta
+			Lumsi Lunja Lwiza Lyaqut Mamma Massa Meghighda Melek Menna Menza Mernissa Monica Myassa Najiba R'uza Ra'isa Rahima Randja Rula Sadiqa
+			Salaama Sekkura Siddiqa Silya Siman T'awes T'item Tadefi Tadla Tadmut Tafrara Tafsut Tagwillult Taheyyatt Takama Taklit Talalit Taljat Tament
+			Tamimunt Tamrust Tanaszart Tanebdatt Tanefzawit Tanest Taninna Tarifa Tariwelt Tasa Tasa'fut Taszellayt Tatbirt Tati Taweckint Tawenza Tawnat
+			Tawzalt Tayri Tayyurt Tazdayt Tazenkwedt Tazirit Tazrurt Tella Temzi Tfit Tigmi Tikinas Tilelli Timmi Tinhinan Tintadefi Tintifawin Tinzert Tisent
+			Tislit Titbirt Titrit Tizemt Tiziri Triya Tudert Tuh'r'ict Tureght Ultafa Wenza Wnissa Wrina Z'diant Z'ergha Zaghwa Zahida Zamba Zibba Zilgum Zubayda
+			Zunagha Zwina Zwira
+		}
+		leader_names=
+		{
+			Sahiri
+			Haida
+			Sellami
+			Arazi
+			Berui
+			Lahsini
+			Skah
+			Barek
+			Alami
+			Behar
+			*al-Annabi* *al-Araishi* *al-Asfawi* *al-Binzarti* *al-Fasi* *al-Gharyani*
+			*al-Jaza'iri* *al-Miknasi* *al-Misurati* *al-Murrakushi* *al-Qabisi* *al-Qayrawani* *al-Ribati* *al-Safaqisi*
+			*al-Silawi* *al-Sirti* *al-Susawi* *al-Tilimsani* *al-Tanjawi* *al-Tatwani* *al-Trablusi* *al-Tunusi* 
+			*al-Wahrani* *al-Warqali* *al-Wujdi*
+			*ibn Abd Allah* *ibn Abd al-Qadir* *ibn Abu Bakr* *ibn Ahmad* *ibn Ali*
+			*ibn Fuad* *ibn Halil* *ibn Hasan* *ibn Hisham* *ibn Ishaq* *ibn Ja'far* *ibm Kamil* *ibn Khalid* 
+			*ibn Muhammad* *ibn Mustafa* *ibn Salim*   
+			*ibn Umar* *ibn Uthman* *ibn Yusuf*  
+		}
+		ship_names=
+		{
+			Tawwab Muntaqim Afuww Fa'uf *Malik Mulk*
+			*Jalal Ikram* Muqsit Jami Ghani Mughni
+			Mani Darr Nafi Nur Hadi Badi Baqi Warith
+			Rashid Sabur *Fazl Azim*
+			*Mulay al-Rashid* *Ismail ibn Sharif* *Muhammad al-Thalith* *Abd al-Rahman* *Muhammad al-Rabi* *Hasan al-Alawiyyin*
+			*Al-Mansur al-Dhahbi* *Abd Allal al-Ghalib* *Muhammad al-Shaikh al-Saghir* *Abu Yusuf Yaqub* *Abu Sa'id Uthman* *Al-Mariniyyun* *Al-Idrisiyyun*
+			*Ala al-Din* *Husam al-Din* *Izz al-Din* *Jalal al-Din* *Khayr al-Din* *Majid al-Din* *Nasir al-Din* *Nur al-Din* 
+			*Safi al-Din* *Salah al-Din* *Siraj al-Din*
+			*Abd al-Aziz* *Abd al-Hadi* *Abd al-Haqq* *Abd al-Jalil* *Abd al-Latif* 
+			*Abd al-Hafiz* *Abd al-Hakim* *Abd al-Nasir* *Abd al-Quddus* *Abd al-Rahim* *Abd al-Malik*
+			*Abd al-Rashid* *Abd al-Rahman* *Abd al-Sami* *Abd al-Wadud* *Abd al-Wahhab*
+			Akram Atif Ayman Bahir Fadil Fath Firas Fawwaz Ghalib Hakim Humam Jabbar Jawhar Kamal Khalid 
+			Masud Mamun Majid Mufid Mukhtar Muntasir Qudamat Rashad Sa'ad Tahir Thabit Wafiq Yusuf Zahir Zafir 
+			*Badr al-Din* *Diya al-Din* *Baha al-Din* *Imad al-Din* *Jamal al-Din* *Lutf al-Din* *Najm al-Din* *Sayf al-Din*
+			Alif Amin Anwar Ayham Bahir Dhakwan  Falah Faraj Fawzan Ghanim Ghassan Hanbal Haris Hashim Iqbal Jal Junayd 
+			Kadar Kazim Khalis Khulus Luay Mashhur Muflih Mulham Munahid Nabhan Nawfal Nazim Numan Ramiz Sharaf Siddiq Tawfiq Yasir Zayn Zubayr 
+		}
+		army_names=
+		{
+			*Jaysh mn $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Astoul mn $PROVINCE$*
+		}
+	}
+	burgundian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=FrenchGC
+		base_country_V2=FRA
+		male_names=
+		{
+			Édouard Érrard Étienne
+			Adalbert Adémar Adrien Aimery Alain Aldebert Aldéric Alphonse Amaury Amédée Ancel André Angelbert Antoine Archambaud Arnaud Arnault Arnoul Aubry Aymar
+			Barthélémi Baudouin Benoît Bérenger Bernard Bertrand Bohemond Boson Bouchard
+			Centule Charles Clotaire
+			Ebbon Enguerrand Eudes Eustache Evrard
+			Foulques François Frédéric
+			Géraud Gargamel Gaucher Gaucelin Gauthier Geoffroy Géraud Gelduin Gilbert Gilles Godefroy Guichard Guiges Guilhem Guillaume Guy
+			Hélie Hamelin Henri Herbert Hildebert Hughes Humbert
+			Jacques Jaufré Jaspert Jean Josselin Jourdain Julien
+			Léon Léonard Lothaire Louis Loup
+			Manassès Mathieu Maurice Nicolas
+			Ogier Onfroy Orson Othon
+			Payen Philippe Pierre
+			Raimbaut Raoul Raymond Raynaud Renaud Richard Robert Robin Roger Rorgon Rorgues Roubaud
+			Savary Sigismond Simon
+			Thibault Thiébaut Thierry Thomas
+			Valeran
+			Yves
+			Achille Adolphe Aimable Armand August Augustin
+			Daniel Denis Elie Éttiene Eugène Félicien Félix Fernand
+			Georges Gustave Hubert Hugo
+			Joseph Jules Lazare Léopold Leroy Lucien Matthieu Michel
+			Patrice Paul Thomas
+			*Louis-Henri* *Louis-Joseph* *Henri-Jules* Barthélemy
+			Claude Gui Isidore *Jean-Baptiste* Marc Pascal René
+			Sébastien
+		}
+		female_names=
+		{
+			Éléonore Élodie Étiennette
+			Adèle Adalmode Adelaide Adelinde Agathe Agnès Aléarde Alice Aliénor Alix Almodis Amelie Anne Antoinette Arsinde Aude Aurengarde
+			Béatrice Béatrix Belleassez Benoîte Bérengère Berthe Blanche Bonne Bourgogne Bourguigne
+			Cécile Cathèrine Charlotte Constance
+			Denise Douce
+			Echive Eglantine Elisabeth Emma Ermengarde Ermessinde Esclarmonde Euphrosine Eustachie Eve
+			Gerberge Gisèle Guillaumette
+			Héloise Helvis Hodierne Ide Ida Ildégarde Isabeau Isabelle
+			Jeanne Judith Julienne
+			Mafalda Mahaut Margot Marguerite Marie Marthe Mascarose Mathilde Mélisande Mélisende Mélusine
+			Péronelle Pernelle Perinne Pernette Plaisance
+			Raymonde
+			Sarrazine Solène Sophie Stéphanie Sybille
+			Tiburge
+			Valence
+			Yolande
+		}
+		leader_names=
+		{
+			d'Aban d'Abonde Arbelot d'Auxy
+			*de Balay* *de Bauffremont* *de Beaumont* *de Beugre* *de Boulay* *de Bourgeois* Bourgogne-Montaigu *de Brachet* *de Brimeu*
+			*de Castaing* *de Chabot* *de Châlon* *de Châlon-Arlay* *de Chandieu* *de Chastellux* *de Chin* *de Cicon* *de Coligny* *de Créquy* *de Cuiseaux*
+			*de Damas* *de Dammartin* *de Donzy* *de Dyo*
+			*d'Egmont*
+			*de Ferrette*
+			*de Lalaing* *de Lannoy* *Le Corgne* *de Lugny*
+			*de Marle* *de Melun* *de Montfaucon*
+			*Nagu de Varennes* *de Nanton* *de Neufchâtel* *de Noyelles*
+			*de Pontailler* *de la Porte*
+			*Pot de la Roche* *de Rochebaron* *de Rochechouart* *de Roye*
+			*de Scorailles* *de Sémur*
+			*de Ternant* *de Tonnerre* *de Toucy* *de Toulonjon*
+			*de Vaubresson* *de Vaudrey* *de Vellexon* *de Vergy* *de Vienne* *de Villaines* *de Villiers*
+			Anthoine *Baraguey d'Hilliers* Bazaine Billot Bosquet *Boué de Lapeyrère* Bouët-Willaumez Boulanger Bourbaki
+			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout *de Bourbon* *de Castellane* *de Castelnau* *de Gaulle* 
+			*de Langle de Cary* *de MacMahon* *de Montaignac* *de Saint Arnaud* d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
+			Foch Forey *Franchet d'Espèrey* Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
+			Jaurès Joffre Lebouef Lyautey Murat *Ney d'Elchingen* Nivelle Péllissier Petain Vaillant
+		}
+		ship_names=
+		{
+			Armançon Arroux
+			Bourgogne Brugge
+			Cambrai *Castrum Divionense* Childebert *Childebert II* Chilperic Citeaux Chlothar Cluny Comtesse *Côte-d'Or* 
+			Duchesse 
+			Gebicca Giselher Godegisel Godomar Gunderic Gundobad Gundomar *Gundomar II* Gunther Guntram
+			*Jean sans Peur*
+			*Marie de Bourgogne*
+			*Richard de Bourgogne*
+			Saône Sigismund
+			Theudebert *Theuderic II*
+			Vézelay
+			*Poincare*
+			*Louis* *Dévastation*
+			*Courbet* *Amiral Duperré* *Terrible* *Indomptable* *Caiman* *Requin* *Admiral Baudin*
+			*Formidable* *Hoche* *Marceau* *Magenta* *Neptune* *Brennus* *Charles Martel* *Carnot*
+			*Jauréguiberry* *Masséna* *Bouvet* *Charlemagne* *Saint Louis* *Gaulois* *Henri*
+			*Iéna* *Suffren* *Patrie* *Justice* *Verité*
+			*Vergniaud* *Condorcet* *France*
+			*Jean Bart* *Fleurus*
+			*Congreve* *Foudroyante* *Lave* *Tonnante* *Gloire* *Invincible* *Couronne*
+			*Solferino* *Gauloise* *Magnanime* *Provence* *Revanche* *Savoie*
+			*Surveillante* *Valeureuse* *Héroïne*
+			*Alexandre* *Breslaw* *Prince Jérôme* *Duguay-Trouin*
+			*Tage* *Donawerth* *Fontenoy* *Turenne* *Castiglione*
+			*Bayard* *Ville de Lyon*
+			*Clovis* *Vercingetorix* *Richemont* *Dunois* *Leger* *Vauban*
+			*Conde* *Montebello* *Souverain* *Navarin*
+			*Algésiras* *Arcole* *Friedland* *Impérial* *Eylau* *Tilsitt*
+			*Marengo* *Toulon* *Bellone* *Glorieuse* *Gracieuse* *Audacieuse* *Impétueuse* *Ardente*
+			*Victoire* *Guerrière* *Téméraire* *Triomphant* *Tigre* *Persévérante* *Vigilant*
+			*Tenace* *Élan* *Lamotte-Picquet* *Primaguet* *Duquesne* *Tourville*
+			*Colbert* *Foch* *Algérie* *Maroc* *Davout* *Suchet* *Forbin*
+			*Surcouf* *Cosmao* *Lalande* *Galilée* *Linois* *La Galissionere*
+			*Jean de Vienne* *Gloire* *Georges Leygues* *De Grasse* *La Fantasque*
+			*Iphigenie* *Naiade* *Arethuse* *Dubourdieu* *Belliqueuse* *Tage*
+			*Amiral Cécille* *Davout* *Suchet* *Coëtlogon* *Forbin* *Surcouf* *Cosmao* *Lalande*
+			*Troude* *Galilée* *Lavoisier* *Linois* *Tunisié* *Isly* *Bugeaud* 
+			*Friant* *Descartes* *Pascal* *Cassard* *D'Assas* *Du Chayla* *Catinat* *Protet*
+			*D'Entrecasteaux* *Guichen* *Châteaurenault* *D'Estrées* *Infernet* *Jurien de la Gravière*
+			*Pluton* *Emile Bertin* *Dupuy de Lome* *Admiral Charner* *Bruix* *Chanzy* *Latouche-Treville*
+			*Pothau* *Dupetit-Thouars* *Gueydon* *Montcalm* *Desaix* *Dupleix* *Kleber*
+			*Amiral Aube* *Conde* *Sully* *Leon Gambetta* *Victor Hugo* *Jules Michelet*
+			*Ernest Renan* *Edgar Quinet* *Waldeck-Rousseau* *Thionville* *Metz* *Mulhouse* *Colmar*
+			*D'Assas* *Du Chayla* *Catinat* *Protet* *D'Entrecasteaux* *Guichen* *Châteaurenault*
+			*Condor* *Epervier* *Faucon* *Vautour* *Wattignies* *Levrier* *Casablanca* *D'Iberville*
+			*Cassini* *Lahire* *Circé* *Hermione* *Pallas* *Sémiramis* *Armorique* *Junon*
+			*Magicienne* *Thémis* *Flore*
+			*Océan* *Suffren* *Trident*
+			*Asmodée* *Gomer* *Darien* *Labrador* *Ulloa* *Cacique*
+			*Eldorado* *Magellan* *Montezuma* *Orénoque* *Panama* *Albatros* *Descartes* *Vauban*
+			*Caffarelli* *Mogador* *Pomone* *Isly* *Bellone* *Foudre* *Impératrice Eugénie*
+			*Souveraine* *Renommée*
+			*Danaé* *Pandore* *Zénobie* *Clorinde* *Astrée*
+		}
+		army_names=
+		{
+			*Armée de $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Flotte de $PROVINCE$*
+		}
+	}
+	byelorussian=
+	{
+		graphical_culture=easterngfx
+		graphical_culture_V2=RussianGC
+		base_country_V2=RUS
+		male_names=
+		{
+			Afanasiy Aleksandr Alexei Andrei Boris Briachislav Daniil Davyd Demid Dmitriy Dobrynia Fedot Fyodor Gavriil Gleb
+			Grigoriy Iakov Ingvar Iliya Igor Ivan Iziaslav Kirill Konstantin Koz'ma Lev Mikhail Mitrofan Mstislav
+			Nikita Oleg Pavel Putiata Radoslav Rodislav Rogvolod Roman Rostislav Rurik Ruslan Stanislav Stepan Sudislav
+			Svetozar Sviatopolk Svyatoslav Terentiy Trifon Vasiliy Vasilko Viacheslav Vladimir Vladislav Voislav Volodar Vseslav
+			Vsevolod Vyshata Vysheslav Yaropolk Yaroslav Yefimiy Yelisey Yemelyan Yeremey Yevstafiy Yuriy
+			Anton Dmitry Gennady 
+			Giorgi Lavr Leonid Maxim 
+			Nikolai Semyon 
+			Viktor Yegor Yevgeny
+			Lubko Olgierd Bryachislav Izyaslav Adrian Faddey Feofil Foma Fyodor Mefodiy Naum Pankrati Prokhor Ruslan Serafim
+			Sevastian Timofeiy Varfolomeiy Vikentiy
+		}
+		female_names=
+		{
+			Agafya Agrafena Alexandra Anastasia Anna Boleslava Darya Dobrava Dobronega Dobroslava Yefimia Yefrosinia Yekaterina
+			Yelizaveta Yevdokia Yevpraxia Feodora Feodosia Fevronia Gorislava Gradislava Gremislava Irina Xenia Liubava
+			Liudmila Malfrida Malusha Maria Marina Olena Olga Pereyaslava Praskovya Praxida Prebrana Predslava Premyslava
+			Pribislava Rogneda Rostislava Sbyslava Sofia Sviatoslava Tatyana Ulita Ulyana Varvara Vasilisa Veleslava Verkhoslava
+			Vseslava Viacheslava Yaroslava Zabava Zvenislava
+		}
+		leader_names=
+		{
+			Vitebsky Izyaslavsky Dursky Galisky Borovsky Vereisky Volotsky Galitsky
+			Mozhaisky Uglisky Shemyakin Satin Aladyin Beznosov Bokeev Burukhin Vnukov Korobyin
+			Zabolotsky Dalmatov Kisleevsky Travin Tsyplyatev Shukalovsky
+		}
+		ship_names=
+		{
+			Velikaya Chudskoye Pskovskoye Polotsk
+			Rakovor Bolotovo Kulikovo Ostrov Izborsk
+			Pechory Porhov *Velikiye Luki* Sebezh
+			Mariya Ekaterina Aleksander Gangut Soyuz Alekseev Potemkin *General Alexeiev* Retivisan Kulikovo 
+			Minin *Kniaz Pozharskii* Pervenets Kreml *Ne Tron Menia* Smerch Lazarev *Pyotr Velikyy* Chesma Kyiv Minsk *Zaria Svobody* *Admiral Butakov* Kreiser Ladoga Georgii *Sissoi Veliky* Navarin *Pamiat Merkuria* Tsesarevich Narodnaya *Poluostrov Kamchatka* Kama Voronezh Bityug
+			Sviatoslav Vola Andrei Fershampenuaz Konstantin Gavriil Selafail Varna Yagudiil Sviatoslav *Dvenadtsat Apostolov* Rostislav Khrabryi Sinop Bosfor Uriil *Tri Sviatitelia* Arsis Smolensk Oriol Finland Vola Prokhor Varshava Retvisan Iezekiil Azov Kul’m Lesnoye Brien Berezino Ostroloenka Vladimir Fershampenuaz
+			Pallada Diana Askold Novik Boyarin Nakhimov Bogatyr Oleg Vityaz *General-Admiral* *Alexander Nevski* *Pamiyat Azova* Bayan Varyag Izmail Kinburn Navarin *Admiral Kornilov* Almaz  Asia Aurora Gromoboi Volga *Novaya Zemlya* Dnepr Desna Zarya
+			Uragan Veschun Koldun Lava Perun Strelets Tifon *Admiral Ushakov* *Admiral Senivain* Edinorog *Admiral Graf Apraksin* Pushkin *Semion Chelyuskin* Yenisei *Ozero Baykal* Vyazma Valdai Topozero
+			Razboinik Strelok Dzhigit Oprichnik Nayezdnik Plastun Gaidamak Abrek Vsadnik Almaz Zhemchug Izumrud Yakhont
+			Kem Yug Voronya Mezha Okhta Ravan Kunya Svir Seim Sestra Don Yeya Terek Sok Istra Dubna Ob Ket Nadym Indigirka Amur Bereya Sestra
+		}
+		army_names=
+		{
+			*Vojska z $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flot z $PROVINCE$*
+		}
+	}
+	castillian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=SpanishGC
+		base_country_V2=SPA
+		male_names=
+		{
+			Alfonso Alonso Álvar Álvaro Andrés Ansur Antonio Antonino Arias Artal Aurelio Aznar Beltrán Benito Berenguel Bernardo Blasco Bosón Diego Domingo Enrique Esteban Facundo Fadrique
+			Felipe Fernán Fernando Flaín Fruela Galindo García Gil Gómez Gonzalo Gundemaro Guillén Guillermo Gustio
+			Gutierre Guzmán Hermenegildo Jacobo Jaime Jimeno Juan Juan-Alfonso Julián Lorenzo Lope Luis Manrique Manuel
+			Martín Menendo Mendo Muño Nuño Osorio Ordoño Oveco Pedro Pelayo Piñolo Ponce Raimundo Ramiro Ramón Rodrigo Román Rosendo Salvador Sancho
+			Sebastián Tello Teobaldo Vela Velasco Vermudo
+			Carlos Baltasar Bertrán Cristobal Francisco Hernando Ignacio Laín Miguel Odón Ramón Tomás Valeriano
+			Agustín Alberto Alejandro *Antonio María* Arsenio Augusto Baldomero
+			Bernardino Calixto Celestino Claudio Dámaso
+			Dionisio Eduardo Emilio Estanislao Federico Félix
+			*Francisco Javier* Gabino Gabriel Gaspar Genaro Isidro
+			Joaquín José *José Antonio* *José Manuel* *José María* *Juan Bautista* Julio Leopoldo 
+			Marcelo Mariano Mateo Melchor Nicolás Pablo Pascual
+			Rafael Raimundo Ricardo Santiago Segismundo Vicente
+
+		}
+		female_names=
+		{
+			Adosinda Aldonza Alduara Anderquina Andregoto Aragonta Argilo Arsenda Aurovita Ava Beatriz Benita Berenguela Blanca Brígida Constanza Corexia Cristina Dalia Dueña Dulce Elvira Emilia Ermengarda Ermesinda Eslonza Estefanía Eulalia Eva Eylo Fronilda Gaudiosa Godo Gontroda Gotina Guina Guiomar Inés Isabel Jimena Juana Juliana Justa Leonor
+			Lopa Mafalda Margarita María Marina Marquesa Matrona
+			Mayor Mencía Milia Muña Muñadona Nicor Nuñadona Ónega Petronila Sancha Sol Tegridia Teresa Toda Urraca
+			Usenda Varela Velasquita Viscavlara
+			Violante
+			Catalina
+		}
+		leader_names=
+		{
+			*de Aguirre* *de Alarcón* *de Toledo* *de Andrade* *de Ayala*
+			*de Bazán* *de Benavides* Campomanes *de Castilla* *de la Cerda* Cienfuegos Colón Coronado Cortés
+			*de Toledo* *de Córdoba* *de la Cueva* *de Figueroa* Fonseca
+			Gálvez Gómez *de Guzmán* *Jiménez de Cisneros*
+			*de Leiva* *López de Haro* *de Luna*
+			*de Lara* *de Velasco* *de Villena* *de Mendoza*
+			Narváez *de Nebrija* *Nuñez de Balboa* *de Ojeda* Orellana Osorio 
+			Pimentel Pinzón Pizarro *Ponce de León* Portocarrero
+			*de Rojas* Tellez-Girón *de la Vega* *de Zúñiga*
+			Acuña Aguirre Alcalá-Zamora Allendesalazar Alonso Álvarez *Álvarez de Toledo* Aranda Argüelles-Meres Asensio
+			Aznar Barradas Bugallal Cabrera *Cagigal de la Vega* Cano Cervera *de Albornoz* *de Borbón*
+			*de Carvajal* *de la Fuente* *de Orleans* Díaz Espartero Fernández *Fernández de Córdoba* Franco 
+			García *García de la Noceda* González Heredia Hernández Herrera Hevia *Hidalgo de Cisneros* Linares López 
+			Maroto Márquez Martínez-Campos Maura Menéndez Miaja Millán-Astray Mina Mola Muñoz 
+			Ortega Pavía Pérez *Primo de Rivera* *Queipo de Llano* Rodríguez Rojo Ruiz 
+			Sanjurjo Serrano Silvestre Topete Valdés Villapol Villar Weyler Yagüe
+		}
+		ship_names=
+		{
+			Argonauta Asunción Atrevido Azor
+			Cartagonova *Castillo Negro* Castor *Ciervo Volante*
+			Doncella Dragón
+			*El Gran Grin* *El Retiro* Eneas Eolo Esperanza *Espíritu Santo* Extremadura
+			Furor Galicia *Gran Grifón* Halcón Hércules Isabela Júpiter
+			*La Concepción* *La Magdalena* *La Manuela* León Ligera *Lobo Marino*
+			Marte Mercurio Neptuno Niña Orión
+			*Paloma Blanca* Pegaso *Perro Marino* Pinta Plutón Pollux *Príncipe de Asturias*
+			Rayo *Real Alfonso* *Real Enrique* *Real Juan* *Rey Pelayo* *Rey Rodrigo*
+			*San Andrés* *San Antonio* *San Bartolomé* *San Bernabé* *San Cristobal* *San Enrique*
+			*San Esteban* *San Fernando* *San Francisco* *San Gabriel* *San Isidoro* *San Jerónimo*
+			*San José* *San Juan* *San Juan Bautista* *San Leandro* *San Miguel* *San Pedro*
+			*San Rafael* *San Salvador* *San Sebastian* *Santa Ana* *Santa Bárbara* *Santa Beatriz*
+			*Santa Catalina* *Santa Cruz* *Santa Fe* *Santa Isabel* *Santa Justa* *Santa María*
+			*Santa Marta* *Santa Rita* *Santa Teresa* Santiago *Santísima Trinidad* *Santo Domingo* Sirena
+			Terror Toledo Trinidad Tritón Unicornio
+			Vencedora Ventura Victoria Vigilante Vizcaya Vulcano Zúñiga
+			*Álvaro de Bazán* *Brigadier Topete* Castañeta *Ciudad de Cartagena* *Ciudad de Sevilla* *Ciudad de Valencia* *Duque de Alba* *Duque de Medina-Sidonia* *Duque de Parma*
+			*El Gran Capitán* España *Estrella de los Mares* *Fadrique Álvarez de Toledo* *Fernando de Magallanes* *Infante de España* *Jaime I* Lángara *Luis de Córdova* *María de Molina*
+			*Marqués de la Victoria* Pelayo *Príncipe de Asturias* Requesens *Reyes Católicos* *Rodrigo Díaz de Vivar* *Sánchez de Tovar* *Sancho* *Villa de Barcelona* *Villa de Madrid*
+			Arapiles Bailén Barcelona Cazadora Covadonga Duero Ebro Galerna Giralda Guadalete
+			*Mar Caribe* Mistral *Navas de Tolosa* Numancia Resolución Sagunto *San Quintín* *Santa María* Segura Sella
+			Siroco Tajo Tambre Tetuán Tramontana Turia Vencedora Viriato Vitoria Zaragoza
+			Águila *Águila de Nantes* *Águila Volante* Astrolabio Aurora Concepción Cornelia Cortes Diana Esmeralda
+			Esperanza Fama Fénix Fidela Flecha Flora Gloria Gusana Hermione Iberia
+			Ifigenia Iris Juno Ligera Mahonesa *María Isabel* Medea Mercurio Minerva Ninfa
+			*Ntra. Sra. de Aránzazu* *Ntra. Sra. de Atocha* *Ntra. Sra. de Guadalupe* *Ntra. Sra. del Pilar* *Ntra. Sra. del Rosario* Palas Paloma Perla *Perla de España* Pronta
+			Providencia Prueba *San Jorge* *San José* *San Juan* *San Miguel* *Santa Ana* *Santa Bárbara* *Santa Catalina* *Santa Leocadia*
+			Sirena Soledad Sorpresa Tetis Tigre Triunfo Unicornio Venganza Victoria Viva
+			*Alcalá Galiano* *Almirante Antequera* *Almirante Ferrándiz* *Almirante Valdés* Alsedo Audaz Bustamante Cadarso Churruca Ciscar
+			Destructor Escaño Furor Guarda Guerrero Huesca *Jorge Juan* *José Luis Díez* Lazaga Liebre
+			Osado Plutón Proserpina *Sánchez Barcáiztegui* Terror Teruel Triunfante Ulloa Velasco Villamil
+			*Alfonso* *Almirante Oquendo* *Cardenal Cisneros* *Ciudad de Oviedo* *Conde de Venadito* *Cristóbal Colón* *Don Antonio de Ulloa*
+			*Don Juan de Austria* *Carlos* Gravina *Infanta Isabel*
+			*Lepanto* *Marqués de la Ensenada* *Princesa de Asturias* *Reina Cristina* *Reina Mercedes* *Reina Regente*
+			Almirante Cervera* Andalucía Asturias Atrevida Baleares *Blas de Lezo* Canarias Diana Eolo
+			*Juan de la Cosa* Legazpi Marte *Martín Alonso Pinzón* *Méndez Núñez* *Miguel de Cervantes* Neptuno
+			Pizarro Princesa *Príncipe Alfonso* *Reina Victoia Eugenia* *Sarmiento de Gamboa* *Tritón* *Vicente Yáñez Pinzón* *Villa de Bilbao*
+			*Ambrosio Spinola* *Bernardo Gálvez* *Cantabria* *Ciudad de Cádiz* *Ciudad de Las Palmas* *Ciudad de Mahón* *Ciudad de Palma* *Ciudad de Santa Cruz* *Ciudad de Vigo* *Duque de Tetuán*
+			*García Álvarez de Toledo* Hespérides Hevia *Hidalgo de Cisneros* *Ignacio María de Álava* *Marqués del Socorro* *Menéndez de Avilés*
+			*Meteoro* *Pedro Navarro* Porter Puigcerdá Rayo Relámpago Somiedo Tornado Valdés *Vicealmirante Pareja* *Villa de Gijón*
+			*Ángel de la Guarda* *Aquíles* *Argonauta* *Buen Consejo* *Firme* *Glorioso* *Héroe* *Intrépido*
+			*Monarca* *Ntra. Sra. del Patrocinio* *Real Familia* *Rey Francisco de Asís* *San Bernardo* *San Carlos* *San Fermín* *San Fernando* *San Francisco de Paula*
+			*San Gregorio* *San Idelfonso* *San Isidro* *San José* *San Juan Bautista* *San Julián* *San Telmo* *Victorioso*
+		}
+		army_names=
+		{
+			*Ejército de $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flota de $PROVINCE$*
+		}
+	}
+	cosmopolitan_french=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=FrenchGC
+		base_country_V2=FRA
+		male_names=
+		{
+			Édouard Érrard Étienne
+			Adalbert Adémar Adrien Aimery Alain Aldebert Aldéric Alphonse Amaury Amédée Ancel André Angelbert Antoine Archambaud Arnaud Arnault Arnoul Aubry Aymar
+			Barthélémi Baudouin Benoît Bérenger Bernard Bertrand Bohemond Boson Bouchard
+			Centule Charles Clotaire
+			Ebbon Enguerrand Eudes Eustache Evrard
+			Foulques François Frédéric
+			Géraud Gargamel Gaucher Gaucelin Gauthier Geoffroy Géraud Gelduin Gilbert Gilles Godefroy Guichard Guiges Guilhem Guillaume Guy
+			Hamelin Henri Herbert Hildebert Humbert
+			Jacques Jaufré Jaspert Jean Josselin Jourdain Julien
+			Léon Léonard Lothaire Louis Loup
+			Manassès Mathieu Maurice Nicolas
+			Ogier Onfroy Orson Othon
+			Payen Philippe Pierre
+			Raimbaut Raoul Raymond Raynaud Renaud Richard Robert Robin Roger Rorgon Rorgues Roubaud
+			Savary Sigismond Simon
+			Thibault Thiébaut Thierry Thomas
+			Valeran
+			Yves
+			Achille Adolphe Aimable Armand August Augustin
+			Daniel Denis Elie Eugène Félicien Félix Fernand
+			Georges Gustave Hubert Hugo
+			Joseph Jules Lazare Léopold Leroy Lucien Matthieu Michel
+			Patrice Paul
+			Gaston *Nicolas Henri* *Louis François* Joachim Xavier Hughes Alexandre
+			Ambroise Armand Augustin Barthélémy Blaise Claude Clément Firmin
+			Gui Guillaume Ignace Jean-Antoine Jean-Baptiste Jean-Jacques
+			Jean-Philippe Josquin Marc Maximiliem Pascal René Sébastien
+		}
+		female_names=
+		{
+			Éléonore Élodie Étiennette
+			Adèle Adalmode Adelaide Adelinde Agathe Agnès Aléarde Alice Aliénor Alix Almodis Amelie Anne Antoinette Arsinde Aude Aurengarde
+			Béatrice Béatrix Belleassez Benoîte Bérengère Berthe Blanche Bonne Bourgogne Bourguigne
+			Cécile Cathèrine Charlotte Constance
+			Denise Douce
+			Echive Eglantine Elisabeth Emma Ermengarde Ermessinde Esclarmonde Euphrosine Eustachie Eve
+			Gerberge Gisèle Guillaumette
+			Héloise Helvis Hodierne Ide Ida Ildégarde Isabeau Isabelle
+			Jeanne Judith Julienne
+			Mafalda Mahaut Margot Marguerite Marie Marthe Mascarose Mathilde Mélisande Mélisende Mélusine
+			Péronelle Pernelle Perinne Pernette Plaisance
+			Raymonde
+			Sarrazine Solène Sophie Stéphanie Sybille
+			Tiburge
+			Valence
+			Yolande
+			Joan
+		}
+		leader_names=
+		{
+			d'Ambleteuse d'Aulnay
+			*de Beauharnais* *de Bercy* *de Béthune* *de Boissieu* *de Bonnefoy* *de Bonneuil* *du Bosquet* *de la Bretonnière* *de Broglie*
+			*de Castaing* *de Caumartin* *de Chambly* *de Chambronne* *de Champmartin* *de Chevigny* *des Coulons* *de Crèvecoeur* *de Crussol*
+			*de Dampierre* Desgouttes Duquesne
+			*des Ecures* d'Entraigues d'Estrées
+			*du Fournay*
+			*de Galard*
+			*des Herbiers*
+			*de La Barthe* *de La Ferrandie* *de La Galissonière* *de La Mothe* *de La Motte d'Airan* *de La Porte* *Le Tellier* *de Lhéry* *de Luynes*
+			*de Marguerye* *de Maurepas*
+			*de Neufchâtel*
+			*d'Ornano*
+			*de Pellefort*
+			*de Richemont* *de Rochechouart* *de Rochemaure* *de Rieu*
+			*de Saint Chamond* *de Saint Esprit* *de Saint Germain* *de Saint Omer* *de Siorac*
+			*de Tocqueville* *de la Tour d'Auvergne* *de Tréville*
+			*d'Usson*
+			*du Valentinois* *de Vergennes* *de Vibien* *de Vigny* *de Villeneuve*
+			Anthoine *Baraguey d'Hilliers* Bazaine Billot Bosquet *Boué de Lapeyrère* Bouët-Willaumez Boulanger Bourbaki
+			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout *de Bourbon* *de Castellane* *de Castelnau* *de Gaulle* 
+			*de Langle de Cary* *de MacMahon* *de Montaignac* *de Saint Arnaud* d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
+			Foch Forey *Franchet d'Espèrey* Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
+			Jaurès Joffre Lebouef Lyautey Murat *Ney d'Elchingen* Nivelle Péllissier Petain Vaillant
+		}
+		ship_names=
+		{
+			l'Actif l'Actionnaire l'Aigle l'Alcide l'Alexandre l'Ambitieux l'Amphion l'Ardente l'Arrogant l'Artésien l'Assuré l'Astrée
+			*la Belle Poule* *le Bourbon* *le Brillant* *le Bien Aimé* *la Bizarre* *la Bretagne* *la Borée* *la Bourgogne* *le Brave* 
+			*le Caton* *le Conquérant* *le Content* *la Couronne* 
+			*le Dauphin Royal* *le Destin* *le Diadème* *le Duc de Bourgogne* 
+			*l'Eveillé* *l'Emérillon*
+			*le Fantasque* *le Fendant* *le Fier* *le Flamant* *la Fleur de Lis* *le Fleuron* *le Foudroyant*
+			*le Glorieux*
+			*le Hardi* l'Hermione
+			*le Gaillard* *la Grande Hermine* *le Héros*
+			*l'Illustre* *l'Indien* *l'Intrépide* *l'Invincible* 
+			*le Languedoc* *la Licorne* *le Lys*
+			*le Magnanime* *le Magnifique* *le Majestueux* *la Marie-Catherine* *le Marquis* *le Mars* *le Marseillais* *le Minotaure* *le Monarque*
+			*le Neptune*
+			l'Océan l'Oiseau l'Orient
+			*le Pélican* *le Protecteur* *le Prothée* *la Provence* 
+			*la Railleuse* *le Redoutable* *le Réfléchi* *la Régente* *le Robuste* *le Roland* *le Royal Louis*
+			*le Sagittaire* *la Sainte Anne* *le Saint Esprit* *le Saint Michel* *le Saint Philippe* *le Sceptre* *le Seigneur Chat* *le Sévère* *le Soleil Royal* *le Solitaire* *le Souverain* *le Sphinx* *la Superbe*
+			*le Téméraire* *le Terrible* *la Thérèse* *le Triomphant* *le Tonnant*
+			*la Trombe* *le Triton* 
+			*Union* 
+			*la Victoire* *Ville de Paris* 
+			*le Zélé* *le Zodiaque*
+			*Poincare*
+			*Louis* *Dévastation*
+			*Courbet* *Amiral Duperré* *Terrible* *Indomptable* *Caiman* *Requin* *Admiral Baudin*
+			*Formidable* *Hoche* *Marceau* *Magenta* *Neptune* *Brennus* *Charles Martel* *Carnot*
+			*Jauréguiberry* *Masséna* *Bouvet* *Charlemagne* *Saint Louis* *Gaulois* *Henri*
+			*Iéna* *Suffren* *Patrie* *Justice* *Verité*
+			*Vergniaud* *Condorcet* *France*
+			*Jean Bart* *Fleurus*
+			*Congreve* *Foudroyante* *Lave* *Tonnante* *Gloire* *Invincible* *Couronne*
+			*Solferino* *Gauloise* *Magnanime* *Provence* *Revanche* *Savoie*
+			*Surveillante* *Valeureuse* *Héroïne*
+			*Alexandre* *Breslaw* *Prince Jérôme* *Duguay-Trouin*
+			*Tage* *Donawerth* *Fontenoy* *Turenne* *Castiglione*
+			*Bayard* *Ville de Lyon*
+			*Clovis* *Vercingetorix* *Richemont* *Dunois* *Leger* *Vauban*
+			*Conde* *Montebello* *Souverain* *Navarin*
+			*Algésiras* *Arcole* *Friedland* *Impérial* *Eylau* *Tilsitt*
+			*Marengo* *Toulon* *Bellone* *Glorieuse* *Gracieuse* *Audacieuse* *Impétueuse* *Ardente*
+			*Victoire* *Guerrière* *Téméraire* *Triomphant* *Tigre* *Persévérante* *Vigilant*
+			*Tenace* *Élan* *Lamotte-Picquet* *Primaguet* *Duquesne* *Tourville*
+			*Colbert* *Foch* *Algérie* *Maroc* *Davout* *Suchet* *Forbin*
+			*Surcouf* *Cosmao* *Lalande* *Galilée* *Linois* *La Galissionere*
+			*Jean de Vienne* *Gloire* *Georges Leygues* *De Grasse* *La Fantasque*
+			*Iphigenie* *Naiade* *Arethuse* *Dubourdieu* *Belliqueuse* *Tage*
+			*Amiral Cécille* *Davout* *Suchet* *Coëtlogon* *Forbin* *Surcouf* *Cosmao* *Lalande*
+			*Troude* *Galilée* *Lavoisier* *Linois* *Tunisié* *Isly* *Bugeaud* 
+			*Friant* *Descartes* *Pascal* *Cassard* *D'Assas* *Du Chayla* *Catinat* *Protet*
+			*D'Entrecasteaux* *Guichen* *Châteaurenault* *D'Estrées* *Infernet* *Jurien de la Gravière*
+			*Pluton* *Emile Bertin* *Dupuy de Lome* *Admiral Charner* *Bruix* *Chanzy* *Latouche-Treville*
+			*Pothau* *Dupetit-Thouars* *Gueydon* *Montcalm* *Desaix* *Dupleix* *Kleber*
+			*Amiral Aube* *Conde* *Sully* *Leon Gambetta* *Victor Hugo* *Jules Michelet*
+			*Ernest Renan* *Edgar Quinet* *Waldeck-Rousseau* *Thionville* *Metz* *Mulhouse* *Colmar*
+			*D'Assas* *Du Chayla* *Catinat* *Protet* *D'Entrecasteaux* *Guichen* *Châteaurenault*
+			*Condor* *Epervier* *Faucon* *Vautour* *Wattignies* *Levrier* *Casablanca* *D'Iberville*
+			*Cassini* *Lahire* *Circé* *Hermione* *Pallas* *Sémiramis* *Armorique* *Junon*
+			*Magicienne* *Thémis* *Flore*
+			*Océan* *Suffren* *Trident*
+			*Asmodée* *Gomer* *Darien* *Labrador* *Ulloa* *Cacique*
+			*Eldorado* *Magellan* *Montezuma* *Orénoque* *Panama* *Albatros* *Descartes* *Vauban*
+			*Caffarelli* *Mogador* *Pomone* *Isly* *Bellone* *Foudre* *Impératrice Eugénie*
+			*Souveraine* *Renommée*
+			*Danaé* *Pandore* *Zénobie* *Clorinde* *Astrée*
+		}
+		army_names=
+		{
+			*Armée de $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Flotte de $PROVINCE$*
+		}
+	}
+	czech=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=BOH
+		male_names=
+		{
+			Albert Albrecht Ales Arnost Bavor Bedrich Benes Bocek Bohuslav Boleslav Bores Borijov Bretislav Budivoj Castolov Cenek Chval Ctirad Diepold
+			Detrich Drslav Gerhard Hanus Havel Heralt Herman Hrabis Hynek Jan Jaromír Jaroslav Jesek Jindrich Jirík Karel Kojata Konrád Kuník Litold
+			Markvart Matous Mikulás Milic Mojmír Ojír Oldrich Ondrej Ota Otakar Pelhrim Petr Premysl Prokop Rajmund Rostislav Sezima Slavibor
+			Slavomír Smil Sobieslav Spytihnev Strachkvas Svatobor Svatopluk Tobiás Václav Viktorín Vítek Vanek Vilem Vladimír Vladislav Vojtech
+			Vratislav Vseborr Závis Zbynek Zdík Zdirad Zikmund 
+			Ladislav Ferdinand *Fridrich Falcký* Jiri Ludvík *Jindrich Fridrich* Viktorin *Karel Ludvík* Boczek Eduard Ruprecht Alexandr Alojz
+			Bronislav Ctibor David Drahoslav Ignác Jakub Jozef Kliment Leos Lubomir Lukás Marek Mikolás Miroslav Otokar Pavol Zdislav
+			Abraham Alfred Alois Antonín August Benedikt Borivoj
+			Emanuel Emil Evzen Frantisek *Frantisek Jozef* *Frantisek Xaver*
+			Hermenegild *Jan Krtitel* *Jan Nepomuk* Jindrich Jozef Kajetan
+			Konstantin Maxmilián Olbram Pavel Petr
+			Radola Rafael Tomás Vincenc Vitezslav Vlastimil Zdenek
+		}
+		female_names=
+		{
+			Adléta Anezka Anna Barbora Bedriska Blazena Bohuslava Boleslava Bozena Bozislava Bretislava Dobromila Dobroslava Domaslava Dorota
+			Doubravka Drahomíra Drahoslava Eliska Eufemie Gertruda Guta Hedvika Helena Jana Jaroslava Jitka Johanka Judita Justina Katerina
+			Klára Konstancie Kristyna Kunhuta Libuse Ludmila Marie Markéta Mlada Olga Perchta Pribyslava Richeza Skonka Stanislava Svatava
+			Vilemína Viola Vladislava Vojslava Zdislava Zdenka Zofie
+		}
+		leader_names=
+		{
+			Boleslav Brno
+			Kladno
+			Lablonec Liberec
+			Pardubice Plzen Praha
+			Trutnov
+			Zatec
+			Albert Balaban Basch Breisky Celovský Dvorák Fibich Gajda Gellner Hálek
+			Hrdlicka Jirecek Kadlec Kafka Koller Krízkovský Kucera Kuchar Lederer Makosky
+			Mik Morávec Nemecek Neruda Novácek Novotný Popper Radecký Rokytanský Safárik
+			Safránek Schack Schubert Skoda Skuherský Smetana Snejdárek Suk Svoboda Syrový
+			Tomásek Tyl Vitásek *von Mittrowitz-Nettolitzky* Vorisek Wankel Weber Zíbrt Zívr Zoubek
+		}
+		ship_names=
+		{
+			*Svatý Vaclav*
+			*Svatý Mikulás*
+			*Svatý Jirí*
+			*Svatá Anezká*
+			*Nejsvatejsí Trojice*
+			*Král Karel*
+			*Král Boleslav*
+			*Král Premysl*
+			*Panna Maria Vitezná*
+			*Jan Hus*
+			Sárka
+			Ctirad
+			Cechý
+			Moravy
+			Budvar
+			Libuse
+			Odvázný
+			Orel
+			Sokol
+			Slezko
+			Sipká
+			Hvezdá
+			*Karel* *Prokop Veliký* *Jan Žižka* *Josef Ressel*
+			Milešovka Lovos Hazmburk Koštálov *Ceské Stredohorí* 
+			Jizera Metuje Morava Svratka Olza  
+			*Jan Dismas Zelenka* *Šimon Brixi* *František Tuma* *Antonín Kraft* *František Xaver Dušek* 
+			*Petr Brandl* *Václav Hollar* *Jan Jahn* *Jan Kupecký* *Karel Škréta*
+			*Pražský hrad* Vyšehrad Zbraslav Kolodeje Chvaly 
+		}
+		army_names=
+		{
+			*Armády z $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Flotila z $PROVINCE$*
+		}
+	}
+	danish=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=DAN
+		male_names=
+		{
+			Abel Anders Anund Asger Balder Benedikt Bjørn Bo Christian Christoffer Edvard Einar Erik Ernst Esben Fredrik Frej Frode Glum Gnupa Gorm Gotfred Gregers Grim Gunnar
+			Hårik Halfdan Halvor Hans Harald Helge Hemming Henrik Hjalmar Holger Inge Ingolf Jørgen Jørn Jakob Jens Joakim Johann Karl Knud
+			Kristian Leif Lennart Ludvig Malthe Mads Mikkel Mogens Niels Odd Olav Oluf Peder Poul Pridbjørn Ragnar Ragnvald Rolf Rune Rørik Severin Sigfred Sigtryg Sigurd 
+			Sivard Steen Svend Sämund Thorolf Thorvald Torben Torbjørn Tord Torfinn Torgils Ture Ubbe Uffe Ulf Valdemar Valentin Vilfred Yngvar
+			Frederik Adolf Filip Magnus Maximilian Ulrik Frans Vilhelm Alfred Anton Bent Emanuel Fritjof Jorgen Kasper Peter Rudolf
+			Sigrun Stefan Torbald Viktor
+			Adam Alber Asmund Axel Carl Edvin
+			Folke Georg Hannibal Herman Hugo Ivar
+			Jacob Johan Julius Michael Otto
+			Sven Tage Thomas Ukrik
+		}
+		female_names=
+		{
+			Agnethe Anna Asta Benedikte Birgitta Bodil Cecilie Christina Dagmar Dorothea Elisabeth Ellinor Emilie Erika Ester Estrid Frederikke Freja
+			Grethe Gudrun Gunhild Gyda Helena Ida Ingeborg Ingegerd Ingrid Johanne Jutta Karin Karoline Katarina Katrine Kirsten Klara Lise Luitgard Lykke
+			Magdalene Maren Margrethe Maria Martha Ragnfrid Ragnhild Rikissa Runa Sanna Signe Sigrid Silje Sofie Svanhild Thyra Tora Thordis Åse
+			Margaret
+		}
+		leader_names=
+		{
+			Adeler Ahlefeldt Akeleye Arenstorff 
+			Bille Bielke Brahe Brockenhuus
+			Christiansen
+			Daa
+			Ebbesen Eberstein Ellbrecht 
+			Falkenskjold Fischer
+			Galt Gersdorff Gjedde Gyldenløve Gyldenstjerne Gøye
+			Harboe Hardenberg Holstein Huitfeldt Høegh
+			Jensen Juel
+			Krabbe Krag Krumpen Knudtzon Kvistgaard Kaas
+			Lillienskjold Lingby Lunge Lützow Løvenørn
+			Moltke Moth Munk
+			Norby
+			Pedersen Povlsen Pallesen Pil
+			Rantzau Reventlow Rosenkrantz Rosenørn
+			Schlentz Schack Scholten Sehested Skram
+			Thomsen *von Trampe* Trolle
+			Ulfeldt
+			Asp-Persson Berger Bonde Carlsen Dannemand Danneskjold-Samso *de Meza* Eberlin Falsen
+			Folsach Güntelberg Gyldenfeldt Haack Hambro Haxthausen Juul Klauman Krogh Laessoe
+			Leuenbach Lovenbalk Michaelsen Mylius Neergaard Obelitz Oxholm Rosenkrantz Schack-Schackenborg
+			Stemman Suenson Thygeson Trampe Urne *von Holstein* *von Oldenburg* Wadenstierna Wedel-Heinen Zytphen-Adeler
+		}
+		ship_names=
+		{
+			Achilles *Arche Noa* Arken Beskjermer *Byens Løffue* Caritas *Charlotte Amalie* 
+			Christiania Christiansand Christiansø *Christianus* Churprindsen 
+			Concordia Cæsar Dannebroge David Delmenhorst Ditmarsken Draken *Dronning Louisa* 
+			Ebenetzer Elefanten Enighed *Engelske Fortuna* Enhiørningen Fides Flores 
+			*Flygende Hjorten* Fortuna *Fredericus* Fyen Gravenstein Griffe 
+			Gyldenløve Hannibal Havfru Havhest Havmand Hector Hercules *Hertug Olufs Pincke* 
+			Hiælperen Hjort Høyenhald Hummer *Hvide Ørn* Højenhald Jernvågen Jægermester 
+			Justitia *Kongens Jagt Krone* *Kronet Fisk* Lamprenen Leopard Lindorm Loss Lovisa 
+			*Løvendals Gallej* Makaløs Mars Merkurius Morian Najaden Nelleblad Neptunus 
+			*Norske Løve* Oldenborg Papegoye Patienta Pelican Phønix *Prinds Carl* 
+			*Prinds Christian* *Prinds Wilhelm* Raae Samson Solen 
+			*Sophia Amalia* *Sophia Hedvig* *St. Erik* *St. Georg* *St. Oluf* Stormar Stralsund 
+			Svaerdfisk Svan *Svenske Jomfru* Søridder Tomler *To Løver* *Tre Løver* Trefoldighed 
+			Victoria Vindhunden Wenden Ørnen
+			Ulrik Christian Fredriksberg Esbjerg *Nørrejyske Ø* Fyn Jótlandshaf 
+			Lindormen Odin *Rolf Krake* Tordenskjold *Peder Skram* Gorm *Olfert Fischer* Absalon
+			*Prinds Christian Frederik* Skjold Ingolf Dagmar Gesjer *Dronning Marie* Waldemar Fredrik
+			Fyen Geiser Heimdal Hekla *St. Thomas* Valkyrien *Herluf Trolle* Søeormen Susåen Gudenåen
+			*Esbern Snare* Sjælland Gefion Thetis *Niels Juel* Rota
+			Freia Diana Støren Stubberkøbing Gejser Kiel Falster Narhvalen Tumleren
+			Fylla Færøerne Grønland Víkingr *Harald Klak* *Svend Tveskæg* Kattegat Øresund Silkeborg
+		}
+		army_names=
+		{
+			*Hær af $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flåde af $PROVINCE$*
+		}
+	}
+	east_persian=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=PER
+		male_names=
+		{
+			'Abbas Abolhassan Afshar Ahmad Akbar Ali Allahyar Amin Anushirvan Aram Ardahan Ardavan Ardeshir Assad Aurang Ayeshah Babak Bahman
+			Bahram Bakhtiar Behrad Behrouz Bozorg Danush Darab Dariush Davud Djamasp Ebrahim Ehsan Esfandiar Eskander Esmail Faramarz Faraz Fareed Farhad Fariborz
+			Faruq Farrukhzad Farzad Fath Ferdows Fereedun Ghobad Gholam Godarz Goshtasb Hafez Hassan Hazarasp Hedayat Hooshyar Hormazd Hormoz Husayn
+			Humayun Jahandar Jahangir Jahanshah Jamshid Javeed Kambiz Kamran Kavoos Keyghobad Keykhosrau Kharmandar Khashayar Kavadh Khodadad Khosrau
+			Khudayar Khurshid Kurush Mahmûd Manuchihr Manushihr Marzuban Mashad Maziar Mehrab Mehrzad Mohammed Morad Morteza Mozaffar Nard Naveed Nawid Nezam Parviz Pashang Peroz
+			Pujman Reza Rostam Ruhollah Sadri Salman Shahab Shahbaz Shahin Shahram *Shâh Rukh* Shahruz Shahryar Shapur Shayan Sina Tahmasb Vahhab Vahid
+			Vali Vandad Varshasb Vishtasb Yazdegerd Yousef Zahak Zakaria Zand Zartosht Zia
+			Abolghasem Abdolhossein Abdolsamad Abdolazim
+			*Fath Ali* Fazlollah Hamzeh Hasan Karim *Lotf Ali* 
+			Massoud *Moin ed-Din* *Mozzafer ed-Din* Muhsin 
+			*Naser ed-Din* Nosret *Abû Sa'îd* Bâbur *Badî al-Zamân*
+			*Husayn Bâyqarâ* Mahmûd  *Abu al-Qasim* *Ulugh Beg* *'Abd al-Karim*
+			*'Abd al-Rahman* 'Alî 'Abdallâh Anwar Bakr Fahd Fouad Hakim Harun
+			Hisham Isma'il Jafar Jamaal Khalil Malîk Mirza Qasim Rashîd Sulayman
+			Tarîq 'Umar Usama Yasir Yusuf Zaid Zîyad Zulqifar
+		}
+		female_names=
+		{
+			Afsaneh Ahu Arghavan Azarmidokht Asa Azadeh Bahar Banafsheh Behnaz Burandokht Darya Delaram Delbar Dinah Donya Elham Elnaz Farah Fareedeh Farnaz Farrin Farva
+			Furuzan Ghamze Ghazal Ghoncheh Golbahar Golnaz Golpari Golshan Hamdam Hurmat Irandokht Jamileh Javaneh Leila Mahdokht Mahtab Mariam
+			Navvaba Nazgol Nazilla Noor Parvaneh Parvin Pertevniyal Pourandokht Roshanora Roxana Salomeh Shahrzad Shahzadeh Shirin Soraya Touran
+			Tourandokht Yasaman Yekta Zarrindokht Zeynab Zohreh
+		}
+		leader_names=
+		{
+			Airom Ansari Ayrum Buzarjomehri Davallu Esfahani Farhani 
+			Jahanbani Kashani Khan Khuzai
+			Meshhedi Nakhchevani Pesyan Rokni Shafaei Shahbakhti 
+			Shirazi Tabrizi Tahmasebi Zahedi
+			Ali
+			Bali
+			Karawi
+			Khan
+			Mirza
+			Nawaz
+			Quli
+			Tadj
+			Wali
+			Zaman
+		}
+		ship_names=
+		{
+			Badam
+			Bardeskan
+			Dasht
+			Deyhuk
+			Germi
+			Jandaq
+			Khvor
+			Kondor
+			Tabas
+			Torud
+			Iran *Esmail Yekom* *Abbas Bozorg* *Safieddin Ardabili* *Tahmasp Yekom* *Abbas Duvam*
+			*Fathali Shah* *Abbas Mirza* *Nasireddin* *Mozaffareddin* *Mohammad Ali* *Shah Ahmad*
+			Ferhumand Jelaleddin Nureddin Danesh Zureddin Nirumand Khosthaneshdani *Sahib-i Azam* Dalir
+			Karun Zab Aras Helmand Diyala *Zab-e Kuchek* Zayande Atrek Alamut 
+			Alborz Damavand Kholeno *Azad Koh* Tochal Sarakchal Kharsang Zagros *Zard Koh*
+			Arzu Fatima Nilofer Omid Laleh *Koh-i Nor* Jaleh Firuz Darya Roshan Shahrazad Shirin Yasmin Ziba Zuleika Behruz Farid Humayun Kambiz Kamyar Ruzbeh
+		}
+		army_names=
+		{
+			*Artesh-e-$PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Naogan-e-$PROVINCE$*
+		}
+	}
+	english=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=BritishGC
+		base_country_V2=ENG
+		male_names=
+		{
+			Adam Alan Albert Alexander Alfred Ambrose Andrew Anselm Anthony Archibald Arnold Arthur Aubrey
+			Benjamin
+			Charles *Charles James* Christopher
+			Daniel David
+			Edgar Edmund Edward Eric Ernest Eustace
+			Francis Fulk
+			Geoffrey George Gerald Gilbert Godfrey Gregory Guy
+			Henry *Henry Frederick* Horatio Hugh Humphrey
+			Isaac
+			James Jeremy Jocelyn John Jonathan Jordan Joseph
+			Lawrence Lionel
+			Mark Martin Matthew Maurice Michael
+			Nehemiah Nicholas
+			Oliver
+			Paul Peter Philip
+			Ralph Randolph Reginald Richard Robert Roger Simon Stephen
+			Samuel Sydney
+			Theobald Thomas
+			Waleran Walter William
+			Augustus Bernard Colbert
+			Colin Cyril Donald Douglas Fairfax Ferdinand
+			Frederick Graham Henrey Herbert Hubert Ian
+			John Leopold Lester Louis Nigel Oswald
+			Percy Russell Stanley Wallace Winston Zachary 
+		}
+		female_names=
+		{
+			Adela Adelaide Alice Amice Anne Aveline
+			Beatrice Blanche
+			Catherine Cecilia Constance
+			Edith Ela Eleanor Elizabeth Emma
+			Hawise
+			Isabel Isabella
+			Jane Joan Joanna Juliana
+			Mahaut Margaret Mary Matilda Maud
+			Philippa
+			Sybilla
+		}
+		leader_names=
+		{
+			Albemarle Amherst Anson
+			Buckingham Braddock Byron Burgoyne Beresford Brock Benbow Blake Bedford Boscawen Baffin Button
+			Clarence *de Clifford* Cromwell Cumberland Clinton Cornwallis Clive Cabot Carleton Cavendish Cook
+			Dampier Davis Drake
+			Essex
+			Fairfax Frobisher
+			Gloucester Gilbert
+			Howe Howard Herbert Hawke Hood Hastings Hudson
+			Leicester
+			Marlborough Middleton Moore
+			Northumberland Norfolk
+			Procter
+			Rooke Rodney Raleigh
+			Salisbury Somerset Suffolk Saunders Smith
+			Talbot Tarleton
+			Uxbridge
+			Warwick Wolfe
+			York
+			Allenby Battemberg Beatty Brown Buller Butler Campbell Cardigan Churchill
+			Cochrane Cockburn *de Robeck* Dundas Fisher French Gough Grant Grenfell Haig
+			Hamilton Hardinge Havelock Hope Jellicoe Kitchener Lyons Madden Milne Montgomery
+			Moresby Mundy Napier Odoni *of Hannover* *of Saxe-Coburg-Gotha* Plummer Ragland Roberts Seaton Seymour
+			Smith-Dorrien Stewart Thesiger Tyron Tyrwhitt Williams Windsor Wolseley Wood
+		}
+		ship_names=
+		{
+			Adventure Ajax Albemarle Alexander *Anne Gallant* Antelope *Ark Royal* Assurance Audacious
+			Bear Bellerophon Bonaventure Boyne
+			Charles Christ Constant Convertine Culloden
+			Defence Defiance Destiny Dragon Dreadnought
+			*Edward Howard* Elizabeth Eltham Essex Expedition
+			Foresight Foudroyant
+			*Gabriel Royal* Garland George Gibraltar Gloucester Goliath *Grace Dieu* Grafton *Grand Mistress* *Great Barbara* *Great Bark* *Great Elizabeth* *Great Harry* *Great Nicholas*
+			Haarlem *Happy Entrance* Hector *Henrietta Maria* Hope
+			James *John Baptist*
+			*Katherine Forteleza* Kent
+			Leander Leopard Lion
+			Majestic Margaret Mary *Mary Rose* Mercury Merhonour Michael Minion Minotaur 
+			Nonpareil Nonsuch Northumberland Nottingham
+			Orion
+			Peter Providence *Prince Frederick*
+			*Queen Charlotte*
+			Rainbow *Red Lion* Regent Renown Repulse Revenge *Royal Anne* *Royal Charles* *Royal Prince* 
+			*Scourge of Malice* Sovereign *Sovereign o the Seas* *St Andrew* *St Esprit* *St George* *St Matthew* Suffolk Superb Swallow Swiftsure 
+			Theseus Tigre Tramontana Triumph
+			Unicorn Union
+			Vanguard Victory
+			Warspite Worcester
+			*Temeraire* *St Vincent* *Collingwood* *Neptune* *Colossus* *Hercules* *Monarch* *Conqueror* *Thunderer* *George* *Centurion* *Iron Duke* *Benbow* *Emperor* *Erin* *Queen Elizabeth* *Barham* *Valiant* *Royal Oak* *Royal Sovereign* *Revenge* *Resolution* *Ramillies* *Resistance* *Rodney* *Prince* *Duke* *Anson* *Howe* *Lion*
+			*Warrior* *Black Prince* *Achilles* *Prince Consort* *Ocean* *Royal Alfred* *Research* *Enterprise* *Favorite* *Zealous* *Lord Clyde* *Lord Warden* *Pallas* *Penelope* *Captain* *Audacious* *Invincible* *Sultan* *Devastation* *Alexandra* *Inflexible* *Agamemnon*
+			*Royal Albert* *Castle* *Royal Sovereign* *Queen* *Victoria* *Frederick William* *Albion* *Aboukir* *Saint Jean D'Acre* *Hannibal* *Princess Royal* *Caesar* *Suberb* *Meeanee* *Mars* *Irresistible* *Brunswick* *Hood* *Edgar* *Sans Pareil* *Boscawen*
+			*Imperieuse* *Orlando* *Undaunted* *Narcissus* *Galatea* *Immortalite* *Aurora* *Blake* *Blenheim* *Hawke* *Endymion* *Royal Arthur* *St George* *Cresent* *Powerful* *Terrible* *Diadem* *Niobe* *Europa* *Andromeda* *Amphitrite* *Argonaut* *Ariadne* *Spartiate* *Cressy* *Sutlej* *Aboukir* *Hogue* *Bacchante* *Euryalus* *Drake* *Good Hope* *Alfred* *Leviathan* *Donegal* *Carnarvon* *Antrim* *Roxburgh* *Argyll* *Warrior* *Cochrane* *Shannon*
+			*Cyclops* *Vulture* *Firebrand* *Gladiator* *Sampson* *Centaur* *Dragon* *Penelope* *Retribution* *Terrible* *Avenger* *Birkenhead* *Odin* *Sidon* *Leopard* *Tiger* *Magicienne* *Valorous* *Furious* *Resolute* *Amphion* *Arrogant* *Dauntless* *Vigilant* *Termagant* *Euphrates* *Tribune* *Curacoa* *Imperieuse* *Euryalus* *Aurora* *Forte* *Liffey* *Shannon* *Topaze* *Bacchante* *Diadem* *Dons* *Ariadne* *Galatea* *Emerald* *Melpomene* *Immortalite* *Orlando* *Mersey* *Narcissus* *Undaunted* *Dryad* *Belvidera* *Pomone* *Briton* *Barham* *Boadicea* *Bucephalus* *Dextrous* *Endymion* *Ister* *Blonde* *Astrea* *Dartmouth* *Inconstant* *Shah* *Raleigh*
+			*Prince Albert* *Scorpion* *Wivern* *Cyclops* *Gorgon* *Hecate* *Hydra* *Cerberus* *Magdala* *Abyssinia* *Glatton* *Hotspur* *Rupert* *Belleisle* *Orion* *Conqueror* *Hero* *Severn* *Humber* *Mersey* *Abercrombie* *Havelock* *Raglan* *Roberts* *Lord Clive* *General Craufurd* *Sir Thomas Picton* *Prince Eugene* *Prince Rupert* *Sir John Moore* *General Wolfe* *Marshal Ney* *Marshal Soult* *Gorgon* *Glatton* *Medusa* *Erebus* *Terror* *Robert* *Abercrombie*
+			*Prince Charles* *Inverlyon* *Baralong* *Prize* *Alcantara* *Almanzora* *Alsation* *Ambrose* *Andes* *Aquitania* *Arlanza* *Aramadale* *Avenger* *Avoca* *Bayano* *Berrida* *Calyx* *Carmania* *Caronia* *Cedric* *Celtic* *Changuinola* *City of London* *Clan MacNaughton* *Columbella* *Digby* *Empress of Asia* *Empress of Britain* *Empress of Japan* *Empress of Russia* *Eskimo* *Hilary* *Hildebrand* *Laconia* *Laurentic* *Lusitania* *Macedonia* *Mantua* *Marmora* *Mauretania* *Moldavia* *Montezuma* *Morea* *Motagua* *Mount Temple* *Naldera* *Narkunda* *Oceanic* *Olympic* *Ophir* *Orama* *Orbita* *Princess* *Scotia* *Teutonic* *Victorian* *Viknor*
+		}
+		army_names=
+		{
+			*Army of $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Fleet of $PROVINCE$*
+		}
+	}
+	estonian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=EST
+		male_names=
+		{
+			Andyamo Chichayka Dergun Deryab Dobrinya Inzhay Kezhapa Kezhay Kezhedey Kezhevat Kichay Malyaka Malyy Meltsayka Mordvinko
+			Nalka Nuyaksha Nuyanza Nuyat Ovtay Pakstyan Paksyay Paksyut Parush Pivtsay Pokshayka Putyayka Setyamka Shindyay Syrka Tikshayka
+			Tyueykezhut Uchva Varaka Vechkas Velmayka Virdyan Viryas Viryay
+		}
+		female_names=
+		{
+			Anava Ashava Asrava Azra-Va Chechama Chenksa Cherava Chichayka Chindyapa Chindyayka Chinzhay Chitska Elyuva Inyava Kanyava Kanyuva
+			Kirdyava Kunava Kunyavka Litava Liyava Mazava Megurka Mel'shay Nezayka Nulzyava Nyal'ka Nyayka Olota Ordava Oshama Parava Pekshayka
+			Pemka Pokshava Poshayka Potekay Potyava Putyayka Ravzhava Ruzava Sanal'ka Sangasa Sernyava Serzhay Setyamka Seyamka Shonzhava
+			Shukshtoroyka Sinyava Siyamka Slyugan'ka Sochava Styaka Syryava Tatka Tekay Tetyava Tikshayka Toyaksha Tundava Tundya Unzhutka Upurga
+			Utyayka Valdava Vergava Vezhav Vidyava Virtyava Yalgava
+		}
+		leader_names=
+		{
+			Aamisepp Aavik Adams Anvel Barbarus Bornhöhe Eenpalu Hint Hurt Jaakson
+			Kangro Kint Klaasen Koern Kõiv Kotli Kumari Kupine Kuusik Leppik
+			Lipping Lohk Mäe Männil Moora Natus Nurkse Nurmekund Õkva Öpik
+			Orkivu Päts Perna Piiper Poska Puusepp Ränk Rei Reinman Siinmaa
+			Sikkar Sirk Tõnisson Uluots Vaga Veske Vilbaste Vilms *von Uexküll* Warma
+		}
+		ship_names=
+		{
+			Valga Tartu Mustvee Haapsalu Rapla Muhu Hiiumma Saaremaa Abruka Paldiski Kihnu Vormsi Vaindlo
+		}
+		army_names=
+		{
+			*Armee pärit $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Laevastiku pärit $PROVINCE$* 
+		}
+	}
+	ethiopian=
+	{
+		graphical_culture=africangfx
+		graphical_culture_V2=AfricanGC
+		base_country_V2=ETH
+		male_names=
+		{
+			Amare Dahnay Desta Getachew Geteye Girma Iskinder Abai Abebe Afework Aman Assefa Atoberhan Azmera Bekele Benaim Berhanu Berhanua Berihun Berta Bworo Daniachew Dâwît Demissie Eremias Ezana Fâsîladas Fethee Gabra Gebereal Gebre Gondar Hackeem Haeran Hagos Hakeem Hakiem Hakim Hakym Iskander Iskinder Iyâsû Jima Kafa Kaleb Kelile Kelyle Kifle Lebna Lema Loua Mamo Mekonnen Melaku Mengesha Merille Miruts Negash Negasi Negus Ogbae Ogbai Oromo Rahad Selassie Semer Semere Sisay Tamirat Tariku Taye Tefere Teferi Teka Tekle Tengene Teruworq Tesfaye Tessema Tewodros Yâ'qob Yôhannes Yonas Zula
+			*Taqla Hâymânôt* Salômôn Hezqeyâs *Zar'a Yâqob* *Ba'eda Mâryâm* Quastantînôs *'Amda Seyôn* *Nâ'ôd* *Lebna Dengel* Galâwdêwôs Mînâs  Sûsenyôs Têwôflôs Yôstôs Yônas *'Amsa Gîyôrgîs*
+			*Tuqla Gîyôrgîs* Demetros Gîyôrgîs Fiqtor Menas Marqos Hamalmal *Saga Krestos* *Malta Krestos* Fâsîl 'Endreyâs Yeshaq Mika'el *Amda Seyon* Antenatewos *Welde Giyorgis* *Mika'el Sehul*
+			Gusho *Wand Bewossen* Haile *Wolda Gabrael*
+			Ras Debela Alemayehu Dirribi Gobana Tsegaye Tilahun Waqo Ahmad Galasa Hailu Yilma Abadula Abdus
+		}
+		female_names=
+		{
+			Habesha Abeba Abrihet Adanech Adina Alaworld Alitash Amhara Ayana Bathsheba Bekele Belkis Berhane Berta Cheren China Debre Debtera Desse
+			Desta Dilla Falasha Falashina Fana Fannah Genat Hagos Jahzara Jazarah Kayla Kelile Kelyle Keren Kess Kifle Lishan Louama Magdala Maharene
+			Makda Makeda Mandera Melesse Mellesse Misrak Negasi Nishan Nyala Qwara Retta Seble Sela Selamawit Selassie Semhar Senalat Sheba Shinasha
+			Sisay Tavavich Teru Totit Tsage Wagaye Yehudit Zala Zauditu Zeina Zena Zenia
+		}
+		leader_names=
+		{
+			Bayisa
+			Dereje
+			Ambo
+			Asres
+			Wami
+			Eshete
+			Ezana
+			Eyob
+			Asfaw
+			Degife
+			Makonnen Dacche Mideksa Dinsa Turnsaa Gemeda Eabisa Demissie Gessesse
+		}
+		ship_names=
+		{
+			Yodit Shewa *Mara Takla* Lalibela
+			*Yekuno Amlak* Tigray Tatadum Seyum
+			*Kedus Harbe* *Na'akueto La'ab* Yetbarak
+		}
+		army_names=
+		{
+			*Särawit käza $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Märkäb-occ käza $PROVINCE$*
+		}
+	}
+	finnish=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=FIN
+		male_names=
+		{
+			Aato Ahma Aimo Armas Arvo Asikko Ensio Haapa Hannu Havu Hintsa Ihanti Into Jalo Jurva Kaleva Kalevi Kettu Kolli Lalli Lauri Lemetti
+			Mielitty Miemo Mikko Oiva Onni Otso Pyry Päiviö Pentti Reko Sampo Satajalka Satatieto Seppo Susi Tapani Terho Toivo Ukko Uoti Urho Väinö
+			Valta Valto Veli Vesa Voitto Erkki Kaarle Johannes Risto Olavi Petri Henri Yrjö 
+			Valteri Riku Matti Jaakoppi Taisto Paavo Aatso Ahvo Aarto Asko Tuokko Rieti
+			Kauro Kuuti Pekko Soini Tuure Turo Tommo Tohmas
+			Akseli Aleksanteri Anders Aukusti Edvard Eemil Erno Fabian
+			Fredrik Fridolf Georg Gösta Harald Hjalmar Hugo Juho Kaarlo
+			Kurt Lars Martti Petteri Rudolf Viktor Vilho
+			Eerikki Niklas Väinämöinen Jani Jaakko Juha Aapeli Alpertti
+			Antero Eino Heikki Jooseppi Jyri Kristian Mainio Mikael
+			Ransu Reino Samuli Taavi Tauno Tuomas Vieno Vilhelmi
+		}
+		female_names=
+		{
+			Aamu Aino Hellä Helmi Ilta Kaarina Käpy Kielo Kukka Lauha Lempi Mahla Maija Marja Mesi Metta Päivä Päivi Pihla Pilvi Rauha Sisko Suoma
+			Taimi Terhi Titti Tuija Tuovi Tuuli Tuulikki Tyyne Tyyni Vanamo Venla Mielikki Hertta Loviisa Inkeri Ilmatar Irene Ilona Kristiina
+			Elisabet Sohvi Auni Liekko Kivutar Lemmikki Lyylikki Salme Talvikki Tuulitar
+		}
+		leader_names=
+		{
+			Adlercreutz Ahlqvist
+			Berg Björn Blom 
+			Cronstedt
+			Dufva
+			Ehrensvärd *von Essen* 
+			Glad
+			Haataja Helander Helin Hiltunen Horn
+			Ilkka Isotalo
+			Järvelä Järnberg
+			Kesäläinen Klingspor Kortelainen Krouvari Kyrö
+			Liljencrantz Länkinen
+			Pentti Pietilä 
+			Rehnskiöld Renner Rokka Rutanen
+			Sakari Sjögren Stålhandske Stoor
+			Tapani Termonen Turunen
+			Wilander
+			Airo Alopaeus Aspara Cajander Ehrnrooth Heinrichs Heiskanen Holsti Ignatius Järnefält
+			Linder Mannerheim Multamäki Nenonen Oesch Öquist Österman Paasikivi Raappana Ramsay
+			Sihvo Siilasvuo Talvela Thesleff Tujulin Tuompo *von Hesse-Kassel* Walden Wallenius Wetzer
+		}
+		ship_names=
+		{
+			Agricola Aura
+			Borgå *Birger Jarl*
+			Helsingfors Hakkapeliitta
+			Ilmarinen
+			Kullervo Kymi
+			Lemminkäinen
+			Oulu
+			*Per Brahe*
+			Sampo *St. Henrik* Savolax
+			Väinämöinen Vasa Vanda Vuoksi
+			Åbo
+			*Uusimaa* *Joukahainen* *Tapio* *Turku* *Kemi* *Maarianhamina* *Vaasa* *Viipuri* *Kotka*
+			*Rauma* *Åbo*
+		}
+		army_names=
+		{
+			*Armeija alkaen $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Laivaston alkaen $PROVINCE$* 
+		}
+	}
+	flemish=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=FLA
+		male_names=
+		{
+			Adriaen Albrecht Alwin Ambroos Antoon Arnold Arnulf Balderik Barend Barnaerd Bartolomeus
+			Bavo Bertold Boudewijn Claes Claeuwaert Daevit Damaes Diederick Dirk Douwe Eduard Egmund Ekbert
+			Emmo Engelbrecht Filips Floris Folbert Frans Frederik Gerard Gerolt Gerulf
+			Gerrit Gijsbrecht Giselbert Godfried Godschalk Gozewijn Guij Gwijde Hendrik Herman Hubert
+			Hugo Ijsbrand Ijsbrecht Jacco Jacob Jan Karel Koenraad
+			Kristof Lambert Lodewijk Ludewijn Lutbert Luthard Maertijn Marquart Niclaes
+			Olivier Otto Otwin Onno Pieter Reinaerd Reinoud Reginar Robrecht Robert Rodulf 
+			Roelof Roland Rutger Sebastiaen Sicco Simon Steven Steyn Theodolf Waelram Walter
+			Wicher Willem Wolfard
+			Arnolf Diederik Abraham Alexander Alfons Andries Balthasar Christoffel Constantijn
+			Cornelis Daniël Ernst Erwin Ewoud Gabriel Hans Kasper Ludger Luuk Marinus Renate
+			Rodolf Roeland Valentijn
+			Adolf Adolphe Alphonse Adriaan Albert Antoine Auguste Bonifaas 
+			Camille Charles Constant David Désiré Edmond Emmanuel Eugène Félix Ferdinand 
+			Guillaume Gustave Hendrik Henri Ignaas
+			Jochem Joseph Josse Jozef Jules Laurens Léon Léonard Leopold Manfred Mathias Nikolaas
+			Paul Pierre Pieter Sylvain Theodoor Victor Vincent Werner
+		}
+		female_names=
+		{
+			Ada Adela Adelheid Aechte Agaete Aleid Alijse Aliken Anna Annelies Badeloge Bava Beatrijs Benedicta
+			Blanca Blanceflore Cecily Cille Clara Clementia Elisabeth Ellijnore Emma Ermingarde Fenne
+			Filippa Frida Gheertrude Gerda Godila Haduwijn Helena Herlinda Hilligonda Ide Imagina Irene Isabelle Iudith
+			Jacoba Jaccobijn Jasminne Johanna Jolanda Juliana Jutte Kathrijne Katrien Liedwin Lisebet Machtelt Margareta
+			Maria Mathilde Oda Odelt Olinde Onna Pieternelle Reynilde Sanne Sigerda Sophie Swanhildis Thetburga Waltrud
+			Wila Wendelmoet Wenna Willemine Yonefij Yvonne Zoete
+		}
+		leader_names=
+		{
+			Dampierre Deconinck
+			Nevers
+			Penen
+			*Van Bellegem* *Van Gulik*
+			*Van Herstal* *Van Leeuwergem*
+			*Van Lichtervelde* *Van Nieuwland*
+			*Van Oudenaarde* *Van Petershem*
+			*Van Raveschoot* *Van Renesse*
+			Andries *Annez de Zillebroeck* Barbanson Barthélémy Beaucarne Beernaert Berthels Bethune Beyts Bischoff Blomme Bosmans 
+			*Boucqueau de Villeraye* Buylaert Buyse Claes Claus Cogels Cols Coppens Coppieters Corten Cruts *d'Arschot Schoonhoven* 
+			d'Ansembourg d'Hanens *de Brouckère* *de Celles* *de Coninck* *de Decker* *de Foere* *de Gaesebeke* *de Ghellink* *de Grez* 
+			*de Haerne* *de Jonghe* *de Jonghe d'Ardoye* *de Langhe* *de Leeuw* *de Leuze* *de Man* *de Meer de Moorsel* 
+			*de Meester* *de Mérode* *de Muelenaere* *de Pelichy* *de Renesse* *de Robiano* *de Rodes* *de Roo* *de Ryckere* 
+			*de Smet* *de Theux de Meylandt* *de Tiecken* *de Viron* *de Woelmont* Dayeneux Delberke Delehaye Delwarde *Desmanet de Biesme* 
+			Destouvelles Deswert Devaux Dhanis Domis *du Bois* Fransman Gelders Geudens Goethals Hennequin *Huysman d'Annecroix* 
+			Jacobs Janssens Joos Jottrand Kockaert Ledeganck Lefebvre Liedts Marcq Meeus Morel Moyersoen Mulle Nypels 
+			Ooms Osy Peemans Peeters Petens Rodenbach Roels Rosseuw Rouppe Rutten Serruys Schollaert Speelman Simons Struye 
+			*Surlet de Chokier* *Surmont de Volsberghe* Terlinden Teuwens Tilkens Thienpont *van Caloen* *van Casteel* *van Crombrugghe* 
+			*van de Kerchove* *van de Werve de Vorselaar* *van de Weyer* *van den Broucke* *van den Hove* *van der Belen* *van der Bruggen* 
+			*van der Burch* *van der Eecken* *van der Linden* *van der Linden d'Hooghvorst* *van der Looy* *van Dievoet* *van Dorpe* 
+			*van Havre* *van Hoobrouck* *van Innis* *van Meenen* *van Neste* *van Snick* *van Tongerloo* *van Volden de Lombeke* *van Zeeland* 
+			Vandive Verbeke Vercruysse Verduyn Vergauwen *Verseyden de Varick* Verwilghen *Vilain XIIII* Wallaert Wannaar Werbrouck Wyvekens
+		}
+		ship_names=
+		{
+			*Boudewijn*
+			*De Vlaamse leeuw*
+			Gent Guldensporenslag *Gwijde van Dampierre* 
+			Hasselt
+			*Jacob van Artevelde*
+			*Karel de Goede* *Kerel van Vlaanderen*
+			Leuven
+			*Manneken Pis* Mechelen
+			*Pieter de Coninck*
+			Schelde
+			*Tijl Uilenspiegel*
+			*De Vlaamse Leeuw* Ambiorix *Godfried van Boullion* *Guldensporenslag* *Gwijde van Dampierre* 
+			*Jacob van Artevelde* *Graaf Boudewijn* *Graaf van Vlaanderen* *Jan Baert* *Jacob van Brugge* 
+			*Willem van Rubroeck* *Simon van Salingen* *Joris van Spilbergen* *Willem Usselincx* Mercator
+		}
+		army_names=
+		{
+			*Leger van $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Vloot van $PROVINCE$* 
+		}
+	}
+	french_knight=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=FrenchGC
+		base_country_V2=EU3_french_knight
+		male_names=
+		{
+			Édouard Érrard Étienne
+			Adalbert Adémar Adrien Aimery Alain Aldebert Aldéric Alphonse Amaury Amédée Ancel André Angelbert Antoine Archambaud Arnaud Arnault Arnoul Aubry Aymar
+			Barthélémi Baudouin Benoît Bérenger Bernard Bertrand Bohemond Boson Bouchard
+			Centule Charles Clotaire
+			Ebbon Enguerrand Eudes Eustache Evrard
+			Foulques François Frédéric
+			Géraud Gargamel Gaucher Gaucelin Gauthier Geoffroy Géraud Gelduin Gilbert Gilles Godefroy Guichard Guiges Guilhem Guillaume Guy
+			Hélie Hamelin Henri Herbert Hildebert Hugues Humbert
+			Jacques Jaufré Jaspert Jean Josselin Jourdain Julien
+			Léon Léonard Lothaire Louis Loup
+			Manassès Mathieu Maurice Nicolas
+			Ogier Onfroy Orson Othon
+			Payen Philippe Pierre
+			Raimbaut Raoul Raymond Raynaud Renaud Richard Robert Robin Roger Rorgon Rorgues Roubaud
+			Savary Sigismond Simon
+			Thibault Thiébaut Thierry Thomas
+			Valeran
+			Yves
+			Achille Adolphe Aimable Armand August Augustin
+			Daniel Denis Elie Éttiene Eugène Félicien Félix Fernand
+			Georges Gustave Hubert Hugo
+			Joseph Jules Lazare Léopold Leroy Lucien Matthieu Michel
+			Patrice Paul Thomas
+		}
+		female_names=
+		{
+			Éléonore Élodie Étiennette
+			Adèle Adalmode Adelaide Adelinde Agathe Agnès Aléarde Alice Aliénor Alix Almodis Amelie Anne Antoinette Arsinde Aude Aurengarde
+			Béatrice Béatrix Belleassez Benoîte Bérengère Berthe Blanche Bonne Bourgogne Bourguigne
+			Cécile Cathèrine Charlotte Constance
+			Denise Douce
+			Echive Eglantine Elisabeth Emma Ermengarde Ermessinde Esclarmonde Euphrosine Eustachie Eve
+			Gerberge Gisèle Guillaumette
+			Héloise Helvis Hodierne Ide Ida Ildégarde Isabeau Isabelle
+			Jeanne Judith Julienne
+			Mafalda Mahaut Margot Marguerite Marie Marthe Mascarose Mathilde Mélisande Mélisende Mélusine
+			Péronelle Pernelle Perinne Pernette Plaisance
+			Raymonde
+			Sarrazine Solène Sophie Stéphanie Sybille
+			Tiburge
+			Valence
+			Yolande
+		}
+		leader_names=
+		{
+			*d'Aubusson* *d'Amboise*
+			*de Blanchefort*
+			*del Carretto* *de la Cassière* *de Clermont-Gessant* Cotoner Carafa Caracciolo *de Corneillan*
+			Despuig
+			*de Fonseca*
+			Garzez *de Gozon*
+			*de Homedes* *von Hormpesch* *de Heredia*
+			*de Juilliac*
+			*de Lastic* *de L'Isle-Adam* *de Lascaris-Castellar*
+			*de Milly* *del Monte*
+			*de Naillac*
+			Orsini
+			*del Ponte* *de Paule* *Perellos y Roccaful* *de Pins*
+			*de la Rivère* *de Redin* *de Rohan-Polduc*
+			*de Saint-Jaille* *de la Sengle*
+			*de Texada*
+			*de La Vallette-Parisot* *de Verdala* *de Vasconcellos* *de Vilhena* *de Villaret*
+			*de Wignacourt*
+			Zacosta Zondadari
+			Anthoine *Baraguey d'Hilliers* Bazaine Billot Bosquet *Boué de Lapeyrère* Bouët-Willaumez Boulanger Bourbaki
+			Bugeaud Caillard Canrobert Courbet Cousin-Mountauban Davout *de Bourbon* *de Castellane* *de Castelnau* *de Gaulle* 
+			*de Langle de Cary* *de MacMahon* *de Montaignac* *de Saint Arnaud* d'Orleans Dubail Dubois Duchêne Dupetit-Thouars Exelmans
+			Foch Forey *Franchet d'Espèrey* Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
+			Jaurès Joffre Lebouef Lyautey Murat *Ney d'Elchingen* Nivelle Péllissier Petain Vaillant
+		}
+		ship_names=
+		{
+			*The Blessed Gerard*
+			*Raymond du Puy de Provence*
+			*Auger de Balben*
+			*Arnaud de Comps*
+			*Gilbert d'Aissailly*
+			*Gastone de Murols*
+			*Gilbert of Syria*
+			*Roger de Moulins*
+			*Hélion de Villeneuve*
+			*Hermangard d'Asp*
+			*Garnier de Naplous*
+			*Geoffroy de Donjon*
+			*Alfonse of Portugal*
+			*Geoffrey le Rat*
+		}
+		army_names=
+		{
+			*Armée de $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Flotte de $PROVINCE$*
+		}
+	}
+	georgian=
+	{
+		graphical_culture=easterngfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=GEO
+		male_names=
+		{
+			Adarnase Aghsartan Aleksandre Andronik Anzori Archil Ashot Bagrat Bakar Davit Demetre Demna Djavakhi Erekle Gabrieli Gagiki Giorgi Grigoli Guaram Gubaz
+			Gurgen Iese Ioane Ishkhanik Iveri Jarji Kaikhosro Kakhi Koba Konstantine Kvarkvare Kvirike Levan Luarsab Malkhazi Mamia Merab Mikheil Mukhran Nerse Nikoloz Okhropir Orbeli
+			Padla Samoeli Shanshe Shota Simon Stefanoz Sumbat Teimuraz Tornike Ushisha Vache Vakhtang Zurab Zviad
+			Iesse Kaihosro *Rostom-Mirza* Bebur Birtveli Djurkha Gulikho Kartlos Koki Kviria Lukhum Mushni Revaz Takha Torgva Tsotne Xareba Zviadi
+			Akaki Andria Besarion Eduard Ekvtime Evgeni
+			Filipp Galaktion German Givi Grigol Ilia Ioseb Ivane
+			Jansung Jemal Konstantine Leo Luka Meliton Murman
+			Noe Otar Polikarp Radish Sargis Sergo Shalva Solomon
+			Sulkhan Tingiz Valerian Vasil Vladimer Zakharia
+		}
+		female_names=
+		{
+			Ana Baia Bedisa Borena Chiora Chito Dali Dedika Duda Dzabuli Elene Eliso Endzela Gogutsa Gulchara Guliko Gulisa Gulvardi Guranduht Gvantsa Ia Judjuna
+			Kekela Ketevan Lamara Lamzira Lela Mariami Mathiko Mthvarisa Mzekhar Natia Nino Rusudan Sanatha Shorena Shukhia Suliko
+			Tamari Taplo Tinatini Tsiala Vardo
+			Thamar
+		}
+		leader_names=
+		{
+			Andronikashvili
+			Asrenidze Avashvili 
+			Bakradze Chkheidze 
+			Chkhenkeli Devdariani
+			Gabashvili Gardapkhadze
+			Gedevanishvili Gegechkori
+			Gulisashvili Gvazava
+			Javakhishvili Karalashvili
+			Kereselidze Kvinitadze 
+			Lomtatitdze Maglakelidze
+			Mazniashvili Natadze
+			Nikoladze Robakidze
+			Sharashidze Surguladze
+			Takaishvili Tsereteli
+			Tsulukidze Vachnadze
+			Zaldastanishvili Zhordania
+			Abkhazi Amilakhvari Avalishvili Bagrationi Balanchivadze Barakadze Chabukiani Chavchanadze Chkhubianashvili
+			Cholokashvili Chubinashvili Dodashvili Eliava Gokhieli Gordeli Javakhisvili Jugashvili Jugheli
+			Kakabadze Kandelaki Kartvelishvili Kavtaradze Khelaia Khvitia Leselidze
+			Makharadze Mikeladze Muskhelishvili Nioradze Nutsubideze Otskheli Ramishvili
+			Razikashvili Sabinin Shanidze Sukhisvili Tabidze Tsintsadze Uznadze
+		}
+		ship_names=
+		{
+			Aragveti Anacopia Artaani Abkhazeti
+			Bichvinta Batomi
+			Dmanisi Demetre
+			Ereti
+			Geguti Gelati
+			Kutatsi Kharnabuji Kura
+			Lasharisjvari Lore
+			Mtkvari
+			Narikala
+			Ruisi Racha
+			Seti Svaneti
+			Tamar Telavi Tashiri
+			Urbnisi
+			Chavchavadze 		
+		}
+		army_names=
+		{
+			*armiis dan $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*gemebis dan $PROVINCE$*
+		}
+	}
+	greek_orthodox=
+	{
+		graphical_culture=easterngfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=EU3_greek_orthodox
+		male_names=
+		{
+			Antonios Athanasios Basileios Chariton Dionysios Dositheos Eustathios Eustratios Euthymios
+			Gennadios Georgios Gerasimos Germanos Gregoras Ioannes Iosephos Isidoros Kallistos Konstantinos
+			Kosmas Leon Leontios Loukas Makarios Manuel Maximos Metrophanes Michael Neophytos Nephon Niketas
+			Nikolaos Nilos Matthaios Paulos Sergios Sisinnios Symeon Theodoros Theodosios Theodotos
+			Alexandros Pavlos Andreas
+			Aineias Alexeios Ambrosios Bartholomaios Chrysanthos
+			David Demetrios Diogenes Eirenaios Elpidios Gregorios Hektor Herakles Iason Kastor Nestor Nikomedes
+			Orestes Palaemon Pelagios Petros Philemon Philippos Prokopios Skantarios Stefanos Thomas
+			Adamantios Anastasios Aristides Augustinos Benizelos Charalambos
+			Charilaos Diomedes Eleutherios Emmanuel Epameinontas Euripides Gennaios Ilias
+			Kitsos Kyriakos Kyriakoules Leonidas Markos Mikhael Militiades
+			Nikolaos Odysseas Othon Panagiotes Sofokles Soteres Spyridion Spyros
+			Staikos Stylianos Themistokles Tharyvoulos Tzannes Vasos Viktor Zenobios
+		}
+		female_names=
+		{
+			Adriane Agathe Agne Aikaterine Alexandra Alexeia Anastasia Anna Anthe Anthousa Antipatra Antonia Apollonia Athanasia Barbara Basillike
+			Chrysogone Damiane Demetra Dionysia Dorothea Aigidia Eirene Elaiodora Epiphania Eudokia Eudoxia Eugenia Eulalia Eunike Euphemia Euphrasia Euphrosyne
+			Eupraxia Eusebia Eustathia Evanthia Gabrielia Garyphallia Georgia Gregoria Helene Hypatia Ioanna Ioulia Iouliana Ioustina Kale Konstantia Konstantine Kyra Kyriake
+			Leontia Margarita Maria Markia Martha Melissa Nikarete Nikoletta Nonna Parthena Pavlina Pelagia Petronia Philippa Phyllis Pulcheria Rhodanthe Romane Romylia Sergia Sibylla
+			Simonis Sophia Stephania Thekla Theochariste Theodora Theodosia Theognosia Theoktiste Theophano Thomais Valeria Viviana Xene Zenobia Zoe
+		}
+		leader_names=
+		{
+			Argyros Artavasdos
+			Basileios
+			Diogenes Doukas
+			Monomachos
+			Romanos
+			Staurakios Stratiotikos
+			Vatakes
+			Tzimiskes
+			Charalambes Christakis-Zografos Dangles Dousmanes Foumes Gonatas Hatzianestes Kallerges Kanares Katsimiros
+			Kolokotrones Kondyles Kountouriotes Kriezes Makriyannes Manos Mavrocordatos Mavrovouniotis Metaxas Mouskos
+			Nider Othonaios Palaskas Pangalos Papadiamantopoulos Papadopoulos Papagos Papoulas Parakevopouolos Plapoutas
+			Plastiras Sapountzakis Sarafes Smolenskes Sofoules Soutsos Spyromilios Staikopoulos Stanotas *tes Elladas*
+			Trikoupes Tsakalotos Tsolakoglou Typaldos-Alfonsatos Tzavelas Vassos Venizelos Voulgares Zaimes Zymvrakakes
+		}
+		ship_names=
+		{
+			Abraham Adam Angeloi Archangeloi *Archangelos Gabriel* *Archangelos Mikhael* *Archangelos Raphail*
+			Cherouveim *Soma tou Christou* *David Basilia* Kyriarkes
+			*Hellenas Episkopos* Eva *Ioannes ho Vaptistes* Hierousalim
+			*Iesous Christos Sotiras* *Hagios Georgios* Iob Isaakios Moyses Noe
+			*Pateras kai Voskos* *Oikoumenikos Patriarches* Arches Kyvernesi
+			*Basilias Solomon* *Hagios Eustratios* *Hagios Theodosios* *Hagios Konstantinos* *Hagios Maximos*
+			*Hagios Ioannes* *Hagios Makarios* *Hagios Bartholomaios* *Hagios Antonios*
+			*Hagios Athanasios* *Hagios Kyrillos* *Hagios Markos* *Hagios Euthymios*
+			*Hagios Neophytos* *Hagios Anastasios* *Hagios Klemes* *Hagia Xenia*
+			*Hagios Iosephos* *Hagios Gregorios* *Hagios Xenophon* *Hagios Petros* *Hagios Isaakios*
+			*Hagios Matthaios* *Hagios Ignatios* *Hagios Hippolytos* *Hagios Pavlos* *Hagia Eudokia*
+			*Hagios Philippos* *Hagios Symeon* *Hagia Anna* *Hagios Isidoros* *Hagia Agatha*
+			Serapheim *Hagios Photios* *Hagios Parthenios* *Hagios Tryphon* *Hagios Gavriil*
+			*Hagios Nikephoros* *Hagios Haralambos* *Hagia Theodora* *Hagios Meletios*
+			*Hagia Sophia* *Hagios Martinianos* *Hagios Auxentios* *Hagios Onesimos*
+			*Hagios Flavianos* *Hagia Maria Isapostola* *Hagios Leon Megas*
+			Thronos *Parthenos Maria* Aretes
+		}
+		army_names=
+		{
+			*Strato ek $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Stolo ek $PROVINCE$*
+		}
+	}
+	greek=
+	{
+		graphical_culture=easterngfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=GRE
+		male_names=
+		{
+			Adrianos Akakios Alexandros Anatolios Andreas Andronikos Anthemios Anthimos Antiochos Antonios Apollonios Arsenios Artemios Athanasios Bardas
+			Basileios Belisarios Boethios Bosporios Christophoros Chrysogonos Damianos Daniel Dionysios Dorotheos Eudoxios Eustratios
+			Eugenios Euphemios Eusebios Eustathios Evangelos Gabriel Gennadios Georgios Gerasimos Germanos Gregoras Hektorios Helias Herakleios Hierotheos Himerios
+			Hippolytos Hypatios Iakobos Ignatios Innokentios Ioannes Ioannikios Iordanes Ioseph Isaakios Isaias Isidoros Ioulianos Ioustinianos Ioustinos Kaisarios
+			Kallinikos Kallistos Komitas Konstantinos Konstantios Konstas Kosmas Kyrillos Kyros Laurentios Lazaros Leon Leontios Loukas Makarios Manuel
+			Matthaios Maurikios Maximos Megistos Methodios Michael Narses Neophytos Nikephoros Niketas Nikodemos Niphon Pamphilios Pankratios Pantoleon Paschalis
+			Pavlos Philaretos Philippos Philotheos Phokas Photios Polykarpos Porphyrios Pyrros Raphail Romanos Sabas Samuel Serapion Sebastianos Sergios Stephanos
+			Staurakios Symeon Symmachos Theocharistos Theodoros Theodosios Theodotos Theodoulos Theoktistos Theophanes Theophilos Theophylaktos Tiberios Traianos
+			Timotheos Tryphon Valerios Zacharias Zenon
+			Aineias Alexeios Ambrosios Bartholomaios Chrysanthos
+			David Demetrios Diogenes Eirenaios Elpidios Gregorios Hektor Herakles Iason Kastor Nestor Nikomedes
+			Orestes Palaemon Pelagios Petros Philemon Philippos Prokopios Skantarios Stefanos Thomas
+			Adamantios Anastasios Aristides Augustinos Benizelos Charalambos
+			Charilaos Diomedes Eleutherios Emmanuel Epameinontas Euripides Gennaios Ilias
+			Kitsos Kyriakos Kyriakoules Leonidas Markos Mikhael Militiades
+			Nikolaos Odysseas Othon Panagiotes Sofokles Soteres Spyridion Spyros
+			Staikos Stylianos Themistokles Tharyvoulos Tzannes Vasos Viktor Zenobios
+		}
+		female_names=
+		{
+			Adriane Agathe Agne Aikaterine Alexandra Alexeia Anastasia Anna Anthe Anthousa Antipatra Antonia Apollonia Athanasia Barbara Basillike
+			Chrysogone Damiane Demetra Dionysia Dorothea Aigidia Eirene Elaiodora Epiphania Eudokia Eudoxia Eugenia Eulalia Eunike Euphemia Euphrasia Euphrosyne
+			Eupraxia Eusebia Eustathia Evanthia Gabrielia Garyphallia Georgia Gregoria Helene Hypatia Ioanna Ioulia Iouliana Ioustina Kale Konstantia Konstantine Kyra Kyriake
+			Leontia Margarita Maria Markia Martha Melissa Nikarete Nikoletta Nonna Parthena Pavlina Pelagia Petronia Philippa Phyllis Pulcheria Rhodanthe Romane Romylia Sergia Sibylla
+			Simonis Sophia Stephania Thekla Theochariste Theodora Theodosia Theognosia Theoktiste Theophano Thomais Valeria Viviana Xene Zenobia Zoe
+		}
+		leader_names=
+		{
+			Argyros Artavasdos
+			Basileios
+			Diogenes Doukas
+			Monomachos
+			Romanos
+			Staurakios Stratiotikos
+			Vatakeseva
+			Tzimiskes
+			Charalambes Christakis-Zografos Dangles Dousmanes Foumes Gonatas Hatzianestes Kallerges Kanares Katsimiros
+			Kolokotrones Kondyles Kountouriotes Kriezes Makriyannes Manos Mavrocordatos Mavrovouniotis Metaxas Mouskos
+			Nider Othonaios Palaskas Pangalos Papadiamantopoulos Papadopoulos Papagos Papoulas Parakevopouolos Plapoutas
+			Plastiras Sapountzakis Sarafes Smolenskes Sofoules Soutsos Spyromilios Staikopoulos Stanotas *tes Elladas*
+			Trikoupes Tsakalotos Tsolakoglou Typaldos-Alfonsatos Tzavelas Vassos Venizelos Voulgares Zaimes Zymvrakakes
+		}
+		ship_names=
+		{
+			Hydra
+			Mikonios
+			Pezopoulos
+			Simitzopoulos
+			Themistokles
+			Votsis
+			Aspes *Basileus Konstantinos* Constantinopolis Sparta Leonidas *Mégas Aléxandros* Pericles Olympias
+			Karteria Panopi Pliksavra Afroessa Sfendoni Spetsai Psara *Basilissa Theodora* 
+			*Nikolis Apostolis* Tombazis Poros *Andreas Vokos* *Laskarina Bouboulina* *Constantine Kanares* Plixavra Averou 
+			*Navarchos Miaoules* *Georgios Averou* Helle *Antinaurkos Condoriotes* *Lambros Katsonis* Agamemnon Gyáros Tilemachos
+			Hellas Navarino Psara *Prinkeps* Maxamillianos *Mount Othrys* Thíva Skirka Heratos Aeolus
+			Aetos Ierax Leon Panthir Hephaistos Makedonía Évia Zakynthos
+		}
+		army_names=
+		{
+			*Strato ek $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Stolo ek $PROVINCE$*
+		}
+	}
+	hessian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=HED
+		male_names=
+		{
+			Adalbert Adam Adolf Albrecht Almerich Amadeus Andreas Anselm Arnold Arnulf Augustin 
+			Baldemar Baldewin Berengar Bernhard Berthold Bruno Burchard
+			Caspar Christoph
+			Diether Dietmar Dietpold Dietrich Dietwin
+			Eberhard Eckhard Ehrenfried Eginolf Ekbert Emelrich Emich Engelbrecht Erich Ernst Ezzo
+			Folkhard Folkmar Franz Friedrich
+			Gebhard Georg Gerhard Gerlach Giselbert Gottfried Gotthard Gottschalk Gotzelo Guntram Günzel
+			Hartmann Hartwig Heinrich Herbert Hermann Hesso Hugo Humbert
+			Jakob Johann
+			Karl Karloman Konrad Kuno
+			Lambert Leopold Lothar Ludolf Ludwig Luitpold Lutbert
+			Magnus Manfred Markward Martin Mathias Meinhard Michael Nikolaus Norbert
+			Ordulf Otto
+			Peter Philipp Poppo
+			Rudger Reinhard Rudolf Ruprecht
+			Siegfried Sieghard Siegmund Simon Stefan
+			Theodorich Thietmar Thomas
+			Udo Ulrich
+			Viktor
+			Waldemar Walram Walther Welf Wenzel Werner Widukind Wigerich Wilhelm Wolfgang Wolfram
+			Moritz Christian Georg Leopold Maximilian *Philipp Ludwig* Adelmar Barnabas
+			Denis Egon Gottlieb Gregor Hagan Helmut Isaak Isidor Ivo Joachim Joseph
+			Kreszens Oskar
+			Alexander Alfons Alois Anton Arthur
+			Edmund Eduard Engelbert Erwin Ferdinand
+			Günther Gustav Horst
+			Julius Kurt Leonhard Lorenz
+			Reinhold Theodor Walter
+		}
+		female_names=
+		{
+			Adela Adelheid Adelinde Agathe Agnes Alberade Amalberga Amalie
+			Barbara Beatrix Benedicta Berchte Berta Binhilde Brunhilde
+			Cecilie Cothilda Christine
+			Dorothea
+			Elisabeth Emma Engeltraud Ermengard Eufemia
+			Friedrica Frida 
+			Gerberga Gerhild Gertrude Gisela Gudrun Gunhilda
+			Hedwig Heilwiva Heike Helene Helga Henrike Hildeburg Hildegard
+			Ida Ilsa Inge Irmele Irmeltrud Irmgard Isentrude
+			Judith Jutte
+			Katharina Karlotte Klara Klementia Konstanze Kriemhild Kunigunde 
+			Luitgard
+			Margarete Maria Mathilde Mechtild
+			Oda Osterhild
+			Richara Richenza Richwara Romilda 
+			Serhilda Sofie Sybille
+			Trude
+			Ulrike Ursula Ute
+			Walpurga Wilhelmina Winfrida Wulfhilde
+		}
+		leader_names=
+		{
+			Arnsberg
+			Bebra
+			Eder
+			Fulda
+			Hamm
+			Kassel Knyphausen
+			Lippstadt
+			Münden
+			Paderborn
+			*von Scheideck*
+			Beck-Rzikowsky Blos Dankl Eisner Geiss Goering Hainisch Haus Held Hellpach
+			Hoffmann Hummel Köhler Mergenthaler Miklas Remmele Schmitt Schobber Seitz Steeb
+			Stolzer Trunk *von Baden* *von Benedek* *von Böhm-Ermolli* *von Brudermann* *von Clam-Gallas* *von der Tann* *von Dietrich* *von Gablenz*
+			*von Grünne* *von Habsburg* *von Hartmann* *von Haynau* *von Hess* *von Hohenhausen* *d'Aspre von Hoobreuk* *von Hortstein* *von Hötzendorf* *von Kirbach*
+			*von Kobratin* *von Schönburg* *von Tegetthoff* *von Uchatius* *von Wittelsbach* *von Württemberg* *von Zahringen* Wagner Wittmann *zu Hohenlohe*
+		}
+		ship_names=
+		{
+			*Heinrich* Kassel Werra Lahn Fulda
+			Wasserkuppe Stirnberg Hanau Marburg Wetzlar
+			*Ludwig* Gießen Landgraf *Von Gagern* *Philipp der Großmütige* Fridericus
+		}
+		army_names=
+		{
+			*Armee von $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotte von $PROVINCE$*
+		}
+	}
+	hungarian=
+	{
+		graphical_culture=easterngfx
+		graphical_culture_V2=AustriaHungaryGC
+		base_country_V2=HUN
+		male_names=
+		{
+			Ábel Ádárn Ágoston Álmos Árpád Õdön Alajos Ambrus András Antal Attila Bálint Béla Balázs Benedek Bernát Bertók Bertalan Boldizsár Bonuslo
+			Borisz Csák Csaba Csongor Dénes Dömötör Dezsõ Domoszló Donát Elek Elemér Endre Ernõ Fulöp Ferenc Frigyes Gábor Gábriel Gáspár Géza Gazsi
+			Gellért Gergely György Gyula Imre István Iszák Jákob János József Jenõ Kálmán Károly Konrád Kornél Kristóf Lászlo Lázár Lõrinc Lájos
+			Lampert Levente Lukács Márk Márton Máté Mátyás Móric Mózes Mihály Miklós Nándor Orbán Oszkár Pál Péter Sámuel Sándor Salamon Saul Soma
+			Szilveszter Tádor Tacsony Tamás Tibor Tivadar Vazul Vencel Vilmos Zoltán Zsigmond Zsolt
+			Ulászló Albert Anasztáz Branabás Betalan Boldiszár Dávid Edvárd Ernö Jenö Jószef Kázmér Kelemen Lörinc Lukäcs Otto Patrik Simon
+			Arisztid Aurél Béni
+			Dániel Éliás
+			Ignác Izidor *József Manes*
+			Krisztian Lajos László Manó Mór Myklós
+			Ödön Péter Rafael
+
+		}
+		female_names=
+		{
+			Ágnes Éva Adelaida Agáta Amália Angyalka Anikó Aranka Berta Borbála Csilla Csillag Czenzi Dorottya Edit Emõke Emese Erika Erzsébet Eszter
+			Etel Euphemia Gizella Györgyi Hajnal Hedwig Ibolya Ildikó Illona Irén Jácinta Józsa Júlia Jolán Judith Kamilla Katalin Kinga Klára
+			Konstancia Krisztina Kunigunda Luca Mária Márta Magdolna Margaréta Margit Matild Natália Odola Orsolya Panni Piroska Rózsa Sára Sarolt
+			Skolasztika Sophia Tundér Terezia Viola Virág Zoltána Zsófia Zsanett Zsuzsa
+			Anna
+		}
+		leader_names=
+		{
+			Andrássy Alvinczy
+			Bocskay Bethlen Báthory Batthyány Benovský Beleznay
+			Csák
+			Dessewffy
+			Esterházy
+			Festetics Frangepán
+			Garay
+			Hunyadi Hadik Horthy
+			Kinizsi Károlyi Kán *de Kovats* Kemeny
+			Lackovic' Losonci
+			Mészáros Milványi
+			Nadasdy
+			Ozoray
+			Rákóczi Rozgonyi
+			Šubic' Széchenyi
+			Thököly Teleki
+			Zrinski Zápolya Zichy
+			Apponyi Aulich Bacher Baross Beöthy Bothmer Damjanich
+			Egressy *Erényi Ullmann* Farkas *Frakasházi Fischer* Goldziher Gungl Hauszmann Heller Izsó
+			Joseffy Katona Kaufman Kéler Kiss Knezich Kogutowicz Lahner Lázár Leiningen-Westerburg
+			Lichtenstein Liszt Mikszáth Molnár Nagy-Sándor Österreicher Ottinger Perczel Poeltenberg Reményi
+			Rohr Schweidel Szemere Szlávic Tersztyansky Török Varga Vécsey *von Benedek*
+		}
+		ship_names=
+		{
+			Aranybulla 
+			Arpad
+			Magyar
+			Sigismund
+			*Szent Istvan kiraly*
+			*Karoly Robert*
+			*Nagy Lajos*
+			Laszlo
+			Kalman
+			*Szent Istvan* Zrinyi Szigetvár Sava Bodrog Szamos Körös Maros Leitha Csepel Lika Orjen Tátra Triglav Dinara Csikós Pandúr Réka Turul Huszár Ulan 
+		}
+		army_names=
+		{
+			*Hadsereg a $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotta a $PROVINCE$*
+		}
+	}
+	karelian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=FIN
+		male_names=
+		{
+			Alik Hasaba Kako Kharuchi Kolik Mandak Nabtiko Nenyts Nga Ngënoh Noumea Num Nyalku Panay Pudak Salinder Samatu Sarak Sirtya Somatu Syudbya Tatva Tolik Vesei Wayngachi Xëryuchi Yadne Yapti Yar Yavlad Yurak
+		}
+		female_names=
+		{
+			Atpälha Auli Galya Ilme Kat Khatyako Kontäw Kujku Laptsui Ngeva Senda Syeju Tada Tadane Yar
+		}
+		leader_names=
+		{
+			Adlercreutz Ahlqvist
+			Berg Björn Blom 
+			Cronstedt
+			Dufva
+			Ehrensvärd *von Essen* 
+			Glad
+			Haataja Helander Helin Hiltunen Horn
+			Ilkka Isotalo
+			Järvelä Järnberg
+			Kesäläinen Klingspor Kortelainen Krouvari Kyrö
+			Liljencrantz Länkinen
+			Pentti Pietilä 
+			Rehnskiöld Renner Rokka Rutanen
+			Sakari Sjögren Stålhandske Stoor
+			Tapani Termonen Turunen
+			Wilander
+		}
+		ship_names=
+		{
+			Agricola Aura
+			Borgå
+			Helsingfors Hakkapeliitta
+			Ilmarinen
+			Kullervo Karelen Kymi
+			Lemminkäinen
+			Oulu
+			*Per Brahe*
+			Sampo *St. Henrik*
+			Tavastehus
+			Väinämöinen Vasa Vanda Vuoksi
+			Åbo
+		}
+	}
+	lombard=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=ItalianGC
+		base_country_V2=ITA
+		male_names=
+		{
+			Abbondanzio Abbondio Abelardo Abelino Achille Adalberto Adelfo Adelmio Adelmo Adone Adriano Agapito Agostino Aimone Alamanno Alarico
+			Albano Alberico Alberto Albino Alboino Alcide Aldobrandino Aleardo Aleramo Alessandro Alessio Alighiero Alvise Ambrogio Amedeo Anastasio  Andrea Angelo Annibale Anselmo Antonino Antonio Antoniotto Arcibaldo Arderico Armando Arnolfo Arrigo Arsenio Artemio Ascanio Astorre
+			Atenolfo Attilio Augusto Aurelio Ausilio Ausonio Averado Azzo Azzone Baldassarre Baldovino Barnaba Bartolomeo Basilio Bassiano Basso
+			Battista Beltrano Benedetto Benvenuto Berardo Bernabò Bernardo Berto Bertoldo Biagio Bonaventura Bonifacio Borso Bruno Bruto Buonconte
+			Buoso Callisto Camillo Candido Cangrande Carlo Cassio Castore Cataldo Catone Cecco Cesare Chiaffredo Chiano Ciro Ciuccio Claudio Clemente
+			Comita Conone Cornelio Corradino Corrado Cosimo Cosma Costante Costantino Costanzo Cristoforo Damiano Davide Demetrio Dioniso Doménico
+			Durante Eduardo Elio Emmanuele Ennio Enrico Enzio Enzo Ercole Eriprando Ermenegildo Ettore Eugenio Ezio Ezzelino Fabrizio Fausto Federigo
+			Felice Ferdinando Ferruccio Filippo Fiorello Flavio Folco Fortunato Fosco Francesco Fresco Gabriele Gabrino Gaetano Galasso Galeazzo
+			Galeotto Gaspare Gastone Gelasio Gentile Geraldo Gerardo Germano Gerolamo Gherardo Giacinto Giacomo Gian Gianfranco Gianleone Giano
+			Giberto Gilberto Giolio Giordano Giorgio Giovanni Giulio Giuseppe Goffredo Gregorio Gualtiero Guarnito Guerrino Guglielmo Guido Guidone
+			Guigliadore Iacopo Igino Innocenzo Ippolito Isnardo Jacopo Lamberto Landolfo Landone Lanfranco Lattanzio Lazzarino Lazzaro
+			Lealdo Leonardo Leone Leonello Leopoldo Libero Lionello Livio Lodovico Lorenzo Luca Luchino Lucio Luigi Malacresta Manfredo Manuele
+			Marco Mariano Marino Mario Marsiglio Martino Massimo Mastino Matteo Merigo Michelangelo Michele  Napoleone Nazareno Nestore Niccolò Nicola
+			Nino Nolfo Oberto Obizzino Obizzo Oddone Omero Onorio Oreste Orlando Ottavio Ottobono Ottone Pagano Pancrazio Pandolfo Paolo Pasquale
+			Patrizio Pellegrino Pericle Pietro Pio Prospero Radul Raimondo Rainero Raineri Riccardo Rinaldo Rizzardo Roberto Rodolfo Rolando
+			Rosso Ruggiero Salinguerra Salvatore Salvestro Sante Saverio Sciarra Sebastiano Secondotto Serafino Sergio Sesto Settimio Severino Severo
+			Silvano Silvestro Simone Simonetto Sinibaldo Sinucello Sozzo Spinetto Stefano Stentore Taddeo Tedaldo Tedice Teodoro Tibaldo Tiziano Tommaso
+			Torgodorio Torquato Ubaldo Uberto Ugo Ugoccione Ugolino Umberto Urbano Valentino Valerio Vincentello Vincenzo Virginio Vitale Vittore Vittorio Zaccaria
+			Alessandro Benito
+			Faustino
+			Fiorenzo Gennaro
+			Raffaele Silvio Tancredi
+			*Gian Galeazzo* *Filippo Maria* *Galeazzo Maria* *Giancarlo* *Giovanni Maria* *Lodovico Maria* *Massimiliano* Ermes *Ascanio Maria* Ottaviano
+			*Sforza Maria* Emanuele Geronimo Marcello Raniero Timoteo
+		}
+		female_names=
+		{
+			Abelina Adalberta Adalgisa Adelaida Adelasia Adelia Adriana Agalina Agnese Agostina Albina Alda Alessandra Alfonsina Alisia Aloisia
+			Amalia Ambrosia Anastasia Anna Antonella Antonia Argentina Augusta Aurelia Ausilia Ausonia Beatrice Benedetta Benilde Berenice
+			Berta Bianca Bona Brunilde Camilla Candida Caracosa Carla Carola Caterina Cecilia Clara Claudia Clorinda 
+			Clotilde Constanza Cornelia Delinda Dora Edda Elena Eleonora Elisa Elisabetta Ermenegilda Eudossia Eugenia
+			Fausta Felicia Felicita Filippa Filomena Flavia Flora Fortunata Fosca Francesca Froizza Giacinta Ginevra Giovanna Giuditta Giulia 
+			Giuseppa Ippolita Isabella Joscella Laura Lavinia Leonide Letizia Lidia Livia Lodovica Lucia Lucinetta Lucrezia Maddalena Marcella 
+			Margherita Maria Mariana Marietta Martina Matilda Micaela Nunzia Paola Patrizia Renata Ricciarda Silvana
+			Sofia Stefania Tiziana Tomasina Valentina Violante Virginia
+
+		}
+		leader_names=
+		{
+			Acton Albricci Badoglio Baldissera Baratieri Bava-Beccaris Cadorna Cagni Canevaro Capello
+			Caviglia Ceccherini Cialdini Cusani d'Absburgo-Toscana d'Austria-Este Dezza *di Borbone di Parma* *di Robilant* *di Savoia*
+			*di Savoia-Aosta* Emo Fanti Fara Filomarino Garibaldi Giardino Govone *La Màrmora* Mambretti 
+			Menabrea Orengo *Pacoret de Saint Bon* Pecori-Giraldi *Pellion di Persano* Pelloux Perruchetti Pianelli Porro
+			Presbitero Ramorino Ricotti-Magnani Sacchi Saletta Sanna Solari *Thaon di Revel* Vaccari Zupelli
+			Adelasio Aldini Alessandri *Arborio Mella* *Barbiano Belgioioso* Bargnani *Bigliori di Lava* Birago Borromeo Brunetti
+			Caetani *di Campofregoso* Caracciolo Carafa *di Cardé* *del Carreto* Containi Franchi Ghislieri Gonzaga *Grimaldi di Busca* *de Guzman*
+			Lamberti *de Leiva* Luosi *Luserna Bigliori* *Luserna della Torre* Mancini *Medici di Marignano* Melzi *del Monte* Moscati
+			Odescalchi *Paleologi Montferrato* Paradisi Pico Ruga Sabbati *di Saluzzo* Savoldi *della Scalla* Serbelloni Sfondrati Sforza Sommariva Sopransi Spinola
+			Testi Tizzone Visconti
+		}
+		ship_names=
+		{
+			Alliata *Ariberto d'Intimiano* Ansperto *Azzone Visconti*
+			Celentano *come Angilberto* Como Cremona
+			*Filippo Maria* *Fiumi Lambro* *Fiumi l'Olona* *Fiume Seveso* *Francesco Sforza*
+			*Gian Galeazzo Visconti*
+			Lecco Lodi
+			Pavia
+			*Re Alboino*
+			*San Babila* *San Bernardino alle Ossa* *San Cristoforo sul Naviglio* *San Giovanni in Conca* *San Gottardo* *San Lorenzo* *San Marco* *San Nazaro Maggiore* *San Simpliciano* *San Satiro* *Santa Maria dei Miracoli* Sant'Agostino Sant'Ambrogio Sant'Eustorgio *Santo Stefano* Sondrio
+			Terragni Teodolinda Torriani
+			Valperto Varese Virgilio
+			*Dante Alighieri* *Giulio Cesare* *Andrea Doria* Duilio *Francesco Caracciolo* Littorio Roma Terribile Formidabile *Principe di Carignano* *Conte Verde* *Re di Portogallo* *Regina Maria Pia* *San Martino* Castelfidardo Ancona Affondatore *Principe Amedeo* *Ruggiero di Lauria* *Francesco Morosini* *Emanuele Filiberto*
+			Libia Basilicata Quarto *Valle d'Aosta* Trentino Marche Lazio Abruzzo Molise
+			*Marco Polo* *Carlo Alberto* *Vettor Pisani* *General San Martin* *General Belgrano* *General Pueyrredon* *San Giorgio* *San Marco* *Nino Bixio* Fiume Gorizia Pola Zara Bolzano
+			Fulmine Lampo Freccia Dardo Strale Euro Ostro Nembo Turbine Aquilone Borea Zeffiro Espero Artigliere Bersagliere Corazziere Garibaldino
+			Granatiere Lanciere Alpino Pontiere Ascaro Indomito Impavido Impetuoso Insidioso Intrepido Irrequieto Ardito Ardente Audace Animoso
+			Rosolino Pilo* *Giuseppe Cesare Abba* *Pilade Bronzetti* *Giuseppe Missori* *Antonio Mosto* *Ippolito Nievo* *Francesco Nullo* *Simone Schiaffino* *Giuseppe Sirtori* *Giovanni Acerbi* *Vincenzo Giordano Orsini* *Francesco Stucco*  
+		}
+		army_names=
+		{
+			*Armata di $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotta di $PROVINCE$*
+		}
+	}
+	mali=
+	{
+		graphical_culture=africangfx
+		graphical_culture_V2=AfricanGC
+		base_country_V2=SOK
+		male_names=
+		{
+			Abi-Bakr Abubakari Akoi Alayaman 'Ali 'Ali-Fay 'Ali-Kolon 'Ali Zalil Badä Bakr Bakr-Kanbu Bamari Bankanu
+			Bannu Bassarou Bassi Birama Bisi Biyu Bonga Cisse Dankaran Da'ud Dawud Demba Diara Düru
+			Faga-Laye Fatta Fodi Fuluku Fädazu Gane Gao Hargani Harun Igoumou Ishaq Ismail Kabayo Kalabi Kambine
+			Kanafa Kassa Kasseï Kaya Kayna Kinkin Kisha Kodama Koïzé Kukuray Kusoy Lahiltoul M'Bali Maammarou Maghan
+			Mahmud Majan Malla Mamadi Mamoudou Manding-Bory Mari-Djata Maÿroumfa Missi-Izé Morobani Musa
+			Nintasanay Nuh Ouali Ouankoÿ Ouati Reidja Sakoura Salman Samsou-Béri Samsou-Keïna Sandaki Soumaba
+			Soumaoro Soundiata Sulayman Takoi Tib Tomo Tunka Umar Yama Yaqub Yasiboy Zakoi Zenku
+			Mule Mamadu Al-Hajj Muhammad Bakari *'Abd al-Rahman* Al-Mukhtar Birahim *Amada Sire* Nguia Hammadi
+			Bubu Ilo Kanta Al-Mansur 'Ammar *Sa'ud 'Arjud* Haddu Sa'id *Dhu al-Nun* *'Abd Allah* Nasr Yahya
+			Sanibar 'Abbas Benkano Zenka Mami Ba-Bakribin *'Abd al-Qadir* Yusuf Santa'a *Al-Fa' Ibrahim*
+			Kaladian Mamari Biton Do Tyefolo Nyenemba Ben Kuma Masala Turukoro Bina Kege Mamuru Masaloma Karamoko Bodyan
+		}
+		female_names=
+		{
+			Adja Aichata Aissata Alima Aminata Amita Aoua Barakissa Bintou Deye Djeneba Djenly Djire Fadima
+			Fatim Fatoumata Halima Hawa Ina Kadi Kilia Kolonkan Lorane Mariam Nafissa Namandjé Namiss Nana
+			Safiatou Salimata Sassouma Sidibé Siya Sogolon Tekhaye Youma Zeïnab
+		}
+		leader_names=
+		{
+			Konare
+			Deo
+			Keita
+			Traoré
+			Toure
+			Diarra
+			Moussa
+			Modibo
+			Amadou
+			Toumani
+			Coulibaly Koro Dembele Bari Tonmansa Dyara Makoto Tonkomo Keryengole Naluma Demba Mari
+		}
+		ship_names=
+		{
+			Kiringa Timbuktu *Koumbi Saleh* Gao
+			Jenne *Sundiata Keita* *Kankan Musa*
+			*Kouroukan Fouga* *Wali Keita* *Quati Keita*
+			*Khalifa Keita* Sakura
+		}
+		army_names=
+		{
+			*Kelebolo mà $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Jikankurunw mà $PROVINCE$*
+		}
+	}
+	norwegian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=NOR
+		male_names=
+		{
+			Anund Alv Arne Arnfinn Arnkjell Arnmod Arnvid Aslak Audun Balder Bård Bjørn Eigil Eilif Einar Eirik Erlend Erling Eystein Finn Frej
+			Grim Gudbrand Gudleik Gudmund Gudrød Gunnar Guttorm Haldor Halfdan Halkjell Harald Helge Håkon Håvard Inge Ivar Jon Kåre Kolbein Lodin
+			Magnus Odd Ogmund Olav Orm Ossor Ottar Pål Ragnar Ragnvald Rolf Sigurd Skjalg Skofte Skule Svein Sverre Sämund Torbjørn Tord Tore 
+			Torbrand Torfinn Torgeir Torgil
+			Tormod Torolf Torstein Trond Tryggve Ulv Vigleik Åle Åmund Ølver Øystein
+			Christoffer
+			Aksel Anders Ansgard Arvid
+			Bernt Birger
+			Daniel 
+			Edvard Eilert Elias Esben
+			Folke
+			Kasper Kennet Knut
+			Ludvig
+			Mats Mikael
+			Njåld Njord
+			Oddmund
+			Peder
+			Rikard
+			Simon Søren
+			Tollak
+			Alfred Adrian Carl Caspar Christian Cort
+			Fredrik Georg Gerhard Gustav Haakon Hans Herman
+			Johan Jorgen Nils Osvald Otto
+		}
+		female_names=
+		{
+			Anna Astrid Brigida Cecilia Eldrid Freja Gjertrud Gudrid Gudrun Gunnhild Gyda Gyrid Haldora Homlaug Ingebjørg Ingjerd Ingrid Jorunn
+			Karin Kristina Margrete Maria Martha Ragna Ragnfrid Ragnhild Rannveig Sigrid Snøfrid Sunniva Svanhild Thora Thorborg Thordis Åse Åshild Åsta
+			Margaret
+			Torhild
+		}
+		leader_names=
+		{
+			Arnesson Amundsen 
+			Bjelke Bolt 
+			Egilsson Eriksson 
+			Haraldsson 
+			Larsson Leifsson 
+			Magnusson 
+			Nansen Norheim 
+			Olavsson 
+			Sverresson Sigurdsson 
+			Torgeirsson Torsson 
+			Adeler Balchen Berg Bloch Borresen Bratzland Brentzon Dhal Egge Fleicher
+			Frisvold Hákonarson Hansen Hund Kaldager Konow Lambrechts Morgenstierne Munthe Petersen
+			Rye Sissener Skjalgsson Tambarskjelve *von Holstein-Glücksburg* *von Klenow* Wedel-Jarlsberg Wiborg With Zeiner-Gundersen
+		}
+		ship_names=
+		{
+			Ålvik
+			Engan
+			Molde
+			Roan
+			Sula
+			Trondheim
+			Áss Vanr Álfr Jötunn
+			Ellida Sleipner Viking Frithjof Rjukan Sarpen Lougen Glommen 
+			Freia Desideira *St Olaf* *Kong Sverre* Ellida Nordssthernen Nornen Nidaros Ørnen
+			Thor Odin Njord Freyr Tyr Bragl Heimdall Hoder Vidar Ale Ullr Forseti
+			Skorpionen Mjølner Thrudvang
+			Heimdal *Fridtjof Nansen* Nordkapp
+		}
+		army_names=
+		{
+			*Hær av $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flåte av $PROVINCE$*
+		}
+	}
+	nubian=
+	{
+		graphical_culture=africangfx
+		graphical_culture_V2=AfricanGC
+		base_country_V2=ETH
+		male_names=
+		{
+			*'Amâra*
+			*'Abd al-Qâdir*
+			*Nâ'l*
+			*Dakîn al-'Adil*
+			*Dûra*
+			*Taiyîb*
+			*Unsa*
+			*Adlân*
+			*Bâdî*
+			*Rubât*
+			*Nûl*
+			*Nâsir*
+			*Ranfi*
+			*Eltecit*
+			*Joel*
+			*Koudlaniel*
+			*Agban*
+			*Ranfi*
+			*Isawi*
+			*Hashim*
+			*Maqdum*
+			*Awkal*
+			*Hassan*
+			*Agban*
+			*Abu Likayik*
+			*Rajab*
+			*Ahmad*
+			*Rifaya*
+			*Ibrahim*
+			*Idris*
+			*Tindhim*
+			*'Abd al-Rahman*
+			*Sulayman*
+			*Yusuf*
+			*Ya'qub*
+			*Ismâ'îl*
+			*Musa*
+			*Muhammad*
+			*Ishaq*
+			*Halim*
+			*Mustafa* 
+			*Abu Bakr*
+			Abdullah Abbas Said Ismail Mansur Rahman Abdallahi Malusi Tahir Wiraj Amsalu Nijam Bakri
+		}
+		female_names=
+		{
+			Acenith Alia Amunet Andali Asanet Asenath Asenet Azenet
+			Badiat
+			Cena
+			Fatima
+			Halima 
+			Jamila
+			Khadija
+			Majida
+			Mariam
+			Nabila Nura
+			Radiya Rana
+			Sacmis Safiya Samira Suhaila
+			Tawaret Taweret Titi Thuriya
+			Zara Zahra
+		}
+		leader_names=
+		{
+			Abboud
+			Fung
+			Garang
+			Kayra
+			Keira
+			Kelueljang
+			Lugor
+			Nuer
+			Shol
+			Taha
+			Ahmad Ali Zubayr Digna Azrak Hammuda al-Tasashi Nujumi
+		}
+		ship_names=
+		{
+			Apedemak Bes Dedwen Arensnuphis Amon
+			Mandulis Amenirdis Taweret Mut Tefnut Khnum
+		}
+		army_names=
+		{
+			*Jaysh mn $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Astoul mn $PROVINCE$*
+		}
+	}
+	old_prussian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=LIV
+		male_names=
+		{
+			Alvydas Arelis Auctune Bajoras Beidras Budo Dagonis Ekkelis Galindas Gauronas Gerdautas Glande Golding Jauguttis Karatas Klukis Kugis
+			Milzas Nomedas Prusas Sergonis Ulinniks Ulitis
+		}
+		female_names=
+		{
+			Betten Dagas Gelennis Gerkus Grasus Gulbis Mila Milyuns Weslikan Ziedas
+		}
+		leader_names=
+		{
+			*von Altenbockum* Ascheberg
+			*von Bach* Behr Bilderling Blomberg *von Boetticher* Borch Brincken  Brüggen Buchholtz
+			Derschau Drachenfels Düsterlohe
+			Engelhardt
+			Fircks Fölkersam Funck
+			Grotthuss
+			Haaren Hahn Heyking *von Hoerner* Howen
+			Kleist Klopmann Komorowski Koskull
+			Lambsdorff *von der Launitz* *von Lysander*
+			Mirbach
+			Nettelhorst Nolcken
+			Oelsen Offenberg Osten-Sacken
+			Pahlen
+			Raczynski Recke Ropp Rosenberg *von Rummel*
+			Schlippenbach *von Schroeders* Seefeld Stackelberg Stromberg
+			Taube *von Timroth*
+		}
+		ship_names=
+		{
+			Apedemak Bes Dedwen Arensnuphis Amon
+			Mandulis Amenirdis Taweret Mut Tefnut Khnum
+		}
+		army_names=
+		{
+			*Karîs iš $PROVINCE$* 
+		}
+	}
+	persian=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=PER
+		male_names=
+		{
+			'Abbas Abolhassan Afshar Ahmad Akbar Ali Allahyar Amin Anushirvan Aram Ardahan Ardavan Ardeshir Assad Aurang Ayeshah Babak Bahman
+			Bahram Bakhtiar Behrad Behrouz Bozorg Danush Darab Dariush Davud Djamasp Ebrâhim Ehsan Esfandiar Eskander Ismâ'îl Faramarz Faraz Fareed Farhad Fariborz
+			Faruq Farrukhzad Farzad Fath Ferdows Fereedun Ghobad Gholam Godarz Goshtasb Hafez Hassan Hazarasp Hedayat Hooshyar Hormazd Hormoz Husayn
+			Humayun Jahandar Jahangir Jahanshah Jamshid Javeed Kambiz Kamran Kavoos Keyghobad Keykhosrau Kharmandar Khashayar Kavadh Khodadad Khosrau
+			Khudayar Khurshid Kurush Mahmûd Manuchihr Manushihr Marzuban Mashad Maziar Mehrab Mehrzad Mohammad Morad Morteza Mozaffar Nard Naveed Nawid Nezam Parviz Pashang Peroz
+			Pujman Reza Rostam Ruhollah Sadri Salman Shahab Shahbaz Shahin Shahram *Shâh Rukh* Shahruz Shahryar Shapur Shayan Sina Tamâshp Vahhab Vahid
+			Vali Vandad Varshasb Vishtasb Yazdegerd Yousef Zahak Zakaria Zand Zartosht Zia
+			Abolghasem Abdolhossein Abdolsamad Abdolazim
+			Joneid Haidar *Mohammad Kodabânda* 'Abbâs Safi Solaymân Hosayn Nâder 'Âdel *Nâder Mirza* Karim *Abu'l Fath* *Mohammad Ali* *Mohammad Sâdiq*
+			Ja'far *Loft Ali* *Aga Muhammad* *Fath Alî*
+		}
+		female_names=
+		{
+			Afsaneh Ahu Arghavan Azarmidokht Asa Azadeh Bahar Banafsheh Behnaz Burandokht Darya Delaram Delbar Dinah Donya Elham Elnaz Farah Fareedeh Farnaz Farrin Farva
+			Furuzan Ghamze Ghazal Ghoncheh Golbahar Golnaz Golpari Golshan Hamdam Hurmat Irandokht Jamileh Javaneh Leila Mahdokht Mahtab Mariam
+			Navvaba Nazgol Nazilla Noor Parvaneh Parvin Pertevniyal Pourandokht Roshanora Roxana Salomeh Shahrzad Shahzadeh Shirin Soraya Touran
+			Tourandokht Yasaman Yekta Zarrindokht Zeynab Zohreh
+		}
+		leader_names=
+		{
+			Airom Ansari Ayrum Buzarjomehri Davallu Esfahani Farhani 
+			Jahanbani Kashani Khan Khuzai
+			Meshhedi Nakhchevani Pesyan Rokni Shafaei Shahbakhti 
+			Shirazi Tabrizi Tahmasebi Zahedi
+			Sabiri
+			Jalili
+			Azizi
+			Shahy
+			Daei
+			Qazai
+			Dalwand
+			Ahrari
+			Fatemi
+			Sabet
+		}
+		ship_names=
+		{
+			Abathur *Adamn Kasia* *Aesma Daeva* Agas
+			Ahriman Ahura *Ahura Mazda* Ahurani Airyaman
+			*Aka Manah* Aladdin Allatum Amashaspan Ameratat
+			*Amesha Spentas* Anahita *Angra Mainyu* Anjuman
+			*Apam-natat* Apaosa Aredvi Arishtat Armaiti Arsaces
+			*Asha vahista* Asman *Asto Vidatu* *Astvat-Ereta*
+			Atar *Azi Dahaka* Baga Bahram Burijas Bushyasta Buyasta
+			Camros Daena Daevas Ahaka Dahhak Dena Dev Diwe Drug
+			Drvaspa Frashegird Fravashis Gandarewa *Gao-kerena*
+			Gayomard Gayomart *Geus-Tasan* *Geus-Urvan* Haoma
+			Haurvatat Humay Hvar Hvarekhshaeta Indar Indra Izha
+			Jamshid Jeh Karshipta Kavi Khara *Khshathra vairya*
+			Kundrav Mah Mahre Mahrianag Manu Manuchihir Mao 
+			Mashyane Mashye Menog Mithra Nairyosangha Nanghaithya
+			Neriosang Ormazd Peris Peshdadians Rapithwin Rashnu
+			Rustam Saurva Simurgh *Spenta Mainyu* Sraosa Srosh
+			Tawrich Thunaupa Tistrya Tushnamatay Vanant Vata
+			Verethragna *Vohu Manah* Vouruskasha Yam Yasht Yazata
+			Yezidi Yima Zal Zam *Zam-Armatay* Zarathustra Zarich
+			*Zend-Avesta* Zurvan
+			Iran *Esmail Yekom* *Abbas Bozorg* *Safieddin Ardabili* *Tahmasp Yekom* *Abbas Duvam*
+			*Fathali Shah* *Abbas Mirza* *Nasireddin* *Mozaffareddin* *Mohammad Ali* *Shah Ahmad*
+			Ferhumand Jelaleddin Nureddin Danesh Zureddin Nirumand Khosthaneshdani *Sahib-i Azam* Dalir
+			Karun Zab Aras Helmand Diyala *Zab-e Kuchek* Zayande Atrek Alamut 
+			Alborz Damavand Kholeno *Azad Koh* Tochal Sarakchal Kharsang Zagros *Zard Koh*
+			Arzu Fatima Nilofer Omid Laleh *Koh-i Nor* Jaleh Firuz Darya Roshan Shahrazad Shirin Yasmin Ziba Zuleika Behruz Farid Humayun Kambiz Kamyar Ruzbeh
+		}
+		army_names=
+		{
+			*Artesh-e-$PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Naogan-e-$PROVINCE$*
+		}
+	}
+	polish=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=AustriaHungaryGC
+		base_country_V2=POL
+		male_names=
+		{
+			Aleksander Andrzej
+			Bartosz Bezprym Boguchwal Bogumil Boleslaw Boncza Borzyslaw Bozydar Borzywoj Budziwuj
+			Czcibor Czyrzniech
+			Dalimir Daniel Dobieslaw Dobrogost Dobromir Doman Dytryk
+			Eustachy
+			Gaudenty Gierolt Gniewomir Gniewosz Gosciwuj Goszczon
+			Henryk
+			Imram Izbor
+			Józef Jacek Jaksa Jakub Jakusz Ja Janislaw Janko Janusz Jaroslaw Jerzy
+			Karol Kazimierz Konrad Krystian Krzeslaw
+			Lamber Leszek
+			Maciej Macko Malowuj Marcin Maslaw Mateusz Mieszko Mikolaj Milobrat Milosz Miroslaw Msciwoj Mszczuj
+			Nadbor Niezamysl
+			Odon
+			Pawel Pelka Piotr Piskla Prendota Przemyslaw Przybor
+			Sambor Sedziej Sedzimir Sieciech Siemomysl Siemowit Skarbimir Snowid Spytko Stanislaw Stefan Stoigniew Strasz Sulislaw Sulistryj Swietopelk Swietoslaw Szczesny
+			Tomasz Trojden Twardomir
+			Usciech
+			Waclaw Wanko Wawrzyniec Wielislaw Wieslaw Wincenty Wit Witosz Wladyslaw Wojciech Wojuta Wszebor
+			Zbigniew Zbyszko Zegota Zelibrat Zygmunt
+			August *Jan Albert* *Jan Kazimierz* *Michal Korybut* *Zygmunt August* *Aleksander Karol*
+			*Zygmunt Kazimierz* Krzysztof Fryderyk *Jan Olbracht* *Jan Zygmunt* *Karol Ferdynand*
+			Olbracht Albert Aleksy Bartlomiej Bronislaw Dawid Dominik Emil Eugeniusz Ferdynand
+			Gustaw Igor Iwan Lech Lucjusz Ludwik Lukasz Maksym Mariusz Oskar Patryk Rafal Sylwester
+			Szymon Zygfryd
+			Adam Aleksander Antoni Bonawentura Dezydery Edmund Edward
+			Felicjan Franciszek Ignacy Jan Jedrzej
+			Juliusz Klemens Konstanty Leon Leopold Lucjan
+			Marceli Marian Melchior Mieczyslaw Roman Romuald Samuel
+			Tadeusz Wilhelm Witold
+		}
+		female_names=
+		{
+			Adelajda Adleta Agnieszka Aldona Anastazja Anna
+			Beata Bozena
+			Danuta Dobrawa Dobronega
+			Elzbieta Eufemia Eufrozyna
+			Gertruda Grzymislawa
+			Helena Jadwiga Jolanta Judyta
+			Katarzyna Kazimiera Kenna Kinga Konstancja Krystyna Kunegunda Lucja Ludmila
+			Magdalena Malgorzata Maria Matylda Milena
+			Nadzieja Nawoja
+			Pechna
+			Rycheza Ryksa
+			Salomea Samboja Scholastyka Smiechna Stanislawa Swietoslawa
+			Wislawa Wojslawa Wolislawa Wszebora Wszemila
+			Zofia Zwinislawa
+		}
+		leader_names=
+		{
+			Arciszewski
+			Benyowski Bidziñski Branicki
+			Czarniecki Chometowski
+			Dunin Denhoff Drzewicki
+			Grodzicki Górka
+			Houwaldt
+			Jablonowski Jazlowiecki
+			Kurozwecki Kurbski Koniecpolski Kosciuszko Krasinski Kalinowski Korycki Kazanowski Kmita
+			Lubomirski Lisowski Lanckoroñski Leszczyñski Lacki
+			Malski Mniszech Matczyñski Mlodziejowski
+			Ostroróg Olesnicki Opacki Ozarowski Ossolinski
+			Paniewski Patkul Poniatowski Pulaski Przyjemski Piaseczyñski Potocki
+			Rytwiañski Rzewuski
+			Sobieski Sahajdaczny Siemienowicz Sulkowski Stadnicki Sieniawski
+			Tarnowski
+			Wyhowski Wielopolski
+			Zamoyski Zebrzydowski Zaswilichowski Zborowski Zbaraski
+			Bem Bór-Komorowski Brzóska Chalasinski Chlaposwski Chlopicki Chrzanowski Dabrowski Dembinski Fabryvy
+			Hauke-Boask Iszikowski Jasinski Klicki Konopczynski Krukowiecki Kruszewski Langiewicz Madalinski Mierolawski
+			Mikolajczyk Mokronowski Niepokólczycki Ostrowski Pac Pilsudski Preadzynski Radziwill
+			Rokossowski Rola-Zymierski Rómmel Rózicky Rybinski Rydz-Smigly Sanguszko Skrzynecki Soltyk Sowinski
+			Taczaneowski Traugutt Wawrzecki Wieniawa-Dlugoszowski Wybicki Wysocki Zajaczek Zaluski Zeligowski
+		}
+		ship_names=
+		{
+			*Arka Noego*
+			*Bialy Orzel* Burza *Bialy Lew* *Brzesko-Kujawskie* Belzkie Braclawskie
+			Charitas *Czarny Orzel* *Czarny Kruk* Chelminskie Czernichowskie
+			Fortuna
+			Gryf Gwiazda Gnieznienskie
+			Inoworclawskie
+			*Król Dawid* Kaliskie Krakowskie Kijowskie Kraków
+			Lublin *Latajacy Jelen* Lwów Leczyckie Lubelskie
+			*Maly Bialy Orzel* Malborskie Mazowieckie
+			Niewrazliwy *Nowy Czarny Orzel*
+			*Prorok Samuel* *Panna Wodna* Plomien Poznanskie Plockie Podlaskie Podolskie
+			*Rycerz Swiety Jerzy* Rawskie Ruskie
+			Strzelec Suwerenny *Swiety Piotr* Sieradzkie Sandomierskie *Swiety Kazimierz*
+			*Wielkie Slonce* Wodnik Warminskie Wolynskie Warszawa
+			Zwyciestwo *Zólty Lew*
+			*Boleslaw* *Jan Kostka* *Michal Figenow* *Mateusz Schapring* *Jakob Mora*
+			Wisla Odra Warta Narew San Notec Bug
+			*Jan Heweliusz* *Jan Sniadecki* *Jan Brozek* *Jan Mikolaj Smogulecki* *Albert Brudzewski* *Stanislaw Lubieniecki*  
+			Anna Maria Katarzyna Barbara Ewa Zofia Monika
+			*Jan Sarkander* *Andrzej Bobola* *Jan Kety* * Stanislaus Kostka* *Stanislaw Szczepanowski* *Swieta Kinga*
+			*Krzysztof Arciszewski* *Jedrzej Sniadecki* *Hugo Kollataj* *Jan Dlugosz* *Adam Naruszewicz* *Samuel Linde* *Mikolaj Rej* 
+		}
+		army_names=
+		{
+			*Armia z $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flota z $PROVINCE$*
+		}
+	}
+	portugese=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=POR
+		male_names=
+		{
+			Abril Álvaro Ângelo Abel Afonso Aires Alexandre Alvito António Bermudo Bernardo Damião Dinis Diogo Duarte Egas Estêvão Eugénio Filipe Fernão Fernando Francisco
+			Frederico Garcia Gil Gomes Gonçalo Gregório Guilherme Heitor Henrique Hermenegildo Hermígio Hugo Igor Inácio Júlio Jerónimo João José Julião Lopo Lucídio Luís Manoel Manuel Marcelo
+			Marco Martim Martinho Mem Mendo Miguel Monio Muno Nuno Octávio Ordonho Paio Pedro Pero Raimundo Ramiro Ricardo Roberto Rodrigo Rui Sancho Sebastião Soeiro Telmo Tiago Tomás Vasco Vicente Vímara Xelmirio
+			Teodósio Carlos Diego Jaime André *António Francisco*  Bartolomeu Caetano
+			Estevão *Francisco Xavier* Gabriel Gaspar Joaquim Jorge *José Manuel*
+			Lourenço Nicolau Paulo Rafael Rogério Simão Uriel
+			Adriano Alberto Alfredo Aquilino 
+			Artur Augusto Bernardo Bruno Cândido Christovão Cláudio
+			Daniel David Ernesto
+			Gastão Ignácio
+			Leopoldo Mário Orlando 
+			Óscar Pascoal Raul Santiago 
+			Teodoro Teófilo Tomé Urbano Vitorino Vitório
+		}
+		female_names=
+		{
+			Ágata Alda Aldara Aldonça Ana Beatriz Berengária Branca Brites Camila Carol Carolina Catarina Chamoa Conceição Constança Cristina Dórdia Elisabete Elvira Esmeralda
+			Esperança Estefânia Estevainha Fátima Filipa Fruilhe Gonçinha Gontinha Gregória Guiomar Ilduara Inês Isabel Jacinta Joana Leonor Loba Lúcia Lucinda Luísa Madalena Maior Mafalda Margarida Maria Marinha Marquesa Marta Matilde Mécia Moninha Mor Mumadona Ouroana Ourtigueira Paula
+			Raquel Rita Sónia Sancha Sandra Sofia Teresa Tota Totadona Urraca Usco Vela Violante Ximena
+		}
+		leader_names=
+		{
+			*Machado*
+			Cabral Coelho Corte-Real Coutinho
+			*da Câmara* *da Costa* *da Cunha* *da Fonseca* *de Albuquerque*
+			*de Almeida* *de Andrade* *de Aveiro* *de Ataíde* *de Azevedo*
+			*de Bragança* *de Brito* *de Carvalho* *de Castelo-Branco* *de Castro*
+			*de Correia* *de Faria* *da Gama* *de Guimarães* *de Lemos* *de Magalhães*
+			*de Marialva* *de Melo* *de Mendonça* *de Meneses* *de Noronha*
+			*de Oliveira* *de Paiva* *de Penamacor* *de Pimentel* *de Queiróz*
+			*de Sá* *de Sampaio* *de Sequeira* *de Sousa* *de Souto* *de Tavares*
+			*de Távora* *de Vilhena* Dias
+			Eanes
+			*Ferreira Martins*
+			Gomes Gonçalves
+			*Lemos de Brito*
+			*Martins de Mascarenhas* *de Vasconcelos* *Mendonça Furtado*
+			*Nunes Barreto*
+			Pereira
+			Rebelo Rodrigues
+			Sarmento
+			Teixeira *Teles de Meneses*
+			Amaral Barreto Bleck Braga Cabral Capelo Carmona Coelho Correia Coutinho
+			*da Silva* *de Arriaga* *de Bragança-Coburgo*
+			*de Gusmão* *de Lacerda* *de Mesquita* *de Moura*
+			*dos Reis* *dos Santos* Fernandes Figueira *Freire de Andrade* Gago Gil
+			Herculano Ivens Keil Lopes Mendes Moniz Mouzinho Nogueira 
+			Ortigão Pinheiro Pinto Pires Pomar Pulido Queiroz Quintanilha
+			Ribeiro Salazar Sérgio Silveira Vidigal Vieira
+		}
+		ship_names=
+		{
+			Anunciada
+			Bérrio *Boa Viagem* *Bom Jesus* *Bom Jesus do Carmo* *Bom Jesus de Marzagão* *Bom Jesus da Vidigueira* Bretão
+			Cambaia Chagas *Correio d'Ásia*
+			El-Rei Enxobregas *Espírito Santo* Estrela
+			*Flor do Mar*
+			Garça
+			*Imaculada Conceição*
+			Jóia
+			*Monte Carvalho*
+			*Nazaré* *Nossa Senhora* *N. Sra. da Aparecida* *N. Sra. da Atalaia* *N. Sra. da Batalha* *N. Sra. da Boa Hora* *N. Sra. da Boa Memória* *N. Sra. da Boa Viagem* *N. Sra. da Candalaria* *N. Sra. da Caridade* *N.Sra. da Conceição* *N. Sra. da Consolação* *N. Sra. da Esperança* *N. Sra. da Glória* *N. Sra. da Graça* *N. Sra. da Guia* *N. Sra. d'Ajuda Lusitana* *N. Sra. da Luz* *N. Sra. da Nazaré* *N. Sra. da Oliveira* *N. Sra. da Palma* *N. Sra. da Penha de França* *N. Sra. da Quietação* *N. Sra. da Salvação* *N. Sra. da Saúde* *N. Sra. da Visitação* *N. Sra. da Vitória* *N. Sra. das Ondas* *N. Sra. das Portas do Céu* *N. Sra. das Relíquias* *N. Sra. de Belém* *N. Sra. de Guadalupe* *N. Sra. do Castelo* *N. Sra. do Livramento* *N. Sra. do Loreto* *N. Sra do Paraíso* *N. Sra. do Pilar* *N. Sra. do Rosário* *N. Sra. dos Prazeres* *N. Sra. dos Ramos*
+			*Princesa do Céu*
+			Raínha *Reis Magos*
+			*Sacramento* *Santa Ana* *Santa Catarina* *Santa Cruz* *Santa Fé* *Santa Helena* *Santa Joana* *Santa Madre de Deus* *S. Maria de Sabóia* *Santo Milagre* *Santiago Maior* *Santíssima Trindade* *Santíssimo Sacramento* *Santo Alberto* *Santo António* *Santo Espírito* *Santo Inácio* *São Bartolomeu* *São Bento* *São Bernardo* *São Carlos* *São Cristovão* *São Domingos* *São Filipe* *São Francisco* *São Francisco de Borja* *São Gabriel* *São Gonçalo* *São João* *São João de Deus* *São Jorge* *S. José* *São Julião* *São Lourenço* *São Lucas* *São Luís* *São Mateus* *São Paulo* *São Pedro* *São Rafael* *São Roque* *São Salvador* *São Tomé* *São Valentim* *S. António de Lisboa* *S. Catarina de Ribamar* *S. Francisco de Assis* *S. Francisco Xavier* *S. João Baptista* *S. João Evangelista* *S. Pedro de Rates* *S. Pedro da Ribeira* *S. Salvador do Mundo* *S. Teresa de Jesus* *S. Tomé da Cantuária*
+			Taforeia Trindade
+			Visitação
+			*Antónia Rodrigues* *Duarte Pacheco Pereira* *Duarte de Almeida* *João da Nova* *Lopo Barriga* *Mem Moniz de Gandarei* *Munio Viegas* *Nuno Álvares Pereira*
+			*Príncipe Real* *Príncipe* *Rainha* *Infante Dom Pedro* Medusa *Maria Primeira* *São Sebastião* *Príncipe Regente* Golfinho Amazónia Pérola
+			*S. Gabriel* *S. Rafael* *Adamastor* *Rainha D. Amélia* *Almirante Reis* *República* *Pedro Nunes* *Gil Eannes*
+			*Fénix* *Amazona* *Cisne* *Minerva* *N.Sra. da Graça* *Princesa Carlota* *Princesa* *Tristão* *Ulisses* *Vénus* *S. João Príncipe* *Thétis* *Activa* *Princesa de Abiena* Andorinha *Real Fonsor* *BoaVentura* Serpente Diligente Gaivota *Real Fonza* Benjamim Tritão
+			*Estefânia* *Duque da Terceira* *Sá da Bandeira* *Mindelo*
+		}
+		army_names=
+		{
+			*Terço de $PROVINCE$* *Exército de $PROVINCE$* *Bandeira de $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Armada de $PROVINCE$* *Esquadra de $PROVINCE$* *Frota de $PROVINCE$*
+		}
+	}
+	rheinlaender=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=SWI
+		male_names=
+		{
+			Adalbert Adam Adolf Albrecht Almerich Amadeus Andreas Anselm Arnold Arnulf Augustin 
+			Baldemar Baldewin Berengar Bernhard Berthold Bruno Burchard
+			Caspar Christoph
+			Diether Dietmar Dietpold Dietrich Dietwin
+			Eberhard Eckhard Ehrenfried Eginolf Ekbert Emelrich Emich Engelbrecht Erich Ernst Ezzo
+			Folkhard Folkmar Franz Friedrich
+			Gebhard Georg Gerhard Gerlach Giselbert Gottfried Gotthard Gottschalk Gotzelo Guntram Günzel
+			Hartmann Hartwig Heinrich Herbert Hermann Hesso Hugo Humbert
+			Jakob Johan
+			Karl Karloman Konrad Kuno
+			Lambert Leopold Lothar Ludolf Ludwig Luitpold Lutbert
+			Magnus Manfred Markward Martin Mathias Meinhard Michael Nikolaus Norbert
+			Ordulf Otto
+			Peter Philipp Poppo
+			Rudger Reinhard Rudolf Ruprecht
+			Siegfried Sieghard Siegmund Simon Stefan
+			Theodorich Thietmar Thomas
+			Udo Ulrich
+			Viktor
+			Waldemar Walram Walther Welf Wenzel Werner Widukind Wigerich Wilhelm Wolfgang Wolfram
+			Ferdinand Alfred Benedikt Engelbert Florian Immanuel Leonhard Markus Paul Vinzenz
+			Alexander Alfons Alois Anton Arthur Christian
+			Edmund Eduard Erwin
+			Günther Gustav Hermann Horst Jakob Joachim Johann Joseph
+			Julius Kurt Lorenz Maximilian
+			Reinhold Theodor Walter
+		}
+		female_names=
+		{
+			Adela Adelheid Adelinde Agathe Agnes Alberade Amalberga Amalie
+			Barbara Beatrix Benedicta Berchte Berta Binhilde Brunhilde
+			Cecilie Cothilda Christine
+			Dorothea
+			Elisabeth Emma Engeltraud Ermengard Eufemia
+			Friedrica Frida 
+			Gerberga Gerhild Gertrude Gisela Gudrun Gunhilda
+			Hedwig Heilwiva Heike Helene Helga Henrike Hildeburg Hildegard
+			Ida Ilsa Inge Irmele Irmeltrud Irmgard Isentrude
+			Judith Jutte
+			Katharina Karlotte Klara Klementia Konstanze Kriemhild Kunigunde 
+			Luitgard
+			Margarete Maria Mathilde Mechtild
+			Oda Osterhild
+			Richara Richenza Richwara Romilda 
+			Serhilda Sofie Sybille
+			Trude
+			Ulrike Ursula Ute
+			Walpurga Wilhelmina Winfrida Wulfhilde
+		}
+		leader_names=
+		{
+			Aebi Amman Bischofberger Blank Blies Brugger Combe
+			Eugster Frei Frisch Gasenzer Grüneisen Heberlin
+			Helberingen Hertzler Hiltbrand Honegger Luz Miller
+			Munzinger Oberholzer Schwendimann Spörri Vogt
+			*von Baltharsar* Wächter *von Hasseln* Zumbach
+			Beck-Rzikowsky Blos Dankl Eisner Geiss Goering Hainisch Haus Held Hellpach
+			Hoffmann Hummel Köhler Mergenthaler Miklas Remmele Schmitt Schobber Seitz Steeb
+			Stolzer Trunk *von Baden* *von Benedek* *von Böhm-Ermolli* *von Brudermann* *von Clam-Gallas* *von der Tann* *von Dietrich* *von Gablenz*
+			*von Grünne* *von Habsburg* *von Hartmann* *von Haynau* *von Hess* *von Hohenhausen* *d'Aspre von Hoobreuk* *von Hortstein* *von Hötzendorf* *von Kirbach*
+			*von Kobratin* *von Schönburg* *von Tegetthoff* *von Uchatius* *von Wittelsbach* *von Württemberg* *von Zahringen* Wagner Wittmann *zu Hohenlohe*
+		}
+		ship_names=
+		{
+			Uri Unterwalden Glarus Zug
+			Lucerne *Wilhelm Tell*
+			Dufour Rhein Rhöne Inn Ticino
+			*Werner Stauffacher* *Walter Fürst* *Arnold von Melchtal*
+			Bellinzona Freiburg Fricktal Léman Linth Lugano Luzern Oberland Rätien Säntis Schaffhausen Solothurn Thurgau Waldstätte Wallis
+		}
+		army_names=
+		{
+			*Armee von $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotte von $PROVINCE$*
+		}
+	}
+	russian=
+	{
+		graphical_culture=easterngfx
+		graphical_culture_V2=RussianGC
+		base_country_V2=RUS
+		male_names=
+		{
+			Afanasiy Aleksandr Alexei Andrei Boris Briachislav Daniil Davyd Demid Dmitriy Dobrynia Fedot Fyodor Gavriil Gleb
+			Grigoriy Iakov Ingvar Iliya Igor Ivan Iziaslav Kirill Konstantin Koz'ma Lev Mikhail Mitrofan Mstislav
+			Nikita Oleg Pavel Putiata Radoslav Rodislav Rogvolod Roman Rostislav Rurik Ruslan Stanislav Stepan Sudislav
+			Svetozar Sviatopolk Sviatoslav Terentiy Trifon Vasiliy Vasilko Viacheslav Vladimir Vladislav Voislav Volodar Vseslav
+			Vsevolod Vyshata Vysheslav Yaropolk Yaroslav Yefimiy Yelisey Yemelyan Yeremey Yevstafiy Yuriy
+			Semen Akim  Anatoliy Dorofey Feodosiy Feofilakt Innokentiy Iosif Lavrentiy Makariy Matveiy Nazariy Nikifor Onisim
+			Prokopiy Pyotr Radomir Saveliy Sergei Valeriy Yakim Yevgeniy
+			Anton Dmitry Gennady 
+			Giorgi Lavr Leonid Maxim 
+			Nikolai Semyon 
+			Viktor Yegor Yevgeny
+		}
+		female_names=
+		{
+			Agafya Agrafena Alexandra Anastasia Anna Boleslava Darya Dobrava Dobronega Dobroslava Yefimia Yefrosinia Yekaterina
+			Yelizaveta Yevdokia Yevpraxia Feodora Feodosia Fevronia Gorislava Gradislava Gremislava Irina Xenia Liubava
+			Liudmila Malfrida Malusha Maria Marina Olena Olga Pereyaslava Praskovya Praxida Prebrana Predslava Premyslava
+			Pribislava Rogneda Rostislava Sbyslava Sofia Sviatoslava Tatyana Ulita Ulyana Varvara Vasilisa Veleslava Verkhoslava
+			Vseslava Viacheslava Yaroslava Zabava Zvenislava
+		}
+		leader_names=
+		{
+			Apraksin
+			Bagration *Barclay de Tolly* Bibikoff Bodisco Boruffsin
+			Golitzin
+			Kaibula Kamenski Kolzoff
+			Mensjikov Mustislavski
+			*Ostermann Tolstoy*
+			Paletskij
+			Rajevski
+			Schuvalov Sjeremetjev Sjtjenjatvev
+			Tiesenhusen
+			Vasiljevitj *von Buxhoevden* *von Knorring* *von Lascy*
+			Alexseyev Antonov Azarov Badanov Brusilov Budyonny Chibisov Denikin 
+			Dragomirov Frolov Golivin Grishin Gurko Ivanov Konev Konstantinov Kornilov 
+			Kolchak Kuropatkin Lazarev Makarov Menshikov Nakhimov Nebogatov 
+			Nikolaevich Ostrovsky Pavlov Putyatin Romanov Rozhestvensky Skobelev 
+			Shuvalov Surkov Tukhachevsky Yegorov Yudenich Vorontsov Voroshilov Zavoyko
+		}
+		ship_names=
+		{
+			*Dmitri Donskoi* *Vasiliy* *D. Aleksandrovich*
+			Rurik *Ivan Kalita* Schorna Coluna
+			Cortiza Olescho Piersek Troitzkoy Wolok
+			Klin Iausa
+			Mariya Ekaterina Aleksander Gangut Soyuz Alekseev Potemkin *General Alexeiev* Retivisan Kulikovo 
+			Minin *Kniaz Pozharskii* Pervenets Kreml *Ne Tron Menia* Smerch Lazarev *Pyotr Velikyy* Chesma Kyiv Minsk *Zaria Svobody* *Admiral Butakov* Kreiser Ladoga Georgii *Sissoi Veliky* Navarin *Pamiat Merkuria* Tsesarevich Narodnaya *Poluostrov Kamchatka* Kama Voronezh Bityug
+			Sviatoslav Vola Andrei Fershampenuaz Konstantin Gavriil Selafail Varna Yagudiil Sviatoslav *Dvenadtsat Apostolov* Rostislav Khrabryi Sinop Bosfor Uriil *Tri Sviatitelia* Arsis Smolensk Oriol Finland Vola Prokhor Varshava Retvisan Iezekiil Azov Kul’m Lesnoye Brien Berezino Ostroloenka Vladimir Fershampenuaz
+			Pallada Diana Askold Novik Boyarin Nakhimov Bogatyr Oleg Vityaz *General-Admiral* *Alexander Nevski* *Pamiyat Azova* Bayan Varyag Izmail Kinburn Navarin *Admiral Kornilov* Almaz  Asia Aurora Gromoboi Volga *Novaya Zemlya* Dnepr Desna Zarya
+			Uragan Veschun Koldun Lava Perun Strelets Tifon *Admiral Ushakov* *Admiral Senivain* Edinorog *Admiral Graf Apraksin* Pushkin *Semion Chelyuskin* Yenisei *Ozero Baykal* Vyazma Valdai Topozero
+			Razboinik Strelok Dzhigit Oprichnik Nayezdnik Plastun Gaidamak Abrek Vsadnik Almaz Zhemchug Izumrud Yakhont
+			Kem Yug Voronya Mezha Okhta Ravan Kunya Svir Seim Sestra Don Yeya Terek Sok Istra Dubna Ob Ket Nadym Indigirka Amur Bereya Sestra
+		}
+		army_names=
+		{
+			*Armiya iz $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flot iz $PROVINCE$*
+		}
+	}
+	saxon=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=SAX
+		male_names=
+		{
+			Adalbert Adam Adolf Albrecht Almerich Amadeus Andreas Anselm Arnold Arnulf Augustin 
+			Baldemar Baldewin Berengar Bernhard Berthold Bruno Burchard
+			Caspar Christopher
+			Dietmar Dietpold Dietrich Dietwin
+			Eberhard Eckhard Ehrenfried Eginolf Ekbert Emelrich Emich Engelbrecht Erich Ernst
+			Folkhard Folkmar Franz Friedrich
+			Gebhard Georg Gerhard Gerlach Giselbert Gottfried Gotthard Gottschalk Gotzelo Guntram Günzel
+			Hartmann Hartwig Heinrich Herbert Hermann Hugo Humbert
+			Jakob Johann
+			Karl Karloman Konrad Kuno
+			Lambert Leopold Lothar Ludolf Ludwig Luitpold Lutbert
+			Magnus Manfred Markward Martin Mathias Meinhard Michael Nikolaus Norbert
+			Ordulf Otto
+			Peter Philipp Poppo
+			Rudger Reinhard Rudolf Ruprecht
+			Siegfried Sieghard Siegmund Simon Stefan
+			Theodorich Thietmar Thomas
+			Udo Ulrich
+			Viktor
+			Waldemar Walram Walther Welf Wenzel Werner Widukind Wigerich Wilhelm Wolfgang Wolfram
+			*Johann Georg* *Friedrich August* *Christian* *August* *Friedrich Christian* Moritz
+			Alexander Anton *Christian Albrecht* Hektor *Clemens Wenzel* *Franz Xaver* Joachim
+			Joseph Maximilian Severinus Alfred Burkhard Günther Kajetan Lukas Micharl Reimund
+			Ulrich Wilfried
+			Adelbert Dieter
+			Eduard Edwin Erwin Florian Fritz
+			Gustav Hasso Helmuth Johann Jürgen
+			Leonhard
+			Pascal Paul Theodor
+		}
+		female_names=
+		{
+			Adela Adelheid Adelinde Agathe Agnes Alberade Amalberga Amalie
+			Barbara Beatrix Benedicta Berchte Berta Binhilde Brunhilde
+			Cecilie Cothilda Christine
+			Dorothea
+			Elisabeth Emma Engeltraud Ermengard Eufemia
+			Friedrica Frida 
+			Gerberga Gerhild Gertrude Gisela Gudrun Gunhilda
+			Hedwig Heilwiva Heike Helene Helga Henrike Hildeburg Hildegard
+			Ida Ilsa Inge Irmele Irmeltrud Irmgard Isentrude
+			Judith Jutte
+			Katharina Karlotte Klara Klementia Konstanze Kriemhild Kunigunde 
+			Luitgard
+			Margarete Maria Mathilde Mechtild
+			Oda Osterhild
+			Richara Richenza Richwara Romilda 
+			Serhilda Sofie Sybille
+			Trude
+			Ulrike Ursula Ute
+			Walpurga Wilhelmina Winfrida Wulfhilde
+		}
+		leader_names=
+		{
+			Hergesell Oelssner Rank Teichmann Taut
+			Harzer Dietze Tellig Pilz Winkler Uhlich
+			Uebigau Kranke Bieber *von Rath* Arnim
+			Hamann Kirbach Gödel Oertel Schönfeld
+			Deitz Kuhn Sehm Fischer Bretfeld Rabs
+			Behncke Brommy Cordemann Dreyer Droste Groener *Herwarth von Bittenfeld* Heppendorf Hoffmann Krohn Ludendorff Schree
+			*Vogel von Falkenstein* *von Alten* *von Anhalt* *von Arentschildt* *von Bülow* *von Bismarck-Bohlen* *von Blumenthal* *von Blomberg* 
+			*von Boyen* *von Braunschweig* *von dem Knesebeck* *von Gebser* *von Fritsch* *von Halkett* *von Hannover* 
+			*von Hessen-Darmstadt* *von Hessen-Kassel* *von Hindenburg* *von Hohenzollern* *von Holstein-Gottorp* *von Knorr* *von Kleefeld*
+			*von Manteuffel* *von Mecklenburg-Schwerin* *von Mecklenburg-Strelitz* *von Moltke* *von Oldenburg* *von Rauch* *von Ravensberg* 
+			*von Reuter* *von Richthofen* *von Sachsen-Altenburg* *von Sachsen-Coburg-Gotha* *von Sachsen-Meiningen* 
+			*von Sachsen-Weimar-Eisenach* *von Schlieffen* *von Schwarzburg* *von Spee* *von Tirpitz* *von Waldeck und Pyrmont* *von Wettin* 
+			*von Wrangel* *von Zieten* *zur Lippe* *von Roon*
+		}
+		ship_names=
+		{
+			Widukind Edberg Wichman Billing Liedolf
+			Brun *Otto* *Heinrich* *Bernhard*
+			Ordulf Manus Lothar Lothar *Heinrich*
+			*August der Starke* *Heinrich der Löwe* *König von Polen* Wettin *Friedrich August* *König Albert* Kurfürst Askanien Aurora 
+		}
+		army_names=
+		{
+			*Armee von $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotte von $PROVINCE$*
+		}
+	}
+	schlesian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=BOH
+		male_names=
+		{
+			Aleksander Andrzej Bartosz Bezprym Boguchwal Bogumil Boleslaw Boncza Borzyslaw Bozydar Borzywoj Budziwuj Czcibor Czyrzniech
+			Dalimir Daniel Dobieslaw Dobrogost Dobromir Doman Domawuj Dytryk Eustachy Gaudenty Gierolt Gniewomir Gniewosz Gosciwuj Goszczon Henryk Imram
+			Izbor Józef Jacek Jaksa Jakub Jakusz Jan Janislaw Janko Janusz Jaroslaw Jerzy Karol Kazimierz Konrad Krystyn Krzeslaw Lambert Leszek
+			Maciej Macko Malowuj Marcin Maslaw Mateusz Mieszko Mikolaj Milobrat Milosz Miroslaw Msciwoj Mszczuj Nadbor Niezamysl Odon Pawel Pelka
+			Piotr Piskla Prendota Przemyslaw Przybor Sambor Sedziej Sedzimir Sieciech Siemomysl Siemowit Skarbimir Snowid Spytko Stanislaw
+			Stefan Stoigniew Strasz Sulislaw Sulistryj Swietopelk Swietoslaw Szczesny Tomasz Trojden Twardomir Usciech Waclaw Wanko Wawrzyniec
+			Wielislaw Wieslaw Wincenty Wit Witosz Wladyslaw Wojciech Wojuta Wszebor Zbigniew Zbyszko Zegota Zelibrat
+			Zygmunt
+			Fryderyk Ludwik *Jan Krystian* *Jerzy Rudolf* *Jerzy Wilhelm* *Joachim Fryderyk* *Krystian* Ruprecht *Jan Jerzy* *Jerzy Ernest*
+			August Ernest Joachim *Krystian Ludwik* Rudolf Wladislaw Albert Andel Branko Bruno Cezar Dietrich Eugeniusz Filip Hermann
+			Krzysztof Lech Libor Markus Maurycy Radomir Siegfried Tomás Václav
+			Adam Antoni Bonawentura Bronislaw Dezydery Edmund Edward Emil
+			Felicjan Franciszek Gustaw Ignacy Jedrzej
+			Juliusz Klemens Konstanty Leon Leopold Lucjan
+			Marceli Marian Mariusz Melchior Michal Mieczyslaw Roman Romuald Samuel
+			Tadeusz Wilhelm Witold
+		}
+		female_names=
+		{
+			Adelajda Adleta Agnieszka Aldona Anastazja Anna Beata Bozena Danuta Dobrawa Dobronega Elzbieta Eufemia Eufrozyna Gertruda Grzymislawa
+			Helena Jadwiga Jolanta Judyta Katarzyna Kazimiera Kenna Kinga Konstancja Krystyna Kunegunda Lucja Ludmila Magdalena Malgorzata Maria
+			Matylda Milena Nadzieja Nawoja Pechna Rycheza Ryksa Salomea Samboja Scholastyka Smiechna Stanislawa Swietoslawa Wislawa Wojslawa
+			Wolislawa Wszebora Wszemila Zofia Zwinislawa
+		}
+		leader_names=
+		{
+			Arnsberg
+			Bebra
+			Eder
+			Fulda
+			Hamm
+			Kassel Knyphausen
+			Lippstadt
+			Münden
+			Paderborn
+			*von Scheideck*
+			Bem Bór-Komorowski Brzóska Chalasinski Chlaposwski Chlopicki Chrzanowski Dabrowski Dembinski Fabryvy
+			Hauke-Boask Iszikowski Jasinski Klicki Konopczynski Krukowiecki Kruszewski Langiewicz Madalinski Mierolawski
+			Mikolajczyk Mokronowski Niepokólczycki Ostrowski Pac Pilsudski Poniatowski Potocki Preadzynski Radziwill
+			Rokossowski Rola-Zymierski Rómmel Rózicky Rybinski Rydz-Smigly Sanguszko Skrzynecki Soltyk Sowinski
+			Taczaneowski Traugutt Wawrzecki Wieniawa-Dlugoszowski Wybicki Wysocki Zajaczek Zaluski Zamoyski Zeligowski
+		}
+		ship_names=
+		{
+			*Heinrich* Kassel Werra Lahn Fulda
+			Wasserkuppe Stirnberg Hanau Marburg Wetzlar
+			*Karel* *Prokop Veliký* *Jan Žižka* *Josef Ressel* 
+			Milešovka Lovos Hazmburk Koštálov *Ceské Stredohorí* 
+			Jizera Metuje Morava Svratka Olza  
+			*Jan Dismas Zelenka* *Šimon Brixi* *František Tuma* *Antonín Kraft* *František Xaver Dušek*
+			*Petr Brandl* *Václav Hollar* *Jan Jahn* *Jan Kupecký* *Karel Škréta*
+			*Pražský hrad* Vyšehrad Zbraslav Kolodeje Chvaly 
+		}
+		army_names=
+		{
+			*Armee von $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotte von $PROVINCE$*
+		}
+	}
+	scottish=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=SCO
+		male_names=
+		{
+			Adam Ailpein Alan Alexander Andrew Angus Archibald Arthur
+			Barclay Beathan Brice
+			Cameron Charles Cináed Colban Colin Conall Constantine
+			David Donald Douglas Duff Dugald Duncan
+			Edan Edgar Edward Evander Ewan
+			Farquhar Fergus Findlay Fraser
+			Garry Gilbert Gilbride Gilchrist Gilpatrick Giric Glen Godfrey Gregor
+			Henry Hugh
+			Ian
+			James John Kenneth
+			Keir Kennedy
+			Lachlan Laurence Lennox Logan
+			Macbeth Magnus Malcolm Maldoven Maldred Malise Malmure Matad Matthew Micheil Morgan Mungo Munroe Murdoch
+			Neil
+			Patrick
+			Radulf Ranald Richard Robert Roderick
+			Scott Simon Stuart
+			Thomas
+			Uhtred
+			Waldeve Wallace Walter William
+		}
+		female_names=
+		{
+			Ada Affraic Agnes Alice Annabella Aufrica
+			Bethoc Bride 
+			Catriona Cecilia Christina
+			Deirdre Dervorgilla Donada 
+			Edith Eithne Ela Eleanor Elspeth Euna Eva
+			Fenella Fingola Flora Forflissa
+			Galiena Gormelia Gruoch
+			Helen
+			Isabel
+			Joan Julia
+			Kentigerna
+			Lorna
+			Malmure Margaret Mariota Marjory Martha Marthoc Mary Maud Mirren Mor Morag Muriel Murron
+			Nuala
+			Orabilia
+			Ros
+			Sheena Shona
+		}
+		leader_names=
+		{
+			Adam Alexander
+			Bruce Beaton Boyd
+			Cameron Campbell Cochrane Crichton Cunynghame Crawford Carnegie Colyear
+			Douglas Duncan *de Dunbar* Dalzell Drummond
+			Erskine
+			Forbes Ferguson Fletcher Fleming
+			Gordon Graham Gilchrist
+			Hume Hepburn Hamilton
+			Johnstone
+			Knox Keith Kerr
+			Law Leslie Livingston Lindsay
+			MacKenzie MacDonald MacGregor Malise MacTaggart Montgomerie Maxwell Murray Maitland
+			Nasmyth
+			Ogilvy
+			Playfair Paterson
+			Raeburn Randolph Ruthven
+			Selkirk Strathbogie Sinclair Stewart Seton
+			Wilkie Wishart Wemyss	
+		}
+		ship_names=
+		{
+			Advantage *Ann of Anstruther*
+			Bonaventure Bruce
+			Charles *Christian of Boness* Christopher Cuckoo
+			Flower Fortune
+			*Good Fortune* Green-tree
+			*Great Michael*
+			James Janet *Jenny Pirwin*
+			*King's Caravel*
+			*Lamb of Leith* Lesley Lion
+			Margaret *Margaret of Peterhead* *Mary Willoughby* *Mary Walsingham* Mercury Moon Morton
+			Pelican *Prince Rupert* *Providence of Dundee*
+			*Rainbow of Dundee* Rothes
+			Salamander *St. Salvator*
+			Thistle
+			Unicorn
+			Venture
+			Wemyss
+			*Yellow Caravel*
+			*Duke*
+			*Arran* *Islay* *Jura* *Lewis* *Harris* *Skye*
+			*Hamilton* *Buccleuch* *Lennox* *Roxburghe* *Lothian*
+			*Selkirk*
+			*Loch Lomond* *Loch Ness* *Loch Morar* *Loch Tay* *Loch Awe*
+			*Flying Spur* *Cutty Sark* *Falls of Clyde* *Glenlee* *Mull of Kintyre* *Walter Scott*
+			*William Wallace* Parkhead Govan Gorgie Leith *James Bruce*
+			*David Douglas* *Alexander Gordon Laing* *Patrick Miller* *William Symington*
+			*Archibald Cochrane* *Andrew Moray* *Water of Leith* *River Tay* *Alexander Dalzeel*
+			*John Gow* *William Kidd* *William Greaves*
+			*Enterprise* *Ossian* *Tweed* *Stornoway*
+		}
+		army_names=
+		{
+			*Armailt na $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Cabhlach na $PROVINCE$*
+		}
+	}
+	siberian=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=CRI
+		male_names=
+		{
+			Abagha Achigh Aguchu Ajai Ajinai Akhutai Alagh Alchi Alchidai Altan Ambaghai Arkhai Arasen Babur Badai Bagaridai Bala Barghujin Bartan Batu Bedugun Begter Belgutei
+			Belgunutei Bilge Berke Bodonchar Bogen Bogorchu Bolkhadar Borjigidai Boroghul Bughu Bugidai Bugunutei Bujeg Bukha Bulughan Buri Burkhan Burundai Chagatai Chaghagan Chanai Chigu
+			Chidukhul Chilagun Chiledu Chormakhan Chulgetei Dagun Daritai Dayir Dodai Duua Eljigedei Ghazan Ghunan Guchu Gughlug Guyug Harghasun Horkhudagh Hulegu Husun Inalchi Inancha Iturgen 
+			Jajiradai Jamugha Jebe Jochi Jurchedei Khabichi Khachi Khachigun Khadagh Khagatai Khaidu Khal Khorchi Khorilartai Khubilai Khudu Khutula Khuyildar Kogsegu Kokochu Megetu Megujin
+			Menggei Mongke Morokha Munglig Nakhu Narin Nayaga Nogai Odchigin Ogodei Okhotur Oljaitu Oronartai Shiraghul Shirgugetu Subetei Suyiketu Taghai Tamachi Targhutai Temuge Temujin Temur
+			Todogen Toghoril Toghtoga Tokhtamis Tolui Torolchi Tumen Uighurtai Ukhuna Usun Yedi Yegu Yeke Yesugei Yesunge Yokhunan Kadan Godan
+			Taybuga Khwajâ' Mar Obder Ibaq Mamuk Abalak Aguis Qasim Bekbulat Yadiger Kucum Aley Seidyak Suker Boibegus Kuldalang Ucirtu Dagal Aldark Dsungar
+		}
+		female_names=
+		{
+			Al-Alta Alan Altani Borte Botokhui Bulughan Chabi Chagur Chakha Checheyigen Chotan Doregene Doquz Ebegei Gurbesu Hogelun Holuikhan Ibakha Khadagan Khogaghchin Khojin Khorijin Khugurchin
+			Khulan Mandukhai Mongoljin Nomolun Oghul Orbei Sokhatai Sorkhaghatani Tekine Temulun Töregene Yesugun Yesui Hoelun
+		}
+		leader_names=
+		{
+			Balna Salmiianov Ravna Taiborey Vylka
+			Kanin Maimbava Arinin Aven Tsoy
+		}
+		ship_names=
+		{
+			Orda Kochu Bayan Sasibuga
+			Ilbasan *Mubarrak Kwaja* Chimtai Urus Tuqtaqiya
+			*Timur Malik* Toqtamish *Timur Qutlugh* *Shadi Beg*
+			Pulad *Jalal Ad-Din* *Karim Berdi* Kebek *Jabbar Berdi*
+			*Ulugh Muhammad* *Devlat Berdi* Baraq *Sayyid Ahmad*
+			*Çürük Suv* *Chufut Kale* Hansaray *Haci Giray* *Meli Giray*  *Zincilri Medrese* Kyrym  *Qirq Yer*  *Cufut Qale* 
+			*Chingiz Khan*
+		}
+		army_names=
+		{
+			*Tumen irsen $PROVINCE$* 
+		}
+	}
+	swedish=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=SWE
+		male_names=
+		{
+			Albrikt Alf Algot Anders Anund Arnbjörn Arne Arnfast Asbjörn Astrad Azur Bagge Balder Bengt Bertil Birger Björn Bo Borkvard Botulf Brage Bror 
+			Brynjolf Dag Dan Dyre Egil Einar Emund Erik Eskild Faste Fredrik Filip Folke Frej Georg Greger Grim Gudröd Gunnar Gustav Halsten Hans Harald
+			Helgi Henrik Hjalmar Holmger Håkan Inge Ingemar Ingvar Jedvard Johan Karl Kettil Kettilmund Klas Knut Kol Kolbjörn Lars Magnus Markus 
+			Mats Nils Niklas Odd Olaf Orvar Peder Ragnar Rolf Rörek Ragnvald Sämund Sörkver Sigbjörn Sigtrygg Sigurd Starkad Sten Styrbjörn Sune Sven
+			Sverker Sölvi Thomas Tjudmund Toke Tolir Torbjörn Tord Torbrand Torfinn Torkel Torolf Torsten Toste Totil Tyke Ulf Valdemar Åke Östen
+			*Gustav Adolf* *Carl Gustav* *Carl Johan* Christian Christoph *Adolf Fredrik* *Karl Filip* *Adolf Johan* Oskar *Fredrik Adolf*
+			*Fredrik August* *Göran Love* Sigismund Alfred Axel Edvard Gottfrid Jakob Ludvig Mikael Olof Patrik Rangvald Rettil Sigvard
+			Simon *Sten Sture* Svante Tomas Ulrik
+			Alexander Arnold August Baltzar Carl Christofer Didrik
+			Elias Emil Esaias Fabian Frans Gunnar Gustav
+			Jesper Julius Michael Nikolaus
+			Oscar Per Rudolf Theodor Verner Viktor Vilhelm
+		}
+		female_names=
+		{
+			Aleta Alfhild Alfridh Anna Asta Astrid Beata Birgitta Bothild Cecilia Edla Elin Elisabet Freja Gunhild Gyla Gurli Gytha Hafrid 
+			Helena Holmfrid Iliana Inga Ingeborg Ingegerd Ingfrid Ingrid Karin Katarina Kristina Linda Maer Malmfrid
+			Margareta Märta Ragnfrid Ragnhild Rikissa Saga Sara Sigrid Sofia Svanhild Thordis Ulvhilde Ylva Åsa
+			Christina *Ulrika Eleonora* Hedwig
+		}
+		leader_names=
+		{
+			Andersson Armfeldt *von Ascheberg* Adlercreutz Adlersparre Alkmaar Anckarström
+			Bagge Banér Bielke Brahe
+			Cronstedt
+			*von Döbeln* Dahlbergh Dufwa
+			Engelbrekt Eriksson Ehrensvärd *von Essen* Eka Ehrenstrahl
+			Fleming *von Fersen*
+			Gadh Grip *af Gennäs* *de la Gardie* Gyllenhielm Gathenhielm Gustavsson
+			Horn Hård Hahn Hastfer Hjärne
+			Jägerhorn
+			Königsmarck Klingspor
+			Lewenhaupt Leijonhufvud Liljencrantz Lindschöld
+			Oxenstierna
+			Palmstruch Piper Prinz
+			Rehnskiöld Ribbing
+			Stenbock Sandels Skytte Sture
+			*Tre Rosor* Torstensson *af Trolle* Toll
+			Wrangel Wachtmeister Wallenberg
+			Åkerhielm
+			Abelin Bildt Björnstjerna Brakenhielm Breitholtz Chrsiterson Crusebjörn Dyrssen
+			Ehnemark Ehrenstam Gyllengranat Gyndestolpe Ingelman Lindman Mörner Nordenskiöld *Palanger af Vega*
+			Palmstierna Peyron Rappe Reuterskiöld Rosensvärd Ryding Sprengtportem Ström Taube Tawast
+			Thörnell Thulstrup Tingsten Ulner Virgin *von Essen* *von Hohenhausen* *von Otter* *von Platen* Weidenhielm
+		}
+		ship_names=
+		{
+			Akilles Amarant Andromeda Anklam Bohus *Böse Lejon* Calmar Camilla Carolus Charlotte Cossacken 
+			Crono-Solen David Disa Draken Drottningen Elefanten Elfsborg Elisabet Engel *Engel Gabriel* 
+			Enighet Euridice Falk Fenix Finland *Flygande Wargen* Fortuna Fredrika *Fredrika Amalia* 
+			Fröija Galathe *Gamla Fortuna* *Gamla Rikssvärdet* *Gotha Lejon* Grip Gustavus *Gyllende Lejon* 
+			Göta Havsfru Hektor Herkules Hieronymus Hjalmar Hök Illerim Ingeborg Jomfru 
+			Jupiter Jägare *Kalmar Nyckel* Kalmarkastell Karlskrona Kronan Laxen Leopard Lejon Lodbrok 
+			Mars Mercurius Morgonstjärna Norden Nordstjärna Nyckeln Nyland Oden Pelikanen Postillion 
+			*Prins Carl* Prinsessan Regina Rosa Skåne Småland Solen *St. Erik* *St. Göran* *St. Johannes* 
+			*St. Thomas* Starkoster Stenbock *Stora Cronan* Svan *Svenska Falk* *Svenska Lejonet* 
+			Sverige Svärdet Södermanland Tapper Thetis Tigern *Tre Kronor* Troilus Ulrica Uppland 
+			Vasen Victoria Warberg Wasa Wenden Werden Vestervik Wästmanland Victoria Witduve Öland Örn
+			*Clas Eriksson Fleming* *Axel Nilsson Ryning* *Carl Carlsson Gyllenhielm* *Gustaf Otto Stenbock* *Lorentz Creutz* *Hans Wachtmeister af Johannishus* *Henrik af Trolle* *Carl August Ehrensvärd* Fredrik Johan *Manligheten* *Dristigheten* *Sverige*
+			Nynäshamn Karlshamn Halmstad Blenda Astrid
+			*Carl* *Karl Johan* *Prins Oscar* *Gustav den Store* Försiktigheten Tapperheten *Kung Adolph Fredric* Henrik Tomas
+			*Claes Uggla* Psilander *Claes Horn* *Jacob Bakke* Ornen Fylgia *Tre Kronor* *Göta Lejon* Östersund Borgholm
+			Packa *Svarta Örn* Jarramas Vainqueur Delphin *Lilla Phoenix* Växjö Gävle *Baron Gustaf Bonde* 
+			*John Ericsson* Loke Sköld Tirfing Tordön Berserk Björn Folke Sölve Ulf Fenris Garmer Gerda Hildur
+		}
+		army_names=
+		{
+			*Armé af $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotta af $PROVINCE$*
+		}
+	}
+	tartar=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=CRI
+		male_names=
+		{
+			Abagha Achigh Ahmad Aguchu Ajai Ajinai Akhutai Alagh Alchi Alchidai Altan Ambaghai Arkhai Arasen
+			Babur Badai Bagaridai Bala Baraq Barghujin Bartan Batu Bedugun Begter Belgutei Belgunutei Bilge Berke Bodonchar Bogen Bogorchu Bolkhadar Borjigidai Boroghul Bughu Bugidai Bugunutei Bujeg Bukha Bulughan Buri Burkhan Burundai
+			Chagatai Chaghagan Chanai Chigu Chidukhul Chilagun Chiledu Chormakhan Chulgetei
+			Dagun Daritai Dayir Devlat Dodai Duua
+			Eljigedei
+			Ghazan Ghunan Godan Guchu Gughlug Guyug
+			Harghasun Horkhudagh Hulegu Husun
+			Inalchi Inancha Iturgen 
+			Jabbar Jajiradai Jalal Jamugha Jebe Jochi Jurchedei
+			Kadan Karim Kebek Khabichi Khachi Khachigun Khadagh Khagatai Khaidu Khal Khorchi Khorilartai Khubilai Khudu Khutula Khuyildar Kogsegu Kokochu Kuchuk
+			Megetu Megujin Menggei Mongke Morokha Munglig Muhammad
+			Nakhu Narin Nayaga Nogai
+			Odchigin Ogodei Okhotur Oljaitu Oronartai
+			Pulad
+			Qutlugh
+			Sayid Shadi Shiraghul Shirgugetu Subetei Suyiketu
+			Taghai Tamachi Targhutai Temuge Temujin Temur Todogen Toghoril Toghtoga Tokhtamis Tolui Torolchi Tumen
+			Uighurtai Ukhuna Ulug Usun
+			Yedi Yegu Yeke Yesugei Yesunge Yokhunan
+			Asaf Baqi Galiaskar Ismail Makhmut Musa Rustam Yusuf
+			Faysi Gizzat Kamal Tinchurin Tukay
+		}
+		female_names=
+		{
+			Al-Alta Alan Altani
+			Borte Botokhui Bulughan
+			Chabi Chagur Chakha Checheyigen Chotan
+			Doregene Doquz
+			Ebegei
+			Gurbesu
+			Hoelun Hogelun Holuikhan
+			Ibakha
+			Khadagan Khogaghchin Khojin Khorijin Khugurchin Khulan
+			Mandukhai Mongoljin
+			Nomolun
+			Oghul Orbei
+			Sokhatai Sorkhaghatani
+			Tekine Temulun Töregene
+			Yesugun Yesui
+
+		}
+		leader_names=
+		{
+			*Boke Temur* *Qutlugh Vachir* *Suren Chinua* *Delger Bayar*
+			*Shria Gan* *Bora Chinua* Nasange Temur-chi Chinuagene Toluilun
+			Qutughqan *Koke Burilgi* Surenchar Bayangge
+		}
+		ship_names=
+		{
+			Batu Sartaq Ulaghchi Berke *Mengu-Timur* *Tuda-Mengu*
+			Talabuga *Nogai Khan* Tokhta *Öz Beg* *Tini Beg* *Jani Beg* 
+			*Berdi Beg* Qulpa *Nawruz Beg* Khidr *Timur Khwaja* Abdallah
+			*Muhammad Bolak* *Mamai Khan* Toqtamish *Temür Qutlugh* Ediguh
+			*Shadi Beg* *Polad Khan* Temür *Jalal ad-Din* *Karim Berdi* Kebek
+			*Jabbar Berdi* *Ulugh Muhammad* *Dawlat Berdi* Baraq *Sayud Ahmad*
+			*Çürük Suv* *Chufut Kale* Hansaray *Haci Giray* *Meli Giray*  *Zincilri Medrese* Kyrym  *Qirq Yer*  *Cufut Qale* 
+			*Chingiz Khan*
+		}
+		army_names=
+		{
+			*Tumen irsen $PROVINCE$* 
+		}
+	}
+	turkmeni=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=KHI
+		male_names=
+		{
+			Çagri Çaka
+			*Abd al-Khalik* *Abd'ullah Qara* *Abu'l Khair* Abu'l-Ghazi *Abu Muhammad* Afsin Aqim Aksonqor Alaeddin 'Ali Alkan *Alp Arslan* *Alp Yurek* Alptigin Anusha Aqatay Arang Artuk Avanesh Ayaz Aydin Aydogan Aydogdu Aytekin
+			Bölekey Böru Bulend Bahadur Balaban Basbuga Batuhan Baturay Baybars Bayezid Baytas Belek Berkan Berkiyaruk Bozan Buchagha Bugra Bujunga Burak
+			Chichaq Cuneyd
+			Dundar Danismend Davud Demir Dogan Dogukan Dost
+			Dukak
+			Erdem Ertan Ertekin Ertugrul Gunduz
+			Ghayib Ghazi
+			Habash Haidar Hajji Hasan *Hasan Quli* Hizir
+			Ibrahim Ilbars Ilgazi Inal Ishi Isfandiyar Iskender
+			Jahangir
+			Kal Kurboga Kaikaus Kaikhusraw Kaiqobad Kara Karatay Kasim Kaya Kaytun Kemal Khdaydad Kiliç Korkut Kutalmis Kutay Kutlug
+			Mursel Mahmud Mehmed Meliksah Mengucek Mesud Muhammad Murad Musa Mustafa
+			*Nizay Ishaq Aga* Nurali
+			Orhan
+			Porsuk Rustem Ramazan Ridvan
+			Söbuk Sökmen Sönmez Suleyman Saim Saltuk *Sarigh Ayghir* Saruca Savtekin Savur Sehinsah Selçuk Selim Sencer *Sharif Sufi* *Shir Grazi* Sinan Sufiyan
+			Tahir Tanrivermis Tawke Tekin Timurtas *Timur Ghazi* Togay Togtekin Toktamis Tolun Toruntay Tugrul Tunga Turgut Turhan Tutus
+			Uluç Umur Usman
+			Vali
+			Yadigar Yakut Yaman Yinal Yunus
+			Ahmed Haydar Nurberdi Qilich
+		}
+		female_names=
+		{
+			Çiçek Çilen Çiltanesi
+			Özgul Özlem
+			Akgul Asli Aslihan Ayasun Ayla Ayse Ayten Azize
+			Bahar Banu Bozçin
+			Canan Ceylan
+			Dunya Dilber Dilek
+			Emine Esin Fatma
+			Firuze
+			Gulçiçek Gulay Gulbahar Gulfem Gulsum Gumus Gunduz Gundes Gunes
+			Hatice Hayat Huriye
+			Ilkay Ilknur Ipek Ipekel Irge
+			Karacik
+			Lale Leyla
+			Mala Mansure Merve Mutlu
+			Nagihan Nergis Neslihan Nilufer Nur
+			Peksen
+			Terkhen
+			Samur Sarica Sati Sehnaz Serap Serife Sevilay Sevindik Sibel Sirin Sirma Songul Sumru
+			Tekçe Tura
+			Umay Usunbike
+			Vahide
+			Yasar Yeldem Yildiz
+			Zehra Zuhal
+		}
+		leader_names=
+		{
+			*Bayan Arslan* *Mongke Cheren* *Mongke Bayar* *Suren Chinua* *Oyugun Nasan*
+			*Bora Tolui* Qadancher Batulun Batutai Bokejin Arighqan Burilgiteni
+			Bayarnai Subegene Tegusdai Yekedei
+			Beg Khan
+		}
+		ship_names=
+		{
+			Khwarezm Urganj *Din Muhammad* *Yelu Dashi*
+			Kunya *Amu Darya* *Anush Tigin* *Ala Aziz*
+			*Ahmed Sanjar* *Ala Takish* *Jaxartes*
+			*Syr Darya* *Bukhara* *Jalal Mingburnu*
+			*Abu Mamun* *Abu Hasan Ali* *Altun Yash*
+			Harun *Ismail Khandan*
+		}
+		army_names=
+		{
+			*$PROVINCE$ gosun*
+		}
+		fleet_names=
+		{
+			*$PROVINCE$ flot*
+		}
+	}
+	turkish=
+	{
+		graphical_culture=muslimgfx
+		graphical_culture_V2=MiddleEasternGC
+		base_country_V2=TUR
+		male_names=
+		{
+			Çagri Çaka Afsin Ahmet Aksonqor Alaeddin Ali Alkan *Alp Arslan* *Alp Yurek* Alptigin Artuk Ayaz Aydin Aydogan Aydogdu Aytekin Böru Bulend Bahadir Balaban Basbuga Batuhan Baturay Baybars Bayezid Baytas Belek Berkan Berkiyaruk Bozan Bugra Burak Cuneyd Dundar Danismend
+			Davud Demir Dogan Dogukan Dukak Erdem Ertan Ertekin Ertugrul Gunduz Hasan_Hasan Hizir Ibrahim Ilgazi Inal Iskender Kurboga Kaikaus Kaikhusraw Kaiqobad Kara Karatay Kasim Kaya Kaytun Kemal Kiliç Korkut Kutalmis Kutay Kutlug Mursel Mahmud Mehmed Meliksah Mengucek Mesud Murad Mustafa Orhan Osman Porsuk Rustem Ramazan Ridvan Söbuk Sökmen Sönmez Suleyman Saim Saltuk Saruca Savtekin Savur Sehinsah Selçuk Selim Sencer Sinan Tanrivermis Tekin Timurtas Togay Togtekin Toktamis Tolun Toruntay Tugrul Tunga Turgut Turhan Tutus Uluç Umur Yakut Yaman Yinal Yunus
+			Mehmet Süleyman Abdülhamid Abdullah Abdülmecid Cihangir Giyasuddin Isa
+			Numan Mûsa Jem Orkhan Abdulaziz Abdulmecid Abdulmalik Abdulrahman
+			Alauddin Alam Hasan Hüseyin Ishak Kamar Korkud Ömer Seyfettin Shahanshah
+			Yakub Yusuf Burcu Direnç Emin Erol Ilhami Koray Onur Özgür Savas Temel Tunç
+			Abdulhamid Abdulkerim Abdulrahim Akif Arif 
+			Bahaeddin Bekir Cemal Cevad Celaleddin Cevdet Daud Edhem Enver 
+			Fahri Fevzi Ferid Fuat Hafiz Hamza Halil Halim Hayrullah Husrev
+			Ismet Izzet Kamil Kazim Lutfi
+			Mahmut Mithat Muhtar Murat Musa 
+			Namik Nazim Nurettin Nuri Omar 
+			Pertev Rauf Receb Reshad Refet Rifat Riza 
+			Sabaheddin Said Shevket Shukru 
+			Talat Tevfik Vefik Ziya Ziyauddin
+		}
+		female_names=
+		{
+			Çiçek Çilen Çiltanesi
+			Özgul Özlem
+			Akgul Asli Aslihan Ayasun Ayla Ayse Ayten Azize
+			Bahar Banu Bozçin
+			Canan Ceylan
+			Dunya Dilber Dilek
+			Emine Esin Fatma
+			Firuze
+			Gulçiçek Gulay Gulbahar Gulfem Gulsum Gumus Gunduz Gundes Gunes
+			Hatice Hayat Huriye
+			Ilkay Ilknur Ipek Ipekel Irge
+			Karacik
+			Lale Leyla
+			Mala Mansure Merve Mutlu
+			Nagihan Nergis Neslihan Nilufer Nur
+			Peksen
+			Terkhen
+			Samur Sarica Sati Sehnaz Serap Serife Sevilay Sevindik Sibel Sirin Sirma Songul Sumru
+			Tekçe Tura
+			Umay Usunbike
+			Vahide
+			Yasar Yeldem Yildiz
+			Zehra Zuhal
+		}
+		leader_names=
+		{
+			Alemdar Amasyali Ayas
+			Bali Barbaros Bayram
+			Cezzar Çandarli Çelebi Cerrah Çerkes
+			Damat Dervis
+			Ekrem
+			Gedik Gazi Gümülcineli Gürcü
+			Hadim Hekimoglu Hersekli
+			Köprülü Kemal Kucuk Koca Karamanli Kara Kanijeli Kemankes
+			Íshak
+			Lala Lefkeli
+			Mezzamorto Malkoç Müezzinzade Melek
+			Nevsehirli
+			Oruç Uluç Osmancikli Ohrili
+			Rum
+			Piri Pargali Piyale
+			Salih Sokullu Sissaou Silahdar Semiz Serdar
+			Topal Tabaniyassi Tayyar Turgut
+			Veli
+			Yemisçi
+			Özdemir Özdemiroglu Öküz
+			Bey Pasha 
+		}
+		ship_names=
+		{
+			*Kari Alemdar* *Arnaud Ali* *Dragud Ali* *Ferhad Ali* *Hamid Ali* *Iusuf Ali*
+			*Karl Ali* *Karaman Ali* *Macasir Ali* *Seydi Ali* *Tartar Ali* *Uluch Ali*
+			*Selim Basti* *Dermat Bey* *Kara Bey* *Karam Bey* *Memi Bey* *Osman Bey*
+			*Sinian Celebi*
+			*Murad Darius* *Salim Deli*
+			*Nasur Ferhad* *Magyar Fehrad* *Nasur Ferhad*
+			*Kafir Hajji*  *Kiafi Hajji* *Kos Hajji* *Mustafa Hajji* *Murad Hasan* *Karaman Hyder*
+			*Chios Mehemet* *Uschiufly Memy* *Kos Mend* *Kari Mora* *Amdjazade Mustafa*
+			*Cademly Mustafa* *Chendereli Mustafa* *Hignau Mustafa*
+			*Ionas Osman* *Piali Osman* *Piri Osman* *Tursun Osman*
+			*Iosul Piali* *Alemdar Pasha* *Darius Pasha* *Karaman Pasha*
+			*Celebi Reis* *Kasam Reis* *Karali Reis* *Nasi Reis* *Osman Reis* *Piri Reis*
+			*Piriman Reis* *Sali Reis* *Seydi Reis* *Talatagi Reis* *Uluj Reis* *Kara Rhodi*
+			*Peri Selim* *Keduk Seydi* *Hazuli Sinian*
+			*Turgut Reis* Hamidiye Reshadiye *Barbaros Hayreddin* Mesudiye 
+			Abdülkader Abdülaziz *Suleyman Kanuni* *Mehmet Fatih* *Osman* *Bayezid* *Ahmed* *Selim Yavuz*
+			Abdülmecid *Selim* *Mahmud* *Murat Hudavendigar* *Devlet-i Aliye* Çaldiran
+			Hudavendigar Biga Rumeli Ardahan Halep Sam Sehrizor Ruha Girit 
+			Yanya Eflak Özü Bosna Içel	
+			Osmaniye Mahmudiye Orhaniye Abdülaziz *Asar-i Tevfik* *Asar-i Sevket* *Nijimi Sevket*
+			*Avni Illah* Idjalieh *Fethi Belund* *Mukaddeme-i Hayir* *Gayret-i Vataniye* *Yadigar-i Millet*
+			*Muavenet-i Millet* *Numune-i Hamiyet* Adatepe Kocatepe Tinaztepe Zafer Demirhisar Sultanhisar
+			*Yavuz Sultan Selim* Adatepe Kocatepe *Mehmet Selim* Heibetnuma *Lutf-i Humayun* *Abdul Hamid*
+			Medjidieh *Mukaddem-i Hayir* Berkefsan Basra Tayyar Samsun *Muavanet-i Milliye* Midilli
+			Timsah *Simir-i Hidsum* Gilyom Nasir Ejder Yunus Draç Sivrihisar Nilüfer Rana 
+			*Doruk Reis* *Hizir Reis* *Timur Hisar* Kos Nuribar *Pelenk-i Derya* Ceyhan *Yar Hisar*
+			*Mahmud Sevket Pasha* Malatya Kütahya Yozgat
+			*Hersekli Ahmad* *Gedik Ahmad* *Rum Mehmed* Ishak *Çelebi Lutfi* Rustem *Sokollu Mehmed* *Koca Sinan*
+			*Ozdemiroglu Osman* *Damat Ibrahim* *Filibeli Hafiz* *Koprulu Mehmed* *Merzifonlu Kara Mustafa* *Amcazade Koprulu Huseyin*
+			*Yirmisekizade Mehmed Said* *Cezayirli Gazi Hasan* *Koca Yusuf* 
+		}
+		army_names=
+		{
+			*$PROVINCE$ ordusu*
+		}
+		fleet_names=
+		{
+			*$PROVINCE$ filosu*
+		}
+	}
+	umbrian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=ItalianGC
+		base_country_V2=ITA
+		male_names=
+		{
+			Abbondanzio Abbondio Abelardo Abelino Achille Adalberto Adelfo Adelmio Adelmo Adone Adriano Agapito Agostino Aimone Alamanno Alarico
+			Albano Alberico Alberto Albino Alboino Alcide Aldobrandino Aleardo Aleramo Alessandro Alessio Alighiero Alvise Ambrogio Amedeo Anastasio  Andrea Angelo Annibale Anselmo Antonino Antonio Antoniotto Arcibaldo Arderico Armando Arnolfo Arrigo Arsenio Artemio Ascanio Astorre
+			Atenolfo Attilio Augusto Aurelio Ausilio Ausonio Averado Azzo Azzone Baldassarre Baldovino Barnaba Bartolomeo Basilio Bassiano Basso
+			Battista Beltrano Benedetto Benvenuto Berardo Bernabò Bernardo Berto Bertoldo Biagio Bonaventura Bonifacio Borso Bruno Bruto Buonconte
+			Buoso Callisto Camillo Candido Cangrande Carlo Cassio Castore Cataldo Catone Cecco Cesare Chiaffredo Chiano Ciro Ciuccio Claudio Clemente
+			Comita Conone Cornelio Corradino Corrado Cosimo Cosma Costante Costantino Costanzo Cristoforo Damiano Davide Demetrio Dioniso Doménico
+			Durante Eduardo Elio Emmanuele Ennio Enrico Enzio Enzo Ercole Eriprando Ermenegildo Ettore Eugenio Ezio Ezzelino Fabrizio Fausto Federigo
+			Felice Ferdinando Ferruccio Filippo Fiorello Flavio Folco Fortunato Fosco Francesco Fresco Gabriele Gabrino Gaetano Galasso Galeazzo
+			Galeotto Gaspare Gastone Gelasio Gentile Geraldo Gerardo Germano Gerolamo Gherardo Giacinto Giacomo Gian Gianfranco Gianleone Giano
+			Giberto Gilberto Giolio Giordano Giorgio Giovanni Giulio Giuseppe Goffredo Gregorio Gualtiero Guarnito Guerrino Guglielmo Guido Guidone
+			Guigliadore Iacopo Igino Innocenzo Ippolito Isnardo Jacopo Lamberto Landolfo Landone Lanfranco Lattanzio Lazzarino Lazzaro
+			Lealdo Leonardo Leone Leonello Leopoldo Libero Lionello Livio Lodovico Lorenzo Luca Luchino Lucio Luigi Malacresta Manfredo Manuele
+			Marco Mariano Marino Mario Marsiglio Martino Massimo Mastino Matteo Merigo Michelangelo Michele  Napoleone Nazareno Nestore Niccolò Nicola
+			Nino Nolfo Oberto Obizzino Obizzo Oddone Omero Onorio Oreste Orlando Ottavio Ottobono Ottone Pagano Pancrazio Pandolfo Paolo Pasquale
+			Patrizio Pellegrino Pericle Pietro Pio Prospero Radul Raimondo Rainero Raineri Riccardo Rinaldo Rizzardo Roberto Rodolfo Rolando
+			Rosso Ruggiero Salinguerra Salvatore Salvestro Sante Saverio Sciarra Sebastiano Secondotto Serafino Sergio Sesto Settimio Severino Severo
+			Silvano Silvestro Simone Simonetto Sinibaldo Sinucello Sozzo Spinetto Stefano Stentore Taddeo Tedaldo Tedice Teodoro Tibaldo Tiziano Tommaso
+			Torgodorio Torquato Ubaldo Uberto Ugo Ugoccione Ugolino Umberto Urbano Valentino Valerio Vincentello Vincenzo Virginio Vitale Vittore Vittorio Zaccaria
+			Guidobaldo *Francesco Maria* *Francesco Ubaldo* Guidantonio Oddantonio *Giovanni Maria* *Federigo Ubaldo* *Giovanni Pietro* Girolamo Aldo
+			Alfonso Cirillo Egidio Franco Giambattista Leandro Marzio Ovidio Scipione Teodosio
+			Alessandro Benito
+			Faustino
+			Fiorenzo Gennaro
+			Raffaele Silvio Tancredi
+		}
+		female_names=
+		{
+			Abelina Adalberta Adalgisa Adelaida Adelasia Adelia Adriana Agalina Agnese Agostina Albina Alda Alessandra Alfonsina Alisia Aloisia
+			Amalia Ambrosia Anastasia Anna Antonella Antonia Argentina Augusta Aurelia Ausilia Ausonia Beatrice Benedetta Benilde Berenice
+			Berta Bianca Bona Brunilde Camilla Candida Caracosa Carla Carola Caterina Cecilia Clara Claudia Clorinda 
+			Clotilde Constanza Cornelia Delinda Dora Edda Elena Eleonora Elisa Elisabetta Ermenegilda Eudossia Eugenia
+			Fausta Felicia Felicita Filippa Filomena Flavia Flora Fortunata Fosca Francesca Froizza Giacinta Ginevra Giovanna Giuditta Giulia 
+			Giuseppa Ippolita Isabella Joscella Laura Lavinia Leonide Letizia Lidia Livia Lodovica Lucia Lucinetta Lucrezia Maddalena Marcella 
+			Margherita Maria Mariana Marietta Martina Matilda Micaela Nunzia Paola Patrizia Renata Ricciarda Silvana
+			Sofia Stefania Tiziana Tomasina Valentina Violante Virginia
+
+		}
+		leader_names=
+		{
+			Albani Aldobrandini Altieri Barberini Barbo Boncompagni
+			Borghese Borgia Braschi *di Campofregoso* Carafa Castagna
+			Cervini Chiaramonti Chigi Colonna Condulmeri Conti Corsini Cybo
+			Doria-Landi Doria-Pamphili *di Farnese* *Gaetani dell'Aquila*
+			Gangagnelli Ghislieri Gonzaga Lambertini Lante Ludovisi *di Medici*
+			Melzi *Melzi de Rimini* *del Monte* *di Montefeltro* Odescalchi Orsini
+			Ottoboni Pallavicino Pamphili Parentucelli Peretti Piccolomini Pignatelli
+			Prignano Rezzonico Rospigliosi *della Rovere* Sfondrati *da Varano*
+			Acton Albricci Badoglio Baldissera Baratieri Bava-Beccaris Cadorna Cagni Canevaro Capello
+			Caviglia Ceccherini Cialdini Cusani d'Absburgo-Toscana d'Austria-Este Dezza *di Borbone di Parma* *di Robilant* *di Savoia*
+			*di Savoia-Aosta* Emo Fanti Fara Filomarino Garibaldi Giardino Govone *La Màrmora* Mambretti 
+			Menabrea Orengo *Pacoret de Saint Bon* Pecori-Giraldi *Pellion di Persano* Pelloux Perruchetti Pianelli Porro
+			Presbitero Ramorino Ricotti-Magnani Sacchi Saletta Sanna Solari *Thaon di Revel* Vaccari Zupelli
+		}
+		ship_names=
+		{
+			Acqualagna Auditore
+			Colbordolo Colonna
+			Federico Fermignano Fossombrone 
+			Ghibellini *Giordano Orsini* *Giovanni Santi*
+			*Isola del Piano*
+			Lunano
+			Mondaino Montefeltro
+			Oddantonio Orsini
+			Peglio *Piero della Francesca*
+			*San Crescentino* *Sant'Angelo in Vado*
+			Tavoleto
+			*Dante Alighieri* *Giulio Cesare* *Andrea Doria* Duilio *Francesco Caracciolo* Littorio Roma Terribile Formidabile *Principe di Carignano* *Conte Verde* *Re di Portogallo* *Regina Maria Pia* *San Martino* Castelfidardo Ancona Affondatore *Principe Amedeo* *Ruggiero di Lauria* *Francesco Morosini* *Emanuele Filiberto*
+			Libia Basilicata Quarto *Valle d'Aosta* Trentino Marche Lazio Abruzzo Molise
+			*Marco Polo* *Carlo Alberto* *Vettor Pisani* *General San Martin* *General Belgrano* *General Pueyrredon* *San Giorgio* *San Marco* *Nino Bixio* Fiume Gorizia Pola Zara Bolzano
+			Fulmine Lampo Freccia Dardo Strale Euro Ostro Nembo Turbine Aquilone Borea Zeffiro Espero Artigliere Bersagliere Corazziere Garibaldino
+			Granatiere Lanciere Alpino Pontiere Ascaro Indomito Impavido Impetuoso Insidioso Intrepido Irrequieto Ardito Ardente Audace Animoso
+			*Rosolino Pilo* *Giuseppe Cesare Abba* *Pilade Bronzetti* *Giuseppe Missori* *Antonio Mosto* *Ippolito Nievo* *Francesco Nullo* *Simone Schiaffino* *Giuseppe Sirtori* *Giovanni Acerbi* *Vincenzo Giordano Orsini* *Francesco Stucco*
+		}
+		army_names=
+		{
+			*Armata di $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Flotta di $PROVINCE$*
+		}
+	}
+	wallonian=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=WLL
+		male_names=
+		{
+			Édouard Érrard Étienne
+			Adalbert Adémar Adrien Aimery Alain Aldebert Aldéric Alphonse Amaury Amédée Ancel André Angelbert Antoine Archambaud Arnaud Arnault Arnoul Aubry Aymar
+			Barthélémi Baudouin Benoît Bérenger Bernard Bertrand Bohemond Boson Bouchard
+			Centule Charles Clotaire
+			Ebbon Enguerrand Eudes Eustache Evrard
+			Foulques François Frédéric
+			Géraud Gargamel Gaucher Gaucelin Gauthier Geoffroy Géraud Gelduin Gilbert Gilles Godefroy Guichard Guiges Guilhem Guillaume Guy
+			Hélie Hamelin Henri Herbert Hildebert Hugues Humbert
+			Jacques Jaufré Jaspert Jean Josselin Jourdain Julien
+			Léon Léonard Lothaire Louis Loup
+			Manassès Mathieu Maurice Nicolas
+			Ogier Onfroy Orson Othon
+			Payen Philippe Pierre
+			Raimbaut Raoul Raymond Raynaud Renaud Richard Robert Robin Roger Rorgon Rorgues Roubaud
+			Savary Sigismond Simon
+			Thibault Thiébaut Thierry Thomas
+			Valeran
+			Yves
+			Albert Alexandre Alexis Auguste Barthélémy Blaise Camille Clément Constant 
+			Damien David Désiré Didier Edmond Édouard Emmanuel Émile Etienne Eugène Félix Fernand Feullien Florent Georges 
+			Gérard Gustave Hercule Hubert Ignace Isidore Jean-Baptiste Jean-François Jean-Louis 
+			Jean-Jacques Joseph Jules Lambert Laurent Léopold Lucien Maxime Maximilien Olivier 
+			Pascal Patrice Paul Philippe-Joseph Pierre-Guillaume Sébastien Sylvain Théophile Victor Vincent Werner
+		}
+		female_names=
+		{
+			Éléonore Élodie Étiennette
+			Adèle Adalmode Adelaide Adelinde Agathe Agnès Aléarde Alice Aliénor Alix Almodis Amelie Anne Antoinette Arsinde Aude Aurengarde
+			Béatrice Béatrix Belleassez Benoîte Bérengère Berthe Blanche Bonne Bourgogne Bourguigne
+			Cécile Cathèrine Charlotte Constance
+			Denise Douce
+			Echive Eglantine Elisabeth Emma Ermengarde Ermessinde Esclarmonde Euphrosine Eustachie Eve
+			Gerberge Gisèle Guillaumette
+			Héloise Helvis Hodierne Ide Ida Ildégarde Isabeau Isabelle
+			Jeanne Judith Julienne
+			Mafalda Mahaut Margot Marguerite Marie Marthe Mascarose Mathilde Mélisande Mélisende Mélusine
+			Péronelle Pernelle Perinne Pernette Plaisance
+			Raymonde
+			Sarrazine Solène Sophie Stéphanie Sybille
+			Tiburge
+			Valence
+			Yolande
+		}
+		leader_names=
+		{
+			d'Ambleteuse d'Aulnay
+			*de Beauharnais* *de Bercy* *de Béthune* *de Boissieu* *de Bonnefoy* *de Bonneuil* *du Bosquet* *de la Bretonnière* *de Broglie*
+			*de Castaing* *de Caumartin* *de Chambly* *de Chambronne* *de Champmartin* *de Chevigny* *des Coulons* *de Crèvecoeur* *de Crussol*
+			*de Dampierre* Desgouttes Duquesne
+			*des Ecures* d'Entraigues d'Estrées
+			*du Fournay*
+			*de Galard*
+			*des Herbiers*
+			*de La Barthe* *de La Ferrandie* *de La Galissonière* *de La Mothe* *de La Motte d'Airan* *de La Porte* *Le Tellier* *de Lhéry* *de Luynes*
+			*de Marguerye* *de Maurepas*
+			*de Neufchâtel*
+			*d'Ornano*
+			*de Pellefort*
+			*de Richemont* *de Rochechouart* *de Rochemaure* *de Rieu*
+			*de Saint Chamond* *de Saint Esprit* *de Saint Germain* *de Saint Omer* *de Siorac*
+			*de Tocqueville* *de la Tour d'Auvergne* *de Tréville*
+			*d'Usson*
+			*du Valentinois* *de Vergennes* *de Vibien* *de Vigny* *de Villeneuve*
+			Allard Barbanson Barthélémy Baugniet Beaucarne Berger Berthels Beyts Biver Blargnies Brialmont Bredart Cauvin Collet 
+			Cols Claus Clerix Coquilhat d'Arenberg d'Huart d'Omalius d'Oreye d'Oultremont David Davignon *de Baillet* *de Beaufort* 
+			*de Behr* *de Bocarmé* *de Bousies* *de Brouckère* *de Broqueville* *de Burlet* *de Celles* *de Chasteler* *de Coppin de Falaen*
+			*de Croÿ* *de Decker* *de Dixmude* *de Gerlache* *de Grez* *de Hemptinne* *de Labbeville* *de Lannoy* *de Ligne* *de Leuze* *de Melin* 
+			*de Mérode* *de Pelichy* *de Quarre* *de Riquet* *de Robaulx* *de Rouille* *de Sauvage* *de Sécus* *de Selys Longchamps* 
+			*de Stassart* *de Stockem* *de Theux de Meylandt* *de Trazegnies* *de Trooz* *de Viron* *de Waha* Defacqz Deguise Delacroix 
+			*Desmanet de Biesme* Destriveaux Dethier Devaux Deville Dewandre Dhanis Dreze *du Bois* *du Bus* *du Pont* *du Val de Beaulieu* Dumont
+			Fallon Fendius Figeys Fleury-Dubay Fleussu Forgeur Frison Fuchs Gendebien Goffint Henry *Huysman d'Annecroix* Jacques Joos Jottrand 
+			Lahure Lardinois *le Cocq* *le Hon* Lebeau Leclercq Lefebvre Leman Malou Marcq Marlet Masbourg Nagelmackers Nalinne Nothomb 
+			Orban Pétillon Picquet Pirmez Pirson Raikem Roeser Rogier Rouen Rouppe Seron Thonus Thorn *van Snick* Wahis Wangermée Wyvekens Zoude
+		}
+		ship_names=
+		{
+			l'Actif l'Actionnaire l'Aigle l'Alcide l'Alexandre l'Ambitieux l'Amphion l'Ardente l'Arrogant l'Artésien l'Assuré l'Astrée
+			*la Belle Poule* *le Bourbon* *le Brillant* *le Bien Aimé* *la Bizarre* *la Bretagne* *la Borée* *la Bourgogne* *le Brave* 
+			*le Caton* *le Conquérant* *le Content* *la Couronne* 
+			*le Dauphin Royal* *le Destin* *le Diadème* *le Duc de Bourgogne* 
+			*l'Eveillé* *l'Emérillon*
+			*le Fantasque* *le Fendant* *le Fier* *le Flamant* *la Fleur de Lis* *le Fleuron* *le Foudroyant*
+			*le Glorieux*
+			*le Hardi* l'Hermione
+			*le Gaillard* *la Grande Hermine* *le Héros*
+			*l'Illustre* *l'Indien* *l'Intrépide* *l'Invincible* 
+			*la Licorne* *le Lys*
+			*le Magnanime* *le Magnifique* *le Majestueux* *la Marie-Catherine* *le Marquis* *le Mars* *le Marseillais* *le Minotaure* *le Monarque*
+			*le Neptune*
+			l'Océan l'Oiseau l'Orient
+			*le Pélican* *le Protecteur* *le Prothée*
+			*la Railleuse* *le Redoutable* *le Réfléchi* *la Régente* *le Robuste* *le Roland* *le Royal Louis*
+			*le Sagittaire* *la Sainte Anne* *le Saint Esprit* *le Saint Michel* *le Saint Philippe* *le Sceptre* *le Seigneur Chat* *le Sévère* *le Soleil Royal* *le Solitaire* *le Souverain* *le Sphinx* *la Superbe*
+			*le Téméraire* *le Terrible* *la Thérèse* *le Triomphant* *le Tonnant*
+			*la Trombe* *le Triton* 
+			*Union* 
+			*la Victoire*
+			*le Zélé* *le Zodiaque*
+			Vallonia Henogovia 
+			*Louis Boisot* *Olivier Brunel* *Simon de Cordes* *Albert Dorville* *Jessé de Forest* *Louis Hennepin* 
+			Meuse Ourthe Sambre *l'Escaut* Semois
+		}
+		army_names=
+		{
+			*Armée de $PROVINCE$* 
+		}
+		fleet_names=
+		{
+			*Flotte de $PROVINCE$*
+		}
+	}
+	welsh=
+	{
+		graphical_culture=latingfx
+		graphical_culture_V2=EuropeanGC
+		base_country_V2=CAN
+		male_names=
+		{
+			Adda Aeddan Aeron Alan Aled Alisander Alwyn Anarawd Aneirin Annun Arod Arthfael Arthwr Arthws Arvel Asa Asaph Awst
+			Bangar Bedwyr Berwyn Bleddyn Brân Branwaladr Brochfael Brochmael Brwt Brwyn Brychan Brynmor
+			Cadell Cadfael Cadfan Cadoc Cadwal Cadwaladr Cadwallon Cadwgawn Cai Caid Cain Caradog Casnar Caswallon Cawdaf Cedig Cedwyn Celyn Ceneu Ceredig Cledwyn Coel Colwyn Custennin Cynan Cynddelw Cynddylan Cynfarch Cynfawr Cynfeddw Cynfelyn Cynfyn Cynwallon Cynyr
+			Dai Dafydd Deheuwant Deiniol Dewi Dilwyn Dogfael Drystan
+			Edern Ednyfed Ednywain Edwyn Einion Elis Elisedd Elud Elystan Emrys Emyr Ewyas
+			Ffilip Ffriog Ffwdwr Fragan Fychan Fyrsil
+			Gamon Gawain Geraint Gerallt Glynn Goronwy Gronw Gruffydd Gwen Gwenwynwyn Gwerthefyr Gwerthern Gwidyr Gwilym Gwrgant Gwyn
+			Heddwyn Heilyn Hywel
+			Iago Idwal Iestyn Ieuan Ifor Io Iolo Iorwerth Ithel
+			Llyr Llywarch Llewelyn
+			Macsen Madog Mael Maelgwyn Maredudd Math Meilyr Meirion Merfyn Meurig Morgan Morien Morydd
+			Owain
+			Padern Padrig Pandoff Pasgen Pawl Pedr Peredyr Pryderi Publig Pwydion Pwyll Pyr
+			Rhainallt Rhian Rhicert Rhirid Rhobert Rhodri Rhun Rhydderch Rhydog Rhys
+			Sawyl Seferus Seisyll Sion Siwauna Steffen Sulien
+			Tegonwy Tegwyd Teilo Tewdwr Tomos Trahaearn Tristan Tudor Tudwal Tudwallon Tydy Tyfodedd Tysilio
+			Urien
+			Vaughan
+			Ynyr Ysfael
+			Aneurin Bryson Cairn Dylan
+			Emry Enan Eoin Gareth Garnock Gavin Hedwyn Howell Idris Inir Kai
+			Kane Keith Llewellyn Ivor Iwan Siors Taliesin Wynfor
+		}
+		female_names=
+		{
+			Addiena Aelwyd Aeronwen Aeronwy Alys Angharad Annes Annest Annwyl Anowed Arddyn Arianrhod
+			Blodwen Bronwen
+			Catrin Ceridwen Cerie Cerys Cicely Clarisant Cristin
+			Delyth Denis Dwynwen Dwywai Dyddgu
+			Efa Elaine Elen Elinion Elinor Ellyn Enid Essyllt Euronwy
+			Ffelis Ffion Fflur Ffraid
+			Glynys Gwen Gwenasedd Gwenhwyfar Gwenfrewwi Gwenllian Gwenwyn Gwerfyl Gwladys
+			Haer Hawis Heledd Hellawes Heulwen Hunydd Hywela
+			Ilud Isabel Iseult
+			Llecci Lleigy Lleuca Lowry
+			Mabyn Maches Madrun Maelrys Mair Mali Mallt Marared Marchell Margred Marwenna Mawd Melisant Morganna Morien Myfanwy
+			Nest Nesta
+			Olwen Owena
+			Prawst Ragnell
+			Rhiainfelt Rhiannon Rhonwen
+			Sannant Sara Senena Siân Sibyl Sioned Siwan Susanna
+			Tangwystl Ysbail
+		}
+		leader_names=
+		{
+			Bennett Bevan Bowen
+			Cadell Cadwallader
+			Daniels Davis Davies
+			Edwards Ellis Evans
+			Griffiths Gough Gwyn
+			Harris Hopkins Howells Hughes Humphries
+			James Jenkins John Jones
+			Lewis Llewellyn Lloyd
+			Madog Matthews Meredith Merrick Morgan Morris Mostyn
+			Owen
+			Parry Phillips Powell Prees Price Pritchard Protheroe Pugh
+			Rees Richards Roberts Rogers
+			Thomas
+			Vaughan
+			Watkins Williams
+			Aylmer Bant Beddau Cader Cordlan Coutts Crowther Dibdin Dryden Erwin
+			Floyd Frost Garth Givens Hal Hone Kenyon Ladd Lhuyd Maddock Moelyn
+			Nefis Pennymon Siddons Ringgold Tew Toby Yale Winne
+		}
+		ship_names=
+		{
+			Bedwyr Brycheiniog
+			Cadwaladr Caerdydd Caernarfon Caradoc Ceredigion Conwy Culhwch  
+			Deheubarth *Dewi Sant* Dolbadarn Dolwyddelan Dyfed
+			Eryri
+			Glywysing Gwalchmei *Gwenan Gorn* Gwydion Gwyn Gwynedd
+			Lleu *Llewellyn Fawr*
+			Mabinogi Math Meirionydd Morgannwg
+			Olwen *Owain Glyndwr*
+			Penfro Powys *Preiddeu Annwn* Pryderi Pwyll
+			Rhiannon
+			Taff Teifi Teirnon Tywi
+			*Ynys Môn*
+		}
+		army_names=
+		{
+			*Fyddin o $PROVINCE$*
+		}
+		fleet_names=
+		{
+			*Fflyd o $PROVINCE$*
+		}
+	}
+}

@@ -1,0 +1,79 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 83  167  56 }
+
+historical_ideas = {
+	divine_supremacy
+	military_drill
+	national_conscripts
+	shrewd_commerce_practise
+	battlefield_commisions
+	national_trade_policy
+	engineer_corps
+	merchant_adventures
+	espionage
+	grand_army
+	cabinet
+	glorious_arms
+}
+
+historical_units = {
+	mamluk_archer
+	mamluk_cavalry_charge
+	mamluk_duel
+	mamluk_musket_charge
+	muslim_mass_infantry
+	muslim_dragoon
+	ali_bey_reformed_infantry
+}
+
+monarch_names = {
+	"Muhammad #4" = 40
+	"Barakât #0" = 30
+	"Hazza #0" = 10
+	"Ahmad #2" = 50
+	"Humaida #1" = 10
+	"Qa'it #0" = 10
+	"Takaba #0" =  10
+	"Hassan #1" = 10
+	"Abu Talib #0" = 10
+	"Abu Aun Idris #0" = 10
+	"Mushin #0" = 10
+	"Mas'ud #0" = 30
+	"'Abdullah #0" = 20
+	"Zaid #0" = 10
+	"Nami #0" = 10
+	"Sa'ad #0" = 10
+	"Sa'id #0" = 20
+	"'Abdul-Karim #0" = 10
+	"'Abul Muhsin #0" = 10
+	"'Abd al-Ilah #0" = 20
+	"'Ali #2" = 10
+	"Yahya #0" = 10
+	"Mubarak #0" = 10 
+	"Masa'id #0" = 10
+	"Djafar #0" = 10
+}
+
+leader_names = {
+	Youssef
+	Taleb
+	Ibrahim
+	Khalil
+	Saleh
+	Farhat
+	Chammas
+	Mansour	
+	Abbas
+	Hammoud
+}
+
+ship_names = {
+	Hijaz Jeddah Mecca Medina "Jabal Baydan"
+	"Jabal Sawda" "Jabal Abu Hasan" "Jabal al-Jurayrah" 
+	"Harrat Al-Kishb" "Harrat Rahat" "Harrat Nawasif"
+	"Harrat Hadan" "Harrat Al-Buqum" "Harrat Khaybar"
+	"Harrat Kurama" "Harrat al-Unayyir"
+}

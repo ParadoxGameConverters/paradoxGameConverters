@@ -1,0 +1,6 @@
+#Caravel
+type = big_ship
+
+hull_size = 25
+base_cannons = 50 
+sail_speed = 5

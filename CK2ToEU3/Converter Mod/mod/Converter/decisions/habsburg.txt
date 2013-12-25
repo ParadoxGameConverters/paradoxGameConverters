@@ -1,0 +1,67 @@
+country_decisions = {
+	establish_habsburg_dominance = {
+		potential = {
+			tag = HAB
+			NOT = { has_country_modifier = habsburg_dominance }
+		}
+		allow = {
+			DIP = 6
+			prestige = 0.1
+			NOT = { exists = TIR }
+			NOT = {	exists = STY }
+		}
+		effect = {
+			add_country_modifier = {
+				name = "habsburg_dominance"
+				duration = -1
+				}
+				
+			}
+		ai_will_do = {
+			factor = 1
+		}	
+	}
+	allow_fuggers = {
+		potential = {
+			tag = HAB
+			has_country_modifier = habsburg_dominance
+			NOT = { has_country_modifier = fugger_banks }
+		}
+		allow = {
+			monthly_income = 40
+			ADM = 6
+		}
+		effect = {
+			add_country_modifier = {
+				name = "fugger_banks"
+				duration = -1
+				}
+				
+			}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	establish_hofkriegsrat = {
+		potential = {
+			tag = HAB
+			NOT = { has_country_modifier = hofkriegsrat }
+		}
+		allow = {
+			army_tradition = 0.7
+			land_tech = 22
+			MIL = 7
+		}
+		effect = {
+			add_country_modifier = {
+				name = "hofkriegsrat"
+				duration = -1
+				}
+				
+			}
+		ai_will_do = {
+			factor = 1
+		}	
+	}
+
+}

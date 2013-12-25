@@ -1,0 +1,102 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 116  107  140 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	espionage
+	battlefield_commisions
+	engineer_corps
+	national_trade_policy
+	cabinet
+	shrewd_commerce_practise
+	bureaucracy
+	merchant_adventures
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Iwan Asen #3" = 20
+	"Koloman #2" = 20
+	"Petar #2" = 20
+	"Todor #1" = 20
+	"Michael #3" = 15
+	"Aleksandar #1" = 15
+	"Iwan #1" = 15
+	"Kalojan #1" = 15
+	"Georgi #2" = 10
+	"Konstantin #1" = 10
+	"Stepan #1" = 10
+	"Stracimir #1" = 10
+	"Boris #2" = 5
+	"Simeon #1" = 5
+	"Andon #0" = 0
+	"Andrei #0" = 0
+	"Angel #0" = 0
+	"Atanas #0" = 0
+	"Bogdan #0" = 0
+	"Bogomil #0" = 0
+	"Branimir #0" = 0
+	"Damyan #0" = 0
+	"Dimitar #0" = 0
+	"Emil #0" = 0
+	"Gavril #0" = 0
+	"Hristo #0" = 0
+	"Iordan #0" = 0
+	"Kliment #0" = 0
+	"Krasimir #0" = 0
+	"Lazar #0" = 0
+	"Marko #0" = 0
+	"Mikhail #0" = 0
+	"Miroslav #0" = 0
+	"Nikola #0" = 0
+	"Pavel #0" = 0
+	"Radomir #0" = 0
+	"Samuil #0" = 0
+	"Vasil #0" = 0
+	"Vladimir #0" = 0
+	"Zhivko #0" = 0
+}
+
+leader_names = {
+	Balina
+	Djordjic Dobrovski
+	Frujin
+	Karposh Konstantin
+	Marinov
+	Peyachevich
+	Radic Rali
+	Shishman Sorkochovich Strahil Stratimirovich
+}
+
+ship_names = {
+	Alhtpolo
+	Kiten Kraymorie
+	Lozenets
+	Promorsko
+	Rezovo
+	Sarafovo Sinemorets Sozopol
+	Varara
+}

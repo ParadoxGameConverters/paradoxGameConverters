@@ -1,0 +1,105 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 94  117  55 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	merchant_adventures
+	national_bank
+	national_trade_policy
+	humanist_tolerance
+	bill_of_rights
+	cabinet
+	patron_of_art
+	bureaucracy
+	smithian_economics
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_longbow
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Charles #0" = 20
+	"Paul #0" = 20
+	"Henry #0" = 15
+	"James #0" = 15
+	"David #0" = 10
+	"Thomas #0" = 10
+	"Ambrose #0" = 0
+	"Archibald #0" = 0
+	"Benjamin #0" = 0
+	"Brian #0" = 0
+	"Bruce #0" = 0
+	"Christopher #0" = 0
+	"Conrad #0" = 0
+	"Denis #0" = 0
+	"Duncan #0" = 0
+	"Eustace #0" = 0
+	"Frederick #0" = 0
+	"Gerard #0" = 0
+	"Gregory #0" = 0
+	"Homer #0" = 0
+	"Joseph #0" = 0
+	"Julius #0" = 0
+	"Kevin #0" = 0
+	"Laurence #0" = 0
+	"Leroy #0" = 0
+	"Lewis #0" = 0
+	"Matthew #0" = 0
+	"Michael #0" = 0
+	"Montgomery #0" = 0
+	"Nicholas #0" = 0
+	"Peter #0" = 0
+	"Richard #0" = 0
+	"Rowan #0" = 0
+	"Scott #0" = 0
+	"Silvester #0" = 0
+	"Spencer #0" = 0
+	"Ulysses #0" = 0
+	"Victor #0" = 0
+}
+
+leader_names = { 
+	Adams Anderson
+	Bagot Byrne
+	Canuck Chaffey
+	Dawson Dion Douglas
+	Fahey Fizzard
+	Gladman
+	Jackson Joe
+	MacDonald McLaughlin Miles Murphy
+	Puddester
+	Stephanson Stone
+	Twain
+	Young
+}
+
+ship_names = {
+	Algonquin Athabaskan
+	Halifax Huron
+	Iroquois
+	Kingston
+	Montreal
+	Preserver Protectuer 
+	"Ville de Quebec"
+}

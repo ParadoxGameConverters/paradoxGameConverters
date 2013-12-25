@@ -1,0 +1,74 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 163  5  77 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	espionage
+	bureaucracy
+
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Sudangpha #0" = 20
+	"Sujangpha #0" = 20
+	"Siphakpha #0" = 20
+	"Susenpha #0" = 20
+	"Suhempha #0" = 20
+	"Supimpha #0" = 20
+	"Suhung #0" = 20
+	"Sutamla #0" = 20
+	"Supungmung #0" = 20
+	"Sukhampha Khora Raja #0" = 5
+	"Suklenmung Garghgaya Raja #0" = 5
+	"Gobar #0" = 10
+	"Brajnatha #0" = 10
+}
+
+leader_names = {
+	Baruah
+	Borphukan
+	Chandra
+	Das
+	Deka
+	Kalita
+	Mahanta
+	Narayan
+	Prithu
+	Roy
+	Prithu
+}
+
+ship_names = {
+	Brahmaputra "Chingri Mach" Darrang
+	Devi Dibang "Durga Ma" Ganga "Hilsa Mach"
+	"Ilish Mach" Machli "Kali Ma" "Kali Meghana"
+	"Kali Nauk" Kamrup Lakimpur "Lal Nauk"
+	"Loki Devi" Luhit "Manasa Devi" Manjuli
+	Meghna "Nil Nauk" "Nil Sagor" "Parvati Devi"
+	"Rui Mach" Saraswoti "Sagorer Bahini" Shakti
+	"Shaktir Nauk" "Shasti Ma" Sibsagar Trishool
+	"Uma Devi"
+}

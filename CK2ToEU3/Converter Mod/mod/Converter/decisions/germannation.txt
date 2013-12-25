@@ -1,0 +1,59 @@
+country_decisions = {
+
+	german_nation = {
+		potential = {
+			NOT = { exists = GER }
+			NOT = { tag = HRE }
+			OR = { 
+				primary_culture = hannoverian
+				primary_culture = pommeranian
+				primary_culture = hessian
+				primary_culture = saxon
+				primary_culture = bavarian
+				primary_culture = prussian
+				primary_culture = rheinlaender
+			}
+		}
+		allow = 
+		{
+			owns = 46	# Mecklenburg
+			owns = 50	# Brandenburg
+			owns = 52	# Altmark
+			owns = 53	# Lüneburg
+			owns = 57	# Hannover
+			owns = 58	# Anhalt
+			owns = 61	# Dresden
+			owns = 62	# Leipzig
+			owns = 63	# Erfurt
+			owns = 67	# Franken
+			
+			is_core = 46	# Mecklenburg
+			is_core = 50	# Brandenburg
+			is_core = 52	# Altmark
+			is_core = 53	# Lüneburg
+			is_core = 57	# Hannover
+			is_core = 58	# Anhalt
+			is_core = 61	# Dresden
+			is_core = 62	# Leipzig
+			is_core = 63	# Erfurt
+			is_core = 67	# Franken
+			
+			war = no
+		}
+	  effect = {
+			GER = {	
+				german_region = {
+					add_core = GER
+					base_tax = 1
+				}
+			}
+			centralization_decentralization = -2
+			merchants = 1
+			prestige = 0.20
+			change_tag = GER
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

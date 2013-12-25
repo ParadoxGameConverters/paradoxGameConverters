@@ -1,0 +1,12 @@
+# Apache Guerrilla Tactics
+
+unit_type = new_world	
+type = infantry
+
+maneuver = 1
+offensive_morale = 7
+defensive_morale = 4
+offensive_fire = 4
+defensive_fire = 3
+offensive_shock = 4
+defensive_shock = 2

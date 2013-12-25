@@ -1,0 +1,13 @@
+government = imperial_government
+aristocracy_plutocracy = -3
+centralization_decentralization = 4
+innovative_narrowminded = 4
+mercantilism_freetrade = 0
+offensive_defensive = 2
+land_naval = 0
+quality_quantity = 3
+serfdom_freesubjects = 0
+technology_group = sub_saharan
+religion = animism
+primary_culture = nubian
+capital = 1224	# Gonder

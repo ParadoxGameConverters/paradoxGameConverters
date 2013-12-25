@@ -1,0 +1,141 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+is_colonial = yes
+
+color = { 129  177  125 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	military_drill
+	divine_supremacy
+	battlefield_commisions
+	deus_vult
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	grand_army
+	revolution_and_counter
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Afonso #0" = 20
+	"Pedro #0" = 20
+	"Isabel #0" = -15
+	"João #0" = 15
+	"Maria #0" = -10
+	"Miguel #0" = 10
+	"Abílio #0" = 0
+	"António #0" = 0
+	"Artur #0" = 0
+	"Augusto #0" = 0
+	"Aurélio #0" = 0
+	"Bento #0" = 0
+	"Carlos #0" = 0
+	"Deodoro #0" = 0
+	"Emilio #0" = 0
+	"Ernesto #0" = 0
+	"Fernando #0" = 0
+	"Floriano #0" = 0
+	"Francisco #0" = 0
+	"Francisco José #0" = 0
+	"Gaspar #0" = 0
+	"Hermínio #0" = 0
+	"Rodrigo #0" = 0
+	"Hermes #0" = 0
+	"Inácio #0" = 0
+	"Isaías #0" = 0
+	"Joaquim #0" = 0
+	"João Baptista #0" = 0
+	"José #0" = 0
+	"Luís #0" = 0
+	"Manuel #0" = 0
+	"Márcio #0" = 0
+	"Nereu #0" = 0
+	"Nilo #0" = 0
+	"Paschoal #0" = 0
+	"Paulino #0" = 0
+	"Prudente #0" = 0
+	"Rodrigo #0" = 0
+	"Venceslau #0" = 0
+	"Zeferino #0" = 0
+}
+
+leader_names = {
+	Álvares "Ayres Gomes"
+	"Borges do Canto"
+	"da Costa" "da Silva" "de Amorim" "de Melo"
+	"de Mendonça" "dos Reis" "dos Santos"
+	"Freire de Andrade"
+	Gonzaga
+	Lopes
+	Maciel Melo
+	Nascimento "Nunes Viana"
+	Peixoto
+	Rolim
+	"Santos Pedroso"
+	Tavares Torres
+	Veiga Vieira
+	Xavier
+}
+
+ship_names = {
+	Anunciada
+	Bérrio "Boa Viagem" "Bom Jesus" "Bom Jesus do Carmo"
+	"Bom Jesus de Marzagão" "Bom Jesus da Vidigueira" Bretão
+	Cambaia Chagas "Correio d'Ásia"
+	El-Rei Enxobregas "Espírito Santo" Estrela
+	"Flor do Mar"
+	Garça
+	"Imaculada Conceição"
+	Jóia
+	"Monte Carvalho"
+	"Nazaré" "Nossa Senhora" "N. Sra. da Aparecida"
+	"N. Sra. da Atalaia" "N. Sra. da Batalha" "N. Sra. da Boa Hora"
+	"N. Sra. da Boa Memória" "N. Sra. da Boa Viagem" "N. Sra. da Candalaria"
+	"N. Sra. da Caridade" "N.Sra. da Conceição" "N. Sra. da Consolação"
+	"N. Sra. da Esperança" "N. Sra. da Glória" "N. Sra. da Graça" "N. Sra. da Guia"
+	"N. Sra. d'Ajuda Lusitana" "N. Sra. da Luz" "N. Sra. da Nazaré"
+	"N. Sra. da Oliveira" "N. Sra. da Palma" "N. Sra. da Penha de França"
+	"N. Sra. da Quietação" "N. Sra. da Salvação" "N. Sra. da Saúde"
+	"N. Sra. da Visitação" "N. Sra. da Vitória" "N. Sra. das Ondas"
+	"N. Sra. das Portas do Céu" "N. Sra. das Relíquias" "N. Sra. de Belém"
+	"N. Sra. de Guadalupe" "N. Sra. do Castelo" "N. Sra. do Livramento"
+	"N. Sra. do Loreto" "N. Sra do Paraíso" "N. Sra. do Pilar" "N. Sra. do Rosário"
+	"N. Sra. dos Prazeres" "N. Sra. dos Ramos"
+	"Princesa do Céu"
+	Raínha "Reis Magos"
+	"Sacramento" "Santa Ana" "Santa Catarina" "Santa Cruz" "Santa Fé"
+	"Santa Helena" "Santa Joana" "Santa Madre de Deus" "S. Maria de Sabóia"
+	"Santo Milagre" "Santiago Maior" "Santíssima Trindade" "Santíssimo Sacramento"
+	"Santo Alberto" "Santo António" "Santo Espírito" "Santo Inácio" "São Bartolomeu"
+	"São Bento" "São Bernardo" "São Carlos" "São Cristovão" "São Domingos"
+	"São Filipe" "São Francisco" "São Francisco de Borja" "São Gabriel" "São Gonçalo"
+	"São João" "São João de Deus" "São Jorge" "S. José" "São Julião" "São Lourenço"
+	"São Lucas" "São Luís" "São Mateus" "São Paulo" "São Pedro" "São Rafael"
+	"São Roque" "São Salvador" "São Tomé" "São Valentim" "S. António de Lisboa"
+	"S. Catarina de Ribamar" "S. Francisco de Assis" "S. Francisco Xavier"
+	"S. João Baptista" "S. João Evangelista" "S. Pedro de Rates" "S. Pedro da Ribeira"
+	"S. Salvador do Mundo" "S. Teresa de Jesus" "S. Tomé da Cantuária"
+	Taforeia Trindade
+	Visitação
+}
