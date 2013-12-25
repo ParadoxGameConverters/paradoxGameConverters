@@ -1,6 +1,5 @@
 #include <fstream>
 #include <sys/stat.h>
-#include <Windows.h>
 #include <io.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
