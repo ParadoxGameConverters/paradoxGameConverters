@@ -1,0 +1,929 @@
+color = { 106  127  183 }
+graphical_culture = Generic
+
+last_election = 1932.1.26
+duration = 48
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Stratiotis Merarkhia" "2. Stratiotis Merarkhia" "3. Stratiotis Merarkhia" "4. Stratiotis Merarkhia" "5. Stratiotis Merarkhia" "6. Stratiotis Merarkhia" "7. Stratiotis Merarkhia" "8. Stratiotis Merarkhia" "9. Stratiotis Merarkhia" "10. Stratiotis Merarkhia" "11. Stratiotis Merarkhia" 
+		"12. Stratiotis Merarkhia" "13. Stratiotis Merarkhia" "14. Stratiotis Merarkhia" "15. Stratiotis Merarkhia" "16. Stratiotis Merarkhia" "17. Stratiotis Merarkhia" "18. Stratiotis Merarkhia" "19. Stratiotis Merarkhia" "20. Stratiotis Merarkhia" "21. Stratiotis Merarkhia" "22. Stratiotis Merarkhia" 
+		"23. Stratiotis Merarkhia" "24. Stratiotis Merarkhia" "25. Stratiotis Merarkhia" "26. Stratiotis Merarkhia" "27. Stratiotis Merarkhia" "28. Stratiotis Merarkhia" "29. Stratiotis Merarkhia" "30. Stratiotis Merarkhia" 
+	}
+	cavalry_brigade = {
+		"1. Ippiko Merarkhia" "2. Ippiko Merarkhia" "3. Ippiko Merarkhia" "4. Ippiko Merarkhia" "5. Ippiko Merarkhia" "6. Ippiko Merarkhia" "7. Ippiko Merarkhia" "8. Ippiko Merarkhia" "9. Ippiko Merarkhia" "10. Ippiko Merarkhia" 
+	}
+	motorized_brigade = {
+		"1. Aftokinito Stratiotis Taxiarchia" "2. Aftokinito Stratiotis Taxiarchia" "3. Aftokinito Stratiotis Taxiarchia" "4. Aftokinito Stratiotis Taxiarchia" "5. Aftokinito Stratiotis Taxiarchia" "6. Aftokinito Stratiotis Taxiarchia" "7. Aftokinito Stratiotis Taxiarchia" "8. Aftokinito Stratiotis Taxiarchia" "9. Aftokinito Stratiotis Taxiarchia" "10. Aftokinito Stratiotis Taxiarchia" 
+	}
+	mechanized_brigade = {
+		"1. Stratiotis Mechanikos Taxiarchia" "2. Stratiotis Mechanikos Taxiarchia" "3. Stratiotis Mechanikos Taxiarchia" "4. Stratiotis Mechanikos Taxiarchia" "5. Stratiotis Mechanikos Taxiarchia" "6. Stratiotis Mechanikos Taxiarchia" "7. Stratiotis Mechanikos Taxiarchia" "8. Stratiotis Mechanikos Taxiarchia" "9. Stratiotis Mechanikos Taxiarchia" "10. Stratiotis Mechanikos Taxiarchia" 
+	}
+	light_armor_brigade = {
+		"1. Tethorakismeno Taxiarchia" "2. Tethorakismeno Taxiarchia" "3. Tethorakismeno Taxiarchia" "4. Tethorakismeno Taxiarchia" "5. Tethorakismeno Taxiarchia" "6. Tethorakismeno Taxiarchia" "7. Tethorakismeno Taxiarchia" "8. Tethorakismeno Taxiarchia" "9. Tethorakismeno Taxiarchia" "10. Tethorakismeno Taxiarchia" 
+	}
+	armor_brigade = {
+		"1. Tethorakismeno Taxiarchia" "2. Tethorakismeno Taxiarchia" "3. Tethorakismeno Taxiarchia" "4. Tethorakismeno Taxiarchia" "5. Tethorakismeno Taxiarchia" "6. Tethorakismeno Taxiarchia" "7. Tethorakismeno Taxiarchia" "8. Tethorakismeno Taxiarchia" "9. Tethorakismeno Taxiarchia" "10. Tethorakismeno Taxiarchia" 
+	}
+	paratrooper_brigade = {
+		"1. Stratiotis Aereas Taxiarchia" "2. Stratiotis Aereas Taxiarchia" "3. Stratiotis Aereas Taxiarchia" "4. Stratiotis Aereas Taxiarchia" "5. Stratiotis Aereas Taxiarchia" "6. Stratiotis Aereas Taxiarchia" "7. Stratiotis Aereas Taxiarchia" "8. Stratiotis Aereas Taxiarchia" "9. Stratiotis Aereas Taxiarchia" "10. Stratiotis Aereas Taxiarchia" 
+	}
+	marine_brigade = {
+		"1. Stratiotis Naftikos Taxiarchia" "2. Stratiotis Naftikos Taxiarchia" "3. Stratiotis Naftikos Taxiarchia" "4. Stratiotis Naftikos Taxiarchia" "5. Stratiotis Naftikos Taxiarchia" "6. Stratiotis Naftikos Taxiarchia" "7. Stratiotis Naftikos Taxiarchia" "8. Stratiotis Naftikos Taxiarchia" "9. Stratiotis Naftikos Taxiarchia" "10. Stratiotis Naftikos Taxiarchia" 
+	}
+	bergsjaeger_brigade = {
+		"1. Stratiotis Bouno Taxiarchia" "2. Stratiotis Bouno Taxiarchia" "3. Stratiotis Bouno Taxiarchia" "4. Stratiotis Bouno Taxiarchia" "5. Stratiotis Bouno Taxiarchia" "6. Stratiotis Bouno Taxiarchia" "7. Stratiotis Bouno Taxiarchia" "8. Stratiotis Bouno Taxiarchia" "9. Stratiotis Bouno Taxiarchia" "10. Stratiotis Bouno Taxiarchia" 
+	}
+	garrison_brigade = {
+		"1. Stratiotis Merarkhia" "2. Stratiotis Merarkhia" "3. Stratiotis Merarkhia" "4. Stratiotis Merarkhia" "5. Stratiotis Merarkhia" "6. Stratiotis Merarkhia" "7. Stratiotis Merarkhia" "8. Stratiotis Merarkhia" "9. Stratiotis Merarkhia" "10. Stratiotis Merarkhia" "11. Stratiotis Merarkhia" 
+		"12. Stratiotis Merarkhia" "13. Stratiotis Merarkhia" "14. Stratiotis Merarkhia" "15. Stratiotis Merarkhia" "16. Stratiotis Merarkhia" "17. Stratiotis Merarkhia" "18. Stratiotis Merarkhia" "19. Stratiotis Merarkhia" "20. Stratiotis Merarkhia" "21. Stratiotis Merarkhia" "22. Stratiotis Merarkhia" 
+		"23. Stratiotis Merarkhia" "24. Stratiotis Merarkhia" "25. Stratiotis Merarkhia" "26. Stratiotis Merarkhia" "27. Stratiotis Merarkhia" "28. Stratiotis Merarkhia" "29. Stratiotis Merarkhia" "30. Stratiotis Merarkhia" 
+	}
+	hq_brigade = {
+		"Ellinikos stratos archigeio" "1. Elliniki stratos" "2. Elliniki stratos" "3. Elliniki stratos" "4. Elliniki stratos" "5. Elliniki stratos" "6. Elliniki stratos" "7. Elliniki stratos" "8. Elliniki stratos" "9. Elliniki stratos" "10. Elliniki stratos" 
+			}
+	militia_brigade = {
+		"1. Astynomia Merarkhia" "2. Astynomia Merarkhia" "3. Astynomia Merarkhia" "4. Astynomia Merarkhia" "5. Astynomia Merarkhia" "6. Astynomia Merarkhia" "7. Astynomia Merarkhia" "8. Astynomia Merarkhia" "9. Astynomia Merarkhia" "10. Astynomia Merarkhia" "11. Astynomia Merarkhia" 
+		"12. Astynomia Merarkhia" "13. Astynomia Merarkhia" "14. Astynomia Merarkhia" "15. Astynomia Merarkhia" "16. Astynomia Merarkhia" "17. Astynomia Merarkhia" "18. Astynomia Merarkhia" "19. Astynomia Merarkhia" "20. Astynomia Merarkhia" 
+	}
+	multi_role = {
+		"1. Machitis Sygkrotima" "2. Machitis Sygkrotima" "3. Machitis Sygkrotima" "4. Machitis Sygkrotima" "5. Machitis Sygkrotima" "6. Machitis Sygkrotima" "7. Machitis Sygkrotima" "8. Machitis Sygkrotima" "9. Machitis Sygkrotima" "10. Machitis Sygkrotima" 
+	}
+	interceptor = {
+		"1. Machitis Sygkrotima" "2. Machitis Sygkrotima" "3. Machitis Sygkrotima" "4. Machitis Sygkrotima" "5. Machitis Sygkrotima" "6. Machitis Sygkrotima" "7. Machitis Sygkrotima" "8. Machitis Sygkrotima" "9. Machitis Sygkrotima" "10. Machitis Sygkrotima" 
+	}
+	strategic_bomber = {
+		"1. Bombardistiko Strategiki Sygkrotima" "2. Bombardistiko Strategiki Sygkrotima" "3. Bombardistiko Strategiki Sygkrotima" "4. Bombardistiko Strategiki Sygkrotima" "5. Bombardistiko Strategiki Sygkrotima" "6. Bombardistiko Strategiki Sygkrotima" "7. Bombardistiko Strategiki Sygkrotima" "8. Bombardistiko Strategiki Sygkrotima" "9. Bombardistiko Strategiki Sygkrotima" "10. Bombardistiko Strategiki Sygkrotima" 
+	}
+	tactical_bomber = {
+		"1. Bombardistiko Taktikos Sygkrotima" "2. Bombardistiko Taktikos Sygkrotima" "3. Bombardistiko Taktikos Sygkrotima" "4. Bombardistiko Taktikos Sygkrotima" "5. Bombardistiko Taktikos Sygkrotima" "6. Bombardistiko Taktikos Sygkrotima" "7. Bombardistiko Taktikos Sygkrotima" "8. Bombardistiko Taktikos Sygkrotima" "9. Bombardistiko Taktikos Sygkrotima" "10. Bombardistiko Taktikos Sygkrotima" 
+	}
+	naval_bomber = {
+		"1. Bombardistiko Naftikos Sygkrotima" "2. Bombardistiko Naftikos Sygkrotima" "3. Bombardistiko Naftikos Sygkrotima" "4. Bombardistiko Naftikos Sygkrotima" "5. Bombardistiko Naftikos Sygkrotima" "6. Bombardistiko Naftikos Sygkrotima" "7. Bombardistiko Naftikos Sygkrotima" "8. Bombardistiko Naftikos Sygkrotima" "9. Bombardistiko Naftikos Sygkrotima" "10. Bombardistiko Naftikos Sygkrotima" "1. Bombardistiki Torpilli Sygkrotima" 
+		"2. Bombardistiki Torpilli Sygkrotima" "3. Bombardistiki Torpilli Sygkrotima" "4. Bombardistiki Torpilli Sygkrotima" "5. Bombardistiki Torpilli Sygkrotima" "6. Bombardistiki Torpilli Sygkrotima" "7. Bombardistiki Torpilli Sygkrotima" "8. Bombardistiki Torpilli Sygkrotima" "9. Bombardistiki Torpilli Sygkrotima" "10. Bombardistiki Torpilli Sygkrotima" 
+	}
+	cas = {
+		"1. Bombardistiko Bouto Sygkrotima" "2. Bombardistiko Bouto Sygkrotima" "3. Bombardistiko Bouto Sygkrotima" "4. Bombardistiko Bouto Sygkrotima" "5. Bombardistiko Bouto Sygkrotima" "6. Bombardistiko Bouto Sygkrotima" "7. Bombardistiko Bouto Sygkrotima" "8. Bombardistiko Bouto Sygkrotima" "9. Bombardistiko Bouto Sygkrotima" "10. Bombardistiko Bouto Sygkrotima" 
+	}
+	transport_plane = {
+		"1. Aereas Metafero Sygkrotima" "2. Aereas Metafero Sygkrotima" "3. Aereas Metafero Sygkrotima" "4. Aereas Metafero Sygkrotima" "5. Aereas Metafero Sygkrotima" 
+	}
+	battleship = {
+		"BEN Kilkis" "BEN Athinai" "BEN Thessalia" "BEN Ipiros" "BEN Peloponnisos" 
+	}
+	light_cruiser = {
+		"BEN Apostolis" "BEN Kriezis" "BEN Sakhtouris" "BEN Tompazis" "BEN Ellis" "BEN Piraievs" "BEN Kikladhes" "BEN Alexandros" "BEN Pátrai" 
+	}
+	heavy_cruiser = {
+		"BEN Georgios Averof" "BEN Ellis" "BEN Piraievs" "BEN Kikladhes" "BEN Alexandros" "BEN Pátrai" "BEN Kríti" "BEN Nísoi Aiyaíou" "BEN Kithira" "BEN Kefallinia" 
+	}
+	battlecruiser = {
+		"BEN Kilkis" "BEN Athinai" "BEN Thessalia" "BEN Ipiros" "BEN Peloponnisos" 
+	}
+	destroyer = {
+		"1. Torpilli Naftiko" "2. Torpilli Naftiko" "3. Torpilli Naftiko" "4. Torpilli Naftiko" "5. Torpilli Naftiko" "6. Torpilli Naftiko" "7. Torpilli Naftiko" "8. Torpilli Naftiko" "9. Torpilli Naftiko" "10. Torpilli Naftiko" 
+	}
+	carrier = {
+		"BEN Ellas" "BEN Socrates" 
+	}
+	escort_carrier = {
+		"BEN Vasilefs Georgios" "BEN Vasilissa Olga" "BEN Hydra" "BEN Spetsai" "BEN Psara" 
+	}
+	submarine = {
+		"1. Ypobrychio Naftiko" "2. Ypobrychio Naftiko" "3. Ypobrychio Naftiko" "4. Ypobrychio Naftiko" "5. Ypobrychio Naftiko" "6. Ypobrychio Naftiko" "7. Ypobrychio Naftiko" "8. Ypobrychio Naftiko" "9. Ypobrychio Naftiko" "10. Ypobrychio Naftiko" 
+	}
+	transport_ship = {
+		"1. Metafero Naftiko" "2. Metafero Naftiko" "3. Metafero Naftiko" "4. Metafero Naftiko" "5. Metafero Naftiko" "6. Metafero Naftiko" "7. Metafero Naftiko" "8. Metafero Naftiko" "9. Metafero Naftiko" "10. Metafero Naftiko" 
+	}
+
+}
+
+ministers = {
+	18001 = {
+		name = "Georgios II"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M18001
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		start_date = 1936.1.1
+	}
+	18002 = {
+		name = "Constantinos Demertzis"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M18002
+		head_of_government = naive_optimist
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	18004 = {
+		name = "Georgios Mantzavinos"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M18004
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	18005 = {
+		name = "Georgios Logothetis"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M18005
+		minister_of_security = crime_fighter
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	18007 = {
+		name = "Theodor Pangalos"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M18007
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	18008 = {
+		name = "Alexandros Papagos"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M18008
+		chief_of_army = elastic_defence_doctrine
+		chief_of_staff = school_of_defence
+		head_of_government = old_general
+		start_date = 1936.1.1
+	}
+	18009 = {
+		name = "Anastassio Sakellariou"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M18009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	18010 = {
+		name = "Eleftherios Venizelos"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M18010
+		chief_of_air = army_aviation_doctrine
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	18032 = {
+		name = "Archbishop Damaskinos"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18032
+		head_of_state = barking_buffoon
+		head_of_state = barking_buffoon
+		head_of_state = barking_buffoon
+		head_of_government = flamboyant_tough_guy
+		minister_of_security = efficient_sociopath
+		head_of_state = barking_buffoon
+		head_of_state = barking_buffoon
+		start_date = 1941.1.1
+	}
+	18033 = {
+		name = "Pavlos I"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18033
+		head_of_state = die_hard_reformer
+		head_of_state = die_hard_reformer
+		head_of_state = die_hard_reformer
+		start_date = 1947.1.1
+	}
+	18040 = {
+		name = "Grigoriev Murnov"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18040
+		head_of_state = weary_stiff_neck
+		minister_of_security = crime_fighter
+		start_date = 1941.1.1
+	}
+	18041 = {
+		name = "Mario Vercellino"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18041
+		head_of_state = resigned_generalissimo
+		minister_of_security = back_stabber
+		start_date = 1942.1.1
+	}
+	18042 = {
+		name = "Reinhard Altenburg"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18042
+		head_of_state = autocratic_charmer
+		minister_of_security = crooked_kleptocrat
+		start_date = 1943.1.1
+	}
+	18044 = {
+		name = "Giorgis Siantos"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18021
+		head_of_state = popular_figurehead
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	18045 = {
+		name = "Nikos Zahariadis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18022
+		head_of_state = autocratic_charmer
+		head_of_government = smiling_oilman
+		foreign_minister = ideological_crusader
+		start_date = 1944.1.1
+	}
+	18046 = {
+		name = "Themistocles Sophoulis"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18014
+		head_of_state = flamboyant_tough_guy
+		armament_minister = administrative_genius
+		foreign_minister = the_cloak_n_dagger_schemer
+		head_of_government = flamboyant_tough_guy
+		start_date = 1936.1.1
+	}
+	18047 = {
+		name = "Georgios Papandreou"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18015
+		head_of_government = silent_workhorse
+		foreign_minister = biased_intellectual
+		foreign_minister = biased_intellectual
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = political_specialist
+		start_date = 1944.1.1
+	}
+	18048 = {
+		name = "Panagiolis Poulitsas"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18048
+		head_of_government = smiling_oilman
+		minister_of_security = prince_of_terror
+		start_date = 1946.1.1
+	}
+	18049 = {
+		name = "Ioannis Metaxas"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18049
+		head_of_government = old_general
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	18050 = {
+		name = "Alexandros Korizis"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18050
+		head_of_government = political_protege
+		foreign_minister = great_compromiser
+		start_date = 1941.1.1
+	}
+	18051 = {
+		name = "Emmanouel Tsouderos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18051
+		head_of_government = happy_amateur
+		foreign_minister = apologetic_clerk
+		start_date = 1941.1.1
+	}
+	18052 = {
+		name = "Sophocles Venizelos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18012
+		head_of_government = naive_optimist
+		foreign_minister = great_compromiser
+		start_date = 1944.1.1
+	}
+	18053 = {
+		name = "Konstantinos Tsaldaris"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18053
+		head_of_government = old_general
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = man_of_the_people
+		head_of_government = corporate_suit
+		start_date = 1946.1.1
+	}
+	18054 = {
+		name = "Dimitrios Maximos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18054
+		head_of_government = political_protege
+		minister_of_security = crime_fighter
+		start_date = 1947.1.1
+	}
+	18055 = {
+		name = "Panagis Tsaldaris"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M18055
+		head_of_government = flamboyant_tough_guy
+		armament_minister = air_to_sea_proponent
+		start_date = 1936.1.1
+	}
+	18056 = {
+		name = "Georgias Tsolakoglou"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18056
+		head_of_government = old_general
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1941.1.1
+	}
+	18057 = {
+		name = "Konstantinos Logothetopoulos"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18057
+		head_of_government = corporate_suit
+		foreign_minister = biased_intellectual
+		start_date = 1942.1.1
+	}
+	18058 = {
+		name = "Ioannis Rallis"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18058
+		head_of_government = naive_optimist
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1943.1.1
+	}
+	18060 = {
+		name = "Nikolaos Plastiras"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M18060
+		head_of_government = old_general
+		armament_minister = infantry_proponent
+		chief_of_staff = school_of_psychology
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1945.1.1
+	}
+	18061 = {
+		name = "Petros Voulgaris"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M18061
+		head_of_government = naive_optimist
+		chief_of_navy = indirect_approach_doctrine
+		foreign_minister = biased_intellectual
+		start_date = 1945.1.1
+	}
+	18062 = {
+		name = "Panagiotis Kanellopoulos"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M18062
+		head_of_government = smiling_oilman
+		foreign_minister = great_compromiser
+		start_date = 1945.1.1
+	}
+	18063 = {
+		name = "Militiades Porphyrogins"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18029
+		head_of_government = ambitious_union_boss
+		foreign_minister = general_staffer
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	18065 = {
+		name = "Evripidis Bakirtris"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18065
+		head_of_government = happy_amateur
+		minister_of_intelligence = industrial_specialist
+		start_date = 1944.1.1
+	}
+	18066 = {
+		name = "Markos Vaphiadis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18066
+		head_of_government = backroom_backstabber
+		minister_of_security = silent_lawyer
+		start_date = 1946.1.1
+	}
+	18068 = {
+		name = "Ioannis Safianopoulos"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18068
+		foreign_minister = great_compromiser
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1945.1.1
+	}
+	18069 = {
+		name = "Constantinos Rentis"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18069
+		foreign_minister = apologetic_clerk
+		start_date = 1946.1.1
+	}
+	18075 = {
+		name = "Demosthenes Nicoladis"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M18075
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	18080 = {
+		name = "Ioannes Socrates Politis"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M18080
+		foreign_minister = apologetic_clerk
+		start_date = 1945.1.1
+	}
+	18082 = {
+		name = "Panagiotios Demestichas"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M18082
+		foreign_minister = general_staffer
+		start_date = 1946.1.1
+	}
+	18085 = {
+		name = "Petros Rousos"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18085
+		foreign_minister = biased_intellectual
+		start_date = 1947.1.1
+	}
+	18086 = {
+		name = "Markos Aganossos"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18086
+		armament_minister = corrupt_kleptocrat
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	18087 = {
+		name = "Theodoros Marsal"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18087
+		armament_minister = resource_industrialist
+		start_date = 1937.1.1
+	}
+	18089 = {
+		name = "Alexandros Svolos"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18089
+		armament_minister = resource_industrialist
+		start_date = 1944.1.1
+	}
+	18090 = {
+		name = "Demetrios Gousis"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18090
+		armament_minister = battle_fleet_proponent
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1945.1.1
+	}
+	18091 = {
+		name = "Alexiou Tsamotos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18091
+		armament_minister = submarine_proponent
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	18092 = {
+		name = "Antoine Frangulis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18092
+		armament_minister = air_superiority_proponent
+		chief_of_air = air_superiority_doctrine
+		start_date = 1938.1.1
+	}
+	18093 = {
+		name = "Thanassos Exaharis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18093
+		armament_minister = laissez_faires_capitalist
+		start_date = 1939.1.1
+	}
+	18094 = {
+		name = "Takis Pipenelis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18094
+		armament_minister = theoretical_scientist
+		start_date = 1940.1.1
+	}
+	18096 = {
+		name = "Gaecia Geanados"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18096
+		armament_minister = strategic_air_proponent
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1942.1.1
+	}
+	18097 = {
+		name = "Anastassios Bardivilias"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18097
+		armament_minister = air_to_sea_proponent
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1943.1.1
+	}
+	18098 = {
+		name = "Anatasios Kanellopoulos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18098
+		armament_minister = administrative_genius
+		minister_of_intelligence = dismal_enigma
+		start_date = 1944.1.1
+	}
+	18099 = {
+		name = "Giorgios Lavdas"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18099
+		armament_minister = tank_proponent
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1945.1.1
+	}
+	18100 = {
+		name = "Alchibiades Stephanopoulos"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18100
+		armament_minister = laissez_faires_capitalist
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = industrial_specialist
+		start_date = 1946.1.1
+	}
+	18103 = {
+		name = "Pavlos Milziadis"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M18103
+		armament_minister = resource_industrialist
+		start_date = 1941.1.1
+	}
+	18104 = {
+		name = "Christos Tsigantes"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M18104
+		armament_minister = resource_industrialist
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = industrial_specialist
+		start_date = 1942.1.1
+	}
+	18105 = {
+		name = "Nicholaos Voutsinaris"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18105
+		armament_minister = theoretical_scientist
+		start_date = 1943.1.1
+	}
+	18106 = {
+		name = "Ioannis Venizelos"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M18106
+		armament_minister = military_entrepreneur
+		start_date = 1944.1.1
+	}
+	18111 = {
+		name = "Elias Panakilis"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18111
+		minister_of_security = crime_fighter
+		start_date = 1944.1.1
+	}
+	18112 = {
+		name = "Evangelos Papanoutsos"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18112
+		minister_of_security = compassionate_gentleman
+		start_date = 1945.1.1
+	}
+	18114 = {
+		name = "Giorgios Nicolaidis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18114
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	18115 = {
+		name = "Raul Bibica Rosetti"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18115
+		minister_of_security = compassionate_gentleman
+		start_date = 1941.1.1
+	}
+	18118 = {
+		name = "Thanassis Aghnides"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18118
+		minister_of_security = efficient_sociopath
+		start_date = 1945.1.1
+	}
+	18119 = {
+		name = "Panagiotis Kafantaris"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18119
+		minister_of_security = silent_lawyer
+		start_date = 1946.1.1
+	}
+	18120 = {
+		name = "Stephanos Lakiantos"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18120
+		minister_of_security = crooked_kleptocrat
+		start_date = 1947.1.1
+	}
+	18128 = {
+		name = "Christos Triantafyllidis"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M18128
+		minister_of_security = man_of_the_people
+		minister_of_intelligence = dismal_enigma
+		start_date = 1946.1.1
+	}
+	18129 = {
+		name = "Giannes Ioannides"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18025
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	18131 = {
+		name = "Stratos Payioumtzis"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M18131
+		minister_of_security = efficient_sociopath
+		start_date = 1945.1.1
+	}
+	18133 = {
+		name = "Costas Moulas"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18133
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1944.1.1
+	}
+	18135 = {
+		name = "Georgios Drossopoulos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18135
+		minister_of_intelligence = technical_specialist
+		start_date = 1941.1.1
+	}
+	18136 = {
+		name = "Georgios Streit"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18136
+		minister_of_intelligence = industrial_specialist
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1944.1.1
+	}
+	18138 = {
+		name = "Alexandros Propanis"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18138
+		minister_of_intelligence = research_specialist
+		start_date = 1947.1.1
+	}
+	18142 = {
+		name = "Sevastianos Foulidis"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M18142
+		minister_of_intelligence = research_specialist
+		start_date = 1942.1.1
+	}
+	18143 = {
+		name = "Napoleon Zervas"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M18143
+		minister_of_intelligence = research_specialist
+		start_date = 1944.1.1
+	}
+	18152 = {
+		name = "Paraskos Melissinos"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18152
+		chief_of_staff = school_of_mass_combat
+		start_date = 1940.1.1
+	}
+	18153 = {
+		name = "Vassilios Tsounoukas"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18153
+		chief_of_staff = school_of_fire_support
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1944.1.1
+	}
+	18154 = {
+		name = "Anastassios Sakellariou"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18009
+		chief_of_staff = school_of_psychology
+		start_date = 1946.1.1
+	}
+	18155 = {
+		name = "Giorgios Kondylis"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M18155
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	18159 = {
+		name = "Leonidas Paraskevopoulos"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M18159
+		chief_of_staff = school_of_mass_combat
+		start_date = 1946.1.1
+	}
+	18160 = {
+		name = "Stephanos Sarafis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18027
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	18162 = {
+		name = "Giorgios Roussoupoulos"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M18162
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1941.1.1
+	}
+	18172 = {
+		name = "Aris Velouchiotis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18028
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	18173 = {
+		name = "Nikolaos Votsis"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18019
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	18179 = {
+		name = "Alexandros Oikonomou"
+		ideology = national_socialist
+		loyalty = 0.25
+		picture = M18179
+		chief_of_navy = open_seas_doctrine
+		start_date = 1941.1.1
+	}
+	18184 = {
+		name = "Euthanassos Perrikos"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M18184
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	18185 = {
+		name = "Panagotis Papanikolaou"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M18182
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	18191 = {
+		name = "Nikos Beloyannis"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M18030
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	18202 = {
+		name = "Alexandros Diomidis"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18202
+		head_of_government = political_protege
+		start_date = 1949.1.1
+	}
+	18203 = {
+		name = "Ioannis Theotokis"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M18203
+		head_of_government = happy_amateur
+		start_date = 1950.1.1
+	}
+	18204 = {
+		name = "Dimitrios Kiousopoulos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18204
+		head_of_government = smiling_oilman
+		start_date = 1952.1.1
+	}
+	18206 = {
+		name = "Panaiotis Pipenelis"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18206
+		foreign_minister = apologetic_clerk
+		start_date = 1950.1.1
+	}
+	18207 = {
+		name = "Stephanos Stephanopoulos"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M18207
+		foreign_minister = biased_intellectual
+		start_date = 1952.1.1
+	}
+}
+

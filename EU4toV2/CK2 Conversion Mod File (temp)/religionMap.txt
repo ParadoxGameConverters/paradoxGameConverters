@@ -1,0 +1,15 @@
+religionmap = {
+
+# CK2 Religions
+link = { eu4 = west_african_pagan_reformed v2 = west african }
+link = { eu4 = baltic_pagan_reformed v2 = romuvan }
+link = { eu4 = finnish_pagan_reformed v2 = soumenusko }
+link = { eu4 = slavic_pagan_reformed v2 = slavic }
+link = { eu4 = norse_pagan_reformed v2 = norse }
+link = { eu4 = tengri_pagan_reformed v2 = tengri }
+link = { eu4 = aztec_reformed v2 = aztec }
+link = { eu4 = inca_reformed v2 = inca }
+link = { eu4 = zoroastrian v2 = zoroastrian }
+link = { eu4 = hellenic_pagan v2 = hellenic }
+
+}

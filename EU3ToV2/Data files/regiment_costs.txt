@@ -1,0 +1,18 @@
+regiment_costs =
+{
+
+# These costs represent the raw strength of EU3 regiments needed to generate a single V2 regiment
+# See file "unit_strength.txt" to see how much strength each EU3 regiment counts for
+
+# Current values are based off typical near-endgame EU3 land regiments being converted 3-to-1,
+# since V2 uses 3000-man regiments instead of EU3's 1000-man regiments,
+# and by number of cannons to get roughly 1-to-1 conversion of near-endgame ships.
+
+	infantry = 135		# 45 points per 1000 -> 3000 man regiments
+	cavalry = 135		# 45 points per 1000 -> 3000 man regiments
+	artillery = 120		# 40 points per 1000 -> 3000 man regiments
+	big_ship = 60		# 1-to-1 for threedeckers
+	light_ship = 30		# 1-to-1 for heavy frigates
+	galley = 30		# 3-to-2 conversion for archipelago frigates (converted into light ships in vicky)
+	transport = 24		# 1-to-1 conversion for all transports (based on modified unit_strength.txt)
+}

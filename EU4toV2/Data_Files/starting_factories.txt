@@ -1,0 +1,21 @@
+starting_factories =
+{
+	fabric_factory = 5
+	ammunition_factory = 3
+	steel_factory = 3
+	paper_mill = 3
+	cement_factory = 3
+	lumber_mill = 2
+	regular_clothes_factory = 2
+	explosives_factory = 2
+	small_arms_factory = 2
+	glass_factory = 2
+	artillery_factory = 2
+	clipper_shipyard = 2
+	canned_food_factory = 2
+	furniture_factory = 1
+	liquor_distillery = 1
+	luxury_furniture_factory = 1
+	winery = 1
+	luxury_clothes_factory = 1
+}

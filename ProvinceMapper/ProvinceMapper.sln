@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProvinceMapper", "ProvinceMapper.csproj", "{A94F14EA-6059-4F23-808A-4964882AF752}"
+EndProject
+Global
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A94F14EA-6059-4F23-808A-4964882AF752}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A94F14EA-6059-4F23-808A-4964882AF752}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A94F14EA-6059-4F23-808A-4964882AF752}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A94F14EA-6059-4F23-808A-4964882AF752}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,402 @@
+mappings={
+
+#Direct Mappings
+#This is essentially one-to-one country mappings to ensure that countries are available in BOTH EU3 and V2 get the correct tag.
+#For example, if Spain is in EU3 it will become Spain in V2 after conversion.
+
+
+# Western and Central Europe
+
+# British Isles
+
+link = { eu3 = CNN vic = CNN } 	# Connacht
+link = { eu3 = CRN vic = CRN } 	# Cornwall
+link = { eu3 = ENG vic = ENL } 	# England
+link = { eu3 = GBR vic = ENG } 	# Great Britain		=> United Kingdom
+link = { eu3 = IRE vic = IRE } 	# Ireland
+link = { eu3 = LEI vic = LEI } 	# Leinster
+link = { eu3 = LAN vic = LAN } 	# Lancaster
+link = { eu3 = MNS vic = MNS } 	# Irish Munster
+link = { eu3 = SCO vic = SCO } 	# Scotland
+link = { eu3 = TYR vic = TYR } 	# Ulster
+link = { eu3 = WLS vic = WLS } 	# Wales
+link = { eu3 = YOR vic = YOR } 	# York
+link = { eu3 = NOL vic = NOL } 	# Northumberland
+
+# France
+link = { eu3 = ALE vic = ALE } 	# Alencon
+link = { eu3 = ALS vic = ALS } 	# Alsace
+link = { eu3 = AMG vic = AMG } 	# Armagnac
+link = { eu3 = AUV vic = AUV } 	# Auvergne
+link = { eu3 = AVI vic = AVI } 	# Avignon
+link = { eu3 = BAR vic = BAR } 	# Bar
+link = { eu3 = BOU vic = BOU } 	# Bourbonnais
+link = { eu3 = BRI vic = BRI } 	# Brittany
+link = { eu3 = CHP vic = CHP } 	# Champagne
+link = { eu3 = COR vic = COR } 	# Corsica
+link = { eu3 = DAU vic = DAU } 	# Dauphine
+link = { eu3 = FOI vic = FOI } 	# Foix
+link = { eu3 = GUY vic = GUY } 	# Guyenne
+link = { eu3 = NEV vic = NEV } 	# Nevers
+link = { eu3 = NRM vic = NRM } 	# Normandy
+link = { eu3 = ORL vic = ORL } 	# Orleans
+link = { eu3 = PRO vic = PRO } 	# Provence
+link = { eu3 = TOU vic = TOU } 	# Toulouse
+link = { eu3 = BER vic = BRY } 	# Berry
+link = { eu3 = FRA vic = FRA } 	# France		=> France
+link = { eu3 = RFR vic = RFR } 	# Revolutionary France
+link = { eu3 = BUR vic = BRG }  # Burgundy
+
+# Spain
+
+
+link = { eu3 = ARA vic = ARO }  # Aragon
+link = { eu3 = CAS vic = CAS }  # Castille
+link = { eu3 = CAT vic = CAT }  # Catalonia
+link = { eu3 = GAL vic = GAL }  # Galicia
+link = { eu3 = GRA vic = GRA }  # Granada
+link = { eu3 = NAV vic = NAV }  # Navarra
+link = { eu3 = POR vic = POR }  # Portugal
+link = { eu3 = SPA vic = SPA } 	# Spain
+
+
+# Italy
+
+link = { eu3 = AQU vic = AQU }  # Aquileia
+link = { eu3 = ETR vic = ETR }  # Etruria
+link = { eu3 = FER vic = FER }  # Ferrara
+link = { eu3 = GEN vic = GNA }  # Genoa
+link = { eu3 = ITA vic = ITA }  # Italy
+link = { eu3 = MAN vic = MTA }  # Mantua
+link = { eu3 = MLO vic = LOM }  # Milan
+link = { eu3 = MOD vic = MOD }  # Modena
+link = { eu3 = NAP vic = NAP }  # Naples
+link = { eu3 = PAP vic = PAP }  # Papal State
+link = { eu3 = PAR vic = PAR }  # Parma
+link = { eu3 = PIS vic = PIS }  # Pisa
+link = { eu3 = SAR vic = SRD }  # Sardinia
+link = { eu3 = SAV vic = SAV }  # Savoy
+link = { eu3 = SIC vic = SII }  # Sicily
+link = { eu3 = TUS vic = TUS }  # Tuscany
+link = { eu3 = SIE vic = SNA }  # Sienna
+link = { eu3 = URB vic = URB }  # Urbino
+link = { eu3 = VEN vic = VEN }  # Venice
+link = { eu3 = SPI vic = SAR }  # Sardinia-Piedmont
+
+# The Low Countries
+
+link = { eu3 = BRB vic = BRB }  # Brabant
+link = { eu3 = FLA vic = FLA }  # Flanders
+link = { eu3 = FRI vic = FRI }  # Friesland
+link = { eu3 = GEL vic = GEL }  # Gelre
+link = { eu3 = HAI vic = HAT }  # Flanders
+link = { eu3 = HOL vic = HLL }  # Holland
+link = { eu3 = LIE vic = LIE }  # Liege
+link = { eu3 = LUX vic = LUX }  # Luxemburg
+link = { eu3 = NED vic = NET }  # Netherlands
+link = { eu3 = SWI vic = SWI }  # Switzerland
+link = { eu3 = UTR vic = UTR }  # Utrecht
+
+# Scandinavia
+
+link = { eu3 = SWE vic = SWE }  # Sweden
+link = { eu3 = DAN vic = DEN }  # Denmark
+link = { eu3 = FIN vic = FIN }  # Finland
+link = { eu3 = GOT vic = GOT }  # Gotland
+link = { eu3 = SHL vic = HOL }  # Holstein
+link = { eu3 = NOR vic = NOR }  # Norway
+link = { eu3 = SCA vic = SCA }  # Scandinavia
+
+# Bulkans
+
+link = { eu3 = ACH vic = ACH }  # Achaea
+link = { eu3 = ALB vic = ALB }  # Albania
+link = { eu3 = ATH vic = ATH }  # Athens
+link = { eu3 = BOS vic = BOS }  # Bosnia                => Bosnia-Herzegovina(?)
+link = { eu3 = BUL vic = BUL }  # Bulgaria
+link = { eu3 = BYZ vic = BYZ }  # Byzantine Empire     => Byzantium
+link = { eu3 = CEP vic = ION }  # Corfu                  => Ionian Islands
+link = { eu3 = CRO vic = CRO }  # Croatia
+link = { eu3 = CRT vic = CRE }  # Crete
+link = { eu3 = CYP vic = CYP }  # Cyprus
+link = { eu3 = EPI vic = EPI }  # Epirus
+link = { eu3 = GRE vic = GRE }  # Greece
+link = { eu3 = KNI vic = KNI }  # Knights
+link = { eu3 = MOE vic = MOE }  # Morea
+link = { eu3 = MOL vic = MOL }  # Moldavia
+link = { eu3 = MON vic = MON }  # Montenegro
+link = { eu3 = NAX vic = NAX }  # Naxos
+link = { eu3 = RAG vic = RAG }  # Ragusa
+link = { eu3 = RMN vic = ROM }  # Romania
+link = { eu3 = SER vic = SER }  # Serbia
+link = { eu3 = TRA vic = SIE }  # Transylvania          => Siebenburgen
+link = { eu3 = WAL vic = WAL }  # Walachia
+link = { eu3 = HUN vic = HUN }  # Hungary
+link = { eu3 = TUR vic = TUR }  # Ottomans              => Ottoman Empire
+
+# Eastern Europe
+link = { eu3 = DNZ vic = DZG }  # Danzig
+link = { eu3 = KRA vic = KRA }  # Krakow
+link = { eu3 = LIT vic = LIT }  # Lithuania
+link = { eu3 = LIV vic = LIV }  # Livonian Order
+link = { eu3 = MAZ vic = MAZ }  # Mazovia
+link = { eu3 = POL vic = POL }  # Poland
+link = { eu3 = PRU vic = PRU }  # Prussia
+link = { eu3 = KUR vic = KUR }  # Kurland
+link = { eu3 = RIG vic = RIG }  # Riga
+link = { eu3 = TEU vic = TEU }  # Teutonic Order
+
+# Germany
+link = { eu3 = AAC vic = AAC }  # Aachen
+link = { eu3 = ANH vic = ANH }  # Anhalt
+link = { eu3 = ANS vic = ANS }  # Ansbach
+link = { eu3 = AUG vic = AUG }  # Augsburg
+link = { eu3 = BAD vic = BAD }  # Baden
+link = { eu3 = BAV vic = BAV }  # Bavaria
+link = { eu3 = BOH vic = BOH }  # Bohemia               => Bohemia Moravia
+link = { eu3 = BRA vic = BRD }  # Brandenburg
+link = { eu3 = BRE vic = BRE }  # Bremen
+link = { eu3 = BRU vic = BRA }  # Brunswick             =>  Braunschweig
+link = { eu3 = FRN vic = FRM }  # Frankfurt             =>  Frankfurt am Main
+link = { eu3 = GER vic = GER }  # Germany
+link = { eu3 = HAB vic = AUS }  # Austria
+link = { eu3 = HAM vic = HAM }  # Hamburg
+link = { eu3 = HAN vic = HAN }  # Hannover
+link = { eu3 = HSA vic = LUB }  # Hansa             	=> Lubeck
+link = { eu3 = HES vic = HES }  # Hessen
+link = { eu3 = HRE vic = HRE }  # Holy Roman Empire
+link = { eu3 = KLE vic = KLE }  # Cleves
+link = { eu3 = KOL vic = KOL }  # Cologne
+link = { eu3 = LAU vic = LAU }  # Lauenburg
+link = { eu3 = LOR vic = LOR }  # Lorraine
+link = { eu3 = LUN vic = LUN }  # Luneburg
+link = { eu3 = MAG vic = MAG }  # Magdeburg
+link = { eu3 = MAI vic = MAI }  # Mainz
+link = { eu3 = MEI vic = MSN }  # Meissen
+link = { eu3 = MKL vic = MEC }  # Mecklenburg
+link = { eu3 = MUN vic = MUN }  # Munster
+link = { eu3 = OLD vic = OLD }  # Oldenburg
+link = { eu3 = PAL vic = PAL }  # Palatinate
+link = { eu3 = POM vic = POM }  # Pommerania
+link = { eu3 = SAX vic = SAX }  # Saxony
+link = { eu3 = SIL vic = SIL }  # Silesia
+link = { eu3 = SLZ vic = SLZ }  # Salzburg
+link = { eu3 = STY vic = STY }  # Styria
+link = { eu3 = THU vic = THU }  # Thuringia
+link = { eu3 = TIR vic = TIR }  # Tirol
+link = { eu3 = TRI vic = TER }  # Trier
+link = { eu3 = ULM vic = ULM }  # Ulm
+link = { eu3 = WBG vic = WBG }  # Wurzburg
+link = { eu3 = WES vic = WES }  # Westfalia
+link = { eu3 = WUR vic = WUR }  # Wurtemburg
+
+# Russia
+link = { eu3 = ARM vic = ARM }  # Armenia
+link = { eu3 = AST vic = AKH }  # Astarakhan
+link = { eu3 = CRI vic = CRI }  # Crimea
+link = { eu3 = GEO vic = GEO }  # Georgia
+link = { eu3 = GOL vic = GOL }  # Golden Horde
+link = { eu3 = KAS vic = KAS }  # Georgia
+link = { eu3 = KAZ vic = KAZ }  # Kazan
+link = { eu3 = MOS vic = MOS }  # Muscowy
+link = { eu3 = NOV vic = NOV }  # Novgorod
+link = { eu3 = PSK vic = PSK }  # Pskov
+link = { eu3 = QAS vic = QAS }  # Georgia
+link = { eu3 = RUS vic = RUS }  # Russia
+link = { eu3 = RYA vic = RYA }  # Ryazan
+link = { eu3 = TVE vic = TVE }  # Tver
+link = { eu3 = UKR vic = UKR }  # Ukraine
+link = { eu3 = YAR vic = YAR }  # Yaroslavl
+link = { eu3 = ZAZ vic = ZAZ }  # Zaporozhie
+link = { eu3 = NOG vic = NOG }  # Nogai
+link = { eu3 = SIB vic = SIB }  # Sibir
+link = { eu3 = SMO vic = SMO }  # Smolensk
+link = { eu3 = PLT vic = PLT }  # Polotsk
+link = { eu3 = MUR vic = MUR }  # Murom
+link = { eu3 = NZH vic = NZH }  # Nizhny Novgorod
+
+# North & South America
+link = { eu3 = BRZ vic = BRZ }  # Brazil
+link = { eu3 = CAN vic = CAN }  # Canada
+link = { eu3 = CHL vic = CHL }  # Chile
+link = { eu3 = COL vic = CLM }  # Columbia
+link = { eu3 = HAT vic = HAI }  # Haiti
+link = { eu3 = LAP vic = ARG }  # La Plata              => Argentina
+link = { eu3 = MEX vic = MEX }  # Mexico
+link = { eu3 = PEU vic = PEU }  # Peru
+link = { eu3 = PRG vic = PRG }  # Paraguay
+link = { eu3 = QUE vic = QUE }  # Quebec
+link = { eu3 = CAM vic = UCA }  # UPCA                  => United States of Central America
+link = { eu3 = USA vic = USA }  # USA
+link = { eu3 = VNZ vic = VNZ }  # Venezuela
+link = { eu3 = LOU vic = LOU }  # Louisiana
+
+#Native Americans
+link = { eu3 = AZT vic = AZT }  # Aztec
+link = { eu3 = CHE vic = CHE }  # Cherokee
+link = { eu3 = CHM vic = CHM }  # Chimu
+link = { eu3 = CRE vic = CRK }  # Creek
+link = { eu3 = HUR vic = HUR }  # Huron
+link = { eu3 = INC vic = INC }  # Inca
+link = { eu3 = IRO vic = IRO }  # Iroquois
+link = { eu3 = MAY vic = MAY }  # Maya
+link = { eu3 = SHA vic = SHA }  # Shawnee
+link = { eu3 = ZAP vic = ZAP }  # Zapotec
+
+
+#Arabia	
+link = { eu3 = ADE vic = YEM }  # Yemen
+link = { eu3 = ALH vic = ALH }  # Haasa
+link = { eu3 = OMA vic = OMA }  # Oman
+link = { eu3 = NAJ vic = NEJ }  # Najd                  => Nejd  
+link = { eu3 = HED vic = HDJ }  # Hedjaz
+link = { eu3 = SHR vic = ABU }  # Sharjah => Abu Dhabi
+
+#Asia Minor	
+link = { eu3 = AKK vic = AKK }  # Ak Koyunlu
+link = { eu3 = AYD vic = AYD }  # Aydin
+link = { eu3 = CND vic = CND }  # Candar
+link = { eu3 = DUL vic = DUL }  # Dulkadir
+link = { eu3 = IRQ vic = IRQ }  # Iraq
+link = { eu3 = KAR vic = KAR }  # Karaman
+link = { eu3 = SYR vic = SYR }  # Syria
+link = { eu3 = TRE vic = TBZ }  # Trebizond
+link = { eu3 = SRU vic = SRU }  # Saruhan
+link = { eu3 = MEN vic = MEN }  # Mentese
+link = { eu3 = RAM vic = RAM }  # Ramazan
+
+#Maghreb
+
+link = { eu3 = MOR vic = MOR }  # Morocco
+link = { eu3 = FEZ vic = FEZ }  # Fez
+link = { eu3 = TRP vic = TRI }  # Tripoli
+link = { eu3 = TUN vic = TUN }  # Tunisia
+link = { eu3 = ALG vic = ALD }  # Algiers
+link = { eu3 = MAM vic = EGY }  # Mamluks => Egypt
+link = { eu3 = KOJ vic = KOJ }  # Jerusalem
+
+
+#Central Asia
+link = { eu3 = KZH vic = KZH }  # Kazakh
+link = { eu3 = KHI vic = KHI }  # Khiva  
+link = { eu3 = KOK vic = KOK }  # Kokand
+link = { eu3 = SHY vic = BUK }  # Shaybanid                => Bukkhara
+
+#Persia
+link = { eu3 = DUR vic = DUR }  # Durrani
+link = { eu3 = KHO vic = KHO }  # Khorasan
+link = { eu3 = JAI vic = JAL }  # Durrani
+link = { eu3 = PER vic = PER }  # Persia
+link = { eu3 = QAR vic = QAR }  # Qara Koyunlu
+link = { eu3 = TIM vic = TIM }  # Timurid
+
+
+#Africa
+link = { eu3 = ASH vic = ASH }  # Ashanti
+link = { eu3 = BEN vic = BEN }  # Benin  
+link = { eu3 = ETH vic = ETH }  # Ethiopia
+link = { eu3 = KON vic = KON }  # Kongo
+link = { eu3 = MAL vic = MAL }  # Mali
+link = { eu3 = NUB vic = NUB }  # Funj  
+link = { eu3 = SON vic = SON }  # Songhai
+link = { eu3 = ZAN vic = SWA }  # Swahili   
+link = { eu3 = ZIM vic = ZIM }  # Mutapa 
+link = { eu3 = ADA vic = ADA }  # Adal
+link = { eu3 = HAU vic = HAU }  # Hausa
+link = { eu3 = KBO vic = KBO }  # Kanem Bornu
+link = { eu3 = LOA vic = LOA }  # Loango
+link = { eu3 = OYO vic = OYO }  # Oyo
+link = { eu3 = SOF vic = SOF }  # Sofala     
+link = { eu3 = SOK vic = SOK }  # Sokoto
+
+# East and Southeast Asia, and Oceania
+link = { eu3 = ANN vic = ANN }  # Annam
+link = { eu3 = ARK vic = ARK }  # Arakan
+link = { eu3 = ATJ vic = ATJ }  # Atjeh
+link = { eu3 = AYU vic = SIA }  # Ayutthaya				=> Siam
+link = { eu3 = BLI vic = BAL }  # Bali
+link = { eu3 = BAN vic = BAN }  # Banten
+link = { eu3 = BEI vic = BRU }  # Brunei
+link = { eu3 = CHA vic = CHA }  # Champa
+link = { eu3 = CHG vic = CHG }  # Chagati Khanate
+link = { eu3 = CHK vic = CHK }  # Champassak
+link = { eu3 = DAI vic = DAI }  # Dai Viet
+link = { eu3 = KHA vic = KHA }  # Mongol Khanate
+link = { eu3 = KHM vic = CAM }  # Khmer					=> Cambodia
+link = { eu3 = KOR vic = KOR }  # Korea
+link = { eu3 = LNA vic = LNA }  # Lan Na
+link = { eu3 = LUA vic = LUA }  # Luang Prabang
+link = { eu3 = LXA vic = LXA }  # Lan Xang
+link = { eu3 = MAJ vic = MAJ }  # Majapahit
+link = { eu3 = MCH vic = MCH }  # Manchu
+link = { eu3 = MKS vic = MKS }  # Makassar
+#link = { eu3 = MLC vic = JOH }  # Malacca				=> Johore
+link = { eu3 = MNG vic = MNG }  # Ming
+link = { eu3 = MLC vic = MLC }  # Malacca
+link = { eu3 = MSA vic = MSA }  # Malaya
+link = { eu3 = MTR vic = MTR }  # Mataram
+link = { eu3 = OIR vic = OIR }  # Oirat Horde
+link = { eu3 = PAT vic = PAT }  # Pattani
+link = { eu3 = PEG vic = PEG }  # Pegu
+link = { eu3 = QIN vic = QIN }  # Qin
+link = { eu3 = RYU vic = RYU }  # Ryukyu
+link = { eu3 = SST vic = SST }  # Shan
+link = { eu3 = SUK vic = SUK }  # Sukhothai
+link = { eu3 = SUL vic = SUL }  # Sulu
+link = { eu3 = TAU vic = BUR }  # Taungu				=> Burma
+link = { eu3 = TIB vic = TIB }  # Tibet
+link = { eu3 = TOK vic = TOK }  # Tonkin
+link = { eu3 = VIE vic = WIA }  # Vientiane				=> Wiang Chhan
+link = { eu3 = WUU vic = WUU }  # Wu
+link = { eu3 = XIA vic = XIA }  # Xia
+
+# Japan
+link = { eu3 = JAP vic = JAP }  # Japan
+link = { eu3 = MIN vic = MIN }  # Minamoto
+link = { eu3 = TAC vic = TAC }  # Tachibana
+link = { eu3 = FUJ vic = FUJ }  # Fujiwara
+link = { eu3 = TAI vic = TAI }  # Taira
+
+
+
+# Central Asia and India
+link = { eu3 = AHM vic = BAS }  # Bihar				=> Bastar
+link = { eu3 = ASS vic = ASS }  # Assam
+link = { eu3 = BAH vic = BAH }  # Deccan
+link = { eu3 = BAL vic = BCS }  # Baluchistan
+link = { eu3 = BAS vic = AMD }  # Ahmadnagar
+link = { eu3 = BNG vic = BNG }  # Bengal
+link = { eu3 = BRR vic = BRR }  # Berar
+link = { eu3 = BHO vic = BHO }  # Bhonsle				=> Bhopal
+link = { eu3 = BHU vic = BHU }  # Bhutan
+link = { eu3 = BIJ vic = BIJ }  # Bijapur
+link = { eu3 = BND vic = BUN }  # Bundelkhand
+link = { eu3 = DLH vic = DLH }  # Delhi
+link = { eu3 = GAK vic = GAK }  # Gakwar
+link = { eu3 = GOC vic = GOC }  # Golcanda
+link = { eu3 = GDW vic = GDW }  # Gondwana
+link = { eu3 = GUJ vic = GUJ }  # Gujarat
+link = { eu3 = HYD vic = HYD }  # Hyderabad
+link = { eu3 = KRK vic = KRK }  # Carnatic
+link = { eu3 = KSH vic = KAS }  # Kashmir
+link = { eu3 = KHD vic = KHD }  # Khandesh
+link = { eu3 = KTH vic = KTH }  # Ceylon
+link = { eu3 = MAD vic = MAD }  # Madurai
+link = { eu3 = MAR vic = MAR }  # Maharasthra
+link = { eu3 = MLB vic = MLB }  # Manipur
+link = { eu3 = MLD vic = MLD }  # Maldive
+link = { eu3 = MLW vic = MLW }  # Malwa
+link = { eu3 = MUG vic = MUG }  # Mughal Empire         => Mughalistan
+link = { eu3 = MYS vic = MYS }  # Mysore
+link = { eu3 = NIZ vic = NIZ }  # Deva Bengal
+link = { eu3 = NPL vic = NEP }  # Nepal
+link = { eu3 = ORI vic = ORI }  # Orissa
+link = { eu3 = ODH vic = AWA }  # Oudh					=> Awadh
+link = { eu3 = PUN vic = PAN }  # Punjab                => Panjab
+link = { eu3 = RAJ vic = RAJ }  # Rajputna
+link = { eu3 = SND vic = SIN }  # Sind
+link = { eu3 = TRV vic = TRA }  # Travanacore
+link = { eu3 = VIJ vic = VIJ }  # Vijaynagara
+link = { eu3 = HIN vic = HND }  # Hindustan             => India
+
+}

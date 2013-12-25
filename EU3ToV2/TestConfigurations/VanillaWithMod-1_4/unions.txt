@@ -1,0 +1,145 @@
+unions = {
+
+# Italy
+link = { tag = ITA culture = north_italian }
+link = { tag = ITA culture = lombard }
+link = { tag = ITA culture = umbrian }
+link = { tag = ITA culture = south_italian }
+link = { tag = ITA culture = sicilian }
+link = { tag = ITA culture = maltese }
+
+# Germany, NGF, SGF
+
+# North German Federation
+link = { tag = NGF culture = north_german }
+link = { tag = NGF culture = pommeranian }
+link = { tag = NGF culture = prussian }
+link = { tag = NGF culture = hannoverian }
+link = { tag = NGF culture = saxon }
+
+# South German Federation
+link = { tag = SGF culture = south_german }
+link = { tag = SGF culture = hessian }
+link = { tag = SGF culture = rheinlaender }
+link = { tag = SGF culture = bavarian }
+link = { tag = SGF culture = austrian }
+link = { tag = SGF culture = ashkenazi }
+
+# Germany
+link = { tag = GER culture = north_german }
+link = { tag = GER culture = pommeranian }
+link = { tag = GER culture = prussian }
+link = { tag = GER culture = hannoverian }
+link = { tag = GER culture = saxon }
+link = { tag = GER culture = south_german }
+link = { tag = GER culture = hessian }
+link = { tag = GER culture = rheinlaender }
+link = { tag = GER culture = bavarian }
+link = { tag = GER culture = austrian }
+link = { tag = GER culture = ashkenazi }
+
+#Scandinavia
+link = { tag = SCA culture = swedish }
+link = { tag = SCA culture = danish }
+link = { tag = SCA culture = norwegian }
+link = { tag = SCA culture = icelandic }
+link = { tag = SCA culture = finnish }
+link = { tag = SCA culture = sami }
+
+#Great Britain
+link = { tag = GBR culture = british }
+link = { tag = GBR culture = english }
+link = { tag = GBR culture = scottish }
+link = { tag = GBR culture = irish }
+link = { tag = GBR culture = welsh }
+
+#Yugoslavia
+link = { tag = YUG culture = croat }
+link = { tag = YUG culture = serb }
+link = { tag = YUG culture = bulgarian }
+link = { tag = YUG culture = albanian }
+link = { tag = YUG culture = slovene }
+link = { tag = YUG culture = bosniak }
+
+#Romania
+link = { tag = ROM culture = romanian }
+
+#Hungary
+link = { tag = HUN culture = hungarian }
+
+#Hungry
+link = { tag = POL culture = polish }
+
+#Czechoslovakia
+link = { tag = CZH culture = czech }
+link = { tag = CZH culture = slovak }
+
+#Russia
+link = { tag = RUS culture = russian }
+link = { tag = RUS culture = byelorussian }
+link = { tag = RUS culture = ukrainian }
+link = { tag = RUS culture = ugrian }
+
+#India
+link = { tag = HND culture = assamese }
+link = { tag = HND culture = bengali }
+link = { tag = HND culture = bihari }
+link = { tag = HND culture = manipuri }
+link = { tag = HND culture = nepali }
+link = { tag = HND culture = oriya }
+link = { tag = HND culture = sinhala }
+link = { tag = HND culture = avadhi }
+link = { tag = HND culture = kanauji }
+link = { tag = HND culture = panjabi }
+link = { tag = HND culture = kashmiri }
+link = { tag = HND culture = gujarati }
+link = { tag = HND culture = marathi }
+link = { tag = HND culture = sindi }
+link = { tag = HND culture = rajput }
+link = { tag = HND culture = kannada }
+link = { tag = HND culture = malayalam }
+link = { tag = HND culture = tamil }
+link = { tag = HND culture = telegu }
+
+#USA
+link = { tag = USA culture = yankee }
+link = { tag = USA culture = dixie }
+link = { tag = USA culture = texan }
+
+# China
+link = { tag = CHI culture = beifaren }
+link = { tag = CHI culture = nanfaren }
+
+# Spain
+link = { tag = SPA culture = basque }
+link = { tag = SPA culture = castillian }
+link = { tag = SPA culture = galician }
+link = { tag = SPA culture = andalucian }
+link = { tag = SPA culture = catalan }
+
+#France
+link = { tag = FRA culture = cosmopolitan_french }
+link = { tag = FRA culture = gascon }
+link = { tag = FRA culture = normand }
+link = { tag = FRA culture = aquitane }
+link = { tag = FRA culture = burgundian }
+link = { tag = FRA culture = occitain }
+
+#Arabia
+link = { tag = ARA culture = mashriqi }
+link = { tag = ARA culture = bedouin }
+link = { tag = ARA culture = misri }
+link = { tag = ARA culture = maghrebi }
+
+#United Baltic Provinces
+link = { tag = UBD culture = latvian }
+link = { tag = UBD culture = estonian }
+
+#Belarus
+link = { tag = BYE culture = byelorussian }
+
+#Polish-Lithuanian Commonwealth
+link = { tag = PLC culture = polish }
+link = { tag = PLC culture = lithuanian }
+
+}

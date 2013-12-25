@@ -1,0 +1,751 @@
+color = { 191  113  133 }
+graphical_culture = Generic
+
+last_election = 1932.9.17
+duration = 48
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"I. Infanterifördelningen" "II. Infanterifördelningen" "III. Infanterifördelningen" "IV. Infanterifördelningen" "V. Infanterifördelningen" "VI. Infanterifördelningen" "VII. Infanterifördelningen" "VIII. Infanterifördelningen" "IX. Infanterifördelningen" "X. Infanterifördelningen" "XI. Infanterifördelningen" 
+		"XII. Infanterifördelningen" "XIII. Infanterifördelningen" "XIV. Infanterifördelningen" "XV. Infanterifördelningen" "XVI. Infanterifördelningen" "XVII. Infanterifördelningen" "XVIII. Infanterifördelningen" "XIX. Infanterifördelningen" "XX. Infanterifördelningen" "XXI. Infanterifördelningen" "XXII. Infanterifördelningen" 
+		"XXIII. Infanterifördelningen" "XXIV. Infanterifördelningen" "XXV. Infanterifördelningen" 
+	}
+	cavalry_brigade = {
+		"I. Kavallerifördelningen" "II. Kavallerifördelningen" "III. Kavallerifördelningen" "IV. Kavallerifördelningen" "V. Kavallerifördelningen" "VI. Kavallerifördelningen" "VII. Kavallerifördelningen" "VIII. Kavallerifördelningen" "IX. Kavallerifördelningen" "X. Kavallerifördelningen" 
+	}
+	motorized_brigade = {
+		"6. Motorfördelningen" "7. Motorfördelningen" "8. Motorfördelningen" "14. Motorfördelningen" "15. Motorfördelningen" "16. Motorfördelningen" "17. Motorfördelningen" "18. Motorfördelningen" "19. Motorfördelningen" "20. Motorfördelningen" "21. Motorfördelningen" 
+		"22. Motorfördelningen" "23. Motorfördelningen" "24. Motorfördelningen" "25. Motorfördelningen" 
+	}
+	mechanized_brigade = {
+		"1. Mekaniserade Fördelningen" "2. Mekaniserade Fördelningen" "3. Mekaniserade Fördelningen" "4. Mekaniserade Fördelningen" "5. Mekaniserade Fördelningen" "6. Mekaniserade Fördelningen" "7. Mekaniserade Fördelningen" "8. Mekaniserade Fördelningen" "9. Mekaniserade Fördelningen" "10. Mekaniserade Fördelningen" "11. Mekaniserade Fördelningen" 
+		"12. Mekaniserade Fördelningen" "13. Mekaniserade Fördelningen" "14. Mekaniserade Fördelningen" "15. Mekaniserade Fördelningen" 
+	}
+	light_armor_brigade = {
+		"8. Pansarfördelningen" "9. Pansarfördelningen" "10. Pansarfördelningen" "11. Pansarfördelningen" "12. Pansarfördelningen" "13. Pansarfördelningen" "14. Pansarfördelningen" "15. Pansarfördelningen" "16. Pansarfördelningen" "17. Pansarfördelningen" "18. Pansarfördelningen" 
+		"19. Pansarfördelningen" "20. Pansarfördelningen" "21. Pansarfördelningen" "22. Pansarfördelningen" "23. Pansarfördelningen" "24. Pansarfördelningen" "25. Pansarfördelningen" "26. Pansarfördelningen" "27. Pansarfördelningen" 
+	}
+	armor_brigade = {
+		"8. Pansarfördelningen" "9. Pansarfördelningen" "10. Pansarfördelningen" "11. Pansarfördelningen" "12. Pansarfördelningen" "13. Pansarfördelningen" "14. Pansarfördelningen" "15. Pansarfördelningen" "16. Pansarfördelningen" "17. Pansarfördelningen" "18. Pansarfördelningen" 
+		"19. Pansarfördelningen" "20. Pansarfördelningen" "21. Pansarfördelningen" "22. Pansarfördelningen" "23. Pansarfördelningen" "24. Pansarfördelningen" "25. Pansarfördelningen" "26. Pansarfördelningen" "27. Pansarfördelningen" 
+	}
+	paratrooper_brigade = {
+		"11. Fallskärmsjägarfördelningen" "12. Fallskärmsjägarfördelningen" "13. Fallskärmsjägarfördelningen" "14. Fallskärmsjägarfördelningen" "15. Fallskärmsjägarfördelningen" "16. Fallskärmsjägarfördelningen" "17. Fallskärmsjägarfördelningen" "18. Fallskärmsjägarfördelningen" "19. Fallskärmsjägarfördelningen" "20. Fallskärmsjägarfördelningen" 
+	}
+	marine_brigade = {
+		"21. Kustjägarfördelningen" "22. Kustjägarfördelningen" "23. Kustjägarfördelningen" "24. Kustjägarfördelningen" "25. Kustjägarfördelningen" "26. Kustjägarfördelningen" "27. Kustjägarfördelningen" "28. Kustjägarfördelningen" "29. Kustjägarfördelningen" "30. Kustjägarfördelningen" 
+	}
+	bergsjaeger_brigade = {
+		"31. Jägarfördelningen" "32. Jägarfördelningen" "33. Jägarfördelningen" "34. Jägarfördelningen" "35. Jägarfördelningen" "36. Jägarfördelningen" "37. Jägarfördelningen" "38. Jägarfördelningen" "39. Jägarfördelningen" "40. Jägarfördelningen" "41. Jägarfördelningen" 
+		"42. Jägarfördelningen" "43. Jägarfördelningen" "44. Jägarfördelningen" "45. Jägarfördelningen" "46. Jägarfördelningen" "47. Jägarfördelningen" "48. Jägarfördelningen" "49. Jägarfördelningen" "50. Jägarfördelningen" 
+	}
+	garrison_brigade = {
+		"I1 Garnison" "I2 Garnison" "I3 Garnison" "K1 Garnison" "K2 Garnison" "I10 Garnison" "I12 Garnison" "I13 Garnison" "I15 Garnison" "F1 Garnison" "F2 Garnison" 
+		"I5 Garnison" "I20 Garnison" "I6 Garnison" "I19 Garnison" "I21Garnison" "I9 Garnison" "K3 Garnison" "K4 Garnison" "K5 Garnison" "Ing1 Garnison" "Ing2 Garnison" 
+		"Ing3 Garnison" "T1 Garnison" "T2 Garnison" 
+	}
+	hq_brigade = {
+		"1. Armén" "2. Armén" "3. Armén" "4. Armén" "5. Armén" "6. Armén" "7. Armén" "8. Armén" "9. Armén" "10. Armén" "15. Armén" 
+			}
+	militia_brigade = {
+		"Gästrike Hemvärnskretsar" "Skånes Hemvärnskretsar" "Stockholms Hemvärnskretsar" "Göteborgs Hemvärnskretsar" "Smålands Hemvärnskretsar" "Blekinges Hemvärnskretsar" "Dalarnas Hemvärnskretsar" "Värmlands Hemvärnskretsar" "Västernorrlands Hemvärnskretsar" "Uppsala Hemvärnskretsar" "Lund Hemvärnskretsar" 
+		"Eskilstuna Hemvärnskretsar" "Norrbotten Hemvärnskretsar" "Jönköping Hemvärnskretsar" "Linköping Hemvärnskretsar" "Kopparberg Hemvärnskretsar" "Bohusläns Hemvärnskretsar" "Kristianstad Hemvärnskretsar" "Kronoberg Hemvärnskretsar" "Sandviken Hemvärnskretsar" 
+	}
+	multi_role = {
+		"1. Jaktflyggruppen" "8. Jaktflyggruppen" "4. Jaktflyggruppen" "6. Jaktflyggruppen" "7. Jaktflyggruppen" "9. Jaktflyggruppen" "10. Jaktflyggruppen" "11. Jaktflyggruppen" "2. Jaktflyggruppen" "3. Jaktflyggruppen" "5. Jaktflyggruppen" 
+		"12. Jaktflyggruppen" "13. Jaktflyggruppen" "14. Jaktflyggruppen" "15. Jaktflyggruppen" 
+	}
+	interceptor = {
+		"1. Jaktflyggruppen" "8. Jaktflyggruppen" "4. Jaktflyggruppen" "6. Jaktflyggruppen" "7. Jaktflyggruppen" "9. Jaktflyggruppen" "10. Jaktflyggruppen" "11. Jaktflyggruppen" "2. Jaktflyggruppen" "3. Jaktflyggruppen" "5. Jaktflyggruppen" 
+		"12. Jaktflyggruppen" "13. Jaktflyggruppen" "14. Jaktflyggruppen" "15. Jaktflyggruppen" 
+	}
+	strategic_bomber = {
+		"1. Strategiska Bombflyggruppen" "4. Strategiska Bombflyggruppen" "8. Strategiska Bombflyggruppen" "6. Strategiska Bombflyggruppen" "7. Strategiska Bombflyggruppen" "9. Strategiska Bombflyggruppen" "10. Strategiska Bombflyggruppen" "11. Strategiska Bombflyggruppen" "2. Strategiska Bombflyggruppen" "3. Strategiska Bombflyggruppen" "5. Strategiska Bombflyggruppen" 
+			}
+	tactical_bomber = {
+		"1. Taktiska Bombflyggruppen" "4. Taktiska Bombflyggruppen" "8. Taktiska Bombflyggruppen" "6. Taktiska Bombflyggruppen" "7. Taktiska Bombflyggruppen" "9. Taktiska Bombflyggruppen" "10. Taktiska Bombflyggruppen" "11. Taktiska Bombflyggruppen" "2. Taktiska Bombflyggruppen" "3. Taktiska Bombflyggruppen" "5. Taktiska Bombflyggruppen" 
+		"12. Taktiska Bombflyggruppen" "13. Taktiska Bombflyggruppen" "14. Taktiska Bombflyggruppen" 
+	}
+	naval_bomber = {
+		"1. Marinbombflyggruppen" "4. Marinbombflyggruppen" "8. Marinbombflyggruppen" "6. Marinbombflyggruppen" "7. Marinbombflyggruppen" "9. Marinbombflyggruppen" "10. Marinbombflyggruppen" "11. Marinbombflyggruppen" "2. Marinbombflyggruppen" "3. Marinbombflyggruppen" "5. Marinbombflyggruppen" 
+		"12. Marinbombflyggruppen" "1. Torpedbombflyggruppen" "4. Torpedbombflyggruppen" "8. Torpedbombflyggruppen" "6. Torpedbombflyggruppen" "7. Torpedbombflyggruppen" "9. Torpedbombflyggruppen" "10. Torpedbombflyggruppen" "11. Torpedbombflyggruppen" "2. Torpedbombflyggruppen" "3. Torpedbombflyggruppen" 
+		"5. Torpedbombflyggruppen" "12. Torpedbombflyggruppen" 
+	}
+	cas = {
+		"4. Dykbombflyggruppen" "6. Dykbombflyggruppen" "7. Dykbombflyggruppen" "11. Dykbombflyggruppen" "1. Dykbombflyggruppen" "8. Dykbombflyggruppen" "9. Dykbombflyggruppen" "10. Dykbombflyggruppen" "2. Dykbombflyggruppen" "3. Dykbombflyggruppen" 
+	}
+	transport_plane = {
+		"1. Transportflottiljen" "4. Transportflottiljen" "8. Transportflottiljen" "6. Transportflottiljen" "7. Transportflottiljen" "9. Transportflottiljen" "10. Transportflottiljen" "11. Transportflottiljen" "2. Transportflottiljen" "3. Transportflottiljen" 
+	}
+	battleship = {
+		"HMS Gustav II Adolf" "HMS Karl XII" "HMS Karl XI" "HMS Gustav III" "HMS Gustav Vasa" 
+	}
+	light_cruiser = {
+		"HMS Kalmar" "HMS Västervik" "HMS Gävle" "HMS Malmö" "HMS Halmstad" "HMS Karlskrona" "HMS Sundsvall" "HMS Luleå" "HMS Umeå" "HMS Härnösand" "HMS Hudiksvall" 
+		"HMS Uddevalla" "HMS Helsingborg" "HMS Varberg" "HMS Norrköping" "HMS Söderköping" "HMS Visby" 
+	}
+	heavy_cruiser = {
+		"HMS Manligheten" "HMS Oscar II" "HMS Äran" "HMS Tapperheten" "HMS Clas Fleming" "HMS Hans Wachtmeister" "HMS Tre Kronor" "HMS Älvsnabben" "HMS Starkodder" "HMS Styrbiörn" "HMS Sverige" 
+		"HMS Gotland" "HMS Stockholm" "HMS Göteborg" "HMS Svealand" "HMS Götaland" "HMS Norrland" "HMS Drottning Victoria" "HMS Gustav V" "HMS Gotland" 
+	}
+	battlecruiser = {
+		"HMS Gustav II Adolf" "HMS Karl XII" "HMS Karl XI" "HMS Gustav III" "HMS Gustav Vasa" 
+	}
+	destroyer = {
+		"1. Jagarflottiljen" "2. Jagarflottiljen" "3. Jagarflottiljen" "4. Jagarflottiljen" "5. Jagarflottiljen" "6. Jagarflottiljen" "7. Jagarflottiljen" "8. Jagarflottiljen" "9. Jagarflottiljen" "10. Jagarflottiljen" "11. Jagarflottiljen" 
+		"12. Jagarflottiljen" "13. Jagarflottiljen" "14. Jagarflottiljen" "15. Jagarflottiljen" "16. Jagarflottiljen" "17. Jagarflottiljen" "18. Jagarflottiljen" "19. Jagarflottiljen" "20. Jagarflottiljen" 
+	}
+	carrier = {
+		"HMS Kronan" "HMS Riksäpplet" "HMS Spiran" 
+	}
+	escort_carrier = {
+		"HMS Dristigheten" "HMS Jacob Bagge" "HMS Gotland" 
+	}
+	submarine = {
+		"1. Ubåtsflottiljen" "2. Ubåtsflottiljen" "3. Ubåtsflottiljen" "4. Ubåtsflottiljen" "5. Ubåtsflottiljen" "6. Ubåtsflottiljen" "7. Ubåtsflottiljen" "8. Ubåtsflottiljen" "9. Ubåtsflottiljen" "10. Ubåtsflottiljen" "11. Ubåtsflottiljen" 
+		"12. Ubåtsflottiljen" "13. Ubåtsflottiljen" "14. Ubåtsflottiljen" "15. Ubåtsflottiljen" "16. Ubåtsflottiljen" "17. Ubåtsflottiljen" "18. Ubåtsflottiljen" "19. Ubåtsflottiljen" "20. Ubåtsflottiljen" 
+	}
+	transport_ship = {
+		"1. Sjötransportflottiljen" "2. Sjötransportflottiljen" "3. Sjötransportflottiljen" "4. Sjötransportflottiljen" "5. Sjötransportflottiljen" "6. Sjötransportflottiljen" "7. Sjötransportflottiljen" "8. Sjötransportflottiljen" "9. Sjötransportflottiljen" "10. Sjötransportflottiljen" "11. Sjötransportflottiljen" 
+		"12. Sjötransportflottiljen" "13. Sjötransportflottiljen" "14. Sjötransportflottiljen" "15. Sjötransportflottiljen" "16. Sjötransportflottiljen" "17. Sjötransportflottiljen" "18. Sjötransportflottiljen" "19. Sjötransportflottiljen" "20. Sjötransportflottiljen" 
+	}
+
+}
+
+ministers = {
+	7001 = {
+		name = "Gustav V"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M7001
+		head_of_state = pig_headed_isolationist
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	7002 = {
+		name = "Axel Pehrsson-Bramstorp"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7002
+		head_of_government = happy_amateur
+		head_of_government = happy_amateur
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	7003 = {
+		name = "Karl G. Westman"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7003
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	7004 = {
+		name = "Vilmar Ljungdahl"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7004
+		armament_minister = tank_proponent
+		start_date = 1936.1.1
+	}
+	7005 = {
+		name = "Thorwald Bergquist"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7005
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	7006 = {
+		name = "Carlos Adlercreutz"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M7068
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	7007 = {
+		name = "Oscar Nygren"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M7007
+		chief_of_staff = school_of_defence
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	7009 = {
+		name = "Charles de Champs"
+		ideology = paternal_autocrat
+		loyalty = 0.25
+		picture = M7009
+		chief_of_navy = decisive_naval_battle_doctrine
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	7010 = {
+		name = "Torsten Friis"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M7010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	7033 = {
+		name = "Per Albin Hansson"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7033
+		head_of_government = ambitious_union_boss
+		start_date = 1936.1.1
+	}
+	7034 = {
+		name = "Tage Erlander"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7034
+		head_of_government = political_protege
+		start_date = 1946.1.1
+	}
+	7035 = {
+		name = "Gösta Bagge"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M7035
+		head_of_government = smiling_oilman
+		armament_minister = resource_industrialist
+		start_date = 1942.1.1
+	}
+	7037 = {
+		name = "Bertil Ohlin"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7037
+		head_of_government = corporate_suit
+		armament_minister = military_entrepreneur
+		start_date = 1945.1.1
+	}
+	7038 = {
+		name = "Richard Sandler"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M7038
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	7039 = {
+		name = "Christian Günther"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M7039
+		foreign_minister = apologetic_clerk
+		start_date = 1940.1.1
+	}
+	7040 = {
+		name = "Östen Undén"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7040
+		foreign_minister = great_compromiser
+		armament_minister = infantry_proponent
+		start_date = 1945.1.1
+	}
+	7041 = {
+		name = "Per Edvin Sköld"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M7041
+		foreign_minister = ideological_crusader
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	7042 = {
+		name = "Vilhelm Göran Lundvik"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7042
+		foreign_minister = biased_intellectual
+		start_date = 1937.1.1
+	}
+	7043 = {
+		name = "R. Reson Sohlmann"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7043
+		foreign_minister = iron_fisted_brute
+		start_date = 1938.1.1
+	}
+	7044 = {
+		name = "Per E.G. Insulander"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7044
+		foreign_minister = general_staffer
+		start_date = 1939.1.1
+	}
+	7045 = {
+		name = "Georg Andrén"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M7045
+		foreign_minister = ideological_crusader
+		start_date = 1945.1.1
+	}
+	7047 = {
+		name = "Ernst Wigforss"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M7047
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	7048 = {
+		name = "Gustav Möller"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M7048
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	7049 = {
+		name = "Gustav Cassel"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M7049
+		armament_minister = administrative_genius
+		start_date = 1937.1.1
+	}
+	7050 = {
+		name = "Erik Palmstierna"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M7050
+		armament_minister = battle_fleet_proponent
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_navy = base_control_doctrine
+		start_date = 1937.1.1
+	}
+	7051 = {
+		name = "Ernst Trygger"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M7051
+		armament_minister = theoretical_scientist
+		start_date = 1938.1.1
+	}
+	7052 = {
+		name = "Erik Einar Ekstrand"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M7052
+		armament_minister = submarine_proponent
+		start_date = 1939.1.1
+	}
+	7056 = {
+		name = "Martin Skoglund"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M7056
+		armament_minister = laissez_faires_capitalist
+		start_date = 1940.1.1
+	}
+	7057 = {
+		name = "Fritjof Domö"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M7057
+		armament_minister = administrative_genius
+		start_date = 1945.1.1
+	}
+	7058 = {
+		name = "Karl Schlyter"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7058
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	7059 = {
+		name = "Gustav Andersson-Rasjön"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M7059
+		minister_of_security = compassionate_gentleman
+		start_date = 1940.1.1
+	}
+	7060 = {
+		name = "Axel T. Ädelsvärd"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7060
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	7061 = {
+		name = "Anders Lindstedt"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7061
+		minister_of_security = compassionate_gentleman
+		start_date = 1937.1.1
+	}
+	7063 = {
+		name = "Peter G.A. Wijkman"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M7063
+		minister_of_security = back_stabber
+		start_date = 1938.1.1
+	}
+	7064 = {
+		name = "Richard J. Sandler"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7038
+		minister_of_security = prince_of_terror
+		start_date = 1939.1.1
+	}
+	7065 = {
+		name = "K.G. Westman"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7003
+		minister_of_security = crime_fighter
+		start_date = 1940.1.1
+	}
+	7066 = {
+		name = "Arvid G. Richert"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7066
+		minister_of_security = man_of_the_people
+		start_date = 1940.1.1
+	}
+	7068 = {
+		name = "Helge Jung"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M7006
+		minister_of_intelligence = political_specialist
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1942.1.1
+	}
+	7070 = {
+		name = "Åke Hammerskiöld"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7070
+		minister_of_intelligence = dismal_enigma
+		start_date = 1941.1.1
+	}
+	7072 = {
+		name = "Olof Thörnell"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M7072
+		chief_of_staff = school_of_fire_support
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1937.1.1
+	}
+	7073 = {
+		name = "Axel Rappe"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M7073
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1940.1.1
+	}
+	7074 = {
+		name = "Samuel Åkerhielm"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M7074
+		chief_of_staff = school_of_mass_combat
+		start_date = 1941.1.1
+	}
+	7075 = {
+		name = "Axel Bredberg"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M7075
+		chief_of_staff = school_of_psychology
+		chief_of_army = static_defence_doctrine
+		start_date = 1942.1.1
+	}
+	7076 = {
+		name = "Carl Gustav Ehrensvärd"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M7076
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1944.1.1
+	}
+	7077 = {
+		name = "Nils Swedlund"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M7077
+		chief_of_staff = school_of_psychology
+		start_date = 1946.1.1
+	}
+	7079 = {
+		name = "Per Sylvan"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M7079
+		chief_of_army = static_defence_doctrine
+		start_date = 1937.1.1
+	}
+	7082 = {
+		name = "Archibald Douglas"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M7017
+		chief_of_army = decisive_battle_doctrine
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1943.1.1
+	}
+	7084 = {
+		name = "Bengt Nordenskiöld"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M7070
+		chief_of_army = decisive_battle_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1943.1.1
+	}
+	7087 = {
+		name = "Gösta Ehrensvärd"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M7087
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1942.1.1
+	}
+	7088 = {
+		name = "Fabian Tamm"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M7088
+		chief_of_navy = open_seas_doctrine
+		start_date = 1944.1.1
+	}
+	7089 = {
+		name = "Helge Strömbäck"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7089
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1945.1.1
+	}
+	7092 = {
+		name = "Axel Ljungdahl"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M7092
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	7011 = {
+		name = "Martin Ekström"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M7011
+		head_of_state =	great_compromiser
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	7013 = {
+		name = "Erik von Rosen"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M7013
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	7014 = {
+		name = "Arthur Lindén"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M7014
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	7015 = {
+		name = "Sven Hedín"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M7015
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	7016 = {
+		name = "Hermann Nilsson-Ehle"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M7016
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	7020 = {
+		name = "Axel Gyllenkrok"
+		ideology = paternal_autocrat
+		loyalty = 0.50
+		picture = M7020
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	7021 = {
+		name = "Sven Linderot"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M7021
+		head_of_state = insignificant_layman
+		head_of_government = happy_amateur
+		start_date = 1936.1.1
+	}
+	7023 = {
+		name = "Hugo Sillén"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M7023
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	7024 = {
+		name = "Hilding Hagberg"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M7024
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	7025 = {
+		name = "Karl Kilbom"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M7025
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	7026 = {
+		name = "C.H. Hermansson"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M7026
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	7027 = {
+		name = "Gunnar Johansson"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = unknown
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	7028 = {
+		name = "Axel Pettersson"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = unknown
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	7029 = {
+		name = "Per M. Eriksson"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = unknown
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	7030 = {
+		name = "Krister Reuterswärd"
+		ideology = left_wing_radical
+		loyalty = 0.50
+		picture = unknown
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	7031 = {
+		name = "Zeth Höglund"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M7031
+		head_of_state = die_hard_reformer
+		start_date = 1936.1.1
+	}
+	7032 = {
+		name = "Albin Ström"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M7032
+		head_of_government = backroom_backstabber
+		start_date = 1936.1.1	
+	}
+	7093 = {
+		name = "Gustav VI Adolf"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M7093
+		head_of_state = benevolent_gentleman
+		head_of_state = benevolent_gentleman
+		start_date = 1950.1.1
+	}
+	7094 = {
+		name = "Sven Olov Lindholm"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M7094
+		head_of_government = silent_workhorse
+		start_date = 1936.1.1
+	}
+	7095 = {
+		name = "Per Engdahl"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M7095
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	7096 = {
+		name = "Konrad Hallgren"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M7096
+		head_of_government = old_general
+		start_date = 1936.1.1
+	}
+	7097 = {
+		name = "Anton Nilsson"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M7097
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+}
+

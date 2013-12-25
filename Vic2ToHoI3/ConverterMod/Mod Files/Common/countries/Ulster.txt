@@ -1,0 +1,852 @@
+color = { 131  101  85 }
+graphical_culture = British
+
+last_election = 1933.6.17
+duration = 60
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1st 'Thunderbolt' Division" "2nd 'Spearhead' Division" "3rd Irish Infantry Division" "4th Irish Infantry Division" "5th Irish Infantry Division" "6th Irish Infantry Division" "7th Irish Infantry Division" "8th Irish Infantry Division" "9th Irish Infantry Division" "10th Irish Infantry Division" "11th Irish Infantry Division" 
+		"12th Irish Infantry Division" "13th Irish Infantry Division" "14th Irish Infantry Division" "15th Irish Infantry Division" "16th Irish Infantry Division" "17th Irish Infantry Division" "18th Irish Infantry Division" "19th Irish Infantry Division" "20th Irish Infantry Division" 
+	}
+	cavalry_brigade = {
+		"1st Irish Cavalry Div. 'Parnell'" "2nd Irish Cavalry Division" "3rd Irish Cavalry Division" "4th Irish Cavalry Division" "5th Irish Cavalry Division" "6th Irish Cavalry Division" "7th Irish Cavalry Division" "8th Irish Cavalry Division" "9th Irish Cavalry Division" "10th Irish Cavalry Division" 
+	}
+	motorized_brigade = {
+		"1st Irish Motor Division" "2nd Irish Motor Division" "3rd Irish Motor Division" "4th Irish Motor Division" "5th Irish Motor Division" "6th Irish Motor Division" "7th Irish Motor Division" "8th Irish Motor Division" "9th Irish Motor Division" 
+	}
+	mechanized_brigade = {
+		"1st Irish Mechanized Division" "2nd Irish Mechanized Division" "3rd Irish Mechanized Division" "4th Irish Mechanized Division" "5th Irish Mechanized Division" "6th Irish Mechanized Division" "7th Irish Mechanized Division" "8th Irish Mechanized Division" "9th Irish Mechanized Division" "10th Irish Mechanized Division" 
+	}
+	light_armor_brigade = {
+		"1st Irish Armoured Division" "2nd Irish Armoured Division" "3rd Irish Armoured Division" "4th Irish Armoured Division" "5th Irish Armoured Division" "6th Irish Armoured Division" "7th Irish Armoured Division" "8th Irish Armoured Division" "9th Irish Armoured Division" "10th Irish Armoured Division" "11th Irish Armoured Division" 
+		"12th Irish Armoured Division" "14th Irish Armoured Division" "15th Irish Armoured Division" 
+	}
+	armor_brigade = {
+		"1st Irish Armoured Division" "2nd Irish Armoured Division" "3rd Irish Armoured Division" "4th Irish Armoured Division" "5th Irish Armoured Division" "6th Irish Armoured Division" "7th Irish Armoured Division" "8th Irish Armoured Division" "9th Irish Armoured Division" "10th Irish Armoured Division" "11th Irish Armoured Division" 
+		"12th Irish Armoured Division" "14th Irish Armoured Division" "15th Irish Armoured Division" 
+	}
+	paratrooper_brigade = {
+		"1st Irish Airborne Inf. Division" "2nd Irish Airborne Inf. Division" "3rd Irish Airborne Inf. Division" "4th Irish Airborne Inf. Division" "5th Irish Airborne Inf. Division" "6th Irish Airborne Inf. Division" "7th Irish Airborne Inf. Division" "8th Irish Airborne Inf. Division" "9th Irish Airborne Inf. Division" "10th Irish Airborne Inf. Division" 
+	}
+	marine_brigade = {
+		"1st Irish Marine Inf. Division" "2nd Irish Marine Inf. Division" "3rd Irish Marine Inf. Division" "4th Irish Marine Inf. Division" "5th Irish Marine Inf. Division" "6th Irish Marine Inf. Division" "7th Irish Marine Inf. Division" "8th Irish Marine Inf. Division" "9th Irish Marine Inf. Division" "10th Irish Marine Inf. Division" 
+	}
+	bergsjaeger_brigade = {
+		"1st Irish Mountain Inf. Division" "2nd Irish Mountain Inf. Division" "3rd Irish Mountain Inf. Division" "4th Irish Mountain Inf. Division" "5th Irish Mountain Inf. Division" "8th Irish Mountain Inf. Division" "10th Irish Mountain Inf. Division" "11th Irish Mountain Inf. Division" "12th Irish Mountain Inf. Division" 
+	}
+	garrison_brigade = {
+		"3rd Irish Infantry Division" "4th Irish Infantry Division" "5th Irish Infantry Division" "6th Irish Infantry Division" "7th Irish Infantry Division" "8th Irish Infantry Division" "9th Irish Infantry Division" "10th Irish Infantry Division" "11th Irish Infantry Division" "12th Irish Infantry Division" "13th Irish Infantry Division" 
+		"14th Irish Infantry Division" "15th Irish Infantry Division" "16th Irish Infantry Division" "17th Irish Infantry Division" "18th Irish Infantry Division" "19th Irish Infantry Division" "20th Irish Infantry Division" 
+	}
+	hq_brigade = {
+		"1st Irish Army" "2nd Irish Army" "3rd Irish Army" "4th Irish Army" "5th Irish Army" "1st Irish Army" "2nd Northern Irish Army" "3rd Northern Irish Army" "4th Northern Irish Army" "5th Northern Irish Army" 
+	}
+	militia_brigade = {
+		"1st IRA Militia Division" "2nd IRA Militia Division" "3rd IRA Militia Division" "4th IRA Militia Division" "5th IRA Militia Division" "6th IRA Militia Division" "7th IRA Militia Division" "8th IRA Militia Division" "9th IRA Militia Division" "10th IRA Militia Division" "11th IRA Militia Division" 
+		"12th IRA Militia Division" "13th IRA Militia Division" "14th IRA Militia Division" "15th IRA Militia Division" "16th IRA Militia Division" "17th IRA Militia Division" "18th IRA Militia Division" "19th IRA Militia Division" "20th IRA Militia Division" "21st IRA Militia Division" "22nd IRA Militia Division" 
+		"23rd IRA Militia Division" "24th IRA Militia Division" "25th IRA Militia Division" "26th IRA Militia Division" "27th IRA Militia Division" "28th IRA Militia Division" "29th IRA Militia Division" "30th IRA Militia Division" 
+	}
+	multi_role = {
+		"No.1 IAF Fighter Group" "No.2 IAF Fighter Group" "No.3 IAF Fighter Group" "No.4 IAF Fighter Group" "No.5 IAF Fighter Group" "No.7 IAF Fighter Group" "No.8 IAF Fighter Group" "No.9 IAF Fighter Group" "No.10 IAF Fighter Group" 
+	}
+	interceptor = {
+		"No.1 IAF Fighter Group" "No.2 IAF Fighter Group" "No.3 IAF Fighter Group" "No.4 IAF Fighter Group" "No.5 IAF Fighter Group" "No.7 IAF Fighter Group" "No.8 IAF Fighter Group" "No.9 IAF Fighter Group" "No.10 IAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"No.1 IAF Strategic Group" "No.2 IAF Strategic Group" "No.6 IAF Strategic Group" "No.3 IAF Strategic Group" "No.4 IAF Strategic Group" "No.7 IAF Strategic Group" "No.8 IAF Strategic Group" "No.9 IAF Strategic Group" "No.10 IAF Strategic Group" 
+	}
+	tactical_bomber = {
+		"No.1 IAF Tactical Group" "No.2 IAF Tactical Group" "No.6 IAF Tactical Group" "No.3 IAF Tactical Group" "No.4 IAF Tactical Group" "No.7 IAF Tactical Group" "No.8 IAF Tactical Group" "No.9 IAF Tactical Group" "No.10 IAF Tactical Group" 
+	}
+	naval_bomber = {
+		"No.1 IAF Naval Bomb Group" "No.2 IAF Naval Bomb Group" "No.3 IAF Naval Bomb Group" "No.4 IAF Naval Bomb Group" "No.5 IAF Naval Bomb Group" "No.7 IAF Naval Bomb Group" "No.8 IAF Naval Bomb Group" "No.9 IAF Naval Bomb Group" "No.10 IAF Naval Bomb Group" "No.1 IAF Torpedo Bomb Group" "No.2 IAF Torpedo Bomb Group" 
+		"No.3 IAF Torpedo Bomb Group" "No.4 IAF Torpedo Bomb Group" "No.5 IAF Torpedo Bomb Group" "No.7 IAF Torpedo Bomb Group" "No.8 IAF Torpedo Bomb Group" "No.9 IAF Torpedo Bomb Group" "No.10 IAF Torpedo Bomb Group" 
+	}
+	cas = {
+		"No.1 IAF Dive Bomb Group" "No.2 IAF Dive Bomb Group" "No.6 IAF Dive Bomb Group" "No.3 IAF Dive Bomb Group" "No.4 IAF Dive Bomb Group" "No.7 IAF Dive Bomb Group" "No.8 IAF Dive Bomb Group" "No.9 IAF Dive Bomb Group" "No.10 IAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"No.1 IAF Transport Group" "No.2 IAF Transport Group" "No.3 IAF Transport Group" "No.4 IAF Transport Group" "No.5 IAF Transport Group" 
+	}
+	battleship = {
+		"LE Eire" "LE Daniel O'Connell" "LE Eamon DeValera" "LE William Smith O'Brien" "LE Donal O'Sullivan Beare" "LE Theobald Wolfe Tone" "LE William Butler Yeats" 
+	}
+	light_cruiser = {
+		"LE Deirdre" "LE Emer" "LE Eithne" "LE Clíona" "LE Meabh" "LE Mucha" "LE William Smith O'Brien" "LE Donal O'Sullivan Beare" "LE Theobald Wolfe Tone" "LE William Butler Yeats" 
+	}
+	heavy_cruiser = {
+		"LE Michael Collins" "LE Arthur Griffith" "LE Charles Stewart Parnell" "LE Daniel O'Connell" "LE Eamon DeValera" "LE William Smith O'Brien" "LE Donal O'Sullivan Beare" "LE Theobald Wolfe Tone" "LE William Butler Yeats" 
+	}
+	battlecruiser = {
+		"LE Daniel O'Connell" "LE Eamon DeValera" "LE William Smith O'Brien" "LE Donal O'Sullivan Beare" "LE Theobald Wolfe Tone" "LE William Butler Yeats" 
+	}
+	destroyer = {
+		"1st Destroyer Flotilla" "2nd Destroyer Flotilla" "3rd Destroyer Flotilla" "4th Destroyer Flotilla" "5th Destroyer Flotilla" "6th Destroyer Flotilla" "7th Destroyer Flotilla" "8th Destroyer Flotilla" "9th Destroyer Flotilla" "10th Destroyer Flotilla" "11th Destroyer Flotilla" 
+		"12th Destroyer Flotilla" "13th Destroyer Flotilla" "14th Destroyer Flotilla" "15th Destroyer Flotilla" "16th Destroyer Flotilla" "17th Destroyer Flotilla" "18th Destroyer Flotilla" "19th Destroyer Flotilla" "20th Destroyer Flotilla" 
+	}
+	carrier = {
+		"LE Eire" "LE Michael Collins" "LE Arthur Griffith" "LE Charles Stewart Parnell" 
+	}
+	escort_carrier = {
+		"LE Banba" "LE Fola" "LE Macha" "LE Maev" "LE Cliona" 
+	}
+	submarine = {
+		"1st Submarine Flotilla" "2nd Submarine Flotilla" "3rd Submarine Flotilla" "4th Submarine Flotilla" "5th Submarine Flotilla" "6th Submarine Flotilla" "7th Submarine Flotilla" "8th Submarine Flotilla" "9th Submarine Flotilla" "10th Submarine Flotilla" "11th Submarine Flotilla" 
+		"12th Submarine Flotilla" "13th Submarine Flotilla" "14th Submarine Flotilla" "15th Submarine Flotilla" 
+	}
+	transport_ship = {
+		"1st Transport Flotilla" "2nd Transport Flotilla" "3rd Transport Flotilla" "4th Transport Flotilla" "5th Transport Flotilla" "6th Transport Flotilla" "7th Transport Flotilla" "8th Transport Flotilla" "9th Transport Flotilla" "10th Transport Flotilla" 
+	}
+
+}
+
+ministers = {
+	25001 = {
+		name = "Donal Buckley"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25001
+		head_of_state = pig_headed_isolationist
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	25002 = {
+		name = "Eamon de Valera"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25002
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	25004 = {
+		name = "Seán MacEntee"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25004
+		armament_minister = laissez_faires_capitalist
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	25005 = {
+		name = "Patrick J. Ruttledge"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25005
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	25006 = {
+		name = "Gerald Boland"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25006
+		minister_of_intelligence = political_specialist
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	25007 = {
+		name = "M.J. Costello"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25007
+		chief_of_staff = school_of_defence
+		chief_of_army = elastic_defence_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	25009 = {
+		name = "H.T. Green"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25009
+		chief_of_navy = base_control_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	25010 = {
+		name = "P.A. Mulcahy"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25010
+		chief_of_air = air_superiority_doctrine
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	25032 = {
+		name = "Alasdair McCabe"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25032
+		head_of_state = benevolent_gentleman
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	25033 = {
+		name = "Seán Lemass"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25033
+		head_of_state = pig_headed_isolationist
+		head_of_government = smiling_oilman
+		armament_minister = resource_industrialist
+		start_date = 1945.1.1
+	}
+	25034 = {
+		name = "Frank Fahy"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25031
+		head_of_state = insignificant_layman
+		head_of_state = insignificant_layman
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	25035 = {
+		name = "Douglas Hyde"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25035
+		head_of_state = popular_figurehead
+		armament_minister = military_entrepreneur
+		start_date = 1937.1.1
+	}
+	25036 = {
+		name = "Seán T. O'Ceallaigh"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25036
+		head_of_state = autocratic_charmer
+		armament_minister = military_entrepreneur
+		chief_of_navy = base_control_doctrine
+		head_of_state = autocratic_charmer
+		start_date = 1944.1.1
+	}
+	25038 = {
+		name = "Eoin MacNeill"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25038
+		head_of_state = stern_imperialist
+		minister_of_security = efficient_sociopath
+		start_date = 1937.1.1
+	}
+	25039 = {
+		name = "Richard Mulcahy"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25039
+		head_of_state = barking_buffoon
+		head_of_government = corporate_suit
+		foreign_minister = apologetic_clerk
+		armament_minister = military_entrepreneur
+		chief_of_staff = school_of_psychology
+		start_date = 1944.1.1
+	}
+	25040 = {
+		name = "Oliver J. Flanagan"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M25011
+		head_of_state = weary_stiff_neck
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	25041 = {
+		name = "Jim Larkin sr."
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25021
+		head_of_state = barking_buffoon
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	25042 = {
+		name = "Thomas Johnson"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25042
+		head_of_government = ambitious_union_boss
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	25044 = {
+		name = "William Norton"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25044
+		head_of_government = happy_amateur
+		foreign_minister = apologetic_clerk
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1944.1.1
+	}
+	25046 = {
+		name = "W.T. Cosgrave"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25046
+		head_of_government = silent_workhorse
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	25048 = {
+		name = "John A. Costello"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25048
+		head_of_government = backroom_backstabber
+		foreign_minister = great_compromiser
+		armament_minister = air_to_ground_proponent
+		start_date = 1947.1.1
+	}
+	25049 = {
+		name = "Patrick Sweeney"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M25012
+		head_of_government = happy_amateur
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	25050 = {
+		name = "James Larkin jr."
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25022
+		head_of_government = political_protege
+		armament_minister = air_superiority_proponent
+		start_date = 1936.1.1
+	}
+	25051 = {
+		name = "Liam O'Monahan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25051
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	25052 = {
+		name = "Michael O'Rafferty"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25052
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1937.1.1
+	}
+	25058 = {
+		name = "Kevin O'Higgins"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25058
+		foreign_minister = ideological_crusader
+		armament_minister = military_entrepreneur
+		start_date = 1937.1.1
+	}
+	25061 = {
+		name = "Sean MacBride"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25061
+		foreign_minister = iron_fisted_brute
+		start_date = 1947.1.1
+	}
+	25064 = {
+		name = "Bill Gannon"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25023
+		foreign_minister = ideological_crusader
+		armament_minister = tank_proponent
+		start_date = 1941.1.1
+	}
+	25066 = {
+		name = "William Gallacher"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25066
+		armament_minister = air_superiority_proponent
+		start_date = 1937.1.1
+	}
+	25067 = {
+		name = "Sean Murray"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25026
+		armament_minister = air_to_ground_proponent
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1939.1.1
+	}
+	25068 = {
+		name = "Sean Lester"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25068
+		armament_minister = battle_fleet_proponent
+		start_date = 1943.1.1
+	}
+	25069 = {
+		name = "Cecil Lavery"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25069
+		armament_minister = administrative_genius
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1944.1.1
+	}
+	25070 = {
+		name = "Patrick O'Brien"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25070
+		armament_minister = tank_proponent
+		start_date = 1947.1.1
+	}
+	25074 = {
+		name = "Frank Aiken"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25074
+		armament_minister = resource_industrialist
+		minister_of_intelligence = industrial_specialist
+		foreign_minister = great_compromiser
+		start_date = 1944.1.1
+	}
+	25075 = {
+		name = "Edmund Noel Mulcahy"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25075
+		armament_minister = theoretical_scientist
+		start_date = 1947.1.1
+	}
+	25076 = {
+		name = "Frank McDermott"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25076
+		armament_minister = strategic_air_proponent
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	25079 = {
+		name = "Seán Moylan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25079
+		armament_minister = infantry_proponent
+		start_date = 1941.1.1
+	}
+	25080 = {
+		name = "Patrick Lynch"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25080
+		armament_minister = submarine_proponent
+		start_date = 1942.1.1
+	}
+	25081 = {
+		name = "John O'Byrne"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25081
+		armament_minister = laissez_faires_capitalist
+		chief_of_navy = power_projection_doctrine
+		start_date = 1944.1.1
+	}
+	25082 = {
+		name = "Patrick McGilligan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25082
+		armament_minister = resource_industrialist
+		start_date = 1947.1.1
+	}
+	25083 = {
+		name = "Donal Brackley"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M25014
+		armament_minister = battle_fleet_proponent
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	25084 = {
+		name = "Eoin O'Duffy"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M25018
+		armament_minister = infantry_proponent
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1941.1.1
+	}
+	25085 = {
+		name = "James Conolly"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25024
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	25089 = {
+		name = "Jack Thomas"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25089
+		minister_of_security = man_of_the_people
+		start_date = 1937.1.1
+	}
+	25090 = {
+		name = "James Geoghegan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25090
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	25091 = {
+		name = "Edward J. Phelan"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25091
+		minister_of_security = prince_of_terror
+		start_date = 1942.1.1
+	}
+	25092 = {
+		name = "Cearbhall O'Dalaigh"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25092
+		minister_of_security = compassionate_gentleman
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	25093 = {
+		name = "Kevin Dixon"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25093
+		minister_of_security = efficient_sociopath
+		start_date = 1947.1.1
+	}
+	25097 = {
+		name = "John W. Dulanty"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25097
+		minister_of_security = crime_fighter
+		start_date = 1937.1.1
+	}
+	25099 = {
+		name = "Ludwig Bieler"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25099
+		minister_of_security = prince_of_terror
+		start_date = 1941.1.1
+	}
+	25100 = {
+		name = "Kevin Haugh"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25100
+		minister_of_security = silent_lawyer
+		start_date = 1944.1.1
+	}
+	25101 = {
+		name = "Sean MacEoin"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25028
+		minister_of_security = compassionate_gentleman
+		minister_of_intelligence = political_specialist
+		start_date = 1947.1.1
+	}
+	25102 = {
+		name = "Eamonn Broy"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M25015
+		minister_of_security = crime_fighter
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	25103 = {
+		name = "Bill Scott"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M25025
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	25104 = {
+		name = "Betty Sinclair"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M25104
+		minister_of_security = back_stabber
+		minister_of_intelligence = technical_specialist
+		start_date = 1939.1.1
+	}
+	25105 = {
+		name = "Denis McCullough"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M25105
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	25106 = {
+		name = "Joseph Conolly"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25106
+		minister_of_intelligence = political_specialist
+		start_date = 1937.1.1
+	}
+	25107 = {
+		name = "Padraig O'Connor"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25107
+		minister_of_intelligence = industrial_specialist
+		chief_of_staff = school_of_psychology
+		start_date = 1941.1.1
+	}
+	25108 = {
+		name = "Hugh Kennedy"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25108
+		minister_of_intelligence = technical_specialist
+		start_date = 1947.1.1
+	}
+	25110 = {
+		name = "Dan McKenna"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25110
+		minister_of_intelligence = technical_specialist
+		chief_of_staff = school_of_mass_combat
+		start_date = 1938.1.1
+	}
+	25111 = {
+		name = "Oscar Traynor"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25111
+		minister_of_intelligence = research_specialist
+		chief_of_air = vertical_envelopment_doctrine
+		armament_minister = infantry_proponent
+		start_date = 1939.1.1
+	}
+	25112 = {
+		name = "Jack Lynch"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25112
+		minister_of_intelligence = political_specialist
+		start_date = 1947.1.1
+	}
+	25113 = {
+		name = "Liam Archer"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25113
+		minister_of_intelligence = dismal_enigma
+		chief_of_staff = school_of_fire_support
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	25114 = {
+		name = "Joseph Walshe"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25114
+		minister_of_intelligence = industrial_specialist
+		start_date = 1941.1.1
+	}
+	25115 = {
+		name = "Thomas Teevan"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25115
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1944.1.1
+	}
+	25121 = {
+		name = "Norman Devlin"
+		ideology = social_democrat
+		loyalty = 0.25
+		picture = M25121
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	25122 = {
+		name = "Seán O'Grady"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25122
+		chief_of_staff = school_of_psychology
+		start_date = 1944.1.1
+	}
+	25123 = {
+		name = "Michael Brennan"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25123
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	25124 = {
+		name = "Dan Bryan"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25124
+		chief_of_staff = school_of_fire_support
+		start_date = 1939.1.1
+	}
+	25127 = {
+		name = "Conor Maguire"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25127
+		chief_of_staff = school_of_mass_combat
+		start_date = 1941.1.1
+	}
+	25129 = {
+		name = "Hubert de la Poer Gough"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M25017
+		chief_of_staff = school_of_mass_combat
+		start_date = 1936.1.1
+	}
+	25131 = {
+		name = "Frank Lynch"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25131
+		chief_of_staff = school_of_mass_combat
+		start_date = 1941.1.1
+	}
+	25134 = {
+		name = "Emmett Dalton"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25134
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1947.1.1
+	}
+	25139 = {
+		name = "Seán MacEoin"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25028
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	25140 = {
+		name = "A.T. Lawlor"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25140
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	25141 = {
+		name = "S. O'Muiris"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M25141
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1941.1.1
+	}
+	25143 = {
+		name = "Thomas Derrig"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25143
+		chief_of_navy = power_projection_doctrine
+		start_date = 1941.1.1
+	}
+	25145 = {
+		name = "A.H.J. Jerome"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25145
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1947.1.1
+	}
+	25149 = {
+		name = "William McCullough"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25029
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	25153 = {
+		name = "Charles Casey"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25153
+		chief_of_air = air_superiority_doctrine
+		start_date = 1941.1.1
+	}
+	25154 = {
+		name = "W. Delamere"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M25154
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1944.1.1
+	}
+	25156 = {
+		name = "P. Quinn"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M25156
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1944.1.1
+	}
+	25157 = {
+		name = "Jack White"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M25020
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	25158 = {
+		name = "Pieras Beaslai"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M25030
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+}
+

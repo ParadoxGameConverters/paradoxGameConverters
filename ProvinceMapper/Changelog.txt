@@ -1,0 +1,33 @@
+ProvinceMapper Change Log
+
+0.9F
+- Add keyboard shortcuts:
+	- F2: Change comment text
+	- F3: Insert new comment above selected
+	- F4: Insert new mapping above selected
+	- Ctrl+Plus: Move selected up
+	- Ctrl+Minus: Move selected down
+- Fix memory leak associated with map zoom
+
+0.9E
+- Allow one-sided province mappings
+- Mark one-sided and many-to-many province mappings in the output comments
+
+0.9D
+- Make map inversion optional (CK2 doesn't need it)
+- Throw a more useful error when a province is mapped but doesn't exist in game data
+
+0.9C
+- Optionally read province names from localization instead of map data
+
+0.9B
+- Preserve comment lines and allow new comments to be added
+- Fix boundary conditions for move up/move down
+- Fix handling of input files containing whitespace at BOL
+
+0.9A
+- Save settings from launch dialog
+- Support map zoom
+
+0.9
+- initial release
