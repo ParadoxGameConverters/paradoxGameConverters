@@ -1,0 +1,92 @@
+#Country Name: Please see filename.
+
+graphical_culture = africangfx
+
+color = { 55  108  158 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	glorious_arms
+	bureaucracy
+}
+
+historical_units = {
+	african_clubmen
+	bantu_tribal_warfare
+	bantu_plains_warfare
+	zulu_chest_and_horns
+	bantu_gunpowder_warfare
+	westernized_bantu
+	african_western_franchise_warfare
+}
+
+monarch_names = {
+	"Barama N'Golo #0" = 20
+	"Kaladyan Kulibaly #0" = 20
+	"Danfasri #0" = 20
+	"Suma #0" = 20
+	"Biton Mamari #0" = 20
+	"Denkoro #0" = 20
+	"Bakari #0" = 20
+	"Ton Mansa Demele #0" = 20
+	"Kanyuba Nyama #0" = 20
+	"Kera Djugu #0" = 20
+	"N'Golo Diara #0" = 20
+	"Monson #0" = 20
+	"Tonkomo #0" = 20
+	"Fa Sine #0" = 0
+	"Da Kaha #0" = 0
+	"Tyefolo #0" = 0
+	"Nga Ngolo #0" = 0
+	"Sunsa #0" = 0
+	"Massa #0" = 0
+	"Sekolo #0" = 0
+	"Forokolo #0" = 0
+	"Seba Mana #0" = 0
+	"Deni ba Bo #0" = 0
+	"Sira Bo #0" = 0
+	"Dessekoro #0" = 0
+	"Saraba #0" = 0
+	"Nntinkoro #0" = 0
+	"Nanka #0" = 0
+	"Daoula #0" = 0
+	"Yadega #0" = 0
+	"Yolomfaogoma #0" = 0
+	"Kourita #0" = 0
+	"Geba #0" = 0
+	"Wobgho #0" = 0
+	"Saaga #0" = 0
+	"Kaongo #0" = 0
+	"Dulugu #0" = 0
+	"Sawadogo #0" = 0
+	"Karfo #0" = 0
+	"Baongo #0" = 0
+	"Tontuoriba #0" = 0
+}
+
+leader_names = {
+	Mbazia
+	Chichuana
+	Cossa
+	Machungo
+	Sarea
+	Machel
+	Mutola
+	Vashko
+	Sanyang
+	Mondlane
+}
+
+ship_names = {
+	Heinyaho Tiéyaho Tigermaxo "Tiéma ciéwe"
+	Sorogama Jeneema Sorko Pondori Kotya Korondugu Debo
+}

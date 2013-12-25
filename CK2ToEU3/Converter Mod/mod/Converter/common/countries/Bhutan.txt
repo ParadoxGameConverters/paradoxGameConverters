@@ -1,0 +1,62 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 93  180  76 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Ngawang Namgyal #0" = 20
+	"Pekar Jungney #0" = 20
+	"Kunga Gyaltshen #0" = 20
+	"Phyogla Namgyal #0" = 20
+	"Jigme Norbu #0" = 20
+	"Mipham Wangpo #0" = 20
+	"Jigme Dragpa #0" = 40
+	"Choeki Gyaltshen #0" = 20
+}
+
+leader_names = {
+	Chomphel
+	Tshering
+	Peljor
+	Rabgye
+	Gyamtsho
+	Wangpo
+	Peljor
+	Gyaltshen
+	Wangchuk
+	Phuntsho
+}
+
+ship_names = {
+	Chhu Punaka "Dng Chu" "Manas Chu"
+	"Mangde Chu" "Mo Chu" "Pa Chu"
+	"Pho Chu" Sangkosh Thimbu
+	"Tongsa Chu" "Towang Chu"
+}

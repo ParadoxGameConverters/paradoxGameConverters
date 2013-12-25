@@ -1,0 +1,12 @@
+# Eastern Skirmisher
+
+type = cavalry
+unit_type = eastern
+
+maneuver = 2
+offensive_morale = 7
+defensive_morale = 4
+offensive_fire = 7
+defensive_fire = 4
+offensive_shock = 5
+defensive_shock = 3

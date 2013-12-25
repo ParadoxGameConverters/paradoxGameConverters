@@ -1,0 +1,52 @@
+country_decisions = {
+	liberum_veto = {
+
+		potential = {
+			NOT = { has_country_flag = librium_veto }
+			NOT = { overseas_provinces_percentage  = 0.5 }
+			religion_group = christian
+			technology_group = eastern
+			government = monarchy
+		}
+
+		allow = {
+			NOT = { aristocracy_plutocracy = 0 }
+			NOT = { centralization_decentralization = 4 }
+			OR = {
+				war = yes
+				horde_war = yes
+			}
+			war_exhaustion = 8
+			num_of_cities = 6
+		}
+
+		effect = {
+			set_country_flag = librium_veto
+			war_exhaustion = -8
+			army_tradition = 0.1
+			centralization_decentralization = 1
+			aristocracy_plutocracy = -2
+			random_owned = {
+				limit = { controlled_by = THIS  }
+				cavalry = current
+				cavalry = current
+				cavalry = current
+				cavalry = current
+				cavalry = current
+				infantry = current
+				infantry = current
+				infantry = current
+				infantry = current
+				infantry = current
+				infantry = current
+				infantry = current
+				infantry = current
+				infantry = current
+				infantry = current
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

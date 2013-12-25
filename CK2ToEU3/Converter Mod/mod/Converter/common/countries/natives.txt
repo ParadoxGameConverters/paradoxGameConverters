@@ -1,0 +1,35 @@
+#Natives
+
+graphical_culture = latingfx
+
+color = { 203  164  103 }	
+
+monarch_names = {
+	"Mapi #0" = 10
+	"Quando #0" = 10
+	"Illa #0" = 10
+	"Rimac #0" = 10
+	"Tiso #0" = 10
+	"Cusi #0" = 10
+	"Mayta #0" = 10
+	"Roca #0" = 10
+	"Zope #0" = 10
+	"Curiatao #0" = 10
+	"Guacra #0" = 10
+	"Maila #0" = 10
+	"Tanqui #0" = 10
+	"Taipi #0" = 10
+}
+
+leader_names = {
+	Tywan Toto Iawi Gasana
+	Wyoh Illa Maila Quizo
+	Tanqui Taraque Tari Pacon
+}
+
+ship_names = {
+	Yamro Sanga Mani Mutara
+	Gasana Yuhi Kigeri Kemba
+	Adero Ayan Mahdi Gukunda
+	Nalungo Kilolo Gahiji
+}

@@ -1,0 +1,175 @@
+blocked = {
+
+#special tags
+eu3 = REB
+eu3 = PIR
+eu3 = NAT
+
+#Colonies
+eu3 = BRZ
+eu3 = CAN
+eu3 = CHL
+eu3 = COL
+eu3 = HAT
+eu3 = LAP
+eu3 = LOU
+eu3 = MEX
+eu3 = PEU
+eu3 = PRG
+eu3 = QUE
+eu3 = CAM
+eu3 = USA
+eu3 = VNZ
+
+#Central Asia
+eu3 = KZH
+eu3 = KHI
+eu3 = SHY
+eu3 = KOK
+eu3 = SIB
+eu3 = TIM
+
+#Persia	
+eu3 = DUR
+eu3 = KHO
+eu3 = JAI
+eu3 = PER
+eu3 = QAR
+eu3 = TIM
+
+#Americas	
+eu3 = AZT
+eu3 = CHE
+eu3 = CHM
+eu3 = CRE
+eu3 = HUR
+eu3 = INC
+eu3 = IRO
+eu3 = MAY
+eu3 = SHA
+eu3 = ZAP
+
+#Africa:
+eu3 = ASH
+eu3 = BEN
+eu3 = KON
+eu3 = MAL
+eu3 = NUB
+eu3 = SON
+eu3 = ZAN
+eu3 = ZIM
+eu3 = ADA
+eu3 = HAU
+eu3 = KBO
+eu3 = LOA
+eu3 = OYO
+eu3 = SOF
+eu3 = SOK
+
+#Far East
+eu3 = ANN
+eu3 = ARK
+eu3 = ATJ
+eu3 = AYU
+eu3 = BLI
+eu3 = BAN
+eu3 = BEI
+eu3 = CHA
+eu3 = CHG
+eu3 = CHK
+eu3 = DAI
+eu3 = JAP
+eu3 = KHA
+eu3 = KHM
+eu3 = KOR
+eu3 = LNA
+eu3 = LUA
+eu3 = LXA
+eu3 = MAJ
+eu3 = MCH
+eu3 = MKS
+eu3 = MLC
+eu3 = MNG
+eu3 = MTR
+eu3 = OIR
+eu3 = PAT
+eu3 = PEG
+eu3 = QIN
+eu3 = RYU
+eu3 = SST
+eu3 = SUK
+eu3 = SUL
+eu3 = TAU
+eu3 = TIB
+eu3 = TOK
+eu3 = VIE
+eu3 = WUU
+eu3 = XIA
+eu3 = MSA
+
+#Daimyos
+eu3 = MIN
+eu3 = TAC
+eu3 = FUJ
+eu3 = TAI
+
+#India
+eu3 = AHM
+eu3 = ASS
+eu3 = BAH
+eu3 = BAL
+eu3 = BAS
+eu3 = BNG
+eu3 = BRR
+eu3 = BHO
+eu3 = BHU
+eu3 = BIJ
+eu3 = BND
+eu3 = DLH
+eu3 = GAK
+eu3 = GOC
+eu3 = GDW
+eu3 = GUJ
+eu3 = HYD
+eu3 = KRK
+eu3 = KSH
+eu3 = KHD
+eu3 = KTH
+eu3 = MAD
+eu3 = MAR
+eu3 = MLB
+eu3 = MLD
+eu3 = MLW
+eu3 = MUG
+eu3 = MYS
+eu3 = NIZ
+eu3 = NPL
+eu3 = ORI
+eu3 = ODH
+eu3 = PUN
+eu3 = RAJ
+eu3 = SND
+eu3 = TRV
+eu3 = VIJ
+eu3 = HIN
+
+#formable nations
+eu3 = GER
+eu3 = HRE
+eu3 = SCA
+eu3 = ITA
+eu3 = RMN
+eu3 = KOJ
+eu3 = RUS
+eu3 = RFR
+eu3 = SPA
+eu3 = NED
+eu3 = IRE
+eu3 = PRU
+eu3 = BYZ
+eu3 = PER
+eu3 = ENG
+eu3 = FRA
+eu3 = SPI
+
+}

@@ -1,0 +1,551 @@
+Revision	Log Message
+---------	----------------
+1		Initial commit
+2		Initial parser
+3		Automated build batch file
+4		Copy data files on build
+5		Automated Test and Build_and_Test batch files
+6		Add initial province mapping with Iceland mapped
+7		Output a minimal yet functional EU3 save
+8		Add configuration file and relating code
+9		ROTW provinces get ownership from EU3 install
+10		England Ireland Scotland Wales mapped
+11		CK2 cultures mapped, except for german and italian
+12		Gunther's province mappings
+13		Fix bug uncovered by ROTW mappings
+14		Middle East and Persia mapped
+15		EU3 starts at the date CK2 ended
+16		Merge
+17		Start date taken into account for ROTW provinces
+18		Added missing CK2World files
+19		Read in titles
+20		Create tree of vassal/liege relationships
+21		Country Mappings
+22		Iberian Peninsula and Med Islands mapped	
+23		Italy and Scandiwegia mapped
+24		England save from rho
+25		Country Mappings: Independent kingoms
+26		European province ownership
+27		Merge
+28		1-to-1 titular kingdoms mapped
+29		Add HRE conversion mechanic
+30		European provinces visible to all
+31		Merge
+32		France province mappings
+33		Change country mapping to map a pointer to the EU3 Country itself
+34		Output countries
+35		Use /history/countries/ instead of /common/countries.txt
+36		Change country mapping to map a pointer to the CK2 Title itself
+37		Get 1399 governments
+38		Merge
+39		Merge
+40		Fix log when province history file not found
+41		Characters imported
+42		Add new source files from last change
+43		EU3 nation have rulers and rulers have first names
+44		getvalue() ignores case
+45		Import explicit dynasties
+46		Import dynasties from dynasties.txt
+47		Export dynasty name with ruler
+48		Import history of former rulers and write it out
+49		Add Hungary1453_01_01 save
+50		Output previous_ruler section
+51		Add Sicily save
+52		Central Europe Mapped, duplicate mappings removed.
+53		Create family trees
+54		Merge
+55		Lots of blocked nations
+56		Children in sorted order in family trees
+57		Primogeniture heirs
+58		More character information
+59		Temporary government of tribal despotism
+60		Search up the family tree for primogeniture heirs if needed
+61		Eastern Europe mapped.  All mappings (dirty) done.
+62		Merge
+63		greece & turkey
+64		Initial stat conversion
+65		Gender laws
+66		Merge
+67		Unless Absolute Cognatic, female lines only considered after male ones
+68		Traits
+69		EU3 stats have a minimum of one
+70		Actually implement the stats floor
+71		Bastards can't be heirs
+72		Extrapolate stats for characters younger than 16
+73		Stat floors and ceilings implemented
+74		Stat floor of 0 for CK2 characters
+75		Seniority succession
+76		Added 'Lowborn' dynasty
+77		Correct lower bound for stats to 3
+78		Bonus stats go to lowest stat instead of highest
+79		Stat scaling factor doubled
+80		Feudal Elective succession
+81		Log number of CK2 baronies in each EU3 province
+82		Use forward declarations instead of header includes
+83		Initial implementation of DasGuntLord01's advisor conversion technique
+84		Don't try to get an heir of a title no-one holds (also, the save that exposed this error)
+85		No more cloned advisors
+86		Titled advisors now included
+87		Remove save incompatible with current CK2 version
+88		Added Latin_Empire1303_04_27.ck2
+89		If an advisor has no home, don't try to place them somewhere
+90		Option for advisors now in configuration file
+91		No longer count titles help by no-one as independent
+92		Lots of advisors
+93		Remove option for advisors from configuration file
+94		Improved variety of advisors
+95		Initial gavelkind implementation
+96		Restrict gavelkind heirs to valid children
+97		Rename test config file appropriately
+98		Update Gavelkind to handle no immediate heirs
+99		Turkish Succession
+100		Restore monarch conversion in ROTW (had been broken in change 48)
+101		Regnal numbers for rulers
+102		Constructors for everyone!
+103		Pass references data structures, not copies (should cause miniscule speedup)
+104		Update logging to be more helpful
+105		Verify all CK2 provinces are mapped
+106		Add missing province mappings
+107		Water provinces mapped
+108		Tech group from history files
+109		Better map spread
+110		Map ROTW water provinces
+111		A few more map fixes
+112		Heirs for ROTW nations
+113		Eliminate extra space in ROTW ruler names
+114		Correct empty dynasty name
+115		Use doParseFile()
+116		Advisors for ROTW (except the parser chokes on the history files)
+117		Updated parser files (and fixes to province mapping revealed by update)
+118		Turkish/Open Succession fixed
+119		Primogeniture succession no longer can lead to someone being their own heir
+120		Log unmapped EU3 provinces instead of crashing
+121		Regents
+122		Added Ireland_endgame to sample saves
+123		Updated readme.txt
+124		Added dirty religion mappings
+		Added converter mod directory: 0.1 now adds new religions
+125		Merge
+126		CK3 to EU3 converter mod religion and cultures
+127		Updated country title mapping with almost all tags
+128		Merge
+129		Sync Changelog.txt with repository
+130		Add Nyrael's Croatia 1453 game to sample saves
+131		Get version number from save game
+132		Add Hispania1399_10_17 save game
+133		Read all files in traits and dynasties directories
+134		Update readme file
+135		Province mapping for 1.06, using version number in save to determine which set to use
+136		Add some bits to province history
+137		Clean up CK2 classes
+138		Add missing bits to constructors
+139		Initial culture conversion for provinces
+140		Refactor EU3 classes
+141		Update culture conversion to allow distinguishers
+142		ROTW cultures
+143		Province capital names from EU3 data. Also, much more province history is output.
+144		Add a few new cultures to converter mod. Also update mod culture mappings
+145		Updates to culture mappings and mod after some testing
+146		Update converter mod to make easy for mod directory use
+147		Initial religion conversion
+148		Religions for ROTW provinces
+149		Heresy modifier for heretic religions (only if ruler's religion different)
+150		Simplify the heretic modifier
+151		Update 'religion' culture distinguisher rules to include heretics
+152		Population conversion
+153		HelloGoodSir's recommendation about Saxon culture mapping to Scottish
+154		Manpower conversion
+155		Trade goods
+156		Base Tax conversion
+157		Fix traits bug
+158		Use population proxy to determine culture and religion where needed
+159		Proxy multiplier for capitals
+160		Fix to make proxy multiplier work
+161		Allow manpower, basetax, and population to be converted to historical values (configuration option)
+162		Output name comes from input name if it's specified (works on drag-n-drops, too)
+163		Fix parser bug (in setRHSObjList())
+164		Add blended option for population conversion
+165		Fix unmapped provinces error
+166		Modified build.bat to use 7zip instead of IZARC
+167		Modified build.bat to use 7zip instead of IZARC
+168		Merge
+169		Use basetax and manpower proxies to try to break ties in culture conversion
+170		Merge
+171		Update test batch files to use 7-zip
+172		Prepare converter mod for first releaseable version
+173		Create and use CK2Building class
+174		Baronies no longer get wrong religion buildings
+175		Can set EU3 options via configuration.txt
+176		Make a bunch of province conversion things configurable
+177		Don't bother mapping wastelands to wastelands
+178		Map CK2 religions to CK2 religion groups
+179		Map CK2 cultures to CK2 culture groups, then disallow wrong culture buildings
+180		Use basetax and manpower proxies to try to break ties in religion conversion
+181		Default output filename is again output.eu3
+182		Update credits in readme.txt
+183		Update religions in converter mod
+184		Country religion set
+185		Country primary culture set
+186		Convert capitals
+187		Convert accepted cultures
+188		Update religion icons to work correctly
+189		Update credits in readme.txt
+190		Initial work on government conversion
+191		Convert tech group
+192		Hordes that become Christian can get non-horde government types
+193		Minor logging adjustments
+194		Remove titles that have neither de facto nor de jure lieges or vassals.
+195		Update automated tests.
+196		Log total number of titles.
+197		Added a bunch of fixed country outputs.
+198		Added daimyo system.
+		Fixed bug with importing country history.
+199		Tamnius' culture suggestions
+200		Add Scotland1399_10_16 save
+201		Back out last change
+202		Add Scotland1399_10_16 save 
+203		More culture rule updates
+204		Change Scotland test save from rar to zip
+205		Starting stability and investment
+206		Estimate taxation
+207		Estimate tolls
+208		Determine if provinces are on the same continent as the owner's capital
+209		Determine if provinces are land connected to capital
+210		Taxes and tolls take into account distance overseas
+211		Estimate production income
+212		Estimate gold income
+213		Fix for gold income estimate
+214		ROTW Tech levels (European ones are completely wrong)
+215		Change economy option defaults to historical
+216		1.06 saves don't lose muslim buildings when converted by a 1.07 install
+217		Apply change 213 to test configs
+218		Convert tech
+219		Tech investment
+220		Add miaphysite religion mapping
+221		No longer need the mod in place to avoid crashing
+222		Converted provinces have a minimum of 1000 population with historical pop conversion
+223		Added Roman Empire mapping to country_mappings
+224		Added favored unit variable to Country class
+225		Merged changes
+226		block some additional nations that can be created by EU3 decision.
+227		Minor improvements to country mappings
+228		A little bit of refactoring, and being unable to open common/* directories is not a fatal error for pre-1.06 installs.
+229		fix error message.
+230		Add title merging function and options.
+231		Get primary titles and use them as the primary merge target for title merging.
+232		Remove a shadowed variable that prevented manpower from being considered for culture mapping.
+233		Update changelog with latest changes.
+234		Update test configs with the title merging options
+235		Make log slightly easier to read
+236		Cores and HRE membership added for de jure relationships
+237		Upadted province mappings in Spain
+238		Add new test saves
+239		Update test configurations
+240		Update culture and religion mappings
+241		Add EU3 diplomacy
+242		Defer Mapping countries until last moment (breaks province discovery)
+243		Update localization text for converter mod
+244		Fix province discovery for land provinces
+245		Fix crash bug if religions tie in a province
+246		Don't allow advisors to try to insert new provinces
+247		Fix crash bug from last change
+248		Add changes for CK2Plus to EU3
+249		Read in spouses.  Convert diplomatic agreements (PUs, RMs, Alliances).
+250		Defer determination of a nation being independent
+251		Merge
+252		Finish functional merge between title-merging and coring.  Both seem to be working OK now.
+253		Fix discovery of sea provinces by converted nations.
+254		For cleanliness, map a little deeper into Morocco and Egypt.
+255		Convert advisors after tag mapping.  Cap advisor skill at 6 (7 breaks EU3).
+		Set advisor start date to 16 years after their birth, rather than 16 years after game start.
+256		Vassal independence (blobifying still happens due to too many tags)
+257		Handle opinion modifiers from the CK2 file.
+258		Calculate state stats.
+259		Read prestige and piety.  Account for them, and for diplomacy, in opinion calc.
+260		Merge
+261		Consider traits and some fixed intrinsics when calculating relations.
+262		Merge
+263		Add a few more static modifiers to opinion, and a helper function for vassalage.
+264		Calculate demesne cap and add "Demesne Too Big" opinion modifier.  Cap relations at +/-100.
+265		Consider vassal opinion during vassal independence.
+266		No longer necessary to remove dead nations in the CK2World code.
+267		Vassal titles held by the liege are merged automatically
+268		Abstract away details of matching tags
+269		Progressive blobification
+270		Read war data from CK2 save.  Account for "At War" opinion modifier.
+271		Allow configuration of progressive blobification
+272		When absorbing vassals, destroy any agreements they had
+273		Merge
+274		Write relationships between countries into the EU3 file.
+275		Thoroughly rework religion handling on the CK2 side so we have more information about relationships between religions.
+		Account for "Heretic" and "Religious Differences" opinion modifiers.
+276		Related religions (e.g. catholic/orthodox) are not heresies of each other.
+277		Fix trait->stat mapping.
+278		Starting agents from state stats for converted countries.
+279		Read score and use it to determine prestige (note: EU3 seems to muck with this when the file is loaded).
+280		Uniquify province core output to quiet down EU3 debug logs.
+281		merge independent baronies with their de jure liege
+282		Clean up logging a little
+283		Each step of progressive blobbing only happens once
+284		Vassals and lieges will always at least cross-guarantee each other
+285		Comradebot's updates to east Africa
+286		Update religion mappings
+287		A little starting money
+288		Owned provinces get a level one fort
+289		Starting agents for ROTW countries
+290		Fix for change 288
+291		Cores for ROTW provinces
+292		Natives
+293		Trailing slash in CK2 and EU3 locations now acceptable
+294		Avoid some potential crashes from CK2 installs that don't match the save version
+295		Use the global heresy check to determine whether the province heresy flag should be set.
+296		Make province output match EU3 save output more closely.
+297		More output order matching.
+298		Still assign a primary title, even if the save doesn't define one
+299		Output the HRE Emperor
+300		Rename CK2+ readme file
+301		Log when government gets default conversion
+302		EU3 vassals never have vassals
+303		Juniors in a PU never have vassals
+304		Update readme for converter mod
+305		Added tag 0.6 Release for changeset 9489bf5e37c5
+306		Incorporate years_ruled opinion modifier
+307		HRE Electors
+308		Add Jerusalem1401 save (from 1.09)
+309		Better warning message when unable to determine culture or religion.
+310		Fix crash bug from HRE title being destroyed
+311		Fix resaving bug
+312		Process many things only after assigning tags
+313		Solve some cases of governments not being assigned
+314		More government adjustments
+315		Ultimogeniture succession
+316		Tanistry succession
+317		Merge in minor features
+318		Merge in bugfixes
+319		Added tag 0.6A Release for changeset 480cef6655c2
+320		Map tags for some new 1.09 titles.
+321		Merge main to minor
+322		Merge main to bugfixes
+323		Extra logging for tech group conversion
+324		Don't crash if religions tie on multiple criteria.
+325		Read titular settlements and allow them to be a character's primary holding.
+326		Read dynamic titles and their settlements.
+327		Don't erase the buildings from the building map after adding them.
+328		If the title specified for HRETitle doesn't exist, don't try to set up the HRE mechanics.
+329		Add tax/pop/manpower proxies for family palaces (unused, but silences an error).
+		Correct manpower proxy for temples.
+330		Don't generate EU3 supply for the null tradegood.
+331		Merge bugfixes to minor.
+332		Added tag 0.6C Release for changeset 3187b3d90d69
+333		More province mappings adjustments.
+334		More province mappings adjustments, Arabian Peninsula and Horn of Africa.
+335		Initial army conversion
+336		Army position and movement
+337		Properly handle when armies are in provinces that do not map to EU3
+338		No longer lose a bunch of cores on loading
+339		Fix possible crash bug when merging titles
+340		Proper regiment types and number
+341		Convert army troop strength (and add missing files)
+342		Correct unit types
+343		Manpower from unraised levies
+344		Regiment homes and names
+345		'Leftover' men from subunits applied to manpower
+346		Readme file updates
+347		Tech group improvments
+348		Convert raised navies
+349		Convert transported armies
+350		Ships from unraised ships
+351		Fix bug with manpower sometimes being FUBAR
+352		Ships from unraised ships only in coastal provinces
+353		Better detect coastal provinces
+354		Unlanded countries inherit tech group from holder of their potential capital
+355		Add second method of tech group conversion
+356		Updates to second method
+357		Log when EU3 country information doesn't exist during output.
+358		If there are no potential HRE electors, make the emperor one instead of crashing.
+359		Mod output creates country files
+360		Mod output creates working mod + save
+361		Stuff for mod creation located in converter mod directory
+362		Mod files directory removed
+363		Create flags for new EU3 countries
+364		Merge in new empires
+365		Make countries included with the mod properly work
+366		Simplify mod layout and instructions
+367		Merge minor into main
+368		Merge bugfixes into main
+369		Updates and fixes from merge
+370		Fix crash bug with cultural tech conversion
+371		Added tag 0.7 Release for changeset 57ebf3239b88
+372		Merge main into bugfixes
+373		Merge main into minor
+374		Merge main into mod
+375		Fixes from merge
+376		Manpower numbers are less insane
+377		Fix crashbug with independent republic families
+378		Convert buildings
+379		Fix bug with culturalTech option
+380		Fix crashbug when holders of only titular titles are vassals
+381		Added tag 0.7A Release for changeset 56a327aaa9eb
+382		Convert forts
+383		Convert universities
+384		Convert textile manufactories
+385		Historical forts for the ROTW
+386		Historical CoTs
+387		Add Empire_of_Britannia to test suite
+388		Merchant republics get a CoT if they didn't already have one
+389		Levy multiplier has a minimum of 1.0
+390		Localisations for added countries
+391		Avoid crash if fewer than six potential electors
+392		Roman Empire can no longer restore Byzantium
+393		Open market agreements
+394		Trade leagues
+395		Trade stations
+396		Update testing scripts for new mod stuff
+397		Merge bugfixes to main
+398		Merge mod into main
+399		Merge mod into main with latest commit
+400		Add base mod to test configuration
+401		Added tag 0.8 Release for changeset 43929ab67b4f
+402		Merge main into bugfixes
+403		Actually set preferred unit type
+404		Get vassals to appear
+405		Rulers properly absorb all their own holdings
+406		Merge main into minor
+407		Aztecs convert as a horde
+408		Include chinese faction system
+409		If a converted nation has ROTW provinces, make those provinces the nation's religion
+410		Some provinces forced to always start unsettled
+411		Improvments to economic estimations
+412		Added UI project to solution
+413		Committing deleted files from central repository. This was apparently needed.
+414		Merge
+415		Adding UI project
+416		Actually read in crown authority
+417		Fix some typos
+418		Update culture and religion mappings for 1.10
+419		Replace hard coded path with system variable
+420		Adjust tech for 1.10
+421		Handle new relationship modifiers in 1.10
+422		Update province mappings for 1.10
+423		Fix minor tech bug
+424		Add hellenic religion and update localizations
+425		Don't try to set culture in water provinces
+426		Merge bugfixes into main
+427		Resolve problems with merge
+428		Add 1.10 saves to test suite
+429		Update CK2 version information
+430		Update test configurations
+431		Fix typos in converter mod
+432		Eliminate signed/unsigned mismatch in CK2Version
+433		Autogenerated tags must be three characters long
+434		Added tag 0.8A Release for changeset 99d3aaaf9719
+435		Centralization slider
+436		Merge main into mod
+437		Update converter mod
+438		Aristocracy/Plutocracy slider
+439		Update converter mod with new empires
+440		Innovative/Narrowminded slider
+441		Serfdom/Freesubjects slider
+442		Mercantilism/Freetrade slider
+443		Land/Naval slider
+444		Quality/Quantity slider
+445		Offensive/Defensive slider
+446		Update for 1.10 titles, including horde mechanics for Mongol empire
+447		Fix primogeniture and ultimogeniture succession
+448		Put advisers in correct tech groups
+449		Merge bugfixesinto main
+450		Merge minor into main
+451		Merge mod into main
+452		Resolve merge issues
+453		Add new files from 439 into repository
+454		Converter mod fixes
+455		Build and test script automatically zips up test results
+456		More improvements to converter mod
+457		Added tag 0.9 Release for changeset 8c5b60d89cf0
+458		Don't add meaningless localizations
+459		Added support for missing preference entry types (mostly - one requires further work)
+		Added support for saving configuration.txt to disk
+460		Completed configuration file support.
+		Saves configuration file to disk.
+		Asyncrously executes converter process.
+		Added logging functionality to give the user some more feedback
+		Hid the summary view due to logical user interface inconsistency. Might reintroduce later.
+		Completed preferencetype/xml reading refactor.
+461		Added Source column to log.
+		Logging/conversion is actually usable, but is effectively synchronous.
+462		Added working (but not very fancy) asynchronous running of the converter.
+		Various bugfixes.
+		Automatically finds the converter .exe if stored in the same directory as the UI executable.
+		Culture-setting bugfix - the timestamps in the log are no longer hardcoded to american date format.
+		Various other minor fixes.
+463		Initial code for CK2 mod support
+464		Now reads the source savegame directly, without copying it to the working folder.
+465		Fixed an issue where the user could start multiple conversion processes at the same time. The "Convert" button is now blocked while running.
+		The log now scrolls to the bottom when new items are added.
+466		Now copies output save game to eu3 save game folder, then deletes the temp copy in the working directory. The new converted save is named <ck2savename>_converted.eu3
+		Fixed bug with output save game directory in Configuration.xml
+		Implemented non-obtrusive auto-scrolling mechanism.
+		Forced some more error handling(xml parsing related) into using the logging mechanism
+467		Removed unnecessary dependencies from UI projet.
+		Fixed one crash that would occur if the UI was ran without the converter in the same folder.
+		Adjusted some logging output
+468		Fixed various issues with copying save games after conversion.
+		Added save game file extension to game configuration.
+469		Initial work on automated mod installation.
+470		Merge
+471		Merge main into minor
+472		CK2Plus saves convert without crashing (but with errors)
+473		Fix bugs with province history
+475		Make text more clear for vassalSocre setting
+476		Update converter mod to match 5.2
+477		Remove dead titles
+478		Various fixes for better mod support
+479		Converter mod output now more convenient
+480		More converter mod updates to match 5.2
+481		Remove extraneous country files
+482		Merge bugfixes to main
+483		Finish integrating mod into normal release
+484		Merge minor into main
+485		Fix crash bug with navies in river-based ports
+486		Output newCountries.txt for use by molave's tool
+487		Fix bug with absorbing vassals but leaving cores
+488		Added comments and some (disabled) work on automated mod installation.
+489		Merge
+490		Feature development more or less complete. Pre-bugfixing commit.
+491		Fixed an event handler related bug that caused conversion to be run multiple times after the first conversion.
+492		Added error handling for when the converter itself crashes (ExitCode != 0)
+		Only copies save of conversion was successful
+493		The error handling now properly detects whether a mod is selected
+494		Update test scripts
+495		Give cores on absorbed vassals
+496		Update converter mod
+497		Merge minor to main
+498		Put saves in the correct places
+499		Fix frontend's copy routines
+500		Add some error handling for setting de jure lieges, and prevent crashes.
+501		Merge 334 and 335
+502		Added tag 0.6D Release for changeset a50e7180d7e2
+503		Several fixes in 0.6D were never properly merged; pick those up now.
+504		Added tag 1.0 Release for changeset 0fdeba1cf082
+505		Merge main to minor (avoid false head for delayed 0.6D merge)
+506		Merge main into mod
+507		Updated project file for VS12 compatibility
+508		Dynamically assigned graphical cultures for mod countries
+509		Code optimization. Minor bugfixes. Added some missing files in converter mod.
+510		Dynamically generated details for mod country files
+511		Fix for issue where the Browse-button used to locate the game installations didn't work unless anything was entered in the related text boxes.
+512		Merge
+513		A few small fixes (remove unused variables, consistently pass by ref, etc).
+514		Merge
+515		Add copyright and license to source files
+516		Handle missing localisation when generating new countries
+517		Commiting files not included in revision 516
+518		Merge main into mod
+519		Update for CK2 2.0.1
+520		Merge minor into main
+521		Merge mod into main
+522		Update changelog
+523		Don't use an OS-reserved name for tags (http://msdn.microsoft.com/en-us/library/aa365247(VS.85).aspx)
+524		The parser now handles Windows-1252
+525		Add logic for finding non-Steam installations of games, and fix finding games on 32-bit windows.
+526		Add files to build for VS2013

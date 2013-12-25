@@ -1,0 +1,70 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 112  194  63 }
+
+historical_ideas = {
+	glorious_arms 
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Koirijaq #0" = 10
+	"Borrak #0" = 10
+	"Jâni Beg #0" = 10
+	"Girai #0" = 10
+	"Burunduq #0" = 10
+	"Qâsim #0" = 10
+	"Tagir #0" = 10
+	"Boydas #0" = 10
+	"Mamash #0" = 10
+	"Tahir #0" = 10
+	"Boydas #0" = 10
+	"Tugum #0" = 10
+	"Uziaq #0" = 10
+	"Aq Nazar #0" = 10
+	"Shigay #0" = 10
+	"Tawakkul #0" = 10
+	"Ishim #0" = 10
+	"Abaigirim #0" = 10 
+	"Yahângîr #0" = 10
+	"Tauka #0" = 10
+	"Bular #0" = 10
+	"Shemeke #0" = 10
+	"Jolbars #0" = 10
+	"Abu'l Mambet #0" = 10
+	"Abilay #0" = 10
+	"'Abdullâh #0" = 10
+	"Walî #0" = 10
+	"Dair #0" = 10
+	"Kaip #0" = 10
+}
+
+leader_names = { 
+	"Mongke Cheren" "Suren Gal" "Chagan Chinua" "Batu Arslan"
+	"Bora Unegen" Kokechar Qutughgge Temurgene Yekedai Tegus-tu 
+	Toluichu Cherenqai Burilgijin
+}
+
+ship_names = {
+	"Uli Jüz" "Orta Jüz" "Kisi Jüz" Töre
+	Qoja Tölengit Turgay Isim Emba Uil
+	Syrdarja Cu Ili Irtys Nura
+}

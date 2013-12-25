@@ -1,0 +1,6 @@
+#Frigate
+type = light_ship
+
+hull_size = 25
+base_cannons = 25
+sail_speed = 10

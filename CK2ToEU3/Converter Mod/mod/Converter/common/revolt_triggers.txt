@@ -1,0 +1,160 @@
+# Great Britain
+GBR = {
+	always = no
+}
+
+# Scandinavia
+SCA = {
+	always = no
+}
+
+# Holy Roman Empire
+HRE = {
+	always = no
+}
+
+# Germany
+GER = {
+	always = no
+}
+
+# France
+FRA = {
+	NOT = { exists = RFR }
+}
+RFR = {
+	NOT = { exists = FRA }
+}
+
+# Italy
+ITA = {
+	always = no
+}
+
+# Netherlands
+NED = {
+	is_core = NED
+}
+
+# Timurids
+TIM = {
+	culture = uzbehk
+	is_core = TIM
+}
+
+# Byzantium
+BYZ = {
+	OR = {
+		is_core = BYZ
+		NOT = { exists = GRE }
+	}
+}
+
+# Spain
+SPA = {
+	OR = {
+		is_core = SPA
+		capital_scope = {
+			is_core = SPA
+		}
+	}
+	NOT = { exists = CAS }
+	NOT = { exists = ARA }
+}
+
+# Aragon
+ARA = {
+	NOT = { is_core = SPA }
+	NOT = { exists = SPA }
+}
+
+# Castille
+CAS = {
+	NOT = { is_core = SPA }
+	NOT = { exists = SPA }
+}
+
+# Greece
+GRE = {
+	NOT = { exists = BYZ }
+}
+
+# Sardinia-Piedmont
+SPI = {
+	OR = {
+		is_core = SPI
+		capital_scope = {
+			is_core = SPI
+		}
+	}
+}
+
+# Russia
+RUS = {
+	OR = {
+		is_core = RUS
+		capital_scope = {
+			is_core = RUS
+		}
+	}
+}
+
+# Prussia
+PRU = {
+	OR = {
+		is_core = PRU
+		capital_scope = {
+			is_core = PRU
+		}
+	}
+}
+
+# Ireland
+IRE = {
+	OR = {
+		is_core = IRE
+		capital_scope = {
+			is_core = IRE
+		}
+	}
+}
+
+# Romania
+RMN = {
+	OR = {
+		is_core = RMN
+		capital_scope = {
+			is_core = RMN
+		}
+	}
+}
+
+# Wallachia
+WAL = {
+	NOT = { is_core = RMN }
+}
+
+# Moldavia
+MOL = {
+	NOT = { is_core = RMN }
+}
+
+# Ottomans
+TUR = {
+	religion = sunni
+}
+
+# Golden Horde
+GOL = {
+	religion_group = muslim
+}
+
+# Mughals
+MUG = {
+	religion_group = muslim
+}
+
+# The Hansa
+HSA = {
+	always = no
+}

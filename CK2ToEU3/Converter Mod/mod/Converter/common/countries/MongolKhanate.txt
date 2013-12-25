@@ -1,0 +1,88 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 108  153  65 }
+
+historical_ideas = {
+	glorious_arms
+	grand_army
+	military_drill
+	national_conscripts
+	battlefield_commisions
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	cabinet
+	humanist_tolerance
+}
+
+historical_units = {
+	mongol_bow
+	mongol_swarm
+	mongol_steppe
+}
+
+monarch_names = {
+	"Dayan #0" = 20
+	"Darayisung #0" = 20
+	"Mulon #0" = 20
+	"Manduulun #0" = 20
+	"Sayn #0" = 20
+	"Bodi #0" = 20
+	"Buyan #0" = 20
+	"Ligdan #0" = 20
+	"Tayisung #0" = 20
+	"Adai #0" = 20
+	"Oyiradai #0" = 20
+	"Delbeg #0" = 20
+	"Öljei #0" = 20
+	"Gün #0" = 20
+	"Örüg #0" = 15
+	"Arigaba #1" = 10
+	"Ayurparibhadra #1" = 10
+	"Biligtü #1" = 10
+	"Elbeg #1" = 10
+	"Güyük #1" = 10
+	"Irinchibal #1" = 10
+	"Jorightu #1" = 10
+	"Kublai #1" = 10
+	"Möngke #1" = 10
+	"Ögedei #1" = 10
+	"Qayshan #1" = 10
+	"Qoshila #1" = 10
+	"Suddhipala #1" = 10
+	"Temujin #1" = 10
+	"Temür #1" = 10
+	"Toghan #1" = 10
+	"Tolui #1" = 10
+	"Toq #1" = 10
+	"Uskhal #1" = 10
+	"Yesün #1" = 10
+	"Ariq #0" = 0
+	"Batu #0" = 0
+	"Eljigidei #0" = 0	
+	"Joichi #0" = 0
+}
+
+leader_names = { 
+	Orsolgene Chagan-cher "Tegus Burilgi" "Quara Temur" "Arigh Arslan"
+	"Batu Unegen" "Koke Gal" Nasantai Ulaganqan Qyugungge Maidari
+	Delgergene Subeqai
+}
+
+ship_names = {
+	"Ariq Boke"
+	Chengzong
+	Güyük
+	Hoelun Hulagu
+	Kublai Kiyad Külüg
+	Mongke
+	Olkunut Ögedei
+	Qabul Qaidu
+	"Sorghaghtani Beki"
+	Tolui
+	Yesugei 
+}

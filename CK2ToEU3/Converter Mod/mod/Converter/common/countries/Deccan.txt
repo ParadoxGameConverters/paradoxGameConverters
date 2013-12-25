@@ -1,0 +1,70 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 49  175  191 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	merchant_adventures
+	national_trade_policy
+	espionage
+	smithian_economics
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	maharathan_guerilla_warfare
+	maharathan_cavalry
+	bhonsle_infantry
+	bhonsle_cavalry
+	indian_rifle
+}
+
+monarch_names = {
+	"Taj ud-Din Firuz #0" = 20
+	"Ala ud-Din Ahmad #0" = 20
+	"Mahmud #0" = 20
+	"Ahmad #0" = 20
+	"Ali #0" = 30
+	"Qasim #0" = 30
+	"Amir #0" = 30
+}
+
+leader_names = {
+	Koneru
+	Koduri	
+	Eswarapu
+	Bhanjee
+	Cheran
+	Goenka
+	Giridhar
+	Jannavi
+	Harbir
+	Chellappan
+}
+
+ship_names = {
+	Alia Aurangabad Devki Fatimah
+	Godvari Gulbargah Jalsena "Kala Jahazi"
+	Khan "Lal Jahazi" Nausena "Nav ka Yudh"
+	Niknaz "Nila Jahazi" Niloufa Sagar Salima
+	Suhalia Shameena Yasmine
+}
+

@@ -1,0 +1,6 @@
+#East India Man
+type = transport
+
+hull_size = 28
+base_cannons = 16
+sail_speed = 5

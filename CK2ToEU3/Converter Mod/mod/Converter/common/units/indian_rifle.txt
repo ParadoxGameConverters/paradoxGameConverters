@@ -1,0 +1,12 @@
+# Indian Rifle Tactics
+
+type = infantry
+unit_type = indian
+
+maneuver = 1
+offensive_morale = 7
+defensive_morale = 5
+offensive_fire = 6
+defensive_fire = 3
+offensive_shock = 5
+defensive_shock = 3

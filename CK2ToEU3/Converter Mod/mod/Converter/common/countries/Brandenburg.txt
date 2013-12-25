@@ -1,0 +1,112 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 123  90  90 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	national_trade_policy
+	engineer_corps
+	cabinet
+	ecumenism
+	scientific_revolution
+	napoleonic_warfare
+	national_bank
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	prussian_frederickian
+	prussian_uhlan
+	prussian_drill
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Friedrich #0" = 60
+	"Albrecht #3 Achilles" = 20
+	"Friedrich Wilhelm #0" = 20
+	"Georg Wilhelm #0" = 20
+	"Joachim #0 Hector" = 20
+	"Joachim #0 Nestor" = 20
+	"Jobst #0" = 20
+	"Johann Cicero #0" = 20
+	"Johann Friedrich #0" = 20
+	"Johann Georg #0" = 20
+	"Johann Siegmund #0" = 20
+	"Siegmund #0" = 20
+	"Albrecht #3" = 15
+	"Wilhelm Friedrich #0" = 15
+	"Karl #0" = 15
+	"Johann #5" = 10
+	"Heinrich #2" = 10
+	"Albrecht Christian #0" = 10
+	"Albrecht Friedrich #0" = 10
+	"August #0" = 10
+	"Christian #0" = 10
+	"Christian Wilhelm #0" = 10
+	"Ernst #0" = 10
+	"Georg #0" = 10
+	"Georg Albrecht #0" = 10
+	"Joachim #0" = 10
+	"Joachim #0 Ernst" = 10
+	"Joachim #0 Siegmund" = 10
+	"Paul #0" = 10
+	"Adolf #0" = 0
+	"Clemens #0" = 0
+	"Diederick #0" = 0
+	"Eberhard #0" = 0
+	"Helmut #0" = 0
+	"Hermann #0" = 0
+	"Jakob #0" = 0
+	"Luitpold #0" = 0
+	"Markus #0" = 0
+	"Stefan #0" = 0
+	"Viktor #0" = 0
+}
+
+leader_names = {	
+	Arnim "von Schwerin" Blankensee "von Taubeneck"
+	"von Dossow" Perlkowski "von Bühler" "von Dessau"
+	"von Kyau" Arnswald Finck Zitzwitz "von Plothow"
+	Billerbeck "von Stille" "von Anhalt-Dessau" Knobelsdorf
+	"von Rauch" "von Quernheimberg" Höltzendorff "von Quitzow"
+	Cisielsky Linkendorf Ucklanski Selasinky "von Ziethen"
+	Münchov Briesen Riwotzki Schnittern "von Merckatz"
+	"von Manstein" Schach "von Seel" Treskaw "von Hohenlohe"
+	"von Rottenburg" Truxes Kreytz "von Rüts" "von Derfflinger"
+	"von Wermsdorff" Casimir "von Hohenzollern" Below "von Bimback"
+	"von Mach" Posadofsky "von Preußen"
+}
+
+ship_names = {
+	Neumark Prignitz Uckermark Mittelmark Altmark
+	Sternberg "Friedrich I" "Friedrich II" "Ludwig I"
+	"Ludwig II" "Otto V" Wenzel Sigismund "Jobst von Mähren"
+	"Albrecht der Bär" "Otto I" "Otto II" "Albrecht II"
+	"Johann I" "Otto III" "Albrecht III" "Otto IV"
+	"Heinrich I" Waldemar "Heinrich II"
+}
+
+army_names = {
+	"Kurfürstliche Garde" "Elbe Armee" "Oder Armee" "Armee von $PROVINCE$" 
+}
+
+fleet_names = {
+	"Kurfürstliche Flotte"
+}

@@ -1,0 +1,12 @@
+# Sikh Rifle Tactics
+
+type = cavalry
+unit_type = indian
+
+maneuver = 2
+offensive_morale = 7
+defensive_morale = 6
+offensive_fire = 6
+defensive_fire = 4
+offensive_shock = 6
+defensive_shock = 3

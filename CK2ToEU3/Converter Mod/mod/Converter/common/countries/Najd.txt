@@ -1,0 +1,77 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 175  122  10 }
+
+historical_ideas = {
+	divine_supremacy
+	military_drill
+	national_conscripts
+	shrewd_commerce_practise
+	battlefield_commisions
+	national_trade_policy
+	engineer_corps
+	merchant_adventures
+	espionage
+	grand_army
+	glorious_arms
+	cabinet
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Mani #0" = 10
+	"Rabi'a #0" = 10
+	"Musa #0" = 10
+	"Ibrahim #0" = 10
+	"Markhan #0" = 10
+	"Watban #0" = 10
+	"Nasir #0" = 10
+	"Idris #0" = 10
+	"'Abd Allah #0" = 10
+	"Sa'ud #0" = 10
+	"Zayid #0" = 10
+	"Abdullah #0" = 10
+	"Muhammad #0" = 10
+	"Abd al Aziz #0" = 10
+	"'Abdullah #0" = 10
+	"Turki #0" = 10
+	"Faisal #0" = 10
+	"Abd Al-Rahman #0" = 10
+	"Khalid #0" = 10
+	"Fahd #0" = 10
+}
+
+leader_names = {
+	"Al Sabah"
+	"Al Farran"
+	"Al Nubi"
+	"Akil"
+	Surur
+	Atef
+	Madani
+	"Al Jaber"
+	Billah
+	Kanasani
+}
+
+ship_names = {
+	"Al-Armah" "Ad-Dahna" "Jabal Tuwayo"
+	"Nafüd Qunayfidahah" "Nafüd Shuqayyiqah"
+	"Al-Bayad" "Nafüd Ad-Dahy" "Nafüd As-Sirrah"
+	"Ar-Riyad" "Ad-Dilam" Shaqra
+}

@@ -1,0 +1,113 @@
+country_decisions = {
+
+	russian_nation = {
+		potential = {
+			NOT = { exists = RUS }
+			NOT = { tag = HRE }
+			primary_culture = russian
+		}
+		allow = 
+		{
+			owns = 295			# Moskva
+			owns = 310			# Novgorod
+			is_core = 295			# Moskva
+			is_core = 310			# Novgorod
+	
+			OR = {
+				AND = {
+					owns = 294		# Tver
+					is_core = 294
+				}
+				AND = {
+					owns = 308		# Yaroslavl	
+					is_core = 308
+				}
+			}
+			OR = {
+				AND = {
+					owns = 289		# Chernigov
+					is_core = 289
+				}
+				AND = {
+					owns = 293		# Smolensk
+					is_core = 293
+				}
+			}
+			OR = {
+				AND = {
+					owns = 306		# Nijni-Novgorod
+					is_core = 306
+				}
+				AND = {
+					owns = 307		# Vladimir	
+					is_core = 307
+				}
+			}
+			war = no
+		}
+		effect = {
+			RUS = {
+				add_core = 32		# Kexholm
+				add_core = 33		# Neva
+				add_core = 34		# Ingermanland
+				add_core = 274		# Pskov
+				add_core = 275		# Polotsk
+				add_core = 288		# Lugansk
+				add_core = 289		# Chernigov
+				add_core = 290		# Poltava
+				add_core = 291		# Kharkov
+				add_core = 292		# Mogilyov
+				add_core = 293		# Smolensk
+				add_core = 294		# Tver
+				add_core = 295		# Moskva
+				add_core = 296		# Kaluga
+				add_core = 297		# Orel
+				add_core = 298		# Kurks
+				add_core = 299		# Voronezh
+				add_core = 300		# Tula
+				add_core = 301		# Novgorod
+				add_core = 302		# Tambow
+				add_core = 303		# Saratow
+				add_core = 304		# Pensa
+				add_core = 305		# Simbirsk
+				add_core = 306		# Nijni-Novgorod
+				add_core = 307		# Vladimir
+				add_core = 308		# Yaroslavl
+				add_core = 309		# Olonets
+				add_core = 310		# Novgorod
+				add_core = 311		# Kholm
+				add_core = 312		# Beloozero
+				add_core = 313		# Archangelsk
+				add_core = 314		# Ustyug
+				add_core = 467		# Bogutjar
+				add_core = 469		# Mordvar
+				add_core = 1077		# Solikamsk
+				add_core = 1079		# Viatka
+				add_core = 1080		# Idnakar
+				add_core = 1081		# Bolgar
+				add_core = 1082		# Kazan
+				add_core = 1083		# Zavolochye
+				add_core = 1752		# Rzhev
+				add_core = 1753		#Kostroma
+				add_core = 1754		#Murom
+				add_core = 1755		#Ustyug
+				add_core = 1778		#Kasimov
+				add_core = 1776		#Karelia
+				add_core = 473 		#Samara
+			}
+			centralization_decentralization = -2
+			merchants = 1
+			random_owned = {
+				limit = { culture = russian }
+				base_tax = 1
+			}
+			prestige = 0.15
+			change_tag = RUS
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 400
+	}
+	
+}

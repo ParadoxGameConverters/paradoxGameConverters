@@ -1,0 +1,63 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 204  119  31 } 
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	espionage
+	military_drill
+	merchant_adventures
+	divine_supremacy
+	battlefield_commisions
+	engineer_corps
+	national_trade_policy
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	persian_footsoldier
+	muslim_cavalry_archers
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Karaca #0" = 20
+	"Muhammad #0" = 20
+	"Sulaymân #0" = 20
+	"Malik Arslân Beg #0" = 10
+	"Bûdâq Beg #0" = 20
+	"Shâhsuwâr #0" = 20
+	"Alî Beg #0" = 20
+	"'Alâ' ad-Dîn Buzqûrd #0" = 20	
+}
+
+leader_names = {
+	Balian
+	Erez
+	Arif
+	Yucel
+	Tansel
+	Sezer
+	Arikan
+	Aygun
+	Rahim
+	Saglam
+}
+
+ship_names = {
+	Zulkadriyye Maras Afsin Elbistan Goksun Pazarcik 
+	Ceyhan Firat Akcadag Saimbeyli Kadirli Besni Tohma Darende
+}

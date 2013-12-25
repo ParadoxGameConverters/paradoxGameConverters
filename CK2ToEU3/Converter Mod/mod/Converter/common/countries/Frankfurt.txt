@@ -1,0 +1,100 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 243  201  33 }
+
+historical_ideas = {
+	church_attendance_duty
+	merchant_adventures
+	patron_of_art
+	military_drill
+	national_bank
+	national_conscripts
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Karl Theodor #0" = 20
+	"Eugen #0" = 15
+	"August #0" = 10
+	"Maximiliam #0" = 10
+	"Adolf #0" = 0
+	"Adrian #0" = 0
+	"Albrecht #0" = 0
+    "Andreas #0" = 0
+	"August #0" = 0
+    "Bernhard #0" = 0
+	"Cornelius #0" = 0
+	"Dietrich #0" = 0
+	"Ferdinand #0" = 0
+	"Friedrich #0" = 0
+	"Georg #0" = 0
+	"Gerhard #0" = 0
+	"Günther #0" = 0
+    "Heinrich #0" = 0
+	"Ignatz #0" = 0
+	"Isidor #0" = 0
+	"Jakob #0" = 0
+	"Joachim #0" = 0
+	"Joseph #0" = 0
+    "Karl #0" = 0
+	"Konstantin #0" = 0
+    "Lorenz #0" = 0
+	"Ludwig #0" = 0
+	"Lukas #0" = 0
+	"Marius #0" = 0
+	"Markus #0" = 0
+	"Matthias #0" = 0
+	"Michael #0" = 0
+    "Nicolaus #0" = 0
+	"Paul #0" = 0
+	"Raphael #0" = 0
+	"Rudolf #0" = 0
+	"Sigmund #0" = 0
+	"Stephan #0" = 0
+	"Thomas #0" = 0
+	"Wenzel #0" = 0
+}
+
+leader_names = { 
+	Alfter Allendorf Assmann Barth Becker Betz
+	Bopp Bornschlegel Dörrenbecher Dude Fust Eins
+	Göhler Grob Haas Heidelberger Ickstadt Lawall
+	Pittschaft Schmitt Schoeneberger Storck Volz
+}
+
+ship_names = {
+	"St. Theonest" "St. Georg" "St. Peter"
+	Udenmünster "St. Christoph" "St. Lambert"
+	"St. Quintin" "St. Maria" "St. Johannes"
+	"St. Emmeran" "St. Ignaz" Hagenmünster
+	"St. Aureus" "St. Nicomedes" "St. Alban"
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

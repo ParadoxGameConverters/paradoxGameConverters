@@ -1,0 +1,12 @@
+# Aztec Gunpowder Warfare
+
+unit_type = new_world
+type = infantry
+
+maneuver = 1
+offensive_morale = 3
+defensive_morale = 4
+offensive_fire = 1
+defensive_fire = 2
+offensive_shock = 0
+defensive_shock = 2

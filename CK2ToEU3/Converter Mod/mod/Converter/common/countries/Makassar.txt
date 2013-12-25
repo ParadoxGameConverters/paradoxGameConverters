@@ -1,0 +1,87 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 117  179  128 }
+
+historical_ideas = {
+	merchant_adventures  
+	excellent_shipwrights 
+	shrewd_commerce_practise 
+	superior_seamanship
+	national_conscripts
+	national_trade_policy
+	sea_hawks
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	engineer_corps
+	smithian_economics
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+leader_names = {
+	Abdulfatah Ahmad Amir Anwar Azmi 
+	Batuta 
+	Chairul 
+	Hamzah Hasanuddin 
+	Ibnu 
+	Kyai 
+	Mahat Mukhtar 
+	Najamuddin Natzar Nazmizan 
+	Roem 
+	Syarifuddin 
+	Zulkifli 
+}
+
+monarch_names = {
+	"Tunitangkalopi #0" = 10
+	"Batara Gowa #0" = 10
+	"Tuni Djallori #0" = 10
+	"Tuni Parisi #0" = 10
+	"Tuni Palonga #0" = 10
+	"Tuni Butta #0" = 10
+	"Tunyachoka-ri #0" = 10
+	"Karaeng Tunibatta #0" = 10
+	"Tuni Djallo #0" = 10
+	"Parabung #0" = 10
+	"Tuni Pasulu #0" = 10
+	"Allâh ad-Dîn #0" = 10
+	"Muhammad Malik #0" = 10
+	"Muhammad Sa'îd #0" = 10
+	"Amir Hamza #0" = 10
+	"'Abd al-Jalîl #0" = 10
+	"Shihâb ad-Dîn Ismâ'îl #0" = 10
+	"Muhammad Bakr Hasan #0" = 10
+	"Hamaza Tumammalianga #0" = 10
+	"Muhammad 'Ali #0" = 10
+	"Fakhr #0" = 10
+	"Shahab #0" = 10
+	"Siraj ad-Dîn #0" = 10
+	"'Abd al-Khayr al-Mansûr #0" = 10
+	"'Abd al-Qudus #0" = 10
+	"'Uthmân #0" = 10
+	"Muhammad Imad #0" = 10
+	"Zain #0" = 10
+	"'Imâd ad-Dîn #0" = 10
+	"Zaynal-'Abidîn #0" = 10
+	"Sankilang #0" = 10
+	"'Abd al-Hâdî #0" = 10
+	"'Abd al-Khaliq #0" = 10
+	"Limbangparang #0" = 10
+}
+
+ship_names = {
+	Balla Bulu Lompo Sallo Karaeng Bambang
+	Cipuru Doe Iyo Tena Tabe Apa Lakeko Battu Keko
+}

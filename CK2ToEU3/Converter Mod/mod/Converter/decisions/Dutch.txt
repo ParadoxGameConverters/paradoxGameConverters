@@ -1,0 +1,62 @@
+country_decisions = {
+
+	establish_bank_of_amsterdam = {
+		potential = {
+			tag = NED
+			trade_tech = 24	#1609 historical.
+			NOT = { has_country_modifier = bank_of_amsterdam }
+		}
+		allow = {
+			idea = national_bank
+			mercantilism_freetrade = 2
+			ADM = 6
+			owns = 97
+		}
+		effect = {
+			add_country_modifier = {
+				name = "bank_of_amsterdam"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	found_voc = {
+		potential = {
+			tag = NED
+			NOT = { has_country_modifier = dutch_india_trade_co }
+			NOT = { has_country_flag = trade_company }
+			eastasian_trade_ports = {
+				has_discovered = THIS
+			}			
+		}
+		allow = {
+			num_of_ports = 2
+			naval_tech = 20	
+	
+			eastasian_trade_ports = {
+				owned_by = THIS
+			}			
+		}
+		effect = {
+			set_country_flag = trade_company
+			random_owned = {
+				limit = {
+					continent = europe
+					port = yes
+					NOT = { has_building = shipyard }
+					is_core = this
+				}
+				add_building = grand_shipyard
+			}		
+			add_country_modifier = {
+				name = "dutch_india_trade_co"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+}

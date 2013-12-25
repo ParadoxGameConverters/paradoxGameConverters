@@ -1,0 +1,97 @@
+#Country Name: Seeee the Name of this File.
+
+graphical_culture = latingfx
+
+color = { 116  92  39 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	cabinet
+	ecumenism
+	scientific_revolution
+	engineer_corps
+	improved_foraging
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Heinrich #2" = 80
+	"Wilhelm #0" = 40
+	"August #1" = 20
+	"Anton Ulrich #0" = 20
+	"August Wilhelm #0" = 20
+	"Ferdinand Albrecht #0" = 20
+	"Friedrich Ulrich #0" = 20
+	"Heinrich Julius #0" = 20
+	"Julius #0" = 20
+	"Karl #0" = 20
+	"Karl #0 Wilhelm" = 20
+	"Ludwig Rudolf #0" = 20
+	"Rudolf August #0" = 20
+	"Andreas #0" = 10
+	"Christian #0" = 10
+	"Franz #0" = 10
+	"Karl #0 Georg" = 10
+	"Philipp Siegmund #0" = 10
+	"August #0" = 5
+	"August Franz #0" = 5
+	"August Heinrich #0" = 5
+	"August Karl #0" = 5
+	"Christian Franz #0" = 5
+	"Erich #0" = 5
+	"Ernst Ferdinand #0" = 5
+	"Friedrich #0" = 5
+	"Friedrich August #0" = 5
+	"Friedrich Wilhelm #0" = 5
+	"Georg #0" = 5
+	"Georg Franz #0" = 5
+	"Heinrich Ferdinand #0" = 5
+	"Heinrich Karl #0" = 5
+	"Joachim #0" = 5
+	"Joachim Karl #0" = 5
+	"Johann #0" = 5
+	"Julius August #0" = 5
+	"Julius Ernst #0" = 5
+	"Otto #0" = 5
+	"Philipp Magnus #0" = 5
+	"Rudolf #0" = 5
+}
+
+leader_names = {
+	Brach Eickenroth Gruebel Wassman Hattendorf Opp
+	"von Rhein" Schütze Schauseil Talken Lindemann 
+	Ickelrath Hein Hehn Jaxtheim
+}
+
+ship_names = {
+	Bruno Darkward "Herzog Ludolf" "Gräfin Gertrud"
+	"Bischof Godehard" "Bischof Branthag" "Lothar III"
+	"Heinrich I." "Herzog Otto" "Albert I" "Magnus II"
+	Wolfenbuttel Gottingen Grubenhagen
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

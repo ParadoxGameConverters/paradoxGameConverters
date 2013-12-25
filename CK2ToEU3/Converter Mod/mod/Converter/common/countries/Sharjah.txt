@@ -1,0 +1,64 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 64  120  172 }
+
+historical_ideas = {
+	divine_supremacy
+	national_conscripts
+	military_drill
+	merchant_adventures
+	shrewd_commerce_practise
+	battlefield_commisions
+	national_trade_policy
+	engineer_corps
+	espionage
+	grand_army
+	cabinet
+	glorious_arms
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Rashid #0" = 10
+	"Saqr #0" = 20
+	"Sultan #0" = 20
+	"ah-Husayn #0" = 20
+	"al-Hasan #0" = 20
+	"Khalid #0" = 20
+	"Salim #0" = 10
+}
+
+leader_names = {
+	"Al Mowaled"
+	Bahamdan
+	"Al Daye"
+	Al-Jurr
+	Alzeshi
+	Al-Razi
+	Alam
+	Shouaa
+	"Al Halou"
+	"Al Dwairan"
+}
+
+ship_names = {
+	Sabur Rashid Warith Baqi Badi Hadi
+	Nur Nafi Darr Mani Mughni Ghani Jami
+	Muqsit "Malik al Mulk" Ra'uf Afuww
+	Muntaquim Tawwab
+}

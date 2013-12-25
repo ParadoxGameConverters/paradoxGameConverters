@@ -1,0 +1,211 @@
+start_date = 1399.10.14
+end_date = 1821.1.1
+
+economy = {
+	0.1	# Advisor cost modifier
+	-0.01	#_EDEF_MERCHANT_ANTI_STAGNATION_
+	6	#EDEF_COT_MONOPOLY_
+	20	#_EDEF_COT_MAX_LEVELS_
+	50	#_EDEF_COT_STAGNATION_LIMIT_
+	40	#_EDEF_COT_PROVS_PER_CENTER
+	0.4	#_EDEF_GOLD_INFLATION_THRESHOLD_
+	0.25	#_EDEF_GOLD_INFLATION_
+	10	#_EDEF_BANKRUPTCY_DURATION_
+	12	#_EDEF_WARTAXES_DURATION_
+	1	#_EDEF_MINIMUM_INTERESTS_
+	0.3	#_EDEF_LAND_MAINTENANCE_FACTOR
+	0.08	#_EDEF_BIG_SHIP_MAINT_FACTOR_
+	0.08	#_EDEF_LIGHT_SHIP_MAINT_FACTOR_
+	0.03	#_EDEF_GALLEY_MAINT_FACTOR_
+	0.02	#_EDEF_TRANSPORT_MAINT_FACTOR_
+	20	#_EDEF_COLONIAL_MAINTENANCE_FACTOR_
+	5	#_EDEF_MISSIONARY_MAINTENANCE_FACTOR_
+	5	#_EDEF_MERCHANT_COST_
+	0.25	#_EDEF_MERCHANT_TIME_DISTANCE_
+	0.35	#_EDEF_MERCHANT_CHANCE_
+	0.5	#_EDEF_MERCHANT_COMPETE_
+	2000    #_EDEF_MAX_PROVINCE_SELL_PRICE_
+	6	#_EDEF_MANUFACTORY_BONUS_,
+	20	#_EDEF_COLONIST_COST_,		
+	1000	#_EDEF_COLONIST_DISTANCE_DIVISOR_
+	0.4	#_EDEF_COLONIST_TIME_,			
+	0.35	#_EDEF_COLONIST_CHANCE_,		
+	25	#_EDEF_MISSIONARY_COST_,		
+	1000	#_EDEF_MISSIONARY_TIME_BASE_,	/
+	0.2	#_EDEF_MISSIONARY_TIME_DISTANCE_,
+	4	#_EDEF_MOVE_CAPITAL_STABILITY_COST_,
+	1000	#_EDEF_MOVE_CAPITAL_COST,
+	800	#_EDEF_CREATE_COT_THRESHOLD_,
+	500	#_EDEF_DESTROY_COT_THRESHOLD_,
+	500	#_EDEF_CREATE_COT_PRICE_,
+	0.20	#_EDEF_DESTROY_COT_PENALTY_,
+	0.5	#_EDEF_TARIFF_BASE_,
+	0.5	#_EDEF_TRADE_WIND_STRENGTH_
+	0.25#_EDEF_MERCHANT_COMPETE_PERCENT_OWNED_BASE_
+	0.33 #_EDEF_TRADED_FRACTION_FOR_BONUS_
+	0.1 #_vEconomy[_EDEF_NOMAD_COLONIZATION_BONUS_] = 0.1f;
+	1.7	#_EDEF_OPEN_SEA_MODIFIER_
+	0.7	#_EDEF_COASTAL_MODIFIER_
+
+}
+
+military = {
+	1000	#GARRISON_SIZE
+	1.0	#MDEF_ASSAULT_ATTACKER_LOSS_,
+	0.05	#_MDEF_ASSAULT_DEFENDER_LOSS_,
+	5	#_MDEF_ASSAULT_DICE_MODIFIER_
+	1	#_MDEF_REGIMENT_MANPOWER_COST_
+	10	#_MDEF_MAX_MANPOWER_
+	1.0	#MDEF_INFANTRY_SPEED_,
+	1.0	#_MDEF_CAVALRY_SPEED_,
+	1.0	#_MDEF_ARTILLERY_SPEED_,
+	6.0	#_MDEF_BIG_SHIP_SPEED_,
+	10.0	#_MDEF_LIGHT_SHIP_SPEED_,
+	4.0	#_MDEF_GALLEY_SPEED_,
+	6.0	#_MDEF_TRANSPORT_SPEED_,
+	9.0	#_MDEF_INFANTRY_COST_,		
+	21.0	#_MDEF_CAVALRY_COST_,		
+	30.0	#_MDEF_ARTILLERY_COST_,		
+	50	#_MDEF_BIG_SHIP_COST_,		
+	20	#_MDEF_LIGHT_SHIP_COST_,	
+	10	#_MDEF_GALLEY_COST_,		
+	12	#_MDEF_TRANSPORT_COST_,		
+	60	#_MDEF_INFANTRY_TIME_,		
+	90	#_MDEF_CAVALRY_TIME_,		
+	120	#_MDEF_ARTILLERY_TIME_,		
+	365	#_MDEF_BIG_SHIP_TIME_,		
+	180	#_MDEF_LIGHT_SHIP_TIME_,	
+	180	#_MDEF_GALLEY_TIME_,		
+	180	#_MDEF_TRANSPORT_TIME_,		
+	3.0	#_MDEF_MERCENARY_MAINTENANCE_
+	0.1	# Amount of regiment strength reinforced each month.
+	0.1	# Ship repair speed.
+	0.4	# Tradition gain base value from combats.  
+	0.2	# Tradition cost in percentage to recruit a leader.
+	12	# Maximum sized mercenary pool
+	1.0	#	_MDEF_FRONT_LINE_MODIFIER_
+	0.5	#	_MDEF_BACK_LINE_MODIFIER_
+	24   # _MDEF_SCORCHED_EARTH_MONTHS_; Time the "Scorched Earth" static modifier lasts.
+	0.75	#Supply range from colonial range factor.
+	0.5 # _MDEF_REBEL_TRADITION_GAIN_; Factor of army/navy tradition gained from fighting rebels and pirates.
+	2.0 #	_MDEF_NOMAD_LOOT_MULTIPLIER_;How much more money the horde gets from looting
+	0.005 #_MDEF_NOMAD_LOOT_TRADITION_;Military tradition a horde gets from looting territory
+	1.50 #_MDEF_NOMAD_HOME_SHOCK_BONUS_; Shock damage multiplier for nomads on plains in home territory
+	2.0 #_MDEF_SUPPLYLIMIT_BONUS_PLAINS_; Supply bonus for nomads on plains
+	50	# _MDEF_SHOGUN_INFLUENCE_FROM_WIN_
+	100 # _MDEF_SHOGUN_INFLUENCE_FROM_LOSS_
+}
+
+diplomacy = {
+	500		#_DDEF_DEFENDER_OF_FAITH_COST_
+	24		#_DDEF_DEFENDER_OF_FAITH_MONTHS_ (Minimum months before it can be taken from another country with less prestige)
+	-0.01	#_DDEF_FAILED_CARDINAL_PRESTIGE_LOSS_
+	0.005	#_DDEF_CARDINAL_PRESTIGE_GAIN_
+	50	#Base price for a cardinal
+	10	#Home province discount for cardinal
+	5	#Price increase per bribe
+	3000	#Lifespan of Cardinal base value
+	15 	# Number of Cardinals
+	3 	# Cardinal bribe "cooldown" (months)
+	36	# Excommunication "cooldown" (months)
+	30	# Crusade timeout (years)
+	1650 # End of Crusade/Excommunicate actions. AI might also befriend old religious enemies.
+	-0.05 # _DDEF_CANCEL_MISSION_PRESTIGE_LOSS_
+	60 # _DDEF_EMPEROR_VOTE_DAYS_; "Cooldown" until Electors can change their vote again.
+	10 	# _DDEF_TRUCE_YEARS_; Years of Truce
+	
+	# Peace Option Effects, base values for the winner. The loser gets the inverse.
+	8		# _DDEF_PO_ANNEX_BADBOY_, (No effect on loser :)
+	4		# _DDEF_PO_DEMAND_PROVINCES_BADBOY_, (Per province)
+	0.4		# _DDEF_PO_REVOKE_CORES_BADBOY_, (Per core, Not applied to the winner)
+	2		# _DDEF_PO_RELEASE_VASSAL_BADBOY_, (Not applied to the winner)
+	2		# _DDEF_PO_RELEASE_ANNEXED_BADBOY_, (Per province, not applied to the winner)
+	3		# _DDEF_PO_CHANGE_RELIGION_BADBOY_, (Not applied to the winner)
+	0		# _DDEF_PO_FORM_PU_BADBOY_, (Not applied to the winner)
+	0		# _DDEF_PO_JOIN_LEAGUE_BADBOY_, (Not applied to the winner)
+	0.001	# _DDEF_PO_GOLD_BADBOY_, (Per month of income, not applied to the winner)
+	4		# _DDEF_PO_BECOME_VASSAL_BADBOY_,
+	0		# _DDEF_PO_CONCEDE_DEFEAT_BADBOY_, (Not applied to the winner)
+	0		# _DDEF_PO_REDUCE_SPHERE_BADBOY_,
+	0		# _DDEF_PO_ANNUL_TREATY_BADBOY_,
+	0.1		# _DDEF_PO_ANNEX_PRESTIGE_, (No effect on loser :)
+	0.05	# _DDEF_PO_DEMAND_PROVINCES_PRESTIGE_, (Per province)
+	0.01	# _DDEF_PO_REVOKE_CORES_PRESTIGE_, (Per core)
+	0.05	# _DDEF_PO_RELEASE_VASSAL_PRESTIGE_,
+	0.01	# _DDEF_PO_RELEASE_ANNEXED_PRESTIGE_, (Per released province)
+	0.1		# _DDEF_PO_CHANGE_RELIGION_PRESTIGE_,
+	0.2		# _DDEF_PO_FORM_PU_PRESTIGE_,
+	0.05	# _DDEF_PO_JOIN_LEAGUE_PRESTIGE_,
+	0.002	# _DDEF_PO_GOLD_PRESTIGE_, (Per month of income)
+	0.1		# _DDEF_PO_BECOME_VASSAL_PRESTIGE_,
+	0.05	# _DDEF_PO_CONCEDE_DEFEAT_PRESTIGE_
+	0.05	# _DDEF_PO_REDUCE_SPHERE_PRESTIGE_,
+	0.01	# _DDEF_PO_ANNUL_TREATY_PRESTIGE_,
+	
+	60		# _DDEF_PEACE_COST_UNION_ Peace cost for forming a personal union
+	50		# _DDEF_PEACE_COST_CONVERSION_ Peace cost for forced conversion
+	5		# _DDEF_PEACE_COST_RELEASE_ Base Peace cost for releasing an annexed country (also increases with nr of provinces)
+	5		# _DDEF_PEACE_COST_CONCEDE_ Base Peace cost for conceding defeat
+	1		# _DDEF_PEACE_COST_GOLD_STEP_ Peace Cost for 1 month of income
+	5		# _DDEF_PEACE_COST_SPHERE_ Peace cost for removing a country from a Sphere of Influence
+	10		# _DDEF_PEACE_COST_ANNUL_ Peace cost for annulment of treaties
+	10		# _DDEF_PEACE_COST_JOIN_LEAGUE_ Peace Cost for Joining a Trade League
+	
+	10000	# _DDEF_MAX_ANNEX_SIZE_ (Max number of provinces that can be annexed at once)
+	
+	0.02		# _DDEF_SPHERE_OF_INF_PRESTIGE_COST_ (Prestige cost for this diplomatic action)
+	0.75	# _DDEF_DEFENDER_BADBOY_MULT_ (Infamy multiplied by this for defenders in peace treaties, unless the CB is "mutual" )
+	0.05	# _DDEF_OCCUPATION_PROV_VAL_DECAY_ (The peace cost of occupied provinces decays with this value per year)
+	0.5		# _DDEF_OCCUPATION_PROV_VAL_DECAY_MAX_, ( The maximum peace cost reduction factor from length of occupation )
+	5		# _DDEF_OCCUPATION_PROV_VAL_DECAY_START_YEARS_, (The peace cost decay of occupied provinces starts after this many years)
+	1		#_DDEF_PO_ENDORSE_SHOGUN_BADBOY_,
+	0.05		#_DDEF_PO_ENDORSE_SHOGUN_PRESTIGE_,
+	40		#_DDEF_PEACE_COST_ENDORSE_SHOGUN_,
+	0		#_DDEF_PO_STOP_ENDORSE_SHOGUN_BADBOY_,
+	0.05		#_DDEF_PO_STOP_ENDORSE_SHOGUN_PRESTIGE_,
+	25		#_DDEF_PEACE_COST_STOP_ENDORSE_SHOGUN_,
+	1		#_DDEF_PO_BECOME_KAMPAKU_BADBOY_,
+	0.1		#_DDEF_PO_BECOME_KAMPAKU_PRESTIGE_,
+	70		#_DDEF_PEACE_COST_BECOME_KAMPAKU_,
+	50		#_DDEF_PEACE_COST_NOMAD_TRIBUTE_
+	5		#_DDEF_NOMAD_TRUCE_YEARS_
+	5		#_DDEF_PO_REVOKE_REFORM_BADBOY_
+	0.1		#_DDEF_PO_REVOKE_REFORM_PRESTIGE_
+	60		#_DDEF_PO_REVOKE_REFORM_PEACE_COST_
+	3		#_DDEF_DAIMYO_PROVINCE_COST_
+	2		#_DDEF_DAIMYO_PROVINCE_BB_
+	0.06	#_DDEF_WEAKEN_SHOGUNATE_COST_
+	1		#_DDEF_WEAKEN_SHOGUNATE_BASE_
+	0.5		#_DDEF_WEAKEN_SHOGUNATE_PROVINCE_
+	150		#_DDEF_SHOGUN_GOOD_RELATION_
+	0		#_DDEF_SHOGUN_BAD_RELATION_
+	30		#_DDEF_NEW_SHOGUN_MIN_
+	80		#_DDEF_NEW_SHOGUN_MAX_
+	3			#_DDEF_NOMAD_OCCUPATION_BUILDING_LOSS_MONTHS_ (months until a building is destroyed by the nomads)
+	36		#_DDEF_NOMAD_MIN_OCCUPATION_TO_OWNERSHIP_MONTHS_
+	12		#_DDEF_NOMAD_MIN_OCC_TO_OWN_CORE_MONTHS_
+}
+
+country = {
+	10	#_CDEF_MINIMUM_ADVISOR_DURATION_
+	30	#	_CDEF_ADVISOR_CUT_OFF_AGE_,
+	0.05	#_CDEF_CULTURE_LOSS_THRESHOLD_,
+	0.12	#_CDEF_CULTURE_GAIN_THRESHOLD_,
+	4	#_CDEF_MONARCH_DEATH_
+	1	#_CDEF_HEIR_DEATH_	(Only applies for heirs older than 20, and the chance increases with age.)
+	25	#_CDEF_BADBOY_LIMIT_,
+	0.0	#_CDEF_START_YEARLY_INFLATION_
+	50	#_CDEF_CORE_LOSE_,				//50
+	50	#_CDEF_CORE_GAIN_,				//50
+	0.2	#_CDEF_NEIGHBOURBONUS_
+	100	#_CDEF_NEIGHBOURBONUS_CAP_
+	0.03	# _CDEF_POPULATION_GROWTH_; Base population growth.
+	50	# _CDEF_COLONIAL_GROWTH_; Base colonial growth (people per year)
+	30 # _CDEF_YEARS_OF_NATIONALISM_; Years of Nationalism
+	2 # _CDEF_YEARS_UNTIL_BROKEN_; Years until rebel held capital results in broken country.
+	60 # _CDEF_REBEL_ACCEPTANCE_MONTHS_; Minimum months between rebel negotiations.
+	200	#_CDEF_BASE_HEIR_BIRTH_
+	15 #_CDEF_AGE_OF_ADULTHOOD_
+	7300 # _CDEF_NATIONAL_FOCUS_BASE_COOLDOWN_; Days until the national focus can be moved (multiplied with government adm efficiency)
+	5	# Level at which there can be only one of a building in each province	
+}

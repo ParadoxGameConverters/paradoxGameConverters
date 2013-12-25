@@ -1,0 +1,12 @@
+# Irish Charge
+
+type = infantry
+unit_type = western
+
+maneuver = 1
+offensive_morale = 5
+defensive_morale = 4
+offensive_fire = 1
+defensive_fire = 3
+offensive_shock = 5
+defensive_shock = 3

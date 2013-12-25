@@ -1,0 +1,275 @@
+country_decisions = {
+
+	licensing_of_the_press_act = {
+		potential = {
+			not = { has_country_modifier = the_licensing_of_the_press_act }
+			or = {
+				technology_group = western
+				technology_group = eastern
+			}
+			year = 1439
+			innovative_narrowminded = 1
+
+		}
+		allow = {
+			not = { serfdom_freesubjects = 0 }
+			adm = 7
+		}
+		effect = {
+			innovative_narrowminded = 1
+			serfdom_freesubjects = -1
+			add_country_modifier = {
+				name = "the_licensing_of_the_press_act"
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	tenures_abolition_act = {
+		potential = {
+			not = { has_country_modifier = the_tenures_abolition_act }
+			government = feudal_monarchy
+		}
+		allow = {
+			government_tech = 8
+			not = { centralization_decentralization = -2 }
+			not = { serfdom_freesubjects = -2 }
+			dip = 7
+		}
+		effect = {
+			serfdom_freesubjects = 2
+			innovative_narrowminded = -1
+			add_country_modifier = {
+				name = "the_tenures_abolition_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	dissolution_act = {
+		potential = {
+			not = { has_country_modifier = the_dissolution_act }
+			government = monarchy
+			or = {
+				technology_group = western
+				technology_group = eastern
+			}
+			government_tech = 8
+		}
+		allow = {
+			not = { centralization_decentralization = -2 }
+			dip = 5
+			advisor = statesman
+		}
+		effect = {
+			serfdom_freesubjects = 1
+			badboy = -3
+			add_country_modifier = {
+				name = "the_dissolution_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	statue_in_restraint_of_appeals = {
+		potential = {
+			not = { has_country_modifier = the_statue_in_restraint_of_appeals }
+			religion = catholic
+			exists = PAP
+			NOT = { tag = PAP }
+		}
+		allow = {
+			not = { relation = { who = PAP value = 0 } }
+			adm = 5
+			mil = 5
+		}
+		effect = {
+			prestige = 0.1
+			any_neighbor_country = {
+				limit = { religion = catholic }
+				relation = { who = this value = -60 }
+			}
+			PAP = { relation = { who = this value = -100 } }
+			add_country_modifier = {
+				name = "the_statue_in_restraint_of_appeals"
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+			# England
+		}
+	}
+	witchcraft_act = {
+		potential = {
+			not = { has_country_modifier = the_witchcraft_act }
+			religion_group = christian
+			idea = church_attendance_duty
+			year = 1500
+			not = { year = 1700 }
+		}
+		allow = {
+			theologian = 5
+			innovative_narrowminded = 2
+		}
+		effect = {
+			innovative_narrowminded = 1
+			add_country_modifier = {
+				name = "the_witchcraft_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+			# Germany, England
+		}
+	}
+	education_act = {
+		potential = {
+			has_country_modifier = the_school_establishment_act
+			not = { has_country_modifier = the_education_act }
+			religion_group = christian
+			not = { innovative_narrowminded = 0 }
+		}
+		allow = {
+			statesman = 5
+			adm = 7
+		}
+		effect = {
+			innovative_narrowminded = -1
+			add_country_modifier = {
+				name = "the_education_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			# England, Scotland
+		}
+	}
+	abolish_slavery_act = {
+		potential = {
+			not = { has_country_modifier = the_abolish_slavery_act }
+			slaves = 1
+			year = 1700
+			government_tech = 30
+		}
+		allow = {
+			dip = 6
+			not = { badboy = 0.1 }
+		}
+		effect = {
+			prestige = 0.05
+			innovative_narrowminded = -1
+			add_country_modifier = {
+				name = "the_abolish_slavery_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	judiciary_act = {
+		potential = {
+			not = { has_country_modifier = the_judiciary_act }
+			not = { centralization_decentralization = -2 }
+			government_tech = 20
+		}
+		allow = {
+			adm = 7
+			capital_scope = {
+				has_building = courthouse
+				has_building = constable
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_judiciary_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	combination_act = {
+		potential = {
+			year = 1750
+			not = { has_country_modifier = the_combination_act }
+			not = { serfdom_freesubjects = -2 }
+			not = { idea = humanist_tolerance }
+		}
+		allow = {
+			innovative_narrowminded = 2
+			adm = 6
+		}
+		effect = {
+			mercantilism_freetrade = -1
+			add_country_modifier = {
+				name = "the_combination_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	school_establishment_act = {
+		potential = {
+			not = { has_country_modifier = the_school_establishment_act }
+			government_tech = 16
+		}
+		allow = {
+			not = { innovative_narrowminded = -2 }
+			capital_scope = { has_building = university }
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_school_establishment_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	revoke_restraint_of_appeals = {
+		potential = {
+			has_country_modifier = the_statue_in_restraint_of_appeals
+			not = { has_country_modifier = revocation_of_restraint_of_appeals }
+			religion = catholic
+			exists = PAP
+		}
+		allow = {
+			dip = 7
+			advisor = theologian
+			relation = { who = PAP value = 100 }
+		}
+		effect = {
+			remove_country_modifier = the_statue_in_restraint_of_appeals
+			relation = { who = PAP value = 50 }
+			add_country_modifier = {
+				name = "revocation_of_restraint_of_appeals"
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0.0
+				OR = {
+					NOT = { relation = { who = PAP value = 150 } }
+					num_of_cities = 5
+				}
+			}
+		}
+	}
+}

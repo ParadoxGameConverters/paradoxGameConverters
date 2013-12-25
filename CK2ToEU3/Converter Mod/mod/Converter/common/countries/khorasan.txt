@@ -1,0 +1,104 @@
+#Country Name: Please see filename.
+
+graphical_culture = muslimgfx
+
+color = { 130  168  224 }
+
+historical_ideas = {
+	national_conscripts
+	military_drill
+	divine_supremacy
+	engineer_corps
+	grand_army
+	merchant_adventures
+	shrewd_commerce_practise
+	patron_of_art
+	national_trade_policy
+	espionage
+	battlefield_commisions
+	cabinet
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Abû Sa'îd #0" = 20
+	"Bâbur #0" = 20
+	"Badî al-Zamân #0" = 20
+	"Husayn Bâyqarâ #0" = 20
+	"Abu al-Qasim #0" = 20
+	"Mahmûd #0" = 20
+	"Shâh Rukh #1" = 10
+	"Ulugh Beg #1" = 10
+	"'Abbas #0" = 0
+        "'Abd al-Karim #0" = 0
+	"'Abd al-Rahman #0" = 0
+	"'Alî #0" = 0
+        "'Abdallâh #0" = 0
+	"Anwar #0" = 0
+	"Bakr #0" = 0
+	"Fahd #0" = 0
+	"Faruq #0" = 0
+	"Fouad #0" = 0
+	"Hakim #0" = 0
+        "Harun #0" = 0
+	"Hisham #0" = 0
+	"Husayn #0" = 0
+	"Isma'il #0" = 0
+	"Jafar #0" = 0
+        "Jamaal #0" = 0
+	"Karim #0" = 0
+	"Khalil #0" = 0
+        "Malîk #0" = 0
+	"Mirza #0" = 0
+	"Muhammad #0" = 0
+	"Qasim #0" = 0
+	"Rashîd #0" = 0
+        "Sulayman #0" = 0
+	"Tarîq #0" = 0
+	"'Umar #0" = 0
+	"Usama #0" = 0
+	"Yasir #0" = 0
+	"Yusuf #0" = 0
+	"Zaid #0" = 0
+	"Zîyad #0" = 0
+	"Zulqifar #0" = 0
+}
+
+leader_names = {
+	Ali
+	Bali
+	Karawi
+	Khan
+	Mirza
+	Nawaz
+	Quli
+	Tadj
+	Wali
+	Zaman
+}
+
+ship_names = {
+	Badam
+	Bardeskan
+	Dasht
+	Deyhuk
+	Germi
+	Jandaq
+	Khvor
+	Kondor
+	Tabas
+	Torud
+}

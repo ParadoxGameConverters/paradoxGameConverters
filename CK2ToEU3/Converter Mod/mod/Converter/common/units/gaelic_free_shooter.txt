@@ -1,0 +1,12 @@
+# Gaelic Free Shooter
+
+type = infantry
+unit_type = western
+
+maneuver = 1
+offensive_morale = 6
+defensive_morale = 3
+offensive_fire = 0
+defensive_fire = 3
+offensive_shock = 4
+defensive_shock = 2

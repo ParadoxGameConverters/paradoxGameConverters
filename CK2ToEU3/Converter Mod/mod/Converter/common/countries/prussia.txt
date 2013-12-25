@@ -1,0 +1,170 @@
+#Prussia
+
+graphical_culture = latingfx
+
+color = { 143  141  128 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	national_trade_policy
+	engineer_corps
+	cabinet
+	espionage
+	scientific_revolution
+	improved_foraging
+	napoleonic_warfare
+	
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	prussian_frederickian
+	prussian_uhlan
+	prussian_drill
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Friedrich Wilhelm #0" = 60
+	"Friedrich #0" = 40
+	"Albrecht #0" = 20
+	"Friedrich Albrecht #0" = 20
+	"August Wilhelm #0" = 15
+	"Wilhelm Friedrich #0" = 15
+	"Emil #0" = 10
+	"Ferdinand #0" = 10
+	"Heinrich #0" = 10
+	"Karl #0" = 10
+	"Ludwig Karl #0" = 10
+	"Wilhelm #0" = 10
+	"Adolf #0" = 0
+	"Alfred #0" = 0
+	"Anton #0" = 0
+	"Benedikt #0" = 0
+	"Benjamin #0" = 0
+	"Denis #0" = 0
+	"Diederick #0" = 0
+	"Eckbert #0" = 0
+	"Erwin #0" = 0
+	"Florian #0" = 0
+	"Franz #0" = 0
+	"Gebhard #0" = 0
+	"Gottfried #0" = 0
+	"Hartmann #0" = 0
+	"Heinrich #0" = 0
+	"Helmut #0" = 0
+	"Horst #0" = 0
+	"Joachim #0" = 0
+	"Kaspar #0" = 0
+	"Kurt #0" = 0
+	"Leo #0" = 0
+	"Ludwig #0" = 0
+	"Lukas #0" = 0
+	"Manfred #0" = 0
+	"Michael #0" = 0
+	"Nikolaus #0" = 0
+	"Oskar #0" = 0
+	"Otto #0" = 0
+	"Philipp #0" = 0
+	"Reiner #0" = 0
+	"Rudolf #0" = 0
+	"Rupprecht #0" = 0
+	"Siegfried #0" = 0
+	"Siegmund #0" = 0
+	"Thomas #0" = 0
+	"Urs #0" = 0
+	"Viktor #0" = 0
+	"Werner #0" = 0
+}
+
+leader_names = {	
+	Arnim
+	"von Schwerin"
+	Blankensee
+	"von Taubeneck"
+	"von Dossow"
+	Perlkowski
+	"von Bühler"
+	"von Dessau"
+	"von Kyau"
+	Arnswald
+	Finck
+	Zitzwitz
+	"von Plothow"
+	Billerbeck
+	"von Stille"
+	"von Anhalt-Dessau"
+	Knobelsdorf
+	"von Rauch"
+	"von Quernheimberg"
+	Höltzendorff
+	"von Quitzow"
+	Cisielsky
+	Linkendorf
+	Ucklanski
+	Selasinky
+	"von Ziethen"
+	Münchov
+	Briesen
+	Riwotzki
+	Schnittern
+	"von Merckatz"
+	"von Manstein"
+	Schach
+	"von Seel"
+	Treskaw
+	"von Hohenlohe"
+	"von Rottenburg"
+	Truxes
+	Kreytz
+	"von Rüts"
+	"von Derfflinger"
+	"von Wermsdorff"
+	"von Hohenzollern"
+	Below
+	"von Bimback"
+	"von Mach"
+	Posadofsky
+	"von Preußen"
+}
+
+ship_names = {
+	Allenstein Angerburg
+	Braunsberg
+	Danzig Dirschau
+	Elbing
+	Fishhausen Frauenburg
+	Gottersweder
+	Graudenz
+	Heilsberg
+	Insterburg
+	Königsberg Kulm Konitz
+	Lyck
+	Marienburg Marienwerder Memel Mittenburg
+	Niemen
+	Osterode Ortelsburg
+	Pillau Putzig
+	Tannenberg Tilsit Thorn
+	Wehlau
+}
+
+army_names = {
+	"Königliche Armee"
+}
+
+fleet_names = {
+	"Ost See Squadron"
+}

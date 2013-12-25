@@ -1,0 +1,12 @@
+# Austrian White Coat
+
+type = infantry
+unit_type = western
+
+maneuver = 1
+offensive_morale = 8
+defensive_morale = 9
+offensive_fire = 5
+defensive_fire = 5
+offensive_shock = 6
+defensive_shock = 8

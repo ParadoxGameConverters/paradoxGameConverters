@@ -1,0 +1,605 @@
+cultural_decisions = {
+	support_commedia_dellarte = {
+		potential = {
+			technology_group = western
+			year = 1550
+			religion_group = christian
+			not = {
+				year = 1700
+				has_country_modifier = commedia_dellarte
+			}
+		}
+		allow = {
+			years_of_income = 0.1
+			officials = 1
+		}
+		effect = {
+			add_country_modifier = {
+				name = "commedia_dellarte"
+				duration = 1460
+			}
+			officials = -1
+			years_of_income = -0.1
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				cultural_tradition = 0.2
+			}
+		}
+	}
+			
+	introduce_heir = {
+		potential = {
+			government = monarchy
+			has_heir = yes
+			heir_age = 15
+			not = {
+				heir_age = 18
+				has_country_modifier = heir_introduced
+			}
+		}
+		allow = {
+			years_of_income = 0.1
+			diplomats = 1
+		}
+		effect = {
+			add_country_modifier = {
+				name = "heir_introduced"
+				duration = 1460
+			}
+			prestige = 0.05
+			years_of_income = -0.1
+			diplomats = -1
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+				
+	support_enlightenment_movement = {
+		potential = {
+			NOT = { innovative_narrowminded = -2 }
+			year = 1650
+			technology_group = western
+			NOT = {
+				year = 1800
+				has_country_modifier = enlightenment_movement
+			}
+		}
+		allow = {
+			NOT = { innovative_narrowminded = -4 }
+			officials = 1
+			ADM = 6
+			years_of_income = 1
+			prestige = 0.4
+		}
+		effect = {
+			add_country_modifier = {
+				name = "enlightenment_movement"
+				duration = 7300
+			}
+			officials = -1
+			years_of_income = -1
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				years_of_income = 2
+			}
+		}
+	}
+		
+	commission_epic_to_monarch = {
+		potential = {
+			government = monarchy
+			not = {
+				has_country_modifier = epic_to_monarch
+			}
+			prestige = 0.1
+		}
+		allow = {
+			officials = 1
+			years_of_income = 0.1
+		}
+		effect = {
+			officials = -1
+			years_of_income = -0.1
+			add_country_modifier = {
+				name = "epic_to_monarch"
+				duration = 3650
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				cultural_tradition = 0.2
+			}
+		}
+	}
+
+	court_byzantine_refugees = {
+		potential = {
+			OR = {
+				technology_group = western
+				technology_group = eastern
+			}
+			religion_group = christian
+			NOT = {
+				exists = BYZ
+				exists = ROM
+				year = 1500
+				has_country_flag = received_byzantines
+			}
+			151 = {
+				culture = turkish
+				religion = sunni
+			}
+		}
+		allow = {
+			diplomats = 5
+			officials = 3
+			prestige = 0.3
+			DIP = 7
+		}
+		effect = {
+			add_country_modifier = {
+				name = "byzantine_influx"
+				duration = 10950
+			}
+			set_country_flag = received_byzantines
+			
+			diplomats = -5
+			officials = -3
+			prestige = 0.05
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+		
+	support_florentine_school = {
+		potential = {
+			technology_group = western
+			NOT = {
+				year = 1500
+				has_country_modifier = florentine_school
+			}
+			prestige = 0.25
+		}
+		allow = {
+			officials = 3
+			diplomats = 1
+			years_of_income = 0.4
+		}
+		effect = {
+			add_country_modifier = {
+				name = florentine_school
+				duration = 3650
+			}
+			officials = -3
+			diplomats = -1
+			years_of_income = -0.4
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				cultural_tradition = 0.4
+			}
+		}
+	}
+		
+	hold_the_last_jousting_tournament = {
+		potential = {
+			technology_group = western
+			government = monarchy
+			not = {
+				land_tech = 11
+				has_country_flag = last_jousting_tournament_held
+			}
+		}
+		allow = {
+			army_tradition = 0.15
+			cultural_tradition = 0.05
+			officials = 3
+			years_of_income = 0.2
+		}
+		effect = {
+			set_country_flag = last_jousting_tournament_held
+			add_country_modifier = {
+				name = "the_last_joust"
+				duration = 3650
+			}
+			officials = -3
+			years_of_income = -0.2
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 100
+				war = yes
+			}		
+		}
+		
+	}
+		
+		
+	charter_guild_of_st_luke = {
+		potential = {
+			religion = catholic
+			any_owned_province = {
+				has_building = fine_arts_academy
+			}
+			not = {
+				has_country_modifier = guild_of_st_luke
+			}
+		}
+		allow = {
+			idea = patron_of_art
+			years_of_income = 0.2
+			officials = 1
+		}
+		effect = {
+			years_of_income = -0.2
+			officials = -1
+			add_country_modifier = {
+				name = "guild_of_st_luke"
+				duration = 36500
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				not = {
+					years_of_income = 1
+				}
+			}
+		}
+	}
+	
+	support_dutch_masters = {
+		potential = {
+			97 = {
+				cot = yes
+				religion = reformed
+			}
+			not = {
+				has_country_modifier = dutch_masters
+			}
+			technology_group = western
+			idea = patron_of_art
+		}
+		allow = {
+			years_of_income = 0.6
+			officials = 1
+		}
+		effect = {
+			years_of_income = -0.6
+			officials = -1
+			add_country_modifier = {
+				name = "dutch_masters"
+				duration = 18250
+			}
+
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+		
+	develop_diwani_script = {
+		potential = {
+			religion = sunni
+			government = monarchy
+			not = {
+				has_country_modifier = diwani_script
+			}
+		}
+		allow = {
+			officials = 3
+			artist = 4
+		}
+		effect = {
+			add_country_modifier = {
+				name = "diwani_script"
+				duration = -1
+			}
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+			
+	develop_way_of_tea = {
+		potential = {
+			religion = shinto
+			is_daimyo = yes
+			not = {
+				has_country_modifier = way_of_tea
+			}
+		}
+		allow = {
+			NOT = {
+				any_country = {
+					capital_scope = { has_province_modifier = controls_tea_trade }
+				}
+			}
+			cultural_tradition = 0.25
+			advisor = theologian
+			trading_part = {
+				trade_goods = tea
+				value = 0.2
+			}
+		}
+		effect = {
+			any_country = {
+				limit = { has_country_modifier = way_of_tea }
+				remove_country_modifier = way_of_tea
+			}
+			add_country_modifier = {
+				name = "way_of_tea"
+				duration = -1
+			}
+			capital_scope = {
+				add_province_modifier = {
+					name = "controls_tea_trade"
+					duration = 365
+				}			
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	gild_icons = {
+		potential = {
+			OR = {
+				religion = orthodox
+				religion = catholic
+			}
+			any_owned_province = {
+				has_building = temple
+			}
+			idea = church_attendance_duty
+			not = {
+				has_country_modifier = gilded_iconography
+				has_country_modifier = austere_religious_tradition
+			}
+		}
+		allow = {
+			officials = 1
+			years_of_income = 0.5
+		}
+		effect = {
+			officials = -1
+			years_of_income = -0.5
+			add_country_modifier = {
+				name = "gilded_iconography"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = {
+					years_of_income = 0.8
+				}
+			}
+		}
+	}
+	commission_medieval_tapestry = {
+		potential = {
+			not = {
+				year = 1450
+			}
+			not = {
+				has_country_modifier = medieval_tapestry
+			}
+		}
+		allow = {
+			officials = 1
+			years_of_income = 0.1
+		}
+		effect = {
+			add_country_modifier = {
+				name = "medieval_tapestry"
+				duration = 7300
+			}
+			officials = -1
+			years_of_income = -0.1
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				NOT = {
+					years_of_income = -0.4
+				}
+			}
+		}
+	}
+
+	commission_painting = {
+		potential = {
+		}
+		allow = {
+			officials = 1
+		}
+		effect = {
+			cultural_tradition = 0.05
+			officials = -1
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+
+	endorse_culture = {
+		potential = {
+		}
+		allow = {
+			officials = 1
+			prestige = 0.5
+			NOT = { war_exhaustion = 0.1 }
+		}
+		effect = {
+			cultural_tradition = 0.08
+			officials = -1
+			prestige = -0.10
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = 
+			{
+				factor = 0
+				NOT = { officials = 2 }
+			}
+			modifier = {
+				factor = 0.0
+				NOT = { prestige = 0.8 }
+			}
+		}
+	}
+
+	endorse_renaissance_philosophy	= {
+		potential = {
+			year = 1450
+			not = {
+				year = 1600
+				num_of_cities = 6
+				has_country_modifier = blooming_renaissance
+			}
+			technology_group = western
+		}
+		allow = {
+			OR = {
+				advisor = philosopher
+				any_owned_province = {
+					has_building = university
+				}
+			}
+			officials = 3
+			years_of_income = 0.3
+			ADM = 6
+		}
+		effect = {
+			add_country_modifier = {
+				name = blooming_renaissance
+				duration = 3650
+			}
+			years_of_income = -0.3
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				not = {
+					years_of_income = 0.8
+				}
+			}
+		}
+	}
+	support_baroque_music = {
+		potential = {
+			year = 1600
+			not = {
+				year = 1750
+				has_country_modifier = the_sound_of_music
+			}
+			technology_group = western
+		}
+		allow = {
+			any_owned_province = {
+				has_building = fine_arts_academy
+			}
+			officials = 1
+			years_of_income = 0.1
+		}
+		effect = {
+			add_country_modifier = {
+				name = the_sound_of_music
+				duration = 3650
+			}
+			officials = -1
+			years_of_income = -0.1
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				not = {
+					treasury = 100
+				}
+			}
+		}
+	}
+	support_south_german_organ_tradition = {
+		potential = {
+			year = 1630
+			NOT = {
+				year = 1720
+				has_country_modifier = south_german_organ_tradition
+			}
+			technology_group = western
+			culture_group = germanic
+			any_owned_province = {
+				has_building = temple
+			}
+		}
+		allow = {
+			officials = 3
+			years_of_income = 0.5
+		}
+		effect = {
+			add_country_modifier = {
+				name = "south_german_organ_tradition"
+				duration = 10950
+			}
+			officials = -3
+			years_of_income = -0.5
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+province_decisions = {
+	hold_organ_concert = {
+		potential = {
+			has_building = temple
+			owner = {
+				has_country_modifier = south_german_organ_tradition
+			}
+			has_owner_religion = yes
+			not = { has_province_modifier = organ_concert }
+		}
+		allow = {
+			owner = {
+				officials = 1
+				treasury = 10
+				}
+		}
+		effect = {
+			add_province_modifier = {
+				name = "organ_concert"
+				duration = 1825
+			}
+			owner = { officials = -1
+			treasury = -10
+				}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

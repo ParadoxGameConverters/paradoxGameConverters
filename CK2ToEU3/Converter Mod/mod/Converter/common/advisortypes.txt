@@ -1,0 +1,752 @@
+# If you add advisortypes, and use those tags, do not change them without changing everywhere they are used.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+
+######################################################
+philosopher = {
+	prestige = 0.005
+	cultural_tradition_cost = 0.2
+	 
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { innovative_narrowminded = -2 } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = ecumenism
+		}
+		modifier = {
+			factor = 1.2
+			idea = humanist_tolerance
+		}	
+		modifier = {
+			factor = 0.9
+			idea = deus_vult
+		}	
+	}
+}
+
+######################################################
+natural_scientist = {
+	production_tech_investment = 3
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { innovative_narrowminded = -2 } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = scientific_revolution
+		}
+		modifier = {
+			factor = 1.2
+			idea = smithian_economics
+		}	
+		modifier = {
+			factor = 0.9
+			idea = bureaucracy
+		}	
+	}	
+}
+
+######################################################
+artist = {
+	stability_investment = 3
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { aristocracy_plutocracy = -1 } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = patron_of_art
+		}
+	}	
+}
+
+######################################################
+statesman = {
+	government_tech_investment = 3
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { centralization_decentralization = -2 } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = bureaucracy
+		}
+		modifier = {
+			factor = 1.2
+			idea = bill_of_rights
+		}
+		modifier = {
+			factor = 0.9
+			idea = shrewd_commerce_practise
+		}
+	}	
+}
+
+######################################################
+treasurer = {
+	trade_tech_investment = 3
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			owner = { aristocracy_plutocracy = 1 } 
+		}
+		modifier = {
+			factor = 1.2
+			idea = merchant_adventures
+		}
+		modifier = {
+			factor = 1.2
+			idea = national_trade_policy
+		}
+		modifier = {
+			factor = 0.9
+			idea = espionage
+		}
+	}	
+}
+
+######################################################
+naval_reformer = {
+	naval_tech_investment = 3
+	cultural_tradition_cost = 0.1
+	naval_tradition_cost = 0.1
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			owner = { land_naval = 2 }
+		}
+		modifier = {
+			factor = 0
+			port = no
+		}
+		modifier = {
+			factor = 1.2
+			idea = sea_hawks
+		}
+		modifier = {
+			factor = 1.2
+			idea = excellent_shipwrights
+		}
+		modifier = {
+			factor = 0.9
+			idea = grand_army
+		}		
+	}
+}
+
+######################################################
+army_reformer = {
+	land_tech_investment = 3
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { land_naval = -2 } }
+		}		
+		modifier = {
+			factor = 1.2
+			idea = battlefield_commisions
+		}
+		modifier = {
+			factor = 1.2
+			idea = national_conscripts
+		}
+		modifier = {
+			factor = 0.9
+			idea = grand_navy
+		}		
+	}	
+}
+
+######################################################
+trader = {
+	merchant_compete_chance = 0.02
+	naval_tradition_cost = 0.05
+	cultural_tradition_cost = 0.15
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			owner = { aristocracy_plutocracy = 1 } 
+		}
+		modifier = {
+			factor = 1.2
+			idea = merchant_adventures
+		}
+		modifier = {
+			factor = 1.2
+			idea = national_trade_policy
+		}
+		modifier = {
+			factor = 0.9
+			idea = espionage
+		}
+	}
+}
+
+######################################################
+theologian = {
+	missionary_placement_chance = 0.005
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+
+		modifier = {
+			factor = 1.2
+			idea = divine_supremacy
+		}
+		modifier = {
+			factor = 1.2
+			idea = church_attendance_duty
+		}
+		modifier = {
+			factor = 1.3
+			religion = catholic
+			year = 1460
+			NOT = { is_religion_enabled = protestant }
+		}
+		modifier = {
+			factor = 1.3
+			religion = catholic
+			year = 1460
+			NOT = { is_religion_enabled = reformed }
+		}
+		modifier = {
+			factor = 0.8
+			idea = ecumenism
+		}	
+		modifier = {
+			factor = 0.8
+			idea = humanist_tolerance
+		}			
+	}
+}
+ 
+######################################################
+spymaster = {
+	spy_efficiency = 0.02
+	cultural_tradition_cost = 0.2
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			owner = { innovative_narrowminded = 2 } 
+		}		
+		modifier = {
+			factor = 1.2
+			idea = espionage
+		}
+		modifier = {
+			factor = 1.2
+			idea = vetting
+		}
+		modifier = {
+			factor = 0.8
+			idea = ecumenism
+		}	
+		
+	}	
+}
+
+######################################################
+colonial_governor = {
+	global_tariffs = 0.02
+	cultural_tradition_cost = 0.15
+	naval_tradition_cost = 0.05
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			NOT =  { owner = { idea = vice_roys } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = colonial_ventures
+		}
+		modifier = {
+			factor = 1.2
+			idea = quest_for_the_new_world
+		}
+	}
+}
+
+######################################################
+diplomat = {
+	badboy = -0.05
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+
+		modifier = {
+			factor = 1.2
+			idea = cabinet
+		}
+		modifier = {
+			factor = 1.2
+			idea = espionage
+		}
+		modifier = {
+			factor = 0.8
+			idea = vetting
+		}	
+		
+	}
+}
+
+######################################################
+sheriff = {
+	global_tax_modifier = 0.01
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { centralization_decentralization = -2 } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = bureaucracy
+		}
+		modifier = {
+			factor = 1.2
+			idea = bill_of_rights
+		}
+		modifier = {
+			factor = 0.9
+			idea = shrewd_commerce_practise
+		}
+	}	
+}
+
+######################################################
+high_judge = {
+	global_revolt_risk = -0.3
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { centralization_decentralization = -2 } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = bureaucracy
+		}
+		modifier = {
+			factor = 1.2
+			idea = bill_of_rights
+		}
+		modifier = {
+			factor = 0.9
+			idea = shrewd_commerce_practise
+		}
+	}	
+}
+
+######################################################
+alderman = {
+	production_efficiency = 0.01
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			NOT = { owner = { centralization_decentralization = -2 } }
+		}
+		modifier = {
+			factor = 1.2
+			idea = bureaucracy
+		}
+		modifier = {
+			factor = 1.2
+			idea = bill_of_rights
+		}
+		modifier = {
+			factor = 0.9
+			idea = shrewd_commerce_practise
+		}
+	}	
+}
+
+######################################################
+colonel = {
+	merc_maintenance_modifier = -0.05
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.2
+			idea = glorious_arms
+		}
+		modifier = {
+			factor = 1.2
+			idea = bureaucracy
+		}
+		modifier = {
+			factor = 0.8
+			idea = national_conscripts
+		}
+	}	
+}
+
+######################################################
+collector = {
+	trade_efficiency = 0.01
+	cultural_tradition_cost = 0.15
+	naval_tradition_cost = 0.05
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.2
+			idea = merchant_adventures
+		}
+		modifier = {
+			factor = 1.2
+			idea = national_trade_policy
+		}
+		modifier = {
+			factor = 0.9
+			idea = espionage
+		}
+	}	
+}
+
+######################################################
+master_of_mint = {
+	inflation_reduction = 0.02
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.2
+			idea = national_bank
+		}
+	}	
+}
+
+######################################################
+banker = {
+	interest = -0.01
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.2
+			idea = national_bank
+		}
+	}	
+}
+
+######################################################
+lord_proprietor = {
+	global_colonial_growth = 0.02
+	naval_tradition_cost = 0.05
+	cultural_tradition_cost = 0.15
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			NOT =  { owner = { idea = quest_for_the_new_world } }
+		}
+	}	
+}
+
+######################################################
+pioneer = {
+	colonist_placement_chance = 0.04
+	naval_tradition_cost = 0.05
+	cultural_tradition_cost = 0.15
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			NOT =  { owner = { idea = quest_for_the_new_world } }
+		}
+	}	
+}
+
+######################################################
+grand_admiral = {
+	naval_morale = 0.05
+	naval_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			port = no
+		}
+	}
+}
+
+######################################################
+naval_organiser = {
+	naval_forcelimit_modifier = 0.06
+	naval_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			port = no
+		}
+	}
+}
+
+######################################################
+navigator = {
+	range = 0.05
+	naval_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			port = no
+		}
+		modifier = {
+			factor = 1.2
+			owner = { idea = quest_for_the_new_world }
+		}		
+	}
+}
+
+######################################################
+rear_admiral = {
+	navy_tradition = 0.001
+	naval_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			port = no
+		}
+		modifier = {
+			factor = 1.2
+			owner = { idea = naval_fighting_instruction }
+		}		
+	}	
+}
+
+######################################################
+privateer = {
+	blockade_efficiency = 0.2
+	naval_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0
+			port = no
+		}
+		modifier = {
+			factor = 0
+			NOT = { owner = { naval_tech = 9 } }
+		}
+		modifier = {
+			factor = 1.2
+			owner = { idea = naval_fighting_instruction }
+		}		
+		modifier = {
+			factor = 1.3
+			owner = { has_country_modifier = hire_privateers } 
+		}
+	}	
+}
+
+######################################################
+sergeant_major_general = {
+	army_tradition = 0.001
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+}
+
+######################################################
+grand_captain = {
+	land_morale = 0.05
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+}
+
+######################################################
+army_organiser = {
+	land_forcelimit_modifier = 0.06
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+}
+
+######################################################
+commandant = {
+	discipline = 0.02
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0.8
+			owner = { quality_quantity = 1 } 
+		}		
+	}
+}
+
+######################################################
+quartermaster = {
+	reinforce_speed = 0.05
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+}
+
+######################################################
+recruitmaster = {
+	global_manpower_modifier = 0.04
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+}
+
+######################################################
+fortification_expert = {	
+	defensiveness = 0.1
+	army_tradition_cost = 0.1
+	cultural_tradition_cost = 0.1
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			owner = { offensive_defensive = 1 } 
+		}		
+		modifier = {
+			factor = 1.2
+			idea = engineer_corps
+		}
+	}	
+}
+
+
+######################################################
+inquisitor = {
+	global_spy_defence = 0.04
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 1.1
+			owner = { innovative_narrowminded = 2 } 
+		}		
+		modifier = {
+			factor = 1.2
+			idea = espionage
+		}
+		modifier = {
+			factor = 1.2
+			idea = vetting
+		}
+		modifier = {
+			factor = 0.8
+			idea = ecumenism
+		}	
+		
+	}
+}
+
+######################################################
+ambassador = {
+	diplomatic_skill = 0.5
+	cultural_tradition_cost = 0.2
+
+	chance = {
+		factor = 1
+
+		modifier = {
+			factor = 1.2
+			idea = cabinet
+		}
+		modifier = {
+			factor = 1.2
+			idea = espionage
+		}
+		modifier = {
+			factor = 0.8
+			idea = vetting
+		}	
+	}
+}
+
+######################################################
+grand_marshal = {
+	legitimacy = 0.01
+	cultural_tradition_cost = 0.2
+		
+	availability = {
+		government = monarchy
+	}
+	
+	chance = {
+		factor = 1
+		modifier = {
+			factor = 0.0
+			NOT = { owner = { government = monarchy } }
+		}
+		modifier = {
+			factor = 0.8
+			idea = cabinet
+		}
+		modifier = {
+			factor = 0.9
+			idea = vice_roys
+		}
+		modifier = {
+			factor = 0.8
+			NOT = { owner = { aristocracy_plutocracy = -1 } }
+		}	
+	}
+}

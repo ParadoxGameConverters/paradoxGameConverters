@@ -1,0 +1,203 @@
+country_decisions = {
+
+	liquor_act = {
+		potential = {
+			religion_group = christian
+			not = { has_country_modifier = the_liquor_act }
+		}
+		allow = {
+			adm = 6
+			innovative_narrowminded = 1
+			OR = {
+				advisor = treasurer
+				advisor = collector
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_liquor_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	joint_stock_companies_act = {
+		potential = {
+			has_country_flag = trade_company
+			year = 1700
+			not = { has_country_modifier = the_joint_stock_companies_act }
+		}
+		allow = {
+			trade_efficiency = 0.5
+			or = {
+				trade_income_percentage = 0.4
+				monthly_income = 100
+			}
+		}
+		effect = {
+			mercantilism_freetrade = -1
+			add_country_modifier = {
+				name = "the_joint_stock_companies_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	merchant_shipping_act = {
+		potential = {
+			num_of_ports = 1
+			idea = merchant_adventures
+			not = { has_country_modifier = the_merchant_shipping_act }
+		}
+		allow = {
+			idea = national_trade_policy
+			trade_efficiency = 0.5
+		}
+		effect = {
+			mercantilism_freetrade = -1
+			add_country_modifier = {
+				name = "the_merchant_shipping_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	court_of_wards_and_liveries = {
+		potential = {
+			government = feudal_monarchy
+			not = { has_country_modifier = the_court_of_wards_and_liveries }
+		}
+		allow = {
+			adm = 7
+			not = { serfdom_freesubjects = -2 }
+			not = { centralization_decentralization = -2 }
+		}
+		effect = {
+			serfdom_freesubjects = -1
+			add_country_modifier = {
+				name = "the_court_of_wards_and_liveries"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 0
+		}
+	}
+	agricultural_cultivation = {
+		potential = {
+			idea = shrewd_commerce_practise
+			production_tech = 30
+			not = { has_country_modifier = agricultural_cultivations }
+		}
+		allow = {
+			production_efficiency = 0.5
+			OR = {
+				advisor = natural_scientist
+				advisor = alderman
+			}
+			or = {
+				coffee = 2
+				cotton = 2
+				sugar = 2
+				tobacco = 2
+				wine = 2
+				spices = 2
+				grain = 5
+			}
+		}
+		effect = {
+			add_country_modifier = {
+				name = "agricultural_cultivations"
+				duration = -1
+			}			
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	importation_act = {
+		potential = {
+			or = {
+				idea = national_trade_policy
+				idea = shrewd_commerce_practise
+			}
+			not = { has_country_modifier = the_importation_act }
+		}
+		allow = {
+			num_of_cots = 1
+			or = {
+				idea = national_trade_policy
+				idea = shrewd_commerce_practise
+			}
+			production_efficiency = 0.5
+		}
+		effect = {
+			mercantilism_freetrade = -1
+			add_country_modifier = {
+				name = "the_importation_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	mining_act = {
+		potential = {
+			not = { mercantilism_freetrade = -1 }
+			or = {
+				copper = 1
+				gold = 1
+				iron = 1
+			}
+			government_tech = 31
+			not = { has_country_modifier = the_mining_act }
+		}
+		allow = {
+			advisor = sheriff
+			tax_assessor = 1
+		}
+		effect = {
+			mercantilism_freetrade = -1
+			add_country_modifier = {
+				name = "the_mining_act"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	implement_gold_standard = {
+		potential = {
+			not = { has_country_modifier = gold_standard }
+			government_tech = 30
+			gold = 1
+		}
+		allow = {
+			NOT = {
+				inflation = 10
+			}
+			advisor = master_of_mint
+		}
+		
+		effect = {
+			add_country_modifier = {
+				name = "gold_standard"
+				duration = -1
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+		
+}

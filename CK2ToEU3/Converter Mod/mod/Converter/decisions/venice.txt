@@ -1,0 +1,98 @@
+country_decisions = {
+
+
+	expand_venetian_arsenal = {
+		potential = {
+			tag = VEN
+			NOT = { has_country_modifier = venetian_arsenal }
+			capital = 112
+		}
+		allow = {
+			naval_tech = 10
+			navy_tradition = 0.2
+			
+		}
+		effect = {
+			add_country_modifier = {
+				name = "venetian_arsenal"
+				duration = -1
+			}		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	promote_printing_industry = {
+		potential = {
+			tag = VEN
+			NOT = { has_country_modifier = printing_industry }
+		}
+		allow = {
+			war = no
+			trade_tech = 10					
+			NOT = { innovative_narrowminded = -2 	 }
+		}
+		effect = {	
+			add_country_modifier = {
+				name = "printing_industry"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}	
+	enact_stato_da_mar = {
+		potential = {
+			tag = VEN
+			NOT = { has_country_modifier = stato_da_mar }
+		}
+		allow = {
+			land_naval = 2
+			total_num_of_ports = 6
+			or = {
+				trade_income_percentage = 0.33
+				monthly_income = 100
+			}
+		}
+		effect = {
+			add_country_modifier = {
+			name = "stato_da_mar"
+			duration = -1
+			}
+		}
+			
+		ai_will_do = {
+			factor = 1
+		}
+    }
+
+	confirm_thalassocracy = {
+		potential = {
+			OR = {
+				tag = VEN
+				tag = GEN
+				tag = HSA
+				tag = RAG
+			}
+			government = merchant_republic
+			not = { 
+				has_country_modifier = thalassocracy
+			}
+		}
+		allow = {
+			overseas_provinces_percentage = 0.5
+			land_naval = 4
+		}
+		effect = {
+			add_country_modifier = {
+				name = "thalassocracy"
+				duration = -1
+			}
+		}
+		
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

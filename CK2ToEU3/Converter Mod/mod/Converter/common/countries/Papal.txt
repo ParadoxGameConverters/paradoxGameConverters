@@ -1,0 +1,123 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 211  220  178 }
+
+historical_ideas = {
+	church_attendance_duty
+	divine_supremacy
+	patron_of_art
+	military_drill
+	deus_vult
+	battlefield_commisions
+	engineer_corps
+	national_bank
+	national_trade_policy
+	shrewd_commerce_practise
+	glorious_arms
+	cabinet
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Clemens #6" = 160
+	"Innocentius #6" = 140
+	"Pius #1" = 120
+	"Gregorius #11" = 80
+	"Paulus #1" = 80
+	"Alexander #5" = 60
+	"Benedictus #12" = 40
+	"Leo #9" = 40
+	"Urbanus #6" = 40
+	"Xystus #3" = 40
+	"Iulius #1" = 40
+	"Bonifacius #8" = 20
+	"Hadrianus #5" = 20
+	"Martinus #4" = 20
+	"Nicolaus #4" = 20
+	"Eugenius #3" = 20
+	"Callistus #2" = 20
+	"Marcellus #1" = 20
+	"Iohannes #22" = 15
+	"Celestinus #5" = 15
+	"Honorius #4" = 10
+	"Aldo #0" = 0
+	"Alfonso #0" = 0
+	"Baldovino #0" = 0
+	"Cirillo #0" = 0
+	"Cosimo #0" = 0
+	"Damiano #0" = 0
+	"Egidio #0" = 0
+	"Franco #0" = 0
+	"Giambattista #0" = 0
+	"Ippolito #0" = 0
+	"Leandro #0" = 0
+	"Marzio #0" = 0
+	"Ovidio #0" = 0
+	"Pietro #0" = 0
+	"Prospero #0" = 0
+	"Rafaello #0" = 0
+	"Scipione #0" = 0
+	"Teodosio #0" = 0
+	"Vittorio #0" = 0
+}
+
+leader_names = {
+	Abano Adria Agno Alvise Anconna Argenta
+	Bardolino Barilla Bassano Belfuno Belluno Bembo Brenta Brescia Casanova Cassandro Castiglione Cento Chiogga Commachio Contarini Corfini Corleone Cornaro Cremona
+	"De Blazio" "Di Castrozza" Dolfin
+	Emo Erizzo Ermelli
+	Feltre Ferme Ferrara Fiume Flangini Foscarini Friuli
+	Garda Gardone Giudica Giustani Gorizia Grado Grimani Gritti
+	Idro Iseo Isonzo
+	Lando Latisana Legnago Lido Lignano Lissa Livenza Loredano
+	Magno Mantova Meduna Memmo Mestre Mincio Modigliano Molini Monfalcone
+	Oglio
+	Padova Panaro Pesaro Pezzini Piave "Ponte Vechio" Pontebba Pordenone Pramaggiore Priuli
+	Raguse Rovereto Rovigo Ruzzini
+	"San Paulo" Schio Serio Sugaina
+	Tagliamento Tartaro Tolmezzo Toscani Trento Trevisano Treviso Trieste
+	Udine
+	Valieri Verona Vicenza Vittorio
+	Zara Zustiniani
+}
+
+ship_names = {
+	Abraham Adam Angeli Archangeli "Archangelus Gabriel" "Archangelus Michael" "Archangelus Raphael"
+	Cherubim "Corpus Christi" "David Rex" Dominationes
+	"Episcopus Romanus" Eva "Franciscus Assisiensis" Hierosalyma
+	"Iesu Christus Salvator" "Ioannes Baptista" Iob Isaac Moyses Noe
+	"Pater et Pastor" "Pontifex Maximum" Potestates Principatus
+	"Salomon Rex" "Sancta Birgitta" "Sanctus Alexander" "Sanctus Ambrosius" "Sanctus Andreas"
+	"Sanctus Anselmus" "Sanctus Augustinus" "Sanctus Bartholomeus" "Sanctus Bernardus"
+	"Sanctus Bonaventura" "Sanctus Cassianus" "Sanctus Cyprianus" "Sanctus Dominicus"
+	"Sanctus Hieronymus" "Sanctus Hilarius" "Sanctus Hippolytus" "Sanctus Iohannes"
+	"Sanctus Iosephus" "Sanctus Isidorus" "Sanctus Iudas" "Sanctus Leo I" "Sanctus Linus"
+	"Sanctus Mattheus" "Sanctus Matthias" "Sanctus Patricius" "Sanctus Paulus" "Sanctus Petrus"
+	"Sanctus Philippus" "Sanctus Simon" "Sanctus Synesius" "Sanctus Thomas" "Sanctus Urbanus I"
+	Seraphim "St Albertus Magnus" "St Antonius de Padova" "St Basilius Magnus" "St Beda Venerabilis"
+	"St Cathatina Sienensis" "St Ciaranus Maior" "St Ciaranus Minor" "St Ephraem Syrus"
+	"St Gregorius Magnus" "St Iacobus Alphei" "St Iacobus Maior" "St Iohannes Damascena"
+	"St Petrus Chrysologus" "St Petrus Damianus" "St Thomas Aquinas"
+	Throni "Virgo Maria" Virtutes
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

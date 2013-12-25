@@ -1,0 +1,547 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new forms of governemnts, make sure they are uniquely named.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+steppe_horde = {
+	monarchy = yes
+	tribal = yes
+	nomad = yes
+	colonize_prov = yes
+	
+	valid_for_new_country = no
+	
+	adm_efficiency = 1.30
+
+	allowed_conversion = {
+	}
+
+	minimum_policy = {
+		innovative_narrowminded = 1
+	}
+	minimum_policy = {
+		centralization_decentralization = 2
+	}
+
+	#bonus
+	badboy_limit = 10
+	badboy = -1
+	land_forcelimit_modifier = 1.0
+	global_manpower_modifier = 1
+	global_regiment_cost = -0.25
+	
+	#malus
+	technology_cost = 0.5
+	global_revolt_risk = 5
+}
+
+celestial_empire = {
+	monarchy = yes
+	valid_for_new_country = no
+	
+	adm_efficiency = 1.20
+
+	allowed_conversion = {
+	}
+	officials = 0.5
+}
+
+despotic_monarchy = {
+	monarchy = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.50
+
+	allowed_conversion = {
+		administrative_monarchy = 0.5
+		absolute_monarchy = 0.5	
+		enlightened_despotism = 1.0
+		constitutional_monarchy = 1.0
+		noble_republic = 2.0
+		theocratic_government = 2.0
+		feudal_monarchy = 2.0
+	}
+	
+	maximum_policy = {
+		aristocracy_plutocracy = 2
+	}
+	maximum_policy = {
+		serfdom_freesubjects = 2
+	}
+	minimum_policy = {
+		centralization_decentralization = -2
+	}
+
+	#bonus
+	badboy_limit = 10
+	officials = 0.5
+}
+
+feudal_monarchy = {
+	monarchy = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.25
+
+	allowed_conversion = {
+		despotic_monarchy = 0.5
+		absolute_monarchy = 1.0
+		administrative_monarchy = 1.0
+	}
+	
+	maximum_policy = {
+		aristocracy_plutocracy = -1 
+	}
+	maximum_policy = {
+		serfdom_freesubjects  = 2
+	}
+	minimum_policy = {
+		centralization_decentralization = 0
+	}
+	
+	#bonus
+	land_forcelimit_modifier = 0.2
+	global_manpower_modifier = 0.1
+	officials = 0.5
+}
+
+merchant_republic = {
+	republic = yes
+	
+	mercantile_diplomacy = yes
+	
+	valid_for_new_country = no
+	
+	adm_efficiency = 1.15
+	
+	duration = 4
+
+	allowed_conversion = {
+		administrative_republic = 0.5
+		bureaucratic_despotism = 1.0
+		feudal_monarchy = 2.0
+	}
+	
+	minimum_policy = {
+		aristocracy_plutocracy = 1
+	}
+	minimum_policy = {
+		centralization_decentralization = 0
+	}
+	
+	republican_name = yes
+	royal_marriage = no
+
+
+	#bonus
+	tolerance_heretic = 1
+	tolerance_heathen = 1
+#	global_cot_gravity = 30
+	merchant_cost = -0.25
+	officials = 0.4
+}
+
+imperial_government = {
+	monarchy = yes
+	
+	valid_for_new_country = no
+	
+	adm_efficiency = 1.20
+
+	allowed_conversion = {
+		administrative_monarchy = 0.5
+		absolute_monarchy = 0.5
+		enlightened_despotism = 1.0
+		constitutional_monarchy = 1.0
+		noble_republic = 2.0
+		theocratic_government = 2.0
+		feudal_monarchy = 2.0
+	}
+	
+	maximum_policy = {
+		serfdom_freesubjects  = 1
+	}
+	minimum_policy = {
+		centralization_decentralization = -3
+	}
+
+	#bonus
+	land_morale = 0.25
+	officials = 0.6
+}
+
+noble_republic = {
+	republic = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.15
+	
+	duration = 8
+
+	allowed_conversion = {
+		administrative_republic = 0.5
+		republican_dictatorship = 1.0
+		despotic_monarchy = 2.0
+	}
+	republican_name = yes
+	
+	minimum_policy = {
+		centralization_decentralization = -1
+	}
+
+	#bonus
+	tolerance_heretic = 1
+	tolerance_heathen = 1
+	officials = 0.5
+}
+
+administrative_monarchy = {
+	monarchy = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.15
+
+	allowed_conversion = {
+		constitutional_monarchy = 0.5
+		administrative_republic = 2.0
+		despotic_monarchy = 2.0
+	}
+	minimum_policy = {
+		centralization_decentralization = -3
+	}
+	
+	#bonus
+	production_efficiency = 0.1
+	officials = 1.0
+}
+
+administrative_republic = {
+	republic = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.05
+	
+	duration = 4
+
+	allowed_conversion = {
+		constitutional_republic = 0.5
+		republican_dictatorship = 0.5
+		bureaucratic_despotism = 1.0
+		noble_republic = 2.0
+		administrative_monarchy = 2.0
+	}
+	republican_name = yes
+	royal_marriage = no
+	
+	minimum_policy = {
+		centralization_decentralization = -3
+	}
+
+	#bonus
+	tolerance_heretic = 1
+	tolerance_heathen = 1
+	trade_efficiency = 0.1
+	officials = 1.0
+}
+
+absolute_monarchy = {
+	monarchy = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 0.9
+
+	allowed_conversion = {
+		enlightened_despotism = 0.5
+		despotic_monarchy = 2.0
+		republican_dictatorship = 2.0
+	}
+	
+	#bonus
+	discipline = 0.05
+	officials = 1.7
+}
+
+republican_dictatorship = {
+	republic = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 0.9
+
+	allowed_conversion = {
+		bureaucratic_despotism = 0.5
+		administrative_republic = 2.0
+		absolute_monarchy = 2.0
+	}
+	republican_name = yes
+	royal_marriage = no
+
+	#BONUS
+	tolerance_heretic = 1
+	tolerance_heathen = 1
+	land_morale = 0.1
+	officials = 1.0
+}
+
+constitutional_monarchy = {
+	monarchy = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.00
+
+	allowed_conversion = {
+		administrative_monarchy = 2.0
+		constitutional_republic = 2.0
+	}
+	
+	#bonus
+	prestige_decay = -0.02
+	officials = 2.2
+}
+
+enlightened_despotism = {
+	monarchy = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.00
+
+	allowed_conversion = {
+		absolute_monarchy = 2.0
+		bureaucratic_despotism = 2.0
+	}
+	
+	minimum_policy = {
+		serfdom_freesubjects  = -3
+	}
+
+	#bonus
+	badboy = -0.25
+	global_spy_defence = 0.20
+	officials = 1.7
+}
+	
+constitutional_republic = {
+	republic = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.00
+	
+	duration = 4
+	
+	allowed_conversion = {
+		constitutional_monarchy = 2.0
+		administrative_republic = 2.0
+	}
+	
+	republican_name = yes
+	royal_marriage = no
+
+	#bonus
+	tolerance_heretic = 1
+	tolerance_heathen = 1
+	production_efficiency = 0.2
+	officials = 2.2
+}
+
+bureaucratic_despotism = {
+	republic = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 0.85
+
+	allowed_conversion = {
+		republican_dictatorship = 2.0
+		enlightened_despotism = 2.0
+	}
+	
+	royal_marriage = no
+
+	#bonus
+	tolerance_heretic = 1
+	tolerance_heathen = 1
+	stability_cost_modifier = -0.20
+	officials = 2.8
+}
+
+theocratic_government = {
+	religion = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.22
+
+	allowed_conversion = {
+		absolute_monarchy = 5.0
+	}
+
+	royal_marriage = no
+	
+	minimum_policy = {
+		innovative_narrowminded  = 0
+	}
+	
+	minimum_policy = {
+		centralization_decentralization = -4
+	}
+
+	#bonus
+	tolerance_own = 1
+	tolerance_heretic = -1
+	tolerance_heathen = -1
+	officials = 0.5
+	papal_influence = 0.05;
+}
+
+papal_government = {
+	religion = yes
+	papacy = yes
+	
+	valid_for_new_country = no
+	
+	adm_efficiency = 1.20
+
+	allowed_conversion = {
+	}
+
+	royal_marriage = no
+	minimum_policy = {
+		innovative_narrowminded  = 0
+	}
+	
+	#bonus
+	tolerance_own = 1
+	tolerance_heretic = -1
+	tolerance_heathen = -1
+	prestige = 0.01
+	officials = 1.5
+}
+
+tribal_despotism = {
+	monarchy = yes
+	tribal = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.30
+	allowed_conversion = {
+		tribal_federation = 2.0
+	}
+
+	minimum_policy = {
+		innovative_narrowminded = 1
+	}
+	minimum_policy = {
+		centralization_decentralization = 2
+	}
+
+	#bonus
+	badboy_limit = 10
+	badboy = -1
+	
+	#malus
+	global_revolt_risk = 1
+}
+
+tribal_federation = {
+	monarchy = yes
+	tribal = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.30
+
+	allowed_conversion = {
+		tribal_despotism = 2.0
+	}
+	
+	minimum_policy = {
+		centralization_decentralization = 2
+	}
+	
+	#bonus
+	land_forcelimit_modifier = 0.2
+	global_manpower_modifier = 0.2
+	badboy = -1
+
+	#malus
+	stability_cost_modifier = 0.5
+}
+
+tribal_democracy = {
+	republic = yes
+	tribal = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 1.30
+
+	allowed_conversion = {
+	}
+	republican_name = yes
+	royal_marriage = no
+	
+	minimum_policy = {
+		aristocracy_plutocracy = -1
+	}
+	minimum_policy = {
+		centralization_decentralization = 2
+	}
+
+	#bonus
+	stability_cost_modifier = -0.33
+	
+}
+
+revolutionary_republic = {
+	republic = yes
+	
+	valid_for_new_country = yes
+	
+	adm_efficiency = 0.8
+	
+	duration = 4
+
+	allowed_conversion = {
+		revolutionary_empire = 1.0
+	}
+	republican_name = yes
+	royal_marriage = no
+
+	minimum_policy = {
+		aristocracy_plutocracy = 1
+	}	
+
+	#bonus
+	tolerance_heretic = 1
+	tolerance_heathen = 1
+	land_morale = 0.5
+	officials = 2.5
+}
+
+revolutionary_empire = {
+	monarchy = yes
+	
+	valid_for_new_country = no
+	
+	adm_efficiency = 0.8
+
+	allowed_conversion = {
+		revolutionary_republic = 2.0
+	}
+	
+	#bonus
+	army_tradition = 0.01
+	global_manpower_modifier = 0.25
+	officials = 2.5
+
+}

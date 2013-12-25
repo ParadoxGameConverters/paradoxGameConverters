@@ -1,0 +1,95 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 200  202  85 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	bureaucracy
+	glorious_arms
+}
+
+historical_units = {
+	african_spearmen
+	niger_kongolese_tribal_warfare
+	niger_kongolese_forest_warfare
+	niger_kongolese_gunpowder_warfare
+	westernized_niger_kongolese
+	niger_kongolese_guerilla_warfare	
+}
+
+monarch_names = {
+	"Nkungu #0" = 20
+	"Afonso #0" = 20
+	"Ntangu #0" = 20
+	"Makose #0" = 20
+	"Mwene Mbatu #0" = 20
+	"Nobo Sinda #0" = 20
+	"Mwe Pwati #0" = 20
+	"Nguli Nkama #0" = 20
+	"Ilunga #0" = 0
+	"Kasongo #0" = 0
+	"Sanza #0" = 0
+	"Kumwimba #0" = 0
+	"Kasongo #0" = 0
+	"Kekenya #0" = 0
+	"Kaumbo #0" = 0
+	"Miketo #0" = 0
+	"Nday #0" = 0
+	"Mwine #0" = 0
+	"Maloba #0" = 0
+	"Kitamba #0" = 0
+	"Cibindi #0" = 0
+	"Mbala #0" = 0
+	"Nawej #0" = 0
+	"Munying #0" = 0
+	"Kateng #0" = 0
+	"Cakasekene #0" = 0
+	"Cikombe #0" = 0
+	"Kalong #0" = 0
+	"Mutand #0" = 0
+	"Mbala #0" = 0
+	"Mukaz #0" = 0
+	"Lukwesa #0" = 0
+	"Kanyembo #0" = 0
+	"Kapumba #0" = 0
+	"Mwango #0" = 0
+	"Ngoupou #0" = 0
+	"Fifen #0" = 0
+	"Kutu #0" = 0
+	"Nsangu #0" = 0
+	"Bele #0" = 0
+	"Lobe #0" = 0
+	"Nunga #0" = 0
+	"Zangabiru #0" = 0
+}
+
+leader_names = {
+	Nguesso
+	Mani
+	Youla
+	Zanga
+	Youlou
+	Mboma
+	Song
+	Abena
+	Lissouba
+	Ndo
+}
+
+ship_names = {
+	Maloango Ntufia Malebo Ibonga Nyamu
+	Tchintchesse Muvili Mubana Bilama Binzembele
+	Ndamba "Nfumu iampuena" Nkangala
+	"Ntangua odimini" Nvumu Nzalu Nzoke Mavanga
+}

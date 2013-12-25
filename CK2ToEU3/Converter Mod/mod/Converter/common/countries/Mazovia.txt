@@ -1,0 +1,97 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 195  149  155 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	glorious_arms
+	national_trade_policy
+	military_drill
+	cabinet
+	national_bank
+	grand_army
+	engineer_corps
+	espionage
+	scientific_revolution
+}
+
+historical_units = {
+	bardiche_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	hungarian_hussar
+	polish_musketeer
+	polish_hussar
+	polish_tercio
+	polish_winged_hussar
+	russian_lancer
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Janusz #0" = 40
+	"Boleslaw #3" = 20
+	"Konrad #2" = 20
+	"Stanislaw #0" = 20
+	"Kazimierz #2" = 15
+	"Ziemowit #6" = 10
+	"Trojden #2" = 10
+	"Albert #0" = 0
+	"Aleksy #0" = 0
+	"Andrzej #0" = 0
+	"Bartlomiej #0" = 0
+	"Bogumil #0" = 0
+	"Bronislaw #0" = 0
+	"Dawid #0" = 0
+	"Dominik #0" = 0
+	"Emil #0" = 0
+	"Eugeniusz #0" = 0
+	"Ferdynand #0" = 0
+	"Grzegorz #0" = 0
+	"Gustaw #0" = 0
+	"Igor #0" = 0
+	"Iwan #0" = 0
+	"Konstanty #0" = 0
+	"Krystian #0" = 0
+	"Lech #0" = 0
+	"Lucjusz #0" = 0
+	"Ludwik #0" = 0
+	"Lukasz #0" = 0
+	"Maksym #0" = 0
+	"Mariusz #0" = 0
+	"Mieszko #0" = 0
+	"Miroslaw #0" = 0
+	"Oskar #0" = 0
+	"Patryk #0" = 0
+	"Radoslaw #0" = 0
+	"Rafal #0" = 0
+	"Sylwester #0" = 0
+	"Szymon #0" = 0
+	"Wiktor #0" = 0
+	"Zygfryd #0" = 0
+}
+
+leader_names = { 
+	Jagiellon
+	Kedzierzawy
+	Leszczynski Lubomirski
+	Piast Poniatowski Premyslid
+	Radziwill
+	Sapieha
+	Wisniowiecki 
+}
+
+ship_names = {
+	Narew Wkra Wisla Bzura Pilica
+	Radomka Bug Liwiec Biebrza Warszawa
+	Lowicz Mlawa Kolno Wizna
+}

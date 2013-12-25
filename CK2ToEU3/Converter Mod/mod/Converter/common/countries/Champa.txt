@@ -1,0 +1,76 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 53  151  151 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	smithian_economics
+	cabinet
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Ko cheng #0" = 20
+	"Jaya Sinhavarman #4" = 20
+	"Maija Vijaya #0" = 20
+	"Moho Kouei-Lai #0" = 20
+	"Maha Kui Yu #0" = 20
+	"Maha P'an-lo-yue #0" = 20
+	"Po Saktirai #0" = 20
+	"Po Ganvuh #0" = 20
+	"Po Thuttirai #0" = 20
+	"Po Rattirai #0" = 20
+	"Po Tathun #0" = 20
+	"Po Tithuntirai #0" = 20
+	"Chei Krei Brei #0" = 20
+	"Po Tithun #0" = 20
+	"Po Lathun #0" = 20
+	"Po Chong Chan #0" = 20
+	"Che Anan #0" = 20
+	"Tra Hoa #0" = 20
+	"Che Bong Nga #1" = 20
+	"Ko Cheng #0" = 20
+	"Jaya Indravarman #6" = 20	
+}
+
+leader_names = {
+	Che
+	Lang
+	Dang
+	Ong
+	Sam
+	Tra
+	Duong
+	Minh
+	Nguyen
+	Le
+	Pham
+}
+
+ship_names = {
+	Indrapura Amaravati Vijayq Kauthara Panduranga
+	Bichai "Che Bong-nga" "Bo-de" Mahendravarman
+	Jayasimhavarman Indravarman Parameshvaravarman
+	Paramabodhisattva Harivarman Rudravarman Bhadravarman
+}

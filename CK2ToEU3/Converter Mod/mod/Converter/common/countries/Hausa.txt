@@ -1,0 +1,92 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 48  169  96 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	glorious_arms
+	bureaucracy
+}
+
+historical_units = {
+	african_spearmen
+	niger_kongolese_tribal_warfare
+	bantu_plains_warfare
+	adal_gunpowder_warfare
+	westernized_adal
+	adal_guerilla_warfare
+}
+
+monarch_names = {
+	"Chiroma #0" = 20
+	"Yakubu #0" = 20
+	"Muhammad #0" = 220
+	"'Abdullahi #1" = 20
+	"Da'uda Abasama #0" = 40
+	"Abu Bakr Kado #0" = 20
+	"Yakufu #0" = 20
+	"Kutambi #0" = 20
+	"Alhaji #0" = 20
+	"Shekkarau #1" = 20
+	"Soyaki #0" = 20
+	"Bawa #0" = 20
+	"Babba Zaki #0" = 20
+	"Dalla Gungum #0" = 0
+	"Dalla Dawaki #0" = 0
+	"Chiroma #0" = 0
+	"Akal #0" = 0
+	"Bachiri #0" = 0
+	"Gumsara #0" = 0
+	"Bardandoma #0" = 0
+	"Soba #0" = 0
+	"Nyakum #0" = 0
+	"Yakub #0" = 0
+	"Salihu #0" = 0	
+	"Janhazo #0" = 0
+	"Karya Giwa #0" = 0
+	"Abd al-Karim #0" = 0
+	"Tsagarana #0" = 0
+	"Agwaragwi #0" = 0
+	"Bawa #0" = 0
+	"Magajin #0" = 0
+	"Tomo #0" = 0
+	"Sumail #0" = 0
+	"Suleyman #0" = 0
+	"Fati #0" = 0
+	"Ibrahim #0" = 0
+	"'Aliyu #0" = 0
+	"Bako #0" = 0
+	"Burema #0" = 0
+	"Dudufani #0" = 0
+	"Burum #0" = 0	
+}
+
+leader_names = {
+	Saibou
+	Bakara
+	Mamami
+	Kountché
+	Diore
+	Balewa
+	Aluko
+	Bandele
+	Kanu
+	Kuti
+}
+
+ship_names = {
+	iska sama hazo gajimare "babban dutse"
+	teku rairayi rana wata tauraro ruwa
+	itace saiwa fure
+}
