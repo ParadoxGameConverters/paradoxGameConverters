@@ -1,0 +1,103 @@
+#Smolensk
+
+graphical_culture = easterngfx
+
+color = { 106  160  43 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	shrewd_commerce_practise
+	national_trade_policy
+	quest_for_the_new_world
+	military_drill
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	glorious_arms
+	cabinet
+}
+
+historical_units = {
+	bardiche_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	muscovite_musketeer
+	muscovite_caracolle
+	muscovite_soldaty
+	muscovite_cossack
+	russian_petrine
+	russian_lancer
+	russian_green_coat
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Svyatoslav #2" = 25
+	"Mstislav #3" = 20
+	"Roman #1" = 20
+	"Davyd #1" = 20
+	"Fedor #1" = 20
+	"Mikhail #1" = 20
+	"Gleb #2" = 20
+	"Ivan #1" = 15
+	"Rostislav #2" = 15
+	"Vsevolod #1" = 10
+	"Iaropolk #1" = 10
+	"Aleksandr #1" = 10
+	"Vladimir #1" = 10
+	"Yury #0" = 5
+	"Olgierd #0" = 5
+	"Bryachislav #0" = 5
+	"Vasiliy #0" = 5
+	"Izyaslav #0" = 5
+	"Vseslav #0" = 5
+	"Boris #0" = 5
+	"Adrian #0" = 0
+	"Afanasiy #0" = 0
+	"Daniil #0" = 0
+	"Dmitriy #0" = 0
+	"Dorofey #0" = 0
+	"Faddey #0" = 0
+	"Feodosiy #0" = 0
+	"Feofil #0" = 0
+	"Foma #0" = 0
+	"Gavriil #0" = 0
+	"Grigoriy #0" = 0
+	"Igor #0" = 0
+	"Mefodiy #0" = 0
+	"Naum #0" = 0
+	"Nikita #0" = 0
+	"Nikolai #0" = 0
+	"Pankrati #0" = 0
+	"Prokhor #0" = 0
+	"Pyotr #0" = 0
+	"Radoslav #0" = 0
+	"Ruslan #0" = 0
+	"Semen #0" = 0
+	"Serafim #0" = 0
+	"Sevastian #0" = 0
+	"Stanislav #0" = 0
+	"Timofeiy #0" = 0
+	"Varfolomeiy #0" = 0
+	"Vikentiy #0" = 0
+	"Yaroslav #0" = 0
+}
+
+leader_names = { 
+	Vitebsky Izyaslavsky Dursky Galisky Borovsky Vereisky Volotsky Galitsky
+	Mozhaisky Uglisky Shemyakin Satin Aladyin Beznosov Bokeev Burukhin Vnukov Korobyin
+	Zabolotsky Dalmatov Kisleevsky Travin Tsyplyatev Shukalovsky
+}
+
+ship_names = {
+	Velikaya Chudskoye Pskovskoye Polotsk Smolensk Bryansk
+	Rakovor Bolotovo Kulikovo Ostrov Izborsk
+	Pechory Porhov "Velikiye Luki" Sebezh
+}

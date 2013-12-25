@@ -1,0 +1,112 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 161  126  128 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	espionage
+	battlefield_commisions
+	engineer_corps
+	national_trade_policy
+	cabinet
+	shrewd_commerce_practise
+	national_bank
+	scientific_revolution
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Alexandru #0" = 160
+	"Radu #1" = 120
+	"Vlad #1" = 120
+	"Constantin #0" = 80
+	"Mihail #0" = 80
+	"Mircea #0" = 80
+	"George #0" = 60
+	"Grigore #0" = 60
+	"Mihnea #0" = 60
+	"Nicolae #0" = 60
+	"Besarab #1" = 40
+	"Vladislav #1" = 40
+	"Mattia #0" = 40
+	"Petru #0" = 40
+	"Radu Ilias #0" = 40
+	"Scarlat #0" = 40
+	"Stefan #0" = 40
+	"Dan #1" = 20
+	"Alexandru Ilias #0" = 20
+	"Gabriel #0" = 20
+	"Ioan George #0" = 20
+	"Leon #0" = 20
+	"Moise #0" = 20
+	"Neagoie Besarab #0" = 20
+	"Petrascu #0" = 20
+	"Radu Leon #0" = 20
+	"Radu Mihnea #0" = 20
+	"Serban #0" = 20
+	"Simeon #0" = 20
+	"Teodosiu #0" = 20
+	"Vintila #0" = 20
+	"Vladut #0" = 20
+	"Milos #0" = 10
+	"Corneliu #0" = 0
+	"Flaviu #0" = 0
+	"Iuliu #0" = 0
+	"Octavian #0" = 0
+	"Sergiu #0" = 0
+	"Teodor #0" = 0
+	"Valeriu #0" = 0
+}
+
+leader_names = {
+	Basarab Brâncoveanu
+	Cantacuzino Caragea Craiovescu
+	Dracul Duca
+	Ghica Golescu
+	Ilias Ipsilanti
+	Mavrocordat Mircea Moruzi
+	Racovita
+	Sutu 
+	Tepelus Tolmay
+	Vacarescu Voda
+}
+
+ship_names = {
+	Dracul
+	Viteazul
+	Putera mari
+	Sperietoaria
+	"Frumuseatsa valurilor"
+	Posada
+	Calugareni
+	Rovine
+	Sirmium
+	"Atacul de noapte"
+	Litovoi
+}
+
+army_names = {
+	"Oastea de $PROVINCE$" 
+}

@@ -1,0 +1,111 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 140  183  154 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	battlefield_commisions
+	espionage
+	military_drill
+	glorious_arms
+	national_trade_policy
+	patron_of_art
+	shrewd_commerce_practise
+	grand_army
+	engineer_corps
+	bureaucracy
+}
+
+historical_units = {
+	chinese_longspear
+	eastern_bow
+	chinese_footsoldier
+	chinese_steppe
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	manchu_banner
+	han_banner
+	asian_musketeer
+	chinese_dragoon
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+	reformed_manchu_rifle
+}
+
+monarch_names = {
+	"Anwang #0" = 20
+	"Calwang #0" = 20
+	"Congwang #0" = 20
+	"Congwei #0" = 20
+	"Congzhi #0" = 20
+	"Dewang #0" = 20
+	"Dewei #0" = 20
+	"Deyu #0" = 20
+	"Jiping #0" = 20
+	"Jiwang #0" = 20
+	"Kaiwang #0" = 20
+	"Liwang #0" = 20
+	"Wanggui #0" = 20
+	"Wangwei #0" = 20
+	"Wangyi #0" = 20
+	"Xingwang #0" = 20
+	"Yongwang #0" = 20
+	"Zhengde #0" = 20
+	"Zhengping #0" = 20
+	"Zhengwang #0" = 20
+	"Baohu #0" = 0
+	"Chengjun #0" = 0
+	"Ganyong #0" = 0
+	"Ganzhan #0" = 0
+	"Hurong #0" = 0
+	"Liyi #0" = 0
+	"Yongyi #0" = 0
+	"Zhanhung #0" = 0
+	"Zhanxing #0" = 0
+	"Zhenghu #0" = 0
+	"Zhengrong #0" = 0
+	"Zhongcheng #0" = 0
+	"Zhongchun #0" = 0
+	"Zhongho #0" = 0
+	"Zhonghu #0" = 0
+	"Zhonghung #0" = 0
+	"Zongqian #0" = 0
+	"Zhongxian #0" = 0
+	"Zhongyong #0" = 0
+	"Zhongyu #0" = 0
+}
+
+leader_names = {
+	Biao Boqian
+	Ching
+	Enlai
+	Hanjie Hao
+	Mi
+	Quan
+	Rubo
+	Ting
+	Wei
+	Xishan
+	Yi Yu
+	Zhen
+}
+
+ship_names = {
+	Gaodi Huidi Wendi Zhaodi Zhangdi "Da Ming Guo"
+	"Zeng He" Ji'nan Nanjing Hangzhou 
+	Wuchang Fuzhou Nanchang Guilin Guangzhou
+	Guiyang Yunnan Chendo Xi'an Taiyuan "Huang He"
+	"Chang Jiang" "Xijiang" "Kung-fu tzu" Mencius
+	"Xun Zi" "Yan Hui" "Min Sun" "Ran Geng" "Ran Yong"
+	"Zi-you" "Zi-lu" "Zi-wo" "Zi-gong" "Yan Yan"
+	"Zi-xia" "Zi-zhang" "Zeng Shen" "Dantai Mieming"
+	"Fu Buji" "Yuan Xian" "Gungye Chang" "Nangong Guo"
+	"Gongxi Ai" "Zeng Dian" "Yan Wuyao" "Shang Zhu"
+	"Gao Chai" "Qidiao Kai" "Gongbo Liao" "Sima Geng"
+	"Fan Xu" "You Ruo" "Gongxi Chi" "Wuma Shi" "Liang Zhan"
+	"Yan Xing" "Ran Ru" "Cao Xu" "Bo Qian" "Gongsun Long"
+}

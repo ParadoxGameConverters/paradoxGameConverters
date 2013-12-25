@@ -1,0 +1,135 @@
+country_decisions = {
+
+	found_hall_of_worthies = {
+		potential = {
+			tag = KOR
+			NOT = { has_country_modifier = hall_of_worthies }
+		}
+		allow = {
+			OR = {
+				advisor = philosopher
+				advisor = natural_scientist
+				advisor = theologian
+				ADM = 7
+			}
+			treasury = 50
+			officials = 3
+		}
+		effect = {
+			add_country_modifier = {
+				name = "hall_of_worthies"
+				duration = -1
+			}
+			treasury = -50
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+	introduce_hangul_writing_system = {
+		potential = {
+			tag = KOR
+			NOT = { has_country_flag = hangul_introduced }
+		}
+		allow = {
+			OR = {
+				advisor = philosopher
+				advisor = natural_scientist
+				advisor = theologian
+				ADM = 7
+			}
+			has_country_modifier = hall_of_worthies
+			treasury = 50
+			officials = 3
+		}
+		effect = {
+			add_country_modifier = {
+				name = "hangul_writing_system"
+				duration = 3650
+			}
+			set_country_flag = hangul_introduced
+			treasury = -50
+			officials = -3
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+} #End of country decisions
+
+province_decisions = {
+
+	establish_border_patrol = {
+		potential = {
+			owner = { tag = KOR }
+			has_province_flag = nomad_raids
+			any_neighbor_province = {
+				OR = {
+					owned_by = MCH
+					owned_by = MNG
+				}
+				OR = {
+					has_province_modifier = support_nomad_raids
+					has_province_modifier = allow_nomad_raids
+				}
+			}
+			NOT = { has_province_modifier = border_patrol }
+		}
+		allow = {
+			owner = {
+				OR = {
+					advisor = army_organiser
+					advisor = fortification_expert
+					MIL = 4
+				}
+				treasury = 10
+			}
+		}
+		effect = {
+			owner = {
+				treasury = -10
+			}
+			add_province_modifier = {
+				name = "border_patrol"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}		
+	}
+
+	establish_coastal_defense = {
+		potential = {
+			port = yes
+			has_province_flag = wokou_raids
+			NOT = { has_province_modifier = coastal_defense }
+		}
+		allow = {
+			owner = {
+				OR = {
+					advisor = naval_organiser
+					advisor = fortification_expert
+					MIL = 4
+				}
+				treasury = 10
+			}
+		}
+		effect = {
+			owner = {
+				treasury = -10
+			}
+			add_province_modifier = {
+				name = "coastal_defense"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+
+} #End of province decisions

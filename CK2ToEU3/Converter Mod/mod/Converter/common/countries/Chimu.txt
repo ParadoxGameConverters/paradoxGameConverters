@@ -1,0 +1,91 @@
+#Country Name: Please see filename.
+
+graphical_culture = southamericagfx
+
+color = { 39  123  126} 
+
+historical_ideas = {
+	humanist_tolerance
+	national_conscripts
+	military_drill
+	national_trade_policy
+	engineer_corps
+	national_bank
+	battlefield_commisions
+	merchant_adventures
+	cabinet
+	smithian_economics
+	espionage
+	patron_of_art
+}
+
+historical_units = {
+	south_american_spearmen
+	south_american_warfare
+	inca_mountain_warfare
+	south_american_gunpowder_warfare
+	westernized_south_american
+	peruvian_guerilla_warfare
+}
+
+monarch_names = {
+	"Anco Coyuch #0" = 20
+	"Caja Cimcim #0" = 20
+	"Chumun Caur #0" = 20
+	"Guaman Chumu #0" = 20
+	"Michan Caman #0" = 20
+	"Guari Cur #1" = 15
+	"Nancen Pico #1" = 15
+	"Tacaynamo #1" = 10
+	"Aiyotechapun #0" = 0
+	"Buvaovamu #0" = 0
+	"Caja Cápac #0" = 0
+	"Cama Bergu #0" = 0
+	"Chumtiku #0" = 0
+	"Cuyuchi #0" = 0
+	"Docoshamu #0" = 0
+	"Draytonamu #0" = 0
+	"Ehenymacu #0" = 0
+	"Felan Tamuc #0" = 0
+	"Gusmango #0" = 0
+	"Ilsayunamu #0" = 0
+	"Jotiantikaka #0" = 0
+	"Katitika #0" = 0
+	"Litun Orco #0" = 0
+	"Melantonan #0" = 0
+	"Michan Chimor #0" = 0
+	"Muhton Belan #0" = 0
+	"Nartamamu #0" = 0
+	"Nehuametepun #0" = 0
+	"Opolcynamun #0" = 0
+	"Pacatmamu #0" = 0
+	"Puznaymun #0" = 0
+	"Relyen Padnu #0" = 0
+	"Seton Apac #0" = 0
+	"Seran Tugun #0" = 0
+	"Taracun #0" = 0
+	"Troynuremo #0" = 0
+	"Urtyantemu #0" = 0
+	"Vetsalynun #0" = 0
+	"Yetuniamu #0" = 0
+	"Zergoetanu #0" = 0
+}
+leader_names = {
+	Guacricaur
+	Tacaynamo
+	Tiso
+	Nancempinco
+	Chilche
+	Maras
+	Luyes
+	Maila
+	Illa
+	Rimac
+}
+
+ship_names = {
+	Viracocha "Apo Inti" 
+	"Chiqui Illapa" Mamquilla Yakumama Mamacocha 
+	Pachakama Waca "Chan Chan" Chimor Chicama Moche 
+	Viru Sipan Huancaco
+}

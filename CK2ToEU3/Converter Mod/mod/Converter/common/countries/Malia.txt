@@ -1,0 +1,91 @@
+graphical_culture = africangfx
+
+color = { 136  142  66 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	glorious_arms
+	bureaucracy
+}
+
+historical_units = {
+	african_spearmen
+	mali_tribal_warfare
+	african_hill_warfare
+	niger_kongolese_gunpowder_warfare
+	westernized_niger_kongolese
+	african_western_franchise_warfare
+}
+
+monarch_names = {
+	"Mule #0" = 20
+	"Mamadu #1" = 40
+	"Al-Hajj #0" = 60
+	"'Ali Zalil #0" = 20
+	"Muhammad #0" = 60
+	"Da'ud #0" = 20
+	"Bakari #0" = 20
+	"'Abd al-Rahman #0" = 20
+	"Bakr #0" = 20
+	"Al-Mukhtar #0" = 20
+	"Mahmud #1" = 20
+	"Majan #0" = 0
+	"Birahim #0" = 0
+	"'Ali #0" = 0
+	"Amada Sire #0" = 0
+	"Nguia #0" = 0
+	"Hammadi #0" = 0
+	"Bubu #0" = 0
+	"Ilo #0" = 0
+	"Kanta #0" = 0
+	"Al-Mansur #0" = 0
+	"'Ammar #0" = 0
+	"Sa'ud 'Arjud #0" = 0
+	"Haddu #0" = 0
+	"Sa'id #0" = 0
+	"Dhu al-Nun #0" = 0
+	"'Abd Allah #0" = 0
+	"Nasr #0" = 0
+	"Yahya #0" = 0
+	"Sanibar #0" = 0
+	"Hammadi #0" = 0
+	"'Abbas #0" = 0
+	"Benkano #0" = 0
+	"Zenka #0" = 0
+	"Mami #0" = 0
+	"Ba-Bakribin #0" = 0
+	"'Abd al-Qadir #0" = 0
+	"Yusuf #0" = 0
+	"Santa'a #0" = 0
+	"Al-Fa' Ibrahim #0" = 0	
+	"Sandaki #0" = 0
+}
+
+leader_names = {
+	Konare
+	Deo
+	Keita
+	Traoré
+	Toure
+	Diarra
+	Moussa
+	Modibo
+	Amadou
+	Toumani
+}
+
+ship_names = {
+	Kiringa Timbuktu "Koumbi Saleh" Gao
+	Jenne "Sundiata Keita" "Kankan Musa"
+	"Kouroukan Fouga" "Wali Keita" "Quati Keita"
+	"Khalifa Keita" Sakura
+}

@@ -1,0 +1,97 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 189  115  99 }
+
+historical_ideas = {
+	church_attendance_duty
+	merchant_adventures
+	patron_of_art
+	military_drill
+	national_bank
+	national_conscripts
+	national_trade_policy
+	cabinet
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+	grand_army
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Albrecht #2" = 40
+	"Friedrich #2" = 40
+	"Günther #1" = 20
+	"August #0" = 20
+	"Christian Wilhelm #0" = 20
+	"Ernst #0" = 20
+	"Joachim Friedrich #0" = 20
+	"Johann #0" = 20
+	"Johann Albrecht #0" = 20
+	"Leopold Wilhelm #0" = 20
+	"Siegmund #0" = 20
+	"Dietrich #1" = 15
+	"Ludwig #1" = 15
+	"Otto #1" = 15
+	"Peter #1" = 15
+	"Burkhard #3" = 10
+	"Heinrich #2" = 10
+	"Konrad #2" = 10
+	"Bernhard #1" = 10
+	"Erich #1" = 10
+	"Rudolf #1" = 10
+	"Ruprecht #1" = 10
+	"Adolf #0" = 0
+	"Clemens #0" = 0
+	"Diederick #0" = 0
+	"Eberhard #0" = 0
+	"Fabian #0" = 0
+	"Gottfried #0" = 0
+	"Helmut #0" = 0
+	"Herbert #0" = 0
+	"Hermann #0" = 0
+	"Jakob #0" = 0
+	"Luitpold #0" = 0
+	"Manfred #0" = 0
+	"Markus #0" = 0
+	"Rainer #0" = 0
+	"Siegfried #0" = 0
+	"Stefan #0" = 0
+	"Viktor #0" = 0
+	"Wolfgang #0" = 0
+}
+
+leader_names = { 
+	Ahrendt Ahrenkiel Bärwald Bastel Bause Bollers
+	Burghoff Herms Meyer Schönebeck Schlehenstein Schulz 
+	Zimmerhäckel Winter Wahrenholz Wäger 
+}
+
+ship_names = {
+	"Barleber See" Friedrichstadt Buckau
+	Diesdorf Silberberg Kreuzhorst Lemsdorf
+	Olvenstedt Pechau Prester Randau Rothensee
+	Salbke Sudenburg Westerhüsen
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

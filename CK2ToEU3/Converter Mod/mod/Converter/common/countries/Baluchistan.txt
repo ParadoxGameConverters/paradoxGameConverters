@@ -1,0 +1,66 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 175  82  16 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	grand_army
+	merchant_adventures
+	national_trade_policy
+	engineer_corps
+	cabinet
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	persian_footsoldier
+	persian_cavalry_charge
+	persian_shamshir
+	qizilbash_cavalry
+	tofongchis_musketeer
+	topchis_artillery
+	afsharid_reformed
+	afsharid_reformed_infantry
+	muslim_mass_infantry
+	muslim_dragoon
+	persian_rifle
+}
+
+monarch_names = {
+	"Ahmad Shah #0" = 20
+	"Burhan Shah #0" = 30
+	"Hassan Shah #0" = 20
+	"Husain Shah #0" = 20
+	"Murtaza Shah #0" = 20
+	"Ibrahim Shah #0" = 10
+	"Bahadur Shah #0" = 10
+}
+
+leader_names = {
+	Baloch
+	Basham
+	Chakar
+	Dashti
+	Daqid
+	Iqobal
+	Nasir
+	Rais
+	Sarbaz
+	Ghazai
+}
+
+ship_names = {
+	Alia Arusa Dasht Fatimah
+	Hormuz Indus Kech Khan
+	Mashkaal Nihing Niknaz Niloufa
+	Noor Rakhshan Salima Shameena
+	Suhalia Yasmine Zahira Zhab
+}
+

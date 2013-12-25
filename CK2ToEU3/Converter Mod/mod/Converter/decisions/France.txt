@@ -1,0 +1,187 @@
+province_decisions = {
+	provincial_taxation_system = {
+		potential = {
+			owner = {
+				or = {
+					tag = FRA
+					tag = RFR
+				}
+				government_tech = 31
+			}
+			not = { has_province_modifier = the_provincial_taxation_system }
+			not = { any_neighbor_province = { has_province_modifier = the_provincial_taxation_system } }
+			not = { any_neighbor_province = { is_capital = yes } }
+		}
+		allow = {
+			owner = { 
+				NOT = { 
+					centralization_decentralization = 0 
+				}
+				officials = 1
+			}
+			has_building = treasury_office
+		}
+		effect = {
+			add_province_modifier = {
+				name = "the_provincial_taxation_system"
+				duration = -1
+			}
+			owner = {
+				officials = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	state_controlled_guild = {
+		potential = {
+			owner = {
+				or = {
+					tag = FRA
+					tag = RFR
+				}
+			}
+			not = { has_province_modifier = state_controlled_guilds }
+			not = { any_neighbor_province = { has_province_modifier = state_controlled_guilds } }
+			not = { any_neighbor_province = { is_capital = yes } }
+			has_building = workshop
+		}
+		allow = {
+			owner = { 
+				advisor = master_of_mint
+				officials = 1
+			}
+		}
+		effect = {
+			add_province_modifier = {
+				name = "state_controlled_guilds"
+				duration = -1
+			}
+			owner = {
+				officials = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+religion_decisions = {
+	enact_edict_de_nantes = {
+		potential = {
+			tag = FRA
+			NOT = { has_country_modifier = edict_de_nantes }
+			NOT = { has_country_flag = had_edict_de_nantes }
+			OR = {
+				is_religion_enabled = protestant
+				is_religion_enabled = reformed
+			}
+		}
+		allow = {
+			religion = catholic
+			dominant_religion = catholic
+			NOT = { has_country_modifier = counter_reformation } 
+			OR = {
+				num_of_religion = { religion = protestant value = 3 }
+				num_of_religion = { religion = reformed value = 3 }
+			}	
+		}
+		effect = {
+			set_country_flag = had_edict_de_nantes
+			add_country_modifier = {
+				name = "edict_de_nantes"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			modifier = {
+				factor = 0
+				idea = divine_supremacy
+			}
+			modifier = {
+				factor = 0
+				innovative_narrowminded = 3
+			}
+		}
+	}
+	revoke_edict_de_nantes = {
+		potential = {
+			has_country_modifier = edict_de_nantes
+		}
+		allow = {
+			OR = {
+				NOT = { religion = catholic }
+				AND = {
+					NOT = {  num_of_religion = { religion = protestant value = 1 } }
+					NOT = {  num_of_religion = { religion = reformed value = 1 } }
+				}
+				183 = { controlled_by = REB }
+			}	
+		}
+		effect = {
+			remove_country_modifier = edict_de_nantes
+			prestige = 0.1
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}	
+}
+
+
+country_decisions = {
+	move_the_court_to_versailles = {
+	
+		potential = {
+			tag = FRA
+			NOT = { has_country_flag = versailles_court }
+			capital = 183
+			government = monarchy
+		}
+		allow = {
+			NOT = {  centralization_decentralization = -3 }
+			government_tech = 32
+		}
+		effect = {
+			set_country_flag = versailles_court
+			aristocracy_plutocracy = -3
+			prestige = 0.33
+			183 = { base_tax = 2 }
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+
+	
+	say_the_state_is_me = {
+		potential = {
+			tag = FRA
+			government_tech = 25
+			NOT = { has_country_modifier = the_state_is_me }
+			government = monarchy
+		}
+		allow = {
+			ADM = 8
+			monthly_income = 100
+		}
+		effect = {
+			add_country_modifier = {
+				name = "the_state_is_me"
+				duration = -1
+				}
+			government = absolute_monarchy
+			centralization_decentralization = -2
+			
+			}
+		ai_will_do = {
+			factor = 1
+		}	
+	}
+	
+	
+}

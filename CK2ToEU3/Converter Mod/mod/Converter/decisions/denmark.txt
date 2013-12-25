@@ -1,0 +1,53 @@
+country_decisions = {
+	adopt_vornedskab = {
+	
+		potential = {
+			primary_culture = danish
+			OR = {
+				tag = DAN
+				tag = SCA
+			}
+			NOT = { has_country_modifier = vornedskab }
+		}
+		allow = {
+			NOT = { serfdom_freesubjects = -2 }
+			ADM = 6
+		}
+		effect = {
+			add_country_modifier = {
+				name = "vornedskab"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	sign_den_danske_lov = {
+	
+		potential = {
+			primary_culture = danish
+			OR = {
+				tag = DAN
+				tag = SCA
+			}
+			NOT = { has_country_modifier = den_danske_lov }
+		}
+		allow = {
+			government_tech = 30
+			ADM = 6
+		}
+		effect = {
+			add_country_modifier = {
+				name = "den_danske_lov"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	
+}

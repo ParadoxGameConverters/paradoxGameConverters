@@ -1,0 +1,105 @@
+#Norway 
+
+graphical_culture = latingfx
+
+color = { 117  165  188 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	national_trade_policy
+	military_drill
+	glorious_arms
+	national_bank
+	grand_army
+	cabinet
+	bill_of_rights
+	engineer_corps
+	battlefield_commisions
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Håkon #6" = 40
+	"Olav #4" = 40
+	"Erik #2" = 20
+	"Christoffer #0" = 20
+	"Magnus #7" = 10
+	"Harald #4" = 10
+	"Margaret #0" = -10
+	"Inge #2" = 5
+	"Sigurd #2" = 5
+	"Aksel #0" = 0
+	"Alf #0" = 0
+	"Anders #0" = 0
+	"Ansgard #0" = 0
+	"Arvid #0" = 0
+	"Bernt #0" = 0
+	"Birger #0" = 0
+	"Bjørn #0" = 0
+	"Daniel #0" = 0
+	"Edvard #0" = 0
+	"Eilert #0" = 0
+	"Einar #0" = 0
+	"Elias #0" = 0
+	"Esben #0" = 0
+	"Folke #0" = 0
+	"Gunnar #0" = 0
+	"Kasper #0" = 0
+	"Kennet #0" = 0
+	"Knut #0" = 0
+	"Ludvig #0" = 0
+	"Mats #0" = 0
+	"Mikael #0" = 0
+	"Njåld #0" = 0
+	"Njord #0" = 0
+	"Oddmund #0" = 0
+	"Peder #0" = 0
+	"Rikard #0" = 0
+	"Simon #0" = 0
+	"Søren #0" = 0
+	"Tollak #0" = 0
+	"Torhild #0" = 0
+}
+
+leader_names = {
+	Arnesson Amundsen 
+	Bjelke Bolt 
+	Egilsson Eriksson 
+	Haraldsson 
+	Larsson Leifsson 
+	Magnusson 
+	Nansen Norheim 
+	Olavsson 
+	Sverresson Sigurdsson 
+	Torgeirsson Torsson 
+}
+
+ship_names = {
+	Ålvik
+	Bergen
+	Engan
+	Kristiansund
+	Molde
+	Oslo
+	Roan
+	Stavanger Sula
+	Trondheim
+}

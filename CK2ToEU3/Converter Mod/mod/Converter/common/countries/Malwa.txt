@@ -1,0 +1,87 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 168  174  133 }
+
+historical_ideas = {
+	national_conscripts
+	battlefield_commisions
+	grand_army
+	glorious_arms
+	military_drill
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	smithian_economics
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	maharathan_guerilla_warfare
+	maharathan_cavalry
+	bhonsle_infantry
+	bhonsle_cavalry
+	indian_rifle
+}
+
+monarch_names = {
+	"Dilavar Khan #0" = 10
+	"Alp Khan Hushang #0" = 10
+	"Ghazni Khan #0" = 10
+	"Nasir Shah #0" = 10
+	"Salim Shah #0" = 10
+	"Baz Bahadur #0" = 10
+	"Mali Rao #0" = 10
+	"Ahalya Bai #0" = 10
+	"Mahmud Shah #0" = 20
+	"Ghiyath Shah #0" = 10
+	"Qadir Shah #0" = 10
+	"Shaja'at Khan #0" = 10
+	"Bahadur #0" = 10
+}
+
+leader_names = {
+	Rajput
+	Babber
+	Bargujars
+	Bhoja
+	Chandelas
+	Chauhan
+	Jadeja
+	Kachwaha
+	Karmavati
+	Khumba
+	Paramaras
+	Pratap
+	Rathore
+	Singh
+	Tomaras
+	Mihirbhoj
+	Mahipala
+	Nagabhatta
+	Padmini
+	Vaghela
+	Vatsraja
+}
+
+ship_names = {
+	Alia Betwa Chambal Dhasan Fatimah
+	Ghambir Jalsena "Kala Jahazi" Khan
+	"Lal Jahazi" Mahi Narmada Nausena
+	"Nav ka Yudh" Niknaz "Nila Jahazi"
+	Niloufa Sagar Salima Suhalia Shameena
+	Shipra Yasmine
+}

@@ -1,0 +1,125 @@
+#Lithuania
+
+graphical_culture = easterngfx
+
+color = { 154  69  116 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	glorious_arms
+	national_trade_policy
+	military_drill
+	cabinet
+	vetting
+	national_bank
+	grand_army
+	engineer_corps
+	battlefield_commisions
+}
+
+historical_units = {
+	bardiche_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	hungarian_hussar
+	polish_musketeer
+	polish_hussar
+	polish_tercio
+	polish_winged_hussar
+	russian_lancer
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Zygimantas #0" = 40
+	"Kazimieras #0" = 20
+	"Aleksandras #0" = 20
+	"Jonas #0 Albertas" = 20
+	"Zygimantas #0 Augustas" = 20
+	"Vytautas #0" = 20
+	"Jogaila #0" = 20
+	"Vladislovas #0" = 15
+	"Kestutis #1" = 10
+	"Algirdas #1" = 10
+	"Stanislovas #0" = 10
+	"Svitrigaila #0" = 10
+	"Mindaugas #1" = 5
+	"Albertas #0" = 0
+	"Andrius #0" = 0
+	"Antanas #0" = 0
+	"Aras #0" = 0
+	"Arturas #0" = 0
+	"Azuolas #0" = 0
+	"Bronislovas #0" = 0
+	"Darius #0" = 0
+	"Gediminas #1" = 0
+	"Giedrius #0" = 0
+	"Gintaras #0" = 0
+	"Henrikas #0" = 0
+	"Jonas #0" = 0
+	"Jonusas #0" = 0
+	"Juozapas #0" = 0
+	"Jurgis #0" = 0
+	"Kaributas #0" = 0
+	"Karolis #0" = 0
+	"Kristupas #0" = 0
+	"Leonas #0" = 0
+	"Linas #0" = 0
+	"Liudvikas #0" = 0
+	"Marijus #0" = 0
+	"Mykolas #0" = 0
+	"Paulius #0" = 0
+	"Petras #0" = 0
+	"Pranciskus #0" = 0
+	"Raimondas #0" = 0
+	"Ramunas #0" = 0
+	"Steponas #0" = 0
+	"Skirgaila #1" = 0
+	"Tomas #0" = 0
+	"Viktoras #0" = 0
+	"Vincentas #0" = 0
+	"Vilhelmas #0" = 0
+	"Vytenis #1" = 0
+}
+
+leader_names = {
+	Alseniskis Astikas
+	Chodkevicius
+	Daukantas Dauksa Denhofas
+	Giedraitis Gosevskis Gostautas
+	Kesgaila Kiska Kosakovskis Kulvietis
+	Lietuvis
+	Masalskis Mazvydas
+	Nemirovicius
+	Oginskis Ostrogiskis
+	Pacas Pociejus
+	Radvila Rapolionis Rimsa
+	Sanguska Sapiega Simonavicius Sirvydas Skorina Sluska Sosnovskis Svyriskis
+	Tiskevicius
+	Valancius Valavicius Visniovieckis
+	Zabiela
+}
+
+ship_names = {
+	Alytus
+	Birzai
+	Druskininkai
+	Gardinas
+	Jonava
+	Kaunas Kretinga Kreva
+	Lazdijai
+	Naugardukas
+	Palanga
+	Raseiniai
+	Siauliai Sventoji
+	Taurage Telsiai Trakai
+	Utena
+	Vilkmerge
+}

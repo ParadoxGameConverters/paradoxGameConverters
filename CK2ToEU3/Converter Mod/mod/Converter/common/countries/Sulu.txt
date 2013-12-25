@@ -1,0 +1,75 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 89  164  144 }
+
+historical_ideas = {
+	merchant_adventures
+	excellent_shipwrights
+	shrewd_commerce_practise
+	superior_seamanship
+	national_conscripts
+	national_trade_policy
+	sea_hawks
+	naval_fighting_instruction
+	military_drill
+	naval_glory
+	espionage
+	grand_navy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Sharif ul Hashim #0" = 20
+	"Kamal ud Din #0" = 20
+	"Sharif Sayyid Ala ud Din #0" = 20
+	"Amirul Umara #0" = 20
+	"Muizz ul Mutawadiin #0" = 20
+	"Batarah Shah Tengah #0" = 20
+	"Muwallit Wasit #0" = 20
+	"Muhammad Alimuddin #0" = 20
+	"Muhammad al Halim #0" = 20
+	"Muizz ul Din #0" = 20
+	"Nasir ud Din #0" = 10
+	"Azimuddin #0" = 10
+	"Salah ud Din Bakhtiyar #0" = 10
+	"Shihab ud Din #0" = 10
+	"Mustafa Shafi #0" = 10
+	"Muhammad Badaruddin #0" = 10
+	"Muizz ud Din Bantilan #0" = 10
+	"Muhammad Israil #0" = 10
+	"Muhammad Sharafuddin #0" = 10
+	"Aliyuddin #0" = 10
+	"Shakirullah #0" = 10
+}
+
+leader_names = {
+	Agung
+	Batara
+	Bima
+	Elok
+	Karna
+	Rimba
+	Saleh
+	Satria
+	Sentosa
+	Yuda
+}
+
+ship_names = {
+	Kulassein Pangutaran Panducan Marunggas Cap
+	Laparan Dammail Lapac Siasi Lungus Tapul 
+	Cabingaan Julu Pata Kalingalan Capual Bangalao
+	Simsa Balanguingle Bucutua Suluan
+}

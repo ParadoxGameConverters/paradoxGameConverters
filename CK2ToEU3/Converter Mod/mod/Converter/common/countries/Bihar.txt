@@ -1,0 +1,70 @@
+#Country Name: See the Name of this File.
+
+graphical_culture = indiangfx
+
+color = { 100  94  125 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	merchant_adventures
+	engineer_corps
+	espionage
+	national_trade_policy
+	bureaucracy
+	cabinet
+}
+
+historical_units = {
+	indian_footsoldier
+	rajput_hill_fighters
+	indian_arquebusier
+	mughal_musketeer
+	mughal_mansabdar
+	indian_elephant
+	indian_shock_cavalry
+	rajput_musketeer
+	reformed_mughal_musketeer
+	reformed_mughal_mansabdar
+	indian_rifle
+}
+
+monarch_names = {
+	"Malik Qaranful #0" = 20
+	"Mahmud #0" = 20
+	"Muhammad #0" = 20
+	"Husayn #0" = 20
+	"Ahmad #0" = 20
+	"Burhan #0" = 30
+	"Husain #0" = 20
+	"Murtaza #0" = 20
+	"Ibrahim #0" = 10
+	"Bahadur #0" = 10
+}
+
+leader_names = {
+	Rajabhushan
+	Naagesh
+	Meherhomji
+	Moidu
+	Nayudu
+	Naseer
+	Paramartha
+	Saklani
+	Tamragouri
+	Ghani
+}
+
+ship_names = {
+	Bagmati Budhi Devi Durga Falgu
+	Gandak Ganga Gayatri Jalsena
+	"Kali Nauk" Kosi Lakshmi "Lal Nauk"
+	"Loki Devi" "Manasa Devi" Parvati
+	Radha Ratri "Sagorer Bahini" Sarasvati
+	Shakti "Shaktir Nauk" "Shasti Ma" Sita
+	Son Trishool Uma
+}

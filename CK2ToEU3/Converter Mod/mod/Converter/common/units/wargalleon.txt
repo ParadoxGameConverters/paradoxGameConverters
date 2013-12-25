@@ -1,0 +1,6 @@
+#Wargalleon
+type = big_ship
+
+hull_size = 40
+base_cannons = 80 
+sail_speed = 4

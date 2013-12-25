@@ -1,0 +1,104 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 78  75  39 }
+
+historical_ideas = {
+	military_drill
+	national_conscripts
+	divine_supremacy
+	church_attendance_duty
+	grand_army
+	battlefield_commisions
+	glorious_arms
+	engineer_corps
+	espionage
+	national_trade_policy
+	merchant_adventures
+	shrewd_commerce_practise
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_spahi
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Jacques #1" = 40
+	"Jean #1" = 40
+	"Henri #2" = 15
+	"Charlotte #0" = -15
+	"Hugues #4" = 10
+	"Guy #1" = 10
+	"Eudes #0" = 10
+	"Philippe #0" = 10
+	"Amalric #2" = 5
+	"Pierre #1" = 5
+	"Aiolos #0" = 0
+	"Bartholomaios #0" = 0
+	"Dionysios #0" = 0
+	"Eusebios #0" = 0
+	"Gregorios #0" = 0
+	"Heliodoros #0" = 0
+	"Hermogenes #0" = 0
+	"Hieronymos #0" = 0
+	"Ioannes #0" = 0
+	"Isidoros #0" = 0
+	"Konstantinos #0" = 0
+	"Kreon #0" = 0
+	"Lavrentios #0" = 0
+	"Matthaios #0" = 0
+	"Nikolaos #0" = 0
+	"Nikomachos #0" = 0
+	"Nomiki #0" = 0
+	"Onesimos #0" = 0
+	"Phamphilos #0" = 0
+	"Pantaleon #0" = 0
+	"Paris #0" = 0
+	"Pelagios #0" = 0
+	"Serafeim #0" = 0
+	"Spyridon #0" = 0
+	"Thaddeos #0" = 0
+	"Theodoros #0" = 0
+	"Urias #0" = 0
+	"Xenocrates #0" = 0
+	"Zacharias #0" = 0
+	"Zenobios #0" = 0
+}
+
+ship_names = {
+	"Agios Georgios"
+	"Kato Yialla"
+	Lachi Leivadi Lempa 
+	Maa Maurvoll
+	Pakhyammos Pomos
+	Symvoulos
+}
+
+leader_names = { 
+	Bragadin 
+	Crispo
+	Doria	
+	Fadrigue
+	Lusignans
+	Melissinos 
+	Plethon
+	Rendis
+	Saraceno 
+	Tocco
+}

@@ -1,0 +1,525 @@
+country_decisions = {
+
+	hindustan_nation_dravidian = {
+		potential = {
+			NOT = { exists = HIN }
+			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			culture_group = dravidian
+			NOT = { technology_group = nomad_group }
+		}
+		allow = 
+		{
+			culture_group = dravidian
+			war = no
+			stability = 3
+			
+			owns = 532
+			owns = 535
+			owns = 536
+			owns = 537
+			owns = 538
+			owns = 539
+			owns = 540
+			owns = 541
+			owns = 542
+			owns = 543
+			owns = 547
+			owns = 549
+			owns = 533
+			owns = 534
+			owns = 572
+			owns = 573
+			
+			is_core = 532
+			is_core = 535
+			is_core = 536
+			is_core = 537
+			is_core = 538
+			is_core = 539
+			is_core = 540
+			is_core = 541
+			is_core = 542
+			is_core = 543
+			is_core = 547
+			is_core = 549
+			is_core = 533
+			is_core = 534
+			is_core = 572
+			is_core = 573			
+		}
+		effect = {
+			HIN = {
+				add_core = 536
+				add_core = 537
+				add_core = 538
+				add_core = 539
+				add_core = 540
+				add_core = 541
+				add_core = 533
+				add_core = 534
+				add_core = 535
+				add_core = 572
+				add_core = 573
+				add_core = 503
+				add_core = 504
+				add_core = 505
+				add_core = 518
+				add_core = 525
+				add_core = 519
+				add_core = 520
+				add_core = 512
+				add_core = 513
+				add_core = 514
+				add_core = 528
+				add_core = 517
+				add_core = 516
+				add_core = 515
+				add_core = 527
+				add_core = 532
+				add_core = 543
+				add_core = 544
+				add_core = 530
+				add_core = 529
+				add_core = 545
+				add_core = 546
+				add_core = 550
+				add_core = 526
+				add_core = 524
+				add_core = 523
+				add_core = 522
+				add_core = 521
+				add_core = 511
+				add_core = 506
+				add_core = 578
+				add_core = 507
+				add_core = 510
+				add_core = 740
+				add_core = 556
+				add_core = 555
+				add_core = 551
+				add_core = 560
+				add_core = 561
+				add_core = 564
+				add_core = 563
+				add_core = 562
+				add_core = 568
+				add_core = 558
+				add_core = 559
+				add_core = 552
+				add_core = 553
+				add_core = 548
+				add_core = 531
+				add_core = 542
+				add_core = 547
+				add_core = 549
+				add_core = 557
+				add_core = 554
+				add_core = 1248
+			}	
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			prestige = 0.05
+			change_tag = HIN
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 50
+	}
+
+	hindustan_nation_western_aryan = {
+		potential = {
+			NOT = { exists = HIN }
+			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			culture_group = western_aryan
+			NOT = { technology_group = nomad_group }
+		}
+		allow = 
+		{
+			culture_group = western_aryan
+			war = no
+			stability = 3
+
+			owns = 503
+			owns = 504
+			owns = 505
+			owns = 512
+			owns = 513
+			owns = 514
+			owns = 515
+			owns = 516
+			owns = 517
+			owns = 518
+			owns = 519
+			owns = 520
+			owns = 525
+			owns = 527
+			owns = 528
+			owns = 529
+			owns = 530
+			owns = 531
+			owns = 544
+			owns = 545
+			owns = 546
+
+			is_core = 503
+			is_core = 504
+			is_core = 505
+			is_core = 512
+			is_core = 513
+			is_core = 514
+			is_core = 515
+			is_core = 516
+			is_core = 517
+			is_core = 518
+			is_core = 519
+			is_core = 520
+			is_core = 525
+			is_core = 527
+			is_core = 528
+			is_core = 529
+			is_core = 530
+			is_core = 531
+			is_core = 544
+			is_core = 545
+			is_core = 546
+		}
+		effect = {
+			HIN = {
+				add_core = 536
+				add_core = 537
+				add_core = 538
+				add_core = 539
+				add_core = 540
+				add_core = 541
+				add_core = 533
+				add_core = 534
+				add_core = 535
+				add_core = 572
+				add_core = 573
+				add_core = 503
+				add_core = 504
+				add_core = 505
+				add_core = 518
+				add_core = 525
+				add_core = 519
+				add_core = 520
+				add_core = 512
+				add_core = 513
+				add_core = 514
+				add_core = 528
+				add_core = 517
+				add_core = 516
+				add_core = 515
+				add_core = 527
+				add_core = 532
+				add_core = 543
+				add_core = 544
+				add_core = 530
+				add_core = 529
+				add_core = 545
+				add_core = 546
+				add_core = 550
+				add_core = 526
+				add_core = 524
+				add_core = 523
+				add_core = 522
+				add_core = 521
+				add_core = 511
+				add_core = 506
+				add_core = 578
+				add_core = 507
+				add_core = 510
+				add_core = 740
+				add_core = 556
+				add_core = 555
+				add_core = 551
+				add_core = 560
+				add_core = 561
+				add_core = 564
+				add_core = 563
+				add_core = 562
+				add_core = 568
+				add_core = 558
+				add_core = 559
+				add_core = 552
+				add_core = 553
+				add_core = 548
+				add_core = 531
+				add_core = 542
+				add_core = 547
+				add_core = 549
+				add_core = 557
+				add_core = 554
+				add_core = 1248
+			}	
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			prestige = 0.05
+			change_tag = HIN
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 50
+	}
+
+	hindustan_nation_hindusthani = {
+		potential = {
+			NOT = { exists = HIN }
+			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			culture_group = hindusthani
+			NOT = { technology_group = nomad_group }
+		}
+		allow = 
+		{
+			culture_group = hindusthani
+			war = no
+			stability = 3
+
+			owns = 506
+			owns = 507
+			owns = 510
+			owns = 511
+			owns = 521
+			owns = 522
+			owns = 523
+			owns = 524
+			owns = 526
+			owns = 550
+			owns = 551
+			owns = 555
+			owns = 556
+			owns = 578
+			owns = 740
+
+			is_core = 506
+			is_core = 507
+			is_core = 510
+			is_core = 511
+			is_core = 521
+			is_core = 522
+			is_core = 523
+			is_core = 524
+			is_core = 526
+			is_core = 550
+			is_core = 551
+			is_core = 555
+			is_core = 556
+			is_core = 578
+			is_core = 740
+		}
+		effect = {
+			HIN = {
+				add_core = 536
+				add_core = 537
+				add_core = 538
+				add_core = 539
+				add_core = 540
+				add_core = 541
+				add_core = 533
+				add_core = 534
+				add_core = 535
+				add_core = 572
+				add_core = 573
+				add_core = 503
+				add_core = 504
+				add_core = 505
+				add_core = 518
+				add_core = 525
+				add_core = 519
+				add_core = 520
+				add_core = 512
+				add_core = 513
+				add_core = 514
+				add_core = 528
+				add_core = 517
+				add_core = 516
+				add_core = 515
+				add_core = 527
+				add_core = 532
+				add_core = 543
+				add_core = 544
+				add_core = 530
+				add_core = 529
+				add_core = 545
+				add_core = 546
+				add_core = 550
+				add_core = 526
+				add_core = 524
+				add_core = 523
+				add_core = 522
+				add_core = 521
+				add_core = 511
+				add_core = 506
+				add_core = 578
+				add_core = 507
+				add_core = 510
+				add_core = 740
+				add_core = 556
+				add_core = 555
+				add_core = 551
+				add_core = 560
+				add_core = 561
+				add_core = 564
+				add_core = 563
+				add_core = 562
+				add_core = 568
+				add_core = 558
+				add_core = 559
+				add_core = 552
+				add_core = 553
+				add_core = 548
+				add_core = 531
+				add_core = 542
+				add_core = 547
+				add_core = 549
+				add_core = 557
+				add_core = 554
+				add_core = 1248
+			}	
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			prestige = 0.05
+			change_tag = HIN
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 50
+	}
+
+	hindustan_nation_eastern_aryan = {
+		potential = {
+			NOT = { exists = HIN }
+			NOT = { tag = MUG }
+			NOT = { tag = PAP }
+			NOT = { tag = HRE }
+			culture_group = eastern_aryan
+			NOT = { technology_group = nomad_group }
+		}
+		allow = 
+		{
+			culture_group = eastern_aryan
+			war = no
+			stability = 3
+
+			owns = 560
+			owns = 561
+			owns = 564
+			owns = 563
+			owns = 562
+			owns = 568
+			owns = 558
+			owns = 559
+			owns = 552
+			owns = 553
+			owns = 548
+
+			is_core = 560
+			is_core = 561
+			is_core = 564
+			is_core = 563
+			is_core = 562
+			is_core = 568
+			is_core = 558
+			is_core = 559
+			is_core = 552
+			is_core = 553
+			is_core = 548
+		}
+	  effect = {
+			HIN = {
+				add_core = 536
+				add_core = 537
+				add_core = 538
+				add_core = 539
+				add_core = 540
+				add_core = 541
+				add_core = 533
+				add_core = 534
+				add_core = 535
+				add_core = 572
+				add_core = 573
+				add_core = 503
+				add_core = 504
+				add_core = 505
+				add_core = 518
+				add_core = 525
+				add_core = 519
+				add_core = 520
+				add_core = 512
+				add_core = 513
+				add_core = 514
+				add_core = 528
+				add_core = 517
+				add_core = 516
+				add_core = 515
+				add_core = 527
+				add_core = 532
+				add_core = 543
+				add_core = 544
+				add_core = 530
+				add_core = 529
+				add_core = 545
+				add_core = 546
+				add_core = 550
+				add_core = 526
+				add_core = 524
+				add_core = 523
+				add_core = 522
+				add_core = 521
+				add_core = 511
+				add_core = 506
+				add_core = 578
+				add_core = 507
+				add_core = 510
+				add_core = 740
+				add_core = 556
+				add_core = 555
+				add_core = 551
+				add_core = 560
+				add_core = 561
+				add_core = 564
+				add_core = 563
+				add_core = 562
+				add_core = 568
+				add_core = 558
+				add_core = 559
+				add_core = 552
+				add_core = 553
+				add_core = 548
+				add_core = 531
+				add_core = 542
+				add_core = 547
+				add_core = 549
+				add_core = 557
+				add_core = 554
+				add_core = 1248
+			}	
+			random_owned = {
+				base_tax = 1
+				change_manpower = 1
+			}
+			prestige = 0.05
+			change_tag = HIN
+		}
+		ai_will_do = {
+			factor = 1
+		}
+		ai_importance = 50
+	}
+
+}

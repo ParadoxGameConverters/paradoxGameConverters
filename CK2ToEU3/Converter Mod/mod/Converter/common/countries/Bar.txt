@@ -1,0 +1,103 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 168  40  110 }
+
+historical_ideas = {
+	national_conscripts
+	merchant_adventures
+	patron_of_art
+	shrewd_commerce_practise
+	military_drill
+	national_bank
+	cabinet
+	smithian_economics
+	bureaucracy
+	scientific_revolution
+	engineer_corps
+	glorious_arms
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	prussian_uhlan
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Robert #1" = 55
+	"Edward #2" = 50
+	"René #0" = 35
+	"Louis #0" = 30
+	"Henri #4" = 20
+	"Frederick #3" = 10
+	"Thierry #1" = 10
+	"Sophie #1" = -10
+	"Theodoric #2" = 10
+	"Reginald #2" = 10
+	"Theobald #2" = 10
+	"Nicholas #0" = 10
+	"François #0" = 10
+	"Philippe #0" = 10
+	"Charles #0" = 10
+	"Jean #0" = 10
+	"Antoine #0" = 10
+	"Nicolas #0" = 10
+	"Isabelle #0" = -10
+	"Léopold #0" = 10
+	"Claude #0" = 5
+	"Ferdinand Philippe #0" = 5
+	"Léopold #0 Clément" = 5
+	"Rodolphe #0" = 5
+	"Charles #1 Ferdinand" = 5
+	"Charles #1 Henri" = 5
+	"François #1 Antoine" = 5
+	"Joseph #0" = 5
+	"Alfred #0" = 5
+	"Bernard #0" = 5
+	"David #0" = 5
+	"Gérard #0" = 10
+	"Jacques #0" = 10
+	"Gaston #0" = 10
+}
+
+leader_names = {
+	d'Ambleteuse d'Aulnay
+	"de Beauharnais" "de Bercy" "de Béthune" "de Boissieu" "de Bonnefoy" "de Bonneuil" "du Bosquet" "de la Bretonnière" "de Broglie"
+	"de Castaing" "de Caumartin" "de Chambly" "de Chambronne" "de Champmartin" "de Chevigny" "des Coulons" "de Crèvecoeur" "de Crussol"
+	"de Dampierre" Desgouttes Duquesne
+	"des Ecures" d'Entraigues d'Estrées
+	"du Fournay"
+	"de Galard"
+	"des Herbiers"
+	"de La Barthe" "de La Ferrandie" "de La Galissonière" "de La Mothe" "de La Motte d'Airan" "de La Porte" "Le Tellier" "de Lhéry" "de Luynes"
+	"de Marguerye" "de Maurepas"
+	"de Neufchâtel"
+	"d'Ornano"
+	"de Pellefort"
+	"de Richemont" "de Rochechouart" "de Rochemaure" "de Rieu"
+	"de Saint Chamond" "de Saint Esprit" "de Saint Germain" "de Saint Omer" "de Siorac"
+	"de Tocqueville" "de la Tour d'Auvergne" "de Tréville"
+	"d'Usson"
+	"du Valentinois" "de Vergennes" "de Vibien" "de Vigny" "de Villeneuve"
+}
+
+ship_names = {
+	"Emperor Lothar" "Lotharingen"
+	"Rene II Lothringen" Barrois Metz
+	Toul Verdun Warding Skirmjan
+	Bera Scoc Sekjan
+}

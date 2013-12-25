@@ -1,0 +1,87 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 59  158  125 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms 
+	grand_army
+	military_drill
+	battlefield_commisions 
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	merchant_adventures
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	ottoman_yaya
+	druzhina_cavalry
+	muscovite_musketeer
+	muscovite_soldaty
+	muscovite_cossack
+	tartar_cossack
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Hajji #0" = 20
+	"Haidar #0" = 10
+	"Nûr Daulat #0" = 10
+	"Manglî #0" = 20
+	"Muhammad #0" = 40
+	"Ghazi #0" = 30
+	"Sa'adet #0" = 30
+	"Islam #0" = 30
+	"Sahib #0" = 20
+	"Devlet #0" = 30
+	"Qaplan #0" = 20
+	"Feth #0" = 20
+	"Toqtamish #0" = 10
+	"Selamet #0" = 20
+	"Janbeg #0" = 10
+	"Inayet #0" = 10
+	"Bajadur #0" = 20
+	"Adil #0" = 10
+	"Selim #0" = 30
+	"Murad #0" = 10
+	"Safa #0" = 10
+	"Salîm #0" = 10
+	"Qaplan #0" = 20
+	"Jâni Beg #0" = 20
+	"Qara Devlet #0" = 10
+	"Arslan #0" = 10
+	"Halim #0" = 10
+	"Qirim #0" = 10
+	"Shahin #0" = 10
+}
+
+leader_names = { 
+	Altan Asanin Bekmambet
+	Ziyaeddin Sarigöl
+	Bektöre Celebicihan 
+	Cobanzade Dägci Gaspirali
+	Giraybay
+	Hablemitoglu Hilmi Inalcik 
+	Ipci Kirimal Seydahmet Ihsan Kubay
+	Qirimoglu Mamut Mansiz
+	Mehdi Neyazi Ortayli Semizade
+	Soysal Zihni Tarhan Fazil
+	Uralgiray Kosay Agah Mangitli
+	Tögay Kemal
+}
+
+ship_names = {
+	Bakhchisaray "Çürük Suv" "Chufut Kale"
+	Hansaray "Haci Giray" "Meli I Giray" 
+	"Zincilri Medrese" Kyrym  "Qirq Yer"
+	"Cufut Qale" "Chingiz Khan"
+}

@@ -1,0 +1,118 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 165  89  27 }
+
+historical_ideas = {
+	merchant_adventures
+	excellent_shipwrights
+	military_drill
+	national_trade_policy
+	superior_seamanship
+	quest_for_the_new_world
+	colonial_ventures
+	smithian_economics
+	ecumenism
+	scientific_revolution
+	national_conscripts
+	grand_army
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_cuirassier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Hendrik Casimir #0" = 40
+	"Willem #4" = 20
+	"Hendrik #2" = 20
+	"Albrecht #1" = 20
+	"Ernst Casimir #0" = 20
+	"Johan Willem #0" = 20
+	"Joris #0" = 20
+	"Willem Frederik #0" = 20
+	"Willem Lodewijk #0" = 20
+	"Willem Joris #0" = 15
+	"Johan Ernst #0" = 10
+	"Maurits #0" = 10
+	"Floris #4" = 5
+	"Koenraad #1" = 5
+	"Anne #0" = 0
+	"Brunhard #0" = 0
+	"Eilert #0" = 0
+	"Enhard #0" = 0
+	"Fedde #0" = 0
+	"Fokke #0" = 0
+	"Friso #0" = 0
+	"Geldulf #0" = 0
+	"Gerrit #0" = 0
+	"Gerulf #0" = 0
+	"Kai #0" = 0
+	"Klaes #0" = 0
+	"Liudgod #0" = 0
+	"Lubbert #0" = 0
+	"Menfrid #0" = 0
+	"Popetet #0" = 0
+	"Raeddeg #0" = 0
+	"Reginhard #0" = 0
+	"Sibraht #0" = 0
+	"Siemen #0" = 0
+	"Sikke #0" = 0
+	"Sjoerd #0" = 0
+	"Tado #0" = 0
+	"Thiadulf #0" = 0
+	"Wiebe #0" = 0
+	"Wilbrand #0" = 0
+}
+
+leader_names = {
+	Banda Barents Bergsma Bonga
+	Donia Dykstra 
+	Eelsma Elsinga
+	Friso
+	Halbertsma
+	Galama Gauma 
+	Japisk Jongstra Jousma
+	Kamminga Kamstra Kiestra Kooistra
+	Martena
+	Riemersma Ripperda Roorda
+	Saakma Sems "Van Schellinkhout" Stellingwerf Stiensma Stijl Sytstra
+	Tjerkstra
+	"Van Uylenburgh"
+	"De Vries"
+	Wynja
+}
+
+ship_names = {
+	Bernlef Boalsert
+	Damwâld "De Swarte Heap" Dokkum Drylts
+	Frede Frjentsjer Frijheid "Frisia Magna" Fryslân "Fryslân Boppe"
+	"Grut Fryslân" "Grutte Pier"
+	Harns Heitelân Hylpen
+	"It Beaken" "It Frouke" 
+	"Kening Poppo" "Kening Redbad" Kriich
+	Lauwers "Leaver dea as slaaf" Ljouwert
+	"Pier Gerlofs Donia" 
+	Sleat Snits Starum Sudersee 
+	Thiadsvind
+	"Wapen fan Fryslân" Warkum
+}
+army_names = {
+	"Leger van $PROVINCE$"  }
+
+fleet_names = {  "Vloot van $PROVINCE$" 
+	 }

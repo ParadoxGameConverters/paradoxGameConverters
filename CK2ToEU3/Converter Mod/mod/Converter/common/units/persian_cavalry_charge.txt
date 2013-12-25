@@ -1,0 +1,12 @@
+# Persian Cavalry Charge
+
+type = cavalry
+unit_type = muslim
+
+maneuver = 2
+offensive_morale = 2
+defensive_morale = 1
+offensive_fire = 0
+defensive_fire = 0
+offensive_shock = 2
+defensive_shock = 1

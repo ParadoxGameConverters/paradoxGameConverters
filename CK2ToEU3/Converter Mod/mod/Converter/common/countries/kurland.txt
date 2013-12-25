@@ -1,0 +1,113 @@
+#Kurland
+
+graphical_culture = latingfx
+
+color = { 99  137  153 }
+
+historical_ideas = {
+	merchant_adventures
+	shrewd_commerce_practise
+	national_conscripts
+	glorious_arms
+	national_trade_policy
+	military_drill
+	cabinet
+	national_bank
+	grand_army
+	engineer_corps
+	battlefield_commisions
+	espionage
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	dutch_maurician
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_frederickian
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Ernst Johann #0" = 20
+	"Ferdinand #0" = 20
+	"Friedrich #0" = 20
+	"Friedrich Casimir #0" = 20
+	"Friedrich Wilhelm #0" = 20
+	"Gotthard #0" = 20
+	"Jakob #0" = 20
+	"Karl #0" = 20
+	"Peter #0" = 20
+	"Johann #0" = 15
+	"Karl Ernst #0" = 15
+	"Ladislas Friedrich #0" = 15
+	"Alexander #0" = 10
+	"Karl Jakob #0" = 10
+	"Leopold Karl #0" = 10
+	"Adolf #0" = 0
+	"Alfred #0" = 0
+	"Benedikt #0" = 0
+	"Denis #0" = 0
+	"Diederick #0" = 0
+	"Erwin #0" = 0
+	"Franz #0" = 0
+	"Gebhard #0" = 0
+	"Heinrich #0" = 0
+	"Joachim #0" = 0
+	"Kaspar #0" = 0
+	"Kurt #0" = 0
+	"Leo #0" = 0
+	"Ludwig #0" = 0
+	"Manfred #0" = 0
+	"Moritz #0" = 0
+	"Nikolaus #0" = 0
+	"Oskar #0" = 0
+	"Otto #0" = 0
+	"Philipp #0" = 0
+	"Reiner #0" = 0
+	"Rupprecht #0" = 0
+	"Siegmund #0" = 0
+	"Urs #0" = 0
+	"Werner #0" = 0
+}
+
+leader_names = {
+        "von Altenbockum" Ascheberg
+        "von Bach" Behr Bilderling Blomberg "von Boetticher" Borch Brincken  Brüggen Buchholtz
+        Derschau Drachenfels Düsterlohe
+        Engelhardt
+        Fircks Fölkersam Funck
+        Grotthuss
+        Haaren Hahn Heyking "von Hoerner" Howen
+        Kleist Klopmann Komorowski Koskull
+        Lambsdorff "von der Launitz" "von Lysander"
+        Mirbach
+        Nettelhorst Nolcken
+        Oelsen Offenberg Osten-Sacken
+        Pahlen
+        Raczynski Recke Ropp Rosenberg "von Rummel"
+        Schlippenbach "von Schroeders" Seefeld Stackelberg Stromberg
+        Taube "von Timroth"
+}
+
+ship_names = {
+	Blumentopf Dame "Das Wappen der Herzogin von Kurland" "Drei Heringe"
+	Hoffnung Krokodil "Lynn kurländische Möwe" Düna Aa Bruno Windau Mitau
+	Goldingen Seeburg Hasenpoth Tukums "von Grüningen" "von Stierland"
+	"von Sangershausen" "von Hornhausen" "von Breithausen" "von Mandern"
+	"von Lutterberg" "von Nortecken" "von Rassburg" "von Feuchtwangen"
+	"von Endorp" "Herzogenstein" "von Hohembach" "von dinkelaghe" "von Rogga"
+	"von Jocke" "Johannes Ungenade" "Reimar Hane" "von Monheim" "von Dreileben"
+	"von Hercke" "von Vietinghof" "von Vrymersheim" "von Eltz" "von Bürggeneye"
+	"Diderick Tork" "von Spanheim" "von Rutenberg" "Franco Kerskorff"
+	"von Bockenvorde" "von Overbergen" "von Mengede" "von Herse" "von der Borch"
+	"von Loringhofe" "von Plettenberg" "von der Recke" "von Galen" "von Fürstenberg"
+}

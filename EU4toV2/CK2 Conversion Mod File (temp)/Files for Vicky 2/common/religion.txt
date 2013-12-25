@@ -1,0 +1,47 @@
+# This is the file that contains all of the religions that are added through the use of the CK2 converter
+
+pagan = {
+	west african = {
+		icon = 15
+		color = { 91 49 13 }
+		}
+	
+	romuvan = {
+		icon = 16
+		color = { 0.75 0.5 0.35 }
+		}
+	suomenusko = {
+		icon = 17
+		color = { 0.65 0.65 0.1 }
+		}
+	slavic = {
+		icon = 18
+		color = { 0.85 0.73 0.4 }
+		}
+	norse = {
+		icon = 19
+		color = { 0.75 0.75 0.75 }
+		}
+	tengri = {
+		icon = 20
+		color = { 0.1 0.3 0.85 }
+		}
+	aztec = {
+		icon = 21
+		color = { 0.95 0.3 0.3 }
+		}
+	inca = {
+		icon = 21
+		color = { 0.45 0.3 0.1 }
+		}
+	hellenic = {
+		icon = 22
+		color = { 0.6 0.1 0.1 }
+	}
+zoroastrian = {
+	zoroastrian = {
+		icon = 23
+		color = { 0.5 0.7 0.2 }
+	}
+}
+		

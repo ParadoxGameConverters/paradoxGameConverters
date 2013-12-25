@@ -1,0 +1,105 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 146  108  146 }
+
+historical_ideas = {
+	national_conscripts
+	patron_of_art
+	shrewd_commerce_practise
+	merchant_adventures
+	national_trade_policy
+	national_bank
+	cabinet
+	engineer_corps
+	scientific_revolution
+	military_drill
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	spanish_tercio
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Francesco #0" = 40
+	"Gian Galeazzo #0" = 40
+	"Filippo Maria #0" = 20
+	"Galeazzo Maria #0" = 20
+	"Giancarlo #0" = 20
+	"Giovanni Maria #0" = 20
+	"Lodovico Maria #0" = 20
+	"Massimiliano #0" = 20
+	"Ermes #0" = 15
+	"Azzone #1" = 10
+	"Ascanio Maria #0" = 10
+	"Carlo #0" = 10
+	"Ottaviano #0" = 10
+	"Rodolfo #0" = 10
+	"Sforza Maria #0" = 10
+	"Galeazzo #2" = 5
+	"Matteo #2" = 5
+	"Guido #1" = 5
+	"Luchino #1" = 5
+	"Achille #0" = 0
+	"Benedetto #0" = 0
+	"Bonifacio #0" = 0
+	"Camillo #0" = 0
+	"Claudio #0" = 0
+	"Demetrio #0" = 0
+	"Emanuele #0" = 0
+	"Fabrizio #0" = 0
+	"Felice #0" = 0
+	"Gaetano #0" = 0
+	"Geronimo #0" = 0
+	"Jacopo #0" = 0
+	"Leonardo #0" = 0
+	"Marcello #0" = 0
+	"Niccolò #0" = 0
+	"Paolo #0" = 0
+	"Raniero #0" = 0
+	"Salvatore #0" = 0
+	"Timoteo #0" = 0
+	"Uberto #0" = 0
+	"Vittorio #0" = 0
+}
+
+leader_names = {
+        Adelasio Aldini Alessandri "Arborio Mella" "Barbiano Belgioioso" Bargnani "Bigliori di Lava" Birago Borromeo Brunetti
+	Caetani "di Campofregoso" Caracciolo Carafa "di Cardé" "del Carreto" Containi Franchi Ghislieri Gonzaga "Grimaldi di Busca" "de Guzman"
+	Lamberti "de Leiva" Luosi "Luserna Bigliori" "Luserna della Torre" Mancini "Medici di Marignano" Melzi "del Monte" Moscati
+	Odescalchi "Paleologi Montferrato" Paradisi Pico Ruga Sabbati "di Saluzzo" Savoldi "della Scalla" Serbelloni Sfondrati Sforza Sommariva Sopransi Spinola
+	Testi Tizzone Visconti
+}
+
+ship_names = {
+	Alliata "Ariberto d'Intimiano" Ansperto "Azzone Visconti"
+	Celentano "come Angilberto" Como "Corrado II" Cremona
+	"Filippo Maria" "Fiumi Lambro" "Fiumi l'Olona" "Fiume Seveso" "Francesco Sforza"
+	"Gian Galeazzo Visconti"
+	Lecco Lodi Lombardia
+	Pavia
+	"Re Alboino"
+	"San Babila" "San Bernardino alle Ossa" "San Cristoforo sul Naviglio" "San Giovanni in Conca" "San Gottardo" "San Lorenzo" "San Marco" "San Nazaro Maggiore" "San Simpliciano" "San Satiro" "Santa Maria dei Miracoli" Sant'Agostino Sant'Ambrogio Sant'Eustorgio "Santo Stefano" Sondrio
+	Terragni Teodolinda Torriani
+	Valperto Varese Virgilio
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

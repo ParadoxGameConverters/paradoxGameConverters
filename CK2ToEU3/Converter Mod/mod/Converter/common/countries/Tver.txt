@@ -1,0 +1,94 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 136  158  183 }
+
+historical_ideas = {
+	merchant_adventures
+	national_conscripts
+	shrewd_commerce_practise
+	national_trade_policy
+	quest_for_the_new_world
+	military_drill
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	national_bank
+	cabinet
+}
+
+historical_units = {
+	bardiche_infantry
+	druzhina_cavalry
+	slavic_stradioti
+	eastern_militia
+	muscovite_musketeer
+	muscovite_caracolle
+	muscovite_soldaty
+	muscovite_cossack
+	russian_petrine
+	russian_lancer
+	russian_green_coat
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Mikhail #2" = 20
+	"Aleksandr #1" = 20
+	"Boris #0" = 20
+	"Yuriy #0" = 20
+	"Yaroslav #2" = 5
+	"Dmitriy #1" = 5
+	"Ivan #1" = 5
+	"Konstantin #1" = 5
+	"Svyatoslav #1" = 5
+	"Akim #0" = 0
+	"Anastas #0" = 0
+	"Anton #0" = 0
+	"Arseniy #0" = 0
+	"Bogdan #0" = 0
+	"Daniil #0" = 0
+	"David #0" = 0
+	"Ferapont #0" = 0
+	"Fyodor #0" = 0
+	"Isaak #0" = 0
+	"Kirill #0" = 0
+	"Lavrentiy #0" = 0
+	"Lazar #0" = 0
+	"Leonti #0" = 0
+	"Luka #0" = 0
+	"Makariy #0" = 0
+	"Mefodiy #0" = 0
+	"Milan #0" = 0
+	"Mitrofan #0" = 0
+	"Nazariy #0" = 0
+	"Nestor #0" = 0
+	"Nikolai #0" = 0
+	"Nikon #0" = 0
+	"Pyotr #0" = 0
+	"Roman #0" = 0
+	"Veniamin #0" = 0
+	"Vlad #0" = 0
+	"Vsevolod #0" = 0
+	"Yaromir #0" = 0
+	"Yevgeniy #0" = 0
+	"Zinoviy #0" = 0
+}
+
+leader_names = { 
+	Dorogobushsky Kashinsky Mikulinsky Telyatevsky Kholmsky 
+	Chernyatinsky Andomsky Beloselsky Vadbolsky Dyabrinsky 
+	Kargolomsky Kemsky Sugorsky Ukhtomsky Sheleshpansky
+}
+
+ship_names = {
+	Yaroslavich Volga Tvertsa Mikhail Dmitry
+	Kashin Kholmsky Torzhok Kashin "Vyshniy Voloche"
+	Zubtsov Toropets Rzev Startsa Valdai Brosno
+}

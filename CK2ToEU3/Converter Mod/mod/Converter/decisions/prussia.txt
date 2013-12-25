@@ -1,0 +1,86 @@
+country_decisions = {
+
+	enact_prussian_military_reforms = {
+		potential = {
+			tag = PRU
+			NOT = { tag = HRE }
+			NOT = { tag = GER }
+			NOT = { has_country_modifier = prussian_military_reforms }
+		}
+		allow = {
+			MIL = 7
+			land_tech = 30
+			army_tradition = 0.5
+		}
+		effect = {
+			add_country_modifier = {
+				name = "prussian_military_reforms"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+	form_kingdom_of_prussia = {
+		potential = {
+			tag = BRA
+			NOT = { exists = PRU }
+		}
+		allow = {
+			OR = {
+				religion = protestant
+				religion = reformed
+			}
+			owns = 41			# Ostpreussen
+			OR = {
+				owns = 43		#danzig
+				owns = 48		#hinterpommern
+			}
+			DIP = 7
+			prestige = 0.2
+			war = no
+		}
+		effect = {
+			random_owned = {
+				limit = {
+					OR = {
+						culture = pommeranian
+						culture = saxon
+						culture = prussian
+					}
+				}
+				base_tax = 1
+			}
+			centralization_decentralization = -1
+			prestige = 0.05
+			primary_culture = prussian
+			change_tag = PRU
+			PRU = {
+				add_core = 41			# Ostpreussen
+				add_core = 42			# Warmia
+				add_core = 43			# Danzig
+				add_core = 40			# Memel
+				add_core = 39			# Kurland
+				add_core = 271			# Samogitia
+				random_owned = {
+					limit = { 
+						is_capital = no 
+						OR = {
+							culture = saxon
+							culture = pommeranian
+						}
+					} 
+					culture = prussian
+				}
+			}
+			capital_scope = {
+				culture = prussian
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

@@ -1,0 +1,95 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 61  136  66 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	humanist_tolerance
+	patron_of_art
+	national_bank
+	national_trade_policy
+	ecumenism
+	smithian_economics
+	scientific_revolution
+	engineer_corps
+	military_drill
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	dutch_maurician
+	swedish_galoop
+	swedish_gustavian
+	swedish_caroline
+	swedish_arme_blanche
+	prussian_frederickian
+	prussian_uhlan
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Boguslaw #9" = 100
+	"Barnim #10" = 20
+	"Ota #3" = 20
+	"Eryk #1" = 20
+	"Filip #1" = 20
+	"Franciszek #0" = 20
+	"Jan Fryderyk #0" = 20
+	"Wratislaw #5" = 20
+        "Georg #0" = 15
+	"Ulrich #0" = 15
+	"Kazimierz #5" = 10
+        "Ernest Ludwik #0" = 10
+	"Jan Ernest #0" = 10
+        "Albrecht #0" = 0
+	"Arnt #0" = 0
+	"August #0" = 0
+	"Bernhard #0" = 0
+	"Bodo #0" = 0
+	"Carl #0" = 0
+	"Emil #0" = 0
+        "Ernest #0" = 0
+	"Fritz #0" = 0
+	"Fryderyk #0" = 0
+	"Gerhard #0" = 0
+	"Gustav #0" = 0
+        "Harald #0" = 0
+	"Hendryk #0" = 0
+	"Herbert #0" = 0
+	"Hermann #0" = 0
+	"Jan #0" = 0
+	"Janusz #0" = 0
+        "Jochem #0" = 0
+	"Martin #0" = 0
+	"Maximiliam #0" = 0
+	"Paul #0" = 0
+	"Reinhold #0" = 0
+	"Richard #0" = 0
+	"Siegfried #0" = 0
+	"Walter #0" = 0
+	"Wilhelm #0" = 0
+}
+
+leader_names = {
+	"von Krockows" "von Lettows" "von Peglows"
+	"von Neustreliz" "von Prenzlau" "von Strelows"
+	"von Zitzewitzes" "von Szczecin" Witt Behm
+	Beyse Kurzmann Jürgens Stellmacher Heidmann
+	Grosch Krumtum Miercke Rähl Wessel Meuseling
+	"von Wolin" "von Wolgatz"
+}
+
+ship_names = {
+	Pommern "Herzog Kasimir" "Herzog Bogislaw"
+	"Stettin Herzog Barnim" Wismar Rostock
+	Stralsund Greifswald Demmin Anklam "Herzog Otto"
+}

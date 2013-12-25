@@ -1,0 +1,95 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 117  112  131 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	military_drill
+	battlefield_commisions
+	shrewd_commerce_practise
+	engineer_corps
+	espionage
+	national_trade_policy
+	merchant_adventures
+	bureaucracy
+	national_bank
+	cabinet
+}
+
+historical_units = {
+	bardiche_infantry
+	druzhina_cavalry
+	slavic_stradioti
+	eastern_militia
+	muscovite_musketeer
+	muscovite_caracolle
+	muscovite_soldaty
+	muscovite_cossack
+	russian_petrine
+	russian_lancer
+	russian_green_coat
+	russian_cuirassier
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	russian_mass
+}
+
+monarch_names = {
+	"Ivan #0" = 100
+	"Pavlo #0" = 40
+	"Bogdan #4" = 20
+	"Danylo #0" = 20
+	"Kyrilo #0" = 20
+	"Petro #0" = 20
+	"Pylip #0" = 20
+	"Stepan #0" = 20
+	"Yuriy #0" = 20
+	"Demyan #0" = 15
+	"Mykhaylo #0" = 15
+	"Dmytro #3" = 10
+	"Maksym #2" = 10
+	"Sava #1" = 10
+	"Vassyl #1" = 0
+	"Andriy #0" = 0
+	"Bohuslav #0" = 0
+	"Borysko #0" = 0
+	"Boyko #0" = 0
+	"Fedir #0" = 0
+	"Hedeon #0" = 0
+	"Hryhoriy #0" = 0
+	"Kristiyan #0" = 0
+	"Marko #0" = 0
+	"Matviyko #0" = 0
+	"Mecheslav #0" = 0
+	"Mykola #0" = 0
+	"Myroslav #0" = 0
+	"Nykon #0" = 0
+	"Olek #0" = 0
+	"Oleksander #0" = 0
+	"Oleksiy #0" = 0
+	"Radomyr #0" = 0
+	"Svyatoslav #0" = 0
+	"Symon #0" = 0
+	"Taras #0" = 0
+	"Volodymyr #0" = 0
+	"Yakiv #0" = 0
+	"Yevhevniy #0" = 0
+	"Yosip #0" = 0
+}
+
+leader_names = { 
+	Andrukhovych Cheremshyna Dukhnovych Holovatskyi Hutsalo 
+	Khvylovy Kobylyanska Korniychuk Kostomarov Kulish Kvitka Marinina 
+	Palahniuk Pokalchuk Shashkevych Stefanyk Stelmakh Tobilevich Vovchok 
+	Vyshnia Zabara 
+}
+
+ship_names = {
+	Dnieper "Zaporizhia Sich" Khortytsia "Zaporozhian Voisko" 
+	Orekhov Pologi Melitopol Energodar Mikhaylovka Tokmak
+	Akimivka Vesele Viliansk Guliajpole
+}

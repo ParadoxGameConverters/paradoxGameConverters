@@ -1,0 +1,80 @@
+#Country Name: Please see filename.
+
+graphical_culture = chinesegfx
+
+color = { 74  92  128 }
+
+historical_ideas = {
+	national_conscripts
+	glorious_arms
+	military_drill 
+	battlefield_commisions
+	colonial_ventures
+	grand_army
+	espionage
+	merchant_adventures
+	engineer_corps
+	national_trade_policy
+	cabinet
+	bureaucracy
+}
+
+historical_units = {
+	east_asian_spearmen
+	eastern_bow
+	asian_arquebusier
+	asian_charge_cavalry
+	asian_mass_infantry
+	asian_musketeer
+	reformed_asian_musketeer
+	reformed_asian_cavalry
+}
+
+monarch_names = {
+	"Kü Na #0" = 10
+	"Sam Fang Kaen #0" = 10
+	"Tilokaracha #0" = 10
+	"Yot Chiang Rai #0" = 10
+	"Muang Kaeo #0" = 10
+	"Ket Chettharat #0" = 10
+	"Chai #0" = 10
+	"Chiraprapha #0" = 10
+	"Setthathirat #0" = 10
+	"Thao Mae Ku #0" = 10
+	"Mekuti #0" = 10
+	"Wisutthithewi #0" = 10
+	"Ingsemang #0" = 10
+	"Chephutarai #0" = 10
+	"Mangraenara #0" = 10
+	"Ong Kham #0" = 10
+	"Chan #0" = 10
+	"Khi Hut #0" = 10
+	"Kawila #0" = 10
+	"Dharma Lanka #0" = 10
+}
+
+leader_names = {
+	Bunnag
+	Chao
+	Chalor
+	Chuan
+	Luang
+	Lui
+	Nut
+	Prem
+	Sanya
+	Sarit
+}
+
+ship_names = {
+	"Chiang Rai"
+	"Ban Muang"
+	Haripunchai
+	Loethai 
+	Mengrai
+	Nguanamthom
+	"Pu Saisongkhram"
+	Ramkhamhaeng
+	"Si Indrathit" "Sai Leu Thai" "Sai Luthai"
+	Thammarach
+}

@@ -1,0 +1,155 @@
+country_decisions = {
+	
+	benign_neglect = {
+		potential = {
+			not = { has_country_modifier = beneficial_neglect }
+			technology_group = western
+			overseas_provinces_percentage = 0.3
+		}
+		allow = {
+			not = { badboy = 0.1 }
+			idea = humanist_tolerance
+		}
+		effect = {
+			add_country_modifier = {
+				name = "beneficial_neglect"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	colonial_expansion = {
+		potential = {
+			not = { has_country_modifier = colonial_expansions }
+			technology_group = western
+			or = {
+				idea = colonial_ventures
+				idea = land_of_opportunity
+			}
+			badboy = 0.3
+		}
+		allow = {
+			adm = 6
+			number_of_colonies = 4
+		}
+		effect = {
+			add_country_modifier = {
+				name = "colonial_expansions"
+				duration = -1
+			}		
+		}
+		ai_will_do = {
+			factor = 1
+			# England
+		}
+	}
+	house_of_trade = {
+		potential = {
+			not = { has_country_modifier = the_house_of_trade }
+			technology_group = western
+			overseas_provinces_percentage = 0.3
+			not = { mercantilism_freetrade = 0 }
+		}
+		allow = {
+			idea = national_trade_policy
+			trade_efficiency = 0.5
+		}
+		effect = {
+			mercantilism_freetrade = -1
+			add_country_modifier = {
+				name = "the_house_of_trade"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+			# Spain, Portugal
+		}
+	}
+	colonial_restrictions = {
+		potential = {
+			not = { has_country_modifier = restrictions_for_colonies }
+			overseas_provinces_percentage = 0.2
+			centralization_decentralization = 2
+		}
+		allow =  {
+			adm = 7
+			stability = 2
+		}
+		effect = {
+			add_country_modifier = {
+				name = "restrictions_for_colonies"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}
+
+province_decisions = {
+	strategic_defence = {
+		potential = {
+			not = { has_province_modifier = strategic_defenses }
+			not = { any_neighbor_province = { has_province_modifier = strategic_defenses } }
+			owner = { land_tech = 16 }
+			any_neighbor_province = { native_size = 5 }
+			is_core = this
+		}
+		allow = {
+			has_building = fort1
+			owner = {
+				officials = 1
+			}
+		}
+		effect = {
+			add_province_modifier = {
+				name = "strategic_defenses"
+				duration = -1
+			}
+			owner = {
+				officials = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	penal_colony = {
+		potential = {
+			not = { has_province_modifier = penal_colonies }
+			owner = {
+				not = { has_country_flag = has_penal_colonies }
+				not = { serfdom_freesubjects = 0 }
+			}
+			is_overseas = yes
+			is_colony = yes
+			not = { base_tax = 4 }
+		}
+		allow = {
+			owner = {
+				or = {
+					adm = 7
+					advisor = colonial_governor
+				}
+				officials = 2
+			}
+		}
+		effect = {
+			owner = { 
+				set_country_flag = has_penal_colonies 
+				officials = -2
+			}
+			add_province_modifier = {
+				name = "penal_colonies"
+				duration = -1
+			}
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+}

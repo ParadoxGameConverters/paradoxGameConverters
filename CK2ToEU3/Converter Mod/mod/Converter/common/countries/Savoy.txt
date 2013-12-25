@@ -1,0 +1,114 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 235  196 231 }
+
+historical_ideas = {
+	national_conscripts
+	patron_of_art
+	shrewd_commerce_practise
+	merchant_adventures
+	national_trade_policy
+	national_bank
+	cabinet
+	military_drill
+	engineer_corps
+	scientific_revolution
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	french_caracolle
+	anglofrench_line
+	french_dragoon
+	french_bluecoat
+	french_carabinier
+	french_impulse
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Carlo #0" = 60
+	"Amedeo #7" = 40
+	"Carlo Emanuele #0" = 40
+	"Filiberto #0" = 40
+	"Vittorio Amedeo #0" = 40
+	"Filippo #1" = 20
+	"Emanuele Filiberto #0" = 20
+	"Francesco Giacinto #0" = 20
+	"Ludovico #0" = 20
+	"Antonio #0" = 15
+	"Bernardo #0" = 15
+	"Filippo Emanuel #0" = 15
+	"Giacomo Ludovico #0" = 15
+	"Pietro #2" = 10
+	"Tomasso #2" = 10
+	"Adriano #0" = 10
+	"Aimone #0" = 10
+	"Assolone #0" = 10
+	"Emanuele #0" = 10
+	"Francesco #0" = 10
+	"Giacomo #0" = 10
+	"Gian Claudio #0" = 10
+	"Gian Maria #0" = 10
+	"Giano #0" = 10
+	"Giovanni Amedeo #0" = 10
+	"Giovanni Ludovico #0" = 10
+	"Girolamo #0" = 10
+	"Janus #0" = 10
+	"Maurizio #0" = 10
+	"Umberto #3" = 5
+	"Agostino #0" = 0
+	"Bonaventura #0" = 0
+	"Edmondo #0" = 0
+	"Gennaro #0" = 0
+	"Giulio #0" = 0
+	"Lazzaro #0" = 0
+	"Lorenzo #0" = 0
+	"Nestore #0" = 0
+	"Sebastiano #0" = 0
+	"Vittorio #0" = 0
+}
+
+leader_names = {
+        Alfieri "d'Appiani d'Aragona" "Arborio Mella" Asinari "d'Attalaya"
+	Balbo Benso "Boncompagni Ludovisi" Borromeo Bosco Botta Broglia "di Busca"
+	"di Cadoval" Cafasso "Cantatore di Breo" "di Cardé" Casati Chiodo "Cisa Asinari" Cottolengo
+	"Doria di Cirié" Ferrero-Fiesco Fiesco Gaetani "Gaetani dell'Aquila" Galletti Gioberti
+	Lascaris "Luserna di Bonifacio" "Luserna di Campiglione" "Luserna di Chiaberto" "di Luserna"
+	"del Marco" "de Maretta" Melzi Micca "del Monte" d'Ottaiano
+	"di Paesana" "Paleologi Montferrato" Pallavicini "di Saluzzo" "di Savoia" Solaro
+	Taparelli "della Torre" Valdo Valfré Vico
+}
+
+ship_names = { 
+	"Adelaide di Susa" Albane Aimone "Amedeo Coda" Annecy
+	Bauges Bellevaux Biancamano Bonifacio
+	"Casa di Savoia" Chablais Chambéry Contamine-sur-Arve
+	"Dora Riparia"
+	Edoardo Entremont
+	Faucigny Filippo
+	Genevois Giacomo Jaquerio
+	Hautecombe
+	"Umberto Sabaudia" 
+	"Lac du Bourget" Leysse  
+	Maurienne  
+	Oddone 
+	"Pietro I" Piemonte "fiume Po"
+	"Sacra Sindone" "San Domenico" "San Donato" "San Paolo" "Santa Rita" "San Salvario" "Stura di Lanzo" Sangone 
+	Talloires Tamié Tommaso Tarentaise Torino
+	"Val d'Aosta" 
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

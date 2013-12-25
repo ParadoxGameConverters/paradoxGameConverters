@@ -1,0 +1,106 @@
+#Country Name: Please see filename.
+
+graphical_culture = easterngfx
+
+color = { 39  108  140 }
+
+historical_ideas = {
+	church_attendance_duty 
+	divine_supremacy
+	national_conscripts
+	deus_vult
+	military_drill
+	grand_army
+	engineer_corps
+	battlefield_commisions
+	national_trade_policy
+	glorious_arms
+	excellent_shipwrights
+	sea_hawks
+}
+
+historical_units = {
+	eastern_medieval_infantry
+	eastern_knights
+	slavic_stradioti
+	eastern_militia
+	ottoman_sekban
+	ottoman_reformed_spahi
+	ottoman_reformed_janissary
+	ottoman_toprakli_hit_and_run
+	ottoman_nizami_cedid
+	ottoman_toprakli_dragoon
+	eastern_skirmisher
+	eastern_uhlan
+	eastern_carabinier
+	ottoman_new_model
+	ottoman_lancer
+}
+
+monarch_names = {
+	"Stjepan #0" = 80
+	"Ravim #0" = 60
+	"Djuradj #1" = 50
+	"Vasilije #0" = 50
+	"Visarion #1" = 40
+	"Ivan #0" = 40
+	"Mardarije #0" = 40
+	"Sava #0" = 40
+	"Balsha #2" = 20
+	"Germanos #1" = 20
+	"Arsenios #0" = 20
+	"Benjamin #0" = 20
+	"Danilo #0" = 20
+	"Gerasim #0" = 20
+	"Makarios #0" = 20
+	"Nikanor #0" = 20
+	"Nikodemos #0" = 20
+	"Pachomios #0" = 20
+	"Pavle #0" = 20
+	"Petar #0" = 20
+	"Romil #0" = 20
+	"Vavilas #0" = 20
+	"Aleksandar #0" = 0
+	"Antonije #0" = 0
+	"Bratislav #0" = 0
+	"Darko #0" = 0
+	"Goran #0" = 0
+	"Marko #0" = 0
+	"Mateja #0" = 0
+	"Mihovil #0" = 0
+	"Miroslav #0" = 0
+	"Mladen #0" = 0
+	"Nemanja #0" = 0
+	"Nikola #0" = 0
+	"Pedrag #0" = 0
+	"Stanko #0" = 0
+	"Toma #0" = 0
+	"Vinko #0" = 0
+	"Zdravko #0" = 0
+	"Zvonimir #0" = 0
+}
+
+leader_names = { 
+	Balsic Baulica Berici Bivolici Boljevic Buca
+	Crnojevic
+	Drago
+	Grblji 
+	Komanin Kornecanin Kosaca
+	Lukovici 
+	Martinovitci
+	Njegos
+	Petrovici Pastrovici
+	Radari 
+	Srdjici Sundecic
+}
+
+ship_names = {
+  	"Balsa I"
+	Cetinje "Crna Gora"
+	Duklja
+	"Jadransko more" "Jovan Vladimir"
+	"Mihajlo I"
+	Podgorica
+	Vojislavljevic
+	Zeta
+}

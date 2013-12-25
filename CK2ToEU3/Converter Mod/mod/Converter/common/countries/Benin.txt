@@ -1,0 +1,92 @@
+#Country Name: Please see filename.
+
+graphical_culture = africangfx
+
+color = { 110  173  129 }
+
+historical_ideas = {
+	shrewd_commerce_practise
+	national_conscripts
+	merchant_adventures
+	military_drill
+	national_trade_policy
+	battlefield_commisions
+	engineer_corps
+	grand_army
+	espionage
+	cabinet
+	glorious_arms
+}
+
+historical_units = {
+	african_spearmen
+	niger_kongolese_tribal_warfare
+	niger_kongolese_forest_warfare
+	niger_kongolese_gunpowder_warfare
+	westernized_niger_kongolese
+	niger_kongolese_guerilla_warfare
+}
+
+monarch_names = {
+	"Orobiru #0" = 20
+	"Uwaifiokun #0" = 20
+	"Ewuare #0" = 20
+	"Ezoti #0" = 20
+	"Olua #0" = 20
+	"Ozolua #0" = 20
+	"Esigie #0" = 20
+	"Orhogbua #0" = 20
+	"Ehengbuda #0" = 20
+	"Ohuan #0" = 20
+	"Ahenzae #0" = 20
+	"Akengboi #0" = 20
+	"Akenkpaye #0" = 20
+	"Akengbedo #0" = 20
+	"Oreoghene #0" = 20
+	"Ewuakpe #0" = 20
+	"Ozuere #0" = 20
+	"Akenzua #0" = 20
+	"Eresonyen #0" = 20
+	"Akengbuda #0" = 20
+	"Obanosa #0" = 20
+	"Ogbebo #0" = 20
+	"Osemwede #0" = 20
+	"Alagbariye #0" = 0
+	"Okapara #0" = 0
+	"Asimini #0" = 0
+	"Edimi #0" = 0
+	"Kamba #0" = 0
+	"Kamalu #0" = 0
+	"Dappa #0" = 0
+	"Amakiri #0" = 0
+	"Appinya #0" = 0
+	"Warri #0" = 0
+	"Awusa #0" = 0
+	"Egbani #0" = 0
+	"Ogbodo #0" = 0
+	"Owagi #0" = 0
+	"Ogio #0" = 0
+	"Peresuo #0" = 0
+	"Basuo #0" = 0
+	"Mingi #0" = 0
+	"Glele #0" = 0
+}
+
+leader_names = {
+	Ahomadegbe
+	Apithy
+	Dangbo
+	Kerekou
+	Kouandete
+	Kuetey
+	Maga
+	Soglo
+	Trudo
+	Zinsou
+}
+
+ship_names = {
+	Xevioso Sogbo "Nana Buluku" "Mawu-Lisa"
+	Dan Gbadu Da Gu Ayaba Loko Sakpata Gleti
+	Zinsu Zinsi
+}

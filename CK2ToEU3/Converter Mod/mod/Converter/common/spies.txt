@@ -1,0 +1,510 @@
+# Do not change tags in here without changing every other reference to them.
+# If adding new spy actions, make sure they are uniquely named.
+
+
+#capital only ones first...
+
+fabricate_claims = {
+	cost = 100			#costs 100$ ducats  (inflation modified)
+	difficulty = 2		#2/10
+	prestige = -0.1		#lose 20 prestige if discovered..
+	scaled_badboy = 0.25	#badboy per province of target country if discovered.
+	capital = yes		#can only be done in a capital
+	ai_will_do = {
+		factor = 1
+	}
+	
+	trigger = {
+		owner = {
+			government = monarchy
+			religion_group = THIS
+			is_lesser_in_union = no
+			NOT = { num_of_unions = 1 }
+			OR = {
+				NOT = { legitimacy = 0.5 }
+				AND = {
+					regency = yes
+					NOT = { heir_claim = 33 }
+				}
+			}
+		}
+		THIS = {
+			government = monarchy
+			is_lesser_in_union = no
+		}
+	}
+
+	effect = {
+		add_casus_belli = {
+			type = cb_fabricated_claims
+			months = 12
+			target = THIS
+		}
+	}
+}
+
+spy_ring_infiltration = {
+	cost = 10			#costs 10$ ducats  (inflation modified)
+	difficulty = 2		#5/10
+	prestige = -0.01	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	capital = yes		#can only be done in a capital
+	trigger = {
+		owner = { NOT = { has_country_modifier = "spies_infiltrated" } }
+	}
+	effect = {
+		add_country_modifier = {
+			name = "spies_infiltrated"
+			duration = 180
+		}
+	}
+}
+
+incite_against_merchant = {
+	cost = 25		#costs 25$ ducats  (inflation modified)
+	difficulty = 2		#3/10 = semi-easy..
+	prestige = -0.01	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	capital = yes		#can only be done in a capital
+	trigger = {
+		owner = { NOT = { has_country_modifier = "merchants_despised" } }
+	}
+	effect = {
+		add_country_modifier = {
+			name = "merchants_despised"
+			duration = 120
+		}
+	}
+}
+
+weaken_rival_league = {
+	cost = 25		#costs 25$ ducats  (inflation modified)
+	difficulty = 3		#3/10 = semi-easy..
+	prestige = -0.01	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	capital = yes		#can only be done in a capital
+	trigger = {
+		THIS = { government = merchant_republic }
+		owner = { in_league = yes NOT = { government = merchant_republic } }
+	}
+	effect = {
+		owner = { relation = { who = league_leader value = -25 } }
+	}
+}
+
+tarnish_reputation = {
+	cost = 25			#costs 25$ ducats  (inflation modified)
+	difficulty = 3		#50/50 basically if some stuff.
+	badboy	= 0 		#no badboy increase if discovered.
+	prestige = -0.02
+	capital = yes		#can only be done in a capital
+	trigger = {
+		owner = { prestige = 0 }
+	}
+	effect = {
+		prestige = -0.1
+	}
+}
+
+infiltrate_administration = {
+	cost = 20					#costs 20$ ducats  (inflation modified)
+	difficulty = 2		#2/10
+	prestige = -0.01	#lose 1 prestige if discovered..
+	badboy	= 0 			#No badboy increase if discovered.
+	capital = yes			#can only be done in a capital
+	trigger = { 
+		remove_fow = no
+	}
+	effect = {
+		remove_fow = 36	# Remove fog of war for 36 months.
+	}
+	ai_will_do = {
+		factor = 0
+	}
+}
+
+sow_discontent = {
+	cost = 100		#costs 100$ ducats  (inflation modified)
+	difficulty = 5		#8/10
+	prestige = -0.05	#lose prestige if discovered..
+	badboy	= 0		#small badboy increase if discovered.
+	capital = yes		#can only be done in a capital
+
+	trigger = {
+		THIS = { government_tech = 6 }
+		owner = { NOT = { has_country_modifier = "discontent_sowed" } }
+	}
+
+	effect = {
+		add_country_modifier = {
+			name = "discontent_sowed"
+			duration = 365
+		}
+	}
+}
+
+sabotage_reputation = {
+	cost = 200		#costs 200$ ducats  (inflation modified)
+	difficulty = 8		#8/10
+	prestige = -0.2		#lose 20 prestige if discovered..
+	badboy	= 1 		#small badboy increase if discovered.
+	capital = yes		#can only be done in a capital
+	trigger = {
+		owner = { badboy = 0.2 }
+	}
+	effect = {
+		badboy = 1
+	}
+}
+
+counterfeit_currency = {
+	cost = 100			#costs 100$ ducats  (inflation modified)
+	difficulty = 4		#8/10
+	prestige = -0.1		#lose 20 prestige if discovered..
+	scaled_badboy = 0.05	#badboy per province of target country if discovered.
+
+	capital = yes		#can only be done in a capital
+	trigger = {
+		THIS = { government_tech = 23 }
+	}
+	effect = {
+		inflation = 1
+	}
+}
+
+assassinate_advisor = {
+	cost = 50		#costs 50$ ducats  (inflation modified)
+	difficulty = 5		#5/10
+	prestige = -0.1		#lose 10 prestige if discovered..
+	badboy	= 1 		#small badboy increase if discovered.
+	capital = yes		#can only be done in a capital
+	trigger = { 
+		owner = { has_advisor = yes }
+	}
+	effect = {
+		remove_advisor = random
+	}
+}
+
+
+# Port only ones here.
+comission_privateer = {
+	cost = 25		#costs 25$ ducats  (inflation modified)
+	difficulty = 2		#1/10
+	prestige = -0.01	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	port = yes		#can only be done in a port.
+
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			NOT = {
+				sea_zone = { 
+					NOT = { units_in_province = 1} 
+					NOT = {
+						any_neighbor_province = {
+							OR = {
+								owned_by = THIS 
+								owner = { alliance_with = THIS }
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	trigger = {
+		PIR = { naval_tech = 9 } 
+		THIS = {
+			NOT = {
+				OR = { 
+					technology_group = sub_saharan	
+					technology_group = new_world 
+				}
+			}
+		}
+		range = yes
+		NOT = { has_country_modifier = "the_anti_piracy_act" }
+	}
+
+	effect = {
+		sea_zone = { create_pirate = -1 }
+	}
+}
+
+
+# Everywhere ones here...
+
+bribe_defenders = {
+	cost = 25			#costs 25$ ducats  (inflation modified)
+	difficulty = 2		#2/10
+	badboy	= 0 		#no badboy increase if discovered.
+	trigger = {
+		has_siege = yes
+	}
+	effect = {
+		change_siege = 2
+	}
+}
+
+support_revolt = {
+	cost = 25		#costs 25$ ducats  (inflation modified)
+	difficulty = 1		#1/10 = super-easy..
+	prestige = -0.01	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			pure_revolt_risk = 1
+		}
+	}
+
+	trigger = {
+		NOT = { has_province_modifier = "foreign_support_for_rebels" }
+	}
+	effect = {
+		add_province_modifier = {
+			name = "foreign_support_for_rebels"
+			duration = 360
+		}
+		random_list = {
+			50 = {}
+			45 = { create_revolt = 1 }
+			5 = { create_revolt = 2 }
+		}
+	}
+}
+
+incite_natives = {
+	cost = 25			#costs 25$ ducats  (inflation modified)
+	difficulty = 1		#1/10
+	prestige = -0.01	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	trigger = {
+		is_colony = yes
+		native_size = 1
+	}
+	effect = {
+		create_native = 1
+	}
+}
+
+incite_troop_desertion = {
+	cost = 25		#costs 25$ ducats  (inflation modified)
+	difficulty = 2		#2/10 = easy..
+	prestige = -0.05	#lose 5 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	ai_will_do = {
+		factor = 1
+		modifier = {
+			factor = 0
+			NOT = { units_in_province = 1 }
+		}
+	}
+	trigger = {
+		NOT = { has_province_modifier = "troop_desertions" }
+	}
+	effect = {
+		add_province_modifier = {
+			name = "troop_desertions"
+			duration = 60
+		}
+	}
+}
+
+sponsor_patriots = {
+	cost = 100
+	difficulty = 3		#1/10 = super-easy..
+	prestige = -0.05	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	ai_will_do = {
+		factor = 1
+	}
+
+	trigger = {
+		can_spawn_rebels = patriot_rebels
+	}
+	effect = {
+		spawn_rebels = {
+			type = patriot_rebels
+			size = 1
+			friend = THIS
+		}
+	}
+}
+
+sponsor_nationalists = {
+	cost = 100
+	difficulty = 3		#1/10 = super-easy..
+	prestige = -0.05	#lose 1 prestige if discovered..
+	badboy	= 0 		#no badboy increase if discovered.
+	ai_will_do = {
+		factor = 1
+	}
+
+	trigger = {
+		can_spawn_rebels = nationalist_rebels
+	}
+	effect = {
+		spawn_rebels = {
+			type = nationalist_rebels
+			size = 1
+			friend = THIS
+		}
+	}
+}
+
+sponsor_pretender = {
+	cost = 100
+	difficulty = 4		#1/10 = super-easy..
+	prestige = -0.05	#lose 1 prestige if discovered..
+	badboy	= 1 		#no badboy increase if discovered.
+	ai_will_do = {
+		factor = 1
+	}
+
+	trigger = {
+		can_spawn_rebels = pretender_rebels
+		OR = {
+			NOT = { owner = { stability = 0 } }
+			owner = { regency = yes }
+		}
+	}
+	effect = {
+		spawn_rebels = {
+			type = pretender_rebels
+			size = 1
+			friend = THIS
+		}
+	}
+}
+
+sponsor_heretics = {
+	cost = 100
+	difficulty = 2		#1/10 = super-easy..
+	prestige = -0.03	#lose  prestige if discovered..
+	badboy	= 1 		#badboy increase if discovered.
+	ai_will_do = {
+		factor = 1
+	}
+
+	trigger = {
+		has_owner_religion = no
+		owner = { religion_group = THIS }
+		religion = THIS
+		
+		can_spawn_rebels = religious_rebels
+	}
+	effect = {
+		spawn_rebels = {
+			type = religious_rebels
+			size = 1
+			friend = THIS
+		}
+	}
+}
+
+
+#daimyo only missions
+daimyo_fab_claim = {
+	cost = 50		#costs 25$ ducats  (inflation modified)
+	difficulty = 3		#3/10 = semi-easy..
+	prestige = -0.05	#lose 5 prestige if discovered..
+	badboy	= 2 		#2 badboy increase if discovered.
+	daimyo = yes
+
+	trigger = {
+		THIS = { 
+		is_daimyo = yes
+		is_shogun = no
+		}
+		owner = { is_daimyo = yes }
+		#NOT = { shogun_influence = 21 } #disabled for testing
+		NOT = { is_core = THIS }
+	}
+	effect = {
+	any_country = {
+			limit = {
+				is_shogun = yes
+			}
+			relation = { who = THIS value = -50 }
+		}
+	add_core = THIS
+	THIS = { infamy = 5 }
+	}
+}
+
+shogun_fab_claim = {
+	cost = 50			#costs 25$ ducats  (inflation modified)
+	difficulty = 3		#3/10 = semi-easy..
+	prestige = -0.1		#lose 10 prestige if discovered..
+	badboy	= 3 		#3 badboy increase if discovered.
+	daimyo = yes
+
+	trigger = {
+		THIS = { 
+		is_daimyo = yes
+		is_shogun = yes
+		}
+		owner = { is_daimyo = yes }
+		#NOT = { shogun_influence = 21 } #disabled for testing
+		NOT = { is_core = THIS }
+	}
+	effect = {
+	add_core = THIS
+	THIS = { infamy = 5 }
+	add_shogun_influence = -10
+	}
+}
+
+shogun_spy_influence = {
+	cost = 45		#costs 45$ ducats  (inflation modified)
+	difficulty = 6		#hard
+	prestige = -0.02	#lose 2 prestige if discovered..
+	badboy	= 0 		#0 badboy increase if discovered.
+	capital = yes
+	daimyo = yes
+
+	trigger = {
+		THIS = { 
+		is_daimyo = yes
+		is_shogun = no
+		}
+		owner = { 
+		is_daimyo = yes
+		is_shogun = yes
+		}
+	}
+	effect = {
+		owner = { 
+			country_event = 10033
+		}
+	}
+}
+
+daimyo_shogun_relations = {
+	cost = 25		#costs 25$ ducats  (inflation modified)
+	difficulty = 2		#2/10 = easy
+	prestige = -0.01	#lose 5 prestige if discovered..
+	badboy	= 0 		#0 badboy increase if discovered.
+	capital = yes
+	daimyo = yes
+
+	trigger = {
+		THIS = { 
+		is_daimyo = yes
+		is_shogun = no
+		}
+		owner = { 
+		is_daimyo = yes
+		is_shogun = no
+		}
+	}
+	effect = {
+	owner = { 
+		country_event = 10032
+		}
+	}
+}

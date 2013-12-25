@@ -1,0 +1,12 @@
+# Asian Musketeer
+
+type = infantry
+unit_type = chinese
+
+maneuver = 1
+offensive_morale = 5
+defensive_morale = 4
+offensive_fire = 4
+defensive_fire = 3
+offensive_shock = 2
+defensive_shock = 2

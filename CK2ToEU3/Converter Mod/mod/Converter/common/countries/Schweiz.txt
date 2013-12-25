@@ -1,0 +1,97 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 153  122  108 }
+
+historical_ideas = {
+	national_conscripts
+	grand_army
+	glorious_arms
+	military_drill
+	battlefield_commisions
+	espionage
+	engineer_corps
+	national_bank
+	ecumenism
+	national_trade_policy
+	shrewd_commerce_practise
+	bureaucracy
+}
+
+historical_units = {
+	halberd_infantry
+	western_medieval_knights
+	western_men_at_arms
+	swiss_landsknechten
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Friedrich #0" = 20
+	"Otto #0" = 20
+	"Heinrich #0" = 15
+	"Werner #0" = 15
+	"Ferdinand #0" = 10
+	"Karl #0" = 10
+	"Alfred #0" = 0
+	"Benedikt #0" = 0
+	"Christoph #0" = 0
+	"Dietrich #0" = 0
+	"Engelbert #0" = 0
+	"Florian #0" = 0
+	"Gerhard #0" = 0
+	"Immanuel #0" = 0
+	"Johan #0" = 0
+	"Leonhard #0" = 0
+	"Markus #0" = 0
+	"Nikolaus #0" = 0
+	"Paul #0" = 0
+	"Ruprecht #0" = 0
+	"Stefan #0" = 0
+	"Thomas #0" = 0
+	"Ulrich #0" = 0
+	"Vinzenz #0" = 0
+	"André #0" = 0
+	"Charles #0" = 0
+	"Didier #0" = 0
+	"Emmanuel #0" = 0
+	"Frédéric #0" = 0
+	"Gérard #0" = 0
+	"Henri #0" = 0
+	"Jules #0" = 0
+	"Matthieu #0" = 0
+	"Nicolas #0" = 0
+	"Pascal #0" = 0
+	"Vincent #0" = 0
+	"Claudio #0" = 0
+	"Edmondo #0" = 0
+	"Leonardo #0" = 0
+	"Timoteo #0" = 0
+}
+
+leader_names = {
+	Aebi Amman Bischofberger Blank Blies Brugger Combe
+	Eugster Frei Frisch Gasenzer Grüneisen Heberlin
+	Helberingen Hertzler Hiltbrand Honegger Luz Miller
+	Munzinger Oberholzer Schwendimann Spörri Vogt
+	"von Baltharsar" Wächter "von Hasseln" Zumbach
+}
+
+ship_names = {
+	Uri Schwyz Unterwalden Glarus Zug
+	Lucerne Zürich Berne "Wilhelm Tell"
+	Dufour Rhein Rhöne Inn Ticino
+}
+
+army_names = {
+	"Armee von $PROVINCE$" 
+}

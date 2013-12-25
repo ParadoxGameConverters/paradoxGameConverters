@@ -1,0 +1,110 @@
+#Country Name: Please see filename.
+
+graphical_culture = latingfx
+
+color = { 128  202  129 }
+
+historical_ideas = {
+	national_conscripts
+	church_attendance_duty
+	divine_supremacy
+	merchant_adventures
+	patron_of_art
+	national_bank
+	engineer_corps
+	national_trade_policy
+	shrewd_commerce_practise
+	cabinet
+	espionage
+	bureaucracy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	western_men_at_arms
+	italian_condotta
+	austrian_tercio
+	austrian_grenzer
+	austrian_hussar
+	austrian_white_coat
+	austrian_jaeger
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+monarch_names = {
+	"Ranuccio #0" = 40
+	"Alessandro #0" = 20
+	"Antonio #0" = 20
+	"Carlo #0" = 20
+	"Ferdinando #0" = 20
+	"Filippo #0" = 20
+	"Francesco #0" = 20
+	"Odoardo #0" = 20
+	"Ottavio #0" = 20
+	"Pier Luigi #0" = 20
+	"Lodovico #0" = 15
+	"Maria Luigia #0" = -15
+	"Isabella #0" = -10
+	"Orazio #0" = 10
+	"Pietro #0" = 10
+	"Achille #0" = 0
+	"Alberto #0" = 0
+	"Benedetto #0" = 0
+	"Bernardo #0" = 0
+	"Ciro #0" = 0
+	"Claudio #0" = 0
+	"Daniele #0" = 0
+	"Demetrio #0" = 0
+	"Enrico #0" = 0
+	"Fabio #0" = 0
+	"Flavio #0" = 0
+	"Gaetano #0" = 0
+	"Graziano #0" = 0
+	"Luciano #0" = 0
+	"Manfredo #0" = 0
+	"Mario #0" = 0
+	"Modesto #0" = 0
+	"Nestore #0" = 0
+	"Ottaviano #0" = 0
+	"Prudenzio #0" = 0
+	"Roberto #0" = 0
+	"Samuele #0" = 0
+	"Sesto #0" = 0
+	"Valerio #0" = 0
+	"Vincenzo #0" = 0
+}
+
+leader_names = {
+        Anguissola Anvidi "d'Appiani d'Aragona" d'Asburgo
+	Bajardi Barattieri Bernini Bertorella Bianconese "di Borbone" Borghese
+	Cantelli "di Castagnola" Cavagnari Cavalcabò Cella Cerati Conaccia Confallonieri
+	Draghi Emanueli "di Farnese" Fumagalli Gioia Landi Lemignano Linati Lombardi
+	Manfredi Marazzani Marescalchi "Meli Lupi"
+	Paletti Pallavicini Pallieri Piatti Pontremoli Riva Rivalta "dalla Rosa" Rossi
+	Salati Sanseverino Sanvitale Schizzati Torelli Torrechiara
+	Ventura Verdi "dal Verme"
+}
+
+ship_names = { 
+	Alberi 
+	"Benedetto Antelami" "Bernabo' Visconti"
+	Calestani Carignano Casaltone Casagnola "Case Capelli" Castalletto Cavanna Certosa Cusani
+	"donna Egidia"
+	Eia 
+	"Fiumi Po" Fontanini 
+	Gaione "Ghiaiata Nuova" 
+	Montanara Molinetto
+	Panocchia Pedrignano Pilastrello Ponte Porporano 
+	Quercioli 
+	"Rolando Taverna" "Ronco Pascolo" 
+	"San Francesco del Prato" "San Lazzaro" "San Leonardo" "San Martino dei Bocci" "San Pancrazio" "San Pietro Apostolo" "San Prospero" "San Ruffino" "Santa Coce" Sant'Ulderico Sissa 
+	Valera Valserena "vescovo Càdalo" "vescovo Guiberto" Viazza Vigolante
+}
+
+army_names = {
+	"Armata di $PROVINCE$"
+}

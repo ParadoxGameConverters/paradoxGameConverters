@@ -1,0 +1,40 @@
+country_decisions = {
+
+	irish_nation = {
+		potential = {
+			NOT = { exists = IRE }
+			NOT = { tag = HRE }
+			primary_culture = irish
+		}
+		allow = 
+		{
+			owns = 372			# Ulster
+			owns = 373			# Meath
+			owns = 374			# München
+			owns = 375			# Leinster
+			owns = 376			# Connaught
+			war = no
+		}
+		effect = {
+			IRE = {
+				add_core = 372		# Ulster
+				add_core = 373		# Meath
+				add_core = 374		# Leinster
+				add_core = 375		# Munster
+				add_core = 376		# Connaught
+			}		
+			centralization_decentralization = -2
+			merchants = 1
+			random_owned = {
+				limit = { culture = irish }
+				base_tax = 1
+			}
+			prestige = 0.05
+			change_tag = IRE
+		}
+		ai_will_do = {
+			factor = 1
+		}
+	}
+	
+}

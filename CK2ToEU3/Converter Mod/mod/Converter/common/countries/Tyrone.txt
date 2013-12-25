@@ -1,0 +1,103 @@
+# Country name see file name.
+
+graphical_culture = latingfx
+
+color = { 131  101  85 }
+
+historical_ideas = {
+	excellent_shipwrights
+	bill_of_rights
+	superior_seamanship
+	merchant_adventures
+	naval_glory
+	cabinet
+	national_bank
+	espionage  
+	smithian_economics
+	scientific_revolution
+	sea_hawks
+	grand_navy
+}
+
+historical_units = {
+	western_medieval_infantry
+	western_medieval_knights
+	gaelic_galloglaigh
+	gaelic_mercenary
+	gaelic_free_shooter
+	irish_charge
+	anglofrench_line
+	british_redcoat
+	british_hussar
+	british_square
+	mixed_order_infantry
+	open_order_cavalry
+	napoleonic_square
+	napoleonic_lancers
+}
+
+leader_names = {
+	"Mac Anna" "Mac Árdghail" "Mac Artian" "Mac Cearbhaill" "Mac Dhomhnaill"
+	"Mac Lochlainn" "Mac Mathghamha" "Mac Suibhne" "Mag Aonghusa" "Mag Uidhir"
+	"Ó Banain" "Ó Baoghill" "Ó Canannain" "Ó Caoinnigh" "Ó Caiside" "Ó Ceallaigh"
+	"Ó Cleireigh" "Ó Corcráin" "Ó Cuileannáin" "Ó Cuinn" "Ó Duibheamhna"
+	"Ó Daimhín" "Ó Dochartaigh" "Ó Doibhilin" "Ó Duacháin" "Ó Faracháin"
+	"Ó fLaithbheartaigh" "Ó Flaithre" "Ó Flannagáin" "Ó hAodhagáin" "Ó hAnluain"
+	"Ó hÉignigh" "Ó hInneirghe" "Ó hÍr" "Ó Longáin" "Ó Lorcáin" "Ó Maolagáin"
+	"Ó Maoldúin" "Ó Neill" "Ó Raithbheartiagh"
+}
+
+monarch_names = {
+	"Donal #12" = 40
+	"Art #0" = 40
+	"Conn #0" = 40
+	"Einrí #0" = 40
+	"Áed #13" = 20
+	"Niall #6" = 20
+	"Brian #2" = 20
+	"Eoghan #1" = 20
+	"Séan #0" = 20
+	"Turlough #0" = 20
+	"Alaois #0" = 0
+	"Alastar #0" = 0
+	"Aonghus #0" = 0
+	"Bradáin #0" = 0
+	"Brennan #0" = 0
+	"Brónach #0" = 0
+	"Calbhach #0" = 0
+	"Caolan #0" = 0
+	"Carroll #0" = 0
+	"Ceallach #0" = 0
+	"Caerbhall #0" = 0
+	"Cian #0" = 0
+	"Conan #0" = 0
+	"Connor #0" = 0
+	"Diarmaid #0" = 0
+	"Dubghall #0" = 0
+	"Éamonn #0" = 0
+	"Fáelán #0" = 0
+	"Fearchar #0" = 0
+	"Fearghas #0" = 0
+	"Fionnlagh #0" = 0
+	"Flann #0" = 0
+	"Gallchobhair #0" = 0
+	"Gobán #0" = 0
+	"Grádaigh #0" = 0
+	"Lommán #0" = 0
+	"Maeleachlain #0" = 0
+	"Murchadha #0" = 0
+	"Naomhán #0" = 0
+	"Torin #0" = 0
+}
+
+ship_names = {
+	Aedh
+	Baedan
+	Colman Cookstown 
+	Donal
+	Eocha Eogan 
+	Fergal Fergus
+	Niall
+	Omagh
+	Strabane Suibne
+}

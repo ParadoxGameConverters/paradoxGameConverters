@@ -1,0 +1,93 @@
+#Country Name: Please seefilename.
+
+graphical_culture = africangfx
+
+color = { 81  141  85 }
+
+historical_ideas = {
+	national_conscripts
+	shrewd_commerce_practise
+	divine_supremacy
+	national_trade_policy
+	military_drill
+	engineer_corps
+	battlefield_commisions
+	merchant_adventures
+	grand_army
+	espionage
+	glorious_arms
+	cabinet
+}
+
+historical_units = {
+	african_spearmen
+	bantu_tribal_warfare
+	bantu_plains_warfare
+	bantu_gunpowder_warfare
+	westernized_bantu
+	african_western_franchise_warfare
+}
+
+
+monarch_names = {
+	"Husayn #1" = 100
+	"Muhammad #0" = 100
+	"Sulaymân #6" = 20
+	"Ahmad #0" = 60
+	"Hasan #5" = 80
+	"Sa'îd #0" = 40
+	"'Abd Allâh #0" = 80
+	"'Alî #5" = 40
+	"Ibrâhîm #0" = 40
+	"al-Fudail #0" = 20
+	"Abû Bakr #0" = 40
+	 "Malindi #0" = 20
+	"Sabo #0" = 20
+	"al-Hasan #0" = 20
+	"Munganaye #0" = 20
+	"Yûsuf #0" = 20
+	"Bwana Mkuu #0" = 20
+	"Mas'ûd #0" = 20
+	"Bwana Tamu #0" = 5  
+	"Fumo Madi #0" = 5  
+	"Makame #0" = 1  
+	"Mwinyi Ahmad #0" = 1  
+	"Sa'if #0" = 0  
+	"Nasr #0" = 0  
+	"Salih #0" = 0  
+	"Fumo Luti #0" = 0
+	"Bwana Waziri #0" = 0
+	"Bwana Shaykh #0" = 0
+	"Fumo Bakari #0" = 0
+	"Fumo Umar #0" = 0
+	"Khamis #0" = 0
+	"Rashid #0" = 0
+	"Mwinyi Hasan #0" = 0
+	"Kombo #0" = 0
+	"Ngwale #0" = 0
+	"Ngwacani #0" = 0
+	"Athmani #0" = 0
+	"'Alawi #0" = 0
+	"Twakali #0" = 0
+	"Janfar #0" = 0
+	"Muksedi #0" = 0
+}
+
+leader_names = {
+	Wakil
+	Yomba
+	Salim
+	Setia
+	Jumbe
+	Semid
+	Kawawe
+	Dato
+	Sokoine
+	Suja
+}
+
+ship_names = {
+	Mlima moto moshi homu ukungu nyota
+	jua maji mwezi mnyama samaki ndege
+	mbwa nyoka ua damu
+}

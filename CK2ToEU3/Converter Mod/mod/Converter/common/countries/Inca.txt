@@ -1,0 +1,107 @@
+#Country Name: Please see filename.
+
+graphical_culture = southamericagfx
+
+color = { 125  92  110 }
+
+historical_ideas = {
+	deus_vult
+	divine_supremacy
+	patron_of_art
+	national_conscripts
+	military_drill
+	glorious_arms
+	battlefield_commisions
+	superior_seamanship
+	merchant_adventures
+	excellent_shipwrights
+	smithian_economics
+	espionage
+}
+
+historical_units = {
+	south_american_spearmen
+	south_american_warfare
+	inca_mountain_warfare
+	south_american_gunpowder_warfare
+	westernized_south_american
+	peruvian_guerilla_warfare
+}
+
+leader_names = {
+	Anquimarca Apo Atahualpa Atoc Atoc-Suqui Auqui-Huaman
+	Canchari Chalcuchima Challco Chiaquitinta Chilche Colla-Topa Curiatao Cusi 
+	Guacra Guaritito Guaritopa
+	Huachuri Huaman Huascar Huaypalcon
+	Illaquita Inquill
+	Llicllic
+	Maila Maras Marcavilca Mayta 
+	Ninancoro
+	Ozcoc
+	Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca
+	Quilaco Quingallumbo Quintiraura Quisquis Quizo
+	Rimac Ronpa
+	Sahuaraura Sotaurco
+	Tanqui Tucuycuyche Tupac-Amaru
+	Yupanqui
+}
+
+monarch_names = {
+	"Túpac Amaru #0" = 40
+	"Atahualpa #0" = 20
+	"Huáscar #0" = 20
+	"Huayna Cápac #0" = 20
+	"Manco Cápac #1" = 20
+	"Pachacútec #0" = 20
+	"Sayri Tupac #0" = 20
+	"Titu Cusi Yupanqui #0" = 20
+	"Túpac Hualpa #0" = 20
+	"Túpac Yupanqui #0" = 20
+	"Viracocha #0" = 20
+	"Yahuar Hacuac #0" = 20
+	"Inca Roca #1" = 15
+	"Anquimarca #0" = 0
+	"Atoc Sopa #0" = 0
+	"Cayo Topa #0" = 0
+	"Coyllas #0" = 0
+	"Cusichaca #0" = 0
+	"Guaritopa #0" = 0
+	"Huachuri #0" = 0
+	"Huaypalcon #0" = 0
+	"Luyes #0" = 0
+	"Marcavilca #0" = 0
+	"Ninan Cuyuchi #0" = 0
+	"Orco Varanca #0" = 0
+	"Pascac #0" = 0
+	"Pomaguala #0" = 0
+	"Pumi Sopa #0" = 0
+	"Quispe Titu #0" = 0
+	"Ruminavi #0" = 0
+	"Sahuaraura #0" = 0
+	"Surandaman #0" = 0
+	"Taraque #0" = 0
+	"Tucuycuyche #0" = 0
+	"Usca Curiatao #0" = 0
+	"Villac Umu #0" = 0
+	"Yamqui Mayta #0" = 0
+	"Yupanqui #0" = 0
+	"Zambiza #0" = 0
+	"Zopahua #0" = 0
+}
+
+ship_names = {
+	Apo Apocatequil Ataguchu
+	"Ayar Anca" "Ayar Cachi" "Ayar Uchu"
+	Catequil Cavillace Chasca "Chasca Coyllur" Coniraya Copacati Cusco
+	Ekkeko
+	"Hanan Pacha"
+	Inti Illapa
+	Kon 
+	"Manco Capac" "Mama Ocllo" "Mama Huaco" "Mama Raua" "Mama Cura"
+	"Mama Coca" "Mama Allpa" "Mama Pacha" "Mama Quilla" "Mama Zara"
+	"Pacha Camac" Pachacuti Pariacaca Paricia
+	Supay
+	Titicaca
+	Urcaguary "Uku Pacha"
+	Viracocha
+}
