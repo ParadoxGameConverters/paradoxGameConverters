@@ -1,0 +1,613 @@
+color = { 89  164  144 }
+graphical_culture = Japanese
+
+last_election = 1933.11.11
+duration = 48
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"11th Philipine Infantry Div." "21st Philipine Infantry Div." "31st Philipine Infantry Div." "41st Philipine Infantry Div." "51st Philipine Infantry Div." "61st Philipine Infantry Div." "71st Philipine Infantry Div." "81st Philipine Infantry Div." "91st Philipine Infantry Div." "101st Philipine Infantry Div." "111th Philipine Infantry Div." 
+		"121st Philipine Infantry Div." "131st Philipine Infantry Div." "141st Philipine Infantry Div." "151st Philipine Infantry Div." "161st Philipine Infantry Div." "171st Philipine Infantry Div." "181st Philipine Infantry Div." "191st Philipine Infantry Div." "201st Philipine Infantry Div." 
+	}
+	cavalry_brigade = {
+		"1st Philipine Cavalry Div." "2nd Philipine Cavalry Div." "3rd Philipine Cavalry Div." "4th Philipine Cavalry Div." "5th Philipine Cavalry Div." "6th Philipine Cavalry Div." "7th Philipine Cavalry Div." "8th Philipine Cavalry Div." "9th Philipine Cavalry Div." "10th Philipine Cavalry Div." 
+	}
+	motorized_brigade = {
+		"1st Philipine Motorized Div." "2nd Philipine Motorized Div." "3rd Philipine Motorized Div." "4th Philipine Motorized Div." "5th Philipine Motorized Div." "6th Philipine Motorized Div." "7th Philipine Motorized Div." "8th Philipine Motorized Div." "9th Philipine Motorized Div." "10th Philipine Motorized Div." 
+	}
+	mechanized_brigade = {
+		"1st Philipine Mechanized Div." "2nd Philipine Mechanized Div." "3rd Philipine Mechanized Div." "4th Philipine Mechanized Div." "5th Philipine Mechanized Div." "6th Philipine Mechanized Div." "7th Philipine Mechanized Div." "8th Philipine Mechanized Div." "9th Philipine Mechanized Div." "10th Philipine Mechanized Div." 
+	}
+	light_armor_brigade = {
+		"1st Philipine Armoured Div." "2nd Philipine Armoured Div." "3rd Philipine Armoured Div." "4th Philipine Armoured Div." "5th Philipine Armoured Div." "6th Philipine Armoured Div." "7th Philipine Armoured Div." "8th Philipine Armoured Div." "9th Philipine Armoured Div." "10th Philipine Armoured Div." "11th Philipine Armoured Div." 
+		"12th Philipine Armoured Div." "14th Philipine Armoured Div." "15th Philipine Armoured Div." 
+	}
+	armor_brigade = {
+		"1st Philipine Armoured Div." "2nd Philipine Armoured Div." "3rd Philipine Armoured Div." "4th Philipine Armoured Div." "5th Philipine Armoured Div." "6th Philipine Armoured Div." "7th Philipine Armoured Div." "8th Philipine Armoured Div." "9th Philipine Armoured Div." "10th Philipine Armoured Div." "11th Philipine Armoured Div." 
+		"12th Philipine Armoured Div." "14th Philipine Armoured Div." "15th Philipine Armoured Div." 
+	}
+	paratrooper_brigade = {
+		"1st Philipine Paracommando 'Falcons'" "2nd Philipine Paracommando Div." "3rd Philipine Paracommando Div." "4th Philipine Paracommando Div." "5th Philipine Paracommando Div." "6th Philipine Paracommando Div." "7th Philipine Paracommando Div." "8th Philipine Paracommando Div." "9th Philipine Paracommando Div." "10th Philipine Paracommando Div." 
+	}
+	marine_brigade = {
+		"1st Philipine Marinecommando Div." "2nd Philipine Marinecommando Div." "3rd Philipine Marinecommando Div." "4th Philipine Marinecommando Div." "5th Philipine Marinecommando Div." "6th Philipine Marinecommando Div." "7th Philipine Marinecommando Div." "8th Philipine Marinecommando Div." "9th Philipine Marinecommando Div." "10th Philipine Marinecommando Div." 
+	}
+	bergsjaeger_brigade = {
+		"1st Commando Rangers Div." "2nd Commando Rangers Div." "3rd Commando Rangers Div." "4th Commando Rangers Div." "5th Commando Rangers Div." "8th Commando Rangers Div." "10th Commando Rangers Div." "11th Commando Rangers Div." "12th Commando Rangers Div." 
+	}
+	garrison_brigade = {
+		"11th Philipine Infantry Div." "21st Philipine Infantry Div." "31st Philipine Infantry Div." "41st Philipine Infantry Div." "51st Philipine Infantry Div." "61st Philipine Infantry Div." "71st Philipine Infantry Div." "81st Philipine Infantry Div." "91st Philipine Infantry Div." "101st Philipine Infantry Div." "111th Philipine Infantry Div." 
+		"121st Philipine Infantry Div." "131st Philipine Infantry Div." "141st Philipine Infantry Div." "151st Philipine Infantry Div." "161st Philipine Infantry Div." "171st Philipine Infantry Div." "181st Philipine Infantry Div." "191st Philipine Infantry Div." "201st Philipine Infantry Div." 
+	}
+	hq_brigade = {
+		"1st Phillipine Army" "2nd Phillipine Army" "3rd Phillipine Army" "4th Phillipine Army" "5th Phillipine Army" 
+	}
+	militia_brigade = {
+		"11th Special Services Division" "21st Special Services Division" "31st Special Services Division" "41st Special Services Division" "51st Special Services Division" "61st Special Services Division" "71st Special Services Division" "81st Special Services Division" "91st Special Services Division" "101st Special Services Division" "111th Special Services Division" 
+		"121st Special Services Division" "131st Special Services Division" "141st Special Services Division" "151st Special Services Division" "161st Special Services Division" "171st Special Services Division" "181st Special Services Division" "191st Special Services Division" "201st Special Services Division" "12th Special Services Division" 
+	}
+	multi_role = {
+		"1st PAF Fighter Wing" "2nd PAF Fighter Wing" "3rd PAF Fighter Wing" "4th PAF Fighter Wing" "5th PAF Fighter Wing" "6th PAF Fighter Wing" "7th PAF Fighter Wing" "8th PAF Fighter Wing" "9th PAF Fighter Wing" "10th PAF Fighter Wing" 
+	}
+	interceptor = {
+		"1st PAF Fighter Wing" "2nd PAF Fighter Wing" "3rd PAF Fighter Wing" "4th PAF Fighter Wing" "5th PAF Fighter Wing" "6th PAF Fighter Wing" "7th PAF Fighter Wing" "8th PAF Fighter Wing" "9th PAF Fighter Wing" "10th PAF Fighter Wing" 
+	}
+	strategic_bomber = {
+		"1st PAF Strategic Wing" "2nd PAF Strategic Wing" "3rd PAF Strategic Wing" "4th PAF Strategic Wing" "5th PAF Strategic Wing" "6th PAF Strategic Wing" "7th PAF Strategic Wing" "8th PAF Strategic Wing" "9th PAF Strategic Wing" "10th PAF Strategic Wing" 
+	}
+	tactical_bomber = {
+		"1st PAF Tactical Wing" "2nd PAF Tactical Wing" "3rd PAF Tactical Wing" "4th PAF Tactical Wing" "5th PAF Tactical Wing" "6th PAF Tactical Wing" "7th PAF Tactical Wing" "8th PAF Tactical Wing" "9th PAF Tactical Wing" "10th PAF Tactical Wing" 
+	}
+	naval_bomber = {
+		"1st PAF Navy Bomber Wing" "2nd PAF Navy Bomber Wing" "3rd PAF Navy Bomber Wing" "4th PAF Navy Bomber Wing" "5th PAF Navy Bomber Wing" "6th PAF Navy Bomber Wing" "7th PAF Navy Bomber Wing" "8th PAF Navy Bomber Wing" "9th PAF Navy Bomber Wing" "10th PAF Navy Bomber Wing" "1st PAF Torpedo Wing" 
+		"2nd PAF Torpedo Wing" "3rd PAF Torpedo Wing" "4th PAF Torpedo Wing" "5th PAF Torpedo Wing" "6th PAF Torpedo Wing" "7th PAF Torpedo Wing" "8th PAF Torpedo Wing" "9th PAF Torpedo Wing" "10th PAF Torpedo Wing" 
+	}
+	cas = {
+		"1st PAF Dive Bomb Wing" "2nd PAF Dive Bomb Wing" "3rd PAF Dive Bomb Wing" "4th PAF Dive Bomb Wing" "5th PAF Dive Bomb Wing" "6th PAF Dive Bomb Wing" "7th PAF Dive Bomb Wing" "8th PAF Dive Bomb Wing" "9th PAF Dive Bomb Wing" "10th PAF Dive Bomb Wing" 
+	}
+	transport_plane = {
+		"1st PAF Army Transport Wing" "2nd PAF Army Transport Wing" "3rd PAF Army Transport Wing" "4th PAF Army Transport Wing" "5th PAF Army Transport Wing" 
+	}
+	battleship = {
+		"PRNS Manila" "PRNS Luzon" "PRNS Pilipinas Republic" "PRNS General Manchatas" "PRNS Cabanatuan" "PRNS San Pablo" "PRNS Batangas" "PRNS Bacolod" "PRNS Cadiz" "PRNS San Carlos" "PRNS Davao" 
+			}
+	destroyer = {
+		"Flotille Tuguegarao" "Flotille Dagupan" "Flotille San Fernando" "Flotille Tarlac" "Flotille Angeles" "Flotille Olongapo" "Flotille Boac" "Flotille Mindora" "Flotille Legazpi" "Flotille Naga" "Flotille Surigao" 
+		"Flotille Butuan" "Flotille Cebu" "Flotille Zamboanga" "Flotille Isabela" 
+	}
+	submarine = {
+		"1st Submarine Flotille" "2nd Submarine Flotille" "3rd Submarine Flotille" "4th Submarine Flotille" "5th Submarine Flotille" "6th Submarine Flotille" "7th Submarine Flotille" "8th Submarine Flotille" "9th Submarine Flotille" "10th Submarine Flotille" "11th Submarine Flotille" 
+		"12th Submarine Flotille" "13th Submarine Flotille" "14th Submarine Flotille" "15th Submarine Flotille" 
+	}
+	transport_ship = {
+		"1st Army Transport Flotille" "2nd Army Transport Flotille" "3rd Army Transport Flotille" "4th Army Transport Flotille" "5th Army Transport Flotille" "6th Army Transport Flotille" "7th Army Transport Flotille" "8th Army Transport Flotille" "9th Army Transport Flotille" "10th Army Transport Flotille" "11th Army Transport Flotille" 
+		"12th Army Transport Flotille" "13th Army Transport Flotille" "14th Army Transport Flotille" "15th Army Transport Flotille" 
+	}
+
+}
+
+ministers = {
+	50001 = {
+		name = "Manuel Quezon"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50001
+		head_of_state = die_hard_reformer
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1936.1.1
+	}
+	50002 = {
+		name = "Sergio Osmeña"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50002
+		head_of_government = silent_workhorse
+		head_of_state = stern_imperialist
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	50003 = {
+		name = "Quintin Paredes"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M50003
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	50004 = {
+		name = "Elpidio Quirino"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50004
+		armament_minister = laissez_faires_capitalist
+		head_of_state = pig_headed_isolationist
+		head_of_government = silent_workhorse
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	50005 = {
+		name = "Jose Yulo"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50005
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	50006 = {
+		name = "Benito N. Ebuen"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50006
+		minister_of_intelligence = research_specialist
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	50007 = {
+		name = "Paulino Santos"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50007
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	50008 = {
+		name = "Leoncio S. Tan"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50008
+		chief_of_army = guns_and_butter_doctrine
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	50009 = {
+		name = "Santiago Nuval"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	50010 = {
+		name = "Pelagio Cruz"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	50032 = {
+		name = "Emilio Aguinaldo"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M50032
+		head_of_state = popular_figurehead
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	50033 = {
+		name = "Juan Sumulong"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M50033
+		head_of_state = barking_buffoon
+		head_of_government = happy_amateur
+		foreign_minister = biased_intellectual
+		start_date = 1941.1.1
+	}
+	50035 = {
+		name = "Manuel Roxas"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50035
+		head_of_state = resigned_generalissimo
+		armament_minister = air_to_sea_proponent
+		head_of_government = old_general
+		start_date = 1945.1.1
+	}
+	50037 = {
+		name = "Rafel Liwanag"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M50037
+		head_of_government = political_protege
+		armament_minister = submarine_proponent
+		start_date = 1936.1.1
+	}
+	50040 = {
+		name = "Joaquin Elizalde"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50040
+		foreign_minister = great_compromiser
+		start_date = 1938.1.1
+	}
+	50042 = {
+		name = "Manuel Quadrino"
+		ideology = social_liberal
+		loyalty = 0.25
+		picture = M50042
+		foreign_minister = biased_intellectual
+		armament_minister = corrupt_kleptocrat
+		start_date = 1940.1.1
+	}
+	50045 = {
+		name = "Ferdinand Marcos"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M50013
+		foreign_minister = iron_fisted_brute
+		start_date = 1945.1.1
+	}
+	50047 = {
+		name = "Antonio de las Alas"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M50014
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	50051 = {
+		name = "Serafin Fausto"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M50051
+		armament_minister = administrative_genius
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	50052 = {
+		name = "Carlos P. Garcia"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M50052
+		armament_minister = battle_fleet_proponent
+		start_date = 1941.1.1
+	}
+	50053 = {
+		name = "José G. David"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M50053
+		armament_minister = resource_industrialist
+		start_date = 1942.1.1
+	}
+	50054 = {
+		name = "Ramon Magsaysay"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M50054
+		armament_minister = tank_proponent
+		start_date = 1945.1.1
+	}
+	50055 = {
+		name = "Diosdado P. Macapagal"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M50055
+		armament_minister = military_entrepreneur
+		start_date = 1945.1.1
+	}
+	50056 = {
+		name = "Pardo de Tavera"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M50056
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	50058 = {
+		name = "Roman Apolinario"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50058
+		minister_of_security = man_of_the_people
+		start_date = 1939.1.1
+	}
+	50059 = {
+		name = "Tiranó Craveza"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M50059
+		minister_of_security = efficient_sociopath
+		start_date = 1940.1.1
+	}
+	50060 = {
+		name = "Teofilo Sison"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M50060
+		minister_of_security = compassionate_gentleman
+		start_date = 1941.1.1
+	}
+	50061 = {
+		name = "Jose P. Laurel"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M50061
+		minister_of_security = silent_lawyer
+		start_date = 1941.1.1
+	}
+	50062 = {
+		name = "José M.Crisol"
+		ideology = social_democrat
+		loyalty = 0.50
+		picture = M50062
+		minister_of_security = crooked_kleptocrat
+		start_date = 1942.1.1
+	}
+	50064 = {
+		name = "Alberto Ramos"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50064
+		minister_of_security = silent_lawyer
+		start_date = 1944.1.1
+	}
+	50066 = {
+		name = "José G. Lukban"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M50066
+		minister_of_security = efficient_sociopath
+		start_date = 1945.1.1
+	}
+	50067 = {
+		name = "Ramon Quisumbing"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50067
+		minister_of_security = man_of_the_people
+		start_date = 1945.1.1
+	}
+	50068 = {
+		name = "Basilio J. Valdez"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M50017
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1939.1.1
+	}
+	50069 = {
+		name = "Augusto Jurado"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50069
+		chief_of_staff = school_of_mass_combat
+		start_date = 1944.1.1
+	}
+	50070 = {
+		name = "Quirinto P. Evangelista"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50070
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1945.1.1
+	}
+	50073 = {
+		name = "Vicente P. Lim"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50073
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1939.1.1
+	}
+	50074 = {
+		name = "Heraclio Alano"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50074
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1944.1.1
+	}
+	50075 = {
+		name = "Mateo M. Capinpin"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50075
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1945.1.1
+	}
+	50076 = {
+		name = "Rafael Jalandoni"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50076
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1946.1.1
+	}
+	50077 = {
+		name = "James Wilson"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50077
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	50078 = {
+		name = "Leslie Ailen Wheeler"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50078
+		minister_of_intelligence = technical_specialist
+		start_date = 1938.1.1
+	}
+	50079 = {
+		name = "Fidel Segundo"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50079
+		minister_of_intelligence = research_specialist
+		start_date = 1939.1.1
+	}
+	50080 = {
+		name = "Benigno Ramos"
+		ideology = social_liberal
+		loyalty = 0.25
+		picture = M50016
+		minister_of_intelligence = political_specialist
+		start_date = 1942.1.1
+	}
+	50081 = {
+		name = "John Gilbert Winant"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50081
+		minister_of_intelligence = industrial_specialist
+		start_date = 1943.1.1
+	}
+	50082 = {
+		name = "Eustacio Orobia"
+		ideology = social_conservative
+		loyalty = 0.25
+		picture = M50019
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1938.1.1
+	}
+	50083 = {
+		name = "Jose V. Andrada"
+		ideology = social_liberal
+		loyalty = 0.50
+		picture = M50083
+		chief_of_navy = open_seas_doctrine
+		start_date = 1938.1.1
+	}
+	50084 = {
+		name = "Ramon A. Alcaraz"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50084
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1942.1.1
+	}
+	50085 = {
+		name = "Basilio Fernando"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M50085
+		chief_of_air = army_aviation_doctrine
+		start_date = 1940.1.1
+	}
+	50086 = {
+		name = "Edwin Andrews"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M50086
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	50087 = {
+		name = "Victor H. Dizon"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M50087
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1946.1.1
+	}
+	50011 = {
+		name = "José P. Laurel"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M50011
+		head_of_state = power_hungry_demagogue
+		head_of_government = smiling_oilman
+		start_date = 1936.1.1
+	}
+	50015 = {
+		name = "Benigno Aquino sr."
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M50015
+		minister_of_security = crooked_kleptocrat
+		start_date = 1936.1.1
+	}
+	50020 = {
+		name = "Felix Pestana"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M50020
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	50021 = {
+		name = "Crisanto Evangelista"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M50021
+		head_of_state = weary_stiff_neck
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	50022 = {
+		name = "Pedro Abad Santos"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M50022
+		head_of_government = corporate_suit
+		start_date = 1936.1.1
+	}
+	50023 = {
+		name = "Casto Alejandrino"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M50023
+		foreign_minister = apologetic_clerk
+		start_date = 1936.1.1
+	}
+	50025 = {
+		name = "Mariano Balgos"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M50025
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	50026 = {
+		name = "Luis Taruc"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M50026
+		minister_of_intelligence = dismal_enigma
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	50028 = {
+		name = "Jesus Lava"
+		ideology = leninist
+		loyalty = 0.75
+		picture = M50028
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	50030 = {
+		name = "Joe Rogers"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M50030
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+}

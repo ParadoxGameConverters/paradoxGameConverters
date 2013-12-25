@@ -1,0 +1,48 @@
+configuration =
+{
+	# HoI3 directory: a path on your computer where Hearts of Iron III is installed
+	hoi3directory = "D:\Paradox Interactive\Hearts of Iron III"
+
+	# V2 directory: a path on your computer where Victoria 2 is installed
+	v2directory = "D:\Paradox Interactive\Victoria 2"
+
+	# The date on which the game is to start.  Default: 1935.12.12
+	start_date = 1935.12.12
+
+	# V2 Game Type: what version of Vic2 generated the save.  Possible values:
+	# 	auto	detect version automatically - vanilla only!
+	#	orig	force version to Victoria 2 without expansions (1.x)
+	#	ahd	force version to Victoria 2: A House Divided (2.x)
+	v2gametype = auto
+
+	# HoI3 Game Type: what version of HoI3 to output saves for.  Possible values:
+	#	sf	Hearts of Iron 3: Semper Fi (2.x)
+	#	ftm	Hearts of Iron 3: For the Motherland (3.x)
+	hoi3gametype = sf
+
+	# Faction Leader: how the converter determines who the faction leaders are
+	#	auto		Not yet implemented.  Others to come.
+	#	manual		Uncomment axis_faction, etc, and fill with Vicky tags.  First tag in each list is leader, others are members.
+	faction_leader = auto
+	# axis_faction = { GER ITA }
+	# allies_faction = { ENG FRA CAN HND SAF }
+	# comintern_faction = { RUS }
+
+	# Remove type: which landless nations to remove. Possible values:
+	#	none		remove none of them
+	#	absorbed	remove all landless nations that have been absorbed by a cultural union
+	#	all		remove all of them
+	# Note: if there are not enough HoI3 tags, some or all of these will be done no matter what.
+	removetype = absorbed
+
+	# Money Factor: amount by which monetary figures are multiplied (treasuries, debts, etc).
+	#	Default: 0.000005 (two hundred thousand V2 pounds to one HOI3 "$")
+	money_factor = 0.000005
+
+	# Minimum Infrastructure: every land province will have at least this much infrastructure
+	#	Default: 3.0 (minimum required to move armies)
+	min_infrastructure = 3.0
+	
+	# Note: if converting to vanilla HoI3, you may want to merge some V2 nations in order for tags to make sense.
+	# Merge settings are found in merge_nations.txt, rather than this file.
+}
