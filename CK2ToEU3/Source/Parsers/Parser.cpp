@@ -370,6 +370,7 @@ void setRHSobjlist()
 	}
 }
 
+
 Object* doParseFile(const char* filename)
 {
 	ifstream	read;				// ifstream for reading files
