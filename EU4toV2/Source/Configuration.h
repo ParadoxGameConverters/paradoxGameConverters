@@ -48,9 +48,14 @@ public:
 		return getInstance()->Removetype;
 	}
 
-	static string getV2OutputModName()
+	static void setOutputName(string name)
 	{
-		return getInstance()->V2OutputModName;
+		getInstance()->outputName = name;
+	}
+
+	static string getOutputName()
+	{
+		return getInstance()->outputName;
 	}
 
 	static Configuration* getInstance()
@@ -70,7 +75,7 @@ private:
 	string	Removetype;
 	date		StartDate;
 	double	MaxLiteracy;
-	string	V2OutputModName;
+	string	outputName;
 
 };
 

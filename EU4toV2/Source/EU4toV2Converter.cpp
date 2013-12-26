@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sys/stat.h>
 #include <io.h>
+#include <Windows.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
 #include "EU4World\EU4World.h"
@@ -56,11 +57,14 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("No input file given, defaulting to input.eu4\n");
 	}
 
-	//Get Mods new Name
-	log("Get the name of the Mod.\n");
-	string OutputFolderName = Configuration::getV2OutputModName();
+	//get output name
+	int slash			= inputFilename.find_last_of("\\");
+	int length			= inputFilename.find_first_of(".") - slash - 1;
+	string outputName = inputFilename.substr(slash + 1, length);
+	Configuration::setOutputName(outputName);
+	log("Using output name %s\n", outputName.c_str());
 
-//	Parse EU4 Save
+	//	Parse EU4 Save
 	log("Importing EU4 save.\n");
 	printf("Importing EU4 save.\n");
 	log("\tParsing save.\n");
@@ -422,61 +426,43 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 
-/*	// Generate Mod Directory Structure
-	printf("Outputting mod.\n");
-	log("Outputting mod.\n");
-	printf("\tGenerating mod directory structure.\n");
-	log("\tGenerating mod directory structure.\n");
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName).c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\common").c_str(), NULL);
-	// Function to Generate bookmark so there is only 1 time period 1836.1.1
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\common\\countries").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\gfx").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\gfx\\flags").c_str(), NULL);
-	// Function to create country files for V2 that only exist in EU4 directory.  Move base flag and make generic for all parties.
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\countries").c_str(), NULL);
-	// Generate country history files
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\diplomacy").c_str(), NULL);
-	// Current diplomatic relations goes here
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops\\1836.1.1").c_str(), NULL);
-	// Current populations are sent here
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\africa").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\asia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\australia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\austria").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\balkan").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\canada").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\carribean").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\central asia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\china").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\france").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\germany").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\india").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\indonesia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\italy").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\japan").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\low countries").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\mexico").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\pacific island").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\portugal").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\scandinavia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\south america").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\soviet").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\spain").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\united kingdom").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces\\usa").c_str(), NULL);
-	// Run province generation script for the new owners and cores on these provinces base on the V2_province_reference file.
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\units").c_str(), NULL);
-	// Generate file for the armies and navies
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\wars").c_str(), NULL);
-	// Transfer ongoing wars
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\localisation").c_str(), NULL);
-	// Generate english localization file for the names of the countries and anything else needed.
-*/
+	//// Generate Mod Directory Structure
+	//printf("Outputting mod.\n");
+	//log("Outputting mod.\n");
+	//printf("\tGenerating mod directory structure.\n");
+	//log("\tGenerating mod directory structure.\n");
+	//CreateDirectory("output", NULL);
+	//CreateDirectory(("output\\" + Configuration::getOutputName()).c_str(), NULL);
+	////CreateDirectory(("output\\" + Configuration::getOutputName() + "\\common").c_str(), NULL);
+	//// Function to Generate bookmark so there is only 1 time period 1836.1.1
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\common\\countries").c_str(), NULL);
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\gfx").c_str(), NULL);
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\gfx\\flags").c_str(), NULL);
+	//// Function to create country files for V2 that only exist in EU4 directory.  Move base flag and make generic for all parties.
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history").c_str(), NULL);
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\countries").c_str(), NULL);
+	//// Generate country history files
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\diplomacy").c_str(), NULL);
+	//// Current diplomatic relations goes here
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops").c_str(), NULL);
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops\\1836.1.1").c_str(), NULL);
+	//// Run province generation script for the new owners and cores on these provinces base on the V2_province_reference file.
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\units").c_str(), NULL);
+	//// Generate file for the armies and navies
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\wars").c_str(), NULL);
+	//// Transfer ongoing wars
+	//CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\localisation").c_str(), NULL);
+	//// Generate english localization file for the names of the countries and anything else needed.
+
 	// Output results
+	printf("Outputting mod\n");
+	log("Outputting mod\n");
+	system("xcopy blankMod output /E /Q /Y /I");
+	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
+	system(renameCommand.c_str());
+	renameCommand = "move /Y output\\output.mod output\\" + Configuration::getOutputName() + ".mod";
+	system(renameCommand.c_str());
+
 	printf("Outputting save.\n");
 	log("Outputting save.\n");
 	FILE* output;
@@ -490,6 +476,4 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	closeLog();
 	return 0;
-
 }
-

@@ -13,3 +13,36 @@ copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt
 copy "Data_Files\blocked_tech_schools.txt" "release\blocked_tech_schools.txt
 copy "Data_Files\leader_traits.txt" "release\leader_traits.txt
 copy "Data_Files\regiment_costs.txt" "release\regiment_costs.txt
+
+del "Release\blankMod" /Q
+rmdir "Release\blankMod" /S /Q
+mkdir "release\blankMod"
+copy "Data_Files\output.mod" "release\blankMod\output.mod"
+mkdir "release\blankMod\output"
+mkdir "release\blankMod\output\history"
+mkdir "release\blankMod\output\history\provinces"
+mkdir "release\blankMod\output\history\provinces\africa"
+mkdir "release\blankMod\output\history\provinces\asia"
+mkdir "release\blankMod\output\history\provinces\australia"
+mkdir "release\blankMod\output\history\provinces\austria"
+mkdir "release\blankMod\output\history\provinces\balkan"
+mkdir "release\blankMod\output\history\provinces\canada"
+mkdir "release\blankMod\output\history\provinces\carribean"
+mkdir "release\blankMod\output\history\provinces\central asia"
+mkdir "release\blankMod\output\history\provinces\china"
+mkdir "release\blankMod\output\history\provinces\france"
+mkdir "release\blankMod\output\history\provinces\germany"
+mkdir "release\blankMod\output\history\provinces\india"
+mkdir "release\blankMod\output\history\provinces\indonesia"
+mkdir "release\blankMod\output\history\provinces\italy"
+mkdir "release\blankMod\output\history\provinces\japan"
+mkdir "release\blankMod\output\history\provinces\low countries"
+mkdir "release\blankMod\output\history\provinces\mexico"
+mkdir "release\blankMod\output\history\provinces\pacific island"
+mkdir "release\blankMod\output\history\provinces\portugal"
+mkdir "release\blankMod\output\history\provinces\scandinavia"
+mkdir "release\blankMod\output\history\provinces\south america"
+mkdir "release\blankMod\output\history\provinces\soviet"
+mkdir "release\blankMod\output\history\provinces\spain"
+mkdir "release\blankMod\output\history\provinces\united kingdom"
+mkdir "release\blankMod\output\history\provinces\usa"
