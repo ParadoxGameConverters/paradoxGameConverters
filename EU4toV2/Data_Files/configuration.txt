@@ -41,6 +41,9 @@ configuration =
 	EU4modfromCK2directory = ""
 
 	### Mod Options
+	
+	# V2OutputModName: the name of the mod to output
+	V2OutputModName = "output"
 
 	# useConverterMod: whether or not to use the converter mod. Options are:
 	#	"yes"

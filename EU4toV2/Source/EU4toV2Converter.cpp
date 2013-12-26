@@ -3,11 +3,11 @@
 #include <io.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
-#include "EU4World.h"
-#include "V2World.h"
-#include "V2Factory.h"
-#include "V2TechSchools.h"
-#include "V2LeaderTraits.h"
+#include "EU4World\EU4World.h"
+#include "V2World\V2World.h"
+#include "V2World\V2Factory.h"
+#include "V2World\V2TechSchools.h"
+#include "V2World\V2LeaderTraits.h"
 #include "Configuration.h"
 
 
@@ -408,7 +408,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertUncivReforms();
 	printf("Creating pops.\n");
 	log("Creating pops.\n");
-	destWorld.setupPops(sourceWorld);
+//	destWorld.setupPops(sourceWorld);
 	printf("Adding unions.\n");
 	log("Adding unions.\n");
 	destWorld.addUnions(unionMap);
@@ -417,7 +417,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
 	printf("Converting techs.\n");
 	log("Converting techs.\n");
-	destWorld.convertTechs(sourceWorld);
+	//destWorld.convertTechs(sourceWorld);
 	printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);

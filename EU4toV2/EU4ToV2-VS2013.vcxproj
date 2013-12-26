@@ -27,7 +27,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -78,6 +78,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(WindowsSDK_IncludePath)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -97,68 +98,68 @@
   <ItemGroup>
     <ClCompile Include="Source\Configuration.cpp" />
     <ClCompile Include="Source\Date.cpp" />
-    <ClCompile Include="Source\EU4Army.cpp" />
-    <ClCompile Include="Source\EU4Country.cpp" />
-    <ClCompile Include="Source\EU4Diplomacy.cpp" />
-    <ClCompile Include="Source\EU4Leader.cpp" />
-    <ClCompile Include="Source\EU4Loan.cpp" />
-    <ClCompile Include="Source\EU4Province.cpp" />
-    <ClCompile Include="Source\EU4Relations.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
-    <ClCompile Include="Source\EU4World.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Army.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Country.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Diplomacy.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Leader.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Loan.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Province.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Relations.cpp" />
+    <ClCompile Include="Source\EU4World\EU4World.cpp" />
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
     <ClCompile Include="Source\Parsers\Object.cpp" />
     <ClCompile Include="Source\Parsers\Parser.cpp" />
     <ClCompile Include="Source\tempFuncs.cpp" />
-    <ClCompile Include="Source\V2Army.cpp" />
-    <ClCompile Include="Source\V2Country.cpp" />
-    <ClCompile Include="Source\V2Creditor.cpp" />
-    <ClCompile Include="Source\V2Diplomacy.cpp" />
-    <ClCompile Include="Source\V2Factory.cpp" />
-    <ClCompile Include="Source\V2Leader.cpp" />
-    <ClCompile Include="Source\V2LeaderTraits.cpp" />
-    <ClCompile Include="Source\V2Party.cpp" />
-    <ClCompile Include="Source\V2Pop.cpp" />
-    <ClCompile Include="Source\V2Province.cpp" />
-    <ClCompile Include="Source\V2Reforms.cpp" />
-    <ClCompile Include="Source\V2Relations.cpp" />
-    <ClCompile Include="Source\V2State.cpp" />
-    <ClCompile Include="Source\V2TechSchools.cpp" />
-    <ClCompile Include="Source\V2World.cpp" />
+    <ClCompile Include="Source\V2World\V2Army.cpp" />
+    <ClCompile Include="Source\V2World\V2Country.cpp" />
+    <ClCompile Include="Source\V2World\V2Creditor.cpp" />
+    <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
+    <ClCompile Include="Source\V2World\V2Factory.cpp" />
+    <ClCompile Include="Source\V2World\V2Leader.cpp" />
+    <ClCompile Include="Source\V2World\V2LeaderTraits.cpp" />
+    <ClCompile Include="Source\V2World\V2Party.cpp" />
+    <ClCompile Include="Source\V2World\V2Pop.cpp" />
+    <ClCompile Include="Source\V2World\V2Province.cpp" />
+    <ClCompile Include="Source\V2World\V2Reforms.cpp" />
+    <ClCompile Include="Source\V2World\V2Relations.cpp" />
+    <ClCompile Include="Source\V2World\V2State.cpp" />
+    <ClCompile Include="Source\V2World\V2TechSchools.cpp" />
+    <ClCompile Include="Source\V2World\V2World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Configuration.h" />
     <ClInclude Include="Source\Date.h" />
-    <ClInclude Include="Source\EU4Army.h" />
-    <ClInclude Include="Source\EU4Country.h" />
-    <ClInclude Include="Source\EU4Diplomacy.h" />
-    <ClInclude Include="Source\EU4Leader.h" />
-    <ClInclude Include="Source\EU4Loan.h" />
-    <ClInclude Include="Source\EU4Province.h" />
-    <ClInclude Include="Source\EU4Relations.h" />
-    <ClInclude Include="Source\EU4World.h" />
+    <ClInclude Include="Source\EU4World\EU4Army.h" />
+    <ClInclude Include="Source\EU4World\EU4Country.h" />
+    <ClInclude Include="Source\EU4World\EU4Diplomacy.h" />
+    <ClInclude Include="Source\EU4World\EU4Leader.h" />
+    <ClInclude Include="Source\EU4World\EU4Loan.h" />
+    <ClInclude Include="Source\EU4World\EU4Province.h" />
+    <ClInclude Include="Source\EU4World\EU4Relations.h" />
+    <ClInclude Include="Source\EU4World\EU4World.h" />
     <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\Parsers\Object.h" />
     <ClInclude Include="Source\Parsers\Parser.h" />
     <ClInclude Include="Source\tempFuncs.h" />
-    <ClInclude Include="Source\V2Army.h" />
-    <ClInclude Include="Source\V2Country.h" />
-    <ClInclude Include="Source\V2Creditor.h" />
-    <ClInclude Include="Source\V2Diplomacy.h" />
-    <ClInclude Include="Source\V2Factory.h" />
-    <ClInclude Include="Source\V2Inventions.h" />
-    <ClInclude Include="Source\V2Leader.h" />
-    <ClInclude Include="Source\V2LeaderTraits.h" />
-    <ClInclude Include="Source\V2Party.h" />
-    <ClInclude Include="Source\V2Pop.h" />
-    <ClInclude Include="Source\V2Province.h" />
-    <ClInclude Include="Source\V2Reforms.h" />
-    <ClInclude Include="Source\V2Relations.h" />
-    <ClInclude Include="Source\V2State.h" />
-    <ClInclude Include="Source\V2TechSchools.h" />
-    <ClInclude Include="Source\V2World.h" />
+    <ClInclude Include="Source\V2World\V2Army.h" />
+    <ClInclude Include="Source\V2World\V2Country.h" />
+    <ClInclude Include="Source\V2World\V2Creditor.h" />
+    <ClInclude Include="Source\V2World\V2Diplomacy.h" />
+    <ClInclude Include="Source\V2World\V2Factory.h" />
+    <ClInclude Include="Source\V2World\V2Inventions.h" />
+    <ClInclude Include="Source\V2World\V2Leader.h" />
+    <ClInclude Include="Source\V2World\V2LeaderTraits.h" />
+    <ClInclude Include="Source\V2World\V2Party.h" />
+    <ClInclude Include="Source\V2World\V2Pop.h" />
+    <ClInclude Include="Source\V2World\V2Province.h" />
+    <ClInclude Include="Source\V2World\V2Reforms.h" />
+    <ClInclude Include="Source\V2World\V2Relations.h" />
+    <ClInclude Include="Source\V2World\V2State.h" />
+    <ClInclude Include="Source\V2World\V2TechSchools.h" />
+    <ClInclude Include="Source\V2World\V2World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
