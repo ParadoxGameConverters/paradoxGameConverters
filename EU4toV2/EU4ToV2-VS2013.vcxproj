@@ -48,6 +48,7 @@
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
     <IncludePath>$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
+    <TargetName>EU4toV2Converter</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
