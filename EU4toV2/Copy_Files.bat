@@ -14,6 +14,11 @@ copy "Data_Files\blocked_tech_schools.txt" "release\blocked_tech_schools.txt
 copy "Data_Files\leader_traits.txt" "release\leader_traits.txt
 copy "Data_Files\regiment_costs.txt" "release\regiment_costs.txt
 
+rem hg log > Release/log.txt
+hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt
+(for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
+del release\log.txt
+
 del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
 mkdir "release\blankMod"
