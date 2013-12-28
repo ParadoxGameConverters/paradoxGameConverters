@@ -402,7 +402,10 @@ void V2Province::importHistory(Object* obj)
 
 void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 {
-	colonial				= oldProvince->isColony();
+	if (oldProvince->isColony())
+	{
+		colonial = 2;
+	}
 	colonised			= oldProvince->wasColonised();
 	originallyPagan	= oldProvince->wasPaganConquest();
 	COT					= oldProvince->isCOT();
