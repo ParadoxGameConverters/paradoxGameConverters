@@ -23,3 +23,6 @@ del Release\country_mappings-backup.txt /q
 del Release\cultureMap-backup.txt /q
 del Release\religionMap-backup.txt /q
 del Release\unions-backup.txt /q
+
+cd testresults
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\EU4toV2-testresults.zip" "*.*" -mx5
