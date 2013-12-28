@@ -138,16 +138,16 @@ void V2Province::output() const
 	}
 	if (owner != "")
 	{
-		fprintf_s(output, "owner=\"%s\"\n", owner.c_str());
-		fprintf_s(output, "controller=\"%s\"\n", owner.c_str());
+		fprintf_s(output, "owner= %s\n", owner.c_str());
+		fprintf_s(output, "controller= %s\n", owner.c_str());
 	}
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
-		fprintf_s(output, "add_core=\"%s\"\n", cores[i].c_str());
+		fprintf_s(output, "add_core= %s\n", cores[i].c_str());
 	}
 	if(rgoType != "")
 	{
-		fprintf_s(output, "trade_type = %s\n", rgoType.c_str());
+		fprintf_s(output, "trade_goods = %s\n", rgoType.c_str());
 	}
 	if (lifeRating > 0)
 	{
