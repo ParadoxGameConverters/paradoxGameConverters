@@ -1,9 +1,0 @@
-mapping = {
-
-link = { vic = absolute_monarchy eu3 = feudal_monarchy eu3 = imperial_government eu3 = absolute_monarchy eu3 = enlightened_despotism eu3 = theocratic_government eu3 = papal_government eu3 = tribal_despotism eu3 = tribal_federation eu3 = revolutionary_empire eu3 = despotic_monarchy eu3 = celestial_empire eu3 = steppe_horde}
-link = { vic = democracy eu3 = merchant_republic eu3 = noble_republic eu3 = constitutional_republic eu3 = tribal_democracy eu3 = revolutionary_republic eu3 = administrative_republic }
-link = { vic = prussian_constitutionalism eu3 = administrative_monarchy }
-link = { vic = presidential_dictatorship eu3 = republican_dictatorship eu3 = bureaucratic_despotism }
-link = { vic = hms_government eu3 = constitutional_monarchy }
-
-}
