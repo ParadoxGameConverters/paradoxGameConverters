@@ -1,8 +1,0 @@
-﻿<Window x:Class="ParadoxConverters.UI.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="The Paradox Converters Project" Height="350" Width="525">
-    <Grid>
-        <ContentControl x:Name="contentControl" Content="{Binding FrameView}"/>
-    </Grid>
-</Window>
