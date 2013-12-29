@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Express 2013 for Windows Desktop
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParadoxConvertersUI", "ParadoxConvertersUI\ParadoxConvertersUI.csproj", "{8458596D-CD2D-4096-BD23-113A02818D71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{BA5C731B-5C24-44FC-BAF7-5706E7962A63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common.Tests", "Tests\Common.Tests\Common.Tests.csproj", "{BF8C2EB7-1C7B-413F-89DE-EC508550286F}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 4
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://kvessdev.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ParadoxConvertersUI\\ParadoxConvertersUI.csproj
+		SccProjectName1 = ParadoxConvertersUI
+		SccLocalPath1 = ParadoxConvertersUI
+		SccProjectUniqueName2 = Common\\Common.csproj
+		SccProjectName2 = Common
+		SccLocalPath2 = Common
+		SccProjectUniqueName3 = Tests\\Common.Tests\\Common.Tests.csproj
+		SccProjectName3 = Tests/Common.Tests
+		SccLocalPath3 = Tests\\Common.Tests
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8458596D-CD2D-4096-BD23-113A02818D71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8458596D-CD2D-4096-BD23-113A02818D71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8458596D-CD2D-4096-BD23-113A02818D71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8458596D-CD2D-4096-BD23-113A02818D71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA5C731B-5C24-44FC-BAF7-5706E7962A63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA5C731B-5C24-44FC-BAF7-5706E7962A63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA5C731B-5C24-44FC-BAF7-5706E7962A63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA5C731B-5C24-44FC-BAF7-5706E7962A63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF8C2EB7-1C7B-413F-89DE-EC508550286F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF8C2EB7-1C7B-413F-89DE-EC508550286F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF8C2EB7-1C7B-413F-89DE-EC508550286F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF8C2EB7-1C7B-413F-89DE-EC508550286F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
