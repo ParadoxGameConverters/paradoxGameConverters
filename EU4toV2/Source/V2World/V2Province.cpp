@@ -65,7 +65,7 @@ V2Province::V2Province(string _filename)
 	{
 		if ((*itr)->getKey() == "owner")
 		{
-			owner = (*itr)->getLeaf().c_str();
+			owner = (*itr)->getLeaf();
 		}
 		else if ((*itr)->getKey() == "controller")
 		{
@@ -77,7 +77,7 @@ V2Province::V2Province(string _filename)
 		}
 		else if ((*itr)->getKey() == "trade_goods")
 		{
-			rgoType = (*itr)->getLeaf().c_str();
+			rgoType = (*itr)->getLeaf();
 		}
 		else if ((*itr)->getKey() == "life_rating")
 		{
@@ -85,7 +85,7 @@ V2Province::V2Province(string _filename)
 		}
 		else if ((*itr)->getKey() == "terrain")
 		{
-			terrain = atoi((*itr)->getLeaf().c_str());
+			terrain = (*itr)->getLeaf();
 		}
 		else if ((*itr)->getKey() == "colonial")
 		{
@@ -109,7 +109,7 @@ V2Province::V2Province(string _filename)
 		}
 		else if ((*itr)->getKey() == "is_slave")
 		{
-			if ((*itr)->getKey() == "yes")
+			if ((*itr)->getLeaf() == "yes")
 			{
 				slaveState = true;
 			}
