@@ -13,6 +13,5 @@ msbuild.exe EU4ToV2-VS2013.sln /p:Configuration=Release /m
 
 cd Release
 del *.pdb
-"%IZARC_LOC%" -ad Release;*
-call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\EU4ToV2.zip" "*.*" -mx5
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\EU4ToV2.zip" "*" -mx5
 cd ..
