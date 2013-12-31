@@ -53,7 +53,7 @@ V2World::V2World(string V2Loc)
 	{
 		if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 		{
-			log("Error: Could not open directory %s\n", (Configuration::getV2Path() + directories.front() + "\\*.*").c_str());
+			log("Error: Could not open directory %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str());
 			exit(-1);
 		}
 
