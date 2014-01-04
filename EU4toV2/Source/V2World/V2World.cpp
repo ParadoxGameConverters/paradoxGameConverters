@@ -367,20 +367,20 @@ V2World::V2World(string V2Loc)
 
 
 // The majority of the output changes will take place here.  See comments for the plan of action:
-void V2World::output(FILE* output) const
+void V2World::output() const
 {
-	outputHeader(output);		//  This information will now generate new book bookmark data for the mod, effectively removing the second bookmark.
-	outputTempHeader(output);	//	Not needed as a mod.
+	//outputHeader(output);		//  This information will now generate new book bookmark data for the mod, effectively removing the second bookmark.
+	//outputTempHeader(output);	//	Not needed as a mod.
 	for (map<int, V2Province*>::const_iterator i = provinces.begin() ; i != provinces.end(); i++)
 	{
-		i->second->sortPops();
+		//i->second->sortPops();
 		i->second->output();
 	}
-	for (unsigned int i = 0; i < countries.size(); i++)
+	/*for (unsigned int i = 0; i < countries.size(); i++)
 	{
 		countries[i]->output(output);
 	}
-	diplomacy.output(output);
+	diplomacy.output(output);*/
 }
 
 
@@ -586,8 +586,8 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 				if ( (*j)->getTag() == iter->second.c_str() )
 				{
 					newCountry = *j;
-					newCountry->initFromEU4Country(i->second, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
-					newCountry->setNationalIdea(libertyLeft, equalityLeft);
+					/*newCountry->initFromEU4Country(i->second, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
+					newCountry->setNationalIdea(libertyLeft, equalityLeft);*/
 					break;
 				}
 			}
@@ -612,7 +612,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 		}
 		if (citr == countries.end())
 		{
-			(*itr)->initFromHistory();
+			/*(*itr)->initFromHistory();*/
 			countries.push_back(*itr);
 		}
 	}
@@ -746,7 +746,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		provinceMapping::const_iterator provinceLink	= provinceMap.find(destNum);
 		if ( (provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0) )
 		{
-			log("Error: no source for %s (province #%d)\n", i->second->getName().c_str() , destNum);
+			log("\tError: no source for %s (province #%d)\n", i->second->getName().c_str() , destNum);
 			continue;
 		}
 		else if (provinceLink->second[0] == 0) {
@@ -871,7 +871,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 						}
 						if (!matched)
 						{
-							log("Error: Could not set culture for pops in province %d\n", destNum);
+							log("\tError: Could not set culture for pops in province %d\n", destNum);
 						}
 
 						string religion = "";
@@ -882,7 +882,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 						}
 						else
 						{
-							log("Error: Could not set religion for pops in province %d\n", destNum);
+							log("\tError: Could not set religion for pops in province %d\n", destNum);
 						}
 
 						V2Demographic demographic;

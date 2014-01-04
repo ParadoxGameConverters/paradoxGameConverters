@@ -21,7 +21,7 @@ class V2LeaderTraits;
 class V2World {
 	public:
 		V2World(string V2Loc);
-		void output(FILE*) const;
+		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld, const provinceMapping& provinceMap);
 		
 		void convertCountries(const EU4World& sourceWorld, const countryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
