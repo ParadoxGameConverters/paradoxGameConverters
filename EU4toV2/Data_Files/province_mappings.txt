@@ -8,7 +8,7 @@ link = { eu4 = 373 v2 = 256 v2 = 263 }	# Meath -> Armagh, Dublin
 link = { eu4 = 374 v2 = 262 v2 = 265 v2 = 264 }	# Leinster -> Waterford, Wexford, Kildare
 # England & Scotland
 link = { eu4 = 252 eu4 = 253 eu4 = 369 eu4 = 1978 v2 = 267 v2 = 270 }	# MANY-TO-MANY: Highlands, Western Isles, Orkney, Shetlands -> Inverness, Stirling
-link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
+link = { eu4 = 1979 v2 = 253 v2 = 3246 }	# Färöarnax -> Faroe Islands, Jan Mayen
 link = { eu4 = 233 v2 = 299 v2 = 298 }	# Cornwall -> Plymouth, Bath
 link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
 link = { eu4 = 250 v2 = 268 }	# Fife -> Dundee
@@ -142,15 +142,15 @@ link = { eu4 = 1108 v2 = 2511 }	# Wairoa -> Napier
 link = { eu4 = 1106 v2 = 2571 v2 = 2509 v2 = 2508 }	# Whangarei -> Tauranga, Auckland, Norfolk Island
 # Pacific Islands
 link = { eu4 = 1986 v2 = 1097 }	# New Caledonia -> New Caledonia
-link = { eu4 = 1239 v2 = 2535 }	# Vanuatu -> New Hebrides
-link = { eu4 = 1242 v2 = 2454 }	# Fiji -> Fiji
+link = { eu4 = 1239 v2 = 2535 v2 = 2536 }	# Vanuatu -> New Hebrides, Santa Cruz Islands
+link = { eu4 = 1242 v2 = 2454 v2 = 2520 }	# Fiji -> Fiji, Taveuni
 link = { eu4 = 1990 v2 = 2541 }	# Tuvalu -> Ellice Islands
 link = { eu4 = 1992 v2 = 2523 }	# Nauru -> Nauru
 link = { eu4 = 1991 v2 = 2527 }	# Gilbert Islands -> Gilbert Islands
 link = { eu4 = 1993 v2 = 2522 }	# Marshall Islands -> Marshall Islands
 link = { eu4 = 1995 v2 = 2579 v2 = 610 }	# Micronesia -> Truk, Ponape
-link = { eu4 = 1996 v2 = 2519 }	# Palau -> Yap
-link = { eu4 = 1235 v2 = 2521 v2 = 1654 }	# Guam -> Saipan, Bonin
+link = { eu4 = 1996 v2 = 2519 v2 = 2518 }	# Palau -> Yap, Palau
+link = { eu4 = 1235 v2 = 2521 v2 = 1654 v2 = 2517 }	# Guam -> Saipan, Bonin, Guam
 link = { eu4 = 1994 v2 = 2524 v2 = 2525 }	# Wake -> Wake, Marcus
 # Papua New Guinea
 link = { eu4 = 1238 v2 = 2539 v2 = 2534 }	# Solomon Islands -> Bougainville, Solomon Islands
@@ -737,7 +737,7 @@ link = { eu4 = 994 v2 = 65 }	# Stadacona -> Quebec City
 link = { eu4 = 988 v2 = 53 }	# Huron -> Barrie
 link = { eu4 = 987 v2 = 54 v2 = 55 }	# Niagara -> Windsor, Hamilton
 link = { eu4 = 989 v2 = 46 }	# Ontario -> Toronto
-link = { eu4 = 1004 eu4 = 1806 v2 = 47 v2 = 2594 }	# MANY-TO-MANY: Attawapiskat, Weagamow -> Fort Severn, Pickle
+link = { eu4 = 1004 v2 = 47 }	# Attawapiskat -> Fort Severn
 link = { eu4 = 1003 v2 = 2628 }	# Moose Cree -> Attawapiskat
 link = { eu4 = 1811 v2 = 2595 }	# Nunavut -> Nunavut
 link = { eu4 = 1006 v2 = 43 v2 = 38 }	# Chipewyan -> Arviat, Indian Lakes
@@ -1011,7 +1011,7 @@ link = { eu4 = 40 v2 = 359 v2 = 365 }	# Memel -> Liepaja, Palanga
 link = { eu4 = 1931 v2 = 543 }	# East Frisia -> Emden
 link = { eu4 = 55 v2 = 540 v2 = 541 }	# Oldenburg -> Oldenburg, Cloppenburg
 link = { eu4 = 1874 v2 = 539 }	# Bremen -> Bremen
-link = { eu4 = 54 v2 = 531 }	# Bremen -> Stade
+link = { eu4 = 54 v2 = 531 v2 = 533 }	# Bremen -> Stade, Heligoland
 link = { eu4 = 44 v2 = 528 }	# Hamburg -> Hamburg
 link = { eu4 = 1857 v2 = 529 }	# Lauenburg -> Lauenburg
 link = { eu4 = 45 v2 = 530 }	# Lübeck -> Lübeck
@@ -1493,9 +1493,9 @@ link = { eu4 = 1697 v2 = 3150 }	# Coast of Hawaii -> Coast of Hawaii
 link = { eu4 = 1692 v2 = 3247 }	# Central Pacific #6 -> West Hawaii
 link = { eu4 = 1735 v2 = 3178 }	# Southern Pacifc #19 -> Johnston Atoll
 link = { eu4 = 1241 v2 = 2547 v2 = 2546 }	# Kiribati -> Tokelau, Tongareva
-link = { eu4 = 1243 v2 = 2543 v2 = 2544 v2 = 2542 v2 = 2548 }	# Samoa -> Apia, Pago Pago, Wallis and Futuna, Niue
+link = { eu4 = 1243 v2 = 2543 v2 = 2544 v2 = 2542 v2 = 2548 v2 = 2545 }	# Samoa -> Apia, Pago Pago, Wallis and Futuna, Niue, Rarotonga
 link = { eu4 = 1987 v2 = 801 }	# Society Islands -> Tahiti
-link = { eu4 = 1244 v2 = 2551 v2 = 2553 }	# Tahiti -> Marquesas, Tuamotus
+link = { eu4 = 1244 v2 = 2551 v2 = 2553 v2 = 2552 }	# Tahiti -> Marquesas, Tuamotus, Pitcairn
 link = { eu4 = 1989 v2 = 2540 }	# Tonga -> Tonga
 link = { eu4 = 1723 v2 = 3184 }	# Southern Pacifc #7 -> Chatham Islands
 link = { eu4 = 1726 v2 = 3179 }	# Southern Pacifc #10 -> Coast of Tonga
@@ -1542,7 +1542,7 @@ link = { eu4 = 1715 v2 = 3168 }	# Eastern Pacific #16 -> Radford Basin
 link = { eu4 = 1736 v2 = 3169 }	# Southern Pacifc #20 -> Northern Line Islands
 link = { eu4 = 1740 v2 = 3173 }	# Southern Pacifc #25 -> Severance Plains
 link = { eu4 = 1240 v2 = 658 }	# Hawaii -> Hawaii
-link = { eu4 = 1997 v2 = 686 v2 = 2526 }	# Midway -> Line Islands, Palmyra
+link = { eu4 = 1997 v2 = 686 v2 = 2526 v2 = 2623 }	# Midway -> Line Islands, Palmyra, Midway Island
 link = { eu4 = 1428 v2 = 2881 }	# Sea of Antarctica -> Canterbury Bight
 link = { eu4 = 1426 v2 = 2879 }	# Coast of New Zealand -> Coast of New Zealand
 link = { eu4 = 1423 v2 = 2876 v2 = 2878 }	# Cook Strait -> Cook Strait, Cape Farewell
@@ -2054,4 +2054,5 @@ link = { eu4 = 1656 v2 = 3109 }	# Lake Titicaca -> Lake Titicaca
 link = { eu4 = 1266 v2 = 2720 }	# Southern Norwegian Sea -> Skagerrack
 link = { eu4 = 1100 v2 = 2127 }	# Mahe -> Seychelles
 link = { eu4 = 1902 v2 = 3240 }	# Lake Poopo -> Lake Poopo
+link = { eu4 = 1806 v2 = 2594 }	# Weagamow -> Pickle
 }
