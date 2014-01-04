@@ -7,13 +7,17 @@ using System.Threading.Tasks;
 
 namespace Frontend.Core.ViewModels
 {
-    public abstract class ViewModelBase : PropertyChangedBase
+    public abstract class ViewModelBase : PropertyChangedBase, IDisposable
     {
         private IEventAggregator eventAggregator;
 
         public ViewModelBase(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
+
+            //HACK: This needs rethinking, but when vms gets resolved from a view (Say, a contentcontrol binding to a vm), 
+            //the Load method obviously won't get called.
+            this.Load(null);
         }
 
         protected IEventAggregator EventAggregator
@@ -38,6 +42,12 @@ namespace Frontend.Core.ViewModels
             this.OnUnloaded();
         }
 
+        public void Dispose()
+        {
+            this.Unload();
+            this.OnDispose();
+        }
+
         protected virtual void OnLoading(object parameter)
         {
         }
@@ -59,6 +69,10 @@ namespace Frontend.Core.ViewModels
         }
 
         protected virtual void OnUnloaded()
+        {
+        }
+
+        protected virtual void OnDispose()
         {
         }
     }

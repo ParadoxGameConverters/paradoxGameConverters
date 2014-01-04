@@ -17,7 +17,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Log:"/>
-        <DataGrid x:Name="LogDataGrid" Grid.Row="1" Grid.ColumnSpan="2"
+        <DataGrid x:Name="LogEntries" Grid.Row="1" Grid.ColumnSpan="2"
                   ItemsSource="{Binding LogEntries}" 
                   VerticalAlignment="Stretch" 
                   HorizontalAlignment="Stretch" 

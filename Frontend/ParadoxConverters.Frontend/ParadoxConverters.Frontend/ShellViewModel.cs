@@ -3,6 +3,7 @@
 namespace Frontend.Client
 {
     using Caliburn.Micro;
+    using Frontend.Core.Logging;
     using Frontend.Core.ViewModels;
     using Frontend.Core.ViewModels.Interfaces;
 

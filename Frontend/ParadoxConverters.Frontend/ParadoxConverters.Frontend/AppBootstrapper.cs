@@ -3,6 +3,7 @@
 namespace Frontend.Client
 {
     using Caliburn.Micro;
+    using Frontend.Core.Logging;
     using Frontend.Core.ViewModels;
     using Frontend.Core.ViewModels.Interfaces;
     using System;
@@ -63,6 +64,11 @@ namespace Frontend.Client
 		protected override void OnStartup(object sender, StartupEventArgs e)
 		{
 			DisplayRootViewFor<IShell>();
+
+            var logEntry = new LogEntry("Application started", LogEntrySeverity.Info, LogEntrySource.UI);
+            var eventAggregator = this.container.GetInstance<IEventAggregator>();
+
+            eventAggregator.PublishOnUIThread(logEntry);
 		}
 
         protected override void OnUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)

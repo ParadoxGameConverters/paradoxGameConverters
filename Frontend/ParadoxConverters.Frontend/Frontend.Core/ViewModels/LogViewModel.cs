@@ -3,6 +3,7 @@ using Frontend.Core.Logging;
 using Frontend.Core.ViewModels;
 using Frontend.Core.ViewModels.Interfaces;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 
 namespace Frontend.Core.ViewModels
 {
@@ -20,6 +21,13 @@ namespace Frontend.Core.ViewModels
             this.EventAggregator.Subscribe(this);
         }
 
+        protected override void OnLoaded(object parameter)
+        {
+            base.OnLoaded(parameter);
+
+            this.LogEntries.CollectionChanged += this.LogEntries_CollectionChanged;
+        }
+
         public ObservableCollection<LogEntry> LogEntries
         {
             get
@@ -31,6 +39,10 @@ namespace Frontend.Core.ViewModels
         public void Handle(LogEntry message)
         {
             this.LogEntries.Add(message);
+        }
+        
+        private void LogEntries_CollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
         }
     }
 }
