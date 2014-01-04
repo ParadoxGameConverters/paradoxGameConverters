@@ -13,8 +13,7 @@ class V2World;
 typedef map< int, vector<int> > provinceMapping;			// < destProvince, sourceProvinces >
 typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince, destProvinces >
 
-provinceMapping initProvinceMap(Object* obj);
-inverseProvinceMapping invertProvinceMap(const provinceMapping& provMap);
+void initProvinceMap(Object* obj, provinceMapping& provMap, provinceMapping& inverseProvMap);
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 
 

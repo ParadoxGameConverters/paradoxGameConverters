@@ -186,8 +186,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Could not parse file %s\n", mappingFile);
 		exit(-1);
 	}
-	provinceMapping provinceMap = initProvinceMap(obj);
-	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
+	provinceMapping provinceMap;
+	inverseProvinceMapping inverseProvinceMap;
+	initProvinceMap(obj, provinceMap, inverseProvinceMap);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 	// Get list of blocked nations

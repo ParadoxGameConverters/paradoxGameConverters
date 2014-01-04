@@ -299,9 +299,9 @@ void EU4World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 	for (map<int, EU4Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
-		if ( (j == inverseProvinceMap.end()) || (j->second.size() == 0) )
+		if (j == inverseProvinceMap.end())
 		{
-			log("	Warning: no destination for province #%d\n", i->first);
+			log("	Error: no mapping for province #%d\n", i->first);
 		}
 	}
 }

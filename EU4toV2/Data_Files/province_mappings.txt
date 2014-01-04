@@ -2055,4 +2055,42 @@ link = { eu4 = 1266 v2 = 2720 }	# Southern Norwegian Sea -> Skagerrack
 link = { eu4 = 1100 v2 = 2127 }	# Mahe -> Seychelles
 link = { eu4 = 1902 v2 = 3240 }	# Lake Poopo -> Lake Poopo
 link = { eu4 = 1806 v2 = 2594 }	# Weagamow -> Pickle
+
+## Destinationless provinces
+link = { eu4 = 1658 }
+link = { eu4 = 1779 }
+link = { eu4 = 1784 }
+link = { eu4 = 1786 }
+link = { eu4 = 1805 }
+link = { eu4 = 1883 }
+link = { eu4 = 1884 }
+link = { eu4 = 1885 }
+link = { eu4 = 1886 }
+link = { eu4 = 1887 }
+link = { eu4 = 1889 }
+link = { eu4 = 1890 }
+link = { eu4 = 1891 }
+link = { eu4 = 1894 }
+link = { eu4 = 1895 }
+link = { eu4 = 1896 }
+link = { eu4 = 1898 }
+link = { eu4 = 1901 }
+link = { eu4 = 1904 }
+link = { eu4 = 1905 }
+link = { eu4 = 1906 }
+link = { eu4 = 1907 }
+link = { eu4 = 1908 }
+link = { eu4 = 1909 }
+link = { eu4 = 1910 }
+link = { eu4 = 1911 }
+link = { eu4 = 1913 }
+link = { eu4 = 1916 }
+link = { eu4 = 1917 }
+link = { eu4 = 1918 }
+link = { eu4 = 1919 }
+link = { eu4 = 1920 }
+link = { eu4 = 1921 }
+link = { eu4 = 1923 }
+link = { eu4 = 1976 }
+link = { eu4 = 2001 }
 }

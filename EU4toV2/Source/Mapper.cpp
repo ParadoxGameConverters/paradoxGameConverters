@@ -10,9 +10,8 @@
 
 
 
-provinceMapping initProvinceMap(Object* obj)
+void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping& inverseProvinceMap)
 {
-	provinceMapping mapping;
 	provinceMapping::iterator mapIter;
 
 	vector<Object*> leaves = obj->getLeaves();
@@ -21,7 +20,7 @@ provinceMapping initProvinceMap(Object* obj)
 	{
 		log ("\tError: No province mapping definitions loaded.\n");
 		printf("\tError: No province mapping definitions loaded.\n");
-		return mapping;
+		return;
 	}
 
 	vector<Object*> data = leaves[0]->getLeaves();
@@ -53,29 +52,26 @@ provinceMapping initProvinceMap(Object* obj)
 		{
 			EU4nums.push_back(0);
 		}
+		if (V2nums.size() == 0)
+		{
+			V2nums.push_back(0);
+		}
 
 		for (vector<int>::iterator j = V2nums.begin(); j != V2nums.end(); j++)
 		{
-			mapping.insert(make_pair(*j, EU4nums));
+			if (*j != 0)
+			{
+				provinceMap.insert(make_pair(*j, EU4nums));
+			}
 		}
-	}
-
-	return mapping;
-}
-
-
-// invert the sense of a province map.  makes army conversion tolerable.
-inverseProvinceMapping invertProvinceMap(const provinceMapping& provinceMap)
-{
-	inverseProvinceMapping retval;
-	for (provinceMapping::const_iterator j = provinceMap.begin(); j != provinceMap.end(); j++)
-	{
-		for (unsigned int k = 0; k < j->second.size(); k++)
+		for (vector<int>::iterator j = EU4nums.begin(); j != EU4nums.end(); j++)
 		{
-			retval[j->second[k]].push_back(j->first);
+			if (*j != 0)
+			{
+				inverseProvinceMap.insert(make_pair(*j, V2nums));
+			}
 		}
 	}
-	return retval;
 }
 
 
