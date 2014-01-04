@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="Frontend.Core.Views.FrameView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <ContentControl x:Name="CurrentStep"/>
+        <ContentControl x:Name="Log" Grid.Column="1"/>
+
+        <Button IsEnabled="{Binding CanMoveBackward}" Grid.Row="1" HorizontalAlignment="Left" Content="Previous"/>
+        <Button IsEnabled="{Binding CanMoveForward}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="Next"/>
+    </Grid>
+</UserControl>
