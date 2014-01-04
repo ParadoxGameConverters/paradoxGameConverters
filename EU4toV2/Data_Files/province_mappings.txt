@@ -1,5 +1,5 @@
 mappings = {
-# Great Britain
+# # Great Britain
 # Ireland
 link = { eu4 = 375 v2 = 261 v2 = 260 }	# Munster -> Limerick, Cork
 link = { eu4 = 376 v2 = 258 v2 = 259 }	# Connaught -> Galway, Sligo
@@ -7,7 +7,7 @@ link = { eu4 = 372 v2 = 257 v2 = 255 v2 = 254 }	# Ulster -> Donegal, Londonderry
 link = { eu4 = 373 v2 = 256 v2 = 263 }	# Meath -> Armagh, Dublin
 link = { eu4 = 374 v2 = 262 v2 = 265 v2 = 264 }	# Leinster -> Waterford, Wexford, Kildare
 # England & Scotland
-link = { eu4 = 252 v2 = 267 v2 = 270 }	# Highlands -> Inverness, Stirling
+link = { eu4 = 252 eu4 = 253 eu4 = 369 eu4 = 1978 v2 = 267 v2 = 270 }	# MANY-TO-MANY: Highlands, Western Isles, Orkney, Shetlands -> Inverness, Stirling
 link = { eu4 = 1979 v2 = 253 }	# Färöarnax -> Faroe Islands
 link = { eu4 = 233 v2 = 299 v2 = 298 }	# Cornwall -> Plymouth, Bath
 link = { eu4 = 251 v2 = 266 }	# Aberdeen -> Aberdeen
@@ -30,12 +30,8 @@ link = { eu4 = 1860 v2 = 291 v2 = 292 }	# Norfolk -> Cambridge, Ipswich
 link = { eu4 = 238 v2 = 293 }	# Essex -> Chelmsford
 link = { eu4 = 236 v2 = 300 }	# London -> London
 link = { eu4 = 235 v2 = 301 v2 = 302 }	# Kent -> Canterbury, Brighton
-# 253 - no match in v2
-# 369 - no match in v2
-# 1978 - no match in v2
-# Scandinavia
-# 371 - no match in v2
-link = { eu4 = 370 v2 = 252 }	# Reykjavik -> Iceland
+# # Scandinavia
+link = { eu4 = 370 eu4 = 371 v2 = 252 }	# Reykjavik, Akureyri -> Iceland
 link = { eu4 = 1777 v2 = 983 v2 = 2587 v2 = 982 }	# Kola -> Kandalaksha, Kola, Petsamo
 link = { eu4 = 1776 v2 = 984 }	# Karelia -> Kostomushka
 link = { eu4 = 19 v2 = 336 v2 = 337 }	# Österbotten -> Oulu, Kajaani
@@ -78,12 +74,11 @@ link = { eu4 = 16 v2 = 316 v2 = 329 }	# Bohuslän -> Frederiksstad, Göteborg
 link = { eu4 = 1984 v2 = 367 }	# Nordjylland -> Aalborg
 link = { eu4 = 15 v2 = 366 v2 = 2557 v2 = 368 }	# Midtjylland -> Aarhus, Esbjerg, Ribe
 link = { eu4 = 14 v2 = 373 }	# Fyn -> Odense
-link = { eu4 = 12 v2 = 372 }	# Sjælland -> Copenhagen
+link = { eu4 = 12 eu4 = 1983 v2 = 372 }	# Sjælland, Lolland -> Copenhagen
 link = { eu4 = 1981 v2 = 374 }	# Bornholm -> Bornholm
 link = { eu4 = 1775 v2 = 369 }	# Holstein -> Kiel
 link = { eu4 = 13 v2 = 371 v2 = 370 }	# Slesvig -> Aabenraa, Flensburg
-# 1983 - no match in v2
-# Japan
+# # Japan
 link = { eu4 = 1032 v2 = 1088 v2 = 1089 }	# Kurils -> Shumshu, Etorofu
 link = { eu4 = 1033 v2 = 1086 v2 = 1087 }	# Sakhalin -> Pogobi, Ootomari
 link = { eu4 = 1031 v2 = 1643 }	# Kamikawa -> Ishikara
@@ -115,7 +110,7 @@ link = { eu4 = 1818 v2 = 1660 v2 = 1661 }	# Chikuzen -> Fukuoka, Nagasaki
 link = { eu4 = 1014 v2 = 1664 }	# Bungo -> Kumamoto
 link = { eu4 = 1012 v2 = 1663 v2 = 1662 }	# Satsuma -> Miyazaki, Kagoshima
 link = { eu4 = 1015 v2 = 1679 v2 = 1678 }	# Okinawa -> Amari, Okinawa
-# Korea
+# # Korea
 link = { eu4 = 737 v2 = 1635 v2 = 1637 }	# Jeolla -> Kwangju, Cheju
 link = { eu4 = 736 v2 = 1632 v2 = 1633 v2 = 1634 }	# Gyeongsang -> Pusan, Taegu, Pohang
 link = { eu4 = 1013 v2 = 1636 }	# Chungcheong -> Taejon
@@ -124,7 +119,7 @@ link = { eu4 = 733 v2 = 1627 v2 = 1626 v2 = 1625 }	# Pyeongan -> Sariwon, Haeju,
 link = { eu4 = 1845 v2 = 1620 v2 = 1619 }	# Uiji -> Chonchon, Pyongyang
 link = { eu4 = 734 v2 = 1630 v2 = 1631 v2 = 1629 }	# Gangwon -> Kangnung, Wonju, Wonsan
 link = { eu4 = 732 v2 = 1621 v2 = 1623 v2 = 1622 }	# Hamgyeong -> Hamhung, Kimchaek, Chongjin
-# Oceania
+# # Oceania
 # Australia
 link = { eu4 = 1084 v2 = 2498 v2 = 2497 v2 = 2499 }	# Wadjuk -> Kojonup, Perth, Geraldton
 link = { eu4 = 1085 v2 = 2482 }	# Paredarerme -> Tasmania
@@ -180,12 +175,12 @@ link = { eu4 = 640 v2 = 1426 v2 = 1428 v2 = 2576 }	# Sukadane -> Pontianak, Sint
 link = { eu4 = 639 v2 = 1423 v2 = 1424 v2 = 1422 v2 = 1427 }	# Banjarmasin -> Banjarmasin, Pasir, Muraleve, Kota Waringin
 link = { eu4 = 638 v2 = 1425 v2 = 1429 }	# Kutei -> Tarakan, Samarinda
 link = { eu4 = 644 v2 = 1433 }	# Menade -> Menado
-link = { eu4 = 648 v2 = 1448 }	# Halmahera -> Jilolo
+link = { eu4 = 648 eu4 = 649 v2 = 1448 }	# Halmahera, Ternate -> Jilolo
 link = { eu4 = 643 v2 = 1435 v2 = 1434 }	# Pose -> Palu, Luwuk
 link = { eu4 = 641 v2 = 1432 v2 = 1430 v2 = 1431 }	# Makassar -> Mamuju, Makassar, Bone
 link = { eu4 = 642 v2 = 1436 v2 = 1437 }	# Bone -> Kendari, Bulon
-link = { eu4 = 645 v2 = 1449 }	# Buru -> Ambon
-link = { eu4 = 649 v2 = 1447 }	# Ternate -> Ternate
+link = { eu4 = 645 eu4 = 646 v2 = 1449 }	# Buru, Ambom -> Ambon
+link = { eu4 = 650 v2 = 1447 }	# Tidore -> Ternate
 link = { eu4 = 647 v2 = 1450 }	# Ceram -> Ceram
 link = { eu4 = 633 v2 = 1439 v2 = 1444 }	# Flores -> Flores, Alor
 link = { eu4 = 634 v2 = 1441 }	# Sumba -> Sumba
@@ -220,7 +215,7 @@ link = { eu4 = 590 v2 = 1343 }	# Moulmein -> Moulmein
 link = { eu4 = 594 v2 = 1392 v2 = 1352 }	# Pattani -> Pattani, Phuket
 link = { eu4 = 593 v2 = 1354 }	# Ligore -> Nakhon Si Thammarat
 link = { eu4 = 592 v2 = 1353 }	# Ratchaburi -> Ratchaburi
-# Africa
+# # Africa
 # South Africa
 link = { eu4 = 1177 v2 = 2090 v2 = 2087 v2 = 2089 v2 = 2091 }	# Cape -> Swettenham, Cape Town, Worcester, Mossel Bay
 link = { eu4 = 1182 v2 = 2049 v2 = 2050 }	# Delagoa Bay -> Lourenzo Marques, Chaimate
@@ -409,7 +404,7 @@ link = { eu4 = 1222 v2 = 1830 v2 = 1828 }	# Gezira -> Sennar, Wad Madani
 link = { eu4 = 1221 v2 = 1838 }	# Taqali -> Obeid
 link = { eu4 = 1219 v2 = 1839 }	# Kordofan -> Nuhud
 link = { eu4 = 1216 v2 = 1840 v2 = 1831 }	# Dar Nuba -> Kaduqli, Rabak
-# Europe
+# # Europe
 # Portugal
 link = { eu4 = 230 v2 = 527 }	# Algarve -> Faro
 link = { eu4 = 229 v2 = 526 v2 = 525 v2 = 524 }	# Alentejo -> Beja, Évora, Setubal
@@ -622,7 +617,7 @@ link = { eu4 = 332 v2 = 896 v2 = 889 }	# Mus -> Marash, Malatya
 link = { eu4 = 418 v2 = 891 v2 = 890 }	# Van -> Bitlis, Van
 link = { eu4 = 322 v2 = 868 v2 = 867 }	# Anatolia -> Eskishehir, Kütahya
 link = { eu4 = 1848 v2 = 866 v2 = 874 }	# Hamid -> Afyon, Burdur
-# Central America
+# # Central America
 # Carribean
 link = { eu4 = 484 v2 = 2209 }	# Havana -> Havana
 link = { eu4 = 485 v2 = 2210 v2 = 2218 }	# Moron -> Jagua, Cayman Islands
@@ -688,7 +683,7 @@ link = { eu4 = 855 v2 = 2156 v2 = 2153 }	# Huichol -> Mazatlán, Durango
 link = { eu4 = 856 v2 = 2158 v2 = 2155 }	# Zacatecas -> Zacatecas, Torreón
 link = { eu4 = 857 v2 = 2159 v2 = 2151 }	# Guachichil -> San Luis Potosí, Saltillo
 link = { eu4 = 860 v2 = 2145 v2 = 2154 }	# Tepehuan -> Parral, Santa María del Oro
-# North America
+# # North America
 # Texas
 link = { eu4 = 884 v2 = 138 }	# Karankawa -> Laredo
 link = { eu4 = 888 v2 = 133 }	# Atakapa -> Austin
@@ -851,7 +846,7 @@ link = { eu4 = 948 v2 = 183 v2 = 182 }	# Ohio -> Marietta, Cincinnati
 link = { eu4 = 940 v2 = 185 }	# Kentucky -> Lexington
 link = { eu4 = 941 v2 = 218 }	# Cumberland -> Huntington
 link = { eu4 = 949 v2 = 216 }	# Monacan -> Roanoke
-# South America
+# # South America
 # Brazil
 link = { eu4 = 747 v2 = 2415 v2 = 2414 }	# Tucujulandia -> Macapá, Amapá
 link = { eu4 = 748 v2 = 2410 }	# Grao Para -> Belém
@@ -1001,7 +996,7 @@ link = { eu4 = 410 v2 = 927 v2 = 925 v2 = 926 v2 = 928 v2 = 930 }	# Iraq-i-Arab 
 link = { eu4 = 412 v2 = 1132 v2 = 1131 v2 = 1133 }	# Khuzestan -> Abadan, Ahvaz, Dezful
 link = { eu4 = 413 v2 = 1120 v2 = 1117 v2 = 1119 }	# Luristan -> Khoramabad, Kermanshah, Ilam
 link = { eu4 = 415 v2 = 924 v2 = 1110 }	# Sharizhor -> Arbil, Urumia
-# Europe Redux
+# # Europe Redux
 # Germanic States
 link = { eu4 = 35 v2 = 353 }	# Ösel -> Ösel
 link = { eu4 = 36 v2 = 349 }	# Estland -> Reval
@@ -1097,7 +1092,7 @@ link = { eu4 = 1041 v2 = 2638 }	# Gizhiga -> Omsukchan
 link = { eu4 = 1044 v2 = 2618 v2 = 2639 }	# Tauisk -> Talaya, Susuman
 link = { eu4 = 1043 v2 = 1072 }	# Okhotsk -> Okhotsk
 link = { eu4 = 1047 v2 = 2641 }	# Jugjur -> Ayan
-# Chinese Region
+# # Chinese Region
 # Taiwan
 link = { eu4 = 738 v2 = 1485 v2 = 2562 }	# Taiwan -> Taibei, Tainan
 # Manchu
@@ -1105,7 +1100,7 @@ link = { eu4 = 1850 v2 = 1082 }	# Mudanjiang -> Haishenwai
 link = { eu4 = 726 v2 = 1481 v2 = 1479 v2 = 1480 }	# Liaodong -> Port Arthur, Mukden, Jinzhou
 link = { eu4 = 730 v2 = 1555 }	# Haixi -> Jilin
 link = { eu4 = 731 v2 = 1554 }	# Ninguta -> Ninguta
-link = { eu4 = 729 v2 = 1083 }	# Wusuli -> Boli
+link = { eu4 = 729 eu4 = 1050 v2 = 1083 }	# Wusuli, Deren -> Boli
 link = { eu4 = 1049 v2 = 1085 v2 = 2617 }	# Saghalian Oula -> Ulusamudan, Saghalian Oula
 link = { eu4 = 1048 v2 = 1084 }	# Udskoye -> Utchan
 link = { eu4 = 1057 v2 = 1078 }	# Udinsky -> Chita
@@ -1168,7 +1163,7 @@ link = { eu4 = 615 v2 = 1356 }	# Luang Prabang -> Luang Prabang
 link = { eu4 = 1072 v2 = 2614 v2 = 2684 }	# Obdorsk -> Mordiyakha, Yar Sale
 link = { eu4 = 1781 v2 = 2659 v2 = 2613 v2 = 2615 v2 = 2680 v2 = 2657 v2 = 2658 v2 = 2654 v2 = 2693 }	# Western Siberia -> Napalkovo, Nyda, Krasnoselkup, Dudinka, Svetlogorsk, Kheta, Khatanga, Uchami
 link = { eu4 = 1782 v2 = 2674 v2 = 2655 v2 = 2675 v2 = 2653 v2 = 2651 v2 = 2673 v2 = 2670 v2 = 2671 v2 = 2652 v2 = 2649 v2 = 2667 }	# Eastern Siberia -> Essey, Tura, Yekonda, Saskylah, Udanchniy, Olenyok, Tiksi, Zhilinda, Kular, Zhigansk, Bulun
-# India
+# # India
 # Sri Lanke
 link = { eu4 = 572 v2 = 1322 v2 = 1321 v2 = 1323 v2 = 1324 }	# Ceylon -> Jaffna, Colombo, Kandy, Trincomalee
 link = { eu4 = 537 v2 = 1319 }	# Venad -> Trivandrum
@@ -1293,13 +1288,11 @@ link = { eu4 = 1972 v2 = 1031 }	# Udmurtia -> Sarapul
 link = { eu4 = 1963 v2 = 2689 }	# Cherdyn -> Mulda
 link = { eu4 = 1962 v2 = 1029 }	# Kudymkar -> Glasov
 link = { eu4 = 1077 v2 = 2700 }	# Solikamsk -> Usogorsk
-# North Atlantic
+# # North Atlantic
 # Oceans
-link = { eu4 = 1652 v2 = 2716 }	# White Sea -> White Sea
+link = { eu4 = 1652 eu4 = 1263 v2 = 2716 }	# White Sea, Barents Sea -> White Sea
 link = { eu4 = 1888 v2 = 3230 }	# Kara Sea -> Gulf of Ob
 link = { eu4 = 1264 v2 = 2717 }	# Lofoten Sea -> Lofoten Sea
-# 1236 - No equivalent
-# Make that 1263
 link = { eu4 = 1265 v2 = 2718 }	# Northern Norwegian Sea -> Northern Norwegian Sea
 link = { eu4 = 1474 v2 = 2927 }	# Spitzberg Sea -> Spitzberg Sea
 link = { eu4 = 1475 v2 = 2928 }	# Icelandic Sea -> Icelandic Sea
@@ -1307,7 +1300,7 @@ link = { eu4 = 1480 v2 = 2933 }	# Denmark Strait -> Denmark Strait
 link = { eu4 = 1477 v2 = 2930 }	# Coast of Iceland -> Coast of Iceland
 link = { eu4 = 1473 v2 = 2926 }	# Jan Mayen Sea -> Jan Mayen Sea
 link = { eu4 = 1929 v2 = 2719 }	# Western Norwegian Sea -> Southern Norwegian Sea
-link = { eu4 = 1282 v2 = 2735 }	# Moray Firth -> Moray Firth
+link = { eu4 = 1282 eu4 = 1281 v2 = 2735 }	# Moray Firth, The North Sea -> Moray Firth
 link = { eu4 = 1283 v2 = 2736 }	# North Channel -> North Channel
 link = { eu4 = 1476 v2 = 2929 }	# Shetland Straits -> Shetland Straits
 link = { eu4 = 1478 v2 = 2931 }	# Northeastern Atlantic -> Northeastern Atlantic
@@ -1328,16 +1321,15 @@ link = { eu4 = 1269 v2 = 2722 }	# Coast of Holland -> Coast of Holland
 link = { eu4 = 1279 v2 = 2732 }	# Tyne -> Tyne
 link = { eu4 = 1280 v2 = 2733 }	# Firth of Forth -> Firth of Forth
 link = { eu4 = 1252 v2 = 2705 }	# Gulf of Bothnia -> Gulf of Bothnia
-link = { eu4 = 1253 v2 = 2706 }	# Ålands Hav -> Ålands Hav
+link = { eu4 = 1253 eu4 = 1928 v2 = 2706 }	# Ålands Hav, Western Alands sea -> Ålands Hav
 link = { eu4 = 1254 v2 = 2707 }	# Gulf of Finland -> Gulf of Finland
-link = { eu4 = 1255 v2 = 2708 }	# Western Baltic Sea -> Western Baltic Sea
-link = { eu4 = 1256 v2 = 2709 }	# Gulf of Riga -> Gulf of Riga
-link = { eu4 = 1257 v2 = 2710 }	# Southern Baltic Sea -> Southern Baltic Sea
-link = { eu4 = 1267 v2 = 2720 }	# Skagerrack -> Skagerrack
-link = { eu4 = 1281 v2 = 2734 }	# The North Sea -> The North Sea
+link = { eu4 = 1255 eu4 = 1977 v2 = 2708 }	# Western Baltic Sea, Mälaren -> Western Baltic Sea
+link = { eu4 = 1256 eu4 = 1926 v2 = 2709 }	# Gulf of Riga, Northern baltic sea -> Gulf of Riga
+link = { eu4 = 1257 eu4 = 1927 v2 = 2710 }	# Southern Baltic Sea, Eastern baltic sea -> Southern Baltic Sea
+link = { eu4 = 1975 v2 = 2734 }	# Sea of Jutland -> The North Sea
 link = { eu4 = 1268 v2 = 2721 }	# Helgoland Bight -> Helgoland Bight
-link = { eu4 = 1259 v2 = 2712 }	# Kattegat -> Kattegat
-link = { eu4 = 1258 v2 = 2711 }	# Öresund -> Öresund
+link = { eu4 = 1267 v2 = 2712 }	# Skagerrack -> Kattegat
+link = { eu4 = 1258 eu4 = 1259 eu4 = 1925 v2 = 2711 }	# Öresund, Kattegat, Bält sound -> Öresund
 # Some baltic Lakes
 link = { eu4 = 1262 v2 = 2715 }	# Onega -> Onega
 link = { eu4 = 1250 v2 = 2703 }	# Vänern -> Vänern
@@ -1349,7 +1341,6 @@ link = { eu4 = 1488 v2 = 2941 }	# Eastern Hudson Bay -> Eastern Hudson Bay
 link = { eu4 = 1489 v2 = 2942 }	# Foxe Bassin -> Foxe Basin
 link = { eu4 = 1485 v2 = 2938 }	# Hudson Straits -> Hudson Straits
 link = { eu4 = 1486 v2 = 2939 }	# James Bay -> James Bay
-# 
 link = { eu4 = 1484 v2 = 2937 }	# Baffin Bay -> Baffin Bay
 link = { eu4 = 1483 v2 = 2936 }	# Labrador Strait -> Labrador Strait
 link = { eu4 = 1665 v2 = 3118 }	# Lake Winnipeg -> Lake Winnipeg
@@ -1377,7 +1368,7 @@ link = { eu4 = 1500 v2 = 2953 }	# Chesapaeake Bay -> Chesapeake Bay
 link = { eu4 = 1501 v2 = 2954 }	# Cape Hatteras -> Cape Hatteras
 link = { eu4 = 1502 v2 = 2955 }	# Coast of Carolina -> Coast of Carolina
 link = { eu4 = 1503 v2 = 2956 }	# Coast of Florida -> Coast of Florida
-link = { eu4 = 1572 v2 = 3025 }	# West Bermuda Sea -> West Bermuda Sea
+link = { eu4 = 1572 v2 = 3025 v2 = 3210 }	# West Bermuda Sea -> West Bermuda Sea, Western Sargasso Sea
 link = { eu4 = 1573 v2 = 3026 }	# East Bermuda Sea -> East Bermuda Sea
 link = { eu4 = 1571 v2 = 3024 }	# Blake Plataeu -> Blake Plateau
 link = { eu4 = 1570 v2 = 3023 }	# Sable Island Bank -> Sable Island Bank
@@ -1385,7 +1376,7 @@ link = { eu4 = 1569 v2 = 3022 }	# New England Seamounts -> New England Seamounts
 link = { eu4 = 1565 v2 = 3018 }	# Western Gibbs Fracture -> Western Gibbs Fracture
 link = { eu4 = 1568 v2 = 3021 }	# Corner Seamounts -> Corner Seamounts
 link = { eu4 = 1567 v2 = 3020 }	# Sea of Azores -> Sea of Azores
-link = { eu4 = 1575 v2 = 3028 }	# Northern Guiana Basin -> Northern Guiana Basin
+link = { eu4 = 1575 v2 = 3028 v2 = 3036 }	# Northern Guiana Basin -> Northern Guiana Basin, Central Sargasso Sea
 link = { eu4 = 1289 v2 = 2742 }	# Western Approaches -> Western Approaches
 link = { eu4 = 1275 v2 = 2728 }	# Quiberon Bay -> Quiberon Bay
 link = { eu4 = 1276 v2 = 2729 }	# Cote D'Argent -> Cote D'Argent
@@ -1406,8 +1397,8 @@ link = { eu4 = 1531 v2 = 2984 }	# Coast of Recife -> Coast of Recife
 link = { eu4 = 1529 v2 = 2982 }	# Amazonas Gulf -> Amazonas Gulf
 link = { eu4 = 1528 v2 = 2981 }	# Bay of Belem -> Coast of Amapá
 link = { eu4 = 1527 v2 = 2980 }	# Guyana Coast -> Guyana Coast
-link = { eu4 = 1576 v2 = 3029 }	# Guiana Basin -> Guiana Basin
-link = { eu4 = 1577 v2 = 3030 }	# Southern Guiana Basin -> Southern Guiana Basin
+link = { eu4 = 1576 v2 = 3029 v2 = 3205 }	# Guiana Basin -> Guiana Basin, West Demerara Plain
+link = { eu4 = 1577 v2 = 3030 v2 = 3206 }	# Southern Guiana Basin -> Southern Guiana Basin, East Demerara Plain
 link = { eu4 = 1579 v2 = 3032 }	# Cap Verde Approach -> Cape Verde Approach
 link = { eu4 = 1523 v2 = 2976 }	# Lesser Antilles -> Lesser Antilles
 link = { eu4 = 1522 v2 = 2975 }	# Windward Islands -> Windward Islands
@@ -1433,7 +1424,7 @@ link = { eu4 = 1512 v2 = 2965 }	# Yucatan Channel -> Yucatan Channel
 link = { eu4 = 1513 v2 = 2966 }	# Belize Bay -> Belize Bay
 link = { eu4 = 1518 v2 = 2971 }	# Northwestern Carribean -> Northwestern Caribbean
 link = { eu4 = 1504 v2 = 2957 }	# Sea of Sargassos -> Coast of the Bahamas
-link = { eu4 = 1574 v2 = 3027 }	# Some Funny Seaname -> Canary Current
+link = { eu4 = 1574 v2 = 3027 v2 = 3209 }	# Some Funny Seaname -> Canary Current, Bahamas Basin
 # South Atlantic Ocean
 link = { eu4 = 1468 v2 = 2921 }	# Coast of Gamvia -> Coast of Guinea
 link = { eu4 = 1467 v2 = 2920 }	# Gold Coast -> Ivory Coast
@@ -1625,7 +1616,6 @@ link = { eu4 = 1376 v2 = 2829 }	# South Korean Sea -> South Korean Sea
 link = { eu4 = 1388 v2 = 2842 }	# Yamato Basin -> Amakusa Sea
 link = { eu4 = 1378 v2 = 2831 }	# Coast of Olga -> Coast of Olga
 link = { eu4 = 1391 v2 = 2844 }	# Tokai Sea -> Tokai Sea
-# 1387 - no match
 link = { eu4 = 1442 v2 = 2895 }	# Bay of Uka -> Bay of Uka
 link = { eu4 = 1666 v2 = 3121 }	# Western Pacific #1 -> Novarsk Plain
 link = { eu4 = 1668 v2 = 3119 }	# Western Pacific #3 -> Korskiyev Gulch
@@ -1773,7 +1763,7 @@ link = { eu4 = 1900 v2 = 3236 }	# Lake Turkana -> Lake Rudolf
 link = { eu4 = 1648 v2 = 3101 }	# Lake Tchad -> Lake Tchad
 # Mediteranean
 link = { eu4 = 1326 v2 = 2779 }	# Caspian Sea -> Caspian Sea
-link = { eu4 = 1653 v2 = 3106 v2 = 3233 }	# Lake Balchasj -> Lake Balchasj, Issyk Kul
+link = { eu4 = 1653 v2 = 3233 v2 = 3106 }	# Lake Balchasj -> Issyk Kul, Lake Balchasj
 link = { eu4 = 1323 v2 = 2776 }	# Sea of Azov -> Sea of Azov
 link = { eu4 = 1322 v2 = 2775 }	# Gulf of Odessa -> Gulf of Odessa
 link = { eu4 = 1324 v2 = 2777 }	# Eastern Black Sea -> Eastern Black Sea
@@ -1808,23 +1798,13 @@ link = { eu4 = 1299 v2 = 2752 }	# Gulf of Mallocra -> Gulf of Mallorca
 link = { eu4 = 1301 v2 = 2754 }	# Barbary Coast -> Barbary Coast
 link = { eu4 = 1293 v2 = 2746 }	# Straits of Gibraltar -> Straits of Gibraltar
 link = { eu4 = 1294 v2 = 2747 }	# Gulf of Almeira -> Gulf of Almería
-# 1932 - no match available
 link = { eu4 = 1924 v2 = 3242 }	# Greenland tip -> Maury Sea Channel
 # More Atlantic That I missed
-link = { eu4 = 1582 v2 = 3237 }	# Central Atlantic #3 -> Sohm Plain
+link = { eu4 = 1582 v2 = 3237 v2 = 3211 }	# Central Atlantic #3 -> Sohm Plain, Bermuda Approaches
 link = { eu4 = 1580 v2 = 3033 }	# Central Atlantic #1 -> Cruiser Tablemount
-link = { eu4 = 1583 v2 = 3208 }	# Central Atlantic #4 -> Nares Plain
+link = { eu4 = 1583 v2 = 3208 v2 = 3035 }	# Central Atlantic #4 -> Nares Plain, Eastern Sargasso Sea
 link = { eu4 = 1581 v2 = 3207 }	# Central Atlantic #2 -> Cape Verde Basin
-# Temp space for 1266, 1975, 1932, 1928, 1927, 1926 is in the middle of the atlantic :D
 link = { eu4 = 1932 v2 = 3034 }	# Gulf of Satalia -> Barracuda Fracture Zone
-link = { eu4 = 1928 v2 = 3211 }	# Western Alands sea -> Bermuda Approaches
-link = { eu4 = 1926 v2 = 3035 }	# Northern baltic sea -> Eastern Sargasso Sea
-link = { eu4 = 1927 v2 = 3036 }	# Eastern baltic sea -> Central Sargasso Sea
-link = { eu4 = 1266 v2 = 3210 }	# Southern Norwegian Sea -> Western Sargasso Sea
-link = { eu4 = 1975 v2 = 3209 }	# Sea of Jutland -> Bahamas Basin
-link = { eu4 = 1925 v2 = 3205 }	# Bält sound -> West Demerara Plain
-# Add 1925 to that
-# Note to self: Need to clean up comments and locations!!!!!!!
 link = { eu4 = 1038 v2 = 2622 }	# Anadyrsk -> Markovo
 link = { eu4 = 1037 v2 = 2660 }	# Nizhe-Kolymsk -> Bereyezovka
 link = { eu4 = 1036 v2 = 2620 }	# Podzhiversk -> Syasir
@@ -1926,6 +1906,7 @@ link = { eu4 = 1968 v2 = 1207 }	# Kulob -> Kulob
 link = { eu4 = 714 v2 = 1188 v2 = 1595 }	# Dzungaria -> Qaratal, Ili
 link = { eu4 = 715 v2 = 1600 }	# Urumqi -> Díhuà
 link = { eu4 = 1074 v2 = 2690 v2 = 1066 }	# Sibir -> Verkhniy Ufaley, Tobolsk
+link = { eu4 = 1654 v2 = 3107 }	# Lake Bajkal -> Lake Bajkal
 link = { eu4 = 1071 v2 = 2683 v2 = 1064 }	# Tara -> Bakchar, Omsk
 link = { eu4 = 1075 v2 = 1061 }	# Tyumen -> Tyumen
 link = { eu4 = 1076 v2 = 2611 }	# Kurgan -> Turgay
@@ -2068,4 +2049,9 @@ link = { eu4 = 581 v2 = 1342 }	# Sagaing -> Myitkyina
 link = { eu4 = 573 v2 = 1339 }	# Kachar -> Haka
 link = { eu4 = 570 v2 = 1259 }	# Naga -> Imphal
 # It's hideous and will take some revising I'm sure... but it's DONE!!!
+link = { eu4 = 1325 v2 = 2778 }	# Lake Balaton -> Lake Balaton
+link = { eu4 = 1656 v2 = 3109 }	# Lake Titicaca -> Lake Titicaca
+link = { eu4 = 1266 v2 = 2720 }	# Southern Norwegian Sea -> Skagerrack
+link = { eu4 = 1100 v2 = 2127 }	# Mahe -> Seychelles
+link = { eu4 = 1902 v2 = 3240 }	# Lake Poopo -> Lake Poopo
 }
