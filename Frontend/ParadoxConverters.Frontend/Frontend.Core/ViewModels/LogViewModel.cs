@@ -2,6 +2,7 @@
 using Frontend.Core.Logging;
 using Frontend.Core.ViewModels;
 using Frontend.Core.ViewModels.Interfaces;
+using Frontend.Core.Views.Commands;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 
@@ -9,11 +10,21 @@ namespace Frontend.Core.ViewModels
 {
     public class LogViewModel : ViewModelBase, ILogViewModel
     {
+        private OpenUriCommand openUriCommand;
+
         private ObservableCollection<LogEntry> logEntries;
 
         public LogViewModel(IEventAggregator eventAggregator)
             : base(eventAggregator)
         {
+        }
+
+        public OpenUriCommand OpenUriCommand
+        {
+            get
+            {
+                return this.openUriCommand ?? (this.openUriCommand = new OpenUriCommand(this.EventAggregator));
+            }
         }
 
         protected override void OnLoading(object parameter)

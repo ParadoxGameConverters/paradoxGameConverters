@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+  <supportedConverters>
+    <converter>
+      <name>Ck2ToEu3</name>
+      <friendlyName>Crusader Kings 2 to Europa Universalis 3</friendlyName>
+      <defaultConfigurationFile>/Configuration/Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
+      <userConfigurationFile></userConfigurationFile>
+    </converter>
+    <converter>
+      <name>Eu3ToVic2</name>
+      <friendlyName>Europa Universalis 3 to Victoria 2</friendlyName>
+      <defaultConfigurationFile>/Configuration/Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
+      <userConfigurationFile></userConfigurationFile>
+    </converter>
+  </supportedConverters>
+</configuration>

@@ -13,6 +13,22 @@ namespace Frontend.Core.Logging
     {
         private string logText;
         private DateTime logStamp;
+        
+        /// <summary>
+        /// Initializes a new instance of the <see cref="LogEntry"/> class.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="severity">The severity.</param>
+        /// <param name="source">The source.</param>
+        /// <param name="path">The path where something happened</param>
+        public LogEntry(string text, LogEntrySeverity severity, LogEntrySource source, string path)
+        {
+            this.logText = text;
+            this.logStamp = DateTime.Now;
+            this.Severity = severity;
+            this.Source = source;
+            this.Path = path;
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="LogEntry"/> class.
@@ -21,11 +37,8 @@ namespace Frontend.Core.Logging
         /// <param name="severity">The severity.</param>
         /// <param name="source">The source.</param>
         public LogEntry(string text, LogEntrySeverity severity, LogEntrySource source)
+            : this(text, severity, source, string.Empty)
         {
-            this.logText = text;
-            this.logStamp = DateTime.Now;
-            this.Severity = severity;
-            this.Source = source;
         }
 
         /// <summary>
@@ -71,6 +84,11 @@ namespace Frontend.Core.Logging
         /// The severity.
         /// </value>
         public LogEntrySeverity Severity { get; set; }
+
+        /// <summary>
+        /// Gets or sets the path to where something happened. Can be both file and folder
+        /// </summary>
+        public string Path { get; set; }
 
         /// <summary>
         /// Returns a <see cref="System.String" /> that represents this instance.

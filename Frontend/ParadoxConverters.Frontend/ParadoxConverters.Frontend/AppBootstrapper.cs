@@ -8,6 +8,7 @@ namespace Frontend.Client
     using Frontend.Core.ViewModels.Interfaces;
     using System;
     using System.Collections.Generic;
+    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Windows;
@@ -65,7 +66,9 @@ namespace Frontend.Client
 		{
 			DisplayRootViewFor<IShell>();
 
-            var logEntry = new LogEntry("Application started", LogEntrySeverity.Info, LogEntrySource.UI);
+            var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+            var logEntry = new LogEntry("Application started", LogEntrySeverity.Info, LogEntrySource.UI, currentDirectory);
             var eventAggregator = this.container.GetInstance<IEventAggregator>();
 
             eventAggregator.PublishOnUIThread(logEntry);

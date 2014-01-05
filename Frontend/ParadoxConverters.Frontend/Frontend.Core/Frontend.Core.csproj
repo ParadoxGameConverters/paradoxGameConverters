@@ -54,9 +54,13 @@
   <ItemGroup>
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
+    <Compile Include="Exceptions\XMLParseExceptionBase.cs" />
+    <Compile Include="Factories\ConverterSettingsFactory.cs" />
+    <Compile Include="Helpers\XMLErrorHelper.cs" />
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\LogEntrySeverity.cs" />
     <Compile Include="Logging\LogEntrySource.cs" />
+    <Compile Include="Model\ConverterSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFrameViewModel.cs" />
@@ -69,12 +73,14 @@
     <Compile Include="ViewModels\StepViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
+    <Compile Include="Views\Commands\CommandBase.cs" />
+    <Compile Include="Views\Commands\OpenUriCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Model\" />
+    <Folder Include="Views\Behaviors\" />
   </ItemGroup>
   <ItemGroup>
     <Page Include="Views\FrameView.xaml">
@@ -89,6 +95,13 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Configuration\Ck2ToEu3DefaultConfiguration.xml" />
+    <Content Include="Configuration\ConfigurationExplanation.txt" />
+    <Content Include="Configuration\Eu3ToVic2DefaultConfiguration.xml" />
+    <Content Include="Configuration\GameSelectionDefault.xml" />
+    <Content Include="Configuration\UserPreferences.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
