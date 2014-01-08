@@ -785,10 +785,12 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			newProvinceTotalPop += province->getPopulation();
 			// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 			// or I have the same number of provinces, but more population, than the current owner
-			if (	(oldOwner == NULL)
-				|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-				|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-					   && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+			if (	(oldOwner == NULL) ||
+					(provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) ||
+					(	(provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size()) &&
+						(provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)
+					)
+				)
 			{
 				oldOwner = owner;
 				oldProvince = province;
@@ -796,6 +798,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		}
 		if (oldOwner == NULL)
 		{
+			i->second->setOwner("");
 			continue;
 		}
 
