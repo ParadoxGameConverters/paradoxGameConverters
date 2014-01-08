@@ -6,12 +6,14 @@
       <friendlyName>Crusader Kings 2 to Europa Universalis 3</friendlyName>
       <defaultConfigurationFile>/Configuration/Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
+      <isDefault>true</isDefault>
     </converter>
     <converter>
       <name>Eu3ToVic2</name>
       <friendlyName>Europa Universalis 3 to Victoria 2</friendlyName>
       <defaultConfigurationFile>/Configuration/Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
+      <isDefault>false</isDefault>
     </converter>
   </supportedConverters>
 </configuration>

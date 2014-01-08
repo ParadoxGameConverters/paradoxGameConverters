@@ -6,6 +6,19 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <TextBlock Text="Welcome"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Supported converters: "/>
+        
+        <ItemsControl Grid.Row="1" x:Name="SupportedConverters">
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <RadioButton Content="{Binding Name}" IsChecked="{Binding IsSelected}" GroupName="supportedConverters"/>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
     </Grid>
 </UserControl>
