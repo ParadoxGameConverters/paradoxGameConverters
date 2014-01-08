@@ -43,14 +43,15 @@ EU4World::EU4World(Object* obj)
 		{
 			keyCoun = countriesLeaves[j]->getKey();
 
-			if ((keyCoun.size() == 3) &&									// Countries are three uppercase characters
-					(keyCoun.c_str()[0] >= 'A') && (keyCoun.c_str()[0] <= 'Z') && 
-					(keyCoun.c_str()[1] >= 'A') && (keyCoun.c_str()[1] <= 'Z') && 
-					(keyCoun.c_str()[2] >= 'A') && (keyCoun.c_str()[2] <= 'Z')
-				  )
+			if ((keyCoun == "---") || (keyCoun == "REB") || (keyCoun == "PIR") || (keyCoun == "NAT"))
+			{
+				continue;
+			}
+			else
 			{
 				EU4Country* country = new EU4Country(countriesLeaves[j]);
 				countries.insert(make_pair(country->getTag(), country));
+				log("\tImported country %s\n", country->getTag().c_str());
 			}
 		}
 	}
