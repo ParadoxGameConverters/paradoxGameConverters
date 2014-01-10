@@ -51,7 +51,6 @@ EU4World::EU4World(Object* obj)
 			{
 				EU4Country* country = new EU4Country(countriesLeaves[j]);
 				countries.insert(make_pair(country->getTag(), country));
-				log("\tImported country %s\n", country->getTag().c_str());
 			}
 		}
 	}

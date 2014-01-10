@@ -459,9 +459,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Outputting mod\n");
 	log("Outputting mod\n");
 	system("xcopy blankMod output /E /Q /Y /I");
+	FILE* modFile;
+	if (fopen_s(&modFile, ("Output\\" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
+	{
+		log("\tError: Could not create .mod file\n");
+		exit(-1);
+	}
+	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "replace = \"history/provinces\"\n");
+	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
-	system(renameCommand.c_str());
-	renameCommand = "move /Y output\\output.mod output\\" + Configuration::getOutputName() + ".mod";
 	system(renameCommand.c_str());
 	destWorld.output();
 
