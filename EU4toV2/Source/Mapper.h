@@ -31,8 +31,9 @@ void removeLandlessNations(EU4World&);
 
 
 // State Mappings
-typedef map< int, vector<int> > stateMapping;	// < province, all other provinces in state >
-stateMapping initStateMap(Object* obj);
+typedef map< int, vector<int> >	stateMapping;	// < province, all other provinces in state >
+typedef map< int, int >				stateIndexMapping; // < province, state index >
+void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
 
 
 // Culture Mappings

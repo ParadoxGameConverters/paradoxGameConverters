@@ -261,23 +261,24 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
 	
-	//// Generate region mapping
-	//log("Parsing region structure.\n");
-	//printf("Parsing region structure.\n");
-	//obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
-	//if (obj == NULL)
-	//{
-	//	log("Could not parse file %s\n", (V2Loc + "\\map\\region.txt").c_str());
-	//	exit(-1);
-	//}
-	//if (obj->getLeaves().size() < 1)
-	//{
-	//	log("Error: Could not parse region.txt.\n");
-	//	printf("Error: Could not parse region.txt.\n");
-	//	return 1;
-	//}
-	//stateMapping stateMap;
-	//stateMap = initStateMap(obj);
+	// Generate region mapping
+	log("Parsing region structure.\n");
+	printf("Parsing region structure.\n");
+	obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (V2Loc + "\\map\\region.txt").c_str());
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Could not parse region.txt.\n");
+		printf("Error: Could not parse region.txt.\n");
+		return 1;
+	}
+	stateMapping		stateMap;
+	stateIndexMapping	stateIndexMap;
+	initStateMap(obj, stateMap, stateIndexMap);
 
 
 	// Parse Culture Mappings
@@ -404,7 +405,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertDiplomacy(sourceWorld, countryMap);*/
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap, stateIndexMap);
 	/*printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);*/

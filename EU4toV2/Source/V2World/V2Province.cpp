@@ -16,6 +16,7 @@ using namespace std;
 
 V2Province::V2Province(string _filename)
 {
+	srcProvince			= NULL;
 	filename				= _filename;
 	land					= false;
 	coastal				= false;
@@ -159,7 +160,20 @@ void V2Province::output() const
 	}
 	if (colonial > 0)
 	{
-		fprintf_s(output, "colonial = %d\n", colonial);
+		if (Configuration::getV2Gametype() != "HOD")
+		{
+		}
+	}
+	if (colonised)
+	{
+		if (Configuration::getV2Gametype() == "HOD")
+		{
+			fprintf(output, "\tcolonial=2\n");
+		}
+		else
+		{
+			fprintf(output, "\tcolonial=yes\n");
+		}
 	}
 	if (colonyLevel > 0)
 	{
@@ -402,6 +416,7 @@ void V2Province::importHistory(Object* obj)
 
 void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 {
+	srcProvince = oldProvince;
 	if (oldProvince->isColony())
 	{
 		colonial = 2;

@@ -125,8 +125,9 @@ int initCountryMap(countryMapping& mapping, const EU4World& srcWorld, const V2Wo
 	}
 	vector<Object*> rules = leaves[0]->getLeaves();
 
-	map<string, EU4Country*>	EU4Countries	= srcWorld.getCountries();
-	map<string, V2Country*>		V2Countries		= destWorld.getPotentialCountries();
+	map<string, EU4Country*>	EU4Countries		= srcWorld.getCountries();
+	map<string, V2Country*>		V2Countries			= destWorld.getPotentialCountries();
+	map<string, V2Country*>		dynamicCountries	= destWorld.getDynamicCountries();
 	for (vector<Object*>::iterator i = rules.begin(); i != rules.end(); ++i)
 	{
 		vector<Object*> rule = (*i)->getLeaves();
@@ -202,6 +203,23 @@ int initCountryMap(countryMapping& mapping, const EU4World& srcWorld, const V2Wo
 		{
 			V2Countries.erase(j);
 		}
+	}
+
+	while ((EU4Countries.size() > 0) && (dynamicCountries.size() > 0))
+	{
+		map<string, EU4Country*>::iterator	EU4Country = EU4Countries.begin();
+		map<string, V2Country*>::iterator	dynamicCountry = dynamicCountries.begin();
+		map<string, V2Country*>::iterator	V2Country = V2Countries.find(dynamicCountry->first);
+		if (V2Country == V2Countries.end())
+		{
+			log("Error: dynamic country was not also a V2 country. I will likely crash now\n");
+		}
+		mapping.insert(make_pair(EU4Country->first, V2Country->first));
+		log("\tAdded map %s -> %s (dynamic fallback)\n", EU4Country->first.c_str(), V2Country->first.c_str());
+		
+		EU4Countries.erase(EU4Country);
+		dynamicCountries.erase(dynamicCountry);
+		V2Countries.erase(V2Country);
 	}
 
 	while ( (EU4Countries.size() > 0) && (V2Countries.size() > 0) )
@@ -433,27 +451,25 @@ void removeLandlessNations(EU4World& world)
 }
 
 
-stateMapping initStateMap(Object* obj)
+void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap)
 {
-	stateMapping stateMap;
 	vector<Object*> leaves = obj->getLeaves();
 
-	for (vector<Object*>::iterator i = leaves.begin(); i != leaves.end(); i++)
+	for (unsigned int i = 0; i < leaves.size(); i++)
 	{
-		vector<string> provinces = (*i)->getTokens();
+		vector<string> provinces = leaves[i]->getTokens();
 		vector<int>		neighbors;
 
 		for (vector<string>::iterator j = provinces.begin(); j != provinces.end(); j++)
 		{
 			neighbors.push_back( atoi(j->c_str()) );
+			stateIndexMap.insert(make_pair(atoi(j->c_str()), i));
 		}
 		for (vector<int>::iterator j = neighbors.begin(); j != neighbors.end(); j++)
 		{
 			stateMap.insert(make_pair(*j, neighbors));
 		}
 	}
-
-	return stateMap;
 }
 
 

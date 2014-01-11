@@ -29,9 +29,10 @@ class V2State
 		int	getCraftsmenPerFactory() const;
 		bool	provInState(int id) const;
 
-		void	addProvince(V2Province* newProvince) { provinces.push_back(newProvince); };
-		void	addFactory(const V2Factory* factory) { factories.push_back(factory); };
-		void	setColonial(bool isIt) { colonial = isIt; };
+		void	addProvince(V2Province* newProvince)	{ provinces.push_back(newProvince); };
+		void	addFactory(const V2Factory* factory)	{ factories.push_back(factory); };
+		void	setColonial(bool isIt)						{ colonial = isIt; };
+		void	setColonised(bool isIt)						{ colonised = isIt; };
 
 		bool						isColonial()		const { return colonial; };
 		int						getFactoryCount()	const { return factories.size(); };
@@ -42,6 +43,7 @@ class V2State
 		bool	hasCOT();
 		int								id;
 		bool								colonial;
+		bool								colonised;
 		vector<V2Province*>			provinces;
 		vector<const V2Factory*>	factories;
 };

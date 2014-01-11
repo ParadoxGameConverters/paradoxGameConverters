@@ -300,6 +300,7 @@ V2World::V2World(string V2Loc)
 	printf("\tGetting potential countries and building political parties.\n");
 	parties.clear();
 	potentialCountries.clear();
+	dynamicCountries.clear();
 	const date FirstStartDate = Configuration::getStartDate();
 	ifstream V2CountriesInput;
 	V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
@@ -310,14 +311,20 @@ V2World::V2World(string V2Loc)
 		exit(1);
 	}
 
-	int partiesIndex = 1;
+	int	partiesIndex	= 1;
+	bool	staticSection	= true;
 	while (!V2CountriesInput.eof())
 	{
 		string line;
 		getline(V2CountriesInput, line);
 
-		if ((line[0] == '#') || (line.size() < 3) || (line.substr(0, 12) == "dynamic_tags"))
+		if ((line[0] == '#') || (line.size() < 3))
 		{
+			continue;
+		}
+		else if (line.substr(0, 12) == "dynamic_tags")
+		{
+			staticSection = false;
 			continue;
 		}
 
@@ -351,12 +358,21 @@ V2World::V2World(string V2Loc)
 			continue;
 		}
 		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
-		potentialCountries.push_back(newCountry);
+		if (staticSection)
+		{
+			potentialCountries.push_back(newCountry);
+		}
+		else
+		{
+			potentialCountries.push_back(newCountry);
+			dynamicCountries.push_back(newCountry);
+		}
 	}
 	V2CountriesInput.close();
 
 	equalityLeft	= 6;
 	libertyLeft		= 30;
+	colonies.clear();
 }
 
 
@@ -374,7 +390,30 @@ void V2World::output() const
 	{
 		countries[i]->output(output);
 	}
-	diplomacy.output(output);*/
+	diplomacy.output(output);
+	if(Configuration::getV2Gametype() == "HOD")
+	{
+		for (map< int, set<string> >::const_iterator colonyIter = colonies.begin(); colonyIter != colonies.end(); colonyIter++)
+		{
+			fprintf(output, "region=\n");
+			fprintf(output, "{\n");
+			fprintf(output, "	index=%d\n", colonyIter->first);
+			fprintf(output, "	phase=0\n");
+			fprintf(output, "	temperature=0.000\n");
+			for (set<string>::iterator countriesIter = colonyIter->second.begin(); countriesIter != colonyIter->second.end(); countriesIter++)
+			{
+				fprintf(output, "	colony=\n");
+				fprintf(output, "	{\n");
+				fprintf(output, "		tag=\"%s\"\n", countriesIter->c_str());
+				fprintf(output, "		points=1\n");
+				fprintf(output, "		invest=80\n");
+				fprintf(output, "		date=\"1836.1.1\"\n");
+				fprintf(output, "	}\n");
+			}
+			fprintf(output, "}\n");
+		}
+	}
+	*/
 }
 
 
@@ -732,7 +771,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
 {
 	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -747,8 +786,8 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			continue;
 		}
 
-		EU4Province* oldProvince	= NULL;
-		EU4Country* oldOwner			= NULL;
+		EU4Province*	oldProvince		= NULL;
+		EU4Country*		oldOwner			= NULL;
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
 		double newProvinceTotalPop = 0;
@@ -774,20 +813,44 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			{
 				provinceBins[tag] = MTo1ProvinceComp();
 			}
-			provinceBins[tag].provinces.push_back(province);
-			provinceBins[tag].totalPopulation += province->getPopulation();
-			newProvinceTotalPop += province->getPopulation();
-			// I am the new owner if there is no current owner, or I have more provinces than the current owner,
-			// or I have the same number of provinces, but more population, than the current owner
-			if (	(oldOwner == NULL) ||
-					(provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) ||
-					(	(provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size()) &&
-						(provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)
-					)
-				)
+			if ((Configuration::getV2Gametype() == "HOD") && (province->getPopulation() < 1000) && (owner != NULL))
 			{
-				oldOwner = owner;
-				oldProvince = province;
+				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(i->first);
+				if (stateIndexMapping == stateIndexMap.end())
+				{
+					log("Error: Could not find state index for province %d.\n", i->first);
+					continue;
+				}
+				else
+				{
+					map< int, set<string> >::iterator colony = colonies.find(stateIndexMapping->second);
+					if (colony == colonies.end())
+					{
+						set<string> countries;
+						countries.insert(owner->getTag());
+						colonies.insert(make_pair(stateIndexMapping->second, countries));
+					}
+					else
+					{
+						colony->second.insert(owner->getTag());
+					}
+				}
+			}
+			else
+			{
+				provinceBins[tag].provinces.push_back(province);
+				provinceBins[tag].totalPopulation += province->getPopulation();
+				newProvinceTotalPop += province->getPopulation();
+				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
+				// or I have the same number of provinces, but more population, than the current owner
+				if ((oldOwner == NULL)
+					 || (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
+					 || ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
+					 && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+				{
+					oldOwner = owner;
+					oldProvince = province;
+				}
 			}
 		}
 		if (oldOwner == NULL)
@@ -1025,8 +1088,8 @@ void V2World::setupStates(const stateMapping& stateMap)
 		{
 			neighbors = stateItr->second;
 		}
-		bool colonial				= (*iter)->isColonial();
-		newState->setColonial(colonial);
+		bool colonised = (*iter)->wasColonised();
+		newState->setColonised(colonised);
 		iter = unassignedProvs.erase(iter);
 
 		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
@@ -1037,7 +1100,7 @@ void V2World::setupStates(const stateMapping& stateMap)
 				{
 					if ((*iter)->getOwner() == owner)
 					{
-						if ((*iter)->isColonial() == colonial)
+						if ((*iter)->wasColonised() == colonised)
 						{
 							newState->addProvince(*iter);
 							iter = unassignedProvs.erase(iter);
@@ -1471,6 +1534,17 @@ map<string, V2Country*> V2World::getPotentialCountries() const
 		retVal[ (*i)->getTag() ] = *i;
 	}
 
+	return retVal;
+}
+
+
+map<string, V2Country*> V2World::getDynamicCountries() const
+{
+	map<string, V2Country*> retVal;
+	for (vector<V2Country*>::const_iterator i = dynamicCountries.begin(); i != dynamicCountries.end(); i++)
+	{
+		retVal[(*i)->getTag()] = *i;
+	}
 	return retVal;
 }
 

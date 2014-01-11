@@ -38,6 +38,16 @@ public:
 		return getInstance()->StartDate;
 	}
 
+	static date	getFirstEU4Date()
+	{
+		return getInstance()->firstEU4Date;
+	}
+
+	static void setFirstEU4Date(date _firstDate)
+	{
+		getInstance()->firstEU4Date = _firstDate;
+	}
+
 	static double getMaxLiteracy()
 	{
 		return getInstance()->MaxLiteracy;
@@ -74,6 +84,7 @@ private:
 	string	V2Gametype;
 	string	Removetype;
 	date		StartDate;
+	date		firstEU4Date;
 	double	MaxLiteracy;
 	string	outputName;
 

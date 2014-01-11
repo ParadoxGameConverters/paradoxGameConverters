@@ -3,12 +3,14 @@
 #include "V2Pop.h"
 #include "V2Province.h"
 #include "V2Factory.h"
+#include "../log.h"
 
 
 V2State::V2State(int newId, V2Province* firstProvince)
 {
-	id			= newId;
-	colonial	= false;
+	id				= newId;
+	colonial		= false;
+	colonised	= false;
 	provinces.clear();
 	provinces.push_back(firstProvince);
 	factories.clear();
@@ -39,7 +41,17 @@ void V2State::output(FILE* output) const
 	}
 	if (colonial)
 	{
-		fprintf(output, "\t\tis_colonial=yes\n");
+	}
+	if (colonised)
+	{
+		if (Configuration::getV2Gametype() == "HOD")
+		{
+			fprintf(output, "\t\tis_colonial=2\n");
+		}
+		else
+		{
+			fprintf(output, "\t\tis_colonial=yes\n");
+		}
 	}
 	fprintf(output, "\t}\n");
 }
