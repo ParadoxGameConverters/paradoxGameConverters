@@ -202,15 +202,15 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 	vector<Object*> top = obj->getValue(categoryName);
 	if (top.size() != 1)
 	{
-		log("Error: could not get regiment type map for %s", categoryName);
-		printf("Error: could not get regiment type map for %s", categoryName);
+		log("Error: could not get regiment type map for %s", categoryName.c_str());
+		printf("Error: could not get regiment type map for %s", categoryName.c_str());
 		exit(1);
 	}
 	vector<Object*> types = top[0]->getLeaves();
 	if (types.size() == 0)
 	{
-		log("Error: no regiment types to map for %s", categoryName);
-		printf("Error: no regiment types to map for %s", categoryName);
+		log("Error: no regiment types to map for %s", categoryName.c_str());
+		printf("Error: no regiment types to map for %s", categoryName.c_str());
 		exit(1);
 	}
 	for (vector<Object*>::iterator itr = types.begin(); itr != types.end(); ++itr)

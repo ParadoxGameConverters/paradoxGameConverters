@@ -13,8 +13,7 @@ class V2World;
 typedef map< int, vector<int> > provinceMapping;			// < destProvince, sourceProvinces >
 typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince, destProvinces >
 
-provinceMapping initProvinceMap(Object* obj);
-inverseProvinceMapping invertProvinceMap(const provinceMapping& provMap);
+void initProvinceMap(Object* obj, provinceMapping& provMap, provinceMapping& inverseProvMap);
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 
 
@@ -32,8 +31,9 @@ void removeLandlessNations(EU4World&);
 
 
 // State Mappings
-typedef map< int, vector<int> > stateMapping;	// < province, all other provinces in state >
-stateMapping initStateMap(Object* obj);
+typedef map< int, vector<int> >	stateMapping;	// < province, all other provinces in state >
+typedef map< int, int >				stateIndexMapping; // < province, state index >
+void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
 
 
 // Culture Mappings

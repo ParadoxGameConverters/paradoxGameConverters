@@ -43,11 +43,11 @@ EU4World::EU4World(Object* obj)
 		{
 			keyCoun = countriesLeaves[j]->getKey();
 
-			if ((keyCoun.size() == 3) &&									// Countries are three uppercase characters
-					(keyCoun.c_str()[0] >= 'A') && (keyCoun.c_str()[0] <= 'Z') && 
-					(keyCoun.c_str()[1] >= 'A') && (keyCoun.c_str()[1] <= 'Z') && 
-					(keyCoun.c_str()[2] >= 'A') && (keyCoun.c_str()[2] <= 'Z')
-				  )
+			if ((keyCoun == "---") || (keyCoun == "REB") || (keyCoun == "PIR") || (keyCoun == "NAT"))
+			{
+				continue;
+			}
+			else
 			{
 				EU4Country* country = new EU4Country(countriesLeaves[j]);
 				countries.insert(make_pair(country->getTag(), country));
@@ -299,9 +299,9 @@ void EU4World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 	for (map<int, EU4Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
-		if ( (j == inverseProvinceMap.end()) || (j->second.size() == 0) )
+		if (j == inverseProvinceMap.end())
 		{
-			log("	Error: no destination for province #%d\n", i->first);
+			log("	Error: no mapping for province #%d\n", i->first);
 		}
 	}
 }

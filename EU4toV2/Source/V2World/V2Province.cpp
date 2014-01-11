@@ -16,6 +16,7 @@ using namespace std;
 
 V2Province::V2Province(string _filename)
 {
+	srcProvince			= NULL;
 	filename				= _filename;
 	land					= false;
 	coastal				= false;
@@ -65,7 +66,7 @@ V2Province::V2Province(string _filename)
 	{
 		if ((*itr)->getKey() == "owner")
 		{
-			owner = (*itr)->getLeaf().c_str();
+			owner = (*itr)->getLeaf();
 		}
 		else if ((*itr)->getKey() == "controller")
 		{
@@ -77,7 +78,7 @@ V2Province::V2Province(string _filename)
 		}
 		else if ((*itr)->getKey() == "trade_goods")
 		{
-			rgoType = (*itr)->getLeaf().c_str();
+			rgoType = (*itr)->getLeaf();
 		}
 		else if ((*itr)->getKey() == "life_rating")
 		{
@@ -85,7 +86,7 @@ V2Province::V2Province(string _filename)
 		}
 		else if ((*itr)->getKey() == "terrain")
 		{
-			terrain = atoi((*itr)->getLeaf().c_str());
+			terrain = (*itr)->getLeaf();
 		}
 		else if ((*itr)->getKey() == "colonial")
 		{
@@ -109,7 +110,7 @@ V2Province::V2Province(string _filename)
 		}
 		else if ((*itr)->getKey() == "is_slave")
 		{
-			if ((*itr)->getKey() == "yes")
+			if ((*itr)->getLeaf() == "yes")
 			{
 				slaveState = true;
 			}
@@ -159,7 +160,20 @@ void V2Province::output() const
 	}
 	if (colonial > 0)
 	{
-		fprintf_s(output, "colonial = %d\n", colonial);
+		if (Configuration::getV2Gametype() != "HOD")
+		{
+		}
+	}
+	if (colonised)
+	{
+		if (Configuration::getV2Gametype() == "HOD")
+		{
+			fprintf(output, "\tcolonial=2\n");
+		}
+		else
+		{
+			fprintf(output, "\tcolonial=yes\n");
+		}
 	}
 	if (colonyLevel > 0)
 	{
@@ -402,6 +416,7 @@ void V2Province::importHistory(Object* obj)
 
 void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 {
+	srcProvince = oldProvince;
 	if (oldProvince->isColony())
 	{
 		colonial = 2;
@@ -578,7 +593,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 			slaves += 500;
 		}
 
-		soldiers	+= armyBuilding * 10;
+		soldiers += (armyBuilding + 1) * 8;
 		if (oldCountry->hasNationalIdea("grand_army")
 			|| oldCountry->hasNationalIdea("glorious_arms"))
 		{

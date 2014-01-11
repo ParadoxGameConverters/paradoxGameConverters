@@ -22,7 +22,6 @@ del release\log.txt
 del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
 mkdir "release\blankMod"
-copy "Data_Files\output.mod" "release\blankMod\output.mod"
 mkdir "release\blankMod\output"
 mkdir "release\blankMod\output\history"
 mkdir "release\blankMod\output\history\provinces"

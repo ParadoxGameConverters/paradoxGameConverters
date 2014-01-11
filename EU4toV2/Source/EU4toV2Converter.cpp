@@ -95,7 +95,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 
 	// Resolve unit types
-	log("Resolving unit types.\n");
+	/*log("Resolving unit types.\n");
 	printf("Resolving unit types.\n");
 	RegimentTypeMap rtm;
 	read.open("unit_strength.txt");
@@ -139,7 +139,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	read.close();
 	read.clear();
-	sourceWorld.resolveRegimentTypes(rtm);
+	sourceWorld.resolveRegimentTypes(rtm);*/
 
 
 	// Merge nations
@@ -159,10 +159,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	V2World destWorld(V2Loc);
 
 
-	// Construct factory factory
-	log("Determining factory allocation rules.\n");
-	printf("Determining factory allocation rules.\n");
-	V2FactoryFactory factoryBuilder(V2Loc);
+	//// Construct factory factory
+	//log("Determining factory allocation rules.\n");
+	//printf("Determining factory allocation rules.\n");
+	//V2FactoryFactory factoryBuilder(V2Loc);
 
 	// Parse province mappings
 	log("Parsing province mappings.\n");
@@ -186,8 +186,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Could not parse file %s\n", mappingFile);
 		exit(-1);
 	}
-	provinceMapping provinceMap = initProvinceMap(obj);
-	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
+	provinceMapping provinceMap;
+	inverseProvinceMapping inverseProvinceMap;
+	initProvinceMap(obj, provinceMap, inverseProvinceMap);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 	// Get list of blocked nations
@@ -275,8 +276,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("Error: Could not parse region.txt.\n");
 		return 1;
 	}
-	stateMapping stateMap;
-	stateMap = initStateMap(obj);
+	stateMapping		stateMap;
+	stateIndexMapping	stateIndexMap;
+	initStateMap(obj, stateMap, stateIndexMap);
 
 
 	// Parse Culture Mappings
@@ -364,30 +366,30 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	governmentMap = initGovernmentMap(obj->getLeaves()[0]);
 
 
-	//Parse tech schools
-	log("Parsing tech schools.\n");
-	printf("Parsing tech schools.\n");
-	initParser();
-	obj = doParseFile("blocked_tech_schools.txt");
-	if (obj == NULL)
-	{
-		log("Could not parse file blocked_tech_schools.txt\n");
-		exit(-1);
-	}
-	vector<string> blockedTechSchools;
-	blockedTechSchools = initBlockedTechSchools(obj);
-	initParser();
-	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
-	if (obj == NULL)
-	{
-		log("Could not parse file %s\n", (V2Loc + "\\common\\technology.txt").c_str());
-		exit(-1);
-	}
+	////Parse tech schools
+	//log("Parsing tech schools.\n");
+	//printf("Parsing tech schools.\n");
+	//initParser();
+	//obj = doParseFile("blocked_tech_schools.txt");
+	//if (obj == NULL)
+	//{
+	//	log("Could not parse file blocked_tech_schools.txt\n");
+	//	exit(-1);
+	//}
+	//vector<string> blockedTechSchools;
+	//blockedTechSchools = initBlockedTechSchools(obj);
+	//initParser();
+	//obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
+	//if (obj == NULL)
+	//{
+	//	log("Could not parse file %s\n", (V2Loc + "\\common\\technology.txt").c_str());
+	//	exit(-1);
+	//}
 	vector<techSchool> techSchools;
-	techSchools = initTechSchools(obj, blockedTechSchools);
+	//techSchools = initTechSchools(obj, blockedTechSchools);
 
 
-	// Get Leader traits
+	//// Get Leader traits
 	log("Getting leader traits.\n");
 	printf("Getting leader traits.\n");
 	V2LeaderTraits lt;
@@ -398,33 +400,33 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
-	printf("Converting diplomacy.\n");
+	/*printf("Converting diplomacy.\n");
 	log("Converting diplomacy.\n");
-	destWorld.convertDiplomacy(sourceWorld, countryMap);
+	destWorld.convertDiplomacy(sourceWorld, countryMap);*/
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap);
-	printf("Creating states.\n");
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap, stateIndexMap);
+	/*printf("Creating states.\n");
 	log("Creating states.\n");
-	destWorld.setupStates(stateMap);
-	printf("Setting unciv reforms.\n");
+	destWorld.setupStates(stateMap);*/
+	/*printf("Setting unciv reforms.\n");
 	log("Setting unciv reforms.\n");
-	destWorld.convertUncivReforms();
-	printf("Creating pops.\n");
+	destWorld.convertUncivReforms();*/
+	/*printf("Creating pops.\n");
 	log("Creating pops.\n");
-//	destWorld.setupPops(sourceWorld);
+	destWorld.setupPops(sourceWorld);*/
 	printf("Adding unions.\n");
 	log("Adding unions.\n");
 	destWorld.addUnions(unionMap);
-	printf("Converting armies and navies.\n");
+	/*printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
-	printf("Converting techs.\n");
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);*/
+	/*printf("Converting techs.\n");
 	log("Converting techs.\n");
-	//destWorld.convertTechs(sourceWorld);
-	printf("Allocating starting factories.\n");
+	destWorld.convertTechs(sourceWorld);*/
+	/*printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
-	destWorld.allocateFactories(sourceWorld, factoryBuilder);
+	destWorld.allocateFactories(sourceWorld, factoryBuilder);*/
 
 	//// Generate Mod Directory Structure
 	//printf("Outputting mod.\n");
@@ -458,21 +460,19 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Outputting mod\n");
 	log("Outputting mod\n");
 	system("xcopy blankMod output /E /Q /Y /I");
+	FILE* modFile;
+	if (fopen_s(&modFile, ("Output\\" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
+	{
+		log("\tError: Could not create .mod file\n");
+		exit(-1);
+	}
+	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "replace = \"history/provinces\"\n");
+	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());
-	renameCommand = "move /Y output\\output.mod output\\" + Configuration::getOutputName() + ".mod";
-	system(renameCommand.c_str());
-
-	printf("Outputting save.\n");
-	log("Outputting save.\n");
-	FILE* output;
-	if (fopen_s(&output, "output.v2", "w") != 0)
-	{
-		log("Error: could not open output.v2.\n");
-		printf("Error: could not open output.v2.\n");
-	}
-	destWorld.output(output);
-	fclose(output);
+	destWorld.output();
 
 	closeLog();
 	return 0;

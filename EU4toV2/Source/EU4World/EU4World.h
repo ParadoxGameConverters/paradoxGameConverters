@@ -23,17 +23,17 @@ class EU4World {
 		EU4World(Object* obj);
 		EU4Country*						getCountry(string tag) const;
 		EU4Province*					getProvince(int provNum) const;
-		void							removeCountry(string tag);
-		void							resolveRegimentTypes(const RegimentTypeMap& map);
+		void								removeCountry(string tag);
+		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		WorldType						getWorldType();
-		void							checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
+		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
 
-		map<string, EU4Country*>		getCountries()	const { return countries; };
+		map<string, EU4Country*>	getCountries()	const { return countries; };
 		EU4Diplomacy*					getDiplomacy()	const { return diplomacy; };
 	private:
 		WorldType						cachedWorldType;
-		map<int, EU4Province*>			provinces;
-		map<string, EU4Country*>		countries;
+		map<int, EU4Province*>		provinces;
+		map<string, EU4Country*>	countries;
 		EU4Diplomacy*					diplomacy;
 };
 
