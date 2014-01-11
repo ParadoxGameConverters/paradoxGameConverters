@@ -813,7 +813,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			{
 				provinceBins[tag] = MTo1ProvinceComp();
 			}
-			if ((Configuration::getV2Gametype() == "HOD") && (province->getPopulation() < 1000) && (owner != NULL))
+			if ((Configuration::getV2Gametype() == "HOD") && /*(province->getPopulation() < 1000)*/ false && (owner != NULL))
 			{
 				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(i->first);
 				if (stateIndexMapping == stateIndexMap.end())
