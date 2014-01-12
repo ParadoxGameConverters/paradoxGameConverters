@@ -459,7 +459,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Output results
 	printf("Outputting mod\n");
 	log("Outputting mod\n");
-	system("xcopy blankMod output /E /Q /Y /I");
+	system("%systemroot%\\System32\\xcopy blankMod output /E /Q /Y /I");
 	FILE* modFile;
 	if (fopen_s(&modFile, ("Output\\" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
 	{
