@@ -40,6 +40,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity">
       <HintPath>..\packages\Caliburn.Micro.2.0.0-alpha2\lib\net45\System.Windows.Interactivity.dll</HintPath>
     </Reference>
@@ -52,6 +53,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\OpenConverterCommand.cs" />
+    <Compile Include="Commands\OpenFolderCommand.cs" />
+    <Compile Include="Commands\OpenSaveGameCommand.cs" />
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Exceptions\MissingRequiredXMLPropertyException.cs" />
@@ -59,33 +63,46 @@
     <Compile Include="Exceptions\XMLParseExceptionBase.cs" />
     <Compile Include="Factories\ConverterSettingsFactory.cs" />
     <Compile Include="Factories\FactoryBase.cs" />
+    <Compile Include="Factories\GameConfigurationFactory.cs" />
     <Compile Include="Helpers\DateParseHelper.cs" />
     <Compile Include="Helpers\NullableComparer.cs" />
     <Compile Include="Helpers\NumberParserHelper.cs" />
+    <Compile Include="Helpers\SteamHelper.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XMLErrorHelper.cs" />
     <Compile Include="Logging\LogEntry.cs" />
     <Compile Include="Logging\LogEntrySeverity.cs" />
     <Compile Include="Logging\LogEntrySource.cs" />
+    <Compile Include="Model\ConverterOptions.cs" />
     <Compile Include="Model\ConverterSettings.cs" />
+    <Compile Include="Model\GameConfiguration.cs" />
+    <Compile Include="Model\Interfaces\IConverterOptions.cs" />
+    <Compile Include="Model\Interfaces\IConverterSettings.cs" />
+    <Compile Include="Model\Interfaces\IGameConfiguration.cs" />
     <Compile Include="Model\Interfaces\IModel.cs" />
     <Compile Include="Model\Interfaces\IPreference.cs" />
     <Compile Include="Model\Interfaces\IPreferenceEntry.cs" />
     <Compile Include="Model\PreferenceEntry.cs" />
+    <Compile Include="Model\RelativeFolderLocationRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\ILogViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IPathPickerViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IStep.cs" />
     <Compile Include="ViewModels\Interfaces\IStepViewModelBase.cs" />
     <Compile Include="ViewModels\Interfaces\IViewModelBase.cs" />
     <Compile Include="ViewModels\Interfaces\IWelcomeViewModel.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
+    <Compile Include="ViewModels\PathPickerViewModel.cs" />
     <Compile Include="ViewModels\StepViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
-    <Compile Include="Views\Commands\CommandBase.cs" />
-    <Compile Include="Views\Commands\OpenUriCommand.cs" />
+    <Compile Include="Commands\CommandBase.cs" />
+    <Compile Include="Commands\OpenUriCommand.cs" />
+    <Compile Include="Views\PathPickerView.xaml.cs">
+      <DependentUpon>PathPickerView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -99,6 +116,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LogView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PathPickerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

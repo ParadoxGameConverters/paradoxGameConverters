@@ -1,8 +1,7 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Commands;
 using Frontend.Core.Logging;
-using Frontend.Core.ViewModels;
 using Frontend.Core.ViewModels.Interfaces;
-using Frontend.Core.Views.Commands;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 

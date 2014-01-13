@@ -4,6 +4,7 @@ namespace Frontend.Client
 {
     using Caliburn.Micro;
     using Frontend.Core.Logging;
+    using Frontend.Core.Model;
     using Frontend.Core.ViewModels;
     using Frontend.Core.ViewModels.Interfaces;
 
@@ -23,10 +24,14 @@ namespace Frontend.Client
             {
                 if (this.frameViewModel == null)
                 {
+                    var options = new ConverterOptions();
                     this.frameViewModel = new FrameViewModel(this.eventAggregator);
-                    var welcomeViewModel = new WelcomeViewModel(this.eventAggregator);
+                    var welcomeViewModel = new WelcomeViewModel(this.eventAggregator, options);
+                    var pathPickerViewModel = new PathPickerViewModel(this.eventAggregator, options);
 
                     this.frameViewModel.Steps.Add(welcomeViewModel);
+                    this.frameViewModel.Steps.Add(pathPickerViewModel);
+
                     this.FrameViewModel.MoveToStep(welcomeViewModel);
                 }
 

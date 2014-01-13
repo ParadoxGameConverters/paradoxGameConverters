@@ -3,14 +3,26 @@
 namespace Frontend.Core.ViewModels
 {
     using Caliburn.Micro;
-    using Frontend.Core.ViewModels;
-    using Frontend.Core.ViewModels.Interfaces;
+using Frontend.Core.Model.Interfaces;
+using Frontend.Core.ViewModels;
+using Frontend.Core.ViewModels.Interfaces;
 
     public abstract class StepViewModelBase : ViewModelBase, IStep
     {
-        public StepViewModelBase(IEventAggregator eventAggregator)
+        private IConverterOptions options;
+
+        public StepViewModelBase(IEventAggregator eventAggregator, IConverterOptions options)
             : base(eventAggregator)
         {
+            this.options = options;
+        }
+
+        protected IConverterOptions Options
+        {
+            get
+            {
+                return this.options;
+            }
         }
     }
 }

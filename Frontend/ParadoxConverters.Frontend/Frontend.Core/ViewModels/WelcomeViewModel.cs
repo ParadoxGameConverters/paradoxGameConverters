@@ -2,6 +2,7 @@
 using Frontend.Core.Factories;
 using Frontend.Core.Logging;
 using Frontend.Core.Model;
+using Frontend.Core.Model.Interfaces;
 using Frontend.Core.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -19,8 +20,8 @@ namespace Frontend.Core.ViewModels
         private ObservableCollection<ConverterSettings> supportedConverters;
         private ConverterSettingsFactory settingsFactory;
 
-        public WelcomeViewModel(IEventAggregator eventAggregator)
-            : base(eventAggregator)
+        public WelcomeViewModel(IEventAggregator eventAggregator, IConverterOptions options)
+            : base(eventAggregator, options)
         {
         }
 
