@@ -45,10 +45,6 @@ namespace Frontend.Core.ViewModels
 
         protected override void OnLoading(object parameter)
         {
-            if (this.EventAggregator.HandlerExistsFor(typeof(LogEntry)))
-            {
-                this.EventAggregator.Publish(new LogEntry("Application starting", LogEntrySeverity.Info, LogEntrySource.UI), null);
-            }
         }
     }
 }

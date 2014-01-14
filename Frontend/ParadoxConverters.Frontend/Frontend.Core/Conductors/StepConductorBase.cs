@@ -60,13 +60,29 @@ namespace Frontend.Core.ViewModels
             }
         }
 
-        public void MoveToStep(IStep step)
+        public void Move(Direction direction)
+        {
+            switch(direction)
+            {
+                case Direction.Backward:
+                    if (this.CanMoveBackward)
+                    {
+                        this.MoveToStep(this.Steps[this.Steps.IndexOf(this.CurrentStep) - 1]);
+                    }
+                    break;
+                case Direction.Forward:
+                    this.MoveToStep(this.Steps[this.Steps.IndexOf(this.CurrentStep) + 1]);
+                    break;
+            }
+        }
+
+        private void MoveToStep(IStep step)
         {
             if (this.currentStep == step)
             {
                 return;
             }
-            
+
             if (this.CurrentStep != null)
             {
                 this.CurrentStep.Unload();
@@ -76,6 +92,8 @@ namespace Frontend.Core.ViewModels
 
             this.currentStep = step;
             this.NotifyOfPropertyChange(() => this.CurrentStep);
+            this.NotifyOfPropertyChange(() => this.CanMoveBackward);
+            this.NotifyOfPropertyChange(() => this.CanMoveForward);
         }
     }
 }

@@ -53,6 +53,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\OpenConverterCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="ViewModels\Interfaces\IViewModelBase.cs" />
     <Compile Include="ViewModels\Interfaces\IWelcomeViewModel.cs" />
     <Compile Include="ViewModels\LogViewModel.cs" />
+    <Compile Include="ViewModels\Direction.cs" />
     <Compile Include="ViewModels\PathPickerViewModel.cs" />
     <Compile Include="ViewModels\StepViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />

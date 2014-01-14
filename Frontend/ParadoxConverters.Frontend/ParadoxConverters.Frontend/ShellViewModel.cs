@@ -32,7 +32,7 @@ namespace Frontend.Client
                     this.frameViewModel.Steps.Add(welcomeViewModel);
                     this.frameViewModel.Steps.Add(pathPickerViewModel);
 
-                    this.FrameViewModel.MoveToStep(welcomeViewModel);
+                    this.FrameViewModel.Move(Direction.Forward);
                 }
 
                 return this.frameViewModel;

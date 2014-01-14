@@ -10,6 +10,11 @@ namespace Frontend.Core.ViewModels.Interfaces
 
         IStep CurrentStep { get; }
 
-        void MoveToStep(IStep step);
+        //void MoveToStep(IStep step);
+        void Move(Direction direction);
+
+        bool CanMoveForward { get; }
+
+        bool CanMoveBackward { get; }
     }
 }

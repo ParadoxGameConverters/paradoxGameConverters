@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vms="clr-namespace:Frontend.Core.ViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -18,7 +19,7 @@
         <ContentControl x:Name="CurrentStep"/>
         <ContentControl x:Name="Log" Grid.Column="1"/>
 
-        <Button IsEnabled="{Binding CanMoveBackward}" Grid.Row="1" HorizontalAlignment="Left" Content="Previous"/>
-        <Button IsEnabled="{Binding CanMoveForward}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="Next"/>
+        <Button Command="{Binding MoveCommand}" CommandParameter="{x:Static vms:Direction.Backward}" IsEnabled="{Binding CanMoveBackward}" Grid.Row="1" HorizontalAlignment="Left" Content="Previous"/>
+        <Button Command="{Binding MoveCommand}" CommandParameter="{x:Static vms:Direction.Forward}" IsEnabled="{Binding CanMoveForward}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="Next"/>
     </Grid>
 </UserControl>

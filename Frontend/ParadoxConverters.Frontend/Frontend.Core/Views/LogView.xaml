@@ -74,14 +74,16 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Path" IsReadOnly="True" Width="150">
+                <DataGridTemplateColumn Header="Path" IsReadOnly="True" Width="82">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock>
-                                <Hyperlink Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
+                                <!--<Hyperlink Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
                                            CommandParameter="{Binding Path=Path}">
                                      <TextBlock Text="{Binding Path=Path}" />
-                                </Hyperlink>
+                                </Hyperlink>-->
+                                <Button Content="Open location" Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
+                                        CommandParameter="{Binding Path=Path}"/>
                             </TextBlock>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
