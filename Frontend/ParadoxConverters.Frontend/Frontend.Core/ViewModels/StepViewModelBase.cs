@@ -18,7 +18,7 @@ namespace Frontend.Core.ViewModels
             this.options = options;
         }
 
-        protected IConverterOptions Options
+        public IConverterOptions Options
         {
             get
             {

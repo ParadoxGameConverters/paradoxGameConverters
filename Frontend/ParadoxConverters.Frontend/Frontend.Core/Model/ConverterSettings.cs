@@ -47,7 +47,7 @@ namespace Frontend.Core.Model
 
                 if (value)
                 {
-                    this.eventAggregator.PublishOnUIThread(new LogEntry("Using configuration file " + this.DefaultConfigurationFile, LogEntrySeverity.Info, LogEntrySource.UI, this.DefaultConfigurationFile));
+                    this.eventAggregator.PublishOnUIThread(new LogEntry("Using configuration file", LogEntrySeverity.Info, LogEntrySource.UI, this.DefaultConfigurationFile));
                 }
             }
         }

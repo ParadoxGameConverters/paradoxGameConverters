@@ -42,9 +42,5 @@ namespace Frontend.Core.ViewModels
                     this.SettingsFactory.BuildModels<ConverterSettings>(Path.Combine(currentDirectory, "Configuration/SupportedConvertersDefault.xml")));
             }
         }
-
-        protected override void OnLoading(object parameter)
-        {
-        }
     }
 }

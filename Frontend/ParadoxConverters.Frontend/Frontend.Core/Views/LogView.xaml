@@ -70,24 +70,33 @@
                 <DataGridTemplateColumn Header="Text" IsReadOnly="True" Width="*">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding LogText}" Margin="5, 0, 5, 0" TextWrapping="Wrap"/>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding LogText}" Margin="5, 0, 5, 0" TextWrapping="Wrap"/>
+                                <TextBlock x:Name="PathTextBox">
+                                    <Hyperlink Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
+                                               CommandParameter="{Binding Path=Path}">
+                                         <TextBlock Text="{Binding Path=Path}" />
+                                    </Hyperlink>
+                                </TextBlock>
+                            </StackPanel>
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding Path=Path}" Value="{x:Null}">
+                                    <Setter TargetName="PathTextBox" Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Path" IsReadOnly="True" Width="82">
+                <!--<DataGridTemplateColumn Header="Path" IsReadOnly="True" Width="82">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock>
-                                <!--<Hyperlink Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
-                                           CommandParameter="{Binding Path=Path}">
-                                     <TextBlock Text="{Binding Path=Path}" />
-                                </Hyperlink>-->
-                                <Button Content="Open location" Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
-                                        CommandParameter="{Binding Path=Path}"/>
-                            </TextBlock>
+                            <Button Content="Open location" 
+                                        Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
+                                        CommandParameter="{Binding Path=Path}"
+                                        VerticalAlignment="Center"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
     </Grid>

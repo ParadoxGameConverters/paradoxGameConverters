@@ -16,11 +16,20 @@ namespace Frontend.Client
 	public class AppBootstrapper : BootstrapperBase
 	{
 		SimpleContainer container;
+        private IEventAggregator eventAggregator;
 
 		public AppBootstrapper()
 		{
 			Start();
 		}
+
+        protected IEventAggregator EventAggregator
+        {
+            get
+            {
+                return this.eventAggregator ?? (this.eventAggregator = this.container.GetInstance<IEventAggregator>());
+            }
+        }
 
 		protected override void Configure()
 		{
@@ -68,14 +77,15 @@ namespace Frontend.Client
 
             var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            var logEntry = new LogEntry("Application started", LogEntrySeverity.Info, LogEntrySource.UI, currentDirectory);
-            var eventAggregator = this.container.GetInstance<IEventAggregator>();
+            var logEntry = new LogEntry("Application started from", LogEntrySeverity.Info, LogEntrySource.UI, currentDirectory);
 
-            eventAggregator.PublishOnUIThread(logEntry);
+
+            this.EventAggregator.PublishOnUIThread(logEntry);
 		}
 
         protected override void OnUnhandledException(object sender, System.Windows.Threading.DispatcherUnhandledExceptionEventArgs e)
-        {   
+        {
+            this.EventAggregator.PublishOnUIThread(new LogEntry("Error occured: " + e.Exception.Message, LogEntrySeverity.Error, LogEntrySource.UI));
         }
 	}
 }
