@@ -82,17 +82,17 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                return this.Options.AbsoluteSourceSaveGamePath;
+                return this.Options.CurrentConverter.AbsoluteSourceSaveGamePath;
             }
 
             set
             {
-                if (this.Options.AbsoluteSourceSaveGamePath == value)
+                if (this.Options.CurrentConverter.AbsoluteSourceSaveGamePath == value)
                 {
                     return;
                 }
 
-                this.Options.AbsoluteSourceSaveGamePath = value;
+                this.Options.CurrentConverter.AbsoluteSourceSaveGamePath = value;
                 this.NotifyOfPropertyChange(() => this.SourceSaveGamePath);
             }
         }
@@ -107,7 +107,7 @@ namespace Frontend.Core.ViewModels
             var converterLocation = Path.Combine(Environment.CurrentDirectory, "CK2ToEU3.exe"); //TODO:FIX HARD CODING
             if (File.Exists(converterLocation))
             {
-                this.Options.AbsoluteConverterPath = converterLocation;
+                this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
             }
         }
 

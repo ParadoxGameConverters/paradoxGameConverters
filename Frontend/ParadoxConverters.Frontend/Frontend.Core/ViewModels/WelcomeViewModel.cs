@@ -42,5 +42,16 @@ namespace Frontend.Core.ViewModels
                     this.SettingsFactory.BuildModels<ConverterSettings>(Path.Combine(currentDirectory, "Configuration/SupportedConvertersDefault.xml")));
             }
         }
+
+        protected override void OnLoaded(object parameter)
+        {
+            base.OnLoaded(parameter);
+            this.EventAggregator.Subscribe(this);
+        }
+
+        public void Handle(IConverterSettings message)
+        {
+            this.Options.CurrentConverter = message;
+        }
     }
 }

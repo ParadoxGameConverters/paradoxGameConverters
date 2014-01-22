@@ -40,9 +40,9 @@ namespace Frontend.Core.Commands
 
             if (result == true)
             {
-                this.Options.AbsoluteConverterPath = dialog.FileName;
+                this.Options.CurrentConverter.AbsoluteConverterPath = dialog.FileName;
                 this.EventAggregator.PublishOnUIThread(
-                    new LogEntry("Converter .exe found at " + this.Options.AbsoluteConverterPath, LogEntrySeverity.Info, LogEntrySource.UI, this.Options.AbsoluteConverterPath));
+                    new LogEntry("Converter .exe found at " + this.Options.CurrentConverter.AbsoluteConverterPath, LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteConverterPath));
             }
         }
     }

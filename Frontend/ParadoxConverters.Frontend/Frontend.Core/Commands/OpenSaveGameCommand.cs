@@ -44,16 +44,16 @@ namespace Frontend.Core.Commands
             OpenFileDialog dialog = new OpenFileDialog();
 
             // TODO: Read this from gameconfiguration instead.
-            dialog.DefaultExt = this.Options.SourceGame.SaveGameExtension;
-            dialog.Filter = this.Options.SourceGame.FriendlyName + " save games (*" + this.Options.SourceGame.SaveGameExtension + ") | *" + this.Options.SourceGame.SaveGameExtension;
-            dialog.InitialDirectory = this.Options.SourceGame.AbsoluteSaveGamePath;
+            dialog.DefaultExt = this.Options.CurrentConverter.SourceGame.SaveGameExtension;
+            dialog.Filter = this.Options.CurrentConverter.SourceGame.FriendlyName + " save games (*" + this.Options.CurrentConverter.SourceGame.SaveGameExtension + ") | *" + this.Options.CurrentConverter.SourceGame.SaveGameExtension;
+            dialog.InitialDirectory = this.Options.CurrentConverter.SourceGame.AbsoluteSaveGamePath;
             Nullable<bool> result = dialog.ShowDialog();
 
             if (result == true)
             {
-                this.Options.AbsoluteSourceSaveGamePath = dialog.FileName;
+                this.Options.CurrentConverter.AbsoluteSourceSaveGamePath = dialog.FileName;
                 this.EventAggregator.PublishOnUIThread(
-                    new LogEntry("Selected savegame " + this.Options.AbsoluteSourceSaveGamePath, LogEntrySeverity.Info, LogEntrySource.UI, this.Options.AbsoluteSourceSaveGamePath));
+                    new LogEntry("Selected savegame " + this.Options.CurrentConverter.AbsoluteSourceSaveGamePath, LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteSourceSaveGamePath));
             }
         }
     }

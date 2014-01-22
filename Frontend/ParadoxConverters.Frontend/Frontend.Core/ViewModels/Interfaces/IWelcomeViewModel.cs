@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Caliburn.Micro;
+using Frontend.Core.Model.Interfaces;
 
 namespace Frontend.Core.ViewModels.Interfaces
 {
-    public interface IWelcomeViewModel : IStep
+    public interface IWelcomeViewModel : IStep, IHandle<IConverterSettings>
     {
     }
 }
