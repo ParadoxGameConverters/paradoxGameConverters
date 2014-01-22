@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<gameConfigurations>
+  
+  <!-- Crusader Kings 2 -->
+  <gameConfiguration>
+    <name>CrusaderKings2</name>
+    <friendlyName>Crusader Kings 2</friendlyName>
+    <steamId>203770</steamId>
+    <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
+    <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
+    <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
+    <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
+    <currentModTagName>CK2Mod</currentModTagName>
+    <saveGameExtension>.ck2</saveGameExtension>
+    <isSource>true</isSource>
+    <supportedMods>
+      <supportedMod>
+        <modName>CK2Plus</modName>
+      </supportedMod>
+    </supportedMods>
+  </gameConfiguration>
+
+  <!-- Europa Universalis 3 -->
+  <gameConfiguration>
+    <name>EuropaUniversalis3</name>
+    <friendlyName>Europa Universalis 3</friendlyName>
+    <steamId>25800</steamId>
+    <!--<nonsteamRegistryName>Europa Universalis III</nonsteamRegistryName>-->
+    <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+    <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+    <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>
+    <saveGameExtension>.eu3</saveGameExtension>
+  </gameConfiguration>
+
+  <!--Victoria 2-->
+  <gameConfiguration>
+    <name>Victoria2</name>
+    <friendlyName>Victoria 2</friendlyName>
+    <steamId>42960</steamId>
+    <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+    <saveGameExtension>.v2</saveGameExtension>
+    <configurationFileDirectoryTagName>v2directory</configurationFileDirectoryTagName>
+    <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>
+  </gameConfiguration>
+</gameConfigurations>

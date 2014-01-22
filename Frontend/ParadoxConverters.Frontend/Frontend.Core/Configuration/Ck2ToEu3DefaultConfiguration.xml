@@ -1,40 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
-  <!--This part contains the game configurations-->
-  <gameConfigurations>
-    <gameConfiguration>
-      <name>CrusaderKings2</name>
-      <friendlyName>Crusader Kings 2</friendlyName>
-      <steamId>203770</steamId>
-      <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
-      <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
-      <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
-      <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
-      <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
-      <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
-      <currentModTagName>CK2Mod</currentModTagName>
-      <saveGameExtension>.ck2</saveGameExtension>
-      <isSource>true</isSource>
-      <supportedMods>
-        <supportedMod>
-          <modName>CK2Plus</modName>
-        </supportedMod>
-      </supportedMods>
-    </gameConfiguration>
-    <!--List of target games-->
-    <gameConfiguration>
-      <name>EuropaUniversalis3</name>
-      <friendlyName>Europa Universalis 3</friendlyName>
-      <steamId>25800</steamId>
-      <nonsteamRegistryName>Europa Universalis III</nonsteamRegistryName>
-      <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
-      <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
-      <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
-      <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
-      <defaultModFolderLocation>\mod</defaultModFolderLocation>
-      <saveGameExtension>.eu3</saveGameExtension>
-    </gameConfiguration>
-  </gameConfigurations>
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter itself-->
   <converterOptions>
     <categories>

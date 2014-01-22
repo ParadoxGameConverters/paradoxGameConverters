@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
+  <gameConfigurationFile>Configuration\GameConfigurations.xml</gameConfigurationFile>
   <supportedConverters>
     <converter>
       <name>Ck2ToEu3</name>
@@ -8,6 +9,8 @@
       <userConfigurationFile></userConfigurationFile>
       <converterExeName>CK2ToEU3.exe</converterExeName>
       <isDefault>true</isDefault>
+      <sourceGame>CrusaderKings2</sourceGame>
+      <targetGame>EuropaUniversalis3</targetGame>
     </converter>
     <converter>
       <name>Eu3ToVic2</name>
@@ -16,6 +19,8 @@
       <userConfigurationFile></userConfigurationFile>
       <converterExeName>EU3toV2Converter.exe</converterExeName>
       <isDefault>false</isDefault>
+      <sourceGame>EuropaUniversalis3</sourceGame>
+      <targetGame>Victoria2</targetGame>
     </converter>
   </supportedConverters>
 </configuration>

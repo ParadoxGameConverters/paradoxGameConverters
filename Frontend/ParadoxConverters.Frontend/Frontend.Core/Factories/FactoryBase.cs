@@ -6,6 +6,8 @@ using System.Linq;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Linq;
+using Frontend.Core.Helpers;
+using System.Reflection;
 
 namespace Frontend.Core.Factories
 {
@@ -51,6 +53,8 @@ namespace Frontend.Core.Factories
 
             var config = XDocument.Load(configurationFilePath, LoadOptions.SetLineInfo);
 
+            this.OnConfigLoaded(config);
+
             return this.BuildConfiguration<T>(config);
         }
 
@@ -69,5 +73,9 @@ namespace Frontend.Core.Factories
         }
 
         protected abstract T OnBuildElement<T>(XElement element) where T : class;
+
+        protected virtual void OnConfigLoaded(XDocument config)
+        {
+        }
     }
 }
