@@ -9,17 +9,18 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <!--<ColumnDefinition Width="2*"/>-->
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition/>
             <RowDefinition/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
         <ContentControl x:Name="CurrentStep"/>
-        <ContentControl x:Name="Log" Grid.Column="1"/>
+        <ContentControl x:Name="Log" Grid.Row="1"/>
 
-        <Button Command="{Binding MoveCommand}" CommandParameter="{x:Static vms:Direction.Backward}" IsEnabled="{Binding CanMoveBackward}" Grid.Row="1" HorizontalAlignment="Left" Content="Previous"/>
-        <Button Command="{Binding MoveCommand}" CommandParameter="{x:Static vms:Direction.Forward}" IsEnabled="{Binding CanMoveForward}" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" Content="Next"/>
+        <Button Command="{Binding MoveCommand}" CommandParameter="{x:Static vms:Direction.Backward}" IsEnabled="{Binding CanMoveBackward}" Grid.Row="2" HorizontalAlignment="Left" Content="Previous"/>
+        <Button Command="{Binding MoveCommand}" CommandParameter="{x:Static vms:Direction.Forward}" IsEnabled="{Binding CanMoveForward}" Grid.Row="2" Grid.Column="1" HorizontalAlignment="Right" Content="Next"/>
     </Grid>
 </UserControl>
