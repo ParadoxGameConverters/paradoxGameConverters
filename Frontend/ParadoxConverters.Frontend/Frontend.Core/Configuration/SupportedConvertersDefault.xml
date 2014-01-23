@@ -11,6 +11,7 @@
       <isDefault>true</isDefault>
       <sourceGame>CrusaderKings2</sourceGame>
       <targetGame>EuropaUniversalis3</targetGame>
+      <subfolderName>ck2toeu3</subfolderName>
     </converter>
     <converter>
       <name>Eu3ToVic2</name>
@@ -21,6 +22,7 @@
       <isDefault>false</isDefault>
       <sourceGame>EuropaUniversalis3</sourceGame>
       <targetGame>Victoria2</targetGame>
+      <subfolderName>eu3tovic2</subfolderName>
     </converter>
   </supportedConverters>
 </configuration>

@@ -59,8 +59,8 @@
         <TextBlock Text="Use converter mod: " Grid.Row="6" Style="{StaticResource FolderPathTextBlockStyle}"/>
 
         <TextBox Name="SourceGamePathTextBox" Text="{Binding Options.CurrentConverter.SourceGame.AbsoluteInstallationPath, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
-        <ComboBox Name="SourceGameMods" ItemsSource="{Binding Options.CurrentConverter.SourceGame.SupportedMods}" DisplayMemberPath="Name" SelectedItem="{Binding Options.CurrentConverter.SourceGame.CurrentMod}" Grid.Column="1" Grid.Row="2" 
-                  Style="{StaticResource ComboboxStyle}"/>
+        <!--<ComboBox Name="SourceGameMods" ItemsSource="{Binding Options.CurrentConverter.SourceGame.SupportedMods}" DisplayMemberPath="Name" SelectedItem="{Binding Options.CurrentConverter.SourceGame.CurrentMod}" Grid.Column="1" Grid.Row="2" 
+                  Style="{StaticResource ComboboxStyle}"/>-->
         <TextBox Name="TargetGamePathTextBox" Text="{Binding Options.CurrentConverter.TargetGame.AbsoluteInstallationPath, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Style="{StaticResource FolderPathTextBoxStyle}"/>
         <TextBox Name="SourceSaveGamePathTextBox" Text="{Binding Options.CurrentConverter.AbsoluteSourceSaveGamePath, Mode=TwoWay}" Grid.Column="1" Grid.Row="4" Style="{StaticResource FolderPathTextBoxStyle}"/>
         <TextBox Name="ConverterTextBox" Text="{Binding Options.CurrentConverter.AbsoluteConverterPath, Mode=TwoWay}" Grid.Column="1" Grid.Row="5" Style="{StaticResource FolderPathTextBoxStyle}"/>

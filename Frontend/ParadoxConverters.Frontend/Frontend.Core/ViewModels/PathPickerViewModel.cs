@@ -103,13 +103,24 @@ namespace Frontend.Core.ViewModels
 
         protected override void OnLoaded(object parameter)
         {
-            // If the converter .exe happens to be in the same directory as the UI, there is no reason to ask the user to find it anyway. So let's just do it for them.
-            var converterLocation = Path.Combine(Environment.CurrentDirectory, "CK2ToEU3.exe"); //TODO:FIX HARD CODING
-            if (File.Exists(converterLocation))
+            // If the directory where the converter should be, doesn't exist, create it. 
+            if (!Directory.Exists(this.Options.CurrentConverter.AbsoluteConverterPath))
             {
-                this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
+                Directory.CreateDirectory(this.Options.CurrentConverter.AbsoluteConverterPath);
+
+                // Then extract the 
             }
         }
+
+        //protected override void OnLoaded(object parameter)
+        //{
+        //    // If the converter .exe happens to be in the same directory as the UI, there is no reason to ask the user to find it anyway. So let's just do it for them.
+        //    var converterLocation = Path.Combine(Environment.CurrentDirectory, "CK2ToEU3.exe"); //TODO:FIX HARD CODING
+        //    if (File.Exists(converterLocation))
+        //    {
+        //        this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
+        //    }
+        //}
 
         /// <summary>
         /// Builds the conversion options.

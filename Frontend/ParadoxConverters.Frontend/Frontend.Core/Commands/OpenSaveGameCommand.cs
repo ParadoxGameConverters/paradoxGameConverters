@@ -53,7 +53,7 @@ namespace Frontend.Core.Commands
             {
                 this.Options.CurrentConverter.AbsoluteSourceSaveGamePath = dialog.FileName;
                 this.EventAggregator.PublishOnUIThread(
-                    new LogEntry("Selected savegame " + this.Options.CurrentConverter.AbsoluteSourceSaveGamePath, LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteSourceSaveGamePath));
+                    new LogEntry("Selected savegame", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteSourceSaveGamePath));
             }
         }
     }

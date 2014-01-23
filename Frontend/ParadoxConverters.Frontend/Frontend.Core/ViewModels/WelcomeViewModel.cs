@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Factories;
+using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model;
 using Frontend.Core.Model.Interfaces;
@@ -37,9 +38,8 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                return this.supportedConverters ?? (this.supportedConverters = 
-                    this.SettingsFactory.BuildModels<ConverterSettings>(Path.Combine(currentDirectory, "Configuration/SupportedConvertersDefault.xml")));
+                return this.supportedConverters ?? (this.supportedConverters =
+                    this.SettingsFactory.BuildModels<ConverterSettings>(Path.Combine(Environment.CurrentDirectory, "Configuration/SupportedConvertersDefault.xml")));
             }
         }
 

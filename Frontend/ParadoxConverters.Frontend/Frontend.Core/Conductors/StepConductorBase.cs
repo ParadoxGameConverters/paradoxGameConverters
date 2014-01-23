@@ -3,10 +3,9 @@
 namespace Frontend.Core.ViewModels
 {
     using Caliburn.Micro;
-    using System.Linq;
     using Frontend.Core.ViewModels.Interfaces;
     using System.Collections.ObjectModel;
-    using Frontend.Core.ViewModels.Interfaces;
+    using System.Linq;
 
     public abstract class StepConductorBase : ViewModelBase, IStepConductorBase
     {

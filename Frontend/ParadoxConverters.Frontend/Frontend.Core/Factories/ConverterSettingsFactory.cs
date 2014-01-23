@@ -38,8 +38,7 @@ namespace Frontend.Core.Factories
         {
             get
             {
-                var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-                return Path.Combine(currentDirectory, relativeGameConfigurationPath);
+                return Path.Combine(Environment.CurrentDirectory, relativeGameConfigurationPath);
             }
         }
 
@@ -86,6 +85,7 @@ namespace Frontend.Core.Factories
 
             string errorMessage = "Could not find game configuration for {0}. Could not find game in " + this.AbsoluteGameConfigurationPath + " with name {1}. ";
 
+            // Both of these can strictly speaking be true, but it doesn't really matter and doesn't warrant a list of errors. The user can fix them one by one.
             if (sourceGame == null)
             {
                 this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "source game", sourceGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
@@ -95,15 +95,18 @@ namespace Frontend.Core.Factories
                 this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "target game", targetGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
             }
 
+            var relativeConverterPath = XElementHelper.ReadStringValue(element, "subfolderName");
+
             return new ConverterSettings(this.EventAggregator)
             {
                 Name = name,
                 FriendlyName = friendlyName,
-                DefaultConfigurationFile = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), defaultConfigurationFile),
+                DefaultConfigurationFile = Path.Combine(Environment.CurrentDirectory, defaultConfigurationFile),
                 IsSelected = isDefault,
                 ConverterExeName = converterExeName,
                 SourceGame = sourceGame,
-                TargetGame = targetGame
+                TargetGame = targetGame,
+                AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath)
                 //UserConfigurationFile = userConfigurationFile 
             } as T;
         }

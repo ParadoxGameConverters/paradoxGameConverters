@@ -142,6 +142,7 @@
     </Content>
     <Content Include="Configuration\GameConfigurations.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Configuration\SupportedConvertersDefault.xml">
       <SubType>Designer</SubType>

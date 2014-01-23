@@ -3,6 +3,7 @@
 namespace Frontend.Client
 {
     using Caliburn.Micro;
+    using Frontend.Core.Helpers;
     using Frontend.Core.Logging;
     using Frontend.Core.ViewModels;
     using Frontend.Core.ViewModels.Interfaces;
@@ -75,9 +76,7 @@ namespace Frontend.Client
 		{
 			DisplayRootViewFor<IShell>();
 
-            var currentDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-            var logEntry = new LogEntry("Application started from", LogEntrySeverity.Info, LogEntrySource.UI, currentDirectory);
+            var logEntry = new LogEntry("Application started from", LogEntrySeverity.Info, LogEntrySource.UI, Environment.CurrentDirectory);
 
 
             this.EventAggregator.PublishOnUIThread(logEntry);
