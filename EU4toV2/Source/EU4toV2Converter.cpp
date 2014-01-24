@@ -260,6 +260,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		removeLandlessNations(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
+
+	// Get adjacencies
+	log("Importing adjacencies\n");
+	printf("Importing adjacencies\n");
+	adjacencyMapping adjacencyMap = initAdjacencyMap();
 	
 	// Generate region mapping
 	log("Parsing region structure.\n");

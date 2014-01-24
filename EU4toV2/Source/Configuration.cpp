@@ -30,13 +30,14 @@ Configuration::Configuration()
 		exit (-2);
 	}
 
-	EU4Path		= obj[0]->getLeaf("EU4directory");
-	V2Path		= obj[0]->getLeaf("V2directory");
-	EU4Gametype = obj[0]->getLeaf("EU4gametype");
-	V2Gametype	= obj[0]->getLeaf("V2gametype");
-	StartDate	= obj[0]->getLeaf("start_date");
-	MaxLiteracy	= atof(obj[0]->getLeaf("max_literacy").c_str());
-	Removetype	= obj[0]->getLeaf("Removetype");
-	outputName	= "";
+	EU4Path				= obj[0]->getLeaf("EU4directory");
+	V2Path				= obj[0]->getLeaf("V2directory");
+	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
+	EU4Gametype			= obj[0]->getLeaf("EU4gametype");
+	V2Gametype			= obj[0]->getLeaf("V2gametype");
+	StartDate			= obj[0]->getLeaf("start_date");
+	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
+	Removetype			= obj[0]->getLeaf("Removetype");
+	outputName			= "";
 
 }

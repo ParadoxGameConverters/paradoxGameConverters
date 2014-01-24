@@ -17,6 +17,21 @@ void initProvinceMap(Object* obj, provinceMapping& provMap, provinceMapping& inv
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 
 
+typedef struct {
+	int type;
+	int to;
+	int via;
+	int unknown1;
+	int unknown2;
+	int pathX;
+	int pathY;
+	int unknown3;
+	int unknown4;
+} adjacency;
+typedef vector< vector<adjacency> > adjacencyMapping;
+adjacencyMapping initAdjacencyMap();
+
+
 // Country Mappings
 typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
 

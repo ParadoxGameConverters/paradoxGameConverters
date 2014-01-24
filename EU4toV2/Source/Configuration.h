@@ -23,6 +23,11 @@ public:
 		return getInstance()->V2Path;
 	}
 
+	static string getV2DocumentsPath()
+	{
+		return getInstance()->V2DocumentsPath;
+	}
+
 	static string getEU4Gametype()
 	{
 		return getInstance()->EU4Gametype;
@@ -80,6 +85,7 @@ private:
 
 	string	EU4Path;
 	string	V2Path;
+	string	V2DocumentsPath;
 	string	EU4Gametype;
 	string	V2Gametype;
 	string	Removetype;
