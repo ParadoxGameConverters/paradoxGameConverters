@@ -54,7 +54,6 @@ V2Province::V2Province(string _filename)
 	string temp		= filename.substr(slash + 1, numDigits);
 	num				= atoi(temp.c_str());
 
-	//log("Getting province data from %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + filename).c_str());
 	Object* obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
 	if (obj == NULL)
 	{
@@ -394,22 +393,6 @@ void V2Province::outputUnits(FILE* output) const
 		}
 		fprintf(output, "\t\t}\n");
 		fprintf(output, "\t}\n");
-	}
-}
-
-
-void V2Province::importHistory(Object* obj)
-{
-	vector<Object*> rgoObj = obj->getValue("trade_goods");
-	if (rgoObj.size() > 0)
-	{
-		rgoType	= rgoObj[0]->getLeaf();
-		land		= true;
-	}
-	vector<Object*> lifeObj = obj->getValue("life_rating");
-	if (lifeObj.size() > 0)
-	{
-		lifeRating	= atoi(lifeObj[0]->getLeaf().c_str());
 	}
 }
 

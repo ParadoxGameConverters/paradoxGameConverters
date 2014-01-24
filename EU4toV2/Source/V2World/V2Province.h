@@ -30,10 +30,8 @@ struct V2Demographic
 class V2Province
 {
 	public:
-		//V2Province(int number);
 		V2Province(string _filename);
 		void output() const;
-		void importHistory(Object*);
 		void convertFromOldProvince(const EU4Province* oldProvince);
 		void addCore(string);
 		void addOldPop(const V2Pop*);
