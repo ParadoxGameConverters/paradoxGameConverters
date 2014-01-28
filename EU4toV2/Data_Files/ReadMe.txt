@@ -18,14 +18,13 @@ EU4
 INSTRUCTIONS
 ----
 
-1. Make a copy of your Victoria 2 install folder.
-2. Download the converter and unzip it wherever.
-3. Copy your EU4 save into the converter directory.
-4. Edit configuration.txt to have your proper EU4 and V2 installation directories.
-5. Drag and drop your save onto EU4toV2Converter.exe
-6. Go into the output folder, then the subfolder named after your save.
-7. Copy the history folder into your Victoria 2 copy. Overwrite everything.
-8. Start that copy of Victoria 2.
+1. Download the converter and unzip it wherever.
+2. Copy your EU4 save into the converter directory.
+3. Edit configuration.txt to point at your game installs, and to set any options you care about.
+4. Drag and drop your save onto EU4toV2Converter.exe
+5. Go into the output folder, then the subfolder named after your save.
+6. Copy the folder named after your save and the corresponding mod file into your V2 mod folder.
+7. Start that copy of Victoria 2, and select the mod.
 
 ----
 FAQ
