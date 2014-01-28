@@ -61,6 +61,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	int slash			= inputFilename.find_last_of("\\");
 	int length			= inputFilename.find_first_of(".") - slash - 1;
 	string outputName = inputFilename.substr(slash + 1, length);
+	int dash				= outputName.find_first_of('-');
+	while (dash != string::npos)
+	{
+		outputName.replace(dash, 1, "_");
+		dash = outputName.find_first_of('-');
+	}
 	Configuration::setOutputName(outputName);
 	log("Using output name %s\n", outputName.c_str());
 
