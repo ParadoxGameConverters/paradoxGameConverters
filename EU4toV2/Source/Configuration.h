@@ -18,6 +18,11 @@ public:
 		return getInstance()->EU4Path;
 	}
 
+	static string getEU4DocumentsPath()
+	{
+		return getInstance()->EU4DocumentsPath;
+	}
+
 	static string getV2Path()
 	{
 		return getInstance()->V2Path;
@@ -36,6 +41,11 @@ public:
 	static string getV2Gametype()
 	{
 		return getInstance()->V2Gametype;
+	}
+
+	static string getEU4Mod()
+	{
+		return getInstance()->EU4Mod;
 	}
 
 	static date getStartDate()
@@ -84,10 +94,12 @@ private:
 	static Configuration* instance;
 
 	string	EU4Path;
+	string	EU4DocumentsPath;
 	string	V2Path;
 	string	V2DocumentsPath;
 	string	EU4Gametype;
 	string	V2Gametype;
+	string	EU4Mod;
 	string	Removetype;
 	date		StartDate;
 	date		firstEU4Date;

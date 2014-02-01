@@ -37,8 +37,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	string EU4Loc = Configuration::getEU4Path();
 	if (EU4Loc.empty() || (stat(EU4Loc.c_str(), &st) != 0))
 	{
-		log("No EuropaUniversalis4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No EuropaUniversalis4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 
@@ -310,20 +310,44 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
-	obj = doParseFile( (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str() );
-	if (obj == NULL)
-	{
-		log("Could not parse file %s\n", (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str());
-		exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-		log("Error: Failed to parse cultures.txt.\n");
-		printf("Error: Failed to parse cultures.txt.\n");
-		return 1;
-	}
+	string EU4Mod = Configuration::getEU4Mod();
 	unionCulturesMap unionCultures;
-	unionCultures = initUnionCultures(obj);
+	if (EU4Mod != "")
+	{
+		string modCultureFile = Configuration::getEU4DocumentsPath() + "\\mod\\" + EU4Mod + "\\common\\cultures\\00_cultures.txt";
+		if ((stat(modCultureFile.c_str(), &st) != 0))
+		{
+			obj = doParseFile(modCultureFile.c_str());
+			if (obj == NULL)
+			{
+				log("Could not parse file %s\n", modCultureFile.c_str());
+				exit(-1);
+			}
+			if (obj->getLeaves().size() < 1)
+			{
+				log("Error: Failed to parse cultures.txt.\n");
+				printf("Error: Failed to parse cultures.txt.\n");
+				return 1;
+			}
+			unionCultures = initUnionCultures(obj);
+		}
+	}
+	if (unionCultures.size() == 0)
+	{
+		obj = doParseFile( (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str() );
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str());
+			exit(-1);
+		}
+		if (obj->getLeaves().size() < 1)
+		{
+			log("Error: Failed to parse cultures.txt.\n");
+			printf("Error: Failed to parse cultures.txt.\n");
+			return 1;
+		}
+		unionCultures = initUnionCultures(obj);
+	}
 
 	// Parse Religion Mappings
 	log("Parsing religion mappings.\n");
