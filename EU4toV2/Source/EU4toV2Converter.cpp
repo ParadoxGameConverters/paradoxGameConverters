@@ -162,7 +162,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse V2 input file
 	log("Parsing Vicky2 data.\n");
 	printf("Parsing Vicky2 data.\n");
-	V2World destWorld(V2Loc);
+	V2World destWorld;
 
 
 	//// Construct factory factory
@@ -275,11 +275,23 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Generate region mapping
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
-	obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
-	if (obj == NULL)
+	if ((Configuration::getUseV2Mod()) && (stat(".\\blankMod\\output\\map\\region.txt", &st) != 0))
 	{
-		log("Could not parse file %s\n", (V2Loc + "\\map\\region.txt").c_str());
-		exit(-1);
+		obj = doParseFile(".\\blankMod\\output\\map\\region.txt");
+		if (obj == NULL)
+		{
+			log("Could not parse file .\\blankMod\\output\\map\\region.txt\n");
+			exit(-1);
+		}
+	}
+	else
+	{
+		obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (V2Loc + "\\map\\region.txt").c_str());
+			exit(-1);
+		}
 	}
 	if (obj->getLeaves().size() < 1)
 	{

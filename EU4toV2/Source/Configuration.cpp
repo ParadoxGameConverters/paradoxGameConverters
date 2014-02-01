@@ -37,9 +37,15 @@ Configuration::Configuration()
 	EU4Gametype			= obj[0]->getLeaf("EU4gametype");
 	V2Gametype			= obj[0]->getLeaf("V2gametype");
 	EU4Mod				= obj[0]->getLeaf("EU4Mod");
+	useV2Mod				= false;
 	StartDate			= obj[0]->getLeaf("start_date");
 	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
 	Removetype			= obj[0]->getLeaf("Removetype");
 	outputName			= "";
 
+	string tempUseV2Mod = obj[0]->getLeaf("useV2Mod");
+	if (tempUseV2Mod == "yes")
+	{
+		useV2Mod = true;
+	}
 }

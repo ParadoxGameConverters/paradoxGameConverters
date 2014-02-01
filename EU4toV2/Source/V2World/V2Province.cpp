@@ -10,6 +10,7 @@
 #include <sstream>
 #include <algorithm>
 #include <stdio.h>
+#include <sys/stat.h>
 using namespace std;
 
 
@@ -54,11 +55,25 @@ V2Province::V2Province(string _filename)
 	string temp		= filename.substr(slash + 1, numDigits);
 	num				= atoi(temp.c_str());
 
-	Object* obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
-	if (obj == NULL)
+	Object* obj;
+	struct stat st;
+	if ((Configuration::getUseV2Mod()) && (stat((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str(), &st) != 0))
 	{
-		log("\tError: Could not parse %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
-		exit(-1);
+		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str());
+		if (obj == NULL)
+		{
+			log("\tError: Could not parse %s\n", (string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str());
+			exit(-1);
+		}
+	}
+	else
+	{
+		obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
+		if (obj == NULL)
+		{
+			log("\tError: Could not parse %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
+			exit(-1);
+		}
 	}
 	vector<Object*> leaves = obj->getLeaves();
 	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); itr++)

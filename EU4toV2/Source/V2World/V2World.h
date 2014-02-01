@@ -21,7 +21,7 @@ class V2LeaderTraits;
 
 class V2World {
 	public:
-		V2World(string V2Loc);
+		V2World();
 		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld, const provinceMapping& provinceMap);
 		

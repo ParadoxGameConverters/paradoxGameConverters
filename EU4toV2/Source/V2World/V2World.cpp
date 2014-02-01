@@ -7,6 +7,7 @@
 #include <queue>
 #include <cmath>
 #include <cfloat>
+#include <sys/stat.h>
 #include "../Parsers/Parser.h"
 #include "../Log.h"
 #include "V2LeaderTraits.h"
@@ -41,7 +42,7 @@ typedef struct fileWithCreateTime
 
 
 
-V2World::V2World(string V2Loc)
+V2World::V2World()
 {
 	log("\tImporting provinces.\n");
 	printf("\tImporting provinces.\n");
@@ -50,33 +51,69 @@ V2World::V2World(string V2Loc)
 	intptr_t					fileListing	= NULL;
 	list<string>			directories;
 	directories.push_back("");
-	while (directories.size() > 0)
-	{
-		if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
-		{
-			log("Error: Could not open directory %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str());
-			exit(-1);
-		}
 
-		do
+	struct stat st;
+	if ((Configuration::getUseV2Mod()) && (stat(".\\blankMod\\output\\history\\provinces\\", &st) != 0))
+	{
+		while (directories.size() > 0)
 		{
-			if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
+			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces\\") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				continue;
+				log("Error: Could not open directory %s\n", (string(".\\blankMod\\output\\history\\provinces\\") + directories.front() + "\\*.*").c_str());
+				exit(-1);
 			}
-			if (provinceFileData.attrib & _A_SUBDIR)
+
+			do
 			{
-				string newDirectory = directories.front() + "\\" + provinceFileData.name;
-				directories.push_back(newDirectory);
-			}
-			else
+				if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
+				{
+					continue;
+				}
+				if (provinceFileData.attrib & _A_SUBDIR)
+				{
+					string newDirectory = directories.front() + "\\" + provinceFileData.name;
+					directories.push_back(newDirectory);
+				}
+				else
+				{
+					V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name);
+					provinces.insert(make_pair(newProvince->getNum(), newProvince));
+				}
+			} while (_findnext(fileListing, &provinceFileData) == 0);
+			_findclose(fileListing);
+			directories.pop_front();
+		}
+	}
+	else
+	{
+		while (directories.size() > 0)
+		{
+			if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name);
-				provinces.insert(make_pair(newProvince->getNum(), newProvince));
+				log("Error: Could not open directory %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str());
+				exit(-1);
 			}
-		} while (_findnext(fileListing, &provinceFileData) == 0);
-		_findclose(fileListing);
-		directories.pop_front();
+
+			do
+			{
+				if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
+				{
+					continue;
+				}
+				if (provinceFileData.attrib & _A_SUBDIR)
+				{
+					string newDirectory = directories.front() + "\\" + provinceFileData.name;
+					directories.push_back(newDirectory);
+				}
+				else
+				{
+					V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name);
+					provinces.insert(make_pair(newProvince->getNum(), newProvince));
+				}
+			} while (_findnext(fileListing, &provinceFileData) == 0);
+			_findclose(fileListing);
+			directories.pop_front();
+		}
 	}
 	
 	// set V2 basic population levels
@@ -188,7 +225,14 @@ V2World::V2World(string V2Loc)
 	dynamicCountries.clear();
 	const date FirstStartDate = Configuration::getStartDate();
 	ifstream V2CountriesInput;
-	V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
+	if ((Configuration::getUseV2Mod()) && (stat(".\\blankMod\\output\\common\\countries.txt", &st) != 0))
+	{
+		V2CountriesInput.open(".\\blankMod\\output\\common\\countries.txt");
+	}
+	else
+	{
+		V2CountriesInput.open( (Configuration::getV2Path() + "\\common\\countries.txt").c_str() );
+	}
 	if (!V2CountriesInput.is_open())
 	{
 		log("Error: Could not open countries.txt\n");
@@ -221,11 +265,24 @@ V2World::V2World(string V2Loc)
 		int size				= line.find_last_of('\"') - start;
 		countryFileName	= line.substr(start, size);
 
-		Object* countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
-		if (countryData == NULL)
+		Object* countryData;
+		if ((Configuration::getUseV2Mod()) && (stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) != 0))
 		{
-			log("Could not parse file %s\n", (Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
-			exit(-1);
+			countryData = doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
+			if (countryData == NULL)
+			{
+				log("Could not parse file %s\n", (string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
+				exit(-1);
+			}
+		}
+		else
+		{
+			countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+			if (countryData == NULL)
+			{
+				log("Could not parse file %s\n", (Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+				exit(-1);
+			}
 		}
 
 		vector<Object*> partyData = countryData->getValue("party");

@@ -88,87 +88,87 @@ map<string,float> V2Factory::getRequiredRGO() const
 }
 
 
-V2FactoryFactory::V2FactoryFactory(string V2Loc)
+V2FactoryFactory::V2FactoryFactory()
 {
-	// load required techs/inventions
-	factoryTechReqs.clear();
-	loadRequiredTechs(V2Loc + "\\technologies\\army_tech.txt");
-	loadRequiredTechs(V2Loc + "\\technologies\\commerce_tech.txt");
-	loadRequiredTechs(V2Loc + "\\technologies\\culture_tech.txt");
-	loadRequiredTechs(V2Loc + "\\technologies\\industry_tech.txt");
-	loadRequiredTechs(V2Loc + "\\technologies\\navy_tech.txt");
-	factoryInventionReqs.clear();
-	loadRequiredInventions(V2Loc + "\\inventions\\army_inventions.txt");
-	loadRequiredInventions(V2Loc + "\\inventions\\commerce_inventions.txt");
-	loadRequiredInventions(V2Loc + "\\inventions\\culture_inventions.txt");
-	loadRequiredInventions(V2Loc + "\\inventions\\industry_inventions.txt");
-	loadRequiredInventions(V2Loc + "\\inventions\\navy_inventions.txt");
+	//// load required techs/inventions
+	//factoryTechReqs.clear();
+	//loadRequiredTechs(V2Loc + "\\technologies\\army_tech.txt");
+	//loadRequiredTechs(V2Loc + "\\technologies\\commerce_tech.txt");
+	//loadRequiredTechs(V2Loc + "\\technologies\\culture_tech.txt");
+	//loadRequiredTechs(V2Loc + "\\technologies\\industry_tech.txt");
+	//loadRequiredTechs(V2Loc + "\\technologies\\navy_tech.txt");
+	//factoryInventionReqs.clear();
+	//loadRequiredInventions(V2Loc + "\\inventions\\army_inventions.txt");
+	//loadRequiredInventions(V2Loc + "\\inventions\\commerce_inventions.txt");
+	//loadRequiredInventions(V2Loc + "\\inventions\\culture_inventions.txt");
+	//loadRequiredInventions(V2Loc + "\\inventions\\industry_inventions.txt");
+	//loadRequiredInventions(V2Loc + "\\inventions\\navy_inventions.txt");
 
-	// load factory types
-	factoryTypes.clear();
-	Object* obj = doParseFile((V2Loc + "\\common\\production_types.txt").c_str());
-	if (obj == NULL)
-	{
-		log("Could not parse file %s\n", (V2Loc + "\\common\\production_types.txt").c_str());
-		exit(-1);
-	}
-	vector<Object*> factoryObjs = obj->getLeaves();
-	for (vector<Object*>::iterator itr = factoryObjs.begin(); itr != factoryObjs.end(); ++itr)
-	{
-		V2FactoryType* ft = new V2FactoryType(*itr);
-		map<string,string>::iterator reqitr = factoryTechReqs.find(ft->name);
-		if (reqitr != factoryTechReqs.end())
-		{
-			ft->requireTech = reqitr->second;
-		}
-		reqitr = factoryInventionReqs.find(ft->name);
-		if (reqitr != factoryInventionReqs.end())
-		{
-			for (int i = 0; i <= VANILLA_naval_exercises; ++i)
-			{
-				if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == vanillaInventionNames[i]))
-				{
-					ft->vanillaRequiredInvention = (vanillaInventionType)i;
-					break;
-				}
-				else if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == HODInventionNames[i]))
-				{
-					ft->HODRequiredInvention = (HODInventionType)i;
-					break;
-				}
-			}
-		}
-		factoryTypes[ft->name] = ft;
-	}
+	//// load factory types
+	//factoryTypes.clear();
+	//Object* obj = doParseFile((V2Loc + "\\common\\production_types.txt").c_str());
+	//if (obj == NULL)
+	//{
+	//	log("Could not parse file %s\n", (V2Loc + "\\common\\production_types.txt").c_str());
+	//	exit(-1);
+	//}
+	//vector<Object*> factoryObjs = obj->getLeaves();
+	//for (vector<Object*>::iterator itr = factoryObjs.begin(); itr != factoryObjs.end(); ++itr)
+	//{
+	//	V2FactoryType* ft = new V2FactoryType(*itr);
+	//	map<string,string>::iterator reqitr = factoryTechReqs.find(ft->name);
+	//	if (reqitr != factoryTechReqs.end())
+	//	{
+	//		ft->requireTech = reqitr->second;
+	//	}
+	//	reqitr = factoryInventionReqs.find(ft->name);
+	//	if (reqitr != factoryInventionReqs.end())
+	//	{
+	//		for (int i = 0; i <= VANILLA_naval_exercises; ++i)
+	//		{
+	//			if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == vanillaInventionNames[i]))
+	//			{
+	//				ft->vanillaRequiredInvention = (vanillaInventionType)i;
+	//				break;
+	//			}
+	//			else if ((Configuration::getV2Gametype() != "HOD") && (reqitr->second == HODInventionNames[i]))
+	//			{
+	//				ft->HODRequiredInvention = (HODInventionType)i;
+	//				break;
+	//			}
+	//		}
+	//	}
+	//	factoryTypes[ft->name] = ft;
+	//}
 
-	factoryCounts.clear();
-	obj = doParseFile("starting_factories.txt");
-	if (obj == NULL)
-	{
-		log("Could not parse file starting_factories.txt\n");
-		exit(-1);
-	}
-	vector<Object*> top = obj->getValue("starting_factories");
-	if (top.size() != 1)
-	{
-		log("Error: Could not load starting factory list!\n");
-		printf("Error: Could not load starting factory list!\n");
-		exit(-1);
-	}
-	vector<Object*> factories = top[0]->getLeaves();
-	for (vector<Object*>::iterator itr = factories.begin(); itr != factories.end(); ++itr)
-	{
-		string factoryType = (*itr)->getKey();
-		int count = atoi((*itr)->getLeaf().c_str());
+	//factoryCounts.clear();
+	//obj = doParseFile("starting_factories.txt");
+	//if (obj == NULL)
+	//{
+	//	log("Could not parse file starting_factories.txt\n");
+	//	exit(-1);
+	//}
+	//vector<Object*> top = obj->getValue("starting_factories");
+	//if (top.size() != 1)
+	//{
+	//	log("Error: Could not load starting factory list!\n");
+	//	printf("Error: Could not load starting factory list!\n");
+	//	exit(-1);
+	//}
+	//vector<Object*> factories = top[0]->getLeaves();
+	//for (vector<Object*>::iterator itr = factories.begin(); itr != factories.end(); ++itr)
+	//{
+	//	string factoryType = (*itr)->getKey();
+	//	int count = atoi((*itr)->getLeaf().c_str());
 
-		map<string, V2FactoryType*>::iterator t = factoryTypes.find(factoryType);
-		if (t == factoryTypes.end())
-		{
-			log("Error: Could not locate V2 factory type for starting factories of type %s!\n", factoryType.c_str());
-			continue;
-		}
-		factoryCounts.push_back(pair<V2FactoryType*, int>(t->second, count));
-	}
+	//	map<string, V2FactoryType*>::iterator t = factoryTypes.find(factoryType);
+	//	if (t == factoryTypes.end())
+	//	{
+	//		log("Error: Could not locate V2 factory type for starting factories of type %s!\n", factoryType.c_str());
+	//		continue;
+	//	}
+	//	factoryCounts.push_back(pair<V2FactoryType*, int>(t->second, count));
+	//}
 }
 
 
