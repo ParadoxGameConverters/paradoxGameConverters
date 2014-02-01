@@ -18,7 +18,6 @@ V2Province::V2Province(string _filename)
 {
 	srcProvince			= NULL;
 	filename				= _filename;
-	land					= false;
 	coastal				= false;
 	num					= 0;
 	name					= "";

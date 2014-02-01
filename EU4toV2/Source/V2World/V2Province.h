@@ -58,7 +58,6 @@ class V2Province
 		void				setRailLevel(int level)					{ railLevel = level; };
 
 		const EU4Province*	getSrcProvince()		const { return srcProvince; };
-		bool						isLand()					const { return land; };
 		int						getOldPopulation()	const	{ return oldPopulation; };
 		bool						getCOT()					const { return COT; };
 		bool						wasPaganConquest()	const { return originallyPagan; };
@@ -81,7 +80,6 @@ class V2Province
 		const EU4Province*			srcProvince;
 		
 		string							filename;
-		bool								land;
 		bool								coastal;
 		int								num;
 		string							name;

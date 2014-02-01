@@ -504,8 +504,8 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 				if ( (*j)->getTag() == iter->second.c_str() )
 				{
 					newCountry = *j;
-					/*newCountry->initFromEU4Country(i->second, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
-					newCountry->setNationalIdea(libertyLeft, equalityLeft);*/
+					newCountry->initFromEU4Country(i->second, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
+					/*newCountry->setNationalIdea(libertyLeft, equalityLeft);*/
 					break;
 				}
 			}
@@ -968,12 +968,8 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap)
 			vector<adjacency> adjacencies = adjacencyMap[currentProvince];
 			for (unsigned int i = 0; i < adjacencies.size(); i++)
 			{
-				map<int, V2Province*>::iterator openItr = openProvinces.find(i);
+				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i].to);
 				if (openItr == openProvinces.end())
-				{
-					continue;
-				}
-				if (!openItr->second->isLand())
 				{
 					continue;
 				}
