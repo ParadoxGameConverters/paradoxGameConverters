@@ -28,6 +28,7 @@ class V2World {
 		void convertCountries(const EU4World& sourceWorld, const countryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void convertDiplomacy(const EU4World& sourceWorld, const countryMapping& countryMap);
 		void convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap);
+		void setupColonies(const adjacencyMapping& adjacencyMap);
 		void setupStates(const stateMapping&);
 		void convertUncivReforms();
 		void setupPops(EU4World& sourceWorld);
@@ -39,8 +40,8 @@ class V2World {
 		map<string, V2Country*>	getPotentialCountries()	const;
 		map<string, V2Country*>	getDynamicCountries()	const;
 	private:
-		void			outputHeader(FILE*) const;
-		void			getProvinceLocalizations(string file);
+		void				outputHeader(FILE*) const;
+		void				getProvinceLocalizations(string file);
 		vector<int>		getPortProvinces(vector<int> provinces);
 		V2Country*		getCountry(string tag);
 

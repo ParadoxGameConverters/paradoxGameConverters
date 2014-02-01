@@ -417,6 +417,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap, stateIndexMap);
+	printf("Setting colonies\n");
+	log("Setting colonies\n");
+	destWorld.setupColonies(adjacencyMap);
 	/*printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);*/

@@ -4,8 +4,9 @@
 #include <algorithm>
 #include <io.h>
 #include <list>
-#include <math.h>
-#include <float.h>
+#include <queue>
+#include <cmath>
+#include <cfloat>
 #include "../Parsers/Parser.h"
 #include "../Log.h"
 #include "V2LeaderTraits.h"
@@ -939,6 +940,57 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 				}
 			}
 		}
+	}
+}
+
+
+void V2World::setupColonies(const adjacencyMapping& adjacencyMap)
+{
+	// find all land connections to capitals
+	for (vector<V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		map<int, V2Province*>	openProvinces = provinces;
+		queue<int>					goodProvinces;
+
+		map<int, V2Province*>::iterator openItr = openProvinces.find((*countryItr)->getCapital());
+		if (openItr == openProvinces.end())
+		{
+			continue;
+		}
+		openItr->second->setLandConnection(true);
+		goodProvinces.push(openItr->first);
+		openProvinces.erase(openItr);
+
+		do
+		{
+			int currentProvince = goodProvinces.front();
+			goodProvinces.pop();
+			vector<adjacency> adjacencies = adjacencyMap[currentProvince];
+			for (unsigned int i = 0; i < adjacencies.size(); i++)
+			{
+				map<int, V2Province*>::iterator openItr = openProvinces.find(i);
+				if (openItr == openProvinces.end())
+				{
+					continue;
+				}
+				if (!openItr->second->isLand())
+				{
+					continue;
+				}
+				if (openItr->second->getOwner() != (*countryItr)->getTag())
+				{
+					continue;
+				}
+				openItr->second->setLandConnection(true);
+				goodProvinces.push(openItr->first);
+				openProvinces.erase(openItr);
+			}
+		} while (goodProvinces.size() > 1);
+	}
+
+	for (map<int, V2Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		provItr->second->determineColonial();
 	}
 }
 

@@ -28,6 +28,7 @@ V2Province::V2Province(string _filename)
 	colonyLevel			= 0;
 	colonial				= 0;
 	colonised			= false;
+	landConnection		= false;
 	COT					= false;
 	originallyPagan	= false;
 	oldPopulation		= 0;
@@ -159,25 +160,19 @@ void V2Province::output() const
 	}
 	if (colonial > 0)
 	{
-		if (Configuration::getV2Gametype() != "HOD")
-		{
-		}
-	}
-	if (colonised)
-	{
 		if (Configuration::getV2Gametype() == "HOD")
 		{
-			fprintf(output, "\tcolonial=2\n");
+			fprintf(output, "\tcolonial=%d\n", colonial);
 		}
 		else
 		{
 			fprintf(output, "\tcolonial=yes\n");
 		}
 	}
-	if (colonyLevel > 0)
+	/*if (colonyLevel > 0)
 	{
 		fprintf_s(output, "colony = %d\n", colonyLevel);
-	}
+	}*/
 	if (navalBaseLevel > 0)
 	{
 		fprintf_s(output, "naval_base = %d\n", navalBaseLevel);
@@ -402,11 +397,21 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 	srcProvince = oldProvince;
 	if (oldProvince->isColony())
 	{
-		colonial = 2;
+		colonyLevel = 2;
 	}
+	colonial				= 0;
 	colonised			= oldProvince->wasColonised();
 	originallyPagan	= oldProvince->wasPaganConquest();
 	COT					= oldProvince->isCOT();
+}
+
+
+void V2Province::determineColonial()
+{
+	if ((!landConnection) && ((colonised) || (originallyPagan)))
+	{
+		colonial = 2;
+	}
 }
 
 

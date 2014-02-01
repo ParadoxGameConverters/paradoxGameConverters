@@ -33,6 +33,7 @@ class V2Province
 		V2Province(string _filename);
 		void output() const;
 		void convertFromOldProvince(const EU4Province* oldProvince);
+		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
 		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT);
@@ -50,6 +51,7 @@ class V2Province
 		void				setName(string _name)					{ name = _name; };
 		void				setOwner(string _owner)					{ owner = _owner; };
 		//void				setController(string _controller)	{ controller = _controller; };
+		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
 		void				addPopDemographic(V2Demographic d)	{ demographics.push_back(d); };
 		void				setFortLevel(int level)					{ fortLevel = level; };
 		void				setNavalBaseLevel(int level)			{ navalBaseLevel = level; };
@@ -89,6 +91,7 @@ class V2Province
 		int								colonyLevel;
 		int								colonial;
 		bool								colonised;
+		bool								landConnection;
 		bool								COT;
 		bool								originallyPagan;
 		int								oldPopulation;

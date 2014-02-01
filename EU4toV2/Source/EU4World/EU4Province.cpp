@@ -30,7 +30,7 @@ EU4Province::EU4Province(Object* obj) {
 		cores.push_back(coreObjs[i]->getLeaf());
 	}
 
-	colony = true;
+	/*colony = true;
 	vector<Object*> popObj = obj->getValue("citysize");
 	if (popObj.size() > 0)
 	{
@@ -51,7 +51,7 @@ EU4Province::EU4Province(Object* obj) {
 		{
 			population = 0;
 		}
-	}
+	}*/
 
 	centerOfTrade = false;
 
