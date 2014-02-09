@@ -8,23 +8,6 @@ link = { tag = ITA culture = south_italian }
 link = { tag = ITA culture = sicilian }
 link = { tag = ITA culture = maltese }
 
-# Germany, NGF, SGF
-
-# North German Federation
-link = { tag = NGF culture = north_german }
-link = { tag = NGF culture = pommeranian }
-link = { tag = NGF culture = prussian }
-link = { tag = NGF culture = hannoverian }
-link = { tag = NGF culture = saxon }
-
-# South German Federation
-link = { tag = SGF culture = south_german }
-link = { tag = SGF culture = hessian }
-link = { tag = SGF culture = rheinlaender }
-link = { tag = SGF culture = bavarian }
-link = { tag = SGF culture = austrian }
-link = { tag = SGF culture = ashkenazi }
-
 # Germany
 link = { tag = GER culture = north_german }
 link = { tag = GER culture = pommeranian }

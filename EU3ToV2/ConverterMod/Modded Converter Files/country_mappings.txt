@@ -172,7 +172,7 @@ link = { eu3 = LOR vic = LOR }  # Lorraine
 link = { eu3 = LUN vic = LUN }  # Luneburg
 link = { eu3 = MAG vic = MAG }  # Magdeburg
 link = { eu3 = MAI vic = MAI }  # Mainz
-link = { eu3 = MEI vic = MSN }  # Meissen
+link = { eu3 = MEI vic = MEI }  # Meissen
 link = { eu3 = MKL vic = MEC }  # Mecklenburg
 link = { eu3 = MUN vic = MUN }  # Munster
 link = { eu3 = OLD vic = OLD }  # Oldenburg

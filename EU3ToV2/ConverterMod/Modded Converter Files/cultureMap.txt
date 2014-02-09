@@ -65,7 +65,8 @@ link = { vic = schlesian eu3 = schlesian }
 
 link = { vic = czech eu3 = czech }
 
-link = { vic = russian eu3 = russian eu3 = ruthenian }
+link = { vic = russian eu3 = russian }
+link = { vic = ukrainian eu3 = ruthenian }
 link = { vic = ugrian eu3 = uralic}
 link = { vic = byelorussian eu3 = byelorussian }
 link = { vic = lithuanian eu3 = lithuanian }
