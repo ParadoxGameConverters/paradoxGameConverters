@@ -36,7 +36,7 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void doCreatePops(bool isStateCapital, int statePopulation, bool stateHasCOT);
 		void sortPops();
 
 		void				setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier);
@@ -73,7 +73,7 @@ class V2Province
 		void outputPops(FILE*) const;
 		void outputRGO(FILE*) const;
 		void outputUnits(FILE*) const;
-		void createPops(WorldType game, const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 

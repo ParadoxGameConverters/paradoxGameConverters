@@ -66,13 +66,13 @@ void V2State::addRailroads()
 }
 
 
-void V2State::setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier)
+void V2State::setupPops(string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier)
 {
 	int	statePopulation = getStatePopulation();
 	bool	cot = hasCOT();
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		(*itr)->doCreatePops(game, (itr == provinces.begin()), statePopulation, cot);
+		(*itr)->doCreatePops((itr == provinces.begin()), statePopulation, cot);
 		(*itr)->setPopConMil(primaryCulture, acceptedCultures, religion, nationalConModifier, nationalMilModifier);
 	}
 }

@@ -1271,7 +1271,7 @@ void V2Country::setupPops(EU4World& sourceWorld)
 	// create the pops
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
-		(*itr)->setupPops(sourceWorld.getWorldType(), primaryCulture, acceptedCultures, religion, con, mil);
+		(*itr)->setupPops(primaryCulture, acceptedCultures, religion, con, mil);
 	}
 }
 

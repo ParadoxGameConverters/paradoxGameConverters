@@ -86,20 +86,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	EU4World sourceWorld(obj);
 
 
-	// Figure out what EU4 gametype we're using
-	WorldType game = sourceWorld.getWorldType();
-	switch (game)
-	{
-		case Base:
-			printf("	Game type is: EU4 (1.x).\n");
-			log("	Game type is: EU4 (1.x).\n");
-			break;
-		default:
-			printf("	Error: Could not determine savegame type.\n");
-			log("	Error: Could not determine savegame type.\n");
-			exit(1);
-	}
-
 	// Resolve unit types
 	/*log("Resolving unit types.\n");
 	printf("Resolving unit types.\n");
@@ -173,23 +159,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse province mappings
 	log("Parsing province mappings.\n");
 	printf("Parsing province mappings.\n");
-	const char* mappingFile = "province_mappings.txt";
-	// if province_mappings.txt exists, always use it (e.g. as an override for mods);
-	// otherwise use the appropriate mapping for the game type
-	FILE* testfp = NULL;
-	if (fopen_s(&testfp, mappingFile, "rb") != 0)
-	{
-		if (game == Base)
-			mappingFile = "province_mappings.txt";
-	}
-	else
-	{
-		fclose(testfp);
-	}
-	obj = doParseFile(mappingFile);
+	obj = doParseFile("province_mappings.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", mappingFile);
+		log("Could not parse file province_mappings.txt\n");
 		exit(-1);
 	}
 	provinceMapping provinceMap;
