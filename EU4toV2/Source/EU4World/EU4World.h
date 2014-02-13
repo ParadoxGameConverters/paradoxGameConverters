@@ -22,6 +22,7 @@ class EU4World {
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
 
+		EU4Version*						getVersion()	const { return version; };
 		map<string, EU4Country*>	getCountries()	const { return countries; };
 		EU4Diplomacy*					getDiplomacy()	const { return diplomacy; };
 	private:

@@ -9,7 +9,6 @@ EU4Version::EU4Version()
 	second	= 0;
 	third		= 0;
 	fourth	= 0;
-	log("Version: %d.%d.%d.%d\n", first, second, third, fourth);
 }
 
 
@@ -36,25 +35,47 @@ EU4Version::EU4Version(Object* obj)
 	{
 		fourth = atoi(numObj[0]->getLeaf().c_str());
 	}
-	log("Version: %d.%d.%d.%d\n", first, second, third, fourth);
 }
 
 
-bool EU4Version::operator< (EU4Version& rhs)
+EU4Version::EU4Version(string version)
 {
-	if (rhs.first > first)
+	int dot = version.find_first_of('.');
+	first = atoi(version.substr(0, dot).c_str());
+
+	version = version.substr(dot + 1, version.size());
+	dot = version.find_first_of('.');
+	second = atoi(version.substr(0, dot).c_str());
+
+	version = version.substr(dot + 1, version.size());
+	dot = version.find_first_of('.');
+	third = atoi(version.substr(0, dot).c_str());
+
+	version = version.substr(dot + 1, version.size());
+	dot = version.find_first_of('.');
+	fourth = atoi(version.substr(0, dot).c_str());
+}
+
+
+bool EU4Version::operator >= (EU4Version& rhs) const
+{
+	if (first > rhs.first)
 	{
 		return true;
 	}
-	else if ((rhs.first == first) && (rhs.second > second))
+	else if ((first == rhs.first) && (second > rhs.second))
 	{
 		return true;
 	}
-	else if ((rhs.first == first) && (rhs.second == second) && (rhs.third > third))
+	else if ((first == rhs.first) && (second == rhs.second) && (third > rhs.third))
 	{
 		return true;
 	}
-	else if ((rhs.first == first) && (rhs.second == second) && (rhs.third == third) && (rhs.fourth > fourth))
+	else if ((first == rhs.first) && (second == rhs.second) && (third == rhs.third) && (fourth > rhs.fourth))
+	{
+		return true;
+	}
+	else if ((first == rhs.first) && (second == rhs.second) && (third == rhs.third) && (fourth == rhs.fourth))
 	{
 		return true;
 	}

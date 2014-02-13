@@ -11,20 +11,31 @@
 
 
 
-void initProvinceMap(Object* obj, provinceMapping& provinceMap, provinceMapping& inverseProvinceMap)
+void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provinceMap, provinceMapping& inverseProvinceMap)
 {
 	provinceMapping::iterator mapIter;
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<Object*> versionLeaves = obj->getLeaves();
 
-	if (leaves.size() < 1)
+	if (versionLeaves.size() < 1)
 	{
 		log ("\tError: No province mapping definitions loaded.\n");
 		printf("\tError: No province mapping definitions loaded.\n");
 		return;
 	}
+	
+	unsigned int mappingIdx;
+	for (mappingIdx = 0; mappingIdx < versionLeaves.size(); mappingIdx++)
+	{
+		if ((*version) >= EU4Version(versionLeaves[mappingIdx]->getKey()))
+		{
+			break;
+		}
+	}
 
-	vector<Object*> data = leaves[0]->getLeaves();
+	log("Using version %s mappings\n", versionLeaves[mappingIdx]->getKey().c_str());
+
+	vector<Object*> data = versionLeaves[mappingIdx]->getLeaves();
 
 	for (vector<Object*>::iterator i = data.begin(); i != data.end(); i++)
 	{

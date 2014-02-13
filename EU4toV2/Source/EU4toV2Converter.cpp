@@ -167,7 +167,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 	provinceMapping provinceMap;
 	inverseProvinceMapping inverseProvinceMap;
-	initProvinceMap(obj, provinceMap, inverseProvinceMap);
+	initProvinceMap(obj, sourceWorld.getVersion(), provinceMap, inverseProvinceMap);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 	// Get list of blocked nations

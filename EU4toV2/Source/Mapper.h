@@ -4,6 +4,7 @@
 
 
 #include "Parsers\Object.h"
+#include "EU4World\EU4Version.h"
 class EU4World;
 class V2World;
 
@@ -13,7 +14,7 @@ class V2World;
 typedef map< int, vector<int> > provinceMapping;			// < destProvince, sourceProvinces >
 typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince, destProvinces >
 
-void initProvinceMap(Object* obj, provinceMapping& provMap, provinceMapping& inverseProvMap);
+void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provMap, provinceMapping& inverseProvMap);
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 
 

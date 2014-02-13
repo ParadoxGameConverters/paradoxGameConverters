@@ -3,6 +3,8 @@
 
 
 #include "..\Parsers\Object.h"
+#include <string>
+using namespace std;
 
 
 
@@ -11,7 +13,8 @@ class EU4Version
 	public:
 		EU4Version();
 		EU4Version(Object* obj);
-		bool operator < (EU4Version& rhs);
+		EU4Version(string version);
+		bool operator >= (EU4Version& rhs) const;
 	private:
 		int	first;
 		int	second;
