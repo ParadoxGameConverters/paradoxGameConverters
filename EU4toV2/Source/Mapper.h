@@ -5,16 +5,20 @@
 
 #include "Parsers\Object.h"
 #include "EU4World\EU4Version.h"
+#include <map>
+#include <vector>
+#include <unordered_set>
 class EU4World;
 class V2World;
 
 
 
 // Province Mappings
-typedef map< int, vector<int> > provinceMapping;			// < destProvince, sourceProvinces >
-typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince, destProvinces >
+typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
+typedef map< int, vector<int> >	inverseProvinceMapping;	// < sourceProvince, destProvinces >
+typedef unordered_set<int>			resettableMap;
 
-void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provMap, provinceMapping& inverseProvMap);
+void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provMap, provinceMapping& inverseProvMap, resettableMap& resettableProvinces);
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 
 

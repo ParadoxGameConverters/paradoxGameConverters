@@ -165,9 +165,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Could not parse file province_mappings.txt\n");
 		exit(-1);
 	}
-	provinceMapping provinceMap;
-	inverseProvinceMapping inverseProvinceMap;
-	initProvinceMap(obj, sourceWorld.getVersion(), provinceMap, inverseProvinceMap);
+	provinceMapping			provinceMap;
+	inverseProvinceMapping	inverseProvinceMap;
+	resettableMap				resettableProvinces;
+	initProvinceMap(obj, sourceWorld.getVersion(), provinceMap, inverseProvinceMap, resettableProvinces);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 	// Get list of blocked nations
@@ -425,7 +426,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertDiplomacy(sourceWorld, countryMap);*/
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap, stateIndexMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
 	printf("Setting colonies\n");
 	log("Setting colonies\n");
 	destWorld.setupColonies(adjacencyMap);

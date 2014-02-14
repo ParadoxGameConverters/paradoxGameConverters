@@ -68,6 +68,11 @@ public:
 		getInstance()->firstEU4Date = _firstDate;
 	}
 
+	static string getResetProvinces()
+	{
+		return getInstance()->resetProvinces;
+	}
+
 	static double getMaxLiteracy()
 	{
 		return getInstance()->MaxLiteracy;
@@ -109,6 +114,7 @@ private:
 	string	Removetype;
 	date		StartDate;
 	date		firstEU4Date;
+	string	resetProvinces;
 	double	MaxLiteracy;
 	string	outputName;
 

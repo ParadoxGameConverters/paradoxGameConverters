@@ -33,6 +33,9 @@ configuration =
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
 	start_date = 1836.1.1
 
+	# Reset Provinces: Whether or not to reset resettable V2 provinces
+	resetProvinces = "no"
+
 	# The maximum literacy a nation will start with. Default 80%
 	max_literacy = 0.80
 

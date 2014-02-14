@@ -713,7 +713,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
 {
 	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -724,7 +724,12 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			log("\tError: no source for %s (province #%d)\n", i->second->getName().c_str() , destNum);
 			continue;
 		}
-		else if (provinceLink->second[0] == 0) {
+		else if (provinceLink->second[0] == 0)
+		{
+			continue;
+		}
+		else if ((Configuration::getResetProvinces() == "yes") && (resettableProvinces.count(destNum) > 0))
+		{
 			continue;
 		}
 

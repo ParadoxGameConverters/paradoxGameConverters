@@ -39,6 +39,7 @@ Configuration::Configuration()
 	EU4Mod				= obj[0]->getLeaf("EU4Mod");
 	useV2Mod				= false;
 	StartDate			= obj[0]->getLeaf("start_date");
+	resetProvinces		= obj[0]->getLeaf("resetProvinces");
 	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
 	Removetype			= obj[0]->getLeaf("Removetype");
 	outputName			= "";

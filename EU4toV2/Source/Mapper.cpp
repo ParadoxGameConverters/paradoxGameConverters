@@ -11,7 +11,7 @@
 
 
 
-void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provinceMap, provinceMapping& inverseProvinceMap)
+void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provinceMap, provinceMapping& inverseProvinceMap, resettableMap& resettableProvinces)
 {
 	provinceMapping::iterator mapIter;
 
@@ -41,6 +41,7 @@ void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& pr
 	{
 		vector<int> EU4nums;
 		vector<int> V2nums;
+		bool			resettable = false;
 
 		vector<Object*> euMaps = (*i)->getLeaves();
 
@@ -53,6 +54,10 @@ void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& pr
 			else if ( (*j)->getKey() == "v2" )
 			{
 				V2nums.push_back(  atoi( (*j)->getLeaf().c_str() )  );
+			}
+			else if ( (*j)->getKey() == "resettable" )
+			{
+				resettable = true;
 			}
 			else
 			{
@@ -74,6 +79,10 @@ void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& pr
 			if (*j != 0)
 			{
 				provinceMap.insert(make_pair(*j, EU4nums));
+				if (resettable)
+				{
+					resettableProvinces.insert(*j);
+				}
 			}
 		}
 		for (vector<int>::iterator j = EU4nums.begin(); j != EU4nums.end(); j++)
