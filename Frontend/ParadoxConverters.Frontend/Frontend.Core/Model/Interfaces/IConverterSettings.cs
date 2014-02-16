@@ -16,6 +16,7 @@ namespace Frontend.Core.Model.Interfaces
         bool IsSelected { get; set; }
         IGameConfiguration SourceGame { get; set; }
         IGameConfiguration TargetGame { get; set; }
+        IList<IPreferenceCategory> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets the converter path.

@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Events.EventArgs;
 using Frontend.Core.Factories;
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
@@ -52,6 +53,19 @@ namespace Frontend.Core.ViewModels
         public void Handle(IConverterSettings message)
         {
             this.Options.CurrentConverter = message;
+
+            // A new converter has been set. This means we can add the preferences view models for that converter to the list of steps
+            if (this.Options.CurrentConverter.Categories != null)
+            {
+                IList<IStep> steps = new List<IStep>();
+
+                foreach (var category in this.Options.CurrentConverter.Categories)
+                {
+                    steps.Add(new PreferencesViewModel(this.EventAggregator, this.Options, category));
+                }
+
+                this.EventAggregator.PublishOnUIThread(new PreferenceStepOperationArgs(PreferenceOperation.AddSteps, steps));
+            }
         }
     }
 }

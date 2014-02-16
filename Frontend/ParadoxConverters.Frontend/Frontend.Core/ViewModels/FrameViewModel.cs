@@ -19,6 +19,7 @@ namespace Frontend.Core.ViewModels
         public FrameViewModel(IEventAggregator eventAggregator)
             : base(eventAggregator)
         {
+            this.EventAggregator.Subscribe(this);
         }
 
         #region [ Properties ]

@@ -114,13 +114,16 @@ namespace Frontend.Core.Factories
                 Name = name,
                 FriendlyName = friendlyName,
                 DefaultConfigurationFile = Path.Combine(Environment.CurrentDirectory, defaultConfigurationFile),
-                IsSelected = isDefault,
                 ConverterExeName = converterExeName,
                 SourceGame = sourceGame,
                 TargetGame = targetGame,
                 AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath),
                 //UserConfigurationFile = userConfigurationFile 
-                Categories = categories
+                Categories = categories,
+
+                // Set IsSelected last. This ensures that the converter settings object has all its properties before 
+                // the currentconverter event handler is fired (See isselected setter for details)
+                IsSelected = isDefault 
             } as T;
         }
     }

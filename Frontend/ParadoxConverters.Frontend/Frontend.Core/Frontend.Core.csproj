@@ -115,21 +115,19 @@
     <Compile Include="ViewModels\LogViewModel.cs" />
     <Compile Include="ViewModels\Direction.cs" />
     <Compile Include="ViewModels\PathPickerViewModel.cs" />
+    <Compile Include="ViewModels\PreferencesViewModel.cs" />
     <Compile Include="ViewModels\StepViewModelBase.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\OpenUriCommand.cs" />
-    <Compile Include="Views\PathPickerView.xaml.cs">
-      <DependentUpon>PathPickerView.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="Views\TemplateSelectors\PreferenceEntryTemplateSelector.cs" />
+    <Compile Include="Views\TemplateSelectors\PreferenceTemplateSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Behaviors\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Page Include="Views\FrameView.xaml">
       <SubType>Designer</SubType>
@@ -140,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PathPickerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PreferencesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
