@@ -101,26 +101,34 @@ namespace Frontend.Core.ViewModels
 
         #region [ Methods ]
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="parameter"></param>
         protected override void OnLoaded(object parameter)
         {
-            // If the directory where the converter should be, doesn't exist, create it. 
-            if (!Directory.Exists(this.Options.CurrentConverter.AbsoluteConverterPath))
+            //if (this.Options == null || this.Options.CurrentConverter == null)
+            //{
+            //    return;
+            //}
+
+            //// If the directory where the converter should be, doesn't exist, create it. 
+            //if (!Directory.Exists(this.Options.CurrentConverter.AbsoluteConverterPath))
+            //{
+            //    Directory.CreateDirectory(this.Options.CurrentConverter.AbsoluteConverterPath);
+            //}
+
+            // If the converter .exe happens to be in the same directory as the UI + relevant subfolder, there is no reason to ask the user to set it. So let's just do it for them.
+            var converterLocation = Path.Combine(this.Options.CurrentConverter.AbsoluteConverterPath, this.Options.CurrentConverter.ConverterExeName); 
+            if (File.Exists(converterLocation))
             {
-                Directory.CreateDirectory(this.Options.CurrentConverter.AbsoluteConverterPath);
-
-                // Then extract the 
+                this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
             }
-        }
 
-        //protected override void OnLoaded(object parameter)
-        //{
-        //    // If the converter .exe happens to be in the same directory as the UI, there is no reason to ask the user to find it anyway. So let's just do it for them.
-        //    var converterLocation = Path.Combine(Environment.CurrentDirectory, "CK2ToEU3.exe"); //TODO:FIX HARD CODING
-        //    if (File.Exists(converterLocation))
-        //    {
-        //        this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
-        //    }
-        //}
+            // Add one step per category
+            //foreach()
+        }
+               
 
         /// <summary>
         /// Builds the conversion options.
@@ -132,7 +140,7 @@ namespace Frontend.Core.ViewModels
             //this.VerifyInstallation(this.Options.TargetGame);
             //this.FindGameInstallationPath(this.Options.SourceGame);
             //this.FindGameInstallationPath(this.Options.TargetGame);
-        }
+        }        
 
         #endregion
     }

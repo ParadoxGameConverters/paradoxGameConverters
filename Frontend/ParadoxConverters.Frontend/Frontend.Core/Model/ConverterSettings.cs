@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
+using System.Collections.Generic;
 
 namespace Frontend.Core.Model
 {
@@ -24,6 +25,7 @@ namespace Frontend.Core.Model
         public string ConverterExeName { get; set; }
         public IGameConfiguration SourceGame { get; set; }
         public IGameConfiguration TargetGame { get; set; }
+        public IList<IPreferenceCategory> Categories { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [is selected].

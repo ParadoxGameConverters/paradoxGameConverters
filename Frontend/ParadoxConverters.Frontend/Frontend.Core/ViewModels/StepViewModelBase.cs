@@ -16,6 +16,7 @@ namespace Frontend.Core.ViewModels
             : base(eventAggregator)
         {
             this.options = options;
+            //this.Load(null);
         }
 
         public IConverterOptions Options

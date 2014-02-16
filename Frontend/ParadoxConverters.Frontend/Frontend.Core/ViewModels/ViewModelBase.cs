@@ -17,7 +17,7 @@ namespace Frontend.Core.ViewModels
 
             //HACK: This needs rethinking, but when vms gets resolved from a view (Say, a contentcontrol binding to a vm), 
             //the Load method obviously won't get called.
-            this.Load(null);
+            //this.Load(null);
         }
 
         protected IEventAggregator EventAggregator

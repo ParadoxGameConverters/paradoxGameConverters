@@ -18,6 +18,7 @@ namespace Frontend.Core.Factories
     public class ConverterSettingsFactory : FactoryBase
     {
         private GameConfigurationFactory gameConfigurationFactory;
+        private PreferenceCategoryFactory preferenceCategoryFactory;
         private ObservableCollection<IGameConfiguration> gameConfigurations;
         private string relativeGameConfigurationPath;
 
@@ -31,6 +32,14 @@ namespace Frontend.Core.Factories
             get
             {
                 return this.gameConfigurationFactory ?? (this.gameConfigurationFactory = new GameConfigurationFactory(this.EventAggregator));
+            }
+        }
+
+        protected PreferenceCategoryFactory PreferenceCategoryFactory
+        {
+            get
+            {
+                return this.preferenceCategoryFactory ?? (this.preferenceCategoryFactory = new PreferenceCategoryFactory(this.EventAggregator));
             }
         }
 
@@ -85,12 +94,15 @@ namespace Frontend.Core.Factories
 
             string errorMessage = "Could not find game configuration for {0}. Could not find game in " + this.AbsoluteGameConfigurationPath + " with name {1}. ";
 
-            // Both of these can strictly speaking be true, but it doesn't really matter and doesn't warrant a list of errors. The user can fix them one by one.
+            // Build preference categories
+            var categories = this.PreferenceCategoryFactory.BuildModels<IPreferenceCategory>(defaultConfigurationFile);
+
             if (sourceGame == null)
             {
                 this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "source game", sourceGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
             }
-            else if (targetGame == null)
+            
+            if (targetGame == null)
             {
                 this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "target game", targetGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
             }
@@ -106,8 +118,9 @@ namespace Frontend.Core.Factories
                 ConverterExeName = converterExeName,
                 SourceGame = sourceGame,
                 TargetGame = targetGame,
-                AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath)
+                AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath),
                 //UserConfigurationFile = userConfigurationFile 
+                Categories = categories
             } as T;
         }
     }

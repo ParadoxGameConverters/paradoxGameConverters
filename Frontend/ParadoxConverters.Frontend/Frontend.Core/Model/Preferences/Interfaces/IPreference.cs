@@ -1,6 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using Frontend.Core.Model.PreferenceEntries.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Frontend.Core.Model.Interfaces
+namespace Frontend.Core.Model.Preferences.Interfaces
 {
     public interface IPreference
     {

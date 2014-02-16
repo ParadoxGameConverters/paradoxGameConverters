@@ -1,13 +1,15 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model.Interfaces;
+using Frontend.Core.Model.PreferenceEntries.Interfaces;
+using Frontend.Core.Model.Preferences.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.Core.Model
+namespace Frontend.Core.Model.PreferenceEntries
 {
     public abstract class PreferenceEntry<T, TParent> : PropertyChangedBase, IPreferenceEntry<T, TParent>
         where TParent : IPreference

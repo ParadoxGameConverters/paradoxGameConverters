@@ -24,7 +24,7 @@ namespace Frontend.Core.Commands
             : base(eventAggregator, options)
         {
         }
-
+        
         /// <summary>
         /// Called when [execute].
         /// </summary>
@@ -34,8 +34,13 @@ namespace Frontend.Core.Commands
             OpenFileDialog dialog = new OpenFileDialog();
 
             dialog.DefaultExt = ".exe";
-            dialog.Filter = "CK2ToEU3.exe | CK2ToEU3.exe";
-            dialog.InitialDirectory = Environment.CurrentDirectory;
+
+            if (this.Options != null && this.Options.CurrentConverter != null && this.Options.CurrentConverter.ConverterExeName != null)
+            {
+                dialog.Filter = this.Options.CurrentConverter.ConverterExeName + " | " + this.Options.CurrentConverter.ConverterExeName; //"CK2ToEU3.exe | CK2ToEU3.exe";
+            }
+            
+            dialog.InitialDirectory = this.Options.CurrentConverter.AbsoluteConverterPath;
             Nullable<bool> result = dialog.ShowDialog();
 
             if (result == true)
