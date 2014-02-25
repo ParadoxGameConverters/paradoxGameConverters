@@ -60,7 +60,7 @@ class V2Province
 		const EU4Province*	getSrcProvince()		const { return srcProvince; };
 		int						getOldPopulation()	const	{ return oldPopulation; };
 		bool						getCOT()					const { return COT; };
-		bool						wasPaganConquest()	const { return originallyPagan; };
+		bool						wasInfidelConquest()	const { return originallyInfidel; };
 		bool						wasColonised()			const { return colonised; };
 		bool						isColonial()			const { return colonial != 0; };
 		string					getRgoType()			const { return rgoType; };
@@ -91,7 +91,7 @@ class V2Province
 		bool								colonised;
 		bool								landConnection;
 		bool								COT;
-		bool								originallyPagan;
+		bool								originallyInfidel;
 		int								oldPopulation;
 		vector<V2Demographic>		demographics;
 		vector<const V2Pop*>			oldPops;

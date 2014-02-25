@@ -30,7 +30,7 @@ V2Province::V2Province(string _filename)
 	colonised			= false;
 	landConnection		= false;
 	COT					= false;
-	originallyPagan	= false;
+	originallyInfidel	= false;
 	oldPopulation		= 0;
 	demographics.clear();
 	oldPops.clear();
@@ -415,14 +415,14 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 	}
 	colonial				= 0;
 	colonised			= oldProvince->wasColonised();
-	originallyPagan	= oldProvince->wasPaganConquest();
+	originallyInfidel	= oldProvince->wasInfidelConquest();
 	COT					= oldProvince->isCOT();
 }
 
 
 void V2Province::determineColonial()
 {
-	if ((!landConnection) && ((colonised) || (originallyPagan)))
+	if ((!landConnection) && ((colonised) || (originallyInfidel)))
 	{
 		colonial = 2;
 	}

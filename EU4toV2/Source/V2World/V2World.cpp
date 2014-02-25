@@ -1140,7 +1140,7 @@ void V2World::addUnions(const unionMapping& unionMap)
 	{
 		for (unionMapping::const_iterator unionItr = unionMap.begin(); unionItr != unionMap.end(); unionItr++)
 		{
-			if ( provItr->second->hasCulture(unionItr->first, 0.5) && !provItr->second->wasPaganConquest() && !provItr->second->wasColonised() )
+			if ( provItr->second->hasCulture(unionItr->first, 0.5) && !provItr->second->wasInfidelConquest() && !provItr->second->wasColonised() )
 			{
 				provItr->second->addCore(unionItr->second);
 			}

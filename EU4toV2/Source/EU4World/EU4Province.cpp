@@ -1,5 +1,6 @@
 #include "EU4Province.h"
 #include "EU4Country.h"
+#include "EU4Religion.h"
 #include "../Log.h"
 #include "../Parsers/Object.h"
 #include "../Configuration.h"
@@ -231,22 +232,15 @@ bool EU4Province::wasColonised() const
 }
 
 
-bool EU4Province::wasPaganConquest() const
+bool EU4Province::wasInfidelConquest() const
 {
 	// returns true if the province was originally pagan, the current owner is non-pagan,
 	// and the province was NOT colonized
 	if (religionHistory.size() > 0 && !wasColonised())
 	{
-		// TODO: should probably read these from EU4 common/religion.txt
-		string firstReligion = religionHistory[0].second;
-		string ownerReligion = owner->getReligion();
-		if (firstReligion == "animism" || firstReligion == "shamanism")
-		{
-			if (ownerReligion != "animism" && ownerReligion != "shamanism")
-			{
-				return true;
-			}
-		}
+		EU4Religion* firstReligion = EU4Religion::getReligion(religionHistory[0].second);
+		EU4Religion* ownerReligion = EU4Religion::getReligion(owner->getReligion());
+		return firstReligion->isInfidelTo(ownerReligion);
 	}
 	return false;
 }

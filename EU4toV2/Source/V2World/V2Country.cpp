@@ -2344,7 +2344,7 @@ V2Province* V2Country::getProvinceForExpeditionaryArmy()
 	vector<V2Province*> candidates;
 	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
-		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColonised() && !(*pitr)->wasPaganConquest()
+		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColonised() && !(*pitr)->wasInfidelConquest()
 			&& ( (*pitr)->hasCulture(primaryCulture, 0.5) ) && ( (*pitr)->getPops("soldiers").size() > 0) )
 		{
 			candidates.push_back(*pitr);

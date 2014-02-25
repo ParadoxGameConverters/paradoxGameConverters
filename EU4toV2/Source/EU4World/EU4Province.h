@@ -27,7 +27,7 @@ class EU4Province {
 		void						addCore(string tag);
 		void						removeCore(string tag);
 		bool						wasColonised() const;
-		bool						wasPaganConquest() const;
+		bool						wasInfidelConquest() const;
 		bool						hasBuilding(string building) const;
 
 		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;

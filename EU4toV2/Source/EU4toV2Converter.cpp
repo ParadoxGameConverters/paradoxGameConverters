@@ -5,6 +5,7 @@
 #include "Parsers\Parser.h"
 #include "Log.h"
 #include "EU4World\EU4World.h"
+#include "EU4World\EU4Religion.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Factory.h"
 #include "V2World\V2TechSchools.h"
@@ -333,6 +334,46 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 			return 1;
 		}
 		unionCultures = initUnionCultures(obj);
+	}
+
+	// Parse EU4 Religions
+	log("Parsing EU4 religions.\n");
+	printf("Parsing EU4 religions.\n");
+	if (EU4Mod != "")
+	{
+		string modReligionFile = Configuration::getEU4DocumentsPath() + "\\mod\\" + EU4Mod + "\\common\\religions\\00_religion.txt";
+		if ((stat(modReligionFile.c_str(), &st) != 0))
+		{
+			obj = doParseFile(modReligionFile.c_str());
+			if (obj == NULL)
+			{
+				log("Could not parse file %s\n", modReligionFile.c_str());
+				exit(-1);
+			}
+			if (obj->getLeaves().size() < 1)
+			{
+				log("Error: Failed to parse 00_cultures.txt.\n");
+				printf("Error: Failed to parse 00_cultures.txt.\n");
+				return 1;
+			}
+			EU4Religion::parseReligions(obj);
+		}
+	}
+	if (unionCultures.size() == 0)
+	{
+		obj = doParseFile((EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
+			exit(-1);
+		}
+		if (obj->getLeaves().size() < 1)
+		{
+			log("Error: Failed to parse 00_religion.txt.\n");
+			printf("Error: Failed to parse 00_religion.txt.\n");
+			return 1;
+		}
+		EU4Religion::parseReligions(obj);
 	}
 
 	// Parse Religion Mappings

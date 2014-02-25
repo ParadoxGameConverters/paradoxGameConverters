@@ -107,6 +107,7 @@
     <ClCompile Include="Source\EU4World\EU4Loan.cpp" />
     <ClCompile Include="Source\EU4World\EU4Province.cpp" />
     <ClCompile Include="Source\EU4World\EU4Relations.cpp" />
+    <ClCompile Include="Source\EU4World\EU4Religion.cpp" />
     <ClCompile Include="Source\EU4World\EU4Version.cpp" />
     <ClCompile Include="Source\EU4World\EU4World.cpp" />
     <ClCompile Include="Source\Log.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Source\EU4World\EU4Loan.h" />
     <ClInclude Include="Source\EU4World\EU4Province.h" />
     <ClInclude Include="Source\EU4World\EU4Relations.h" />
+    <ClInclude Include="Source\EU4World\EU4Religion.h" />
     <ClInclude Include="Source\EU4World\EU4Version.h" />
     <ClInclude Include="Source\EU4World\EU4World.h" />
     <ClInclude Include="Source\Log.h" />
