@@ -56,8 +56,8 @@ namespace Frontend.Core.Factories
                     var preference = new DatePreference();
 
                     preference.DateFormat = XElementHelper.ReadStringValue(foundPreference, "dateFormat");
-                    preference.MinValue = XElementHelper.ReadDateValue(foundPreference, "minValue", preference.DateFormat, false);
-                    preference.MaxValue = XElementHelper.ReadDateValue(foundPreference, "maxValue", preference.DateFormat, false);
+                    preference.MinValue = XElementHelper.ReadDateValue(foundPreference, "minDateValue", preference.DateFormat, false);
+                    preference.MaxValue = XElementHelper.ReadDateValue(foundPreference, "maxDateValue", preference.DateFormat, false);
                     preference.Value = XElementHelper.ReadDateValue(foundPreference, "value", preference.DateFormat, true);
 
                     // Read the list of entryOption tags

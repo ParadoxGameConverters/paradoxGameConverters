@@ -1,7 +1,9 @@
 ﻿
 using Caliburn.Micro;
+using System.Linq;
 using Frontend.Core.Commands;
 using Frontend.Core.Events.EventArgs;
+using Frontend.Core.Logging;
 using Frontend.Core.ViewModels.Interfaces;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -51,29 +53,39 @@ namespace Frontend.Core.ViewModels
                     break;
 
                 case PreferenceOperation.Clear:
-                    this.RemovePreferenceSteps();
+                    this.RemoveConverterSpecificSteps();
                     break;
             }
         }
 
         private void AddPreferenceSteps(IList<IStep> newSteps)
         {
+            var oldCount = this.Steps.Count;
+
             foreach(IStep step in newSteps)
             {
                 this.Steps.Add(step);
             }
+
+            this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", added: " + newSteps.Count + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
         }
 
-        private void RemovePreferenceSteps()
+        private void RemoveConverterSpecificSteps()
         {
+            var oldCount = this.Steps.Count;
+            int removedCount = 0;
+
             // Assumption: The first two steps are:
             // The welcome view
             // The path picker view
             // So we remove everything else.
-            for (int i = 1; i < this.Steps.Count; i ++)
+            while(this.Steps.Count > 2)
             {
-                this.Steps.RemoveAt(i);
+                this.Steps.RemoveAt(2);
+                removedCount++;
             }
+
+            this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", removed: " + removedCount + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
         }
     }
 }

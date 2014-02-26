@@ -66,6 +66,7 @@ namespace Frontend.Core.ViewModels
 
                 steps.Add(new ConvertViewModel(this.EventAggregator, this.Options));
 
+                this.EventAggregator.PublishOnUIThread(new PreferenceStepOperationArgs(PreferenceOperation.Clear, null));
                 this.EventAggregator.PublishOnUIThread(new PreferenceStepOperationArgs(PreferenceOperation.AddSteps, steps));
             }
         }

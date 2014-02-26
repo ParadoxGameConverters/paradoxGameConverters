@@ -62,13 +62,15 @@ namespace Frontend.Core.Commands
 
             try
             {
-                var combinedPath = Path.Combine(Environment.CurrentDirectory, configurationFileName);
+                // Save configuration file to same directory as the converter itself lives in, wherever that might be
+                var converterPathMinusFileName = Path.GetDirectoryName(this.Options.CurrentConverter.AbsoluteConverterPath);
+                var absoluteConfigurationFilePath = Path.Combine(converterPathMinusFileName, configurationFileName);
 
                 // Check permissions
                 if (true)//DiskPermissionHelper.CanWriteFileToFolder(outputPath))
                 {
-                    File.WriteAllText(combinedPath, OutputConfigurationFileHelper.BuiltOutputString(this.Options.CurrentConverter)); //TODO: Consider encoding problems
-                    this.EventAggregator.PublishOnUIThread(new LogEntry("Configuration file saved successfully as " + combinedPath, LogEntrySeverity.Info, LogEntrySource.UI));
+                    File.WriteAllText(absoluteConfigurationFilePath, OutputConfigurationFileHelper.BuiltOutputString(this.Options.CurrentConverter)); //TODO: Consider encoding problems
+                    this.EventAggregator.PublishOnUIThread(new LogEntry("Configuration file saved successfully as " + absoluteConfigurationFilePath, LogEntrySeverity.Info, LogEntrySource.UI));
                 }
                 else
                 {

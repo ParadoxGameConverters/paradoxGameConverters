@@ -4,6 +4,7 @@ using Frontend.Core.Model.Interfaces;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -43,10 +44,20 @@ namespace Frontend.Core.Commands
         {
             OpenFileDialog dialog = new OpenFileDialog();
 
-            // TODO: Read this from gameconfiguration instead.
             dialog.DefaultExt = this.Options.CurrentConverter.SourceGame.SaveGameExtension;
             dialog.Filter = this.Options.CurrentConverter.SourceGame.FriendlyName + " save games (*" + this.Options.CurrentConverter.SourceGame.SaveGameExtension + ") | *" + this.Options.CurrentConverter.SourceGame.SaveGameExtension;
-            dialog.InitialDirectory = this.Options.CurrentConverter.SourceGame.AbsoluteSaveGamePath;
+
+            // Just default to the current working directory if the default save game path doesn't exist. 
+            // This can typically occur if the user just installed the game, and haven't made any saves yet.
+            if (Directory.Exists(this.Options.CurrentConverter.SourceGame.AbsoluteSaveGamePath))
+            {                
+                dialog.InitialDirectory = this.Options.CurrentConverter.SourceGame.AbsoluteSaveGamePath;
+            }
+            else
+            {
+                dialog.InitialDirectory = Environment.CurrentDirectory;
+            }
+
             Nullable<bool> result = dialog.ShowDialog();
 
             if (result == true)

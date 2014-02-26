@@ -111,6 +111,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\ConvertViewModel.cs" />
     <Compile Include="ViewModels\FrameViewModel.cs" />
+    <Compile Include="ViewModels\Interfaces\IConvertViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\ILogViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IPathPickerViewModel.cs" />

@@ -16,7 +16,7 @@
     <converter>
       <name>Eu3ToVic2</name>
       <friendlyName>From Europa Universalis 3 to Victoria 2</friendlyName>
-      <defaultConfigurationFile>Configuration\Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
+      <defaultConfigurationFile>Configuration\Eu3ToVic2DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
       <converterExeName>EU3toV2Converter.exe</converterExeName>
       <isDefault>false</isDefault>

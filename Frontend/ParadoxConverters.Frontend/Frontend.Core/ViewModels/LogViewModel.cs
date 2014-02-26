@@ -16,6 +16,7 @@ namespace Frontend.Core.ViewModels
         public LogViewModel(IEventAggregator eventAggregator)
             : base(eventAggregator)
         {
+            this.EventAggregator.Subscribe(this);
         }
 
         public OpenUriCommand OpenUriCommand
