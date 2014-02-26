@@ -153,6 +153,7 @@
   <ItemGroup>
     <Content Include="Configuration\Ck2ToEu3DefaultConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Configuration\ConfigurationExplanation.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

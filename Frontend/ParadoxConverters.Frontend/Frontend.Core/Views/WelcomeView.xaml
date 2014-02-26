@@ -16,7 +16,7 @@
         <ItemsControl Grid.Row="1" x:Name="SupportedConverters">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <RadioButton Content="{Binding Name}" IsChecked="{Binding IsSelected}" GroupName="supportedConverters"/>
+                    <RadioButton Content="{Binding FriendlyName}" IsChecked="{Binding IsSelected}" GroupName="supportedConverters"/>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
