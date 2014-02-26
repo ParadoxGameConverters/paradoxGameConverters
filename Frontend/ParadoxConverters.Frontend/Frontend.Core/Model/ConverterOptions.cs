@@ -17,6 +17,14 @@ namespace Frontend.Core.Model
         }
 
         /// <summary>
+        /// Gets or sets a value indicating whether conversion was successful.
+        /// </summary>
+        /// <value>
+        /// <c>true</c> if conversion was successful; otherwise, <c>false</c>.
+        /// </value>
+        public bool WasConversionSuccessful { get; set; }
+
+        /// <summary>
         /// Gets or sets the current converter settings
         /// </summary>
         public IConverterSettings CurrentConverter

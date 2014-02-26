@@ -53,10 +53,13 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Commands\AsyncCommandBase.cs" />
+    <Compile Include="Commands\ConvertCommand.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\OpenConverterCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
+    <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Events\EventArgs\PreferenceOperation.cs" />
@@ -69,8 +72,10 @@
     <Compile Include="Factories\GameConfigurationFactory.cs" />
     <Compile Include="Factories\PreferenceCategoryFactory.cs" />
     <Compile Include="Helpers\DateParseHelper.cs" />
+    <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
     <Compile Include="Helpers\NullableComparer.cs" />
     <Compile Include="Helpers\NumberParserHelper.cs" />
+    <Compile Include="Helpers\OutputConfigurationFileHelper.cs" />
     <Compile Include="Helpers\SteamHelper.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XMLErrorHelper.cs" />
@@ -104,6 +109,7 @@
     <Compile Include="Model\Preferences\StringPreference.cs" />
     <Compile Include="Model\RelativeFolderLocationRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\ConvertViewModel.cs" />
     <Compile Include="ViewModels\FrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IFrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\ILogViewModel.cs" />
@@ -129,6 +135,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Page Include="Views\ConvertView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\FrameView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

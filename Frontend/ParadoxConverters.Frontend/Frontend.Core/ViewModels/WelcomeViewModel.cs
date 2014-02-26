@@ -54,7 +54,7 @@ namespace Frontend.Core.ViewModels
         {
             this.Options.CurrentConverter = message;
 
-            // A new converter has been set. This means we can add the preferences view models for that converter to the list of steps
+            // A new converter has been set. This means we can add the rest of the view models for that converter to the list of steps
             if (this.Options.CurrentConverter.Categories != null)
             {
                 IList<IStep> steps = new List<IStep>();
@@ -63,6 +63,8 @@ namespace Frontend.Core.ViewModels
                 {
                     steps.Add(new PreferencesViewModel(this.EventAggregator, this.Options, category));
                 }
+
+                steps.Add(new ConvertViewModel(this.EventAggregator, this.Options));
 
                 this.EventAggregator.PublishOnUIThread(new PreferenceStepOperationArgs(PreferenceOperation.AddSteps, steps));
             }
