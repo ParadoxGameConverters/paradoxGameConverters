@@ -1043,7 +1043,7 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap)
 				goodProvinces.push(openItr->first);
 				openProvinces.erase(openItr);
 			}
-		} while (goodProvinces.size() > 1);
+		} while (goodProvinces.size() > 0);
 	}
 
 	for (map<int, V2Province*>::iterator provItr = provinces.begin(); provItr != provinces.end(); provItr++)
