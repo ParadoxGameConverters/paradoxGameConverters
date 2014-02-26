@@ -1068,7 +1068,7 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		provItr->second->determineColonial();
 	}
 }
-#pragma optimize("", on)
+
 
 void V2World::setupStates(const stateMapping& stateMap)
 {
