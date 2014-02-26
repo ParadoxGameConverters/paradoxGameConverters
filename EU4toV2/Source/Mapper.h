@@ -37,6 +37,10 @@ typedef vector< vector<adjacency> > adjacencyMapping;
 adjacencyMapping initAdjacencyMap();
 
 
+typedef map<int, string>	continentMapping;	// <province, continent>
+void initContinentMap(Object* obj, continentMapping& continentMap);
+
+
 // Country Mappings
 typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
 

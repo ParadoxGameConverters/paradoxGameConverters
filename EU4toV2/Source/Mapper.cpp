@@ -157,6 +157,22 @@ adjacencyMapping initAdjacencyMap()
 }
 
 
+void initContinentMap(Object* obj, continentMapping& continentMap)
+{
+	vector<Object*> continentObjs = obj->getLeaves();
+	for (unsigned int i = 0; i < continentObjs.size(); i++)
+	{
+		string continent = continentObjs[i]->getKey();
+		vector<string> provinceNums = continentObjs[i]->getTokens();
+		for (unsigned int j = 0; j < provinceNums.size(); j++)
+		{
+			int province = atoi(provinceNums[j].c_str());
+			continentMap.insert( make_pair(province, continent) );
+		}
+	}
+}
+
+
 vector<string> processBlockedNations(Object* obj)
 {
 	vector<string> blockedNations;

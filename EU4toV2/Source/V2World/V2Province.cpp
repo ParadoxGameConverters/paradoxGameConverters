@@ -29,6 +29,7 @@ V2Province::V2Province(string _filename)
 	colonial				= 0;
 	colonised			= false;
 	landConnection		= false;
+	sameContinent		= false;
 	COT					= false;
 	originallyInfidel	= false;
 	oldPopulation		= 0;
@@ -422,7 +423,7 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 
 void V2Province::determineColonial()
 {
-	if ((!landConnection) && ((colonised) || (originallyInfidel)))
+	if ((!landConnection) && (!sameContinent) && ((colonised) || (originallyInfidel)))
 	{
 		colonial = 2;
 	}

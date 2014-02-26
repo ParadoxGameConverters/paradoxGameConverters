@@ -246,6 +246,46 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Importing adjacencies\n");
 	printf("Importing adjacencies\n");
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
+
+	// Generate continent mapping
+	string EU4Mod = Configuration::getEU4Mod();
+	continentMapping continentMap;
+	if (EU4Mod != "")
+	{
+		string continentFile = Configuration::getEU4DocumentsPath() + "\\mod\\" + EU4Mod + "\\map\\continent.txt";
+		if ((stat(continentFile.c_str(), &st) != 0))
+		{
+			obj = doParseFile(continentFile.c_str());
+			if (obj == NULL)
+			{
+				log("Could not parse file %s\n", continentFile.c_str());
+				exit(-1);
+			}
+			if (obj->getLeaves().size() < 1)
+			{
+				log("Error: Failed to parse continent.txt.\n");
+				printf("Error: Failed to parse continent.txt.\n");
+				return 1;
+			}
+			initContinentMap(obj, continentMap);
+		}
+	}
+	if (continentMap.size() == 0)
+	{
+		obj = doParseFile((EU4Loc + "\\map\\continent.txt").c_str());
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (EU4Loc + "\\map\\continent.txt").c_str());
+			exit(-1);
+		}
+		if (obj->getLeaves().size() < 1)
+		{
+			log("Error: Failed to parse continent.txt.\n");
+			printf("Error: Failed to parse continent.txt.\n");
+			return 1;
+		}
+		initContinentMap(obj, continentMap);
+	}
 	
 	// Generate region mapping
 	log("Parsing region structure.\n");
@@ -297,7 +337,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
-	string EU4Mod = Configuration::getEU4Mod();
 	unionCulturesMap unionCultures;
 	if (EU4Mod != "")
 	{
@@ -470,7 +509,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
 	printf("Setting colonies\n");
 	log("Setting colonies\n");
-	destWorld.setupColonies(adjacencyMap);
+	destWorld.setupColonies(adjacencyMap, continentMap);
 	/*printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);*/
