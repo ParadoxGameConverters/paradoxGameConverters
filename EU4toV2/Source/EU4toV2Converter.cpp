@@ -241,6 +241,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		removeLandlessNations(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
+	if (leftoverNations > 0)
+	{
+		log("\tToo many EU4 nations (%d). Nothing left to remove. Exiting\n", leftoverNations);
+		exit(1);
+	}
 
 	// Get adjacencies
 	log("Importing adjacencies\n");
