@@ -295,10 +295,6 @@ V2World::V2World()
 			partiesIndex++;
 		}
 
-		if (tag == "REB")
-		{
-			continue;
-		}
 		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
 		if (staticSection)
 		{
@@ -328,11 +324,11 @@ void V2World::output() const
 		//i->second->sortPops();
 		i->second->output();
 	}
-	/*for (unsigned int i = 0; i < countries.size(); i++)
+	for (map<string, V2Country*>::const_iterator itr = countries.begin(); itr != countries.end(); itr++)
 	{
-		countries[i]->output(output);
+		itr->second->output();
 	}
-	diplomacy.output(output);
+	/*diplomacy.output(output);
 	if(Configuration::getV2Gametype() == "HOD")
 	{
 		for (map< int, set<string> >::const_iterator colonyIter = colonies.begin(); colonyIter != colonies.end(); colonyIter++)
@@ -582,7 +578,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 		map<string, V2Country*>::iterator citr = countries.find((*itr)->getTag());
 		if (citr == countries.end())
 		{
-			/*(*itr)->initFromHistory();*/
+			(*itr)->initFromHistory();
 			countries.insert(make_pair((*itr)->getTag(), *itr));
 		}
 	}

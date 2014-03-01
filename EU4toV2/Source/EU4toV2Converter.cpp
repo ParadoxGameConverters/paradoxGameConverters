@@ -573,6 +573,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/provinces\"\n");
+	fprintf(modFile, "replace = \"history/countries\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());

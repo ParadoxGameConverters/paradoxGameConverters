@@ -28,14 +28,14 @@
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 
-V2Country::V2Country(string _tag, string _countryFile, map<int, V2Party*> _parties, V2World* _theWorld)
+V2Country::V2Country(string _tag, string _commonCountryFile, map<int, V2Party*> _parties, V2World* _theWorld)
 {
 	theWorld = _theWorld;
 
-	tag			= _tag;
-	countryFile	= _countryFile;
-	parties		= _parties;
-	rulingParty	= -1;
+	tag					= _tag;
+	commonCountryFile	= _commonCountryFile;
+	parties				= _parties;
+	rulingParty			= -1;
 
 	states.clear();
 	provinces.clear();
@@ -90,9 +90,16 @@ V2Country::V2Country(string _tag, string _countryFile, map<int, V2Party*> _parti
 }
 
 
-void V2Country::output(FILE* output) const
+void V2Country::output() const
 {
-	fprintf(output, "%s=\n", tag.c_str());
+	FILE* output;
+	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\countries\\" + filename).c_str(), "w") != 0)
+	{
+		log("\tError: Could not create country history file %s", filename.c_str());
+		exit(-1);
+	}
+	fclose(output);
+	/*fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
 	if (capital > 0)
 	{
@@ -179,7 +186,7 @@ void V2Country::output(FILE* output) const
 		states[i]->output(output);
 	}
 	fprintf(output, "	badboy=%f\n", badboy);
-	fprintf(output, "}\n");
+	fprintf(output, "}\n");*/
 }
 
 
@@ -310,6 +317,27 @@ void V2Country::outputParties(FILE* output) const
 void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
 {
 	srcCountry = _srcCountry;
+
+	struct _finddata_t	fileData;
+	intptr_t					fileListing;
+	if (Configuration::getUseV2Mod())
+	{
+		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+		{
+			filename = fileData.name;
+		}
+		_findclose(fileListing);
+	}
+	if (filename == "")
+	{
+		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
+		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+		{
+			filename = fileData.name;
+		}
+		_findclose(fileListing);
+	}
 
 	// tech group
 	//if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
@@ -712,8 +740,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 // used only for countries which are NOT converted (i.e. unions, dead countries, etc)
 void V2Country::initFromHistory()
 {
-	string filename = "";
-
+	string fullFilename;
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
 	if (Configuration::getUseV2Mod())
@@ -721,69 +748,69 @@ void V2Country::initFromHistory()
 		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
-			filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+			filename			= fileData.name;
+			fullFilename	= string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
 		}
 		_findclose(fileListing);
 	}
-	if (filename == "")
+	if (fullFilename == "")
 	{
 		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
-			filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+			filename			= fileData.name;
+			fullFilename	= Configuration::getV2Path() + "\\history\\countries\\" + fileData.name;
 		}
 		_findclose(fileListing);
 	}
 
+	Object* obj = doParseFile(fullFilename.c_str());
+	if (obj == NULL)
 	{
-		Object* obj = doParseFile(filename.c_str());
-		if (obj == NULL)
-		{
-			log("Could not parse file %s\n", filename.c_str());
-			exit(-1);
-		}
+		log("Could not parse file %s\n", fullFilename.c_str());
+		exit(-1);
+	}
 
-		vector<Object*> results = obj->getValue("primary_culture");
-		if (results.size() > 0)
-		{
-			primaryCulture = results[0]->getLeaf();
-		}
+	vector<Object*> results = obj->getValue("primary_culture");
+	if (results.size() > 0)
+	{
+		primaryCulture = results[0]->getLeaf();
+	}
 
-		results = obj->getValue("culture");
-		for (vector<Object*>::iterator itr = results.begin(); itr != results.end(); ++itr)
-		{
-			acceptedCultures.push_back((*itr)->getLeaf());
-		}
+	results = obj->getValue("culture");
+	for (vector<Object*>::iterator itr = results.begin(); itr != results.end(); ++itr)
+	{
+		acceptedCultures.push_back((*itr)->getLeaf());
+	}
 
-		results = obj->getValue("religion");
-		if (results.size() > 0)
-		{
-			religion = results[0]->getLeaf();
-		}
+	results = obj->getValue("religion");
+	if (results.size() > 0)
+	{
+		religion = results[0]->getLeaf();
+	}
 
-		results = obj->getValue("government");
-		if (results.size() > 0)
-		{
-			government = results[0]->getLeaf();
-		}
+	results = obj->getValue("government");
+	if (results.size() > 0)
+	{
+		government = results[0]->getLeaf();
+	}
 
-		results = obj->getValue("civilized");
-		if (results.size() > 0)
-		{
-			civilized = (results[0]->getLeaf() == "yes");
-		}
+	results = obj->getValue("civilized");
+	if (results.size() > 0)
+	{
+		civilized = (results[0]->getLeaf() == "yes");
+	}
 
-		results = obj->getValue("nationalvalue");
-		if (results.size() > 0)
-			nationalValue = results[0]->getLeaf();
-		else
-			nationalValue = "nv_order";
+	results = obj->getValue("nationalvalue");
+	if (results.size() > 0)
+		nationalValue = results[0]->getLeaf();
+	else
+		nationalValue = "nv_order";
 
-		results = obj->getValue("capital");
-		if (results.size() > 0)
-		{
-			capital = atoi(results[0]->getLeaf().c_str());
-		}
+	results = obj->getValue("capital");
+	if (results.size() > 0)
+	{
+		capital = atoi(results[0]->getLeaf().c_str());
 	}
 }
 

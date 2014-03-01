@@ -31,8 +31,8 @@ struct V2Party;
 class V2Country
 {
 	public:
-		V2Country(string _tag, string _countryFile, map<int, V2Party*> _parties, V2World* _theWorld);
-		void								output(FILE*) const;
+		V2Country(string _tag, string _commonCountryFile, map<int, V2Party*> _parties, V2World* _theWorld);
+		void								output() const;
 		void								initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
 		void								addState(V2State* newState);
@@ -87,6 +87,8 @@ class V2Country
 
 		V2World*							theWorld;
 		const EU4Country*				srcCountry;
+		string							filename;
+
 		string							tag;
 		vector<V2State*>				states;
 		vector<V2Province*>			provinces;
@@ -97,7 +99,7 @@ class V2Country
 		string							religion;
 		map<int, V2Party*>			parties;
 		int								rulingParty;
-		string							countryFile;
+		string							commonCountryFile;
 		double							prestige;
 		double							leadership;
 		double							plurality;
