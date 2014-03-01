@@ -7,10 +7,19 @@
 #include "EU4Province.h"
 #include "EU4Country.h"
 #include "EU4Diplomacy.h"
+#include "EU4Version.h"
 
 EU4World::EU4World(Object* obj)
 {
-	cachedWorldType = unknown;
+	vector<Object*> versionObj = obj->getValue("savegame_version");
+	if (versionObj.size() > 0)
+	{
+		version = new EU4Version(versionObj[0]);
+	}
+	else
+	{
+		version = new EU4Version();
+	}
 
 	string keyProv;
 	string keyCoun;
@@ -230,67 +239,6 @@ void EU4World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
 	{
 		itr->second->resolveRegimentTypes(rtMap);
 	}
-}
-
-
-WorldType EU4World::getWorldType()
-{
-	if (cachedWorldType != unknown)
-	{
-		return cachedWorldType;
-	}
-
-	int maxProvinceID = 2002;
-	for (map<int, EU4Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-	{
-		if ( itr->first > maxProvinceID )
-		{
-			maxProvinceID = itr->first;
-		}
-	}
-
-	switch (maxProvinceID)
-	{
-	case 2002:
-		cachedWorldType = Base;
-		break;
-	default:
-		log("	Unrecognized max province ID: %d\n", maxProvinceID);
-		if (maxProvinceID < 2002)
-		{
-			cachedWorldType = unknown; // possibly modded
-		}
-		break;
-	}
-
-	// Allow the configuration file to override the game type
-	string configWorldType = Configuration::getEU4Gametype();
-	WorldType forcedWorldType = unknown;
-	if (configWorldType == "base")
-	{
-		forcedWorldType = Base;
-	}
-	else if (configWorldType == "auto")
-	{
-		forcedWorldType = cachedWorldType;
-	}
-
-	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != unknown))
-	{
-		log("	Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
-	}
-
-	if (cachedWorldType == unknown)
-	{
-		log("	Error: world type unknown!\n");
-	}
-
-	if (forcedWorldType != unknown)
-	{
-		cachedWorldType = forcedWorldType;
-	}
-
-	return cachedWorldType;
 }
 
 

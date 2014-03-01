@@ -312,325 +312,325 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	srcCountry = _srcCountry;
 
 	// tech group
-	if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
-			(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
-	{
-		civilized = true;
-	}
-	else
-	{
-		civilized = false;
-	}
+	//if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
+	//		(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
+	//{
+	//	civilized = true;
+	//}
+	//else
+	//{
+	//	civilized = false;
+	//}
 
-	// religion
-	string srcReligion = srcCountry->getReligion();
-	if (srcReligion.size() > 0)
-	{
-		religionMapping::iterator i = religionMap.find(srcReligion);
-		if (i != religionMap.end())
-		{
-			religion = i->second;
-		}
-		else
-		{
-			log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), srcCountry->getTag().c_str(), tag.c_str());
-		}
-	}
+	//// religion
+	//string srcReligion = srcCountry->getReligion();
+	//if (srcReligion.size() > 0)
+	//{
+	//	religionMapping::iterator i = religionMap.find(srcReligion);
+	//	if (i != religionMap.end())
+	//	{
+	//		religion = i->second;
+	//	}
+	//	else
+	//	{
+	//		log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+	//	}
+	//}
 
-	// primary culture
-	string srcCulture = srcCountry->getPrimaryCulture();
-	if (srcCulture.size() > 0)
-	{
-		bool matched = false;
-		for (cultureMapping::iterator i = cultureMap.begin(); (i != cultureMap.end()) && (!matched); i++)
-		{
-			if (i->srcCulture == srcCulture)
-			{
-				bool match = true;
-				for (vector<distinguisher>::iterator j = i->distinguishers.begin(); j != i->distinguishers.end(); j++)
-				{
-					if (j->first == DTOwner)
-					{
-						if (tag != j->second)
-						{
-								match = false;
-						}
-					}
-					else if (j->first == DTReligion)
-					{
-						if (religion != j->second)
-						{
-							match = false;
-						}
-					}
-					else
-					{
-						log ("Error: Unhandled distinguisher type in culture rules.\n");
-					}
-				}
-				if (match)
-				{
-					primaryCulture = i->dstCulture;
-					matched = true;
-				}
-			}
-		}
-		if (!matched)
-		{
-			log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(), tag.c_str());
-		}
-	}
+	//// primary culture
+	//string srcCulture = srcCountry->getPrimaryCulture();
+	//if (srcCulture.size() > 0)
+	//{
+	//	bool matched = false;
+	//	for (cultureMapping::iterator i = cultureMap.begin(); (i != cultureMap.end()) && (!matched); i++)
+	//	{
+	//		if (i->srcCulture == srcCulture)
+	//		{
+	//			bool match = true;
+	//			for (vector<distinguisher>::iterator j = i->distinguishers.begin(); j != i->distinguishers.end(); j++)
+	//			{
+	//				if (j->first == DTOwner)
+	//				{
+	//					if (tag != j->second)
+	//					{
+	//							match = false;
+	//					}
+	//				}
+	//				else if (j->first == DTReligion)
+	//				{
+	//					if (religion != j->second)
+	//					{
+	//						match = false;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					log ("Error: Unhandled distinguisher type in culture rules.\n");
+	//				}
+	//			}
+	//			if (match)
+	//			{
+	//				primaryCulture = i->dstCulture;
+	//				matched = true;
+	//			}
+	//		}
+	//	}
+	//	if (!matched)
+	//	{
+	//		log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+	//	}
+	//}
 
-	//accepted cultures
-	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
-	unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getTag());
-	if (unionItr != unionCultures.end())
-	{
-		for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
-		{
-			srcAceptedCultures.push_back(*j);
-		}
-	}
-	for (vector<string>::iterator i = srcAceptedCultures.begin(); i != srcAceptedCultures.end(); i++)
-	{
-		bool matched = false;
-		for (cultureMapping::iterator j = cultureMap.begin(); (j != cultureMap.end()) && (!matched); j++)
-		{
-			if (j->srcCulture == *i)
-			{
-				bool match = true;
-				for (vector<distinguisher>::iterator k = j->distinguishers.begin(); k != j->distinguishers.end(); k++)
-				{
-					if (k->first == DTOwner)
-					{
-						if (tag != k->second)
-						{
-							match = false;
-						}
-					}
-					else if (k->first == DTReligion)
-					{
-						if (religion != k->second)
-						{
-							match = false;
-						}
-					}
-					else
-					{
-						log ("Error: Unhandled distinguisher type in culture rules.\n");
-					}
-				}
-				if (match)
-				{
-					acceptedCultures.push_back(j->dstCulture);
-					matched = true;
-				}
-			}
-		}
-		if (!matched)
-		{
-			log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(),tag.c_str());
-		}
-	}
+	////accepted cultures
+	//vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
+	//unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getTag());
+	//if (unionItr != unionCultures.end())
+	//{
+	//	for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
+	//	{
+	//		srcAceptedCultures.push_back(*j);
+	//	}
+	//}
+	//for (vector<string>::iterator i = srcAceptedCultures.begin(); i != srcAceptedCultures.end(); i++)
+	//{
+	//	bool matched = false;
+	//	for (cultureMapping::iterator j = cultureMap.begin(); (j != cultureMap.end()) && (!matched); j++)
+	//	{
+	//		if (j->srcCulture == *i)
+	//		{
+	//			bool match = true;
+	//			for (vector<distinguisher>::iterator k = j->distinguishers.begin(); k != j->distinguishers.end(); k++)
+	//			{
+	//				if (k->first == DTOwner)
+	//				{
+	//					if (tag != k->second)
+	//					{
+	//						match = false;
+	//					}
+	//				}
+	//				else if (k->first == DTReligion)
+	//				{
+	//					if (religion != k->second)
+	//					{
+	//						match = false;
+	//					}
+	//				}
+	//				else
+	//				{
+	//					log ("Error: Unhandled distinguisher type in culture rules.\n");
+	//				}
+	//			}
+	//			if (match)
+	//			{
+	//				acceptedCultures.push_back(j->dstCulture);
+	//				matched = true;
+	//			}
+	//		}
+	//	}
+	//	if (!matched)
+	//	{
+	//		log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(),tag.c_str());
+	//	}
+	//}
 
-	// Prestige, leadership, diploPoints, badBoy, reforms
-	prestige		+= srcCountry->getPrestige() + 100;
-	prestige		+= srcCountry->getCulture();
-	leadership	+= srcCountry->getArmyTradition() + srcCountry->getNavyTradition();
-	diploPoints	=  srcCountry->getDiplomats() * 2;
-	badboy		=  srcCountry->getBadboy() * (25.0 / srcCountry->getBadboyLimit());
-	reforms		=  new V2Reforms(srcCountry);
+	//// Prestige, leadership, diploPoints, badBoy, reforms
+	//prestige		+= srcCountry->getPrestige() + 100;
+	//prestige		+= srcCountry->getCulture();
+	//leadership	+= srcCountry->getArmyTradition() + srcCountry->getNavyTradition();
+	//diploPoints	=  srcCountry->getDiplomats() * 2;
+	//badboy		=  srcCountry->getBadboy() * (25.0 / srcCountry->getBadboyLimit());
+	//reforms		=  new V2Reforms(srcCountry);
 
-	// Government
-	string srcGovernment = srcCountry->getGovernment();
-	if (srcGovernment.size() > 0)
-	{
-		governmentMapping::iterator i = governmentMap.find(srcGovernment);
-		if (i != governmentMap.end())
-		{
-			government = i->second;
-		}
-		else
-		{
-			log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), srcCountry->getTag().c_str(), tag.c_str());
-		}
-	}
+	//// Government
+	//string srcGovernment = srcCountry->getGovernment();
+	//if (srcGovernment.size() > 0)
+	//{
+	//	governmentMapping::iterator i = governmentMap.find(srcGovernment);
+	//	if (i != governmentMap.end())
+	//	{
+	//		government = i->second;
+	//	}
+	//	else
+	//	{
+	//		log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+	//	}
+	//}
 
-	//  Politics
-	upperHouseReactionary = upperHouseConservative = upperHouseLiberal = 0.0;
-	if (srcCountry->getCentralizationDecentralization() < 0)
-	{
-		upperHouseConservative -= srcCountry->getCentralizationDecentralization();
-	}
-	else
-	{
-		upperHouseLiberal += srcCountry->getCentralizationDecentralization();
-	}
-	if (srcCountry->getAristocracyPlutocracy() < 0)
-	{
-		upperHouseReactionary -= srcCountry->getAristocracyPlutocracy();
-	}
-	else
-	{
-		upperHouseLiberal += srcCountry->getAristocracyPlutocracy();
-	}
-	if (srcCountry->getSerfdomFreesubjects() < 0)
-	{
-		upperHouseReactionary -= srcCountry->getSerfdomFreesubjects();
-	}
-	else
-	{
-		upperHouseLiberal += srcCountry->getSerfdomFreesubjects();
-	}
-	if (srcCountry->getInnovativeNarrowminded() < 0)
-	{
-		upperHouseLiberal -= srcCountry->getInnovativeNarrowminded();
-	}
-	else
-	{
-		upperHouseConservative += srcCountry->getInnovativeNarrowminded();
-	}
-	if (srcCountry->getMercantilismFreetrade() < 0)
-	{
-		upperHouseConservative -= srcCountry->getMercantilismFreetrade();
-	}
-	else
-	{
-		upperHouseLiberal += srcCountry->getMercantilismFreetrade();
-	}
-	double total = upperHouseReactionary + upperHouseConservative + upperHouseLiberal;
-	upperHouseReactionary	/= total;
-	upperHouseConservative	/= total;
-	upperHouseLiberal			/= total;
-	setRulingParty();
+	////  Politics
+	//upperHouseReactionary = upperHouseConservative = upperHouseLiberal = 0.0;
+	//if (srcCountry->getCentralizationDecentralization() < 0)
+	//{
+	//	upperHouseConservative -= srcCountry->getCentralizationDecentralization();
+	//}
+	//else
+	//{
+	//	upperHouseLiberal += srcCountry->getCentralizationDecentralization();
+	//}
+	//if (srcCountry->getAristocracyPlutocracy() < 0)
+	//{
+	//	upperHouseReactionary -= srcCountry->getAristocracyPlutocracy();
+	//}
+	//else
+	//{
+	//	upperHouseLiberal += srcCountry->getAristocracyPlutocracy();
+	//}
+	//if (srcCountry->getSerfdomFreesubjects() < 0)
+	//{
+	//	upperHouseReactionary -= srcCountry->getSerfdomFreesubjects();
+	//}
+	//else
+	//{
+	//	upperHouseLiberal += srcCountry->getSerfdomFreesubjects();
+	//}
+	//if (srcCountry->getInnovativeNarrowminded() < 0)
+	//{
+	//	upperHouseLiberal -= srcCountry->getInnovativeNarrowminded();
+	//}
+	//else
+	//{
+	//	upperHouseConservative += srcCountry->getInnovativeNarrowminded();
+	//}
+	//if (srcCountry->getMercantilismFreetrade() < 0)
+	//{
+	//	upperHouseConservative -= srcCountry->getMercantilismFreetrade();
+	//}
+	//else
+	//{
+	//	upperHouseLiberal += srcCountry->getMercantilismFreetrade();
+	//}
+	//double total = upperHouseReactionary + upperHouseConservative + upperHouseLiberal;
+	//upperHouseReactionary	/= total;
+	//upperHouseConservative	/= total;
+	//upperHouseLiberal			/= total;
+	//setRulingParty();
 
-	// Relations
-	vector<EU4Relations*> srcRelations = srcCountry->getRelations();
-	if (srcRelations.size() > 0)
-	{
-		for (vector<EU4Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
-		{
-			countryMapping::iterator newTag = countryMap.find( (*itr)->getCountry() );
-			if (newTag != countryMap.end())
-			{
-				V2Relations* v2r = new V2Relations(newTag->second, *itr);
-				relations.push_back(v2r);
-			}
-		}
-	}
-	sortRelations(outputOrder);
+	//// Relations
+	//vector<EU4Relations*> srcRelations = srcCountry->getRelations();
+	//if (srcRelations.size() > 0)
+	//{
+	//	for (vector<EU4Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
+	//	{
+	//		countryMapping::iterator newTag = countryMap.find( (*itr)->getCountry() );
+	//		if (newTag != countryMap.end())
+	//		{
+	//			V2Relations* v2r = new V2Relations(newTag->second, *itr);
+	//			relations.push_back(v2r);
+	//		}
+	//	}
+	//}
+	//sortRelations(outputOrder);
 
-	// Finances
-	money				= MONEYFACTOR * srcCountry->getTreasury();
-	lastBankrupt	= srcCountry->getLastBankrupt();
-	vector<EU4Loan*> srcLoans = srcCountry->getLoans();
-	for (vector<EU4Loan*>::iterator itr = srcLoans.begin(); itr != srcLoans.end(); ++itr)
-	{
-		string lender = tag;
-		if ( (*itr)->getLender() != "---")
-		{
-			countryMapping::iterator newTag = countryMap.find( (*itr)->getLender() );
-			if (newTag != countryMap.end())
-			{
-				lender = newTag->second;
-			}
-			else
-			{
-				log("Error: lender %s could not be found for %s's loan!\n", (*itr)->getLender().c_str(), tag.c_str());
-			}
-		}
-		double size = MONEYFACTOR * srcCountry->inflationAdjust( (*itr)->getAmount() );
-		addLoan(lender, size, (*itr)->getInterest() / 100.0f);
-	}
-	// 1 month's income in reserves, or 6 months' if national bank NI is present
-	// note that the GC's starting reserves are very low, so it's not necessary for this number to be large
-	bankReserves = MONEYFACTOR *srcCountry->inflationAdjust(srcCountry->getEstimatedMonthlyIncome());
-	if (srcCountry->hasNationalIdea("national_bank"))
-	{
-		bankReserves *= 6.0;
-	}
+	//// Finances
+	//money				= MONEYFACTOR * srcCountry->getTreasury();
+	//lastBankrupt	= srcCountry->getLastBankrupt();
+	//vector<EU4Loan*> srcLoans = srcCountry->getLoans();
+	//for (vector<EU4Loan*>::iterator itr = srcLoans.begin(); itr != srcLoans.end(); ++itr)
+	//{
+	//	string lender = tag;
+	//	if ( (*itr)->getLender() != "---")
+	//	{
+	//		countryMapping::iterator newTag = countryMap.find( (*itr)->getLender() );
+	//		if (newTag != countryMap.end())
+	//		{
+	//			lender = newTag->second;
+	//		}
+	//		else
+	//		{
+	//			log("Error: lender %s could not be found for %s's loan!\n", (*itr)->getLender().c_str(), tag.c_str());
+	//		}
+	//	}
+	//	double size = MONEYFACTOR * srcCountry->inflationAdjust( (*itr)->getAmount() );
+	//	addLoan(lender, size, (*itr)->getInterest() / 100.0f);
+	//}
+	//// 1 month's income in reserves, or 6 months' if national bank NI is present
+	//// note that the GC's starting reserves are very low, so it's not necessary for this number to be large
+	//bankReserves = MONEYFACTOR *srcCountry->inflationAdjust(srcCountry->getEstimatedMonthlyIncome());
+	//if (srcCountry->hasNationalIdea("national_bank"))
+	//{
+	//	bankReserves *= 6.0;
+	//}
 
-	// Literacy
-	double innovationFactor	= 5 * (5 - srcCountry->getInnovativeNarrowminded());
-	double serfdomFactor		= 5 * (5 + srcCountry->getSerfdomFreesubjects());
-	literacy = (innovationFactor + serfdomFactor) * 0.004;
-	if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
-	{
-		literacy += 0.05;
-	}
-	if ( srcCountry->hasNationalIdea("bureaucracy") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasNationalIdea("church_attendance_duty") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasNationalIdea("scientific_revolution") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasModifier("the_school_establishment_act") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasModifier("sunday_schools") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasModifier("the_education_act") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasModifier("monastic_education_system") )
-	{
-		literacy += 0.04;
-	}
-	if ( srcCountry->hasModifier("western_embassy_mission") )
-	{
-		literacy += 0.04;
-	}
-	int numProvinces = 0;
-	int numUniversities = 0;
-	vector<EU4Province*> provinces = srcCountry->getProvinces();
-	numUniversities = provinces.size();
-	for (vector<EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
-	{
-		if ( (*i)->hasBuilding("university") )
-		{
-			numUniversities++;
-		}
-	}
-	double universityBonus1;
-	if (numProvinces > 0)
-	{
-		universityBonus1 = numUniversities / numProvinces;
-	}
-	else
-	{
-		universityBonus1 = 0;
-	}
-	double universityBonus2	= numUniversities * 0.01;
-	double universityBonus	= max(universityBonus1, universityBonus2);
-	if (universityBonus > 0.2)
-	{
-		universityBonus = 0.2;
-	}
-	literacy += universityBonus;
-	string techGroup = srcCountry->getTechGroup();
-	if ( (techGroup == "western") || (techGroup == "latin") || (techGroup == "eastern") || (techGroup == "ottoman") )
-	{
-		literacy += 0.1;
-	}
-	if (literacy > Configuration::getMaxLiteracy())
-	{
-		literacy = Configuration::getMaxLiteracy();
-	}
-	log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
+	//// Literacy
+	//double innovationFactor	= 5 * (5 - srcCountry->getInnovativeNarrowminded());
+	//double serfdomFactor		= 5 * (5 + srcCountry->getSerfdomFreesubjects());
+	//literacy = (innovationFactor + serfdomFactor) * 0.004;
+	//if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
+	//{
+	//	literacy += 0.05;
+	//}
+	//if ( srcCountry->hasNationalIdea("bureaucracy") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasNationalIdea("church_attendance_duty") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasNationalIdea("scientific_revolution") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasModifier("the_school_establishment_act") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasModifier("sunday_schools") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasModifier("the_education_act") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasModifier("monastic_education_system") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//if ( srcCountry->hasModifier("western_embassy_mission") )
+	//{
+	//	literacy += 0.04;
+	//}
+	//int numProvinces = 0;
+	//int numUniversities = 0;
+	//vector<EU4Province*> provinces = srcCountry->getProvinces();
+	//numUniversities = provinces.size();
+	//for (vector<EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	//{
+	//	if ( (*i)->hasBuilding("university") )
+	//	{
+	//		numUniversities++;
+	//	}
+	//}
+	//double universityBonus1;
+	//if (numProvinces > 0)
+	//{
+	//	universityBonus1 = numUniversities / numProvinces;
+	//}
+	//else
+	//{
+	//	universityBonus1 = 0;
+	//}
+	//double universityBonus2	= numUniversities * 0.01;
+	//double universityBonus	= max(universityBonus1, universityBonus2);
+	//if (universityBonus > 0.2)
+	//{
+	//	universityBonus = 0.2;
+	//}
+	//literacy += universityBonus;
+	//string techGroup = srcCountry->getTechGroup();
+	//if ( (techGroup == "western") || (techGroup == "latin") || (techGroup == "eastern") || (techGroup == "ottoman") )
+	//{
+	//	literacy += 0.1;
+	//}
+	//if (literacy > Configuration::getMaxLiteracy())
+	//{
+	//	literacy = Configuration::getMaxLiteracy();
+	//}
+	//log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
 
 	// Capital
 	int oldCapital = srcCountry->getCapital();
@@ -641,87 +641,105 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	}
 
 	// Tech School
-	double landInvestment			= srcCountry->getLandInvestment();
-	double navalInvestment			= srcCountry->getNavalInvestment();
-	double tradeInvestment			= srcCountry->getTradeInvestment();
-	double productionInvestment	= srcCountry->getProductionInvestment();
-	double governmentInvestment	= srcCountry->getGovernmentInvestment();
+	//double landInvestment			= srcCountry->getLandInvestment();
+	//double navalInvestment			= srcCountry->getNavalInvestment();
+	//double tradeInvestment			= srcCountry->getTradeInvestment();
+	//double productionInvestment	= srcCountry->getProductionInvestment();
+	//double governmentInvestment	= srcCountry->getGovernmentInvestment();
 
-	vector<EU4Province*> srcProvinces = srcCountry->getProvinces();
-	for(unsigned int j = 0; j < srcProvinces.size(); j++)
-	{
-		if (srcProvinces[j]->hasBuilding("weapons"))
-		{
-			landInvestment += 50;
-		}
-		if (srcProvinces[j]->hasBuilding("wharf"))
-		{
-			navalInvestment += 50;
-		}
-		if (srcProvinces[j]->hasBuilding("refinery"))
-		{
-			tradeInvestment += 50;
-		}
-		if (srcProvinces[j]->hasBuilding("textile"))
-		{
-			productionInvestment += 50;
-		}
-		if (srcProvinces[j]->hasBuilding("university"))
-		{
-			governmentInvestment += 50;
-		}
-	}
+	//vector<EU4Province*> srcProvinces = srcCountry->getProvinces();
+	//for(unsigned int j = 0; j < srcProvinces.size(); j++)
+	//{
+	//	if (srcProvinces[j]->hasBuilding("weapons"))
+	//	{
+	//		landInvestment += 50;
+	//	}
+	//	if (srcProvinces[j]->hasBuilding("wharf"))
+	//	{
+	//		navalInvestment += 50;
+	//	}
+	//	if (srcProvinces[j]->hasBuilding("refinery"))
+	//	{
+	//		tradeInvestment += 50;
+	//	}
+	//	if (srcProvinces[j]->hasBuilding("textile"))
+	//	{
+	//		productionInvestment += 50;
+	//	}
+	//	if (srcProvinces[j]->hasBuilding("university"))
+	//	{
+	//		governmentInvestment += 50;
+	//	}
+	//}
 
-	double totalInvestment			= landInvestment + navalInvestment + tradeInvestment + productionInvestment + governmentInvestment;
-	landInvestment						/= totalInvestment;
-	navalInvestment					/= totalInvestment;
-	tradeInvestment					/= totalInvestment;
-	productionInvestment				/= totalInvestment;
-	governmentInvestment				/= totalInvestment;
+	//double totalInvestment			= landInvestment + navalInvestment + tradeInvestment + productionInvestment + governmentInvestment;
+	//landInvestment						/= totalInvestment;
+	//navalInvestment					/= totalInvestment;
+	//tradeInvestment					/= totalInvestment;
+	//productionInvestment				/= totalInvestment;
+	//governmentInvestment				/= totalInvestment;
 
-	double lowestScore = 1.0;
-	string bestSchool = "traditional_academic";
+	//double lowestScore = 1.0;
+	//string bestSchool = "traditional_academic";
 
-	for (unsigned int j = 0; j < techSchools.size(); j++)
-	{
-		double newScore = abs(landInvestment			-  techSchools[j].armyInvestment			- 0.2) +
-								abs(navalInvestment			-  techSchools[j].navyInvestment			- 0.2) +
-								abs(tradeInvestment			-  techSchools[j].commerceInvestment	- 0.2) +
-								abs(productionInvestment	-  techSchools[j].industryInvestment	- 0.2) +
-								abs(governmentInvestment	-  techSchools[j].cultureInvestment		- 0.2);
-		if (newScore < lowestScore)
-		{
-			bestSchool	= techSchools[j].name;
-			lowestScore	= newScore;
-		}
-	}
-	log("	%s has tech school %s\n", tag.c_str(), bestSchool.c_str());
-	techSchool = bestSchool;
+	//for (unsigned int j = 0; j < techSchools.size(); j++)
+	//{
+	//	double newScore = abs(landInvestment			-  techSchools[j].armyInvestment			- 0.2) +
+	//							abs(navalInvestment			-  techSchools[j].navyInvestment			- 0.2) +
+	//							abs(tradeInvestment			-  techSchools[j].commerceInvestment	- 0.2) +
+	//							abs(productionInvestment	-  techSchools[j].industryInvestment	- 0.2) +
+	//							abs(governmentInvestment	-  techSchools[j].cultureInvestment		- 0.2);
+	//	if (newScore < lowestScore)
+	//	{
+	//		bestSchool	= techSchools[j].name;
+	//		lowestScore	= newScore;
+	//	}
+	//}
+	//log("	%s has tech school %s\n", tag.c_str(), bestSchool.c_str());
+	//techSchool = bestSchool;
 
-	// Leaders
-	vector<EU4Leader*> oldLeaders = srcCountry->getLeaders();
-	for (vector<EU4Leader*>::iterator itr = oldLeaders.begin(); itr != oldLeaders.end(); ++itr)
-	{
-		V2Leader* leader = new V2Leader(tag, *itr, lt);
-		leaders.push_back(leader);
-		leaderMap[ (*itr)->getID() ] = leader->getID();
-	}
+	//// Leaders
+	//vector<EU4Leader*> oldLeaders = srcCountry->getLeaders();
+	//for (vector<EU4Leader*>::iterator itr = oldLeaders.begin(); itr != oldLeaders.end(); ++itr)
+	//{
+	//	V2Leader* leader = new V2Leader(tag, *itr, lt);
+	//	leaders.push_back(leader);
+	//	leaderMap[ (*itr)->getID() ] = leader->getID();
+	//}
 }
 
 
 // used only for countries which are NOT converted (i.e. unions, dead countries, etc)
 void V2Country::initFromHistory()
 {
-	string V2Loc = Configuration::getV2Path();
-	string filename = V2Loc + "\\history\\countries\\" + tag + "*.txt";
+	string filename = "";
+
 	struct _finddata_t	fileData;
-	intptr_t			fileListing;
-	if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
+	intptr_t					fileListing;
+	if (Configuration::getUseV2Mod())
 	{
-		Object* obj = doParseFile( (V2Loc + "\\history\\countries\\" + fileData.name).c_str() );
+		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+		{
+			filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		}
+		_findclose(fileListing);
+	}
+	if (filename == "")
+	{
+		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
+		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+		{
+			filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		}
+		_findclose(fileListing);
+	}
+
+	{
+		Object* obj = doParseFile(filename.c_str());
 		if (obj == NULL)
 		{
-			log("Could not parse file %s\n", (V2Loc + "\\history\\countries\\" + fileData.name).c_str());
+			log("Could not parse file %s\n", filename.c_str());
 			exit(-1);
 		}
 
@@ -767,7 +785,6 @@ void V2Country::initFromHistory()
 			capital = atoi(results[0]->getLeaf().c_str());
 		}
 	}
-	_findclose(fileListing);
 }
 
 
@@ -881,7 +898,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 		if (army->getNavy())
 		{
 			map<int, V2Province*>::iterator pitr = allProvinces.find(locationCandidates[0]);
-			if ((pitr != allProvinces.end()) && (pitr->second->isLand()))
+			if (pitr != allProvinces.end())
 			{
 				usePort = true;
 			}
@@ -1254,7 +1271,7 @@ void V2Country::setupPops(EU4World& sourceWorld)
 	// create the pops
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
-		(*itr)->setupPops(sourceWorld.getWorldType(), primaryCulture, acceptedCultures, religion, con, mil);
+		(*itr)->setupPops(primaryCulture, acceptedCultures, religion, con, mil);
 	}
 }
 
@@ -2327,7 +2344,7 @@ V2Province* V2Country::getProvinceForExpeditionaryArmy()
 	vector<V2Province*> candidates;
 	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
-		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColonised() && !(*pitr)->wasPaganConquest()
+		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColonised() && !(*pitr)->wasInfidelConquest()
 			&& ( (*pitr)->hasCulture(primaryCulture, 0.5) ) && ( (*pitr)->getPops("soldiers").size() > 0) )
 		{
 			candidates.push_back(*pitr);

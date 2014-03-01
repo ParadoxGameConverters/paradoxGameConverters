@@ -22,7 +22,7 @@ class V2State
 		void output(FILE* output) const;
 
 		void addRailroads();
-		void setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
+		void setupPops(string primaryCulture, vector<string> acceptedCultures, string religion, double nationalConModifier, double nationalMilModifier);
 
 		bool	isCoastal() const;
 		bool	hasLocalSupply(string product) const;

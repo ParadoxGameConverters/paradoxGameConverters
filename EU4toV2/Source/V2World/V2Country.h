@@ -50,9 +50,10 @@ class V2Country
 
 		V2Relations*					getRelations(string withWhom) const;
 		
+		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); };
 		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; };
-		void								addResearchPoints(double newPoints) { researchPoints += newPoints; };
-		void								addTech(string newTech) { techs.push_back(newTech); };
+		void								addResearchPoints(double newPoints)		{ researchPoints += newPoints; };
+		void								addTech(string newTech)						{ techs.push_back(newTech); };
 
 		vector<V2Province*>			getProvinces() const { return provinces; };
 		string							getTag() const { return tag; };

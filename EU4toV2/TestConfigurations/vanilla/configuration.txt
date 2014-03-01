@@ -3,8 +3,14 @@ configuration =
 	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
 	EU4directory = "D:\Steam\steamapps\common\Europa Universalis IV"
 
+	# Europa Universalis 4 Documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
+	EU4Documentsdirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV"
+
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	V2directory = "D:\Paradox Interactive\Victoria 2"
+
+	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
+	V2Documentsdirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Victoria II"
 
 	# EU4 Game Type: what version of EU4 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!
@@ -17,9 +23,18 @@ configuration =
 	#	HOD		Heart of Darkness (3.x)
 	V2gametype = "HOD"
 
+	# EU4 Mod: An EU4 mod to use for conversion
+	EU4Mod = ""
+
+	# Use V2 Mod: Whether or not to use a V2 mod
+	useV2Mod = "no"
+
 	# The date on which the game is to start.  Default: 1835.12.1
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
 	start_date = 1836.1.1
+
+	# Reset Provinces: Whether or not to reset resettable V2 provinces
+	resetProvinces = "no"
 
 	# The maximum literacy a nation will start with. Default 80%
 	max_literacy = 0.80

@@ -30,14 +30,13 @@ struct V2Demographic
 class V2Province
 {
 	public:
-		//V2Province(int number);
 		V2Province(string _filename);
 		void output() const;
-		void importHistory(Object*);
 		void convertFromOldProvince(const EU4Province* oldProvince);
+		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void doCreatePops(bool isStateCapital, int statePopulation, bool stateHasCOT);
 		void sortPops();
 
 		void				setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier);
@@ -52,16 +51,17 @@ class V2Province
 		void				setName(string _name)					{ name = _name; };
 		void				setOwner(string _owner)					{ owner = _owner; };
 		//void				setController(string _controller)	{ controller = _controller; };
+		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
+		void				setSameContinent(bool _same)			{ sameContinent = _same; };
 		void				addPopDemographic(V2Demographic d)	{ demographics.push_back(d); };
 		void				setFortLevel(int level)					{ fortLevel = level; };
 		void				setNavalBaseLevel(int level)			{ navalBaseLevel = level; };
 		void				setRailLevel(int level)					{ railLevel = level; };
 
 		const EU4Province*	getSrcProvince()		const { return srcProvince; };
-		bool						isLand()					const { return land; };
 		int						getOldPopulation()	const	{ return oldPopulation; };
 		bool						getCOT()					const { return COT; };
-		bool						wasPaganConquest()	const { return originallyPagan; };
+		bool						wasInfidelConquest()	const { return originallyInfidel; };
 		bool						wasColonised()			const { return colonised; };
 		bool						isColonial()			const { return colonial != 0; };
 		string					getRgoType()			const { return rgoType; };
@@ -74,14 +74,13 @@ class V2Province
 		void outputPops(FILE*) const;
 		void outputRGO(FILE*) const;
 		void outputUnits(FILE*) const;
-		void createPops(WorldType game, const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
 		const EU4Province*			srcProvince;
 		
 		string							filename;
-		bool								land;
 		bool								coastal;
 		int								num;
 		string							name;
@@ -91,8 +90,10 @@ class V2Province
 		int								colonyLevel;
 		int								colonial;
 		bool								colonised;
+		bool								landConnection;
+		bool								sameContinent;
 		bool								COT;
-		bool								originallyPagan;
+		bool								originallyInfidel;
 		int								oldPopulation;
 		vector<V2Demographic>		demographics;
 		vector<const V2Pop*>			oldPops;
