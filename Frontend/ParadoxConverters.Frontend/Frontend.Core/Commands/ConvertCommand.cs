@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using System;
@@ -170,7 +171,7 @@ namespace Frontend.Core.Commands
 
                 this.Log(sb.ToString(), LogEntrySeverity.Error, LogEntrySource.UI);
 
-                var log = Path.Combine(Environment.CurrentDirectory, "log.txt");
+                var log = Path.Combine(WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "log.txt");
 
                 if (File.Exists(log))
                 {

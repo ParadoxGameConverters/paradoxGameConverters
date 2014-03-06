@@ -76,8 +76,7 @@ namespace Frontend.Client
 		{
 			DisplayRootViewFor<IShell>();
 
-            var logEntry = new LogEntry("Application started from", LogEntrySeverity.Info, LogEntrySource.UI, Environment.CurrentDirectory);
-
+            var logEntry = new LogEntry("Startup complete: Application was started from", LogEntrySeverity.Info, LogEntrySource.UI, Environment.CurrentDirectory);
 
             this.EventAggregator.PublishOnUIThread(logEntry);
 		}

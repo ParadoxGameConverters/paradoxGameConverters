@@ -77,6 +77,7 @@
     <Compile Include="Helpers\NumberParserHelper.cs" />
     <Compile Include="Helpers\OutputConfigurationFileHelper.cs" />
     <Compile Include="Helpers\SteamHelper.cs" />
+    <Compile Include="Helpers\WorkingDirectoryHelper.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XMLErrorHelper.cs" />
     <Compile Include="Logging\LogEntry.cs" />
@@ -171,6 +172,7 @@
     </Content>
     <Content Include="Configuration\Eu3ToVic2DefaultConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Configuration\GameConfigurations.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

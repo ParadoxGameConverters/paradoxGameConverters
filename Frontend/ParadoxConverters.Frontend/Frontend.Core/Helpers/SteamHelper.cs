@@ -37,7 +37,7 @@ namespace Frontend.Core.Helpers
                         if (Directory.Exists(steamInstallationPath))
                         {
                             eventAggregator.PublishOnUIThread(
-                                new LogEntry("Located Steam game files: " + steamInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI, steamInstallationPath));
+                                new LogEntry("Startup: Located Steam game files: ", LogEntrySeverity.Info, LogEntrySource.UI, steamInstallationPath));
                             return steamInstallationPath;
                         }
                     }

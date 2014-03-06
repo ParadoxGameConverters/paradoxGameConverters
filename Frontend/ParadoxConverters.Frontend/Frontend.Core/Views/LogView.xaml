@@ -1,114 +1,117 @@
 ﻿<UserControl x:Class="Frontend.Core.Views.LogView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Frontend.Core.Views"
              xmlns:logging="clr-namespace:Frontend.Core.Logging"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <UserControl.Resources>
-        <SolidColorBrush x:Key="LogErrorBackgroundBrush" Color="Red" Opacity="0.25"/>
-        <SolidColorBrush x:Key="LogWarningBackgroundBrush" Color="Gray" Opacity="0.25"/>
-    </UserControl.Resources>
-    <Grid VerticalAlignment="Stretch">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
+  <UserControl.Resources>
+    <SolidColorBrush x:Key="LogErrorBackgroundBrush" Color="Red" Opacity="0.25"/>
+    <SolidColorBrush x:Key="LogWarningBackgroundBrush" Color="Gray" Opacity="0.25"/>
+  </UserControl.Resources>
+  <Grid VerticalAlignment="Stretch">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition/>
+      <ColumnDefinition/>
+    </Grid.ColumnDefinitions>
 
-        <TextBlock Text="Log:"/>
-        <DataGrid x:Name="LogEntries" Grid.Row="1" Grid.ColumnSpan="2"
-                  ItemsSource="{Binding LogEntries}" 
-                  VerticalAlignment="Stretch" 
-                  HorizontalAlignment="Stretch" 
-                  AutoGenerateColumns="False" 
-                  SelectionMode="Single"
-                  CanUserAddRows="False"
-                  CanUserDeleteRows="False"
-                  CanUserReorderColumns="False"
-                  CanUserResizeColumns="True"
-                  CanUserResizeRows="True"
-                  CanUserSortColumns="False">
-            <DataGrid.Resources>
-                <ResourceDictionary>
-                    <!--This just disables any selection styling-->
-                    <Style  TargetType="{x:Type DataGridCell}">
-                        <Setter Property="Foreground" Value="Black" />
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Background" Value="{x:Null}" />
-                                <Setter Property="BorderBrush" Value="{x:Null}" />
-                            </Trigger>
-                            <DataTrigger Binding="{Binding Severity}">
-                                <DataTrigger.Value>
-                                    <logging:LogEntrySeverity>
-                                        Error
-                                    </logging:LogEntrySeverity>
-                                </DataTrigger.Value>
-                                <Setter Property="Background" Value="{StaticResource LogErrorBackgroundBrush}"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Severity}">
-                                <DataTrigger.Value>
-                                    <logging:LogEntrySeverity>
-                                        Warning
-                                    </logging:LogEntrySeverity>
-                                </DataTrigger.Value>
-                                <Setter Property="Background" Value="{StaticResource LogErrorBackgroundBrush}"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </ResourceDictionary>
-            </DataGrid.Resources>
-
-            <DataGrid.Columns>
-                <DataGridTemplateColumn Header="Time stamp" Width="75" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding LogStamp, StringFormat=T}" Margin="5, 0, 5, 0"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Severity" Width="60" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Severity}" Margin="5, 0, 5, 0"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Source" Width="70" IsReadOnly="True">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding Source}" Margin="5, 0, 5, 0"/>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="Text" IsReadOnly="True" Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="{Binding LogText}" Margin="5, 0, 5, 0" TextWrapping="Wrap"/>
-                                <TextBlock x:Name="PathTextBox">
-                                    <Hyperlink Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
-                                               CommandParameter="{Binding Path=Path}">
-                                         <TextBlock Text="{Binding Path=Path}" />
-                                    </Hyperlink>
-                                </TextBlock>
-                            </StackPanel>
-                            <DataTemplate.Triggers>
-                                <DataTrigger Binding="{Binding Path=Path}" Value="{x:Null}">
-                                    <Setter TargetName="PathTextBox" Property="Visibility" Value="Collapsed"/>
-                                </DataTrigger>
-                            </DataTemplate.Triggers>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <!--<DataGridTemplateColumn Header="Path" IsReadOnly="True" Width="82">
+    <TextBlock Text="Log:"/>
+    <DataGrid x:Name="LogEntries" Grid.Row="1" Grid.ColumnSpan="2"
+              ItemsSource="{Binding LogEntries}"
+              VerticalAlignment="Stretch"
+              HorizontalAlignment="Stretch"
+              AutoGenerateColumns="False"
+              SelectionMode="Single"
+              CanUserAddRows="False"
+              CanUserDeleteRows="False"
+              CanUserReorderColumns="False"
+              CanUserResizeColumns="True"
+              CanUserResizeRows="True"
+              CanUserSortColumns="False">
+      <DataGrid.Resources>
+        <ResourceDictionary>
+          <!--This just disables any selection styling-->
+          <Style  TargetType="{x:Type DataGridCell}">
+            <Setter Property="Foreground" Value="Black" />
+            <Style.Triggers>
+              <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Background" Value="{x:Null}" />
+                <Setter Property="BorderBrush" Value="{x:Null}" />
+              </Trigger>
+              <DataTrigger Binding="{Binding Severity}">
+                <DataTrigger.Value>
+                  <logging:LogEntrySeverity>
+                    Error
+                  </logging:LogEntrySeverity>
+                </DataTrigger.Value>
+                <Setter Property="Background" Value="{StaticResource LogErrorBackgroundBrush}"/>
+              </DataTrigger>
+              <DataTrigger Binding="{Binding Severity}">
+                <DataTrigger.Value>
+                  <logging:LogEntrySeverity>
+                    Warning
+                  </logging:LogEntrySeverity>
+                </DataTrigger.Value>
+                <Setter Property="Background" Value="{StaticResource LogErrorBackgroundBrush}"/>
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </ResourceDictionary>
+      </DataGrid.Resources>
+      <DataGrid.Columns>
+        <!--Timestamp column-->
+        <DataGridTemplateColumn Header="Time stamp" Width="75" IsReadOnly="True">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding LogStamp, StringFormat=T}" Margin="5, 0, 5, 0"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <!--Severity Column-->
+        <DataGridTemplateColumn Header="Severity" Width="60" IsReadOnly="True">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Severity}" Margin="5, 0, 5, 0"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <!--Source column-->
+        <DataGridTemplateColumn Header="Source" Width="70" IsReadOnly="True">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <TextBlock Text="{Binding Source}" Margin="5, 0, 5, 0"/>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <!--Text column-->
+        <DataGridTemplateColumn Header="Text" IsReadOnly="True" Width="*">
+          <DataGridTemplateColumn.CellTemplate>
+            <DataTemplate>
+              <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding LogText}" Margin="5, 0, 5, 0" TextWrapping="Wrap"/>
+                <TextBlock x:Name="PathTextBox">
+                  <Hyperlink Command="{Binding DataContext.OpenUriCommand, RelativeSource={RelativeSource AncestorType={x:Type views:LogView}}}"
+                             CommandParameter="{Binding Path=Path}">
+                    <TextBlock Text="{Binding Path=Path}" />
+                  </Hyperlink>
+                </TextBlock>
+              </StackPanel>
+              <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=Path}" Value="{x:Null}">
+                  <Setter TargetName="PathTextBox" Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+              </DataTemplate.Triggers>
+            </DataTemplate>
+          </DataGridTemplateColumn.CellTemplate>
+        </DataGridTemplateColumn>
+        <!--<DataGridTemplateColumn Header="Path" IsReadOnly="True" Width="82">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Open location" 
@@ -118,7 +121,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>-->
-            </DataGrid.Columns>
-        </DataGrid>
-    </Grid>
+      </DataGrid.Columns>
+    </DataGrid>
+  </Grid>
 </UserControl>

@@ -67,7 +67,7 @@ namespace Frontend.Core.ViewModels
                 this.Steps.Add(step);
             }
 
-            this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", added: " + newSteps.Count + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
+            //this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", added: " + newSteps.Count + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
         }
 
         private void RemoveConverterSpecificSteps()
@@ -76,8 +76,8 @@ namespace Frontend.Core.ViewModels
             int removedCount = 0;
 
             // Assumption: The first two steps are:
-            // The welcome view
-            // The path picker view
+            // * The welcome view
+            // * The path picker view
             // So we remove everything else.
             while(this.Steps.Count > 2)
             {
@@ -85,7 +85,7 @@ namespace Frontend.Core.ViewModels
                 removedCount++;
             }
 
-            this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", removed: " + removedCount + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
+            //this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", removed: " + removedCount + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
         }
     }
 }

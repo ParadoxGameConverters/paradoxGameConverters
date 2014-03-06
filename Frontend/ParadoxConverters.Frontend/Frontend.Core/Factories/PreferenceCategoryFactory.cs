@@ -34,7 +34,6 @@ namespace Frontend.Core.Factories
             foreach (var foundPreference in foundPreferences)
             {
                 // Ugly way of reading shared properties without duplicating code. 
-                // The alternative to this would have to be to 
                 Action<IPreference> readSharedProperties = (preference) =>
                 {
                     preference.Name = XElementHelper.ReadStringValue(foundPreference, "name");

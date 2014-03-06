@@ -22,23 +22,23 @@ namespace Frontend.Core.Helpers
 
             // TODO: Mod support
             // Output source and target game settings
-            //sb.AppendLine("\t# Installation and mod folder paths:");
+            sb.AppendLine("\t# Installation and mod folder paths:");
 
-            //var games = new List<IGameConfiguration>() { converterSettings.SourceGame, converterSettings.TargetGame };
+            var games = new List<IGameConfiguration>() { converterSettings.SourceGame, converterSettings.TargetGame };
 
-            //foreach (var game in games)
-            //{
-            //    sb.AppendLine("\t" + game.ConfigurationFileDirectoryTagName + " = \"" + game.InstallationPath + "\"");
+            foreach (var game in games)
+            {
+                sb.AppendLine("\t" + game.ConfigurationFileDirectoryTagName + " = \"" + game.AbsoluteInstallationPath + "\"");
 
-            //    if (game.IsConfiguredToUseMods)
-            //    {
-            //        sb.AppendLine();
-            //        sb.AppendLine("\t" + game.ConfigurationFileModDirectoryTagName + " = \"" + game.ModPath + "\"");
-            //        sb.AppendLine();
-            //    }
-            //}
+                //if (game.IsConfiguredToUseMods)
+                //{
+                //    sb.AppendLine();
+                //    sb.AppendLine("\t" + game.ConfigurationFileModDirectoryTagName + " = \"" + game.ModPath + "\"");
+                //    sb.AppendLine();
+                //}
+            }
 
-            //sb.AppendLine();
+            sb.AppendLine();
             //sb.AppendLine("\t# Mod Options: ");
 
             //foreach (var game in games.FindAll(g => g.IsConfiguredToUseMods))
