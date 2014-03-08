@@ -63,7 +63,8 @@ namespace Frontend.Core.Commands
             try
             {
                 // Save configuration file to same directory as the converter itself lives in, wherever that might be
-                var converterPathMinusFileName = WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter);
+                //var converterPathMinusFileName = WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter);
+                var converterPathMinusFileName = WorkingDirectoryHelper.GetFrontendWorkingDirectory();
                 var absoluteConfigurationFilePath = Path.Combine(converterPathMinusFileName, configurationFileName);
 
                 // Check permissions

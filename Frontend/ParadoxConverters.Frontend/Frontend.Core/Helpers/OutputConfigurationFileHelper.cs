@@ -30,26 +30,26 @@ namespace Frontend.Core.Helpers
             {
                 sb.AppendLine("\t" + game.ConfigurationFileDirectoryTagName + " = \"" + game.AbsoluteInstallationPath + "\"");
 
-                //if (game.IsConfiguredToUseMods)
-                //{
-                //    sb.AppendLine();
-                //    sb.AppendLine("\t" + game.ConfigurationFileModDirectoryTagName + " = \"" + game.ModPath + "\"");
-                //    sb.AppendLine();
-                //}
+                if (game.IsConfiguredToUseMods)
+                {
+                    sb.AppendLine();
+                    sb.AppendLine("\t" + game.ConfigurationFileModDirectoryTagName + " = \"" + game.AbsoluteModPath + "\"");
+                    sb.AppendLine();
+                }
             }
 
             sb.AppendLine();
-            //sb.AppendLine("\t# Mod Options: ");
+            sb.AppendLine("\t# Mod Options: ");
 
-            //foreach (var game in games.FindAll(g => g.IsConfiguredToUseMods))
-            //{
-            //    sb.AppendLine();
-            //    sb.AppendLine("\t# " + game.CurrentModTagName + ": the mod used while playing the source game");
-            //    sb.AppendLine("\t" + game.CurrentModTagName + " = \"" + (!game.CurrentMod.IsDummyItem ? game.CurrentMod.Name : string.Empty) + "\"");
-            //    sb.AppendLine();
-            //}
+            foreach (var game in games.FindAll(g => g.IsConfiguredToUseMods))
+            {
+                sb.AppendLine();
+                sb.AppendLine("\t# " + game.CurrentModTagName + ": the mod used while playing the source game");
+                sb.AppendLine("\t" + game.CurrentModTagName + " = \"" + (!game.CurrentMod.IsDummyItem ? game.CurrentMod.Name : string.Empty) + "\"");
+                sb.AppendLine();
+            }
 
-            ////sb.AppendLine("\tuseConverterMod = " + "\"" + (this.UseConverterMod ? "yes" : "no") + "\"");
+            sb.AppendLine("\tuseConverterMod = " + "\"" + (converterSettings.UseConverterMod ? "yes" : "no") + "\"");
 
             // Preferences
             foreach (IPreferenceCategory category in converterSettings.Categories)

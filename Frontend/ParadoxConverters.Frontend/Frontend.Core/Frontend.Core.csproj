@@ -89,8 +89,10 @@
     <Compile Include="Model\Interfaces\IConverterOptions.cs" />
     <Compile Include="Model\Interfaces\IConverterSettings.cs" />
     <Compile Include="Model\Interfaces\IGameConfiguration.cs" />
+    <Compile Include="Model\Interfaces\IMod.cs" />
     <Compile Include="Model\Interfaces\IModel.cs" />
     <Compile Include="Model\Interfaces\IPreferenceCategory.cs" />
+    <Compile Include="Model\Mod.cs" />
     <Compile Include="Model\PreferenceEntries\DatePreferenceEntry.cs" />
     <Compile Include="Model\PreferenceEntries\Interfaces\IPreferenceEntry.cs" />
     <Compile Include="Model\PreferenceCategory.cs" />
@@ -180,9 +182,6 @@
     </Content>
     <Content Include="Configuration\SupportedConvertersDefault.xml">
       <SubType>Designer</SubType>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Configuration\UserPreferences.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

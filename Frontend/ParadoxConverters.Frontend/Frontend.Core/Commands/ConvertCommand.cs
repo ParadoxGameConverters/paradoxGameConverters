@@ -105,18 +105,21 @@ namespace Frontend.Core.Commands
             // Reading process output syncronously. The async part is already handled by the command
             using (var process = new Process())
             {
+                var argument = "\"" + this.Options.CurrentConverter.AbsoluteSourceSaveGamePath + "\"";
+
                 process.StartInfo = new ProcessStartInfo
                 {
                     FileName = this.Options.CurrentConverter.AbsoluteConverterPath,
-                    Arguments = "\"" + Path.GetDirectoryName(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath) + "\\" + Path.GetFileName(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath) + "\"",
+                    Arguments = argument,
                     CreateNoWindow = true,
                     RedirectStandardError = true,
                     RedirectStandardInput = true,
                     UseShellExecute = false,
-                    RedirectStandardOutput = true
+                    RedirectStandardOutput = true,
+                    WorkingDirectory = WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter)
                 };
 
-                this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI);
+                this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI, null);
                 Thread.Sleep(100); // Sleeping may let the UI actually display the above message before starting the conversion process
 
                 Stopwatch stopwatch = new Stopwatch();
@@ -128,7 +131,7 @@ namespace Frontend.Core.Commands
                 // As of this writing, I don't know if this fails due to the converter or something on the frontend side - it could be both.
                 while (!process.StandardOutput.EndOfStream)
                 {
-                    this.Log(process.StandardOutput.ReadLine(), LogEntrySeverity.Info, LogEntrySource.Converter);
+                    this.Log(process.StandardOutput.ReadLine(), LogEntrySeverity.Info, LogEntrySource.Converter, null);
                 }
 
                 process.WaitForExit();
@@ -138,12 +141,12 @@ namespace Frontend.Core.Commands
                 if (process.ExitCode == 0)
                 {
                     this.Options.WasConversionSuccessful = true;
-                    this.Log("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI);
+                    this.Log("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI, null);
                 }
                 else
                 {
                     this.Options.WasConversionSuccessful = false;
-                    this.Log("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI);
+                    this.Log("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null);
                 }
             }
         }
@@ -169,7 +172,7 @@ namespace Frontend.Core.Commands
                 //    sb.Append(" You configured the converter to use the mod \"" + this.Options.SourceGame.CurrentMod.Name + "\" - are you SURE the game was saved using this mod?");
                 //}
 
-                this.Log(sb.ToString(), LogEntrySeverity.Error, LogEntrySource.UI);
+                this.Log(sb.ToString(), LogEntrySeverity.Error, LogEntrySource.UI, null);
 
                 var log = Path.Combine(WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "log.txt");
 
@@ -244,7 +247,7 @@ namespace Frontend.Core.Commands
             // Copy the newly created save to the target game output directory.
             var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
             var canOverWrite = false;
-            var expectedOutputDirectoryAndFile = Path.Combine(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath, desiredFileName);
+            var expectedOutputDirectoryAndFile = Path.Combine(this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath, desiredFileName);
 
             // Don't blindly overwrite any existing saves - that's just rude
             if (File.Exists(expectedOutputDirectoryAndFile))
@@ -256,7 +259,7 @@ namespace Frontend.Core.Commands
                 if (result == MessageBoxResult.No)
                 {
                     this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + this.DetermineOutputSavePath()
-                        + "\" to \"" + this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath + "\" to load the converted save.", LogEntrySeverity.Warning, LogEntrySource.UI);
+                        + "\" to \"" + this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath + "\" to load the converted save.", LogEntrySeverity.Warning, LogEntrySource.UI, null);
                     return false;
                 }
 
@@ -266,12 +269,9 @@ namespace Frontend.Core.Commands
 
             try
             {
-                var outputSavePath = this.DetermineOutputSavePath();
-                File.Copy(outputSavePath, expectedOutputDirectoryAndFile, canOverWrite);
-                this.Log(desiredFileName + " has been written to \"" 
-                    + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath 
-                    + this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath 
-                    + "\".", LogEntrySeverity.Info, LogEntrySource.UI);
+                //var outputSavePath = this.DetermineOutputSavePath();
+                File.Copy(Path.Combine(WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), desiredFileName), expectedOutputDirectoryAndFile, canOverWrite);
+                this.Log(desiredFileName + " has been written to ", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath);
 
                 //File.Delete(outputSavePath);
                 //this.Log("Deleted temporary file(s).", LogEntrySeverity.Info, LogEntrySource.UI);
@@ -279,7 +279,7 @@ namespace Frontend.Core.Commands
             }
             catch (Exception e)
             {
-                this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI);
+                this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
                 wasMoveSuccessful = false;
             }
 
@@ -311,7 +311,7 @@ namespace Frontend.Core.Commands
         /// <param name="text">The text.</param>
         /// <param name="severity">The severity.</param>
         /// <param name="source">The source.</param>
-        private void Log(string text, LogEntrySeverity severity, LogEntrySource source)
+        private void Log(string text, LogEntrySeverity severity, LogEntrySource source, string path)
         {
             if (String.IsNullOrEmpty(text))
             {
@@ -323,11 +323,11 @@ namespace Frontend.Core.Commands
                 //Hack to catch error messages from the converter
                 if (text.StartsWith("Error: "))
                 {
-                    this.EventAggregator.PublishOnUIThread(new LogEntry(text, LogEntrySeverity.Error, LogEntrySource.Converter));
+                    this.EventAggregator.PublishOnUIThread(new LogEntry(text, LogEntrySeverity.Error, LogEntrySource.Converter, path));
                     return;
                 }
 
-                this.EventAggregator.PublishOnUIThread(new LogEntry(text, severity, source));
+                this.EventAggregator.PublishOnUIThread(new LogEntry(text, severity, source, path));
             }, DispatcherPriority.Send);
         }
     }
