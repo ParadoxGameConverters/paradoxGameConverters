@@ -193,49 +193,49 @@ namespace Frontend.Core.Commands
         /// </summary>
         private void OnSuccessfulConversion()
         {
-            //if (this.Options.UseConverterMod)
-            //{
-            //    this.InstallConverterMod();
-            //}
-            //else
-            //{
+            if (this.Options.CurrentConverter.UseConverterMod)
+            {
+                this.InstallConverterMod();
+            }
+            else
+            {
                 this.MoveSaveGame();
-            //}
+            }
         }
 
-        ///// <summary>
-        ///// Installs the converter mod.
-        ///// </summary>
-        //private void InstallConverterMod()
-        //{
-        //    //var modFolder = this.Options.ModFilesProvider.ModFolder;
+        /// <summary>
+        /// Installs the converter mod.
+        /// </summary>
+        private void InstallConverterMod()
+        {
+            //var modFolder = this.Options.ModFilesProvider.ModFolder;
 
-        //    var absoluteSourcePath = Path.Combine(Environment.CurrentDirectory, "Mod");
+            var absoluteSourcePath = Path.Combine(WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "Mod");
 
-        //    // Verify source data
-        //    if (!Directory.Exists(absoluteSourcePath))
-        //    {
-        //        // Log error
-        //        this.Log("Could not find mod folder (" + absoluteSourcePath + "), making it somewhat hard to copy said folder to " + this.Options.TargetGame.InstallationPath + "\\mod" + ". This means that the converter mod isn't installed, so you might want to try to do it manually instead.", LogEntrySeverity.Error, LogEntrySource.UI);
-        //        return;
-        //    }
+            // Verify source data
+            if (!Directory.Exists(absoluteSourcePath))
+            {
+                // Log error
+                this.Log("Could not find mod folder (" + absoluteSourcePath + "), making it somewhat hard to copy said folder to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". This means that the converter mod isn't installed, so you might want to try to do it manually instead.", LogEntrySeverity.Error, LogEntrySource.UI, null);
+                return;
+            }
 
-        //    // Overwrite needed?
-        //    if (!File.Exists(this.Options.TargetGame.InstallationPath + "\\mod"))
-        //    {
-        //        // Ask permission for overwrite (or delete whole thing, then recopy?)
-        //    }
+            // Overwrite needed?
+            if (!File.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod"))
+            {
+                // Ask permission for overwrite (or delete whole thing, then recopy?)
+            }
 
-        //    try
-        //    {
-        //        DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.TargetGame.InstallationPath + "\\mod", true, true);
-        //        this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.TargetGame.InstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.TargetGame.InstallationPath + "\\mod" + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI);
-        //    }
-        //}
+            try
+            {
+                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", true, true);
+                this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI, null);
+            }
+            catch (Exception ex)
+            {
+                this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
+            }
+        }
 
         /// <summary>
         /// Moves the save game.

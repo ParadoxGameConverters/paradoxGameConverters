@@ -72,6 +72,7 @@
     <Compile Include="Factories\GameConfigurationFactory.cs" />
     <Compile Include="Factories\PreferenceCategoryFactory.cs" />
     <Compile Include="Helpers\DateParseHelper.cs" />
+    <Compile Include="Helpers\DirectoryCopyHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
     <Compile Include="Helpers\NullableComparer.cs" />
     <Compile Include="Helpers\NumberParserHelper.cs" />
