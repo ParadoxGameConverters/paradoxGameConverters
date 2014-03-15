@@ -288,32 +288,18 @@ int initCountryMap(countryMapping& mapping, const EU4World& srcWorld, const V2Wo
 		}
 	}
 
-	while ((EU4Countries.size() > 0) && (dynamicCountries.size() > 0))
-	{
-		map<string, EU4Country*>::iterator	EU4Country = EU4Countries.begin();
-		map<string, V2Country*>::iterator	dynamicCountry = dynamicCountries.begin();
-		map<string, V2Country*>::iterator	V2Country = V2Countries.find(dynamicCountry->first);
-		if (V2Country == V2Countries.end())
-		{
-			log("Error: dynamic country was not also a V2 country. I will likely crash now\n");
-		}
-		mapping.insert(make_pair(EU4Country->first, V2Country->first));
-		log("\tAdded map %s -> %s (dynamic fallback)\n", EU4Country->first.c_str(), V2Country->first.c_str());
-		
-		EU4Countries.erase(EU4Country);
-		dynamicCountries.erase(dynamicCountry);
-		V2Countries.erase(V2Country);
-	}
-
 	while ( (EU4Countries.size() > 0) && (V2Countries.size() > 0) )
 	{
-		map<string, EU4Country*>::iterator EU4Country = EU4Countries.begin();
-		map<string, V2Country*>::iterator V2Country = V2Countries.begin();
-		mapping.insert(make_pair(EU4Country->first, V2Country->first));
-		log("\tAdded map %s -> %s (fallback)\n", EU4Country->first.c_str(), V2Country->first.c_str());
-
-		EU4Countries.erase(EU4Country);
-		V2Countries.erase(V2Country);
+		map<string, V2Country*>::iterator	V2CountryItr = V2Countries.begin();
+		map<string, V2Country*>::iterator	dynamicCountry = dynamicCountries.find(V2CountryItr->first);
+		if (dynamicCountry == dynamicCountries.end())
+		{
+			map<string, EU4Country*>::iterator	EU4Country = EU4Countries.begin();
+			mapping.insert(make_pair(EU4Country->first, V2CountryItr->first));
+			log("\tAdded map %s -> %s (fallback)\n", EU4Country->first.c_str(), V2CountryItr->first.c_str());
+			EU4Countries.erase(EU4Country);
+		}
+		V2Countries.erase(V2CountryItr);
 	}
 
 	return EU4Countries.size();
