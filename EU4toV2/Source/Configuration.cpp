@@ -32,6 +32,7 @@ Configuration::Configuration()
 
 	EU4Path				= obj[0]->getLeaf("EU4directory");
 	EU4DocumentsPath	= obj[0]->getLeaf("EU4Documentsdirectory");
+	EU4ModPath			= obj[0]->getLeaf("EU4ModDirectory");
 	V2Path				= obj[0]->getLeaf("V2directory");
 	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	EU4Gametype			= obj[0]->getLeaf("EU4gametype");

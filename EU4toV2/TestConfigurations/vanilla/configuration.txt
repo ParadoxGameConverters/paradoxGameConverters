@@ -6,6 +6,9 @@ configuration =
 	# Europa Universalis 4 Documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
 	EU4Documentsdirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV"
 
+	# Europa Universalis 4 mod directory: a path on your computer where Europa Universalis 4 mods are installed
+	EU4ModDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV\mod"
+
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	V2directory = "D:\Paradox Interactive\Victoria 2"
 
@@ -52,8 +55,7 @@ configuration =
 	#	"yes"
 	#	"no"
 	useCK2ModDirectory = "no"
-	# Europa Universalis 4 mod directory: a path on your computer where Europa Universalis 4 mod from Crusader Kings 2 is installed
-	EU4modfromCK2directory = ""
+	
 
 	### Mod Options
 	

@@ -8,6 +8,7 @@
 #include "V2World\V2World.h"
 #include "V2World\V2Country.h"
 #include <algorithm>
+#include <sys/stat.h>
 
 
 
@@ -113,11 +114,17 @@ const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, i
 
 adjacencyMapping initAdjacencyMap()
 {
-	FILE* adjacenciesBin;
-	fopen_s(&adjacenciesBin, (Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin").c_str(), "rb");
+	FILE* adjacenciesBin = NULL;
+	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";
+	struct _stat st;
+	if ((_stat(filename.c_str(), &st) != 0))
+	{
+		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";;
+	}
+	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	if (adjacenciesBin == NULL)
 	{
-		log("Error: Could not open adjacencies.bin\n");
+		log("Error: Could not open %s\n", filename.c_str());
 		exit(1);
 	}
 
