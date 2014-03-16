@@ -1,0 +1,137 @@
+# If you add religions, and use those tags, do not change them without changing everywhere they are used.
+
+# Uses all 'modifiers' possible thats exported as a Modifier.
+
+christian = {
+
+	catholic = {
+		icon = 1
+		color = { 0.8 0.8 0 }
+	}
+
+	protestant = {
+		icon = 2
+		color = { 0 0 0.7 }
+	}
+
+	orthodox = {
+		icon = 3
+		color = { 0.7 0.5 0 }
+
+	}
+	
+	coptic = {
+		icon = 4
+		color = { 0 0.5 0.7 }
+		
+	}
+}
+
+muslim = {
+	sunni = {
+		icon = 5
+		color = { 0 0.6 0 }
+		
+		
+	}
+
+	shiite = {
+		icon = 6
+		color = { 0 0.8 0 }
+		
+	}
+
+	jewish = {
+		icon = 7
+		color = { 0.3 0.5 0.3 }
+	}	
+}
+
+eastern = {
+	mahayana = {
+	
+		color = { 0.8 0.3 0 }
+		icon = 8
+	}
+
+	gelugpa = {
+		color = { 0 0.3 0.8 }
+		icon = 9
+	}
+
+	theravada = {
+		color = { 0.8 0 0.8 }
+		icon = 10
+	}
+
+	hindu = {
+		color = { 0 0.8 0.8 }
+		icon = 11
+	}
+
+	shinto = {
+		color = { 0.8 0 0 }
+		icon = 12
+	}
+
+	sikh = {
+		color = { 0.3 0.8 0 }
+		icon = 13
+	}
+
+}
+
+pagan = {
+	animist = {
+		icon = 14
+		color = { 0.5 0.0 0.0 }
+		pagan = yes
+	}
+	norse_pagan_reformed= {
+		icon = 14
+		color = { 0.75 0.75 0.75 }
+		pagan = yes
+	}
+	tengri_pagan_reformed = {
+		icon = 14
+		color = { 0.1 0.3 0.85 }
+		pagan = yes
+	}
+	baltic_pagan_reformed = {
+		icon = 14
+		color = { 0.75 0.5 0.35 }
+		pagan = yes
+	}
+	finnish_pagan_reformed = {
+		icon = 14
+		color = { 0.65 0.65 0.1 }
+		pagan = yes
+	}
+	aztec_reformed = {
+		icon = 14
+		color = { 0.95 0.3 0.3 }
+		pagan = yes
+	}
+	slavic_pagan_reformed = {
+		icon = 14
+		color = { 0.85 0.73 0.4 }
+		pagan = yes
+	}
+	west_african_pagan_reformed = {
+		icon = 14
+		color = { 91 49 13 }
+		pagan = yes
+	}
+	hellenic_pagan = {
+		icon = 14
+		color = { 0.6 0.1 0.1 }
+		pagan = yes
+	}
+}
+
+zoroastrian = {
+	zoroastrian = {
+		icon = 14
+		color = { 0.5 0.7 0.2 }
+	}
+}

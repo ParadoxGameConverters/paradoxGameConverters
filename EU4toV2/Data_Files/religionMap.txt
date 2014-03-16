@@ -21,7 +21,22 @@ link = { v2 = hindu eu4 = hinduism }
 link = { v2 = shinto eu4 = shinto }
 
 #Pagans
-link = { v2 = animist eu4 = animism eu4 = shamanism }
+link = { v2 = animist eu4 = animism eu4 = shamanism eu4 = totemism }
+link = { v2 = norse_pagan_reformed eu4 = norse_pagan_reformed }
+link = { v2 = tengri_pagan_reformed eu4 = tengri_pagan_reformed }
+link = { v2 = baltic_pagan_reformed eu4 = baltic_pagan_reformed }
+link = { v2 = finnish_pagan_reformed eu4 = finnish_pagan_reformed }
+link = { v2 = aztec_reformed eu4 = aztec_reformed }
+link = { v2 = slavic_pagan_reformed eu4 = slavic_pagan_reformed }
+link = { v2 = west_african_pagan_reformed eu4 = west_african_pagan_reformed }
+link = { v2 = hellenic_pagan eu4 = hellenic_pagan }
+
+#Zoroastrian
+link = { v2 = zoroastrian eu4 = zoroastrian }
+
+#Judaism
+link = { v2 = Jewish eu4 = jewish }
+
 
 
 }

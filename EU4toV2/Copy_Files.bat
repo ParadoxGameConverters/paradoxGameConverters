@@ -51,3 +51,6 @@ mkdir "release\blankMod\output\history\provinces\spain"
 mkdir "release\blankMod\output\history\provinces\united kingdom"
 mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
+mkdir "release\blankMod\output\common"
+
+copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"
