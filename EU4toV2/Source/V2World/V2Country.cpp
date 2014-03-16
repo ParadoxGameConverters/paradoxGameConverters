@@ -98,6 +98,17 @@ void V2Country::output() const
 		log("\tError: Could not create country history file %s", filename.c_str());
 		exit(-1);
 	}
+
+	if (primaryCulture.size() > 0)
+	{
+		fprintf(output, "primary_culture= %s\n", primaryCulture.c_str());
+	}
+	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	{
+		fprintf(output, "culture= %s\n", acceptedCultures[i].c_str());
+	}
+	fprintf(output, "religion= %s\n", religion.c_str());
+
 	fclose(output);
 	/*fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
@@ -127,7 +138,6 @@ void V2Country::output() const
 	fprintf(output, "	}\n");
 	outputParties(output);
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
-	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
 	fprintf(output, "	government=%s\n", government.c_str());
 	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader(output);
@@ -146,20 +156,6 @@ void V2Country::output() const
 	}
 	outputInventions(output);
 	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
-	if (primaryCulture.size() > 0)
-	{
-		fprintf(output, "	primary_culture=\"%s\"\n", primaryCulture.c_str());
-	}
-	if (acceptedCultures.size() > 0)
-	{
-		fprintf(output, "	culture=\n");
-		fprintf(output, "	{\n");
-		for(unsigned int i = 0; i < acceptedCultures.size(); i++)
-		{
-			fprintf(output, "		\"%s\"\n", acceptedCultures[i].c_str());
-		}
-		fprintf(output, "	}\n");
-	}
 	fprintf(output, "	prestige=%f\n", prestige);
 	fprintf(output, "	bank=\n");
 	fprintf(output, "	{\n");
@@ -350,116 +346,116 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//	civilized = false;
 	//}
 
-	//// religion
-	//string srcReligion = srcCountry->getReligion();
-	//if (srcReligion.size() > 0)
-	//{
-	//	religionMapping::iterator i = religionMap.find(srcReligion);
-	//	if (i != religionMap.end())
-	//	{
-	//		religion = i->second;
-	//	}
-	//	else
-	//	{
-	//		log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), srcCountry->getTag().c_str(), tag.c_str());
-	//	}
-	//}
+	// religion
+	string srcReligion = srcCountry->getReligion();
+	if (srcReligion.size() > 0)
+	{
+		religionMapping::iterator i = religionMap.find(srcReligion);
+		if (i != religionMap.end())
+		{
+			religion = i->second;
+		}
+		else
+		{
+			log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+		}
+	}
 
-	//// primary culture
-	//string srcCulture = srcCountry->getPrimaryCulture();
-	//if (srcCulture.size() > 0)
-	//{
-	//	bool matched = false;
-	//	for (cultureMapping::iterator i = cultureMap.begin(); (i != cultureMap.end()) && (!matched); i++)
-	//	{
-	//		if (i->srcCulture == srcCulture)
-	//		{
-	//			bool match = true;
-	//			for (vector<distinguisher>::iterator j = i->distinguishers.begin(); j != i->distinguishers.end(); j++)
-	//			{
-	//				if (j->first == DTOwner)
-	//				{
-	//					if (tag != j->second)
-	//					{
-	//							match = false;
-	//					}
-	//				}
-	//				else if (j->first == DTReligion)
-	//				{
-	//					if (religion != j->second)
-	//					{
-	//						match = false;
-	//					}
-	//				}
-	//				else
-	//				{
-	//					log ("Error: Unhandled distinguisher type in culture rules.\n");
-	//				}
-	//			}
-	//			if (match)
-	//			{
-	//				primaryCulture = i->dstCulture;
-	//				matched = true;
-	//			}
-	//		}
-	//	}
-	//	if (!matched)
-	//	{
-	//		log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(), tag.c_str());
-	//	}
-	//}
+	// primary culture
+	string srcCulture = srcCountry->getPrimaryCulture();
+	if (srcCulture.size() > 0)
+	{
+		bool matched = false;
+		for (cultureMapping::iterator i = cultureMap.begin(); (i != cultureMap.end()) && (!matched); i++)
+		{
+			if (i->srcCulture == srcCulture)
+			{
+				bool match = true;
+				for (vector<distinguisher>::iterator j = i->distinguishers.begin(); j != i->distinguishers.end(); j++)
+				{
+					if (j->first == DTOwner)
+					{
+						if (tag != j->second)
+						{
+								match = false;
+						}
+					}
+					else if (j->first == DTReligion)
+					{
+						if (religion != j->second)
+						{
+							match = false;
+						}
+					}
+					else
+					{
+						log ("Error: Unhandled distinguisher type in culture rules.\n");
+					}
+				}
+				if (match)
+				{
+					primaryCulture = i->dstCulture;
+					matched = true;
+				}
+			}
+		}
+		if (!matched)
+		{
+			log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+		}
+	}
 
-	////accepted cultures
-	//vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
-	//unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getTag());
-	//if (unionItr != unionCultures.end())
-	//{
-	//	for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
-	//	{
-	//		srcAceptedCultures.push_back(*j);
-	//	}
-	//}
-	//for (vector<string>::iterator i = srcAceptedCultures.begin(); i != srcAceptedCultures.end(); i++)
-	//{
-	//	bool matched = false;
-	//	for (cultureMapping::iterator j = cultureMap.begin(); (j != cultureMap.end()) && (!matched); j++)
-	//	{
-	//		if (j->srcCulture == *i)
-	//		{
-	//			bool match = true;
-	//			for (vector<distinguisher>::iterator k = j->distinguishers.begin(); k != j->distinguishers.end(); k++)
-	//			{
-	//				if (k->first == DTOwner)
-	//				{
-	//					if (tag != k->second)
-	//					{
-	//						match = false;
-	//					}
-	//				}
-	//				else if (k->first == DTReligion)
-	//				{
-	//					if (religion != k->second)
-	//					{
-	//						match = false;
-	//					}
-	//				}
-	//				else
-	//				{
-	//					log ("Error: Unhandled distinguisher type in culture rules.\n");
-	//				}
-	//			}
-	//			if (match)
-	//			{
-	//				acceptedCultures.push_back(j->dstCulture);
-	//				matched = true;
-	//			}
-	//		}
-	//	}
-	//	if (!matched)
-	//	{
-	//		log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(),tag.c_str());
-	//	}
-	//}
+	//accepted cultures
+	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
+	unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getTag());
+	if (unionItr != unionCultures.end())
+	{
+		for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
+		{
+			srcAceptedCultures.push_back(*j);
+		}
+	}
+	for (vector<string>::iterator i = srcAceptedCultures.begin(); i != srcAceptedCultures.end(); i++)
+	{
+		bool matched = false;
+		for (cultureMapping::iterator j = cultureMap.begin(); (j != cultureMap.end()) && (!matched); j++)
+		{
+			if (j->srcCulture == *i)
+			{
+				bool match = true;
+				for (vector<distinguisher>::iterator k = j->distinguishers.begin(); k != j->distinguishers.end(); k++)
+				{
+					if (k->first == DTOwner)
+					{
+						if (tag != k->second)
+						{
+							match = false;
+						}
+					}
+					else if (k->first == DTReligion)
+					{
+						if (religion != k->second)
+						{
+							match = false;
+						}
+					}
+					else
+					{
+						log ("Error: Unhandled distinguisher type in culture rules.\n");
+					}
+				}
+				if (match)
+				{
+					acceptedCultures.push_back(j->dstCulture);
+					matched = true;
+				}
+			}
+		}
+		if (!matched)
+		{
+			log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(),tag.c_str());
+		}
+	}
 
 	//// Prestige, leadership, diploPoints, badBoy, reforms
 	//prestige		+= srcCountry->getPrestige() + 100;
