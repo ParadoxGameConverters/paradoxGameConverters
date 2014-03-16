@@ -257,7 +257,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	continentMapping continentMap;
 	if (EU4Mod != "")
 	{
-		string continentFile = Configuration::getEU4ModPath() + EU4Mod + "\\map\\continent.txt";
+		string continentFile = Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\map\\continent.txt";
 		if ((_stat(continentFile.c_str(), &st) != 0))
 		{
 			obj = doParseFile(continentFile.c_str());
@@ -345,7 +345,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	unionCulturesMap unionCultures;
 	if (EU4Mod != "")
 	{
-		string modCultureFile = Configuration::getEU4ModPath() + EU4Mod + "\\common\\cultures\\00_cultures.txt";
+		string modCultureFile = Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\cultures\\00_cultures.txt";
 		if ((_stat(modCultureFile.c_str(), &st) != 0))
 		{
 			obj = doParseFile(modCultureFile.c_str());
@@ -385,7 +385,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Parsing EU4 religions.\n");
 	if (EU4Mod != "")
 	{
-		string modReligionFile = Configuration::getEU4ModPath() + EU4Mod + "\\common\\religions\\00_religion.txt";
+		string modReligionFile = Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\00_religion.txt";
 		if ((_stat(modReligionFile.c_str(), &st) != 0))
 		{
 			obj = doParseFile(modReligionFile.c_str());
