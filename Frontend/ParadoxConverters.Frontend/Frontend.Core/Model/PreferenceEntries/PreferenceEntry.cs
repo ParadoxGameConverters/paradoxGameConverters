@@ -40,7 +40,7 @@ namespace Frontend.Core.Model.PreferenceEntries
 
                 this.name = value;
                 this.NotifyOfPropertyChange(() => this.Name);
-                this.UpdateParentUserChoice();
+                //this.UpdateParentUserChoice();
             }
         }
 

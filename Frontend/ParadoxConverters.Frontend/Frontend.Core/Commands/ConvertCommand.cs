@@ -232,7 +232,7 @@ namespace Frontend.Core.Commands
                 this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI, null);
             }
             catch (Exception ex)
-            {
+           {    
                 this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
             }
         }

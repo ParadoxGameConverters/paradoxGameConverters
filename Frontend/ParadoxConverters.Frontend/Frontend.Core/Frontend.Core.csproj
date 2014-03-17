@@ -166,25 +166,25 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\Ck2ToEu3DefaultConfiguration.xml">
+    <EmbeddedResource Include="Configuration\Ck2ToEu3DefaultConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configuration\ConfigurationExplanation.txt">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\ConfigurationExplanation.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Configuration\Eu3ToVic2DefaultConfiguration.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configuration\GameConfigurations.xml">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\Eu3ToVic2DefaultConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Configuration\SupportedConvertersDefault.xml">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\GameConfigurations.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Configuration\SupportedConvertersDefault.xml">
       <SubType>Designer</SubType>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

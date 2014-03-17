@@ -147,27 +147,33 @@ namespace Frontend.Core.Factories
 
             if (parent is INumericPreference)
             {
-                var entry = new NumericPreferenceEntry();
-                entry.Parent = (INumericPreference)parent;
-
-                entry.Name = XElementHelper.ReadDoubleValue(foundEntry, "name");
+                var entry = new NumericPreferenceEntry
+                {
+                    Parent = (INumericPreference) parent,
+                    Name = XElementHelper.ReadDoubleValue(foundEntry, "name")
+                };
 
                 return readSharedProperties(entry);
             }
             else if (parent is IDatePreference)
             {
-                var entry = new DatePreferenceEntry();
-                entry.Parent = (IDatePreference)parent;
                 string dateFormat = ((IDatePreference)parent).DateFormat;
-                entry.Name = XElementHelper.ReadDateValue(foundEntry, "name", dateFormat);
+                
+                var entry = new DatePreferenceEntry
+                {
+                    Parent = (IDatePreference) parent,
+                    Name = XElementHelper.ReadDateValue(foundEntry, "name", dateFormat)
+                };
 
                 return readSharedProperties(entry);
             }
             else if (parent is IStringPreference)
             {
-                var entry = new StringPreferenceEntry();
-                entry.Parent = (IStringPreference)parent;
-                entry.Name = XElementHelper.ReadStringValue(foundEntry, "name");
+                var entry = new StringPreferenceEntry
+                {
+                    Parent = (IStringPreference) parent,
+                    Name = XElementHelper.ReadStringValue(foundEntry, "name")
+                };
 
                 return readSharedProperties(entry);
             }
