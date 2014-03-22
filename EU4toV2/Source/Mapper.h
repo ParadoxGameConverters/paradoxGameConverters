@@ -92,8 +92,8 @@ governmentMapping initGovernmentMap(Object* obj);
 
 
 // Cultural Union Nation mappings
-typedef map< string, vector<string> > unionCulturesMap; // <tag, cultures>
-unionCulturesMap initUnionCultures(Object* obj);
+typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 
 
 

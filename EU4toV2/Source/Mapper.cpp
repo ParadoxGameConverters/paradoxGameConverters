@@ -711,26 +711,23 @@ governmentMapping initGovernmentMap(Object* obj)
 }
 
 
-unionCulturesMap initUnionCultures(Object* obj)
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 {
-	unionCulturesMap unionCultures;
 	vector<Object*> cultureGroups = obj->getLeaves();
 
 	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
 	{
 		vector<Object*>		culturesObj		= (*i)->getLeaves();
-		bool						hasUnion			= false;
-		string					tag;
+		string					group				= (*i)->getKey();
 		vector<string>			cultures;
 
 		for (vector<Object*>::iterator j = culturesObj.begin(); j != culturesObj.end(); j++)
 		{
-			if ( (*j)->getKey() == "union")
+			if ( (*j)->getKey() == "dynasty_names" )
 			{
-				hasUnion	= true;
-				tag		= (*j)->getLeaf();
+				continue;
 			}
-			else if ( (*j)->getKey() == "dynasty_names" )
+			else if ((*j)->getKey() == "graphical_culture")
 			{
 				continue;
 			}
@@ -740,11 +737,15 @@ unionCulturesMap initUnionCultures(Object* obj)
 			}
 		}
 
-		if (hasUnion)
+		unionCulturesMap::iterator itr = unionCultures.find(group);
+		if (itr != unionCultures.end())
 		{
-			unionCultures[tag] = cultures;
+			vector<string> oldCultures = itr->second;
+			for (vector<string>::iterator jtr = oldCultures.begin(); jtr != oldCultures.end(); jtr++)
+			{
+				cultures.push_back(*jtr);
+			}
 		}
+		unionCultures[group] = cultures;
 	}
-
-	return unionCultures;
 }
