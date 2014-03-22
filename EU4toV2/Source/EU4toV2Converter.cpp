@@ -406,7 +406,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	{
 		struct _finddata_t	fileData;
 		intptr_t					fileListing = NULL;
-		if ((fileListing = _findfirst(string(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\").c_str(), &fileData)) != -1L)
+		if ((fileListing = _findfirst(string(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\*").c_str(), &fileData)) != -1L)
 		{
 			do
 			{
@@ -421,7 +421,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 				else
 				{
 					string modReligionFile(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\" + fileData.name);
-					if ((_stat(modReligionFile.c_str(), &st) != 0))
+					if ((_stat(modReligionFile.c_str(), &st) == 0))
 					{
 						obj = doParseFile(modReligionFile.c_str());
 						if (obj == NULL)
