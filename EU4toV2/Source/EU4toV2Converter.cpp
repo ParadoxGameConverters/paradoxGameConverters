@@ -257,22 +257,14 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	continentMapping continentMap;
 	if (EU4Mod != "")
 	{
-		string continentFile = Configuration::getEU4ModPath() + EU4Mod + "\\map\\continent.txt";
-		if ((_stat(continentFile.c_str(), &st) != 0))
+		string continentFile = Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\map\\continent.txt";
+		if ((_stat(continentFile.c_str(), &st) == 0))
 		{
 			obj = doParseFile(continentFile.c_str());
-			if (obj == NULL)
+			if ((obj != NULL) && (obj->getLeaves().size() > 0))
 			{
-				log("Could not parse file %s\n", continentFile.c_str());
-				exit(-1);
+				initContinentMap(obj, continentMap);
 			}
-			if (obj->getLeaves().size() < 1)
-			{
-				log("Error: Failed to parse continent.txt.\n");
-				printf("Error: Failed to parse continent.txt.\n");
-				return 1;
-			}
-			initContinentMap(obj, continentMap);
 		}
 	}
 	if (continentMap.size() == 0)
@@ -343,81 +335,112 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
 	unionCulturesMap unionCultures;
+	obj = doParseFile( (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str());
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse cultures.txt.\n");
+		printf("Error: Failed to parse cultures.txt.\n");
+		return 1;
+	}
+	initUnionCultures(obj, unionCultures);
 	if (EU4Mod != "")
 	{
-		string modCultureFile = Configuration::getEU4ModPath() + EU4Mod + "\\common\\cultures\\00_cultures.txt";
-		if ((_stat(modCultureFile.c_str(), &st) != 0))
+		struct _finddata_t	fileData;
+		intptr_t					fileListing = NULL;
+		if ((fileListing = _findfirst(string(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\cultures\\*").c_str(), &fileData)) != -1L)
 		{
-			obj = doParseFile(modCultureFile.c_str());
-			if (obj == NULL)
+			do
 			{
-				log("Could not parse file %s\n", modCultureFile.c_str());
-				exit(-1);
-			}
-			if (obj->getLeaves().size() < 1)
-			{
-				log("Error: Failed to parse cultures.txt.\n");
-				printf("Error: Failed to parse cultures.txt.\n");
-				return 1;
-			}
-			unionCultures = initUnionCultures(obj);
+				if (strcmp(fileData.name, ".") == 0 || strcmp(fileData.name, "..") == 0)
+				{
+					continue;
+				}
+				else if (fileData.attrib & _A_SUBDIR)
+				{
+					continue;
+				}
+				else
+				{
+					string modCultureFile(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\cultures\\" + fileData.name);
+					obj = doParseFile(modCultureFile.c_str());
+					if (obj == NULL)
+					{
+						log("Could not parse file %s\n", modCultureFile.c_str());
+						exit(-1);
+					}
+					if (obj->getLeaves().size() < 1)
+					{
+						log("Error: Failed to parse cultures file.\n");
+						printf("Error: Failed to parse cultures file.\n");
+						return 1;
+					}
+					initUnionCultures(obj, unionCultures);
+				}
+			} while (_findnext(fileListing, &fileData) == 0);
+			_findclose(fileListing);
 		}
-	}
-	if (unionCultures.size() == 0)
-	{
-		obj = doParseFile( (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str() );
-		if (obj == NULL)
-		{
-			log("Could not parse file %s\n", (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str());
-			exit(-1);
-		}
-		if (obj->getLeaves().size() < 1)
-		{
-			log("Error: Failed to parse cultures.txt.\n");
-			printf("Error: Failed to parse cultures.txt.\n");
-			return 1;
-		}
-		unionCultures = initUnionCultures(obj);
 	}
 
 	// Parse EU4 Religions
 	log("Parsing EU4 religions.\n");
 	printf("Parsing EU4 religions.\n");
+	obj = doParseFile((EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		log("Error: Failed to parse 00_religion.txt.\n");
+		printf("Error: Failed to parse 00_religion.txt.\n");
+		return 1;
+	}
+	EU4Religion::parseReligions(obj);
 	if (EU4Mod != "")
 	{
-		string modReligionFile = Configuration::getEU4ModPath() + EU4Mod + "\\common\\religions\\00_religion.txt";
-		if ((_stat(modReligionFile.c_str(), &st) != 0))
+		struct _finddata_t	fileData;
+		intptr_t					fileListing = NULL;
+		if ((fileListing = _findfirst(string(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\*").c_str(), &fileData)) != -1L)
 		{
-			obj = doParseFile(modReligionFile.c_str());
-			if (obj == NULL)
+			do
 			{
-				log("Could not parse file %s\n", modReligionFile.c_str());
-				exit(-1);
-			}
-			if (obj->getLeaves().size() < 1)
-			{
-				log("Error: Failed to parse 00_cultures.txt.\n");
-				printf("Error: Failed to parse 00_cultures.txt.\n");
-				return 1;
-			}
-			EU4Religion::parseReligions(obj);
+				if (strcmp(fileData.name, ".") == 0 || strcmp(fileData.name, "..") == 0)
+				{
+					continue;
+				}
+				else if (fileData.attrib & _A_SUBDIR)
+				{
+					continue;
+				}
+				else
+				{
+					string modReligionFile(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\" + fileData.name);
+					if ((_stat(modReligionFile.c_str(), &st) == 0))
+					{
+						obj = doParseFile(modReligionFile.c_str());
+						if (obj == NULL)
+						{
+							log("Could not parse file %s\n", modReligionFile.c_str());
+							exit(-1);
+						}
+						if (obj->getLeaves().size() < 1)
+						{
+							log("Error: Failed to parse religions file.\n");
+							printf("Error: Failed to parse religions file.\n");
+							return 1;
+						}
+						EU4Religion::parseReligions(obj);
+					}
+				}
+			} while (_findnext(fileListing, &fileData) == 0);
+			_findclose(fileListing);
 		}
-	}
-	if (unionCultures.size() == 0)
-	{
-		obj = doParseFile((EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
-		if (obj == NULL)
-		{
-			log("Could not parse file %s\n", (EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
-			exit(-1);
-		}
-		if (obj->getLeaves().size() < 1)
-		{
-			log("Error: Failed to parse 00_religion.txt.\n");
-			printf("Error: Failed to parse 00_religion.txt.\n");
-			return 1;
-		}
-		EU4Religion::parseReligions(obj);
 	}
 
 	// Parse Religion Mappings
