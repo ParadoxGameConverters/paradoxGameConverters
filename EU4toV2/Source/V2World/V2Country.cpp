@@ -99,9 +99,9 @@ void V2Country::output() const
 		exit(-1);
 	}
 
-	if (government != "")
+	if (capital > 0)
 	{
-		fprintf(output, "government = %s\n", government.c_str());
+		fprintf(output, "capital=%d\n", capital);
 	}
 	if (primaryCulture.size() > 0)
 	{
@@ -111,11 +111,17 @@ void V2Country::output() const
 	{
 		fprintf(output, "culture = %s\n", acceptedCultures[i].c_str());
 	}
-	fprintf(output, "religion = %s\n", religion.c_str());
-
-	if (capital > 0)
+	if (religion != "")
 	{
-		fprintf(output, "capital=%d\n", capital);
+		fprintf(output, "religion = %s\n", religion.c_str());
+	}
+	if (government != "")
+	{
+		fprintf(output, "government = %s\n", government.c_str());
+	}
+	if (plurality > 0.0)
+	{
+		fprintf(output, "	plurality=%f\n", plurality);
 	}
 	/*fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
@@ -142,7 +148,6 @@ void V2Country::output() const
 	fprintf(output, "	}\n");
 	outputParties(output);
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
-	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
 	for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
