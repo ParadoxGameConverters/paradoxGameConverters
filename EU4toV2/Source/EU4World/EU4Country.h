@@ -23,9 +23,9 @@ class EU4Country
 		bool						hasNationalIdea(string) const;
 		bool						hasFlag(string) const ;
 		void						resolveRegimentTypes(const RegimentTypeMap& map);
-		int							getManufactoryCount() const;
-		double						inflationAdjust(double input) const;
-		double						getBadboyLimit() const;
+		int						getManufactoryCount() const;
+		double					inflationAdjust(double input) const;
+		double					getBadboyLimit() const;
 		void						eatCountry(EU4Country* target);
 
 		string						getTag()										const { return tag; };
@@ -36,6 +36,7 @@ class EU4Country
 		string						getTechGroup()								const { return techGroup; };
 		string						getPrimaryCulture()						const { return primaryCulture; };
 		vector<string>				getAcceptedCultures()					const { return acceptedCultures; };
+		string						getCulturalUnion()						const { return culturalUnion; };
 		string						getReligion()								const { return religion; };
 		double						getPrestige()								const { return prestige; };
 		double						getCulture()								const { return culture; };
@@ -56,9 +57,9 @@ class EU4Country
 		double						getTradeInvestment()						const { return tradeInvestment; };
 		double						getProductionInvestment()				const { return productionInvestment; };
 		double						getGovernmentInvestment()				const { return governmentInvestment; };
-		bool						getPossibleDaimyo()						const { return possibleDaimyo; };
+		bool							getPossibleDaimyo()						const { return possibleDaimyo; };
 		string						getGovernment()							const { return government; };
-		vector<EU4Relations*>		getRelations()								const { return relations; };
+		vector<EU4Relations*>	getRelations()								const { return relations; };
 		vector<EU4Army*>			getArmies()									const { return armies; };
 		int							getCentralizationDecentralization()	const { return centralization_decentralization; };
 		int							getAristocracyPlutocracy()				const { return aristocracy_plutocracy; };
@@ -68,11 +69,11 @@ class EU4Country
 		int							getOffensiveDefensive()					const { return offensive_defensive; };
 		int							getLandNaval()								const { return land_naval; };
 		int							getQualityQuantity()						const { return quality_quantity; };
-		date						getLastBankrupt()							const { return last_bankrupt; };
+		date							getLastBankrupt()							const { return last_bankrupt; };
 		vector<EU4Loan*>			getLoans()									const { return loans; };
 		double						getDiplomats()								const { return diplomats; };
 		double						getBadboy()									const { return badboy; };
-		vector<EU4Leader*>			getLeaders()								const { return leaders; };
+		vector<EU4Leader*>		getLeaders()								const { return leaders; };
 
 		double						getTreasury()								const	{ return inflationAdjust(treasury); };
 
@@ -89,6 +90,7 @@ class EU4Country
 		string						techGroup;
 		string						primaryCulture;
 		vector<string>				acceptedCultures;
+		string						culturalUnion;
 		string						religion;
 		double						prestige;
 		double						culture;

@@ -3,7 +3,7 @@
 cultureMap = {
 
 # Germanic - pommeranian, prussian, hannoverian, hessian, saxon, rheinlaender, bavarian, austrian, dutch, flemish
-link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = rheinlaender hessian eu4 = bavarian eu4 = austrian religion = jewish }
+link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = rheinlaender eu4 = hessian eu4 = bavarian eu4 = austrian religion = jewish }
 link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon  }
 link = { v2 = swiss eu4 = rheinlaender owner = SWI }
 link = { v2 = south_german eu4 = rheinlaender }
@@ -154,11 +154,11 @@ link = { v2 = native_american_minor eu4 = teremembe eu4 = mataco }
 link = { v2 = native_american_minor eu4 = arawak eu4 = carib }
 
 # North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek
-link = { v2 = ? eu4 = dakota }
-link = { v2 = ? eu4 = nakota }
-link = { v2 = ? eu4 = chiwere }
-link = { v2 = ? eu4 = osage }
-link = { v2 = ? eu4 = caddo }
+#link = { v2 = ? eu4 = dakota }
+#link = { v2 = ? eu4 = nakota }
+#link = { v2 = ? eu4 = chiwere }
+#link = { v2 = ? eu4 = osage }
+#link = { v2 = ? eu4 = caddo }
 link = { v2 = cherokee eu4 = cherokee }
 link = { v2 = pueblo eu4 = pueblo }
 link = { v2 = inuit eu4 = inuit }

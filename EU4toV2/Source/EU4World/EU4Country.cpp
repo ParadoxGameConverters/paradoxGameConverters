@@ -64,6 +64,17 @@ EU4Country::EU4Country(Object* obj)
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
 
+	vector<Object*> unionCultureObj = obj->getValue("culture_group_union");
+	if (unionCultureObj.size() > 0)
+	{
+		culturalUnion = unionCultureObj[0]->getLeaf();
+		log("Culture group union for %s: %s\n", tag.c_str(), culturalUnion.c_str());
+	}
+	else
+	{
+		culturalUnion = "";
+	}
+
 	vector<Object*> religionObj = obj->getValue("religion");
 	if (religionObj.size() > 0)
 	{

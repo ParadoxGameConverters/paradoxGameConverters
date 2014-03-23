@@ -101,13 +101,13 @@ void V2Country::output() const
 
 	if (primaryCulture.size() > 0)
 	{
-		fprintf(output, "primary_culture= %s\n", primaryCulture.c_str());
+		fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
 	}
 	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
 	{
-		fprintf(output, "culture= %s\n", acceptedCultures[i].c_str());
+		fprintf(output, "culture = %s\n", acceptedCultures[i].c_str());
 	}
-	fprintf(output, "religion= %s\n", religion.c_str());
+	fprintf(output, "religion = %s\n", religion.c_str());
 
 	fclose(output);
 	/*fprintf(output, "%s=\n", tag.c_str());
@@ -309,7 +309,7 @@ void V2Country::outputParties(FILE* output) const
 	}
 }
 
-
+#pragma optimize("", off)
 void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
 {
 	srcCountry = _srcCountry;
@@ -407,12 +407,16 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 
 	//accepted cultures
 	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
-	unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getTag());
-	if (unionItr != unionCultures.end())
+	if (srcCountry->getCulturalUnion() != "")
 	{
-		for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
+		log("%s is the cultural union for %s\n", tag.c_str(), srcCountry->getCulturalUnion().c_str());
+		unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getCulturalUnion());
+		if (unionItr != unionCultures.end())
 		{
-			srcAceptedCultures.push_back(*j);
+			for (vector<string>::iterator j = unionItr->second.begin(); j != unionItr->second.end(); j++)
+			{
+				srcAceptedCultures.push_back(*j);
+			}
 		}
 	}
 	for (vector<string>::iterator i = srcAceptedCultures.begin(); i != srcAceptedCultures.end(); i++)
@@ -731,7 +735,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//	leaderMap[ (*itr)->getID() ] = leader->getID();
 	//}
 }
-
+#pragma optimize("", on)
 
 // used only for countries which are NOT converted (i.e. unions, dead countries, etc)
 void V2Country::initFromHistory()
