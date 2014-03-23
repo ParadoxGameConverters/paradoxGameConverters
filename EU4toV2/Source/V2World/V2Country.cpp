@@ -99,6 +99,10 @@ void V2Country::output() const
 		exit(-1);
 	}
 
+	if (government != "")
+	{
+		fprintf(output, "government = %s\n", government.c_str());
+	}
 	if (primaryCulture.size() > 0)
 	{
 		fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
@@ -138,7 +142,6 @@ void V2Country::output() const
 	fprintf(output, "	}\n");
 	outputParties(output);
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
-	fprintf(output, "	government=%s\n", government.c_str());
 	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
@@ -410,7 +413,6 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	vector<string> srcAceptedCultures = srcCountry->getAcceptedCultures();
 	if (srcCountry->getCulturalUnion() != "")
 	{
-		log("%s is the cultural union for %s\n", tag.c_str(), srcCountry->getCulturalUnion().c_str());
 		unionCulturesMap::iterator unionItr = unionCultures.find(srcCountry->getCulturalUnion());
 		if (unionItr != unionCultures.end())
 		{
@@ -470,20 +472,20 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//badboy		=  srcCountry->getBadboy() * (25.0 / srcCountry->getBadboyLimit());
 	//reforms		=  new V2Reforms(srcCountry);
 
-	//// Government
-	//string srcGovernment = srcCountry->getGovernment();
-	//if (srcGovernment.size() > 0)
-	//{
-	//	governmentMapping::iterator i = governmentMap.find(srcGovernment);
-	//	if (i != governmentMap.end())
-	//	{
-	//		government = i->second;
-	//	}
-	//	else
-	//	{
-	//		log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), srcCountry->getTag().c_str(), tag.c_str());
-	//	}
-	//}
+	// Government
+	string srcGovernment = srcCountry->getGovernment();
+	if (srcGovernment.size() > 0)
+	{
+		governmentMapping::iterator i = governmentMap.find(srcGovernment);
+		if (i != governmentMap.end())
+		{
+			government = i->second;
+		}
+		else
+		{
+			log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+		}
+	}
 
 	////  Politics
 	//upperHouseReactionary = upperHouseConservative = upperHouseLiberal = 0.0;

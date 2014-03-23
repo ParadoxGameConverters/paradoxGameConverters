@@ -68,7 +68,6 @@ EU4Country::EU4Country(Object* obj)
 	if (unionCultureObj.size() > 0)
 	{
 		culturalUnion = unionCultureObj[0]->getLeaf();
-		log("Culture group union for %s: %s\n", tag.c_str(), culturalUnion.c_str());
 	}
 	else
 	{
