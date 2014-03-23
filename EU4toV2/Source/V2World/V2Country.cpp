@@ -109,13 +109,13 @@ void V2Country::output() const
 	}
 	fprintf(output, "religion = %s\n", religion.c_str());
 
-	fclose(output);
-	/*fprintf(output, "%s=\n", tag.c_str());
-	fprintf(output, "{\n");
 	if (capital > 0)
 	{
-		fprintf(output, "	capital=%d\n", capital);
+		fprintf(output, "capital=%d\n", capital);
 	}
+	/*fprintf(output, "%s=\n", tag.c_str());
+	fprintf(output, "{\n");
+	
 	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputTech(output);
 	outputElection(output);
@@ -183,6 +183,7 @@ void V2Country::output() const
 	}
 	fprintf(output, "	badboy=%f\n", badboy);
 	fprintf(output, "}\n");*/
+	fclose(output);
 }
 
 
