@@ -37,7 +37,6 @@ class V2Country
 		void								initFromHistory();
 		void								addState(V2State* newState);
 		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
-		void								setNationalIdea(int& libertyLeft, int& equalityLeft);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
@@ -49,11 +48,13 @@ class V2Country
 		void								setCultureTech(double mean, double scale, double stdDev);
 
 		V2Relations*					getRelations(string withWhom) const;
+		void								getNationalValueScores(int& liberty, int& equality, int& order);
 		
 		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); };
 		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; };
 		void								addResearchPoints(double newPoints)		{ researchPoints += newPoints; };
 		void								addTech(string newTech)						{ techs.push_back(newTech); };
+		void								setNationalValue(string NV)				{ nationalValue = NV; };
 
 		vector<V2Province*>			getProvinces() const { return provinces; };
 		string							getTag() const { return tag; };

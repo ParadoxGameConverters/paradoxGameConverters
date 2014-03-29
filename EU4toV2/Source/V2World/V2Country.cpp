@@ -121,8 +121,9 @@ void V2Country::output() const
 	}
 	if (plurality > 0.0)
 	{
-		fprintf(output, "	plurality=%f\n", plurality);
+		fprintf(output, "plurality=%f\n", plurality);
 	}
+	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
 	/*fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
 	
@@ -176,7 +177,6 @@ void V2Country::output() const
 	{
 		itr->second->output(output);
 	}
-	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
 	if (civilized)
 	{
 		fprintf(output, "	civilized=yes\n");
@@ -318,7 +318,7 @@ void V2Country::outputParties(FILE* output) const
 	}
 }
 
-#pragma optimize("", off)
+
 void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
 {
 	srcCountry = _srcCountry;
@@ -743,7 +743,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//	leaderMap[ (*itr)->getID() ] = leader->getID();
 	//}
 }
-#pragma optimize("", on)
+
 
 // used only for countries which are NOT converted (i.e. unions, dead countries, etc)
 void V2Country::initFromHistory()
@@ -1034,99 +1034,99 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 }
 
 
-void V2Country::setNationalIdea(int& libertyLeft, int& equalityLeft)
+void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore)
 {
-	int orderScore = 0;
-	orderScore += srcCountry->getOffensiveDefensive();
-	orderScore += srcCountry->getInnovativeNarrowminded();
-	orderScore += srcCountry->getQualityQuantity();
-	if ( srcCountry->hasNationalIdea("deus_vult") )
-	{
-		orderScore += 2;
-	}
-	if ( srcCountry->hasNationalIdea("church_attendance_duty") )
-	{
-		orderScore += 2;
-	}
-	if ( srcCountry->hasNationalIdea("divine_supremacy") )
-	{
-		orderScore += 2;
-	}
-	if ( srcCountry->hasNationalIdea("national_conscripts") )
-	{
-		orderScore += 2;
-	}
-	if ( srcCountry->hasNationalIdea("press_gangs") )
-	{
-		orderScore += 1;
-	}
-	if ( srcCountry->hasNationalIdea("military_drill") )
-	{
-		orderScore += 1;
-	}
-	if ( srcCountry->hasNationalIdea("bureaucracy") )
-	{
-		orderScore += 1;
-	}
+	int ideaScore;
 
-	int libertyScore = 0;
-	libertyScore += srcCountry->getCentralizationDecentralization();
-	libertyScore += srcCountry->getSerfdomFreesubjects();
-	libertyScore += srcCountry->getMercantilismFreetrade();
-	if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
+	orderScore = 0;
+	ideaScore = srcCountry->hasNationalIdea("defensive_ideas");
+	orderScore += (ideaScore + 1);
+	if (ideaScore == 7)
 	{
-		libertyScore += 4;
+		orderScore += 1;
 	}
-	if ( srcCountry->hasNationalIdea("smithian_economics") )
+	ideaScore = srcCountry->hasNationalIdea("offensive_ideas");
+	orderScore -= (ideaScore + 1);
+	if (ideaScore == 7)
 	{
-		libertyScore += 2;
+		orderScore -= 1;
 	}
-	if ( srcCountry->hasNationalIdea("bill_of_rights") )
+	ideaScore = srcCountry->hasNationalIdea("religious_ideas");
+	orderScore += (ideaScore + 1);
+	if (ideaScore == 7)
 	{
-		libertyScore += 2;
+		orderScore += 1;
 	}
-	if ( srcCountry->hasNationalIdea("scientific_revolution") )
+	ideaScore = srcCountry->hasNationalIdea("innovative_ideas");
+	orderScore -= (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		orderScore -= 1;
+	}
+	ideaScore = srcCountry->hasNationalIdea("quantity_ideas");
+	orderScore += (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		orderScore += 1;
+	}
+	ideaScore = srcCountry->hasNationalIdea("quality_ideas");
+	orderScore -= (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		orderScore -= 1;
+	}
+	
+
+	libertyScore = 0;
+	ideaScore = srcCountry->hasNationalIdea("economic_ideas");
+	libertyScore += (ideaScore + 1);
+	if (ideaScore == 7)
 	{
 		libertyScore += 1;
 	}
-	if ( srcCountry->hasNationalIdea("ecumenism") )
+	ideaScore = srcCountry->hasNationalIdea("administrative_ideas");
+	libertyScore -= (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		libertyScore -= 1;
+	}
+	ideaScore = srcCountry->hasNationalIdea("plutocratic_ideas");
+	libertyScore += (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		libertyScore += 1;
+	}
+	ideaScore = srcCountry->hasNationalIdea("aristocratic_ideas");
+	libertyScore -= (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		libertyScore -= 1;
+	}
+	ideaScore = srcCountry->hasNationalIdea("trade_ideas");
+	libertyScore += (ideaScore + 1);
+	if (ideaScore == 7)
 	{
 		libertyScore += 1;
 	}
 
-	int equalityScore = 0;
-	equalityScore += srcCountry->getAristocracyPlutocracy();
-	equalityScore += srcCountry->getSerfdomFreesubjects();
-	if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
-	{
-		equalityScore += 4;
-	}
-	if ( srcCountry->hasNationalIdea("humanist_tolerance") )
-	{
-		equalityScore += 2;
-	}
-	if ( srcCountry->hasNationalIdea("bill_of_rights") )
-	{
-		equalityScore += 2;
-	}
-	if ( srcCountry->hasNationalIdea("ecumenism") )
+	equalityScore = 0;
+	ideaScore = srcCountry->hasNationalIdea("plutocratic_ideas");
+	equalityScore += (ideaScore + 1);
+	if (ideaScore == 7)
 	{
 		equalityScore += 1;
 	}
-
-	if ( (equalityScore > orderScore) && (equalityScore >= libertyScore) && (equalityLeft > 0) )
+	ideaScore = srcCountry->hasNationalIdea("aristocratic_ideas");
+	equalityScore -= (ideaScore + 1);
+	if (ideaScore == 7)
 	{
-		nationalValue = "nv_equality";
-		equalityLeft--;
+		equalityScore -= 1;
 	}
-	else if ( (libertyScore > orderScore) && (libertyLeft > 0) )
+	ideaScore = srcCountry->hasNationalIdea("quantity_ideas");
+	equalityScore += (ideaScore + 1);
+	if (ideaScore == 7)
 	{
-		nationalValue = "nv_liberty";
-		libertyLeft--;
-	}
-	else
-	{
-		nationalValue = "nv_order";
+		equalityScore += 1;
 	}
 }
 
@@ -1299,8 +1299,8 @@ void V2Country::setupPops(EU4World& sourceWorld)
 	else // negative stability: 0 stab -> 1 mil ==> -3 stab -> 3 mil
 		mil += fabs(stability) * 2.0 / 3.0 + 1.0;
 	// 0 to 2 points of con from serfdom<->free subjects
-	double serf_fs = srcCountry->getSerfdomFreesubjects();
-	con += (serf_fs * 2.0 / 5.0) + 1.0;
+	/*double serf_fs = srcCountry->getSerfdomFreesubjects();
+	con += (serf_fs * 2.0 / 5.0) + 1.0;*/
 	// TODO: national decisions, national events, war exhaustion
 
 	// create the pops

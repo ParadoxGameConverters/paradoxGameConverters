@@ -587,7 +587,7 @@ void V2Reforms::governmentEffects(const EU4Country* srcCountry)
 
 void V2Reforms::sliderEffects(const EU4Country* srcCountry)
 {
-	int centralization_decentralization = srcCountry->getCentralizationDecentralization();
+	/*int centralization_decentralization = srcCountry->getCentralizationDecentralization();
 	slavery							+= centralization_decentralization * 0;
 	vote_franchise					+= centralization_decentralization * 0;
 	upper_house_composition		+= centralization_decentralization * 0;
@@ -721,7 +721,7 @@ void V2Reforms::sliderEffects(const EU4Country* srcCountry)
 	unemployment_subsidies		+= quality_quantity * 0;
 	pensions							+= quality_quantity * 0;
 	health_care						+= quality_quantity * 0;
-	school_reforms					+= quality_quantity * 0;
+	school_reforms					+= quality_quantity * 0;*/
 }
 
 

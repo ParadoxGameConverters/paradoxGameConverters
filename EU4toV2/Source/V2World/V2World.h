@@ -51,8 +51,6 @@ class V2World {
 		vector<V2Country*>			dynamicCountries;
 		map<int, V2Party*>			parties;
 		V2Diplomacy						diplomacy;
-		int								equalityLeft;
-		int								libertyLeft;
 		map< int, set<string> >		colonies;
 };
 

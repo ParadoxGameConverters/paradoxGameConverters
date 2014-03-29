@@ -320,120 +320,16 @@ EU4Country::EU4Country(Object* obj)
 		armies.push_back(navy);
 	}
 
-	vector<Object*> sliderObj = obj->getValue("centralization_decentralization");
-	if (sliderObj.size() > 0)
-	{
-		centralization_decentralization = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		centralization_decentralization = 0;
-	}
-	sliderObj = obj->getValue("aristocracy_plutocracy");
-	if (sliderObj.size() > 0)
-	{
-		aristocracy_plutocracy = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		aristocracy_plutocracy = 0;
-	}
-	sliderObj = obj->getValue("serfdom_freesubjects");
-	if (sliderObj.size() > 0)
-	{
-		serfdom_freesubjects = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		serfdom_freesubjects = 0;
-	}
-	sliderObj = obj->getValue("innovative_narrowminded");
-	if (sliderObj.size() > 0)
-	{
-		innovative_narrowminded = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		innovative_narrowminded = 0;
-	}
-	sliderObj = obj->getValue("mercantilism_freetrade");
-	if (sliderObj.size() > 0)
-	{
-		mercantilism_freetrade = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		mercantilism_freetrade = 0;
-	}
-	sliderObj = obj->getValue("offensive_defensive");
-	if (sliderObj.size() > 0)
-	{
-		offensive_defensive = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		offensive_defensive = 0;
-	}
-	sliderObj = obj->getValue("land_naval");
-	if (sliderObj.size() > 0)
-	{
-		land_naval = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		land_naval = 0;
-	}
-	sliderObj = obj->getValue("quality_quantity");
-	if (sliderObj.size() > 0)
-	{
-		quality_quantity = atoi( sliderObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		quality_quantity = 0;
-	}
-
 	nationalIdeas.clear();
-	checkIdea(obj, "press_gangs");
-	checkIdea(obj, "grand_navy");
-	checkIdea(obj, "sea_hawks");
-	checkIdea(obj, "superior_seamanship");
-	checkIdea(obj, "naval_glory");
-	checkIdea(obj, "excellent_shipwrights");
-	checkIdea(obj, "naval_fighting_instruction");
-	checkIdea(obj, "naval_provisioning");
-	checkIdea(obj, "grand_army");
-	checkIdea(obj, "military_drill");
-	checkIdea(obj, "engineer_corps");
-	checkIdea(obj, "battlefield_commisions");
-	checkIdea(obj, "glorious_arms");
-	checkIdea(obj, "national_conscripts");
-	checkIdea(obj, "regimental_system");
-	checkIdea(obj, "napoleonic_warfare");
-	checkIdea(obj, "land_of_opportunity");
-	checkIdea(obj, "merchant_adventures");
-	checkIdea(obj, "colonial_ventures");
-	checkIdea(obj, "shrewd_commerce_practise");
-	checkIdea(obj, "vice_roys");
-	checkIdea(obj, "quest_for_the_new_world");
-	checkIdea(obj, "scientific_revolution");
-	checkIdea(obj, "improved_foraging");
-	checkIdea(obj, "vetting");
-	checkIdea(obj, "bureaucracy");
-	checkIdea(obj, "national_bank");
-	checkIdea(obj, "national_trade_policy");
-	checkIdea(obj, "espionage");
-	checkIdea(obj, "bill_of_rights");
-	checkIdea(obj, "smithian_economics");
-	checkIdea(obj, "liberty_egalite_fraternity");
-	checkIdea(obj, "ecumenism");
-	checkIdea(obj, "church_attendance_duty");
-	checkIdea(obj, "divine_supremacy");
-	checkIdea(obj, "patron_of_art");
-	checkIdea(obj, "deus_vult");
-	checkIdea(obj, "humanist_tolerance");
-	checkIdea(obj, "cabinet");
-	checkIdea(obj, "revolution_and_counter");
+	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");
+	if (activeIdeasObj.size() > 0)
+	{
+		vector<Object*> ideasObj = activeIdeasObj[0]->getLeaves();
+		for (vector<Object*>::iterator ideaItr = ideasObj.begin(); ideaItr != ideasObj.end(); ideaItr++)
+		{
+			nationalIdeas.insert(make_pair((*ideaItr)->getKey(), atoi((*ideaItr)->getLeaf().c_str())));
+		}
+	}
 
 	vector<Object*> moneyObj = obj->getValue("treasury");
 	if (moneyObj.size() > 0)
@@ -524,10 +420,17 @@ bool EU4Country::hasModifier(string modifier) const
 }
 
 
-bool EU4Country::hasNationalIdea(string ni) const
+int EU4Country::hasNationalIdea(string ni) const
 {
-	map<string, bool>::const_iterator itr = nationalIdeas.find(ni);
-	return (itr != nationalIdeas.end());
+	map<string, int>::const_iterator itr = nationalIdeas.find(ni);
+	if (itr != nationalIdeas.end())
+	{
+		return itr->second;
+	}
+	else
+	{
+		return -1;
+	}
 }
 
 
