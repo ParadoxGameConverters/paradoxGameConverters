@@ -1039,46 +1039,34 @@ void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, in
 	int ideaScore;
 
 	orderScore = 0;
-	ideaScore = srcCountry->hasNationalIdea("defensive_ideas");
-	orderScore += (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		orderScore += 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("offensive_ideas");
-	orderScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		orderScore -= 1;
-	}
 	ideaScore = srcCountry->hasNationalIdea("religious_ideas");
 	orderScore += (ideaScore + 1);
 	if (ideaScore == 7)
 	{
 		orderScore += 1;
 	}
-	ideaScore = srcCountry->hasNationalIdea("innovative_ideas");
+	ideaScore = srcCountry->hasNationalIdea("innovativeness_ideas");
 	orderScore -= (ideaScore + 1);
 	if (ideaScore == 7)
 	{
 		orderScore -= 1;
 	}
 	ideaScore = srcCountry->hasNationalIdea("quantity_ideas");
-	orderScore += (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		orderScore += 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("quality_ideas");
 	orderScore -= (ideaScore + 1);
 	if (ideaScore == 7)
 	{
 		orderScore -= 1;
 	}
+	ideaScore = srcCountry->hasNationalIdea("quality_ideas");
+	orderScore += (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		orderScore += 1;
+	}
 	
 
 	libertyScore = 0;
-	ideaScore = srcCountry->hasNationalIdea("economic_ideas");
+	ideaScore = srcCountry->hasNationalIdea("exploration_ideas");
 	libertyScore += (ideaScore + 1);
 	if (ideaScore == 7)
 	{
@@ -1090,33 +1078,45 @@ void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, in
 	{
 		libertyScore -= 1;
 	}
-	ideaScore = srcCountry->hasNationalIdea("plutocratic_ideas");
+	ideaScore = srcCountry->hasNationalIdea("plutocracy_ideas");
 	libertyScore += (ideaScore + 1);
 	if (ideaScore == 7)
 	{
 		libertyScore += 1;
 	}
-	ideaScore = srcCountry->hasNationalIdea("aristocratic_ideas");
+	ideaScore = srcCountry->hasNationalIdea("aristocracy_ideas");
 	libertyScore -= (ideaScore + 1);
 	if (ideaScore == 7)
 	{
 		libertyScore -= 1;
 	}
-	ideaScore = srcCountry->hasNationalIdea("trade_ideas");
-	libertyScore += (ideaScore + 1);
+	ideaScore = srcCountry->hasNationalIdea("spy_ideas");
+	libertyScore -= (ideaScore + 1);
 	if (ideaScore == 7)
 	{
-		libertyScore += 1;
+		libertyScore -= 1;
 	}
 
 	equalityScore = 0;
-	ideaScore = srcCountry->hasNationalIdea("plutocratic_ideas");
+	ideaScore = srcCountry->hasNationalIdea("innovativeness_ideas");
 	equalityScore += (ideaScore + 1);
 	if (ideaScore == 7)
 	{
 		equalityScore += 1;
 	}
-	ideaScore = srcCountry->hasNationalIdea("aristocratic_ideas");
+	ideaScore = srcCountry->hasNationalIdea("religious_ideas");
+	orderScore -= (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		orderScore -= 1;
+	}
+	ideaScore = srcCountry->hasNationalIdea("plutocracy_ideas");
+	equalityScore += (ideaScore + 1);
+	if (ideaScore == 7)
+	{
+		equalityScore += 1;
+	}
+	ideaScore = srcCountry->hasNationalIdea("aristocracy_ideas");
 	equalityScore -= (ideaScore + 1);
 	if (ideaScore == 7)
 	{
