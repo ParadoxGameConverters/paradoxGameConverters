@@ -66,7 +66,12 @@ namespace Frontend.Core.Factories
 
             foreach (var element in foundElements)//.Where(e => this.filter(e)))
             {
-                elements.Add(this.OnBuildElement<T>(element));
+                var isEnabled = XElementHelper.ReadBoolValue(element, "isEnabled", false, true);
+
+                if (isEnabled)
+                {
+                    elements.Add(this.OnBuildElement<T>(element));
+                }
             }
 
             return elements;

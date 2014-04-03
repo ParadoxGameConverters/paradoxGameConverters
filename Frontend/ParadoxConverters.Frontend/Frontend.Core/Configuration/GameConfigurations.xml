@@ -14,7 +14,6 @@
     <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
     <currentModTagName>CK2Mod</currentModTagName>
     <saveGameExtension>.ck2</saveGameExtension>
-    <isSource>true</isSource>
     <supportedMods>
       <supportedMod>
         <modName>CK2Plus</modName>
@@ -34,6 +33,19 @@
     <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\mod</defaultModFolderLocation>
     <saveGameExtension>.eu3</saveGameExtension>
+  </gameConfiguration>
+
+  <!-- Europa Universalis 4 -->
+  <gameConfiguration>
+    <name>EuropaUniversalis4</name>
+    <friendlyName>Europa Universalis 4</friendlyName>
+    <steamId>236850</steamId>
+    <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+    <configurationFileDirectoryTagName>EU4directory</configurationFileDirectoryTagName>
+    <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>
+    <saveGameExtension>.eu4</saveGameExtension>
   </gameConfiguration>
 
   <!--Victoria 2-->

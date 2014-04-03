@@ -138,7 +138,11 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Configuration\Eu4ToVic2DefaultConfiguration.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <ItemGroup>
     <Page Include="Views\ConvertView.xaml">
       <SubType>Designer</SubType>

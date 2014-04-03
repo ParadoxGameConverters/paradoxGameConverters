@@ -12,6 +12,7 @@
       <sourceGame>CrusaderKings2</sourceGame>
       <targetGame>EuropaUniversalis3</targetGame>
       <subfolderName>ck2toeu3</subfolderName>
+      <isEnabled>true</isEnabled>
     </converter>
     <converter>
       <name>Eu3ToVic2</name>
@@ -23,6 +24,19 @@
       <sourceGame>EuropaUniversalis3</sourceGame>
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu3tovic2</subfolderName>
+      <isEnabled>false</isEnabled>
+    </converter>
+    <converter>
+      <name>Eu4ToVic2</name>
+      <friendlyName>From Europa Universalis 4 to Victoria 2</friendlyName>
+      <defaultConfigurationFile>Configuration\Eu4ToVic2DefaultConfiguration.xml</defaultConfigurationFile>
+      <userConfigurationFile></userConfigurationFile>
+      <converterExeName>EU4toV2Converter.exe</converterExeName>
+      <isDefault>false</isDefault>
+      <sourceGame>EuropaUniversalis4</sourceGame>
+      <targetGame>Victoria2</targetGame>
+      <subfolderName>eu4tovic2</subfolderName>
+      <isEnabled>false</isEnabled>
     </converter>
   </supportedConverters>
 </configuration>

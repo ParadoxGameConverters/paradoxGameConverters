@@ -168,14 +168,20 @@ namespace Frontend.Core.Helpers
         /// <param name="propertyName">Name of the property.</param>
         /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         /// <returns></returns>
-        /// <exception cref="Converter.UI.Framework.MissingRequiredXMLPropertyException"></exception>
-        /// <exception cref="Converter.UI.Framework.UnParsableDataValueException">bool</exception>
+        /// <exception cref="MissingRequiredXMLPropertyException"></exception>
+        /// <exception cref="UnparsableDataValueException">bool</exception>
         public static bool ReadBoolValue(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
-            bool value = false;
+            return ReadBoolValue(parentElement, propertyName, isPropertyRequired, false);
+        }
+
+        public static bool ReadBoolValue(XElement parentElement, string propertyName, bool isPropertyRequired,
+            bool defaultValue)
+        {
+            bool value = defaultValue;
             IEnumerable<XElement> matches = parentElement.Descendants(propertyName);
 
-            if (matches.Count() == 0)
+            if (!matches.Any())
             {
                 if (isPropertyRequired)
                 {
@@ -183,7 +189,7 @@ namespace Frontend.Core.Helpers
                 }
                 else
                 {
-                    return false;
+                    return defaultValue;
                 }
             }
 
@@ -222,7 +228,7 @@ namespace Frontend.Core.Helpers
         {
             IEnumerable<XElement> elements = parentElement.Descendants(propertyName);
 
-            if (elements.Count() == 0 && isPropertyRequired)
+            if (!elements.Any() && isPropertyRequired)
             {
                 throw new MissingRequiredXMLPropertyException(parentElement, propertyName, isPropertyRequired);
             }
