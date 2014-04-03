@@ -6,12 +6,12 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <Style x:Key="summaryButtonStyle" TargetType="{x:Type Button}">
+        <Style x:Key="SummaryButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="300"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
     </UserControl.Resources>
-    <Grid>
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -20,7 +20,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         
-        <Button Grid.Row="0" Content="Save configuration file" Style="{StaticResource summaryButtonStyle}" Margin="5, 5, 5, 0" Command="{Binding SaveCommand}"/>
-        <Button Grid.Row="1" Content="Convert" Style="{StaticResource summaryButtonStyle}" Margin="5" Command="{Binding ConvertCommand}"/>
+        <Button Grid.Row="0" Content="1 - Save configuration file" Style="{StaticResource SummaryButtonStyle}" Margin="5, 5, 5, 0" Command="{Binding SaveCommand}"/>
+        <Button Grid.Row="1" Content="2 - Convert" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding ConvertCommand}"/>
     </Grid>
 </UserControl>
