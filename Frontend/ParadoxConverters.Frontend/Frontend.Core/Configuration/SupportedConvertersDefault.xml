@@ -8,7 +8,7 @@
       <defaultConfigurationFile>Configuration\Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
       <converterExeName>CK2ToEU3.exe</converterExeName>
-      <isDefault>true</isDefault>
+      <!--<isDefault>true</isDefault>-->
       <sourceGame>CrusaderKings2</sourceGame>
       <targetGame>EuropaUniversalis3</targetGame>
       <subfolderName>ck2toeu3</subfolderName>
@@ -20,11 +20,11 @@
       <defaultConfigurationFile>Configuration\Eu3ToVic2DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
       <converterExeName>EU3toV2Converter.exe</converterExeName>
-      <isDefault>false</isDefault>
+      <!--<isDefault>true</isDefault>-->
       <sourceGame>EuropaUniversalis3</sourceGame>
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu3tovic2</subfolderName>
-      <isEnabled>false</isEnabled>
+      <isEnabled>true</isEnabled>
     </converter>
     <converter>
       <name>Eu4ToVic2</name>
@@ -32,7 +32,7 @@
       <defaultConfigurationFile>Configuration\Eu4ToVic2DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
       <converterExeName>EU4toV2Converter.exe</converterExeName>
-      <isDefault>false</isDefault>
+      <!--<isDefault>false</isDefault>-->
       <sourceGame>EuropaUniversalis4</sourceGame>
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu4tovic2</subfolderName>

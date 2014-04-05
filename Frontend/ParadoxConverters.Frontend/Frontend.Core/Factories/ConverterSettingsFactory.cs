@@ -84,7 +84,6 @@ namespace Frontend.Core.Factories
             var defaultConfigurationFile = XElementHelper.ReadStringValue(element, "defaultConfigurationFile");
             var converterExeName = XElementHelper.ReadStringValue(element, "converterExeName");
             //var userConfigurationFile = XElementHelper.ReadStringValue(element, "userConfigurationFile");
-            var isDefault = XElementHelper.ReadBoolValue(element, "isDefault");
 
             // Build game configuration models
             var sourceGameName = XElementHelper.ReadStringValue(element, "sourceGame");
@@ -119,11 +118,7 @@ namespace Frontend.Core.Factories
                 TargetGame = targetGame,
                 AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath),
                 //UserConfigurationFile = userConfigurationFile 
-                Categories = categories,
-
-                // Set IsSelected last. This ensures that the converter settings object has all its properties before 
-                // the currentconverter event handler is fired (See isselected setter for details)
-                IsSelected = isDefault 
+                Categories = categories
             } as T;
         }
     }

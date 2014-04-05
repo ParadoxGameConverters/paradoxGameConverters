@@ -39,8 +39,16 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                return this.supportedConverters ?? (this.supportedConverters =
-                    this.SettingsFactory.BuildModels<ConverterSettings>(Path.Combine(Environment.CurrentDirectory, "Configuration/SupportedConvertersDefault.xml")));
+                if (this.supportedConverters == null)
+                {
+                    this.supportedConverters =
+                        this.SettingsFactory.BuildModels<ConverterSettings>(Path.Combine(Environment.CurrentDirectory,
+                            "Configuration/SupportedConvertersDefault.xml"));
+
+                    this.supportedConverters.First().IsSelected = true;
+                }
+
+                return this.supportedConverters;
             }
         }
 
