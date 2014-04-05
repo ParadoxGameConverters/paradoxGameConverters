@@ -12,7 +12,7 @@
       <sourceGame>CrusaderKings2</sourceGame>
       <targetGame>EuropaUniversalis3</targetGame>
       <subfolderName>ck2toeu3</subfolderName>
-      <isEnabled>true</isEnabled>
+      <isEnabled>false</isEnabled>
     </converter>
     <converter>
       <name>Eu3ToVic2</name>
@@ -25,6 +25,7 @@
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu3tovic2</subfolderName>
       <isEnabled>true</isEnabled>
+      <informationText>The frontend is currently unable to automatically install the converter mod. Please see readme.txt, under the heading "THE CONVERTER MOD for VICTORIA 2", for instructions.</informationText>
     </converter>
     <converter>
       <name>Eu4ToVic2</name>

@@ -26,6 +26,7 @@ namespace Frontend.Core.Model
         public IGameConfiguration SourceGame { get; set; }
         public IGameConfiguration TargetGame { get; set; }
         public IList<IPreferenceCategory> Categories { get; set; }
+        public string AdditionalInformation { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [is selected].

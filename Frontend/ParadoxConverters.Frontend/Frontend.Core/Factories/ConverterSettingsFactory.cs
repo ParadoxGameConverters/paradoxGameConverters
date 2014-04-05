@@ -84,6 +84,7 @@ namespace Frontend.Core.Factories
             var defaultConfigurationFile = XElementHelper.ReadStringValue(element, "defaultConfigurationFile");
             var converterExeName = XElementHelper.ReadStringValue(element, "converterExeName");
             //var userConfigurationFile = XElementHelper.ReadStringValue(element, "userConfigurationFile");
+            var additionalInformation = XElementHelper.ReadStringValue(element, "informationText", false);
 
             // Build game configuration models
             var sourceGameName = XElementHelper.ReadStringValue(element, "sourceGame");
@@ -100,7 +101,7 @@ namespace Frontend.Core.Factories
             {
                 this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "source game", sourceGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
             }
-            
+
             if (targetGame == null)
             {
                 this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "target game", targetGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
@@ -118,7 +119,8 @@ namespace Frontend.Core.Factories
                 TargetGame = targetGame,
                 AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath),
                 //UserConfigurationFile = userConfigurationFile 
-                Categories = categories
+                Categories = categories,
+                AdditionalInformation = additionalInformation
             } as T;
         }
     }
