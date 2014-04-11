@@ -40,7 +40,7 @@ configuration =
 	resetProvinces = "no"
 
 	# The maximum literacy a nation will start with. Default 80%
-	max_literacy = 0.80
+	max_literacy = 1.0
 
 	# Remove type: Which landless nations to remove. Possible values:
 	#	none	remove none of them

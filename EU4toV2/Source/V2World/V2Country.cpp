@@ -124,6 +124,7 @@ void V2Country::output() const
 		fprintf(output, "plurality=%f\n", plurality);
 	}
 	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
+	fprintf(output, "literacy=%f\n", literacy);
 	/*fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
 	
@@ -586,87 +587,101 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//	bankReserves *= 6.0;
 	//}
 
-	//// Literacy
-	//double innovationFactor	= 5 * (5 - srcCountry->getInnovativeNarrowminded());
-	//double serfdomFactor		= 5 * (5 + srcCountry->getSerfdomFreesubjects());
-	//literacy = (innovationFactor + serfdomFactor) * 0.004;
-	//if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
-	//{
-	//	literacy += 0.05;
-	//}
-	//if ( srcCountry->hasNationalIdea("bureaucracy") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasNationalIdea("church_attendance_duty") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasNationalIdea("scientific_revolution") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasModifier("the_school_establishment_act") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasModifier("sunday_schools") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasModifier("the_education_act") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasModifier("monastic_education_system") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//if ( srcCountry->hasModifier("western_embassy_mission") )
-	//{
-	//	literacy += 0.04;
-	//}
-	//int numProvinces = 0;
-	//int numUniversities = 0;
-	//vector<EU4Province*> provinces = srcCountry->getProvinces();
-	//numUniversities = provinces.size();
-	//for (vector<EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
-	//{
-	//	if ( (*i)->hasBuilding("university") )
-	//	{
-	//		numUniversities++;
-	//	}
-	//}
-	//double universityBonus1;
-	//if (numProvinces > 0)
-	//{
-	//	universityBonus1 = numUniversities / numProvinces;
-	//}
-	//else
-	//{
-	//	universityBonus1 = 0;
-	//}
-	//double universityBonus2	= numUniversities * 0.01;
-	//double universityBonus	= max(universityBonus1, universityBonus2);
-	//if (universityBonus > 0.2)
-	//{
-	//	universityBonus = 0.2;
-	//}
-	//literacy += universityBonus;
-	//string techGroup = srcCountry->getTechGroup();
-	//if ( (techGroup == "western") || (techGroup == "latin") || (techGroup == "eastern") || (techGroup == "ottoman") )
-	//{
-	//	literacy += 0.1;
-	//}
-	//if (literacy > Configuration::getMaxLiteracy())
-	//{
-	//	literacy = Configuration::getMaxLiteracy();
-	//}
-	//log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
+	// Literacy
+	literacy = 0.1;
+	if (srcCountry->hasNationalIdea("innovativeness_ideas") >= 3)
+	{
+		literacy += 0.1;
+	}
+	if (srcCountry->hasNationalIdea("innovativeness_ideas") >= 4)
+	{
+		literacy += 0.1;
+	}
+	if (srcCountry->hasNationalIdea("religious_ideas") >= 2)
+	{
+		literacy += 0.1;
+	}
+	if (srcCountry->hasNationalIdea("economic_ideas") >= 1)
+	{
+		literacy += 0.1;
+	}
+	if (srcCountry->hasNationalIdea("economic_ideas") >= 2)
+	{
+		literacy += 0.1;
+	}
+	if (srcCountry->hasNationalIdea("economic_ideas") >= 5)
+	{
+		literacy += 0.1;
+	}
+	if (srcCountry->hasNationalIdea("administrative_ideas") >= 6)
+	{
+		literacy += 0.1;
+	}
+	if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
+	{
+		literacy += 0.05;
+	}
+	if ( srcCountry->hasModifier("the_school_establishment_act") )
+	{
+		literacy += 0.04;
+	}
+	if ( srcCountry->hasModifier("sunday_schools") )
+	{
+		literacy += 0.04;
+	}
+	if ( srcCountry->hasModifier("the_education_act") )
+	{
+		literacy += 0.04;
+	}
+	if ( srcCountry->hasModifier("monastic_education_system") )
+	{
+		literacy += 0.04;
+	}
+	if ( srcCountry->hasModifier("western_embassy_mission") )
+	{
+		literacy += 0.04;
+	}
+	int numProvinces	= 0;
+	int numColleges	= 0;
+	vector<EU4Province*> provinces = srcCountry->getProvinces();
+	numProvinces = provinces.size();
+	for (vector<EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		if ( (*i)->hasBuilding("college") )
+		{
+			numColleges++;
+		}
+		if ((*i)->hasBuilding("university"))
+		{
+			literacy += 0.1;
+		}
+	}
+	double collegeBonus1;
+	if (numProvinces > 0)
+	{
+		collegeBonus1 = numColleges / numProvinces;
+	}
+	else
+	{
+		collegeBonus1 = 0;
+	}
+	double collegeBonus2	= numColleges * 0.01;
+	double collegeBonus	= max(collegeBonus1, collegeBonus2);
+	if (collegeBonus > 0.2)
+	{
+		collegeBonus = 0.2;
+	}
+	literacy += collegeBonus;
+	string techGroup = srcCountry->getTechGroup();
+	if ( (techGroup != "western") && (techGroup != "high_american") && (techGroup != "eastern") && (techGroup != "ottoman"))
+	{
+		literacy *= 0.1;
+	}
+	if (literacy > Configuration::getMaxLiteracy())
+	{
+		literacy = Configuration::getMaxLiteracy();
+	}
+	log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
 
 	// Capital
 	int oldCapital = srcCountry->getCapital();
