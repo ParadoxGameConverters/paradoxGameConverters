@@ -223,7 +223,7 @@ V2World::V2World()
 	parties.clear();
 	potentialCountries.clear();
 	dynamicCountries.clear();
-	const date FirstStartDate = Configuration::getStartDate();
+	const date FirstStartDate = date("1836.1.1");
 	ifstream V2CountriesInput;
 	if (_stat(".\\blankMod\\output\\common\\countries.txt", &st) == 0)
 	{
@@ -362,12 +362,12 @@ void V2World::output() const
 static int stateId = 0;
 void V2World::outputHeader(FILE* output) const
 {
-	fprintf(output, "date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
+	fprintf(output, "date=\"%s\"\n", date("1836.1.1").toString().c_str());
 	fprintf(output, "automate_trade=no\n");
 	fprintf(output, "automate_sliders=0\n");
 	fprintf(output, "unit=%d\n", V2ArmyID().id);
 	fprintf(output, "state=%d\n", stateId);
-	fprintf(output, "start_date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
+	fprintf(output, "start_date=\"%s\"\n", date("1836.1.1").toString().c_str());
 	fprintf(output, "start_pop_index=%d\n", getNextPopId());
 	fprintf(output, "worldmarket=\n");
 	fprintf(output, "{\n");

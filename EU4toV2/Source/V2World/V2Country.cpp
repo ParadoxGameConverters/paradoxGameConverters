@@ -278,7 +278,7 @@ void V2Country::outputInventions(FILE* output) const
 
 void V2Country::outputElection(FILE* output) const
 {
-	date electionDate = Configuration::getStartDate();
+	date electionDate = date("1836.1.1");
 
 	if (electionDate.month == 12)
 	{
@@ -299,7 +299,7 @@ void V2Country::outputParties(FILE* output) const
 	fprintf(output, "	ruling_party=%d\n", rulingParty);
 	for (map<int, V2Party*>::const_iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		if (  i->second->isActiveOn( Configuration::getStartDate() )  )
+		if ( i->second->isActiveOn(date("1836.1.1")) )
 		{
 			fprintf(output, "	active_party=%d\n", i->first);
 		}
@@ -1838,7 +1838,7 @@ void V2Country::setIssues()
 		{
 			continue;
 		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
+		if (!party->isActiveOn(date("1836.1.1")))
 		{
 			continue;
 		}
@@ -1935,7 +1935,7 @@ void V2Country::setIssues()
 		{
 			continue;
 		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(date("1836.1.1")) )
 		{
 			continue;
 		}
@@ -2031,7 +2031,7 @@ void V2Country::setIssues()
 		{
 			continue;
 		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(date("1836.1.1")) )
 		{
 			continue;
 		}
@@ -2124,7 +2124,7 @@ void V2Country::setRulingParty()
 {
 	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		if (i->second->isActiveOn(Configuration::getStartDate()) )
+		if (i->second->isActiveOn(date("1836.1.1")) )
 		{
 			rulingParty = i->first;
 			break;
