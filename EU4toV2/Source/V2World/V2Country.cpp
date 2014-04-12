@@ -716,15 +716,12 @@ void V2Country::initFromHistory()
 
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	if (Configuration::getUseV2Mod())
+	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
-		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
-		}
-		_findclose(fileListing);
+		filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
 	}
+	_findclose(fileListing);
 	if (filename == "")
 	{
 		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";

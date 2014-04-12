@@ -29,9 +29,6 @@ configuration =
 	# EU4 Mod: An EU4 mod to use for conversion
 	EU4Mod = ""
 
-	# Use V2 Mod: Whether or not to use a V2 mod
-	useV2Mod = "no"
-
 	# The date on which the game is to start.  Default: 1835.12.1
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
 	start_date = 1836.1.1

@@ -53,11 +53,6 @@ public:
 		return getInstance()->EU4Mod;
 	}
 
-	static bool getUseV2Mod()
-	{
-		return getInstance()->useV2Mod;
-	}
-
 	static date getStartDate()
 	{
 		return getInstance()->StartDate;
@@ -116,7 +111,6 @@ private:
 	string	EU4Gametype;
 	string	V2Gametype;
 	string	EU4Mod;
-	bool		useV2Mod;
 	string	Removetype;
 	date		StartDate;
 	date		firstEU4Date;

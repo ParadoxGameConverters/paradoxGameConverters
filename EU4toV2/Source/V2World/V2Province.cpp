@@ -58,7 +58,7 @@ V2Province::V2Province(string _filename)
 
 	Object* obj;
 	struct _stat st;
-	if ((Configuration::getUseV2Mod()) && (_stat((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str(), &st) != 0))
+	if (_stat((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str(), &st) == 0)
 	{
 		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str());
 		if (obj == NULL)
