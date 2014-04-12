@@ -68,6 +68,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		outputName.replace(dash, 1, "_");
 		dash = outputName.find_first_of('-');
 	}
+	int space = outputName.find_first_of(' ');
+	while (space != string::npos)
+	{
+		outputName.replace(space, 1, "_");
+		space = outputName.find_first_of(' ');
+	}
 	Configuration::setOutputName(outputName);
 	log("Using output name %s\n", outputName.c_str());
 
