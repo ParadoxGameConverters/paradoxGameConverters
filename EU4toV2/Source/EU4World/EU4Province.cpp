@@ -54,7 +54,6 @@ EU4Province::EU4Province(Object* obj) {
 		}
 	}*/
 
-	centerOfTrade = false;
 
 	ownershipHistory.clear();
 	lastPossessedDate.clear();

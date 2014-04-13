@@ -38,11 +38,9 @@ class EU4Province {
 		EU4Country*					getOwner()			const { return owner; };
 		int							getPopulation()	const { return population; };
 		bool						isColony()			const { return colony; };
-		bool						isCOT()				const { return centerOfTrade; };
 		vector<EU4PopRatio>	getPopRatios()		const { return popRatios; };
 
 		void						setOwner(EU4Country* newOwner)	{ owner = newOwner; };
-		void						setCOT(bool isCOT)					{ centerOfTrade = isCOT; };
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
@@ -51,11 +49,9 @@ class EU4Province {
 		int									num;
 		string								ownerString;
 		EU4Country*							owner;
-		//controller
 		vector<string>						cores;
 		int									population;
 		bool									colony;
-		bool									centerOfTrade;
 		vector< pair<date, string> >	ownershipHistory;
 		map<string, date>					lastPossessedDate;
 		vector< pair<date, string> >	religionHistory;

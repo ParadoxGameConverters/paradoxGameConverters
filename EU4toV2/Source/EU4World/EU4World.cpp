@@ -182,21 +182,6 @@ EU4World::EU4World(Object* obj)
 	{
 		diplomacy = new EU4Diplomacy;
 	}
-
-	vector<Object*> tradeObj = obj->getValue("trade");
-	if (tradeObj.size() > 0)
-	{
-		vector<Object*> COTsObj = tradeObj[0]->getValue("cot");
-		for (vector<Object*>::iterator i = COTsObj.begin(); i != COTsObj.end(); i++)
-		{
-			int location = atoi( (*i)->getValue("location")[0]->getLeaf().c_str() );
-			map<int, EU4Province*>::iterator j = provinces.find(location);
-			if ( j != provinces.end() )
-			{
-				j->second->setCOT(true);
-			}
-		}
-	}
 }
 
 EU4Country* EU4World::getCountry(string tag) const

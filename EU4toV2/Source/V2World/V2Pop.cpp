@@ -6,7 +6,7 @@
 static int nextId = 23000;
 
 
-V2Pop::V2Pop(string _type, int _size, string _culture, string _religion, double _literacy, double _reactionary, double _conservative, double _liberal, vector< pair<int, double> > _issues)
+V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 {
 	id = nextId;
 	nextId++;
@@ -19,11 +19,6 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion, double 
 	money						= 0.0;
 	consciousness			= 0.0;
 	militancy				= 0.0;
-	literacy					= _literacy;
-	reactionary				= _reactionary;
-	conservative			= _conservative;
-	liberal					= _liberal;
-	issues					= _issues;
 
 	recalcMoney();
 }
@@ -37,22 +32,8 @@ void V2Pop::output(FILE* output) const
 	fprintf(output, "\t\tsize=%d\n", size);
 	fprintf(output, "\t\t%s=%s\n", culture.c_str(), religion.c_str());
 	fprintf(output, "\t\tmoney=%f\n", money);
-	fprintf(output, "\t\tideology=\n");
-	fprintf(output, "\t{\n");
-	fprintf(output, "\t\t\t2=%f\n", reactionary);
-	fprintf(output, "\t\t\t3=%f\n", conservative);
-	fprintf(output, "\t\t\t6=%f\n", liberal);
-	fprintf(output, "\t\t}\n");
-	fprintf(output, "\t\tissues=\n");
-	fprintf(output, "\t\t{\n");
-	for (unsigned int i = 0; i < issues.size(); i++)
-	{
-		fprintf(output, "\t\t\t%d=%f\n", issues[i].first, 100 * issues[i].second);
-	}
-	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t\tcon=%f\n", consciousness);
 	fprintf(output, "\t\tmil=%f\n", militancy);
-	fprintf(output, "\t\tliteracy=%f\n", literacy);
 	fprintf(output, "\t}\n");
 }
 

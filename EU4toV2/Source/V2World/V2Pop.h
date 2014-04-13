@@ -12,7 +12,7 @@ using namespace std;
 class V2Pop
 {
 	public:
-		V2Pop(string type, int size, string culture, string religion, double literacy, double reactionary, double conservative, double liberal, vector< pair<int, double> > issues);
+		V2Pop(string type, int size, string culture, string religion);
 		void output(FILE*) const;
 		bool combine(const V2Pop& rhs);
 
@@ -38,12 +38,7 @@ class V2Pop
 		int		supportedRegiments;
 		double	money;
 		double	consciousness;
-		double	literacy;
 		double	militancy;
-		double	reactionary;
-		double	conservative;
-		double	liberal;
-		vector< pair<int, double> >	issues;
 };
 
 

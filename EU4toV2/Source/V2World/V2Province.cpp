@@ -30,7 +30,6 @@ V2Province::V2Province(string _filename)
 	colonised			= false;
 	landConnection		= false;
 	sameContinent		= false;
-	COT					= false;
 	originallyInfidel	= false;
 	oldPopulation		= 0;
 	demographics.clear();
@@ -238,131 +237,6 @@ void V2Province::outputPops(FILE* output) const
 }
 
 
-void V2Province::outputRGO(FILE* output) const
-{
-	fprintf(output, "\trgo=\n");
-	fprintf(output, "\t{\n");
-	fprintf(output, "\t\temployment=\n");
-	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\tprovince_id=%d\n", num);
-	fprintf(output, "\t\t\temployees=\n");
-	fprintf(output, "\t\t\t{\n");
-	if (owner == "")
-	{
-		int numFarmers = 0;
-		for (unsigned int i = 0; i < oldPops.size(); i++)
-		{
-			if (oldPops[i]->getType() == "farmers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numFarmers);
-				fprintf(output, "\t\t\t\t\t\ttype=8\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", oldPops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numFarmers++;
-			}
-		}
-		int numLabourers = 0;
-		for (unsigned int i = 0; i < oldPops.size(); i++)
-		{
-			if (oldPops[i]->getType() == "labourers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numLabourers);
-				fprintf(output, "\t\t\t\t\t\ttype=9\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", oldPops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numLabourers++;
-			}
-		}
-		int numSlaves = 0;
-		for (unsigned int i = 0; i < oldPops.size(); i++)
-		{
-			if (oldPops[i]->getType() == "slaves")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numSlaves);
-				fprintf(output, "\t\t\t\t\t\ttype=11\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", oldPops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numSlaves++;
-			}
-		}
-	}
-	else
-	{
-		int numFarmers = 0;
-		for (unsigned int i = 0; i < pops.size(); i++)
-		{
-			if (pops[i]->getType() == "farmers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numFarmers);
-				fprintf(output, "\t\t\t\t\t\ttype=8\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", pops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numFarmers++;
-			}
-		}
-		int numLabourers = 0;
-		for (unsigned int i = 0; i < pops.size(); i++)
-		{
-			if (pops[i]->getType() == "labourers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numLabourers);
-				fprintf(output, "\t\t\t\t\t\ttype=9\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", pops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numLabourers++;
-			}
-		}
-		int numSlaves = 0;
-		for (unsigned int i = 0; i < pops.size(); i++)
-		{
-			if (pops[i]->getType() == "slaves")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numSlaves);
-				fprintf(output, "\t\t\t\t\t\ttype=11\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", pops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numSlaves++;
-			}
-		}
-	}
-	fprintf(output, "\t\t\t}\n");
-	fprintf(output, "\t\t}\n");
-	fprintf(output, "\t\tlast_income=100000.00000\n");
-	fprintf(output, "\t\tgoods_type=\"%s\"\n", rgoType.c_str());
-	fprintf(output, "\t}\n");
-}
-
-
 // determined experimentally
 static const int unitNameOffsets[num_reg_categories] =
 {
@@ -421,7 +295,6 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 	colonial				= 0;
 	colonised			= oldProvince->wasColonised();
 	originallyInfidel	= oldProvince->wasInfidelConquest();
-	COT					= oldProvince->isCOT();
 }
 
 
@@ -451,17 +324,17 @@ void V2Province::addOldPop(const V2Pop* oldPop)
 }
 
 
-void V2Province::doCreatePops(bool isStateCapital, int statePopulation, bool stateHasCOT)
+void V2Province::doCreatePops(bool isStateCapital, int statePopulation)
 {
 	for (vector<V2Demographic>::const_iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
-		createPops(*itr, isStateCapital, statePopulation, stateHasCOT);
+		createPops(*itr, isStateCapital, statePopulation);
 	}
 	combinePops();
 }
 
 
-void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation, bool stateHasCOT)
+void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation)
 {
 	const EU4Province* oldProvince	= demographic.oldProvince;
 	const EU4Country* oldCountry		= demographic.oldCountry;
@@ -585,14 +458,6 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 
 	artisans	+= productionBuilding * 175;
 
-	//If province is CENTER OF TRADE then add 10 CLERKS, 3 CAPITALISTS, 100 ARTISANS.
-	if (stateHasCOT)
-	{
-		artisans		+= 875;
-		clerks		+= 10;
-		capitalists	+= 3;
-	}
-
 	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
 	{
 		slaves += 500;
@@ -695,10 +560,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* farmersPop = new V2Pop(	"farmers",
 													(int)(demographic.ratio * oldPopulation * farmers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(farmersPop);
 	}
@@ -707,10 +569,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* labourersPop = new V2Pop(	"labourers",
 													(int)(demographic.ratio * oldPopulation * labourers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(labourersPop);
 	}
@@ -719,10 +578,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* slavesPop = new V2Pop(		"slaves",
 													(int)(demographic.ratio * oldPopulation * slaves / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(slavesPop);
 	}
@@ -731,10 +587,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* soldiersPop = new V2Pop(	"soldiers",
 													(int)(demographic.ratio * oldPopulation * soldiers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(soldiersPop);
 	}
@@ -743,10 +596,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* craftsmenPop = new V2Pop(	"craftsmen",
 													(int)(demographic.ratio * oldPopulation * craftsmen / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(craftsmenPop);
 	}
@@ -755,10 +605,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* artisansPop = new V2Pop(	"artisans",
 													(int)(demographic.ratio * oldPopulation * artisans / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(artisansPop);
 	}
@@ -767,10 +614,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* clergymenPop = new V2Pop(	"clergymen",
 													(int)(demographic.ratio * oldPopulation * clergymen / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(clergymenPop);
 	}
@@ -779,10 +623,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* clerksPop = new V2Pop(	"clerks",
 												(int)(demographic.ratio * oldPopulation * clerks / total),
 												demographic.culture,
-												demographic.religion,
-												demographic.literacy,
-												demographic.reactionary, demographic.conservative, demographic.liberal,
-												demographic.issues
+												demographic.religion
 												);
 		pops.push_back(clerksPop);
 	}
@@ -791,10 +632,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* bureaucratsPop = new V2Pop(	"bureaucrats",
 														(int)(demographic.ratio * oldPopulation * bureaucrats / total),
 														demographic.culture,
-														demographic.religion,
-														demographic.literacy,
-														demographic.reactionary, demographic.conservative, demographic.liberal,
-														demographic.issues
+														demographic.religion
 												);
 		pops.push_back(bureaucratsPop);
 	}
@@ -803,10 +641,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* officersPop = new V2Pop(	"officers",
 													(int)(demographic.ratio * oldPopulation * officers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(officersPop);
 	}
@@ -815,10 +650,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* capitalistsPop = new V2Pop(	"capitalists",
 														(int)(demographic.ratio * oldPopulation * capitalists / total),
 														demographic.culture,
-														demographic.religion,
-														demographic.literacy,
-														demographic.reactionary, demographic.conservative, demographic.liberal,
-														demographic.issues
+														demographic.religion
 												);
 		pops.push_back(capitalistsPop);
 	}
@@ -827,10 +659,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		V2Pop* aristocratsPop = new V2Pop(	"aristocrats",
 														(int)(demographic.ratio * oldPopulation * aristocrats / total),
 														demographic.culture,
-														demographic.religion,
-														demographic.literacy,
-														demographic.reactionary, demographic.conservative, demographic.liberal,
-														demographic.issues
+														demographic.religion
 												);
 		pops.push_back(aristocratsPop);
 	}

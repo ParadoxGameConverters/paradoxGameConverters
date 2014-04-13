@@ -17,13 +17,8 @@ struct V2Demographic
 	string								culture;
 	string								religion;
 	double								ratio;
-	double								literacy;
-	double								reactionary;
-	double								conservative;
-	double								liberal;
 	EU4Province*						oldProvince;
 	EU4Country*							oldCountry;
-	vector< pair<int, double> >	issues;
 };
 
 
@@ -36,7 +31,7 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void doCreatePops(bool isStateCapital, int statePopulation);
 		void sortPops();
 
 		void				setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier);
@@ -50,7 +45,6 @@ class V2Province
 		void				setCoastal(bool _coastal)				{ coastal = _coastal; };
 		void				setName(string _name)					{ name = _name; };
 		void				setOwner(string _owner)					{ owner = _owner; };
-		//void				setController(string _controller)	{ controller = _controller; };
 		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
 		void				setSameContinent(bool _same)			{ sameContinent = _same; };
 		void				addPopDemographic(V2Demographic d)	{ demographics.push_back(d); };
@@ -60,7 +54,6 @@ class V2Province
 
 		const EU4Province*	getSrcProvince()		const { return srcProvince; };
 		int						getOldPopulation()	const	{ return oldPopulation; };
-		bool						getCOT()					const { return COT; };
 		bool						wasInfidelConquest()	const { return originallyInfidel; };
 		bool						wasColonised()			const { return colonised; };
 		bool						isColonial()			const { return colonial != 0; };
@@ -72,9 +65,8 @@ class V2Province
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); };
 	private:
 		void outputPops(FILE*) const;
-		void outputRGO(FILE*) const;
 		void outputUnits(FILE*) const;
-		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
@@ -85,14 +77,12 @@ class V2Province
 		int								num;
 		string							name;
 		string							owner;
-		//controller
 		vector<string>					cores;
 		int								colonyLevel;
 		int								colonial;
 		bool								colonised;
 		bool								landConnection;
 		bool								sameContinent;
-		bool								COT;
 		bool								originallyInfidel;
 		int								oldPopulation;
 		vector<V2Demographic>		demographics;
