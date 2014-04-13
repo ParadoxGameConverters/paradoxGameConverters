@@ -123,6 +123,10 @@ void V2Country::output() const
 	}
 	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
 	fprintf(output, "literacy=%f\n", literacy);
+	if (civilized)
+	{
+		fprintf(output, "civilized=yes\n");
+	}
 	fprintf(output, "\n");
 	fprintf(output, "ruling_party=%s\n", rulingParty.c_str());
 	fprintf(output, "upper_house=\n");
@@ -183,14 +187,6 @@ void V2Country::output() const
 	for (map<string, V2Creditor*>::const_iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
 	{
 		itr->second->output(output);
-	}
-	if (civilized)
-	{
-		fprintf(output, "	civilized=yes\n");
-	}
-	else
-	{
-		fprintf(output, "	civilized=no\n");
 	}
 	for(unsigned int i = 0; i < states.size(); i++)
 	{
@@ -339,15 +335,14 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	}
 
 	// tech group
-	//if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
-	//		(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
-	//{
-	//	civilized = true;
-	//}
-	//else
-	//{
-	//	civilized = false;
-	//}
+	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
+	{
+		civilized = true;
+	}
+	else
+	{
+		civilized = false;
+	}
 
 	// religion
 	string srcReligion = srcCountry->getReligion();
@@ -498,7 +493,6 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	upperHouseReactionary		=  static_cast<int>(5  + (100 * reactionaryEffect));
 	upperHouseLiberal				=  static_cast<int>(10 + (100 * liberalEffect));
 	upperHouseConservative		=  static_cast<int>(85 - (100 * (reactionaryEffect + liberalEffect)));
-	//log(",%s,%d,%d,%d\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
 	log("%s has an Upper House of %d reactionary, %d conservative, and %d liberal\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
 	
 	string idealogy;
@@ -675,7 +669,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	{
 		literacy = Configuration::getMaxLiteracy();
 	}
-	//log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
+	log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
 
 	// Capital
 	int oldCapital = srcCountry->getCapital();
