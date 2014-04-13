@@ -18,8 +18,6 @@ class V2Pop
 
 		void	changeSize(int delta)					{ size += delta; recalcMoney(); };
 		void	incrementSupportedRegimentCount()	{ supportedRegiments++; };
-		void	setConsciousness(double con)			{ consciousness = con; };
-		void	setMilitancy(double mil)				{ militancy = mil; };
 
 		int		getSize()							const	{ return size; };
 		string	getType()							const	{ return type; };
@@ -37,8 +35,6 @@ class V2Pop
 		string	religion;
 		int		supportedRegiments;
 		double	money;
-		double	consciousness;
-		double	militancy;
 };
 
 

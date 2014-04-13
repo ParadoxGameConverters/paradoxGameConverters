@@ -17,8 +17,6 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 	religion					= _religion;
 	supportedRegiments	= 0;
 	money						= 0.0;
-	consciousness			= 0.0;
-	militancy				= 0.0;
 
 	recalcMoney();
 }
@@ -32,8 +30,6 @@ void V2Pop::output(FILE* output) const
 	fprintf(output, "\t\tsize=%d\n", size);
 	fprintf(output, "\t\t%s=%s\n", culture.c_str(), religion.c_str());
 	fprintf(output, "\t\tmoney=%f\n", money);
-	fprintf(output, "\t\tcon=%f\n", consciousness);
-	fprintf(output, "\t\tmil=%f\n", militancy);
 	fprintf(output, "\t}\n");
 }
 

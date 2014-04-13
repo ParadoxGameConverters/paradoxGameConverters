@@ -34,7 +34,6 @@ class V2Province
 		void doCreatePops(bool isStateCapital, int statePopulation);
 		void sortPops();
 
-		void				setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier);
 		int				getTotalPopulation() const;
 		vector<V2Pop*>	getPops(string type) const;
 		int				getSoldierPopForArmy(bool force = false);

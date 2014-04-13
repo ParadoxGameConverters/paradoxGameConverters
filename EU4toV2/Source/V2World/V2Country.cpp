@@ -123,6 +123,7 @@ void V2Country::output() const
 	}
 	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
 	fprintf(output, "literacy=%f\n", literacy);
+	fprintf(output, "\n");
 	fprintf(output, "ruling_party=%s\n", rulingParty.c_str());
 	fprintf(output, "upper_house=\n");
 	fprintf(output, "{\n");
@@ -134,6 +135,11 @@ void V2Country::output() const
 	fprintf(output, "	socialist = 0\n");
 	fprintf(output, "	communist = 0\n");
 	fprintf(output, "}\n");
+	fprintf(output, "\n");
+	fprintf(output, "# Starting Consciousness\n");
+	fprintf(output, "consciousness = 0\n");
+	fprintf(output, "nonstate_consciousness = 0\n");
+	fprintf(output, "\n");
 	/*	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputTech(output);
 	outputElection(output);
@@ -1292,24 +1298,10 @@ void V2Country::setupPops(EU4World& sourceWorld)
 	if (states.size() < 1) // skip entirely for empty nations
 		return;
 
-	// calculate NATIONAL con and mil modifiers (province modifiers are done in V2Province::setPopConMil)
-	double con = 0.0;
-	double mil = 0.0;
-	// 0 to 3 points of mil from stability, based on a similar discontinuous function to that used by EU4 to calc revolt risk
-	double stability = srcCountry->getStability();
-	if (stability > -FLT_EPSILON) // positive stability: 3 stab -> 0 mil ==> 0 stab -> 1 mil
-		mil += fabs(stability - 3.0) / 3.0;
-	else // negative stability: 0 stab -> 1 mil ==> -3 stab -> 3 mil
-		mil += fabs(stability) * 2.0 / 3.0 + 1.0;
-	// 0 to 2 points of con from serfdom<->free subjects
-	/*double serf_fs = srcCountry->getSerfdomFreesubjects();
-	con += (serf_fs * 2.0 / 5.0) + 1.0;*/
-	// TODO: national decisions, national events, war exhaustion
-
 	// create the pops
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
-		(*itr)->setupPops(primaryCulture, acceptedCultures, religion, con, mil);
+		(*itr)->setupPops(primaryCulture, acceptedCultures, religion);
 	}
 }
 
