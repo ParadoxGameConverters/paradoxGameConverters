@@ -80,9 +80,9 @@ V2Country::V2Country(string _tag, string _commonCountryFile, map<int, V2Party*> 
 	reforms		= NULL;
 	srcCountry	= NULL;
 
-	upperHouseReactionary	= 0.333;
-	upperHouseConservative	= 0.333;
-	upperHouseLiberal			= 0.333;
+	upperHouseReactionary	= 10;
+	upperHouseConservative	= 65;
+	upperHouseLiberal			= 25;
 
 	uncivReforms = NULL;
 
@@ -125,6 +125,16 @@ void V2Country::output() const
 	}
 	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
 	fprintf(output, "literacy=%f\n", literacy);
+	fprintf(output, "upper_house=\n");
+	fprintf(output, "{\n");
+	fprintf(output, "	fascist = 0\n");
+	fprintf(output, "	liberal = %d\n", upperHouseLiberal);
+	fprintf(output, "	conservative = %d\n", upperHouseConservative);
+	fprintf(output, "	reactionary = %d\n", upperHouseReactionary);
+	fprintf(output, "	anarcho_liberal = 0\n");
+	fprintf(output, "	socialist = 0\n");
+	fprintf(output, "	communist = 0\n");
+	fprintf(output, "}\n");
 	/*fprintf(output, "%s=\n", tag.c_str());
 	fprintf(output, "{\n");
 	
@@ -142,12 +152,7 @@ void V2Country::output() const
 			uncivReforms->output(output);
 		}
 	}
-	fprintf(output, "	upper_house=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		reactionary=%f\n", upperHouseReactionary);
-	fprintf(output, "		conservative=%f\n", upperHouseConservative);
-	fprintf(output, "		liberal=%f\n", upperHouseLiberal);
-	fprintf(output, "	}\n");
+	
 	outputParties(output);
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
 	outputCountryHeader(output);
@@ -493,53 +498,21 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 	}
 
-	////  Politics
-	//upperHouseReactionary = upperHouseConservative = upperHouseLiberal = 0.0;
-	//if (srcCountry->getCentralizationDecentralization() < 0)
-	//{
-	//	upperHouseConservative -= srcCountry->getCentralizationDecentralization();
-	//}
-	//else
-	//{
-	//	upperHouseLiberal += srcCountry->getCentralizationDecentralization();
-	//}
-	//if (srcCountry->getAristocracyPlutocracy() < 0)
-	//{
-	//	upperHouseReactionary -= srcCountry->getAristocracyPlutocracy();
-	//}
-	//else
-	//{
-	//	upperHouseLiberal += srcCountry->getAristocracyPlutocracy();
-	//}
-	//if (srcCountry->getSerfdomFreesubjects() < 0)
-	//{
-	//	upperHouseReactionary -= srcCountry->getSerfdomFreesubjects();
-	//}
-	//else
-	//{
-	//	upperHouseLiberal += srcCountry->getSerfdomFreesubjects();
-	//}
-	//if (srcCountry->getInnovativeNarrowminded() < 0)
-	//{
-	//	upperHouseLiberal -= srcCountry->getInnovativeNarrowminded();
-	//}
-	//else
-	//{
-	//	upperHouseConservative += srcCountry->getInnovativeNarrowminded();
-	//}
-	//if (srcCountry->getMercantilismFreetrade() < 0)
-	//{
-	//	upperHouseConservative -= srcCountry->getMercantilismFreetrade();
-	//}
-	//else
-	//{
-	//	upperHouseLiberal += srcCountry->getMercantilismFreetrade();
-	//}
-	//double total = upperHouseReactionary + upperHouseConservative + upperHouseLiberal;
-	//upperHouseReactionary	/= total;
-	//upperHouseConservative	/= total;
-	//upperHouseLiberal			/= total;
-	//setRulingParty();
+	//  Politics
+	double liberalEffect			=  (srcCountry->hasNationalIdea("innovativeness_ideas") + 1) * 0.0125;
+	liberalEffect					+= (srcCountry->hasNationalIdea("plutocracy_ideas") + 1) * 0.0125;
+	liberalEffect					+= (srcCountry->hasNationalIdea("trade_ideas") + 1) * 0.0125;
+	liberalEffect					+= (srcCountry->hasNationalIdea("economic_ideas") + 1) * 0.0125;
+	double reactionaryEffect	=  (srcCountry->hasNationalIdea("aristocracy_ideas") + 1) * 0.0125;
+	reactionaryEffect				+= (srcCountry->hasNationalIdea("defensive_ideas") + 1) * 0.0125;
+	reactionaryEffect				+= (srcCountry->hasNationalIdea("quantity_ideas") + 1) * 0.0125;
+	reactionaryEffect				+= (srcCountry->hasNationalIdea("expansion_ideas") + 1) * 0.0125;
+	upperHouseReactionary		=  static_cast<int>(5  + (100 * reactionaryEffect));
+	upperHouseLiberal				=  static_cast<int>(10 + (100 * liberalEffect));
+	upperHouseConservative		=  static_cast<int>(85 - (100 * (reactionaryEffect + liberalEffect)));
+	log(",%s,%d,%d,%d\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
+	
+	setRulingParty();
 
 	//// Relations
 	//vector<EU4Relations*> srcRelations = srcCountry->getRelations();
@@ -681,7 +654,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	{
 		literacy = Configuration::getMaxLiteracy();
 	}
-	log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
+	//log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
 
 	// Capital
 	int oldCapital = srcCountry->getCapital();

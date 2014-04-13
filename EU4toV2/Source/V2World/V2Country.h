@@ -111,9 +111,9 @@ class V2Country
 		double							researchPoints;
 		string							techSchool;
 		string							government;
-		double							upperHouseReactionary;
-		double							upperHouseConservative;
-		double							upperHouseLiberal;
+		int								upperHouseReactionary;
+		int								upperHouseConservative;
+		int								upperHouseLiberal;
 		vector< pair<int, int> >	reactionaryIssues;
 		vector< pair<int, int> >	conservativeIssues;
 		vector< pair<int, int> >	liberalIssues;
