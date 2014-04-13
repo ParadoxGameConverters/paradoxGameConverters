@@ -218,9 +218,8 @@ V2World::V2World()
 
 	countries.clear();
 
-	log("\tGetting potential countries and building political parties.\n");
-	printf("\tGetting potential countries and building political parties.\n");
-	parties.clear();
+	log("\tGetting potential countries.\n");
+	printf("\tGetting potential countries.\n");
 	potentialCountries.clear();
 	dynamicCountries.clear();
 	const date FirstStartDate = Configuration::getStartDate();
@@ -240,7 +239,6 @@ V2World::V2World()
 		exit(1);
 	}
 
-	int	partiesIndex	= 1;
 	bool	staticSection	= true;
 	while (!V2CountriesInput.eof())
 	{
@@ -286,13 +284,11 @@ V2World::V2World()
 		}
 
 		vector<Object*> partyData = countryData->getValue("party");
-		map<int, V2Party*> localParties;
+		vector<V2Party*> localParties;
 		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 		{
 			V2Party* newParty = new V2Party(*itr);
-			parties.insert(make_pair(partiesIndex, newParty));
-			localParties.insert(make_pair(partiesIndex, newParty));
-			partiesIndex++;
+			localParties.push_back(newParty);
 		}
 
 		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);

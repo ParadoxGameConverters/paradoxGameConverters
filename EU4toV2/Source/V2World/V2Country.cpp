@@ -28,14 +28,14 @@
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 
-V2Country::V2Country(string _tag, string _commonCountryFile, map<int, V2Party*> _parties, V2World* _theWorld)
+V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld)
 {
 	theWorld = _theWorld;
 
 	tag					= _tag;
 	commonCountryFile	= _commonCountryFile;
 	parties				= _parties;
-	rulingParty			= -1;
+	rulingParty			= "";
 
 	states.clear();
 	provinces.clear();
@@ -85,8 +85,6 @@ V2Country::V2Country(string _tag, string _commonCountryFile, map<int, V2Party*> 
 	upperHouseLiberal			= 25;
 
 	uncivReforms = NULL;
-
-	setIssues();
 }
 
 
@@ -125,6 +123,7 @@ void V2Country::output() const
 	}
 	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
 	fprintf(output, "literacy=%f\n", literacy);
+	fprintf(output, "ruling_party=%s\n", rulingParty.c_str());
 	fprintf(output, "upper_house=\n");
 	fprintf(output, "{\n");
 	fprintf(output, "	fascist = 0\n");
@@ -135,10 +134,7 @@ void V2Country::output() const
 	fprintf(output, "	socialist = 0\n");
 	fprintf(output, "	communist = 0\n");
 	fprintf(output, "}\n");
-	/*fprintf(output, "%s=\n", tag.c_str());
-	fprintf(output, "{\n");
-	
-	fprintf(output, "	research_points=%f\n", researchPoints);
+	/*	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputTech(output);
 	outputElection(output);
 	if (reforms != NULL)
@@ -153,7 +149,6 @@ void V2Country::output() const
 		}
 	}
 	
-	outputParties(output);
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
 	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
@@ -309,19 +304,6 @@ void V2Country::outputElection(FILE* output) const
 	}
 	electionDate.year -= 4;
 	fprintf(output, "	last_election=%s\n", electionDate.toString().c_str());
-}
-
-
-void V2Country::outputParties(FILE* output) const
-{
-	fprintf(output, "	ruling_party=%d\n", rulingParty);
-	for (map<int, V2Party*>::const_iterator i = parties.begin(); i != parties.end(); i++)
-	{
-		if (  i->second->isActiveOn( Configuration::getStartDate() )  )
-		{
-			fprintf(output, "	active_party=%d\n", i->first);
-		}
-	}
 }
 
 
@@ -510,9 +492,42 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	upperHouseReactionary		=  static_cast<int>(5  + (100 * reactionaryEffect));
 	upperHouseLiberal				=  static_cast<int>(10 + (100 * liberalEffect));
 	upperHouseConservative		=  static_cast<int>(85 - (100 * (reactionaryEffect + liberalEffect)));
-	log(",%s,%d,%d,%d\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
+	//log(",%s,%d,%d,%d\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
+	log("%s has an Upper House of %d reactionary, %d conservative, and %d liberal\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
 	
-	setRulingParty();
+	string idealogy;
+	if (liberalEffect >= 2 * reactionaryEffect)
+	{
+		idealogy = "liberal";
+	}
+	else if (reactionaryEffect >= 2 * liberalEffect)
+	{
+		idealogy = "reactionary";
+	}
+	else
+	{
+		idealogy = "conservative";
+	}
+	for (vector<V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
+	{
+		if ((*i)->isActiveOn(Configuration::getStartDate()) && ((*i)->ideology == idealogy))
+		{
+			rulingParty = (*i)->name;
+			break;
+		}
+	}
+	if (rulingParty == "")
+	{
+		for (vector<V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
+		{
+			if ((*i)->isActiveOn(Configuration::getStartDate()))
+			{
+				rulingParty = (*i)->name;
+				break;
+			}
+		}
+	}
+	log("%s's ruling party is %s\n", tag.c_str(), rulingParty.c_str());
 
 	//// Relations
 	//vector<EU4Relations*> srcRelations = srcCountry->getRelations();
@@ -1849,313 +1864,6 @@ V2Relations* V2Country::getRelations(string withWhom) const
 		}
 	}
 	return NULL;
-}
-
-
-void V2Country::setIssues()
-{
-	//reactionary issues
-	int issueWeights[68];
-	memset(issueWeights, 0, sizeof(issueWeights) );
-	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
-	{
-		V2Party* party = i->second;
-		if (party->ideology != "reactionary")
-		{
-			continue;
-		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
-		{
-			continue;
-		}
-
-		if (party->economic_policy == "laissez_faire")
-		{
-			issueWeights[3]++;
-		}
-		else if (party->economic_policy == "interventionism")
-		{
-			issueWeights[4]++;
-		}
-		else if (party->economic_policy == "state_capitalism")
-		{
-			issueWeights[5]++;
-		}
-		else if (party->economic_policy == "planned_economy")
-		{
-			issueWeights[6]++;
-		}
-
-		if (party->trade_policy == "protectionism")
-		{
-			issueWeights[1]++;
-		}
-		else if (party->trade_policy == "free_trade")
-		{
-			issueWeights[2]++;
-		}
-
-		if (party->religious_policy == "pro_atheism")
-		{
-			issueWeights[7]++;
-		}
-		else if (party->religious_policy == "secularized")
-		{
-			issueWeights[8]++;
-		}
-		else if (party->religious_policy == "pluralism")
-		{
-			issueWeights[9]++;
-		}
-		else if (party->religious_policy == "moralism")
-		{
-			issueWeights[10]++;
-		}
-
-		if (party->citizenship_policy == "residency")
-		{
-			issueWeights[11]++;
-		}
-		else if (party->citizenship_policy == "limited_citizenship")
-		{
-			issueWeights[12]++;
-		}
-		else if (party->citizenship_policy == "full_citizenship")
-		{
-			issueWeights[13]++;
-		}
-
-		if (party->war_policy == "jingoism")
-		{
-			issueWeights[14]++;
-		}
-		else if (party->war_policy == "pro_military")
-		{
-			issueWeights[15]++;
-		}
-		else if (party->war_policy == "anti_military")
-		{
-			issueWeights[16]++;
-		}
-		else if (party->war_policy == "pacifism")
-		{
-			issueWeights[16]++;
-		}
-	}
-
-	for (unsigned int i = 0; i < 68; i++)
-	{
-		if (issueWeights[i] > 0)
-		{
-			reactionaryIssues.push_back(make_pair(i, issueWeights[i]));
-		}
-	}
-
-
-	//conservative issues
-	memset(issueWeights, 0, sizeof(issueWeights) );
-	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
-	{
-		V2Party* party = i->second;
-		if (party->ideology != "conservative")
-		{
-			continue;
-		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
-		{
-			continue;
-		}
-
-		if (party->economic_policy == "laissez_faire")
-		{
-			issueWeights[3]++;
-		}
-		else if (party->economic_policy == "interventionism")
-		{
-			issueWeights[4]++;
-		}
-		else if (party->economic_policy == "state_capitalism")
-		{
-			issueWeights[5]++;
-		}
-		else if (party->economic_policy == "planned_economy")
-		{
-			issueWeights[6]++;
-		}
-
-		if (party->trade_policy == "protectionism")
-		{
-			issueWeights[1]++;
-		}
-		else if (party->trade_policy == "free_trade")
-		{
-			issueWeights[2]++;
-		}
-
-		if (party->religious_policy == "pro_atheism")
-		{
-			issueWeights[7]++;
-		}
-		else if (party->religious_policy == "secularized")
-		{
-			issueWeights[8]++;
-		}
-		else if (party->religious_policy == "pluralism")
-		{
-			issueWeights[9]++;
-		}
-		else if (party->religious_policy == "moralism")
-		{
-			issueWeights[10]++;
-		}
-
-		if (party->citizenship_policy == "residency")
-		{
-			issueWeights[11]++;
-		}
-		else if (party->citizenship_policy == "limited_citizenship")
-		{
-			issueWeights[12]++;
-		}
-		else if (party->citizenship_policy == "full_citizenship")
-		{
-			issueWeights[13]++;
-		}
-
-		if (party->war_policy == "jingoism")
-		{
-			issueWeights[14]++;
-		}
-		else if (party->war_policy == "pro_military")
-		{
-			issueWeights[15]++;
-		}
-		else if (party->war_policy == "anti_military")
-		{
-			issueWeights[16]++;
-		}
-		else if (party->war_policy == "pacifism")
-		{
-			issueWeights[16]++;
-		}
-	}
-
-	for (unsigned int i = 0; i < 68; i++)
-	{
-		if (issueWeights[i] > 0)
-		{
-			conservativeIssues.push_back(make_pair(i, issueWeights[i]));
-		}
-	}
-
-	//liberal issues
-	memset(issueWeights, 0, sizeof(issueWeights) );
-	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
-	{
-		V2Party* party = i->second;
-		if (party->ideology != "liberal")
-		{
-			continue;
-		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
-		{
-			continue;
-		}
-
-		if (party->economic_policy == "laissez_faire")
-		{
-			issueWeights[3]++;
-		}
-		else if (party->economic_policy == "interventionism")
-		{
-			issueWeights[4]++;
-		}
-		else if (party->economic_policy == "state_capitalism")
-		{
-			issueWeights[5]++;
-		}
-		else if (party->economic_policy == "planned_economy")
-		{
-			issueWeights[6]++;
-		}
-
-		if (party->trade_policy == "protectionism")
-		{
-			issueWeights[1]++;
-		}
-		else if (party->trade_policy == "free_trade")
-		{
-			issueWeights[2]++;
-		}
-
-		if (party->religious_policy == "pro_atheism")
-		{
-			issueWeights[7]++;
-		}
-		else if (party->religious_policy == "secularized")
-		{
-			issueWeights[8]++;
-		}
-		else if (party->religious_policy == "pluralism")
-		{
-			issueWeights[9]++;
-		}
-		else if (party->religious_policy == "moralism")
-		{
-			issueWeights[10]++;
-		}
-
-		if (party->citizenship_policy == "residency")
-		{
-			issueWeights[11]++;
-		}
-		else if (party->citizenship_policy == "limited_citizenship")
-		{
-			issueWeights[12]++;
-		}
-		else if (party->citizenship_policy == "full_citizenship")
-		{
-			issueWeights[13]++;
-		}
-
-		if (party->war_policy == "jingoism")
-		{
-			issueWeights[14]++;
-		}
-		else if (party->war_policy == "pro_military")
-		{
-			issueWeights[15]++;
-		}
-		else if (party->war_policy == "anti_military")
-		{
-			issueWeights[16]++;
-		}
-		else if (party->war_policy == "pacifism")
-		{
-			issueWeights[16]++;
-		}
-	}
-
-	for (unsigned int i = 0; i < 68; i++)
-	{
-		if (issueWeights[i] > 0)
-		{
-			liberalIssues.push_back(make_pair(i, issueWeights[i]));
-		}
-	}
-}
-
-
-void V2Country::setRulingParty()
-{
-	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
-	{
-		if (i->second->isActiveOn(Configuration::getStartDate()) )
-		{
-			rulingParty = i->first;
-			break;
-		}
-	}
 }
 
 
