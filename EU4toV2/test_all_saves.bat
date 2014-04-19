@@ -1,18 +1,21 @@
-set m=%~n1
+echo off
 
-echo Preparing to test the %m% config.
+for /f %%p in ('dir /b testresults\') do call del testresults\%%p /q
+for /f %%p in ('dir /b testresults\') do call rmdir testresults\%%p
+del testResults /q
+rmdir testresults
+mkdir testresults\
 
-mkdir testresults\%m%
-
-copy TestConfigurations\%m%\configuration.txt Release\configuration.txt
-copy TestConfigurations\%m%\country_mappings.txt Release\country_mappings.txt
-copy TestConfigurations\%m%\cultureMap.txt Release\cultureMap.txt
-copy TestConfigurations\%m%\religionMap.txt Release\religionMap.txt
-copy TestConfigurations\%m%\unions.txt Release\unions.txt
+copy Release\configuration.txt Release\configuration-backup.txt
 
 copy test.bat Release\test.bat
 cd Release
-for /f %%k in ('dir /b ..\EU4_Saves\*.zip') do call test.bat "%%k" "%m%"
+for /f %%k in ('dir /b ..\EU4_Saves\*.zip') do call test.bat "%%k"
 xcopy output "..\testresults\%j%" /E /Q /Y /I
 del test.bat /q
 cd ..
+
+copy Release\configuration-backup.txt Release\configuration.txt
+
+cd testresults
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\EU4toV2-testresults.zip" "*.*" -mx5
