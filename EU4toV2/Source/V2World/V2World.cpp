@@ -1209,8 +1209,6 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	double newMilS;
 	double highestMil;
 
-	log("1\n");
-
 	int num = 2;
 	map<string, EU4Country*>::iterator i = sourceCountries.begin();
 	while (i->second->getProvinces().size() == 0)
@@ -1220,8 +1218,6 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	highestAdm			= oldAdmMean			= admMean			= i->second->getAdmTech();
 	highestDip			= oldDipMean			= dipMean			= i->second->getDipTech();
 	highestMil			= oldMilMean			= milMean			= i->second->getMilTech();
-
-	log("2\n");
 
 	for (i++; i != sourceCountries.end(); i++)
 	{
@@ -1262,8 +1258,6 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		num++;
 	}
 
-	log("3\n");
-
 	double admStdDev		= sqrt( (num > 1) ? (newAdmS/(num - 1)) : 0.0 );
 	double dipStdDev		= sqrt( (num > 1) ? (newDipS/(num - 1)) : 0.0 );
 	double milStdDev		= sqrt( (num > 1) ? (newMilS/(num - 1)) : 0.0 );
@@ -1283,8 +1277,6 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 			itr->second->setCultureTech(admMean, admScale, admStdDev);
 		}
 	}
-
-	log("4\n");
 
 	int numRomanticLit = 0;
 	int numRomanticArt = 0;

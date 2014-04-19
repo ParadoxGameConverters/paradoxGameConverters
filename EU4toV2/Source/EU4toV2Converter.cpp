@@ -553,9 +553,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	/*printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);*/
-	/*printf("Converting techs.\n");
+	printf("Converting techs.\n");
 	log("Converting techs.\n");
-	destWorld.convertTechs(sourceWorld);*/
+	destWorld.convertTechs(sourceWorld);
 	/*printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);*/

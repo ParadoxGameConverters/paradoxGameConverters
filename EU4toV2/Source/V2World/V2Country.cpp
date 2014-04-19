@@ -144,8 +144,8 @@ void V2Country::output() const
 	fprintf(output, "consciousness = 0\n");
 	fprintf(output, "nonstate_consciousness = 0\n");
 	fprintf(output, "\n");
-	/*	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputTech(output);
+	/*	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputElection(output);
 	if (reforms != NULL)
 	{
@@ -200,15 +200,12 @@ void V2Country::output() const
 
 void V2Country::outputTech(FILE* output) const
 {
-	fprintf(output, "	technology=\n");
-	fprintf(output, "	{\n");
-
+	fprintf(output, "\n");
+	fprintf(output, "# Technologies\n");
 	for (vector<string>::const_iterator itr = techs.begin(); itr != techs.end(); ++itr)
 	{
-		fprintf(output, "\t\t"); fprintf(output, itr->c_str()); fprintf(output, "={1 0.000}\n");
+		fprintf(output, itr->c_str()); fprintf(output, " = 1\n");
 	}
-
-	fprintf(output, "	}\n");
 }
 
 

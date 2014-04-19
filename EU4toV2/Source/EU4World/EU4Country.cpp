@@ -8,7 +8,7 @@
 #include <algorithm>
 
 
-
+#
 EU4Country::EU4Country(Object* obj)
 {
 	tag = obj->getKey();
@@ -148,35 +148,12 @@ EU4Country::EU4Country(Object* obj)
 		techObj = techsObj[0]->getValue("mil_tech");
 		milTech = atof( techObj[0]->getLeaf().c_str() );
 	}
-/*	vector<Object*> techsObj = obj->getValue("technology");
-	if (techsObj.size() > 0)
-	{
-		vector<Object*> techObj = techsObj[0]->getValue("adm_tech");
-		admTech = atof( techObj[0]->getLeaf().c_str() );
-		string techString = techObj[0]->getToken(0);
-		admTech = atof( techString.c_str() );
-
-		techsObj = obj->getValue("technology");
-		techObj = techsObj[0]->getValue("dip_tech");
-		techString = techObj[0]->getToken(0);
-		dipTech = atof( techString.c_str() );
-
-		techsObj = obj->getValue("technology");
-		techObj = techsObj[0]->getValue("mil_tech");
-		techString = techObj[0]->getToken(0);
-		milTech = atof( techString.c_str() );
-	}*/
-
 	else
 	{
 		admTech		= 0.0;
 		dipTech		= 0.0;
 		milTech		= 0.0;
 	}
-
-	admTech		= 0.0;
-	dipTech		= 0.0;
-	milTech		= 0.0;
 
 	vector<Object*> incomeObj = obj->getValue("estimated_monthly_income");
 	if (incomeObj.size() > 0)
