@@ -436,12 +436,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 							log("Could not parse file %s\n", modReligionFile.c_str());
 							exit(-1);
 						}
-						if (obj->getLeaves().size() < 1)
-						{
-							log("Error: Failed to parse religions file.\n");
-							printf("Error: Failed to parse religions file.\n");
-							return 1;
-						}
 						EU4Religion::parseReligions(obj);
 					}
 				}
