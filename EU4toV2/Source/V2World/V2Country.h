@@ -74,7 +74,6 @@ class V2Country
 		int								getCapital() const { return capital; };
 	private:
 		void			outputTech(FILE*) const ;
-		void			outputInventions(FILE*) const;
 		void			outputElection(FILE*) const;
 		void			sortRelations(const vector<string>& order);
 		void			addLoan(string creditor, double size, double interest);
