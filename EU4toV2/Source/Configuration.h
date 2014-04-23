@@ -38,11 +38,6 @@ public:
 		return getInstance()->V2DocumentsPath;
 	}
 
-	static string getEU4Gametype()
-	{
-		return getInstance()->EU4Gametype;
-	}
-
 	static string getV2Gametype()
 	{
 		return getInstance()->V2Gametype;
@@ -51,16 +46,6 @@ public:
 	static string getEU4Mod()
 	{
 		return getInstance()->EU4Mod;
-	}
-
-	static bool getUseV2Mod()
-	{
-		return getInstance()->useV2Mod;
-	}
-
-	static date getStartDate()
-	{
-		return getInstance()->StartDate;
 	}
 
 	static date	getFirstEU4Date()
@@ -108,22 +93,21 @@ public:
 private:
 	static Configuration* instance;
 
+	// options from configuration.txt
 	string	EU4Path;
 	string	EU4DocumentsPath;
 	string	EU4ModPath;
 	string	V2Path;
 	string	V2DocumentsPath;
-	string	EU4Gametype;
 	string	V2Gametype;
 	string	EU4Mod;
-	bool		useV2Mod;
-	string	Removetype;
-	date		StartDate;
-	date		firstEU4Date;
 	string	resetProvinces;
 	double	MaxLiteracy;
+	string	Removetype;
+	
+	// items set during conversion
+	date		firstEU4Date;
 	string	outputName;
-
 };
 
 #endif // CONFIGURATION_H_

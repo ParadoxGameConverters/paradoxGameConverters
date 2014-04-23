@@ -756,7 +756,7 @@
 	link = { eu4 = 993 v2 = 58 }	# Hochelega -> Montreal
 	link = { eu4 = 992 v2 = 63 }	# Algonquin -> Temiscaming
 	# Greenland
-	link = { eu4 = 1105 eu4 = 1104 eu4 = 1804 v2 = 2591 v2 = 2636 v2 = 2632 v2 = 251 }	# MANY-TO-MANY: Vestbygden, Eiriksfjord, Greenland -> Holsteinsborg, Egedesminde, Ammassalik, Godthab
+	link = { eu4 = 1105 eu4 = 1104 v2 = 2591 v2 = 2636 v2 = 2632 v2 = 251 }	# MANY-TO-MANY: Vestbygden, Eiriksfjord, Greenland -> Holsteinsborg, Egedesminde, Ammassalik, Godthab
 	# Western Coast
 	link = { eu4 = 874 v2 = 78 }	# Salish -> Seattle
 	link = { eu4 = 873 eu4 = 872 v2 = 81 }	# Chinook, Kalapuya -> Portland
@@ -2029,6 +2029,7 @@
 	link = { eu4 = 1779 }	# Rub' al Khali -> DROPPED
 	link = { eu4 = 1784 }	# Tiam Shan -> DROPPED
 	link = { eu4 = 1786 }	# Takla Makan -> DROPPED
+	link = { eu4 = 1804 }	# Greenland -> DROPPED
 	link = { eu4 = 1805 }	# Québec -> DROPPED
 	link = { eu4 = 1883 }	# Western Finish lakes -> DROPPED
 	link = { eu4 = 1884 }	# East Finish lakes -> DROPPED
@@ -4084,6 +4085,7 @@
 	link = { eu4 = 1779 }
 	link = { eu4 = 1784 }
 	link = { eu4 = 1786 }
+	link = { eu4 = 1804 }
 	link = { eu4 = 1805 }
 	link = { eu4 = 1883 }
 	link = { eu4 = 1884 }

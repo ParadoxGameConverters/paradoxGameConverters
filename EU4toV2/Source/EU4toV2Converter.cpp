@@ -68,8 +68,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		outputName.replace(dash, 1, "_");
 		dash = outputName.find_first_of('-');
 	}
+	int space = outputName.find_first_of(' ');
+	while (space != string::npos)
+	{
+		outputName.replace(space, 1, "_");
+		space = outputName.find_first_of(' ');
+	}
 	Configuration::setOutputName(outputName);
 	log("Using output name %s\n", outputName.c_str());
+	printf("Using output name %s\n", outputName.c_str());
 
 	//	Parse EU4 Save
 	log("Importing EU4 save.\n");
@@ -287,7 +294,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Generate region mapping
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
-	if ((Configuration::getUseV2Mod()) && (_stat(".\\blankMod\\output\\map\\region.txt", &st) != 0))
+	if (_stat(".\\blankMod\\output\\map\\region.txt", &st) == 0)
 	{
 		obj = doParseFile(".\\blankMod\\output\\map\\region.txt");
 		if (obj == NULL)
@@ -428,12 +435,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 						{
 							log("Could not parse file %s\n", modReligionFile.c_str());
 							exit(-1);
-						}
-						if (obj->getLeaves().size() < 1)
-						{
-							log("Error: Failed to parse religions file.\n");
-							printf("Error: Failed to parse religions file.\n");
-							return 1;
 						}
 						EU4Religion::parseReligions(obj);
 					}
