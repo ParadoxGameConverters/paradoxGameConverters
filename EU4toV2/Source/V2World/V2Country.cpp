@@ -210,7 +210,7 @@ void V2Country::outputTech(FILE* output) const
 
 void V2Country::outputElection(FILE* output) const
 {
-	date electionDate = Configuration::getStartDate();
+	date electionDate = date("1836.1.1");
 
 	if (electionDate.month == 12)
 	{
@@ -232,15 +232,12 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	if (Configuration::getUseV2Mod())
+	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
-		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-		}
-		_findclose(fileListing);
+		filename = fileData.name;
 	}
+	_findclose(fileListing);
 	if (filename == "")
 	{
 		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
@@ -427,7 +424,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	}
 	for (vector<V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		if ((*i)->isActiveOn(Configuration::getStartDate()) && ((*i)->ideology == idealogy))
+		if ((*i)->isActiveOn(date("1836.1.1")) && ((*i)->ideology == idealogy))
 		{
 			rulingParty = (*i)->name;
 			break;
@@ -437,7 +434,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	{
 		for (vector<V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 		{
-			if ((*i)->isActiveOn(Configuration::getStartDate()))
+			if ((*i)->isActiveOn(date("1836.1.1")))
 			{
 				rulingParty = (*i)->name;
 				break;
@@ -671,16 +668,13 @@ void V2Country::initFromHistory()
 	string fullFilename;
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	if (Configuration::getUseV2Mod())
+	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
-		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename			= fileData.name;
-			fullFilename	= string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
-		}
-		_findclose(fileListing);
+		filename			= fileData.name;
+		fullFilename	= string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
 	}
+	_findclose(fileListing);
 	if (fullFilename == "")
 	{
 		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
