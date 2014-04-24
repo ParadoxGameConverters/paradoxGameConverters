@@ -9,3 +9,6 @@ call EU4toV2Converter.exe "%i%.eu4"
 del "%i%.eu4" /q
 copy log.txt "..\testresults\%j%\%i%-Log.txt"
 del log.txt /q
+del %i%.mod
+del %i% /q
+rmdir %i%

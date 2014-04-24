@@ -16,6 +16,7 @@ del test.bat /q
 cd ..
 
 copy Release\configuration-backup.txt Release\configuration.txt
+del Release\configuration-backup.txt
 
 cd testresults
 call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\EU4toV2-testresults.zip" "*.*" -mx5

@@ -155,9 +155,9 @@ link = { v2 = cherokee eu4 = cherokee }
 link = { v2 = pueblo eu4 = pueblo }
 link = { v2 = inuit eu4 = inuit eu4 = aleutian }
 link = { v2 = cree eu4 = cree }
-link = { v2 = metis eu4 = iroquis eu4 = huron eu4 = shawnee }
+link = { v2 = metis eu4 = iroquois eu4 = iroquis eu4 = huron eu4 = shawnee }
 link = { v2 = navajo eu4 = navajo }
-link = { v2 = native_american_minor eu4 = delaware eu4 = piman eu4 = shoshone eu4 = susquehannock eu4 = creek eu4 = choctaw eu4 = chickasaw eu4 = pawnee eu4 = anishinabe eu4 = cheyenne eu4 = abenaki eu4 = mikmaq eu4 = mahican eu4 = powhatan eu4 = pequot eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = caddo }
+link = { v2 = native_american_minor eu4 = delaware eu4 = piman eu4 = shoshone eu4 = susquehannock eu4 = creek eu4 = choctaw eu4 = chickasaw eu4 = pawnee eu4 = anishinabe eu4 = cheyenne eu4 = abenaki eu4 = mikmaq eu4 = mahican eu4 = powhatan eu4 = pequot eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = caddo eu4 = illini }
 
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese }
@@ -312,6 +312,9 @@ link = { v2 = akan eu4 = aka eu4 = ashanti }
 
 # Bears
 #link = { v2 = bears eu4 = ? }
+
+# noculture
+link = { v2 = noculture eu4 = noculture }
 
 }
 
