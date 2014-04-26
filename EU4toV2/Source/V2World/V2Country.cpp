@@ -685,6 +685,11 @@ void V2Country::initFromHistory()
 		}
 		_findclose(fileListing);
 	}
+	if (fullFilename == "")
+	{
+		log("Error: Could not find country file for %s\n", tag.c_str());
+		exit(-1);
+	}
 
 	Object* obj = doParseFile(fullFilename.c_str());
 	if (obj == NULL)

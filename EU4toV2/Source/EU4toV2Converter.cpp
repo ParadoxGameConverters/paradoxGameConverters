@@ -21,19 +21,43 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	Object*	obj;					// generic object
 	ifstream	read;				// ifstream for reading files
 
+	Configuration::getInstance();
 
-	//Get V2 install location
+	char curDir[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, curDir);
+	log("Current directory is %s\n", curDir);
+
+	// Get V2 install location
 	log("Get V2 Install Path.\n");
 	string V2Loc = Configuration::getV2Path();
 	struct _stat st;
 	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
 	{
-		log("No Victoria2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Victoria2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
+	else
+	{
+		log("Victoria 2 install path is %s\n", V2Loc.c_str());
+	}
 
-	//Get EU4 install location
+	// Get V2 Documents Directory
+	log("Get V2 Documents directory\n");
+	string V2DocLoc = Configuration::getV2DocumentsPath();
+	struct _stat st;
+	if (V2DocLoc.empty() || (_stat(V2DocLoc.c_str(), &st) != 0))
+	{
+		log("No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
+	else
+	{
+		log("Victoria 2 documents directory is %s\n", V2DocLoc.c_str());
+	}
+
+	// Get EU4 install location
 	log("Get EU4 Install Path.\n");
 	string EU4Loc = Configuration::getEU4Path();
 	if (EU4Loc.empty() || (_stat(EU4Loc.c_str(), &st) != 0))
@@ -42,7 +66,56 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
+	else
+	{
+		log("EU4 install path is %s\n", EU4Loc.c_str());
+	}
 
+	// Get EU4 Mod directory
+	log("Get EU4 Mod Directory\n");
+	string EU4DocLoc = Configuration::getEU4DocumentsPath();
+	if (EU4DocLoc.empty() || (_stat(EU4DocLoc.c_str(), &st) != 0))
+	{
+		log("No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
+	else
+	{
+		log("EU4 Mod direcotry is %s\n", EU4DocLoc.c_str());
+	}
+
+	// Get EU4 Mod directory
+	log("Get EU4 Mod Directory\n");
+	string EU4ModLoc = Configuration::getEU4ModPath();
+	if (EU4ModLoc.empty() || (_stat(EU4ModLoc.c_str(), &st) != 0))
+	{
+		log("No Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
+	else
+	{
+		log("EU4 Mod directory is %s\n", EU4ModLoc.c_str());
+	}
+
+	// Get EU4 Mod
+	log("Get EU4 Mod\n");
+	string modName = Configuration::getEU4Mod();
+	if (modName != "")
+	{
+		string fullModPath = EU4ModLoc + modName;
+		if (fullModPath.empty() || (_stat(fullModPath.c_str(), &st) != 0))
+		{
+			log("%s could not be found at the specified directory.  A valid path and mod must be specified.\n", modName.c_str());
+			printf("%s could not be found at the specified directory.  A valid path and mod must be specified.\n", modName.c_str());
+			return (-2);
+		}
+		else
+		{
+			log("EU4 Mod is at %s\n", EU4ModLoc.c_str());
+		}
+	}
 
 	//Get Input EU4 save 
 	string inputFilename("input.eu4");
