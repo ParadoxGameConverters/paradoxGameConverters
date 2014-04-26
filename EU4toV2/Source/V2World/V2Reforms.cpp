@@ -828,24 +828,25 @@ void V2Reforms::modifierEffects(const EU4Country* srcCountry)
 V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, double socioEcoFocus, V2Country* country)
 {
 	int westernizationCost[16];
-	westernizationCost[0]	= 10;
-	westernizationCost[1]	= 10;
-	westernizationCost[2]	= 10;
-	westernizationCost[3]	= 0;
-	westernizationCost[4]	= 10;
-	westernizationCost[5]	= 10;
+	westernizationCost[0]	= 15;
+	westernizationCost[1]	= 15;
+	westernizationCost[2]	= 15;
+	westernizationCost[3]	= 20;
+	westernizationCost[4]	= 15;
+	westernizationCost[5]	= 15;
 	westernizationCost[6]	= 20;
-	westernizationCost[7]	= 30;
+	westernizationCost[7]	= 25;
 
 	westernizationCost[8]	= 10;
 	westernizationCost[9]	= 10;
 	westernizationCost[10]	= 10;
-	westernizationCost[11]	= 15;
-	westernizationCost[12]	= 15;
-	westernizationCost[13]	= 15;
-	westernizationCost[14]	= 15;
-	westernizationCost[15]	= 15;
+	westernizationCost[11]	= 10;
+	westernizationCost[12]	= 10;
+	westernizationCost[13]	= 10;
+	westernizationCost[14]	= 10;
+	westernizationCost[15]	= 10;
 
+	// Get all valid socio-economic reforms
 	double socioEconProgress = westernizationProgress * socioEcoFocus;
 	for (unsigned int i = 0; i < 8; i++)
 	{
@@ -860,6 +861,7 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 		}
 	}
 
+	// Get all valid military reforms
 	double milProgress = westernizationProgress * milFocus;
 	for (unsigned int i = 8; i < 16; i++)
 	{
@@ -874,6 +876,7 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 		}
 	}
 
+	// Use remaining progress to get any reforms in preferred category
 	double remainingProgress = socioEconProgress + milProgress;
 	if (socioEconProgress >= milProgress)
 	{
@@ -906,8 +909,24 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 		}
 	}
 
+	// Use any remaining progress to get any possible reforms
+	for (unsigned int i = 0; i < 16; i++)
+	{
+		if (reforms[i] == true)
+		{
+			continue;
+		}
+		else if (remainingProgress >= westernizationCost[i] - 0.001)
+		{
+			reforms[i] = true;
+			remainingProgress -= westernizationCost[i];
+		}
+	}
+
+	// Convert remaining progress to RP
 	country->addResearchPoints(remainingProgress * 800);
 
+	// Implement special effects from reforms
 	if (reforms[5] == true)
 	{
 		country->addRailroadtoCapitalState();

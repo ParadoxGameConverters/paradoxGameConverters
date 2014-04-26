@@ -1163,40 +1163,61 @@ void V2Country::convertUncivReforms()
 		{
 			// civilized, do nothing
 		}
-		else if (	(srcCountry->getTechGroup() == "nomad_group")  || (srcCountry->getTechGroup() == "sub_saharan")    || (srcCountry->getTechGroup() == "north_american") ||
-						(srcCountry->getTechGroup() == "mesoamerican") || (srcCountry->getTechGroup() == "south_american") || (srcCountry->getTechGroup() == "new_world"))
+		else if (	(srcCountry->getTechGroup() == "north_american") || (srcCountry->getTechGroup() == "mesoamerican") ||
+						(srcCountry->getTechGroup() == "south_american") || (srcCountry->getTechGroup() == "new_world"))
 		{
-			double totalTechs		= srcCountry->getMilTech() + srcCountry->getDipTech() + srcCountry->getAdmTech();
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
 			log("\tSetting unciv reforms for %s. Westernization at 0 percent.\n", tag.c_str());
 			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
 		}
-		else if ( (srcCountry->getTechGroup() == "indian") || (srcCountry->getTechGroup() == "chinese") )
+		else if (srcCountry->getTechGroup() == "sub_saharan")
 		{
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getDipTech() + srcCountry->getAdmTech() +
-											  srcCountry->getDipTech() + srcCountry->getAdmTech();
-			double militaryDev = (srcCountry->getMilTech() + srcCountry->getDipTech()) / totalTechs;
-			double socioEconDev = (srcCountry->getAdmTech() + srcCountry->getDipTech() + srcCountry->getAdmTech()) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 30 percent.\n", tag.c_str());
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
+			double militaryDev	= srcCountry->getMilTech() / totalTechs;
+			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
+			log("\tSetting unciv reforms for %s. Westernization at 20 percent.\n", tag.c_str());
+			uncivReforms = new V2UncivReforms(20, militaryDev, socioEconDev, this);
+		}
+		else if (srcCountry->getTechGroup() == "nomad_group")
+		{
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
+			double militaryDev	= srcCountry->getMilTech() / totalTechs;
+			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
+			log("\tSetting unciv reforms for %s. Westernization at 30 percent.\n", tag.c_str());
 			uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
+		}
+		else if (srcCountry->getTechGroup() == "chinese")
+		{
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
+			double militaryDev	= srcCountry->getMilTech() / totalTechs;
+			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
+			log("	Setting unciv reforms for %s. Westernization at 36 percent.\n", tag.c_str());
+			uncivReforms = new V2UncivReforms(36, militaryDev, socioEconDev, this);
+		}
+		else if (srcCountry->getTechGroup() == "indian")
+		{
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
+			double militaryDev	= srcCountry->getMilTech() / totalTechs;
+			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
+			log("	Setting unciv reforms for %s. Westernization at 40 percent.\n", tag.c_str());
+			uncivReforms = new V2UncivReforms(40, militaryDev, socioEconDev, this);
 		}
 		else if (srcCountry->getTechGroup() == "muslim")
 		{
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getDipTech() + srcCountry->getAdmTech() +
-											  srcCountry->getDipTech() + srcCountry->getAdmTech();
-			double militaryDev = (srcCountry->getMilTech() + srcCountry->getDipTech()) / totalTechs;
-			double socioEconDev = (srcCountry->getAdmTech() + srcCountry->getDipTech() + srcCountry->getAdmTech()) / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 60 percent.\n", tag.c_str());
-			uncivReforms = new V2UncivReforms(60, militaryDev, socioEconDev, this);
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
+			double militaryDev	= srcCountry->getMilTech() / totalTechs;
+			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
+			log("	Setting unciv reforms for %s. Westernization at 44 percent.\n", tag.c_str());
+			uncivReforms = new V2UncivReforms(44, militaryDev, socioEconDev, this);
 		}
 		else
 		{
-			log("	Error: Unhandled tech group (%s) for unciv nation. Giving no reforms\n", srcCountry->getTechGroup().c_str());
-			double totalTechs = srcCountry->getMilTech() + srcCountry->getDipTech() + srcCountry->getAdmTech() +
-											  srcCountry->getDipTech() + srcCountry->getAdmTech();
-			double militaryDev = (srcCountry->getMilTech() + srcCountry->getDipTech()) / totalTechs;
-			double socioEconDev = (srcCountry->getAdmTech() + srcCountry->getDipTech() + srcCountry->getAdmTech()) / totalTechs;
+			log("	Error: Unhandled tech group (%s) for %s. Giving no reforms\n", srcCountry->getTechGroup().c_str(), tag.c_str());
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
+			double militaryDev	= srcCountry->getMilTech() / totalTechs;
+			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
 			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
 		}
 	}
