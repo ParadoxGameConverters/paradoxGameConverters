@@ -362,6 +362,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		}
 		initContinentMap(obj, continentMap);
 	}
+	if (continentMap.size() == 0)
+	{
+		log("Warning: no continent mappings found. May lead to problems later\n");
+	}
 	
 	// Generate region mapping
 	log("Parsing region structure.\n");
