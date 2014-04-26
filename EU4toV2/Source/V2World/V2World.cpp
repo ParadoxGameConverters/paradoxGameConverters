@@ -993,7 +993,7 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		{
 			int currentProvince = goodProvinces.front();
 			goodProvinces.pop();
-			if (currentProvince > adjacencyMap.size())
+			if (currentProvince > static_cast<int>(adjacencyMap.size()))
 			{
 				log("Error: no adjacency mapping for province %d\n", currentProvince);
 				continue;

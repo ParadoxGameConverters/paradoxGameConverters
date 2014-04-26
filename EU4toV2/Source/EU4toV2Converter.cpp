@@ -33,13 +33,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	struct _stat st;
 	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
 	{
-		log("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("\tNo Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 	else
 	{
-		log("Victoria 2 install path is %s\n", V2Loc.c_str());
+		log("\tVictoria 2 install path is %s\n", V2Loc.c_str());
 	}
 
 	// Get V2 Documents Directory
@@ -47,13 +47,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	string V2DocLoc = Configuration::getV2DocumentsPath();
 	if (V2DocLoc.empty() || (_stat(V2DocLoc.c_str(), &st) != 0))
 	{
-		log("No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("\tNo Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 	else
 	{
-		log("Victoria 2 documents directory is %s\n", V2DocLoc.c_str());
+		log("\tVictoria 2 documents directory is %s\n", V2DocLoc.c_str());
 	}
 
 	// Get EU4 install location
@@ -61,13 +61,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	string EU4Loc = Configuration::getEU4Path();
 	if (EU4Loc.empty() || (_stat(EU4Loc.c_str(), &st) != 0))
 	{
-		log("No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("\tNo Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 	else
 	{
-		log("EU4 install path is %s\n", EU4Loc.c_str());
+		log("\tEU4 install path is %s\n", EU4Loc.c_str());
 	}
 
 	// Get EU4 Mod directory
@@ -75,26 +75,25 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	string EU4ModLoc = Configuration::getEU4ModPath();
 	if (EU4ModLoc.empty() || (_stat(EU4ModLoc.c_str(), &st) != 0))
 	{
-		log("No Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("\tNo Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 	else
 	{
-		log("EU4 Mod directory is %s\n", EU4ModLoc.c_str());
+		log("\tEU4 Mod directory is %s\n", EU4ModLoc.c_str());
 	}
 
 	// Get CK2 Export directory
-	log("Get EU4 Mod Directory\n");
+	log("Get CK2 Export Directory\n");
 	string CK2ExportLoc = Configuration::getCK2ExportPath();
 	if (CK2ExportLoc.empty() || (_stat(CK2ExportLoc.c_str(), &st) != 0))
 	{
-		log("No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid.  This will cause problems with CK2 converted saves.\n");
-		printf("No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid.  This will cause problems with CK2 converted saves.\n");
+		log("\tNo Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid.  This will cause problems with CK2 converted saves.\n");
 	}
 	else
 	{
-		log("CK2 export direcotry is %s\n", CK2ExportLoc.c_str());
+		log("\tCK2 export direcotry is %s\n", CK2ExportLoc.c_str());
 	}
 
 	// Get EU4 Mod
