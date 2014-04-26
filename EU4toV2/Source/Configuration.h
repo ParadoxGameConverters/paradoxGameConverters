@@ -18,14 +18,14 @@ public:
 		return getInstance()->EU4Path;
 	}
 
-	static string getEU4DocumentsPath()
-	{
-		return getInstance()->EU4DocumentsPath;
-	}
-
 	static string getEU4ModPath()
 	{
 		return getInstance()->EU4ModPath;
+	}
+
+	static string getCK2ExportPath()
+	{
+		return getInstance()->CK2ExportPath;
 	}
 
 	static string getV2Path()
@@ -46,6 +46,11 @@ public:
 	static string getEU4Mod()
 	{
 		return getInstance()->EU4Mod;
+	}
+
+	static bool getCK2Converted()
+	{
+		return getInstance()->CK2Converted;
 	}
 
 	static date	getFirstEU4Date()
@@ -95,12 +100,13 @@ private:
 
 	// options from configuration.txt
 	string	EU4Path;
-	string	EU4DocumentsPath;
 	string	EU4ModPath;
+	string	CK2ExportPath;
 	string	V2Path;
 	string	V2DocumentsPath;
 	string	V2Gametype;
 	string	EU4Mod;
+	bool		CK2Converted;
 	string	resetProvinces;
 	double	MaxLiteracy;
 	string	Removetype;

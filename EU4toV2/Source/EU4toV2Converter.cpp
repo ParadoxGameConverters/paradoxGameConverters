@@ -72,20 +72,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	// Get EU4 Mod directory
 	log("Get EU4 Mod Directory\n");
-	string EU4DocLoc = Configuration::getEU4DocumentsPath();
-	if (EU4DocLoc.empty() || (_stat(EU4DocLoc.c_str(), &st) != 0))
-	{
-		log("No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		return (-2);
-	}
-	else
-	{
-		log("EU4 Mod direcotry is %s\n", EU4DocLoc.c_str());
-	}
-
-	// Get EU4 Mod directory
-	log("Get EU4 Mod Directory\n");
 	string EU4ModLoc = Configuration::getEU4ModPath();
 	if (EU4ModLoc.empty() || (_stat(EU4ModLoc.c_str(), &st) != 0))
 	{
@@ -98,12 +84,33 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("EU4 Mod directory is %s\n", EU4ModLoc.c_str());
 	}
 
+	// Get CK2 Export directory
+	log("Get EU4 Mod Directory\n");
+	string CK2ExportLoc = Configuration::getCK2ExportPath();
+	if (CK2ExportLoc.empty() || (_stat(CK2ExportLoc.c_str(), &st) != 0))
+	{
+		log("No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid.  This will cause problems with CK2 converted saves.\n");
+		printf("No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid.  This will cause problems with CK2 converted saves.\n");
+	}
+	else
+	{
+		log("CK2 export direcotry is %s\n", CK2ExportLoc.c_str());
+	}
+
 	// Get EU4 Mod
 	log("Get EU4 Mod\n");
+	string fullModPath;
 	string modName = Configuration::getEU4Mod();
 	if (modName != "")
 	{
-		string fullModPath = EU4ModLoc + modName;
+		if (Configuration::getCK2Converted())
+		{
+			fullModPath = CK2ExportLoc + "\\" + modName;
+		}
+		else
+		{
+			fullModPath = EU4ModLoc + "\\" + modName;
+		}
 		if (fullModPath.empty() || (_stat(fullModPath.c_str(), &st) != 0))
 		{
 			log("%s could not be found at the specified directory.  A valid path and mod must be specified.\n", modName.c_str());
@@ -112,7 +119,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		}
 		else
 		{
-			log("EU4 Mod is at %s\n", EU4ModLoc.c_str());
+			log("EU4 Mod is at %s\n", fullModPath.c_str());
 		}
 	}
 
@@ -336,7 +343,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	continentMapping continentMap;
 	if (EU4Mod != "")
 	{
-		string continentFile = Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\map\\continent.txt";
+		string continentFile = fullModPath + "\\map\\continent.txt";
 		if ((_stat(continentFile.c_str(), &st) == 0))
 		{
 			obj = doParseFile(continentFile.c_str());
@@ -435,7 +442,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	{
 		struct _finddata_t	fileData;
 		intptr_t					fileListing = NULL;
-		if ((fileListing = _findfirst(string(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\cultures\\*").c_str(), &fileData)) != -1L)
+		if ((fileListing = _findfirst(string(fullModPath + "\\common\\cultures\\*").c_str(), &fileData)) != -1L)
 		{
 			do
 			{
@@ -449,7 +456,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 				}
 				else
 				{
-					string modCultureFile(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\cultures\\" + fileData.name);
+					string modCultureFile(fullModPath + "\\common\\cultures\\" + fileData.name);
 					obj = doParseFile(modCultureFile.c_str());
 					if (obj == NULL)
 					{
@@ -489,7 +496,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	{
 		struct _finddata_t	fileData;
 		intptr_t					fileListing = NULL;
-		if ((fileListing = _findfirst(string(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\*").c_str(), &fileData)) != -1L)
+		if ((fileListing = _findfirst(string(fullModPath + "\\common\\religions\\*").c_str(), &fileData)) != -1L)
 		{
 			do
 			{
@@ -503,7 +510,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 				}
 				else
 				{
-					string modReligionFile(Configuration::getEU4ModPath() + "\\" + EU4Mod + "\\common\\religions\\" + fileData.name);
+					string modReligionFile(fullModPath + "\\common\\religions\\" + fileData.name);
 					if ((_stat(modReligionFile.c_str(), &st) == 0))
 					{
 						obj = doParseFile(modReligionFile.c_str());
