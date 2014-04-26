@@ -41,6 +41,7 @@ class V2Province
 		string			getRegimentName(RegimentCategory rc);
 		bool				hasCulture(string culture, float percentOfPopulation) const;
 		
+		void				clearCores()								{ cores.clear(); };
 		void				setCoastal(bool _coastal)				{ coastal = _coastal; };
 		void				setName(string _name)					{ name = _name; };
 		void				setOwner(string _owner)					{ owner = _owner; };

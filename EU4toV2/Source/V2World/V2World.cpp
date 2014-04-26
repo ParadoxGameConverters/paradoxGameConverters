@@ -771,6 +771,8 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			continue;
 		}
 
+		i->second->clearCores();
+
 		EU4Province*	oldProvince		= NULL;
 		EU4Country*		oldOwner			= NULL;
 		// determine ownership by province count, or total population (if province count is tied)
