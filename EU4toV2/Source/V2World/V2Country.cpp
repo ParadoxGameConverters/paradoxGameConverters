@@ -150,7 +150,7 @@ void V2Country::output() const
 	if (reforms != NULL)
 	{
 		reforms->output(output);
-	}
+	}*/
 	if (!civilized)
 	{
 		if (uncivReforms != NULL)
@@ -159,7 +159,7 @@ void V2Country::output() const
 		}
 	}
 	
-	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
+	/*fprintf(output, "	diplomatic_points=%f\n", diploPoints);
 	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
 	for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
@@ -1158,17 +1158,17 @@ void V2Country::convertUncivReforms()
 {
 	if ((srcCountry != NULL) && ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")))
 	{
-		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
+		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") ||
 				(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
 		{
 			// civilized, do nothing
 		}
-		else if ( (srcCountry->getTechGroup() == "nomad_group") || (srcCountry->getTechGroup() == "sub_saharan") || (srcCountry->getTechGroup() == "new_world") )
+		else if (	(srcCountry->getTechGroup() == "nomad_group")  || (srcCountry->getTechGroup() == "sub_saharan")    || (srcCountry->getTechGroup() == "north_american") ||
+						(srcCountry->getTechGroup() == "mesoamerican") || (srcCountry->getTechGroup() == "south_american") || (srcCountry->getTechGroup() == "new_world"))
 		{
-			double totalTechs			= srcCountry->getMilTech() + srcCountry->getDipTech() + srcCountry->getAdmTech() + 
-											  srcCountry->getDipTech() + srcCountry->getAdmTech();
-			double militaryDev = (srcCountry->getMilTech() + srcCountry->getDipTech()) / totalTechs;
-			double socioEconDev = (srcCountry->getAdmTech() + srcCountry->getDipTech() + srcCountry->getAdmTech()) / totalTechs;
+			double totalTechs		= srcCountry->getMilTech() + srcCountry->getDipTech() + srcCountry->getAdmTech();
+			double militaryDev	= srcCountry->getMilTech() / totalTechs;
+			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
 			log("\tSetting unciv reforms for %s. Westernization at 0 percent.\n", tag.c_str());
 			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
 		}

@@ -569,24 +569,24 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	////Parse tech schools
-	//log("Parsing tech schools.\n");
-	//printf("Parsing tech schools.\n");
-	//initParser();
-	//obj = doParseFile("blocked_tech_schools.txt");
-	//if (obj == NULL)
-	//{
-	//	log("Could not parse file blocked_tech_schools.txt\n");
-	//	exit(-1);
-	//}
-	//vector<string> blockedTechSchools;
-	//blockedTechSchools = initBlockedTechSchools(obj);
-	//initParser();
-	//obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
-	//if (obj == NULL)
-	//{
-	//	log("Could not parse file %s\n", (V2Loc + "\\common\\technology.txt").c_str());
-	//	exit(-1);
-	//}
+	/*log("Parsing tech schools.\n");
+	printf("Parsing tech schools.\n");
+	initParser();
+	obj = doParseFile("blocked_tech_schools.txt");
+	if (obj == NULL)
+	{
+		log("Could not parse file blocked_tech_schools.txt\n");
+		exit(-1);
+	}
+	vector<string> blockedTechSchools;
+	blockedTechSchools = initBlockedTechSchools(obj);
+	initParser();
+	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
+	if (obj == NULL)
+	{
+		log("Could not parse file %s\n", (V2Loc + "\\common\\technology.txt").c_str());
+		exit(-1);
+	}*/
 	vector<techSchool> techSchools;
 	//techSchools = initTechSchools(obj, blockedTechSchools);
 
@@ -614,9 +614,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	/*printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);*/
-	/*printf("Setting unciv reforms.\n");
+	printf("Setting unciv reforms.\n");
 	log("Setting unciv reforms.\n");
-	destWorld.convertUncivReforms();*/
+	destWorld.convertUncivReforms();
 	/*printf("Creating pops.\n");
 	log("Creating pops.\n");
 	destWorld.setupPops(sourceWorld);*/

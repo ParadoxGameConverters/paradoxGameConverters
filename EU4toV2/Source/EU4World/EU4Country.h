@@ -46,12 +46,7 @@ class EU4Country
 		double						getAdmTech()								const { return admTech; };
 		double						getDipTech()								const { return dipTech; };
 		double						getMilTech()								const { return milTech; };
-/*		double						getLandTech()								const { return landTech; };
-		double						getNavalTech()								const { return navalTech; };
-		double						getTradeTech()								const { return tradeTech; };
-		double						getProductionTech()						const { return productionTech; };
-		double						getGovernmentTech()						const { return governmentTech; };
-*/		double						getEstimatedMonthlyIncome()			const { return estMonthlyIncome; };
+		double						getEstimatedMonthlyIncome()			const { return estMonthlyIncome; };
 		double						getLandInvestment()						const { return landInvestment; };
 		double						getNavalInvestment()						const { return navalInvestment; };
 		double						getTradeInvestment()						const { return tradeInvestment; };
