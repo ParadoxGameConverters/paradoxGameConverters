@@ -40,11 +40,13 @@ muslim = {
 		color = { 0 0.8 0 }
 		
 	}
+}
 
+judaism = {
 	jewish = {
 		icon = 7
 		color = { 0.3 0.5 0.3 }
-	}	
+	}
 }
 
 eastern = {
@@ -79,6 +81,10 @@ eastern = {
 		icon = 13
 	}
 
+	jain = {
+		color = { 0.3 0.8 0 }
+		icon = 13
+	}
 }
 
 pagan = {

@@ -657,7 +657,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 			score = srcCountry->getScore();
 		}
 		countryItr->second->addPrestige( (score * 99.0 / highestScore) + 1 );
-		log("%s, %f\n", countryItr->first.c_str(), (score * 99.0 / highestScore) + 1);
+		log("\t%s had %f prestige\n", countryItr->first.c_str(), (score * 99.0 / highestScore) + 1);
 	}
 
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right

@@ -19,6 +19,7 @@ link = { v2 = theravada eu4 = buddhism }
 link = { v2 = sikh eu4 = hinduism owner = PUN }	# Punjab
 link = { v2 = hindu eu4 = hinduism }
 link = { v2 = shinto eu4 = shinto }
+link = { v2 = jain eu4 = jain }
 
 #Pagans
 link = { v2 = animist eu4 = animism eu4 = shamanism eu4 = totemism }
