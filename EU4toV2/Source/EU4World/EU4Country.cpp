@@ -83,14 +83,14 @@ EU4Country::EU4Country(Object* obj)
 		religion = "";
 	}
 
-	vector<Object*> prestigeObj = obj->getValue("prestige");
-	if (prestigeObj.size() > 0)
+	vector<Object*> scoreObj = obj->getValue("score");
+	if (scoreObj.size() > 0)
 	{
-		prestige = 100 * atof( prestigeObj[0]->getLeaf().c_str() );
+		score = 100 * atof(scoreObj[0]->getLeaf().c_str());
 	}
 	else
 	{
-		prestige = -100.0;
+		score = 0.0;
 	}
 
 	vector<Object*> cultureObj = obj->getValue("cultural_tradition");
@@ -525,18 +525,18 @@ void EU4Country::eatCountry(EU4Country* target)
 		loans.insert(loans.end(), target->loans.begin(), target->loans.end());
 
 		// rebalance prestige, badboy, inflation and techs from weighted average
-		prestige					= myWeight * prestige					+ targetWeight * target->prestige;
+		score						= myWeight * score						+ targetWeight * target->score;
 		badboy					= myWeight * badboy						+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
 		inflation				= myWeight * inflation					+ targetWeight * target->inflation;
-		admTech					= myWeight * admTech					+ targetWeight * target->admTech;
-		dipTech					= myWeight * dipTech					+ targetWeight * target->dipTech;
-		milTech					= myWeight * milTech					+ targetWeight * target->milTech;
-		landInvestment			= myWeight * landInvestment + targetWeight * target->landInvestment;
-		navalInvestment		= myWeight * navalInvestment + targetWeight * target->navalInvestment;
-		tradeInvestment		= myWeight * tradeInvestment + targetWeight * target->tradeInvestment;
-		productionInvestment	= myWeight * productionInvestment + targetWeight * target->productionInvestment;
-		governmentInvestment	= myWeight * governmentInvestment + targetWeight * target->governmentInvestment;
-		estMonthlyIncome		= myWeight * estMonthlyIncome + targetWeight * target->estMonthlyIncome;
+		admTech					= myWeight * admTech						+ targetWeight * target->admTech;
+		dipTech					= myWeight * dipTech						+ targetWeight * target->dipTech;
+		milTech					= myWeight * milTech						+ targetWeight * target->milTech;
+		landInvestment			= myWeight * landInvestment			+ targetWeight * target->landInvestment;
+		navalInvestment		= myWeight * navalInvestment			+ targetWeight * target->navalInvestment;
+		tradeInvestment		= myWeight * tradeInvestment			+ targetWeight * target->tradeInvestment;
+		productionInvestment	= myWeight * productionInvestment	+ targetWeight * target->productionInvestment;
+		governmentInvestment	= myWeight * governmentInvestment	+ targetWeight * target->governmentInvestment;
+		estMonthlyIncome		= myWeight * estMonthlyIncome			+ targetWeight * target->estMonthlyIncome;
 	}
 
 	// coreless, landless countries will be cleaned up automatically

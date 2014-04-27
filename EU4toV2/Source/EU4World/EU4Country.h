@@ -38,7 +38,7 @@ class EU4Country
 		vector<string>				getAcceptedCultures()					const { return acceptedCultures; };
 		string						getCulturalUnion()						const { return culturalUnion; };
 		string						getReligion()								const { return religion; };
-		double						getPrestige()								const { return prestige; };
+		double						getScore()								const { return score; };
 		double						getCulture()								const { return culture; };
 		double						getArmyTradition()						const { return armyTradition; };
 		double						getNavyTradition()						const { return navyTradition; };
@@ -79,7 +79,7 @@ class EU4Country
 		vector<string>				acceptedCultures;
 		string						culturalUnion;
 		string						religion;
-		double						prestige;
+		double						score;
 		double						culture;
 		double						armyTradition;
 		double						navyTradition;

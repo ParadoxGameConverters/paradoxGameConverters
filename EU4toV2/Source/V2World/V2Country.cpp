@@ -145,12 +145,6 @@ void V2Country::output() const
 	fprintf(output, "nonstate_consciousness = 0\n");
 	fprintf(output, "\n");
 	outputTech(output);
-	/*	fprintf(output, "	research_points=%f\n", researchPoints);
-	outputElection(output);
-	if (reforms != NULL)
-	{
-		reforms->output(output);
-	}*/
 	if (!civilized)
 	{
 		if (uncivReforms != NULL)
@@ -158,11 +152,9 @@ void V2Country::output() const
 			uncivReforms->output(output);
 		}
 	}
+	fprintf(output, "	prestige=%f\n", prestige);
 	
-	/*fprintf(output, "	diplomatic_points=%f\n", diploPoints);
-	outputCountryHeader(output);
-	fprintf(output, "	leadership=%f\n", leadership);
-	for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	/*for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
 		(*itr)->output(output);
 	}
@@ -174,25 +166,7 @@ void V2Country::output() const
 	{
 		(*itr)->output(output);
 	}
-	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
-	fprintf(output, "	prestige=%f\n", prestige);
-	fprintf(output, "	bank=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		money=%f\n", bankReserves);
-	fprintf(output, "		money_lent=0.00000\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	money=%f\n", money);
-	fprintf(output, "	last_bankrupt=\"%s\"\n", lastBankrupt.toString().c_str());
-	for (map<string, V2Creditor*>::const_iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
-	{
-		itr->second->output(output);
-	}
-	for(unsigned int i = 0; i < states.size(); i++)
-	{
-		states[i]->output(output);
-	}
-	fprintf(output, "	badboy=%f\n", badboy);
-	fprintf(output, "}\n");*/
+	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());*/
 	fclose(output);
 }
 
@@ -372,12 +346,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 	}
 
-	//// Prestige, leadership, diploPoints, badBoy, reforms
-	//prestige		+= srcCountry->getPrestige() + 100;
-	//prestige		+= srcCountry->getCulture();
-	//leadership	+= srcCountry->getArmyTradition() + srcCountry->getNavyTradition();
-	//diploPoints	=  srcCountry->getDiplomats() * 2;
-	//badboy		=  srcCountry->getBadboy() * (25.0 / srcCountry->getBadboyLimit());
+	// Reforms
 	//reforms		=  new V2Reforms(srcCountry);
 
 	// Government

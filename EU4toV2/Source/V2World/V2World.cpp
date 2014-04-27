@@ -632,6 +632,34 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 		log("\t%s got national value order\n", (*unsetItr)->getTag().c_str());
 	}
 
+	// set prestige
+	log("Setting prestige\n");
+	double highestScore = 0.0;
+	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		double score = 0.0;
+		const EU4Country* srcCountry = countryItr->second->getSourceCountry();
+		if (srcCountry != NULL)
+		{
+			score = srcCountry->getScore();
+		}
+		if (score > highestScore)
+		{
+			highestScore = score;
+		}
+	}
+	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		double score = 0.0;
+		const EU4Country* srcCountry = countryItr->second->getSourceCountry();
+		if (srcCountry != NULL)
+		{
+			score = srcCountry->getScore();
+		}
+		countryItr->second->addPrestige( (score * 99.0 / highestScore) + 1 );
+		log("%s, %f\n", countryItr->first.c_str(), (score * 99.0 / highestScore) + 1);
+	}
+
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right
 	for (vector<V2Country*>::iterator itr = potentialCountries.begin(); itr != potentialCountries.end(); ++itr)
 	{
