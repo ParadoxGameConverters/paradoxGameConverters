@@ -53,4 +53,8 @@ mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\common"
 
+xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I
+xcopy "Data_Files\gfx" "release\blankmod\output\gfx" /Y /E /I
+copy "Data_Files\countries.txt" "release\blankMod\output\common\countries.txt"
+copy "Data_Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
 copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"

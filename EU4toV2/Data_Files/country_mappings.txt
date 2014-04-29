@@ -386,7 +386,7 @@ link = { eu4 = QNG v2 = QIN }  # Qing
 link = { eu4 = AMA v2 = AMA }  # Amago
 link = { eu4 = ASA v2 = ASA }  # Asakura
 link = { eu4 = CSK v2 = CSK }  # Chosokabe
-link = { eu4 = DTE v2 = DTE }  # Date
+link = { eu4 = DTE v2 = DTE }  # Date (NEW)
 link = { eu4 = HJO v2 = HJO }  # Hojo
 link = { eu4 = HSK v2 = HSK }  # Hosokawa
 link = { eu4 = HTK v2 = HTK }  # Hatakeyama

@@ -221,6 +221,13 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 		_findclose(fileListing);
 	}
+	if (filename == "")
+	{
+		string countryName	= commonCountryFile;
+		int lastSlash			= countryName.find_last_of("/");
+		countryName				= countryName.substr(lastSlash + 1, countryName.size());
+		filename					= tag + " - " + countryName;
+	}
 
 	// tech group
 	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
@@ -656,8 +663,11 @@ void V2Country::initFromHistory()
 	}
 	if (fullFilename == "")
 	{
-		log("Error: Could not find country file for %s\n", tag.c_str());
-		exit(-1);
+		string countryName	= commonCountryFile;
+		int lastSlash			= countryName.find_last_of("/");
+		countryName				= countryName.substr(lastSlash + 1, countryName.size());
+		filename					= tag + " - " + countryName;
+		return;
 	}
 
 	Object* obj = doParseFile(fullFilename.c_str());
