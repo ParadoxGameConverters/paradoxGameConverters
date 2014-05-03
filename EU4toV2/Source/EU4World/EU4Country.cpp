@@ -267,19 +267,13 @@ EU4Country::EU4Country(Object* obj)
 	}
 
 	// Read international relations leaves
-	vector<Object*> leaves = obj->getLeaves();
-	for (unsigned int i = 0; i < leaves.size(); ++i)
+	vector<Object*> relationLeaves = obj->getValue("active_relations");
+	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();
+	for (unsigned int i = 0; i < relationsLeaves.size(); ++i)
 	{
-		string key = leaves[i]->getKey();
-
-		if ((key.size() == 3) && 
-			(key.c_str()[0] >= 'A') && (key.c_str()[0] <= 'Z') && 
-			(key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') && 
-			(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z'))
-		{
-			EU4Relations* rel = new EU4Relations(leaves[i]);
-			relations.push_back(rel);
-		}
+		string key = relationsLeaves[i]->getKey();
+		EU4Relations* rel = new EU4Relations(relationsLeaves[i]);
+		relations.push_back(rel);
 	}
 
 	armies.clear();

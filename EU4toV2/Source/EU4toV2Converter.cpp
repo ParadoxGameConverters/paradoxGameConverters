@@ -612,9 +612,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting countries.\n");
 	log("Converting countries.\n");
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
-	/*printf("Converting diplomacy.\n");
+	printf("Converting diplomacy.\n");
 	log("Converting diplomacy.\n");
-	destWorld.convertDiplomacy(sourceWorld, countryMap);*/
+	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
@@ -657,6 +657,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/provinces\"\n");
 	fprintf(modFile, "replace = \"history/countries\"\n");
+	fprintf(modFile, "replace = \"history/diplomacy\"\n");
 	fprintf(modFile, "replace = \"common/religion.txt\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();

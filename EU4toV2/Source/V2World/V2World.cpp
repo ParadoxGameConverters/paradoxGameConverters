@@ -11,7 +11,6 @@
 #include "../Parsers/Parser.h"
 #include "../Log.h"
 #include "V2LeaderTraits.h"
-#include "../tempFuncs.h"
 #include "../Configuration.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
@@ -311,8 +310,6 @@ V2World::V2World()
 // The majority of the output changes will take place here.  See comments for the plan of action:
 void V2World::output() const
 {
-	//outputHeader(output);		//  This information will now generate new book bookmark data for the mod, effectively removing the second bookmark.
-	//outputTempHeader(output);	//	Not needed as a mod.
 	for (map<int, V2Province*>::const_iterator i = provinces.begin() ; i != provinces.end(); i++)
 	{
 		//i->second->sortPops();
@@ -322,8 +319,8 @@ void V2World::output() const
 	{
 		itr->second->output();
 	}
-	/*diplomacy.output(output);
-	if(Configuration::getV2Gametype() == "HOD")
+	diplomacy.output();
+	/*if(Configuration::getV2Gametype() == "HOD")
 	{
 		for (map< int, set<string> >::const_iterator colonyIter = colonies.begin(); colonyIter != colonies.end(); colonyIter++)
 		{
@@ -346,186 +343,6 @@ void V2World::output() const
 		}
 	}
 	*/
-}
-
-
-static int stateId = 0;
-void V2World::outputHeader(FILE* output) const
-{
-	fprintf(output, "date=\"1836.1.1\"\n");
-	fprintf(output, "automate_trade=no\n");
-	fprintf(output, "automate_sliders=0\n");
-	fprintf(output, "unit=%d\n", V2ArmyID().id);
-	fprintf(output, "state=%d\n", stateId);
-	fprintf(output, "start_date=\"1836.1.1\"\n");
-	fprintf(output, "start_pop_index=%d\n", getNextPopId());
-	fprintf(output, "worldmarket=\n");
-	fprintf(output, "{\n");
-	fprintf(output, "	worldmarket_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		ammunition=0.46634\n");
-	fprintf(output, "		small_arms=1.01407\n");
-	fprintf(output, "		artillery=1.43967\n");
-	fprintf(output, "		canned_food=4.16602\n");
-	fprintf(output, "		cotton=966.92960\n");
-	fprintf(output, "		dye=785.78574\n");
-	fprintf(output, "		wool=1794.33109\n");
-	fprintf(output, "		silk=192.24536\n");
-	fprintf(output, "		coal=1698.31195\n");
-	fprintf(output, "		sulphur=201.85480\n");
-	fprintf(output, "		iron=498.86673\n");
-	fprintf(output, "		timber=1038.01337\n");
-	fprintf(output, "		tropical_wood=258.42496\n");
-	fprintf(output, "		precious_metal=17.16943\n");
-	fprintf(output, "		steel=395.23450\n");
-	fprintf(output, "		cement=3.23746\n");
-	fprintf(output, "		machine_parts=3.84375\n");
-	fprintf(output, "		glass=52.54648\n");
-	fprintf(output, "		fertilizer=66.62204\n");
-	fprintf(output, "		explosives=18.46304\n");
-	fprintf(output, "		clipper_convoy=0.05063\n");
-	fprintf(output, "		steamer_convoy=2.83932\n");
-	fprintf(output, "		fabric=139.08908\n");
-	fprintf(output, "		lumber=101.34860\n");
-	fprintf(output, "		paper=3.35300\n");
-	fprintf(output, "		cattle=813.88202\n");
-	fprintf(output, "		fish=1535.25745\n");
-	fprintf(output, "		fruit=2686.31516\n");
-	fprintf(output, "		grain=4360.54388\n");
-	fprintf(output, "		tobacco=2200.08780\n");
-	fprintf(output, "		tea=2673.66977\n");
-	fprintf(output, "		coffee=1334.11459\n");
-	fprintf(output, "		opium=1118.43161\n");
-	fprintf(output, "		wine=7.32648\n");
-	fprintf(output, "		liquor=0.69968\n");
-	fprintf(output, "		regular_clothes=34.41812\n");
-	fprintf(output, "		luxury_clothes=0.40475\n");
-	fprintf(output, "		furniture=0.29919\n");
-	fprintf(output, "		luxury_furniture=0.38611\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	price_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		ammunition=17.52002\n");
-	fprintf(output, "		small_arms=37.00000\n");
-	fprintf(output, "		artillery=60.00000\n");
-	fprintf(output, "		canned_food=16.00000\n");
-	fprintf(output, "		barrels=98.00000\n");
-	fprintf(output, "		aeroplanes=110.00000\n");
-	fprintf(output, "		cotton=1.97998\n");
-	fprintf(output, "		dye=11.97998\n");
-	fprintf(output, "		wool=0.67999\n");
-	fprintf(output, "		silk=10.00000\n");
-	fprintf(output, "		coal=2.28998\n");
-	fprintf(output, "		sulphur=6.02002\n");
-	fprintf(output, "		iron=3.47998\n");
-	fprintf(output, "		timber=0.89999\n");
-	fprintf(output, "		tropical_wood=5.37997\n");
-	fprintf(output, "		rubber=7.00000\n");
-	fprintf(output, "		oil=12.00000\n");
-	fprintf(output, "		precious_metal=7.50000\n");
-	fprintf(output, "		steel=4.67999\n");
-	fprintf(output, "		cement=15.97998\n");
-	fprintf(output, "		machine_parts=36.47998\n");
-	fprintf(output, "		glass=2.92001\n");
-	fprintf(output, "		fuel=25.00000\n");
-	fprintf(output, "		fertilizer=10.00000\n");
-	fprintf(output, "		explosives=20.02002\n");
-	fprintf(output, "		clipper_convoy=42.00000\n");
-	fprintf(output, "		steamer_convoy=64.97998\n");
-	fprintf(output, "		electric_gear=16.00000\n");
-	fprintf(output, "		fabric=1.82001\n");
-	fprintf(output, "		lumber=1.02002\n");
-	fprintf(output, "		paper=3.42001\n");
-	fprintf(output, "		cattle=1.97998\n");
-	fprintf(output, "		fish=1.47998\n");
-	fprintf(output, "		fruit=1.77997\n");
-	fprintf(output, "		grain=2.17999\n");
-	fprintf(output, "		tobacco=1.10001\n");
-	fprintf(output, "		tea=2.60001\n");
-	fprintf(output, "		coffee=2.07999\n");
-	fprintf(output, "		opium=3.20001\n");
-	fprintf(output, "		automobiles=70.00000\n");
-	fprintf(output, "		telephones=16.00000\n");
-	fprintf(output, "		wine=9.72003\n");
-	fprintf(output, "		liquor=6.42001\n");
-	fprintf(output, "		regular_clothes=5.82001\n");
-	fprintf(output, "		luxury_clothes=65.02002\n");
-	fprintf(output, "		furniture=4.92001\n");
-	fprintf(output, "		luxury_furniture=59.02002\n");
-	fprintf(output, "		radio=16.00000\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	last_price_history=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	supply_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	last_supply_pool=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	price_change=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	discovered_goods=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		ammunition=1.00000\n");
-	fprintf(output, "		small_arms=1.00000\n");
-	fprintf(output, "		artillery=1.00000\n");
-	fprintf(output, "		canned_food=1.00000\n");
-	fprintf(output, "		cotton=1.00000\n");
-	fprintf(output, "		dye=1.00000\n");
-	fprintf(output, "		wool=1.00000\n");
-	fprintf(output, "		silk=1.00000\n");
-	fprintf(output, "		coal=1.00000\n");
-	fprintf(output, "		sulphur=1.00000\n");
-	fprintf(output, "		iron=1.00000\n");
-	fprintf(output, "		timber=1.00000\n");
-	fprintf(output, "		tropical_wood=1.00000\n");
-	fprintf(output, "		rubber=1.00000\n");
-	fprintf(output, "		oil=1.00000\n");
-	fprintf(output, "		precious_metal=1.00000\n");
-	fprintf(output, "		steel=1.00000\n");
-	fprintf(output, "		cement=1.00000\n");
-	fprintf(output, "		machine_parts=1.00000\n");
-	fprintf(output, "		glass=1.00000\n");
-	fprintf(output, "		fertilizer=1.00000\n");
-	fprintf(output, "		explosives=1.00000\n");
-	fprintf(output, "		clipper_convoy=1.00000\n");
-	fprintf(output, "		steamer_convoy=1.00000\n");
-	fprintf(output, "		fabric=1.00000\n");
-	fprintf(output, "		lumber=1.00000\n");
-	fprintf(output, "		paper=1.00000\n");
-	fprintf(output, "		cattle=1.00000\n");
-	fprintf(output, "		fish=1.00000\n");
-	fprintf(output, "		fruit=1.00000\n");
-	fprintf(output, "		grain=1.00000\n");
-	fprintf(output, "		tobacco=1.00000\n");
-	fprintf(output, "		tea=1.00000\n");
-	fprintf(output, "		coffee=1.00000\n");
-	fprintf(output, "		opium=1.00000\n");
-	fprintf(output, "		wine=1.00000\n");
-	fprintf(output, "		liquor=1.00000\n");
-	fprintf(output, "		regular_clothes=1.00000\n");
-	fprintf(output, "		luxury_clothes=1.00000\n");
-	fprintf(output, "		furniture=1.00000\n");
-	fprintf(output, "		luxury_furniture=1.00000\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	actual_sold=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	actual_sold_world=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	real_demand=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	demand=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	player_balance=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "}\n");
 }
 
 
@@ -696,13 +513,13 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const countryMapping
 		countryMapping::const_iterator newCountry1 = countryMap.find(itr->country1);
 		if (newCountry1 == countryMap.end())
 		{
-			// log("Error: EU4 Country %s used in diplomatic agreement doesn't exist\n", itr->country1.c_str());
+			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", itr->country1.c_str());
 			continue;
 		}
 		countryMapping::const_iterator newCountry2 = countryMap.find(itr->country2);
 		if (newCountry2 == countryMap.end())
 		{
-			// log("Error: EU4 Country %s used in diplomatic agreement doesn't exist\n", itr->country2.c_str());
+			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", itr->country2.c_str());
 			continue;
 		}
 
@@ -710,40 +527,44 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const countryMapping
 		map<string, V2Country*>::iterator country2 = countries.find(newCountry2->second);
 		if (country1 == countries.end())
 		{
-			log("	Error: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry1->second.c_str());
+			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry1->second.c_str());
 			continue;
 		}
 		if (country2 == countries.end())
 		{
-			log("	Error: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry2->second.c_str());
+			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry2->second.c_str());
 			continue;
 		}
 		V2Relations* r1 = country1->second->getRelations(newCountry2->second);
 		if (!r1)
 		{
-			log("	Error: Vic2 country %s has no relations with %s\n", newCountry1->second.c_str(), newCountry2->second.c_str());
+			log("\tError: Vic2 country %s has no relations with %s\n", newCountry1->second.c_str(), newCountry2->second.c_str());
 			continue;
 		}
 		V2Relations* r2 = country2->second->getRelations(newCountry1->second);
 		if (!r2)
 		{
-			log("	Error: Vic2 country %s has no relations with %s\n", newCountry2->second.c_str(), newCountry1->second.c_str());
+			log("\tError: Vic2 country %s has no relations with %s\n", newCountry2->second.c_str(), newCountry1->second.c_str());
 			continue;
 		}
 
-		if ((itr->type == "royal_marriage" || itr->type == "guarantee"))
+		if ((itr->type == "royal_marriage") || (itr->type == "guarantee"))
 		{
 			// influence level +1, but never exceed 4
 			if (r1->getLevel() < 4)
+			{
 				r1->setLevel(r1->getLevel() + 1);
+			}
 		}
 		if (itr->type == "royal_marriage")
 		{
 			// royal marriage is bidirectional; influence level +1, but never exceed 4
 			if (r2->getLevel() < 4)
+			{
 				r2->setLevel(r2->getLevel() + 1);
+			}
 		}
-		if ((itr->type == "sphere") || (itr->type == "vassal") || (itr->type == "union"))
+		if ((itr->type == "vassal") || (itr->type == "union"))
 		{
 			// influence level = 5
 			r1->setLevel(5);
@@ -756,7 +577,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const countryMapping
 				r2->setRelations(1);
 			*/
 		}
-		if ((itr->type == "alliance") || (itr->type == "vassal"))
+		if ((itr->type == "alliance") || (itr->type == "vassal") || (itr->type == "union") || (itr->type == "guarantee"))
 		{
 			// copy agreement
 			V2Agreement v2a;
@@ -1081,7 +902,7 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 	}
 }
 
-
+static int stateId = 0;
 void V2World::setupStates(const stateMapping& stateMap)
 {
 	list<V2Province*> unassignedProvs;

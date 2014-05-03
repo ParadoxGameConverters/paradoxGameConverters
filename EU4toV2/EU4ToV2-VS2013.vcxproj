@@ -148,7 +148,6 @@
     <ClInclude Include="Source\Mapper.h" />
     <ClInclude Include="Source\Parsers\Object.h" />
     <ClInclude Include="Source\Parsers\Parser.h" />
-    <ClInclude Include="Source\tempFuncs.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Country.h" />
     <ClInclude Include="Source\V2World\V2Creditor.h" />

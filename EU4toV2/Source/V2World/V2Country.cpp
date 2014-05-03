@@ -5,7 +5,6 @@
 #include <io.h>
 #include <fstream>
 #include "../Log.h"
-#include "../tempFuncs.h"
 #include "../Configuration.h"
 #include "../Parsers/Parser.h"
 #include "../EU4World/EU4World.h"
@@ -419,21 +418,21 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	}
 	log("%s's ruling party is %s\n", tag.c_str(), rulingParty.c_str());
 
-	//// Relations
-	//vector<EU4Relations*> srcRelations = srcCountry->getRelations();
-	//if (srcRelations.size() > 0)
-	//{
-	//	for (vector<EU4Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
-	//	{
-	//		countryMapping::iterator newTag = countryMap.find( (*itr)->getCountry() );
-	//		if (newTag != countryMap.end())
-	//		{
-	//			V2Relations* v2r = new V2Relations(newTag->second, *itr);
-	//			relations.push_back(v2r);
-	//		}
-	//	}
-	//}
-	//sortRelations(outputOrder);
+	// Relations
+	vector<EU4Relations*> srcRelations = srcCountry->getRelations();
+	if (srcRelations.size() > 0)
+	{
+		for (vector<EU4Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
+		{
+			countryMapping::iterator newTag = countryMap.find( (*itr)->getCountry() );
+			if (newTag != countryMap.end())
+			{
+				V2Relations* v2r = new V2Relations(newTag->second, *itr);
+				relations.push_back(v2r);
+			}
+		}
+	}
+	sortRelations(outputOrder);
 
 	//// Finances
 	//money				= MONEYFACTOR * srcCountry->getTreasury();

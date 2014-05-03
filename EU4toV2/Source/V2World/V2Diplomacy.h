@@ -21,7 +21,7 @@ class V2Diplomacy
 {
 	public:
 		V2Diplomacy() { agreements.clear(); };
-		void output(FILE*) const;
+		void output() const;
 
 		void addAgreement(V2Agreement agr) { agreements.push_back(agr); };
 	private:
