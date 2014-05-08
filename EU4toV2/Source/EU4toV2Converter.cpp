@@ -94,33 +94,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	else
 	{
 		log("\tCK2 export direcotry is %s\n", CK2ExportLoc.c_str());
-	}
-
-	// Get EU4 Mod
-	log("Get EU4 Mod\n");
-	string fullModPath;
-	string modName = Configuration::getEU4Mod();
-	if (modName != "")
-	{
-		if (Configuration::getCK2Converted())
-		{
-			fullModPath = CK2ExportLoc + "\\" + modName;
-		}
-		else
-		{
-			fullModPath = EU4ModLoc + "\\" + modName;
-		}
-		if (fullModPath.empty() || (_stat(fullModPath.c_str(), &st) != 0))
-		{
-			log("%s could not be found at the specified directory.  A valid path and mod must be specified.\n", modName.c_str());
-			printf("%s could not be found at the specified directory.  A valid path and mod must be specified.\n", modName.c_str());
-			return (-2);
-		}
-		else
-		{
-			log("EU4 Mod is at %s\n", fullModPath.c_str());
-		}
-	}
+	}	
 
 	//Get Input EU4 save 
 	string inputFilename("input.eu4");
@@ -170,6 +144,36 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("\tExtracting data.\n");
 	printf("\tExtracting data.\n");
 	EU4World sourceWorld(obj);
+
+	// Get EU4 Mod
+	log("Get EU4 Mod\n");
+	string fullModPath = "";
+	vector<Object*> modObj = obj->getValue("mod_enabled");
+	if (modObj.size() > 0)
+	{
+		string modName = modObj[0]->getLeaf();
+		if (modName != "")
+		{
+			if (Configuration::getCK2Converted())
+			{
+				fullModPath = CK2ExportLoc + "\\" + modName;
+			}
+			else
+			{
+				fullModPath = EU4ModLoc + "\\" + modName;
+			}
+			if (fullModPath.empty() || (_stat(fullModPath.c_str(), &st) != 0))
+			{
+				log("%s could not be found in the specified mod directory.  A valid mod directory must be specified.\n", modName.c_str());
+				printf("%s could not be found in the specified mod directory.  A valid mod directory must be specified.\n", modName.c_str());
+				return (-2);
+			}
+			else
+			{
+				log("EU4 Mod is at %s\n", fullModPath.c_str());
+			}
+		}
+	}
 
 
 	// Resolve unit types
@@ -338,9 +342,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
 
 	// Generate continent mapping
-	string EU4Mod = Configuration::getEU4Mod();
 	continentMapping continentMap;
-	if (EU4Mod != "")
+	if (fullModPath != "")
 	{
 		string continentFile = fullModPath + "\\map\\continent.txt";
 		if ((_stat(continentFile.c_str(), &st) == 0))
@@ -437,7 +440,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		return 1;
 	}
 	initUnionCultures(obj, unionCultures);
-	if (EU4Mod != "")
+	if (fullModPath != "")
 	{
 		struct _finddata_t	fileData;
 		intptr_t					fileListing = NULL;
@@ -491,7 +494,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		return 1;
 	}
 	EU4Religion::parseReligions(obj);
-	if (EU4Mod != "")
+	if (fullModPath != "")
 	{
 		struct _finddata_t	fileData;
 		intptr_t					fileListing = NULL;

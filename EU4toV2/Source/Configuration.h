@@ -43,11 +43,6 @@ public:
 		return getInstance()->V2Gametype;
 	}
 
-	static string getEU4Mod()
-	{
-		return getInstance()->EU4Mod;
-	}
-
 	static bool getCK2Converted()
 	{
 		return getInstance()->CK2Converted;
@@ -105,7 +100,6 @@ private:
 	string	V2Path;
 	string	V2DocumentsPath;
 	string	V2Gametype;
-	string	EU4Mod;
 	bool		CK2Converted;
 	string	resetProvinces;
 	double	MaxLiteracy;

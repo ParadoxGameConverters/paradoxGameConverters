@@ -21,9 +21,6 @@ configuration =
 	#	HOD		Heart of Darkness (3.x)
 	V2gametype = "HOD"
 
-	# EU4 Mod: An EU4 mod to use for conversion
-	EU4Mod = ""
-
 	# CK2Converted: Whether or not the mod was converted from CK2. Possible values:
 	# 	yes
 	#	no
