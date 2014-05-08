@@ -25,7 +25,6 @@ namespace Frontend.Core.ViewModels
         public PathPickerViewModel(IEventAggregator eventAggregator, IConverterOptions options)
             : base(eventAggregator, options)
         {
-            this.BuildConversionOptions();
         }
 
         #region [ Properties ]
@@ -102,6 +101,19 @@ namespace Frontend.Core.ViewModels
         #region [ Methods ]
 
         /// <summary>
+        /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
+        /// </summary>
+        /// <returns>True if validation succeeds, false if not.</returns>
+        public override bool CanValidate()
+        {
+            bool isSourceGamePathValid = Directory.Exists(this.Options.CurrentConverter.SourceGame.AbsoluteInstallationPath);
+            bool isTargetGamePathValid = Directory.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath);
+            bool isSaveGamePathValid = File.Exists(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath);
+
+            return isSourceGamePathValid && isTargetGamePathValid && isSaveGamePathValid;
+        }
+
+        /// <summary>
         /// 
         /// </summary>
         /// <param name="parameter"></param>
@@ -128,19 +140,6 @@ namespace Frontend.Core.ViewModels
             // Add one step per category
             //foreach()
         }
-               
-
-        /// <summary>
-        /// Builds the conversion options.
-        /// </summary>
-        private void BuildConversionOptions()
-        {
-            //TODO: Finding installation paths makes little sense if the game isn't installed. Should probably be fixed
-            //this.VerifyInstallation(this.Options.SourceGame);
-            //this.VerifyInstallation(this.Options.TargetGame);
-            //this.FindGameInstallationPath(this.Options.SourceGame);
-            //this.FindGameInstallationPath(this.Options.TargetGame);
-        }        
 
         #endregion
     }

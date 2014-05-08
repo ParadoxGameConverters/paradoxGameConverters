@@ -1,14 +1,8 @@
-﻿using Frontend.Core.Logging;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Caliburn.Micro;
+using Frontend.Core.Logging;
+using Frontend.Core.Model.Interfaces;
 using System.IO;
 using System.Windows.Forms;
-using Caliburn.Micro;
-using Frontend.Core.Model.Interfaces;
 
 namespace Frontend.Core.Commands
 {
@@ -64,7 +58,7 @@ namespace Frontend.Core.Commands
             if (result == DialogResult.OK)
             {
                 game.AbsoluteInstallationPath = dialog.SelectedPath;
-                this.EventAggregator.PublishOnUIThread(new LogEntry("Updated installation folder for " + game.FriendlyName + "; new directory is " + game.AbsoluteInstallationPath, LogEntrySeverity.Info, LogEntrySource.UI, game.AbsoluteInstallationPath));
+                this.EventAggregator.PublishOnUIThread(new LogEntry("Updated installation folder for " + game.FriendlyName + "; new directory is ", LogEntrySeverity.Info, LogEntrySource.UI, game.AbsoluteInstallationPath));
             }
         }
     }

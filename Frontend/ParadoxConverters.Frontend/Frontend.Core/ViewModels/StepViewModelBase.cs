@@ -26,5 +26,11 @@ namespace Frontend.Core.ViewModels
                 return this.options;
             }
         }
+
+        /// <summary>
+        /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
+        /// </summary>
+        /// <returns>True if validation succeeds, false if not.</returns>
+        public abstract bool CanValidate();
     }
 }

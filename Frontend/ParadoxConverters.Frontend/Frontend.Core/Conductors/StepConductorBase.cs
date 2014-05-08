@@ -37,7 +37,7 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                if (this.Steps.Last() == this.CurrentStep)
+                if (!this.CurrentStep.CanValidate() || this.Steps.Last() == this.CurrentStep)
                 {
                     return false;
                 }

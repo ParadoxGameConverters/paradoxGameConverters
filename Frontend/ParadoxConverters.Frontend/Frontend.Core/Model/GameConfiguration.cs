@@ -15,6 +15,8 @@ namespace Frontend.Core.Model
         /// </summary>
         private IList<IMod> supportedMods;
 
+        private string absoluteInstallationPath;
+
         /// <summary>
         /// Backing store for the <see cref="AbsoluteModPath"/> property.
         /// </summary>
@@ -85,9 +87,26 @@ namespace Frontend.Core.Model
         public string ConfigurationFileModDirectoryTagName { get; set; }
 
         /// <summary>
-        /// 
+        /// The absolute path to the game's installation path
         /// </summary>
-        public string AbsoluteInstallationPath { get; set; }
+        public string AbsoluteInstallationPath 
+        { 
+            get
+            {
+                return this.absoluteInstallationPath;
+            }
+            
+            set
+            {
+                if (this.absoluteInstallationPath == value)
+                {
+                    return;
+                }
+
+                this.absoluteInstallationPath = value;
+                this.NotifyOfPropertyChange(() => this.AbsoluteInstallationPath);
+            }
+        }
         
         /// <summary>
         /// 

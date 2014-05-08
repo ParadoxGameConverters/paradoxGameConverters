@@ -24,7 +24,7 @@
       <sourceGame>EuropaUniversalis3</sourceGame>
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu3tovic2</subfolderName>
-      <isEnabled>true</isEnabled>
+      <isEnabled>false</isEnabled>
       <informationText>The frontend is currently unable to automatically install the converter mod. Please see readme.txt, under the heading "THE CONVERTER MOD for VICTORIA 2", for instructions.</informationText>
     </converter>
     <converter>
@@ -37,7 +37,7 @@
       <sourceGame>EuropaUniversalis4</sourceGame>
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu4tovic2</subfolderName>
-      <isEnabled>false</isEnabled>
+      <isEnabled>true</isEnabled>
     </converter>
   </supportedConverters>
 </configuration>
