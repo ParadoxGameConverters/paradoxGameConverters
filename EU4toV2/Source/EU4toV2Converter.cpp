@@ -180,7 +180,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Reading EU4 common\\countries.\n");
 	{
 		ifstream commonCountries(Configuration::getEU4Path() + "\\common\\country_tags\\00_countries.txt");
-		sourceWorld.readCommonCountries(commonCountries);
+		sourceWorld.readCommonCountries(commonCountries, Configuration::getEU4Path());
+		if (!fullModPath.empty())
+		{
+			// This only reads CK2 converted countries at the moment.
+			// TBD: Read all txt files from the mod common\country_tags folder.
+			ifstream convertedCommonCountries(fullModPath + "\\common\\country_tags\\converted_countries.txt");
+			sourceWorld.readCommonCountries(convertedCommonCountries, fullModPath);
+			ifstream specialCommonCountries(fullModPath + "\\common\\country_tags\\01_special_tags.txt");
+			sourceWorld.readCommonCountries(specialCommonCountries, fullModPath);
+		}
 	}
 
 	// Read EU4 localisations
@@ -217,6 +226,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	{
 		ifstream spanish(Configuration::getEU4Path() + "\\localisation\\text_l_spanish.yml");
 		sourceWorld.readCountryLocalisation(spanish);
+	}
+	if (!fullModPath.empty())
+	{
+		// This only reads CK2 converted countries at the moment.
+		// TBD: Read all yml files from the mod localisation folder.
+		{
+			ifstream english(fullModPath + "\\localisation\\converted_countries_l_english.yml");
+			sourceWorld.readCountryLocalisation(english);
+		}
 	}
 
 	// Resolve unit types

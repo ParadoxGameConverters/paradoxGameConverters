@@ -187,7 +187,7 @@ EU4World::EU4World(Object* obj)
 }
 
 
-void EU4World::readCommonCountries(istream& in)
+void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 {
 	// Add any info from common\countries
 	const int maxLineLength = 10000;
@@ -209,13 +209,18 @@ void EU4World::readCommonCountries(istream& in)
 			if (findIter != countries.end())
 			{
 				EU4Country* country = findIter->second;
-				// The country file name is in quotes.
-				size_t beginPos = countryLine.find('"', 3) + 1;
-				size_t endPos = countryLine.find('"', beginPos);
+				// The country file name is all the text after the equals sign (possibly in quotes).
+				size_t equalPos = countryLine.find('=', 3);
+				size_t beginPos = countryLine.find_first_not_of(' ', equalPos + 1);
+				size_t endPos = countryLine.find_last_not_of(' ') + 1;
 				std::string fileName = countryLine.substr(beginPos, endPos - beginPos);
+				if (fileName.front() == '"' && fileName.back() == '"')
+				{
+					fileName = fileName.substr(1, fileName.size() - 2);
+				}
 				std::replace(fileName.begin(), fileName.end(), '/', '\\');
 				// Parse the country file.
-				std::string path = Configuration::getEU4Path() + "\\common\\" + fileName;
+				std::string path = rootPath + "\\common\\" + fileName;
 				size_t lastPathSeparatorPos = path.find_last_of('\\');
 				std::string localFileName = path.substr(lastPathSeparatorPos + 1, string::npos);
 				country->readFromCommonCountry(localFileName, doParseFile(path.c_str()));
@@ -248,29 +253,32 @@ void EU4World::readCountryLocalisation(istream& in)
 		std::string localisationLine = line;
 		if (!localisationLine.empty())
 		{
-			size_t beginTagPos = localisationLine.find_first_not_of(' ');
-			size_t endTagPos = localisationLine.find(':', beginTagPos);
-			std::string tag = localisationLine.substr(beginTagPos, endTagPos - beginTagPos);
-			if (tag.size() == 3 || tag.size() == 7)
+			size_t beginTagPos = localisationLine.find_first_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
+			if (beginTagPos != string::npos)
 			{
-				size_t tagAdjPos = tag.find("_ADJ");
-				size_t beginTranslationPos = localisationLine.find('"', endTagPos) + 1;
-				size_t endTranslationPos = localisationLine.find('"', beginTranslationPos);
-				std::string translation = localisationLine.substr(beginTranslationPos, endTranslationPos - beginTranslationPos);
-				if (tagAdjPos == string::npos)
+				size_t endTagPos = localisationLine.find(':', beginTagPos);
+				std::string tag = localisationLine.substr(beginTagPos, endTagPos - beginTagPos);
+				if (tag.size() == 3 || tag.size() == 7)
 				{
-					EU4Country* country = getCountry(tag);
-					if (country)
+					size_t tagAdjPos = tag.find("_ADJ");
+					size_t beginTranslationPos = localisationLine.find('"', endTagPos) + 1;
+					size_t endTranslationPos = localisationLine.find('"', beginTranslationPos);
+					std::string translation = localisationLine.substr(beginTranslationPos, endTranslationPos - beginTranslationPos);
+					if (tagAdjPos == string::npos)
 					{
-						country->setLocalisationName(language, translation);
+						EU4Country* country = getCountry(tag);
+						if (country)
+						{
+							country->setLocalisationName(language, translation);
+						}
 					}
-				}
-				else
-				{
-					EU4Country* country = getCountry(tag.substr(0, tagAdjPos));
-					if (country)
+					else
 					{
-						country->setLocalisationAdjective(language, translation);
+						EU4Country* country = getCountry(tag.substr(0, tagAdjPos));
+						if (country)
+						{
+							country->setLocalisationAdjective(language, translation);
+						}
 					}
 				}
 			}

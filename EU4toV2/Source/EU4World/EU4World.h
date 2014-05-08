@@ -17,7 +17,7 @@ class EU4World {
 	public:
 		EU4World(Object* obj);
 
-		void readCommonCountries(istream&);
+		void readCommonCountries(istream&, const std::string& rootPath);
 		void readCountryLocalisation(istream&);
 
 		EU4Country*						getCountry(string tag) const;
