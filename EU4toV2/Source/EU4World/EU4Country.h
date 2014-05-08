@@ -17,6 +17,12 @@ class EU4Country
 	public:
 		EU4Country(Object* obj);
 
+		// Add any additional information available from "common\countries\country_name.txt"
+		void readFromCommonCountry(const string& fileName, Object*);
+
+		void setLocalisationName(const string& language, const string& name);
+		void setLocalisationAdjective(const string& language, const string& adjective);
+
 		void						addProvince(EU4Province*);
 		void						addCore(EU4Province*);
 		bool						hasModifier(string) const;
@@ -64,6 +70,11 @@ class EU4Country
 
 		double						getTreasury()								const	{ return inflationAdjust(treasury); };
 
+		string getName() const { return name; }
+		string getName(const string& language) const;
+		string getAdjective(const string& language) const;
+		void getColor(int& r, int& g, int& b) const;
+
 	private:
 		void							checkIdea(const Object*, const string);
 		void							clearProvinces();
@@ -109,6 +120,14 @@ class EU4Country
 
 		double						legitimacy;
 		double						inflation;
+
+		// Common country attributes
+		string name;
+		int color[3];
+
+		// Localisation attributes
+		map<string, string> namesByLanguage;
+		map<string, string> adjectivesByLanguage;
 };
 
 

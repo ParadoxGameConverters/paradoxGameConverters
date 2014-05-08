@@ -171,6 +171,49 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("\tExtracting data.\n");
 	EU4World sourceWorld(obj);
 
+	// Read EU4 common\countries
+	log("Reading EU4 common\\countries.\n");
+	printf("Reading EU4 common\\countries.\n");
+	{
+		ifstream commonCountries(Configuration::getEU4Path() + "\\common\\country_tags\\00_countries.txt");
+		sourceWorld.readCommonCountries(commonCountries);
+	}
+
+	// Read EU4 localisations
+	log("Reading EU4 localisations.\n");
+	printf("Reading EU4 localisations.\n");
+	{
+		ifstream english(Configuration::getEU4Path() + "\\localisation\\countries_l_english.yml");
+		sourceWorld.readCountryLocalisation(english);
+	}
+	{
+		ifstream english(Configuration::getEU4Path() + "\\localisation\\text_l_english.yml");
+		sourceWorld.readCountryLocalisation(english);
+	}
+	{
+		ifstream french(Configuration::getEU4Path() + "\\localisation\\countries_l_french.yml");
+		sourceWorld.readCountryLocalisation(french);
+	}
+	{
+		ifstream french(Configuration::getEU4Path() + "\\localisation\\text_l_french.yml");
+		sourceWorld.readCountryLocalisation(french);
+	}
+	{
+		ifstream german(Configuration::getEU4Path() + "\\localisation\\countries_l_german.yml");
+		sourceWorld.readCountryLocalisation(german);
+	}
+	{
+		ifstream german(Configuration::getEU4Path() + "\\localisation\\text_l_german.yml");
+		sourceWorld.readCountryLocalisation(german);
+	}
+	{
+		ifstream spanish(Configuration::getEU4Path() + "\\localisation\\countries_l_spanish.yml");
+		sourceWorld.readCountryLocalisation(spanish);
+	}
+	{
+		ifstream spanish(Configuration::getEU4Path() + "\\localisation\\text_l_spanish.yml");
+		sourceWorld.readCountryLocalisation(spanish);
+	}
 
 	// Resolve unit types
 	/*log("Resolving unit types.\n");

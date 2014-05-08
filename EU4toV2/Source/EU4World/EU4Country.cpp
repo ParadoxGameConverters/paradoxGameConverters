@@ -6,6 +6,7 @@
 #include "EU4Loan.h"
 #include "EU4Leader.h"
 #include <algorithm>
+#include <sstream>
 
 
 
@@ -371,6 +372,30 @@ EU4Country::EU4Country(Object* obj)
 }
 
 
+void EU4Country::readFromCommonCountry(const string& fileName, Object* obj)
+{
+	// For this country's name we will use the stem of the file name.
+	size_t extPos = fileName.find_last_of('.');
+	name = fileName.substr(0, extPos);
+
+	// Read country color.
+	std::istringstream colorText(obj->getValue("color")[0]->getLeaf());
+	colorText >> color[0] >> color[1] >> color[2];
+}
+
+
+void EU4Country::setLocalisationName(const string& language, const string& name)
+{
+	namesByLanguage[language] = name;
+}
+
+
+void EU4Country::setLocalisationAdjective(const string& language, const string& adjective)
+{
+	adjectivesByLanguage[language] = adjective;
+}
+
+
 void EU4Country::addProvince(EU4Province* province)
 {
 	provinces.push_back(province);
@@ -538,6 +563,42 @@ void EU4Country::eatCountry(EU4Country* target)
 	target->clearCores();
 
 	log("	Merged %s into %s\n", target->tag.c_str(), tag.c_str());
+}
+
+
+string EU4Country::getName(const string& language) const
+{
+	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
+	if (findIter != namesByLanguage.end())
+	{
+		return findIter->second;
+	}
+	else
+	{
+		return "";
+	}
+}
+
+
+string EU4Country::getAdjective(const string& language) const
+{
+	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
+	if (findIter != adjectivesByLanguage.end())
+	{
+		return findIter->second;
+	}
+	else
+	{
+		return "";
+	}
+}
+
+
+void EU4Country::getColor(int& r, int& g, int& b) const
+{
+	r = color[0];
+	g = color[1];
+	b = color[2];
 }
 
 

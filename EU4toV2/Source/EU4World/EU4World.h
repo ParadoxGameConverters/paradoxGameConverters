@@ -1,7 +1,7 @@
 #ifndef EU4WORLD_H_
 #define EU4WORLD_H_
 
-
+#include <istream>
 #include "EU4Army.h"
 
 class EU4Country;
@@ -16,6 +16,10 @@ typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, des
 class EU4World {
 	public:
 		EU4World(Object* obj);
+
+		void readCommonCountries(istream&);
+		void readCountryLocalisation(istream&);
+
 		EU4Country*						getCountry(string tag) const;
 		EU4Province*					getProvince(int provNum) const;
 		void								removeCountry(string tag);

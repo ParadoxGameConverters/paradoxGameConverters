@@ -4,6 +4,7 @@
 #include <float.h>
 #include <io.h>
 #include <fstream>
+#include <sstream>
 #include "../Log.h"
 #include "../Configuration.h"
 #include "../Parsers/Parser.h"
@@ -27,9 +28,10 @@
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 
-V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld)
+V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry)
 {
 	theWorld = _theWorld;
+	newCountry = _newCountry;
 
 	tag					= _tag;
 	commonCountryFile	= _commonCountryFile;
@@ -167,6 +169,70 @@ void V2Country::output() const
 	}
 	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());*/
 	fclose(output);
+
+	if (newCountry)
+	{
+		// Output common country file. 
+		FILE* commonCountryOutput;
+		std::string commmonCountryFilePath = "Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile;
+		if (fopen_s(&commonCountryOutput, commmonCountryFilePath.c_str(), "w") != 0)
+		{
+			log("\tError: Could not create common country file %s", commonCountryFile.c_str());
+			exit(-1);
+		}
+		// We don't have all the info we need for this yet, so for now we'll reuse the USA common country file
+		// and only replace the info we do have.
+		std::string commonCountrySourcePath = Configuration::getV2Path() + "\\common\\countries\\USA.txt";
+		ifstream commonCountryInput(commonCountrySourcePath);
+		const int maxLineLength = 1000;
+		char line[maxLineLength];
+		while (!commonCountryInput.eof())
+		{
+			commonCountryInput.getline(line, maxLineLength);
+			if (!commonCountryInput.eof())
+			{
+				std::string currentLine = line;
+				// Replace color.
+				if (currentLine.substr(0, 5) == "color")
+				{
+					fprintf(commonCountryOutput, "color = { %d %d %d }\n", color[0], color[1], color[2]);
+				}
+				else
+				{ // No replacement - leave as is.
+					fprintf(commonCountryOutput, "%s\n", line);
+				}
+			}
+		}
+		fclose(commonCountryOutput);
+	}
+}
+
+
+void V2Country::outputToCommonCountriesFile(FILE* output) const
+{
+	fprintf(output, "%s = \"countries%s\"\n", tag.c_str(), commonCountryFile.c_str());
+}
+
+
+void V2Country::outputLocalisation(FILE* output) const
+{
+	std::ostringstream nameLocalisation;
+	nameLocalisation << tag;
+	for (vector<string>::const_iterator i = localisationNames.begin(); i != localisationNames.end(); ++i)
+	{
+		nameLocalisation << ';' << *i;
+	}
+	nameLocalisation << 'x';
+	fprintf(output, "%s\n", nameLocalisation.str().c_str());
+
+	std::ostringstream adjectiveLocalisation;
+	adjectiveLocalisation << tag << "_ADJ";
+	for (vector<string>::const_iterator i = localisationAdjectives.begin(); i != localisationAdjectives.end(); ++i)
+	{
+		adjectiveLocalisation << ';' << *i;
+	}
+	adjectiveLocalisation << 'x';
+	fprintf(output, "%s\n", adjectiveLocalisation.str().c_str());
 }
 
 
@@ -227,6 +293,21 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		countryName				= countryName.substr(lastSlash + 1, countryName.size());
 		filename					= tag + " - " + countryName;
 	}
+
+	// Color
+	srcCountry->getColor(color[0], color[1], color[2]);
+
+	// Localisation
+	localisationNames.resize(14);
+	localisationNames[0] = srcCountry->getName("english");
+	localisationNames[1] = srcCountry->getName("french");
+	localisationNames[2] = srcCountry->getName("german");
+	localisationNames[4] = srcCountry->getName("spanish");
+	localisationAdjectives.resize(14);
+	localisationAdjectives[0] = srcCountry->getAdjective("english");
+	localisationAdjectives[1] = srcCountry->getAdjective("french");
+	localisationAdjectives[2] = srcCountry->getAdjective("german");
+	localisationAdjectives[4] = srcCountry->getAdjective("spanish");
 
 	// tech group
 	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))

@@ -8,6 +8,9 @@
 #include "V2World\V2World.h"
 #include "V2World\V2Country.h"
 #include <algorithm>
+#include <iomanip>
+#include <set>
+#include <sstream>
 #include <sys/stat.h>
 
 
@@ -219,6 +222,9 @@ int initCountryMap(countryMapping& mapping, const EU4World& srcWorld, const V2Wo
 	map<string, EU4Country*>	EU4Countries		= srcWorld.getCountries();
 	map<string, V2Country*>		V2Countries			= destWorld.getPotentialCountries();
 	map<string, V2Country*>		dynamicCountries	= destWorld.getDynamicCountries();
+	set<string> usedV2Tags;	// to ensure we don't re-use any V2 tags
+	char extraV2TagPrefix = 'X'; // the letter starting V2 tags for countries that don't have their own tags
+	int extraV2TagSuffix = 0; // the two digits ending V2 tags for countries that don't have their own tags - increases by one for each such country
 	for (vector<Object*>::iterator i = rules.begin(); i != rules.end(); ++i)
 	{
 		vector<Object*> rule = (*i)->getLeaves();
@@ -240,30 +246,60 @@ int initCountryMap(countryMapping& mapping, const EU4World& srcWorld, const V2Wo
 			}
 		}
 
-		// find the EU4 country from the rule
-		map<string, EU4Country*>::const_iterator EU4Country = EU4Countries.find(rEU4Tag);
-		if (EU4Country == EU4Countries.end())
+		// Do we have the EU4 country specified by this rule?
+		map<string, EU4Country*>::const_iterator EU4CountryIter = EU4Countries.find(rEU4Tag);
+		if (EU4CountryIter != EU4Countries.end())
 		{
-			continue;
-		}
+			const std::string& EU4Tag = EU4CountryIter->first;
 
-		// find the first available V2 tag from the rule
-		unsigned int distance = 0;
-		map<string, V2Country*>::const_iterator V2Country;// = V2Countries.end();
-		for (vector<string>::reverse_iterator j = rV2Tags.rbegin(); j != rV2Tags.rend(); ++j)
-		{
-			++distance;
-			V2Country = V2Countries.find(*j);
-			if (V2Country != V2Countries.end())
+			// We have an EU4 country matching this rule - we want to find an available V2 country to match to it.
+			bool matched = false;
+			for (vector<string>::reverse_iterator j = rV2Tags.rbegin(); j != rV2Tags.rend() && !matched; ++j)
 			{
-				//add the mapping
-				mapping.insert(make_pair(EU4Country->first, V2Country->first));
-				log("\tAdded map %s -> %s (#%d)\n", EU4Country->first.c_str(),V2Country->first.c_str(), distance);
+				const std::string& V2Tag = *j;
+				map<string, V2Country*>::const_iterator V2CountryIter = V2Countries.find(V2Tag);
+				if (V2CountryIter != V2Countries.end())
+				{
+					// An available matching V2 country exists - map the EU4 country to this V2 country.
+					matched = true;
+					mapping.insert(make_pair(EU4Tag, V2Tag));
+					log("\tAdded tag mapping %s -> %s (#%d)\n", EU4Tag.c_str(), V2Tag.c_str(), distance(rV2Tags.rbegin(), j));
+					// Remove both the EU4 and V2 countries so that neither can be mapped to or from again.
+					EU4Countries.erase(EU4CountryIter);
+					V2Countries.erase(V2CountryIter);
+					usedV2Tags.insert(V2Tag);
+				}
+			}
 
-				//remove tags from the lists
-				EU4Countries.erase(EU4Country);
-				V2Countries.erase(V2Country);
-				break;
+			if (!matched)
+			{ // There's no available V2 country, so we just have to make a new country with the first unused tag.
+				bool foundUnused = false;
+				string V2Tag;
+				for (vector<string>::reverse_iterator j = rV2Tags.rbegin(); j != rV2Tags.rend() && !foundUnused; ++j)
+				{
+					V2Tag = *j;
+					foundUnused = (usedV2Tags.find(V2Tag) == usedV2Tags.end());
+				}
+				if (!foundUnused)
+				{ // All the matching V2 tags are already used. We dynamically generate a tag.
+					ostringstream newTagStream;
+					newTagStream << extraV2TagPrefix << setfill('0') << setw(2) << extraV2TagSuffix;
+					V2Tag = newTagStream.str();
+					// Prepare the next dynamically generated tag.
+					++extraV2TagSuffix;
+					if (extraV2TagSuffix > 99)
+					{
+						extraV2TagSuffix = 0;
+						--extraV2TagPrefix;
+					}
+				}
+				// We now have a V2 tag to use, albeit without an actual V2 country that corresponds to it.
+				mapping.insert(make_pair(EU4Tag, V2Tag));
+				log("\tAdded tag mapping for new tag %s -> %s\n", EU4Tag.c_str(), V2Tag.c_str());
+				usedV2Tags.insert(V2Tag);
+				// Remove the EU4 country so it can't be mapped from again, and ensure we don't use the same V2 tag again.
+				EU4Countries.erase(EU4CountryIter);
+				usedV2Tags.insert(V2Tag);
 			}
 		}
 	}

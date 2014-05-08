@@ -31,9 +31,11 @@ struct V2Party;
 class V2Country
 {
 	public:
-		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld);
+		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry = false);
 		void								output() const;
-		void								initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
+		void								outputToCommonCountriesFile(FILE*) const;
+		void								outputLocalisation(FILE*) const;
+		void								initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
 		void								addState(V2State* newState);
 		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
@@ -72,6 +74,8 @@ class V2Country
 		vector< pair<int, int> >	getLiberalIssues() const { return liberalIssues; };
 		double							getLiteracy() const { return literacy; };
 		int								getCapital() const { return capital; };
+		bool								isNewCountry() const { return newCountry; };
+
 	private:
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
@@ -85,6 +89,7 @@ class V2Country
 		V2World*							theWorld;
 		const EU4Country*				srcCountry;
 		string							filename;
+		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
 
 		string							tag;
 		vector<V2State*>				states;
@@ -125,6 +130,9 @@ class V2Country
 		double							badboy;
 		vector<V2Leader*>				leaders;
 		double							literacy;
+		vector<string>					localisationNames;
+		vector<string>					localisationAdjectives;
+		int								color[3];
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

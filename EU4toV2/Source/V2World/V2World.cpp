@@ -310,7 +310,91 @@ V2World::V2World()
 // The majority of the output changes will take place here.  See comments for the plan of action:
 void V2World::output() const
 {
-	for (map<int, V2Province*>::const_iterator i = provinces.begin() ; i != provinces.end(); i++)
+	// Create common\countries path.
+	string countriesPath = "Output\\" + Configuration::getOutputName() + "\\common\\countries";
+	BOOL success = CreateDirectory(countriesPath.c_str(), NULL);
+	if (!success)
+	{
+		log("\tError: Could not create countries folder (Windows error %d)\n", GetLastError());
+	}
+
+	// Output common\countries.txt
+	FILE* allCountriesFile;
+	if (fopen_s(&allCountriesFile, ("Output\\" + Configuration::getOutputName() + "\\common\\countries.txt").c_str(), "w") != 0)
+	{
+		log("\tError: Could not create countries file");
+		exit(-1);
+	}
+	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
+	{
+		const V2Country& country = *i->second;
+		country.outputToCommonCountriesFile(allCountriesFile);
+	}
+	fclose(allCountriesFile);
+
+	// Create flags for all new countries. We don't have any flags yet so we just use those for the USA.
+	string flagPath = "Output\\" + Configuration::getOutputName() + "\\gfx";
+	success = CreateDirectory(flagPath.c_str(), NULL);
+	if (!success)
+	{
+		log("\tError: Could not create gfx folder (Windows error %d)\n", GetLastError());
+	}
+	flagPath += "\\flags";
+	success = CreateDirectory(flagPath.c_str(), NULL);
+	if (!success)
+	{
+		log("\tError: Could not create flags folder (Windows error %d)\n", GetLastError());
+	}
+	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
+	{
+		const V2Country& country = *i->second;
+		if (country.isNewCountry())
+		{
+			const string flagSourceFileSuffixes[] = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
+			for (int i = 0; i < 5; ++i)
+			{
+				string source = Configuration::getV2Path() + "\\gfx\\flags\\USA" + flagSourceFileSuffixes[i];
+				string dest = flagPath + '\\' + country.getTag() + flagSourceFileSuffixes[i];
+				BOOL success = CopyFile(source.c_str(), dest.c_str(), FALSE);
+				if (!success)
+				{
+					log("\tError: Could not copy flag file for tag %s (Windows error %d)\n", country.getTag().c_str(), GetLastError());
+				}
+			}
+		}
+	}
+
+	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
+	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";
+	success = CreateDirectory(localisationPath.c_str(), NULL);
+	if (!success)
+	{
+		log("\tError: Could not create localisation folder (Windows error %d)\n", GetLastError());
+	}
+	string source = Configuration::getV2Path() + "\\localisation\\text.csv";
+	string dest = localisationPath + "\\text.csv";
+	success = CopyFile(source.c_str(), dest.c_str(), FALSE);
+	if (!success)
+	{
+		log("\tError: Could not copy localisation text file (Windows error %d)\n", GetLastError());
+	}
+	FILE* localisationFile;
+	if (fopen_s(&localisationFile, dest.c_str(), "a") != 0)
+	{
+		log("\tError: Could not update localisation text file");
+		exit(-1);
+	}
+	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
+	{
+		const V2Country& country = *i->second;
+		if (country.isNewCountry())
+		{
+			country.outputLocalisation(localisationFile);
+		}
+	}
+	fclose(localisationFile);
+
+	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		//i->second->sortPops();
 		i->second->output();
@@ -364,28 +448,34 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	for (map<string, EU4Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
 	{
-		V2Country* newCountry;
-		countryMapping::const_iterator iter;
-		iter = countryMap.find(i->second->getTag());
-		if (iter != countryMap.end())
+		EU4Country* sourceCountry = i->second;
+		std::string EU4Tag = sourceCountry->getTag();
+		V2Country* destCountry = NULL;
+		countryMapping::const_iterator mappingIter = countryMap.find(EU4Tag);
+		if (mappingIter != countryMap.end())
 		{
-			for(vector<V2Country*>::iterator j = potentialCountries.begin(); j != potentialCountries.end(); j++)
+			const std::string& V2Tag = mappingIter->second;
+			for (vector<V2Country*>::iterator j = potentialCountries.begin(); j != potentialCountries.end() && !destCountry; j++)
 			{
-				if ( (*j)->getTag() == iter->second.c_str() )
+				V2Country* candidateDestCountry = *j;
+				if (candidateDestCountry->getTag() == V2Tag)
 				{
-					newCountry = *j;
-					newCountry->initFromEU4Country(i->second, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
-					break;
+					destCountry = candidateDestCountry;
 				}
 			}
+			if (!destCountry)
+			{ // No such V2 country exists yet for this tag so we make a new one.
+				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
+				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true);
+			}
+			destCountry->initFromEU4Country(sourceCountry, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
+			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
 		{
 			log("Error: Could not convert EU4 tag %s to V2.\n", i->second->getTag().c_str());
 			printf("Error: Could not convert EU4 tag %s to V2.\n", i->second->getTag().c_str());
 		}
-
-		countries.insert(make_pair(iter->second, newCountry));
 	}
 
 	// set national values
