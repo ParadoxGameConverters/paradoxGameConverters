@@ -436,7 +436,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
+void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -451,10 +451,9 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 		EU4Country* sourceCountry = i->second;
 		std::string EU4Tag = sourceCountry->getTag();
 		V2Country* destCountry = NULL;
-		countryMapping::const_iterator mappingIter = countryMap.find(EU4Tag);
-		if (mappingIter != countryMap.end())
+		const std::string& V2Tag = countryMap[EU4Tag];
+		if (!V2Tag.empty())
 		{
-			const std::string& V2Tag = mappingIter->second;
 			for (vector<V2Country*>::iterator j = potentialCountries.begin(); j != potentialCountries.end() && !destCountry; j++)
 			{
 				V2Country* candidateDestCountry = *j;
@@ -595,46 +594,48 @@ void V2World::convertCountries(const EU4World& sourceWorld, const countryMapping
 }
 
 
-void V2World::convertDiplomacy(const EU4World& sourceWorld, const countryMapping& countryMap)
+void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping& countryMap)
 {
 	vector<EU4Agreement> agreements = sourceWorld.getDiplomacy()->getAgreements();
 	for (vector<EU4Agreement>::iterator itr = agreements.begin(); itr != agreements.end(); ++itr)
 	{
-		countryMapping::const_iterator newCountry1 = countryMap.find(itr->country1);
-		if (newCountry1 == countryMap.end())
+		const std::string& EU4Tag1 = itr->country1;
+		const std::string& V2Tag1 = countryMap[EU4Tag1];
+		if (V2Tag1.empty())
 		{
-			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", itr->country1.c_str());
+			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", EU4Tag1.c_str());
 			continue;
 		}
-		countryMapping::const_iterator newCountry2 = countryMap.find(itr->country2);
-		if (newCountry2 == countryMap.end())
+		const std::string& EU4Tag2 = itr->country2;
+		const std::string& V2Tag2 = countryMap[EU4Tag2];
+		if (V2Tag2.empty())
 		{
-			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", itr->country2.c_str());
+			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", EU4Tag2.c_str());
 			continue;
 		}
 
-		map<string, V2Country*>::iterator country1 = countries.find(newCountry1->second);
-		map<string, V2Country*>::iterator country2 = countries.find(newCountry2->second);
+		map<string, V2Country*>::iterator country1 = countries.find(V2Tag1);
+		map<string, V2Country*>::iterator country2 = countries.find(V2Tag2);
 		if (country1 == countries.end())
 		{
-			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry1->second.c_str());
+			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", V2Tag1.c_str());
 			continue;
 		}
 		if (country2 == countries.end())
 		{
-			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", newCountry2->second.c_str());
+			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", V2Tag2.c_str());
 			continue;
 		}
-		V2Relations* r1 = country1->second->getRelations(newCountry2->second);
+		V2Relations* r1 = country1->second->getRelations(V2Tag2);
 		if (!r1)
 		{
-			log("\tError: Vic2 country %s has no relations with %s\n", newCountry1->second.c_str(), newCountry2->second.c_str());
+			log("\tError: Vic2 country %s has no relations with %s\n", V2Tag1.c_str(), V2Tag2.c_str());
 			continue;
 		}
-		V2Relations* r2 = country2->second->getRelations(newCountry1->second);
+		V2Relations* r2 = country2->second->getRelations(V2Tag1);
 		if (!r2)
 		{
-			log("\tError: Vic2 country %s has no relations with %s\n", newCountry2->second.c_str(), newCountry1->second.c_str());
+			log("\tError: Vic2 country %s has no relations with %s\n", V2Tag2.c_str(), V2Tag1.c_str());
 			continue;
 		}
 
@@ -671,8 +672,8 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const countryMapping
 		{
 			// copy agreement
 			V2Agreement v2a;
-			v2a.country1 = newCountry1->second;
-			v2a.country2 = newCountry2->second;
+			v2a.country1 = V2Tag1;
+			v2a.country2 = V2Tag2;
 			v2a.start_date = itr->startDate;
 			v2a.type = itr->type;
 			diplomacy.addAgreement(v2a);
@@ -690,7 +691,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const countryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
 {
 	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -785,15 +786,15 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			continue;
 		}
 
-		countryMapping::const_iterator iter = countryMap.find(oldOwner->getTag());
-		if (iter == countryMap.end())
+		const std::string& V2Tag = countryMap[oldOwner->getTag()];
+		if (V2Tag.empty())
 		{
 			log("Error: Could not map provinces owned by %s.\n", oldOwner->getTag().c_str());
 		}
 		else
 		{
-			i->second->setOwner(iter->second);
-			map<string, V2Country*>::iterator ownerItr = countries.find(iter->second);
+			i->second->setOwner(V2Tag);
+			map<string, V2Country*>::iterator ownerItr = countries.find(V2Tag);
 			if (ownerItr != countries.end())
 			{
 				ownerItr->second->addProvince(i->second);
@@ -808,18 +809,19 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 					vector<EU4Country*> oldCores = (*vitr)->getCores(sourceWorld.getCountries());
 					for(vector<EU4Country*>::iterator j = oldCores.begin(); j != oldCores.end(); j++)
 					{
+						std::string coreEU4Tag = (*j)->getTag();
 						// skip this core if the country is the owner of the EU4 province but not the V2 province
 						// (i.e. "avoid boundary conflicts that didn't exist in EU4").
 						// this country may still get core via a province that DID belong to the current V2 owner
-						if (( (*j)->getTag() == mitr->first) && ( (*j)->getTag() != oldOwner->getTag()))
+						if (( coreEU4Tag == mitr->first) && ( coreEU4Tag != oldOwner->getTag()))
 						{
 							continue;
 						}
 
-						iter = countryMap.find( (*j)->getTag());
-						if (iter != countryMap.end())
+						const std::string& coreV2Tag = countryMap[coreEU4Tag];
+						if (!coreV2Tag.empty())
 						{
-							i->second->addCore(iter->second);
+							i->second->addCore(coreV2Tag);
 						}
 					}
 

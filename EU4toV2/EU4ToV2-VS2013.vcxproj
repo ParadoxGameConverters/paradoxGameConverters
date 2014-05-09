@@ -98,6 +98,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Source\Configuration.cpp" />
+    <ClCompile Include="Source\CountryMapping.cpp" />
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\EU4toV2Converter.cpp" />
     <ClCompile Include="Source\EU4World\EU4Army.cpp" />
@@ -133,6 +134,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Configuration.h" />
+    <ClInclude Include="Source\CountryMapping.h" />
     <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\EU4World\EU4Army.h" />
     <ClInclude Include="Source\EU4World\EU4Country.h" />

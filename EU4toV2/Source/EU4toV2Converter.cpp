@@ -334,68 +334,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	vector<string> blockedNations = processBlockedNations(obj);
 
 	// Get country mappings
-	log("Parsing country mappings.\n");
-	printf("Parsing country mappings.\n");
-	initParser();
-	obj = doParseFile("country_mappings.txt");	
-	if (obj == NULL)
-	{
-		log("Could not parse file country_mappings.txt\n");
-		exit(-1);
-	}
-
-	// Map EU4 nations to V2 nations
-	log("Mapping EU4 nations to V2 nations.\n");
-	printf("Mapping EU4 nations to V2 nations.\n");
-	removeEmptyNations(sourceWorld);
-	if (Configuration::getRemovetype() == "dead")
-	{
-		removeDeadLandlessNations(sourceWorld);
-	}
-	else if (Configuration::getRemovetype() == "all")
-	{
-		removeLandlessNations(sourceWorld);
-	}
-	countryMapping countryMap;
-	int leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
-	if (leftoverNations == -1)
-	{
-		return 1;
-	}
-	else if (leftoverNations > 0)
-	{
-		log("\tToo many EU4 nations (%d). Removing dead landless nations.\n", leftoverNations);
-		printf("\tToo many EU4 nations (%d). Removing dead landless nations.\n", leftoverNations);
-		removeDeadLandlessNations(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
-	}
-	if (leftoverNations == -1)
-	{
-		return 1;
-	}
-	else if (leftoverNations > 0)
-	{
-		log("\tToo many EU4 nations (%d). Removing older landless nations.\n", leftoverNations);
-		printf("\tToo many EU4 nations (%d). Removing older landless nations.\n", leftoverNations);
-		removeOlderLandlessNations(sourceWorld, leftoverNations + blockedNations.size());
-		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
-	}
-	if (leftoverNations == -1)
-	{
-		return 1;
-	}
-	else if (leftoverNations > 0)
-	{
-		log("\tToo many EU4 nations (%d). Removing all landless nations.\n", leftoverNations);
-		printf("\tToo many EU4 nations (%d). Removing all landless nations.\n", leftoverNations);
-		removeLandlessNations(sourceWorld);
-		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
-	}
-	if (leftoverNations > 0)
-	{
-		log("\tToo many EU4 nations (%d). Nothing left to remove. Exiting\n", leftoverNations);
-		exit(1);
-	}
+	CountryMapping countryMap;
+	countryMap.ReadRules("country_mappings.txt");
+	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies
 	log("Importing adjacencies\n");

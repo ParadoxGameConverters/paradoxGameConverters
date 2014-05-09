@@ -41,11 +41,7 @@ typedef map<int, string>	continentMapping;	// <province, continent>
 void initContinentMap(Object* obj, continentMapping& continentMap);
 
 
-// Country Mappings
-typedef map< string, string > countryMapping;	// < sourceCountry, destCountry>
-
 vector<string> processBlockedNations(Object* obj);
-int initCountryMap(countryMapping& mapping, const EU4World& srcWorld, const V2World& destWorld, const vector<string>& blockedNations, Object* rulesObj);
 void mergeNations(EU4World&, Object* mergeObj);
 void uniteJapan(EU4World&);
 void removeEmptyNations(EU4World&);

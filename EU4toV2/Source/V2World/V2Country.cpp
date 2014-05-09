@@ -265,7 +265,7 @@ void V2Country::outputElection(FILE* output) const
 }
 
 
-void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
+void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
 {
 	srcCountry = _srcCountry;
 
@@ -505,10 +505,10 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	{
 		for (vector<EU4Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
 		{
-			countryMapping::iterator newTag = countryMap.find( (*itr)->getCountry() );
-			if (newTag != countryMap.end())
+			const std::string& V2Tag = countryMap[(*itr)->getCountry()];
+			if (!V2Tag.empty())
 			{
-				V2Relations* v2r = new V2Relations(newTag->second, *itr);
+				V2Relations* v2r = new V2Relations(V2Tag, *itr);
 				relations.push_back(v2r);
 			}
 		}
