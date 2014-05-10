@@ -26,6 +26,7 @@
 #include "V2Pop.h"
 #include "V2Country.h"
 #include "V2Reforms.h"
+#include "V2Flags.h"
 
 
 
@@ -269,17 +270,20 @@ V2World::V2World()
 			if (countryData == NULL)
 			{
 				log("Could not parse file %s\n", (string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
-				exit(-1);
 			}
 		}
-		else
+		else if (_stat((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str(), &st) == 0)
 		{
 			countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
 			if (countryData == NULL)
 			{
 				log("Could not parse file %s\n", (Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
-				exit(-1);
 			}
+		}
+		else
+		{
+			log("Could not find file common\\countries\\%s - skipping\n", countryFileName.c_str());
+			continue;
 		}
 
 		vector<Object*> partyData = countryData->getValue("party");
@@ -332,37 +336,10 @@ void V2World::output() const
 	}
 	fclose(allCountriesFile);
 
-	// Create flags for all new countries. We don't have any flags yet so we just use those for the USA.
-	string flagPath = "Output\\" + Configuration::getOutputName() + "\\gfx";
-	success = CreateDirectory(flagPath.c_str(), NULL);
-	if (!success)
-	{
-		log("\tError: Could not create gfx folder (Windows error %d)\n", GetLastError());
-	}
-	flagPath += "\\flags";
-	success = CreateDirectory(flagPath.c_str(), NULL);
-	if (!success)
-	{
-		log("\tError: Could not create flags folder (Windows error %d)\n", GetLastError());
-	}
-	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
-	{
-		const V2Country& country = *i->second;
-		if (country.isNewCountry())
-		{
-			const string flagSourceFileSuffixes[] = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
-			for (int i = 0; i < 5; ++i)
-			{
-				string source = Configuration::getV2Path() + "\\gfx\\flags\\USA" + flagSourceFileSuffixes[i];
-				string dest = flagPath + '\\' + country.getTag() + flagSourceFileSuffixes[i];
-				BOOL success = CopyFile(source.c_str(), dest.c_str(), FALSE);
-				if (!success)
-				{
-					log("\tError: Could not copy flag file for tag %s (Windows error %d)\n", country.getTag().c_str(), GetLastError());
-				}
-			}
-		}
-	}
+	// Create flags for all new countries.
+	V2Flags flags;
+	flags.SetV2Tags(countries);
+	flags.Output();
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
 	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";
