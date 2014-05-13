@@ -10,8 +10,9 @@
 #include "EU4Country.h"
 #include "EU4Diplomacy.h"
 #include "EU4Version.h"
+#include "EU4Localisation.h"
 
-EU4World::EU4World(Object* obj)
+EU4World::EU4World(EU4Localisation& localisation, Object* obj)
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");
 	if (versionObj.size() > 0)
@@ -61,6 +62,20 @@ EU4World::EU4World(Object* obj)
 			else
 			{
 				EU4Country* country = new EU4Country(countriesLeaves[j]);
+				const auto& nameLocalisations = localisation.GetTextInEachLanguage(country->getTag());
+				for (const auto& nameLocalisation : nameLocalisations)
+				{
+					const std::string& language = nameLocalisation.first;
+					const std::string& name = nameLocalisation.second;
+					country->setLocalisationName(language, name);
+				}
+				const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(country->getTag() + "_ADJ");
+				for (const auto& adjectiveLocalisation : adjectiveLocalisations)
+				{
+					const std::string& language = adjectiveLocalisation.first;
+					const std::string& adjective = adjectiveLocalisation.second;
+					country->setLocalisationAdjective(language, adjective);
+				}
 				countries.insert(make_pair(country->getTag(), country));
 			}
 		}
@@ -224,63 +239,6 @@ void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 				size_t lastPathSeparatorPos = path.find_last_of('\\');
 				std::string localFileName = path.substr(lastPathSeparatorPos + 1, string::npos);
 				country->readFromCommonCountry(localFileName, doParseFile(path.c_str()));
-			}
-		}
-	}
-}
-
-
-void EU4World::readCountryLocalisation(istream& in)
-{
-	const int maxLineLength = 10000;
-	char line[maxLineLength];
-
-	// First line is the language like "l_english:"
-	in.getline(line, maxLineLength);
-	std::string languageLine = line;
-	size_t beginPos = languageLine.find('_') + 1;
-	size_t endPos = languageLine.find(':', beginPos);
-	std::string language = languageLine.substr(beginPos, endPos - beginPos);
-
-	// Subsequent lines are TAG: "Name" or TAG_ADJ: "Adjective"
-	while (true)
-	{
-		in.getline(line, maxLineLength);
-		if (in.eof())
-		{
-			return;
-		}
-		std::string localisationLine = line;
-		if (!localisationLine.empty())
-		{
-			size_t beginTagPos = localisationLine.find_first_of("ABCDEFGHIJKLMNOPQRSTUVWXYZ");
-			if (beginTagPos != string::npos)
-			{
-				size_t endTagPos = localisationLine.find(':', beginTagPos);
-				std::string tag = localisationLine.substr(beginTagPos, endTagPos - beginTagPos);
-				if (tag.size() == 3 || tag.size() == 7)
-				{
-					size_t tagAdjPos = tag.find("_ADJ");
-					size_t beginTranslationPos = localisationLine.find('"', endTagPos) + 1;
-					size_t endTranslationPos = localisationLine.find('"', beginTranslationPos);
-					std::string translation = localisationLine.substr(beginTranslationPos, endTranslationPos - beginTranslationPos);
-					if (tagAdjPos == string::npos)
-					{
-						EU4Country* country = getCountry(tag);
-						if (country)
-						{
-							country->setLocalisationName(language, translation);
-						}
-					}
-					else
-					{
-						EU4Country* country = getCountry(tag.substr(0, tagAdjPos));
-						if (country)
-						{
-							country->setLocalisationAdjective(language, translation);
-						}
-					}
-				}
 			}
 		}
 	}

@@ -8,6 +8,7 @@ class EU4Country;
 class EU4Province;
 class EU4Diplomacy;
 class EU4Version;
+class EU4Localisation;
 struct EU4Agreement;
 typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
@@ -15,10 +16,9 @@ typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, des
 
 class EU4World {
 	public:
-		EU4World(Object* obj);
+		EU4World(EU4Localisation&, Object* obj);
 
 		void readCommonCountries(istream&, const std::string& rootPath);
-		void readCountryLocalisation(istream&);
 
 		EU4Country*						getCountry(string tag) const;
 		EU4Province*					getProvince(int provNum) const;

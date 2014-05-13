@@ -6,6 +6,7 @@
 #include "Log.h"
 #include "EU4World\EU4World.h"
 #include "EU4World\EU4Religion.h"
+#include "EU4World\EU4Localisation.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Factory.h"
 #include "V2World\V2TechSchools.h"
@@ -141,9 +142,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Could not parse file %s\n", inputFilename.c_str());
 		exit(-1);
 	}
-	log("\tExtracting data.\n");
-	printf("\tExtracting data.\n");
-	EU4World sourceWorld(obj);
 
 	// Get EU4 Mod
 	log("Get EU4 Mod\n");
@@ -175,6 +173,23 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		}
 	}
 
+	// Read all localisations.
+	log("Reading localisation.\n");
+	printf("Reading localisation.\n");
+	EU4Localisation localisation;
+	localisation.ReadFromAllFilesInFolder(Configuration::getEU4Path() + "\\localisation");
+	if (!fullModPath.empty())
+	{
+		log("\tReading mod localisation.\n");
+		printf("\tReading mod localisation.\n");
+		localisation.ReadFromAllFilesInFolder(fullModPath + "\\localisation");
+	}
+
+	// Construct world from EU4 save.
+	log("Building world.\n");
+	printf("Building world.\n");
+	EU4World sourceWorld(localisation, obj);
+
 	// Read EU4 common\countries
 	log("Reading EU4 common\\countries.\n");
 	printf("Reading EU4 common\\countries.\n");
@@ -189,51 +204,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 			sourceWorld.readCommonCountries(convertedCommonCountries, fullModPath);
 			ifstream specialCommonCountries(fullModPath + "\\common\\country_tags\\01_special_tags.txt");
 			sourceWorld.readCommonCountries(specialCommonCountries, fullModPath);
-		}
-	}
-
-	// Read EU4 localisations
-	log("Reading EU4 localisations.\n");
-	printf("Reading EU4 localisations.\n");
-	{
-		ifstream english(Configuration::getEU4Path() + "\\localisation\\countries_l_english.yml");
-		sourceWorld.readCountryLocalisation(english);
-	}
-	{
-		ifstream english(Configuration::getEU4Path() + "\\localisation\\text_l_english.yml");
-		sourceWorld.readCountryLocalisation(english);
-	}
-	{
-		ifstream french(Configuration::getEU4Path() + "\\localisation\\countries_l_french.yml");
-		sourceWorld.readCountryLocalisation(french);
-	}
-	{
-		ifstream french(Configuration::getEU4Path() + "\\localisation\\text_l_french.yml");
-		sourceWorld.readCountryLocalisation(french);
-	}
-	{
-		ifstream german(Configuration::getEU4Path() + "\\localisation\\countries_l_german.yml");
-		sourceWorld.readCountryLocalisation(german);
-	}
-	{
-		ifstream german(Configuration::getEU4Path() + "\\localisation\\text_l_german.yml");
-		sourceWorld.readCountryLocalisation(german);
-	}
-	{
-		ifstream spanish(Configuration::getEU4Path() + "\\localisation\\countries_l_spanish.yml");
-		sourceWorld.readCountryLocalisation(spanish);
-	}
-	{
-		ifstream spanish(Configuration::getEU4Path() + "\\localisation\\text_l_spanish.yml");
-		sourceWorld.readCountryLocalisation(spanish);
-	}
-	if (!fullModPath.empty())
-	{
-		// This only reads CK2 converted countries at the moment.
-		// TBD: Read all yml files from the mod localisation folder.
-		{
-			ifstream english(fullModPath + "\\localisation\\converted_countries_l_english.yml");
-			sourceWorld.readCountryLocalisation(english);
 		}
 	}
 
