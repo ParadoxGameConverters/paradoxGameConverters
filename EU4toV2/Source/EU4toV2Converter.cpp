@@ -1,9 +1,13 @@
 #include <fstream>
-#include <sys/stat.h>
 #include <io.h>
+#include <stdexcept>
+#include <sys/stat.h>
+
 #include <Windows.h>
-#include "Parsers\Parser.h"
+
+#include "Configuration.h"
 #include "Log.h"
+#include "Parsers\Parser.h"
 #include "EU4World\EU4World.h"
 #include "EU4World\EU4Religion.h"
 #include "EU4World\EU4Localisation.h"
@@ -11,19 +15,11 @@
 #include "V2World\V2Factory.h"
 #include "V2World\V2TechSchools.h"
 #include "V2World\V2LeaderTraits.h"
-#include "Configuration.h"
 
-
-
-int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
+// Converts the given EU4 save into a V2 mod.
+// Returns 0 on success or a non-zero failure code on error.
+int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 {
-/*
-	LOG(LogLevel::Debug) << "A debug message";
-	LOG(LogLevel::Info) << "An info message";
-	LOG(LogLevel::Warning) << "A warning";
-	LOG(LogLevel::Error) << "An error";
-	return 0;
-*/
 	Object*	obj;					// generic object
 	ifstream	read;				// ifstream for reading files
 
@@ -98,23 +94,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		LOG(LogLevel::Debug) << "CK2 export directory is " << CK2ExportLoc;
 	}
 
-	//Get Input EU4 save 
-	string inputFilename("input.eu4");
-	if (argc >= 2)
-	{
-		inputFilename = argv[1];
-		LOG(LogLevel::Info) << "Using input file " << inputFilename;
-	}
-	else
-	{
-		LOG(LogLevel::Info) << "No input file given, defaulting to input.eu4";
-	}
-
 	//get output name
-	int slash			= inputFilename.find_last_of("\\");
-	int length			= inputFilename.find_first_of(".") - slash - 1;
-	string outputName = inputFilename.substr(slash + 1, length);
-	int dash				= outputName.find_first_of('-');
+	int slash = EU4SaveFileName.find_last_of("\\");
+	int length = EU4SaveFileName.find_first_of(".") - slash - 1;
+	string outputName = EU4SaveFileName.substr(slash + 1, length);
+	int dash = outputName.find_first_of('-');
 	while (dash != string::npos)
 	{
 		outputName.replace(dash, 1, "_");
@@ -133,10 +117,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	//	Parse EU4 Save
 	LOG(LogLevel::Info) << "Parsing save";
-	obj = doParseFile(inputFilename.c_str());
+	obj = doParseFile(EU4SaveFileName.c_str());
 	if (obj == NULL)
 	{
-		LOG(LogLevel::Error) << "Could not parse file " << inputFilename;
+		LOG(LogLevel::Error) << "Could not parse file " << EU4SaveFileName;
 		exit(-1);
 	}
 
@@ -599,5 +583,31 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	system(renameCommand.c_str());
 	destWorld.output();
 
+	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
+}
+
+int main(int argc, char * argv[])
+{
+	try
+	{
+		const char* const defaultEU4SaveFileName = "input.eu4";
+		string EU4SaveFileName;
+		if (argc >= 2)
+		{
+			EU4SaveFileName = argv[1];
+			LOG(LogLevel::Info) << "Using input file " << EU4SaveFileName;
+		}
+		else
+		{
+			EU4SaveFileName = defaultEU4SaveFileName;
+			LOG(LogLevel::Info) << "No input file given, defaulting to " << defaultEU4SaveFileName;
+		}
+		ConvertEU4ToV2(EU4SaveFileName);
+	}
+	catch (const std::exception& e)
+	{
+		LOG(LogLevel::Error) << e.what();
+		return -1;
+	}
 }
