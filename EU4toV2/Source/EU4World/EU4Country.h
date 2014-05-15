@@ -17,7 +17,7 @@ class EU4Country
 	public:
 		EU4Country(Object* obj);
 
-		// Add any additional information available from "common\countries\country_name.txt"
+		// Add any additional information available from the specified country file.
 		void readFromCommonCountry(const string& fileName, Object*);
 
 		void setLocalisationName(const string& language, const string& name);
@@ -121,8 +121,8 @@ class EU4Country
 		double						legitimacy;
 		double						inflation;
 
-		// Common country attributes
 		string name;
+		string adjective;
 		int color[3];
 
 		// Localisation attributes

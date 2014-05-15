@@ -17,6 +17,25 @@ EU4Country::EU4Country(Object* obj)
 	provinces.clear();
 	cores.clear();
 
+	vector<Object*> nameObj = obj->getValue("name");
+	if (!nameObj.empty())
+	{
+		name = nameObj[0]->getLeaf();
+	}
+
+	vector<Object*> adjectiveObj = obj->getValue("adjective");
+	if (!adjectiveObj.empty())
+	{
+		adjective = adjectiveObj[0]->getLeaf();
+	}
+
+	vector<Object*> colorObj = obj->getValue("map_color");
+	if (!colorObj.empty())
+	{
+		std::istringstream mapColors(colorObj[0]->getLeaf());
+		mapColors >> color[0] >> color[1] >> color[2];
+	}
+
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
 	{
@@ -568,6 +587,11 @@ void EU4Country::eatCountry(EU4Country* target)
 
 string EU4Country::getName(const string& language) const
 {
+	if (namesByLanguage.empty() && language == "english")
+	{
+		return name;
+	}
+
 	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
 	if (findIter != namesByLanguage.end())
 	{
@@ -582,6 +606,11 @@ string EU4Country::getName(const string& language) const
 
 string EU4Country::getAdjective(const string& language) const
 {
+	if (adjectivesByLanguage.empty() && language == "english")
+	{
+		return adjective;
+	}
+
 	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
 	if (findIter != adjectivesByLanguage.end())
 	{
