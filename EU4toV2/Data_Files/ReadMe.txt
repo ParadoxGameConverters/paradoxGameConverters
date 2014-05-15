@@ -43,8 +43,15 @@ CREDITS
 
 An (incomplete) list of those who contributed effort to this mammoth undertaking
 
-Idhrendur	- Project Lead
-Ztaesek		- Programming, Data Files
-TheSpartanD	- Data Files
+Idhrendur		- Project Lead
+Ztaesek			- Programming, Data Files
+theosZA			- Programming
+kwsdev			- data files
+TheSpartanD		- Data Files
+LordBawbag		- Data Files
+MamelukeSkywalker	- Data Files
+LordOfTurtles		- Data Files
+localtoast		- Data Files
+G_Morgan		- Data Files
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -
