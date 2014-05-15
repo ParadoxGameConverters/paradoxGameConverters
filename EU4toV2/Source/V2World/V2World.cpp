@@ -10,8 +10,8 @@
 #include <sys/stat.h>
 #include "../Parsers/Parser.h"
 #include "../Log.h"
-#include "V2LeaderTraits.h"
 #include "../Configuration.h"
+#include "../WinUtils.h"
 #include "../EU4World/EU4World.h"
 #include "../EU4World/EU4Relations.h"
 #include "../EU4World/EU4Loan.h"
@@ -27,6 +27,7 @@
 #include "V2Country.h"
 #include "V2Reforms.h"
 #include "V2Flags.h"
+#include "V2LeaderTraits.h"
 
 
 
@@ -313,10 +314,9 @@ void V2World::output() const
 {
 	// Create common\countries path.
 	string countriesPath = "Output\\" + Configuration::getOutputName() + "\\common\\countries";
-	BOOL success = CreateDirectory(countriesPath.c_str(), NULL);
-	if (!success)
+	if (!WinUtils::TryCreateFolder(countriesPath))
 	{
-		LOG(LogLevel::Warning) << "Could not create countries folder (Windows error " << GetLastError() << ')';
+		return;
 	}
 
 	// Output common\countries.txt
@@ -340,18 +340,13 @@ void V2World::output() const
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
 	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";
-	success = CreateDirectory(localisationPath.c_str(), NULL);
-	if (!success)
+	if (!WinUtils::TryCreateFolder(localisationPath))
 	{
-		LOG(LogLevel::Warning) << "Could not create localisation folder (Windows error " << GetLastError() << ')';
+		return;
 	}
 	string source = Configuration::getV2Path() + "\\localisation\\text.csv";
 	string dest = localisationPath + "\\text.csv";
-	success = CopyFile(source.c_str(), dest.c_str(), FALSE);
-	if (!success)
-	{
-		LOG(LogLevel::Warning) << "Could not copy localisation text file (Windows error " << GetLastError() << ')';
-	}
+	WinUtils::TryCopyFile(source, dest);
 	FILE* localisationFile;
 	if (fopen_s(&localisationFile, dest.c_str(), "a") != 0)
 	{

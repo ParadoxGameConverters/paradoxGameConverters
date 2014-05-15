@@ -133,6 +133,7 @@
     <ClCompile Include="Source\V2World\V2State.cpp" />
     <ClCompile Include="Source\V2World\V2TechSchools.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
+    <ClCompile Include="Source\WinUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Configuration.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="Source\V2World\V2State.h" />
     <ClInclude Include="Source\V2World\V2TechSchools.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
+    <ClInclude Include="Source\WinUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

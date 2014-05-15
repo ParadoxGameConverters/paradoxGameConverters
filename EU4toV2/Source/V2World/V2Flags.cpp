@@ -6,11 +6,10 @@
 
 #include <boost/algorithm/string/predicate.hpp>
 
-#include <Windows.h>
-
 #include "V2Country.h"
 #include "..\Configuration.h"
 #include "..\Log.h"
+#include "..\WinUtils.h"
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
@@ -24,7 +23,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 	std::set<std::string> availableFlags;
 	for (size_t i = 0; i < availableFlagFolders.size(); ++i)
 	{
-		GetAllFilesInFolder(availableFlagFolders[i], availableFlags);
+		WinUtils::GetAllFilesInFolder(availableFlagFolders[i], availableFlags);
 	}
 	std::set<std::string> usableFlagTags;
 	while (!availableFlags.empty())
@@ -107,12 +106,12 @@ bool V2Flags::Output() const
 
 	// Create output folders.
 	std::string outputGraphicsFolder = "Output\\" + Configuration::getOutputName() + "\\gfx";
-	if (!TryCreateFolder(outputGraphicsFolder))
+	if (!WinUtils::TryCreateFolder(outputGraphicsFolder))
 	{
 		return false;
 	}
 	std::string outputFlagFolder = outputGraphicsFolder + "\\flags";
-	if (!TryCreateFolder(outputFlagFolder))
+	if (!WinUtils::TryCreateFolder(outputFlagFolder))
 	{
 		return false;
 	}
@@ -131,89 +130,15 @@ bool V2Flags::Output() const
 			{
 				const std::string& folderPath = *j;
 				std::string sourceFlagPath = folderPath + '\\' + flagTag + suffix;
-				flagFileFound = DoesFileExist(sourceFlagPath);
+				flagFileFound = WinUtils::DoesFileExist(sourceFlagPath);
 				if (flagFileFound)
 				{
 					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-					TryCopyFile(sourceFlagPath, destFlagPath);
+					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
 				}
 			}
 		}
 	}
 
 	return true;
-}
-
-void V2Flags::GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
-{
-	WIN32_FIND_DATA findData;
-	HANDLE findHandle = FindFirstFile((path + "\\*").c_str(), &findData);
-	if (findHandle == INVALID_HANDLE_VALUE)
-	{
-		return;
-	}
-	do
-	{
-		if (!(findData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY))
-		{
-			fileNames.insert(findData.cFileName);
-		}
-	} while (FindNextFile(findHandle, &findData) != 0);
-	FindClose(findHandle);
-}
-
-bool V2Flags::TryCreateFolder(const std::string& path)
-{
-	BOOL success = ::CreateDirectory(path.c_str(), NULL);
-	if (success || GetLastError() == 183)
-	{
-		return true;
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Could not create folder " << path << " - " << GetLastWindowsError();
-		return false;
-	}
-}
-
-bool V2Flags::TryCopyFile(const std::string& sourcePath, const std::string& destPath)
-{
-	BOOL success = ::CopyFile(sourcePath.c_str(), destPath.c_str(), FALSE);
-	if (success)
-	{
-		return true;
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Could not copy file " << sourcePath << " to " << destPath << " - " << GetLastWindowsError();
-		return false;
-	}
-}
-
-bool V2Flags::DoesFileExist(const std::string& path)
-{
-	DWORD attributes = GetFileAttributes(path.c_str());
-	return (attributes != INVALID_FILE_ATTRIBUTES && !(attributes & FILE_ATTRIBUTE_DIRECTORY));
-}
-
-std::string V2Flags::GetLastWindowsError()
-{
-	DWORD errorCode = ::GetLastError();
-	const DWORD errorBufferSize = 256;
-	CHAR errorBuffer[errorBufferSize];
-	BOOL success = ::FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM,
-											 NULL,
-											 errorCode,
-											 MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),
-											 errorBuffer,
-											 errorBufferSize - 1,
-											 NULL);
-	if (success)
-	{
-		return errorBuffer;
-	}
-	else
-	{
-		return "Unknown error";
-	}
 }
