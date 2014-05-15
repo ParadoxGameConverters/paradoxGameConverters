@@ -295,7 +295,7 @@ void EU4World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
 		if (j == inverseProvinceMap.end())
 		{
-			log("	Error: no mapping for province #%d\n", i->first);
+			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
 		}
 	}
 }

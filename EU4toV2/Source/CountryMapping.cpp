@@ -17,27 +17,27 @@
 
 bool CountryMapping::ReadRules(const std::string& fileName)
 {
-	LogUpdate("Reading country mapping rules");
+	LOG(LogLevel::Info) << "Reading country mapping rules";
 
 	// Read the rule nodes from file.
-	LogUpdate("\tParsing rules from file " + fileName, false);
+	LOG(LogLevel::Debug) << "Parsing rules from file " << fileName;
 	initParser();
 	Object* countryMappingsFile = doParseFile(fileName.c_str());
 	if (!countryMappingsFile)
 	{
-		LogUpdate("Error: Failed to parse " + fileName);
+		LOG(LogLevel::Error) << "Failed to parse " << fileName;
 		return false;
 	}
 	vector<Object*> nodes = countryMappingsFile->getLeaves();
 	if (nodes.empty())
 	{
-		LogUpdate("Error: " + fileName + " does not contain a mapping");
+		LOG(LogLevel::Error) << fileName << " does not contain a mapping";
 		return false;
 	}
 	vector<Object*> ruleNodes = nodes[0]->getLeaves();
 
 	// Convert rule nodes into our map data structure.
-	LogUpdate("\tBuilding rules map", false);
+	LOG(LogLevel::Debug) << "Building rules map";
 	map<string, vector<string>> newEU4TagToV2TagsRules;
 	for (vector<Object*>::iterator i = ruleNodes.begin(); i != ruleNodes.end(); ++i)
 	{
@@ -57,20 +57,20 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 			}
 			else
 			{
-				LogUpdate("Warning: Ignoring unknown key '" + key + "' while mapping countries");
+				LOG(LogLevel::Warning) << "Ignoring unknown key '" << key << "' while mapping countries";
 			}
 		}
 		newEU4TagToV2TagsRules.insert(std::make_pair(newEU4Tag, V2Tags));
 	}
 
-	LogUpdate("\tFinished reading country mapping rules", false);
+	LOG(LogLevel::Debug) << "Finished reading country mapping rules";
 	std::swap(EU4TagToV2TagsRules, newEU4TagToV2TagsRules);
 	return true;
 }
 
 void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld)
 {
-	LogUpdate("Creating country mapping");
+	LOG(LogLevel::Info) << "Creating country mapping";
 	EU4TagToV2TagMap.clear();
 
 	char generatedV2TagPrefix = 'X'; // single letter prefix
@@ -177,16 +177,7 @@ const std::string& CountryMapping::GetEU4Tag(const std::string& V2Tag) const
 	}
 }
 
-void CountryMapping::LogUpdate(const std::string& text, bool includeConsole)
-{
-	log("%s\n", text.c_str());
-	if (includeConsole)
-	{
-		std::cout << text << '\n';
-	}
-}
-
 void CountryMapping::LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason)
 {
-	LogUpdate("\tMapping " + EU4Tag + " -> " + V2Tag + " (" + reason + ')', false);
+	LOG(LogLevel::Debug) << "Mapping " << EU4Tag << " -> " << V2Tag << " (" << reason << ')';
 }

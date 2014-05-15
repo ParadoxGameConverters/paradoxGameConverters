@@ -9,28 +9,28 @@ void V2Diplomacy::output() const
 	FILE* alliances;
 	if (fopen_s(&alliances, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Alliances.txt").c_str(), "w") != 0)
 	{
-		log("\tError: Could not create alliances history file");
+		LOG(LogLevel::Error) << "Could not create alliances history file";
 		exit(-1);
 	}
 
 	FILE* guarantees;
 	if (fopen_s(&guarantees, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Guarantees.txt").c_str(), "w") != 0)
 	{
-		log("\tError: Could not create guarantees history file");
+		LOG(LogLevel::Error) << "Could not create guarantees history file";
 		exit(-1);
 	}
 
 	FILE* puppetStates;
 	if (fopen_s(&puppetStates, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\PuppetStates.txt").c_str(), "w") != 0)
 	{
-		log("\tError: Could not create puppet states history file");
+		LOG(LogLevel::Error) << "Could not create puppet states history file";
 		exit(-1);
 	}
 
 	FILE* unions;
 	if (fopen_s(&unions, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Unions.txt").c_str(), "w") != 0)
 	{
-		log("\tError: Could not create unions history file");
+		LOG(LogLevel::Error) << "Could not create unions history file";
 		exit(-1);
 	}
 	
@@ -55,7 +55,7 @@ void V2Diplomacy::output() const
 		}
 		else
 		{
-			log("\tWarning: Cannot ouput diplomatic agreement type %s\n", itr->type.c_str());
+			LOG(LogLevel::Warning) << "Cannot ouput diplomatic agreement type " << itr->type;
 			continue;
 		}
 		fprintf(out, "%s=\n", itr->type.c_str());

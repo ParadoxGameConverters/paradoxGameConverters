@@ -241,7 +241,7 @@ bool EU4Province::wasInfidelConquest() const
 		EU4Religion* ownerReligion = EU4Religion::getReligion(owner->getReligion());
 		if ((firstReligion == NULL) || (ownerReligion == NULL))
 		{
-			log("\tError: unhandled religion in EU4 province %d\n", num);
+			LOG(LogLevel::Warning) << "Unhandled religion in EU4 province " << num;
 			return true;
 		}
 		else

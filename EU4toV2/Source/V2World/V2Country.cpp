@@ -94,7 +94,7 @@ void V2Country::output() const
 	FILE* output;
 	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\countries\\" + filename).c_str(), "w") != 0)
 	{
-		log("\tError: Could not create country history file %s", filename.c_str());
+		LOG(LogLevel::Error) << "Could not create country history file " << filename;
 		exit(-1);
 	}
 
@@ -177,7 +177,7 @@ void V2Country::output() const
 		std::string commmonCountryFilePath = "Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile;
 		if (fopen_s(&commonCountryOutput, commmonCountryFilePath.c_str(), "w") != 0)
 		{
-			log("\tError: Could not create common country file %s", commonCountryFile.c_str());
+			LOG(LogLevel::Error) << "Could not create common country file " << commonCountryFile;
 			exit(-1);
 		}
 		// We don't have all the info we need for this yet, so for now we'll reuse the USA common country file
@@ -330,7 +330,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 		else
 		{
-			log("Error: No religion mapping defined for %s (%s -> %s)\n", srcReligion.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+			LOG(LogLevel::Warning) << "No religion mapping defined for " << srcReligion << " (" << _srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
 
@@ -362,7 +362,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 					}
 					else
 					{
-						log ("Error: Unhandled distinguisher type in culture rules.\n");
+						LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
 					}
 				}
 				if (match)
@@ -374,7 +374,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 		if (!matched)
 		{
-			log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+			LOG(LogLevel::Debug) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
 
@@ -417,7 +417,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 					}
 					else
 					{
-						log ("Error: Unhandled distinguisher type in culture rules.\n");
+						LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
 					}
 				}
 				if (match)
@@ -429,7 +429,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 		if (!matched)
 		{
-			log("No culture mapping defined for %s (%s -> %s)\n", srcCulture.c_str(), srcCountry->getTag().c_str(),tag.c_str());
+			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
 
@@ -447,7 +447,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 		else
 		{
-			log("Error: No government mapping defined for %s (%s -> %s)\n", srcGovernment.c_str(), srcCountry->getTag().c_str(), tag.c_str());
+			LOG(LogLevel::Warning) << "No government mapping defined for " << srcGovernment << " (" << srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
 
@@ -463,7 +463,9 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	upperHouseReactionary		=  static_cast<int>(5  + (100 * reactionaryEffect));
 	upperHouseLiberal				=  static_cast<int>(10 + (100 * liberalEffect));
 	upperHouseConservative		=  static_cast<int>(85 - (100 * (reactionaryEffect + liberalEffect)));
-	log("%s has an Upper House of %d reactionary, %d conservative, and %d liberal\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
+	LOG(LogLevel::Debug) << tag << " has an Upper House of " << upperHouseReactionary << " reactionary, "
+																				<< upperHouseConservative << " conservative, and "
+																				<< upperHouseLiberal << " liberal";
 	
 	string idealogy;
 	if (liberalEffect >= 2 * reactionaryEffect)
@@ -497,7 +499,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 			}
 		}
 	}
-	log("%s's ruling party is %s\n", tag.c_str(), rulingParty.c_str());
+	LOG(LogLevel::Debug) << tag << " ruling party is " << rulingParty;
 
 	// Relations
 	vector<EU4Relations*> srcRelations = srcCountry->getRelations();
@@ -639,7 +641,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	{
 		literacy = Configuration::getMaxLiteracy();
 	}
-	log("	Setting %s's literacy to %f\n", tag.c_str(), literacy);
+	LOG(LogLevel::Debug) << "Setting literacy for " << tag << " to " << literacy;
 
 	// Capital
 	int oldCapital = srcCountry->getCapital();
@@ -753,7 +755,7 @@ void V2Country::initFromHistory()
 	Object* obj = doParseFile(fullFilename.c_str());
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", fullFilename.c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << fullFilename;
 		exit(-1);
 	}
 
@@ -897,7 +899,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 		vector<int> locationCandidates = getV2ProvinceNums(inverseProvinceMap, (*aitr)->getLocation());
 		if (locationCandidates.size() == 0)
 		{
-			log("	Error: Army or Navy %s assigned to unmapped province %d; dissolving to pool.\n", (*aitr)->getName().c_str(), (*aitr)->getLocation());
+			LOG(LogLevel::Warning) << "Army or Navy " << (*aitr)->getName() << " assigned to unmapped province " << (*aitr)->getLocation() << "; dissolving to pool";
 			int regimentCounts[num_reg_categories] = { 0 };
 			army->getRegimentCounts(regimentCounts);
 			for (int rc = infantry; rc < num_reg_categories; ++rc)
@@ -920,7 +922,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 				locationCandidates = getPortProvinces(locationCandidates, allProvinces);
 				if (locationCandidates.size() == 0)
 				{
-					log("	Error: Navy %s assigned to EU4 province %d which has no corresponding V2 port provinces; dissolving to pool.\n", (*aitr)->getName().c_str(), (*aitr)->getLocation());
+					LOG(LogLevel::Warning) << "Navy " << (*aitr)->getName() << " assigned to EU4 province " << (*aitr)->getLocation() << " which has no corresponding V2 port provinces; dissolving to pool";
 					int regimentCounts[num_reg_categories] = { 0 };
 					army->getRegimentCounts(regimentCounts);
 					for (int rc = infantry; rc < num_reg_categories; ++rc)
@@ -937,7 +939,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 			vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);
 			if (white == port_whitelist.end())
 			{
-				log("	Warning: assigning navy to non-whitelisted port province %d.  If the save crashes, try blacklisting this province.\n", selectedLocation);
+				LOG(LogLevel::Warning) << "Assigning navy to non-whitelisted port province " << selectedLocation << " - if the save crashes, try blacklisting this province";
 			}
 		}
 		army->setLocation(selectedLocation);
@@ -949,14 +951,14 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 	{
 		if (countryRemainder[rc] > 0.0)
 		{
-			log("	Allocating regiments of %s from the remainder pool for %s (total: %4lf)\n", RegimentCategoryNames[rc], tag.c_str(), countryRemainder[rc]);
+			LOG(LogLevel::Debug) << "Allocating regiments of " << RegimentCategoryNames[rc] << " from the remainder pool for " << tag << " (total: " << countryRemainder[rc] << ')';
 		}
 			while (countryRemainder[rc] > 0.0)
 			{
 				V2Army* army = getArmyForRemainder((RegimentCategory)rc);
 				if (!army)
 				{
-					log("		Error: no suitable army or navy found for %s's pooled regiments of %s!\n", tag.c_str(), RegimentCategoryNames[rc]);
+					LOG(LogLevel::Warning) << "No suitable army or navy found for " << tag << "'s pooled regiments of " << RegimentCategoryNames[rc];
 					break;
 				}
 				switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces))
@@ -968,7 +970,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 				case -1: // retry
 					break;
 				case -2: // do not retry
-					log("	Disqualifying army/navy %s from receiving more %s from the pool.\n", army->getName().c_str(), RegimentCategoryNames[rc]);
+					LOG(LogLevel::Debug) << "Disqualifying army/navy " << army->getName() << " from receiving more " << RegimentCategoryNames[rc] << " from the pool";
 					army->setArmyRemainders((RegimentCategory)rc, -2000.0);
 					break;
 				}
@@ -1126,7 +1128,7 @@ bool V2Country::addFactory(V2Factory* factory)
 		vector<string>::iterator itr = find(techs.begin(), techs.end(), requiredTech);
 		if (itr == techs.end())
 		{
-			log("%s rejected %s (missing reqd tech: %s)\n", tag.c_str(), factory->getTypeName().c_str(), requiredTech.c_str());
+			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required tech: " << requiredTech << ')';
 			return false;
 		}
 	}
@@ -1137,7 +1139,7 @@ bool V2Country::addFactory(V2Factory* factory)
 		vanillaInventionType requiredInvention = factory->getVanillaRequiredInvention();
 		if (requiredInvention >= 0 && vanillaInventions[requiredInvention] != active)
 		{
-			log("%s rejected %s (missing reqd invention: %s)\n", tag.c_str(), factory->getTypeName().c_str(), vanillaInventionNames[requiredInvention]);
+			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required invention: " << vanillaInventionNames[requiredInvention] << ')';
 			return false;
 		}
 	}
@@ -1146,7 +1148,7 @@ bool V2Country::addFactory(V2Factory* factory)
 		HODInventionType requiredInvention = factory->getHODRequiredInvention();
 		if (requiredInvention >= 0 && HODInventions[requiredInvention] != active)
 		{
-			log("%s rejected %s (missing reqd invention: %s)\n", tag.c_str(), factory->getTypeName().c_str(), HODInventionNames[requiredInvention]);
+			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required invention: " << HODInventionNames[requiredInvention] << ')';
 			return false;
 		}
 	}
@@ -1190,13 +1192,13 @@ bool V2Country::addFactory(V2Factory* factory)
 
 	if (candidates.size() == 0)
 	{
-		log("	%s rejected %s (no candidate states)\n", tag.c_str(), factory->getTypeName().c_str());
+		LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (no candidate states)";
 		return false;
 	}
 
 	V2State* target = candidates[0].second;
 	target->addFactory(factory);
-	log("	%s accepted %s (%d candidate states)\n", tag.c_str(), factory->getTypeName().c_str(), candidates.size());
+	LOG(LogLevel::Debug) << tag << " accepted " << factory->getTypeName() << " (" << candidates.size() << " candidate states)";
 	return true;
 }
 
@@ -1228,7 +1230,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			log("\tSetting unciv reforms for %s. Westernization at 0 percent.\n", tag.c_str());
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 0%";
 			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
 		}
 		else if (srcCountry->getTechGroup() == "sub_saharan")
@@ -1236,7 +1238,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			log("\tSetting unciv reforms for %s. Westernization at 20 percent.\n", tag.c_str());
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 20%";
 			uncivReforms = new V2UncivReforms(20, militaryDev, socioEconDev, this);
 		}
 		else if (srcCountry->getTechGroup() == "nomad_group")
@@ -1244,7 +1246,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			log("\tSetting unciv reforms for %s. Westernization at 30 percent.\n", tag.c_str());
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 30%";
 			uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
 		}
 		else if (srcCountry->getTechGroup() == "chinese")
@@ -1252,7 +1254,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 36 percent.\n", tag.c_str());
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 36%";
 			uncivReforms = new V2UncivReforms(36, militaryDev, socioEconDev, this);
 		}
 		else if (srcCountry->getTechGroup() == "indian")
@@ -1260,7 +1262,7 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 40 percent.\n", tag.c_str());
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 40%";
 			uncivReforms = new V2UncivReforms(40, militaryDev, socioEconDev, this);
 		}
 		else if (srcCountry->getTechGroup() == "muslim")
@@ -1268,12 +1270,12 @@ void V2Country::convertUncivReforms()
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
-			log("	Setting unciv reforms for %s. Westernization at 44 percent.\n", tag.c_str());
+			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 44%";
 			uncivReforms = new V2UncivReforms(44, militaryDev, socioEconDev, this);
 		}
 		else
 		{
-			log("	Error: Unhandled tech group (%s) for %s. Giving no reforms\n", srcCountry->getTechGroup().c_str(), tag.c_str());
+			LOG(LogLevel::Warning) << "Unhandled tech group (" << srcCountry->getTechGroup() << ") for " << tag << " - giving no reforms";
 			double totalTechs		= srcCountry->getMilTech() + srcCountry->getAdmTech();
 			double militaryDev	= srcCountry->getMilTech() / totalTechs;
 			double socioEconDev	= srcCountry->getAdmTech() / totalTechs;
@@ -1304,7 +1306,7 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 	}
 
 	double newTechLevel = (scale * (srcCountry->getMilTech() - mean) / stdDev) + 2.5;
-	log("	%s has army tech of %f\n", tag.c_str(), newTechLevel);
+	LOG(LogLevel::Debug) << tag << " has army tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
@@ -1355,7 +1357,7 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 	}
 
 	double newTechLevel = scale * (srcCountry->getDipTech() - mean) / stdDev;
-	log("	%s has navy tech of %f\n", tag.c_str(), newTechLevel);
+	LOG(LogLevel::Debug) << tag << " has navy tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
@@ -1416,7 +1418,7 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 	}
 
 	double newTechLevel = (scale * (srcCountry->getDipTech() - mean) / stdDev) + 4.5;
-	log("	%s has commerce tech of %f\n", tag.c_str(), newTechLevel);
+	LOG(LogLevel::Debug) << tag << " has commerce tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
@@ -1491,7 +1493,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 	}
 
 	double newTechLevel = (scale * (srcCountry->getAdmTech() - mean) / stdDev) + 3.5;
-	log("	%s has industry tech of %f\n", tag.c_str(), newTechLevel);
+	LOG(LogLevel::Debug) << tag << " has industry tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
@@ -1567,7 +1569,7 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 	}
 
 	double newTechLevel = ((scale * (srcCountry->getAdmTech() - mean) / stdDev) + 3);
-	log("	%s has culture tech of %f\n", tag.c_str(), newTechLevel);
+	LOG(LogLevel::Debug) << tag << " has culture tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
@@ -1658,13 +1660,13 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 	int eu4Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
 	if (eu4Home == -1)
 	{
-		log("		Error: army/navy %s has no valid home provinces for %s due to previous errors; dissolving to pool.\n", army->getName().c_str(), RegimentCategoryNames[rc]);
+		LOG(LogLevel::Warning) << "Army/navy " << army->getName() << " has no valid home provinces for " << RegimentCategoryNames[rc] << " due to previous errors; dissolving to pool";
 		return -2;
 	}
 	vector<int> homeCandidates = getV2ProvinceNums(inverseProvinceMap, eu4Home);
 	if (homeCandidates.size() == 0)
 	{
-		log("	Error: %s unit in army/navy %s has unmapped home province %d; dissolving to pool.\n", RegimentCategoryNames[rc], army->getName().c_str(), eu4Home);
+		LOG(LogLevel::Warning) << RegimentCategoryNames[rc] << " unit in army/navy " << army->getName() << " has unmapped home province " << eu4Home << " - dissolving to pool";
 		army->getSourceArmy()->blockHomeProvince(eu4Home);
 		return -1;
 	}
@@ -1675,7 +1677,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		homeCandidates = getPortProvinces(homeCandidates, allProvinces);
 		if (homeCandidates.size() == 0)
 		{
-			log("		Error: %s in navy %s has EU4 home province %d which has no corresponding V2 port provinces; dissolving to pool. (1)\n", RegimentCategoryNames[rc], army->getName().c_str(), eu4Home);
+			LOG(LogLevel::Warning) << RegimentCategoryNames[rc] << " in navy " << army->getName() << " has EU4 home province " << eu4Home << " which has no corresponding V2 port provinces - dissolving to pool";
 			army->getSourceArmy()->blockHomeProvince(eu4Home);
 			return -1;
 		}
@@ -1703,7 +1705,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		sort(sortedHomeCandidates.begin(), sortedHomeCandidates.end(), ProvinceRegimentCapacityPredicate);
 		if (sortedHomeCandidates.size() == 0)
 		{
-			log("		Error: No valid home for a %s %s regiment! Dissolving regiment to pool.\n", tag.c_str(), RegimentCategoryNames[rc]);
+			LOG(LogLevel::Warning) << "No valid home for a " << tag << RegimentCategoryNames[rc] << " regiment - dissolving regiment to pool";
 			// all provinces in a given province map have the same owner, so the source home was bad
 			army->getSourceArmy()->blockHomeProvince(eu4Home);
 			return -1;
@@ -1712,7 +1714,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		// Armies need to be associated with pops
 		if (homeProvince->getOwner() != tag)
 		{
-			log("		Error: V2 province %d is home for a %s %s regiment, but belongs to %s! Dissolving regiment to pool.\n", homeProvince->getNum(), tag.c_str(), RegimentCategoryNames[rc], homeProvince->getOwner().c_str());
+			LOG(LogLevel::Warning) << "V2 province " << homeProvince->getNum() << " is home for a " << tag << RegimentCategoryNames[rc] << " regiment, but belongs to " << homeProvince->getOwner() << " - dissolving regiment to pool";
 			// all provinces in a given province map have the same owner, so the source home was bad
 			army->getSourceArmy()->blockHomeProvince(eu4Home);
 			return -1;
@@ -1738,7 +1740,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		if (-1 == soldierPop)
 		{
 			soldierPop = homeProvince->getSoldierPopForArmy(true);
-			log("		Error: Could not grow province %d soldier pops to support %s regiment in army %s. Regiment will be undersupported.\n", homeProvince->getNum(), RegimentCategoryNames[rc], army->getName().c_str());
+			LOG(LogLevel::Warning) << "Could not grow province " << homeProvince->getNum() << " soldier pops to support " << RegimentCategoryNames[rc] << " regiment in army " << army->getName() << " - regiment will be undersupported";
 		}
 		reg.setPopID(soldierPop);
 	}

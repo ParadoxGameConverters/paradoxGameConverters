@@ -19,8 +19,7 @@ void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& pr
 
 	if (versionLeaves.size() < 1)
 	{
-		log ("\tError: No province mapping definitions loaded.\n");
-		printf("\tError: No province mapping definitions loaded.\n");
+		LOG(LogLevel::Error) << "No province mapping definitions loaded";
 		return;
 	}
 	
@@ -33,7 +32,7 @@ void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& pr
 		}
 	}
 
-	log("Using version %s mappings\n", versionLeaves[mappingIdx]->getKey().c_str());
+	LOG(LogLevel::Debug) << "Using version " << versionLeaves[mappingIdx]->getKey() << " mappings";
 
 	vector<Object*> data = versionLeaves[mappingIdx]->getLeaves();
 
@@ -61,7 +60,7 @@ void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& pr
 			}
 			else
 			{
-				log("\tWarning: unknown data while mapping provinces.\n");
+				LOG(LogLevel::Warning) << "Unknown data while mapping provinces";
 			}
 		}
 
@@ -118,13 +117,13 @@ adjacencyMapping initAdjacencyMap()
 	struct _stat st;
 	if ((_stat(filename.c_str(), &st) != 0))
 	{
-		log("\tCould not find %s. Looking in install folder\n", filename.c_str());
+		LOG(LogLevel::Warning) << "Could not find " << filename << " - looking in install folder";
 		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";
 	}
 	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	if (adjacenciesBin == NULL)
 	{
-		log("Error: Could not open %s\n", filename.c_str());
+		LOG(LogLevel::Error) << "Could not open " << filename;
 		exit(1);
 	}
 
@@ -205,7 +204,7 @@ void mergeNations(EU4World& world, Object* mergeObj)
 	vector<Object*> rules = mergeObj->getValue("merge_nations");
 	if (rules.size() < 0)
 	{
-		log("\tNo nations have merging requested (skipping).\n");
+		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
 		return;
 	}
 

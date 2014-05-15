@@ -562,7 +562,7 @@ void EU4Country::eatCountry(EU4Country* target)
 	target->clearProvinces();
 	target->clearCores();
 
-	log("	Merged %s into %s\n", target->tag.c_str(), tag.c_str());
+	LOG(LogLevel::Debug) << "Merged " << target->tag << " into " << tag;
 }
 
 

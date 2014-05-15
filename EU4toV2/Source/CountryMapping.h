@@ -37,9 +37,7 @@ public:
 	const std::string& GetEU4Tag(const std::string& V2Tag) const;
 
 private:
-	// Writes the given text to log and console.
-	static void LogUpdate(const std::string& text, bool includeConsole = true);
-	// Calls LogUpdate() with appropriate text to describe the given mapping.
+	// Writes the given mapping to the log.
 	static void LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason);
 
 	std::map<std::string, std::vector<std::string>> EU4TagToV2TagsRules;

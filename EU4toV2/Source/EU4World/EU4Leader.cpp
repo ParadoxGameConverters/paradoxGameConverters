@@ -90,7 +90,7 @@ bool EU4Leader::isLand() const
 		return false;
 	else
 	{
-		log("Error: Unknown leader type %s!\n", type.c_str());
+		LOG(LogLevel::Warning) << "Unknown leader type " << type;
 	}
 	return false;
 }

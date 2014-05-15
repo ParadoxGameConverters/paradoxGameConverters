@@ -72,7 +72,7 @@ void V2Pop::recalcMoney()
 	}
 	else
 	{
-		log("Error: Unexpected pop type %s!\n", type.c_str());
+		LOG(LogLevel::Warning) << "Unexpected pop type " << type;
 	}
 }
 

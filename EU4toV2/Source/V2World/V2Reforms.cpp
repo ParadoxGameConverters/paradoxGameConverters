@@ -580,7 +580,7 @@ void V2Reforms::governmentEffects(const EU4Country* srcCountry)
 	}
 	else 
 	{
-		log("Error: Undefined government type while setting reforms for %s: %s\n", srcCountry->getTag().c_str(), government.c_str());
+		LOG(LogLevel::Warning) << "Undefined government type '" << government << "' while setting reforms for " << srcCountry->getTag();
 	}
 }
 

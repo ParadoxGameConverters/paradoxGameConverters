@@ -57,7 +57,7 @@ V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 			isShip = true;
 			break;
 		default:
-			log("Unexpected regiment category %d", rc);
+			LOG(LogLevel::Warning) << "Unexpected regiment category " << rc;
 			break;
 	}
 }
@@ -117,7 +117,7 @@ void V2Army::output(FILE* out) const
 {
 	if (regiments.size() == 0)
 	{
-		log("	Army %s has no regiments after conversion; skipping.\n", name.c_str());
+		LOG(LogLevel::Debug) << "Army " << name << " has no regiments after conversion; skipping";
 		return;
 	}
 	if (isNavy)

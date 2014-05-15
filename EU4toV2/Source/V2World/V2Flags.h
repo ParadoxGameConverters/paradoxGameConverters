@@ -19,8 +19,6 @@ public:
 	bool Output() const;
 
 private:
-	// Writes the given text to log and console.
-	static void LogUpdate(const std::string& text, bool includeConsole = true);
 	// Adds all files (just the file name) in the specified folder to the given collection.
 	static void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames);
 	// Creates a new folder corresponding to the given path.

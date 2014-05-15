@@ -90,7 +90,7 @@ V2LeaderTraits::V2LeaderTraits()
 	Object* obj = doParseFile("leader_traits.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file leader_traits.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
 		exit(-1);
 	}
 
@@ -120,8 +120,7 @@ V2LeaderTraits::V2LeaderTraits()
 
 	if (backgrounds.size() == 0 || personalities.size() == 0)
 	{
-		printf("Error: Trait conversion failed to initialize!\n");
-		log("Error: Trait conversion failed to initialize!\n");
+		LOG(LogLevel::Error) << "Trait conversion failed to initialize";
 		exit(1);
 	}
 }

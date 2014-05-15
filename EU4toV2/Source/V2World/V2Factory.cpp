@@ -192,7 +192,7 @@ void V2FactoryFactory::loadRequiredTechs(string filename)
 	Object* obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", filename.c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << filename;
 		exit(-1);
 	}
 	vector<Object*> techObjs = obj->getLeaves();
@@ -212,7 +212,7 @@ void V2FactoryFactory::loadRequiredInventions(string filename)
 	Object* obj = doParseFile(filename.c_str());
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", filename.c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << filename;
 		exit(-1);
 	}
 	vector<Object*> invObjs = obj->getLeaves();

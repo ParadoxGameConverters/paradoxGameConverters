@@ -11,8 +11,7 @@ vector<techSchool> initTechSchools(Object* obj, vector<string> blockedTechSchool
 	vector<Object*> schoolObj = obj->getValue("schools");
 	if (schoolObj.size() < 1)
 	{
-		log("Error: Could not load tech schools.\n");
-		printf("Error: Could not load tech schools.\n");
+		LOG(LogLevel::Warning) << "Could not load tech schools";
 	}
 	
 	vector<Object*> schoolsObj = schoolObj[0]->getLeaves();

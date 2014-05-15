@@ -23,7 +23,7 @@ EU4Regiment::EU4Regiment(Object *obj)
 	}
 	else
 	{
-		log("Error: Regiment or Ship \"%s\" has no type.\n", name.c_str());
+		LOG(LogLevel::Warning) << "Regiment or Ship " << name << " has no type";
 		type = "";
 	}
 
@@ -34,7 +34,7 @@ EU4Regiment::EU4Regiment(Object *obj)
 	}
 	else
 	{
-		log("Error: Regiment or Ship \"%s\" has no home.\n", name.c_str());
+		LOG(LogLevel::Warning) << "Regiment or Ship " << name << " has no home";
 		home = -1;
 	}
 
@@ -72,7 +72,7 @@ EU4Army::EU4Army(Object *obj)
 	}
 	else
 	{
-		log("Error: Army or Navy \"%s\" has no location.\n", name.c_str());
+		LOG(LogLevel::Warning) << "Army or Navy " << name << " has no location";
 		location = -1;
 	}
 
@@ -127,7 +127,7 @@ void EU4Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 		}
 		else
 		{
-			log("Unknown unit type %s for regiment \"%s\"\n", (*itr)->getType().c_str(), (*itr)->getName().c_str());
+			LOG(LogLevel::Warning) << "Unknown unit type " << (*itr)->getType() << " for regiment \"" << (*itr)->getName() << "\"\n";
 		}
 	}
 }
@@ -202,15 +202,13 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 	vector<Object*> top = obj->getValue(categoryName);
 	if (top.size() != 1)
 	{
-		log("Error: could not get regiment type map for %s", categoryName.c_str());
-		printf("Error: could not get regiment type map for %s", categoryName.c_str());
+		LOG(LogLevel::Error) << "Could not get regiment type map for " << categoryName;
 		exit(1);
 	}
 	vector<Object*> types = top[0]->getLeaves();
 	if (types.size() == 0)
 	{
-		log("Error: no regiment types to map for %s", categoryName.c_str());
-		printf("Error: no regiment types to map for %s", categoryName.c_str());
+		LOG(LogLevel::Error) << "No regiment types to map for " << categoryName;
 		exit(1);
 	}
 	for (vector<Object*>::iterator itr = types.begin(); itr != types.end(); ++itr)
@@ -227,7 +225,7 @@ void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap
 	Object* obj = doParseFile((directory + "\\" + name + ".txt").c_str());
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", (directory + "\\" + name + ".txt").c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << directory << '\\' << name << ".txt";
 		exit(-1);
 	}
 
@@ -235,7 +233,7 @@ void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap
 	vector<Object*> typeObj = obj->getValue("type");
 	if (typeObj.size() < 1)
 	{
-		log("Error: unit file for %s has no type!\n", name.c_str());
+		LOG(LogLevel::Warning) << "Unit file for " << name << " has no type";
 		return;
 	}
 	string type = typeObj[0]->getLeaf();
@@ -246,7 +244,7 @@ void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap
 	}
 	if (rc == -1)
 	{
-		log("Error: unit file for %s has unrecognized type %s!\n", name.c_str(), type.c_str());
+		LOG(LogLevel::Warning) << "Unit file for " << name << " has unrecognized type " << type;
 		return;
 	}
 
@@ -285,7 +283,7 @@ void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap
 
 	if (unitStrength == 0)
 	{
-		log("Error: unit %s has no strength!\n", name.c_str());
+		LOG(LogLevel::Warning) << "Unit " << name << " has no strength";
 		return;
 	}
 

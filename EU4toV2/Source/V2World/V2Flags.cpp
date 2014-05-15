@@ -16,7 +16,7 @@ const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist
 
 void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 {
-	LogUpdate("Initializing flags", false);
+	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
 
 	// Generate a list of all flags that we can use.
@@ -93,7 +93,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 		std::advance(randomTagIter, randomTagIndex);
 		const std::string& flagTag = *randomTagIter;
 		tagMapping[V2Tag] = flagTag;
-		LogUpdate("\tCountry with tag " + V2Tag + " has no flag and will use the flag for " + flagTag + " instead", false);
+		LOG(LogLevel::Debug) << "Country with tag " << V2Tag << " has no flag and will use the flag for " << flagTag << " instead";
 		if (usableFlagTags.size() > requiredTags.size() - tagMapping.size())
 		{
 			usableFlagTags.erase(flagTag);
@@ -103,7 +103,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 
 bool V2Flags::Output() const
 {
-	LogUpdate("Copying flags", false);
+	LOG(LogLevel::Debug) << "Copying flags";
 
 	// Create output folders.
 	std::string outputGraphicsFolder = "Output\\" + Configuration::getOutputName() + "\\gfx";
@@ -144,15 +144,6 @@ bool V2Flags::Output() const
 	return true;
 }
 
-void V2Flags::LogUpdate(const std::string& text, bool includeConsole)
-{
-	log("%s\n", text.c_str());
-	if (includeConsole)
-	{
-		std::cout << text << '\n';
-	}
-}
-
 void V2Flags::GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 {
 	WIN32_FIND_DATA findData;
@@ -180,7 +171,7 @@ bool V2Flags::TryCreateFolder(const std::string& path)
 	}
 	else
 	{
-		LogUpdate("Error: Could not create folder " + path + " - " + GetLastWindowsError());
+		LOG(LogLevel::Warning) << "Could not create folder " << path << " - " << GetLastWindowsError();
 		return false;
 	}
 }
@@ -194,7 +185,7 @@ bool V2Flags::TryCopyFile(const std::string& sourcePath, const std::string& dest
 	}
 	else
 	{
-		LogUpdate("Error: Could not copy file " + sourcePath + " to " + destPath + " - " + GetLastWindowsError());
+		LOG(LogLevel::Warning) << "Could not copy file " << sourcePath << " to " << destPath << " - " << GetLastWindowsError();
 		return false;
 	}
 }

@@ -44,8 +44,7 @@ typedef struct fileWithCreateTime
 
 V2World::V2World()
 {
-	log("\tImporting provinces.\n");
-	printf("\tImporting provinces.\n");
+	LOG(LogLevel::Info) << "Importing provinces";
 
 	struct _finddata_t	provinceFileData;
 	intptr_t					fileListing	= NULL;
@@ -59,7 +58,7 @@ V2World::V2World()
 		{
 			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces\\") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				log("Error: Could not open directory %s\n", (string(".\\blankMod\\output\\history\\provinces\\") + directories.front() + "\\*.*").c_str());
+				LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces\\" << directories.front() << "\\*.*";
 				exit(-1);
 			}
 
@@ -90,7 +89,7 @@ V2World::V2World()
 		{
 			if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				log("Error: Could not open directory %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str());
+				LOG(LogLevel::Error) << "Could not open directory " << Configuration::getV2Path() << "\\history\\provinces\\" << directories.front() << "\\*.*";
 				exit(-1);
 			}
 
@@ -218,8 +217,7 @@ V2World::V2World()
 
 	countries.clear();
 
-	log("\tGetting potential countries.\n");
-	printf("\tGetting potential countries.\n");
+	LOG(LogLevel::Info) << "Getting potential countries";
 	potentialCountries.clear();
 	dynamicCountries.clear();
 	const date FirstStartDate("1836.1.1");
@@ -234,8 +232,7 @@ V2World::V2World()
 	}
 	if (!V2CountriesInput.is_open())
 	{
-		log("Error: Could not open countries.txt\n");
-		printf("Error: Could not open countries.txt\n");
+		LOG(LogLevel::Error) << "Could not open countries.txt";
 		exit(1);
 	}
 
@@ -269,7 +266,7 @@ V2World::V2World()
 			countryData = doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
 			if (countryData == NULL)
 			{
-				log("Could not parse file %s\n", (string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
+				LOG(LogLevel::Warning) << "Could not parse file .\\blankMod\\output\\common\\countries\\" << countryFileName;
 			}
 		}
 		else if (_stat((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str(), &st) == 0)
@@ -277,12 +274,12 @@ V2World::V2World()
 			countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
 			if (countryData == NULL)
 			{
-				log("Could not parse file %s\n", (Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
+				LOG(LogLevel::Warning) << "Could not parse file " << Configuration::getV2Path() << "\\common\\countries\\" << countryFileName;
 			}
 		}
 		else
 		{
-			log("Could not find file common\\countries\\%s - skipping\n", countryFileName.c_str());
+			LOG(LogLevel::Debug) << "Could not find file common\\countries\\" << countryFileName << " - skipping";
 			continue;
 		}
 
@@ -319,14 +316,14 @@ void V2World::output() const
 	BOOL success = CreateDirectory(countriesPath.c_str(), NULL);
 	if (!success)
 	{
-		log("\tError: Could not create countries folder (Windows error %d)\n", GetLastError());
+		LOG(LogLevel::Warning) << "Could not create countries folder (Windows error " << GetLastError() << ')';
 	}
 
 	// Output common\countries.txt
 	FILE* allCountriesFile;
 	if (fopen_s(&allCountriesFile, ("Output\\" + Configuration::getOutputName() + "\\common\\countries.txt").c_str(), "w") != 0)
 	{
-		log("\tError: Could not create countries file");
+		LOG(LogLevel::Error) << "Could not create countries file";
 		exit(-1);
 	}
 	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
@@ -346,19 +343,19 @@ void V2World::output() const
 	success = CreateDirectory(localisationPath.c_str(), NULL);
 	if (!success)
 	{
-		log("\tError: Could not create localisation folder (Windows error %d)\n", GetLastError());
+		LOG(LogLevel::Warning) << "Could not create localisation folder (Windows error " << GetLastError() << ')';
 	}
 	string source = Configuration::getV2Path() + "\\localisation\\text.csv";
 	string dest = localisationPath + "\\text.csv";
 	success = CopyFile(source.c_str(), dest.c_str(), FALSE);
 	if (!success)
 	{
-		log("\tError: Could not copy localisation text file (Windows error %d)\n", GetLastError());
+		LOG(LogLevel::Warning) << "Could not copy localisation text file (Windows error " << GetLastError() << ')';
 	}
 	FILE* localisationFile;
 	if (fopen_s(&localisationFile, dest.c_str(), "a") != 0)
 	{
-		log("\tError: Could not update localisation text file");
+		LOG(LogLevel::Error) << "Could not update localisation text file";
 		exit(-1);
 	}
 	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
@@ -449,8 +446,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 		}
 		else
 		{
-			log("Error: Could not convert EU4 tag %s to V2.\n", i->second->getTag().c_str());
-			printf("Error: Could not convert EU4 tag %s to V2.\n", i->second->getTag().c_str());
+			LOG(LogLevel::Warning) << "Could not convert EU4 tag " << i->second->getTag() << " to V2";
 		}
 	}
 
@@ -473,7 +469,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 			equalityScores.push_back(make_pair(countryItr->second, equalityScore));
 		}
 		valuesUnset.insert(countryItr->second);
-		log("\tValue scores for %s: order - %+d,\tliberty - %+d,\tequality %+d\n", countryItr->first.c_str(), orderScore, libertyScore, equalityScore);
+		LOG(LogLevel::Debug) << "Value scores for " << countryItr->first << ": order = " << orderScore << ", liberty = " << libertyScore << ", equality = " << equalityScore;
 	}
 	equalityScores.sort(scoresSorter);
 	int equalityLeft = 5;
@@ -489,7 +485,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 			valuesUnset.erase(unsetItr);
 			equalItr->first->setNationalValue("nv_equality");
 			equalityLeft--;
-			log("\t%s got national value equality\n", equalItr->first->getTag().c_str());
+			LOG(LogLevel::Debug) << equalItr->first->getTag() << " got national value equality";
 		}
 	}
 	libertyScores.sort(scoresSorter);
@@ -506,17 +502,17 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 			valuesUnset.erase(unsetItr);
 			libItr->first->setNationalValue("nv_liberty");
 			libertyLeft--;
-			log("\t%s got national value liberty\n", libItr->first->getTag().c_str());
+			LOG(LogLevel::Debug) << libItr->first->getTag() << " got national value liberty";
 		}
 	}
 	for (set<V2Country*>::iterator unsetItr = valuesUnset.begin(); unsetItr != valuesUnset.end(); unsetItr++)
 	{
 		(*unsetItr)->setNationalValue("nv_order");
-		log("\t%s got national value order\n", (*unsetItr)->getTag().c_str());
+		LOG(LogLevel::Debug) << (*unsetItr)->getTag() << " got national value order";
 	}
 
 	// set prestige
-	log("Setting prestige\n");
+	LOG(LogLevel::Debug) << "Setting prestige";
 	double highestScore = 0.0;
 	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
 	{
@@ -539,8 +535,9 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 		{
 			score = srcCountry->getScore();
 		}
-		countryItr->second->addPrestige( (score * 99.0 / highestScore) + 1 );
-		log("\t%s had %f prestige\n", countryItr->first.c_str(), (score * 99.0 / highestScore) + 1);
+		double prestige = (score * 99.0 / highestScore) + 1;
+		countryItr->second->addPrestige(prestige);
+		LOG(LogLevel::Debug) << countryItr->first << " had " << prestige << " prestige";
 	}
 
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right
@@ -580,14 +577,14 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 		const std::string& V2Tag1 = countryMap[EU4Tag1];
 		if (V2Tag1.empty())
 		{
-			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", EU4Tag1.c_str());
+			LOG(LogLevel::Warning) << "EU4 Country " << EU4Tag1 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 		const std::string& EU4Tag2 = itr->country2;
 		const std::string& V2Tag2 = countryMap[EU4Tag2];
 		if (V2Tag2.empty())
 		{
-			log("\tError: EU4 Country %s used in diplomatic agreement doesn't exist\n", EU4Tag2.c_str());
+			LOG(LogLevel::Warning) << "EU4 Country " << EU4Tag2 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 
@@ -595,24 +592,24 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 		map<string, V2Country*>::iterator country2 = countries.find(V2Tag2);
 		if (country1 == countries.end())
 		{
-			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", V2Tag1.c_str());
+			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag1 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 		if (country2 == countries.end())
 		{
-			log("\tError: Vic2 country %s used in diplomatic agreement doesn't exist\n", V2Tag2.c_str());
+			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag2 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 		V2Relations* r1 = country1->second->getRelations(V2Tag2);
 		if (!r1)
 		{
-			log("\tError: Vic2 country %s has no relations with %s\n", V2Tag1.c_str(), V2Tag2.c_str());
+			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag1 << " has no relations with " << V2Tag2;
 			continue;
 		}
 		V2Relations* r2 = country2->second->getRelations(V2Tag1);
 		if (!r2)
 		{
-			log("\tError: Vic2 country %s has no relations with %s\n", V2Tag2.c_str(), V2Tag1.c_str());
+			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag2 << " has no relations with " << V2Tag1;
 			continue;
 		}
 
@@ -676,7 +673,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		provinceMapping::const_iterator provinceLink	= provinceMap.find(destNum);
 		if ( (provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0) )
 		{
-			log("\tError: no source for %s (province #%d)\n", i->second->getName().c_str() , destNum);
+			LOG(LogLevel::Warning) << "No source for " << i->second->getName() << " (province " << destNum << ')';
 			continue;
 		}
 		else if (provinceLink->second[0] == 0)
@@ -700,7 +697,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			EU4Province* province = sourceWorld.getProvince(*itr);
 			if (!province)
 			{
-				log("Error: old province %d does not exist. Bad mapping?\n", provinceLink->second[0]);
+				LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
 				continue;
 			}
 			EU4Country* owner = province->getOwner();
@@ -722,7 +719,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(i->first);
 				if (stateIndexMapping == stateIndexMap.end())
 				{
-					log("Error: Could not find state index for province %d.\n", i->first);
+					LOG(LogLevel::Warning) << "Could not find state index for province " << i->first;
 					continue;
 				}
 				else
@@ -766,7 +763,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		const std::string& V2Tag = countryMap[oldOwner->getTag()];
 		if (V2Tag.empty())
 		{
-			log("Error: Could not map provinces owned by %s.\n", oldOwner->getTag().c_str());
+			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
 		}
 		else
 		{
@@ -828,7 +825,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 									}
 									else
 									{
-										log ("Error: Unhandled distinguisher type in culture rules.\n");
+										LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
 									}
 
 								}
@@ -841,7 +838,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 						}
 						if (!matched)
 						{
-							log("\tError: Could not set culture for pops in province %d\n", destNum);
+							LOG(LogLevel::Warning) << "Could not set culture for pops in province " << destNum;
 						}
 
 						string religion = "";
@@ -852,7 +849,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 						}
 						else
 						{
-							log("\tError: Could not set religion for pops in province %d\n", destNum);
+							LOG(LogLevel::Warning) << "Could not set religion for pops in province " << destNum;
 						}
 
 						V2Demographic demographic;
@@ -913,7 +910,7 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 			goodProvinces.pop();
 			if (currentProvince > static_cast<int>(adjacencyMap.size()))
 			{
-				log("Error: no adjacency mapping for province %d\n", currentProvince);
+				LOG(LogLevel::Warning) << "No adjacency mapping for province " << currentProvince;
 				continue;
 			}
 			vector<adjacency> adjacencies = adjacencyMap[currentProvince];
@@ -1088,14 +1085,13 @@ void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMa
 	Object*	obj2 = doParseFile("regiment_costs.txt");
 	if (obj2 == NULL)
 	{
-		log("Could not parse file regiment_costs.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file regiment_costs.txt";
 		exit(-1);
 	}
 	vector<Object*> objTop = obj2->getLeaves();
 	if (objTop.size() == 0 || objTop[0]->getLeaves().size() == 0)
 	{
-		log("	Error: regment_costs.txt failed to parse.");
-		printf("	Error: regiment_costs.txt failed to parse.");
+		LOG(LogLevel::Error) << "regment_costs.txt failed to parse";
 		exit(1);
 	}
 	for (int i = 0; i < num_reg_categories; ++i)
@@ -1360,7 +1356,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 	}
 	if (weightedCountries.size() < 1)
 	{
-		log("Error: no countries are able to accept factories!\n");
+		LOG(LogLevel::Warning) << "No countries are able to accept factories";
 		return;
 	}
 	sort(weightedCountries.begin(), weightedCountries.end());
@@ -1388,7 +1384,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 	for (deque<pair<double, V2Country*>>::iterator itr = weightedCountries.begin(); itr != weightedCountries.end(); ++itr)
 	{
 		int factories = int(((itr->first / totalIndWeight) * factoryList.size()) + 0.5 /*round*/);
-		log("	%s has industrial weight %2.2lf granting max %d factories\n", itr->second->getTag().c_str(), itr->first, factories);
+		LOG(LogLevel::Debug) << itr->second->getTag() << " has industrial weight " << itr->first << " granting max " << factories << " factories";
 		factoryCounts.push_back(pair<int, V2Country*>(factories, itr->second));
 	}
 
@@ -1414,10 +1410,11 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 		}
 		if (!accepted && citr == lastReceptiveCountry)
 		{
-			log("No countries will accept any of the remaining factories!\n");
+			Log logOutput(LogLevel::Debug);
+			logOutput << "No countries will accept any of the remaining factories:\n";
 			for (deque<V2Factory*>::iterator qitr = factoryList.begin(); qitr != factoryList.end(); ++qitr)
 			{
-				log("\t%s\n", (*qitr)->getTypeName().c_str());
+				logOutput << "\t  " << (*qitr)->getTypeName() << '\n';
 			}
 			break;
 		}

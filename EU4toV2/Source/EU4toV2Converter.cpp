@@ -17,8 +17,13 @@
 
 int main(int argc, char * argv[]) //changed from TCHAR, no use when everything else in program is in ASCII...
 {
-	initLog();
-
+/*
+	LOG(LogLevel::Debug) << "A debug message";
+	LOG(LogLevel::Info) << "An info message";
+	LOG(LogLevel::Warning) << "A warning";
+	LOG(LogLevel::Error) << "An error";
+	return 0;
+*/
 	Object*	obj;					// generic object
 	ifstream	read;				// ifstream for reading files
 
@@ -26,89 +31,83 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	char curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
-	log("Current directory is %s\n", curDir);
+	LOG(LogLevel::Debug) << "Current directory is " << curDir;
 
 	// Get V2 install location
-	log("Get V2 Install Path.\n");
+	LOG(LogLevel::Info) << "Get V2 Install Path";
 	string V2Loc = Configuration::getV2Path();
 	struct _stat st;
 	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
 	{
-		log("\tNo Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
 		return (-2);
 	}
 	else
 	{
-		log("\tVictoria 2 install path is %s\n", V2Loc.c_str());
+		LOG(LogLevel::Debug) << "Victoria 2 install path is " << V2Loc;
 	}
 
 	// Get V2 Documents Directory
-	log("Get V2 Documents directory\n");
+	LOG(LogLevel::Debug) << "Get V2 Documents directory";
 	string V2DocLoc = Configuration::getV2DocumentsPath();
 	if (V2DocLoc.empty() || (_stat(V2DocLoc.c_str(), &st) != 0))
 	{
-		log("\tNo Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
 		return (-2);
 	}
 	else
 	{
-		log("\tVictoria 2 documents directory is %s\n", V2DocLoc.c_str());
+		LOG(LogLevel::Debug) << "Victoria 2 documents directory is " << V2DocLoc;
 	}
 
 	// Get EU4 install location
-	log("Get EU4 Install Path.\n");
+	LOG(LogLevel::Debug) << "Get EU4 Install Path";
 	string EU4Loc = Configuration::getEU4Path();
 	if (EU4Loc.empty() || (_stat(EU4Loc.c_str(), &st) != 0))
 	{
-		log("\tNo Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
 		return (-2);
 	}
 	else
 	{
-		log("\tEU4 install path is %s\n", EU4Loc.c_str());
+		LOG(LogLevel::Debug) << "EU4 install path is " << EU4Loc;
 	}
 
 	// Get EU4 Mod directory
-	log("Get EU4 Mod Directory\n");
+	LOG(LogLevel::Debug) << "Get EU4 Mod Directory";
 	string EU4ModLoc = Configuration::getEU4ModPath();
 	if (EU4ModLoc.empty() || (_stat(EU4ModLoc.c_str(), &st) != 0))
 	{
-		log("\tNo Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		LOG(LogLevel::Error) << "No Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid";
 		return (-2);
 	}
 	else
 	{
-		log("\tEU4 Mod directory is %s\n", EU4ModLoc.c_str());
+		LOG(LogLevel::Debug) << "EU4 Mod directory is " << EU4ModLoc;
 	}
 
 	// Get CK2 Export directory
-	log("Get CK2 Export Directory\n");
+	LOG(LogLevel::Debug) << "Get CK2 Export Directory";
 	string CK2ExportLoc = Configuration::getCK2ExportPath();
 	if (CK2ExportLoc.empty() || (_stat(CK2ExportLoc.c_str(), &st) != 0))
 	{
-		log("\tNo Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid.  This will cause problems with CK2 converted saves.\n");
+		LOG(LogLevel::Warning) << "No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid - this will cause problems with CK2 converted saves";
 	}
 	else
 	{
-		log("\tCK2 export direcotry is %s\n", CK2ExportLoc.c_str());
-	}	
+		LOG(LogLevel::Debug) << "CK2 export directory is " << CK2ExportLoc;
+	}
 
 	//Get Input EU4 save 
 	string inputFilename("input.eu4");
 	if (argc >= 2)
 	{
 		inputFilename = argv[1];
-		log("Using input file %s.\n", inputFilename.c_str());
-		printf("Using input file %s.\n", inputFilename.c_str());
+		LOG(LogLevel::Info) << "Using input file " << inputFilename;
 	}
 	else
 	{
-		log("No input file given, defaulting to input.eu4\n");
-		printf("No input file given, defaulting to input.eu4\n");
+		LOG(LogLevel::Info) << "No input file given, defaulting to input.eu4";
 	}
 
 	//get output name
@@ -128,23 +127,21 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		space = outputName.find_first_of(' ');
 	}
 	Configuration::setOutputName(outputName);
-	log("Using output name %s\n", outputName.c_str());
-	printf("Using output name %s\n", outputName.c_str());
+	LOG(LogLevel::Info) << "Using output name " << outputName;
+
+	LOG(LogLevel::Info) << "* Importing EU4 save *";
 
 	//	Parse EU4 Save
-	log("Importing EU4 save.\n");
-	printf("Importing EU4 save.\n");
-	log("\tParsing save.\n");
-	printf("\tParsing save.\n");
+	LOG(LogLevel::Info) << "Parsing save";
 	obj = doParseFile(inputFilename.c_str());
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", inputFilename.c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << inputFilename;
 		exit(-1);
 	}
 
 	// Get EU4 Mod
-	log("Get EU4 Mod\n");
+	LOG(LogLevel::Debug) << "Get EU4 Mod";
 	string fullModPath = "";
 	vector<Object*> modObj = obj->getValue("mod_enabled");
 	if (modObj.size() > 0)
@@ -162,37 +159,32 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 			}
 			if (fullModPath.empty() || (_stat(fullModPath.c_str(), &st) != 0))
 			{
-				log("%s could not be found in the specified mod directory.  A valid mod directory must be specified.\n", modName.c_str());
-				printf("%s could not be found in the specified mod directory.  A valid mod directory must be specified.\n", modName.c_str());
+				LOG(LogLevel::Error) << modName << " could not be found in the specified mod directory - a valid mod directory must be specified";
 				return (-2);
 			}
 			else
 			{
-				log("EU4 Mod is at %s\n", fullModPath.c_str());
+				LOG(LogLevel::Debug) << "EU4 Mod is at " << fullModPath;
 			}
 		}
 	}
 
 	// Read all localisations.
-	log("Reading localisation.\n");
-	printf("Reading localisation.\n");
+	LOG(LogLevel::Info) << "Reading localisation";
 	EU4Localisation localisation;
 	localisation.ReadFromAllFilesInFolder(Configuration::getEU4Path() + "\\localisation");
 	if (!fullModPath.empty())
 	{
-		log("\tReading mod localisation.\n");
-		printf("\tReading mod localisation.\n");
+		LOG(LogLevel::Debug) << "Reading mod localisation";
 		localisation.ReadFromAllFilesInFolder(fullModPath + "\\localisation");
 	}
 
 	// Construct world from EU4 save.
-	log("Building world.\n");
-	printf("Building world.\n");
+	LOG(LogLevel::Info) << "Building world";
 	EU4World sourceWorld(localisation, obj);
 
 	// Read EU4 common\countries
-	log("Reading EU4 common\\countries.\n");
-	printf("Reading EU4 common\\countries.\n");
+	LOG(LogLevel::Info) << "Reading EU4 common\\countries";
 	{
 		ifstream commonCountries(Configuration::getEU4Path() + "\\common\\country_tags\\00_countries.txt");
 		sourceWorld.readCommonCountries(commonCountries, Configuration::getEU4Path());
@@ -256,19 +248,17 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	// Merge nations
-	log("Merging nations.\n");
-	printf("Merging nations.\n");
+	LOG(LogLevel::Info) << "Merging nations";
 	obj = doParseFile("merge_nations.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file merge_nations.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file merge_nations.txt";
 		exit(-1);
 	}
 	mergeNations(sourceWorld, obj);
 
 	// Parse V2 input file
-	log("Parsing Vicky2 data.\n");
-	printf("Parsing Vicky2 data.\n");
+	LOG(LogLevel::Info) << "Parsing Vicky2 data";
 	V2World destWorld;
 
 
@@ -278,12 +268,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	//V2FactoryFactory factoryBuilder(V2Loc);
 
 	// Parse province mappings
-	log("Parsing province mappings.\n");
-	printf("Parsing province mappings.\n");
+	LOG(LogLevel::Info) << "Parsing province mappings";
 	obj = doParseFile("province_mappings.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file province_mappings.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file province_mappings.txt";
 		exit(-1);
 	}
 	provinceMapping			provinceMap;
@@ -293,12 +282,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 	// Get list of blocked nations
-	log("Getting blocked V2 nations.\n");
-	printf("Getting blocked V2 nations.\n");
+	LOG(LogLevel::Info) << "Getting blocked V2 nations";
 	obj = doParseFile("blocked_nations.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file blocked_nations.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file blocked_nations.txt";
 		exit(-1);
 	}
 	vector<string> blockedNations = processBlockedNations(obj);
@@ -309,8 +297,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies
-	log("Importing adjacencies\n");
-	printf("Importing adjacencies\n");
+	LOG(LogLevel::Info) << "Importing adjacencies";
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
 
 	// Generate continent mapping
@@ -332,31 +319,29 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		obj = doParseFile((EU4Loc + "\\map\\continent.txt").c_str());
 		if (obj == NULL)
 		{
-			log("Could not parse file %s\n", (EU4Loc + "\\map\\continent.txt").c_str());
+			LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\map\\continent.txt";
 			exit(-1);
 		}
 		if (obj->getLeaves().size() < 1)
 		{
-			log("Error: Failed to parse continent.txt.\n");
-			printf("Error: Failed to parse continent.txt.\n");
+			LOG(LogLevel::Error) << "Failed to parse continent.txt";
 			return 1;
 		}
 		initContinentMap(obj, continentMap);
 	}
 	if (continentMap.size() == 0)
 	{
-		log("Warning: no continent mappings found. May lead to problems later\n");
+		LOG(LogLevel::Warning) << "No continent mappings found - may lead to problems later";
 	}
 	
 	// Generate region mapping
-	log("Parsing region structure.\n");
-	printf("Parsing region structure.\n");
+	LOG(LogLevel::Info) << "Parsing region structure";
 	if (_stat(".\\blankMod\\output\\map\\region.txt", &st) == 0)
 	{
 		obj = doParseFile(".\\blankMod\\output\\map\\region.txt");
 		if (obj == NULL)
 		{
-			log("Could not parse file .\\blankMod\\output\\map\\region.txt\n");
+			LOG(LogLevel::Error) << "Could not parse file .\\blankMod\\output\\map\\region.txt";
 			exit(-1);
 		}
 	}
@@ -365,14 +350,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		obj = doParseFile( (V2Loc + "\\map\\region.txt").c_str() );
 		if (obj == NULL)
 		{
-			log("Could not parse file %s\n", (V2Loc + "\\map\\region.txt").c_str());
+			LOG(LogLevel::Error) << "Could not parse file " << V2Loc << "\\map\\region.txt";
 			exit(-1);
 		}
 	}
 	if (obj->getLeaves().size() < 1)
 	{
-		log("Error: Could not parse region.txt.\n");
-		printf("Error: Could not parse region.txt.\n");
+		LOG(LogLevel::Error) << "Could not parse region.txt";
 		return 1;
 	}
 	stateMapping		stateMap;
@@ -381,18 +365,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	// Parse Culture Mappings
-	log("Parsing culture mappings.\n");
-	printf("Parsing culture mappings.\n");
+	LOG(LogLevel::Info) << "Parsing culture mappings";
 	obj = doParseFile("cultureMap.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file cultureMap.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file cultureMap.txt";
 		exit(-1);
 	}
 	if (obj->getLeaves().size() < 1)
 	{
-		log("Error: Failed to parse cultureMap.txt.\n");
-		printf("Error: Failed to parse cultureMap.txt.\n");
+		LOG(LogLevel::Error) << "Failed to parse cultureMap.txt";
 		return 1;
 	}
 	cultureMapping cultureMap;
@@ -402,13 +384,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	obj = doParseFile( (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str() );
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\common\\cultures\\00_cultures.txt";
 		exit(-1);
 	}
 	if (obj->getLeaves().size() < 1)
 	{
-		log("Error: Failed to parse cultures.txt.\n");
-		printf("Error: Failed to parse cultures.txt.\n");
+		LOG(LogLevel::Error) << "Failed to parse cultures.txt";
 		return 1;
 	}
 	initUnionCultures(obj, unionCultures);
@@ -434,13 +415,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 					obj = doParseFile(modCultureFile.c_str());
 					if (obj == NULL)
 					{
-						log("Could not parse file %s\n", modCultureFile.c_str());
+						LOG(LogLevel::Error) << "Could not parse file " << modCultureFile;
 						exit(-1);
 					}
 					if (obj->getLeaves().size() < 1)
 					{
-						log("Error: Failed to parse cultures file.\n");
-						printf("Error: Failed to parse cultures file.\n");
+						LOG(LogLevel::Error) << "Failed to parse cultures file";
 						return 1;
 					}
 					initUnionCultures(obj, unionCultures);
@@ -451,18 +431,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 
 	// Parse EU4 Religions
-	log("Parsing EU4 religions.\n");
-	printf("Parsing EU4 religions.\n");
+	LOG(LogLevel::Info) << "Parsing EU4 religions";
 	obj = doParseFile((EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", (EU4Loc + "\\common\\religions\\00_religion.txt").c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\common\\religions\\00_religion.txt";
 		exit(-1);
 	}
 	if (obj->getLeaves().size() < 1)
 	{
-		log("Error: Failed to parse 00_religion.txt.\n");
-		printf("Error: Failed to parse 00_religion.txt.\n");
+		LOG(LogLevel::Error) << "Failed to parse 00_religion.txt";
 		return 1;
 	}
 	EU4Religion::parseReligions(obj);
@@ -490,7 +468,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 						obj = doParseFile(modReligionFile.c_str());
 						if (obj == NULL)
 						{
-							log("Could not parse file %s\n", modReligionFile.c_str());
+							LOG(LogLevel::Error) << "Could not parse file " << modReligionFile;
 							exit(-1);
 						}
 						EU4Religion::parseReligions(obj);
@@ -502,18 +480,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	}
 
 	// Parse Religion Mappings
-	log("Parsing religion mappings.\n");
-	printf("Parsing religion mappings.\n");
+	LOG(LogLevel::Info) << "Parsing religion mappings";
 	obj = doParseFile("religionMap.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file religionMap.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file religionMap.txt";
 		exit(-1);
 	}
 	if (obj->getLeaves().size() < 1)
 	{
-		log("Error: Failed to parse religionMap.txt.\n");
-		printf("Error: Failed to parse religionMap.txt.\n");
+		LOG(LogLevel::Error) << "Failed to parse religionMap.txt";
 		return 1;
 	}
 	religionMapping religionMap;
@@ -521,18 +497,16 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	//Parse unions mapping
-	log("Parsing union mappings.\n");
-	printf("Parsing union mappings.\n");
+	LOG(LogLevel::Info) << "Parsing union mappings";
 	obj = doParseFile("unions.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file unions.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file unions.txt";
 		exit(-1);
 	}
 	if (obj->getLeaves().size() < 1)
 	{
-		log("Error: Failed to parse unions.txt.\n");
-		printf("Error: Failed to parse unions.txt.\n");
+		LOG(LogLevel::Error) << "Failed to parse unions.txt";
 		return 1;
 	}
 	unionMapping unionMap;
@@ -540,13 +514,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	//Parse government mapping
-	log("Parsing governments mappings.\n");
-	printf("Parsing governments mappings.\n");
+	LOG(LogLevel::Info) << "Parsing governments mappings";
 	initParser();
 	obj = doParseFile("governmentMapping.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file governmentMapping.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file governmentMapping.txt";
 		exit(-1);
 	}
 	governmentMapping governmentMap;
@@ -577,55 +550,42 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 
 	//// Get Leader traits
-	log("Getting leader traits.\n");
-	printf("Getting leader traits.\n");
+	LOG(LogLevel::Info) << "Getting leader traits";
 	V2LeaderTraits lt;
 	map<int, int> leaderIDMap; // <EU4, V2>
 
 
 	// Convert
-	printf("Converting countries.\n");
-	log("Converting countries.\n");
+	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
-	printf("Converting diplomacy.\n");
-	log("Converting diplomacy.\n");
+	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
-	printf("Converting provinces.\n");
-	log("Converting provinces.\n");
+	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
-	printf("Setting colonies\n");
-	log("Setting colonies\n");
+	LOG(LogLevel::Info) << "Setting colonies";
 	destWorld.setupColonies(adjacencyMap, continentMap);
-	/*printf("Creating states.\n");
-	log("Creating states.\n");
+	/*LOG(LogLevel::Info) << "Creating states";
 	destWorld.setupStates(stateMap);*/
-	printf("Setting unciv reforms.\n");
-	log("Setting unciv reforms.\n");
+	LOG(LogLevel::Info) << "Setting unciv reforms";
 	destWorld.convertUncivReforms();
-	/*printf("Creating pops.\n");
-	log("Creating pops.\n");
+	/*LOG(LogLevel::Info) << "Creating pops";
 	destWorld.setupPops(sourceWorld);*/
-	printf("Adding unions.\n");
-	log("Adding unions.\n");
+	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
-	/*printf("Converting armies and navies.\n");
-	log("Converting armies and navies.\n");
+	/*LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);*/
-	printf("Converting techs.\n");
-	log("Converting techs.\n");
+	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
-	/*printf("Allocating starting factories.\n");
-	log("Allocating starting factories.\n");
+	/*LOG(LogLevel::Info) << "Allocating starting factories";
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);*/
 
 	// Output results
-	printf("Outputting mod\n");
-	log("Outputting mod\n");
+	LOG(LogLevel::Info) << "Outputting mod";
 	system("%systemroot%\\System32\\xcopy blankMod output /E /Q /Y /I");
 	FILE* modFile;
 	if (fopen_s(&modFile, ("Output\\" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
 	{
-		log("\tError: Could not create .mod file\n");
+		LOG(LogLevel::Error) << "Could not create .mod file";
 		exit(-1);
 	}
 	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
@@ -639,6 +599,5 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	system(renameCommand.c_str());
 	destWorld.output();
 
-	closeLog();
 	return 0;
 }

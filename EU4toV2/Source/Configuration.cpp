@@ -11,22 +11,19 @@ Configuration* Configuration::instance = NULL;
 
 Configuration::Configuration()
 {
-	printf("Reading configuration file.\n");
-	log("Reading configuration file.\n");
+	LOG(LogLevel::Info) << "Reading configuration file";
 
 	Object* oneObj = doParseFile("configuration.txt");
 	if (oneObj == NULL)
 	{
-		log("Error: Could not open configuration.txt\n");
-		printf("Error: Could not open configuration.txt\n");
+		LOG(LogLevel::Error) << "Could not open configuration.txt";
 		exit(-1);
 	}
 
 	vector<Object*> obj = oneObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
-		printf("Configuration file must contain exactly one configuration section.");
-		log("Configuration file must contain exactly one configuration section.");
+		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section";
 		exit (-2);
 	}
 
