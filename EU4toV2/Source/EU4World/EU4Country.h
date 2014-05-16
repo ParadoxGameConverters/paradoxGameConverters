@@ -18,6 +18,11 @@ class EU4Country
 	public:
 		EU4Country(Object* obj);
 
+		// Some countries are created by EU4 as placeholders to be filled as the game 
+		// progresses (colonial nations in particular). This method returns true if
+		// this country is one of these unused countries.
+		bool isUnusedCountry() const;
+
 		// Add any additional information available from the specified country file.
 		void readFromCommonCountry(const string& fileName, Object*);
 

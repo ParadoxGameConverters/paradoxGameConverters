@@ -62,6 +62,12 @@ EU4World::EU4World(EU4Localisation& localisation, Object* obj)
 			else
 			{
 				EU4Country* country = new EU4Country(countriesLeaves[j]);
+				if (country->isUnusedCountry())
+				{
+					LOG(LogLevel::Debug) << "Discarding unused EU4 tag " << country->getTag();
+					delete country;
+					continue;
+				}
 				const auto& nameLocalisations = localisation.GetTextInEachLanguage(country->getTag());
 				for (const auto& nameLocalisation : nameLocalisations)
 				{

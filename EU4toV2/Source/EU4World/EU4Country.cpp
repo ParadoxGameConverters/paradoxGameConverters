@@ -388,6 +388,11 @@ EU4Country::EU4Country(Object* obj)
 }
 
 
+bool EU4Country::isUnusedCountry() const
+{
+	return capital == 0;
+}
+
 void EU4Country::readFromCommonCountry(const string& fileName, Object* obj)
 {
 	if (name.empty())
