@@ -10,7 +10,7 @@ Sourceforge project: https://sourceforge.net/projects/eu4tov2/
 ----
 REQUIREMENTS
 ----
-V2
+V2 - HoD required
 EU4
 
 
@@ -43,7 +43,7 @@ CREDITS
 
 An (incomplete) list of those who contributed effort to this mammoth undertaking
 
-Idhrendur		- Project Lead
+Idhrendur		- Project Lead, Programming
 Ztaesek			- Programming, Data Files
 theosZA			- Programming
 kwsdev			- data files
@@ -53,5 +53,6 @@ MamelukeSkywalker	- Data Files
 LordOfTurtles		- Data Files
 localtoast		- Data Files
 G_Morgan		- Data Files
+rageair			- Data Files
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -

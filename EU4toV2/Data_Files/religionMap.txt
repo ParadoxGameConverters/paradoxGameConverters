@@ -2,14 +2,14 @@ religionmap = {
 
 #Christians
 
-link = { v2 = catholic eu4 = catholic }
+link = { v2 = catholic eu4 = catholic eu4 = catholic_heresy  }
 link = { v2 = protestant eu4 = protestant eu4 = reformed }
-link = { v2 = orthodox eu4 = orthodox }
+link = { v2 = orthodox eu4 = orthodox eu4 = orthodox_heresy }
 
 #Muslims
 
-link = { v2 = sunni eu4 = sunni }
-link = { v2 = shiite eu4 = shiite }
+link = { v2 = sunni eu4 = sunni eu4 = sunni_heresy  }
+link = { v2 = shiite eu4 = shiite eu4 = shiite_heresy }
 
 #Eastern
 link = { v2 = mahayana eu4 = confucianism }
@@ -31,12 +31,13 @@ link = { v2 = aztec_reformed eu4 = aztec_reformed }
 link = { v2 = slavic_pagan_reformed eu4 = slavic_pagan_reformed }
 link = { v2 = west_african_pagan_reformed eu4 = west_african_pagan_reformed }
 link = { v2 = hellenic_pagan eu4 = hellenic_pagan }
+link = { v2 = inca_reformed eu4 = inca_reformed }
 
 #Zoroastrian
-link = { v2 = zoroastrian eu4 = zoroastrian }
+link = { v2 = zoroastrian eu4 = zoroastrian eu4 = zoroastrian_heresy }
 
 #Judaism
-link = { v2 = Jewish eu4 = jewish }
+link = { v2 = jewish eu4 = jewish eu4 = jewish_heresy }
 
 
 
