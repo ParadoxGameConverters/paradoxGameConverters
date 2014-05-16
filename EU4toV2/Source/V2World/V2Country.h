@@ -133,6 +133,7 @@ class V2Country
 		double							literacy;
 		vector<string>					localisationNames;
 		vector<string>					localisationAdjectives;
+		vector<vector<string>>		localisationParties;
 		Color								color;
 };
 

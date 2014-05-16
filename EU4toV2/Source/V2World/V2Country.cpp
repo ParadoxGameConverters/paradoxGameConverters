@@ -86,6 +86,22 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	upperHouseLiberal			= 25;
 
 	uncivReforms = NULL;
+
+	if (parties.empty())
+	{	// No parties are specified. Generate some default parties for this country.
+		const std::vector<std::string> ideologies = 
+				{ "conservative", "liberal", "reactionary", "socialist", "communist", "anarcho_liberal", "fascist" };
+		const std::vector<std::string> partyNames =
+				{ "Conservative Party", "Liberal Party", "National Party", 
+				  "Socialist Party", "Communist Party", "Radical Party", "Fascist Party" };
+		for (size_t i = 0; i < ideologies.size(); ++i)
+		{
+			parties.push_back(new V2Party(tag + '_' + ideologies[i], ideologies[i]));
+			std::vector<string> localisation(14);
+			localisation[0] = partyNames[i];
+			localisationParties.push_back(localisation);
+		}
+	}
 }
 
 
@@ -173,41 +189,24 @@ void V2Country::output() const
 	if (newCountry)
 	{
 		// Output common country file. 
-		FILE* commonCountryOutput;
-		std::string commmonCountryFilePath = "Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile;
-		if (fopen_s(&commonCountryOutput, commmonCountryFilePath.c_str(), "w") != 0)
+		std::ofstream commonCountryOutput("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile);
+		commonCountryOutput << "graphical_culture = UsGC\n";	// default to US graphics
+		commonCountryOutput << "color = { " << color << " }\n";
+		for (auto party : parties)
 		{
-			LOG(LogLevel::Error) << "Could not create common country file " << commonCountryFile;
-			exit(-1);
+			commonCountryOutput	<< '\n'
+										<< "party = {\n"
+										<< "    name = \"" << party->name << "\"\n"
+										<< "    start_date = " << party->start_date << '\n'
+										<< "    end_date = " << party->end_date << "\n\n"
+										<< "    ideology = " << party->ideology << "\n\n"
+										<< "    economic_policy = " << party->economic_policy << '\n'
+										<< "    trade_policy = " << party->trade_policy << '\n'
+										<< "    religious_policy = " << party->religious_policy << '\n'
+										<< "    citizenship_policy = " << party->citizenship_policy << '\n'
+										<< "    war_policy = " << party->war_policy << '\n'
+										<< "}\n";
 		}
-		// We don't have all the info we need for this yet, so for now we'll reuse the USA common country file
-		// and only replace the info we do have.
-		std::string commonCountrySourcePath = Configuration::getV2Path() + "\\common\\countries\\USA.txt";
-		ifstream commonCountryInput(commonCountrySourcePath);
-		const int maxLineLength = 1000;
-		char line[maxLineLength];
-		while (!commonCountryInput.eof())
-		{
-			commonCountryInput.getline(line, maxLineLength);
-			if (!commonCountryInput.eof())
-			{
-				std::string currentLine = line;
-				// Replace color.
-				if (currentLine.substr(0, 5) == "color")
-				{
-					int r;
-					int g;
-					int b;
-					color.GetRGB(r, g, b);
-					fprintf(commonCountryOutput, "color = { %d %d %d }\n", r, g, b);
-				}
-				else
-				{ // No replacement - leave as is.
-					fprintf(commonCountryOutput, "%s\n", line);
-				}
-			}
-		}
-		fclose(commonCountryOutput);
 	}
 }
 
@@ -222,21 +221,33 @@ void V2Country::outputLocalisation(FILE* output) const
 {
 	std::ostringstream nameLocalisation;
 	nameLocalisation << tag;
-	for (vector<string>::const_iterator i = localisationNames.begin(); i != localisationNames.end(); ++i)
+	for (const auto& localisationName : localisationNames)
 	{
-		nameLocalisation << ';' << *i;
+		nameLocalisation << ';' << localisationName;
 	}
 	nameLocalisation << 'x';
 	fprintf(output, "%s\n", nameLocalisation.str().c_str());
 
 	std::ostringstream adjectiveLocalisation;
 	adjectiveLocalisation << tag << "_ADJ";
-	for (vector<string>::const_iterator i = localisationAdjectives.begin(); i != localisationAdjectives.end(); ++i)
+	for (const auto& localisationAdjective : localisationAdjectives)
 	{
-		adjectiveLocalisation << ';' << *i;
+		adjectiveLocalisation << ';' << localisationAdjective;
 	}
 	adjectiveLocalisation << 'x';
 	fprintf(output, "%s\n", adjectiveLocalisation.str().c_str());
+
+	for (size_t i = 0; i < parties.size() && i < localisationParties.size(); ++i)
+	{
+		std::ostringstream partyLocalisation;
+		partyLocalisation << parties[i]->name;
+		for (const auto& localisationParty : localisationParties[i])
+		{
+			partyLocalisation << ';' << localisationParty;
+		}
+		partyLocalisation << 'x';
+		fprintf(output, "%s\n", partyLocalisation.str().c_str());
+	}
 }
 
 

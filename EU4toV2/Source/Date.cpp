@@ -88,6 +88,12 @@ bool date::operator>=(const date& _rhs) const
 	return ((*this == _rhs) || (*this > _rhs));
 }
 
+ostream& operator<<(ostream& out, const date& d)
+{
+	out << d.year << '.' << d.month << '.' << d.day;
+	return out;
+}
+
 float date::diffInYears(const date& _rhs) const
 {
 	float years = float(year - _rhs.year);

@@ -1,6 +1,7 @@
 #ifndef DATE_H_
 #define DATE_H_
 
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -22,6 +23,8 @@ struct date
 	bool operator>(const date& _rhs) const;
 	bool operator<=(const date& _rhs) const;
 	bool operator>=(const date& _rhs) const;
+
+	friend ostream& operator<<(ostream&, const date&);
 	
 	float diffInYears(const date& _rhs) const;
 

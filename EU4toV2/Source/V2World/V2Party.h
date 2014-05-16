@@ -8,6 +8,8 @@ struct V2Party
 	public:
 		V2Party(Object* party_obj);
 		V2Party() : name("NULL PARTY") {};
+		// Populates all data with default values satisfying the required ideology.
+		V2Party(const std::string& name, const std::string& ideology);
 
 		string name;
 		string ideology;
