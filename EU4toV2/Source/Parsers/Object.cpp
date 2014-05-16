@@ -134,8 +134,15 @@ void Object::setValue (vector<Object*> val) {
 void Object::addToList(string val) {
   isObjList = true;
   if (strVal.size() > 0)
-   strVal += " ";
-  strVal += val; 
+  {
+		strVal += " \"";
+  }
+  else
+  {
+	  strVal += "\"";
+  }
+  strVal += val;
+  strVal += "\"";
   tokens.push_back(val); 
 }
 
@@ -145,9 +152,16 @@ void Object::addToList(vector<string>::iterator begin, vector<string>::iterator 
   for (vector<string>::iterator itr = begin; itr != end; ++itr)
   {
     if (strVal.size() > 0)
-      strVal += " ";
+	 {
+		 strVal += "\" \"";
+	 }
+	 else
+	 {
+		 strVal += "\"";
+	 }
     strVal += *itr; 
   }
+  strVal += "\"";
   tokens.insert(tokens.end(), begin, end);
 }
 

@@ -816,38 +816,35 @@ void V2Country::addState(V2State* newState)
 		provinces.push_back(newProvinces[i]);
 
 		// find the province with the highest naval base level
-		if (Configuration::getV2Gametype() == "HOD")
+		int navalLevel = 0;
+		const EU4Province* srcProvince = newProvinces[i]->getSrcProvince();
+		if (srcProvince != NULL)
 		{
-			int navalLevel = 0;
-			const EU4Province* srcProvince = newProvinces[i]->getSrcProvince();
-			if (srcProvince != NULL)
+			if (srcProvince->hasBuilding("shipyard"))
 			{
-				if (srcProvince->hasBuilding("shipyard"))
-				{
-					navalLevel += 1;
-				}
-				if (srcProvince->hasBuilding("grand_shipyard"))
-				{
-					navalLevel += 1;
-				}
-				if (srcProvince->hasBuilding("naval_arsenal"))
-				{
-					navalLevel += 1;
-				}
-				if (srcProvince->hasBuilding("naval_base"))
-				{
-					navalLevel += 1;
-				}
+				navalLevel += 1;
 			}
-			if (navalLevel > highestNavalLevel)
+			if (srcProvince->hasBuilding("grand_shipyard"))
 			{
-				highestNavalLevel	= navalLevel;
-				hasHighestLevel	= i;
+				navalLevel += 1;
 			}
-			newProvinces[i]->setNavalBaseLevel(0);
+			if (srcProvince->hasBuilding("naval_arsenal"))
+			{
+				navalLevel += 1;
+			}
+			if (srcProvince->hasBuilding("naval_base"))
+			{
+				navalLevel += 1;
+			}
 		}
+		if (navalLevel > highestNavalLevel)
+		{
+			highestNavalLevel	= navalLevel;
+			hasHighestLevel	= i;
+		}
+		newProvinces[i]->setNavalBaseLevel(0);
 	}
-	if ((Configuration::getV2Gametype() == "HOD") && (highestNavalLevel > 0))
+	if (highestNavalLevel > 0)
 	{
 		newProvinces[hasHighestLevel]->setNavalBaseLevel(1);
 	}
@@ -1134,23 +1131,11 @@ bool V2Country::addFactory(V2Factory* factory)
 	}
 	
 	// check factory inventions
-	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
+	HODInventionType requiredInvention = factory->getHODRequiredInvention();
+	if (requiredInvention >= 0 && HODInventions[requiredInvention] != active)
 	{
-		vanillaInventionType requiredInvention = factory->getVanillaRequiredInvention();
-		if (requiredInvention >= 0 && vanillaInventions[requiredInvention] != active)
-		{
-			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required invention: " << vanillaInventionNames[requiredInvention] << ')';
-			return false;
-		}
-	}
-	else if (Configuration::getV2Gametype() == "HOD")
-	{
-		HODInventionType requiredInvention = factory->getHODRequiredInvention();
-		if (requiredInvention >= 0 && HODInventions[requiredInvention] != active)
-		{
-			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required invention: " << HODInventionNames[requiredInvention] << ')';
-			return false;
-		}
+		LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required invention: " << HODInventionNames[requiredInvention] << ')';
+		return false;
 	}
 
 	// find a state to add the factory to, which meets the factory's requirements
@@ -1217,7 +1202,7 @@ void V2Country::addRailroadtoCapitalState()
 
 void V2Country::convertUncivReforms()
 {
-	if ((srcCountry != NULL) && ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")))
+	if (srcCountry != NULL)
 	{
 		if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") ||
 				(srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
@@ -1308,7 +1293,7 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 	double newTechLevel = (scale * (srcCountry->getMilTech() - mean) / stdDev) + 2.5;
 	LOG(LogLevel::Debug) << tag << " has army tech of " << newTechLevel;
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if (civilized == true)
 	{
 		if (newTechLevel >= 0)
 		{
@@ -1359,7 +1344,7 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 	double newTechLevel = scale * (srcCountry->getDipTech() - mean) / stdDev;
 	LOG(LogLevel::Debug) << tag << " has navy tech of " << newTechLevel;
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if (civilized == true)
 	{
 		if (newTechLevel >= 0)
 		{
@@ -1420,7 +1405,7 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 	double newTechLevel = (scale * (srcCountry->getDipTech() - mean) / stdDev) + 4.5;
 	LOG(LogLevel::Debug) << tag << " has commerce tech of " << newTechLevel;
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if (civilized == true)
 	{
 		techs.push_back("no_standard");
 		if (newTechLevel >= 1)
@@ -1495,7 +1480,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 	double newTechLevel = (scale * (srcCountry->getAdmTech() - mean) / stdDev) + 3.5;
 	LOG(LogLevel::Debug) << tag << " has industry tech of " << newTechLevel;
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if (civilized == true)
 	{
 		if (newTechLevel >= 0)
 		{
@@ -1571,7 +1556,7 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 	double newTechLevel = ((scale * (srcCountry->getAdmTech() - mean) / stdDev) + 3);
 	LOG(LogLevel::Debug) << tag << " has culture tech of " << newTechLevel;
 
-	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
+	if (civilized == true)
 	{
 		techs.push_back("classicism_n_early_romanticism");
 		techs.push_back("late_enlightenment_philosophy");

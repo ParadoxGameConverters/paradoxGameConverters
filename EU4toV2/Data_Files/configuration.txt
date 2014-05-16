@@ -7,7 +7,7 @@ configuration =
 	EU4ModDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV\mod"
 
 	# Crusader Kings 2 export directory: a path on your computer where Crusader Kings 2 keeps exported games
-	CK2ExportDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Crusader Kings 2\eu4_export\mod"
+	CK2ExportDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Crusader Kings II\eu4_export\mod"
 
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	V2directory = "D:\Paradox Interactive\Victoria 2"

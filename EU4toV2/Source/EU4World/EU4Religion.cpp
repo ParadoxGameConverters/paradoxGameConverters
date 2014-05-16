@@ -41,7 +41,13 @@ void EU4Religion::parseReligions(Object* obj)
 			{
 				continue;
 			}
+
 			EU4Religion* religion = new EU4Religion((*religionsItr), group);
+			map<string, EU4Religion*>::iterator itr = all_religions.find(group);
+			if (itr != all_religions.end())
+			{
+				delete itr->second;
+			}			
 			all_religions[religion->name] = religion;
 		}
 	}

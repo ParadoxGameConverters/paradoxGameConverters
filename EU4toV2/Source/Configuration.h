@@ -38,11 +38,6 @@ public:
 		return getInstance()->V2DocumentsPath;
 	}
 
-	static string getV2Gametype()
-	{
-		return getInstance()->V2Gametype;
-	}
-
 	static bool getCK2Converted()
 	{
 		return getInstance()->CK2Converted;
@@ -99,7 +94,6 @@ private:
 	string	CK2ExportPath;
 	string	V2Path;
 	string	V2DocumentsPath;
-	string	V2Gametype;
 	bool		CK2Converted;
 	string	resetProvinces;
 	double	MaxLiteracy;

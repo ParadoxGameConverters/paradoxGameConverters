@@ -165,6 +165,7 @@ adjacencyMapping initAdjacencyMap()
 
 void initContinentMap(Object* obj, continentMapping& continentMap)
 {
+	continentMap.clear();
 	vector<Object*> continentObjs = obj->getLeaves();
 	for (unsigned int i = 0; i < continentObjs.size(); i++)
 	{

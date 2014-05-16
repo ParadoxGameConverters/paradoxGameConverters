@@ -41,16 +41,13 @@ void V2Reforms::output(FILE* output) const
 	fprintf(output, "	pensions=no_pensions\n");
 	fprintf(output, "	health_care=no_health_care\n");
 
-	if ((Configuration::getV2Gametype() == "AHD") || (Configuration::getV2Gametype() == "HOD"))
+	if (school_reforms >= 10)
 	{
-		if (school_reforms >= 10)
-		{
-			fprintf(output, "	school_reforms=low_schools\n");
-		}
-		else
-		{
-			fprintf(output, "	school_reforms=no_schools\n");
-		}
+		fprintf(output, "	school_reforms=low_schools\n");
+	}
+	else
+	{
+		fprintf(output, "	school_reforms=no_schools\n");
 	}
 
 	if (slavery >= 1)
