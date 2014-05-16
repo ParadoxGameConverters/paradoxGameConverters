@@ -4,6 +4,7 @@
 
 
 #include "EU4Army.h"
+#include "..\Color.h"
 #include "..\Date.h"
 
 class EU4Province;
@@ -73,7 +74,7 @@ class EU4Country
 		string getName() const { return name; }
 		string getName(const string& language) const;
 		string getAdjective(const string& language) const;
-		void getColor(int& r, int& g, int& b) const;
+		Color getColor() const { return color; }
 
 	private:
 		void							checkIdea(const Object*, const string);
@@ -123,7 +124,7 @@ class EU4Country
 
 		string name;
 		string adjective;
-		int color[3];
+		Color color;
 
 		// Localisation attributes
 		map<string, string> namesByLanguage;

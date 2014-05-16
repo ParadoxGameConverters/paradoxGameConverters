@@ -195,7 +195,11 @@ void V2Country::output() const
 				// Replace color.
 				if (currentLine.substr(0, 5) == "color")
 				{
-					fprintf(commonCountryOutput, "color = { %d %d %d }\n", color[0], color[1], color[2]);
+					int r;
+					int g;
+					int b;
+					color.GetRGB(r, g, b);
+					fprintf(commonCountryOutput, "color = { %d %d %d }\n", r, g, b);
 				}
 				else
 				{ // No replacement - leave as is.
@@ -295,7 +299,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	}
 
 	// Color
-	srcCountry->getColor(color[0], color[1], color[2]);
+	color = srcCountry->getColor();
 
 	// Localisation
 	localisationNames.resize(14);

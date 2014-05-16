@@ -4,6 +4,7 @@
 
 #include "../CountryMapping.h"
 #include "../Mapper.h"
+#include "../Color.h"
 #include "../Date.h"
 #include "../Eu4World/EU4Army.h"
 #include "V2Inventions.h"
@@ -132,7 +133,7 @@ class V2Country
 		double							literacy;
 		vector<string>					localisationNames;
 		vector<string>					localisationAdjectives;
-		int								color[3];
+		Color								color;
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

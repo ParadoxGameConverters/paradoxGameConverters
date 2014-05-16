@@ -6,8 +6,6 @@
 #include "EU4Loan.h"
 #include "EU4Leader.h"
 #include <algorithm>
-#include <sstream>
-
 
 
 EU4Country::EU4Country(Object* obj)
@@ -32,8 +30,7 @@ EU4Country::EU4Country(Object* obj)
 	vector<Object*> colorObj = obj->getValue("map_color");
 	if (!colorObj.empty())
 	{
-		std::istringstream mapColors(colorObj[0]->getLeaf());
-		mapColors >> color[0] >> color[1] >> color[2];
+		color = Color(colorObj[0]);
 	}
 
 	vector<Object*> capitalObj = obj->getValue("capital");
@@ -393,13 +390,22 @@ EU4Country::EU4Country(Object* obj)
 
 void EU4Country::readFromCommonCountry(const string& fileName, Object* obj)
 {
-	// For this country's name we will use the stem of the file name.
-	size_t extPos = fileName.find_last_of('.');
-	name = fileName.substr(0, extPos);
+	if (name.empty())
+	{
+		// For this country's name we will use the stem of the file name.
+		size_t extPos = fileName.find_last_of('.');
+		name = fileName.substr(0, extPos);
+	}
 
-	// Read country color.
-	std::istringstream colorText(obj->getValue("color")[0]->getLeaf());
-	colorText >> color[0] >> color[1] >> color[2];
+	if (!color)
+	{
+		// Read country color.
+		auto colorObj = obj->getValue("color");
+		if (colorObj[0])
+		{
+			color = Color(colorObj[0]);
+		}
+	}
 }
 
 
@@ -620,14 +626,6 @@ string EU4Country::getAdjective(const string& language) const
 	{
 		return "";
 	}
-}
-
-
-void EU4Country::getColor(int& r, int& g, int& b) const
-{
-	r = color[0];
-	g = color[1];
-	b = color[2];
 }
 
 
