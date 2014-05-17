@@ -1,6 +1,7 @@
 #ifndef COLOR_H_
 #define COLOR_H_
 
+#include <array>
 #include <iostream>
 
 class Object;
@@ -17,6 +18,10 @@ public:
 	// an RGB color triplet (separated only by whitespace).
 	Color(Object* colorObject);
 
+	// Randomly adjust the RGB values up or down (within the range 0-255)
+	// with a normal distribution of the given standard deviation.
+	void RandomlyFlunctuate(int stdDev);
+
 	// Writes the RGB triplet to the stream as "R G B".
 	friend std::ostream& operator<<(std::ostream&, const Color&);
 
@@ -28,9 +33,7 @@ public:
 
 private:
 	bool initialized;
-	int r;
-	int g;
-	int b;
+	std::array<int, 3> c;
 };
 
 #endif

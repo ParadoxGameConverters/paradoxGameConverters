@@ -1,5 +1,6 @@
 #include "V2Flags.h"
 
+#include <chrono>
 #include <iostream>
 #include <iterator>
 #include <random>
@@ -82,7 +83,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 	}
 
 	// All the remaining tags now need one of the usable flags.
-	std::mt19937 generator;
+	static std::mt19937 generator(std::chrono::system_clock::now().time_since_epoch().count());
 	size_t mappingsMade = 0;
 	for (std::set<std::string>::const_iterator i = requiredTags.cbegin(); i != requiredTags.cend(); ++i)
 	{

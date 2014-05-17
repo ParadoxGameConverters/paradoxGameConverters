@@ -31,6 +31,10 @@ EU4Country::EU4Country(Object* obj)
 	if (!colorObj.empty())
 	{
 		color = Color(colorObj[0]);
+		// Countries whose colors are included in the object here tend to be generated countries,
+		// i.e. colonial nations which take on the color of their parent. To help distinguish 
+		// these countries from their parent's other colonies we randomly adjust the color.
+		color.RandomlyFlunctuate(30);
 	}
 
 	vector<Object*> capitalObj = obj->getValue("capital");
