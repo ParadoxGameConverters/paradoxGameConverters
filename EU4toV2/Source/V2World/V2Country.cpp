@@ -169,7 +169,16 @@ void V2Country::output() const
 			uncivReforms->output(output);
 		}
 	}
-	fprintf(output, "	prestige=%f\n", prestige);
+	fprintf(output, "prestige=%f\n", prestige);
+
+	fprintf(output, "# Social Reforms\n");
+	fprintf(output, "wage_reform = no_minimum_wage\n");
+	fprintf(output, "work_hours = no_work_hour_limit\n");
+	fprintf(output, "safety_regulations = no_safety\n");
+	fprintf(output, "health_care = no_health_care\n");
+	fprintf(output, "unemployment_subsidies = no_subsidies\n");
+	fprintf(output, "pensions = no_pensions\n");
+	fprintf(output, "school_reforms = no_schools\n");
 	
 	/*for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
@@ -184,6 +193,7 @@ void V2Country::output() const
 		(*itr)->output(output);
 	}
 	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());*/
+
 	fclose(output);
 
 	if (newCountry)
