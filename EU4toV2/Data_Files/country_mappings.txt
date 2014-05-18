@@ -172,7 +172,7 @@ link = { eu4 = LOR v2 = LOR }  # Lorraine
 link = { eu4 = LUN v2 = LUN }  # Luneburg
 link = { eu4 = MAG v2 = MAG }  # Magdeburg
 link = { eu4 = MAI v2 = MAI }  # Mainz
-link = { eu4 = MEI v2 = MSN }  # Meissen
+link = { eu4 = MEI v2 = MEI }  # Meissen
 link = { eu4 = MKL v2 = MEC }  # Mecklenburg
 link = { eu4 = MUN v2 = MUN }  # Munster
 link = { eu4 = OLD v2 = OLD }  # Oldenburg
@@ -333,14 +333,14 @@ link = { eu4 = HAU v2 = HAU }  # Hausa
 link = { eu4 = KBO v2 = KBO }  # Kanem Bornu
 link = { eu4 = LOA v2 = LOA }  # Loango
 link = { eu4 = OYO v2 = OYO }  # Oyo
-link = { eu4 = SOF v2 = SOF }  # Sofala     
+link = { eu4 = SFA v2 = SOF }  # Sofala
 link = { eu4 = SOK v2 = SOK }  # Sokoto
 link = { eu4 = AJU v2 = AJU }  # Ajuuraan (NEW) *
 link = { eu4 = JOL v2 = JOL }  # Jolof (NEW)
 link = { eu4 = MBA v2 = MBA }  # Mombasa (NEW)
 link = { eu4 = MDI v2 = MDI }  # Mogadishu (NEW)
 link = { eu4 = MLI v2 = MLI }  # Malindi (NEW)
-link = { eu4 = SFA v2 = SFA }  # Sofala (NEW)
+link = { eu4 = SOF v2 = SGU }  # Segu (NEW)
 
 # East and Southeast Asia, and Oceania
 link = { eu4 = ANN v2 = ANN }  # Annam
@@ -382,6 +382,7 @@ link = { eu4 = CSH v2 = CSH }  # Shun (NEW) *
 link = { eu4 = CXI v2 = XIA }  # Xi
 link = { eu4 = CZH v2 = WUU }  # Zhou
 link = { eu4 = QNG v2 = QIN }  # Qing
+
 # Japan
 link = { eu4 = AMA v2 = AMA }  # Amago
 link = { eu4 = ASA v2 = ASA }  # Asakura
@@ -450,14 +451,13 @@ link = { eu4 = KLN v2 = KLN }  # Keladi (NEW)
 link = { eu4 = KMT v2 = KMT }  # Koch (NEW)
 link = { eu4 = KOC v2 = TRA }  # Kochin => Travanacore
 link = { eu4 = MAB v2 = MAB }  # Malabar (NEW)
-link = { eu4 = MAR v2 = MAR }  # Marathas (NEW)
 link = { eu4 = MAW v2 = MAW }  # Marwar (NEW)
-link = { eu4 = MER v2 = MEW }  # Mewar
+link = { eu4 = MER v2 = MER }  # Mewar
 link = { eu4 = MEW v2 = MEW }  # Mewat (NEW)
 link = { eu4 = MUL v2 = MUL }  # Multan (NEW)
 link = { eu4 = NAG v2 = NAG }  # Nagpur
 link = { eu4 = VND v2 = VND }  # Venad (NEW)
-
+link = { eu4 = KRK v2 = KRK }  # Carnatic (Karnataka) (NEW)
 
 # Crusader Kings 2 Titles
 
