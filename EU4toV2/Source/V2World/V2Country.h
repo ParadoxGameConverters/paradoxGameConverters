@@ -8,6 +8,7 @@
 #include "../Date.h"
 #include "../Eu4World/EU4Army.h"
 #include "V2Inventions.h"
+#include "V2Localisation.h"
 #include "V2TechSchools.h"
 #include <vector>
 using namespace std;
@@ -131,9 +132,7 @@ class V2Country
 		double							badboy;
 		vector<V2Leader*>				leaders;
 		double							literacy;
-		vector<string>					localisationNames;
-		vector<string>					localisationAdjectives;
-		vector<vector<string>>		localisationParties;
+		V2Localisation					localisation;
 		Color								color;
 };
 

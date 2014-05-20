@@ -96,10 +96,10 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 				  "Socialist Party", "Communist Party", "Radical Party", "Fascist Party" };
 		for (size_t i = 0; i < ideologies.size(); ++i)
 		{
-			parties.push_back(new V2Party(tag + '_' + ideologies[i], ideologies[i]));
-			std::vector<string> localisation(14);
-			localisation[0] = partyNames[i];
-			localisationParties.push_back(localisation);
+			std::string partyKey = tag + '_' + ideologies[i];
+			parties.push_back(new V2Party(partyKey, ideologies[i]));
+			localisation.SetPartyKey(i, partyKey);
+			localisation.SetPartyName(i, "english", partyNames[i]);
 		}
 	}
 }
@@ -229,35 +229,10 @@ void V2Country::outputToCommonCountriesFile(FILE* output) const
 
 void V2Country::outputLocalisation(FILE* output) const
 {
-	std::ostringstream nameLocalisation;
-	nameLocalisation << tag;
-	for (const auto& localisationName : localisationNames)
-	{
-		nameLocalisation << ';' << localisationName;
-	}
-	nameLocalisation << 'x';
-	fprintf(output, "%s\n", nameLocalisation.str().c_str());
-
-	std::ostringstream adjectiveLocalisation;
-	adjectiveLocalisation << tag << "_ADJ";
-	for (const auto& localisationAdjective : localisationAdjectives)
-	{
-		adjectiveLocalisation << ';' << localisationAdjective;
-	}
-	adjectiveLocalisation << 'x';
-	fprintf(output, "%s\n", adjectiveLocalisation.str().c_str());
-
-	for (size_t i = 0; i < parties.size() && i < localisationParties.size(); ++i)
-	{
-		std::ostringstream partyLocalisation;
-		partyLocalisation << parties[i]->name;
-		for (const auto& localisationParty : localisationParties[i])
-		{
-			partyLocalisation << ';' << localisationParty;
-		}
-		partyLocalisation << 'x';
-		fprintf(output, "%s\n", partyLocalisation.str().c_str());
-	}
+	std::ostringstream localisationStream;
+	localisation.WriteToStream(localisationStream);
+	std::string localisationString = localisationStream.str();
+	fwrite(localisationString.c_str(), sizeof(std::string::value_type), localisationString.size(), output);
 }
 
 
@@ -323,16 +298,8 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	color = srcCountry->getColor();
 
 	// Localisation
-	localisationNames.resize(14);
-	localisationNames[0] = srcCountry->getName("english");
-	localisationNames[1] = srcCountry->getName("french");
-	localisationNames[2] = srcCountry->getName("german");
-	localisationNames[4] = srcCountry->getName("spanish");
-	localisationAdjectives.resize(14);
-	localisationAdjectives[0] = srcCountry->getAdjective("english");
-	localisationAdjectives[1] = srcCountry->getAdjective("french");
-	localisationAdjectives[2] = srcCountry->getAdjective("german");
-	localisationAdjectives[4] = srcCountry->getAdjective("spanish");
+	localisation.SetTag(tag);
+	localisation.ReadFromCountry(*srcCountry);
 
 	// tech group
 	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
