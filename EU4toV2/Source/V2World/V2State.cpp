@@ -43,7 +43,14 @@ void V2State::output(FILE* output) const
 	}
 	if (colonised)
 	{
-		fprintf(output, "\t\tis_colonial=2\n");
+		if (Configuration::getV2Gametype() == "HOD")
+		{
+			fprintf(output, "\t\tis_colonial=2\n");
+		}
+		else
+		{
+			fprintf(output, "\t\tis_colonial=yes\n");
+		}
 	}
 	fprintf(output, "\t}\n");
 }
