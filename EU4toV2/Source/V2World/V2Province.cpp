@@ -178,7 +178,14 @@ void V2Province::output() const
 	}
 	if (colonial > 0)
 	{
-		fprintf(output, "colonial=%d\n", colonial);
+		if (Configuration::getV2Gametype() == "HOD")
+		{
+			fprintf(output, "colonial=%d\n", colonial);
+		}
+		else
+		{
+			fprintf(output, "colonial=yes\n");
+		}
 	}
 	/*if (colonyLevel > 0)
 	{

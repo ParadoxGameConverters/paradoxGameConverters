@@ -709,7 +709,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			{
 				provinceBins[tag] = MTo1ProvinceComp();
 			}
-			if (/*(province->getPopulation() < 1000)*/ false && (owner != NULL))
+			if ((Configuration::getV2Gametype() == "HOD") && /*(province->getPopulation() < 1000)*/ false && (owner != NULL))
 			{
 				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(i->first);
 				if (stateIndexMapping == stateIndexMap.end())
@@ -1184,7 +1184,7 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 	{
-		if (itr->second->isCivilized())
+		if ((Configuration::getV2Gametype() == "vanilla") || itr->second->isCivilized())
 		{
 			itr->second->setArmyTech(milMean, milScale, milStdDev);
 			itr->second->setNavyTech(dipMean, dipScale, dipStdDev);
@@ -1197,19 +1197,40 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	int numRomanticLit = 0;
 	int numRomanticArt = 0;
 	int numRomanticMusic = 0;
-	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
+	if (Configuration::getV2Gametype() != "HOD")
 	{
-		if (itr->second->getInventionState(HOD_romanticist_literature) == active)
+		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 		{
-			numRomanticLit++;
+			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				numRomanticLit++;
+			}
+			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				numRomanticArt++;
+			}
+			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				numRomanticMusic++;
+			}
 		}
-		if (itr->second->getInventionState(HOD_romanticist_literature) == active)
+	}
+	else if (Configuration::getV2Gametype() == "HOD")
+	{
+		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 		{
-			numRomanticArt++;
-		}
-		if (itr->second->getInventionState(HOD_romanticist_literature) == active)
-		{
-			numRomanticMusic++;
+			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
+			{
+				numRomanticLit++;
+			}
+			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
+			{
+				numRomanticArt++;
+			}
+			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
+			{
+				numRomanticMusic++;
+			}
 		}
 	}
 
@@ -1237,19 +1258,40 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	romanticMusicPrestige *= 20;
 	romanticMusicPrestige /= numRomanticMusic;
 
-	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
+	if (Configuration::getV2Gametype() != "HOD")
 	{
-		if (itr->second->getInventionState(HOD_romanticist_literature) == active)
+		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 		{
-			itr->second->addPrestige(romanticLitPrestige);
+			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
+			{
+				itr->second->addPrestige(romanticLitPrestige);
+			}
+			if (itr->second->getInventionState(VANILLA_romanticist_art) == active)
+			{
+				itr->second->addPrestige(romanticArtPrestige);
+			}
+			if (itr->second->getInventionState(VANILLA_romanticist_music) == active)
+			{
+				itr->second->addPrestige(romanticMusicPrestige);
+			}
 		}
-		if (itr->second->getInventionState(HOD_romanticist_art) == active)
+	}
+	else if (Configuration::getV2Gametype() == "HOD")
+	{
+		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 		{
-			itr->second->addPrestige(romanticArtPrestige);
-		}
-		if (itr->second->getInventionState(HOD_romanticist_music) == active)
-		{
-			itr->second->addPrestige(romanticMusicPrestige);
+			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
+			{
+				itr->second->addPrestige(romanticLitPrestige);
+			}
+			if (itr->second->getInventionState(HOD_romanticist_art) == active)
+			{
+				itr->second->addPrestige(romanticArtPrestige);
+			}
+			if (itr->second->getInventionState(HOD_romanticist_music) == active)
+			{
+				itr->second->addPrestige(romanticMusicPrestige);
+			}
 		}
 	}
 }
