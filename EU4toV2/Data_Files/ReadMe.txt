@@ -54,5 +54,8 @@ LordOfTurtles		- Data Files
 localtoast		- Data Files
 G_Morgan		- Data Files
 rageair			- Data Files
+LowTartare		- Flags
+ChortlingGnome	- Flags
+
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -
