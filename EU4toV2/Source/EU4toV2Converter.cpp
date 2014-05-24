@@ -15,6 +15,8 @@
 #include "V2World\V2Factory.h"
 #include "V2World\V2TechSchools.h"
 #include "V2World\V2LeaderTraits.h"
+#include "WinUtils.h"
+
 
 // Converts the given EU4 save into a V2 mod.
 // Returns 0 on success or a non-zero failure code on error.
@@ -197,10 +199,16 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		{
 			// This only reads CK2 converted countries at the moment.
 			// TBD: Read all txt files from the mod common\country_tags folder.
-			ifstream convertedCommonCountries(*itr + "\\common\\country_tags\\converted_countries.txt");
-			sourceWorld.readCommonCountries(convertedCommonCountries, *itr);
-			ifstream specialCommonCountries(*itr + "\\common\\country_tags\\01_special_tags.txt");
-			sourceWorld.readCommonCountries(specialCommonCountries, *itr);
+			if (WinUtils::DoesFileExist(*itr + "\\common\\country_tags\\converted_countries.txt"))
+			{
+				ifstream convertedCommonCountries(*itr + "\\common\\country_tags\\converted_countries.txt");
+				sourceWorld.readCommonCountries(convertedCommonCountries, *itr);
+			}
+			if (WinUtils::DoesFileExist(*itr + "\\common\\country_tags\\01_special_tags.txt"))
+			{
+				ifstream specialCommonCountries(*itr + "\\common\\country_tags\\01_special_tags.txt");
+				sourceWorld.readCommonCountries(specialCommonCountries, *itr);
+			}
 		}
 	}
 
