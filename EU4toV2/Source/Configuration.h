@@ -18,9 +18,9 @@ public:
 		return getInstance()->EU4Path;
 	}
 
-	static string getEU4ModPath()
+	static string getEU4DocumentsPath()
 	{
-		return getInstance()->EU4ModPath;
+		return getInstance()->EU4DocumentsPath;
 	}
 
 	static string getCK2ExportPath()
@@ -95,7 +95,7 @@ private:
 
 	// options from configuration.txt
 	string	EU4Path;
-	string	EU4ModPath;
+	string	EU4DocumentsPath;
 	string	CK2ExportPath;
 	string	V2Path;
 	string	V2DocumentsPath;

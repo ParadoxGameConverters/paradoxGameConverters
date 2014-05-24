@@ -3,8 +3,8 @@ configuration =
 	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
 	EU4directory = "D:\Steam\steamapps\common\Europa Universalis IV"
 
-	# Europa Universalis 4 mod directory: a path on your computer where Europa Universalis 4 mods are installed
-	EU4ModDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV\mod"
+	# Europa Universalis 4 documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
+	EU4DocumentsDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV"
 
 	# Crusader Kings 2 export directory: a path on your computer where Crusader Kings 2 keeps exported games
 	CK2ExportDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Crusader Kings II\eu4_export\mod"

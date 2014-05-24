@@ -72,16 +72,48 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 
 	// Get EU4 Mod directory
+	map<string, string> possibleMods; // name, path
 	LOG(LogLevel::Debug) << "Get EU4 Mod Directory";
-	string EU4ModLoc = Configuration::getEU4ModPath();
-	if (EU4ModLoc.empty() || (_stat(EU4ModLoc.c_str(), &st) != 0))
+	string EU4DocumentsLoc = Configuration::getEU4DocumentsPath();
+	if (EU4DocumentsLoc.empty() || (_stat(EU4DocumentsLoc.c_str(), &st) != 0))
 	{
-		LOG(LogLevel::Error) << "No Europa Universalis 4 mod directory was specified in configuration.txt, or the path was invalid";
+		LOG(LogLevel::Error) << "No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid";
 		return (-2);
 	}
 	else
 	{
-		LOG(LogLevel::Debug) << "EU4 Mod directory is " << EU4ModLoc;
+		LOG(LogLevel::Debug) << "EU4 Documents directory is " << EU4DocumentsLoc;
+		set<string> fileNames;
+		WinUtils::GetAllFilesInFolder(EU4DocumentsLoc + "/mod", fileNames);
+		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+		{
+			int pos = itr->find_last_of('.');
+			if (itr->substr(pos, itr->length()) == ".mod")
+			{
+				Object* modObj = doParseFile((EU4DocumentsLoc + "\\mod\\" + *itr).c_str());
+				string name = modObj->getLeaf("name");
+
+				string path;
+				vector<Object*> dirObjs = modObj->getValue("user_dir");
+				if (dirObjs.size() > 0)
+				{
+					path = dirObjs[0]->getLeaf();
+				}
+				else
+				{
+					vector<Object*> dirObjs = modObj->getValue("archive");
+					if (dirObjs.size() > 0)
+					{
+						path = dirObjs[0]->getLeaf();
+					}
+				}
+
+				if (path != "")
+				{
+					possibleMods.insert(make_pair(name, EU4DocumentsLoc + "\\" + path));
+				}
+			}
+		}
 	}
 
 	// Get CK2 Export directory
@@ -94,6 +126,37 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	else
 	{
 		LOG(LogLevel::Debug) << "CK2 export directory is " << CK2ExportLoc;
+		set<string> fileNames;
+		WinUtils::GetAllFilesInFolder(CK2ExportLoc, fileNames);
+		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+		{
+			int pos = itr->find_last_of('.');
+			if (itr->substr(pos, itr->length()) == ".mod")
+			{
+				Object* modObj = doParseFile((CK2ExportLoc + "\\" + *itr).c_str());
+				string name = modObj->getLeaf("name");
+
+				string path;
+				vector<Object*> dirObjs = modObj->getValue("user_dir");
+				if (dirObjs.size() > 0)
+				{
+					path = dirObjs[0]->getLeaf();
+				}
+				else
+				{
+					vector<Object*> dirObjs = modObj->getValue("archive");
+					if (dirObjs.size() > 0)
+					{
+						path = dirObjs[0]->getLeaf();
+					}
+				}
+
+				if (path != "")
+				{
+					possibleMods.insert(make_pair(name, CK2ExportLoc + "\\" + path));
+				}
+			}
+		}
 	}
 
 	//get output name
@@ -148,10 +211,10 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				modName = modName.substr(space + 2, modName.size() - space - 1);
 			}
 
-			string newModPath;
-			if (Configuration::getCK2Converted())
+			map<string, string>::iterator modItr = possibleMods.find(newMod);
+			if (modItr != possibleMods.end())
 			{
-				newModPath = CK2ExportLoc + "\\" + newMod;
+				string newModPath = modItr->second;
 				if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
 				{
 					LOG(LogLevel::Error) << modName << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
@@ -160,19 +223,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				{
 					LOG(LogLevel::Debug) << "EU4 Mod is at " << newModPath;
 					fullModPaths.push_back(newModPath);
-					continue;
 				}
 			}
-
-			newModPath = EU4ModLoc + "\\" + newMod;
-			if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
+			else
 			{
-				LOG(LogLevel::Error) << modName << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
-				return (-2);
+				LOG(LogLevel::Error) << "No path could be found for " << modName;
 			}
-			
-			LOG(LogLevel::Debug) << "EU4 Mod is at " << newModPath;
-			fullModPaths.push_back(newModPath);
 		}
 	}
 

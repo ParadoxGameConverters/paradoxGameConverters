@@ -28,7 +28,7 @@ Configuration::Configuration()
 	}
 
 	EU4Path				= obj[0]->getLeaf("EU4directory");
-	EU4ModPath			= obj[0]->getLeaf("EU4ModDirectory");
+	EU4DocumentsPath	= obj[0]->getLeaf("EU4DocumentsDirectory");
 	CK2ExportPath		= obj[0]->getLeaf("CK2ExportDirectory");
 	V2Path				= obj[0]->getLeaf("V2directory");
 	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
