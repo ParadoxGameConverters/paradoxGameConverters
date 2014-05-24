@@ -3,8 +3,8 @@ configuration =
 	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
 	EU4directory = "D:\Steam\steamapps\common\Europa Universalis IV"
 
-	# Europa Universalis 4 mod directory: a path on your computer where Europa Universalis 4 mods are installed
-	EU4ModDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV\mod"
+	# Europa Universalis 4 documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
+	EU4DocumentsDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Europa Universalis IV"
 
 	# Crusader Kings 2 export directory: a path on your computer where Crusader Kings 2 keeps exported games
 	CK2ExportDirectory = "C:\Users\Idhrendur\Documents\Paradox Interactive\Crusader Kings II\eu4_export\mod"
@@ -19,6 +19,12 @@ configuration =
 	# 	yes
 	#	no
 	CK2Converted = "no"
+
+	# V2 Game Type: what version of V2 to convert to.  Possible values:
+	#	vanilla	vanilla V2 (1.x)
+	#	AHD		A House Divided (2.x)
+	#	HOD		Heart of Darkness (3.x)
+	V2gametype = "HOD"
 
 	# The date on which the game is to start.  Default: 1835.12.1
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!

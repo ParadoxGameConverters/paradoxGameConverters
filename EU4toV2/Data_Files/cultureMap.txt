@@ -11,7 +11,7 @@ link = { v2 = south_german eu4 = hessian eu4 = bavarian eu4 = austrian }
 link = { v2 = dutch eu4 = dutch }
 link = { v2 = flemish eu4 = flemish }
 #link = { v2 = boer eu4 = ? }
-link = { v2 = north_german eu4 = german }
+link = { v2 = german eu4 = german }
 
 # Scandinavian - swedish, danish, norwegian
 link = { v2 = swedish eu4 = swedish }

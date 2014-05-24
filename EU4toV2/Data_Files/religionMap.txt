@@ -22,7 +22,9 @@ link = { v2 = shinto eu4 = shinto }
 link = { v2 = jain eu4 = jain }
 
 #Pagans
-link = { v2 = animist eu4 = animism eu4 = shamanism eu4 = totemism }
+link = { v2 = animist eu4 = animism }
+link = { v2 = shamanism eu4 = shamanism }
+link = { v2 = totemism eu4 = totemism }
 link = { v2 = norse_pagan_reformed eu4 = norse_pagan_reformed }
 link = { v2 = tengri_pagan_reformed eu4 = tengri_pagan_reformed }
 link = { v2 = baltic_pagan_reformed eu4 = baltic_pagan_reformed }

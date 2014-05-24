@@ -180,26 +180,6 @@ void initContinentMap(Object* obj, continentMapping& continentMap)
 }
 
 
-vector<string> processBlockedNations(Object* obj)
-{
-	vector<string> blockedNations;
-
-	vector<Object*> leaves = obj->getLeaves();
-	if (leaves.size() < 1)
-	{
-		return blockedNations;
-	}
-
-	vector<Object*> nations = leaves[0]->getLeaves();
-	for (unsigned int i = 0; i < nations.size(); i++)
-	{
-		blockedNations.push_back(nations[i]->getLeaf());
-	}
-
-	return blockedNations;
-}
-
-
 void mergeNations(EU4World& world, Object* mergeObj)
 {
 	vector<Object*> rules = mergeObj->getValue("merge_nations");
