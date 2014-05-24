@@ -4,7 +4,6 @@ copy "Data_Files\readme.txt" "release\readme.txt"
 copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
 copy "Data_Files\starting_factories.txt" "release\starting_factories.txt
 copy "Data_Files\province_mappings.txt" "release\province_mappings.txt
-copy "Data_Files\blocked_nations.txt" "release\blocked_nations.txt
 copy "Data_Files\country_mappings.txt" "release\country_mappings.txt
 copy "Data_Files\cultureMap.txt" "release\cultureMap.txt
 copy "Data_Files\religionMap.txt" "release\religionMap.txt

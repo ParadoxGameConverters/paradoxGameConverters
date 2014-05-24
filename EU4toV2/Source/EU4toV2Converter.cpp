@@ -350,16 +350,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	initProvinceMap(obj, sourceWorld.getVersion(), provinceMap, inverseProvinceMap, resettableProvinces);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
-	// Get list of blocked nations
-	LOG(LogLevel::Info) << "Getting blocked V2 nations";
-	obj = doParseFile("blocked_nations.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file blocked_nations.txt";
-		exit(-1);
-	}
-	vector<string> blockedNations = processBlockedNations(obj);
-
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
