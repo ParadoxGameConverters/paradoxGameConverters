@@ -59,3 +59,4 @@ xcopy "Data_files\localisation" "release\blankmod\output\localisation" /Y /E /I
 copy "Data_Files\countries.txt" "release\blankMod\output\common\countries.txt"
 copy "Data_Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
 copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"
+copy "Data_Files\cultures.txt" "release\blankMod\output\common\cultures.txt"

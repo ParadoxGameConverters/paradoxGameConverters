@@ -654,6 +654,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");
 	fprintf(modFile, "replace = \"common/religion.txt\"\n");
+	fprintf(modFile, "replace = \"common/cultures.txt\"\n");
 	fprintf(modFile, "replace = \"gfx/interface/icon_religion.dds\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
