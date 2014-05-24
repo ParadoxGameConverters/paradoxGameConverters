@@ -20,6 +20,12 @@ configuration =
 	#	no
 	CK2Converted = "no"
 
+	# V2 Game Type: what version of V2 to convert to.  Possible values:
+	#	vanilla	vanilla V2 (1.x)
+	#	AHD		A House Divided (2.x)
+	#	HOD		Heart of Darkness (3.x)
+	V2gametype = "HOD"
+
 	# The date on which the game is to start.  Default: 1835.12.1
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
 	start_date = 1836.1.1
