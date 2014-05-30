@@ -69,7 +69,7 @@ namespace Frontend.Core.Model
         {
             get
             {
-                return this.absoluteSourceSaveGamePath;
+                return this.absoluteSourceSaveGamePath ?? this.SourceGame.AbsoluteSaveGamePath;
             }
 
             set

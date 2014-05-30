@@ -40,8 +40,10 @@
     <name>EuropaUniversalis4</name>
     <friendlyName>Europa Universalis 4</friendlyName>
     <steamId>236850</steamId>
-    <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
-    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+    <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\Paradox Interactive\Europa Universalis IV\save games</defaultSaveGameSubLocation>
+    <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</defaultModFolderLocation>
     <configurationFileDirectoryTagName>EU4directory</configurationFileDirectoryTagName>
     <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\mod</defaultModFolderLocation>

@@ -3,6 +3,7 @@
 namespace Frontend.Core.ViewModels
 {
     using Caliburn.Micro;
+    using Frontend.Core.Events.EventArgs;
     using Frontend.Core.ViewModels.Interfaces;
     using System.Collections.ObjectModel;
     using System.Linq;
@@ -75,6 +76,20 @@ namespace Frontend.Core.ViewModels
             }
         }
 
+        public void Handle(RefreshButtonStatesArgs message)
+        {
+            this.RefreshButtonStates();
+        }
+
+        /// <summary>
+        /// Triggers a manual refresh (OnPropertyChange) on the Next and Previous buttons.
+        /// </summary>
+        private void RefreshButtonStates()
+        {
+            this.NotifyOfPropertyChange(() => this.CanMoveBackward);
+            this.NotifyOfPropertyChange(() => this.CanMoveForward);
+        }
+
         private void MoveToStep(IStep step)
         {
             if (this.currentStep == step)
@@ -91,8 +106,7 @@ namespace Frontend.Core.ViewModels
 
             this.currentStep = step;
             this.NotifyOfPropertyChange(() => this.CurrentStep);
-            this.NotifyOfPropertyChange(() => this.CanMoveBackward);
-            this.NotifyOfPropertyChange(() => this.CanMoveForward);
+            this.RefreshButtonStates();
         }
     }
 }

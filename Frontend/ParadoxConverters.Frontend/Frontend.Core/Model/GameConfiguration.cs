@@ -23,6 +23,11 @@ namespace Frontend.Core.Model
         private string absoluteModPath;
 
         /// <summary>
+        /// Backing store for the <see cref="AbsoluteSaveGamePath"/> property
+        /// </summary>
+        private string absoluteSaveGamePath;
+
+        /// <summary>
         /// Gets or sets the name.
         /// </summary>
         /// <value>
@@ -109,9 +114,26 @@ namespace Frontend.Core.Model
         }
         
         /// <summary>
-        /// 
+        /// Gets or sets the absolute save game path
         /// </summary>
-        public string AbsoluteSaveGamePath { get; set; }
+        public string AbsoluteSaveGamePath 
+        {
+            get
+            {
+                return this.absoluteSaveGamePath;
+            }
+
+            set
+            {
+                if (this.absoluteSaveGamePath == value)
+                {
+                    return;
+                }
+
+                this.absoluteSaveGamePath = value;
+                this.NotifyOfPropertyChange(() => this.AbsoluteSaveGamePath);
+            }
+        }
 
         /// <summary>
         /// The current mod tag name (IE: What's the tag used to identify this in configuration.txt)
