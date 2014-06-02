@@ -7,25 +7,25 @@
         <friendlyName>Configuration</friendlyName>
         <preferences>
           <preference>
-            <preference>
-              <name>CK2Converted</name>
-              <friendlyName>Converted from CK2?</friendlyName>
-              <description>Whether or not the mod was converted from CK2</description>
-              <entryOptions>
-                <entryOption>
-                  <name>yes</name>
-                  <friendlyName>Yes</friendlyName>
-                  <description>This savegame was converted from Crusader Kings 2</description>
-                  <isDefault>false</isDefault>
-                </entryOption>
-                <entryOption>
-                  <name>no</name>
-                  <friendlyName>No</friendlyName>
-                  <description>This savegame was NOT converted from Crusader Kings 2</description>
-                  <isDefault>true</isDefault>
-                </entryOption>
-              </entryOptions>
-            </preference>
+            <name>CK2Converted</name>
+            <friendlyName>Converted from CK2?</friendlyName>
+            <description>Whether or not the mod was converted from CK2</description>
+            <entryOptions>
+              <entryOption>
+                <name>yes</name>
+                <friendlyName>Yes</friendlyName>
+                <description>This savegame was converted from Crusader Kings 2</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>no</name>
+                <friendlyName>No</friendlyName>
+                <description>This savegame was NOT converted from Crusader Kings 2</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
             <name>start_date</name>
             <friendlyName>Start Date</friendlyName>
             <description>The date on which the game is to start. Default: Januar 1st, 1836</description>
@@ -51,17 +51,17 @@
                 <friendlyName>No</friendlyName>
                 <description>Don't reset provinces</description>
                 <isDefault>true</isDefault>
-              </entryOption>
-              <preference>
-                <name>max_literacy</name>
-                <friendlyName>Max Literacy</friendlyName>
-                <description>The maximum literacy a nation will start with. Default 80%</description>
-                <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-                <value>0.8</value>
-                <minValue>0.1</minValue>
-                <maxValue>1</maxValue>
-              </preference>
+              </entryOption>              
             </entryOptions>
+          </preference>
+          <preference>
+            <name>max_literacy</name>
+            <friendlyName>Max Literacy</friendlyName>
+            <description>The maximum literacy a nation will start with. Default 80%</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.8</value>
+            <minValue>0.1</minValue>
+            <maxValue>1</maxValue>
           </preference>
           <preference>
             <name>Removetype</name>

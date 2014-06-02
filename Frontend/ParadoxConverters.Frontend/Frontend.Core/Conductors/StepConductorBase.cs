@@ -8,6 +8,9 @@ namespace Frontend.Core.ViewModels
     using System.Collections.ObjectModel;
     using System.Linq;
 
+    /// <summary>
+    /// Base class for the viewmodel conductor. 
+    /// </summary>
     public abstract class StepConductorBase : ViewModelBase, IStepConductorBase
     {
         private ObservableCollection<IStep> steps;

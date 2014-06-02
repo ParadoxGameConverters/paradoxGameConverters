@@ -142,6 +142,7 @@
   <ItemGroup>
     <EmbeddedResource Include="Configuration\Eu4ToVic2DefaultConfiguration.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

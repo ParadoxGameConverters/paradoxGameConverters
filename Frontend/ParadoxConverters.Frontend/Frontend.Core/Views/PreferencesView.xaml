@@ -23,6 +23,7 @@
         <Style x:Key="PreferenceBorderStyle" TargetType="{x:Type Border}">
             <!--<Setter Property="BorderBrush" Value="Gray"/>-->
             <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="3"/>
         </Style>
 
         <Style x:Key="TextboxWithDataValidationSupport" TargetType="{x:Type TextBox}">
