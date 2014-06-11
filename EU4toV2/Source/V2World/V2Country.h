@@ -71,6 +71,7 @@ class V2Country
 		double							getReactionary() const { return upperHouseReactionary; };
 		double							getConservative() const { return upperHouseConservative; };
 		double							getLiberal() const { return upperHouseLiberal; };
+		string							getGovernment() const { return government; };
 		vector< pair<int, int> >	getReactionaryIssues() const { return reactionaryIssues; };
 		vector< pair<int, int> >	getConservativeIssues() const { return conservativeIssues; };
 		vector< pair<int, int> >	getLiberalIssues() const { return liberalIssues; };

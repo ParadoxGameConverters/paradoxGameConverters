@@ -425,9 +425,6 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 	}
 
-	// Reforms
-	//reforms		=  new V2Reforms(srcCountry);
-
 	// Government
 	string srcGovernment = srcCountry->getGovernment();
 	if (srcGovernment.size() > 0)
@@ -492,6 +489,9 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 	}
 	LOG(LogLevel::Debug) << tag << " ruling party is " << rulingParty;
+
+	// Reforms
+	reforms		=  new V2Reforms(this, srcCountry);
 
 	// Relations
 	vector<EU4Relations*> srcRelations = srcCountry->getRelations();

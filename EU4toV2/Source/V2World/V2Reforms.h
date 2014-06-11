@@ -14,29 +14,20 @@ class V2Country;
 
 class V2Reforms {
 	public:
-		V2Reforms(const EU4Country*);
+		V2Reforms(const V2Country*, const EU4Country*);
 		void output(FILE*) const;
 	private:
-		void governmentEffects(const EU4Country*);
-		void sliderEffects(const EU4Country*);
-		void flagEffects(const EU4Country*);
-		void modifierEffects(const EU4Country*);
+		void governmentEffects(const V2Country*);
+		void upperHouseEffects(const V2Country*);
 
-		int slavery;
-		int vote_franchise;
-		int upper_house_composition;
-		int voting_system;
-		int public_meetings;
-		int press_rights;
-		int trade_unions;
-		int political_parties;
-		int wage_reforms;
-		int work_hours;
-		int safety_regulations;
-		int unemployment_subsidies;
-		int pensions;
-		int health_care;
-		int school_reforms;
+		double slavery;
+		double vote_franchise;
+		double upper_house_composition;
+		double voting_system;
+		double public_meetings;
+		double press_rights;
+		double trade_unions;
+		double political_parties;
 };
 
 
