@@ -116,17 +116,13 @@ void V2Reforms::output(FILE* output) const
 		fprintf(output, "	press_rights=state_press\n");
 	}
 
-	if (trade_unions >= 15)
+	if (trade_unions >= 1.0)
 	{
 		fprintf(output, "	trade_unions=all_trade_unions\n");
 	}
-	else if (trade_unions >= 10)
+	else if (trade_unions >= 0.01)
 	{
 		fprintf(output, "	trade_unions=non_socialist\n");
-	}
-	else if (trade_unions >= 5)
-	{
-		fprintf(output, "	trade_unions=state_controlled\n");
 	}
 	else
 	{
@@ -178,7 +174,7 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		voting_system					+= -1;
 		public_meetings				 = 20;
 		press_rights					*= 10000000;
-		trade_unions					+= 0;
+		trade_unions					+= -0.26;
 		political_parties				+= 0;
 	}
 	else if (government == "presidential_dictatorship")
@@ -190,7 +186,7 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		public_meetings				+= 2.5;
 		press_rights					+= 2;
 		press_rights					*= 10000000;
-		trade_unions					+= 0;
+		trade_unions					+= 0.14;
 		political_parties				+= 0;
 	}
 	else if (government == "hms_government")
@@ -201,7 +197,7 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		voting_system					+= 1;
 		public_meetings				 = 20;
 		press_rights					+= 8;
-		trade_unions					+= 0;
+		trade_unions					+= 0.14;
 		political_parties				+= 0;
 	}
 	else 
@@ -213,14 +209,36 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 
 void V2Reforms::upperHouseEffects(const V2Country* dstCountry)
 {
-	float UHFactor = (dstCountry->getLiberal() - dstCountry->getReactionary()) / (dstCountry->getReactionary() + dstCountry->getLiberal());
-	vote_franchise				+= 9.5 * UHFactor + 10;
-	upper_house_composition += 4.5 * UHFactor + 5;
-	voting_system				+= 3   * UHFactor + 4;
-	public_meetings			+= 12  * UHFactor + 10.5;
-	press_rights				+= 24  * UHFactor + 0;
-	trade_unions				+= 0;
+	double UHFactor = (dstCountry->getLiberal() - dstCountry->getReactionary()) / (dstCountry->getReactionary() + dstCountry->getLiberal());
+	vote_franchise				+= 9.5		* UHFactor + 10;
+	upper_house_composition += 4.5		* UHFactor + 5;
+	voting_system				+= 3			* UHFactor + 4;
+	public_meetings			+= 12			* UHFactor + 10.5;
+	press_rights				+= 24			* UHFactor + 0;
+	trade_unions				+= 1.0		* UHFactor + 0;
 	political_parties			+= 0;
+
+	string government = dstCountry->getGovernment();
+	if (government == "absolute_monarchy")
+	{
+		trade_unions *= 0.0;
+	}
+	else if (government == "democracy")
+	{
+		trade_unions *= 5.0;
+	}
+	else if (government == "presidential_dictatorship")
+	{
+		trade_unions *= 1.0;
+	}
+	else if (government == "hms_government")
+	{
+		trade_unions *= 2.0;
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Undefined government type '" << government << "' while setting reforms for " << dstCountry->getTag();
+	}
 }
 
 

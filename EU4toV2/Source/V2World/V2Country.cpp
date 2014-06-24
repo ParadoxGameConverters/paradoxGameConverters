@@ -179,6 +179,8 @@ void V2Country::output() const
 	fprintf(output, "unemployment_subsidies = no_subsidies\n");
 	fprintf(output, "pensions = no_pensions\n");
 	fprintf(output, "school_reforms = no_schools\n");
+
+	reforms->output(output);
 	
 	/*for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
