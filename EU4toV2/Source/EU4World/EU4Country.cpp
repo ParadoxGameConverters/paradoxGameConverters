@@ -185,24 +185,6 @@ EU4Country::EU4Country(Object* obj)
 		estMonthlyIncome = 0.0;
 	}
 
-	vector<Object*> investmentObj = obj->getValue("distribution");
-	if (investmentObj.size() > 0)
-	{
-		landInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() ) * estMonthlyIncome;
-		navalInvestment			= atof( investmentObj[0]->getTokens()[3].c_str() ) * estMonthlyIncome;
-		tradeInvestment			= atof( investmentObj[0]->getTokens()[4].c_str() ) * estMonthlyIncome;
-		productionInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() ) * estMonthlyIncome;
-		governmentInvestment	= atof( investmentObj[0]->getTokens()[6].c_str() ) * estMonthlyIncome;
-	}
-	else
-	{
-		landInvestment			= 0.0;
-		navalInvestment		= 0.0;
-		tradeInvestment		= 0.0;
-		productionInvestment	= 0.0;
-		governmentInvestment	= 0.0;
-	}
-
 	flags.clear();
 	vector<Object*> flagObject	= obj->getValue("flags");
 	if (flagObject.size() > 0)
@@ -320,6 +302,110 @@ EU4Country::EU4Country(Object* obj)
 		{
 			nationalIdeas.insert(make_pair((*ideaItr)->getKey(), atoi((*ideaItr)->getLeaf().c_str())));
 		}
+	}
+
+	armyInvestment			= 32.0;
+	navyInvestment			= 32.0;
+	commerceInvestment	= 32.0;
+	industryInvestment	= 32.0;
+	cultureInvestment		= 32.0;
+	map<string, int>::const_iterator itr = nationalIdeas.find("aristocracy_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		armyInvestment += itr->second;
+		commerceInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("plutocracy_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		commerceInvestment += itr->second;
+		cultureInvestment += itr->second;
+		armyInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("innovativeness_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		cultureInvestment += itr->second;
+		commerceInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("religious_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		cultureInvestment -= itr->second;
+		commerceInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("spy_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		cultureInvestment += itr->second;
+		commerceInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("diplomatic_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		armyInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("offensive_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		armyInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("offensive_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		armyInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("defensive_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		armyInvestment += itr->second;
+		navyInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("trade_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		navyInvestment += itr->second;
+		commerceInvestment += itr->second;
+		industryInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("economic_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		commerceInvestment += itr->second;
+		industryInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("exploration_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		navyInvestment += itr->second;
+		industryInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("naval_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		navyInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("quality_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		armyInvestment += itr->second;
+	}
+	itr = nationalIdeas.find("quantity_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		armyInvestment += itr->second;
+		navyInvestment -= itr->second;
+		cultureInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("expansion_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		industryInvestment -= itr->second;
+	}
+	itr = nationalIdeas.find("administrative_ideas");
+	if (itr != nationalIdeas.end())
+	{
+		industryInvestment += itr->second;
 	}
 
 	vector<Object*> moneyObj = obj->getValue("treasury");
@@ -584,11 +670,11 @@ void EU4Country::eatCountry(EU4Country* target)
 		admTech					= myWeight * admTech						+ targetWeight * target->admTech;
 		dipTech					= myWeight * dipTech						+ targetWeight * target->dipTech;
 		milTech					= myWeight * milTech						+ targetWeight * target->milTech;
-		landInvestment			= myWeight * landInvestment			+ targetWeight * target->landInvestment;
-		navalInvestment		= myWeight * navalInvestment			+ targetWeight * target->navalInvestment;
-		tradeInvestment		= myWeight * tradeInvestment			+ targetWeight * target->tradeInvestment;
-		productionInvestment	= myWeight * productionInvestment	+ targetWeight * target->productionInvestment;
-		governmentInvestment	= myWeight * governmentInvestment	+ targetWeight * target->governmentInvestment;
+		armyInvestment			= myWeight * armyInvestment			+ targetWeight * target->armyInvestment;
+		navyInvestment			= myWeight * navyInvestment			+ targetWeight * target->navyInvestment;
+		commerceInvestment	= myWeight * commerceInvestment		+ targetWeight * target->commerceInvestment;
+		industryInvestment	= myWeight * industryInvestment		+ targetWeight * target->industryInvestment;
+		cultureInvestment		= myWeight * cultureInvestment		+ targetWeight * target->cultureInvestment;
 		estMonthlyIncome		= myWeight * estMonthlyIncome			+ targetWeight * target->estMonthlyIncome;
 	}
 

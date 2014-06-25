@@ -180,7 +180,10 @@ void V2Country::output() const
 	fprintf(output, "pensions = no_pensions\n");
 	fprintf(output, "school_reforms = no_schools\n");
 
-	reforms->output(output);
+	if (reforms != NULL)
+	{
+		reforms->output(output);
+	}
 	
 	/*for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
@@ -677,31 +680,37 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//	}
 	//}
 
-	//double totalInvestment			= landInvestment + navalInvestment + tradeInvestment + productionInvestment + governmentInvestment;
-	//landInvestment						/= totalInvestment;
-	//navalInvestment					/= totalInvestment;
-	//tradeInvestment					/= totalInvestment;
-	//productionInvestment				/= totalInvestment;
-	//governmentInvestment				/= totalInvestment;
+	double armyInvestment			= srcCountry->getArmyInvestment();
+	double navyInvestment			= srcCountry->getNavyInvestment();
+	double commerceInvestment		= srcCountry->getCommerceInvestment();
+	double industryInvestment		= srcCountry->getIndustryInvestment();
+	double cultureInvestment		= srcCountry->getCultureInvestment();
+	
+	double totalInvestment	 = armyInvestment + navyInvestment + commerceInvestment + industryInvestment + cultureInvestment;
+	armyInvestment				/= totalInvestment;
+	navyInvestment				/= totalInvestment;
+	commerceInvestment		/= totalInvestment;
+	industryInvestment		/= totalInvestment;
+	cultureInvestment			/= totalInvestment;
 
-	//double lowestScore = 1.0;
-	//string bestSchool = "traditional_academic";
+	double lowestScore = 1.0;
+	string bestSchool = "traditional_academic";
 
-	//for (unsigned int j = 0; j < techSchools.size(); j++)
-	//{
-	//	double newScore = abs(landInvestment			-  techSchools[j].armyInvestment			- 0.2) +
-	//							abs(navalInvestment			-  techSchools[j].navyInvestment			- 0.2) +
-	//							abs(tradeInvestment			-  techSchools[j].commerceInvestment	- 0.2) +
-	//							abs(productionInvestment	-  techSchools[j].industryInvestment	- 0.2) +
-	//							abs(governmentInvestment	-  techSchools[j].cultureInvestment		- 0.2);
-	//	if (newScore < lowestScore)
-	//	{
-	//		bestSchool	= techSchools[j].name;
-	//		lowestScore	= newScore;
-	//	}
-	//}
-	//log("	%s has tech school %s\n", tag.c_str(), bestSchool.c_str());
-	//techSchool = bestSchool;
+	for (unsigned int j = 0; j < techSchools.size(); j++)
+	{
+		double newScore = abs(armyInvestment		- techSchools[j].armyInvestment - 0.2) +
+								abs(navyInvestment		- techSchools[j].navyInvestment - 0.2) +
+								abs(commerceInvestment	- techSchools[j].commerceInvestment - 0.2) +
+								abs(industryInvestment	- techSchools[j].industryInvestment - 0.2) +
+								abs(cultureInvestment	- techSchools[j].cultureInvestment - 0.2);
+		if (newScore < lowestScore)
+		{
+			bestSchool	= techSchools[j].name;
+			lowestScore	= newScore;
+		}
+	}
+	LOG(LogLevel::Debug) << tag << " has tech school " << bestSchool;
+	techSchool = bestSchool;
 
 	//// Leaders
 	//vector<EU4Leader*> oldLeaders = srcCountry->getLeaders();
