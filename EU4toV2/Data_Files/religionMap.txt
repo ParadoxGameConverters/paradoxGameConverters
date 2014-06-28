@@ -36,8 +36,8 @@ link = { v2 = ibadi eu4 = ibadi }
 
 #Eastern
 link = { v2 = mahayana eu4 = confucianism }
-link = { v2 = gelugpa eu4 = buddhism owner = TIB }  # Tibet
-link = { v2 = gelugpa eu4 = buddhism owner = OIR }	# Oirat Horde
+#link = { v2 = gelugpa eu4 = buddhism owner = TIB }  # Tibet
+#link = { v2 = gelugpa eu4 = buddhism owner = OIR }	# Oirat Horde
 link = { v2 = theravada eu4 = buddhism }
 link = { v2 = sikh eu4 = sikhism }
 link = { v2 = hindu eu4 = hinduism }

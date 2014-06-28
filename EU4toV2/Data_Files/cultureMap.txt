@@ -41,9 +41,9 @@ link = { v2 = norwegian eu4 = norwegian }
 link = { v2 = icelandic eu4 = norse }
 
 # British - english, american, scottish
-link = { v2 = yankee eu4 = english region = northeastern_america }
-link = { v2 = dixie eu4 = english region = eastern_america }
-link = { v2 = anglo_canadian eu4 = english region = northern_america }
+#link = { v2 = yankee eu4 = english region = northeastern_america }
+#link = { v2 = dixie eu4 = english region = eastern_america }
+#link = { v2 = anglo_canadian eu4 = english region = northern_america }
 link = { v2 = british eu4 = english eu4 = scottish eu4 = anglo_saxon }
 link = { v2 = yankee eu4 = american }
 #link = { v2 = texan eu4 = ? }
@@ -56,21 +56,21 @@ link = { v2 = irish eu4 = irish }
 # Latin - lombard, umbrian, sicilian
 link = { v2 = north_italian eu4 = lombard eu4 = umbrian }
 link = { v2 = south_italian eu4 = sicilian }
-link = { v2 = north_italian eu4 = italian region = lombardia }
-link = { v2 = south_italian eu4 = italian region = two_sicilies }
+#link = { v2 = north_italian eu4 = italian region = lombardia }
+#link = { v2 = south_italian eu4 = italian region = two_sicilies }
 link = { v2 = north_italian eu4 = italian }
-link = { v2 = north_italian eu4 = roman region = lombardia }
-link = { v2 = south_italian eu4 = roman region = two_sicilies }
+#link = { v2 = north_italian eu4 = roman region = lombardia }
+#link = { v2 = south_italian eu4 = roman region = two_sicilies }
 link = { v2 = north_italian eu4 = roman }
 
 # Iberian - castillian, catalan, galician, andalucian, portugese, maltese
-link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america }
-link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
-link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
+#link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america }
+#link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
+#link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
 link = { v2 = spanish eu4 = castillian eu4 = galician eu4 = andalucian }
 link = { v2 = catalan eu4 = catalan }
 link = { v2 = portuguese eu4 = portugese }
-link = { v2 = brazilian eu4 = portugese region = brazil_region }
+#link = { v2 = brazilian eu4 = portugese region = brazil_region }
 link = { v2 = maltese eu4 = maltese }
 link = { v2 = basque eu4 = basque }
 #link = { v2 = central_american eu4 = ? }
@@ -79,7 +79,7 @@ link = { v2 = basque eu4 = basque }
 #link = { v2 = brazilian eu4 = ? }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
-link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
+#link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
 link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton }
 link = { v2 = wallonian eu4 = wallonian }
 
@@ -102,7 +102,7 @@ link = { v2 = albanian eu4 = albanian }
 
 # West Slav - czech, hungarian, slovak
 link = { v2 = hungarian eu4 = hungarian }
-link = { v2 = slovak eu4 = czech region = hungarian_region }
+#link = { v2 = slovak eu4 = czech region = hungarian_region }
 link = { v2 = czech eu4 = czech }
 link = { v2 = slovak eu4 = czech }
 
@@ -132,7 +132,7 @@ link = { v2 = berber eu4 = berber }
 link = { v2 = turkish eu4 = turkish eu4 = pecheneg }
 
 # Iranian - persian, east_persian, baluchi
-link = { v2 = tajik eu4 = persian region = central_asia }
+#link = { v2 = tajik eu4 = persian region = central_asia }
 link = { v2 = persian eu4 = persian }
 link = { v2 = pashtun eu4 = east_persian }
 link = { v2 = baluchi eu4 = baluchi }
