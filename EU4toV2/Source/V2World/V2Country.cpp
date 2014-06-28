@@ -170,7 +170,7 @@ void V2Country::output() const
 		}
 	}
 	fprintf(output, "prestige=%f\n", prestige);
-
+	fprintf(output, "\n");
 	fprintf(output, "# Social Reforms\n");
 	fprintf(output, "wage_reform = no_minimum_wage\n");
 	fprintf(output, "work_hours = no_work_hour_limit\n");

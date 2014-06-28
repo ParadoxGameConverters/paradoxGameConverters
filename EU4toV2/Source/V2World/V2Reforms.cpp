@@ -30,124 +30,122 @@ V2Reforms::V2Reforms(const V2Country* dstCountry, const EU4Country* srcCountry)
 
 void V2Reforms::output(FILE* output) const
 {
+	fprintf(output, "\n");
+	fprintf(output, "# political reforms\n");
 	if (slavery >= 1)
 	{
-		fprintf(output, "	slavery=no_slavery\n");
+		fprintf(output, "slavery=no_slavery\n");
 	}
 	else
 	{
-		fprintf(output, "	slavery=yes_slavery\n");
+		fprintf(output, "slavery=yes_slavery\n");
 	}
 
 	if (vote_franchise >= 20)
 	{
-		fprintf(output, "	vote_franschise=universal_voting\n");
+		fprintf(output, "vote_franschise=universal_voting\n");
 	}
 	else if (vote_franchise >= 15)
 	{
-		fprintf(output, "	vote_franschise=universal_weighted_voting\n");
+		fprintf(output, "vote_franschise=universal_weighted_voting\n");
 	}
 	else if (vote_franchise >= 10)
 	{
-		fprintf(output, "	vote_franschise=wealth_voting\n");
+		fprintf(output, "vote_franschise=wealth_voting\n");
 	}
 	else if (vote_franchise >= 5)
 	{
-		fprintf(output, "	vote_franschise=wealth_weighted_voting\n");
+		fprintf(output, "vote_franschise=wealth_weighted_voting\n");
 	}
 	else if (vote_franchise >= 0)
 	{
-		fprintf(output, "	vote_franschise=landed_voting\n");
+		fprintf(output, "vote_franschise=landed_voting\n");
 	}
 	else
 	{
-		fprintf(output, "	vote_franschise=none_voting\n");
+		fprintf(output, "vote_franschise=none_voting\n");
 	}
 
 	if (upper_house_composition >= 10)
 	{
-		fprintf(output, "	upper_house_composition=population_equal_weight\n");
+		fprintf(output, "upper_house_composition=population_equal_weight\n");
 	}
 	else if (upper_house_composition >= 5)
 	{
-		fprintf(output, "	upper_house_composition=state_equal_weight\n");
+		fprintf(output, "upper_house_composition=state_equal_weight\n");
 	}
 	else if (upper_house_composition >= 0)
 	{
-		fprintf(output, "	upper_house_composition=appointed\n");
+		fprintf(output, "upper_house_composition=appointed\n");
 	}
 	else
 	{
-		fprintf(output, "	upper_house_composition=party_appointed\n");
+		fprintf(output, "upper_house_composition=party_appointed\n");
 	}
 
 	if (voting_system >= 10)
 	{
-		fprintf(output, "	voting_system=proportional_representation\n");
+		fprintf(output, "voting_system=proportional_representation\n");
 	}
 	else if (voting_system >= 5)
 	{
-		fprintf(output, "	voting_system=jefferson_method\n");
+		fprintf(output, "voting_system=jefferson_method\n");
 	}
 	else
 	{
-		fprintf(output, "	voting_system=first_past_the_post\n");
+		fprintf(output, "voting_system=first_past_the_post\n");
 	}
 
 	if (public_meetings >= 10)
 	{
-		fprintf(output, "	public_meetings=yes_meeting\n");
+		fprintf(output, "public_meetings=yes_meeting\n");
 	}
 	else
 	{
-		fprintf(output, "	public_meetings=no_meeting\n");
+		fprintf(output, "public_meetings=no_meeting\n");
 	}
 
 	if (press_rights >= 8)
 	{
-		fprintf(output, "	press_rights=free_press\n");
+		fprintf(output, "press_rights=free_press\n");
 	}
 	else if (press_rights >= -8)
 	{
-		fprintf(output, "	press_rights=censored_press\n");
+		fprintf(output, "press_rights=censored_press\n");
 	}
 	else
 	{
-		fprintf(output, "	press_rights=state_press\n");
+		fprintf(output, "press_rights=state_press\n");
 	}
 
 	if (trade_unions >= 1.0)
 	{
-		fprintf(output, "	trade_unions=all_trade_unions\n");
+		fprintf(output, "trade_unions=all_trade_unions\n");
 	}
 	else if (trade_unions >= 0.01)
 	{
-		fprintf(output, "	trade_unions=non_socialist\n");
+		fprintf(output, "trade_unions=non_socialist\n");
 	}
 	else
 	{
-		fprintf(output, "	trade_unions=no_trade_unions\n");
+		fprintf(output, "trade_unions=no_trade_unions\n");
 	}
 
-	if (political_parties >= 20)
+	if (political_parties >= 0.0)
 	{
-		fprintf(output, "	political_parties=secret_ballots\n");
+		fprintf(output, "political_parties=non_secret_ballots\n");
 	}
-	else if (political_parties >= 15)
+	else if (political_parties >= -0.66)
 	{
-		fprintf(output, "	political_parties=non_secret_ballots\n");
+		fprintf(output, "political_parties=gerrymandering\n");
 	}
-	else if (political_parties >= 10)
+	else if (political_parties >= -0.75)
 	{
-		fprintf(output, "	political_parties=gerrymandering\n");
-	}
-	else if (political_parties >= 5)
-	{
-		fprintf(output, "	political_parties=harassment\n");
+		fprintf(output, "political_parties=harassment\n");
 	}
 	else
 	{
-		fprintf(output, "	political_parties=underground_parties\n");
+		fprintf(output, "political_parties=underground_parties\n");
 	}
 }
 
@@ -164,7 +162,7 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		public_meetings				+= -2.5;
 		press_rights					+= -16;
 		trade_unions					+= 0;
-		political_parties				+= 0;
+		political_parties				+= -4.0;
 	}
 	else if (government == "democracy")
 	{
@@ -175,7 +173,7 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		public_meetings				 = 20;
 		press_rights					*= 10000000;
 		trade_unions					+= -0.26;
-		political_parties				+= 0;
+		political_parties				+= 1.0;
 	}
 	else if (government == "presidential_dictatorship")
 	{
@@ -187,7 +185,7 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		press_rights					+= 2;
 		press_rights					*= 10000000;
 		trade_unions					+= 0.14;
-		political_parties				+= 0;
+		political_parties				+= -4.0;
 	}
 	else if (government == "hms_government")
 	{
@@ -198,7 +196,7 @@ void V2Reforms::governmentEffects(const V2Country* dstCountry)
 		public_meetings				 = 20;
 		press_rights					+= 8;
 		trade_unions					+= 0.14;
-		political_parties				+= 0;
+		political_parties				+= 1.5;
 	}
 	else 
 	{
@@ -216,7 +214,7 @@ void V2Reforms::upperHouseEffects(const V2Country* dstCountry)
 	public_meetings			+= 12			* UHFactor + 10.5;
 	press_rights				+= 24			* UHFactor + 0;
 	trade_unions				+= 1.0		* UHFactor + 0;
-	political_parties			+= 0;
+	political_parties			+= 2.0		* UHFactor + 0;
 
 	string government = dstCountry->getGovernment();
 	if (government == "absolute_monarchy")
@@ -382,125 +380,125 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 void V2UncivReforms::output(FILE* output) const
 {
 	if (reforms[0]) {
-		fprintf(output, "	land_reform=yes_land_reform\n");
+		fprintf(output, "land_reform=yes_land_reform\n");
 	}
 	else
 	{
-		fprintf(output, "	land_reform=no_land_reform\n");
+		fprintf(output, "land_reform=no_land_reform\n");
 	}
 
 	if (reforms[1]) {
-		fprintf(output, "	admin_reform=yes_admin_reform\n");
+		fprintf(output, "admin_reform=yes_admin_reform\n");
 	}
 	else
 	{
-		fprintf(output, "	admin_reform=no_admin_reform\n");
+		fprintf(output, "admin_reform=no_admin_reform\n");
 	}
 
 	if (reforms[3] && reforms[2]) {
-		fprintf(output, "	finance_reform=finance_reform_two\n");
+		fprintf(output, "finance_reform=finance_reform_two\n");
 	}
 	else if (reforms[2]) {
-		fprintf(output, "	finance_reform=yes_finance_reform\n");
+		fprintf(output, "finance_reform=yes_finance_reform\n");
 	}
 	else
 	{
-		fprintf(output, "	finance_reform=no_finance_reform\n");
+		fprintf(output, "finance_reform=no_finance_reform\n");
 	}
 
 	if (reforms[4]) {
-		fprintf(output, "	education_reform=yes_education_reform\n");
+		fprintf(output, "education_reform=yes_education_reform\n");
 	}
 	else
 	{
-		fprintf(output, "	education_reform=no_education_reform\n");
+		fprintf(output, "education_reform=no_education_reform\n");
 	}
 
 	if (reforms[5]) {
-		fprintf(output, "	transport_improv=yes_transport_improv\n");
+		fprintf(output, "transport_improv=yes_transport_improv\n");
 	}
 	else
 	{
-		fprintf(output, "	transport_improv=no_transport_improv\n");
+		fprintf(output, "transport_improv=no_transport_improv\n");
 	}
 
 	if (reforms[6]) {
-		fprintf(output, "	pre_indust=yes_pre_indust\n");
+		fprintf(output, "pre_indust=yes_pre_indust\n");
 	}
 	else
 	{
-		fprintf(output, "	pre_indust=no_pre_indust\n");
+		fprintf(output, "pre_indust=no_pre_indust\n");
 	}
 
 	if (reforms[7]) {
-		fprintf(output, "	industrial_construction=yes_industrial_construction\n");
+		fprintf(output, "industrial_construction=yes_industrial_construction\n");
 	}
 	else
 	{
-		fprintf(output, "	industrial_construction=no_industrial_construction\n");
+		fprintf(output, "industrial_construction=no_industrial_construction\n");
 	}
 
 	if (reforms[8]) {
-		fprintf(output, "	foreign_training=yes_foreign_training\n");
+		fprintf(output, "foreign_training=yes_foreign_training\n");
 	}
 	else
 	{
-		fprintf(output, "	foreign_training=no_foreign_training\n");
+		fprintf(output, "foreign_training=no_foreign_training\n");
 	}
 
 	if (reforms[9]) {
-		fprintf(output, "	foreign_weapons=yes_foreign_weapons\n");
+		fprintf(output, "foreign_weapons=yes_foreign_weapons\n");
 	}
 	else
 	{
-		fprintf(output, "	foreign_weapons=no_foreign_weapons\n");
+		fprintf(output, "foreign_weapons=no_foreign_weapons\n");
 	}
 
 	if (reforms[10]) {
-		fprintf(output, "	military_constructions=yes_military_constructions\n");
+		fprintf(output, "military_constructions=yes_military_constructions\n");
 	}
 	else
 	{
-		fprintf(output, "	military_constructions=no_military_constructions\n");
+		fprintf(output, "military_constructions=no_military_constructions\n");
 	}
 
 	if (reforms[11]) {
-		fprintf(output, "	foreign_officers=yes_foreign_officers\n");
+		fprintf(output, "foreign_officers=yes_foreign_officers\n");
 	}
 	else
 	{
-		fprintf(output, "	foreign_officers=no_foreign_officers\n");
+		fprintf(output, "foreign_officers=no_foreign_officers\n");
 	}
 
 	if (reforms[12]) {
-		fprintf(output, "	army_schools=yes_army_schools\n");
+		fprintf(output, "army_schools=yes_army_schools\n");
 	}
 	else
 	{
-		fprintf(output, "	army_schools=no_army_schools\n");
+		fprintf(output, "army_schools=no_army_schools\n");
 	}
 
 	if (reforms[13]) {
-		fprintf(output, "	foreign_naval_officers=yes_foreign_naval_officers\n");
+		fprintf(output, "foreign_naval_officers=yes_foreign_naval_officers\n");
 	}
 	else
 	{
-		fprintf(output, "	foreign_naval_officers=no_foreign_naval_officers\n");
+		fprintf(output, "foreign_naval_officers=no_foreign_naval_officers\n");
 	}
 
 	if (reforms[14]) {
-		fprintf(output, "	naval_schools=yes_naval_schools\n");
+		fprintf(output, "naval_schools=yes_naval_schools\n");
 	}
 	else
 	{
-		fprintf(output, "	naval_schools=no_naval_schools\n");
+		fprintf(output, "naval_schools=no_naval_schools\n");
 	}
 
 	if (reforms[14]) {
-		fprintf(output, "	foreign_navies=yes_foreign_navies\n");
+		fprintf(output, "foreign_navies=yes_foreign_navies\n");
 	}
 	else
 	{
-		fprintf(output, "	foreign_navies=no_foreign_navies\n");
+		fprintf(output, "foreign_navies=no_foreign_navies\n");
 	}
 }
