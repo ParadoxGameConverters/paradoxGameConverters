@@ -587,13 +587,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 
 	////Parse tech schools
-	/*log("Parsing tech schools.\n");
-	printf("Parsing tech schools.\n");
+	LOG(LogLevel::Info) << "Parsing tech schools.";
 	initParser();
 	obj = doParseFile("blocked_tech_schools.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file blocked_tech_schools.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file blocked_tech_schools.txt";
 		exit(-1);
 	}
 	vector<string> blockedTechSchools;
@@ -602,11 +601,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", (V2Loc + "\\common\\technology.txt").c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << V2Loc << "\\common\\technology.txt";
 		exit(-1);
-	}*/
+	}
 	vector<techSchool> techSchools;
-	//techSchools = initTechSchools(obj, blockedTechSchools);
+	techSchools = initTechSchools(obj, blockedTechSchools);
 
 
 	//// Get Leader traits
