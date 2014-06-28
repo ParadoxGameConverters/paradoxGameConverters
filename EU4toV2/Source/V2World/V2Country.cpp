@@ -57,7 +57,7 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	newCountry = _newCountry;
 
 	tag					= _tag;
-	commonCountryFile	= _commonCountryFile;
+	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
 	parties				= _parties;
 	rulingParty			= "";
 

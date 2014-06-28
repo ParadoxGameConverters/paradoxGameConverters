@@ -49,6 +49,9 @@ public:
 	// key;translation0;translation1;...;;;x
 	void WriteToStream(std::ostream&) const;
 
+	// Converts the country file name
+	std::string convertCountryFileName(const std::string) const;
+
 private:
 	// All localisations are stored internally as UTF-8. However V2 doesn't seem to handle Unicode
 	// so we convert the text to ANSI Latin-1 before writing it.

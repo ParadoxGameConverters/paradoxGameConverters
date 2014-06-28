@@ -99,6 +99,12 @@ void V2Localisation::WriteToStream(std::ostream& out) const
 	}
 }
 
+std::string V2Localisation::convertCountryFileName(const std::string countryFileName) const
+{
+	return Convert(countryFileName);
+}
+
+
 std::string V2Localisation::Convert(const std::string& text)
 {
 	if (text.empty())
