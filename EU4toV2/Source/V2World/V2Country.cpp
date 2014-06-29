@@ -1,3 +1,26 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
+
 #include "V2Country.h"
 #include <algorithm>
 #include <math.h>
@@ -34,7 +57,7 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	newCountry = _newCountry;
 
 	tag					= _tag;
-	commonCountryFile	= _commonCountryFile;
+	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
 	parties				= _parties;
 	rulingParty			= "";
 
@@ -170,7 +193,7 @@ void V2Country::output() const
 		}
 	}
 	fprintf(output, "prestige=%f\n", prestige);
-
+	fprintf(output, "\n");
 	fprintf(output, "# Social Reforms\n");
 	fprintf(output, "wage_reform = no_minimum_wage\n");
 	fprintf(output, "work_hours = no_work_hour_limit\n");
@@ -179,6 +202,11 @@ void V2Country::output() const
 	fprintf(output, "unemployment_subsidies = no_subsidies\n");
 	fprintf(output, "pensions = no_pensions\n");
 	fprintf(output, "school_reforms = no_schools\n");
+
+	if (reforms != NULL)
+	{
+		reforms->output(output);
+	}
 	
 	/*for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
@@ -425,9 +453,6 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 	}
 
-	// Reforms
-	//reforms		=  new V2Reforms(srcCountry);
-
 	// Government
 	string srcGovernment = srcCountry->getGovernment();
 	if (srcGovernment.size() > 0)
@@ -492,6 +517,9 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 	}
 	LOG(LogLevel::Debug) << tag << " ruling party is " << rulingParty;
+
+	// Reforms
+	reforms		=  new V2Reforms(this, srcCountry);
 
 	// Relations
 	vector<EU4Relations*> srcRelations = srcCountry->getRelations();
@@ -675,31 +703,37 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//	}
 	//}
 
-	//double totalInvestment			= landInvestment + navalInvestment + tradeInvestment + productionInvestment + governmentInvestment;
-	//landInvestment						/= totalInvestment;
-	//navalInvestment					/= totalInvestment;
-	//tradeInvestment					/= totalInvestment;
-	//productionInvestment				/= totalInvestment;
-	//governmentInvestment				/= totalInvestment;
+	double armyInvestment			= srcCountry->getArmyInvestment();
+	double navyInvestment			= srcCountry->getNavyInvestment();
+	double commerceInvestment		= srcCountry->getCommerceInvestment();
+	double industryInvestment		= srcCountry->getIndustryInvestment();
+	double cultureInvestment		= srcCountry->getCultureInvestment();
+	
+	double totalInvestment	 = armyInvestment + navyInvestment + commerceInvestment + industryInvestment + cultureInvestment;
+	armyInvestment				/= totalInvestment;
+	navyInvestment				/= totalInvestment;
+	commerceInvestment		/= totalInvestment;
+	industryInvestment		/= totalInvestment;
+	cultureInvestment			/= totalInvestment;
 
-	//double lowestScore = 1.0;
-	//string bestSchool = "traditional_academic";
+	double lowestScore = 1.0;
+	string bestSchool = "traditional_academic";
 
-	//for (unsigned int j = 0; j < techSchools.size(); j++)
-	//{
-	//	double newScore = abs(landInvestment			-  techSchools[j].armyInvestment			- 0.2) +
-	//							abs(navalInvestment			-  techSchools[j].navyInvestment			- 0.2) +
-	//							abs(tradeInvestment			-  techSchools[j].commerceInvestment	- 0.2) +
-	//							abs(productionInvestment	-  techSchools[j].industryInvestment	- 0.2) +
-	//							abs(governmentInvestment	-  techSchools[j].cultureInvestment		- 0.2);
-	//	if (newScore < lowestScore)
-	//	{
-	//		bestSchool	= techSchools[j].name;
-	//		lowestScore	= newScore;
-	//	}
-	//}
-	//log("	%s has tech school %s\n", tag.c_str(), bestSchool.c_str());
-	//techSchool = bestSchool;
+	for (unsigned int j = 0; j < techSchools.size(); j++)
+	{
+		double newScore = abs(armyInvestment		- techSchools[j].armyInvestment - 0.2) +
+								abs(navyInvestment		- techSchools[j].navyInvestment - 0.2) +
+								abs(commerceInvestment	- techSchools[j].commerceInvestment - 0.2) +
+								abs(industryInvestment	- techSchools[j].industryInvestment - 0.2) +
+								abs(cultureInvestment	- techSchools[j].cultureInvestment - 0.2);
+		if (newScore < lowestScore)
+		{
+			bestSchool	= techSchools[j].name;
+			lowestScore	= newScore;
+		}
+	}
+	LOG(LogLevel::Debug) << tag << " has tech school " << bestSchool;
+	techSchool = bestSchool;
 
 	//// Leaders
 	//vector<EU4Leader*> oldLeaders = srcCountry->getLeaders();

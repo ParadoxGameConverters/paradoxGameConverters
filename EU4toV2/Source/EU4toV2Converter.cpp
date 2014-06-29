@@ -1,3 +1,26 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
+
 #include <fstream>
 #include <io.h>
 #include <stdexcept>
@@ -587,13 +610,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 
 	////Parse tech schools
-	/*log("Parsing tech schools.\n");
-	printf("Parsing tech schools.\n");
+	LOG(LogLevel::Info) << "Parsing tech schools.";
 	initParser();
 	obj = doParseFile("blocked_tech_schools.txt");
 	if (obj == NULL)
 	{
-		log("Could not parse file blocked_tech_schools.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file blocked_tech_schools.txt";
 		exit(-1);
 	}
 	vector<string> blockedTechSchools;
@@ -602,11 +624,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	obj = doParseFile( (V2Loc + "\\common\\technology.txt").c_str() );
 	if (obj == NULL)
 	{
-		log("Could not parse file %s\n", (V2Loc + "\\common\\technology.txt").c_str());
+		LOG(LogLevel::Error) << "Could not parse file " << V2Loc << "\\common\\technology.txt";
 		exit(-1);
-	}*/
+	}
 	vector<techSchool> techSchools;
-	//techSchools = initTechSchools(obj, blockedTechSchools);
+	techSchools = initTechSchools(obj, blockedTechSchools);
 
 
 	//// Get Leader traits

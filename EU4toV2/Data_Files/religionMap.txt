@@ -1,3 +1,24 @@
+# Copyright (c) 2014 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
 religionmap = {
 
 #Christians
@@ -5,18 +26,20 @@ religionmap = {
 link = { v2 = catholic eu4 = catholic eu4 = catholic_heresy  }
 link = { v2 = protestant eu4 = protestant eu4 = reformed }
 link = { v2 = orthodox eu4 = orthodox eu4 = orthodox_heresy }
+link = { v2 = coptic eu4 = coptic }
 
 #Muslims
 
 link = { v2 = sunni eu4 = sunni eu4 = sunni_heresy  }
 link = { v2 = shiite eu4 = shiite eu4 = shiite_heresy }
+link = { v2 = ibadi eu4 = ibadi }
 
 #Eastern
 link = { v2 = mahayana eu4 = confucianism }
 link = { v2 = gelugpa eu4 = buddhism owner = TIB }  # Tibet
 link = { v2 = gelugpa eu4 = buddhism owner = OIR }	# Oirat Horde
 link = { v2 = theravada eu4 = buddhism }
-link = { v2 = sikh eu4 = hinduism owner = PUN }	# Punjab
+link = { v2 = sikh eu4 = sikhism }
 link = { v2 = hindu eu4 = hinduism }
 link = { v2 = shinto eu4 = shinto }
 link = { v2 = jain eu4 = jain }
