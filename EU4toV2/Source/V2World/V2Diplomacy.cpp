@@ -6,6 +6,8 @@
 
 void V2Diplomacy::output() const
 {
+	LOG(LogLevel::Debug) << "Writing diplomacy";
+
 	FILE* alliances;
 	if (fopen_s(&alliances, ("Output\\" + Configuration::getOutputName() + "\\history\\diplomacy\\Alliances.txt").c_str(), "w") != 0)
 	{

@@ -320,6 +320,7 @@ void V2World::output() const
 	}
 
 	// Output common\countries.txt
+	LOG(LogLevel::Debug) << "Writing countries file";
 	FILE* allCountriesFile;
 	if (fopen_s(&allCountriesFile, ("Output\\" + Configuration::getOutputName() + "\\common\\countries.txt").c_str(), "w") != 0)
 	{
@@ -339,6 +340,7 @@ void V2World::output() const
 	flags.Output();
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
+	LOG(LogLevel::Debug) << "Writing localisation text";
 	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";
 	if (!WinUtils::TryCreateFolder(localisationPath))
 	{
@@ -363,11 +365,13 @@ void V2World::output() const
 	}
 	fclose(localisationFile);
 
+	LOG(LogLevel::Debug) << "Writing provinces";
 	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		//i->second->sortPops();
 		i->second->output();
 	}
+	LOG(LogLevel::Debug) << "Writing countries";
 	for (map<string, V2Country*>::const_iterator itr = countries.begin(); itr != countries.end(); itr++)
 	{
 		itr->second->output();
