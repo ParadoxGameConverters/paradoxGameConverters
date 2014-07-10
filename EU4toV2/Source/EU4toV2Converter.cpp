@@ -704,7 +704,7 @@ int main(int argc, char * argv[])
 			EU4SaveFileName = defaultEU4SaveFileName;
 			LOG(LogLevel::Info) << "No input file given, defaulting to " << defaultEU4SaveFileName;
 		}
-		ConvertEU4ToV2(EU4SaveFileName);
+		return ConvertEU4ToV2(EU4SaveFileName);
 	}
 	catch (const std::exception& e)
 	{
