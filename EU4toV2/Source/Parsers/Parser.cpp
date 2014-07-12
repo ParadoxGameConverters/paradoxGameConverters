@@ -59,14 +59,14 @@ static void setRHSobject	();
 static void setRHSobjlist	();
 static void setRHStaglist	(vector<string> val);
 
-static Object* topLevel = NULL;  
-vector<Object*> stack; 
-vector<Object*> objstack; 
+static Object* topLevel = NULL;  // a top level object
+vector<Object*> stack;				// a stack of objects
+vector<Object*> objstack;			// a stack of objects
 
 template <typename Iterator>
 struct SkipComment : qi::grammar<Iterator>
 {
-	qi::rule<Iterator> comment;
+	qi::rule<Iterator> comment;	// the rule for identiying comments
 
 	SkipComment() : SkipComment::base_type(comment)
 	{
@@ -74,7 +74,7 @@ struct SkipComment : qi::grammar<Iterator>
 	}
 };
 
-static bool debugme = false;
+static bool debugme = false;	// whether or not debugging should be on
 template <typename Iterator>
 struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	static Object* topLevel; 
@@ -173,9 +173,9 @@ void initParser()
 
 string bufferOneObject(ifstream& read)
 {
-	int openBraces = 0;
-	string currObject, buffer;
-	bool topLevel = true;
+	int openBraces = 0;				// the number of braces deep we are
+	string currObject, buffer;		// the current object and the tect under consideration
+	bool topLevel = true;			// whether or not we're at the top level
 	while (read.good())
 	{
 		getline(read, buffer);
@@ -189,10 +189,10 @@ string bufferOneObject(ifstream& read)
 		}
 		currObject += "\n";
 
-		bool opened = false;
-		bool isInLiteral = false;
-		const char* str = buffer.c_str();
-		unsigned int strSize = buffer.size();
+		bool opened = false;									// whether or not we just opened a new brace level
+		bool isInLiteral = false;							// whether or not we're in a string literal
+		const char* str = buffer.c_str();				// a character string of the text under consideration
+		const unsigned int strSize = buffer.size();	// the size of the text under consideration
 		for (unsigned int i = 0; i < strSize; ++i)
 		{
 			if ('"' == str[i])
@@ -264,13 +264,13 @@ bool readFile(ifstream& read)
 	return qi::phrase_parse(begin, end, p, s);
 	*/
 
-	static Parser<string::iterator> p;
-	static SkipComment<string::iterator> s;
+	const static Parser<string::iterator> p;
+	const static SkipComment<string::iterator> s;
 
 	/* buffer and parse one object at a time */
 	while (read.good())
 	{
-		string currObject = bufferOneObject(read);
+		string currObject = bufferOneObject(read);	// the object under consideration
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
 			return false;
 	}
@@ -282,7 +282,7 @@ void clearStack()
 {
 	if (!stack.empty())
 	{
-		Log logOutput(LogLevel::Warning);
+		Log logOutput(LogLevel::Warning);	// a section in the log file that won't automatically be broken into lines
 		logOutput << "Clearing stack size " << stack.size() << " - this should not happen in normal operation\n";
 		for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
 		{
@@ -306,8 +306,8 @@ void setLHS(string key)
 
 void pushObj()
 {
-	string key("objlist");
-	Object* p = new Object(key); 
+	string key("objlist");			// the key of the object list
+	Object* p = new Object(key);	// the object to hold the object list
 	p->setObjList(); 
 	objstack.push_back(p); 
 }
@@ -315,24 +315,24 @@ void pushObj()
 
 void setRHSleaf(string val)
 {
-	Object* l = stack.back();
+	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
 	l->setValue(val); 
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back();	// the object holding the leaf
 		p->setValue(l); 
 	}
 }
 
 void setRHStaglist(vector<string> val)
 {
-	Object* l = stack.back();
+	Object* l = stack.back();	// the object holding the list
 	stack.pop_back(); 
 	l->addToList(val.begin(), val.end());
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back();	// the object holding the list container
 		p->setValue(l); 
 	}
 }
@@ -344,20 +344,20 @@ void setRHSobject()
 	stack.pop_back(); 
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back(); // the object holding the first leaf
 		p->setValue(l); 
 	}
 }
 
 void setRHSobjlist()
 {
-	Object* l = stack.back();
+	Object* l = stack.back();	// the object
 	l->setValue(objstack);
 	objstack.clear();
 	stack.pop_back(); 
 	if (0 < stack.size())
 	{
-		Object* p = stack.back(); 
+		Object* p = stack.back(); // the other object
 		p->setValue(l); 
 	}
 }
@@ -374,7 +374,7 @@ Object* doParseFile(const char* filename)
 	*/
 
 	initParser();
-	Object* obj = getTopLevel();
+	Object* obj = getTopLevel();	// the top level object
 	read.open(filename); 
 	if (!read.is_open())
 	{

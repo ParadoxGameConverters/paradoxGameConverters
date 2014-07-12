@@ -62,8 +62,6 @@ public:
   ~Object (); 
   Object (Object* other);
 
-  static bool debug;
-
   void setValue (Object* val);
   void setValue (string val);
   void setValue (vector<Object*> val);
@@ -80,7 +78,7 @@ public:
   void unsetValue (string val);
   void keyCount ();
   void keyCount (map<string, int>& counter);
-  void setObjList (bool l = true) {isObjList = l;}
+  void setObjList (const bool l = true) {isObjList = l;}
   string getToken (int index); 
   vector<string> getTokens() { return tokens; }
   int numTokens (); 
@@ -95,12 +93,12 @@ public:
   string toString () const; 
   
 private:
-  string key;
-  string strVal;
-  vector<Object*> objects;     
-  bool leaf; 
-  bool isObjList;
-  vector<string> tokens; // For use in lists. 
+  string key;						// the higher level or LHS key for this object
+  string strVal;					// the textual value for this object
+  vector<Object*> objects;		// any sub-objects
+  bool leaf;						// whether or not this is a leaf object
+  bool isObjList;					// whether or not this is an object list object
+  vector<string> tokens;		// The tokens if this is a list object 
 };
 
 extern ostream& operator<< (ostream& os, const Object& i);

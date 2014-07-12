@@ -51,7 +51,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 Object*	getTopLevel();
 void	clearStack(); 
-bool	readFile(ifstream& read);
 void	initParser();
 Object* doParseFile(const char* filename);
 
