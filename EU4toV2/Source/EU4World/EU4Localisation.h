@@ -61,7 +61,7 @@ private:
 
 	typedef std::map<std::string, std::string> LanguageToLocalisationMap;
 	typedef std::unordered_map<std::string, LanguageToLocalisationMap> KeyToLocalisationsMap;
-	KeyToLocalisationsMap localisations;
+	KeyToLocalisationsMap localisations;	// a map between keys and localisations
 };
 
 #endif

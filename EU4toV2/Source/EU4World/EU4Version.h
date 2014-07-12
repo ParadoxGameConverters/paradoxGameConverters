@@ -39,10 +39,10 @@ class EU4Version
 		EU4Version(string version);
 		bool operator >= (EU4Version& rhs) const;
 	private:
-		int	first;
-		int	second;
-		int	third;
-		int	fourth;
+		int	first;		// the first part of the version number
+		int	second;		// the second part of the version number
+		int	third;		// the third part of the version number
+		int	fourth;		// the fourth part of the version number
 };
 
 

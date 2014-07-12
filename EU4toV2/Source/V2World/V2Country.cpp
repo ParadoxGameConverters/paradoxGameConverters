@@ -35,7 +35,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../EU4World/Eu4Country.h"
 #include "../EU4World/EU4Province.h"
 #include "../EU4World/EU4Relations.h"
-#include "../EU4World/EU4Loan.h"
 #include "../EU4World/EU4Leader.h"
 #include "V2World.h"
 #include "V2State.h"

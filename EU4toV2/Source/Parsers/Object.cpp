@@ -385,7 +385,7 @@ void Object::addObjectAfter(Object* target, string key)
 
 
 Object* br = 0;	// the branch being set
-void setVal(string name, string val, Object* branch)
+void setVal(string name, const string val, Object* branch)
 {
 	if ((branch) && (br != branch))
 	{
@@ -397,7 +397,7 @@ void setVal(string name, string val, Object* branch)
 }
 
 
-void setInt(string name, int val, Object* branch)
+void setInt(string name, const int val, Object* branch)
 {
 	if ((branch) && (br != branch))
 	{

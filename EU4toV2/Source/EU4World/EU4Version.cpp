@@ -37,7 +37,7 @@ EU4Version::EU4Version()
 
 EU4Version::EU4Version(Object* obj)
 {
-	vector<Object*> numObj;
+	vector<Object*> numObj;	// the number in this part of the version
 	numObj = obj->getValue("first");
 	if (numObj.size() > 0)
 	{
@@ -63,7 +63,7 @@ EU4Version::EU4Version(Object* obj)
 
 EU4Version::EU4Version(string version)
 {
-	int dot = version.find_first_of('.');
+	int dot = version.find_first_of('.');	// the dots separating the version parts
 	first = atoi(version.substr(0, dot).c_str());
 
 	version = version.substr(dot + 1, version.size());

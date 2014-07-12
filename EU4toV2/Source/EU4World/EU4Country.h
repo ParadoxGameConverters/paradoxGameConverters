@@ -57,8 +57,6 @@ class EU4Country
 		bool						hasFlag(string) const ;
 		void						resolveRegimentTypes(const RegimentTypeMap& map);
 		int						getManufactoryCount() const;
-		double					inflationAdjust(double input) const;
-		double					getBadboyLimit() const;
 		void						eatCountry(EU4Country* target);
 
 		string						getTag()										const { return tag; };
@@ -72,14 +70,10 @@ class EU4Country
 		string						getCulturalUnion()						const { return culturalUnion; };
 		string						getReligion()								const { return religion; };
 		double						getScore()									const { return score; };
-		double						getCulture()								const { return culture; };
-		double						getArmyTradition()						const { return armyTradition; };
-		double						getNavyTradition()						const { return navyTradition; };
 		double						getStability()								const { return stability; };
 		double						getAdmTech()								const { return admTech; };
 		double						getDipTech()								const { return dipTech; };
 		double						getMilTech()								const { return milTech; };
-		double						getEstimatedMonthlyIncome()			const { return estMonthlyIncome; };
 		double						getArmyInvestment()						const { return armyInvestment; };
 		double						getNavyInvestment()						const { return navyInvestment; };
 		double						getCommerceInvestment()					const { return commerceInvestment; };
@@ -89,13 +83,7 @@ class EU4Country
 		string						getGovernment()							const { return government; };
 		vector<EU4Relations*>	getRelations()								const { return relations; };
 		vector<EU4Army*>			getArmies()									const { return armies; };
-		date							getLastBankrupt()							const { return last_bankrupt; };
-		vector<EU4Loan*>			getLoans()									const { return loans; };
-		double						getDiplomats()								const { return diplomats; };
-		double						getBadboy()									const { return badboy; };
 		vector<EU4Leader*>		getLeaders()								const { return leaders; };
-
-		double						getTreasury()								const	{ return inflationAdjust(treasury); };
 
 		string getName() const { return name; }
 		string getName(const string& language) const;
@@ -103,58 +91,47 @@ class EU4Country
 		Color getColor() const { return color; }
 
 	private:
-		void							checkIdea(const Object*, const string);
+		//void							checkIdea(const Object*, const string);
 		void							clearProvinces();
 		void							clearCores();
 
-		string						tag;
-		vector<EU4Province*>		provinces;
-		vector<EU4Province*>		cores;
-		int							capital;
-		int							nationalFocus;
-		string						techGroup;
-		string						primaryCulture;
-		vector<string>				acceptedCultures;
-		string						culturalUnion;
-		string						religion;
-		double						score;
-		double						culture;
-		double						armyTradition;
-		double						navyTradition;
-		double						stability;
-		double						admTech;
-		double						dipTech;
-		double						milTech;
-		double						estMonthlyIncome;
-		double						armyInvestment;
-		double						navyInvestment;
-		double						commerceInvestment;
-		double						industryInvestment;
-		double						cultureInvestment;
-		map<string, bool>			flags;
-		map<string, bool>			modifiers;
-		bool							possibleDaimyo;
-		vector<EU4Leader*>		leaders;
-		string						government;
-		vector<EU4Relations*>	relations;
-		vector<EU4Army*>			armies; // and navies...
-		map<string, int>			nationalIdeas;
-		double						treasury;
-		date							last_bankrupt;
-		vector<EU4Loan*>			loans;
-		double						diplomats;
-		double						badboy;
-
-		double						legitimacy;
-		double						inflation;
-
-		string name;
-		string adjective;
-		Color color;
+		string						tag;						// the tag for the EU4 nation
+		vector<EU4Province*>		provinces;				// the EU4 provinces this nations holds
+		vector<EU4Province*>		cores;					// the EU4 provinces this nation has cores on
+		int							capital;					// the EU4 province that is this nation's capital
+		int							nationalFocus;			// the location of this country's national focus
+		string						techGroup;				// the tech group for this nation
+		string						primaryCulture;		// the primary EU4 culture of this nation
+		vector<string>				acceptedCultures;		// the accepted EU4 cultures for this nation
+		string						culturalUnion;			// the culture group this nation is a union for
+		string						religion;				// the accepted religion of this country
+		double						score;					// this country's EU4 score
+		double						stability;				// the stability of this nation
+		double						admTech;					// the admin tech of this nation
+		double						dipTech;					// the diplo tech of this nation
+		double						milTech;					// the mil tech of this nation
+		double						armyInvestment;		// the amount of 'investment' into army tech (determined by ideas)
+		double						navyInvestment;		// the amount of 'investment' into navy tech (determined by ideas)
+		double						commerceInvestment;	// the amount of 'investment' into commerce tech (determined by ideas)
+		double						industryInvestment;	// the amount of 'investment' into industry tech (determined by ideas)
+		double						cultureInvestment;	// the amount of 'investment' into culture tech (determined by ideas)
+		map<string, bool>			flags;					// any flags set for this country
+		map<string, bool>			modifiers;				// any modifiers set for this country
+		bool							possibleDaimyo;		// if this country is possibly a daimyo
+		vector<EU4Leader*>		leaders;					// the military leaders in this country
+		string						government;				// the government type
+		vector<EU4Relations*>	relations;				// the relations with other nations
+		vector<EU4Army*>			armies;					// this nation's armies and navies
+		map<string, int>			nationalIdeas;			// the national ideas for this country
+		double						legitimacy;				// the legitimacy of this nation
 
 		// Localisation attributes
-		map<string, string> namesByLanguage;
-		map<string, string> adjectivesByLanguage;
+		string name;			// the name of this country
+		string adjective;		// the adjective for this country
+		Color color;			// the color of this country
+
+		map<string, string> namesByLanguage;		// the names of this country in different localisations
+		map<string, string> adjectivesByLanguage;	// the adjectives for this country in different localisations
 };
 
 

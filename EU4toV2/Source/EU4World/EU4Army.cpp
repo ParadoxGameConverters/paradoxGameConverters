@@ -28,14 +28,7 @@ THE SOFTWARE. */
 EU4Regiment::EU4Regiment(Object *obj)
 {
 	std::vector<Object*> objName = obj->getValue("name");
-	if (objName.size() > 0)
-	{
-		name = objName[0]->getLeaf();
-	}
-	else
-	{
-		name = "";
-	}
+	(objName.size() > 0) ? name = objName[0]->getLeaf() : name = "";
 
 	std::vector<Object*> objType = obj->getValue("type");
 	if (objType.size() > 0)
@@ -60,14 +53,7 @@ EU4Regiment::EU4Regiment(Object *obj)
 	}
 
 	std::vector<Object*> objStr = obj->getValue("strength");
-	if (objStr.size() > 0)
-	{
-		strength = atof(objStr[0]->getLeaf().c_str());
-	}
-	else
-	{
-		strength = 0.0;
-	}
+	(objStr.size() > 0) ? strength = atof(objStr[0]->getLeaf().c_str()) : strength = 0.0;
 
 	category			= num_reg_categories;
 	type_strength	= 0;
@@ -77,14 +63,7 @@ EU4Regiment::EU4Regiment(Object *obj)
 EU4Army::EU4Army(Object *obj)
 {
 	std::vector<Object*> objName = obj->getValue("name");
-	if (objName.size() > 0)
-	{
-		name = objName[0]->getLeaf();
-	}
-	else
-	{
-		name = "";
-	}
+	(objName.size() > 0) ? name = objName[0]->getLeaf() : name = "";
 
 	std::vector<Object*> objLoc = obj->getValue("location");
 	if (objLoc.size() > 0)
@@ -98,14 +77,7 @@ EU4Army::EU4Army(Object *obj)
 	}
 
 	std::vector<Object*> objAtSea = obj->getValue("at_sea");
-	if (objAtSea.size() > 0)
-	{
-		at_sea = atoi(objAtSea[0]->getLeaf().c_str());
-	}
-	else
-	{
-		at_sea = 0;
-	}
+	(objAtSea.size() > 0) ? at_sea = atoi(objAtSea[0]->getLeaf().c_str()) : at_sea = 0;
 
 	regiments.clear();
 	std::vector<Object*> objRegs = obj->getValue("regiment");
@@ -156,8 +128,8 @@ void EU4Army::resolveRegimentTypes(const RegimentTypeMap& regimentTypeMap)
 
 double EU4Army::getAverageStrength(RegimentCategory category) const
 {
-	int count = 0;
-	double total = 0.0;
+	int count = 0;			// the total number of regiments
+	double total = 0.0;	// the total strength
 	for (vector<EU4Regiment*>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		if ( (*itr)->getCategory() == category )
@@ -172,7 +144,7 @@ double EU4Army::getAverageStrength(RegimentCategory category) const
 
 int EU4Army::getTotalTypeStrength(RegimentCategory category) const
 {
-	int total = 0;
+	int total = 0;	//the total strength
 	for (vector<EU4Regiment*>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		if ( (*itr)->getCategory() == category )
@@ -186,13 +158,13 @@ int EU4Army::getTotalTypeStrength(RegimentCategory category) const
 
 int EU4Army::getProbabilisticHomeProvince(RegimentCategory category) const
 {
-	vector<int> homeProvinces;
+	vector<int> homeProvinces;	// the possible home provinces
 	for (vector<EU4Regiment*>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		if ( (*itr)->getCategory() == category )
 		{
-			int home = (*itr)->getHome();
-			bool blocked = false;
+			const int home = (*itr)->getHome();	// the home of this regiment
+			bool blocked = false;					// whether or not this home is blocked
 			for (vector<int>::const_iterator bitr = blocked_homes.begin(); bitr != blocked_homes.end(); ++bitr)
 			{
 				if (home == *bitr)
@@ -202,17 +174,21 @@ int EU4Army::getProbabilisticHomeProvince(RegimentCategory category) const
 				}
 			}
 			if (!blocked)
+			{
 				homeProvinces.push_back(home);
+			}
 		}
 	}
 	if (homeProvinces.size() == 0)
+	{
 		return -1;
+	}
 
 	return homeProvinces[int(homeProvinces.size() * ((double)rand() / RAND_MAX))];
 }
 
 
-void EU4Army::blockHomeProvince(int home)
+void EU4Army::blockHomeProvince(const int home)
 {
 	blocked_homes.push_back(home);
 }
@@ -220,13 +196,13 @@ void EU4Army::blockHomeProvince(int home)
 
 void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string categoryName, RegimentTypeMap& rtm)
 {
-	vector<Object*> top = obj->getValue(categoryName);
+	vector<Object*> top = obj->getValue(categoryName);	// the regiment type mapping category
 	if (top.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Could not get regiment type map for " << categoryName;
 		exit(1);
 	}
-	vector<Object*> types = top[0]->getLeaves();
+	vector<Object*> types = top[0]->getLeaves();	// the mappings themselves
 	if (types.size() == 0)
 	{
 		LOG(LogLevel::Error) << "No regiment types to map for " << categoryName;
@@ -234,8 +210,8 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 	}
 	for (vector<Object*>::iterator itr = types.begin(); itr != types.end(); ++itr)
 	{
-		string type = (*itr)->getKey();
-		string strength = (*itr)->getLeaf();
+		string type = (*itr)->getKey();			// the regiment category
+		string strength = (*itr)->getLeaf();	// the regiment cost
 		rtm[type] = pair<RegimentCategory, int>(category, atoi(strength.c_str()));
 	}
 }
@@ -243,21 +219,21 @@ void AddCategoryToRegimentTypeMap(Object* obj, RegimentCategory category, string
 
 void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap& rtm)
 {
-	Object* obj = doParseFile((directory + "\\" + name + ".txt").c_str());
+	Object* obj = doParseFile((directory + "\\" + name + ".txt").c_str());	// the parsed regiment costs file
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file " << directory << '\\' << name << ".txt";
 		exit(-1);
 	}
 
-	int rc = -1;
-	vector<Object*> typeObj = obj->getValue("type");
+	int rc = -1;	// the regiment cost
+	vector<Object*> typeObj = obj->getValue("type");	// the unit type as an object
 	if (typeObj.size() < 1)
 	{
 		LOG(LogLevel::Warning) << "Unit file for " << name << " has no type";
 		return;
 	}
-	string type = typeObj[0]->getLeaf();
+	string type = typeObj[0]->getLeaf();	// the unit type as a string
 	for (int i = 0; i < num_reg_categories; ++i)
 	{
 		if (type == RegimentCategoryNames[i])
@@ -269,32 +245,24 @@ void AddUnitFileToRegimentTypeMap(string directory, string name, RegimentTypeMap
 		return;
 	}
 
-	int unitStrength = 0;
+	int unitStrength = 0;	// the unit strenth
 	vector<Object*> strObj;
 	strObj = obj->getValue("maneuver");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("offensive_morale");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("defensive_morale");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("offensive_fire");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("defensive_fire");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("offensive_shock");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("defensive_shock");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 	strObj = obj->getValue("hull_size");
-	if (strObj.size() > 0)
-		unitStrength += atoi(strObj[0]->getLeaf().c_str());
+	if (strObj.size() > 0)	unitStrength += atoi(strObj[0]->getLeaf().c_str());
 
 	// give all transports equal weight for 1-to-1 conversion
 	if (rc == transport)

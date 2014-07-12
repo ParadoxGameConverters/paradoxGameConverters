@@ -60,7 +60,7 @@ static const char* RegimentCategoryNames[] = {
 };
 
 
-typedef map<string, pair<RegimentCategory, int> > RegimentTypeMap;
+typedef map<string, pair<RegimentCategory, int> > RegimentTypeMap;	// regiment category, regiment category, required strength
 
 
 class EU4Regiment // also Ship
@@ -78,12 +78,12 @@ class EU4Regiment // also Ship
 		RegimentCategory		getCategory() const { return category; }
 		int						getTypeStrength() const { return type_strength; }
 	private:
-		string					name;
-		string					type;
-		int						home;
-		double					strength;
-		RegimentCategory		category;
-		int						type_strength;
+		string					name;				// the name of the regiment
+		string					type;				// the type of regiment
+		int						home;				// the home province of the regiment
+		double					strength;		// the strength of the regiment
+		RegimentCategory		category;		// the category of the regiment
+		int						type_strength;	// the strength of this regiment type
 };
 
 
@@ -102,12 +102,12 @@ class EU4Army // also Navy
 		int						getAtSea() const { return at_sea; }
 		int						getLeaderID() const { return leaderID; }
 	private:
-		string					name;
-		int						location;
-		int						at_sea;
-		vector<EU4Regiment*>	regiments;
-		vector<int>				blocked_homes;
-		int						leaderID;
+		string					name;				// the name of the army
+		int						location;		// the location of the army
+		int						at_sea;			// whether or not this army (or navy) is at sea
+		vector<EU4Regiment*>	regiments;		// the regiments in this army
+		vector<int>				blocked_homes;	// invalid homes for this army
+		int						leaderID;		// the id of the leader for this army (if any)
 };
 
 

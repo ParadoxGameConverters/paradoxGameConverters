@@ -42,14 +42,14 @@ class EU4Leader
 		bool		isLand() const;
 		date		getActivationDate() const { return activationDate; }
 	private:
-		string	name;
-		int		fire;
-		int		shock;
-		int		manuever;
-		int		siege;
-		int		id;
-		string	type;
-		date		activationDate;
+		string	name;					// the leader's name
+		int		fire;					// the fire ability
+		int		shock;				// the shock ability
+		int		manuever;			// the manuever ability
+		int		siege;				// the seige ability
+		int		id;					// the id number
+		string	type;					// the type of leader
+		date		activationDate;	// the date this leader was activated
 };
 
 

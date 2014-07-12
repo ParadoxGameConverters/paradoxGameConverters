@@ -68,42 +68,42 @@ EU4Diplomacy::EU4Diplomacy(Object* obj)
 	std::vector<Object*> objRMs = obj->getValue("royal_marriage");
 	for (std::vector<Object*>::iterator itr = objRMs.begin(); itr != objRMs.end(); ++itr)
 	{
-		EU4Agreement agr(*itr);
+		EU4Agreement agr(*itr);		// the new agreement
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objGaurantees = obj->getValue("guarantee");
 	for (std::vector<Object*>::iterator itr = objGaurantees.begin(); itr != objGaurantees.end(); ++itr)
 	{
-		EU4Agreement agr(*itr);
+		EU4Agreement agr(*itr);		// the new agreement
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objVassals = obj->getValue("vassal");
 	for (std::vector<Object*>::iterator itr = objVassals.begin(); itr != objVassals.end(); ++itr)
 	{
-		EU4Agreement agr(*itr);
+		EU4Agreement agr(*itr);		// the new agreement
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objSpheres = obj->getValue("sphere");
 	for (std::vector<Object*>::iterator itr = objSpheres.begin(); itr != objSpheres.end(); ++itr)
 	{
-		EU4Agreement agr(*itr);
+		EU4Agreement agr(*itr);		// the new agreement
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objAlliances = obj->getValue("alliance");
 	for (std::vector<Object*>::iterator itr = objAlliances.begin(); itr != objAlliances.end(); ++itr)
 	{
-		EU4Agreement agr(*itr);
+		EU4Agreement agr(*itr);		// the new agreement
 		agreements.push_back(agr);
 	}
 
 	std::vector<Object*> objUnions = obj->getValue("union");
 	for (std::vector<Object*>::iterator itr = objUnions.begin(); itr != objUnions.end(); ++itr)
 	{
-		EU4Agreement agr(*itr);
+		EU4Agreement agr(*itr);		// the new agreement
 		agreements.push_back(agr);
 	}
 }

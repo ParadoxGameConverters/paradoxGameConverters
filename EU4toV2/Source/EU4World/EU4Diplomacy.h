@@ -35,10 +35,10 @@ struct EU4Agreement
 {
 	EU4Agreement(Object* obj);
 
-	string	type;
-	string	country1;
-	string	country2;
-	date		startDate;
+	string	type;			// the type of agreement
+	string	country1;	// the first country
+	string	country2;	// the second country
+	date		startDate;	// the date this agreement began
 };
 
 
@@ -49,7 +49,7 @@ class EU4Diplomacy
 		EU4Diplomacy(Object* obj);
 		vector<EU4Agreement>	getAgreements() const { return agreements; };
 	private:
-		vector<EU4Agreement>	agreements;
+		vector<EU4Agreement>	agreements;	// all the agreements
 };
 
 #endif

@@ -41,11 +41,11 @@ class EU4Relations
 		date		getDiplomatLastSent() const { return last_send_diplomat; };
 		date		getLastWar() const { return last_war; };
 	private:
-		string	tag;
-		int		value;
-		bool		military_access;
-		date		last_send_diplomat;
-		date		last_war;
+		string	tag;						// the country related to
+		int		value;					// the relationship value
+		bool		military_access;		// if military access has been granted
+		date		last_send_diplomat;	// the last diplomat sent between the countries
+		date		last_war;				// the last war between the countries
 };
 
 #endif

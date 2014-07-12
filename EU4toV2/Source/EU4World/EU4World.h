@@ -53,10 +53,10 @@ class EU4World {
 		map<string, EU4Country*>	getCountries()	const { return countries; };
 		EU4Diplomacy*					getDiplomacy()	const { return diplomacy; };
 	private:
-		map<int, EU4Province*>		provinces;
-		map<string, EU4Country*>	countries;
-		EU4Diplomacy*					diplomacy;
-		EU4Version*						version;
+		map<int, EU4Province*>		provinces;	// the provinces
+		map<string, EU4Country*>	countries;	// the countries
+		EU4Diplomacy*					diplomacy;	// diplomatic relationships
+		EU4Version*						version;		// the EU4 version for this save
 };
 
 

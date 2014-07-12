@@ -40,15 +40,12 @@ class EU4Religion
 		bool isRelatedTo(const EU4Religion* other) const;		// e.g. orthodox <-> catholic
 		bool isInfidelTo(const EU4Religion* other) const;		// e.g. sunni <-> catholic
 
-		string getName() const { return name; }
-		string getGroup() const { return group; }
-
 		static void parseReligions(Object* obj);
 		static EU4Religion* getReligion(string name);
 
 	private:
-		string name;
-		string group;
+		string name;		// the religion name
+		string group;		// the religion group
 
 		static map<string, EU4Religion*> all_religions;
 };

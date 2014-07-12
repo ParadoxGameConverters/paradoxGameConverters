@@ -32,60 +32,31 @@ THE SOFTWARE. */
 EU4Province::EU4Province(Object* obj) {
 	num = 0 - atoi(obj->getKey().c_str());
 
-	vector<Object*> ownerObjs;
+	vector<Object*> ownerObjs;				// the object holding the owner
 	ownerObjs = obj->getValue("owner");
-	if (ownerObjs.size() == 0)
-	{
-		ownerString = "";
-	}
-	else
-	{
-		ownerString = ownerObjs[0]->getLeaf();
-	}
+	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();
 	owner = NULL;
 
 	cores.clear();
-	vector<Object*> coreObjs;
+	vector<Object*> coreObjs;				// the object holding the cores
 	coreObjs = obj->getValue("core");
 	for (unsigned int i = 0; i < coreObjs.size(); i++)
 	{
 		cores.push_back(coreObjs[i]->getLeaf());
 	}
 
-	/*colony = true;
-	vector<Object*> popObj = obj->getValue("citysize");
-	if (popObj.size() > 0)
-	{
-		population	= atoi( (popObj)[0]->getLeaf().c_str() );
-		if (population >= 1000)
-		{
-			colony = false;
-		}
-	}
-	else
-	{
-		popObj		= obj->getValue("native_size");
-		if (popObj.size() > 0)
-		{
-			population	= atoi( (popObj)[0]->getLeaf().c_str() );
-		}
-		else
-		{
-			population = 0;
-		}
-	}*/
-
+	colony = false;
 
 	ownershipHistory.clear();
 	lastPossessedDate.clear();
 	religionHistory.clear();
 	cultureHistory.clear();
-	vector<Object*> historyObj = obj->getValue("history");
+	vector<Object*> historyObj = obj->getValue("history");				// the objects holding the history of this province
 	if (historyObj.size() > 0)
 	{
-		vector<Object*> historyObjs = historyObj[0]->getLeaves();
-		string lastOwner;
-		string thisCountry;
+		vector<Object*> historyObjs = historyObj[0]->getLeaves();		// the object holding the current history point
+		string lastOwner;				// the last owner of the province
+		string thisCountry;			// the current owner of the province
 		for (unsigned int i = 0; i < historyObjs.size(); i++)
 		{
 			if (historyObjs[i]->getKey() == "owner")
@@ -106,10 +77,10 @@ EU4Province::EU4Province(Object* obj) {
 				continue;
 			}
 
-			vector<Object*> ownerObj = historyObjs[i]->getValue("owner");
+			vector<Object*> ownerObj = historyObjs[i]->getValue("owner");	// the object holding the current historical owner change
 			if (ownerObj.size() > 0)
 			{
-				date newDate(historyObjs[i]->getKey());
+				const date newDate(historyObjs[i]->getKey());	// the date this happened
 				thisCountry = ownerObj[0]->getLeaf();
 
 				map<string, date>::iterator itr = lastPossessedDate.find(lastOwner);
@@ -121,16 +92,16 @@ EU4Province::EU4Province(Object* obj) {
 
 				ownershipHistory.push_back(make_pair(newDate, thisCountry));
 			}
-			vector<Object*> culObj = historyObjs[i]->getValue("culture");
+			vector<Object*> culObj = historyObjs[i]->getValue("culture");	// the object holding the current historical culture change
 			if (culObj.size() > 0)
 			{
-				date newDate(historyObjs[i]->getKey());
+				const date newDate(historyObjs[i]->getKey());	// the date this happened
 				cultureHistory.push_back(make_pair(newDate, culObj[0]->getLeaf()));
 			}
-			vector<Object*> religObj = historyObjs[i]->getValue("religion");
+			vector<Object*> religObj = historyObjs[i]->getValue("religion");	// the object holding the current historical religion change
 			if (religObj.size() > 0)
 			{
-				date newDate(historyObjs[i]->getKey());
+				const date newDate(historyObjs[i]->getKey());	// the date this happened
 				religionHistory.push_back(make_pair(newDate, religObj[0]->getLeaf()));
 			}
 		}
@@ -146,19 +117,19 @@ EU4Province::EU4Province(Object* obj) {
 
 	if (cultureHistory.size() == 0)
 	{
-		vector<Object*> culObj = obj->getValue("culture");
+		vector<Object*> culObj = obj->getValue("culture");	// the object holding the current culture
 		if (culObj.size() > 0)
 		{
-			date newDate;
+			const date newDate;	// the default date
 			cultureHistory.push_back(make_pair(newDate, culObj[0]->getLeaf()));
 		}
 	}
 	if (religionHistory.size() == 0)
 	{
-		vector<Object*> religObj = obj->getValue("religion");
+		vector<Object*> religObj = obj->getValue("religion");	// the object holding the current religion
 		if (religObj.size() > 0)
 		{
-			date newDate;
+			const date newDate;	// the default date
 			religionHistory.push_back(make_pair(newDate, religObj[0]->getLeaf()));
 		}
 	}
@@ -258,8 +229,8 @@ bool EU4Province::wasInfidelConquest() const
 	// and the province was NOT colonized
 	if (religionHistory.size() > 0 && !wasColonised())
 	{
-		EU4Religion* firstReligion = EU4Religion::getReligion(religionHistory[0].second);
-		EU4Religion* ownerReligion = EU4Religion::getReligion(owner->getReligion());
+		EU4Religion* firstReligion = EU4Religion::getReligion(religionHistory[0].second);	// the first religion of this province
+		EU4Religion* ownerReligion = EU4Religion::getReligion(owner->getReligion());			// the owner's religion
 		if ((firstReligion == NULL) || (ownerReligion == NULL))
 		{
 			LOG(LogLevel::Warning) << "Unhandled religion in EU4 province " << num;
@@ -276,14 +247,14 @@ bool EU4Province::wasInfidelConquest() const
 
 bool EU4Province::hasBuilding(string building) const
 {
-	int num = buildings.count(building);
+	const int num = buildings.count(building);	// the number of this building
 	return (num > 0);
 }
 
 
 vector<EU4Country*> EU4Province::getCores(const map<string, EU4Country*>& countries) const
 {
-	vector<EU4Country*> coreOwners;
+	vector<EU4Country*> coreOwners;	// the core holders
 	for (vector<string>::const_iterator i = cores.begin(); i != cores.end(); i++)
 	{
 		map<string, EU4Country*>::const_iterator j = countries.find(*i);
@@ -299,7 +270,7 @@ vector<EU4Country*> EU4Province::getCores(const map<string, EU4Country*>& countr
 
 date EU4Province::getLastPossessedDate(string tag) const
 {
-	map<string, date>::const_iterator itr = lastPossessedDate.find(tag);
+	map<string, date>::const_iterator itr = lastPossessedDate.find(tag);	// the last date the country possessed this province
 	if (itr != lastPossessedDate.end())
 	{
 		return itr->second;
@@ -310,7 +281,7 @@ date EU4Province::getLastPossessedDate(string tag) const
 
 void EU4Province::checkBuilding(const Object* provinceObj, string building)
 {
-	vector<Object*> buildingObj;
+	vector<Object*> buildingObj;	// the object holding the building
 	buildingObj = provinceObj->getValue(building);
 	if ((buildingObj.size() > 0) && (buildingObj[0]->getLeaf() == "yes"))
 	{
@@ -322,10 +293,9 @@ void EU4Province::checkBuilding(const Object* provinceObj, string building)
 void EU4Province::buildPopRatios()
 {
 	// fast-forward to 1620 (200 year decay means any changes before then will be at 100%)
-	string curCulture		= "";
-	string curReligion	= "";
-	vector< pair<date, string> >::iterator cItr = cultureHistory.begin();
-	vector< pair<date, string> >::iterator rItr = religionHistory.begin();
+	string curCulture		= "";	// the current culture
+	string curReligion	= "";	// the current religion
+	vector< pair<date, string> >::iterator cItr = cultureHistory.begin();	// the culture under consideration
 	while (cItr != cultureHistory.end() && cItr->first.year < 1620)
 	{
 		curCulture = cItr->second;
@@ -336,6 +306,7 @@ void EU4Province::buildPopRatios()
 		// no starting culture; use first settlement culture for starting pop even if it's after 1620
 		curCulture = cItr->second;
 	}
+	vector< pair<date, string> >::iterator rItr = religionHistory.begin();	// the religion under consideration
 	while (rItr != religionHistory.end() && rItr->first.year < 1620)
 	{
 		curReligion = rItr->second;
@@ -348,11 +319,11 @@ void EU4Province::buildPopRatios()
 	}
 
 	// build and scale historic culture-religion pairs
-	EU4PopRatio pr;
+	EU4PopRatio pr;	// a pop ratio
 	pr.culture	= curCulture;
 	pr.religion	= curReligion;
 	pr.popRatio	= 1.0;
-	date cDate, rDate, lastLoopDate;
+	date cDate, rDate, lastLoopDate;	// the dates this culture dominated, this religion dominated, and the former relevant date
 	while (cItr != cultureHistory.end() || rItr != religionHistory.end())
 	{
 		if (cItr == cultureHistory.end())
@@ -434,7 +405,7 @@ void EU4Province::decayPopRatios(date oldDate, date newDate, EU4PopRatio& curren
 	}
 
 	// drop all non-current pops by a total of .0025 per year, divided proportionally
-	double nonCurrentRatio = (1.0 - currentPop.popRatio);
+	const double nonCurrentRatio = (1.0 - currentPop.popRatio);
 	for (vector<EU4PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
 	{
 		itr->popRatio -= .0025 * (newDate.year - oldDate.year) * itr->popRatio / nonCurrentRatio ;

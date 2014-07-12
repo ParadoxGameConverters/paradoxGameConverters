@@ -30,11 +30,11 @@ map<string, EU4Religion*> EU4Religion::all_religions;
 
 void EU4Religion::parseReligions(Object* obj)
 {
-	vector<Object*> groups = obj->getLeaves();
+	vector<Object*> groups = obj->getLeaves();	// the objects holding the religion groups
 	for (vector<Object*>::iterator groupsItr = groups.begin(); groupsItr < groups.end(); groupsItr++)
 	{
-		vector<Object*> religions = (*groupsItr)->getLeaves();
-		string group = (*groupsItr)->getKey();
+		vector<Object*> religions = (*groupsItr)->getLeaves();	// the objects holding the religions
+		string group = (*groupsItr)->getKey();							// the name of the religion group
 		for (vector<Object*>::iterator religionsItr = religions.begin(); religionsItr < religions.end(); religionsItr++)
 		{
 			if (((*religionsItr)->getKey() == "defender_of_faith") || ((*religionsItr)->getKey() == "crusade_name"))
@@ -42,7 +42,7 @@ void EU4Religion::parseReligions(Object* obj)
 				continue;
 			}
 
-			EU4Religion* religion = new EU4Religion((*religionsItr), group);
+			EU4Religion* religion = new EU4Religion((*religionsItr), group);	// the religion
 			map<string, EU4Religion*>::iterator itr = all_religions.find(group);
 			if (itr != all_religions.end())
 			{
@@ -64,10 +64,7 @@ EU4Religion::EU4Religion(Object* obj, string _group)
 // e.g. catholic <-> catholic
 bool EU4Religion::isSameReligion(const EU4Religion* other) const
 {
-	if (name == other->name)
-		return true;
-
-	return false;
+	return (name == other->name) ? true : false;
 }
 
 
@@ -76,11 +73,15 @@ bool EU4Religion::isRelatedTo(const EU4Religion* other) const
 {
 	// not the same religion
 	if (isSameReligion(other))
+	{
 		return false;
+	}
 
 	// but in the same group
 	if (group == other->group)
+	{
 		return true;
+	}
 
 	return false;
 }
@@ -90,18 +91,12 @@ bool EU4Religion::isRelatedTo(const EU4Religion* other) const
 bool EU4Religion::isInfidelTo(const EU4Religion* other) const
 {
 	// different religious groups == infidel
-	if (group != other->group)
-		return true;
-
-	return false;
+	return (group != other->group) ? true : false;
 }
 
 
 EU4Religion* EU4Religion::getReligion(string name)
 {
 	map<string, EU4Religion*>::iterator itr = all_religions.find(name);
-	if (itr == all_religions.end())
-		return NULL;
-
-	return itr->second;
+	return (itr == all_religions.end()) ? NULL : itr->second;
 }

@@ -54,10 +54,10 @@ class EU4Province {
 		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;
 		date						getLastPossessedDate(string tag) const;
 
-		int							getNum()				const { return num; };
-		string						getOwnerString()	const { return ownerString; };
-		EU4Country*					getOwner()			const { return owner; };
-		int							getPopulation()	const { return population; };
+		int						getNum()				const { return num; };
+		string					getOwnerString()	const { return ownerString; };
+		EU4Country*				getOwner()			const { return owner; };
+		int						getPopulation()	const { return population; };
 		bool						isColony()			const { return colony; };
 		vector<EU4PopRatio>	getPopRatios()		const { return popRatios; };
 
@@ -67,18 +67,18 @@ class EU4Province {
 		void	buildPopRatios();
 		void	decayPopRatios(date olddate, date newdate, EU4PopRatio& currentPop);
 
-		int									num;
-		string								ownerString;
-		EU4Country*							owner;
-		vector<string>						cores;
-		int									population;
-		bool									colony;
-		vector< pair<date, string> >	ownershipHistory;
-		map<string, date>					lastPossessedDate;
-		vector< pair<date, string> >	religionHistory;
-		vector< pair<date, string> >	cultureHistory;
-		vector<EU4PopRatio>				popRatios;
-		map<string, bool>					buildings;
+		int									num;						// the province number
+		string								ownerString;			// a string with the owner's tag
+		EU4Country*							owner;					// the owner
+		vector<string>						cores;					// strings of the tags of all cores
+		int									population;				// the population
+		bool									colony;					// whether or not this is a colony
+		vector< pair<date, string> >	ownershipHistory;		// the history of who has owned this province
+		map<string, date>					lastPossessedDate;	// the last date the province was owned by different tags
+		vector< pair<date, string> >	religionHistory;		// the history of the religious changes of this province
+		vector< pair<date, string> >	cultureHistory;		// the history of the cultural changes of this province
+		vector<EU4PopRatio>				popRatios;				// the population ratios of this province
+		map<string, bool>					buildings;				// the buildings in this province
 };
 
 

@@ -24,7 +24,6 @@ THE SOFTWARE. */
 #include "../Parsers/Object.h"
 #include "EU4Province.h"
 #include "EU4Relations.h"
-#include "EU4Loan.h"
 #include "EU4Leader.h"
 #include <algorithm>
 
@@ -36,19 +35,13 @@ EU4Country::EU4Country(Object* obj)
 	provinces.clear();
 	cores.clear();
 
-	vector<Object*> nameObj = obj->getValue("name");
-	if (!nameObj.empty())
-	{
-		name = nameObj[0]->getLeaf();
-	}
+	vector<Object*> nameObj = obj->getValue("name");	// the object holding the name
+	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
 
-	vector<Object*> adjectiveObj = obj->getValue("adjective");
-	if (!adjectiveObj.empty())
-	{
-		adjective = adjectiveObj[0]->getLeaf();
-	}
+	vector<Object*> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
+	(!adjectiveObj.empty()) ? adjective = adjectiveObj[0]->getLeaf() : adjective = "";
 
-	vector<Object*> colorObj = obj->getValue("map_color");
+	vector<Object*> colorObj = obj->getValue("map_color");	// the object holding the color
 	if (!colorObj.empty())
 	{
 		color = Color(colorObj[0]);
@@ -58,127 +51,41 @@ EU4Country::EU4Country(Object* obj)
 		color.RandomlyFlunctuate(30);
 	}
 
-	vector<Object*> capitalObj = obj->getValue("capital");
-	if (capitalObj.size() > 0)
-	{
-		capital = atoi( capitalObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		capital = 0;
-	}
+	vector<Object*> capitalObj = obj->getValue("capital");	// the object holding the capital
+	(capitalObj.size() > 0) ? capital = atoi( capitalObj[0]->getLeaf().c_str() ) : capital = 0;
 
-	vector<Object*> nfObj = obj->getValue("national_focus");
-	if (nfObj.size() > 0)
-	{
-		nationalFocus = atoi( nfObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		nationalFocus = 0;
-	}
+	vector<Object*> nfObj = obj->getValue("national_focus");	// the object holding the national focus
+	(nfObj.size() > 0) ? nationalFocus = atoi( nfObj[0]->getLeaf().c_str() ) : nationalFocus = 0;
 
-	vector<Object*> techGroupObj = obj->getValue("technology_group");
-	if (techGroupObj.size() > 0)
-	{
-		techGroup = techGroupObj[0]->getLeaf().c_str();
-	}
-	else
-	{
-		techGroup = "";
-	}
+	vector<Object*> techGroupObj = obj->getValue("technology_group");	// the object holding the technology group
+	(techGroupObj.size() > 0) ? techGroup = techGroupObj[0]->getLeaf().c_str() : techGroup = "";
 
-	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");
-	if (primaryCultureObj.size() > 0)
-	{
-		primaryCulture = primaryCultureObj[0]->getLeaf().c_str();
-	}
-	else
-	{
-		primaryCulture = "";
-	}
+	vector<Object*> primaryCultureObj = obj->getValue("primary_culture");	// the object holding the primary culture
+	(primaryCultureObj.size() > 0) ? primaryCulture = primaryCultureObj[0]->getLeaf().c_str() : primaryCulture = "";
 
 	acceptedCultures.clear();
-	vector<Object*> acceptedCultureObj = obj->getValue("accepted_culture");
+	vector<Object*> acceptedCultureObj = obj->getValue("accepted_culture");	// the object holding the accepted cultures
 	for (unsigned int i = 0; i < acceptedCultureObj.size(); i++)
 	{
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
 
-	vector<Object*> unionCultureObj = obj->getValue("culture_group_union");
-	if (unionCultureObj.size() > 0)
-	{
-		culturalUnion = unionCultureObj[0]->getLeaf();
-	}
-	else
-	{
-		culturalUnion = "";
-	}
+	vector<Object*> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
+	(unionCultureObj.size() > 0) ? culturalUnion = unionCultureObj[0]->getLeaf() : culturalUnion = "";
 
-	vector<Object*> religionObj = obj->getValue("religion");
-	if (religionObj.size() > 0)
-	{
-		religion = religionObj[0]->getLeaf().c_str();
-	}
-	else
-	{
-		religion = "";
-	}
+	vector<Object*> religionObj = obj->getValue("religion");	// the object holding the religion
+	(religionObj.size() > 0) ? religion = religionObj[0]->getLeaf().c_str() : religion = "";
 
-	vector<Object*> scoreObj = obj->getValue("score");
-	if (scoreObj.size() > 0)
-	{
-		score = 100 * atof(scoreObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		score = 0.0;
-	}
+	vector<Object*> scoreObj = obj->getValue("score");	// the object holding the score
+	(scoreObj.size() > 0) ? score = 100 * atof(scoreObj[0]->getLeaf().c_str()) : score = 0.0;
 
-	vector<Object*> cultureObj = obj->getValue("cultural_tradition");
-	if (cultureObj.size() > 0)
-	{
-		culture = 100 * atof( cultureObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		culture = 0.0;
-	}
+	vector<Object*> stabilityObj = obj->getValue("stability");	// the object holding the stability
+	(stabilityObj.size() > 0) ? stability = atof( stabilityObj[0]->getLeaf().c_str() ) : stability = -3.0;
 
-	vector<Object*> armyTraditionObj = obj->getValue("army_tradition");
-	if (armyTraditionObj.size() > 0)
-	{
-		armyTradition = 100 * atof( armyTraditionObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		armyTradition = 0.0;
-	}
-
-	vector<Object*> navyTraditionObj = obj->getValue("navy_tradition");
-	if (navyTraditionObj.size() > 0)
-	{
-		navyTradition = 100 * atof( navyTraditionObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		navyTradition = 0.0;
-	}
-
-	vector<Object*> stabilityObj = obj->getValue("stability");
-	if (stabilityObj.size() > 0)
-	{
-		stability = atof( stabilityObj[0]->getLeaf().c_str() );
-	}
-	else
-	{
-		stability = -3.0;
-	}
-
-	vector<Object*> techsObj = obj->getValue("technology");
+	vector<Object*> techsObj = obj->getValue("technology");	// the object holding the technology levels
 	if (techsObj.size() > 0)
 	{
-		vector<Object*> techObj = techsObj[0]->getValue("adm_tech");
+		vector<Object*> techObj = techsObj[0]->getValue("adm_tech");	// the object holding the technology under consideration
 		admTech = atof( techObj[0]->getLeaf().c_str() );
 
 		techsObj = obj->getValue("technology");
@@ -196,18 +103,8 @@ EU4Country::EU4Country(Object* obj)
 		milTech		= 0.0;
 	}
 
-	vector<Object*> incomeObj = obj->getValue("estimated_monthly_income");
-	if (incomeObj.size() > 0)
-	{
-		estMonthlyIncome = atof(incomeObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		estMonthlyIncome = 0.0;
-	}
-
 	flags.clear();
-	vector<Object*> flagObject	= obj->getValue("flags");
+	vector<Object*> flagObject = obj->getValue("flags");	// the object holding the flags set for this country
 	if (flagObject.size() > 0)
 	{
 		vector<Object*> flagObjects = flagObject[0]->getLeaves();
@@ -216,7 +113,7 @@ EU4Country::EU4Country(Object* obj)
 			flags[flagObjects[i]->getKey()] = true;
 		}
 	}
-	flagObject	= obj->getValue("hidden_flags");
+	flagObject = obj->getValue("hidden_flags");	// the object holding the hidden flags set for this country
 	if (flagObject.size() > 0)
 	{
 		vector<Object*> flagObjects = flagObject[0]->getLeaves();
@@ -227,7 +124,7 @@ EU4Country::EU4Country(Object* obj)
 	}
 
 	modifiers.clear();
-	vector<Object*> modifierObject	= obj->getValue("modifier");
+	vector<Object*> modifierObject = obj->getValue("modifier");	// the object holding the modifiers for this country
 	for (unsigned int i = 0; i < modifierObject.size(); i++)
 	{
 		vector<Object*> nameObject = modifierObject[i]->getLeaves();
@@ -239,26 +136,26 @@ EU4Country::EU4Country(Object* obj)
 
 	possibleDaimyo = false;
 	leaders.clear();
-	vector<Object*> historyObj	= obj->getValue("history");
+	vector<Object*> historyObj = obj->getValue("history");	// the object holding the history for this country
 	if (historyObj.size() > 0)
 	{
-		vector<Object*> daimyoObj = historyObj[0]->getValue("daimyo");
+		vector<Object*> daimyoObj = historyObj[0]->getValue("daimyo");	// the object holding the daimyo information for this country
 		if (daimyoObj.size() > 0)
 		{
 			possibleDaimyo = true;
 		}
 
-		vector<Object*> historyLeaves = historyObj[0]->getLeaves();
-		date hundredYearsOld = date("1740.1.1");
+		vector<Object*> historyLeaves = historyObj[0]->getLeaves();	// the object holding the individual histories for this country
+		date hundredYearsOld = date("1740.1.1");							// one hundred years before conversion
 		for (vector<Object*>::iterator itr = historyLeaves.begin(); itr != historyLeaves.end(); ++itr)
 		{
 			// grab leaders from history, ignoring those that are more than 100 years old...
 			if (date((*itr)->getKey()) > hundredYearsOld)
 			{
-				vector<Object*> leaderObjs = (*itr)->getValue("leader");
+				vector<Object*> leaderObjs = (*itr)->getValue("leader");	// the leaders in this history
 				for (vector<Object*>::iterator litr = leaderObjs.begin(); litr != leaderObjs.end(); ++litr)
 				{
-					EU4Leader* leader = new EU4Leader(*litr);
+					EU4Leader* leader = new EU4Leader(*litr);	// a new leader
 					leaders.push_back(leader);
 				}
 			}
@@ -266,9 +163,9 @@ EU4Country::EU4Country(Object* obj)
 	}
 
 	// figure out which leaders are active, and ditch the rest
-	vector<Object*> activeLeaderObj = obj->getValue("leader");
-	vector<int> activeIds;
-	vector<EU4Leader*> activeLeaders;
+	vector<Object*> activeLeaderObj = obj->getValue("leader");	// the object holding the cactive leadersapital
+	vector<int> activeIds;													// the ids for the active leaders
+	vector<EU4Leader*> activeLeaders;									// the active leaders themselves
 	for (vector<Object*>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
 	{
 		activeIds.push_back(atoi((*itr)->getLeaf("id").c_str()));
@@ -276,38 +173,33 @@ EU4Country::EU4Country(Object* obj)
 	for (vector<EU4Leader*>::iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
 		if (find(activeIds.begin(), activeIds.end(), (*itr)->getID()) != activeIds.end())
+		{
 			activeLeaders.push_back(*itr);
+		}
 	}
 	leaders.swap(activeLeaders);
 
-	vector<Object*> governmentObj = obj->getValue("government");
-	if (governmentObj.size() > 0)
-	{
-		government = governmentObj[0]->getLeaf();
-	}
-	else
-	{
-		government = "";
-	}
+	vector<Object*> governmentObj = obj->getValue("government");	// the object holding the government
+	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
 
 	// Read international relations leaves
-	vector<Object*> relationLeaves = obj->getValue("active_relations");
-	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();
+	vector<Object*> relationLeaves = obj->getValue("active_relations");	// the object holding the active relationships
+	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();		// the objects holding the relationships themselves
 	for (unsigned int i = 0; i < relationsLeaves.size(); ++i)
 	{
-		string key = relationsLeaves[i]->getKey();
+		//string key = relationsLeaves[i]->getKey();
 		EU4Relations* rel = new EU4Relations(relationsLeaves[i]);
 		relations.push_back(rel);
 	}
 
 	armies.clear();
-	vector<Object*> armyObj = obj->getValue("army");
+	vector<Object*> armyObj = obj->getValue("army");	// the object sholding the armies
 	for (std::vector<Object*>::iterator itr = armyObj.begin(); itr != armyObj.end(); ++itr)
 	{
 		EU4Army* army = new EU4Army(*itr);
 		armies.push_back(army);
 	}
-	vector<Object*> navyObj = obj->getValue("navy");
+	vector<Object*> navyObj = obj->getValue("navy");	// the objects holding the navies
 	for (std::vector<Object*>::iterator itr = navyObj.begin(); itr != navyObj.end(); ++itr)
 	{
 		EU4Army* navy = new EU4Army(*itr);
@@ -315,7 +207,7 @@ EU4Country::EU4Country(Object* obj)
 	}
 
 	nationalIdeas.clear();
-	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");
+	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
 	if (activeIdeasObj.size() > 0)
 	{
 		vector<Object*> ideasObj = activeIdeasObj[0]->getLeaves();
@@ -330,7 +222,7 @@ EU4Country::EU4Country(Object* obj)
 	commerceInvestment	= 32.0;
 	industryInvestment	= 32.0;
 	cultureInvestment		= 32.0;
-	map<string, int>::const_iterator itr = nationalIdeas.find("aristocracy_ideas");
+	map<string, int>::const_iterator itr = nationalIdeas.find("aristocracy_ideas");	// the object for the idea under consideration
 	if (itr != nationalIdeas.end())
 	{
 		armyInvestment += itr->second;
@@ -429,73 +321,8 @@ EU4Country::EU4Country(Object* obj)
 		industryInvestment += itr->second;
 	}
 
-	vector<Object*> moneyObj = obj->getValue("treasury");
-	if (moneyObj.size() > 0)
-	{
-		treasury = atof(moneyObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		treasury = 0.0;
-	}
-
-	moneyObj = obj->getValue("last_bankrupt");
-	if (moneyObj.size() > 0)
-	{
-		last_bankrupt = date(moneyObj[0]);
-	}
-	else
-	{
-		last_bankrupt = date();
-	}
-
-	loans.clear();
-	moneyObj = obj->getValue("loan");
-	for (vector<Object*>::iterator itr = moneyObj.begin(); itr != moneyObj.end(); ++itr)
-	{
-		EU4Loan* loan = new EU4Loan(*itr);
-		loans.push_back(loan);
-	}
-
-	vector<Object*> diploObj = obj->getValue("diplomats");
-	if (diploObj.size() > 0)
-	{
-		diplomats = atoi(diploObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		diplomats = 0;
-	}
-
-	vector<Object*> badboyObj = obj->getValue("badboy");
-	if (badboyObj.size() > 0)
-	{
-		badboy = atof(badboyObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		badboy = 0.0;
-	}
-
-	vector<Object*> legitObj = obj->getValue("legitimacy");
-	if (legitObj.size() > 0)
-	{
-		legitimacy = atof(legitObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		legitimacy = 1.0;
-	}
-
-	moneyObj = obj->getValue("inflation");
-	if (moneyObj.size() > 0)
-	{
-		inflation = atof(moneyObj[0]->getLeaf().c_str());
-	}
-	else
-	{
-		inflation = 0.0;
-	}
+	vector<Object*> legitObj = obj->getValue("legitimacy");	// the object holding the legitimacy
+	(legitObj.size() > 0) ?	legitimacy = atof(legitObj[0]->getLeaf().c_str()) : legitimacy = 1.0;
 }
 
 
@@ -516,7 +343,7 @@ void EU4Country::readFromCommonCountry(const string& fileName, Object* obj)
 	if (!color)
 	{
 		// Read country color.
-		auto colorObj = obj->getValue("color");
+		const auto colorObj = obj->getValue("color");
 		if (colorObj[0])
 		{
 			color = Color(colorObj[0]);
@@ -588,59 +415,15 @@ void EU4Country::resolveRegimentTypes(const RegimentTypeMap& map)
 
 int EU4Country::getManufactoryCount() const
 {
-	int retval = 0;
+	int retval = 0;	// the number of manus
 	for (vector<EU4Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		if ((*itr)->hasBuilding("weapons"))
-			++retval;
-		if ((*itr)->hasBuilding("wharf"))
-			++retval;
-		if ((*itr)->hasBuilding("textile"))
-			++retval;
-		if ((*itr)->hasBuilding("refinery"))
-			++retval;
+		if ((*itr)->hasBuilding("weapons"))		++retval;
+		if ((*itr)->hasBuilding("wharf"))		++retval;
+		if ((*itr)->hasBuilding("textile"))		++retval;
+		if ((*itr)->hasBuilding("refinery"))	++retval;
 	}
 	return retval;
-}
-
-
-double EU4Country::inflationAdjust(double input) const
-{
-	return (input / (1.0 + (inflation / 100.0)));
-}
-
-
-double EU4Country::getBadboyLimit() const
-{
-	double badboyLimit = 30.0;
-
-	// gov effects
-	if (government == "despotic_monarchy" || government == "tribal_despotism")
-		badboyLimit += 10.0;
-
-	// modifier effects
-	if (hasModifier("the_licensing_of_the_press_act"))
-		badboyLimit -= 3.0;
-	if (hasModifier("the_witchcraft_act"))
-		badboyLimit -= 2.0;
-	if (hasModifier("the_education_act"))
-		badboyLimit -= 2.0;
-	if (hasModifier("revocation_of_restraint_of_appeals"))
-		badboyLimit -= 2.0;
-	if (hasModifier("colonial_expansions"))
-		badboyLimit -= 3.0;
-	if (hasModifier("hire_privateers"))
-		badboyLimit -= 3.0;
-	if (hasModifier("the_anti_piracy_act"))
-		badboyLimit -= 3.0;
-
-	// ruler effects (DIP, tribal MIL) not taken into account - assume the best (DIP 8/MIL 8)
-	badboyLimit += 8.0;
-
-	// legitimacy effect (-5 at 0, +5 at 100)
-	badboyLimit += 10 * (legitimacy - 0.5);
-
-	return badboyLimit;
 }
 
 
@@ -648,14 +431,18 @@ void EU4Country::eatCountry(EU4Country* target)
 {
 	// autocannibalism is forbidden
 	if (target->getTag() == tag)
+	{
 		return;
+	}
 
 	// for calculation of weighted averages
 	int totalProvinces = target->provinces.size() + provinces.size();
 	if (totalProvinces == 0)
+	{
 		totalProvinces = 1;
-	double myWeight = (double)provinces.size() / (double)totalProvinces;
-	double targetWeight = (double)target->provinces.size() / (double)totalProvinces;
+	}
+	const double myWeight = (double)provinces.size() / (double)totalProvinces;						// the amount of influence from the main country
+	const double targetWeight = (double)target->provinces.size() / (double)totalProvinces;		// the amount of influence from the target country
 
 	// acquire target's cores (always)
 	for (unsigned int j = 0; j < target->cores.size(); j++)
@@ -679,15 +466,8 @@ void EU4Country::eatCountry(EU4Country* target)
 		armies.insert(armies.end(), target->armies.begin(), target->armies.end());
 		leaders.insert(leaders.end(), target->leaders.begin(), target->leaders.end());
 
-		// acquire the target's treasury and income, as well as their liabilities
-		treasury += target->treasury;
-		estMonthlyIncome += target->estMonthlyIncome;
-		loans.insert(loans.end(), target->loans.begin(), target->loans.end());
-
 		// rebalance prestige, badboy, inflation and techs from weighted average
 		score						= myWeight * score						+ targetWeight * target->score;
-		badboy					= myWeight * badboy						+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
-		inflation				= myWeight * inflation					+ targetWeight * target->inflation;
 		admTech					= myWeight * admTech						+ targetWeight * target->admTech;
 		dipTech					= myWeight * dipTech						+ targetWeight * target->dipTech;
 		milTech					= myWeight * milTech						+ targetWeight * target->milTech;
@@ -696,7 +476,6 @@ void EU4Country::eatCountry(EU4Country* target)
 		commerceInvestment	= myWeight * commerceInvestment		+ targetWeight * target->commerceInvestment;
 		industryInvestment	= myWeight * industryInvestment		+ targetWeight * target->industryInvestment;
 		cultureInvestment		= myWeight * cultureInvestment		+ targetWeight * target->cultureInvestment;
-		estMonthlyIncome		= myWeight * estMonthlyIncome			+ targetWeight * target->estMonthlyIncome;
 	}
 
 	// coreless, landless countries will be cleaned up automatically
@@ -741,17 +520,6 @@ string EU4Country::getAdjective(const string& language) const
 	else
 	{
 		return "";
-	}
-}
-
-
-void EU4Country::checkIdea(const Object* countryObj, const string idea)
-{
-	vector<Object*> niObj;
-	niObj = countryObj->getValue(idea);
-	if ((niObj.size() > 0) && (niObj[0]->getLeaf() == "yes"))
-	{
-		nationalIdeas[idea] = true;
 	}
 }
 

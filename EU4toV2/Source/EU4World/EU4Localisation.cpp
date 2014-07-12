@@ -32,8 +32,8 @@ void EU4Localisation::ReadFromFile(const std::string& fileName)
 {
 	std::ifstream in(fileName);
 
-	const int maxLineLength = 10000;
-	char line[maxLineLength];
+	const int maxLineLength = 10000;	// the maximum line length
+	char line[maxLineLength];			// the line being processed
 
 	// First line is the language like "l_english:"
 	in.getline(line, maxLineLength);
@@ -49,9 +49,9 @@ void EU4Localisation::ReadFromFile(const std::string& fileName)
 		in.getline(line, maxLineLength);
 		if (!in.eof())
 		{
-			auto keyLocalisationPair = DetermineKeyLocalisationPair(RemoveUTF8BOM(line));
-			const std::string& key = keyLocalisationPair.first;
-			const std::string& currentLocalisation = keyLocalisationPair.second;
+			const auto keyLocalisationPair = DetermineKeyLocalisationPair(RemoveUTF8BOM(line));		// the localisation pair
+			const std::string& key = keyLocalisationPair.first;												// the key from the pair
+			const std::string& currentLocalisation = keyLocalisationPair.second;							// the localisation from the pair
 			if (!key.empty() && !currentLocalisation.empty())
 			{
 				localisations[key][language] = currentLocalisation;
@@ -64,8 +64,8 @@ void EU4Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 {
 	// Get all files in the folder.
 	std::vector<std::string> fileNames;
-	WIN32_FIND_DATA findData;
-	HANDLE findHandle = FindFirstFile((folderPath + "\\*").c_str(), &findData);
+	WIN32_FIND_DATA findData;	// the file data
+	HANDLE findHandle = FindFirstFile((folderPath + "\\*").c_str(), &findData);	// the find handle
 	if (findHandle == INVALID_HANDLE_VALUE)
 	{
 		return;
@@ -88,15 +88,15 @@ void EU4Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 
 const std::string& EU4Localisation::GetText(const std::string& key, const std::string& language) const
 {
-	static const std::string noLocalisation = "";
+	static const std::string noLocalisation = "";	// used if there's no localisation
 
-	auto keyFindIter = localisations.find(key);
+	const auto keyFindIter = localisations.find(key);	// the localisations for this key
 	if (keyFindIter == localisations.end())
 	{
 		return noLocalisation;
 	}
-	const auto& localisationsByLanguage = keyFindIter->second;
-	auto languageFindIter = localisationsByLanguage.find(language);
+	const auto& localisationsByLanguage = keyFindIter->second;	// the localisations for this language
+	const auto languageFindIter = localisationsByLanguage.find(language);	// the localisation we want
 	if (languageFindIter == localisationsByLanguage.end())
 	{
 		return noLocalisation;
@@ -107,9 +107,9 @@ const std::string& EU4Localisation::GetText(const std::string& key, const std::s
 
 const std::map<std::string, std::string>& EU4Localisation::GetTextInEachLanguage(const std::string& key) const
 {
-	static const std::map<std::string, std::string> noLocalisation;
+	static const std::map<std::string, std::string> noLocalisation;	// used if there's no localisation
 
-	auto keyFindIter = localisations.find(key);
+	const auto keyFindIter = localisations.find(key);	// the localisation we want
 	if (keyFindIter == localisations.end())
 	{
 		return noLocalisation;
@@ -120,14 +120,14 @@ const std::map<std::string, std::string>& EU4Localisation::GetTextInEachLanguage
 
 std::string EU4Localisation::DetermineLanguageForFile(const std::string& text)
 {
-	static const std::string noLanguageIndicated = "";
+	static const std::string noLanguageIndicated = "";	// used when no language is indicated
 
 	if (text.size() < 2 || text[0] != 'l' || text[1] != '_')
 	{	// Not in the desired format - no "l_"
 		return noLanguageIndicated;
 	}
 	size_t beginPos = 2;	// Skip l_ for our language name.
-	size_t endPos = text.find(':', beginPos);
+	size_t endPos = text.find(':', beginPos);	// the end of the language name
 	if (endPos == std::string::npos)
 	{	// Not in the desired format - no ":"
 		return noLanguageIndicated;
@@ -138,21 +138,21 @@ std::string EU4Localisation::DetermineLanguageForFile(const std::string& text)
 
 std::pair<std::string, std::string> EU4Localisation::DetermineKeyLocalisationPair(const std::string& text)
 {
-	static const std::pair<std::string, std::string> noLocalisationPair;
+	static const std::pair<std::string, std::string> noLocalisationPair;	// used when there's no localisation pair
 
-	size_t keyBeginPos = text.find_first_not_of(' ');
+	size_t keyBeginPos = text.find_first_not_of(' ');	// the first non-space character
 	if (keyBeginPos == std::string::npos)
 	{
 		return noLocalisationPair;
 	}
-	size_t keyEndPos = text.find_first_of(':', keyBeginPos + 1);
-	size_t quotePos = text.find_first_of('"', keyEndPos);
+	size_t keyEndPos = text.find_first_of(':', keyBeginPos + 1);	// the end of the key
+	size_t quotePos = text.find_first_of('"', keyEndPos);				// the begining of the string literal
 	if (quotePos == std::string::npos)
 	{
 		return noLocalisationPair;
 	}
-	size_t localisationBeginPos = quotePos + 1;
-	size_t localisationEndPos = text.find_first_of('"', localisationBeginPos);
+	size_t localisationBeginPos = quotePos + 1;	// where the localisation begins
+	size_t localisationEndPos = text.find_first_of('"', localisationBeginPos);	// where the localisation ends
 	return std::make_pair(text.substr(keyBeginPos, keyEndPos - keyBeginPos), text.substr(localisationBeginPos, localisationEndPos - localisationBeginPos));
 }
 
