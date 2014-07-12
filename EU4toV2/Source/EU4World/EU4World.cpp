@@ -81,14 +81,14 @@ EU4World::EU4World(EU4Localisation& localisation, Object* obj)
 					continue;
 				}
 				const auto& nameLocalisations = localisation.GetTextInEachLanguage(country->getTag());	// the names in all languages
-				for (const auto& nameLocalisation : nameLocalisations)
+				for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
 				{
 					const std::string& language = nameLocalisation.first;	// the language
 					const std::string& name = nameLocalisation.second;		// the name of the country in this language
 					country->setLocalisationName(language, name);
 				}
 				const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(country->getTag() + "_ADJ");	// the adjectives in all languages
-				for (const auto& adjectiveLocalisation : adjectiveLocalisations)
+				for (const auto& adjectiveLocalisation : adjectiveLocalisations)	// the adjective under consideration
 				{
 					const std::string& language = adjectiveLocalisation.first;		// the language
 					const std::string& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language

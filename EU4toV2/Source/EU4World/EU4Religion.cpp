@@ -25,7 +25,7 @@
 #include "../Parsers/Object.h"
 
 
-map<string, EU4Religion*> EU4Religion::all_religions;
+map<string, EU4Religion*> EU4Religion::all_religions;	// the set of all religions
 
 
 void EU4Religion::parseReligions(Object* obj)

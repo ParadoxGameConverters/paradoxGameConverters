@@ -91,7 +91,8 @@ class EU4Country
 		Color getColor() const { return color; }
 
 	private:
-		//void							checkIdea(const Object*, const string);
+		void							determineInvestments(Object* obj);
+		void							determineFlagsAndModifiers(Object* obj);
 		void							clearProvinces();
 		void							clearCores();
 

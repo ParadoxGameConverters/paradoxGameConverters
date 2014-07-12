@@ -103,36 +103,7 @@ EU4Country::EU4Country(Object* obj)
 		milTech		= 0.0;
 	}
 
-	flags.clear();
-	vector<Object*> flagObject = obj->getValue("flags");	// the object holding the flags set for this country
-	if (flagObject.size() > 0)
-	{
-		vector<Object*> flagObjects = flagObject[0]->getLeaves();
-		for (unsigned int i = 0; i < flagObjects.size(); i++)
-		{
-			flags[flagObjects[i]->getKey()] = true;
-		}
-	}
-	flagObject = obj->getValue("hidden_flags");	// the object holding the hidden flags set for this country
-	if (flagObject.size() > 0)
-	{
-		vector<Object*> flagObjects = flagObject[0]->getLeaves();
-		for (unsigned int i = 0; i < flagObjects.size(); i++)
-		{
-			flags[flagObjects[i]->getKey()] = true;
-		}
-	}
-
-	modifiers.clear();
-	vector<Object*> modifierObject = obj->getValue("modifier");	// the object holding the modifiers for this country
-	for (unsigned int i = 0; i < modifierObject.size(); i++)
-	{
-		vector<Object*> nameObject = modifierObject[i]->getLeaves();
-		if (nameObject.size() > 0)
-		{
-			modifiers[nameObject[0]->getLeaf()] = true;
-		}
-	}
+	determineFlagsAndModifiers(obj);
 
 	possibleDaimyo = false;
 	leaders.clear();
@@ -163,7 +134,7 @@ EU4Country::EU4Country(Object* obj)
 	}
 
 	// figure out which leaders are active, and ditch the rest
-	vector<Object*> activeLeaderObj = obj->getValue("leader");	// the object holding the cactive leadersapital
+	vector<Object*> activeLeaderObj = obj->getValue("leader");	// the object holding the active leaders
 	vector<int> activeIds;													// the ids for the active leaders
 	vector<EU4Leader*> activeLeaders;									// the active leaders themselves
 	for (vector<Object*>::iterator itr = activeLeaderObj.begin(); itr != activeLeaderObj.end(); ++itr)
@@ -206,22 +177,31 @@ EU4Country::EU4Country(Object* obj)
 		armies.push_back(navy);
 	}
 
+	determineInvestments(obj);
+
 	nationalIdeas.clear();
 	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
 	if (activeIdeasObj.size() > 0)
 	{
-		vector<Object*> ideasObj = activeIdeasObj[0]->getLeaves();
+		vector<Object*> ideasObj = activeIdeasObj[0]->getLeaves();		// the individual idea objects
 		for (vector<Object*>::iterator ideaItr = ideasObj.begin(); ideaItr != ideasObj.end(); ideaItr++)
 		{
 			nationalIdeas.insert(make_pair((*ideaItr)->getKey(), atoi((*ideaItr)->getLeaf().c_str())));
 		}
 	}
 
-	armyInvestment			= 32.0;
-	navyInvestment			= 32.0;
-	commerceInvestment	= 32.0;
-	industryInvestment	= 32.0;
-	cultureInvestment		= 32.0;
+	vector<Object*> legitObj = obj->getValue("legitimacy");	// the object holding the legitimacy
+	(legitObj.size() > 0) ?	legitimacy = atof(legitObj[0]->getLeaf().c_str()) : legitimacy = 1.0;
+}
+
+
+void EU4Country::determineInvestments(Object* obj)
+{
+	armyInvestment = 32.0;
+	navyInvestment = 32.0;
+	commerceInvestment = 32.0;
+	industryInvestment = 32.0;
+	cultureInvestment = 32.0;
 	map<string, int>::const_iterator itr = nationalIdeas.find("aristocracy_ideas");	// the object for the idea under consideration
 	if (itr != nationalIdeas.end())
 	{
@@ -320,9 +300,41 @@ EU4Country::EU4Country(Object* obj)
 	{
 		industryInvestment += itr->second;
 	}
+}
 
-	vector<Object*> legitObj = obj->getValue("legitimacy");	// the object holding the legitimacy
-	(legitObj.size() > 0) ?	legitimacy = atof(legitObj[0]->getLeaf().c_str()) : legitimacy = 1.0;
+
+void EU4Country::determineFlagsAndModifiers(Object* obj)
+{
+	flags.clear();
+	vector<Object*> flagObject = obj->getValue("flags");	// the object holding the flags set for this country
+	if (flagObject.size() > 0)
+	{
+		vector<Object*> flagObjects = flagObject[0]->getLeaves();	// the individual flag objects
+		for (unsigned int i = 0; i < flagObjects.size(); i++)
+		{
+			flags[flagObjects[i]->getKey()] = true;
+		}
+	}
+	flagObject = obj->getValue("hidden_flags");	// the object holding the hidden flags set for this country
+	if (flagObject.size() > 0)
+	{
+		vector<Object*> flagObjects = flagObject[0]->getLeaves();	// the individual hidden flag objects
+		for (unsigned int i = 0; i < flagObjects.size(); i++)
+		{
+			flags[flagObjects[i]->getKey()] = true;
+		}
+	}
+
+	modifiers.clear();
+	vector<Object*> modifierObject = obj->getValue("modifier");	// the object holding the modifiers for this country
+	for (unsigned int i = 0; i < modifierObject.size(); i++)
+	{
+		vector<Object*> nameObject = modifierObject[i]->getLeaves();	// the individual modifier objects
+		if (nameObject.size() > 0)
+		{
+			modifiers[nameObject[0]->getLeaf()] = true;
+		}
+	}
 }
 
 

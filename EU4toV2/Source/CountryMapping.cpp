@@ -61,7 +61,7 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 
 	// Convert rule nodes into our map data structure.
 	LOG(LogLevel::Debug) << "Building rules map";
-	map<string, vector<string>> newEU4TagToV2TagsRules;
+	map<string, vector<string>> newEU4TagToV2TagsRules;	// the mapping rules
 	for (vector<Object*>::iterator i = ruleNodes.begin(); i != ruleNodes.end(); ++i)
 	{
 		vector<Object*> rule = (*i)->getLeaves();	// an individual rule
@@ -69,7 +69,7 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 		vector<string>	V2Tags;							// the V2 tags in the rule
 		for (vector<Object*>::iterator j = rule.begin(); j != rule.end(); ++j)
 		{
-			std::string key = boost::to_upper_copy((*j)->getKey());
+			std::string key = boost::to_upper_copy((*j)->getKey());	// the key for this part of the rule
 			if (key == "EU4")
 			{
 				newEU4Tag = boost::to_upper_copy((*j)->getLeaf());

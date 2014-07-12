@@ -264,7 +264,7 @@ void uniteJapan(EU4World& world)
 		return;
 	}
 
-	map<string, EU4Country*> countries = world.getCountries();
+	map<string, EU4Country*> countries = world.getCountries();	// the countries in the world
 	for (map<string, EU4Country*>::iterator i = countries.begin(); i != countries.end(); ++i)
 	{
 		if ( i->second->getPossibleDaimyo() )

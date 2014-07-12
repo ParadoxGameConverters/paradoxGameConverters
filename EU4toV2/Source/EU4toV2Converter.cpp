@@ -632,7 +632,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Get Leader traits
 	LOG(LogLevel::Info) << "Getting leader traits";
-	const V2LeaderTraits lt;
+	const V2LeaderTraits lt;	// the V2 leader traits
 	map<int, int> leaderIDMap; // <EU4, V2>
 
 

@@ -290,7 +290,7 @@ void Object::keyCount()
 		return;
 	}
 
-	map<string, int> refCount;
+	map<string, int> refCount;	// the count of the references
 	keyCount(refCount);
 	vector<pair<string, int> > sortedCount; // an organized container for the counts
 	for (map<string, int>::iterator i = refCount.begin(); i != refCount.end(); ++i)
@@ -411,7 +411,7 @@ void setInt(string name, const int val, Object* branch)
 }
 
 
-void setFlt(string name, double val, Object* branch)
+void setFlt(string name, const double val, Object* branch)
 {
 	if ((branch) && (br != branch))
 	{

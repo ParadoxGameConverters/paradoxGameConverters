@@ -35,9 +35,9 @@ class EU4Country;
 
 
 struct EU4PopRatio {
-	string culture;
-	string religion;
-	double popRatio;
+	string culture;		// the culture
+	string religion;		// the religion
+	double popRatio;		// the percent of the total population this represents
 };
 
 
