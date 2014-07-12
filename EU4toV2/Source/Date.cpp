@@ -31,15 +31,19 @@ using namespace std;
 date::date(string _init)
 {
 	if (_init.length() < 1)
+	{
 		return;
+	}
 
 	if (_init[0] == '\"')
+	{
 		_init = _init.substr(1, _init.length() - 2);
-	int first_dot = _init.find_first_of('.');
-	int last_dot = _init.find_last_of('.');
-	year	= atoi( _init.substr(0, first_dot).c_str() );
-	month	= atoi( _init.substr(first_dot + 1, last_dot - first_dot).c_str() );
-	day		= atoi( _init.substr(last_dot + 1, 2).c_str() );
+	}
+	const int first_dot	= _init.find_first_of('.');	// the position of the first period in the date
+	const int last_dot	= _init.find_last_of('.');		// the position of the second period in the date
+	year						= atoi( _init.substr(0, first_dot).c_str() );
+	month						= atoi( _init.substr(first_dot + 1, last_dot - first_dot).c_str() );
+	day						= atoi( _init.substr(last_dot + 1, 2).c_str() );
 }
 
 date::date(const date& _init)
@@ -59,7 +63,7 @@ date& date::operator=(const date& _rhs)
 
 date::date(const Object* _init)
 {
-	vector<Object*> dateSubObj = _init->getValue("year");
+	vector<Object*> dateSubObj = _init->getValue("year");	// the date within the larger object
 	if (dateSubObj.size() > 0)
 	{
 		// date specified by year=, month=, day=
@@ -119,9 +123,9 @@ ostream& operator<<(ostream& out, const date& d)
 
 float date::diffInYears(const date& _rhs) const
 {
-	float years = float(year - _rhs.year);
+	float years = float(year - _rhs.year);	// the difference in years
 
-	int lhsDays;
+	int lhsDays;	// the number of says into the year on the left-hand side
 	switch (month)
 	{
 		case 1:
@@ -162,7 +166,7 @@ float date::diffInYears(const date& _rhs) const
 			break;
 	}
 
-	int rhsDays;
+	int rhsDays;	// the number of says into the year on the right-hand side
 	switch (month)
 	{
 		case 1:
@@ -210,13 +214,13 @@ float date::diffInYears(const date& _rhs) const
 
 bool date::isSet() const
 {
-	date default_date;
+	const date default_date;	// an instance with the default date
 	return (*this != default_date);
 }
 
 string date::toString() const
 {
-	char buf[16];
+	char buf[16];	// a buffer to temporarily hold the formatted string
 	sprintf_s(buf, 16, "%d.%d.%d", year, month, day);
 	return string(buf);
 }

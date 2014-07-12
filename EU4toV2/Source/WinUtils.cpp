@@ -45,8 +45,8 @@ bool TryCreateFolder(const std::string& path)
 
 void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNames)
 {
-	WIN32_FIND_DATA findData;
-	HANDLE findHandle = FindFirstFile((path + "\\*").c_str(), &findData);
+	WIN32_FIND_DATA findData;	// the structure to hold the file data
+	HANDLE findHandle = FindFirstFile((path + "\\*").c_str(), &findData);	// the results of the file search
 	if (findHandle == INVALID_HANDLE_VALUE)
 	{
 		return;
@@ -63,7 +63,7 @@ void GetAllFilesInFolder(const std::string& path, std::set<std::string>& fileNam
 
 bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
 {
-	BOOL success = ::CopyFile(sourcePath.c_str(), destPath.c_str(), FALSE);
+	BOOL success = ::CopyFile(sourcePath.c_str(), destPath.c_str(), FALSE);	// whether or not the copy succeeded
 	if (success)
 	{
 		return true;
@@ -77,16 +77,16 @@ bool TryCopyFile(const std::string& sourcePath, const std::string& destPath)
 
 bool DoesFileExist(const std::string& path)
 {
-	DWORD attributes = GetFileAttributes(path.c_str());
+	DWORD attributes = GetFileAttributes(path.c_str());	// the file attributes
 	return (attributes != INVALID_FILE_ATTRIBUTES && !(attributes & FILE_ATTRIBUTE_DIRECTORY));
 }
 
 std::string GetLastWindowsError()
 {
-	DWORD errorCode = ::GetLastError();
-	const DWORD errorBufferSize = 256;
-	CHAR errorBuffer[errorBufferSize];
-	BOOL success = ::FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM,
+	DWORD errorCode = ::GetLastError();	// the code for the latest error
+	const DWORD errorBufferSize = 256;	// the size of the textbuffer for the error
+	CHAR errorBuffer[errorBufferSize];	// the text buffer for the error
+	BOOL success = ::FormatMessage(FORMAT_MESSAGE_FROM_SYSTEM,		// whether or not the error could be formatted
 		NULL,
 		errorCode,
 		MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT),

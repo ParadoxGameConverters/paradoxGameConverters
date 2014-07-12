@@ -55,8 +55,8 @@ public:
 	operator bool() const;
 
 private:
-	bool initialized;
-	std::array<int, 3> c;
+	bool initialized;			// whether or not this instance has been initialized (true) or is a default (false)
+	std::array<int, 3> c;	// the color values
 };
 
 #endif

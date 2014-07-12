@@ -45,13 +45,13 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 	// Read the rule nodes from file.
 	LOG(LogLevel::Debug) << "Parsing rules from file " << fileName;
 	initParser();
-	Object* countryMappingsFile = doParseFile(fileName.c_str());
+	Object* countryMappingsFile = doParseFile(fileName.c_str());	// the parsed country mappings file
 	if (!countryMappingsFile)
 	{
 		LOG(LogLevel::Error) << "Failed to parse " << fileName;
 		return false;
 	}
-	vector<Object*> nodes = countryMappingsFile->getLeaves();
+	vector<Object*> nodes = countryMappingsFile->getLeaves();	// the country mapping rules in the file
 	if (nodes.empty())
 	{
 		LOG(LogLevel::Error) << fileName << " does not contain a mapping";
@@ -64,9 +64,9 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 	map<string, vector<string>> newEU4TagToV2TagsRules;
 	for (vector<Object*>::iterator i = ruleNodes.begin(); i != ruleNodes.end(); ++i)
 	{
-		vector<Object*> rule = (*i)->getLeaves();
-		string newEU4Tag;
-		vector<string>	V2Tags;
+		vector<Object*> rule = (*i)->getLeaves();	// an individual rule
+		string newEU4Tag;									// the EU4 tag in the rule
+		vector<string>	V2Tags;							// the V2 tags in the rule
 		for (vector<Object*>::iterator j = rule.begin(); j != rule.end(); ++j)
 		{
 			std::string key = boost::to_upper_copy((*j)->getKey());
@@ -100,8 +100,8 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 	int generatedV2TagSuffix = 0; // two digit suffix
 
 	// Get the EU4 tags for all countries we want to map.
-	std::set<std::string> EU4TagsToMap;
-	const std::map<std::string, EU4Country*> EU4Countries = srcWorld.getCountries();
+	std::set<std::string> EU4TagsToMap;		// the EU4 tags that still need mapping
+	const std::map<std::string, EU4Country*> EU4Countries = srcWorld.getCountries();	// all the EU4 countries
 	for (std::map<std::string, EU4Country*>::const_iterator i = EU4Countries.begin(); i != EU4Countries.end(); ++i)
 	{
 		EU4TagsToMap.insert(i->first);
@@ -111,10 +111,10 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 	const map<string, V2Country*> V2Countries = destWorld.getPotentialCountries();
 	for (std::set<std::string>::iterator i = EU4TagsToMap.begin(); i != EU4TagsToMap.end(); ++i)
 	{
-		const std::string& EU4Tag = *i;
-		bool mapped = false;
+		const std::string& EU4Tag = *i;	// the EU4 tag being considered
+		bool mapped = false;					// whether or not the EU4 tag has been mapped
 		// Find a V2 tag from our rule if possible.
-		std::map<std::string, std::vector<std::string>>::iterator findIter = EU4TagToV2TagsRules.find(EU4Tag);
+		std::map<std::string, std::vector<std::string>>::iterator findIter = EU4TagToV2TagsRules.find(EU4Tag);	// the rule (if any) with this EU4 tag
 		if (findIter != EU4TagToV2TagsRules.end())
 		{
 			const std::vector<std::string>& possibleV2Tags = findIter->second;
@@ -148,7 +148,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		if (!mapped)
 		{	// Either the EU4 tag had no mapping rule or no V2 tag from its mapping rule could be used. 
 			// We generate a new V2 tag for it.
-			ostringstream generatedV2TagStream;
+			ostringstream generatedV2TagStream;	// a stream fr the new tag to be constructed in
 			generatedV2TagStream << generatedV2TagPrefix << setfill('0') << setw(2) << generatedV2TagSuffix;
 			string V2Tag = generatedV2TagStream.str();
 			EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, V2Tag));
@@ -167,35 +167,35 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 const std::string& CountryMapping::GetV2Tag(const std::string& EU4Tag) const
 {
 	// The following EU4 tags always map to the V2 rebel tag.
-	const std::vector<string> EU4RebelTags = { "REB", "PIR", "NAT" };
-	static const std::string V2RebelTag = "REB";
+	const std::vector<string> EU4RebelTags = { "REB", "PIR", "NAT" };	// the EU4 tags for rebels, pirates, and natives
+	static const std::string V2RebelTag = "REB";								// the V2 tag for rebels
 	if (std::find(EU4RebelTags.begin(), EU4RebelTags.end(), EU4Tag) != EU4RebelTags.end())
 	{
 		return V2RebelTag;
 	}
 
-	boost::bimap<std::string, std::string>::left_const_iterator findIter = EU4TagToV2TagMap.left.find(EU4Tag);
+	boost::bimap<std::string, std::string>::left_const_iterator findIter = EU4TagToV2TagMap.left.find(EU4Tag);	// the mapping with this EU4 tag
 	if (findIter != EU4TagToV2TagMap.left.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		static const std::string EU4TagNotFound = "";
+		static const std::string EU4TagNotFound = "";	// an empty string for unfound tags
 		return EU4TagNotFound;
 	}
 }
 
 const std::string& CountryMapping::GetEU4Tag(const std::string& V2Tag) const
 {
-	boost::bimap<std::string, std::string>::right_const_iterator findIter = EU4TagToV2TagMap.right.find(V2Tag);
+	boost::bimap<std::string, std::string>::right_const_iterator findIter = EU4TagToV2TagMap.right.find(V2Tag);	// the mapping with this V2 tag
 	if (findIter != EU4TagToV2TagMap.right.end())
 	{
 		return findIter->second;
 	}
 	else
 	{
-		static const std::string V2TagNotFound = "";
+		static const std::string V2TagNotFound = "";	// an empty string for unfound tags
 		return V2TagNotFound;
 	}
 }

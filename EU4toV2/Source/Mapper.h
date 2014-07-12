@@ -46,16 +46,16 @@ const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, i
 
 
 typedef struct {
-	int type;
-	int to;
-	int via;
-	int unknown1;
-	int unknown2;
-	int pathX;
-	int pathY;
-	int unknown3;
-	int unknown4;
-} adjacency;
+	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	int to;				// the province this one is adjacent to (expect one pointing back to this province)
+	int via;				// the straight (if any) this crosses
+	int unknown1;		// still unknown
+	int unknown2;		// still unknown
+	int pathX;			// the midpoint on the path srawn between provinces
+	int pathY;			// the midpoint on the path srawn between provinces
+	int unknown3;		// still unknown
+	int unknown4;		// still unknown
+} adjacency;			// an entry in the adjacencies.bin format
 typedef vector< vector<adjacency> > adjacencyMapping;
 adjacencyMapping initAdjacencyMap();
 
@@ -86,9 +86,9 @@ enum distinguisherType
 };
 typedef pair<distinguisherType, string> distinguisher;
 typedef struct {
-	string srcCulture;
-	string dstCulture;
-	vector<distinguisher> distinguishers;
+	string srcCulture;							// the EU4 culture
+	string dstCulture;							// the V2 culture
+	vector<distinguisher> distinguishers;	// additional rules to match the culture
 } cultureStruct;
 typedef vector<cultureStruct> cultureMapping;
 cultureMapping initCultureMap(Object* obj);

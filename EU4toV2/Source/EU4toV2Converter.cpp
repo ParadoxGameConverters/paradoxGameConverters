@@ -46,7 +46,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 {
 	Object*	obj;					// generic object
-	ifstream	read;				// ifstream for reading files
 
 	Configuration::getInstance();
 
@@ -56,12 +55,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Get V2 install location
 	LOG(LogLevel::Info) << "Get V2 Install Path";
-	string V2Loc = Configuration::getV2Path();
-	struct _stat st;
+	string V2Loc = Configuration::getV2Path();	// the V2 install location as stated in the configuration file
+	struct _stat st;										// the file info
 	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
-		return (-2);
+		return (-1);
 	}
 	else
 	{
@@ -70,11 +69,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Get V2 Documents Directory
 	LOG(LogLevel::Debug) << "Get V2 Documents directory";
-	string V2DocLoc = Configuration::getV2DocumentsPath();
+	string V2DocLoc = Configuration::getV2DocumentsPath();	// the V2 My Documents location as stated in the configuration file
 	if (V2DocLoc.empty() || (_stat(V2DocLoc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
-		return (-2);
+		return (-1);
 	}
 	else
 	{
@@ -83,11 +82,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Get EU4 install location
 	LOG(LogLevel::Debug) << "Get EU4 Install Path";
-	string EU4Loc = Configuration::getEU4Path();
+	string EU4Loc = Configuration::getEU4Path();	// the EU4 install location as stated in the configuration file
 	if (EU4Loc.empty() || (_stat(EU4Loc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 4 path was specified in configuration.txt, or the path was invalid";
-		return (-2);
+		return (-1);
 	}
 	else
 	{
@@ -97,11 +96,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Get EU4 Mod directory
 	map<string, string> possibleMods; // name, path
 	LOG(LogLevel::Debug) << "Get EU4 Mod Directory";
-	string EU4DocumentsLoc = Configuration::getEU4DocumentsPath();
+	string EU4DocumentsLoc = Configuration::getEU4DocumentsPath();	// the EU4 My Documents location as stated in the configuration file
 	if (EU4DocumentsLoc.empty() || (_stat(EU4DocumentsLoc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 4 documents directory was specified in configuration.txt, or the path was invalid";
-		return (-2);
+		return (-1);
 	}
 	else
 	{
@@ -110,21 +109,21 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		WinUtils::GetAllFilesInFolder(EU4DocumentsLoc + "/mod", fileNames);
 		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 		{
-			int pos = itr->find_last_of('.');
+			const int pos = itr->find_last_of('.');	// the position of the last period in the filename
 			if (itr->substr(pos, itr->length()) == ".mod")
 			{
-				Object* modObj = doParseFile((EU4DocumentsLoc + "\\mod\\" + *itr).c_str());
-				string name = modObj->getLeaf("name");
+				Object* modObj = doParseFile((EU4DocumentsLoc + "\\mod\\" + *itr).c_str());	// the parsed mod file
+				string name = modObj->getLeaf("name");														// the name of the mod
 
-				string path;
-				vector<Object*> dirObjs = modObj->getValue("user_dir");
+				string path;	// the path of the mod
+				vector<Object*> dirObjs = modObj->getValue("user_dir");	// the possible paths of the mod
 				if (dirObjs.size() > 0)
 				{
 					path = dirObjs[0]->getLeaf();
 				}
 				else
 				{
-					vector<Object*> dirObjs = modObj->getValue("archive");
+					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths of the mod (if its zipped)
 					if (dirObjs.size() > 0)
 					{
 						path = dirObjs[0]->getLeaf();
@@ -141,7 +140,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Get CK2 Export directory
 	LOG(LogLevel::Debug) << "Get CK2 Export Directory";
-	string CK2ExportLoc = Configuration::getCK2ExportPath();
+	string CK2ExportLoc = Configuration::getCK2ExportPath();		// the CK2 converted mods location as stated in the configuration file
 	if (CK2ExportLoc.empty() || (_stat(CK2ExportLoc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Warning) << "No Crusader Kings 2 mod directory was specified in configuration.txt, or the path was invalid - this will cause problems with CK2 converted saves";
@@ -153,21 +152,21 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		WinUtils::GetAllFilesInFolder(CK2ExportLoc, fileNames);
 		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 		{
-			int pos = itr->find_last_of('.');
+			const int pos = itr->find_last_of('.');	// the last period in the filename
 			if (itr->substr(pos, itr->length()) == ".mod")
 			{
-				Object* modObj = doParseFile((CK2ExportLoc + "\\" + *itr).c_str());
-				string name = modObj->getLeaf("name");
+				Object* modObj = doParseFile((CK2ExportLoc + "\\" + *itr).c_str());	// the parsed mod file
+				string name = modObj->getLeaf("name");											// the name ofthe mod
 
-				string path;
-				vector<Object*> dirObjs = modObj->getValue("user_dir");
+				string path;	// the path of the mod
+				vector<Object*> dirObjs = modObj->getValue("user_dir");	// the possible paths for the mod
 				if (dirObjs.size() > 0)
 				{
 					path = dirObjs[0]->getLeaf();
 				}
 				else
 				{
-					vector<Object*> dirObjs = modObj->getValue("archive");
+					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths for the mod (if it's zipped)
 					if (dirObjs.size() > 0)
 					{
 						path = dirObjs[0]->getLeaf();
@@ -183,16 +182,16 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 
 	//get output name
-	int slash = EU4SaveFileName.find_last_of("\\");
-	int length = EU4SaveFileName.find_first_of(".") - slash - 1;
-	string outputName = EU4SaveFileName.substr(slash + 1, length);
+	const int slash = EU4SaveFileName.find_last_of("\\");						// the last slash in the save's filename
+	const int length = EU4SaveFileName.find_first_of(".") - slash - 1;	// the first period after the slash
+	string outputName = EU4SaveFileName.substr(slash + 1, length);			// the name to use to output the mod
 	int dash = outputName.find_first_of('-');
 	while (dash != string::npos)
 	{
 		outputName.replace(dash, 1, "_");
 		dash = outputName.find_first_of('-');
 	}
-	int space = outputName.find_first_of(' ');
+	int space = outputName.find_first_of(' ');	// the first space in the output name
 	while (space != string::npos)
 	{
 		outputName.replace(space, 1, "_");
@@ -214,15 +213,15 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Get EU4 Mod
 	LOG(LogLevel::Debug) << "Get EU4 Mod";
-	vector<string> fullModPaths;
-	vector<Object*> modObj = obj->getValue("mod_enabled");
+	vector<string> fullModPaths;	// the full pathnames for used mods
+	vector<Object*> modObj = obj->getValue("mod_enabled");	// the used mods
 	if (modObj.size() > 0)
 	{
-		string modName = modObj[0]->getLeaf();
+		string modName = modObj[0]->getLeaf();	// the name of the mod
 		while (modName != "")
 		{
-			string newMod;
-			int space = modName.find("\" \"");
+			string newMod;	// the corrected name of the mod
+			const int space = modName.find("\" \"");	// the locations of any spaces in the mod name
 			if (space == std::string::npos)
 			{
 				newMod = modName.substr(1, modName.size() - 2);
@@ -237,7 +236,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			map<string, string>::iterator modItr = possibleMods.find(newMod);
 			if (modItr != possibleMods.end())
 			{
-				string newModPath = modItr->second;
+				string newModPath = modItr->second;	// the path for this mod
 				if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
 				{
 					LOG(LogLevel::Error) << modName << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
@@ -272,7 +271,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Read EU4 common\countries
 	LOG(LogLevel::Info) << "Reading EU4 common\\countries";
 	{
-		ifstream commonCountries(Configuration::getEU4Path() + "\\common\\country_tags\\00_countries.txt");
+		ifstream commonCountries(Configuration::getEU4Path() + "\\common\\country_tags\\00_countries.txt");	// the data in the countries file
 		sourceWorld.readCommonCountries(commonCountries, Configuration::getEU4Path());
 		for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
 		{
@@ -633,7 +632,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	//// Get Leader traits
 	LOG(LogLevel::Info) << "Getting leader traits";
-	V2LeaderTraits lt;
+	const V2LeaderTraits lt;
 	map<int, int> leaderIDMap; // <EU4, V2>
 
 
@@ -688,7 +687,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 }
 
 
-int main(int argc, char * argv[])
+int main(const int argc, const char * argv[])
 {
 	try
 	{

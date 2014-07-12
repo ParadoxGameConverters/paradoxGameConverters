@@ -32,7 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 Log::Log(LogLevel level)
 : logLevel(level)
 {
-	static bool logFileCreated = false;
+	static bool logFileCreated = false;	// whether or not the log file has been created this run of the converter
 	if (!logFileCreated)
 	{
 		std::ofstream logFile("log.txt", std::ofstream::trunc);
@@ -55,14 +55,14 @@ void Log::WriteToConsole(LogLevel level, const std::string& logMessage)
 		return;
 	}
 
-	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);
+	HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE);	// a handle to the console window
 	if (console != INVALID_HANDLE_VALUE)
 	{
-		CONSOLE_SCREEN_BUFFER_INFO oldConsoleInfo;
-		BOOL success = GetConsoleScreenBufferInfo(console, &oldConsoleInfo);
+		CONSOLE_SCREEN_BUFFER_INFO oldConsoleInfo;	// the current (soon to be outdated) console data
+		BOOL success = GetConsoleScreenBufferInfo(console, &oldConsoleInfo);	// whether or not the console data could be retrieved
 		if (success)
 		{
-			WORD color;
+			WORD color;	// the color the text will be
 			switch (level)
 			{
 				case LogLevel::Error:
@@ -99,14 +99,14 @@ void Log::WriteToFile(LogLevel level, const std::string& logMessage)
 {
 	std::ofstream logFile("log.txt", std::ofstream::app);
 
-	time_t rawtime;
+	time_t rawtime;	// the raw time data
 	time(&rawtime);
-	tm timeInfo;
-	errno_t error = localtime_s(&timeInfo, &rawtime);
+	tm timeInfo;		// the processed time data
+	errno_t error = localtime_s(&timeInfo, &rawtime);	// wheter or not there was an error
 	if (error == 0)
 	{
-		char timeBuffer[64];
-		size_t bytesWritten = strftime(timeBuffer, 64, "%Y-%m-%d %H:%M:%S ", &timeInfo);
+		char timeBuffer[64];	// the formatted time
+		size_t bytesWritten = strftime(timeBuffer, 64, "%Y-%m-%d %H:%M:%S ", &timeInfo);	// the number of digits for the time stamp
 		if (bytesWritten != 0)
 		{
 			logFile << timeBuffer;

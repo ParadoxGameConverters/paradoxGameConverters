@@ -54,9 +54,9 @@ struct date
 	bool isSet() const;
 	string toString() const;
 
-	int year;
-	int month;
-	int day;
+	int year;		// the year
+	int month;		// the month
+	int day;			// the day
 };
 
 #endif // _DATE_H

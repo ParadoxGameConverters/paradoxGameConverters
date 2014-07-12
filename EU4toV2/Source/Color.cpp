@@ -34,14 +34,14 @@ Color::Color()
 : initialized(false), c({ 0, 0, 0 })
 {}
 
-Color::Color(int r, int g, int b)
+Color::Color(const int r, const int g, const int b)
 : initialized(true), c({ r, g, b })
 {}
 
 Color::Color(Object* colorObject)
 : initialized(false), c({ 0, 0, 0 })
 {
-	auto colorTokens = colorObject->getTokens();
+	auto colorTokens = colorObject->getTokens();	// the colors held by the object
 	initialized = (colorTokens.size() >= 3);
 	for (size_t i = 0; i < 3; ++i)
 	{
@@ -52,14 +52,14 @@ Color::Color(Object* colorObject)
 	}
 }
 
-void Color::RandomlyFlunctuate(int stdDev)
+void Color::RandomlyFlunctuate(const int stdDev)
 {
 	// All three color components will go up or down by the some amount (according to stdDev), 
 	// and then each is tweaked a bit more (with a much smaller standard deviation).
 	static std::mt19937 generator(static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count()));
-	double allChange = std::normal_distribution<double>(0.0, stdDev)(generator);
+	const double allChange = std::normal_distribution<double>(0.0, stdDev)(generator);	// the amount the colors all change by
 	std::normal_distribution<double> distribution(0.0, stdDev / 4.0);
-	for (auto& component : c)
+	for (auto& component : c)	// the component under consideration
 	{
 		component += static_cast<int>(allChange + distribution(generator) + 0.5);
 		if (component < 0)

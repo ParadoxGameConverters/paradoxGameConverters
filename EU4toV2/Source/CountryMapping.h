@@ -63,8 +63,8 @@ private:
 	// Writes the given mapping to the log.
 	static void LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason);
 
-	std::map<std::string, std::vector<std::string>> EU4TagToV2TagsRules;
-	boost::bimap<std::string, std::string> EU4TagToV2TagMap;
+	std::map<std::string, std::vector<std::string>> EU4TagToV2TagsRules;		// the possible mappings between EU4 and V2 tags
+	boost::bimap<std::string, std::string> EU4TagToV2TagMap;						// the current mappping between EU4 and V2 tage
 };
 
 #endif

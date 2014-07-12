@@ -31,10 +31,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 enum class LogLevel
 {
-	Error,
-	Warning,
-	Info,
-	Debug
+	Error,		// to display errors. Bold and Red
+	Warning,		// to display warnings. Bold and Yellow.
+	Info,			// to display useful information. Bold and White.
+	Debug			// to display debug data. White.
 };
 
 class Log
@@ -54,8 +54,8 @@ private:
 	static void WriteToConsole(LogLevel, const std::string& logMessage);
 	static void WriteToFile(LogLevel, const std::string& logMessage);
 
-	LogLevel logLevel;
-	std::ostringstream logMessageStream;
+	LogLevel logLevel;							// the current log level
+	std::ostringstream logMessageStream;	// the output stream to the log file
 };
 
 #endif // LOG_H_

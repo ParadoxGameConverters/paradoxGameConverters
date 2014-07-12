@@ -66,11 +66,6 @@ public:
 		return getInstance()->V2Gametype;
 	}
 
-	static bool getCK2Converted()
-	{
-		return getInstance()->CK2Converted;
-	}
-
 	static date	getFirstEU4Date()
 	{
 		return getInstance()->firstEU4Date;
@@ -117,20 +112,19 @@ private:
 	static Configuration* instance;
 
 	// options from configuration.txt
-	string	EU4Path;
-	string	EU4DocumentsPath;
-	string	CK2ExportPath;
-	string	V2Path;
-	string	V2DocumentsPath;
-	string	V2Gametype;
-	bool		CK2Converted;
-	string	resetProvinces;
-	double	MaxLiteracy;
-	string	Removetype;
+	string	EU4Path;					// the install directory for EU4
+	string	EU4DocumentsPath;		// EU4's directory under My Documents
+	string	CK2ExportPath;			// where CK2 exported game mods get put
+	string	V2Path;					// the install directory for V2
+	string	V2DocumentsPath;		// V2's directory under My Documents
+	string	V2Gametype;				// whether V2 is vanilla, AHD, or HoD
+	string	resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
+	double	MaxLiteracy;			// the maximum literacy allowed
+	string	Removetype;				// the ruleto use for removing excess EU4 nations
 	
 	// items set during conversion
-	date		firstEU4Date;
-	string	outputName;
+	date		firstEU4Date;			// the date EU4 began
+	string	outputName;				// the name the outputted mod should have
 };
 
 #endif // CONFIGURATION_H_
