@@ -42,7 +42,7 @@ muslim = {
 	}
 
 	ibadi = {
-		icon = 6
+		icon = 27
 		color = { 0 0.4 0 }
 	}
 }
