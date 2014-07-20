@@ -57,6 +57,7 @@ G_Morgan		- Data Files
 rageair			- Data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
+Magc8Ball		- Graphics
 
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -
