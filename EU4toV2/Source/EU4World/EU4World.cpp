@@ -35,7 +35,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4Version.h"
 #include "EU4Localisation.h"
 
-EU4World::EU4World(EU4Localisation& localisation, Object* obj)
+EU4World::EU4World(Object* obj)
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
@@ -80,21 +80,6 @@ EU4World::EU4World(EU4Localisation& localisation, Object* obj)
 					delete country;
 					continue;
 				}
-				const auto& nameLocalisations = localisation.GetTextInEachLanguage(country->getTag());	// the names in all languages
-				for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
-				{
-					const std::string& language = nameLocalisation.first;	// the language
-					const std::string& name = nameLocalisation.second;		// the name of the country in this language
-					country->setLocalisationName(language, name);
-				}
-				const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(country->getTag() + "_ADJ");	// the adjectives in all languages
-				for (const auto& adjectiveLocalisation : adjectiveLocalisations)	// the adjective under consideration
-				{
-					const std::string& language = adjectiveLocalisation.first;		// the language
-					const std::string& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
-					country->setLocalisationAdjective(language, adjective);
-				}
-				countries.insert(make_pair(country->getTag(), country));
 			}
 		}
 	}
@@ -212,6 +197,28 @@ void EU4World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 		if (j == inverseProvinceMap.end())
 		{
 			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
+		}
+	}
+}
+
+
+void EU4World::setLocalisations(EU4Localisation& localisation)
+{
+	for (map<string, EU4Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag());	// the names in all languages
+		for (const auto& nameLocalisation : nameLocalisations)	// the name under consideration
+		{
+			const std::string& language = nameLocalisation.first;	// the language
+			const std::string& name = nameLocalisation.second;		// the name of the country in this language
+			countryItr->second->setLocalisationName(language, name);
+		}
+		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr->second->getTag() + "_ADJ");	// the adjectives in all languages
+		for (const auto& adjectiveLocalisation : adjectiveLocalisations)	// the adjective under consideration
+		{
+			const std::string& language = adjectiveLocalisation.first;		// the language
+			const std::string& adjective = adjectiveLocalisation.second;	// the adjective for the country in this language
+			countryItr->second->setLocalisationAdjective(language, adjective);
 		}
 	}
 }

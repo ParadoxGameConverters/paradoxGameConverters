@@ -266,7 +266,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Construct world from EU4 save.
 	LOG(LogLevel::Info) << "Building world";
-	EU4World sourceWorld(localisation, obj);
+	EU4World sourceWorld(obj);
 
 	// Read EU4 common\countries
 	LOG(LogLevel::Info) << "Reading EU4 common\\countries";
@@ -289,6 +289,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			}
 		}
 	}
+
+	sourceWorld.setLocalisations(localisation);
 
 	// Resolve unit types
 	/*log("Resolving unit types.\n");

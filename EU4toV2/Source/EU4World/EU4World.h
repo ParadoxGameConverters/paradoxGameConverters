@@ -39,7 +39,7 @@ typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, des
 
 class EU4World {
 	public:
-		EU4World(EU4Localisation&, Object* obj);
+		EU4World(Object* obj);
 
 		void readCommonCountries(istream&, const std::string& rootPath);
 
@@ -48,6 +48,7 @@ class EU4World {
 		void								removeCountry(string tag);
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
+		void								setLocalisations(EU4Localisation& localisation);
 
 		EU4Version*						getVersion()	const { return version; };
 		map<string, EU4Country*>	getCountries()	const { return countries; };
