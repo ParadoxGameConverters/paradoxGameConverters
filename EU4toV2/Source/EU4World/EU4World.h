@@ -39,7 +39,7 @@ typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, des
 
 class EU4World {
 	public:
-		EU4World(Object* obj);
+		EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
 
 		void readCommonCountries(istream&, const std::string& rootPath);
 

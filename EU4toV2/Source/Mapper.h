@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <map>
 #include <vector>
 #include <unordered_set>
+#include <set>
 class EU4World;
 class V2World;
 
@@ -113,6 +114,8 @@ governmentMapping initGovernmentMap(Object* obj);
 typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 
+// idea effects
+void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
 
 
 #endif // MAPPER_H

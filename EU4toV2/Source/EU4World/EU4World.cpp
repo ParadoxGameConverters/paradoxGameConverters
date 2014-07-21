@@ -35,7 +35,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4Version.h"
 #include "EU4Localisation.h"
 
-EU4World::EU4World(Object* obj)
+
+
+EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
@@ -73,13 +75,14 @@ EU4World::EU4World(Object* obj)
 			}
 			else
 			{
-				EU4Country* country = new EU4Country(countriesLeaves[j]);	// the country in our format
+				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);	// the country in our format
 				if (country->isUnusedCountry())
 				{
 					LOG(LogLevel::Debug) << "Discarding unused EU4 tag " << country->getTag();
 					delete country;
 					continue;
 				}
+				countries.insert(make_pair(country->getTag(), country));
 			}
 		}
 	}

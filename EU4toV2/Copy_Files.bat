@@ -13,6 +13,7 @@ copy "Data_Files\blocked_tech_schools.txt" "release\blocked_tech_schools.txt
 copy "Data_Files\leader_traits.txt" "release\leader_traits.txt
 copy "Data_Files\regiment_costs.txt" "release\regiment_costs.txt
 copy "Data_Files\license.txt" "release\license.txt"
+copy "Data_Files\idea_effects.txt" "release\idea_effects.txt"
 
 rem hg log > Release/log.txt
 hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt

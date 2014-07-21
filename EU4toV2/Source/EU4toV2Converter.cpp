@@ -264,9 +264,30 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		localisation.ReadFromAllFilesInFolder(*itr + "\\localisation");
 	}
 
+	// Read Idea Effects
+	LOG(LogLevel::Info) << "Getting idea effects";
+	Object* ideaObj = doParseFile("idea_effects.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file idea_effects.txt";
+		exit(-1);
+	}
+	map<string, int>					armyInvIdeas;
+	map<string, int>					commerceInvIdeas;
+	map<string, int>					cultureInvIdeas;
+	map<string, int>					industryInvIdeas;
+	map<string, int>					navyInvIdeas;
+	map<string, double>				UHLiberalIdeas;
+	map<string, double>				UHReactionaryIdeas;
+	vector< pair<string, int> >	literacyIdeas;
+	map<string, int>					orderIdeas;
+	map<string, int>					libertyIdeas;
+	map<string, int>					equalityIdeas;
+	initIdeaEffects(ideaObj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+
 	// Construct world from EU4 save.
 	LOG(LogLevel::Info) << "Building world";
-	EU4World sourceWorld(obj);
+	EU4World sourceWorld(obj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);
 
 	// Read EU4 common\countries
 	LOG(LogLevel::Info) << "Reading EU4 common\\countries";
@@ -640,7 +661,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Converting provinces";

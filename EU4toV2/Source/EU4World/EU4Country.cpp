@@ -28,7 +28,7 @@ THE SOFTWARE. */
 #include <algorithm>
 
 
-EU4Country::EU4Country(Object* obj)
+EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
 {
 	tag = obj->getKey();
 
@@ -177,7 +177,7 @@ EU4Country::EU4Country(Object* obj)
 		armies.push_back(navy);
 	}
 
-	determineInvestments(obj);
+	determineInvestments(obj, armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);
 
 	nationalIdeas.clear();
 	vector<Object*> activeIdeasObj = obj->getValue("active_idea_groups");	// the objects holding the national ideas
@@ -195,110 +195,53 @@ EU4Country::EU4Country(Object* obj)
 }
 
 
-void EU4Country::determineInvestments(Object* obj)
+void EU4Country::determineInvestments(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
 {
 	armyInvestment = 32.0;
 	navyInvestment = 32.0;
 	commerceInvestment = 32.0;
 	industryInvestment = 32.0;
 	cultureInvestment = 32.0;
-	map<string, int>::const_iterator itr = nationalIdeas.find("aristocracy_ideas");	// the object for the idea under consideration
-	if (itr != nationalIdeas.end())
+
+	for (map<string, int>::iterator armyInvItr = armyInvIdeas.begin(); armyInvItr != armyInvIdeas.end(); armyInvItr++)
 	{
-		armyInvestment += itr->second;
-		commerceInvestment -= itr->second;
+		map<string, int>::const_iterator itr = nationalIdeas.find(armyInvItr->first);	// the object for the idea under consideration
+		if (itr != nationalIdeas.end())
+		{
+			armyInvestment += itr->second * armyInvItr->second;
+		}
 	}
-	itr = nationalIdeas.find("plutocracy_ideas");
-	if (itr != nationalIdeas.end())
+	for (map<string, int>::iterator commerceInvItr = commerceInvIdeas.begin(); commerceInvItr != commerceInvIdeas.end(); commerceInvItr++)
 	{
-		commerceInvestment += itr->second;
-		cultureInvestment += itr->second;
-		armyInvestment -= itr->second;
+		map<string, int>::const_iterator itr = nationalIdeas.find(commerceInvItr->first);	// the object for the idea under consideration
+		if (itr != nationalIdeas.end())
+		{
+			commerceInvestment += itr->second * commerceInvItr->second;
+		}
 	}
-	itr = nationalIdeas.find("innovativeness_ideas");
-	if (itr != nationalIdeas.end())
+	for (map<string, int>::iterator cultureInvItr = cultureInvIdeas.begin(); cultureInvItr != cultureInvIdeas.end(); cultureInvItr++)
 	{
-		cultureInvestment += itr->second;
-		commerceInvestment += itr->second;
+		map<string, int>::const_iterator itr = nationalIdeas.find(cultureInvItr->first);	// the object for the idea under consideration
+		if (itr != nationalIdeas.end())
+		{
+			cultureInvestment += itr->second * cultureInvItr->second;
+		}
 	}
-	itr = nationalIdeas.find("religious_ideas");
-	if (itr != nationalIdeas.end())
+	for (map<string, int>::iterator industryInvItr = industryInvIdeas.begin(); industryInvItr != industryInvIdeas.end(); industryInvItr++)
 	{
-		cultureInvestment -= itr->second;
-		commerceInvestment -= itr->second;
+		map<string, int>::const_iterator itr = nationalIdeas.find(industryInvItr->first);	// the object for the idea under consideration
+		if (itr != nationalIdeas.end())
+		{
+			industryInvestment += itr->second * industryInvItr->second;
+		}
 	}
-	itr = nationalIdeas.find("spy_ideas");
-	if (itr != nationalIdeas.end())
+	for (map<string, int>::iterator navyInvItr = navyInvIdeas.begin(); navyInvItr != navyInvIdeas.end(); navyInvItr++)
 	{
-		cultureInvestment += itr->second;
-		commerceInvestment += itr->second;
-	}
-	itr = nationalIdeas.find("diplomatic_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		armyInvestment -= itr->second;
-	}
-	itr = nationalIdeas.find("offensive_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		armyInvestment += itr->second;
-	}
-	itr = nationalIdeas.find("offensive_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		armyInvestment += itr->second;
-	}
-	itr = nationalIdeas.find("defensive_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		armyInvestment += itr->second;
-		navyInvestment -= itr->second;
-	}
-	itr = nationalIdeas.find("trade_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		navyInvestment += itr->second;
-		commerceInvestment += itr->second;
-		industryInvestment += itr->second;
-	}
-	itr = nationalIdeas.find("economic_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		commerceInvestment += itr->second;
-		industryInvestment += itr->second;
-	}
-	itr = nationalIdeas.find("exploration_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		navyInvestment += itr->second;
-		industryInvestment -= itr->second;
-	}
-	itr = nationalIdeas.find("naval_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		navyInvestment += itr->second;
-	}
-	itr = nationalIdeas.find("quality_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		armyInvestment += itr->second;
-	}
-	itr = nationalIdeas.find("quantity_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		armyInvestment += itr->second;
-		navyInvestment -= itr->second;
-		cultureInvestment -= itr->second;
-	}
-	itr = nationalIdeas.find("expansion_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		industryInvestment -= itr->second;
-	}
-	itr = nationalIdeas.find("administrative_ideas");
-	if (itr != nationalIdeas.end())
-	{
-		industryInvestment += itr->second;
+		map<string, int>::const_iterator itr = nationalIdeas.find(navyInvItr->first);	// the object for the idea under consideration
+		if (itr != nationalIdeas.end())
+		{
+			navyInvestment += itr->second * navyInvItr->second;
+		}
 	}
 }
 

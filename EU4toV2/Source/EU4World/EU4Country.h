@@ -37,7 +37,7 @@ class EU4Leader;
 class EU4Country
 {
 	public:
-		EU4Country(Object* obj);
+		EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
 
 		// Some countries are created by EU4 as placeholders to be filled as the game 
 		// progresses (colonial nations in particular). This method returns true if
@@ -91,7 +91,7 @@ class EU4Country
 		Color getColor() const { return color; }
 
 	private:
-		void							determineInvestments(Object* obj);
+		void							determineInvestments(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
 		void							determineFlagsAndModifiers(Object* obj);
 		void							clearProvinces();
 		void							clearCores();

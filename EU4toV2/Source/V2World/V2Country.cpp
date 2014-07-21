@@ -292,7 +292,7 @@ void V2Country::outputElection(FILE* output) const
 }
 
 
-void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
+void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 {
 	srcCountry = _srcCountry;
 
@@ -468,17 +468,19 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	}
 
 	//  Politics
-	double liberalEffect			=  (srcCountry->hasNationalIdea("innovativeness_ideas") + 1) * 0.0125;
-	liberalEffect					+= (srcCountry->hasNationalIdea("plutocracy_ideas") + 1) * 0.0125;
-	liberalEffect					+= (srcCountry->hasNationalIdea("trade_ideas") + 1) * 0.0125;
-	liberalEffect					+= (srcCountry->hasNationalIdea("economic_ideas") + 1) * 0.0125;
-	double reactionaryEffect	=  (srcCountry->hasNationalIdea("aristocracy_ideas") + 1) * 0.0125;
-	reactionaryEffect				+= (srcCountry->hasNationalIdea("defensive_ideas") + 1) * 0.0125;
-	reactionaryEffect				+= (srcCountry->hasNationalIdea("quantity_ideas") + 1) * 0.0125;
-	reactionaryEffect				+= (srcCountry->hasNationalIdea("expansion_ideas") + 1) * 0.0125;
+	double liberalEffect = 0.0;
+	for (map<string, double>::const_iterator UHLiberalItr = UHLiberalIdeas.begin(); UHLiberalItr != UHLiberalIdeas.end(); UHLiberalItr++)
+	{
+		liberalEffect += (srcCountry->hasNationalIdea(UHLiberalItr->first) + 1) * UHLiberalItr->second;
+	}
+	double reactionaryEffect = 0.0;
+	for (map<string, double>::const_iterator UHReactionaryItr = UHReactionaryIdeas.begin(); UHReactionaryItr != UHReactionaryIdeas.end(); UHReactionaryItr++)
+	{
+		reactionaryEffect += (srcCountry->hasNationalIdea(UHReactionaryItr->first) + 1) * UHReactionaryItr->second;
+	}
 	upperHouseReactionary		=  static_cast<int>(5  + (100 * reactionaryEffect));
 	upperHouseLiberal				=  static_cast<int>(10 + (100 * liberalEffect));
-	upperHouseConservative		=  static_cast<int>(85 - (100 * (reactionaryEffect + liberalEffect)));
+	upperHouseConservative		= 100 - (upperHouseReactionary + upperHouseLiberal);
 	LOG(LogLevel::Debug) << tag << " has an Upper House of " << upperHouseReactionary << " reactionary, "
 																				<< upperHouseConservative << " conservative, and "
 																				<< upperHouseLiberal << " liberal";
@@ -568,33 +570,12 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 
 	// Literacy
 	literacy = 0.1;
-	if (srcCountry->hasNationalIdea("innovativeness_ideas") >= 3)
+	for (vector< pair<string, int> >::const_iterator literacyItr = literacyIdeas.begin(); literacyItr != literacyIdeas.end(); literacyItr++)
 	{
-		literacy += 0.1;
-	}
-	if (srcCountry->hasNationalIdea("innovativeness_ideas") >= 4)
-	{
-		literacy += 0.1;
-	}
-	if (srcCountry->hasNationalIdea("religious_ideas") >= 2)
-	{
-		literacy += 0.1;
-	}
-	if (srcCountry->hasNationalIdea("economic_ideas") >= 1)
-	{
-		literacy += 0.1;
-	}
-	if (srcCountry->hasNationalIdea("economic_ideas") >= 2)
-	{
-		literacy += 0.1;
-	}
-	if (srcCountry->hasNationalIdea("economic_ideas") >= 5)
-	{
-		literacy += 0.1;
-	}
-	if (srcCountry->hasNationalIdea("administrative_ideas") >= 6)
-	{
-		literacy += 0.1;
+		if (srcCountry->hasNationalIdea(literacyItr->first) >= literacyItr->second)
+		{
+			literacy += 0.1;
+		}
 	}
 	if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
 	{
@@ -1039,99 +1020,39 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 }
 
 
-void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore)
+void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
 {
-	int ideaScore;
-
 	orderScore = 0;
-	ideaScore = srcCountry->hasNationalIdea("religious_ideas");
-	orderScore += (ideaScore + 1);
-	if (ideaScore == 7)
+	for (map<string, int>::const_iterator orderIdeaItr = orderIdeas.begin(); orderIdeaItr != orderIdeas.end(); orderIdeaItr++)
 	{
-		orderScore += 1;
+		int ideaScore = srcCountry->hasNationalIdea(orderIdeaItr->first);
+		orderScore += (ideaScore + 1) * orderIdeaItr->second;
+		if (ideaScore == 7)
+		{
+			orderScore += orderIdeaItr->second;
+		}
 	}
-	ideaScore = srcCountry->hasNationalIdea("innovativeness_ideas");
-	orderScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		orderScore -= 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("quantity_ideas");
-	orderScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		orderScore -= 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("quality_ideas");
-	orderScore += (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		orderScore += 1;
-	}
-	
-
+		
 	libertyScore = 0;
-	ideaScore = srcCountry->hasNationalIdea("exploration_ideas");
-	libertyScore += (ideaScore + 1);
-	if (ideaScore == 7)
+	for (map<string, int>::const_iterator libertyIdeaItr = libertyIdeas.begin(); libertyIdeaItr != libertyIdeas.end(); libertyIdeaItr++)
 	{
-		libertyScore += 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("administrative_ideas");
-	libertyScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		libertyScore -= 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("plutocracy_ideas");
-	libertyScore += (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		libertyScore += 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("aristocracy_ideas");
-	libertyScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		libertyScore -= 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("spy_ideas");
-	libertyScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		libertyScore -= 1;
+		int ideaScore = srcCountry->hasNationalIdea(libertyIdeaItr->first);
+		libertyScore += (ideaScore + 1) * libertyIdeaItr->second;
+		if (ideaScore == 7)
+		{
+			libertyScore += libertyIdeaItr->second;
+		}
 	}
 
 	equalityScore = 0;
-	ideaScore = srcCountry->hasNationalIdea("innovativeness_ideas");
-	equalityScore += (ideaScore + 1);
-	if (ideaScore == 7)
+	for (map<string, int>::const_iterator equalityIdeaItr = equalityIdeas.begin(); equalityIdeaItr != equalityIdeas.end(); equalityIdeaItr++)
 	{
-		equalityScore += 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("religious_ideas");
-	orderScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		orderScore -= 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("plutocracy_ideas");
-	equalityScore += (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		equalityScore += 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("aristocracy_ideas");
-	equalityScore -= (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		equalityScore -= 1;
-	}
-	ideaScore = srcCountry->hasNationalIdea("quantity_ideas");
-	equalityScore += (ideaScore + 1);
-	if (ideaScore == 7)
-	{
-		equalityScore += 1;
+		int ideaScore = srcCountry->hasNationalIdea(equalityIdeaItr->first);
+		equalityScore += (ideaScore + 1) * equalityIdeaItr->second;
+		if (ideaScore == 7)
+		{
+			equalityScore += equalityIdeaItr->second;
+		}
 	}
 }
 
