@@ -182,10 +182,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 
 	//get output name
-	const int slash = EU4SaveFileName.find_last_of("\\");						// the last slash in the save's filename
-	const int length = EU4SaveFileName.find_first_of(".") - slash - 1;	// the first period after the slash
-	string outputName = EU4SaveFileName.substr(slash + 1, length);			// the name to use to output the mod
-	int dash = outputName.find_first_of('-');										// the first (if any) dask in the output name
+	const int slash	= EU4SaveFileName.find_last_of("\\");				// the last slash in the save's filename
+	string outputName	= EU4SaveFileName.substr(slash + 1, EU4SaveFileName.length());
+	const int length	= outputName.find_first_of(".");						// the first period after the slash
+	outputName			= outputName.substr(0, length);						// the name to use to output the mod
+	int dash = outputName.find_first_of('-');									// the first (if any) dask in the output name
 	while (dash != string::npos)
 	{
 		outputName.replace(dash, 1, "_");
