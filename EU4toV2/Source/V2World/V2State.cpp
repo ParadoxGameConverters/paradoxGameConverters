@@ -39,46 +39,6 @@ V2State::V2State(int newId, V2Province* firstProvince)
 }
 
 
-void V2State::output(FILE* output) const
-{
-	fprintf(output, "\tstate=\n");
-	fprintf(output, "\t{\n");
-	fprintf(output, "\t\tid=\n");
-	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\tid=%d\n", id);
-	fprintf(output, "\t\t\ttype=47\n");
-	fprintf(output, "\t\t}\n");
-	fprintf(output, "\t\tprovinces=\n");
-	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\t");
-	for (vector<V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
-	{
-		fprintf(output, "%d ", (*i)->getNum());
-	}
-	fprintf(output, "\n");
-	fprintf(output, "\t\t}\n");
-	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); ++itr)
-	{
-		(*itr)->output(output);
-	}
-	if (colonial)
-	{
-	}
-	if (colonised)
-	{
-		if (Configuration::getV2Gametype() == "HOD")
-		{
-			fprintf(output, "\t\tis_colonial=2\n");
-		}
-		else
-		{
-			fprintf(output, "\t\tis_colonial=yes\n");
-		}
-	}
-	fprintf(output, "\t}\n");
-}
-
-
 void V2State::addRailroads()
 {
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)

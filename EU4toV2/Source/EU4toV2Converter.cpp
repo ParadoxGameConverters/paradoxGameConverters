@@ -669,8 +669,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
 	LOG(LogLevel::Info) << "Setting colonies";
 	destWorld.setupColonies(adjacencyMap, continentMap);
-	/*LOG(LogLevel::Info) << "Creating states";
-	destWorld.setupStates(stateMap);*/
+	LOG(LogLevel::Info) << "Creating states";
+	destWorld.setupStates(stateMap);
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 	destWorld.convertUncivReforms();
 	/*LOG(LogLevel::Info) << "Creating pops";
