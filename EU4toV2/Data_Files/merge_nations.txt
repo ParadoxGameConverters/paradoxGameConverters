@@ -151,7 +151,6 @@ merge_nations =
 		merge = no	# Change to yes to enable merging
 
 		master = PER
-		slave = DUR	# Durrani
 		slave = KHO	# Khorasan
 		slave = PER	# Persia (proper)
 		slave = QAR	# Qara Koyunlu
