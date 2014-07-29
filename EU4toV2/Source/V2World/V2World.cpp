@@ -331,7 +331,6 @@ V2World::V2World()
 }
 
 
-// The majority of the output changes will take place here.  See comments for the plan of action:
 void V2World::output() const
 {
 	// Create common\countries path.
@@ -353,6 +352,13 @@ void V2World::output() const
 	{
 		const V2Country& country = *i->second;
 		country.outputToCommonCountriesFile(allCountriesFile);
+	}
+	fprintf(allCountriesFile, "\n");
+	fprintf(allCountriesFile, "##HoD Dominions\n");
+	fprintf(allCountriesFile, "dynamic_tags = yes # any tags after this is considered dynamic dominions\n");
+	for (vector<V2Country*>::const_iterator i = dynamicCountries.begin(); i != dynamicCountries.end(); i++)
+	{
+		(*i)->outputToCommonCountriesFile(allCountriesFile);
 	}
 	fclose(allCountriesFile);
 
@@ -397,6 +403,11 @@ void V2World::output() const
 	for (map<string, V2Country*>::const_iterator itr = countries.begin(); itr != countries.end(); itr++)
 	{
 		itr->second->output();
+	}
+	for (vector<V2Country*>::const_iterator itr = dynamicCountries.begin(); itr != dynamicCountries.end(); itr++)
+	{
+		(*itr)->isANewCountry();
+		(*itr)->output();
 	}
 	diplomacy.output();
 	/*if(Configuration::getV2Gametype() == "HOD")

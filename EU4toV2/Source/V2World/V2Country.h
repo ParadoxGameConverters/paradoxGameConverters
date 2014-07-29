@@ -83,6 +83,7 @@ class V2Country
 		void								addResearchPoints(double newPoints)		{ researchPoints += newPoints; };
 		void								addTech(string newTech)						{ techs.push_back(newTech); };
 		void								setNationalValue(string NV)				{ nationalValue = NV; };
+		void								isANewCountry(void)							{ newCountry = true; };
 
 		vector<V2Province*>			getProvinces() const { return provinces; };
 		string							getTag() const { return tag; };
