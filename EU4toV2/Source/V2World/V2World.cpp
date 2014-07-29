@@ -899,19 +899,6 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 					{
 						i->second->setFortLevel(1);
 					}
-					// note: HTTT has only shipyard
-					if (   (*vitr)->hasBuilding("shipyard") || (*vitr)->hasBuilding("grand_shipyard")
-						|| (*vitr)->hasBuilding("naval_arsenal") || (*vitr)->hasBuilding("naval_base"))
-					{
-						// place naval bases only in port provinces
-						vector<int> candidates;
-						candidates.push_back(i->second->getNum());
-						candidates = getPortProvinces(candidates);
-						if (candidates.size() > 0)
-						{
-							i->second->setNavalBaseLevel(1);
-						}
-					}
 				}
 			}
 		}
