@@ -132,7 +132,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 				if (path != "")
 				{
-					possibleMods.insert(make_pair(name, EU4DocumentsLoc + "\\" + path));
+					possibleMods.insert(make_pair(name, EU4DocumentsLoc + "\\mod\\" + path));
 				}
 			}
 		}
@@ -297,17 +297,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		sourceWorld.readCommonCountries(commonCountries, Configuration::getEU4Path());
 		for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
 		{
-			// This only reads CK2 converted countries at the moment.
-			// TBD: Read all txt files from the mod common\country_tags folder.
-			if (WinUtils::DoesFileExist(*itr + "\\common\\country_tags\\converted_countries.txt"))
+			set<string> fileNames;
+			WinUtils::GetAllFilesInFolder(*itr + "\\common\\country_tags\\", fileNames);
+			for (set<string>::iterator fileItr = fileNames.begin(); fileItr != fileNames.end(); fileItr++)
 			{
-				ifstream convertedCommonCountries(*itr + "\\common\\country_tags\\converted_countries.txt");	// a stream of the data in the converted countries file
+				ifstream convertedCommonCountries(*itr + "\\common\\country_tags\\" + *fileItr);	// a stream of the data in the converted countries file
 				sourceWorld.readCommonCountries(convertedCommonCountries, *itr);
-			}
-			if (WinUtils::DoesFileExist(*itr + "\\common\\country_tags\\01_special_tags.txt"))
-			{
-				ifstream specialCommonCountries(*itr + "\\common\\country_tags\\01_special_tags.txt");	// a stream of the data in the special tags file
-				sourceWorld.readCommonCountries(specialCommonCountries, *itr);
 			}
 		}
 	}
