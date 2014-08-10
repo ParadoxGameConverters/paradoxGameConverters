@@ -70,11 +70,11 @@ class V2Country
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
 		void								setupPops(EU4World& sourceWorld);
-		void								setArmyTech(double mean, double scale, double stdDev);
-		void								setNavyTech(double mean, double scale, double stdDev);
-		void								setCommerceTech(double mean, double scale, double stdDev);
-		void								setIndustryTech(double mean, double scale, double stdDev);
-		void								setCultureTech(double mean, double scale, double stdDev);
+		void								setArmyTech(double mean, double highest);
+		void								setNavyTech(double mean, double highest);
+		void								setCommerceTech(double mean, double highest);
+		void								setIndustryTech(double mean, double highest);
+		void								setCultureTech(double mean, double highest);
 
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);

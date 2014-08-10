@@ -1131,23 +1131,25 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 {
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	
-	double oldAdmMean;
-	double admMean;
-	double oldAdmS = 0.0;
-	double newAdmS;
-	double highestAdm;
+	double oldArmyMean;
+	double armyMean;
+	double highestArmy;
 
-	double oldDipMean;
-	double dipMean;
-	double oldDipS = 0.0;
-	double newDipS;
-	double highestDip;
+	double oldNavyMean;
+	double navyMean;
+	double highestNavy;
 
-	double oldMilMean;
-	double milMean;
-	double oldMilS = 0.0;
-	double newMilS;
-	double highestMil;
+	double oldCommerceMean;
+	double commerceMean;
+	double highestCommerce;
+
+	double oldCultureMean;
+	double cultureMean;
+	double highestCulture;
+
+	double oldIndustryMean;
+	double industryMean;
+	double highestIndustry;
 
 	int num = 2;
 	map<string, EU4Country*>::iterator i = sourceCountries.begin();
@@ -1155,9 +1157,11 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	{
 		i++;
 	}
-	highestAdm			= oldAdmMean			= admMean			= i->second->getAdmTech();
-	highestDip			= oldDipMean			= dipMean			= i->second->getDipTech();
-	highestMil			= oldMilMean			= milMean			= i->second->getMilTech();
+	highestArmy			= oldArmyMean		= armyMean		= i->second->getAdmTech() + i->second->getMilTech();
+	highestNavy			= oldNavyMean		= navyMean		= i->second->getMilTech() + i->second->getDipTech();
+	highestCommerce	= oldCommerceMean	= commerceMean	= i->second->getAdmTech() + i->second->getDipTech();
+	highestCulture		= oldCultureMean	= cultureMean	= i->second->getDipTech();
+	highestIndustry	= oldIndustryMean	= industryMean	= i->second->getMilTech() + i->second->getAdmTech() + i->second->getDipTech();
 
 	for (i++; i != sourceCountries.end(); i++)
 	{
@@ -1165,56 +1169,58 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		{
 			continue;
 		}
-		double newTech	= i->second->getAdmTech();
-		admMean			= oldAdmMean + ((newTech - oldAdmMean) / num);
-		newAdmS			= oldAdmS + ((newTech - oldAdmMean) * (newTech - admMean));
-		oldAdmMean		= admMean; 
-		oldAdmS			= newAdmS;
-		if (newTech > highestAdm)
+		double newTech	= i->second->getAdmTech() + i->second->getMilTech();
+		armyMean			= oldArmyMean + ((newTech - oldArmyMean) / num);
+		oldArmyMean		= armyMean; 
+		if (newTech > highestArmy)
 		{
-			highestAdm = newTech;
+			highestArmy = newTech;
+		}
+
+		newTech		= i->second->getMilTech() + i->second->getDipTech();
+		navyMean		= oldNavyMean + ((newTech - oldNavyMean) / num);
+		oldNavyMean	= navyMean;
+		if (newTech > highestNavy)
+		{
+			highestNavy = newTech;
+		}
+
+		newTech				= i->second->getAdmTech() + i->second->getDipTech();
+		commerceMean		= oldCommerceMean + ((newTech - oldCommerceMean) / num);
+		oldCommerceMean	= commerceMean;
+		if (newTech > highestCommerce)
+		{
+			highestCommerce = newTech;
 		}
 
 		newTech			= i->second->getDipTech();
-		dipMean			= oldDipMean + ((newTech - oldDipMean) / num);
-		newDipS			= oldDipS + ((newTech - oldDipMean) * (newTech - dipMean));
-		oldDipMean		= dipMean; 
-		oldDipS			= newDipS;
-		if (newTech > highestDip)
+		cultureMean		= oldCultureMean + ((newTech - oldCultureMean) / num);
+		oldCultureMean	= cultureMean;
+		if (newTech > highestCulture)
 		{
-			highestDip = newTech;
+			highestCulture = newTech;
 		}
 
-		newTech			= i->second->getMilTech();
-		milMean			= oldMilMean + ((newTech - oldMilMean) / num);
-		newMilS			= oldMilS + ((newTech - oldMilMean) * (newTech - milMean));
-		oldMilMean		= milMean; 
-		oldMilS			= newMilS;
-		if (newTech > highestMil)
+		newTech				= i->second->getMilTech() + i->second->getAdmTech() + i->second->getDipTech();
+		industryMean		= oldIndustryMean + ((newTech - oldIndustryMean) / num);
+		oldIndustryMean	= industryMean;
+		if (newTech > highestIndustry)
 		{
-			highestMil = newTech;
+			highestIndustry = newTech;
 		}
 
 		num++;
 	}
 
-	double admStdDev		= sqrt( (num > 1) ? (newAdmS/(num - 1)) : 0.0 );
-	double dipStdDev		= sqrt( (num > 1) ? (newDipS/(num - 1)) : 0.0 );
-	double milStdDev		= sqrt( (num > 1) ? (newMilS/(num - 1)) : 0.0 );
-
-	double admScale		= (2.5	* admStdDev)			/ (highestAdm			- admMean);
-	double dipScale		= (7	* dipStdDev)			/ (highestDip			- dipMean);
-	double milScale		= (4.5	* milStdDev)			/ (highestMil			- milMean);
-
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 	{
 		if ((Configuration::getV2Gametype() == "vanilla") || itr->second->isCivilized())
 		{
-			itr->second->setArmyTech(milMean, milScale, milStdDev);
-			itr->second->setNavyTech(dipMean, dipScale, dipStdDev);
-			itr->second->setCommerceTech(dipMean, dipScale, dipStdDev);
-			itr->second->setIndustryTech(admMean, admScale, admStdDev);
-			itr->second->setCultureTech(admMean, admScale, admStdDev);
+			itr->second->setArmyTech(armyMean, highestArmy);
+			itr->second->setNavyTech(navyMean, highestNavy);
+			itr->second->setCommerceTech(commerceMean, highestCommerce);
+			itr->second->setIndustryTech(industryMean, highestIndustry);
+			itr->second->setCultureTech(cultureMean, highestCulture);
 		}
 	}
 
