@@ -221,7 +221,11 @@ void V2Country::output() const
 	}
 	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());*/
 
+	fprintf(output, "oob = \"%s\"\n", (tag + "_OOB.txt").c_str());
+
 	fclose(output);
+
+	outputOOB();
 
 	if (newCountry)
 	{
@@ -289,6 +293,26 @@ void V2Country::outputElection(FILE* output) const
 	}
 	electionDate.year -= 4;
 	fprintf(output, "	last_election=%s\n", electionDate.toString().c_str());
+}
+
+
+void V2Country::outputOOB() const
+{
+	FILE* output;
+	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\units\\" + tag + "_OOB.txt").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not create OOB file " << (tag + "_OOB.txt");
+		exit(-1);
+	}
+
+	fprintf(output, "#Sphere of Influence\n");
+	fprintf(output, "\n");
+	for (vector<V2Relations*>::const_iterator relationsItr = relations.begin(); relationsItr != relations.end(); relationsItr++)
+	{
+		(*relationsItr)->output(output);
+	}
+
+	fclose(output);
 }
 
 

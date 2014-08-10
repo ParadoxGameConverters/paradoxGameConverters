@@ -46,18 +46,7 @@ void V2Relations::output(FILE* out) const
 	{
 		fprintf(out, "\t\tmilitary_access=yes\n");
 	}
-	if (lastSendDiplomat.isSet())
-	{
-		fprintf(out, "\t\tlast_send_diplomat=\"%s\"\n", lastSendDiplomat.toString().c_str());
-	}
-	if (lastWar.isSet())
-	{
-		fprintf(out, "\t\tlast_war=\"%s\"\n", lastWar.toString().c_str());
-	}
-	if (level != 2)
-	{
-		fprintf(out, "\t\tlevel=%d\n", level);
-	}
+	fprintf(out, "\t\tlevel=%d\n", level);
 	fprintf(out, "\t}\n");
 }
 

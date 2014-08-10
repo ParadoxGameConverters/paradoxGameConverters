@@ -53,6 +53,7 @@ mkdir "release\blankMod\output\history\provinces\united kingdom"
 mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\history\diplomacy"
+mkdir "release\blankMod\output\history\units"
 mkdir "release\blankMod\output\common"
 
 xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I
