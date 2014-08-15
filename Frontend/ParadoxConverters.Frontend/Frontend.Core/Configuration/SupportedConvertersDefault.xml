@@ -38,6 +38,11 @@
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu4tovic2</subfolderName>
       <isEnabled>true</isEnabled>
+      
+      <!--Sometimes the converter needs files from the previous conversion step. Thus these tags are needed-->
+      <!--<nativeParadoxExportDirectory>\Paradox Interactive\Crusader Kings II\eu4_export\mod</nativeParadoxExportDirectory>
+      <nativeParadoxExportDirectoryLocationType>WindowsUsersFolder</nativeParadoxExportDirectoryLocationType>
+      <nativeParadoxExportDirectoryTag>CK2ExportDirectory</nativeParadoxExportDirectoryTag>-->
     </converter>
   </supportedConverters>
 </configuration>

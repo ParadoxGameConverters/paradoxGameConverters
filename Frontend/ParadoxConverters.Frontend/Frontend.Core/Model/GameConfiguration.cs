@@ -81,7 +81,17 @@ namespace Frontend.Core.Model
         /// <value>
         /// The name of the configuration file directory tag.
         /// </value>
-        public string ConfigurationFileDirectoryTagName { get; set; }
+        public string InstallationDirectoryTagName { get; set; }
+        
+        ///// <summary>
+        ///// The directory where the game stores temporary files
+        ///// </summary>
+        //public string AbsoluteTempDirectoryPath { get; set; }
+
+        ///// <summary>
+        ///// The tag name used in the configuration file to specify the temp file directory
+        ///// </summary>
+        //public string TempDirectoryTagName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the configuration file mod directory tag.
@@ -89,7 +99,7 @@ namespace Frontend.Core.Model
         /// <value>
         /// The name of the configuration file mod directory tag.
         /// </value>
-        public string ConfigurationFileModDirectoryTagName { get; set; }
+        public string ModDirectoryTagName { get; set; }
 
         /// <summary>
         /// The absolute path to the game's installation path
@@ -158,7 +168,7 @@ namespace Frontend.Core.Model
                 return this.SupportedMods.Count > 0
                     && !string.IsNullOrEmpty(this.CurrentModTagName)
                     && this.CurrentMod != null
-                    && !string.IsNullOrEmpty(this.ConfigurationFileModDirectoryTagName)
+                    && !string.IsNullOrEmpty(this.ModDirectoryTagName)
                     && !string.IsNullOrEmpty(this.AbsoluteModPath);
             }
         }

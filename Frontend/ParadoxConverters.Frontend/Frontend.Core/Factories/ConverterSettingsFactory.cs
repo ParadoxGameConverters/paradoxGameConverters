@@ -17,16 +17,38 @@ namespace Frontend.Core.Factories
 {
     public class ConverterSettingsFactory : FactoryBase
     {
+        /// <summary>
+        /// The Game configuration factory
+        /// </summary>
         private GameConfigurationFactory gameConfigurationFactory;
+
+        /// <summary>
+        /// The preference category factory
+        /// </summary>
         private PreferenceCategoryFactory preferenceCategoryFactory;
+        
+        /// <summary>
+        /// The list of game configurations
+        /// </summary>
         private ObservableCollection<IGameConfiguration> gameConfigurations;
+
+        /// <summary>
+        /// The relative path to the game configuration config file
+        /// </summary>
         private string relativeGameConfigurationPath;
 
+        /// <summary>
+        /// Initializes a new instance of the ConverterSettingsFactory
+        /// </summary>
+        /// <param name="eventAggregator">The event aggregator</param>
         public ConverterSettingsFactory(IEventAggregator eventAggregator)
             : base(eventAggregator, "converter")
         {
         }
 
+        /// <summary>
+        /// The game configuration factory self-resolving property
+        /// </summary>
         protected GameConfigurationFactory GameConfigurationFactory
         {
             get
@@ -35,6 +57,9 @@ namespace Frontend.Core.Factories
             }
         }
 
+        /// <summary>
+        /// The game configuration factory self-resolving property
+        /// </summary>
         protected PreferenceCategoryFactory PreferenceCategoryFactory
         {
             get
@@ -43,14 +68,28 @@ namespace Frontend.Core.Factories
             }
         }
 
+        /// <summary>
+        /// Helper property for turning the relative game configuration path into an absolute path.
+        /// 
+        /// What was I thinking?
+        /// </summary>
         protected string AbsoluteGameConfigurationPath
         {
             get
             {
-                return Path.Combine(Environment.CurrentDirectory, relativeGameConfigurationPath);
+                return Path.Combine(Environment.CurrentDirectory, this.relativeGameConfigurationPath);
             }
         }
 
+        /// <summary>
+        /// Self-building list of gameconfiguration objects.
+        /// 
+        /// Requires the AbsoluteGameConfiguration path property to make sense.
+        /// If not, returns an empty collection and complains to the logger.
+        /// 
+        /// If the configuration file exists on the AbsoluteGameConfigurationPath, 
+        /// this collection gets built usind the GameConfigurationFactory.
+        /// </summary>
         protected ObservableCollection<IGameConfiguration> GameConfigurations
         {
             get
@@ -72,11 +111,21 @@ namespace Frontend.Core.Factories
             }
         }
 
+        /// <summary>
+        /// TODO:
+        /// </summary>
+        /// <param name="config"></param>
         protected override void OnConfigLoaded(XDocument config)
         {
             this.relativeGameConfigurationPath = XElementHelper.ReadStringValue(config.Descendants("configuration").First(), "gameConfigurationFile");
         }
 
+        /// <summary>
+        /// Builds the ConverterSettings object given by the xml element (XElement)
+        /// </summary>
+        /// <typeparam name="T">The type of object to create. In this case, it'll be ConverterSettings</typeparam>
+        /// <param name="element">The xml node to generate the ConverterSettings object from</param>
+        /// <returns>The generated convertersettings object</returns>
         protected override T OnBuildElement<T>(XElement element)
         {
             var name = XElementHelper.ReadStringValue(element, "name");
@@ -91,6 +140,23 @@ namespace Frontend.Core.Factories
             var targetGameName = XElementHelper.ReadStringValue(element, "targetGame");
             var sourceGame = this.GameConfigurations.FirstOrDefault(g => g.Name.Equals(sourceGameName));
             var targetGame = this.GameConfigurations.FirstOrDefault(g => g.Name.Equals(targetGameName));
+            
+            // Native export directory.
+            //var nativeExportDirectory = XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectory", false);
+            //var nativeParadoxExportDirectoryLocationTypeAsString = XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectoryLocationType", false);
+            //var nativeParadoxExportDirectoryLocationType = nativeParadoxExportDirectoryLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+            //string nativeExportDirectoryTag = XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectoryTag", false);
+
+            //string nativeExportDirectoryAbsolutePath = string.Empty;
+            //if (nativeParadoxExportDirectoryLocationType.Equals(RelativeFolderLocationRoot.WindowsUsersFolder))
+            //{
+            //    nativeExportDirectoryAbsolutePath = DirectoryHelper.GetUsersFolder() + XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectory", false);                
+            //}
+            //else
+            //{
+            //    //HACK: This is bad, and needs fixing.
+            //    throw new NotSupportedException("The native export directory cannot be a steam subfolder.");
+            //}
 
             string errorMessage = "Could not find game configuration for {0}. Could not find game in " + this.AbsoluteGameConfigurationPath + " with name {1}. ";
 
@@ -118,6 +184,8 @@ namespace Frontend.Core.Factories
                 SourceGame = sourceGame,
                 TargetGame = targetGame,
                 AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath),
+                /*NativeParadoxExportDirectoryTag = nativeExportDirectoryTag,
+                NativeParadoxExportDirectory = nativeExportDirectoryAbsolutePath,*/
                 //UserConfigurationFile = userConfigurationFile 
                 Categories = categories,
                 AdditionalInformation = additionalInformation

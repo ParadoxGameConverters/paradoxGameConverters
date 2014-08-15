@@ -116,7 +116,7 @@ namespace Frontend.Core.Commands
                     RedirectStandardInput = true,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    WorkingDirectory = WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter)
+                    WorkingDirectory = DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter)
                 };
 
                 this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI, null);
@@ -174,7 +174,7 @@ namespace Frontend.Core.Commands
 
                 this.Log(sb.ToString(), LogEntrySeverity.Error, LogEntrySource.UI, null);
 
-                var log = Path.Combine(WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "log.txt");
+                var log = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "log.txt");
 
                 if (File.Exists(log))
                 {
@@ -210,7 +210,7 @@ namespace Frontend.Core.Commands
         {
             //var modFolder = this.Options.ModFilesProvider.ModFolder;
 
-            var absoluteSourcePath = Path.Combine(WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "Mod");
+            var absoluteSourcePath = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "Mod");
 
             // Verify source data
             if (!Directory.Exists(absoluteSourcePath))
@@ -270,7 +270,7 @@ namespace Frontend.Core.Commands
             try
             {
                 //var outputSavePath = this.DetermineOutputSavePath();
-                File.Copy(Path.Combine(WorkingDirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), desiredFileName), expectedOutputDirectoryAndFile, canOverWrite);
+                File.Copy(Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), desiredFileName), expectedOutputDirectoryAndFile, canOverWrite);
                 this.Log(desiredFileName + " has been written to ", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath);
 
                 //File.Delete(outputSavePath);

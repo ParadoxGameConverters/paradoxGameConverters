@@ -28,6 +28,10 @@ namespace Frontend.Core.Model
         public IList<IPreferenceCategory> Categories { get; set; }
         public string AdditionalInformation { get; set; }
 
+        //public string NativeParadoxExportDirectory { get; set; }
+
+        //public string NativeParadoxExportDirectoryTag { get; set; }
+
         /// <summary>
         /// Gets or sets a value indicating whether [is selected].
         /// </summary>

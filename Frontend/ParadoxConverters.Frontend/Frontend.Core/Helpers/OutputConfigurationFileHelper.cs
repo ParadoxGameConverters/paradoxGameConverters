@@ -28,26 +28,42 @@ namespace Frontend.Core.Helpers
 
             foreach (var game in games)
             {
-                sb.AppendLine("\t" + game.ConfigurationFileDirectoryTagName + " = \"" + game.AbsoluteInstallationPath + "\"");
+                sb.AppendLine("\t" + game.InstallationDirectoryTagName + " = \"" + game.AbsoluteInstallationPath + "\"");
 
-                if (game.IsConfiguredToUseMods)
+                //if (game.IsConfiguredToUseMods)
+                //{
+                sb.AppendLine();
+
+                if (!string.IsNullOrEmpty(game.ModDirectoryTagName))
                 {
-                    sb.AppendLine();
-                    sb.AppendLine("\t" + game.ConfigurationFileModDirectoryTagName + " = \"" + game.AbsoluteModPath + "\"");
+                    sb.AppendLine("\t" + game.ModDirectoryTagName + " = \"" + game.AbsoluteModPath + "\"");
                     sb.AppendLine();
                 }
+                //}
+
+                //if (!string.IsNullOrEmpty(game.TempDirectoryTagName))
+                //{
+                //    sb.AppendLine("\t" + game.TempDirectoryTagName + " = \"" + game.AbsoluteTempDirectoryPath + "\"");
+                //    sb.AppendLine();
+                //}
             }
 
-            sb.AppendLine();
-            sb.AppendLine("\t# Mod Options: ");
+            //if (!string.IsNullOrEmpty(converterSettings.NativeParadoxExportDirectoryTag))
+            //{
+            //    sb.AppendLine("\t" + converterSettings.NativeParadoxExportDirectoryTag + " = \"" + converterSettings.NativeParadoxExportDirectory + "\"");
+            //    sb.AppendLine();
+            //}
 
-            foreach (var game in games.FindAll(g => g.IsConfiguredToUseMods))
-            {
-                sb.AppendLine();
-                sb.AppendLine("\t# " + game.CurrentModTagName + ": the mod used while playing the source game");
-                sb.AppendLine("\t" + game.CurrentModTagName + " = \"" + (!game.CurrentMod.IsDummyItem ? game.CurrentMod.Name : string.Empty) + "\"");
-                sb.AppendLine();
-            }
+            //sb.AppendLine();
+            //sb.AppendLine("\t# Mod Options: ");
+
+            //foreach (var game in games.FindAll(g => g.IsConfiguredToUseMods))
+            //{
+            //    sb.AppendLine();
+            //    sb.AppendLine("\t# " + game.CurrentModTagName + ": the mod used while playing the source game");
+            //    sb.AppendLine("\t" + game.CurrentModTagName + " = \"" + (!game.CurrentMod.IsDummyItem ? game.CurrentMod.Name : string.Empty) + "\"");
+            //    sb.AppendLine();
+            //}
 
             sb.AppendLine("\tuseConverterMod = " + "\"" + (converterSettings.UseConverterMod ? "yes" : "no") + "\"");
 

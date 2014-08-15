@@ -25,22 +25,28 @@ namespace Frontend.Core.Factories
 
             // Installation directory related
             var installationFolder = SteamHelper.GetSteamInstallationFolder(this.EventAggregator, steamId);
-            var configurationFileDirectoryTagName = XElementHelper.ReadStringValue(element, "configurationFileDirectoryTagName");
+            var installationDirectoryTagName = XElementHelper.ReadStringValue(element, "installationDirectoryTagName");
             //var iconFile = XElementHelper.ReadStringValue(element, "iconFile", false);
 
             // Save game related
             var saveGameFolderTypeAsString = XElementHelper.ReadStringValue(element, "defaultSaveGameLocationType");
             var saveGameFolderType = saveGameFolderTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
             var saveGameExtension = XElementHelper.ReadStringValue(element, "saveGameExtension");
-            var saveGameLocation = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : this.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultSaveGameSubLocation");
+            var saveGameLocation = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultSaveGameSubLocation");
 
             // Mod related
             var defaultModFolderLocationTypeAsString = XElementHelper.ReadStringValue(element, "defaultModFolderLocationType", false);
             var defaultModFolderLocationType = defaultModFolderLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
-            var configurationFileModDirectoryTagName = XElementHelper.ReadStringValue(element, "configurationFileModDirectoryTagName", false);
+            var modDirectoryTagName = XElementHelper.ReadStringValue(element, "modDirectoryTagName", false);
             var currentModTagName = XElementHelper.ReadStringValue(element, "currentModTagName", false);
-            var absoluteModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultModFolderLocation", false);
+            var absoluteModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultModFolderLocation", false);
             var supportedModsAsString = element.Descendants("supportedMod");
+
+            // Temp directory
+            //var tempDirectoryLocationTypeAsString = XElementHelper.ReadStringValue(element, "defaultTempDirectoryLocationType", false);
+            //var tempDirectoryLocationType = tempDirectoryLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+            //var tempDirectoryAbsolutePath = (tempDirectoryLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultTempFolderLocation", false);
+            //var tempDirectoryTagName = XElementHelper.ReadStringValue(element, "tempDirectoryTagName", false);
 
             var gameConfig = new GameConfiguration()
             {
@@ -49,11 +55,13 @@ namespace Frontend.Core.Factories
                 SteamId = steamId,
                 SaveGameExtension = saveGameExtension,
                 AbsoluteInstallationPath = installationFolder,
-                ConfigurationFileDirectoryTagName = configurationFileDirectoryTagName,
-                ConfigurationFileModDirectoryTagName = configurationFileModDirectoryTagName,
+                InstallationDirectoryTagName = installationDirectoryTagName,
+                ModDirectoryTagName = modDirectoryTagName,
                 AbsoluteSaveGamePath = saveGameLocation,
                 CurrentModTagName = currentModTagName,
-                AbsoluteModPath = absoluteModPath
+                AbsoluteModPath = absoluteModPath/*,
+                AbsoluteTempDirectoryPath = tempDirectoryAbsolutePath,
+                TempDirectoryTagName = tempDirectoryTagName*/
             };
 
             // Dummy item so that the user can undo selecting a mod
@@ -68,11 +76,6 @@ namespace Frontend.Core.Factories
             }
 
             return gameConfig as T;
-        }
-
-        private string GetUsersFolder()
-        {
-            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
 }

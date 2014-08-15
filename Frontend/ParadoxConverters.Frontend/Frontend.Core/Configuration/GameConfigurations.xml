@@ -3,17 +3,22 @@
   
   <!-- Crusader Kings 2 -->
   <gameConfiguration>
+    <!--Misc-->
     <name>CrusaderKings2</name>
     <friendlyName>Crusader Kings 2</friendlyName>
     <steamId>203770</steamId>
+    <saveGameExtension>.ck2</saveGameExtension>
+    <installationDirectoryTagName>CK2directory</installationDirectoryTagName>
+
+    <!--Save game-->
     <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
     <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
+    
+    <!--Mod related-->
     <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>
-    <configurationFileDirectoryTagName>CK2directory</configurationFileDirectoryTagName>
     <configurationFileModDirectoryTagName>CK2ModPath</configurationFileModDirectoryTagName>
     <currentModTagName>CK2Mod</currentModTagName>
-    <saveGameExtension>.ck2</saveGameExtension>
     <supportedMods>
       <supportedMod>
         <modName>CK2Plus</modName>
@@ -23,43 +28,66 @@
 
   <!-- Europa Universalis 3 -->
   <gameConfiguration>
+    <!--Misc-->
     <name>EuropaUniversalis3</name>
     <friendlyName>Europa Universalis 3</friendlyName>
     <steamId>25800</steamId>
+    <saveGameExtension>.eu3</saveGameExtension>
+    <installationDirectoryTagName>EU3directory</installationDirectoryTagName>
     <!--<nonsteamRegistryName>Europa Universalis III</nonsteamRegistryName>-->
+
+    <!--Save game-->
     <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
     <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
-    <configurationFileDirectoryTagName>EU3directory</configurationFileDirectoryTagName>
+
+    <!--Mod related-->
     <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\mod</defaultModFolderLocation>
-    <saveGameExtension>.eu3</saveGameExtension>
   </gameConfiguration>
 
   <!-- Europa Universalis 4 -->
   <gameConfiguration>
+    <!--Misc-->
     <name>EuropaUniversalis4</name>
     <friendlyName>Europa Universalis 4</friendlyName>
     <steamId>236850</steamId>
+    <saveGameExtension>.eu4</saveGameExtension>
+    <installationDirectoryTagName>EU4directory</installationDirectoryTagName>
+
+    <!--Save game-->
     <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
     <defaultSaveGameSubLocation>\Paradox Interactive\Europa Universalis IV\save games</defaultSaveGameSubLocation>
+
+    <!--Mod related-->
     <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</defaultModFolderLocation>
-    <configurationFileDirectoryTagName>EU4directory</configurationFileDirectoryTagName>
-    <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
-    <defaultModFolderLocation>\mod</defaultModFolderLocation>
-    <saveGameExtension>.eu4</saveGameExtension>
+    <modDirectoryTagName>EU4ModDirectory</modDirectoryTagName>
+
+    <!--Abandoned-->
+    <!--<defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>-->
   </gameConfiguration>
 
   <!--Victoria 2-->
   <gameConfiguration>
+    <!--Misc-->
     <name>Victoria2</name>
     <friendlyName>Victoria 2</friendlyName>
     <steamId>42960</steamId>
+    <saveGameExtension>.v2</saveGameExtension>
+    <installationDirectoryTagName>V2directory</installationDirectoryTagName>
+
+    <!--Save game-->
     <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
     <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
-    <saveGameExtension>.v2</saveGameExtension>
-    <configurationFileDirectoryTagName>v2directory</configurationFileDirectoryTagName>
+
+    <!--Mod related-->
     <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\mod</defaultModFolderLocation>
+
+    <!--Temp files-->
+    <!--<defaultTempDirectoryLocationType>WindowsUsersFolder</defaultTempDirectoryLocationType>
+    <defaultTempFolderLocation>\Paradox Interactive\Victoria II</defaultTempFolderLocation>
+    <tempDirectoryTagName>V2Documentsdirectory</tempDirectoryTagName>-->
   </gameConfiguration>
 </gameConfigurations>

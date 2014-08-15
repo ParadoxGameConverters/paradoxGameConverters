@@ -41,5 +41,9 @@ namespace Frontend.Core.Model.Interfaces
         /// The source save game.
         /// </value>
         string AbsoluteSourceSaveGamePath { get; set; }
+
+        //string NativeParadoxExportDirectory { get; set; }
+
+        //string NativeParadoxExportDirectoryTag { get; set; }
     }
 }

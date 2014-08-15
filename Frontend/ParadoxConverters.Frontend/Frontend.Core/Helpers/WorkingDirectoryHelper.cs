@@ -11,7 +11,7 @@ namespace Frontend.Core.Helpers
     /// <summary>
     /// Helper class that finds working directories, whether for the frontend or the various converters
     /// </summary>
-    public static class WorkingDirectoryHelper
+    public static class DirectoryHelper
     {
         public static string GetFrontendWorkingDirectory()
         {
@@ -21,6 +21,11 @@ namespace Frontend.Core.Helpers
         public static string GetConverterWorkingDirectory(IConverterSettings currentConverter)
         {
             return Path.GetDirectoryName(currentConverter.AbsoluteConverterPath);
+        }
+
+        public static string GetUsersFolder()
+        {
+            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
 }

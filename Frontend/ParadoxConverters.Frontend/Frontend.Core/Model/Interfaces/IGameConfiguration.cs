@@ -97,7 +97,7 @@ namespace Frontend.Core.Model.Interfaces
         /// <value>
         /// The name of the configuration file directory tag.
         /// </value>
-        string ConfigurationFileDirectoryTagName { get; set; }
+        string InstallationDirectoryTagName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the configuration file mod directory tag.
@@ -105,7 +105,7 @@ namespace Frontend.Core.Model.Interfaces
         /// <value>
         /// The name of the configuration file mod directory tag.
         /// </value>
-        string ConfigurationFileModDirectoryTagName { get; set; }
+        string ModDirectoryTagName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the current mod tag.
@@ -135,5 +135,15 @@ namespace Frontend.Core.Model.Interfaces
         /// The selected mod.
         /// </value>
         IMod CurrentMod { get; set; }
+
+        ///// <summary>
+        ///// The directory where the game stores temporary files
+        ///// </summary>
+        //string AbsoluteTempDirectoryPath { get; set; }
+
+        ///// <summary>
+        ///// The tag name used in the configuration file to specify the temp file directory
+        ///// </summary>
+        //string TempDirectoryTagName { get; set; }
     }
 }

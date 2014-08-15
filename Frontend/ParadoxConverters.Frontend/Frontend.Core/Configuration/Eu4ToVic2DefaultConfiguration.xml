@@ -88,6 +88,31 @@
               </entryOption>
             </entryOptions>
           </preference>
+          <preference>
+            <name>V2gametype</name>
+            <friendlyName>V2 Game Type</friendlyName>
+            <description>V2 Game Type: what version of V2 to convert to</description>
+            <entryOptions>
+              <entryOption>
+                <name>vanilla</name>
+                <friendlyName>Vanilla V2 (1.x)</friendlyName>
+                <description>Vanilla V2 (1.x)</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>AHD</name>
+                <friendlyName>A House Divided (2.x)</friendlyName>
+                <description>A House Divided (2.x)</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>HOD</name>
+                <friendlyName>Heart of Darkness (3.x)</friendlyName>
+                <description>Heart of Darkness (3.x)</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
         </preferences>
       </category>
     </categories>
