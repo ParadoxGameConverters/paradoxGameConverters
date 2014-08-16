@@ -31,7 +31,7 @@ V2Relations::V2Relations(string newTag)
 	tag					= newTag;
 	value					= 0;
 	militaryAccess		= false;
-	lastSendDiplomat	= false;
+	lastSendDiplomat	= date();
 	lastWar				= date();
 	level					= 2; // Neutral
 }
