@@ -219,39 +219,51 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	vector<Object*> modObj = obj->getValue("mod_enabled");	// the used mods
 	if (modObj.size() > 0)
 	{
-		string modName = modObj[0]->getLeaf();	// the name of the mod
-		while (modName != "")
+		string modString = modObj[0]->getLeaf();	// the names of all the mods
+		while (modString != "")
 		{
 			string newMod;	// the corrected name of the mod
-			const int space = modName.find("\" \"");	// the locations of any spaces in the mod name
-			if (space == std::string::npos)
+			const int firstQuote = modString.find("\"");	// the location of the first quote, defining the start of a mod name
+			if (firstQuote == std::string::npos)
 			{
-				newMod = modName.substr(1, modName.size() - 2);
-				modName.clear();
+				newMod.clear();
+				modString.clear();
 			}
 			else
 			{
-				newMod = modName.substr(1, space - 1);
-				modName = modName.substr(space + 2, modName.size() - space - 1);
-			}
-
-			map<string, string>::iterator modItr = possibleMods.find(newMod);
-			if (modItr != possibleMods.end())
-			{
-				string newModPath = modItr->second;	// the path for this mod
-				if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
+				const int secondQuote = modString.find("\"", firstQuote + 1);	// the location of the second quote, defining the end of a mod name
+				if (secondQuote == std::string::npos)
 				{
-					LOG(LogLevel::Error) << modName << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
+					newMod.clear();
+					modString.clear();
 				}
 				else
 				{
-					LOG(LogLevel::Debug) << "EU4 Mod is at " << newModPath;
-					fullModPaths.push_back(newModPath);
+					newMod = modString.substr(firstQuote + 1, secondQuote - firstQuote - 1);
+					modString = modString.substr(secondQuote + 1, modString.size());
 				}
 			}
-			else
+
+			if (newMod != "")
 			{
-				LOG(LogLevel::Error) << "No path could be found for " << modName;
+				map<string, string>::iterator modItr = possibleMods.find(newMod);
+				if (modItr != possibleMods.end())
+				{
+					string newModPath = modItr->second;	// the path for this mod
+					if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
+					{
+						LOG(LogLevel::Error) << newMod << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
+					}
+					else
+					{
+						LOG(LogLevel::Debug) << "EU4 Mod is at " << newModPath;
+						fullModPaths.push_back(newModPath);
+					}
+				}
+				else
+				{
+					LOG(LogLevel::Error) << "No path could be found for " << newMod;
+				}
 			}
 		}
 	}
