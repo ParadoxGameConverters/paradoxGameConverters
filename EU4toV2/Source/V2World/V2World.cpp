@@ -661,7 +661,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 				r2->setLevel(r2->getLevel() + 1);
 			}
 		}
-		if ((itr->type == "vassal") || (itr->type == "union"))
+		if ((itr->type == "vassal") || (itr->type == "union") || (itr->type == "protectorate"))
 		{
 			// influence level = 5
 			r1->setLevel(5);

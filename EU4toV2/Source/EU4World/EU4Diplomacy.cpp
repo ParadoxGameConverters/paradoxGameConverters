@@ -86,6 +86,20 @@ EU4Diplomacy::EU4Diplomacy(Object* obj)
 		agreements.push_back(agr);
 	}
 
+	std::vector<Object*> objProtectorate = obj->getValue("protectorate");
+	for (std::vector<Object*>::iterator itr = objProtectorate.begin(); itr != objProtectorate.end(); ++itr)
+	{
+		EU4Agreement agr(*itr);		// the new agreement
+		agreements.push_back(agr);
+	}
+
+	std::vector<Object*> objColonial = obj->getValue("is_colonial");
+	for (std::vector<Object*>::iterator itr = objColonial.begin(); itr != objColonial.end(); ++itr)
+	{
+		EU4Agreement agr(*itr);		// the new agreement
+		agreements.push_back(agr);
+	}
+
 	std::vector<Object*> objSpheres = obj->getValue("sphere");
 	for (std::vector<Object*>::iterator itr = objSpheres.begin(); itr != objSpheres.end(); ++itr)
 	{
