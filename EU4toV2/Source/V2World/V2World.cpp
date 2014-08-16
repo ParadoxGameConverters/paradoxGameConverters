@@ -635,14 +635,14 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 		V2Relations* r1 = country1->second->getRelations(V2Tag2);
 		if (!r1)
 		{
-			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag1 << " has no relations with " << V2Tag2;
-			continue;
+			V2Relations* newRelation = new V2Relations(V2Tag2);
+			country1->second->addRelation(newRelation);
 		}
 		V2Relations* r2 = country2->second->getRelations(V2Tag1);
 		if (!r2)
 		{
-			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag2 << " has no relations with " << V2Tag1;
-			continue;
+			V2Relations* newRelation = new V2Relations(V2Tag1);
+			country2->second->addRelation(newRelation);
 		}
 
 		if ((itr->type == "royal_marriage") || (itr->type == "guarantee"))

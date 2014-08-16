@@ -35,6 +35,7 @@ class EU4Relations;
 class V2Relations
 {
 	public:
+		V2Relations(string newTag);
 		V2Relations(string newTag, EU4Relations* oldRelations);
 		void output(FILE* out) const;
 

@@ -307,9 +307,9 @@ void V2Country::outputOOB() const
 
 	fprintf(output, "#Sphere of Influence\n");
 	fprintf(output, "\n");
-	for (vector<V2Relations*>::const_iterator relationsItr = relations.begin(); relationsItr != relations.end(); relationsItr++)
+	for (map<string, V2Relations*>::const_iterator relationsItr = relations.begin(); relationsItr != relations.end(); relationsItr++)
 	{
-		(*relationsItr)->output(output);
+		relationsItr->second->output(output);
 	}
 
 	fclose(output);
@@ -556,11 +556,10 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 			if (!V2Tag.empty())
 			{
 				V2Relations* v2r = new V2Relations(V2Tag, *itr);
-				relations.push_back(v2r);
+				relations.insert(make_pair(V2Tag, v2r));
 			}
 		}
 	}
-	sortRelations(outputOrder);
 
 	//// Finances
 	//money				= MONEYFACTOR * srcCountry->getTreasury();
@@ -1081,6 +1080,12 @@ void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, in
 }
 
 
+void V2Country::addRelation(V2Relations* newRelation)
+{
+	relations.insert(make_pair(newRelation->getTag(), newRelation));
+}
+
+
 static bool FactoryCandidateSortPredicate(const pair<int, V2State*>& lhs, const pair<int, V2State*>& rhs)
 {
 	if (lhs.first != rhs.first)
@@ -1578,32 +1583,15 @@ void V2Country::setCultureTech(double mean, double highest)
 
 V2Relations* V2Country::getRelations(string withWhom) const
 {
-	for (vector<V2Relations*>::const_iterator i = relations.begin(); i != relations.end(); ++i)
+	map<string, V2Relations*>::const_iterator i = relations.find(withWhom);
+	if (i != relations.end())
 	{
-		if ((*i)->getTag() == withWhom)
-		{
-			return *i;
-		}
+		return i->second;
 	}
-	return NULL;
-}
-
-
-void V2Country::sortRelations(const vector<string>& order)
-{
-	vector<V2Relations*> sortedRelations;
-	for (vector<string>::const_iterator oitr = order.begin(); oitr != order.end(); ++oitr)
+	else
 	{
-		for (vector<V2Relations*>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
-		{
-			if ( (*itr)->getTag() == (*oitr) )
-			{
-				sortedRelations.push_back(*itr);
-				break;
-			}
-		}
+		return NULL;
 	}
-	relations.swap(sortedRelations);
 }
 
 

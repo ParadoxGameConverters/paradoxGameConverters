@@ -85,6 +85,7 @@ class V2Country
 		void								addTech(string newTech)						{ techs.push_back(newTech); };
 		void								setNationalValue(string NV)				{ nationalValue = NV; };
 		void								isANewCountry(void)							{ newCountry = true; };
+		void								addRelation(V2Relations* newRelation);
 
 		vector<V2Province*>			getProvinces() const { return provinces; };
 		string							getTag() const { return tag; };
@@ -108,7 +109,6 @@ class V2Country
 	private:
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
-		void			sortRelations(const vector<string>& order);
 		void			addLoan(string creditor, double size, double interest);
 		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces);
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces);
@@ -147,7 +147,7 @@ class V2Country
 		vector< pair<int, int> >	reactionaryIssues;
 		vector< pair<int, int> >	conservativeIssues;
 		vector< pair<int, int> >	liberalIssues;
-		vector<V2Relations*>			relations;
+		map<string,V2Relations*>	relations;
 		vector<V2Army*>				armies;
 		V2Reforms*						reforms;
 		string							nationalValue;

@@ -26,6 +26,17 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
+V2Relations::V2Relations(string newTag)
+{
+	tag					= newTag;
+	value					= 0;
+	militaryAccess		= false;
+	lastSendDiplomat	= false;
+	lastWar				= date();
+	level					= 2; // Neutral
+}
+
+
 V2Relations::V2Relations(string newTag, EU4Relations* oldRelations)
 {
 	tag					= newTag;
