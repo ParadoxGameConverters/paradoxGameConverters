@@ -80,23 +80,23 @@ V2Province::V2Province(string _filename)
 
 	Object* obj;
 	struct _stat st;
-	if (_stat((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str(), &st) == 0)
+	if (_stat((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str(), &st) == 0)
 	{
-		LOG(LogLevel::Debug) << "Parsing " << (string(".\\blankMod\\output\\history\\provinces\\") + _filename);
-		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str());
+		LOG(LogLevel::Debug) << "Parsing " << (string(".\\blankMod\\output\\history\\provinces") + _filename);
+		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
 		if (obj == NULL)
 		{
-			LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces\\" << _filename;
+			LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces" << _filename;
 			exit(-1);
 		}
 	}
 	else
 	{
-		LOG(LogLevel::Debug) << "Parsing " << (Configuration::getV2Path() + "\\history\\provinces\\" + _filename);
-		obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
+		LOG(LogLevel::Debug) << "Parsing " << (Configuration::getV2Path() + "\\history\\provinces" + _filename);
+		obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces" + _filename).c_str());
 		if (obj == NULL)
 		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "\\history\\provinces\\" << _filename;
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "\\history\\provinces" << _filename;
 			exit(-1);
 		}
 	}

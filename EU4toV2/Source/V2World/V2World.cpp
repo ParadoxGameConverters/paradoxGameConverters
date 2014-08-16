@@ -79,9 +79,9 @@ V2World::V2World()
 	{
 		while (directories.size() > 0)
 		{
-			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces\\") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
+			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces\\" << directories.front() << "\\*.*";
+				LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces" << directories.front() << "\\*.*";
 				exit(-1);
 			}
 
@@ -110,9 +110,9 @@ V2World::V2World()
 	{
 		while (directories.size() > 0)
 		{
-			if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
+			if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				LOG(LogLevel::Error) << "Could not open directory " << Configuration::getV2Path() << "\\history\\provinces\\" << directories.front() << "\\*.*";
+				LOG(LogLevel::Error) << "Could not open directory " << Configuration::getV2Path() << "\\history\\provinces" << directories.front() << "\\*.*";
 				exit(-1);
 			}
 
