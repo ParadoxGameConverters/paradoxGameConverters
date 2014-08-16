@@ -116,7 +116,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				string name = modObj->getLeaf("name");														// the name of the mod
 
 				string path;	// the path of the mod
-				vector<Object*> dirObjs = modObj->getValue("user_dir");	// the possible paths of the mod
+				vector<Object*> dirObjs = modObj->getValue("path");	// the possible paths of the mod
 				if (dirObjs.size() > 0)
 				{
 					path = dirObjs[0]->getLeaf();
@@ -133,7 +133,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				if (path != "")
 				{
 					possibleMods.insert(make_pair(name, EU4DocumentsLoc + "\\" + path));
-					Log(LogLevel::Debug) << "\t\tFound a mod named " << name << " at " << EU4DocumentsLoc << "\\" << path;
+					Log(LogLevel::Debug) << "\t\tFound a mod named " << name << " claiming to be at " << EU4DocumentsLoc << "\\" << path;
 				}
 			}
 		}
