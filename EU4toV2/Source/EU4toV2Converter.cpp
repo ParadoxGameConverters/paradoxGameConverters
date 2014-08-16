@@ -112,7 +112,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			const int pos = itr->find_last_of('.');	// the position of the last period in the filename
 			if (itr->substr(pos, itr->length()) == ".mod")
 			{
-				Object* modObj = doParseFile((EU4DocumentsLoc + "\\mod\\" + *itr).c_str());	// the parsed mod file
+				Object* modObj = doParseFile((EU4DocumentsLoc + "\\" + *itr).c_str());	// the parsed mod file
 				string name = modObj->getLeaf("name");														// the name of the mod
 
 				string path;	// the path of the mod
