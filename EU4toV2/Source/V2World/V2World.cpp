@@ -645,6 +645,10 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 			country2->second->addRelation(newRelation);
 		}
 
+		if (itr->type == "is_colonial")
+		{
+			country1->second->absorbColony(country2->second);
+		}
 		if ((itr->type == "royal_marriage") || (itr->type == "guarantee"))
 		{
 			// influence level +1, but never exceed 4

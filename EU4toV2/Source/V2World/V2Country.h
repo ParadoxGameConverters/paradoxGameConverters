@@ -75,6 +75,8 @@ class V2Country
 		void								setCommerceTech(double mean, double highest);
 		void								setIndustryTech(double mean, double highest);
 		void								setCultureTech(double mean, double highest);
+		void								addRelation(V2Relations* newRelation);
+		void								absorbColony(V2Country* colony);
 
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
@@ -85,13 +87,12 @@ class V2Country
 		void								addTech(string newTech)						{ techs.push_back(newTech); };
 		void								setNationalValue(string NV)				{ nationalValue = NV; };
 		void								isANewCountry(void)							{ newCountry = true; };
-		void								addRelation(V2Relations* newRelation);
 
 		vector<V2Province*>			getProvinces() const { return provinces; };
 		string							getTag() const { return tag; };
 		bool								isCivilized() const { return civilized; };
 		string							getPrimaryCulture() const { return primaryCulture; };
-		vector<string>					getAcceptedCultures() const { return acceptedCultures; };
+		set<string>						getAcceptedCultures() const { return acceptedCultures; };
 		const EU4Country*				getSourceCountry() const { return srcCountry; };
 		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; };
 		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; };
@@ -126,7 +127,7 @@ class V2Country
 		int								capital;
 		bool								civilized;
 		string							primaryCulture;
-		vector<string>					acceptedCultures;
+		set<string>						acceptedCultures;
 		string							religion;
 		vector<V2Party*>				parties;
 		string							rulingParty;

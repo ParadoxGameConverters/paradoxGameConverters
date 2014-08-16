@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <stdio.h>
 #include <string>
 #include <vector>
+#include <set>
 using namespace std;
 
 class V2Province;
@@ -44,7 +45,7 @@ class V2State
 		V2State(int newId, V2Province* firstProvince);
 
 		void addRailroads();
-		void setupPops(string primaryCulture, vector<string> acceptedCultures, string religion);
+		void setupPops(string primaryCulture, set<string> acceptedCultures, string religion);
 
 		bool	isCoastal() const;
 		bool	hasLocalSupply(string product) const;

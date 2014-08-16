@@ -659,10 +659,10 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
-	LOG(LogLevel::Info) << "Converting diplomacy";
-	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
+	LOG(LogLevel::Info) << "Converting diplomacy";
+	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting colonies";
 	destWorld.setupColonies(adjacencyMap, continentMap);
 	LOG(LogLevel::Info) << "Creating states";

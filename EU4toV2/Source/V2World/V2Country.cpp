@@ -144,9 +144,9 @@ void V2Country::output() const
 	{
 		fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
 	}
-	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	for (set<string>::iterator i = acceptedCultures.begin(); i != acceptedCultures.end(); i++)
 	{
-		fprintf(output, "culture = %s\n", acceptedCultures[i].c_str());
+		fprintf(output, "culture = %s\n", i->c_str());
 	}
 	if (religion != "")
 	{
@@ -465,7 +465,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 				}
 				if (match)
 				{
-					acceptedCultures.push_back(j->dstCulture);
+					acceptedCultures.insert(j->dstCulture);
 					matched = true;
 				}
 			}
@@ -797,7 +797,7 @@ void V2Country::initFromHistory()
 	results = obj->getValue("culture");
 	for (vector<Object*>::iterator itr = results.begin(); itr != results.end(); ++itr)
 	{
-		acceptedCultures.push_back((*itr)->getLeaf());
+		acceptedCultures.insert((*itr)->getLeaf());
 	}
 
 	results = obj->getValue("religion");
@@ -1083,6 +1083,25 @@ void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, in
 void V2Country::addRelation(V2Relations* newRelation)
 {
 	relations.insert(make_pair(newRelation->getTag(), newRelation));
+}
+
+
+void V2Country::absorbColony(V2Country* colony)
+{
+	Log(LogLevel::Debug) << "\t" << tag << " is absorbing the colony " << colony->getTag();
+
+	// change province ownership and add owner cores if needed
+	vector<V2Province*> colonyProvinces = colony->getProvinces();
+	for (vector<V2Province*>::iterator provItr = colonyProvinces.begin(); provItr != colonyProvinces.end(); provItr++)
+	{
+		(*provItr)->setOwner(tag);
+		(*provItr)->addCore(tag);
+	}
+
+	// accept cultures from the colony
+	acceptedCultures.insert(colony->getPrimaryCulture());
+	set<string> cultures = colony->getAcceptedCultures();
+	acceptedCultures.insert(cultures.begin(), cultures.end());
 }
 
 
