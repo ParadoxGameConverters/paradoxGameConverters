@@ -82,7 +82,7 @@ V2Province::V2Province(string _filename)
 	struct _stat st;
 	if (_stat((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str(), &st) == 0)
 	{
-		LOG(LogLevel::Info) << "Parsing " << (string(".\\blankMod\\output\\history\\provinces\\") + _filename);
+		LOG(LogLevel::Debug) << "Parsing " << (string(".\\blankMod\\output\\history\\provinces\\") + _filename);
 		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str());
 		if (obj == NULL)
 		{
@@ -92,7 +92,7 @@ V2Province::V2Province(string _filename)
 	}
 	else
 	{
-		LOG(LogLevel::Info) << "Parsing " << (Configuration::getV2Path() + "\\history\\provinces\\" + _filename);
+		LOG(LogLevel::Debug) << "Parsing " << (Configuration::getV2Path() + "\\history\\provinces\\" + _filename);
 		obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
 		if (obj == NULL)
 		{
