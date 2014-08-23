@@ -249,10 +249,18 @@ string bufferOneObject(ifstream& read)
 	return currObject;
 }
 
+
 bool readFile(ifstream& read)
 {
 	clearStack();
 	read.unsetf(std::ios::skipws);
+
+	char firstChar = read.peek();
+	if (firstChar == (char)0xEF)
+	{
+		char bitBucket[3];
+		read.read(bitBucket, 3);
+	}
 
 	/* - it turns out that the current implementation of spirit::istream_iterator is ungodly slow...
 	static Parser<boost::spirit::istream_iterator> p;
