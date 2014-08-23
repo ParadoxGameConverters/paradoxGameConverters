@@ -532,11 +532,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 						LOG(LogLevel::Error) << "Could not parse file " << modCultureFile;
 						exit(-1);
 					}
-					if (obj->getLeaves().size() < 1)
-					{
-						LOG(LogLevel::Error) << "Failed to parse cultures file ";
-						return 1;
-					}
 					initUnionCultures(obj, unionCultures);
 				}
 			} while (_findnext(fileListing, &fileData) == 0);
