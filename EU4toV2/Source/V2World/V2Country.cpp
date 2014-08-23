@@ -421,7 +421,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 		if (!matched)
 		{
-			LOG(LogLevel::Debug) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
+			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
 
@@ -476,7 +476,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 		}
 		if (!matched)
 		{
-			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
+			LOG(LogLevel::Warning) << "No culture mapping defined for " << *i << " (" << srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
 
