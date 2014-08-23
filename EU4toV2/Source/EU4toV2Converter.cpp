@@ -503,7 +503,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	if (obj->getLeaves().size() < 1)
 	{
-		LOG(LogLevel::Error) << "Failed to parse cultures.txt";
+		LOG(LogLevel::Error) << "Failed to parse 00_cultures.txt";
 		return 1;
 	}
 	initUnionCultures(obj, unionCultures);
@@ -534,7 +534,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 					}
 					if (obj->getLeaves().size() < 1)
 					{
-						LOG(LogLevel::Error) << "Failed to parse cultures file";
+						LOG(LogLevel::Error) << "Failed to parse cultures file ";
 						return 1;
 					}
 					initUnionCultures(obj, unionCultures);

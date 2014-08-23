@@ -96,6 +96,7 @@ class V2Country
 		const EU4Country*				getSourceCountry() const { return srcCountry; };
 		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; };
 		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; };
+		inventionStatus				getInventionState(HODNNMInventionType invention) const { return HODNNMInventions[invention]; };
 		double							getReactionary() const { return upperHouseReactionary; };
 		double							getConservative() const { return upperHouseConservative; };
 		double							getLiberal() const { return upperHouseLiberal; };
@@ -138,6 +139,7 @@ class V2Country
 		vector<string>					techs;
 		inventionStatus				vanillaInventions[VANILLA_naval_exercises];
 		inventionStatus				HODInventions[HOD_naval_exercises];
+		inventionStatus				HODNNMInventions[HOD_NNM_naval_exercises];
 		V2UncivReforms*				uncivReforms;
 		double							researchPoints;
 		string							techSchool;

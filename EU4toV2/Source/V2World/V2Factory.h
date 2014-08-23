@@ -45,6 +45,7 @@ struct V2FactoryType
 	string						requireTech;
 	vanillaInventionType		vanillaRequiredInvention;
 	HODInventionType			HODRequiredInvention;
+	HODNNMInventionType		HODNNMRequiredInvention;
 	bool							requireLocalInput;
 	map<string,float>			inputs;
 };
@@ -61,6 +62,7 @@ class V2Factory
 		string					getRequiredTech()					const { return type->requireTech; }
 		vanillaInventionType	getVanillaRequiredInvention()	const { return type->vanillaRequiredInvention; }
 		HODInventionType		getHODRequiredInvention()		const { return type->HODRequiredInvention; }
+		HODNNMInventionType	getHODNNMRequiredInvention()	const { return type->HODNNMRequiredInvention; }
 		string					getTypeName()						const { return type->name; }
 	private:
 		const V2FactoryType* type;

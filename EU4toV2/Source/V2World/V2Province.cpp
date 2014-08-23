@@ -203,7 +203,7 @@ void V2Province::output() const
 	}
 	if (colonial > 0)
 	{
-		if (Configuration::getV2Gametype() == "HOD")
+		if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
 		{
 			fprintf(output, "colonial=%d\n", colonial);
 		}
