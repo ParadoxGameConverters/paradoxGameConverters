@@ -40,7 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World\V2LeaderTraits.h"
 #include "WinUtils.h"
 
-
+#pragma optimize("", of)
 // Converts the given EU4 save into a V2 mod.
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertEU4ToV2(const std::string& EU4SaveFileName)
@@ -663,6 +663,18 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	map<int, int> leaderIDMap; // <EU4, V2>
 
 
+	// Parse colony rules
+	LOG(LogLevel::Info) << "Parsing colony naming rules.";
+	initParser();
+	obj = doParseFile("colonial.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse colonial.txt";
+		exit(-1);
+	}
+	colonyMapping colonyMap = initColonyMap(obj);
+
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
@@ -713,7 +725,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
-
+#pragma optimize("", on)
 
 int main(const int argc, const char * argv[])
 {

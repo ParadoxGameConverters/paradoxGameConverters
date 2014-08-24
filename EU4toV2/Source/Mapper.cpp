@@ -684,3 +684,59 @@ void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, in
 		}
 	}
 }
+
+#pragma optimize("", off)
+colonyMapping initColonyMap(Object* obj)
+{
+	colonyMapping colonyMap;													// the culture mapping
+	vector<Object*> colonialRules	= obj->getLeaves();					// the culture mapping rules en masse
+	vector<Object*> links			= colonialRules[0]->getLeaves();	// the individual culture mapping rules
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		vector<Object*>			items = (*i)->getLeaves();	// the items in this rule
+
+		colonyStruct rule;	// the new culture rule
+		for (vector<Object*>::iterator j = items.begin(); j != items.end(); j++)
+		{
+			if ((*j)->getKey() == "tag")
+			{
+				rule.tag = (*j)->getLeaf();
+			}
+			if ((*j)->getKey() == "EU4_region")
+			{
+				rule.EU4Region = (*j)->getLeaf();
+			}
+			if ((*j)->getKey() == "V2_region")
+			{
+				rule.V2Region = (*j)->getLeaf();
+			}
+			if ((*j)->getKey() == "is_culture_group")
+			{
+				distinguisher newD;	// a new distinguiser
+				newD.first = DTCultureGroup;
+				newD.second = (*j)->getLeaf();
+				rule.distinguishers.push_back(newD);
+			}
+			if ((*j)->getKey() == "is_subject")
+			{
+				distinguisher newD;	// a new distinguiser
+				newD.first = DTIsSubject;
+				newD.second = (*j)->getLeaf();
+				rule.distinguishers.push_back(newD);
+			}
+			if ((*j)->getKey() == "is_state_religion")
+			{
+				distinguisher newD;	// a new distinguiser
+				newD.first = DTIsStateReligion;
+				newD.second = (*j)->getLeaf();
+				rule.distinguishers.push_back(newD);
+			}
+		}
+
+		colonyMap.push_back(rule);
+	}
+
+	return colonyMap;
+}
+#pragma optimize("", on)

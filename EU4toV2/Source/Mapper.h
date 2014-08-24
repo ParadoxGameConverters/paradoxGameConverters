@@ -79,12 +79,17 @@ typedef map< int, int >				stateIndexMapping; // < province, state index >
 void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
 
 
-// Culture Mappings
+// Distinguishers for mappings
 enum distinguisherType
 {
 	DTOwner,
-	DTReligion
+	DTReligion,
+	DTCultureGroup,
+	DTIsSubject,
+	DTIsStateReligion
 };
+
+// Culture Mappings
 typedef pair<distinguisherType, string> distinguisher;
 typedef struct {
 	string srcCulture;							// the EU4 culture
@@ -116,6 +121,16 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 
 // idea effects
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
+
+// colonial nations
+typedef struct {
+	string tag;
+	string EU4Region;
+	string V2Region;
+	vector<distinguisher> distinguishers;	// additional rules to match the culture
+} colonyStruct;
+typedef vector<colonyStruct> colonyMapping;
+colonyMapping initColonyMap(Object* obj);
 
 
 #endif // MAPPER_H
