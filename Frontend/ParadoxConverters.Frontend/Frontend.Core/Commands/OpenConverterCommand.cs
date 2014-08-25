@@ -31,24 +31,24 @@ namespace Frontend.Core.Commands
         /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+            //OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.DefaultExt = ".exe";
+            //dialog.DefaultExt = ".exe";
 
-            if (this.Options != null && this.Options.CurrentConverter != null && this.Options.CurrentConverter.ConverterExeName != null)
-            {
-                dialog.Filter = this.Options.CurrentConverter.ConverterExeName + " | " + this.Options.CurrentConverter.ConverterExeName; //"CK2ToEU3.exe | CK2ToEU3.exe";
-            }
+            //if (this.Options != null && this.Options.CurrentConverter != null && this.Options.CurrentConverter.ConverterExeName != null)
+            //{
+            //    dialog.Filter = this.Options.CurrentConverter.ConverterExeName + " | " + this.Options.CurrentConverter.ConverterExeName; //"CK2ToEU3.exe | CK2ToEU3.exe";
+            //}
             
-            dialog.InitialDirectory = this.Options.CurrentConverter.AbsoluteConverterPath;
-            Nullable<bool> result = dialog.ShowDialog();
+            //dialog.InitialDirectory = this.Options.CurrentConverter.AbsoluteConverterPath;
+            //Nullable<bool> result = dialog.ShowDialog();
 
-            if (result == true)
-            {
-                this.Options.CurrentConverter.AbsoluteConverterPath = dialog.FileName;
-                this.EventAggregator.PublishOnUIThread(
-                    new LogEntry("Converter .exe found at " + this.Options.CurrentConverter.AbsoluteConverterPath, LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteConverterPath));
-            }
+            //if (result == true)
+            //{
+            //    this.Options.CurrentConverter.AbsoluteConverterPath = dialog.FileName;
+            //    this.EventAggregator.PublishOnUIThread(
+            //        new LogEntry("Converter .exe found at " + this.Options.CurrentConverter.AbsoluteConverterPath, LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteConverterPath));
+            //}
         }
     }
 }

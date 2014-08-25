@@ -13,7 +13,7 @@ namespace Frontend.Core.ViewModels
     /// </summary>
     public class PathPickerViewModel : StepViewModelBase, IPathPickerViewModel
     {
-        private ICommand openSaveGameCommand;
+        private ICommand openFileCommand;
         private ICommand openConverterCommand;
         private ICommand openFolderCommand;
 
@@ -49,11 +49,11 @@ namespace Frontend.Core.ViewModels
         /// <value>
         /// The open save game command.
         /// </value>
-        public ICommand OpenSaveGameCommand
+        public ICommand OpenFileCommand
         {
             get
             {
-                return this.openSaveGameCommand ?? (this.openSaveGameCommand = new OpenSaveGameCommand(this.EventAggregator, this.Options));
+                return this.openFileCommand ?? (this.openFileCommand = new OpenFileCommand(this.EventAggregator, this.Options));
             }
         }
 
@@ -81,17 +81,17 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                return this.Options.CurrentConverter.AbsoluteSourceSaveGamePath;
+                return this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue;
             }
 
             set
             {
-                if (this.Options.CurrentConverter.AbsoluteSourceSaveGamePath == value)
+                if (this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue == value)
                 {
                     return;
                 }
 
-                this.Options.CurrentConverter.AbsoluteSourceSaveGamePath = value;
+                this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue = value;
                 this.NotifyOfPropertyChange(() => this.SourceSaveGamePath);
             }
         }
@@ -106,11 +106,12 @@ namespace Frontend.Core.ViewModels
         /// <returns>True if validation succeeds, false if not.</returns>
         public override bool CanValidate()
         {
-            bool isSourceGamePathValid = Directory.Exists(this.Options.CurrentConverter.SourceGame.AbsoluteInstallationPath);
-            bool isTargetGamePathValid = Directory.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath);
-            bool isSaveGamePathValid = File.Exists(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath);
+            return true;
+            //bool isSourceGamePathValid = Directory.Exists(this.Options.CurrentConverter.SourceGame.AbsoluteInstallationPath);
+            //bool isTargetGamePathValid = Directory.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath);
+            //bool isSaveGamePathValid = File.Exists(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath);
 
-            return isSourceGamePathValid && isTargetGamePathValid && isSaveGamePathValid;
+            //return isSourceGamePathValid && isTargetGamePathValid && isSaveGamePathValid;
         }
 
         /// <summary>
@@ -131,11 +132,11 @@ namespace Frontend.Core.ViewModels
             //}
 
             // If the converter .exe happens to be in the same directory as the UI + relevant subfolder, there is no reason to ask the user to set it. So let's just do it for them.
-            var converterLocation = Path.Combine(this.Options.CurrentConverter.AbsoluteConverterPath, this.Options.CurrentConverter.ConverterExeName); 
-            if (File.Exists(converterLocation))
-            {
-                this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
-            }
+            //var converterLocation = Path.Combine(this.Options.CurrentConverter.AbsoluteConverterPath, this.Options.CurrentConverter.ConverterExeName); 
+            //if (File.Exists(converterLocation))
+            //{
+            //    this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
+            //}
 
             // Add one step per category
             //foreach()

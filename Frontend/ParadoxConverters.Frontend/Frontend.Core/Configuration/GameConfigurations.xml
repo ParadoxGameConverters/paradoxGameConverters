@@ -50,18 +50,34 @@
     <!--Misc-->
     <name>EuropaUniversalis4</name>
     <friendlyName>Europa Universalis 4</friendlyName>
-    <steamId>236850</steamId>
-    <saveGameExtension>.eu4</saveGameExtension>
-    <installationDirectoryTagName>EU4directory</installationDirectoryTagName>
+    <!--<steamId>236850</steamId>-->
+    <!--<saveGameExtension>.eu4</saveGameExtension>-->
+
+    <!--<requiredItems>
+      <requiredFolder>
+        <folderTag>EU4directory</folderTag>
+        --><!--<defaultLocationType>SteamFolder</defaultLocationType>
+          <subFolderLocation>\Europa Universalis IV</subFolderLocation>--><!--
+        <autoDetectFromSteamId>236850</autoDetectFromSteamId>
+      </requiredFolder>
+
+      <requiredFolder>
+        <folderTag>EU4ModDirectory</folderTag>
+        <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+          <subFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</subFolderLocation>
+      </requiredFolder>
+    </requiredItems>-->
+
+    <!--<installationDirectoryTagName>EU4directory</installationDirectoryTagName>-->
 
     <!--Save game-->
-    <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
-    <defaultSaveGameSubLocation>\Paradox Interactive\Europa Universalis IV\save games</defaultSaveGameSubLocation>
+    <!--<defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\Paradox Interactive\Europa Universalis IV\save games</defaultSaveGameSubLocation>-->
 
     <!--Mod related-->
-    <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
+    <!--<defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</defaultModFolderLocation>
-    <modDirectoryTagName>EU4ModDirectory</modDirectoryTagName>
+    <modDirectoryTagName>EU4ModDirectory</modDirectoryTagName>-->
 
     <!--Abandoned-->
     <!--<defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
@@ -73,17 +89,27 @@
     <!--Misc-->
     <name>Victoria2</name>
     <friendlyName>Victoria 2</friendlyName>
-    <steamId>42960</steamId>
-    <saveGameExtension>.v2</saveGameExtension>
-    <installationDirectoryTagName>V2directory</installationDirectoryTagName>
+    <!--<steamId>42960</steamId>-->
+    <!--<saveGameExtension>.v2</saveGameExtension>-->
+    <!--<installationDirectoryTagName>V2directory</installationDirectoryTagName>-->
+
+    <!--<requiredItems>
+      <requiredFolder>
+        <folderTag>V2directory</folderTag>
+        --><!--<defaultLocationType>SteamFolder</defaultLocationType>
+          <subFolderLocation>\Europa Universalis IV</subFolderLocation>--><!--
+        <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+      </requiredFolder>
+    
+    </requiredItems>-->
 
     <!--Save game-->
-    <defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
-    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>
+    <!--<defaultSaveGameLocationType>SteamFolder</defaultSaveGameLocationType>
+    <defaultSaveGameSubLocation>\save games</defaultSaveGameSubLocation>-->
 
     <!--Mod related-->
-    <defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
-    <defaultModFolderLocation>\mod</defaultModFolderLocation>
+    <!--<defaultModFolderLocationType>SteamFolder</defaultModFolderLocationType>
+    <defaultModFolderLocation>\mod</defaultModFolderLocation>-->
 
     <!--Temp files-->
     <!--<defaultTempDirectoryLocationType>WindowsUsersFolder</defaultTempDirectoryLocationType>

@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Factories.TagReaders;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model;
+using Frontend.Core.Model.Paths.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,34 +14,79 @@ namespace Frontend.Core.Factories
 {
     public class GameConfigurationFactory : FactoryBase
     {
+        ///// <summary>
+        ///// The required folder factory
+        ///// </summary>
+        //private RequiredFolderFactory requiredFolderFactory;
+
+        ///// <summary>
+        ///// The required item file factory
+        ///// </summary>
+        //private RequiredFileFactory requiredFileFactory;
+
+        //private XDocument config;
+
         public GameConfigurationFactory(IEventAggregator eventAggregator)
             : base(eventAggregator, "gameConfiguration")
         {
         }
 
+        ///// <summary>
+        ///// The required folder factory self-resolving property
+        ///// </summary>
+        //protected RequiredFolderFactory RequiredFolderFactory
+        //{
+        //    get
+        //    {
+        //        return this.requiredFolderFactory ?? (this.requiredFolderFactory = new RequiredFolderFactory(this.EventAggregator));
+        //    }
+        //}
+
+        ///// <summary>
+        ///// The required file factory self-resolving property
+        ///// </summary>
+        //protected RequiredFileFactory RequiredFileFactory
+        //{
+        //    get
+        //    {
+        //        return this.requiredFileFactory ?? (this.requiredFileFactory = new RequiredFileFactory(this.EventAggregator));
+        //    }
+        //}
+
+        //protected override void OnConfigLoaded(XDocument config)
+        //{
+        //    base.OnConfigLoaded(config);
+        //    this.config = config;
+        //}
+
         protected override T OnBuildElement<T>(XElement element)
         {
             var name = XElementHelper.ReadStringValue(element, "name");
             var friendlyName = XElementHelper.ReadStringValue(element, "friendlyName");
-            var steamId = XElementHelper.ReadStringValue(element, "steamId");
+            //var steamId = XElementHelper.ReadStringValue(element, "steamId");
 
+            //var requiredFolders = this.RequiredFolderFactory.BuildConfiguration<IRequiredFolder>(this.config);
+            //var requiredFiles = this.RequiredFileFactory.BuildConfiguration<IRequiredFile>(this.config);
+
+            //var requiredFilesAndFolders = requiredFiles.Union(requiredFolders);
+            
             // Installation directory related
-            var installationFolder = SteamHelper.GetSteamInstallationFolder(this.EventAggregator, steamId);
-            var installationDirectoryTagName = XElementHelper.ReadStringValue(element, "installationDirectoryTagName");
+            //var installationFolder = SteamHelper.GetSteamInstallationFolder(this.EventAggregator, steamId);
+            //var installationDirectoryTagName = XElementHelper.ReadStringValue(element, "installationDirectoryTagName");
             //var iconFile = XElementHelper.ReadStringValue(element, "iconFile", false);
 
             // Save game related
-            var saveGameFolderTypeAsString = XElementHelper.ReadStringValue(element, "defaultSaveGameLocationType");
-            var saveGameFolderType = saveGameFolderTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
-            var saveGameExtension = XElementHelper.ReadStringValue(element, "saveGameExtension");
-            var saveGameLocation = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultSaveGameSubLocation");
+            //var saveGameFolderTypeAsString = XElementHelper.ReadStringValue(element, "defaultSaveGameLocationType");
+            //var saveGameFolderType = saveGameFolderTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+            //var saveGameExtension = XElementHelper.ReadStringValue(element, "saveGameExtension");
+            //var saveGameLocation = (saveGameFolderType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultSaveGameSubLocation");
 
             // Mod related
-            var defaultModFolderLocationTypeAsString = XElementHelper.ReadStringValue(element, "defaultModFolderLocationType", false);
-            var defaultModFolderLocationType = defaultModFolderLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
-            var modDirectoryTagName = XElementHelper.ReadStringValue(element, "modDirectoryTagName", false);
+            //var defaultModFolderLocationTypeAsString = XElementHelper.ReadStringValue(element, "defaultModFolderLocationType", false);
+            //var defaultModFolderLocationType = defaultModFolderLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()) ? RelativeFolderLocationRoot.SteamFolder : RelativeFolderLocationRoot.WindowsUsersFolder;
+            //var modDirectoryTagName = XElementHelper.ReadStringValue(element, "modDirectoryTagName", false);
             var currentModTagName = XElementHelper.ReadStringValue(element, "currentModTagName", false);
-            var absoluteModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultModFolderLocation", false);
+            //var absoluteModPath = (defaultModFolderLocationType == RelativeFolderLocationRoot.SteamFolder ? installationFolder : DirectoryHelper.GetUsersFolder()) + XElementHelper.ReadStringValue(element, "defaultModFolderLocation", false);
             var supportedModsAsString = element.Descendants("supportedMod");
 
             // Temp directory
@@ -52,16 +99,16 @@ namespace Frontend.Core.Factories
             {
                 Name = name,
                 FriendlyName = friendlyName,
-                SteamId = steamId,
-                SaveGameExtension = saveGameExtension,
-                AbsoluteInstallationPath = installationFolder,
-                InstallationDirectoryTagName = installationDirectoryTagName,
-                ModDirectoryTagName = modDirectoryTagName,
-                AbsoluteSaveGamePath = saveGameLocation,
+                //SteamId = steamId,
+                //SaveGameExtension = saveGameExtension,
+                //AbsoluteInstallationPath = installationFolder,
+                //InstallationDirectoryTagName = installationDirectoryTagName,
+                //ModDirectoryTagName = modDirectoryTagName,
+                //AbsoluteSaveGamePath = saveGameLocation,
                 CurrentModTagName = currentModTagName,
-                AbsoluteModPath = absoluteModPath/*,
-                AbsoluteTempDirectoryPath = tempDirectoryAbsolutePath,
-                TempDirectoryTagName = tempDirectoryTagName*/
+                //AbsoluteModPath = absoluteModPath/*,
+                //AbsoluteTempDirectoryPath = tempDirectoryAbsolutePath,
+                //TempDirectoryTagName = tempDirectoryTagName
             };
 
             // Dummy item so that the user can undo selecting a mod

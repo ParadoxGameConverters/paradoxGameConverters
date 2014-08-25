@@ -3,6 +3,7 @@ using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model;
 using Frontend.Core.Model.Interfaces;
+using Frontend.Core.Model.Paths.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -36,6 +37,18 @@ namespace Frontend.Core.Factories
         /// The relative path to the game configuration config file
         /// </summary>
         private string relativeGameConfigurationPath;
+
+        /// <summary>
+        /// The required item (folder, file) factory
+        /// </summary>
+        private RequiredFolderFactory requiredFolderFactory;
+
+        /// <summary>
+        /// The required item file factory
+        /// </summary>
+        private RequiredFileFactory requiredFileFactory;
+
+        private XDocument config;
 
         /// <summary>
         /// Initializes a new instance of the ConverterSettingsFactory
@@ -112,11 +125,34 @@ namespace Frontend.Core.Factories
         }
 
         /// <summary>
+        /// The required item factory self-resolving property
+        /// </summary>
+        protected RequiredFolderFactory RequiredFolderFactory
+        {
+            get
+            {
+                return this.requiredFolderFactory ?? (this.requiredFolderFactory = new RequiredFolderFactory(this.EventAggregator));
+            }
+        }
+
+        /// <summary>
+        /// The required file factory self-resolving property
+        /// </summary>
+        protected RequiredFileFactory RequiredFileFactory
+        {
+            get
+            {
+                return this.requiredFileFactory ?? (this.requiredFileFactory = new RequiredFileFactory(this.EventAggregator));
+            }
+        }
+
+        /// <summary>
         /// TODO:
         /// </summary>
         /// <param name="config"></param>
         protected override void OnConfigLoaded(XDocument config)
         {
+            this.config = config;
             this.relativeGameConfigurationPath = XElementHelper.ReadStringValue(config.Descendants("configuration").First(), "gameConfigurationFile");
         }
 
@@ -131,7 +167,7 @@ namespace Frontend.Core.Factories
             var name = XElementHelper.ReadStringValue(element, "name");
             var friendlyName = XElementHelper.ReadStringValue(element, "friendlyName");
             var defaultConfigurationFile = XElementHelper.ReadStringValue(element, "defaultConfigurationFile");
-            var converterExeName = XElementHelper.ReadStringValue(element, "converterExeName");
+            //var converterExeName = XElementHelper.ReadStringValue(element, "converterExeName");
             //var userConfigurationFile = XElementHelper.ReadStringValue(element, "userConfigurationFile");
             var additionalInformation = XElementHelper.ReadStringValue(element, "informationText", false);
 
@@ -140,6 +176,9 @@ namespace Frontend.Core.Factories
             var targetGameName = XElementHelper.ReadStringValue(element, "targetGame");
             var sourceGame = this.GameConfigurations.FirstOrDefault(g => g.Name.Equals(sourceGameName));
             var targetGame = this.GameConfigurations.FirstOrDefault(g => g.Name.Equals(targetGameName));
+
+            var requiredFolders = this.RequiredFolderFactory.BuildConfiguration<IRequiredFolder>(this.config); 
+            var requiredFiles = this.RequiredFileFactory.BuildConfiguration<IRequiredFile>(this.config);
             
             // Native export directory.
             //var nativeExportDirectory = XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectory", false);
@@ -173,23 +212,28 @@ namespace Frontend.Core.Factories
                 this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "target game", targetGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
             }
 
-            var relativeConverterPath = XElementHelper.ReadStringValue(element, "subfolderName");
+            //var relativeConverterPath = XElementHelper.ReadStringValue(element, "subfolderName");
 
-            return new ConverterSettings(this.EventAggregator)
+            ConverterSettings settings = new ConverterSettings(this.EventAggregator)
             {
                 Name = name,
                 FriendlyName = friendlyName,
                 DefaultConfigurationFile = Path.Combine(Environment.CurrentDirectory, defaultConfigurationFile),
-                ConverterExeName = converterExeName,
+                //ConverterExeName = converterExeName,
                 SourceGame = sourceGame,
                 TargetGame = targetGame,
-                AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath),
+                //AbsoluteConverterPath = Path.Combine(Environment.CurrentDirectory, relativeConverterPath),
                 /*NativeParadoxExportDirectoryTag = nativeExportDirectoryTag,
                 NativeParadoxExportDirectory = nativeExportDirectoryAbsolutePath,*/
                 //UserConfigurationFile = userConfigurationFile 
                 Categories = categories,
                 AdditionalInformation = additionalInformation
-            } as T;
+            };
+
+            requiredFolders.ForEach<IRequiredFolder>(f => settings.RequiredItems.Add(f));
+            requiredFiles.ForEach<IRequiredFile>(f => settings.RequiredItems.Add(f));
+
+            return settings as T;
         }
     }
 }

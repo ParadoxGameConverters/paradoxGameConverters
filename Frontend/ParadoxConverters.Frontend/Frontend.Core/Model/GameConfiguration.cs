@@ -15,12 +15,12 @@ namespace Frontend.Core.Model
         /// </summary>
         private IList<IMod> supportedMods;
 
-        private string absoluteInstallationPath;
+        //private string absoluteInstallationPath;
 
-        /// <summary>
-        /// Backing store for the <see cref="AbsoluteModPath"/> property.
-        /// </summary>
-        private string absoluteModPath;
+        ///// <summary>
+        ///// Backing store for the <see cref="AbsoluteModPath"/> property.
+        ///// </summary>
+        //private string absoluteModPath;
 
         /// <summary>
         /// Backing store for the <see cref="AbsoluteSaveGamePath"/> property
@@ -51,13 +51,13 @@ namespace Frontend.Core.Model
         /// </value>
         public string SaveGameExtension { get; set; }
 
-        /// <summary>
-        /// Gets or sets the steam unique identifier.
-        /// </summary>
-        /// <value>
-        /// The steam unique identifier.
-        /// </value>
-        public string SteamId { get; set; }
+        ///// <summary>
+        ///// Gets or sets the steam unique identifier.
+        ///// </summary>
+        ///// <value>
+        ///// The steam unique identifier.
+        ///// </value>
+        //public string SteamId { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [is installed].
@@ -75,13 +75,13 @@ namespace Frontend.Core.Model
         /// </value>
         public string Version { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the configuration file directory tag.
-        /// </summary>
-        /// <value>
-        /// The name of the configuration file directory tag.
-        /// </value>
-        public string InstallationDirectoryTagName { get; set; }
+        ///// <summary>
+        ///// Gets or sets the name of the configuration file directory tag.
+        ///// </summary>
+        ///// <value>
+        ///// The name of the configuration file directory tag.
+        ///// </value>
+        //public string InstallationDirectoryTagName { get; set; }
         
         ///// <summary>
         ///// The directory where the game stores temporary files
@@ -101,27 +101,27 @@ namespace Frontend.Core.Model
         /// </value>
         public string ModDirectoryTagName { get; set; }
 
-        /// <summary>
-        /// The absolute path to the game's installation path
-        /// </summary>
-        public string AbsoluteInstallationPath 
-        { 
-            get
-            {
-                return this.absoluteInstallationPath;
-            }
+        ///// <summary>
+        ///// The absolute path to the game's installation path
+        ///// </summary>
+        //public string AbsoluteInstallationPath 
+        //{ 
+        //    get
+        //    {
+        //        return this.absoluteInstallationPath;
+        //    }
             
-            set
-            {
-                if (this.absoluteInstallationPath == value)
-                {
-                    return;
-                }
+        //    set
+        //    {
+        //        if (this.absoluteInstallationPath == value)
+        //        {
+        //            return;
+        //        }
 
-                this.absoluteInstallationPath = value;
-                this.NotifyOfPropertyChange(() => this.AbsoluteInstallationPath);
-            }
-        }
+        //        this.absoluteInstallationPath = value;
+        //        this.NotifyOfPropertyChange(() => this.AbsoluteInstallationPath);
+        //    }
+        //}
         
         /// <summary>
         /// Gets or sets the absolute save game path
@@ -165,38 +165,39 @@ namespace Frontend.Core.Model
         {
             get
             {
-                return this.SupportedMods.Count > 0
-                    && !string.IsNullOrEmpty(this.CurrentModTagName)
-                    && this.CurrentMod != null
-                    && !string.IsNullOrEmpty(this.ModDirectoryTagName)
-                    && !string.IsNullOrEmpty(this.AbsoluteModPath);
+                //return this.SupportedMods.Count > 0
+                //    && !string.IsNullOrEmpty(this.CurrentModTagName)
+                //    && this.CurrentMod != null
+                //    && !string.IsNullOrEmpty(this.ModDirectoryTagName)
+                //    && !string.IsNullOrEmpty(this.AbsoluteModPath);
+                return false;
             }
         }
 
-        /// <summary>
-        /// Gets or sets the mod path.
-        /// </summary>
-        /// <value>
-        /// The mod path.
-        /// </value>
-        public string AbsoluteModPath
-        {
-            get
-            {
-                return this.absoluteModPath;
-            }
+        ///// <summary>
+        ///// Gets or sets the mod path.
+        ///// </summary>
+        ///// <value>
+        ///// The mod path.
+        ///// </value>
+        //public string AbsoluteModPath
+        //{
+        //    get
+        //    {
+        //        return this.absoluteModPath;
+        //    }
 
-            set
-            {
-                if (this.absoluteModPath == value)
-                {
-                    return;
-                }
+        //    set
+        //    {
+        //        if (this.absoluteModPath == value)
+        //        {
+        //            return;
+        //        }
 
-                this.absoluteModPath = value;
-                this.NotifyOfPropertyChange(() => this.AbsoluteModPath);
-            }
-        }
+        //        this.absoluteModPath = value;
+        //        this.NotifyOfPropertyChange(() => this.AbsoluteModPath);
+        //    }
+        //}
 
         /// <summary>
         /// The current mod

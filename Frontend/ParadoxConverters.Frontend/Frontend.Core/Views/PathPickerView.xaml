@@ -3,9 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:templateSelectors="clr-namespace:Frontend.Core.Views.TemplateSelectors"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
+
+        <templateSelectors:RequiredItemTemplateSelector x:Key="RequiredItemTemplateSelector"/>
+
         <Style x:Key="FolderPathTextBoxStyle" TargetType="{x:Type TextBox}">
             <Setter Property="Height" Value="25"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
@@ -16,7 +20,7 @@
 
         <Style x:Key="FolderPathTextBlockStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="Height" Value="25"/>
-            <Setter Property="Width" Value="150"/>
+            <Setter Property="Width" Value="175"/>
             <Setter Property="VerticalAlignment" Value="Stretch"/>
             <Setter Property="Padding" Value="5"/>
             <Setter Property="Margin" Value="6,2, 0, 0"/>
@@ -33,8 +37,53 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="Margin" Value="6, 1, 0, 0"/>
         </Style>
+        
+        <DataTemplate x:Key="FolderSelectionTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding FriendlyName}" Style="{StaticResource FolderPathTextBlockStyle}"/>
+                <TextBox Text="{Binding SelectedValue}" Grid.Column="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
+                <Button Content="Browse..." Grid.Column="2"  Style="{StaticResource FolderPathBrowseButtonStyle}" 
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.OpenFolderCommand}" 
+                        CommandParameter="{Binding}"/>
+            </Grid>
+        </DataTemplate>
+        
+        <DataTemplate x:Key="FileSelectionTemplate">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Text="{Binding FriendlyName}" Style="{StaticResource FolderPathTextBlockStyle}"/>
+                <TextBox Text="{Binding SelectedValue}" Grid.Column="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
+                <Button Content="Browse..." Grid.Column="2"  Style="{StaticResource FolderPathBrowseButtonStyle}" 
+                        Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.OpenFileCommand}" 
+                        CommandParameter="{Binding}"/>
+            </Grid>
+        </DataTemplate>
+        
     </UserControl.Resources>
-    <Grid VerticalAlignment="Top" Margin="0,10,0, 10">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0" Text="Find required files and folders:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 0, 0, 5" FontWeight="Bold"/>
+        <ScrollViewer Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Options.CurrentConverter.RequiredItems}" ItemTemplateSelector="{StaticResource RequiredItemTemplateSelector}"/>
+        </ScrollViewer>
+    </Grid>
+    <!--<Grid VerticalAlignment="Top" Margin="0,10,0, 10">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
@@ -71,5 +120,5 @@
         <Button Name="ConverterBrowseButton" Grid.Column="2" Grid.Row="5" Content="Browse..." Style="{StaticResource FolderPathBrowseButtonStyle}" Command="{Binding OpenConverterCommand}"/>
 
         <CheckBox IsChecked="{Binding Options.CurrentConverter.UseConverterMod}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,2,0,0"/>
-    </Grid>
+    </Grid>-->
 </UserControl>

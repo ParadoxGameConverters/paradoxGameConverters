@@ -97,7 +97,7 @@ namespace Frontend.Core.Factories
         /// <typeparam name="T">The type of element</typeparam>
         /// <param name="config">The configuration file</param>
         /// <returns>The model objects</returns>
-        private ObservableCollection<T> BuildConfiguration<T>(XDocument config) where T : class
+        public ObservableCollection<T> BuildConfiguration<T>(XDocument config) where T : class
         {
             ObservableCollection<T> elements = new ObservableCollection<T>();
 

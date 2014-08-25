@@ -43,31 +43,31 @@ namespace Frontend.Core.Commands
         /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
-            OpenFileDialog dialog = new OpenFileDialog();
+            //OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.DefaultExt = this.Options.CurrentConverter.SourceGame.SaveGameExtension;
-            dialog.Filter = this.Options.CurrentConverter.SourceGame.FriendlyName + " save games (*" + this.Options.CurrentConverter.SourceGame.SaveGameExtension + ") | *" + this.Options.CurrentConverter.SourceGame.SaveGameExtension;
+            //dialog.DefaultExt = this.Options.CurrentConverter.SourceGame.SaveGameExtension;
+            //dialog.Filter = this.Options.CurrentConverter.SourceGame.FriendlyName + " save games (*" + this.Options.CurrentConverter.SourceGame.SaveGameExtension + ") | *" + this.Options.CurrentConverter.SourceGame.SaveGameExtension;
 
-            // Just default to the current working directory if the default save game path doesn't exist. 
-            // This can typically occur if the user just installed the game, and haven't made any saves yet.
-            if (Directory.Exists(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath))
-            {
-                dialog.InitialDirectory = this.Options.CurrentConverter.AbsoluteSourceSaveGamePath;
-            }
-            else
-            {
-                dialog.InitialDirectory = Environment.CurrentDirectory;
-            }
+            //// Just default to the current working directory if the default save game path doesn't exist. 
+            //// This can typically occur if the user just installed the game, and haven't made any saves yet.
+            //if (Directory.Exists(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath))
+            //{
+            //    dialog.InitialDirectory = this.Options.CurrentConverter.AbsoluteSourceSaveGamePath;
+            //}
+            //else
+            //{
+            //    dialog.InitialDirectory = Environment.CurrentDirectory;
+            //}
 
-            Nullable<bool> result = dialog.ShowDialog();
+            //Nullable<bool> result = dialog.ShowDialog();
 
-            if (result == true)
-            {
-                this.Options.CurrentConverter.AbsoluteSourceSaveGamePath = dialog.FileName;
-                this.EventAggregator.PublishOnUIThread(
-                    new LogEntry("Selected savegame", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteSourceSaveGamePath));
-                this.EventAggregator.BeginPublishOnUIThread(new RefreshButtonStatesArgs());
-            }
+            //if (result == true)
+            //{
+            //    this.Options.CurrentConverter.AbsoluteSourceSaveGamePath = dialog.FileName;
+            //    this.EventAggregator.PublishOnUIThread(
+            //        new LogEntry("Selected savegame", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.AbsoluteSourceSaveGamePath));
+            //    this.EventAggregator.BeginPublishOnUIThread(new RefreshButtonStatesArgs());
+            //}
         }
     }
 }

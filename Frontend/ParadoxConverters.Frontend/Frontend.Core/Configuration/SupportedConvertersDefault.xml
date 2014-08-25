@@ -2,18 +2,18 @@
 <configuration>
   <gameConfigurationFile>Configuration\GameConfigurations.xml</gameConfigurationFile>
   <supportedConverters>
-    <converter>
+    <!--<converter>
       <name>Ck2ToEu3</name>
       <friendlyName>From Crusader Kings 2 to Europa Universalis 3</friendlyName>
       <defaultConfigurationFile>Configuration\Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
       <converterExeName>CK2ToEU3.exe</converterExeName>
-      <!--<isDefault>true</isDefault>-->
+      --><!--<isDefault>true</isDefault>--><!--
       <sourceGame>CrusaderKings2</sourceGame>
       <targetGame>EuropaUniversalis3</targetGame>
       <subfolderName>ck2toeu3</subfolderName>
       <isEnabled>false</isEnabled>
-    </converter>
+    </converter>-->
     <converter>
       <name>Eu3ToVic2</name>
       <friendlyName>From Europa Universalis 3 to Victoria 2</friendlyName>
@@ -32,17 +32,82 @@
       <friendlyName>From Europa Universalis 4 to Victoria 2</friendlyName>
       <defaultConfigurationFile>Configuration\Eu4ToVic2DefaultConfiguration.xml</defaultConfigurationFile>
       <userConfigurationFile></userConfigurationFile>
-      <converterExeName>EU4toV2Converter.exe</converterExeName>
+      <!--<converterExeName>EU4toV2Converter.exe</converterExeName>-->
       <!--<isDefault>false</isDefault>-->
       <sourceGame>EuropaUniversalis4</sourceGame>
       <targetGame>Victoria2</targetGame>
-      <subfolderName>eu4tovic2</subfolderName>
+      <!--<subfolderName>eu4tovic2</subfolderName>-->
       <isEnabled>true</isEnabled>
-      
-      <!--Sometimes the converter needs files from the previous conversion step. Thus these tags are needed-->
-      <!--<nativeParadoxExportDirectory>\Paradox Interactive\Crusader Kings II\eu4_export\mod</nativeParadoxExportDirectory>
-      <nativeParadoxExportDirectoryLocationType>WindowsUsersFolder</nativeParadoxExportDirectoryLocationType>
-      <nativeParadoxExportDirectoryTag>CK2ExportDirectory</nativeParadoxExportDirectoryTag>-->
+
+      <requiredItems>
+
+        <requiredFolder>
+          <tag>EU4DocumentsDirectory</tag>
+          <friendlyName>EU4 Documents Directory</friendlyName>
+          <description>A path on your computer where Europa Universalis 4 keeps temporary files</description>
+          <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+          <subFolderLocation>Paradox Interactive\Europa Universalis IV\</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>CK2ExportDirectory</tag>
+          <friendlyName>CK2 Export Directory</friendlyName>
+          <description>A path on your computer where Crusader Kings 2 keeps exported games</description>
+          <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+          <subFolderLocation>Paradox Interactive\Crusader Kings II\eu4_export\mod</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2Documentsdirectory</tag>
+          <friendlyName>Victoria 2 Documents directory</friendlyName>
+          <description>A path on your computer where Victoria 2 keeps temporary files</description>
+          <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+          <subFolderLocation>Paradox Interactive\Victoria II</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2directory</tag>
+          <friendlyName>Victoria 2 directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <defaultLocationType>SteamFolder</defaultLocationType>
+          <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+          <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>EU4directory</tag>
+          <friendlyName>Europa Universalis 4 directory</friendlyName>
+          <description>A path on your computer where Europa Universalis 4 is installed</description>
+          <defaultLocationType>SteamFolder</defaultLocationType>
+          <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+          <autoDetectFromSteamId>236850</autoDetectFromSteamId>
+        </requiredFolder>
+
+        <requiredFile>
+          <tag>ConverterExe</tag>
+          <friendlyName>Converter .exe</friendlyName>
+          <description>The converter command line tool</description>
+          <defaultLocationType>ConverterFolder</defaultLocationType>
+          <subFolderLocation>eu4tovic2</subFolderLocation>
+          <extension>*.exe</extension>
+          <expectedFileName>EU4toV2Converter.exe</expectedFileName>
+        </requiredFile>
+
+        <requiredFile>
+          <tag>SaveGame</tag>
+          <friendlyName>Savegame</friendlyName>
+          <description>The savegame to convert</description>
+          <extension>.eu4</extension>
+          <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+          <subFolderLocation>Paradox Interactive\Europa Universalis IV\save games</subFolderLocation>
+        </requiredFile>
+
+        <!--<requiredFolder>
+        <tag>EU4ModDirectory</tag>
+        <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+        <subFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</subFolderLocation>
+      </requiredFolder>-->
+      </requiredItems>
     </converter>
   </supportedConverters>
 </configuration>

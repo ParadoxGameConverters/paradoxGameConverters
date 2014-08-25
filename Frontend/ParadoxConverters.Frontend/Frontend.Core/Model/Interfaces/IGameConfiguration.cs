@@ -9,21 +9,21 @@ namespace Frontend.Core.Model.Interfaces
 {
     public interface IGameConfiguration
     {
-        /// <summary>
-        /// Gets or sets the mod path.
-        /// </summary>
-        /// <value>
-        /// The mod path.
-        /// </value>
-        string AbsoluteModPath { get; set; }
+        ///// <summary>
+        ///// Gets or sets the mod path.
+        ///// </summary>
+        ///// <value>
+        ///// The mod path.
+        ///// </value>
+        //string AbsoluteModPath { get; set; }
 
-        /// <summary>
-        /// Gets or sets the installation path.
-        /// </summary>
-        /// <value>
-        /// The installation path.
-        /// </value>
-        string AbsoluteInstallationPath { get; set; }
+        ///// <summary>
+        ///// Gets or sets the installation path.
+        ///// </summary>
+        ///// <value>
+        ///// The installation path.
+        ///// </value>
+        //string AbsoluteInstallationPath { get; set; }
 
         ///// <summary>
         ///// Gets or sets the name of the file where we get the icon
@@ -67,13 +67,13 @@ namespace Frontend.Core.Model.Interfaces
         /// </value>
         string SaveGameExtension { get; set; }
 
-        /// <summary>
-        /// Gets or sets the steam unique identifier.
-        /// </summary>
-        /// <value>
-        /// The steam unique identifier.
-        /// </value>
-        string SteamId { get; set; }
+        ///// <summary>
+        ///// Gets or sets the steam unique identifier.
+        ///// </summary>
+        ///// <value>
+        ///// The steam unique identifier.
+        ///// </value>
+        //string SteamId { get; set; }
 
         /// <summary>
         /// Gets or sets a value indicating whether [is installed].
@@ -91,13 +91,13 @@ namespace Frontend.Core.Model.Interfaces
         /// </value>
         string Version { get; set; }
 
-        /// <summary>
-        /// Gets or sets the name of the configuration file directory tag.
-        /// </summary>
-        /// <value>
-        /// The name of the configuration file directory tag.
-        /// </value>
-        string InstallationDirectoryTagName { get; set; }
+        ///// <summary>
+        ///// Gets or sets the name of the configuration file directory tag.
+        ///// </summary>
+        ///// <value>
+        ///// The name of the configuration file directory tag.
+        ///// </value>
+        //string InstallationDirectoryTagName { get; set; }
 
         /// <summary>
         /// Gets or sets the name of the configuration file mod directory tag.

@@ -1,4 +1,5 @@
 ﻿using Frontend.Core.Model.Interfaces;
+using Frontend.Core.Model.Paths.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,29 +25,34 @@ namespace Frontend.Core.Helpers
             // Output source and target game settings
             sb.AppendLine("\t# Installation and mod folder paths:");
 
-            var games = new List<IGameConfiguration>() { converterSettings.SourceGame, converterSettings.TargetGame };
-
-            foreach (var game in games)
+            foreach (IRequiredFolder folder in converterSettings.RequiredItems.OfType<IRequiredFolder>())
             {
-                sb.AppendLine("\t" + game.InstallationDirectoryTagName + " = \"" + game.AbsoluteInstallationPath + "\"");
-
-                //if (game.IsConfiguredToUseMods)
-                //{
-                sb.AppendLine();
-
-                if (!string.IsNullOrEmpty(game.ModDirectoryTagName))
-                {
-                    sb.AppendLine("\t" + game.ModDirectoryTagName + " = \"" + game.AbsoluteModPath + "\"");
-                    sb.AppendLine();
-                }
-                //}
-
-                //if (!string.IsNullOrEmpty(game.TempDirectoryTagName))
-                //{
-                //    sb.AppendLine("\t" + game.TempDirectoryTagName + " = \"" + game.AbsoluteTempDirectoryPath + "\"");
-                //    sb.AppendLine();
-                //}
+                sb.AppendLine("\t" + folder.TagName + " = \"" + folder.SelectedValue + "\"");
             }
+
+            //var games = new List<IGameConfiguration>() { converterSettings.SourceGame, converterSettings.TargetGame };            
+
+            //foreach (var game in games)
+            //{
+            //    sb.AppendLine("\t" + game.InstallationDirectoryTagName + " = \"" + game.AbsoluteInstallationPath + "\"");
+
+            //    //if (game.IsConfiguredToUseMods)
+            //    //{
+            //    sb.AppendLine();
+
+            //    if (!string.IsNullOrEmpty(game.ModDirectoryTagName))
+            //    {
+            //        sb.AppendLine("\t" + game.ModDirectoryTagName + " = \"" + game.AbsoluteModPath + "\"");
+            //        sb.AppendLine();
+            //    }
+            //    //}
+
+            //    //if (!string.IsNullOrEmpty(game.TempDirectoryTagName))
+            //    //{
+            //    //    sb.AppendLine("\t" + game.TempDirectoryTagName + " = \"" + game.AbsoluteTempDirectoryPath + "\"");
+            //    //    sb.AppendLine();
+            //    //}
+            //}
 
             //if (!string.IsNullOrEmpty(converterSettings.NativeParadoxExportDirectoryTag))
             //{

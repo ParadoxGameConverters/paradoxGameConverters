@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
+using Frontend.Core.Model.Paths.Interfaces;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Frontend.Core.Commands
@@ -37,28 +39,28 @@ namespace Frontend.Core.Commands
         /// <param name="parameter">The parameter.</param>
         protected override void OnExecute(object parameter)
         {
-            IGameConfiguration game = (IGameConfiguration)parameter;
-
-            if (game == null)
+            var requiredItem = parameter as IRequiredItemBase;
+            
+            if (requiredItem == null)
             {
                 return;
             }
 
             var dialog = new FolderBrowserDialog();
 
-            if (Directory.Exists(game.AbsoluteInstallationPath))
+            if (Directory.Exists(requiredItem.DefaultValue))
             {
-                dialog.SelectedPath = game.AbsoluteInstallationPath;
-            }
-
+                dialog.SelectedPath = requiredItem.DefaultValue;
+            } 
+            
             dialog.ShowNewFolderButton = false;
 
             DialogResult result = dialog.ShowDialog();
 
             if (result == DialogResult.OK)
             {
-                game.AbsoluteInstallationPath = dialog.SelectedPath;
-                this.EventAggregator.PublishOnUIThread(new LogEntry("Updated installation folder for " + game.FriendlyName + "; new directory is ", LogEntrySeverity.Info, LogEntrySource.UI, game.AbsoluteInstallationPath));
+                requiredItem.SelectedValue = dialog.SelectedPath;
+                this.EventAggregator.PublishOnUIThread(new LogEntry("Successfully set " + requiredItem.FriendlyName + " to ", LogEntrySeverity.Info, LogEntrySource.UI, requiredItem.SelectedValue));
             }
         }
     }

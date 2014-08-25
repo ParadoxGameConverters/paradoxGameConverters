@@ -14,6 +14,11 @@ namespace Frontend.Core.Model
         /// <summary>
         /// The steam folder
         /// </summary>
-        SteamFolder
+        SteamFolder, 
+
+        /// <summary>
+        /// The folder where the converter itself is located
+        /// </summary>
+        ConverterFolder
     }
 }

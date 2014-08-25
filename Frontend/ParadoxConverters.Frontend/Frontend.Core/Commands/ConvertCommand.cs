@@ -58,11 +58,16 @@ namespace Frontend.Core.Commands
             //}
 
             // Check various requirements
-            bool converterExists = File.Exists(this.Options.CurrentConverter.AbsoluteConverterPath);
-            bool configurationFileExists = File.Exists(Path.Combine(Path.GetDirectoryName(this.Options.CurrentConverter.AbsoluteConverterPath), configurationFileName));
-            bool saveGameExists = File.Exists(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath);
+            bool converterExists = File.Exists(this.Options.CurrentConverter.AbsoluteConverter.SelectedValue);
+            bool configurationFileExists = File.Exists(Path.Combine(Path.GetDirectoryName(this.Options.CurrentConverter.AbsoluteConverter.SelectedValue), configurationFileName));
+            var saveGame = this.Options.CurrentConverter.RequiredItems.First(i => i.TagName.Equals("SaveGame"));
+            
+            if (saveGame == null || !File.Exists(saveGame.SelectedValue))
+            {
+                return false;
+            }
 
-            if (converterExists && configurationFileExists && saveGameExists)
+            if (converterExists && configurationFileExists)
             {
                 return true;
             }
@@ -105,11 +110,11 @@ namespace Frontend.Core.Commands
             // Reading process output syncronously. The async part is already handled by the command
             using (var process = new Process())
             {
-                var argument = "\"" + this.Options.CurrentConverter.AbsoluteSourceSaveGamePath + "\"";
+                var argument = "\"" + this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue + "\"";
 
                 process.StartInfo = new ProcessStartInfo
                 {
-                    FileName = this.Options.CurrentConverter.AbsoluteConverterPath,
+                    FileName = this.Options.CurrentConverter.AbsoluteConverter.SelectedValue,
                     Arguments = argument,
                     CreateNoWindow = true,
                     RedirectStandardError = true,
@@ -210,31 +215,33 @@ namespace Frontend.Core.Commands
         {
             //var modFolder = this.Options.ModFilesProvider.ModFolder;
 
-            var absoluteSourcePath = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "Mod");
+            throw new NotImplementedException();
 
-            // Verify source data
-            if (!Directory.Exists(absoluteSourcePath))
-            {
-                // Log error
-                this.Log("Could not find mod folder (" + absoluteSourcePath + "), making it somewhat hard to copy said folder to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". This means that the converter mod isn't installed, so you might want to try to do it manually instead.", LogEntrySeverity.Error, LogEntrySource.UI, null);
-                return;
-            }
+            //var absoluteSourcePath = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "Mod");
 
-            // Overwrite needed?
-            if (!File.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod"))
-            {
-                // Ask permission for overwrite (or delete whole thing, then recopy?)
-            }
+            //// Verify source data
+            //if (!Directory.Exists(absoluteSourcePath))
+            //{
+            //    // Log error
+            //    this.Log("Could not find mod folder (" + absoluteSourcePath + "), making it somewhat hard to copy said folder to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". This means that the converter mod isn't installed, so you might want to try to do it manually instead.", LogEntrySeverity.Error, LogEntrySource.UI, null);
+            //    return;
+            //}
 
-            try
-            {
-                DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", true, true);
-                this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI, null);
-            }
-            catch (Exception ex)
-           {    
-                this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
-            }
+            //// Overwrite needed?
+            //if (!File.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod"))
+            //{
+            //    // Ask permission for overwrite (or delete whole thing, then recopy?)
+            //}
+
+            //try
+            //{
+            //    DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", true, true);
+            //    this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI, null);
+            //}
+            //catch (Exception ex)
+            //{
+            //    this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
+            //}
         }
 
         /// <summary>
@@ -245,7 +252,7 @@ namespace Frontend.Core.Commands
             bool wasMoveSuccessful = false;
 
             // Copy the newly created save to the target game output directory.
-            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
+            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
             var canOverWrite = false;
             var expectedOutputDirectoryAndFile = Path.Combine(this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath, desiredFileName);
 
@@ -292,7 +299,7 @@ namespace Frontend.Core.Commands
         /// <returns></returns>
         private string DetermineOutputSavePath()
         {
-            return Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
+            return Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
         }
 
         /// <summary>

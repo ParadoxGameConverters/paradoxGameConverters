@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Frontend.Core.Model.Paths.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,11 +13,12 @@ namespace Frontend.Core.Model.Interfaces
         string FriendlyName { get; set; }
         string DefaultConfigurationFile { get; set; }
         string UserConfigurationFile { get; set; }
-        string ConverterExeName { get; set; }
+        //string ConverterExeName { get; set; }
         bool IsSelected { get; set; }
         IGameConfiguration SourceGame { get; set; }
         IGameConfiguration TargetGame { get; set; }
         IList<IPreferenceCategory> Categories { get; set; }
+        IList<IRequiredItemBase> RequiredItems { get; }
 
         /// <summary>
         /// Gets or sets the converter path.
@@ -24,7 +26,7 @@ namespace Frontend.Core.Model.Interfaces
         /// <value>
         /// The converter.
         /// </value>
-        string AbsoluteConverterPath { get; set; }
+        IRequiredFile AbsoluteConverter { get; }
 
         /// <summary>
         /// Gets or sets a value indicating whether to use the converter mod.
@@ -40,7 +42,7 @@ namespace Frontend.Core.Model.Interfaces
         /// <value>
         /// The source save game.
         /// </value>
-        string AbsoluteSourceSaveGamePath { get; set; }
+        IRequiredFile AbsoluteSourceSaveGame { get; }
 
         //string NativeParadoxExportDirectory { get; set; }
 

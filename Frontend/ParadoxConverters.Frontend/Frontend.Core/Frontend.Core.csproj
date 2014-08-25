@@ -57,6 +57,7 @@
     <Compile Include="Commands\ConvertCommand.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\OpenConverterCommand.cs" />
+    <Compile Include="Commands\OpenFileCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
     <Compile Include="Commands\SaveCommand.cs" />
@@ -72,14 +73,18 @@
     <Compile Include="Factories\FactoryBase.cs" />
     <Compile Include="Factories\GameConfigurationFactory.cs" />
     <Compile Include="Factories\PreferenceCategoryFactory.cs" />
+    <Compile Include="Factories\RequiredFileFactory.cs" />
+    <Compile Include="Factories\RequiredFolderFactory.cs" />
+    <Compile Include="Factories\TagReaders\FileTagReader.cs" />
+    <Compile Include="Factories\TagReaders\FolderTagReader.cs" />
+    <Compile Include="Factories\TagReaders\TagReaderBase.cs" />
     <Compile Include="Helpers\DateParseHelper.cs" />
     <Compile Include="Helpers\DirectoryCopyHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
     <Compile Include="Helpers\NullableComparer.cs" />
     <Compile Include="Helpers\NumberParserHelper.cs" />
     <Compile Include="Helpers\OutputConfigurationFileHelper.cs" />
-    <Compile Include="Helpers\SteamHelper.cs" />
-    <Compile Include="Helpers\WorkingDirectoryHelper.cs" />
+    <Compile Include="Helpers\DirectoryHelper.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XMLErrorHelper.cs" />
     <Compile Include="Logging\LogEntry.cs" />
@@ -95,6 +100,12 @@
     <Compile Include="Model\Interfaces\IModel.cs" />
     <Compile Include="Model\Interfaces\IPreferenceCategory.cs" />
     <Compile Include="Model\Mod.cs" />
+    <Compile Include="Model\Paths\Interfaces\IRequiredFolder.cs" />
+    <Compile Include="Model\Paths\Interfaces\IRequiredItemBase.cs" />
+    <Compile Include="Model\Paths\Interfaces\IRequiredFile.cs" />
+    <Compile Include="Model\Paths\RequiredFile.cs" />
+    <Compile Include="Model\Paths\RequiredFolder.cs" />
+    <Compile Include="Model\Paths\RequiredItemBase.cs" />
     <Compile Include="Model\PreferenceEntries\DatePreferenceEntry.cs" />
     <Compile Include="Model\PreferenceEntries\Interfaces\IPreferenceEntry.cs" />
     <Compile Include="Model\PreferenceCategory.cs" />
@@ -135,6 +146,7 @@
     <Compile Include="Commands\OpenUriCommand.cs" />
     <Compile Include="Views\TemplateSelectors\PreferenceEntryTemplateSelector.cs" />
     <Compile Include="Views\TemplateSelectors\PreferenceTemplateSelector.cs" />
+    <Compile Include="Views\TemplateSelectors\RequiredItemTemplateSelector.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -192,6 +204,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

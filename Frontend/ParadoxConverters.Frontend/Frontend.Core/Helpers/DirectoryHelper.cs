@@ -20,7 +20,7 @@ namespace Frontend.Core.Helpers
 
         public static string GetConverterWorkingDirectory(IConverterSettings currentConverter)
         {
-            return Path.GetDirectoryName(currentConverter.AbsoluteConverterPath);
+            return Path.GetDirectoryName(currentConverter.AbsoluteConverter.SelectedValue);
         }
 
         public static string GetUsersFolder()

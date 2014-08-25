@@ -1,17 +1,20 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
+using Frontend.Core.Model.Paths.Interfaces;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Frontend.Core.Model
 {
     public class ConverterSettings : PropertyChangedBase, IConverterSettings
     {
         private bool isSelected;
-        private string absoluteSourceSaveGamePath;
-        private string absoluteConverterPath;
+        //private string absoluteSourceSaveGamePath;
+        //private string absoluteConverterPath;
         private bool useConverterMod;
         private IEventAggregator eventAggregator;
+        private IList<IRequiredItemBase> requiredItems;
 
         public ConverterSettings(IEventAggregator eventAggregator)
         {
@@ -22,15 +25,29 @@ namespace Frontend.Core.Model
         public string FriendlyName { get; set; }
         public string DefaultConfigurationFile { get; set; }
         public string UserConfigurationFile { get; set; }
-        public string ConverterExeName { get; set; }
+        //public string ConverterExeName { get; set; }
         public IGameConfiguration SourceGame { get; set; }
         public IGameConfiguration TargetGame { get; set; }
         public IList<IPreferenceCategory> Categories { get; set; }
+        
         public string AdditionalInformation { get; set; }
 
         //public string NativeParadoxExportDirectory { get; set; }
 
         //public string NativeParadoxExportDirectoryTag { get; set; }
+
+        public IList<IRequiredItemBase> RequiredItems
+        {
+            get
+            {
+                if (this.requiredItems == null)
+                {
+                    this.requiredItems = new List<IRequiredItemBase>();
+                }
+
+                return this.requiredItems;
+            }
+        }
 
         /// <summary>
         /// Gets or sets a value indicating whether [is selected].
@@ -69,24 +86,26 @@ namespace Frontend.Core.Model
         /// <value>
         /// The source save game.
         /// </value>
-        public string AbsoluteSourceSaveGamePath
+        public IRequiredFile AbsoluteSourceSaveGame
         {
             get
             {
-                return this.absoluteSourceSaveGamePath ?? this.SourceGame.AbsoluteSaveGamePath;
-            }
-
-            set
-            {
-                if (this.absoluteSourceSaveGamePath == value)
-                {
-                    return;
-                }
-
-                this.absoluteSourceSaveGamePath = value;
-                this.NotifyOfPropertyChange(() => this.AbsoluteSourceSaveGamePath);
+                // This is bad and I should feel bad
+                return (IRequiredFile)this.RequiredItems.First(f => f.FriendlyName.Equals("Savegame"));
             }
         }
+
+        //    set
+        //    {
+        //        if (this.absoluteSourceSaveGamePath == value)
+        //        {
+        //            return;
+        //        }
+
+        //        this.absoluteSourceSaveGamePath = value;
+        //        this.NotifyOfPropertyChange(() => this.AbsoluteSourceSaveGamePath);
+        //    }
+        //}
 
         /// <summary>
         /// Gets or sets the converter path.
@@ -94,24 +113,26 @@ namespace Frontend.Core.Model
         /// <value>
         /// The converter.
         /// </value>
-        public string AbsoluteConverterPath
+        public IRequiredFile AbsoluteConverter
         {
             get
             {
-                return this.absoluteConverterPath;
-            }
-
-            set
-            {
-                if (this.absoluteConverterPath == value)
-                {
-                    return;
-                }
-
-                this.absoluteConverterPath = value;
-                this.NotifyOfPropertyChange(() => this.AbsoluteConverterPath);
+                // This is bad and I should feel bad
+                return (IRequiredFile)this.RequiredItems.First(f => f.FriendlyName.Equals("Converter .exe"));
             }
         }
+
+        //    set
+        //    {
+        //        if (this.absoluteConverterPath == value)
+        //        {
+        //            return;
+        //        }
+
+        //        this.absoluteConverterPath = value;
+        //        this.NotifyOfPropertyChange(() => this.AbsoluteConverterPath);
+        //    }
+        //}
 
         /// <summary>
         /// Gets or sets a value indicating whether to use the converter mod.
