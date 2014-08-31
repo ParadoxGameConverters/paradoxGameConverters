@@ -40,22 +40,16 @@ namespace Frontend.Core.Commands
 
             dialog.DefaultExt = requiredFile.Extension;
 
-            if (!string.IsNullOrEmpty(requiredFile.ExpectedFileName))
+            if (!string.IsNullOrEmpty(requiredFile.PredefinedFileName))
             {
-                dialog.Filter = requiredFile.ExpectedFileName + " | " + requiredFile.ExpectedFileName;
+                dialog.Filter = requiredFile.PredefinedFileName + " | " + requiredFile.PredefinedFileName;
             }
-
-            //if (this.Options != null && this.Options.CurrentConverter != null && this.Options.CurrentConverter.ConverterExeName != null)
-            //{
-            //    dialog.Filter = this.Options.CurrentConverter.ConverterExeName + " | " + this.Options.CurrentConverter.ConverterExeName; //"CK2ToEU3.exe | CK2ToEU3.exe";
-            //}
 
             dialog.InitialDirectory = requiredFile.DefaultValue;
             Nullable<bool> result = dialog.ShowDialog();
 
             if (result == true)
             {
-                //this.Options.CurrentConverter.AbsoluteConverterPath = dialog.FileName;
                 requiredFile.SelectedValue = dialog.FileName;
                 this.EventAggregator.PublishOnUIThread(
                     new LogEntry("Found " + requiredFile.FriendlyName + " at ", LogEntrySeverity.Info, LogEntrySource.UI, requiredFile.SelectedValue));

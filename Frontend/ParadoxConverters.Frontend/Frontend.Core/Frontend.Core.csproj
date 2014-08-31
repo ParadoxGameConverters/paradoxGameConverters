@@ -100,6 +100,8 @@
     <Compile Include="Model\Interfaces\IModel.cs" />
     <Compile Include="Model\Interfaces\IPreferenceCategory.cs" />
     <Compile Include="Model\Mod.cs" />
+    <Compile Include="Model\Paths\AlternativePath.cs" />
+    <Compile Include="Model\Paths\Interfaces\IAlternativePath.cs" />
     <Compile Include="Model\Paths\Interfaces\IRequiredFolder.cs" />
     <Compile Include="Model\Paths\Interfaces\IRequiredItemBase.cs" />
     <Compile Include="Model\Paths\Interfaces\IRequiredFile.cs" />

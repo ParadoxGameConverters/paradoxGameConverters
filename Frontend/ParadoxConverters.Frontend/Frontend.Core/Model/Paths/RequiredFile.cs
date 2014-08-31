@@ -9,15 +9,15 @@ namespace Frontend.Core.Model.Paths
 {
     public class RequiredFile : RequiredItemBase, IRequiredFile
     {
-        public RequiredFile(string tagName, string friendlyName, string description, string defaultValue, string extension, string expectedFileName)
-            : base(tagName, friendlyName, description, defaultValue)
+        public RequiredFile(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives, string extension, string predefinedFileName)
+            : base(tagName, friendlyName, description, alternatives)
         {
             this.Extension = extension;
-            this.ExpectedFileName = expectedFileName;
+            this.PredefinedFileName = predefinedFileName;
         }
 
         public string Extension { get; private set; }
 
-        public string ExpectedFileName { get; private set; }
+        public string PredefinedFileName { get; private set; }
     }
 }

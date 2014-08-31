@@ -5,6 +5,7 @@ using Frontend.Core.Model.Paths;
 using Frontend.Core.Model.Paths.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,15 +27,25 @@ namespace Frontend.Core.Factories.TagReaders
             var description = XElementHelper.ReadStringValue(xmlElement, "description");
             var extension = XElementHelper.ReadStringValue(xmlElement, "extension", false);
             var predefinedFileName = XElementHelper.ReadStringValue(xmlElement, "predefinedFileName", false);
-            var path = this.ReadDefaultLocationPath(xmlElement);
-            
+            var alternativePaths = this.ReadDefaultLocationPaths(xmlElement);
+
+            // If a filename is set, add it to all the alternative paths.
+            // This basically turns a folder path into a file path.
+            if (!string.IsNullOrEmpty(predefinedFileName))
+            {
+                foreach (var alternative in alternativePaths)
+                {
+                    alternative.Path = Path.Combine(alternative.Path, predefinedFileName);
+                }
+            }
+
 
             //var path = string.IsNullOrEmpty(steamId) ? this.ReadWindowsUserFolderPath(xmlElement) : this.ReadSteamPath(xmlElement, steamId);
             //var defaultLocationTypeAsString = XElementHelper.ReadStringValue(xmlElement, "defaultLocationType");
             //var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
             //var defaultLocationType = defaultLocationTypeAsString.Equals()
 
-            return this.BuildRequiredFolderObject(tagName, path, friendlyName, description, extension, predefinedFileName);
+            return this.BuildRequiredFolderObject(tagName, alternativePaths, friendlyName, description, extension, predefinedFileName);
         }
 
         /// <summary>
@@ -43,9 +54,9 @@ namespace Frontend.Core.Factories.TagReaders
         /// <param name="tagName"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        private IRequiredFile BuildRequiredFolderObject(string tagName, string defaultValue, string friendlyName, string description, string extension, string predefinedFileName)
+        private IRequiredFile BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string extension, string predefinedFileName)
         {
-            return new RequiredFile(tagName, friendlyName, description, defaultValue, extension, predefinedFileName);
+            return new RequiredFile(tagName, friendlyName, description, alternatives, extension, predefinedFileName);
         }
     }
 }

@@ -14,14 +14,30 @@ namespace Frontend.Core.Model.Paths
     public abstract class RequiredItemBase : PropertyChangedBase, IRequiredItemBase
     {
         private string selectedValue;
+        private IList<IAlternativePath> alternativePaths;
 
-        protected RequiredItemBase(string tagName, string friendlyName, string description, string defaultValue)
+        protected RequiredItemBase(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives)
         {
             this.TagName = tagName;
             this.FriendlyName = friendlyName;
-            this.Description = description;
-            this.DefaultValue = defaultValue;
-            this.selectedValue = defaultValue;
+            this.Description = description;            
+            this.alternativePaths = alternatives;
+
+            // Basically, take the first alternative path that actually exists, and set that as the default value.
+            var defaultPath = alternatives.FirstOrDefault(a => a.Exists);          
+            if (defaultPath != null)
+            {
+                this.DefaultValue = defaultPath.Path;
+                this.selectedValue = this.DefaultValue;
+            }            
+        }
+
+        public IList<IAlternativePath> AlternativePaths
+        {
+            get
+            {
+                return this.alternativePaths;
+            }
         }
 
         public string FriendlyName { get; private set; }

@@ -9,8 +9,8 @@ namespace Frontend.Core.Model.Paths
 {
     public class RequiredFolder : RequiredItemBase, IRequiredFolder
     {
-        public RequiredFolder(string tagName, string friendlyName, string description, string defaultValue)
-            : base(tagName, friendlyName, description, defaultValue)
+        public RequiredFolder(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives)
+            : base(tagName, friendlyName, description, alternatives)
         {
         }
     }

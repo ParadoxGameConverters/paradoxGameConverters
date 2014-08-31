@@ -2,6 +2,8 @@
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model;
+using Frontend.Core.Model.Paths;
+using Frontend.Core.Model.Paths.Interfaces;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -30,54 +32,63 @@ namespace Frontend.Core.Factories.TagReaders
             }
         }
 
-        protected string ReadDefaultLocationPath(XElement xmlElement)
+        protected IList<IAlternativePath> ReadDefaultLocationPaths(XElement xmlElement)
         {
-            var defaultLocationTypeAsString = XElementHelper.ReadStringValue(xmlElement, "defaultLocationType");
-            
-            if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.ConverterFolder.ToString()))
+            var alternatives = new List<IAlternativePath>();
+
+            var alternativeTags = XElementHelper.ReadEnumerable(xmlElement, "alternative");
+
+            foreach (var tag in alternativeTags)
             {
-                return this.ReadConverterPath(xmlElement);
-            }
-            else if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.WindowsUsersFolder.ToString()))
-            {
-                return this.ReadWindowsUserFolderPath(xmlElement);
-            }
-            else if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()))
-            {
-                // If we can find the folder using steam id, do that
-                var steamId = XElementHelper.ReadStringValue(xmlElement, "autoDetectFromSteamId", false);
-                return this.ReadSteamPath(xmlElement, steamId);
-            }
-            else
-            {
-                this.EventAggregator.PublishOnUIThread(new LogEntry("Invalid DefaultLocationType. This is either a problem for the developer, or you messed up the .XML file somehow. ",
-                    LogEntrySeverity.Error, 
-                    LogEntrySource.UI));
-                return string.Empty;
-            }
+                var defaultLocationTypeAsString = XElementHelper.ReadStringValue(tag, "defaultLocationType");
+
+                if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.ConverterFolder.ToString()))
+                {
+                    alternatives.Add(this.ReadConverterPath(tag));
+                }
+                else if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.WindowsUsersFolder.ToString()))
+                {
+                    alternatives.Add(this.ReadWindowsUserFolderPath(tag));
+                }
+                else if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()))
+                {
+                    // If we can find the folder using steam id, do that
+                    var steamId = XElementHelper.ReadStringValue(tag, "autoDetectFromSteamId", false);
+                    alternatives.Add(this.ReadSteamPath(xmlElement, steamId));
+                }
+                else
+                {
+                    this.EventAggregator.PublishOnUIThread(new LogEntry("Invalid DefaultLocationType. This is either a problem for the developer, or you messed up the .XML file somehow. ",
+                        LogEntrySeverity.Error,
+                        LogEntrySource.UI));
+                }
+            }            
+
+            return alternatives;
         }
 
-        private string ReadConverterPath(XElement xmlElement)
+        private IAlternativePath ReadConverterPath(XElement xmlElement)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
             var absolutePath = Path.Combine(DirectoryHelper.GetFrontendWorkingDirectory(), subFolderLocation);
-            return absolutePath;
+
+            return this.BuildAlternativePathObject(absolutePath);
         }
 
-        private string ReadWindowsUserFolderPath(XElement xmlElement)
+        private IAlternativePath ReadWindowsUserFolderPath(XElement xmlElement)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
             var userFolder = DirectoryHelper.GetUsersFolder();
             var absolutePath = Path.Combine(userFolder, subFolderLocation);
 
-            return absolutePath;
+            return this.BuildAlternativePathObject(absolutePath);
         }
 
-        private string ReadSteamPath(XElement xmlElement, string steamId)
+        private IAlternativePath ReadSteamPath(XElement xmlElement, string steamId)
         {
             string installationPath = this.ReadSteamFolder(steamId);
 
-            return installationPath;
+            return this.BuildAlternativePathObject(installationPath);
         }
 
         /// <summary>
@@ -112,6 +123,30 @@ namespace Frontend.Core.Factories.TagReaders
             }
 
             return string.Empty;
+        }
+
+        private IAlternativePath BuildAlternativePathObject(string path)
+        {
+            var alternativePath = new AlternativePath(path, this.Exists(path));
+
+            return alternativePath;
+        }
+
+        private bool Exists(string path)
+        {
+            // Simplified check whether this is a file or folder. Not really trustworthy, but should be good in most cases.
+            bool existsAsPath = Directory.Exists(path);
+            bool existsAsFile = File.Exists(path);
+
+            bool exists = (existsAsPath || existsAsFile);
+
+            if (!exists)
+            {
+                //TODO: Here it would be useful to have the tag for this particular path...
+                this.EventAggregator.PublishOnUIThread(new LogEntry("Could not find expected folder. You might have to specify it manually.", LogEntrySeverity.Warning, LogEntrySource.UI, path));
+            }
+
+            return exists;
         }
     }
 }
