@@ -724,7 +724,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 
 	// Create country mapping
-	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap);
+	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap);
 
 
 	// Convert

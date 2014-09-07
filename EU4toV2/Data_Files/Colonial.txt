@@ -81,25 +81,25 @@ colonial_tags = {
 	link = { tag = AST EU4_region = colonial_australia V2_region = AST_2527 } #Australia - Capital in and/or owns any V2 region in Australia
 	link = { tag = AST EU4_region = colonial_australia V2_region = AST_2454 } #Australia - Capital in and/or owns any V2 region in Australia
 	link = { tag = AST EU4_region = colonial_australia V2_region = AST_2244 } #Australia - Capital in and/or owns any V2 region in Australia
-	link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2528 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
-	link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2527 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
-	link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2454 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
-	link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2244 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
+	#link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2528 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
+	#link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2527 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
+	#link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2454 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
+	#link = { tag = AST EU4_region = colonial_east_indies V2_region = AST_2244 } #Australia - Capital in and/or owns any V2 region in Australia - Colonial World mod region
 	link = { tag = PHI EU4_region = colonial_australia V2_region = SPA_1459 } #Philippines - Capital in and/or owns any V2 region in Philippines
 	link = { tag = PHI EU4_region = colonial_australia V2_region = SPA_1455 } #Philippines - Capital in and/or owns any V2 region in Philippines
 	link = { tag = PHI EU4_region = colonial_australia V2_region = SPA_1463 } #Philippines - Capital in and/or owns any V2 region in Philippines
-	link = { tag = PHI EU4_region = colonial_east_indies V2_region = SPA_1459 } #Philippines - Capital in and/or owns any V2 region in Philippines- Colonial World mod region
-	link = { tag = PHI EU4_region = colonial_east_indies V2_region = SPA_1455 } #Philippines - Capital in and/or owns any V2 region in Philippines- Colonial World mod region
-	link = { tag = PHI EU4_region = colonial_east_indies V2_region = SPA_1463 } #Philippines - Capital in and/or owns any V2 region in Philippines- Colonial World mod region
+	#link = { tag = PHI EU4_region = colonial_east_indies V2_region = SPA_1459 } #Philippines - Capital in and/or owns any V2 region in Philippines- Colonial World mod region
+	#link = { tag = PHI EU4_region = colonial_east_indies V2_region = SPA_1455 } #Philippines - Capital in and/or owns any V2 region in Philippines- Colonial World mod region
+	#link = { tag = PHI EU4_region = colonial_east_indies V2_region = SPA_1463 } #Philippines - Capital in and/or owns any V2 region in Philippines- Colonial World mod region
 	
 	#Pacific - Colonial World mod region
-	link = { tag = HAW EU4_region = colonial_pacific V2_region = HAW_658 } #Hawaii - Not a colonial tag, but suitable for one! Capital in and/or owns all of V2 region Hawaii
+	#link = { tag = HAW EU4_region = colonial_pacific V2_region = HAW_658 } #Hawaii - Not a colonial tag, but suitable for one! Capital in and/or owns all of V2 region Hawaii
 
 	#South Africa - Colonial World mod region
-	link = { tag = MAD EU4_region = colonial_south_africa region = MAD_2121 } #Madagascar - Capital in and/or owns any V2 region in Madagascar
-	link = { tag = MAD EU4_region = colonial_south_africa region = MAD_2117 } #Madagascar - Capital in and/or owns any V2 region in Madagascar
-	link = { tag = ORA EU4_region = colonial_south_africa is_culture_group = beneluxian } #Oranje - Dutch culture
-	link = { tag = TRN EU4_region = colonial_south_africa is_culture_group = beneluxian } #Transvaal - Dutch culture
-	link = { tag = SAF EU4_region = colonial_south_africa } #South Africa
+	#link = { tag = MAD EU4_region = colonial_south_africa region = MAD_2121 } #Madagascar - Capital in and/or owns any V2 region in Madagascar
+	#link = { tag = MAD EU4_region = colonial_south_africa region = MAD_2117 } #Madagascar - Capital in and/or owns any V2 region in Madagascar
+	#link = { tag = ORA EU4_region = colonial_south_africa is_culture_group = beneluxian } #Oranje - Dutch culture
+	#link = { tag = TRN EU4_region = colonial_south_africa is_culture_group = beneluxian } #Transvaal - Dutch culture
+	#link = { tag = SAF EU4_region = colonial_south_africa } #South Africa
 	#link = { tag = RHO EU4_region = colonial_south_africa } #Southern Rhodesia - Not colonized when converting
 }
