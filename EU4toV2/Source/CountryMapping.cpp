@@ -37,6 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Parsers\Object.h"
 #include "Parsers\Parser.h"
 #include "V2World\V2World.h"
+#include "V2World\V2Province.h"
 #include "Log.h"
 
 bool CountryMapping::ReadRules(const std::string& fileName)
@@ -110,7 +111,23 @@ void CountryMapping::readEU4Regions(Object* obj)
 }
 
 
-void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap)
+void CountryMapping::readV2Regions(Object* obj)
+{
+	vector<Object*> regionsObj = obj->getLeaves();	// the regions themselves
+	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
+	{
+		vector<string> provinceStrings = (*regionsItr)->getTokens();				// the province numbers
+		std::set<int> provinces;
+		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+		{
+			provinces.insert(atoi(provinceItr->c_str()));
+		}
+		V2Regions.insert(make_pair((*regionsItr)->getKey(), provinces));
+	}
+}
+
+#pragma optimize("", off)
+void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap)
 {
 	LOG(LogLevel::Info) << "Creating country mapping";
 	EU4TagToV2TagMap.clear();
@@ -126,17 +143,43 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		const std::string& EU4Tag = i->first;	// the EU4 tag being considered
 		if (i->second->isColony())
 		{
-			int capital = i->second->getCapital();
+			int EU4Capital	= i->second->getCapital();
+			int V2Capital	= inverseProvinceMap.find(i->second->getCapital())->second[0];
 			for (colonyMapping::const_iterator j = colonyMap.begin(); j != colonyMap.end(); j++)
 			{
-				std::map<std::string, std::set<int>>::iterator region = EU4ColonialRegions.find(j->EU4Region);
-				if (region == EU4ColonialRegions.end())
+				// the capital must be in the specified EU4 colonial region
+				if (j->EU4Region != "")
 				{
-					continue;
+					std::map<std::string, std::set<int>>::iterator EU4Region = EU4ColonialRegions.find(j->EU4Region);
+					if (EU4Region == EU4ColonialRegions.end())
+					{
+						LOG(LogLevel::Warning) << "Unknown EU4 Colonial Region " << j->EU4Region;
+						continue;
+					}
+					else if (EU4Region->second.find(EU4Capital) == EU4Region->second.end())
+					{
+						continue;
+					}
 				}
+
+				//find V2 region
+				std::map<std::string, std::set<int>>::iterator V2Region = V2Regions.find(j->V2Region);
+				if (j->V2Region != "")
+				{
+					if (V2Region == V2Regions.end())
+					{
+						LOG(LogLevel::Warning) << "Unknown V2 Region " << j->V2Region;
+						continue;
+					}
+					else if (V2Region->second.find(V2Capital) == V2Region->second.end())
+					{
+						continue;
+					}
+				}
+
+				// see if the rule applies
 				if (	(V2Countries.find(j->tag) != V2Countries.end()) &&									// the V2 country exists
-						(EU4TagToV2TagMap.right.find(j->tag) == EU4TagToV2TagMap.right.end()) &&	// the V2 country isn't used
-						(region->second.find(capital) != region->second.end())							// the capital is in the correct EU4 colonial region
+						(EU4TagToV2TagMap.right.find(j->tag) == EU4TagToV2TagMap.right.end())		// the V2 country isn't used
 					)
 				{
 					mapped = true;
@@ -199,7 +242,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		}
 	}
 }
-
+#pragma optimize("", on)
 
 const std::string& CountryMapping::GetV2Tag(const std::string& EU4Tag) const
 {

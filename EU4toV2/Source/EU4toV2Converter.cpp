@@ -474,6 +474,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	stateMapping		stateMap;
 	stateIndexMapping	stateIndexMap;
 	initStateMap(obj, stateMap, stateIndexMap);
+	countryMap.readV2Regions(obj);
 
 
 	// Parse Culture Mappings
@@ -723,7 +724,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 
 	// Create country mapping
-	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap);
+	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap);
 
 
 	// Convert

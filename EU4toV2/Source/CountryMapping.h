@@ -42,13 +42,14 @@ public:
 	bool ReadRules(const std::string& fileName);
 
 	void readEU4Regions(Object*);
+	void readV2Regions(Object*);
 
 	// Creates a new mapping from all countries in the EU4 world to V2 tags using
 	// the rules given in ReadRules(). V2 tags that already exists in the V2 world are given
 	// priority over other tags. Countries with EU4 tags that aren't in the rules or
 	// have no available V2 tag (e.g. when multiple EU4 countries would use the same V2 tag)
 	// are given a generated tag "X00"-"X99".
-	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap);
+	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap);
 
 	// Returns the V2 tag that is mapped to by the given EU4 tag. Returns an empty string
 	// if there is no corresponding V2 tag. If CreateMapping() has been called then there
@@ -70,7 +71,8 @@ private:
 
 	std::map<std::string, std::vector<std::string>> EU4TagToV2TagsRules;		// the possible mappings between EU4 and V2 tags
 	boost::bimap<std::string, std::string> EU4TagToV2TagMap;						// the current mappping between EU4 and V2 tags
-	std::map<std::string, std::set<int>> EU4ColonialRegions;									// the colonial regions in EU4
+	std::map<std::string, std::set<int>> EU4ColonialRegions;						// the colonial regions in EU4
+	std::map<std::string, std::set<int>> V2Regions;									// the regions in V2
 };
 
 #endif
