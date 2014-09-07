@@ -584,7 +584,7 @@ governmentMapping initGovernmentMap(Object* obj)
 }
 
 
-void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures)
 {
 	vector<Object*> cultureGroups = obj->getLeaves();	// the cultural group rules
 	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
@@ -606,6 +606,7 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 			else
 			{
 				cultures.push_back( (*j)->getKey() );
+				inverseUnionCultures.insert(make_pair((*j)->getKey(), group));
 			}
 		}
 
@@ -713,10 +714,7 @@ colonyMapping initColonyMap(Object* obj)
 			}
 			if ((*j)->getKey() == "is_culture_group")
 			{
-				distinguisher newD;	// a new distinguiser
-				newD.first = DTCultureGroup;
-				newD.second = (*j)->getLeaf();
-				rule.distinguishers.push_back(newD);
+				rule.cultureGroup = (*j)->getLeaf();
 			}
 			if ((*j)->getKey() == "is_subject")
 			{

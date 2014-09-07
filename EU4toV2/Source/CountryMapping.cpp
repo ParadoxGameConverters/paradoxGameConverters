@@ -128,7 +128,7 @@ void CountryMapping::readV2Regions(Object* obj)
 }
 
 #pragma optimize("", off)
-void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap)
+void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures)
 {
 	LOG(LogLevel::Info) << "Creating country mapping";
 	EU4TagToV2TagMap.clear();
@@ -142,6 +142,8 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 	{
 		bool mapped = false;							// whether or not the EU4 tag has been mapped
 		const std::string& EU4Tag = i->first;	// the EU4 tag being considered
+
+		// colonial replacements
 		if (i->second->isColony())
 		{
 			int EU4Capital = i->second->getCapital();
@@ -163,7 +165,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 					}
 				}
 
-				//find V2 region
+				// the capital must be in the specified EU4 colonial region, or the entire region must be owned
 				std::map<std::string, std::set<int>>::iterator V2Region = V2Regions.find(j->V2Region);
 				if (j->V2Region != "")
 				{
@@ -200,7 +202,15 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 					}
 				}
 
-				// see if the rule applies
+				if (j->cultureGroup != "")
+				{
+					if (inverseUnionCultures.find(srcWorld.getCountry(EU4Tag)->getPrimaryCulture())->second != j->cultureGroup)
+					{
+						continue;
+					}
+				}
+
+				// the tag must be available
 				if (	(V2Countries.find(j->tag) != V2Countries.end()) &&									// the V2 country exists
 						(EU4TagToV2TagMap.right.find(j->tag) == EU4TagToV2TagMap.right.end())		// the V2 country isn't used
 					)
@@ -212,6 +222,8 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 				}
 			}
 		}
+
+		// rules-based
 		if (!mapped)
 		{
 			// Find a V2 tag from our rule if possible.
@@ -247,14 +259,17 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 				}
 			}
 		}
+
+		// Either the EU4 tag had no mapping rule or no V2 tag from its mapping rule could be used. 
+		// We generate a new V2 tag for it.
 		if (!mapped)
-		{	// Either the EU4 tag had no mapping rule or no V2 tag from its mapping rule could be used. 
-			// We generate a new V2 tag for it.
+		{
 			ostringstream generatedV2TagStream;	// a stream fr the new tag to be constructed in
 			generatedV2TagStream << generatedV2TagPrefix << setfill('0') << setw(2) << generatedV2TagSuffix;
 			string V2Tag = generatedV2TagStream.str();
 			EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, V2Tag));
 			LogMapping(EU4Tag, V2Tag, "generated tag");
+
 			// Prepare the next generated tag.
 			++generatedV2TagSuffix;
 			if (generatedV2TagSuffix > 99)

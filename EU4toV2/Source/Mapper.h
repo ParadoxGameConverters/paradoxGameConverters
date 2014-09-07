@@ -84,7 +84,6 @@ enum distinguisherType
 {
 	DTOwner,
 	DTReligion,
-	DTCultureGroup,
 	DTIsSubject,
 	DTIsStateReligion
 };
@@ -116,8 +115,9 @@ governmentMapping initGovernmentMap(Object* obj);
 
 
 // Cultural Union Nation mappings
-typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
-void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
+typedef map< string, vector<string> > unionCulturesMap;	// <culture group, cultures>
+typedef map< string, string > inverseUnionCulturesMap;	// <culture, culture group>
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures);
 
 // idea effects
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
@@ -127,6 +127,7 @@ typedef struct {
 	string tag;
 	string EU4Region;
 	string V2Region;
+	string cultureGroup;
 	vector<distinguisher> distinguishers;	// additional rules to match the culture
 } colonyStruct;
 typedef vector<colonyStruct> colonyMapping;

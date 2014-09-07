@@ -494,7 +494,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
 	// find culture groups
-	unionCulturesMap unionCultures;
+	unionCulturesMap			unionCultures;
+	inverseUnionCulturesMap	inverseUnionCultures;
 	obj = doParseFile( (EU4Loc + "\\common\\cultures\\00_cultures.txt").c_str() );
 	if (obj == NULL)
 	{
@@ -506,7 +507,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		LOG(LogLevel::Error) << "Failed to parse 00_cultures.txt";
 		return 1;
 	}
-	initUnionCultures(obj, unionCultures);
+	initUnionCultures(obj, unionCultures, inverseUnionCultures);
 	for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
 	{
 		struct _finddata_t	fileData;				// the file data info
@@ -532,7 +533,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 						LOG(LogLevel::Error) << "Could not parse file " << modCultureFile;
 						exit(-1);
 					}
-					initUnionCultures(obj, unionCultures);
+					initUnionCultures(obj, unionCultures, inverseUnionCultures);
 				}
 			} while (_findnext(fileListing, &fileData) == 0);
 			_findclose(fileListing);
@@ -724,7 +725,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 
 	// Create country mapping
-	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap);
+	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures);
 
 
 	// Convert
