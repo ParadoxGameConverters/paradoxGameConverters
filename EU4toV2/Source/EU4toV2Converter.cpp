@@ -673,6 +673,54 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	colonyMapping colonyMap = initColonyMap(obj);
 
+	// Get EU4 colonial regions
+	LOG(LogLevel::Info) << "Parsing EU4 colonial regions";
+	obj = doParseFile((EU4Loc + "\\common\\colonial_regions\\00_colonial_regions.txt").c_str());
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\common\\colonial_regions\\00_colonial_regions.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse 00_colonial_regions.txt";
+		return 1;
+	}
+	countryMap.readEU4Regions(obj);
+	for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
+	{
+		struct _finddata_t	fileData;				// the file data info
+		intptr_t					fileListing = NULL;	// the file listing info
+		if ((fileListing = _findfirst(string(*itr + "\\common\\colonial_regions\\*").c_str(), &fileData)) != -1L)
+		{
+			do
+			{
+				if (strcmp(fileData.name, ".") == 0 || strcmp(fileData.name, "..") == 0)
+				{
+					continue;
+				}
+				else if (fileData.attrib & _A_SUBDIR)
+				{
+					continue;
+				}
+				else
+				{
+					string modRegionsFile(*itr + "\\common\\colonial_regions\\" + fileData.name);	// the path and name of the colonial regions file in this mod
+					if ((_stat(modRegionsFile.c_str(), &st) == 0))
+					{
+						obj = doParseFile(modRegionsFile.c_str());
+						if (obj == NULL)
+						{
+							LOG(LogLevel::Error) << "Could not parse file " << modRegionsFile;
+							exit(-1);
+						}
+						countryMap.readEU4Regions(obj);
+					}
+				}
+			} while (_findnext(fileListing, &fileData) == 0);
+			_findclose(fileListing);
+		}
+	}
 
 	// Create country mapping
 	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap);

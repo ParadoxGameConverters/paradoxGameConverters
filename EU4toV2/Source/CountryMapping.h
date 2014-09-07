@@ -40,6 +40,9 @@ public:
 	// Initializes the rules to use for mapping tags using the rules found in the specified file.
 	// Returns true if the rules were successfully read.
 	bool ReadRules(const std::string& fileName);
+
+	void readEU4Regions(Object*);
+
 	// Creates a new mapping from all countries in the EU4 world to V2 tags using
 	// the rules given in ReadRules(). V2 tags that already exists in the V2 world are given
 	// priority over other tags. Countries with EU4 tags that aren't in the rules or
@@ -51,10 +54,12 @@ public:
 	// if there is no corresponding V2 tag. If CreateMapping() has been called then there
 	// is guaranteed to be a V2 tag for every EU4 country.
 	const std::string& operator[](const std::string& EU4Tag) const	{ return GetV2Tag(EU4Tag); }
+
 	// Returns the V2 tag that is mapped to by the given EU4 tag. Returns an empty string
 	// if there is no corresponding V2 tag. If CreateMapping() has been called then there
 	// is guaranteed to be a V2 tag for every EU4 country.
 	const std::string& GetV2Tag(const std::string& EU4Tag) const;
+
 	// Returns the EU4 tag that maps to the given V2 tag. Returns an empty string if there
 	// is no such EU4 tag.
 	const std::string& GetEU4Tag(const std::string& V2Tag) const;
@@ -64,7 +69,8 @@ private:
 	static void LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason);
 
 	std::map<std::string, std::vector<std::string>> EU4TagToV2TagsRules;		// the possible mappings between EU4 and V2 tags
-	boost::bimap<std::string, std::string> EU4TagToV2TagMap;						// the current mappping between EU4 and V2 tage
+	boost::bimap<std::string, std::string> EU4TagToV2TagMap;						// the current mappping between EU4 and V2 tags
+	std::map<std::string, std::set<int>> EU4ColonialRegions;									// the colonial regions in EU4
 };
 
 #endif

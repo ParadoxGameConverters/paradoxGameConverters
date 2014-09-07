@@ -93,6 +93,23 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 }
 
 
+void CountryMapping::readEU4Regions(Object* obj)
+{
+	vector<Object*> regionsObj = obj->getLeaves();	// the regions themselves
+	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
+	{
+		vector<Object*> provincesObj		= (*regionsItr)->getValue("provinces");	// the section containing the provinces in the regions
+		vector<string> provinceStrings	= provincesObj[0]->getTokens();				// the province numbers
+		std::set<int> provinces;
+		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+		{
+			provinces.insert( atoi(provinceItr->c_str()) );
+		}
+		EU4ColonialRegions.insert( make_pair((*regionsItr)->getKey(), provinces) );
+	}
+}
+
+
 void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap)
 {
 	LOG(LogLevel::Info) << "Creating country mapping";
@@ -109,9 +126,18 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		const std::string& EU4Tag = i->first;	// the EU4 tag being considered
 		if (i->second->isColony())
 		{
+			int capital = i->second->getCapital();
 			for (colonyMapping::const_iterator j = colonyMap.begin(); j != colonyMap.end(); j++)
 			{
-				if ((V2Countries.find(j->tag) != V2Countries.end()) && (EU4TagToV2TagMap.right.find(j->tag) == EU4TagToV2TagMap.right.end()))
+				std::map<std::string, std::set<int>>::iterator region = EU4ColonialRegions.find(j->EU4Region);
+				if (region == EU4ColonialRegions.end())
+				{
+					continue;
+				}
+				if (	(V2Countries.find(j->tag) != V2Countries.end()) &&									// the V2 country exists
+						(EU4TagToV2TagMap.right.find(j->tag) == EU4TagToV2TagMap.right.end()) &&	// the V2 country isn't used
+						(region->second.find(capital) != region->second.end())							// the capital is in the correct EU4 colonial region
+					)
 				{
 					mapped = true;
 					EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, j->tag));
@@ -173,6 +199,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		}
 	}
 }
+
 
 const std::string& CountryMapping::GetV2Tag(const std::string& EU4Tag) const
 {

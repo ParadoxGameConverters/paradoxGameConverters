@@ -685,7 +685,7 @@ void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, in
 	}
 }
 
-#pragma optimize("", off)
+
 colonyMapping initColonyMap(Object* obj)
 {
 	colonyMapping colonyMap;													// the culture mapping
@@ -739,4 +739,3 @@ colonyMapping initColonyMap(Object* obj)
 
 	return colonyMap;
 }
-#pragma optimize("", on)
