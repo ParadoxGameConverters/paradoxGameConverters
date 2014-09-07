@@ -192,6 +192,13 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 
 	vector<Object*> legitObj = obj->getValue("legitimacy");	// the object holding the legitimacy
 	(legitObj.size() > 0) ?	legitimacy = atof(legitObj[0]->getLeaf().c_str()) : legitimacy = 1.0;
+
+	colony = false;
+	vector<Object*> colonyObj = obj->getValue("parent");	// the object handling the colony flag
+	if (colonyObj.size() > 0)
+	{
+		colony = true;
+	}
 }
 
 

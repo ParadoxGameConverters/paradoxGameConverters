@@ -40,7 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World\V2LeaderTraits.h"
 #include "WinUtils.h"
 
-#pragma optimize("", of)
+
 // Converts the given EU4 save into a V2 mod.
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertEU4ToV2(const std::string& EU4SaveFileName)
@@ -407,7 +407,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
-	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies
 	LOG(LogLevel::Info) << "Importing adjacencies";
@@ -675,6 +674,10 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	colonyMapping colonyMap = initColonyMap(obj);
 
 
+	// Create country mapping
+	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap);
+
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
@@ -725,7 +728,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
-#pragma optimize("", on)
+
 
 int main(const int argc, const char * argv[])
 {
