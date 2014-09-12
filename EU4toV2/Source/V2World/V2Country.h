@@ -81,32 +81,32 @@ class V2Country
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
-		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); };
-		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; };
-		void								addResearchPoints(double newPoints)		{ researchPoints += newPoints; };
-		void								addTech(string newTech)						{ techs.push_back(newTech); };
-		void								setNationalValue(string NV)				{ nationalValue = NV; };
-		void								isANewCountry(void)							{ newCountry = true; };
+		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); }
+		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; }
+		void								addResearchPoints(double newPoints)		{ researchPoints += newPoints; }
+		void								addTech(string newTech)						{ techs.push_back(newTech); }
+		void								setNationalValue(string NV)				{ nationalValue = NV; }
+		void								isANewCountry(void)							{ newCountry = true; }
 
-		vector<V2Province*>			getProvinces() const { return provinces; };
-		string							getTag() const { return tag; };
-		bool								isCivilized() const { return civilized; };
-		string							getPrimaryCulture() const { return primaryCulture; };
-		set<string>						getAcceptedCultures() const { return acceptedCultures; };
-		const EU4Country*				getSourceCountry() const { return srcCountry; };
-		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; };
-		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; };
-		inventionStatus				getInventionState(HODNNMInventionType invention) const { return HODNNMInventions[invention]; };
-		double							getReactionary() const { return upperHouseReactionary; };
-		double							getConservative() const { return upperHouseConservative; };
-		double							getLiberal() const { return upperHouseLiberal; };
-		string							getGovernment() const { return government; };
-		vector< pair<int, int> >	getReactionaryIssues() const { return reactionaryIssues; };
-		vector< pair<int, int> >	getConservativeIssues() const { return conservativeIssues; };
-		vector< pair<int, int> >	getLiberalIssues() const { return liberalIssues; };
-		double							getLiteracy() const { return literacy; };
-		int								getCapital() const { return capital; };
-		bool								isNewCountry() const { return newCountry; };
+		vector<V2Province*>			getProvinces() const { return provinces; }
+		string							getTag() const { return tag; }
+		bool								isCivilized() const { return civilized; }
+		string							getPrimaryCulture() const { return primaryCulture; }
+		set<string>						getAcceptedCultures() const { return acceptedCultures; }
+		const EU4Country*				getSourceCountry() const { return srcCountry; }
+		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; }
+		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; }
+		inventionStatus				getInventionState(HODNNMInventionType invention) const { return HODNNMInventions[invention]; }
+		double							getReactionary() const { return upperHouseReactionary; }
+		double							getConservative() const { return upperHouseConservative; }
+		double							getLiberal() const { return upperHouseLiberal; }
+		string							getGovernment() const { return government; }
+		vector< pair<int, int> >	getReactionaryIssues() const { return reactionaryIssues; }
+		vector< pair<int, int> >	getConservativeIssues() const { return conservativeIssues; }
+		vector< pair<int, int> >	getLiberalIssues() const { return liberalIssues; }
+		double							getLiteracy() const { return literacy; }
+		int								getCapital() const { return capital; }
+		bool								isNewCountry() const { return newCountry; }
 
 	private:
 		void			outputTech(FILE*) const ;

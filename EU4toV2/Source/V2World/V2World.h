@@ -71,7 +71,7 @@ class V2World {
 		map<int, V2Province*>		provinces;
 		map<string, V2Country*>		countries;
 		vector<V2Country*>			potentialCountries;
-		vector<V2Country*>			dynamicCountries;
+		map<string, V2Country*>		dynamicCountries;
 		V2Diplomacy						diplomacy;
 		map< int, set<string> >		colonies;
 };
