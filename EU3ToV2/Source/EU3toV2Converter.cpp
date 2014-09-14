@@ -3,11 +3,11 @@
 #include <io.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
-#include "EU3World.h"
-#include "V2World.h"
-#include "V2Factory.h"
-#include "V2TechSchools.h"
-#include "V2LeaderTraits.h"
+#include "EU3World/EU3World.h"
+#include "V2World/V2World.h"
+#include "V2World/V2Factory.h"
+#include "V2World/V2TechSchools.h"
+#include "V2World/V2LeaderTraits.h"
 #include "Configuration.h"
 
 

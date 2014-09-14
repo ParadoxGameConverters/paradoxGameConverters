@@ -1,11 +1,11 @@
 #include "Mapper.h"
 #include "Log.h"
 #include "Parsers\Object.h"
-#include "EU3World.h"
-#include "EU3Country.h"
-#include "EU3Province.h"
-#include "V2World.h"
-#include "V2Country.h"
+#include "EU3World/EU3World.h"
+#include "EU3World/EU3Country.h"
+#include "EU3World/EU3Province.h"
+#include "V2World/V2World.h"
+#include "V2World/V2Country.h"
 #include <algorithm>
 
 
