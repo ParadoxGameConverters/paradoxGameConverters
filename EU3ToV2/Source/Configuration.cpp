@@ -28,10 +28,11 @@ Configuration::Configuration()
 	{
 		log("Warning: start dates prior to 1835 are likely to cause crashes!\n");
 	}
-	maxLiteracy	= atof(obj[0]->getLeaf("max_literacy").c_str());
-	V2Path		= obj[0]->getLeaf("v2directory");
-	EU3Path		= obj[0]->getLeaf("EU3directory");
-	EU3gametype	= obj[0]->getLeaf("EU3gametype");
-	V2gametype	= obj[0]->getLeaf("V2gametype");
-	removetype	= obj[0]->getLeaf("removetype");
+	maxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
+	V2Path				= obj[0]->getLeaf("v2directory");
+	EU3Path				= obj[0]->getLeaf("EU3directory");
+	EU3gametype			= obj[0]->getLeaf("EU3gametype");
+	V2gametype			= obj[0]->getLeaf("V2gametype");
+	removetype			= obj[0]->getLeaf("removetype");
+	V2OutputModName	= obj[0]->getLeaf("V2OutputModName");
 }

@@ -1200,6 +1200,10 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 
 	int num = 2;
 	map<string, EU3Country*>::iterator i = sourceCountries.begin();
+	if (sourceCountries.size() == 0)
+	{
+		return;
+	}
 	while (i->second->getProvinces().size() == 0)
 	{
 		i++;

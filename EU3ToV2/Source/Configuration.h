@@ -12,14 +12,15 @@ class Configuration // Singleton
 		Configuration();
 
 		static date		getStartDate()							{ return getInstance()->startDate; }
-		static date		getFirstEU3Date()						{ return getInstance()->firstEU3Date; };
-		static void		setFirstEU3Date(date _firstDate)	{ getInstance()->firstEU3Date = _firstDate; };
+		static date		getFirstEU3Date()						{ return getInstance()->firstEU3Date; }
+		static void		setFirstEU3Date(date _firstDate)	{ getInstance()->firstEU3Date = _firstDate; }
 		static double	getMaxLiteracy()						{ return getInstance()->maxLiteracy; }
 		static string	getV2Path()								{ return getInstance()->V2Path; }
 		static string	getEU3Path()							{ return getInstance()->EU3Path; }
 		static string	getEU3Gametype()						{ return getInstance()->EU3gametype; }
 		static string	getV2Gametype()						{ return getInstance()->V2gametype; }
 		static string	getRemovetype()						{ return getInstance()->removetype; }
+		static string	getV2OutputModName()					{ return getInstance()->V2OutputModName; }
 
 		static Configuration* getInstance()
 		{
@@ -41,6 +42,7 @@ class Configuration // Singleton
 		string	EU3gametype;
 		string	V2gametype;
 		string	removetype;
+		string	V2OutputModName;
 };
 
 #endif // CONFIGURATION_H_

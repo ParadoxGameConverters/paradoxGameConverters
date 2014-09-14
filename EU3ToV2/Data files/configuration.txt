@@ -33,6 +33,9 @@ configuration =
 	#	all	remove all of them
 	# Note: if there are not enough V2 tags, some or all of these will be done no matter what.
 	removetype = dead
+
+	# V2OutputModName: the name of the mod to output
+	V2OutputModName = "output"
 	
 	# Note: if converting to vanilla V2, you may want to merge some EU3 nations in order for tags to make sense.
 	# Merge settings are found in merge_nations.txt, rather than this file.
