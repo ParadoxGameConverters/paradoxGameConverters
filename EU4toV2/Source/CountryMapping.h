@@ -31,7 +31,9 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "Mapper.h"
 
 class EU4World;
+class EU4Country;
 class V2World;
+class V2Country;
 
 // Holds a mapping from EU4 country tags to V2 country tags.
 class CountryMapping
@@ -67,7 +69,12 @@ public:
 
 private:
 	// Writes the given mapping to the log.
-	static void LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason);
+	static void	LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason);
+
+	// if there is a valid colonial replacement, uses it
+	bool			attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*> V2Countries, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures);
+
+	void			oneMapping(string EU4Tag, const map<string, V2Country*> V2Countries, char& generatedV2TagPrefix, int& generatedV2TagSuffix);
 
 	std::map<std::string, std::vector<std::string>> EU4TagToV2TagsRules;		// the possible mappings between EU4 and V2 tags
 	boost::bimap<std::string, std::string> EU4TagToV2TagMap;						// the current mappping between EU4 and V2 tags
