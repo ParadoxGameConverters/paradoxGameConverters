@@ -83,9 +83,7 @@ void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateI
 enum distinguisherType
 {
 	DTOwner,
-	DTReligion,
-	DTIsSubject,
-	DTIsStateReligion
+	DTReligion
 };
 
 // Culture Mappings
@@ -128,7 +126,6 @@ typedef struct {
 	string EU4Region;
 	string V2Region;
 	string cultureGroup;
-	vector<distinguisher> distinguishers;	// additional rules to match the culture
 } colonyStruct;
 typedef vector<colonyStruct> colonyMapping;
 colonyMapping initColonyMap(Object* obj);

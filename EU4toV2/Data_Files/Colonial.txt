@@ -29,18 +29,17 @@ colonial_tags = {
 	link = { tag = CAN EU4_region = colonial_alaska } #Canada
 	
 	# Eastern USA
+	link = { tag = NEN EU4_region = colonial_eastern_america V2_region = USA_247 is_culture_group = british } #New England - Capital in and/or owns all of V2 region New England & culture group British
 	link = { tag = MAN EU4_region = colonial_eastern_america V2_region = ENG_30 } #Manhattan Commune - Capital in and/or owns all of V2 region New York
 	link = { tag = TEX EU4_region = colonial_eastern_america V2_region = TEX_132 } #Texas - Capital in and/or owns all of V2 region Texas
+	link = { tag = USA EU4_region = colonial_eastern_america  } #USA - Cannot be a subject dominion
 	link = { tag = TEX EU4_region = colonial_louisiana V2_region = TEX_132 } #Texas - Capital in and/or owns all of V2 region Texas
-	link = { tag = NEN EU4_region = colonial_eastern_america V2_region = USA_247 is_culture_group = british } #New England - Capital in and/or owns all of V2 region New England & culture group British
-	link = { tag = USA EU4_region = colonial_eastern_america is_subject = no  } #USA - Cannot be a subject dominion
-	link = { tag = USA EU4_region = colonial_louisiana is_subject = no  } #USA - Cannot be a subject dominion
+	link = { tag = USA EU4_region = colonial_louisiana } #USA - Cannot be a subject dominion
 	#link = { tag = CSA EU4_region = colonial_eastern_america } #CSA - Tied to the USA via events
 	#link = { tag = CSA EU4_region = colonial_louisiana } #CSA - Tied to the USA via events
 	
 	# Western USA			
 	link = { tag = CAL EU4_region = colonial_california V2_region = MEX_85 } #Californian Republic - Capital in and/or owns all of V2 region California
-	link = { tag = DES EU4_region = colonial_california region = MEX_94 is_state_religion = no is_subject = yes } #Deseret - Owns Salt Lake City, must be subject & is not state religion
 	
 	# Caribbean
 	link = { tag = CUB EU4_region = colonial_the_carribean V2_region = SPA_2209 } #Cuba - Capital in and/or owns all of V2 region Cuba

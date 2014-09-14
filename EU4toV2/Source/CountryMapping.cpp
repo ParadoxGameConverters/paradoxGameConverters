@@ -227,6 +227,7 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 			}
 		}
 
+		// it must be in the correct culture group
 		if (j->cultureGroup != "")
 		{
 			if (inverseUnionCultures.find(srcWorld.getCountry(country->getTag())->getPrimaryCulture())->second != j->cultureGroup)

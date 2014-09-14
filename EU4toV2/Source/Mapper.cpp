@@ -716,20 +716,6 @@ colonyMapping initColonyMap(Object* obj)
 			{
 				rule.cultureGroup = (*j)->getLeaf();
 			}
-			if ((*j)->getKey() == "is_subject")
-			{
-				distinguisher newD;	// a new distinguiser
-				newD.first = DTIsSubject;
-				newD.second = (*j)->getLeaf();
-				rule.distinguishers.push_back(newD);
-			}
-			if ((*j)->getKey() == "is_state_religion")
-			{
-				distinguisher newD;	// a new distinguiser
-				newD.first = DTIsStateReligion;
-				newD.second = (*j)->getLeaf();
-				rule.distinguishers.push_back(newD);
-			}
 		}
 
 		colonyMap.push_back(rule);
