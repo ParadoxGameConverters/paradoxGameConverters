@@ -128,7 +128,33 @@ const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, c
 	}
 }
 
-
+typedef struct {
+	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	int to;				// the province this one is adjacent to (expect one pointing back to this province)
+	int via;				// the straight (if any) this crosses
+	int unknown1;		// still unknown
+	int unknown2;		// still unknown
+	int pathX;			// the midpoint on the path srawn between provinces
+	int pathY;			// the midpoint on the path srawn between provinces
+	int unknown3;		// still unknown
+	int unknown4;		// still unknown
+} HODAdjacency;		// an entry in the HOD adjacencies.bin format
+typedef struct {
+	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	int to;				// the province this one is adjacent to (expect one pointing back to this province)
+	int via;				// the straight (if any) this crosses
+	int unknown1;		// still unknown
+	int unknown2;		// still unknown
+	int pathX;			// the midpoint on the path srawn between provinces
+	int pathY;			// the midpoint on the path srawn between provinces
+} AHDAdjacency;		// an entry in the AHD adjacencies.bin format
+typedef struct {
+	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
+	int to;				// the province this one is adjacent to (expect one pointing back to this province)
+	int via;				// the straight (if any) this crosses
+	int unknown1;		// still unknown
+	int unknown2;		// still unknown
+} VanillaAdjacency;	// an entry in the vanilla adjacencies.bin format
 adjacencyMapping initAdjacencyMap()
 {
 	FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
@@ -154,30 +180,45 @@ adjacencyMapping initAdjacencyMap()
 		{
 			break;
 		}
-		vector<adjacency> adjacencies;	// the adjacencies for the current province
+		vector<int> adjacencies;	// the adjacencies for the current province
 		for (int i = 0; i < numAdjacencies; i++)
 		{
-			adjacency newAdjacency;	// the current adjacency
-			fread(&newAdjacency, sizeof(newAdjacency), 1, adjacenciesBin);
-			adjacencies.push_back(newAdjacency);
+			if (Configuration::getV2Gametype() == "vanilla")
+			{
+				VanillaAdjacency readAdjacency;
+				fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesBin);
+				adjacencies.push_back(readAdjacency.to);
+			}
+			else if (Configuration::getV2Gametype() == "AHD")
+			{
+				AHDAdjacency readAdjacency;
+				fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesBin);
+				adjacencies.push_back(readAdjacency.to);
+			}
+			if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
+			{
+				HODAdjacency readAdjacency;
+				fread(&readAdjacency, sizeof(readAdjacency), 1, adjacenciesBin);
+				adjacencies.push_back(readAdjacency.to);
+			}
 		}
 		adjacencyMap.push_back(adjacencies);
 	}
 	fclose(adjacenciesBin);
 
 	// optional code to output data from the adjacencies map
-	/*FILE* adjacenciesData;
+	FILE* adjacenciesData;
 	fopen_s(&adjacenciesData, "adjacenciesData.csv", "w");
-	fprintf(adjacenciesData, "From,Type,To,Via,Unknown1,Unknown2,PathX,PathY\n");
+	fprintf(adjacenciesData, "From,To\n");
 	for (unsigned int from = 0; from < adjacencyMap.size(); from++)
 	{
-		vector<adjacency> adjacencies = adjacencyMap[from];
+		vector<int> adjacencies = adjacencyMap[from];
 		for (unsigned int i = 0; i < adjacencies.size(); i++)
 		{
-			fprintf(adjacenciesData, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", from, adjacencies[i].type, adjacencies[i].to, adjacencies[i].via, adjacencies[i].unknown1, adjacencies[i].unknown2, adjacencies[i].pathX, adjacencies[i].pathY, adjacencies[i].unknown3, adjacencies[i].unknown4);
+			fprintf(adjacenciesData, "%d,%d\n", from, adjacencies[i]);
 		}
 	}
-	fclose(adjacenciesData);*/
+	fclose(adjacenciesData);
 
 	return adjacencyMap;
 }

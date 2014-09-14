@@ -46,18 +46,7 @@ void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& pr
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 
 
-typedef struct {
-	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
-	int to;				// the province this one is adjacent to (expect one pointing back to this province)
-	int via;				// the straight (if any) this crosses
-	int unknown1;		// still unknown
-	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path srawn between provinces
-	int pathY;			// the midpoint on the path srawn between provinces
-	int unknown3;		// still unknown
-	int unknown4;		// still unknown
-} adjacency;			// an entry in the adjacencies.bin format
-typedef vector< vector<adjacency> > adjacencyMapping;
+typedef vector< vector<int> > adjacencyMapping;
 adjacencyMapping initAdjacencyMap();
 
 

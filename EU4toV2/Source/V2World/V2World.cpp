@@ -943,10 +943,10 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 				LOG(LogLevel::Warning) << "No adjacency mapping for province " << currentProvince;
 				continue;
 			}
-			vector<adjacency> adjacencies = adjacencyMap[currentProvince];
+			vector<int> adjacencies = adjacencyMap[currentProvince];
 			for (unsigned int i = 0; i < adjacencies.size(); i++)
 			{
-				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i].to);
+				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
 				if (openItr == openProvinces.end())
 				{
 					continue;
