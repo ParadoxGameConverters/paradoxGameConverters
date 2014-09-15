@@ -857,7 +857,7 @@ void V2Country::addState(V2State* newState)
 
 
 //#define TEST_V2_PROVINCES
-void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, vector<V2Province*> allProvinces, vector<int> port_whitelist)
+void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist)
 {
 #ifndef TEST_V2_PROVINCES
 	if (srcCountry == NULL)
@@ -914,13 +914,10 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 		// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
 		if (army->getNavy())
 		{
-			for (vector<V2Province*>::iterator pitr = allProvinces.begin(); pitr != allProvinces.end(); ++pitr)
+			map<int, V2Province*>::iterator pitr = allProvinces.find(locationCandidates[0]);
+			if ((pitr != allProvinces.end()) && (pitr->second->isLand()))
 			{
-				if (  ( (*pitr)->getNum() == locationCandidates[0] ) && (*pitr)->isLand()  )
-				{
-					usePort = true;
-					break;
-				}
+				usePort = true;
 			}
 			if (usePort)
 			{
@@ -2344,7 +2341,7 @@ void V2Country::addLoan(string creditor, double size, double interest)
 
 
 // return values: 0 = success, -1 = retry from pool, -2 = do not retry
-int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, vector<V2Province*> allProvinces)
+int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces)
 {
 	V2Regiment reg((RegimentCategory)rc);
 	int eu3Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
@@ -2374,30 +2371,23 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		//while (homeProvince == NULL)
 		//{
 			int homeProvinceID = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
-			for (vector<V2Province*>::iterator pitr = allProvinces.begin(); pitr != allProvinces.end(); ++pitr)
+			map<int, V2Province*>::iterator pitr = allProvinces.find(homeProvinceID);
+			if (pitr != allProvinces.end())
 			{
-				if ( (*pitr)->getNum() == homeProvinceID )
-				{
-					homeProvince = *pitr;
-					break;
-				}
+				homeProvince = pitr->second;
 			}
 	}
 	else
 	{
 		// Armies should get a home in the candidate most capable of supporting them
 		vector<V2Province*> sortedHomeCandidates;
-		for (vector<V2Province*>::iterator pitr = allProvinces.begin(); pitr != allProvinces.end(); ++pitr)
+		for (vector<int>::iterator nitr = homeCandidates.begin(); nitr != homeCandidates.end(); ++nitr)
 		{
-			for (vector<int>::iterator nitr = homeCandidates.begin(); nitr != homeCandidates.end(); ++nitr)
+			map<int, V2Province*>::iterator pitr = allProvinces.find(*nitr);
+			if (pitr != allProvinces.end())
 			{
-				if ( (*pitr)->getNum() == *nitr )
-				{
-					sortedHomeCandidates.push_back(*pitr);
-				}
+				sortedHomeCandidates.push_back(pitr->second);
 			}
-			if (sortedHomeCandidates.size() == homeCandidates.size())
-				break;
 		}
 		sort(sortedHomeCandidates.begin(), sortedHomeCandidates.end(), ProvinceRegimentCapacityPredicate);
 		if (sortedHomeCandidates.size() == 0)
@@ -2448,7 +2438,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 }
 
 
-vector<int> V2Country::getPortProvinces(vector<int> locationCandidates, vector<V2Province*> allProvinces)
+vector<int> V2Country::getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
@@ -2474,18 +2464,16 @@ vector<int> V2Country::getPortProvinces(vector<int> locationCandidates, vector<V
 			break;
 		}
 	}
-	for (vector<V2Province*>::iterator pitr = allProvinces.begin(); pitr != allProvinces.end(); ++pitr)
+	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
-		for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+		map<int, V2Province*>::iterator pitr = allProvinces.find(*litr);
+		if (pitr != allProvinces.end())
 		{
-			if ( (*pitr)->getNum() == (*litr) )
+			if (!pitr->second->isCoastal())
 			{
-				if ( !(*pitr)->isCoastal() )
-				{
-					locationCandidates.erase(litr);
-					--pitr;
-					break;
-				}
+				locationCandidates.erase(litr);
+				--pitr;
+				break;
 			}
 		}
 	}

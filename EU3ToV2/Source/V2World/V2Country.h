@@ -4,10 +4,10 @@
 
 
 #include "../Mapper.h"
+#include "../Date.h"
 #include "../EU3World/EU3Army.h"
 #include "V2Inventions.h"
 #include "V2TechSchools.h"
-#include "../Date.h"
 #include <vector>
 using namespace std;
 
@@ -36,7 +36,7 @@ class V2Country
 		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
 		void								addState(V2State* newState);
-		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, vector<V2Province*> allProvinces, vector<int> port_whitelist);
+		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
 		void								setNationalIdea(int& libertyLeft, int& equalityLeft);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
@@ -80,8 +80,8 @@ class V2Country
 		void			setRulingParty();
 		void			sortRelations(const vector<string>& order);
 		void			addLoan(string creditor, double size, double interest);
-		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, vector<V2Province*> allProvinces);
-		vector<int>	getPortProvinces(vector<int> locationCandidates, vector<V2Province*> allProvinces);
+		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces);
+		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces);
 		V2Army*		getArmyForRemainder(RegimentCategory rc);
 		V2Province*	getProvinceForExpeditionaryArmy();
 

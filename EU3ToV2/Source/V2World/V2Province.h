@@ -3,11 +3,12 @@
 
 
 
+#include "../Configuration.h"
 #include "../EU3World/EU3World.h"
 #include "../EU3World/EU3Country.h"
-#include "../Configuration.h"
 
 class V2Pop;
+class V2Factory;
 
 
 
@@ -29,8 +30,9 @@ struct V2Demographic
 class V2Province
 {
 	public:
-		V2Province(int number);
-		void output(FILE*) const;
+		//V2Province(int number);
+		V2Province(string _filename);
+		void output() const;
 		void importHistory(Object*);
 		void convertFromOldProvince(const EU3Province* oldProvince);
 		void addCore(string);
@@ -61,7 +63,7 @@ class V2Province
 		bool						getCOT()					const { return COT; };
 		bool						wasPaganConquest()	const { return originallyPagan; };
 		bool						wasColonised()			const { return colonised; };
-		bool						isColonial()			const { return colonial; };
+		bool						isColonial()			const { return colonial != 0; };
 		string					getRgoType()			const { return rgoType; };
 		string					getOwner()				const { return owner; };
 		int						getNum()					const { return num; };
@@ -76,29 +78,34 @@ class V2Province
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
-		const EU3Province*		srcProvince;
+		const EU3Province*			srcProvince;
 
-		bool							land;
-		bool							coastal;
-		int							num;
-		string						name;
-		string						owner;
+		string							filename;
+		bool								land;
+		bool								coastal;
+		int								num;
+		string							name;
+		string							owner;
 		//controller
-		vector<string>				cores;
-		bool							colonial;
-		bool							colonised;
-		bool							COT;
-		bool							originallyPagan;
-		int							oldPopulation;
-		vector<V2Demographic>	demographics;
-		vector<const V2Pop*>		oldPops;
-		vector<V2Pop*>				pops;
-		string						rgoType;
-		int							lifeRating;
-		int							unitNameCount[num_reg_categories];
-		int							fortLevel;
-		int							navalBaseLevel;
-		int							railLevel;
+		vector<string>					cores;
+		int								colonyLevel;
+		int								colonial;
+		bool								colonised;
+		bool								COT;
+		bool								originallyPagan;
+		int								oldPopulation;
+		vector<V2Demographic>		demographics;
+		vector<const V2Pop*>			oldPops;
+		vector<V2Pop*>					pops;
+		string							rgoType;
+		string							terrain;
+		int								lifeRating;
+		bool								slaveState;
+		int								unitNameCount[num_reg_categories];
+		int								fortLevel;
+		int								navalBaseLevel;
+		int								railLevel;
+		vector<const V2Factory*>	factories;
 };
 
 

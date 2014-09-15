@@ -34,5 +34,5 @@ Configuration::Configuration()
 	EU3gametype			= obj[0]->getLeaf("EU3gametype");
 	V2gametype			= obj[0]->getLeaf("V2gametype");
 	removetype			= obj[0]->getLeaf("removetype");
-	V2OutputModName	= obj[0]->getLeaf("V2OutputModName");
+	outputName			= "";
 }

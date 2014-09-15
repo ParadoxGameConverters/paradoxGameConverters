@@ -11,7 +11,7 @@
 
 EU3World::EU3World(Object* obj)
 {
-	cachedWorldType = Unknown;
+	cachedWorldType = unknown;
 
 	string key;	
 	vector<Object*> leaves = obj->getLeaves();
@@ -134,7 +134,7 @@ void EU3World::resolveRegimentTypes(const RegimentTypeMap& rtMap)
 
 WorldType EU3World::getWorldType()
 {
-	if (cachedWorldType != Unknown)
+	if (cachedWorldType != unknown)
 	{
 		return cachedWorldType;
 	}
@@ -168,14 +168,14 @@ WorldType EU3World::getWorldType()
 		}
 		else
 		{
-			cachedWorldType = Unknown; // possibly modded
+			cachedWorldType = unknown; // possibly modded
 		}
 		break;
 	}
 
 	// Allow the configuration file to override the game type
 	string configWorldType = Configuration::getEU3Gametype();
-	WorldType forcedWorldType = Unknown;
+	WorldType forcedWorldType = unknown;
 	if (configWorldType == "dw")
 	{
 		forcedWorldType = DivineWind;
@@ -193,17 +193,17 @@ WorldType EU3World::getWorldType()
 		forcedWorldType = cachedWorldType;
 	}
 
-	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != Unknown))
+	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != unknown))
 	{
 		log("	Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
 	}
 
-	if (cachedWorldType == Unknown)
+	if (cachedWorldType == unknown)
 	{
 		log("	Error: world type unknown!\n");
 	}
 
-	if (forcedWorldType != Unknown)
+	if (forcedWorldType != unknown)
 	{
 		cachedWorldType = forcedWorldType;
 	}
@@ -219,7 +219,7 @@ void EU3World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
 		if ( (j == inverseProvinceMap.end()) || (j->second.size() == 0) )
 		{
-			log("	Error: no destination for province #%d\n", i->first);
+			log("	Warning: no destination for province #%d\n", i->first);
 		}
 	}
 }

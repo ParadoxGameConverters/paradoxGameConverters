@@ -54,15 +54,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		printf("No input file given, defaulting to input.eu3\n");
 	}
 
-	//Get Mods new Name
-	log("Get the name of the Mod.\n");
-	string OutputFolderName = Configuration::getV2OutputModName();
-	if (OutputFolderName.empty() || (stat(OutputFolderName.c_str(), &st) != 0))
-	{
-		log("No Mod name was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Mod name was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		return (-2);
-	}
+	//get output name
+	int slash = inputFilename.find_last_of("\\");
+	int length = inputFilename.find_first_of(".") - slash - 1;
+	string outputName = inputFilename.substr(slash + 1, length);
+	Configuration::setOutputName(outputName);
+	log("Using output name %s\n", outputName.c_str());
 
 
 	// Parse EU3 Save
@@ -494,16 +491,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\localisation").c_str(), NULL);*/
 
 	// Output results
-	printf("Outputting save.\n");
-	log("Outputting save.\n");
-	FILE* output;
-	if (fopen_s(&output, "output.v2", "w") != 0)
-	{
-		log("Error: could not open output.v2.\n");
-		printf("Error: could not open output.v2.\n");
-	}
-	destWorld.output(output);
-	fclose(output);
+	printf("Outputting mod\n");
+	log("Outputting mod\n");
+	system("xcopy blankMod output /E /Q /Y /I");
+	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
+	system(renameCommand.c_str());
+	renameCommand = "move /Y output\\output.mod output\\" + Configuration::getOutputName() + ".mod";
+	system(renameCommand.c_str());
+
+	destWorld.output();
 
 	closeLog();
 	return 0;

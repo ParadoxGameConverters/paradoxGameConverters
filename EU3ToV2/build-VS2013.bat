@@ -21,5 +21,5 @@ del release\log.txt
 cd Release
 del *.pdb
 "%IZARC_LOC%" -ad Release;*
-call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\EU3ToV2.zip" "*.*" -mx5
+call "%SEVENZIP_LOC%\7z.exe" a -tzip -r "..\EU3ToV2.zip" "*" -mx5
 cd ..

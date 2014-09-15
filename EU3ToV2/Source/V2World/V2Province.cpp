@@ -1,28 +1,33 @@
 #include "V2Province.h"
 #include "../Log.h"
+#include "../Parsers/Object.h"
+#include "../Parsers/Parser.h"
 #include "../EU3World/EU3World.h"
 #include "../EU3World/EU3Province.h"
 #include "V2Pop.h"
 #include "V2Country.h"
-#include "../Parsers/Object.h"
+#include "V2Factory.h"
 #include <sstream>
 #include <algorithm>
+#include <stdio.h>
 using namespace std;
 
 
 
-V2Province::V2Province(int newNumber)
+V2Province::V2Province(string _filename)
 {
 	srcProvince			= NULL;
 
+	filename				= _filename;
 	land					= false;
 	coastal				= false;
-	num					= newNumber;
+	num					= 0;
 	name					= "";
 	owner					= "";
 	//controler			= "";
 	cores.clear();
-	colonial				= false;
+	colonyLevel			= 0;
+	colonial				= 0;
 	colonised			= false;
 	COT					= false;
 	originallyPagan	= false;
@@ -31,7 +36,9 @@ V2Province::V2Province(int newNumber)
 	oldPops.clear();
 	pops.clear();
 	rgoType				= "";
+	terrain				= "";
 	lifeRating			= 0;
+	slaveState			= false;
 
 	for (int i = 0; i < num_reg_categories; ++i)
 	{
@@ -41,77 +48,149 @@ V2Province::V2Province(int newNumber)
 	fortLevel			= 0;
 	navalBaseLevel		= 0;
 	railLevel			= 0;
-}
+	factories.clear();
 
-
-void V2Province::output(FILE* output) const
-{
-	if (name == "")
+	int slash = filename.find_last_of("\\");
+	int numDigits = filename.find_first_of("-") - slash - 2;
+	string temp = filename.substr(slash + 1, numDigits);
+	num = atoi(temp.c_str());
+	
+	//log("Getting province data from %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + filename).c_str());
+	Object* obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
+	if (obj == NULL)
 	{
-		log("Error: province %d was never assigned a name.\n", num);
+		log("\tError: Could not parse %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
+		exit(-1);
 	}
-	fprintf(output, "%d=\n", num);
-	fprintf(output, "{\n");
-	fprintf(output, "\tname=\"%s\"\n", name.c_str());
-	if (land)
+	vector<Object*> leaves = obj->getLeaves();
+	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); itr++)
 	{
-		if (owner != "")
+		if ((*itr)->getKey() == "owner")
 		{
-			fprintf(output, "\towner=\"%s\"\n", owner.c_str());
-			fprintf(output, "\tcontroller=\"%s\"\n", owner.c_str());
+			owner = (*itr)->getLeaf();
 		}
-		for (unsigned int i = 0; i < cores.size(); i++)
+		else if ((*itr)->getKey() == "controller")
 		{
-			fprintf(output, "\tcore=\"%s\"\n", cores[i].c_str());
+			//controller = (*itr)->getLeaf().c_str();
 		}
-	}
-	fprintf(output, "\tgarrison=100.000\n");
-	if (fortLevel > 0)
-	{
-		fprintf(output, "\tfort=\n");
-		fprintf(output, "\t{\n");
-		fprintf(output, "\t\t%f %f\n", (float)fortLevel, (float)fortLevel);
-		fprintf(output, "\t}\n");
-	}
-	if (navalBaseLevel > 0)
-	{
-		fprintf(output, "\tnaval_base=\n");
-		fprintf(output, "\t{\n");
-		fprintf(output, "\t\t%f %f\n", (float)navalBaseLevel, (float)navalBaseLevel);
-		fprintf(output, "\t}\n");
-	}
-	if (railLevel > 0)
-	{
-		fprintf(output, "\trailroad=\n");
-		fprintf(output, "\t{\n");
-		fprintf(output, "\t\t%f %f\n", (float)railLevel, (float)railLevel);
-		fprintf(output, "\t}\n");
-	}
-	if (colonial)
-	{
-		if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
+		else if ((*itr)->getKey() == "add_core")
+		{
+			cores.push_back((*itr)->getLeaf());
+		}
+		else if ((*itr)->getKey() == "trade_goods")
+		{
+			rgoType = (*itr)->getLeaf();
+		}
+		else if ((*itr)->getKey() == "life_rating")
+		{
+			lifeRating = atoi((*itr)->getLeaf().c_str());
+		}
+		else if ((*itr)->getKey() == "terrain")
+		{
+			terrain = (*itr)->getLeaf();
+		}
+		else if ((*itr)->getKey() == "colonial")
+		{
+			colonial = atoi((*itr)->getLeaf().c_str());
+		}
+		else if ((*itr)->getKey() == "colony")
+		{
+			colonyLevel = atoi((*itr)->getLeaf().c_str());
+		}
+		else if ((*itr)->getKey() == "naval_base")
+		{
+			navalBaseLevel = atoi((*itr)->getLeaf().c_str());
+		}
+		else if ((*itr)->getKey() == "fort")
+		{
+			fortLevel = atoi((*itr)->getLeaf().c_str());
+		}
+		else if ((*itr)->getKey() == "railroad")
+		{
+			railLevel = atoi((*itr)->getLeaf().c_str());
+		}
+		else if ((*itr)->getKey() == "is_slave")
+		{
+			if ((*itr)->getLeaf() == "yes")
+			{
+				slaveState = true;
+			}
+		}
+		else if ((*itr)->getKey() == "state_building")
 		{
 		}
-	}
-	if (colonised)
-	{
-		if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
+		else if ((*itr)->getKey() == "party_loyalty")
 		{
-			fprintf(output, "\tcolonial=2\n");
 		}
 		else
 		{
-			fprintf(output, "\tcolonial=yes\n");
+			//log("Unknown key - %s\n", (*itr)->getKey().c_str());
 		}
 	}
-	if (land)
+}
+
+
+void V2Province::output() const
+{
+	FILE* output;
+	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename).c_str(), "w") != 0)
 	{
-		outputPops(output);
-		outputRGO(output);
-		fprintf(output, "\tlife_rating=%d\n", lifeRating);
-		outputUnits(output);
+		log("\tError: Could not create province history file %s", filename.c_str());
+		exit(-1);
 	}
-	fprintf(output, "}\n");
+	if (owner != "")
+	{
+		fprintf_s(output, "owner= %s\n", owner.c_str());
+		fprintf_s(output, "controller= %s\n", owner.c_str());
+	}
+	for (unsigned int i = 0; i < cores.size(); i++)
+	{
+		fprintf_s(output, "add_core= %s\n", cores[i].c_str());
+	}
+	if (rgoType != "")
+	{
+		fprintf_s(output, "trade_goods = %s\n", rgoType.c_str());
+	}
+	if (lifeRating > 0)
+	{
+		fprintf_s(output, "life_rating = %d\n", lifeRating);
+	}
+	if (terrain != "")
+	{
+		fprintf_s(output, "terrain = %s\n", terrain.c_str());
+	}
+	if (colonial > 0)
+	{
+		fprintf_s(output, "colonial = %d\n", colonial);
+	}
+	if (colonyLevel > 0)
+	{
+		fprintf_s(output, "colony = %d\n", colonyLevel);
+	}
+	if (navalBaseLevel > 0)
+	{
+		fprintf_s(output, "naval_base = %d\n", navalBaseLevel);
+	}
+	if (fortLevel > 0)
+	{
+		fprintf_s(output, "fort = %d\n", fortLevel);
+	}
+	if (railLevel > 0)
+	{
+		fprintf_s(output, "railroad = %d\n", railLevel);
+	}
+	if (slaveState)
+	{
+		fprintf_s(output, "is_slave = yes\n");
+	}
+	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); itr++)
+	{
+		(*itr)->output(output);
+	}
+	/*else if ((*itr)->getKey() == "party_loyalty")
+	{
+	}*/
+	fclose(output);
 }
 
 
@@ -327,7 +406,10 @@ void V2Province::convertFromOldProvince(const EU3Province* oldProvince)
 {
 	srcProvince			= oldProvince;
 
-	colonial				= oldProvince->isColony();
+	if (oldProvince->isColony())
+	{
+		colonial = 2;
+	}
 	colonised			= oldProvince->wasColonised();
 	originallyPagan	= oldProvince->wasPaganConquest();
 	COT					= oldProvince->isCOT();

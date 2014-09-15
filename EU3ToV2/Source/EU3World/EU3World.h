@@ -14,7 +14,7 @@ typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, des
 
 enum WorldType
 {
-	Unknown = 0,
+	unknown = 0,
 	VeryOld,
 	InNomine,
 	HeirToTheThrone,
