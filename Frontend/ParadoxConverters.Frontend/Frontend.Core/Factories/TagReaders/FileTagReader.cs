@@ -39,12 +39,6 @@ namespace Frontend.Core.Factories.TagReaders
                 }
             }
 
-
-            //var path = string.IsNullOrEmpty(steamId) ? this.ReadWindowsUserFolderPath(xmlElement) : this.ReadSteamPath(xmlElement, steamId);
-            //var defaultLocationTypeAsString = XElementHelper.ReadStringValue(xmlElement, "defaultLocationType");
-            //var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
-            //var defaultLocationType = defaultLocationTypeAsString.Equals()
-
             return this.BuildRequiredFolderObject(tagName, alternativePaths, friendlyName, description, extension, predefinedFileName);
         }
 
