@@ -63,5 +63,5 @@ configuration =
 	#	dead	remove ones without cultural backing
 	#	all	remove all of them
 	# Note: if there are not enough V2 tags, some or all of these will be done anyway
-	Removetype = "dead"
+	Removetype = "none"
 }

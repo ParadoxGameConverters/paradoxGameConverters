@@ -58,7 +58,6 @@ void mergeNations(EU4World&, Object* mergeObj);
 void uniteJapan(EU4World&);
 void removeEmptyNations(EU4World&);
 void removeDeadLandlessNations(EU4World&);
-void removeOlderLandlessNations(EU4World&, int excess);
 void removeLandlessNations(EU4World&);
 
 

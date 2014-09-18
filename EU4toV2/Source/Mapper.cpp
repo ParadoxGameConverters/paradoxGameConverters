@@ -326,6 +326,7 @@ void removeEmptyNations(EU4World& world)
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
 			world.removeCountry(i->first);
+			LOG(LogLevel::Debug) << "Removing empty nation " << i->first;
 		}
 	}
 }
@@ -335,21 +336,21 @@ void removeDeadLandlessNations(EU4World& world)
 {
 	map<string, EU4Country*> allCountries = world.getCountries();	// all the EU4 countries
 
-	vector<EU4Country*> landlessCountries;	// all the landless EU4 countries
+	map<string, EU4Country*> landlessCountries;	// all the landless EU4 countries
 	for (map<string, EU4Country*>::iterator i = allCountries.begin(); i != allCountries.end(); i++)
 	{
 		vector<EU4Province*> provinces = i->second->getProvinces();	// the provinces for this country
 		if (provinces.size() == 0)
 		{
-			landlessCountries.push_back(i->second);
+			landlessCountries.insert(*i);
 		}
 	}
 
-	for (vector<EU4Country*>::iterator countryItr = landlessCountries.begin(); countryItr != landlessCountries.end(); countryItr++)
+	for (map<string, EU4Country*>::iterator countryItr = landlessCountries.begin(); countryItr != landlessCountries.end(); countryItr++)
 	{
-		string primaryCulture		= (*countryItr)->getPrimaryCulture();	// the primary culture of this country
-		vector<EU4Province*> cores	= (*countryItr)->getCores();				// the cores of this country
-		bool cultureSurvives			= false;											// whether or not the primary culture survives in any of the cores
+		string primaryCulture		= countryItr->second->getPrimaryCulture();	// the primary culture of this country
+		vector<EU4Province*> cores	= countryItr->second->getCores();				// the cores of this country
+		bool cultureSurvives			= false;													// whether or not the primary culture survives in any of the cores
 		for (vector<EU4Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
 		{
 			if ( (*coreItr)->getOwner() == NULL)
@@ -379,7 +380,8 @@ void removeDeadLandlessNations(EU4World& world)
 
 		if (cultureSurvives == false)
 		{
-			world.removeCountry( (*countryItr)->getTag() );
+			world.removeCountry( countryItr->first );
+			LOG(LogLevel::Debug) << "Removing dead landless nation " << countryItr->first;
 		}
 	}
 }
@@ -415,31 +417,6 @@ static bool compareLandlessNationsAges(EU4Country* A, EU4Country* B)
 }
 
 
-void removeOlderLandlessNations(EU4World& world, int excess)
-{
-	map<string, EU4Country*> allCountries = world.getCountries();	// all EU4 countries
-
-	vector<EU4Country*> landlessCountries;	// all landless EU4 countries
-	for (map<string, EU4Country*>::iterator i = allCountries.begin(); i != allCountries.end(); i++)
-	{
-		vector<EU4Province*> provinces = i->second->getProvinces();	// all provinces for this country
-		if (provinces.size() == 0)
-		{
-			landlessCountries.push_back(i->second);
-		}
-	}
-
-	sort(landlessCountries.begin(), landlessCountries.end(), compareLandlessNationsAges);
-
-	while ( (excess > 0) && (landlessCountries.size() > 0) )
-	{
-		world.removeCountry(landlessCountries.back()->getTag());
-		landlessCountries.pop_back();
-		excess--;
-	}
-}
-
-
 void removeLandlessNations(EU4World& world)
 {
 	map<string, EU4Country*> countries = world.getCountries();	// all EU4 countries
@@ -450,6 +427,7 @@ void removeLandlessNations(EU4World& world)
 		if (provinces.size() == 0)
 		{
 			world.removeCountry(i->first);
+			LOG(LogLevel::Debug) << "Removing landless nation " << i->first;
 		}
 	}
 }

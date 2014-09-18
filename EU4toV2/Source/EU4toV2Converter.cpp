@@ -405,6 +405,15 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 	// Get country mappings
+	removeEmptyNations(sourceWorld);
+	if (Configuration::getRemovetype() == "dead")
+	{
+		removeDeadLandlessNations(sourceWorld);
+	}
+	else if (Configuration::getRemovetype() == "all")
+	{
+		removeLandlessNations(sourceWorld);
+	}
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
 
