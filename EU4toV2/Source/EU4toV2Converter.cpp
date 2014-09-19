@@ -386,9 +386,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 
 	//// Construct factory factory
-	//log("Determining factory allocation rules.\n");
-	//printf("Determining factory allocation rules.\n");
-	//V2FactoryFactory factoryBuilder(V2Loc);
+	LOG(LogLevel::Info) << "Determining factory allocation rules.";
+	V2FactoryFactory factoryBuilder;
 
 	// Parse province mappings
 	LOG(LogLevel::Info) << "Parsing province mappings";
@@ -758,8 +757,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);*/
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
-	/*LOG(LogLevel::Info) << "Allocating starting factories";
-	destWorld.allocateFactories(sourceWorld, factoryBuilder);*/
+	LOG(LogLevel::Info) << "Allocating starting factories";
+	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

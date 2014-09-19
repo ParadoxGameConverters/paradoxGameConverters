@@ -30,12 +30,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 V2State::V2State(int newId, V2Province* firstProvince)
 {
-	id				= newId;
-	colonial		= false;
-	colonised	= false;
+	id					= newId;
+	colonial			= false;
+	colonised		= false;
 	provinces.clear();
 	provinces.push_back(firstProvince);
-	factories.clear();
+	numFactories	= 0;
 }
 
 
@@ -95,7 +95,7 @@ int V2State::getCraftsmenPerFactory() const
 			totalCraftsmen += (*pitr)->getSize();
 		}
 	}
-	return totalCraftsmen / (factories.size() + 1);
+	return totalCraftsmen / (numFactories + 1);
 }
 
 
@@ -121,4 +121,11 @@ int V2State::getStatePopulation() const
 		population += (*itr)->getOldPopulation();
 	}
 	return population;
+}
+
+
+void V2State::addFactory(const V2Factory* factory)
+{
+	provinces[0]->addFactory(factory);
+	numFactories++;
 }
