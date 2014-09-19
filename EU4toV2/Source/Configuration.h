@@ -91,6 +91,11 @@ public:
 		return getInstance()->Removetype;
 	}
 
+	static double getLibertyThreshold()
+	{
+		return getInstance()->libertyThreshold;
+	}
+
 	static void setOutputName(string name)
 	{
 		getInstance()->outputName = name;
@@ -121,6 +126,7 @@ private:
 	string	resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
 	double	MaxLiteracy;			// the maximum literacy allowed
 	string	Removetype;				// the ruleto use for removing excess EU4 nations
+	double	libertyThreshold;		// The threshold liberty desire value for when colonies are not absorbed
 	
 	// items set during conversion
 	date		firstEU4Date;			// the date EU4 began

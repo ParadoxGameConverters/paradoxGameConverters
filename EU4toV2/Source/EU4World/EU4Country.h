@@ -85,6 +85,7 @@ class EU4Country
 		vector<EU4Army*>			getArmies()									const { return armies; };
 		vector<EU4Leader*>		getLeaders()								const { return leaders; };
 		bool							isColony()									const { return colony; };
+		double						getLibertyDesire()						const { return libertyDesire; };
 
 		string getName() const { return name; }
 		string getName(const string& language) const;
@@ -127,6 +128,7 @@ class EU4Country
 		map<string, int>			nationalIdeas;			// the national ideas for this country
 		double						legitimacy;				// the legitimacy of this nation
 		bool							colony;					// whether or not this country is a colony
+		double						libertyDesire;			// the amount of liberty desire
 
 		// Localisation attributes
 		string name;			// the name of this country

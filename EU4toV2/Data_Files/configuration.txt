@@ -64,4 +64,7 @@ configuration =
 	#	all	remove all of them
 	# Note: if there are not enough V2 tags, some or all of these will be done anyway
 	Removetype = "none"
+
+	# Liberty Desire Threshold: The threshold value for when colonies are not absorbed. Default 100% (colonies always absorbed)
+	libertyThreshold = 100
 }

@@ -654,7 +654,20 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 
 		if (itr->type == "is_colonial")
 		{
-			country1->second->absorbColony(country2->second);
+			if (country2->second->getSourceCountry()->getLibertyDesire() < Configuration::getLibertyThreshold())
+			{
+				country1->second->absorbColony(country2->second);
+			}
+			else
+			{
+				V2Agreement v2a;
+				v2a.country1 = V2Tag1;
+				v2a.country2 = V2Tag2;
+				v2a.start_date = itr->startDate;
+				v2a.type = "vassal";
+				diplomacy.addAgreement(v2a);
+				r1->setLevel(5);
+			}
 		}
 		if ((itr->type == "royal_marriage") || (itr->type == "guarantee"))
 		{

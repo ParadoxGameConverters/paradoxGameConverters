@@ -199,6 +199,13 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	{
 		colony = true;
 	}
+
+	libertyDesire = 0.0;
+	vector<Object*> libertyObj = obj->getValue("liberty_desire"); // the object holding the liberty desire
+	if (libertyObj.size() > 0)
+	{
+		libertyDesire = atof(libertyObj[0]->getLeaf().c_str());
+	}
 }
 
 

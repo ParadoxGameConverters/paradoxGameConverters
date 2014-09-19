@@ -59,5 +59,6 @@ Configuration::Configuration()
 	resetProvinces		= obj[0]->getLeaf("resetProvinces");
 	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
 	Removetype			= obj[0]->getLeaf("Removetype");
+	libertyThreshold	= atof(obj[0]->getLeaf("libertyThreshold").c_str());
 	outputName			= "";
 }
