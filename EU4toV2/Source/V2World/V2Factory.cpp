@@ -43,9 +43,6 @@ V2FactoryType::V2FactoryType(Object* factory)
 	}
 
 	requireTech						= "";
-	vanillaRequiredInvention	= (vanillaInventionType)-1;
-	HODRequiredInvention			= (HODInventionType)-1;
-	HODNNMRequiredInvention		= (HODNNMInventionType)-1;
 
 	vector<Object*> local_supply = factory->getValue("limit_by_local_supply");
 	if ((local_supply.size() > 0) && (local_supply[0]->getLeaf() == "yes"))
@@ -106,12 +103,6 @@ V2FactoryFactory::V2FactoryFactory()
 	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\culture_tech.txt");
 	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\industry_tech.txt");
 	loadRequiredTechs(Configuration::getV2Path() + "\\technologies\\navy_tech.txt");
-	factoryInventionReqs.clear();
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\army_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\commerce_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\culture_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\industry_inventions.txt");
-	loadRequiredInventions(Configuration::getV2Path() + "\\inventions\\navy_inventions.txt");
 
 	// load factory types
 	factoryTypes.clear();
@@ -129,28 +120,6 @@ V2FactoryFactory::V2FactoryFactory()
 		if (reqitr != factoryTechReqs.end())
 		{
 			ft->requireTech = reqitr->second;
-		}
-		reqitr = factoryInventionReqs.find(ft->name);
-		if (reqitr != factoryInventionReqs.end())
-		{
-			for (int i = 0; i <= VANILLA_naval_exercises; ++i)
-			{
-				if (((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD")) && (reqitr->second == vanillaInventionNames[i]))
-				{
-					ft->vanillaRequiredInvention = (vanillaInventionType)i;
-					break;
-				}
-				else if ((Configuration::getV2Gametype() == "HOD") && (reqitr->second == HODInventionNames[i]))
-				{
-					ft->HODRequiredInvention = (HODInventionType)i;
-					break;
-				}
-				else if ((Configuration::getV2Gametype() == "HoD-NNM") && (reqitr->second == HODNNMInventionNames[i]))
-				{
-					ft->HODNNMRequiredInvention = (HODNNMInventionType)i;
-					break;
-				}
-			}
 		}
 		factoryTypes[ft->name] = ft;
 	}
@@ -216,31 +185,6 @@ void V2FactoryFactory::loadRequiredTechs(string filename)
 		for (vector<Object*>::iterator bitr = building.begin(); bitr != building.end(); ++bitr)
 		{
 			factoryTechReqs.insert(make_pair((*bitr)->getLeaf(), (*itr)->getKey()));
-		}
-	}
-}
-
-
-void V2FactoryFactory::loadRequiredInventions(string filename)
-{
-	Object* obj = doParseFile(filename.c_str());
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file " << filename;
-		exit(-1);
-	}
-	vector<Object*> invObjs = obj->getLeaves();
-	for (vector<Object*>::iterator itr = invObjs.begin(); itr != invObjs.end(); ++itr)
-	{
-		vector<Object*> effect = (*itr)->getValue("effect");
-		if (effect.size() == 0)
-		{
-			continue;
-		}
-		vector<Object*> building = effect[0]->getValue("activate_building");
-		for (vector<Object*>::iterator bitr = building.begin(); bitr != building.end(); ++bitr)
-		{
-			factoryInventionReqs.insert(make_pair((*bitr)->getLeaf(), (*itr)->getKey()));
 		}
 	}
 }

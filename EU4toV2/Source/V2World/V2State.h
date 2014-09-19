@@ -63,6 +63,7 @@ class V2State
 		vector<V2Province*>	getProvinces()		const { return provinces; };
 	private:
 		int	getStatePopulation() const;
+
 		int								id;
 		bool								colonial;
 		bool								colonised;
