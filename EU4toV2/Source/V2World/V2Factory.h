@@ -43,6 +43,9 @@ struct V2FactoryType
 	string						name;
 	bool							requireCoastal;
 	string						requireTech;
+	vanillaInventionType		vanillaRequiredInvention;
+	HODInventionType			HODRequiredInvention;
+	HODNNMInventionType		HODNNMRequiredInvention;
 	bool							requireLocalInput;
 	map<string,float>			inputs;
 };
@@ -57,6 +60,9 @@ class V2Factory
 
 		bool						requiresCoastal()					const { return type->requireCoastal; }
 		string					getRequiredTech()					const { return type->requireTech; }
+		vanillaInventionType	getVanillaRequiredInvention()	const { return type->vanillaRequiredInvention; }
+		HODInventionType		getHODRequiredInvention()		const { return type->HODRequiredInvention; }
+		HODNNMInventionType	getHODNNMRequiredInvention()	const { return type->HODNNMRequiredInvention; }
 		string					getTypeName()						const { return type->name; }
 	private:
 		const V2FactoryType* type;
@@ -70,9 +76,11 @@ class V2FactoryFactory
 		deque<V2Factory*>	buildFactories() const;
 	private:
 		void					loadRequiredTechs(string filename);
+		void					loadRequiredInventions(string filename);
 		vector<pair<V2FactoryType*, int>>	factoryCounts;
 		map<string, V2FactoryType*>			factoryTypes;
 		map<string, string>						factoryTechReqs;
+		map<string, string>						factoryInventionReqs;
 };
 
 

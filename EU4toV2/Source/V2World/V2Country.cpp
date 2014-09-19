@@ -1130,6 +1130,35 @@ bool V2Country::addFactory(V2Factory* factory)
 			return false;
 		}
 	}
+	
+	// check factory inventions
+	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
+	{
+		vanillaInventionType requiredInvention = factory->getVanillaRequiredInvention();
+		if (requiredInvention >= 0 && vanillaInventions[requiredInvention] != active)
+		{
+			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required invention: " << vanillaInventionNames[requiredInvention] << ')';
+			return false;
+		}
+	}
+	else if (Configuration::getV2Gametype() == "HOD")
+	{
+		HODInventionType requiredInvention = factory->getHODRequiredInvention();
+		if (requiredInvention >= 0 && HODInventions[requiredInvention] != active)
+		{
+			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing required invention: " << HODInventionNames[requiredInvention] << ')';
+			return false;
+		}
+	}
+	else if (Configuration::getV2Gametype() == "HoD-NNM")
+	{
+		HODNNMInventionType requiredInvention = factory->getHODNNMRequiredInvention();
+		if (requiredInvention >= 0 && HODNNMInventions[requiredInvention] != active)
+		{
+			LOG(LogLevel::Debug) << tag << " rejected " << factory->getTypeName() << " (missing reqd invention: " << HODNNMInventionNames[requiredInvention] << ')';
+			return false;
+		}
+	}
 
 	// find a state to add the factory to, which meets the factory's requirements
 	vector<pair<int, V2State*>> candidates;
