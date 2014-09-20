@@ -202,41 +202,39 @@ V2World::V2World()
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
-	//log("\tFinding coastal provinces.\n");
-	//printf("\tFinding coastal provinces.\n");
-	//Object*	obj2 = doParseFile((V2Loc + "\\map\\positions.txt").c_str());
-	//if (obj2 == NULL)
-	//{
-	//	log("Could not parse file %s\n", (V2Loc + "\\map\\positions.txt").c_str());
-	//	exit(-1);
-	//}
-	//vector<Object*> objProv = obj2->getLeaves();
-	//if (objProv.size() == 0)
-	//{
-	//	log("Error: map\\positions.txt failed to parse.");
-	//	printf("Error: map\\positions.txt failed to parse.");
-	//	exit(1);
-	//}
-	//for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
-	//{
-	//	int provinceNum = atoi((*itr)->getKey().c_str());
-	//	vector<Object*> objPos = (*itr)->getValue("building_position");
-	//	if (objPos.size() == 0)
-	//		continue;
-	//	vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
-	//	if (objNavalBase.size() != 0)
-	//	{
-	//		// this province is coastal
-	//		for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
-	//		{
-	//			if ( (*pitr)->getNum() == provinceNum)
-	//			{
-	//				(*pitr)->setCoastal(true);
-	//				break;
-	//			}
-	//		}
-	//	}
-	//}
+	LOG(LogLevel::Info) << "Finding coastal provinces.";
+	Object*	obj2 = doParseFile((Configuration::getV2Path() + "\\map\\positions.txt").c_str());
+	if (obj2 == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "\\map\\positions.txt";
+		exit(-1);
+	}
+	vector<Object*> objProv = obj2->getLeaves();
+	if (objProv.size() == 0)
+	{
+		LOG(LogLevel::Error) << "map\\positions.txt failed to parse.";
+		exit(1);
+	}
+	for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
+	{
+		int provinceNum = atoi((*itr)->getKey().c_str());
+		vector<Object*> objPos = (*itr)->getValue("building_position");
+		if (objPos.size() == 0)
+			continue;
+		vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
+		if (objNavalBase.size() != 0)
+		{
+			// this province is coastal
+			for (map<int, V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+			{
+				if ( pitr->first == provinceNum)
+				{
+					pitr->second->setCoastal(true);
+					break;
+				}
+			}
+		}
+	}
 
 	countries.clear();
 
@@ -1391,7 +1389,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 {
 	// determine average production tech
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
-	double productionMean = 0.0f;
+	double admMean = 0.0f;
 	int num = 1;
 	for (map<string, EU4Country*>::iterator itr = sourceCountries.begin(); itr != sourceCountries.end(); ++itr)
 	{
@@ -1399,13 +1397,13 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 		{
 			continue;
 		}
-		if (( (itr)->second->getTechGroup() != "western" ) && ( (itr)->second->getTechGroup() != "latin" ))
+		if ((itr)->second->getTechGroup() != "western" )
 		{
 			continue;
 		}
 
-		double prodTech = (itr)->second->getAdmTech();
-		productionMean += ((prodTech - productionMean) / num);
+		double admTech = (itr)->second->getAdmTech();
+		admMean += ((admTech - admMean) / num);
 		++num;
 	}
 
@@ -1432,7 +1430,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 		// modified manufactory weight follows diminishing returns curve y = x^(3/4)+log((x^2)/5+1)
 		int manuCount = sourceCountry->getManufactoryCount();
 		double manuWeight = pow(manuCount, 0.75) + log((manuCount * manuCount) / 5.0 + 1.0);
-		double industryWeight = (sourceCountry->getAdmTech() - productionMean) + manuWeight;
+		double industryWeight = (sourceCountry->getAdmTech() - admMean) + manuWeight;
 		// having one manufactory and average tech is not enough; you must have more than one, or above-average tech
 		if (industryWeight > 1.0)
 		{
@@ -1450,8 +1448,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 	deque<pair<double, V2Country*>> restrictCountries;
 	double threshold = 1.0;
 	double totalIndWeight = 0.0;
-	for (deque<pair<double, V2Country*>>::reverse_iterator itr = weightedCountries.rbegin();
-		itr != weightedCountries.rend(); ++itr)
+	for (deque<pair<double, V2Country*>>::reverse_iterator itr = weightedCountries.rbegin(); itr != weightedCountries.rend(); ++itr)
 	{
 		if ((restrictCountries.size() > 10) && (itr->first < (threshold - FLT_EPSILON)))
 		{
