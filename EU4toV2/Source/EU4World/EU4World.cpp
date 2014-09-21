@@ -76,12 +76,6 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			else
 			{
 				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);	// the country in our format
-				if (country->isUnusedCountry())
-				{
-					LOG(LogLevel::Debug) << "Discarding unused EU4 tag " << country->getTag();
-					delete country;
-					continue;
-				}
 				countries.insert(make_pair(country->getTag(), country));
 			}
 		}

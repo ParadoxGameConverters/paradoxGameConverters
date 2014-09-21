@@ -131,7 +131,6 @@ void CountryMapping::readV2Regions(Object* obj)
 
 void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures)
 {
-	LOG(LogLevel::Info) << "Creating country mapping";
 	EU4TagToV2TagMap.clear();
 
 	char generatedV2TagPrefix = 'X'; // single letter prefix
