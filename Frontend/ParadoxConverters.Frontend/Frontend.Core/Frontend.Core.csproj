@@ -146,6 +146,7 @@
     <Compile Include="ViewModels\WelcomeViewModel.cs" />
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\OpenUriCommand.cs" />
+    <Compile Include="Views\Behaviours\ScrollIntoViewBehaviour.cs" />
     <Compile Include="Views\TemplateSelectors\PreferenceEntryTemplateSelector.cs" />
     <Compile Include="Views\TemplateSelectors\PreferenceTemplateSelector.cs" />
     <Compile Include="Views\TemplateSelectors\RequiredItemTemplateSelector.cs" />
@@ -206,7 +207,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\AttachedProperties\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

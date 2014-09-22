@@ -5,11 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:Frontend.Core.Views"
              xmlns:logging="clr-namespace:Frontend.Core.Logging"
-             mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:behaviors="clr-namespace:Frontend.Core.Views.Behaviours"
+             d:DesignHeight="300" d:DesignWidth="300"
+             mc:Ignorable="d">
+             
   <UserControl.Resources>
     <SolidColorBrush x:Key="LogErrorBackgroundBrush" Color="Red" Opacity="0.25"/>
     <SolidColorBrush x:Key="LogWarningBackgroundBrush" Color="Gray" Opacity="0.25"/>
+    
   </UserControl.Resources>
   <Grid VerticalAlignment="Stretch">
     <Grid.RowDefinitions>
@@ -22,7 +26,7 @@
       <ColumnDefinition/>
     </Grid.ColumnDefinitions>
 
-    <DataGrid x:Name="LogEntries" Grid.Row="1" Grid.ColumnSpan="2"
+        <DataGrid x:Name="LogEntries" Grid.Row="1" Grid.ColumnSpan="2"
               ItemsSource="{Binding LogEntries}"
               VerticalAlignment="Stretch"
               HorizontalAlignment="Stretch"
@@ -33,7 +37,14 @@
               CanUserReorderColumns="False"
               CanUserResizeColumns="True"
               CanUserResizeRows="True"
-              CanUserSortColumns="False">
+              CanUserSortColumns="False" 
+              EnableRowVirtualization="False"
+              
+              
+              >
+            <i:Interaction.Behaviors>
+                <behaviors:ScrollIntoViewBehaviour/>
+            </i:Interaction.Behaviors>
       <DataGrid.Resources>
         <ResourceDictionary>
           <!--This just disables any selection styling-->
