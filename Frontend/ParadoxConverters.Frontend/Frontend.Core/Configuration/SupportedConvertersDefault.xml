@@ -1,4 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+Explanation: TODO:
+
+Topics to explain:
+
+tag vs internalTag: 
+* "tag" is for things that should be exported to the final configuration.txt file. It is essentially the name of a property in configuration.txt - examples being "CK2ExportDirectory", "V2Gametype", etc. 
+* "internalTag" is for tags the frontend needs, but which aren't part of configuration.txt. Still, I needed some way to find these in a generic way from code, which I can using internalTag. 
+  Example usage can be: "targetGameModPath". This lets me find the target game save game path, for instance, regardless of what the target game is. 
+
+
+-->
+
+
 <configuration>
   <gameConfigurationFile>Configuration\GameConfigurations.xml</gameConfigurationFile>
   <supportedConverters>
@@ -93,6 +107,23 @@
               <defaultLocationType>SteamFolder</defaultLocationType>
               <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
               <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>targetGameModPath</internalTag>
+          <friendlyName>Victoria 2 mod directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <alternatives>
+            <!--<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>-->
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
             </alternative>
           </alternatives>
         </requiredFolder>

@@ -16,9 +16,10 @@ namespace Frontend.Core.Model.Paths
         private string selectedValue;
         private IList<IAlternativePath> alternativePaths;
 
-        protected RequiredItemBase(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives)
+        protected RequiredItemBase(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives, string internalTagName)
         {
             this.TagName = tagName;
+            this.InternalTagName = internalTagName;
             this.FriendlyName = friendlyName;
             this.Description = description;            
             this.alternativePaths = alternatives;
@@ -45,6 +46,8 @@ namespace Frontend.Core.Model.Paths
         public string Description { get; private set; }
 
         public string TagName { get; private set; }
+
+        public string InternalTagName { get; private set; }
 
         public string DefaultValue { get; private set; }
 

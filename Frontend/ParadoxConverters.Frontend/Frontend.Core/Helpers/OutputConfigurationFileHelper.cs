@@ -25,7 +25,9 @@ namespace Frontend.Core.Helpers
             // Output source and target game settings
             sb.AppendLine("\t# Installation and mod folder paths:");
 
-            foreach (IRequiredFolder folder in converterSettings.RequiredItems.OfType<IRequiredFolder>())
+            // Why the "where clause": Some entries in the requireditems list is only used by the frontend. 
+            // Those that needs to go into configuration.txt has the "TagName" attribute check, the others don't.
+            foreach (IRequiredFolder folder in converterSettings.RequiredItems.OfType<IRequiredFolder>().Where(f => !string.IsNullOrEmpty(f.TagName)))
             {
                 sb.AppendLine("\t" + folder.TagName + " = \"" + folder.SelectedValue + "\"");
             }

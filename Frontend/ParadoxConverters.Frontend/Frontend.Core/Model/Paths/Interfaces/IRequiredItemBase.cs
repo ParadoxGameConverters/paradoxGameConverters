@@ -7,6 +7,7 @@ namespace Frontend.Core.Model.Paths.Interfaces
         string FriendlyName { get; }
         string SelectedValue { get; set; }
         string TagName { get; }
+        string InternalTagName { get; }
         string Description { get;}
         IList<IAlternativePath> AlternativePaths { get; }
         string DefaultValue { get; }

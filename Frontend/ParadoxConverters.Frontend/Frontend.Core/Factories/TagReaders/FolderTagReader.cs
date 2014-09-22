@@ -24,14 +24,23 @@ namespace Frontend.Core.Factories.TagReaders
 
         public IRequiredFolder ReadFolder(XElement xmlElement)
         {
-            var directoryTagName = XElementHelper.ReadStringValue(xmlElement, "tag");
+            var directoryTagName = XElementHelper.ReadStringValue(xmlElement, "tag", false);
+            var internalTagName = XElementHelper.ReadStringValue(xmlElement, "internalTag", false);
+
+            // TODO: Sanity check
+            //if (directoryTagName == null && internalTagName == null)
+            //{
+            //    this.EventAggregator.PublishOnUIThread(new LogEntry("Invalid XML - no tag or internal tag found for item "))
+            //}
+
             var friendlyName = XElementHelper.ReadStringValue(xmlElement, "friendlyName");
             var description = XElementHelper.ReadStringValue(xmlElement, "description");
+            var alternativePaths = this.ReadDefaultLocationPaths(xmlElement);
 
             //var installationPath = string.IsNullOrEmpty(steamId) ? this.ReadWindowsUserFolderPath(xmlElement) : this.ReadSteamPath(xmlElement, steamId);
-            var installationPath = this.ReadDefaultLocationPaths(xmlElement);
+            //var installationPath = this.ReadDefaultLocationPaths(xmlElement);
 
-            return this.BuildRequiredFolderObject(directoryTagName, installationPath, friendlyName, description);
+            return this.BuildRequiredFolderObject(directoryTagName, alternativePaths, friendlyName, description, internalTagName);
         }
 
         /// <summary>
@@ -40,9 +49,9 @@ namespace Frontend.Core.Factories.TagReaders
         /// <param name="tagName"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        private IRequiredFolder BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description)
+        private IRequiredFolder BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string internalTagName)
         {
-            return new RequiredFolder(tagName, friendlyName, description, alternatives);
+            return new RequiredFolder(tagName, friendlyName, description, alternatives, internalTagName);
         }
 
         

@@ -54,7 +54,7 @@ namespace Frontend.Core.Factories.TagReaders
                 {
                     // If we can find the folder using steam id, do that
                     var steamId = XElementHelper.ReadStringValue(tag, "autoDetectFromSteamId", false);
-                    alternatives.Add(this.ReadSteamPath(xmlElement, steamId));
+                    alternatives.Add(this.ReadSteamPath(tag, steamId));
                 }
                 else
                 {
@@ -87,8 +87,10 @@ namespace Frontend.Core.Factories.TagReaders
         private IAlternativePath ReadSteamPath(XElement xmlElement, string steamId)
         {
             string installationPath = this.ReadSteamFolder(steamId);
+            var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation", false);
+            var absolutePath = Path.Combine(installationPath, subFolderLocation);
 
-            return this.BuildAlternativePathObject(installationPath);
+            return this.BuildAlternativePathObject(absolutePath);
         }
 
         /// <summary>

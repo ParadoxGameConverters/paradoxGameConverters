@@ -23,6 +23,7 @@ namespace Frontend.Core.Factories.TagReaders
         public IRequiredFile ReadFile(XElement xmlElement)
         {
             var tagName = XElementHelper.ReadStringValue(xmlElement, "tag", false);
+            var internalTagName = XElementHelper.ReadStringValue(xmlElement, "internalTag", false);
             var friendlyName = XElementHelper.ReadStringValue(xmlElement, "friendlyName");
             var description = XElementHelper.ReadStringValue(xmlElement, "description");
             var extension = XElementHelper.ReadStringValue(xmlElement, "extension", false);
@@ -39,7 +40,7 @@ namespace Frontend.Core.Factories.TagReaders
                 }
             }
 
-            return this.BuildRequiredFolderObject(tagName, alternativePaths, friendlyName, description, extension, predefinedFileName);
+            return this.BuildRequiredFolderObject(tagName, alternativePaths, friendlyName, description, extension, predefinedFileName, internalTagName);
         }
 
         /// <summary>
@@ -48,9 +49,9 @@ namespace Frontend.Core.Factories.TagReaders
         /// <param name="tagName"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        private IRequiredFile BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string extension, string predefinedFileName)
+        private IRequiredFile BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string extension, string predefinedFileName, string internalTagName)
         {
-            return new RequiredFile(tagName, friendlyName, description, alternatives, extension, predefinedFileName);
+            return new RequiredFile(tagName, friendlyName, description, alternatives, extension, predefinedFileName, internalTagName);
         }
     }
 }
