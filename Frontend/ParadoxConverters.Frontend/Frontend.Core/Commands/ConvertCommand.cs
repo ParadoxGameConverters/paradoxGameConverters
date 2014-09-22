@@ -165,7 +165,8 @@ namespace Frontend.Core.Commands
         {
             if (this.Options.WasConversionSuccessful)
             {
-                this.OnSuccessfulConversion();
+                //this.OnSuccessfulConversion();
+                this.EventAggregator.PublishOnUIThread(new LogEntry("Conversion successful!", LogEntrySeverity.Info, LogEntrySource.UI));
             }
             else
             {

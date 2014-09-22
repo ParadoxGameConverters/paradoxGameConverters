@@ -142,9 +142,10 @@ namespace Frontend.Core.Factories.TagReaders
 
             if (!exists)
             {
-                //TODO: Here it would be useful to have the tag for this particular path...
+                //TODO: Here it would be useful to have the tag for this particular path so we could tell the user what to look for.
                 this.EventAggregator.PublishOnUIThread(new LogEntry("Setting default value failed. A file or folder the converter needs does not seem to exist at the location configured in the frontend .xml configuration file. ", LogEntrySeverity.Warning, LogEntrySource.UI));
                 this.EventAggregator.PublishOnUIThread(new LogEntry("You can set this file/folder path manually in the frontend. The expected location was: ", LogEntrySeverity.Warning, LogEntrySource.UI, path));
+                this.EventAggregator.PublishOnUIThread(new LogEntry("This may not be a problem.", LogEntrySeverity.Warning, LogEntrySource.UI));
             }
 
             return exists;
