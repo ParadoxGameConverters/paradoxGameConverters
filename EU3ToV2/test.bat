@@ -7,7 +7,5 @@ copy "..\EU3_Saves\%i%.zip" ".\%i%.zip"
 del "%i%.zip"
 call EU3toV2Converter.exe "%i%.eu3"
 del "%i%.eu3" /q
-copy output.v2 "..\testresults\%j%\%i%.v2"
 copy log.txt "..\testresults\%j%\%i%-Log.txt"
-del output.v2 /q
 del log.txt /q

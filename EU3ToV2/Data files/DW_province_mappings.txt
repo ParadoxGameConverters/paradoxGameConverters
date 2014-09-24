@@ -2098,5 +2098,16 @@ link = { eu3 = 1677 vic = 3133 }	# Northern Pacific #1 -> Northern Pacific #4
 ## Unmapped ##
 link = { vic = 610 vic = 686 vic = 1444 vic = 2133 vic = 2244 vic = 2406 vic = 2518 vic = 2519 vic = 2522 vic = 2523 vic = 2524 vic = 2525 vic = 2526 vic = 2527 vic = 2540 vic = 2542 vic = 2545 vic = 2546 vic = 2547 vic = 2548 vic = 2551 vic = 2552 vic = 2579 vic = 2623 vic = 3224 vic = 3231 vic = 3232 vic = 3233 vic = 3234 vic = 3239 vic = 3241 vic = 3246 }
 
+## Destinationless provinces
+link = { eu3 = 1658 }
+link = { eu3 = 1779 }
+link = { eu3 = 1780 }
+link = { eu3 = 1784 }
+link = { eu3 = 1785 }
+link = { eu3 = 1786 }
+link = { eu3 = 1787 }
+link = { eu3 = 1802 }
+link = { eu3 = 1803 }
+link = { eu3 = 1804 }
 
 }

@@ -58,6 +58,12 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	int slash = inputFilename.find_last_of("\\");
 	int length = inputFilename.find_first_of(".") - slash - 1;
 	string outputName = inputFilename.substr(slash + 1, length);
+	int dash = outputName.find_first_of('-');
+	while (dash != string::npos)
+	{
+		outputName.replace(dash, 1, "_");
+		dash = outputName.find_first_of('-');
+	}
 	Configuration::setOutputName(outputName);
 	log("Using output name %s\n", outputName.c_str());
 
@@ -203,8 +209,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Could not parse file %s\n", mappingFile);
 		exit(-1);
 	}
-	provinceMapping provinceMap = initProvinceMap(obj);
-	inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
+	provinceMapping provinceMap;
+	inverseProvinceMapping inverseProvinceMap;
+	initProvinceMap(obj, provinceMap, inverseProvinceMap);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 
@@ -277,6 +284,11 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		removeLandlessNations(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
+
+	// Get adjacencies
+	log("Importing adjacencies\n");
+	printf("Importing adjacencies\n");
+	adjacencyMapping adjacencyMap = initAdjacencyMap();
 	
 	// Generate region mapping
 	log("Parsing region structure.\n");
@@ -431,7 +443,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertUncivReforms();
 	printf("Creating pops.\n");
 	log("Creating pops.\n");
-	destWorld.setupPops(sourceWorld);
+	//destWorld.setupPops(sourceWorld);
 	printf("Adding unions.\n");
 	log("Adding unions.\n");
 	destWorld.addUnions(unionMap);
@@ -493,12 +505,19 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Output results
 	printf("Outputting mod\n");
 	log("Outputting mod\n");
-	system("xcopy blankMod output /E /Q /Y /I");
+	system("%systemroot%\\System32\\xcopy blankMod output /E /Q /Y /I");
+	FILE* modFile;
+	if (fopen_s(&modFile, ("Output\\" + Configuration::getOutputName() + ".mod").c_str(), "w") != 0)
+	{
+		log("\tError: Could not create .mod file\n");
+		exit(-1);
+	}
+	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "replace = \"history/provinces\"\n");
+	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());
-	renameCommand = "move /Y output\\output.mod output\\" + Configuration::getOutputName() + ".mod";
-	system(renameCommand.c_str());
-
 	destWorld.output();
 
 	closeLog();

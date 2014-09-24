@@ -13,9 +13,23 @@ class V2World;
 typedef map< int, vector<int> > provinceMapping;			// < destProvince, sourceProvinces >
 typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince, destProvinces >
 
-provinceMapping initProvinceMap(Object* obj);
-inverseProvinceMapping invertProvinceMap(const provinceMapping& provMap);
+void initProvinceMap(Object* obj, provinceMapping& provinceMap, inverseProvinceMapping& inverseProvinceMap);
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu3ProvinceNum);
+
+
+typedef struct {
+	int type;
+	int to;
+	int via;
+	int unknown1;
+	int unknown2;
+	int pathX;
+	int pathY;
+	int unknown3;
+	int unknown4;
+} adjacency;
+typedef vector< vector<adjacency> > adjacencyMapping;
+adjacencyMapping initAdjacencyMap();
 
 
 // Country Mappings

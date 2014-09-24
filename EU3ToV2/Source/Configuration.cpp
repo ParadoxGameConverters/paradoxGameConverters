@@ -30,6 +30,7 @@ Configuration::Configuration()
 	}
 	maxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
 	V2Path				= obj[0]->getLeaf("v2directory");
+	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	EU3Path				= obj[0]->getLeaf("EU3directory");
 	EU3gametype			= obj[0]->getLeaf("EU3gametype");
 	V2gametype			= obj[0]->getLeaf("V2gametype");

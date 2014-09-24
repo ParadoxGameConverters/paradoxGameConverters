@@ -36,8 +36,15 @@ EU3World::EU3World(Object* obj)
 					(key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z')
 				  )
 		{
-			EU3Country* country = new EU3Country(leaves[i]);
-			countries.insert(make_pair(country->getTag(), country));
+			if ((key == "---") || (key == "REB") || (key == "PIR") || (key == "NAT"))
+			{
+				continue;
+			}
+			else
+			{
+				EU3Country* country = new EU3Country(leaves[i]);
+				countries.insert(make_pair(country->getTag(), country));
+			}
 		}
 	}
 
@@ -217,9 +224,9 @@ void EU3World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 	for (map<int, EU3Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
-		if ( (j == inverseProvinceMap.end()) || (j->second.size() == 0) )
+		if (j == inverseProvinceMap.end())
 		{
-			log("	Warning: no destination for province #%d\n", i->first);
+			log("	Warning: no mapping for province #%d\n", i->first);
 		}
 	}
 }

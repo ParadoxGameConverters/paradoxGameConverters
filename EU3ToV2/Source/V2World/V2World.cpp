@@ -75,122 +75,6 @@ V2World::V2World(string V2Loc)
 		_findclose(fileListing);
 		directories.pop_front();
 	}
-	
-	// set province names and numbers
-	/*printf("\tSetting numbers.\n");
-	provinces.clear();
-	ifstream read;
-	read.open( (V2Loc + "\\map\\definition.csv").c_str() );
-	if (!read.is_open())
-	{
-		log("Error: Could not open \\map\\definition.csv\n");
-		printf("Error: Could not open \\map\\definition.csv\n");
-		read.close();
-		exit(1);
-	}
-
-	string line;
-	getline(read, line);
-	while (!read.eof())
-	{
-		getline(read, line);
-		unsigned int delimiter = line.find_first_of(';');
-		if (delimiter == 0 || delimiter == string::npos)
-		{
-			continue;
-		}
-		int provNum = atoi( line.substr(0, delimiter).c_str() );
-
-		V2Province* newProv = new V2Province(provNum);
-		provinces.push_back(newProv);
-	}
-	read.close();
-	read.clear();*/
-
-	// set province names
-	/*printf("\tSetting names.\n");
-	vector<fileWithCreateTime> localisationFiles;
-
-	struct _finddata_t	localisationData;
-	intptr_t					fileListing;
-	if ( (fileListing = _findfirst( (V2Loc + "\\localisation\\*.csv").c_str(), &localisationData)) == -1L)
-	{
-		log("Error: Could not open localisation directory.\n");
-		return;
-	}
-	do
-	{
-		if (strcmp(localisationData.name, ".") == 0 || strcmp(localisationData.name, "..") == 0 )
-		{
-			continue;
-		}
-		fileWithCreateTime newFile;
-		newFile.filename		= localisationData.name;
-		newFile.createTime	= localisationData.time_create;
-		localisationFiles.push_back(newFile);
-	} while(_findnext(fileListing, &localisationData) == 0);
-	_findclose(fileListing);
-
-	sort(localisationFiles.begin(), localisationFiles.end());
-	for (vector<fileWithCreateTime>::iterator i = localisationFiles.begin(); i < localisationFiles.end(); i++)
-	{
-		getProvinceLocalizations(V2Loc + "\\localisation\\" + i->filename);
-	}*/
-
-	// set province rgo types and life ratings
-	/*printf("\tSetting rgo types and life ratings.\n");
-	struct _finddata_t	provDirData;
-	if ( (fileListing = _findfirst( (V2Loc + "\\history\\provinces\\*").c_str(), &provDirData)) == -1L)
-	{
-		log("Could not open province directories.\n");
-		return;
-	}
-	do
-	{
-		string provDirPath = V2Loc + "\\history\\provinces\\" + provDirData.name + "\\";
-		if (strcmp(provDirData.name, ".") == 0 || strcmp(provDirData.name, "..") == 0 )
-		{
-			continue;
-		}
-		struct _finddata_t	provFileData;
-		intptr_t					fileListing2;
-		if ( (fileListing2 = _findfirst( (provDirPath + "*").c_str(), &provFileData)) == -1L)
-		{
-			return;
-		}
-		do
-		{
-			if (strcmp(provFileData.name, ".") == 0 || strcmp(provFileData.name, "..") == 0 )
-			{
-				continue;
-			}
-			string filename(provFileData.name);
-			int provNum = atoi( filename.substr(0, filename.find_first_of(' ')).c_str() );
-			int delimiter = filename.find_last_of(' ');
-
-			vector<V2Province*>::iterator i;
-			for(i = provinces.begin(); i != provinces.end(); i++)
-			{
-				if ( (*i)->getNum() == provNum )
-				{
-					Object* provinceObj = doParseFile((provDirPath + provFileData.name).c_str());
-					if (provinceObj == NULL)
-					{
-						log("Could not parse file %s\n", (provDirPath + provFileData.name).c_str());
-						exit(-1);
-					}
-					(*i)->importHistory(provinceObj);
-					break;
-				}
-			}
-			if (i == provinces.end())
-			{
-				log("	Error: could not find province %d to add rgo and liferating.\n", provNum);
-			}
-		} while(_findnext(fileListing2, &provFileData) == 0);
-		_findclose(fileListing2);
-	} while(_findnext(fileListing, &provDirData) == 0);
-	_findclose(fileListing);*/
 
 	// set V2 basic population levels
 	//log("\tImporting historical pops.\n");
@@ -841,10 +725,12 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 				newProvinceTotalPop += province->getPopulation();
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
-				if (	(oldOwner == NULL)
-					|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-					|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-							&& (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+				if (	(oldOwner == NULL) ||
+						(provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) ||
+						(	(provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size()) &&
+							(provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)
+						)
+					)
 				{
 					oldOwner = owner;
 					oldProvince = province;
@@ -853,6 +739,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 		}
 		if (oldOwner == NULL)
 		{
+			i->second->setOwner("");
 			continue;
 		}
 

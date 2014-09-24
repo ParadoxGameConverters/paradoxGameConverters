@@ -17,6 +17,7 @@ class Configuration // Singleton
 		static double	getMaxLiteracy()							{ return getInstance()->maxLiteracy; }
 		static string	getV2Path()									{ return getInstance()->V2Path; }
 		static string	getEU3Path()								{ return getInstance()->EU3Path; }
+		static string getV2DocumentsPath()						{ return getInstance()->V2DocumentsPath; }
 		static string	getEU3Gametype()							{ return getInstance()->EU3gametype; }
 		static string	getV2Gametype()							{ return getInstance()->V2gametype; }
 		static string	getRemovetype()							{ return getInstance()->removetype; }
@@ -39,6 +40,7 @@ class Configuration // Singleton
 		date		firstEU3Date;
 		double	maxLiteracy;
 		string	V2Path;
+		string	V2DocumentsPath;
 		string	EU3Path;
 		string	EU3gametype;
 		string	V2gametype;

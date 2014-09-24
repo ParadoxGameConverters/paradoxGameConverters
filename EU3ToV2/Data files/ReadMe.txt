@@ -19,17 +19,13 @@ Victoria 2 version 1.3 or later
 INSTRUCTIONS
 ----
 
-1) Find the desired save file in "[YOUR EU3 DIRECTORY]/save games".
-2) Copy the save game in to the directory of this converter, and rename it to "input.eu3"
-3) Open the file "configuration.txt".  In the file there is a line that reads 
-	v2directory = "D:\Paradox Interactive\Victoria 2"
-   Modify it so that it points to YOUR copy of Victoria 2.
-4) In "configuration.txt", there is a line that reads
-	EU3directory = "D:\Paradox Interactive\Europa Universalis III"
-   Modify it so that it points to YOUR copy of Europa Universalis III.
-5) Run "EU3toV2Converter.exe".  This will create a file in the converters directory called "output.v2".
-6) Copy "output.v2" to "[YOUR VICTORIA DIRECTORY]/save games" and run Victoria 2
-7) Load the output game and immediately save the game.  Then resign, and load that game.  Enjoy!
+1. Download the converter and unzip it wherever.
+2. Copy your EU3 save into the converter directory.
+3. Edit configuration.txt to point at your game installs, and to set any options you care about.
+4. Drag and drop your save onto EU3toV2Converter.exe
+5. Go into the output folder, then the subfolder named after your save.
+6. Copy the folder named after your save and the corresponding mod file into your V2 mod folder.
+7. Start that copy of Victoria 2, and select the mod.
 
 If you get an error complaining about MSVCP120.dll, go to Visual Studio Redistributable: http://www.microsoft.com/en-us/download/details.aspx?id=40784
 	then click Download and select vcredist_x86.exe.
