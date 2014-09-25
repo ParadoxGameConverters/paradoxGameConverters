@@ -15,14 +15,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-
-        <Button Grid.Row="0" Content="1 - Save configuration file" Style="{StaticResource SummaryButtonStyle}" Margin="5, 5, 5, 0" Command="{Binding SaveCommand}" HorizontalAlignment="Center"/>
-        <Button Grid.Row="1" Content="2 - Convert" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding ConvertCommand}" HorizontalAlignment="Center"/>
-        <TextBlock Grid.Row="2" Text="{Binding Options.CurrentConverter.AdditionalInformation}" HorizontalAlignment="Center" Margin="10, 20, 10, 0"/>
+        <Button Content="Save configuration and convert!" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding ConvertCommand}" HorizontalAlignment="Center" Height="25"/>
+        <TextBlock Grid.Row="1" Text="{Binding Options.CurrentConverter.AdditionalInformation}" HorizontalAlignment="Center" Margin="10, 20, 10, 0"/>
     </Grid>
 </UserControl>

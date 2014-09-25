@@ -16,8 +16,6 @@ namespace Frontend.Core.ViewModels
     /// </summary>
     public class ConvertViewModel : StepViewModelBase, IConvertViewModel
     {
-        private ICommand saveCommand;
-
         private ICommand convertCommand;
 
         /// <summary>
@@ -28,20 +26,6 @@ namespace Frontend.Core.ViewModels
         public ConvertViewModel(IEventAggregator eventAggregator, IConverterOptions options)
             : base(eventAggregator, options)
         {
-        }
-
-        /// <summary>
-        /// Gets the save command.
-        /// </summary>
-        /// <value>
-        /// The save command.
-        /// </value>
-        public ICommand SaveCommand
-        {
-            get
-            {
-                return this.saveCommand ?? (this.saveCommand = new SaveCommand(this.EventAggregator, this.Options));
-            }
         }
 
         /// <summary>

@@ -31,20 +31,6 @@ namespace Frontend.Core.Commands
         {
         }
 
-        /////// <summary>
-        /////// Gets the properties automatic monitor.
-        /////// </summary>
-        /////// <value>
-        /////// The properties automatic monitor.
-        /////// </value>
-        ////private IList<string> PropertiesToMonitor 
-        ////{
-        ////    get
-        ////    {
-        ////        return this.propertiesToMonitor ?? (this.propertiesToMonitor = new List<string>() { "Converter", "SourceSaveGame" });
-        ////    }
-        ////}
-
         /// <summary>
         /// Called when [can execute].
         /// </summary>
@@ -58,8 +44,6 @@ namespace Frontend.Core.Commands
             //}
 
             // Check various requirements
-            bool converterExists = File.Exists(this.Options.CurrentConverter.AbsoluteConverter.SelectedValue);
-            bool configurationFileExists = File.Exists(Path.Combine(Path.GetDirectoryName(this.Options.CurrentConverter.AbsoluteConverter.SelectedValue), configurationFileName));
             var saveGame = this.Options.CurrentConverter.RequiredItems.First(i => i.TagName.Equals("SaveGame"));
             
             if (saveGame == null || !File.Exists(saveGame.SelectedValue))
@@ -67,7 +51,7 @@ namespace Frontend.Core.Commands
                 return false;
             }
 
-            if (converterExists && configurationFileExists)
+            if (File.Exists(this.Options.CurrentConverter.AbsoluteConverter.SelectedValue))
             {
                 return true;
             }
@@ -107,6 +91,8 @@ namespace Frontend.Core.Commands
         /// <param name="parameter">The paramter passed to the <c>Execute</c> method of the command.</param>
         protected override void OnExecute(object parameter)
         {
+            this.SaveConfigurationFile();
+
             // Reading process output syncronously. The async part is already handled by the command
             using (var process = new Process())
             {
@@ -191,6 +177,33 @@ namespace Frontend.Core.Commands
                         Process.Start(log);
                     }
                 }
+            }
+        }
+
+        /// <summary>
+        /// Save the configuration file to disk
+        /// </summary>
+        private void SaveConfigurationFile()
+        {
+            // First, save configuration file
+            try
+            {
+                // Save configuration file to same directory as the converter itself lives in, wherever that might be
+                var converterPathMinusFileName = DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter);
+                var absoluteConfigurationFilePath = Path.Combine(converterPathMinusFileName, configurationFileName);
+
+                if (true)//DiskPermissionHelper.CanWriteFileToFolder(outputPath))
+                {
+                    File.WriteAllText(absoluteConfigurationFilePath, OutputConfigurationFileHelper.BuiltOutputString(this.Options.CurrentConverter)); //TODO: Consider encoding problems
+                    this.EventAggregator.PublishOnUIThread(new LogEntry("Configuration file saved successfully as ", LogEntrySeverity.Info, LogEntrySource.UI, absoluteConfigurationFilePath));
+                }
+            }
+            catch (Exception e)
+            {
+                // No permitted to write to folder, ask user for elevated permission
+                this.EventAggregator.PublishOnUIThread(new LogEntry("Failed to save configuration file", LogEntrySeverity.Error, LogEntrySource.UI));
+                this.EventAggregator.PublishOnUIThread(new LogEntry("It may help running this application with administrator permissions", LogEntrySeverity.Error, LogEntrySource.UI));
+                this.EventAggregator.PublishOnUIThread(new LogEntry("Internal save error was: " + e.Message, LogEntrySeverity.Error, LogEntrySource.UI));
             }
         }
 
@@ -283,20 +296,13 @@ namespace Frontend.Core.Commands
 
             try
             {
-                //var outputSavePath = this.DetermineOutputSavePath();
                 File.Copy(outputModFileSourcePath, expectedAbsoluteOutputModFileTargetPath, true);
                 DirectoryCopyHelper.DirectoryCopy(outputModFolderSourcePath, expectedAbsoluteOutputModFolderTargetPath, true, true);
-
-                //this.Log(desiredFileName + " has been written to ", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath);
-
-                //File.Delete(outputSavePath);
-                //this.Log("Deleted temporary file(s).", LogEntrySeverity.Info, LogEntrySource.UI);
-                //wasMoveSuccessful = true;
+                this.EventAggregator.PublishOnUIThread(new LogEntry("Copy complete. Ready to play - have fun!", LogEntrySeverity.Info, LogEntrySource.UI));                
             }
             catch (Exception e)
             {
                 this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
-                //wasMoveSuccessful = false;
             }
         }
 

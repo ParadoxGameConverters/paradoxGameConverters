@@ -60,7 +60,6 @@
     <Compile Include="Commands\OpenFileCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Commands\OpenSaveGameCommand.cs" />
-    <Compile Include="Commands\SaveCommand.cs" />
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Events\EventArgs\PreferenceOperation.cs" />
