@@ -253,21 +253,22 @@ namespace Frontend.Core.Commands
         private void MoveOutputMod()
         {
             // NOTE: This method may be V2 specific. I'll have to talk to Idhrendur about the rules for how this is/will be handled in other converters. 
-            // I'll figure out some generic way of handling any problems related to that when and if that occurs. 
+            // I'll figure out some generic way of handling any problems related to that when and if it occurs. 
 
             var targetGameModPathItem = this.Options.CurrentConverter.RequiredItems.First(i => i.InternalTagName.Equals("targetGameModPath"));
             var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
 
-            // Copy the newly created output mod to the target game mod directory. Ex: "France144_11_11"
-            // The mod consists of two things: One file and one folder.
-            var outputModFolderPath = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "output" ,desiredFileName);
-            var outputModFilePath = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "output", (desiredFileName + ".mod"));
+            // Copy the newly created output mod to the target game mod directory. 
+            // The mod consists of two things: One file and one folder named after the save. Ex: The folder "France144_11_11" and the file "France144_11_11.mod".
+            var converterWorkingDirectory = DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter);
+            var outputModFolderSourcePath = Path.Combine(converterWorkingDirectory, "output", desiredFileName);
+            var outputModFileSourcePath = Path.Combine(converterWorkingDirectory, "output", (desiredFileName + ".mod"));
 
-            var expectedAbsoluteOutputModFolderPath = Path.Combine(targetGameModPathItem.SelectedValue, desiredFileName);
-            var expectedAbsoluteOutputModFilePath = expectedAbsoluteOutputModFolderPath + ".mod";
+            var expectedAbsoluteOutputModFolderTargetPath = Path.Combine(targetGameModPathItem.SelectedValue, desiredFileName);
+            var expectedAbsoluteOutputModFileTargetPath = expectedAbsoluteOutputModFolderTargetPath + ".mod";
 
-            var modFileExists = File.Exists(expectedAbsoluteOutputModFilePath);
-            var modFolderExists = Directory.Exists(expectedAbsoluteOutputModFolderPath);
+            var modFileExists = File.Exists(expectedAbsoluteOutputModFileTargetPath);
+            var modFolderExists = Directory.Exists(expectedAbsoluteOutputModFolderTargetPath);
 
             if (modFileExists || modFolderExists)
             {
@@ -283,8 +284,8 @@ namespace Frontend.Core.Commands
             try
             {
                 //var outputSavePath = this.DetermineOutputSavePath();
-                File.Copy(outputModFilePath, expectedAbsoluteOutputModFilePath, true);
-                DirectoryCopyHelper.DirectoryCopy(outputModFolderPath, expectedAbsoluteOutputModFolderPath, true, true);
+                File.Copy(outputModFileSourcePath, expectedAbsoluteOutputModFileTargetPath, true);
+                DirectoryCopyHelper.DirectoryCopy(outputModFolderSourcePath, expectedAbsoluteOutputModFolderTargetPath, true, true);
 
                 //this.Log(desiredFileName + " has been written to ", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath);
 
@@ -297,27 +298,6 @@ namespace Frontend.Core.Commands
                 this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
                 //wasMoveSuccessful = false;
             }
-
-            //// Don't blindly overwrite any existing saves - that's just rude
-            //if (File.Exists(expectedAbsoluteOutputModFolderPath))
-            //{
-            //    var overwriteQuestion = "A " + this.Options.CurrentConverter.TargetGame.FriendlyName + " save with the same name (" + desiredFileName + ") exists already. " + Environment.NewLine + Environment.NewLine
-            //        + "Do you want to overwrite this file? " + Environment.NewLine + "Full path: " + expectedOutputDirectoryAndFile;
-            //    var result = MessageBox.Show(overwriteQuestion, "Confirmation Required", MessageBoxButton.YesNo);
-
-            //    if (result == MessageBoxResult.No)
-            //    {
-            //        this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + this.DetermineOutputSavePath()
-            //            + "\" to \"" + this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath + "\" to load the converted save.", LogEntrySeverity.Warning, LogEntrySource.UI, null);
-            //        return false;
-            //    }
-
-            //    // Permission granted, continue
-            //    canOverWrite = true;
-            //}
-            
-            //
-            //var canOverWrite = false;
         }
 
         ///// <summary>
