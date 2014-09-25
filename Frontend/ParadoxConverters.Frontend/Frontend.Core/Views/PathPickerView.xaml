@@ -74,51 +74,13 @@
     
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Text="Find required files and folders:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 0, 0, 5" FontWeight="Bold"/>
+        <TextBlock Grid.Row="0" Text="Locate required files and folders:" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="10, 10, 10, 10" FontWeight="Bold"/>
         <ScrollViewer Grid.Row="1">
             <ItemsControl ItemsSource="{Binding Options.CurrentConverter.RequiredItems}" ItemTemplateSelector="{StaticResource RequiredItemTemplateSelector}"/>
         </ScrollViewer>
     </Grid>
-    <!--<Grid VerticalAlignment="Top" Margin="0,10,0, 10">
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition/>
-            <ColumnDefinition Width="Auto"/>
-        </Grid.ColumnDefinitions>
-
-        <TextBlock Text="Set installation paths and select savegame:" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10, 0, 0, 5" FontWeight="Bold"/>
-        <TextBlock Text="{Binding Options.CurrentConverter.SourceGame.FriendlyName}" Grid.Row="1" Style="{StaticResource FolderPathTextBlockStyle}"/>
-        <TextBlock Text="Source game mod: " Grid.Row="2" Style="{StaticResource FolderPathTextBlockStyle}"/>
-        <TextBlock Text="{Binding Options.CurrentConverter.TargetGame.FriendlyName}" Grid.Row="3" Style="{StaticResource FolderPathTextBlockStyle}"/>
-        <TextBlock Text="Save game: " Grid.Row="4" Style="{StaticResource FolderPathTextBlockStyle}"/>
-        <TextBlock Text="Converter location: " Grid.Row="5" Style="{StaticResource FolderPathTextBlockStyle}"/>
-        <TextBlock Text="Use converter mod: " Grid.Row="6" Style="{StaticResource FolderPathTextBlockStyle}" />
-
-        <TextBox Name="SourceGamePathTextBox" Text="{Binding Options.CurrentConverter.SourceGame.AbsoluteInstallationPath, Mode=TwoWay}" Grid.Column="1" Grid.Row="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
-        <ComboBox Name="SourceGameMods" ItemsSource="{Binding Options.CurrentConverter.SourceGame.SupportedMods}" DisplayMemberPath="Name" SelectedItem="{Binding Options.CurrentConverter.SourceGame.CurrentMod}" Grid.Column="1" Grid.Row="2" 
-                  Style="{StaticResource ComboboxStyle}"/>
-        <TextBox Name="TargetGamePathTextBox" Text="{Binding Options.CurrentConverter.TargetGame.AbsoluteInstallationPath, Mode=TwoWay}" Grid.Column="1" Grid.Row="3" Style="{StaticResource FolderPathTextBoxStyle}"/>
-        <TextBox Name="SourceSaveGamePathTextBox" Text="{Binding Options.CurrentConverter.AbsoluteSourceSaveGamePath, Mode=TwoWay}" Grid.Column="1" Grid.Row="4" Style="{StaticResource FolderPathTextBoxStyle}"/>
-        <TextBox Name="ConverterTextBox" Text="{Binding Options.CurrentConverter.AbsoluteConverterPath, Mode=TwoWay}" Grid.Column="1" Grid.Row="5" Style="{StaticResource FolderPathTextBoxStyle}"/>
-
-        <Button Name="SourceGameBrowseButton" Grid.Column="2" Grid.Row="1" Content="Browse..." Style="{StaticResource FolderPathBrowseButtonStyle}" Command="{Binding OpenFolderCommand}" CommandParameter="{Binding Options.CurrentConverter.SourceGame}"/>
-        <Button Name="TargetGameBrowseButton" Grid.Column="2" Grid.Row="3" Content="Browse..." Style="{StaticResource FolderPathBrowseButtonStyle}" Command="{Binding OpenFolderCommand}" CommandParameter="{Binding Options.CurrentConverter.TargetGame}"/>
-        <Button Name="SourceSaveGameBrowseButton" Grid.Column="2" Grid.Row="4" Content="Browse..." Style="{StaticResource FolderPathBrowseButtonStyle}" Command="{Binding OpenSaveGameCommand}"/>
-        <Button Name="ConverterBrowseButton" Grid.Column="2" Grid.Row="5" Content="Browse..." Style="{StaticResource FolderPathBrowseButtonStyle}" Command="{Binding OpenConverterCommand}"/>
-
-        <CheckBox IsChecked="{Binding Options.CurrentConverter.UseConverterMod}" Grid.Column="1" Grid.Row="6" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="6,2,0,0"/>
-    </Grid>-->
 </UserControl>
