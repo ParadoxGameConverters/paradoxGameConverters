@@ -28,7 +28,7 @@ namespace Frontend.Core.Factories.TagReaders
             var description = XElementHelper.ReadStringValue(xmlElement, "description");
             var extension = XElementHelper.ReadStringValue(xmlElement, "extension", false);
             var predefinedFileName = XElementHelper.ReadStringValue(xmlElement, "predefinedFileName", false);
-            var alternativePaths = this.ReadDefaultLocationPaths(xmlElement);
+            var alternativePaths = this.ReadDefaultLocationPaths(xmlElement, tagName, friendlyName);
 
             // If a filename is set, add it to all the alternative paths.
             // This basically turns a folder path into a file path.

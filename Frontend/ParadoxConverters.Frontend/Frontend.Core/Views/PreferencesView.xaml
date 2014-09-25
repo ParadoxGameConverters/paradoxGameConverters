@@ -29,12 +29,16 @@
             <Setter Property="Padding" Value="3"/>
         </Style>
 
-        <Style x:Key="TextboxWithDataValidationSupport" TargetType="{x:Type TextBox}">
+        <Style x:Key="TextboxWithDataValidationSupportStyle" TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
                     <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
                 </Trigger>
             </Style.Triggers>
+        </Style>
+
+        <Style x:Key="DescriptionTextBoxStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="MinHeight" Value="20"/>
         </Style>
 
         <Style x:Key="HeaderTextBoxStyle" TargetType="TextBlock">
@@ -68,7 +72,7 @@
                 <Grid>
                     <StackPanel HorizontalAlignment="Left">
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Style="{StaticResource TextboxWithDataValidationSupport}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
+                     Style="{StaticResource TextboxWithDataValidationSupportStyle}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
                     </StackPanel>
                 </Grid>
             </Border>
@@ -92,12 +96,12 @@
 
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                                 Style="{StaticResource TextboxWithDataValidationSupport}" 
+                                 Style="{StaticResource TextboxWithDataValidationSupportStyle}" 
                                  Width="{StaticResource EditableTextBoxWidth}" 
                                  HorizontalAlignment="Left"/>
                     </StackPanel>
-                    
-                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" IsEnabled="False" TextWrapping="Wrap"/>
+
+                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -129,8 +133,8 @@
                             Width="{StaticResource EditableTextBoxWidth}"
                             HorizontalAlignment="Left"/>
                     </StackPanel>
-                    
-                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" IsEnabled="False" TextWrapping="Wrap"/>
+
+                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -154,8 +158,8 @@
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
                     </StackPanel>
-                    
-                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" IsEnabled="False" TextWrapping="Wrap"/>
+
+                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -182,10 +186,10 @@
                     <StackPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Left">
                         <TextBlock Text="{Binding Name}"/>
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
-                     Style="{StaticResource TextboxWithDataValidationSupport}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
+                     Style="{StaticResource TextboxWithDataValidationSupportStyle}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
                     </StackPanel>
 
-                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" IsEnabled="False" TextWrapping="Wrap"/>
+                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -207,8 +211,8 @@
                     <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource EntryTemplateHeaderMargin}"/>
                     
                     <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource PredefinedStringEntryTemplate}"/>
-                    
-                    <TextBox Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" IsEnabled="False" TextWrapping="Wrap"/>
+
+                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>

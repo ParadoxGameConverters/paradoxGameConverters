@@ -32,7 +32,7 @@ namespace Frontend.Core.Factories.TagReaders
             }
         }
 
-        protected IList<IAlternativePath> ReadDefaultLocationPaths(XElement xmlElement)
+        protected IList<IAlternativePath> ReadDefaultLocationPaths(XElement xmlElement, string tagName, string friendlyName)
         {
             var alternatives = new List<IAlternativePath>();
 
@@ -44,17 +44,17 @@ namespace Frontend.Core.Factories.TagReaders
 
                 if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.ConverterFolder.ToString()))
                 {
-                    alternatives.Add(this.ReadConverterPath(tag));
+                    alternatives.Add(this.ReadConverterPath(tag, tagName, friendlyName));
                 }
                 else if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.WindowsUsersFolder.ToString()))
                 {
-                    alternatives.Add(this.ReadWindowsUserFolderPath(tag));
+                    alternatives.Add(this.ReadWindowsUserFolderPath(tag, tagName, friendlyName));
                 }
                 else if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.SteamFolder.ToString()))
                 {
                     // If we can find the folder using steam id, do that
                     var steamId = XElementHelper.ReadStringValue(tag, "autoDetectFromSteamId", false);
-                    alternatives.Add(this.ReadSteamPath(tag, steamId));
+                    alternatives.Add(this.ReadSteamPath(tag, steamId, tagName, friendlyName));
                 }
                 else
                 {
@@ -62,35 +62,35 @@ namespace Frontend.Core.Factories.TagReaders
                         LogEntrySeverity.Error,
                         LogEntrySource.UI));
                 }
-            }            
+            }
 
             return alternatives;
         }
 
-        private IAlternativePath ReadConverterPath(XElement xmlElement)
+        private IAlternativePath ReadConverterPath(XElement xmlElement, string tagName, string friendlyName)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
             var absolutePath = Path.Combine(DirectoryHelper.GetFrontendWorkingDirectory(), subFolderLocation);
 
-            return this.BuildAlternativePathObject(absolutePath);
+            return this.BuildAlternativePathObject(absolutePath, tagName, friendlyName);
         }
 
-        private IAlternativePath ReadWindowsUserFolderPath(XElement xmlElement)
+        private IAlternativePath ReadWindowsUserFolderPath(XElement xmlElement, string tagName, string friendlyName)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
             var userFolder = DirectoryHelper.GetUsersFolder();
             var absolutePath = Path.Combine(userFolder, subFolderLocation);
 
-            return this.BuildAlternativePathObject(absolutePath);
+            return this.BuildAlternativePathObject(absolutePath, tagName, friendlyName);
         }
 
-        private IAlternativePath ReadSteamPath(XElement xmlElement, string steamId)
+        private IAlternativePath ReadSteamPath(XElement xmlElement, string steamId, string tagName, string friendlyName)
         {
             string installationPath = this.ReadSteamFolder(steamId);
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation", false);
             var absolutePath = Path.Combine(installationPath, subFolderLocation);
 
-            return this.BuildAlternativePathObject(absolutePath);
+            return this.BuildAlternativePathObject(absolutePath, tagName, friendlyName);
         }
 
         /// <summary>
@@ -127,9 +127,14 @@ namespace Frontend.Core.Factories.TagReaders
             return string.Empty;
         }
 
-        private IAlternativePath BuildAlternativePathObject(string path)
+        private IAlternativePath BuildAlternativePathObject(string path, string tagName, string friendlyName)
         {
             var alternativePath = new AlternativePath(path, this.Exists(path));
+
+            if (!alternativePath.Exists)
+            {
+                this.LogExistenceError(alternativePath, tagName, friendlyName);
+            }
 
             return alternativePath;
         }
@@ -142,15 +147,16 @@ namespace Frontend.Core.Factories.TagReaders
 
             bool exists = (existsAsPath || existsAsFile);
 
-            if (!exists)
-            {
-                //TODO: Here it would be useful to have the tag for this particular path so we could tell the user what to look for.
-                this.EventAggregator.PublishOnUIThread(new LogEntry("Setting default value failed. A file or folder the converter needs does not seem to exist at the location configured in the frontend .xml configuration file. ", LogEntrySeverity.Warning, LogEntrySource.UI));
-                this.EventAggregator.PublishOnUIThread(new LogEntry("You can set this file/folder path manually in the frontend. The expected location was: ", LogEntrySeverity.Warning, LogEntrySource.UI, path));
-                this.EventAggregator.PublishOnUIThread(new LogEntry("This may not be a problem.", LogEntrySeverity.Warning, LogEntrySource.UI));
-            }
-
             return exists;
+        }
+
+        private void LogExistenceError(IAlternativePath nonExistingAlternativePath, string tagName, string friendlyName)
+        {
+            var errorMessageOneText = string.Format("Failed to set default value for {0}. This most likely happened because a file or folder was specified in the configuration file, but did not exist on disk.", friendlyName);
+            
+            this.EventAggregator.PublishOnUIThread(new LogEntry(errorMessageOneText, LogEntrySeverity.Warning, LogEntrySource.UI));
+            this.EventAggregator.PublishOnUIThread(new LogEntry("This may not be a problem depending on which path was missing, and dependingon your settings.", LogEntrySeverity.Warning, LogEntrySource.UI));
+            this.EventAggregator.PublishOnUIThread(new LogEntry("Should you need to, you can set this file/folder path manually in the frontend. The expected location was: ", LogEntrySeverity.Warning, LogEntrySource.UI, nonExistingAlternativePath.Path));
         }
     }
 }

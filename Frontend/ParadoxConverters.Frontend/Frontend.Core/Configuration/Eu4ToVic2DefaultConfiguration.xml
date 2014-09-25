@@ -37,7 +37,7 @@
           </preference>
           <preference>
             <name>resetProvinces</name>
-            <friendlyName>Reset Provinces</friendlyName>
+            <friendlyName>Reset Provinces?</friendlyName>
             <description>Whether or not to reset resettable V2 provinces</description>
             <entryOptions>
               <entryOption>
@@ -90,8 +90,8 @@
           </preference>
           <preference>
             <name>V2gametype</name>
-            <friendlyName>V2 Game Type</friendlyName>
-            <description>V2 Game Type: what version of V2 to convert to</description>
+            <friendlyName>V2 Game Version</friendlyName>
+            <description>V2 Game Version: what version of V2 to convert to</description>
             <entryOptions>
               <entryOption>
                 <name>vanilla</name>

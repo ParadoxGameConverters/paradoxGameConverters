@@ -35,7 +35,7 @@ namespace Frontend.Core.Factories.TagReaders
 
             var friendlyName = XElementHelper.ReadStringValue(xmlElement, "friendlyName");
             var description = XElementHelper.ReadStringValue(xmlElement, "description");
-            var alternativePaths = this.ReadDefaultLocationPaths(xmlElement);
+            var alternativePaths = this.ReadDefaultLocationPaths(xmlElement, directoryTagName, friendlyName);
 
             //var installationPath = string.IsNullOrEmpty(steamId) ? this.ReadWindowsUserFolderPath(xmlElement) : this.ReadSteamPath(xmlElement, steamId);
             //var installationPath = this.ReadDefaultLocationPaths(xmlElement);
