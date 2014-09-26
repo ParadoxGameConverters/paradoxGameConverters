@@ -915,7 +915,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 		if (army->getNavy())
 		{
 			map<int, V2Province*>::iterator pitr = allProvinces.find(locationCandidates[0]);
-			if ((pitr != allProvinces.end()) && (pitr->second->isLand()))
+			if (pitr != allProvinces.end())
 			{
 				usePort = true;
 			}

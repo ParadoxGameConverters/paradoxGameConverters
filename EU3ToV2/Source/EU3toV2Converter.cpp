@@ -25,8 +25,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	struct stat st;
 	if (V2Loc.empty() || (stat(V2Loc.c_str(), &st) != 0))
 	{
-		log("No Victoria2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No Victoria2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 
@@ -34,8 +34,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	string EU3Loc = Configuration::getEU3Path();
 	if (EU3Loc.empty() || (stat(EU3Loc.c_str(), &st) != 0))
 	{
-		log("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
-		printf("No EuropaUniversalis3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
 
@@ -328,20 +328,44 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
-	obj = doParseFile( (EU3Loc + "\\common\\cultures.txt").c_str() );
-	if (obj == NULL)
-	{
-		log("Could not parse file %s\n", (EU3Loc + "\\common\\cultures.txt").c_str());
-		exit(-1);
-	}
-	if (obj->getLeaves().size() < 1)
-	{
-		log("Error: Failed to parse cultures.txt.\n");
-		printf("Error: Failed to parse cultures.txt.\n");
-		return 1;
-	}
+	string EU3Mod = Configuration::getEU3Mod();
 	unionCulturesMap unionCultures;
-	unionCultures = initUnionCultures(obj);
+	if (EU3Mod != "")
+	{
+		string modCultureFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\common\\cultures.txt";
+		if ((stat(modCultureFile.c_str(), &st) != 0))
+		{
+			obj = doParseFile(modCultureFile.c_str());
+			if (obj == NULL)
+			{
+				log("Could not parse file %s\n", modCultureFile.c_str());
+				exit(-1);
+			}
+			if (obj->getLeaves().size() < 1)
+			{
+				log("Error: Failed to parse cultures.txt.\n");
+				printf("Error: Failed to parse cultures.txt.\n");
+				return 1;
+			}
+			unionCultures = initUnionCultures(obj);
+		}
+	}
+	if (unionCultures.size() == 0)
+	{
+		obj = doParseFile((EU3Loc + "\\common\\cultures.txt").c_str());
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (EU3Loc + "\\common\\cultures.txt").c_str());
+			exit(-1);
+		}
+		if (obj->getLeaves().size() < 1)
+		{
+			log("Error: Failed to parse cultures.txt.\n");
+			printf("Error: Failed to parse cultures.txt.\n");
+			return 1;
+		}
+		unionCultures = initUnionCultures(obj);
+	}
 
 	// Parse Religion Mappings
 	log("Parsing religion mappings.\n");
@@ -435,6 +459,9 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap, stateIndexMap);
+	printf("Setting colonies\n");
+	log("Setting colonies\n");
+	destWorld.setupColonies(adjacencyMap);
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);

@@ -19,7 +19,6 @@ V2Province::V2Province(string _filename)
 	srcProvince			= NULL;
 
 	filename				= _filename;
-	land					= false;
 	coastal				= false;
 	num					= 0;
 	name					= "";
@@ -29,6 +28,7 @@ V2Province::V2Province(string _filename)
 	colonyLevel			= 0;
 	colonial				= 0;
 	colonised			= false;
+	landConnection		= false;
 	COT					= false;
 	originallyPagan	= false;
 	oldPopulation		= 0;
@@ -162,10 +162,10 @@ void V2Province::output() const
 	{
 		fprintf_s(output, "colonial = %d\n", colonial);
 	}
-	if (colonyLevel > 0)
+	/*if (colonyLevel > 0)
 	{
 		fprintf_s(output, "colony = %d\n", colonyLevel);
-	}
+	}*/
 	if (navalBaseLevel > 0)
 	{
 		fprintf_s(output, "naval_base = %d\n", navalBaseLevel);
@@ -391,11 +391,21 @@ void V2Province::convertFromOldProvince(const EU3Province* oldProvince)
 
 	if (oldProvince->isColony())
 	{
-		colonial = 2;
+		colonyLevel = 2;
 	}
+	colonial				= 0;
 	colonised			= oldProvince->wasColonised();
 	originallyPagan	= oldProvince->wasPaganConquest();
 	COT					= oldProvince->isCOT();
+}
+
+
+void V2Province::determineColonial()
+{
+	if ((!landConnection) && ((colonised) || (originallyPagan)))
+	{
+		colonial = 2;
+	}
 }
 
 

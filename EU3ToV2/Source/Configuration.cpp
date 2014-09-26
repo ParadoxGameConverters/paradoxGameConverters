@@ -34,6 +34,7 @@ Configuration::Configuration()
 	EU3Path				= obj[0]->getLeaf("EU3directory");
 	EU3gametype			= obj[0]->getLeaf("EU3gametype");
 	V2gametype			= obj[0]->getLeaf("V2gametype");
+	EU3Mod				= obj[0]->getLeaf("EU3Mod");
 	removetype			= obj[0]->getLeaf("removetype");
 	outputName			= "";
 }
