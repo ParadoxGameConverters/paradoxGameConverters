@@ -745,16 +745,33 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 // used only for countries which are NOT converted (i.e. unions, dead countries, etc)
 void V2Country::initFromHistory()
 {
-	string V2Loc = Configuration::getV2Path();
-	string filename = V2Loc + "\\history\\countries\\" + tag + "*.txt";
+	string filename = "";
 	struct _finddata_t	fileData;
-	intptr_t			fileListing;
-	if ( (fileListing = _findfirst(filename.c_str(), &fileData)) != -1L)
+	intptr_t					fileListing;
+	if (Configuration::getUseV2Mod())
 	{
-		Object* obj = doParseFile( (V2Loc + "\\history\\countries\\" + fileData.name).c_str() );
+		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+		{
+			filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		}
+		_findclose(fileListing);
+	}
+	if (filename == "")
+	{
+		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
+		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+		{
+			filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		}
+		_findclose(fileListing);
+	}
+
+	{
+		Object* obj = doParseFile(filename.c_str());
 		if (obj == NULL)
 		{
-			log("Could not parse file %s\n", (V2Loc + "\\history\\countries\\" + fileData.name).c_str());
+			log("Could not parse file %s\n", filename.c_str());
 			exit(-1);
 		}
 
@@ -800,7 +817,6 @@ void V2Country::initFromHistory()
 			capital = atoi(results[0]->getLeaf().c_str());
 		}
 	}
-	_findclose(fileListing);
 }
 
 

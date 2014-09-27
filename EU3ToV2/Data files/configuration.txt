@@ -33,6 +33,9 @@ configuration =
 	# EU3 Mod: An EU3 mod to use for conversion
 	EU3Mod = ""
 
+	# Use V2 Mod: Whether or not to use a V2 mod
+	useV2Mod = "no"
+
 	# Remove type: which landless nations to remove. Possible values:
 	#	none	remove none of them
 	#	dead	remove ones without a cultural backing

@@ -2,12 +2,24 @@ unions = {
 
 # Italy
 link = { tag = ITA culture = north_italian }
+link = { tag = ITA culture = lombard }
+link = { tag = ITA culture = umbrian }
 link = { tag = ITA culture = south_italian }
+link = { tag = ITA culture = sicilian }
 link = { tag = ITA culture = maltese }
 
 # Germany
 link = { tag = GER culture = north_german }
+link = { tag = GER culture = pommeranian }
+link = { tag = GER culture = prussian }
+link = { tag = GER culture = hannoverian }
+link = { tag = GER culture = saxon }
 link = { tag = GER culture = south_german }
+link = { tag = GER culture = hessian }
+link = { tag = GER culture = rheinlaender }
+link = { tag = GER culture = bavarian }
+link = { tag = GER culture = austrian }
+link = { tag = GER culture = ashkenazi }
 
 #Scandinavia
 link = { tag = SCA culture = swedish }
@@ -18,11 +30,11 @@ link = { tag = SCA culture = finnish }
 link = { tag = SCA culture = sami }
 
 #Great Britain
-link = { tag = ENG culture = british }
-link = { tag = ENG culture = irish }
-
-#France
-link = { tag = FRA culture = french }
+link = { tag = GBR culture = british }
+link = { tag = GBR culture = english }
+link = { tag = GBR culture = scottish }
+link = { tag = GBR culture = irish }
+link = { tag = GBR culture = welsh }
 
 #Yugoslavia
 link = { tag = YUG culture = croat }
@@ -38,7 +50,7 @@ link = { tag = ROM culture = romanian }
 #Hungary
 link = { tag = HUN culture = hungarian }
 
-#Poland
+#Hungry
 link = { tag = POL culture = polish }
 
 #Czechoslovakia
@@ -76,6 +88,25 @@ link = { tag = HND culture = telegu }
 link = { tag = USA culture = yankee }
 link = { tag = USA culture = dixie }
 link = { tag = USA culture = texan }
+
+# China
+link = { tag = CHI culture = beifaren }
+link = { tag = CHI culture = nanfaren }
+
+# Spain
+link = { tag = SPA culture = basque }
+link = { tag = SPA culture = castillian }
+link = { tag = SPA culture = galician }
+link = { tag = SPA culture = andalucian }
+link = { tag = SPA culture = catalan }
+
+#France
+link = { tag = FRA culture = cosmopolitan_french }
+link = { tag = FRA culture = gascon }
+link = { tag = FRA culture = normand }
+link = { tag = FRA culture = aquitane }
+link = { tag = FRA culture = burgundian }
+link = { tag = FRA culture = occitain }
 
 #Arabia
 link = { tag = ARA culture = mashriqi }

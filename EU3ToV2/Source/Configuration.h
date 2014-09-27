@@ -18,6 +18,7 @@ class Configuration // Singleton
 		static string	getV2Path()									{ return getInstance()->V2Path; }
 		static string	getEU3Path()								{ return getInstance()->EU3Path; }
 		static string	getEU3Mod()									{ return getInstance()->EU3Mod; }
+		static bool		getUseV2Mod()								{ return getInstance()->useV2Mod; }
 		static string	getV2DocumentsPath()						{ return getInstance()->V2DocumentsPath; }
 		static string	getEU3Gametype()							{ return getInstance()->EU3gametype; }
 		static string	getV2Gametype()							{ return getInstance()->V2gametype; }
@@ -46,6 +47,7 @@ class Configuration // Singleton
 		string	EU3gametype;
 		string	V2gametype;
 		string	EU3Mod;
+		bool		useV2Mod;
 		string	removetype;
 		string	outputName;
 };

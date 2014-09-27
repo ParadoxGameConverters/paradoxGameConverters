@@ -35,6 +35,13 @@ Configuration::Configuration()
 	EU3gametype			= obj[0]->getLeaf("EU3gametype");
 	V2gametype			= obj[0]->getLeaf("V2gametype");
 	EU3Mod				= obj[0]->getLeaf("EU3Mod");
+	useV2Mod				= false;
 	removetype			= obj[0]->getLeaf("removetype");
 	outputName			= "";
+
+	string tempUseV2Mod = obj[0]->getLeaf("useV2Mod");
+	if (tempUseV2Mod == "yes")
+	{
+		useV2Mod = true;
+	}
 }

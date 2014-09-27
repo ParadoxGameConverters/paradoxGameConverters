@@ -49,7 +49,7 @@ class V2Factory
 class V2FactoryFactory
 {
 	public:
-		V2FactoryFactory(string V2loc);
+		V2FactoryFactory();
 		deque<V2Factory*>	buildFactories() const;
 	private:
 		void					loadRequiredTechs(string filename);
