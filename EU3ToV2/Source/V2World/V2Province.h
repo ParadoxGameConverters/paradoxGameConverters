@@ -52,6 +52,7 @@ class V2Province
 		void				setOwner(string _owner)					{ owner = _owner; };
 		//void				setController(string _controller)	{ controller = _controller; };
 		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
+		void				setSameContinent(bool _same)			{ sameContinent = _same; };
 		void				addPopDemographic(V2Demographic d)	{ demographics.push_back(d); };
 		void				setFortLevel(int level)					{ fortLevel = level; };
 		void				setNavalBaseLevel(int level)			{ navalBaseLevel = level; };
@@ -60,7 +61,7 @@ class V2Province
 		const EU3Province*	getSrcProvince()		const { return srcProvince; };
 		int						getOldPopulation()	const	{ return oldPopulation; };
 		bool						getCOT()					const { return COT; };
-		bool						wasPaganConquest()	const { return originallyPagan; };
+		bool						wasInfidelConquest()	const { return originallyInfidel; };
 		bool						wasColonised()			const { return colonised; };
 		bool						isColonial()			const { return colonial != 0; };
 		string					getRgoType()			const { return rgoType; };
@@ -90,8 +91,9 @@ class V2Province
 		int								colonial;
 		bool								colonised;
 		bool								landConnection;
+		bool								sameContinent;
 		bool								COT;
-		bool								originallyPagan;
+		bool								originallyInfidel;
 		int								oldPopulation;
 		vector<V2Demographic>		demographics;
 		vector<const V2Pop*>			oldPops;

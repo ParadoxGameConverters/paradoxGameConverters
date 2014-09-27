@@ -13,6 +13,9 @@ configuration =
 	# WARNING: start_date at or prior to 1835.1.1 will, in all likelyhood, crash Victoria!
 	start_date = 1836.1.1
 
+	# Reset Provinces: Whether or not to reset resettable V2 provinces
+	resetProvinces = "no"
+
 	# The maximum literacy a nation will start with. Default 80%
 	max_literacy = 0.80
 
@@ -31,7 +34,7 @@ configuration =
 	V2gametype = HOD
 
 	# EU3 Mod: An EU3 mod to use for conversion
-	EU3Mod = ""
+	EU3Mod = "TESB"
 
 	# Use V2 Mod: Whether or not to use a V2 mod
 	useV2Mod = "no"

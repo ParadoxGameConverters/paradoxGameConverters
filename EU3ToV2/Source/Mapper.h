@@ -4,16 +4,20 @@
 
 
 #include "Parsers\Object.h"
-class EU3World;
+#include "EU3World\EU3World.h"
+#include <map>
+#include <vector>
+#include <unordered_set>
 class V2World;
 
 
 
 // Province Mappings
-typedef map< int, vector<int> > provinceMapping;			// < destProvince, sourceProvinces >
-typedef map< int, vector<int> > inverseProvinceMapping;	// < sourceProvince, destProvinces >
+typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
+typedef map< int, vector<int> >	inverseProvinceMapping;	// < sourceProvince, destProvinces >
+typedef unordered_set<int>			resettableMap;
 
-void initProvinceMap(Object* obj, provinceMapping& provinceMap, inverseProvinceMapping& inverseProvinceMap);
+void initProvinceMap(Object* obj, WorldType worldType, provinceMapping& provinceMap, inverseProvinceMapping& inverseProvinceMap, resettableMap& resettableProvinces);
 const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu3ProvinceNum);
 
 
@@ -30,6 +34,10 @@ typedef struct {
 } adjacency;
 typedef vector< vector<adjacency> > adjacencyMapping;
 adjacencyMapping initAdjacencyMap();
+
+
+typedef map<int, string>	continentMapping;	// <province, continent>
+void initContinentMap(Object* obj, continentMapping& continentMap);
 
 
 // Country Mappings

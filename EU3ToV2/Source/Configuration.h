@@ -14,6 +14,7 @@ class Configuration // Singleton
 		static date		getStartDate()								{ return getInstance()->startDate; }
 		static date		getFirstEU3Date()							{ return getInstance()->firstEU3Date; }
 		static void		setFirstEU3Date(date _firstDate)		{ getInstance()->firstEU3Date = _firstDate; }
+		static string	getResetProvinces()						{ return getInstance()->resetProvinces; }
 		static double	getMaxLiteracy()							{ return getInstance()->maxLiteracy; }
 		static string	getV2Path()									{ return getInstance()->V2Path; }
 		static string	getEU3Path()								{ return getInstance()->EU3Path; }
@@ -40,6 +41,7 @@ class Configuration // Singleton
 
 		date		startDate;
 		date		firstEU3Date;
+		string	resetProvinces;
 		double	maxLiteracy;
 		string	V2Path;
 		string	V2DocumentsPath;

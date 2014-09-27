@@ -29,6 +29,7 @@ Configuration::Configuration()
 		log("Warning: start dates prior to 1835 are likely to cause crashes!\n");
 	}
 	maxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
+	resetProvinces		= obj[0]->getLeaf("resetProvinces");
 	V2Path				= obj[0]->getLeaf("v2directory");
 	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	EU3Path				= obj[0]->getLeaf("EU3directory");

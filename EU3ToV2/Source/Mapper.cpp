@@ -11,25 +11,67 @@
 
 
 
-void initProvinceMap(Object* obj, provinceMapping& provinceMap, inverseProvinceMapping& inverseProvinceMap)
+void initProvinceMap(Object* obj, WorldType worldType, provinceMapping& provinceMap, inverseProvinceMapping& inverseProvinceMap, resettableMap& resettableProvinces)
 {
 	provinceMapping::iterator mapIter;
 
-	vector<Object*> leaves = obj->getLeaves();
+	vector<Object*> worldTypeLeaves = obj->getLeaves();
 
-	if (leaves.size() < 1)
+	if (worldTypeLeaves.size() < 1)
 	{
 		log ("\tError: No province mapping definitions loaded.\n");
 		printf("\tError: No province mapping definitions loaded.\n");
 		return;
 	}
 
-	vector<Object*> data = leaves[0]->getLeaves();
+	unsigned int mappingIdx = -1;
+	for (unsigned int i = 0; i < worldTypeLeaves.size(); i++)
+	{
+		switch(worldType)
+		{
+			case InNomine:
+			{
+				if (worldTypeLeaves[i]->getKey() == "in")
+				{
+					mappingIdx = i;
+				}
+				break;
+			}
+			case HeirToTheThrone:
+			{
+				if (worldTypeLeaves[i]->getKey() == "httt")
+				{
+					mappingIdx = i;
+				}
+				break;
+			}
+			case DivineWind:
+			{
+				if (worldTypeLeaves[i]->getKey() == "dw")
+				{
+					mappingIdx = i;
+				}
+				break;
+			}
+			case unknown:
+			case VeryOld:
+			default:
+			{
+				log("Error: Unsupported world type. Cannot map provinces!\n");
+				printf("Error: Unsupported world type. Cannot map provinces!\n");
+				exit(-1);
+			}
+		}
+	}
+
+	log("Using version %s mappings\n", worldTypeLeaves[mappingIdx]->getKey().c_str());
+	vector<Object*> data = worldTypeLeaves[mappingIdx]->getLeaves();
 
 	for (vector<Object*>::iterator i = data.begin(); i != data.end(); i++)
 	{
 		vector<int> EU3nums;
 		vector<int> V2nums;
+		bool			resettable = false;
 
 		vector<Object*> euMaps = (*i)->getLeaves();
 
@@ -42,6 +84,10 @@ void initProvinceMap(Object* obj, provinceMapping& provinceMap, inverseProvinceM
 			else if ( (*j)->getKey() == "vic" )
 			{
 				V2nums.push_back(  atoi( (*j)->getLeaf().c_str() )  );
+			}
+			else if ((*j)->getKey() == "resettable")
+			{
+				resettable = true;
 			}
 			else
 			{
@@ -63,6 +109,10 @@ void initProvinceMap(Object* obj, provinceMapping& provinceMap, inverseProvinceM
 			if (*j != 0)
 			{
 				provinceMap.insert(make_pair(*j, EU3nums));
+			}
+			if (resettable)
+			{
+				resettableProvinces.insert(*j);
 			}
 		}
 		for (vector<int>::iterator j = EU3nums.begin(); j != EU3nums.end(); j++)
@@ -134,6 +184,22 @@ adjacencyMapping initAdjacencyMap()
 	fclose(adjacenciesData);
 	
 	return adjacencyMap;
+}
+
+
+void initContinentMap(Object* obj, continentMapping& continentMap)
+{
+	vector<Object*> continentObjs = obj->getLeaves();
+	for (unsigned int i = 0; i < continentObjs.size(); i++)
+	{
+		string continent = continentObjs[i]->getKey();
+		vector<string> provinceNums = continentObjs[i]->getTokens();
+		for (unsigned int j = 0; j < provinceNums.size(); j++)
+		{
+			int province = atoi(provinceNums[j].c_str());
+			continentMap.insert(make_pair(province, continent));
+		}
+	}
 }
 
 

@@ -4,6 +4,7 @@
 #include "Parsers\Parser.h"
 #include "Log.h"
 #include "EU3World/EU3World.h"
+#include "EU3World/EU3Religion.h"
 #include "V2World/V2World.h"
 #include "V2World/V2Factory.h"
 #include "V2World/V2TechSchools.h"
@@ -186,22 +187,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Parse province mappings
 	log("Parsing province mappings.\n");
 	printf("Parsing province mappings.\n");
-	const char* mappingFile = "province_mappings.txt";
-	// if province_mappings.txt exists, always use it (e.g. as an override for mods);
-	// otherwise use the appropriate mapping for the game type
+	const char* mappingFile = "provincemappings.txt";
 	FILE* testfp = NULL;
 	if (fopen_s(&testfp, mappingFile, "rb") != 0)
 	{
-		if (game == HeirToTheThrone)
-			mappingFile = "HttT_province_mappings.txt";
-		else if (game == DivineWind)
-			mappingFile = "DW_province_mappings.txt";
-		else if (game == InNomine)
-			mappingFile = "IN_province_mappings.txt";
-	}
-	else
-	{
-		fclose(testfp);
+		log("Error: Could not open provincemappings.txt!\n");
+		printf("Error: Could not open provincemappings.txt!\n");
+		exit(-1);
 	}
 	obj = doParseFile(mappingFile);
 	if (obj == NULL)
@@ -209,9 +201,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		log("Could not parse file %s\n", mappingFile);
 		exit(-1);
 	}
-	provinceMapping provinceMap;
-	inverseProvinceMapping inverseProvinceMap;
-	initProvinceMap(obj, provinceMap, inverseProvinceMap);
+	provinceMapping			provinceMap;
+	inverseProvinceMapping	inverseProvinceMap;
+	resettableMap				resettableProvinces;
+	initProvinceMap(obj, sourceWorld.getWorldType(), provinceMap, inverseProvinceMap, resettableProvinces);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 
@@ -289,6 +282,46 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	log("Importing adjacencies\n");
 	printf("Importing adjacencies\n");
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
+
+	// Generate continent mapping
+	string EU3Mod = Configuration::getEU3Mod();
+	continentMapping continentMap;
+	if (EU3Mod != "")
+	{
+		string continentFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\map\\continent.txt";
+		if ((stat(continentFile.c_str(), &st) != 0))
+		{
+			obj = doParseFile(continentFile.c_str());
+			if (obj == NULL)
+			{
+				log("Could not parse file %s\n", continentFile.c_str());
+				exit(-1);
+			}
+			if (obj->getLeaves().size() < 1)
+			{
+				log("Error: Failed to parse continent.txt.\n");
+				printf("Error: Failed to parse continent.txt.\n");
+				return 1;
+			}
+			initContinentMap(obj, continentMap);
+		}
+	}
+	if (continentMap.size() == 0)
+	{
+		obj = doParseFile((EU3Loc + "\\map\\continent.txt").c_str());
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (EU3Loc + "\\map\\continent.txt").c_str());
+			exit(-1);
+		}
+		if (obj->getLeaves().size() < 1)
+		{
+			log("Error: Failed to parse continent.txt.\n");
+			printf("Error: Failed to parse continent.txt.\n");
+			return 1;
+		}
+		initContinentMap(obj, continentMap);
+	}
 	
 	// Generate region mapping
 	log("Parsing region structure.\n");
@@ -340,7 +373,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
-	string EU3Mod = Configuration::getEU3Mod();
 	unionCulturesMap unionCultures;
 	if (EU3Mod != "")
 	{
@@ -377,6 +409,46 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 			return 1;
 		}
 		unionCultures = initUnionCultures(obj);
+	}
+
+	// Parse EU3 Religions
+	log("Parsing EU3 religions.\n");
+	printf("Parsing EU3 religions.\n");
+	if (EU3Mod != "")
+	{
+		string modReligionFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\common\\religion.txt";
+		if ((stat(modReligionFile.c_str(), &st) == 0))
+		{
+			obj = doParseFile(modReligionFile.c_str());
+			if (obj == NULL)
+			{
+				log("Could not parse file %s\n", modReligionFile.c_str());
+				exit(-1);
+			}
+			if (obj->getLeaves().size() < 1)
+			{
+				log("Error: Failed to parse religion.txt.\n");
+				printf("Error: Failed to parse religion.txt.\n");
+				return 1;
+			}
+			EU3Religion::parseReligions(obj);
+		}
+	}
+	if (true)
+	{
+		obj = doParseFile((EU3Loc + "\\common\\religion.txt").c_str());
+		if (obj == NULL)
+		{
+			log("Could not parse file %s\n", (EU3Loc + "\\common\\religion.txt").c_str());
+			exit(-1);
+		}
+		if (obj->getLeaves().size() < 1)
+		{
+			log("Error: Failed to parse religion.txt.\n");
+			printf("Error: Failed to parse religion.txt.\n");
+			return 1;
+		}
+		EU3Religion::parseReligions(obj);
 	}
 
 	// Parse Religion Mappings
@@ -470,10 +542,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	printf("Converting provinces.\n");
 	log("Converting provinces.\n");
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, cultureMap, religionMap, stateIndexMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
 	printf("Setting colonies\n");
 	log("Setting colonies\n");
-	destWorld.setupColonies(adjacencyMap);
+	destWorld.setupColonies(adjacencyMap, continentMap);
 	printf("Creating states.\n");
 	log("Creating states.\n");
 	destWorld.setupStates(stateMap);

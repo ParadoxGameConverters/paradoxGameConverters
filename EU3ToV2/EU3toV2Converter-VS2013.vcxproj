@@ -117,6 +117,7 @@
     <ClCompile Include="Source\EU3World\EU3Loan.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
     <ClCompile Include="Source\EU3World\EU3Relations.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Religion.cpp" />
     <ClCompile Include="Source\EU3World\EU3World.cpp" />
     <ClCompile Include="Source\Log.cpp" />
     <ClCompile Include="Source\Mapper.cpp" />
@@ -149,6 +150,7 @@
     <ClInclude Include="Source\EU3World\EU3Loan.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />
     <ClInclude Include="Source\EU3World\EU3Relations.h" />
+    <ClInclude Include="Source\EU3World\EU3Religion.h" />
     <ClInclude Include="Source\EU3World\EU3World.h" />
     <ClInclude Include="Source\Log.h" />
     <ClInclude Include="Source\Mapper.h" />
