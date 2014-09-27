@@ -116,8 +116,6 @@ namespace Frontend.Core.Factories.TagReaders
                     {
                         if (Directory.Exists(steamInstallationPath))
                         {
-                            eventAggregator.PublishOnUIThread(
-                                new LogEntry("Startup: Located Steam game files: ", LogEntrySeverity.Info, LogEntrySource.UI, steamInstallationPath));
                             return steamInstallationPath;
                         }
                     }
