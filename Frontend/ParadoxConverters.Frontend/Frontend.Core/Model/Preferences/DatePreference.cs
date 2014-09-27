@@ -43,5 +43,20 @@ namespace Frontend.Core.Model.Preferences
 
             return null;
         }
+
+        /// <summary>
+        /// Override tostring to strip out time component of date.
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            if (this.Value != null)
+            {
+                // Reasoning: The converter does not seem to care about the time component of the date even when present, but it's safer to remove it.
+                return this.Name + " = \"" + this.Value.ToString("d") + "\"";
+            }
+
+            return base.ToString();
+        }
     }
 }
