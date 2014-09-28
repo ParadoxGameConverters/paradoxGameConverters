@@ -147,9 +147,10 @@ adjacencyMapping initAdjacencyMap()
 	FILE* adjacenciesBin = NULL;
 	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";
 	struct _stat st;
-	if ((_stat(filename.c_str(), &st) == 0))
+	if ((_stat(filename.c_str(), &st) != 0))
 	{
-		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";;
+		log("\tCould not find %s. Looking in install folder\n", filename.c_str());
+		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";
 	}
 	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	if (adjacenciesBin == NULL)

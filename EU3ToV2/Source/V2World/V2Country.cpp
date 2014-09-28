@@ -148,10 +148,6 @@ void V2Country::output() const
 	fprintf(output, "nonstate_consciousness = 0\n");
 	fprintf(output, "\n");
 	outputTech(output);
-
-	/*fprintf(output, "	research_points=%f\n", researchPoints);
-	outputTech(output);
-	outputElection(output);
 	if (reforms != NULL)
 	{
 		reforms->output(output);
@@ -163,10 +159,9 @@ void V2Country::output() const
 			uncivReforms->output(output);
 		}
 	}
-	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
-	outputCountryHeader(output);
-	fprintf(output, "	leadership=%f\n", leadership);
-	for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	fprintf(output, "	prestige=%f\n", prestige);
+
+	/*for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
 	{
 		(*itr)->output(output);
 	}
@@ -178,25 +173,7 @@ void V2Country::output() const
 	{
 		(*itr)->output(output);
 	}
-	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
-	fprintf(output, "	prestige=%f\n", prestige);
-	fprintf(output, "	bank=\n");
-	fprintf(output, "	{\n");
-	fprintf(output, "		money=%f\n", bankReserves);
-	fprintf(output, "		money_lent=0.00000\n");
-	fprintf(output, "	}\n");
-	fprintf(output, "	money=%f\n", money);
-	fprintf(output, "	last_bankrupt=\"%s\"\n", lastBankrupt.toString().c_str());
-	for (map<string, V2Creditor*>::const_iterator itr = creditors.begin(); itr != creditors.end(); ++itr)
-	{
-		itr->second->output(output);
-	}
-	for(unsigned int i = 0; i < states.size(); i++)
-	{
-		states[i]->output(output);
-	}
-	fprintf(output, "	badboy=%f\n", badboy);
-	fprintf(output, "}\n");*/
+	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());*/
 	fclose(output);
 }
 
@@ -250,6 +227,13 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 			filename = fileData.name;
 			}
 		_findclose(fileListing);
+	}
+	if (filename == "")
+	{
+		string countryName = commonCountryFile;
+		int lastSlash = countryName.find_last_of("/");
+		countryName = countryName.substr(lastSlash + 1, countryName.size());
+		filename = tag + " - " + countryName;
 	}
 
 	// tech group
@@ -374,12 +358,10 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 		}
 	}
 
-	// Prestige, leadership, diploPoints, badBoy, reforms
+	// Prestige, reforms
 	prestige		+= srcCountry->getPrestige() + 100;
 	prestige		+= srcCountry->getCulture();
-	leadership	+= srcCountry->getArmyTradition() + srcCountry->getNavyTradition();
-	diploPoints	=  srcCountry->getDiplomats() * 2;
-	badboy		=  srcCountry->getBadboy() * (25.0 / srcCountry->getBadboyLimit());
+	prestige		+= srcCountry->getArmyTradition() + srcCountry->getNavyTradition();
 	reforms		=  new V2Reforms(srcCountry);
 
 	// Government
@@ -694,6 +676,14 @@ void V2Country::initFromHistory()
 			fullFilename = Configuration::getV2Path() + "\\history\\countries\\" + fileData.name;
 		}
 		_findclose(fileListing);
+	}
+	if (fullFilename == "")
+	{
+		string countryName = commonCountryFile;
+		int lastSlash = countryName.find_last_of("/");
+		countryName = countryName.substr(lastSlash + 1, countryName.size());
+		filename = tag + " - " + countryName;
+		return;
 	}
 
 	Object* obj = doParseFile(fullFilename.c_str());

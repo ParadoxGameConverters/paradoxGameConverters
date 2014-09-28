@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sys/stat.h>
 #include <io.h>
+#include <Windows.h>
 #include "Parsers\Parser.h"
 #include "Log.h"
 #include "EU3World/EU3World.h"
@@ -20,26 +21,71 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	Object*	obj;				// generic object
 	ifstream	read;				// ifstream for reading files
 
+	Configuration::getInstance();
+
+	char curDir[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, curDir);
+	log("Current directory is %s\n", curDir);
+
 
 	//Get V2 install location
 	string V2Loc = Configuration::getV2Path();
 	struct _stat st;
 	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
 	{
-		log("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("\tNo Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
+	}
+	else
+	{
+		log("\tVictoria 2 install path is %s\n", V2Loc.c_str());
+	}
+
+	// Get V2 Documents Directory
+	log("Get V2 Documents directory\n");
+	string V2DocLoc = Configuration::getV2DocumentsPath();
+	if (V2DocLoc.empty() || (_stat(V2DocLoc.c_str(), &st) != 0))
+	{
+		log("\tNo Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		printf("No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		return (-2);
+	}
+	else
+	{
+		log("\tVictoria 2 documents directory is %s\n", V2DocLoc.c_str());
 	}
 
 	//Get EU3 install location
 	string EU3Loc = Configuration::getEU3Path();
 	if (EU3Loc.empty() || (_stat(EU3Loc.c_str(), &st) != 0))
 	{
-		log("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
+		log("\tNo Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		return (-2);
 	}
+	else
+	{
+		log("\tEU4 install path is %s\n", EU3Loc.c_str());
+	}
 
+	// Get EU3 Mod
+	log("Get EU3 Mod\n");
+	string modName = Configuration::getEU3Mod();
+	if (modName != "")
+	{
+		string fullModPath = EU3Loc + "\\mod\\" + modName;
+		if (fullModPath.empty() || (_stat(fullModPath.c_str(), &st) != 0))
+		{
+			log("%s could not be found at the specified directory.  A valid path and mod must be specified.\n", modName.c_str());
+			printf("%s could not be found at the specified directory.  A valid path and mod must be specified.\n", modName.c_str());
+			return (-2);
+		}
+		else
+		{
+			log("EU3 Mod is at %s\n", fullModPath);
+		}
+	}
 
 	//Get Input EU3 save 
 	string inputFilename("input.eu3");
@@ -329,6 +375,10 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		}
 		initContinentMap(obj, continentMap);
 	}
+	if (continentMap.size() == 0)
+	{
+		log("Warning: no continent mappings found. May lead to problems later\n");
+	}
 	
 	// Generate region mapping
 	log("Parsing region structure.\n");
@@ -560,51 +610,6 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	printf("Allocating starting factories.\n");
 	log("Allocating starting factories.\n");
 	destWorld.allocateFactories(sourceWorld, factoryBuilder);
-
-	// Generate Mod Directory Structure
-	printf("Outputting mod.\n");
-	log("Outputting mod.\n");
-	printf("\tGenerating mod directory structure.\n");
-	log("\tGenerating mod directory structure.\n");
-	/*CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName).c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\common").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\common\\countries").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\gfx").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\gfx\\flags").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\countries").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\diplomacy").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\pops\\1836.1.1").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\provinces").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\africa").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\asia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\australia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\austria").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\balkan").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\canada").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\carribean").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\central asia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\china").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\france").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\germany").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\india").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\indonesia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\italy").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\japan").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\low countries").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\mexico").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\pacific island").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\portugal").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\scandinavia").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\south america").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\soviet").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\spain").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\united kingdom").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\" + OutputFolderName + "\\history\\provinces\\usa").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\units").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\history\\wars").c_str(), NULL);
-	CreateDirectory((V2Loc + "\\mods\\"+ OutputFolderName + "\\localisation").c_str(), NULL);*/
 
 	// Output results
 	printf("Outputting mod\n");

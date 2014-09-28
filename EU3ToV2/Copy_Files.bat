@@ -3,7 +3,6 @@ copy "data files\readme.txt" "release\readme.txt"
 copy "data files\provincemappings.txt" "release\provincemappings.txt"
 copy "data files\cultureMap.txt" "release\cultureMap.txt"
 copy "data files\religionMap.txt" "release\religionMap.txt"
-copy "data files\changeLog.txt" "release\changeLog.txt"
 copy "data files\blocked_nations.txt" "release\blocked_nations.txt"
 copy "data files\unions.txt" "release\unions.txt"
 copy "data files\governmentMapping.txt" "release\governmentMapping.txt"
@@ -53,3 +52,9 @@ mkdir "release\blankMod\output\history\provinces\united kingdom"
 mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\common"
+
+xcopy "Data Files\countries" "release\blankmod\output\common\countries" /Y /E /I
+xcopy "Data Files\gfx" "release\blankmod\output\gfx" /Y /E /I
+copy "Data Files\countries.txt" "release\blankMod\output\common\countries.txt"
+copy "Data Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
+copy "Data Files\religion.txt" "release\blankMod\output\common\religion.txt"

@@ -766,6 +766,8 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 			continue;
 		}
 
+		i->second->clearCores();
+
 		EU3Province*	oldProvince	= NULL;
 		EU3Country*		oldOwner		= NULL;
 		// determine ownership by province count, or total population (if province count is tied)
@@ -989,6 +991,11 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		{
 			int currentProvince = goodProvinces.front();
 			goodProvinces.pop();
+			if (currentProvince > static_cast<int>(adjacencyMap.size()))
+			{
+				log("Error: no adjacency mapping for province %d\n", currentProvince);
+				continue;
+			}
 			vector<adjacency> adjacencies = adjacencyMap[currentProvince];
 			for (unsigned int i = 0; i < adjacencies.size(); i++)
 			{

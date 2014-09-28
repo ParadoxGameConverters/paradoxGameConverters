@@ -24,7 +24,7 @@
 cultureMap = {
 
 # Germanic - pommeranian, prussian, hannoverian, hessian, saxon, rheinlaender, bavarian, austrian, dutch, flemish
-link = { vic = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = rheinlaender hessian eu4 = bavarian eu4 = austrian religion = jewish }
+link = { vic = ashkenazi eu3 = pommeranian eu3 = prussian eu3 = hannoverian eu3 = saxon eu3 = rheinlaender eu3 = hessian eu3 = bavarian eu3 = austrian religion = jewish }
 link = { vic = north_german eu3 = pommeranian eu3 = prussian eu3 = hannoverian eu3 = saxon }
 link = { vic = swiss eu3 = rheinlaender owner = SWI }
 link = { vic = south_german eu3 = rheinlaender eu3 = hessian eu3 = bavarian eu3 = austrian }
