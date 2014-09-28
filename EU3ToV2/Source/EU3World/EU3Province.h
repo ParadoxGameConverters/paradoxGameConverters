@@ -51,7 +51,6 @@ class EU3Province {
 		int									num;
 		string								ownerString;
 		EU3Country*							owner;
-		//controller
 		vector<string>						cores;
 		int									population;
 		bool									colony;

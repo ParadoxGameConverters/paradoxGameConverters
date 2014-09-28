@@ -232,131 +232,6 @@ void V2Province::outputPops(FILE* output) const
 }
 
 
-void V2Province::outputRGO(FILE* output) const
-{
-	fprintf(output, "\trgo=\n");
-	fprintf(output, "\t{\n");
-	fprintf(output, "\t\temployment=\n");
-	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\tprovince_id=%d\n", num);
-	fprintf(output, "\t\t\temployees=\n");
-	fprintf(output, "\t\t\t{\n");
-	if (owner == "")
-	{
-		int numFarmers = 0;
-		for (unsigned int i = 0; i < oldPops.size(); i++)
-		{
-			if (oldPops[i]->getType() == "farmers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numFarmers);
-				fprintf(output, "\t\t\t\t\t\ttype=8\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", oldPops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numFarmers++;
-			}
-		}
-		int numLabourers = 0;
-		for (unsigned int i = 0; i < oldPops.size(); i++)
-		{
-			if (oldPops[i]->getType() == "labourers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numLabourers);
-				fprintf(output, "\t\t\t\t\t\ttype=9\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", oldPops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numLabourers++;
-			}
-		}
-		int numSlaves = 0;
-		for (unsigned int i = 0; i < oldPops.size(); i++)
-		{
-			if (oldPops[i]->getType() == "slaves")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numSlaves);
-				fprintf(output, "\t\t\t\t\t\ttype=11\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", oldPops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numSlaves++;
-			}
-		}
-	}
-	else
-	{
-		int numFarmers = 0;
-		for (unsigned int i = 0; i < pops.size(); i++)
-		{
-			if (pops[i]->getType() == "farmers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numFarmers);
-				fprintf(output, "\t\t\t\t\t\ttype=8\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", pops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numFarmers++;
-			}
-		}
-		int numLabourers = 0;
-		for (unsigned int i = 0; i < pops.size(); i++)
-		{
-			if (pops[i]->getType() == "labourers")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numLabourers);
-				fprintf(output, "\t\t\t\t\t\ttype=9\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", pops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numLabourers++;
-			}
-		}
-		int numSlaves = 0;
-		for (unsigned int i = 0; i < pops.size(); i++)
-		{
-			if (pops[i]->getType() == "slaves")
-			{
-				fprintf(output, "\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\tprovince_pop_id=\n");
-				fprintf(output, "\t\t\t\t\t{\n");
-				fprintf(output, "\t\t\t\t\t\tprovince_id=%d\n", num);
-				fprintf(output, "\t\t\t\t\t\tindex=%d\n", numSlaves);
-				fprintf(output, "\t\t\t\t\t\ttype=11\n");
-				fprintf(output, "\t\t\t\t\t}\n");
-				fprintf(output, "\t\t\t\t\tcount=%d\n", pops[i]->getSize());
-				fprintf(output, "\t\t\t\t}\n");
-				numSlaves++;
-			}
-		}
-	}
-	fprintf(output, "\t\t\t}\n");
-	fprintf(output, "\t\t}\n");
-	fprintf(output, "\t\tlast_income=100000.00000\n");
-	fprintf(output, "\t\tgoods_type=\"%s\"\n", rgoType.c_str());
-	fprintf(output, "\t}\n");
-}
-
-
 // determined experimentally
 static const int unitNameOffsets[num_reg_categories] =
 {
@@ -787,10 +662,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* farmersPop = new V2Pop(	"farmers",
 													(int)(demographic.ratio * oldPopulation * farmers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(farmersPop);
 	}
@@ -799,10 +671,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* labourersPop = new V2Pop(	"labourers",
 													(int)(demographic.ratio * oldPopulation * labourers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(labourersPop);
 	}
@@ -811,10 +680,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* slavesPop = new V2Pop(		"slaves",
 													(int)(demographic.ratio * oldPopulation * slaves / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(slavesPop);
 	}
@@ -823,10 +689,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* soldiersPop = new V2Pop(	"soldiers",
 													(int)(demographic.ratio * oldPopulation * soldiers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(soldiersPop);
 	}
@@ -835,10 +698,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* craftsmenPop = new V2Pop(	"craftsmen",
 													(int)(demographic.ratio * oldPopulation * craftsmen / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(craftsmenPop);
 	}
@@ -847,10 +707,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* artisansPop = new V2Pop(	"artisans",
 													(int)(demographic.ratio * oldPopulation * artisans / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(artisansPop);
 	}
@@ -859,10 +716,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* clergymenPop = new V2Pop(	"clergymen",
 													(int)(demographic.ratio * oldPopulation * clergymen / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(clergymenPop);
 	}
@@ -871,10 +725,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* clerksPop = new V2Pop(	"clerks",
 												(int)(demographic.ratio * oldPopulation * clerks / total),
 												demographic.culture,
-												demographic.religion,
-												demographic.literacy,
-												demographic.reactionary, demographic.conservative, demographic.liberal,
-												demographic.issues
+												demographic.religion
 												);
 		pops.push_back(clerksPop);
 	}
@@ -883,10 +734,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* bureaucratsPop = new V2Pop(	"bureaucrats",
 														(int)(demographic.ratio * oldPopulation * bureaucrats / total),
 														demographic.culture,
-														demographic.religion,
-														demographic.literacy,
-														demographic.reactionary, demographic.conservative, demographic.liberal,
-														demographic.issues
+														demographic.religion
 												);
 		pops.push_back(bureaucratsPop);
 	}
@@ -895,10 +743,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* officersPop = new V2Pop(	"officers",
 													(int)(demographic.ratio * oldPopulation * officers / total),
 													demographic.culture,
-													demographic.religion,
-													demographic.literacy,
-													demographic.reactionary, demographic.conservative, demographic.liberal,
-													demographic.issues
+													demographic.religion
 												);
 		pops.push_back(officersPop);
 	}
@@ -907,10 +752,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* capitalistsPop = new V2Pop(	"capitalists",
 														(int)(demographic.ratio * oldPopulation * capitalists / total),
 														demographic.culture,
-														demographic.religion,
-														demographic.literacy,
-														demographic.reactionary, demographic.conservative, demographic.liberal,
-														demographic.issues
+														demographic.religion
 												);
 		pops.push_back(capitalistsPop);
 	}
@@ -919,10 +761,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		V2Pop* aristocratsPop = new V2Pop(	"aristocrats",
 														(int)(demographic.ratio * oldPopulation * aristocrats / total),
 														demographic.culture,
-														demographic.religion,
-														demographic.literacy,
-														demographic.reactionary, demographic.conservative, demographic.liberal,
-														demographic.issues
+														demographic.religion
 												);
 		pops.push_back(aristocratsPop);
 	}
@@ -982,48 +821,6 @@ void V2Province::sortPops()
 {
 	sort(oldPops.begin(), oldPops.end(), PopSortForOutputPredicate);
 	sort(pops.begin(), pops.end(), PopSortForOutputPredicate);
-}
-
-
-void V2Province::setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier)
-{
-	for (vector<V2Pop*>::iterator itr = pops.begin(); itr != pops.end(); ++itr)
-	{
-		double con = nationalConModifier;
-		double mil = nationalMilModifier;
-		// culture penalty - none if national culture
-		if ( (*itr)->getCulture() != nationalCulture )
-		{
-			vector<string>::iterator accepted = find(acceptedCultures.begin(), acceptedCultures.end(), (*itr)->getCulture());
-			if (accepted == acceptedCultures.end())
-			{
-				// non-accepted - 1 con + 1 mil
-				mil += 1.0;
-				con += 1.0;
-			}
-			else
-			{
-				// accepted - 0.5 con
-				con += 0.5;
-			}
-		}
-		// religion penalty - none if national religion
-		if ( (*itr)->getReligion() != nationalReligion )
-		{
-			// TODO - should incorporate tolerance (not easily knowable), perhaps on a 0-1 or 0-2 scale
-			mil += 1.0;
-			con += 1.0;
-		}
-		// TODO - province decisions, province events, buildings, nationalism
-
-		// cap at [0.0, 10.0]
-		con = max(min(con, 10.0), 0.0);
-		mil = max(min(mil, 10.0), 0.0);
-
-		// make it so
-		(*itr)->setConsciousness(con);
-		(*itr)->setMilitancy(mil);
-	}
 }
 
 

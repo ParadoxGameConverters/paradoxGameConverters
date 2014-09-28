@@ -215,9 +215,8 @@ V2World::V2World()
 
 	countries.clear();
 
-	log("\tGetting potential countries and building political parties.\n");
-	printf("\tGetting potential countries and building political parties.\n");
-	parties.clear();
+	log("\tGetting potential countries.\n");
+	printf("\tGetting potential countries.\n");
 	potentialCountries.clear();
 	dynamicCountries.clear();
 	const date FirstStartDate = date("1836.1.1");
@@ -237,7 +236,6 @@ V2World::V2World()
 		exit(1);
 	}
 
-	int	partiesIndex = 1;
 	bool	staticSection = true;
 	while (!V2CountriesInput.eof())
 	{
@@ -283,13 +281,11 @@ V2World::V2World()
 		}
 
 		vector<Object*> partyData = countryData->getValue("party");
-		map<int, V2Party*> localParties;
+		vector<V2Party*> localParties;
 		for (vector<Object*>::iterator itr = partyData.begin(); itr != partyData.end(); ++itr)
 		{
 			V2Party* newParty = new V2Party(*itr);
-			parties.insert(make_pair(partiesIndex, newParty));
-			localParties.insert(make_pair(partiesIndex, newParty));
-			partiesIndex++;
+			localParties.push_back(newParty);
 		}
 
 		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
@@ -943,85 +939,6 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 						demographic.ratio			= prItr->popRatio * provPopRatio;
 						demographic.oldCountry	= oldOwner;
 						demographic.oldProvince	= *vitr;
-								
-						demographic.literacy = 0.1;
-						V2Country* owner = getCountry(i->second->getOwner());
-						if ( (owner != NULL) && (owner->getTag() != "") )
-						{
-							if (owner->getPrimaryCulture() == culture)
-							{
-								demographic.literacy = owner->getLiteracy();
-							}
-							else
-							{
-								vector<string> acceptedCultures = owner->getAcceptedCultures();
-								for (vector<string>::iterator acItr = acceptedCultures.begin(); acItr < acceptedCultures.end(); acItr++)
-								{
-									if ( *acItr == culture)
-									{
-										demographic.literacy = owner->getLiteracy();
-									}
-								}
-							}
-						}
-
-						demographic.reactionary		= owner->getReactionary();
-						demographic.conservative	= owner->getConservative();
-						demographic.liberal			= owner->getLiberal();
-
-						list< pair<int, double> > issues;
-						vector< pair<int, int> > reactionaryIssues = owner->getReactionaryIssues();
-						int reactionaryTotal = 0;
-						for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
-						{
-							reactionaryTotal += reactionaryIssues[j].second;
-						}
-						for (unsigned int j = 0; j < reactionaryIssues.size(); j++)
-						{
-							issues.push_back(make_pair(reactionaryIssues[j].first, (demographic.reactionary * reactionaryIssues[j].second / reactionaryTotal) ));
-						}
-								
-						vector< pair<int, int> > conservativeIssues	= owner->getConservativeIssues();
-						int conservativeTotal = 0;
-						for (unsigned int j = 0; j < conservativeIssues.size(); j++)
-						{
-							conservativeTotal += conservativeIssues[j].second;
-						}
-						for (unsigned int j = 0; j < conservativeIssues.size(); j++)
-						{
-							issues.push_back(make_pair(conservativeIssues[j].first, (demographic.conservative * conservativeIssues[j].second / conservativeTotal) ));
-						}
-
-						vector< pair<int, int> > liberalIssues	= owner->getLiberalIssues();
-						int liberalTotal = 0;
-						for (unsigned int j = 0; j < liberalIssues.size(); j++)
-						{
-							liberalTotal += liberalIssues[j].second;
-						}
-						for (unsigned int j = 0; j < liberalIssues.size(); j++)
-						{
-							issues.push_back(make_pair(liberalIssues[j].first, (demographic.liberal * liberalIssues[j].second / liberalTotal) ));
-						}
-						for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++) // TODO: replace with a better algorithm
-						{
-							list< pair<int, double> >::iterator k = j;
-							for (k++; k != issues.end(); k++)
-							{
-								if (j->first == k->first)
-								{
-									j->second += k->second;
-									issues.erase(k);
-									j = issues.begin();
-									k = j;
-									k++;
-								}
-							}
-						}
-
-						for (list< pair<int, double> >::iterator j = issues.begin(); j != issues.end(); j++)
-						{
-							demographic.issues.push_back(*j);
-						}
 								
 						i->second->addPopDemographic(demographic);
 					}

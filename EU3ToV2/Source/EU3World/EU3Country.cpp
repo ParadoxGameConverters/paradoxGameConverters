@@ -43,7 +43,6 @@ EU3Country::EU3Country(Object* obj)
 	}
 	else
 	{
-		log("	Error: Could not load the tech group for %s\n", tag.c_str());
 		techGroup = "";
 	}
 

@@ -12,14 +12,12 @@ using namespace std;
 class V2Pop
 {
 	public:
-		V2Pop(string type, int size, string culture, string religion, double literacy, double reactionary, double conservative, double liberal, vector< pair<int, double> > issues);
+		V2Pop(string type, int size, string culture, string religion);
 		void output(FILE*) const;
 		bool combine(const V2Pop& rhs);
 
 		void	changeSize(int delta)					{ size += delta; recalcMoney(); };
 		void	incrementSupportedRegimentCount()	{ supportedRegiments++; };
-		void	setConsciousness(double con)			{ consciousness = con; };
-		void	setMilitancy(double mil)				{ militancy = mil; };
 
 		int		getSize()							const	{ return size; };
 		string	getType()							const	{ return type; };
@@ -37,13 +35,6 @@ class V2Pop
 		string	religion;
 		int		supportedRegiments;
 		double	money;
-		double	consciousness;
-		double	literacy;
-		double	militancy;
-		double	reactionary;
-		double	conservative;
-		double	liberal;
-		vector< pair<int, double> >	issues;
 };
 
 

@@ -31,7 +31,7 @@ struct V2Party;
 class V2Country
 {
 	public:
-		V2Country(string _tag, string _commonCountryFile, map<int, V2Party*> _parties, V2World* _theWorld);
+		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld);
 		void								output() const;
 		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, countryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
@@ -75,11 +75,7 @@ class V2Country
 		int								getCapital() const { return capital; };
 	private:
 		void			outputTech(FILE*) const ;
-		void			outputInventions(FILE*) const;
 		void			outputElection(FILE*) const;
-		void			outputParties(FILE*) const;
-		void			setIssues();
-		void			setRulingParty();
 		void			sortRelations(const vector<string>& order);
 		void			addLoan(string creditor, double size, double interest);
 		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces);
@@ -98,8 +94,8 @@ class V2Country
 		string							primaryCulture;
 		vector<string>					acceptedCultures;
 		string							religion;
-		map<int, V2Party*>			parties;
-		int								rulingParty;
+		vector<V2Party*>				parties;
+		string							rulingParty;
 		string							commonCountryFile;
 		double							prestige;
 		double							leadership;
@@ -112,9 +108,9 @@ class V2Country
 		double							researchPoints;
 		string							techSchool;
 		string							government;
-		double							upperHouseReactionary;
-		double							upperHouseConservative;
-		double							upperHouseLiberal;
+		int								upperHouseReactionary;
+		int								upperHouseConservative;
+		int								upperHouseLiberal;
 		vector< pair<int, int> >	reactionaryIssues;
 		vector< pair<int, int> >	conservativeIssues;
 		vector< pair<int, int> >	liberalIssues;

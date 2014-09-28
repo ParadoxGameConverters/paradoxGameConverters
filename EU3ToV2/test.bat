@@ -9,3 +9,6 @@ call EU3toV2Converter.exe "%i%.eu3"
 del "%i%.eu3" /q
 copy log.txt "..\testresults\%j%\%i%-Log.txt"
 del log.txt /q
+del output/%i%.mod
+del output/%i% /q
+rmdir %i%

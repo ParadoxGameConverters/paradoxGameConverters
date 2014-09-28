@@ -16,6 +16,10 @@ copy "data files\merge_nations.txt" "release\merge_nations.txt"
 copy "data files\configuration.txt" "release\configuration.txt"
 copy "data files\blocked_tech_schools.txt" "release\blocked_tech_schools.txt"
 
+hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt
+(for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
+del release\log.txt
+
 del "Release\blankMod" /Q
 rmdir "Release\blankMod" /S /Q
 mkdir "release\blankMod"
@@ -51,8 +55,3 @@ mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\common"
 
 copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"
-
-rem hg log > Release/log.txt
-hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt
-(for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
-del release\log.txt

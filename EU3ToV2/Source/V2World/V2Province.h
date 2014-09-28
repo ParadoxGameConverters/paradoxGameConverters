@@ -17,13 +17,8 @@ struct V2Demographic
 	string								culture;
 	string								religion;
 	double								ratio;
-	double								literacy;
-	double								reactionary;
-	double								conservative;
-	double								liberal;
 	EU3Province*						oldProvince;
 	EU3Country*							oldCountry;
-	vector< pair<int, double> >	issues;
 };
 
 
@@ -39,7 +34,6 @@ class V2Province
 		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT);
 		void sortPops();
 
-		void				setPopConMil(string nationalCulture, vector<string> acceptedCultures, string nationalReligion, double nationalConModifier, double nationalMilModifier);
 		int				getTotalPopulation() const;
 		vector<V2Pop*>	getPops(string type) const;
 		int				getSoldierPopForArmy(bool force = false);
@@ -50,7 +44,6 @@ class V2Province
 		void				setCoastal(bool _coastal)				{ coastal = _coastal; };
 		void				setName(string _name)					{ name = _name; };
 		void				setOwner(string _owner)					{ owner = _owner; };
-		//void				setController(string _controller)	{ controller = _controller; };
 		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
 		void				setSameContinent(bool _same)			{ sameContinent = _same; };
 		void				addPopDemographic(V2Demographic d)	{ demographics.push_back(d); };
@@ -72,7 +65,6 @@ class V2Province
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); };
 	private:
 		void outputPops(FILE*) const;
-		void outputRGO(FILE*) const;
 		void outputUnits(FILE*) const;
 		void createPops(WorldType game, const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
 		void combinePops();
@@ -85,7 +77,6 @@ class V2Province
 		int								num;
 		string							name;
 		string							owner;
-		//controller
 		vector<string>					cores;
 		int								colonyLevel;
 		int								colonial;
