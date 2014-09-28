@@ -428,9 +428,9 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 	{
 		liberalEffect += srcCountry->getMercantilismFreetrade();
 	}
-	upperHouseReactionary	= static_cast<int>(5  + (100 * reactionaryEffect));
-	upperHouseLiberal			= static_cast<int>(10 + (100 * liberalEffect));
-	upperHouseConservative	= static_cast<int>(85 - (100 * (reactionaryEffect + liberalEffect)));
+	upperHouseReactionary	= static_cast<int>(5  + reactionaryEffect);
+	upperHouseLiberal			= static_cast<int>(10 + liberalEffect);
+	upperHouseConservative	= static_cast<int>(85 - (reactionaryEffect + liberalEffect));
 	log("%s has an Upper House of %d reactionary, %d conservative, and %d liberal\n", tag.c_str(), upperHouseReactionary, upperHouseConservative, upperHouseLiberal);
 	
 	string idealogy;

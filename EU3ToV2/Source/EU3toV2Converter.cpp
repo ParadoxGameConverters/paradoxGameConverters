@@ -553,7 +553,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	destWorld.addUnions(unionMap);
 	printf("Converting armies and navies.\n");
 	log("Converting armies and navies.\n");
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
+	//destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
 	printf("Converting techs.\n");
 	log("Converting techs.\n");
 	destWorld.convertTechs(sourceWorld);

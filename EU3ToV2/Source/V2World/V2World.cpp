@@ -50,7 +50,7 @@ V2World::V2World()
 	list<string>			directories;
 	directories.push_back("");
 	struct _stat st;
-	if (_stat(".\\blankMod\\output\\history\\provinces\\", &st) != 0)
+	if (_stat(".\\blankMod\\output\\history\\provinces\\", &st) == 0)
 	{
 		while (directories.size() > 0)
 		{
@@ -221,7 +221,7 @@ V2World::V2World()
 	dynamicCountries.clear();
 	const date FirstStartDate = date("1836.1.1");
 	ifstream V2CountriesInput;
-	if (_stat(".\\blankMod\\output\\common\\countries.txt", &st) != 0)
+	if (_stat(".\\blankMod\\output\\common\\countries.txt", &st) == 0)
 	{
 		V2CountriesInput.open(".\\blankMod\\output\\common\\countries.txt");
 	}
@@ -261,7 +261,7 @@ V2World::V2World()
 		countryFileName	= line.substr(start, size);
 
 		Object* countryData;
-		if (_stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) != 0)
+		if (_stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) == 0)
 		{
 			countryData = doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
 			if (countryData == NULL)

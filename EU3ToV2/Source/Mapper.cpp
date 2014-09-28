@@ -147,7 +147,7 @@ adjacencyMapping initAdjacencyMap()
 	FILE* adjacenciesBin = NULL;
 	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";
 	struct _stat st;
-	if ((_stat(filename.c_str(), &st) != 0))
+	if ((_stat(filename.c_str(), &st) == 0))
 	{
 		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";;
 	}
