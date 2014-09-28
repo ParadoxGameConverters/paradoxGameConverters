@@ -727,9 +727,8 @@ governmentMapping initGovernmentMap(Object* obj)
 }
 
 
-unionCulturesMap initUnionCultures(Object* obj)
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 {
-	unionCulturesMap unionCultures;
 	vector<Object*> cultureGroups = obj->getLeaves();
 
 	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
@@ -761,6 +760,4 @@ unionCulturesMap initUnionCultures(Object* obj)
 			unionCultures[tag] = cultures;
 		}
 	}
-
-	return unionCultures;
 }

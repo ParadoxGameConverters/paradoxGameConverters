@@ -48,6 +48,9 @@ mkdir "release\blankMod\output\history\provinces\spain"
 mkdir "release\blankMod\output\history\provinces\united kingdom"
 mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
+mkdir "release\blankMod\output\common"
+
+copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"
 
 rem hg log > Release/log.txt
 hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt

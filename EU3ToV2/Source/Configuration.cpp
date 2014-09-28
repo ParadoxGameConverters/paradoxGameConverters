@@ -23,11 +23,6 @@ Configuration::Configuration()
 		exit (-2);
 	}
 
-	startDate	= date(obj[0]->getLeaf("start_date"));
-	if (startDate < date("1835.1.1"))
-	{
-		log("Warning: start dates prior to 1835 are likely to cause crashes!\n");
-	}
 	maxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
 	resetProvinces		= obj[0]->getLeaf("resetProvinces");
 	V2Path				= obj[0]->getLeaf("v2directory");
@@ -36,13 +31,6 @@ Configuration::Configuration()
 	EU3gametype			= obj[0]->getLeaf("EU3gametype");
 	V2gametype			= obj[0]->getLeaf("V2gametype");
 	EU3Mod				= obj[0]->getLeaf("EU3Mod");
-	useV2Mod				= false;
 	removetype			= obj[0]->getLeaf("removetype");
 	outputName			= "";
-
-	string tempUseV2Mod = obj[0]->getLeaf("useV2Mod");
-	if (tempUseV2Mod == "yes")
-	{
-		useV2Mod = true;
-	}
 }

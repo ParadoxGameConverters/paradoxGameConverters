@@ -16,8 +16,8 @@ configuration =
 	# Reset Provinces: Whether or not to reset resettable V2 provinces
 	resetProvinces = "no"
 
-	# The maximum literacy a nation will start with. Default 80%
-	max_literacy = 0.80
+	# The maximum literacy a nation will start with. Default 100%
+	max_literacy = 1.0
 
 	# EU3 Game Type: what version of EU3 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!
@@ -35,9 +35,6 @@ configuration =
 
 	# EU3 Mod: An EU3 mod to use for conversion
 	EU3Mod = "TESB"
-
-	# Use V2 Mod: Whether or not to use a V2 mod
-	useV2Mod = "no"
 
 	# Remove type: which landless nations to remove. Possible values:
 	#	none	remove none of them

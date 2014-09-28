@@ -65,9 +65,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		outputName.replace(dash, 1, "_");
 		dash = outputName.find_first_of('-');
 	}
+	int space = outputName.find_first_of(' ');
+	while (space != string::npos)
+	{
+		outputName.replace(space, 1, "_");
+		space = outputName.find_first_of(' ');
+	}
 	Configuration::setOutputName(outputName);
 	log("Using output name %s\n", outputName.c_str());
-
+	printf("Using output name %s\n", outputName.c_str());
 
 	// Parse EU3 Save
 	log("Importing EU3 save.\n");
@@ -298,21 +304,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	if (EU3Mod != "")
 	{
 		string continentFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\map\\continent.txt";
-		if ((_stat(continentFile.c_str(), &st) != 0))
+		if ((_stat(continentFile.c_str(), &st) == 0))
 		{
 			obj = doParseFile(continentFile.c_str());
-			if (obj == NULL)
+			if ((obj != NULL) && (obj->getLeaves().size() > 0))
 			{
-				log("Could not parse file %s\n", continentFile.c_str());
-				exit(-1);
+				initContinentMap(obj, continentMap);
 			}
-			if (obj->getLeaves().size() < 1)
-			{
-				log("Error: Failed to parse continent.txt.\n");
-				printf("Error: Failed to parse continent.txt.\n");
-				return 1;
-			}
-			initContinentMap(obj, continentMap);
 		}
 	}
 	if (continentMap.size() == 0)
@@ -335,7 +333,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Generate region mapping
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
-	if ((Configuration::getUseV2Mod()) && (_stat(".\\blankMod\\output\\map\\region.txt", &st) != 0))
+	if (_stat(".\\blankMod\\output\\map\\region.txt", &st) == 0)
 	{
 		obj = doParseFile(".\\blankMod\\output\\map\\region.txt");
 		if (obj == NULL)
@@ -386,21 +384,13 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	if (EU3Mod != "")
 	{
 		string modCultureFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\common\\cultures.txt";
-		if ((_stat(modCultureFile.c_str(), &st) != 0))
+		if ((_stat(modCultureFile.c_str(), &st) == 0))
 		{
 			obj = doParseFile(modCultureFile.c_str());
-			if (obj == NULL)
+			if ((obj != NULL) && (obj->getLeaves().size() > 0))
 			{
-				log("Could not parse file %s\n", modCultureFile.c_str());
-				exit(-1);
+				initUnionCultures(obj, unionCultures);
 			}
-			if (obj->getLeaves().size() < 1)
-			{
-				log("Error: Failed to parse cultures.txt.\n");
-				printf("Error: Failed to parse cultures.txt.\n");
-				return 1;
-			}
-			unionCultures = initUnionCultures(obj);
 		}
 	}
 	if (unionCultures.size() == 0)
@@ -417,33 +407,27 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 			printf("Error: Failed to parse cultures.txt.\n");
 			return 1;
 		}
-		unionCultures = initUnionCultures(obj);
+		initUnionCultures(obj, unionCultures);
 	}
 
 	// Parse EU3 Religions
 	log("Parsing EU3 religions.\n");
 	printf("Parsing EU3 religions.\n");
+	bool parsedReligions = false;
 	if (EU3Mod != "")
 	{
 		string modReligionFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\common\\religion.txt";
 		if ((_stat(modReligionFile.c_str(), &st) == 0))
 		{
 			obj = doParseFile(modReligionFile.c_str());
-			if (obj == NULL)
+			if ((obj != NULL) && (obj->getLeaves().size() > 0))
 			{
-				log("Could not parse file %s\n", modReligionFile.c_str());
-				exit(-1);
+				EU3Religion::parseReligions(obj);
+				parsedReligions = true;
 			}
-			if (obj->getLeaves().size() < 1)
-			{
-				log("Error: Failed to parse religion.txt.\n");
-				printf("Error: Failed to parse religion.txt.\n");
-				return 1;
-			}
-			EU3Religion::parseReligions(obj);
 		}
 	}
-	if (true)
+	if (!parsedReligions)
 	{
 		obj = doParseFile((EU3Loc + "\\common\\religion.txt").c_str());
 		if (obj == NULL)
@@ -636,6 +620,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/provinces\"\n");
 	fprintf(modFile, "replace = \"history/countries\"\n");
+	fprintf(modFile, "replace = \"common/religion.txt\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());

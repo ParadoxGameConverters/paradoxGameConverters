@@ -50,7 +50,7 @@ V2World::V2World()
 	list<string>			directories;
 	directories.push_back("");
 	struct _stat st;
-	if ((Configuration::getUseV2Mod()) && (_stat(".\\blankMod\\output\\history\\provinces\\", &st) != 0))
+	if (_stat(".\\blankMod\\output\\history\\provinces\\", &st) != 0)
 	{
 		while (directories.size() > 0)
 		{
@@ -220,9 +220,9 @@ V2World::V2World()
 	parties.clear();
 	potentialCountries.clear();
 	dynamicCountries.clear();
-	const date FirstStartDate = Configuration::getStartDate();
+	const date FirstStartDate = date("1836.1.1");
 	ifstream V2CountriesInput;
-	if ((Configuration::getUseV2Mod()) && (_stat(".\\blankMod\\output\\common\\countries.txt", &st) != 0))
+	if (_stat(".\\blankMod\\output\\common\\countries.txt", &st) != 0)
 	{
 		V2CountriesInput.open(".\\blankMod\\output\\common\\countries.txt");
 	}
@@ -263,7 +263,7 @@ V2World::V2World()
 		countryFileName	= line.substr(start, size);
 
 		Object* countryData;
-		if ((Configuration::getUseV2Mod()) && (_stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) != 0))
+		if (_stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) != 0)
 		{
 			countryData = doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
 			if (countryData == NULL)
@@ -304,9 +304,6 @@ V2World::V2World()
 		}
 	}
 	V2CountriesInput.close();
-
-	equalityLeft	= 6;
-	libertyLeft		= 30;
 
 	colonies.clear();
 }
@@ -354,12 +351,12 @@ void V2World::output() const
 static int stateId = 0;
 void V2World::outputHeader(FILE* output) const
 {
-	fprintf(output, "date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
+	fprintf(output, "date=\"%s\"\n", date("1836.1.1").toString().c_str());
 	fprintf(output, "automate_trade=no\n");
 	fprintf(output, "automate_sliders=0\n");
 	fprintf(output, "unit=%d\n", V2ArmyID().id);
 	fprintf(output, "state=%d\n", stateId);
-	fprintf(output, "start_date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
+	fprintf(output, "start_date=\"%s\"\n", date("1836.1.1").toString().c_str());
 	fprintf(output, "start_pop_index=%d\n", getNextPopId());
 	fprintf(output, "worldmarket=\n");
 	fprintf(output, "{\n");
@@ -531,6 +528,12 @@ void V2World::outputHeader(FILE* output) const
 }
 
 
+bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
+{
+	return (first.second > second.second);
+}
+
+
 void V2World::convertCountries(const EU3World& sourceWorld, const countryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
 {
 	vector<string> outputOrder;
@@ -554,7 +557,6 @@ void V2World::convertCountries(const EU3World& sourceWorld, const countryMapping
 				{
 					newCountry = *j;
 					newCountry->initFromEU3Country(i->second, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
-					/*newCountry->setNationalIdea(libertyLeft, equalityLeft);*/
 					break;
 				}
 			}
@@ -566,6 +568,67 @@ void V2World::convertCountries(const EU3World& sourceWorld, const countryMapping
 		}
 
 		countries.insert(make_pair(iter->second, newCountry));
+	}
+
+	// set national values
+	list< pair<V2Country*, int> > libertyScores;
+	list< pair<V2Country*, int> > equalityScores;
+	set<V2Country*>					valuesUnset;
+	for (map<string, V2Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		int libertyScore = 1;
+		int equalityScore = 1;
+		int orderScore = 1;
+		countryItr->second->getNationalValueScores(libertyScore, equalityScore, orderScore);
+		if (libertyScore > orderScore)
+		{
+			libertyScores.push_back(make_pair(countryItr->second, libertyScore));
+		}
+		if ((equalityScore > orderScore) && (equalityScore > libertyScore))
+		{
+			equalityScores.push_back(make_pair(countryItr->second, equalityScore));
+		}
+		valuesUnset.insert(countryItr->second);
+		log("\tValue scores for %s: order - %+d,\tliberty - %+d,\tequality %+d\n", countryItr->first.c_str(), orderScore, libertyScore, equalityScore);
+	}
+	equalityScores.sort(scoresSorter);
+	int equalityLeft = 5;
+	for (list< pair<V2Country*, int> >::iterator equalItr = equalityScores.begin(); equalItr != equalityScores.end(); equalItr++)
+	{
+		if (equalityLeft < 1)
+		{
+			break;
+		}
+		set<V2Country*>::iterator unsetItr = valuesUnset.find(equalItr->first);
+		if (unsetItr != valuesUnset.end())
+		{
+			valuesUnset.erase(unsetItr);
+			equalItr->first->setNationalValue("nv_equality");
+			equalityLeft--;
+			log("\t%s got national value equality\n", equalItr->first->getTag().c_str());
+		}
+	}
+	libertyScores.sort(scoresSorter);
+	int libertyLeft = 20;
+	for (list< pair<V2Country*, int> >::iterator libItr = libertyScores.begin(); libItr != libertyScores.end(); libItr++)
+	{
+		if (libertyLeft < 1)
+		{
+			break;
+		}
+		set<V2Country*>::iterator unsetItr = valuesUnset.find(libItr->first);
+		if (unsetItr != valuesUnset.end())
+		{
+			valuesUnset.erase(unsetItr);
+			libItr->first->setNationalValue("nv_liberty");
+			libertyLeft--;
+			log("\t%s got national value liberty\n", libItr->first->getTag().c_str());
+		}
+	}
+	for (set<V2Country*>::iterator unsetItr = valuesUnset.begin(); unsetItr != valuesUnset.end(); unsetItr++)
+	{
+		(*unsetItr)->setNationalValue("nv_order");
+		log("\t%s got national value order\n", (*unsetItr)->getTag().c_str());
 	}
 
 	// ALL potential countries should be output to the file, otherwise some things don't get initialized right

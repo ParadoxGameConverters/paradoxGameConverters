@@ -101,13 +101,36 @@ void V2Country::output() const
 		log("\tError: Could not create country history file %s", filename.c_str());
 		exit(-1);
 	}
-	fclose(output);
-	/*fprintf(output, "%s=\n", tag.c_str());
-	fprintf(output, "{\n");
+
 	if (capital > 0)
 	{
-		fprintf(output, "	capital=%d\n", capital);
+		fprintf(output, "capital=%d\n", capital);
 	}
+	if (primaryCulture.size() > 0)
+	{
+		fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
+	}
+	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	{
+		fprintf(output, "culture = %s\n", acceptedCultures[i].c_str());
+	}
+	if (religion != "")
+	{
+		fprintf(output, "religion = %s\n", religion.c_str());
+	}
+	if (government != "")
+	{
+		fprintf(output, "government = %s\n", government.c_str());
+	}
+	if (plurality > 0.0)
+	{
+		fprintf(output, "plurality=%f\n", plurality);
+	}
+	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
+	fprintf(output, "literacy=%f\n", literacy);
+
+	/*fprintf(output, "%s=\n", tag.c_str());
+	fprintf(output, "{\n");
 	fprintf(output, "	research_points=%f\n", researchPoints);
 	outputTech(output);
 	outputElection(output);
@@ -130,9 +153,6 @@ void V2Country::output() const
 	fprintf(output, "	}\n");
 	outputParties(output);
 	fprintf(output, "	diplomatic_points=%f\n", diploPoints);
-	fprintf(output, "	religion=\"%s\"\n", religion.c_str());
-	fprintf(output, "	government=%s\n", government.c_str());
-	fprintf(output, "	plurality=%f\n", plurality);
 	outputCountryHeader(output);
 	fprintf(output, "	leadership=%f\n", leadership);
 	for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
@@ -149,20 +169,6 @@ void V2Country::output() const
 	}
 	outputInventions(output);
 	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
-	if (primaryCulture.size() > 0)
-	{
-		fprintf(output, "	primary_culture=\"%s\"\n", primaryCulture.c_str());
-	}
-	if (acceptedCultures.size() > 0)
-	{
-		fprintf(output, "	culture=\n");
-		fprintf(output, "	{\n");
-		for(unsigned int i = 0; i < acceptedCultures.size(); i++)
-		{
-			fprintf(output, "		\"%s\"\n", acceptedCultures[i].c_str());
-		}
-		fprintf(output, "	}\n");
-	}
 	fprintf(output, "	prestige=%f\n", prestige);
 	fprintf(output, "	bank=\n");
 	fprintf(output, "	{\n");
@@ -175,7 +181,6 @@ void V2Country::output() const
 	{
 		itr->second->output(output);
 	}
-	fprintf(output, "	nationalvalue=\"%s\"\n", nationalValue.c_str());
 	if (civilized)
 	{
 		fprintf(output, "	civilized=yes\n");
@@ -190,6 +195,7 @@ void V2Country::output() const
 	}
 	fprintf(output, "	badboy=%f\n", badboy);
 	fprintf(output, "}\n");*/
+	fclose(output);
 }
 
 
@@ -318,7 +324,7 @@ void V2Country::outputInventions(FILE* output) const
 
 void V2Country::outputElection(FILE* output) const
 {
-	date electionDate = Configuration::getStartDate();
+	date electionDate = date("1836.1.1");
 
 	if (electionDate.month == 12)
 	{
@@ -339,7 +345,7 @@ void V2Country::outputParties(FILE* output) const
 	fprintf(output, "	ruling_party=%d\n", rulingParty);
 	for (map<int, V2Party*>::const_iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		if (  i->second->isActiveOn( Configuration::getStartDate() )  )
+		if ( i->second->isActiveOn(date("1836.1.1")) )
 		{
 			fprintf(output, "	active_party=%d\n", i->first);
 		}
@@ -353,15 +359,12 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	if (Configuration::getUseV2Mod())
+	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
-		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-		}
-		_findclose(fileListing);
+		filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
 	}
+	_findclose(fileListing);
 	if (filename == "")
 	{
 		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
@@ -776,16 +779,13 @@ void V2Country::initFromHistory()
 	string fullFilename;
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
-	if (Configuration::getUseV2Mod())
+	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
+	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
-		string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
-		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
-		{
-			filename = fileData.name;
-			fullFilename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
-		}
-		_findclose(fileListing);
+		filename = fileData.name;
+		fullFilename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
 	}
+	_findclose(fileListing);
 	if (fullFilename == "")
 	{
 		string filesearch = Configuration::getV2Path() + "\\history\\countries\\" + tag + "*.txt";
@@ -1060,9 +1060,8 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 }
 
 
-void V2Country::setNationalIdea(int& libertyLeft, int& equalityLeft)
+void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, int& orderScore)
 {
-	int orderScore = 0;
 	orderScore += srcCountry->getOffensiveDefensive();
 	orderScore += srcCountry->getInnovativeNarrowminded();
 	orderScore += srcCountry->getQualityQuantity();
@@ -1095,7 +1094,6 @@ void V2Country::setNationalIdea(int& libertyLeft, int& equalityLeft)
 		orderScore += 1;
 	}
 
-	int libertyScore = 0;
 	libertyScore += srcCountry->getCentralizationDecentralization();
 	libertyScore += srcCountry->getSerfdomFreesubjects();
 	libertyScore += srcCountry->getMercantilismFreetrade();
@@ -1120,7 +1118,6 @@ void V2Country::setNationalIdea(int& libertyLeft, int& equalityLeft)
 		libertyScore += 1;
 	}
 
-	int equalityScore = 0;
 	equalityScore += srcCountry->getAristocracyPlutocracy();
 	equalityScore += srcCountry->getSerfdomFreesubjects();
 	if ( srcCountry->hasNationalIdea("liberty_egalite_fraternity") )
@@ -1138,21 +1135,6 @@ void V2Country::setNationalIdea(int& libertyLeft, int& equalityLeft)
 	if ( srcCountry->hasNationalIdea("ecumenism") )
 	{
 		equalityScore += 1;
-	}
-
-	if ( (equalityScore > orderScore) && (equalityScore >= libertyScore) && (equalityLeft > 0) )
-	{
-		nationalValue = "nv_equality";
-		equalityLeft--;
-	}
-	else if ( (libertyScore > orderScore) && (libertyLeft > 0) )
-	{
-		nationalValue = "nv_liberty";
-		libertyLeft--;
-	}
-	else
-	{
-		nationalValue = "nv_order";
 	}
 }
 
@@ -1334,8 +1316,8 @@ void V2Country::setupPops(EU3World& sourceWorld)
 	else // negative stability: 0 stab -> 1 mil ==> -3 stab -> 3 mil
 		mil += fabs(stability) * 2.0 / 3.0 + 1.0;
 	// 0 to 2 points of con from serfdom<->free subjects
-	double serf_fs = srcCountry->getSerfdomFreesubjects();
-	con += (serf_fs * 2.0 / 5.0) + 1.0;
+	/*double serf_fs = srcCountry->getSerfdomFreesubjects();
+	con += (serf_fs * 2.0 / 5.0) + 1.0;*/
 	// TODO: national decisions, national events, war exhaustion
 
 	// create the pops
@@ -2055,7 +2037,7 @@ void V2Country::setIssues()
 		{
 			continue;
 		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(date("1836.1.1")) )
 		{
 			continue;
 		}
@@ -2152,7 +2134,7 @@ void V2Country::setIssues()
 		{
 			continue;
 		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(date("1836.1.1")) )
 		{
 			continue;
 		}
@@ -2248,7 +2230,7 @@ void V2Country::setIssues()
 		{
 			continue;
 		}
-		if ( !party->isActiveOn(Configuration::getStartDate()) )
+		if ( !party->isActiveOn(date("1836.1.1")) )
 		{
 			continue;
 		}
@@ -2341,7 +2323,7 @@ void V2Country::setRulingParty()
 {
 	for(map<int, V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
 	{
-		if (i->second->isActiveOn(Configuration::getStartDate()) )
+		if (i->second->isActiveOn(date("1836.1.1")))
 		{
 			rulingParty = i->first;
 			break;

@@ -3,6 +3,7 @@
 
 
 
+#include <set>
 #include "EU3Army.h"
 #include "../Date.h"
 
@@ -119,7 +120,7 @@ class EU3Country
 		int							offensive_defensive;
 		int							land_naval;
 		int							quality_quantity;
-		map<string, bool>			nationalIdeas;
+		set<string>					nationalIdeas;
 		double						treasury;
 		date							last_bankrupt;
 		vector<EU3Loan*>			loans;

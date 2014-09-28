@@ -508,7 +508,7 @@ bool EU3Country::hasModifier(string modifier) const
 
 bool EU3Country::hasNationalIdea(string ni) const
 {
-	map<string, bool>::const_iterator itr = nationalIdeas.find(ni);
+	set<string>::const_iterator itr = nationalIdeas.find(ni);
 	return (itr != nationalIdeas.end());
 }
 
@@ -658,7 +658,7 @@ void EU3Country::checkIdea(const Object* countryObj, const string idea)
 	niObj = countryObj->getValue(idea);
 	if ((niObj.size() > 0) && (niObj[0]->getLeaf() == "yes"))
 	{
-		nationalIdeas[idea] = true;
+		nationalIdeas.insert(idea);
 	}
 }
 
