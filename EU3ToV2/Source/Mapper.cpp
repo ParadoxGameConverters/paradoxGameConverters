@@ -8,6 +8,7 @@
 #include "V2World/V2World.h"
 #include "V2World/V2Country.h"
 #include <algorithm>
+#include <sys/stat.h>
 
 
 
@@ -143,11 +144,17 @@ const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, i
 
 adjacencyMapping initAdjacencyMap()
 {
-	FILE* adjacenciesBin;
-	fopen_s(&adjacenciesBin, (Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin").c_str(), "rb");
+	FILE* adjacenciesBin = NULL;
+	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";
+	struct _stat st;
+	if ((_stat(filename.c_str(), &st) != 0))
+	{
+		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";;
+	}
+	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	if (adjacenciesBin == NULL)
 	{
-		log("Error: Could not open adjacencies.bin\n");
+		log("Error: Could not open %s\n", filename.c_str());
 		exit(1);
 	}
 
@@ -318,32 +325,18 @@ int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2Wo
 		}
 	}
 
-	while ( (EU3Countries.size() > 0) && (dynamicCountries.size() > 0) )
-	{
-		map<string, EU3Country*>::iterator	EU3Country		= EU3Countries.begin();
-		map<string, V2Country*>::iterator	dynamicCountry	= dynamicCountries.begin();
-		map<string, V2Country*>::iterator	V2Country		= V2Countries.find(dynamicCountry->first);
-		if (V2Country == V2Countries.end())
-		{
-			log("Error: dynamic country was not also a V2 country. I will likely crash now\n");
-		}
-		mapping.insert(make_pair(EU3Country->first, V2Country->first));
-		log("\tAdded map %s -> %s (dynamic fallback)\n", EU3Country->first.c_str(), V2Country->first.c_str());
-
-		EU3Countries.erase(EU3Country);
-		dynamicCountries.erase(dynamicCountry);
-		V2Countries.erase(V2Country);
-	}
-
 	while ( (EU3Countries.size() > 0) && (V2Countries.size() > 0) )
 	{
-		map<string, EU3Country*>::iterator EU3Country = EU3Countries.begin();
-		map<string, V2Country*>::iterator V2Country = V2Countries.begin();
-		mapping.insert(make_pair(EU3Country->first, V2Country->first));
-		log("\tAdded map %s -> %s (fallback)\n", EU3Country->first.c_str(), V2Country->first.c_str());
-
-		EU3Countries.erase(EU3Country);
-		V2Countries.erase(V2Country);
+		map<string, V2Country*>::iterator	V2CountryItr = V2Countries.begin();
+		map<string, V2Country*>::iterator	dynamicCountry = dynamicCountries.find(V2CountryItr->first);
+		if (dynamicCountry == dynamicCountries.end())
+		{
+			map<string, EU3Country*>::iterator	EU3Country = EU3Countries.begin();
+			mapping.insert(make_pair(EU3Country->first, V2CountryItr->first));
+			log("\tAdded map %s -> %s (fallback)\n", EU3Country->first.c_str(), V2CountryItr->first.c_str());
+			EU3Countries.erase(EU3Country);
+		}
+		V2Countries.erase(V2CountryItr);
 	}
 
 	return EU3Countries.size();

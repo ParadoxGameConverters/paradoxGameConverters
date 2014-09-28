@@ -23,8 +23,8 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	//Get V2 install location
 	string V2Loc = Configuration::getV2Path();
-	struct stat st;
-	if (V2Loc.empty() || (stat(V2Loc.c_str(), &st) != 0))
+	struct _stat st;
+	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
 	{
 		log("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Victoria 2 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
@@ -33,7 +33,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 
 	//Get EU3 install location
 	string EU3Loc = Configuration::getEU3Path();
-	if (EU3Loc.empty() || (stat(EU3Loc.c_str(), &st) != 0))
+	if (EU3Loc.empty() || (_stat(EU3Loc.c_str(), &st) != 0))
 	{
 		log("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
 		printf("No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid.  A valid path must be specified.\n");
@@ -277,6 +277,15 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 		removeLandlessNations(sourceWorld);
 		leftoverNations = initCountryMap(countryMap, sourceWorld, destWorld, blockedNations, obj);
 	}
+	if (leftoverNations == -1)
+	{
+		return 1;
+	}
+	else if (leftoverNations > 0)
+	{
+		log("\tToo many EU4 nations (%d). Nothing left to remove. Exiting\n", leftoverNations);
+		exit(1);
+	}
 
 	// Get adjacencies
 	log("Importing adjacencies\n");
@@ -289,7 +298,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	if (EU3Mod != "")
 	{
 		string continentFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\map\\continent.txt";
-		if ((stat(continentFile.c_str(), &st) != 0))
+		if ((_stat(continentFile.c_str(), &st) != 0))
 		{
 			obj = doParseFile(continentFile.c_str());
 			if (obj == NULL)
@@ -326,7 +335,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	// Generate region mapping
 	log("Parsing region structure.\n");
 	printf("Parsing region structure.\n");
-	if ((Configuration::getUseV2Mod()) && (stat(".\\blankMod\\output\\map\\region.txt", &st) != 0))
+	if ((Configuration::getUseV2Mod()) && (_stat(".\\blankMod\\output\\map\\region.txt", &st) != 0))
 	{
 		obj = doParseFile(".\\blankMod\\output\\map\\region.txt");
 		if (obj == NULL)
@@ -377,7 +386,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	if (EU3Mod != "")
 	{
 		string modCultureFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\common\\cultures.txt";
-		if ((stat(modCultureFile.c_str(), &st) != 0))
+		if ((_stat(modCultureFile.c_str(), &st) != 0))
 		{
 			obj = doParseFile(modCultureFile.c_str());
 			if (obj == NULL)
@@ -417,7 +426,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	if (EU3Mod != "")
 	{
 		string modReligionFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\common\\religion.txt";
-		if ((stat(modReligionFile.c_str(), &st) == 0))
+		if ((_stat(modReligionFile.c_str(), &st) == 0))
 		{
 			obj = doParseFile(modReligionFile.c_str());
 			if (obj == NULL)
@@ -626,6 +635,7 @@ int main(int argc, char * argv[]) //changed from TCHAR, no use when everything e
 	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/provinces\"\n");
+	fprintf(modFile, "replace = \"history/countries\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());

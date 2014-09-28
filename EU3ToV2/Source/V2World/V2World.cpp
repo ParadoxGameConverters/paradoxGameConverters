@@ -49,8 +49,8 @@ V2World::V2World()
 	intptr_t					fileListing = NULL;
 	list<string>			directories;
 	directories.push_back("");
-	struct stat st;
-	if ((Configuration::getUseV2Mod()) && (stat(".\\blankMod\\output\\history\\provinces\\", &st) != 0))
+	struct _stat st;
+	if ((Configuration::getUseV2Mod()) && (_stat(".\\blankMod\\output\\history\\provinces\\", &st) != 0))
 	{
 		while (directories.size() > 0)
 		{
@@ -222,7 +222,7 @@ V2World::V2World()
 	dynamicCountries.clear();
 	const date FirstStartDate = Configuration::getStartDate();
 	ifstream V2CountriesInput;
-	if ((Configuration::getUseV2Mod()) && (stat(".\\blankMod\\output\\common\\countries.txt", &st) != 0))
+	if ((Configuration::getUseV2Mod()) && (_stat(".\\blankMod\\output\\common\\countries.txt", &st) != 0))
 	{
 		V2CountriesInput.open(".\\blankMod\\output\\common\\countries.txt");
 	}
@@ -263,7 +263,7 @@ V2World::V2World()
 		countryFileName	= line.substr(start, size);
 
 		Object* countryData;
-		if ((Configuration::getUseV2Mod()) && (stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) != 0))
+		if ((Configuration::getUseV2Mod()) && (_stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) != 0))
 		{
 			countryData = doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
 			if (countryData == NULL)
@@ -292,10 +292,6 @@ V2World::V2World()
 			partiesIndex++;
 		}
 
-		if (tag == "REB")
-		{
-			continue;
-		}
 		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
 		if (staticSection)
 		{
@@ -325,11 +321,11 @@ void V2World::output() const
 		//i->second->sortPops();
 		i->second->output();
 	}
-	/*for (unsigned int i = 0; i < countries.size(); i++)
+	for (auto itr = countries.begin(); itr != countries.end(); itr++)
 	{
-		countries[i]->output(output);
+		itr->second->output();
 	}
-	diplomacy.output(output);*/
+	/*diplomacy.output(output);*/
 	/*if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
 	{
 		for (map< int, set<string> >::const_iterator colonyIter = colonies.begin(); colonyIter != colonies.end(); colonyIter++)
@@ -578,7 +574,7 @@ void V2World::convertCountries(const EU3World& sourceWorld, const countryMapping
 		map<string, V2Country*>::iterator citr = countries.find((*itr)->getTag());
 		if (citr == countries.end())
 		{
-			/*(*itr)->initFromHistory();*/
+			(*itr)->initFromHistory();
 			countries.insert(make_pair((*itr)->getTag(), *itr));
 		}
 	}
