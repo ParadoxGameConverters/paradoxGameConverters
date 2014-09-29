@@ -51,10 +51,12 @@ mkdir "release\blankMod\output\history\provinces\spain"
 mkdir "release\blankMod\output\history\provinces\united kingdom"
 mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
+mkdir "release\blankMod\output\history\diplomacy"
 mkdir "release\blankMod\output\common"
 
 xcopy "Data Files\countries" "release\blankmod\output\common\countries" /Y /E /I
 xcopy "Data Files\gfx" "release\blankmod\output\gfx" /Y /E /I
+xcopy "Data_files\localisation" "release\blankmod\output\localisation" /Y /E /I
 copy "Data Files\countries.txt" "release\blankMod\output\common\countries.txt"
 copy "Data Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
 copy "Data Files\religion.txt" "release\blankMod\output\common\religion.txt"

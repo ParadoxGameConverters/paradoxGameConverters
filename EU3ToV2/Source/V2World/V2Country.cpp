@@ -5,7 +5,6 @@
 #include <io.h>
 #include <fstream>
 #include "../Log.h"
-#include "../tempFuncs.h"
 #include "../Configuration.h"
 #include "../Parsers/Parser.h"
 #include "../EU3World/EU3World.h"
