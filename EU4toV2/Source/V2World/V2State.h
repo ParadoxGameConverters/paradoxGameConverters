@@ -44,22 +44,22 @@ class V2State
 	public:
 		V2State(int newId, V2Province* firstProvince);
 
-		void addRailroads();
-		void setupPops(string primaryCulture, set<string> acceptedCultures, string religion);
-		void addFactory(const V2Factory* factory);
+		void		addRailroads();
+		void		setupPops(string primaryCulture, set<string> acceptedCultures, string religion);
+		void		addFactory(const V2Factory* factory);
 
-		bool	isCoastal() const;
-		bool	hasLocalSupply(string product) const;
-		int	getCraftsmenPerFactory() const;
-		bool	provInState(int id)	const;
-		bool	hasLandConnection()	const;
+		bool		isCoastal() const;
+		bool		hasLocalSupply(string product) const;
+		double	getSuppliedInputs(const V2Factory* factory)	const;
+		bool		provInState(int id)	const;
+		bool		hasLandConnection()	const;
 
-		void	addProvince(V2Province* newProvince)	{ provinces.push_back(newProvince); }
-		void	setColonial(bool isIt)						{ colonial = isIt; }
-		void	setColonised(bool isIt)						{ colonised = isIt; }
+		void		addProvince(V2Province* newProvince)	{ provinces.push_back(newProvince); }
+		void		setColonial(bool isIt)						{ colonial = isIt; }
+		void		setColonised(bool isIt)						{ colonised = isIt; }
 
 		bool						isColonial()		const { return colonial; };
-		int						getFactoryCount()	const { return numFactories; };
+		int						getFactoryCount()	const { return factories.size(); };
 		int						getID()				const { return id; };
 		vector<V2Province*>	getProvinces()		const { return provinces; };
 	private:
@@ -68,7 +68,7 @@ class V2State
 		bool								colonial;
 		bool								colonised;
 		vector<V2Province*>			provinces;
-		int								numFactories;
+		vector<const V2Factory*>	factories;
 };
 
 

@@ -1109,7 +1109,7 @@ void V2Country::absorbColony(V2Country* colony)
 }
 
 
-static bool FactoryCandidateSortPredicate(const pair<int, V2State*>& lhs, const pair<int, V2State*>& rhs)
+static bool FactoryCandidateSortPredicate(const pair<double, V2State*>& lhs, const pair<double, V2State*>& rhs)
 {
 	if (lhs.first != rhs.first)
 		return lhs.first > rhs.first;
@@ -1161,7 +1161,7 @@ bool V2Country::addFactory(V2Factory* factory)
 	}
 
 	// find a state to add the factory to, which meets the factory's requirements
-	vector<pair<int, V2State*>> candidates;
+	vector<pair<double, V2State*>> candidates;
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
 		if ( (*itr)->isColonial() )
@@ -1201,7 +1201,7 @@ bool V2Country::addFactory(V2Factory* factory)
 				continue;
 		}
 
-		candidates.push_back(pair<int, V2State*>( (*itr)->getCraftsmenPerFactory(), (*itr) ));
+		candidates.push_back(pair<double, V2State*>( (*itr)->getSuppliedInputs(factory), (*itr) ));
 	}
 
 	sort(candidates.begin(), candidates.end(), FactoryCandidateSortPredicate);

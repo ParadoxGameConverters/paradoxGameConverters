@@ -58,14 +58,20 @@ V2FactoryType::V2FactoryType(Object* factory)
 	}
 
 	inputs.clear();
-	vector<Object*> goods = factory->getValue("input_goods");
-	if (goods.size() > 0)
+	vector<Object*> inputGoods = factory->getValue("input_goods");
+	if (inputGoods.size() > 0)
 	{
-		vector<Object*> inObjs = goods[0]->getLeaves();
+		vector<Object*> inObjs = inputGoods[0]->getLeaves();
 		for (vector<Object*>::iterator itr = inObjs.begin(); itr != inObjs.end(); ++itr)
 		{
 			inputs.insert(make_pair((*itr)->getKey(), (float)atof((*itr)->getLeaf().c_str())));
 		}
+	}
+
+	vector<Object*> outputGoodsObj = factory->getValue("output_goods");
+	if (outputGoodsObj.size() > 0)
+	{
+		outputGoods = outputGoodsObj[0]->getLeaf();
 	}
 }
 
