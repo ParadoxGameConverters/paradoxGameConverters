@@ -79,7 +79,7 @@ class V2Province
 		const EU4Province*	getSrcProvince()		const { return srcProvince; }
 		int						getOldPopulation()	const	{ return oldPopulation; }
 		bool						wasInfidelConquest()	const { return originallyInfidel; }
-		bool						wasColonised()			const { return colonised; }
+		bool						wasColony()				const { return wasColonised; }
 		bool						isColonial()			const { return colonial != 0; }
 		string					getRgoType()			const { return rgoType; }
 		string					getOwner()				const { return owner; }
@@ -105,7 +105,7 @@ class V2Province
 		vector<string>					cores;
 		int								colonyLevel;
 		int								colonial;
-		bool								colonised;
+		bool								wasColonised;
 		bool								landConnection;
 		bool								sameContinent;
 		bool								originallyInfidel;

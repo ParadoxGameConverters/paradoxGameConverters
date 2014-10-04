@@ -1792,7 +1792,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		if (-1 == soldierPop)
 		{
 			// if the old home province was colonized and can't support the unit, try turning it into an "expeditionary" army
-			if (homeProvince->wasColonised())
+			if (homeProvince->wasColony())
 			{
 				V2Province* expSender = getProvinceForExpeditionaryArmy();
 				if (expSender)
@@ -1896,7 +1896,7 @@ V2Province* V2Country::getProvinceForExpeditionaryArmy()
 	vector<V2Province*> candidates;
 	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
-		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColonised() && !(*pitr)->wasInfidelConquest()
+		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColony() && !(*pitr)->wasInfidelConquest()
 			&& ( (*pitr)->hasCulture(primaryCulture, 0.5) ) && ( (*pitr)->getPops("soldiers").size() > 0) )
 		{
 			candidates.push_back(*pitr);

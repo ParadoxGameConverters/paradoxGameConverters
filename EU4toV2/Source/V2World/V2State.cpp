@@ -32,7 +32,6 @@ V2State::V2State(int newId, V2Province* firstProvince)
 {
 	id					= newId;
 	colonial			= false;
-	colonised		= false;
 	provinces.clear();
 	provinces.push_back(firstProvince);
 	factories.clear();

@@ -50,7 +50,7 @@ V2Province::V2Province(string _filename)
 	cores.clear();
 	colonyLevel			= 0;
 	colonial				= 0;
-	colonised			= false;
+	wasColonised		= false;
 	landConnection		= false;
 	sameContinent		= false;
 	originallyInfidel	= false;
@@ -201,19 +201,8 @@ void V2Province::output() const
 	}
 	if (colonial > 0)
 	{
-		if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
-		{
-			fprintf(output, "colonial=%d\n", colonial);
-		}
-		else
-		{
-			fprintf(output, "colonial=yes\n");
-		}
+		fprintf(output, "colonial=%d\n", colonial);
 	}
-	/*if (colonyLevel > 0)
-	{
-		fprintf_s(output, "colony = %d\n", colonyLevel);
-	}*/
 	if (navalBaseLevel > 0)
 	{
 		fprintf_s(output, "naval_base = %d\n", navalBaseLevel);
@@ -316,14 +305,14 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 		colonyLevel = 2;
 	}
 	colonial				= 0;
-	colonised			= oldProvince->wasColonised();
+	wasColonised		= oldProvince->wasColonised();
 	originallyInfidel	= oldProvince->wasInfidelConquest();
 }
 
 
 void V2Province::determineColonial()
 {
-	if ((!landConnection) && (!sameContinent) && ((colonised) || (originallyInfidel)))
+	if ((!landConnection) && (!sameContinent) && ((wasColonised) || (originallyInfidel)))
 	{
 		colonial = 2;
 	}

@@ -134,8 +134,8 @@ typedef struct {
 	int via;				// the straight (if any) this crosses
 	int unknown1;		// still unknown
 	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path srawn between provinces
-	int pathY;			// the midpoint on the path srawn between provinces
+	int pathX;			// the midpoint on the path drawn between provinces
+	int pathY;			// the midpoint on the path drawn between provinces
 	int unknown3;		// still unknown
 	int unknown4;		// still unknown
 } HODAdjacency;		// an entry in the HOD adjacencies.bin format
@@ -145,8 +145,8 @@ typedef struct {
 	int via;				// the straight (if any) this crosses
 	int unknown1;		// still unknown
 	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path srawn between provinces
-	int pathY;			// the midpoint on the path srawn between provinces
+	int pathX;			// the midpoint on the path drawn between provinces
+	int pathY;			// the midpoint on the path drawn between provinces
 } AHDAdjacency;		// an entry in the AHD adjacencies.bin format
 typedef struct {
 	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing

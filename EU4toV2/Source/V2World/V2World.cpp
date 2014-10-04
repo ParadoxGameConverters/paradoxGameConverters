@@ -941,6 +941,10 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		{
 			continue;
 		}
+		if (openItr->second->getOwner() != countryItr->first) // if the capital is not owned, don't bother running 
+		{
+			continue;
+		}
 		openItr->second->setLandConnection(true);
 		goodProvinces.push(openItr->first);
 		openProvinces.erase(openItr);
@@ -1009,6 +1013,7 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 	}
 }
 
+
 static int stateId = 0;
 void V2World::setupStates(const stateMapping& stateMap)
 {
@@ -1039,8 +1044,8 @@ void V2World::setupStates(const stateMapping& stateMap)
 		{
 			neighbors = stateItr->second;
 		}
-		bool colonised = (*iter)->wasColonised();
-		newState->setColonised(colonised);
+		bool colonial = (*iter)->isColonial();
+		newState->setColonial(colonial);
 		iter = unassignedProvs.erase(iter);
 
 		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
@@ -1051,7 +1056,7 @@ void V2World::setupStates(const stateMapping& stateMap)
 				{
 					if ((*iter)->getOwner() == owner)
 					{
-						if ((*iter)->wasColonised() == colonised)
+						if ((*iter)->isColonial() == colonial)
 						{
 							newState->addProvince(*iter);
 							iter = unassignedProvs.erase(iter);
@@ -1095,7 +1100,7 @@ void V2World::addUnions(const unionMapping& unionMap)
 	{
 		for (unionMapping::const_iterator unionItr = unionMap.begin(); unionItr != unionMap.end(); unionItr++)
 		{
-			if ( provItr->second->hasCulture(unionItr->first, 0.5) && !provItr->second->wasInfidelConquest() && !provItr->second->wasColonised() )
+			if ( provItr->second->hasCulture(unionItr->first, 0.5) && !provItr->second->wasInfidelConquest() && !provItr->second->wasColony() )
 			{
 				provItr->second->addCore(unionItr->second);
 			}
