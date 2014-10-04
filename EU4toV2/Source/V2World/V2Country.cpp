@@ -235,6 +235,11 @@ void V2Country::output() const
 	{
 		// Output common country file. 
 		std::ofstream commonCountryOutput("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile);
+		if (!commonCountryOutput.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not open Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile;
+			exit(-1);
+		}
 		commonCountryOutput << "graphical_culture = UsGC\n";	// default to US graphics
 		commonCountryOutput << "color = { " << color << " }\n";
 		for (auto party : parties)
