@@ -1165,15 +1165,24 @@ bool V2Country::addFactory(V2Factory* factory)
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
 		if ( (*itr)->isColonial() )
+		{
 			continue;
+		}
 
 		if ( (*itr)->getFactoryCount() >= 8 )
+		{
 			continue;
+		}
 
 		if (factory->requiresCoastal())
 		{
 			if ( !(*itr)->isCoastal() )
 				continue;
+		}
+
+		if ( !(*itr)->hasLandConnection() )
+		{
+			continue;
 		}
 
 		map<string,float> requiredProducts = factory->getRequiredRGO();

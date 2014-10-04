@@ -51,7 +51,8 @@ class V2State
 		bool	isCoastal() const;
 		bool	hasLocalSupply(string product) const;
 		int	getCraftsmenPerFactory() const;
-		bool	provInState(int id) const;
+		bool	provInState(int id)	const;
+		bool	hasLandConnection()	const;
 
 		void	addProvince(V2Province* newProvince)	{ provinces.push_back(newProvince); }
 		void	setColonial(bool isIt)						{ colonial = isIt; }

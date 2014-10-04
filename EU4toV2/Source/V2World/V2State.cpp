@@ -129,3 +129,16 @@ void V2State::addFactory(const V2Factory* factory)
 	provinces[0]->addFactory(factory);
 	numFactories++;
 }
+
+
+bool V2State::hasLandConnection() const
+{
+	if (provinces.size() > 0)
+	{
+		return provinces[0]->hasLandConnection();
+	}
+	else
+	{
+		return false;
+	}
+}

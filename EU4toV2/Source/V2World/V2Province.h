@@ -87,6 +87,7 @@ class V2Province
 		string					getName()				const { return name; }
 		bool						isCoastal()				const { return coastal; }
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); }
+		bool						hasLandConnection()	const { return landConnection; }
 	private:
 		void outputPops(FILE*) const;
 		void outputUnits(FILE*) const;
