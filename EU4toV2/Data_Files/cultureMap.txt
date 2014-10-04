@@ -27,8 +27,7 @@ cultureMap = {
 link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = rheinlaender eu4 = hessian eu4 = bavarian eu4 = austrian religion = jewish }
 link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon  }
 link = { v2 = swiss eu4 = rheinlaender owner = SWI }
-link = { v2 = south_german eu4 = rheinlaender }
-link = { v2 = south_german eu4 = hessian eu4 = bavarian eu4 = austrian }
+link = { v2 = south_german eu4 = rheinlaender  eu4 = hessian eu4 = bavarian eu4 = austrian }
 link = { v2 = dutch eu4 = dutch }
 link = { v2 = flemish eu4 = flemish }
 #link = { v2 = boer eu4 = ? }
@@ -99,7 +98,6 @@ link = { v2 = romanian eu4 = romanian }
 link = { v2 = albanian eu4 = albanian }
 #link = { v2 = slovene eu4 = ? }
 
-
 # West Slav - czech, hungarian, slovak
 link = { v2 = hungarian eu4 = hungarian }
 #link = { v2 = slovak eu4 = czech region = hungarian_region }
@@ -155,7 +153,6 @@ link = { v2 = tatar eu4 = tartar eu4 = bolghar eu4 = cuman eu4 = avar eu4 = khaz
 link = { v2 = kurdish eu4 = kurdish }
 #link = { v2 = uighur eu4 = ? }
 
-
 # Central American - zapotek, mayan, aztek
 link = { v2 = zapotec eu4 = zapotek }
 link = { v2 = mayan eu4 = mayan }
@@ -201,7 +198,6 @@ link = { v2 = korean eu4 = korean }
 # Mon Khmer - khmer, mon, vietnamese
 link = { v2 = vietnamese eu4 = vietnamese }
 link = { v2 = khmer eu4 = khmer }
-#link = { v2 = asian_minor eu4 = ? }
 
 # Malay - polynesian, cham, malayan, filipino, madagascan, sulawesi
 link = { v2 = polynesian eu4 = polynesian }
