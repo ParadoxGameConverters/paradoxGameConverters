@@ -338,6 +338,7 @@ void V2World::output() const
 	}
 
 	// Output common\countries.txt
+	LOG(LogLevel::Debug) << "Writing countries file";
 	FILE* allCountriesFile;
 	if (fopen_s(&allCountriesFile, ("Output\\" + Configuration::getOutputName() + "\\common\\countries.txt").c_str(), "w") != 0)
 	{
@@ -349,6 +350,13 @@ void V2World::output() const
 		const V2Country& country = *i->second;
 		country.outputToCommonCountriesFile(allCountriesFile);
 	}
+	fprintf(allCountriesFile, "\n");
+	fprintf(allCountriesFile, "##HoD Dominions\n");
+	fprintf(allCountriesFile, "dynamic_tags = yes # any tags after this is considered dynamic dominions\n");
+	for (vector<V2Country*>::const_iterator i = dynamicCountries.begin(); i != dynamicCountries.end(); i++)
+	{
+		(*i)->outputToCommonCountriesFile(allCountriesFile);
+	}
 	fclose(allCountriesFile);
 
 	// Create flags for all new countries.
@@ -357,6 +365,7 @@ void V2World::output() const
 	flags.Output();
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
+	LOG(LogLevel::Debug) << "Writing localisation text";
 	string localisationPath = "Output\\" + Configuration::getOutputName() + "\\localisation";
 	if (!WinUtils::TryCreateFolder(localisationPath))
 	{
@@ -381,14 +390,22 @@ void V2World::output() const
 	}
 	fclose(localisationFile);
 
+	LOG(LogLevel::Debug) << "Writing provinces";
 	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
 		//i->second->sortPops();
 		i->second->output();
 	}
+
+	LOG(LogLevel::Debug) << "Writing countries";
 	for (auto itr = countries.begin(); itr != countries.end(); itr++)
 	{
 		itr->second->output();
+	}
+	for (vector<V2Country*>::const_iterator itr = dynamicCountries.begin(); itr != dynamicCountries.end(); itr++)
+	{
+		(*itr)->isANewCountry();
+		(*itr)->output();
 	}
 	diplomacy.output();
 	/*if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))

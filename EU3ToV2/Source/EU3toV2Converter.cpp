@@ -60,7 +60,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	if (V2Loc.empty() || (_stat(V2Loc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 path was specified in configuration.txt, or the path was invalid";
-		return (-2);
+		return (-1);
 	}
 	else
 	{
@@ -73,7 +73,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	if (V2DocLoc.empty() || (_stat(V2DocLoc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Victoria 2 documents directory was specified in configuration.txt, or the path was invalid";
-		return (-2);
+		return (-1);
 	}
 	else
 	{
@@ -86,7 +86,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	if (EU3Loc.empty() || (_stat(EU3Loc.c_str(), &st) != 0))
 	{
 		LOG(LogLevel::Error) << "No Europa Universalis 3 path was specified in configuration.txt, or the path was invalid";
-		return (-2);
+		return (-1);
 	}
 	else
 	{
@@ -103,7 +103,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 		if (fullModPath.empty() || (_stat(fullModPath.c_str(), &st) != 0))
 		{
 			LOG(LogLevel::Error) << modName << " could not be found at the specified directory.  A valid path and mod must be specified.";
-			return (-2);
+			return (-1);
 		}
 		else
 		{
@@ -112,9 +112,10 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	}
 
 	//get output name
-	int slash = EU3SaveFileName.find_last_of("\\");
-	int length = EU3SaveFileName.find_first_of(".") - slash - 1;
-	string outputName = EU3SaveFileName.substr(slash + 1, length);
+	const int slash	= EU3SaveFileName.find_last_of("\\");				// the last slash in the save's filename
+	string outputName	= EU3SaveFileName.substr(slash + 1, EU3SaveFileName.length());
+	const int length	= outputName.find_first_of(".");						// the first period after the slash
+	outputName			= outputName.substr(0, length);						// the name to use to output the mod
 	int dash = outputName.find_first_of('-');
 	while (dash != string::npos)
 	{
@@ -153,7 +154,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 
 	// Construct world from EU3 save.
 	LOG(LogLevel::Info) << "Building world";
-	EU3World sourceWorld(localisation, obj);
+	EU3World sourceWorld(obj);
 
 	// Read EU3 common\countries
 	LOG(LogLevel::Info) << "Reading EU3 common\\countries";
@@ -188,6 +189,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 			exit(1);
 	}
 
+	sourceWorld.setLocalisations(localisation);
 
 	// Resolve unit types
 	LOG(LogLevel::Info) << "Resolving unit types.";
@@ -564,7 +566,7 @@ int main(int argc, char * argv[])
 			EU3SaveFileName = defaultEU3SaveFileName;
 			LOG(LogLevel::Info) << "No input file given, defaulting to " << defaultEU3SaveFileName;
 		}
-		ConvertEU3ToV2(EU3SaveFileName);
+		return ConvertEU3ToV2(EU3SaveFileName);
 	}
 	catch (const std::exception& e)
 	{

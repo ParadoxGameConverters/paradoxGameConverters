@@ -36,14 +36,14 @@ class Configuration // Singleton
 		static date		getFirstEU3Date()							{ return getInstance()->firstEU3Date; }
 		static void		setFirstEU3Date(date _firstDate)		{ getInstance()->firstEU3Date = _firstDate; }
 		static string	getResetProvinces()						{ return getInstance()->resetProvinces; }
-		static double	getMaxLiteracy()							{ return getInstance()->maxLiteracy; }
+		static double	getMaxLiteracy()							{ return getInstance()->MaxLiteracy; }
 		static string	getV2Path()									{ return getInstance()->V2Path; }
 		static string	getEU3Path()								{ return getInstance()->EU3Path; }
 		static string	getEU3Mod()									{ return getInstance()->EU3Mod; }
 		static string	getV2DocumentsPath()						{ return getInstance()->V2DocumentsPath; }
 		static string	getEU3Gametype()							{ return getInstance()->EU3gametype; }
-		static string	getV2Gametype()							{ return getInstance()->V2gametype; }
-		static string	getRemovetype()							{ return getInstance()->removetype; }
+		static string	getV2Gametype()							{ return getInstance()->V2Gametype; }
+		static string	getRemovetype()							{ return getInstance()->Removetype; }
 		static string	getOutputName()							{ return getInstance()->outputName; }
 		static void		setOutputName(string _outputName)	{ getInstance()->outputName = _outputName; }
 
@@ -59,16 +59,19 @@ class Configuration // Singleton
 	private:
 		static Configuration* instance;
 
+		// options from configuration.txt
+		string	EU3Path;					// the install directory for EU3
+		string	EU3Mod;					// the name of the EU3 mod to use for conversion
+		string	V2Path;					// the install directory for V2
+		string	V2DocumentsPath;		// V2's directory under My Documents
+		string	V2Gametype;				// whether V2 is vanilla, AHD, or HoD
+		string	resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
+		double	MaxLiteracy;			// the maximum literacy allowed
+		string	Removetype;				// the rule to use for removing excess EU3 nations
+
+		// items set during conversion
 		date		firstEU3Date;
-		string	resetProvinces;
-		double	maxLiteracy;
-		string	V2Path;
-		string	V2DocumentsPath;
-		string	EU3Path;
 		string	EU3gametype;
-		string	V2gametype;
-		string	EU3Mod;
-		string	removetype;
 		string	outputName;
 };
 

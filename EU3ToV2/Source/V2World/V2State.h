@@ -41,7 +41,6 @@ class V2State
 {
 	public:
 		V2State(int newId, V2Province* firstProvince);
-		void output(FILE* output) const;
 
 		void addRailroads();
 		void setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion);

@@ -30,27 +30,27 @@ Configuration::Configuration()
 {
 	LOG(LogLevel::Info) << "Reading configuration file.";
 
-	Object* tempObj = doParseFile("configuration.txt");
+	Object* tempObj = doParseFile("configuration.txt");	// the parsed configuration file
 	if (tempObj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file configuration.txt";
 		exit(-1);
 	}
-	vector<Object*> obj = tempObj->getValue("configuration");
+	vector<Object*> obj = tempObj->getValue("configuration");	// the configuration section
 	if (obj.size() != 1)
 	{
 		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section.";
-		exit (-2);
+		exit (-1);
 	}
 
-	maxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
+	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
 	resetProvinces		= obj[0]->getLeaf("resetProvinces");
 	V2Path				= obj[0]->getLeaf("v2directory");
 	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	EU3Path				= obj[0]->getLeaf("EU3directory");
 	EU3gametype			= obj[0]->getLeaf("EU3gametype");
-	V2gametype			= obj[0]->getLeaf("V2gametype");
+	V2Gametype			= obj[0]->getLeaf("V2gametype");
 	EU3Mod				= obj[0]->getLeaf("EU3Mod");
-	removetype			= obj[0]->getLeaf("removetype");
+	Removetype			= obj[0]->getLeaf("removetype");
 	outputName			= "";
 }

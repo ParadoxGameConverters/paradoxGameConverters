@@ -34,7 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU3World::EU3World(EU3Localisation& localisation, Object* obj)
+EU3World::EU3World(Object* obj)
 {
 	cachedWorldType = unknown;
 
@@ -68,20 +68,6 @@ EU3World::EU3World(EU3Localisation& localisation, Object* obj)
 			else
 			{
 				EU3Country* country = new EU3Country(leaves[i]);
-				const auto& nameLocalisations = localisation.GetTextInEachLanguage(country->getTag());
-				for (const auto& nameLocalisation : nameLocalisations)
-				{
-					const std::string& language = nameLocalisation.first;
-					const std::string& name = nameLocalisation.second;
-					country->setLocalisationName(language, name);
-				}
-				const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(country->getTag() + "_ADJ");
-				for (const auto& adjectiveLocalisation : adjectiveLocalisations)
-				{
-					const std::string& language = adjectiveLocalisation.first;
-					const std::string& adjective = adjectiveLocalisation.second;
-					country->setLocalisationAdjective(language, adjective);
-				}
 				countries.insert(make_pair(country->getTag(), country));
 			}
 		}
@@ -311,6 +297,27 @@ void EU3World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 		if (j == inverseProvinceMap.end())
 		{
 			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
+		}
+	}
+}
+
+void EU3World::setLocalisations(EU3Localisation& localisation)
+{
+	for (map<string, EU3Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)
+	{
+		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->first);
+		for (const auto& nameLocalisation : nameLocalisations)
+		{
+			const std::string& language = nameLocalisation.first;
+			const std::string& name = nameLocalisation.second;
+			countryItr->second->setLocalisationName(language, name);
+		}
+		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr->first + "_ADJ");
+		for (const auto& adjectiveLocalisation : adjectiveLocalisations)
+		{
+			const std::string& language = adjectiveLocalisation.first;
+			const std::string& adjective = adjectiveLocalisation.second;
+			countryItr->second->setLocalisationAdjective(language, adjective);
 		}
 	}
 }
