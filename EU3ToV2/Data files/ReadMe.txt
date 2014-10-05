@@ -33,25 +33,6 @@ If you get an error complaining about MSVCP120.dll, go to Visual Studio Redistri
 
 
 ----
-THE CONVERTER MOD for VICTORIA 2
-----
-
-Zonix's CONVERTER MOD for VICTORIA 2 adds all the nations that exist in EU3 which are missing in Victoria 2.  This mod allows for complete 1 to 1 country mappings rather than using nations where possible.
-
-As of version 0.2, the mod also contains missing cultures.
-As of version 0.3 the mod comes with Magc8Balls flag pack as standard
-
-You can get it here: https://sourceforge.net/projects/eu3tovic2/files/Mods/EU3toVIC2%20Mod/
-
-INSTRUCTIONS
-1) Make a second copy of your VICTORIA 2 directory.  This will be the modified copy of victoria 2.  (Be sure to name it accordingly, so you don't get confused!)
-2) Copy the three modded folders ("common", "gfx", and "localisation") in to your new VICTORIA 2 directory, overwriting the old files.
-3) Copy the text files "country_mappings.txt" and "cultureMap.txt" in to the converter's directory, overwriting the old files.
-4) Follow the instructions for converting a game, above.  You should now have a V2 game with all of your nations in tact!
-
-
-
-----
 Magc8Ball's FLAG PACK
 ----
 
@@ -72,9 +53,10 @@ Idhrendur	- Project Lead, Programming
 King of Men	- Programming
 Ztaesek		- Programming
 theosZA		- Programming
-PTSnoop		- Programming, graphics
+PTSnoop		- Programming, Graphics, Anaylsis
 DasGuntLord01	- Data Files, Analysis
 Magc8Ball	- Data files
+Zonix		- Data Files
 Maksim17	- General help
 Chaingun	- General help
 SegFaultx64	- General help
@@ -82,7 +64,6 @@ Dr_V		- General help
 kalelovil	- General help
 Alfred Packer	- General help
 Anokmik		- General help
-Zonix		- General help
 Ztaesek		- General help
 
 

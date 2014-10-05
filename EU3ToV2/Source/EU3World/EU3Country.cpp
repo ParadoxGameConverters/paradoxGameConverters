@@ -1,3 +1,25 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
 #include "EU3Country.h"
 #include "../Log.h"
 #include "../Parsers/Object.h"
@@ -194,19 +216,19 @@ EU3Country::EU3Country(Object* obj)
 	vector<Object*> investmentObj = obj->getValue("distribution");
 	if (investmentObj.size() > 0)
 	{
-		landInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() ) * estMonthlyIncome;
-		navalInvestment		= atof( investmentObj[0]->getTokens()[3].c_str() ) * estMonthlyIncome;
-		tradeInvestment		= atof( investmentObj[0]->getTokens()[4].c_str() ) * estMonthlyIncome;
-		productionInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() ) * estMonthlyIncome;
-		governmentInvestment	= atof( investmentObj[0]->getTokens()[6].c_str() ) * estMonthlyIncome;
+		armyInvestment			= atof( investmentObj[0]->getTokens()[2].c_str() ) * estMonthlyIncome;
+		navyInvestment			= atof( investmentObj[0]->getTokens()[3].c_str() ) * estMonthlyIncome;
+		commerceInvestment	= atof( investmentObj[0]->getTokens()[4].c_str() ) * estMonthlyIncome;
+		industryInvestment	= atof( investmentObj[0]->getTokens()[5].c_str() ) * estMonthlyIncome;
+		cultureInvestment		= atof( investmentObj[0]->getTokens()[6].c_str() ) * estMonthlyIncome;
 	}
 	else
 	{
-		landInvestment			= 0.0;
-		navalInvestment		= 0.0;
-		tradeInvestment		= 0.0;
-		productionInvestment	= 0.0;
-		governmentInvestment	= 0.0;
+		armyInvestment			= 0.0;
+		navyInvestment			= 0.0;
+		commerceInvestment	= 0.0;
+		industryInvestment	= 0.0;
+		cultureInvestment		= 0.0;
 	}
 
 	flags.clear();
@@ -682,20 +704,20 @@ void EU3Country::eatCountry(EU3Country* target)
 		loans.insert(loans.end(), target->loans.begin(), target->loans.end());
 
 		// rebalance prestige, badboy, inflation and techs from weighted average
-		prestige				= myWeight * prestige					+ targetWeight * target->prestige;
-		badboy				= myWeight * badboy						+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
-		inflation			= myWeight * inflation					+ targetWeight * target->inflation;
-		landTech				= myWeight * landTech					+ targetWeight * target->landTech;
-		navalTech			= myWeight * navalTech					+ targetWeight * target->navalTech;
-		tradeTech			= myWeight * tradeTech					+ targetWeight * target->tradeTech;
-		productionTech		= myWeight * productionTech			+ targetWeight * target->productionTech;
-		governmentTech		= myWeight * governmentTech			+ targetWeight * target->governmentTech;
-		landInvestment	= myWeight * landInvestment			+ targetWeight * target->landInvestment;
-		navalInvestment	= myWeight * navalInvestment			+ targetWeight * target->navalInvestment;
-		tradeInvestment	= myWeight * tradeInvestment			+ targetWeight * target->tradeInvestment;
-		productionInvestment	= myWeight * productionInvestment	+ targetWeight * target->productionInvestment;
-		governmentInvestment	= myWeight * governmentInvestment	+ targetWeight * target->governmentInvestment;
-		estMonthlyIncome	= myWeight * estMonthlyIncome			+ targetWeight * target->estMonthlyIncome;
+		prestige					= myWeight * prestige					+ targetWeight * target->prestige;
+		badboy					= myWeight * badboy						+ targetWeight * target->badboy * (getBadboyLimit() / target->getBadboyLimit());
+		inflation				= myWeight * inflation					+ targetWeight * target->inflation;
+		landTech					= myWeight * landTech					+ targetWeight * target->landTech;
+		navalTech				= myWeight * navalTech					+ targetWeight * target->navalTech;
+		tradeTech				= myWeight * tradeTech					+ targetWeight * target->tradeTech;
+		productionTech			= myWeight * productionTech			+ targetWeight * target->productionTech;
+		governmentTech			= myWeight * governmentTech			+ targetWeight * target->governmentTech;
+		armyInvestment			= myWeight * armyInvestment			+ targetWeight * target->armyInvestment;
+		navyInvestment			= myWeight * navyInvestment			+ targetWeight * target->navyInvestment;
+		commerceInvestment	= myWeight * commerceInvestment		+ targetWeight * target->commerceInvestment;
+		industryInvestment	= myWeight * industryInvestment		+ targetWeight * target->industryInvestment;
+		cultureInvestment		= myWeight * cultureInvestment		+ targetWeight * target->cultureInvestment;
+		estMonthlyIncome		= myWeight * estMonthlyIncome			+ targetWeight * target->estMonthlyIncome;
 	}
 
 	// coreless, landless countries will be cleaned up automatically

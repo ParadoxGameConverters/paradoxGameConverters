@@ -1,3 +1,25 @@
+/*Copyright (c) 2014 The Paradox Game Converters Project
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+
+
 #ifndef EU3COUNTRY_H_
 #define EU3COUNTRY_H_
 
@@ -57,11 +79,11 @@ class EU3Country
 		double						getProductionTech()						const { return productionTech; };
 		double						getGovernmentTech()						const { return governmentTech; };
 		double						getEstimatedMonthlyIncome()			const { return estMonthlyIncome; };
-		double						getLandInvestment()						const { return landInvestment; };
-		double						getNavalInvestment()						const { return navalInvestment; };
-		double						getTradeInvestment()						const { return tradeInvestment; };
-		double						getProductionInvestment()				const { return productionInvestment; };
-		double						getGovernmentInvestment()				const { return governmentInvestment; };
+		double						getArmyInvestment()						const { return armyInvestment; };
+		double						getNavyInvestment()						const { return navyInvestment; };
+		double						getCommerceInvestment()					const { return commerceInvestment; };
+		double						getIndustryInvestment()					const { return industryInvestment; };
+		double						getCultureInvestment()					const { return cultureInvestment; };
 		bool							getPossibleDaimyo()						const { return possibleDaimyo; };
 		string						getGovernment()							const { return government; };
 		vector<EU3Relations*>	getRelations()								const { return relations; };
@@ -112,11 +134,11 @@ class EU3Country
 		double						productionTech;
 		double						governmentTech;
 		double						estMonthlyIncome;
-		double						landInvestment;
-		double						navalInvestment;
-		double						tradeInvestment;
-		double						productionInvestment;
-		double						governmentInvestment;
+		double						armyInvestment;
+		double						navyInvestment;
+		double						commerceInvestment;
+		double						industryInvestment;
+		double						cultureInvestment;
 		map<string, bool>			flags;
 		map<string, bool>			modifiers;
 		bool							possibleDaimyo;
