@@ -72,7 +72,9 @@ Idhrendur	- Project Lead, Programming
 King of Men	- Programming
 Ztaesek		- Programming
 theosZA		- Programming
+PTSnoop		- Programming, graphics
 DasGuntLord01	- Data Files, Analysis
+Magc8Ball	- Data files
 Maksim17	- General help
 Chaingun	- General help
 SegFaultx64	- General help
@@ -81,7 +83,6 @@ kalelovil	- General help
 Alfred Packer	- General help
 Anokmik		- General help
 Zonix		- General help
-Magc8Ball	- General help
 Ztaesek		- General help
 
 

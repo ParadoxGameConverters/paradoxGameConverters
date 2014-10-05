@@ -429,11 +429,10 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 		}
 	}
 
-	// Prestige, reforms
+	// Prestige
 	prestige		+= srcCountry->getPrestige() + 100;
 	prestige		+= srcCountry->getCulture();
 	prestige		+= srcCountry->getArmyTradition() + srcCountry->getNavyTradition();
-	reforms		=  new V2Reforms(srcCountry);
 
 	// Government
 	string srcGovernment = srcCountry->getGovernment();
@@ -521,6 +520,9 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 		}
 	}
 	LOG(LogLevel::Debug) << tag << " ruling party is " << rulingParty;
+
+	// Reforms
+	reforms		=  new V2Reforms(this, srcCountry);
 
 	// Relations
 	vector<EU3Relations*> srcRelations = srcCountry->getRelations();

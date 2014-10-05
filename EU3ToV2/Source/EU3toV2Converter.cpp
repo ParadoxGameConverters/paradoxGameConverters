@@ -250,16 +250,6 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 
-	// Get list of blocked nations
-	LOG(LogLevel::Info) << "Getting blocked V2 nations";
-	obj = doParseFile("blocked_nations.txt");
-	if (obj == NULL)
-	{
-		LOG(LogLevel::Error) << "Could not parse file blocked_nations.txt";
-		exit(-1);
-	}
-	vector<string> blockedNations = processBlockedNations(obj);
-
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
@@ -524,6 +514,8 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	fprintf(modFile, "replace = \"history/provinces\"\n");
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"common/religion.txt\"\n");
+	fprintf(modFile, "replace = \"common/cultures.txt\"\n");
+	fprintf(modFile, "replace = \"gfx/interface/icon_religion.dds\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());
