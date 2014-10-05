@@ -16,6 +16,28 @@ EU3Country::EU3Country(Object* obj)
 	provinces.clear();
 	cores.clear();
 
+	vector<Object*> nameObj = obj->getValue("name");
+	if (!nameObj.empty())
+	{
+		name = nameObj[0]->getLeaf();
+	}
+
+	vector<Object*> adjectiveObj = obj->getValue("adjective");
+	if (!adjectiveObj.empty())
+	{
+		adjective = adjectiveObj[0]->getLeaf();
+	}
+
+	vector<Object*> colorObj = obj->getValue("map_color");
+	if (!colorObj.empty())
+	{
+		color = Color(colorObj[0]);
+		// Countries whose colors are included in the object here tend to be generated countries,
+		// i.e. colonial nations which take on the color of their parent. To help distinguish 
+		// these countries from their parent's other colonies we randomly adjust the color.
+		color.RandomlyFlunctuate(30);
+	}
+
 	vector<Object*> capitalObj = obj->getValue("capital");
 	if (capitalObj.size() > 0)
 	{
@@ -272,13 +294,19 @@ EU3Country::EU3Country(Object* obj)
 	}
 
 	// Read international relations leaves
-	vector<Object*> relationLeaves = obj->getValue("active_relations");
-	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();
-	for (unsigned int i = 0; i < relationsLeaves.size(); ++i)
+	vector<Object*> leaves = obj->getLeaves();
+	for (unsigned int i = 0; i < leaves.size(); ++i)
 	{
-		string key = relationsLeaves[i]->getKey();
-		EU3Relations* rel = new EU3Relations(relationsLeaves[i]);
-		relations.push_back(rel);
+		string key = leaves[i]->getKey();
+
+		if ((key.size() == 3) &&
+			 (key.c_str()[0] >= 'A') && (key.c_str()[0] <= 'Z') &&
+			 (key.c_str()[1] >= 'A') && (key.c_str()[1] <= 'Z') &&
+			 (key.c_str()[2] >= 'A') && (key.c_str()[2] <= 'Z'))
+		{
+			EU3Relations* rel = new EU3Relations(leaves[i]);
+			relations.push_back(rel);
+		}
 	}
 
 	armies.clear();
@@ -480,6 +508,39 @@ EU3Country::EU3Country(Object* obj)
 }
 
 
+void EU3Country::readFromCommonCountry(const string& fileName, Object* obj)
+{
+	if (name.empty())
+	{
+		// For this country's name we will use the stem of the file name.
+		size_t extPos = fileName.find_last_of('.');
+		name = fileName.substr(0, extPos);
+	}
+
+	if (!color)
+	{
+		// Read country color.
+		auto colorObj = obj->getValue("color");
+		if (colorObj[0])
+		{
+			color = Color(colorObj[0]);
+		}
+	}
+}
+
+
+void EU3Country::setLocalisationName(const string& language, const string& name)
+{
+	namesByLanguage[language] = name;
+}
+
+
+void EU3Country::setLocalisationAdjective(const string& language, const string& adjective)
+{
+	adjectivesByLanguage[language] = adjective;
+}
+
+
 void EU3Country::addProvince(EU3Province* province)
 {
 	provinces.push_back(province);
@@ -641,7 +702,45 @@ void EU3Country::eatCountry(EU3Country* target)
 	target->clearProvinces();
 	target->clearCores();
 
-	log("	Merged %s into %s\n", target->tag.c_str(), tag.c_str());
+	LOG(LogLevel::Debug) << "Merged " << target->tag << " into " << tag;
+}
+
+
+string EU3Country::getName(const string& language) const
+{
+	if (namesByLanguage.empty() && language == "english")
+	{
+		return name;
+	}
+
+	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
+	if (findIter != namesByLanguage.end())
+	{
+		return findIter->second;
+	}
+	else
+	{
+		return "";
+	}
+}
+
+
+string EU3Country::getAdjective(const string& language) const
+{
+	if (adjectivesByLanguage.empty() && language == "english")
+	{
+		return adjective;
+	}
+
+	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
+	if (findIter != adjectivesByLanguage.end())
+	{
+		return findIter->second;
+	}
+	else
+	{
+		return "";
+	}
 }
 
 

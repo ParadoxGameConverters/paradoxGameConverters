@@ -6,20 +6,18 @@ Configuration* Configuration::instance = NULL;
 
 Configuration::Configuration()
 {
-	printf("Reading configuration file.\n");
-	log("Reading configuration file.\n");
+	LOG(LogLevel::Info) << "Reading configuration file.";
 
 	Object* tempObj = doParseFile("configuration.txt");
 	if (tempObj == NULL)
 	{
-		log("Could not parse file configuration.txt\n");
+		LOG(LogLevel::Error) << "Could not parse file configuration.txt";
 		exit(-1);
 	}
 	vector<Object*> obj = tempObj->getValue("configuration");
 	if (obj.size() != 1)
 	{
-		printf("Configuration file must contain exactly one configuration section.");
-		log("Configuration file must contain exactly one configuration section.");
+		LOG(LogLevel::Error) << "Configuration file must contain exactly one configuration section.";
 		exit (-2);
 	}
 

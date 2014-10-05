@@ -107,7 +107,9 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Color.cpp" />
     <ClCompile Include="Source\Configuration.cpp" />
+    <ClCompile Include="Source\CountryMapping.cpp" />
     <ClCompile Include="Source\Date.cpp" />
     <ClCompile Include="Source\EU3toV2Converter.cpp" />
     <ClCompile Include="Source\EU3World\EU3Army.cpp" />
@@ -115,6 +117,7 @@
     <ClCompile Include="Source\EU3World\EU3Diplomacy.cpp" />
     <ClCompile Include="Source\EU3World\EU3Leader.cpp" />
     <ClCompile Include="Source\EU3World\EU3Loan.cpp" />
+    <ClCompile Include="Source\EU3World\EU3Localisation.cpp" />
     <ClCompile Include="Source\EU3World\EU3Province.cpp" />
     <ClCompile Include="Source\EU3World\EU3Relations.cpp" />
     <ClCompile Include="Source\EU3World\EU3Religion.cpp" />
@@ -129,8 +132,10 @@
     <ClCompile Include="Source\V2World\V2Creditor.cpp" />
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\V2Factory.cpp" />
+    <ClCompile Include="Source\V2World\V2Flags.cpp" />
     <ClCompile Include="Source\V2World\V2Leader.cpp" />
     <ClCompile Include="Source\V2World\V2LeaderTraits.cpp" />
+    <ClCompile Include="Source\V2World\V2Localisation.cpp" />
     <ClCompile Include="Source\V2World\V2Party.cpp" />
     <ClCompile Include="Source\V2World\V2Pop.cpp" />
     <ClCompile Include="Source\V2World\V2Province.cpp" />
@@ -139,15 +144,19 @@
     <ClCompile Include="Source\V2World\V2State.cpp" />
     <ClCompile Include="Source\V2World\V2TechSchools.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
+    <ClCompile Include="Source\WinUtils.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Source\Color.h" />
     <ClInclude Include="Source\Configuration.h" />
+    <ClInclude Include="Source\CountryMapping.h" />
     <ClInclude Include="Source\Date.h" />
     <ClInclude Include="Source\EU3World\EU3Army.h" />
     <ClInclude Include="Source\EU3World\EU3Country.h" />
     <ClInclude Include="Source\EU3World\EU3Diplomacy.h" />
     <ClInclude Include="Source\EU3World\EU3Leader.h" />
     <ClInclude Include="Source\EU3World\EU3Loan.h" />
+    <ClInclude Include="Source\EU3World\EU3Localisation.h" />
     <ClInclude Include="Source\EU3World\EU3Province.h" />
     <ClInclude Include="Source\EU3World\EU3Relations.h" />
     <ClInclude Include="Source\EU3World\EU3Religion.h" />
@@ -161,9 +170,11 @@
     <ClInclude Include="Source\V2World\V2Creditor.h" />
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />
     <ClInclude Include="Source\V2World\V2Factory.h" />
+    <ClInclude Include="Source\V2World\V2Flags.h" />
     <ClInclude Include="Source\V2World\V2Inventions.h" />
     <ClInclude Include="Source\V2World\V2Leader.h" />
     <ClInclude Include="Source\V2World\V2LeaderTraits.h" />
+    <ClInclude Include="Source\V2World\V2Localisation.h" />
     <ClInclude Include="Source\V2World\V2Party.h" />
     <ClInclude Include="Source\V2World\V2Pop.h" />
     <ClInclude Include="Source\V2World\V2Province.h" />
@@ -172,6 +183,7 @@
     <ClInclude Include="Source\V2World\V2State.h" />
     <ClInclude Include="Source\V2World\V2TechSchools.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
+    <ClInclude Include="Source\WinUtils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

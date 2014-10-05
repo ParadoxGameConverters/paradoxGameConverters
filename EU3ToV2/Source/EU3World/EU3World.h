@@ -2,11 +2,13 @@
 #define EU3WORLD_H_
 
 
+#include <istream>
 #include "EU3Army.h"
 
 class EU3Country;
 class EU3Province;
 class EU3Diplomacy;
+class EU3Localisation;
 struct EU3Agreement;
 typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
@@ -24,7 +26,11 @@ enum WorldType
 
 class EU3World {
 	public:
-		EU3World(Object* obj);
+		EU3World(EU3Localisation&, Object* obj);
+
+		void	readCommonCountries(istream&, const std::string& rootPath);
+		void	readCountryLocalisation(istream&);
+
 		EU3Country*						getCountry(string tag) const;
 		EU3Province*					getProvince(int provNum) const;
 		void								removeCountry(string tag);

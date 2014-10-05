@@ -5,6 +5,7 @@
 
 #include <set>
 #include "EU3Army.h"
+#include "../Color.h"
 #include "../Date.h"
 
 class EU3Province;
@@ -18,6 +19,12 @@ class EU3Country
 {
 	public:
 		EU3Country(Object* obj);
+
+		// Add any additional information available from the specified country file.
+		void readFromCommonCountry(const string& fileName, Object*);
+
+		void setLocalisationName(const string& language, const string& name);
+		void setLocalisationAdjective(const string& language, const string& adjective);
 
 		void							addProvince(EU3Province*);
 		void							addCore(EU3Province*);
@@ -75,6 +82,11 @@ class EU3Country
 
 		double						getTreasury()								const	{ return inflationAdjust(treasury); };
 
+		string	getName() const { return name; }
+		string	getName(const string& language) const;
+		string	getAdjective(const string& language) const;
+		Color		getColor() const { return color; }
+
 	private:
 		void							checkIdea(const Object*, const string);
 		void							clearProvinces();
@@ -129,6 +141,14 @@ class EU3Country
 
 		double						legitimacy;
 		double						inflation;
+
+		string	name;
+		string	adjective;
+		Color		color;
+
+		// Localisation attributes
+		map<string, string> namesByLanguage;
+		map<string, string> adjectivesByLanguage;
 };
 
 

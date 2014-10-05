@@ -3,6 +3,7 @@
 
 
 
+#include <iostream>
 #include <string>
 using namespace std;
 
@@ -24,6 +25,8 @@ struct date
 	bool operator>(const date& _rhs) const;
 	bool operator<=(const date& _rhs) const;
 	bool operator>=(const date& _rhs) const;
+
+	friend ostream& operator<<(ostream&, const date&);
 
 	bool isSet() const;
 	string toString() const;

@@ -1,15 +1,18 @@
 #include "EU3World.h"
+#include <algorithm>
 #include "../Log.h"
 #include "../Configuration.h"
 #include "../Mapper.h"
 #include "../Parsers/Object.h"
+#include "../Parsers/Parser.h"
 #include "EU3Province.h"
 #include "EU3Country.h"
 #include "EU3Diplomacy.h"
+#include "EU3Localisation.h"
 
 
 
-EU3World::EU3World(Object* obj)
+EU3World::EU3World(EU3Localisation& localisation, Object* obj)
 {
 	cachedWorldType = unknown;
 
@@ -43,6 +46,20 @@ EU3World::EU3World(Object* obj)
 			else
 			{
 				EU3Country* country = new EU3Country(leaves[i]);
+				const auto& nameLocalisations = localisation.GetTextInEachLanguage(country->getTag());
+				for (const auto& nameLocalisation : nameLocalisations)
+				{
+					const std::string& language = nameLocalisation.first;
+					const std::string& name = nameLocalisation.second;
+					country->setLocalisationName(language, name);
+				}
+				const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(country->getTag() + "_ADJ");
+				for (const auto& adjectiveLocalisation : adjectiveLocalisations)
+				{
+					const std::string& language = adjectiveLocalisation.first;
+					const std::string& adjective = adjectiveLocalisation.second;
+					country->setLocalisationAdjective(language, adjective);
+				}
 				countries.insert(make_pair(country->getTag(), country));
 			}
 		}
@@ -90,6 +107,51 @@ EU3World::EU3World(Object* obj)
 			if ( j != provinces.end() )
 			{
 				j->second->setCOT(true);
+			}
+		}
+	}
+}
+
+
+void EU3World::readCommonCountries(istream& in, const std::string& rootPath)
+{
+	// Add any info from common\countries
+	const int maxLineLength = 10000;
+	char line[maxLineLength];
+
+	while (true)
+	{
+		in.getline(line, maxLineLength);
+		if (in.eof())
+		{
+			return;
+		}
+		std::string countryLine = line;
+		if (countryLine.size() >= 6 && countryLine[0] != '#')
+		{
+			// First three characters must be the tag.
+			std::string tag = countryLine.substr(0, 3);
+			map<string, EU3Country*>::iterator findIter = countries.find(tag);
+			if (findIter != countries.end())
+			{
+				EU3Country* country = findIter->second;
+
+				// The country file name is all the text after the equals sign (possibly in quotes).
+				size_t equalPos = countryLine.find('=', 3);
+				size_t beginPos = countryLine.find_first_not_of(' ', equalPos + 1);
+				size_t endPos = countryLine.find_last_not_of(' ') + 1;
+				std::string fileName = countryLine.substr(beginPos, endPos - beginPos);
+				if (fileName.front() == '"' && fileName.back() == '"')
+				{
+					fileName = fileName.substr(1, fileName.size() - 2);
+				}
+				std::replace(fileName.begin(), fileName.end(), '/', '\\');
+
+				// Parse the country file.
+				std::string path = rootPath + "\\common\\" + fileName;
+				size_t lastPathSeparatorPos = path.find_last_of('\\');
+				std::string localFileName = path.substr(lastPathSeparatorPos + 1, string::npos);
+				country->readFromCommonCountry(localFileName, doParseFile(path.c_str()));
 			}
 		}
 	}
@@ -168,7 +230,7 @@ WorldType EU3World::getWorldType()
 		cachedWorldType = DivineWind;
 		break;
 	default:
-		log("	Unrecognized max province ID: %d\n", maxProvinceID);
+		Log(LogLevel::Warning) << "Unrecognized max province ID: " << maxProvinceID;
 		if (maxProvinceID < 1774)
 		{
 			cachedWorldType = VeryOld; // pre-IN
@@ -202,12 +264,12 @@ WorldType EU3World::getWorldType()
 
 	if ((cachedWorldType != forcedWorldType) && (cachedWorldType != unknown))
 	{
-		log("	Warning: world type was detected successfuly, but a different type was specified in the configuration file!\n");
+		Log(LogLevel::Warning) << "World type was detected successfuly, but a different type was specified in the configuration file!";
 	}
 
 	if (cachedWorldType == unknown)
 	{
-		log("	Error: world type unknown!\n");
+		Log(LogLevel::Warning) << "World type unknown!";
 	}
 
 	if (forcedWorldType != unknown)
@@ -226,7 +288,7 @@ void EU3World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
 		if (j == inverseProvinceMap.end())
 		{
-			log("	Warning: no mapping for province #%d\n", i->first);
+			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
 		}
 	}
 }

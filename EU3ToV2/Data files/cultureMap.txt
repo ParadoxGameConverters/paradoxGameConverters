@@ -37,12 +37,13 @@ link = { vic = swedish eu3 = swedish }
 link = { vic = danish eu3 = danish }
 link = { vic = norwegian eu3 = norwegian }
 #link = { vic = icelandic eu3 = ? }
+link = { vic = norse eu3 = norse }
 
 # British - english, american, scottish
 #link = { vic = yankee eu3 = english region = northeastern_america }
 #link = { vic = dixie eu3 = english region = eastern_america }
 #link = { vic = anglo_canadian eu3 = english region = northern_america }
-link = { vic = british eu3 = english eu3 = scottish eu3 = anglo_saxon }
+link = { vic = british eu3 = english eu3 = scottish eu3 = anglo_saxon eu3 = anglosaxon }
 link = { vic = yankee  eu3 = american }
 #link = { vic = texan eu3 = ? }
 #link = { vic = australian eu3 = ? }
@@ -57,11 +58,15 @@ link = { vic = south_italian eu3 = sicilian }
 #link = { vic = north_italian eu3 = italian region = lombardia }
 #link = { vic = south_italian eu3 = italian region = two_sicilies }
 link = { vic = north_italian eu3 = italian }
+link = { vic = roman eu3 = roman }
 
 # Iberian - castillian, catalan, galician, andalucian, portugese, maltese
 #link = { vic = mexican eu3 = castillian eu4 = galician eu4 = andalucian region = central_america }
+#link = { vic = mexican eu3 = nahuatl }
 #link = { vic = caribeno eu3 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
+link = { vic = caribeno eu3 = caribeno }
 #link = { vic = platinean eu3 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
+#link = { vic = platinean eu3 = platinian }
 link = { vic = spanish eu3 = castillian eu3 = galician eu3 = andalucian }
 link = { vic = catalan eu3 = catalan }
 link = { vic = portuguese eu3 = portugese }
@@ -69,7 +74,7 @@ link = { vic = portuguese eu3 = portugese }
 link = { vic = maltese eu3 = maltese }
 link = { vic = basque eu3 = basque }
 #link = { vic = central_american eu3 = ? }
-#link = { vic = north_andean eu3 = ? }
+link = { vic = north_andean eu3 = n_andean }
 #link = { vic = south_andean eu3 = ? }
 #link = { vic = brazilian eu3 = ? }
 
@@ -118,7 +123,7 @@ link = { vic = sephardic eu3 = greek eu3 = georgian eu3 = armenian religion = je
 link = { vic = greek eu3 = greek }
 link = { vic = georgian eu3 = georgian }
 link = { vic = armenian eu3 = armenian }
-link = { eu3 = north_caucasian vic = alan }
+link = { vic = north_caucasian eu3 = alan }
 
 # Turko Semitic	- maghreb_arabic, al_misr_arabic, al_suryah_arabic, al_iraqiya_arabic, bedouin_arabic, berber, turkish
 link = { vic = maghrebi eu3 = maghreb_arabic }
@@ -126,7 +131,7 @@ link = { vic = misri eu3 = al_misr_arabic }
 link = { vic = mashriqi eu3 = al_iraqiya_arabic eu3 = al_suryah_arabic }
 link = { vic = bedouin eu3 = bedouin_arabic }
 link = { vic = berber eu3 = berber }
-link = { vic = turkish eu3 = turkish vic = pecheneg }
+link = { vic = turkish eu3 = turkish eu3 = pecheneg }
 
  # Iranian - persian, east_persian, baluchi
 #link = { vic = tajik eu3 = persian region = central_asia }
@@ -145,7 +150,7 @@ link = { vic = kirgiz eu3 = kirgiz }
 link = { vic = siberian eu3 = siberian }
 link = { vic = yakut eu3 = yakut }
 link = { vic = tatar eu3 = tartar eu3 = cuman }
-#link = { vic = kurdish eu3 = ? }
+link = { vic = kurdish eu3 = kurdish }
 #link = { vic = uighur eu3 = ? }
 
 # Central American - zapotek, mayan, aztek

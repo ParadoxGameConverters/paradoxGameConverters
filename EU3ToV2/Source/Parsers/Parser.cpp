@@ -115,10 +115,19 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 
 	Parser() : Parser::base_type(root)
 	{
+		// { }
 		braces = *(iso8859_1::space) >> lit('{') >> *(iso8859_1::space) >> lit('}') >> *(iso8859_1::space);
+
+		// a string enclosed in quotes
 		str = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"') | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F))] >> lit('"')];
+
+		// a 'forgiving' string without quotes
 		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F))];
+
+		// a strict string without quotes
 		leaf = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F))];
+
+		// a 
 		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
 		object  = raw[lit('{') >> *(root) >> *(iso8859_1::space) >> lit('}')];
 		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
@@ -173,7 +182,7 @@ string bufferOneObject(ifstream& read)
 		{
 			continue;
 		}
-		else if (buffer == "EU4txt")
+		else if (buffer == "EU3txt")
 		{
 			continue;
 		}
@@ -270,14 +279,14 @@ bool readFile(ifstream& read)
 
 void clearStack()
 {
-	if (0 < stack.size())
+	if (!stack.empty())
 	{
-		cout << "Warning: Clearing stack size " << stack.size() << ". This should not happen in normal operation." << endl;
-	}
-	for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
-	{
-		//cout << (*i)->getKey() << endl;
-		cout << (*(*i)) << endl;
+		Log logOutput(LogLevel::Warning);
+		logOutput << "Clearing stack size " << stack.size() << " - this should not happen in normal operation\n";
+		for (vector<Object*>::iterator i = stack.begin(); i != stack.end(); ++i)
+		{
+			logOutput << **i << '\n';
+		}
 	}
 	stack.clear();
 }

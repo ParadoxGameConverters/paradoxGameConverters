@@ -20,8 +20,7 @@ void initProvinceMap(Object* obj, WorldType worldType, provinceMapping& province
 
 	if (worldTypeLeaves.size() < 1)
 	{
-		log ("\tError: No province mapping definitions loaded.\n");
-		printf("\tError: No province mapping definitions loaded.\n");
+		LOG(LogLevel::Error) << "No province mapping definitions loaded";
 		return;
 	}
 
@@ -58,14 +57,13 @@ void initProvinceMap(Object* obj, WorldType worldType, provinceMapping& province
 			case VeryOld:
 			default:
 			{
-				log("Error: Unsupported world type. Cannot map provinces!\n");
-				printf("Error: Unsupported world type. Cannot map provinces!\n");
+				Log(LogLevel::Error) << "Unsupported world type. Cannot map provinces!";
 				exit(-1);
 			}
 		}
 	}
 
-	log("Using version %s mappings\n", worldTypeLeaves[mappingIdx]->getKey().c_str());
+	LOG(LogLevel::Debug) << "Using world type " << worldTypeLeaves[mappingIdx]->getKey() << " mappings";
 	vector<Object*> data = worldTypeLeaves[mappingIdx]->getLeaves();
 
 	for (vector<Object*>::iterator i = data.begin(); i != data.end(); i++)
@@ -92,7 +90,7 @@ void initProvinceMap(Object* obj, WorldType worldType, provinceMapping& province
 			}
 			else
 			{
-				log("\tWarning: unknown data while mapping provinces.\n");
+				LOG(LogLevel::Warning) << "Unknown data while mapping provinces";
 			}
 		}
 
@@ -149,13 +147,13 @@ adjacencyMapping initAdjacencyMap()
 	struct _stat st;
 	if ((_stat(filename.c_str(), &st) != 0))
 	{
-		log("\tCould not find %s. Looking in install folder\n", filename.c_str());
+		LOG(LogLevel::Warning) << "Could not find " << filename << " - looking in install folder";
 		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";
 	}
 	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	if (adjacenciesBin == NULL)
 	{
-		log("Error: Could not open %s\n", filename.c_str());
+		LOG(LogLevel::Error) << "Could not open " << filename;
 		exit(1);
 	}
 
@@ -197,6 +195,7 @@ adjacencyMapping initAdjacencyMap()
 
 void initContinentMap(Object* obj, continentMapping& continentMap)
 {
+	continentMap.clear();
 	vector<Object*> continentObjs = obj->getLeaves();
 	for (unsigned int i = 0; i < continentObjs.size(); i++)
 	{
@@ -231,125 +230,12 @@ vector<string> processBlockedNations(Object* obj)
 }
 
 
-int initCountryMap(countryMapping& mapping, const EU3World& srcWorld, const V2World& destWorld, const vector<string>& blockedNations, Object* rulesObj)
-{
-	mapping.clear();
-	countryMapping::iterator mapIter;
-
-	// get rules
-	vector<Object*> leaves = rulesObj->getLeaves();
-	if (leaves.size() < 1)
-	{
-		log ("\tError: No country mapping definitions loaded.\n");
-		printf("\tError: No country mapping definitions loaded.\n");
-		return -1;
-	}
-	vector<Object*> rules = leaves[0]->getLeaves();
-
-	map<string, EU3Country*>	EU3Countries		= srcWorld.getCountries();
-	map<string, V2Country*>		V2Countries			= destWorld.getPotentialCountries();
-	map<string, V2Country*>		dynamicCountries	= destWorld.getDynamicCountries();
-	for (vector<Object*>::iterator i = rules.begin(); i != rules.end(); ++i)
-	{
-		vector<Object*> rule = (*i)->getLeaves();
-		string			rEU3Tag;
-		vector<string>	rV2Tags;
-		for (vector<Object*>::iterator j = rule.begin(); j != rule.end(); j++)
-		{
-			if ( (*j)->getKey() == "eu3" )
-			{		 
-				rEU3Tag = (*j)->getLeaf();
-			}
-			else if ( (*j)->getKey() == "vic" )
-			{
-				rV2Tags.push_back( (*j)->getLeaf() );
-			}
-			else
-			{
-				log("\tWarning: unknown data while mapping countries.\n");
-			}
-		}
-
-		// find the EU3 country from the rule
-		map<string, EU3Country*>::const_iterator EU3Country = EU3Countries.find(rEU3Tag);
-		if (EU3Country == EU3Countries.end())
-		{
-			continue;
-		}
-
-		// find the first available V2 tag from the rule
-		unsigned int distance = 0;
-		map<string, V2Country*>::const_iterator V2Country;// = V2Countries.end();
-		for (vector<string>::reverse_iterator j = rV2Tags.rbegin(); j != rV2Tags.rend(); ++j)
-		{
-			++distance;
-			V2Country = V2Countries.find(*j);
-			if (V2Country != V2Countries.end())
-			{
-				//add the mapping
-				mapping.insert(make_pair(EU3Country->first, V2Country->first));
-				log("\tAdded map %s -> %s (#%d)\n", EU3Country->first.c_str(),V2Country->first.c_str(), distance);
-
-				//remove tags from the lists
-				EU3Countries.erase(EU3Country);
-				V2Countries.erase(V2Country);
-				break;
-			}
-		}
-	}
-
-	map<string, EU3Country*>::iterator itr = EU3Countries.find("REB");
-	if ( itr != EU3Countries.end() )
-	{
-		mapping.insert(make_pair(itr->first, "REB"));
-		EU3Countries.erase(itr);
-	}
-	itr = EU3Countries.find("PIR");
-	if ( itr != EU3Countries.end() )
-	{
-		mapping.insert(make_pair(itr->first, "REB"));
-		EU3Countries.erase(itr);
-	}
-	itr = EU3Countries.find("NAT");
-	if ( itr != EU3Countries.end() )
-	{
-		mapping.insert(make_pair(itr->first, "REB"));
-		EU3Countries.erase(itr);
-	}
-
-	for (vector<string>::const_iterator i = blockedNations.begin(); i != blockedNations.end(); ++i)
-	{
-		map<string, V2Country*>::iterator j = V2Countries.find(*i);
-		if (j != V2Countries.end())
-		{
-			V2Countries.erase(j);
-		}
-	}
-
-	while ( (EU3Countries.size() > 0) && (V2Countries.size() > 0) )
-	{
-		map<string, V2Country*>::iterator	V2CountryItr = V2Countries.begin();
-		map<string, V2Country*>::iterator	dynamicCountry = dynamicCountries.find(V2CountryItr->first);
-		if (dynamicCountry == dynamicCountries.end())
-		{
-			map<string, EU3Country*>::iterator	EU3Country = EU3Countries.begin();
-			mapping.insert(make_pair(EU3Country->first, V2CountryItr->first));
-			log("\tAdded map %s -> %s (fallback)\n", EU3Country->first.c_str(), V2CountryItr->first.c_str());
-			EU3Countries.erase(EU3Country);
-		}
-		V2Countries.erase(V2CountryItr);
-	}
-
-	return EU3Countries.size();
-}
-
-
 void mergeNations(EU3World& world, Object* mergeObj)
 {
 	vector<Object*> rules = mergeObj->getValue("merge_nations");
 	if (rules.size() < 0)
 	{
-		log("\tNo nations have merging requested (skipping).\n");
+		LOG(LogLevel::Debug) << "No nations have merging requested (skipping)";
 		return;
 	}
 

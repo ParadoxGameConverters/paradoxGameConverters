@@ -110,23 +110,36 @@ void Object::setValue (vector<Object*> val) {
 }
 
 void Object::addToList(string val) {
-  isObjList = true;
-  if (strVal.size() > 0)
-   strVal += " ";
-  strVal += val; 
-  tokens.push_back(val); 
+	isObjList = true;
+	if (strVal.size() > 0)
+	{
+		strVal += " \"";
+	}
+	else
+	{
+		strVal += "\"";
+	}
+	strVal += val;
+	strVal += "\"";
+	tokens.push_back(val); 
 }
 
 void Object::addToList(vector<string>::iterator begin, vector<string>::iterator end)
 {
-  isObjList = true;
-  for (vector<string>::iterator itr = begin; itr != end; ++itr)
-  {
-    if (strVal.size() > 0)
-      strVal += " ";
-    strVal += *itr; 
-  }
-  tokens.insert(tokens.end(), begin, end);
+	isObjList = true;
+	for (vector<string>::iterator itr = begin; itr != end; ++itr)
+	{
+		if (strVal.size() > 0)
+		{
+			strVal += "\" \"";
+		}
+		else
+		{
+			strVal += "\"";
+		}
+	}
+	strVal += "\"";
+	tokens.insert(tokens.end(), begin, end);
 }
 
 vector<Object*> Object::getValue (string key) const {

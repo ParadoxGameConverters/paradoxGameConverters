@@ -1,12 +1,38 @@
-#ifndef LOG_H
-#define LOG_H
+#ifndef LOG_H_
+#define LOG_H_
 
+#include <sstream>
+#include <string>
 
+#define LOG(LOG_LEVEL) Log(LOG_LEVEL)
 
-void initLog();
-int log(const char* format, ...);
-void closeLog();
+enum class LogLevel
+{
+	Error,
+	Warning,
+	Info,
+	Debug
+};
 
+class Log
+{
+public:
+	Log(LogLevel);
+	~Log();
 
+	template<class T>
+	Log& operator<<(T t)
+	{
+		logMessageStream << t;
+		return *this;
+	}
 
-#endif // LOG_H
+private:
+	static void WriteToConsole(LogLevel, const std::string& logMessage);
+	static void WriteToFile(LogLevel, const std::string& logMessage);
+
+	LogLevel logLevel;
+	std::ostringstream logMessageStream;
+};
+
+#endif // LOG_H_

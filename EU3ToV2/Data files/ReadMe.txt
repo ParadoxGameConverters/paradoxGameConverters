@@ -67,18 +67,22 @@ CREDITS
 
 A (incomplete) list of those who contributed effort to this mammoth undertaking
 
-Sid Meier
-Maksim17
-Chaingun
-SegFaultx64
-Idhrendur
-Dr_V
-kalelovil
-Alfred Packer
-Anokmik
-King of Men
-DasGuntLord01
-Zonix
-Magc8Ball
+Sid Meier	- Project Lead
+Idhrendur	- Project Lead, Programming
+King of Men	- Programming
+Ztaesek		- Programming
+theosZA		- Programming
+DasGuntLord01	- Data Files, Analysis
+Maksim17	- General help
+Chaingun	- General help
+SegFaultx64	- General help
+Dr_V		- General help
+kalelovil	- General help
+Alfred Packer	- General help
+Anokmik		- General help
+Zonix		- General help
+Magc8Ball	- General help
+Ztaesek		- General help
+
 
  - AND ALL THE OTHERS WHO GAVE THEIR INPUT ON THE FORUM -

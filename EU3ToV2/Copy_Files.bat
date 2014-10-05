@@ -1,6 +1,6 @@
 copy "data files\country_mappings.txt" "release\country_mappings.txt"
 copy "data files\readme.txt" "release\readme.txt"
-copy "data files\provincemappings.txt" "release\provincemappings.txt"
+copy "data files\province_mappings.txt" "release\province_mappings.txt"
 copy "data files\cultureMap.txt" "release\cultureMap.txt"
 copy "data files\religionMap.txt" "release\religionMap.txt"
 copy "data files\blocked_nations.txt" "release\blocked_nations.txt"

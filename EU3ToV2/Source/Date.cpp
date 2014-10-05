@@ -105,6 +105,13 @@ bool date::operator>=(const date& _rhs) const
 }
 
 
+ostream& operator<<(ostream& out, const date& d)
+{
+	out << d.year << '.' << d.month << '.' << d.day;
+	return out;
+}
+
+
 bool date::isSet() const
 {
 	date default_date;

@@ -64,7 +64,7 @@ V2Province::V2Province(string _filename)
 		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str());
 		if (obj == NULL)
 		{
-			log("\tError: Could not parse %s\n", (string(".\\blankMod\\output\\history\\provinces\\") + _filename).c_str());
+			LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces\\" << _filename;
 			exit(-1);
 		}
 	}
@@ -73,7 +73,7 @@ V2Province::V2Province(string _filename)
 		obj = doParseFile((Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
 		if (obj == NULL)
 		{
-			log("\tError: Could not parse %s\n", (Configuration::getV2Path() + "\\history\\provinces\\" + _filename).c_str());
+			LOG(LogLevel::Error) << "Could not parse " << Configuration::getV2Path() << "\\history\\provinces\\" << _filename;
 			exit(-1);
 		}
 	}
@@ -154,7 +154,7 @@ void V2Province::output() const
 		_get_errno(&errNum);
 		char errStr[256];
 		strerror_s(errStr, sizeof(errStr), errNum);
-		log("\tError: Could not create province history file %s (%s)", ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename).c_str(), errStr);
+		LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename << " - " << errStr;
 		exit(-1);
 	}
 	if (owner != "")
