@@ -139,66 +139,33 @@ V2World::V2World()
 	}
 	
 	// set V2 basic population levels
-	//log("\tImporting historical pops.\n");
-	//printf("\tImporting historical pops.\n");
-	//struct _finddata_t	popsFileData;
-	//if ( (fileListing = _findfirst( (V2Loc + "\\history\\pops\\1836.1.1\\*").c_str(), &popsFileData)) == -1L)
-	//{
-	//	log("Could not open pops files.\n");
-	//	return;
-	//}
-	//do
-	//{
-	//	if (strcmp(popsFileData.name, ".") == 0 || strcmp(popsFileData.name, "..") == 0 )
-	//	{
-	//		continue;
-	//	}
-
-	//	Object*	obj2;				// generic object
-	//	ifstream	read;				// ifstream for reading files
-	//	initParser();
-	//	obj2 = getTopLevel();
-	//	read.open( (V2Loc + "\\history\\pops\\1836.1.1\\" + popsFileData.name).c_str() );
-	//	if (!read.is_open())
-	//	{
-	//		log("Error: Could not open %s\n", popsFileData.name);
-	//		printf("Error: Could not open %s\n", popsFileData.name);
-	//		read.close();
-	//		read.clear();
-	//		continue;
-	//	}
-	//	readFile(read);
-	//	read.close();
-	//	read.clear();
-	//
-	//	vector<Object*> leaves = obj2->getLeaves();
-	//	for (unsigned int j = 0; j < leaves.size(); j++)
-	//	{
-	//		int provNum = atoi(leaves[j]->getKey().c_str());
-	//		unsigned int k = 0;
-	//		while (k < provinces.size() && provNum != provinces[k]->getNum())
-	//		{
-	//			k++;
-	//		}
-	//		if (k == provinces.size())
-	//		{
-	//			log("Could not find province %d for original pops.\n", provNum);
-	//			continue;
-	//		}
-	//		else
-	//		{
-	//			vector<Object*> pops = leaves[j]->getLeaves();
-	//			for(unsigned int l = 0; l < pops.size(); l++)
-	//			{
-	//				vector< pair<int, double> > issues;
-	//				issues.clear();
-	//				V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"), 10.0, 0.0, 0.0, 0.0, issues);
-	//				provinces[k]->addOldPop(newPop);
-	//			}
-	//		}
-	//	}
-	//} while(_findnext(fileListing, &popsFileData) == 0);
-	//_findclose(fileListing);
+	LOG(LogLevel::Info) << "Importing historical pops.";
+	set<string> fileNames;
+	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
+	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+	{
+		Object*	obj2	= doParseFile((Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
+		vector<Object*> leaves = obj2->getLeaves();
+		for (unsigned int j = 0; j < leaves.size(); j++)
+		{
+			int provNum = atoi(leaves[j]->getKey().c_str());
+			map<int, V2Province*>::iterator k = provinces.find(provNum);
+			if (k == provinces.end())
+			{
+				LOG(LogLevel::Warning) << "Could not find province " << provNum << " for original pops.";
+				continue;
+			}
+			else
+			{
+				vector<Object*> pops = leaves[j]->getLeaves();
+				for(unsigned int l = 0; l < pops.size(); l++)
+				{
+					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
+					k->second->addOldPop(newPop);
+				}
+			}
+		}
+	}
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
@@ -415,29 +382,25 @@ void V2World::output() const
 		itr->second->output();
 	}
 	diplomacy.output();
-	/*if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
+
+	outputPops();
+}
+
+
+void V2World::outputPops() const
+{
+	LOG(LogLevel::Debug) << "Writing pops";
+	FILE* popsFile;
+	if (fopen_s(&popsFile, ("Output\\" + Configuration::getOutputName() + "\\history\\pops\\1836.1.1\\pops.txt").c_str(), "w") != 0)
 	{
-		for (map< int, set<string> >::const_iterator colonyIter = colonies.begin(); colonyIter != colonies.end(); colonyIter++)
-		{
-			fprintf(output, "region=\n");
-			fprintf(output, "{\n");
-			fprintf(output, "	index=%d\n", colonyIter->first);
-			fprintf(output, "	phase=0\n");
-			fprintf(output, "	temperature=0.000\n");
-			for (set<string>::iterator countriesIter = colonyIter->second.begin(); countriesIter != colonyIter->second.end(); countriesIter++)
-			{
-				fprintf(output, "	colony=\n");
-				fprintf(output, "	{\n");
-				fprintf(output, "		tag=\"%s\"\n", countriesIter->c_str());
-				fprintf(output, "		points=1\n");
-				fprintf(output, "		invest=80\n");
-				fprintf(output, "		date=\"1836.1.1\"\n");
-				fprintf(output, "	}\n");
-			}
-			fprintf(output, "}\n");
-		}
+		LOG(LogLevel::Error) << "Could not create pops file";
+		exit(-1);
 	}
-	*/
+
+	for (map<int, V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		itr->second->outputPops(popsFile);
+	}
 }
 
 
@@ -736,6 +699,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		}
 		else if ((Configuration::getResetProvinces() == "yes") && (resettableProvinces.count(destNum) > 0))
 		{
+			i->second->setResettable(true);
 			continue;
 		}
 

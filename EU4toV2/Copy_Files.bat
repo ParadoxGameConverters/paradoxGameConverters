@@ -55,6 +55,8 @@ mkdir "release\blankMod\output\history\provinces\usa"
 mkdir "release\blankMod\output\history\countries"
 mkdir "release\blankMod\output\history\diplomacy"
 mkdir "release\blankMod\output\history\units"
+mkdir "release\blankMod\output\history\pops"
+mkdir "release\blankMod\output\history\pops\1836.1.1"
 mkdir "release\blankMod\output\common"
 
 xcopy "Data_Files\countries" "release\blankmod\output\common\countries" /Y /E /I

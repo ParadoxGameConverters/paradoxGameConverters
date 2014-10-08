@@ -48,7 +48,7 @@ class V2Regiment // also Ship
 		void output(FILE* out) const;
 
 		void setName(string _name)		{ name = _name; };
-		void setPopID(int newPop)		{ popID = newPop; };
+		void setHome(int newHome)		{ home = newHome; };
 		void setStrength(double str)	{ strength = str; };
 
 		bool					getShip()		const { return isShip; };
@@ -57,7 +57,7 @@ class V2Regiment // also Ship
 		V2ArmyID				id;
 		string				name;
 		string				type;
-		int					popID;
+		int					home;
 		double				strength;
 		bool					isShip;
 		RegimentCategory	category;

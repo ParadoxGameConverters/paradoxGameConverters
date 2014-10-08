@@ -26,14 +26,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-static int nextId = 23000;
-
-
 V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 {
-	id = nextId;
-	nextId++;
-
 	type						= _type;
 	size						= _size;
 	culture					= _culture;
@@ -49,10 +43,9 @@ void V2Pop::output(FILE* output) const
 {
 	fprintf(output, "\t%s=\n", type.c_str());
 	fprintf(output, "\t{\n");
-	fprintf(output, "\t\tid=%d\n", id);
+	fprintf(output, "\t\tculture = %s\n", culture.c_str());
+	fprintf(output, "\t\treligion = %s\n", religion.c_str());
 	fprintf(output, "\t\tsize=%d\n", size);
-	fprintf(output, "\t\t%s=%s\n", culture.c_str(), religion.c_str());
-	fprintf(output, "\t\tmoney=%f\n", money);
 	fprintf(output, "\t}\n");
 }
 
@@ -97,10 +90,4 @@ void V2Pop::recalcMoney()
 	{
 		LOG(LogLevel::Warning) << "Unexpected pop type " << type;
 	}
-}
-
-
-int getNextPopId()
-{
-	return nextId;
 }

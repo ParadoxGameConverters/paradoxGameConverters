@@ -404,6 +404,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
 
 	// Get country mappings
+	LOG(LogLevel::Info) << "Getting country mappings";
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
 
@@ -412,6 +413,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
 
 	// Generate continent mapping. Only the one from the last listed mod will be used
+	LOG(LogLevel::Info) << "Finding Continents";
 	continentMapping continentMap;
 	for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
 	{
@@ -750,8 +752,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	destWorld.setupStates(stateMap);
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 	destWorld.convertUncivReforms();
-	/*LOG(LogLevel::Info) << "Creating pops";
-	destWorld.setupPops(sourceWorld);*/
+	LOG(LogLevel::Info) << "Creating pops";
+	destWorld.setupPops(sourceWorld);
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
 	/*LOG(LogLevel::Info) << "Converting armies and navies";
@@ -776,9 +778,13 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");
 	fprintf(modFile, "replace = \"history/units\"\n");
+	fprintf(modFile, "replace = \"history/pops/1836.1.1\"\n");
 	fprintf(modFile, "replace = \"common/religion.txt\"\n");
 	fprintf(modFile, "replace = \"common/cultures.txt\"\n");
 	fprintf(modFile, "replace = \"gfx/interface/icon_religion.dds\"\n");
+	fprintf(modFile, "replace = \"localisation/text.csv\"\n");
+	fprintf(modFile, "replace = \"localisation/0_Names.csv\"\n");
+	fprintf(modFile, "replace = \"localisation/0_Cultures.csv\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
 	system(renameCommand.c_str());

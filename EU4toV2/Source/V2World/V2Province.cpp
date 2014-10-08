@@ -73,6 +73,8 @@ V2Province::V2Province(string _filename)
 	railLevel			= 0;
 	factories.clear();
 
+	resettable			= false;
+
 	int slash		= filename.find_last_of("\\");
 	int numDigits	= filename.find_first_of("-") - slash - 2;
 	string temp		= filename.substr(slash + 1, numDigits);
@@ -232,18 +234,30 @@ void V2Province::output() const
 
 void V2Province::outputPops(FILE* output) const
 {
-	if (owner == "")
+	if (resettable && (Configuration::getResetProvinces() == "yes"))
 	{
-		for (unsigned int i = 0; i < oldPops.size(); i++)
+		fprintf(output, "%d = {\n", num);
+		if (oldPops.size() > 0)
 		{
-			oldPops[i]->output(output);
+			for (unsigned int i = 0; i < oldPops.size(); i++)
+			{
+				oldPops[i]->output(output);
+				fprintf(output, "\n");
+			}
+			fprintf(output, "}\n");
 		}
 	}
 	else
 	{
-		for (unsigned int i = 0; i < pops.size(); i++)
+		if (pops.size() > 0)
 		{
-			pops[i]->output(output);
+			fprintf(output, "%d = {\n", num);
+			for (unsigned int i = 0; i < pops.size(); i++)
+			{
+				pops[i]->output(output);
+				fprintf(output, "\n");
+			}
+			fprintf(output, "}\n");
 		}
 	}
 }
@@ -717,23 +731,6 @@ void V2Province::combinePops()
 }
 
 
-bool PopSortForOutputPredicate(const V2Pop* pop1, const V2Pop* pop2)
-{
-	if (pop1->getType() != pop2->getType())
-	{
-		return pop1->getType() < pop2->getType();
-	}
-	return pop1->getID() < pop2->getID();
-}
-
-
-void V2Province::sortPops()
-{
-	sort(oldPops.begin(), oldPops.end(), PopSortForOutputPredicate);
-	sort(pops.begin(), pops.end(), PopSortForOutputPredicate);
-}
-
-
 int V2Province::getTotalPopulation() const
 {
 	int total = 0;
@@ -773,11 +770,11 @@ static int getRequiredPopForRegimentCount(int count)
 
 
 // pick a soldier pop to use for an army.  prefer larger pops to smaller ones, and grow only if necessary.
-int V2Province::getSoldierPopForArmy(bool force)
+V2Pop* V2Province::getSoldierPopForArmy(bool force)
 {
 	vector<V2Pop*> spops = getPops("soldiers");
 	if (spops.size() == 0)
-		return -1; // no soldier pops
+		return NULL; // no soldier pops
 
 	sort(spops.begin(), spops.end(), PopSortBySizePredicate);
 	// try largest to smallest, without growing
@@ -787,21 +784,29 @@ int V2Province::getSoldierPopForArmy(bool force)
 		if (growBy <= 0)
 		{
 			if (growSoldierPop(*itr)) // won't actually grow, but necessary to increment supported regiment count
-				return (*itr)->getID();
+			{
+				return *itr;
+			}
 		}
 	}
 	// try largest to smallest, trying to grow
 	for (vector<V2Pop*>::iterator itr = spops.begin(); itr != spops.end(); ++itr)
 	{
 		if (growSoldierPop(*itr))
-			return (*itr)->getID();
+		{
+			return *itr;
+		}
 	}
 
 	// no suitable pops
 	if (force)
-		return spops[0]->getID();
+	{
+		return spops[0];
+	}
 	else
-		return -1;
+	{
+		return NULL;
+	}
 }
 
 

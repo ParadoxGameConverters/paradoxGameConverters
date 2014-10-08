@@ -50,7 +50,6 @@ void V2ArmyID::output(FILE* out, int indentlevel) const
 V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 {
 	name		= "\"\"";
-	popID		= 0;
 	strength	= 0.0;
 	switch (rc)
 	{
@@ -103,7 +102,6 @@ void V2Regiment::output(FILE* out) const
 	{
 		fprintf(out, "\t\t\tpop=\n");
 		fprintf(out, "\t\t\t{\n");
-		fprintf(out, "\t\t\t\tid=%d\n", popID);
 		fprintf(out, "\t\t\t\ttype=46\n");
 		fprintf(out, "\t\t\t}\n");
 	}

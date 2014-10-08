@@ -903,8 +903,8 @@
 	link = { eu4 = 768 v2 = 2458 v2 = 2460 v2 = 2306 v2 = 2453 v2 = 2456 }	# Guayra -> Guarapuava, Castro, Sorocaba, Assis, Araraquara
 	link = { eu4 = 767 v2 = 2422 v2 = 2421 v2 = 2445 }	# Mato Grosso -> Aganja, Vila Boa, Uberaba
 	# Venezuela
-	link = { eu4 = 491 v2 = 2235 }	# Curacao -> Aruba
-	link = { eu4 = 831 v2 = 2272 v2 = 2234 v2 = 2273 v2 = 2265 v2 = 2268 v2 = 2264 v2 = 2266 }	# Caracas -> Coro, Curacao, Barquisimeto, Guanare, San Felipe, Caracas, Calabozo
+	link = { eu4 = 491 v2 = 2234 v2 = 2235 }	# Curacao -> Curacao, Aruba
+	link = { eu4 = 831 v2 = 2272 v2 = 2273 v2 = 2265 v2 = 2268 v2 = 2264 v2 = 2266 }	# Caracas -> Coro, Barquisimeto, Guanare, San Felipe, Caracas, Calabozo
 	link = { eu4 = 830 v2 = 2270 v2 = 2271 }	# Maracaibo -> Maracaibo, Valera
 	link = { eu4 = 834 v2 = 2274 v2 = 2277 }	# Barinas -> Barinas, El Jobal
 	# Colombia
@@ -2323,7 +2323,8 @@
 	link = { eu4 = 1173 v2 = 2079 v2 = 2083 }	# Damaraland -> Swakopmund, Walvis Bay
 	link = { eu4 = 1172 v2 = 2004 }	# Benguela -> Moçâmedes
 	link = { eu4 = 1168 v2 = 2003 }	# Kisarna -> Benguela
-	link = { eu4 = 1167 eu4 = 1170 v2 = 1999 v2 = 2001 }	# MANY-TO-MANY: Luanda, Kongo -> Luanda, Mbanza
+	link = { eu4 = 1167 eu4 = 1170 v2 = 1999 v2 = 2001 }	# Luanda -> Luanda
+	link = { eu4 = 1170 v2 = 2001 v2 = 1983 }	# Kongo -> Mbanza, Boma
 	link = { eu4 = 1166 v2 = 2000 v2 = 2624 }	# Loango -> Cabinda, Loango
 	link = { eu4 = 1165 v2 = 1974 v2 = 1972 v2 = 1954 }	# Gabon -> Mayumbe, Libreville, São Tomé
 	link = { eu4 = 1169 v2 = 1978 }	# Mayombe -> Madingou
@@ -2331,7 +2332,7 @@
 	link = { eu4 = 1164 v2 = 1956 v2 = 1958 v2 = 1973 v2 = 1957 }	# Cameroon -> Douala, Kribi, Bata, Buea
 	link = { eu4 = 1097 v2 = 1955 }	# Fernando Po -> Fernando Pó
 	link = { eu4 = 1800 v2 = 2005 v2 = 2008 v2 = 2006 v2 = 2007 v2 = 2013 v2 = 2009 v2 = 2010 v2 = 1984 v2 = 1986 v2 = 1989 v2 = 1987 v2 = 1988 v2 = 2011 v2 = 2014 v2 = 790 v2 = 2015 v2 = 2012 }	# Zambia -> Huambo, Ondjiva, Kuito, Mavinga, Mongu, Malanje, Saurimo, Kananga, Lusambo, Munza, Bunkeya, Mussumba, Kubanda, Kasempa, Kitwe, Monzo, Lusaka
-	link = { eu4 = 1797 v2 = 1975 v2 = 1976 v2 = 1981 v2 = 1980 v2 = 1977 v2 = 1993 v2 = 1994 v2 = 1985 v2 = 1992 v2 = 1995 v2 = 1996 v2 = 1990 v2 = 1991 v2 = 1997 v2 = 1998 v2 = 1982 v2 = 1983 }	# Inner Kongo -> Moanda, Makokou, Impfondo, Djambala, Nkuna, Irebu, Nsheng, Kumbana, Basoko, Gemena, Kisangani, Nyangwe, Uvira, Mungbane, Baramo, Kinshasa, Boma
+	link = { eu4 = 1797 v2 = 1975 v2 = 1976 v2 = 1981 v2 = 1980 v2 = 1977 v2 = 1993 v2 = 1994 v2 = 1985 v2 = 1992 v2 = 1995 v2 = 1996 v2 = 1990 v2 = 1991 v2 = 1997 v2 = 1998 v2 = 1982 }	# Inner Kongo -> Moanda, Makokou, Impfondo, Djambala, Nkuna, Irebu, Nsheng, Kumbana, Basoko, Gemena, Kisangani, Nyangwe, Uvira, Mungbane, Baramo, Kinshasa
 	# Ivory Coast
 	link = { eu4 = 1147 v2 = 1931 v2 = 1928 v2 = 1923 v2 = 1924 }	# Benin -> Warri, Benin, Lagos, Abeokuta
 	link = { eu4 = 1151 v2 = 1932 }	# Bonny -> Bonny

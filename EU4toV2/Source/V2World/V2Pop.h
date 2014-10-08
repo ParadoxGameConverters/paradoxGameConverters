@@ -44,14 +44,12 @@ class V2Pop
 
 		int		getSize()							const	{ return size; };
 		string	getType()							const	{ return type; };
-		int		getID()								const	{ return id; };
 		string	getCulture()						const	{ return culture; };
 		string	getReligion()						const	{ return religion; };
 		int		getSupportedRegimentCount()	const	{ return supportedRegiments; };
 	private:
 		void	recalcMoney();
 
-		int		id;
 		string	type;
 		int		size;
 		string	culture;

@@ -50,16 +50,16 @@ class V2Province
 	public:
 		V2Province(string _filename);
 		void output() const;
+		void outputPops(FILE*) const;
 		void convertFromOldProvince(const EU4Province* oldProvince);
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
 		void doCreatePops(bool isStateCapital, int statePopulation);
-		void sortPops();
 
 		int				getTotalPopulation() const;
 		vector<V2Pop*>	getPops(string type) const;
-		int				getSoldierPopForArmy(bool force = false);
+		V2Pop*			getSoldierPopForArmy(bool force = false);
 		pair<int, int>	getAvailableSoldierCapacity() const;
 		string			getRegimentName(RegimentCategory rc);
 		bool				hasCulture(string culture, float percentOfPopulation) const;
@@ -75,6 +75,7 @@ class V2Province
 		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; }
 		void				setRailLevel(int level)						{ railLevel = level; }
 		void				addFactory(const V2Factory* factory)	{ factories.push_back(factory); }
+		void				setResettable(const bool _resettable)	{ resettable = _resettable; };
 
 		const EU4Province*	getSrcProvince()		const { return srcProvince; }
 		int						getOldPopulation()	const	{ return oldPopulation; }
@@ -89,7 +90,6 @@ class V2Province
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); }
 		bool						hasLandConnection()	const { return landConnection; }
 	private:
-		void outputPops(FILE*) const;
 		void outputUnits(FILE*) const;
 		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation);
 		void combinePops();
@@ -122,6 +122,8 @@ class V2Province
 		int								navalBaseLevel;
 		int								railLevel;
 		vector<const V2Factory*>	factories;
+
+		bool								resettable;
 };
 
 
