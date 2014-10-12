@@ -34,6 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Inventions.h"
 #include "V2TechSchools.h"
 #include <vector>
+#include <set>
 using namespace std;
 
 class EU3World;
@@ -60,6 +61,7 @@ class V2Country
 		void								output() const;
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
+		void								outputOOB() const;
 		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, const CountryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
 		void								addState(V2State* newState);
@@ -68,11 +70,12 @@ class V2Country
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
 		void								setupPops(EU3World& sourceWorld);
-		void								setArmyTech(double mean, double scale, double stdDev);
-		void								setNavyTech(double mean, double scale, double stdDev);
-		void								setCommerceTech(double mean, double scale, double stdDev);
-		void								setIndustryTech(double mean, double scale, double stdDev);
-		void								setCultureTech(double mean, double scale, double stdDev);
+		void								setArmyTech(double mean, double highest);
+		void								setNavyTech(double mean, double highest);
+		void								setCommerceTech(double mean, double highest);
+		void								setIndustryTech(double mean, double highest);
+		void								setCultureTech(double mean, double highest);
+		void								addRelation(V2Relations* newRelation);
 
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order);
@@ -88,7 +91,7 @@ class V2Country
 		string							getTag() const { return tag; };
 		bool								isCivilized() const { return civilized; };
 		string							getPrimaryCulture() const { return primaryCulture; };
-		vector<string>					getAcceptedCultures() const { return acceptedCultures; };
+		set<string>						getAcceptedCultures() const { return acceptedCultures; };
 		const EU3Country*				getSourceCountry() const { return srcCountry; };
 		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; };
 		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; };
@@ -106,7 +109,6 @@ class V2Country
 	private:
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
-		void			sortRelations(const vector<string>& order);
 		void			addLoan(string creditor, double size, double interest);
 		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces);
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces);
@@ -123,7 +125,7 @@ class V2Country
 		int								capital;
 		bool								civilized;
 		string							primaryCulture;
-		vector<string>					acceptedCultures;
+		set<string>						acceptedCultures;
 		string							religion;
 		vector<V2Party*>				parties;
 		string							rulingParty;
@@ -145,7 +147,7 @@ class V2Country
 		vector< pair<int, int> >	reactionaryIssues;
 		vector< pair<int, int> >	conservativeIssues;
 		vector< pair<int, int> >	liberalIssues;
-		vector<V2Relations*>			relations;
+		map<string,V2Relations*>	relations;
 		vector<V2Army*>				armies;
 		V2Reforms*						reforms;
 		string							nationalValue;

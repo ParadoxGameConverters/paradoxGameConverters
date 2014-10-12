@@ -76,9 +76,9 @@ V2World::V2World()
 	{
 		while (directories.size() > 0)
 		{
-			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces\\") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
+			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces\\" << directories.front() << "\\*.*";
+				LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces" << directories.front() << "\\*.*";
 				exit(-1);
 			}
 
@@ -107,9 +107,9 @@ V2World::V2World()
 	{
 		while (directories.size() > 0)
 		{
-			if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces\\" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
+			if ((fileListing = _findfirst((Configuration::getV2Path() + "\\history\\provinces" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 			{
-				LOG(LogLevel::Error) << "Could not open directory " << Configuration::getV2Path() << "\\history\\provinces\\" << directories.front() << "\\*.*";
+				LOG(LogLevel::Error) << "Could not open directory " << Configuration::getV2Path() << "\\history\\provinces" << directories.front() << "\\*.*";
 				exit(-1);
 			}
 
@@ -603,14 +603,14 @@ void V2World::convertDiplomacy(const EU3World& sourceWorld, const CountryMapping
 		V2Relations* r1 = country1->second->getRelations(V2Tag2);
 		if (!r1)
 		{
-			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag1 << " has no relations with " << V2Tag2;
-			continue;
+			r1 = new V2Relations(V2Tag2);
+			country1->second->addRelation(r1);
 		}
 		V2Relations* r2 = country2->second->getRelations(V2Tag1);
 		if (!r2)
 		{
-			LOG(LogLevel::Warning) << "Vic2 country " << V2Tag2 << " has no relations with " << V2Tag1;
-			continue;
+			r2 = new V2Relations(V2Tag1);
+			country2->second->addRelation(r2);
 		}
 
 		if ((itr->type == "royal_marriage") || (itr->type == "guarantee"))
@@ -1113,32 +1113,22 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 	
 	double oldLandMean;
 	double landMean;
-	double oldLandS = 0.0;
-	double newLandS;
 	double highestLand;
 
 	double oldNavalMean;
 	double navalMean;
-	double oldNavalS = 0.0;
-	double newNavalS;
 	double highestNaval;
 
 	double oldTradeMean;
 	double tradeMean;
-	double oldTradeS = 0.0;
-	double newTradeS;
 	double highestTrade;
 
 	double oldProductionMean;
 	double productionMean;
-	double oldProductionS = 0.0;
-	double newProductionS;
 	double highestProduction;
 
 	double oldGovernmentMean;
 	double governmentMean;
-	double oldGovernmentS = 0.0;
-	double newGovernmentS;
 	double highestGovernment;
 
 	int num = 2;
@@ -1165,9 +1155,7 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 		}
 		double newTech	= i->second->getLandTech();
 		landMean			= oldLandMean + ((newTech - oldLandMean) / num);
-		newLandS			= oldLandS + ((newTech - oldLandMean) * (newTech - landMean));
 		oldLandMean		= landMean; 
-		oldLandS			= newLandS;
 		if (newTech > highestLand)
 		{
 			highestLand = newTech;
@@ -1175,9 +1163,7 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 
 		newTech			= i->second->getNavalTech();
 		navalMean		= oldNavalMean + ((newTech - oldNavalMean) / num);
-		newNavalS		= oldNavalS + ((newTech - oldNavalMean) * (newTech - navalMean));
 		oldNavalMean	= navalMean; 
-		oldNavalS		= newNavalS;
 		if (newTech > highestNaval)
 		{
 			highestNaval = newTech;
@@ -1185,9 +1171,7 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 
 		newTech			= i->second->getTradeTech();
 		tradeMean		= oldTradeMean + ((newTech - oldTradeMean) / num);
-		newTradeS		= oldTradeS + ((newTech - oldTradeMean) * (newTech - tradeMean));
 		oldTradeMean	= tradeMean; 
-		oldTradeS		= newTradeS;
 		if (newTech > highestTrade)
 		{
 			highestTrade = newTech;
@@ -1195,9 +1179,7 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 
 		newTech				= i->second->getProductionTech();
 		productionMean		= oldProductionMean + ((newTech - oldProductionMean) / num);
-		newProductionS		= oldProductionS + ((newTech - oldProductionMean) * (newTech - productionMean));
 		oldProductionMean	= productionMean; 
-		oldProductionS		= newProductionS;
 		if (newTech > highestProduction)
 		{
 			highestProduction = newTech;
@@ -1205,9 +1187,7 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 
 		newTech				= i->second->getGovernmentTech();
 		governmentMean		= oldGovernmentMean + ((newTech - oldGovernmentMean) / num);
-		newGovernmentS		= oldGovernmentS + ((newTech - oldGovernmentMean) * (newTech - governmentMean));
 		oldGovernmentMean	= governmentMean; 
-		oldGovernmentS		= newGovernmentS;
 		if (newTech > highestGovernment)
 		{
 			highestGovernment = newTech;
@@ -1216,27 +1196,15 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 		num++;
 	}
 
-	double landStdDev			= sqrt( (num > 1) ? (newLandS/(num - 1)) : 0.0 );
-	double navalStdDev		= sqrt( (num > 1) ? (newNavalS/(num - 1)) : 0.0 );
-	double tradeStdDev		= sqrt( (num > 1) ? (newTradeS/(num - 1)) : 0.0 );
-	double productionStdDev	= sqrt( (num > 1) ? (newProductionS/(num - 1)) : 0.0 );
-	double governmentStdDev	= sqrt( (num > 1) ? (newGovernmentS/(num - 1)) : 0.0 );
-
-	double landScale			= (2.5	* landStdDev)			/ (highestLand			- landMean);
-	double navalScale			= (7		* navalStdDev)			/ (highestNaval		- navalMean);
-	double tradeScale			= (4.5	* tradeStdDev)			/ (highestTrade		- tradeMean);
-	double productionScale	= (3.5	* productionStdDev)	/ (highestProduction	- productionMean);
-	double governmentScale	= (3		* governmentStdDev)	/ (highestGovernment	- governmentMean);
-
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 	{
 		if ((Configuration::getV2Gametype() == "vanilla") || itr->second->isCivilized())
 		{
-			itr->second->setArmyTech(landMean, landScale, landStdDev);
-			itr->second->setNavyTech(navalMean, navalScale, navalStdDev);
-			itr->second->setCommerceTech(tradeMean, tradeScale, tradeStdDev);
-			itr->second->setIndustryTech(productionMean, productionScale, productionStdDev);
-			itr->second->setCultureTech(governmentMean, governmentScale, governmentStdDev);
+			itr->second->setArmyTech(landMean, highestLand);
+			itr->second->setNavyTech(navalMean, highestNaval);
+			itr->second->setCommerceTech(tradeMean, highestTrade);
+			itr->second->setIndustryTech(productionMean, highestProduction);
+			itr->second->setCultureTech(governmentMean, highestGovernment);
 		}
 	}
 

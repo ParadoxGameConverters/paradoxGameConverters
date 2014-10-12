@@ -503,10 +503,10 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
-	LOG(LogLevel::Info) << "Converting diplomacy";
-	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
+	LOG(LogLevel::Info) << "Converting diplomacy";
+	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting colonies";
 	destWorld.setupColonies(adjacencyMap, continentMap);
 	LOG(LogLevel::Info) << "Creating states";
@@ -537,6 +537,8 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/provinces\"\n");
 	fprintf(modFile, "replace = \"history/countries\"\n");
+	fprintf(modFile, "replace = \"history/diplomacy\"\n");
+	fprintf(modFile, "replace = \"history/units\"\n");
 	fprintf(modFile, "replace = \"common/religion.txt\"\n");
 	fprintf(modFile, "replace = \"common/cultures.txt\"\n");
 	fprintf(modFile, "replace = \"gfx/interface/icon_religion.dds\"\n");

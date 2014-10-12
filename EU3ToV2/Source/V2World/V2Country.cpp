@@ -147,9 +147,9 @@ void V2Country::output() const
 	{
 		fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
 	}
-	for (unsigned int i = 0; i < acceptedCultures.size(); i++)
+	for (set<string>::iterator i = acceptedCultures.begin(); i != acceptedCultures.end(); i++)
 	{
-		fprintf(output, "culture = %s\n", acceptedCultures[i].c_str());
+		fprintf(output, "culture = %s\n", i->c_str());
 	}
 	if (religion != "")
 	{
@@ -228,7 +228,12 @@ void V2Country::output() const
 		(*itr)->output(output);
 	}
 	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());*/
+
+	fprintf(output, "oob = \"%s\"\n", (tag + "_OOB.txt").c_str());
+
 	fclose(output);
+
+	outputOOB();
 
 	if (newCountry)
 	{
@@ -296,6 +301,26 @@ void V2Country::outputElection(FILE* output) const
 	}
 	electionDate.year -= 4;
 	fprintf(output, "	last_election=%s\n", electionDate.toString().c_str());
+}
+
+
+void V2Country::outputOOB() const
+{
+	FILE* output;
+	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\units\\" + tag + "_OOB.txt").c_str(), "w") != 0)
+	{
+		LOG(LogLevel::Error) << "Could not create OOB file " << (tag + "_OOB.txt");
+		exit(-1);
+	}
+
+	fprintf(output, "#Sphere of Influence\n");
+	fprintf(output, "\n");
+	for (map<string, V2Relations*>::const_iterator relationsItr = relations.begin(); relationsItr != relations.end(); relationsItr++)
+	{
+		relationsItr->second->output(output);
+	}
+
+	fclose(output);
 }
 
 
@@ -446,7 +471,7 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 				}
 				if (match)
 				{
-					acceptedCultures.push_back(j->dstCulture);
+					acceptedCultures.insert(j->dstCulture);
 					matched = true;
 				}
 			}
@@ -562,11 +587,10 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 			if (!V2Tag.empty())
 			{
 				V2Relations* v2r = new V2Relations(V2Tag, *itr);
-				relations.push_back(v2r);
+				relations.insert(make_pair(V2Tag, v2r));
 			}
 		}
 	}
-	sortRelations(outputOrder);
 
 	// Finances
 	/*money				= MONEYFACTOR * srcCountry->getTreasury();
@@ -805,7 +829,7 @@ void V2Country::initFromHistory()
 	results = obj->getValue("culture");
 	for (vector<Object*>::iterator itr = results.begin(); itr != results.end(); ++itr)
 	{
-		acceptedCultures.push_back((*itr)->getLeaf());
+		acceptedCultures.insert((*itr)->getLeaf());
 	}
 
 	results = obj->getValue("religion");
@@ -1131,6 +1155,12 @@ void V2Country::getNationalValueScores(int& libertyScore, int& equalityScore, in
 }
 
 
+void V2Country::addRelation(V2Relations* newRelation)
+{
+	relations.insert(make_pair(newRelation->getTag(), newRelation));
+}
+
+
 static bool FactoryCandidateSortPredicate(const pair<int, V2State*>& lhs, const pair<int, V2State*>& rhs)
 {
 	if (lhs.first != rhs.first)
@@ -1306,39 +1336,39 @@ void V2Country::setupPops(EU3World& sourceWorld)
 }
 
 
-void V2Country::setArmyTech(double mean, double scale, double stdDev)
+void V2Country::setArmyTech(double mean, double highest)
 {
 	if (srcCountry == NULL)
 	{
 		return;
 	}
 
-	double newTechLevel = (scale * (srcCountry->getLandTech() - mean) / stdDev) + 2.5;
+	double newTechLevel = (srcCountry->getLandTech() - mean) / (highest - mean);
 	LOG(LogLevel::Debug) << tag << " has army tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
-		if (newTechLevel >= 0)
+		if (newTechLevel >= -1.0)
 		{
 			techs.push_back("flintlock_rifles");
 			HODInventions[HOD_flintlock_rifle_armament] = active;
 			HODNNMInventions[HOD_NNM_flintlock_rifle_armament] = active;
 		}
-		if (newTechLevel >= 0.25)
+		if (newTechLevel >= -0.9)
 		{
 			techs.push_back("bronze_muzzle_loaded_artillery");
 		}
-		if (newTechLevel >= 2)
+		if (newTechLevel >= -0.2)
 		{
 			techs.push_back("post_napoleonic_thought");
 			HODInventions[HOD_post_napoleonic_army_doctrine]			= active;
 			HODNNMInventions[HOD_NNM_post_napoleonic_army_doctrine]	= active;
 		}
-		if (newTechLevel >= 3)
+		if (newTechLevel >= 0.2)
 		{
 			techs.push_back("army_command_principle");
 		}
-		if (newTechLevel >= 4)
+		if (newTechLevel >= 0.6)
 		{
 			techs.push_back("military_staff_system");
 			HODInventions[HOD_cuirassier_activation]			= active;
@@ -1348,7 +1378,7 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 			HODNNMInventions[HOD_NNM_dragoon_activation]		= active;
 			HODNNMInventions[HOD_NNM_hussar_activation]		= active;
 		}
-		if (newTechLevel >= 5)
+		if (newTechLevel >= 1.0)
 		{
 			techs.push_back("army_professionalism");
 			vanillaInventions[VANILLA_army_academic_training]	= active;
@@ -1365,14 +1395,14 @@ void V2Country::setArmyTech(double mean, double scale, double stdDev)
 }
 
 
-void V2Country::setNavyTech(double mean, double scale, double stdDev)
+void V2Country::setNavyTech(double mean, double highest)
 {
 	if (srcCountry == NULL)
 	{
 		return;
 	}
 
-	double newTechLevel = scale * (srcCountry->getNavalTech() - mean) / stdDev;
+	double newTechLevel = (srcCountry->getNavalTech() - mean) / (highest - mean);
 	LOG(LogLevel::Debug) << tag << " has navy tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
@@ -1385,11 +1415,11 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 			HODNNMInventions[HOD_NNM_long_range_fire_tactic]		= active;
 			HODNNMInventions[HOD_NNM_speedy_maneuvering_tactic]	= active;
 		}
-		if (newTechLevel >= 0.25)
+		if (newTechLevel >= 0.036)
 		{
 			techs.push_back("the_command_principle");
 		}
-		if (newTechLevel >= 4)
+		if (newTechLevel >= 0.571)
 		{
 			techs.push_back("clipper_design");
 			techs.push_back("naval_design_bureaus");
@@ -1398,7 +1428,7 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_building_station_shipyards]			= active;
 			HODNNMInventions[HOD_NNM_building_station_shipyards]	= active;
 		}
-		if (newTechLevel >= 6)
+		if (newTechLevel >= 0.857)
 		{
 			techs.push_back("battleship_column_doctrine");
 			techs.push_back("steamers");
@@ -1421,7 +1451,7 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_commerce_raiders]											= active;
 			HODNNMInventions[HOD_NNM_commerce_raiders]								= active;
 		}
-		if (newTechLevel >= 7)
+		if (newTechLevel >= 1.0)
 		{
 			techs.push_back("naval_professionalism");
 			vanillaInventions[VANILLA_academic_training]			= active;
@@ -1438,32 +1468,32 @@ void V2Country::setNavyTech(double mean, double scale, double stdDev)
 }
 
 
-void V2Country::setCommerceTech(double mean, double scale, double stdDev)
+void V2Country::setCommerceTech(double mean, double highest)
 {
 	if (srcCountry == NULL)
 	{
 		return;
 	}
 
-	double newTechLevel = (scale * (srcCountry->getTradeTech() - mean) / stdDev) + 4.5;
+	double newTechLevel = (srcCountry->getTradeTech() - mean) / (highest - mean);
 	LOG(LogLevel::Debug) << tag << " has commerce tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
 		techs.push_back("no_standard");
-		if (newTechLevel >= 1)
+		if (newTechLevel >= -0.777)
 		{
 			techs.push_back("guild_based_production");
 		}
-		if (newTechLevel >= 2)
+		if (newTechLevel >= -0.555)
 		{
 			techs.push_back("private_banks");
 		}
-		if (newTechLevel >= 3)
+		if (newTechLevel >= -0.333)
 		{
 			techs.push_back("early_classical_theory_and_critique");
 		}
-		if (newTechLevel >= 3.25)
+		if (newTechLevel >= -0.277)
 		{
 			techs.push_back("freedom_of_trade");
 			vanillaInventions[VANILLA_john_ramsay_mcculloch]	= active;
@@ -1476,7 +1506,7 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_james_mill]								= active;
 			HODNNMInventions[HOD_NNM_james_mill]					= active;
 		}
-		if (newTechLevel >= 6)
+		if (newTechLevel >= 0.333)
 		{
 			techs.push_back("stock_exchange");
 			vanillaInventions[VANILLA_multitude_of_financial_instruments]		= active;
@@ -1489,7 +1519,7 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_regulated_buying_and_selling_of_stocks]			= active;
 			HODNNMInventions[HOD_NNM_regulated_buying_and_selling_of_stocks]	= active;
 		}
-		if (newTechLevel >= 8)
+		if (newTechLevel >= 0.777)
 		{
 			techs.push_back("ad_hoc_money_bill_printing");
 			techs.push_back("market_structure");
@@ -1509,7 +1539,7 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_monopoly_structure]					= active;
 			HODNNMInventions[HOD_NNM_monopoly_structure]			= active;
 		}
-		if (newTechLevel >= 9)
+		if (newTechLevel >= 1.0)
 		{
 			techs.push_back("late_classical_theory");
 			vanillaInventions[VANILLA_john_elliot_cairnes]	= active;
@@ -1526,28 +1556,28 @@ void V2Country::setCommerceTech(double mean, double scale, double stdDev)
 }
 
 
-void V2Country::setIndustryTech(double mean, double scale, double stdDev)
+void V2Country::setIndustryTech(double mean, double highest)
 {
 	if (srcCountry == NULL)
 	{
 		return;
 	}
 
-	double newTechLevel = (scale * (srcCountry->getProductionTech() - mean) / stdDev) + 3.5;
+	double newTechLevel = (srcCountry->getProductionTech() - mean) / (highest - mean);
 	LOG(LogLevel::Debug) << tag << " has industry tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
 	{
-		if (newTechLevel >= 0)
+		if (newTechLevel >= -1.0)
 		{
 			techs.push_back("water_wheel_power");
 			HODInventions[HOD_tulls_seed_drill]	= active;
 		}
-		if (newTechLevel >= 1)
+		if (newTechLevel >= -0.714)
 		{
 			techs.push_back("publishing_industry");
 		}
-		if (newTechLevel >= 3)
+		if (newTechLevel >= -0.143)
 		{
 			techs.push_back("mechanized_mining");
 			techs.push_back("basic_chemistry");
@@ -1564,17 +1594,17 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_artillery_production]				= active;
 			HODNNMInventions[HOD_NNM_artillery_production]		= active;
 		}
-		if (newTechLevel >= 4)
+		if (newTechLevel >= 0.143)
 		{
 			techs.push_back("practical_steam_engine");
 			HODInventions[HOD_rotherham_plough]						= active;
 			HODNNMInventions[HOD_NNM_rotherham_plough]			= active;
 		}
-		if (newTechLevel >= 5)
+		if (newTechLevel >= 0.428)
 		{
 			techs.push_back("experimental_railroad");
 		}
-		if (newTechLevel >= 6)
+		if (newTechLevel >= 0.714)
 		{
 			techs.push_back("mechanical_production");
 			HODInventions[HOD_sharp_n_roberts_power_loom]						= active;
@@ -1604,7 +1634,7 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_precision_work]										= active;
 			HODNNMInventions[HOD_NNM_precision_work]								= active;
 		}
-		if (newTechLevel >= 7)
+		if (newTechLevel >= 1.0)
 		{
 			techs.push_back("clean_coal");
 			vanillaInventions[VANILLA_pit_coal]	= active;
@@ -1618,14 +1648,14 @@ void V2Country::setIndustryTech(double mean, double scale, double stdDev)
 }
 
 
-void V2Country::setCultureTech(double mean, double scale, double stdDev)
+void V2Country::setCultureTech(double mean, double highest)
 {
 	if (srcCountry == NULL)
 	{
 		return;
 	}
 
-	double newTechLevel = ((scale * (srcCountry->getGovernmentTech() - mean) / stdDev) + 3);
+	double newTechLevel = (srcCountry->getGovernmentTech() - mean) / (highest - mean);
 	LOG(LogLevel::Debug) << tag << " has culture tech of " << newTechLevel;
 
 	if ( (Configuration::getV2Gametype() == "vanilla") || (civilized == true) )
@@ -1633,7 +1663,7 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 		techs.push_back("classicism_n_early_romanticism");
 		HODNNMInventions[HOD_NNM_carlism] = active;
 		techs.push_back("late_enlightenment_philosophy");
-		if (newTechLevel >= 2)
+		if (newTechLevel >= -0.333)
 		{
 			techs.push_back("enlightenment_thought");
 			HODNNMInventions[HOD_NNM_declaration_of_the_rights_of_man]	= active;
@@ -1646,15 +1676,15 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 			HODInventions[HOD_egalitarianism]		= active;
 			HODInventions[HOD_rationalism]			= active;
 		}
-		if (newTechLevel >= 4)
+		if (newTechLevel >= 0.333)
 		{
 			techs.push_back("malthusian_thought");
 		}
-		if (newTechLevel >= 4)
+		if (newTechLevel >= 0.333)
 		{
 			techs.push_back("introspectionism");
 		}
-		if (newTechLevel >= 5)
+		if (newTechLevel >= 0.666)
 		{
 			techs.push_back("romanticism");
 			vanillaInventions[VANILLA_romanticist_literature]	= active;
@@ -1673,32 +1703,15 @@ void V2Country::setCultureTech(double mean, double scale, double stdDev)
 
 V2Relations* V2Country::getRelations(string withWhom) const
 {
-	for (vector<V2Relations*>::const_iterator i = relations.begin(); i != relations.end(); ++i)
+	map<string, V2Relations*>::const_iterator i = relations.find(withWhom);
+	if (i != relations.end())
 	{
-		if ((*i)->getTag() == withWhom)
-		{
-			return *i;
-		}
+		return i->second;
 	}
-	return NULL;
-}
-
-
-void V2Country::sortRelations(const vector<string>& order)
-{
-	vector<V2Relations*> sortedRelations;
-	for (vector<string>::const_iterator oitr = order.begin(); oitr != order.end(); ++oitr)
+	else
 	{
-		for (vector<V2Relations*>::iterator itr = relations.begin(); itr != relations.end(); ++itr)
-		{
-			if ( (*itr)->getTag() == (*oitr) )
-			{
-				sortedRelations.push_back(*itr);
-				break;
-			}
-		}
+		return NULL;
 	}
-	relations.swap(sortedRelations);
 }
 
 

@@ -47,7 +47,7 @@ void V2State::addRailroads()
 }
 
 
-void V2State::setupPops(WorldType game, string primaryCulture, vector<string> acceptedCultures, string religion)
+void V2State::setupPops(WorldType game, string primaryCulture, set<string> acceptedCultures, string religion)
 {
 	int	statePopulation = getStatePopulation();
 	bool	cot = hasCOT();
