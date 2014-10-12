@@ -27,10 +27,10 @@ configuration =
 	EU3gametype = auto
 
 	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	vanilla	vanilla V2 (1.x)
-	#	AHD	A House Divided (2.x)
-	#	HOD	Heart of Darkness (3.x)
-	#	HoD-NNM	HoD with the New Nations Mod
+	#	vanilla		vanilla V2 (1.x)
+	#	AHD		A House Divided (2.x)
+	#	HOD		Heart of Darkness (3.x)
+	#	HoD-NNM		HoD with the New Nations Mod
 	V2gametype = HOD
 
 	# EU3 Mod: An EU3 mod to use for conversion

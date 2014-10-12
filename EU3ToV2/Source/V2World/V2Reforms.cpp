@@ -40,8 +40,8 @@ V2Reforms::V2Reforms(const V2Country* dstCountry, const EU3Country* srcCountry)
 	press_rights					= 0;
 	trade_unions					= 0;
 	political_parties				= 0;
-	governmentEffects(dstCountry);
 	upperHouseEffects(dstCountry);
+	governmentEffects(dstCountry);
 
 	if (srcCountry->hasModifier("the_abolish_slavery_act"))
 	{

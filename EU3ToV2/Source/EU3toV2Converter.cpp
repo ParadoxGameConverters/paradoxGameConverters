@@ -385,11 +385,6 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 			LOG(LogLevel::Error) << "Could not parse file " << EU3Loc << "\\common\\cultures.txt";
 			exit(-1);
 		}
-		if (obj->getLeaves().size() < 1)
-		{
-			LOG(LogLevel::Error) << "Failed to parse cultures.txt";
-			return 1;
-		}
 		initUnionCultures(obj, unionCultures);
 	}
 

@@ -319,7 +319,7 @@ V2World::V2World()
 		else
 		{
 			potentialCountries.push_back(newCountry);
-			dynamicCountries.push_back(newCountry);
+			dynamicCountries.insert( make_pair(tag, newCountry) );
 		}
 	}
 	V2CountriesInput.close();
@@ -348,14 +348,21 @@ void V2World::output() const
 	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
 	{
 		const V2Country& country = *i->second;
-		country.outputToCommonCountriesFile(allCountriesFile);
+		map<string, V2Country*>::const_iterator j = dynamicCountries.find(country.getTag());
+		if (j == dynamicCountries.end())
+		{
+			country.outputToCommonCountriesFile(allCountriesFile);
+		}
 	}
 	fprintf(allCountriesFile, "\n");
-	fprintf(allCountriesFile, "##HoD Dominions\n");
-	fprintf(allCountriesFile, "dynamic_tags = yes # any tags after this is considered dynamic dominions\n");
-	for (vector<V2Country*>::const_iterator i = dynamicCountries.begin(); i != dynamicCountries.end(); i++)
+	if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD_NNM"))
 	{
-		(*i)->outputToCommonCountriesFile(allCountriesFile);
+		fprintf(allCountriesFile, "##HoD Dominions\n");
+		fprintf(allCountriesFile, "dynamic_tags = yes # any tags after this is considered dynamic dominions\n");
+		for (map<string, V2Country*>::const_iterator i = dynamicCountries.begin(); i != dynamicCountries.end(); i++)
+		{
+			i->second->outputToCommonCountriesFile(allCountriesFile);
+		}
 	}
 	fclose(allCountriesFile);
 
@@ -402,10 +409,10 @@ void V2World::output() const
 	{
 		itr->second->output();
 	}
-	for (vector<V2Country*>::const_iterator itr = dynamicCountries.begin(); itr != dynamicCountries.end(); itr++)
+	for (map<string, V2Country*>::const_iterator itr = dynamicCountries.begin(); itr != dynamicCountries.end(); itr++)
 	{
-		(*itr)->isANewCountry();
-		(*itr)->output();
+		itr->second->isANewCountry();
+		itr->second->output();
 	}
 	diplomacy.output();
 	/*if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
@@ -912,10 +919,10 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 				LOG(LogLevel::Warning) << "No adjacency mapping for province " << currentProvince;
 				continue;
 			}
-			vector<adjacency> adjacencies = adjacencyMap[currentProvince];
+			vector<int> adjacencies = adjacencyMap[currentProvince];
 			for (unsigned int i = 0; i < adjacencies.size(); i++)
 			{
-				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i].to);
+				map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
 				if (openItr == openProvinces.end())
 				{
 					continue;
@@ -1485,12 +1492,7 @@ map<string, V2Country*> V2World::getPotentialCountries() const
 
 map<string, V2Country*> V2World::getDynamicCountries() const
 {
-	map<string, V2Country*> retVal;
-	for (vector<V2Country*>::const_iterator i = dynamicCountries.begin(); i != dynamicCountries.end(); i++)
-	{
-		retVal[ (*i)->getTag() ] = *i;
-	}
-
+	map<string, V2Country*> retVal = dynamicCountries;
 	return retVal;
 }
 

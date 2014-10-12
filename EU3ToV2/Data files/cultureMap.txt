@@ -119,7 +119,7 @@ link = { vic = lithuanian eu3 = lithuanian }
 link = { vic = latvian eu3 = latvian eu3 = old_prussian }
 
 # Byzantine - greek, georgian, armenian
-link = { vic = sephardic eu3 = greek eu3 = georgian eu3 = armenian religion = jewish }
+link = { vic = sephardi eu3 = greek eu3 = georgian eu3 = armenian religion = jewish }
 link = { vic = greek eu3 = greek }
 link = { vic = georgian eu3 = georgian }
 link = { vic = armenian eu3 = armenian }
@@ -138,6 +138,10 @@ link = { vic = turkish eu3 = turkish eu3 = pecheneg }
 link = { vic = persian eu3 = persian }
 link = { vic = pashtun eu3 = east_persian }
 link = { vic = baluchi eu3 = baluchi }
+
+# Jewish
+link = { v2 = ashkenazi eu4 = ashkenazi }
+link = { v2 = sephardi eu4 = sephardi }
 
 # Altaic - azerbadjani, turkmeni, mongol, uzbehk, khazak, kirgiz, siberian, yakut, tartar
 link = { vic = azerbaijani eu3 = azerbadjani }

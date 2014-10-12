@@ -1290,7 +1290,8 @@ void V2Country::convertUncivReforms()
 			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
 			double socioEconDev		= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
 			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 0%";
-			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
+			uncivReforms	= new V2UncivReforms(0, militaryDev, socioEconDev, this);
+			government		= "absolute_monarchy";
 		}
 		else if ( (srcCountry->getTechGroup() == "indian") || (srcCountry->getTechGroup() == "chinese") )
 		{
@@ -1299,7 +1300,8 @@ void V2Country::convertUncivReforms()
 			double militaryDev		= (srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
 			double socioEconDev		= (srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
 			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 30%";
-			uncivReforms = new V2UncivReforms(30, militaryDev, socioEconDev, this);
+			uncivReforms	= new V2UncivReforms(30, militaryDev, socioEconDev, this);
+			government		= "absolute_monarchy";
 		}
 		else if (srcCountry->getTechGroup() == "muslim")
 		{
@@ -1308,7 +1310,8 @@ void V2Country::convertUncivReforms()
 			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
 			double socioEconDev		= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
 			LOG(LogLevel::Debug) << "Setting unciv reforms for " << tag << " - westernization at 60%";
-			uncivReforms = new V2UncivReforms(60, militaryDev, socioEconDev, this);
+			uncivReforms	= new V2UncivReforms(60, militaryDev, socioEconDev, this);
+			government		= "absolute_monarchy";
 		}
 		else
 		{
@@ -1317,7 +1320,8 @@ void V2Country::convertUncivReforms()
 											  srcCountry->getTradeTech() + srcCountry->getProductionTech();
 			double militaryDev		= ( srcCountry->getLandTech() + srcCountry->getNavalTech() ) / totalTechs;
 			double socioEconDev		= ( srcCountry->getGovernmentTech() + srcCountry->getTradeTech() + srcCountry->getProductionTech() ) / totalTechs;
-			uncivReforms = new V2UncivReforms(0, militaryDev, socioEconDev, this);
+			uncivReforms	= new V2UncivReforms(0, militaryDev, socioEconDev, this);
+			government		= "absolute_monarchy";
 		}
 	}
 }
