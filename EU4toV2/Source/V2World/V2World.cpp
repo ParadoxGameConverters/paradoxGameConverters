@@ -1292,8 +1292,14 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 	}
 	weightedCountries.swap(restrictCountries);
 
-	// determine how many factories each eligible nation gets
+	// remove nations that won't have enough industiral score for even one factory
 	deque<V2Factory*> factoryList = factoryBuilder.buildFactories();
+	while (((weightedCountries.begin()->first / totalIndWeight) * factoryList.size() + 0.5 /*round*/) < 1.0)
+	{
+		weightedCountries.pop_front();
+	}
+
+	// determine how many factories each eligible nation gets
 	vector<pair<int, V2Country*>> factoryCounts;
 	for (deque<pair<double, V2Country*>>::iterator itr = weightedCountries.begin(); itr != weightedCountries.end(); ++itr)
 	{
