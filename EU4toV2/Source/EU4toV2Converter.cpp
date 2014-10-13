@@ -49,6 +49,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	Configuration::getInstance();
 
+	LOG(LogLevel::Info) << "Converter version 0.4";
+
 	char curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
 	LOG(LogLevel::Debug) << "Current directory is " << curDir;
