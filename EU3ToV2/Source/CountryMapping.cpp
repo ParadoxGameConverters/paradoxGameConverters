@@ -92,7 +92,6 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 
 void CountryMapping::CreateMapping(const EU3World& srcWorld, const V2World& destWorld)
 {
-	LOG(LogLevel::Info) << "Creating country mapping";
 	EU3TagToV2TagMap.clear();
 
 	char generatedV2TagPrefix = 'X'; // single letter prefix

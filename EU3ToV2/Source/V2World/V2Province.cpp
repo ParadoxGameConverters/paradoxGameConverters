@@ -50,7 +50,7 @@ V2Province::V2Province(string _filename)
 	cores.clear();
 	colonyLevel			= 0;
 	colonial				= 0;
-	colonised			= false;
+	wasColonised		= false;
 	landConnection		= false;
 	sameContinent		= false;
 	COT					= false;
@@ -318,7 +318,7 @@ void V2Province::convertFromOldProvince(const EU3Province* oldProvince)
 		colonyLevel = 2;
 	}
 	colonial				= 0;
-	colonised			= oldProvince->wasColonised();
+	wasColonised		= oldProvince->wasColonised();
 	originallyInfidel = oldProvince->wasInfidelConquest();
 	COT					= oldProvince->isCOT();
 }
@@ -326,7 +326,7 @@ void V2Province::convertFromOldProvince(const EU3Province* oldProvince)
 
 void V2Province::determineColonial()
 {
-	if ((!landConnection) && (!sameContinent) && ((colonised) || (originallyInfidel)))
+	if ((!landConnection) && (!sameContinent) && ((wasColonised) || (originallyInfidel)))
 	{
 		colonial = 2;
 	}

@@ -168,8 +168,8 @@ typedef struct {
 	int via;				// the straight (if any) this crosses
 	int unknown1;		// still unknown
 	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path srawn between provinces
-	int pathY;			// the midpoint on the path srawn between provinces
+	int pathX;			// the midpoint on the path drawn between provinces
+	int pathY;			// the midpoint on the path drawn between provinces
 	int unknown3;		// still unknown
 	int unknown4;		// still unknown
 } HODAdjacency;		// an entry in the HOD adjacencies.bin format
@@ -179,8 +179,8 @@ typedef struct {
 	int via;				// the straight (if any) this crosses
 	int unknown1;		// still unknown
 	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path srawn between provinces
-	int pathY;			// the midpoint on the path srawn between provinces
+	int pathX;			// the midpoint on the path drawn between provinces
+	int pathY;			// the midpoint on the path drawn between provinces
 } AHDAdjacency;		// an entry in the AHD adjacencies.bin format
 typedef struct {
 	int type;			// the type of adjacency 0 = normal, 1 = ford, 2 = river crossing
@@ -359,6 +359,7 @@ void removeEmptyNations(EU3World& world)
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
 			world.removeCountry(i->first);
+			LOG(LogLevel::Debug) << "Removing empty nation " << i->first;
 		}
 	}
 }
@@ -368,20 +369,20 @@ void removeDeadLandlessNations(EU3World& world)
 {
 	map<string, EU3Country*> allCountries = world.getCountries();
 
-	vector<EU3Country*> landlessCountries;
+	map<string, EU3Country*> landlessCountries;
 	for (map<string, EU3Country*>::iterator i = allCountries.begin(); i != allCountries.end(); i++)
 	{
 		vector<EU3Province*> provinces = i->second->getProvinces();
 		if (provinces.size() == 0)
 		{
-			landlessCountries.push_back(i->second);
+			landlessCountries.insert(*i);
 		}
 	}
 
-	for (vector<EU3Country*>::iterator countryItr = landlessCountries.begin(); countryItr != landlessCountries.end(); countryItr++)
+	for (map<string, EU3Country*>::iterator countryItr = landlessCountries.begin(); countryItr != landlessCountries.end(); countryItr++)
 	{
-		string primaryCulture		= (*countryItr)->getPrimaryCulture();
-		vector<EU3Province*> cores	= (*countryItr)->getCores();
+		string primaryCulture		= countryItr->second->getPrimaryCulture();
+		vector<EU3Province*> cores	= countryItr->second->getCores();
 		bool cultureSurvives			= false;
 		for (vector<EU3Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
 		{
@@ -412,7 +413,8 @@ void removeDeadLandlessNations(EU3World& world)
 
 		if (cultureSurvives == false)
 		{
-			world.removeCountry( (*countryItr)->getTag() );
+			world.removeCountry( countryItr->first );
+			LOG(LogLevel::Debug) << "Removing dead landless nation " << countryItr->first;
 		}
 	}
 }
@@ -448,31 +450,6 @@ static bool compareLandlessNationsAges(EU3Country* A, EU3Country* B)
 }
 
 
-void removeOlderLandlessNations(EU3World& world, int excess)
-{
-	map<string, EU3Country*> allCountries = world.getCountries();
-
-	vector<EU3Country*> landlessCountries;
-	for (map<string, EU3Country*>::iterator i = allCountries.begin(); i != allCountries.end(); i++)
-	{
-		vector<EU3Province*> provinces = i->second->getProvinces();
-		if (provinces.size() == 0)
-		{
-			landlessCountries.push_back(i->second);
-		}
-	}
-
-	sort(landlessCountries.begin(), landlessCountries.end(), compareLandlessNationsAges);
-
-	while ( (excess > 0) && (landlessCountries.size() > 0) )
-	{
-		world.removeCountry(landlessCountries.back()->getTag());
-		landlessCountries.pop_back();
-		excess--;
-	}
-}
-
-
 void removeLandlessNations(EU3World& world)
 {
 	map<string, EU3Country*> countries = world.getCountries();
@@ -483,6 +460,7 @@ void removeLandlessNations(EU3World& world)
 		if (provinces.size() == 0)
 		{
 			world.removeCountry(i->first);
+			LOG(LogLevel::Debug) << "Removing landless nation " << i->first;
 		}
 	}
 }

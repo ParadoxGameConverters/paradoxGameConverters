@@ -277,7 +277,6 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	// Get country mappings
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
-	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies
 	LOG(LogLevel::Info) << "Importing adjacencies";
@@ -493,6 +492,19 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	LOG(LogLevel::Info) << "Getting leader traits";
 	V2LeaderTraits lt;
 	map<int, int> leaderIDMap; // <EU3, V2>
+
+
+	// Create Country Mapping
+	removeEmptyNations(sourceWorld);
+	if (Configuration::getRemovetype() == "dead")
+	{
+		removeDeadLandlessNations(sourceWorld);
+	}
+	else if (Configuration::getRemovetype() == "all")
+	{
+		removeLandlessNations(sourceWorld);
+	}
+	countryMap.CreateMapping(sourceWorld, destWorld);
 
 
 	// Convert

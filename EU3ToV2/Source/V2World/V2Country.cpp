@@ -239,6 +239,11 @@ void V2Country::output() const
 	{
 		// Output common country file. 
 		std::ofstream commonCountryOutput("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile);
+		if (!commonCountryOutput.is_open())
+		{
+			LOG(LogLevel::Error) << "Could not open Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile;
+			exit(-1);
+		}
 		commonCountryOutput << "graphical_culture = UsGC\n";	// default to US graphics
 		commonCountryOutput << "color = { " << color << " }\n";
 		for (auto party : parties)
@@ -1161,10 +1166,12 @@ void V2Country::addRelation(V2Relations* newRelation)
 }
 
 
-static bool FactoryCandidateSortPredicate(const pair<int, V2State*>& lhs, const pair<int, V2State*>& rhs)
+static bool FactoryCandidateSortPredicate(const pair<double, V2State*>& lhs, const pair<double, V2State*>& rhs)
 {
 	if (lhs.first != rhs.first)
+	{
 		return lhs.first > rhs.first;
+	}
 	return lhs.second->getID() < rhs.second->getID();
 }
 
@@ -1213,19 +1220,28 @@ bool V2Country::addFactory(V2Factory* factory)
 	}
 
 	// find a state to add the factory to, which meets the factory's requirements
-	vector<pair<int, V2State*>> candidates;
+	vector<pair<double, V2State*>> candidates;
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
 		if ( (*itr)->isColonial() )
+		{
 			continue;
+		}
 
 		if ( (*itr)->getFactoryCount() >= 8 )
+		{
 			continue;
+		}
 
 		if (factory->requiresCoastal())
 		{
 			if ( !(*itr)->isCoastal() )
 				continue;
+		}
+
+		if ( !(*itr)->hasLandConnection() )
+		{
+			continue;
 		}
 
 		map<string,float> requiredProducts = factory->getRequiredRGO();
@@ -1244,7 +1260,7 @@ bool V2Country::addFactory(V2Factory* factory)
 				continue;
 		}
 
-		candidates.push_back(pair<int, V2State*>( (*itr)->getCraftsmenPerFactory(), (*itr) ));
+		candidates.push_back(pair<double, V2State*>( (*itr)->getSuppliedInputs(factory), (*itr) ));
 	}
 
 	sort(candidates.begin(), candidates.end(), FactoryCandidateSortPredicate);
@@ -1805,7 +1821,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		if (-1 == soldierPop)
 		{
 			// if the old home province was colonized and can't support the unit, try turning it into an "expeditionary" army
-			if (homeProvince->wasColonised())
+			if (homeProvince->wasColony())
 			{
 				V2Province* expSender = getProvinceForExpeditionaryArmy();
 				if (expSender)
@@ -1908,7 +1924,7 @@ V2Province* V2Country::getProvinceForExpeditionaryArmy()
 	vector<V2Province*> candidates;
 	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
-		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColonised() && !(*pitr)->wasInfidelConquest()
+		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColony() && !(*pitr)->wasInfidelConquest()
 			&& ( (*pitr)->hasCulture(primaryCulture, 0.5) ) && ( (*pitr)->getPops("soldiers").size() > 0) )
 		{
 			candidates.push_back(*pitr);

@@ -41,7 +41,7 @@ configuration =
 	#	dead	remove ones without a cultural backing
 	#	all	remove all of them
 	# Note: if there are not enough V2 tags, some or all of these will be done no matter what.
-	removetype = dead
+	removetype = none
 
 	# V2OutputModName: the name of the mod to output
 	V2OutputModName = "output"

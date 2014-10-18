@@ -63,22 +63,23 @@ class V2Province
 		string			getRegimentName(RegimentCategory rc);
 		bool				hasCulture(string culture, float percentOfPopulation) const;
 		
-		void				clearCores()								{ cores.clear(); };
-		void				setCoastal(bool _coastal)				{ coastal = _coastal; };
-		void				setName(string _name)					{ name = _name; };
-		void				setOwner(string _owner)					{ owner = _owner; };
-		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
-		void				setSameContinent(bool _same)			{ sameContinent = _same; };
-		void				addPopDemographic(V2Demographic d)	{ demographics.push_back(d); };
-		void				setFortLevel(int level)					{ fortLevel = level; };
-		void				setNavalBaseLevel(int level)			{ navalBaseLevel = level; };
-		void				setRailLevel(int level)					{ railLevel = level; };
+		void				clearCores()									{ cores.clear(); };
+		void				setCoastal(bool _coastal)					{ coastal = _coastal; };
+		void				setName(string _name)						{ name = _name; };
+		void				setOwner(string _owner)						{ owner = _owner; };
+		void				setLandConnection(bool _connection)		{ landConnection = _connection; };
+		void				setSameContinent(bool _same)				{ sameContinent = _same; };
+		void				addPopDemographic(V2Demographic d)		{ demographics.push_back(d); };
+		void				setFortLevel(int level)						{ fortLevel = level; };
+		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; };
+		void				setRailLevel(int level)						{ railLevel = level; };
+		void				addFactory(const V2Factory* factory)	{ factories.push_back(factory); }
 
 		const EU3Province*	getSrcProvince()		const { return srcProvince; };
 		int						getOldPopulation()	const	{ return oldPopulation; };
 		bool						getCOT()					const { return COT; };
 		bool						wasInfidelConquest()	const { return originallyInfidel; };
-		bool						wasColonised()			const { return colonised; };
+		bool						wasColony()				const { return wasColonised; };
 		bool						isColonial()			const { return colonial != 0; };
 		string					getRgoType()			const { return rgoType; };
 		string					getOwner()				const { return owner; };
@@ -86,6 +87,7 @@ class V2Province
 		string					getName()				const { return name; };
 		bool						isCoastal()				const { return coastal; };
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); };
+		bool						hasLandConnection()	const { return landConnection; }
 	private:
 		void outputPops(FILE*) const;
 		void outputUnits(FILE*) const;
@@ -103,7 +105,7 @@ class V2Province
 		vector<string>					cores;
 		int								colonyLevel;
 		int								colonial;
-		bool								colonised;
+		bool								wasColonised;
 		bool								landConnection;
 		bool								sameContinent;
 		bool								COT;

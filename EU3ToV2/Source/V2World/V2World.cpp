@@ -199,41 +199,41 @@ V2World::V2World()
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
-	//log("\tFinding coastal provinces.\n");
-	//printf("\tFinding coastal provinces.\n");
-	//Object*	obj2 = doParseFile((V2Loc + "\\map\\positions.txt").c_str());
-	//if (obj2 == NULL)
-	//{
-	//	log("Could not parse file %s\n", (V2Loc + "\\map\\positions.txt").c_str());
-	//	exit(-1);
-	//}
-	//vector<Object*> objProv = obj2->getLeaves();
-	//if (objProv.size() == 0)
-	//{
-	//	log("Error: map\\positions.txt failed to parse.");
-	//	printf("Error: map\\positions.txt failed to parse.");
-	//	exit(1);
-	//}
-	//for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
-	//{
-	//	int provinceNum = atoi((*itr)->getKey().c_str());
-	//	vector<Object*> objPos = (*itr)->getValue("building_position");
-	//	if (objPos.size() == 0)
-	//		continue;
-	//	vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
-	//	if (objNavalBase.size() != 0)
-	//	{
-	//		// this province is coastal
-	//		for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
-	//		{
-	//			if ( (*pitr)->getNum() == provinceNum)
-	//			{
-	//				(*pitr)->setCoastal(true);
-	//				break;
-	//			}
-	//		}
-	//	}
-	//}
+	LOG(LogLevel::Info) << "Finding coastal provinces.";
+	Object*	obj2 = doParseFile((Configuration::getV2Path() + "\\map\\positions.txt").c_str());
+	if (obj2 == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << Configuration::getV2Path() << "\\map\\positions.txt";
+		exit(-1);
+	}
+	vector<Object*> objProv = obj2->getLeaves();
+	if (objProv.size() == 0)
+	{
+		LOG(LogLevel::Error) << "map\\positions.txt failed to parse.";
+		exit(1);
+	}
+	for (vector<Object*>::iterator itr = objProv.begin(); itr != objProv.end(); ++itr)
+	{
+		int provinceNum = atoi((*itr)->getKey().c_str());
+		vector<Object*> objPos = (*itr)->getValue("building_position");
+		if (objPos.size() == 0)
+		{
+			continue;
+		}
+		vector<Object*> objNavalBase = objPos[0]->getValue("naval_base");
+		if (objNavalBase.size() != 0)
+		{
+			// this province is coastal
+			for (map<int, V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+			{
+				if ( pitr->first == provinceNum)
+				{
+					pitr->second->setCoastal(true);
+					break;
+				}
+			}
+		}
+	}
 
 	countries.clear();
 
@@ -906,6 +906,10 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		{
 			continue;
 		}
+		if (openItr->second->getOwner() != countryItr->first) // if the capital is not owned, don't bother running 
+		{
+			continue;
+		}
 		openItr->second->setLandConnection(true);
 		goodProvinces.push(openItr->first);
 		openProvinces.erase(openItr);
@@ -1004,8 +1008,8 @@ void V2World::setupStates(const stateMapping& stateMap)
 		{
 			neighbors = stateItr->second;
 		}
-		bool colonised = (*iter)->wasColonised();
-		newState->setColonised(colonised);
+		bool colonised = (*iter)->isColonial();
+		newState->setColonial(colonised);
 		iter = unassignedProvs.erase(iter);
 
 		for (vector<int>::iterator i = neighbors.begin(); i != neighbors.end(); i++)
@@ -1016,7 +1020,7 @@ void V2World::setupStates(const stateMapping& stateMap)
 				{
 					if ((*iter)->getOwner() == owner)
 					{
-						if ((*iter)->wasColonised() == colonised)
+						if ((*iter)->isColonial() == colonised)
 						{
 							newState->addProvince(*iter);
 							iter = unassignedProvs.erase(iter);
@@ -1060,7 +1064,7 @@ void V2World::addUnions(const unionMapping& unionMap)
 	{
 		for (unionMapping::const_iterator unionItr = unionMap.begin(); unionItr != unionMap.end(); unionItr++)
 		{
-			if (provItr->second->hasCulture(unionItr->first, 0.5) && !provItr->second->wasInfidelConquest() && !provItr->second->wasColonised())
+			if (provItr->second->hasCulture(unionItr->first, 0.5) && !provItr->second->wasInfidelConquest() && !provItr->second->wasColony())
 			{
 				provItr->second->addCore(unionItr->second);
 			}
@@ -1214,143 +1218,6 @@ void V2World::convertTechs(const EU3World& sourceWorld)
 			itr->second->setCultureTech(governmentMean, highestGovernment);
 		}
 	}
-
-	int numRomanticLit = 0;
-	int numRomanticArt = 0;
-	int numRomanticMusic = 0;
-	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
-	{
-		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
-		{
-			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
-			{
-				numRomanticLit++;
-			}
-			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
-			{
-				numRomanticArt++;
-			}
-			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
-			{
-				numRomanticMusic++;
-			}
-		}
-	}
-	else if (Configuration::getV2Gametype() == "HOD")
-	{
-		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
-		{
-			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
-			{
-				numRomanticLit++;
-			}
-			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
-			{
-				numRomanticArt++;
-			}
-			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
-			{
-				numRomanticMusic++;
-			}
-		}
-	}
-	else if (Configuration::getV2Gametype() == "HoD-NNM")
-	{
-		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
-		{
-			if (itr->second->getInventionState(HOD_NNM_romanticist_literature) == active)
-			{
-				numRomanticLit++;
-			}
-			if (itr->second->getInventionState(HOD_NNM_romanticist_literature) == active)
-			{
-				numRomanticArt++;
-			}
-			if (itr->second->getInventionState(HOD_NNM_romanticist_literature) == active)
-			{
-				numRomanticMusic++;
-			}
-		}
-	}
-
-	double romanticLitPrestige = 0;
-	for (int i = 1; i <= numRomanticLit; i++)
-	{
-		romanticLitPrestige += 1.0/i;
-	}
-	romanticLitPrestige *= 20;
-	romanticLitPrestige /= numRomanticLit;
-
-	double romanticArtPrestige = 0;
-	for (int i = 1; i <= numRomanticArt; i++)
-	{
-		romanticArtPrestige += 1.0/i;
-	}
-	romanticArtPrestige *= 20;
-	romanticArtPrestige /= numRomanticArt;
-
-	double romanticMusicPrestige = 0;
-	for (int i = 1; i <= numRomanticMusic; i++)
-	{
-		romanticMusicPrestige += 1.0/i;
-	}
-	romanticMusicPrestige *= 20;
-	romanticMusicPrestige /= numRomanticMusic;
-
-	if ((Configuration::getV2Gametype() == "vanilla") || (Configuration::getV2Gametype() == "AHD"))
-	{
-		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
-		{
-			if (itr->second->getInventionState(VANILLA_romanticist_literature) == active)
-			{
-				itr->second->addPrestige(romanticLitPrestige);
-			}
-			if (itr->second->getInventionState(VANILLA_romanticist_art) == active)
-			{
-				itr->second->addPrestige(romanticArtPrestige);
-			}
-			if (itr->second->getInventionState(VANILLA_romanticist_music) == active)
-			{
-				itr->second->addPrestige(romanticMusicPrestige);
-			}
-		}
-	}
-	else if (Configuration::getV2Gametype() == "HOD")
-	{
-		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
-		{
-			if (itr->second->getInventionState(HOD_romanticist_literature) == active)
-			{
-				itr->second->addPrestige(romanticLitPrestige);
-			}
-			if (itr->second->getInventionState(HOD_romanticist_art) == active)
-			{
-				itr->second->addPrestige(romanticArtPrestige);
-			}
-			if (itr->second->getInventionState(HOD_romanticist_music) == active)
-			{
-				itr->second->addPrestige(romanticMusicPrestige);
-			}
-		}
-	}
-	else if (Configuration::getV2Gametype() == "HoD-NNM")
-	{
-		for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
-		{
-			if (itr->second->getInventionState(HOD_NNM_romanticist_literature) == active)
-			{
-				itr->second->addPrestige(romanticLitPrestige);
-			}
-			if (itr->second->getInventionState(HOD_NNM_romanticist_art) == active)
-			{
-				itr->second->addPrestige(romanticArtPrestige);
-			}
-			if (itr->second->getInventionState(HOD_NNM_romanticist_music) == active)
-			{
-				itr->second->addPrestige(romanticMusicPrestige);
-			}
-		}
-	}
 }
 
 
@@ -1417,8 +1284,7 @@ void V2World::allocateFactories(const EU3World& sourceWorld, const V2FactoryFact
 	deque<pair<double, V2Country*>> restrictCountries;
 	double threshold = 1.0;
 	double totalIndWeight = 0.0;
-	for (deque<pair<double, V2Country*>>::reverse_iterator itr = weightedCountries.rbegin();
-		itr != weightedCountries.rend(); ++itr)
+	for (deque<pair<double, V2Country*>>::reverse_iterator itr = weightedCountries.rbegin(); itr != weightedCountries.rend(); ++itr)
 	{
 		if ((restrictCountries.size() > 10) && (itr->first < (threshold - FLT_EPSILON)))
 		{

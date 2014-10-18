@@ -47,6 +47,7 @@ struct V2FactoryType
 	HODNNMInventionType		HODNNMRequiredInvention;
 	bool							requireLocalInput;
 	map<string,float>			inputs;
+	string						outputGoods;
 };
 
 
@@ -63,6 +64,8 @@ class V2Factory
 		HODInventionType		getHODRequiredInvention()		const { return type->HODRequiredInvention; }
 		HODNNMInventionType	getHODNNMRequiredInvention()	const { return type->HODNNMRequiredInvention; }
 		string					getTypeName()						const { return type->name; }
+		map<string,float>		getInputs()							const { return type->inputs; };
+		string					getOutputGoods()					const { return type->outputGoods; };
 	private:
 		const V2FactoryType* type;
 };

@@ -29,9 +29,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 V2State::V2State(int newId, V2Province* firstProvince)
 {
-	id				= newId;
-	colonial		= false;
-	colonised	= false;
+	id					= newId;
+	colonial			= false;
 	provinces.clear();
 	provinces.push_back(firstProvince);
 	factories.clear();
@@ -84,18 +83,42 @@ bool V2State::hasLocalSupply(string product) const
 }
 
 
-int V2State::getCraftsmenPerFactory() const
+double V2State::getSuppliedInputs(const V2Factory* factory) const
 {
-	int totalCraftsmen = 0;
-	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	// find out the total needs
+	map<string, float> inputs = factory->getInputs();
+	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); itr++)
 	{
-		vector<V2Pop*> pops = (*itr)->getPops("craftsmen");
-		for (vector<V2Pop*>::iterator pitr = pops.begin(); pitr != pops.end(); ++pitr)
+		map<string, float> newInputs = (*itr)->getInputs();
+		for (auto jtr = newInputs.begin(); jtr != newInputs.end(); jtr++)
 		{
-			totalCraftsmen += (*pitr)->getSize();
+			inputs[jtr->first] += jtr->second;
 		}
 	}
-	return totalCraftsmen / (factories.size() + 1);
+
+	// find out what we have from both RGOs and existing factories
+	map<string, float> supplies;
+	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
+	{
+		string rgo = (*itr)->getRgoType();
+		supplies[rgo] += 1.0;
+	}
+	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); itr++)
+	{
+		supplies[(*itr)->getOutputGoods()] += 1.0;
+	}
+
+	// determine how much of the inputs are supplied
+	double totalSupplied = 0.0;
+	for (map<string, float>::const_iterator inputItr = inputs.begin(); inputItr != inputs.end(); inputItr++)
+	{
+		map<string, float>::const_iterator supplyItr = supplies.find(inputItr->first);
+		if (supplyItr != supplies.end())
+ 		{
+			totalSupplied += supplyItr->second / inputItr->second;
+ 		}
+ 	}
+	return totalSupplied;
 }
 
 
@@ -124,6 +147,13 @@ int V2State::getStatePopulation() const
 }
 
 
+void V2State::addFactory(const V2Factory* factory)
+{
+	provinces[0]->addFactory(factory);
+	factories.push_back(factory);
+}
+
+
 bool V2State::hasCOT()
 {
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
@@ -135,4 +165,17 @@ bool V2State::hasCOT()
 	}
 
 	return false;
+}
+
+
+bool V2State::hasLandConnection() const
+{
+	if (provinces.size() > 0)
+	{
+		return provinces[0]->hasLandConnection();
+	}
+	else
+	{
+		return false;
+	}
 }

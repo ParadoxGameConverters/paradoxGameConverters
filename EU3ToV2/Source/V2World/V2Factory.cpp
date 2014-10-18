@@ -57,42 +57,32 @@ V2FactoryType::V2FactoryType(Object* factory)
 	}
 
 	inputs.clear();
-	vector<Object*> goods = factory->getValue("input_goods");
-	if (goods.size() > 0)
+	vector<Object*> inputGoods = factory->getValue("input_goods");
+	if (inputGoods.size() > 0)
 	{
-		vector<Object*> inObjs = goods[0]->getLeaves();
+		vector<Object*> inObjs = inputGoods[0]->getLeaves();
 		for (vector<Object*>::iterator itr = inObjs.begin(); itr != inObjs.end(); ++itr)
 		{
 			inputs.insert(make_pair((*itr)->getKey(), (float)atof((*itr)->getLeaf().c_str())));
 		}
+	}
+
+	vector<Object*> outputGoodsObj = factory->getValue("output_goods");
+	if (outputGoodsObj.size() > 0)
+	{
+		outputGoods = outputGoodsObj[0]->getLeaf();
 	}
 }
 
 
 void V2Factory::output(FILE* output) const
 {
-	// V2 takes care of hiring employees on day 1, provided sufficient starting capital
-	fprintf(output, "\t\tstate_buildings=\n");
-	fprintf(output, "\t\t{\n");
-	fprintf(output, "\t\t\tbuilding=\"%s\"\n", type->name.c_str());
-	fprintf(output, "\t\t\tlevel=1\n");
-
-	// stockpile 1/2 of necessary input (seems a bit larger than the typical savegame's stockpile)
-	// plus a small supply of cement and machine parts for efficiency
-	fprintf(output, "\t\t\tstockpile=\n");
-	fprintf(output, "\t\t\t{\n");
-	for (map<string,float>::const_iterator itr = type->inputs.begin(); itr != type->inputs.end(); ++itr)
-	{
-		fprintf(output, "\t\t\t\t%s=%f\n", itr->first.c_str(), itr->second * 0.5);
-	}
-	fprintf(output, "\t\t\t\tcement=0.5\n");
-	fprintf(output, "\t\t\t\tmachine_parts=0.05\n");
-	fprintf(output, "\t\t\t}\n");
-
-	// prime the pump with a little starting cash
-	fprintf(output, "\t\t\tmoney=20000.0\n");
-
-	fprintf(output, "\t\t}\n");
+	fprintf(output, "state_building=\n");
+	fprintf(output, "{\n");
+	fprintf(output, "\tlevel=1\n");
+	fprintf(output, "\tbuilding = %s\n", type->name.c_str());
+	fprintf(output, "\tupgrade = yes\n");
+	fprintf(output, "}\n");
 }
 
 
