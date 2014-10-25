@@ -17,3 +17,14 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
+
+---
+
+Targa reader/writer code http://dmr.ath.cx/gfx/targa/
+
+Copyright © 2001-2004 Emil Mikulic.
+
+Source and binary redistribution of this code, with or without changes, for free or for profit, is allowed as long as this copyright notice is kept intact. Modified versions have to be clearly marked as modified.
+
+This code is provided without any warranty. The copyright holder is not liable for anything bad that might happen as a result of the code.
+
