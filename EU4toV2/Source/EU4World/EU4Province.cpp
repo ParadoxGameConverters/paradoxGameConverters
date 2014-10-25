@@ -32,6 +32,10 @@ THE SOFTWARE. */
 EU4Province::EU4Province(Object* obj) {
 	num = 0 - atoi(obj->getKey().c_str());
 
+	vector<Object*> baseTaxObjs;			// the object holding the base tax
+	baseTaxObjs = obj->getValue("base_tax");
+	baseTax = (baseTaxObjs.size() > 0) ? atof(baseTaxObjs[0]->getLeaf().c_str()) : 0.0f;
+
 	vector<Object*> ownerObjs;				// the object holding the owner
 	ownerObjs = obj->getValue("owner");
 	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();

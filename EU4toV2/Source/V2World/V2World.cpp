@@ -691,10 +691,7 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 
 struct MTo1ProvinceComp
 {
-	MTo1ProvinceComp() : totalPopulation(0) {};
-
 	vector<EU4Province*> provinces;
-	int totalPopulation;
 };
 
 
@@ -725,7 +722,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 		EU4Country*		oldOwner			= NULL;
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
-		double newProvinceTotalPop = 0;
+		double newProvinceTotalBaseTax = 0;
 		for (vector<int>::const_iterator itr = provinceLink->second.begin(); itr != provinceLink->second.end(); ++itr)
 		{
 			EU4Province* province = sourceWorld.getProvince(*itr);
@@ -748,7 +745,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			{
 				provinceBins[tag] = MTo1ProvinceComp();
 			}
-			if (((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")) && /*(province->getPopulation() < 1000)*/ false && (owner != NULL))
+			if (((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM")) && false && (owner != NULL))
 			{
 				stateIndexMapping::const_iterator stateIndexMapping = stateIndexMap.find(i->first);
 				if (stateIndexMapping == stateIndexMap.end())
@@ -774,14 +771,14 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			else
 			{
 				provinceBins[tag].provinces.push_back(province);
-				provinceBins[tag].totalPopulation += province->getPopulation();
-				newProvinceTotalPop += province->getPopulation();
+				newProvinceTotalBaseTax = province->getBaseTax();
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
-				if ((oldOwner == NULL)
-					 || (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-					 || ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-					 && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+				if (
+					 (oldOwner == NULL) || 
+					 (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) || 
+					 (provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
+					)
 				{
 					oldOwner = owner;
 					oldProvince = province;
@@ -834,7 +831,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 					}
 
 					// determine demographics
-					double provPopRatio = (*vitr)->getPopulation() / newProvinceTotalPop;
+					double provPopRatio = (*vitr)->getBaseTax() / newProvinceTotalBaseTax;
 					vector<EU4PopRatio> popRatios = (*vitr)->getPopRatios();
 					for (vector<EU4PopRatio>::iterator prItr = popRatios.begin(); prItr != popRatios.end(); ++prItr)
 					{

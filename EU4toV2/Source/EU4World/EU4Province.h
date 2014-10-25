@@ -54,24 +54,24 @@ class EU4Province {
 		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;
 		date						getLastPossessedDate(string tag) const;
 
-		int						getNum()				const { return num; };
-		string					getOwnerString()	const { return ownerString; };
-		EU4Country*				getOwner()			const { return owner; };
-		int						getPopulation()	const { return population; };
-		bool						isColony()			const { return colony; };
-		vector<EU4PopRatio>	getPopRatios()		const { return popRatios; };
+		int						getNum()				const { return num; }
+		double					getBaseTax()		const { return baseTax; }
+		string					getOwnerString()	const { return ownerString; }
+		EU4Country*				getOwner()			const { return owner; }
+		bool						isColony()			const { return colony; }
+		vector<EU4PopRatio>	getPopRatios()		const { return popRatios; }
 
-		void						setOwner(EU4Country* newOwner)	{ owner = newOwner; };
+		void						setOwner(EU4Country* newOwner)	{ owner = newOwner; }
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
 		void	decayPopRatios(date olddate, date newdate, EU4PopRatio& currentPop);
 
 		int									num;						// the province number
+		double								baseTax;					// the base tax of the province
 		string								ownerString;			// a string with the owner's tag
 		EU4Country*							owner;					// the owner
 		vector<string>						cores;					// strings of the tags of all cores
-		int									population;				// the population
 		bool									colony;					// whether or not this is a colony
 		vector< pair<date, string> >	ownershipHistory;		// the history of who has owned this province
 		map<string, date>					lastPossessedDate;	// the last date the province was owned by different tags
