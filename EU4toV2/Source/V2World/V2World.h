@@ -75,6 +75,8 @@ class V2World {
 		map<string, V2Country*>		dynamicCountries;
 		V2Diplomacy						diplomacy;
 		map< int, set<string> >		colonies;
+
+		map<string, list<int>* >		popRegions;
 };
 
 

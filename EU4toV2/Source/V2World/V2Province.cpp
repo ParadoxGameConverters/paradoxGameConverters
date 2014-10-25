@@ -259,6 +259,16 @@ void V2Province::outputPops(FILE* output) const
 			}
 			fprintf(output, "}\n");
 		}
+		else if (oldPops.size() > 0)
+		{
+			fprintf(output, "%d = {\n", num);
+			for (unsigned int i = 0; i < oldPops.size(); i++)
+			{
+				oldPops[i]->output(output);
+				fprintf(output, "\n");
+			}
+			fprintf(output, "}\n");
+		}
 	}
 }
 

@@ -144,6 +144,7 @@ V2World::V2World()
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 	{
+		list<int>* popProvinces = new list<int>;
 		Object*	obj2	= doParseFile((Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
 		vector<Object*> leaves = obj2->getLeaves();
 		for (unsigned int j = 0; j < leaves.size(); j++)
@@ -157,6 +158,7 @@ V2World::V2World()
 			}
 			else
 			{
+				popProvinces->push_back(provNum);
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
@@ -164,6 +166,7 @@ V2World::V2World()
 					k->second->addOldPop(newPop);
 				}
 			}
+			popRegions.insert( make_pair(*itr, popProvinces) );
 		}
 	}
 
@@ -390,16 +393,29 @@ void V2World::output() const
 void V2World::outputPops() const
 {
 	LOG(LogLevel::Debug) << "Writing pops";
-	FILE* popsFile;
-	if (fopen_s(&popsFile, ("Output\\" + Configuration::getOutputName() + "\\history\\pops\\1836.1.1\\pops.txt").c_str(), "w") != 0)
+	for (map<string, list<int>* >::const_iterator itr = popRegions.begin(); itr != popRegions.end(); itr++)
 	{
-		LOG(LogLevel::Error) << "Could not create pops file";
-		exit(-1);
-	}
+		FILE* popsFile;
+		if (fopen_s(&popsFile, ("Output\\" + Configuration::getOutputName() + "\\history\\pops\\1836.1.1\\" + itr->first).c_str(), "w") != 0)
+		{
+			LOG(LogLevel::Error) << "Could not create pops file Output\\" << Configuration::getOutputName() << "\\history\\pops\\1836.1.1\\" << itr->first;
+			exit(-1);
+		}
 
-	for (map<int, V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); itr++)
-	{
-		itr->second->outputPops(popsFile);
+		for (list<int>::const_iterator provNumItr = itr->second->begin(); provNumItr != itr->second->end(); provNumItr++)
+		{
+			map<int, V2Province*>::const_iterator provItr = provinces.find(*provNumItr);
+			if (provItr != provinces.end())
+			{
+				provItr->second->outputPops(popsFile);
+			}
+			else
+			{
+				LOG(LogLevel::Error) << "Could not find province " << *provNumItr << " while outputing pops!";
+			}
+		}
+
+		delete itr->second;
 	}
 }
 
