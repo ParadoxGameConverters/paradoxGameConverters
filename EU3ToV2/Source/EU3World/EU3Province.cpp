@@ -33,6 +33,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 EU3Province::EU3Province(Object* obj) {
 	num = atoi(obj->getKey().c_str());
 
+	vector<Object*> baseTaxObjs;			// the object holding the base tax
+	baseTaxObjs = obj->getValue("base_tax");
+	baseTax = (baseTaxObjs.size() > 0) ? atof(baseTaxObjs[0]->getLeaf().c_str()) : 0.0f;
+
 	vector<Object*> ownerObjs;
 	ownerObjs = obj->getValue("owner");
 	if (ownerObjs.size() == 0)

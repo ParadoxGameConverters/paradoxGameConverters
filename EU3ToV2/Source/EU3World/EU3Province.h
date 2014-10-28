@@ -56,6 +56,7 @@ class EU3Province {
 		date						getLastPossessedDate(string tag) const;
 
 		int						getNum()				const { return num; };
+		double					getBaseTax()		const { return baseTax; }
 		string					getOwnerString()	const { return ownerString; };
 		EU3Country*				getOwner()			const { return owner; };
 		int						getPopulation()	const { return population; };
@@ -71,6 +72,7 @@ class EU3Province {
 		void	decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
 
 		int									num;
+		double								baseTax;
 		string								ownerString;
 		EU3Country*							owner;
 		vector<string>						cores;

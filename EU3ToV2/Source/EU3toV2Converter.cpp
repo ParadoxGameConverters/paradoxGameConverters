@@ -48,6 +48,8 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 
 	Configuration::getInstance();
 
+	LOG(LogLevel::Info) << "Converter version 3.0";
+
 	char curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
 	LOG(LogLevel::Debug) << "Current directory is " << curDir;
@@ -275,6 +277,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 
 
 	// Get country mappings
+	LOG(LogLevel::Info) << "Getting country mappings";
 	CountryMapping countryMap;
 	countryMap.ReadRules("country_mappings.txt");
 
@@ -283,6 +286,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	adjacencyMapping adjacencyMap = initAdjacencyMap();
 
 	// Generate continent mapping
+	LOG(LogLevel::Info) << "Finding Continents";
 	string EU3Mod = Configuration::getEU3Mod();
 	continentMapping continentMap;
 	if (EU3Mod != "")
@@ -521,7 +525,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 	destWorld.convertUncivReforms();
 	LOG(LogLevel::Info) << "Creating pops";
-	//destWorld.setupPops(sourceWorld);
+	destWorld.setupPops(sourceWorld);
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
@@ -546,9 +550,13 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");
 	fprintf(modFile, "replace = \"history/units\"\n");
+	fprintf(modFile, "replace = \"history/pops/1836.1.1\"\n");
 	fprintf(modFile, "replace = \"common/religion.txt\"\n");
 	fprintf(modFile, "replace = \"common/cultures.txt\"\n");
 	fprintf(modFile, "replace = \"gfx/interface/icon_religion.dds\"\n");
+	fprintf(modFile, "replace = \"localisation/text.csv\"\n");
+	fprintf(modFile, "replace = \"localisation/0_Names.csv\"\n");
+	fprintf(modFile, "replace = \"localisation/0_Cultures.csv\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());

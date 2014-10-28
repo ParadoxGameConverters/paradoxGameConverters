@@ -1817,8 +1817,8 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 			army->getSourceArmy()->blockHomeProvince(eu3Home);
 			return -1;
 		}
-		int soldierPop = homeProvince->getSoldierPopForArmy();
-		if (-1 == soldierPop)
+		V2Pop* soldierPop = homeProvince->getSoldierPopForArmy();
+		if (NULL == soldierPop)
 		{
 			// if the old home province was colonized and can't support the unit, try turning it into an "expeditionary" army
 			if (homeProvince->wasColony())
@@ -1826,8 +1826,8 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 				V2Province* expSender = getProvinceForExpeditionaryArmy();
 				if (expSender)
 				{
-					int expSoldierPop = expSender->getSoldierPopForArmy();
-					if (-1 != expSoldierPop)
+					V2Pop* expSoldierPop = expSender->getSoldierPopForArmy();
+					if (NULL != expSoldierPop)
 					{
 						homeProvince = expSender;
 						soldierPop = expSoldierPop;
@@ -1835,12 +1835,12 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 				}
 			}
 		}
-		if (-1 == soldierPop)
+		if (NULL == soldierPop)
 		{
 			soldierPop = homeProvince->getSoldierPopForArmy(true);
 			LOG(LogLevel::Warning) << "Could not grow province " << homeProvince->getNum() << " soldier pops to support " << RegimentCategoryNames[rc] << " regiment in army " << army->getName() << " - regiment will be undersupported";
 		}
-		reg.setPopID(soldierPop);
+		reg.setHome(homeProvince->getNum());
 	}
 	reg.setName(homeProvince->getRegimentName(rc));
 	reg.setStrength(army->getSourceArmy()->getAverageStrength(rc) * (army->getNavy() ? 100.0 : 3.0));

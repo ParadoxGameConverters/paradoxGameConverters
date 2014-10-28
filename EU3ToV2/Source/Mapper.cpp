@@ -420,36 +420,6 @@ void removeDeadLandlessNations(EU3World& world)
 }
 
 
-static bool compareLandlessNationsAges(EU3Country* A, EU3Country* B)
-{
-	vector<EU3Province*> ACores = A->getCores();
-	string ATag = A->getTag();
-	date ADate;
-	for (vector<EU3Province*>::iterator i = ACores.begin(); i != ACores.end(); i++)
-	{
-		date newADate = (*i)->getLastPossessedDate(ATag);
-		if (newADate > ADate)
-		{
-			ADate = newADate;
-		}
-	}
-
-	vector<EU3Province*> BCores = B->getCores();
-	string BTag = B->getTag();
-	date BDate;
-	for (vector<EU3Province*>::iterator i = BCores.begin(); i != BCores.end(); i++)
-	{
-		date newBDate = (*i)->getLastPossessedDate(BTag);
-		if (newBDate > BDate)
-		{
-			BDate = newBDate;
-		}
-	}
-
-	return (ADate < BDate);
-}
-
-
 void removeLandlessNations(EU3World& world)
 {
 	map<string, EU3Country*> countries = world.getCountries();

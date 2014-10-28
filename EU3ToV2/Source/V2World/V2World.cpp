@@ -136,66 +136,36 @@ V2World::V2World()
 	}
 
 	// set V2 basic population levels
-	//log("\tImporting historical pops.\n");
-	//printf("\tImporting historical pops.\n");
-	//struct _finddata_t	popsFileData;
-	//if ( (fileListing = _findfirst( (V2Loc + "\\history\\pops\\1836.1.1\\*").c_str(), &popsFileData)) == -1L)
-	//{
-	//	log("Could not open pops files.\n");
-	//	return;
-	//}
-	//do
-	//{
-	//	if (strcmp(popsFileData.name, ".") == 0 || strcmp(popsFileData.name, "..") == 0 )
-	//	{
-	//		continue;
-	//	}
-
-	//	Object*	obj2;				// generic object
-	//	ifstream	read;				// ifstream for reading files
-	//	initParser();
-	//	obj2 = getTopLevel();
-	//	read.open( (V2Loc + "\\history\\pops\\1836.1.1\\" + popsFileData.name).c_str() );
-	//	if (!read.is_open())
-	//	{
-	//		log("Error: Could not open %s\n", popsFileData.name);
-	//		printf("Error: Could not open %s\n", popsFileData.name);
-	//		read.close();
-	//		read.clear();
-	//		continue;
-	//	}
-	//	readFile(read);
-	//	read.close();
-	//	read.clear();
-	//
-	//	vector<Object*> leaves = obj2->getLeaves();
-	//	for (unsigned int j = 0; j < leaves.size(); j++)
-	//	{
-	//		int provNum = atoi(leaves[j]->getKey().c_str());
-	//		unsigned int k = 0;
-	//		while (k < provinces.size() && provNum != provinces[k]->getNum())
-	//		{
-	//			k++;
-	//		}
-	//		if (k == provinces.size())
-	//		{
-	//			log("Could not find province %d for original pops.\n", provNum);
-	//			continue;
-	//		}
-	//		else
-	//		{
-	//			vector<Object*> pops = leaves[j]->getLeaves();
-	//			for(unsigned int l = 0; l < pops.size(); l++)
-	//			{
-	//				vector< pair<int, double> > issues;
-	//				issues.clear();
-	//				V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"), 10.0, 0.0, 0.0, 0.0, issues);
-	//				provinces[k]->addOldPop(newPop);
-	//			}
-	//		}
-	//	}
-	//} while(_findnext(fileListing, &popsFileData) == 0);
-	//_findclose(fileListing);
+	LOG(LogLevel::Info) << "Importing historical pops.";
+	set<string> fileNames;
+	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
+	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+	{
+		list<int>* popProvinces = new list<int>;
+		Object*	obj2	= doParseFile((Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
+		vector<Object*> leaves = obj2->getLeaves();
+		for (unsigned int j = 0; j < leaves.size(); j++)
+		{
+			int provNum = atoi(leaves[j]->getKey().c_str());
+			map<int, V2Province*>::iterator k = provinces.find(provNum);
+			if (k == provinces.end())
+			{
+				LOG(LogLevel::Warning) << "Could not find province " << provNum << " for original pops.";
+				continue;
+			}
+			else
+			{
+				popProvinces->push_back(provNum);
+				vector<Object*> pops = leaves[j]->getLeaves();
+				for(unsigned int l = 0; l < pops.size(); l++)
+				{
+					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
+					k->second->addOldPop(newPop);
+				}
+			}
+			popRegions.insert( make_pair(*itr, popProvinces) );
+		}
+	}
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
@@ -415,28 +385,37 @@ void V2World::output() const
 		itr->second->output();
 	}
 	diplomacy.output();
-	/*if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
+	outputPops();
+}
+
+
+void V2World::outputPops() const
+{
+	LOG(LogLevel::Debug) << "Writing pops";
+	for (map<string, list<int>* >::const_iterator itr = popRegions.begin(); itr != popRegions.end(); itr++)
 	{
-		for (map< int, set<string> >::const_iterator colonyIter = colonies.begin(); colonyIter != colonies.end(); colonyIter++)
+		FILE* popsFile;
+		if (fopen_s(&popsFile, ("Output\\" + Configuration::getOutputName() + "\\history\\pops\\1836.1.1\\" + itr->first).c_str(), "w") != 0)
 		{
-			fprintf(output, "region=\n");
-			fprintf(output, "{\n");
-			fprintf(output, "	index=%d\n", colonyIter->first);
-			fprintf(output, "	phase=0\n");
-			fprintf(output, "	temperature=0.000\n");
-			for (set<string>::iterator countriesIter = colonyIter->second.begin(); countriesIter != colonyIter->second.end(); countriesIter++)
-			{
-				fprintf(output, "	colony=\n");
-				fprintf(output, "	{\n");
-				fprintf(output, "		tag=\"%s\"\n", countriesIter->c_str());
-				fprintf(output, "		points=1\n");
-				fprintf(output, "		invest=80\n");
-				fprintf(output, "		date=\"1836.1.1\"\n");
-				fprintf(output, "	}\n");
-			}
-			fprintf(output, "}\n");
+			LOG(LogLevel::Error) << "Could not create pops file Output\\" << Configuration::getOutputName() << "\\history\\pops\\1836.1.1\\" << itr->first;
+			exit(-1);
 		}
-	}*/
+
+		for (list<int>::const_iterator provNumItr = itr->second->begin(); provNumItr != itr->second->end(); provNumItr++)
+		{
+			map<int, V2Province*>::const_iterator provItr = provinces.find(*provNumItr);
+			if (provItr != provinces.end())
+			{
+				provItr->second->outputPops(popsFile);
+			}
+			else
+			{
+				LOG(LogLevel::Error) << "Could not find province " << *provNumItr << " while outputing pops!";
+			}
+		}
+
+		delete itr->second;
+	}
 }
 
 
@@ -661,10 +640,7 @@ void V2World::convertDiplomacy(const EU3World& sourceWorld, const CountryMapping
 
 struct MTo1ProvinceComp
 {
-	MTo1ProvinceComp() : totalPopulation(0) {};
-
 	vector<EU3Province*> provinces;
-	int totalPopulation;
 };
 
 
@@ -685,6 +661,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 		}
 		else if ((Configuration::getResetProvinces() == "yes") && (resettableProvinces.count(destNum) > 0))
 		{
+			i->second->setResettable(true);
 			continue;
 		}
 
@@ -692,9 +669,9 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 
 		EU3Province*	oldProvince	= NULL;
 		EU3Country*		oldOwner		= NULL;
-		// determine ownership by province count, or total population (if province count is tied)
+		// determine ownership by province count, or total base tax (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
-		double newProvinceTotalPop = 0;
+		double newProvinceTotalBaseTax = 0;
 		for (vector<int>::const_iterator itr = provinceLink->second.begin(); itr != provinceLink->second.end(); ++itr)
 		{
 			EU3Province* province = sourceWorld.getProvince(*itr);
@@ -744,15 +721,13 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 			else
 			{
 				provinceBins[tag].provinces.push_back(province);
-				provinceBins[tag].totalPopulation += province->getPopulation();
-				newProvinceTotalPop += province->getPopulation();
+				newProvinceTotalBaseTax = province->getBaseTax();
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
-				if (	(oldOwner == NULL) ||
-						(provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) ||
-						(	(provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size()) &&
-							(provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)
-						)
+				if (
+					 (oldOwner == NULL) || 
+					 (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size()) || 
+					 (provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
 					)
 				{
 					oldOwner = owner;
@@ -806,7 +781,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 					}
 
 					// determine demographics
-					double provPopRatio = (*vitr)->getPopulation() / newProvinceTotalPop;
+					double provPopRatio = (*vitr)->getBaseTax() / newProvinceTotalBaseTax;
 					vector<EU3PopRatio> popRatios = (*vitr)->getPopRatios();
 					for (vector<EU3PopRatio>::iterator prItr = popRatios.begin(); prItr != popRatios.end(); ++prItr)
 					{
@@ -1296,8 +1271,14 @@ void V2World::allocateFactories(const EU3World& sourceWorld, const V2FactoryFact
 	}
 	weightedCountries.swap(restrictCountries);
 
-	// determine how many factories each eligible nation gets
+	// remove nations that won't have enough industiral score for even one factory
 	deque<V2Factory*> factoryList = factoryBuilder.buildFactories();
+	while (((weightedCountries.begin()->first / totalIndWeight) * factoryList.size() + 0.5 /*round*/) < 1.0)
+	{
+		weightedCountries.pop_front();
+	}
+
+	// determine how many factories each eligible nation gets
 	vector<pair<int, V2Country*>> factoryCounts;
 	for (deque<pair<double, V2Country*>>::iterator itr = weightedCountries.begin(); itr != weightedCountries.end(); ++itr)
 	{

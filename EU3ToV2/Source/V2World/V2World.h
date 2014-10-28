@@ -63,6 +63,7 @@ class V2World {
 		map<string, V2Country*>	getPotentialCountries()	const;
 		map<string, V2Country*>	getDynamicCountries()	const;
 	private:
+		void				outputPops() const;
 		void			getProvinceLocalizations(string file);
 		vector<int>	getPortProvinces(vector<int> provinces);
 		V2Country*	getCountry(string tag);
@@ -73,6 +74,8 @@ class V2World {
 		map<string, V2Country*>	dynamicCountries;
 		V2Diplomacy					diplomacy;
 		map< int, set<string> >	colonies;
+
+		map<string, list<int>* >		popRegions;
 };
 
 
