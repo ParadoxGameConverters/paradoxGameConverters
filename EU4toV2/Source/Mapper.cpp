@@ -712,3 +712,34 @@ colonyMapping initColonyMap(Object* obj)
 
 	return colonyMap;
 }
+
+ck2TitleMapping initCK2TitleMap(Object* obj)
+{
+	ck2TitleMapping titleMap;
+	vector<Object*> titles = obj->getLeaves();
+	vector<Object*> links = titles[0]->getLeaves();	
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		vector<Object*>	titles	= (*i)->getLeaves();
+		string name;
+		string titleID;
+
+		for (vector<Object*>::iterator j = titles.begin(); j != titles.end(); j++)
+		{
+			if ( (*j)->getKey() == "name" )
+			{
+				name = (*j)->getLeaf();
+				name = V2Localisation::Convert(name);
+			}
+			if ( (*j)->getKey() == "title" )
+			{
+				titleID = (*j)->getLeaf();
+			}
+		}
+
+		titleMap[name] = titleID;
+	}
+
+	return titleMap;
+}

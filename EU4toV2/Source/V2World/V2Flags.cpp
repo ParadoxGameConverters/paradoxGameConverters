@@ -30,6 +30,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <boost/algorithm/string/predicate.hpp>
 
+#include "..\EU4World\EU4Country.h"
 #include "V2Country.h"
 #include "..\Configuration.h"
 #include "..\Log.h"
@@ -37,7 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const std::map<std::string,std::string>& CK2titles)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
@@ -57,10 +58,11 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 		for (std::vector<std::string>::const_reverse_iterator i = flagFileSuffixes.rbegin(); i != flagFileSuffixes.rend() && !hasSuffix; ++i)
 		{
 			const std::string& suffix = *i;
-			hasSuffix = (flag.size() == 3 + suffix.size()) && boost::algorithm::iends_with(flag, suffix);
+			hasSuffix = (boost::algorithm::iends_with(flag, suffix));
 			if (hasSuffix)
 			{
-				std::string tag = flag.substr(0, 3);
+				std::string tag = flag.substr(0, flag.find(suffix));
+
 				// Ensure we have flags for all suffixes of this tag.
 				bool haveAllFlags = true;
 				for (std::vector<std::string>::const_iterator j = flagFileSuffixes.begin(); j != flagFileSuffixes.end(); ++j)
@@ -104,6 +106,54 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries)
 		std::swap(usableFlagTags, usableFlagTagsRemaining);
 		std::swap(requiredTags, requiredTagsRemaining);
 	}
+	
+	// Get the CK2 flags.
+	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
+	{
+		V2Country* v2source = i->second;
+		
+		if (!i->second->getSourceCountry())
+			continue;
+
+		if (requiredTags.find(i->first) == requiredTags.end())
+			continue; // this one already has a flag
+
+		if (isdigit(i->first[0]) || false == isdigit(i->first[1]) || false == isdigit(i->first[2]))
+			continue; // CK2 nations are character-number-number (X01, Z85 etc) - this one doesn't match
+
+		//if (i->first[0] == 'C')
+		//	continue; // this one's a colonial nation
+
+		std::string name = i->second->getLocalName();
+		name = V2Localisation::Convert(name);
+
+		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+		LOG(LogLevel::Info) << i->first << "\t" << name << "\t";// << lname;// << sname << i->second->getLocalName();
+		
+		auto ck2title = CK2titles.find(name);
+		if (ck2title == CK2titles.end())
+			continue; // this one doesn't have a CK2 title
+
+		LOG(LogLevel::Info) << "Country " << i->first << " has the CK2 title " << ck2title->second;
+
+		if (usableFlagTags.find(ck2title->second) == usableFlagTags.end())
+			continue; // we don't have a flag for this CK2 title
+
+		tagMapping[i->first] = ck2title->second;
+
+		usableFlagTags.erase(ck2title->second);
+		requiredTags.erase(i->first);
+	}
+
+	/*
+	for (std::set<std::string>::const_iterator i = requiredTagsRemaining.cbegin(); i != requiredTagsRemaining.cend(); ++i)
+		if (*it % 2 == 0) {
+			numbers.erase(it++);
+		}
+		else {
+			++it;
+		}
+	}*/
 
 	// All the remaining tags now need one of the usable flags.
 	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));

@@ -1,0 +1,3223 @@
+# Copyright (c) 2014 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+ck2Titles = {
+
+link = { name = "a' charraig" 	 title = "c_carrick" }
+link = { name = "abbasid" 	 title = "d_abbasid" }
+link = { name = "abbaside" 	 title = "d_abbasid" }
+link = { name = "aber naiton" 	 title = "c_gowrie" }
+link = { name = "aber neithon" 	 title = "c_gowrie" }
+link = { name = "aberaera" 	 title = "c_argyll" }
+link = { name = "aberaeron" 	 title = "c_carrick" }
+link = { name = "aberauc" 	 title = "c_ross" }
+link = { name = "aberbachuu" 	 title = "c_caithness" }
+link = { name = "aberbachwy" 	 title = "c_caithness" }
+link = { name = "abercarn" 	 title = "c_lothian" }
+link = { name = "abercarnedd" 	 title = "c_lothian" }
+link = { name = "aberdwyafon" 	 title = "c_buchan" }
+link = { name = "aberera" 	 title = "c_argyll" }
+link = { name = "abereron" 	 title = "c_carrick" }
+link = { name = "aberfauur" 	 title = "c_caithness" }
+link = { name = "aberfawr" 	 title = "c_caithness" }
+link = { name = "aberfel" 	 title = "c_atholl" }
+link = { name = "aberfelly" 	 title = "c_atholl" }
+link = { name = "aberlath" 	 title = "c_lothian" }
+link = { name = "aberlydd" 	 title = "c_lothian" }
+link = { name = "abernard" 	 title = "c_moray" }
+link = { name = "abernis" 	 title = "c_moray" }
+link = { name = "aberpeffry" 	 title = "c_ross" }
+link = { name = "aberpis" 	 title = "c_ross" }
+link = { name = "abertaewafon" 	 title = "c_caithness" }
+link = { name = "aberteuafon" 	 title = "c_caithness" }
+link = { name = "aberury" 	 title = "c_buchan" }
+link = { name = "abessinien" 	 title = "k_abyssinia" }
+link = { name = "abessinischer trupp" 	 title = "d_abyssinian_band" }
+link = { name = "abhach" 	 title = "c_ross" }
+link = { name = "abisinia" 	 title = "k_abyssinia" }
+link = { name = "abjasia" 	 title = "d_abkhazia" }
+link = { name = "abkhasien" 	 title = "d_abkhazia" }
+link = { name = "abkhazia" 	 title = "d_abkhazia" }
+link = { name = "abkhazie" 	 title = "d_abkhazia" }
+link = { name = "abodrites" 	 title = "d_obotrites" }
+link = { name = "abotriten" 	 title = "d_obotrites" }
+link = { name = "abov" 	 title = "c_abauj" }
+link = { name = "abyssinia" 	 title = "k_abyssinia" }
+link = { name = "abyssinian band" 	 title = "d_abyssinian_band" }
+link = { name = "abyssinie" 	 title = "k_abyssinia" }
+link = { name = "acalapura" 	 title = "c_acalapura" }
+link = { name = "acaya" 	 title = "d_achaia" }
+link = { name = "achadh bhó" 	 title = "c_ossory" }
+link = { name = "achaia" 	 title = "d_achaia" }
+link = { name = "achaïe" 	 title = "d_achaia" }
+link = { name = "adrianopolis" 	 title = "d_adrianopolis" }
+link = { name = "adrianópolis" 	 title = "d_adrianopolis" }
+link = { name = "adriatic galleys" 	 title = "d_venetian_navy" }
+link = { name = "adriatische galleren" 	 title = "d_venetian_navy" }
+link = { name = "adsel" 	 title = "c_lettigalians" }
+link = { name = "aeddantref" 	 title = "c_teviotdale" }
+link = { name = "aegean islands" 	 title = "d_aegean_islands" }
+link = { name = "aegeas" 	 title = "c_adana" }
+link = { name = "aercardden" 	 title = "c_moray" }
+link = { name = "aerfur" 	 title = "c_orkney" }
+link = { name = "aerfwr" 	 title = "c_orkney" }
+link = { name = "aergwyn" 	 title = "c_moray" }
+link = { name = "aeron" 	 title = "c_carrick" }
+link = { name = "aethontreh" 	 title = "c_teviotdale" }
+link = { name = "afar" 	 title = "d_afar" }
+link = { name = "afghanistan" 	 title = "k_afghanistan" }
+link = { name = "afoneogiaid" 	 title = "c_isle_of_man" }
+link = { name = "africa" 	 title = "k_africa" }
+link = { name = "afrika" 	 title = "k_africa" }
+link = { name = "aghbania" 	 title = "d_derbent" }
+link = { name = "aghvank" 	 title = "c_albania" }
+link = { name = "agrigenton" 	 title = "c_agrigento" }
+link = { name = "ahonugad" 	 title = "c_isle_of_man" }
+link = { name = "ail finn" 	 title = "c_connacht" }
+link = { name = "ailech" 	 title = "c_tyrone" }
+link = { name = "ailgin" 	 title = "c_moray" }
+link = { name = "airdchartdan" 	 title = "c_moray" }
+link = { name = "airer goídel" 	 title = "c_argyll" }
+link = { name = "airgíalla" 	 title = "c_oriel" }
+link = { name = "ajayameru" 	 title = "c_ajayameru" }
+link = { name = "ajmer" 	 title = "d_ajmer" }
+link = { name = "akara-dasarna" 	 title = "d_akara_dasarna" }
+link = { name = "akrai" 	 title = "c_karvuna" }
+link = { name = "aksoum" 	 title = "d_axum" }
+link = { name = "al-hanim" 	 title = "c_kaneia" }
+link = { name = "al-karak" 	 title = "c_kerak" }
+link = { name = "al-murabitider" 	 title = "k_al-murabitids" }
+link = { name = "al-murabitides" 	 title = "k_al-murabitids" }
+link = { name = "al-murabitids" 	 title = "k_al-murabitids" }
+link = { name = "alaborg" 	 title = "c_bezhetsky_verh" }
+link = { name = "alampur" 	 title = "c_alampur" }
+link = { name = "alan riders" 	 title = "d_alan_band" }
+link = { name = "alania" 	 title = "k_alania" }
+link = { name = "alanie" 	 title = "k_alania" }
+link = { name = "alanien" 	 title = "k_alania" }
+link = { name = "alanische reiter" 	 title = "d_alan_band" }
+link = { name = "alba" 	 title = "k_scotland" }
+link = { name = "alban" 	 title = "d_albany" }
+link = { name = "albaneti" 	 title = "c_albania" }
+link = { name = "albania" 	 title = "d_derbent" }
+link = { name = "albanigh" 	 title = "d_albany" }
+link = { name = "albany" 	 title = "d_albany" }
+link = { name = "alcluit" 	 title = "c_clydesdale" }
+link = { name = "aldeigjuborg" 	 title = "c_bezhetsky_verh" }
+link = { name = "alejandría" 	 title = "d_alexandria" }
+link = { name = "alemania" 	 title = "k_germany" }
+link = { name = "alep" 	 title = "d_aleppo" }
+link = { name = "alepo" 	 title = "d_aleppo" }
+link = { name = "aleppo" 	 title = "d_aleppo" }
+link = { name = "alexandria" 	 title = "d_alexandria" }
+link = { name = "alexandrie" 	 title = "d_alexandria" }
+link = { name = "alfheimr" 	 title = "c_viken" }
+link = { name = "alftanäs" 	 title = "c_vestisland" }
+link = { name = "algarve" 	 title = "d_algarve" }
+link = { name = "alger" 	 title = "d_alger" }
+link = { name = "algésiras" 	 title = "d_jazira" }
+link = { name = "almohad" 	 title = "k_almohad" }
+link = { name = "almohades" 	 title = "k_almohad" }
+link = { name = "alnø" 	 title = "c_medelpad" }
+link = { name = "alodejoki" 	 title = "c_bezhetsky_verh" }
+link = { name = "alodia" 	 title = "d_sennar" }
+link = { name = "alodie" 	 title = "d_sennar" }
+link = { name = "alodien" 	 title = "d_sennar" }
+link = { name = "alsnø" 	 title = "c_uppland" }
+link = { name = "alt clut" 	 title = "c_clydesdale" }
+link = { name = "alta borgoña" 	 title = "d_upper_burgundy" }
+link = { name = "alta lorena" 	 title = "d_upper_lorraine" }
+link = { name = "am magh baoghail" 	 title = "c_carrick" }
+link = { name = "amalfi" 	 title = "d_amalfi" }
+link = { name = "amaravati" 	 title = "c_amaravati" }
+link = { name = "an alre" 	 title = "c_vannes" }
+link = { name = "an bhlarna" 	 title = "c_desmond" }
+link = { name = "an cabhán" 	 title = "c_breifne" }
+link = { name = "an dùn" 	 title = "c_strathearn" }
+link = { name = "an eaglais bhreac" 	 title = "c_lothian" }
+link = { name = "an erge vras" 	 title = "c_cornouaille" }
+link = { name = "an geal Àth" 	 title = "c_lothian" }
+link = { name = "an ghrianán" 	 title = "c_ossory" }
+link = { name = "an greannach" 	 title = "c_ossory" }
+link = { name = "an longphort" 	 title = "c_breifne" }
+link = { name = "an mhainistir mhór" 	 title = "c_dublin" }
+link = { name = "an tinbhear mór" 	 title = "c_leinster" }
+link = { name = "an uhelgoad" 	 title = "c_cornouaille" }
+link = { name = "an Óghmaigh" 	 title = "c_tyrone" }
+link = { name = "anartta" 	 title = "d_anartta" }
+link = { name = "anatolia" 	 title = "k_anatolia" }
+link = { name = "anatolie" 	 title = "k_anatolia" }
+link = { name = "anatolien" 	 title = "k_anatolia" }
+link = { name = "ancona" 	 title = "d_ancona" }
+link = { name = "ancône" 	 title = "d_ancona" }
+link = { name = "andalousie" 	 title = "k_andalusia" }
+link = { name = "andalucía" 	 title = "k_andalusia" }
+link = { name = "andalusia" 	 title = "k_andalusia" }
+link = { name = "andalusien" 	 title = "k_andalusia" }
+link = { name = "andhra" 	 title = "k_andhra" }
+link = { name = "andrinople" 	 title = "d_adrianopolis" }
+link = { name = "angermanland" 	 title = "c_angermanland" }
+link = { name = "anglesey" 	 title = "c_gwynedd" }
+link = { name = "angleterre" 	 title = "k_england" }
+link = { name = "anjou" 	 title = "d_anjou" }
+link = { name = "ankon" 	 title = "c_ancona" }
+link = { name = "antioch" 	 title = "d_antioch" }
+link = { name = "antioche" 	 title = "d_antioch" }
+link = { name = "antioquía" 	 title = "d_antioch" }
+link = { name = "antivari" 	 title = "c_zeta" }
+link = { name = "antivarion" 	 title = "c_zeta" }
+link = { name = "anupa" 	 title = "d_anupa" }
+link = { name = "aonach urmhumhan" 	 title = "c_ormond" }
+link = { name = "apenrade" 	 title = "c_slesvig" }
+link = { name = "aporcrosan" 	 title = "c_ross" }
+link = { name = "apulia " 	 title = "d_apulia" }
+link = { name = "apulia" 	 title = "d_apulia" }
+link = { name = "apulie" 	 title = "d_apulia" }
+link = { name = "aquitaine" 	 title = "k_aquitaine" }
+link = { name = "aquitania" 	 title = "k_aquitaine" }
+link = { name = "aquitanien" 	 title = "k_aquitaine" }
+link = { name = "ar roc'h-bernez" 	 title = "c_nantes" }
+link = { name = "arab company" 	 title = "d_sunni_bedouin_company" }
+link = { name = "araber" 	 title = "d_arabs" }
+link = { name = "arabes" 	 title = "d_arabs" }
+link = { name = "arabia felix" 	 title = "d_arabia_felix" }
+link = { name = "arabia feliz" 	 title = "d_arabia_felix" }
+link = { name = "arabia" 	 title = "k_arabia" }
+link = { name = "arabian empire" 	 title = "e_arabia" }
+link = { name = "arabie heureuse" 	 title = "d_arabia_felix" }
+link = { name = "arabie pétrée" 	 title = "d_arabia_petrae" }
+link = { name = "arabie" 	 title = "k_arabia" }
+link = { name = "arabien" 	 title = "k_arabia" }
+link = { name = "arabische kompanie" 	 title = "d_sunni_bedouin_company" }
+link = { name = "arabs" 	 title = "d_arabs" }
+link = { name = "aragon" 	 title = "k_aragon" }
+link = { name = "aragón" 	 title = "k_aragon" }
+link = { name = "aranes" 	 title = "c_halland" }
+link = { name = "aranæs" 	 title = "c_halland" }
+link = { name = "ard fhearta" 	 title = "c_desmond" }
+link = { name = "ard mhacha" 	 title = "c_oriel" }
+link = { name = "ardachadh" 	 title = "c_breifne" }
+link = { name = "ardeaglais chríost" 	 title = "c_dublin" }
+link = { name = "arensborg" 	 title = "c_osel" }
+link = { name = "arensburg" 	 title = "c_osel" }
+link = { name = "argel" 	 title = "d_alger" }
+link = { name = "argyrokastron" 	 title = "c_epeiros" }
+link = { name = "armada magrebí" 	 title = "d_maghreb_corsairs" }
+link = { name = "armail" 	 title = "c_armail" }
+link = { name = "armenia minor" 	 title = "d_armenia_minor" }
+link = { name = "armenia" 	 title = "k_armenia" }
+link = { name = "armeniacon" 	 title = "d_armeniacon" }
+link = { name = "armeniaconia" 	 title = "d_armeniacon" }
+link = { name = "armenien" 	 title = "k_armenia" }
+link = { name = "arméniakon" 	 title = "d_armeniacon" }
+link = { name = "arménie" 	 title = "k_armenia" }
+link = { name = "aror" 	 title = "c_aror" }
+link = { name = "arsa" 	 title = "c_rashka" }
+link = { name = "arsuf" 	 title = "c_jaffa" }
+link = { name = "arwa" 	 title = "c_orava" }
+link = { name = "arymôr" 	 title = "k_brittany" }
+link = { name = "asaita" 	 title = "c_asayita" }
+link = { name = "ascalon" 	 title = "d_ascalon" }
+link = { name = "ascalón" 	 title = "d_ascalon" }
+link = { name = "aserbaidschan" 	 title = "d_azerbaijan" }
+link = { name = "asirgarh" 	 title = "c_asirgarh" }
+link = { name = "askalon" 	 title = "d_ascalon" }
+link = { name = "askrivion" 	 title = "c_zeta" }
+link = { name = "asni" 	 title = "c_asni" }
+link = { name = "asow" 	 title = "d_azov" }
+link = { name = "asqalan" 	 title = "c_ascalon" }
+link = { name = "assab" 	 title = "c_assab" }
+link = { name = "assassin" 	 title = "d_assassin" }
+link = { name = "assassinés" 	 title = "d_assassin" }
+link = { name = "assouan" 	 title = "d_aswan" }
+link = { name = "assuan" 	 title = "d_aswan" }
+link = { name = "asturias" 	 title = "k_asturias" }
+link = { name = "asturien" 	 title = "k_asturias" }
+link = { name = "asturies" 	 title = "k_asturias" }
+link = { name = "asuán" 	 title = "d_aswan" }
+link = { name = "aswan" 	 title = "d_aswan" }
+link = { name = "atenas" 	 title = "d_athens" }
+link = { name = "athen" 	 title = "d_athens" }
+link = { name = "athens" 	 title = "d_athens" }
+link = { name = "athfhotla" 	 title = "c_atholl" }
+link = { name = "athfocla" 	 title = "c_atholl" }
+link = { name = "athènes" 	 title = "d_athens" }
+link = { name = "atsela" 	 title = "c_lettigalians" }
+link = { name = "attienities" 	 title = "c_senj" }
+link = { name = "atzeles" 	 title = "c_lettigalians" }
+link = { name = "atíl" 	 title = "d_itil" }
+link = { name = "auenle" 	 title = "c_innse_gall" }
+link = { name = "auserwählte von ashoka" 	 title = "d_ashokas_chosen" }
+link = { name = "auserwählte von perkunas" 	 title = "d_chosen_perkunas" }
+link = { name = "austerbotn" 	 title = "c_osterbotten" }
+link = { name = "austergautland" 	 title = "c_ostergotland" }
+link = { name = "austlandet" 	 title = "d_ostlandet" }
+link = { name = "auvergne" 	 title = "d_auvergne" }
+link = { name = "auvernia" 	 title = "d_auvergne" }
+link = { name = "avanti" 	 title = "d_dadhipadra" }
+link = { name = "avaskær" 	 title = "c_blekinge" }
+link = { name = "axum" 	 title = "d_axum" }
+link = { name = "ayas" 	 title = "c_adana" }
+link = { name = "aydhab" 	 title = "c_aydhab" }
+link = { name = "aydin" 	 title = "k_aydin" }
+link = { name = "aydín" 	 title = "k_aydin" }
+link = { name = "ayodhya" 	 title = "c_ayodhya" }
+link = { name = "ayrfir" 	 title = "c_orkney" }
+link = { name = "azerbaijan" 	 title = "d_azerbaijan" }
+link = { name = "azerbaiyán" 	 title = "d_azerbaijan" }
+link = { name = "azerbaïdjan" 	 title = "d_azerbaijan" }
+link = { name = "azov" 	 title = "d_azov" }
+link = { name = "aztec empire" 	 title = "e_mexikha" }
+link = { name = "aztekenreich" 	 title = "e_mexikha" }
+link = { name = "bachuuon maurt" 	 title = "c_shetland" }
+link = { name = "bachwyon mawrty" 	 title = "c_shetland" }
+link = { name = "badajoz" 	 title = "d_badajoz" }
+link = { name = "baetraeth" 	 title = "c_innse_gall" }
+link = { name = "bagdad" 	 title = "d_baghdad" }
+link = { name = "baghdad" 	 title = "d_baghdad" }
+link = { name = "baile dubhthaich" 	 title = "c_ross" }
+link = { name = "baile mhic suibhne" 	 title = "c_tyrconnell" }
+link = { name = "baile na h-aodhàn" 	 title = "c_teviotdale" }
+link = { name = "baile na h-cearc" 	 title = "c_teviotdale" }
+link = { name = "baile na h-eaglais" 	 title = "c_orkney" }
+link = { name = "baile na h-Ùige" 	 title = "c_galloway" }
+link = { name = "baile na tràgha" 	 title = "c_carrick" }
+link = { name = "baile uí fhiacháin" 	 title = "c_connacht" }
+link = { name = "baile Átha cliath" 	 title = "c_dublin" }
+link = { name = "baile Átha fhirdhia" 	 title = "c_oriel" }
+link = { name = "baile Átha luain" 	 title = "c_kildare" }
+link = { name = "baile Átha troim" 	 title = "c_dublin" }
+link = { name = "baja lorena" 	 title = "d_lower_lorraine" }
+link = { name = "balansiyya" 	 title = "c_valencia" }
+link = { name = "balear" 	 title = "d_balearic" }
+link = { name = "balearen-" 	 title = "d_balearic" }
+link = { name = "balearic" 	 title = "d_balearic" }
+link = { name = "balgrad" 	 title = "c_feher" }
+link = { name = "balharm" 	 title = "c_palermo" }
+link = { name = "balkonda" 	 title = "c_balkonda" }
+link = { name = "balloch" 	 title = "c_carrick" }
+link = { name = "baltic cogs" 	 title = "d_hanseatic_navy" }
+link = { name = "baltische koggen" 	 title = "d_hanseatic_navy" }
+link = { name = "baluchistan" 	 title = "k_baluchistan" }
+link = { name = "balvai" 	 title = "c_west_dvina" }
+link = { name = "baléares" 	 title = "d_balearic" }
+link = { name = "bamborg" 	 title = "c_northumberland" }
+link = { name = "bamiyan" 	 title = "c_bamiyan" }
+link = { name = "banaugluas" 	 title = "c_buchan" }
+link = { name = "banavasi" 	 title = "c_banavasi" }
+link = { name = "banda abisinia" 	 title = "d_abyssinian_band" }
+link = { name = "banda bretona" 	 title = "d_breton_band" }
+link = { name = "banda búlgara" 	 title = "d_bulgarian_band" }
+link = { name = "banda catalana" 	 title = "d_catalan_band" }
+link = { name = "banda cumana" 	 title = "d_cuman_band" }
+link = { name = "banda de bengala" 	 title = "d_bengal_band" }
+link = { name = "banda de marathi" 	 title = "d_marathi_band" }
+link = { name = "banda de rajput" 	 title = "d_rajput_band" }
+link = { name = "banda de tamil" 	 title = "d_tamil_band" }
+link = { name = "banda escocesa" 	 title = "d_scottish_band" }
+link = { name = "banda finlandesa" 	 title = "d_finnish_band" }
+link = { name = "banda ghanesa" 	 title = "d_ghanan_band" }
+link = { name = "banda irlandesa" 	 title = "d_irish_band" }
+link = { name = "banda lapona" 	 title = "d_lappish_band" }
+link = { name = "banda lituana" 	 title = "d_lithuanian_band" }
+link = { name = "banda lombarda" 	 title = "d_lombard_band" }
+link = { name = "banda nubia" 	 title = "d_nubian_band" }
+link = { name = "banda pechenega" 	 title = "d_pecheneg_band" }
+link = { name = "banda rusa" 	 title = "d_rus_band" }
+link = { name = "banda sajona" 	 title = "d_saxon_band" }
+link = { name = "banda suiza" 	 title = "d_swiss_band" }
+link = { name = "banda turca" 	 title = "d_turkic_band" }
+link = { name = "bande abyssinienne" 	 title = "d_abyssinian_band" }
+link = { name = "bande bretonne" 	 title = "d_breton_band" }
+link = { name = "bande bulgare" 	 title = "d_bulgarian_band" }
+link = { name = "bande catalane" 	 title = "d_catalan_band" }
+link = { name = "bande coumane" 	 title = "d_cuman_band" }
+link = { name = "bande finlandaise" 	 title = "d_finnish_band" }
+link = { name = "bande ghanéenne" 	 title = "d_ghanan_band" }
+link = { name = "bande irlandaise" 	 title = "d_irish_band" }
+link = { name = "bande laponne" 	 title = "d_lappish_band" }
+link = { name = "bande lituanienne" 	 title = "d_lithuanian_band" }
+link = { name = "bande lombarde" 	 title = "d_lombard_band" }
+link = { name = "bande nubienne" 	 title = "d_nubian_band" }
+link = { name = "bande petchénègue" 	 title = "d_pecheneg_band" }
+link = { name = "bande rus" 	 title = "d_rus_band" }
+link = { name = "bande saxonne" 	 title = "d_saxon_band" }
+link = { name = "bande suisse" 	 title = "d_swiss_band" }
+link = { name = "bande turque" 	 title = "d_turkic_band" }
+link = { name = "bande von ghana" 	 title = "d_ghanan_band" }
+link = { name = "bande écossaise" 	 title = "d_scottish_band" }
+link = { name = "bandhugadha" 	 title = "c_bandhugadha" }
+link = { name = "bannu" 	 title = "c_bannu" }
+link = { name = "barasuru" 	 title = "c_barasuru" }
+link = { name = "barcelona" 	 title = "d_barcelona" }
+link = { name = "barcelone" 	 title = "d_barcelona" }
+link = { name = "bardavi" 	 title = "c_albania" }
+link = { name = "barion" 	 title = "c_bari" }
+link = { name = "baris" 	 title = "c_sozopolis" }
+link = { name = "barshiluna" 	 title = "c_barcelona" }
+link = { name = "basora" 	 title = "d_basra" }
+link = { name = "basra" 	 title = "d_basra" }
+link = { name = "bassorah" 	 title = "d_basra" }
+link = { name = "batin môrtaigh" 	 title = "c_shetland" }
+link = { name = "bavaria" 	 title = "k_bavaria" }
+link = { name = "baviera" 	 title = "k_bavaria" }
+link = { name = "bavière" 	 title = "k_bavaria" }
+link = { name = "bayern" 	 title = "k_bavaria" }
+link = { name = "bealach" 	 title = "c_strathearn" }
+link = { name = "beanaomh" 	 title = "c_buchan" }
+link = { name = "bearaig" 	 title = "c_dunbar" }
+link = { name = "bedford" 	 title = "d_bedford" }
+link = { name = "bedouin company" 	 title = "d_shiite_bedouin_company" }
+link = { name = "beduinen-kompanie" 	 title = "d_shiite_bedouin_company" }
+link = { name = "begemder" 	 title = "c_begemder" }
+link = { name = "beja" 	 title = "d_beja" }
+link = { name = "bektaschi-orden" 	 title = "d_bektashi" }
+link = { name = "bektashi order" 	 title = "d_bektashi" }
+link = { name = "belauc" 	 title = "c_strathearn" }
+link = { name = "belgrad" 	 title = "d_belgrade" }
+link = { name = "belgrade" 	 title = "d_belgrade" }
+link = { name = "belgrado" 	 title = "d_belgrade" }
+link = { name = "belo ozero" 	 title = "d_beloozero" }
+link = { name = "beloozero" 	 title = "d_beloozero" }
+link = { name = "belosero" 	 title = "d_beloozero" }
+link = { name = "benevento" 	 title = "d_benevento" }
+link = { name = "bengal band" 	 title = "d_bengal_band" }
+link = { name = "bengal company" 	 title = "d_bengal_company" }
+link = { name = "bengal empire" 	 title = "e_bengal" }
+link = { name = "bengal" 	 title = "k_bengal" }
+link = { name = "bengalische bande" 	 title = "d_bengal_band" }
+link = { name = "bengalische kompanie" 	 title = "d_bengal_company" }
+link = { name = "beni helal" 	 title = "k_beni_helal" }
+link = { name = "benywglwys" 	 title = "c_buchan" }
+link = { name = "berber company" 	 title = "d_sunni_berber_company" }
+link = { name = "berber-kompanie" 	 title = "d_sunni_berber_company" }
+link = { name = "berbera" 	 title = "d_harer" }
+link = { name = "berg" 	 title = "c_bereg" }
+link = { name = "bergen" 	 title = "d_bergen" }
+link = { name = "berry" 	 title = "d_berry" }
+link = { name = "bertangaland" 	 title = "d_brittany" }
+link = { name = "betrah" 	 title = "c_galloway" }
+link = { name = "betret" 	 title = "c_innse_gall" }
+link = { name = "bhakkar" 	 title = "d_bhakkar" }
+link = { name = "bharauli" 	 title = "c_bharauli" }
+link = { name = "bhera" 	 title = "c_bhera" }
+link = { name = "bhreatain bheag" 	 title = "k_wales" }
+link = { name = "bhriotáin" 	 title = "k_brittany" }
+link = { name = "bhumilka" 	 title = "c_bhumilka" }
+link = { name = "biarmie" 	 title = "d_bjarmia" }
+link = { name = "bidar" 	 title = "c_bidar" }
+link = { name = "bihar" 	 title = "k_bihar" }
+link = { name = "bihor" 	 title = "c_bihar" }
+link = { name = "bikrampur" 	 title = "c_bikrampur" }
+link = { name = "bila" 	 title = "c_fejer" }
+link = { name = "bilauc" 	 title = "c_strathearn" }
+link = { name = "birgishärad" 	 title = "c_orkney" }
+link = { name = "birgishærad" 	 title = "c_orkney" }
+link = { name = "birzebbugia" 	 title = "c_malta" }
+link = { name = "birziminium" 	 title = "c_zeta" }
+link = { name = "bjarmia" 	 title = "d_bjarmia" }
+link = { name = "bjertrå" 	 title = "c_angermanland" }
+link = { name = "bjorgvin" 	 title = "c_bergenshus" }
+link = { name = "bjærtrå" 	 title = "c_angermanland" }
+link = { name = "blemmyia" 	 title = "d_hayya" }
+link = { name = "blemmyie" 	 title = "d_hayya" }
+link = { name = "blemmyien" 	 title = "d_hayya" }
+link = { name = "blàr athfhotla" 	 title = "c_atholl" }
+link = { name = "bochzowe" 	 title = "c_brandenburg" }
+link = { name = "bohemia" 	 title = "k_bohemia" }
+link = { name = "bohême" 	 title = "k_bohemia" }
+link = { name = "bononia" 	 title = "c_vidin" }
+link = { name = "borbón" 	 title = "d_bourbon" }
+link = { name = "bordeaux" 	 title = "d_bordeaux" }
+link = { name = "borgoña" 	 title = "k_burgundy" }
+link = { name = "borgå" 	 title = "c_nyland" }
+link = { name = "bosnia" 	 title = "k_bosnia" }
+link = { name = "bosnie" 	 title = "k_bosnia" }
+link = { name = "bosnien" 	 title = "k_bosnia" }
+link = { name = "bourbon" 	 title = "d_bourbon" }
+link = { name = "bourgogne" 	 title = "k_burgundy" }
+link = { name = "bouthroton" 	 title = "c_epeiros" }
+link = { name = "brabant" 	 title = "d_brabant" }
+link = { name = "brabante" 	 title = "d_brabant" }
+link = { name = "bragance" 	 title = "d_braganza" }
+link = { name = "braganza" 	 title = "d_braganza" }
+link = { name = "brahehus" 	 title = "c_savolaks" }
+link = { name = "bramborska" 	 title = "c_sambia" }
+link = { name = "brandebourg" 	 title = "d_brandenburg" }
+link = { name = "brandeburgo" 	 title = "d_brandenburg" }
+link = { name = "brandenburg" 	 title = "d_brandenburg" }
+link = { name = "bratislava" 	 title = "d_pressburg" }
+link = { name = "braunschweig" 	 title = "d_brunswick" }
+link = { name = "bregurun" 	 title = "c_clydesdale" }
+link = { name = "breizh" 	 title = "d_brittany" }
+link = { name = "brendesion" 	 title = "c_lecce" }
+link = { name = "brennaburg" 	 title = "c_brandenburg" }
+link = { name = "breslau" 	 title = "c_upper_silesia" }
+link = { name = "bretagne" 	 title = "k_brittany" }
+link = { name = "bretaña" 	 title = "e_britannia" }
+link = { name = "breton band" 	 title = "d_breton_band" }
+link = { name = "breton company" 	 title = "d_breton_company" }
+link = { name = "bretonische kompanie" 	 title = "d_breton_company" }
+link = { name = "bretonischer trupp" 	 title = "d_breton_band" }
+link = { name = "briansk" 	 title = "d_novgorod-seversk" }
+link = { name = "brideclauet" 	 title = "c_orkney" }
+link = { name = "brieg" 	 title = "c_upper_silesia" }
+link = { name = "brigffroen" 	 title = "c_clydesdale" }
+link = { name = "briotáine" 	 title = "d_brittany" }
+link = { name = "britania" 	 title = "k_brittany" }
+link = { name = "britannia" 	 title = "e_britannia" }
+link = { name = "britannien" 	 title = "e_britannia" }
+link = { name = "brittany" 	 title = "k_brittany" }
+link = { name = "brjansk" 	 title = "d_novgorod-seversk" }
+link = { name = "brotherhood of the holy sepulchre" 	 title = "d_holy_sepulchre" }
+link = { name = "broërec" 	 title = "c_vannes" }
+link = { name = "bruderschaft vom heiligen grab" 	 title = "d_holy_sepulchre" }
+link = { name = "brunswick" 	 title = "d_brunswick" }
+link = { name = "brwydr focla" 	 title = "c_atholl" }
+link = { name = "brwyn" 	 title = "c_fife" }
+link = { name = "bryansk" 	 title = "d_novgorod-seversk" }
+link = { name = "brythoniaid" 	 title = "k_wales" }
+link = { name = "bréifne" 	 title = "c_breifne" }
+link = { name = "brìghdechuala" 	 title = "c_orkney" }
+link = { name = "budysin" 	 title = "c_lausitz" }
+link = { name = "bulgaria del volga" 	 title = "k_volga_bulgaria" }
+link = { name = "bulgaria" 	 title = "k_bulgaria" }
+link = { name = "bulgarian band" 	 title = "d_bulgarian_band" }
+link = { name = "bulgarian company" 	 title = "d_bulgarian_company" }
+link = { name = "bulgarie de la volga" 	 title = "k_volga_bulgaria" }
+link = { name = "bulgarie" 	 title = "k_bulgaria" }
+link = { name = "bulgarien" 	 title = "k_bulgaria" }
+link = { name = "bulgarische kompanie" 	 title = "d_bulgarian_company" }
+link = { name = "bulgarischer trupp" 	 title = "d_bulgarian_band" }
+link = { name = "bulls of rishabha" 	 title = "d_bulls_rishabha" }
+link = { name = "bun na raite" 	 title = "c_thomond" }
+link = { name = "burdeos" 	 title = "d_bordeaux" }
+link = { name = "burgund" 	 title = "k_burgundy" }
+link = { name = "burgundaholmr" 	 title = "c_bornholm" }
+link = { name = "burgundy" 	 title = "k_burgundy" }
+link = { name = "burhanpur" 	 title = "c_burhanpur" }
+link = { name = "buthrote" 	 title = "d_butrinto" }
+link = { name = "butrinto" 	 title = "d_butrinto" }
+link = { name = "byzantine empire" 	 title = "e_byzantium" }
+link = { name = "byzantinisches kaiserreich" 	 title = "e_byzantium" }
+link = { name = "bàile ghobhainn" 	 title = "c_clydesdale" }
+link = { name = "béal Átha seanaidh" 	 title = "c_tyrconnell" }
+link = { name = "béja" 	 title = "d_beja" }
+link = { name = "béni helal" 	 title = "k_beni_helal" }
+link = { name = "bénévent" 	 title = "d_benevento" }
+link = { name = "böhmen" 	 title = "k_bohemia" }
+link = { name = "caballeros de calatrava" 	 title = "d_knights_calatrava" }
+link = { name = "caballeros de santiago" 	 title = "d_knights_santiago" }
+link = { name = "caballeros del sol" 	 title = "d_zun_warriors" }
+link = { name = "cabilia" 	 title = "d_kabylia" }
+link = { name = "caer brinech" 	 title = "c_dunbar" }
+link = { name = "caer bryneich" 	 title = "c_dunbar" }
+link = { name = "caer caledin" 	 title = "c_fife" }
+link = { name = "caer cinn" 	 title = "c_gowrie" }
+link = { name = "caer munn" 	 title = "c_argyll" }
+link = { name = "caer muun" 	 title = "c_argyll" }
+link = { name = "caer rhi" 	 title = "c_shetland" }
+link = { name = "caer rui" 	 title = "c_shetland" }
+link = { name = "caer sauunae" 	 title = "c_argyll" }
+link = { name = "caer sywny" 	 title = "c_argyll" }
+link = { name = "caercaled" 	 title = "c_fife" }
+link = { name = "caerdurn" 	 title = "c_moray" }
+link = { name = "caerdwrn" 	 title = "c_moray" }
+link = { name = "caerrhosan" 	 title = "c_ross" }
+link = { name = "caerrosan" 	 title = "c_ross" }
+link = { name = "cafredun" 	 title = "c_fife" }
+link = { name = "cai" 	 title = "c_buchan" }
+link = { name = "cair chaladain" 	 title = "c_fife" }
+link = { name = "caire" 	 title = "d_cairo" }
+link = { name = "cairo" 	 title = "d_cairo" }
+link = { name = "cait" 	 title = "c_caithness" }
+link = { name = "caitnys" 	 title = "c_caithness" }
+link = { name = "cakrakuta" 	 title = "c_cakrakuta" }
+link = { name = "calabre" 	 title = "d_calabria" }
+link = { name = "calabria" 	 title = "d_calabria" }
+link = { name = "caladar" 	 title = "c_moray" }
+link = { name = "calchanith" 	 title = "c_teviotdale" }
+link = { name = "calchfynydd" 	 title = "c_teviotdale" }
+link = { name = "caldea" 	 title = "d_chaldea" }
+link = { name = "califat shiite" 	 title = "e_shiite" }
+link = { name = "califat sunnite" 	 title = "e_sunni" }
+link = { name = "caliu" 	 title = "c_faereyar" }
+link = { name = "callainn" 	 title = "c_ossory" }
+link = { name = "camanfalioth" 	 title = "c_shetland" }
+link = { name = "campania" 	 title = "d_campania" }
+link = { name = "campanie" 	 title = "d_campania" }
+link = { name = "canalosc" 	 title = "c_moray" }
+link = { name = "canda" 	 title = "c_canda" }
+link = { name = "candar" 	 title = "k_candar" }
+link = { name = "candhoba" 	 title = "c_candhoba" }
+link = { name = "candia" 	 title = "c_chandax" }
+link = { name = "candradvipa" 	 title = "c_candradvipa" }
+link = { name = "cantearn" 	 title = "c_clydesdale" }
+link = { name = "caolbati" 	 title = "c_faereyar" }
+link = { name = "capadocia" 	 title = "d_kappadokia" }
+link = { name = "capoue" 	 title = "d_capua" }
+link = { name = "cappadoce" 	 title = "d_kappadokia" }
+link = { name = "capua" 	 title = "d_capua" }
+link = { name = "carinthia" 	 title = "d_carinthia" }
+link = { name = "carinthie" 	 title = "d_carinthia" }
+link = { name = "carintia" 	 title = "d_carinthia" }
+link = { name = "carnonac" 	 title = "c_innse_gall" }
+link = { name = "carpathia" 	 title = "e_carpathia" }
+link = { name = "carraig fhearghais" 	 title = "c_ulster" }
+link = { name = "carubran" 	 title = "c_buchan" }
+link = { name = "carwbryn" 	 title = "c_buchan" }
+link = { name = "carélie" 	 title = "d_karelia" }
+link = { name = "castilla" 	 title = "k_castille" }
+link = { name = "castille" 	 title = "k_castille" }
+link = { name = "cataibh" 	 title = "c_caithness" }
+link = { name = "catalan band" 	 title = "d_catalan_band" }
+link = { name = "catalan company" 	 title = "d_catalan_company" }
+link = { name = "catalogne" 	 title = "d_catalonia" }
+link = { name = "catalonia" 	 title = "d_catalonia" }
+link = { name = "cataluña" 	 title = "d_catalonia" }
+link = { name = "cathair dhún iascaigh" 	 title = "c_ormond" }
+link = { name = "cathures" 	 title = "c_clydesdale" }
+link = { name = "cattaro" 	 title = "c_zeta" }
+link = { name = "catuuris" 	 title = "c_clydesdale" }
+link = { name = "cavaliers alains" 	 title = "d_alan_band" }
+link = { name = "ce" 	 title = "c_buchan" }
+link = { name = "cealsaidh" 	 title = "c_teviotdale" }
+link = { name = "ceann lios" 	 title = "c_breifne" }
+link = { name = "ceann na gleann" 	 title = "c_carrick" }
+link = { name = "ceann rois" 	 title = "c_fife" }
+link = { name = "ceann tòrr" 	 title = "c_buchan" }
+link = { name = "ceanndubh" 	 title = "c_strathearn" }
+link = { name = "ceatharlach" 	 title = "c_leinster" }
+link = { name = "ceiru" 	 title = "c_buchan" }
+link = { name = "ceirw" 	 title = "c_buchan" }
+link = { name = "cerdeña" 	 title = "d_sardinia" }
+link = { name = "cesvaine" 	 title = "c_lettigalians" }
+link = { name = "cesys" 	 title = "c_lettigalians" }
+link = { name = "chagai" 	 title = "c_chagai" }
+link = { name = "chaldea" 	 title = "d_chaldea" }
+link = { name = "chaldäa" 	 title = "d_chaldea" }
+link = { name = "chaldée" 	 title = "d_chaldea" }
+link = { name = "champagne" 	 title = "d_champagne" }
+link = { name = "champaña" 	 title = "d_champagne" }
+link = { name = "chanderi" 	 title = "c_chanderi" }
+link = { name = "charsianon" 	 title = "d_charsianon" }
+link = { name = "chasaria" 	 title = "k_khazaria" }
+link = { name = "chauragarh" 	 title = "c_chauragarh" }
+link = { name = "chera nadu" 	 title = "d_chera_nadu" }
+link = { name = "chernigov" 	 title = "d_chernigov" }
+link = { name = "cherson" 	 title = "d_cherson" }
+link = { name = "chersones" 	 title = "d_cherson" }
+link = { name = "chevaliers du soleil" 	 title = "d_zun_warriors" }
+link = { name = "chipre" 	 title = "k_cyprus" }
+link = { name = "chitrakut" 	 title = "c_chitrakut" }
+link = { name = "chola nadu" 	 title = "d_chola_nadu" }
+link = { name = "cholamandalam" 	 title = "c_cholamandalam" }
+link = { name = "chorasan" 	 title = "d_khorasan" }
+link = { name = "chosebuz" 	 title = "c_lausitz" }
+link = { name = "chosen of ashoka" 	 title = "d_ashokas_chosen" }
+link = { name = "chosen of perkunas" 	 title = "d_chosen_perkunas" }
+link = { name = "chrobatia" 	 title = "d_ungvar" }
+link = { name = "chud" 	 title = "d_beloozero" }
+link = { name = "chunar" 	 title = "c_chunar" }
+link = { name = "churian" 	 title = "c_chur" }
+link = { name = "churischer" 	 title = "c_chur" }
+link = { name = "chypre" 	 title = "k_cyprus" }
+link = { name = "cici" 	 title = "c_plauen" }
+link = { name = "cilicia" 	 title = "d_armenia_minor" }
+link = { name = "cill ala" 	 title = "c_connacht" }
+link = { name = "cill chainnigh" 	 title = "c_ossory" }
+link = { name = "cill chuithbeirt" 	 title = "c_galloway" }
+link = { name = "cill dara" 	 title = "c_kildare" }
+link = { name = "cill dálua" 	 title = "c_thomond" }
+link = { name = "cill fhionnúrach" 	 title = "c_thomond" }
+link = { name = "cill mhantáin" 	 title = "c_dublin" }
+link = { name = "cill mhic neanain" 	 title = "c_tyrconnell" }
+link = { name = "cill mhunna" 	 title = "c_argyll" }
+link = { name = "cill mhór" 	 title = "c_breifne" }
+link = { name = "cill micheál" 	 title = "c_isle_of_man" }
+link = { name = "cill mungo" 	 title = "c_clydesdale" }
+link = { name = "cill rígmonaid" 	 title = "c_fife" }
+link = { name = "cill targhlain" 	 title = "c_innse_gall" }
+link = { name = "cillecnoc" 	 title = "c_dunbar" }
+link = { name = "cillefhinn" 	 title = "c_atholl" }
+link = { name = "cinnlois" 	 title = "c_moray" }
+link = { name = "circinn" 	 title = "c_gowrie" }
+link = { name = "cirenaica" 	 title = "d_cyrenaica" }
+link = { name = "citta vecchia" 	 title = "c_malta" }
+link = { name = "cleiaubae" 	 title = "c_shetland" }
+link = { name = "cliaubae" 	 title = "c_shetland" }
+link = { name = "clochar" 	 title = "c_oriel" }
+link = { name = "cluain eois" 	 title = "c_oriel" }
+link = { name = "cluain fearta" 	 title = "c_connacht" }
+link = { name = "cluain ioraird" 	 title = "c_kildare" }
+link = { name = "cluain meala" 	 title = "c_ormond" }
+link = { name = "cluain mhic nóis" 	 title = "c_ossory" }
+link = { name = "cluain" 	 title = "c_desmond" }
+link = { name = "cluainidh" 	 title = "c_gowrie" }
+link = { name = "cocas bálticas" 	 title = "d_hanseatic_navy" }
+link = { name = "cocas del mar del norte" 	 title = "d_frisian_navy" }
+link = { name = "coeden" 	 title = "c_strathearn" }
+link = { name = "cogues baltes" 	 title = "d_hanseatic_navy" }
+link = { name = "cogues de la mer du nord" 	 title = "d_frisian_navy" }
+link = { name = "coiden" 	 title = "c_strathearn" }
+link = { name = "coinneamhionad" 	 title = "c_shetland" }
+link = { name = "coiranés" 	 title = "c_chur" }
+link = { name = "coirien" 	 title = "c_chur" }
+link = { name = "cologne" 	 title = "d_koln" }
+link = { name = "coloneia" 	 title = "d_coloneia" }
+link = { name = "colonia" 	 title = "d_koln" }
+link = { name = "colonée" 	 title = "d_coloneia" }
+link = { name = "compagnie arabe" 	 title = "d_sunni_bedouin_company" }
+link = { name = "compagnie berbère" 	 title = "d_sunni_berber_company" }
+link = { name = "compagnie blanche" 	 title = "d_white_company" }
+link = { name = "compagnie bretonne" 	 title = "d_breton_company" }
+link = { name = "compagnie bulgare" 	 title = "d_bulgarian_company" }
+link = { name = "compagnie bédouine" 	 title = "d_shiite_bedouin_company" }
+link = { name = "compagnie catalane" 	 title = "d_catalan_company" }
+link = { name = "compagnie coumane" 	 title = "d_cuman_company" }
+link = { name = "compagnie de la rose" 	 title = "d_rose_company" }
+link = { name = "compagnie de lÉtoile" 	 title = "d_star_company" }
+link = { name = "compagnie de saint-georges" 	 title = "d_company_of_st_george" }
+link = { name = "compagnie des steppes" 	 title = "d_shiite_cuman_company" }
+link = { name = "compagnie du bengale" 	 title = "d_bengal_company" }
+link = { name = "compagnie du chapeau" 	 title = "d_little_hat_company" }
+link = { name = "compagnie khazar" 	 title = "d_sunni_cuman_company" }
+link = { name = "compagnie marathi" 	 title = "d_marathi_company" }
+link = { name = "compagnie navarraise" 	 title = "d_navarrese_company" }
+link = { name = "compagnie petchénègue" 	 title = "d_pecheneg_company" }
+link = { name = "compagnie rajput" 	 title = "d_rajput_company" }
+link = { name = "compagnie rus" 	 title = "d_rus_company" }
+link = { name = "compagnie suisse" 	 title = "d_swiss_company" }
+link = { name = "compagnie touareg" 	 title = "d_shiite_berber_company" }
+link = { name = "compagnie turcmène" 	 title = "d_sunni_turkic_company" }
+link = { name = "compagnie turkomane" 	 title = "d_shiite_turkic_company" }
+link = { name = "compagnie turque" 	 title = "d_turkic_company" }
+link = { name = "company of st. george" 	 title = "d_company_of_st_george" }
+link = { name = "company of the hat" 	 title = "d_little_hat_company" }
+link = { name = "company of the rose" 	 title = "d_rose_company" }
+link = { name = "company of the star" 	 title = "d_star_company" }
+link = { name = "compañía almogávar" 	 title = "d_catalan_company" }
+link = { name = "compañía beduina" 	 title = "d_shiite_bedouin_company" }
+link = { name = "compañía bereber" 	 title = "d_sunni_berber_company" }
+link = { name = "compañía blanca" 	 title = "d_white_company" }
+link = { name = "compañía bretona" 	 title = "d_breton_company" }
+link = { name = "compañía búlgara" 	 title = "d_bulgarian_company" }
+link = { name = "compañía cumana" 	 title = "d_cuman_company" }
+link = { name = "compañía de bengala" 	 title = "d_bengal_company" }
+link = { name = "compañía de la estrella" 	 title = "d_star_company" }
+link = { name = "compañía de la rosa" 	 title = "d_rose_company" }
+link = { name = "compañía de marathi" 	 title = "d_marathi_company" }
+link = { name = "compañía de rajput" 	 title = "d_rajput_company" }
+link = { name = "compañía de san jorge" 	 title = "d_company_of_st_george" }
+link = { name = "compañía del sombrerito" 	 title = "d_little_hat_company" }
+link = { name = "compañía esteparia" 	 title = "d_sunni_cuman_company" }
+link = { name = "compañía navarra" 	 title = "d_navarrese_company" }
+link = { name = "compañía pechenega" 	 title = "d_pecheneg_company" }
+link = { name = "compañía rusa" 	 title = "d_rus_company" }
+link = { name = "compañía tuareg" 	 title = "d_shiite_berber_company" }
+link = { name = "compañía tucomana" 	 title = "d_sunni_turkic_company" }
+link = { name = "compañía turca" 	 title = "d_turkic_company" }
+link = { name = "compañía Árabe" 	 title = "d_sunni_bedouin_company" }
+link = { name = "compàirt" 	 title = "c_fife" }
+link = { name = "con doire" 	 title = "c_ulster" }
+link = { name = "confrérie des bektachis" 	 title = "d_bektashi" }
+link = { name = "connacht" 	 title = "d_connacht" }
+link = { name = "connachta" 	 title = "c_connacht" }
+link = { name = "corcaigh" 	 title = "c_desmond" }
+link = { name = "cordoba" 	 title = "d_cordoba" }
+link = { name = "cordoue" 	 title = "d_cordoba" }
+link = { name = "cornouailles" 	 title = "d_cornwall" }
+link = { name = "cornualles" 	 title = "d_cornwall" }
+link = { name = "cornwall" 	 title = "d_cornwall" }
+link = { name = "coumans" 	 title = "k_cuman" }
+link = { name = "coures" 	 title = "d_curonian" }
+link = { name = "cracovia" 	 title = "d_krakow" }
+link = { name = "cracovie" 	 title = "d_krakow" }
+link = { name = "craoibh" 	 title = "c_strathearn" }
+link = { name = "creta" 	 title = "d_krete" }
+link = { name = "criochdún" 	 title = "c_dunbar" }
+link = { name = "croacia" 	 title = "k_croatia" }
+link = { name = "croatia" 	 title = "k_croatia" }
+link = { name = "croatie" 	 title = "k_croatia" }
+link = { name = "croes rhygal" 	 title = "c_carrick" }
+link = { name = "crois riagal" 	 title = "c_carrick" }
+link = { name = "crombati" 	 title = "c_ross" }
+link = { name = "crosc ruagal" 	 title = "c_carrick" }
+link = { name = "crucabachu" 	 title = "c_ross" }
+link = { name = "crwcabachwy" 	 title = "c_ross" }
+link = { name = "crèadhbati" 	 title = "c_shetland" }
+link = { name = "crète" 	 title = "d_krete" }
+link = { name = "cuddbertbetws" 	 title = "c_galloway" }
+link = { name = "culbachuu" 	 title = "c_faereyar" }
+link = { name = "culbachwy" 	 title = "c_faereyar" }
+link = { name = "cult of huitzilopochtli" 	 title = "d_huitzilopochtli" }
+link = { name = "culte de huitzilopochtli" 	 title = "d_huitzilopochtli" }
+link = { name = "culto de huitzilopochtli" 	 title = "d_huitzilopochtli" }
+link = { name = "cuman band" 	 title = "d_cuman_band" }
+link = { name = "cuman company" 	 title = "d_cuman_company" }
+link = { name = "cuman-kompanie" 	 title = "d_cuman_company" }
+link = { name = "cuman-trupp" 	 title = "d_cuman_band" }
+link = { name = "cumania" 	 title = "k_cuman" }
+link = { name = "cumberland" 	 title = "d_cumberland" }
+link = { name = "curnfurt" 	 title = "c_anhalt" }
+link = { name = "curoner" 	 title = "d_curonian" }
+link = { name = "curonia" 	 title = "c_podlasie" }
+link = { name = "curonians" 	 title = "d_curonian" }
+link = { name = "cuthberbatu" 	 title = "c_galloway" }
+link = { name = "cydweli" 	 title = "c_dyfed" }
+link = { name = "cyffredin" 	 title = "c_fife" }
+link = { name = "cymanfalleoedd" 	 title = "c_shetland" }
+link = { name = "cyndeyrn sant" 	 title = "c_clydesdale" }
+link = { name = "cynyddullosg" 	 title = "c_moray" }
+link = { name = "cyprus" 	 title = "k_cyprus" }
+link = { name = "cyrenaica" 	 title = "d_cyrenaica" }
+link = { name = "cyrénaïque" 	 title = "d_cyrenaica" }
+link = { name = "càrnais Ùige" 	 title = "c_innse_gall" }
+link = { name = "cárpatos" 	 title = "e_carpathia" }
+link = { name = "córdoba" 	 title = "d_cordoba" }
+link = { name = "cúil rathain" 	 title = "c_tyrone" }
+link = { name = "dadhipadra" 	 title = "c_dadhipadra" }
+link = { name = "dagö" 	 title = "c_osel" }
+link = { name = "dagø" 	 title = "c_osel" }
+link = { name = "dahala" 	 title = "d_dahala" }
+link = { name = "dail chluaidh" 	 title = "c_clydesdale" }
+link = { name = "daire coluimb chille" 	 title = "c_tyrone" }
+link = { name = "dakhina desa" 	 title = "c_dakhina_desa" }
+link = { name = "daksina kosala" 	 title = "d_daksina_kosala" }
+link = { name = "dalecarlia" 	 title = "c_dalarna" }
+link = { name = "daleminzen" 	 title = "d_glomacze" }
+link = { name = "dalmacia" 	 title = "d_dalmatia" }
+link = { name = "dalmatia" 	 title = "d_dalmatia" }
+link = { name = "dalmatie" 	 title = "d_dalmatia" }
+link = { name = "dalmatien" 	 title = "d_dalmatia" }
+link = { name = "daman" 	 title = "c_daman" }
+link = { name = "damas" 	 title = "d_damascus" }
+link = { name = "damasco" 	 title = "d_damascus" }
+link = { name = "damascus" 	 title = "d_damascus" }
+link = { name = "damaskus" 	 title = "d_damascus" }
+link = { name = "damieta" 	 title = "d_damietta" }
+link = { name = "damietta" 	 title = "d_damietta" }
+link = { name = "damiette" 	 title = "d_damietta" }
+link = { name = "damin-i-koh" 	 title = "c_damin_i_koh" }
+link = { name = "damman" 	 title = "d_amman" }
+link = { name = "damnunia" 	 title = "c_clydesdale" }
+link = { name = "damoh" 	 title = "c_damoh" }
+link = { name = "damot" 	 title = "d_damot" }
+link = { name = "dandakaranya" 	 title = "d_dandakaranya" }
+link = { name = "danemark" 	 title = "k_denmark" }
+link = { name = "danmark" 	 title = "d_danes" }
+link = { name = "danzig" 	 title = "c_danzig" }
+link = { name = "darson" 	 title = "c_tarsos" }
+link = { name = "darú" 	 title = "c_kildare" }
+link = { name = "das arabische reich" 	 title = "e_arabia" }
+link = { name = "das bilderstürmer-patriarchat" 	 title = "d_iconoclast" }
+link = { name = "das charidschitische kalifat" 	 title = "d_kharijite" }
+link = { name = "das fraticelli-pontifikat" 	 title = "d_fraticelli" }
+link = { name = "das fylkirat" 	 title = "d_norse_pagan_reformed" }
+link = { name = "das hurufi-scheichtum" 	 title = "d_hurufi" }
+link = { name = "das ibadi-kalifat" 	 title = "d_ibadi" }
+link = { name = "das jazidi-scheichtum" 	 title = "d_yazidi" }
+link = { name = "das jüdische hohepriestertum" 	 title = "d_jewish" }
+link = { name = "das miaphysitische papsttum" 	 title = "d_miaphysite" }
+link = { name = "das monophysitische papsttum" 	 title = "d_monophysite" }
+link = { name = "das monotheletismische patriarchat" 	 title = "d_monothelite" }
+link = { name = "das patriarchat des ostens" 	 title = "d_nestorian" }
+link = { name = "das paulizianische patriarchat" 	 title = "d_paulician" }
+link = { name = "das persische reich" 	 title = "e_persia" }
+link = { name = "das schia-kalifat" 	 title = "e_shiite" }
+link = { name = "das sonnige kalifat" 	 title = "d_sunni" }
+link = { name = "das sunni-kalifat" 	 title = "e_sunni" }
+link = { name = "das Ökumenische patriarchat" 	 title = "k_orthodox" }
+link = { name = "dasapura" 	 title = "c_dasapura" }
+link = { name = "daugpilis" 	 title = "c_west_dvina" }
+link = { name = "dauphine" 	 title = "d_dauphine" }
+link = { name = "dauphiné" 	 title = "d_dauphine" }
+link = { name = "deasmhumhain" 	 title = "c_desmond" }
+link = { name = "debul" 	 title = "c_debul" }
+link = { name = "deccan empire" 	 title = "e_deccan" }
+link = { name = "deheubarth" 	 title = "d_deheubarth" }
+link = { name = "del hurufismo" 	 title = "d_hurufi" }
+link = { name = "delfinado" 	 title = "d_dauphine" }
+link = { name = "delhi" 	 title = "k_delhi" }
+link = { name = "deniyya" 	 title = "c_denia" }
+link = { name = "denmark" 	 title = "k_denmark" }
+link = { name = "derbent" 	 title = "d_derbent" }
+link = { name = "deutscher orden" 	 title = "d_teutonic_order" }
+link = { name = "deutschland" 	 title = "k_germany" }
+link = { name = "devagiri" 	 title = "d_devagiri" }
+link = { name = "dhamalpur" 	 title = "c_dhamalpur" }
+link = { name = "dhara" 	 title = "c_dhara" }
+link = { name = "diadora" 	 title = "c_zadar" }
+link = { name = "die aztekische kirche" 	 title = "d_aztec_reformed" }
+link = { name = "die hanse" 	 title = "k_hansa" }
+link = { name = "die hashshashin" 	 title = "d_hashshashin" }
+link = { name = "die romuva-kirche" 	 title = "d_baltic_pagan_reformed" }
+link = { name = "die slawische kirche" 	 title = "d_slavic_pagan_reformed" }
+link = { name = "die suomenuskowische kirche" 	 title = "d_finnish_pagan_reformed" }
+link = { name = "die tengrische kirche" 	 title = "d_tengri_pagan_reformed" }
+link = { name = "die westafrikanische kirche" 	 title = "d_west_african_pagan_reformed" }
+link = { name = "die zun-kirche" 	 title = "d_zun_pagan_reformed" }
+link = { name = "dihistan" 	 title = "d_dihistan" }
+link = { name = "dimapur" 	 title = "c_dimapur" }
+link = { name = "din aeron" 	 title = "c_carrick" }
+link = { name = "din aricon" 	 title = "c_hereford" }
+link = { name = "din baer" 	 title = "c_dunbar" }
+link = { name = "din brenin" 	 title = "c_galloway" }
+link = { name = "din bychan" 	 title = "c_innse_gall" }
+link = { name = "din celyddon" 	 title = "c_gowrie" }
+link = { name = "din eidyn" 	 title = "c_lothian" }
+link = { name = "din galïau" 	 title = "c_innse_gall" }
+link = { name = "din ogystal" 	 title = "c_argyll" }
+link = { name = "din rheged" 	 title = "c_galloway" }
+link = { name = "din staffpentir" 	 title = "c_argyll" }
+link = { name = "din ywen" 	 title = "c_carrick" }
+link = { name = "dinamarca" 	 title = "k_denmark" }
+link = { name = "dinblyne" 	 title = "c_strathearn" }
+link = { name = "dinbyddag" 	 title = "c_caithness" }
+link = { name = "dindân" 	 title = "c_gowrie" }
+link = { name = "dined" 	 title = "c_nantes" }
+link = { name = "dinfirllyn" 	 title = "c_fife" }
+link = { name = "dingod" 	 title = "c_teviotdale" }
+link = { name = "dinraibeart" 	 title = "c_caithness" }
+link = { name = "dinrhyd" 	 title = "c_galloway" }
+link = { name = "dioclea" 	 title = "d_dioclea" }
+link = { name = "dioclée" 	 title = "d_dioclea" }
+link = { name = "dionysopolis" 	 title = "c_karvuna" }
+link = { name = "dipalpur" 	 title = "c_dipalpur" }
+link = { name = "dirnfeth" 	 title = "c_caithness" }
+link = { name = "dirraquio" 	 title = "d_dyrrachion" }
+link = { name = "ditmarsken" 	 title = "c_hamburg" }
+link = { name = "djuraby" 	 title = "c_derby" }
+link = { name = "dobrebora" 	 title = "c_plauen" }
+link = { name = "dokimeion" 	 title = "c_prusa" }
+link = { name = "doliche" 	 title = "c_teluch" }
+link = { name = "dolomici" 	 title = "c_anhalt" }
+link = { name = "domberg" 	 title = "c_reval" }
+link = { name = "domnonia" 	 title = "c_penthievre" }
+link = { name = "don" 	 title = "d_don" }
+link = { name = "dorieion" 	 title = "c_prusa" }
+link = { name = "dorostotum" 	 title = "d_dorostotum" }
+link = { name = "dorpat" 	 title = "c_dorpat" }
+link = { name = "dotawo" 	 title = "c_dotawo" }
+link = { name = "drauuglan" 	 title = "c_isle_of_man" }
+link = { name = "dregovichia" 	 title = "d_turov" }
+link = { name = "drepanon" 	 title = "c_trapani" }
+link = { name = "drezdany" 	 title = "c_meissen" }
+link = { name = "driduana" 	 title = "c_orkney" }
+link = { name = "droichead Átha" 	 title = "c_oriel" }
+link = { name = "droim chliabh" 	 title = "c_breifne" }
+link = { name = "droim Áth thiar" 	 title = "c_breifne" }
+link = { name = "druim mór" 	 title = "c_ulster" }
+link = { name = "druígleann" 	 title = "c_isle_of_man" }
+link = { name = "drywglyn" 	 title = "c_isle_of_man" }
+link = { name = "dubhlinn" 	 title = "c_dublin" }
+link = { name = "dubhàth" 	 title = "c_strathearn" }
+link = { name = "dublin" 	 title = "d_meath" }
+link = { name = "duboglassio" 	 title = "c_isle_of_man" }
+link = { name = "dubrovnik" 	 title = "c_ragusa" }
+link = { name = "duklja" 	 title = "d_dioclea" }
+link = { name = "dul blaan" 	 title = "c_strathearn" }
+link = { name = "dulyn" 	 title = "c_dublin" }
+link = { name = "dun bachain" 	 title = "c_innse_gall" }
+link = { name = "dun ber" 	 title = "c_dunbar" }
+link = { name = "dun brin" 	 title = "c_galloway" }
+link = { name = "dun celadon" 	 title = "c_gowrie" }
+link = { name = "dun eidan" 	 title = "c_lothian" }
+link = { name = "dun galiuu" 	 title = "c_innse_gall" }
+link = { name = "dun stapan" 	 title = "c_argyll" }
+link = { name = "dun ueron" 	 title = "c_carrick" }
+link = { name = "dun ugastel" 	 title = "c_argyll" }
+link = { name = "dunauen" 	 title = "c_carrick" }
+link = { name = "dunbathac" 	 title = "c_caithness" }
+link = { name = "dunfurlan" 	 title = "c_fife" }
+link = { name = "dungod" 	 title = "c_teviotdale" }
+link = { name = "dunholm" 	 title = "c_durham" }
+link = { name = "dunrad" 	 title = "c_galloway" }
+link = { name = "dunreget" 	 title = "c_galloway" }
+link = { name = "dunrubert" 	 title = "c_caithness" }
+link = { name = "duonglassafon" 	 title = "c_isle_of_man" }
+link = { name = "duonrhyd" 	 title = "c_strathearn" }
+link = { name = "durazzo" 	 title = "c_dyrrachion" }
+link = { name = "durrës" 	 title = "d_dyrrachion" }
+link = { name = "duthactref" 	 title = "c_ross" }
+link = { name = "duunglasc" 	 title = "c_isle_of_man" }
+link = { name = "duunrud" 	 title = "c_strathearn" }
+link = { name = "dvaraka" 	 title = "c_dvaraka" }
+link = { name = "dvinsk" 	 title = "c_west_dvina" }
+link = { name = "dwarasamudra" 	 title = "c_dwarasamudra" }
+link = { name = "dyflinn" 	 title = "c_dublin" }
+link = { name = "dymin" 	 title = "c_werle" }
+link = { name = "dynaborg" 	 title = "c_west_dvina" }
+link = { name = "dyneburg" 	 title = "c_west_dvina" }
+link = { name = "dyrnfedd" 	 title = "c_caithness" }
+link = { name = "dyrrachion" 	 title = "d_dyrrachion" }
+link = { name = "dyrrachium" 	 title = "d_dyrrachion" }
+link = { name = "dyrrhachion" 	 title = "c_dyrrachion" }
+link = { name = "dál riata" 	 title = "d_western_isles" }
+link = { name = "dänemark" 	 title = "k_denmark" }
+link = { name = "dòrnach" 	 title = "c_caithness" }
+link = { name = "døderhult" 	 title = "c_tjust" }
+link = { name = "dùn beithe" 	 title = "c_caithness" }
+link = { name = "dùn bheagain" 	 title = "c_innse_gall" }
+link = { name = "dùn bhlàthain" 	 title = "c_strathearn" }
+link = { name = "dùn breatainn" 	 title = "c_clydesdale" }
+link = { name = "dùn bár" 	 title = "c_dunbar" }
+link = { name = "dùn chailleann" 	 title = "c_gowrie" }
+link = { name = "dùn droighnein" 	 title = "c_galloway" }
+link = { name = "dùn dèagh" 	 title = "c_gowrie" }
+link = { name = "dùn eideann" 	 title = "c_lothian" }
+link = { name = "dùn iùbhair" 	 title = "c_carrick" }
+link = { name = "dùn naomhaig" 	 title = "c_innse_gall" }
+link = { name = "dùn ollaigh" 	 title = "c_argyll" }
+link = { name = "dùn phris" 	 title = "c_galloway" }
+link = { name = "dùn phàrlain" 	 title = "c_fife" }
+link = { name = "dùn reicheit" 	 title = "c_galloway" }
+link = { name = "dùn stafhainis" 	 title = "c_argyll" }
+link = { name = "dùn suibhne" 	 title = "c_argyll" }
+link = { name = "dùn Àir" 	 title = "c_carrick" }
+link = { name = "dùngot" 	 title = "c_teviotdale" }
+link = { name = "dùnrhobert" 	 title = "c_caithness" }
+link = { name = "dùnrois" 	 title = "c_ross" }
+link = { name = "dún ailinne" 	 title = "c_kildare" }
+link = { name = "dún bhun na gaillimhe" 	 title = "c_connacht" }
+link = { name = "dún caiseal" 	 title = "c_ormond" }
+link = { name = "dún dealgan" 	 title = "c_oriel" }
+link = { name = "dún geanainn" 	 title = "c_tyrone" }
+link = { name = "dún geimhin" 	 title = "c_tyrone" }
+link = { name = "dún libhse" 	 title = "c_ulster" }
+link = { name = "dún na ngall" 	 title = "c_tyrconnell" }
+link = { name = "dún na séad" 	 title = "c_desmond" }
+link = { name = "dún pádraig" 	 title = "c_ulster" }
+link = { name = "dún sobhairce" 	 title = "c_ulster" }
+link = { name = "dünaburg" 	 title = "c_west_dvina" }
+link = { name = "eaglais" 	 title = "c_faereyar" }
+link = { name = "eas géitine" 	 title = "c_thomond" }
+link = { name = "east anglia" 	 title = "d_norfolk" }
+link = { name = "east francia" 	 title = "k_germany" }
+link = { name = "ebithan" 	 title = "c_argyll" }
+link = { name = "ecclesbrith" 	 title = "c_lothian" }
+link = { name = "ecclescbret" 	 title = "c_lothian" }
+link = { name = "eckerø" 	 title = "c_aland" }
+link = { name = "edesa" 	 title = "d_edessa" }
+link = { name = "edessa" 	 title = "d_edessa" }
+link = { name = "egeopelagi" 	 title = "c_naxos" }
+link = { name = "egipto" 	 title = "k_egypt" }
+link = { name = "eglwys mihangel" 	 title = "c_isle_of_man" }
+link = { name = "eglwys" 	 title = "c_faereyar" }
+link = { name = "eglwystref" 	 title = "c_orkney" }
+link = { name = "egypt" 	 title = "k_egypt" }
+link = { name = "eilean na h-uisge dhè" 	 title = "c_galloway" }
+link = { name = "eilean tràigh" 	 title = "c_faereyar" }
+link = { name = "eilean" 	 title = "c_buchan" }
+link = { name = "eisenburg" 	 title = "c_vas" }
+link = { name = "el arish" 	 title = "d_el-arish" }
+link = { name = "el cairo" 	 title = "d_cairo" }
+link = { name = "el califato chií" 	 title = "e_shiite" }
+link = { name = "el califato ibadí" 	 title = "d_ibadi" }
+link = { name = "el califato jariyita" 	 title = "d_kharijite" }
+link = { name = "el califato suni" 	 title = "e_sunni" }
+link = { name = "el fylkirate" 	 title = "d_norse_pagan_reformed" }
+link = { name = "el imperio de seljuk" 	 title = "k_seljuk_turks" }
+link = { name = "el papado fraticelli" 	 title = "d_fraticelli" }
+link = { name = "el papado miafisita" 	 title = "d_miaphysite" }
+link = { name = "el papado monofisita" 	 title = "d_monophysite" }
+link = { name = "el papado" 	 title = "k_papal_state" }
+link = { name = "el patriarcado ecuménico" 	 title = "k_orthodox" }
+link = { name = "el patriarcado iconoclasta" 	 title = "d_iconoclast" }
+link = { name = "el patriarcado monotelita" 	 title = "d_monothelite" }
+link = { name = "el patriarcado oriental" 	 title = "d_nestorian" }
+link = { name = "el patriarcado pauliciano" 	 title = "d_paulician" }
+link = { name = "el rif" 	 title = "d_el_rif" }
+link = { name = "el sumo sacerdocio judío" 	 title = "d_jewish" }
+link = { name = "el yazidismo" 	 title = "d_yazidi" }
+link = { name = "el-arish" 	 title = "d_el-arish" }
+link = { name = "elegido de asoka" 	 title = "d_ashokas_chosen" }
+link = { name = "elegidos de perkunas" 	 title = "d_chosen_perkunas" }
+link = { name = "ellan mhannin" 	 title = "c_isle_of_man" }
+link = { name = "emirato erétnida" 	 title = "k_eretnid" }
+link = { name = "emirato fatímida" 	 title = "k_fatimids" }
+link = { name = "emirato hammadí" 	 title = "k_hammadid" }
+link = { name = "emirato háfsida" 	 title = "k_kafsid" }
+link = { name = "emirato meriní" 	 title = "k_marinid" }
+link = { name = "emirato zenata" 	 title = "k_zenata" }
+link = { name = "emirato zirí" 	 title = "k_zirid" }
+link = { name = "emirato ziyaní" 	 title = "k_ziyanids" }
+link = { name = "empire arabe" 	 title = "e_arabia" }
+link = { name = "empire aztèque" 	 title = "e_mexikha" }
+link = { name = "empire byzantin" 	 title = "e_byzantium" }
+link = { name = "empire latin" 	 title = "e_latin_empire" }
+link = { name = "empire mongol" 	 title = "e_mongol_empire" }
+link = { name = "empire perse" 	 title = "e_persia" }
+link = { name = "empire romain" 	 title = "e_roman_empire" }
+link = { name = "empire seldjouk" 	 title = "k_seljuk_turks" }
+link = { name = "empire wende" 	 title = "e_wendish_empire" }
+link = { name = "england" 	 title = "k_england" }
+link = { name = "enkøbing" 	 title = "c_uppland" }
+link = { name = "enkøping" 	 title = "c_uppland" }
+link = { name = "eochaill" 	 title = "c_desmond" }
+link = { name = "epidauros" 	 title = "c_ragusa" }
+link = { name = "epiddant" 	 title = "c_argyll" }
+link = { name = "epirus" 	 title = "d_epirus" }
+link = { name = "eretnid" 	 title = "k_eretnid" }
+link = { name = "ergyng" 	 title = "c_hereford" }
+link = { name = "eruan" 	 title = "c_moray" }
+link = { name = "erzerum" 	 title = "d_erzerum" }
+link = { name = "erzurum" 	 title = "d_erzerum" }
+link = { name = "esbo" 	 title = "c_nyland" }
+link = { name = "escandinavia" 	 title = "e_scandinavia" }
+link = { name = "escocia" 	 title = "k_scotland" }
+link = { name = "esfahan" 	 title = "d_esfahan" }
+link = { name = "eslavonia" 	 title = "d_slavonia" }
+link = { name = "eslovaquia" 	 title = "d_slovakia" }
+link = { name = "essex" 	 title = "d_bedford" }
+link = { name = "estland" 	 title = "d_esthonia" }
+link = { name = "estländer" 	 title = "d_estonia" }
+link = { name = "estonia" 	 title = "d_estonia" }
+link = { name = "estonians" 	 title = "d_estonia" }
+link = { name = "estonie" 	 title = "d_esthonia" }
+link = { name = "estoniens" 	 title = "d_estonia" }
+link = { name = "estrigonia" 	 title = "d_esztergom" }
+link = { name = "esztergom" 	 title = "d_esztergom" }
+link = { name = "faetref" 	 title = "c_galloway" }
+link = { name = "falkøbing" 	 title = "c_vastergotland" }
+link = { name = "falkøping" 	 title = "c_vastergotland" }
+link = { name = "farrais" 	 title = "c_moray" }
+link = { name = "fars" 	 title = "d_fars" }
+link = { name = "farsistán" 	 title = "d_fars" }
+link = { name = "fathain" 	 title = "c_tyrconnell" }
+link = { name = "fatimider" 	 title = "k_fatimids" }
+link = { name = "fatimides" 	 title = "k_fatimids" }
+link = { name = "fatimids" 	 title = "k_fatimids" }
+link = { name = "fearna mór maedhóg" 	 title = "c_leinster" }
+link = { name = "felger" 	 title = "c_rennes" }
+link = { name = "ferrara" 	 title = "d_ferrara" }
+link = { name = "ferrare" 	 title = "d_ferrara" }
+link = { name = "fes" 	 title = "d_fes" }
+link = { name = "fez" 	 title = "d_fes" }
+link = { name = "ffinioltref" 	 title = "c_dunbar" }
+link = { name = "ffostref" 	 title = "c_caithness" }
+link = { name = "ffraidclywed" 	 title = "c_orkney" }
+link = { name = "fháclainne" 	 title = "c_fife" }
+link = { name = "fiachein" 	 title = "c_buchan" }
+link = { name = "fiadh" 	 title = "c_buchan" }
+link = { name = "fib" 	 title = "c_fife" }
+link = { name = "fidach" 	 title = "c_ross" }
+link = { name = "fils de kaleva" 	 title = "d_sons_kaleva" }
+link = { name = "finland" 	 title = "k_finland" }
+link = { name = "finlande" 	 title = "k_finland" }
+link = { name = "finlandia" 	 title = "k_finland" }
+link = { name = "finnischer trupp" 	 title = "d_finnish_band" }
+link = { name = "finnish band" 	 title = "d_finnish_band" }
+link = { name = "finnland" 	 title = "k_finland" }
+link = { name = "finstrøm" 	 title = "c_aland" }
+link = { name = "finuultreh" 	 title = "c_dunbar" }
+link = { name = "fiodh ard" 	 title = "c_ormond" }
+link = { name = "fionnach" 	 title = "c_faereyar" }
+link = { name = "fionnghlas" 	 title = "c_dublin" }
+link = { name = "flandern" 	 title = "d_flanders" }
+link = { name = "flanders" 	 title = "d_flanders" }
+link = { name = "flandes" 	 title = "d_flanders" }
+link = { name = "flandres" 	 title = "d_flanders" }
+link = { name = "flensburg" 	 title = "c_slesvig" }
+link = { name = "focla" 	 title = "c_atholl" }
+link = { name = "followers of arjuna" 	 title = "d_followers_arjuna" }
+link = { name = "fortriu" 	 title = "c_moray" }
+link = { name = "fostreh" 	 title = "c_caithness" }
+link = { name = "fothair tabhaicht" 	 title = "c_gowrie" }
+link = { name = "fotla" 	 title = "c_atholl" }
+link = { name = "france" 	 title = "k_france" }
+link = { name = "francia media" 	 title = "k_lotharingia" }
+link = { name = "francia occidental" 	 title = "k_france" }
+link = { name = "francia oriental" 	 title = "k_germany" }
+link = { name = "francia" 	 title = "k_france" }
+link = { name = "francie médiane" 	 title = "k_lotharingia" }
+link = { name = "francie occidentale" 	 title = "k_france" }
+link = { name = "francie orientale" 	 title = "k_germany" }
+link = { name = "franconia" 	 title = "d_franconia" }
+link = { name = "franconie" 	 title = "d_franconia" }
+link = { name = "franken" 	 title = "d_franconia" }
+link = { name = "frankreich" 	 title = "e_france" }
+link = { name = "fresvik" 	 title = "c_caithness" }
+link = { name = "friesland" 	 title = "k_frisia" }
+link = { name = "frisia" 	 title = "k_frisia" }
+link = { name = "frères vitaliens" 	 title = "d_victual_brothers" }
+link = { name = "färöarna" 	 title = "c_faereyar" }
+link = { name = "færnebo" 	 title = "c_gastrikland" }
+link = { name = "fès" 	 title = "d_fes" }
+link = { name = "fìobha" 	 title = "c_fife" }
+link = { name = "fünfkirchen" 	 title = "d_pecs" }
+link = { name = "gabhrán" 	 title = "c_ossory" }
+link = { name = "gaeta" 	 title = "c_capua" }
+link = { name = "galacia" 	 title = "d_galatia" }
+link = { name = "galatia" 	 title = "d_galatia" }
+link = { name = "galatie" 	 title = "d_galatia" }
+link = { name = "galatien" 	 title = "d_galatia" }
+link = { name = "galeras adriáticas" 	 title = "d_venetian_navy" }
+link = { name = "galeras ligurias" 	 title = "d_genoese_navy" }
+link = { name = "gales" 	 title = "k_wales" }
+link = { name = "galice" 	 title = "k_spanish_galicia" }
+link = { name = "galich" 	 title = "d_galich" }
+link = { name = "galicia" 	 title = "k_spanish_galicia" }
+link = { name = "galilea" 	 title = "d_galilee" }
+link = { name = "galilee" 	 title = "d_galilee" }
+link = { name = "galiläa" 	 title = "d_galilee" }
+link = { name = "galilée" 	 title = "d_galilee" }
+link = { name = "galitch" 	 title = "d_galich" }
+link = { name = "galitsch" 	 title = "d_galich" }
+link = { name = "galizien" 	 title = "k_spanish_galicia" }
+link = { name = "gall-ghaidhealaibh" 	 title = "d_galloway" }
+link = { name = "galladd" 	 title = "c_lothian" }
+link = { name = "gallath" 	 title = "c_lothian" }
+link = { name = "galloway" 	 title = "d_galloway" }
+link = { name = "galères adriatiques" 	 title = "d_venetian_navy" }
+link = { name = "galères ligures" 	 title = "d_genoese_navy" }
+link = { name = "gandhara" 	 title = "d_gandhara" }
+link = { name = "gandza" 	 title = "c_albania" }
+link = { name = "gandzak" 	 title = "c_albania" }
+link = { name = "gangavadi" 	 title = "d_gangavadi" }
+link = { name = "garde varègue" 	 title = "d_varangian_guard" }
+link = { name = "gardiens des esprits" 	 title = "d_spirit_guardians" }
+link = { name = "garsden" 	 title = "c_memel" }
+link = { name = "gartán" 	 title = "c_tyrconnell" }
+link = { name = "garðariki" 	 title = "k_rus" }
+link = { name = "gascogne" 	 title = "d_gascogne" }
+link = { name = "gascuña" 	 title = "d_gascogne" }
+link = { name = "gauda" 	 title = "d_gauda" }
+link = { name = "gauthiod" 	 title = "d_geats" }
+link = { name = "gaya" 	 title = "c_gaya" }
+link = { name = "gdansk" 	 title = "c_danzig" }
+link = { name = "gellivare" 	 title = "c_lappland" }
+link = { name = "gelre" 	 title = "d_gelre" }
+link = { name = "genoa" 	 title = "k_genoa" }
+link = { name = "genua" 	 title = "k_genoa" }
+link = { name = "georgenburg" 	 title = "c_zhmud" }
+link = { name = "georgia" 	 title = "k_georgia" }
+link = { name = "georgie" 	 title = "d_georgia" }
+link = { name = "georgien" 	 title = "k_georgia" }
+link = { name = "georgsborg" 	 title = "c_zhmud" }
+link = { name = "germania" 	 title = "e_germany" }
+link = { name = "germanie" 	 title = "k_germany" }
+link = { name = "germany" 	 title = "k_germany" }
+link = { name = "germiyan" 	 title = "k_germiyan" }
+link = { name = "germiyaner" 	 title = "k_germiyan" }
+link = { name = "gerzika" 	 title = "c_west_dvina" }
+link = { name = "gestrikland" 	 title = "c_gastrikland" }
+link = { name = "ghana" 	 title = "d_ghana" }
+link = { name = "ghanan band" 	 title = "d_ghanan_band" }
+link = { name = "ghawdesh" 	 title = "c_malta" }
+link = { name = "ghilman" 	 title = "d_ghilman" }
+link = { name = "ghlinn lus" 	 title = "c_galloway" }
+link = { name = "ghulman" 	 title = "d_ghilman" }
+link = { name = "gilan" 	 title = "d_gilan" }
+link = { name = "gish" 	 title = "c_albania" }
+link = { name = "glanaluu" 	 title = "c_lothian" }
+link = { name = "glaschu" 	 title = "c_clydesdale" }
+link = { name = "gleann dá loch" 	 title = "c_leinster" }
+link = { name = "gleann iucha" 	 title = "c_lothian" }
+link = { name = "glogau" 	 title = "c_lower_silesia" }
+link = { name = "glomacze" 	 title = "d_glomacze" }
+link = { name = "gloucester" 	 title = "d_gloucester" }
+link = { name = "glynallwedd" 	 title = "c_lothian" }
+link = { name = "glynchwyn" 	 title = "c_galloway" }
+link = { name = "gnesen" 	 title = "c_gnieznienskie" }
+link = { name = "goa" 	 title = "c_goa" }
+link = { name = "goalpara" 	 title = "c_goalpara" }
+link = { name = "gobalik" 	 title = "c_chuy" }
+link = { name = "gobharaidh" 	 title = "c_gowrie" }
+link = { name = "gododdin" 	 title = "d_lothian" }
+link = { name = "godwad" 	 title = "c_godwad" }
+link = { name = "gogleddculdir" 	 title = "c_shetland" }
+link = { name = "goglethculder" 	 title = "c_shetland" }
+link = { name = "goillspidh" 	 title = "c_caithness" }
+link = { name = "gojjam" 	 title = "d_gojjam" }
+link = { name = "golden horde" 	 title = "e_golden_horde" }
+link = { name = "goldene horde" 	 title = "e_golden_horde" }
+link = { name = "gondar" 	 title = "d_gondar" }
+link = { name = "gondwana" 	 title = "k_gondwana" }
+link = { name = "gor din" 	 title = "c_dunbar" }
+link = { name = "gor dun" 	 title = "c_dunbar" }
+link = { name = "gortyn" 	 title = "c_chandax" }
+link = { name = "gorzdy" 	 title = "c_memel" }
+link = { name = "gorzhdy" 	 title = "c_memel" }
+link = { name = "gotland " 	 title = "d_gotland" }
+link = { name = "gotland" 	 title = "d_gotland" }
+link = { name = "gotlandia occidental" 	 title = "d_vastergotland" }
+link = { name = "gotlandia oriental" 	 title = "d_ostergotland" }
+link = { name = "gourma" 	 title = "c_gurma" }
+link = { name = "gran moravia" 	 title = "k_moravia" }
+link = { name = "gran polonia" 	 title = "d_wielkopolska" }
+link = { name = "gran" 	 title = "c_esztergom" }
+link = { name = "granada" 	 title = "d_granada" }
+link = { name = "grande compagnie" 	 title = "d_great_company" }
+link = { name = "grande moravie" 	 title = "k_moravia" }
+link = { name = "great company" 	 title = "d_great_company" }
+link = { name = "great moravia" 	 title = "k_moravia" }
+link = { name = "grecia" 	 title = "k_byzantium" }
+link = { name = "greece" 	 title = "k_byzantium" }
+link = { name = "grenade" 	 title = "d_granada" }
+link = { name = "griechenland" 	 title = "k_byzantium" }
+link = { name = "gripscogh" 	 title = "c_werle" }
+link = { name = "groupe du bengale" 	 title = "d_bengal_band" }
+link = { name = "groupe marathi" 	 title = "d_marathi_band" }
+link = { name = "groupe rajput" 	 title = "d_rajput_band" }
+link = { name = "groupe tamoul" 	 title = "d_tamil_band" }
+link = { name = "große kompanie" 	 title = "d_great_company" }
+link = { name = "großmähren" 	 title = "k_moravia" }
+link = { name = "grèce" 	 title = "k_byzantium" }
+link = { name = "grønhøgen" 	 title = "c_oland" }
+link = { name = "guardia suiza" 	 title = "d_swiss_company" }
+link = { name = "guardia varega" 	 title = "d_varangian_guard" }
+link = { name = "guardianes de los espíritus" 	 title = "d_spirit_guardians" }
+link = { name = "gueldre" 	 title = "d_gelre" }
+link = { name = "guened" 	 title = "c_vannes" }
+link = { name = "guerreros de perún" 	 title = "d_warriors_perun" }
+link = { name = "guerriers de péroun" 	 title = "d_warriors_perun" }
+link = { name = "gujarat" 	 title = "k_gujarat" }
+link = { name = "guofan" 	 title = "c_clydesdale" }
+link = { name = "gurgi" 	 title = "c_gurgi" }
+link = { name = "gurjara mandala" 	 title = "d_gurjara_mandala" }
+link = { name = "gurjaratra" 	 title = "c_gurjaratra" }
+link = { name = "gurma" 	 title = "c_gurma" }
+link = { name = "guscerov" 	 title = "c_rostock" }
+link = { name = "guyenne" 	 title = "d_bordeaux" }
+link = { name = "gwag y rhwdfa" 	 title = "c_atholl" }
+link = { name = "gwened" 	 title = "c_vannes" }
+link = { name = "gwengamp" 	 title = "c_french_leon" }
+link = { name = "gwennrann" 	 title = "c_nantes" }
+link = { name = "gwerrys" 	 title = "c_moray" }
+link = { name = "gwidauc" 	 title = "c_ross" }
+link = { name = "gwidd" 	 title = "c_fife" }
+link = { name = "gwrturio" 	 title = "c_moray" }
+link = { name = "gwynaidd" 	 title = "c_faereyar" }
+link = { name = "gwynedd" 	 title = "d_gwynedd" }
+link = { name = "gælakvist" 	 title = "c_vastergotland" }
+link = { name = "gènes" 	 title = "k_genoa" }
+link = { name = "génova" 	 title = "k_genoa" }
+link = { name = "géorgie" 	 title = "k_georgia" }
+link = { name = "gòr dùn" 	 title = "c_dunbar" }
+link = { name = "gömör" 	 title = "c_gemer" }
+link = { name = "gøksholm" 	 title = "c_narke" }
+link = { name = "güeldres" 	 title = "d_gelre" }
+link = { name = "hadersleben" 	 title = "c_slesvig" }
+link = { name = "hafn" 	 title = "c_sjaelland" }
+link = { name = "hahaldeslevo" 	 title = "c_anhalt" }
+link = { name = "halchraig" 	 title = "c_teviotdale" }
+link = { name = "hamadan" 	 title = "d_hamadan" }
+link = { name = "hamadán" 	 title = "d_hamadan" }
+link = { name = "hamborg" 	 title = "c_hamburg" }
+link = { name = "hammadid" 	 title = "k_hammadid" }
+link = { name = "hammadide" 	 title = "k_hammadid" }
+link = { name = "hangö" 	 title = "c_nyland" }
+link = { name = "hangø" 	 title = "c_nyland" }
+link = { name = "hapsal" 	 title = "c_reval" }
+link = { name = "harar" 	 title = "d_harer" }
+link = { name = "harborg" 	 title = "c_hamburg" }
+link = { name = "harer" 	 title = "d_harer" }
+link = { name = "haritanaka" 	 title = "d_haritanaka" }
+link = { name = "harun" 	 title = "c_faro" }
+link = { name = "haruppeswara" 	 title = "c_haruppeswara" }
+link = { name = "haruriyyah" 	 title = "d_haruriyyah" }
+link = { name = "hashashin" 	 title = "d_assassin" }
+link = { name = "hashshashin" 	 title = "d_hashshashin" }
+link = { name = "hastinapura" 	 title = "c_hastinapura" }
+link = { name = "hatsina" 	 title = "c_vodi" }
+link = { name = "haute-bourgogne" 	 title = "d_upper_burgundy" }
+link = { name = "hayya" 	 title = "d_hayya" }
+link = { name = "heidmark" 	 title = "c_hedmark" }
+link = { name = "heinrichau" 	 title = "c_upper_silesia" }
+link = { name = "heiðabyr" 	 title = "c_slesvig" }
+link = { name = "hellas" 	 title = "d_hellas" }
+link = { name = "helsingland" 	 title = "c_halsingland" }
+link = { name = "helsingör" 	 title = "c_sjaelland" }
+link = { name = "heluua" 	 title = "c_teviotdale" }
+link = { name = "henbont" 	 title = "c_vannes" }
+link = { name = "herjadal" 	 title = "c_herjedalen" }
+link = { name = "hermandad del santo sepulcro" 	 title = "d_holy_sepulchre" }
+link = { name = "hermandad vitaliana" 	 title = "d_victual_brothers" }
+link = { name = "herren des himmels" 	 title = "d_sky_lords" }
+link = { name = "hijos de kaleva" 	 title = "d_sons_kaleva" }
+link = { name = "hisar" 	 title = "c_hisar" }
+link = { name = "hispania" 	 title = "e_spain" }
+link = { name = "hispanie" 	 title = "e_spain" }
+link = { name = "hispanien" 	 title = "e_spain" }
+link = { name = "hjaltland" 	 title = "c_shetland" }
+link = { name = "hleiðra" 	 title = "c_sjaelland" }
+link = { name = "hlymrek" 	 title = "c_thomond" }
+link = { name = "holanda" 	 title = "d_holland" }
+link = { name = "holland" 	 title = "d_holland" }
+link = { name = "hollande" 	 title = "d_holland" }
+link = { name = "holmgarðr" 	 title = "c_novgorod" }
+link = { name = "holmgård" 	 title = "c_novgorod" }
+link = { name = "holstein" 	 title = "d_holstein" }
+link = { name = "holsten" 	 title = "c_holstein" }
+link = { name = "hongrie" 	 title = "k_hungary" }
+link = { name = "honnore" 	 title = "c_honnore" }
+link = { name = "horda de oro" 	 title = "e_golden_horde" }
+link = { name = "hordaland" 	 title = "c_bergenshus" }
+link = { name = "horde dor" 	 title = "e_golden_horde" }
+link = { name = "hrosos" 	 title = "c_alexandretta" }
+link = { name = "hufenaruchel" 	 title = "c_strathearn" }
+link = { name = "hungary" 	 title = "k_hungary" }
+link = { name = "hungría" 	 title = "k_hungary" }
+link = { name = "hurufi" 	 title = "d_hurufi" }
+link = { name = "hurufismo" 	 title = "d_hurufi" }
+link = { name = "hurufiste" 	 title = "d_hurufi" }
+link = { name = "hwicce" 	 title = "d_gloucester" }
+link = { name = "hydrunton" 	 title = "c_lecce" }
+link = { name = "häme" 	 title = "d_tavasts" }
+link = { name = "härjedalen" 	 title = "c_herjedalen" }
+link = { name = "hærnøsand" 	 title = "c_angermanland" }
+link = { name = "hébrides" 	 title = "d_western_isles" }
+link = { name = "i dun" 	 title = "c_strathearn" }
+link = { name = "iaartreh" 	 title = "c_teviotdale" }
+link = { name = "iaroslavl" 	 title = "d_yaroslavl" }
+link = { name = "iceland" 	 title = "d_iceland" }
+link = { name = "icluasc mihagal" 	 title = "c_isle_of_man" }
+link = { name = "icluasc" 	 title = "c_faereyar" }
+link = { name = "icluasctreh" 	 title = "c_orkney" }
+link = { name = "idatarainadu" 	 title = "c_idatarainadu" }
+link = { name = "idensalmi" 	 title = "c_savolaks" }
+link = { name = "ifriqiya" 	 title = "k_africa" }
+link = { name = "ikonion" 	 title = "d_ikonion" }
+link = { name = "ikkila" 	 title = "c_lettigalians" }
+link = { name = "ikkile" 	 title = "c_lettigalians" }
+link = { name = "ilkanato" 	 title = "e_il-khanate" }
+link = { name = "ilkhanat" 	 title = "e_il-khanate" }
+link = { name = "ilkhanate" 	 title = "e_il-khanate" }
+link = { name = "ilmen" 	 title = "d_novgorod" }
+link = { name = "ilmenianos" 	 title = "d_ilmenians" }
+link = { name = "ilmenians" 	 title = "d_ilmenians" }
+link = { name = "ilmenier" 	 title = "d_ilmenians" }
+link = { name = "imleach iubhair" 	 title = "c_thomond" }
+link = { name = "immortals" 	 title = "d_immortals" }
+link = { name = "immortels" 	 title = "d_immortals" }
+link = { name = "imperio almohade" 	 title = "k_almohad" }
+link = { name = "imperio almorávide" 	 title = "k_al-murabitids" }
+link = { name = "imperio bizantino" 	 title = "e_byzantium" }
+link = { name = "imperio latino" 	 title = "e_latin_empire" }
+link = { name = "imperio mongol" 	 title = "e_mongol_empire" }
+link = { name = "imperio otomano" 	 title = "k_ottoman" }
+link = { name = "imperio persa" 	 title = "e_persia" }
+link = { name = "imperio romano" 	 title = "e_roman_empire" }
+link = { name = "imperio wendo" 	 title = "e_wendish_empire" }
+link = { name = "imperio árabe" 	 title = "e_arabia" }
+link = { name = "inbhear beg" 	 title = "c_ulster" }
+link = { name = "inbhir aora" 	 title = "c_argyll" }
+link = { name = "inbhir narann" 	 title = "c_moray" }
+link = { name = "inbhir nis" 	 title = "c_moray" }
+link = { name = "inbhir pheofharain" 	 title = "c_ross" }
+link = { name = "inbhir tarbhainn" 	 title = "c_caithness" }
+link = { name = "inbhir uraidh" 	 title = "c_buchan" }
+link = { name = "inbhir Àir" 	 title = "c_carrick" }
+link = { name = "inbhir Ùige" 	 title = "c_caithness" }
+link = { name = "inees pedric" 	 title = "c_isle_of_man" }
+link = { name = "ingermanland" 	 title = "c_vodi" }
+link = { name = "inglaterra" 	 title = "k_england" }
+link = { name = "ingrians" 	 title = "d_ingers" }
+link = { name = "ingriens" 	 title = "d_ingers" }
+link = { name = "ingrier" 	 title = "d_ingers" }
+link = { name = "ingriya" 	 title = "c_vodi" }
+link = { name = "inis córthaidh" 	 title = "c_leinster" }
+link = { name = "inis pátraic" 	 title = "c_isle_of_man" }
+link = { name = "inis" 	 title = "c_thomond" }
+link = { name = "inkeri" 	 title = "c_vodi" }
+link = { name = "inmortales" 	 title = "d_immortals" }
+link = { name = "innis eaglais" 	 title = "c_orkney" }
+link = { name = "innis eun" 	 title = "c_faereyar" }
+link = { name = "innis fionn" 	 title = "c_shetland" }
+link = { name = "innis oifrend" 	 title = "c_strathearn" }
+link = { name = "innis ronan" 	 title = "c_orkney" }
+link = { name = "innis tràigh" 	 title = "c_orkney" }
+link = { name = "innis weir" 	 title = "c_orkney" }
+link = { name = "innse caora" 	 title = "c_faereyar" }
+link = { name = "innse catt" 	 title = "c_shetland" }
+link = { name = "innse gall" 	 title = "c_innse_gall" }
+link = { name = "innse orc" 	 title = "c_orkney" }
+link = { name = "innse tuath" 	 title = "d_orkney" }
+link = { name = "insee cait" 	 title = "c_shetland" }
+link = { name = "insee datrah" 	 title = "c_galloway" }
+link = { name = "insee galeth" 	 title = "d_orkney" }
+link = { name = "insee hilth" 	 title = "d_western_isles" }
+link = { name = "insee icluasc" 	 title = "c_orkney" }
+link = { name = "insee manu" 	 title = "c_isle_of_man" }
+link = { name = "insee ninian" 	 title = "c_orkney" }
+link = { name = "insee orc" 	 title = "c_orkney" }
+link = { name = "insee tiuod" 	 title = "c_orkney" }
+link = { name = "insee tret" 	 title = "c_faereyar" }
+link = { name = "insee ufirin" 	 title = "c_strathearn" }
+link = { name = "insee uuan" 	 title = "c_shetland" }
+link = { name = "insee uun" 	 title = "c_faereyar" }
+link = { name = "insee ware" 	 title = "c_orkney" }
+link = { name = "inseeol" 	 title = "c_buchan" }
+link = { name = "inseepirt" 	 title = "c_innse_gall" }
+link = { name = "interamnion" 	 title = "c_aprutium" }
+link = { name = "inverlìte" 	 title = "c_lothian" }
+link = { name = "ireland" 	 title = "k_ireland" }
+link = { name = "irischer trupp" 	 title = "d_irish_band" }
+link = { name = "irish band" 	 title = "d_irish_band" }
+link = { name = "irland" 	 title = "k_ireland" }
+link = { name = "irlanda" 	 title = "k_ireland" }
+link = { name = "irlande" 	 title = "k_ireland" }
+link = { name = "isfahan" 	 title = "d_esfahan" }
+link = { name = "isfahán" 	 title = "d_esfahan" }
+link = { name = "iskandarun" 	 title = "c_alexandretta" }
+link = { name = "island" 	 title = "d_iceland" }
+link = { name = "islande" 	 title = "d_iceland" }
+link = { name = "islandia" 	 title = "d_iceland" }
+link = { name = "islas egeas" 	 title = "d_aegean_islands" }
+link = { name = "islas orcadas" 	 title = "d_orkney" }
+link = { name = "isles" 	 title = "d_the_isles" }
+link = { name = "ispahan" 	 title = "d_esfahan" }
+link = { name = "israel" 	 title = "k_israel" }
+link = { name = "israël" 	 title = "k_israel" }
+link = { name = "istrad ardle" 	 title = "c_atholl" }
+link = { name = "istrad bach" 	 title = "c_dunbar" }
+link = { name = "italia" 	 title = "k_italy" }
+link = { name = "italie" 	 title = "k_italy" }
+link = { name = "italien" 	 title = "k_italy" }
+link = { name = "italy" 	 title = "k_italy" }
+link = { name = "itil" 	 title = "d_itil" }
+link = { name = "iubharcille" 	 title = "c_atholl" }
+link = { name = "iuddeu" 	 title = "c_lothian" }
+link = { name = "iuenlan" 	 title = "c_atholl" }
+link = { name = "iuerthon" 	 title = "k_ireland" }
+link = { name = "iutheu" 	 title = "c_lothian" }
+link = { name = "iwerddon" 	 title = "k_ireland" }
+link = { name = "iwerzhon" 	 title = "k_ireland" }
+link = { name = "iârtref" 	 title = "c_teviotdale" }
+link = { name = "jaama" 	 title = "c_torzhok" }
+link = { name = "jakobsritter" 	 title = "d_knights_santiago" }
+link = { name = "jamborg" 	 title = "c_torzhok" }
+link = { name = "jamburg" 	 title = "c_torzhok" }
+link = { name = "jamtaland" 	 title = "c_jamtland" }
+link = { name = "jangladesh" 	 title = "d_jangladesh" }
+link = { name = "jaroslawl" 	 title = "d_yaroslavl" }
+link = { name = "jatwinger" 	 title = "d_yatviags" }
+link = { name = "jaunpur" 	 title = "c_jaunpur" }
+link = { name = "jazaria" 	 title = "k_khazaria" }
+link = { name = "jazira" 	 title = "d_jazira" }
+link = { name = "jejakabhukti" 	 title = "d_jejakabhukti" }
+link = { name = "jemtia" 	 title = "d_jamtland" }
+link = { name = "jemtland" 	 title = "c_jamtland" }
+link = { name = "jernbæraland" 	 title = "c_dalarna" }
+link = { name = "jersón" 	 title = "d_cherson" }
+link = { name = "jerusalem" 	 title = "k_jerusalem" }
+link = { name = "jerusalén" 	 title = "k_jerusalem" }
+link = { name = "jharkand" 	 title = "d_jharkand" }
+link = { name = "jinetes alanos" 	 title = "d_alan_band" }
+link = { name = "jiva" 	 title = "k_khiva" }
+link = { name = "jomsvikings" 	 title = "d_jomsvikings" }
+link = { name = "jomswikinger" 	 title = "d_jomsvikings" }
+link = { name = "jorasán" 	 title = "d_khorasan" }
+link = { name = "jorvik" 	 title = "c_york" }
+link = { name = "josilin" 	 title = "c_vannes" }
+link = { name = "jutland" 	 title = "d_slesvig" }
+link = { name = "jutlandia" 	 title = "d_slesvig" }
+link = { name = "jutriboc" 	 title = "c_brandenburg" }
+link = { name = "jylland" 	 title = "d_slesvig" }
+link = { name = "járnberaland" 	 title = "c_dalarna" }
+link = { name = "jämtland" 	 title = "d_jamtland" }
+link = { name = "jættendal" 	 title = "c_halsingland" }
+link = { name = "jérusalem" 	 title = "k_jerusalem" }
+link = { name = "jønkøbing" 	 title = "c_ostergotland" }
+link = { name = "jønkøping" 	 title = "c_ostergotland" }
+link = { name = "jünger von arjuna" 	 title = "d_followers_arjuna" }
+link = { name = "jütland" 	 title = "c_jylland" }
+link = { name = "kabala" 	 title = "c_albania" }
+link = { name = "kabalak" 	 title = "c_albania" }
+link = { name = "kabulistan" 	 title = "d_kabul" }
+link = { name = "kabylia" 	 title = "d_kabylia" }
+link = { name = "kabylie" 	 title = "d_kabylia" }
+link = { name = "kafan" 	 title = "c_suenik" }
+link = { name = "kafirkot" 	 title = "c_kafirkot" }
+link = { name = "kafsid" 	 title = "k_kafsid" }
+link = { name = "kafside" 	 title = "k_kafsid" }
+link = { name = "kairo" 	 title = "d_cairo" }
+link = { name = "kalaberd" 	 title = "c_albania" }
+link = { name = "kalabrien" 	 title = "d_calabria" }
+link = { name = "kaladasht" 	 title = "c_albania" }
+link = { name = "kalanjara" 	 title = "c_kalanjara" }
+link = { name = "kalinga" 	 title = "d_kalinga" }
+link = { name = "kalinganagar" 	 title = "c_kalinganagar" }
+link = { name = "kallipolis" 	 title = "c_kaliopolis" }
+link = { name = "kalpi" 	 title = "c_kalpi" }
+link = { name = "kalyani" 	 title = "d_kalyani" }
+link = { name = "kamarupa" 	 title = "k_kamarupa" }
+link = { name = "kamarupanagara" 	 title = "d_kamarupanagara" }
+link = { name = "kamatapur" 	 title = "c_kamatapur" }
+link = { name = "kambampet" 	 title = "c_kambampet" }
+link = { name = "kanara" 	 title = "c_kanara" }
+link = { name = "kanchipuram" 	 title = "c_kanchipuram" }
+link = { name = "kandail" 	 title = "c_kandail" }
+link = { name = "kandalax" 	 title = "c_kandalax" }
+link = { name = "kanyakubja" 	 title = "d_kanyakubja" }
+link = { name = "kappadokia" 	 title = "d_kappadokia" }
+link = { name = "kapue" 	 title = "c_capua" }
+link = { name = "karaez" 	 title = "c_cornouaille" }
+link = { name = "karaman" 	 title = "k_karaman" }
+link = { name = "karamanie" 	 title = "k_karaman" }
+link = { name = "karelen" 	 title = "d_karelia" }
+link = { name = "karelia" 	 title = "d_karelia" }
+link = { name = "karelien" 	 title = "d_karelia" }
+link = { name = "kareliya" 	 title = "c_karelen" }
+link = { name = "karmanta" 	 title = "c_karmanta" }
+link = { name = "karnata" 	 title = "k_karnata" }
+link = { name = "karnten" 	 title = "d_karnten" }
+link = { name = "karor" 	 title = "c_karor" }
+link = { name = "karpathen" 	 title = "e_carpathia" }
+link = { name = "karthli" 	 title = "d_kartli" }
+link = { name = "kartli" 	 title = "d_kartli" }
+link = { name = "karur" 	 title = "c_karur" }
+link = { name = "karvuna" 	 title = "d_karvuna" }
+link = { name = "karwuna" 	 title = "d_karvuna" }
+link = { name = "kasi" 	 title = "d_kasi" }
+link = { name = "kasmira" 	 title = "c_kasmira" }
+link = { name = "kastell-briant" 	 title = "c_nantes" }
+link = { name = "kastell-paol" 	 title = "c_french_leon" }
+link = { name = "kastellaodren" 	 title = "c_penthievre" }
+link = { name = "kataka" 	 title = "c_kataka" }
+link = { name = "katalanische kompanie" 	 title = "d_catalan_company" }
+link = { name = "katalanischer trupp" 	 title = "d_catalan_band" }
+link = { name = "katalonien" 	 title = "d_catalonia" }
+link = { name = "katanes" 	 title = "c_caithness" }
+link = { name = "katanäs" 	 title = "c_caithness" }
+link = { name = "katanæs" 	 title = "c_caithness" }
+link = { name = "katehar" 	 title = "c_katehar" }
+link = { name = "kembre" 	 title = "k_wales" }
+link = { name = "kemper" 	 title = "c_cornouaille" }
+link = { name = "kemperle" 	 title = "c_cornouaille" }
+link = { name = "kent" 	 title = "d_canterbury" }
+link = { name = "kerkent" 	 title = "c_agrigento" }
+link = { name = "kerlingfjord" 	 title = "c_oriel" }
+link = { name = "kerlingfjorðr" 	 title = "c_oriel" }
+link = { name = "kerman" 	 title = "d_kerman" }
+link = { name = "kermanshah" 	 title = "d_kermanshah" }
+link = { name = "kernev" 	 title = "c_cornouaille" }
+link = { name = "kexholm" 	 title = "d_kexholm" }
+link = { name = "khandaq" 	 title = "c_chandax" }
+link = { name = "khazar company" 	 title = "d_sunni_cuman_company" }
+link = { name = "khazar kompanie" 	 title = "d_sunni_cuman_company" }
+link = { name = "khazaren" 	 title = "d_khazars" }
+link = { name = "khazaria" 	 title = "k_khazaria" }
+link = { name = "khazarie" 	 title = "k_khazaria" }
+link = { name = "khazars" 	 title = "d_khazars" }
+link = { name = "kherla" 	 title = "c_kherla" }
+link = { name = "khetaka" 	 title = "c_khetaka" }
+link = { name = "khijjingakota" 	 title = "c_khijjingakota" }
+link = { name = "khinjali mandala" 	 title = "c_khinjali_mandala" }
+link = { name = "khiva" 	 title = "k_khiva" }
+link = { name = "khorasan" 	 title = "d_khorasan" }
+link = { name = "kies" 	 title = "c_lettigalians" }
+link = { name = "kiev" 	 title = "d_kiev" }
+link = { name = "kiew" 	 title = "d_kiev" }
+link = { name = "kimak" 	 title = "d_kimak" }
+link = { name = "kintin" 	 title = "c_penthievre" }
+link = { name = "kipchak" 	 title = "d_kipchak" }
+link = { name = "kiranapura" 	 title = "c_kiranapura" }
+link = { name = "kirkouk" 	 title = "d_kirkuk" }
+link = { name = "kirkuk" 	 title = "d_kirkuk" }
+link = { name = "kirkuvåg" 	 title = "c_orkney" }
+link = { name = "kish" 	 title = "c_albania" }
+link = { name = "klison" 	 title = "c_nantes" }
+link = { name = "knights hospitaller" 	 title = "d_knights_hospitaler" }
+link = { name = "knights of calatrava" 	 title = "d_knights_calatrava" }
+link = { name = "knights of santiago" 	 title = "d_knights_santiago" }
+link = { name = "knights of the sun" 	 title = "d_zun_warriors" }
+link = { name = "knights templar" 	 title = "d_knights_templar" }
+link = { name = "kodalaka mandala" 	 title = "c_kodalaka_mandala" }
+link = { name = "kokenhusen" 	 title = "c_lettigalians" }
+link = { name = "koknese" 	 title = "c_lettigalians" }
+link = { name = "kol" 	 title = "c_kol" }
+link = { name = "kola" 	 title = "d_kola" }
+link = { name = "kolhapur" 	 title = "c_kolhapur" }
+link = { name = "kollipake" 	 title = "c_kollipake" }
+link = { name = "kompanie der rose" 	 title = "d_rose_company" }
+link = { name = "kompanie des hutes" 	 title = "d_little_hat_company" }
+link = { name = "kompanie des sterns" 	 title = "d_star_company" }
+link = { name = "kompanie von st. georg" 	 title = "d_company_of_st_george" }
+link = { name = "kondana" 	 title = "c_kondana" }
+link = { name = "kongu" 	 title = "c_kongu" }
+link = { name = "konkana" 	 title = "d_konkana" }
+link = { name = "konungsborg" 	 title = "c_shetland" }
+link = { name = "konya" 	 title = "d_ikonion" }
+link = { name = "korela" 	 title = "c_kexholm" }
+link = { name = "koritsa" 	 title = "c_epeiros" }
+link = { name = "korle" 	 title = "c_cornouaille" }
+link = { name = "kosala" 	 title = "k_kosala" }
+link = { name = "kosti" 	 title = "c_kosti" }
+link = { name = "kota" 	 title = "c_kota" }
+link = { name = "kotivarsa" 	 title = "c_kotivarsa" }
+link = { name = "kotthasara" 	 title = "c_kotthasara" }
+link = { name = "krakau" 	 title = "d_krakow" }
+link = { name = "krakow" 	 title = "d_krakow" }
+link = { name = "kraslaw" 	 title = "c_west_dvina" }
+link = { name = "kreta" 	 title = "d_krete" }
+link = { name = "krete" 	 title = "d_krete" }
+link = { name = "krieger von perun" 	 title = "d_warriors_perun" }
+link = { name = "kriwitschen" 	 title = "d_kryvians" }
+link = { name = "kroatien" 	 title = "k_croatia" }
+link = { name = "krolewiec" 	 title = "c_sambia" }
+link = { name = "krossen" 	 title = "c_lower_silesia" }
+link = { name = "kroton" 	 title = "c_consenza" }
+link = { name = "krougia" 	 title = "c_dyrrachion" }
+link = { name = "krounoi" 	 title = "c_karvuna" }
+link = { name = "krustpils" 	 title = "c_west_dvina" }
+link = { name = "krustpilsi" 	 title = "c_west_dvina" }
+link = { name = "kryvia" 	 title = "d_vitebsk" }
+link = { name = "kryvians" 	 title = "d_kryvians" }
+link = { name = "krzyzbork" 	 title = "c_west_dvina" }
+link = { name = "kríviches" 	 title = "d_kryvians" }
+link = { name = "kudalasangama" 	 title = "c_kudalasangama" }
+link = { name = "kulm" 	 title = "c_chelminskie" }
+link = { name = "kult des huitzilopochtli" 	 title = "d_huitzilopochtli" }
+link = { name = "kumara mandala" 	 title = "c_kumara_mandala" }
+link = { name = "kundina" 	 title = "c_kundina" }
+link = { name = "kungahælla" 	 title = "c_viken" }
+link = { name = "kungsborg" 	 title = "c_york" }
+link = { name = "kunka" 	 title = "c_cuenca" }
+link = { name = "kurland" 	 title = "c_kurs" }
+link = { name = "kuru" 	 title = "d_kuru" }
+link = { name = "kusinagara" 	 title = "c_kusinagara" }
+link = { name = "kustö" 	 title = "c_finland" }
+link = { name = "kustø" 	 title = "c_finland" }
+link = { name = "kutch" 	 title = "c_kutch" }
+link = { name = "kvens" 	 title = "d_kajaneborg" }
+link = { name = "kvènes" 	 title = "d_kajaneborg" }
+link = { name = "kyrenaika" 	 title = "d_cyrenaica" }
+link = { name = "kyrikon" 	 title = "c_veglia" }
+link = { name = "kyrkovik" 	 title = "c_orkney" }
+link = { name = "käkisalmer" 	 title = "d_kexholm" }
+link = { name = "käkisalmi" 	 title = "d_kexholm" }
+link = { name = "käkisalmians" 	 title = "d_kexholm" }
+link = { name = "kärnten" 	 title = "d_karnten" }
+link = { name = "köln" 	 title = "d_koln" }
+link = { name = "könugarðr" 	 title = "c_kiev" }
+link = { name = "könugård" 	 title = "c_kiev" }
+link = { name = "köpenhamn" 	 title = "c_sjaelland" }
+link = { name = "købing" 	 title = "c_vastmanland" }
+link = { name = "købingshus" 	 title = "c_vastmanland" }
+link = { name = "købingsvik" 	 title = "c_oland" }
+link = { name = "kønugård" 	 title = "c_kiev" }
+link = { name = "køping" 	 title = "c_vastmanland" }
+link = { name = "køpingshus" 	 title = "c_vastmanland" }
+link = { name = "køpingsvik" 	 title = "c_oland" }
+link = { name = "l'assassin" 	 title = "d_hashshashin" }
+link = { name = "l'eglise aztèque" 	 title = "d_aztec_reformed" }
+link = { name = "l'Église de zun" 	 title = "d_zun_pagan_reformed" }
+link = { name = "l'Église ouest-africaine" 	 title = "d_west_african_pagan_reformed" }
+link = { name = "l'Église romuvienne" 	 title = "d_baltic_pagan_reformed" }
+link = { name = "l'Église slave" 	 title = "d_slavic_pagan_reformed" }
+link = { name = "l'Église suomenusko" 	 title = "d_finnish_pagan_reformed" }
+link = { name = "l'Église tengri" 	 title = "d_tengri_pagan_reformed" }
+link = { name = "l'Église zoroastrienne" 	 title = "d_zoroastrian" }
+link = { name = "la gran compañía" 	 title = "d_great_company" }
+link = { name = "la grande prêtrise juive" 	 title = "d_jewish" }
+link = { name = "la hansa" 	 title = "k_hansa" }
+link = { name = "la hanse" 	 title = "k_hansa" }
+link = { name = "la iglesia africana occidental" 	 title = "d_west_african_pagan_reformed" }
+link = { name = "la iglesia azteca" 	 title = "d_aztec_reformed" }
+link = { name = "la iglesia de zun" 	 title = "d_zun_pagan_reformed" }
+link = { name = "la iglesia eslava" 	 title = "d_slavic_pagan_reformed" }
+link = { name = "la iglesia romuvana" 	 title = "d_baltic_pagan_reformed" }
+link = { name = "la iglesia soumenusca" 	 title = "d_finnish_pagan_reformed" }
+link = { name = "la iglesia tengri" 	 title = "d_tengri_pagan_reformed" }
+link = { name = "la iglesia zoroastriana" 	 title = "d_zoroastrian" }
+link = { name = "la papauté des fraticelles" 	 title = "d_fraticelli" }
+link = { name = "la papauté monophysite" 	 title = "d_monophysite" }
+link = { name = "la papauté" 	 title = "k_papal_state" }
+link = { name = "labhdaidh" 	 title = "c_lothian" }
+link = { name = "labhdar" 	 title = "c_dunbar" }
+link = { name = "lacio" 	 title = "d_latium" }
+link = { name = "laczyn" 	 title = "c_altmark" }
+link = { name = "lag an ratha" 	 title = "c_atholl" }
+link = { name = "lahore" 	 title = "d_lahore" }
+link = { name = "lahur" 	 title = "c_lahur" }
+link = { name = "laigin" 	 title = "c_leinster" }
+link = { name = "lakhnau" 	 title = "c_lakhnau" }
+link = { name = "lakomelza" 	 title = "c_lakomelza" }
+link = { name = "laksmanavati" 	 title = "c_laksmanavati" }
+link = { name = "lam" 	 title = "c_faereyar" }
+link = { name = "lanahon" 	 title = "c_argyll" }
+link = { name = "lanbrin" 	 title = "c_dunbar" }
+link = { name = "lancaster" 	 title = "d_lancaster" }
+link = { name = "lancastre" 	 title = "d_lancaster" }
+link = { name = "landafan" 	 title = "c_gowrie" }
+link = { name = "landevenneg" 	 title = "c_cornouaille" }
+link = { name = "landreger" 	 title = "c_french_leon" }
+link = { name = "landun" 	 title = "c_carrick" }
+link = { name = "laner" 	 title = "c_fife" }
+link = { name = "lanerc" 	 title = "c_clydesdale" }
+link = { name = "langoned" 	 title = "c_cornouaille" }
+link = { name = "lanirc" 	 title = "c_clydesdale" }
+link = { name = "lanka" 	 title = "k_lanka" }
+link = { name = "lanmahau" 	 title = "c_clydesdale" }
+link = { name = "lannfothir" 	 title = "c_gowrie" }
+link = { name = "lannraig" 	 title = "c_clydesdale" }
+link = { name = "lansildod" 	 title = "c_moray" }
+link = { name = "lantalarc" 	 title = "c_innse_gall" }
+link = { name = "lanuan" 	 title = "c_atholl" }
+link = { name = "laodicée" 	 title = "d_laodikeia" }
+link = { name = "laodikeia" 	 title = "d_laodikeia" }
+link = { name = "lappish band" 	 title = "d_lappish_band" }
+link = { name = "lappländischer trupp" 	 title = "d_lappish_band" }
+link = { name = "larida" 	 title = "c_lleida" }
+link = { name = "las islas occidentales" 	 title = "d_the_isles" }
+link = { name = "las tierras del norte" 	 title = "d_norrland" }
+link = { name = "lata" 	 title = "d_lata" }
+link = { name = "lateinisches kaiserreich" 	 title = "e_latin_empire" }
+link = { name = "latgaliens" 	 title = "d_lettigalians" }
+link = { name = "lathaeron" 	 title = "c_caithness" }
+link = { name = "latharan" 	 title = "c_caithness" }
+link = { name = "latharna" 	 title = "c_ulster" }
+link = { name = "latin empire" 	 title = "e_latin_empire" }
+link = { name = "latium" 	 title = "d_latium" }
+link = { name = "lattalura" 	 title = "c_lattalura" }
+link = { name = "lauenborg" 	 title = "c_holstein" }
+link = { name = "laueube" 	 title = "c_innse_gall" }
+link = { name = "lauuether" 	 title = "c_dunbar" }
+link = { name = "lauwedder" 	 title = "c_dunbar" }
+link = { name = "lazike" 	 title = "c_guria" }
+link = { name = "le califat chiite" 	 title = "d_shiite" }
+link = { name = "le califat sunnite" 	 title = "d_sunni" }
+link = { name = "le calife kharidjite" 	 title = "d_kharijite" }
+link = { name = "le caliphat ibadite" 	 title = "d_ibadi" }
+link = { name = "le cheikhat hurufiste" 	 title = "d_hurufi" }
+link = { name = "le cheikhat yézidi" 	 title = "d_yazidi" }
+link = { name = "le patriarcat d'orient" 	 title = "d_nestorian" }
+link = { name = "le patriarcat iconoclaste" 	 title = "d_iconoclast" }
+link = { name = "le patriarcat monothélite" 	 title = "d_monothelite" }
+link = { name = "le patriarcat paulicien" 	 title = "d_paulician" }
+link = { name = "le patriarcat cuménique" 	 title = "k_orthodox" }
+link = { name = "leal" 	 title = "c_livs" }
+link = { name = "lebus" 	 title = "c_lubusz" }
+link = { name = "lehal" 	 title = "c_reval" }
+link = { name = "leinster" 	 title = "d_leinster" }
+link = { name = "leithghlinn" 	 title = "c_leinster" }
+link = { name = "leitmeritz" 	 title = "k_bohemia" }
+link = { name = "lemsal" 	 title = "c_lettigalians" }
+link = { name = "lemsalu" 	 title = "c_lettigalians" }
+link = { name = "lendianos" 	 title = "d_lendians" }
+link = { name = "lendians" 	 title = "d_lendians" }
+link = { name = "lendizen" 	 title = "d_lendians" }
+link = { name = "leon" 	 title = "k_leon" }
+link = { name = "les fylkirate" 	 title = "d_norse_pagan_reformed" }
+link = { name = "les seigneurs du ciel" 	 title = "d_sky_lords" }
+link = { name = "lettgallen" 	 title = "c_west_dvina" }
+link = { name = "lettigaller" 	 title = "d_lettigalians" }
+link = { name = "lettigallians" 	 title = "d_lettigalians" }
+link = { name = "leum" 	 title = "c_faereyar" }
+link = { name = "león" 	 title = "k_leon" }
+link = { name = "liatroim" 	 title = "c_breifne" }
+link = { name = "liegnitz" 	 title = "c_lower_silesia" }
+link = { name = "ligurian galleys" 	 title = "d_genoese_navy" }
+link = { name = "ligurische galleren" 	 title = "d_genoese_navy" }
+link = { name = "lilløhus" 	 title = "c_skane" }
+link = { name = "limbai" 	 title = "c_lettigalians" }
+link = { name = "limbaiai" 	 title = "c_lettigalians" }
+link = { name = "linkøbing" 	 title = "c_ostergotland" }
+link = { name = "linkøping" 	 title = "c_ostergotland" }
+link = { name = "linnebaile" 	 title = "c_dunbar" }
+link = { name = "lios mochuda" 	 title = "c_clydesdale" }
+link = { name = "lios mór" 	 title = "c_ormond" }
+link = { name = "lipsk" 	 title = "c_plauen" }
+link = { name = "lishbuna" 	 title = "c_lisboa" }
+link = { name = "litauen" 	 title = "k_lithuania" }
+link = { name = "lithauischer trupp" 	 title = "d_lithuanian_band" }
+link = { name = "lithuania" 	 title = "k_lithuania" }
+link = { name = "lithuanian band" 	 title = "d_lithuanian_band" }
+link = { name = "lithuanie" 	 title = "k_lithuania" }
+link = { name = "lituania" 	 title = "k_lithuania" }
+link = { name = "lituanos" 	 title = "d_lithuanians" }
+link = { name = "liubice" 	 title = "c_lubeck" }
+link = { name = "livland" 	 title = "d_livonia" }
+link = { name = "livonia" 	 title = "d_livonia" }
+link = { name = "livonie" 	 title = "d_livonia" }
+link = { name = "lladdaeron" 	 title = "c_caithness" }
+link = { name = "llam" 	 title = "c_faereyar" }
+link = { name = "llanbryn" 	 title = "c_dunbar" }
+link = { name = "llandyffryn" 	 title = "c_gowrie" }
+link = { name = "llangwyn" 	 title = "c_atholl" }
+link = { name = "llanmahagw" 	 title = "c_clydesdale" }
+link = { name = "llantalarican" 	 title = "c_innse_gall" }
+link = { name = "lleuddiniawn" 	 title = "c_lothian" }
+link = { name = "lloegyr" 	 title = "k_england" }
+link = { name = "llydaw" 	 title = "d_brittany" }
+link = { name = "llyn y sildod" 	 title = "c_moray" }
+link = { name = "llynaedd" 	 title = "c_gowrie" }
+link = { name = "llynaer" 	 title = "c_fife" }
+link = { name = "llynafon" 	 title = "c_argyll" }
+link = { name = "llyndin" 	 title = "c_carrick" }
+link = { name = "llywiobae" 	 title = "c_innse_gall" }
+link = { name = "loch dhùin" 	 title = "c_carrick" }
+link = { name = "loch garman" 	 title = "c_leinster" }
+link = { name = "loch nan doirb" 	 title = "c_moray" }
+link = { name = "loch obha" 	 title = "c_argyll" }
+link = { name = "locháir" 	 title = "c_fife" }
+link = { name = "logunec'h" 	 title = "c_vannes" }
+link = { name = "lojo" 	 title = "c_nyland" }
+link = { name = "lokentaz" 	 title = "c_vannes" }
+link = { name = "lombard band" 	 title = "d_lombard_band" }
+link = { name = "lombardei" 	 title = "k_lombardia" }
+link = { name = "lombardei-trupp" 	 title = "d_lombard_band" }
+link = { name = "lombardie" 	 title = "k_lombardia" }
+link = { name = "lombardy" 	 title = "k_lombardia" }
+link = { name = "lombardía" 	 title = "k_lombardia" }
+link = { name = "longobardia" 	 title = "d_apulia" }
+link = { name = "lords of the sky" 	 title = "d_sky_lords" }
+link = { name = "loristan" 	 title = "d_luristan" }
+link = { name = "lorraine" 	 title = "d_upper_lorraine" }
+link = { name = "los curonios" 	 title = "d_curonian" }
+link = { name = "los hassasin" 	 title = "d_hashshashin" }
+link = { name = "los latgalianos" 	 title = "d_lettigalians" }
+link = { name = "los pechenegos" 	 title = "k_pechenegs" }
+link = { name = "los prutenos" 	 title = "d_pruthenians" }
+link = { name = "los samoyedos" 	 title = "d_sames" }
+link = { name = "los semigalios" 	 title = "d_zemigalians" }
+link = { name = "los tavastianos" 	 title = "d_tavasts" }
+link = { name = "lotharingie" 	 title = "d_lower_lorraine" }
+link = { name = "lothian" 	 title = "d_lothian" }
+link = { name = "lothvistoft" 	 title = "c_suffolk" }
+link = { name = "lower lorraine" 	 title = "d_lower_lorraine" }
+link = { name = "luachar" 	 title = "c_fife" }
+link = { name = "lubiazu" 	 title = "c_lausitz" }
+link = { name = "luchar" 	 title = "c_fife" }
+link = { name = "luckawa" 	 title = "c_lausitz" }
+link = { name = "lucyn" 	 title = "c_west_dvina" }
+link = { name = "ludrava" 	 title = "c_ludrava" }
+link = { name = "luimneach" 	 title = "c_thomond" }
+link = { name = "lukania" 	 title = "c_taranto" }
+link = { name = "lundo" 	 title = "c_finland" }
+link = { name = "luned" 	 title = "c_gowrie" }
+link = { name = "luristan" 	 title = "d_luristan" }
+link = { name = "luristán" 	 title = "d_luristan" }
+link = { name = "lut" 	 title = "d_lut" }
+link = { name = "luxembourg" 	 title = "d_luxembourg" }
+link = { name = "luxemburg" 	 title = "d_luxembourg" }
+link = { name = "luxemburgo" 	 title = "d_luxembourg" }
+link = { name = "luzycka" 	 title = "c_lausitz" }
+link = { name = "lybäck" 	 title = "c_lubeck" }
+link = { name = "lybæck" 	 title = "c_lubeck" }
+link = { name = "lybæk" 	 title = "c_lubeck" }
+link = { name = "lychnidos" 	 title = "c_ochrid" }
+link = { name = "lycia" 	 title = "d_lykia" }
+link = { name = "lycie" 	 title = "d_lykia" }
+link = { name = "lyckstad" 	 title = "c_holstein" }
+link = { name = "lykia" 	 title = "d_lykia" }
+link = { name = "lykstad" 	 title = "c_holstein" }
+link = { name = "lymrek" 	 title = "c_thomond" }
+link = { name = "lääne" 	 title = "c_livs" }
+link = { name = "læckø" 	 title = "c_vastergotland" }
+link = { name = "lødøse" 	 title = "c_vastergotland" }
+link = { name = "løvånger" 	 title = "c_vasterbotten" }
+link = { name = "lúghbhaidh" 	 title = "c_oriel" }
+link = { name = "mabaur" 	 title = "c_buchan" }
+link = { name = "mabfanon" 	 title = "c_teviotdale" }
+link = { name = "mabfawr sant" 	 title = "c_buchan" }
+link = { name = "mabffynnon" 	 title = "c_teviotdale" }
+link = { name = "macaille" 	 title = "c_isle_of_man" }
+link = { name = "machaire rátha" 	 title = "c_tyrone" }
+link = { name = "madhupur" 	 title = "c_madhupur" }
+link = { name = "madinat al-jazirah" 	 title = "c_menorca" }
+link = { name = "madinat barshiluna" 	 title = "c_barcelona" }
+link = { name = "madinat mayurqa" 	 title = "c_mallorca" }
+link = { name = "madkharydh" 	 title = "c_smaland" }
+link = { name = "madurai" 	 title = "c_madurai" }
+link = { name = "maelruusan" 	 title = "c_teviotdale" }
+link = { name = "maescanatan" 	 title = "c_carrick" }
+link = { name = "magadha" 	 title = "d_magadha" }
+link = { name = "magadoburg" 	 title = "c_anhalt" }
+link = { name = "magh bhile" 	 title = "c_tyrconnell" }
+link = { name = "maghreb marine" 	 title = "d_maghreb_corsairs" }
+link = { name = "maghreb navy" 	 title = "d_maghreb_corsairs" }
+link = { name = "magiar" 	 title = "k_magyar" }
+link = { name = "magyar" 	 title = "k_magyar" }
+link = { name = "maharastra" 	 title = "k_maharastra" }
+link = { name = "mahoba" 	 title = "c_mahoba" }
+link = { name = "mahoyadapuram" 	 title = "c_mahoyadapuram" }
+link = { name = "maigh eó" 	 title = "c_connacht" }
+link = { name = "maigh nuad" 	 title = "c_kildare" }
+link = { name = "mailrhosan" 	 title = "c_teviotdale" }
+link = { name = "mainistir fhear maí" 	 title = "c_desmond" }
+link = { name = "majorque" 	 title = "d_mallorca" }
+link = { name = "makourie" 	 title = "d_nubia" }
+link = { name = "makran" 	 title = "c_makran" }
+link = { name = "makuria" 	 title = "d_nubia" }
+link = { name = "makurie" 	 title = "d_nubia" }
+link = { name = "makurien" 	 title = "d_nubia" }
+link = { name = "maldives" 	 title = "c_maldives" }
+link = { name = "malfin" 	 title = "c_fife" }
+link = { name = "mali" 	 title = "k_mali" }
+link = { name = "mallabhum" 	 title = "c_mallabhum" }
+link = { name = "mallorca" 	 title = "d_mallorca" }
+link = { name = "malluoc sant" 	 title = "c_argyll" }
+link = { name = "malluoc" 	 title = "c_argyll" }
+link = { name = "malmø" 	 title = "c_skane" }
+link = { name = "malteserorden" 	 title = "d_knights_hospitaler" }
+link = { name = "maluen" 	 title = "c_fife" }
+link = { name = "malwa" 	 title = "k_malwa" }
+link = { name = "mamelouks" 	 title = "d_mamluks" }
+link = { name = "mamelucos" 	 title = "d_mamluks" }
+link = { name = "mamffynnon" 	 title = "c_clydesdale" }
+link = { name = "mamluks" 	 title = "d_mamluks" }
+link = { name = "mamuanon" 	 title = "c_clydesdale" }
+link = { name = "manachainn rois" 	 title = "c_ross" }
+link = { name = "manaw" 	 title = "d_the_isles" }
+link = { name = "mandapika" 	 title = "c_mandapika" }
+link = { name = "mandavyapura" 	 title = "c_mandavyapura" }
+link = { name = "manech rasan" 	 title = "c_ross" }
+link = { name = "mann" 	 title = "c_isle_of_man" }
+link = { name = "mansura" 	 title = "c_mansura" }
+link = { name = "manurqa" 	 title = "c_menorca" }
+link = { name = "manyakheta" 	 title = "c_manyakheta" }
+link = { name = "manyapura" 	 title = "c_manyapura" }
+link = { name = "maol ros" 	 title = "c_teviotdale" }
+link = { name = "mar" 	 title = "d_mar" }
+link = { name = "maramuresch" 	 title = "c_marmaros" }
+link = { name = "marathi band" 	 title = "d_marathi_band" }
+link = { name = "marathi company" 	 title = "d_marathi_company" }
+link = { name = "marathische bande" 	 title = "d_marathi_band" }
+link = { name = "marathische kompanie" 	 title = "d_marathi_company" }
+link = { name = "mari" 	 title = "d_maris" }
+link = { name = "marine barbaresque " 	 title = "d_maghreb_corsairs" }
+link = { name = "marinid" 	 title = "k_marinid" }
+link = { name = "marinide" 	 title = "k_marinid" }
+link = { name = "maris" 	 title = "d_maris" }
+link = { name = "marrakech" 	 title = "d_marrakech" }
+link = { name = "marrakesch" 	 title = "d_marrakech" }
+link = { name = "marsa sqalli" 	 title = "c_malta" }
+link = { name = "maru" 	 title = "d_maru" }
+link = { name = "massawa" 	 title = "c_massawa" }
+link = { name = "mathura" 	 title = "d_mathura" }
+link = { name = "mauretania" 	 title = "k_mauretania" }
+link = { name = "mauritania" 	 title = "k_mauretania" }
+link = { name = "mauritanie" 	 title = "k_mauretania" }
+link = { name = "mauugan" 	 title = "c_isle_of_man" }
+link = { name = "mawgan sant" 	 title = "c_isle_of_man" }
+link = { name = "mayurqa" 	 title = "c_mallorca" }
+link = { name = "mazar" 	 title = "c_trapani" }
+link = { name = "mazovia" 	 title = "d_mazovia" }
+link = { name = "mazovie" 	 title = "d_mazovia" }
+link = { name = "meath" 	 title = "d_meath" }
+link = { name = "mecklemburgo" 	 title = "d_mecklemburg" }
+link = { name = "mecklenbourg" 	 title = "d_mecklemburg" }
+link = { name = "mecklenburg" 	 title = "d_mecklemburg" }
+link = { name = "medak" 	 title = "c_medak" }
+link = { name = "medantaka" 	 title = "c_medantaka" }
+link = { name = "medapata" 	 title = "d_medapata" }
+link = { name = "medina" 	 title = "d_medina" }
+link = { name = "meissen" 	 title = "d_meissen" }
+link = { name = "meißen" 	 title = "d_meissen" }
+link = { name = "melitta" 	 title = "c_malta" }
+link = { name = "mentese" 	 title = "k_mentese" }
+link = { name = "mercia" 	 title = "d_hereford" }
+link = { name = "merv" 	 title = "d_merv" }
+link = { name = "merya" 	 title = "d_yaroslavl" }
+link = { name = "meryas" 	 title = "d_meryas" }
+link = { name = "meschtschora" 	 title = "d_meshcheras" }
+link = { name = "meshchera" 	 title = "d_ryazan" }
+link = { name = "meshcheras" 	 title = "d_meshcheras" }
+link = { name = "mesonesion" 	 title = "c_nikomedeia" }
+link = { name = "mesopotamia" 	 title = "k_mesopotamia" }
+link = { name = "mesopotamien" 	 title = "k_mesopotamia" }
+link = { name = "messene" 	 title = "c_messina" }
+link = { name = "methone" 	 title = "c_methone" }
+link = { name = "mhaothlinne" 	 title = "c_atholl" }
+link = { name = "middle francia" 	 title = "k_lotharingia" }
+link = { name = "mide" 	 title = "d_meath" }
+link = { name = "midnapore" 	 title = "c_midnapore" }
+link = { name = "milan" 	 title = "d_milano" }
+link = { name = "milano" 	 title = "d_milano" }
+link = { name = "milán" 	 title = "d_milano" }
+link = { name = "minsk" 	 title = "d_minsk" }
+link = { name = "mirów" 	 title = "c_werle" }
+link = { name = "misni" 	 title = "c_meissen" }
+link = { name = "misnia" 	 title = "d_meissen" }
+link = { name = "mithila" 	 title = "c_mithila" }
+link = { name = "mittleres frankenreich" 	 title = "k_lotharingia" }
+link = { name = "mochkava" 	 title = "c_moskva" }
+link = { name = "modena" 	 title = "d_modena" }
+link = { name = "modone" 	 title = "c_methone" }
+link = { name = "modène" 	 title = "d_modena" }
+link = { name = "moesia" 	 title = "d_turnovo" }
+link = { name = "mohadavasaka" 	 title = "c_mohadavasaka" }
+link = { name = "mohn" 	 title = "c_osel" }
+link = { name = "moldau" 	 title = "d_moldau" }
+link = { name = "moldavia" 	 title = "d_moldau" }
+link = { name = "moldavie" 	 title = "d_moldau" }
+link = { name = "mongol empire" 	 title = "e_mongol_empire" }
+link = { name = "mongolisches imperium" 	 title = "e_mongol_empire" }
+link = { name = "montroulez" 	 title = "c_french_leon" }
+link = { name = "moon" 	 title = "c_osel" }
+link = { name = "moramar" 	 title = "c_murom" }
+link = { name = "moray" 	 title = "d_moray" }
+link = { name = "mordva" 	 title = "d_mordvins" }
+link = { name = "moscou" 	 title = "d_moskva" }
+link = { name = "moscú" 	 title = "d_moskva" }
+link = { name = "moskau" 	 title = "d_moskva" }
+link = { name = "moskva" 	 title = "d_moskva" }
+link = { name = "mossoul" 	 title = "d_mosul" }
+link = { name = "mosul" 	 title = "d_mosul" }
+link = { name = "moulin" 	 title = "c_atholl" }
+link = { name = "mudgagiri" 	 title = "c_mudgagiri" }
+link = { name = "mugiarro" 	 title = "c_malta" }
+link = { name = "muineachán" 	 title = "c_oriel" }
+link = { name = "muireb" 	 title = "c_moray" }
+link = { name = "multan" 	 title = "d_multan" }
+link = { name = "mumu" 	 title = "d_munster" }
+link = { name = "munda" 	 title = "c_munda" }
+link = { name = "munster" 	 title = "d_munster" }
+link = { name = "murcia" 	 title = "d_murcia" }
+link = { name = "murcie" 	 title = "d_murcia" }
+link = { name = "murom" 	 title = "d_vladimir" }
+link = { name = "muromianos" 	 title = "d_muromians" }
+link = { name = "muromians" 	 title = "d_muromians" }
+link = { name = "mursiya" 	 title = "c_murcia" }
+link = { name = "muunis" 	 title = "c_shetland" }
+link = { name = "mwynis" 	 title = "c_shetland" }
+link = { name = "mynachdy rhosan" 	 title = "c_ross" }
+link = { name = "médine" 	 title = "d_medina" }
+link = { name = "mésopotamie" 	 title = "k_mesopotamia" }
+link = { name = "módena" 	 title = "d_modena" }
+link = { name = "møre" 	 title = "c_more" }
+link = { name = "mùnis" 	 title = "c_shetland" }
+link = { name = "na pùballan" 	 title = "c_teviotdale" }
+link = { name = "na rannaibh" 	 title = "c_galloway" }
+link = { name = "nabadwipa" 	 title = "c_nabadwipa" }
+link = { name = "nadia" 	 title = "d_nadia" }
+link = { name = "nafud" 	 title = "d_nefoud" }
+link = { name = "nagadipa" 	 title = "c_nagadipa" }
+link = { name = "nagauda" 	 title = "c_nagauda" }
+link = { name = "naimisa" 	 title = "c_naimisa" }
+link = { name = "naissos" 	 title = "c_naissus" }
+link = { name = "naldurg" 	 title = "c_naldurg" }
+link = { name = "nan aruadocet" 	 title = "c_gowrie" }
+link = { name = "nandagiri" 	 title = "c_nandagiri" }
+link = { name = "nandana" 	 title = "c_nandana" }
+link = { name = "nandapur" 	 title = "c_nandapur" }
+link = { name = "nanded" 	 title = "c_nanded" }
+link = { name = "nandurbar" 	 title = "c_nandurbar" }
+link = { name = "nant arwyddocâd" 	 title = "c_gowrie" }
+link = { name = "naomh brigid" 	 title = "c_kildare" }
+link = { name = "naomh machar" 	 title = "c_buchan" }
+link = { name = "naomh moluóc" 	 title = "c_argyll" }
+link = { name = "naoned" 	 title = "c_nantes" }
+link = { name = "napata" 	 title = "c_napata" }
+link = { name = "naples" 	 title = "k_naples" }
+link = { name = "nasikya" 	 title = "d_nasikya" }
+link = { name = "nasso" 	 title = "c_naxos" }
+link = { name = "navarra" 	 title = "k_navarra" }
+link = { name = "navarre" 	 title = "k_navarra" }
+link = { name = "navarrese company" 	 title = "d_navarrese_company" }
+link = { name = "navarreser kompanie" 	 title = "d_navarrese_company" }
+link = { name = "navasarika" 	 title = "c_navasarika" }
+link = { name = "neapel" 	 title = "k_naples" }
+link = { name = "neapolis" 	 title = "c_napoli" }
+link = { name = "nefoud" 	 title = "d_nefoud" }
+link = { name = "negroponte" 	 title = "c_euboia" }
+link = { name = "nellore" 	 title = "c_nellore" }
+link = { name = "nerike" 	 title = "c_narke" }
+link = { name = "nerke" 	 title = "c_narke" }
+link = { name = "nesborg" 	 title = "c_ostergotland" }
+link = { name = "neu sandez" 	 title = "c_sacz" }
+link = { name = "neuadduchel" 	 title = "c_innse_gall" }
+link = { name = "neuburg" 	 title = "c_abauj" }
+link = { name = "neutra" 	 title = "c_nitra" }
+link = { name = "nevajärvi" 	 title = "c_bezhetsky_verh" }
+link = { name = "nevanlinna" 	 title = "c_vodi" }
+link = { name = "nexö" 	 title = "c_bornholm" }
+link = { name = "nicea" 	 title = "d_nikaea" }
+link = { name = "nicomédie" 	 title = "d_nikomedeia" }
+link = { name = "nicée" 	 title = "d_nikaea" }
+link = { name = "nidden" 	 title = "c_memel" }
+link = { name = "niederlothringen" 	 title = "d_lower_lorraine" }
+link = { name = "nikaea" 	 title = "d_nikaea" }
+link = { name = "nikomedeia" 	 title = "d_nikomedeia" }
+link = { name = "nikomedia" 	 title = "d_nikomedeia" }
+link = { name = "nikäa" 	 title = "d_nikaea" }
+link = { name = "nilagiri" 	 title = "c_nilagiri" }
+link = { name = "nisani" 	 title = "c_meissen" }
+link = { name = "nish" 	 title = "c_naissus" }
+link = { name = "nitra " 	 title = "d_nyitra" }
+link = { name = "nitra" 	 title = "c_nitra" }
+link = { name = "noba # roman novae" 	 title = "c_tyrnovo" }
+link = { name = "nobatia" 	 title = "d_nobatia" }
+link = { name = "nofant" 	 title = "c_galloway" }
+link = { name = "nordsee-koggen" 	 title = "d_frisian_navy" }
+link = { name = "norfolk" 	 title = "d_norfolk" }
+link = { name = "normandie" 	 title = "d_normandy" }
+link = { name = "normandy" 	 title = "d_normandy" }
+link = { name = "normandía" 	 title = "d_normandy" }
+link = { name = "norrkøbing" 	 title = "c_ostergotland" }
+link = { name = "norrkøping" 	 title = "c_ostergotland" }
+link = { name = "norrland" 	 title = "d_norrland" }
+link = { name = "north sea cogs" 	 title = "d_frisian_navy" }
+link = { name = "northumberland" 	 title = "d_northumberland" }
+link = { name = "northumbria" 	 title = "d_northumberland" }
+link = { name = "noruega" 	 title = "k_norway" }
+link = { name = "norvège" 	 title = "k_norway" }
+link = { name = "norway" 	 title = "k_norway" }
+link = { name = "norðreyjar" 	 title = "d_orkney" }
+link = { name = "nouantia" 	 title = "c_galloway" }
+link = { name = "novgorod" 	 title = "d_novgorod" }
+link = { name = "novgorodseverskeña" 	 title = "d_novgorod" }
+link = { name = "nowgorod" 	 title = "d_novgorod" }
+link = { name = "nubia" 	 title = "k_nubia" }
+link = { name = "nubian band" 	 title = "d_nubian_band" }
+link = { name = "nubie" 	 title = "k_nubia" }
+link = { name = "nubien" 	 title = "k_nubia" }
+link = { name = "nubischer trupp" 	 title = "d_nubian_band" }
+link = { name = "nulambavadi" 	 title = "d_nulambavadi" }
+link = { name = "nuuathuchel" 	 title = "c_innse_gall" }
+link = { name = "nygarðr" 	 title = "c_novgorod" }
+link = { name = "nygård" 	 title = "c_novgorod" }
+link = { name = "nyitra" 	 title = "d_nyitra" }
+link = { name = "nykarleby" 	 title = "c_osterbotten" }
+link = { name = "nykøbing" 	 title = "c_sodermanland" }
+link = { name = "nykøping" 	 title = "c_sodermanland" }
+link = { name = "nyland" 	 title = "c_nyland" }
+link = { name = "nysand" 	 title = "c_sacz" }
+link = { name = "nápoles" 	 title = "k_naples" }
+link = { name = "nás na ríogh" 	 title = "c_leinster" }
+link = { name = "nästved" 	 title = "c_sjaelland" }
+link = { name = "nådendal" 	 title = "c_finland" }
+link = { name = "næsborg" 	 title = "c_ostergotland" }
+link = { name = "næstved" 	 title = "c_sjaelland" }
+link = { name = "nöteborg" 	 title = "c_vodi" }
+link = { name = "nøteborg" 	 title = "c_vodi" }
+link = { name = "obar chùirnidh" 	 title = "c_lothian" }
+link = { name = "obar crosain" 	 title = "c_ross" }
+link = { name = "obar dabhuin" 	 title = "c_buchan" }
+link = { name = "obar neithich" 	 title = "c_gowrie" }
+link = { name = "obar pheallaidh" 	 title = "c_atholl" }
+link = { name = "obar Àrdair" 	 title = "c_caithness" }
+link = { name = "oberburgund" 	 title = "d_upper_burgundy" }
+link = { name = "oberlothringen" 	 title = "d_upper_lorraine" }
+link = { name = "obodritas" 	 title = "d_obotrites" }
+link = { name = "obotrites" 	 title = "d_obotrites" }
+link = { name = "obotritia" 	 title = "d_mecklemburg" }
+link = { name = "ogygia" 	 title = "c_malta" }
+link = { name = "ohrid" 	 title = "c_dyrrachion" }
+link = { name = "olavsborg" 	 title = "c_savolaks" }
+link = { name = "olofsborg" 	 title = "c_savolaks" }
+link = { name = "oman" 	 title = "d_oman" }
+link = { name = "omán" 	 title = "d_oman" }
+link = { name = "onega" 	 title = "c_onega" }
+link = { name = "onezhskoe" 	 title = "c_onega" }
+link = { name = "ongullsøy" 	 title = "c_gwynedd" }
+link = { name = "orangallu" 	 title = "c_orangallu" }
+link = { name = "orcades" 	 title = "d_orkney" }
+link = { name = "orden bektashi" 	 title = "d_bektashi" }
+link = { name = "orden de san aday" 	 title = "d_saint_addai" }
+link = { name = "orden de san antonio" 	 title = "d_saint_anthony" }
+link = { name = "orden del temple" 	 title = "d_knights_templar" }
+link = { name = "orden des heiligen antonius" 	 title = "d_saint_anthony" }
+link = { name = "orden des heiligen thaddeus" 	 title = "d_saint_addai" }
+link = { name = "orden hospitalaria" 	 title = "d_knights_hospitaler" }
+link = { name = "orden teutónica" 	 title = "d_teutonic_order" }
+link = { name = "order of saint addai" 	 title = "d_saint_addai" }
+link = { name = "order of saint anthony" 	 title = "d_saint_anthony" }
+link = { name = "ordre de calatrava" 	 title = "d_knights_calatrava" }
+link = { name = "ordre de l'hospital" 	 title = "d_knights_hospitaler" }
+link = { name = "ordre de saint antoine" 	 title = "d_saint_anthony" }
+link = { name = "ordre de saint thaddée" 	 title = "d_saint_addai" }
+link = { name = "ordre de santiago" 	 title = "d_knights_santiago" }
+link = { name = "ordre du saint-sépulcre" 	 title = "d_holy_sepulchre" }
+link = { name = "ordre du temple" 	 title = "d_knights_templar" }
+link = { name = "ordre teutonique" 	 title = "d_teutonic_order" }
+link = { name = "oreshek" 	 title = "c_vodi" }
+link = { name = "orissa" 	 title = "k_orissa" }
+link = { name = "orkney" 	 title = "d_orkney" }
+link = { name = "orknö" 	 title = "c_orkney" }
+link = { name = "orknø" 	 title = "c_orkney" }
+link = { name = "orleans" 	 title = "d_orleans" }
+link = { name = "orléans" 	 title = "d_orleans" }
+link = { name = "orrea" 	 title = "c_gowrie" }
+link = { name = "osmanische türken" 	 title = "k_ottoman" }
+link = { name = "osraige" 	 title = "c_ossory" }
+link = { name = "ostfranken" 	 title = "k_germany" }
+link = { name = "ostfrankenreich" 	 title = "e_germany" }
+link = { name = "ostlandet" 	 title = "d_ostlandet" }
+link = { name = "ostrihom" 	 title = "c_esztergom" }
+link = { name = "ostrogon" 	 title = "c_esztergom" }
+link = { name = "ottoman turks" 	 title = "k_ottoman" }
+link = { name = "ottoman" 	 title = "k_ottoman" }
+link = { name = "oultrejourdain" 	 title = "d_oultrejourdain" }
+link = { name = "oural" 	 title = "d_ural" }
+link = { name = "outre-jourdain" 	 title = "d_oultrejourdain" }
+link = { name = "oxford" 	 title = "d_oxford" }
+link = { name = "paflagonia" 	 title = "d_paphlagonia" }
+link = { name = "pallteskja" 	 title = "c_polotsk" }
+link = { name = "panarmos" 	 title = "c_palermo" }
+link = { name = "pandya nadu" 	 title = "d_pandya_nadu" }
+link = { name = "pannagallu" 	 title = "c_pannagallu" }
+link = { name = "pannonia" 	 title = "k_hungary" }
+link = { name = "pannonie" 	 title = "k_hungary" }
+link = { name = "pannonien" 	 title = "k_hungary" }
+link = { name = "papauté miaphysite" 	 title = "d_miaphysite" }
+link = { name = "paphlagonia" 	 title = "d_paphlagonia" }
+link = { name = "paphlagonie" 	 title = "d_paphlagonia" }
+link = { name = "paphlagonien" 	 title = "d_paphlagonia" }
+link = { name = "papsttum" 	 title = "k_papal_state" }
+link = { name = "para-lauhitya" 	 title = "d_para_lauhitya" }
+link = { name = "parnakheta" 	 title = "c_parnakheta" }
+link = { name = "parnawa" 	 title = "c_livs" }
+link = { name = "partav" 	 title = "c_albania" }
+link = { name = "partavi" 	 title = "c_albania" }
+link = { name = "passo" 	 title = "c_cephalonia" }
+link = { name = "pays de galles" 	 title = "k_wales" }
+link = { name = "pays-bas" 	 title = "k_frisia" }
+link = { name = "pazin" 	 title = "c_istria" }
+link = { name = "peball" 	 title = "c_teviotdale" }
+link = { name = "pebyll" 	 title = "c_teviotdale" }
+link = { name = "pecheneg band" 	 title = "d_pecheneg_band" }
+link = { name = "pecheneg company" 	 title = "d_pecheneg_company" }
+link = { name = "pecheneg" 	 title = "d_pechenegs" }
+link = { name = "pecheneg-kompanie" 	 title = "d_pecheneg_company" }
+link = { name = "pecheneg-trupp" 	 title = "d_pecheneg_band" }
+link = { name = "pechenegs" 	 title = "k_pechenegs" }
+link = { name = "pecs" 	 title = "d_pecs" }
+link = { name = "pecuh" 	 title = "d_pecs" }
+link = { name = "pecuj" 	 title = "d_pecs" }
+link = { name = "pengwern" 	 title = "c_shrewsbury" }
+link = { name = "pennbaedd" 	 title = "c_fife" }
+link = { name = "penndu" 	 title = "c_strathearn" }
+link = { name = "pennhadllin" 	 title = "c_fife" }
+link = { name = "penntyrau" 	 title = "c_buchan" }
+link = { name = "pennyglyn" 	 title = "c_carrick" }
+link = { name = "pentzelin" 	 title = "c_rostock" }
+link = { name = "penugonda" 	 title = "c_penugonda" }
+link = { name = "perejaslawl" 	 title = "d_pereyaslavl" }
+link = { name = "pereyaslavl" 	 title = "d_pereyaslavl" }
+link = { name = "pereïaslavl" 	 title = "d_pereyaslavl" }
+link = { name = "perm" 	 title = "k_perm" }
+link = { name = "pernau" 	 title = "c_livs" }
+link = { name = "pernu" 	 title = "c_livs" }
+link = { name = "perse" 	 title = "k_persia" }
+link = { name = "persia" 	 title = "k_persia" }
+link = { name = "persian empire" 	 title = "e_persia" }
+link = { name = "persien" 	 title = "k_persia" }
+link = { name = "pest " 	 title = "d_pest" }
+link = { name = "pest" 	 title = "d_pest" }
+link = { name = "petchénègue" 	 title = "d_pechenegs" }
+link = { name = "petchénègues" 	 title = "k_pechenegs" }
+link = { name = "petrizen" 	 title = "c_rashka" }
+link = { name = "petschenegen" 	 title = "d_pechenegs" }
+link = { name = "pictland" 	 title = "k_scotland" }
+link = { name = "pihiti" 	 title = "c_phiti" }
+link = { name = "pilsen" 	 title = "k_bohemia" }
+link = { name = "pinaglan" 	 title = "c_carrick" }
+link = { name = "pinbed" 	 title = "c_fife" }
+link = { name = "pinhadlen" 	 title = "c_fife" }
+link = { name = "pintar" 	 title = "c_buchan" }
+link = { name = "pintu" 	 title = "c_strathearn" }
+link = { name = "piratas" 	 title = "e_pirates" }
+link = { name = "piraten" 	 title = "e_pirates" }
+link = { name = "pirates" 	 title = "e_pirates" }
+link = { name = "pirth taran" 	 title = "c_faereyar" }
+link = { name = "pirtinsee" 	 title = "c_isle_of_man" }
+link = { name = "pisa" 	 title = "k_pisa" }
+link = { name = "pisctaltreh" 	 title = "c_dunbar" }
+link = { name = "pise" 	 title = "k_pisa" }
+link = { name = "pisino" 	 title = "c_istria" }
+link = { name = "pistylltref" 	 title = "c_dunbar" }
+link = { name = "pithapuram" 	 title = "c_pithapuram" }
+link = { name = "pleskau" 	 title = "c_pskov" }
+link = { name = "ploermael" 	 title = "c_vannes" }
+link = { name = "ploni" 	 title = "c_plauen" }
+link = { name = "plourivoù" 	 title = "c_french_leon" }
+link = { name = "poitou" 	 title = "d_poitou" }
+link = { name = "poland" 	 title = "k_poland" }
+link = { name = "polen" 	 title = "k_poland" }
+link = { name = "pologne" 	 title = "k_poland" }
+link = { name = "polonia" 	 title = "k_poland" }
+link = { name = "polotsk" 	 title = "d_polotsk" }
+link = { name = "pomeralia" 	 title = "d_pomeralia" }
+link = { name = "pomerania" 	 title = "k_pomerania" }
+link = { name = "pomerelia" 	 title = "d_pomeralia" }
+link = { name = "pommerellen" 	 title = "d_pomeralia" }
+link = { name = "pommern" 	 title = "k_pomerania" }
+link = { name = "poméralie" 	 title = "d_pomeralia" }
+link = { name = "poméranie" 	 title = "k_pomerania" }
+link = { name = "pondi" 	 title = "c_vannes" }
+link = { name = "port an eilein" 	 title = "c_innse_gall" }
+link = { name = "port láirge" 	 title = "c_ormond" }
+link = { name = "port turenn" 	 title = "c_faereyar" }
+link = { name = "porth craig" 	 title = "c_atholl" }
+link = { name = "porth taran" 	 title = "c_faereyar" }
+link = { name = "porth ynys" 	 title = "c_isle_of_man" }
+link = { name = "porto" 	 title = "d_porto" }
+link = { name = "portucale" 	 title = "d_porto" }
+link = { name = "portugal" 	 title = "k_portugal" }
+link = { name = "posen" 	 title = "c_poznanskie" }
+link = { name = "potapi" 	 title = "c_potapi" }
+link = { name = "powys" 	 title = "d_powys" }
+link = { name = "pozsony" 	 title = "c_pressburg" }
+link = { name = "pratishthana" 	 title = "c_pratishthana" }
+link = { name = "prayaga" 	 title = "c_prayaga" }
+link = { name = "presbourg" 	 title = "d_pressburg" }
+link = { name = "presporok" 	 title = "c_pressburg" }
+link = { name = "pressburg" 	 title = "d_pressburg" }
+link = { name = "preußen" 	 title = "d_prussia" }
+link = { name = "pronsk" 	 title = "d_pronsk" }
+link = { name = "provence" 	 title = "d_provence" }
+link = { name = "provenza" 	 title = "d_provence" }
+link = { name = "prusia" 	 title = "d_prussia" }
+link = { name = "prusse" 	 title = "d_prussia" }
+link = { name = "prussia" 	 title = "d_prussia" }
+link = { name = "pruthener" 	 title = "d_pruthenians" }
+link = { name = "pruthenia" 	 title = "d_prussia" }
+link = { name = "pruthenians" 	 title = "d_pruthenians" }
+link = { name = "prutheniens" 	 title = "d_pruthenians" }
+link = { name = "prydain" 	 title = "e_britannia" }
+link = { name = "pskov" 	 title = "d_pskov" }
+link = { name = "pskow" 	 title = "d_pskov" }
+link = { name = "pundravardhana" 	 title = "c_pundravardhana" }
+link = { name = "punjab" 	 title = "k_punjab" }
+link = { name = "puri" 	 title = "c_puri" }
+link = { name = "purt ny h-inshey" 	 title = "c_isle_of_man" }
+link = { name = "purushapura" 	 title = "c_purushapura" }
+link = { name = "pyrgos" 	 title = "c_malta" }
+link = { name = "pärnu" 	 title = "c_livs" }
+link = { name = "pålø" 	 title = "c_isle_of_man" }
+link = { name = "pécs " 	 title = "d_pecs" }
+link = { name = "qalqut" 	 title = "c_qalqut" }
+link = { name = "qom" 	 title = "d_qom" }
+link = { name = "qulumriyah" 	 title = "c_coimbra" }
+link = { name = "qurtubah" 	 title = "c_cordoba" }
+link = { name = "quzdar" 	 title = "c_quzdar" }
+link = { name = "racakonda" 	 title = "d_racakonda" }
+link = { name = "radgosc" 	 title = "c_mecklemburg" }
+link = { name = "radha" 	 title = "c_radha" }
+link = { name = "radimichia" 	 title = "d_smolensk" }
+link = { name = "radstofa" 	 title = "c_rostov" }
+link = { name = "ragaine" 	 title = "c_scalovia" }
+link = { name = "ragneta" 	 title = "c_scalovia" }
+link = { name = "ragnita" 	 title = "c_scalovia" }
+link = { name = "ragusavecchia" 	 title = "c_ragusa" }
+link = { name = "raichur doab" 	 title = "d_raichur_doab" }
+link = { name = "raineach" 	 title = "c_atholl" }
+link = { name = "rajamahendravaram" 	 title = "c_rajamahendravaram" }
+link = { name = "rajanpur" 	 title = "c_rajanpur" }
+link = { name = "rajastan" 	 title = "e_rajastan" }
+link = { name = "rajput band" 	 title = "d_rajput_band" }
+link = { name = "rajput company" 	 title = "d_rajput_company" }
+link = { name = "rajputana" 	 title = "k_rajputana" }
+link = { name = "rajputische bande" 	 title = "d_rajput_band" }
+link = { name = "rajputische kompanie" 	 title = "d_rajput_company" }
+link = { name = "rajrappa" 	 title = "c_rajrappa" }
+link = { name = "ramagiri" 	 title = "c_ramagiri" }
+link = { name = "ramsøy" 	 title = "c_dyfed" }
+link = { name = "rana" 	 title = "c_rugen" }
+link = { name = "ranikot" 	 title = "c_ranikot" }
+link = { name = "ranthambore" 	 title = "c_ranthambore" }
+link = { name = "rascia" 	 title = "d_rashka" }
+link = { name = "raseborg" 	 title = "c_nyland" }
+link = { name = "raseinen" 	 title = "c_zhmud" }
+link = { name = "rashka" 	 title = "d_rashka" }
+link = { name = "rastokú" 	 title = "c_rostock" }
+link = { name = "ratanpur" 	 title = "d_ratanpur" }
+link = { name = "ratseborg" 	 title = "c_lubeck" }
+link = { name = "rattapadi" 	 title = "d_rattapadi" }
+link = { name = "raugia" 	 title = "c_ragusa" }
+link = { name = "raumo" 	 title = "c_finland" }
+link = { name = "rayapura" 	 title = "c_rayapura" }
+link = { name = "rebeldes" 	 title = "e_rebels" }
+link = { name = "rebellen" 	 title = "e_rebels" }
+link = { name = "rebelles" 	 title = "e_rebels" }
+link = { name = "rebels" 	 title = "e_rebels" }
+link = { name = "redan" 	 title = "c_atholl" }
+link = { name = "reni" 	 title = "c_reni" }
+link = { name = "resan" 	 title = "c_isle_of_man" }
+link = { name = "resyn" 	 title = "c_isle_of_man" }
+link = { name = "reval" 	 title = "c_reval" }
+link = { name = "rhedyn" 	 title = "c_atholl" }
+link = { name = "rheged" 	 title = "d_lancaster" }
+link = { name = "rhegion" 	 title = "c_reggio" }
+link = { name = "rhosan meirchnant" 	 title = "c_ross" }
+link = { name = "riazán" 	 title = "d_ryazan" }
+link = { name = "ridined" 	 title = "c_nantes" }
+link = { name = "riga" 	 title = "c_zemigalians" }
+link = { name = "ringköping" 	 title = "c_jylland" }
+link = { name = "rinn friù" 	 title = "c_clydesdale" }
+link = { name = "ritter der sonne" 	 title = "d_zun_warriors" }
+link = { name = "ritter von calatrava" 	 title = "d_knights_calatrava" }
+link = { name = "roazhon" 	 title = "c_rennes" }
+link = { name = "rohana" 	 title = "c_rohana" }
+link = { name = "romagna" 	 title = "d_romagna" }
+link = { name = "romagne" 	 title = "d_romagna" }
+link = { name = "roman empire" 	 title = "e_roman_empire" }
+link = { name = "romaña" 	 title = "d_romagna" }
+link = { name = "romowe" 	 title = "c_sambia" }
+link = { name = "ros comáin" 	 title = "c_connacht" }
+link = { name = "ros cré" 	 title = "c_ormond" }
+link = { name = "ros mhaircnidh" 	 title = "c_ross" }
+link = { name = "ros Ó gcairbre" 	 title = "c_desmond" }
+link = { name = "ros" 	 title = "c_ross" }
+link = { name = "rosanmairch" 	 title = "c_ross" }
+link = { name = "rosien" 	 title = "c_isle_of_man" }
+link = { name = "rosko" 	 title = "c_french_leon" }
+link = { name = "rostov" 	 title = "d_rostov" }
+link = { name = "rostow" 	 title = "d_rostov" }
+link = { name = "rothas" 	 title = "c_rothas" }
+link = { name = "rum" 	 title = "k_rum" }
+link = { name = "rus band" 	 title = "d_rus_band" }
+link = { name = "rus company" 	 title = "d_rus_company" }
+link = { name = "rus" 	 title = "k_rus" }
+link = { name = "rus-kompanie" 	 title = "d_rus_company" }
+link = { name = "rus-trupp" 	 title = "d_rus_band" }
+link = { name = "rusia" 	 title = "e_russia" }
+link = { name = "russe" 	 title = "e_russia" }
+link = { name = "russia" 	 title = "e_russia" }
+link = { name = "russie" 	 title = "k_rus" }
+link = { name = "russland" 	 title = "e_russia" }
+link = { name = "rutenia" 	 title = "k_ruthenia" }
+link = { name = "ruthenia" 	 title = "k_ruthenia" }
+link = { name = "ruthenien" 	 title = "k_ruthenia" }
+link = { name = "ruthénie" 	 title = "k_ruthenia" }
+link = { name = "ryasan" 	 title = "d_ryazan" }
+link = { name = "ryazan" 	 title = "d_ryazan" }
+link = { name = "rzezyca" 	 title = "c_west_dvina" }
+link = { name = "ráth bhoth" 	 title = "c_tyrconnell" }
+link = { name = "ráth iomgháin" 	 title = "c_kildare" }
+link = { name = "rìghdùn" 	 title = "c_shetland" }
+link = { name = "römisches reich" 	 title = "e_roman_empire" }
+link = { name = "rüm" 	 title = "k_rum" }
+link = { name = "saboya" 	 title = "d_savoie" }
+link = { name = "sachsen" 	 title = "k_saxony" }
+link = { name = "sagan" 	 title = "c_lower_silesia" }
+link = { name = "sagar" 	 title = "c_sagar" }
+link = { name = "sajonia" 	 title = "k_saxony" }
+link = { name = "sakala" 	 title = "c_sakala" }
+link = { name = "salamanca" 	 title = "d_salamanca" }
+link = { name = "salamanque" 	 title = "d_salamanca" }
+link = { name = "salcraig" 	 title = "c_teviotdale" }
+link = { name = "salerne" 	 title = "d_salerno" }
+link = { name = "salerno" 	 title = "d_salerno" }
+link = { name = "samarcanda" 	 title = "d_samarkand" }
+link = { name = "samarcande" 	 title = "d_samarkand" }
+link = { name = "samarkand" 	 title = "d_samarkand" }
+link = { name = "samatata" 	 title = "c_samatata" }
+link = { name = "sambalpur" 	 title = "c_sambalpur" }
+link = { name = "sambhal" 	 title = "c_sambhal" }
+link = { name = "sameiten" 	 title = "c_zhmud" }
+link = { name = "samen" 	 title = "d_sami" }
+link = { name = "sami" 	 title = "d_sami" }
+link = { name = "samland" 	 title = "c_sambia" }
+link = { name = "samogitia" 	 title = "d_samogitia" }
+link = { name = "samogitie" 	 title = "d_samogitia" }
+link = { name = "samos" 	 title = "d_samos" }
+link = { name = "samoyeden" 	 title = "d_sames" }
+link = { name = "samoyeds" 	 title = "d_sames" }
+link = { name = "samoyèdes" 	 title = "d_sames" }
+link = { name = "san paolo" 	 title = "c_malta" }
+link = { name = "sanaa" 	 title = "d_sanaa" }
+link = { name = "sandez" 	 title = "c_sacz" }
+link = { name = "sandomiersk" 	 title = "d_sandomiersk" }
+link = { name = "sandomierz" 	 title = "d_sandomiersk" }
+link = { name = "sannar" 	 title = "d_sennar" }
+link = { name = "sant-brieg" 	 title = "c_penthievre" }
+link = { name = "sant-maloù" 	 title = "c_rennes" }
+link = { name = "sant-mikael" 	 title = "c_rennes" }
+link = { name = "sant-méen" 	 title = "c_rennes" }
+link = { name = "sant-nazer" 	 title = "c_nantes" }
+link = { name = "sant-pêran" 	 title = "c_penthievre" }
+link = { name = "saná" 	 title = "d_sanaa" }
+link = { name = "saptagrama" 	 title = "c_saptagrama" }
+link = { name = "saragossa" 	 title = "d_zaragoza" }
+link = { name = "saragosse" 	 title = "d_zaragoza" }
+link = { name = "sarangpur" 	 title = "c_sarangpur" }
+link = { name = "saraqusta" 	 title = "c_zaragoza" }
+link = { name = "sarasvata mandala" 	 title = "c_sarasvata_mandala" }
+link = { name = "sarasvati" 	 title = "c_sarasvati" }
+link = { name = "sardaigne" 	 title = "d_sardinia" }
+link = { name = "sardinia" 	 title = "d_sardinia" }
+link = { name = "sardinien" 	 title = "d_sardinia" }
+link = { name = "sarkel" 	 title = "d_sarkel" }
+link = { name = "saruhan" 	 title = "k_saruhan" }
+link = { name = "saryupara" 	 title = "d_saryupara" }
+link = { name = "sasana" 	 title = "k_england" }
+link = { name = "sasaram" 	 title = "c_sasaram" }
+link = { name = "satakunda" 	 title = "d_satakunta" }
+link = { name = "satakunta" 	 title = "d_satakunta" }
+link = { name = "satakuntaner" 	 title = "d_satakunta" }
+link = { name = "satakuntans" 	 title = "d_satakunta" }
+link = { name = "satyapura" 	 title = "c_satyapura" }
+link = { name = "saurashtra" 	 title = "d_saurashtra" }
+link = { name = "sauvira" 	 title = "d_sauvira" }
+link = { name = "savoie" 	 title = "d_savoie" }
+link = { name = "savolax" 	 title = "c_savolaks" }
+link = { name = "savoy" 	 title = "d_savoie" }
+link = { name = "savoyen" 	 title = "d_savoie" }
+link = { name = "saxe" 	 title = "k_saxony" }
+link = { name = "saxon band" 	 title = "d_saxon_band" }
+link = { name = "saxony" 	 title = "k_saxony" }
+link = { name = "scandinavia" 	 title = "e_scandinavia" }
+link = { name = "scandinavie" 	 title = "e_scandinavia" }
+link = { name = "scania" 	 title = "c_skane" }
+link = { name = "scanie" 	 title = "d_skane" }
+link = { name = "scharosch" 	 title = "c_saris" }
+link = { name = "schieratz" 	 title = "c_sieradzko-leczyckie" }
+link = { name = "schlesien" 	 title = "d_silesia" }
+link = { name = "schleswig" 	 title = "c_slesvig" }
+link = { name = "schlüsselburg" 	 title = "c_vodi" }
+link = { name = "schottischer trupp" 	 title = "d_scottish_band" }
+link = { name = "schwaben" 	 title = "d_swabia" }
+link = { name = "schweden" 	 title = "k_sweden" }
+link = { name = "schweiz" 	 title = "d_swiss" }
+link = { name = "schweizer kompanie" 	 title = "d_swiss_company" }
+link = { name = "schweizer trupp" 	 title = "d_swiss_band" }
+link = { name = "scotland" 	 title = "k_scotland" }
+link = { name = "scottish band" 	 title = "d_scottish_band" }
+link = { name = "scutari" 	 title = "c_zeta" }
+link = { name = "sebasta" 	 title = "c_chaldea" }
+link = { name = "sebasteia" 	 title = "c_chaldea" }
+link = { name = "segna" 	 title = "c_senj" }
+link = { name = "seguidores de Áryuna" 	 title = "d_followers_arjuna" }
+link = { name = "selanda" 	 title = "d_sjaelland" }
+link = { name = "seldschukenreich" 	 title = "k_seljuk_turks" }
+link = { name = "seljuk empire" 	 title = "k_seljuk_turks" }
+link = { name = "semba" 	 title = "c_sambia" }
+link = { name = "semien" 	 title = "d_semien" }
+link = { name = "semigallier" 	 title = "d_zemigalians" }
+link = { name = "sennar" 	 title = "d_sennar" }
+link = { name = "sentiles" 	 title = "c_penthievre" }
+link = { name = "serbia" 	 title = "k_serbia" }
+link = { name = "serbie" 	 title = "k_serbia" }
+link = { name = "serbien" 	 title = "k_serbia" }
+link = { name = "sesswegen" 	 title = "c_lettigalians" }
+link = { name = "severia" 	 title = "d_chernigov" }
+link = { name = "severianos" 	 title = "d_severians" }
+link = { name = "severians" 	 title = "d_severians" }
+link = { name = "sevilla" 	 title = "d_sevilla" }
+link = { name = "seville" 	 title = "d_sevilla" }
+link = { name = "sewerjanen" 	 title = "d_severians" }
+link = { name = "señores del cielo" 	 title = "d_sky_lords" }
+link = { name = "sgoinde" 	 title = "c_gowrie" }
+link = { name = "sgon" 	 title = "c_gowrie" }
+link = { name = "sguun" 	 title = "c_gowrie" }
+link = { name = "shake" 	 title = "c_albania" }
+link = { name = "sheireapúin" 	 title = "c_ossory" }
+link = { name = "shewa" 	 title = "d_shewa" }
+link = { name = "shiraz" 	 title = "d_shiraz" }
+link = { name = "shlib" 	 title = "c_silves" }
+link = { name = "shorkot" 	 title = "c_shorkot" }
+link = { name = "sibi" 	 title = "c_sibi" }
+link = { name = "sibir" 	 title = "d_sibir" }
+link = { name = "sicile" 	 title = "k_sicily" }
+link = { name = "sicilia " 	 title = "d_sicily" }
+link = { name = "sicilia" 	 title = "k_sicily" }
+link = { name = "sicily" 	 title = "k_sicily" }
+link = { name = "silesia" 	 title = "d_silesia" }
+link = { name = "silistra" 	 title = "d_dorostotum" }
+link = { name = "silésie" 	 title = "d_silesia" }
+link = { name = "simaramapura" 	 title = "c_simaramapura" }
+link = { name = "sinai" 	 title = "d_sinai" }
+link = { name = "sinaí " 	 title = "d_sinai" }
+link = { name = "sinaï" 	 title = "d_sinai" }
+link = { name = "sindh" 	 title = "k_sindh" }
+link = { name = "singidounon" 	 title = "c_belgrade" }
+link = { name = "sinhala" 	 title = "d_sinhala" }
+link = { name = "sinope" 	 title = "d_sinope" }
+link = { name = "siria" 	 title = "k_syria" }
+link = { name = "sistan" 	 title = "d_sistan" }
+link = { name = "sistán" 	 title = "d_sistan" }
+link = { name = "siwistan" 	 title = "c_siwistan" }
+link = { name = "sizilien" 	 title = "k_sicily" }
+link = { name = "sjundeå" 	 title = "c_nyland" }
+link = { name = "själland" 	 title = "c_sjaelland" }
+link = { name = "sjælland" 	 title = "d_sjaelland" }
+link = { name = "skandinavien" 	 title = "e_scandinavia" }
+link = { name = "skane" 	 title = "d_skane" }
+link = { name = "skardaborg" 	 title = "c_york" }
+link = { name = "skotland" 	 title = "k_scotland" }
+link = { name = "skottland" 	 title = "k_scotland" }
+link = { name = "skoutarion" 	 title = "c_zeta" }
+link = { name = "skulnes" 	 title = "c_angermanland" }
+link = { name = "skulnæs" 	 title = "c_angermanland" }
+link = { name = "skåne" 	 title = "d_skane" }
+link = { name = "skænninge" 	 title = "c_ostergotland" }
+link = { name = "skøn" 	 title = "c_medelpad" }
+link = { name = "slavonia" 	 title = "d_slavonia" }
+link = { name = "slavonie" 	 title = "d_slavonia" }
+link = { name = "slavonien" 	 title = "d_slavonia" }
+link = { name = "slovakia" 	 title = "d_slovakia" }
+link = { name = "slovakien" 	 title = "d_slovakia" }
+link = { name = "slovaquie" 	 title = "d_slovakia" }
+link = { name = "smaleskja" 	 title = "c_smolensk" }
+link = { name = "smolensk" 	 title = "d_smolensk" }
+link = { name = "smáland" 	 title = "d_smaland" }
+link = { name = "småland" 	 title = "d_smaland" }
+link = { name = "socotra" 	 title = "d_socotra" }
+link = { name = "sofia" 	 title = "c_serdica" }
+link = { name = "somnath" 	 title = "c_somnath" }
+link = { name = "sonda" 	 title = "c_sonda" }
+link = { name = "sonderburg" 	 title = "c_slesvig" }
+link = { name = "songhai" 	 title = "d_songhay" }
+link = { name = "songhay" 	 title = "d_songhay" }
+link = { name = "songhaï" 	 title = "d_songhay" }
+link = { name = "sons of kaleva" 	 title = "d_sons_kaleva" }
+link = { name = "sorabes" 	 title = "d_sorbs" }
+link = { name = "sorben" 	 title = "d_sorbs" }
+link = { name = "sorbia # brennaburg" 	 title = "d_brandenburg" }
+link = { name = "sorbios" 	 title = "d_sorbs" }
+link = { name = "sorbs" 	 title = "d_sorbs" }
+link = { name = "souabe" 	 title = "d_swabia" }
+link = { name = "spalathos" 	 title = "c_split" }
+link = { name = "spalato" 	 title = "c_split" }
+link = { name = "spirit guardians" 	 title = "d_spirit_guardians" }
+link = { name = "spngsholm" 	 title = "c_bezhetsky_verh" }
+link = { name = "spoleto" 	 title = "d_spoleto" }
+link = { name = "spolète" 	 title = "d_spoleto" }
+link = { name = "spångsholm" 	 title = "c_bezhetsky_verh" }
+link = { name = "spångsholmr" 	 title = "c_bezhetsky_verh" }
+link = { name = "srath bhalgaidh" 	 title = "c_dunbar" }
+link = { name = "srath Èireann" 	 title = "c_strathearn" }
+link = { name = "sravasti" 	 title = "c_sravasti" }
+link = { name = "srihatta" 	 title = "c_srihatta" }
+link = { name = "sripatha" 	 title = "c_sripatha" }
+link = { name = "sripuri" 	 title = "c_sripuri" }
+link = { name = "srirangapatna" 	 title = "c_srirangapatna" }
+link = { name = "sruighlea" 	 title = "c_lothian" }
+link = { name = "st andree" 	 title = "c_kexholm" }
+link = { name = "st michel" 	 title = "c_savolaks" }
+link = { name = "steppe company" 	 title = "d_shiite_cuman_company" }
+link = { name = "steppenkompanie" 	 title = "d_shiite_cuman_company" }
+link = { name = "steòrnabhagh" 	 title = "c_innse_gall" }
+link = { name = "sthanisvara" 	 title = "c_sthanisvara" }
+link = { name = "stiere von rishabha" 	 title = "d_bulls_rishabha" }
+link = { name = "stolp" 	 title = "c_slupsk" }
+link = { name = "stornavik" 	 title = "c_innse_gall" }
+link = { name = "stornavåg" 	 title = "c_innse_gall" }
+link = { name = "stralow" 	 title = "c_werle" }
+link = { name = "strangfjord" 	 title = "c_ulster" }
+link = { name = "strangfjorðr" 	 title = "c_ulster" }
+link = { name = "strath Àrdail" 	 title = "c_atholl" }
+link = { name = "strathclyde" 	 title = "d_galloway" }
+link = { name = "stravani" 	 title = "d_stravani" }
+link = { name = "streltza" 	 title = "c_rostock" }
+link = { name = "strængnes" 	 title = "c_sodermanland" }
+link = { name = "strængnæs" 	 title = "c_sodermanland" }
+link = { name = "stuhlweiss" 	 title = "c_fejer" }
+link = { name = "stuhlweissenburg" 	 title = "c_szekezfehervar" }
+link = { name = "suabia" 	 title = "d_swabia" }
+link = { name = "suakin" 	 title = "c_suakin" }
+link = { name = "sudermanland" 	 title = "c_sodermanland" }
+link = { name = "suecia" 	 title = "k_sweden" }
+link = { name = "suhma" 	 title = "d_suhma" }
+link = { name = "suisse" 	 title = "d_swiss" }
+link = { name = "suivants d'arjuna" 	 title = "d_followers_arjuna" }
+link = { name = "suiza" 	 title = "d_swiss" }
+link = { name = "suomi" 	 title = "e_russia" }
+link = { name = "sur" 	 title = "c_tyrus" }
+link = { name = "surp yeghishe" 	 title = "c_albania" }
+link = { name = "sursdalar" 	 title = "c_suzdal" }
+link = { name = "susa" 	 title = "d_susa" }
+link = { name = "suse" 	 title = "d_susa" }
+link = { name = "sutiya" 	 title = "d_sutiya" }
+link = { name = "suvarnagram" 	 title = "c_suvarnagram" }
+link = { name = "suvarnapura" 	 title = "c_suvarnapura" }
+link = { name = "suède" 	 title = "k_sweden" }
+link = { name = "suðreyjar" 	 title = "c_innse_gall" }
+link = { name = "svithjod" 	 title = "d_sweden" }
+link = { name = "svitjod" 	 title = "d_sweden" }
+link = { name = "sviþjod" 	 title = "d_uppland" }
+link = { name = "swabia" 	 title = "d_swabia" }
+link = { name = "sweden" 	 title = "k_sweden" }
+link = { name = "swetaka mandala" 	 title = "c_swetaka_mandala" }
+link = { name = "swikawa" 	 title = "c_plauen" }
+link = { name = "swiss band" 	 title = "d_swiss_band" }
+link = { name = "swiss company" 	 title = "d_swiss_company" }
+link = { name = "switzerland" 	 title = "d_swiss" }
+link = { name = "syr darya" 	 title = "d_syr_darya" }
+link = { name = "syra" 	 title = "c_naxos" }
+link = { name = "syrakousa" 	 title = "c_siracusa" }
+link = { name = "syria" 	 title = "k_syria" }
+link = { name = "syrie" 	 title = "k_syria" }
+link = { name = "syrien" 	 title = "k_syria" }
+link = { name = "syunik" 	 title = "c_suenik" }
+link = { name = "szczecin" 	 title = "c_stettin" }
+link = { name = "szeklerland" 	 title = "c_szekelyfold" }
+link = { name = "sächsischer trupp" 	 title = "d_saxon_band" }
+link = { name = "séville" 	 title = "d_sevilla" }
+link = { name = "sévériens" 	 title = "d_severians" }
+link = { name = "sõlabyr" 	 title = "c_isle_of_man" }
+link = { name = "söhne von kaleva" 	 title = "d_sons_kaleva" }
+link = { name = "sönderborg" 	 title = "c_slesvig" }
+link = { name = "söröarna" 	 title = "c_innse_gall" }
+link = { name = "søderkøbing" 	 title = "c_ostergotland" }
+link = { name = "søderkøping" 	 title = "c_ostergotland" }
+link = { name = "sødermanland" 	 title = "c_sodermanland" }
+link = { name = "sølvesborg slott" 	 title = "c_blekinge" }
+link = { name = "sølvesborg" 	 title = "c_blekinge" }
+link = { name = "søreyar" 	 title = "c_innse_gall" }
+link = { name = "tabaristan" 	 title = "d_mazandaran" }
+link = { name = "tabaristán" 	 title = "d_mazandaran" }
+link = { name = "tabris" 	 title = "d_tabriz" }
+link = { name = "tabriz" 	 title = "d_tabriz" }
+link = { name = "tagadur" 	 title = "c_tagadur" }
+link = { name = "taglim" 	 title = "c_wolgast" }
+link = { name = "taigh mhàrtainn" 	 title = "c_galloway" }
+link = { name = "taiuuan" 	 title = "c_galloway" }
+link = { name = "talakad" 	 title = "c_talakad" }
+link = { name = "tamil band" 	 title = "d_tamil_band" }
+link = { name = "tamilakam" 	 title = "k_tamilakam" }
+link = { name = "tamilische bande" 	 title = "d_tamil_band" }
+link = { name = "tamis" 	 title = "c_temes" }
+link = { name = "tamralipti" 	 title = "c_tamralipti" }
+link = { name = "tanger" 	 title = "d_tangiers" }
+link = { name = "tangier" 	 title = "d_tangiers" }
+link = { name = "taourmenion" 	 title = "c_messina" }
+link = { name = "taradavadi" 	 title = "c_taradavadi" }
+link = { name = "tarantas" 	 title = "c_taranto" }
+link = { name = "taranupenn" 	 title = "c_shetland" }
+link = { name = "taranupin" 	 title = "c_shetland" }
+link = { name = "tartaria" 	 title = "e_tartaria" }
+link = { name = "tartarie" 	 title = "e_tartaria" }
+link = { name = "tatarei" 	 title = "e_tartaria" }
+link = { name = "tathinauu" 	 title = "c_faereyar" }
+link = { name = "taureaux de rishabhanatha" 	 title = "d_bulls_rishabha" }
+link = { name = "taurica" 	 title = "k_taurica" }
+link = { name = "tauride" 	 title = "k_taurica" }
+link = { name = "taurika" 	 title = "k_taurica" }
+link = { name = "tavastehus" 	 title = "c_tavasts" }
+link = { name = "tavaster" 	 title = "d_tavasts" }
+link = { name = "tavastians" 	 title = "d_tavasts" }
+link = { name = "tchernigov" 	 title = "d_chernigov" }
+link = { name = "tekke" 	 title = "k_tekke" }
+link = { name = "telingana" 	 title = "k_telingana" }
+link = { name = "temes" 	 title = "d_temes" }
+link = { name = "tempelritter" 	 title = "d_knights_templar" }
+link = { name = "tenkasi" 	 title = "c_tenkasi" }
+link = { name = "tesalónica" 	 title = "d_thessalonika" }
+link = { name = "teschen" 	 title = "c_cieszyn" }
+link = { name = "teusina" 	 title = "c_vodi" }
+link = { name = "teutonic order" 	 title = "d_teutonic_order" }
+link = { name = "thalner" 	 title = "c_thalner" }
+link = { name = "thana" 	 title = "c_thana" }
+link = { name = "the aztec church" 	 title = "d_aztec_reformed" }
+link = { name = "the church of zun" 	 title = "d_zun_pagan_reformed" }
+link = { name = "the ecumenical patriarchate" 	 title = "k_orthodox" }
+link = { name = "the fraticelli papacy" 	 title = "d_fraticelli" }
+link = { name = "the fylkirate" 	 title = "d_norse_pagan_reformed" }
+link = { name = "the hansa" 	 title = "k_hansa" }
+link = { name = "the hurufi skeikhdom" 	 title = "d_hurufi" }
+link = { name = "the ibadi caliphate" 	 title = "d_ibadi" }
+link = { name = "the iconoclast patriarchate" 	 title = "d_iconoclast" }
+link = { name = "the isles" 	 title = "d_western_isles" }
+link = { name = "the jewish high priesthood" 	 title = "d_jewish" }
+link = { name = "the kharijite caliphate" 	 title = "d_kharijite" }
+link = { name = "the miaphysite papacy" 	 title = "d_miaphysite" }
+link = { name = "the monophysite papacy" 	 title = "d_monophysite" }
+link = { name = "the monothelite patriarchate" 	 title = "d_monothelite" }
+link = { name = "the papacy" 	 title = "k_papal_state" }
+link = { name = "the patriarchate of the east" 	 title = "d_nestorian" }
+link = { name = "the paulician patriarchate" 	 title = "d_paulician" }
+link = { name = "the romuvan church" 	 title = "d_baltic_pagan_reformed" }
+link = { name = "the shia caliphate" 	 title = "e_shiite" }
+link = { name = "the slavic church" 	 title = "d_slavic_pagan_reformed" }
+link = { name = "the sunni caliphate" 	 title = "e_sunni" }
+link = { name = "the suomenusko church" 	 title = "d_finnish_pagan_reformed" }
+link = { name = "the tengri church" 	 title = "d_tengri_pagan_reformed" }
+link = { name = "the west african church" 	 title = "d_west_african_pagan_reformed" }
+link = { name = "the yazidi sheikhdom" 	 title = "d_yazidi" }
+link = { name = "the zoroastrian church" 	 title = "d_zoroastrian" }
+link = { name = "thera" 	 title = "c_naxos" }
+link = { name = "thessalonika" 	 title = "d_thessalonika" }
+link = { name = "thessalonique" 	 title = "d_thessalonika" }
+link = { name = "thrace" 	 title = "d_thrace" }
+link = { name = "thracesia" 	 title = "d_thracesia" }
+link = { name = "thrakien" 	 title = "d_thracesia" }
+link = { name = "thuringe" 	 title = "d_thuringia" }
+link = { name = "thüringen" 	 title = "d_thuringia" }
+link = { name = "thüringia" 	 title = "d_thuringia" }
+link = { name = "tigre" 	 title = "d_tigris" }
+link = { name = "tigrinya" 	 title = "c_tigrinya" }
+link = { name = "tigris" 	 title = "d_tigris" }
+link = { name = "timbuktu" 	 title = "d_timbuktu" }
+link = { name = "timis" 	 title = "c_temes" }
+link = { name = "timourides" 	 title = "e_timurids" }
+link = { name = "timuriden" 	 title = "e_timurids" }
+link = { name = "timurids" 	 title = "e_timurids" }
+link = { name = "timúridas" 	 title = "e_timurids" }
+link = { name = "tingvall" 	 title = "c_ross" }
+link = { name = "tirabhukti" 	 title = "d_tirabhukti" }
+link = { name = "tirunelveli" 	 title = "c_tirunelveli" }
+link = { name = "tjurså" 	 title = "c_caithness" }
+link = { name = "tlemcen" 	 title = "d_tlemcen" }
+link = { name = "tobar na mac" 	 title = "c_teviotdale" }
+link = { name = "tobar na màthar" 	 title = "c_clydesdale" }
+link = { name = "toledo" 	 title = "d_toledo" }
+link = { name = "tolosa" 	 title = "d_toulouse" }
+link = { name = "tolède" 	 title = "d_toledo" }
+link = { name = "tombouctou" 	 title = "d_timbuktu" }
+link = { name = "tombuctú" 	 title = "d_timbuktu" }
+link = { name = "tondai nadu" 	 title = "d_tondai_nadu" }
+link = { name = "toros de rishabha" 	 title = "d_bulls_rishabha" }
+link = { name = "torshælla" 	 title = "c_sodermanland" }
+link = { name = "tosali" 	 title = "d_tosali" }
+link = { name = "toscana" 	 title = "d_toscana" }
+link = { name = "toscane" 	 title = "d_toscana" }
+link = { name = "toskana" 	 title = "d_toscana" }
+link = { name = "toulouse" 	 title = "d_toulouse" }
+link = { name = "trachtenberg" 	 title = "c_upper_silesia" }
+link = { name = "tracia" 	 title = "d_thrace" }
+link = { name = "traethtref" 	 title = "c_carrick" }
+link = { name = "tragyrion" 	 title = "c_split" }
+link = { name = "transilvania" 	 title = "d_transylvania" }
+link = { name = "transjordan" 	 title = "d_oultrejourdain" }
+link = { name = "transjordania" 	 title = "d_oultrejourdain" }
+link = { name = "transsylvanien" 	 title = "d_transylvania" }
+link = { name = "transylvania" 	 title = "d_transylvania" }
+link = { name = "transylvanie" 	 title = "d_transylvania" }
+link = { name = "trapezunt" 	 title = "d_trebizond" }
+link = { name = "trapezunte" 	 title = "d_trebizond" }
+link = { name = "trau" 	 title = "c_split" }
+link = { name = "trebisonda" 	 title = "k_trebizond" }
+link = { name = "trebizond" 	 title = "k_trebizond" }
+link = { name = "treffechan" 	 title = "c_lothian" }
+link = { name = "trehechan" 	 title = "c_lothian" }
+link = { name = "tremecén" 	 title = "d_tlemcen" }
+link = { name = "tretrah" 	 title = "c_carrick" }
+link = { name = "tribandapura" 	 title = "c_tribandapura" }
+link = { name = "triduana" 	 title = "c_orkney" }
+link = { name = "triest" 	 title = "c_istria" }
+link = { name = "trigarta" 	 title = "c_trigarta" }
+link = { name = "trigleia" 	 title = "c_prusa" }
+link = { name = "trinacria" 	 title = "k_trinacria" }
+link = { name = "trinkitat" 	 title = "c_trinkitat" }
+link = { name = "tripoli" 	 title = "d_tripoli" }
+link = { name = "tripolis" 	 title = "d_tripoli" }
+link = { name = "tripolitaine" 	 title = "d_tripolitania" }
+link = { name = "tripolitania" 	 title = "d_tripolitania" }
+link = { name = "tripolitanien" 	 title = "d_tripolitania" }
+link = { name = "tripuri" 	 title = "c_tripuri" }
+link = { name = "trondelag" 	 title = "d_trondelag" }
+link = { name = "trst" 	 title = "c_istria" }
+link = { name = "trébizonde" 	 title = "k_trebizond" }
+link = { name = "trípoli" 	 title = "d_tripoli" }
+link = { name = "tröndelag" 	 title = "c_trondelag" }
+link = { name = "trøndelag" 	 title = "d_trondelag" }
+link = { name = "tschernigow" 	 title = "d_chernigov" }
+link = { name = "tuadhmhumhain" 	 title = "c_thomond" }
+link = { name = "tuaim dá ghualann" 	 title = "c_connacht" }
+link = { name = "tuareg company" 	 title = "d_shiite_berber_company" }
+link = { name = "tuareg-kompanie" 	 title = "d_shiite_berber_company" }
+link = { name = "tuathanaseaglais" 	 title = "c_faereyar" }
+link = { name = "tuathcuing" 	 title = "c_shetland" }
+link = { name = "tulaigh Óg" 	 title = "c_tyrone" }
+link = { name = "tulaytulah" 	 title = "c_toledo" }
+link = { name = "tummana" 	 title = "c_tummana" }
+link = { name = "tunesien" 	 title = "d_tunis" }
+link = { name = "tunis" 	 title = "d_tunis" }
+link = { name = "turau" 	 title = "d_turov" }
+link = { name = "turingia" 	 title = "d_thuringia" }
+link = { name = "turkestan" 	 title = "k_turkestan" }
+link = { name = "turkic band" 	 title = "d_turkic_band" }
+link = { name = "turkic company" 	 title = "d_turkic_company" }
+link = { name = "turkmen company" 	 title = "d_sunni_turkic_company" }
+link = { name = "turkmenen-kompanie" 	 title = "d_sunni_turkic_company" }
+link = { name = "turkoman company" 	 title = "d_shiite_turkic_company" }
+link = { name = "turkomanische kompanie" 	 title = "d_shiite_turkic_company" }
+link = { name = "turov" 	 title = "d_turov" }
+link = { name = "turquestán" 	 title = "k_turkestan" }
+link = { name = "turtusha" 	 title = "c_tarragona" }
+link = { name = "tuscany" 	 title = "d_toscana" }
+link = { name = "tver" 	 title = "d_tver" }
+link = { name = "tyavzino" 	 title = "c_vodi" }
+link = { name = "tyddewi" 	 title = "c_dyfed" }
+link = { name = "tyddynaueglwys" 	 title = "c_faereyar" }
+link = { name = "tygwyn" 	 title = "c_galloway" }
+link = { name = "tyrså" 	 title = "c_caithness" }
+link = { name = "tàirneanachceann" 	 title = "c_shetland" }
+link = { name = "tánger" 	 title = "d_tangiers" }
+link = { name = "táurica" 	 title = "k_taurica" }
+link = { name = "tír chonaill" 	 title = "c_tyrconnell" }
+link = { name = "tír eoghain" 	 title = "c_tyrone" }
+link = { name = "tóir féichín" 	 title = "c_lothian" }
+link = { name = "tørnsfall" 	 title = "c_tjust" }
+link = { name = "túnez" 	 title = "d_tunis" }
+link = { name = "türkische kompanie" 	 title = "d_turkic_company" }
+link = { name = "türkischer trupp" 	 title = "d_turkic_band" }
+link = { name = "uachdar ardair" 	 title = "c_strathearn" }
+link = { name = "uch" 	 title = "c_uch" }
+link = { name = "uchangidurga" 	 title = "c_uchangidurga" }
+link = { name = "uchdarcathan" 	 title = "c_argyll" }
+link = { name = "uchdercaddan" 	 title = "c_argyll" }
+link = { name = "uchel" 	 title = "c_strathearn" }
+link = { name = "udabhanda" 	 title = "c_udabhanda" }
+link = { name = "udayagiri" 	 title = "d_udayagiri" }
+link = { name = "uenaeth" 	 title = "c_faereyar" }
+link = { name = "ueron" 	 title = "c_carrick" }
+link = { name = "uerris" 	 title = "c_moray" }
+link = { name = "ugra" 	 title = "d_hlynov" }
+link = { name = "uhshunubah" 	 title = "c_faro" }
+link = { name = "uisge bradán" 	 title = "c_isle_of_man" }
+link = { name = "ujjayini" 	 title = "c_ujjayini" }
+link = { name = "ulaidh" 	 title = "c_ulster" }
+link = { name = "ulanchuan" 	 title = "c_galloway" }
+link = { name = "uleåborg" 	 title = "c_osterbotten" }
+link = { name = "ulster" 	 title = "d_ulster" }
+link = { name = "ulvø" 	 title = "c_angermanland" }
+link = { name = "ungarn" 	 title = "k_hungary" }
+link = { name = "ungvar" 	 title = "d_ungvar" }
+link = { name = "unsterbliche" 	 title = "d_immortals" }
+link = { name = "unterweissenburg" 	 title = "c_feher" }
+link = { name = "uplandesa" 	 title = "d_uppland" }
+link = { name = "uppeln" 	 title = "c_opole" }
+link = { name = "upper burgundy" 	 title = "d_upper_burgundy" }
+link = { name = "upper lorraine" 	 title = "d_upper_lorraine" }
+link = { name = "uppland" 	 title = "d_uppland" }
+link = { name = "ural" 	 title = "d_ural" }
+link = { name = "urcarthen" 	 title = "c_moray" }
+link = { name = "urmhumhain" 	 title = "c_ormond" }
+link = { name = "utudina" 	 title = "c_dunbar" }
+link = { name = "uuag" 	 title = "c_atholl" }
+link = { name = "uuanun" 	 title = "c_strathearn" }
+link = { name = "uuohan" 	 title = "c_clydesdale" }
+link = { name = "uzhorod" 	 title = "d_ungvar" }
+link = { name = "uznjöm" 	 title = "c_wolgast" }
+link = { name = "vadodara" 	 title = "c_vadodara" }
+link = { name = "vairagara" 	 title = "c_vairagara" }
+link = { name = "vairata" 	 title = "c_vairata" }
+link = { name = "valabhi" 	 title = "c_valabhi" }
+link = { name = "valachie" 	 title = "k_dacia" }
+link = { name = "valamo" 	 title = "c_vodi" }
+link = { name = "valaques" 	 title = "d_vlachs" }
+link = { name = "valaquia" 	 title = "k_dacia" }
+link = { name = "valence" 	 title = "d_valencia" }
+link = { name = "valencia" 	 title = "d_valencia" }
+link = { name = "valmiera" 	 title = "c_lettigalians" }
+link = { name = "valois" 	 title = "d_valois" }
+link = { name = "valència" 	 title = "d_valencia" }
+link = { name = "vanga" 	 title = "d_vanga" }
+link = { name = "varaklani" 	 title = "c_west_dvina" }
+link = { name = "varanasi" 	 title = "c_varanasi" }
+link = { name = "varanger garde" 	 title = "d_varangian_guard" }
+link = { name = "varangian guard" 	 title = "d_varangian_guard" }
+link = { name = "vardashen" 	 title = "c_albania" }
+link = { name = "vardhamana" 	 title = "c_vardhamana" }
+link = { name = "varendra" 	 title = "d_varendra" }
+link = { name = "varna" 	 title = "d_varna" }
+link = { name = "vartashen" 	 title = "c_albania" }
+link = { name = "vatapi" 	 title = "c_vatapi" }
+link = { name = "vatsagulma" 	 title = "c_vatsagulma" }
+link = { name = "vedrafjord" 	 title = "c_ormond" }
+link = { name = "vegl" 	 title = "c_veglia" }
+link = { name = "veisafjord" 	 title = "c_leinster" }
+link = { name = "veisafjorðr" 	 title = "c_leinster" }
+link = { name = "vemulavada" 	 title = "c_vemulavada" }
+link = { name = "venadu" 	 title = "c_venadu" }
+link = { name = "venecia" 	 title = "k_venice" }
+link = { name = "venedig" 	 title = "k_venice" }
+link = { name = "vengi" 	 title = "d_vengi" }
+link = { name = "vengipura" 	 title = "c_vengipura" }
+link = { name = "venice" 	 title = "k_venice" }
+link = { name = "venise" 	 title = "k_venice" }
+link = { name = "veps" 	 title = "d_veps" }
+link = { name = "vermaland" 	 title = "c_varmland" }
+link = { name = "vermland" 	 title = "c_varmland" }
+link = { name = "verona" 	 title = "d_verona" }
+link = { name = "vesimer" 	 title = "c_mecklemburg" }
+link = { name = "vesterbotn" 	 title = "c_vasterbotten" }
+link = { name = "vesterbotten" 	 title = "c_vasterbotten" }
+link = { name = "vestergautland" 	 title = "c_vastergotland" }
+link = { name = "vestergøtland" 	 title = "c_vastergotland" }
+link = { name = "vestervik" 	 title = "c_tjust" }
+link = { name = "vesterås" 	 title = "c_vastmanland" }
+link = { name = "vestlandet" 	 title = "d_vestlandet" }
+link = { name = "vestmanland" 	 title = "c_vastmanland" }
+link = { name = "vestmannaland" 	 title = "c_vastmanland" }
+link = { name = "vexjø" 	 title = "c_smaland" }
+link = { name = "veðrafjorðr" 	 title = "c_ormond" }
+link = { name = "viatiches" 	 title = "d_vyatichi" }
+link = { name = "victual brothers" 	 title = "d_victual_brothers" }
+link = { name = "videm" 	 title = "c_aquileia" }
+link = { name = "vidharba" 	 title = "d_vidharba" }
+link = { name = "vidin" 	 title = "d_vidin" }
+link = { name = "vidisa" 	 title = "c_vidisa" }
+link = { name = "vijayapura" 	 title = "c_vijayapura" }
+link = { name = "vijayawada" 	 title = "c_vijayawada" }
+link = { name = "vijnot" 	 title = "c_vijnot" }
+link = { name = "vik" 	 title = "c_caithness" }
+link = { name = "vikramapura" 	 title = "c_vikramapura" }
+link = { name = "viliaka" 	 title = "c_west_dvina" }
+link = { name = "viraja" 	 title = "c_viraja" }
+link = { name = "vitalienbrüder" 	 title = "d_victual_brothers" }
+link = { name = "vitebsk" 	 title = "d_vitebsk" }
+link = { name = "vizagipatam" 	 title = "c_vizagipatam" }
+link = { name = "vlachs" 	 title = "d_vlachs" }
+link = { name = "vladimir" 	 title = "d_vladimir" }
+link = { name = "vodamayutja" 	 title = "d_vodamayutja" }
+link = { name = "volga bulgaria" 	 title = "k_volga_bulgaria" }
+link = { name = "volga" 	 title = "d_volga" }
+link = { name = "volhynia" 	 title = "d_volhynia" }
+link = { name = "volhynie" 	 title = "d_volhynia" }
+link = { name = "volinia" 	 title = "d_volhynia" }
+link = { name = "votes" 	 title = "d_votes" }
+link = { name = "vredenborg" 	 title = "c_satakunta" }
+link = { name = "vreghdenborch" 	 title = "c_satakunta" }
+link = { name = "vyatich" 	 title = "d_tver" }
+link = { name = "vyatichi" 	 title = "d_vyatichi" }
+link = { name = "väinalinn" 	 title = "c_west_dvina" }
+link = { name = "väinänlinna" 	 title = "c_west_dvina" }
+link = { name = "västergötland" 	 title = "d_vastergotland" }
+link = { name = "västisland" 	 title = "c_vestisland" }
+link = { name = "væderbrunn" 	 title = "c_sodermanland" }
+link = { name = "værmland" 	 title = "c_varmland" }
+link = { name = "vérone" 	 title = "d_verona" }
+link = { name = "võnnu" 	 title = "c_lettigalians" }
+link = { name = "wadi musa" 	 title = "c_monreal" }
+link = { name = "wag" 	 title = "d_wag" }
+link = { name = "walachei" 	 title = "k_dacia" }
+link = { name = "walachen" 	 title = "d_vlachs" }
+link = { name = "wales" 	 title = "k_wales" }
+link = { name = "wallachia" 	 title = "k_dacia" }
+link = { name = "wan" 	 title = "c_vaspurakan" }
+link = { name = "wana" 	 title = "c_wana" }
+link = { name = "warangal" 	 title = "d_warangal" }
+link = { name = "warriors of perun" 	 title = "d_warriors_perun" }
+link = { name = "warwick" 	 title = "d_hereford" }
+link = { name = "weiden" 	 title = "c_aquileia" }
+link = { name = "weiße kompanie" 	 title = "d_white_company" }
+link = { name = "weligrad" 	 title = "c_mecklemburg" }
+link = { name = "wendenreich" 	 title = "e_wendish_empire" }
+link = { name = "wendish empire" 	 title = "e_wendish_empire" }
+link = { name = "wepsen" 	 title = "d_veps" }
+link = { name = "wessex" 	 title = "d_somerset" }
+link = { name = "west francia" 	 title = "k_france" }
+link = { name = "westfranken" 	 title = "k_france" }
+link = { name = "white company" 	 title = "d_white_company" }
+link = { name = "widin" 	 title = "d_vidin" }
+link = { name = "wielkopolska" 	 title = "d_wielkopolska" }
+link = { name = "witebsk" 	 title = "d_vitebsk" }
+link = { name = "wjatitschen" 	 title = "d_vyatichi" }
+link = { name = "wladimir" 	 title = "d_vladimir" }
+link = { name = "wolga" 	 title = "d_volga" }
+link = { name = "wolga-bulgarien" 	 title = "k_volga_bulgaria" }
+link = { name = "wolmar" 	 title = "c_lettigalians" }
+link = { name = "wologoszcz" 	 title = "c_wolgast" }
+link = { name = "wolynien" 	 title = "d_volhynia" }
+link = { name = "wurtzbourgeois" 	 title = "c_wurzburg" }
+link = { name = "wächter der geister" 	 title = "d_spirit_guardians" }
+link = { name = "würzburgian" 	 title = "c_wurzburg" }
+link = { name = "würzburgischer" 	 title = "c_wurzburg" }
+link = { name = "würzburgués" 	 title = "c_wurzburg" }
+link = { name = "xiva" 	 title = "k_khiva" }
+link = { name = "y din" 	 title = "c_strathearn" }
+link = { name = "y maes ynfytyn" 	 title = "c_carrick" }
+link = { name = "yaik" 	 title = "d_yaik" }
+link = { name = "yaroslavl" 	 title = "d_yaroslavl" }
+link = { name = "yatvingia" 	 title = "d_yatviags" }
+link = { name = "yeger" 	 title = "c_guria" }
+link = { name = "ynys dytref" 	 title = "c_galloway" }
+link = { name = "ynys edn" 	 title = "c_faereyar" }
+link = { name = "ynys eglwys" 	 title = "c_orkney" }
+link = { name = "ynys gwyn" 	 title = "c_shetland" }
+link = { name = "ynys manaw" 	 title = "c_isle_of_man" }
+link = { name = "ynys ninian" 	 title = "c_orkney" }
+link = { name = "ynys offeren" 	 title = "c_strathearn" }
+link = { name = "ynys padric" 	 title = "c_isle_of_man" }
+link = { name = "ynys traeth" 	 title = "c_faereyar" }
+link = { name = "ynys tywod" 	 title = "c_orkney" }
+link = { name = "ynys wyre" 	 title = "c_orkney" }
+link = { name = "ynysoedd cait" 	 title = "c_shetland" }
+link = { name = "ynysoedd ceiliau" 	 title = "c_faereyar" }
+link = { name = "ynysoedd gogledd" 	 title = "d_orkney" }
+link = { name = "ynysoedd heledd" 	 title = "c_innse_gall" }
+link = { name = "ynysoedd orc" 	 title = "c_orkney" }
+link = { name = "ynysol" 	 title = "c_buchan" }
+link = { name = "ynysporth" 	 title = "c_innse_gall" }
+link = { name = "york" 	 title = "d_york" }
+link = { name = "ystrad aerdôl" 	 title = "c_atholl" }
+link = { name = "ystrad iwerddon" 	 title = "c_strathearn" }
+link = { name = "ystrath bach" 	 title = "c_dunbar" }
+link = { name = "yugra" 	 title = "d_yugra" }
+link = { name = "ywenllan" 	 title = "c_atholl" }
+link = { name = "ywenlle" 	 title = "c_innse_gall" }
+link = { name = "yxkull" 	 title = "c_lettigalians" }
+link = { name = "zabulistan" 	 title = "d_zabulistan" }
+link = { name = "zara" 	 title = "d_zara" }
+link = { name = "zaragoza" 	 title = "d_zaragoza" }
+link = { name = "zarma" 	 title = "c_zarma" }
+link = { name = "zealand" 	 title = "c_sjaelland" }
+link = { name = "zealots" 	 title = "d_zealots" }
+link = { name = "zelezna" 	 title = "c_vas" }
+link = { name = "zeloten" 	 title = "d_zealots" }
+link = { name = "zelotes" 	 title = "d_zealots" }
+link = { name = "zemaiteje" 	 title = "c_zhmud" }
+link = { name = "zemaitija" 	 title = "c_zhmud" }
+link = { name = "zemigaliens" 	 title = "d_zemigalians" }
+link = { name = "zemigallians" 	 title = "d_zemigalians" }
+link = { name = "zenata" 	 title = "k_zenata" }
+link = { name = "zeng" 	 title = "c_senj" }
+link = { name = "zengg" 	 title = "c_senj" }
+link = { name = "zhetysu" 	 title = "d_zhetysu" }
+link = { name = "zhmud" 	 title = "c_zhmud" }
+link = { name = "zhmudz" 	 title = "c_zhmud" }
+link = { name = "zhorjelc" 	 title = "c_lausitz" }
+link = { name = "zirid" 	 title = "k_zirid" }
+link = { name = "ziride" 	 title = "k_zirid" }
+link = { name = "zirwisti" 	 title = "c_anhalt" }
+link = { name = "zitawa" 	 title = "c_lausitz" }
+link = { name = "ziyaniden" 	 title = "k_ziyanids" }
+link = { name = "ziyanides" 	 title = "k_ziyanids" }
+link = { name = "ziyanids" 	 title = "k_ziyanids" }
+link = { name = "zoroastrische kirche" 	 title = "d_zoroastrian" }
+link = { name = "zuarina" 	 title = "c_mecklemburg" }
+link = { name = "zypern" 	 title = "k_cyprus" }
+link = { name = "zélotes" 	 title = "d_zealots" }
+link = { name = "Àird talla" 	 title = "c_innse_gall" }
+link = { name = "África" 	 title = "k_africa" }
+link = { name = "Árva" 	 title = "c_orava" }
+link = { name = "Ägypten" 	 title = "k_egypt" }
+link = { name = "Ägäische inseln" 	 title = "d_aegean_islands" }
+link = { name = "Åbenrå" 	 title = "c_slesvig" }
+link = { name = "Åbo" 	 title = "c_finland" }
+link = { name = "Århus" 	 title = "c_jylland" }
+link = { name = "Écosse" 	 title = "k_scotland" }
+link = { name = "Édesse" 	 title = "d_edessa" }
+link = { name = "Égypte" 	 title = "k_egypt" }
+link = { name = "Éire" 	 title = "k_ireland" }
+link = { name = "Élus d'ashoka" 	 title = "d_ashokas_chosen" }
+link = { name = "Élus de perkunas" 	 title = "d_chosen_perkunas" }
+link = { name = "Épire" 	 title = "d_epirus" }
+link = { name = "Épiro" 	 title = "d_epirus" }
+link = { name = "Éretnide" 	 title = "k_eretnid" }
+link = { name = "Ì chaluim chille" 	 title = "c_innse_gall" }
+link = { name = "Îles egées" 	 title = "d_aegean_islands" }
+link = { name = "Îles" 	 title = "d_the_isles" }
+link = { name = "Ödenburg" 	 title = "c_sopron" }
+link = { name = "Ösel" 	 title = "c_osel" }
+link = { name = "Österbotten" 	 title = "c_osterbotten" }
+link = { name = "Östergötland" 	 title = "d_ostergotland" }
+link = { name = "Östisland" 	 title = "c_austisland" }
+link = { name = "Östkarelen" 	 title = "c_karelen" }
+link = { name = "Øckerø" 	 title = "c_viken" }
+link = { name = "Øland" 	 title = "c_oland" }
+link = { name = "Ørebro" 	 title = "c_narke" }
+link = { name = "Ørnskøldsvik" 	 title = "c_angermanland" }
+link = { name = "Øsel" 	 title = "c_osel" }
+link = { name = "Østerbotten" 	 title = "c_osterbotten" }
+link = { name = "Østergøtland" 	 title = "c_ostergotland" }
+link = { name = "Østerås" 	 title = "c_uppland" }
+link = { name = "Østkarelen" 	 title = "c_karelen" }
+link = { name = "Üxküll" 	 title = "c_lettigalians" }
+
+}

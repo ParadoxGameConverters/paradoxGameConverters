@@ -52,11 +52,14 @@ public:
 	// Converts the country file name
 	std::string convertCountryFileName(const std::string) const;
 
-private:
 	// All localisations are stored internally as UTF-8. However V2 doesn't seem to handle Unicode
 	// so we convert the text to ANSI Latin-1 before writing it.
 	static std::string Convert(const std::string&);
 
+	// Kludgy hack. Required for CK2 title identification.
+	std::string GetLocalName();
+
+private:
 	static const size_t numLanguages = 14;
 	static const std::array<std::string, numLanguages> languages;
 

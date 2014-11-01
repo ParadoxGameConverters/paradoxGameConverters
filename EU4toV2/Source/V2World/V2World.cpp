@@ -339,7 +339,7 @@ void V2World::output() const
 
 	// Create flags for all new countries.
 	V2Flags flags;
-	flags.SetV2Tags(countries);
+	flags.SetV2Tags(countries,ck2titles);
 	flags.Output();
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.
@@ -426,7 +426,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
+void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, map<string, string>& ck2titlemap, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -581,6 +581,8 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 		}
 	}
 	countries.swap(sortedCountries);*/
+
+	ck2titles = ck2titlemap;
 }
 
 
@@ -644,6 +646,8 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 				v2a.type = "vassal";
 				diplomacy.addAgreement(v2a);
 				r1->setLevel(5);
+
+				country2->second->setColonyOverlord(country1->second);
 			}
 		}
 		if ((itr->type == "royal_marriage") || (itr->type == "guarantee"))

@@ -15,6 +15,7 @@ copy "Data_Files\regiment_costs.txt" "release\regiment_costs.txt
 copy "Data_Files\license.txt" "release\license.txt"
 copy "Data_Files\idea_effects.txt" "release\idea_effects.txt"
 copy "Data_Files\colonial.txt" "release\colonial.txt"
+copy "Data_Files\ck2titlemap.txt" "release\ck2titlemap.txt"
 
 rem hg log > Release/log.txt
 hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt

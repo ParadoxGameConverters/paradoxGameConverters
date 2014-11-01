@@ -118,5 +118,8 @@ typedef struct {
 typedef vector<colonyStruct> colonyMapping;
 colonyMapping initColonyMap(Object* obj);
 
+// CK2 titles for flags
+typedef map<string, string> ck2TitleMapping;	// <name, title>
+ck2TitleMapping initCK2TitleMap(Object* obj);
 
 #endif // MAPPER_H

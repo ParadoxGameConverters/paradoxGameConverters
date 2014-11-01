@@ -77,7 +77,9 @@ class V2Country
 		void								setCultureTech(double mean, double highest);
 		void								addRelation(V2Relations* newRelation);
 		void								absorbColony(V2Country* colony);
+		void								setColonyOverlord(V2Country* colony);
 
+		string								getLocalName();
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
@@ -121,6 +123,7 @@ class V2Country
 		const EU4Country*				srcCountry;
 		string							filename;
 		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
+		V2Country*						colonyOverlord;
 
 		string							tag;
 		vector<V2State*>				states;

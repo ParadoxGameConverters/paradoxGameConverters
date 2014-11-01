@@ -1113,6 +1113,11 @@ void V2Country::absorbColony(V2Country* colony)
 	acceptedCultures.insert(cultures.begin(), cultures.end());
 }
 
+void V2Country::setColonyOverlord(V2Country* colony)
+{
+	colonyOverlord = colony;
+}
+
 
 static bool FactoryCandidateSortPredicate(const pair<double, V2State*>& lhs, const pair<double, V2State*>& rhs)
 {
@@ -1694,6 +1699,11 @@ void V2Country::setCultureTech(double mean, double highest)
 			HODNNMInventions[HOD_NNM_romanticist_music]			= active;
 		}
 	}
+}
+
+string V2Country::getLocalName()
+{
+	return localisation.GetLocalName();
 }
 
 

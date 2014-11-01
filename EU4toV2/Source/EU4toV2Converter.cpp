@@ -666,6 +666,10 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	const V2LeaderTraits lt;	// the V2 leader traits
 	map<int, int> leaderIDMap; // <EU4, V2>
 
+	// Get CK2 title names
+	LOG(LogLevel::Info) << "Getting CK2 titles";
+	obj = doParseFile("ck2titlemap.txt");
+	ck2TitleMapping ck2Titles = initCK2TitleMap(obj);
 
 	// Parse colony rules
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";
@@ -743,7 +747,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt,ck2Titles, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

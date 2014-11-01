@@ -104,7 +104,6 @@ std::string V2Localisation::convertCountryFileName(const std::string countryFile
 	return Convert(countryFileName);
 }
 
-
 std::string V2Localisation::Convert(const std::string& text)
 {
 	if (text.empty())
@@ -139,4 +138,16 @@ std::string V2Localisation::Convert(const std::string& text)
 		return "";
 	}
 	return std::string(latin1Text.begin(), latin1Text.end());
+}
+
+std::string V2Localisation::GetLocalName()
+{
+	for (std::string thisname : name)
+	{
+		if (!thisname.empty())
+		{
+			return thisname;
+		}
+	}
+	return "";
 }
