@@ -153,7 +153,7 @@ namespace Frontend.Core.Factories.TagReaders
             var errorMessageOneText = string.Format("Failed to set default value for {0}. This most likely happened because a file or folder was specified in the configuration file, but did not exist on disk.", friendlyName);
             
             this.EventAggregator.PublishOnUIThread(new LogEntry(errorMessageOneText, LogEntrySeverity.Warning, LogEntrySource.UI));
-            this.EventAggregator.PublishOnUIThread(new LogEntry("This may not be a problem depending on which path was missing, and dependingon your settings.", LogEntrySeverity.Warning, LogEntrySource.UI));
+            this.EventAggregator.PublishOnUIThread(new LogEntry("This may not be a problem depending on which path was missing, and depending on your settings.", LogEntrySeverity.Warning, LogEntrySource.UI));
             this.EventAggregator.PublishOnUIThread(new LogEntry("Should you need to, you can set this file/folder path manually in the frontend. The expected location was: ", LogEntrySeverity.Warning, LogEntrySource.UI, nonExistingAlternativePath.Path));
         }
     }
