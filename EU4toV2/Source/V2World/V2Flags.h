@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 #include <string>
 #include <vector>
+#include "..\Mapper.h"
 
 class V2Country;
 
@@ -37,15 +38,18 @@ class V2Flags
 {
 public:
 	// Tries to find appropriate flags for all the countries specified.
-	void SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const std::map<std::string, std::string>& CK2titles);
+	void SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const std::map<std::string, std::string>& CK2titles, const colonyFlagset& colonyFlagset);
 	// Copies all necessary flags to the output folder. Returns true if successful.
 	bool Output() const;
 
 private:
 	static const std::vector<std::string> flagFileSuffixes;
+	colonyFlagset colonyFlags;
 
 	typedef std::map<std::string, std::string> V2TagToFlagTagMap;
+	typedef std::map<std::string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
 	V2TagToFlagTagMap tagMapping;
+	V2TagToColonyFlagMap colonialFlagMapping;
 };
 
 #endif

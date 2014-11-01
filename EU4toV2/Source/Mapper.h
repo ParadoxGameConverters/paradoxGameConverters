@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <vector>
 #include <unordered_set>
 #include <set>
+#include <memory>
 class EU4World;
 class V2World;
 
@@ -117,6 +118,16 @@ typedef struct {
 } colonyStruct;
 typedef vector<colonyStruct> colonyMapping;
 colonyMapping initColonyMap(Object* obj);
+
+// colonial nation flags
+typedef struct {
+	std::string name;
+	string region;
+	bool unique;
+	std::string overlord;
+} colonyFlag;
+typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
+colonyFlagset initColonyFlagset(Object* obj);
 
 // CK2 titles for flags
 typedef map<string, string> ck2TitleMapping;	// <name, title>

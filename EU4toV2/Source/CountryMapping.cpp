@@ -172,6 +172,7 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 	bool mapped = false;
 	int EU4Capital = country->getCapital();
 	int V2Capital = inverseProvinceMap.find(country->getCapital())->second[0];
+
 	for (colonyMapping::const_iterator j = colonyMap.begin(); j != colonyMap.end(); j++)
 	{
 		// the capital must be in the specified EU4 colonial region
@@ -188,6 +189,8 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 				continue;
 			}
 		}
+
+		country->setColonialRegion(j->EU4Region);
 
 		// the capital must be in the specified EU4 colonial region, or the entire region must be owned
 		std::map<std::string, std::set<int>>::iterator V2Region = V2Regions.find(j->V2Region);

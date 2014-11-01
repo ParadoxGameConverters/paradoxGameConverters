@@ -681,6 +681,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		exit(-1);
 	}
 	colonyMapping colonyMap = initColonyMap(obj);
+	colonyFlagset colonyFlags = initColonyFlagset(obj);
 
 	// Get EU4 colonial regions
 	LOG(LogLevel::Info) << "Parsing EU4 colonial regions";
@@ -747,7 +748,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt,ck2Titles, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, ck2Titles, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

@@ -713,6 +713,50 @@ colonyMapping initColonyMap(Object* obj)
 	return colonyMap;
 }
 
+colonyFlagset initColonyFlagset(Object* obj)
+{
+	colonyFlagset colonyMap;									// the culture mapping
+	vector<Object*> colonialRules = obj->getLeaves();			// the culture mapping rules en masse
+	vector<Object*> regions = colonialRules[1]->getLeaves();	// the individual colonial flags
+
+	for (vector<Object*>::iterator i = regions.begin(); i != regions.end(); i++)
+	{
+		std::string region = (*i)->getKey();
+		vector<Object*> flags = (*i)->getLeaves();	// the flags in this region
+		for (vector<Object*>::iterator j = flags.begin(); j != flags.end(); j++)
+		{
+			vector<Object*>			items = (*j)->getLeaves();	// the items in this rule
+			
+			shared_ptr<colonyFlag> flag(new colonyFlag());
+			flag->region = region;
+			flag->unique = false;
+			flag->overlord = "";
+			vector<Object*>::iterator k = items.begin();
+			flag->name = (*k)->getLeaf();
+			std::transform(flag->name.begin(), flag->name.end(), flag->name.begin(), ::tolower);
+
+			for (; k != items.end(); k++)
+			{
+				if ((*k)->getKey() == "name")
+				{
+					string name = (*k)->getLeaf();
+					name = V2Localisation::Convert(name);
+					std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+					colonyMap[name] = flag;
+				}
+				if ((*k)->getKey() == "unique")
+				{
+					flag->unique = true;
+				}
+
+			}
+		}
+	}
+
+	return colonyMap;
+}
+
 ck2TitleMapping initCK2TitleMap(Object* obj)
 {
 	ck2TitleMapping titleMap;

@@ -128,6 +128,8 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 			localisation.SetPartyName(i, "english", partyNames[i]);
 		}
 	}
+
+	colonyOverlord = NULL;
 }
 
 
@@ -1118,6 +1120,15 @@ void V2Country::setColonyOverlord(V2Country* colony)
 	colonyOverlord = colony;
 }
 
+V2Country* V2Country::getColonyOverlord()
+{
+	return colonyOverlord;
+}
+
+std::string	V2Country::getColonialRegion()
+{
+	return srcCountry->getColonialRegion();
+}
 
 static bool FactoryCandidateSortPredicate(const pair<double, V2State*>& lhs, const pair<double, V2State*>& rhs)
 {

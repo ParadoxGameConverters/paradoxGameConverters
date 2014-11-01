@@ -35,13 +35,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "..\Configuration.h"
 #include "..\Log.h"
 #include "..\WinUtils.h"
+#include "..\FlagUtils.h"
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const std::map<std::string,std::string>& CK2titles)
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const std::map<std::string, std::string>& CK2titles, const colonyFlagset& colonyFlagset)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
+	colonyFlags = colonyFlagset;
 
 	// Generate a list of all flags that we can use.
 	const std::vector<std::string> availableFlagFolders = { "blankMod\\output\\gfx\\flags", Configuration::getV2Path() + "\\gfx\\flags" };
@@ -106,8 +108,10 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		std::swap(usableFlagTags, usableFlagTagsRemaining);
 		std::swap(requiredTags, requiredTagsRemaining);
 	}
+
+	std::vector<V2Country*> colonialFail;
 	
-	// Get the CK2 flags.
+	// Get the CK2 and colonial flags.
 	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
 	{
 		V2Country* v2source = i->second;
@@ -131,18 +135,88 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		LOG(LogLevel::Info) << i->first << "\t" << name << "\t";// << lname;// << sname << i->second->getLocalName();
 		
 		auto ck2title = CK2titles.find(name);
-		if (ck2title == CK2titles.end())
-			continue; // this one doesn't have a CK2 title
+		if (ck2title != CK2titles.end())
+		{
+			LOG(LogLevel::Info) << "Country " << i->first << " has the CK2 title " << ck2title->second;
 
-		LOG(LogLevel::Info) << "Country " << i->first << " has the CK2 title " << ck2title->second;
+			if (usableFlagTags.find(ck2title->second) == usableFlagTags.end())
+				continue; // we don't have a flag for this CK2 title
 
-		if (usableFlagTags.find(ck2title->second) == usableFlagTags.end())
-			continue; // we don't have a flag for this CK2 title
+			tagMapping[i->first] = ck2title->second;
 
-		tagMapping[i->first] = ck2title->second;
+			usableFlagTags.erase(ck2title->second);
+			requiredTags.erase(i->first);
+		}
+		else
+		{
+			V2Country* overlord = i->second->getColonyOverlord();
+			if (NULL == overlord)
+				continue;
 
-		usableFlagTags.erase(ck2title->second);
-		requiredTags.erase(i->first);
+			auto colonialtitle = colonyFlags.begin();
+			for (; colonialtitle != colonyFlags.end(); ++colonialtitle)
+			{
+				if (name.find(colonialtitle->second->name) != string::npos)
+				{
+					break;
+				}
+			}
+			
+			if (colonialtitle == colonyFlags.end())
+			{
+				colonialFail.push_back(i->second);
+				continue;
+			}
+
+			colonialtitle->second->overlord = overlord->getTag();
+			colonialFlagMapping[i->first] = colonialtitle->second;
+			LOG(LogLevel::Info) << "Country with tag " << i->first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
+
+			usableFlagTags.erase(colonialtitle->second->name);
+			requiredTags.erase(i->first);
+		}
+	}
+
+	if (colonialFail.size() != 0)
+	{
+		std::vector<string> colonyFlagsKeys;
+		for (auto flag : colonyFlags)
+		{
+			colonyFlagsKeys.push_back(flag.first);
+		}
+		std::random_shuffle(colonyFlagsKeys.begin(), colonyFlagsKeys.end());
+
+		for (string key : colonyFlagsKeys)
+		{
+			shared_ptr<colonyFlag> flag = colonyFlags[key];
+
+			if (false == flag->overlord.empty())
+				continue;
+
+			if (flag->unique)
+				continue;
+
+			for (std::vector<V2Country*>::iterator v2c = colonialFail.begin(); v2c != colonialFail.end(); ++v2c)
+			{
+				bool success = false;
+				string region = (*v2c)->getColonialRegion();
+				if (flag->region == region)
+				{
+					success = true;
+					LOG(LogLevel::Debug) << "Country with tag " << (*v2c)->getTag() << " is now " << flag->name << ", ruled by " << flag->overlord;
+					colonialFlagMapping[(*v2c)->getTag()] = flag;
+					flag->overlord = (*v2c)->getColonyOverlord()->getTag();
+
+					usableFlagTags.erase(flag->name);
+					requiredTags.erase((*v2c)->getTag());
+					break;
+				}
+				if (success)
+				{
+					colonialFail.erase(v2c);
+				}
+			}
+		}
 	}
 
 	// All the remaining tags now need one of the usable flags.
@@ -201,6 +275,49 @@ bool V2Flags::Output() const
 					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
 				}
 			}
+		}
+	}
+
+	//typedef std::map<std::string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
+	for (auto i : colonialFlagMapping)
+	{
+		string V2Tag = i.first;
+		string baseFlag = i.second->name;
+		std::transform(baseFlag.begin(), baseFlag.end(), baseFlag.begin(), ::tolower);
+		baseFlag.erase(std::remove_if(baseFlag.begin(), baseFlag.end(), [](const char ch) { return !isalpha(ch); }), baseFlag.end());
+
+		string overlord = i.second->overlord;
+
+		for (int i=0;i<5;i++)
+		{
+			const std::string& suffix = flagFileSuffixes[i];
+			bool flagFileFound = false;
+			std::string folderPath = "blankMod\\output\\gfx\\flags";
+
+			if (i == 0 || i == 3) // monarchy or vanilla
+			{
+				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
+				std::string overlordFlagPath = folderPath + '\\' + overlord + ".tga";
+				LOG(LogLevel::Info) << sourceFlagPath;
+				LOG(LogLevel::Info) << overlordFlagPath;
+				flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(sourceFlagPath));
+				if (flagFileFound)
+				{
+					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
+					CreateColonialFlag(overlordFlagPath,sourceFlagPath,destFlagPath);
+				}
+			}
+			else
+			{
+				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
+				LOG(LogLevel::Info) << sourceFlagPath;
+				flagFileFound = WinUtils::DoesFileExist(sourceFlagPath);
+				if (flagFileFound)
+				{
+					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
+					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+				}
+			}	
 		}
 	}
 

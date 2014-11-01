@@ -78,6 +78,8 @@ class V2Country
 		void								addRelation(V2Relations* newRelation);
 		void								absorbColony(V2Country* colony);
 		void								setColonyOverlord(V2Country* colony);
+		V2Country*							getColonyOverlord();
+		string								getColonialRegion();
 
 		string								getLocalName();
 		V2Relations*					getRelations(string withWhom) const;
@@ -124,6 +126,7 @@ class V2Country
 		string							filename;
 		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
 		V2Country*						colonyOverlord;
+		string							colonialRegion;
 
 		string							tag;
 		vector<V2State*>				states;

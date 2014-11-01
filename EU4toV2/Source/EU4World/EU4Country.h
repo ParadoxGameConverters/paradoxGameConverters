@@ -53,6 +53,7 @@ class EU4Country
 		void						resolveRegimentTypes(const RegimentTypeMap& map);
 		int						getManufactoryCount() const;
 		void						eatCountry(EU4Country* target);
+		void						setColonialRegion(const string& region)		 { colonialRegion = region; };
 
 		string						getTag()										const { return tag; };
 		vector<EU4Province*>		getProvinces()								const { return provinces; };
@@ -80,6 +81,7 @@ class EU4Country
 		vector<EU4Army*>			getArmies()									const { return armies; };
 		vector<EU4Leader*>		getLeaders()								const { return leaders; };
 		bool							isColony()									const { return colony; };
+		string						getColonialRegion()						const { return colonialRegion; };
 		double						getLibertyDesire()						const { return libertyDesire; };
 
 		string getName() const { return name; }
@@ -123,6 +125,7 @@ class EU4Country
 		map<string, int>			nationalIdeas;			// the national ideas for this country
 		double						legitimacy;				// the legitimacy of this nation
 		bool							colony;					// whether or not this country is a colony
+		string						colonialRegion;			// the colonial region, if this country is a colony
 		double						libertyDesire;			// the amount of liberty desire
 
 		// Localisation attributes
