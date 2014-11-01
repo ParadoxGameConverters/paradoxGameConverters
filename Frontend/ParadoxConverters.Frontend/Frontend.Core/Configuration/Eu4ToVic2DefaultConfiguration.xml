@@ -26,6 +26,37 @@
             </entryOptions>
           </preference>
           <preference>
+            <name>V2gametype</name>
+            <friendlyName>V2 Game Version</friendlyName>
+            <description>V2 Game Version: what version of V2 to convert to</description>
+            <entryOptions>
+              <entryOption>
+                <name>vanilla</name>
+                <friendlyName>Vanilla V2 (1.x)</friendlyName>
+                <description>Vanilla V2 (1.x)</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>AHD</name>
+                <friendlyName>A House Divided (2.x)</friendlyName>
+                <description>A House Divided (2.x)</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>HOD</name>
+                <friendlyName>Heart of Darkness (3.x)</friendlyName>
+                <description>Heart of Darkness (3.x)</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>HOD-NNM</name>
+                <friendlyName>HoD with the New Nations Mod</friendlyName>
+                <description>HoD with the New Nations Mod</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+          <preference>
             <name>start_date</name>
             <friendlyName>Start Date</friendlyName>
             <description>The date on which the game is to start. Default: Januar 1st, 1836</description>
@@ -59,7 +90,7 @@
             <friendlyName>Max Literacy</friendlyName>
             <description>The maximum literacy a nation will start with. Default 80%</description>
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <value>0.8</value>
+            <value>1</value>
             <minValue>0.1</minValue>
             <maxValue>1</maxValue>
           </preference>
@@ -72,13 +103,13 @@
                 <name>none</name>
                 <friendlyName>None</friendlyName>
                 <description>Remove none of them</description>
-                <isDefault>false</isDefault>
+                <isDefault>true</isDefault>
               </entryOption>
               <entryOption>
                 <name>dead</name>
                 <friendlyName>Dead</friendlyName>
                 <description>Remove ones without cultural backing</description>
-                <isDefault>true</isDefault>
+                <isDefault>false</isDefault>
               </entryOption>
               <entryOption>
                 <name>all</name>
@@ -89,29 +120,13 @@
             </entryOptions>
           </preference>
           <preference>
-            <name>V2gametype</name>
-            <friendlyName>V2 Game Version</friendlyName>
-            <description>V2 Game Version: what version of V2 to convert to</description>
-            <entryOptions>
-              <entryOption>
-                <name>vanilla</name>
-                <friendlyName>Vanilla V2 (1.x)</friendlyName>
-                <description>Vanilla V2 (1.x)</description>
-                <isDefault>false</isDefault>
-              </entryOption>
-              <entryOption>
-                <name>AHD</name>
-                <friendlyName>A House Divided (2.x)</friendlyName>
-                <description>A House Divided (2.x)</description>
-                <isDefault>false</isDefault>
-              </entryOption>
-              <entryOption>
-                <name>HOD</name>
-                <friendlyName>Heart of Darkness (3.x)</friendlyName>
-                <description>Heart of Darkness (3.x)</description>
-                <isDefault>true</isDefault>
-              </entryOption>
-            </entryOptions>
+            <name>libertyThreshold</name>
+            <friendlyName>Liberty threshold</friendlyName>
+            <description>The threshold value for when colonies are not absorbed. Default 100% (colonies always absorbed)</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>100</value>
+            <minValue>1</minValue>
+            <maxValue>100</maxValue>
           </preference>
         </preferences>
       </category>

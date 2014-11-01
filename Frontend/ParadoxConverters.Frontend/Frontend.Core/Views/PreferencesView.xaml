@@ -13,7 +13,7 @@
         <local:PreferenceTemplateSelector x:Key="PreferenceTemplateSelector"/>
         <sys:Double x:Key="EditableTextBoxWidth">150</sys:Double>
         <controls:GridLength x:Key="FirstColumnWidth">30</controls:GridLength>
-        <controls:GridLength x:Key="SecondColumnWidth">180</controls:GridLength>
+        <controls:GridLength x:Key="SecondColumnWidth">190</controls:GridLength>
         <controls:GridLength x:Key="ThirdColumnWidth">500</controls:GridLength>
         <Thickness x:Key="EntryTemplateHeaderMargin" Left="0" Right="0" Top="0" Bottom="5"/>
 

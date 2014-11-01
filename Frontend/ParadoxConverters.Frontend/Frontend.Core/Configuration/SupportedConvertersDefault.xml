@@ -56,6 +56,19 @@ tag vs internalTag:
       <requiredItems>
 
         <requiredFolder>
+          <tag>EU4directory</tag>
+          <friendlyName>Europa Universalis 4 directory</friendlyName>
+          <description>A path on your computer where Europa Universalis 4 is installed</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>236850</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
           <tag>EU4DocumentsDirectory</tag>
           <friendlyName>EU4 Documents Directory</friendlyName>
           <description>A path on your computer where Europa Universalis 4 keeps temporary files</description>
@@ -80,6 +93,19 @@ tag vs internalTag:
         </requiredFolder>
 
         <requiredFolder>
+          <tag>V2directory</tag>
+          <friendlyName>Victoria 2 directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
           <tag>V2Documentsdirectory</tag>
           <friendlyName>Victoria 2 Documents directory</friendlyName>
           <description>A path on your computer where Victoria 2 keeps temporary files</description>
@@ -99,19 +125,6 @@ tag vs internalTag:
         </requiredFolder>
 
         <requiredFolder>
-          <tag>V2directory</tag>
-          <friendlyName>Victoria 2 directory</friendlyName>
-          <description>A path on your computer where Victoria 2 is installed</description>
-          <alternatives>
-            <alternative>
-              <defaultLocationType>SteamFolder</defaultLocationType>
-              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
-              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
-            </alternative>
-          </alternatives>
-        </requiredFolder>
-
-        <requiredFolder>
           <internalTag>targetGameModPath</internalTag>
           <friendlyName>Victoria 2 mod directory</friendlyName>
           <description>A path on your computer where Victoria 2 is installed</description>
@@ -124,19 +137,6 @@ tag vs internalTag:
               <defaultLocationType>SteamFolder</defaultLocationType>
               <autoDetectFromSteamId>42960</autoDetectFromSteamId>
               <subFolderLocation>mod</subFolderLocation>
-            </alternative>
-          </alternatives>
-        </requiredFolder>
-
-        <requiredFolder>
-          <tag>EU4directory</tag>
-          <friendlyName>Europa Universalis 4 directory</friendlyName>
-          <description>A path on your computer where Europa Universalis 4 is installed</description>
-          <alternatives>
-            <alternative>
-              <defaultLocationType>SteamFolder</defaultLocationType>
-              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
-              <autoDetectFromSteamId>236850</autoDetectFromSteamId>
             </alternative>
           </alternatives>
         </requiredFolder>
