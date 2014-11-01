@@ -4,6 +4,7 @@ using Frontend.Core.Model.PreferenceEntries.Interfaces;
 using Frontend.Core.Model.Preferences.Interfaces;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 
 namespace Frontend.Core.Model.Preferences
 {
@@ -231,7 +232,26 @@ namespace Frontend.Core.Model.Preferences
         /// </returns>
         public override string ToString()
         {
-            return this.Name + " = \"" + this.Value + "\"";
+            StringBuilder sb = new StringBuilder();
+
+            sb.AppendLine("# " + this.FriendlyName + ": " + this.Description);
+
+            this.AppendEntries(sb);
+            
+            sb.AppendLine("\t" + this.Name + " = \"" + this.Value + "\"");
+
+            return sb.ToString();
+        }
+
+        protected void AppendEntries(StringBuilder sb)
+        {
+            if (this.HasPreDefinedChoices)
+            {
+                foreach (IPreferenceEntry entry in this.Entries)
+                {
+                    sb.AppendLine("\t#\t" + entry.FriendlyName + "\t - " + entry.Description);
+                }
+            }
         }
     }
 }

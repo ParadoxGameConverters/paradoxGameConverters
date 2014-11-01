@@ -53,7 +53,16 @@ namespace Frontend.Core.Model.Preferences
             if (this.Value != null)
             {
                 // Reasoning: The converter does not seem to care about the time component of the date even when present, but it's safer to remove it.
-                return this.Name + " = \"" + this.Value.ToString("d") + "\"";
+
+                StringBuilder sb = new StringBuilder();
+
+                sb.AppendLine("# " + this.FriendlyName + ": " + this.Description);
+                
+                this.AppendEntries(sb);
+
+                sb.AppendLine("\t" + this.Name + " = \"" + this.Value.ToString("d") + "\"");
+
+                return sb.ToString();
             }
 
             return base.ToString();
