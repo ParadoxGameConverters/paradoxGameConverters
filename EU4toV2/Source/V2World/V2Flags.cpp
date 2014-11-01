@@ -145,16 +145,6 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		requiredTags.erase(i->first);
 	}
 
-	/*
-	for (std::set<std::string>::const_iterator i = requiredTagsRemaining.cbegin(); i != requiredTagsRemaining.cend(); ++i)
-		if (*it % 2 == 0) {
-			numbers.erase(it++);
-		}
-		else {
-			++it;
-		}
-	}*/
-
 	// All the remaining tags now need one of the usable flags.
 	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
 	size_t mappingsMade = 0;
