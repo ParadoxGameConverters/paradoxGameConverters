@@ -116,65 +116,95 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 	{
 		V2Country* v2source = i->second;
 		
-		if (!i->second->getSourceCountry())
+		if (i->second->getSourceCountry()
+			&& requiredTags.find(i->first) != requiredTags.end()
+			&& (isalpha(i->first[0]) && isdigit(i->first[1]) && isdigit(i->first[2])))
+		{
+			//if (i->first[0] == 'C')
+			//	continue; // this one's a colonial nation
+
+			std::string name = i->second->getLocalName();
+			name = V2Localisation::Convert(name);
+
+			std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+			auto ck2title = CK2titles.find(name);
+			if (ck2title != CK2titles.end())
+			{
+				LOG(LogLevel::Info) << "Country " << i->first << " has the CK2 title " << ck2title->second;
+
+				if (usableFlagTags.find(ck2title->second) == usableFlagTags.end())
+					continue; // we don't have a flag for this CK2 title
+
+				tagMapping[i->first] = ck2title->second;
+
+				usableFlagTags.erase(ck2title->second);
+				requiredTags.erase(i->first);
+			}
+		}
+	}
+
+	for (set<string>::iterator i = usableFlagTags.begin(); i != usableFlagTags.end();) 
+	{
+		const string& tag = (*i);
+		if (tag.length() > 3 && tag[1] != '_') {
+			usableFlagTags.erase(i++);
+		}
+		else {
+			++i;
+		}
+	}
+
+	// All the remaining tags now need one of the usable flags.
+	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
+	size_t mappingsMade = 0;
+	for (std::set<std::string>::const_iterator i = requiredTags.cbegin(); i != requiredTags.cend(); ++i)
+	{
+		const std::string& V2Tag = *i;
+		size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, usableFlagTags.size() - 1)(generator);
+		std::set<std::string>::const_iterator randomTagIter = usableFlagTags.cbegin();
+		std::advance(randomTagIter, randomTagIndex);
+		const std::string& flagTag = *randomTagIter;
+		tagMapping[V2Tag] = flagTag;
+		LOG(LogLevel::Debug) << "Country with tag " << V2Tag << " has no flag and will use the flag for " << flagTag << " instead";
+		if (usableFlagTags.size() > requiredTags.size() - tagMapping.size())
+		{
+			usableFlagTags.erase(flagTag);
+		}
+	}
+
+	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
+	{
+		V2Country* overlord = i->second->getColonyOverlord();
+		if (NULL == overlord)
 			continue;
-
-		if (requiredTags.find(i->first) == requiredTags.end())
-			continue; // this one already has a flag
-
-		if (isdigit(i->first[0]) || false == isdigit(i->first[1]) || false == isdigit(i->first[2]))
-			continue; // CK2 nations are character-number-number (X01, Z85 etc) - this one doesn't match
-
-		//if (i->first[0] == 'C')
-		//	continue; // this one's a colonial nation
 
 		std::string name = i->second->getLocalName();
 		name = V2Localisation::Convert(name);
 
 		std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-		LOG(LogLevel::Info) << i->first << "\t" << name << "\t";// << lname;// << sname << i->second->getLocalName();
-		
-		auto ck2title = CK2titles.find(name);
-		if (ck2title != CK2titles.end())
+
+		auto colonialtitle = colonyFlags.begin();
+		for (; colonialtitle != colonyFlags.end(); ++colonialtitle)
 		{
-			LOG(LogLevel::Info) << "Country " << i->first << " has the CK2 title " << ck2title->second;
-
-			if (usableFlagTags.find(ck2title->second) == usableFlagTags.end())
-				continue; // we don't have a flag for this CK2 title
-
-			tagMapping[i->first] = ck2title->second;
-
-			usableFlagTags.erase(ck2title->second);
-			requiredTags.erase(i->first);
+			if (name.find(colonialtitle->second->name) != string::npos)
+			{
+				break;
+			}
 		}
-		else
+
+		if (colonialtitle == colonyFlags.end())
 		{
-			V2Country* overlord = i->second->getColonyOverlord();
-			if (NULL == overlord)
-				continue;
-
-			auto colonialtitle = colonyFlags.begin();
-			for (; colonialtitle != colonyFlags.end(); ++colonialtitle)
-			{
-				if (name.find(colonialtitle->second->name) != string::npos)
-				{
-					break;
-				}
-			}
-			
-			if (colonialtitle == colonyFlags.end())
-			{
-				colonialFail.push_back(i->second);
-				continue;
-			}
-
-			colonialtitle->second->overlord = overlord->getTag();
-			colonialFlagMapping[i->first] = colonialtitle->second;
-			LOG(LogLevel::Info) << "Country with tag " << i->first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
-
-			usableFlagTags.erase(colonialtitle->second->name);
-			requiredTags.erase(i->first);
+			colonialFail.push_back(i->second);
+			continue;
 		}
+
+		colonialtitle->second->overlord = overlord->getTag();
+		colonialFlagMapping[i->first] = colonialtitle->second;
+		LOG(LogLevel::Info) << "Country with tag " << i->first << " is " << colonialtitle->second->name << ", ruled by " << colonialtitle->second->overlord;
+
+		usableFlagTags.erase(colonialtitle->second->name);
+		requiredTags.erase(i->first); 
 	}
 
 	if (colonialFail.size() != 0)
@@ -203,7 +233,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 				if (flag->region == region)
 				{
 					success = true;
-					LOG(LogLevel::Debug) << "Country with tag " << (*v2c)->getTag() << " is now " << flag->name << ", ruled by " << flag->overlord;
+					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << flag->name << ", ruled by " << flag->overlord;
 					colonialFlagMapping[(*v2c)->getTag()] = flag;
 					flag->overlord = (*v2c)->getColonyOverlord()->getTag();
 
@@ -216,24 +246,6 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 					colonialFail.erase(v2c);
 				}
 			}
-		}
-	}
-
-	// All the remaining tags now need one of the usable flags.
-	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
-	size_t mappingsMade = 0;
-	for (std::set<std::string>::const_iterator i = requiredTags.cbegin(); i != requiredTags.cend(); ++i)
-	{
-		const std::string& V2Tag = *i;
-		size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, usableFlagTags.size() - 1)(generator);
-		std::set<std::string>::const_iterator randomTagIter = usableFlagTags.cbegin();
-		std::advance(randomTagIter, randomTagIndex);
-		const std::string& flagTag = *randomTagIter;
-		tagMapping[V2Tag] = flagTag;
-		LOG(LogLevel::Debug) << "Country with tag " << V2Tag << " has no flag and will use the flag for " << flagTag << " instead";
-		if (usableFlagTags.size() > requiredTags.size() - tagMapping.size())
-		{
-			usableFlagTags.erase(flagTag);
 		}
 	}
 }
@@ -298,24 +310,32 @@ bool V2Flags::Output() const
 			{
 				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
 				std::string overlordFlagPath = folderPath + '\\' + overlord + ".tga";
-				LOG(LogLevel::Info) << sourceFlagPath;
-				LOG(LogLevel::Info) << overlordFlagPath;
-				flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(sourceFlagPath));
+				flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(overlordFlagPath));
 				if (flagFileFound)
 				{
 					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
 					CreateColonialFlag(overlordFlagPath,sourceFlagPath,destFlagPath);
 				}
+				else
+				{
+					if (WinUtils::DoesFileExist(sourceFlagPath))
+						LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
+					else
+						LOG(LogLevel::Error) << "Could not find " << overlordFlagPath;
+				}
 			}
 			else
 			{
 				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
-				LOG(LogLevel::Info) << sourceFlagPath;
 				flagFileFound = WinUtils::DoesFileExist(sourceFlagPath);
 				if (flagFileFound)
 				{
 					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
 					WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+				}
+				else
+				{
+					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 				}
 			}	
 		}
