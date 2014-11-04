@@ -213,19 +213,7 @@ void V2Country::output() const
 		reforms->output(output);
 	}
 	
-	/*for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
-	{
-		(*itr)->output(output);
-	}
-	for (vector<V2Army*>::const_iterator itr = armies.begin(); itr != armies.end(); ++itr)
-	{
-		(*itr)->output(output);
-	}
-	for (vector<V2Relations*>::const_iterator itr = relations.begin(); itr != relations.end(); ++itr)
-	{
-		(*itr)->output(output);
-	}
-	fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());*/
+	//fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
 
 	fprintf(output, "oob = \"%s\"\n", (tag + "_OOB.txt").c_str());
 
@@ -321,6 +309,20 @@ void V2Country::outputOOB() const
 	for (map<string, V2Relations*>::const_iterator relationsItr = relations.begin(); relationsItr != relations.end(); relationsItr++)
 	{
 		relationsItr->second->output(output);
+	}
+
+	fprintf(output, "\n");
+	fprintf(output, "#Leaders\n");
+	for (vector<V2Leader*>::const_iterator itr = leaders.begin(); itr != leaders.end(); ++itr)
+	{
+		(*itr)->output(output);
+	}
+
+	fprintf(output, "\n");
+	fprintf(output, "#Armies\n");
+	for (vector<V2Army*>::const_iterator itr = armies.begin(); itr != armies.end(); ++itr)
+	{
+		(*itr)->output(output);
 	}
 
 	fclose(output);
@@ -1840,7 +1842,6 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		reg.setHome(homeProvince->getNum());
 	}
 	reg.setName(homeProvince->getRegimentName(rc));
-	reg.setStrength(army->getSourceArmy()->getAverageStrength(rc) * (army->getNavy() ? 100.0 : 3.0));
 	army->addRegiment(reg);
 	return 0;
 }

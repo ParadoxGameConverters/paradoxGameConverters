@@ -49,7 +49,6 @@ class V2Regiment // also Ship
 
 		void setName(string _name)		{ name = _name; };
 		void setHome(int newHome)		{ home = newHome; };
-		void setStrength(double str)	{ strength = str; };
 
 		bool					getShip()		const { return isShip; };
 		RegimentCategory	getCategory()	const { return category; };
@@ -58,7 +57,6 @@ class V2Regiment // also Ship
 		string				name;
 		string				type;
 		int					home;
-		double				strength;
 		bool					isShip;
 		RegimentCategory	category;
 };
@@ -87,8 +85,6 @@ class V2Army // also Navy
 		vector<V2Regiment>	regiments;
 		double					armyRemainders[num_reg_categories];
 		EU4Army*					sourceArmy; // only valid during conversion
-		int						at_sea;
-		int						leaderID;
 		bool						isNavy;
 };
 

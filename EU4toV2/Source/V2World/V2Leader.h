@@ -39,19 +39,14 @@ class V2LeaderTraits;
 class V2Leader
 {
 	public:
-		V2Leader(string tag, const EU4Leader* oldLeader, const V2LeaderTraits& traits);
+		V2Leader(const EU4Leader* oldLeader, const V2LeaderTraits& traits);
 		void output(FILE* output) const;
-
-		int getID() const { return id; };
 	private:
 		string	name;
 		date		activationDate;
 		bool		isLand;
 		string	personality;
 		string	background;
-		string	country;
-		string	picture;
-		int		id;
 };
 
 

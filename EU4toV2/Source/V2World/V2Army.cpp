@@ -50,7 +50,6 @@ void V2ArmyID::output(FILE* out, int indentlevel) const
 V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 {
 	name		= "\"\"";
-	strength	= 0.0;
 	switch (rc)
 	{
 		case infantry:
@@ -89,25 +88,19 @@ void V2Regiment::output(FILE* out) const
 {
 	if (isShip)
 	{
-		fprintf(out, "\t\tship=\n");
+		fprintf(out, "\tship = {\n");
 	}
 	else
 	{
-		fprintf(out, "\t\tregiment=\n");
+		fprintf(out, "\tregiment = {\n");
 	}
-	fprintf(out, "\t\t{\n");
-	id.output(out, 3);
-	fprintf(out, "\t\t\tname=\"%s\"\n", name.c_str());
+	fprintf(out, "\t\tname=\"%s\"\n", name.c_str());
+	fprintf(out, "\t\ttype=%s\n", type.c_str());
 	if (!isShip)
 	{
-		fprintf(out, "\t\t\tpop=\n");
-		fprintf(out, "\t\t\t{\n");
-		fprintf(out, "\t\t\t\ttype=46\n");
-		fprintf(out, "\t\t\t}\n");
+		fprintf(out, "\t\thome=%d\n", home);
 	}
-	fprintf(out, "\t\t\tstrength=%f\n", strength);
-	fprintf(out, "\t\t\ttype=%s\n", type.c_str());
-	fprintf(out, "\t\t}\n");
+	fprintf(out, "\t}\n");
 }
 
 
@@ -118,24 +111,16 @@ V2Army::V2Army(EU4Army* oldArmy, map<int, int> leaderIDMap)
 	regiments.clear();
 	memset(armyRemainders, 0, sizeof(armyRemainders));
 	sourceArmy	= oldArmy;
-	at_sea		= oldArmy->getAtSea();
-
-	map<int, int>::const_iterator lmapitr = leaderIDMap.find( oldArmy->getLeaderID() );
-	if (lmapitr != leaderIDMap.end())
-	{
-			leaderID = lmapitr->second;
-	}
-	else
-	{
-		leaderID = 0;
-	}
-
 	isNavy		= false;
 }
 
 
 void V2Army::output(FILE* out) const
 {
+	if(isNavy)
+	{
+		return;
+	}
 	if (regiments.size() == 0)
 	{
 		LOG(LogLevel::Debug) << "Army " << name << " has no regiments after conversion; skipping";
@@ -143,34 +128,20 @@ void V2Army::output(FILE* out) const
 	}
 	if (isNavy)
 	{
-		fprintf(out, "\tnavy=\n");
+		fprintf(out, "navy = {\n");
 	}
 	else
 	{
-		fprintf(out, "\tarmy=\n");
+		fprintf(out, "army = {\n");
 	}
-	fprintf(out, "\t{\n");
-	id.output(out, 2);
-	fprintf(out, "\t\tname=\"%s\"\n", name.c_str());
-	if (leaderID > 0)
-	{
-		fprintf(out, "\t\tleader=\n");
-		fprintf(out, "\t\t{\n");
-		fprintf(out, "\t\t\tid=%d\n", leaderID);
-		fprintf(out, "\t\t\ttype=37\n");
-		fprintf(out, "\t\t}\n");
-	}
-	fprintf(out, "\t\tlocation=%d\n", location);
-	fprintf(out, "\t\tsupplies=1.000\n");
+	fprintf(out, "\tname=\"%s\"\n", name.c_str());
+	fprintf(out, "\tlocation=%d\n", location);
 	for (vector<V2Regiment>::const_iterator itr = regiments.begin(); itr != regiments.end(); ++itr)
 	{
 		itr->output(out);
 	}
-	if (isNavy)
-	{
-		fprintf(out, "\t\tat_sea=%d\n", at_sea);
-	}
-	fprintf(out, "\t}\n");
+	fprintf(out, "}\n");
+	fprintf(out, "\n");
 }
 
 

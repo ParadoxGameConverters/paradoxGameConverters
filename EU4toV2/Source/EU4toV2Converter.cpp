@@ -325,19 +325,19 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	sourceWorld.setLocalisations(localisation);
 
 	// Resolve unit types
-	/*log("Resolving unit types.\n");
-	printf("Resolving unit types.\n");
+	LOG(LogLevel::Info) << "Resolving unit types.";
 	RegimentTypeMap rtm;
+	fstream read;
 	read.open("unit_strength.txt");
 	if (read.is_open())
 	{
 		read.close();
 		read.clear();
-		log("\tReading unit strengths from unit_strength.txt\n");
+		LOG(LogLevel::Info) << "\tReading unit strengths from unit_strength.txt";
 		obj = doParseFile("unit_strength.txt");
 		if (obj == NULL)
 		{
-			log("Could not parse file unit_strength.txt\n");
+			LOG(LogLevel::Error) << "Could not parse file unit_strength.txt";
 			exit(-1);
 		}
 		for (int i = 0; i < num_reg_categories; ++i)
@@ -347,12 +347,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	else
 	{
-		log("	Reading unit strengths from EU4 installation folder\n");
+		LOG(LogLevel::Info) << "\tReading unit strengths from EU4 installation folder";
 		struct _finddata_t unitFileData;
 		intptr_t fileListing;
 		if ( (fileListing = _findfirst( (EU4Loc + "\\common\\units\\*.txt").c_str(), &unitFileData)) == -1L)
 		{
-			log("	Could not open units directory.\n");
+			LOG(LogLevel::Error) << "Could not open units directory.";
 			return -1;
 		}
 		do
@@ -369,7 +369,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	read.close();
 	read.clear();
-	sourceWorld.resolveRegimentTypes(rtm);*/
+	sourceWorld.resolveRegimentTypes(rtm);
 
 
 	// Merge nations
@@ -763,8 +763,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	destWorld.setupPops(sourceWorld);
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
-	/*LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);*/
+	LOG(LogLevel::Info) << "Converting armies and navies";
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
 	LOG(LogLevel::Info) << "Allocating starting factories";
@@ -781,6 +781,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "user_dir = \"%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/provinces\"\n");
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");
