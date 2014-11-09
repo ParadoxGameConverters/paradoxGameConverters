@@ -46,8 +46,8 @@ An (incomplete) list of those who contributed effort to this mammoth undertaking
 Idhrendur		- Project Lead, Programming
 Ztaesek			- Programming, Data Files
 theosZA			- Programming
-PTSnoop			- Programming, graphics, analysis
-kwsdev			- data files
+PTSnoop			- Programming, Graphics, Analysis
+kwsdev			- Front End
 TheSpartanD		- Data Files
 LordBawbag		- Data Files
 MamelukeSkywalker	- Data Files
