@@ -298,8 +298,13 @@ bool readFile(ifstream& read)
 	{
 		string currObject = bufferOneObject(read);	// the object under consideration
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
+		{
+			clearStack();
 			return false;
+		}
 	}
+
+	clearStack();
 	return true;
 }
 
