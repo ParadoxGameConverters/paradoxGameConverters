@@ -56,6 +56,8 @@ localtoast		- Data Files
 G_Morgan		- Data Files
 rageair			- Data Files
 niallmcfc		- Data Files
+plnp123			- Data Files
+Mattabesta		- Data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics
