@@ -80,6 +80,7 @@
     <Compile Include="Helpers\DateParseHelper.cs" />
     <Compile Include="Helpers\DirectoryCopyHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
+    <Compile Include="Helpers\FolderBrowserLauncher.cs" />
     <Compile Include="Helpers\NullableComparer.cs" />
     <Compile Include="Helpers\NumberParserHelper.cs" />
     <Compile Include="Helpers\OutputConfigurationFileHelper.cs" />

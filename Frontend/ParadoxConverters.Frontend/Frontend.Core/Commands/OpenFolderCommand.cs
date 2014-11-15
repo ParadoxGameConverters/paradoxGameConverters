@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
@@ -55,7 +56,7 @@ namespace Frontend.Core.Commands
             
             dialog.ShowNewFolderButton = false;
 
-            DialogResult result = dialog.ShowDialog();
+            DialogResult result = FolderBrowserLauncher.ShowFolderBrowser(dialog, null);
 
             if (result == DialogResult.OK)
             {
