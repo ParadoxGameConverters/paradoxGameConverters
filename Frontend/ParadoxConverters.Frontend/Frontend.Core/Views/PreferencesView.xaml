@@ -14,8 +14,9 @@
         <sys:Double x:Key="EditableTextBoxWidth">150</sys:Double>
         <controls:GridLength x:Key="FirstColumnWidth">30</controls:GridLength>
         <controls:GridLength x:Key="SecondColumnWidth">190</controls:GridLength>
-        <controls:GridLength x:Key="ThirdColumnWidth">500</controls:GridLength>
         <Thickness x:Key="EntryTemplateHeaderMargin" Left="0" Right="0" Top="0" Bottom="5"/>
+        <!--<sys:Double x:Key="WrapPanelItemHeight">80</sys:Double>-->
+        <sys:Double x:Key="WrapPanelItemWidth">225</sys:Double>
 
         <Style x:Key="EntryBorderStyle" TargetType="{x:Type Border}">
             <!--<Setter Property="BorderBrush" Value="Black"/>
@@ -24,9 +25,11 @@
         </Style>
 
         <Style x:Key="PreferenceBorderStyle" TargetType="{x:Type Border}">
-            <!--<Setter Property="BorderBrush" Value="Gray"/>-->
+            <Setter Property="BorderBrush" Value="LightGray"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Padding" Value="3"/>
+            <Setter Property="ToolTip" Value="{Binding Description}"/>
+            <Setter Property="ToolTipService.InitialShowDelay" Value="0"/>
         </Style>
 
         <Style x:Key="TextboxWithDataValidationSupportStyle" TargetType="{x:Type TextBox}">
@@ -35,10 +38,6 @@
                     <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
                 </Trigger>
             </Style.Triggers>
-        </Style>
-
-        <Style x:Key="DescriptionTextBoxStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="MinHeight" Value="20"/>
         </Style>
 
         <Style x:Key="HeaderTextBoxStyle" TargetType="TextBlock">
@@ -84,7 +83,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource ThirdColumnWidth}"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -100,8 +98,6 @@
                                  Width="{StaticResource EditableTextBoxWidth}" 
                                  HorizontalAlignment="Left"/>
                     </StackPanel>
-
-                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -112,7 +108,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource ThirdColumnWidth}"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -133,8 +128,6 @@
                             Width="{StaticResource EditableTextBoxWidth}"
                             HorizontalAlignment="Left"/>
                     </StackPanel>
-
-                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -145,7 +138,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource ThirdColumnWidth}"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -158,8 +150,6 @@
                     <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left">
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
                     </StackPanel>
-
-                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -170,7 +160,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource ThirdColumnWidth}"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -188,8 +177,6 @@
                         <TextBox Text="{Binding Value, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
                      Style="{StaticResource TextboxWithDataValidationSupportStyle}" Width="{StaticResource EditableTextBoxWidth}" HorizontalAlignment="Left"/>
                     </StackPanel>
-
-                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -200,7 +187,6 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="{StaticResource FirstColumnWidth}"/>
                         <ColumnDefinition Width="{StaticResource SecondColumnWidth}"/>
-                        <ColumnDefinition Width="{StaticResource ThirdColumnWidth}"/>
                     </Grid.ColumnDefinitions>
 
                     <Grid.RowDefinitions>
@@ -209,10 +195,8 @@
                     </Grid.RowDefinitions>
 
                     <TextBlock Text="{Binding FriendlyName}" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="{StaticResource EntryTemplateHeaderMargin}"/>
-                    
-                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource PredefinedStringEntryTemplate}"/>
 
-                    <TextBlock Text="{Binding Description, Mode=OneWay}" Grid.Row="1" Grid.Column="2" Style="{StaticResource DescriptionTextBoxStyle}"/>
+                    <ItemsControl ItemsSource="{Binding Entries}" Grid.Row="1" Grid.Column="1" ItemTemplate="{StaticResource PredefinedStringEntryTemplate}"/>
                 </Grid>
             </Border>
         </DataTemplate>
@@ -225,8 +209,17 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0" Text="{Binding Category.FriendlyName}" Style="{StaticResource HeaderTextBoxStyle}"/>
-        <ScrollViewer Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding Category.Preferences}" ItemTemplateSelector="{StaticResource PreferenceTemplateSelector}"/>
+        <ScrollViewer x:Name="rootScrollViewer"  Grid.Row="1">
+            <ItemsControl ItemsSource="{Binding Category.Preferences}" ItemTemplateSelector="{StaticResource PreferenceTemplateSelector}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"
+                                   ItemWidth="{StaticResource WrapPanelItemWidth}"                                   
+                                   VerticalAlignment="Stretch" 
+                                   HorizontalAlignment="Stretch"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+            </ItemsControl>
         </ScrollViewer>
     </Grid>
 </UserControl>
