@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Win32;
 using Frontend.Core.Model.Paths.Interfaces;
+using System.IO;
 
 namespace Frontend.Core.Commands
 {
@@ -39,13 +40,23 @@ namespace Frontend.Core.Commands
             OpenFileDialog dialog = new OpenFileDialog();
 
             dialog.DefaultExt = requiredFile.Extension;
+            
+            //NOTE: The dialog doesn't handle InitialDirectories that contains file names. So, if a predefined filename is specified (and included in the DefaultValue property)
+            // we need to strip it away for the purpose of setting the dialog.InitialDirectory property. 
+            string pathMinusFileName;
 
             if (!string.IsNullOrEmpty(requiredFile.PredefinedFileName))
             {
                 dialog.Filter = requiredFile.PredefinedFileName + " | " + requiredFile.PredefinedFileName;
+                
+                pathMinusFileName = Path.GetDirectoryName(requiredFile.DefaultValue);
+            }
+            else
+            {
+                pathMinusFileName = requiredFile.DefaultValue;
             }
 
-            dialog.InitialDirectory = requiredFile.DefaultValue;
+            dialog.InitialDirectory = pathMinusFileName;
             Nullable<bool> result = dialog.ShowDialog();
 
             if (result == true)

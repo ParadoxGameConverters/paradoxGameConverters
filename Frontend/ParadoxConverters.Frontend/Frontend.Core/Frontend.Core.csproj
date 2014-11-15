@@ -56,10 +56,8 @@
     <Compile Include="Commands\AsyncCommandBase.cs" />
     <Compile Include="Commands\ConvertCommand.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
-    <Compile Include="Commands\OpenConverterCommand.cs" />
     <Compile Include="Commands\OpenFileCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
-    <Compile Include="Commands\OpenSaveGameCommand.cs" />
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Events\EventArgs\PreferenceOperation.cs" />

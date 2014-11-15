@@ -14,7 +14,6 @@ namespace Frontend.Core.ViewModels
     public class PathPickerViewModel : StepViewModelBase, IPathPickerViewModel
     {
         private ICommand openFileCommand;
-        private ICommand openConverterCommand;
         private ICommand openFolderCommand;
 
         /// <summary>
@@ -28,20 +27,6 @@ namespace Frontend.Core.ViewModels
         }
 
         #region [ Properties ]
-
-        /// <summary>
-        /// Gets the open converter command.
-        /// </summary>
-        /// <value>
-        /// The open converter command.
-        /// </value>
-        public ICommand OpenConverterCommand
-        {
-            get
-            {
-                return this.openConverterCommand ?? (this.openConverterCommand = new OpenConverterCommand(this.EventAggregator, this.Options));
-            }
-        }
 
         /// <summary>
         /// Gets the open save game command.
