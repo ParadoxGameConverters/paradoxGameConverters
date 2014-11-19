@@ -1767,6 +1767,12 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		army->getSourceArmy()->blockHomeProvince(eu4Home);
 		return -1;
 	}
+	if (homeCandidates[0] == 0)
+	{
+		LOG(LogLevel::Warning) << RegimentCategoryNames[rc] << " unit in army/navy " << army->getName() << " has dropped home province " << eu4Home << " - dissolving to pool";
+		army->getSourceArmy()->blockHomeProvince(eu4Home);
+		return -1;
+	}
 	V2Province* homeProvince = NULL;
 	if (army->getNavy())
 	{
