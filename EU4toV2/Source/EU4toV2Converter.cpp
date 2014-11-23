@@ -51,6 +51,23 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	LOG(LogLevel::Info) << "Converter version 0.4";
 
+	FILE* saveFile = fopen(EU4SaveFileName.c_str(), "r");
+	if (saveFile == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not open save! Exiting!";
+		exit(-1);
+	}
+	else
+	{
+		char buffer[2];
+		fread(buffer, 1, 2, saveFile);
+		if ((buffer[0] == 'P') && (buffer[1] == 'K'))
+		{
+			LOG(LogLevel::Error) << "Saves must be uncompressed to be converted.";
+			exit(-1);
+		}
+	}
+
 	char curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
 	LOG(LogLevel::Debug) << "Current directory is " << curDir;
