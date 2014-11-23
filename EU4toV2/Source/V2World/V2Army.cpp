@@ -117,10 +117,6 @@ V2Army::V2Army(EU4Army* oldArmy, map<int, int> leaderIDMap)
 
 void V2Army::output(FILE* out) const
 {
-	if(isNavy)
-	{
-		return;
-	}
 	if (regiments.size() == 0)
 	{
 		LOG(LogLevel::Debug) << "Army " << name << " has no regiments after conversion; skipping";
