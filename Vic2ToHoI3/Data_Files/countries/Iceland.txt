@@ -1,0 +1,311 @@
+color = { 62  129  155 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Infanteridivisjon" "2. Infanteridivisjon" "3. Infanteridivisjon" "4. Infanteridivisjon" "5. Infanteridivisjon" "6. Infanteridivisjon" "7. Infanteridivisjon" "8. Infanteridivisjon" "9. Infanteridivisjon" "10. Infanteridivisjon" 
+	}
+	cavalry_brigade = {
+		"1. Dragondivisjon" "2. Dragondivisjon" "3. Dragondivisjon" "4. Dragondivisjon" "5. Dragondivisjon" "6. Dragondivisjon" 
+	}
+	motorized_brigade = {
+		"1. Motoriserte Infanteridivisjon" "2. Motoriserte Infanteridivisjon" "3. Motoriserte Infanteridivisjon" "4. Motoriserte Infanteridivisjon" "5. Motoriserte Infanteridivisjon" "6. Motoriserte Infanteridivisjon" 
+	}
+	mechanized_brigade = {
+		"1. Mekaniserte Infanteridivisjon" "2. Mekaniserte Infanteridivisjon" "3. Mekaniserte Infanteridivisjon" "4. Mekaniserte Infanteridivisjon" "5. Mekaniserte Infanteridivisjon" "6. Mekaniserte Infanteridivisjon" 
+	}
+	light_armor_brigade = {
+		"1. Panser Divisjon" "2. Panser Divisjon" "3. Panser Divisjon" "4. Panser Divisjon" "5. Panser Divisjon" 
+	}
+	armor_brigade = {
+		"1. Panser Divisjon" "2. Panser Divisjon" "3. Panser Divisjon" "4. Panser Divisjon" "5. Panser Divisjon" 
+	}
+	paratrooper_brigade = {
+		"1. Fallskjermsjegerdivisjon" "2. Fallskjermsjegerdivisjon" "3. Fallskjermsjegerdivisjon" "4. Fallskjermsjegerdivisjon" "5. Fallskjermsjegerdivisjon" 
+	}
+	marine_brigade = {
+		"1. Marineinfanteri Divisjon" "2. Marineinfanteri Divisjon" "3. Marineinfanteri Divisjon" "4. Marineinfanteri Divisjon" "5. Marineinfanteri Divisjon" 
+	}
+	bergsjaeger_brigade = {
+		"1. Bergdivisjon" "2. Bergdivisjon" "3. Bergdivisjon" "4. Bergdivisjon" "5. Bergdivisjon" 
+	}
+	garrison_brigade = {
+		"1. Infanteridivisjon" "2. Infanteridivisjon" "3. Infanteridivisjon" "4. Infanteridivisjon" "5. Infanteridivisjon" "6. Infanteridivisjon" "7. Infanteridivisjon" "8. Infanteridivisjon" "9. Infanteridivisjon" "10. Infanteridivisjon" 
+	}
+	hq_brigade = {
+		"1. Hær" "2. Hær" 
+	}
+	militia_brigade = {
+		"Heimevernets 1. Divisjon" "Heimevernets 2. Divisjon" "Heimevernets 3. Divisjon" "Heimevernets 4. Divisjon" "Heimevernets 5. Divisjon" 
+	}
+	multi_role = {
+		"1. Jagergruppe" "2. Jagergruppe" "3. Jagergruppe" "4. Jagergruppe" "5. Jagergruppe" 
+	}
+	interceptor = {
+		"1. Jagergruppe" "2. Jagergruppe" "3. Jagergruppe" "4. Jagergruppe" "5. Jagergruppe" 
+	}
+	strategic_bomber = {
+		"1. Strategiske Flyvegruppe" "2. Strategiske Flyvegruppe" "3. Strategiske Flyvegruppe" "4. Strategiske Flyvegruppe" "5. Strategiske Flyvegruppe" 
+	}
+	tactical_bomber = {
+		"1. Taktiske Flyvegruppe" "2. Taktiske Flyvegruppe" "3. Taktiske Flyvegruppe" "4. Taktiske Flyvegruppe" "5. Taktiske Flyvegruppe" 
+	}
+	naval_bomber = {
+		"Marinens 1. Bombeflygruppe" "Marinens 2. Bombeflygruppe" "Marinens 3. Bombeflygruppe" "Marinens 4. Bombeflygruppe" "Marinens 5. Bombeflygruppe" 
+	}
+	cas = {
+		"Hærens 1. Bombeflygruppe" "Hærens 2. Bombeflygruppe" "Hærens 3. Bombeflygruppe" "Hærens 4. Bombeflygruppe" "Hærens 5. Bombeflygruppe" 
+	}
+	transport_plane = {
+		"Hærens 1. Transportgruppe" "Hærens 2. Transportgruppe" "Hærens 3. Transportgruppe" "Hærens 4. Transportgruppe" "Hærens 5. Transportgruppe" 
+	}
+	destroyer = {
+		"1. Destroyereskadre" "2. Destroyereskadre" "3. Destroyereskadre" "4. Destroyereskadre" "5. Destroyereskadre" 
+	}
+	transport_ship = {
+		"Marinens 1. Transporteskadre" "Marinens 2. Transporteskadre" "Marinens 3. Transporteskadre" "Marinens 4. Transporteskadre" "Marinens 5. Transporteskadre" 
+	}
+
+}
+
+ministers = {
+	581001 = {
+		name = "Sveinn Björnsson"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M581001
+		head_of_state = stern_imperialist
+		start_date = 1936.1.1
+	}
+	581002 = {
+		name = "Hermann Jonasson"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M581002
+		head_of_government = smiling_oilman
+		start_date = 1936.1.1
+	}
+	581003 = {
+		name = "Olafur Thors"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M581003
+		foreign_minister = ideological_crusader
+		head_of_government = flamboyant_tough_guy
+		start_date = 1936.1.1
+	}
+	581004 = {
+		name = "Einar Thordarsson"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581004
+		armament_minister = infantry_proponent
+		start_date = 1936.1.1
+	}
+	581005 = {
+		name = "Knud Dyby"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581005
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	581006 = {
+		name = "Stefan J. Stefansson"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581006
+		minister_of_intelligence = political_specialist
+		foreign_minister = great_compromiser
+		head_of_government = ambitious_union_boss
+		start_date = 1936.1.1
+	}
+	581007 = {
+		name = "Thorkil Sonne"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	581008 = {
+		name = "Walter Ulrich"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581008
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	581009 = {
+		name = "Ingvar Palmasson"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581009
+		chief_of_navy = indirect_approach_doctrine
+		armament_minister = submarine_proponent
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	581010 = {
+		name = "Jakob R.V. Møller"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581010
+		chief_of_air = air_superiority_doctrine
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	581014 = {
+		name = "Jørgen F.T. Lolle"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581014
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1942.1.1
+	}
+	581015 = {
+		name = "August Arendrup"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581015
+		chief_of_staff = school_of_mass_combat
+		start_date = 1942.1.1
+	}
+	581016 = {
+		name = "Kai Hammerich"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581016
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1942.1.1
+	}
+	581017 = {
+		name = "Paul Ipsen"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581017
+		chief_of_navy = open_seas_doctrine
+		start_date = 1942.1.1
+	}
+	581018 = {
+		name = "Asger E.V. Grandjean"
+		ideology = social_liberal
+		loyalty = 0.75
+		picture = M581018
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1942.1.1
+	}
+	581019 = {
+		name = "Asgeir Asgeirsson"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M581019
+		head_of_state = pig_headed_isolationist
+		start_date = 1952.1.1
+	}
+	581021 = {
+		name = "Vilhjalmur Thor"
+		ideology = social_liberal
+		loyalty = 1.00
+		picture = M581021
+		foreign_minister = apologetic_clerk
+		start_date = 1942.1.1
+	}
+	581023 = {
+		name = "Petur Magnusson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M581023
+		armament_minister = submarine_proponent
+		start_date = 1944.1.1
+	}
+	581024 = {
+		name = "Finnur Jönsson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M581024
+		minister_of_security = back_stabber
+		start_date = 1944.1.1
+	}
+	581026 = {
+		name = "Bjarni Benediktsson"
+		ideology = social_democrat
+		loyalty = 1.00
+		picture = M581026
+		foreign_minister = great_compromiser
+		minister_of_security = compassionate_gentleman
+		start_date = 1947.1.1
+	}
+	581027 = {
+		name = "Johann Th. Josefsson"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M581027
+		armament_minister = military_entrepreneur
+		start_date = 1947.1.1
+	}
+	581029 = {
+		name = "Björn Olofsson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M581029
+		armament_minister = battle_fleet_proponent
+		start_date = 1949.1.1
+	}
+	581030 = {
+		name = "Steingrimur Steinthorsson"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M581030
+		minister_of_intelligence = industrial_specialist
+		head_of_government = silent_workhorse
+		start_date = 1949.1.1
+	}
+	581032 = {
+		name = "Eysteinn Jönsson"
+		ideology = social_democrat
+		loyalty = 0.75
+		picture = M581032
+		armament_minister = administrative_genius
+		start_date = 1950.1.1
+	}
+	581033 = {
+		name = "Gudmundur Gudmundsson"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M581033
+		foreign_minister = the_cloak_n_dagger_schemer
+		start_date = 1953.1.1
+	}
+	581034 = {
+		name = "Einar Arnorsson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M581034
+		minister_of_security = crime_fighter
+		start_date = 1953.1.1
+	}
+}
+

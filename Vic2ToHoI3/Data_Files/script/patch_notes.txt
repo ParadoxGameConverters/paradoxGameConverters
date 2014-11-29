@@ -1,0 +1,84 @@
+- Fixed incorect tag assignment to marco polo prepare for war in the JAP.lua file
+- Added the lsActorTag variable to the trade section in the USA.lua file
+- Militia techs added to Russian AI ignore list
+- Russia will no longer build garrison units.
+- Russia build weights adjusted to build more armor and less infantry.
+- Germany build weights adjusted to build more armor and less infantry.
+- USA IC build weights adjust to build less ships and more air power.
+- Modified SPR/SPA join Axis check to be a penalty instead of a flat no and to take into account London/Gibraltar.
+- Russia had a duplicate decision method in the SOV.lua file, deleted the old one.
+- AI Nations in Factions will not offer alliances to other nations.
+- AI Nations will no longer offer NAPs to countries they are allied with or countries that are aligning to the same faction.
+- When an AI nation joins a faction it will break all of its alliances.
+- Cleaned up some un-unsed variables in ai_intelligence_minister.lua
+- Added a ValidFor check to the execution of laws in ai_politics_minister.lua
+- Made Italy and Japan higher influence priority for Germany
+- Turkey will be inclined to stay out of the war unless Moscow falls or the provinces on the Soviet/Turkish border fall
+- Turkey will be more inclined to trade with Germany
+- Portugal had is joining Axis penalty changed to a -50 chance if they have no neighbor in the Axis instead of impossible.
+- Added Poland, Denmark and Baltic States to Germanies list of countries not to waste time influencing.
+- Added an Ideology Bonus to the Influence score check in ai_diplomacy.lua
+- Fixed a small variable assignment in ai_production_minister to not retrieve the GetTechnologyStatus on each call.
+- Added a money buffer to the Trade AI of 0.10 so it will not always go down to a 0 (balance economy)
+- Italy and Japan will not join any faction that their Ideology group does not support regardless of influence.
+- Added a new hook for Influence ignore lists. This will cause the AI to never try and influence the specified countries even if to prevent them from joining an enemy.
+- Fixed an issue on how the AI calculates resources for building new IC.
+- AI Influence enhanced now and will rotate in and out countries to influence based on score
+- AI Influence now will cancel influences if its current diplomacy settings will not support it
+- AI had a parameter missing the production section for the Carrier call in the ai_production_minister.lua
+- AI production, fixed an issue if all unit counts where reaching 0 within a multiplier causing nothing to be built.
+- AI will no longer build planes if it has no airfields
+- AI countries that have no airfields should build atleast 1 on their capital if they have the tech
+- AI will now always build units with 2 infatry brigades and 2 random leg unit support brigades.
+- AI if the AI does not have any leg unit support brigades it will be 3 infantry brigade divisions.
+- AI fixed a bug where if a minor went to war it could cause them to mass build structures instead of units.
+- AI France will no longer research militia nor build garrison units.
+- AI France production shifted to build more land units.
+
+- AI Germany will no longer count a front with the UK unless the USA is involved so it will DOW the Soviets.
+- AI Germany will no longer count Spain as a front once Gibraltar is taken.
+- AI Minister of Security code enhanced to have an atwar and not atwar selection prio list.
+- AI Chief of Staff assignment enhanced for atwar and not atwar versions plus a manpower check.
+- AI Build CAGs now go against Naval portion of IC instead of Air IC
+- AI Build has a new Land to Air ratio (which can be overide by country specific files). AI will shift Air IC to Land if ratio is met.
+- AI Bulgaria will start aligning with Germany if they get ownership of the provinces from Romania.
+- AI Romania will start aligning with Germany if the Soviets take their border lands.
+- AI Finland will start aligning with Germany if the Soviets and Fins are atwar.
+- AI added a new hook in the Foreign Minister to do country specific politics etc... Call_ForeignMinister(minister)
+- AI passive spying will now use other missions including support our party.
+- AI slider supply AI enhanced for major powers so they will have larger stockpiles.
+- AI Added new weights using the Land to Air code for Japan, USA and UK.
+- AI did some performance and redability changes to the ai_politics_minister.lua
+- AI added a InfluenceMonitor hook for country specific files. It tells the AI which countries to monitor so they do not join other factions.
+- AI if the target influence country is already in their corner the AI should stop influencing it and move to another target
+- AI Home spies for Communist countries will stop trying to lower neutrality once it hits 70
+- AI Utils.IsFriend method was checking distance of 25 or less it has been changed to 5 or less.
+- AI fixed an issue where Commiterm nations could not trade to eachother.
+- AI Chinese Warlods will no longer build Cavalry and Garrisons.
+- AI Adjusted French build weights to produce more land units.
+- AI Adjusted French tech research weights to concentrate more on land.
+- AI minor performance tweeks to Mobilization code
+- AI France should now mobilize after Czechoslovakia is annexed.
+- AI will no longer attach support units to a marine division when building new ones.
+- AI only major powers will request military access (can be hooked though for minors).
+- AI added a new hook for country specific calls for requesting military access Call_MilitaryAccess
+- LUA renamed CallAlly to Call_Ally to be consistent with other hooks.
+- AI Demand Military Access Algorythm re-written.
+- AI Major powers convoy overbuild increaed from 20% to 30%
+- AI Major power max convoy serial runs changed from 4 to 2.
+- AI Germany has a special Demand Military Access hook for Sweden.
+- AI (minors and majors) should offer military access again.
+- AI invite to faction score re-written to take into account neutrality
+- AI fixed an issue with trading and Allowing Debts.
+- AI Armament minister assignment will now take into account resources produced in the country
+- LUA Moved CalculateHomeProduced from ai_production_minsiter to utils
+- LUA Modified ai_trade to use CalculateHomeProduced from utils
+- AI Minors will now try and keep a buffer of 2 convoys for trading.
+- AI Switzerland/Vichy should no longer give military access to anyone as long as they are not at war.
+- AI USA, now has his chance to join the allies percentage effected by Japans involvement in China and the current date in the game.
+- AI should now strive to have a larger trade surplus of crude oil as long as it has its economy balanced.
+- AI Russia while at peace will train troops as Bascia Training, once at war will do minimal training.
+- AI when influencing a country it will eventually shift spies to help by supporting their party
+- AI If Germany is atwar with Russia he will not DOW anyone else.
+- AI Germany should DOW Russia in typical Spring/Summer weather months.
+- AI Trade fixed an issue with countries that FreeTrade and AllowDebts if they have 0 money they would not trade.

@@ -1,0 +1,499 @@
+color = { 76  157  195 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"I Jalaväediviis" "II Jalaväediviis" "III Jalaväediviis" "IV Jalaväediviis" "V Jalaväediviis" "VI Jalaväediviis" "VII Jalaväediviis" "VIII Jalaväediviis" "IX Jalaväediviis" "X Jalaväediviis" "XI Jalaväediviis" 
+		"XII Jalaväediviis" "XIII Jalaväediviis" "XIV Jalaväediviis" "XV Jalaväediviis" "XVI Jalaväediviis" "XVII Jalaväediviis" "XVIII Jalaväediviis" "XIX Jalaväediviis" "XX Jalaväediviis" 
+	}
+	cavalry_brigade = {
+		"XXI Ratsaväediviis" "XXII Ratsaväediviis" "XXIII Ratsaväediviis" "XXIV Ratsaväediviis" "XXV Ratsaväediviis" "XXVI Ratsaväediviis" "XXVII Ratsaväediviis" "XXVIII Ratsaväediviis" "XXIX Ratsaväediviis" "XXX Ratsaväediviis" 
+	}
+	motorized_brigade = {
+		"XXXI Motoriseeritud diviis" "XXXII Motoriseeritud diviis" "XXXIII Motoriseeritud diviis" "XXXIV Motoriseeritud diviis" "XXXV Motoriseeritud diviis" "XXXVI Motoriseeritud diviis" "XXXVII Motoriseeritud diviis" "XXXVIII Motoriseeritud diviis" "XXXIX Motoriseeritud diviis" "XL Motoriseeritud diviis" 
+	}
+	mechanized_brigade = {
+		"XLI Mehhaniseeritud diviis" "XLII Mehhaniseeritud diviis" "XLIII Mehhaniseeritud diviis" "XLIV Mehhaniseeritud diviis" "XLV Mehhaniseeritud diviis" "XLVI Mehhaniseeritud diviis" "XLVII Mehhaniseeritud diviis" "XLVIII Mehhaniseeritud diviis" "XLIX Mehhaniseeritud diviis" "L Mehhaniseeritud diviis" 
+	}
+	light_armor_brigade = {
+		"LI Tankidiviis" "LII Tankidiviis" "LIII Tankidiviis" "LIV Tankidiviis" "LV Tankidiviis" "LVI Tankidiviis" "LVII Tankidiviis" "LVIII Tankidiviis" "LIX Tankidiviis" "LX Tankidiviis" 
+	}
+	armor_brigade = {
+		"LI Tankidiviis" "LII Tankidiviis" "LIII Tankidiviis" "LIV Tankidiviis" "LV Tankidiviis" "LVI Tankidiviis" "LVII Tankidiviis" "LVIII Tankidiviis" "LIX Tankidiviis" "LX Tankidiviis" 
+	}
+	paratrooper_brigade = {
+		"LXI Õhudessantdiviis" "LXII Õhudessantdiviis" "LXIII Õhudessantdiviis" "LXIV Õhudessantdiviis" "LXV Õhudessantdiviis" "LXVI Õhudessantdiviis" "LXVII Õhudessantdiviis" "LXVIII Õhudessantdiviis" "LXIX Õhudessantdiviis" "LXX Õhudessantdiviis" 
+	}
+	marine_brigade = {
+		"LXXI Merejalaväediviis" "LXXII Merejalaväediviis" "LXXIII Merejalaväediviis" "LXXIV Merejalaväediviis" "LXXV Merejalaväediviis" "LXXVI Merejalaväediviis" "LXXVII Merejalaväediviis" "LXXVIII Merejalaväediviis" "LXXIX Merejalaväediviis" "LXXX Merejalaväediviis" 
+	}
+	bergsjaeger_brigade = {
+		"LXXXI Mägidiviis" "LXXXII Mägidiviis" "LXXXIII Mägidiviis" "LXXXIV Mägidiviis" "LXXXV Mägidiviis" "LXXXVI Mägidiviis" "LXXXVII Mägidiviis" "LXXXVIII Mägidiviis" "LXXXIX Mägidiviis" "XC Mägidiviis" 
+	}
+	garrison_brigade = {
+		"I Jalaväediviis" "II Jalaväediviis" "III Jalaväediviis" "IV Jalaväediviis" "V Jalaväediviis" "VI Jalaväediviis" "VII Jalaväediviis" "VIII Jalaväediviis" "IX Jalaväediviis" "X Jalaväediviis" "XI Jalaväediviis" 
+		"XII Jalaväediviis" "XIII Jalaväediviis" "XIV Jalaväediviis" "XV Jalaväediviis" "XVI Jalaväediviis" "XVII Jalaväediviis" "XVIII Jalaväediviis" "XIX Jalaväediviis" "XX Jalaväediviis" 
+	}
+	hq_brigade = {
+		"Pääesikunta" "I Eesti Armeija" "II Eesti Armeija" "III Eesti Armeija" "IV Eesti Armeija" "V Eesti Armeija" "VI Eesti Armeija" "VII Eesti Armeija" 
+	}
+	militia_brigade = {
+		"XCI Miilitsadiviis" "XCII Miilitsadiviis" "XCIII Miilitsadiviis" "XCIV Miilitsadiviis" "XCV Miilitsadiviis" "XCVI Miilitsadiviis" "XCVII Miilitsadiviis" "XCVIII Miilitsadiviis" "XCIX Miilitsadiviis" "C Miilitsadiviis" "CI Miilitsadiviis" 
+		"CII Miilitsadiviis" "CIII Miilitsadiviis" "CIV Miilitsadiviis" "CV Miilitsadiviis" 
+	}
+	multi_role = {
+		"1. Hävitajate grupp" "2. Hävitajate grupp" "3. Hävitajate grupp" "4. Hävitajate grupp" "5. Hävitajate grupp" "6. Hävitajate grupp" "7. Hävitajate grupp" "8. Hävitajate grupp" "9. Hävitajate grupp" "10. Hävitajate grupp" 
+	}
+	strategic_bomber = {
+		"1. Strateegiliste pommitajate grupp" "2. Strateegiliste pommitajate grupp" "3. Strateegiliste pommitajate grupp" "4. Strateegiliste pommitajate grupp" "5. Strateegiliste pommitajate grupp" "6. Strateegiliste pommitajate grupp" "7. Strateegiliste pommitajate grupp" "8. Strateegiliste pommitajate grupp" "9. Strateegiliste pommitajate grupp" "10. Strateegiliste pommitajate grupp" 
+	}
+	tactical_bomber = {
+		"1. Taktikaliste pommitajate grupp" "2. Taktikaliste pommitajate grupp" "3. Taktikaliste pommitajate grupp" "4. Taktikaliste pommitajate grupp" "5. Taktikaliste pommitajate grupp" "6. Taktikaliste pommitajate grupp" "7. Taktikaliste pommitajate grupp" "8. Taktikaliste pommitajate grupp" "9. Taktikaliste pommitajate grupp" "10. Taktikaliste pommitajate grupp" 
+	}
+	naval_bomber = {
+		"1. Torpeedolennukite grupp" "2. Torpeedolennukite grupp" "3. Torpeedolennukite grupp" "4. Torpeedolennukite grupp" "5. Torpeedolennukite grupp" "6. Torpeedolennukite grupp" "7. Torpeedolennukite grupp" "8. Torpeedolennukite grupp" "9. Torpeedolennukite grupp" "10. Torpeedolennukite grupp" 
+	}
+	cas = {
+		"1 Sööstpommitajate grupp" "2 Sööstpommitajate grupp" "3 Sööstpommitajate grupp" "4 Sööstpommitajate grupp" "5 Sööstpommitajate grupp" "6 Sööstpommitajate grupp" "7 Sööstpommitajate grupp" "8 Sööstpommitajate grupp" "9. Sööstpommitajate grupp" "10. Sööstpommitajate grupp" 
+	}
+	transport_plane = {
+		"1st Õhutranspordi grupp" "2nd Õhutranspordi grupp" "3rd Õhutranspordi grupp" "4th Õhutranspordi grupp" "5th Õhutranspordi grupp" "6th Õhutranspordi grupp" "7th Õhutranspordi grupp" "8th Õhutranspordi grupp" "9th Õhutranspordi grupp" "10th Õhutranspordi grupp" 
+	}
+	battleship = {
+		"EML Tallinn" "EML Valga" "EML Tartu" "EML Mustvee" "EML Haapsalu" "EML Rapla" 
+	}
+	light_cruiser = {
+		"EML Muhu" "EML Hiiumaa" "EML Saaremaa" "EML Abruka" 
+	}
+	heavy_cruiser = {
+		"EML Tallinn" "EML Valga" "EML Tartu" "EML Mustvee" "EML Haapsalu" "EML Rapla" "EML Paldiski" "EML Kihnu" "EML Vormsi" 
+	}
+	battlecruiser = {
+		"EML Paldiski" "EML Muhu" "EML Hiiumaa" "EML Saaremaa" "EML Abruka" "EML Kihnu" "EML Vormsi" 
+	}
+	destroyer = {
+		"1. Torpeedopaatide flotill" "2. Torpeedopaatide flotill" "3. Torpeedopaatide flotill" "4. Torpeedopaatide flotill" "5. Torpeedopaatide flotill" "6. Torpeedopaatide flotill" "7. Torpeedopaatide flotill" "8. Torpeedopaatide flotill" "9. Torpeedopaatide flotill" "10. Torpeedopaatide flotill" 
+	}
+	carrier = {
+		"EML Tallinn" "EML Valga" "EML Tartu" "EML Muhu" "EML Hiiumaa" "EML Saaremaa" "EML Abruka" "EML Kihnu" "EML Vormsi" 
+	}
+	escort_carrier = {
+		"EML Sulev" "EML Wambola" "EML Vaindlo" "EML Olev" 
+	}
+	submarine = {
+		"1. Allveelaevade flotill" "2. Allveelaevade flotill" "3. Allveelaevade flotill" "4. Allveelaevade flotill" "5. Allveelaevade flotill" "6. Allveelaevade flotill" "7. Allveelaevade flotill" "8. Allveelaevade flotill" "9. Allveelaevade flotill" "10. Allveelaevade flotill" 
+	}
+	transport_ship = {
+		"1. Transpordilaevade flotill" "2. Transpordilaevade flotill" "3. Transpordilaevade flotill" "4. Transpordilaevade flotill" "5. Transpordilaevade flotill" "6. Transpordilaevade flotill" "7. Transpordilaevade flotill" "8. Transpordilaevade flotill" "9. Transpordilaevade flotill" "10. Transpordilaevade flotill" 
+	}
+
+}
+
+
+ministers = {
+	26001 = {
+		name = "Konstantin Päts"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M26001
+		head_of_state = barking_buffoon
+		head_of_government = happy_amateur
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	26003 = {
+		name = "Julius Seljamaa"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26003
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	26004 = {
+		name = "Karl Selter"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26004
+		armament_minister = administrative_genius
+		foreign_minister = biased_intellectual
+		start_date = 1936.1.1
+	}
+	26005 = {
+		name = "Kaarel Eenpalu"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26005
+		minister_of_security = crime_fighter
+		minister_of_intelligence = technical_specialist
+		head_of_government = ambitious_union_boss
+		start_date = 1936.1.1
+	}
+	26007 = {
+		name = "Nikolai Reek"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26007
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	26008 = {
+		name = "Johan Laidoner"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26008
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	26009 = {
+		name = "Voldemar Mere"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	26010 = {
+		name = "Richard Tomberg"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	26031 = {
+		name = "August Rei"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M26031
+		head_of_state = popular_figurehead
+		foreign_minister = ideological_crusader
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	26032 = {
+		name = "Jüri Uluots"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M26032
+		head_of_state = die_hard_reformer
+		head_of_government = smiling_oilman
+		minister_of_intelligence = industrial_specialist
+		head_of_government = smiling_oilman
+		start_date = 1940.1.1
+	}
+	26034 = {
+		name = "Hjalmar Mäe"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M26011
+		head_of_state = insignificant_layman
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = iron_fisted_brute
+		start_date = 1936.1.1
+	}
+	26035 = {
+		name = "Karl Sigismund Litzmann"
+		ideology = national_socialist
+		loyalty = 1.00
+		picture = M26035
+		head_of_state = resigned_generalissimo
+		minister_of_security = back_stabber
+		start_date = 1941.1.1
+	}
+	26036 = {
+		name = "Johannes Vares-Barbaruse"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M26021
+		head_of_state = power_hungry_demagogue
+		head_of_government = silent_workhorse
+		minister_of_intelligence = political_specialist
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	26038 = {
+		name = "Otto Tief"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M26038
+		head_of_government = happy_amateur
+		armament_minister = corrupt_kleptocrat
+		start_date = 1940.1.1
+	}
+	26039 = {
+		name = "Kaarel Liidak"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M26039
+		head_of_government = political_protege
+		foreign_minister = iron_fisted_brute
+		start_date = 1944.1.1
+	}
+	26044 = {
+		name = "Johannes Lauristin"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M26044
+		head_of_government = happy_amateur
+		foreign_minister = apologetic_clerk
+		start_date = 1939.1.1
+	}
+	26045 = {
+		name = "Oskar Sepre"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M26044
+		head_of_government = silent_workhorse
+		minister_of_intelligence = dismal_enigma
+		start_date = 1940.1.1
+	}
+	26046 = {
+		name = "Arnold Veimer"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M26046
+		head_of_government = naive_optimist
+		minister_of_intelligence = technical_specialist
+		start_date = 1944.1.1
+	}
+	26048 = {
+		name = "Ants Piip"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26048
+		foreign_minister = great_compromiser
+		start_date = 1939.1.1
+	}
+	26050 = {
+		name = "Friedrich Karl Akel"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M26050
+		foreign_minister = general_staffer
+		start_date = 1936.1.1
+	}
+	26054 = {
+		name = "Nigol Andresen"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26023
+		foreign_minister = iron_fisted_brute
+		start_date = 1940.1.1
+	}
+	26055 = {
+		name = "Hans Kruus"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26055
+		foreign_minister = ideological_crusader
+		start_date = 1944.1.1
+	}
+	26056 = {
+		name = "Leo Sepp"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26056
+		armament_minister = resource_industrialist
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	26057 = {
+		name = "Hugo Pärtelpoeg"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26057
+		armament_minister = laissez_faires_capitalist
+		start_date = 1944.1.1
+	}
+	26061 = {
+		name = "Alfred Vendt"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M26014
+		armament_minister = military_entrepreneur
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1936.1.1
+	}
+	26062 = {
+		name = "Juhan Narma-Nihtig"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26024
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	26063 = {
+		name = "Paul Keerdo"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26063
+		armament_minister = corrupt_kleptocrat
+		start_date = 1940.1.1
+	}
+	26064 = {
+		name = "Nikolaus Pilankor"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26064
+		armament_minister = military_entrepreneur
+		start_date = 1944.1.1
+	}
+	26065 = {
+		name = "Richard Veermaa"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26065
+		minister_of_security = silent_lawyer
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	26066 = {
+		name = "August Jürima"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26066
+		minister_of_security = crooked_kleptocrat
+		start_date = 1939.1.1
+	}
+	26067 = {
+		name = "Johannes Klesment"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26067
+		minister_of_security = compassionate_gentleman
+		start_date = 1944.1.1
+	}
+	26070 = {
+		name = "Oskar Angelus"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M26015
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	26072 = {
+		name = "Andrei Murro"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26072
+		minister_of_security = man_of_the_people
+		start_date = 1936.1.1
+	}
+	26073 = {
+		name = "Maksim Unt"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26025
+		minister_of_security = prince_of_terror
+		start_date = 1939.1.1
+	}
+	26074 = {
+		name = "Boris Kumm"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26074
+		minister_of_security = efficient_sociopath
+		head_of_state = pig_headed_isolationist
+		start_date = 1940.1.1
+	}
+	26075 = {
+		name = "Aleksander Rusev"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26075
+		minister_of_security = back_stabber
+		start_date = 1944.1.1
+	}
+	26083 = {
+		name = "Alexander Jaakson"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26083
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	26084 = {
+		name = "Johan Holberg"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26084
+		chief_of_staff = school_of_defence
+		start_date = 1941.1.1
+	}
+	26086 = {
+		name = "Johannes Soodla"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M26017
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	26087 = {
+		name = "Nikolay G. Karotamm"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26027
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	26091 = {
+		name = "Juhan Tuuling"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M26018
+		chief_of_army = decisive_battle_doctrine
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	26092 = {
+		name = "Alfons Rebane"
+		ideology = national_socialist
+		loyalty = 0.75
+		picture = M26092
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1941.1.1
+	}
+	26094 = {
+		name = "Alex Nirk"
+		ideology = market_liberal
+		loyalty = 0.75
+		picture = M26094
+		chief_of_navy = power_projection_doctrine
+		start_date = 1936.1.1
+	}
+	26101 = {
+		name = "Oskar Eiriksson"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M26030
+		chief_of_air = carpet_bombing_doctrine
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+}
+

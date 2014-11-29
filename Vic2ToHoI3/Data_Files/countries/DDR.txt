@@ -1,0 +1,401 @@
+color = { 119  130  145 }
+graphical_culture = German
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"1. Infanterie-Division" "5. Infanterie-Division" "6. Infanterie-Division" "7. Infanterie-Division" "8. Infanterie-Division" "9. Infanterie-Division" "10. Infanterie-Division" "11. Infanterie-Division" "12. Infanterie-Division" "15. Infanterie-Division" "17. Infanterie-Division" 
+		"18. Infanterie-Division" "21. Infanterie-Division" "23. Infanterie-Division" "24. Infanterie-Division" "25. Infanterie-Division" "26. Infanterie-Division" "28. Infanterie-Division" "30. Infanterie-Division" "31. Infanterie-Division" "32. Infanterie-Division" "34. Infanterie-Division" 
+		"35. Infanterie-Division" "36. Infanterie-Division" "44. Infanterie-Division" "45. Infanterie-Division" "46. Infanterie-Division" "50. Infanterie-Division" "52. Infanterie-Division" "56. Infanterie-Division" "57. Infanterie-Division" "58. Infanterie-Division" "60. Infanterie-Division" 
+		"61. Infanterie-Division" "62. Infanterie-Division" "68. Infanterie-Division" "69. Infanterie-Division" "71. Infanterie-Division" "72. Infanterie-Division" "73. Infanterie-Division" "75. Infanterie-Division" "76. Infanterie-Division" "78. Infanterie-Division" "79. Infanterie-Division" 
+		"81. Infanterie-Division" "82. Infanterie-Division" "83. Infanterie-Division" "86. Infanterie-Division" "87. Infanterie-Division" "88. Infanterie-Division" "93. Infanterie-Division" "94. Infanterie-Division" "95. Infanterie-Division" "96. Infanterie-Division" "98. Infanterie-Division" 
+		"143. Infanterie-Division" "161. Infanterie-Division" "162. Infanterie-Division" "163. Infanterie-Division" "164. Infanterie-Division" "167. Infanterie-Division" "168. Infanterie-Division" "169. Infanterie-Division" "170. Infanterie-Division" "181. Infanterie-Division" "183. Infanterie-Division" 
+		"196. Infanterie-Division" "197. Infanterie-Division" "206. Infanterie-Division" "207. Infanterie-Division" "208. Infanterie-Division" "209. Infanterie-Division" "38. Infanterie-Division" "39. Infanterie-Division" "65. Infanterie-Division" 
+	}
+	cavalry_brigade = {
+		"1. Kavallerie-Division" "3. Kavallerie-Division" "4. Kavallerie-Division" "5. Kavallerie-Division" "6. Kavallerie-Division" "7. Kavallerie-Division" "8. Kavallerie-Division" "9. Kavallerie-Division" "10. Kavallerie-Division" "11. Kavallerie-Division" "12. Kavallerie-Division" 
+		"13. Kavallerie-Division" "14. Kavallerie-Division" "15. Kavallerie-Division" "16. Kavallerie-Division" "17. Kavallerie-Division" "18. Kavallerie-Division" "19. Kavallerie-Division" "20. Kavallerie-Division" 
+	}
+	motorized_brigade = {
+		"2. Infanterie-Division (mot)" "3. Infanterie-Division (mot)" "13. Infanterie-Division (mot)" "20. Infanterie-Division (mot)" "29. Infanterie-Division (mot)" "60. Infanterie-Division (mot)" "36. Infanterie-Division (mot)" "10. Infanterie-Division (mot)" "14. Infanterie-Division (mot)" "16. Infanterie-Division (mot)" "18. Infanterie-Division (mot)" 
+		"25. Infanterie-Division (mot)" "345. Infanterie-Division (mot)" "386. Infanterie-Division (mot)" "463. Infanterie-Division (mot)" "464. Infanterie-Division (mot)" "465. Infanterie-Division (mot)" "466. Infanterie-Division (mot)" "468. Infanterie-Division (mot)" "470. Infanterie-Division (mot)" "471. Infanterie-Division (mot)" "472. Infanterie-Division (mot)" 
+		"473. Infanterie-Division (mot)" "474. Infanterie-Division (mot)" "475. Infanterie-Division (mot)" "476. Infanterie-Division (mot)" "477. Infanterie-Division (mot)" "478. Infanterie-Division (mot)" 
+	}
+	mechanized_brigade = {
+		"16. Panzergrenadier-Division" "233. Panzergrenadier-Division" "3. Panzergrenadier-Division" "29. Panzergrenadier-Division" "10. Panzergrenadier-Division" "18. Panzergrenadier-Division" "25. Panzergrenadier-Division" "15. Panzergrenadier-Division" "90. Panzergrenadier-Division" "20. Panzergrenadier-Division" "488. Panzergrenadier-Division" 
+		"489. Panzergrenadier-Division" "490. Panzergrenadier-Division" "491. Panzergrenadier-Division" "492. Panzergrenadier-Division" "493. Panzergrenadier-Division" "494. Panzergrenadier-Division" "495. Panzergrenadier-Division" "496. Panzergrenadier-Division" "497. Panzergrenadier-Division" "498. Panzergrenadier-Division" "499. Panzergrenadier-Division" 
+		"500. Panzergrenadier-Division" 
+	}
+	light_armor_brigade = {
+		"1. Panzer-Division" "2. Panzer-Division" "3. Panzer-Division" "4. Panzer-Division" "5. Panzer-Division" "10. Panzer-Division" "6. Panzer-Division" "7. Panzer-Division" "8. Panzer-Division" "9. Panzer-Division" "11. Panzer-Division" 
+		"14. Panzer-Division" "12. Panzer-Division" "13. Panzer-Division" "15. Panzer-Division" "16. Panzer-Division" "17. Panzer-Division" "18. Panzer-Division" "19. Panzer-Division" "20. Panzer-Division" "21. Panzer-Division" "22. Panzer-Division" 
+		"23. Panzer-Division" "24. Panzer-Division" "25. Panzer-Division" "26. Panzer-Division" "27. Panzer-Division" 
+	}
+	armor_brigade = {
+		"1. Panzer-Division" "2. Panzer-Division" "3. Panzer-Division" "4. Panzer-Division" "5. Panzer-Division" "10. Panzer-Division" "6. Panzer-Division" "7. Panzer-Division" "8. Panzer-Division" "9. Panzer-Division" "11. Panzer-Division" 
+		"14. Panzer-Division" "12. Panzer-Division" "13. Panzer-Division" "15. Panzer-Division" "16. Panzer-Division" "17. Panzer-Division" "18. Panzer-Division" "19. Panzer-Division" "20. Panzer-Division" "22. Panzer-Division" "23. Panzer-Division" 
+		"24. Panzer-Division" "25. Panzer-Division" "26. Panzer-Division" "27. Panzer-Division" 
+	}
+	paratrooper_brigade = {
+		"1. Fallschirmjäger Division" "2. Fallschirmjäger Division" "3. Fallschirmjäger Division" "4. Fallschirmjäger Division" "5. Fallschirmjäger Division" "6. Fallschirmjäger Division" "7. Fallschirmjäger Division" "9. Fallschirmjäger Division" "8. Fallschirmjäger Division" "10. Fallschirmjäger Division" 
+	}
+	marine_brigade = {
+		"1. Marine-Sturm-Division" "2. Marine-Sturm-Division" "3. Marine-Sturm-Division" "3. Marine-Sturm-Division" "4. Marine-Sturm-Division" "5. Marine-Sturm-Division" "6. Marine-Sturm-Division" "7. Marine-Sturm-Division" "8. Marine-Sturm-Division" "9. Marine-Sturm-Division" "10. Marine-Sturm-Division" 
+		"11. Marine-Sturm-Division" "12. Marine-Sturm-Division" "13. Marine-Sturm-Division" "14. Marine-Sturm-Division" "15. Marine-Sturm-Division" 
+	}
+	bergsjaeger_brigade = {
+		"1. Gebirgsjäger-Division" "2. Gebirgsjäger-Division" "3. Gebirgsjäger-Division" "6. Gebirgsjäger-Division" "4. Gebirgsjäger-Division" "5. Gebirgsjäger-Division" "7. Gebirgsjäger-Division" "188. Gebirgsjäger-Division" "157. Gebirgsjäger-Division" "9. Gebirgsjäger-Division" "8. Gebirgsjäger-Division" 
+		"1. Skijäger-Division" 
+	}
+	garrison_brigade = {
+		"52. Sicherungs-Division" "201. Sicherungs-Division" "203. Sicherungs-Division" "207. Sicherungs-Division" "213. Sicherungs-Division" "141. Reserve-Division" "221. Sicherungs-Division" "281. Sicherungs-Division" "285. Sicherungs-Division" "147. Reserve-Division" "286. Sicherungs-Division" 
+		"325. Sicherungs-Division" "400. Ersatz-Division" "390. Sicherungs-Division" "391. Sicherungs-Division" "148. Reserve-Division" "403. Sicherungs-Division" "444. Sicherungs-Division" "151. Reserve-Division" "454. Sicherungs-Division" "41. Festungs-Division" "717. Sicherungs-Division" 
+		"133. Festungs-Division" "718. Sicherungs-Division" "153. Reserve-Division" "719. Sicherungs-Division" "402. Ausbildungs-Division" "720. Sicherungs-Division" "721. Sicherungs-Division" "154. Reserve-Division" "722. Sicherungs-Division" "723. Sicherungs-Division" "724. Sicherungs-Division" 
+		"156. Reserve-Division" "725. Sicherungs-Division" "726. Sicherungs-Division" "157. Reserve-Division" "727. Sicherungs-Division" "158. Reserve-Division" "159. Reserve-Division" "856. Sicherungs-Division" "859. Sicherungs-Division" "160. Reserve-Division" "877. Sicherungs-Division" 
+		"735. Sicherungs-Division" "165. Reserve-Division" "812. Sicherungs-Division" "895. Sicherungs-Division" "166. Reserve-Division" "742. Sicherungs-Division" "171. Reserve-Division" "785. Sicherungs-Division" "172. Reserve-Division" "173. Reserve-Division" "182. Reserve-Division" 
+		"188. Reserve-Gebirgs-Division" 
+	}
+	hq_brigade = {
+		"1. Armee" "2. Armee" "3. Armee" "Heeresgruppe A" "4. Armee" "5. Armee" "6. Armee" "Heeresgruppe B" "7. Armee" "8. Armee" "9. Armee" 
+		"Heeresgruppe C" "10. Armee" "11. Armee" "12. Armee" "Heeresgruppe D" "14. Armee" "15. Armee" "16. Armee" "Heeresgruppe E" "17. Armee" "18. Armee" 
+		"19. Armee" "Heeresgruppe F" "21. Armee" "Heeresgruppe G" "24. Armee" "25. Armee" "Heeresgruppe H" 
+	}
+	militia_brigade = {
+		"1. Luftwaffen-Feld-Division" "2. Luftwaffen-Feld-Division" "3. Luftwaffen-Feld-Division" "4. Luftwaffen-Feld-Division" "5. Luftwaffen-Feld-Division" "6. Luftwaffen-Feld-Division" "7. Luftwaffen-Feld-Division" "8. Luftwaffen-Feld-Division" "9. Luftwaffen-Feld-Division" "10. Luftwaffen-Feld-Division" "6. Volksgrenadier Division" 
+		"9. Volksgrenadier Division" "12. Volksgrenadier Division" "16. Volksgrenadier Division" "18. Volksgrenadier Division" "19. Volksgrenadier Division" "22. Volksgrenadier Division" "26. Volksgrenadier Division" "31. Volksgrenadier Division" "36. Volksgrenadier Division" "45. Volksgrenadier Division" "47. Volksgrenadier Division" 
+		"62. Volksgrenadier Division" "79. Volksgrenadier Division" "167. Volksgrenadier Division" "183. Volksgrenadier Division" "211. Volksgrenadier Division" "212. Volksgrenadier Division" "246. Volksgrenadier Division" "256. Volksgrenadier Division" 
+	}
+	multi_role = {
+		"JG 1 'Fritz Schmenkel'" "JG 2 'Karl Liebknecht'" "JG 3 'Wladimir Komaroff'" "JG 7 'Wilhelm Pieck'" "JG 8 'Hermann Matern'" "JG 9 'Heinrich Rau'" "JG 37 'Klement Gottwald'" "JG 77 'Gebhard Lebrecht von Blücher'" "MFG 28 'Paul Wieczorek'" "JG 15 'Heinz Kapelle'" "JG 25 'Leander Ratz'" 
+		"JG 35 'Lambert Horn'" "JG 16 'Albert Kuntz'" "Jagdfliegergeschwader 4" "Jagdfliegergeschwader 5" "Jagdfliegergeschwader 6" "Jagdfliegergeschwader 10" "Jagdfliegergeschwader 19" "Jagdfliegergeschwader 33" "Jagdfliegergeschwader 39" "Jagdfliegergeschwader 44" 
+	}
+	interceptor = {
+		"JG 1 'Fritz Schmenkel'" "JG 2 'Karl Liebknecht'" "JG 3 'Wladimir Komaroff'" "JG 7 'Wilhelm Pieck'" "JG 8 'Hermann Matern'" "JG 9 'Heinrich Rau'" "JG 37 'Klement Gottwald'" "JG 77 'Gebhard Lebrecht von Blücher'" "MFG 28 'Paul Wieczorek'" "JG 15 'Heinz Kapelle'" "JG 25 'Leander Ratz'" 
+		"JG 35 'Lambert Horn'" "JG 16 'Albert Kuntz'" "Jagdfliegergeschwader 4" "Jagdfliegergeschwader 5" "Jagdfliegergeschwader 6" "Jagdfliegergeschwader 10" "Jagdfliegergeschwader 19" "Jagdfliegergeschwader 33" "Jagdfliegergeschwader 39" "Jagdfliegergeschwader 44" 
+	}
+	strategic_bomber = {
+		"Kampfgeschwader 1" "Kampfgeschwader 4" "Kampfgeschwader 26" "Kampfgeschwader 27" "Kampfgeschwader 28" "Kampfgeschwader 51" "Kampfgeschwader 53" "Kampfgeschwader 54" "KG 55 'Greif'" "Kampfgeschwader 100" "Kampfgeschwader 6" 
+		"Ergänzungskampfgruppe 2" "Ergänzungskampfgruppe 3" "Ergänzungskampfgruppe 4" "Ergänzungskampfgruppe 5" "Ergänzungskampfgruppe 6" "Kampfgeschwader 103" "Kampfgeschwader 104" "Kampfgeschwader 105" "Kampfgeschwader 106" "Kampfgeschwader 107" "Kampfgeschwader 108" 
+		"Kampfgeschwader 109" "Kampfgeschwader 110" "Kampfgeschwader 111" "Kampfgeschwader 112" "Kampfgeschwader 113" "Kampfgeschwader 114" "Kampfgeschwader 115" "Kampfgeschwader 116" "Kampfgeschwader 117" "Kampfgeschwader 118" "Kampfgeschwader 119" 
+		"Kampfgeschwader 120" "Kampfgeschwader 121" "Kampfgeschwader 122" "Kampfgeschwader 123" "Kampfgeschwader 124" "Kampfgeschwader 125" "Kampfgeschwader 126" "Kampfgeschwader 127" 
+	}
+	tactical_bomber = {
+		"Kampfgeschwader 60" "Kampfgeschwader 101" "Kampfgeschwader 102" "Kampfgeschwader 66" "Kampfgeschwader 200" "Kampfgeschwader 201" "Kampfgeschwader 202" "Kampfgeschwader 203" "Kampfgeschwader 204" "Kampfgeschwader 205" "Kampfgeschwader 206" 
+		"Kampfgeschwader 207" "Kampfgeschwader 208" "Kampfgeschwader 209" "Kampfgeschwader 210" "Kampfgeschwader 211" "Kampfgeschwader 212" "Kampfgeschwader 213" "Kampfgeschwader 214" "Kampfgeschwader 215" "Kampfgeschwader 216" "Kampfgeschwader 217" 
+		"Kampfgeschwader 218" "Kampfgeschwader 219" "Kampfgeschwader 220" "Kampfgeschwader 221" 
+	}
+	naval_bomber = {
+		"Küstenfliegergruppe 106" "Küstenfliegergruppe 206" "Küstenfliegergruppe 306" "Küstenfliegergruppe 406" "Küstenfliegergruppe 506" "Küstenfliegergruppe 606" "Küstenfliegergruppe 706" "Küstenfliegergruppe 806" "Küstenfliegergruppe 906" "Küstenfliegergruppe 206" "Küstenfliegergruppe 306" 
+		"Küstenfliegergruppe 806" "Küstenfliegergruppe 1006" "Küstenfliegergruppe 1106" "Küstenfliegergruppe 1206" "Küstenfliegergruppe 1306" "Küstenfliegergruppe 1406" "Küstenfliegergruppe 1506" "Küstenfliegergruppe 1606" "Küstenfliegergruppe 1706" "Küstenfliegergruppe 1806" "Seeaufklärungsgruppe 125" 
+		"Seeaufklärungsgruppe 126" "Seeaufklärungsgruppe 127" "Seeaufklärungsgruppe 128" "Seeaufklärungsgruppe 129" "Seeaufklärungsgruppe 130" "Seeaufklärungsgruppe 131" "Trägergruppe 186" "Trägergruppe 196" "Trägergruppe 206" "Trägergruppe 216" "Trägergruppe 217" 
+		"Trägergruppe 227" "Trägergruppe 237" "Seeaufklärungsgruppe 128" "Seeaufklärungsgruppe 129" "Seeaufklärungsgruppe 130" "Trägergruppe 247" "Trägergruppe 257" "Trägergruppe 264" "Trägergruppe 279" "Trägergruppe 285" "Trägergruppe 299" 
+		"Trägergruppe 356" "Seeaufklärungsgruppe 131" "Seeaufklärungsgruppe 132" "Seeaufklärungsgruppe 133" "Seeaufklärungsgruppe 134" "Seeaufklärungsgruppe 135" "Seeaufklärungsgruppe 136" "Seeaufklärungsgruppe 137" "Seeaufklärungsgruppe 138" 
+	}
+	cas = {
+		"Sturzkampfgeschwader 51" "Stukageschwader 2 'Heinz Kapelle'" "Sturzkampfgeschwader 76" "Sturzkampfgeschwader 77" "Sturzkampfgeschwader 1" "Sturzkampfgeschwader 3" "Schnellkampfgeschwader 210" "Schlachtgeschwader 1" "Sturzkampfgeschwader 5" "Schnellkampfgeschwader 10" "Sturzkampfgeschwader 101" 
+		"Schlachtgeschwader 2" "Schlachtgeschwader 101" "Sturzkampfgeschwader 102" "Sturzkampfgeschwader 151" "Schlachtgeschwader 152" "Schlachtgeschwader 104" "Sturzkampfgeschwader 160" "Sturzkampfgeschwader 162" "Sturzkampfgeschwader 163" "Sturzkampfgeschwader 165" "Sturzkampfgeschwader 167" 
+		"Sturzkampfgeschwader 168" "Sturzkampfgeschwader 169" "Sturzkampfgeschwader 170" "Sturzkampfgeschwader 171" "Sturzkampfgeschwader 172" "Sturzkampfgeschwader 182" "Sturzkampfgeschwader 183" "Sturzkampfgeschwader 184" "Sturzkampfgeschwader 186" "Sturzkampfgeschwader 192" "Sturzkampfgeschwader 195" 
+			}
+	transport_plane = {
+		"Kampfgruppe zbV 9" "Kampfgeschwader zbV 1" "Kampfgeschwader zbV 2" "Kampfgeschwader zbV 4" "Kampfgeschwader zbV 5" "Kampfgeschwader zbV 9" "Kampfgeschwader zbV 172" "Transportgeschwader 1" "Transportgeschwader 2" "Transportgeschwader 3" "Transportgeschwader 4" 
+		"Transportgeschwader 5" "Transportgeschwader 10" "Transportgeschwader 20" "Transportgeschwader 30" "Transportgeschwader 110" "Kampfgruppe zbV 106" "Kampfgruppe zbV 108" "Kampfgruppe zbV 50" "Kampfgruppe zbV 102" "Kampfgruppe zbV 104" "Kampfgruppe zbV 105" 
+		"Kampfgruppe zbV 400" "Kampfgruppe zbV 500" "Kampfgruppe zbV 600" "Kampfgruppe zbV 700" "Kampfgruppe zbV 800" "Kampfgruppe zbV 900" "Kampfgruppe zbV 100" "Kampfgruppe zbV 200" "Kampfgruppe zbV 300" 
+	}
+	battleship = {
+		"VMS Karl Marx" "VMS Friedrich Engels" "VMS Kurt Barthel" "VMS Karl Liebknecht" "VMS Heinz Kapelle" "VMS Rosa Luxemburg" "VMS Walter Ulbrecht" "VMS Walter Steffens" "VMS Stephan Jantzen" 
+	}
+	light_cruiser = {
+		"VMS Rostock" "VMS Berlin" "VMS Halle " "VMS Kurt Barthel" "VMS Karl Liebknecht" "VMS Heinz Kapelle" "VMS Rosa Luxemburg" "VMS Walter Ulbrecht" "VMS Walter Steffens" "VMS Hiddensee" "VMS Stephan Jantzen" 
+		"VMS Peenemünde" "VMS Dranske" 
+	}
+	heavy_cruiser = {
+		"VMS Rostock" "VMS Berlin" "VMS Halle " "VMS Kurt Barthel" "VMS Karl Liebknecht" "VMS Heinz Kapelle" "VMS Rosa Luxemburg" "VMS Walter Ulbrecht" "VMS Walter Steffens" "VMS Hiddensee" "VMS Stephan Jantzen" 
+		"VMS Peenemünde" "VMS Dranske" 
+	}
+	battlecruiser = {
+		"VMS Karl Marx" "VMS Friedrich Engels" "VMS Kurt Barthel" "VMS Karl Liebknecht" "VMS Heinz Kapelle" "VMS Rosa Luxemburg" "VMS Walter Ulbrecht" "VMS Walter Steffens" "VMS Stephan Jantzen" 
+	}
+	destroyer = {
+		"1. Zerstörergeschwader" "2. Zerstörergeschwader" "3. Zerstörergeschwader" "4. Zerstörergeschwader" "5. Zerstörergeschwader" "6. Zerstörergeschwader" "7. Zerstörergeschwader" "8. Zerstörergeschwader" "9. Zerstörergeschwader" "10. Zerstörergeschwader" "11. Zerstörergeschwader" 
+		"12. Zerstörergeschwader" "13. Zerstörergeschwader" "14. Zerstörergeschwader" "15. Zerstörergeschwader" "16. Zerstörergeschwader" "17. Zerstörergeschwader" "18. Zerstörergeschwader" "19. Zerstörergeschwader" "20. Zerstörergeschwader" "21. Zerstörergeschwader" "22. Zerstörergeschwader" 
+		"23. Zerstörergeschwader" "24. Zerstörergeschwader" "25. Zerstörergeschwader" "26. Zerstörergeschwader" "27. Zerstörergeschwader" "28. Zerstörergeschwader" "29. Zerstörergeschwader" "30. Zerstörergeschwader" 
+	}
+	carrier = {
+		"VMS Karl Marx" "VMS Friedrich Engels" "VMS Kurt Barthel" "VMS Karl Liebknecht" "VMS Heinz Kapelle" "VMS Rosa Luxemburg" "VMS Walter Ulbrecht" "VMS Walter Steffens" 
+	}
+	escort_carrier = {
+		"VMS Berlin" "VMS Halle" "VMS Rostock" "VMS Ernst Thälmann" "VMS Karl Liebknecht" 
+	}
+	submarine = {
+		"1. Unterseebootsflottille" "2. Unterseebootsflottille" "3. Unterseebootsflottille" "5. Unterseebootsflottille" "6. Unterseebootsflottille" "7. Unterseebootsflottille" "9. Unterseebootsflottille" "10. Unterseebootsflottille" "11. Unterseebootsflottille" "12. Unterseebootsflottille" "13. Unterseebootsflottille" 
+		"14. Unterseebootsflottille" "23. Unterseebootsflottille" "29. Unterseebootsflottille" "30. Unterseebootsflottille" "33. Unterseebootsflottille" "35. Unterseebootsflottille" "36. Unterseebootsflottille" "37. Unterseebootsflottille" "38. Unterseebootsflottille" "39. Unterseebootsflottille" "40. Unterseebootsflottille" 
+			}
+	transport_ship = {
+		"1. Truppentransporterflottille" "2. Truppentransporterflottille" "3. Truppentransporterflottille" "4. Truppentransporterflottille" "5. Truppentransporterflottille" "6. Truppentransporterflottille" "7. Truppentransporterflottille" "8. Truppentransporterflottille" "9. Truppentransporterflottille" "10. Truppentransporterflottille" "11. Truppentransporterflottille" 
+		"12. Truppentransporterflottille" "13. Truppentransporterflottille" "14. Truppentransporterflottille" "15. Truppentransporterflottille" "16. Truppentransporterflottille" "17. Truppentransporterflottille" "18. Truppentransporterflottille" "19. Truppentransporterflottille" "20. Truppentransporterflottille" "21. Truppentransporterflottille" "22. Truppentransporterflottille" 
+		"23. Truppentransporterflottille" "24. Truppentransporterflottille" "25. Truppentransporterflottille" "26. Truppentransporterflottille" "27. Truppentransporterflottille" "28. Truppentransporterflottille" "29. Truppentransporterflottille" "30. Truppentransporterflottille" 
+	}
+
+}
+
+
+ministers = {
+	507001 = {
+		name = "Johannes Dieckmann"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M507001
+		head_of_state = pig_headed_isolationist
+		start_date = 1936.1.1
+	}
+	507002 = {
+		name = "Walter Ulbricht"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M53
+		head_of_government = ambitious_union_boss
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = prince_of_terror
+		start_date = 1936.1.1
+	}
+	507003 = {
+		name = "Georg Derlinger"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M507003
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	507004 = {
+		name = "Willi Stoph"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M507004
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	507005 = {
+		name = "Karl Steinhoff"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M507005
+		minister_of_security = crooked_kleptocrat
+		start_date = 1936.1.1
+	}
+	507006 = {
+		name = "Wilhelm Zaisser"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M507006
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	507007 = {
+		name = "Ernst Wollweber"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M27
+		chief_of_staff = school_of_mass_combat
+		minister_of_intelligence = industrial_specialist
+		start_date = 1936.1.1
+	}
+	507008 = {
+		name = "Hans Kahle"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M28
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1936.1.1
+	}
+	507009 = {
+		name = "Fritz Scheelen"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M29
+		chief_of_navy = base_control_doctrine
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	507010 = {
+		name = "Willi Bredel"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M30
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1936.1.1
+	}
+	507012 = {
+		name = "Anton Ackermann"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M507012
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	507013 = {
+		name = "Albert Kuntz"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M105
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	507014 = {
+		name = "Jakob Kaiser"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M507014
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	507015 = {
+		name = "Andres Hermes"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M507015
+		armament_minister = administrative_genius
+		start_date = 1936.1.1
+	}
+	507016 = {
+		name = "Wilhelm Pieck"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M507016
+		armament_minister = theoretical_scientist
+		head_of_state = insignificant_layman
+		start_date = 1936.1.1
+	}
+	507017 = {
+		name = "Julius Leber"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M133
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	507019 = {
+		name = "Wilhelm Külz"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M507019
+		minister_of_security = crime_fighter
+		start_date = 1936.1.1
+	}
+	507020 = {
+		name = "Otto Nuschke"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M507020
+		minister_of_security = silent_lawyer
+		start_date = 1936.1.1
+	}
+	507021 = {
+		name = "Otto Grotewohl"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M507021
+		minister_of_security = efficient_sociopath
+		start_date = 1936.1.1
+	}
+	507022 = {
+		name = "Heinrich Müller"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M26
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	507024 = {
+		name = "Erich Mielke"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M507024
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	507026 = {
+		name = "Erich Weinert"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M152
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	507027 = {
+		name = "Erwin Jollasse"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = L507120
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1936.1.1
+	}
+	507028 = {
+		name = "Xaver Sattler"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = L507227
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	507029 = {
+		name = "Otto Korfes"
+		ideology = leninist
+		loyalty = 1.00
+		picture = L169
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	507030 = {
+		name = "Walter Freytag"
+		ideology = leninist
+		loyalty = 1.00
+		picture = L77
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1936.1.1
+	}
+	507031 = {
+		name = "Otto Groos"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = L507158
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	507032 = {
+		name = "Franz Nowak"
+		ideology = leninist
+		loyalty = 1.00
+		picture = L507220
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	507033 = {
+		name = "Wilhelm Speidel"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = L507237
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+}

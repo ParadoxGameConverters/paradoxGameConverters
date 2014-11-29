@@ -1,0 +1,483 @@
+color = { 188  123  103 }
+graphical_culture = Japanese
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Bubing Di 1 Shi" "Bubing Di 2 Shi" "Bubing Di 3 Shi" "Bubing Di 4 Shi" "Bubing Di 5 Shi" "Bubing Di 6 Shi" "Bubing Di 7 Shi" "Bubing Di 8 Shi" "Bubing Di 9 Shi" "Bubing Di 10 Shi" "Bubing Di 11 Shi" 
+		"Bubing Di 12 Shi" "Bubing Di 13 Shi" "Bubing Di 14 Shi" "Bubing Di 15 Shi" "Bubing Di 16 Shi" "Bubing Di 17 Shi" "Bubing Di 18 Shi" "Bubing Di 19 Shi" "Bubing Di 20 Shi" "Bubing Di 21 Shi" "Bubing Di 22 Shi" 
+		"Bubing Di 23 Shi" "Bubing Di 24 Shi" "Bubing Di 25 Shi" "Bubing Di 26 Shi" "Bubing Di 27 Shi" "Bubing Di 28 Shi" "Bubing Di 29 Shi" "Bubing Di 30 Shi" "Bubing Di 31 Shi" "Bubing Di 32 Shi" "Bubing Di 33 Shi" 
+		"Bubing Di 34 Shi" "Bubing Di 35 Shi" "Bubing Di 36 Shi" "Bubing Di 37 Shi" "Bubing Di 38 Shi" "Bubing Di 39 Shi" "Bubing Di 40 Shi" "Bubing Di 41 Shi" "Bubing Di 42 Shi" "Bubing Di 43 Shi" "Bubing Di 44 Shi" 
+		"Bubing Di 45 Shi" "Bubing Di 46 Shi" "Bubing Di 47 Shi" "Bubing Di 48 Shi" "Bubing Di 49 Shi" "Bubing Di 50 Shi" "Bubing Di 51 Shi" "Bubing Di 52 Shi" "Bubing Di 53 Shi" "Bubing Di 54 Shi" "Bubing Di 55 Shi" 
+		"Bubing Di 56 Shi" "Bubing Di 57 Shi" "Bubing Di 58 Shi" "Bubing Di 59 Shi" "Bubing Di 60 Shi" "Bubing Di 61 Shi" "Bubing Di 62 Shi" "Bubing Di 63 Shi" "Bubing Di 64 Shi" "Bubing Di 65 Shi" "Bubing Di 66 Shi" 
+		"Bubing Di 67 Shi" "Bubing Di 68 Shi" "Bubing Di 69 Shi" "Bubing Di 70 Shi" "Bubing Di 71 Shi" "Bubing Di 72 Shi" "Bubing Di 73 Shi" "Bubing Di 74 Shi" "Bubing Di 75 Shi" "Bubing Di 76 Shi" "Bubing Di 77 Shi" 
+		"Bubing Di 78 Shi" "Bubing Di 79 Shi" "Bubing Di 80 Shi" "Bubing Di 81 Shi" "Bubing Di 82 Shi" "Bubing Di 83 Shi" "Bubing Di 84 Shi" "Bubing Di 85 Shi" "Bubing Di 86 Shi" "Bubing Di 87 Shi" "Bubing Di 88 Shi" 
+		"Bubing Di 89 Shi" "Bubing Di 90 Shi" "Bubing Di 91 Shi" "Bubing Di 92 Shi" "Bubing Di 93 Shi" "Bubing Di 94 Shi" "Bubing Di 95 Shi" "Bubing Di 96 Shi" "Bubing Di 97 Shi" "Bubing Di 98 Shi" "Bubing Di 99 Shi" 
+		"Bubing Di 100 Shi" "Bubing Di 101 Shi" "Bubing Di 102 Shi" "Bubing Di 103 Shi" "Bubing Di 104 Shi" "Bubing Di 105 Shi" "Bubing Di 106 Shi" "Bubing Di 107 Shi" "Bubing Di 108 Shi" "Bubing Di 109 Shi" "Bubing Di 110 Shi" 
+		"Bubing Di 111 Shi" "Bubing Di 112 Shi" "Bubing Di 113 Shi" "Bubing Di 114 Shi" "Bubing Di 115 Shi" "Bubing Di 116 Shi" "Bubing Di 117 Shi" "Bubing Di 118 Shi" "Bubing Di 119 Shi" "Bubing Di 120 Shi" "Bubing Di 121 Shi" 
+		"Bubing Di 122 Shi" "Bubing Di 123 Shi" "Bubing Di 124 Shi" "Bubing Di 125 Shi" "Bubing Di 126 Shi" "Bubing Di 127 Shi" "Bubing Di 128 Shi" "Bubing Di 129 Shi" "Bubing Di 130 Shi" "Bubing Di 131 Shi" "Bubing Di 132 Shi" 
+		"Bubing Di 133 Shi" "Bubing Di 134 Shi" "Bubing Di 135 Shi" "Bubing Di 136 Shi" "Bubing Di 137 Shi" "Bubing Di 138 Shi" "Bubing Di 139 Shi" "Bubing Di 140 Shi" "Bubing Di 141 Shi" "Bubing Di 142 Shi" "Bubing Di 143 Shi" 
+		"Bubing Di 144 Shi" "Bubing Di 145 Shi" "Bubing Di 146 Shi" "Bubing Di 147 Shi" "Bubing Di 148 Shi" "Bubing Di 149 Shi" "Bubing Di 150 Shi" "Bubing Di 151 Shi" "Bubing Di 152 Shi" "Bubing Di 153 Shi" "Bubing Di 154 Shi" 
+		"Bubing Di 155 Shi" "Bubing Di 156 Shi" "Bubing Di 157 Shi" "Bubing Di 158 Shi" "Bubing Di 159 Shi" "Bubing Di 160 Shi" "Bubing Di 161 Shi" "Bubing Di 162 Shi" "Bubing Di 163 Shi" "Bubing Di 164 Shi" "Bubing Di 165 Shi" 
+		"Bubing Di 166 Shi" "Bubing Di 167 Shi" "Bubing Di 168 Shi" "Bubing Di 169 Shi" "Bubing Di 170 Shi" "Bubing Di 171 Shi" "Bubing Di 172 Shi" "Bubing Di 173 Shi" "Bubing Di 174 Shi" "Bubing Di 175 Shi" "Bubing Di 176 Shi" 
+		"Bubing Di 177 Shi" "Bubing Di 178 Shi" "Bubing Di 179 Shi" "Bubing Di 180 Shi" "Bubing Di 181 Shi" "Bubing Di 182 Shi" "Bubing Di 183 Shi" "Bubing Di 184 Shi" "Bubing Di 185 Shi" "Bubing Di 186 Shi" "Bubing Di 187 Shi" 
+		"Bubing Di 188 Shi" "Bubing Di 189 Shi" "Bubing Di 190 Shi" "Bubing Di 191 Shi" "Bubing Di 192 Shi" "Bubing Di 193 Shi" "Bubing Di 194 Shi" "Bubing Di 195 Shi" "Bubing Di 196 Shi" "Bubing Di 197 Shi" "Bubing Di 198 Shi" 
+		"Bubing Di 199 Shi" "Bubing Di 200 Shi" "Bubing Di 201 Shi" "Bubing Di 202 Shi" "Bubing Di 203 Shi" "Bubing Di 204 Shi" "Bubing Di 205 Shi" "Bubing Di 206 Shi" "Bubing Di 207 Shi" "Bubing Di 208 Shi" "Bubing Di 209 Shi" 
+		"Bubing Di 210 Shi" "Bubing Di 211 Shi" "Bubing Di 212 Shi" "Bubing Di 213 Shi" "Bubing Di 214 Shi" "Bubing Di 215 Shi" "Bubing Di 216 Shi" "Bubing Di 217 Shi" "Bubing Di 218 Shi" "Bubing Di 219 Shi" "Bubing Di 220 Shi" 
+		"Bubing Di 221 Shi" "Bubing Di 222 Shi" "Bubing Di 223 Shi" "Bubing Di 224 Shi" "Bubing Di 225 Shi" "Bubing Di 226 Shi" "Bubing Di 227 Shi" "Bubing Di 228 Shi" "Bubing Di 229 Shi" "Bubing Di 230 Shi" "Bubing Di 231 Shi" 
+		"Bubing Di 232 Shi" "Bubing Di 233 Shi" "Bubing Di 234 Shi" "Bubing Di 235 Shi" "Bubing Di 236 Shi" "Bubing Di 237 Shi" "Bubing Di 238 Shi" "Bubing Di 239 Shi" "Bubing Di 240 Shi" "Bubing Di 241 Shi" "Bubing Di 242 Shi" 
+		"Bubing Di 243 Shi" "Bubing Di 244 Shi" "Bubing Di 245 Shi" "Bubing Di 246 Shi" "Bubing Di 247 Shi" "Bubing Di 248 Shi" "Bubing Di 249 Shi" "Bubing Di 250 Shi" "Bubing Di 251 Shi" "Bubing Di 252 Shi" "Bubing Di 253 Shi" 
+		"Bubing Di 254 Shi" "Bubing Di 255 Shi" "Bubing Di 256 Shi" "Bubing Di 257 Shi" "Bubing Di 258 Shi" "Bubing Di 259 Shi" "Bubing Di 260 Shi" "Bubing Di 261 Shi" "Bubing Di 262 Shi" "Bubing Di 263 Shi" "Bubing Di 264 Shi" 
+		"Bubing Di 265 Shi" "Bubing Di 266 Shi" "Bubing Di 267 Shi" "Bubing Di 268 Shi" "Bubing Di 269 Shi" "Bubing Di 270 Shi" "Bubing Di 271 Shi" "Bubing Di 272 Shi" "Bubing Di 273 Shi" "Bubing Di 274 Shi" "Bubing Di 275 Shi" 
+		"Bubing Di 276 Shi" "Bubing Di 277 Shi" "Bubing Di 278 Shi" "Bubing Di 279 Shi" "Bubing Di 280 Shi" "Bubing Di 281 Shi" "Bubing Di 282 Shi" "Bubing Di 283 Shi" "Bubing Di 284 Shi" "Bubing Di 285 Shi" "Bubing Di 286 Shi" 
+		"Bubing Di 287 Shi" "Bubing Di 288 Shi" "Bubing Di 289 Shi" "Bubing Di 290 Shi" "Bubing Di 291 Shi" "Bubing Di 292 Shi" "Bubing Di 293 Shi" "Bubing Di 294 Shi" "Bubing Di 295 Shi" "Bubing Di 296 Shi" "Bubing Di 297 Shi" 
+		"Bubing Di 298 Shi" "Bubing Di 299 Shi" 
+	}
+	cavalry_brigade = {
+		"Qibing Di 1 Shi" "Qibing Di 2 Shi" "Qibing Di 3 Shi" "Qibing Di 4 Shi" "Qibing Di 5 Shi" "Qibing Di 6 Shi" "Qibing Di 7 Shi" "Qibing Di 8 Shi" "Qibing Di 9 Shi" "Qibing Di 10 Shi" "Qibing Di 11 Shi" 
+		"Qibing Di 12 Shi" "Qibing Di 13 Shi" "Qibing Di 14 Shi" "Qibing Di 15 Shi" "Qibing Di 16 Shi" "Qibing Di 17 Shi" "Qibing Di 18 Shi" "Qibing Di 19 Shi" "Qibing Di 20 Shi" "Qibing Di 21 Shi" "Qibing Di 22 Shi" 
+		"Qibing Di 23 Shi" "Qibing Di 24 Shi" "Qibing Di 25 Shi" "Qibing Di 26 Shi" "Qibing Di 27 Shi" "Qibing Di 28 Shi" "Qibing Di 29 Shi" "Qibing Di 30 Shi" 
+	}
+	motorized_brigade = {
+		"Jidonghua Bubing Di 1 Shi" "Jidonghua Bubing Di 2 Shi" "Jidonghua Bubing Di 3 Shi" "Jidonghua Bubing Di 4 Shi" "Jidonghua Bubing Di 5 Shi" "Jidonghua Bubing Di 6 Shi" "Jidonghua Bubing Di 7 Shi" "Jidonghua Bubing Di 8 Shi" "Jidonghua Bubing Di 9 Shi" "Jidonghua Bubing Di 10 Shi" "Jidonghua Bubing Di 11 Shi" 
+		"Jidonghua Bubing Di 12 Shi" "Jidonghua Bubing Di 13 Shi" "Jidonghua Bubing Di 14 Shi" "Jidonghua Bubing Di 15 Shi" "Jidonghua Bubing Di 16 Shi" "Jidonghua Bubing Di 17 Shi" "Jidonghua Bubing Di 18 Shi" "Jidonghua Bubing Di 19 Shi" "Jidonghua Bubing Di 20 Shi" "Jidonghua Bubing Di 21 Shi" "Jidonghua Bubing Di 22 Shi" 
+		"Jidonghua Bubing Di 23 Shi" "Jidonghua Bubing Di 24 Shi" "Jidonghua Bubing Di 25 Shi" "Jidonghua Bubing Di 26 Shi" "Jidonghua Bubing Di 27 Shi" "Jidonghua Bubing Di 28 Shi" "Jidonghua Bubing Di 29 Shi" "Jidonghua Bubing Di 30 Shi" "Jidonghua Bubing Di 31 Shi" "Jidonghua Bubing Di 32 Shi" "Jidonghua Bubing Di 33 Shi" 
+		"Jidonghua Bubing Di 34 Shi" "Jidonghua Bubing Di 35 Shi" "Jidonghua Bubing Di 36 Shi" "Jidonghua Bubing Di 37 Shi" "Jidonghua Bubing Di 38 Shi" "Jidonghua Bubing Di 39 Shi" "Jidonghua Bubing Di 40 Shi" 
+	}
+	mechanized_brigade = {
+		"Jixiehua Bubing Di 1 Shi" "Jixiehua Bubing Di 2 Shi" "Jixiehua Bubing Di 3 Shi" "Jixiehua Bubing Di 4 Shi" "Jixiehua Bubing Di 5 Shi" "Jixiehua Bubing Di 6 Shi" "Jixiehua Bubing Di 7 Shi" "Jixiehua Bubing Di 8 Shi" "Jixiehua Bubing Di 9 Shi" "Jixiehua Bubing Di 10 Shi" "Jixiehua Bubing Di 11 Shi" 
+		"Jixiehua Bubing Di 12 Shi" "Jixiehua Bubing Di 13 Shi" "Jixiehua Bubing Di 14 Shi" "Jixiehua Bubing Di 15 Shi" "Jixiehua Bubing Di 16 Shi" "Jixiehua Bubing Di 17 Shi" "Jixiehua Bubing Di 18 Shi" "Jixiehua Bubing Di 19 Shi" "Jixiehua Bubing Di 20 Shi" "Jixiehua Bubing Di 21 Shi" "Jixiehua Bubing Di 22 Shi" 
+		"Jixiehua Bubing Di 23 Shi" "Jixiehua Bubing Di 24 Shi" "Jixiehua Bubing Di 25 Shi" "Jixiehua Bubing Di 26 Shi" "Jixiehua Bubing Di 27 Shi" "Jixiehua Bubing Di 28 Shi" "Jixiehua Bubing Di 29 Shi" "Jixiehua Bubing Di 30 Shi" "Jixiehua Bubing Di 31 Shi" "Jixiehua Bubing Di 32 Shi" "Jixiehua Bubing Di 33 Shi" 
+		"Jixiehua Bubing Di 34 Shi" "Jixiehua Bubing Di 35 Shi" "Jixiehua Bubing Di 36 Shi" "Jixiehua Bubing Di 37 Shi" "Jixiehua Bubing Di 38 Shi" "Jixiehua Bubing Di 39 Shi" "Jixiehua Bubing Di 40 Shi" "Jixiehua Bubing Di 41 Shi" "Jixiehua Bubing Di 42 Shi" "Jixiehua Bubing Di 43 Shi" "Jixiehua Bubing Di 44 Shi" 
+		"Jixiehua Bubing Di 45 Shi" "Jixiehua Bubing Di 46 Shi" "Jixiehua Bubing Di 47 Shi" "Jixiehua Bubing Di 48 Shi" "Jixiehua Bubing Di 49 Shi" "Jixiehua Bubing Di 50 Shi" "Jixiehua Bubing Di 51 Shi" "Jixiehua Bubing Di 52 Shi" "Jixiehua Bubing Di 53 Shi" "Jixiehua Bubing Di 54 Shi" "Jixiehua Bubing Di 55 Shi" 
+		"Jixiehua Bubing Di 56 Shi" "Jixiehua Bubing Di 57 Shi" "Jixiehua Bubing Di 58 Shi" "Jixiehua Bubing Di 59 Shi" "Jixiehua Bubing Di 60 Shi" "Jixiehua Bubing Di 61 Shi" "Jixiehua Bubing Di 62 Shi" "Jixiehua Bubing Di 63 Shi" "Jixiehua Bubing Di 64 Shi" "Jixiehua Bubing Di 65 Shi" "Jixiehua Bubing Di 66 Shi" 
+		"Jixiehua Bubing Di 67 Shi" "Jixiehua Bubing Di 68 Shi" "Jixiehua Bubing Di 69 Shi" "Jixiehua Bubing Di 70 Shi" "Jixiehua Bubing Di 71 Shi" "Jixiehua Bubing Di 72 Shi" "Jixiehua Bubing Di 73 Shi" "Jixiehua Bubing Di 74 Shi" "Jixiehua Bubing Di 75 Shi" "Jixiehua Bubing Di 76 Shi" "Jixiehua Bubing Di 77 Shi" 
+		"Jixiehua Bubing Di 78 Shi" "Jixiehua Bubing Di 79 Shi" "Jixiehua Bubing Di 80 Shi" "Jixiehua Bubing Di 81 Shi" "Jixiehua Bubing Di 82 Shi" "Jixiehua Bubing Di 83 Shi" "Jixiehua Bubing Di 84 Shi" "Jixiehua Bubing Di 85 Shi" "Jixiehua Bubing Di 86 Shi" "Jixiehua Bubing Di 87 Shi" "Jixiehua Bubing Di 88 Shi" 
+		"Jixiehua Bubing Di 89 Shi" "Jixiehua Bubing Di 90 Shi" "Jixiehua Bubing Di 91 Shi" "Jixiehua Bubing Di 92 Shi" "Jixiehua Bubing Di 93 Shi" "Jixiehua Bubing Di 94 Shi" "Jixiehua Bubing Di 95 Shi" "Jixiehua Bubing Di 96 Shi" "Jixiehua Bubing Di 97 Shi" "Jixiehua Bubing Di 98 Shi" "Jixiehua Bubing Di 99 Shi" 
+		"Jixiehua Bubing Di 100 Shi" 
+	}
+	light_armor_brigade = {
+		"Qingjia Di 1 Shi" "Qingjia Di 2 Shi" "Qingjia Di 3 Shi" "Qingjia Di 4 Shi" "Qingjia Di 5 Shi" "Qingjia Di 6 Shi" "Qingjia Di 7 Shi" "Qingjia Di 8 Shi" "Qingjia Di 9 Shi" "Qingjia Di 10 Shi" 
+	}
+	armor_brigade = {
+		"Zhuangjiabing Di 1 Shi" "Zhuangjiabing Di 2 Shi" "Zhuangjiabing Di 3 Shi" "Zhuangjiabing Di 4 Shi" "Zhuangjiabing Di 5 Shi" "Zhuangjiabing Di 6 Shi" "Zhuangjiabing Di 7 Shi" "Zhuangjiabing Di 8 Shi" "Zhuangjiabing Di 9 Shi" "Zhuangjiabing Di 10 Shi" "Zhuangjiabing Di 11 Shi" 
+		"Zhuangjiabing Di 12 Shi" "Zhuangjiabing Di 13 Shi" "Zhuangjiabing Di 14 Shi" "Zhuangjiabing Di 15 Shi" "Zhuangjiabing Di 16 Shi" "Zhuangjiabing Di 17 Shi" "Zhuangjiabing Di 18 Shi" "Zhuangjiabing Di 19 Shi" "Zhuangjiabing Di 20 Shi" "Zhuangjiabing Di 21 Shi" "Zhuangjiabing Di 22 Shi" 
+		"Zhuangjiabing Di 23 Shi" "Zhuangjiabing Di 24 Shi" "Zhuangjiabing Di 25 Shi" "Zhuangjiabing Di 26 Shi" "Zhuangjiabing Di 27 Shi" "Zhuangjiabing Di 28 Shi" "Zhuangjiabing Di 29 Shi" "Zhuangjiabing Di 30 Shi" "Zhuangjia Di 1 Shi" "Zhuangjia Di 2 Shi" "Zhuangjia Di 3 Shi" 
+		"Zhuangjia Di 4 Shi" "Zhuangjia Di 5 Shi" "Zhuangjia Di 6 Shi" "Zhuangjia Di 7 Shi" "Zhuangjia Di 8 Shi" "Zhuangjia Di 9 Shi" "Zhuangjia Di 10 Shi" "Zhuangjia Di 11 Shi" "Zhuangjia Di 12 Shi" "Zhuangjia Di 13 Shi" "Zhuangjia Di 14 Shi" 
+		"Zhuangjia Di 15 Shi" "Zhuangjia Di 16 Shi" "Zhuangjia Di 17 Shi" "Zhuangjia Di 18 Shi" "Zhuangjia Di 19 Shi" "Zhuangjia Di 20 Shi" "Zhuangjia Di 21 Shi" "Zhuangjia Di 22 Shi" "Zhuangjia Di 23 Shi" "Zhuangjia Di 24 Shi" "Zhuangjia Di 25 Shi" 
+		"Zhuangjia Di 26 Shi" "Zhuangjia Di 27 Shi" "Zhuangjia Di 28 Shi" "Zhuangjia Di 29 Shi" "Zhuangjia Di 30 Shi" 
+	}
+	paratrooper_brigade = {
+		"Sanbing Di 1 Shi" "Sanbing Di 2 Shi" "Sanbing Di 3 Shi" "Sanbing Di 4 Shi" "Sanbing Di 5 Shi" "Sanbing Di 6 Shi" "Sanbing Di 7 Shi" "Sanbing Di 8 Shi" "Sanbing Di 9 Shi" "Sanbing Di 10 Shi" "Sanbing Di 11 Shi" 
+		"Sanbing Di 12 Shi" "Sanbing Di 13 Shi" "Sanbing Di 14 Shi" "Sanbing Di 15 Shi" "Sanbing Di 16 Shi" "Sanbing Di 17 Shi" "Sanbing Di 18 Shi" "Sanbing Di 19 Shi" "Sanbing Di 20 Shi" 
+	}
+	marine_brigade = {
+		"Luzhan Dui Di 1 Shi" "Luzhan Dui Di 2 Shi" "Luzhan Dui Di 3 Shi" "Luzhan Dui Di 4 Shi" "Luzhan Dui Di 5 Shi" "Luzhan Dui Di 6 Shi" "Luzhan Dui Di 7 Shi" "Luzhan Dui Di 8 Shi" "Luzhan Dui Di 9 Shi" "Luzhan Dui Di 10 Shi" "Luzhan Dui Di 11 Shi" 
+		"Luzhan Dui Di 12 Shi" "Luzhan Dui Di 13 Shi" "Luzhan Dui Di 14 Shi" "Luzhan Dui Di 15 Shi" "Luzhan Dui Di 16 Shi" "Luzhan Dui Di 17 Shi" "Luzhan Dui Di 18 Shi" "Luzhan Dui Di 19 Shi" "Luzhan Dui Di 20 Shi" 
+	}
+	bergsjaeger_brigade = {
+		"Pabing Di 1 Shi" "Pabing Di 2 Shi" "Pabing Di 3 Shi" "Pabing Di 4 Shi" "Pabing Di 5 Shi" "Pabing Di 6 Shi" "Pabing Di 7 Shi" "Pabing Di 8 Shi" "Pabing Di 9 Shi" "Pabing Di 10 Shi" "Pabing Di 11 Shi" 
+		"Pabing Di 12 Shi" "Pabing Di 13 Shi" "Pabing Di 14 Shi" "Pabing Di 15 Shi" "Pabing Di 16 Shi" "Pabing Di 17 Shi" "Pabing Di 18 Shi" "Pabing Di 19 Shi" "Pabing Di 20 Shi" "Pabing Di 21 Shi" "Pabing Di 22 Shi" 
+		"Pabing Di 23 Shi" "Pabing Di 24 Shi" "Pabing Di 25 Shi" "Pabing Di 26 Shi" "Pabing Di 27 Shi" "Pabing Di 28 Shi" "Pabing Di 29 Shi" "Pabing Di 30 Shi" "Pabing Di 31 Shi" "Pabing Di 32 Shi" "Pabing Di 33 Shi" 
+		"Pabing Di 34 Shi" "Pabing Di 35 Shi" "Pabing Di 36 Shi" "Pabing Di 37 Shi" "Pabing Di 38 Shi" "Pabing Di 39 Shi" "Pabing Di 40 Shi" "Pabing Di 41 Shi" "Pabing Di 42 Shi" "Pabing Di 43 Shi" "Pabing Di 44 Shi" 
+		"Pabing Di 45 Shi" "Pabing Di 46 Shi" "Pabing Di 47 Shi" "Pabing Di 48 Shi" "Pabing Di 49 Shi" "Pabing Di 50 Shi" 
+	}
+	garrison_brigade = {
+		"Baoan Di 1 Zongdui" "Baoan Di 2 Zongdui" "Baoan Di 3 Zongdui" "Baoan Di 4 Zongdui" "Baoan Di 5 Zongdui" "Baoan Di 6 Zongdui" "Baoan Di 7 Zongdui" "Baoan Di 8 Zongdui" "Baoan Di 9 Zongdui" "Baoan Di 10 Zongdui" "Baoan Di 11 Zongdui" 
+		"Baoan Di 12 Zongdui" "Baoan Di 13 Zongdui" "Baoan Di 14 Zongdui" "Baoan Di 15 Zongdui" "Baoan Di 16 Zongdui" "Baoan Di 17 Zongdui" "Baoan Di 18 Zongdui" "Baoan Di 19 Zongdui" "Baoan Di 20 Zongdui" "Baoan Di 21 Zongdui" "Baoan Di 22 Zongdui" 
+		"Baoan Di 23 Zongdui" "Baoan Di 24 Zongdui" "Baoan Di 25 Zongdui" "Baoan Di 26 Zongdui" "Baoan Di 27 Zongdui" "Baoan Di 28 Zongdui" "Baoan Di 29 Zongdui" "Baoan Di 30 Zongdui" "Baoan Di 31 Zongdui" "Baoan Di 32 Zongdui" "Baoan Di 33 Zongdui" 
+		"Baoan Di 34 Zongdui" "Baoan Di 35 Zongdui" "Baoan Di 36 Zongdui" "Baoan Di 37 Zongdui" "Baoan Di 38 Zongdui" "Baoan Di 39 Zongdui" "Baoan Di 40 Zongdui" "Baoan Di 41 Zongdui" "Baoan Di 42 Zongdui" "Baoan Di 43 Zongdui" "Baoan Di 44 Zongdui" 
+		"Baoan Di 45 Zongdui" "Baoan Di 46 Zongdui" "Baoan Di 47 Zongdui" "Baoan Di 48 Zongdui" "Baoan Di 49 Zongdui" "Baoan Di 50 Zongdui" "Baoan Di 51 Zongdui" "Baoan Di 52 Zongdui" "Baoan Di 53 Zongdui" "Baoan Di 54 Zongdui" "Baoan Di 55 Zongdui" 
+		"Baoan Di 56 Zongdui" "Baoan Di 57 Zongdui" "Baoan Di 58 Zongdui" "Baoan Di 59 Zongdui" "Baoan Di 60 Zongdui" "Baoan Di 61 Zongdui" "Baoan Di 62 Zongdui" "Baoan Di 63 Zongdui" "Baoan Di 64 Zongdui" "Baoan Di 65 Zongdui" "Baoan Di 66 Zongdui" 
+		"Baoan Di 67 Zongdui" "Baoan Di 68 Zongdui" "Baoan Di 69 Zongdui" "Baoan Di 70 Zongdui" "Baoan Di 71 Zongdui" "Baoan Di 72 Zongdui" "Baoan Di 73 Zongdui" "Baoan Di 74 Zongdui" "Baoan Di 75 Zongdui" "Baoan Di 76 Zongdui" "Baoan Di 77 Zongdui" 
+		"Baoan Di 78 Zongdui" "Baoan Di 79 Zongdui" "Baoan Di 80 Zongdui" "Baoan Di 81 Zongdui" "Baoan Di 82 Zongdui" "Baoan Di 83 Zongdui" "Baoan Di 84 Zongdui" "Baoan Di 85 Zongdui" "Baoan Di 86 Zongdui" "Baoan Di 87 Zongdui" "Baoan Di 88 Zongdui" 
+		"Baoan Di 89 Zongdui" "Baoan Di 90 Zongdui" "Baoan Di 91 Zongdui" "Baoan Di 92 Zongdui" "Baoan Di 93 Zongdui" "Baoan Di 94 Zongdui" "Baoan Di 95 Zongdui" "Baoan Di 96 Zongdui" "Baoan Di 97 Zongdui" "Baoan Di 98 Zongdui" "Baoan Di 99 Zongdui" 
+		"Baoan Di 100 Zongdui" "Baoan Di 101 Zongdui" "Baoan Di 102 Zongdui" "Baoan Di 103 Zongdui" "Baoan Di 104 Zongdui" "Baoan Di 105 Zongdui" "Baoan Di 106 Zongdui" "Baoan Di 107 Zongdui" "Baoan Di 108 Zongdui" "Baoan Di 109 Zongdui" "Baoan Di 110 Zongdui" 
+		"Baoan Di 111 Zongdui" "Baoan Di 112 Zongdui" "Baoan Di 113 Zongdui" "Baoan Di 114 Zongdui" "Baoan Di 115 Zongdui" "Baoan Di 116 Zongdui" "Baoan Di 117 Zongdui" "Baoan Di 118 Zongdui" "Baoan Di 119 Zongdui" "Baoan Di 120 Zongdui" "Baoan Di 121 Zongdui" 
+		"Baoan Di 122 Zongdui" "Baoan Di 123 Zongdui" "Baoan Di 124 Zongdui" "Baoan Di 125 Zongdui" "Baoan Di 126 Zongdui" "Baoan Di 127 Zongdui" "Baoan Di 128 Zongdui" "Baoan Di 129 Zongdui" "Baoan Di 130 Zongdui" "Baoan Di 131 Zongdui" "Baoan Di 132 Zongdui" 
+		"Baoan Di 133 Zongdui" "Baoan Di 134 Zongdui" "Baoan Di 135 Zongdui" "Baoan Di 136 Zongdui" "Baoan Di 137 Zongdui" "Baoan Di 138 Zongdui" "Baoan Di 139 Zongdui" "Baoan Di 140 Zongdui" "Baoan Di 141 Zongdui" "Baoan Di 142 Zongdui" "Baoan Di 143 Zongdui" 
+		"Baoan Di 144 Zongdui" "Baoan Di 145 Zongdui" "Baoan Di 146 Zongdui" "Baoan Di 147 Zongdui" "Baoan Di 148 Zongdui" "Baoan Di 149 Zongdui" "Baoan Di 150 Zongdui" "Baoan Di 151 Zongdui" "Baoan Di 152 Zongdui" "Baoan Di 153 Zongdui" "Baoan Di 154 Zongdui" 
+		"Baoan Di 155 Zongdui" "Baoan Di 156 Zongdui" "Baoan Di 157 Zongdui" "Baoan Di 158 Zongdui" "Baoan Di 159 Zongdui" "Baoan Di 160 Zongdui" "Baoan Di 161 Zongdui" "Baoan Di 162 Zongdui" "Baoan Di 163 Zongdui" "Baoan Di 164 Zongdui" "Baoan Di 165 Zongdui" 
+		"Baoan Di 166 Zongdui" "Baoan Di 167 Zongdui" "Baoan Di 168 Zongdui" "Baoan Di 169 Zongdui" "Baoan Di 170 Zongdui" "Baoan Di 171 Zongdui" "Baoan Di 172 Zongdui" "Baoan Di 173 Zongdui" "Baoan Di 174 Zongdui" "Baoan Di 175 Zongdui" "Baoan Di 176 Zongdui" 
+		"Baoan Di 177 Zongdui" "Baoan Di 178 Zongdui" "Baoan Di 179 Zongdui" "Baoan Di 180 Zongdui" "Baoan Di 181 Zongdui" "Baoan Di 182 Zongdui" "Baoan Di 183 Zongdui" "Baoan Di 184 Zongdui" "Baoan Di 185 Zongdui" "Baoan Di 186 Zongdui" "Baoan Di 187 Zongdui" 
+		"Baoan Di 188 Zongdui" "Baoan Di 189 Zongdui" "Baoan Di 190 Zongdui" "Baoan Di 191 Zongdui" "Baoan Di 192 Zongdui" "Baoan Di 193 Zongdui" "Baoan Di 194 Zongdui" "Baoan Di 195 Zongdui" "Baoan Di 196 Zongdui" "Baoan Di 197 Zongdui" "Baoan Di 198 Zongdui" 
+		"Baoan Di 199 Zongdui" "Baoan Di 200 Zongdui" "Baoan Di 201 Zongdui" "Baoan Di 202 Zongdui" "Baoan Di 203 Zongdui" "Baoan Di 204 Zongdui" "Baoan Di 205 Zongdui" "Baoan Di 206 Zongdui" "Baoan Di 207 Zongdui" "Baoan Di 208 Zongdui" "Baoan Di 209 Zongdui" 
+		"Baoan Di 210 Zongdui" "Baoan Di 211 Zongdui" "Baoan Di 212 Zongdui" "Baoan Di 213 Zongdui" "Baoan Di 214 Zongdui" "Baoan Di 215 Zongdui" "Baoan Di 216 Zongdui" "Baoan Di 217 Zongdui" "Baoan Di 218 Zongdui" "Baoan Di 219 Zongdui" "Baoan Di 220 Zongdui" 
+		"Baoan Di 221 Zongdui" "Baoan Di 222 Zongdui" "Baoan Di 223 Zongdui" "Baoan Di 224 Zongdui" "Baoan Di 225 Zongdui" "Baoan Di 226 Zongdui" "Baoan Di 227 Zongdui" "Baoan Di 228 Zongdui" "Baoan Di 229 Zongdui" "Baoan Di 230 Zongdui" "Baoan Di 231 Zongdui" 
+		"Baoan Di 232 Zongdui" "Baoan Di 233 Zongdui" "Baoan Di 234 Zongdui" "Baoan Di 235 Zongdui" "Baoan Di 236 Zongdui" "Baoan Di 237 Zongdui" "Baoan Di 238 Zongdui" "Baoan Di 239 Zongdui" "Baoan Di 240 Zongdui" "Baoan Di 241 Zongdui" "Baoan Di 242 Zongdui" 
+		"Baoan Di 243 Zongdui" "Baoan Di 244 Zongdui" "Baoan Di 245 Zongdui" "Baoan Di 246 Zongdui" "Baoan Di 247 Zongdui" "Baoan Di 248 Zongdui" "Baoan Di 249 Zongdui" "Baoan Di 250 Zongdui" "Baoan Di 251 Zongdui" "Baoan Di 252 Zongdui" "Baoan Di 253 Zongdui" 
+		"Baoan Di 254 Zongdui" "Baoan Di 255 Zongdui" "Baoan Di 256 Zongdui" "Baoan Di 257 Zongdui" "Baoan Di 258 Zongdui" "Baoan Di 259 Zongdui" "Baoan Di 260 Zongdui" "Baoan Di 261 Zongdui" "Baoan Di 262 Zongdui" "Baoan Di 263 Zongdui" "Baoan Di 264 Zongdui" 
+		"Baoan Di 265 Zongdui" "Baoan Di 266 Zongdui" "Baoan Di 267 Zongdui" "Baoan Di 268 Zongdui" "Baoan Di 269 Zongdui" "Baoan Di 270 Zongdui" "Baoan Di 271 Zongdui" "Baoan Di 272 Zongdui" "Baoan Di 273 Zongdui" "Baoan Di 274 Zongdui" "Baoan Di 275 Zongdui" 
+		"Baoan Di 276 Zongdui" "Baoan Di 277 Zongdui" "Baoan Di 278 Zongdui" "Baoan Di 279 Zongdui" "Baoan Di 280 Zongdui" "Baoan Di 281 Zongdui" "Baoan Di 282 Zongdui" "Baoan Di 283 Zongdui" "Baoan Di 284 Zongdui" "Baoan Di 285 Zongdui" "Baoan Di 286 Zongdui" 
+		"Baoan Di 287 Zongdui" "Baoan Di 288 Zongdui" "Baoan Di 289 Zongdui" "Baoan Di 290 Zongdui" "Baoan Di 291 Zongdui" "Baoan Di 292 Zongdui" "Baoan Di 293 Zongdui" "Baoan Di 294 Zongdui" "Baoan Di 295 Zongdui" "Baoan Di 296 Zongdui" "Baoan Di 297 Zongdui" 
+		"Baoan Di 298 Zongdui" "Baoan Di 299 Zongdui" 
+	}
+	hq_brigade = {
+		"Di 1 Fangmianjun" "Di 2 Fangmianjun" "Di 3 Fangmianjun" "Di 4 Fangmianjun" "Di 5 Fangmianjun" "Di 6 Fangmianjun" "Di 7 Fangmianjun" "Di 8 Fangmianjun" "Di 9 Fangmianjun" "Di 10 Fangmianjun" "Di 11 Fangmianjun" 
+		"Di 12 Fangmianjun" "Di 13 Fangmianjun" "Di 14 Fangmianjun" "Di 15 Fangmianjun" "Di 16 Fangmianjun" "Di 17 Fangmianjun" "Di 18 Fangmianjun" "Di 19 Fangmianjun" "Di 20 Fangmianjun" "Di 21 Fangmianjun" "Di 22 Fangmianjun" 
+		"Di 23 Fangmianjun" "Di 24 Fangmianjun" "Di 25 Fangmianjun" "Di 26 Fangmianjun" "Di 27 Fangmianjun" "Di 28 Fangmianjun" "Di 29 Fangmianjun" "Di 30 Fangmianjun" 
+	}
+	militia_brigade = {
+		"Di 1 Youji Dui" "Di 2 Youji Dui" "Di 3 Youji Dui" "Di 4 Youji Dui" "Di 5 Youji Dui" "Di 6 Youji Dui" "Di 7 Youji Dui" "Di 8 Youji Dui" "Di 9 Youji Dui" "Di 10 Youji Dui" "Di 11 Youji Dui" 
+		"Di 12 Youji Dui" "Di 13 Youji Dui" "Di 14 Youji Dui" "Di 15 Youji Dui" "Di 16 Youji Dui" "Di 17 Youji Dui" "Di 18 Youji Dui" "Di 19 Youji Dui" "Di 20 Youji Dui" "Di 21 Youji Dui" "Di 22 Youji Dui" 
+		"Di 23 Youji Dui" "Di 24 Youji Dui" "Di 25 Youji Dui" "Di 26 Youji Dui" "Di 27 Youji Dui" "Di 28 Youji Dui" "Di 29 Youji Dui" "Di 30 Youji Dui" "Di 31 Youji Dui" "Di 32 Youji Dui" "Di 33 Youji Dui" 
+		"Di 34 Youji Dui" "Di 35 Youji Dui" "Di 36 Youji Dui" "Di 37 Youji Dui" "Di 38 Youji Dui" "Di 39 Youji Dui" "Di 40 Youji Dui" "Di 41 Youji Dui" "Di 42 Youji Dui" "Di 43 Youji Dui" "Di 44 Youji Dui" 
+		"Di 45 Youji Dui" "Di 46 Youji Dui" "Di 47 Youji Dui" "Di 48 Youji Dui" "Di 49 Youji Dui" "Di 50 Youji Dui" "Di 51 Youji Dui" "Di 52 Youji Dui" "Di 53 Youji Dui" "Di 54 Youji Dui" "Di 55 Youji Dui" 
+		"Di 56 Youji Dui" "Di 57 Youji Dui" "Di 58 Youji Dui" "Di 59 Youji Dui" "Di 60 Youji Dui" "Di 61 Youji Dui" "Di 62 Youji Dui" "Di 63 Youji Dui" "Di 64 Youji Dui" "Di 65 Youji Dui" "Di 66 Youji Dui" 
+		"Di 67 Youji Dui" "Di 68 Youji Dui" "Di 69 Youji Dui" "Di 70 Youji Dui" "Di 71 Youji Dui" "Di 72 Youji Dui" "Di 73 Youji Dui" "Di 74 Youji Dui" "Di 75 Youji Dui" "Di 76 Youji Dui" "Di 77 Youji Dui" 
+		"Di 78 Youji Dui" "Di 79 Youji Dui" "Di 80 Youji Dui" "Di 81 Youji Dui" "Di 82 Youji Dui" "Di 83 Youji Dui" "Di 84 Youji Dui" "Di 85 Youji Dui" "Di 86 Youji Dui" "Di 87 Youji Dui" "Di 88 Youji Dui" 
+		"Di 89 Youji Dui" "Di 90 Youji Dui" "Di 91 Youji Dui" "Di 92 Youji Dui" "Di 93 Youji Dui" "Di 94 Youji Dui" "Di 95 Youji Dui" "Di 96 Youji Dui" "Di 97 Youji Dui" "Di 98 Youji Dui" "Di 99 Youji Dui" 
+		"Di 100 Youji Dui" "Di 101 Youji Dui" "Di 102 Youji Dui" "Di 103 Youji Dui" "Di 104 Youji Dui" "Di 105 Youji Dui" "Di 106 Youji Dui" "Di 107 Youji Dui" "Di 108 Youji Dui" "Di 109 Youji Dui" "Di 110 Youji Dui" 
+		"Di 111 Youji Dui" "Di 112 Youji Dui" "Di 113 Youji Dui" "Di 114 Youji Dui" "Di 115 Youji Dui" "Di 116 Youji Dui" "Di 117 Youji Dui" "Di 118 Youji Dui" "Di 119 Youji Dui" "Di 120 Youji Dui" "Di 121 Youji Dui" 
+		"Di 122 Youji Dui" "Di 123 Youji Dui" "Di 124 Youji Dui" "Di 125 Youji Dui" "Di 126 Youji Dui" "Di 127 Youji Dui" "Di 128 Youji Dui" "Di 129 Youji Dui" "Di 130 Youji Dui" "Di 131 Youji Dui" "Di 132 Youji Dui" 
+		"Di 133 Youji Dui" "Di 134 Youji Dui" "Di 135 Youji Dui" "Di 136 Youji Dui" "Di 137 Youji Dui" "Di 138 Youji Dui" "Di 139 Youji Dui" "Di 140 Youji Dui" "Di 141 Youji Dui" "Di 142 Youji Dui" "Di 143 Youji Dui" 
+		"Di 144 Youji Dui" "Di 145 Youji Dui" "Di 146 Youji Dui" "Di 147 Youji Dui" "Di 148 Youji Dui" "Di 149 Youji Dui" "Di 150 Youji Dui" "Di 151 Youji Dui" "Di 152 Youji Dui" "Di 153 Youji Dui" "Di 154 Youji Dui" 
+		"Di 155 Youji Dui" "Di 156 Youji Dui" "Di 157 Youji Dui" "Di 158 Youji Dui" "Di 159 Youji Dui" "Di 160 Youji Dui" "Di 161 Youji Dui" "Di 162 Youji Dui" "Di 163 Youji Dui" "Di 164 Youji Dui" "Di 165 Youji Dui" 
+		"Di 166 Youji Dui" "Di 167 Youji Dui" "Di 168 Youji Dui" "Di 169 Youji Dui" "Di 170 Youji Dui" "Di 171 Youji Dui" "Di 172 Youji Dui" "Di 173 Youji Dui" "Di 174 Youji Dui" "Di 175 Youji Dui" "Di 176 Youji Dui" 
+		"Di 177 Youji Dui" "Di 178 Youji Dui" "Di 179 Youji Dui" "Di 180 Youji Dui" "Di 181 Youji Dui" "Di 182 Youji Dui" "Di 183 Youji Dui" "Di 184 Youji Dui" "Di 185 Youji Dui" "Di 186 Youji Dui" "Di 187 Youji Dui" 
+		"Di 188 Youji Dui" "Di 189 Youji Dui" "Di 190 Youji Dui" "Di 191 Youji Dui" "Di 192 Youji Dui" "Di 193 Youji Dui" "Di 194 Youji Dui" "Di 195 Youji Dui" "Di 196 Youji Dui" "Di 197 Youji Dui" "Di 198 Youji Dui" 
+		"Di 199 Youji Dui" "Di 200 Youji Dui" "Di 201 Youji Dui" "Di 202 Youji Dui" "Di 203 Youji Dui" "Di 204 Youji Dui" "Di 205 Youji Dui" "Di 206 Youji Dui" "Di 207 Youji Dui" "Di 208 Youji Dui" "Di 209 Youji Dui" 
+		"Di 210 Youji Dui" "Di 211 Youji Dui" "Di 212 Youji Dui" "Di 213 Youji Dui" "Di 214 Youji Dui" "Di 215 Youji Dui" "Di 216 Youji Dui" "Di 217 Youji Dui" "Di 218 Youji Dui" "Di 219 Youji Dui" "Di 220 Youji Dui" 
+		"Di 221 Youji Dui" "Di 222 Youji Dui" "Di 223 Youji Dui" "Di 224 Youji Dui" "Di 225 Youji Dui" "Di 226 Youji Dui" "Di 227 Youji Dui" "Di 228 Youji Dui" "Di 229 Youji Dui" "Di 230 Youji Dui" "Di 231 Youji Dui" 
+		"Di 232 Youji Dui" "Di 233 Youji Dui" "Di 234 Youji Dui" "Di 235 Youji Dui" "Di 236 Youji Dui" "Di 237 Youji Dui" "Di 238 Youji Dui" "Di 239 Youji Dui" "Di 240 Youji Dui" "Di 241 Youji Dui" "Di 242 Youji Dui" 
+		"Di 243 Youji Dui" "Di 244 Youji Dui" "Di 245 Youji Dui" "Di 246 Youji Dui" "Di 247 Youji Dui" "Di 248 Youji Dui" "Di 249 Youji Dui" "Di 250 Youji Dui" "Di 251 Youji Dui" "Di 252 Youji Dui" "Di 253 Youji Dui" 
+		"Di 254 Youji Dui" "Di 255 Youji Dui" "Di 256 Youji Dui" "Di 257 Youji Dui" "Di 258 Youji Dui" "Di 259 Youji Dui" "Di 260 Youji Dui" "Di 261 Youji Dui" "Di 262 Youji Dui" "Di 263 Youji Dui" "Di 264 Youji Dui" 
+		"Di 265 Youji Dui" "Di 266 Youji Dui" "Di 267 Youji Dui" "Di 268 Youji Dui" "Di 269 Youji Dui" "Di 270 Youji Dui" "Di 271 Youji Dui" "Di 272 Youji Dui" "Di 273 Youji Dui" "Di 274 Youji Dui" "Di 275 Youji Dui" 
+		"Di 276 Youji Dui" "Di 277 Youji Dui" "Di 278 Youji Dui" "Di 279 Youji Dui" "Di 280 Youji Dui" "Di 281 Youji Dui" "Di 282 Youji Dui" "Di 283 Youji Dui" "Di 284 Youji Dui" "Di 285 Youji Dui" "Di 286 Youji Dui" 
+		"Di 287 Youji Dui" "Di 288 Youji Dui" "Di 289 Youji Dui" "Di 290 Youji Dui" "Di 291 Youji Dui" "Di 292 Youji Dui" "Di 293 Youji Dui" "Di 294 Youji Dui" "Di 295 Youji Dui" "Di 296 Youji Dui" "Di 297 Youji Dui" 
+		"Di 298 Youji Dui" "Di 299 Youji Dui" 
+	}
+	multi_role = {
+		"Di 1 Zhandouji Dadui" "Di 2 Zhandouji Dadui" "Di 3 Zhandouji Dadui" "Di 4 Zhandouji Dadui" "Di 5 Zhandouji Dadui" "Di 6 Zhandouji Dadui" "Di 7 Zhandouji Dadui" "Di 8 Zhandouji Dadui" "Di 9 Zhandouji Dadui" "Di 10 Zhandouji Dadui" "Di 11 Zhandouji Dadui" 
+		"Di 12 Zhandouji Dadui" "Di 13 Zhandouji Dadui" "Di 14 Zhandouji Dadui" "Di 15 Zhandouji Dadui" "Di 16 Zhandouji Dadui" "Di 17 Zhandouji Dadui" "Di 18 Zhandouji Dadui" "Di 19 Zhandouji Dadui" "Di 20 Zhandouji Dadui" 
+	}
+	interceptor = {
+		"Di 1 Jianjiji Dadui" "Di 2 Jianjiji Dadui" "Di 3 Jianjiji Dadui" "Di 4 Jianjiji Dadui" "Di 5 Jianjiji Dadui" "Di 6 Jianjiji Dadui" "Di 7 Jianjiji Dadui" "Di 8 Jianjiji Dadui" "Di 9 Jianjiji Dadui" "Di 10 Jianjiji Dadui" "Di 11 Jianjiji Dadui" 
+		"Di 12 Jianjiji Dadui" "Di 13 Jianjiji Dadui" "Di 14 Jianjiji Dadui" "Di 15 Jianjiji Dadui" "Di 16 Jianjiji Dadui" "Di 17 Jianjiji Dadui" "Di 18 Jianjiji Dadui" "Di 19 Jianjiji Dadui" "Di 20 Jianjiji Dadui" 
+	}
+	strategic_bomber = {
+		"Di 1 Zhanlue Hongzhaji Dadui" "Di 2 Zhanlue Hongzhaji Dadui" "Di 3 Zhanlue Hongzhaji Dadui" "Di 4 Zhanlue Hongzhaji Dadui" "Di 5 Zhanlue Hongzhaji Dadui" "Di 6 Zhanlue Hongzhaji Dadui" "Di 7 Zhanlue Hongzhaji Dadui" "Di 8 Zhanlue Hongzhaji Dadui" "Di 9 Zhanlue Hongzhaji Dadui" "Di 10 Zhanlue Hongzhaji Dadui" "Di 11 Zhanlue Hongzhaji Dadui" 
+		"Di 12 Zhanlue Hongzhaji Dadui" "Di 13 Zhanlue Hongzhaji Dadui" "Di 14 Zhanlue Hongzhaji Dadui" "Di 15 Zhanlue Hongzhaji Dadui" "Di 16 Zhanlue Hongzhaji Dadui" "Di 17 Zhanlue Hongzhaji Dadui" "Di 18 Zhanlue Hongzhaji Dadui" "Di 19 Zhanlue Hongzhaji Dadui" "Di 20 Zhanlue Hongzhaji Dadui" 
+	}
+	tactical_bomber = {
+		" Di 1 Huweiji Dadui" " Di 2 Huweiji Dadui" " Di 3 Huweiji Dadui" " Di 4 Huweiji Dadui" " Di 5 Huweiji Dadui" " Di 6 Huweiji Dadui" " Di 7 Huweiji Dadui" " Di 8 Huweiji Dadui" " Di 9 Huweiji Dadui" " Di 10 Huweiji Dadui" " Di 11 Huweiji Dadui" 
+		" Di 12 Huweiji Dadui" " Di 13 Huweiji Dadui" " Di 14 Huweiji Dadui" " Di 15 Huweiji Dadui" " Di 16 Huweiji Dadui" " Di 17 Huweiji Dadui" " Di 18 Huweiji Dadui" " Di 19 Huweiji Dadui" " Di 20 Huweiji Dadui" "Di 1 Zhanshu Hongzhaji Dadui" "Di 2 Zhanshu Hongzhaji Dadui" 
+		"Di 3 Zhanshu Hongzhaji Dadui" "Di 4 Zhanshu Hongzhaji Dadui" "Di 5 Zhanshu Hongzhaji Dadui" "Di 6 Zhanshu Hongzhaji Dadui" "Di 7 Zhanshu Hongzhaji Dadui" "Di 8 Zhanshu Hongzhaji Dadui" "Di 9 Zhanshu Hongzhaji Dadui" "Di 10 Zhanshu Hongzhaji Dadui" "Di 11 Zhanshu Hongzhaji Dadui" "Di 12 Zhanshu Hongzhaji Dadui" "Di 13 Zhanshu Hongzhaji Dadui" 
+		"Di 14 Zhanshu Hongzhaji Dadui" "Di 15 Zhanshu Hongzhaji Dadui" "Di 16 Zhanshu Hongzhaji Dadui" "Di 17 Zhanshu Hongzhaji Dadui" "Di 18 Zhanshu Hongzhaji Dadui" "Di 19 Zhanshu Hongzhaji Dadui" "Di 20 Zhanshu Hongzhaji Dadui" 
+	}
+	naval_bomber = {
+		"Di 1 Haijun Hongzhaji Dadui" "Di 2 Haijun Hongzhaji Dadui" "Di 3 Haijun Hongzhaji Dadui" "Di 4 Haijun Hongzhaji Dadui" "Di 5 Haijun Hongzhaji Dadui" "Di 6 Haijun Hongzhaji Dadui" "Di 7 Haijun Hongzhaji Dadui" "Di 8 Haijun Hongzhaji Dadui" "Di 9 Haijun Hongzhaji Dadui" "Di 10 Haijun Hongzhaji Dadui" "Di 11 Haijun Hongzhaji Dadui" 
+		"Di 12 Haijun Hongzhaji Dadui" "Di 13 Haijun Hongzhaji Dadui" "Di 14 Haijun Hongzhaji Dadui" "Di 15 Haijun Hongzhaji Dadui" "Di 16 Haijun Hongzhaji Dadui" "Di 17 Haijun Hongzhaji Dadui" "Di 18 Haijun Hongzhaji Dadui" "Di 19 Haijun Hongzhaji Dadui" "Di 20 Haijun Hongzhaji Dadui" 
+	}
+	cas = {
+		"Di 1 Jinjuli Kongyuan Dadui" "Di 2 Jinjuli Kongyuan Dadui" "Di 3 Jinjuli Kongyuan Dadui" "Di 4 Jinjuli Kongyuan Dadui" "Di 5 Jinjuli Kongyuan Dadui" "Di 6 Jinjuli Kongyuan Dadui" "Di 7 Jinjuli Kongyuan Dadui" "Di 8 Jinjuli Kongyuan Dadui" "Di 9 Jinjuli Kongyuan Dadui" "Di 10 Jinjuli Kongyuan Dadui" "Di 11 Jinjuli Kongyuan Dadui" 
+		"Di 12 Jinjuli Kongyuan Dadui" "Di 13 Jinjuli Kongyuan Dadui" "Di 14 Jinjuli Kongyuan Dadui" "Di 15 Jinjuli Kongyuan Dadui" "Di 16 Jinjuli Kongyuan Dadui" "Di 17 Jinjuli Kongyuan Dadui" "Di 18 Jinjuli Kongyuan Dadui" "Di 19 Jinjuli Kongyuan Dadui" "Di 20 Jinjuli Kongyuan Dadui" 
+	}
+	transport_plane = {
+		"Di 1 Kongyunji Dadui" "Di 2 Kongyunji Dadui" "Di 3 Kongyunji Dadui" "Di 4 Kongyunji Dadui" "Di 5 Kongyunji Dadui" "Di 6 Kongyunji Dadui" "Di 7 Kongyunji Dadui" "Di 8 Kongyunji Dadui" "Di 9 Kongyunji Dadui" "Di 10 Kongyunji Dadui" 
+	}
+	battleship = {
+		"Beijing" "Tianjin" "Shanghai" "Chongqing" "Xianggang" "Aomen" 
+	}
+	light_cruiser = {
+		"Guangdong" "Guangxi" "Hainan" "Yunnan" "Kuizhou" "Sichuan" "Gansu" "Ningxia" 
+	}
+	heavy_cruiser = {
+		"Hebei" "Henan" "Shandong" "Shanxi" "Liaoning" "Jilin" "Guangdong" "Guangxi" "Hainan" "Yunnan" "Kuizhou" 
+		"Sichuan" "Gansu" "Ningxia" "Qinghai" "Shaanxi" "Nei Monggol" "Xizang" "Xinjiang" "Taiwan" 
+	}
+	battlecruiser = {
+		"Beijing" "Tianjin" "Shanghai" "Chongqing" "Xianggang" "Aomen" 
+	}
+	destroyer = {
+		"Di 1 Quzujian Dadui" "Di 2 Quzujian Dadui" "Di 3 Quzujian Dadui" "Di 4 Quzujian Dadui" "Di 5 Quzujian Dadui" "Di 6 Quzujian Dadui" "Di 7 Quzujian Dadui" "Di 8 Quzujian Dadui" "Di 9 Quzujian Dadui" "Di 10 Quzujian Dadui" "Di 11 Quzujian Dadui" 
+		"Di 12 Quzujian Dadui" "Di 13 Quzujian Dadui" "Di 14 Quzujian Dadui" "Di 15 Quzujian Dadui" 
+	}
+	carrier = {
+		"Beijing" "Tianjin" "Shanghai" "Chongqing" "Xianggang" "Aomen" 
+	}
+	escort_carrier = {
+		"Beijing" "Tianjin" "Shanghai" "Chongqing" "Xianggang" "Aomen" 
+	}
+	submarine = {
+		"Di 1 Qianting Budui" "Di 2 Qianting Budui" "Di 3 Qianting Budui" "Di 4 Qianting Budui" "Di 5 Qianting Budui" "Di 6 Qianting Budui" "Di 7 Qianting Budui" "Di 8 Qianting Budui" "Di 9 Qianting Budui" "Di 10 Qianting Budui" "Di 11 Qianting Budui" 
+		"Di 12 Qianting Budui" "Di 13 Qianting Budui" "Di 14 Qianting Budui" "Di 15 Qianting Budui" 
+	}
+	transport_ship = {
+		"Di 1 Yunshuji Dadui" "Di 2 Yunshuji Dadui" "Di 3 Yunshuji Dadui" "Di 4 Yunshuji Dadui" "Di 5 Yunshuji Dadui" "Di 6 Yunshuji Dadui" "Di 7 Yunshuji Dadui" "Di 8 Yunshuji Dadui" "Di 9 Yunshuji Dadui" "Di 10 Yunshuji Dadui" "Di 11 Yunshuji Dadui" 
+		"Di 12 Yunshuji Dadui" "Di 13 Yunshuji Dadui" "Di 14 Yunshuji Dadui" "Di 15 Yunshuji Dadui" "Di 16 Yunshuji Dadui" "Di 17 Yunshuji Dadui" "Di 18 Yunshuji Dadui" "Di 19 Yunshuji Dadui" "Di 20 Yunshuji Dadui" 
+	}
+
+}
+
+
+ministers = {
+	51001 = {
+		name = "Mao Zedong"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51001
+		head_of_state = power_hungry_demagogue
+		head_of_government = backroom_backstabber
+		minister_of_security = back_stabber
+		start_date = 1936.1.1
+	}
+	51003 = {
+		name = "Wang Jiaxiang"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51003
+		foreign_minister = general_staffer
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	51004 = {
+		name = "Lin Bojiu"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51004
+		armament_minister = military_entrepreneur
+		head_of_state = die_hard_reformer
+		head_of_government = flamboyant_tough_guy
+		minister_of_security = compassionate_gentleman
+		start_date = 1936.1.1
+	}
+	51005 = {
+		name = "Xie Juezai"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51005
+		minister_of_security = man_of_the_people
+		minister_of_intelligence = political_specialist
+		start_date = 1936.1.1
+	}
+	51006 = {
+		name = "Li Kenong"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51006
+		minister_of_intelligence = research_specialist
+		foreign_minister = great_compromiser
+		start_date = 1936.1.1
+	}
+	51007 = {
+		name = "Zhu De"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51007
+		chief_of_staff = school_of_mass_combat
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	51009 = {
+		name = "Ziao Jingguang"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	51010 = {
+		name = "Fang Zeyi"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51010
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	51012 = {
+		name = "Zhang Guotao"
+		ideology = leninist
+		loyalty = 1.00
+		picture = M51012
+		head_of_state = ruthless_powermonger
+		head_of_government = ambitious_union_boss
+		foreign_minister = ideological_crusader
+		start_date = 1937.1.1
+	}
+	51023 = {
+		name = "Cao Qiuru"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51023
+		armament_minister = administrative_genius
+		start_date = 1939.1.1
+	}
+	51024 = {
+		name = "Guo Yunshen"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51024
+		armament_minister = air_to_ground_proponent
+		start_date = 1941.1.1
+	}
+	51025 = {
+		name = "Wang Fengbo"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51025
+		armament_minister = laissez_faires_capitalist
+		start_date = 1943.1.1
+	}
+	51028 = {
+		name = "He Yuandang"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M51026
+		armament_minister = resource_industrialist
+		start_date = 1937.1.1
+	}
+	51030 = {
+		name = "Zhou Xing"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51030
+		minister_of_security = crime_fighter
+		start_date = 1939.1.1
+	}
+	51033 = {
+		name = "Gao Xue"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51033
+		minister_of_security = compassionate_gentleman
+		start_date = 1944.1.1
+	}
+	51037 = {
+		name = "Zhou Enlai"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51037
+		minister_of_intelligence = technical_specialist
+		head_of_government = ambitious_union_boss
+		foreign_minister = ideological_crusader
+		start_date = 1939.1.1
+	}
+	51038 = {
+		name = "Deng Xiaoping"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51038
+		minister_of_intelligence = industrial_specialist
+		start_date = 1940.1.1
+	}
+	51044 = {
+		name = "Xu Xiangqian"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51044
+		chief_of_staff = school_of_manoeuvre
+		start_date = 1941.1.1
+	}
+	51045 = {
+		name = "Chen Yi"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51045
+		chief_of_staff = school_of_psychology
+		chief_of_army = armoured_spearhead_doctrine
+		foreign_minister = general_staffer
+		start_date = 1944.1.1
+	}
+	51049 = {
+		name = "Gao Gang"
+		ideology = stalinist
+		loyalty = 0.50
+		picture = M51049
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1940.1.1
+	}
+	51053 = {
+		name = "Peng Dehuai"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51053
+		armament_minister = theoretical_scientist
+		start_date = 1949.1.1
+	}
+	51054 = {
+		name = "Ren Bishi"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51054
+		minister_of_security = efficient_sociopath
+		start_date = 1949.1.1
+	}
+	51055 = {
+		name = "Peng Zhen"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51055
+		minister_of_intelligence = industrial_specialist
+		start_date = 1949.1.1
+	}
+	51057 = {
+		name = "Lin Biao"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = L76324
+		armament_minister = military_entrepreneur
+		start_date = 1959.1.1
+	}
+	51058 = {
+		name = "Shi Liang"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51058
+		minister_of_security = prince_of_terror
+		start_date = 1950.1.1
+	}
+	51059 = {
+		name = "Qian Ying"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51059
+		minister_of_security = silent_lawyer
+		start_date = 1959.1.1
+	}
+	51060 = {
+		name = "Zeng Shan"
+		ideology = stalinist
+		loyalty = 0.75
+		picture = M51060
+		minister_of_security = back_stabber
+		start_date = 1960.1.1
+	}
+	51061 = {
+		name = "Bo Yibo"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = M51061
+		minister_of_intelligence = technical_specialist
+		start_date = 1953.1.1
+	}
+	51062 = {
+		name = "Li Xiannian"
+		ideology = stalinist
+		loyalty = 1.00
+		picture = L76322
+		minister_of_intelligence = research_specialist
+		start_date = 1954.1.1
+	}
+}

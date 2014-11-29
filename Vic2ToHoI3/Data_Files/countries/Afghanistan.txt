@@ -1,0 +1,403 @@
+color = { 64  160  167 }
+graphical_culture = Soviet
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Faizabad Division" "Ghazni Division" "Herat Division" "Jalalabad Division" "Kandahar Division" "Maymeneh Division" "Mazar-i-Sharif Division" "Zahir Shah Division" "Abdur Rahman Division" "Nadir Shah Division" "Dost Mohammed Division" 
+		"Shah Shuja Division" "Taloqan Division" "Qondoz Division" "Kholm Division" "Aybak Division" "Sheberghan Division" "Balkh Division" "Meymaneh Division" "Dawlatabad Division" "Tarin Kowt Division" "Dalat Division" 
+		"Khash Division" "Lashkar Gan Division" "Mirabad Division" 
+	}
+	cavalry_brigade = {
+		"Faizabad Cavalry" "Ghazni Cavalry" "Herat Cavalry" "Jalalabad Cavalry" "Kandahar Cavalry" "Maymeneh Cavalry" "Mazar-i-Sharif Cavalry" "Zahir Shah Cavalry" "Abdur Rahman Cavalry" "Nadir Shah Cavalry" 
+	}
+	motorized_brigade = {
+		"Faizabad Motor Div." "Ghazni Motor Div." "Herat Motor Div." "Jalalabad Motor Div." "Kandahar Motor Div." "Maymeneh Motor Div." "Mazar-i-Sharif Motor Div." "Zahir Shah Motor Div." "Abdur Rahman Motor Div." "Nadir Shah Motor Div." "Dost Mohammed Motor Div." 
+		"Shah Shuja Motor Div." 
+	}
+	mechanized_brigade = {
+		"Faizabad Half Track Div." "Ghazni Half Track Div." "Herat Half Track Div." "Jalalabad Half Track Div." "Kandahar Half Track Div." "Maymeneh Half Track Div." "Mazar-i-Sharif Half Track Div." "Zahir Shah Half Track Div." "Abdur Rahman Half Track Div." "Nadir Shah Half Track Div." "Dost Mohammed Half Track Div." 
+		"Shah Shuja Half Track Div." 
+	}
+	light_armor_brigade = {
+		"Faizabad Armoured Div." "Ghazni Armoured Div." "Herat Armoured Div." "Jalalabad Armoured Div." "Kandahar Armoured Div." "Maymeneh Armoured Div." "Mazar-i-Sharif Armoured Div." "Zahir Shah Armoured Div." "Abdur Rahman Armoured Div." "Nadir Shah Armoured Div." "Dost Mohammed Armoured Div." 
+		"Shah Shuja Armoured Div." 
+	}
+	armor_brigade = {
+		"Faizabad Armoured Div." "Ghazni Armoured Div." "Herat Armoured Div." "Jalalabad Armoured Div." "Kandahar Armoured Div." "Maymeneh Armoured Div." "Mazar-i-Sharif Armoured Div." "Zahir Shah Armoured Div." "Abdur Rahman Armoured Div." "Nadir Shah Armoured Div." "Dost Mohammed Armoured Div." 
+		"Shah Shuja Armoured Div." 
+	}
+	paratrooper_brigade = {
+		"Faizabad Para Division" "Ghazni Para Division" "Herat Para Division" "Jalalabad Para Division" "Kandahar Para Division" "Maymeneh Para Division" "Mazar-i-Sharif Para Division" "Zahir Shah Para Division" "Abdur Rahman Para Division" "Nadir Shah Para Division" "Dost Mohammed Para Division" 
+		"Shah Shuja Para Division" 
+	}
+	marine_brigade = {
+		"Faizabad Marine Division" "Ghazni Marine Division" "Herat Marine Division" "Jalalabad Marine Division" "Kandahar Marine Division" "Maymeneh Marine Division" "Mazar-i-Sharif Marine Division" "Zahir Shah Marine Division" "Abdur Rahman Marine Division" "Nadir Shah Marine Division" "Dost Mohammed Marine Division" 
+		"Shah Shuja Marine Division" 
+	}
+	bergsjaeger_brigade = {
+		"Faizabad Mountain Division" "Ghazni Mountain Division" "Herat Mountain Division" "Jalalabad Mountain Division" "Kandahar Mountain Division" "Maymeneh Mountain Division" "Mazar-i-Sharif Mountain Division" "Zahir Shah Mountain Division" "Abdur Rahman Mountain Division" "Nadir Shah Mountain Division" "Dost Mohammed Mountain Division" 
+		"Shah Shuja Mountain Division" "Taloqan Mountain Division" "Qondoz Mountain Division" "Kholm Mountain Division" 
+	}
+	garrison_brigade = {
+		"Faizabad Division" "Ghazni Division" "Herat Division" "Jalalabad Division" "Kandahar Division" "Maymeneh Division" "Mazar-i-Sharif Division" "Zahir Shah Division" "Abdur Rahman Division" "Nadir Shah Division" "Dost Mohammed Division" 
+		"Shah Shuja Division" "Taloqan Division" "Qondoz Division" "Kholm Division" "Aybak Division" "Sheberghan Division" "Balkh Division" "Meymaneh Division" "Dawlatabad Division" "Tarin Kowt Division" "Dalat Division" 
+		"Khash Division" "Lashkar Gan Division" 
+	}
+	hq_brigade = {
+		"1st Afghanestani Army" "2nd Afghanestani Army" "3rd Afghanestani Army" "4th Afghanestani Army" "5th Afghanestani Army" "6th Afghanestani Army" 
+	}
+	militia_brigade = {
+		"Faizabad Militia" "Ghazni Militia" "Herat Militia" "Jalalabad Militia" "Kandahar Militia" "Maymeneh Militia" "Mazar-i-Sharif Militia" "Zahir Shah Militia" "Abdur Rahman Militia" "Nadir Shah Militia" "Dost Mohammed Militia" 
+		"Shah Shuja Militia" "Taloqan Militia" "Qondoz Militia" "Kholm Militia" "Aybak Militia" "Sheberghan Militia" "Balkh Militia" "Meymaneh Militia" "Dawlatabad Militia" "Tarin Kowt Militia" "Dalat Militia" 
+		"Khash Militia" "Lashkar Gan Militia" 
+	}
+	multi_role = {
+		"I. Fighter Group" "II. Fighter Group" "III. Fighter Group" "IV. Fighter Group" "V. Fighter Group" "VI. Fighter Group" "VII. Fighter Group" 
+	}
+	interceptor = {
+		"I. Fighter Group" "II. Fighter Group" "III. Fighter Group" "IV. Fighter Group" "V. Fighter Group" "VI. Fighter Group" "VII. Fighter Group" 
+	}
+	strategic_bomber = {
+		"I. Strategic Group" "II. Strategic Group" "III. Strategic Group" "IV. Strategic Group" "V. Strategic Group" "VI. Strategic Group" "VII. Strategic Group" 
+	}
+	tactical_bomber = {
+		"I. Tactical Group" "II. Tactical Group" "III. Tactical Group" "IV. Tactical Group" "V. Tactical Group" "VI. Tactical Group" "VII. Tactical Group" 
+	}
+	naval_bomber = {
+		"I. Naval Bomber Group" "II. Naval Bomber Group" "III. Naval Bomber Group" "IV. Naval Bomber Group" "V. Naval Bomber Group" "VI. Naval Bomber Group" "VII. Naval Bomber Group" "I. Torpedo Group" "II. Torpedo Group" "III. Torpedo Group" "IV. Torpedo Group" 
+		"V. Torpedo Group" "VI. Torpedo Group" "VII. Torpedo Group" 
+	}
+	cas = {
+		"I. Dive Bomber Group" "II. Dive Bomber Group" "III. Dive Bomber Group" "IV. Dive Bomber Group" "V. Dive Bomber Group" "VI. Dive Bomber Group" "VII. Dive Bomber Group" 
+	}
+	transport_plane = {
+		"I. Air Transport Group" "II. Air Transport Group" "III. Air Transport Group" 
+	}
+	battleship = {
+		"RAS Afghanistan" "RAS Kabul" "RAS Pashtun" 
+	}
+	heavy_cruiser = {
+		"RAS Faizabad" "RAS Ghazni" "RAS Herat" "RAS Jalalabad" "RAS Kandahar" "RAS Maymeneh" "RAS Mazar-i-Sharif" 
+	}
+	destroyer = {
+		"D1/D2/D3" "D4/D5/D6" "D7/D8/D9" "D10/D11/D12" "D13/D14/D15" "D16/D17/D18" "D19/D20/D21" "D22/D23/D24" "D25/D26/D27" "D28/D29/D30" 
+	}
+	carrier = {
+		"RAS Zahir Shah" "RAS Nadir Shah" 
+	}
+	submarine = {
+		"1. Submarine Flotilla" "2. Submarine Flotilla" "3. Submarine Flotilla" "4. Submarine Flottila" "5. Submarine Flottila" "6. Submarine Flottila" 
+	}
+	transport_ship = {
+		"1. Troop Transport Flotilla" "2. Troop Transport Flotilla" "3. Troop Transport Flotilla" "4. Troop Transport Flotilla" "5. Troop Transport Flotilla" "6. Troop Transport Flotilla" "7. Troop Transport Flotilla" "8. Troop Transport Flotilla" "9. Troop Transport Flotilla" "10. Troop Transport Flotilla" 
+	}
+
+}
+
+
+ministers = {
+	54001 = {
+		name = "Muhammed Zahir"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54001
+		head_of_state = autocratic_charmer
+		chief_of_navy = indirect_approach_doctrine
+		head_of_state = benevolent_gentleman
+		head_of_state = autocratic_charmer
+		minister_of_security = man_of_the_people
+		chief_of_air = army_aviation_doctrine
+		start_date = 1936.1.1
+	}
+	54002 = {
+		name = "Muhammed Hashim"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54002
+		head_of_government = happy_amateur
+		minister_of_security = crooked_kleptocrat
+		head_of_government = happy_amateur
+		chief_of_navy = base_control_doctrine
+		start_date = 1936.1.1
+	}
+	54003 = {
+		name = "Haji Faiz Muhammed Zikeria"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54003
+		foreign_minister = ideological_crusader
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	54004 = {
+		name = "Abdul Majid Zabuli"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54004
+		armament_minister = laissez_faires_capitalist
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	54006 = {
+		name = "Shah Mahmud Ghazi"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M54006
+		minister_of_intelligence = dismal_enigma
+		head_of_government = old_general
+		chief_of_staff = school_of_psychology
+		start_date = 1936.1.1
+	}
+	54007 = {
+		name = "Mohammed Daoud"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54007
+		chief_of_staff = school_of_psychology
+		chief_of_army = elastic_defence_doctrine
+		chief_of_air = army_aviation_doctrine
+		foreign_minister = great_compromiser
+		armament_minister = air_to_ground_proponent
+		start_date = 1936.1.1
+	}
+	54025 = {
+		name = "Abdul Hadi Dawai"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54013
+		foreign_minister = apologetic_clerk
+		armament_minister = laissez_faires_capitalist
+		start_date = 1937.1.1
+	}
+	54026 = {
+		name = "Amanullah"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M54011
+		foreign_minister = ideological_crusader
+		armament_minister = corrupt_kleptocrat
+		head_of_state = resigned_generalissimo
+		start_date = 1936.1.1
+	}
+	54028 = {
+		name = "Wazir Akbar Khan"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54018
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_defence
+		chief_of_army = static_defence_doctrine
+		start_date = 1942.1.1
+	}
+	54029 = {
+		name = "Ali Muhammed Khan"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54020
+		foreign_minister = biased_intellectual
+		armament_minister = air_to_sea_proponent
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = naval_intelligence_specialist
+		chief_of_navy = power_projection_doctrine
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1939.1.1
+	}
+	54030 = {
+		name = "Mohammed Etemadi Khan"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54016
+		foreign_minister = the_cloak_n_dagger_schemer
+		armament_minister = submarine_proponent
+		minister_of_intelligence = research_specialist
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1944.1.1
+	}
+	54031 = {
+		name = "Asadullah Seraj Khan"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M54031
+		foreign_minister = iron_fisted_brute
+		armament_minister = infantry_proponent
+		minister_of_security = compassionate_gentleman
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1945.1.1
+	}
+	54033 = {
+		name = "Italo Sergente"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M54033
+		armament_minister = tank_proponent
+		start_date = 1938.1.1
+	}
+	54034 = {
+		name = "Bortolo Berlotti"
+		ideology = fascistic
+		loyalty = 0.50
+		picture = M54034
+		armament_minister = administrative_genius
+		start_date = 1939.1.1
+	}
+	54037 = {
+		name = "Nasirullah Husain"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54019
+		armament_minister = battle_fleet_proponent
+		chief_of_staff = school_of_fire_support
+		chief_of_army = decisive_battle_doctrine
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1940.1.1
+	}
+	54038 = {
+		name = "Feruccio Serafini"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54038
+		armament_minister = air_superiority_proponent
+		chief_of_air = air_superiority_doctrine
+		start_date = 1940.1.1
+	}
+	54040 = {
+		name = "Massimo Pilotti"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54040
+		armament_minister = theoretical_scientist
+		start_date = 1941.1.1
+	}
+	54041 = {
+		name = "Pompeo Aloisi"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54041
+		armament_minister = military_entrepreneur
+		start_date = 1943.1.1
+	}
+	54042 = {
+		name = "Shah Wali Khan"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54042
+		armament_minister = strategic_air_proponent
+		chief_of_navy = open_seas_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		start_date = 1944.1.1
+	}
+	54044 = {
+		name = "Muhammed Nowroz"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M54044
+		armament_minister = resource_industrialist
+		start_date = 1946.1.1
+	}
+	54046 = {
+		name = "Carlo Garbasso"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54046
+		minister_of_security = prince_of_terror
+		start_date = 1938.1.1
+	}
+	54047 = {
+		name = "Ghulam Faruq Usman"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M54047
+		minister_of_security = crime_fighter
+		start_date = 1939.1.1
+	}
+	54050 = {
+		name = "Ricci A. Busatti"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M54050
+		minister_of_security = silent_lawyer
+		start_date = 1943.1.1
+	}
+	54052 = {
+		name = "Muhammed Ghobar"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M54015
+		minister_of_security = back_stabber
+		head_of_government = backroom_backstabber
+		start_date = 1946.1.1
+	}
+	54054 = {
+		name = "Pietro Stoppani"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M54054
+		minister_of_intelligence = industrial_specialist
+		start_date = 1937.1.1
+	}
+	54055 = {
+		name = "Carlo Schanzer"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M54055
+		minister_of_intelligence = technical_specialist
+		start_date = 1938.1.1
+	}
+	54056 = {
+		name = "Carlo Enrico Barduzzi"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54056
+		minister_of_intelligence = political_specialist
+		start_date = 1939.1.1
+	}
+	54063 = {
+		name = "Gholam Wali"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M54063
+		chief_of_staff = school_of_manoeuvre
+		chief_of_army = guns_and_butter_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1944.1.1
+	}
+	54065 = {
+		name = "Renato Bardolucci"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M54065
+		chief_of_army = armoured_spearhead_doctrine
+		start_date = 1937.1.1
+	}
+	54080 = {
+		name = "Mohammed Maiwandwal"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M54080
+		foreign_minister = ideological_crusader
+		start_date = 1951.1.1
+	}
+}

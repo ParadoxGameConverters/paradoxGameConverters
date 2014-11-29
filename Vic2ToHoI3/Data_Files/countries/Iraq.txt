@@ -1,0 +1,765 @@
+color = { 178  114  99 }
+graphical_culture = Generic
+
+default_templates = {
+	generic_infantry = {
+		infantry_brigade
+		infantry_brigade
+		infantry_brigade
+	}
+	generic_milita = {
+		militia_brigade
+		militia_brigade
+		militia_brigade
+	}
+	generic_armoured = {
+		armor_brigade
+		motorized_brigade
+		motorized_brigade
+	}
+	generic_cavalry = {
+		cavalry_brigade
+		cavalry_brigade
+	}
+}
+
+unit_names = {
+	infantry_brigade = {
+		"Iraqi al-Mushati al-1i" "Iraqi al-Mushati al-2i" "Iraqi al-Mushati al-3i" "Iraqi al-Mushati al-4i" "Iraqi al-Mushati al-5i" "Iraqi al-Mushati al-6i" "Iraqi al-Mushati al-7i" "Iraqi al-Mushati al-8i" "Iraqi al-Mushati al-9i" "Iraqi al-Mushati al-10i" "Iraqi al-Mushati al-12r" 
+		"Iraqi al-Mushati al-13r" "Iraqi al-Mushati al-14r" "Iraqi al-Mushati al-15r" "Iraqi al-Mushati al-16r" "Iraqi al-Mushati al-17r" "Iraqi al-Mushati al-18r" "Iraqi al-Mushati al-19r" "Iraqi al-Mushati al-20r" 
+	}
+	cavalry_brigade = {
+		"Iraqi Sipahis al-1i" "Iraqi Sipahis al-2i" "Iraqi Sipahis al-3i" "Iraqi Sipahis al-4i" "Iraqi Sipahis al-5i" "Iraqi Sipahis al-6i" "Iraqi Sipahis al-7i" "Iraqi Sipahis al-8i" "Iraqi Sipahis al-9i" "Iraqi Sipahis al-10i" "Iraqi Sipahis al-11r" 
+		"Iraqi Sipahis al-12r" "Iraqi Sipahis al-13r" "Iraqi Sipahis al-14r" "Iraqi Sipahis al-15r" 
+	}
+	motorized_brigade = {
+		"Iraqi al-Mushati al-1i" "Iraqi al-Mushati al-2i" "Iraqi al-Mushati al-3i" "Iraqi al-Mushati al-4i" "Iraqi al-Mushati al-5i" "Iraqi al-Mushati al-6i" "Iraqi al-Mushati al-7i" "Iraqi al-Mushati al-8i" "Iraqi al-Mushati al-9i" "Iraqi al-Mushati al-10i" "Iraqi al-Mushati al-12r" 
+		"Iraqi al-Mushati al-13r" "Iraqi al-Mushati al-14r" "Iraqi al-Mushati al-15r" "Iraqi al-Mushati al-16r" "Iraqi al-Mushati al-17r" "Iraqi al-Mushati al-18r" "Iraqi al-Mushati al-19r" "Iraqi al-Mushati al-20r" 
+	}
+	mechanized_brigade = {
+		"Iraqi al-Mushati al-1i" "Iraqi al-Mushati al-2i" "Iraqi al-Mushati al-3i" "Iraqi al-Mushati al-4i" "Iraqi al-Mushati al-5i" "Iraqi al-Mushati al-6i" "Iraqi al-Mushati al-7i" "Iraqi al-Mushati al-8i" "Iraqi al-Mushati al-9i" "Iraqi al-Mushati al-10i" "Iraqi al-Mushati al-12r" 
+		"Iraqi al-Mushati al-13r" "Iraqi al-Mushati al-14r" "Iraqi al-Mushati al-15r" "Iraqi al-Mushati al-16r" "Iraqi al-Mushati al-17r" "Iraqi al-Mushati al-18r" "Iraqi al-Mushati al-19r" "Iraqi al-Mushati al-20r" 
+	}
+	light_armor_brigade = {
+		"Iraqi Sipahis al-1i" "Iraqi Sipahis al-2i" "Iraqi Sipahis al-3i" "Iraqi Sipahis al-4i" "Iraqi Sipahis al-5i" "Iraqi Sipahis al-6i" "Iraqi Sipahis al-7i" "Iraqi Sipahis al-8i" "Iraqi Sipahis al-9i" "Iraqi Sipahis al-10i" 
+	}
+	armor_brigade = {
+		"Iraqi Sipahis al-1i" "Iraqi Sipahis al-2i" "Iraqi Sipahis al-3i" "Iraqi Sipahis al-4i" "Iraqi Sipahis al-5i" "Iraqi Sipahis al-6i" "Iraqi Sipahis al-7i" "Iraqi Sipahis al-8i" "Iraqi Sipahis al-9i" "Iraqi Sipahis al-10i" 
+	}
+	paratrooper_brigade = {
+		"Iraqi al-Mushati al-20r" "Iraqi al-Mushati al-21r" "Iraqi al-Mushati al-22r" "Iraqi al-Mushati al-23r" "Iraqi al-Mushati al-24r" "Iraqi al-Mushati al-25r" "Iraqi al-Mushati al-26r" "Iraqi al-Mushati al-27r" "Iraqi al-Mushati al-28r" "Iraqi al-Mushati al-29r" "Iraqi al-Mushati al-30r" 
+			}
+	marine_brigade = {
+		"Iraqi al-Mushati al-20r" "Iraqi al-Mushati al-21r" "Iraqi al-Mushati al-22r" "Iraqi al-Mushati al-23r" "Iraqi al-Mushati al-24r" "Iraqi al-Mushati al-25r" "Iraqi al-Mushati al-26r" "Iraqi al-Mushati al-27r" "Iraqi al-Mushati al-28r" "Iraqi al-Mushati al-29r" "Iraqi al-Mushati al-30r" 
+			}
+	bergsjaeger_brigade = {
+		"Iraqi al-Mushati al-20r" "Iraqi al-Mushati al-21r" "Iraqi al-Mushati al-22r" "Iraqi al-Mushati al-23r" "Iraqi al-Mushati al-24r" "Iraqi al-Mushati al-25r" "Iraqi al-Mushati al-26r" "Iraqi al-Mushati al-27r" "Iraqi al-Mushati al-28r" "Iraqi al-Mushati al-29r" "Iraqi al-Mushati al-30r" 
+			}
+	garrison_brigade = {
+		"Iraqi al-Mushati al-1i" "Iraqi al-Mushati al-2i" "Iraqi al-Mushati al-3i" "Iraqi al-Mushati al-4i" "Iraqi al-Mushati al-5i" "Iraqi al-Mushati al-6i" "Iraqi al-Mushati al-7i" "Iraqi al-Mushati al-8i" "Iraqi al-Mushati al-9i" "Iraqi al-Mushati al-10i" "Iraqi al-Mushati al-12r" 
+		"Iraqi al-Mushati al-13r" "Iraqi al-Mushati al-14r" "Iraqi al-Mushati al-15r" "Iraqi al-Mushati al-16r" "Iraqi al-Mushati al-17r" "Iraqi al-Mushati al-18r" "Iraqi al-Mushati al-19r" "Iraqi al-Mushati al-20r" 
+	}
+	hq_brigade = {
+		"1st Iraqi Army" "2nd Iraqi Army" "3rd Iraqi Army" "4th Iraqi Army" "5th Iraqi Army" 
+	}
+	militia_brigade = {
+		"Iraqi al-Milishiya al-1i" "Iraqi al-Milishiya al-2i" "Iraqi al-Milishiya al-3i" "Iraqi al-Milishiya al-4i" "Iraqi al-Milishiya al-5i" "Iraqi al-Milishiya al-6i" "Iraqi al-Milishiya al-7i" "Iraqi al-Milishiya al-8i" "Iraqi al-Milishiya al-9i" "Iraqi al-Milishiya al-10i" "Iraqi al-Milishiya al-11r" 
+		"Iraqi al-Milishiya al-12r" "Iraqi al-Milishiya al-13r" "Iraqi al-Milishiya al-14r" "Iraqi al-Milishiya al-15r" "Iraqi al-Milishiya al-16r" "Iraqi al-Milishiya al-17r" "Iraqi al-Milishiya al-18r" "Iraqi al-Milishiya al-19r" "Iraqi al-Milishiya al-20r" "Iraqi al-Milishiya al-21r" "Iraqi al-Milishiya al-22r" 
+		"Iraqi al-Milishiya al-23r" "Iraqi al-Milishiya al-24r" "Iraqi al-Milishiya al-25r" 
+	}
+	multi_role = {
+		"1. RIAF Fighter Group" "2. RIAF Fighter Group" "3. RIAF Fighter Group" "4. RIAF Fighter Group" "5. RIAF Fighter Group" "6. RIAF Fighter Group" "7. RIAF Fighter Group" "8. RIAF Fighter Group" "9. RIAF Fighter Group" "10. RIAF Fighter Group" 
+	}
+	interceptor = {
+		"1. RIAF Fighter Group" "2. RIAF Fighter Group" "3. RIAF Fighter Group" "4. RIAF Fighter Group" "5. RIAF Fighter Group" "6. RIAF Fighter Group" "7. RIAF Fighter Group" "8. RIAF Fighter Group" "9. RIAF Fighter Group" "10. RIAF Fighter Group" "1. RIAF Fighter Group" 
+		"2. RIAF Fighter Group" "3. RIAF Fighter Group" "4. RIAF Fighter Group" "5. RIAF Fighter Group" "6. RIAF Fighter Group" "7. RIAF Fighter Group" "8. RIAF Fighter Group" "9. RIAF Fighter Group" "10. RIAF Fighter Group" 
+	}
+	strategic_bomber = {
+		"11. RIAF Strategic Bomb Group" "12. RIAF Strategic Bomb Group" "13. RIAF Strategic Bomb Group" "14. RIAF Strategic Bomb Group" "15. RIAF Strategic Bomb Group" "16. RIAF Strategic Bomb Group" 
+	}
+	tactical_bomber = {
+		"21. RIAF Tactical Bomb Group" "22. RIAF Tactical Bomb Group" "23. RIAF Tactical Bomb Group" "24. RIAF Tactical Bomb Group" "25. RIAF Tactical Bomb Group" "26. RIAF Tactical Bomb Group" 
+	}
+	naval_bomber = {
+		"41. RIAF Marine Bomb Group" "42. RIAF Marine Bomb Group" "43. RIAF Marine Bomb Group" "44. RIAF Marine Bomb Group" "45. RIAF Marine Bomb Group" "51. RIAF Torpedo Group" "52. RIAF Torpedo Group" "53. RIAF Torpedo Group" "54. RIAF Torpedo Group" "55. RIAF Torpedo Group" "56. RIAF Torpedo Group" 
+			}
+	cas = {
+		"31. RIAF Dive Bomb Group" "32. RIAF Dive Bomb Group" "33. RIAF Dive Bomb Group" "34. RIAF Dive Bomb Group" "35. RIAF Dive Bomb Group" 
+	}
+	transport_plane = {
+		"61. RIAF Airtransport" "62. RIAF Airtransport" "63. RIAF Airtransport" "64. RIAF Airtransport" 
+	}
+	battleship = {
+		"HMIS Baghdad" "HMIS Al Mawsil" "HMIS Salah al-Din" 
+	}
+	light_cruiser = {
+		"HMIS Huth" "HMIS Sa'dah" "HMIS Ma'rib" "HMIS Salalah" "HMIS Raysut" "HMIS Mirbah" "HMIS Sawqirah" 
+	}
+	heavy_cruiser = {
+		"HMIS Karbala" "HMIS Baqubah" "HMIS Al Amarah" "HMIS Al Küt" "HMIS Sulaimanya" 
+	}
+	battlecruiser = {
+		"HMIS Baghdad" "HMIS Al Mawsil" "HMIS Salah al-Din" 
+	}
+	destroyer = {
+		"RIN Torpedo Flotilla no. 1" "RIN Torpedo Flotilla no. 2" "RIN Torpedo Flotilla no. 3" "RIN Torpedo Flotilla no. 4" "RIN Torpedo Flotilla no. 5" "RIN Torpedo Flotilla no. 6" "RIN Torpedo Flotilla no. 7" "RIN Torpedo Flotilla no. 8" "RIN Torpedo Flotilla no. 9" "RIN Torpedo Flotilla no. 10" 
+	}
+	carrier = {
+		"HMIS An Najaf" "HMIS Al Basrah" 
+	}
+	submarine = {
+		"RIN Ustul al-Ghawwasati al-1i" "RIN Ustul al-Ghawwasati al-2i" "RIN Ustul al-Ghawwasati al-3i" "RIN Ustul al-Ghawwasati al-4i" "RIN Ustul al-Ghawwasati al-5i" "RIN Ustul al-Ghawwasati al-6i" "RIN Ustul al-Ghawwasati al-7i" "RIN Ustul al-Ghawwasati al-8i" "RIN Ustul al-Ghawwasati al-9i" "RIN Ustul al-Ghawwasati al-10i" 
+	}
+	transport_ship = {
+		"RIN Ustul al-Hamli al-1i" "RIN Ustul al-Hamli al-2i" "RIN Ustul al-Hamli al-3i" "RIN Ustul al-Hamli al-4i" "RIN Ustul al-Hamli al-5i" "RIN Ustul al-Hamli al-6i" "RIN Ustul al-Hamli al-7i" "RIN Ustul al-Hamli al-8i" "RIN Ustul al-Hamli al-9i" "RIN Ustul al-Hamli al-10i" 
+	}
+
+}
+
+ministers = {
+	91001 = {
+		name = "Ghazi I ibn Faysal"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M91001
+		head_of_state = autocratic_charmer
+		armament_minister = laissez_faires_capitalist
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		head_of_state = autocratic_charmer
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1936.1.1
+	}
+	91002 = {
+		name = "Yasin Pasha al Hashimi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M91002
+		head_of_government = naive_optimist
+		minister_of_intelligence = naval_intelligence_specialist
+		start_date = 1936.1.1
+	}
+	91003 = {
+		name = "Nuri as Said"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91003
+		foreign_minister = general_staffer
+		head_of_government = old_general
+		armament_minister = infantry_proponent
+		minister_of_security = efficient_sociopath
+		minister_of_intelligence = research_specialist
+		chief_of_army = armoured_spearhead_doctrine
+		head_of_government = ambitious_union_boss
+		head_of_government = flamboyant_tough_guy
+		start_date = 1936.1.1
+	}
+	91005 = {
+		name = "Ali Abn Hussein"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91005
+		minister_of_security = back_stabber
+		armament_minister = corrupt_kleptocrat
+		start_date = 1936.1.1
+	}
+	91007 = {
+		name = "Bakr Sidqi"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M91007
+		chief_of_staff = school_of_defence
+		chief_of_staff = school_of_defence
+		start_date = 1936.1.1
+	}
+	91008 = {
+		name = "Frederic G.Peake"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91008
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1936.1.1
+	}
+	91009 = {
+		name = "A.R.H. Nye"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91009
+		chief_of_navy = open_seas_doctrine
+		start_date = 1936.1.1
+	}
+	91010 = {
+		name = "Ali ben Jawad"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91010
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	91035 = {
+		name = "Amir al Illah"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M91035
+		head_of_state = stern_imperialist
+		head_of_state = stern_imperialist
+		head_of_state = stern_imperialist
+		head_of_state = stern_imperialist
+		chief_of_army = static_defence_doctrine
+		chief_of_air = air_superiority_doctrine
+		start_date = 1939.1.1
+	}
+	91039 = {
+		name = "Faysal II ibn Ghazi"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M91039
+		head_of_state = benevolent_gentleman
+		head_of_state = benevolent_gentleman
+		head_of_state = benevolent_gentleman
+		chief_of_army = static_defence_doctrine
+		chief_of_air = vertical_envelopment_doctrine
+		head_of_state = benevolent_gentleman
+		start_date = 1946.1.1
+	}
+	91043 = {
+		name = "Moussa al Alami"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M91043
+		head_of_government = silent_workhorse
+		foreign_minister = great_compromiser
+		armament_minister = laissez_faires_capitalist
+		start_date = 1936.1.1
+	}
+	91044 = {
+		name = "Taha Pasha al Hashimi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91044
+		head_of_government = happy_amateur
+		foreign_minister = ideological_crusader
+		minister_of_intelligence = dismal_enigma
+		start_date = 1941.1.1
+	}
+	91045 = {
+		name = "Ragheb Nashashibi"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M91045
+		head_of_government = flamboyant_tough_guy
+		foreign_minister = biased_intellectual
+		minister_of_security = crime_fighter
+		start_date = 1946.1.1
+	}
+	91046 = {
+		name = "Azam Pasha"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91046
+		head_of_government = old_general
+		foreign_minister = apologetic_clerk
+		armament_minister = infantry_proponent
+		minister_of_intelligence = research_specialist
+		start_date = 1936.1.1
+	}
+	91047 = {
+		name = "Jamil al Midfai"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91047
+		head_of_government = smiling_oilman
+		foreign_minister = apologetic_clerk
+		armament_minister = theoretical_scientist
+		minister_of_security = crooked_kleptocrat
+		minister_of_intelligence = political_specialist
+		chief_of_navy = indirect_approach_doctrine
+		chief_of_air = carpet_bombing_doctrine
+		head_of_government = smiling_oilman
+		start_date = 1937.1.1
+	}
+	91049 = {
+		name = "Hamdi al Pachachi"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91049
+		head_of_government = silent_workhorse
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1944.1.1
+	}
+	91050 = {
+		name = "Salih Jabr"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91050
+		head_of_government = political_protege
+		foreign_minister = ideological_crusader
+		start_date = 1947.1.1
+	}
+	91051 = {
+		name = "Fawsi al Kaukji"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M91014
+		head_of_government = flamboyant_tough_guy
+		armament_minister = corrupt_kleptocrat
+		minister_of_intelligence = industrial_specialist
+		chief_of_staff = school_of_fire_support
+		chief_of_army = static_defence_doctrine
+		start_date = 1936.1.1
+	}
+	91052 = {
+		name = "Rashid Ali al Gaylani"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M91011
+		head_of_government = smiling_oilman
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = prince_of_terror
+		head_of_government = smiling_oilman
+		start_date = 1940.1.1
+	}
+	91053 = {
+		name = "Haj Amini al Husseini"
+		ideology = fascistic
+		loyalty = 1.00
+		picture = M91013
+		head_of_government = backroom_backstabber
+		foreign_minister = ideological_crusader
+		minister_of_security = efficient_sociopath
+		start_date = 1941.1.1
+	}
+	91054 = {
+		name = "Hikmet Suleyman"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M91054
+		head_of_government = naive_optimist
+		foreign_minister = great_compromiser
+		minister_of_security = compassionate_gentleman
+		head_of_government = naive_optimist
+		start_date = 1936.1.1
+	}
+	91055 = {
+		name = "Yahya Hamudeh"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M91021
+		head_of_government = backroom_backstabber
+		foreign_minister = iron_fisted_brute
+		head_of_state = barking_buffoon
+		head_of_government = backroom_backstabber
+		start_date = 1940.1.1
+	}
+	91056 = {
+		name = "Tawfiq al Suweidi"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M91056
+		head_of_government = ambitious_union_boss
+		foreign_minister = apologetic_clerk
+		foreign_minister = apologetic_clerk
+		armament_minister = submarine_proponent
+		head_of_government = ambitious_union_boss
+		start_date = 1946.1.1
+	}
+	91057 = {
+		name = "Arshad al Umari"
+		ideology = left_wing_radical
+		loyalty = 1.00
+		picture = M91027
+		head_of_government = happy_amateur
+		foreign_minister = general_staffer
+		chief_of_staff = school_of_fire_support
+		chief_of_army = guns_and_butter_doctrine
+		start_date = 1946.1.1
+	}
+	91064 = {
+		name = "Ali Jawdat"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91064
+		foreign_minister = the_cloak_n_dagger_schemer
+		head_of_government = backroom_backstabber
+		start_date = 1939.1.1
+	}
+	91067 = {
+		name = "Abdallah al Damluji"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91067
+		foreign_minister = iron_fisted_brute
+		start_date = 1942.1.1
+	}
+	91068 = {
+		name = "Abd al Illah al Hafiz"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91068
+		foreign_minister = great_compromiser
+		start_date = 1942.1.1
+	}
+	91069 = {
+		name = "Nasrat al Farisi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91069
+		foreign_minister = iron_fisted_brute
+		start_date = 1943.1.1
+	}
+	91070 = {
+		name = "Tahsin al Askari"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91070
+		foreign_minister = ideological_crusader
+		start_date = 1943.1.1
+	}
+	91071 = {
+		name = "Mahmud Subhi al Daftari"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91071
+		foreign_minister = apologetic_clerk
+		start_date = 1943.1.1
+	}
+	91073 = {
+		name = "Ahmad Abdul Baqi"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91073
+		foreign_minister = the_cloak_n_dagger_schemer
+		minister_of_security = man_of_the_people
+		start_date = 1946.1.1
+	}
+	91074 = {
+		name = "Muhammed Fadelfomali"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91074
+		foreign_minister = biased_intellectual
+		foreign_minister = biased_intellectual
+		start_date = 1946.1.1
+	}
+	91076 = {
+		name = "Ali Mahmud al Shaykh"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91019
+		foreign_minister = great_compromiser
+		chief_of_navy = indirect_approach_doctrine
+		start_date = 1940.1.1
+	}
+	91078 = {
+		name = "Musa Bey al Shahbandar"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91078
+		foreign_minister = biased_intellectual
+		start_date = 1941.1.1
+	}
+	91080 = {
+		name = "Naji al Asil"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91080
+		foreign_minister = ideological_crusader
+		start_date = 1936.1.1
+	}
+	91083 = {
+		name = "Ali Mumtaz"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M91083
+		foreign_minister = general_staffer
+		start_date = 1946.1.1
+	}
+	91086 = {
+		name = "Abdel Latif Salah"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M91086
+		armament_minister = resource_industrialist
+		start_date = 1936.1.1
+	}
+	91088 = {
+		name = "Elie Mosseri"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91088
+		armament_minister = administrative_genius
+		start_date = 1946.1.1
+	}
+	91090 = {
+		name = "Ya'goub Farraj"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91090
+		armament_minister = laissez_faires_capitalist
+		start_date = 1938.1.1
+	}
+	91092 = {
+		name = "Robert H. Brand"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91092
+		armament_minister = air_to_ground_proponent
+		minister_of_security = silent_lawyer
+		start_date = 1942.1.1
+	}
+	91093 = {
+		name = "Jamal Husseini"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91093
+		armament_minister = air_superiority_proponent
+		start_date = 1943.1.1
+	}
+	91096 = {
+		name = "Abdullah"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91028
+		armament_minister = military_entrepreneur
+		minister_of_intelligence = political_specialist
+		chief_of_army = elastic_defence_doctrine
+		start_date = 1946.1.1
+	}
+	91097 = {
+		name = "Amir al Jahed"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91097
+		armament_minister = military_entrepreneur
+		start_date = 1936.1.1
+	}
+	91098 = {
+		name = "Yahya al Najif"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91098
+		armament_minister = submarine_proponent
+		start_date = 1937.1.1
+	}
+	91101 = {
+		name = "Khaled al Dalabeeh"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M91030
+		armament_minister = theoretical_scientist
+		chief_of_air = vertical_envelopment_doctrine
+		start_date = 1936.1.1
+	}
+	91102 = {
+		name = "Anwar Khatib"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M91024
+		armament_minister = strategic_air_proponent
+		minister_of_security = man_of_the_people
+		start_date = 1946.1.1
+	}
+	91104 = {
+		name = "Ghulam Ali Allana"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91104
+		minister_of_security = compassionate_gentleman
+		start_date = 1940.1.1
+	}
+	91106 = {
+		name = "Kamel Erekat"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91106
+		minister_of_security = crooked_kleptocrat
+		start_date = 1936.1.1
+	}
+	91108 = {
+		name = "Suleiman al Taji"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91108
+		minister_of_security = prince_of_terror
+		minister_of_intelligence = political_specialist
+		start_date = 1939.1.1
+	}
+	91110 = {
+		name = "John Sanderson-Haldane"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91110
+		minister_of_security = crime_fighter
+		minister_of_intelligence = dismal_enigma
+		start_date = 1944.1.1
+	}
+	91113 = {
+		name = "Ali Rassakh"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91113
+		minister_of_security = man_of_the_people
+		start_date = 1937.1.1
+	}
+	91114 = {
+		name = "Ahmed Amir Badi"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91114
+		minister_of_security = efficient_sociopath
+		start_date = 1940.1.1
+	}
+	91120 = {
+		name = "Mohammed al Azir"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91120
+		minister_of_intelligence = research_specialist
+		start_date = 1941.1.1
+	}
+	91122 = {
+		name = "Emil Ghoury"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91122
+		minister_of_intelligence = technical_specialist
+		start_date = 1936.1.1
+	}
+	91124 = {
+		name = "John Bagot Glubb"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91124
+		minister_of_intelligence = research_specialist
+		chief_of_staff = school_of_psychology
+		chief_of_army = decisive_battle_doctrine
+		start_date = 1941.1.1
+	}
+	91126 = {
+		name = "Francis P. Walters"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91126
+		minister_of_intelligence = industrial_specialist
+		start_date = 1944.1.1
+	}
+	91129 = {
+		name = "Rifai al Fadel"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91129
+		minister_of_intelligence = political_specialist
+		minister_of_intelligence = dismal_enigma
+		start_date = 1936.1.1
+	}
+	91130 = {
+		name = "Rashid Ali al-Gaylani"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91011
+		minister_of_intelligence = dismal_enigma
+		head_of_state = power_hungry_demagogue
+		chief_of_navy = power_projection_doctrine
+		head_of_state = power_hungry_demagogue
+		head_of_government = smiling_oilman
+		start_date = 1940.1.1
+	}
+	91133 = {
+		name = "Taha al Ahmani"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M91029
+		minister_of_intelligence = industrial_specialist
+		chief_of_navy = decisive_naval_battle_doctrine
+		start_date = 1936.1.1
+	}
+	91134 = {
+		name = "Abdallah Mumtaz"
+		ideology = left_wing_radical
+		loyalty = 0.75
+		picture = M91026
+		minister_of_intelligence = technical_specialist
+		start_date = 1940.1.1
+	}
+	91137 = {
+		name = "Frederic Peake"
+		ideology = social_conservative
+		loyalty = 0.50
+		picture = M91008
+		chief_of_staff = school_of_fire_support
+		start_date = 1936.1.1
+	}
+	91140 = {
+		name = "Nuri as-Said"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91003
+		chief_of_staff = school_of_mass_combat
+		start_date = 1937.1.1
+	}
+	91164 = {
+		name = "Alan Rawlinson"
+		ideology = social_conservative
+		loyalty = 0.75
+		picture = M91164
+		chief_of_air = army_aviation_doctrine
+		start_date = 1941.1.1
+	}
+	91166 = {
+		name = "Abdullah al-Tell"
+		ideology = paternal_autocrat
+		loyalty = 0.75
+		picture = M91166
+		chief_of_air = naval_aviation_doctrine
+		start_date = 1940.1.1
+	}
+	91170 = {
+		name = "Fahmi Sa'id"
+		ideology = fascistic
+		loyalty = 0.75
+		picture = M91020
+		chief_of_air = air_superiority_doctrine
+		start_date = 1936.1.1
+	}
+	91179 = {
+		name = "Muhammad as Sadr"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91179
+		head_of_government = naive_optimist
+		start_date = 1948.1.1
+	}
+	91180 = {
+		name = "Muzahim al Bayyaji"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M91180
+		head_of_government = corporate_suit
+		start_date = 1948.1.1
+	}
+	91183 = {
+		name = "Nurreddin Mahmud"
+		ideology = paternal_autocrat
+		loyalty = 1.00
+		picture = M91183
+		head_of_government = old_general
+		minister_of_intelligence = research_specialist
+		start_date = 1952.1.1
+	}
+	91184 = {
+		name = "Mustafa al Umari"
+		ideology = market_liberal
+		loyalty = 1.00
+		picture = M91184
+		head_of_government = silent_workhorse
+		start_date = 1952.1.1
+	}
+	91185 = {
+		name = "Muhamed Fadhel al-Jamali"
+		ideology = social_conservative
+		loyalty = 1.00
+		picture = M91185
+		head_of_government = happy_amateur
+		start_date = 1953.1.1
+	}
+}
