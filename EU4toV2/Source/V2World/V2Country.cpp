@@ -991,67 +991,63 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 	// allocate the remainders from the whole country to the armies according to their need, rounding up
 	for (int rc = infantry; rc < num_reg_categories; ++rc)
 	{
-		if (countryRemainder[rc] > 0.0)
+		while (countryRemainder[rc] > 0.0)
 		{
-			LOG(LogLevel::Debug) << "Allocating regiments of " << RegimentCategoryNames[rc] << " from the remainder pool for " << tag << " (total: " << countryRemainder[rc] << ')';
-		}
-			while (countryRemainder[rc] > 0.0)
+			V2Army* army = getArmyForRemainder((RegimentCategory)rc);
+			if (!army)
 			{
-				V2Army* army = getArmyForRemainder((RegimentCategory)rc);
-				if (!army)
-				{
-					LOG(LogLevel::Warning) << "No suitable army or navy found for " << tag << "'s pooled regiments of " << RegimentCategoryNames[rc];
-					break;
-				}
-				switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces))
-				{
-				case 0: // success
-					countryRemainder[rc] -= 1.0;
-					army->setArmyRemainders((RegimentCategory)rc, army->getArmyRemainder((RegimentCategory)rc) - 1.0);
-					break;
-				case -1: // retry
-					break;
-				case -2: // do not retry
-					LOG(LogLevel::Debug) << "Disqualifying army/navy " << army->getName() << " from receiving more " << RegimentCategoryNames[rc] << " from the pool";
-					army->setArmyRemainders((RegimentCategory)rc, -2000.0);
-					break;
-				}
+				LOG(LogLevel::Warning) << "\tNo suitable army or navy found for " << tag << "'s pooled regiments of " << RegimentCategoryNames[rc];
+				break;
+			}
+			switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces))
+			{
+			case 0: // success
+				countryRemainder[rc] -= 1.0;
+				army->setArmyRemainders((RegimentCategory)rc, army->getArmyRemainder((RegimentCategory)rc) - 1.0);
+				break;
+			case -1: // retry
+				break;
+			case -2: // do not retry
+				LOG(LogLevel::Debug) << "\tDisqualifying army/navy " << army->getName() << " from receiving more " << RegimentCategoryNames[rc] << " from the pool";
+				army->setArmyRemainders((RegimentCategory)rc, -2000.0);
+				break;
 			}
 		}
+	}
 
 #else // ifdef TEST_V2_PROVINCES
-		// output one big ship to each V2 province that's neither whitelisted nor blacklisted, but only 10 at a time per nation
-		// output from this mode is used to build whitelist and blacklist files
-		int n_tests = 0;
-		for (vector<V2Province>::iterator pitr = provinces.begin(); (pitr != provinces.end()) && (n_tests < 50); ++pitr)
+	// output one big ship to each V2 province that's neither whitelisted nor blacklisted, but only 10 at a time per nation
+	// output from this mode is used to build whitelist and blacklist files
+	int n_tests = 0;
+	for (vector<V2Province>::iterator pitr = provinces.begin(); (pitr != provinces.end()) && (n_tests < 50); ++pitr)
+	{
+		if ((pitr->getOwner() == itr->getTag()) && pitr->isCoastal())
 		{
-			if ((pitr->getOwner() == itr->getTag()) && pitr->isCoastal())
+			vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), pitr->getNum());
+			if (black != port_blacklist.end())
+				continue;
+
+			V2Army army;
+			army.setName("V2 Test Navy");
+			army.setAtSea(0);
+			army.setNavy(true);
+			army.setLocation(pitr->getNum());
+			V2Regiment reg(heavy_ship);
+			reg.setStrength(100);
+			army.addRegiment(reg);
+			itr->addArmy(army);
+
+			vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), pitr->getNum());
+			if (white == port_whitelist.end())
 			{
-				vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), pitr->getNum());
-				if (black != port_blacklist.end())
-					continue;
-
-				V2Army army;
-				army.setName("V2 Test Navy");
-				army.setAtSea(0);
-				army.setNavy(true);
-				army.setLocation(pitr->getNum());
-				V2Regiment reg(heavy_ship);
-				reg.setStrength(100);
-				army.addRegiment(reg);
-				itr->addArmy(army);
-
-				vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), pitr->getNum());
-				if (white == port_whitelist.end())
-				{
-					++n_tests;
-					ofstream s("port_greylist.txt", ios_base::app);
-					s << pitr->getNum() << "\n";
-					s.close();
-				}
+				++n_tests;
+				ofstream s("port_greylist.txt", ios_base::app);
+				s << pitr->getNum() << "\n";
+				s.close();
 			}
 		}
-		log("Output %d test ships.\n", n_tests);
+	}
+	log("Output %d test ships.\n", n_tests);
 #endif
 }
 
@@ -1757,7 +1753,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 	int eu4Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
 	if (eu4Home == -1)
 	{
-		LOG(LogLevel::Warning) << "Army/navy " << army->getName() << " has no valid home provinces for " << RegimentCategoryNames[rc] << " due to previous errors; dissolving to pool";
+		LOG(LogLevel::Debug) << "\tArmy/navy " << army->getName() << " has no valid home provinces for " << RegimentCategoryNames[rc] << " due to previous errors; dissolving to pool";
 		return -2;
 	}
 	vector<int> homeCandidates = getV2ProvinceNums(inverseProvinceMap, eu4Home);
@@ -1815,13 +1811,13 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		}
 		homeProvince = sortedHomeCandidates[0];
 		// Armies need to be associated with pops
-		if (homeProvince->getOwner() != tag)
-		{
-			LOG(LogLevel::Warning) << "V2 province " << homeProvince->getNum() << " is home for a " << tag << RegimentCategoryNames[rc] << " regiment, but belongs to " << homeProvince->getOwner() << " - dissolving regiment to pool";
-			// all provinces in a given province map have the same owner, so the source home was bad
-			army->getSourceArmy()->blockHomeProvince(eu4Home);
-			return -1;
-		}
+		//if (homeProvince->getOwner() != tag) // TODO: find a way of associating these units with a province owned by the proper country
+		//{
+		//	LOG(LogLevel::Warning) << "V2 province " << homeProvince->getNum() << " is home for a " << tag << " " << RegimentCategoryNames[rc] << " regiment, but belongs to " << homeProvince->getOwner() << " - dissolving regiment to pool";
+		//	// all provinces in a given province map have the same owner, so the source home was bad
+		//	army->getSourceArmy()->blockHomeProvince(eu4Home);
+		//	return -1;
+		//}
 		V2Pop* soldierPop = homeProvince->getSoldierPopForArmy();
 		if (NULL == soldierPop)
 		{
@@ -1843,7 +1839,6 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		if (NULL == soldierPop)
 		{
 			soldierPop = homeProvince->getSoldierPopForArmy(true);
-			LOG(LogLevel::Warning) << "Could not grow province " << homeProvince->getNum() << " soldier pops to support " << RegimentCategoryNames[rc] << " regiment in army " << army->getName() << " - regiment will be undersupported";
 		}
 		reg.setHome(homeProvince->getNum());
 	}
