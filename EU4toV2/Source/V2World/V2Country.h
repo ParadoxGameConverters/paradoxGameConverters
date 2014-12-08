@@ -120,6 +120,7 @@ class V2Country
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces);
 		V2Army*		getArmyForRemainder(RegimentCategory rc);
 		V2Province*	getProvinceForExpeditionaryArmy();
+		string		getRegimentName(RegimentCategory rc);
 
 		V2World*							theWorld;
 		const EU4Country*				srcCountry;
@@ -170,6 +171,7 @@ class V2Country
 		double							literacy;
 		V2Localisation					localisation;
 		Color								color;
+		int								unitNameCount[num_reg_categories];
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

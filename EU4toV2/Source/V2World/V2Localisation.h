@@ -56,8 +56,8 @@ public:
 	// so we convert the text to ANSI Latin-1 before writing it.
 	static std::string Convert(const std::string&);
 
-	// Kludgy hack. Required for CK2 title identification.
 	std::string GetLocalName();
+	std::string GetLocalAdjective();
 
 private:
 	static const size_t numLanguages = 14;

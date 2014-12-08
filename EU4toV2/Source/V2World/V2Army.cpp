@@ -81,6 +81,7 @@ V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 			LOG(LogLevel::Warning) << "Unexpected regiment category " << rc;
 			break;
 	}
+	home = 0;
 }
 
 

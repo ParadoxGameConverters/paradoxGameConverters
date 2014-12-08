@@ -133,4 +133,8 @@ colonyFlagset initColonyFlagset(Object* obj);
 typedef map<string, string> ck2TitleMapping;	// <name, title>
 ck2TitleMapping initCK2TitleMap(Object* obj);
 
+
+// utility functions
+string CardinalToOrdinal(int cardinal);
+
 #endif // MAPPER_H
