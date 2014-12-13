@@ -1093,7 +1093,7 @@ void V2World::addUnions(const unionMapping& unionMap)
 
 
 //#define TEST_V2_PROVINCES
-void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap)
+void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap, adjacencyMapping adjacencyMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
@@ -1132,7 +1132,7 @@ void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMa
 	// convert armies
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->convertArmies(leaderIDMap, cost_per_regiment, inverseProvinceMap, provinces, port_whitelist);
+		itr->second->convertArmies(leaderIDMap, cost_per_regiment, inverseProvinceMap, provinces, port_whitelist, adjacencyMap);
 	}
 }
 

@@ -781,7 +781,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap, adjacencyMap);
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
 	LOG(LogLevel::Info) << "Allocating starting factories";

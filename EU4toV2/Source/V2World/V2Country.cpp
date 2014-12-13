@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <io.h>
 #include <fstream>
 #include <sstream>
+#include <queue>
 #include "../Log.h"
 #include "../Configuration.h"
 #include "../Parsers/Parser.h"
@@ -902,11 +903,17 @@ void V2Country::addState(V2State* newState)
 
 
 //#define TEST_V2_PROVINCES
-void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist)
+void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap)
 {
 #ifndef TEST_V2_PROVINCES
 	if (srcCountry == NULL)
+	{
 		return;
+	}
+	if (provinces.size() == 0)
+	{
+		return;
+	}
 
 	// set up armies with whatever regiments they deserve, rounded down
 	// and keep track of the remainders for later
@@ -934,7 +941,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 
 			for (int i = 0; i < regimentsToCreate; ++i)
 			{
-				if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces) != 0)
+				if (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces, adjacencyMap) != 0)
 				{
 					// couldn't add, dissolve into pool
 					countryRemainder[rc] += 1.0;
@@ -1004,7 +1011,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 				LOG(LogLevel::Debug) << "No suitable army or navy found for " << tag << "'s pooled regiments of " << RegimentCategoryNames[rc];
 				break;
 			}
-			switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces))
+			switch (addRegimentToArmy(army, (RegimentCategory)rc, inverseProvinceMap, allProvinces, adjacencyMap))
 			{
 			case 0: // success
 				countryRemainder[rc] -= 1.0;
@@ -1752,7 +1759,7 @@ void V2Country::addLoan(string creditor, double size, double interest)
 
 
 // return values: 0 = success, -1 = retry from pool, -2 = do not retry
-int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces)
+int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, adjacencyMapping adjacencyMap)
 {
 	V2Regiment reg((RegimentCategory)rc);
 	int eu4Home = army->getSourceArmy()->getProbabilisticHomeProvince(rc);
@@ -1777,20 +1784,6 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 	V2Province* homeProvince = NULL;
 	if (!army->getNavy())
 	{
-		// Navies should only get homes in port provinces
-		homeCandidates = getPortProvinces(homeCandidates, allProvinces);
-		if (homeCandidates.size() != 0)
-		{
-			int homeProvinceID = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
-			map<int, V2Province*>::iterator pitr = allProvinces.find(homeProvinceID);
-			if (pitr != allProvinces.end())
-			{
-				homeProvince = pitr->second;
-			}
-		}
-	}
-	else
-	{
 		// Armies should get a home in the candidate most capable of supporting them
 		vector<V2Province*> sortedHomeCandidates;
 		for (vector<int>::iterator nitr = homeCandidates.begin(); nitr != homeCandidates.end(); ++nitr)
@@ -1810,14 +1803,55 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 			return -1;
 		}
 		homeProvince = sortedHomeCandidates[0];
+		if (homeProvince->getOwner() != tag) // TODO: find a way of associating these units with a province owned by the proper country
+		{
+			map<int, V2Province*>	openProvinces = allProvinces;
+			queue<int>					goodProvinces;
+
+			map<int, V2Province*>::iterator openItr = openProvinces.find(homeProvince->getNum());
+			homeProvince = NULL;
+			if ( (openItr != openProvinces.end()) && (provinces.size() > 0) )
+			{
+				goodProvinces.push(openItr->first);
+				openProvinces.erase(openItr);
+
+				do
+				{
+					int currentProvince = goodProvinces.front();
+					goodProvinces.pop();
+					if (currentProvince > static_cast<int>(adjacencyMap.size()))
+					{
+						LOG(LogLevel::Warning) << "No adjacency mapping for province " << currentProvince;
+						continue;
+					}
+					vector<int> adjacencies = adjacencyMap[currentProvince];
+					for (unsigned int i = 0; i < adjacencies.size(); i++)
+					{
+						map<int, V2Province*>::iterator openItr = openProvinces.find(adjacencies[i]);
+						if (openItr == openProvinces.end())
+						{
+							continue;
+						}
+						if (openItr->second->getOwner() == tag)
+						{
+							homeProvince = openItr->second;
+						}
+						goodProvinces.push(openItr->first);
+						openProvinces.erase(openItr);
+					}
+				} while ((goodProvinces.size() > 0) && (homeProvince == NULL));
+			}
+			if (homeProvince == NULL)
+			{
+				LOG(LogLevel::Warning) << "V2 province " << sortedHomeCandidates[0]->getNum() << " is home for a " << tag << " " << RegimentCategoryNames[rc] << " regiment, but belongs to " << sortedHomeCandidates[0]->getOwner() << " - dissolving regiment to pool";
+				// all provinces in a given province map have the same owner, so the source home was bad
+				army->getSourceArmy()->blockHomeProvince(eu4Home);
+				return -1;
+			}
+			return 0;
+		}
+
 		// Armies need to be associated with pops
-		//if (homeProvince->getOwner() != tag) // TODO: find a way of associating these units with a province owned by the proper country
-		//{
-		//	LOG(LogLevel::Warning) << "V2 province " << homeProvince->getNum() << " is home for a " << tag << " " << RegimentCategoryNames[rc] << " regiment, but belongs to " << homeProvince->getOwner() << " - dissolving regiment to pool";
-		//	// all provinces in a given province map have the same owner, so the source home was bad
-		//	army->getSourceArmy()->blockHomeProvince(eu4Home);
-		//	return -1;
-		//}
 		V2Pop* soldierPop = homeProvince->getSoldierPopForArmy();
 		if (NULL == soldierPop)
 		{
