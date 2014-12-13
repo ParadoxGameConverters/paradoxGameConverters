@@ -54,6 +54,8 @@ class EU4Country
 		int						getManufactoryCount() const;
 		void						eatCountry(EU4Country* target);
 		void						setColonialRegion(const string& region)		 { colonialRegion = region; };
+		void						takeArmies(EU4Country*);
+		void						clearArmies();
 
 		string						getTag()										const { return tag; };
 		vector<EU4Province*>		getProvinces()								const { return provinces; };

@@ -335,7 +335,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 {
 	srcCountry = _srcCountry;
 
@@ -976,7 +976,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 				locationCandidates = getPortProvinces(locationCandidates, allProvinces);
 				if (locationCandidates.size() == 0)
 				{
-					LOG(LogLevel::Debug) << "Navy " << (*aitr)->getName() << " assigned to EU4 province " << (*aitr)->getLocation() << " which has no corresponding V2 port provinces; dissolving to pool";
+					LOG(LogLevel::Warning) << "Navy " << (*aitr)->getName() << " assigned to EU4 province " << (*aitr)->getLocation() << " which has no corresponding V2 port provinces; dissolving to pool";
 					int regimentCounts[num_reg_categories] = { 0 };
 					army->getRegimentCounts(regimentCounts);
 					for (int rc = infantry; rc < num_reg_categories; ++rc)
@@ -1123,22 +1123,29 @@ void V2Country::absorbColony(V2Country* colony)
 	acceptedCultures.insert(colony->getPrimaryCulture());
 	set<string> cultures = colony->getAcceptedCultures();
 	acceptedCultures.insert(cultures.begin(), cultures.end());
+
+	// take colony's armies
+	srcCountry->takeArmies(colony->getSourceCountry());
 }
+
 
 void V2Country::setColonyOverlord(V2Country* colony)
 {
 	colonyOverlord = colony;
 }
 
+
 V2Country* V2Country::getColonyOverlord()
 {
 	return colonyOverlord;
 }
 
+
 std::string	V2Country::getColonialRegion()
 {
 	return srcCountry->getColonialRegion();
 }
+
 
 static bool FactoryCandidateSortPredicate(const pair<double, V2State*>& lhs, const pair<double, V2State*>& rhs)
 {
@@ -1782,7 +1789,21 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		return -1;
 	}
 	V2Province* homeProvince = NULL;
-	if (!army->getNavy())
+	if (army->getNavy())
+ 	{
+		// Navies should only get homes in port provinces
+		homeCandidates = getPortProvinces(homeCandidates, allProvinces);
+		if (homeCandidates.size() != 0)
+		{
+			int homeProvinceID = homeCandidates[int(homeCandidates.size() * ((double)rand() / RAND_MAX))];
+			map<int, V2Province*>::iterator pitr = allProvinces.find(homeProvinceID);
+			if (pitr != allProvinces.end())
+			{
+				homeProvince = pitr->second;
+			}
+		}
+	}
+	else
 	{
 		// Armies should get a home in the candidate most capable of supporting them
 		vector<V2Province*> sortedHomeCandidates;
