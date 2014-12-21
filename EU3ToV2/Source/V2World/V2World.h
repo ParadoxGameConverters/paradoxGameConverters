@@ -56,7 +56,7 @@ class V2World {
 		void convertUncivReforms();
 		void setupPops(EU3World& sourceWorld);
 		void addUnions(const unionMapping& unionMap);
-		void convertArmies(const EU3World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap);
+		void convertArmies(const EU3World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap, adjacencyMapping adjacencyMap);
 		void convertTechs(const EU3World& sourceWorld);
 		void allocateFactories(const EU3World& sourceWorld, const V2FactoryFactory& factoryBuilder);
 

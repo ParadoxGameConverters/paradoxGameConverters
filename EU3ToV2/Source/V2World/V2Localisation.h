@@ -51,6 +51,9 @@ public:
 	// Converts the country file name
 	std::string convertCountryFileName(const std::string) const;
 
+	std::string GetLocalName();
+	std::string GetLocalAdjective();
+
 private:
 	// All localisations are stored internally as UTF-8. However V2 doesn't seem to handle Unicode
 	// so we convert the text to ANSI Latin-1 before writing it.

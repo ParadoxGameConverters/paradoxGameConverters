@@ -65,7 +65,7 @@ class V2Country
 		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, const CountryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
 		void								addState(V2State* newState);
-		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
+		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
@@ -110,10 +110,11 @@ class V2Country
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
 		void			addLoan(string creditor, double size, double interest);
-		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces);
+		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, adjacencyMapping adjacencyMap);
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces);
 		V2Army*		getArmyForRemainder(RegimentCategory rc);
 		V2Province*	getProvinceForExpeditionaryArmy();
+		string		getRegimentName(RegimentCategory rc);
 
 		V2World*							theWorld;
 		const EU3Country*				srcCountry;
@@ -161,6 +162,7 @@ class V2Country
 		double							literacy;
 		V2Localisation					localisation;
 		Color								color;
+		int								unitNameCount[num_reg_categories];
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

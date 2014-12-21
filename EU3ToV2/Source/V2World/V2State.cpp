@@ -20,6 +20,7 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
+#include "..\EU3World\EU3Province.h"
 #include "V2State.h"
 #include "V2Pop.h"
 #include "V2Province.h"
@@ -85,16 +86,9 @@ bool V2State::hasLocalSupply(string product) const
 
 double V2State::getSuppliedInputs(const V2Factory* factory) const
 {
-	// find out the total needs
-	map<string, float> inputs = factory->getInputs();
-	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); itr++)
-	{
-		map<string, float> newInputs = (*itr)->getInputs();
-		for (auto jtr = newInputs.begin(); jtr != newInputs.end(); jtr++)
-		{
-			inputs[jtr->first] += jtr->second;
-		}
-	}
+	// find out the needs
+	map<string, float>	inputs	= factory->getInputs();
+	int						numNeeds	= inputs.size();
 
 	// find out what we have from both RGOs and existing factories
 	map<string, float> supplies;
@@ -108,17 +102,17 @@ double V2State::getSuppliedInputs(const V2Factory* factory) const
 		supplies[(*itr)->getOutputGoods()] += 1.0;
 	}
 
-	// determine how much of the inputs are supplied
-	double totalSupplied = 0.0;
+	// determine how many of the inputs are supplied
+	int totalSupplied = 0;
 	for (map<string, float>::const_iterator inputItr = inputs.begin(); inputItr != inputs.end(); inputItr++)
 	{
 		map<string, float>::const_iterator supplyItr = supplies.find(inputItr->first);
 		if (supplyItr != supplies.end())
  		{
-			totalSupplied += supplyItr->second / inputItr->second;
+			totalSupplied++;
  		}
  	}
-	return totalSupplied;
+	return (1.0 * totalSupplied / numNeeds);
 }
 
 
@@ -147,7 +141,7 @@ int V2State::getStatePopulation() const
 }
 
 
-void V2State::addFactory(const V2Factory* factory)
+void V2State::addFactory(V2Factory* factory)
 {
 	provinces[0]->addFactory(factory);
 	factories.push_back(factory);
@@ -178,4 +172,35 @@ bool V2State::hasLandConnection() const
 	{
 		return false;
 	}
+}
+
+
+double V2State::getManuRatio() const
+{
+	// get all source provinces
+	set<const EU3Province*> srcProvinces;
+	for (auto itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		srcProvinces.insert((*itr)->getSrcProvince());
+	}
+
+	// count the manufactories in the source provinces
+	int numManus = 0;
+	for (auto itr = srcProvinces.begin(); itr != srcProvinces.end(); itr++)
+	{
+		if (	(*itr != NULL) &&
+				(	(*itr)->hasBuilding("refinery") ||
+					(*itr)->hasBuilding("wharf") ||
+					(*itr)->hasBuilding("weapons") ||
+					(*itr)->hasBuilding("textile") ||
+					(*itr)->hasBuilding("fine_arts_academy") ||
+					(*itr)->hasBuilding("university")
+				)
+			)
+		{
+			numManus++;
+		}
+	}
+
+	return (numManus / srcProvinces.size());
 }

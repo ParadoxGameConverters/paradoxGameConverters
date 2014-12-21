@@ -32,9 +32,6 @@ V2Pop::V2Pop(string _type, int _size, string _culture, string _religion)
 	culture					= _culture;
 	religion					= _religion;
 	supportedRegiments	= 0;
-	money						= 0.0;
-
-	recalcMoney();
 }
 
 
@@ -45,7 +42,6 @@ void V2Pop::output(FILE* output) const
 	fprintf(output, "\t\tculture = %s\n", culture.c_str());
 	fprintf(output, "\t\treligion = %s\n", religion.c_str());
 	fprintf(output, "\t\tsize=%d\n", size);
-	fprintf(output, "\t\t}\n");
 	fprintf(output, "\t}\n");
 }
 
@@ -55,39 +51,10 @@ bool V2Pop::combine(const V2Pop& rhs)
 	if ((culture == rhs.culture) && (religion == rhs.religion) && (type == rhs.type))
 	{
 		size += rhs.size;
-		recalcMoney();
 		return true;
 	}
 	else
 	{
 		return false;
-	}
-}
-
-
-void V2Pop::recalcMoney()
-{
-	money = 1000000.0;
-	
-	if (type == "aristocrats" || type == "capitalists")
-	{
-		money = 100.0 * size;
-	}
-	else if (type == "artisans" || type == "bureaucrats" || type == "clergymen" 
-		  || type == "clerks" || type == "craftsmen" || type == "officers")
-	{
-		money = 10.0 * size;
-	}
-	else if (type == "farmers" || type == "labourers" || type == "soldiers")
-	{
-		money = 1.0 * size;
-	}
-	else if (type == "slaves")
-	{
-		money = 0.1 * size;
-	}
-	else
-	{
-		LOG(LogLevel::Warning) << "Unexpected pop type " << type;
 	}
 }

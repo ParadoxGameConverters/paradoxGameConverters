@@ -529,7 +529,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
-	//destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap, adjacencyMap);
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
 	LOG(LogLevel::Info) << "Allocating starting factories";
@@ -546,6 +546,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	}
 	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "path = \"mod/%s\"\n", Configuration::getOutputName().c_str());
+	fprintf(modFile, "user_dir = \"%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/provinces\"\n");
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");

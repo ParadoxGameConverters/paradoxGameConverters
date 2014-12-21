@@ -100,5 +100,8 @@ typedef map< string, vector<string> > unionCulturesMap; // <tag, cultures>
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 
 
+// utility functions
+string CardinalToOrdinal(int cardinal);
+
 
 #endif // MAPPER_H

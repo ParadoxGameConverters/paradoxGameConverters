@@ -140,3 +140,29 @@ std::string V2Localisation::Convert(const std::string& text)
 	}
 	return std::string(latin1Text.begin(), latin1Text.end());
 }
+
+
+std::string V2Localisation::GetLocalName()
+{
+	for (std::string thisname : name)
+	{
+		if (!thisname.empty())
+		{
+			return thisname;
+		}
+	}
+	return "";
+}
+
+
+std::string V2Localisation::GetLocalAdjective()
+{
+	for (std::string thisname : adjective)
+	{
+		if (!thisname.empty())
+		{
+			return thisname;
+		}
+	}
+	return "";
+}

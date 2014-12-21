@@ -2277,6 +2277,13 @@ native_american = {
 		last_names = { Riel Bruce Lépine Dumont Clarence Martin
 		}
 	}
+	metis = {
+		color = {15 68 192}
+		first_names = { Louis John Amroise-Dydime Gabriel Daniel James Jaque William Joel
+		}
+		last_names = { Riel Bruce Lépine Dumont Clarence Martin
+		}
+	}
 	dakota = {
 		color = {66 78 134}
 		first_names = { Sinté Thaóyate Thathanka Thasunke Mahpiya Istahba Hehaka Thahca Ohiyes Wanbdi Tamaha Inkpaduta
