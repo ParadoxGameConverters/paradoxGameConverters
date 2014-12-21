@@ -46,13 +46,14 @@ class V2State
 
 		void		addRailroads();
 		void		setupPops(string primaryCulture, set<string> acceptedCultures, string religion);
-		void		addFactory(const V2Factory* factory);
+		void		addFactory(V2Factory* factory);
 
 		bool		isCoastal() const;
 		bool		hasLocalSupply(string product) const;
 		double	getSuppliedInputs(const V2Factory* factory)	const;
 		bool		provInState(int id)	const;
 		bool		hasLandConnection()	const;
+		double	getManuRatio() const;
 
 		void		addProvince(V2Province* newProvince)	{ provinces.push_back(newProvince); }
 		void		setColonial(bool isIt)						{ colonial = isIt; }

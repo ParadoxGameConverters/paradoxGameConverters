@@ -1239,7 +1239,10 @@ bool V2Country::addFactory(V2Factory* factory)
 				continue;
 		}
 
-		candidates.push_back(pair<double, V2State*>( (*itr)->getSuppliedInputs(factory), (*itr) ));
+		double candidateScore	 = (*itr)->getSuppliedInputs(factory) * 100;
+		candidateScore				-= (*itr)->getFactoryCount() * 10;
+		candidateScore				+= (*itr)->getManuRatio();
+		candidates.push_back(pair<double, V2State*>(candidateScore, (*itr) ));
 	}
 
 	sort(candidates.begin(), candidates.end(), FactoryCandidateSortPredicate);

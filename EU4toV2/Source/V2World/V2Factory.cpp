@@ -81,7 +81,7 @@ void V2Factory::output(FILE* output) const
 	// V2 takes care of hiring employees on day 1, provided sufficient starting capital
 	fprintf(output, "state_building=\n");
 	fprintf(output, "{\n");
-	fprintf(output, "\tlevel=1\n");
+	fprintf(output, "\tlevel=%d\n", level);
 	fprintf(output, "\tbuilding = %s\n", type->name.c_str());
 	fprintf(output, "\tupgrade = yes\n");
 	fprintf(output, "}\n");
@@ -100,6 +100,12 @@ map<string,float> V2Factory::getRequiredRGO() const
 		emptyMap.clear();
 		return emptyMap;
 	}
+}
+
+
+void V2Factory::increaseLevel()
+{
+	level++;
 }
 
 

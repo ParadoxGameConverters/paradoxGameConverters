@@ -221,9 +221,9 @@ void V2Province::output() const
 	{
 		fprintf_s(output, "is_slave = yes\n");
 	}
-	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); itr++)
+	for (auto itr = factories.begin(); itr != factories.end(); itr++)
 	{
-		(*itr)->output(output);
+		itr->second->output(output);
 	}
 	/*else if ((*itr)->getKey() == "party_loyalty")
 	{
@@ -738,6 +738,20 @@ void V2Province::combinePops()
 		}
 	}
 	pops.swap(consolidatedPops);
+}
+
+
+void V2Province::addFactory(V2Factory* factory)
+{
+	map<string, V2Factory*>::iterator itr = factories.find(factory->getTypeName());
+	if (itr == factories.end())
+	{
+		factories.insert(make_pair(factory->getTypeName(), factory));
+	}
+	else
+	{
+		itr->second->increaseLevel();
+	}
 }
 
 

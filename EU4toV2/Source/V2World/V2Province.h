@@ -56,6 +56,7 @@ class V2Province
 		void addCore(string);
 		void addOldPop(const V2Pop*);
 		void doCreatePops(bool isStateCapital, int statePopulation);
+		void addFactory(V2Factory* factory);
 
 		int				getTotalPopulation() const;
 		vector<V2Pop*>	getPops(string type) const;
@@ -74,7 +75,6 @@ class V2Province
 		void				setFortLevel(int level)						{ fortLevel = level; }
 		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; }
 		void				setRailLevel(int level)						{ railLevel = level; }
-		void				addFactory(const V2Factory* factory)	{ factories.push_back(factory); }
 		void				setResettable(const bool _resettable)	{ resettable = _resettable; };
 
 		const EU4Province*	getSrcProvince()		const { return srcProvince; }
@@ -95,33 +95,33 @@ class V2Province
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
-		const EU4Province*			srcProvince;
+		const EU4Province*		srcProvince;
 		
-		string							filename;
-		bool								coastal;
-		int								num;
-		string							name;
-		string							owner;
-		vector<string>					cores;
-		int								colonyLevel;
-		int								colonial;
-		bool								wasColonised;
-		bool								landConnection;
-		bool								sameContinent;
-		bool								originallyInfidel;
-		int								oldPopulation;
-		vector<V2Demographic>		demographics;
-		vector<const V2Pop*>			oldPops;
-		vector<V2Pop*>					pops;
-		string							rgoType;
-		string							terrain;
-		int								lifeRating;
-		bool								slaveState;
-		int								unitNameCount[num_reg_categories];
-		int								fortLevel;
-		int								navalBaseLevel;
-		int								railLevel;
-		vector<const V2Factory*>	factories;
+		string						filename;
+		bool							coastal;
+		int							num;
+		string						name;
+		string						owner;
+		vector<string>				cores;
+		int							colonyLevel;
+		int							colonial;
+		bool							wasColonised;
+		bool							landConnection;
+		bool							sameContinent;
+		bool							originallyInfidel;
+		int							oldPopulation;
+		vector<V2Demographic>	demographics;
+		vector<const V2Pop*>		oldPops;
+		vector<V2Pop*>				pops;
+		string						rgoType;
+		string						terrain;
+		int							lifeRating;
+		bool							slaveState;
+		int							unitNameCount[num_reg_categories];
+		int							fortLevel;
+		int							navalBaseLevel;
+		int							railLevel;
+		map<string, V2Factory*>	factories;
 
 		bool								resettable;
 };

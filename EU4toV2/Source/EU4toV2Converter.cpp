@@ -59,11 +59,16 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	else
 	{
-		char buffer[2];
-		fread(buffer, 1, 2, saveFile);
+		char buffer[7];
+		fread(buffer, 1, 7, saveFile);
 		if ((buffer[0] == 'P') && (buffer[1] == 'K'))
 		{
 			LOG(LogLevel::Error) << "Saves must be uncompressed to be converted.";
+			exit(-1);
+		}
+		else if ((buffer[0] = 'E') && (buffer[1] == 'U') && (buffer[2] == '4') && (buffer[3] = 'b') && (buffer[4] == 'i') && (buffer[5] == 'n') && (buffer[6] == 'M'))
+		{
+			LOG(LogLevel::Error) << "Ironman saves cannot be converted.";
 			exit(-1);
 		}
 	}
