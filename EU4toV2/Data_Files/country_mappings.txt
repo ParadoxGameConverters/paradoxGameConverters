@@ -402,7 +402,7 @@ link = { eu4 = VIE v2 = WIA }  # Vientiane => Wiang Chhan
 link = { eu4 = CSH v2 = CSH }  # Shun (NEW) *
 link = { eu4 = CXI v2 = XIA }  # Xi
 link = { eu4 = CZH v2 = WUU }  # Zhou
-link = { eu4 = QNG v2 = QIN }  # Qing
+link = { eu4 = QNG v2 = CHI }  # Qing
 
 # Japan
 link = { eu4 = AMA v2 = AMA }  # Amago
