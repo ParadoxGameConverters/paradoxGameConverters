@@ -15,7 +15,7 @@
         <controls:GridLength x:Key="FirstColumnWidth">30</controls:GridLength>
         <controls:GridLength x:Key="SecondColumnWidth">190</controls:GridLength>
         <Thickness x:Key="EntryTemplateHeaderMargin" Left="0" Right="0" Top="0" Bottom="5"/>
-        <sys:Double x:Key="WrapPanelItemWidth">225</sys:Double>
+        <sys:Double x:Key="WrapPanelItemWidth">250</sys:Double>
 
         <Style x:Key="EntryBorderStyle" TargetType="{x:Type Border}">
             <!--<Setter Property="BorderBrush" Value="Black"/>
