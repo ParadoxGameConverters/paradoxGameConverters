@@ -150,13 +150,9 @@ namespace Frontend.Core.Factories.TagReaders
 
         private void LogExistenceError(IAlternativePath nonExistingAlternativePath, string tagName, string friendlyName)
         {
-            var errorMessageOneText = string.Format("Failed to set default value for {0}. This most likely happened because a file or folder was specified in the configuration file, but did not exist on disk.", friendlyName);
-            var separatorText = "------";
-
-            this.EventAggregator.PublishOnUIThread(new LogEntry(separatorText, LogEntrySeverity.Warning, LogEntrySource.UI));
-            this.EventAggregator.PublishOnUIThread(new LogEntry(errorMessageOneText, LogEntrySeverity.Warning, LogEntrySource.UI));
-            this.EventAggregator.PublishOnUIThread(new LogEntry("This may not be a problem depending on which path was missing, and depending on your settings.", LogEntrySeverity.Warning, LogEntrySource.UI));
-            this.EventAggregator.PublishOnUIThread(new LogEntry("Should you need to, you can set this file/folder path manually here in the frontend. The expected location was: ", LogEntrySeverity.Warning, LogEntrySource.UI, nonExistingAlternativePath.Path));
+            var errorMessageText = string.Format("The path to {0} could not be detected, and need to be set manually here in the frontend. Was expecting it to exist at: ", friendlyName, nonExistingAlternativePath.Path);
+            
+            this.EventAggregator.PublishOnUIThread(new LogEntry(errorMessageText, LogEntrySeverity.Info, LogEntrySource.UI, nonExistingAlternativePath.Path));
         }
     }
 }
