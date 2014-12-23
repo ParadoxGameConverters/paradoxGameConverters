@@ -16,18 +16,6 @@ tag vs internalTag:
 <configuration>
   <gameConfigurationFile>Configuration\GameConfigurations.xml</gameConfigurationFile>
   <supportedConverters>
-    <!--<converter>
-      <name>Ck2ToEu3</name>
-      <friendlyName>From Crusader Kings 2 to Europa Universalis 3</friendlyName>
-      <defaultConfigurationFile>Configuration\Ck2ToEu3DefaultConfiguration.xml</defaultConfigurationFile>
-      <userConfigurationFile></userConfigurationFile>
-      <converterExeName>CK2ToEU3.exe</converterExeName>
-      --><!--<isDefault>true</isDefault>--><!--
-      <sourceGame>CrusaderKings2</sourceGame>
-      <targetGame>EuropaUniversalis3</targetGame>
-      <subfolderName>ck2toeu3</subfolderName>
-      <isEnabled>false</isEnabled>
-    </converter>-->
     <converter>
       <name>Eu3ToVic2</name>
       <friendlyName>From Europa Universalis 3 to Victoria 2</friendlyName>
