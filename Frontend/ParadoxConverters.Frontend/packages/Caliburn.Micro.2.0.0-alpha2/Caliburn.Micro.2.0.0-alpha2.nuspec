@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Caliburn.Micro</id>
+    <version>2.0.0-alpha2</version>
+    <title>Caliburn.Micro</title>
+    <authors>Rob Eisenberg,  Marco Amendola,  Chin Bae,  Ryan Cromwell,  Nigel Sampson,  Thomas Ibel,  Matt Hidinger</authors>
+    <owners>Rob Eisenberg,  Marco Amendola,  Chin Bae,  Ryan Cromwell,  Nigel Sampson,  Thomas Ibel,  Matt Hidinger</owners>
+    <licenseUrl>http://caliburnmicro.codeplex.com/license</licenseUrl>
+    <projectUrl>http://caliburnmicro.codeplex.com/</projectUrl>
+    <iconUrl>http://www.caliburnproject.org/CaliburnIcon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>A small, yet powerful framework designed for Xaml platforms, Caliburn.Micro implements a variety of UI patterns for solving real-world problems. Patterns that are highlighted include MVVM (Presentation Model), MVP and MVC.</description>
+    <releaseNotes />
+    <copyright>Copyright (c) 2010 Blue Spire Consulting, Inc.</copyright>
+    <language>en-US</language>
+    <tags>MVVM Silverlight WPF WP8 WinRT Metro SL5 SL MVC CoC Convention MVP PM Screen Coroutine Behavior Model-View-ViewModel Presentation UI ViewModel Phone Caliburn</tags>
+    <dependencies>
+      <group>
+        <dependency id="Caliburn.Micro.Core" version="[2.0.0-alpha2]" />
+      </group>
+      <group targetFramework="Windows8.0">
+        <dependency id="Caliburn.Micro.Core" version="[2.0.0-alpha2]" />
+        <dependency id="Windows.UI.Interactivity" version="[1.3.0]" />
+        <dependency id="Callisto" version="[1.3.1]" />
+      </group>
+      <group targetFramework="Windows8.1">
+        <dependency id="Caliburn.Micro.Core" version="[2.0.0-alpha2]" />
+      </group>
+    </dependencies>
+    <frameworkAssemblies>
+      <frameworkAssembly assemblyName="System.Windows.Controls" targetFramework="Silverlight5.0" />
+    </frameworkAssemblies>
+  </metadata>
+</package>
