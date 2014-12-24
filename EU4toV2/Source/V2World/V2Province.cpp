@@ -38,7 +38,7 @@ using namespace std;
 
 
 
-V2Province::V2Province(string _filename)
+V2Province::V2Province(string _filename, EU4World* sourceWorld)
 {
 	srcProvince			= NULL;
 	filename				= _filename;
@@ -79,6 +79,9 @@ V2Province::V2Province(string _filename)
 	int numDigits	= filename.find_first_of("-") - slash - 2;
 	string temp		= filename.substr(slash + 1, numDigits);
 	num				= atoi(temp.c_str());
+
+	// World Population in Able Bodied Males
+	this->setTotalWorldPopulation(501666192);
 
 	Object* obj;
 	struct _stat st;
@@ -165,6 +168,9 @@ V2Province::V2Province(string _filename)
 			//log("Unknown key - %s\n", (*itr)->getKey().c_str());
 		}
 	}
+
+	this->setSourceWorld(sourceWorld);
+	this->setTotalWorldPopulation(501666192);
 }
 
 
@@ -336,6 +342,7 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 
 void V2Province::determineColonial()
 {
+	// if rotw was played "was colonized" doesn't make any sense.
 	if ((!landConnection) && (!sameContinent) && ((wasColonised) || (originallyInfidel)))
 	{
 		colonial = 2;
@@ -360,8 +367,9 @@ void V2Province::addOldPop(const V2Pop* oldPop)
 }
 
 
-void V2Province::doCreatePops(bool isStateCapital, int statePopulation)
+void V2Province::doCreatePops(bool isStateCapital, int statePopulation, EU4World* sourceWorld)
 {
+	this->setSourceWorld(sourceWorld);
 	for (vector<V2Demographic>::const_iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
 		createPops(*itr, isStateCapital, statePopulation);
@@ -391,6 +399,9 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	int aristocrats	= 0;
 	
 	int govBuilding = 0;
+
+	this->setTotalWorldPopulation(501666192);
+
 	if (oldProvince->hasBuilding("temple"))
 	{
 		govBuilding = 1;
@@ -466,6 +477,33 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	else if (oldProvince->hasBuilding("stock_exchange"))
 	{
 		productionBuilding = 8;
+	}
+
+	double province_weight = oldProvince->getTotalWeight();
+
+	//LOG(LogLevel::Info) << "province weight: " << province_weight;
+
+	double long newPopulation = 0;
+	int numOfV2Provs = this->getSrcProvince()->getNumDestV2Provs();
+	//LOG(LogLevel::Info) << "Num Dest Provs: " << this->getSrcProvince()->getNumDestV2Provs();
+	//LOG(LogLevel::Warning) << "Total EUIV world weight sum is: " << sourceWorld.getWorldWeightSum();
+	// logic to switch out perhaps between weighted redistribution and quasi historical.
+
+	if (true) {
+		double new_weight = (this->getTotalWorldPopulation() / this->getSourceWorld()->getWorldWeightSum());
+		//LOG(LogLevel::Info) << "getWorldWeightSum: " << this->getSourceWorld()->getWorldWeightSum();
+		newPopulation = new_weight * province_weight;
+		//LOG(LogLevel::Info) << "province population: " << newPopulation;
+		newPopulation /= 3;
+
+		if (numOfV2Provs > 1)
+		{
+			newPopulation /= numOfV2Provs;
+		}
+		
+	}
+	else {
+		newPopulation = oldPopulation;
 	}
 
 
@@ -583,7 +621,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	}
 	else
 	{
-		double provPopRatio = 2.0f * (double)statePopulation / (double)oldPopulation;
+		double provPopRatio = 2.0f * (double)statePopulation / (double)newPopulation;
 		capitalists = (int)(capitalists * provPopRatio);
 		bureaucrats = (int)(bureaucrats * provPopRatio);
 		aristocrats = (int)(aristocrats * provPopRatio);
@@ -594,7 +632,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (farmers > 0)
 	{
 		V2Pop* farmersPop = new V2Pop(	"farmers",
-													(int)(demographic.ratio * oldPopulation * farmers / total),
+													(int)(demographic.ratio * newPopulation * farmers / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -603,7 +641,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (labourers > 0)
 	{
 		V2Pop* labourersPop = new V2Pop(	"labourers",
-													(int)(demographic.ratio * oldPopulation * labourers / total),
+													(int)(demographic.ratio * newPopulation * labourers / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -612,7 +650,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (slaves > 0)
 	{
 		V2Pop* slavesPop = new V2Pop(		"slaves",
-													(int)(demographic.ratio * oldPopulation * slaves / total),
+			(int)(demographic.ratio * newPopulation * slaves / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -621,7 +659,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (soldiers > 0)
 	{
 		V2Pop* soldiersPop = new V2Pop(	"soldiers",
-													(int)(demographic.ratio * oldPopulation * soldiers / total),
+			(int)(demographic.ratio * newPopulation * soldiers / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -630,7 +668,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (craftsmen > 0)
 	{
 		V2Pop* craftsmenPop = new V2Pop(	"craftsmen",
-													(int)(demographic.ratio * oldPopulation * craftsmen / total),
+													(int)(demographic.ratio * newPopulation * craftsmen / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -639,7 +677,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (artisans > 0)
 	{
 		V2Pop* artisansPop = new V2Pop(	"artisans",
-													(int)(demographic.ratio * oldPopulation * artisans / total),
+			(int)(demographic.ratio * newPopulation * artisans / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -648,7 +686,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (clergymen > 0)
 	{
 		V2Pop* clergymenPop = new V2Pop(	"clergymen",
-													(int)(demographic.ratio * oldPopulation * clergymen / total),
+			(int)(demographic.ratio * newPopulation * clergymen / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -657,7 +695,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (clerks > 0)
 	{
 		V2Pop* clerksPop = new V2Pop(	"clerks",
-												(int)(demographic.ratio * oldPopulation * clerks / total),
+			(int)(demographic.ratio * newPopulation * clerks / total),
 												demographic.culture,
 												demographic.religion
 												);
@@ -666,7 +704,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (bureaucrats > 0)
 	{
 		V2Pop* bureaucratsPop = new V2Pop(	"bureaucrats",
-														(int)(demographic.ratio * oldPopulation * bureaucrats / total),
+			(int)(demographic.ratio * newPopulation * bureaucrats / total),
 														demographic.culture,
 														demographic.religion
 												);
@@ -675,7 +713,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (officers > 0)
 	{
 		V2Pop* officersPop = new V2Pop(	"officers",
-													(int)(demographic.ratio * oldPopulation * officers / total),
+			(int)(demographic.ratio * newPopulation * officers / total),
 													demographic.culture,
 													demographic.religion
 												);
@@ -684,7 +722,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (capitalists > 0)
 	{
 		V2Pop* capitalistsPop = new V2Pop(	"capitalists",
-														(int)(demographic.ratio * oldPopulation * capitalists / total),
+			(int)(demographic.ratio * newPopulation * capitalists / total),
 														demographic.culture,
 														demographic.religion
 												);
@@ -693,7 +731,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	if (aristocrats > 0)
 	{
 		V2Pop* aristocratsPop = new V2Pop(	"aristocrats",
-														(int)(demographic.ratio * oldPopulation * aristocrats / total),
+			(int)(demographic.ratio * newPopulation * aristocrats / total),
 														demographic.culture,
 														demographic.religion
 												);
@@ -946,4 +984,14 @@ bool V2Province::hasCulture(string culture, float percentOfPopulation) const
 	}
 
 	return ((float)culturePops / getTotalPopulation()) >= percentOfPopulation;
+}
+
+void V2Province::setTotalWorldPopulation(long totalWorldPopulation)
+{
+	this->totalWorldPopulation = totalWorldPopulation;
+}
+
+void V2Province::setSourceWorld(EU4World* sourceWorld)
+{
+	this->sourceWorld = sourceWorld;
 }

@@ -45,7 +45,7 @@ class V2State
 		V2State(int newId, V2Province* firstProvince);
 
 		void		addRailroads();
-		void		setupPops(string primaryCulture, set<string> acceptedCultures, string religion);
+		void		setupPops(string primaryCulture, set<string> acceptedCultures, string religion, EU4World* sourceWorld);
 		void		addFactory(const V2Factory* factory);
 
 		bool		isCoastal() const;
@@ -61,6 +61,7 @@ class V2State
 		int						getFactoryCount()	const { return factories.size(); };
 		int						getID()				const { return id; };
 		vector<V2Province*>	getProvinces()		const { return provinces; };
+		//EU4World*						sourceWorld;
 	private:
 		int	getStatePopulation() const;
 		int								id;

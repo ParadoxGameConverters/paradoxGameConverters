@@ -31,6 +31,7 @@ using namespace std;
 
 class Object;
 class EU4Country;
+typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
 
 
@@ -44,7 +45,6 @@ struct EU4PopRatio {
 class EU4Province {
 	public:
 		EU4Province(Object* obj);
-
 		void						addCore(string tag);
 		void						removeCore(string tag);
 		bool						wasColonised() const;
@@ -60,8 +60,23 @@ class EU4Province {
 		EU4Country*				getOwner()			const { return owner; }
 		bool						isColony()			const { return colony; }
 		vector<EU4PopRatio>	getPopRatios()		const { return popRatios; }
-
+		double						getTotalWeight()		const { return totalWeight; }
+		void						setTotalWeight(double totalWeight);
 		void						setOwner(EU4Country* newOwner)	{ owner = newOwner; }
+		void					checkManpower(const Object* provinceObj);
+		void					checkTradeGoods(const Object* provinceObj);
+
+		double					getManpower() const { return provinceManpower; };
+		string					getTradeGoods() const { return provinceTradeGoods; };
+
+		void					setManpower(double provinceManpower);
+		void					setTradeGoods(string tg);
+		double					getTradeGoodWeight() const;
+		double					getTradeGoodPrice() const;
+		std::vector<double>		getProvBuildingWeight() const;
+		void					setNumDestV2Provs(int numV2Provs);
+		int						getNumDestV2Provs() const { return numV2Provs; };
+
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
@@ -69,6 +84,7 @@ class EU4Province {
 
 		int									num;						// the province number
 		double								baseTax;					// the base tax of the province
+		double								totalWeight;
 		string								ownerString;			// a string with the owner's tag
 		EU4Country*							owner;					// the owner
 		vector<string>						cores;					// strings of the tags of all cores
@@ -79,6 +95,10 @@ class EU4Province {
 		vector< pair<date, string> >	cultureHistory;		// the history of the cultural changes of this province
 		vector<EU4PopRatio>				popRatios;				// the population ratios of this province
 		map<string, bool>					buildings;				// the buildings in this province
+
+		double						provinceManpower;
+		string						provinceTradeGoods;
+		int						numV2Provs;
 };
 
 
