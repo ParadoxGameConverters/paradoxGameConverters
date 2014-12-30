@@ -89,6 +89,7 @@ void V2Regiment::output(FILE* out) const
 {
 	if (isShip)
 	{
+		return;
 		fprintf(out, "\tship = {\n");
 	}
 	else
@@ -120,7 +121,7 @@ void V2Army::output(FILE* out) const
 {
 	if (regiments.size() == 0)
 	{
-		LOG(LogLevel::Debug) << "Army " << name << " has no regiments after conversion; skipping";
+		//LOG(LogLevel::Debug) << "Army " << name << " has no regiments after conversion; skipping";
 		return;
 	}
 	if (isNavy)

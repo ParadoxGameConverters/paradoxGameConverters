@@ -111,8 +111,33 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 	{
 		diplomacy = new EU4Diplomacy;
 	}
+
+	// calculate total weights
+	long totworldweight = 0;
+	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		totworldweight += i->second->getTotalWeight();
+	}
+
+	this->setWorldWeightSum(totworldweight);
+	LOG(LogLevel::Warning) << "Sum of all Province Weights: " << totworldweight;
+	LOG(LogLevel::Warning) << "Sum of all Province Weights: " << this->getWorldWeightSum();
 }
 
+void EU4World::setEU4WorldProvinceMappings(map< int, vector<int> > myInverseProvinceMapping)
+{
+	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		// go thru each province
+		try {
+			i->second->setNumDestV2Provs(myInverseProvinceMapping.find(i->first)->second.size());
+		}
+		catch (exception &e)
+		{
+			LOG(LogLevel::Warning) << "Exception: " << e.what();
+		}
+	}
+}
 
 void EU4World::readCommonCountries(istream& in, const std::string& rootPath)
 {
@@ -218,4 +243,9 @@ void EU4World::setLocalisations(EU4Localisation& localisation)
 			countryItr->second->setLocalisationAdjective(language, adjective);
 		}
 	}
+}
+
+void EU4World::setWorldWeightSum(long worldWeightSum)
+{
+	this->worldWeightSum = worldWeightSum;
 }

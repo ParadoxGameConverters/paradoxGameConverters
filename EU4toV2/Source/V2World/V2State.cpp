@@ -48,12 +48,12 @@ void V2State::addRailroads()
 }
 
 
-void V2State::setupPops(string primaryCulture, set<string> acceptedCultures, string religion)
+void V2State::setupPops(string primaryCulture, set<string> acceptedCultures, string religion, EU4World* sourceWorld)
 {
 	int	statePopulation = getStatePopulation();
 	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		(*itr)->doCreatePops((itr == provinces.begin()), statePopulation);
+		(*itr)->doCreatePops((itr == provinces.begin()), statePopulation, sourceWorld);
 	}
 }
 
