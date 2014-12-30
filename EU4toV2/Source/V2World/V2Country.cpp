@@ -616,36 +616,33 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outpu
 	{
 		if (srcCountry->hasNationalIdea(literacyItr->first) >= literacyItr->second)
 		{
-			literacy += 0.05;
+			literacy += 0.1;
 		}
 	}
 	if ( (srcCountry->getReligion() == "Protestant") || (srcCountry->getReligion() == "Confucianism") || (srcCountry->getReligion() == "Reformed") )
 	{
 		literacy += 0.05;
 	}
-	else {
-		literacy += 0.05;
-	}
 
 	if ( srcCountry->hasModifier("the_school_establishment_act") )
 	{
-		literacy += 0.01;
+		literacy += 0.04;
 	}
 	if ( srcCountry->hasModifier("sunday_schools") )
 	{
-		literacy += 0.01;
+		literacy += 0.04;
 	}
 	if ( srcCountry->hasModifier("the_education_act") )
 	{
-		literacy += 0.01;
+		literacy += 0.04;
 	}
 	if ( srcCountry->hasModifier("monastic_education_system") )
 	{
-		literacy += 0.01;
+		literacy += 0.04;
 	}
 	if ( srcCountry->hasModifier("western_embassy_mission") )
 	{
-		literacy += 0.01;
+		literacy += 0.04;
 	}
 	int numProvinces	= 0;
 	int numColleges	= 0;
@@ -659,7 +656,7 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outpu
 		}
 		if ((*i)->hasBuilding("university"))
 		{
-			literacy += 0.075;
+			literacy += 0.1;
 		}
 	}
 	double collegeBonus1;
@@ -677,11 +674,11 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outpu
 	{
 		collegeBonus = 0.2;
 	}
-	literacy += (collegeBonus / 2);
+	literacy += collegeBonus;
 	string techGroup = srcCountry->getTechGroup();
 	if ( (techGroup != "western") && (techGroup != "high_american") && (techGroup != "eastern") && (techGroup != "ottoman"))
 	{
-		literacy *= 0.75;
+		literacy *= 0.1;
 	}
 	if (literacy > Configuration::getMaxLiteracy())
 	{
