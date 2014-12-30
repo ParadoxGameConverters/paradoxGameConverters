@@ -227,9 +227,9 @@ void V2Province::output() const
 	{
 		fprintf_s(output, "is_slave = yes\n");
 	}
-	for (vector<const V2Factory*>::const_iterator itr = factories.begin(); itr != factories.end(); itr++)
+	for (auto itr = factories.begin(); itr != factories.end(); itr++)
 	{
-		(*itr)->output(output);
+		itr->second->output(output);
 	}
 	/*else if ((*itr)->getKey() == "party_loyalty")
 	{
@@ -779,6 +779,20 @@ void V2Province::combinePops()
 }
 
 
+void V2Province::addFactory(V2Factory* factory)
+{
+	map<string, V2Factory*>::iterator itr = factories.find(factory->getTypeName());
+	if (itr == factories.end())
+	{
+		factories.insert(make_pair(factory->getTypeName(), factory));
+	}
+	else
+	{
+		itr->second->increaseLevel();
+	}
+}
+
+
 int V2Province::getTotalPopulation() const
 {
 	int total = 0;
@@ -912,29 +926,6 @@ pair<int, int> V2Province::getAvailableSoldierCapacity() const
 		}
 	}
 	return pair<int,int>(soldierCap, draftCap);
-}
-
-
-static string CardinalToOrdinal(int cardinal)
-{
-	int hundredRem = cardinal % 100;
-	int tenRem = cardinal % 10;
-	if (hundredRem - tenRem == 10)
-	{
-		return "th";
-	}
-
-	switch (tenRem)
-	{
-	case 1:
-		return "st";
-	case 2:
-		return "nd";
-	case 3:
-		return "rd";
-	default:
-		return "th";
-	}
 }
 
 

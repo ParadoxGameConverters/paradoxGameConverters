@@ -456,6 +456,22 @@ void EU4Country::eatCountry(EU4Country* target)
 }
 
 
+void EU4Country::takeArmies(EU4Country* target)
+{
+	// acquire target's armies, navies, admirals, and generals
+	armies.insert(armies.end(), target->armies.begin(), target->armies.end());
+	leaders.insert(leaders.end(), target->leaders.begin(), target->leaders.end());
+	target->clearArmies();
+}
+
+
+void EU4Country::clearArmies()
+{
+	armies.clear();
+	leaders.clear();
+}
+
+
 string EU4Country::getName(const string& language) const
 {
 	if (namesByLanguage.empty() && language == "english")

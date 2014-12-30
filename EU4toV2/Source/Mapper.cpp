@@ -787,3 +787,26 @@ ck2TitleMapping initCK2TitleMap(Object* obj)
 
 	return titleMap;
 }
+
+
+string CardinalToOrdinal(int cardinal)
+{
+	int hundredRem = cardinal % 100;
+	int tenRem = cardinal % 10;
+	if (hundredRem - tenRem == 10)
+	{
+		return "th";
+	}
+
+	switch (tenRem)
+	{
+	case 1:
+		return "st";
+	case 2:
+		return "nd";
+	case 3:
+		return "rd";
+	default:
+		return "th";
+	}
+}

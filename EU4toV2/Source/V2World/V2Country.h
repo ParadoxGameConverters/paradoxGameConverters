@@ -62,10 +62,10 @@ class V2Country
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
 		void								outputOOB() const;
-		void								initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas);
+		void								initFromEU4Country(EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas);
 		void								initFromHistory();
 		void								addState(V2State* newState);
-		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
+		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
@@ -78,10 +78,10 @@ class V2Country
 		void								addRelation(V2Relations* newRelation);
 		void								absorbColony(V2Country* colony);
 		void								setColonyOverlord(V2Country* colony);
-		V2Country*							getColonyOverlord();
-		string								getColonialRegion();
+		V2Country*						getColonyOverlord();
+		string							getColonialRegion();
 
-		string								getLocalName();
+		string							getLocalName();
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
@@ -97,7 +97,7 @@ class V2Country
 		bool								isCivilized() const { return civilized; }
 		string							getPrimaryCulture() const { return primaryCulture; }
 		set<string>						getAcceptedCultures() const { return acceptedCultures; }
-		const EU4Country*				getSourceCountry() const { return srcCountry; }
+		EU4Country*						getSourceCountry() const { return srcCountry; }
 		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; }
 		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; }
 		inventionStatus				getInventionState(HODNNMInventionType invention) const { return HODNNMInventions[invention]; }
@@ -116,13 +116,14 @@ class V2Country
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
 		void			addLoan(string creditor, double size, double interest);
-		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces);
+		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, adjacencyMapping adjacencyMap);
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces);
 		V2Army*		getArmyForRemainder(RegimentCategory rc);
 		V2Province*	getProvinceForExpeditionaryArmy();
+		string		getRegimentName(RegimentCategory rc);
 
 		V2World*							theWorld;
-		const EU4Country*				srcCountry;
+		EU4Country*						srcCountry;
 		string							filename;
 		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
 		V2Country*						colonyOverlord;
@@ -170,6 +171,7 @@ class V2Country
 		double							literacy;
 		V2Localisation					localisation;
 		Color								color;
+		int								unitNameCount[num_reg_categories];
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

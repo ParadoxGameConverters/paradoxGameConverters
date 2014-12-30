@@ -53,6 +53,7 @@ class V2State
 		double	getSuppliedInputs(const V2Factory* factory)	const;
 		bool		provInState(int id)	const;
 		bool		hasLandConnection()	const;
+		double	getManuRatio() const;
 
 		void		addProvince(V2Province* newProvince)	{ provinces.push_back(newProvince); }
 		void		setColonial(bool isIt)						{ colonial = isIt; }
@@ -61,7 +62,6 @@ class V2State
 		int						getFactoryCount()	const { return factories.size(); };
 		int						getID()				const { return id; };
 		vector<V2Province*>	getProvinces()		const { return provinces; };
-		//EU4World*						sourceWorld;
 	private:
 		int	getStatePopulation() const;
 		int								id;

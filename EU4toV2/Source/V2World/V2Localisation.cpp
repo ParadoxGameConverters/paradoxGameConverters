@@ -151,3 +151,16 @@ std::string V2Localisation::GetLocalName()
 	}
 	return "";
 }
+
+
+std::string V2Localisation::GetLocalAdjective()
+{
+	for (std::string thisname : adjective)
+	{
+		if (!thisname.empty())
+		{
+			return thisname;
+		}
+	}
+	return "";
+}

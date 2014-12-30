@@ -55,9 +55,10 @@ struct V2FactoryType
 class V2Factory
 {
 	public:
-		V2Factory(const V2FactoryType* _type) : type(_type) {};
-		void						output(FILE* output) const;
-		map<string,float>		getRequiredRGO() const;
+		V2Factory(const V2FactoryType* _type) : type(_type) { level = 1; };
+		void					output(FILE* output) const;
+		map<string,float>	getRequiredRGO() const;
+		void					increaseLevel();
 
 		bool						requiresCoastal()					const { return type->requireCoastal; }
 		string					getRequiredTech()					const { return type->requireTech; }
@@ -69,6 +70,7 @@ class V2Factory
 		string					getOutputGoods()					const { return type->outputGoods; };
 	private:
 		const V2FactoryType* type;
+		int						level;
 };
 
 
