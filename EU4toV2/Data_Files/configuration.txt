@@ -67,4 +67,7 @@ configuration =
 
 	# Liberty Desire Threshold: The threshold value for when colonies are not absorbed. Default 100% (colonies always absorbed)
 	libertyThreshold = 100
+
+	# Convert pop totals: whether or not the total population in a province should be determined from the EU4 game
+	convertPopTotals = "yes"
 }

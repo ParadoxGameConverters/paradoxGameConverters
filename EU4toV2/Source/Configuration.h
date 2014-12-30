@@ -96,6 +96,11 @@ public:
 		return getInstance()->libertyThreshold;
 	}
 
+	static bool getConvertPopTotals()
+	{
+		return getInstance()->convertPopTotals;
+	}
+
 	static void setOutputName(string name)
 	{
 		getInstance()->outputName = name;
@@ -127,6 +132,7 @@ private:
 	double	MaxLiteracy;			// the maximum literacy allowed
 	string	Removetype;				// the ruleto use for removing excess EU4 nations
 	double	libertyThreshold;		// The threshold liberty desire value for when colonies are not absorbed
+	bool		convertPopTotals;		// whether or not to convert pop totals
 	
 	// items set during conversion
 	date		firstEU4Date;			// the date EU4 began

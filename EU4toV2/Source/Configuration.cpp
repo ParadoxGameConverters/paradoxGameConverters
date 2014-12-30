@@ -60,5 +60,6 @@ Configuration::Configuration()
 	MaxLiteracy			= atof(obj[0]->getLeaf("max_literacy").c_str());
 	Removetype			= obj[0]->getLeaf("Removetype");
 	libertyThreshold	= atof(obj[0]->getLeaf("libertyThreshold").c_str());
+	convertPopTotals	= (obj[0]->getLeaf("convertPopTotals") == "yes");
 	outputName			= "";
 }

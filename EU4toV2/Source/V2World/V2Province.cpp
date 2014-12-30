@@ -469,7 +469,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	}
 
 	double long newPopulation = 0;
-	if (true)
+	if (Configuration::getConvertPopTotals())
 	{
 		newPopulation = popWeightRatio * oldProvince->getTotalWeight();
 		newPopulation /= 3;
