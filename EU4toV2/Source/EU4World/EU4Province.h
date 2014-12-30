@@ -31,7 +31,6 @@ using namespace std;
 
 class Object;
 class EU4Country;
-typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
 
 
@@ -45,42 +44,37 @@ struct EU4PopRatio {
 class EU4Province {
 	public:
 		EU4Province(Object* obj);
+
 		void						addCore(string tag);
 		void						removeCore(string tag);
+		void						determineProvinceWeight();
+
 		bool						wasColonised() const;
 		bool						wasInfidelConquest() const;
 		bool						hasBuilding(string building) const;
-
 		vector<EU4Country*>	getCores(const map<string, EU4Country*>& countries) const;
 		date						getLastPossessedDate(string tag) const;
 
-		int						getNum()				const { return num; }
-		double					getBaseTax()		const { return baseTax; }
-		string					getOwnerString()	const { return ownerString; }
-		EU4Country*				getOwner()			const { return owner; }
-		bool						isColony()			const { return colony; }
-		vector<EU4PopRatio>	getPopRatios()		const { return popRatios; }
-		double						getTotalWeight()		const { return totalWeight; }
-		void						setTotalWeight(double totalWeight);
-		void						setOwner(EU4Country* newOwner)	{ owner = newOwner; }
-		void					checkManpower(const Object* provinceObj);
-		void					checkTradeGoods(const Object* provinceObj);
+		int						getNum()					const { return num; }
+		double					getBaseTax()			const { return baseTax; }
+		string					getOwnerString()		const { return ownerString; }
+		EU4Country*				getOwner()				const { return owner; }
+		bool						isColony()				const { return colony; }
+		vector<EU4PopRatio>	getPopRatios()			const { return popRatios; }
+		double					getTotalWeight()		const { return totalWeight; }
+		int						getNumDestV2Provs()	const { return numV2Provs; }
 
-		double					getManpower() const { return provinceManpower; };
-		string					getTradeGoods() const { return provinceTradeGoods; };
-
-		void					setManpower(double provinceManpower);
-		void					setTradeGoods(string tg);
-		double					getTradeGoodWeight() const;
-		double					getTradeGoodPrice() const;
-		std::vector<double>		getProvBuildingWeight() const;
-		void					setNumDestV2Provs(int numV2Provs);
-		int						getNumDestV2Provs() const { return numV2Provs; };
+		void						setOwner(EU4Country* newOwner)		{ owner = newOwner; }
+		void						setNumDestV2Provs(int _numV2Provs)	{ numV2Provs = _numV2Provs; }
 
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
 		void	decayPopRatios(date olddate, date newdate, EU4PopRatio& currentPop);
+
+		vector<double>	getProvBuildingWeight()	const;
+		double			getTradeGoodWeight()		const;
+		double			getTradeGoodPrice()		const;
 
 		int									num;						// the province number
 		double								baseTax;					// the base tax of the province
@@ -96,9 +90,9 @@ class EU4Province {
 		vector<EU4PopRatio>				popRatios;				// the population ratios of this province
 		map<string, bool>					buildings;				// the buildings in this province
 
-		double						provinceManpower;
-		string						provinceTradeGoods;
-		int						numV2Provs;
+		double								manpower;
+		string								tradeGoods;
+		int									numV2Provs;
 };
 
 

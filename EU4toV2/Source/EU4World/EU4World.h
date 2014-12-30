@@ -40,7 +40,7 @@ typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, des
 class EU4World {
 	public:
 		EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
-		void setEU4WorldProvinceMappings(map< int, vector<int> > myInverseProvinceMapping);
+		void setEU4WorldProvinceMappings(const inverseProvinceMapping& inverseProvinceMap);
 
 		void readCommonCountries(istream&, const std::string& rootPath);
 
@@ -51,19 +51,17 @@ class EU4World {
 		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
 		void								setLocalisations(EU4Localisation& localisation);
 
-		EU4Version*						getVersion()	const { return version; };
-		map<string, EU4Country*>	getCountries()	const { return countries; };
-		EU4Diplomacy*					getDiplomacy()	const { return diplomacy; };
-		long								getWorldWeightSum() const { return worldWeightSum; };
-		void							setWorldWeightSum(long worldWeightSum);
+		EU4Version*						getVersion()			const { return version; };
+		map<string, EU4Country*>	getCountries()			const { return countries; };
+		EU4Diplomacy*					getDiplomacy()			const { return diplomacy; };
+		double							getWorldWeightSum()	const { return worldWeightSum; };
 
-		map< int, vector<int> > myInverseProvinceMapping; // < sourceProvince, destProvinces >
 	private:
 		map<int, EU4Province*>		provinces;	// the provinces
 		map<string, EU4Country*>	countries;	// the countries
 		EU4Diplomacy*					diplomacy;	// diplomatic relationships
 		EU4Version*						version;		// the EU4 version for this save
-		long							worldWeightSum;
+		double							worldWeightSum;
 };
 
 

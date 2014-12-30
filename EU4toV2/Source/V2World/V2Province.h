@@ -48,24 +48,20 @@ struct V2Demographic
 class V2Province
 {
 	public:
-		V2Province(string _filename, EU4World* sourceWorld);
+		V2Province(string _filename);
 		void output() const;
 		void outputPops(FILE*) const;
 		void convertFromOldProvince(const EU4Province* oldProvince);
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(bool isStateCapital, int statePopulation, EU4World* sourceWorld);
+		void doCreatePops(bool isStateCapital, int statePopulation, double popWeightRatio);
 		void addFactory(V2Factory* factory);
 
 		int				getTotalPopulation() const;
-		long				getTotalWorldPopulation() const { return totalWorldPopulation; };
-		void				setTotalWorldPopulation(long totalWorldPopulation);
-
 		vector<V2Pop*>	getPops(string type) const;
 		V2Pop*			getSoldierPopForArmy(bool force = false);
 		pair<int, int>	getAvailableSoldierCapacity() const;
-
 		string			getRegimentName(RegimentCategory rc);
 		bool				hasCulture(string culture, float percentOfPopulation) const;
 		
@@ -94,16 +90,14 @@ class V2Province
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); }
 		bool						hasLandConnection()	const { return landConnection; }
 
-		EU4World*	getSourceWorld() const { return sourceWorld; };
-		void			setSourceWorld(EU4World* sourceWorld);
 	private:
 		void outputUnits(FILE*) const;
-		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation);
+		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, double popWeightRatio);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
 		const EU4Province*		srcProvince;
-		long							totalWorldPopulation;
+
 		string						filename;
 		bool							coastal;
 		int							num;
@@ -131,7 +125,6 @@ class V2Province
 		map<string, V2Factory*>	factories;
 
 		bool								resettable;
-		EU4World*						sourceWorld;
 };
 
 

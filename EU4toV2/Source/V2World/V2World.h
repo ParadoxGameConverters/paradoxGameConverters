@@ -64,14 +64,6 @@ class V2World {
 		map<string, V2Country*>	getPotentialCountries()	const;
 		map<string, V2Country*>	getDynamicCountries()	const;
 
-		long getTotalOldPopulation() const { return this->totalOldPopulation; };
-		void setTotalOldPopulation(long oldpop);
-
-		int getEU4PopWeightValue() const { return this->EU4PopWeightValue; };
-		void setEU4PopWeightValue(int EU4PopWeightValue);
-
-		EU4World* getEU4World() const { return this->sourceworld; };
-		void setEU4World(EU4World sourceworld);
 	private:
 		void				outputPops() const;
 		void				getProvinceLocalizations(string file);
@@ -80,19 +72,14 @@ class V2World {
 
 		map<int, V2Province*>		provinces;
 		map<string, V2Country*>		countries;
-		map<string, EU4Country*>		euiv_countries;
 		vector<V2Country*>			potentialCountries;
 		map<string, V2Country*>		dynamicCountries;
 		V2Diplomacy						diplomacy;
 		map< int, set<string> >		colonies;
 
 		map<string, string>			ck2titles;
-		colonyFlagset				colonyFlagMap;
-		map<string, list<int>* >		popRegions;
-
-		int							EU4PopWeightValue;
-		EU4World*					sourceworld;
-		long totalOldPopulation;
+		colonyFlagset					colonyFlagMap;
+		map<string, list<int>* >	popRegions;
 };
 
 
