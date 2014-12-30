@@ -140,6 +140,7 @@ V2World::V2World()
 	
 	// set V2 basic population levels
 	LOG(LogLevel::Info) << "Importing historical pops.";
+	totalWorldPopulation	= 0;
 	set<string> fileNames;
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
@@ -162,6 +163,7 @@ V2World::V2World()
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
+					totalWorldPopulation += atoi(pops[l]->getLeaf("size").c_str());
 					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
 					k->second->addOldPop(newPop);
 				}
@@ -1070,8 +1072,6 @@ void V2World::convertUncivReforms()
 
 void V2World::setupPops(EU4World& sourceWorld)
 {
-	long totalWorldPopulation = 501666192;
-
 	double popWeightRatio = totalWorldPopulation / sourceWorld.getWorldWeightSum();
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{

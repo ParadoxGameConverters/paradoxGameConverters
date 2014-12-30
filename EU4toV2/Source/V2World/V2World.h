@@ -80,6 +80,8 @@ class V2World {
 		map<string, string>			ck2titles;
 		colonyFlagset					colonyFlagMap;
 		map<string, list<int>* >	popRegions;
+
+		long								totalWorldPopulation;
 };
 
 
