@@ -1323,7 +1323,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 	}
 	if (weightedCountries.size() < 1)
 	{
-		//LOG(LogLevel::Warning) << "No countries are able to accept factories";
+		LOG(LogLevel::Warning) << "No countries are able to accept factories";
 		return;
 	}
 	sort(weightedCountries.begin(), weightedCountries.end());

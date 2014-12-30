@@ -350,19 +350,13 @@ bool EU4Country::hasModifier(string modifier) const
 int EU4Country::hasNationalIdea(string ni) const
 {
 	map<string, int>::const_iterator itr = nationalIdeas.find(ni);
-	try {
-		if (itr != nationalIdeas.end())
-		{
-			return itr->second;
-		}
-		else
-		{
-			return -1;
-		}
-	}
-	catch (exception& e)
+	if (itr != nationalIdeas.end())
 	{
-		cout << "Standard exception: " << e.what() << endl;
+		return itr->second;
+	}
+	else
+	{
+		return -1;
 	}
 }
 

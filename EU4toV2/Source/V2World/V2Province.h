@@ -56,9 +56,11 @@ class V2Province
 		void addCore(string);
 		void addOldPop(const V2Pop*);
 		void doCreatePops(bool isStateCapital, int statePopulation, EU4World* sourceWorld);
+		void addFactory(V2Factory* factory);
+
 		int				getTotalPopulation() const;
-		long			getTotalWorldPopulation() const { return totalWorldPopulation; };
-		void			setTotalWorldPopulation(long totalWorldPopulation);
+		long				getTotalWorldPopulation() const { return totalWorldPopulation; };
+		void				setTotalWorldPopulation(long totalWorldPopulation);
 
 		vector<V2Pop*>	getPops(string type) const;
 		V2Pop*			getSoldierPopForArmy(bool force = false);
@@ -92,15 +94,15 @@ class V2Province
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); }
 		bool						hasLandConnection()	const { return landConnection; }
 
-		EU4World* getSourceWorld() const { return sourceWorld; };
-		void setSourceWorld(EU4World* sourceWorld);
+		EU4World*	getSourceWorld() const { return sourceWorld; };
+		void			setSourceWorld(EU4World* sourceWorld);
 	private:
 		void outputUnits(FILE*) const;
 		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
-		const EU4Province*			srcProvince;
+		const EU4Province*		srcProvince;
 		long							totalWorldPopulation;
 		string						filename;
 		bool							coastal;

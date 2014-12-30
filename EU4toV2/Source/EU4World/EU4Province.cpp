@@ -160,12 +160,9 @@ EU4Province::EU4Province(Object* obj) {
 
 	checkTradeGoods(obj);
 	trade_goods_weight = this->getTradeGoodWeight();
-	// manpower
 
 	checkManpower(obj);
 	manpower_weight = this->getManpower();
-
-
 
 	//LOG(LogLevel::Info) << "Check unique Buildings...";
 	// unique buildings
@@ -828,310 +825,310 @@ double EU4Province::getTradeGoodWeight() const
 
 std::vector<double> EU4Province::getProvBuildingWeight() const
 {
-	double building_weight = 0;
-	double manpower_modifier = 0.0;
-	double manu_gp_mod = 0.0;
-	double building_tx_eff = 0.0;
-	double production_eff = 0.0;
-	double building_tx_income = 0.0;
-	double manpower_eff = 0.0;
-	double goods_produced_perc_mod = 0.0;
-	double trade_power = 0.0;
-	double trade_value = 0.0;
-	double trade_value_eff = 0.0;
-	double trade_power_eff = 0.0;
+	double building_weight				= 0;
+	double manpower_modifier			= 0.0;
+	double manu_gp_mod					= 0.0;
+	double building_tx_eff				= 0.0;
+	double production_eff				= 0.0;
+	double building_tx_income			= 0.0;
+	double manpower_eff					= 0.0;
+	double goods_produced_perc_mod	= 0.0;
+	double trade_power					= 0.0;
+	double trade_value					= 0.0;
+	double trade_value_eff				= 0.0;
+	double trade_power_eff				= 0.0;
 
 	std::vector<double> provBuildingWeightVec;
 
 	// unique buildings
-	if (this->hasBuilding("march"))
+	if (hasBuilding("march"))
 	{
 		building_weight += 2;
 		manpower_modifier += 500;
 	}
 
-	if (this->hasBuilding("glorious_monument"))
+	if (hasBuilding("glorious_monument"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("royal_palace"))
+	if (hasBuilding("royal_palace"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("admiralty"))
+	if (hasBuilding("admiralty"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("war_college"))
+	if (hasBuilding("war_college"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("embassy"))
+	if (hasBuilding("embassy"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("tax_assessor"))
+	if (hasBuilding("tax_assessor"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("grain_depot"))
+	if (hasBuilding("grain_depot"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("university"))
+	if (hasBuilding("university"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("fine_arts_academy"))
+	if (hasBuilding("fine_arts_academy"))
 	{
 		building_weight += 2;
 	}
 
 	// manfacturies building
-	if (this->hasBuilding("weapons"))
+	if (hasBuilding("weapons"))
 	{
 		building_weight += 5;
 		manu_gp_mod = 1.0;
 	}
 
-	if (this->hasBuilding("wharf"))
+	if (hasBuilding("wharf"))
 	{
 		building_weight += 5;
 		manu_gp_mod = 1.0;
 	}
 
-	if (this->hasBuilding("textile"))
+	if (hasBuilding("textile"))
 	{
 		building_weight += 5;
 		manu_gp_mod = 1.0;
 	}
 
-	if (this->hasBuilding("refinery"))
+	if (hasBuilding("refinery"))
 	{
 		building_weight += 5;
 		manu_gp_mod = 1.0;
 	}
 
-	if (this->hasBuilding("plantations"))
+	if (hasBuilding("plantations"))
 	{
 		building_weight += 5;
 		manu_gp_mod = 1.0;
 	}
 
-	if (this->hasBuilding("farm_estate"))
+	if (hasBuilding("farm_estate"))
 	{
 		building_weight += 5;
 		manu_gp_mod = 1.0;
 	}
 
-	if (this->hasBuilding("tradecompany"))
+	if (hasBuilding("tradecompany"))
 	{
 		building_weight += 5;
 		manu_gp_mod = 1.0;
 	}
 
 	// Base buildings
-	if (this->hasBuilding("fort1"))
+	if (hasBuilding("fort1"))
 	{
 		building_weight += 1;
 	}
-	if (this->hasBuilding("fort2"))
+	if (hasBuilding("fort2"))
 	{
 		building_weight += 2;
 	}
-	if (this->hasBuilding("fort3"))
+	if (hasBuilding("fort3"))
 	{
 		building_weight += 3;
 	}
-	if (this->hasBuilding("fort4"))
+	if (hasBuilding("fort4"))
 	{
 		building_weight += 4;
 
 	}
-	if (this->hasBuilding("fort5"))
+	if (hasBuilding("fort5"))
 	{
 		building_weight += 5;
 	}
-	if (this->hasBuilding("fort6"))
+	if (hasBuilding("fort6"))
 	{
 		building_weight += 6;
 	}
-	if (this->hasBuilding("dock"))
+	if (hasBuilding("dock"))
 	{
 		building_weight++;
 	}
 
-	if (this->hasBuilding("drydock"))
+	if (hasBuilding("drydock"))
 	{
 		building_weight += 2;
 	}
 
-	if (this->hasBuilding("shipyard"))
+	if (hasBuilding("shipyard"))
 	{
 		building_weight += 3;
 	}
 
-	if (this->hasBuilding("grand_shipyard"))
+	if (hasBuilding("grand_shipyard"))
 	{
 		building_weight += 4;
 	}
 
-	if (this->hasBuilding("naval_arsenal"))
+	if (hasBuilding("naval_arsenal"))
 	{
 		building_weight += 5;
 	}
 
-	if (this->hasBuilding("naval_base"))
+	if (hasBuilding("naval_base"))
 	{
 		building_weight += 6;
 	}
 
-	if (this->hasBuilding("temple"))
+	if (hasBuilding("temple"))
 	{
 		building_weight += 1;
 		building_tx_income += 1.0;
 	}
 
-	if (this->hasBuilding("courthouse"))
+	if (hasBuilding("courthouse"))
 	{
 		building_weight += 2;
 		building_tx_eff += 0.10;
 	}
 
-	if (this->hasBuilding("spy_agency"))
+	if (hasBuilding("spy_agency"))
 	{
 		building_weight += 3;
 		building_tx_eff += 0.20;
 	}
 
-	if (this->hasBuilding("town_hall"))
+	if (hasBuilding("town_hall"))
 	{
 		building_weight += 4;
 		building_tx_eff += 0.25;
 	}
 
-	if (this->hasBuilding("college"))
+	if (hasBuilding("college"))
 	{
 		building_weight += 5;
 		building_tx_eff += 0.50;
 	}
 
-	if (this->hasBuilding("cathedral"))
+	if (hasBuilding("cathedral"))
 	{
 		building_weight += 6;
 		building_tx_income += 3.0;
 	}
 
-	if (this->hasBuilding("armory"))
+	if (hasBuilding("armory"))
 	{
 		building_weight += 1;
 		manpower_modifier += 25;
 	}
 
-	if (this->hasBuilding("training_fields"))
+	if (hasBuilding("training_fields"))
 	{
 		building_weight += 2;
 		manpower_modifier += 25;
 	}
 
-	if (this->hasBuilding("barracks"))
+	if (hasBuilding("barracks"))
 	{
 		building_weight += 3;
 		manpower_modifier += 25;
 		manpower_eff += 0.10;
 	}
 
-	if (this->hasBuilding("regimental_camp"))
+	if (hasBuilding("regimental_camp"))
 	{
 		building_weight += 4;
 		manpower_eff += 0.20;
 	}
 
-	if (this->hasBuilding("arsenal"))
+	if (hasBuilding("arsenal"))
 	{
 		building_weight += 5;
 		manpower_modifier += 50;
 	}
 
-	if (this->hasBuilding("conscription_center"))
+	if (hasBuilding("conscription_center"))
 	{
 		building_weight += 6;
 		manpower_modifier += 50;
 		manpower_eff += 0.50;
 	}
-	if (this->hasBuilding("constable"))
+	if (hasBuilding("constable"))
 	{
 		building_weight += 1;
 		production_eff += 0.2;
 	}
 
-	if (this->hasBuilding("workshop"))
+	if (hasBuilding("workshop"))
 	{
 		building_weight += 2;
 		goods_produced_perc_mod += 0.2;
 	}
 
-	if (this->hasBuilding("counting_house"))
+	if (hasBuilding("counting_house"))
 	{
 		building_weight += 3;
 	}
 
-	if (this->hasBuilding("treasury_office"))
+	if (hasBuilding("treasury_office"))
 	{
 		building_weight += 4;
 	}
 
-	if (this->hasBuilding("mint"))
+	if (hasBuilding("mint"))
 	{
 		building_weight += 5;
 		production_eff += 0.5;
 	}
 
-	if (this->hasBuilding("stock_exchange"))
+	if (hasBuilding("stock_exchange"))
 	{
 		building_weight += 6;
 		goods_produced_perc_mod += 0.50;
 	}
-	if (this->hasBuilding("customs_house"))
+	if (hasBuilding("customs_house"))
 	{
 		building_weight += 6;
 		trade_power += 10;
 		trade_value_eff += 2;
 	}
 
-	if (this->hasBuilding("marketplace"))
+	if (hasBuilding("marketplace"))
 	{
 		building_weight++;
 		trade_power += 2;
 	}
 
-	if (this->hasBuilding("trade_depot"))
+	if (hasBuilding("trade_depot"))
 	{
 		building_weight += 2;
 		trade_value += 1;
 		trade_power_eff += 0.25;
 	}
-	if (this->hasBuilding("canal"))
+	if (hasBuilding("canal"))
 	{
 		building_weight += 3;
 		trade_power += 2;
 		trade_value_eff += 0.25;
 	}
-	if (this->hasBuilding("road_network"))
+	if (hasBuilding("road_network"))
 	{
 		building_weight += 4;
 		trade_power_eff += 0.25;
 	}
 
-	if (this->hasBuilding("post_office"))
+	if (hasBuilding("post_office"))
 	{
 		building_weight += 5;
 		trade_power += 3;
