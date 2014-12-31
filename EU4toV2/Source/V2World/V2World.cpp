@@ -1425,51 +1425,6 @@ void V2World::getProvinceLocalizations(string file)
 }
 
 
-vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
-{
-	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
-	// a non-port province, Vicky crashes....
-	static set<int> port_blacklist;
-	if (port_blacklist.size() == 0)
-	{
-		int temp = 0;
-		ifstream s("port_blacklist.txt");
-		while (s.good() && !s.eof())
-		{
-			s >> temp;
-			port_blacklist.insert(temp);
-		}
-		s.close();
-	}
-
-	vector<int> unblockedCandidates;
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		auto black = port_blacklist.find(*litr);
-		if (black == port_blacklist.end())
-		{
-			unblockedCandidates.push_back(*litr);
-		}
-	}
-	locationCandidates.swap(unblockedCandidates);
-
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		map<int, V2Province*>::iterator pitr = provinces.find(*litr);
-		if (pitr != provinces.end())
-		{
-			if ( !pitr->second->isCoastal() )
-			{
-				locationCandidates.erase(litr);
-				--pitr;
-				break;
-			}
-		}
-	}
-	return locationCandidates;
-}
-
-
 V2Country* V2World::getCountry(string tag)
 {
 	map<string, V2Country*>::iterator itr = countries.find(tag);

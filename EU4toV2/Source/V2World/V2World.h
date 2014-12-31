@@ -67,7 +67,6 @@ class V2World {
 	private:
 		void				outputPops() const;
 		void				getProvinceLocalizations(string file);
-		vector<int>		getPortProvinces(vector<int> provinces);
 		V2Country*		getCountry(string tag);
 
 		map<int, V2Province*>		provinces;
