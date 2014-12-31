@@ -141,12 +141,12 @@ int V2State::getStatePopulation() const
 	return population;
 }
 
-
+/*
 void V2State::addFactory(V2Factory* factory)
 {
 	provinces[0]->addFactory(factory);
 	factories.push_back(factory);
-}
+}*/
 
 
 bool V2State::hasLandConnection() const

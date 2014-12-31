@@ -334,7 +334,7 @@ void V2Country::outputOOB() const
 	fclose(output);
 }
 
-
+/*
 void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
 	religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, 
 	vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, 
@@ -772,7 +772,7 @@ void V2Country::initFromEU4Country(const EU4Country* _srcCountry, vector<string>
 	//	leaders.push_back(leader);
 	//	leaderMap[ (*itr)->getID() ] = leader->getID();
 	//}
-}
+}*/
 
 
 // used only for countries which are NOT converted (i.e. unions, dead countries, etc)
