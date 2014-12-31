@@ -1069,7 +1069,6 @@ void V2World::convertUncivReforms()
 }
 
 
-
 void V2World::setupPops(EU4World& sourceWorld)
 {
 	double popWeightRatio = totalWorldPopulation / sourceWorld.getWorldWeightSum();
@@ -1078,10 +1077,17 @@ void V2World::setupPops(EU4World& sourceWorld)
 		itr->second->setupPops(popWeightRatio);
 	}
 
-	LOG(LogLevel::Warning) << "Total world population: " << totalWorldPopulation;
-	LOG(LogLevel::Warning) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
-	LOG(LogLevel::Warning) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
-	LOG(LogLevel::Warning) << "Population per weight point is: " << popWeightRatio;
+	LOG(LogLevel::Info) << "Total world population: " << totalWorldPopulation;
+	LOG(LogLevel::Info) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << "Population per weight point is: " << popWeightRatio;
+
+	long newTotalPopulation = 0;
+	for (auto itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		newTotalPopulation += itr->second->getTotalPopulation();
+	}
+	LOG(LogLevel::Info) << "New total world population: " << newTotalPopulation;
 }
 
 
@@ -1436,15 +1442,17 @@ vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
 		s.close();
 	}
 
+	vector<int> unblockedCandidates;
 	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
 		auto black = port_blacklist.find(*litr);
-		if (black != port_blacklist.end())
+		if (black == port_blacklist.end())
 		{
-			litr = locationCandidates.erase(litr);
-			litr--;
+			unblockedCandidates.push_back(*litr);
 		}
 	}
+	locationCandidates.swap(unblockedCandidates);
+
 	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
 		map<int, V2Province*>::iterator pitr = provinces.find(*litr);

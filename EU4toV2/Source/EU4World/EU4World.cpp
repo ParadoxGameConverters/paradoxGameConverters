@@ -119,7 +119,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		i->second->determineProvinceWeight();
 		worldWeightSum += i->second->getTotalWeight();
 	}
-	LOG(LogLevel::Warning) << "Sum of all Province Weights: " << worldWeightSum;
+	LOG(LogLevel::Info) << "Sum of all Province Weights: " << worldWeightSum;
 }
 
 
