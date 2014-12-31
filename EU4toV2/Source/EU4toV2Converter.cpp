@@ -47,9 +47,11 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 {
 	Object*	obj;					// generic object
 
-	Configuration::getInstance();
+	char curDir[MAX_PATH];
+	GetCurrentDirectory(MAX_PATH, curDir);
+	LOG(LogLevel::Debug) << "Current directory is " << curDir;
 
-	LOG(LogLevel::Info) << "Converter version 0.4";
+	Configuration::getInstance();
 
 	FILE* saveFile = fopen(EU4SaveFileName.c_str(), "r");
 	if (saveFile == NULL)
@@ -72,10 +74,6 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			exit(-1);
 		}
 	}
-
-	char curDir[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, curDir);
-	LOG(LogLevel::Debug) << "Current directory is " << curDir;
 
 	// Get V2 install location
 	LOG(LogLevel::Info) << "Get V2 Install Path";
@@ -830,6 +828,7 @@ int main(const int argc, const char * argv[])
 {
 	try
 	{
+		LOG(LogLevel::Info) << "Converter version 0.4B";
 		const char* const defaultEU4SaveFileName = "input.eu4";	// the default name for a save to convert
 		string EU4SaveFileName;												// the actual name for the save to convert
 		if (argc >= 2)
