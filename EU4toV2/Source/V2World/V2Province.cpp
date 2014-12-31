@@ -38,7 +38,7 @@ using namespace std;
 
 
 
-V2Province::V2Province(string _filename, EU4World* sourceWorld)
+V2Province::V2Province(string _filename)
 {
 	srcProvince			= NULL;
 	filename				= _filename;
@@ -79,9 +79,6 @@ V2Province::V2Province(string _filename, EU4World* sourceWorld)
 	int numDigits	= filename.find_first_of("-") - slash - 2;
 	string temp		= filename.substr(slash + 1, numDigits);
 	num				= atoi(temp.c_str());
-
-	// World Population in Able Bodied Males
-	this->setTotalWorldPopulation(501666192);
 
 	Object* obj;
 	struct _stat st;
@@ -168,9 +165,6 @@ V2Province::V2Province(string _filename, EU4World* sourceWorld)
 			//log("Unknown key - %s\n", (*itr)->getKey().c_str());
 		}
 	}
-
-	this->setSourceWorld(sourceWorld);
-	this->setTotalWorldPopulation(501666192);
 }
 
 
@@ -342,7 +336,6 @@ void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 
 void V2Province::determineColonial()
 {
-	// if rotw was played "was colonized" doesn't make any sense.
 	if ((!landConnection) && (!sameContinent) && ((wasColonised) || (originallyInfidel)))
 	{
 		colonial = 2;
@@ -367,18 +360,17 @@ void V2Province::addOldPop(const V2Pop* oldPop)
 }
 
 
-void V2Province::doCreatePops(bool isStateCapital, int statePopulation, EU4World* sourceWorld)
+void V2Province::doCreatePops(bool isStateCapital, int statePopulation, double popWeightRatio)
 {
-	this->setSourceWorld(sourceWorld);
 	for (vector<V2Demographic>::const_iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
-		createPops(*itr, isStateCapital, statePopulation);
+		createPops(*itr, isStateCapital, statePopulation, popWeightRatio);
 	}
 	combinePops();
 }
 
 
-void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation)
+void V2Province::createPops(const V2Demographic& demographic, bool isStateCapital, int statePopulation, double popWeightRatio)
 {
 	const EU4Province* oldProvince	= demographic.oldProvince;
 	const EU4Country* oldCountry		= demographic.oldCountry;
@@ -399,9 +391,6 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	int aristocrats	= 0;
 	
 	int govBuilding = 0;
-
-	this->setTotalWorldPopulation(501666192);
-
 	if (oldProvince->hasBuilding("temple"))
 	{
 		govBuilding = 1;
@@ -479,30 +468,19 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		productionBuilding = 8;
 	}
 
-	double province_weight = oldProvince->getTotalWeight();
-
-	//LOG(LogLevel::Info) << "province weight: " << province_weight;
-
 	double long newPopulation = 0;
-	int numOfV2Provs = this->getSrcProvince()->getNumDestV2Provs();
-	//LOG(LogLevel::Info) << "Num Dest Provs: " << this->getSrcProvince()->getNumDestV2Provs();
-	//LOG(LogLevel::Warning) << "Total EUIV world weight sum is: " << sourceWorld.getWorldWeightSum();
-	// logic to switch out perhaps between weighted redistribution and quasi historical.
+	if (Configuration::getConvertPopTotals())
+	{
+		newPopulation = popWeightRatio * oldProvince->getTotalWeight();
 
-	if (true) {
-		double new_weight = (this->getTotalWorldPopulation() / this->getSourceWorld()->getWorldWeightSum());
-		//LOG(LogLevel::Info) << "getWorldWeightSum: " << this->getSourceWorld()->getWorldWeightSum();
-		newPopulation = new_weight * province_weight;
-		//LOG(LogLevel::Info) << "province population: " << newPopulation;
-		newPopulation /= 3;
-
+		int numOfV2Provs = srcProvince->getNumDestV2Provs();
 		if (numOfV2Provs > 1)
 		{
 			newPopulation /= numOfV2Provs;
-		}
-		
+		}	
 	}
-	else {
+	else
+	{
 		newPopulation = oldPopulation;
 	}
 
@@ -975,14 +953,4 @@ bool V2Province::hasCulture(string culture, float percentOfPopulation) const
 	}
 
 	return ((float)culturePops / getTotalPopulation()) >= percentOfPopulation;
-}
-
-void V2Province::setTotalWorldPopulation(long totalWorldPopulation)
-{
-	this->totalWorldPopulation = totalWorldPopulation;
-}
-
-void V2Province::setSourceWorld(EU4World* sourceWorld)
-{
-	this->sourceWorld = sourceWorld;
 }

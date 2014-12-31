@@ -45,8 +45,8 @@ class V2State
 		V2State(int newId, V2Province* firstProvince);
 
 		void		addRailroads();
-		void		setupPops(string primaryCulture, set<string> acceptedCultures, string religion, EU4World* sourceWorld);
-		void		addFactory(const V2Factory* factory);
+		void		setupPops(string primaryCulture, set<string> acceptedCultures, string religion, double popWeightRatio);
+		void		addFactory(V2Factory* factory);
 
 		bool		isCoastal() const;
 		bool		hasLocalSupply(string product) const;

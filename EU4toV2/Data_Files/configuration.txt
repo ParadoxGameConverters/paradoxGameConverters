@@ -22,19 +22,19 @@
 configuration =
 {
 	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
-	EU4directory = "C:\SteamLibrary\SteamApps\common\Europa Universalis IV"
+	EU4directory = "C:\Program Files (x86)\Steam\SteamApps\common\Europa Universalis IV"
 
 	# Europa Universalis 4 documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
-	EU4DocumentsDirectory = "C:\Users\Elison\Documents\Paradox Interactive\Europa Universalis IV"
+	EU4DocumentsDirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Europa Universalis IV"
 
 	# Crusader Kings 2 export directory: a path on your computer where Crusader Kings 2 keeps exported games
 	CK2ExportDirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Crusader Kings II\eu4_export\mod"
 
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
-	V2directory = "C:\SteamLibrary\SteamApps\common\Victoria 2"
+	V2directory = "D:\Paradox Interactive\Victoria 2"
 
 	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
-	V2Documentsdirectory = "C:\Users\Elison\Documents\Paradox Interactive\Victoria II"
+	V2Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Victoria II"
 
 	# CK2Converted: Whether or not the mod was converted from CK2. Possible values:
 	# 	yes
@@ -67,4 +67,7 @@ configuration =
 
 	# Liberty Desire Threshold: The threshold value for when colonies are not absorbed. Default 100% (colonies always absorbed)
 	libertyThreshold = 100
+
+	# Convert pop totals: whether or not the total population in a province should be determined from the EU4 game
+	convertPopTotals = "yes"
 }

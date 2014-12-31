@@ -98,7 +98,7 @@ V2World::V2World()
 				}
 				else
 				{
-					V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name, this->getEU4World());
+					V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name);
 					provinces.insert(make_pair(newProvince->getNum(), newProvince));
 				}
 			} while (_findnext(fileListing, &provinceFileData) == 0);
@@ -129,7 +129,7 @@ V2World::V2World()
 				}
 				else
 				{
-					V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name, this->getEU4World());
+					V2Province* newProvince = new V2Province(directories.front() + "\\" + provinceFileData.name);
 					provinces.insert(make_pair(newProvince->getNum(), newProvince));
 				}
 			} while (_findnext(fileListing, &provinceFileData) == 0);
@@ -140,6 +140,7 @@ V2World::V2World()
 	
 	// set V2 basic population levels
 	LOG(LogLevel::Info) << "Importing historical pops.";
+	totalWorldPopulation	= 0;
 	set<string> fileNames;
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
@@ -162,6 +163,7 @@ V2World::V2World()
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
+					totalWorldPopulation += atoi(pops[l]->getLeaf("size").c_str());
 					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
 					k->second->addOldPop(newPop);
 				}
@@ -428,7 +430,6 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 
 void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, map<string, string>& ck2titlemap, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
 {
-	this->setEU4World(sourceWorld);
 	vector<string> outputOrder;
 	outputOrder.clear();
 	for (unsigned int i = 0; i < potentialCountries.size(); i++)
@@ -1068,45 +1069,25 @@ void V2World::convertUncivReforms()
 }
 
 
-
 void V2World::setupPops(EU4World& sourceWorld)
 {
-	long totalWorldPopulation = 501666192;
-	this->setTotalOldPopulation(501666192);
-	/*
-	for (map<string, EU4Country*>::iterator euiv_itr = euiv_countries.begin(); euiv_itr != euiv_countries.end(); ++euiv_itr)
-	{
-		for (int i = 0; i < euiv_itr->second->getProvinces().size(); i++)
-		{
-			//totalWorldPopulation += 
-			//cout << euiv_itr->second->getProvinces().at(i)->getBaseTax() << endl;
-
-		}
-
-	}*/
-
+	double popWeightRatio = totalWorldPopulation / sourceWorld.getWorldWeightSum();
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		//501666192
-
-		for (int i = 0; i < itr->second->getProvinces().size(); i++)
-		{
-			//cout << itr->second->getProvinces().at(i)->getOldPopulation() << endl;
-			//totalWorldPopulation += itr->second->getProvinces().at(i)->getOldPopulation();
-		}
-
-		//this->setTotalOldPopulation(totalWorldPopulation);
-		itr->second->setupPops(sourceWorld);
-
+		itr->second->setupPops(popWeightRatio);
 	}
 
-	//this->setTotalOldPopulation(totalWorldPopulation);
-	LOG(LogLevel::Warning) << "Total world population: " << totalWorldPopulation;
-	LOG(LogLevel::Warning) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
-	LOG(LogLevel::Warning) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
-	int WeightPointsValue = (totalWorldPopulation / (sourceWorld.getWorldWeightSum()));
-	LOG(LogLevel::Warning) << "Population per weight point is: " << WeightPointsValue;
-	this->setEU4PopWeightValue(WeightPointsValue);
+	LOG(LogLevel::Info) << "Total world population: " << totalWorldPopulation;
+	LOG(LogLevel::Info) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << "Population per weight point is: " << popWeightRatio;
+
+	long newTotalPopulation = 0;
+	for (auto itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		newTotalPopulation += itr->second->getTotalPopulation();
+	}
+	LOG(LogLevel::Info) << "New total world population: " << newTotalPopulation;
 }
 
 
@@ -1323,7 +1304,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 	}
 	if (weightedCountries.size() < 1)
 	{
-		//LOG(LogLevel::Warning) << "No countries are able to accept factories";
+		LOG(LogLevel::Warning) << "No countries are able to accept factories";
 		return;
 	}
 	sort(weightedCountries.begin(), weightedCountries.end());
@@ -1444,49 +1425,6 @@ void V2World::getProvinceLocalizations(string file)
 }
 
 
-vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
-{
-	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
-	// a non-port province, Vicky crashes....
-	static set<int> port_blacklist;
-	if (port_blacklist.size() == 0)
-	{
-		int temp = 0;
-		ifstream s("port_blacklist.txt");
-		while (s.good() && !s.eof())
-		{
-			s >> temp;
-			port_blacklist.insert(temp);
-		}
-		s.close();
-	}
-
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		auto black = port_blacklist.find(*litr);
-		if (black != port_blacklist.end())
-		{
-			litr = locationCandidates.erase(litr);
-			litr--;
-		}
-	}
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		map<int, V2Province*>::iterator pitr = provinces.find(*litr);
-		if (pitr != provinces.end())
-		{
-			if ( !pitr->second->isCoastal() )
-			{
-				locationCandidates.erase(litr);
-				--pitr;
-				break;
-			}
-		}
-	}
-	return locationCandidates;
-}
-
-
 V2Country* V2World::getCountry(string tag)
 {
 	map<string, V2Country*>::iterator itr = countries.find(tag);
@@ -1498,19 +1436,4 @@ V2Country* V2World::getCountry(string tag)
 	{
 		return NULL;
 	}
-}
-
-void V2World::setEU4World(EU4World sourceworld) 
-{
-	this->sourceworld = &sourceworld;
-}
-
-void V2World::setTotalOldPopulation(long oldPop)
-{
-	this->totalOldPopulation = oldPop;
-}
-
-void V2World::setEU4PopWeightValue(int EU4PopWeightValue) 
-{
-	this->EU4PopWeightValue = EU4PopWeightValue;
 }
