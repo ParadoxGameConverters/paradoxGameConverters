@@ -305,7 +305,7 @@ link = { v2 = amhara eu4 = amhara }
 #link = { v2 = nuba eu4 = ? }
 #link = { v2 = ruanda eu4 = ? }
 #link = { v2 = rundi eu4 = ? }
-link = { v2 = sidama eu4 = eu4 = sidamo }
+link = { v2 = sidama eu4 = sidamo }
 #link = { v2 = sukuma eu4 = ? }
 link = { v2 = tigray eu4 = tigray }
 #link = { v2 = unyamwezi eu4 = ? }
