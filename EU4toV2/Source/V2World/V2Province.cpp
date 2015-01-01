@@ -756,7 +756,7 @@ void V2Province::combinePops()
 	pops.swap(consolidatedPops);
 }
 
-/*
+
 void V2Province::addFactory(V2Factory* factory)
 {
 	map<string, V2Factory*>::iterator itr = factories.find(factory->getTypeName());
@@ -768,7 +768,7 @@ void V2Province::addFactory(V2Factory* factory)
 	{
 		itr->second->increaseLevel();
 	}
-}*/
+}
 
 
 int V2Province::getTotalPopulation() const
