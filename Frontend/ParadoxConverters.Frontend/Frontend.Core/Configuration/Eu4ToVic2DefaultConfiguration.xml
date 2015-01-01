@@ -128,6 +128,25 @@
             <minValue>1</minValue>
             <maxValue>100</maxValue>
           </preference>
+		  <preference>
+            <name>convertPopTotals</name>
+            <friendlyName>Convert pop totals?</friendlyName>
+            <description>Whether or not the population totals should be converted.</description>
+            <entryOptions>
+              <entryOption>
+                <name>yes</name>
+                <friendlyName>Yes</friendlyName>
+                <description>The population totals should be converted</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>no</name>
+                <friendlyName>No</friendlyName>
+                <description>The population totals should NOT be converted</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
         </preferences>
       </category>
     </categories>
