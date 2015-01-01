@@ -218,7 +218,6 @@ link = { eu4 = AST v2 = AKH }  # Astarakhan
 link = { eu4 = CRI v2 = CRI }  # Crimea
 link = { eu4 = GEO v2 = GEO }  # Georgia
 link = { eu4 = GOL v2 = GOL }  # Golden Horde
-link = { eu4 = KAS v2 = KAS }  # Georgia
 link = { eu4 = KAZ v2 = KAZ }  # Kazan
 link = { eu4 = MOS v2 = MOS }  # Muscowy
 link = { eu4 = NOV v2 = NOV }  # Novgorod
@@ -402,7 +401,11 @@ link = { eu4 = VIE v2 = WIA }  # Vientiane => Wiang Chhan
 link = { eu4 = CSH v2 = CSH }  # Shun (NEW) *
 link = { eu4 = CXI v2 = XIA }  # Xi
 link = { eu4 = CZH v2 = WUU }  # Zhou
-link = { eu4 = QNG v2 = QIN }  # Qing/China
+link = { eu4 = WUU v2 = CWU }  # Wu
+link = { eu4 = QNG v2 = CHI }  # Qing/China
+link = { eu4 = QIN v2 = QIN }  # Qin
+link = { eu4 = KAS v2 = YRK }  # Yarkand
+link = { eu4 = TER v2 = TNT }  # Ternate
 
 # Japan
 link = { eu4 = AMA v2 = AMA }  # Amago
