@@ -37,7 +37,8 @@ void EU4Religion::parseReligions(Object* obj)
 		string group = (*groupsItr)->getKey();							// the name of the religion group
 		for (vector<Object*>::iterator religionsItr = religions.begin(); religionsItr < religions.end(); religionsItr++)
 		{
-			if (((*religionsItr)->getKey() == "defender_of_faith") || ((*religionsItr)->getKey() == "crusade_name"))
+			string key = (*religionsItr)->getKey();
+			if ((key == "defender_of_faith") || (key == "crusade_name") || (key == "can_form_personal_unions") || (key == "center_of_religion"))
 			{
 				continue;
 			}

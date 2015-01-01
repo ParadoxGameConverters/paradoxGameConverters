@@ -34,6 +34,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU4Diplomacy.h"
 #include "EU4Version.h"
 #include "EU4Localisation.h"
+#include "EU4Religion.h"
 
 
 
@@ -234,6 +235,20 @@ void EU4World::checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping for EU4 culture " << EU4Culture;
+		}
+	}
+}
+
+
+void EU4World::checkAllEU4ReligionsMapped(const religionMapping& religionMap) const
+{
+	map<string, EU4Religion*> allReligions = EU4Religion::getAllReligions();
+	for (auto religionItr = allReligions.begin(); religionItr != allReligions.end(); ++religionItr)
+	{
+		auto mapItr = religionMap.find(religionItr->first);
+		if (mapItr == religionMap.end())
+		{
+			Log(LogLevel::Warning) << "No religion mapping for EU4 religion " << religionItr->first;
 		}
 	}
 }

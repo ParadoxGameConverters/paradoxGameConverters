@@ -629,6 +629,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	religionMapping religionMap;
 	religionMap = initReligionMap(obj->getLeaves()[0]);
+	sourceWorld.checkAllEU4ReligionsMapped(religionMap);
 
 
 	// Parse unions mapping

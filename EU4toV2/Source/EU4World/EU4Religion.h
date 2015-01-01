@@ -43,6 +43,8 @@ class EU4Religion
 		static void parseReligions(Object* obj);
 		static EU4Religion* getReligion(string name);
 
+		static map<string, EU4Religion*> getAllReligions() { return all_religions; }
+
 	private:
 		string name;		// the religion name
 		string group;		// the religion group
