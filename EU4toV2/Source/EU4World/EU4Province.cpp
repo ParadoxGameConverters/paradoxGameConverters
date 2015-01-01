@@ -431,7 +431,10 @@ void EU4Province::buildPopRatios()
 		}
 	}
 	decayPopRatios(lastLoopDate, date("1821.1.1"), pr);
-	popRatios.push_back(pr);
+	if ((pr.culture != "") || (pr.religion != ""))
+	{
+		popRatios.push_back(pr);
+	}
 }
 
 
