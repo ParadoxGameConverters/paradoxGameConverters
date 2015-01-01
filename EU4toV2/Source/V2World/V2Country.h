@@ -76,7 +76,7 @@ class V2Country
 		void								setIndustryTech(double mean, double highest);
 		void								setCultureTech(double mean, double highest);
 		void								addRelation(V2Relations* newRelation);
-		void								absorbColony(V2Country* colony);
+		void								absorbVassal(V2Country* vassal);
 		void								setColonyOverlord(V2Country* colony);
 		V2Country*						getColonyOverlord();
 		string							getColonialRegion();

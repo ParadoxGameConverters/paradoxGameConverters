@@ -1108,25 +1108,25 @@ void V2Country::addRelation(V2Relations* newRelation)
 }
 
 
-void V2Country::absorbColony(V2Country* colony)
+void V2Country::absorbVassal(V2Country* vassal)
 {
-	Log(LogLevel::Debug) << "\t" << tag << " is absorbing the colony " << colony->getTag();
+	Log(LogLevel::Debug) << "\t" << tag << " is absorbing " << vassal->getTag();
 
 	// change province ownership and add owner cores if needed
-	vector<V2Province*> colonyProvinces = colony->getProvinces();
-	for (vector<V2Province*>::iterator provItr = colonyProvinces.begin(); provItr != colonyProvinces.end(); provItr++)
+	vector<V2Province*> vassalProvinces = vassal->getProvinces();
+	for (vector<V2Province*>::iterator provItr = vassalProvinces.begin(); provItr != vassalProvinces.end(); provItr++)
 	{
 		(*provItr)->setOwner(tag);
 		(*provItr)->addCore(tag);
 	}
 
-	// accept cultures from the colony
-	acceptedCultures.insert(colony->getPrimaryCulture());
-	set<string> cultures = colony->getAcceptedCultures();
+	// accept cultures from the vassal
+	acceptedCultures.insert(vassal->getPrimaryCulture());
+	set<string> cultures = vassal->getAcceptedCultures();
 	acceptedCultures.insert(cultures.begin(), cultures.end());
 
-	// take colony's armies
-	srcCountry->takeArmies(colony->getSourceCountry());
+	// take vassal's armies
+	srcCountry->takeArmies(vassal->getSourceCountry());
 }
 
 

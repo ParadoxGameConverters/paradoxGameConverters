@@ -100,6 +100,13 @@ EU4Diplomacy::EU4Diplomacy(Object* obj)
 		agreements.push_back(agr);
 	}
 
+	std::vector<Object*> objMarch = obj->getValue("is_march");
+	for (std::vector<Object*>::iterator itr = objMarch.begin(); itr != objMarch.end(); ++itr)
+	{
+		EU4Agreement agr(*itr);		// the new agreement
+		agreements.push_back(agr);
+	}
+
 	std::vector<Object*> objSpheres = obj->getValue("sphere");
 	for (std::vector<Object*>::iterator itr = objSpheres.begin(); itr != objSpheres.end(); ++itr)
 	{

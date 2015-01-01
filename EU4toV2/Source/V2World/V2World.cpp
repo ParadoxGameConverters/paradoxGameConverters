@@ -640,7 +640,14 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 
 			if (country2->second->getSourceCountry()->getLibertyDesire() < Configuration::getLibertyThreshold())
 			{
-				country1->second->absorbColony(country2->second);
+				country1->second->absorbVassal(country2->second);
+				for (vector<EU4Agreement>::iterator itr2 = agreements.begin(); itr2 != agreements.end(); ++itr2)
+				{
+					if (itr2->country2 == country2->second->getSourceCountry()->getTag())
+					{
+						itr2->country2 == country1->second->getSourceCountry()->getTag();
+					}
+				}
 			}
 			else
 			{
@@ -652,8 +659,20 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 				diplomacy.addAgreement(v2a);
 				r1->setLevel(5);
 			}
-			
 		}
+
+		if (itr->type == "is_march")
+		{
+			country1->second->absorbVassal(country2->second);
+			for (vector<EU4Agreement>::iterator itr2 = agreements.begin(); itr2 != agreements.end(); ++itr2)
+			{
+				if (itr2->country1 == country2->second->getSourceCountry()->getTag())
+				{
+					itr2->country1 = country1->second->getSourceCountry()->getTag();
+				}
+			}
+		}
+
 		if ((itr->type == "royal_marriage") || (itr->type == "guarantee"))
 		{
 			// influence level +1, but never exceed 4
