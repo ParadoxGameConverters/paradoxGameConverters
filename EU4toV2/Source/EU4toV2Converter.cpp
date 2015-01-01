@@ -563,6 +563,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			_findclose(fileListing);
 		}
 	}
+	sourceWorld.checkAllEU4CulturesMapped(cultureMap, inverseUnionCultures);
 
 	// Parse EU4 Religions
 	LOG(LogLevel::Info) << "Parsing EU4 religions";

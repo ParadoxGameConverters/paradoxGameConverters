@@ -217,6 +217,28 @@ void EU4World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 }
 
 
+void EU4World::checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const
+{
+	for (auto cultureItr = inverseUnionCultures.begin(); cultureItr != inverseUnionCultures.end(); cultureItr++)
+	{
+		string	EU4Culture	= cultureItr->first;
+		bool		matched		= false;
+		for (auto mapItr = cultureMap.begin(); mapItr != cultureMap.end(); mapItr++)
+		{
+			if (mapItr->srcCulture == EU4Culture)
+			{
+				matched = true;
+				break;
+			}
+		}
+		if (!matched)
+		{
+			LOG(LogLevel::Warning) << "No culture mapping for EU4 culture " << EU4Culture;
+		}
+	}
+}
+
+
 void EU4World::setLocalisations(EU4Localisation& localisation)
 {
 	for (map<string, EU4Country*>::iterator countryItr = countries.begin(); countryItr != countries.end(); countryItr++)

@@ -26,6 +26,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <istream>
 #include "EU4Army.h"
+#include "../Mapper.h"
 
 class EU4Country;
 class EU4Province;
@@ -33,7 +34,6 @@ class EU4Diplomacy;
 class EU4Version;
 class EU4Localisation;
 struct EU4Agreement;
-typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
 
 
@@ -49,6 +49,7 @@ class EU4World {
 		void								removeCountry(string tag);
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
+		void								checkAllEU4CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const;
 		void								setLocalisations(EU4Localisation& localisation);
 
 		EU4Version*						getVersion()			const { return version; };
