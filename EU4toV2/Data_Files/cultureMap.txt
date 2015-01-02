@@ -25,14 +25,14 @@ cultureMap = {
 
 # Germanic - North German, South German, Ashkenazi
 # Swiss - Swiss
-link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = rheinlaender eu4 = hessian eu4 = bavarian eu4 = austrian religion = jewish }
-link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon  }
+link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = old_saxon eu4 = rheinlaender eu4 = hessian eu4 = bavarian eu4 = austrian religion = jewish }
+link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = old_saxon }
 link = { v2 = swiss eu4 = rheinlaender owner = SWI }
 link = { v2 = south_german eu4 = rheinlaender  eu4 = hessian eu4 = bavarian eu4 = austrian }
 
 # Benelux - Dutch, Flemish, Wallonian
 #link = { v2 = boer eu4 = dutch region = south_africa }
-link = { v2 = dutch eu4 = dutch }
+link = { v2 = dutch eu4 = dutch eu4 = frisian }
 link = { v2 = flemish eu4 = flemish }
 link = { v2 = german eu4 = german }
 
@@ -51,7 +51,7 @@ link = { v2 = sami eu4 = sapmi eu4 = lappish }
 #link = { v2 = anglo_canadian eu4 = english region = northern_america }
 #link = { v2 = australian eu4 = english region = australia }
 #link = { v2 = texan eu4 = english eu4 = american region = central_american }
-link = { v2 = british eu4 = english eu4 = scottish eu4 = anglo_saxon }
+link = { v2 = british eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish }
 link = { v2 = yankee eu4 = american }
 
 # Celtic - welsh, irish
@@ -72,12 +72,13 @@ link = { v2 = north_italian eu4 = roman }
 #link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america }
 #link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
 #link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
-link = { v2 = spanish eu4 = castillian eu4 = galician eu4 = andalucian }
+link = { v2 = spanish eu4 = castillian eu4 = galician eu4 = andalucian eu4 = visigothic }
 link = { v2 = catalan eu4 = catalan }
 link = { v2 = portuguese eu4 = portugese }
 #link = { v2 = brazilian eu4 = portugese region = brazil_region }
 link = { v2 = maltese eu4 = maltese }
 link = { v2 = basque eu4 = basque }
+link = { v2 = portuguese eu4 = suebi }
 #link = { v2 = central_american eu4 = ? }
 #link = { v2 = north_andean eu4 = ? }
 #link = { v2 = south_andean eu4 = ? }
@@ -85,7 +86,7 @@ link = { v2 = basque eu4 = basque }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
 #link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
-link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton }
+link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton eu4 = frankish eu4 = old_frankish }
 link = { v2 = wallonian eu4 = wallonian }
 
 # Finno Urgic - finnish, estonian, sapmi, ingrian, karelian, uralic
@@ -111,7 +112,7 @@ link = { v2 = czech eu4 = czech }
 link = { v2 = slovak eu4 = czech }
 
 # East Slav - russian, byelorussian, ruthenian
-link = { v2 = russian eu4 = russian }
+link = { v2 = russian eu4 = russian eu4 = ilmenian eu4 = severian eu4 = volhynian }
 link = { v2 = ukrainian eu4 = ruthenian }
 link = { v2 = byelorussian eu4 = byelorussian }
 
@@ -137,7 +138,7 @@ link = { v2 = turkish eu4 = turkish eu4 = pecheneg }
 # Iranian - persian, east_persian, baluchi
 #link = { v2 = tajik eu4 = persian region = central_asia }
 link = { v2 = persian eu4 = persian eu4 = khorasani eu4 = mazandarani }
-link = { v2 = pashtun eu4 = east_persian eu4 = afghani }
+link = { v2 = pashtun eu4 = east_persian eu4 = afghani eu4 = afghan }
 link = { v2 = baluchi eu4 = baluchi }
 
 # Jewish
@@ -149,9 +150,9 @@ link = { v2 = azerbaijani eu4 = azerbadjani eu4 = azerbaijani }
 link = { v2 = hazara  eu4 = mongol religion = shiite }
 link = { v2 = turkmen eu4 = turkmeni }
 link = { v2 = mongol eu4 = mongol eu4 = chahar eu4 = khalkha eu4 = oirats }
-link = { v2 = uzbek eu4 = uzbek eu4 = uzbehk }
+link = { v2 = uzbek eu4 = uzbek eu4 = uzbehk eu4 = karluk }
 link = { v2 = kazak eu4 = khazak }
-link = { v2 = kirgiz eu4 = kirgiz }
+link = { v2 = kirgiz eu4 = kirgiz eu4 = kirghiz }
 link = { v2 = siberian eu4 = siberian }
 link = { v2 = yakut eu4 = yakut eu4 = yukagyr eu4 = buryat eu4 = tungus }
 link = { v2 = tatar eu4 = tartar eu4 = bolghar eu4 = cuman eu4 = avar eu4 = khazar eu4 = astrakhani eu4 = bashkir eu4 = crimean eu4 = kazani eu4 = mishary eu4 = nogaybak eu4 = qasim }
@@ -252,7 +253,7 @@ link = { v2 = panjabi eu4 = panjabi }
 link = { v2 = kashmiri eu4 = kashmiri }
 
 # Western Aryan - gujarati, marathi, sindhi, rajput
-link = { v2 = gujarati eu4 = gujarati }
+link = { v2 = gujarati eu4 = gujarati eu4 = baloch}
 link = { v2 = marathi eu4 = marathi }
 link = { v2 = sindi eu4 = sindhi }
 link = { v2 = rajput eu4 = rajput eu4 = malvi }
