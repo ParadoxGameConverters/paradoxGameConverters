@@ -35,12 +35,13 @@ namespace Frontend.Core.Factories.TagReaders
 
             var friendlyName = XElementHelper.ReadStringValue(xmlElement, "friendlyName");
             var description = XElementHelper.ReadStringValue(xmlElement, "description");
+            var isMandatory = XElementHelper.ReadBoolValue(xmlElement, "isMandatory", false);
             var alternativePaths = this.ReadDefaultLocationPaths(xmlElement, directoryTagName, friendlyName);
 
             //var installationPath = string.IsNullOrEmpty(steamId) ? this.ReadWindowsUserFolderPath(xmlElement) : this.ReadSteamPath(xmlElement, steamId);
             //var installationPath = this.ReadDefaultLocationPaths(xmlElement);
 
-            return this.BuildRequiredFolderObject(directoryTagName, alternativePaths, friendlyName, description, internalTagName);
+            return this.BuildRequiredFolderObject(directoryTagName, alternativePaths, friendlyName, description, internalTagName, isMandatory);
         }
 
         /// <summary>
@@ -49,9 +50,9 @@ namespace Frontend.Core.Factories.TagReaders
         /// <param name="tagName"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        private IRequiredFolder BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string internalTagName)
+        private IRequiredFolder BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string internalTagName, bool isMandatory)
         {
-            return new RequiredFolder(tagName, friendlyName, description, alternatives, internalTagName);
+            return new RequiredFolder(tagName, friendlyName, description, alternatives, internalTagName, isMandatory);
         }
 
         

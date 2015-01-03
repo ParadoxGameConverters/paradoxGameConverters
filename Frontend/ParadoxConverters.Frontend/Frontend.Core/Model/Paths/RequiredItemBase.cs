@@ -16,13 +16,14 @@ namespace Frontend.Core.Model.Paths
         private string selectedValue;
         private IList<IAlternativePath> alternativePaths;
 
-        protected RequiredItemBase(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives, string internalTagName)
+        protected RequiredItemBase(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives, string internalTagName, bool isMandatory)
         {
             this.TagName = tagName;
             this.InternalTagName = internalTagName;
             this.FriendlyName = friendlyName;
             this.Description = description;            
             this.alternativePaths = alternatives;
+            this.IsMandatory = isMandatory;
 
             // Basically, take the first alternative path that actually exists, and set that as the default value.
             var defaultPath = alternatives.FirstOrDefault(a => a.Exists);          
@@ -41,6 +42,8 @@ namespace Frontend.Core.Model.Paths
             }
         }
 
+        public bool IsMandatory { get; private set; }
+
         public string FriendlyName { get; private set; }
 
         public string Description { get; private set; }
@@ -50,6 +53,8 @@ namespace Frontend.Core.Model.Paths
         public string InternalTagName { get; private set; }
 
         public string DefaultValue { get; private set; }
+
+        public abstract bool IsValid { get; }
 
         public string SelectedValue
         {
@@ -72,7 +77,7 @@ namespace Frontend.Core.Model.Paths
 
         public override string ToString()
         {
-            return this.TagName + ": Default: " + this.DefaultValue + " - Actual: " + this.SelectedValue;
+            return this.TagName + ": Default: " + this.DefaultValue + " - Actual: " + this.SelectedValue + " - IsValid: " + this.IsValid;
         }
     }
 }

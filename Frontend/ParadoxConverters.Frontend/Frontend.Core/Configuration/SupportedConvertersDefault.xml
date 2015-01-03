@@ -47,6 +47,7 @@ tag vs internalTag:
           <tag>EU4directory</tag>
           <friendlyName>Europa Universalis 4 directory</friendlyName>
           <description>A path on your computer where Europa Universalis 4 is installed</description>
+          <isMandatory>true</isMandatory>
           <alternatives>
             <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
@@ -84,6 +85,7 @@ tag vs internalTag:
           <tag>V2directory</tag>
           <friendlyName>Victoria 2 directory</friendlyName>
           <description>A path on your computer where Victoria 2 is installed</description>
+          <isMandatory>true</isMandatory>
           <alternatives>
             <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
@@ -133,6 +135,7 @@ tag vs internalTag:
           <tag>ConverterExe</tag>
           <friendlyName>Converter .exe</friendlyName>
           <description>The converter command line tool</description>
+          <isMandatory>true</isMandatory>
           <alternatives>
             <alternative>
               <defaultLocationType>ConverterFolder</defaultLocationType>
@@ -148,6 +151,7 @@ tag vs internalTag:
           <friendlyName>Savegame</friendlyName>
           <description>The savegame to convert</description>
           <extension>.eu4</extension>
+          <isMandatory>true</isMandatory>
           <alternatives>
             <alternative>
               <defaultLocationType>WindowsUsersFolder</defaultLocationType>

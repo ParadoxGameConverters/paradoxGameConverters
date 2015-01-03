@@ -29,6 +29,7 @@ namespace Frontend.Core.Factories.TagReaders
             var extension = XElementHelper.ReadStringValue(xmlElement, "extension", false);
             var predefinedFileName = XElementHelper.ReadStringValue(xmlElement, "predefinedFileName", false);
             var alternativePaths = this.ReadDefaultLocationPaths(xmlElement, tagName, friendlyName);
+            var isMandatory = XElementHelper.ReadBoolValue(xmlElement, "isMandatory", false);
 
             // If a filename is set, add it to all the alternative paths.
             // This basically turns a folder path into a file path.
@@ -40,7 +41,7 @@ namespace Frontend.Core.Factories.TagReaders
                 }
             }
 
-            return this.BuildRequiredFolderObject(tagName, alternativePaths, friendlyName, description, extension, predefinedFileName, internalTagName);
+            return this.BuildRequiredFolderObject(tagName, alternativePaths, friendlyName, description, extension, predefinedFileName, internalTagName, isMandatory);
         }
 
         /// <summary>
@@ -49,9 +50,9 @@ namespace Frontend.Core.Factories.TagReaders
         /// <param name="tagName"></param>
         /// <param name="defaultValue"></param>
         /// <returns></returns>
-        private IRequiredFile BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string extension, string predefinedFileName, string internalTagName)
+        private IRequiredFile BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives, string friendlyName, string description, string extension, string predefinedFileName, string internalTagName, bool isMandatory)
         {
-            return new RequiredFile(tagName, friendlyName, description, alternatives, extension, predefinedFileName, internalTagName);
+            return new RequiredFile(tagName, friendlyName, description, alternatives, extension, predefinedFileName, internalTagName, isMandatory);
         }
     }
 }

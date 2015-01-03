@@ -11,5 +11,7 @@ namespace Frontend.Core.Model.Paths.Interfaces
         string Description { get;}
         IList<IAlternativePath> AlternativePaths { get; }
         string DefaultValue { get; }
+        bool IsMandatory { get; }
+        bool IsValid { get; }
     }
 }
