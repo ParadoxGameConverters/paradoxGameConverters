@@ -62,7 +62,6 @@
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Events\EventArgs\PreferenceOperation.cs" />
     <Compile Include="Events\EventArgs\PreferenceStepOperationArgs.cs" />
-    <Compile Include="Events\EventArgs\RefreshButtonStatesArgs.cs" />
     <Compile Include="Exceptions\MissingRequiredXMLPropertyException.cs" />
     <Compile Include="Exceptions\UnparsableDataValueException.cs" />
     <Compile Include="Exceptions\XMLParseExceptionBase.cs" />

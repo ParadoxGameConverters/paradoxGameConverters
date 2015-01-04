@@ -6,7 +6,7 @@ namespace Frontend.Core.ViewModels.Interfaces
     using Frontend.Core.Events.EventArgs;
     using System.Collections.ObjectModel;
 
-    public interface IStepConductorBase : IHandle<RefreshButtonStatesArgs>
+    public interface IStepConductorBase
     {
         ObservableCollection<IStep> Steps { get; }
 
