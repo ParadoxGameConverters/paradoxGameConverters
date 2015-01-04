@@ -81,7 +81,7 @@ namespace Frontend.Core.ViewModels
 
         private void CurrentStep_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName = "IsValid")
+            if (e.PropertyName == "IsValid")
             {
                 this.RefreshButtonStates();
             }
