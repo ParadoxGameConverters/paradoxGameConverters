@@ -39,7 +39,7 @@ namespace Frontend.Core.Commands
 
             OpenFileDialog dialog = new OpenFileDialog();
 
-            dialog.DefaultExt = requiredFile.Extension;
+            dialog.Filter = String.Format("{0} (*{1}) | *{1}", requiredFile.FriendlyName, requiredFile.Extension); ;
             
             //NOTE: The dialog doesn't handle InitialDirectories that contains file names. So, if a predefined filename is specified (and included in the DefaultValue property)
             // we need to strip it away for the purpose of setting the dialog.InitialDirectory property. 
