@@ -3,9 +3,9 @@
 namespace Frontend.Core.ViewModels
 {
     using Caliburn.Micro;
-    using Frontend.Core.Events.EventArgs;
     using Frontend.Core.ViewModels.Interfaces;
     using System.Collections.ObjectModel;
+    using System.ComponentModel;
     using System.Linq;
 
     /// <summary>
@@ -41,7 +41,7 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                if (!this.CurrentStep.CanValidate() || this.Steps.Last() == this.CurrentStep)
+                if (!this.CurrentStep.IsValid || this.Steps.Last() == this.CurrentStep)
                 {
                     return false;
                 }
@@ -65,7 +65,7 @@ namespace Frontend.Core.ViewModels
 
         public void Move(Direction direction)
         {
-            switch(direction)
+            switch (direction)
             {
                 case Direction.Backward:
                     if (this.CanMoveBackward)
@@ -79,9 +79,12 @@ namespace Frontend.Core.ViewModels
             }
         }
 
-        public void Handle(RefreshButtonStatesArgs message)
+        private void CurrentStep_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            this.RefreshButtonStates();
+            if (e.PropertyName = "IsValid")
+            {
+                this.RefreshButtonStates();
+            }
         }
 
         /// <summary>
@@ -102,12 +105,14 @@ namespace Frontend.Core.ViewModels
 
             if (this.CurrentStep != null)
             {
+                this.CurrentStep.PropertyChanged -= this.CurrentStep_PropertyChanged;
                 this.CurrentStep.Unload();
             }
 
             step.Load(null);
 
             this.currentStep = step;
+            this.CurrentStep.PropertyChanged += this.CurrentStep_PropertyChanged;
             this.NotifyOfPropertyChange(() => this.CurrentStep);
             this.RefreshButtonStates();
         }

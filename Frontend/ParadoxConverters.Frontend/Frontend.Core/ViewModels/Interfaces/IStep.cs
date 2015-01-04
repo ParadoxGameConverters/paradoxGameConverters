@@ -7,6 +7,6 @@ namespace Frontend.Core.ViewModels.Interfaces
     {
         IConverterOptions Options { get; }
 
-        bool CanValidate();
+        bool IsValid { get; }
     }
 }

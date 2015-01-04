@@ -31,6 +31,6 @@ namespace Frontend.Core.ViewModels
         /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
         /// </summary>
         /// <returns>True if validation succeeds, false if not.</returns>
-        public abstract bool CanValidate();
+        public abstract bool IsValid { get; }
     }
 }

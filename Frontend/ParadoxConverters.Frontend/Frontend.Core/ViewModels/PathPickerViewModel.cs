@@ -1,11 +1,9 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Commands;
 using Frontend.Core.Model.Interfaces;
-using Frontend.Core.Model.Paths.Interfaces;
 using Frontend.Core.ViewModels.Interfaces;
-using System;
+using System.ComponentModel;
 using System.Linq;
-using System.IO;
 using System.Windows.Input;
 
 namespace Frontend.Core.ViewModels
@@ -59,27 +57,14 @@ namespace Frontend.Core.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the source save game path.
+        /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
         /// </summary>
-        /// <value>
-        /// The source save game path.
-        /// </value>
-        public string SourceSaveGamePath
+        /// <returns>True if validation succeeds, false if not.</returns>
+        public override bool IsValid
         {
             get
             {
-                return this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue;
-            }
-
-            set
-            {
-                if (this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue == value)
-                {
-                    return;
-                }
-
-                this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue = value;
-                this.NotifyOfPropertyChange(() => this.SourceSaveGamePath);
+                return this.Options.CurrentConverter.RequiredItems.All(i => i.IsValid);
             }
         }
 
@@ -87,13 +72,24 @@ namespace Frontend.Core.ViewModels
 
         #region [ Methods ]
 
-        /// <summary>
-        /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
-        /// </summary>
-        /// <returns>True if validation succeeds, false if not.</returns>
-        public override bool CanValidate()
+        protected override void OnUnloading()
         {
-            return this.Options.CurrentConverter.RequiredItems.All(i => i.IsValid);
+            this.Options.CurrentConverter.RequiredItems.ForEach(i => i.PropertyChanged -= this.Item_PropertyChanged);
+            base.OnUnloading();
+        }
+
+        protected override void OnLoaded(object parameter)
+        {
+            base.OnLoaded(parameter);
+            this.Options.CurrentConverter.RequiredItems.ForEach(i => i.PropertyChanged += this.Item_PropertyChanged);
+        }
+
+        private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals("SelectedValue"))
+            {
+                this.NotifyOfPropertyChange(() => this.IsValid);
+            }
         }
 
         #endregion

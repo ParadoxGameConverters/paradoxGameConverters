@@ -2,6 +2,7 @@
 using Frontend.Core.Model.Paths.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,7 @@ namespace Frontend.Core.Model.Paths
     /// <summary>
     /// Base class for required items
     /// </summary>
-    public abstract class RequiredItemBase : PropertyChangedBase, IRequiredItemBase
+    public abstract class RequiredItemBase : PropertyChangedBase, IRequiredItemBase, IDataErrorInfo
     {
         private string selectedValue;
         private IList<IAlternativePath> alternativePaths;
@@ -54,7 +55,14 @@ namespace Frontend.Core.Model.Paths
 
         public string DefaultValue { get; private set; }
 
-        public abstract bool IsValid { get; }
+        public bool IsValid
+        {
+            get
+            {
+                var errors = this["SelectedValue"];
+                return errors == null;
+            }
+        }
 
         public string SelectedValue
         {
@@ -74,6 +82,30 @@ namespace Frontend.Core.Model.Paths
                 this.NotifyOfPropertyChange(() => this.SelectedValue);
             }
         }
+
+        #region IDataErrorInfo Members
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string result = null;
+                if (columnName == "SelectedValue")
+                {
+                    result = this.ValidateSelectedValue();
+                }
+                return result;
+            }
+        }
+
+        #endregion
+
+        public abstract string ValidateSelectedValue();
 
         public override string ToString()
         {

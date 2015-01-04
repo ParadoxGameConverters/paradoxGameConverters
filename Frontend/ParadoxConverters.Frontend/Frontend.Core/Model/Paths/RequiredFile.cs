@@ -21,17 +21,19 @@ namespace Frontend.Core.Model.Paths
 
         public string PredefinedFileName { get; private set; }
 
-        public override bool IsValid
+        public override string ValidateSelectedValue()
         {
-            get
+            if (this.IsMandatory)
             {
-                if (this.IsMandatory)
-                {
-                    return File.Exists(this.SelectedValue);
-                }
+                var exists = File.Exists(this.SelectedValue);
 
-                return true;
+                if (!exists)
+                {
+                    return "File does not exist";
+                }
             }
+
+            return null;
         }
     }
 }

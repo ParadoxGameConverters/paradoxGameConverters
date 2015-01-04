@@ -15,17 +15,19 @@ namespace Frontend.Core.Model.Paths
         {
         }
 
-        public override bool IsValid
+        public override string ValidateSelectedValue()
         {
-            get 
-            { 
-                if (this.IsMandatory)
-                {
-                    return Directory.Exists(this.SelectedValue);
-                }
+            if (this.IsMandatory)
+            {
+                var exists = Directory.Exists(this.SelectedValue);
 
-                return true;
+                if (!exists)
+                {
+                    return "Directory does not exist";
+                }
             }
+
+            return null;
         }
     }
 }

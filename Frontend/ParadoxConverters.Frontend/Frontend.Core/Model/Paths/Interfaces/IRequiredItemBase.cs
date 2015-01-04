@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 namespace Frontend.Core.Model.Paths.Interfaces
 {
-    public interface IRequiredItemBase
+    public interface IRequiredItemBase : INotifyPropertyChanged
     {
         string FriendlyName { get; }
         string SelectedValue { get; set; }

@@ -47,7 +47,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{Binding FriendlyName}" Style="{StaticResource FolderPathTextBlockStyle}"/>
-                <TextBox Text="{Binding SelectedValue}" Grid.Column="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
+                <TextBox Text="{Binding SelectedValue, ValidatesOnDataErrors=true}" Grid.Column="1" 
+                         Style="{StaticResource FolderPathTextBoxStyle}"/>
                 <Button Content="Browse..." Grid.Column="2"  Style="{StaticResource FolderPathBrowseButtonStyle}" 
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.OpenFolderCommand}" 
                         CommandParameter="{Binding}"/>
@@ -63,7 +64,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{Binding FriendlyName}" Style="{StaticResource FolderPathTextBlockStyle}"/>
-                <TextBox Text="{Binding SelectedValue}" Grid.Column="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
+                <TextBox Text="{Binding SelectedValue, ValidatesOnDataErrors=true}" Grid.Column="1" 
+                         Style="{StaticResource FolderPathTextBoxStyle}"/>
                 <Button Content="Browse..." Grid.Column="2"  Style="{StaticResource FolderPathBrowseButtonStyle}" 
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.OpenFileCommand}" 
                         CommandParameter="{Binding}"/>
