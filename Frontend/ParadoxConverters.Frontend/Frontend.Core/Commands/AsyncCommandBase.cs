@@ -17,7 +17,7 @@ namespace Frontend.Core.Commands
     /// Much of this was copied from http://kendoll.net/async_wpf_command
     /// </remarks>
     /// </summary>
-    public class AsyncCommandBase : DispatcherObject, ICommand
+    public class AsyncCommandBase : DispatcherObject, ICommand, IDisposable
     {
         private IConverterOptions options;
         private BackgroundWorker worker;
@@ -48,6 +48,20 @@ namespace Frontend.Core.Commands
             get
             {
                 return this.eventAggregator;
+            }
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (isDisposing)
+            {
+                this.worker.Dispose();
             }
         }
 
