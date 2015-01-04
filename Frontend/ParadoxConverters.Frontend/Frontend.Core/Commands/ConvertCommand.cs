@@ -379,7 +379,7 @@ namespace Frontend.Core.Commands
         /// <returns></returns>
         private string BuildTimeSpanString(TimeSpan timespan)
         {
-            return string.Format("{1:D2}m:{2:D2}s:{3:D3}ms", timespan.Hours, timespan.Minutes, timespan.Seconds, timespan.Milliseconds);
+            return TimeStringFormatter.BuildTimeString(timespan);
         }
 
         /// <summary>

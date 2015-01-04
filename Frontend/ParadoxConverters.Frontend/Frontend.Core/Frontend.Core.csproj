@@ -83,6 +83,7 @@
     <Compile Include="Helpers\NumberParserHelper.cs" />
     <Compile Include="Helpers\OutputConfigurationFileHelper.cs" />
     <Compile Include="Helpers\DirectoryHelper.cs" />
+    <Compile Include="Helpers\TimeStringFormatter.cs" />
     <Compile Include="Helpers\XElementHelper.cs" />
     <Compile Include="Helpers\XMLErrorHelper.cs" />
     <Compile Include="Logging\LogEntry.cs" />
