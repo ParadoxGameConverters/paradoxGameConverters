@@ -27,15 +27,6 @@ namespace Frontend.Core.Helpers
         const int _dlgItemBrowseControl = 0;
         const int _dlgItemTreeView = 100;
 
-        [DllImport("user32.dll", SetLastError = true)]
-        static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
-
-        [DllImport("user32.dll")]
-        static extern IntPtr GetDlgItem(IntPtr hDlg, int nIDDlgItem);
-
-        [DllImport("user32.dll", CharSet = CharSet.Auto)]
-        static extern IntPtr SendMessage(IntPtr hWnd, UInt32 Msg, IntPtr wParam, IntPtr lParam);
-
         /// <summary>
         /// Some of the messages that the Tree View control will respond to
         /// </summary>
@@ -76,20 +67,20 @@ namespace Frontend.Core.Helpers
                     if (retries > 0)
                     {
                         --retries;
-                        IntPtr hwndDlg = FindWindow((string)null, _topLevelSearchString);
+                        IntPtr hwndDlg = NativeMethods.FindWindow((string)null, _topLevelSearchString);
                         if (hwndDlg != IntPtr.Zero)
                         {
-                            IntPtr hwndFolderCtrl = GetDlgItem(hwndDlg, _dlgItemBrowseControl);
+                            IntPtr hwndFolderCtrl = NativeMethods.GetDlgItem(hwndDlg, _dlgItemBrowseControl);
                             if (hwndFolderCtrl != IntPtr.Zero)
                             {
-                                IntPtr hwndTV = GetDlgItem(hwndFolderCtrl, _dlgItemTreeView);
+                                IntPtr hwndTV = NativeMethods.GetDlgItem(hwndFolderCtrl, _dlgItemTreeView);
 
                                 if (hwndTV != IntPtr.Zero)
                                 {
-                                    IntPtr item = SendMessage(hwndTV, (uint)TVM_GETNEXTITEM, new IntPtr(TVGN_CARET), IntPtr.Zero);
+                                    IntPtr item = NativeMethods.SendMessage(hwndTV, (uint)TVM_GETNEXTITEM, new IntPtr(TVGN_CARET), IntPtr.Zero);
                                     if (item != IntPtr.Zero)
                                     {
-                                        SendMessage(hwndTV, TVM_ENSUREVISIBLE, IntPtr.Zero, item);
+                                        NativeMethods.SendMessage(hwndTV, TVM_ENSUREVISIBLE, IntPtr.Zero, item);
                                         retries = 0;
                                         t.Stop();
                                     }
