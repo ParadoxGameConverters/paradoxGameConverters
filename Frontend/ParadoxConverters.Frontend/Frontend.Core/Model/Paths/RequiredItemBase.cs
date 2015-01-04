@@ -87,7 +87,10 @@ namespace Frontend.Core.Model.Paths
 
         public string Error
         {
-            get { throw new NotImplementedException(); }
+            get 
+            {
+                return null; 
+            }
         }
 
         public string this[string columnName]
