@@ -7,18 +7,20 @@ namespace Frontend.Client
     using Frontend.Core.Model;
     using Frontend.Core.ViewModels;
     using Frontend.Core.ViewModels.Interfaces;
+    using System;
 
-    public class ShellViewModel : IShell 
+    public class ShellViewModel : IShell , IDisposable
     {
         private IEventAggregator eventAggregator;
-        private IFrameViewModel frameViewModel;
+        private FrameViewModel frameViewModel;
+        private bool isDisposed;
 
         public ShellViewModel(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
         }
 
-        public IFrameViewModel FrameViewModel 
+        public FrameViewModel FrameViewModel 
         { 
             get
             {
@@ -36,6 +38,21 @@ namespace Frontend.Client
                 }
 
                 return this.frameViewModel;
+            }
+        }
+
+        public void Dispose()
+        {
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (isDisposing && !this.isDisposed)
+            {
+                this.frameViewModel.Dispose();
+                this.isDisposed = true;
             }
         }
     }
