@@ -16,6 +16,11 @@
             <Setter Property="Margin" Value="6,2,0,0"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="FolderPathTextBlockStyle" TargetType="{x:Type TextBlock}">
@@ -37,7 +42,7 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="Margin" Value="6, 1, 0, 0"/>
         </Style>
-        
+                
         <DataTemplate x:Key="FolderSelectionTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
