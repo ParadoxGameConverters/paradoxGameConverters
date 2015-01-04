@@ -136,6 +136,7 @@ tag vs internalTag:
           <friendlyName>Converter .exe</friendlyName>
           <description>The converter command line tool</description>
           <isMandatory>true</isMandatory>
+          <extension>.exe</extension>
           <alternatives>
             <alternative>
               <defaultLocationType>ConverterFolder</defaultLocationType>
