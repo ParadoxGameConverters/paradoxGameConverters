@@ -917,7 +917,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 						demographic.oldCountry	= oldOwner;
 						demographic.oldProvince	= *vitr;
 						
-						LOG(LogLevel::Info) << "EU4 Province " << (*vitr)->getNum() << ", Vic2 Province " << i->second->getNum() << ", Culture: " << culture << ", Religion: " << religion << ", popRatio: " << prItr->popRatio << ", provPopRatio: " << provPopRatio << ", ratio: " << demographic.ratio;
+						//LOG(LogLevel::Info) << "EU4 Province " << (*vitr)->getNum() << ", Vic2 Province " << i->second->getNum() << ", Culture: " << culture << ", Religion: " << religion << ", popRatio: " << prItr->popRatio << ", provPopRatio: " << provPopRatio << ", ratio: " << demographic.ratio;
 						i->second->addPopDemographic(demographic);
 					}
 
@@ -1263,7 +1263,7 @@ void V2World::setupPops(EU4World& sourceWorld)
 		}
 		//			Calculated V2 POPs							//
 		try {
-			output_file << (itr->second->getSrcProvince()->getTotalWeight()*popWeightRatio) << ",";
+			output_file << ((itr->second->getSrcProvince()->getTotalWeight()*popWeightRatio)/itr->second->getSrcProvince()->getNumDestV2Provs()) << ",";
 		}
 		catch (exception &e) {
 			LOG(LogLevel::Error) << "Error at getTotalPopulation() " << e.what();

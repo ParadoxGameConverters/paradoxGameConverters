@@ -476,7 +476,16 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 		int numOfV2Provs = srcProvince->getNumDestV2Provs();
 		if (numOfV2Provs > 1)
 		{
-			newPopulation /= (double)numOfV2Provs;
+			if (numOfV2Provs < 3)
+			{
+				newPopulation /= (double)numOfV2Provs;
+				newPopulation *= 1.10;
+			}
+			else
+			{
+				newPopulation /= (double)numOfV2Provs;
+				newPopulation *= 1.15;
+			}
 		}	
 	}
 	else
@@ -623,7 +632,7 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 													demographic.culture,
 													demographic.religion
 												);
-		LOG(LogLevel::Info) << "Name: " << this->getSrcProvince()->getProvName() << " Pop Size: " << labourersPop->getSize();
+		//LOG(LogLevel::Info) << "Name: " << this->getSrcProvince()->getProvName() << " Pop Size: " << labourersPop->getSize();
 		pops.push_back(labourersPop);
 		
 	}
