@@ -1090,23 +1090,200 @@ void V2World::convertUncivReforms()
 
 void V2World::setupPops(EU4World& sourceWorld)
 {
-	double popWeightRatio = totalWorldPopulation / sourceWorld.getWorldWeightSum();
+
+	long my_totalWorldPopulation = (0.55 * totalWorldPopulation);
+	double popWeightRatio = my_totalWorldPopulation / sourceWorld.getWorldWeightSum();
+
+	ofstream output_file("Data.csv");
+
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		itr->second->setupPops(popWeightRatio);
 	}
 
-	LOG(LogLevel::Info) << "Total world population: " << totalWorldPopulation;
+	LOG(LogLevel::Info) << "Total world population: " << my_totalWorldPopulation;
 	LOG(LogLevel::Info) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
-	LOG(LogLevel::Info) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << my_totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
 	LOG(LogLevel::Info) << "Population per weight point is: " << popWeightRatio;
 
 	long newTotalPopulation = 0;
+	// Heading
+	output_file << "EU ID" << ",";
+	output_file << "EU NAME" << ",";
+	output_file << "OWNER" << ",";
+	output_file << "BTAX" << ",";
+	output_file << "TX INCOME" << ",";
+	output_file << "PROD" << ",";
+	output_file << "MP" << ",";
+	output_file << "BUIDINGS" << ",";
+	output_file << "TRADE" << ",";
+	output_file << "TOTAL" << ",";
+	output_file << "#DEST" << ",";
+	output_file << "V2 ID" << ",";
+	output_file << "V2 NAME" << ",";
+	output_file << "CALC POPS" << ",";
+	output_file << "POPS" << endl;
 	for (auto itr = provinces.begin(); itr != provinces.end(); itr++)
 	{
+		// EU4ID, EU4Name, EU4TAG, BTX, TAX, PROD, MP, BUILD, TRADE, WEIGHT, DESTV2, V2Name, POPs //
 		newTotalPopulation += itr->second->getTotalPopulation();
+
+		//			EU4 Province ID							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+			{
+				output_file << itr->second->getSrcProvince()->getNum() << ",";
+			}
+			else {
+				continue;
+				//output_file << -1 << ",";
+			}
+		}
+		catch (exception &e)
+		{
+			LOG(LogLevel::Error) << "Error at EU4 getNum() " << e.what();
+		}
+		//			EU4 Province Name							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getProvName() << ",";
+			else
+				output_file << "SEA" << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getProvName() " << e.what();
+		}
+		//			EU4 Province Owner							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getOwnerString() << ",";
+			else
+				output_file << "NULL" << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getOwnerString() " << e.what();
+		}
+		//			EU4 Base Tax							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << (2 * itr->second->getSrcProvince()->getBaseTax()) << ",";
+			else
+				output_file << -1 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getBaseTax() " << e.what();
+		}
+		//			EU4 Total Tax Income							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << 2*(itr->second->getSrcProvince()->getProvTaxIncome()) << ",";
+			else
+				output_file << -1 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getProvTaxIncome() " << e.what();
+		}
+		//			EU4 Total Prod Income							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getProvProdIncome() << ",";
+			else
+				output_file << -1 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getProvProdIncome() " << e.what();
+		}
+		//			EU4 Total Manpower weight							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getProvMPWeight() << ",";
+			else
+				output_file << -1 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getProvMPWeight() " << e.what();
+		}
+		//			EU4 Total Building weight							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getProvTotalBuildingWeight() << ",";
+			else
+				output_file << -1 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getProvTotalBuildingWeight() " << e.what();
+		}
+		//			EU4 Total Tradegoods weight							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getCurrTradeGoodWeight() << ",";
+			else
+				output_file << -1 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getTradeGoodWeight() " << e.what();
+		}
+		//			EU4 Province Weight							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getTotalWeight() << ",";
+			else
+				output_file << -1 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getTotalWeight() " << e.what();
+		}
+		//			Number of DestV2Provs							//
+		try {
+			if (itr->second->getSrcProvince() != NULL)
+				output_file << itr->second->getSrcProvince()->getNumDestV2Provs() << ",";
+			else
+				output_file << -2 << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getNumDestV2Provs() " << e.what();
+		}
+		//			V2 Province ID							//
+		try {
+			output_file << itr->second->getNum() << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at V2 getNum() " << e.what();
+		}
+		//			V2 Province Name							//
+		try {
+			if (itr->second->getName() == "")
+				output_file << itr->second->getNum() << ",";
+			else
+				output_file << itr->second->getName() << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getName() " << e.what();
+		}
+		//			Calculated V2 POPs							//
+		try {
+			output_file << (itr->second->getSrcProvince()->getTotalWeight()*popWeightRatio) << ",";
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getTotalPopulation() " << e.what();
+		}
+		//			V2 POPs							//
+		try {
+			output_file << itr->second->getTotalPopulation() << endl;
+		}
+		catch (exception &e) {
+			LOG(LogLevel::Error) << "Error at getTotalPopulation() " << e.what();
+		}
+
 	}
 	LOG(LogLevel::Info) << "New total world population: " << newTotalPopulation;
+
+	try {
+		output_file.close();
+	}
+	catch (exception &e) {
+		LOG(LogLevel::Error) << "outputfile.close: " << e.what();
+	}
 }
 
 

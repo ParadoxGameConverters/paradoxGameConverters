@@ -80,7 +80,7 @@ class V2World {
 		colonyFlagset					colonyFlagMap;
 		map<string, list<int>* >	popRegions;
 
-		long								totalWorldPopulation;
+		long					totalWorldPopulation;
 };
 
 

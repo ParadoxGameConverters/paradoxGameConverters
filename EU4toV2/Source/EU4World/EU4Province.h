@@ -66,6 +66,26 @@ class EU4Province {
 
 		void						setOwner(EU4Country* newOwner)		{ owner = newOwner; }
 		void						setNumDestV2Provs(int _numV2Provs)	{ numV2Provs = _numV2Provs; }
+		void						setProvName(string provName);
+		string						getProvName() const { return provName; }
+
+		// Setters and getters for weight attributes
+		void						setProvTaxIncome(double newProvTaxIncome) { provTaxIncome = newProvTaxIncome; }
+		void						setProvProdIncome(double newProvProdIncome) { provProdIncome = newProvProdIncome; }
+		void						setProvMPWeight(double newProvMPWeight) { provMPWeight = newProvMPWeight; }
+		void						setProvBuildingWeight(double newProvBuildingWeight) { provBuildingWeight = newProvBuildingWeight; }
+		void						setTradeGoodWeight(double newProvTradeGoodWeight) { provTradeGoodWeight = newProvTradeGoodWeight; }
+
+		double						getProvTaxIncome() const { return provTaxIncome; }
+		double						getProvProdIncome() const { return provProdIncome; }
+		double						getProvMPWeight() const { return provMPWeight; }
+		double						getProvTotalBuildingWeight() const { return provBuildingWeight; }
+		double						getCurrTradeGoodWeight() const { return provTradeGoodWeight; }
+
+		void									setProvProductionVec(std::vector<double> newProvBuildingWeightVec) { provProductionVec = newProvBuildingWeightVec; }
+		std::vector<double>						getProvProductionVec() const { return provProductionVec; }
+
+		string									getTradeGoods() const { return tradeGoods; }
 
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
@@ -80,6 +100,7 @@ class EU4Province {
 		double								baseTax;					// the base tax of the province
 		double								totalWeight;
 		string								ownerString;			// a string with the owner's tag
+		string								provName;
 		EU4Country*							owner;					// the owner
 		vector<string>						cores;					// strings of the tags of all cores
 		bool									colony;					// whether or not this is a colony
@@ -93,6 +114,16 @@ class EU4Province {
 		double								manpower;
 		string								tradeGoods;
 		int									numV2Provs;
+
+		// province attributes for weights
+		double								provTaxIncome;
+		double								provProdIncome;
+		double								provMPWeight;
+		double								provBuildingWeight;
+		double								provTradeGoodWeight;
+
+		std::vector<double>					provProductionVec;
+
 };
 
 

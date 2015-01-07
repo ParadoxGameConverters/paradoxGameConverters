@@ -47,6 +47,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
     <IntDir>$(SolutionDir)\ReleaseIntermediate\</IntDir>
+	<BOOST_INCLUDE Condition=" '$(BOOST_INCLUDE)' == '' ">
+		H:\Projects\Development\Boost\boost_1_57_0
+	</BOOST_INCLUDE>
     <IncludePath>$(BOOST_INCLUDE);$(VCInstallDir)include;$(WindowsSdkDir)include</IncludePath>
     <TargetName>EU4toV2Converter</TargetName>
   </PropertyGroup>
