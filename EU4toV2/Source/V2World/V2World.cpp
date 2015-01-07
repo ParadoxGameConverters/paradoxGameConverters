@@ -798,7 +798,7 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 			else
 			{
 				provinceBins[tag].provinces.push_back(province);
-				newProvinceTotalBaseTax = province->getBaseTax();
+				newProvinceTotalBaseTax += province->getBaseTax();
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
 				if (
@@ -916,7 +916,8 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 						demographic.ratio			= prItr->popRatio * provPopRatio;
 						demographic.oldCountry	= oldOwner;
 						demographic.oldProvince	= *vitr;
-								
+						
+						LOG(LogLevel::Info) << "EU4 Province " << (*vitr)->getNum() << ", Vic2 Province " << i->second->getNum() << ", Culture: " << culture << ", Religion: " << religion << ", popRatio: " << prItr->popRatio << ", provPopRatio: " << provPopRatio << ", ratio: " << demographic.ratio;
 						i->second->addPopDemographic(demographic);
 					}
 
