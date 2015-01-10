@@ -58,6 +58,12 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
+	int pos = commonCountryFile.find_first_of(":");
+	while (pos != string::npos)
+	{
+		commonCountryFile.replace(pos, 1, ";");
+		pos = commonCountryFile.find_first_of(":");
+	}
 	parties				= _parties;
 	rulingParty			= "";
 
