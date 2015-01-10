@@ -471,20 +471,20 @@ void V2Province::createPops(const V2Demographic& demographic, bool isStateCapita
 	long newPopulation = 0;
 	if (Configuration::getConvertPopTotals())
 	{
-		newPopulation = popWeightRatio * oldProvince->getTotalWeight();
+		newPopulation = static_cast<long>(popWeightRatio * oldProvince->getTotalWeight());
 
 		int numOfV2Provs = srcProvince->getNumDestV2Provs();
 		if (numOfV2Provs > 1)
 		{
-			if (numOfV2Provs < 3)
+			if (numOfV2Provs == 2)
 			{
-				newPopulation /= (double)numOfV2Provs;
-				newPopulation *= 1.10;
+				newPopulation /= numOfV2Provs;
+				newPopulation = static_cast<long>(newPopulation * 1.10);
 			}
 			else
 			{
-				newPopulation /= (double)numOfV2Provs;
-				newPopulation *= 1.15;
+				newPopulation /= numOfV2Provs;
+				newPopulation = static_cast<long>(newPopulation * 1.15);
 			}
 		}	
 	}

@@ -164,11 +164,11 @@ EU4Province::EU4Province(Object* obj) {
 	vector<Object*> provNameObj = obj->getValue("name");
 	if (provNameObj.size() > 0)
 	{
-		this->setProvName(provNameObj[0]->getLeaf());
+		provName = provNameObj[0]->getLeaf();
 	}
 	else
 	{
-		this->setProvName("");
+		provName = "";
 	}
 
 	vector<Object*> manpowerObj = obj->getValue("manpower");
@@ -568,11 +568,11 @@ void EU4Province::determineProvinceWeight()
 	manpower_weight *= 1;
 	production_income *= 1;
 
-	this->setProvBuildingWeight(building_weight);
-	this->setProvTaxIncome(total_tx);
-	this->setProvProdIncome(production_income);
-	this->setProvMPWeight(manpower_weight);
-	this->setTradeGoodWeight(trade_goods_weight);
+	provBuildingWeight	= building_weight;
+	provTaxIncome			= total_tx;
+	provProdIncome			= production_income;
+	provMPWeight			= manpower_weight;
+	provTradeGoodWeight	= trade_goods_weight;
 
 	totalWeight = building_weight + ((2 * baseTax) + manpower_weight + trade_goods_weight + production_income + total_tx);
 
@@ -583,7 +583,6 @@ void EU4Province::determineProvinceWeight()
 
 	// 0: Goods produced; 1 trade goods price; 2: trade value efficiency; 3: production effiency; 4: trade value; 5: production income
 	// 6: base tax; 7: building tax income 8: building tax eff; 9: total tax income; 10: total_trade_value
-	std::vector<double> provProductionVec;
 	provProductionVec.push_back(goods_produced);
 	provProductionVec.push_back(getTradeGoodPrice());
 	provProductionVec.push_back(1 + trade_value_eff);
@@ -595,8 +594,6 @@ void EU4Province::determineProvinceWeight()
 	provProductionVec.push_back(1 + building_tx_eff);
 	provProductionVec.push_back(total_tx);
 	provProductionVec.push_back(total_trade_value);
-
-	this->setProvProductionVec(provProductionVec);
 	//LOG(LogLevel::Info) << "Num: " << num << " TAG: " << ownerString << " Weight: " << totalWeight;
 }
 
@@ -631,7 +628,6 @@ double EU4Province::getTradeGoodPrice() const
 
 	if (tradeGoods == "chinaware")
 	{
-		//tradeGoodsPrice = 8.5; // war
 		tradeGoodsPrice = 9.66;
 	}
 	else if (tradeGoods == "grain")
@@ -640,17 +636,14 @@ double EU4Province::getTradeGoodPrice() const
 	}
 	else if (tradeGoods == "fish")
 	{
-		//tradeGoodsPrice = 4.72;
 		tradeGoodsPrice = 5.00;
 	}
 	else if (tradeGoods == "tabacco")
 	{
-		//tradeGoodsPrice = 7.4; // war
 		tradeGoodsPrice = 7.82;
 	}
 	else if (tradeGoods == "iron")
 	{
-		//tradeGoodsPrice = 5.97;
 		tradeGoodsPrice = 5.94;
 	}
 	else if (tradeGoods == "copper")
@@ -659,17 +652,14 @@ double EU4Province::getTradeGoodPrice() const
 	}
 	else if (tradeGoods == "cloth")
 	{
-		//tradeGoodsPrice = 4.75;
 		tradeGoodsPrice = 5.00;
 	}
 	else if (tradeGoods == "slaves")
 	{
-		//tradeGoodsPrice = 3.01;
 		tradeGoodsPrice = 2.91;
 	}
 	else if (tradeGoods == "salt")
 	{
-		//tradeGoodsPrice = 3.17;
 		tradeGoodsPrice = 3.30;
 	}
 	else if (tradeGoods == "gold")
@@ -678,12 +668,10 @@ double EU4Province::getTradeGoodPrice() const
 	}
 	else if (tradeGoods == "fur")
 	{
-		//tradeGoodsPrice = 6.33;
 		tradeGoodsPrice = 7.03;
 	}
 	else if (tradeGoods == "sugar")
 	{
-		//tradeGoodsPrice = 3.09;
 		tradeGoodsPrice = 3.40;
 	}
 	else if (tradeGoods == "naval_supplies")
@@ -692,42 +680,34 @@ double EU4Province::getTradeGoodPrice() const
 	}
 	else if (tradeGoods == "tea")
 	{
-		//tradeGoodsPrice = 5.72;
 		tradeGoodsPrice = 6.88;
 	}
 	else if (tradeGoods == "coffee")
 	{
-		//tradeGoodsPrice = 8.46; // war
 		tradeGoodsPrice = 9.58;
 	}
 	else if (tradeGoods == "spices")
 	{
-		//tradeGoodsPrice = 7.03; // war
 		tradeGoodsPrice = 7.91;
 	}
 	else if (tradeGoods == "wine")
 	{
-		//tradeGoodsPrice = 4.38;
 		tradeGoodsPrice = 5.18;
 	}
 	else if (tradeGoods == "cocoa")
 	{
-		//tradeGoodsPrice = 7.11; // war
 		tradeGoodsPrice = 7.50;
 	}
 	else if (tradeGoods == "ivory")
 	{
-		//tradeGoodsPrice = 3.84;
 		tradeGoodsPrice = 4.32;
 	}
 	else if (tradeGoods == "wool")
 	{
-		//tradeGoodsPrice = 2.08;
 		tradeGoodsPrice = 2.26;
 	}
 	else if (tradeGoods == "cotton")
 	{
-		//tradeGoodsPrice = 3.53;
 		tradeGoodsPrice = 3.96;
 	}
 	else
@@ -1509,9 +1489,4 @@ vector<double> EU4Province::getProvBuildingWeight() const
 	// 5 building_tx_income, 6 manpower_eff, 7 goods_produced_perc_mod, 8 trade_power 9 trade_value
 	// 10 trade_value_eff, 11 trade_power_eff;
 	return provBuildingWeightVec;
-}
-
-void EU4Province::setProvName(string provName) 
-{
-	this->provName = provName;
 }
