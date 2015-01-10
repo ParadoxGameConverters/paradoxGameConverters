@@ -140,6 +140,8 @@ V2World::V2World()
 	
 	// set V2 basic population levels
 	LOG(LogLevel::Info) << "Importing historical pops.";
+	//map< string, map<string, long int> > countryPops; // country, poptype, num
+
 	totalWorldPopulation	= 0;
 	set<string> fileNames;
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
@@ -159,10 +161,26 @@ V2World::V2World()
 			}
 			else
 			{
+				/*auto countryPopItr = countryPops.find(k->second->getOwner());
+				if (countryPopItr == countryPops.end())
+				{
+					map<string, long int> newCountryPop;
+					pair<map< string, map<string, long int> >::iterator, bool> newIterator = countryPops.insert(make_pair(k->second->getOwner(), newCountryPop));
+					countryPopItr = newIterator.first;
+				}*/
+
 				popProvinces->push_back(provNum);
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
+					/*auto popItr = countryPopItr->second.find(pops[l]->getKey());
+					if (popItr == countryPopItr->second.end())
+					{
+						long int newPopSize = 0;
+						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(pops[l]->getKey(), newPopSize));
+						popItr = newIterator.first;
+					}
+					popItr->second += atoi(pops[l]->getLeaf("size").c_str());*/
 					totalWorldPopulation += atoi(pops[l]->getLeaf("size").c_str());
 					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
 					k->second->addOldPop(newPop);
@@ -171,6 +189,20 @@ V2World::V2World()
 			popRegions.insert( make_pair(*itr, popProvinces) );
 		}
 	}
+
+	/*for (auto countryItr = countryPops.begin(); countryItr != countryPops.end(); countryItr++)
+	{
+		long int total = 0;
+		for (auto popsItr = countryItr->second.begin(); popsItr != countryItr->second.end(); popsItr++)
+		{
+			total += popsItr->second;
+		}
+		for (auto popsItr = countryItr->second.begin(); popsItr != countryItr->second.end(); popsItr++)
+		{
+			LOG(LogLevel::Info) << "," << countryItr->first << "," << popsItr->first << "," << popsItr->second << "," << (double)popsItr->second / total;
+		}
+		LOG(LogLevel::Info) << "," << countryItr->first << "," << "Total," << total << "," << (double)total/total;
+	}*/
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
