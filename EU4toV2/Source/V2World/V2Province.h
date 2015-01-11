@@ -89,6 +89,7 @@ class V2Province
 		bool						isCoastal()				const { return coastal; }
 		bool						hasNavalBase()			const { return (navalBaseLevel > 0); }
 		bool						hasLandConnection()	const { return landConnection; }
+		vector<V2Pop*>			getPops()				const { return pops; }
 
 	private:
 		void outputUnits(FILE*) const;
