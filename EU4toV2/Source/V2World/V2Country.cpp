@@ -859,6 +859,17 @@ void V2Country::initFromHistory()
 }
 
 
+void V2Country::addProvince(V2Province* _province)
+{
+	auto itr = provinces.find(_province->getNum());
+	if (itr != provinces.end())
+	{
+		LOG(LogLevel::Error) << "Inserting province " << _province->getNum() << " multiple times (addProvince())";
+	}
+	provinces.insert(make_pair(_province->getNum(), _province));
+}
+
+
 void V2Country::addState(V2State* newState)
 {
 	int				highestNavalLevel	= 0;
@@ -869,7 +880,11 @@ void V2Country::addState(V2State* newState)
 	vector<V2Province*> newProvinces = newState->getProvinces();
 	for (unsigned int i = 0; i < newProvinces.size(); i++)
 	{
-		provinces.push_back(newProvinces[i]);
+		auto itr = provinces.find(newProvinces[i]->getNum());
+		if (itr == provinces.end())
+		{
+			provinces.insert(make_pair(newProvinces[i]->getNum(), newProvinces[i]));
+		}
 
 		// find the province with the highest naval base level
 		if ((Configuration::getV2Gametype() == "HOD") || (Configuration::getV2Gametype() == "HoD-NNM"))
@@ -1120,11 +1135,11 @@ void V2Country::absorbVassal(V2Country* vassal)
 	Log(LogLevel::Debug) << "\t" << tag << " is absorbing " << vassal->getTag();
 
 	// change province ownership and add owner cores if needed
-	vector<V2Province*> vassalProvinces = vassal->getProvinces();
-	for (vector<V2Province*>::iterator provItr = vassalProvinces.begin(); provItr != vassalProvinces.end(); provItr++)
+	map<int, V2Province*> vassalProvinces = vassal->getProvinces();
+	for (auto provItr = vassalProvinces.begin(); provItr != vassalProvinces.end(); provItr++)
 	{
-		(*provItr)->setOwner(tag);
-		(*provItr)->addCore(tag);
+		provItr->second->setOwner(tag);
+		provItr->second->addCore(tag);
 	}
 
 	// accept cultures from the vassal
@@ -1374,14 +1389,14 @@ void V2Country::setupPops(double popWeightRatio)
 	map<string, long int> popsData;
 	for (auto provItr = provinces.begin(); provItr != provinces.end(); provItr++)
 	{
-		auto pops = (*provItr)->getPops();
+		auto pops = provItr->second->getPops();
 		for (auto popsItr = pops.begin(); popsItr != pops.end(); popsItr++)
 		{
 			auto popItr = popsData.find( (*popsItr)->getType() );
 			if (popItr == popsData.end())
 			{
 				long int newPopSize = 0;
-				pair<map<string, long int>::iterator, bool> newIterator = popsData.insert(make_pair((*popsItr)->getType(), newPopSize));
+				pair<map<string, long int>::iterator, bool> newIterator = popsData.insert(make_pair((*popsItr)->getType(), 0));
 				popItr = newIterator.first;
 			}
 			popItr->second += (*popsItr)->getSize();
@@ -2034,12 +2049,12 @@ bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2)
 V2Province* V2Country::getProvinceForExpeditionaryArmy()
 {
 	vector<V2Province*> candidates;
-	for (vector<V2Province*>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
+	for (auto pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
 	{
-		if (( (*pitr)->getOwner() == tag ) && !(*pitr)->wasColony() && !(*pitr)->wasInfidelConquest()
-			&& ( (*pitr)->hasCulture(primaryCulture, 0.5) ) && ( (*pitr)->getPops("soldiers").size() > 0) )
+		if ( (pitr->second->getOwner() == tag) && !pitr->second->wasColony() && !pitr->second->wasInfidelConquest()
+			&& ( pitr->second->hasCulture(primaryCulture, 0.5) ) && ( pitr->second->getPops("soldiers").size() > 0) )
 		{
-			candidates.push_back(*pitr);
+			candidates.push_back(pitr->second);
 		}
 	}
 	if (candidates.size() > 0)

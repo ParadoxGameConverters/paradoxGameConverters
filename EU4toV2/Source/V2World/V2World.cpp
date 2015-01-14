@@ -1033,13 +1033,13 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		{
 			continue;
 		}
-		vector<V2Province*> ownedProvinces = countryItr->second->getProvinces();
-		for (vector<V2Province*>::iterator provItr = ownedProvinces.begin(); provItr != ownedProvinces.end(); provItr++)
+		auto ownedProvinces = countryItr->second->getProvinces();
+		for (auto provItr = ownedProvinces.begin(); provItr != ownedProvinces.end(); provItr++)
 		{
-			continentMapping::const_iterator itr = continentMap.find((*provItr)->getNum());
+			continentMapping::const_iterator itr = continentMap.find(provItr->first);
 			if ((itr != continentMap.end()) && (itr->second == capitalContinent))
 			{
-				(*provItr)->setSameContinent(true);
+				provItr->second->setSameContinent(true);
 			}
 		}
 	}

@@ -378,13 +378,11 @@ V2UncivReforms::V2UncivReforms(int westernizationProgress, double milFocus, doub
 	if (reforms[10] == true)
 	{
 		country->addTech("post_napoleonic_thought");
-		vector<V2Province*> provinces = country->getProvinces();
-		for (vector<V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+		auto provinces = country->getProvinces();
+		auto provItr = provinces.find(country->getCapital());
+		if (provItr != provinces.end())
 		{
-			if ( (*i)->getNum() == country->getCapital())
-			{
-				(*i)->setFortLevel(2);
-			}
+			provItr->second->setFortLevel(2);
 		}
 	}
 

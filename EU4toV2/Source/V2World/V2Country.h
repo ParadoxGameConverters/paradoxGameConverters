@@ -64,6 +64,7 @@ class V2Country
 		void								outputOOB() const;
 		void								initFromEU4Country(EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas);
 		void								initFromHistory();
+		void								addProvince(V2Province* _province);
 		void								addState(V2State* newState);
 		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap);
 		bool								addFactory(V2Factory* factory);
@@ -85,14 +86,13 @@ class V2Country
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
-		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); }
 		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; }
 		void								addResearchPoints(double newPoints)		{ researchPoints += newPoints; }
 		void								addTech(string newTech)						{ techs.push_back(newTech); }
 		void								setNationalValue(string NV)				{ nationalValue = NV; }
 		void								isANewCountry(void)							{ newCountry = true; }
 
-		vector<V2Province*>			getProvinces() const { return provinces; }
+		map<int, V2Province*>		getProvinces() const { return provinces; }
 		string							getTag() const { return tag; }
 		bool								isCivilized() const { return civilized; }
 		string							getPrimaryCulture() const { return primaryCulture; }
@@ -131,7 +131,7 @@ class V2Country
 
 		string							tag;
 		vector<V2State*>				states;
-		vector<V2Province*>			provinces;
+		map<int, V2Province*>		provinces;
 		int								capital;
 		bool								civilized;
 		string							primaryCulture;
