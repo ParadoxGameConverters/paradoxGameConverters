@@ -1380,9 +1380,9 @@ void V2Country::setupPops(double popWeightRatio)
 		return;
 
 	// create the pops
-	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
+	for (auto itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		(*itr)->setupPops(primaryCulture, acceptedCultures, religion, popWeightRatio);
+		itr->second->doCreatePops(popWeightRatio);
 	}
 
 	// output statistics on pops

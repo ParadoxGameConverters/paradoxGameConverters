@@ -55,8 +55,9 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(bool isStateCapital, int statePopulation, double popWeightRatio);
+		void doCreatePops(double popWeightRatio);
 		void addFactory(V2Factory* factory);
+		void addPopDemographic(V2Demographic d);
 
 		int				getTotalPopulation() const;
 		vector<V2Pop*>	getPops(string type) const;
@@ -71,7 +72,6 @@ class V2Province
 		void				setOwner(string _owner)						{ owner = _owner; }
 		void				setLandConnection(bool _connection)		{ landConnection = _connection; }
 		void				setSameContinent(bool _same)				{ sameContinent = _same; }
-		void				addPopDemographic(V2Demographic d)		{ demographics.push_back(d); }
 		void				setFortLevel(int level)						{ fortLevel = level; }
 		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; }
 		void				setRailLevel(int level)						{ railLevel = level; }
@@ -93,7 +93,7 @@ class V2Province
 
 	private:
 		void outputUnits(FILE*) const;
-		void createPops(const V2Demographic& d, bool isStateCapital, int statePopulation, double popWeightRatio);
+		void createPops(const V2Demographic& demographic, double popWeightRatio);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
