@@ -111,6 +111,7 @@ class V2Country
 		double							getLiteracy() const { return literacy; }
 		int								getCapital() const { return capital; }
 		bool								isNewCountry() const { return newCountry; }
+		int								getNumFactories() const { return numFactories; }
 
 	private:
 		void			outputTech(FILE*) const ;
@@ -172,6 +173,7 @@ class V2Country
 		V2Localisation					localisation;
 		Color								color;
 		int								unitNameCount[num_reg_categories];
+		int								numFactories;
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

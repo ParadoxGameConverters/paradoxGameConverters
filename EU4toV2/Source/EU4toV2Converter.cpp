@@ -782,16 +782,16 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	destWorld.setupStates(stateMap);
 	LOG(LogLevel::Info) << "Setting unciv reforms";
 	destWorld.convertUncivReforms();
+	LOG(LogLevel::Info) << "Converting techs";
+	destWorld.convertTechs(sourceWorld);
+	LOG(LogLevel::Info) << "Allocating starting factories";
+	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 	LOG(LogLevel::Info) << "Creating pops";
 	destWorld.setupPops(sourceWorld);
 	LOG(LogLevel::Info) << "Adding unions";
 	destWorld.addUnions(unionMap);
 	LOG(LogLevel::Info) << "Converting armies and navies";
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap, adjacencyMap);
-	LOG(LogLevel::Info) << "Converting techs";
-	destWorld.convertTechs(sourceWorld);
-	LOG(LogLevel::Info) << "Allocating starting factories";
-	destWorld.allocateFactories(sourceWorld, factoryBuilder);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

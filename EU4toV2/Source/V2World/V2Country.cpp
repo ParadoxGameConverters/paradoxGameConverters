@@ -143,6 +143,8 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	{
 		unitNameCount[i] = 0;
 	}
+
+	numFactories	= 0;
 }
 
 
@@ -1149,6 +1151,9 @@ void V2Country::absorbVassal(V2Country* vassal)
 
 	// take vassal's armies
 	srcCountry->takeArmies(vassal->getSourceCountry());
+
+	// keep number of factories correct
+	numFactories += vassal->getNumFactories();
 }
 
 
@@ -1279,6 +1284,7 @@ bool V2Country::addFactory(V2Factory* factory)
 	V2State* target = candidates[0].second;
 	target->addFactory(factory);
 	LOG(LogLevel::Debug) << tag << " accepted " << factory->getTypeName() << " (" << candidates.size() << " candidate states)";
+	numFactories++;
 	return true;
 }
 
@@ -1382,7 +1388,7 @@ void V2Country::setupPops(double popWeightRatio)
 	// create the pops
 	for (auto itr = provinces.begin(); itr != provinces.end(); ++itr)
 	{
-		itr->second->doCreatePops(popWeightRatio);
+		itr->second->doCreatePops(popWeightRatio, this);
 	}
 
 	// output statistics on pops

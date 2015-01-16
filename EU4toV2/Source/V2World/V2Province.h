@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 class V2Pop;
 class V2Factory;
+class V2Country;
 
 
 
@@ -55,7 +56,7 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(double popWeightRatio);
+		void doCreatePops(double popWeightRatio, V2Country* _owner);
 		void addFactory(V2Factory* factory);
 		void addPopDemographic(V2Demographic d);
 
@@ -93,7 +94,7 @@ class V2Province
 
 	private:
 		void outputUnits(FILE*) const;
-		void createPops(const V2Demographic& demographic, double popWeightRatio);
+		void createPops(const V2Demographic& demographic, double popWeightRatio, V2Country* _owner);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
@@ -125,7 +126,7 @@ class V2Province
 		int							railLevel;
 		map<string, V2Factory*>	factories;
 
-		bool								resettable;
+		bool							resettable;
 };
 
 

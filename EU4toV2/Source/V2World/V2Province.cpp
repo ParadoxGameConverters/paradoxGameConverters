@@ -360,17 +360,17 @@ void V2Province::addOldPop(const V2Pop* oldPop)
 }
 
 
-void V2Province::doCreatePops(double popWeightRatio)
+void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner)
 {
 	for (vector<V2Demographic>::const_iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
-		createPops(*itr, popWeightRatio);
+		createPops(*itr, popWeightRatio, _owner);
 	}
 	combinePops();
 }
 
 
-void V2Province::createPops(const V2Demographic& demographic, double popWeightRatio)
+void V2Province::createPops(const V2Demographic& demographic, double popWeightRatio, V2Country* _owner)
 {
 	const EU4Province*	oldProvince		= demographic.oldProvince;
 	const EU4Country*		oldCountry		= demographic.oldCountry;
@@ -583,25 +583,15 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		aristocrats *= 2;
 	}
 	
-	if (oldProvince->hasBuilding("customs_house"))
+	if (factories.size() > 0)
 	{
-		capitalists += 1;
-	}
-	if (oldCountry->getGovernment() != "absolute_monarchy")
-	{
-		capitalists *= 2;
-	}
-	if (oldCountry->hasNationalIdea("smithian_economics"))
-	{
-		capitalists *= 2;
+		double capsPerFactory = 40 + _owner->getNumFactories() * 2;
+		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.ratio;
+		capitalists +=  (10000 * actualCapitalists) / (demographic.ratio * newPopulation);
 	}
 
 	// Uncivs cannot have capitalists, clerks, or craftsmen
-	if (	(oldCountry->getTechGroup() != "western") &&
-			(oldCountry->getTechGroup() != "latin") &&
-			(oldCountry->getTechGroup() != "eastern") &&
-			(oldCountry->getTechGroup() != "ottoman")
-		)
+	if (!_owner->isCivilized())
 	{
 		capitalists	= 0;
 		clerks		= 0;
@@ -700,7 +690,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (capitalists > 0)
 	{
 		V2Pop* capitalistsPop = new V2Pop(	"capitalists",
-			(int)(demographic.ratio * newPopulation * (capitalists / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (capitalists / 10000) + 0.5),
 														demographic.culture,
 														demographic.religion
 												);
