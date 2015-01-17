@@ -118,6 +118,25 @@ EU3World::EU3World(Object* obj)
 			}
 		}
 	}
+
+	// calculate total province weights
+	worldWeightSum = 0;
+	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		i->second->determineProvinceWeight();
+		worldWeightSum += i->second->getTotalWeight();
+	}
+
+	LOG(LogLevel::Warning) << "Sum of all Province Weights: " << worldWeightSum;
+}
+
+
+void EU3World::setEU3WorldProvinceMappings(const inverseProvinceMapping& inverseProvinceMap)
+{
+	for (map<int, EU3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		i->second->setNumDestV2Provs(inverseProvinceMap.find(i->first)->second.size());
+	}
 }
 
 

@@ -374,17 +374,17 @@ void V2Province::addOldPop(const V2Pop* oldPop)
 }
 
 
-void V2Province::doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT)
+void V2Province::doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT, double popWeightRatio)
 {
 	for (vector<V2Demographic>::const_iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
-		createPops(game, *itr, isStateCapital, statePopulation, stateHasCOT);
+		createPops(game, *itr, isStateCapital, statePopulation, stateHasCOT, popWeightRatio);
 	}
 	combinePops();
 }
 
 
-void V2Province::createPops(WorldType game, const V2Demographic& demographic, bool isStateCapital, int statePopulation, bool stateHasCOT)
+void V2Province::createPops(WorldType game, const V2Demographic& demographic, bool isStateCapital, int statePopulation, bool stateHasCOT, double popWeightRatio)
 {
 	const EU3Province* oldProvince	= demographic.oldProvince;
 	const EU3Country* oldCountry		= demographic.oldCountry;
@@ -404,6 +404,28 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 	int capitalists	= 0;
 	int aristocrats	= 0;
 	
+	double long newPopulation = 0;
+	int numOfV2Provs = this->getSrcProvince()->getNumDestV2Provs();
+	//LOG(LogLevel::Info) << "Num Dest Provs: " << this->getSrcProvince()->getNumDestV2Provs();
+	//LOG(LogLevel::Warning) << "Total EUIV world weight sum is: " << sourceWorld.getWorldWeightSum();
+	// logic to switch out perhaps between weighted redistribution and quasi historical.
+
+	if (true)
+	{
+		newPopulation = popWeightRatio * oldProvince->getTotalWeight();
+ 		newPopulation /= 3;
+ 
+		int numOfV2Provs = srcProvince->getNumDestV2Provs();
+ 		if (numOfV2Provs > 1)
+ 		{
+ 			newPopulation /= numOfV2Provs;
+		}
+	}
+	else
+	{
+		newPopulation = oldPopulation;
+	}
+
 	if (game == DivineWind) // Gametype == dw
 	{
 		int govBuilding = 0;
@@ -702,7 +724,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 	}
 	else
 	{
-		double provPopRatio = 2.0f * (double)statePopulation / (double)oldPopulation;
+		double provPopRatio = 2.0f * (double)statePopulation / (double)newPopulation;
 		capitalists = (int)(capitalists * provPopRatio);
 		bureaucrats = (int)(bureaucrats * provPopRatio);
 		aristocrats = (int)(aristocrats * provPopRatio);

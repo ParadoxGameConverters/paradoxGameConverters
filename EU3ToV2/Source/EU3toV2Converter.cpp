@@ -274,6 +274,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	resettableMap				resettableProvinces;
 	initProvinceMap(obj, sourceWorld.getWorldType(), provinceMap, inverseProvinceMap, resettableProvinces);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
+	sourceWorld.setEU3WorldProvinceMappings(inverseProvinceMap);
 
 
 	// Get country mappings

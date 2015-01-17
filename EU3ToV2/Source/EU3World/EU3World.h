@@ -49,6 +49,7 @@ enum WorldType
 class EU3World {
 	public:
 		EU3World(Object* obj);
+		void setEU3WorldProvinceMappings(const inverseProvinceMapping& inverseProvinceMap);
 
 		void	readCommonCountries(istream&, const std::string& rootPath);
 		void	readCountryLocalisation(istream&);
@@ -63,11 +64,13 @@ class EU3World {
 
 		map<string, EU3Country*>	getCountries()	const { return countries; };
 		EU3Diplomacy*					getDiplomacy()	const { return diplomacy; };
+		double							getWorldWeightSum() const { return worldWeightSum; };
 	private:
 		WorldType						cachedWorldType;
 		map<int, EU3Province*>		provinces;
 		map<string, EU3Country*>	countries;
 		EU3Diplomacy*					diplomacy;
+		double							worldWeightSum;
 };
 
 

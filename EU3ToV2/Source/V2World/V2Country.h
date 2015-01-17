@@ -69,7 +69,7 @@ class V2Country
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
-		void								setupPops(EU3World& sourceWorld);
+		void								setupPops(EU3World& sourceWorld, double popWeightRatio);
 		void								setArmyTech(double mean, double highest);
 		void								setNavyTech(double mean, double highest);
 		void								setCommerceTech(double mean, double highest);

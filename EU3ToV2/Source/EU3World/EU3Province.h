@@ -48,6 +48,8 @@ class EU3Province {
 
 		void						addCore(string tag);
 		void						removeCore(string tag);
+		void						determineProvinceWeight();
+
 		bool						wasColonised() const;
 		bool						wasInfidelConquest() const;
 		bool						hasBuilding(string building) const;
@@ -55,24 +57,37 @@ class EU3Province {
 		vector<EU3Country*>	getCores(const map<string, EU3Country*>& countries) const;
 		date						getLastPossessedDate(string tag) const;
 
-		int						getNum()				const { return num; };
-		double					getBaseTax()		const { return baseTax; }
-		string					getOwnerString()	const { return ownerString; };
-		EU3Country*				getOwner()			const { return owner; };
-		int						getPopulation()	const { return population; };
-		bool						isColony()			const { return colony; };
-		bool						isCOT()				const { return centerOfTrade; };
-		vector<EU3PopRatio>	getPopRatios()		const { return popRatios; };
+		int						getNum()					const { return num; };
+		double					getBaseTax()			const { return baseTax; }
+		string					getOwnerString()		const { return ownerString; };
+		EU3Country*				getOwner()				const { return owner; };
+		int						getPopulation()		const { return population; };
+		bool						isColony()				const { return colony; };
+		bool						isCOT()					const { return centerOfTrade; };
+		vector<EU3PopRatio>	getPopRatios()			const { return popRatios; };
+		double					getTotalWeight()		const { return totalWeight; }
+		int						getNumDestV2Provs()	const { return numV2Provs; };
 
-		void						setOwner(EU3Country* newOwner)	{ owner = newOwner; };
+		void						setTotalWeight(double totalWeight);
+		void						checkManpower(const Object* provinceObj);
+		void						checkTradeGoods(const Object* provinceObj);
+
+		void						setOwner(EU3Country* newOwner)		{ owner = newOwner; }
+		void						setNumDestV2Provs(int _numV2Provs)	{ numV2Provs = _numV2Provs; }
+
 		void						setCOT(bool isCOT)					{ centerOfTrade = isCOT; };
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
 		void	decayPopRatios(date olddate, date newdate, EU3PopRatio& currentPop);
 
+		vector<double>	getProvBuildingWeight()	const;
+		double			getTradeGoodWeight()		const;
+		double			getTradeGoodPrice()		const;
+
 		int									num;
 		double								baseTax;
+		double								totalWeight;
 		string								ownerString;
 		EU3Country*							owner;
 		vector<string>						cores;
@@ -85,6 +100,9 @@ class EU3Province {
 		vector< pair<date, string> >	cultureHistory;
 		vector<EU3PopRatio>				popRatios;
 		map<string, bool>					buildings;
+		double								manpower;
+		string								tradeGoods;
+		int									numV2Provs;
 };
 
 

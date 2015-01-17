@@ -30,7 +30,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU3Province::EU3Province(Object* obj) {
+EU3Province::EU3Province(Object* obj) 
+{
+	numV2Provs = 0;
+
 	num = atoi(obj->getKey().c_str());
 
 	vector<Object*> baseTaxObjs;			// the object holding the base tax
@@ -170,8 +173,42 @@ EU3Province::EU3Province(Object* obj) {
 	}
 
 	popRatios.clear();
-
 	buildings.clear();
+
+	vector<Object*> tradegoodsObj = obj->getValue("trade_goods");
+	if (tradegoodsObj.size() > 0) 
+	{
+		tradeGoods = tradegoodsObj[0]->getLeaf();
+	}
+	else
+	{
+		tradeGoods = "";
+	}
+
+	vector<Object*> manpowerObj = obj->getValue("manpower");
+	if (manpowerObj.size() > 0)
+	{
+		string manpowerStr = manpowerObj[0]->getLeaf();
+		manpower = stod(manpowerStr);
+	}
+	else
+	{
+		manpower = 0.0;
+	}
+
+	//LOG(LogLevel::Info) << "Check unique Buildings...";
+	// unique buildings
+	checkBuilding(obj, "tax_assessor");
+	checkBuilding(obj, "embassy");
+	checkBuilding(obj, "glorious_monument");
+	checkBuilding(obj, "march");
+	checkBuilding(obj, "grain_depot");
+	checkBuilding(obj, "royal_palace");
+	checkBuilding(obj, "war_college");
+	checkBuilding(obj, "admiralty");
+
+	//LOG(LogLevel::Info) << "Check manus...";
+	// Manufacturies
 	checkBuilding(obj, "weapons");
 	checkBuilding(obj, "university");
 	checkBuilding(obj, "wharf");
@@ -179,6 +216,8 @@ EU3Province::EU3Province(Object* obj) {
 	checkBuilding(obj, "fine_arts_academy");
 	checkBuilding(obj, "refinery");
 
+	//LOG(LogLevel::Info) << "Check buildings...";
+	// base buildings 
 	checkBuilding(obj, "fort1");
 	checkBuilding(obj, "fort2");
 	checkBuilding(obj, "fort3");
@@ -214,6 +253,11 @@ EU3Province::EU3Province(Object* obj) {
 	checkBuilding(obj, "mint");
 	checkBuilding(obj, "stock_exchange");
 
+	checkBuilding(obj, "marketplace");
+	checkBuilding(obj, "trade_depot");
+	checkBuilding(obj, "canal");
+	checkBuilding(obj, "road_network");
+	checkBuilding(obj, "post_office");
 	checkBuilding(obj, "customs_house");
 
 	buildPopRatios();
@@ -448,4 +492,607 @@ void EU3Province::decayPopRatios(date oldDate, date newDate, EU3PopRatio& curren
 
 	// increase current pop by .0025 per year
 	currentPop.popRatio += .0025 * (newDate.year - oldDate.year);
+}
+
+
+void EU3Province::determineProvinceWeight()
+{
+	double trade_goods_weight			= getTradeGoodWeight();
+	double manpower_weight				= manpower;
+	double building_weight				= 0.0;
+	double manpower_modifier			= 0.0;
+	double manu_gp_mod					= 0.0;
+	double building_tx_eff				= 0.0;
+	double production_eff				= 0.0;
+	double building_tx_income			= 0.0;
+	double manpower_eff					= 0.0;
+	double goods_produced_perc_mod	= 0.0;
+	double trade_power					= 0.0;
+	double trade_value					= 0.0;
+	double trade_value_eff				= 0.0;
+	double trade_power_eff				= 0.0;
+	
+	std::vector<double> provBuildingWeightVec = getProvBuildingWeight();
+	// 0 building_weight, 1 manpower_modifier, 2 manu_gp_mod, 3 building_tx_eff, 4 production_eff
+	// 5 building_tx_income, 6 manpower_eff, 7 goods_produced_perc_mod, 8 trade_power 9 trade_value
+	// 10 trade_value_eff, 11 trade_power_eff;
+	try {
+		building_weight			= provBuildingWeightVec.at(0);
+		manpower_modifier			= provBuildingWeightVec.at(1);
+		manu_gp_mod					= provBuildingWeightVec.at(2);
+		building_tx_eff			= provBuildingWeightVec.at(3);
+		production_eff				= provBuildingWeightVec.at(4);
+		building_tx_income		= provBuildingWeightVec.at(5);
+		manpower_eff				= provBuildingWeightVec.at(6);
+		goods_produced_perc_mod	= provBuildingWeightVec.at(7);
+		trade_power					= provBuildingWeightVec.at(8);
+		trade_value					= provBuildingWeightVec.at(9);
+		trade_value_eff			= provBuildingWeightVec.at(10);
+		trade_power_eff			= provBuildingWeightVec.at(11);
+	}
+	catch (exception &e)
+	{
+		LOG(LogLevel::Error) << "Error in building weight vector: " << e.what();
+	}
+
+	// Check tag, ex. TIB has goods_produced +0.05
+	// This needs to be hard coded unless there's some other way of figuring out modded national ambitions/ideas
+	if (this->getOwnerString() == "TIB")
+	{
+		goods_produced_perc_mod += 0.05;
+	}
+
+	double goods_produced = (baseTax * 0.2) + manu_gp_mod + (1 + goods_produced_perc_mod + 0.03);
+
+	// idea effects
+	if ( (owner !=  NULL) && (owner->hasNationalIdea("bureaucracy")) )
+	{
+		building_tx_eff += 0.10;
+	}
+	if ( (owner !=  NULL) && (owner->hasNationalIdea("smithian_economics")) )
+	{
+		production_eff += 0.10;
+	}
+
+	// manpower
+	manpower_weight *= 25;
+	manpower_weight += manpower_modifier;
+	manpower_weight *= ((1 + manpower_modifier) / 100);
+
+
+	double total_tx = (baseTax + building_tx_income) * (1.0 + building_tx_eff);
+	double production_eff_tech = 1.0;
+
+	double production_income = ((getTradeGoodPrice() + trade_value) * trade_value_eff) * goods_produced * (1 + production_eff_tech + production_eff);
+	
+	totalWeight = ((2 * baseTax) + manpower_weight + trade_goods_weight + production_income + total_tx);
+
+	if (owner == NULL)
+	{
+		totalWeight = 0;
+	}
+
+	//LOG(LogLevel::Info) << "Num: " << num << " TAG: " << ownerString << " Weight: " << totalWeight;
+}
+
+
+double EU3Province::getTradeGoodPrice() const
+{
+	// Trade goods
+	/*
+	chinaware
+	grain
+	fish
+	tabacco
+	iron
+	copper
+	cloth
+	ivory
+	slaves
+	salt
+	wool
+	fur
+	gold
+	sugar
+	naval_supplies
+	tea
+	coffee
+	spices
+	wine
+	cocoa
+	*/
+	//LOG(LogLevel::Info) << "Trade Goods Price";
+	double tradeGoodsPrice = 0;
+
+	if (tradeGoods == "chinaware")
+	{
+		tradeGoodsPrice = 8.5;
+	}
+	else if (tradeGoods == "grain")
+	{
+		tradeGoodsPrice = 5.0;
+	}
+	else if (tradeGoods == "fish")
+	{
+		tradeGoodsPrice = 4.72;
+	}
+	else if (tradeGoods == "tabacco")
+	{
+		tradeGoodsPrice = 7.4;
+	}
+	else if (tradeGoods == "iron")
+	{
+		tradeGoodsPrice = 5.97;
+	}
+	else if (tradeGoods == "copper")
+	{
+		tradeGoodsPrice = 5.0;
+	}
+	else if (tradeGoods == "cloth")
+	{
+		tradeGoodsPrice = 4.75;
+	}
+	else if (tradeGoods == "slaves")
+	{
+		tradeGoodsPrice = 3.01;
+	}
+	else if (tradeGoods == "salt")
+	{
+		tradeGoodsPrice = 3.17;
+	}
+	else if (tradeGoods == "gold")
+	{
+		tradeGoodsPrice = 9.0;
+	}
+	else if (tradeGoods == "fur")
+	{
+		tradeGoodsPrice = 6.33;
+	}
+	else if (tradeGoods == "sugar")
+	{
+		tradeGoodsPrice = 3.09;
+	}
+	else if (tradeGoods == "naval_supplies")
+	{
+		tradeGoodsPrice = 5.0;
+	}
+	else if (tradeGoods == "tea")
+	{
+		tradeGoodsPrice = 5.72;
+	}
+	else if (tradeGoods == "coffee")
+	{
+		tradeGoodsPrice = 8.46;
+	}
+	else if (tradeGoods == "spices")
+	{
+		tradeGoodsPrice = 7.03;
+	}
+	else if (tradeGoods == "wine")
+	{
+		tradeGoodsPrice = 4.38;
+	}
+	else if (tradeGoods == "cocoa")
+	{
+		tradeGoodsPrice = 7.11;
+	}
+	else if (tradeGoods == "ivory")
+	{
+		tradeGoodsPrice = 3.84;
+	}
+	else if (tradeGoods == "wool")
+	{
+		tradeGoodsPrice = 2.08;
+	}
+	else if (tradeGoods == "cotton")
+	{
+		tradeGoodsPrice = 3.53;
+	}
+	else
+	{
+		// anything ive missed
+		tradeGoodsPrice = 1;
+	}
+
+	return tradeGoodsPrice;
+}
+
+
+double EU3Province::getTradeGoodWeight() const
+{
+	// Trade goods
+	/*
+	chinaware
+	grain
+	fish
+	tabacco
+	iron
+	copper
+	cloth
+	ivory
+	slaves
+	salt
+	wool
+	fur
+	gold
+	sugar
+	naval_supplies
+	tea
+	coffee
+	spices
+	wine
+	cocoa
+	*/
+	double trade_goods_weight = 0;
+
+	if (tradeGoods == "chinaware")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "grain")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "fish")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "tabacco")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "iron")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "copper")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "cloth")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "slaves")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "salt")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "gold")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "fur")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "sugar")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "naval_supplies")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "tea")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "coffee")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "spices")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "wine")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "cocoa")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "ivory")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "wool")
+	{
+		trade_goods_weight = 2;
+	}
+	else if (tradeGoods == "cotton")
+	{
+		trade_goods_weight = 2;
+	}
+	else
+	{
+		// anything ive missed
+		trade_goods_weight = 0;
+	}
+
+	return trade_goods_weight;
+}
+
+
+vector<double> EU3Province::getProvBuildingWeight() const
+{
+	double building_weight				= 0.0;
+	double manpower_modifier			= 0.0;
+	double manu_gp_mod					= 0.0;
+	double building_tx_eff				= 0.0;
+	double production_eff				= 0.0;
+	double building_tx_income			= 0.0;
+	double manpower_eff					= 0.0;
+	double goods_produced_perc_mod	= 0.0;
+	double trade_power					= 0.0;
+	double trade_value					= 0.0;
+	double trade_value_eff				= 0.0;
+	double trade_power_eff				= 0.0;
+
+	// unique buildings
+	if (hasBuilding("march"))
+	{
+		building_weight += 2;
+		manpower_modifier += 500;
+	}
+	if (hasBuilding("glorious_monument"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("royal_palace"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("admiralty"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("war_college"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("embassy"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("tax_assessor"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("grain_depot"))
+	{
+		building_weight += 2;
+	}
+
+	// manfacturies building
+	if (hasBuilding("university"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("fine_arts_academy"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("weapons"))
+	{
+		building_weight += 5;
+		manu_gp_mod = 1.0;
+	}
+	if (hasBuilding("wharf"))
+	{
+		building_weight += 5;
+		manu_gp_mod = 1.0;
+	}
+	if (hasBuilding("textile"))
+	{
+		building_weight += 5;
+		manu_gp_mod = 1.0;
+	}
+	if (hasBuilding("refinery"))
+	{
+		building_weight += 5;
+		manu_gp_mod = 1.0;
+	}
+
+	// Base buildings
+	if (hasBuilding("fort1"))
+	{
+		building_weight += 1;
+	}
+	if (hasBuilding("fort2"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("fort3"))
+	{
+		building_weight += 3;
+	}
+	if (hasBuilding("fort4"))
+	{
+		building_weight += 4;
+	}
+	if (hasBuilding("fort5"))
+	{
+		building_weight += 5;
+	}
+	if (hasBuilding("fort6"))
+	{
+		building_weight += 6;
+	}
+
+	if (hasBuilding("dock"))
+	{
+		building_weight++;
+	}
+	if (hasBuilding("drydock"))
+	{
+		building_weight += 2;
+	}
+	if (hasBuilding("shipyard"))
+	{
+		building_weight += 3;
+	}
+	if (hasBuilding("grand_shipyard"))
+	{
+		building_weight += 4;
+	}
+	if (hasBuilding("naval_arsenal"))
+	{
+		building_weight += 5;
+	}
+	if (hasBuilding("naval_base"))
+	{
+		building_weight += 6;
+	}
+
+	if (hasBuilding("temple"))
+	{
+		building_weight += 1;
+		building_tx_income += 1.0;
+	}
+	if (hasBuilding("courthouse"))
+	{
+		building_weight += 2;
+		building_tx_eff += 0.10;
+	}
+	if (hasBuilding("spy_agency"))
+	{
+		building_weight += 3;
+		building_tx_eff += 0.20;
+	}
+	if (hasBuilding("town_hall"))
+	{
+		building_weight += 4;
+		building_tx_eff += 0.25;
+	}
+	if (hasBuilding("college"))
+	{
+		building_weight += 5;
+		building_tx_eff += 0.50;
+	}
+	if (hasBuilding("cathedral"))
+	{
+		building_weight += 6;
+		building_tx_income += 3.0;
+	}
+
+	if (hasBuilding("armory"))
+	{
+		building_weight += 1;
+		manpower_modifier += 25;
+	}
+	if (hasBuilding("training_fields"))
+	{
+		building_weight += 2;
+		manpower_modifier += 25;
+	}
+	if (hasBuilding("barracks"))
+	{
+		building_weight += 3;
+		manpower_modifier += 25;
+		manpower_eff += 0.10;
+	}
+	if (hasBuilding("regimental_camp"))
+	{
+		building_weight += 4;
+		manpower_eff += 0.20;
+	}
+	if (hasBuilding("arsenal"))
+	{
+		building_weight += 5;
+		manpower_modifier += 50;
+	}
+	if (hasBuilding("conscription_center"))
+	{
+		building_weight += 6;
+		manpower_modifier += 50;
+		manpower_eff += 0.50;
+	}
+
+	if (hasBuilding("constable"))
+	{
+		building_weight += 1;
+		production_eff += 0.2;
+	}
+	if (hasBuilding("workshop"))
+	{
+		building_weight += 2;
+		goods_produced_perc_mod += 0.2;
+	}
+	if (hasBuilding("counting_house"))
+	{
+		building_weight += 3;
+	}
+	if (hasBuilding("treasury_office"))
+	{
+		building_weight += 4;
+	}
+	if (hasBuilding("mint"))
+	{
+		building_weight += 5;
+		production_eff += 0.5;
+	}
+	if (hasBuilding("stock_exchange"))
+	{
+		building_weight += 6;
+		goods_produced_perc_mod += 0.50;
+	}
+
+	if (hasBuilding("marketplace"))
+	{
+		building_weight++;
+		trade_power += 2;
+	}
+	if (hasBuilding("trade_depot"))
+	{
+		building_weight += 2;
+		trade_value += 1;
+		trade_power_eff += 0.25;
+	}
+	if (hasBuilding("canal"))
+	{
+		building_weight += 3;
+		trade_power += 2;
+		trade_value_eff += 0.25;
+	}
+	if (hasBuilding("road_network"))
+	{
+		building_weight += 4;
+		trade_power_eff += 0.25;
+	}
+	if (hasBuilding("post_office"))
+	{
+		building_weight += 5;
+		trade_power += 3;
+		trade_power_eff += 0.5;
+	}
+	if (hasBuilding("customs_house"))
+	{
+		building_weight += 6;
+		trade_power += 10;
+		trade_value_eff += 2;
+	}
+
+	std::vector<double> provBuildingWeightVec;
+	provBuildingWeightVec.push_back(building_weight);
+	provBuildingWeightVec.push_back(manpower_modifier);
+	provBuildingWeightVec.push_back(manu_gp_mod);
+	provBuildingWeightVec.push_back(building_tx_eff);
+	provBuildingWeightVec.push_back(production_eff);
+	provBuildingWeightVec.push_back(building_tx_income);
+	provBuildingWeightVec.push_back(manpower_eff);
+	provBuildingWeightVec.push_back(goods_produced_perc_mod);
+	provBuildingWeightVec.push_back(trade_power);
+	provBuildingWeightVec.push_back(trade_value);
+	provBuildingWeightVec.push_back(trade_value_eff);
+	provBuildingWeightVec.push_back(trade_power_eff);
+	// 0 building_weight, 1 manpower_modifier, 2 manu_gp_mod, 3 building_tx_eff, 4 production_eff
+	// 5 building_tx_income, 6 manpower_eff, 7 goods_produced_perc_mod, 8 trade_power 9 trade_value
+	// 10 trade_value_eff, 11 trade_power_eff;
+	return provBuildingWeightVec;
 }

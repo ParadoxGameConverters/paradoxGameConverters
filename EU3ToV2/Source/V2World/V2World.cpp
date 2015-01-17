@@ -1026,10 +1026,17 @@ void V2World::convertUncivReforms()
 
 void V2World::setupPops(EU3World& sourceWorld)
 {
+	long totalWorldPopulation = 501666192;
+	double popWeightRatio = totalWorldPopulation / sourceWorld.getWorldWeightSum();
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->setupPops(sourceWorld);
+		itr->second->setupPops(sourceWorld, popWeightRatio);
 	}
+
+	LOG(LogLevel::Warning) << "Total world population: " << totalWorldPopulation;
+	LOG(LogLevel::Warning) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Warning) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Warning) << "Population per weight point is: " << popWeightRatio;
 }
 
 
@@ -1375,7 +1382,7 @@ vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
 	// a non-port province, Vicky crashes....
-	static vector<int> port_blacklist;
+	static set<int> port_blacklist;
 	if (port_blacklist.size() == 0)
 	{
 		int temp = 0;
@@ -1383,18 +1390,18 @@ vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
 		while (s.good() && !s.eof())
 		{
 			s >> temp;
-			port_blacklist.push_back(temp);
+			port_blacklist.insert(temp);
 		}
 		s.close();
 	}
 
 	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
-		vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
+		auto black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
 		if (black != port_blacklist.end())
 		{
 			locationCandidates.erase(litr);
-			break;
+			litr--;
 		}
 	}
 	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)

@@ -1355,7 +1355,7 @@ void V2Country::convertUncivReforms()
 }
 
 
-void V2Country::setupPops(EU3World& sourceWorld)
+void V2Country::setupPops(EU3World& sourceWorld, double popWeightRatio)
 {
 	if (states.size() < 1) // skip entirely for empty nations
 		return;
@@ -1363,7 +1363,7 @@ void V2Country::setupPops(EU3World& sourceWorld)
 	// create the pops
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
-		(*itr)->setupPops(sourceWorld.getWorldType(), primaryCulture, acceptedCultures, religion);
+		(*itr)->setupPops(sourceWorld.getWorldType(), primaryCulture, acceptedCultures, religion, popWeightRatio);
 	}
 }
 

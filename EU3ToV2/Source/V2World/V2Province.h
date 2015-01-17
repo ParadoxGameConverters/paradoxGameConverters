@@ -54,10 +54,11 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT, double popWeightRatio);
 		void addFactory(V2Factory* factory);
 
 		int				getTotalPopulation() const;
+
 		vector<V2Pop*>	getPops(string type) const;
 		V2Pop*			getSoldierPopForArmy(bool force = false);
 		pair<int, int>	getAvailableSoldierCapacity() const;
@@ -91,11 +92,11 @@ class V2Province
 		bool						hasLandConnection()	const { return landConnection; }
 	private:
 		void outputUnits(FILE*) const;
-		void createPops(WorldType game, const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT);
+		void createPops(WorldType game, const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT, double popWeightRatio);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
-		const EU3Province*			srcProvince;
+		const EU3Province*		srcProvince;
 
 		string						filename;
 		bool							coastal;
@@ -124,7 +125,7 @@ class V2Province
 		int							railLevel;
 		map<string, V2Factory*>	factories;
 
-		bool								resettable;
+		bool							resettable;
 };
 
 
