@@ -410,10 +410,9 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 	//LOG(LogLevel::Warning) << "Total EUIV world weight sum is: " << sourceWorld.getWorldWeightSum();
 	// logic to switch out perhaps between weighted redistribution and quasi historical.
 
-	if (true)
+	if (Configuration::getConvertPopTotals())
 	{
 		newPopulation = popWeightRatio * oldProvince->getTotalWeight();
- 		newPopulation /= 3;
  
 		int numOfV2Provs = srcProvince->getNumDestV2Provs();
  		if (numOfV2Provs > 1)

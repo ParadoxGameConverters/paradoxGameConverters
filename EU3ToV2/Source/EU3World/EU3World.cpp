@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "EU3Country.h"
 #include "EU3Diplomacy.h"
 #include "EU3Localisation.h"
+#include "EU3Religion.h"
 
 
 
@@ -127,7 +128,7 @@ EU3World::EU3World(Object* obj)
 		worldWeightSum += i->second->getTotalWeight();
 	}
 
-	LOG(LogLevel::Warning) << "Sum of all Province Weights: " << worldWeightSum;
+	LOG(LogLevel::Info) << "Sum of all Province Weights: " << worldWeightSum;
 }
 
 
@@ -319,6 +320,43 @@ void EU3World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProv
 		}
 	}
 }
+
+
+void EU3World::checkAllEU3CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const
+{
+	for (auto cultureItr = inverseUnionCultures.begin(); cultureItr != inverseUnionCultures.end(); cultureItr++)
+	{
+		string	EU3Culture	= cultureItr->first;
+		bool		matched		= false;
+		for (auto mapItr = cultureMap.begin(); mapItr != cultureMap.end(); mapItr++)
+		{
+			if (mapItr->srcCulture == EU3Culture)
+			{
+				matched = true;
+				break;
+			}
+		}
+		if (!matched)
+		{
+			LOG(LogLevel::Warning) << "No culture mapping for EU3 culture " << EU3Culture;
+		}
+	}
+}
+
+
+void EU3World::checkAllEU3ReligionsMapped(const religionMapping& religionMap) const
+{
+	map<string, EU3Religion*> allReligions = EU3Religion::getAllReligions();
+	for (auto religionItr = allReligions.begin(); religionItr != allReligions.end(); ++religionItr)
+	{
+		auto mapItr = religionMap.find(religionItr->first);
+		if (mapItr == religionMap.end())
+		{
+			Log(LogLevel::Warning) << "No religion mapping for EU3 religion " << religionItr->first;
+		}
+	}
+}
+
 
 void EU3World::setLocalisations(EU3Localisation& localisation)
 {

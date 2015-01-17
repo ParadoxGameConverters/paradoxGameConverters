@@ -45,6 +45,7 @@ class Configuration // Singleton
 		static string	getV2Gametype()							{ return getInstance()->V2Gametype; }
 		static string	getRemovetype()							{ return getInstance()->Removetype; }
 		static string	getOutputName()							{ return getInstance()->outputName; }
+		static bool getConvertPopTotals()						{ return getInstance()->convertPopTotals; }
 		static void		setOutputName(string _outputName)	{ getInstance()->outputName = _outputName; }
 
 		static Configuration* getInstance()
@@ -68,6 +69,7 @@ class Configuration // Singleton
 		string	resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
 		double	MaxLiteracy;			// the maximum literacy allowed
 		string	Removetype;				// the rule to use for removing excess EU3 nations
+		bool		convertPopTotals;		// whether or not to convert pop totals
 
 		// items set during conversion
 		date		firstEU3Date;

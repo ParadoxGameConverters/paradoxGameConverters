@@ -137,6 +137,7 @@ V2World::V2World()
 
 	// set V2 basic population levels
 	LOG(LogLevel::Info) << "Importing historical pops.";
+	totalWorldPopulation	= 0;
 	set<string> fileNames;
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
@@ -159,6 +160,7 @@ V2World::V2World()
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
+					totalWorldPopulation += atoi(pops[l]->getLeaf("size").c_str());
 					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
 					k->second->addOldPop(newPop);
 				}
@@ -848,19 +850,6 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 					{
 						i->second->setFortLevel(1);
 					}
-					// note: HTTT has only shipyard
-					if (   (*vitr)->hasBuilding("shipyard") || (*vitr)->hasBuilding("grand_shipyard")
-						|| (*vitr)->hasBuilding("naval_arsenal") || (*vitr)->hasBuilding("naval_base"))
-					{
-						// place naval bases only in port provinces
-						vector<int> candidates;
-						candidates.push_back(i->second->getNum());
-						candidates = getPortProvinces(candidates);
-						if (candidates.size() > 0)
-						{
-							i->second->setNavalBaseLevel(1);
-						}
-					}
 				}
 			}
 		}
@@ -1026,17 +1015,23 @@ void V2World::convertUncivReforms()
 
 void V2World::setupPops(EU3World& sourceWorld)
 {
-	long totalWorldPopulation = 501666192;
 	double popWeightRatio = totalWorldPopulation / sourceWorld.getWorldWeightSum();
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		itr->second->setupPops(sourceWorld, popWeightRatio);
 	}
 
-	LOG(LogLevel::Warning) << "Total world population: " << totalWorldPopulation;
-	LOG(LogLevel::Warning) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
-	LOG(LogLevel::Warning) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
-	LOG(LogLevel::Warning) << "Population per weight point is: " << popWeightRatio;
+	LOG(LogLevel::Info) << "Total world population: " << totalWorldPopulation;
+	LOG(LogLevel::Info) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << "Population per weight point is: " << popWeightRatio;
+
+	long newTotalPopulation = 0;
+	for (auto itr = provinces.begin(); itr != provinces.end(); itr++)
+	{
+		newTotalPopulation += itr->second->getTotalPopulation();
+	}
+	LOG(LogLevel::Info) << "New total world population: " << newTotalPopulation;
 }
 
 
@@ -1375,49 +1370,6 @@ void V2World::getProvinceLocalizations(string file)
 		}
 	}
 	read.close();
-}
-
-
-vector<int> V2World::getPortProvinces(vector<int> locationCandidates)
-{
-	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
-	// a non-port province, Vicky crashes....
-	static set<int> port_blacklist;
-	if (port_blacklist.size() == 0)
-	{
-		int temp = 0;
-		ifstream s("port_blacklist.txt");
-		while (s.good() && !s.eof())
-		{
-			s >> temp;
-			port_blacklist.insert(temp);
-		}
-		s.close();
-	}
-
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		auto black = std::find(port_blacklist.begin(), port_blacklist.end(), *litr);
-		if (black != port_blacklist.end())
-		{
-			locationCandidates.erase(litr);
-			litr--;
-		}
-	}
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		map<int, V2Province*>::iterator pitr = provinces.find(*litr);
-		if (pitr != provinces.end())
-		{
-			if (!pitr->second->isCoastal())
-			{
-				locationCandidates.erase(litr);
-				--pitr;
-				break;
-			}
-		}
-	}
-	return locationCandidates;
 }
 
 

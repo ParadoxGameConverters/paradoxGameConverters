@@ -26,11 +26,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Parsers\Object.h"
-#include "EU3World\EU3World.h"
 #include <map>
 #include <vector>
 #include <unordered_set>
+
+
+
 class V2World;
+class EU3World;
+enum WorldType;
 
 
 
@@ -96,8 +100,9 @@ governmentMapping initGovernmentMap(Object* obj);
 
 
 // Cultural Union Nation mappings
-typedef map< string, vector<string> > unionCulturesMap; // <tag, cultures>
-void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
+typedef map< string, vector<string> > unionCulturesMap;	// <culture group, cultures>
+typedef map< string, string > inverseUnionCulturesMap;	// <culture, culture group>
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures);
 
 
 // utility functions

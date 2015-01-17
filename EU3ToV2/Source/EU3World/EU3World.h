@@ -26,13 +26,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <istream>
 #include "EU3Army.h"
+#include "../Mapper.h"
 
 class EU3Country;
 class EU3Province;
 class EU3Diplomacy;
 class EU3Localisation;
 struct EU3Agreement;
-typedef map< int, vector<int> > inverseProvinceMapping; // < sourceProvince, destProvinces >
 
 
 
@@ -60,6 +60,8 @@ class EU3World {
 		void								resolveRegimentTypes(const RegimentTypeMap& map);
 		WorldType						getWorldType();
 		void								checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
+		void								checkAllEU3CulturesMapped(const cultureMapping& cultureMap, const inverseUnionCulturesMap& inverseUnionCultures) const;
+		void								checkAllEU3ReligionsMapped(const religionMapping& religionMap) const;
 		void								setLocalisations(EU3Localisation& localisation);
 
 		map<string, EU3Country*>	getCountries()	const { return countries; };

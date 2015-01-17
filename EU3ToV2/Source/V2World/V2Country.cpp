@@ -1925,21 +1925,23 @@ vector<int> V2Country::getPortProvinces(vector<int> locationCandidates, map<int,
 		s.close();
 	}
 
+	vector<int> unblockedCandidates;
 	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
 		auto black = port_blacklist.find(*litr);
-		if (black != port_blacklist.end())
+		if (black == port_blacklist.end())
 		{
-			litr = locationCandidates.erase(litr);
-			litr--;
+			unblockedCandidates.push_back(*litr);
 		}
 	}
+	locationCandidates.swap(unblockedCandidates);
+
 	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
 		map<int, V2Province*>::iterator pitr = allProvinces.find(*litr);
 		if (pitr != allProvinces.end())
 		{
-			if (!pitr->second->isCoastal())
+			if ( !pitr->second->isCoastal() )
 			{
 				locationCandidates.erase(litr);
 				--pitr;

@@ -606,13 +606,13 @@ governmentMapping initGovernmentMap(Object* obj)
 }
 
 
-void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
+void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures)
 {
-	vector<Object*> cultureGroups = obj->getLeaves();
-
+	vector<Object*> cultureGroups = obj->getLeaves();	// the cultural group rules
 	for (vector<Object*>::iterator i = cultureGroups.begin(); i != cultureGroups.end(); i++)
 	{
-		vector<Object*>		culturesObj		= (*i)->getLeaves();
+		vector<Object*>		culturesObj		= (*i)->getLeaves();	// the items in this rule
+		string					group				= (*i)->getKey();		// the cultural group
 		bool						hasUnion			= false;
 		string					tag;
 		vector<string>			cultures;
@@ -631,6 +631,7 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 			else
 			{
 				cultures.push_back( (*j)->getKey() );
+				inverseUnionCultures.insert(make_pair((*j)->getKey(), group));
 			}
 		}
 

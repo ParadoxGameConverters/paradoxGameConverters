@@ -424,7 +424,10 @@ void EU3Province::buildPopRatios()
 		if (cDate < rDate)
 		{
 			decayPopRatios(lastLoopDate, cDate, pr);
-			popRatios.push_back(pr);
+			if ((pr.culture != "") || (pr.religion != ""))
+			{
+				popRatios.push_back(pr);
+			}
 			for (vector<EU3PopRatio>::iterator itr = popRatios.begin(); itr != popRatios.end(); ++itr)
 			{
 				itr->popRatio /= 2.0;

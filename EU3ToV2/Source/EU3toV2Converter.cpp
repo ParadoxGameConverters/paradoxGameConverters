@@ -46,14 +46,11 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	Object*	obj;				// generic object
 	ifstream	read;				// ifstream for reading files
 
-	Configuration::getInstance();
-
-	LOG(LogLevel::Info) << "Converter version 3.0";
-
 	char curDir[MAX_PATH];
 	GetCurrentDirectory(MAX_PATH, curDir);
 	LOG(LogLevel::Debug) << "Current directory is " << curDir;
 
+	Configuration::getInstance();
 
 	//Get V2 install location
 	LOG(LogLevel::Info) << "Get V2 Install Path";
@@ -368,7 +365,8 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
-	unionCulturesMap unionCultures;
+	unionCulturesMap			unionCultures;
+	inverseUnionCulturesMap	inverseUnionCultures;
 	if (EU3Mod != "")
 	{
 		string modCultureFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\common\\cultures.txt";
@@ -377,7 +375,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 			obj = doParseFile(modCultureFile.c_str());
 			if ((obj != NULL) && (obj->getLeaves().size() > 0))
 			{
-				initUnionCultures(obj, unionCultures);
+				initUnionCultures(obj, unionCultures, inverseUnionCultures);
 			}
 		}
 	}
@@ -389,8 +387,9 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 			LOG(LogLevel::Error) << "Could not parse file " << EU3Loc << "\\common\\cultures.txt";
 			exit(-1);
 		}
-		initUnionCultures(obj, unionCultures);
+		initUnionCultures(obj, unionCultures, inverseUnionCultures);
 	}
+	sourceWorld.checkAllEU3CulturesMapped(cultureMap, inverseUnionCultures);
 
 	// Parse EU3 Religions
 	LOG(LogLevel::Info) << "Parsing EU3 religions";
@@ -439,6 +438,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	}
 	religionMapping religionMap;
 	religionMap = initReligionMap(obj->getLeaves()[0]);
+	sourceWorld.checkAllEU3ReligionsMapped(religionMap);
 
 
 	//Parse unions mapping
@@ -573,6 +573,7 @@ int main(int argc, char * argv[])
 {
 	try
 	{
+		LOG(LogLevel::Info) << "Converter version 3.0";
 		const char* const defaultEU3SaveFileName = "input.EU3";
 		string EU3SaveFileName;
 		if (argc >= 2)

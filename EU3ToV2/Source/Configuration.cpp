@@ -52,5 +52,6 @@ Configuration::Configuration()
 	V2Gametype			= obj[0]->getLeaf("V2gametype");
 	EU3Mod				= obj[0]->getLeaf("EU3Mod");
 	Removetype			= obj[0]->getLeaf("removetype");
+	convertPopTotals	= (obj[0]->getLeaf("convertPopTotals") == "yes");
 	outputName			= "";
 }
