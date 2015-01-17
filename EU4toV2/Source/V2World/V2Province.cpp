@@ -524,11 +524,6 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		|| oldProvince->hasBuilding("textile"))
 	{
 		craftsmen	+= (productionBuilding + 1) * 20;
-		clerks		+= 5;
-	}
-	if (oldCountry->hasNationalIdea("scientific_revolution"))
-	{
-		clerks *= 3;
 	}
 
 
@@ -588,6 +583,9 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		double capsPerFactory = 40 + _owner->getNumFactories() * 2;
 		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.ratio;
 		capitalists +=  (10000 * actualCapitalists) / (demographic.ratio * newPopulation);
+
+		double actualClerks = 181 * factories.size() * demographic.ratio;
+		clerks += (10000 * actualClerks) / (demographic.ratio * newPopulation);
 	}
 
 	// Uncivs cannot have capitalists, clerks, or craftsmen
