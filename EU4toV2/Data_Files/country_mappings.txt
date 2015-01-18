@@ -25,7 +25,6 @@ mappings={
 #This is essentially one-to-one country mappings to ensure that countries are available in BOTH EU4 and V2 get the correct tag.
 #For example, if Spain is in EU4 it will become Spain in V2 after conversion.
 
-
 # Western and Central Europe
 
 # British Isles
@@ -488,5 +487,112 @@ link = { eu4 = KRK v2 = KRK }  # Carnatic (Karnataka) (NEW)
 link = { eu4 = JOM v2 = JOM } # Jomsvikings
 link = { eu4 = HAH v2 = HAH } # Hashshahin
 link = { eu4 = ROM v2 = RME } # Roman Empire
+
+link = { eu4 = k_afghanistan v2 = AFG }
+link = { eu4 = c_albania v2 = ALB }
+link = { eu4 = c_al_djazair v2 = ALD }
+link = { eu4 = c_anhalt v2 = ANH }
+link = { eu4 = k_armenia v2 = ARM }
+link = { eu4 = d_osterreich v2 = AUS }
+link = { eu4 = d_azerbaijan v2 = AZB }
+link = { eu4 = d_baden v2 = AZB }
+link = { eu4 = c_baden v2 = AZB }
+link = { eu4 = k_bavaria v2 = BAV }
+link = { eu4 = k_bohemia v2 = BOH }
+link = { eu4 = d_bohemia v2 = BOH }
+link = { eu4 = k_bosnia v2 = BOS }
+link = { eu4 = c_braunschweig v2 = BRA }
+link = { eu4 = c_bremen v2 = BRE }
+link = { eu4 = c_bukhara v2 = BUK }
+link = { eu4 = k_bulgaria v2 = BUL }
+link = { eu4 = d_bulgar v2 = BUL }
+link = { eu4 = e_byzantium v2 = BYZ }
+link = { eu4 = d_catalonia v2 = CAT }
+link = { eu4 = d_crimea v2 = CRI }
+link = { eu4 = k_croatia v2 = CRO }
+link = { eu4 = d_croatia v2 = CRO }
+link = { eu4 = k_cyprus v2 = CYP }
+link = { eu4 = k_denmark v2 = DEN }
+link = { eu4 = c_danzig v2 = DZG }
+link = { eu4 = k_egypt v2 = EGY }
+link = { eu4 = e_britannia v2 = ENG }
+link = { eu4 = d_estonia v2 = EST }
+link = { eu4 = e_abyssinia v2 = ETH }
+link = { eu4 = k_abyssinia v2 = ETH }
+link = { eu4 = k_finland v2 = FIN }
+link = { eu4 = d_flanders v2 = FLA }
+link = { eu4 = e_france v2 = FRA }
+link = { eu4 = k_france v2 = FRA }
+link = { eu4 = k_georgia v2 = GEO }
+link = { eu4 = e_germany v2 = GER }
+link = { eu4 = k_germany v2 = GER }
+link = { eu4 = k_byzantium v2 = GRE }
+link = { eu4 = c_gwalior v2 = GWA }
+link = { eu4 = c_hamburg v2 = HAM }
+link = { eu4 = e_india v2 = HND }
+link = { eu4 = d_holstein v2 = HOL }
+link = { eu4 = k_hungary v2 = HUN }
+link = { eu4 = k_ireland v2 = IRE }
+link = { eu4 = e_italy v2 = ITA }
+link = { eu4 = k_italy v2 = ITA }
+link = { eu4 = c_kalat v2 = KAL }
+link = { eu4 = k_khiva v2 = KHI }
+link = { eu4 = d_khiva v2 = KHI }
+link = { eu4 = c_khiva v2 = KHI }
+link = { eu4 = d_krakow v2 = KRA }
+link = { eu4 = c_kutch v2 = KUT }
+link = { eu4 = k_lithuania v2 = LIT }
+link = { eu4 = d_lombardia v2 = LOM }
+link = { eu4 = c_lubeck v2 = LUB }
+link = { eu4 = c_lucca v2 = LUC }
+link = { eu4 = d_luxembourg v2 = LUX }
+link = { eu4 = c_luxembourg v2 = LUX }
+link = { eu4 = c_makran v2 = MAK }
+link = { eu4 = d_mecklemburg v2 = MEC }
+link = { eu4 = e_mongol_empire v2 = MGL }
+link = { eu4 = d_modena v2 = MOD }
+link = { eu4 = c_modena v2 = MOD }
+link = { eu4 = c_nassau v2 = NAS }
+link = { eu4 = k_norway v2 = NOR }
+link = { eu4 = c_oldenburg v2 = OLD }
+link = { eu4 = d_oman v2 = OMA }
+link = { eu4 = k_orissa v2 = ORI }
+link = { eu4 = k_punjab v2 = PAN }
+link = { eu4 = k_papal_state v2 = PAP }
+link = { eu4 = c_parma v2 = PAR }
+link = { eu4 = e_persia v2 = PER }
+link = { eu4 = k_persia v2 = PER }
+link = { eu4 = k_poland v2 = POL }
+link = { eu4 = k_portugal v2 = POR }
+link = { eu4 = d_prussia v2 = PRU }
+link = { eu4 = romania v2 = ROM }
+link = { eu4 = e_russia v2 = RUS }
+link = { eu4 = k_rus v2 = RUS }
+link = { eu4 = k_ruthenia v2 = RUT }
+link = { eu4 = d_sardinia v2 = SAR }
+link = { eu4 = k_saxony v2 = SAX }
+link = { eu4 = d_saxony v2 = SAX }
+link = { eu4 = e_scandinavia v2 = SCA }
+link = { eu4 = k_scotland v2 = SCO }
+link = { eu4 = k_serbia v2 = SER }
+link = { eu4 = shimla v2 = SHI }
+link = { eu4 = siam v2 = SIA }
+link = { eu4 = k_sicily v2 = SIC }
+link = { eu4 = siebenburgen v2 = SIE }
+link = { eu4 = sikkim v2 = SIK }
+link = { eu4 = k_sindh v2 = SIN }
+link = { eu4 = d_slovakia v2 = SLV }
+link = { eu4 = e_spain v2 = SPA }
+link = { eu4 = k_sweden v2 = SWE }
+link = { eu4 = d_sweden v2 = SWE }
+link = { eu4 = d_tripoli v2 = TRI }
+link = { eu4 = c_tripoli v2 = TRI }
+link = { eu4 = d_tunis v2 = TUN }
+link = { eu4 = c_tunis v2 = TUN }
+link = { eu4 = k_ottoman v2 = TUR }
+link = { eu4 = k_venice v2 = VEN }
+link = { eu4 = d_venice v2 = VEN }
+link = { eu4 = d_wallachia v2 = WAL }
+link = { eu4 = c_wurttemberg v2 = WUR }
 
 }

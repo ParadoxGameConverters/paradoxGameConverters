@@ -2258,6 +2258,7 @@ link = { name = "ostrihom" 	 title = "c_esztergom" }
 link = { name = "ostrogon" 	 title = "c_esztergom" }
 link = { name = "ottoman turks" 	 title = "k_ottoman" }
 link = { name = "ottoman" 	 title = "k_ottoman" }
+link = { name = "ottomans" 	 title = "k_ottoman" }
 link = { name = "oultrejourdain" 	 title = "d_oultrejourdain" }
 link = { name = "oural" 	 title = "d_ural" }
 link = { name = "outre-jourdain" 	 title = "d_oultrejourdain" }
@@ -2593,6 +2594,7 @@ link = { name = "seguidores de Áryuna" 	 title = "d_followers_arjuna" }
 link = { name = "selanda" 	 title = "d_sjaelland" }
 link = { name = "seldschukenreich" 	 title = "k_seljuk_turks" }
 link = { name = "seljuk empire" 	 title = "k_seljuk_turks" }
+link = { name = "seljuks" 	 title = "k_seljuk_turks" }
 link = { name = "semba" 	 title = "c_sambia" }
 link = { name = "semien" 	 title = "d_semien" }
 link = { name = "semigallier" 	 title = "d_zemigalians" }

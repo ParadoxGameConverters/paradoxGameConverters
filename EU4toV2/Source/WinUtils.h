@@ -45,6 +45,9 @@ bool DoesFileExist(const std::string& path);
 // Returns a formatted string describing the last error on the WinAPI.
 std::string GetLastWindowsError();
 
+// Recursively deletes a folder
+int DeleteFolder(const std::string &refcstrRootDirectory, bool bDeleteSubdirectories = true);
+
 } // namespace WinUtils
 
 #endif // WINUTILS_H_

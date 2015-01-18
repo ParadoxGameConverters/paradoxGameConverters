@@ -164,3 +164,16 @@ std::string V2Localisation::GetLocalAdjective()
 	}
 	return "";
 }
+
+std::string V2Localisation::StripAccents(const std::string& text)
+{
+	std::string accents = "אבגדהוזחטיךכלםמןנסעףפץצקרשתûü‎‏ÿ";
+	std::string without = "aaaaaaaceeeeiiiidnooooo ouuuuy y";
+	std::string out(text);
+
+	for (int i = 0; i < accents.size(); i++)
+	{
+		std::replace(out.begin(), out.end(), accents[i], without[i]);
+	}
+	return out;
+}

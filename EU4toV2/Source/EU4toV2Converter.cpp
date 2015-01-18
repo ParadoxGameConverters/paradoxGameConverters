@@ -766,7 +766,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	{
 		removeLandlessNations(sourceWorld);
 	}
-	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures);
+	countryMap.CreateMapping(sourceWorld, destWorld, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures, ck2Titles);
 
 
 	// Convert
