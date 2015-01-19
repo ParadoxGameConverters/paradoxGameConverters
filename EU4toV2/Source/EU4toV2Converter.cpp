@@ -692,7 +692,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	// Get CK2 title names
 	LOG(LogLevel::Info) << "Getting CK2 titles";
 	obj = doParseFile("ck2titlemap.txt");
-	ck2TitleMapping ck2Titles = initCK2TitleMap(obj);
+	CK2TitleMapping ck2Titles = initCK2TitleMap(obj);
 
 	// Parse colony rules
 	LOG(LogLevel::Info) << "Parsing colony naming rules.";

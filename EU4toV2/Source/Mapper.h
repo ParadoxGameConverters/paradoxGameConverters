@@ -130,8 +130,12 @@ typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
 colonyFlagset initColonyFlagset(Object* obj);
 
 // CK2 titles for flags
-typedef map<string, string> ck2TitleMapping;	// <name, title>
-ck2TitleMapping initCK2TitleMap(Object* obj);
+typedef struct {
+	map<string, string> map; // <name, title>
+	vector<string> islamFlags;
+	vector<string> indiaFlags;
+} CK2TitleMapping;	
+CK2TitleMapping initCK2TitleMap(Object* obj);
 
 
 // utility functions

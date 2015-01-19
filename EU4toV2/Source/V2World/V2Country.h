@@ -113,6 +113,8 @@ class V2Country
 		bool								isNewCountry() const { return newCountry; }
 		int								getNumFactories() const { return numFactories; }
 
+		string								getReligion() const { return religion; }
+
 	private:
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
