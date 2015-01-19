@@ -39,11 +39,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const std::map<std::string, std::string>& CK2titles, const colonyFlagset& colonyFlagset)
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
 	colonyFlags = colonyFlagset;
+
+	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
 
 	// Generate a list of all flags that we can use.
 	const std::vector<std::string> availableFlagFolders = { "blankMod\\output\\gfx\\flags", Configuration::getV2Path() + "\\gfx\\flags" };
@@ -115,6 +117,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
 	{
 		V2Country* v2source = i->second;
+		std::string religion = v2source->getReligion();
 
 		if (i->second->getSourceCountry()
 			&& requiredTags.find(i->first) != requiredTags.end())
@@ -122,9 +125,38 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 			std::string ck2title = CountryMapping::GetCK2Title(i->first,i->second->getLocalName(),usableFlagTags,CK2titles);
 			if ((ck2title != "") && (usableFlagTags.find(ck2title) != usableFlagTags.end()))
 			{
+				LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has the CK2 title " << ck2title;
 				tagMapping[i->first] = ck2title;
 				usableFlagTags.erase(ck2title);
 				requiredTags.erase(i->first);
+			}
+			else // try something patronymic
+			{
+				if (!isalpha(i->first[0]) || !isdigit(i->first[1]) || !isdigit(i->first[2]))
+					continue;
+
+				std::string religion = i->second->getReligion();
+				string randomCK2title = "";
+
+				// Yay hardcoded paths. If I get round to it, I'll point these at religion.txt instead.
+				if (religion == "sunni" || religion == "shiite" || religion == "ibadi")
+				{
+					size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, CK2titles.islamFlags.size() - 1)(generator);
+					randomCK2title = CK2titles.islamFlags[randomTagIndex];
+				}
+				else if (religion == "mahayana" || religion == "gelugpa" || religion == "theravada" || religion == "sikh" || religion == "hindu" || religion == "jain")
+				{
+					size_t randomTagIndex = std::uniform_int_distribution<size_t>(0, CK2titles.indiaFlags.size() - 1)(generator);
+					randomCK2title = CK2titles.indiaFlags[randomTagIndex];
+				}
+
+				if (usableFlagTags.find(randomCK2title) != usableFlagTags.end())
+				{
+					LOG(LogLevel::Info) << "Country " << i->first << " (" << i->second->getLocalName() << ") has been given the CK2 flag " << randomCK2title;
+					tagMapping[i->first] = randomCK2title;
+					usableFlagTags.erase(randomCK2title);
+					requiredTags.erase(i->first);
+				}
 			}
 		}
 	}
@@ -141,7 +173,6 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 	}
 
 	// All the remaining tags now need one of the usable flags.
-	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
 	size_t mappingsMade = 0;
 	for (std::set<std::string>::const_iterator i = requiredTags.cbegin(); i != requiredTags.cend(); ++i)
 	{

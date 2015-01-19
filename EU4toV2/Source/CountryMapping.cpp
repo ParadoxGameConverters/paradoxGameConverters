@@ -130,7 +130,7 @@ void CountryMapping::readV2Regions(Object* obj)
 }
 
 
-void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures, const std::map<std::string, std::string>& CK2map)
+void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures, const CK2TitleMapping& CK2map)
 {
 	CK2titles = CK2map;
 
@@ -285,15 +285,6 @@ void CountryMapping::oneMapping(EU4Country* country, const map<string, V2Country
 		if (CK2Title != "")
 		{
 			findIter = EU4TagToV2TagsRules.find(boost::to_upper_copy(boost::to_upper_copy(CK2Title)));	// the rule (if any) with this ck2 title
-			LOG(LogLevel::Info) << (findIter == EU4TagToV2TagsRules.end());
-			if (findIter != EU4TagToV2TagsRules.end())
-			{
-				LOG(LogLevel::Info) << findIter->first;
-				for (string f : findIter->second)
-				{
-					LOG(LogLevel::Info) << "  " << f;
-				}
-			}
 		}
 	}
 
@@ -390,8 +381,10 @@ void CountryMapping::LogMapping(const std::string& EU4Tag, const std::string& V2
 	LOG(LogLevel::Debug) << "Mapping " << EU4Tag << " -> " << V2Tag << " (" << reason << ')';
 }
 
-std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags, const std::map<std::string, std::string>& CK2titles)
+std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags, const CK2TitleMapping& CK2titlesContainer)
 {
+	std::map<string,string> CK2titles = CK2titlesContainer.map;
+
 	//V2Country* v2source = i->second;
 
 	if (!isalpha(EU4Tag[0]) || !isdigit(EU4Tag[1]) || !isdigit(EU4Tag[2]))
@@ -422,17 +415,17 @@ std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::st
 			// I've found titles that don't exist in the ck2 name mapping, but do exist in the flagset (c_znojmo).
 			if (availableFlags.find(k_name) != availableFlags.end())
 			{
-				LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << k_name;
+				LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << k_name;
 				return k_name;
 			}
 			else if (availableFlags.find(d_name) != availableFlags.end())
 			{
-				LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << d_name;
+				LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << d_name;
 				return d_name;
 			}
 			else if (availableFlags.find(c_name) != availableFlags.end())
 			{
-				LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << c_name;
+				LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << c_name;
 				return c_name;
 			}
 		}
@@ -440,10 +433,10 @@ std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::st
 
 	if (ck2title != CK2titles.end())
 	{
-		LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << ck2title->second;
+		LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << ck2title->second;
 		return ck2title->second;
 	}
 
-	LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has no CK2 title.";
+	LOG(LogLevel::Debug) << "Country " << EU4Tag << " (" << name << ") has no CK2 title.";
 	return ""; 
 }

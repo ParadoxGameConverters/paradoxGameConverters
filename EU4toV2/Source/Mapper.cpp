@@ -757,9 +757,11 @@ colonyFlagset initColonyFlagset(Object* obj)
 	return colonyMap;
 }
 
-ck2TitleMapping initCK2TitleMap(Object* obj)
+CK2TitleMapping initCK2TitleMap(Object* obj)
 {
-	ck2TitleMapping titleMap;
+	CK2TitleMapping titleMapContainer;
+	map<string, string>& titleMap = titleMapContainer.map;
+
 	vector<Object*> titles = obj->getLeaves();
 	vector<Object*> links = titles[0]->getLeaves();	
 
@@ -768,6 +770,7 @@ ck2TitleMapping initCK2TitleMap(Object* obj)
 		vector<Object*>	titles	= (*i)->getLeaves();
 		string name;
 		string titleID;
+		string region = "";
 
 		for (vector<Object*>::iterator j = titles.begin(); j != titles.end(); j++)
 		{
@@ -780,12 +783,20 @@ ck2TitleMapping initCK2TitleMap(Object* obj)
 			{
 				titleID = (*j)->getLeaf();
 			}
+			if ((*j)->getKey() == "region")
+			{
+				region = (*j)->getLeaf();
+			}
 		}
-
+		if (region == "e_persia" || region == "e_arabia")
+			titleMapContainer.islamFlags.push_back(titleID);
+		else if (region == "e_rajastan" || region == "e_bengal" || region == "e_deccan")
+			titleMapContainer.indiaFlags.push_back(titleID);
+		
 		titleMap[name] = titleID;
 	}
 
-	return titleMap;
+	return titleMapContainer;
 }
 
 
