@@ -51,7 +51,7 @@ public:
 	// priority over other tags. Countries with EU4 tags that aren't in the rules or
 	// have no available V2 tag (e.g. when multiple EU4 countries would use the same V2 tag)
 	// are given a generated tag "X00"-"X99".
-	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures);
+	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures, const std::map<std::string, std::string>& CK2titles);
 
 	// Returns the V2 tag that is mapped to by the given EU4 tag. Returns an empty string
 	// if there is no corresponding V2 tag. If CreateMapping() has been called then there
@@ -67,6 +67,10 @@ public:
 	// is no such EU4 tag.
 	const std::string& GetEU4Tag(const std::string& V2Tag) const;
 
+	// Returns the CK2 title name that maps to the given country name. Returns an empty
+	// string if there is no corresponding CK2 title.
+	static std::string GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags, const std::map<std::string, std::string>& CK2titles);
+
 private:
 	// Writes the given mapping to the log.
 	static void	LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason);
@@ -74,12 +78,16 @@ private:
 	// if there is a valid colonial replacement, uses it
 	bool			attemptColonialReplacement(EU4Country* country, const EU4World& srcWorld, const map<string, V2Country*> V2Countries, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures);
 
-	void			oneMapping(string EU4Tag, const map<string, V2Country*> V2Countries, char& generatedV2TagPrefix, int& generatedV2TagSuffix);
+	void			oneMapping(EU4Country* country, const map<string, V2Country*> V2Countries, char& generatedV2TagPrefix, int& generatedV2TagSuffix);
 
 	std::map<std::string, std::vector<std::string>> EU4TagToV2TagsRules;		// the possible mappings between EU4 and V2 tags
 	boost::bimap<std::string, std::string> EU4TagToV2TagMap;						// the current mappping between EU4 and V2 tags
 	std::map<std::string, std::set<int>> EU4ColonialRegions;						// the colonial regions in EU4
 	std::map<std::string, std::set<int>> V2Regions;									// the regions in V2
+
+	std::set<std::string> availableFlags;                  // the flags available to the converter
+	std::map<std::string, std::string> CK2titles;	       // nation name -> CK2 title
+	
 };
 
 #endif

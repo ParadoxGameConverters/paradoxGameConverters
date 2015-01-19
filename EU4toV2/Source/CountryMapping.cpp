@@ -40,6 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World\V2World.h"
 #include "V2World\V2Country.h"
 #include "V2World\V2Province.h"
+#include "WinUtils.h"
 #include "Log.h"
 
 bool CountryMapping::ReadRules(const std::string& fileName)
@@ -129,9 +130,26 @@ void CountryMapping::readV2Regions(Object* obj)
 }
 
 
-void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures)
+void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld, const colonyMapping& colonyMap, const inverseProvinceMapping& inverseProvinceMap, const provinceMapping& provinceMap, const inverseUnionCulturesMap& inverseUnionCultures, const std::map<std::string, std::string>& CK2map)
 {
+	CK2titles = CK2map;
+
 	EU4TagToV2TagMap.clear();
+	
+	// Generate a list (or at least a rough guide) of all flags that we can use.
+	const std::vector<std::string> availableFlagFolders = { "blankMod\\output\\gfx\\flags", Configuration::getV2Path() + "\\gfx\\flags" };
+	std::set<std::string> availableFlagFiles;
+	for (size_t i = 0; i < availableFlagFolders.size(); ++i)
+	{
+		WinUtils::GetAllFilesInFolder(availableFlagFolders[i], availableFlagFiles);
+	}
+
+	for (auto & file : availableFlagFiles)
+	{
+		size_t lastdot = file.find_last_of(".");
+		if (lastdot != std::string::npos)
+			availableFlags.insert(file.substr(0, lastdot)); 
+	}
 
 	char generatedV2TagPrefix = 'X'; // single letter prefix
 	int generatedV2TagSuffix = 0; // two digit suffix
@@ -153,7 +171,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		}
 
 		// rules-based
-		oneMapping(EU4Tag, V2Countries,generatedV2TagPrefix, generatedV2TagSuffix);
+		oneMapping(i->second, V2Countries,generatedV2TagPrefix, generatedV2TagSuffix);
 	}
 
 	for (std::map<std::string, EU4Country*>::const_iterator i = ColonialCountries.begin(); i != ColonialCountries.end(); ++i)
@@ -161,7 +179,7 @@ void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& dest
 		bool success = attemptColonialReplacement(i->second, srcWorld, V2Countries, colonyMap, inverseProvinceMap, provinceMap, inverseUnionCultures);
 		if (!success)
 		{
-			oneMapping(i->first, V2Countries, generatedV2TagPrefix, generatedV2TagSuffix);
+			oneMapping(i->second, V2Countries, generatedV2TagPrefix, generatedV2TagSuffix);
 		}
 	}
 }
@@ -253,12 +271,32 @@ bool CountryMapping::attemptColonialReplacement(EU4Country* country, const EU4Wo
 }
 
 
-void CountryMapping::oneMapping(string EU4Tag, const map<string, V2Country*> V2Countries, char& generatedV2TagPrefix, int& generatedV2TagSuffix)
+void CountryMapping::oneMapping(EU4Country* country, const map<string, V2Country*> V2Countries, char& generatedV2TagPrefix, int& generatedV2TagSuffix)
 {
+	string EU4Tag = country->getTag();
 	bool mapped = false;	// whether or not the EU4 tag has been mapped
 
 	// Find a V2 tag from our rule if possible.
 	std::map<std::string, std::vector<std::string>>::iterator findIter = EU4TagToV2TagsRules.find(EU4Tag);	// the rule (if any) with this EU4 tag
+
+	if (findIter == EU4TagToV2TagsRules.end())
+	{
+		std::string CK2Title = GetCK2Title(EU4Tag, country->getName("english"), availableFlags, CK2titles);
+		if (CK2Title != "")
+		{
+			findIter = EU4TagToV2TagsRules.find(boost::to_upper_copy(boost::to_upper_copy(CK2Title)));	// the rule (if any) with this ck2 title
+			LOG(LogLevel::Info) << (findIter == EU4TagToV2TagsRules.end());
+			if (findIter != EU4TagToV2TagsRules.end())
+			{
+				LOG(LogLevel::Info) << findIter->first;
+				for (string f : findIter->second)
+				{
+					LOG(LogLevel::Info) << "  " << f;
+				}
+			}
+		}
+	}
+
 	if (findIter != EU4TagToV2TagsRules.end())
 	{
 		const std::vector<std::string>& possibleV2Tags = findIter->second;
@@ -350,4 +388,62 @@ const std::string& CountryMapping::GetEU4Tag(const std::string& V2Tag) const
 void CountryMapping::LogMapping(const std::string& EU4Tag, const std::string& V2Tag, const std::string& reason)
 {
 	LOG(LogLevel::Debug) << "Mapping " << EU4Tag << " -> " << V2Tag << " (" << reason << ')';
+}
+
+std::string CountryMapping::GetCK2Title(const std::string& EU4Tag, const std::string& countryName, const std::set<std::string>& availableFlags, const std::map<std::string, std::string>& CK2titles)
+{
+	//V2Country* v2source = i->second;
+
+	if (!isalpha(EU4Tag[0]) || !isdigit(EU4Tag[1]) || !isdigit(EU4Tag[2]))
+		return "";
+	
+	//if (i->first[0] == 'C')
+	//	continue; // this one's a colonial nation
+
+	std::string name = V2Localisation::Convert(countryName);
+
+	std::transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+	auto ck2title = CK2titles.find(name);
+
+	if (ck2title == CK2titles.end())
+	{
+		std::string titlename = V2Localisation::StripAccents(name);
+		std::string c_name = "c_" + titlename;
+		std::string d_name = "d_" + titlename;
+		std::string k_name = "k_" + titlename;
+		for (ck2title = CK2titles.begin(); ck2title != CK2titles.end(); ++ck2title)
+		{
+			if ((ck2title->second == c_name) || (ck2title->second == d_name) || (ck2title->second == k_name))
+				break;
+		}
+		if (ck2title == CK2titles.end())
+		{
+			// I've found titles that don't exist in the ck2 name mapping, but do exist in the flagset (c_znojmo).
+			if (availableFlags.find(k_name) != availableFlags.end())
+			{
+				LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << k_name;
+				return k_name;
+			}
+			else if (availableFlags.find(d_name) != availableFlags.end())
+			{
+				LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << d_name;
+				return d_name;
+			}
+			else if (availableFlags.find(c_name) != availableFlags.end())
+			{
+				LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << c_name;
+				return c_name;
+			}
+		}
+	}
+
+	if (ck2title != CK2titles.end())
+	{
+		LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has the CK2 title " << ck2title->second;
+		return ck2title->second;
+	}
+
+	LOG(LogLevel::Info) << "Country " << EU4Tag << " (" << name << ") has no CK2 title.";
+	return ""; 
 }

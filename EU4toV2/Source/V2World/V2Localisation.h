@@ -56,6 +56,8 @@ public:
 	// so we convert the text to ANSI Latin-1 before writing it.
 	static std::string Convert(const std::string&);
 
+	static std::string StripAccents(const std::string&);
+
 	std::string GetLocalName();
 	std::string GetLocalAdjective();
 

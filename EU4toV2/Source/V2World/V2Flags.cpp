@@ -115,30 +115,15 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
 	{
 		V2Country* v2source = i->second;
-		
+
 		if (i->second->getSourceCountry()
-			&& requiredTags.find(i->first) != requiredTags.end()
-			&& (isalpha(i->first[0]) && isdigit(i->first[1]) && isdigit(i->first[2])))
+			&& requiredTags.find(i->first) != requiredTags.end())
 		{
-			//if (i->first[0] == 'C')
-			//	continue; // this one's a colonial nation
-
-			std::string name = i->second->getLocalName();
-			name = V2Localisation::Convert(name);
-
-			std::transform(name.begin(), name.end(), name.begin(), ::tolower);
-
-			auto ck2title = CK2titles.find(name);
-			if (ck2title != CK2titles.end())
+			std::string ck2title = CountryMapping::GetCK2Title(i->first,i->second->getLocalName(),usableFlagTags,CK2titles);
+			if ((ck2title != "") && (usableFlagTags.find(ck2title) != usableFlagTags.end()))
 			{
-				LOG(LogLevel::Info) << "Country " << i->first << " has the CK2 title " << ck2title->second;
-
-				if (usableFlagTags.find(ck2title->second) == usableFlagTags.end())
-					continue; // we don't have a flag for this CK2 title
-
-				tagMapping[i->first] = ck2title->second;
-
-				usableFlagTags.erase(ck2title->second);
+				tagMapping[i->first] = ck2title;
+				usableFlagTags.erase(ck2title);
 				requiredTags.erase(i->first);
 			}
 		}
@@ -256,11 +241,15 @@ bool V2Flags::Output() const
 
 	// Create output folders.
 	std::string outputGraphicsFolder = "Output\\" + Configuration::getOutputName() + "\\gfx";
+	std::string outputFlagFolder = outputGraphicsFolder + "\\flags";
+
+	//WinUtils::DeleteFolder(outputFlagFolder); 
+
 	if (!WinUtils::TryCreateFolder(outputGraphicsFolder))
 	{
 		return false;
 	}
-	std::string outputFlagFolder = outputGraphicsFolder + "\\flags";
+
 	if (!WinUtils::TryCreateFolder(outputFlagFolder))
 	{
 		return false;
