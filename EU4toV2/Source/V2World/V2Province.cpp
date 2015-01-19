@@ -520,11 +520,6 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	artisans += 400;
 	artisans	+= productionBuilding * 125;
 
-	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
-	{
-		slaves += 500;
-	}
-
 	soldiers += 100;
 	soldiers += armyBuilding * 45;
 	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("quantity_ideas") != -1))
@@ -578,12 +573,6 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		bureaucrats -= 5;
 	}
 
-	//Bill of Rights NI reduces slaves by 10%
-	if (oldCountry->hasNationalIdea("bill_of_rights") )
-	{
-		slaves = (int)(slaves * 0.9);
-	}
-
 	farmers = 10000 - (slaves + soldiers + craftsmen + artisans + clergymen + clerks + bureaucrats + officers + capitalists + aristocrats);
 
 	if (farmers > 0)
@@ -598,7 +587,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (slaves > 0)
 	{
 		V2Pop* slavesPop = new V2Pop(		"slaves",
-			(int)(demographic.ratio * newPopulation * (slaves / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (slaves / 10000) + 0.5),
 													demographic.culture,
 													demographic.religion
 												);
