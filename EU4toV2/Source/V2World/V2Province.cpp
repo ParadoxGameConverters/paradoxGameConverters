@@ -376,7 +376,6 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	const EU4Country*		oldCountry		= demographic.oldCountry;
 
 	// each "point" here represents 0.01% (1 / 10 000) population of this culture-religion pair
-	double farmers			= 0;
 	double craftsmen		= 0;
 	double slaves			= 0;
 	double soldiers		= 0;
@@ -573,107 +572,81 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		bureaucrats -= 5;
 	}
 
-	farmers = 10000 - (slaves + soldiers + craftsmen + artisans + clergymen + clerks + bureaucrats + officers + capitalists + aristocrats);
-
-	if (farmers > 0)
-	{
-		V2Pop* farmersPop = new V2Pop(	"farmers",
-													(int)(demographic.ratio * newPopulation * (farmers / 10000)),
-													demographic.culture,
-													demographic.religion
-												);
-		pops.push_back(farmersPop);
-	}
+	int farmers = static_cast<int>(demographic.ratio * newPopulation + 0.5);
 	if (slaves > 0)
 	{
-		V2Pop* slavesPop = new V2Pop(		"slaves",
-			static_cast<int>(demographic.ratio * newPopulation * (slaves / 10000) + 0.5),
-													demographic.culture,
-													demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (slaves / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* slavesPop = new V2Pop("slaves", size,	demographic.culture, demographic.religion);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)
 	{
-		V2Pop* soldiersPop = new V2Pop(	"soldiers",
-			static_cast<int>(demographic.ratio * newPopulation * (soldiers / 10000) + 0.5),
-													demographic.culture,
-													demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (soldiers / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* soldiersPop = new V2Pop("soldiers", size, demographic.culture, demographic.religion);
 		pops.push_back(soldiersPop);
 	}
 	if (craftsmen > 0)
 	{
-		V2Pop* craftsmenPop = new V2Pop(	"craftsmen",
-			static_cast<int>(demographic.ratio * newPopulation * (craftsmen / 10000) + 0.5),
-													demographic.culture,
-													demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (craftsmen / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* craftsmenPop = new V2Pop("craftsmen", size,	demographic.culture, demographic.religion);
 		pops.push_back(craftsmenPop);
 	}
 	if (artisans > 0)
 	{
-		V2Pop* artisansPop = new V2Pop(	"artisans",
-			static_cast<int>(demographic.ratio * newPopulation * (artisans / 10000) + 0.5),
-													demographic.culture,
-													demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (artisans / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* artisansPop = new V2Pop("artisans", size, demographic.culture, demographic.religion);
 		pops.push_back(artisansPop);
 	}
 	if (clergymen > 0)
 	{
-		V2Pop* clergymenPop = new V2Pop(	"clergymen",
-			static_cast<int>(demographic.ratio * newPopulation * (clergymen / 10000) + 0.5),
-													demographic.culture,
-													demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (clergymen / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* clergymenPop = new V2Pop("clergymen", size,	demographic.culture, demographic.religion);
 		pops.push_back(clergymenPop);
 	}
 	if (clerks > 0)
 	{
-		V2Pop* clerksPop = new V2Pop(	"clerks",
-			static_cast<int>(demographic.ratio * newPopulation * (clerks / 10000) + 0.5),
-												demographic.culture,
-												demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (clerks / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* clerksPop = new V2Pop("clerks", size,	demographic.culture, demographic.religion);
 		pops.push_back(clerksPop);
 	}
 	if (bureaucrats > 0)
 	{
-		V2Pop* bureaucratsPop = new V2Pop(	"bureaucrats",
-			static_cast<int>(demographic.ratio * newPopulation * (bureaucrats / 10000) + 0.5),
-														demographic.culture,
-														demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (bureaucrats / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* bureaucratsPop = new V2Pop("bureaucrats", size, demographic.culture, demographic.religion);
 		pops.push_back(bureaucratsPop);
 	}
 	if (officers > 0)
 	{
-		V2Pop* officersPop = new V2Pop(	"officers",
-			static_cast<int>(demographic.ratio * newPopulation * (officers / 10000) + 0.5),
-													demographic.culture,
-													demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (officers / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* officersPop = new V2Pop("officers", size, demographic.culture, demographic.religion);
 		pops.push_back(officersPop);
 	}
 	if (capitalists > 0)
 	{
-		V2Pop* capitalistsPop = new V2Pop(	"capitalists",
-			static_cast<int>(demographic.ratio * newPopulation * (capitalists / 10000) + 0.5),
-														demographic.culture,
-														demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (capitalists / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* capitalistsPop = new V2Pop("capitalists", size, demographic.culture, demographic.religion);
 		pops.push_back(capitalistsPop);
 	}
 	if (aristocrats > 0)
 	{
-		V2Pop* aristocratsPop = new V2Pop(	"aristocrats",
-			static_cast<int>(demographic.ratio * newPopulation * (aristocrats / 10000) + 0.5),
-														demographic.culture,
-														demographic.religion
-												);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (aristocrats / 10000) + 0.5);
+		farmers -= size;
+		V2Pop* aristocratsPop = new V2Pop("aristocrats", size, demographic.culture, demographic.religion);
 		pops.push_back(aristocratsPop);
 	}
+
+	V2Pop* farmersPop = new V2Pop("farmers", farmers, demographic.culture, demographic.religion);
+	pops.push_back(farmersPop);
+
 	//LOG(LogLevel::Info) << "Name: " << this->getSrcProvince()->getProvName() << " demographics.ratio: " << demographic.ratio << " newPopulation: " << newPopulation 
 	//	<< " farmer: " << farmers
 	//	<< " total: " << total;
