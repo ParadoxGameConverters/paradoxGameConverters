@@ -532,12 +532,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		soldiers *= 5;
 	}
 
-	officers	+= armyBuilding * 2;
-	if (oldCountry->hasNationalIdea("battlefield_commissions")
-		|| oldCountry->hasNationalIdea("sea_hawks"))
-	{
-		officers  *= 2;
-	}
+	officers += 2 * (armyBuilding + 2);
 
 	clergymen += 100;
 
@@ -666,7 +661,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (officers > 0)
 	{
 		V2Pop* officersPop = new V2Pop(	"officers",
-			(int)(demographic.ratio * newPopulation * (officers / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (officers / 10000) + 0.5),
 													demographic.culture,
 													demographic.religion
 												);
