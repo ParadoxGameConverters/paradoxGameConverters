@@ -517,7 +517,8 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		newPopulation = oldPopulation;
 	}
 
-	artisans	+= productionBuilding * 175;
+	artisans += 400;
+	artisans	+= productionBuilding * 125;
 
 	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
 	{
@@ -629,7 +630,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (artisans > 0)
 	{
 		V2Pop* artisansPop = new V2Pop(	"artisans",
-			(int)(demographic.ratio * newPopulation * (artisans / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (artisans / 10000) + 0.5),
 													demographic.culture,
 													demographic.religion
 												);
@@ -656,7 +657,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (bureaucrats > 0)
 	{
 		V2Pop* bureaucratsPop = new V2Pop(	"bureaucrats",
-			(int)(demographic.ratio * newPopulation * (bureaucrats / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (bureaucrats / 10000) + 0.5),
 														demographic.culture,
 														demographic.religion
 												);
