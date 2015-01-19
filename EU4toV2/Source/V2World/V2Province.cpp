@@ -525,11 +525,11 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		slaves += 500;
 	}
 
-	soldiers += (armyBuilding + 1) * 8;
-	if (oldCountry->hasNationalIdea("grand_army")
-		|| oldCountry->hasNationalIdea("glorious_arms"))
+	soldiers += 100;
+	soldiers += armyBuilding * 45;
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("quantity_ideas") != -1))
 	{
-		soldiers *= 5;
+		soldiers *= 2;
 	}
 
 	officers += 2 * (armyBuilding + 2);
@@ -607,7 +607,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (soldiers > 0)
 	{
 		V2Pop* soldiersPop = new V2Pop(	"soldiers",
-			(int)(demographic.ratio * newPopulation * (soldiers / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (soldiers / 10000) + 0.5),
 													demographic.culture,
 													demographic.religion
 												);
