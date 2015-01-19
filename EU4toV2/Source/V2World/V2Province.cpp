@@ -540,15 +540,11 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 
 	clergymen += 100;
 
+	bureaucrats += 10;
 	bureaucrats += govBuilding * 2;
-	if (oldCountry->getCapital() == oldProvince->getNum()
-		|| oldCountry->getNationalFocus() == oldProvince->getNum())
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("administrative_ideas") != -1))
 	{
-		bureaucrats	+= 30;
-	}
-	if (oldCountry->hasNationalIdea("bureaucracy"))
-	{
-		bureaucrats *= 2;
+		bureaucrats += oldCountry->hasNationalIdea("administrative_ideas");
 	}
 
 	aristocrats	+= 7 * (tradeBuilding + 11);
@@ -576,12 +572,14 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		craftsmen += (10000 * actualCraftsmen) / (demographic.ratio * newPopulation);
 	}
 
-	// Uncivs cannot have capitalists, clerks, or craftsmen
+	// Uncivs cannot have capitalists, clerks, or craftsmen, and get fewer bureaucrats
 	if (!_owner->isCivilized())
 	{
 		capitalists	= 0;
 		clerks		= 0;
 		craftsmen	= 0;
+
+		bureaucrats -= 5;
 	}
 
 	//Bill of Rights NI reduces slaves by 10%
