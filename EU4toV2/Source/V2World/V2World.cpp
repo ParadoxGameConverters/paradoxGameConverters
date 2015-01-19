@@ -1134,7 +1134,14 @@ void V2World::setupPops(EU4World& sourceWorld)
 		itr->second->setupPops(popWeightRatio);
 	}
 
-	LOG(LogLevel::Info) << "Total world population: " << my_totalWorldPopulation;
+	if (Configuration::getConvertPopTotals())
+	{
+		LOG(LogLevel::Info) << "Total world population: " << my_totalWorldPopulation;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Total world population: " << totalWorldPopulation;
+	}
 	LOG(LogLevel::Info) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
 	LOG(LogLevel::Info) << my_totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
 	LOG(LogLevel::Info) << "Population per weight point is: " << popWeightRatio;
