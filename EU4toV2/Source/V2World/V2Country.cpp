@@ -1392,7 +1392,7 @@ void V2Country::setupPops(double popWeightRatio)
 	}
 
 	// output statistics on pops
-	map<string, long int> popsData;
+	/*map<string, long int> popsData;
 	for (auto provItr = provinces.begin(); provItr != provinces.end(); provItr++)
 	{
 		auto pops = provItr->second->getPops();
@@ -1425,7 +1425,7 @@ void V2Country::setupPops(double popWeightRatio)
 			fprintf(dataFile, "%s,%d,%f\n", tag.c_str(), dataItr->second, popsPercent);
 			fclose(dataFile);
 		}
-	}
+	}*/
 }
 
 
