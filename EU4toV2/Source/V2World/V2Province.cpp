@@ -517,16 +517,6 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		newPopulation = oldPopulation;
 	}
 
-
-	if(   oldProvince->hasBuilding("weapons")
-		|| oldProvince->hasBuilding("wharf")
-		|| oldProvince->hasBuilding("refinery")
-		|| oldProvince->hasBuilding("textile"))
-	{
-		craftsmen	+= (productionBuilding + 1) * 20;
-	}
-
-
 	artisans	+= productionBuilding * 175;
 
 	if (!oldCountry->hasModifier("the_abolish_slavery_act"))
@@ -586,6 +576,9 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 
 		double actualClerks = 181 * factories.size() * demographic.ratio;
 		clerks += (10000 * actualClerks) / (demographic.ratio * newPopulation);
+
+		double actualCraftsmen = 2639 * factories.size() * demographic.ratio;
+		craftsmen += (10000 * actualCraftsmen) / (demographic.ratio * newPopulation);
 	}
 
 	// Uncivs cannot have capitalists, clerks, or craftsmen
@@ -634,7 +627,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (craftsmen > 0)
 	{
 		V2Pop* craftsmenPop = new V2Pop(	"craftsmen",
-													(int)(demographic.ratio * newPopulation * (craftsmen / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (craftsmen / 10000) + 0.5),
 													demographic.culture,
 													demographic.religion
 												);
@@ -661,7 +654,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (clerks > 0)
 	{
 		V2Pop* clerksPop = new V2Pop(	"clerks",
-			(int)(demographic.ratio * newPopulation * (clerks / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (clerks / 10000) + 0.5),
 												demographic.culture,
 												demographic.religion
 												);
