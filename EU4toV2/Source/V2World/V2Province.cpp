@@ -539,11 +539,6 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	}
 
 	clergymen += 100;
-	if (oldCountry->hasNationalIdea("church_attendance_duty")
-		|| oldCountry->hasNationalIdea("deus_vult"))
-	{
-		clergymen += 50;
-	}
 
 	bureaucrats += govBuilding * 2;
 	if (oldCountry->getCapital() == oldProvince->getNum()
@@ -645,7 +640,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	if (clergymen > 0)
 	{
 		V2Pop* clergymenPop = new V2Pop(	"clergymen",
-			(int)(demographic.ratio * newPopulation * (clergymen / 10000)),
+			static_cast<int>(demographic.ratio * newPopulation * (clergymen / 10000) + 0.5),
 													demographic.culture,
 													demographic.religion
 												);
