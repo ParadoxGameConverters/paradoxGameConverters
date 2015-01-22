@@ -3221,5 +3221,8 @@ link = { name = "Østergøtland" 	 title = "c_ostergotland" 	 region = "e_scandi
 link = { name = "Østerås" 	 title = "c_uppland" 	 region = "e_scandinavia" }
 link = { name = "Østkarelen" 	 title = "c_karelen" 	 region = "e_scandinavia" }
 link = { name = "Üxküll" 	 title = "c_lettigalians" 	 region = "e_wendish_empire" }
+link = { name = "Baddids" 	 title = "d_baddids" 	 region = "e_arabia" }
+link = { name = "Radhis" 	 title = "d_radhis" 	 region = "e_arabia" }
+link = { name = "Mansurids" 	 title = "k_mansurids" 	 region = "e_arabia" }
 
 }
