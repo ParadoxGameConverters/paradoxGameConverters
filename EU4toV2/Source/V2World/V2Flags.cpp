@@ -310,6 +310,9 @@ bool V2Flags::Output() const
 		}
 	}
 
+	// I really shouldn't be hardcoding this...
+	std::set<std::string> UniqueColonialFlags { "alyeska", "newholland", "acadia", "kanata", "novascotia", "novahollandia", "vinland", "newspain" };
+
 	//typedef std::map<std::string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
 	for (auto i : colonialFlagMapping)
 	{
@@ -326,7 +329,8 @@ bool V2Flags::Output() const
 			bool flagFileFound = false;
 			std::string folderPath = "blankMod\\output\\gfx\\flags";
 
-			if (i == 0 || i == 3) // monarchy or vanilla
+			if ((i == 0 || i == 3) // monarchy or vanilla
+				&& (UniqueColonialFlags.find(baseFlag) == UniqueColonialFlags.end()))
 			{
 				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
 				std::string overlordFlagPath = folderPath + '\\' + overlord + ".tga";
