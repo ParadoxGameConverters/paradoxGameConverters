@@ -153,7 +153,7 @@ link = { v2 = mongol eu4 = mongol eu4 = chahar eu4 = khalkha eu4 = oirats }
 link = { v2 = uzbek eu4 = uzbek eu4 = uzbehk eu4 = karluk }
 link = { v2 = kazak eu4 = khazak }
 link = { v2 = kirgiz eu4 = kirgiz eu4 = kirghiz }
-link = { v2 = siberian eu4 = siberian }
+link = { v2 = siberian eu4 = siberian eu4 = khanty }
 link = { v2 = yakut eu4 = yakut eu4 = yukagyr eu4 = buryat eu4 = tungus }
 link = { v2 = tatar eu4 = tartar eu4 = bolghar eu4 = cuman eu4 = avar eu4 = khazar eu4 = astrakhani eu4 = bashkir eu4 = crimean eu4 = kazani eu4 = mishary eu4 = nogaybak eu4 = qasim }
 link = { v2 = kurdish eu4 = kurdish }
