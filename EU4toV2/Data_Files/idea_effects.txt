@@ -20,16 +20,19 @@
 
 
 # This file allows EU4 ideas to have various effects in the conversion
-#	* army_investment, commerce_investment, culture_investmeny, industry_investment, and navy_investment 
-#		affect which tech school a nation starts with. Each levle of the idea (including simply having the idea) influences
+#	* army_investment, commerce_investment, culture_investmeny, industry_investment and navy_investment 
+#		affect which tech school a nation starts with. Each level of the idea (including simply having the idea) influences
 #		the investment by the amount specified.
 #	* upper_house_liberal and upper_house_reactionary affect the upper house a nation starts with.
 #		Each level of the idea (including simply having the idea) increases the amount of liberal or reactionary by the
 #		amount specified.
-#	* NV_order, NV_liberty, and NV_equality affect the (V2) national idea a nation starts with. Each level of the (EU4) idea
+#	* NV_order, NV_liberty and NV_equality affect the (V2) national idea a nation starts with. Each level of the (EU4) idea
 #		(including simply having the idea) increases the "score" for the (v2) idea by the specified amount, and completing
 #		the (EU4) idea gives an additional point.
 #	* literacy is a list of the idea levels that will each give a 10% increase to literacy
+#	* army_tech_score, navy_tech_score, commerce_tech_score, culture_tech_score and industry_tech_score affect the starting techs of a nation.
+#		1 point equals one EU4 tech level (I.E having MIL tech 29 and full offensive should be about equal to having MIL tech 31 and no offensive.)
+#		Each level of the idea (including simply having the idea) influences the tech score by the amount specified.
 
 aristocracy_ideas = {
 	army_investment	= 1
@@ -73,16 +76,20 @@ spy_ideas = {
 
 diplomatic_ideas = {
 	army_investment  = -1
+	commerce_investment = 1
+	culture_investment = 1
 }
 
 offensive_ideas = {
 	army_investment = 1
+	army_tech_score = 0.25
 }
 
 defensive_ideas = {
 	army_investment = 1
 	navy_investment = -1
 	upper_house_reactionary = 0.0125
+	army_tech_score = 0.10
 }
 
 trade_ideas = {
@@ -90,6 +97,7 @@ trade_ideas = {
 	industry_investment = 1
 	navy_investment = 1
 	upper_house_liberal = 0.0125
+	commerce_tech_score = 0.15
 }
 
 economic_ideas = {
@@ -105,11 +113,18 @@ exploration_ideas = {
 }
 
 maritime_ideas = {
+	navy_investment = 1
+	commerce_investment = 1
+	navy_tech_score = 0.10
+	commerce_tech_score = 0.10
 }
 
 quality_ideas = {
 	army_investment = 1
+	navy_investment = 1
 	NV_order = 1
+	army_tech_score = 0.15
+	navy_tech_score = 0.10
 }
 
 quantity_ideas = {
@@ -123,6 +138,7 @@ quantity_ideas = {
 
 expansion_ideas = {
 	industry_investment = -1
+	commerce_investment = 1
 	upper_house_reactionary = 0.0125
 }
 
@@ -130,14 +146,24 @@ administrative_ideas = {
 	industry_investment = 1
 	NV_liberty = -1
 	literacy = { 6 }
+	industry_tech_score = 0.15
 }
 
 humanist_ideas = {
+	commerce_investment = 1
+	culture_investment = 1
+	upper_house_liberal = 0.0125
+	NV_equality = 1
+	culture_tech_score = 0.20
 }
 
 influence_ideas = {
+	army_investment  = -1
+	commerce_investment = 1
+	culture_investment = 1
 }
 
 naval_ideas = {
 	navy_investment = 1
+	navy_tech_score = 0.25
 }

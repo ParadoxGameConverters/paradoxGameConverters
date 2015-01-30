@@ -613,7 +613,7 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnio
 }
 
 
-void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas)
+void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& armyTechIdeas, map<string, double>& commerceTechIdeas, map<string, double>& cultureTechIdeas, map<string, double>& industryTechIdeas, map<string, double>& navyTechIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas)
 {
 	vector<Object*> ideasObj = obj->getLeaves();
 	for (vector<Object*>::iterator ideasItr = ideasObj.begin(); ideasItr != ideasObj.end(); ideasItr++)
@@ -642,6 +642,26 @@ void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, in
 			else if (effectType == "navy_investment")
 			{
 				navyInvIdeas[idea] = atoi((*effectsItr)[0].getLeaf().c_str());
+			}
+			else if (effectType == "army_tech_score")
+			{
+				armyTechIdeas[idea] = atof((*effectsItr)[0].getLeaf().c_str());
+			}
+			else if (effectType == "commerce_tech_score")
+			{
+				commerceTechIdeas[idea] = atof((*effectsItr)[0].getLeaf().c_str());
+			}
+			else if (effectType == "culture_tech_score")
+			{
+				cultureTechIdeas[idea] = atof((*effectsItr)[0].getLeaf().c_str());
+			}
+			else if (effectType == "industry_tech_score")
+			{
+				industryTechIdeas[idea] = atof((*effectsItr)[0].getLeaf().c_str());
+			}
+			else if (effectType == "navy_tech_score")
+			{
+				navyTechIdeas[idea] = atof((*effectsItr)[0].getLeaf().c_str());
 			}
 			else if (effectType == "upper_house_liberal")
 			{

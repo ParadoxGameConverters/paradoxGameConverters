@@ -1349,7 +1349,7 @@ void V2World::convertArmies(const EU4World& sourceWorld, const inverseProvinceMa
 }
 
 
-void V2World::convertTechs(const EU4World& sourceWorld)
+void V2World::convertTechs(const EU4World& sourceWorld, map<string, double>& armyTechIdeas, map<string, double>& commerceTechIdeas, map<string, double>& cultureTechIdeas, map<string, double>& industryTechIdeas, map<string, double>& navyTechIdeas)
 {
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	
@@ -1379,11 +1379,41 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 	{
 		i++;
 	}
-	highestArmy			= oldArmyMean		= armyMean		= i->second->getAdmTech() + i->second->getMilTech();
-	highestNavy			= oldNavyMean		= navyMean		= i->second->getMilTech() + i->second->getDipTech();
-	highestCommerce	= oldCommerceMean	= commerceMean	= i->second->getAdmTech() + i->second->getDipTech();
-	highestCulture		= oldCultureMean	= cultureMean	= i->second->getDipTech();
-	highestIndustry	= oldIndustryMean	= industryMean	= i->second->getMilTech() + i->second->getAdmTech() + i->second->getDipTech();
+
+	armyMean		= i->second->getAdmTech() + i->second->getMilTech();
+	for (auto j: armyTechIdeas)
+	{
+		armyMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+	}
+	highestArmy			= oldArmyMean		= armyMean;
+
+	navyMean		= i->second->getMilTech() + i->second->getDipTech();
+	for (auto j: navyTechIdeas)
+	{
+		navyMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+	}
+	highestNavy			= oldNavyMean		= navyMean;
+
+	commerceMean	= i->second->getAdmTech() + i->second->getDipTech();
+	for (auto j: commerceTechIdeas)
+	{
+		commerceMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+	}
+	highestCommerce	= oldCommerceMean	= commerceMean;
+
+	cultureMean	= i->second->getDipTech();
+	for (auto j: cultureTechIdeas)
+	{
+		cultureMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+	}
+	highestCulture		= oldCultureMean	= cultureMean;
+
+	industryMean	= i->second->getMilTech() + i->second->getAdmTech() + i->second->getDipTech();
+	for (auto j: industryTechIdeas)
+	{
+		industryMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+	}
+	highestIndustry	= oldIndustryMean	= industryMean;
 
 	for (i++; i != sourceCountries.end(); i++)
 	{
@@ -1392,6 +1422,10 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 			continue;
 		}
 		double newTech	= i->second->getAdmTech() + i->second->getMilTech();
+		for (auto j: armyTechIdeas)
+		{
+			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+		}
 		armyMean			= oldArmyMean + ((newTech - oldArmyMean) / num);
 		oldArmyMean		= armyMean; 
 		if (newTech > highestArmy)
@@ -1400,6 +1434,10 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		}
 
 		newTech		= i->second->getMilTech() + i->second->getDipTech();
+		for (auto j: navyTechIdeas)
+		{
+			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+		}
 		navyMean		= oldNavyMean + ((newTech - oldNavyMean) / num);
 		oldNavyMean	= navyMean;
 		if (newTech > highestNavy)
@@ -1408,6 +1446,10 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		}
 
 		newTech				= i->second->getAdmTech() + i->second->getDipTech();
+		for (auto j: commerceTechIdeas)
+		{
+			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+		}
 		commerceMean		= oldCommerceMean + ((newTech - oldCommerceMean) / num);
 		oldCommerceMean	= commerceMean;
 		if (newTech > highestCommerce)
@@ -1416,6 +1458,10 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		}
 
 		newTech			= i->second->getDipTech();
+		for (auto j: cultureTechIdeas)
+		{
+			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+		}
 		cultureMean		= oldCultureMean + ((newTech - oldCultureMean) / num);
 		oldCultureMean	= cultureMean;
 		if (newTech > highestCulture)
@@ -1424,6 +1470,10 @@ void V2World::convertTechs(const EU4World& sourceWorld)
 		}
 
 		newTech				= i->second->getMilTech() + i->second->getAdmTech() + i->second->getDipTech();
+		for (auto j: industryTechIdeas)
+		{
+			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
+		}
 		industryMean		= oldIndustryMean + ((newTech - oldIndustryMean) / num);
 		oldIndustryMean	= industryMean;
 		if (newTech > highestIndustry)

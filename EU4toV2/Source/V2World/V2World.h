@@ -58,7 +58,7 @@ class V2World {
 		void setupPops(EU4World& sourceWorld);
 		void addUnions(const unionMapping& unionMap);
 		void convertArmies(const EU4World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap, adjacencyMapping adjacencyMap);
-		void convertTechs(const EU4World& sourceWorld);
+		void convertTechs(const EU4World& sourceWorld, map<string, double>& armyTechIdeas, map<string, double>& commerceTechIdeas, map<string, double>& cultureTechIdeas, map<string, double>& industryTechIdeas, map<string, double>& navyTechIdeas);
 		void allocateFactories(const EU4World& sourceWorld, const V2FactoryFactory& factoryBuilder);
 
 		map<string, V2Country*>	getPotentialCountries()	const;
