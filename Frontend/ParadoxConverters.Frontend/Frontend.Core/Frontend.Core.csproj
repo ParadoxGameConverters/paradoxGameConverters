@@ -146,7 +146,6 @@
     <Compile Include="Commands\CommandBase.cs" />
     <Compile Include="Commands\OpenUriCommand.cs" />
     <Compile Include="Views\Behaviours\ScrollIntoViewBehaviour.cs" />
-    <Compile Include="Views\TemplateSelectors\PreferenceEntryTemplateSelector.cs" />
     <Compile Include="Views\TemplateSelectors\PreferenceTemplateSelector.cs" />
     <Compile Include="Views\TemplateSelectors\RequiredItemTemplateSelector.cs" />
   </ItemGroup>

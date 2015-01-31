@@ -38,11 +38,6 @@ namespace Frontend.Core.Commands
         /// <returns></returns>
         protected override bool OnCanExecute(object parameter)
         {
-            //if (string.IsNullOrEmpty(this.Options.CurrentConverter.AbsoluteConverterPath))
-            //{
-            //    return false;
-            //}
-
             // Check various requirements
             var saveGame = this.Options.CurrentConverter.RequiredItems.First(i => i.TagName.Equals("SaveGame"));
             
@@ -58,31 +53,6 @@ namespace Frontend.Core.Commands
 
             return false;
         }
-
-        //protected override void BeforeExecute(object parameter)
-        //{
-        //    // Copy configuration files to working directory.
-
-        //    if (!this.Options.UseConverterMod)
-        //    {
-        //        return;
-        //        //TODO: Add code to reverse this as well
-        //    }
-
-        //    // Copy configuration files to working folder
-
-        //    var conflicts = new List<string>();
-
-        //    foreach (var file in this.Options.ModFilesProvider.ConfigurationFiles)
-        //    {
-        //        var path = Path.Combine(Environment.CurrentDirectory, file.FileName);
-
-        //        if (File.Exists(path))
-        //        {
-        //            conflicts.Add(path);
-        //        }
-        //    }
-        //}
 
         /// <summary>
         /// When overridden in a derived class, performs operations in a background
@@ -229,35 +199,7 @@ namespace Frontend.Core.Commands
         /// </summary>
         private void InstallConverterMod()
         {
-            //var modFolder = this.Options.ModFilesProvider.ModFolder;
-
             throw new NotImplementedException();
-
-            //var absoluteSourcePath = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "Mod");
-
-            //// Verify source data
-            //if (!Directory.Exists(absoluteSourcePath))
-            //{
-            //    // Log error
-            //    this.Log("Could not find mod folder (" + absoluteSourcePath + "), making it somewhat hard to copy said folder to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". This means that the converter mod isn't installed, so you might want to try to do it manually instead.", LogEntrySeverity.Error, LogEntrySource.UI, null);
-            //    return;
-            //}
-
-            //// Overwrite needed?
-            //if (!File.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod"))
-            //{
-            //    // Ask permission for overwrite (or delete whole thing, then recopy?)
-            //}
-
-            //try
-            //{
-            //    DirectoryCopyHelper.DirectoryCopy(absoluteSourcePath, this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", true, true);
-            //    this.Log("Converter mod copied successfully from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod", LogEntrySeverity.Info, LogEntrySource.UI, null);
-            //}
-            //catch (Exception ex)
-            //{
-            //    this.Log("Converter mod installation failed. Directory could not be copied from " + absoluteSourcePath + " to " + this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath + "\\mod" + ". The internal error message was: " + ex.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
-            //}
         }
         
         /// <summary>
@@ -306,71 +248,6 @@ namespace Frontend.Core.Commands
             }
         }
 
-        ///// <summary>
-        ///// Moves the save game.
-        ///// </summary>
-        //private bool MoveSaveGame()
-        //{
-        //    bool wasMoveSuccessful = false;
-
-        //    // Copy the newly created save to the target game output directory.
-        //    var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
-        //    var canOverWrite = false;
-        //    var targetGameSavegamePathÏtem = this.Options.CurrentConverter.RequiredItems.First(i => i.InternalTagName.Equals("targetGameSavePath"));
-
-        //    if (string.IsNullOrEmpty(targetGameSavegamePathÏtem.SelectedValue))
-        //    {
-        //        this.Log("Could not find a valid save game directory to copy the converted save game to. Please make sure the following path exists: ", LogEntrySeverity.Error, LogEntrySource.UI, targetGameSavegamePathÏtem.SelectedValue);
-        //        return false;
-        //    }
-
-        //    var expectedOutputDirectoryAndFile = Path.Combine(targetGameSavegamePathÏtem.SelectedValue, desiredFileName);
-
-        //    // Don't blindly overwrite any existing saves - that's just rude
-        //    if (File.Exists(expectedOutputDirectoryAndFile))
-        //    {
-        //        var overwriteQuestion = "A " + this.Options.CurrentConverter.TargetGame.FriendlyName + " save with the same name (" + desiredFileName + ") exists already. " + Environment.NewLine + Environment.NewLine
-        //            + "Do you want to overwrite this file? " + Environment.NewLine + "Full path: " + expectedOutputDirectoryAndFile;
-        //        var result = MessageBox.Show(overwriteQuestion, "Confirmation Required", MessageBoxButton.YesNo);
-
-        //        if (result == MessageBoxResult.No)
-        //        {
-        //            this.Log("The file \"" + expectedOutputDirectoryAndFile + "\" existed already, and was not replaced. You should copy \"" + this.DetermineOutputSavePath()
-        //                + "\" to \"" + this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath + "\" to load the converted save.", LogEntrySeverity.Warning, LogEntrySource.UI, null);
-        //            return false;
-        //        }
-
-        //        // Permission granted, continue
-        //        canOverWrite = true;
-        //    }
-
-        //    try
-        //    {
-        //        //var outputSavePath = this.DetermineOutputSavePath();
-        //        File.Copy(Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), desiredFileName), expectedOutputDirectoryAndFile, canOverWrite);
-        //        this.Log(desiredFileName + " has been written to ", LogEntrySeverity.Info, LogEntrySource.UI, this.Options.CurrentConverter.TargetGame.AbsoluteSaveGamePath);
-
-        //        //File.Delete(outputSavePath);
-        //        //this.Log("Deleted temporary file(s).", LogEntrySeverity.Info, LogEntrySource.UI);
-        //        wasMoveSuccessful = true;
-        //    }
-        //    catch (Exception e)
-        //    {
-        //        this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
-        //        wasMoveSuccessful = false;
-        //    }
-
-        //    return wasMoveSuccessful;
-        //}
-
-        /// <summary>
-        /// Determines the output save path.
-        /// </summary>
-        /// <returns></returns>
-        private string DetermineOutputSavePath()
-        {
-            return Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
-        }
 
         /// <summary>
         /// Builds the time span string.
