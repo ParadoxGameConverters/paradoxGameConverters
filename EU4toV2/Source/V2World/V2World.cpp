@@ -421,6 +421,50 @@ void V2World::output() const
 	diplomacy.output();
 
 	outputPops();
+
+	// verify countries got written
+	ifstream V2CountriesInput;
+	V2CountriesInput.open(("Output\\" + Configuration::getOutputName() + "\\common\\countries.txt").c_str());
+	if (!V2CountriesInput.is_open())
+	{
+		LOG(LogLevel::Error) << "Could not open countries.txt";
+		exit(1);
+	}
+
+	bool	staticSection	= true;
+	while (!V2CountriesInput.eof())
+	{
+		string line;
+		getline(V2CountriesInput, line);
+
+		if ((line[0] == '#') || (line.size() < 3))
+		{
+			continue;
+		}
+		else if (line.substr(0, 12) == "dynamic_tags")
+		{
+			continue;
+		}
+
+		string countryFileName;
+		int start			= line.find_first_of('/');
+		int size				= line.find_last_of('\"') - start - 1;
+		countryFileName	= line.substr(start + 1, size);
+
+		struct _stat st;
+		if (_stat(("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + countryFileName).c_str(), &st) == 0)
+		{
+		}
+		else if (_stat((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str(), &st) == 0)
+		{
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "common\\countries\\" << countryFileName << " does not exists. This will likely crash Victoria 2.";
+			continue;
+		}
+	}
+	V2CountriesInput.close();
 }
 
 
