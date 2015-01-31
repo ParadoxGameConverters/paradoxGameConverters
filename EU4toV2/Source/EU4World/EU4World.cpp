@@ -43,6 +43,12 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
 
+	vector<Object*> dateObj = obj->getValue("date");
+	if (dateObj.size() > 0)
+	{
+		date endDate(dateObj[0]->getLeaf());
+	}
+
 	// Get Provinces and then get Countries
 	provinces.clear();
 	vector<Object*> provincesObj = obj->getValue("provinces");					// the object holding the provinces

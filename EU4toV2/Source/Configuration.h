@@ -76,6 +76,16 @@ public:
 		getInstance()->firstEU4Date = _firstDate;
 	}
 
+	static date	getLastEU4Date()
+	{
+		return getInstance()->lastEU4Date;
+	}
+
+	static void setLastEU4Date(date _lastDate)
+	{
+		getInstance()->lastEU4Date = _lastDate;
+	}
+
 	static string getResetProvinces()
 	{
 		return getInstance()->resetProvinces;
@@ -136,6 +146,7 @@ private:
 	
 	// items set during conversion
 	date		firstEU4Date;			// the date EU4 began
+	date		lastEU4Date;			// the date EU4 ended
 	string	outputName;				// the name the outputted mod should have
 };
 
