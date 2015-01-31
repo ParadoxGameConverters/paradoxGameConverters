@@ -16,7 +16,7 @@ namespace Frontend.Core.ViewModels
         private ObservableCollection<IStep> steps;
         private IStep currentStep;
 
-        public StepConductorBase(IEventAggregator eventAggregator)
+        protected StepConductorBase(IEventAggregator eventAggregator)
             : base(eventAggregator)
         {
         }

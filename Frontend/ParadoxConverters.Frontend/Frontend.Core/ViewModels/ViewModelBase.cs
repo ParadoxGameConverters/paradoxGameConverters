@@ -12,7 +12,7 @@ namespace Frontend.Core.ViewModels
         private IEventAggregator eventAggregator;
         private bool isDisposed;
 
-        public ViewModelBase(IEventAggregator eventAggregator)
+        protected ViewModelBase(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
 

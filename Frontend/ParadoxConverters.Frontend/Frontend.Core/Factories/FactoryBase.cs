@@ -29,7 +29,7 @@ namespace Frontend.Core.Factories
         /// <param name="eventAggregator">The event aggregator</param>
         /// <param name="xmlElementIdentifier">The xml tag to start with</param>
         /// <param name="filter">The filter (NOT IMPLEMENTED)</param>
-        public FactoryBase(IEventAggregator eventAggregator, string xmlElementIdentifier, Func<XElement, bool> filter)
+        protected FactoryBase(IEventAggregator eventAggregator, string xmlElementIdentifier, Func<XElement, bool> filter)
         {
             this.eventAggregator = eventAggregator;
             this.xmlElementIdentifier = xmlElementIdentifier;
@@ -41,7 +41,7 @@ namespace Frontend.Core.Factories
         /// </summary>
         /// <param name="eventAggregator">The eventAggregator</param>
         /// <param name="xmlElementIdentifier">The xml tag to start with</param>
-        public FactoryBase(IEventAggregator eventAggregator, string xmlElementIdentifier)
+        protected FactoryBase(IEventAggregator eventAggregator, string xmlElementIdentifier)
             : this(eventAggregator, xmlElementIdentifier, null)
         {
         }

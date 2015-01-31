@@ -12,7 +12,7 @@ namespace Frontend.Core.ViewModels
     {
         private IConverterOptions options;
 
-        public StepViewModelBase(IEventAggregator eventAggregator, IConverterOptions options)
+        protected StepViewModelBase(IEventAggregator eventAggregator, IConverterOptions options)
             : base(eventAggregator)
         {
             this.options = options;
