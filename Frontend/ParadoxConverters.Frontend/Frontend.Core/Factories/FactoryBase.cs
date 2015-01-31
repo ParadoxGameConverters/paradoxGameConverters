@@ -1,13 +1,10 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
-using Frontend.Core.Model.Interfaces;
 using System;
-using System.Linq;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Xml.Linq;
-using Frontend.Core.Helpers;
-using System.Reflection;
 
 namespace Frontend.Core.Factories
 {

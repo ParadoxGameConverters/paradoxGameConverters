@@ -3,13 +3,11 @@
 namespace Frontend.Client
 {
     using Caliburn.Micro;
-    using Frontend.Core.Helpers;
     using Frontend.Core.Logging;
     using Frontend.Core.ViewModels;
     using Frontend.Core.ViewModels.Interfaces;
     using System;
     using System.Collections.Generic;
-    using System.IO;
     using System.Linq;
     using System.Reflection;
     using System.Windows;

@@ -1,9 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using Frontend.Core.Exceptions;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Linq;
-using System;
-using Frontend.Core.Exceptions;
 
 namespace Frontend.Core.Helpers
 {

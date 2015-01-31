@@ -4,7 +4,6 @@ using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace Frontend.Core.Commands

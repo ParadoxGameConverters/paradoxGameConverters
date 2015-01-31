@@ -1,13 +1,9 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Win32;
 using Frontend.Core.Model.Paths.Interfaces;
+using Microsoft.Win32;
+using System;
 using System.IO;
 
 namespace Frontend.Core.Commands

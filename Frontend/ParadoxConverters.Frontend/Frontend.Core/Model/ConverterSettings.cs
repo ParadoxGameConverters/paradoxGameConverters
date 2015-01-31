@@ -3,7 +3,6 @@ using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Frontend.Core.Model

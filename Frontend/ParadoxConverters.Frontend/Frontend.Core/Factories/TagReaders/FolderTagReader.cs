@@ -1,16 +1,8 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Helpers;
-using Frontend.Core.Logging;
-using Frontend.Core.Model;
 using Frontend.Core.Model.Paths;
 using Frontend.Core.Model.Paths.Interfaces;
-using Microsoft.Win32;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Frontend.Core.Factories.TagReaders
