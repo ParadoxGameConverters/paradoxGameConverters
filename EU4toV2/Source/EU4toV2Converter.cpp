@@ -821,6 +821,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	fprintf(modFile, "replace = \"localisation/text.csv\"\n");
 	fprintf(modFile, "replace = \"localisation/0_Names.csv\"\n");
 	fprintf(modFile, "replace = \"localisation/0_Cultures.csv\"\n");
+	fprintf(modFile, "replace = \"history/wars\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
 	system(renameCommand.c_str());
