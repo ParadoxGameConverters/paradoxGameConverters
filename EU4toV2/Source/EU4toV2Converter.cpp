@@ -135,7 +135,17 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			if (itr->substr(pos, itr->length()) == ".mod")
 			{
 				Object* modObj = doParseFile((EU4DocumentsLoc + "\\mod\\" + *itr).c_str());	// the parsed mod file
-				string name = modObj->getLeaf("name");														// the name of the mod
+
+				string name;	// the name of the mod
+				vector<Object*> nameObj = modObj->getValue("name");
+				if (nameObj.size() > 0)
+				{
+					name = nameObj[0]->getLeaf();
+				}
+				else
+				{
+					name = "";
+				}
 
 				string path;	// the path of the mod
 				vector<Object*> dirObjs = modObj->getValue("path");	// the possible paths of the mod
@@ -152,7 +162,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 					}
 				}
 
-				if (path != "")
+				if ((name != "") && (path != ""))
 				{
 					possibleMods.insert(make_pair(name, EU4DocumentsLoc + "\\" + path));
 					Log(LogLevel::Debug) << "\t\tFound a mod named " << name << " claiming to be at " << EU4DocumentsLoc << "\\" << path;
