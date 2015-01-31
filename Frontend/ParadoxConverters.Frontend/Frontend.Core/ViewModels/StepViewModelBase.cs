@@ -3,10 +3,9 @@
 namespace Frontend.Core.ViewModels
 {
     using Caliburn.Micro;
-    using Frontend.Core.Logging;
+    using Frontend.Core.Common;
     using Frontend.Core.Model.Interfaces;
-    using Frontend.Core.ViewModels;
-    using Frontend.Core.ViewModels.Interfaces;
+    using Frontend.Core.Navigation;
 
     public abstract class StepViewModelBase : ViewModelBase, IStep
     {

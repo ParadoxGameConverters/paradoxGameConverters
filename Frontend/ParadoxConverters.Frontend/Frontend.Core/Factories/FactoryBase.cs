@@ -21,7 +21,6 @@ namespace Frontend.Core.Factories
 
         // The tag in the xml file that is the root element for the type of object this factory should create
         private string xmlElementIdentifier;
-        //Func<XElement, bool> filter;
 
         /// <summary>
         /// Initializes a new instance of the FactoryBase class

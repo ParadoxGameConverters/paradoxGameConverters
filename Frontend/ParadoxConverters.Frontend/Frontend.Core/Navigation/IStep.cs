@@ -1,7 +1,8 @@
 ﻿
 
+using Frontend.Core.Common;
 using Frontend.Core.Model.Interfaces;
-namespace Frontend.Core.ViewModels.Interfaces
+namespace Frontend.Core.Navigation
 {
     public interface IStep : IViewModelBase
     {

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.Core.ViewModels.Interfaces
+namespace Frontend.Core.Common
 {
     public interface IViewModelBase : INotifyPropertyChanged
     {

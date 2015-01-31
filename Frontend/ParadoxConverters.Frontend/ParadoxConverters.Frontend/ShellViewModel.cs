@@ -3,10 +3,9 @@
 namespace Frontend.Client
 {
     using Caliburn.Micro;
-    using Frontend.Core.Logging;
     using Frontend.Core.Model;
+    using Frontend.Core.Navigation;
     using Frontend.Core.ViewModels;
-    using Frontend.Core.ViewModels.Interfaces;
     using System;
 
     public class ShellViewModel : IShell , IDisposable

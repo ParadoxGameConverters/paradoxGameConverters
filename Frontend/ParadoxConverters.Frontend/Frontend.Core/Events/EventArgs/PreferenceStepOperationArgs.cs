@@ -1,4 +1,4 @@
-﻿using Frontend.Core.ViewModels.Interfaces;
+﻿using Frontend.Core.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Linq;

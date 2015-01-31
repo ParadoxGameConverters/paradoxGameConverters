@@ -2,9 +2,8 @@
 
 namespace Frontend.Core.ViewModels.Interfaces
 {
-    using Caliburn.Micro;
-    using Frontend.Core.Events.EventArgs;
-    using System;
+    using Frontend.Core.Common;
+    using Frontend.Core.Navigation;
     using System.Collections.ObjectModel;
 
     public interface IStepConductorBase : IViewModelBase

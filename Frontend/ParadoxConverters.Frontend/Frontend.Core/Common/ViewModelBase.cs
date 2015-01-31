@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.Core.ViewModels
+namespace Frontend.Core.Common
 {
     public abstract class ViewModelBase : PropertyChangedBase, IDisposable
     {

@@ -3,6 +3,8 @@
 namespace Frontend.Core.ViewModels
 {
     using Caliburn.Micro;
+    using Frontend.Core.Common;
+    using Frontend.Core.Navigation;
     using Frontend.Core.ViewModels.Interfaces;
     using System.Collections.ObjectModel;
     using System.ComponentModel;

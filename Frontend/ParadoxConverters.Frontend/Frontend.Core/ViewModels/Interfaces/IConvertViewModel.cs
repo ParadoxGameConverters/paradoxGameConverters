@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
+using Frontend.Core.Navigation;
 namespace Frontend.Core.ViewModels.Interfaces
 {
     public interface IConvertViewModel : IStep
