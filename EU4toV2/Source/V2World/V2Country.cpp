@@ -987,6 +987,17 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 			}
 			continue;
 		}
+		else if ((locationCandidates.size() == 1) && (locationCandidates[0] == 0))
+		{
+			LOG(LogLevel::Warning) << "Army or Navy " << (*aitr)->getName() << " assigned to dropped province " << (*aitr)->getLocation() << "; dissolving to pool";
+			int regimentCounts[num_reg_categories] = { 0 };
+			army->getRegimentCounts(regimentCounts);
+			for (int rc = infantry; rc < num_reg_categories; ++rc)
+			{
+				countryRemainder[rc] += regimentCounts[rc];
+			}
+			continue;
+		}
 		bool usePort = false;
 		// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
 		if (army->getNavy())
