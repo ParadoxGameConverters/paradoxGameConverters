@@ -137,13 +137,13 @@
                 <name>yes</name>
                 <friendlyName>Yes</friendlyName>
                 <description>The population totals should be converted</description>
-                <isDefault>true</isDefault>
+                <isDefault>false</isDefault>
               </entryOption>
               <entryOption>
                 <name>no</name>
                 <friendlyName>No</friendlyName>
                 <description>The population totals should NOT be converted</description>
-                <isDefault>false</isDefault>
+                <isDefault>true</isDefault>
               </entryOption>
             </entryOptions>
           </preference>
