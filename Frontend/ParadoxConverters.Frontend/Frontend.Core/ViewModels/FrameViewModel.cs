@@ -1,12 +1,12 @@
 ﻿
 using Caliburn.Micro;
-using System.Linq;
 using Frontend.Core.Commands;
 using Frontend.Core.Events.EventArgs;
-using Frontend.Core.Logging;
+using Frontend.Core.Navigation;
 using Frontend.Core.ViewModels.Interfaces;
 using System.Collections.Generic;
 using System.Windows.Input;
+
 namespace Frontend.Core.ViewModels
 {
     public class FrameViewModel : StepConductorBase, IFrameViewModel
@@ -66,8 +66,6 @@ namespace Frontend.Core.ViewModels
             {
                 this.Steps.Add(step);
             }
-
-            //this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", added: " + newSteps.Count + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
         }
 
         private void RemoveConverterSpecificSteps()
@@ -84,8 +82,6 @@ namespace Frontend.Core.ViewModels
                 this.Steps.RemoveAt(2);
                 removedCount++;
             }
-
-            //this.EventAggregator.PublishOnUIThread(new LogEntry("original count: " + oldCount + ", removed: " + removedCount + ", total: " + this.Steps.Count, LogEntrySeverity.Info, LogEntrySource.UI));
         }
     }
 }

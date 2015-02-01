@@ -16,6 +16,11 @@
             <Setter Property="Margin" Value="6,2,0,0"/>
             <Setter Property="VerticalAlignment" Value="Top"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
         </Style>
 
         <Style x:Key="FolderPathTextBlockStyle" TargetType="{x:Type TextBlock}">
@@ -37,7 +42,7 @@
             <Setter Property="Height" Value="25"/>
             <Setter Property="Margin" Value="6, 1, 0, 0"/>
         </Style>
-        
+                
         <DataTemplate x:Key="FolderSelectionTemplate">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -47,7 +52,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{Binding FriendlyName}" Style="{StaticResource FolderPathTextBlockStyle}"/>
-                <TextBox Text="{Binding SelectedValue}" Grid.Column="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
+                <TextBox Text="{Binding SelectedValue, ValidatesOnDataErrors=true}" Grid.Column="1" 
+                         Style="{StaticResource FolderPathTextBoxStyle}"/>
                 <Button Content="Browse..." Grid.Column="2"  Style="{StaticResource FolderPathBrowseButtonStyle}" 
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.OpenFolderCommand}" 
                         CommandParameter="{Binding}"/>
@@ -63,7 +69,8 @@
                 </Grid.ColumnDefinitions>
 
                 <TextBlock Text="{Binding FriendlyName}" Style="{StaticResource FolderPathTextBlockStyle}"/>
-                <TextBox Text="{Binding SelectedValue}" Grid.Column="1" Style="{StaticResource FolderPathTextBoxStyle}"/>
+                <TextBox Text="{Binding SelectedValue, ValidatesOnDataErrors=true}" Grid.Column="1" 
+                         Style="{StaticResource FolderPathTextBoxStyle}"/>
                 <Button Content="Browse..." Grid.Column="2"  Style="{StaticResource FolderPathBrowseButtonStyle}" 
                         Command="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type UserControl}}, Path=DataContext.OpenFileCommand}" 
                         CommandParameter="{Binding}"/>

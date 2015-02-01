@@ -1,9 +1,5 @@
-﻿using Frontend.Core.ViewModels.Interfaces;
-using System;
+﻿using Frontend.Core.Navigation;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Frontend.Core.Events.EventArgs
 {

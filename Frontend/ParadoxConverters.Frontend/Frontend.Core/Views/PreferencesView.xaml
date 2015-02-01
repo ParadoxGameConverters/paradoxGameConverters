@@ -9,7 +9,6 @@
              xmlns:local="clr-namespace:Frontend.Core.Views.TemplateSelectors"
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
-        <local:PreferenceEntryTemplateSelector x:Key="EntryTemplateSelector"/>
         <local:PreferenceTemplateSelector x:Key="PreferenceTemplateSelector"/>
         <sys:Double x:Key="EditableTextBoxWidth">150</sys:Double>
         <controls:GridLength x:Key="FirstColumnWidth">30</controls:GridLength>

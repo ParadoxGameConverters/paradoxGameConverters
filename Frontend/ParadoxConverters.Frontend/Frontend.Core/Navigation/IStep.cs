@@ -1,12 +1,13 @@
 ﻿
 
+using Frontend.Core.Common;
 using Frontend.Core.Model.Interfaces;
-namespace Frontend.Core.ViewModels.Interfaces
+namespace Frontend.Core.Navigation
 {
     public interface IStep : IViewModelBase
     {
         IConverterOptions Options { get; }
 
-        bool CanValidate();
+        bool IsValid { get; }
     }
 }

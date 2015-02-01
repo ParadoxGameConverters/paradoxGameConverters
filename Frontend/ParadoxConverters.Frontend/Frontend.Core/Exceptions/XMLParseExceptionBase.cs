@@ -15,7 +15,7 @@ namespace Frontend.Core.Exceptions
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
         /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
-        public XMLParseExceptionBase(XElement parentElement, string propertyName, bool isPropertyRequired)
+        protected XMLParseExceptionBase(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
             this.ParentElement = parentElement;
             this.PropertyName = propertyName;

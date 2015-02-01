@@ -8,9 +8,6 @@ using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Frontend.Core.Factories.TagReaders
@@ -150,7 +147,7 @@ namespace Frontend.Core.Factories.TagReaders
 
         private void LogExistenceError(IAlternativePath nonExistingAlternativePath, string tagName, string friendlyName)
         {
-            var errorMessageText = string.Format("The path to {0} could not be detected, and need to be set manually here in the frontend. Was expecting it to exist at: ", friendlyName, nonExistingAlternativePath.Path);
+            var errorMessageText = string.Format("The path to {0} could not be detected, and need to be set manually here in the frontend. Was expecting it to exist at:", friendlyName);
             
             this.EventAggregator.PublishOnUIThread(new LogEntry(errorMessageText, LogEntrySeverity.Info, LogEntrySource.UI, nonExistingAlternativePath.Path));
         }

@@ -1,17 +1,14 @@
 ﻿using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Frontend.Core.ViewModels
+namespace Frontend.Core.Common
 {
     public abstract class ViewModelBase : PropertyChangedBase, IDisposable
     {
         private IEventAggregator eventAggregator;
+        private bool isDisposed;
 
-        public ViewModelBase(IEventAggregator eventAggregator)
+        protected ViewModelBase(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
 
@@ -44,8 +41,17 @@ namespace Frontend.Core.ViewModels
 
         public void Dispose()
         {
-            this.Unload();
-            this.OnDispose();
+            this.Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
+        protected virtual void Dispose(bool isDisposing)
+        {
+            if (isDisposing && !this.isDisposed)
+            {
+                this.Unload();
+                this.isDisposed = true;
+            }
         }
 
         protected virtual void OnLoading(object parameter)
@@ -69,10 +75,6 @@ namespace Frontend.Core.ViewModels
         }
 
         protected virtual void OnUnloaded()
-        {
-        }
-
-        protected virtual void OnDispose()
         {
         }
     }

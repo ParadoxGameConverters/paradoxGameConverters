@@ -3,16 +3,15 @@
 namespace Frontend.Core.ViewModels
 {
     using Caliburn.Micro;
-    using Frontend.Core.Logging;
+    using Frontend.Core.Common;
     using Frontend.Core.Model.Interfaces;
-    using Frontend.Core.ViewModels;
-    using Frontend.Core.ViewModels.Interfaces;
+    using Frontend.Core.Navigation;
 
     public abstract class StepViewModelBase : ViewModelBase, IStep
     {
         private IConverterOptions options;
 
-        public StepViewModelBase(IEventAggregator eventAggregator, IConverterOptions options)
+        protected StepViewModelBase(IEventAggregator eventAggregator, IConverterOptions options)
             : base(eventAggregator)
         {
             this.options = options;
@@ -31,6 +30,6 @@ namespace Frontend.Core.ViewModels
         /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
         /// </summary>
         /// <returns>True if validation succeeds, false if not.</returns>
-        public abstract bool CanValidate();
+        public abstract bool IsValid { get; }
     }
 }

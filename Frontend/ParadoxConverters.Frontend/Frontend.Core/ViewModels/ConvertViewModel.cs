@@ -2,11 +2,6 @@
 using Frontend.Core.Commands;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.ViewModels.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Frontend.Core.ViewModels
@@ -46,9 +41,12 @@ namespace Frontend.Core.ViewModels
         /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
         /// </summary>
         /// <returns>True if validation succeeds, false if not.</returns>
-        public override bool CanValidate()
+        public override bool IsValid
         {
-            return true;
+            get
+            {
+                return true;
+            }
         }
     }
 }

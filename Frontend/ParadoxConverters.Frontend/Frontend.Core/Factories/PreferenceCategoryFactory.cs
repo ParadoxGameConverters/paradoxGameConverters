@@ -1,16 +1,11 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model;
-using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.PreferenceEntries;
 using Frontend.Core.Model.PreferenceEntries.Interfaces;
 using Frontend.Core.Model.Preferences;
 using Frontend.Core.Model.Preferences.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Linq;
 
 namespace Frontend.Core.Factories

@@ -1,8 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
 namespace Frontend.Core.Model.Paths.Interfaces
 {
-    public interface IRequiredItemBase
+    public interface IRequiredItemBase : INotifyPropertyChanged
     {
         string FriendlyName { get; }
         string SelectedValue { get; set; }
@@ -11,5 +11,7 @@ namespace Frontend.Core.Model.Paths.Interfaces
         string Description { get;}
         IList<IAlternativePath> AlternativePaths { get; }
         string DefaultValue { get; }
+        bool IsMandatory { get; }
+        bool IsValid { get; }
     }
 }

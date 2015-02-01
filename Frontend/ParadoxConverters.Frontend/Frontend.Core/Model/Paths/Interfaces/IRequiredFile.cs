@@ -1,5 +1,4 @@
-﻿using System;
-
+﻿
 namespace Frontend.Core.Model.Paths.Interfaces
 {
     public interface IRequiredFile : IRequiredItemBase

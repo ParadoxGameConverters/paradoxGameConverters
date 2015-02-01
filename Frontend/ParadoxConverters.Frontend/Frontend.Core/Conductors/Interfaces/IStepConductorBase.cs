@@ -2,11 +2,11 @@
 
 namespace Frontend.Core.ViewModels.Interfaces
 {
-    using Caliburn.Micro;
-    using Frontend.Core.Events.EventArgs;
+    using Frontend.Core.Common;
+    using Frontend.Core.Navigation;
     using System.Collections.ObjectModel;
 
-    public interface IStepConductorBase : IHandle<RefreshButtonStatesArgs>
+    public interface IStepConductorBase : IViewModelBase
     {
         ObservableCollection<IStep> Steps { get; }
 

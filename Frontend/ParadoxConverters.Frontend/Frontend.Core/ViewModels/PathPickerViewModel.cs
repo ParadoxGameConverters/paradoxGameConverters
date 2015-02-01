@@ -2,8 +2,8 @@
 using Frontend.Core.Commands;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.ViewModels.Interfaces;
-using System;
-using System.IO;
+using System.ComponentModel;
+using System.Linq;
 using System.Windows.Input;
 
 namespace Frontend.Core.ViewModels
@@ -57,27 +57,14 @@ namespace Frontend.Core.ViewModels
         }
 
         /// <summary>
-        /// Gets or sets the source save game path.
+        /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
         /// </summary>
-        /// <value>
-        /// The source save game path.
-        /// </value>
-        public string SourceSaveGamePath
+        /// <returns>True if validation succeeds, false if not.</returns>
+        public override bool IsValid
         {
             get
             {
-                return this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue;
-            }
-
-            set
-            {
-                if (this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue == value)
-                {
-                    return;
-                }
-
-                this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue = value;
-                this.NotifyOfPropertyChange(() => this.SourceSaveGamePath);
+                return this.Options.CurrentConverter.RequiredItems.All(i => i.IsValid);
             }
         }
 
@@ -85,46 +72,24 @@ namespace Frontend.Core.ViewModels
 
         #region [ Methods ]
 
-        /// <summary>
-        /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
-        /// </summary>
-        /// <returns>True if validation succeeds, false if not.</returns>
-        public override bool CanValidate()
+        protected override void OnUnloading()
         {
-            return true;
-            //bool isSourceGamePathValid = Directory.Exists(this.Options.CurrentConverter.SourceGame.AbsoluteInstallationPath);
-            //bool isTargetGamePathValid = Directory.Exists(this.Options.CurrentConverter.TargetGame.AbsoluteInstallationPath);
-            //bool isSaveGamePathValid = File.Exists(this.Options.CurrentConverter.AbsoluteSourceSaveGamePath);
-
-            //return isSourceGamePathValid && isTargetGamePathValid && isSaveGamePathValid;
+            this.Options.CurrentConverter.RequiredItems.ForEach(i => i.PropertyChanged -= this.Item_PropertyChanged);
+            base.OnUnloading();
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="parameter"></param>
         protected override void OnLoaded(object parameter)
         {
-            //if (this.Options == null || this.Options.CurrentConverter == null)
-            //{
-            //    return;
-            //}
+            base.OnLoaded(parameter);
+            this.Options.CurrentConverter.RequiredItems.ForEach(i => i.PropertyChanged += this.Item_PropertyChanged);
+        }
 
-            //// If the directory where the converter should be, doesn't exist, create it. 
-            //if (!Directory.Exists(this.Options.CurrentConverter.AbsoluteConverterPath))
-            //{
-            //    Directory.CreateDirectory(this.Options.CurrentConverter.AbsoluteConverterPath);
-            //}
-
-            // If the converter .exe happens to be in the same directory as the UI + relevant subfolder, there is no reason to ask the user to set it. So let's just do it for them.
-            //var converterLocation = Path.Combine(this.Options.CurrentConverter.AbsoluteConverterPath, this.Options.CurrentConverter.ConverterExeName); 
-            //if (File.Exists(converterLocation))
-            //{
-            //    this.Options.CurrentConverter.AbsoluteConverterPath = converterLocation;
-            //}
-
-            // Add one step per category
-            //foreach()
+        private void Item_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (e.PropertyName.Equals("SelectedValue"))
+            {
+                this.NotifyOfPropertyChange(() => this.IsValid);
+            }
         }
 
         #endregion

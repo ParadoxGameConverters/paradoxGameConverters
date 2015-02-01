@@ -1,19 +1,15 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Events.EventArgs;
 using Frontend.Core.Factories;
-using Frontend.Core.Helpers;
-using Frontend.Core.Logging;
 using Frontend.Core.Model;
 using Frontend.Core.Model.Interfaces;
+using Frontend.Core.Navigation;
 using Frontend.Core.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Frontend.Core.ViewModels
 {
@@ -83,9 +79,12 @@ namespace Frontend.Core.ViewModels
         /// Tries to validate the current step. This will fail if important user input is missing or incorrect.
         /// </summary>
         /// <returns>True if validation succeeds, false if not.</returns>
-        public override bool CanValidate()
+        public override bool IsValid
         {
-            return true;
+            get
+            {
+                return true;
+            }
         }
     }
 }
