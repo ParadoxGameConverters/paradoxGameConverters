@@ -240,7 +240,7 @@ adjacencyMapping initAdjacencyMap()
 	}
 	fclose(adjacenciesBin);
 
-	FILE* adjacenciesData;
+	/*FILE* adjacenciesData;
 	fopen_s(&adjacenciesData, "adjacenciesData.csv", "w");
 	fprintf(adjacenciesData, "From,To\n");
 	for (unsigned int from = 0; from < adjacencyMap.size(); from++)
@@ -251,7 +251,7 @@ adjacencyMapping initAdjacencyMap()
 			fprintf(adjacenciesData, "%d,%d\n", from, adjacencies[i]);
 		}
 	}
-	fclose(adjacenciesData);
+	fclose(adjacenciesData);*/
 	
 	return adjacencyMap;
 }

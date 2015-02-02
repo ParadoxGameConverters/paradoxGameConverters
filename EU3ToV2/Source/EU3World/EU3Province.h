@@ -74,6 +74,16 @@ class EU3Province {
 
 		void						setOwner(EU3Country* newOwner)		{ owner = newOwner; }
 		void						setNumDestV2Provs(int _numV2Provs)	{ numV2Provs = _numV2Provs; }
+		string					getProvName() const						{ return provName; }
+
+		// getters for weight attributes
+		double						getProvTaxIncome()				const	{ return provTaxIncome; }
+		double						getProvProdIncome()				const	{ return provProdIncome; }
+		double						getProvMPWeight()					const	{ return provMPWeight; }
+		double						getProvTotalBuildingWeight()	const	{ return provBuildingWeight; }
+		double						getCurrTradeGoodWeight()		const	{ return provTradeGoodWeight; }
+		std::vector<double>		getProvProductionVec()			const	{ return provProductionVec; }
+		string						getTradeGoods()					const { return tradeGoods; }
 
 		void						setCOT(bool isCOT)					{ centerOfTrade = isCOT; };
 	private:
@@ -89,6 +99,7 @@ class EU3Province {
 		double								baseTax;
 		double								totalWeight;
 		string								ownerString;
+		string								provName;
 		EU3Country*							owner;
 		vector<string>						cores;
 		int									population;
@@ -103,6 +114,15 @@ class EU3Province {
 		double								manpower;
 		string								tradeGoods;
 		int									numV2Provs;
+
+		// province attributes for weights
+		double								provTaxIncome;
+		double								provProdIncome;
+		double								provMPWeight;
+		double								provBuildingWeight;
+		double								provTradeGoodWeight;
+
+		std::vector<double>					provProductionVec;
 };
 
 

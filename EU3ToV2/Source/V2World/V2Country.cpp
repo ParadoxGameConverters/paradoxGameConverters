@@ -44,6 +44,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Reforms.h"
 #include "V2Creditor.h"
 #include "V2Leader.h"
+#include "V2Pop.h"
 
 
 
@@ -57,6 +58,12 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
+	int pos = commonCountryFile.find_first_of(":");
+	while (pos != string::npos)
+	{
+		commonCountryFile.replace(pos, 1, ";");
+		pos = commonCountryFile.find_first_of(":");
+	}
 	parties				= _parties;
 	rulingParty			= "";
 
@@ -1364,6 +1371,42 @@ void V2Country::setupPops(EU3World& sourceWorld, double popWeightRatio)
 	for (vector<V2State*>::iterator itr = states.begin(); itr != states.end(); ++itr)
 	{
 		(*itr)->setupPops(sourceWorld.getWorldType(), primaryCulture, acceptedCultures, religion, popWeightRatio);
+	}
+
+	// output statistics on pops
+	map<string, long int> popsData;
+	for (auto provItr = provinces.begin(); provItr != provinces.end(); provItr++)
+	{
+		auto pops = (*provItr)->getPops();
+		for (auto popsItr = pops.begin(); popsItr != pops.end(); popsItr++)
+		{
+			auto popItr = popsData.find( (*popsItr)->getType() );
+			if (popItr == popsData.end())
+			{
+				long int newPopSize = 0;
+				pair<map<string, long int>::iterator, bool> newIterator = popsData.insert(make_pair((*popsItr)->getType(), newPopSize));
+				popItr = newIterator.first;
+			}
+			popItr->second += (*popsItr)->getSize();
+		}
+	}
+	long int totalPops = 0;
+	for (auto dataItr = popsData.begin(); dataItr != popsData.end(); dataItr++)
+	{
+		totalPops += dataItr->second;
+	}
+
+	for (auto dataItr = popsData.begin(); dataItr != popsData.end(); dataItr++)
+	{
+		double popsPercent = static_cast<double>(dataItr->second) / totalPops;
+		string filename = dataItr->first;
+		filename += ".csv";
+		FILE* dataFile = fopen(filename.c_str(), "a");
+		if (dataFile != NULL)
+		{
+			fprintf(dataFile, "%s,%d,%f\n", tag.c_str(), dataItr->second, popsPercent);
+			fclose(dataFile);
+		}
 	}
 }
 

@@ -404,7 +404,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 	int capitalists	= 0;
 	int aristocrats	= 0;
 	
-	double long newPopulation = 0;
+	long newPopulation = 0;
 	int numOfV2Provs = this->getSrcProvince()->getNumDestV2Provs();
 	//LOG(LogLevel::Info) << "Num Dest Provs: " << this->getSrcProvince()->getNumDestV2Provs();
 	//LOG(LogLevel::Warning) << "Total EUIV world weight sum is: " << sourceWorld.getWorldWeightSum();
@@ -412,12 +412,21 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 
 	if (Configuration::getConvertPopTotals())
 	{
-		newPopulation = popWeightRatio * oldProvince->getTotalWeight();
+		newPopulation = static_cast<long>(popWeightRatio * oldProvince->getTotalWeight());
  
 		int numOfV2Provs = srcProvince->getNumDestV2Provs();
  		if (numOfV2Provs > 1)
  		{
- 			newPopulation /= numOfV2Provs;
+ 			if (numOfV2Provs == 2)
+			{
+				newPopulation /= numOfV2Provs;
+				newPopulation = static_cast<long>(newPopulation * 1.10);
+			}
+			else
+			{
+				newPopulation /= numOfV2Provs;
+				newPopulation = static_cast<long>(newPopulation * 1.15);
+			}
 		}
 	}
 	else
@@ -729,7 +738,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 		aristocrats = (int)(aristocrats * provPopRatio);
 	}
 
-	int total = farmers + labourers + slaves + soldiers + craftsmen + artisans + clergymen + clerks + bureaucrats + officers + capitalists + aristocrats;
+	double total = farmers + labourers + slaves + soldiers + craftsmen + artisans + clergymen + clerks + bureaucrats + officers + capitalists + aristocrats;
 
 	if (farmers > 0)
 	{
@@ -747,6 +756,7 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 													demographic.culture,
 													demographic.religion
 												);
+		//LOG(LogLevel::Info) << "Name: " << this->getSrcProvince()->getProvName() << " Pop Size: " << labourersPop->getSize();
 		pops.push_back(labourersPop);
 	}
 	if (slaves > 0)
@@ -839,6 +849,10 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, bo
 												);
 		pops.push_back(aristocratsPop);
 	}
+	//LOG(LogLevel::Info) << "Name: " << this->getSrcProvince()->getProvName() << " demographics.ratio: " << demographic.ratio << " newPopulation: " << newPopulation 
+	//	<< " farmer: " << farmers
+	//	<< " labourers: " << labourers
+	//	<< " total: " << total;
 }
 
 

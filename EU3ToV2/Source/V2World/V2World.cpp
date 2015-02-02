@@ -137,6 +137,8 @@ V2World::V2World()
 
 	// set V2 basic population levels
 	LOG(LogLevel::Info) << "Importing historical pops.";
+	//map< string, map<string, long int> > countryPops; // country, poptype, num
+
 	totalWorldPopulation	= 0;
 	set<string> fileNames;
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
@@ -156,10 +158,26 @@ V2World::V2World()
 			}
 			else
 			{
+				/*auto countryPopItr = countryPops.find(k->second->getOwner());
+				if (countryPopItr == countryPops.end())
+				{
+					map<string, long int> newCountryPop;
+					pair<map< string, map<string, long int> >::iterator, bool> newIterator = countryPops.insert(make_pair(k->second->getOwner(), newCountryPop));
+					countryPopItr = newIterator.first;
+				}*/
+
 				popProvinces->push_back(provNum);
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
+					/*auto popItr = countryPopItr->second.find(pops[l]->getKey());
+					if (popItr == countryPopItr->second.end())
+					{
+						long int newPopSize = 0;
+						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(pops[l]->getKey(), newPopSize));
+						popItr = newIterator.first;
+					}
+					popItr->second += atoi(pops[l]->getLeaf("size").c_str());*/
 					totalWorldPopulation += atoi(pops[l]->getLeaf("size").c_str());
 					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
 					k->second->addOldPop(newPop);
@@ -168,6 +186,20 @@ V2World::V2World()
 			popRegions.insert( make_pair(*itr, popProvinces) );
 		}
 	}
+
+	/*for (auto countryItr = countryPops.begin(); countryItr != countryPops.end(); countryItr++)
+	{
+		long int total = 0;
+		for (auto popsItr = countryItr->second.begin(); popsItr != countryItr->second.end(); popsItr++)
+		{
+			total += popsItr->second;
+		}
+		for (auto popsItr = countryItr->second.begin(); popsItr != countryItr->second.end(); popsItr++)
+		{
+			LOG(LogLevel::Info) << "," << countryItr->first << "," << popsItr->first << "," << popsItr->second << "," << (double)popsItr->second / total;
+		}
+		LOG(LogLevel::Info) << "," << countryItr->first << "," << "Total," << total << "," << (double)total/total;
+	}*/
 
 	// determine whether a province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise Vicky crashes)
@@ -723,7 +755,7 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 			else
 			{
 				provinceBins[tag].provinces.push_back(province);
-				newProvinceTotalBaseTax = province->getBaseTax();
+				newProvinceTotalBaseTax += province->getBaseTax();
 				// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 				// or I have the same number of provinces, but more population, than the current owner
 				if (
@@ -841,7 +873,8 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 						demographic.ratio			= prItr->popRatio * provPopRatio;
 						demographic.oldCountry	= oldOwner;
 						demographic.oldProvince	= *vitr;
-								
+
+						//LOG(LogLevel::Info) << "EU4 Province " << (*vitr)->getNum() << ", Vic2 Province " << i->second->getNum() << ", Culture: " << culture << ", Religion: " << religion << ", popRatio: " << prItr->popRatio << ", provPopRatio: " << provPopRatio << ", ratio: " << demographic.ratio;
 						i->second->addPopDemographic(demographic);
 					}
 
@@ -1015,23 +1048,161 @@ void V2World::convertUncivReforms()
 
 void V2World::setupPops(EU3World& sourceWorld)
 {
-	double popWeightRatio = totalWorldPopulation / sourceWorld.getWorldWeightSum();
+	long		my_totalWorldPopulation	= static_cast<long>(0.55 * totalWorldPopulation);
+	double	popWeightRatio				= my_totalWorldPopulation / sourceWorld.getWorldWeightSum();
+
+	ofstream output_file("Data.csv");
+
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		itr->second->setupPops(sourceWorld, popWeightRatio);
 	}
 
-	LOG(LogLevel::Info) << "Total world population: " << totalWorldPopulation;
+	LOG(LogLevel::Info) << "Total world population: " << my_totalWorldPopulation;
 	LOG(LogLevel::Info) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
-	LOG(LogLevel::Info) << totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
+	LOG(LogLevel::Info) << my_totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
 	LOG(LogLevel::Info) << "Population per weight point is: " << popWeightRatio;
 
 	long newTotalPopulation = 0;
+	// Heading
+	output_file << "EU ID"		<< ",";
+	output_file << "EU NAME"	<< ",";
+	output_file << "OWNER"		<< ",";
+	output_file << "BTAX"		<< ",";
+	output_file << "TX INCOME"	<< ",";
+	output_file << "PROD"		<< ",";
+	output_file << "MP"			<< ",";
+	output_file << "BUIDINGS"	<< ",";
+	output_file << "TRADE"		<< ",";
+	output_file << "TOTAL"		<< ",";
+	output_file << "#DEST"		<< ",";
+	output_file << "V2 ID"		<< ",";
+	output_file << "V2 NAME"	<< ",";
+	output_file << "CALC POPS"	<< ",";
+	output_file << "POPS"		<< endl;
 	for (auto itr = provinces.begin(); itr != provinces.end(); itr++)
 	{
+		// EU4ID, EU4Name, EU4TAG, BTX, TAX, PROD, MP, BUILD, TRADE, WEIGHT, DESTV2, V2Name, POPs //
 		newTotalPopulation += itr->second->getTotalPopulation();
+
+		//	EU4 Province ID
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getNum() << ",";
+ 		}
+		else
+		{
+			continue;
+		}
+		//	EU4 Province Name
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getProvName() << ",";
+ 		}
+		else
+		{
+			output_file << "SEA" << ",";
+ 		}
+		//	EU4 Province Owner
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getOwnerString() << ",";
+ 		}
+		else
+		{
+			output_file << "NULL" << ",";
+ 		}
+		//	EU4 Base Tax
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << (2 * itr->second->getSrcProvince()->getBaseTax()) << ",";
+ 		}
+		else
+		{
+			output_file << -1 << ",";
+ 		}
+		//	EU4 Total Tax Income
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << 2*(itr->second->getSrcProvince()->getProvTaxIncome()) << ",";
+ 		}
+		else
+		{
+			output_file << -1 << ",";
+ 		}
+		//	EU4 Total Prod Income
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getProvProdIncome() << ",";
+ 		}
+		else
+		{
+			output_file << -1 << ",";
+ 		}
+		//	EU4 Total Manpower weight
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getProvMPWeight() << ",";
+ 		}
+		else
+		{
+			output_file << -1 << ",";
+ 		}
+		//	EU4 Total Building weight
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getProvTotalBuildingWeight() << ",";
+ 		}
+		else
+		{
+			output_file << -1 << ",";
+ 		}
+		//	EU4 Total Tradegoods weight
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getCurrTradeGoodWeight() << ",";
+		}
+		else
+		{
+			output_file << -1 << ",";
+ 		}
+		//	EU4 Province Weight
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getTotalWeight() << ",";
+ 		}
+		else
+		{
+			output_file << -1 << ",";
+ 		}
+		//	Number of DestV2Provs
+		if (itr->second->getSrcProvince() != NULL)
+		{
+			output_file << itr->second->getSrcProvince()->getNumDestV2Provs() << ",";
+		}
+		else
+		{
+			output_file << -2 << ",";
+ 		}
+		//	V2 Province ID
+		output_file << itr->second->getNum() << ",";
+		//	V2 Province Name
+		if (itr->second->getName() == "")
+		{
+ 			output_file << itr->second->getNum() << ",";
+ 		}
+		else
+		{
+			output_file << itr->second->getName() << ",";
+ 		}
+		//	Calculated V2 POPs
+		output_file << ((itr->second->getSrcProvince()->getTotalWeight()*popWeightRatio)/itr->second->getSrcProvince()->getNumDestV2Provs()) << ",";
+		//	V2 POPs
+		output_file << itr->second->getTotalPopulation() << endl;
 	}
 	LOG(LogLevel::Info) << "New total world population: " << newTotalPopulation;
+
+	output_file.close();
 }
 
 
