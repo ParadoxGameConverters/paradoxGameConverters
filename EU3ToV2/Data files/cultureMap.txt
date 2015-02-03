@@ -51,6 +51,7 @@ link = { vic = yankee  eu3 = american }
 # Celtic - welsh, breton, irish
 link = { vic = british eu3 = welsh }
 link = { vic = irish eu3 = irish }
+link = { vic = breton eu3 = breton }
 
 # Latin - lombard, umbrian, sicilian
 link = { vic = north_italian eu3 = lombard  eu3 = umbrian }
@@ -62,12 +63,14 @@ link = { vic = roman eu3 = roman }
 
 # Iberian - castillian, catalan, galician, andalucian, portugese, maltese
 #link = { vic = mexican eu3 = castillian eu4 = galician eu4 = andalucian region = central_america }
-#link = { vic = mexican eu3 = nahuatl }
+link = { vic = mexican eu3 = nahuatl }
 #link = { vic = caribeno eu3 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
 link = { vic = caribeno eu3 = caribeno }
 #link = { vic = platinean eu3 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
-#link = { vic = platinean eu3 = platinian }
-link = { vic = spanish eu3 = castillian eu3 = galician eu3 = andalucian }
+link = { vic = platinean eu3 = platinian }
+link = { vic = castillian eu3 = castillian }
+link = { vic = galician eu3 = galician } 
+link = { vic = andalucian eu3 = andalucian }
 link = { vic = catalan eu3 = catalan }
 link = { vic = portuguese eu3 = portugese }
 #link = { vic = brazilian eu3 = portugese region = brazil_region }
@@ -76,11 +79,11 @@ link = { vic = basque eu3 = basque }
 #link = { vic = central_american eu3 = ? }
 link = { vic = north_andean eu3 = n_andean }
 #link = { vic = south_andean eu3 = ? }
-#link = { vic = brazilian eu3 = ? }
+link = { vic = brazilian eu3 = brazilian }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
 #link = { vic = french_canadian eu3 = eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain eu3 = breton region = northern_america }
-link = { vic = french eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain }
+link = { vic = cosmopolitan_french eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain }
 link = { vic = wallonian eu3 = wallonian }
 link = { eu3 = frankish vic = frankish }
 
@@ -119,7 +122,7 @@ link = { vic = lithuanian eu3 = lithuanian }
 link = { vic = latvian eu3 = latvian eu3 = old_prussian }
 
 # Byzantine - greek, georgian, armenian
-link = { vic = sephardi eu3 = greek eu3 = georgian eu3 = armenian religion = jewish }
+#link = { vic = sephardi eu3 = greek eu3 = georgian eu3 = armenian religion = jewish }
 link = { vic = greek eu3 = greek }
 link = { vic = georgian eu3 = georgian }
 link = { vic = armenian eu3 = armenian }
@@ -146,7 +149,7 @@ link = { v2 = sephardi eu4 = sephardi }
 # Altaic - azerbadjani, turkmeni, mongol, uzbehk, khazak, kirgiz, siberian, yakut, tartar
 link = { vic = azerbaijani eu3 = azerbadjani }
 link = { vic = hazara  eu3 = mongol religion = shiite }
-link = { vic = turkmen eu3 = turkmeni }
+link = { vic = turkmen eu3 = turkmeni eu3 = khazar eu3 = bolghar eu3 = avar }
 link = { vic = mongol eu3 =  mongol }
 link = { vic = uzbek eu3 = uzbehk }
 link = { vic = kazak eu3 = khazak }

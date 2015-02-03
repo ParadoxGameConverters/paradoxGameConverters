@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 class V2Pop;
 class V2Factory;
+class V2Country;
 
 
 
@@ -54,8 +55,9 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
-		void doCreatePops(WorldType game, bool isStateCapital, int statePopulation, bool stateHasCOT, double popWeightRatio);
+		void doCreatePops(WorldType game, double popWeightRatio, V2Country* _owner);
 		void addFactory(V2Factory* factory);
+		void addPopDemographic(V2Demographic d);
 
 		int				getTotalPopulation() const;
 
@@ -71,7 +73,6 @@ class V2Province
 		void				setOwner(string _owner)						{ owner = _owner; };
 		void				setLandConnection(bool _connection)		{ landConnection = _connection; };
 		void				setSameContinent(bool _same)				{ sameContinent = _same; };
-		void				addPopDemographic(V2Demographic d)		{ demographics.push_back(d); };
 		void				setFortLevel(int level)						{ fortLevel = level; };
 		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; };
 		void				setRailLevel(int level)						{ railLevel = level; };
@@ -93,7 +94,7 @@ class V2Province
 		vector<V2Pop*>			getPops()				const { return pops; }
 	private:
 		void outputUnits(FILE*) const;
-		void createPops(WorldType game, const V2Demographic& d, bool isStateCapital, int statePopulation, bool stateHasCOT, double popWeightRatio);
+		void createPops(WorldType game, const V2Demographic& d, double popWeightRatio, V2Country* _owner);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 

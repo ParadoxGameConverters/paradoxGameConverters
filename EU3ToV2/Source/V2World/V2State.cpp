@@ -47,17 +47,6 @@ void V2State::addRailroads()
 }
 
 
-void V2State::setupPops(WorldType game, string primaryCulture, set<string> acceptedCultures, string religion, double popWeightRatio)
-{
-	int	statePopulation = getStatePopulation();
-	bool	cot = hasCOT();
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-	{
-		(*itr)->doCreatePops(game, (itr == provinces.begin()), statePopulation, cot, popWeightRatio);
-	}
-}
-
-
 bool V2State::isCoastal() const
 {
 	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
@@ -127,17 +116,6 @@ bool V2State::provInState(int id) const
 	}
 
 	return false;
-}
-
-
-int V2State::getStatePopulation() const
-{
-	int population = 0;
-	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-	{
-		population += (*itr)->getOldPopulation();
-	}
-	return population;
 }
 
 

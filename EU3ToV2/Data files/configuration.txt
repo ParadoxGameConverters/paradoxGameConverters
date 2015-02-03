@@ -45,6 +45,9 @@ configuration =
 
 	# V2OutputModName: the name of the mod to output
 	V2OutputModName = "output"
+
+	# Convert pop totals: whether or not the total population in a province should be determined from the EU3 game
+	convertPopTotals = "no"
 	
 	# Note: if converting to vanilla V2, you may want to merge some EU3 nations in order for tags to make sense.
 	# Merge settings are found in merge_nations.txt, rather than this file.

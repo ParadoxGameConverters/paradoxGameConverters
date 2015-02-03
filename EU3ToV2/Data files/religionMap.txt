@@ -4,7 +4,7 @@ religionmap = {
 
 link = { vic = catholic eu3 = catholic }
 link = { vic = protestant eu3 = protestant eu3 = reformed }
-link = { vic = orthodox eu3 = orthodox }
+link = { vic = orthodox eu3 = orthodox eu3 = monothelite }
 link = { vic = cathar eu3 = cathar }
 link = { vic = fraticelli eu3 = fraticelli }
 link = { vic = waldensian eu3 = waldensian }

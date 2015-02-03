@@ -957,13 +957,13 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		{
 			continue;
 		}
-		vector<V2Province*> ownedProvinces = countryItr->second->getProvinces();
-		for (vector<V2Province*>::iterator provItr = ownedProvinces.begin(); provItr != ownedProvinces.end(); provItr++)
+		auto ownedProvinces = countryItr->second->getProvinces();
+		for (auto provItr = ownedProvinces.begin(); provItr != ownedProvinces.end(); provItr++)
 		{
-			continentMapping::const_iterator itr = continentMap.find((*provItr)->getNum());
+			continentMapping::const_iterator itr = continentMap.find(provItr->first);
 			if ((itr != continentMap.end()) && (itr->second == capitalContinent))
 			{
-				(*provItr)->setSameContinent(true);
+				provItr->second->setSameContinent(true);
 			}
 		}
 	}
@@ -1058,7 +1058,14 @@ void V2World::setupPops(EU3World& sourceWorld)
 		itr->second->setupPops(sourceWorld, popWeightRatio);
 	}
 
-	LOG(LogLevel::Info) << "Total world population: " << my_totalWorldPopulation;
+	if (Configuration::getConvertPopTotals())
+	{
+		LOG(LogLevel::Info) << "Total world population: " << my_totalWorldPopulation;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Total world population: " << totalWorldPopulation;
+	}
 	LOG(LogLevel::Info) << "Total world weight sum: " << sourceWorld.getWorldWeightSum();
 	LOG(LogLevel::Info) << my_totalWorldPopulation << " / " << sourceWorld.getWorldWeightSum();
 	LOG(LogLevel::Info) << "Population per weight point is: " << popWeightRatio;

@@ -64,6 +64,7 @@ class V2Country
 		void								outputOOB() const;
 		void								initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, const CountryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt);
 		void								initFromHistory();
+		void								addProvince(V2Province* _province);
 		void								addState(V2State* newState);
 		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap);
 		bool								addFactory(V2Factory* factory);
@@ -80,14 +81,13 @@ class V2Country
 		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order);
 
-		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); };
 		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; };
 		void								addResearchPoints(double newPoints)		{ researchPoints += newPoints; };
 		void								addTech(string newTech)						{ techs.push_back(newTech); };
 		void								setNationalValue(string NV)				{ nationalValue = NV; };
 		void								isANewCountry(void)							{ newCountry = true; };
 
-		vector<V2Province*>			getProvinces() const { return provinces; };
+		map<int, V2Province*>		getProvinces() const { return provinces; }
 		string							getTag() const { return tag; };
 		bool								isCivilized() const { return civilized; };
 		string							getPrimaryCulture() const { return primaryCulture; };
@@ -106,6 +106,7 @@ class V2Country
 		double							getLiteracy() const { return literacy; };
 		int								getCapital() const { return capital; };
 		bool								isNewCountry() const { return newCountry; };
+		int								getNumFactories() const { return numFactories; }
 	private:
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
@@ -122,7 +123,7 @@ class V2Country
 		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
 		string							tag;
 		vector<V2State*>				states;
-		vector<V2Province*>			provinces;
+		map<int, V2Province*>		provinces;
 		int								capital;
 		bool								civilized;
 		string							primaryCulture;
@@ -163,6 +164,7 @@ class V2Country
 		V2Localisation					localisation;
 		Color								color;
 		int								unitNameCount[num_reg_categories];
+		int								numFactories;
 };
 
 bool ProvinceRegimentCapacityPredicate(V2Province* prov1, V2Province* prov2);

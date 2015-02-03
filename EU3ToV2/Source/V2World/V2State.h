@@ -44,7 +44,6 @@ class V2State
 		V2State(int newId, V2Province* firstProvince);
 
 		void		addRailroads();
-		void		setupPops(WorldType game, string primaryCulture, set<string> acceptedCultures, string religion, double popWeightRatio);
 		void		addFactory(V2Factory* factory);
 
 		bool		isCoastal() const;
@@ -62,7 +61,6 @@ class V2State
 		int						getID()				const { return id; };
 		vector<V2Province*>	getProvinces()		const { return provinces; };
 	private:
-		int	getStatePopulation() const;
 		bool	hasCOT();
 		int								id;
 		bool								colonial;

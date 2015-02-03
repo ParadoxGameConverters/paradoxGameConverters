@@ -20,45 +20,11 @@ hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t
 del release\log.txt
 
 del "Release\blankMod" /Q
-rmdir "Release\blankMod" /S /Q
-mkdir "release\blankMod"
-mkdir "release\blankMod\output"
-mkdir "release\blankMod\output\history"
-mkdir "release\blankMod\output\history\provinces"
-mkdir "release\blankMod\output\history\provinces\africa"
-mkdir "release\blankMod\output\history\provinces\asia"
-mkdir "release\blankMod\output\history\provinces\australia"
-mkdir "release\blankMod\output\history\provinces\austria"
-mkdir "release\blankMod\output\history\provinces\balkan"
-mkdir "release\blankMod\output\history\provinces\canada"
-mkdir "release\blankMod\output\history\provinces\carribean"
-mkdir "release\blankMod\output\history\provinces\central asia"
-mkdir "release\blankMod\output\history\provinces\china"
-mkdir "release\blankMod\output\history\provinces\france"
-mkdir "release\blankMod\output\history\provinces\germany"
-mkdir "release\blankMod\output\history\provinces\india"
-mkdir "release\blankMod\output\history\provinces\indonesia"
-mkdir "release\blankMod\output\history\provinces\italy"
-mkdir "release\blankMod\output\history\provinces\japan"
-mkdir "release\blankMod\output\history\provinces\low countries"
-mkdir "release\blankMod\output\history\provinces\mexico"
-mkdir "release\blankMod\output\history\provinces\pacific island"
-mkdir "release\blankMod\output\history\provinces\portugal"
-mkdir "release\blankMod\output\history\provinces\scandinavia"
-mkdir "release\blankMod\output\history\provinces\south america"
-mkdir "release\blankMod\output\history\provinces\soviet"
-mkdir "release\blankMod\output\history\provinces\spain"
-mkdir "release\blankMod\output\history\provinces\united kingdom"
-mkdir "release\blankMod\output\history\provinces\usa"
-mkdir "release\blankMod\output\history\countries"
-mkdir "release\blankMod\output\history\diplomacy"
-mkdir "release\blankMod\output\history\units"
-mkdir "release\blankMod\output\history\pops"
-mkdir "release\blankMod\output\history\pops\1836.1.1"
-mkdir "release\blankMod\output\common"
+xcopy "Data Files\blankMod - TESB" "release\blankmod" /Y /E /I
 
 xcopy "Data Files\countries" "release\blankmod\output\common\countries" /Y /E /I
 xcopy "Data Files\gfx" "release\blankmod\output\gfx" /Y /E /I
+xcopy "Data Files\interface" "release\blankmod\output\interface" /Y /E /I
 xcopy "Data files\localisation" "release\blankmod\output\localisation" /Y /E /I
 copy "Data Files\countries.txt" "release\blankMod\output\common\countries.txt"
 copy "Data Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
