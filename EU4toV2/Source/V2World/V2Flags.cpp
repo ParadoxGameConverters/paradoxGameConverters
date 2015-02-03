@@ -348,7 +348,7 @@ bool V2Flags::Output() const
 				&& (UniqueColonialFlags.find(baseFlag) == UniqueColonialFlags.end()))
 			{
 				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
-				std::string overlordFlagPath = folderPath + '\\' + overlord + "_monarchy.tga";
+				std::string overlordFlagPath = folderPath + '\\' + overlord + ".tga";
 				flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(overlordFlagPath));
 				if (flagFileFound)
 				{
@@ -357,7 +357,7 @@ bool V2Flags::Output() const
 				}
 				else
 				{
-					if (WinUtils::DoesFileExist(sourceFlagPath))
+					if (!WinUtils::DoesFileExist(sourceFlagPath))
 						LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 					else
 						LOG(LogLevel::Error) << "Could not find " << overlordFlagPath;
