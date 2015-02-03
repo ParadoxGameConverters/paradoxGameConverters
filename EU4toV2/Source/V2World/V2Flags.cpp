@@ -189,6 +189,23 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		}
 	}
 
+	std::set<std::string> duplicateColonyFlag;
+	
+	
+	for (auto colonialtitle = colonyFlags.begin(); colonialtitle != colonyFlags.end();)
+	{
+		if (duplicateColonyFlag.find(colonialtitle->second->name) != duplicateColonyFlag.end())
+		{
+			LOG(LogLevel::Info) << "Duplicate " << colonialtitle->second->name;
+			colonyFlags.erase(colonialtitle++);
+		}
+		else
+		{
+			duplicateColonyFlag.insert(colonialtitle->second->name);
+			++colonialtitle;
+		}
+	}
+
 	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
 	{
 		V2Country* overlord = i->second->getColonyOverlord();
@@ -221,6 +238,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 
 		usableFlagTags.erase(colonialtitle->second->name);
 		requiredTags.erase(i->first); 
+		colonyFlags.erase(colonialtitle);
 	}
 
 	if (colonialFail.size() != 0)
@@ -246,20 +264,17 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 			{
 				bool success = false;
 				string region = (*v2c)->getColonialRegion();
-				if (flag->region == region)
+				if (flag->region == region || region == "")
 				{
 					success = true;
-					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << flag->name << ", ruled by " << flag->overlord;
 					colonialFlagMapping[(*v2c)->getTag()] = flag;
 					flag->overlord = (*v2c)->getColonyOverlord()->getTag();
+					LOG(LogLevel::Info) << "Country with tag " << (*v2c)->getTag() << " is now " << flag->name << ", ruled by " << flag->overlord;
 
 					usableFlagTags.erase(flag->name);
 					requiredTags.erase((*v2c)->getTag());
-					break;
-				}
-				if (success)
-				{
 					colonialFail.erase(v2c);
+					break;
 				}
 			}
 		}
@@ -327,13 +342,13 @@ bool V2Flags::Output() const
 		{
 			const std::string& suffix = flagFileSuffixes[i];
 			bool flagFileFound = false;
-			std::string folderPath = "blankMod\\output\\gfx\\flags";
+			std::string folderPath = outputFlagFolder;
 
 			if ((i == 0 || i == 3) // monarchy or vanilla
 				&& (UniqueColonialFlags.find(baseFlag) == UniqueColonialFlags.end()))
 			{
 				std::string sourceFlagPath = folderPath + '\\' + baseFlag + suffix;
-				std::string overlordFlagPath = folderPath + '\\' + overlord + ".tga";
+				std::string overlordFlagPath = folderPath + '\\' + overlord + "_monarchy.tga";
 				flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(overlordFlagPath));
 				if (flagFileFound)
 				{
