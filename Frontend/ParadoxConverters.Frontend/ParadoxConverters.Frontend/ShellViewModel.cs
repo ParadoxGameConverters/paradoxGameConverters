@@ -1,5 +1,3 @@
-
-
 namespace Frontend.Client
 {
     using Caliburn.Micro;
@@ -8,7 +6,7 @@ namespace Frontend.Client
     using Frontend.Core.ViewModels;
     using System;
 
-    public class ShellViewModel : IShell , IDisposable
+    public class ShellViewModel : IShell, IDisposable
     {
         private IEventAggregator eventAggregator;
         private FrameViewModel frameViewModel;
@@ -19,8 +17,8 @@ namespace Frontend.Client
             this.eventAggregator = eventAggregator;
         }
 
-        public FrameViewModel FrameViewModel 
-        { 
+        public FrameViewModel FrameViewModel
+        {
             get
             {
                 if (this.frameViewModel == null)

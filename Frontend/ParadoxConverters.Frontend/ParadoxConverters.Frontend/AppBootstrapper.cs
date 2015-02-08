@@ -1,26 +1,24 @@
-
-
 namespace Frontend.Client
 {
+    using System;
+    using System.Linq;
+    using System.Collections.Generic;
     using Caliburn.Micro;
-    using Frontend.Core.Logging;
     using Frontend.Core.ViewModels;
     using Frontend.Core.ViewModels.Interfaces;
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
     using System.Reflection;
+    using Frontend.Core.Logging;
     using System.Windows;
 
-	public class AppBootstrapper : BootstrapperBase
-	{
-		SimpleContainer container;
+    public class AppBootstrapper : BootstrapperBase
+    {
+        private SimpleContainer container;
         private IEventAggregator eventAggregator;
 
-		public AppBootstrapper()
-		{
-			Start();
-		}
+        public AppBootstrapper()
+        {
+            this.StartRuntime();
+        }
 
         protected IEventAggregator EventAggregator
         {
@@ -30,25 +28,24 @@ namespace Frontend.Client
             }
         }
 
-		protected override void Configure()
-		{
-			container = new SimpleContainer();
-
-			container.Singleton<IWindowManager, WindowManager>();
-			container.Singleton<IEventAggregator, EventAggregator>();
-			container.PerRequest<IShell, ShellViewModel>();
+        protected override void Configure()
+        {
+            container = new SimpleContainer();
+            container.Singleton<IWindowManager, WindowManager>();
+            container.Singleton<IEventAggregator, EventAggregator>();
+            container.PerRequest<IShell, ShellViewModel>();
             container.PerRequest<IFrameViewModel, FrameViewModel>();
             container.PerRequest<IWelcomeViewModel, WelcomeViewModel>();
-		}
+        }
 
-		protected override object GetInstance(Type service, string key)
-		{
-			var instance = container.GetInstance(service, key);
-			if (instance != null)
-				return instance;
+        protected override object GetInstance(Type service, string key)
+        {
+            var instance = container.GetInstance(service, key);
+            if (instance != null)
+                return instance;
 
-			throw new InvalidOperationException("Could not locate any instances.");
-		}
+            throw new InvalidOperationException("Could not locate any instances.");
+        }
 
         protected override IEnumerable<Assembly> SelectAssemblies()
         {
@@ -60,7 +57,7 @@ namespace Frontend.Client
             return assemblies;
         }
 
-		protected override IEnumerable<object> GetAllInstances(Type service)
+        protected override IEnumerable<object> GetAllInstances(Type service)
 		{
 			return container.GetAllInstances(service);
 		}
@@ -83,5 +80,5 @@ namespace Frontend.Client
         {
             this.EventAggregator.PublishOnUIThread(new LogEntry("Error occured: " + e.Exception.Message, LogEntrySeverity.Error, LogEntrySource.UI));
         }
-	}
+    }
 }
