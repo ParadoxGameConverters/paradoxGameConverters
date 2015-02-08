@@ -9,7 +9,7 @@ namespace Frontend.Client
 	using System.Reflection;
 	using Frontend.Core.Logging;
 	using System.Windows;
-    using System.Windows.Threading;
+	using System.Windows.Threading;
 
 	public class AppBootstrapper : BootstrapperBase
 	{

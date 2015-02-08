@@ -48,7 +48,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>True</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
