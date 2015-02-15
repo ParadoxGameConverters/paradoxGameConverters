@@ -45,8 +45,8 @@ class EU3Country
 		// Add any additional information available from the specified country file.
 		void readFromCommonCountry(const string& fileName, Object*);
 
-		void setLocalisationName(const string& language, const string& name);
-		void setLocalisationAdjective(const string& language, const string& adjective);
+		void setLocalisationName(const unsigned int language, const string& name);
+		void setLocalisationAdjective(const unsigned int language, const string& adjective);
 
 		void							addProvince(EU3Province*);
 		void							addCore(EU3Province*);
@@ -105,8 +105,8 @@ class EU3Country
 		double						getTreasury()								const	{ return inflationAdjust(treasury); };
 
 		string	getName() const { return name; }
-		string	getName(const string& language) const;
-		string	getAdjective(const string& language) const;
+		string	getName(const unsigned int language) const;
+		string	getAdjective(const unsigned int language) const;
 		Color		getColor() const { return color; }
 
 	private:
@@ -169,8 +169,8 @@ class EU3Country
 		Color		color;
 
 		// Localisation attributes
-		map<string, string> namesByLanguage;
-		map<string, string> adjectivesByLanguage;
+		map<int, string> namesByLanguage;
+		map<int, string> adjectivesByLanguage;
 };
 
 

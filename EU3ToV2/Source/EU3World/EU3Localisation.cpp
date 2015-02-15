@@ -22,39 +22,70 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "EU3Localisation.h"
-
 #include <fstream>
 #include <vector>
-
 #include <Windows.h>
+#include <boost/tokenizer.hpp>
+#include <iterator>
+using namespace std;
+using namespace boost;
+
+
+
+
+enum
+{
+	CODE,
+	ENGLISH,
+	FRENCH,
+	GERMAN,
+	POLSKI,
+	SPANISH,
+	ITALIAN,
+	SWEDISH,
+	CZECH,
+	HUNGARIAN,
+	DUTCH,
+	PORTUGESE,
+	RUSSIAN,
+	FINNISH,
+	x
+} languages;
+
 
 void EU3Localisation::ReadFromFile(const std::string& fileName)
 {
 	std::ifstream in(fileName);
 
 	const int maxLineLength = 10000;	// the maximum line length
-	char line[maxLineLength];			// the line being processed
-
-	// First line is the language like "l_english:"
-	in.getline(line, maxLineLength);
-	std::string language = DetermineLanguageForFile(RemoveUTF8BOM(line));
-	if (language.empty())
-	{
-		return;
-	}
+	char lineArray[maxLineLength];			// the line being processed
+	string line;
 
 	// Subsequent lines are 'KEY: "Text"'
 	while (!in.eof())
 	{
-		in.getline(line, maxLineLength);
+		in.getline(lineArray, maxLineLength);
+		line = lineArray;
 		if (!in.eof())
 		{
-			const auto keyLocalisationPair = DetermineKeyLocalisationPair(RemoveUTF8BOM(line));		// the localisation pair
-			const std::string& key = keyLocalisationPair.first;												// the key from the pair
-			const std::string& currentLocalisation = keyLocalisationPair.second;							// the localisation from the pair
-			if (!key.empty() && !currentLocalisation.empty())
+			string key;
+			string currentLocalisation;
+
+			char_separator<char> separator(";");
+			tokenizer<char_separator<char>> tokens(line, separator);
+			int language = CODE;
+			for (auto tItr = tokens.begin(); tItr != tokens.end(); ++tItr)
 			{
-				localisations[key][language] = currentLocalisation;
+				if (distance(tokens.begin(), tItr) == 0)
+				{
+					key = *tItr;
+				}
+				else
+				{
+					currentLocalisation = *tItr;
+					localisations[key][language] = currentLocalisation;
+				}
+				language++;
 			}
 		}
 	}
@@ -86,7 +117,7 @@ void EU3Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 	}
 }
 
-const std::string& EU3Localisation::GetText(const std::string& key, const std::string& language) const
+const std::string& EU3Localisation::GetText(const std::string& key, unsigned int language) const
 {
 	static const std::string noLocalisation = "";	// used if there's no localisation
 
@@ -105,9 +136,9 @@ const std::string& EU3Localisation::GetText(const std::string& key, const std::s
 	return languageFindIter->second;
 }
 
-const std::map<std::string, std::string>& EU3Localisation::GetTextInEachLanguage(const std::string& key) const
+const std::map<unsigned int, std::string>& EU3Localisation::GetTextInEachLanguage(const std::string& key) const
 {
-	static const std::map<std::string, std::string> noLocalisation;	// used if there's no localisation
+	static const std::map<unsigned int, std::string> noLocalisation;	// used if there's no localisation
 
 	const auto keyFindIter = localisations.find(key);	// the localisation we want
 	if (keyFindIter == localisations.end())

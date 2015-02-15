@@ -551,13 +551,13 @@ void EU3Country::readFromCommonCountry(const string& fileName, Object* obj)
 }
 
 
-void EU3Country::setLocalisationName(const string& language, const string& name)
+void EU3Country::setLocalisationName(const unsigned int language, const string& name)
 {
 	namesByLanguage[language] = name;
 }
 
 
-void EU3Country::setLocalisationAdjective(const string& language, const string& adjective)
+void EU3Country::setLocalisationAdjective(const unsigned int language, const string& adjective)
 {
 	adjectivesByLanguage[language] = adjective;
 }
@@ -728,14 +728,14 @@ void EU3Country::eatCountry(EU3Country* target)
 }
 
 
-string EU3Country::getName(const string& language) const
+string EU3Country::getName(const unsigned int language) const
 {
-	if (namesByLanguage.empty() && language == "english")
+	if (namesByLanguage.empty() && language == 1) // english
 	{
 		return name;
 	}
 
-	map<string, string>::const_iterator findIter = namesByLanguage.find(language);
+	map<int, string>::const_iterator findIter = namesByLanguage.find(language);
 	if (findIter != namesByLanguage.end())
 	{
 		return findIter->second;
@@ -747,14 +747,14 @@ string EU3Country::getName(const string& language) const
 }
 
 
-string EU3Country::getAdjective(const string& language) const
+string EU3Country::getAdjective(const unsigned int language) const
 {
-	if (adjectivesByLanguage.empty() && language == "english")
+	if (adjectivesByLanguage.empty() && language == 1)	// english
 	{
 		return adjective;
 	}
 
-	map<string, string>::const_iterator findIter = adjectivesByLanguage.find(language);
+	map<int, string>::const_iterator findIter = adjectivesByLanguage.find(language);
 	if (findIter != adjectivesByLanguage.end())
 	{
 		return findIter->second;

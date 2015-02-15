@@ -473,15 +473,15 @@ void EU3World::setLocalisations(EU3Localisation& localisation)
 		const auto& nameLocalisations = localisation.GetTextInEachLanguage(countryItr->first);
 		for (const auto& nameLocalisation : nameLocalisations)
 		{
-			const std::string& language = nameLocalisation.first;
-			const std::string& name = nameLocalisation.second;
+			unsigned int			language = nameLocalisation.first;
+			const std::string&	name = nameLocalisation.second;
 			countryItr->second->setLocalisationName(language, name);
 		}
 		const auto& adjectiveLocalisations = localisation.GetTextInEachLanguage(countryItr->first + "_ADJ");
 		for (const auto& adjectiveLocalisation : adjectiveLocalisations)
 		{
-			const std::string& language = adjectiveLocalisation.first;
-			const std::string& adjective = adjectiveLocalisation.second;
+			unsigned int			language = adjectiveLocalisation.first;
+			const std::string&	adjective = adjectiveLocalisation.second;
 			countryItr->second->setLocalisationAdjective(language, adjective);
 		}
 	}

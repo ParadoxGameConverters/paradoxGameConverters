@@ -42,10 +42,10 @@ public:
 
 	// Returns the localised text for the given key in the specified language. Returns
 	// an empty string if no such localisation is available.
-	const std::string& GetText(const std::string& key, const std::string& language) const;
+	const std::string& GetText(const std::string& key, unsigned int language) const;
 	// Returns the localised text for the given key in each language - the returned map is from
 	// language to localised text.
-	const std::map<std::string, std::string>& GetTextInEachLanguage(const std::string& key) const;
+	const std::map<unsigned int, std::string>& GetTextInEachLanguage(const std::string& key) const;
 
 private:
 	// Returns the language name from text in the form "l_english:". Returns an empty string
@@ -59,9 +59,10 @@ private:
 	// CK2-EU3 converter.)
 	static std::string RemoveUTF8BOM(const std::string& text);
 
-	typedef std::map<std::string, std::string> LanguageToLocalisationMap;
+	typedef std::map<unsigned int, std::string> LanguageToLocalisationMap;
 	typedef std::unordered_map<std::string, LanguageToLocalisationMap> KeyToLocalisationsMap;
 	KeyToLocalisationsMap localisations;	// a map between keys and localisations
 };
+
 
 #endif

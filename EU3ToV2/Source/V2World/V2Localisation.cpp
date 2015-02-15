@@ -21,32 +21,32 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Localisation.h"
-
 #include <Windows.h>
-
 #include "..\EU3World\EU3Country.h"
 #include "..\Log.h"
 #include "..\WinUtils.h"
 
 const std::array<std::string, V2Localisation::numLanguages> V2Localisation::languages = 
-	{ "english", "french", "german", "spanish" };
+	{ "code", "english", "french", "german", "spanish" };
 
 void V2Localisation::SetTag(const std::string& newTag)
 {
 	tag = newTag;
 }
 
+
 void V2Localisation::ReadFromCountry(const EU3Country& source)
 {
-	for (size_t i = 0; i < numLanguages; ++i)
+	for (size_t i = 1; i < numLanguages; ++i)
 	{
 		if (!languages[i].empty())
 		{
-			name[i] = source.getName(languages[i]);
-			adjective[i] = source.getAdjective(languages[i]);
+			name[i - 1] = source.getName(i);
+			adjective[i - 1] = source.getAdjective(i);
 		}
 	}
 }
+
 
 void V2Localisation::SetPartyKey(size_t partyIndex, const std::string& partyKey)
 {
