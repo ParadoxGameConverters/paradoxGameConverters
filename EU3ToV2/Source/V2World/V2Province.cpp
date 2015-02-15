@@ -336,7 +336,7 @@ void V2Province::convertFromOldProvince(const EU3Province* oldProvince)
 	COT					= oldProvince->isCOT();
 }
 
-#pragma optimize("", off)
+
 void V2Province::determineColonial()
 {
 	if ((!landConnection) && (!sameContinent) && ((wasColonised) || (originallyInfidel)))
@@ -344,7 +344,7 @@ void V2Province::determineColonial()
 		colonial = 2;
 	}
 }
-#pragma optimize("", on)
+
 
 void V2Province::addCore(string newCore)
 {

@@ -355,7 +355,7 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
 	if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 	{
-		filename = string(".\\blankMod\\output\\history\\countries\\") + fileData.name;
+		filename = fileData.name;
 	}
 	_findclose(fileListing);
 	if (filename == "")
