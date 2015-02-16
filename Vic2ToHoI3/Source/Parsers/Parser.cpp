@@ -52,16 +52,22 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 using namespace boost::spirit;
 
-static void setLHS			(string key);
-static void pushObj			();
-static void setRHSleaf		(string val);
-static void setRHSobject	();
-static void setRHSobjlist	();
-static void setRHStaglist	(vector<string> val);
 
-static Object* topLevel = NULL;  // a top level object
-vector<Object*> stack;				// a stack of objects
-vector<Object*> objstack;			// a stack of objects
+
+static void setLHS						(string key);
+static void pushObj						();
+static void setRHSleaf					(string val);
+static void setRHSobject				();
+static void setRHSobjlist				();
+static void setRHStaglist				(vector<string> val);
+static void setEpsilon					();
+static void setAssign					();
+
+static Object*		topLevel		= NULL;  // a top level object
+vector<Object*>	stack;					// a stack of objects
+vector<Object*>	objstack;				// a stack of objects
+bool					epsilon		= false;	// if we've tried an episilon for an assign
+
 
 template <typename Iterator>
 struct SkipComment : qi::grammar<Iterator>
@@ -73,6 +79,7 @@ struct SkipComment : qi::grammar<Iterator>
 		comment = qi::raw[qi::lexeme[lit("#") >> *(iso8859_1::char_ - qi::eol)] >> -qi::eol];
 	}
 };
+
 
 static bool debugme = false;	// whether or not debugging should be on
 template <typename Iterator>
@@ -120,24 +127,29 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 		braces = *(iso8859_1::space) >> lit('{') >> *(iso8859_1::space) >> lit('}') >> *(iso8859_1::space);
 
 		// a string enclosed in quotes
-		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"') | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F))] >> lit('"')];
+		str     = lexeme[lit('"') >> raw[*(~iso8859_1::char_('"') | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–'))] >> lit('"')];
 
 		// a 'forgiving' string without quotes
-		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F))];
+		tolleaf = raw[+(~iso8859_1::char_("\"{}= \t\r\n") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–'))];
 
 		// a strict string without quotes
-		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F))];
+		leaf    = raw[+(iso8859_1::alnum | iso8859_1::char_("-._:") | lit(0x80) | lit(0x81) | lit(0x82) | lit(0x83) | lit(0x84) | lit(0x85) | lit(0x86) | lit(0x87) | lit(0x88) | lit(0x89) | lit(0x8A) | lit(0x8B) | lit(0x8C) | lit(0x8D) | lit(0x8E) | lit(0x8F) | lit(0x90) | lit(0x91) | lit(0x92) | lit(0x93) | lit(0x94) | lit(0x95) | lit(0x96) | lit(0x97) | lit(0x98) | lit(0x99) | lit(0x9A) | lit(0x9B) | lit(0x9C) | lit(0x9D) | lit(0x9E) | lit(0x9F) | lit('–'))];
 
-		// a 
+		// a list of strings within brackets
 		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
+
+		// a root object contained within brackets
 		object  = raw[lit('{') >> *(root) >> *(iso8859_1::space) >> lit('}')];
 
+		// a list of objects contained within brackets
 		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
 
-		assign  = raw[(*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(iso8859_1::space) >> lit('=')
-			>> *(iso8859_1::space) 
-			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) 
-			>> *(iso8859_1::space))];
+		// an assignment. Left side is a string of some kind, right side is one of many allowed types
+		assign  = raw[(*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS] | eps[&setEpsilon] ) >> *(iso8859_1::space)
+			>>	lit('=')[&setAssign]	>> *(iso8859_1::space) 
+			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) >> *(iso8859_1::space))];
+
+		// the root object (either an assignment, or something in braces)
 		root	= +(assign | braces);
 
 		str.name("str");
@@ -163,15 +175,19 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	}
 };
 
+
 Object* getTopLevel()
 {
 	return topLevel;
 }
 
+
 void initParser()
 {
 	topLevel = new Object("topLevel");
+	epsilon	= false;
 }
+
 
 string bufferOneObject(ifstream& read)
 {
@@ -181,7 +197,11 @@ string bufferOneObject(ifstream& read)
 	while (read.good())
 	{
 		getline(read, buffer);
-		if (buffer == "V2txt")
+		if (buffer == "CK2txt")
+		{
+			continue;
+		}
+		else if (buffer == "EU4txt")
 		{
 			continue;
 		}
@@ -247,10 +267,18 @@ string bufferOneObject(ifstream& read)
 	return currObject;
 }
 
+
 bool readFile(ifstream& read)
 {
 	clearStack();
 	read.unsetf(std::ios::skipws);
+
+	char firstChar = read.peek();
+	if (firstChar == (char)0xEF)
+	{
+		char bitBucket[3];
+		read.read(bitBucket, 3);
+	}
 
 	/* - it turns out that the current implementation of spirit::istream_iterator is ungodly slow...
 	static Parser<boost::spirit::istream_iterator> p;
@@ -270,8 +298,13 @@ bool readFile(ifstream& read)
 	{
 		string currObject = bufferOneObject(read);	// the object under consideration
 		if (!qi::phrase_parse(currObject.begin(), currObject.end(), p, s))
+		{
+			clearStack();
 			return false;
+		}
 	}
+
+	clearStack();
 	return true;
 }
 
@@ -293,17 +326,20 @@ void clearStack()
 
 void setLHS(string key)
 {
-	//cout << "Setting lefthand side " << key << endl;
+	//LOG(LogLevel::Debug) << "Setting LHS : " << key;
 	Object* p = new Object(key);
 	if (0 == stack.size())
 	{
 		topLevel->setValue(p);
 	}
 	stack.push_back(p);
+	epsilon = false;
 }
+
 
 void pushObj()
 {
+	//LOG(LogLevel::Debug) << "Pushing objlist";
 	string key("objlist");			// the key of the object list
 	Object* p = new Object(key);	// the object to hold the object list
 	p->setObjList(); 
@@ -313,6 +349,7 @@ void pushObj()
 
 void setRHSleaf(string val)
 {
+	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
 	l->setValue(val); 
@@ -323,8 +360,10 @@ void setRHSleaf(string val)
 	}
 }
 
+
 void setRHStaglist(vector<string> val)
 {
+	//LOG(LogLevel::Debug) << "Setting RHStaglist";
 	Object* l = stack.back();	// the object holding the list
 	stack.pop_back(); 
 	l->addToList(val.begin(), val.end());
@@ -335,8 +374,10 @@ void setRHStaglist(vector<string> val)
 	}
 }
 
+
 void setRHSobject()
 {
+	//LOG(LogLevel::Debug) << "Setting RHSobject";
 	// No value is set, a bunch of leaves have been defined. 
 	Object* l = stack.back();
 	stack.pop_back(); 
@@ -349,6 +390,7 @@ void setRHSobject()
 
 void setRHSobjlist()
 {
+	//LOG(LogLevel::Debug) << "Setting RHSobjlist";
 	Object* l = stack.back();	// the object
 	l->setValue(objstack);
 	objstack.clear();
@@ -358,6 +400,25 @@ void setRHSobjlist()
 		Object* p = stack.back(); // the other object
 		p->setValue(l); 
 	}
+}
+
+
+void setEpsilon()
+{
+	//LOG(LogLevel::Debug) << "Setting epsilon";
+	epsilon = true;
+}
+
+
+void setAssign()
+{
+	//LOG(LogLevel::Debug) << "In assign";
+	if (epsilon)
+	{
+		Object* e = new Object("epsilon");
+		stack.push_back(e);
+	}
+	epsilon = false;
 }
 
 
