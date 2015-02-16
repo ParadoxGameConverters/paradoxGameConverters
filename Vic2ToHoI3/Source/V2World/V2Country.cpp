@@ -126,6 +126,7 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	}
 }
 
+
 V2Country::V2Country(Object* obj)
 {
 	tag = obj->getKey();
@@ -352,6 +353,35 @@ V2Country::V2Country(Object* obj)
 	{
 		V2Army* navy = new V2Army(*itr);
 		armies.push_back(navy);
+	}
+
+	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
+	for (auto statesItr : statesObj)
+	{
+		vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
+		for (auto buildingsItr : buildingsObj)
+		{
+			vector<Object*> employmentObj = buildingsItr[0].getValue("employment"); // each employment entry in the factory.
+			for (auto employmentItr: employmentObj)
+			{
+				vector<Object*> employeesObj = employmentItr[0].getValue("employees"); // each employee entry in employment
+				for (auto employeesItr : employeesObj)
+				{
+					vector<Object*> employeeObj = employeesItr[0].getLeaves(); // each employee object in employees
+					for (auto employeeItr: employeeObj)
+					{
+						// this should work, except that the employee object is blank. I suspect more parser updates are in our future
+						vector<Object*> countObj = employeeItr[0].getValue("count");
+						if (countObj.size() > 0)
+						{
+							int count = atoi(countObj[0]->getLeaf().c_str());
+						}
+
+						//something where you get the pop type and count total clerks and total craftsmen differently
+					}
+				}
+			}
+		}
 	}
 }
 
