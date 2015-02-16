@@ -156,6 +156,8 @@ V2Province::V2Province(string _filename)
 		}
 		else if ((*itr)->getKey() == "state_building")
 		{
+			//LOG(LogLevel::Info) << "There's a building here, I promise...";
+			cout << (*itr)->getLeaf().c_str();
 		}
 		else if ((*itr)->getKey() == "party_loyalty")
 		{

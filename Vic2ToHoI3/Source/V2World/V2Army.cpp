@@ -257,6 +257,8 @@ V2Army::V2Army(Object* obj)
 	{
 		supplies = 0.0;
 	}
+
+	
 }
 
 

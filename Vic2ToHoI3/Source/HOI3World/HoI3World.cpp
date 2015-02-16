@@ -763,10 +763,16 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 					// XXX: how shall we set industry?
 					if (Configuration::getIcConversion() != "no")
 					{
-						provinces[destNum]->setNCrafts(((*vitr)->getPopulation("craftsmen")
+						if (Configuration::getIcConversion() == "gunther"){
+							
+						}
+						else {
+							provinces[destNum]->setNCrafts(((*vitr)->getPopulation("craftsmen")
 							+ int((*vitr)->getPopulation("artisans") * 0.5)
 							+ (*vitr)->getLiteracyWeightedPopulation("capitalists") * 2
 							+ (*vitr)->getLiteracyWeightedPopulation("clerks") * 2) / mitr->second.provinces.size());
+						}
+						
 					}
 
 					double newManpower = (*vitr)->getPopulation("soldiers")

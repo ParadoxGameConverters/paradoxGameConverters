@@ -380,6 +380,8 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");
 	fprintf(modFile, "replace = \"history/provinces\"\n");
 	fprintf(modFile, "replace = \"script\"\n");
+	fprintf(modFile, "replace_path = \"events\"\n");
+	fprintf(modFile, "replace_path = \"decisions\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
 	system(renameCommand.c_str());

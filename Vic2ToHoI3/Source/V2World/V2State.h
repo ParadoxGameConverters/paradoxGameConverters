@@ -68,6 +68,7 @@ class V2State
 		bool								colonised;
 		vector<V2Province*>			provinces;
 		vector<const V2Factory*>	factories;
+		int employedCraftsmen;
 };
 
 

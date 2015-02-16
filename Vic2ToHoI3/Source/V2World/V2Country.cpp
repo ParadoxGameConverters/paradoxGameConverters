@@ -353,6 +353,73 @@ V2Country::V2Country(Object* obj)
 		V2Army* navy = new V2Army(*itr);
 		armies.push_back(navy);
 	}
+
+	//getting number of employed craftsmen by examining "state" objects.
+
+	std::vector<Object*> objStates = obj->getValue("state"); //Each state in the country
+
+	for (std::vector<Object*>::iterator i = objStates.begin(); i != objStates.end(); ++i){
+
+		Object state = new Object(*i);
+
+		std::vector<Object*> stateBuildings = state.getValue("state_buildings"); //each factory in the state
+
+		for (std::vector<Object*>::iterator j = stateBuildings.begin(); j != stateBuildings.end(); ++j){
+			Object building = new Object(*j);
+
+			std::vector<Object*> employment = building.getValue("employment"); //each "employment" entry in the factory.
+
+			std::vector<Object*>::iterator k;
+
+			for (k = employment.begin(); k != employment.end(); ++k){
+
+				Object employ = new Object(*k);
+
+				std::vector<Object*> employees = employ.getValue("employees"); //each "employee" entry in employment
+
+				std::vector<Object*>::iterator l;
+				std::cout << "New employment bit\n";
+
+				for (l = employees.begin(); l != employees.end(); ++l){
+
+					Object empList = new Object(*l);
+
+					std::vector<Object*> objLists = empList.getLeaves(); //Each employee object in employees?
+
+					std:: vector<Object*>::iterator m;
+
+					for (m = objLists.begin(); m != objLists.end(); ++m){
+
+						Object elm = new Object(*m);
+
+						//std::cout << elm.toString(); //prints "objlist = { }";
+						//elm.printTopLevel(); //prints nothing!!!!
+						//string key = (*m)->getKey();
+						//std::cout << key;
+
+						std::vector<Object*> elmConts = elm.getLeaves();
+
+						std::vector<Object*>::iterator n;
+
+						for (n = elmConts.begin(); n != elmConts.end(); ++n){
+
+							std::cout << "Something here, I promise \n";
+
+							//Object content = new Object(*n);
+
+							//content.printTopLevel();
+
+						}
+
+					}
+				}
+
+			}
+		}
+
+	}
+
+
 }
 
 

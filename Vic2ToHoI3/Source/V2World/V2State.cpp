@@ -36,6 +36,8 @@ V2State::V2State(int newId, V2Province* firstProvince)
 	provinces.clear();
 	provinces.push_back(firstProvince);
 	factories.clear();
+	employedCraftsmen = 0;
+
 }
 
 

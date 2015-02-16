@@ -96,7 +96,7 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 	qi::rule<Iterator, SkipComment<Iterator> >	object;
 
 	// objlist: a grouping of anonymous (rhs) objects
-	// example: objlist = { { leaf = "string } { leaf = leaf } }
+	// example: objlist = { { leaf = "string" } { leaf = leaf } }
 	qi::rule<Iterator, SkipComment<Iterator> >	objlist;
 
 	// str: a quoted literal string.  may include extended and/or reserved characters.
@@ -131,7 +131,9 @@ struct Parser : public qi::grammar<Iterator, SkipComment<Iterator> > {
 		// a 
 		taglist = lit('{') >> omit[*(iso8859_1::space)] >> lexeme[( ( str | skip[tolleaf] ) % *(iso8859_1::space) )] >> omit[*(iso8859_1::space)] >> lit('}');
 		object  = raw[lit('{') >> *(root) >> *(iso8859_1::space) >> lit('}')];
+
 		objlist = raw[lit('{') >> *( *(iso8859_1::space) >> object[&pushObj] ) >> *(iso8859_1::space) >> lit('}')];
+
 		assign  = raw[(*(iso8859_1::space) >> ( leaf[&setLHS] | str[&setLHS]) >> *(iso8859_1::space) >> lit('=')
 			>> *(iso8859_1::space) 
 			>> ( leaf[&setRHSleaf] | str[&setRHSleaf] | taglist[&setRHStaglist] | objlist[&setRHSobjlist] | object[&setRHSobject] ) 
