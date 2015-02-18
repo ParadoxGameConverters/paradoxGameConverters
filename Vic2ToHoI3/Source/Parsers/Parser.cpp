@@ -59,6 +59,7 @@ static void pushObj						();
 static void setRHSleaf					(string val);
 static void setRHSobject				();
 static void setRHSobjlist				();
+static void endRHSobjlist				();
 static void setRHStaglist				(vector<string> val);
 static void setEpsilon					();
 static void setAssign					();
@@ -67,6 +68,7 @@ static Object*		topLevel		= NULL;  // a top level object
 vector<Object*>	stack;					// a stack of objects
 vector<Object*>	objstack;				// a stack of objects
 bool					epsilon		= false;	// if we've tried an episilon for an assign
+bool					inObjList	= false;	// if we're inside an object list
 
 
 template <typename Iterator>
@@ -339,6 +341,7 @@ void setLHS(string key)
 
 void pushObj()
 {
+	inObjList = true;
 	//LOG(LogLevel::Debug) << "Pushing objlist";
 	string key("objlist");			// the key of the object list
 	Object* p = new Object(key);	// the object to hold the object list
@@ -352,10 +355,15 @@ void setRHSleaf(string val)
 	//LOG(LogLevel::Debug) << "Setting RHSleaf : " << val;
 	Object* l = stack.back();	// the leaf object
 	stack.pop_back(); 
-	l->setValue(val); 
-	if (0 < stack.size())
+	l->setValue(val);
+	if ( (!inObjList) &&(0 < stack.size()) )
 	{
 		Object* p = stack.back();	// the object holding the leaf
+		p->setValue(l); 
+	}
+	else if ( (inObjList) &&(0 < objstack.size()) )
+	{
+		Object* p = objstack.back();	// the object holding the leaf
 		p->setValue(l); 
 	}
 }
@@ -367,9 +375,14 @@ void setRHStaglist(vector<string> val)
 	Object* l = stack.back();	// the object holding the list
 	stack.pop_back(); 
 	l->addToList(val.begin(), val.end());
-	if (0 < stack.size())
+	if ( (!inObjList) &&(0 < stack.size()) )
 	{
-		Object* p = stack.back();	// the object holding the list container
+		Object* p = stack.back();	// the object holding the leaf
+		p->setValue(l); 
+	}
+	else if ( (inObjList) &&(0 < objstack.size()) )
+	{
+		Object* p = objstack.back();	// the object holding the leaf
 		p->setValue(l); 
 	}
 }
@@ -381,15 +394,22 @@ void setRHSobject()
 	// No value is set, a bunch of leaves have been defined. 
 	Object* l = stack.back();
 	stack.pop_back(); 
-	if (0 < stack.size())
+	if ( (!inObjList) &&(0 < stack.size()) )
 	{
-		Object* p = stack.back(); // the object holding the first leaf
+		Object* p = stack.back();	// the object holding the leaf
+		p->setValue(l); 
+	}
+	else if ( (inObjList) &&(0 < objstack.size()) )
+	{
+		Object* p = objstack.back();	// the object holding the leaf
 		p->setValue(l); 
 	}
 }
 
+
 void setRHSobjlist()
 {
+	inObjList = false;
 	//LOG(LogLevel::Debug) << "Setting RHSobjlist";
 	Object* l = stack.back();	// the object
 	l->setValue(objstack);
