@@ -30,14 +30,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <string>
 using namespace std;
 
-class EU4Country;
 class V2Country;
 
 
 
 class V2Reforms {
 	public:
-		V2Reforms(const V2Country*, const EU4Country*);
 		void output(FILE*) const;
 	private:
 		void governmentEffects(const V2Country*);

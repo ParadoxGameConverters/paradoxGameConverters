@@ -640,6 +640,7 @@ struct MTo1ProvinceComp
 	int totalPopulation;
 };
 
+
 void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap)
 {
 	for (map<int, HoI3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
@@ -817,6 +818,7 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 		}
 	}
 }
+
 
 void HoI3World::convertCapitals(const V2World &sourceWorld, provinceMapping provinceMap)
 {

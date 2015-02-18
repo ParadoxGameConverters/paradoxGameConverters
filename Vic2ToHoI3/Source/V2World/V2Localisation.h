@@ -31,7 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <unordered_map>
 #include <vector>
 
-class EU4Country;
+
 
 // Holds translations for attributes of a specific V2 country.
 class V2Localisation
@@ -39,8 +39,6 @@ class V2Localisation
 public:
 	// Sets the tag to use for creating the name and adjective key to use in the localisation output.
 	void SetTag(const std::string& tag);
-	// Populates the localised names and adjectives using information from the EU4 country.
-	void ReadFromCountry(const EU4Country&);
 
 	// Sets the key to use for the specified party in the localisation output.
 	void SetPartyKey(size_t partyIndex, const std::string& partyKey);

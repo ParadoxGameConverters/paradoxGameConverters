@@ -25,8 +25,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define V2ARMY_H_
 
 
-
-#include "../Eu4World/EU4Army.h"
+#include <vector>
+#include <string>
+#include "../Parsers/Object.h"
+using namespace std;
 
 
 
@@ -44,7 +46,6 @@ struct V2ArmyID
 class V2Regiment // also Ship
 {
 	public:
-		V2Regiment(RegimentCategory rc);
 		V2Regiment(Object* obj);
 		void output(FILE* out) const;
 
@@ -53,7 +54,6 @@ class V2Regiment // also Ship
 		void setStrength(double str)	{ strength = str; };
 
 		bool					getShip()		const { return isShip; };
-		RegimentCategory	getCategory()	const { return category; };
 		string getName() const { return name; };
 		string getType() const { return type; };
 		double getStrength() const { return strength; };
@@ -66,7 +66,6 @@ class V2Regiment // also Ship
 		int					popID;
 		double				strength;
 		bool					isShip;
-		RegimentCategory	category;
 
 		double					organization;
 		double					experience;
@@ -76,19 +75,14 @@ class V2Regiment // also Ship
 class V2Army // also Navy
 {
 	public:
-		V2Army(EU4Army* oldArmy, map<int, int> leaderIDMap);
 		V2Army(Object* obj);
 		void					output(FILE* out) const;
 		void					addRegiment(V2Regiment reg);
 
 		void					setLocation(int provinceID)												{ location = provinceID; };
 		void					setNavy(bool navy)															{ isNavy = navy; };
-		void					setArmyRemainders(RegimentCategory category, double remainder)	{ armyRemainders[category] = remainder; };
 
 		string				getName() const { return name; };
-		void					getRegimentCounts(int counts[num_reg_categories]) const;
-		double				getArmyRemainder(RegimentCategory category) const { return armyRemainders[category]; };
-		EU4Army*				getSourceArmy() const { return sourceArmy; };
 		bool					getNavy() const { return isNavy; };
 		double getSupplies() const { return supplies; };
 		int getAtSea() const { return at_sea; };
@@ -99,8 +93,6 @@ class V2Army // also Navy
 		string					name;
 		int						location;
 		vector<V2Regiment>	regiments;
-		double					armyRemainders[num_reg_categories];
-		EU4Army*					sourceArmy; // only valid during conversion
 		double					supplies;
 		int						at_sea;
 		int						leaderID;

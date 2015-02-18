@@ -24,24 +24,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Leader.h"
 #include "V2LeaderTraits.h"
 #include "V2Country.h"
-#include "../EU4World/EU4Leader.h"
 
 
 
 static int nextId = 0;
-
-
-V2Leader::V2Leader(string tag, const EU4Leader* oldLeader, const V2LeaderTraits& traits)
-{
-	name				= oldLeader->getName();
-	activationDate	= oldLeader->getActivationDate();
-	isLand			= oldLeader->isLand();
-	personality		= traits.getPersonality( oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege() );
-	background		= traits.getBackground(  oldLeader->getFire(), oldLeader->getShock(), oldLeader->getManuever(), oldLeader->getSiege() );
-	country			= tag;
-	//picture			= "";		// TODO: figure out picture
-	id = ++nextId;
-}
 
 
 void V2Leader::output(FILE *output) const

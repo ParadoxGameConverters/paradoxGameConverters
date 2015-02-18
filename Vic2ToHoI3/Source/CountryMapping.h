@@ -46,8 +46,7 @@ public:
 	// priority over other tags. Countries with EU4 tags that aren't in the rules or
 	// have no available V2 tag (e.g. when multiple EU4 countries would use the same V2 tag)
 	// are given a generated tag "X00"-"X99".
-	void CreateMapping(const EU4World& srcWorld, const V2World& destWorld);
-	void CreateMapping(const V2World& srcWorld, const HoI3World& destWorld);
+		void CreateMapping(const V2World& srcWorld, const HoI3World& destWorld);
 
 	// Returns the V2 tag that is mapped to by the given EU4 tag. Returns an empty string
 	// if there is no corresponding V2 tag. If CreateMapping() has been called then there

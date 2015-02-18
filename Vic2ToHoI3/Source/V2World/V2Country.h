@@ -29,7 +29,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Mapper.h"
 #include "../Color.h"
 #include "../Date.h"
-#include "../Eu4World/EU4Army.h"
 #include "V2Inventions.h"
 #include "V2Localisation.h"
 #include "V2TechSchools.h"
@@ -37,8 +36,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 using namespace std;
 
-class EU4World;
-class EU4Country;
 class V2World;
 class V2State;
 class V2Province;
@@ -63,25 +60,14 @@ class V2Country
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
 		void								outputOOB() const;
-		void								initFromEU4Country(const EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas);
 		void								initFromHistory();
-		void								addState(V2State* newState);
-		void								convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
 		bool								addFactory(V2Factory* factory);
 		void								addRailroadtoCapitalState();
-		void								convertUncivReforms();
-		void								setupPops(EU4World& sourceWorld);
-		void								setArmyTech(double mean, double highest);
-		void								setNavyTech(double mean, double highest);
-		void								setCommerceTech(double mean, double highest);
-		void								setIndustryTech(double mean, double highest);
-		void								setCultureTech(double mean, double highest);
 		void								addRelation(V2Relations* newRelation);
 		void								absorbColony(V2Country* colony);
 
 		V2Relations*					getRelations(string withWhom) const;
 		map<string, V2Relations*>					getRelations() const { return relations; };
-		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
 		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); };
 		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; };
@@ -96,7 +82,6 @@ class V2Country
 		bool								isCivilized() const { return civilized; };
 		string							getPrimaryCulture() const { return primaryCulture; };
 		set<string>						getAcceptedCultures() const { return acceptedCultures; };
-		const EU4Country*				getSourceCountry() const { return srcCountry; };
 		inventionStatus				getInventionState(vanillaInventionType invention) const { return vanillaInventions[invention]; };
 		inventionStatus				getInventionState(HODInventionType invention) const { return HODInventions[invention]; };
 		double							getReactionary() const { return upperHouseReactionary; };
@@ -162,13 +147,10 @@ class V2Country
 		void			outputTech(FILE*) const ;
 		void			outputElection(FILE*) const;
 		void			addLoan(string creditor, double size, double interest);
-		int			addRegimentToArmy(V2Army* army, RegimentCategory rc, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces);
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces);
-		V2Army*		getArmyForRemainder(RegimentCategory rc);
 		V2Province*	getProvinceForExpeditionaryArmy();
 
 		V2World*							theWorld;
-		const EU4Country*				srcCountry;
 		string							filename;
 		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
 

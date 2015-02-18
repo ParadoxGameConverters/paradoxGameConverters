@@ -34,36 +34,6 @@
     <ClCompile Include="Source\HOI3World\HoI3World.cpp">
       <Filter>HOI3World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Army.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Country.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Diplomacy.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Leader.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Localisation.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Province.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Relations.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Religion.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4Version.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\EU4World\EU4World.cpp">
-      <Filter>EU4World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Army.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
@@ -112,9 +82,6 @@
     <ClCompile Include="Source\V2World\V2TechSchools.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2toHOI3Converter.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Version.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
@@ -127,6 +94,7 @@
     <ClCompile Include="Source\Parsers\Parser.cpp">
       <Filter>Parser</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2toHOI3Converter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -160,36 +128,6 @@
     </ClInclude>
     <ClInclude Include="Source\HOI3World\HoI3World.h">
       <Filter>HOI3World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Army.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Country.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Diplomacy.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Leader.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Localisation.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Province.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Relations.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Religion.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4Version.h">
-      <Filter>EU4World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\EU4World\EU4World.h">
-      <Filter>EU4World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Army.h">
       <Filter>Vic2World</Filter>
@@ -258,9 +196,6 @@
   <ItemGroup>
     <Filter Include="HOI3World">
       <UniqueIdentifier>{9b0602de-4981-4d4a-9ef2-910f05b1d510}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="EU4World">
-      <UniqueIdentifier>{80562e5d-deb2-45a9-a944-32c30e7d643d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Vic2World">
       <UniqueIdentifier>{bc1097e7-d48e-4621-b8bf-34de52ee6f12}</UniqueIdentifier>

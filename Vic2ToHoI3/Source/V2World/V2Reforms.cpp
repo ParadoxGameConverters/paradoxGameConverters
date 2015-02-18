@@ -24,31 +24,10 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2Reforms.h"
 #include "../Log.h"
 #include "../Configuration.h"
-#include "../EU4World/EU4Country.h"
 #include "V2Country.h"
 #include "V2State.h"
 #include "V2Province.h"
 
-
-
-V2Reforms::V2Reforms(const V2Country* dstCountry, const EU4Country* srcCountry)
-{
-	slavery							= 0;
-	vote_franchise					= 0;
-	upper_house_composition		= 0;
-	voting_system					= 0;
-	public_meetings				= 0;
-	press_rights					= 0;
-	trade_unions					= 0;
-	political_parties				= 0;
-	governmentEffects(dstCountry);
-	upperHouseEffects(dstCountry);
-
-	if (srcCountry->hasModifier("the_abolish_slavery_act"))
-	{
-		slavery += 1;
-	}
-}
 
 
 void V2Reforms::output(FILE* output) const

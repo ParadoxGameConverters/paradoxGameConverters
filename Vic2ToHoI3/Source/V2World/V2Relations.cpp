@@ -22,7 +22,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Relations.h"
-#include "../EU4World/EU4Relations.h"
 
 
 
@@ -37,16 +36,6 @@ V2Relations::V2Relations(string newTag)
 	level					= 2; // Neutral
 }
 
-
-V2Relations::V2Relations(string newTag, EU4Relations* oldRelations)
-{
-	tag					= newTag;
-	value					= oldRelations->getRelations();
-	militaryAccess		= oldRelations->hasMilitaryAccess();
-	lastSendDiplomat	= oldRelations->getDiplomatLastSent();
-	lastWar				= oldRelations->getLastWar();
-	level					= 2; // Neutral
-}
 
 V2Relations::V2Relations(Object* obj) {
 	tag = obj->getKey();

@@ -50,16 +50,6 @@ void V2State::addRailroads()
 }
 
 
-void V2State::setupPops(string primaryCulture, set<string> acceptedCultures, string religion)
-{
-	int	statePopulation = getStatePopulation();
-	for (vector<V2Province*>::iterator itr = provinces.begin(); itr != provinces.end(); ++itr)
-	{
-		(*itr)->doCreatePops((itr == provinces.begin()), statePopulation);
-	}
-}
-
-
 bool V2State::isCoastal() const
 {
 	for (vector<V2Province*>::const_iterator itr = provinces.begin(); itr != provinces.end(); ++itr)

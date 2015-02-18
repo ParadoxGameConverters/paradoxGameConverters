@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Country.h"
-#include "../EU4World/EU4Army.h"
 #include "V2Diplomacy.h"
 #include "V2Factory.h"
 #include "V2TechSchools.h"
@@ -48,20 +47,10 @@ class V2World {
 	public:
 		V2World();
 		V2World(Object* obj);
-		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld, const provinceMapping& provinceMap);
 		
-		void convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
-		void convertDiplomacy(const EU4World& sourceWorld, const CountryMapping& countryMap);
-		void convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap);
 		void setupColonies(const adjacencyMapping& adjacencyMap, const continentMapping& continentMap);
-		void setupStates(const stateMapping&);
-		void convertUncivReforms();
-		void setupPops(EU4World& sourceWorld);
 		void addUnions(const unionMapping& unionMap);
-		void convertArmies(const EU4World& sourceWorld, const inverseProvinceMapping& inverseProvinceMap, const map<int,int>& leaderIDMap);
-		void convertTechs(const EU4World& sourceWorld);
-		void allocateFactories(const EU4World& sourceWorld, const V2FactoryFactory& factoryBuilder);
 
 		map<string, V2Country*>	getPotentialCountries()	const;
 		map<string, V2Country*>	getDynamicCountries()	const;

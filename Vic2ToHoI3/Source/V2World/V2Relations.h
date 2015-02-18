@@ -29,15 +29,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Parsers/Object.h"
 #include "../Date.h"
 
-class EU4Relations;
-
 
 
 class V2Relations
 {
 	public:
 		V2Relations(string newTag);
-		V2Relations(string newTag, EU4Relations* oldRelations);
 		V2Relations(Object* obj);
 		void output(FILE* out) const;
 

@@ -32,7 +32,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <boost/algorithm/string.hpp>
 
-#include "EU4World\EU4World.h"
 #include "Parsers\Object.h"
 #include "Parsers\Parser.h"
 #include "V2World\V2World.h"
@@ -92,78 +91,6 @@ bool CountryMapping::ReadRules(const std::string& fileName)
 	return true;
 }
 
-void CountryMapping::CreateMapping(const EU4World& srcWorld, const V2World& destWorld)
-{
-	LOG(LogLevel::Info) << "Creating country mapping";
-	EU4TagToV2TagMap.clear();
-
-	char generatedV2TagPrefix = 'X'; // single letter prefix
-	int generatedV2TagSuffix = 0; // two digit suffix
-
-	// Get the EU4 tags for all countries we want to map.
-	std::set<std::string> EU4TagsToMap;		// the EU4 tags that still need mapping
-	const std::map<std::string, EU4Country*> EU4Countries = srcWorld.getCountries();	// all the EU4 countries
-	for (std::map<std::string, EU4Country*>::const_iterator i = EU4Countries.begin(); i != EU4Countries.end(); ++i)
-	{
-		EU4TagsToMap.insert(i->first);
-	}
-
-	// Find a V2 tag from the rules for each EU4 tag.
-	const map<string, V2Country*> V2Countries = destWorld.getPotentialCountries();
-	for (std::set<std::string>::iterator i = EU4TagsToMap.begin(); i != EU4TagsToMap.end(); ++i)
-	{
-		const std::string& EU4Tag = *i;	// the EU4 tag being considered
-		bool mapped = false;					// whether or not the EU4 tag has been mapped
-		// Find a V2 tag from our rule if possible.
-		std::map<std::string, std::vector<std::string>>::iterator findIter = EU4TagToV2TagsRules.find(EU4Tag);	// the rule (if any) with this EU4 tag
-		if (findIter != EU4TagToV2TagsRules.end())
-		{
-			const std::vector<std::string>& possibleV2Tags = findIter->second;
-			// We want to use a V2 tag that corresponds to an actual V2 country if possible.
-			for (vector<string>::const_iterator j = possibleV2Tags.begin(); j != possibleV2Tags.end() && !mapped; ++j)
-			{
-				const std::string& V2Tag = *j;
-				if (V2Countries.find(V2Tag) != V2Countries.end() && EU4TagToV2TagMap.right.find(V2Tag) == EU4TagToV2TagMap.right.end())
-				{
-					mapped = true;
-					EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, V2Tag));
-					LogMapping(EU4Tag, V2Tag, "default V2 country");
-				}
-			}
-			if (!mapped)
-			{	// None of the V2 tags in our rule correspond to an actual V2 country, so we just use the first unused V2 tag.
-				for (vector<string>::const_iterator j = possibleV2Tags.begin(); j != possibleV2Tags.end() && !mapped; ++j)
-				{
-					const std::string& V2Tag = *j;
-					if (EU4TagToV2TagMap.right.find(V2Tag) == EU4TagToV2TagMap.right.end())
-					{
-						mapped = true;
-						EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, V2Tag));
-						LogMapping(EU4Tag, V2Tag, "mapping rule, not a V2 country");
-					}
-				}
-				// It's possible to get here if all the V2 tags for this EU4 tag have already been used - we fallback
-				// on the same case as EU4 tags without rules.
-			}
-		}
-		if (!mapped)
-		{	// Either the EU4 tag had no mapping rule or no V2 tag from its mapping rule could be used. 
-			// We generate a new V2 tag for it.
-			ostringstream generatedV2TagStream;	// a stream fr the new tag to be constructed in
-			generatedV2TagStream << generatedV2TagPrefix << setfill('0') << setw(2) << generatedV2TagSuffix;
-			string V2Tag = generatedV2TagStream.str();
-			EU4TagToV2TagMap.left.insert(make_pair(EU4Tag, V2Tag));
-			LogMapping(EU4Tag, V2Tag, "generated tag");
-			// Prepare the next generated tag.
-			++generatedV2TagSuffix;
-			if (generatedV2TagSuffix > 99)
-			{
-				generatedV2TagSuffix = 0;
-				--generatedV2TagPrefix;
-			}
-		}
-	}
-}
 
 void CountryMapping::CreateMapping(const V2World& srcWorld, const HoI3World& destWorld)
 {

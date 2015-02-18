@@ -27,14 +27,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Parsers\Object.h"
-#include "EU4World\EU4Version.h"
 #include "V2World\V2Version.h"
 #include "GovernmentMapper.h"
 #include <map>
 #include <vector>
 #include <unordered_set>
 #include <set>
-class EU4World;
 class V2World;
 class HoI3World;
 
@@ -45,9 +43,7 @@ typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProv
 typedef map< int, vector<int> >	inverseProvinceMapping;	// < sourceProvince, destProvinces >
 typedef unordered_set<int>			resettableMap;
 
-void initProvinceMap(Object* obj, const EU4Version* version, provinceMapping& provMap, provinceMapping& inverseProvMap, resettableMap& resettableProvinces);
 void initProvinceMap(Object* obj, provinceMapping& provMap, provinceMapping& inverseProvMap, resettableMap& resettableProvinces);
-const vector<int>& getV2ProvinceNums(const inverseProvinceMapping& invProvMap, int eu4ProvinceNum);
 vector<int> getHoI3ProvinceNums(inverseProvinceMapping invProvMap, int v2ProvinceNum);
 
 
@@ -86,27 +82,6 @@ void removeLandlessNations(HoI3World&);
 typedef map< int, vector<int> >	stateMapping;	// < province, all other provinces in state >
 typedef map< int, int >				stateIndexMapping; // < province, state index >
 void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap);
-
-
-// Culture Mappings
-enum distinguisherType
-{
-	DTOwner,
-	DTReligion
-};
-typedef pair<distinguisherType, string> distinguisher;
-typedef struct {
-	string srcCulture;							// the V2 culture
-	string dstCulture;							// the HoI3 culture
-	vector<distinguisher> distinguishers;	// additional rules to match the culture
-} cultureStruct;
-typedef vector<cultureStruct> cultureMapping;
-cultureMapping initCultureMap(Object* obj);
-
-
-// Religion Mappings
-typedef map<string, string> religionMapping;		// <srcReligion, destReligion>
-religionMapping initReligionMap(Object* obj);
 
 
 // Union Mappings

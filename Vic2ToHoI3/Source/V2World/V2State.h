@@ -26,7 +26,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#include "../EU4World/EU4World.h"
 #include <stdio.h>
 #include <string>
 #include <vector>
@@ -45,7 +44,6 @@ class V2State
 		V2State(int newId, V2Province* firstProvince);
 
 		void addRailroads();
-		void setupPops(string primaryCulture, set<string> acceptedCultures, string religion);
 
 		bool	isCoastal() const;
 		bool	hasLocalSupply(string product) const;
