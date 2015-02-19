@@ -515,6 +515,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
+	destWorld.scalePrestige();
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

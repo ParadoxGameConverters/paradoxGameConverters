@@ -49,6 +49,7 @@ class V2World {
 		void createProvinceFiles(const EU3World& sourceWorld, const provinceMapping& provinceMap);
 		
 		void convertCountries(const EU3World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt);
+		void scalePrestige();
 		void convertDiplomacy(const EU3World& sourceWorld, const CountryMapping& countryMap);
 		void convertProvinces(const EU3World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap);
 		void setupColonies(const adjacencyMapping& adjacencyMap, const continentMapping& continentMap);

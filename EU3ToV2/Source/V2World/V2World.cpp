@@ -588,6 +588,26 @@ void V2World::convertCountries(const EU3World& sourceWorld, const CountryMapping
 }
 
 
+void V2World::scalePrestige()
+{
+	double highestPrestige = 0.0;
+	for (auto countryItr: countries)
+	{
+		double prestige = countryItr.second->getPrestige();
+		if (prestige > highestPrestige)
+		{
+			highestPrestige = prestige;
+		}
+	}
+
+	double scale = 100.0 / highestPrestige;
+	for (auto countryItr: countries)
+	{
+		countryItr.second->scalePrestige(scale);
+	}
+}
+
+
 void V2World::convertDiplomacy(const EU3World& sourceWorld, const CountryMapping& countryMap)
 {
 	vector<EU3Agreement> agreements = sourceWorld.getDiplomacy()->getAgreements();
