@@ -1414,7 +1414,7 @@ void V2Country::setupPops(EU3World& sourceWorld, double popWeightRatio)
 		totalPops += dataItr->second;
 	}
 
-	for (auto dataItr = popsData.begin(); dataItr != popsData.end(); dataItr++)
+	/*for (auto dataItr = popsData.begin(); dataItr != popsData.end(); dataItr++)
 	{
 		double popsPercent = static_cast<double>(dataItr->second) / totalPops;
 		string filename = dataItr->first;
@@ -1425,7 +1425,7 @@ void V2Country::setupPops(EU3World& sourceWorld, double popWeightRatio)
 			fprintf(dataFile, "%s,%d,%f\n", tag.c_str(), dataItr->second, popsPercent);
 			fclose(dataFile);
 		}
-	}
+	}*/
 }
 
 
