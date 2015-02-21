@@ -817,7 +817,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
 {
 	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -1005,12 +1005,51 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 							LOG(LogLevel::Warning) << "Could not set religion for pops in province " << destNum;
 						}
 
+						matched = false;
+						string slaveCulture = "";
+						for (cultureMapping::const_iterator slaveCultureItr = slaveCultureMap.begin(); (slaveCultureItr != slaveCultureMap.end()) && (!matched); slaveCultureItr++)
+						{
+							if (slaveCultureItr->srcCulture == prItr->culture)
+							{
+								bool match = true;
+								for (vector<distinguisher>::const_iterator distiguisherItr = slaveCultureItr->distinguishers.begin(); distiguisherItr != slaveCultureItr->distinguishers.end(); distiguisherItr++)
+								{
+									if (distiguisherItr->first == DTOwner)
+									{
+										if ((*vitr)->getOwner()->getTag() != distiguisherItr->second)
+											match = false;
+									}
+									else if (distiguisherItr->first == DTReligion)
+									{
+										if (prItr->religion != distiguisherItr->second)
+											match = false;
+									}
+									else
+									{
+										LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
+									}
+
+								}
+								if (match)
+								{
+									slaveCulture = slaveCultureItr->dstCulture;
+									matched = true;
+								}
+							}
+						}
+						if (!matched)
+						{
+							//LOG(LogLevel::Warning) << "Could not set slave culture for pops in province " << destNum;
+							slaveCulture = "african_minor";
+						}
+
 						V2Demographic demographic;
-						demographic.culture		= culture;
-						demographic.religion		= religion;
-						demographic.ratio			= prItr->popRatio * provPopRatio;
-						demographic.oldCountry	= oldOwner;
-						demographic.oldProvince	= *vitr;
+						demographic.culture			= culture;
+						demographic.slaveCulture	= slaveCulture;
+						demographic.religion			= religion;
+						demographic.ratio				= prItr->popRatio * provPopRatio;
+						demographic.oldCountry		= oldOwner;
+						demographic.oldProvince		= *vitr;
 						
 						//LOG(LogLevel::Info) << "EU4 Province " << (*vitr)->getNum() << ", Vic2 Province " << i->second->getNum() << ", Culture: " << culture << ", Religion: " << religion << ", popRatio: " << prItr->popRatio << ", provPopRatio: " << provPopRatio << ", ratio: " << demographic.ratio;
 						i->second->addPopDemographic(demographic);

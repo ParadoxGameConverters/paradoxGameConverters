@@ -6,6 +6,7 @@ copy "Data_Files\starting_factories.txt" "release\starting_factories.txt
 copy "Data_Files\province_mappings.txt" "release\province_mappings.txt
 copy "Data_Files\country_mappings.txt" "release\country_mappings.txt
 copy "Data_Files\cultureMap.txt" "release\cultureMap.txt
+copy "Data_Files\slaveCultureMap.txt" "release\slaveCultureMap.txt"
 copy "Data_Files\religionMap.txt" "release\religionMap.txt
 copy "Data_Files\unions.txt" "release\unions.txt
 copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt

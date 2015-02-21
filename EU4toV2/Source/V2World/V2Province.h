@@ -39,6 +39,7 @@ class V2Country;
 struct V2Demographic
 {
 	string								culture;
+	string								slaveCulture;
 	string								religion;
 	double								ratio;
 	EU4Province*						oldProvince;

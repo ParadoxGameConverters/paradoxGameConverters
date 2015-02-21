@@ -578,7 +578,7 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	{
 		int size = static_cast<int>(demographic.ratio * newPopulation * slaveProportion);
 		farmers -= size;
-		V2Pop* slavesPop = new V2Pop("slaves", size,	"afro_american", demographic.religion);
+		V2Pop* slavesPop = new V2Pop("slaves", size,	demographic.slaveCulture, demographic.religion);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)

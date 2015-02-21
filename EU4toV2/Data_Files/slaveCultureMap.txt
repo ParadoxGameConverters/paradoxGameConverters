@@ -1,0 +1,37 @@
+# Copyright (c) 2014 The Paradox Game Converters Project
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
+
+# This culture map contains one to one and many to one culture conversions for slaves.
+
+slaveCultureMap = {
+
+#link = { v2 = afro_american eu4 = english region = northeastern_america }
+#link = { v2 = afro_american eu4 = english region = eastern_america }
+#link = { v2 = afro_american eu4 = english region = northern_america }
+#link = { v2 = afro_american eu4 = english region = australia }
+#link = { v2 = afro_american eu4 = english eu4 = american region = central_american }
+link = { v2 = afro_american eu4 = american }
+link = { v2 = afro_caribbean eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish }
+link = { v2 = afro_caribeno eu4 = visigothic eu4 = castillian eu4 = galician eu4 = catalan eu4 = andalucian }
+link = { v2 = afro_brazillian eu4 = portugese }
+link = { v2 = afro_antillean eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton eu4 = wallonian eu4 = old_frankish eu4 = frankish }
+
+}
