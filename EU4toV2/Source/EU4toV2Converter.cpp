@@ -189,7 +189,12 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 			if ((pos != string::npos) && (itr->substr(pos, itr->length()) == ".mod"))
 			{
 				Object* modObj = doParseFile((CK2ExportLoc + "\\" + *itr).c_str());	// the parsed mod file
-				string name = modObj->getLeaf("name");											// the name ofthe mod
+				vector<Object*> nameObj = modObj->getValue("name");
+				string name;
+				if (nameObj.size() > 0)
+				{
+					name = nameObj[0]->getLeaf();
+				}
 
 				string path;	// the path of the mod
 				vector<Object*> dirObjs = modObj->getValue("user_dir");	// the possible paths for the mod
