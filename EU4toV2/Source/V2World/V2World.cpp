@@ -169,21 +169,40 @@ V2World::V2World()
 					countryPopItr = newIterator.first;
 				}*/
 
+				int provincePopulation			= 0;
+				int provinceSlavePopulation	= 0;
+
 				popProvinces->push_back(provNum);
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
-					/*auto popItr = countryPopItr->second.find(pops[l]->getKey());
+					string	popType		= pops[l]->getKey();
+					int		popSize		= atoi(pops[l]->getLeaf("size").c_str());
+					string	popCulture	= pops[l]->getLeaf("culture");
+
+					/*auto popItr = countryPopItr->second.find(popType);
 					if (popItr == countryPopItr->second.end())
 					{
 						long int newPopSize = 0;
-						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(pops[l]->getKey(), newPopSize));
+						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
 						popItr = newIterator.first;
 					}
-					popItr->second += atoi(pops[l]->getLeaf("size").c_str());*/
-					totalWorldPopulation += atoi(pops[l]->getLeaf("size").c_str());
-					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
+					popItr->second += popSize;*/
+
+					totalWorldPopulation += popSize;
+					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, pops[l]->getLeaf("religion"));
 					k->second->addOldPop(newPop);
+
+					if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
+					{
+						provinceSlavePopulation += popSize;
+					}
+					provincePopulation += popSize;
+				}
+				auto province = provinces.find(provNum);
+				if (province != provinces.end())
+				{
+					province->second->setSlaveProportion( 1.0 * provinceSlavePopulation / provincePopulation);
 				}
 			}
 			popRegions.insert( make_pair(*itr, popProvinces) );

@@ -76,7 +76,8 @@ class V2Province
 		void				setFortLevel(int level)						{ fortLevel = level; }
 		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; }
 		void				setRailLevel(int level)						{ railLevel = level; }
-		void				setResettable(const bool _resettable)	{ resettable = _resettable; };
+		void				setResettable(const bool _resettable)	{ resettable = _resettable; }
+		void				setSlaveProportion(const double _pro)	{ slaveProportion = _pro; }
 
 		const EU4Province*	getSrcProvince()		const { return srcProvince; }
 		int						getOldPopulation()	const	{ return oldPopulation; }
@@ -116,6 +117,7 @@ class V2Province
 		vector<V2Demographic>	demographics;
 		vector<const V2Pop*>		oldPops;
 		vector<V2Pop*>				pops;
+		double						slaveProportion;
 		string						rgoType;
 		string						terrain;
 		int							lifeRating;
