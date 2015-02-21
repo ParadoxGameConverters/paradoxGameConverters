@@ -67,6 +67,20 @@ germanic = {
 		last_names = { Abramovitch Ashkenazi Bernstein Birnbaum Bloch Cantor Cohen Frank Friedländer Ginsberg Goldstein Horowitz Israel Jacobsohn Kagan Kaplan Klein
 		Levin Luria Morgenstern Nathan Oren Rosenthal Sachs Schapiro Schwartz Weinstein Weiss }
 	}
+
+	frankish = {
+		color = { 200 100 100 }
+		first_names = { Abbo Aega Agobard Allowin Arnulf Asselin Berno Berthaire Bruno Cassyon Cheldric Childebrand Clodomir Clotaire Corbinian Dodo Ebroin Ebrulf Emme Evroult Faro Gerold Grifo Grimbald Hartmut Helinand Hildebold Hildeprand Humbert Imbert Jocelin Lambert Lanfranc Lebuin Letard Liudhard Liudolf Lul Mansuet Omer Reginar Reol Richomer Rothad Sergi Sicho Vedast Werinbert Willibrord Zwentibold }
+
+		last_names = { Aega Agilbert Artaud Bandeson Berchar Bernard Birin Blank Brun Bruno Burkhart Charibert Charivi Childebert Childeric Chlodobert Chlodowig Emme Grimald Landric Lothar Lul Radeburg Razo Rodbert Sergi Theudebald Theudebert Theuderic Werinbert Wighard }
+	}
+
+	suebi = {
+		color = {60 220 200 }
+		first_names = { Adoric Agriulfum Anila Argiovit Ariamir Audeca Becilla Chararici Commund Eboric Ermaric Framta Frumari Garding Gomedei Heremigari Hermeric Hildemir Ilderic Malaric Maldras Massila Miro Neufila Nitigisi Pantard Rechiari Rechila Rechimund Remismund Remisol Rodomiro Sunila Theudomir Uittimer Veremund }
+
+		last_names = { Adler Adrabaecampi Baemoi Batin Daimler Dengler Eberle Elser Ensselin Groner Hegelin Heinkelin Holderelin Idanha Kepler Kiesinger Laemmle Lugo Marcomanni Naristi Ourense Racatria Rommelin Sudini Suiones Tui Viseu Wekerle }
+	}
 	
 	union = GER
 }
@@ -275,6 +289,12 @@ british = {
 		Moresby Mundy Napier Odoni "of Hannover" "of Saxe-Coburg-Gotha" Plummer Ragland Roberts Seaton Seymour
 		Smith Smith-Dorrien Stewart Thesiger Tyron Tyrwhitt Williams Windsor Wolseley Wood }
 	}
+	english = {
+		color = {220 100 100}
+		first_names = { Albert Alexander Alfred Archibald Arthur Augustus Benjamin Bernard Charles Colbert Colin Cyril David Donald Douglas Edmund Edwar Fairfax Ferdinand Francis Frederick Geoffrey George Graham Henrey Herbert Horatio Hubert Hugh Ian James Jeremy John Joseph Leopold Lester Louis Martin Nigel Oswald Percy Reginald Richard Robert Russell Stanley Thomas Wallace William Winston Zachary }
+
+		last_names = { Allenby Battemberg Beatty Beresford Brown Buller Butler Campbell Cardigan Churchill Cochrane Cockburn "de Robeck" Dundas Fisher French Gough Grant Grenfell Haig Hamilton Hardinge Havelock Hope Jellicoe Kitchener Lyons Madden Milne Montgomery Moresby Mundy Napier Odoni "of Hannover" "of Saxe-Coburg-Gotha" Plummer Ragland Roberts Seaton Seymour Smith Smith-Dorrien Stewart Thesiger Tyron Tyrwhitt Williams Windsor Wolseley Wood }
+
 	irish = { 
 		color = { 35 140 50}
 		radicalism = 15
@@ -285,8 +305,38 @@ british = {
 		
 		last_names = { Aiken Ashe Breen Brugha Collins Connolly Cosgrave Craig "de Valera" Donnelly
 		FitzGerald Griffith Kelly Larkin Lynch Mallin McCartan McCullough McGarry McGuinness
-		Mulcahy O'Brien O'Connor O'Doherty O'Higgins O'Leary O'Mara Pearse Plunket White }
+		Mulcahy "O'Brien" "O'Connor" "O'Doherty" "O'Higgins" "O'Leary" "O'Mara" Pearse Plunket White }
 	}
+
+	anglo_saxon = {
+		color = {230 110 60}
+		first_names = { Adelfrid Adelmar Adelstan Aethelstan Alfric Alfwine Ceadda Cenric Cola Cynebald Cynefrith Cyneric Cyneweard Ealhstan Ecgberht Eoforwine Gladwine Hildrad Hrodulf Hrothgar Leofric Leofsige Leofwine Oswine Sawine Wigberht Wigmund Wigstan Wilfrid Wine }
+
+		last_names = { Aelfwig Alfstan Athelred Auchenceter Auchterworthy Bloccsham Brownlowe Burgwine Cerdic Coldren Cuthberht Cwmcott Ecgred Estmund Gardyner Glover Godwinsson Gorbold Hrothsige Hwitmann Lea Leofwine Purcell Unred Wolfsige Wulfstan Wyndham Wynstan Wyther }
+	}
+
+	scottish = {
+		color = {70 180 180}
+		first_names = { Alistair Amhlaidh Bhaltair Boyd Cairbre Callum Cormag Dand David Davidh Deorsa Diarmad Domnall Duff Eanraig Edan Fife Fingall Fraser Grahame Irvine Jamie Jock Lockie Neil Rabbie Rorie Ruairi Seoc Stewart }
+
+		last_names = { Aiken Armstrong Baird Campbell Carr Coburn Colquhoun Croft Douglass Ewart Faulkner Finley Glen Hardie Hendry Kelly Kerr Lindsay Lowe Lyon Maciomhair Mackenzie Maclean Matheson McDougall McEachern Munro Niven Oliver Rutherfurd Trask }
+	}
+
+	pictish = {
+		color = {50 60 180}
+		first_names = { Artbranan Bliesblituth Brude Caeltigern Cal Canaul Canutulachama Carvorst Cimoiod Cinid Cint Denbecan Deoardivois Deocilunon Deoord Deototreic Diu Drosten Drust Edarnan Elpin Emcat Fecir Fet Galam Galanan Gant Gart Gartnait Gede Gest Gilgidi Gnith Leo Morleo Mund Nechtan Ongust Pant Ru Talorc Talorcan Taran Uip Uirolec Usconbuts Uuen Uuidid Uuradec Uurat Uurcich }
+
+		last_names = { "map Artcois" "map Bargoit" "map Buthud" "map Enfret" "map Eru" "map Gyrom" "map Lutrin" "map Mailcon" "map Munait" "map Taixali" "map Uleo" "map Wthoil" Circin Deoardivois Diuberr Erilich "Gaed Brechach" Gurthinmoch Ini Loc Morbet Necton Olgudach Smertae Tina Uecla Uip Vepogenus Wurgest }
+	}
+
+	welsh = {
+		color = {70 180 120}
+		first_names = { Aeron Arwel Awstin Brin Cadfan Cadoc Celyn Culhwch Cystennin Delwin Eifion Ercwlff Geraint Glynn Gwynfor Harri Ifan Ilar Leolin Llew Madog Merfyn Meurig Owen Pedr Rees Siorus Steffan Taliesin Tudor Urien }
+
+		last_names = { Argall Baines Bevan Cecil Crewe Floyd Hier Howell Jernigan Kendrick Lloyd Llywelyn Maddox Marvin Merricks Morris Owen Owens Parry Perkins Perry Powell Price Prichard Probert Reece Sayer Tittensor Trevor Vaughan }
+	}
+
+	union = ENG
 	
 }
 
@@ -325,6 +375,19 @@ italian = {
 		
 		last_names = { Abela Adami Azzopardi Boffa Borg Buhagiar Cassar Farrugia Frendo Gonzi
 		Howard Mifsud Mintoff Mizzi Muscat Olivier Puli Pullicino Strickland Vella }
+	}
+
+	lombard = { 
+		color = { 150 130 160 }
+		first_names = { Adaloald Agilulf Aistulf Alahis Alboin Ansprand Arioald Aripert Authari Cleph Cunincpert Desideri Garibald Godepert Grimuald Hildeprand Liutpert Liutprand Parctarit Perctarit Raginpert Ragnipert Ratchis Rodoald Rothari Aripert Parctarit Alahis Cunincpert Liutpert Ragnipert Ansprand Liutprand Ratchis }
+
+		last_names = { Albhi Aleard Amistada Balda Degan Gadoald Gairulf Gisulph Gotefred Gualenghi Haimon Haistulf Hardman Harjowalda Hauptwolf Nok Ragin Rambold Reginmund Ridbald Rudonis Sala Schirald Schiriwaite Sigebald Teudald Tierwysch Wala Walfrit Zazza }
+	}
+
+	all_italian = {
+		color = {150 220 180}
+		first_names = { Alfonso Ambrogio Amedeo Andrea Angelo Antonio Armando Augusto Benito Camillo Carlo Cesare Corrado Costanzo Domenico Enrico Fabio Fabrizio Faustino Felice Ferdinando Fiorenzo Francesco Gaetano Gennaro Giacomo Giovanni Giulio Giuseppe Guglielmo Lorenzo Luigi Marino Matteo Nicola Paolo Pasquale Prospero Raffaele Roberto Ruggiero Sigismondo Silvio Simone Tancredi Tommasso Ugo Umberto Vincenzo Vittorio }
+		last_names = { "de Liguori" "della Rovere" "di Borbone di Parma" "di Robilant" "di Savoia" "di Savoia-Aosta" "La Màrmora" "Pacoret de Saint Bon" "Thaon di Revel" Albricci Anfora Baratieri Bava-Beccaris Bonaccorsi Cadorna Cagni Canevaro Caraga Caviglia Ceccherini Clary Colonna d'Absburgo-Toscana Dezza Diaz Filomarino Giardino Gironda Govone Gravina Lanza Lombardo Lunardi Molinelli Orengo Orsini Pecori-Giraldi Perruchetti Pianelli Pironti Porro Ramorino Ricotti-Magnani Sanna Scammacca Solari Torlonia Turrisi Vaccari Zunica }
 	}
 	
 	union = ITA
@@ -395,6 +458,19 @@ iberian = {
 		Herculano Ivens Keil Lopes Machado Magalhães Mendes Moniz Mouzinho Nogueira 
 		Nunes Ortigão Pereira Pinheiro Pinto Pires Pomar Pulido Queiroz Quintanilha
 		Ribeiro Rodrigues Salazar Sampaio Sérgio Silveira Tavares Teixeira Vidigal Vieira }
+	}
+
+	galician = {
+		color = {220 195 140}
+		first_names = { Afonso Alberte Aleixo Alexandre Antón Anxo Artur Bartolomeu Bieito Brais Breixo Cibrán Estevo Iago Lino Lois Nicolau Paulo Rodrigo Roi Uxío Vitor Xabier Xesús Xoán Xosé Xurxo }
+		last_names = { Abreu Barroso Becerra Camba Canedo Carreiro Da Ponte De Lemos Demato Fontes Goya Lagos Lemus Mar Marcelin Mazo Melendrez Millan Pastor Pozo Pozos Prado Quintana Razo Rios Rocha Rosal Ruybal Salgado Varela Vielma }
+	}
+
+	visigothic = {
+		color = {180 180 0}
+		first_names = { Agriwulfa Aspar Ataulfo Bigeli Braga Brandila Cannabao Colias Fastida Feletheo Galindo Gerung Heldebaldo Hermenigildo Hrodrigo Hunigild Ibba Inna Modare Naulabato Rausimodo Recaredo Rodolfo Sigisvulto Theodemer Theudi Valaravans Veduco Viliaro Visimar }
+	
+		last_names = { Aniano Ariari Arius Ataulph Atharid Baduila Cyrila Farnobio Feva Fretela Friderico Gaiseri Gundeharo Heldefred Hermangild Hernegliscu Hildebado Huml Hunimund Leuvibild Nidada Retemeri Rhima Saphrax Sueridu Sunnia Theoderi Tribigild Videric Vidimiro }
 	}
 }
 
@@ -784,6 +860,12 @@ levantine = {
 		Sassoon Sebag
 		}
 	}
+
+	alan = {
+		color = {180 120 180}
+		first_names = { Alimbeg Arsen Aslanbek Bakhva Batraz Besik Digor Dzhambolat Dzhumbulad Elbrus Evgeny Georgy Ibragim Iron Issa Jasz Khasan Leonid Leri Merabi Roho Ruslan Soslan Styr Taymuraz Trialeti Tugan Vadim Vasily Zaur } 
+		last_names = { Andiyev Ashuraliyev Basiev Bazayev Bestayev Chibirov Din Dudarova Dzhanayev Fadzayev Farniev Gabulov Gassiev Gazyumov Guriev Khapov Khetagurov Kokoity Kusov Nyxas Pagayev Pliyeva Sanakoyev Tibilov Tokaty Torchinov Toshinori Valiyev Zangiev Zazirov }
+	}
 }
 
 turko_semitic = {
@@ -917,6 +999,13 @@ arab = {
 			"al-Jazuli" Belkadi Mukrani "al-Rifi" "al-Sahrawi" "al-Shawiyyati" "al-Shiluhi" "al-Zanatawi"
 			}
 			radicalism = 10
+	}
+
+	andalucian = {
+		color = {60 120 0}
+		first_names = { "Abd al-Aziz" "Abd al-Haqq" "Abd al-Rahman" "Abd Allah" "Abu l-Qasim" Ahmad Ali Asbag Faris Garsiyya Hajjaj Hakam Harith Hasan Ibrahim Isa Makki Marzuq Muhammad Musa Qasim Sayyid Shakir Sulayman Tamim Ubada Umar Uthman Yahya Yusuf }
+
+		last_names = { "al-Andalusi" "al-Dabbag" "al-Fadl" "al-Fath" "al-Isibili" "al-Kalai" "al-Mari" "al-Mayurqui" "al-Sabti" "al-Tulaytuli" "al-Valansi" "ibn Abd al-Aziz" "ibn Abd al-Haqq" "ibn Abd al-Rahman" "ibn Abd Allah" "ibn Abu l-Qasim" "ibn Ahmad" "ibn Ali" "ibn Garsiyya" "ibn Hasan" "ibn Ibrahim" "ibn Isa" "ibn Muhammad" "ibn Musa" "ibn Qasim" "ibn Sulayman" "ibn Umar" "ibn Uthman" "ibn Yahya" "ibn Yusuf" }
 	}
 	
 	union = ARA

@@ -3,6 +3,7 @@ alan;Alan;Alain;Alanisch;;Alana;;;;;;;;;x
 aleutian;Aleutian;aléoute;Aleutisch;aleucka;Aleutiana;Aleutina;Aleut;Aleutský;;;;;;x;
 altaic;Altaic;altaïque;Altaisch;a³tajska;de Altai;Altaica;Altaic;Altajský;;;;;;x;
 andalucian;Andalusian;andalouse;Andalusisch;andaluzyjska;Andaluza;Andalusa;Andalúz;Andaluský;;;;;;x;
+anglo_saxon;Anglo-Saxon;Anglo-Saxon;Angel-Sächsisch;;Anglosajon;;;;;;;;;x
 aquitaine;Aquitaine;aquitaine;Aquitainisch;akwitañska;Aquitana;Aquitana;Aquitán;Akvitánie;;;;;;x;
 arawak;Arawak;arawak;Arawak;arawak;Arauca;Arawak;Arawak;Arawacký;;;;;;x;
 austrian;Austrian;autrichienne;Österreichisch;austriacka;Austriaca;Austriaca;Osztrák;Rakouský;;;;;;x;
@@ -30,11 +31,13 @@ frankish;Frankish;Franc;Fränkisch;;Francesa;;;;;;;;;x
 gaelic;Celtic;celtique;Keltisch;celtycka;Celta;Celtica;Kelta;Keltský;;;;;;x;
 galician;Galician;galicienne;Galizisch;galicyjska;Gallega;Galiziana;Gall;Galicijský;;;;;;x;
 gascon;Gascon;gasconne;Gascon;gaskoñska;Gascona;Guascone;Gascon;Gaskoòský;;;;;;x;
+german;German;Allemand;Deutsch;;Alemana;;;;;;;;;x;
 hannoverian;Hannoverian;hanovrienne;Hannoversch;hanowerska;Hannoveriana;Annoveriana;Hannoveri;Hannoverský;;;;;;x;
 hessian;Hessian;hessois;Hessisch;heska;de Hesse;Assiana;Hesseni;Hesenský;;;;;;x;
 huron;Huron;huronne;Huron;huroñska;Hurona;Huron;Huron;Hurónský;;;;;;x;
 ingrian;Ingrian;ingrienne;Ingrisch;ingryjska;Ingria;Ingriana;Ingrian;Baltskofinský;;;;;;x;
 iroquis;Iroquois;iroquoise;Irokesisch;irokeska;Iroquesa;Irochese;Irokéz;Irokézský;;;;;;x;
+all_italian;Italian;Italien;Italienisch;;Italiana;;;;;;;;;x;
 karelian;Karelian;Carélien;Karelisch;;Karelian;;;;;;;;;x
 komi;Komi;Komi;Komi;;Komi;;;;;;;;;x
 lappish;Lappish;Lapon;Lappländisch;;Lapona;;;;;;;;;x
@@ -51,6 +54,7 @@ occitain;Occitain;occitane;Okzitanisch;oksytañska;Occitana;Occitana;Osszitán;Occ
 old_prussian;Old Prussian;vieux-prussienne;Preußisch;staropruska;de la antigua Prusia;Vecchio prussiana;Régi porosz;Staropruský;;;;;;x;
 papuan;Papuan;papoue;Papua;papuaska;Papúa;Papuana;Pápua;Papuánský;;;;;;x;
 pecheneg;Pecheneg;Petchénègue;Petschenegisch;;Pechenega;;;;;;;;;x
+pictish;Pictish;Picte;Piktisch;;Picto;;;;;;;;;x;
 pommeranian;Pommeranian;poméranienne;Pommersch;pomorska;Pomerana;Pomerana;Pommerániai;Pomoøanský;;;;;;x;
 prussian;Prussian;prussienne;Preußisch;pruska;Prusiana;Prussiana;Porosz;Pruský;;;;;;x;
 rheinlaender;Rheinlaender;rhénane;Rheinisch;reñska;Renana;Renana;Rajnai;Porýnský;;;;;;x;
@@ -63,10 +67,12 @@ shan;Shan;shan;Shan;szan;Shan;Shan;Sán;Šanský;;;;;;x;
 shawnee;Shawnee;shawnee;Shawnee;shawnee;Shawnee;Shawnee;Shawnee;Šóníjský;;;;;;x;
 siberian;Siberian;sibérienne;Sibirisch;syberyjska;Siberiana;Siberiana;Szibériai;Sibiøský;;;;;;x;
 sicilian;Sicilian;sicilienne;Sizilianisch;sycylijska;Siciliana;Siciliana;Szicíliai;Sicilský;;;;;;x;
+suebi;Suebi;Sueve;Suebisch;;Suevo;;;;;;;;;x;
 sulawesi;Sulawesi;sulawésienne;Sulawesisch;sulawesi;Sulavesi;Sulawesi;Szulavész;Sulaweský;;;;;;x;
 suryahi;Suryah;syrienne;Suryah;syryjska;Suryah;Siriana;Suryah;Syrská;;;;;;x;
 teremembe;Teremembe;teremembe;Teremembe;teremembe;Teremembe;Teremembe;Teremembe;Teremembský;;;;;;x;
 umbrian;Umbrian;ombrienne;Umbrisch;umbryjska;Umbra;Umbra;Umbirai;Umbrijský;;;;;;x;
+visigothic;Visigothic;Wisigoth;Westgotisch;;Visigodo;;;;;;;;;x;
 welsh;Welsh;galloise;Walisisch;walijska;Galesa;Gallese;Walesi;Velšský;;;;;;x;
 NONE;;;;;;;;;;;;;;x;
 NONE;;;;;;;;;;;;;;x;

@@ -51,34 +51,41 @@ link = { v2 = sami eu4 = sapmi eu4 = lappish }
 #link = { v2 = anglo_canadian eu4 = english region = northern_america }
 #link = { v2 = australian eu4 = english region = australia }
 #link = { v2 = texan eu4 = english eu4 = american region = central_american }
-link = { v2 = british eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish }
+link = { v2 = english eu4 = english }
+link = { v2 = scottish eu4 = scottish }
+link = { v2 = anglo_saxon eu4 = anglo_saxon }
+link = { v2 = pictish eu4 = pictish }
 link = { v2 = yankee eu4 = american }
 
 # Celtic - welsh, irish
-link = { v2 = british eu4 = welsh }
+link = { v2 = welsh eu4 = welsh }
 link = { v2 = irish eu4 = irish }
 
 # Latin - lombard, umbrian, sicilian
 link = { v2 = north_italian eu4 = lombard eu4 = umbrian }
+#link = { v2 = lombard eu4 = lombard }
 link = { v2 = south_italian eu4 = sicilian }
 #link = { v2 = north_italian eu4 = italian region = lombardia }
 #link = { v2 = south_italian eu4 = italian region = two_sicilies }
-link = { v2 = north_italian eu4 = italian }
+link = { v2 = all_italian eu4 = italian }
 #link = { v2 = north_italian eu4 = roman region = lombardia }
 #link = { v2 = south_italian eu4 = roman region = two_sicilies }
-link = { v2 = north_italian eu4 = roman }
+link = { v2 = all_italian eu4 = roman }
 
 # Iberian - castillian, catalan, galician, andalucian, portugese, maltese
 #link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america }
 #link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
 #link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
-link = { v2 = spanish eu4 = castillian eu4 = galician eu4 = andalucian eu4 = visigothic }
+link = { v2 = visigothic eu4 = visigothic }
+link = { v2 = spanish eu4 = castillian }
+link = { v2 = galician eu4 = galician }
 link = { v2 = catalan eu4 = catalan }
 link = { v2 = portuguese eu4 = portugese }
 #link = { v2 = brazilian eu4 = portugese region = brazil_region }
 link = { v2 = maltese eu4 = maltese }
 link = { v2 = basque eu4 = basque }
-link = { v2 = portuguese eu4 = suebi }
+link = { v2 = suebi eu4 = suebi }
+link = { v2 = andalucian eu4 = andalucian }
 #link = { v2 = central_american eu4 = ? }
 #link = { v2 = north_andean eu4 = ? }
 #link = { v2 = south_andean eu4 = ? }
@@ -86,8 +93,9 @@ link = { v2 = portuguese eu4 = suebi }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
 #link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
-link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton eu4 = frankish eu4 = old_frankish }
+link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton }
 link = { v2 = wallonian eu4 = wallonian }
+link = { v2 = frankish eu4 = old_frankish eu4 = frankish }
 
 # Finno Urgic - finnish, estonian, sapmi, ingrian, karelian, uralic
 link = { v2 = finnish eu4 = finnish eu4 = karelian }
@@ -125,7 +133,8 @@ link = { v2 = sephardi eu4 = greek eu4 = georgian eu4 = armenian religion = jewi
 link = { v2 = greek eu4 = greek eu4 = gothic eu4 = goths }
 link = { v2 = georgian eu4 = georgian }
 link = { v2 = armenian eu4 = armenian }
-link = { v2 = north_caucasian eu4 = alan eu4 = circassian eu4 = dagestani }
+link = { v2 = north_caucasian eu4 = circassian eu4 = dagestani }
+link = { v2 = alan eu4 = alan }
 
 # Turko Semitic	- maghreb_arabic, al_misr_arabic, al_suryah_arabic, al_iraqiya_arabic, bedouin_arabic, berber, turkish
 link = { v2 = maghrebi eu4 = maghreb_arabic }
