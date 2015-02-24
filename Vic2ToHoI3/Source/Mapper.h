@@ -27,7 +27,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "Parsers\Object.h"
-#include "V2World\V2Version.h"
 #include "GovernmentMapper.h"
 #include <map>
 #include <vector>
@@ -68,7 +67,6 @@ void initContinentMap(Object* obj, continentMapping& continentMap);
 
 void mergeNations(V2World&, Object* mergeObj);
 void removeEmptyNations(V2World&);
-void removeDeadLandlessNations(V2World&);
 void removeOlderLandlessNations(V2World&, int excess);
 void removeLandlessNations(V2World&);
 

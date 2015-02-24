@@ -34,8 +34,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HOI3World\HoI3World.h"
 #include "V2World\V2World.h"
 #include "V2World\V2Factory.h"
-#include "V2World\V2TechSchools.h"
-#include "V2World\V2LeaderTraits.h"
 #include "V2World\V2Localisation.h"
 #include "WinUtils.h"
 

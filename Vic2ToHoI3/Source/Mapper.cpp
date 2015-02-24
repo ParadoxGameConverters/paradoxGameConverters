@@ -245,51 +245,6 @@ void removeEmptyNations(V2World& world)
 }
 
 
-void removeDeadLandlessNations(V2World& world)
-{
-	map<string, V2Country*> allCountries = world.getCountries();	// all the V2 countries
-
-	vector<V2Country*> landlessCountries;	// all the landless V2 countries
-	for (map<string, V2Country*>::iterator i = allCountries.begin(); i != allCountries.end(); i++)
-	{
-		vector<V2Province*> provinces = i->second->getProvinces();	// the provinces for this country
-		if (provinces.size() == 0)
-		{
-			landlessCountries.push_back(i->second);
-		}
-	}
-
-	for (vector<V2Country*>::iterator countryItr = landlessCountries.begin(); countryItr != landlessCountries.end(); countryItr++)
-	{
-		string primaryCulture		= (*countryItr)->getPrimaryCulture();	// the primary culture of this country
-		vector<V2Province*> cores	= (*countryItr)->getCores();				// the cores of this country
-		bool cultureSurvives			= false;											// whether or not the primary culture survives in any of the cores
-		for (vector<V2Province*>::iterator coreItr = cores.begin(); coreItr != cores.end(); coreItr++)
-		{
-			if ( (*coreItr)->getOwner() == NULL)
-			{
-				continue;
-			}
-			if (  (*coreItr)->getOwner()->getPrimaryCulture() == primaryCulture  )
-			{
-				continue;
-			}
-
-			if ( (*coreItr)->hasCulture(primaryCulture, 0.5) )
-			{
-				cultureSurvives = true;
-				break;
-			}
-		}
-
-		if (cultureSurvives == false)
-		{
-			world.removeCountry( (*countryItr)->getTag() );
-		}
-	}
-}
-
-
 void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateIndexMap)
 {
 	vector<Object*> leaves = obj->getLeaves();	// the states

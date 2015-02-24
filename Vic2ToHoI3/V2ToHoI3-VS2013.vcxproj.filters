@@ -40,9 +40,6 @@
     <ClCompile Include="Source\V2World\V2Country.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\V2Creditor.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
@@ -50,12 +47,6 @@
       <Filter>Vic2World</Filter>
     </ClCompile>
     <ClCompile Include="Source\V2World\V2Flags.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Leader.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2LeaderTraits.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
     <ClCompile Include="Source\V2World\V2Localisation.cpp">
@@ -70,19 +61,7 @@
     <ClCompile Include="Source\V2World\V2Province.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\V2World\V2Reforms.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\V2World\V2Relations.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2State.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2TechSchools.cpp">
-      <Filter>Vic2World</Filter>
-    </ClCompile>
-    <ClCompile Include="Source\V2World\V2Version.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
     <ClCompile Include="Source\V2World\V2World.cpp">
@@ -135,9 +114,6 @@
     <ClInclude Include="Source\V2World\V2Country.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\V2World\V2Creditor.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\V2World\V2Diplomacy.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
@@ -148,12 +124,6 @@
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Inventions.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Leader.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2LeaderTraits.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2Localisation.h">
@@ -168,19 +138,7 @@
     <ClInclude Include="Source\V2World\V2Province.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
-    <ClInclude Include="Source\V2World\V2Reforms.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
     <ClInclude Include="Source\V2World\V2Relations.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2State.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2TechSchools.h">
-      <Filter>Vic2World</Filter>
-    </ClInclude>
-    <ClInclude Include="Source\V2World\V2Version.h">
       <Filter>Vic2World</Filter>
     </ClInclude>
     <ClInclude Include="Source\V2World\V2World.h">

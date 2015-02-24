@@ -1,22 +1,22 @@
 configuration =
 {
 	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
-	EU4directory = "D:\Program Files (x86)\Steam\steamapps\common\Europa Universalis IV"
+	EU4directory = "C:\Program Files (x86)\Steam\SteamApps\common\Europa Universalis IV"
 
 	# Europa Universalis 4 Documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
-	EU4Documentsdirectory = "E:\Documents\Paradox Interactive\Europa Universalis IV"
+	EU4Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Europa Universalis IV"
 
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
-	V2directory = "D:\Program Files (x86)\Steam\steamapps\common\Victoria 2"
+	V2directory = "D:\Paradox Interactive\Victoria 2"
 
 	# Victoria 2 Documents directory: a path on your computer where Victoria 2 keeps temporary files
-	V2Documentsdirectory = "E:\Documents\Paradox Interactive\Victoria II"
+	V2Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Victoria II"
 
 	# HoI3 directory: a path on your computer where Hearts of Iron III is installed
-	HoI3directory = "D:\Program Files (x86)\Steam\steamapps\common\Hearts of Iron 3"
+	HoI3directory = "C:\Program Files (x86)\Steam\SteamApps\common\Hearts of Iron 3"
 
 	# HoI3 Documents directory: a path on your computer where Hearts of Iron III keeps temporary files
-	HoI3Documentsdirectory = "E:\Documents\Paradox Interactive\Hearts of Iron III"
+	HoI3Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron III"
 
 	# EU4 Game Type: what version of EU4 generated the save.  Possible values:
 	# 	auto	detect version automatically - vanilla only!

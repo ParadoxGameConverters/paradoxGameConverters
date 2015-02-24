@@ -119,21 +119,14 @@
     <ClCompile Include="Source\tempFuncs.cpp" />
     <ClCompile Include="Source\V2World\V2Army.cpp" />
     <ClCompile Include="Source\V2World\V2Country.cpp" />
-    <ClCompile Include="Source\V2World\V2Creditor.cpp" />
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\V2Factory.cpp" />
     <ClCompile Include="Source\V2World\V2Flags.cpp" />
-    <ClCompile Include="Source\V2World\V2Leader.cpp" />
-    <ClCompile Include="Source\V2World\V2LeaderTraits.cpp" />
     <ClCompile Include="Source\V2World\V2Localisation.cpp" />
     <ClCompile Include="Source\V2World\V2Party.cpp" />
     <ClCompile Include="Source\V2World\V2Pop.cpp" />
     <ClCompile Include="Source\V2World\V2Province.cpp" />
-    <ClCompile Include="Source\V2World\V2Reforms.cpp" />
     <ClCompile Include="Source\V2World\V2Relations.cpp" />
-    <ClCompile Include="Source\V2World\V2State.cpp" />
-    <ClCompile Include="Source\V2World\V2TechSchools.cpp" />
-    <ClCompile Include="Source\V2World\V2Version.cpp" />
     <ClCompile Include="Source\V2World\V2World.cpp" />
     <ClCompile Include="Source\WinUtils.cpp" />
   </ItemGroup>
@@ -157,22 +150,15 @@
     <ClInclude Include="Source\Parsers\Parser.h" />
     <ClInclude Include="Source\V2World\V2Army.h" />
     <ClInclude Include="Source\V2World\V2Country.h" />
-    <ClInclude Include="Source\V2World\V2Creditor.h" />
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />
     <ClInclude Include="Source\V2World\V2Factory.h" />
     <ClInclude Include="Source\V2World\V2Flags.h" />
     <ClInclude Include="Source\V2World\V2Inventions.h" />
-    <ClInclude Include="Source\V2World\V2Leader.h" />
-    <ClInclude Include="Source\V2World\V2LeaderTraits.h" />
     <ClInclude Include="Source\V2World\V2Localisation.h" />
     <ClInclude Include="Source\V2World\V2Party.h" />
     <ClInclude Include="Source\V2World\V2Pop.h" />
     <ClInclude Include="Source\V2World\V2Province.h" />
-    <ClInclude Include="Source\V2World\V2Reforms.h" />
     <ClInclude Include="Source\V2World\V2Relations.h" />
-    <ClInclude Include="Source\V2World\V2State.h" />
-    <ClInclude Include="Source\V2World\V2TechSchools.h" />
-    <ClInclude Include="Source\V2World\V2Version.h" />
     <ClInclude Include="Source\V2World\V2World.h" />
     <ClInclude Include="Source\WinUtils.h" />
   </ItemGroup>
