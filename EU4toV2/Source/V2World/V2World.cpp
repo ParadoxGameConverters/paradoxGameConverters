@@ -33,6 +33,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sys/stat.h>
 #include "../Parsers/Parser.h"
 #include "../Log.h"
+#include "../Mapper.h"
 #include "../Configuration.h"
 #include "../WinUtils.h"
 #include "../EU4World/EU4World.h"
@@ -523,7 +524,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const CK2TitleMapping& ck2titlemap, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas)
+void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const CK2TitleMapping& ck2titlemap, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -554,7 +555,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true);
 			}
-			destCountry->initFromEU4Country(sourceCountry, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas);
+			destCountry->initFromEU4Country(sourceCountry, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -817,7 +818,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
+void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU4RegionsMapping& regionsMap)
 {
 	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -964,17 +965,33 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 							if (cultureItr->srcCulture == prItr->culture)
 							{
 								bool match = true;
-								for (vector<distinguisher>::const_iterator distiguisherItr = cultureItr->distinguishers.begin(); distiguisherItr != cultureItr->distinguishers.end(); distiguisherItr++)
+								for (vector<distinguisher>::const_iterator distinguisherItr = cultureItr->distinguishers.begin(); distinguisherItr != cultureItr->distinguishers.end(); distinguisherItr++)
 								{
-									if (distiguisherItr->first == DTOwner)
+									if (distinguisherItr->first == DTOwner)
 									{
-										if ((*vitr)->getOwner()->getTag() != distiguisherItr->second)
+										if ((*vitr)->getOwner()->getTag() != distinguisherItr->second)
+										{
 											match = false;
+										}
 									}
-									else if (distiguisherItr->first == DTReligion)
+									else if (distinguisherItr->first == DTReligion)
 									{
-										if (prItr->religion != distiguisherItr->second)
+										if (prItr->religion != distinguisherItr->second)
+										{
 											match = false;
+										}
+									}
+									else if (distinguisherItr->first == DTRegion)
+									{
+										auto regions = regionsMap.find(i->second->getSrcProvince()->getNum());
+										if ((regions == regionsMap.end()) || (regions->second.find(distinguisherItr->second) == regions->second.end()))
+										{
+											match = false;
+										}
+										else
+										{
+											match = true;
+										}
 									}
 									else
 									{

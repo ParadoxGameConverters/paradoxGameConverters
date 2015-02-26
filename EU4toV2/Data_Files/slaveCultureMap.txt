@@ -31,7 +31,7 @@ slaveCultureMap = {
 link = { v2 = afro_american eu4 = american }
 link = { v2 = afro_caribbean eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish }
 link = { v2 = afro_caribeno eu4 = visigothic eu4 = castillian eu4 = galician eu4 = catalan eu4 = andalucian }
-link = { v2 = afro_brazillian eu4 = portugese }
+link = { v2 = afro_brazilian eu4 = portugese }
 link = { v2 = afro_antillean eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton eu4 = wallonian eu4 = old_frankish eu4 = frankish }
 
 }

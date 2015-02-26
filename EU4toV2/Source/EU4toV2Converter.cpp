@@ -788,6 +788,36 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		}
 	}
 
+	// Parse EU4 Regions
+	LOG(LogLevel::Info) << "Parsing EU4 regions";
+	obj = doParseFile((EU4Loc + "\\map\\region.txt").c_str());
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\map\\region.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse region.txt";
+		return 1;
+	}
+	EU4RegionsMapping EU4RegionsMap;
+	initEU4RegionMap(obj, EU4RegionsMap);
+	for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
+	{
+		string modRegionFile(*itr + "\\map\\region.txt");
+		if ((_stat(modRegionFile.c_str(), &st) == 0))
+		{
+			obj = doParseFile(modRegionFile.c_str());
+			if (obj == NULL)
+			{
+				LOG(LogLevel::Error) << "Could not parse file " << modRegionFile;
+				exit(-1);
+			}
+			EU4Religion::parseReligions(obj);
+		}
+	}
+
 	// Create country mapping
 	LOG(LogLevel::Info) << "Creating country mapping";
 	removeEmptyNations(sourceWorld);
@@ -804,9 +834,9 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, ck2Titles, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, ck2Titles, colonyFlags, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, orderIdeas, libertyIdeas, equalityIdeas, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, slaveCultureMap, religionMap, stateIndexMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, slaveCultureMap, religionMap, stateIndexMap, EU4RegionsMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting colonies";

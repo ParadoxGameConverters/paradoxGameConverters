@@ -72,7 +72,8 @@ void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateI
 enum distinguisherType
 {
 	DTOwner,
-	DTReligion
+	DTReligion,
+	DTRegion
 };
 
 // Culture Mappings
@@ -118,6 +119,10 @@ typedef struct {
 } colonyStruct;
 typedef vector<colonyStruct> colonyMapping;
 colonyMapping initColonyMap(Object* obj);
+
+// EU4 regions
+typedef map<int, set<string>>	EU4RegionsMapping;		// the regions in EU4
+void initEU4RegionMap(Object *obj, EU4RegionsMapping& regions);
 
 // colonial nation flags
 typedef struct {

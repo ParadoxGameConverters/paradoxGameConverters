@@ -344,7 +344,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas)
+void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const EU4RegionsMapping& regionsMap)
 {
 	srcCountry = _srcCountry;
 
@@ -379,6 +379,14 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outpu
 	// Localisation
 	localisation.SetTag(tag);
 	localisation.ReadFromCountry(*srcCountry);
+
+	// Capital
+	int oldCapital = srcCountry->getCapital();
+	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
+	if (itr != inverseProvinceMap.end())
+	{
+		capital = itr->second[0];
+	}
 
 	// tech group
 	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))
@@ -429,6 +437,18 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outpu
 						if (religion != j->second)
 						{
 							match = false;
+						}
+					}
+					else if (j->first == DTRegion)
+					{
+						auto regions = regionsMap.find(oldCapital);
+						if ((regions == regionsMap.end()) || (regions->second.find(j->second) == regions->second.end()))
+						{
+							match = false;
+						}
+						else
+						{
+							match = true;
 						}
 					}
 					else
@@ -484,6 +504,18 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outpu
 						if (religion != k->second)
 						{
 							match = false;
+						}
+					}
+					else if (k->first == DTRegion)
+					{
+						auto regions = regionsMap.find(oldCapital);
+						if ((regions == regionsMap.end()) || (regions->second.find(k->second) == regions->second.end()))
+						{
+							match = false;
+						}
+						else
+						{
+							match = true;
 						}
 					}
 					else
@@ -694,14 +726,6 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, vector<string> outpu
 		literacy = Configuration::getMaxLiteracy();
 	}
 	LOG(LogLevel::Debug) << "Setting literacy for " << tag << " to " << literacy;
-
-	// Capital
-	int oldCapital = srcCountry->getCapital();
-	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
-	if (itr != inverseProvinceMap.end())
-	{
-		capital = itr->second[0];
-	}
 
 	// Tech School
 	//double landInvestment			= srcCountry->getLandInvestment();
