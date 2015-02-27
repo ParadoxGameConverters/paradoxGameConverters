@@ -599,6 +599,14 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnio
 			{
 				continue;
 			}
+			else if ((*j)->getKey() == "male_names")
+			{
+				continue;
+			}
+			else if ((*j)->getKey() == "female_names")
+			{
+				continue;
+			}
 			else
 			{
 				cultures.push_back( (*j)->getKey() );
