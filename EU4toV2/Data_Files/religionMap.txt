@@ -85,6 +85,10 @@ link = { v2 = hellenic_pagan eu4 = hellenic_pagan }
 link = { v2 = inca_reformed eu4 = inca_reformed }
 link = { v2 = zun_pagan_reformed eu4 = zun_pagan_reformed }
 
+link = { v2 = inti eu4 = inti }
+link = { v2 = mayan eu4 = mesoamerican_religion }
+link = { v2 = nahuatl eu4 = nahuatl }
+
 #Zoroastrian
 link = { v2 = zoroastrian eu4 = zoroastrian eu4 = zoroastrian_heresy }
 link = { v2 = manichean eu4 = manichean }

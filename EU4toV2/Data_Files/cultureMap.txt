@@ -77,9 +77,9 @@ link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = 
 link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
 link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
 link = { v2 = visigothic eu4 = visigothic }
-link = { v2 = spanish eu4 = castillian }
+link = { v2 = spanish eu4 = castillian eu4 = leonese }
 link = { v2 = galician eu4 = galician }
-link = { v2 = catalan eu4 = catalan }
+link = { v2 = catalan eu4 = catalan eu4 = aragonese }
 link = { v2 = portuguese eu4 = portugese }
 link = { v2 = brazilian eu4 = portugese region = brazil_region }
 link = { v2 = maltese eu4 = maltese }
