@@ -988,10 +988,6 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 										{
 											match = false;
 										}
-										else
-										{
-											match = true;
-										}
 									}
 									else
 									{
@@ -1029,17 +1025,25 @@ void V2World::convertProvinces(const EU4World& sourceWorld, const provinceMappin
 							if (slaveCultureItr->srcCulture == prItr->culture)
 							{
 								bool match = true;
-								for (vector<distinguisher>::const_iterator distiguisherItr = slaveCultureItr->distinguishers.begin(); distiguisherItr != slaveCultureItr->distinguishers.end(); distiguisherItr++)
+								for (vector<distinguisher>::const_iterator distinguisherItr = slaveCultureItr->distinguishers.begin(); distinguisherItr != slaveCultureItr->distinguishers.end(); distinguisherItr++)
 								{
-									if (distiguisherItr->first == DTOwner)
+									if (distinguisherItr->first == DTOwner)
 									{
-										if ((*vitr)->getOwner()->getTag() != distiguisherItr->second)
+										if ((*vitr)->getOwner()->getTag() != distinguisherItr->second)
 											match = false;
 									}
-									else if (distiguisherItr->first == DTReligion)
+									else if (distinguisherItr->first == DTReligion)
 									{
-										if (prItr->religion != distiguisherItr->second)
+										if (prItr->religion != distinguisherItr->second)
 											match = false;
+									}
+									else if (distinguisherItr->first == DTRegion)
+									{
+										auto regions = regionsMap.find(i->second->getSrcProvince()->getNum());
+										if ((regions == regionsMap.end()) || (regions->second.find(distinguisherItr->second) == regions->second.end()))
+										{
+											match = false;
+										}
 									}
 									else
 									{
