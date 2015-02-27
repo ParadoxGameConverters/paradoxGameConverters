@@ -1861,13 +1861,13 @@
 	link = { eu4 = 1325 v2 = 2778 }	# Lake Balaton -> Lake Balaton
 	link = { eu4 = 1250 v2 = 2703 }	# Vänern -> Vänern
 	link = { eu4 = 1251 v2 = 2704 }	# Vättern -> Vättern
-	link = { eu4 = 1977 eu4 = 1887 eu4 = 1886 eu4 = 1884 eu4 = 1883 eu4 = 1885 }	# Mälaren, Storsjon, Storavan, East Finish lakes, Western Finish lakes, Central finish lakes -> DROPPED
+	link = { eu4 = 2953 eu4 = 1977 eu4 = 1887 eu4 = 1886 eu4 = 1884 eu4 = 1883 eu4 = 1885 }	# Hjälmaren, Mälaren, Storsjon, Storavan, East Finish lakes, Western Finish lakes, Central finish lakes -> DROPPED
 	link = { eu4 = 1260 v2 = 2713 }	# Peipsi Järv -> Peipsi Järv
 	link = { eu4 = 1261 v2 = 2714 }	# Ladoga -> Ladoga
 	link = { eu4 = 1262 v2 = 2715 }	# Onega -> Onega
 	link = { eu4 = 1888 v2 = 3230 }	# Kara Sea -> Gulf of Ob
 	link = { eu4 = 1654 v2 = 3107 }	# Lake Bajkal -> Lake Bajkal
-	link = { eu4 = 1889 eu4 = 1890 }	# Lake geneva, Bodensee -> DROPPED
+	link = { eu4 = 1889 eu4 = 1890 }# Lake geneva, Bodensee -> DROPPED
 	# ##############
 	# The High Seas
 	# ##############
