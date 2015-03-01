@@ -12,11 +12,11 @@ namespace Frontend.Core.Helpers
         /// Constructs the string that will be saved to disk as the config file.
         /// </summary>
         /// <returns></returns>
-        public static string BuiltOutputString(IConverterSettings converterSettings)
+        public static string BuiltOutputString(IConverterSettings converterSettings, IDirectoryHelper directoryHelper)
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine(ReadTextFile(DirectoryHelper.GetFrontendWorkingDirectory() + "\\Docs\\license.txt"));
+            sb.AppendLine(ReadTextFile(directoryHelper.GetFrontendWorkingDirectory() + "\\Docs\\license.txt"));
 
             sb.AppendLine("configuration =");
             sb.AppendLine("{");

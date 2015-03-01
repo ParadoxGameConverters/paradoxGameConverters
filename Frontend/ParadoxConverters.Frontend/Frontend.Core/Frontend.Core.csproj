@@ -56,12 +56,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\AsyncCommandBase.cs" />
-    <Compile Include="Commands\ConvertCommand.cs" />
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\OpenFileCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
+    <Compile Include="Converting\ConvertCommand.cs" />
+    <Compile Include="Converting\IModCopier.cs" />
+    <Compile Include="Converting\ISaveGameNameTranslator.cs" />
+    <Compile Include="Converting\ModCopier.cs" />
+    <Compile Include="Converting\SaveGameNameTranslator.cs" />
     <Compile Include="Events\EventArgs\PreferenceOperation.cs" />
     <Compile Include="Events\EventArgs\PreferenceStepOperationArgs.cs" />
     <Compile Include="Exceptions\MissingRequiredXMLPropertyException.cs" />
@@ -80,6 +84,8 @@
     <Compile Include="Helpers\DirectoryCopyHelper.cs" />
     <Compile Include="Helpers\EnumerableExtensionMethods.cs" />
     <Compile Include="Helpers\FolderBrowserLauncher.cs" />
+    <Compile Include="Helpers\IDirectoryCopyHelper.cs" />
+    <Compile Include="Helpers\IDirectoryHelper.cs" />
     <Compile Include="Helpers\NativeMethods.cs" />
     <Compile Include="Helpers\NullableComparer.cs" />
     <Compile Include="Helpers\NumberParserHelper.cs" />
@@ -128,6 +134,12 @@
     <Compile Include="Model\Preferences\StringPreference.cs" />
     <Compile Include="Model\RelativeFolderLocationRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proxies\FileProxy.cs" />
+    <Compile Include="Proxies\FolderProxy.cs" />
+    <Compile Include="Proxies\IFileProxy.cs" />
+    <Compile Include="Proxies\IFolderProxy.cs" />
+    <Compile Include="Proxies\IMessageBoxProxy.cs" />
+    <Compile Include="Proxies\MessageBoxProxy.cs" />
     <Compile Include="ViewModels\ConvertViewModel.cs" />
     <Compile Include="ViewModels\FrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IConvertViewModel.cs" />

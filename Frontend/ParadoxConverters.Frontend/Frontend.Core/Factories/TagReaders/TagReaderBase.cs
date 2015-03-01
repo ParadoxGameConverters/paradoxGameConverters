@@ -15,10 +15,12 @@ namespace Frontend.Core.Factories.TagReaders
     public abstract class TagReaderBase
     {
         private IEventAggregator eventAggregator;
+        private IDirectoryHelper directoryHelper;
 
-        protected TagReaderBase(IEventAggregator eventAggregator)
+        protected TagReaderBase(IEventAggregator eventAggregator, IDirectoryHelper directoryHelper)
         {
             this.eventAggregator = eventAggregator;
+            this.directoryHelper = directoryHelper;
         }
 
         protected IEventAggregator EventAggregator
@@ -67,7 +69,7 @@ namespace Frontend.Core.Factories.TagReaders
         private IAlternativePath ReadConverterPath(XElement xmlElement, string tagName, string friendlyName)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
-            var absolutePath = Path.Combine(DirectoryHelper.GetFrontendWorkingDirectory(), subFolderLocation);
+            var absolutePath = Path.Combine(this.directoryHelper.GetFrontendWorkingDirectory(), subFolderLocation);
 
             return this.BuildAlternativePathObject(absolutePath, tagName, friendlyName);
         }
@@ -75,7 +77,7 @@ namespace Frontend.Core.Factories.TagReaders
         private IAlternativePath ReadWindowsUserFolderPath(XElement xmlElement, string tagName, string friendlyName)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
-            var userFolder = DirectoryHelper.GetUsersFolder();
+            var userFolder = this.directoryHelper.GetUsersFolder();
             var absolutePath = Path.Combine(userFolder, subFolderLocation);
 
             return this.BuildAlternativePathObject(absolutePath, tagName, friendlyName);

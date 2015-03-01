@@ -10,7 +10,7 @@ namespace Frontend.Core.Factories.TagReaders
     public class FolderTagReader : TagReaderBase
     {
         public FolderTagReader(IEventAggregator eventAggregator)
-            : base(eventAggregator)
+            : base(eventAggregator, new DirectoryHelper())
         {
         }
 
