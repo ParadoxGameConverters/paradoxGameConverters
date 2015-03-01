@@ -59,7 +59,7 @@ namespace Frontend.Core.Commands
         /// <param name="parameter">The paramter passed to the <c>Execute</c> method of the command.</param>
         protected override void OnExecute(object parameter)
         {
-            this.SaveConfigurationFile();
+            this.MarshallMethod(() => this.SaveConfigurationFile(), DispatcherPriority.Send);
 
             // Reading process output syncronously. The async part is already handled by the command
             using (var process = new Process())
