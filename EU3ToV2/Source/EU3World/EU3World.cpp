@@ -43,6 +43,12 @@ EU3World::EU3World(Object* obj)
 	string key;	
 	vector<Object*> leaves = obj->getLeaves();
 
+	vector<Object*> dateObj = obj->getValue("date");
+	if (dateObj.size() > 0)
+	{
+		date endDate(dateObj[0]->getLeaf());
+	}
+
 	provinces.clear();
 	countries.clear();
 	for (unsigned int i = 0; i < leaves.size(); i++)

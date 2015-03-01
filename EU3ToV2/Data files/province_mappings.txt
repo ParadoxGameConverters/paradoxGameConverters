@@ -1,4 +1,4 @@
-dw=
+﻿dw=
 {
 	## South America ##
 	## Venzuela
@@ -485,70 +485,70 @@ dw=
 	link = { eu3 = 1798 vic = 2034 vic = 2020 vic = 2019 vic = 2023 vic = 2028 vic = 2027 vic = 2024 vic = 2026 vic = 2025 vic = 2022 vic = 2021 vic = 1846 vic = 1847 }	# Uganda -> Kigali, Mbarara, Entebbe, Jinja, Kisumu, Nakuru, Nairobi, Lodwar, Marsabit, Kitgum, Masindi, Lado, Kapoeta
 
 	## West Africa
-	link = { eu3 = 1111 vic = 1775 vic = 1779 }	# Arguin -> Nouakchott, Shingit
-	link = { eu3 = 1112 vic = 1776 vic = 1777 vic = 1778 vic = 1784 vic = 1789 }	# Trarza -> Rosso, Aleg, Maghama, Saint-Louis, Podor
-	link = { eu3 = 1115 vic = 1796 vic = 1801 }	# Brakna -> Nioro, Mourdiah
-	link = { eu3 = 1113 vic = 1783 vic = 2573 vic = 1787 vic = 1786 vic = 1790 vic = 1788 }	# Cayor -> Dakar, Mboul, Diourbel, Linguere, Matam, Kaolack
-	link = { eu3 = 1116 vic = 1791 vic = 1795 }	# Wolof -> Bakel, Kayes
-	link = { eu3 = 1120 vic = 1794 vic = 1797 }	# Bambuk -> Bamako, Kita
-	link = { eu3 = 1123 vic = 1800 vic = 1802 }	# Segu -> Segu, Jenne
-	link = { eu3 = 1114 vic = 1878 vic = 1877 vic = 1792 vic = 1793 vic = 1785 }	# Gabu -> Gabu, Bissau, Ziguinchor, Velingara, Banjul
-	link = { eu3 = 1117 vic = 1880 vic = 1881 vic = 1882 }	# Futa Jallon -> Timbo, Dinguiraye, Kankan
-	link = { eu3 = 1121 vic = 1798 }	# Bure -> Bougouni
-	link = { eu3 = 1118 vic = 1884 vic = 1879 vic = 1885 vic = 1886 }	# Sierra Leone -> Freetown, Boffa, Falaba, Bo
-	link = { eu3 = 1119 vic = 1887 vic = 1888 vic = 1891 vic = 1890 vic = 1889 }	# Grain Coast -> Monrovia, Harper, Zwedru, Gbarnga, Bopolu
-	link = { eu3 = 1126 vic = 1893 vic = 1892 }	# Ivory Coast -> Sassandra, Grand Lahou
-	link = { eu3 = 1139 vic = 1909 vic = 1894 vic = 1908 vic = 1907 }	# Gold Coast -> Sekondi, Grand Bassam, Cape Coast, Accra
-	link = { eu3 = 1122 vic = 1883 vic = 1896 vic = 1900 }	# Konian -> Beyla, Man, Odienne
-	link = { eu3 = 1125 vic = 1897 vic = 1895 vic = 1898 vic = 1899 }	# Worodugu -> Akoupe, Bouake, Kong, Bondouku
-	link = { eu3 = 1124 vic = 1799 }	# Wasuju -> Sikasso
-	link = { eu3 = 1134 vic = 1906 vic = 1905 }	# Jenne -> Orodaro, Bobo Dioulasso
-	link = { eu3 = 1131 vic = 1804 }	# Massina -> Bandiagara
-	link = { eu3 = 1132 vic = 1803 }	# Timbuktu -> Timbuktu
-	link = { eu3 = 1133 vic = 1805 }	# Gao -> Gao
-	link = { eu3 = 1135 vic = 1902 vic = 1903 }	# Yatenga -> Wahiguya, Dori
-	link = { eu3 = 1138 vic = 1910 vic = 1911 vic = 1913 vic = 1912 vic = 1916 }	# Kumasi -> Kumasi, Kintampo, Tamale, Wa, Yendi
-	link = { eu3 = 1137 vic = 1901 vic = 1904 }	# Wagadugi -> Wagadugu, Fada Ngourma
-	link = { eu3 = 1136 vic = 1808 vic = 1809 }	# Gurma -> Niamey, Say
-	link = { eu3 = 1142 vic = 1946 vic = 1810 }	# Dendi -> Kebbi, Dosso
-	link = { eu3 = 1140 vic = 1920 vic = 1922 vic = 1917 vic = 1915 vic = 1918 }	# Abomey -> Abomey, Jugu, Atakpane, Ho, Sokode
-	link = { eu3 = 1141 vic = 1919 vic = 1914 }	# Whydah -> Cotonou, Lome
-	link = { eu3 = 1143 vic = 1938 vic = 1921 }	# Borgu -> Bussa, Nikki
-	link = { eu3 = 1144 vic = 1925 vic = 1927 vic = 1924 }	# Oyo -> Ibadan, Ilorin, Abeokuta
-	link = { eu3 = 1147 vic = 1928 vic = 1931 vic = 1923 }	# Benin -> Benin, Warri, Lagos
-	link = { eu3 = 1146 vic = 1926 vic = 1929 }	# Ife -> Ife, Akure
-	link = { eu3 = 1151 vic = 1932 vic = 1933 }	# Bonny -> Bonny, Awka
+	link = { eu3 = 1111 vic = 1775 vic = 1779 resettable = yes }	# Arguin -> Nouakchott, Shingit
+	link = { eu3 = 1112 vic = 1776 vic = 1777 vic = 1778 vic = 1784 vic = 1789 resettable = yes}	# Trarza -> Rosso, Aleg, Maghama, Saint-Louis, Podor
+	link = { eu3 = 1115 vic = 1796 vic = 1801 resettable = yes}	# Brakna -> Nioro, Mourdiah
+	link = { eu3 = 1113 vic = 1783 vic = 2573 vic = 1787 vic = 1786 vic = 1790 vic = 1788 resettable = yes}	# Cayor -> Dakar, Mboul, Diourbel, Linguere, Matam, Kaolack
+	link = { eu3 = 1116 vic = 1791 vic = 1795 resettable = yes}	# Wolof -> Bakel, Kayes
+	link = { eu3 = 1120 vic = 1794 vic = 1797 resettable = yes}	# Bambuk -> Bamako, Kita
+	link = { eu3 = 1123 vic = 1800 vic = 1802 resettable = yes}	# Segu -> Segu, Jenne
+	link = { eu3 = 1114 vic = 1878 vic = 1877 vic = 1792 vic = 1793 vic = 1785 resettable = yes}	# Gabu -> Gabu, Bissau, Ziguinchor, Velingara, Banjul
+	link = { eu3 = 1117 vic = 1880 vic = 1881 vic = 1882 resettable = yes}	# Futa Jallon -> Timbo, Dinguiraye, Kankan
+	link = { eu3 = 1121 vic = 1798 resettable = yes}	# Bure -> Bougouni
+	link = { eu3 = 1118 vic = 1884 vic = 1879 vic = 1885 vic = 1886 resettable = yes}	# Sierra Leone -> Freetown, Boffa, Falaba, Bo
+	link = { eu3 = 1119 vic = 1887 vic = 1888 vic = 1891 vic = 1890 vic = 1889 resettable = yes}	# Grain Coast -> Monrovia, Harper, Zwedru, Gbarnga, Bopolu
+	link = { eu3 = 1126 vic = 1893 vic = 1892 resettable = yes}	# Ivory Coast -> Sassandra, Grand Lahou
+	link = { eu3 = 1139 vic = 1909 vic = 1894 vic = 1908 vic = 1907 resettable = yes}	# Gold Coast -> Sekondi, Grand Bassam, Cape Coast, Accra
+	link = { eu3 = 1122 vic = 1883 vic = 1896 vic = 1900 resettable = yes}	# Konian -> Beyla, Man, Odienne
+	link = { eu3 = 1125 vic = 1897 vic = 1895 vic = 1898 vic = 1899 resettable = yes}	# Worodugu -> Akoupe, Bouake, Kong, Bondouku
+	link = { eu3 = 1124 vic = 1799 resettable = yes}	# Wasuju -> Sikasso
+	link = { eu3 = 1134 vic = 1906 vic = 1905 resettable = yes}	# Jenne -> Orodaro, Bobo Dioulasso
+	link = { eu3 = 1131 vic = 1804 resettable = yes}	# Massina -> Bandiagara
+	link = { eu3 = 1132 vic = 1803 resettable = yes}	# Timbuktu -> Timbuktu
+	link = { eu3 = 1133 vic = 1805 resettable = yes}	# Gao -> Gao
+	link = { eu3 = 1135 vic = 1902 vic = 1903 resettable = yes}	# Yatenga -> Wahiguya, Dori
+	link = { eu3 = 1138 vic = 1910 vic = 1911 vic = 1913 vic = 1912 vic = 1916 resettable = yes}	# Kumasi -> Kumasi, Kintampo, Tamale, Wa, Yendi
+	link = { eu3 = 1137 vic = 1901 vic = 1904 resettable = yes}	# Wagadugi -> Wagadugu, Fada Ngourma
+	link = { eu3 = 1136 vic = 1808 vic = 1809 resettable = yes}	# Gurma -> Niamey, Say
+	link = { eu3 = 1142 vic = 1946 vic = 1810 resettable = yes}	# Dendi -> Kebbi, Dosso
+	link = { eu3 = 1140 vic = 1920 vic = 1922 vic = 1917 vic = 1915 vic = 1918 resettable = yes}	# Abomey -> Abomey, Jugu, Atakpane, Ho, Sokode
+	link = { eu3 = 1141 vic = 1919 vic = 1914 resettable = yes}	# Whydah -> Cotonou, Lome
+	link = { eu3 = 1143 vic = 1938 vic = 1921 resettable = yes}	# Borgu -> Bussa, Nikki
+	link = { eu3 = 1144 vic = 1925 vic = 1927 vic = 1924 resettable = yes}	# Oyo -> Ibadan, Ilorin, Abeokuta
+	link = { eu3 = 1147 vic = 1928 vic = 1931 vic = 1923 resettable = yes}	# Benin -> Benin, Warri, Lagos
+	link = { eu3 = 1146 vic = 1926 vic = 1929 resettable = yes}	# Ife -> Ife, Akure
+	link = { eu3 = 1151 vic = 1932 vic = 1933 resettable = yes}	# Bonny -> Bonny, Awka
 	link = { eu3 = 1152 vic = 1930 vic = 1935 vic = 1936 }	# Idah -> Lokoja, Aruchukwu, Makurdi
-	link = { eu3 = 1145 vic = 1940 }	# Nupe -> Bida
-	link = { eu3 = 1149 vic = 1947 }	# Katsina -> Katsina
-	link = { eu3 = 1150 vic = 1948 }	# Zamfara -> Sokoto
-	link = { eu3 = 1155 vic = 1945 vic = 1949 }	# Kano -> Kano, Hadejia
-	link = { eu3 = 1161 vic = 1942 vic = 1944 }	# Bauchi -> Bauchi, Gombe
-	link = { eu3 = 1154 vic = 1939 }	# Zazzau -> Zaria
-	link = { eu3 = 1153 vic = 1941 vic = 1943 }	# Pindinga -> Abuja, Jos
-	link = { eu3 = 1249 vic = 1950 vic = 1963 }	# Yola -> Yola, Ngaoundere
-	link = { eu3 = 1162 vic = 1937 }	# Wukari -> Tukari
-	link = { eu3 = 1163 vic = 1934 vic = 1957 vic = 1961 vic = 1960 }	# Calabar -> Calabar, Buea, Bamenda, Bafoussam
-	link = { eu3 = 1148 vic = 1811 }	# Gobir -> Maradi
-	link = { eu3 = 1156 vic = 1815 }	# Damagaram -> Zinder
-	link = { eu3 = 1157 vic = 1952 vic = 1816 }	# Damasak -> Nguru, Kufe
-	link = { eu3 = 1158 vic = 1824 }	# Kanem -> Mao
-	link = { eu3 = 1160 vic = 1951 vic = 1953 vic = 1964 vic = 1819 }	# Bornu -> Kuka, Dikoa, Maroua, Moundou
-	link = { eu3 = 1159 vic = 1818 vic = 1820 }	# Bagirmi -> Massenya, Bongor
+	link = { eu3 = 1145 vic = 1940 resettable = yes}	# Nupe -> Bida
+	link = { eu3 = 1149 vic = 1947 resettable = yes}	# Katsina -> Katsina
+	link = { eu3 = 1150 vic = 1948 resettable = yes}	# Zamfara -> Sokoto
+	link = { eu3 = 1155 vic = 1945 vic = 1949 resettable = yes}	# Kano -> Kano, Hadejia
+	link = { eu3 = 1161 vic = 1942 vic = 1944 resettable = yes}	# Bauchi -> Bauchi, Gombe
+	link = { eu3 = 1154 vic = 1939 resettable = yes}	# Zazzau -> Zaria
+	link = { eu3 = 1153 vic = 1941 vic = 1943 resettable = yes}	# Pindinga -> Abuja, Jos
+	link = { eu3 = 1249 vic = 1950 vic = 1963 resettable = yes}	# Yola -> Yola, Ngaoundere
+	link = { eu3 = 1162 vic = 1937 resettable = yes}	# Wukari -> Tukari
+	link = { eu3 = 1163 vic = 1934 vic = 1957 vic = 1961 vic = 1960 resettable = yes}	# Calabar -> Calabar, Buea, Bamenda, Bafoussam
+	link = { eu3 = 1148 vic = 1811 resettable = yes}	# Gobir -> Maradi
+	link = { eu3 = 1156 vic = 1815 resettable = yes}	# Damagaram -> Zinder
+	link = { eu3 = 1157 vic = 1952 vic = 1816 resettable = yes}	# Damasak -> Nguru, Kufe
+	link = { eu3 = 1158 vic = 1824 resettable = yes}	# Kanem -> Mao
+	link = { eu3 = 1160 vic = 1951 vic = 1953 vic = 1964 vic = 1819 resettable = yes}	# Bornu -> Kuka, Dikoa, Maroua, Moundou
+	link = { eu3 = 1159 vic = 1818 vic = 1820 resettable = yes}	# Bagirmi -> Massenya, Bongor
 	link = { eu3 = 1164 vic = 1959 vic = 1956 vic = 1958 vic = 1973 resettable = yes }	# Cameroon -> Yaounde, Douala, Kribi, Bata
-	link = { eu3 = 1165 vic = 1972 vic = 1974 vic = 1976 vic = 1975 }	# Gabon -> Libreville, Mayumbe, Makokou, Moanda
-	link = { eu3 = 1166 vic = 2624 vic = 2000 vic = 1983 }	# Loango -> Loango, Cabinda, Boma
-	link = { eu3 = 1169 vic = 1982 vic = 1977 vic = 1978 }	# Mayombe -> Kinshasa, Nkuna, Madingou
-	link = { eu3 = 1167 vic = 1999 }	# Luanda -> Luanda
-	link = { eu3 = 1170 vic = 2001 vic = 1985 }	# Kongo -> Mbanza, Kumbana
-	link = { eu3 = 1168 vic = 2003 }	# Kisarna -> Benguela
-	link = { eu3 = 1171 vic = 2002 vic = 2009 }	# Ndongo -> Quibala, Malanje
-	link = { eu3 = 1172 vic = 2004 }	# Benguela -> Mocamedes
-	link = { eu3 = 1173 vic = 2079 }	# Damaraland -> Swakopmund
-	link = { eu3 = 1129 vic = 1781 }	# Azawadd -> Walata
-	link = { eu3 = 1130 vic = 2609 }	# Tadimekket -> Araouane
-	link = { eu3 = 1797 vic = 1981 vic = 1962 vic = 1966 vic = 1995 vic = 1993 vic = 1980 vic = 1994 vic = 1992 vic = 1996 vic = 1997 vic = 1991 vic = 1990 }	# Inner Kongo -> Impfondo, Bertoua, Nola, Gemena, Irebu, Djambala, Nsheng, Basoko, Kisangani, Mungbane, Uvira, Nyangwe
-	link = { eu3 = 1796 vic = 1967 vic = 1965 vic = 1968 vic = 1998 vic = 1970 vic = 1969 vic = 1845 vic = 1844 vic = 1843 vic = 1971 vic = 1822 vic = 1823 vic = 1841 }	# Central Africa -> Bouar, Bangui, Bossangoa, Baramo, Bangassou, Zemio, Yambio, Bor, Waw, Ndele, Am Timan, Mongo, Fasher
+	link = { eu3 = 1165 vic = 1972 vic = 1974 vic = 1976 vic = 1975 resettable = yes }	# Gabon -> Libreville, Mayumbe, Makokou, Moanda
+	link = { eu3 = 1166 vic = 2624 vic = 2000 vic = 1983 resettable = yes }	# Loango -> Loango, Cabinda, Boma
+	link = { eu3 = 1169 vic = 1982 vic = 1977 vic = 1978 resettable = yes }	# Mayombe -> Kinshasa, Nkuna, Madingou
+	link = { eu3 = 1167 vic = 1999 resettable = yes }	# Luanda -> Luanda
+	link = { eu3 = 1170 vic = 2001 vic = 1985 resettable = yes }	# Kongo -> Mbanza, Kumbana
+	link = { eu3 = 1168 vic = 2003 resettable = yes }	# Kisarna -> Benguela
+	link = { eu3 = 1171 vic = 2002 vic = 2009 resettable = yes }	# Ndongo -> Quibala, Malanje
+	link = { eu3 = 1172 vic = 2004 resettable = yes }	# Benguela -> Mocamedes
+	link = { eu3 = 1173 vic = 2079 resettable = yes }	# Damaraland -> Swakopmund
+	link = { eu3 = 1129 vic = 1781 resettable = yes }	# Azawadd -> Walata
+	link = { eu3 = 1130 vic = 2609 resettable = yes }	# Tadimekket -> Araouane
+	link = { eu3 = 1797 vic = 1981 vic = 1962 vic = 1966 vic = 1995 vic = 1993 vic = 1980 vic = 1994 vic = 1992 vic = 1996 vic = 1997 vic = 1991 vic = 1990 resettable = yes }	# Inner Kongo -> Impfondo, Bertoua, Nola, Gemena, Irebu, Djambala, Nsheng, Basoko, Kisangani, Mungbane, Uvira, Nyangwe
+	link = { eu3 = 1796 vic = 1967 vic = 1965 vic = 1968 vic = 1998 vic = 1970 vic = 1969 vic = 1845 vic = 1844 vic = 1843 vic = 1971 vic = 1822 vic = 1823 vic = 1841 resettable = yes }	# Central Africa -> Bouar, Bangui, Bossangoa, Baramo, Bangassou, Zemio, Yambio, Bor, Waw, Ndele, Am Timan, Mongo, Fasher
 				
 	## South Africa
 	link = { eu3 = 1177 vic = 2087 vic = 2090 vic = 2091 vic = 2089 }	# Cape -> Cape Town, Swettenham, Mossel Bay, Worcester

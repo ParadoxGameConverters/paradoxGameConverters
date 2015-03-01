@@ -560,6 +560,7 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	fprintf(modFile, "replace = \"localisation/text.csv\"\n");
 	fprintf(modFile, "replace = \"localisation/0_Names.csv\"\n");
 	fprintf(modFile, "replace = \"localisation/0_Cultures.csv\"\n");
+	fprintf(modFile, "replace = \"history/wars\"\n");
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();
 	system(renameCommand.c_str());

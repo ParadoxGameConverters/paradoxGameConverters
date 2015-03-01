@@ -387,12 +387,20 @@ void EU3Province::checkBuilding(const Object* provinceObj, string building)
 
 void EU3Province::buildPopRatios()
 {
-	// fast-forward to 1620 (200 year decay means any changes before then will be at 100%)
+	date endDate = Configuration::getLastEU3Date();
+	if (endDate < date("1821.1.1"))
+	{
+		endDate = date("1821.1.1");
+	}
+	date cutoffDate	 = endDate;
+	cutoffDate.year	-= 200;
+
+	// fast-forward to 200 years before the end date (200 year decay means any changes before then will be at 100%)
 	string curCulture		= "";
 	string curReligion	= "";
 	vector< pair<date, string> >::iterator cItr = cultureHistory.begin();
 	vector< pair<date, string> >::iterator rItr = religionHistory.begin();
-	while (cItr != cultureHistory.end() && cItr->first.year < 1620)
+	while (cItr != cultureHistory.end() && cItr->first.year < cutoffDate.year)
 	{
 		curCulture = cItr->second;
 		++cItr;
@@ -402,7 +410,7 @@ void EU3Province::buildPopRatios()
 		// no starting culture; use first settlement culture for starting pop even if it's after 1620
 		curCulture = cItr->second;
 	}
-	while (rItr != religionHistory.end() && rItr->first.year < 1620)
+	while (rItr != religionHistory.end() && rItr->first.year < cutoffDate.year)
 	{
 		curReligion = rItr->second;
 		++rItr;
@@ -483,7 +491,7 @@ void EU3Province::buildPopRatios()
 			++rItr;
 		}
 	}
-	decayPopRatios(lastLoopDate, date("1821.1.1"), pr);
+	decayPopRatios(lastLoopDate, endDate, pr);
 	popRatios.push_back(pr);
 }
 

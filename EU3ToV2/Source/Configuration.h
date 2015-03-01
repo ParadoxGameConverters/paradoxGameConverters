@@ -35,6 +35,8 @@ class Configuration // Singleton
 
 		static date		getFirstEU3Date()							{ return getInstance()->firstEU3Date; }
 		static void		setFirstEU3Date(date _firstDate)		{ getInstance()->firstEU3Date = _firstDate; }
+		static date		getLastEU3Date()							{ return getInstance()->lastEU3Date; }
+		static void		setLastEU3Date(date _lastDate)		{ getInstance()->lastEU3Date = _lastDate;	}
 		static string	getResetProvinces()						{ return getInstance()->resetProvinces; }
 		static double	getMaxLiteracy()							{ return getInstance()->MaxLiteracy; }
 		static string	getV2Path()									{ return getInstance()->V2Path; }
@@ -73,6 +75,7 @@ class Configuration // Singleton
 
 		// items set during conversion
 		date		firstEU3Date;
+		date		lastEU3Date;			// the date EU3 ended
 		string	EU3gametype;
 		string	outputName;
 };
