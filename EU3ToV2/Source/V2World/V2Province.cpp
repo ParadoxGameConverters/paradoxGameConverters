@@ -59,6 +59,7 @@ V2Province::V2Province(string _filename)
 	demographics.clear();
 	oldPops.clear();
 	pops.clear();
+	slaveProportion	= 0.0;
 	rgoType				= "";
 	terrain				= "";
 	lifeRating			= 0;
@@ -380,7 +381,6 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, do
 
 	// each "point" here represents 0.01% (1 / 10 000) population of this culture-religion pair
 	double craftsmen		= 0;
-	double slaves			= 0;
 	double soldiers		= 0;
 	double artisans		= 0;
 	double clergymen		= 0;
@@ -618,11 +618,11 @@ void V2Province::createPops(WorldType game, const V2Demographic& demographic, do
 	}
 
 	int farmers = static_cast<int>(demographic.ratio * newPopulation + 0.5);
-	if (slaves > 0)
+	if (slaveProportion > 0.0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (slaves / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * slaveProportion);
 		farmers -= size;
-		V2Pop* slavesPop = new V2Pop("slaves", size,	demographic.culture, demographic.religion);
+		V2Pop* slavesPop = new V2Pop("slaves", size,	demographic.slaveCulture, demographic.religion);
 		pops.push_back(slavesPop);
 	}
 	if (soldiers > 0)

@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Parsers\Object.h"
 #include <map>
+#include <set>
 #include <vector>
 #include <unordered_set>
 
@@ -72,7 +73,8 @@ void initStateMap(Object* obj, stateMapping& stateMap, stateIndexMapping& stateI
 enum distinguisherType
 {
 	DTOwner,
-	DTReligion
+	DTReligion,
+	DTRegion
 };
 typedef pair<distinguisherType, string> distinguisher;
 typedef struct {
@@ -103,6 +105,11 @@ governmentMapping initGovernmentMap(Object* obj);
 typedef map< string, vector<string> > unionCulturesMap;	// <culture group, cultures>
 typedef map< string, string > inverseUnionCulturesMap;	// <culture, culture group>
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnionCulturesMap& inverseUnionCultures);
+
+
+// EU4 regions
+typedef map<int, set<string>>	EU3RegionsMapping;		// the regions in EU3
+void initEU3RegionMap(Object *obj, EU3RegionsMapping& regions);
 
 
 // utility functions

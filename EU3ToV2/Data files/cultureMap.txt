@@ -28,9 +28,10 @@ link = { vic = ashkenazi eu3 = pommeranian eu3 = prussian eu3 = hannoverian eu3 
 link = { vic = north_german eu3 = pommeranian eu3 = prussian eu3 = hannoverian eu3 = saxon }
 link = { vic = swiss eu3 = rheinlaender owner = SWI }
 link = { vic = south_german eu3 = rheinlaender eu3 = hessian eu3 = bavarian eu3 = austrian }
+link = { vic = boer eu3 = dutch region = south_africa }
 link = { vic = dutch eu3 = dutch }
 link = { vic = flemish eu3 = flemish }
-#link = { vic = boer eu3 = ? }
+
 
 # Scandinavian - swedish, danish, norwegian
 link = { vic = swedish eu3 = swedish }
@@ -40,9 +41,9 @@ link = { vic = norwegian eu3 = norwegian }
 link = { vic = norse eu3 = norse }
 
 # British - english, american, scottish
-#link = { vic = yankee eu3 = english region = northeastern_america }
-#link = { vic = dixie eu3 = english region = eastern_america }
-#link = { vic = anglo_canadian eu3 = english region = northern_america }
+link = { vic = yankee eu3 = english region = northeastern_america }
+link = { vic = dixie eu3 = english region = eastern_america }
+link = { vic = anglo_canadian eu3 = english region = northern_america }
 link = { vic = british eu3 = english eu3 = scottish eu3 = anglo_saxon eu3 = anglosaxon }
 link = { vic = yankee  eu3 = american }
 #link = { vic = texan eu3 = ? }
@@ -56,24 +57,24 @@ link = { vic = breton eu3 = breton }
 # Latin - lombard, umbrian, sicilian
 link = { vic = north_italian eu3 = lombard  eu3 = umbrian }
 link = { vic = south_italian eu3 = sicilian }
-#link = { vic = north_italian eu3 = italian region = lombardia }
-#link = { vic = south_italian eu3 = italian region = two_sicilies }
+link = { vic = north_italian eu3 = italian region = lombardia }
+link = { vic = south_italian eu3 = italian region = two_sicilies }
 link = { vic = north_italian eu3 = italian }
 link = { vic = roman eu3 = roman }
 
 # Iberian - castillian, catalan, galician, andalucian, portugese, maltese
-#link = { vic = mexican eu3 = castillian eu4 = galician eu4 = andalucian region = central_america }
+link = { vic = mexican eu3 = castillian eu4 = galician eu4 = andalucian region = central_america }
 link = { vic = mexican eu3 = nahuatl }
-#link = { vic = caribeno eu3 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
+link = { vic = caribeno eu3 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
 link = { vic = caribeno eu3 = caribeno }
-#link = { vic = platinean eu3 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
+link = { vic = platinean eu3 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
 link = { vic = platinean eu3 = platinian }
 link = { vic = castillian eu3 = castillian }
 link = { vic = galician eu3 = galician } 
 link = { vic = andalucian eu3 = andalucian }
 link = { vic = catalan eu3 = catalan }
 link = { vic = portuguese eu3 = portugese }
-#link = { vic = brazilian eu3 = portugese region = brazil_region }
+link = { vic = brazilian eu3 = portugese region = brazil_region }
 link = { vic = maltese eu3 = maltese }
 link = { vic = basque eu3 = basque }
 #link = { vic = central_american eu3 = ? }
@@ -82,7 +83,7 @@ link = { vic = north_andean eu3 = n_andean }
 link = { vic = brazilian eu3 = brazilian }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
-#link = { vic = french_canadian eu3 = eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain eu3 = breton region = northern_america }
+link = { vic = french_canadian eu3 = eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain eu3 = breton region = northern_america }
 link = { vic = cosmopolitan_french eu3 = cosmopolitan_french eu3 = gascon eu3 = normand eu3 = aquitaine eu3 = burgundian eu3 = occitain }
 link = { vic = wallonian eu3 = wallonian }
 link = { eu3 = frankish vic = frankish }
@@ -107,7 +108,7 @@ link = { vic = albanian eu3 = albanian }
 
 # West Slav - czech, hungarian, slovak
 link = { vic = hungarian eu3 = hungarian }
-#link = { vic = slovak eu3 = czech region = hungarian_region }
+link = { vic = slovak eu3 = czech region = hungarian_region }
 link = { vic = czech eu3 = czech }
 link = { vic = slovak eu3 = czech }
 
@@ -137,7 +138,7 @@ link = { vic = berber eu3 = berber }
 link = { vic = turkish eu3 = turkish eu3 = pecheneg }
 
  # Iranian - persian, east_persian, baluchi
-#link = { vic = tajik eu3 = persian region = central_asia }
+link = { vic = tajik eu3 = persian region = central_asia }
 link = { vic = persian eu3 = persian }
 link = { vic = pashtun eu3 = east_persian }
 link = { vic = baluchi eu3 = baluchi }

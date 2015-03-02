@@ -346,7 +346,7 @@ void V2Country::outputOOB() const
 }
 
 
-void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, const CountryMapping countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
+void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string> outputOrder, const CountryMapping& countryMap, cultureMapping cultureMap, religionMapping religionMap, unionCulturesMap unionCultures, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, vector<V2TechSchool> techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const EU3RegionsMapping& regionsMap)
 {
 	srcCountry = _srcCountry;
 
@@ -381,6 +381,14 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 	// Localisation
 	localisation.SetTag(tag);
 	localisation.ReadFromCountry(*srcCountry);
+
+	// Capital
+	int oldCapital = srcCountry->getCapital();
+	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
+	if (itr != inverseProvinceMap.end())
+	{
+		capital = itr->second[0];
+	}
 
 	// tech group
 	if (	(srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "latin") ||
@@ -434,6 +442,18 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 							match = false;
 						}
 					}
+					else if (j->first == DTRegion)
+					{
+						auto regions = regionsMap.find(oldCapital);
+						if ((regions == regionsMap.end()) || (regions->second.find(j->second) == regions->second.end()))
+						{
+							match = false;
+						}
+						else
+						{
+							match = true;
+						}
+					}
 					else
 					{
 						LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
@@ -484,6 +504,18 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 						if (religion != k->second)
 						{
 							match = false;
+						}
+					}
+					else if (k->first == DTRegion)
+					{
+						auto regions = regionsMap.find(oldCapital);
+						if ((regions == regionsMap.end()) || (regions->second.find(k->second) == regions->second.end()))
+						{
+							match = false;
+						}
+						else
+						{
+							match = true;
 						}
 					}
 					else
@@ -614,30 +646,6 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 		}
 	}
 
-	// Finances
-	/*money				= MONEYFACTOR * srcCountry->getTreasury();
-	lastBankrupt	= srcCountry->getLastBankrupt();
-	vector<EU3Loan*> srcLoans = srcCountry->getLoans();
-	for (vector<EU3Loan*>::iterator itr = srcLoans.begin(); itr != srcLoans.end(); ++itr)
-	{
-		string lender = tag;
-		if ( (*itr)->getLender() != "---")
-		{
-			countryMapping::iterator newTag = countryMap.find( (*itr)->getLender() );
-			if (newTag != countryMap.end())
-			{
-				lender = newTag->second;
-			}
-			else
-			{
-				log("Error: lender %s could not be found for %s's loan!\n", (*itr)->getLender().c_str(), tag.c_str());
-			}
-		}
-		double size = MONEYFACTOR * srcCountry->inflationAdjust( (*itr)->getAmount() );
-		addLoan(lender, size, (*itr)->getInterest() / 100.0f);
-	}*/
-	// 1 month's income in reserves, or 6 months' if national bank NI is present
-	// note that the GC's starting reserves are very low, so it's not necessary for this number to be large
 	bankReserves = MONEYFACTOR *srcCountry->inflationAdjust(srcCountry->getEstimatedMonthlyIncome());
 	if (srcCountry->hasNationalIdea("national_bank"))
 	{
@@ -725,14 +733,6 @@ void V2Country::initFromEU3Country(const EU3Country* _srcCountry, vector<string>
 		literacy = Configuration::getMaxLiteracy();
 	}
 	LOG(LogLevel::Debug) << "Setting literacy for " << tag << " to " << literacy;
-
-	// Capital
-	int oldCapital = srcCountry->getCapital();
-	inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
-	if (itr != inverseProvinceMap.end())
-	{
-		capital = itr->second[0];
-	}
 
 	// Tech School
 	double armyInvestment			= srcCountry->getArmyInvestment();

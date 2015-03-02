@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <sys/stat.h>
 #include "../Parsers/Parser.h"
 #include "../Log.h"
+#include "../Mapper.h"
 #include "../Configuration.h"
 #include "../WinUtils.h"
 #include "../EU3World/EU3World.h"
@@ -166,21 +167,40 @@ V2World::V2World()
 					countryPopItr = newIterator.first;
 				}*/
 
+				int provincePopulation			= 0;
+				int provinceSlavePopulation	= 0;
+
 				popProvinces->push_back(provNum);
 				vector<Object*> pops = leaves[j]->getLeaves();
 				for(unsigned int l = 0; l < pops.size(); l++)
 				{
+					string	popType		= pops[l]->getKey();
+					int		popSize		= atoi(pops[l]->getLeaf("size").c_str());
+					string	popCulture	= pops[l]->getLeaf("culture");
+
 					/*auto popItr = countryPopItr->second.find(pops[l]->getKey());
 					if (popItr == countryPopItr->second.end())
 					{
 						long int newPopSize = 0;
-						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(pops[l]->getKey(), newPopSize));
+						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
 						popItr = newIterator.first;
 					}
-					popItr->second += atoi(pops[l]->getLeaf("size").c_str());*/
-					totalWorldPopulation += atoi(pops[l]->getLeaf("size").c_str());
-					V2Pop* newPop = new V2Pop(pops[l]->getKey(), atoi(pops[l]->getLeaf("size").c_str()), pops[l]->getLeaf("culture"), pops[l]->getLeaf("religion"));
+					popItr->second += popSize;*/
+
+					totalWorldPopulation += popSize;
+					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, pops[l]->getLeaf("religion"));
 					k->second->addOldPop(newPop);
+
+					if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
+					{
+						provinceSlavePopulation += popSize;
+					}
+					provincePopulation += popSize;
+				}
+				auto province = provinces.find(provNum);
+				if (province != provinces.end())
+				{
+					province->second->setSlaveProportion( 1.0 * provinceSlavePopulation / provincePopulation);
 				}
 			}
 			popRegions.insert( make_pair(*itr, popProvinces) );
@@ -503,7 +523,7 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 }
 
 
-void V2World::convertCountries(const EU3World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int,int>& leaderMap, const V2LeaderTraits& lt)
+void V2World::convertCountries(const EU3World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const EU3RegionsMapping& regionsMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -534,7 +554,7 @@ void V2World::convertCountries(const EU3World& sourceWorld, const CountryMapping
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true);
 			}
-			destCountry->initFromEU3Country(sourceCountry, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt);
+			destCountry->initFromEU3Country(sourceCountry, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, regionsMap);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -742,7 +762,7 @@ struct MTo1ProvinceComp
 };
 
 
-void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap)
+void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMapping& provinceMap, const resettableMap& resettableProvinces, const CountryMapping& countryMap, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const stateIndexMapping& stateIndexMap, const EU3RegionsMapping& regionsMap)
 {
 	for (map<int, V2Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -890,17 +910,33 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 							if (cultureItr->srcCulture == prItr->culture)
 							{
 								bool match = true;
-								for (vector<distinguisher>::const_iterator distiguisherItr = cultureItr->distinguishers.begin(); distiguisherItr != cultureItr->distinguishers.end(); distiguisherItr++)
+								for (vector<distinguisher>::const_iterator distinguisherItr = cultureItr->distinguishers.begin(); distinguisherItr != cultureItr->distinguishers.end(); distinguisherItr++)
 								{
-									if (distiguisherItr->first == DTOwner)
+									if (distinguisherItr->first == DTOwner)
 									{
-										if ((*vitr)->getOwner()->getTag() != distiguisherItr->second)
+										if ((*vitr)->getOwner()->getTag() != distinguisherItr->second)
+										{
 											match = false;
+										}
 									}
-									else if (distiguisherItr->first == DTReligion)
+									else if (distinguisherItr->first == DTReligion)
 									{
-										if (prItr->religion != distiguisherItr->second)
+										if (prItr->religion != distinguisherItr->second)
+										{
 											match = false;
+										}
+									}
+									else if (distinguisherItr->first == DTRegion)
+									{
+										auto regions = regionsMap.find(i->second->getSrcProvince()->getNum());
+										if ((regions == regionsMap.end()) || (regions->second.find(distinguisherItr->second) == regions->second.end()))
+										{
+											match = false;
+										}
+										else
+										{
+											match = true;
+										}
 									}
 									else
 									{
@@ -931,12 +967,63 @@ void V2World::convertProvinces(const EU3World& sourceWorld, const provinceMappin
 							LOG(LogLevel::Warning) << "Could not set religion for pops in province " << destNum;
 						}
 
+						matched = false;
+						string slaveCulture = "";
+						for (cultureMapping::const_iterator slaveCultureItr = slaveCultureMap.begin(); (slaveCultureItr != slaveCultureMap.end()) && (!matched); slaveCultureItr++)
+						{
+							if (slaveCultureItr->srcCulture == prItr->culture)
+							{
+								bool match = true;
+								for (vector<distinguisher>::const_iterator distinguisherItr = slaveCultureItr->distinguishers.begin(); distinguisherItr != slaveCultureItr->distinguishers.end(); distinguisherItr++)
+								{
+									if (distinguisherItr->first == DTOwner)
+									{
+										if ((*vitr)->getOwner()->getTag() != distinguisherItr->second)
+										{
+											match = false;
+										}
+									}
+									else if (distinguisherItr->first == DTReligion)
+									{
+										if (prItr->religion != distinguisherItr->second)
+										{
+											match = false;
+										}
+									}
+									else if (distinguisherItr->first == DTRegion)
+									{
+										auto regions = regionsMap.find(i->second->getSrcProvince()->getNum());
+										if ((regions == regionsMap.end()) || (regions->second.find(distinguisherItr->second) == regions->second.end()))
+										{
+											match = false;
+										}
+									}
+									else
+									{
+										LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
+									}
+
+								}
+								if (match)
+								{
+									slaveCulture = slaveCultureItr->dstCulture;
+									matched = true;
+								}
+							}
+						}
+						if (!matched)
+						{
+							//LOG(LogLevel::Warning) << "Could not set slave culture for pops in province " << destNum;
+							slaveCulture = "african_minor";
+						}
+
 						V2Demographic demographic;
-						demographic.culture		= culture;
-						demographic.religion		= religion;
-						demographic.ratio			= prItr->popRatio * provPopRatio;
-						demographic.oldCountry	= oldOwner;
-						demographic.oldProvince	= *vitr;
+						demographic.culture			= culture;
+						demographic.slaveCulture	= slaveCulture;
+						demographic.religion			= religion;
+						demographic.ratio				= prItr->popRatio * provPopRatio;
+						demographic.oldCountry		= oldOwner;
+						demographic.oldProvince		= *vitr;
 
 						//LOG(LogLevel::Info) << "EU4 Province " << (*vitr)->getNum() << ", Vic2 Province " << i->second->getNum() << ", Culture: " << culture << ", Religion: " << religion << ", popRatio: " << prItr->popRatio << ", provPopRatio: " << provPopRatio << ", ratio: " << demographic.ratio;
 						i->second->addPopDemographic(demographic);

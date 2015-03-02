@@ -38,6 +38,7 @@ class V2Country;
 struct V2Demographic
 {
 	string								culture;
+	string								slaveCulture;
 	string								religion;
 	double								ratio;
 	EU3Province*						oldProvince;
@@ -67,16 +68,17 @@ class V2Province
 		string			getRegimentName(RegimentCategory rc);
 		bool				hasCulture(string culture, float percentOfPopulation) const;
 		
-		void				clearCores()									{ cores.clear(); };
-		void				setCoastal(bool _coastal)					{ coastal = _coastal; };
-		void				setName(string _name)						{ name = _name; };
-		void				setOwner(string _owner)						{ owner = _owner; };
-		void				setLandConnection(bool _connection)		{ landConnection = _connection; };
-		void				setSameContinent(bool _same)				{ sameContinent = _same; };
-		void				setFortLevel(int level)						{ fortLevel = level; };
-		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; };
-		void				setRailLevel(int level)						{ railLevel = level; };
-		void				setResettable(const bool _resettable)	{ resettable = _resettable; };
+		void				clearCores()									{ cores.clear(); }
+		void				setCoastal(bool _coastal)					{ coastal = _coastal; }
+		void				setName(string _name)						{ name = _name; }
+		void				setOwner(string _owner)						{ owner = _owner; }
+		void				setLandConnection(bool _connection)		{ landConnection = _connection; }
+		void				setSameContinent(bool _same)				{ sameContinent = _same; }
+		void				setFortLevel(int level)						{ fortLevel = level; }
+		void				setNavalBaseLevel(int level)				{ navalBaseLevel = level; }
+		void				setRailLevel(int level)						{ railLevel = level; }
+		void				setResettable(const bool _resettable)	{ resettable = _resettable; }
+		void				setSlaveProportion(const double _pro)	{ slaveProportion = _pro; }
 
 		const EU3Province*	getSrcProvince()		const { return srcProvince; };
 		int						getOldPopulation()	const	{ return oldPopulation; };
@@ -117,6 +119,7 @@ class V2Province
 		vector<V2Demographic>	demographics;
 		vector<const V2Pop*>		oldPops;
 		vector<V2Pop*>				pops;
+		double						slaveProportion;
 		string						rgoType;
 		string						terrain;
 		int							lifeRating;

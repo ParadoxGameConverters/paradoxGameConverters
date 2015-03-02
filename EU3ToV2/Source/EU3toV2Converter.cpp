@@ -364,6 +364,19 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	}
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
+	obj = doParseFile("slaveCultureMap.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file slaveCultureMap.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse slaveCultureMap.txt";
+		return 1;
+	}
+	cultureMapping slaveCultureMap;
+	slaveCultureMap = initCultureMap(obj->getLeaves()[0]);
 
 	unionCulturesMap			unionCultures;
 	inverseUnionCulturesMap	inverseUnionCultures;
@@ -498,6 +511,35 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 	V2LeaderTraits lt;
 	map<int, int> leaderIDMap; // <EU3, V2>
 
+	// Parse EU4 Regions
+	LOG(LogLevel::Info) << "Parsing EU4 regions";
+	obj = doParseFile((EU3Loc + "\\map\\region.txt").c_str());
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file " << EU3Loc << "\\map\\region.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse region.txt";
+		return 1;
+	}
+	EU3RegionsMapping EU3RegionsMap;
+	initEU3RegionMap(obj, EU3RegionsMap);
+	if (EU3Mod != "")
+	{
+		string modRegionFile = Configuration::getEU3Path() + "\\mod\\" + EU3Mod + "\\map\\region.txt";
+		if ((_stat(modRegionFile.c_str(), &st) == 0))
+		{
+			obj = doParseFile(modRegionFile.c_str());
+			if (obj == NULL)
+			{
+				LOG(LogLevel::Error) << "Could not parse file " << modRegionFile;
+				exit(-1);
+			}
+			EU3Religion::parseReligions(obj);
+		}
+	}
 
 	// Create Country Mapping
 	removeEmptyNations(sourceWorld);
@@ -514,10 +556,10 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt);
+	destWorld.convertCountries(sourceWorld, countryMap, cultureMap, unionCultures, religionMap, governmentMap, inverseProvinceMap, techSchools, leaderIDMap, lt, EU3RegionsMap);
 	destWorld.scalePrestige();
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, religionMap, stateIndexMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, resettableProvinces, countryMap, cultureMap, slaveCultureMap, religionMap, stateIndexMap, EU3RegionsMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Setting colonies";

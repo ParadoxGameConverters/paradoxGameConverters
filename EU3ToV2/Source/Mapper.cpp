@@ -643,6 +643,33 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures, inverseUnio
 }
 
 
+void initEU3RegionMap(Object *obj, EU3RegionsMapping& regions)
+{
+	regions.clear();
+	vector<Object*> regionsObj = obj->getLeaves();	// the regions themselves
+	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
+	{
+		string regionName = (*regionsItr)->getKey();
+		vector<string> provinceStrings = (*regionsItr)->getTokens();				// the province numbers
+		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+		{
+			int provinceNum = atoi(provinceItr->c_str());
+			auto mapping = regions.find(provinceNum);
+			if (mapping == regions.end())
+			{
+				set<string> newRegions;
+				newRegions.insert(regionName);
+				regions.insert(make_pair(provinceNum, newRegions));
+			}
+			else
+			{
+				mapping->second.insert(regionName);
+			}
+		}
+	}
+}
+
+
 string CardinalToOrdinal(int cardinal)
 {
 	int hundredRem = cardinal % 100;
