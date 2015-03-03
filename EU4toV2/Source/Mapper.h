@@ -36,7 +36,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class EU4World;
 class V2World;
 
-
+struct CustomFlag;
 
 // Province Mappings
 typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
@@ -133,6 +133,8 @@ typedef struct {
 } colonyFlag;
 typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
 colonyFlagset initColonyFlagset(Object* obj);
+
+typedef map<string, shared_ptr<CustomFlag> > customFlagset; // <name, flag>
 
 // CK2 titles for flags
 typedef struct {

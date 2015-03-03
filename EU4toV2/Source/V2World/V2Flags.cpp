@@ -287,7 +287,7 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 		if (!eu4country)
 			continue;
 
-		string tag = eu4country->getTag();
+		string tag = i->second->getTag();
 		CustomFlag flag = eu4country->getCustomFlag();
 
 		if (flag.flag != -1)
