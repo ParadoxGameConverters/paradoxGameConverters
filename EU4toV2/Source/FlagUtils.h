@@ -25,6 +25,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <string>
 
+struct FlagColour
+{
+	int r;
+	int g;
+	int b;
+	FlagColour(int rr, int gg, int bb) : r(rr), g(gg), b(bb) {};
+};
+
 bool CreateColonialFlag(std::string colonialOverlordPath, std::string colonialBasePath, std::string targetPath);
+bool CreateCustomFlag(FlagColour c1, FlagColour c2, FlagColour c3, std::string emblemPath, std::string basePath, std::string targetPath);
 
 #endif

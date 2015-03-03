@@ -33,6 +33,11 @@ class EU4Relations;
 class EU4Loan;
 class EU4Leader;
 
+struct CustomFlag {
+	int flag;
+	int emblem;
+	std::tuple<int, int, int> colours;
+};
 
 class EU4Country
 {
@@ -85,6 +90,7 @@ class EU4Country
 		bool							isColony()									const { return colony; };
 		string						getColonialRegion()						const { return colonialRegion; };
 		double						getLibertyDesire()						const { return libertyDesire; };
+		CustomFlag					getCustomFlag()						const { return customFlag; };
 
 		string getName() const { return name; }
 		string getName(const string& language) const;
@@ -129,6 +135,7 @@ class EU4Country
 		bool							colony;					// whether or not this country is a colony
 		string						colonialRegion;			// the colonial region, if this country is a colony
 		double						libertyDesire;			// the amount of liberty desire
+		CustomFlag					customFlag;				// the custom flag
 
 		// Localisation attributes
 		string name;			// the name of this country

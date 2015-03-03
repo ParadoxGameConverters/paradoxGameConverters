@@ -279,6 +279,22 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 			}
 		}
 	}
+
+
+	for (std::map<std::string, V2Country*>::const_iterator i = V2Countries.begin(); i != V2Countries.end(); i++)
+	{
+		EU4Country* eu4country = i->second->getSourceCountry();
+		if (!eu4country)
+			continue;
+
+		string tag = eu4country->getTag();
+		CustomFlag flag = eu4country->getCustomFlag();
+
+		if (flag.flag != -1)
+		{
+			customFlagMapping[tag] = flag;
+		}
+	}
 }
 
 bool V2Flags::Output() const
@@ -377,6 +393,43 @@ bool V2Flags::Output() const
 					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 				}
 			}	
+		}
+	}
+
+	std::string baseFlagFolder = "blankMod\\output\\gfx\\flags";
+	for (auto i : customFlagMapping)
+	{
+		string V2Tag = i.first;
+
+		string baseFlag = std::to_string(i.second.flag);
+		string emblem = std::to_string(i.second.emblem);
+		
+		for (int i = 0; i<5; i++)
+		{
+			const std::string& suffix = flagFileSuffixes[i];
+			bool flagFileFound = false;
+			std::string folderPath = baseFlagFolder;
+			
+			std::string sourceFlagPath = folderPath + "\\CustomBases\\" + baseFlag + ".tga";
+			std::string sourceEmblemPath = folderPath + "\\CustomEmblems\\" + emblem + suffix;
+			
+			flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(sourceEmblemPath));
+			if (flagFileFound)
+			{
+				std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
+				LOG(LogLevel::Info) << sourceEmblemPath;
+				LOG(LogLevel::Info) << sourceFlagPath;
+				LOG(LogLevel::Info) << destFlagPath;
+				CreateCustomFlag( FlagColour(255,0,0) , FlagColour(0,255,0), FlagColour(0,0,255), sourceEmblemPath, sourceFlagPath, destFlagPath);
+			}
+			else
+			{
+				if (!WinUtils::DoesFileExist(sourceFlagPath))
+					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
+				else
+					LOG(LogLevel::Error) << "Could not find " << sourceEmblemPath;
+			}
+			
 		}
 	}
 

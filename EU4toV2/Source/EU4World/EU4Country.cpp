@@ -206,6 +206,24 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	{
 		libertyDesire = atof(libertyObj[0]->getLeaf().c_str());
 	}
+
+	customFlag.flag = -1;
+	vector<Object*> customFlagObj = obj->getValue("country_colors");
+	if (customFlagObj.size() > 0)
+	{
+		vector<Object*> flag = customFlagObj[0]->getValue("flag");
+		vector<Object*> emblem = customFlagObj[0]->getValue("subject_symbol_index");
+		vector<Object*> colours = customFlagObj[0]->getValue("flag_colors");
+
+		if (flag.size() > 0 && emblem.size() > 0 && colours.size() > 0)
+		{
+			customFlag.flag = stoi(flag[0]->getLeaf())+1;
+			customFlag.emblem = stoi(emblem[0]->getLeaf())+1;
+			
+			vector<string> colourtokens = colours[0]->getTokens();
+			customFlag.colours = std::make_tuple(colourtokens[0], colourtokens[1], colourtokens[2]);
+		}
+	}
 }
 
 

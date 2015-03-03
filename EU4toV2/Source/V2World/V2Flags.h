@@ -48,8 +48,11 @@ private:
 
 	typedef std::map<std::string, std::string> V2TagToFlagTagMap;
 	typedef std::map<std::string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
+	typedef std::map<std::string, CustomFlag> V2TagToCustomFlagMap;
+
 	V2TagToFlagTagMap tagMapping;
 	V2TagToColonyFlagMap colonialFlagMapping;
+	V2TagToCustomFlagMap customFlagMapping;
 };
 
 #endif
