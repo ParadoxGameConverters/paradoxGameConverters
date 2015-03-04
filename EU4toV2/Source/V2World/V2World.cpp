@@ -138,6 +138,16 @@ V2World::V2World()
 			directories.pop_front();
 		}
 	}
+
+	// Get province names
+	if (_stat(".\\blankMod\\output\\localisation\\text.csv", &st) == 0)
+	{
+		getProvinceLocalizations(".\\blankMod\\output\\localisation\\text.csv");
+	}
+	else
+	{
+		getProvinceLocalizations((Configuration::getV2Path() + "\\localisation\\text.csv"));
+	}
 	
 	// set V2 basic population levels
 	LOG(LogLevel::Info) << "Importing historical pops.";
@@ -1782,11 +1792,11 @@ void V2World::getProvinceLocalizations(string file)
 			int position = line.find_first_of(';');
 			int num = atoi( line.substr(4, position - 4).c_str() );
 			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
-			for (unsigned int i = 0; i < provinces.size(); i++)
+			for (auto i : provinces)
 			{
-				if (provinces[i]->getNum() == num)
+				if (i.first == num)
 				{
-					provinces[i]->setName(name);
+					i.second->setName(name);
 					break;
 				}
 			}
