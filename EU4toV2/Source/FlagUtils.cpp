@@ -89,9 +89,6 @@ bool CreateCustomFlag(FlagColour c1, FlagColour c2, FlagColour c3, std::string e
 		return false;
 	}
 
-	LOG(LogLevel::Info) << base.height << " " << base.width;
-	LOG(LogLevel::Info) << emblem.height << " " << emblem.width;
-
 	for (int y = 0; y < base.height; y++)
 	{
 		for (int x = 0; x < base.width; x++)
@@ -110,13 +107,7 @@ bool CreateCustomFlag(FlagColour c1, FlagColour c2, FlagColour c3, std::string e
 			uint8_t c = ~r;
 			uint8_t m = ~g;
 			uint8_t z = ~b;
-
-			/*
-			int c = 512 - g - b;
-			int m = 512 - r - b;
-			int y = 512 - r - g;
-			*/
-
+			
 			int tr = int(m*c1.r) + int(c*c2.r) + int(z*c3.r);
 			int tg = int(m*c1.g) + int(c*c2.g) + int(z*c3.g);
 			int tb = int(m*c1.b) + int(c*c2.b) + int(z*c3.b);
@@ -130,8 +121,6 @@ bool CreateCustomFlag(FlagColour c1, FlagColour c2, FlagColour c3, std::string e
 			uint8_t *targetOverlayAddress = tga_find_pixel(&emblem, x, y);
 			if (targetOverlayAddress)
 			{
-				//LOG(LogLevel::Info) << (int)targetOverlayAddress << "\t" << (int)(*targetOverlayAddress)
-				//	<< "\t" << (int)emblem.pixel_depth << "\t" << (int)base.pixel_depth;
 				res = tga_unpack_pixel(targetOverlayAddress, emblem.pixel_depth, &ob, &og, &or, &oa);
 				if (0 != res)
 				{

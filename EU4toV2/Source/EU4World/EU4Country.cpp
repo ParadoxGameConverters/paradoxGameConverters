@@ -221,7 +221,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 			customFlag.emblem = stoi(emblem[0]->getLeaf())+1;
 			
 			vector<string> colourtokens = colours[0]->getTokens();
-			customFlag.colours = std::make_tuple(colourtokens[0], colourtokens[1], colourtokens[2]);
+			customFlag.colours = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
 		}
 	}
 }

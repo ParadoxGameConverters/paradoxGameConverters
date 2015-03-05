@@ -39,11 +39,12 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 const std::vector<std::string> V2Flags::flagFileSuffixes = { ".tga", "_communist.tga", "_fascist.tga", "_monarchy.tga", "_republic.tga" };
 
-void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset)
+void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset, const FlagColourMapping& flagColours)
 {
 	LOG(LogLevel::Debug) << "Initializing flags";
 	tagMapping.clear();
 	colonyFlags = colonyFlagset;
+	flagColourMapping = flagColours;
 
 	static std::mt19937 generator(static_cast<int>(std::chrono::system_clock::now().time_since_epoch().count()));
 
@@ -342,7 +343,7 @@ bool V2Flags::Output() const
 	}
 
 	// I really shouldn't be hardcoding this...
-	std::set<std::string> UniqueColonialFlags { "alyeska", "newholland", "acadia", "kanata", "novascotia", "novahollandia", "vinland", "newspain" };
+	std::set<std::string> UniqueColonialFlags{ "alyeska", "newholland", "acadia", "kanata", "novascotia", "novahollandia", "vinland", "newspain" };
 
 	//typedef std::map<std::string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
 	for (auto i : colonialFlagMapping)
@@ -354,7 +355,7 @@ bool V2Flags::Output() const
 
 		string overlord = i.second->overlord;
 
-		for (int i=0;i<5;i++)
+		for (int i = 0; i < 5; i++)
 		{
 			const std::string& suffix = flagFileSuffixes[i];
 			bool flagFileFound = false;
@@ -369,7 +370,7 @@ bool V2Flags::Output() const
 				if (flagFileFound)
 				{
 					std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-					CreateColonialFlag(overlordFlagPath,sourceFlagPath,destFlagPath);
+					CreateColonialFlag(overlordFlagPath, sourceFlagPath, destFlagPath);
 				}
 				else
 				{
@@ -392,17 +393,31 @@ bool V2Flags::Output() const
 				{
 					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 				}
-			}	
+			}
 		}
 	}
 
 	std::string baseFlagFolder = "blankMod\\output\\gfx\\flags";
-	for (auto i : customFlagMapping)
-	{
-		string V2Tag = i.first;
 
-		string baseFlag = std::to_string(i.second.flag);
-		string emblem = std::to_string(i.second.emblem);
+	for (auto acolour : flagColourMapping)
+	{
+		LOG(LogLevel::Info) << acolour.r << " " << acolour.g << " " << acolour.b;
+	}
+
+	for (auto cflag : customFlagMapping)
+	{
+		string V2Tag = cflag.first;
+
+		string baseFlag = std::to_string(cflag.second.flag);
+		string emblem = std::to_string(cflag.second.emblem);
+
+		int colourcount = flagColourMapping.size();
+
+		if (std::get<0>(cflag.second.colours) > colourcount || std::get<1>(cflag.second.colours) > colourcount || std::get<2>(cflag.second.colours) > colourcount)
+		{
+			LOG(LogLevel::Error) << V2Tag << "'s flag has some missing colours.";
+			continue;
+		}
 		
 		for (int i = 0; i<5; i++)
 		{
@@ -417,10 +432,12 @@ bool V2Flags::Output() const
 			if (flagFileFound)
 			{
 				std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-				LOG(LogLevel::Info) << sourceEmblemPath;
-				LOG(LogLevel::Info) << sourceFlagPath;
-				LOG(LogLevel::Info) << destFlagPath;
-				CreateCustomFlag( FlagColour(255,0,0) , FlagColour(0,255,0), FlagColour(0,0,255), sourceEmblemPath, sourceFlagPath, destFlagPath);
+				
+				CreateCustomFlag( 
+					flagColourMapping[std::get<0>(cflag.second.colours)],
+					flagColourMapping[std::get<1>(cflag.second.colours)],
+					flagColourMapping[std::get<2>(cflag.second.colours)],
+					sourceEmblemPath, sourceFlagPath, destFlagPath);
 			}
 			else
 			{

@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Parsers\Object.h"
 #include "EU4World\EU4Version.h"
+#include "FlagUtils.h"
 #include <map>
 #include <vector>
 #include <unordered_set>
@@ -144,6 +145,9 @@ typedef struct {
 } CK2TitleMapping;	
 CK2TitleMapping initCK2TitleMap(Object* obj);
 
+// flag colours
+typedef vector<FlagColour> FlagColourMapping;
+FlagColourMapping initFlagColours(Object* obj);
 
 // utility functions
 string CardinalToOrdinal(int cardinal);
