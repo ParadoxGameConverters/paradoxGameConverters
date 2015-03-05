@@ -88,6 +88,18 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		}
 	}
 
+
+	vector<Object*> revolutionTargetObj = obj->getValue("revolution_target");
+	if (revolutionTargetObj.size() > 0)
+	{
+		string revolutionTarget = revolutionTargetObj[0]->getLeaf();
+		auto country = countries.find(revolutionTarget);
+		if (country != countries.end())
+		{
+			country->second->viveLaRevolution(true);
+		}
+	}
+
 	// add province owner info to countries
 	for (map<int, EU4Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{

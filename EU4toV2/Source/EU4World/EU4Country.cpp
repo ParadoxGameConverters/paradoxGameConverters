@@ -207,7 +207,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		libertyDesire = atof(libertyObj[0]->getLeaf().c_str());
 	}
 
-	customFlag.flag = -1;
+	customFlag.flag = "-1";
 	vector<Object*> customFlagObj = obj->getValue("country_colors");
 	if (customFlagObj.size() > 0)
 	{
@@ -217,13 +217,21 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 
 		if (flag.size() > 0 && emblem.size() > 0 && colours.size() > 0)
 		{
-			customFlag.flag = stoi(flag[0]->getLeaf())+1;
+			customFlag.flag = to_string(1+stoi(flag[0]->getLeaf()));
 			customFlag.emblem = stoi(emblem[0]->getLeaf())+1;
 			
 			vector<string> colourtokens = colours[0]->getTokens();
 			customFlag.colours = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
 		}
 	}
+
+	vector<Object*> revolutionaryFlagObj = obj->getValue("revolutionary_colors");
+	if (revolutionaryFlagObj.size() > 0)
+	{
+		vector<string> colourtokens = revolutionaryFlagObj[0]->getTokens();
+		revolutionaryTricolour = std::make_tuple(stoi(colourtokens[0]), stoi(colourtokens[1]), stoi(colourtokens[2]));
+	}
+	revolutionary = false;
 }
 
 

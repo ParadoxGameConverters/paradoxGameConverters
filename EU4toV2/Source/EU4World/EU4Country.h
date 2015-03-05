@@ -34,7 +34,7 @@ class EU4Loan;
 class EU4Leader;
 
 struct CustomFlag {
-	int flag;
+	string flag;
 	int emblem;
 	std::tuple<int, int, int> colours;
 };
@@ -61,6 +61,7 @@ class EU4Country
 		void						setColonialRegion(const string& region)		 { colonialRegion = region; };
 		void						takeArmies(EU4Country*);
 		void						clearArmies();
+		const void					viveLaRevolution(bool revolting) { revolutionary = revolting; };
 
 		string						getTag()										const { return tag; };
 		vector<EU4Province*>		getProvinces()								const { return provinces; };
@@ -91,6 +92,8 @@ class EU4Country
 		string						getColonialRegion()						const { return colonialRegion; };
 		double						getLibertyDesire()						const { return libertyDesire; };
 		CustomFlag					getCustomFlag()						const { return customFlag; };
+		bool							isRevolutionary()						const { return revolutionary; };
+		tuple<int, int, int>		getRevolutionaryTricolour()			const { return revolutionaryTricolour; };
 
 		string getName() const { return name; }
 		string getName(const string& language) const;
@@ -136,6 +139,9 @@ class EU4Country
 		string						colonialRegion;			// the colonial region, if this country is a colony
 		double						libertyDesire;			// the amount of liberty desire
 		CustomFlag					customFlag;				// the custom flag
+		bool						revolutionary;			// does this country wave the glorious tricoloured banner of the revolution
+		tuple<int, int, int>		revolutionaryTricolour; // the glorious tricoloured banner of the revolution
+		
 
 		// Localisation attributes
 		string name;			// the name of this country

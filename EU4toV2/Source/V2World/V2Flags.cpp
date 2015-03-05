@@ -290,11 +290,18 @@ void V2Flags::SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, co
 
 		string tag = i->second->getTag();
 		CustomFlag flag = eu4country->getCustomFlag();
+		if (eu4country->isRevolutionary())
+		{
+			flag.flag = "tricolor";
+			flag.emblem = 0;
+			flag.colours = eu4country->getRevolutionaryTricolour();
+		}
 
-		if (flag.flag != -1)
+		if (flag.flag != "-1")
 		{
 			customFlagMapping[tag] = flag;
 		}
+
 	}
 }
 
@@ -341,6 +348,58 @@ bool V2Flags::Output() const
 			}
 		}
 	}
+
+	std::string baseFlagFolder = "blankMod\\output\\gfx\\flags";
+
+	for (auto cflag : customFlagMapping)
+	{
+		string V2Tag = cflag.first;
+
+		string baseFlag = cflag.second.flag;
+		string emblem = std::to_string(cflag.second.emblem);
+
+		int colourcount = flagColourMapping.size();
+		
+		if (std::get<0>(cflag.second.colours) > colourcount || std::get<1>(cflag.second.colours) > colourcount || std::get<2>(cflag.second.colours) > colourcount)
+		{
+			LOG(LogLevel::Error) << V2Tag << "'s flag has some missing colours.";
+			continue;
+		}
+		
+		for (int i = 0; i<5; i++)
+		{
+			if (baseFlag == "tricolor" && i != 0 && i != 4)
+				continue;
+
+			const std::string& suffix = flagFileSuffixes[i];
+			bool flagFileFound = false;
+			std::string folderPath = baseFlagFolder;
+			
+			std::string sourceFlagPath = folderPath + "\\CustomBases\\" + baseFlag + ".tga";
+			std::string sourceEmblemPath = folderPath + "\\CustomEmblems\\" + emblem + suffix;
+			
+			flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(sourceEmblemPath));
+			if (flagFileFound)
+			{
+				std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
+				
+				CreateCustomFlag( 
+					flagColourMapping[std::get<0>(cflag.second.colours)],
+					flagColourMapping[std::get<1>(cflag.second.colours)],
+					flagColourMapping[std::get<2>(cflag.second.colours)],
+					sourceEmblemPath, sourceFlagPath, destFlagPath);
+			}
+			else
+			{
+				if (!WinUtils::DoesFileExist(sourceFlagPath))
+					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
+				else
+					LOG(LogLevel::Error) << "Could not find " << sourceEmblemPath;
+			}
+			
+		}
+	}
+
 
 	// I really shouldn't be hardcoding this...
 	std::set<std::string> UniqueColonialFlags{ "alyeska", "newholland", "acadia", "kanata", "novascotia", "novahollandia", "vinland", "newspain" };
@@ -394,59 +453,6 @@ bool V2Flags::Output() const
 					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
 				}
 			}
-		}
-	}
-
-	std::string baseFlagFolder = "blankMod\\output\\gfx\\flags";
-
-	for (auto acolour : flagColourMapping)
-	{
-		LOG(LogLevel::Info) << acolour.r << " " << acolour.g << " " << acolour.b;
-	}
-
-	for (auto cflag : customFlagMapping)
-	{
-		string V2Tag = cflag.first;
-
-		string baseFlag = std::to_string(cflag.second.flag);
-		string emblem = std::to_string(cflag.second.emblem);
-
-		int colourcount = flagColourMapping.size();
-
-		if (std::get<0>(cflag.second.colours) > colourcount || std::get<1>(cflag.second.colours) > colourcount || std::get<2>(cflag.second.colours) > colourcount)
-		{
-			LOG(LogLevel::Error) << V2Tag << "'s flag has some missing colours.";
-			continue;
-		}
-		
-		for (int i = 0; i<5; i++)
-		{
-			const std::string& suffix = flagFileSuffixes[i];
-			bool flagFileFound = false;
-			std::string folderPath = baseFlagFolder;
-			
-			std::string sourceFlagPath = folderPath + "\\CustomBases\\" + baseFlag + ".tga";
-			std::string sourceEmblemPath = folderPath + "\\CustomEmblems\\" + emblem + suffix;
-			
-			flagFileFound = (WinUtils::DoesFileExist(sourceFlagPath) && WinUtils::DoesFileExist(sourceEmblemPath));
-			if (flagFileFound)
-			{
-				std::string destFlagPath = outputFlagFolder + '\\' + V2Tag + suffix;
-				
-				CreateCustomFlag( 
-					flagColourMapping[std::get<0>(cflag.second.colours)],
-					flagColourMapping[std::get<1>(cflag.second.colours)],
-					flagColourMapping[std::get<2>(cflag.second.colours)],
-					sourceEmblemPath, sourceFlagPath, destFlagPath);
-			}
-			else
-			{
-				if (!WinUtils::DoesFileExist(sourceFlagPath))
-					LOG(LogLevel::Error) << "Could not find " << sourceFlagPath;
-				else
-					LOG(LogLevel::Error) << "Could not find " << sourceEmblemPath;
-			}
-			
 		}
 	}
 
