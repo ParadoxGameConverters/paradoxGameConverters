@@ -492,6 +492,13 @@ french = {
 		Foch Forey "Franchet d'Espèrey" Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
 		Jaurès Joffre Lebouef Lyautey Murat "Ney d'Elchingen" Nivelle Péllissier Petain Vaillant }
 	}
+	occitan = {
+		color = {120 120 200}
+		first_names = { Aimerics Albert Ancelmes Azemars Bertrans Donat  Dragonetz Espargs Estève  Garcias Gaston Gaucelis Gautiers Girauds Guilheiumes Guinsestre Guiraut Jaques Jaufres Joan  Josèp  Loís  Maria  Michels Pau  Pelfort Pèire Rainaut Ratiers Rauli Sevis Sicart Ugos }
+		last_names = {
+"d'Alfar" "de Carro" "de Caus" "de Cumenge" "de Gordo" "de la Mota" "de Montagut" "de Recaut" "de Vezis" Alamant Azalbertz Caldairo Cardenals Catz Caudaro Claris Espaza Jordas Lomanhes Martis Palomer Pan Peire Rabastens Romeus Rossilhon Soler Tezis Topina Unaut }
+	}
+	union = FRA
 	
 }
 
