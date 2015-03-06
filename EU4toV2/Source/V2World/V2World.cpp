@@ -536,13 +536,6 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 
 void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const CK2TitleMapping& ck2titlemap, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap)
 {
-	vector<string> outputOrder;
-	outputOrder.clear();
-	for (unsigned int i = 0; i < potentialCountries.size(); i++)
-	{
-		outputOrder.push_back(potentialCountries[i]->getTag());
-	}
-
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	for (map<string, EU4Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
 	{
@@ -565,7 +558,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true);
 			}
-			destCountry->initFromEU4Country(sourceCountry, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
+			destCountry->initFromEU4Country(sourceCountry, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
 			countries.insert(make_pair(V2Tag, destCountry));
 		}
 		else
@@ -674,21 +667,6 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 			countries.insert(make_pair((*itr)->getTag(), *itr));
 		}
 	}
-
-	// put countries in the same order as potentialCountries was (this is the same order V2 will save them in)
-	/*vector<V2Country*> sortedCountries;
-	for (vector<string>::const_iterator oitr = outputOrder.begin(); oitr != outputOrder.end(); ++oitr)
-	{
-		map<string, V2Country*>::iterator itr = countries.find((*itr)->getTag());
-		{
-			if ( (*itr)->getTag() == (*oitr) )
-			{
-				sortedCountries.push_back(*itr);
-				break;
-			}
-		}
-	}
-	countries.swap(sortedCountries);*/
 
 	ck2titles = ck2titlemap;
 	colonyFlagMap = colonyFlags;
