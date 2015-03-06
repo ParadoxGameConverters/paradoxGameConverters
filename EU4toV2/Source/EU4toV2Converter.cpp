@@ -739,6 +739,23 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	colonyMapping colonyMap = initColonyMap(obj);
 	colonyFlagset colonyFlags = initColonyFlagset(obj);
 
+	// Get EU4 custom flag colours
+	FlagColourMapping flagColourMapping;
+	LOG(LogLevel::Info) << "Parsing EU4 flag colours";
+	obj = doParseFile((EU4Loc + "\\common\\custom_country_colors\\00_custom_country_colors.txt").c_str());
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Warning) << "Could not parse file " << EU4Loc << "\\common\\custom_country_colors\\00_custom_country_colors.txt";
+	}
+	else if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Warning) << "Failed to parse 00_custom_country_colors.txt";
+	}
+	else
+	{
+		flagColourMapping = initFlagColours(obj);
+	}
+
 	// Get EU4 colonial regions
 	LOG(LogLevel::Info) << "Parsing EU4 colonial regions";
 	obj = doParseFile((EU4Loc + "\\common\\colonial_regions\\00_colonial_regions.txt").c_str());
@@ -883,6 +900,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	fclose(modFile);
 	string renameCommand = "move /Y output\\output output\\" + Configuration::getOutputName();	// the command to rename the mod correctly
 	system(renameCommand.c_str());
+	destWorld.setFlagColourMapping(flagColourMapping);
 	destWorld.output();
 
 	LOG(LogLevel::Info) << "* Conversion complete *";

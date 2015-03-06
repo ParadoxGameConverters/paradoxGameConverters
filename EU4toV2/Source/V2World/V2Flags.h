@@ -38,7 +38,7 @@ class V2Flags
 {
 public:
 	// Tries to find appropriate flags for all the countries specified.
-	void SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset);
+	void SetV2Tags(const std::map<std::string, V2Country*>& V2Countries, const CK2TitleMapping& CK2titles, const colonyFlagset& colonyFlagset, const FlagColourMapping& flagColourMapping);
 	// Copies all necessary flags to the output folder. Returns true if successful.
 	bool Output() const;
 
@@ -48,8 +48,12 @@ private:
 
 	typedef std::map<std::string, std::string> V2TagToFlagTagMap;
 	typedef std::map<std::string, shared_ptr<colonyFlag> > V2TagToColonyFlagMap; // tag, {base,overlordtag}
+	typedef std::map<std::string, CustomFlag> V2TagToCustomFlagMap;
+
 	V2TagToFlagTagMap tagMapping;
 	V2TagToColonyFlagMap colonialFlagMapping;
+	V2TagToCustomFlagMap customFlagMapping;
+	FlagColourMapping flagColourMapping;
 };
 
 #endif

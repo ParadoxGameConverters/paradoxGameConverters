@@ -28,6 +28,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "Parsers\Object.h"
 #include "EU4World\EU4Version.h"
+#include "FlagUtils.h"
 #include <map>
 #include <vector>
 #include <unordered_set>
@@ -36,7 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class EU4World;
 class V2World;
 
-
+struct CustomFlag;
 
 // Province Mappings
 typedef map< int, vector<int> >	provinceMapping;			// < destProvince, sourceProvinces >
@@ -134,6 +135,8 @@ typedef struct {
 typedef map<string, shared_ptr<colonyFlag> > colonyFlagset; // <name, flag>
 colonyFlagset initColonyFlagset(Object* obj);
 
+typedef map<string, shared_ptr<CustomFlag> > customFlagset; // <name, flag>
+
 // CK2 titles for flags
 typedef struct {
 	map<string, string> map; // <name, title>
@@ -142,6 +145,9 @@ typedef struct {
 } CK2TitleMapping;	
 CK2TitleMapping initCK2TitleMap(Object* obj);
 
+// flag colours
+typedef vector<FlagColour> FlagColourMapping;
+FlagColourMapping initFlagColours(Object* obj);
 
 // utility functions
 string CardinalToOrdinal(int cardinal);

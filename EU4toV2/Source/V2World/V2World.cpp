@@ -403,7 +403,7 @@ void V2World::output() const
 
 	// Create flags for all new countries.
 	V2Flags flags;
-	flags.SetV2Tags(countries, ck2titles, colonyFlagMap);
+	flags.SetV2Tags(countries, ck2titles, colonyFlagMap, flagColourMapping);
 	flags.Output();
 
 	// Create localisations for all new countries. We don't actually know the names yet so we just use the tags as the names.

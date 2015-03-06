@@ -862,6 +862,26 @@ CK2TitleMapping initCK2TitleMap(Object* obj)
 	return titleMapContainer;
 }
 
+FlagColourMapping initFlagColours(Object* obj)
+{
+	FlagColourMapping flagColourMapping;
+	vector<Object*>	colours = obj->getLeaves();
+
+	for (Object* colour : colours)
+	{
+		if (colour->getKey() != "flag_color")
+			continue;
+
+		std::vector<std::string> values = colour->getTokens();
+		if (values.size() < 3)
+			continue;
+
+		flagColourMapping.push_back(FlagColour(stoi(values[0]), stoi(values[1]), stoi(values[2])));
+	}
+
+	return flagColourMapping;
+}
+
 
 string CardinalToOrdinal(int cardinal)
 {
