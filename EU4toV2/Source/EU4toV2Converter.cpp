@@ -424,7 +424,10 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 
 	// Parse V2 input file
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
-	V2World destWorld;
+	set<string> minorityCultures;
+	set<string> minorityReligions;
+	minorityReligions.insert("jewish");
+	V2World destWorld(minorityCultures, minorityReligions);
 
 
 	//// Construct factory factory

@@ -66,7 +66,7 @@ typedef struct fileWithCreateTime
 
 
 
-V2World::V2World()
+V2World::V2World(set<string>& minorityCultures, set<string>& minorityReligions)
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
@@ -190,6 +190,7 @@ V2World::V2World()
 					string	popType		= pops[l]->getKey();
 					int		popSize		= atoi(pops[l]->getLeaf("size").c_str());
 					string	popCulture	= pops[l]->getLeaf("culture");
+					string	popReligion	= pops[l]->getLeaf("religion");
 
 					/*auto popItr = countryPopItr->second.find(popType);
 					if (popItr == countryPopItr->second.end())
@@ -201,8 +202,15 @@ V2World::V2World()
 					popItr->second += popSize;*/
 
 					totalWorldPopulation += popSize;
-					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, pops[l]->getLeaf("religion"));
+					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, popReligion);
 					k->second->addOldPop(newPop);
+
+					auto religionItr	= minorityReligions.find(popReligion);
+					auto cultureItr	= minorityCultures.find(popCulture);
+					if ((religionItr != minorityReligions.end()) || (cultureItr != minorityCultures.end()))
+					{
+						k->second->addMinorityPop(newPop);
+					}
 
 					if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
 					{

@@ -258,6 +258,11 @@ void V2Province::outputPops(FILE* output) const
 				pops[i]->output(output);
 				fprintf(output, "\n");
 			}
+			for (auto i: minorityPops)
+			{
+				i->output(output);
+				fprintf(output, "\n");
+			}
 			fprintf(output, "}\n");
 		}
 		else if (oldPops.size() > 0)
@@ -358,6 +363,12 @@ void V2Province::addOldPop(const V2Pop* oldPop)
 {
 	oldPops.push_back(oldPop);
 	oldPopulation += oldPop->getSize();
+}
+
+
+void V2Province::addMinorityPop(const V2Pop* minorityPop)
+{
+	minorityPops.push_back(minorityPop);
 }
 
 
