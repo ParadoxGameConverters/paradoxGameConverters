@@ -666,6 +666,20 @@ link = { eu4 = ZAF V2 = ZAF }
 link = { eu4 = ZUN V2 = ZUN } 
 link = { eu4 = ZZZ V2 = ZZZ } 
 
+# Third Odyssey
+link = { eu4 = AEG V2 = AEG }
+link = { eu4 = CTM V2 = CTM }
+link = { eu4 = ELY V2 = ELY }
+link = { eu4 = HBN V2 = HBN }
+link = { eu4 = NHS V2 = NHS }
+
+# Extended Vanilla
+link = { eu4 = ANV V2 = ANV }
+link = { eu4 = CRL V2 = CRL }
+link = { eu4 = ILY V2 = ILY }
+link = { eu4 = MGU V2 = MGU }
+link = { eu4 = NSE V2 = NSE }
+
 link = { eu4 = k_afghanistan v2 = AFG }
 link = { eu4 = c_albania v2 = ALB }
 link = { eu4 = c_al_djazair v2 = ALD }
@@ -772,5 +786,6 @@ link = { eu4 = k_venice v2 = VEN }
 link = { eu4 = d_venice v2 = VEN }
 link = { eu4 = d_wallachia v2 = WAL }
 link = { eu4 = c_wurttemberg v2 = WUR }
+link = { eu4 = secretdenmark v2 = SDM }
 
 }
