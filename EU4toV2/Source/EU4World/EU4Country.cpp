@@ -38,6 +38,9 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	vector<Object*> nameObj = obj->getValue("name");	// the object holding the name
 	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
 
+	vector<Object*> customNameObj = obj->getValue("custom_name");	// the object holding the name
+	(!customNameObj.empty()) ? randomName = customNameObj[0]->getLeaf() : randomName = "";
+
 	vector<Object*> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
 	(!adjectiveObj.empty()) ? adjective = adjectiveObj[0]->getLeaf() : adjective = "";
 
@@ -494,6 +497,11 @@ void EU4Country::clearArmies()
 
 string EU4Country::getName(const string& language) const
 {
+	if (!randomName.empty())
+	{
+		return randomName;
+	}
+
 	if (namesByLanguage.empty() && language == "english")
 	{
 		return name;

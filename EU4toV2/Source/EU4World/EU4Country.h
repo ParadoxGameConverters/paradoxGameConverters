@@ -94,6 +94,7 @@ class EU4Country
 		CustomFlag					getCustomFlag()						const { return customFlag; };
 		bool							isRevolutionary()						const { return revolutionary; };
 		tuple<int, int, int>		getRevolutionaryTricolour()			const { return revolutionaryTricolour; };
+		string						getRandomName()						const { return randomName; };
 
 		string getName() const { return name; }
 		string getName(const string& language) const;
@@ -138,6 +139,7 @@ class EU4Country
 		bool							colony;					// whether or not this country is a colony
 		string						colonialRegion;			// the colonial region, if this country is a colony
 		double						libertyDesire;			// the amount of liberty desire
+		string						randomName;				// the new name of this nation in Random World
 		CustomFlag					customFlag;				// the custom flag
 		bool						revolutionary;			// does this country wave the glorious tricoloured banner of the revolution
 		tuple<int, int, int>		revolutionaryTricolour; // the glorious tricoloured banner of the revolution
