@@ -92,7 +92,8 @@ link = { v2 = andalucian eu4 = andalucian }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
 link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
-link = { v2 = french eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton }
+link = { v2 = french eu4 = cosmopolitan_french eu4 = normand eu4 = burgundian eu4 = breton }
+link = { v2 = occitan eu4 = occitain eu4 = aquitaine eu4 = gascon }
 link = { v2 = wallonian eu4 = wallonian }
 link = { v2 = frankish eu4 = old_frankish eu4 = frankish }
 
