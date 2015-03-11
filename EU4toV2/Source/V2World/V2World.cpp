@@ -23,8 +23,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "V2World.h"
 #include <Windows.h>
+#include <string>
+#include <iostream>
 #include <fstream>
 #include <algorithm>
+#include <regex>
 #include <io.h>
 #include <list>
 #include <queue>
@@ -423,13 +426,48 @@ void V2World::output() const
 	}
 	string source = Configuration::getV2Path() + "\\localisation\\text.csv";
 	string dest = localisationPath + "\\text.csv";
-	WinUtils::TryCopyFile(source, dest);
+
+	if (isRandomWorld)
+	{
+		// we need to strip out the existing country names from the localisation file
+		ifstream sourceFile(source);
+		ofstream targetFile(dest);
+
+		string line;
+		std::regex countryTag("^[A-Z][A-Z][A-Z];");
+		std::regex rebels("^REB;");
+		std::smatch match;
+		while (std::getline(sourceFile, line))
+		{
+			if (std::regex_search(line, match, countryTag) && !std::regex_search(line, match, rebels))
+			{
+				continue;
+			}
+
+			targetFile << line << '\n';
+		}
+		sourceFile.close();
+		targetFile.close();
+
+		// ...and also empty out 0_Names.csv
+		FILE* zeronamesfile;
+		string zeronamesfilepath = localisationPath + "\\0_Names.csv";
+		if (fopen_s(&zeronamesfile, zeronamesfilepath.c_str(), "w") != 0)
+			fclose(zeronamesfile);
+
+	}
+	else
+	{
+		WinUtils::TryCopyFile(source, dest);
+	}
+
 	FILE* localisationFile;
 	if (fopen_s(&localisationFile, dest.c_str(), "a") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not update localisation text file";
 		exit(-1);
 	}
+	
 	for (map<string, V2Country*>::const_iterator i = countries.begin(); i != countries.end(); i++)
 	{
 		const V2Country& country = *i->second;
@@ -548,6 +586,9 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 	for (map<string, EU4Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
 	{
 		EU4Country* sourceCountry = i->second;
+		if (!sourceCountry->getRandomName().empty())
+			isRandomWorld = true;
+
 		std::string EU4Tag = sourceCountry->getTag();
 		V2Country* destCountry = NULL;
 		const std::string& V2Tag = countryMap[EU4Tag];

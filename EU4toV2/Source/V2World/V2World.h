@@ -84,6 +84,7 @@ class V2World {
 		long								totalWorldPopulation;
 
 		FlagColourMapping		flagColourMapping;
+		bool					isRandomWorld;
 };
 
 

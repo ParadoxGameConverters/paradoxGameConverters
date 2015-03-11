@@ -348,6 +348,11 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 {
 	srcCountry = _srcCountry;
 
+	if (false == srcCountry->getRandomName().empty())
+	{
+		newCountry = true;
+	}
+
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
 	string filesearch = ".\\blankMod\\output\\history\\countries\\" + tag + "*.txt";
