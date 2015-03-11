@@ -521,6 +521,11 @@ string EU4Country::getName(const string& language) const
 
 string EU4Country::getAdjective(const string& language) const
 {
+	if (!randomName.empty())
+	{
+		return randomName;
+	}
+
 	if (adjectivesByLanguage.empty() && language == "english")
 	{
 		return adjective;
