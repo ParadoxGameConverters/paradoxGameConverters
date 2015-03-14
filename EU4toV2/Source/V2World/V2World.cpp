@@ -158,9 +158,101 @@ V2World::V2World(vector<pair<string, string>> minorities)
 
 	totalWorldPopulation	= 0;
 	set<string> fileNames;
+	WinUtils::GetAllFilesInFolder(".\\blankMod\\output\\history\\pops\\1836.1.1\\", fileNames);
+	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+	{
+		list<int>* popProvinces = new list<int>;
+		Object*	obj2	= doParseFile((".\\blankMod\\output\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
+		vector<Object*> leaves = obj2->getLeaves();
+		for (unsigned int j = 0; j < leaves.size(); j++)
+		{
+			int provNum = atoi(leaves[j]->getKey().c_str());
+			map<int, V2Province*>::iterator k = provinces.find(provNum);
+			if (k == provinces.end())
+			{
+				LOG(LogLevel::Warning) << "Could not find province " << provNum << " for original pops.";
+				continue;
+			}
+			else
+			{
+				/*auto countryPopItr = countryPops.find(k->second->getOwner());
+				if (countryPopItr == countryPops.end())
+				{
+					map<string, long int> newCountryPop;
+					pair<map< string, map<string, long int> >::iterator, bool> newIterator = countryPops.insert(make_pair(k->second->getOwner(), newCountryPop));
+					countryPopItr = newIterator.first;
+				}*/
+
+				int provincePopulation			= 0;
+				int provinceSlavePopulation	= 0;
+
+				popProvinces->push_back(provNum);
+				vector<Object*> pops = leaves[j]->getLeaves();
+				for(unsigned int l = 0; l < pops.size(); l++)
+				{
+					string	popType		= pops[l]->getKey();
+					int		popSize		= atoi(pops[l]->getLeaf("size").c_str());
+					string	popCulture	= pops[l]->getLeaf("culture");
+					string	popReligion	= pops[l]->getLeaf("religion");
+
+					/*auto popItr = countryPopItr->second.find(pops[l]->getKey());
+					if (popItr == countryPopItr->second.end())
+					{
+						long int newPopSize = 0;
+						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
+						popItr = newIterator.first;
+					}
+					popItr->second += popSize;*/
+
+					totalWorldPopulation += popSize;
+					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, popReligion);
+					k->second->addOldPop(newPop);
+
+					for (auto minorityItr : minorities)
+					{
+						if ((popCulture == minorityItr.first) && (popReligion == minorityItr.second))
+						{
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+						else if ((minorityItr.first == "") && (popReligion == minorityItr.second))
+						{
+							newPop->setCulture("");
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+						else if ((popCulture == minorityItr.first) && (minorityItr.second == ""))
+						{
+							newPop->setReligion("");
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+					}
+
+					if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
+					{
+						provinceSlavePopulation += popSize;
+					}
+					provincePopulation += popSize;
+				}
+				auto province = provinces.find(provNum);
+				if (province != provinces.end())
+				{
+					province->second->setSlaveProportion( 1.0 * provinceSlavePopulation / provincePopulation);
+				}
+			}
+			popRegions.insert( make_pair(*itr, popProvinces) );
+		}
+	}
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 	{
+		auto duplicateCheck = popRegions.find(*itr);
+		if (duplicateCheck != popRegions.end())
+		{
+			continue;
+		}
+
 		list<int>* popProvinces = new list<int>;
 		Object*	obj2	= doParseFile((Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
 		vector<Object*> leaves = obj2->getLeaves();
