@@ -406,7 +406,8 @@ void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner)
 		}
 	}
 
-	// decrease non-minority pops
+	// decrease non-minority pops and create the minorities
+	vector<V2Pop*> actualMinorities;
 	for (auto minorityItr: minorityPops)
 	{
 		int totalTypePopulation;
@@ -425,16 +426,31 @@ void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner)
 		{
 			for (auto popsItr: thePopsItr->second)
 			{
-				popsItr->changeSize(-1.0 * popsItr->getSize() / totalTypePopulation * minorityItr->getSize());
+				string newCulture		= minorityItr->getCulture();
+				string newReligion	= minorityItr->getReligion();
+				if (newCulture == "")
+				{
+					newCulture = popsItr->getCulture();
+				}
+				if (newReligion == "")
+				{
+					newReligion = popsItr->getReligion();
+				}
+
+				V2Pop* newMinority = new V2Pop(minorityItr->getType(), static_cast<int>(1.0 * popsItr->getSize() / totalTypePopulation * minorityItr->getSize() + 0.5), newCulture, newReligion);
+				actualMinorities.push_back(newMinority);
+
+				popsItr->changeSize(static_cast<int>(-1.0 * popsItr->getSize() / totalTypePopulation * minorityItr->getSize()));
 			}
 		}
 	}
 
-	// add minority pops
-	for (auto minorityItr: minorityPops)
+	// add minority pops to the main pops
+	for (auto minorityItr: actualMinorities)
 	{
 		pops.push_back(minorityItr);
 	}
+	combinePops();
 }
 
 

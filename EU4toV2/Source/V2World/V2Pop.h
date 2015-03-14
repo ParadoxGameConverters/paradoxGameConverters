@@ -39,14 +39,16 @@ class V2Pop
 		void output(FILE*) const;
 		bool combine(const V2Pop& rhs);
 
-		void	changeSize(int delta)					{ size += delta; };
-		void	incrementSupportedRegimentCount()	{ supportedRegiments++; };
+		void	changeSize(int delta)					{ size += delta; }
+		void	incrementSupportedRegimentCount()	{ supportedRegiments++; }
+		void	setCulture(string _culture)			{ culture = _culture; }
+		void	setReligion(string _religion)			{ religion = _religion; }
 
-		int		getSize()							const	{ return size; };
-		string	getType()							const	{ return type; };
-		string	getCulture()						const	{ return culture; };
-		string	getReligion()						const	{ return religion; };
-		int		getSupportedRegimentCount()	const	{ return supportedRegiments; };
+		int		getSize()							const	{ return size; }
+		string	getType()							const	{ return type; }
+		string	getCulture()						const	{ return culture; }
+		string	getReligion()						const	{ return religion; }
+		int		getSupportedRegimentCount()	const	{ return supportedRegiments; }
 
 	private:
 		string	type;
