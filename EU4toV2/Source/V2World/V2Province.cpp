@@ -253,12 +253,7 @@ void V2Province::outputPops(FILE* output) const
 		if (pops.size() > 0)
 		{
 			fprintf(output, "%d = {\n", num);
-			for (unsigned int i = 0; i < pops.size(); i++)
-			{
-				pops[i]->output(output);
-				fprintf(output, "\n");
-			}
-			for (auto i: minorityPops)
+			for (auto i: pops)
 			{
 				i->output(output);
 				fprintf(output, "\n");
@@ -366,7 +361,7 @@ void V2Province::addOldPop(const V2Pop* oldPop)
 }
 
 
-void V2Province::addMinorityPop(const V2Pop* minorityPop)
+void V2Province::addMinorityPop(V2Pop* minorityPop)
 {
 	minorityPops.push_back(minorityPop);
 }
@@ -374,11 +369,72 @@ void V2Province::addMinorityPop(const V2Pop* minorityPop)
 
 void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner)
 {
+	// convert pops
 	for (vector<V2Demographic>::const_iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
 		createPops(*itr, popWeightRatio, _owner);
 	}
 	combinePops();
+
+	// organize pops for adding minorities
+	map<string, int>					totals;
+	map<string, vector<V2Pop*>>	thePops;
+	for (auto popItr: pops)
+	{
+		string type = popItr->getType();
+
+		auto totalsItr = totals.find(type);
+		if (totalsItr == totals.end())
+		{
+			totals.insert(make_pair(type, popItr->getSize()));
+		}
+		else
+		{
+			totalsItr->second += popItr->getSize();
+		}
+
+		auto thePopsItr = thePops.find(type);
+		if (thePopsItr == thePops.end())
+		{
+			vector<V2Pop*> newVector;
+			newVector.push_back(popItr);
+			thePops.insert(make_pair(type, newVector));
+		}
+		else
+		{
+			thePopsItr->second.push_back(popItr);
+		}
+	}
+
+	// decrease non-minority pops
+	for (auto minorityItr: minorityPops)
+	{
+		int totalTypePopulation;
+		auto totalsItr = totals.find(minorityItr->getType());
+		if (totalsItr != totals.end())
+		{
+			totalTypePopulation = totalsItr->second;
+		}
+		else
+		{
+			totalTypePopulation = 0;
+		}
+
+		auto thePopsItr = thePops.find(minorityItr->getType());
+		if (thePopsItr != thePops.end())
+		{
+			for (auto popsItr: thePopsItr->second)
+			{
+				popsItr->changeSize(-1.0 * popsItr->getSize() / totalTypePopulation * minorityItr->getSize());
+			}
+		}
+	}
+
+	// add minority pops
+	for (auto minorityItr: minorityPops)
+	{
+		pops.push_back(minorityItr);
+	}
 }
 
 
