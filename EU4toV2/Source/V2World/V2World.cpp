@@ -595,11 +595,6 @@ void V2World::output() const
 	{
 		itr->second->output();
 	}
-	for (map<string, V2Country*>::const_iterator itr = dynamicCountries.begin(); itr != dynamicCountries.end(); itr++)
-	{
-		itr->second->isANewCountry();
-		itr->second->output();
-	}
 	diplomacy.output();
 
 	outputPops();
