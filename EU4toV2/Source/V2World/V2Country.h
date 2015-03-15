@@ -57,7 +57,7 @@ struct V2Party;
 class V2Country
 {
 	public:
-		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry = false);
+		V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry = false, bool _dynamicCountry = false);
 		void								output() const;
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputLocalisation(FILE*) const;
@@ -128,7 +128,8 @@ class V2Country
 		V2World*							theWorld;
 		EU4Country*						srcCountry;
 		string							filename;
-		bool								newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in V2
+		bool								newCountry;			// true if this country is being added by the converter, i.e. doesn't already exist in Vic2
+		bool								dynamicCountry;	// true if this country is a Vic2 dynamic country
 		V2Country*						colonyOverlord;
 		string							colonialRegion;
 

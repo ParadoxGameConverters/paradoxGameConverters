@@ -52,10 +52,11 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 
-V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry)
+V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _parties, V2World* _theWorld, bool _newCountry, bool _dynamicCountry)
 {
-	theWorld = _theWorld;
-	newCountry = _newCountry;
+	theWorld			= _theWorld;
+	newCountry		= _newCountry;
+	dynamicCountry	= _dynamicCountry;
 
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
@@ -150,91 +151,94 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 
 void V2Country::output() const
 {
-	FILE* output;
-	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\countries\\" + filename).c_str(), "w") != 0)
+	if(!dynamicCountry)
 	{
-		LOG(LogLevel::Error) << "Could not create country history file " << filename;
-		exit(-1);
-	}
-
-	if (capital > 0)
-	{
-		fprintf(output, "capital=%d\n", capital);
-	}
-	if (primaryCulture.size() > 0)
-	{
-		fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
-	}
-	for (set<string>::iterator i = acceptedCultures.begin(); i != acceptedCultures.end(); i++)
-	{
-		fprintf(output, "culture = %s\n", i->c_str());
-	}
-	if (religion != "")
-	{
-		fprintf(output, "religion = %s\n", religion.c_str());
-	}
-	if (government != "")
-	{
-		fprintf(output, "government = %s\n", government.c_str());
-	}
-	if (plurality > 0.0)
-	{
-		fprintf(output, "plurality=%f\n", plurality);
-	}
-	fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
-	fprintf(output, "literacy=%f\n", literacy);
-	if (civilized)
-	{
-		fprintf(output, "civilized=yes\n");
-	}
-	fprintf(output, "\n");
-	fprintf(output, "ruling_party=%s\n", rulingParty.c_str());
-	fprintf(output, "upper_house=\n");
-	fprintf(output, "{\n");
-	fprintf(output, "	fascist = 0\n");
-	fprintf(output, "	liberal = %d\n", upperHouseLiberal);
-	fprintf(output, "	conservative = %d\n", upperHouseConservative);
-	fprintf(output, "	reactionary = %d\n", upperHouseReactionary);
-	fprintf(output, "	anarcho_liberal = 0\n");
-	fprintf(output, "	socialist = 0\n");
-	fprintf(output, "	communist = 0\n");
-	fprintf(output, "}\n");
-	fprintf(output, "\n");
-	fprintf(output, "# Starting Consciousness\n");
-	fprintf(output, "consciousness = 0\n");
-	fprintf(output, "nonstate_consciousness = 0\n");
-	fprintf(output, "\n");
-	outputTech(output);
-	if (!civilized)
-	{
-		if (uncivReforms != NULL)
+		FILE* output;
+		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\countries\\" + filename).c_str(), "w") != 0)
 		{
-			uncivReforms->output(output);
+			LOG(LogLevel::Error) << "Could not create country history file " << filename;
+			exit(-1);
 		}
-	}
-	fprintf(output, "prestige=%f\n", prestige);
-	fprintf(output, "\n");
-	fprintf(output, "# Social Reforms\n");
-	fprintf(output, "wage_reform = no_minimum_wage\n");
-	fprintf(output, "work_hours = no_work_hour_limit\n");
-	fprintf(output, "safety_regulations = no_safety\n");
-	fprintf(output, "health_care = no_health_care\n");
-	fprintf(output, "unemployment_subsidies = no_subsidies\n");
-	fprintf(output, "pensions = no_pensions\n");
-	fprintf(output, "school_reforms = no_schools\n");
 
-	if (reforms != NULL)
-	{
-		reforms->output(output);
-	}
+		if (capital > 0)
+		{
+			fprintf(output, "capital=%d\n", capital);
+		}
+		if (primaryCulture.size() > 0)
+		{
+			fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
+		}
+		for (set<string>::iterator i = acceptedCultures.begin(); i != acceptedCultures.end(); i++)
+		{
+			fprintf(output, "culture = %s\n", i->c_str());
+		}
+		if (religion != "")
+		{
+			fprintf(output, "religion = %s\n", religion.c_str());
+		}
+		if (government != "")
+		{
+			fprintf(output, "government = %s\n", government.c_str());
+		}
+		if (plurality > 0.0)
+		{
+			fprintf(output, "plurality=%f\n", plurality);
+		}
+		fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
+		fprintf(output, "literacy=%f\n", literacy);
+		if (civilized)
+		{
+			fprintf(output, "civilized=yes\n");
+		}
+		fprintf(output, "\n");
+		fprintf(output, "ruling_party=%s\n", rulingParty.c_str());
+		fprintf(output, "upper_house=\n");
+		fprintf(output, "{\n");
+		fprintf(output, "	fascist = 0\n");
+		fprintf(output, "	liberal = %d\n", upperHouseLiberal);
+		fprintf(output, "	conservative = %d\n", upperHouseConservative);
+		fprintf(output, "	reactionary = %d\n", upperHouseReactionary);
+		fprintf(output, "	anarcho_liberal = 0\n");
+		fprintf(output, "	socialist = 0\n");
+		fprintf(output, "	communist = 0\n");
+		fprintf(output, "}\n");
+		fprintf(output, "\n");
+		fprintf(output, "# Starting Consciousness\n");
+		fprintf(output, "consciousness = 0\n");
+		fprintf(output, "nonstate_consciousness = 0\n");
+		fprintf(output, "\n");
+		outputTech(output);
+		if (!civilized)
+		{
+			if (uncivReforms != NULL)
+			{
+				uncivReforms->output(output);
+			}
+		}
+		fprintf(output, "prestige=%f\n", prestige);
+		fprintf(output, "\n");
+		fprintf(output, "# Social Reforms\n");
+		fprintf(output, "wage_reform = no_minimum_wage\n");
+		fprintf(output, "work_hours = no_work_hour_limit\n");
+		fprintf(output, "safety_regulations = no_safety\n");
+		fprintf(output, "health_care = no_health_care\n");
+		fprintf(output, "unemployment_subsidies = no_subsidies\n");
+		fprintf(output, "pensions = no_pensions\n");
+		fprintf(output, "school_reforms = no_schools\n");
+
+		if (reforms != NULL)
+		{
+			reforms->output(output);
+		}
 	
-	//fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
+		//fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
 
-	fprintf(output, "oob = \"%s\"\n", (tag + "_OOB.txt").c_str());
+		fprintf(output, "oob = \"%s\"\n", (tag + "_OOB.txt").c_str());
 
-	fclose(output);
+		fclose(output);
 
-	outputOOB();
+		outputOOB();
+	}
 
 	if (newCountry)
 	{

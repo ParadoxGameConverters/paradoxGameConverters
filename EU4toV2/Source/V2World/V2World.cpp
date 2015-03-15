@@ -463,7 +463,7 @@ V2World::V2World(vector<pair<string, string>> minorities)
 			localParties.push_back(newParty);
 		}
 
-		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
+		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this, false, !staticSection);
 		if (staticSection)
 		{
 			potentialCountries.push_back(newCountry);
@@ -587,7 +587,6 @@ void V2World::output() const
 	LOG(LogLevel::Debug) << "Writing provinces";
 	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		//i->second->sortPops();
 		i->second->output();
 	}
 	LOG(LogLevel::Debug) << "Writing countries";
@@ -706,7 +705,7 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 			if (!destCountry)
 			{ // No such V2 country exists yet for this tag so we make a new one.
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
-				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true);
+				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
 			destCountry->initFromEU4Country(sourceCountry, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, UHLiberalIdeas, UHReactionaryIdeas, literacyIdeas, regionsMap);
 			countries.insert(make_pair(V2Tag, destCountry));
