@@ -1,11 +1,5 @@
 configuration =
 {
-	# Europa Universalis 4 directory: a path on your computer where Europa Universalis 4 is installed
-	EU4directory = "C:\Program Files (x86)\Steam\SteamApps\common\Europa Universalis IV"
-
-	# Europa Universalis 4 Documents directory: a path on your computer where Europa Universalis 4 keeps temporary files
-	EU4Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Europa Universalis IV"
-
 	# Victoria 2 directory: a path on your computer where Victoria 2 is installed
 	V2directory = "D:\Paradox Interactive\Victoria 2"
 
@@ -18,61 +12,12 @@ configuration =
 	# HoI3 Documents directory: a path on your computer where Hearts of Iron III keeps temporary files
 	HoI3Documentsdirectory = "C:\Users\Stephen\Documents\Paradox Interactive\Hearts of Iron III"
 
-	# EU4 Game Type: what version of EU4 generated the save.  Possible values:
-	# 	auto	detect version automatically - vanilla only!
-	#	base	version (1.x)
-	EU4gametype = "auto"
+	# Vic2Mods: Vic2 mods to use for conversion
+	# Example: Vic2Mods = { modname1 modname2 }
+	Vic2Mods = {  }
 
-	# V2 Game Type: what version of V2 to convert to.  Possible values:
-	#	vanilla	vanilla V2 (1.x)
-	#	AHD		A House Divided (2.x)
-	#	HOD		Heart of Darkness (3.x)
-	V2gametype = "HOD"
-
-	# HoI3 Game Type: what version of HoI3 to output saves for.  Possible values:
-	#	sf	Hearts of Iron 3: Semper Fi (2.x)
-	#	ftm	Hearts of Iron 3: For the Motherland (3.x)
-	#	tfh	hearts of Iron 3: Their Finest Hour (4.x)
-	HoI3gametype = "tfh"
-
-	# EU4 Mod: An EU4 mod to use for conversion
-	EU4Mod = ""
-
-	# V2 Mod: A V2 mod to use for conversion
-	V2Mod = ""
-
-	# Use V2 Mod: Whether or not to use a V2 mod
-	useV2Mod = "no"
-
-	# The date on which the game is to start.  Default: 1936.1.1
-	start_date = 1936.1.1
-
-	# The maximum literacy a nation will start with. Default 80%
-	max_literacy = 0.80
-
-	# Remove type: which landless nations to remove. Possible values:
-	#	none		remove none of them
-	#	absorbed	remove all landless nations that have been absorbed by a cultural union
-	#	all		remove all of them
-	# Note: if there are not enough HoI3 tags, some or all of these will be done no matter what.
-	Removetype = "absorbed"
-	
-	### CK2 to EU4 Mod Options
-	
-	# For future purposes, using the CK2->EU4 mod directory to bring over nations that don't exist in EU4. Options are:
-	#	"yes"
-	#	"no"
-	useCK2ModDirectory = "no"
-	# Europa Universalis 4 mod directory: a path on your computer where Europa Universalis 4 mod from Crusader Kings 2 is installed
-	EU4modfromCK2directory = ""
-
-	### Mod Options
-	
-	# useConverterMod: whether or not to use the converter mod. Options are:
-	#	"yes"
-	#	"no"
-	useConverterMod = "no"
-
+	# Reset Provinces: Whether or not to reset resettable HoI3 provinces
+	resetProvinces = "no"
 
 	# Faction Leader: how the converter determines who the faction leaders are
 	#	auto
@@ -81,10 +26,6 @@ configuration =
 	# axis_faction = { GER ITA }
 	# allies_faction = { ENG FRA CAN HND SAF }
 	# comintern_faction = { RUS }
-
-	# Money Factor: amount by which monetary figures are multiplied (treasuries, debts, etc).
-	#	Default: 0.000005 (two hundred thousand V2 pounds to one HOI3 "$")
-	money_factor = 0.000005
 
 	# Minimum Infrastructure: every land province will have at least this much infrastructure
 	#	Default: 3.0 (minimum required to move armies)

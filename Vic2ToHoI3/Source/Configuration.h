@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,203 +27,153 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include <string>
 #include <vector>
-#include "Date.h"
 using namespace std;
 
 
 
 class Configuration // Singleton
 {
-public:
-	Configuration();
+	public:
+		Configuration();
 
-	static string getEU4Path()
-	{
-		return getInstance()->EU4Path;
-	}
+		static string getHoI3Path()
+		{
+			return getInstance()->HoI3Path;
+		}
 
-	static string getEU4DocumentsPath()
-	{
-		return getInstance()->EU4DocumentsPath;
-	}
+		static string getHoI3DocumentsPath()
+		{
+			return getInstance()->HoI3DocumentsPath;
+		}
 
-	static string getCK2ExportPath()
-	{
-		return getInstance()->CK2ExportPath;
-	}
+		static string getV2Path()
+		{
+			return getInstance()->V2Path;
+		}
 
-	static string getHoI3Path()
-	{
-		return getInstance()->HoI3Path;
-	}
+		static string getV2DocumentsPath()
+		{
+			return getInstance()->V2DocumentsPath;
+		}
 
-	static string getHoI3DocumentsPath()
-	{
-		return getInstance()->HoI3DocumentsPath;
-	}
+		static vector<string> getVic2Mods()
+		{
+			return getInstance()->Vic2Mods;
+		}
 
-	static string getHoI3Gametype()
-	{
-		return getInstance()->HoI3Gametype;
-	}
+		static string getResetProvinces()
+		{
+			return getInstance()->resetProvinces;
+		}
 
-	static string getV2Path()
-	{
-		return getInstance()->V2Path;
-	}
+		static void setOutputName(string name)
+		{
+			getInstance()->outputName = name;
+		}
 
-	static string getV2DocumentsPath()
-	{
-		return getInstance()->V2DocumentsPath;
-	}
+		static string getOutputName()
+		{
+			return getInstance()->outputName;
+		}
 
-	static string getV2Gametype()
-	{
-		return getInstance()->V2Gametype;
-	}
+		static double getMinInfra()
+		{
+			return getInstance()->minInfra;
+		}
 
-	static date	getFirstEU4Date()
-	{
-		return getInstance()->firstEU4Date;
-	}
+		static string getFactionLeaderAlgo()
+		{
+			return getInstance()->factionLeaderAlgorithm;
+		}
 
-	static void setFirstEU4Date(date _firstDate)
-	{
-		getInstance()->firstEU4Date = _firstDate;
-	}
+		static vector<string> getManualAxisFaction()
+		{
+			return getInstance()->manualAxisFaction;
+		}
 
-	static string getResetProvinces()
-	{
-		return getInstance()->resetProvinces;
-	}
+		static vector<string> getManualAlliesFaction()
+		{
+			return getInstance()->manualAlliesFaction;
+		}
 
-	static double getMaxLiteracy()
-	{
-		return getInstance()->MaxLiteracy;
-	}
+		static vector<string> getManualCominternFaction()
+		{
+			return getInstance()->manualCominternFaction;
+		}
 
-	static string getRemovetype()
-	{
-		return getInstance()->Removetype;
-	}
+		static string getIcConversion()
+		{
+			return getInstance()->icConversion;
+		}
 
-	static void setOutputName(string name)
-	{
-		getInstance()->outputName = name;
-	}
+		static double getIcFactor()
+		{
+			return getInstance()->icFactor;
+		}
 
-	static string getOutputName()
-	{
-		return getInstance()->outputName;
-	}
+		static string getManpowerConversion()
+		{
+			return getInstance()->manpowerConversion;
+		}
 
-	static Configuration* getInstance()
-	{
-		if (instance == NULL)
-			instance = new Configuration();
-		return instance;
-	}
+		static double getManpowerFactor()
+		{
+			return getInstance()->manpowerFactor;
+		}
 
-	static double getMinInfra()
-	{
-		return getInstance()->minInfra;
-	}
+		static string getLeadershipConversion()
+		{
+			return getInstance()->leadershipConversion;
+		}
 
-	static string getFactionLeaderAlgo()
-	{
-		return getInstance()->factionLeaderAlgorithm;
-	}
+		static double getLeadershipFactor()
+		{
+			return getInstance()->leadershipFactor;
+		}
 
-	static vector<string> getManualAxisFaction()
-	{
-		return getInstance()->manualAxisFaction;
-	}
+		static double getLiteracyWeight()
+		{
+			return getInstance()->literacyWeight;
+		}
 
-	static vector<string> getManualAlliesFaction()
-	{
-		return getInstance()->manualAlliesFaction;
-	}
+		static double getPracticalsScale()
+		{
+			return getInstance()->practicalsScale;
+		}
 
-	static vector<string> getManualCominternFaction()
-	{
-		return getInstance()->manualCominternFaction;
-	}
+		static Configuration* getInstance()
+		{
+			if (instance == NULL)
+			{
+				instance = new Configuration();
+			}
+			return instance;
+		}
 
-	static string getIcConversion()
-	{
-		return getInstance()->icConversion;
-	}
+	private:
+		static Configuration* instance;
 
-	static double getIcFactor()
-	{
-		return getInstance()->icFactor;
-	}
+		string			HoI3Path;				// the install directory for HOI3
+		string			HoI3DocumentsPath;	// HoI3's directory under My Documents
+		string			V2Path;					// the install directory for V2
+		string			V2DocumentsPath;		// V2's directory under My Documents
+		vector<string>	Vic2Mods;
+		string			resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
+		string			outputName;				// the name the outputted mod should have
 
-	static string getManpowerConversion()
-	{
-		return getInstance()->manpowerConversion;
-	}
-
-	static double getManpowerFactor()
-	{
-		return getInstance()->manpowerFactor;
-	}
-
-	static string getLeadershipConversion()
-	{
-		return getInstance()->leadershipConversion;
-	}
-
-	static double getLeadershipFactor()
-	{
-		return getInstance()->leadershipFactor;
-	}
-
-	static double getLiteracyWeight()
-	{
-		return getInstance()->literacyWeight;
-	}
-
-	static double getPracticalsScale()
-	{
-		return getInstance()->practicalsScale;
-	}
-
-private:
-	static Configuration* instance;
-
-	// options from configuration.txt
-	string	EU4Path;					// the install directory for EU4
-	string	EU4DocumentsPath;		// EU4's directory under My Documents
-	string	CK2ExportPath;			// where CK2 exported game mods get put
-	string	HoI3Path;					// the install directory for HOI3
-	string	HoI3DocumentsPath;		// HoI3's directory under My Documents
-	string	HoI3Gametype;
-	string	V2Path;					// the install directory for V2
-	string	V2DocumentsPath;		// V2's directory under My Documents
-	string	V2Gametype;				// whether V2 is vanilla, AHD, or HoD
-	string	resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
-	double	MaxLiteracy;			// the maximum literacy allowed
-	string	Removetype;				// the ruleto use for removing excess EU4 nations
-	
-	// items set during conversion
-	date		firstEU4Date;			// the date EU4 began
-	string	outputName;				// the name the outputted mod should have
-
-	string factionLeaderAlgorithm;
-	double moneyFactor;
-	double minInfra;
-	vector<string> manualAxisFaction;
-	vector<string> manualAlliesFaction;
-	vector<string> manualCominternFaction;
-	string icConversion;
-	double icFactor;
-	string manpowerConversion;
-	double manpowerFactor;
-	string leadershipConversion;
-	double leadershipFactor;
-	double literacyWeight;
-	double practicalsScale;
+		string			factionLeaderAlgorithm;
+		vector<string> manualAxisFaction;
+		vector<string> manualAlliesFaction;
+		vector<string> manualCominternFaction;
+		double			minInfra;
+		string			icConversion;
+		double			icFactor;
+		string			manpowerConversion;
+		double			manpowerFactor;
+		string			leadershipConversion;
+		double			leadershipFactor;
+		double			literacyWeight;
+		double			practicalsScale;
 };
 
 #endif // CONFIGURATION_H_

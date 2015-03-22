@@ -27,6 +27,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../Configuration.h"
+#include "../Parsers/Object.h"
 #include <string>
 #include <vector>
 #include <map>

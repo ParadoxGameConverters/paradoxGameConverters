@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -92,7 +92,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// Get V2 Mod directory
 	map<string, string> possibleMods; // name, path
-	LOG(LogLevel::Debug) << "Get V2 Mod Directory";
+	LOG(LogLevel::Debug) << "Get V2 Documents Directory";
 	string V2DocumentsLoc = Configuration::getV2DocumentsPath();	// the Victoria 2 My Documents location as stated in the configuration file
 	if (V2DocumentsLoc.empty() || (_stat(V2DocumentsLoc.c_str(), &st) != 0))
 	{
@@ -102,38 +102,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	else
 	{
 		LOG(LogLevel::Debug) << "Victoria 2 Documents directory is " << V2DocumentsLoc;
-		set<string> fileNames;
-		WinUtils::GetAllFilesInFolder(V2DocumentsLoc + "/mod", fileNames);
-		for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
-		{
-			const int pos = itr->find_last_of('.');	// the position of the last period in the filename
-			if (itr->substr(pos, itr->length()) == ".mod")
-			{
-				Object* modObj = doParseFile((V2DocumentsLoc + "\\mod\\" + *itr).c_str());	// the parsed mod file
-				string name = modObj->getLeaf("name");														// the name of the mod
-
-				string path;	// the path of the mod
-				vector<Object*> dirObjs = modObj->getValue("path");	// the possible paths of the mod
-				if (dirObjs.size() > 0)
-				{
-					path = dirObjs[0]->getLeaf();
-				}
-				else
-				{
-					vector<Object*> dirObjs = modObj->getValue("archive");	// the other possible paths of the mod (if its zipped)
-					if (dirObjs.size() > 0)
-					{
-						path = dirObjs[0]->getLeaf();
-					}
-				}
-
-				if (path != "")
-				{
-					possibleMods.insert(make_pair(name, V2DocumentsLoc + "\\" + path));
-					Log(LogLevel::Debug) << "\t\tFound a mod named " << name << " claiming to be at " << V2DocumentsLoc << "\\" << path;
-				}
-			}
-		}
 	}
 
 	//get output name
@@ -167,74 +135,20 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		exit(-1);
 	}
 
-	// Get V2 Mod
-	LOG(LogLevel::Debug) << "Get V2 Mod";
-	vector<string> fullModPaths;	// the full pathnames for used mods
-	vector<Object*> modObj = obj->getValue("mod_enabled");	// the used mods
-	if (modObj.size() > 0)
-	{
-		string modString = modObj[0]->getLeaf();	// the names of all the mods
-		while (modString != "")
-		{
-			string newMod;	// the corrected name of the mod
-			const int firstQuote = modString.find("\"");	// the location of the first quote, defining the start of a mod name
-			if (firstQuote == std::string::npos)
-			{
-				newMod.clear();
-				modString.clear();
-			}
-			else
-			{
-				const int secondQuote = modString.find("\"", firstQuote + 1);	// the location of the second quote, defining the end of a mod name
-				if (secondQuote == std::string::npos)
-				{
-					newMod.clear();
-					modString.clear();
-				}
-				else
-				{
-					newMod = modString.substr(firstQuote + 1, secondQuote - firstQuote - 1);
-					modString = modString.substr(secondQuote + 1, modString.size());
-				}
-			}
-
-			if (newMod != "")
-			{
-				map<string, string>::iterator modItr = possibleMods.find(newMod);
-				if (modItr != possibleMods.end())
-				{
-					string newModPath = modItr->second;	// the path for this mod
-					if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
-					{
-						LOG(LogLevel::Error) << newMod << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
-					}
-					else
-					{
-						LOG(LogLevel::Debug) << "V2 Mod is at " << newModPath;
-						fullModPaths.push_back(newModPath);
-					}
-				}
-				else
-				{
-					LOG(LogLevel::Error) << "No path could be found for " << newMod;
-				}
-			}
-		}
-	}
+	// Construct world from V2 save.
+	LOG(LogLevel::Info) << "Building world";
+	V2World sourceWorld(obj);
 
 	// Read all localisations.
 	LOG(LogLevel::Info) << "Reading localisation";
 	V2Localisation localisation;
 	localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "\\localisation");
-	for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
+	vector<string> vic2Mods = Configuration::getVic2Mods();
+	for (auto itr: vic2Mods)
 	{
 		LOG(LogLevel::Debug) << "Reading mod localisation";
-		localisation.ReadFromAllFilesInFolder(*itr + "\\localisation");
+		localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "\\mod\\" + itr + "\\localisation");
 	}
-
-	// Construct world from V2 save.
-	LOG(LogLevel::Info) << "Building world";
-	V2World sourceWorld(obj);
 
 	sourceWorld.setLocalisations(localisation);
 
