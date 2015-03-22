@@ -28,7 +28,6 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 #include "../Parsers/Object.h"
 #include <string>
-#include <vector>
 using namespace std;
 
 
@@ -36,39 +35,19 @@ using namespace std;
 class V2Pop
 {
 	public:
-		V2Pop(string type, int size, string culture, string religion);
 		V2Pop(Object* obj);
-		void output(FILE*) const;
-		bool combine(const V2Pop& rhs);
 
-		void	changeSize(int delta)					{ size += delta; recalcMoney(); };
-		void	incrementSupportedRegimentCount()	{ supportedRegiments++; };
+		int		getSize()							const { return size; };
+		string	getType()							const { return type; };
+		int		getSupportedRegimentCount()	const { return supportedRegiments; };
+		double	getLiteracy()						const { return lit; };
 
-		int		getSize()							const	{ return size; };
-		string	getType()							const	{ return type; };
-		int		getID()								const	{ return id; };
-		string	getCulture()						const	{ return culture; };
-		string	getReligion()						const	{ return religion; };
-		int		getSupportedRegimentCount()	const	{ return supportedRegiments; };
-		double					getMil() const { return mil; };
-		double					getLiteracy() const { return lit; };
 	private:
-		void	recalcMoney();
-
-		int		id;
 		string	type;
 		int		size;
-		string	culture;
-		string	religion;
 		int		supportedRegiments;
-		double	money;
-		double					mil;
-		double					con;
-		double					lit;
+		double	lit;
 };
-
-
-int getNextPopId();
 
 
 

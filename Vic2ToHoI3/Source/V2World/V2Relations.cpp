@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -25,30 +25,19 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Relations::V2Relations(string newTag)
+V2Relations::V2Relations(Object* obj)
 {
-	tag					= newTag;
-	value					= 0;
-	militaryAccess		= false;
-	lastSendDiplomat	= date();
-	lastWar				= date();
-	truceUntil = date();
-	level					= 2; // Neutral
-}
-
-
-V2Relations::V2Relations(Object* obj) {
 	tag = obj->getKey();
 	vector<Object*> valueObj = obj->getValue("value");
 	if (valueObj.size() > 0)
 	{
-		value = atoi( valueObj[0]->getLeaf().c_str() );
+		value = atoi(valueObj[0]->getLeaf().c_str());
 	}
 	else
 	{
 		value = 0;
 	}
-	
+
 	vector<Object*> maObj = obj->getValue("military_access");
 	if (maObj.size() > 0)
 	{
@@ -58,14 +47,14 @@ V2Relations::V2Relations(Object* obj) {
 	{
 		militaryAccess = false;
 	}
-	
+
 	vector<Object*> lastSendObj = obj->getValue("last_send_diplomat");
 	if (lastSendObj.size() > 0)
 	{
 		lastSendDiplomat = date(lastSendObj[0]->getLeaf());
 	}
-	
-	vector<Object*> lastWarObj =  obj->getValue("last_war");
+
+	vector<Object*> lastWarObj = obj->getValue("last_war");
 	if (lastWarObj.size() > 0)
 	{
 		lastWar = date(lastWarObj[0]->getLeaf());
@@ -76,37 +65,14 @@ V2Relations::V2Relations(Object* obj) {
 	{
 		truceUntil = date(truceUntilObj[0]->getLeaf());
 	}
-	
-	vector<Object*> levelObj =  obj->getValue("level");
+
+	vector<Object*> levelObj = obj->getValue("level");
 	if (levelObj.size() > 0)
 	{
-		level = atoi( levelObj[0]->getLeaf().c_str() );
+		level = atoi(levelObj[0]->getLeaf().c_str());
 	}
 	else
 	{
 		level = 2;
 	}
-}
-
-void V2Relations::output(FILE* out) const
-{
-	fprintf(out, "\t%s=\n", tag.c_str());
-	fprintf(out, "\t{\n");
-	fprintf(out, "\t\tvalue=%d\n", value);
-	if (militaryAccess)
-	{
-		fprintf(out, "\t\tmilitary_access=yes\n");
-	}
-	fprintf(out, "\t\tlevel=%d\n", level);
-	fprintf(out, "\t}\n");
-}
-
-
-void V2Relations::setLevel(int lvl)
-{
-	if (lvl < 0 || lvl > 5)
-	{
-		return;
-	}
-	level = lvl;
 }

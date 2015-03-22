@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -32,43 +32,23 @@ using namespace std;
 
 
 
-struct V2ArmyID
-{
-	public:
-		V2ArmyID();
-		void output(FILE* out, int indentlevel) const;
-
-		int id;
-		int type;
-};
-
-
 class V2Regiment // also Ship
 {
 	public:
 		V2Regiment(Object* obj);
-		void output(FILE* out) const;
 
-		void setName(string _name)		{ name = _name; };
-		void setPopID(int newPop)		{ popID = newPop; };
-		void setStrength(double str)	{ strength = str; };
+		string getName()				const { return name; };
+		string getType()				const { return type; };
+		double getStrength()			const { return strength; };
+		double getOrganization()	const { return organization; };
+		double getExperience()		const { return experience; };
 
-		bool					getShip()		const { return isShip; };
-		string getName() const { return name; };
-		string getType() const { return type; };
-		double getStrength() const { return strength; };
-		double getOrganization() const { return organization; };
-		double getExperience() const { return experience; };
 	private:
-		V2ArmyID				id;
-		string				name;
-		string				type;
-		int					popID;
-		double				strength;
-		bool					isShip;
-
-		double					organization;
-		double					experience;
+		string	name;
+		string	type;
+		double	strength;
+		double	organization;
+		double	experience;
 };
 
 
@@ -76,26 +56,20 @@ class V2Army // also Navy
 {
 	public:
 		V2Army(Object* obj);
-		void					output(FILE* out) const;
-		void					addRegiment(V2Regiment reg);
 
-		void					setLocation(int provinceID)												{ location = provinceID; };
-		void					setNavy(bool navy)															{ isNavy = navy; };
+		string					getName()		const { return name; };
+		bool						getNavy()		const { return isNavy; };
+		double					getSupplies()	const { return supplies; };
+		int						getAtSea()		const { return at_sea; };
+		int						getLocation()	const { return location; };
+		vector<V2Regiment>	getRegiments()	const { return regiments; };
 
-		string				getName() const { return name; };
-		bool					getNavy() const { return isNavy; };
-		double getSupplies() const { return supplies; };
-		int getAtSea() const { return at_sea; };
-		int getLocation() const { return location; };
-		vector<V2Regiment> getRegiments() const { return regiments; };
 	private:
-		V2ArmyID					id;
 		string					name;
 		int						location;
 		vector<V2Regiment>	regiments;
 		double					supplies;
 		int						at_sea;
-		int						leaderID;
 		bool						isNavy;
 };
 

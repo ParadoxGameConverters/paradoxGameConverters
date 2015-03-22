@@ -121,7 +121,6 @@
     <ClCompile Include="Source\V2World\V2Country.cpp" />
     <ClCompile Include="Source\V2World\V2Diplomacy.cpp" />
     <ClCompile Include="Source\V2World\V2Factory.cpp" />
-    <ClCompile Include="Source\V2World\V2Flags.cpp" />
     <ClCompile Include="Source\V2World\V2Localisation.cpp" />
     <ClCompile Include="Source\V2World\V2Party.cpp" />
     <ClCompile Include="Source\V2World\V2Pop.cpp" />
@@ -152,7 +151,6 @@
     <ClInclude Include="Source\V2World\V2Country.h" />
     <ClInclude Include="Source\V2World\V2Diplomacy.h" />
     <ClInclude Include="Source\V2World\V2Factory.h" />
-    <ClInclude Include="Source\V2World\V2Flags.h" />
     <ClInclude Include="Source\V2World\V2Inventions.h" />
     <ClInclude Include="Source\V2World\V2Localisation.h" />
     <ClInclude Include="Source\V2World\V2Party.h" />

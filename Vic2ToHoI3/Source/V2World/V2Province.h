@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -40,81 +40,31 @@ class V2Factory;
 class V2Province
 {
 	public:
-		V2Province(string _filename);
 		V2Province(Object* obj);
-		void output() const;
-		void determineColonial();
-		void addCore(string);
-		void						removeCore(string tag);
-		void addOldPop(const V2Pop*);
-		void sortPops();
+		void	addCore(string);
+		void	removeCore(string tag);
 
-		int				getTotalPopulation() const;
-		vector<V2Pop*>	getPops(string type) const;
-		int				getSoldierPopForArmy(bool force = false);
-		pair<int, int>	getAvailableSoldierCapacity() const;
-		bool				hasCulture(string culture, float percentOfPopulation) const;
-		
-		void				clearCores()								{ cores.clear(); };
-		void				setCoastal(bool _coastal)				{ coastal = _coastal; };
-		void				setName(string _name)					{ name = _name; };
-		void				setOwnerString(string _ownerString)					{ ownerString = _ownerString; };
-		void				setOwner(V2Country* _owner)					{ owner = _owner; };
-		void				setLandConnection(bool _connection)	{ landConnection = _connection; };
-		void				setSameContinent(bool _same)			{ sameContinent = _same; };
-		void				setFortLevel(int level)					{ fortLevel = level; };
-		void				setNavalBaseLevel(int level)			{ navalBaseLevel = level; };
-		void				setRailLevel(int level)					{ railLevel = level; };
-
-		int						getOldPopulation()	const	{ return oldPopulation; };
-		bool						wasInfidelConquest()	const { return originallyInfidel; };
-		bool						wasColonised()			const { return colonised; };
-		bool						isColonial()			const { return colonial != 0; };
-		string					getRgoType()			const { return rgoType; };
-		string					getOwnerString()	const { return ownerString; };
-		V2Country*					getOwner()				const { return owner; };
-		int						getNum()					const { return num; };
-		string					getName()				const { return name; };
-		bool						isCoastal()				const { return coastal; };
-		bool						hasNavalBase()			const { return (navalBaseLevel > 0); };
-
+		int						getTotalPopulation() const;
 		vector<V2Country*>	getCores(const map<string, V2Country*>& countries) const;
-		int					getInfra() const { return railLevel; };
-		int					getFort() const { return fortLevel; };
-		int					getNavalBase() const { return navalBaseLevel; };
-		double				getAvgMil() const;
-		int					getPopulation(string type = "") const;
-		int					getLiteracyWeightedPopulation(string type = "") const;
+		int						getPopulation(string type = "") const;
+		int						getLiteracyWeightedPopulation(string type = "") const;
+
+		void						setOwner(V2Country* _owner)	{ owner = _owner; };
+
+		string					getOwnerString()	const { return ownerString; };
+		V2Country*				getOwner()			const { return owner; };
+		int						getInfra()			const { return railLevel; };
+		int						getFort()			const { return fortLevel; };
+		int						getNavalBase()		const { return navalBaseLevel; };
 
 	private:
-		void outputPops(FILE*) const;
-		void combinePops();
-		bool growSoldierPop(V2Pop* pop);
-
-		string							filename;
-		bool								coastal;
-		int								num;
-		string							name;
-		string								ownerString;			// a string with the owner's tag
-		V2Country*							owner;
-		vector<string>					cores;
-		int								colonyLevel;
-		int								colonial;
-		bool								colonised;
-		bool								landConnection;
-		bool								sameContinent;
-		bool								originallyInfidel;
-		int								oldPopulation;
-		vector<const V2Pop*>			oldPops;
-		vector<V2Pop*>					pops;
-		string							rgoType;
-		string							terrain;
-		int								lifeRating;
-		bool								slaveState;
-		int								fortLevel;
-		int								navalBaseLevel;
-		int								railLevel;
-		vector<const V2Factory*>	factories;
+		string			ownerString;			// a string with the owner's tag
+		V2Country*		owner;
+		vector<string>	cores;
+		vector<V2Pop*>	pops;
+		int				fortLevel;
+		int				navalBaseLevel;
+		int				railLevel;
 };
 
 

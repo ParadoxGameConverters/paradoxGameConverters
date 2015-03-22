@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -27,13 +27,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "../Date.h"
+#include "../Parsers/Object.h"
 #include <vector>
 
 
 
 struct V2Agreement
 {
-	V2Agreement() { ; };
 	V2Agreement(Object* obj);
 
 	string	type;
@@ -46,13 +46,11 @@ struct V2Agreement
 class V2Diplomacy
 {
 	public:
-		V2Diplomacy() { agreements.clear(); };
+		V2Diplomacy()	{ agreements.clear(); };
 		V2Diplomacy(Object *obj);
-		void output() const;
 
-		void addAgreement(V2Agreement agr) { agreements.push_back(agr); };
+		vector<V2Agreement>&	getAgreements()	{ return agreements; };
 
-		vector<V2Agreement>	&getAgreements() { return agreements; };
 	private:
 		vector<V2Agreement>	agreements;
 };

@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -34,27 +34,24 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 class V2Relations
 {
 	public:
-		V2Relations(string newTag);
 		V2Relations(Object* obj);
-		void output(FILE* out) const;
 
-		void		setLevel(int level);
+		string	getTag()			const { return tag; }
+		int		getRelations()	const { return value; }
+		int		getLevel()		const { return level; }
 
-		string	getTag()			const { return tag; };
-		int		getRelations()	const { return value; };
-		int		getLevel()		const { return level; };
+		bool hasMilitaryAccess()	const { return militaryAccess; }
+		date getDiplomatLastSent()	const { return lastSendDiplomat; }
+		date getLastWar()				const { return lastWar; }
+		date getTruceUntil()			const { return truceUntil; }
 
-		bool hasMilitaryAccess() const { return militaryAccess; };
-		date getDiplomatLastSent() const { return lastSendDiplomat; };
-		date getLastWar() const { return lastWar; };
-		date getTruceUntil() const { return truceUntil; };
 	private:
 		string	tag;
 		int		value;
 		bool		militaryAccess;
 		date		lastSendDiplomat;
 		date		lastWar;
-		date truceUntil;
+		date		truceUntil;
 		int		level;
 };
 
