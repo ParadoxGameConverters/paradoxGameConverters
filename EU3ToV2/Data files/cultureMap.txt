@@ -274,7 +274,7 @@ link = { vic = telegu eu3 = telegu }
 link = { vic = malagasy eu3 = madagasque }
 link = { vic = tuareg eu3 = tuareg }
 link = { vic = senegambian eu3 = senegambian }
-link = { vic = bantu eu3 = bantu }
+link = { vic = zulu eu3 = bantu }
 link = { vic = dyula eu3 = dyola }
 link = { vic = sudanese eu3 = nubian }
 link = { vic = somali eu3 = somali }

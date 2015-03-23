@@ -23,11 +23,11 @@
 
 slaveCultureMap = {
 
-#link = { v2 = afro_american eu4 = english region = northeastern_america }
-#link = { v2 = afro_american eu4 = english region = eastern_america }
-#link = { v2 = afro_american eu4 = english region = northern_america }
-#link = { v2 = afro_american eu4 = english region = australia }
-#link = { v2 = afro_american eu4 = english eu4 = american region = central_american }
+link = { v2 = afro_american eu4 = english region = northeastern_america }
+link = { v2 = afro_american eu4 = english region = eastern_america }
+link = { v2 = afro_american eu4 = english region = northern_america }
+link = { v2 = afro_american eu4 = english region = australia }
+link = { v2 = afro_american eu4 = english eu4 = american region = central_american }
 link = { v2 = afro_american eu4 = american }
 link = { v2 = afro_caribbean eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish }
 link = { v2 = afro_caribeno eu4 = visigothic eu4 = castillian eu4 = galician eu4 = catalan eu4 = andalucian }
