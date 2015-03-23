@@ -64,7 +64,7 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-V2World::V2World()
+V2World::V2World(vector<pair<string, string>> minorities)
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
@@ -136,15 +136,117 @@ V2World::V2World()
 		}
 	}
 
+	// Get province names
+	if (_stat(".\\blankMod\\output\\localisation\\text.csv", &st) == 0)
+	{
+		getProvinceLocalizations(".\\blankMod\\output\\localisation\\text.csv");
+	}
+	else
+	{
+		getProvinceLocalizations((Configuration::getV2Path() + "\\localisation\\text.csv"));
+	}
+
 	// set V2 basic population levels
 	LOG(LogLevel::Info) << "Importing historical pops.";
 	//map< string, map<string, long int> > countryPops; // country, poptype, num
 
 	totalWorldPopulation	= 0;
 	set<string> fileNames;
+	WinUtils::GetAllFilesInFolder(".\\blankMod\\output\\history\\pops\\1836.1.1\\", fileNames);
+	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+	{
+		list<int>* popProvinces = new list<int>;
+		Object*	obj2	= doParseFile((".\\blankMod\\output\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
+		vector<Object*> leaves = obj2->getLeaves();
+		for (unsigned int j = 0; j < leaves.size(); j++)
+		{
+			int provNum = atoi(leaves[j]->getKey().c_str());
+			map<int, V2Province*>::iterator k = provinces.find(provNum);
+			if (k == provinces.end())
+			{
+				LOG(LogLevel::Warning) << "Could not find province " << provNum << " for original pops.";
+				continue;
+			}
+			else
+			{
+				/*auto countryPopItr = countryPops.find(k->second->getOwner());
+				if (countryPopItr == countryPops.end())
+				{
+					map<string, long int> newCountryPop;
+					pair<map< string, map<string, long int> >::iterator, bool> newIterator = countryPops.insert(make_pair(k->second->getOwner(), newCountryPop));
+					countryPopItr = newIterator.first;
+				}*/
+
+				int provincePopulation			= 0;
+				int provinceSlavePopulation	= 0;
+
+				popProvinces->push_back(provNum);
+				vector<Object*> pops = leaves[j]->getLeaves();
+				for(unsigned int l = 0; l < pops.size(); l++)
+				{
+					string	popType		= pops[l]->getKey();
+					int		popSize		= atoi(pops[l]->getLeaf("size").c_str());
+					string	popCulture	= pops[l]->getLeaf("culture");
+					string	popReligion	= pops[l]->getLeaf("religion");
+
+					/*auto popItr = countryPopItr->second.find(pops[l]->getKey());
+					if (popItr == countryPopItr->second.end())
+					{
+						long int newPopSize = 0;
+						pair<map<string, long int>::iterator, bool> newIterator = countryPopItr->second.insert(make_pair(popType, newPopSize));
+						popItr = newIterator.first;
+					}
+					popItr->second += popSize;*/
+
+					totalWorldPopulation += popSize;
+					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, popReligion);
+					k->second->addOldPop(newPop);
+
+					for (auto minorityItr : minorities)
+					{
+						if ((popCulture == minorityItr.first) && (popReligion == minorityItr.second))
+						{
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+						else if ((minorityItr.first == "") && (popReligion == minorityItr.second))
+						{
+							newPop->setCulture("");
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+						else if ((popCulture == minorityItr.first) && (minorityItr.second == ""))
+						{
+							newPop->setReligion("");
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+					}
+
+					if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
+					{
+						provinceSlavePopulation += popSize;
+					}
+					provincePopulation += popSize;
+				}
+				auto province = provinces.find(provNum);
+				if (province != provinces.end())
+				{
+					province->second->setSlaveProportion( 1.0 * provinceSlavePopulation / provincePopulation);
+				}
+			}
+			popRegions.insert( make_pair(*itr, popProvinces) );
+		}
+	}
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 	{
+		auto duplicateCheck = popRegions.find(*itr);
+		if (duplicateCheck != popRegions.end())
+		{
+			continue;
+		}
+
 		list<int>* popProvinces = new list<int>;
 		Object*	obj2	= doParseFile((Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\" + *itr).c_str());				// generic object
 		vector<Object*> leaves = obj2->getLeaves();
@@ -177,6 +279,7 @@ V2World::V2World()
 					string	popType		= pops[l]->getKey();
 					int		popSize		= atoi(pops[l]->getLeaf("size").c_str());
 					string	popCulture	= pops[l]->getLeaf("culture");
+					string	popReligion	= pops[l]->getLeaf("religion");
 
 					/*auto popItr = countryPopItr->second.find(pops[l]->getKey());
 					if (popItr == countryPopItr->second.end())
@@ -188,8 +291,29 @@ V2World::V2World()
 					popItr->second += popSize;*/
 
 					totalWorldPopulation += popSize;
-					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, pops[l]->getLeaf("religion"));
+					V2Pop* newPop = new V2Pop(popType, popSize, popCulture, popReligion);
 					k->second->addOldPop(newPop);
+
+					for (auto minorityItr : minorities)
+					{
+						if ((popCulture == minorityItr.first) && (popReligion == minorityItr.second))
+						{
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+						else if ((minorityItr.first == "") && (popReligion == minorityItr.second))
+						{
+							newPop->setCulture("");
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+						else if ((popCulture == minorityItr.first) && (minorityItr.second == ""))
+						{
+							newPop->setReligion("");
+							k->second->addMinorityPop(newPop);
+							break;
+						}
+					}
 
 					if ((popType == "slaves") || (popCulture.substr(0, 4) == "afro"))
 					{
@@ -335,7 +459,7 @@ V2World::V2World()
 			localParties.push_back(newParty);
 		}
 
-		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this);
+		V2Country* newCountry = new V2Country(tag, countryFileName, localParties, this, false, !staticSection);
 		if (staticSection)
 		{
 			potentialCountries.push_back(newCountry);
@@ -424,18 +548,12 @@ void V2World::output() const
 	LOG(LogLevel::Debug) << "Writing provinces";
 	for (map<int, V2Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
-		//i->second->sortPops();
 		i->second->output();
 	}
 
 	LOG(LogLevel::Debug) << "Writing countries";
 	for (auto itr = countries.begin(); itr != countries.end(); itr++)
 	{
-		itr->second->output();
-	}
-	for (map<string, V2Country*>::const_iterator itr = dynamicCountries.begin(); itr != dynamicCountries.end(); itr++)
-	{
-		itr->second->isANewCountry();
 		itr->second->output();
 	}
 	diplomacy.output();
@@ -552,7 +670,7 @@ void V2World::convertCountries(const EU3World& sourceWorld, const CountryMapping
 			if (!destCountry)
 			{ // No such V2 country exists yet for this tag so we make a new one.
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
-				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true);
+				destCountry = new V2Country(V2Tag, countryFileName, std::vector<V2Party*>(), this, true, false);
 			}
 			destCountry->initFromEU3Country(sourceCountry, outputOrder, countryMap, cultureMap, religionMap, unionCultures, governmentMap, inverseProvinceMap, techSchools, leaderMap, lt, regionsMap);
 			countries.insert(make_pair(V2Tag, destCountry));
@@ -1552,11 +1670,11 @@ void V2World::getProvinceLocalizations(string file)
 			int position = line.find_first_of(';');
 			int num = atoi( line.substr(4, position - 4).c_str() );
 			string name = line.substr(position + 1, line.find_first_of(';', position + 1) - position - 1);
-			for (unsigned int i = 0; i < provinces.size(); i++)
+			for (auto i: provinces)
 			{
-				if (provinces[i]->getNum() == num)
+				if (i.first == num)
 				{
-					provinces[i]->setName(name);
+					i.second->setName(name);
 					break;
 				}
 			}

@@ -44,7 +44,7 @@ class V2LeaderTraits;
 
 class V2World {
 	public:
-		V2World();
+		V2World(vector<pair<string, string>> minorities);
 		void output() const;
 		void createProvinceFiles(const EU3World& sourceWorld, const provinceMapping& provinceMap);
 		

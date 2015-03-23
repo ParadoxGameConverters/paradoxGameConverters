@@ -250,7 +250,11 @@ int ConvertEU3ToV2(const std::string& EU3SaveFileName)
 
 	// Parse V2 input file
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
-	V2World destWorld;
+	vector<pair<string, string>> minorityPops;
+	minorityPops.push_back(make_pair("ashkenazi","jewish"));
+	minorityPops.push_back(make_pair("sephardic","jewish"));
+	minorityPops.push_back(make_pair("","jewish"));
+	V2World destWorld(minorityPops);
 
 
 	// Construct factory factory

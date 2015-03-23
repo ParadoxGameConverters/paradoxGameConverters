@@ -494,6 +494,13 @@ cultureMapping initCultureMap(Object* obj) // TODO: consider cleaning up the dis
 				newD.second	= (*j)->getLeaf();
 				distinguishers.push_back(newD);
 			}
+			if ( (*j)->getKey() == "region" )
+			{
+				distinguisher newD;	// a new distinguiser
+				newD.first	= DTRegion;
+				newD.second	= (*j)->getLeaf();
+				distinguishers.push_back(newD);
+			}
 		}
 
 		for (vector<string>::iterator j = srcCultures.begin(); j != srcCultures.end(); j++)

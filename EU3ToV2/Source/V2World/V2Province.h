@@ -56,6 +56,7 @@ class V2Province
 		void determineColonial();
 		void addCore(string);
 		void addOldPop(const V2Pop*);
+		void addMinorityPop(V2Pop*);
 		void doCreatePops(WorldType game, double popWeightRatio, V2Country* _owner);
 		void addFactory(V2Factory* factory);
 		void addPopDemographic(V2Demographic d);
@@ -118,6 +119,7 @@ class V2Province
 		int							oldPopulation;
 		vector<V2Demographic>	demographics;
 		vector<const V2Pop*>		oldPops;
+		vector<V2Pop*>				minorityPops;
 		vector<V2Pop*>				pops;
 		double						slaveProportion;
 		string						rgoType;
