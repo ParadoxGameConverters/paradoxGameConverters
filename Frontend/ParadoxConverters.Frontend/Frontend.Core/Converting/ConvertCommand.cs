@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Commands;
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
@@ -11,7 +12,7 @@ using System.Threading;
 using System.Windows;
 using System.Windows.Threading;
 
-namespace Frontend.Core.Commands
+namespace Frontend.Core.Converting
 {
     /// <summary>
     /// The command that triggers the conversion process.
@@ -19,14 +20,18 @@ namespace Frontend.Core.Commands
     public class ConvertCommand : AsyncCommandBase
     {
         private const string configurationFileName = "configuration.txt";
+        private IModCopier modCopier;
+        private IDirectoryHelper directoryHelper;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertCommand"/> class.
         /// </summary>
         /// <param name="options">The options.</param>
-        public ConvertCommand(IEventAggregator eventAggregator, IConverterOptions options)
+        public ConvertCommand(IEventAggregator eventAggregator, IConverterOptions options, IModCopier modCopier, IDirectoryHelper directoryHelper)
             : base(eventAggregator, options)
         {
+            this.modCopier = modCopier;
+            this.directoryHelper = directoryHelper;
         }
 
         /// <summary>
@@ -59,7 +64,7 @@ namespace Frontend.Core.Commands
         /// <param name="parameter">The paramter passed to the <c>Execute</c> method of the command.</param>
         protected override void OnExecute(object parameter)
         {
-            this.SaveConfigurationFile();
+            this.MarshallMethod(() => this.SaveConfigurationFile(), DispatcherPriority.Send);
 
             // Reading process output syncronously. The async part is already handled by the command
             using (var process = new Process())
@@ -75,7 +80,7 @@ namespace Frontend.Core.Commands
                     RedirectStandardInput = true,
                     UseShellExecute = false,
                     RedirectStandardOutput = true,
-                    WorkingDirectory = DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter)
+                    WorkingDirectory = this.directoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter)
                 };
 
                 this.Log("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI, null);
@@ -134,7 +139,7 @@ namespace Frontend.Core.Commands
 
                 this.Log(sb.ToString(), LogEntrySeverity.Error, LogEntrySource.UI, null);
 
-                var log = Path.Combine(DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "log.txt");
+                var log = Path.Combine(this.directoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter), "log.txt");
 
                 if (File.Exists(log))
                 {
@@ -157,12 +162,12 @@ namespace Frontend.Core.Commands
             try
             {
                 // Save configuration file to same directory as the converter itself lives in, wherever that might be
-                var converterPathMinusFileName = DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter);
+                var converterPathMinusFileName = this.directoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter);
                 var absoluteConfigurationFilePath = Path.Combine(converterPathMinusFileName, configurationFileName);
 
                 if (true)//DiskPermissionHelper.CanWriteFileToFolder(outputPath))
                 {
-                    File.WriteAllText(absoluteConfigurationFilePath, OutputConfigurationFileHelper.BuiltOutputString(this.Options.CurrentConverter)); //TODO: Consider encoding problems
+                    File.WriteAllText(absoluteConfigurationFilePath, OutputConfigurationFileHelper.BuiltOutputString(this.Options.CurrentConverter, new DirectoryHelper())); //TODO: Consider encoding problems
                     this.EventAggregator.PublishOnUIThread(new LogEntry("Configuration file saved successfully as ", LogEntrySeverity.Info, LogEntrySource.UI, absoluteConfigurationFilePath));
                 }
             }
@@ -186,7 +191,7 @@ namespace Frontend.Core.Commands
             }
             else
             {
-                this.MoveOutputMod();
+                this.modCopier.MoveModFileAndFolder();
             }
 
             //TODO: Do we ever need to do both?
@@ -200,53 +205,6 @@ namespace Frontend.Core.Commands
             throw new NotImplementedException();
         }
         
-        /// <summary>
-        /// Moves the output mod file and folders
-        /// </summary>
-        private void MoveOutputMod()
-        {
-            // NOTE: This method may be V2 specific. I'll have to talk to Idhrendur about the rules for how this is/will be handled in other converters. 
-            // I'll figure out some generic way of handling any problems related to that when and if it occurs. 
-
-            var targetGameModPathItem = this.Options.CurrentConverter.RequiredItems.First(i => i.InternalTagName.Equals("targetGameModPath"));
-            var desiredFileName = Path.GetFileNameWithoutExtension(this.Options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue) + this.Options.CurrentConverter.TargetGame.SaveGameExtension;
-
-            // Copy the newly created output mod to the target game mod directory. 
-            // The mod consists of two things: One file and one folder named after the save. Ex: The folder "France144_11_11" and the file "France144_11_11.mod".
-            var converterWorkingDirectory = DirectoryHelper.GetConverterWorkingDirectory(this.Options.CurrentConverter);
-            var outputModFolderSourcePath = Path.Combine(converterWorkingDirectory, "output", desiredFileName);
-            var outputModFileSourcePath = Path.Combine(converterWorkingDirectory, "output", (desiredFileName + ".mod"));
-
-            var expectedAbsoluteOutputModFolderTargetPath = Path.Combine(targetGameModPathItem.SelectedValue, desiredFileName);
-            var expectedAbsoluteOutputModFileTargetPath = expectedAbsoluteOutputModFolderTargetPath + ".mod";
-
-            var modFileExists = File.Exists(expectedAbsoluteOutputModFileTargetPath);
-            var modFolderExists = Directory.Exists(expectedAbsoluteOutputModFolderTargetPath);
-
-            if (modFileExists || modFolderExists)
-            {
-                var confirmationMessage = string.Format("One or more parts of the output mod exists in {0} already. Overwrite?", targetGameModPathItem.SelectedValue);
-                var result = MessageBox.Show(confirmationMessage, "Confirmation Required", MessageBoxButton.YesNo);
-
-                if (result == MessageBoxResult.No)
-                {
-                    return;
-                }
-            }
-
-            try
-            {
-                File.Copy(outputModFileSourcePath, expectedAbsoluteOutputModFileTargetPath, true);
-                DirectoryCopyHelper.DirectoryCopy(outputModFolderSourcePath, expectedAbsoluteOutputModFolderTargetPath, true, true);
-                this.EventAggregator.PublishOnUIThread(new LogEntry("Copy complete. Ready to play - have fun!", LogEntrySeverity.Info, LogEntrySource.UI));                
-            }
-            catch (Exception e)
-            {
-                this.Log(e.Message, LogEntrySeverity.Error, LogEntrySource.UI, null);
-            }
-        }
-
-
         /// <summary>
         /// Builds the time span string.
         /// </summary>

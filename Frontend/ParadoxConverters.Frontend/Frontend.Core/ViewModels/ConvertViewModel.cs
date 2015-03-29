@@ -1,6 +1,9 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Commands;
+using Frontend.Core.Converting;
+using Frontend.Core.Helpers;
 using Frontend.Core.Model.Interfaces;
+using Frontend.Core.Proxies;
 using Frontend.Core.ViewModels.Interfaces;
 using System.Windows.Input;
 
@@ -33,7 +36,17 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                return this.convertCommand ?? (this.convertCommand = new ConvertCommand(this.EventAggregator, this.Options));
+                return this.convertCommand ?? (this.convertCommand = new ConvertCommand(this.EventAggregator, this.Options,
+                    new ModCopier(
+                    this.EventAggregator,
+                    this.Options,
+                    new FileProxy(),
+                    new FolderProxy(),
+                    new DirectoryHelper(),
+                    new MessageBoxProxy(),
+                    new DirectoryCopyHelper(),
+                    new SaveGameNameTranslator()),
+                    new DirectoryHelper()));
             }
         }
 

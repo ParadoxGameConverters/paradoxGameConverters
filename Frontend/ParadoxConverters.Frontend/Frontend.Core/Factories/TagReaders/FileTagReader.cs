@@ -11,7 +11,7 @@ namespace Frontend.Core.Factories.TagReaders
     public class FileTagReader : TagReaderBase
     {
         public FileTagReader(IEventAggregator eventAggregator)
-            : base(eventAggregator)
+            : base(eventAggregator, new DirectoryHelper())
         {
         }
 

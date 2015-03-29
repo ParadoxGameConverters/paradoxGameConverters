@@ -5,7 +5,7 @@ namespace Frontend.Core.Helpers
     /// <summary>
     /// Helper class meant to facilitate directory copy operations
     /// </summary>
-    public static class DirectoryCopyHelper
+    public class DirectoryCopyHelper : IDirectoryCopyHelper
     {
         /// <summary>
         /// Copies a directory.
@@ -16,7 +16,7 @@ namespace Frontend.Core.Helpers
         /// <param name="overwrite">if true, overwrite existing files</param>
         /// <exception cref="System.IO.DirectoryNotFoundException">Source directory does not exist or could not be found: 
         ///                     + sourceDirName</exception>
-        public static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool overwrite)
+        public void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs, bool overwrite)
         {
             // Get the subdirectories for the specified directory.
             DirectoryInfo dir = new DirectoryInfo(sourceDirName);
