@@ -9,12 +9,31 @@
           <preference>
             <name>start_date</name>
             <friendlyName>Start Date</friendlyName>
-            <description>The date on which the game is to start. Default: Januar 1st, 1836</description>
+            <description>The date on which the game is to start. Default: January 1st, 1836</description>
             <value>1836.1.1</value>
             <minDateValue>1821.1.1</minDateValue>
             <dateFormat>yyyy.m.d</dateFormat>
             <!-- Only for parsing from config file -->
             <isDate>true</isDate>
+          </preference>
+		  <preference>
+            <name>resetProvinces</name>
+            <friendlyName>Reset Provinces?</friendlyName>
+            <description>Whether or not to reset resettable V2 provinces</description>
+            <entryOptions>
+              <entryOption>
+                <name>yes</name>
+                <friendlyName>Yes</friendlyName>
+                <description>Reset provinces</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>no</name>
+                <friendlyName>No</friendlyName>
+                <description>Don't reset provinces</description>
+                <isDefault>true</isDefault>
+              </entryOption>              
+            </entryOptions>
           </preference>
           <preference>
             <name>max_literacy</name>
@@ -101,6 +120,25 @@
                 <name>all</name>
                 <friendlyName>All</friendlyName>
                 <description>Remove all of them</description>
+              </entryOption>
+            </entryOptions>
+          </preference>
+		  <preference>
+            <name>convertPopTotals</name>
+            <friendlyName>Convert pop totals?</friendlyName>
+            <description>Whether or not the population totals should be converted.</description>
+            <entryOptions>
+              <entryOption>
+                <name>yes</name>
+                <friendlyName>Yes</friendlyName>
+                <description>The population totals should be converted</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>no</name>
+                <friendlyName>No</friendlyName>
+                <description>The population totals should NOT be converted</description>
+                <isDefault>true</isDefault>
               </entryOption>
             </entryOptions>
           </preference>
