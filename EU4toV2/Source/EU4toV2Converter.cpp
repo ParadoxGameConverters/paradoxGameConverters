@@ -422,16 +422,26 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	}
 	mergeNations(sourceWorld, obj);
 
+	// Parse minoruty pops map
+	LOG(LogLevel::Info) << "Parsing minority pops mappings";
+	obj = doParseFile("minorityPops.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file minorityPops.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse minorityPops.txt";
+		return 1;
+	}
+	minorityPopMapping minorityPops = initMinorityPopMap(obj->getLeaves()[0]);
+
 	// Parse V2 input file
 	LOG(LogLevel::Info) << "Parsing Vicky2 data";
-	vector<pair<string, string>> minorityPops;
-	minorityPops.push_back(make_pair("ashkenazi","jewish"));
-	minorityPops.push_back(make_pair("sephardic","jewish"));
-	minorityPops.push_back(make_pair("","jewish"));
 	V2World destWorld(minorityPops);
-
-
-	//// Construct factory factory
+	
+	// Construct factory factory
 	LOG(LogLevel::Info) << "Determining factory allocation rules.";
 	V2FactoryFactory factoryBuilder;
 

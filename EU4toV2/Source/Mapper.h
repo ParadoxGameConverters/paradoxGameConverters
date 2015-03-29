@@ -93,6 +93,11 @@ typedef map<string, string> religionMapping;		// <srcReligion, destReligion>
 religionMapping initReligionMap(Object* obj);
 
 
+// Minority cultures/religion
+typedef vector<pair<string, string>> minorityPopMapping;
+minorityPopMapping initMinorityPopMap(Object* obj);
+
+
 // Union Mappings
 typedef vector< pair<string, string> > unionMapping;	// <cultures, tag>
 unionMapping initUnionMap(Object* obj);

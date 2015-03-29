@@ -19,6 +19,7 @@ copy "Data_Files\colonial.txt" "release\colonial.txt"
 copy "Data_Files\ck2titlemap.txt" "release\ck2titlemap.txt"
 copy "Data_Files\port_blacklist.txt" "release\port_blacklist.txt"
 copy "Data_Files\port_whitelist.txt" "release\port_whitelist.txt"
+copy "Data_Files\minorityPops.txt" "release\minorityPops.txt"
 
 rem hg log > Release/log.txt
 hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt

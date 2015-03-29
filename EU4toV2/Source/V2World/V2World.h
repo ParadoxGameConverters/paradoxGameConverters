@@ -45,7 +45,7 @@ class V2LeaderTraits;
 
 class V2World {
 	public:
-		V2World(vector<pair<string, string>> minorities);
+		V2World(const minorityPopMapping& minorities);
 		void output() const;
 		void createProvinceFiles(const EU4World& sourceWorld, const provinceMapping& provinceMap);
 		const void setFlagColourMapping(FlagColourMapping flagColours) { flagColourMapping = flagColours; };

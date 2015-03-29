@@ -69,7 +69,7 @@ typedef struct fileWithCreateTime
 
 
 
-V2World::V2World(vector<pair<string, string>> minorities)
+V2World::V2World(const minorityPopMapping& minorities)
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
