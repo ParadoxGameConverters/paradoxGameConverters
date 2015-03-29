@@ -1,7 +1,8 @@
 <Window x:Class="Frontend.Client.ShellView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Paradox converter project"
+        Title="Paradox converter project" 
+        Icon="converter.ico"
         Height="650">
 
     <Grid>
