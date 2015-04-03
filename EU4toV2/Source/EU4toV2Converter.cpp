@@ -845,7 +845,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				LOG(LogLevel::Error) << "Could not parse file " << modRegionFile;
 				exit(-1);
 			}
-			EU4Religion::parseReligions(obj);
+			initEU4RegionMap(obj, EU4RegionsMap);
 		}
 	}
 
