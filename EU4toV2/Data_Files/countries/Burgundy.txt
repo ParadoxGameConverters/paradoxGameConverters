@@ -230,7 +230,7 @@ unit_names = {
 	dreadnought = {
 		"Dunkerque" "Strasbourg" "Richelieu" "Clemenceau" "Petain" "Napoléon" "Poincare"
 		"Louis XIV" "Alsace" "Bourgogne" "Poitou" "Calais" "Rouen" "Brest" "Dévastation"
-		"Courbet" "Amiral DuperrE "Terrible" "Indomptable" "Caiman" "Requin" "Admiral Baudin"
+		"Courbet" "Amiral Duperre" "Terrible" "Indomptable" "Caiman" "Requin" "Admiral Baudin"
 		"Formidable" "Hoche" "Marceau" "Magenta" "Neptune" "Brennus" "Charles Martel" "Carnot"
 		"Jauréguiberry" "Masséna" "Bouvet" "Charlemagne" "Saint Louis" "Gaulois" "Henri IV"
 		"Iéna" "Suffren" "République" "Patrie" "Démocratie" "Justice" "LibertE "VeritE
@@ -261,9 +261,9 @@ unit_names = {
 		"Jean de Vienne" "Gloire" "Marseillaise" "Georges Leygues" "De Grasse" "La Fantasque"
 		"Iphigenie" "Naiade" "Arethuse" "Dubourdieu" "Milan" "Belliqueuse" "Sfax" "Tage"
 		"Amiral Cécille" "Davout" "Suchet" "CoElogon" "Forbin" "Surcouf" "Cosmao" "Lalande"
-		"Troude" "Galilée" "Lavoisier" "Linois" "TunisiE "Isly" "Bugeaud" "Chasseloup-Laubat"
+		"Troude" "Galilée" "Lavoisier" "Linois" "Tunisi" "Isly" "Bugeaud" "Chasseloup-Laubat"
 		"Friant" "Descartes" "Pascal" "Cassard" "D'Assas" "Du Chayla" "Catinat" "Protet"
-		"D'Entrecasteaux" "Guichen" "Châteaurenault" "D'Estrées" "Infernet" "Jurien de la Gravière"
+		"D'Entrecasteaux" "Guichen" "Châteaurenault" "D'Estréese" "Infernet" "Jurien de la Gravière"
 		"Pluton" "Emile Bertin" "Dupuy de Lome" "Admiral Charner" "Bruix" "Chanzy" "Latouche-Treville"
 		"Pothau" "Dupetit-Thouars" "Gueydon" "Montcalm" "Desaix" "Dupleix" "Kleber"
 		"Amiral Aube" "Conde" "Sully" "Leon Gambetta" "Victor Hugo" "Jules Michelet"
@@ -272,7 +272,7 @@ unit_names = {
 	}
 	frigate = {
 		"Condor" "Epervier" "Faucon" "Vautour" "Wattignies" "Levrier" "Casablanca" "D'Iberville"
-		"Cassini" "Lahire" "CircE "Hermione" "Pallas" "Sémiramis" "Armorique" "Junon"
+		"Cassini" "Lahire" "Circe" "Hermione" "Pallas" "Sémiramis" "Armorique" "Junon"
 		"Magicienne" "Thémis" "Flore"
 	}
 	monitor = {
@@ -287,6 +287,6 @@ unit_names = {
 		"Eldorado" "Magellan" "Montezuma" "Orénoque" "Panama" "Albatros" "Descartes" "Vauban"
 		"Caffarelli" "Mogador" "Pomone" "Isly" "Bellone" "Foudre" "Impératrice Eugénie"
 		"Souveraine" "Audacieuse" "Impétueuse" "Ardente" "Victoire" "Guerrière" "Renommée"
-		"DanaE "Pandore" "Zénobie" "Clorinde" "Astrée"
+		"Danae" "Pandore" "Zénobie" "Clorinde" "Astrée"
 	}
 }

@@ -223,7 +223,7 @@ pagan = {
 	}
 	west_african_pagan_reformed = {
 		icon = 21
-		color = { 91 49 13 }
+		color = { .355 .191 .05 }
 		pagan = yes
 	}
 

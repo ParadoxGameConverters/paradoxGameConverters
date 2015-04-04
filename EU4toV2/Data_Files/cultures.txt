@@ -38,7 +38,7 @@ germanic = {
 	german = {
 		color = { 70 70 70 }
 		first_names = { Adelbert Adolf Albrecht Alexander Alfons Alfred August Alois Anton Arthur
-		Bernhard Burkhard Christian Dieter Edmund Eduard Edwin Engelbert Ernst Erwin Erich Ernst 
+		Bernhard Burkhard Christian Dieter Edmund Eduard Edwin Engelbert Erwin Erich Ernst 
 		Ferdinand Florian Franz Friedrich Fritz Georg Gebhard Gerhard Gottfried Günther
 		Gustav Hasso Heinrich Helmuth Hermann Horst Hugo Jakob Joachim Johann Joseph Julius Jürgen 
 		Karl Konrad Kurt Leonhard Leopold Lorenz Lothar Ludwig Lukas Manfred Maximilian Michael 
@@ -59,6 +59,7 @@ germanic = {
 		"von Sachsen-Weimar-Eisenach" "von Schlieffen" "von Schwarzburg" "von Spee" "von Tirpitz" "von Waldeck und Pyrmont" "von Wettin" 
 		"von Wrangel" "von Zieten" "zur Lippe" "von Roon" "von Hohenhausen" "d'Aspre von Hoobreuk" "von Hortstein" "von Hötzendorf" "von Kirbach"
 		"von Kobratin" "von Schönburg" "von Tegetthoff" "von Uchatius" "von Wittelsbach" "von Württemberg" "von Zahringen" Wagner Wittmann "zu Hohenlohe"}
+	}
 	ashkenazi = { 
 		color = { 130 100 100}
 		first_names = { Abraham Albert Benjamin Daniel David Franz Gustav Heinrich Hermann Isaak Ignatz Jakob Jeremias Josef Leonhard Michael Mose Salomon Saul Shmuel
@@ -380,7 +381,7 @@ italian = {
 
 	lombard = { 
 		color = { 150 130 160 }
-		first_names = { Adaloald Agilulf Aistulf Alahis Alboin Ansprand Arioald Aripert Authari Cleph Cunincpert Desideri Garibald Godepert Grimuald Hildeprand Liutpert Liutprand Parctarit Perctarit Raginpert Ragnipert Ratchis Rodoald Rothari Aripert Parctarit Alahis Cunincpert Liutpert Ragnipert Ansprand Liutprand Ratchis }
+		first_names = { Adaloald Agilulf Aistulf Alahis Alboin Ansprand Arioald Aripert Authari Cleph Cunincpert Desideri Garibald Godepert Grimuald Hildeprand Liutpert Liutprand Parctarit Perctarit Raginpert Ragnipert Ratchis Rodoald Rothari }
 
 		last_names = { Albhi Aleard Amistada Balda Degan Gadoald Gairulf Gisulph Gotefred Gualenghi Haimon Haistulf Hardman Harjowalda Hauptwolf Nok Ragin Rambold Reginmund Ridbald Rudonis Sala Schirald Schiriwaite Sigebald Teudald Tierwysch Wala Walfrit Zazza }
 	}
@@ -492,7 +493,7 @@ french = {
 		Foch Forey "Franchet d'Espèrey" Gallieni Gouraud Guillaumat Hamelin Harispe Hoche Humbert
 		Jaurès Joffre Lebouef Lyautey Murat "Ney d'Elchingen" Nivelle Péllissier Petain Vaillant }
 	}
-	occitan = {
+	occitain = {
 		color = {120 120 200}
 		first_names = { Aimerics Albert Ancelmes Azemars Bertrans Donat  Dragonetz Espargs Estève  Garcias Gaston Gaucelis Gautiers Girauds Guilheiumes Guinsestre Guiraut Jaques Jaufres Joan  Josèp  Loís  Maria  Michels Pau  Pelfort Pèire Rainaut Ratiers Rauli Sevis Sicart Ugos }
 		last_names = {
@@ -858,7 +859,7 @@ levantine = {
 		Tavakyalian Tchartichian Tcholakhian Ter-Sarkayan Terzian Tigraniants Tigranov Toshian Varapetian Vartanian
 		}
 	}
-	sephardi = {
+	sephardic = {
 		color = {50 60 10}
 		first_names = { Abraham Amos Baruch Binyamin Daniel David Efraim Ehud Eli Eliezer Elijah Gavriel Hebel Immanuel Itzhak Levi Mattiyahu Mensahe Mikhael Moshe 
 		Natan Noach Reuben Roi Shalom Shimon Tovia Uriel Uzziel Yaakov Yachin Yafe Yehoshua Yehudah Yochanan Yonatan Yosef Zohar
@@ -2706,5 +2707,4 @@ bears = {
 		
 		last_names = { Beliy Medved Bjorn Rawrrorr Rrrrr Grrr Gyp Qoi Styrbjorn Blomstfjellet }
 	}
-	union = SCA
 }
