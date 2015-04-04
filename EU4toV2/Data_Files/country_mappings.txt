@@ -472,7 +472,7 @@ link = { eu4 = KAT v2 = KAT }  # Kathiawar (NEW)
 link = { eu4 = KGR v2 = KGR }  # Kangra (NEW)
 link = { eu4 = KLN v2 = KLN }  # Keladi (NEW)
 link = { eu4 = KMT v2 = KMT }  # Koch (NEW)
-link = { eu4 = KOC v2 = TRA }  # Kochin => Travanacore
+link = { eu4 = KOC v2 = VND }  # Kochin => Venad
 link = { eu4 = MAB v2 = MAB }  # Malabar (NEW)
 link = { eu4 = MAW v2 = JOD }  # Marwar => Jodhpur
 link = { eu4 = MER v2 = MEW }  # Mewar
