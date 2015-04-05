@@ -10,6 +10,7 @@ namespace Frontend.Core.Converting.Operations
     {
         Success,
         Warning,
-        Error
+        Error,
+        Cancelled
     }
 }

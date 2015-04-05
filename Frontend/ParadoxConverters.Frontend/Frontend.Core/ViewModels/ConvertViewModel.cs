@@ -9,6 +9,7 @@ using Frontend.Core.Proxies;
 using Frontend.Core.ViewModels.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Windows.Input;
 
 namespace Frontend.Core.ViewModels
@@ -23,6 +24,7 @@ namespace Frontend.Core.ViewModels
         private IOperationProvider operationProvider;
         private int progressInPercent;
         private bool isBusy;
+        private CancellationTokenSource cancellationTokenSource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertViewModel"/> class.
@@ -46,6 +48,8 @@ namespace Frontend.Core.ViewModels
             this.operationProvider.AddOperation(new ConvertSaveOperation(this.Options, new FileProxy(), new DirectoryHelper()));
 
             this.operationProvider.AddOperation(new CopyModOperation());
+
+            this.cancellationTokenSource = new CancellationTokenSource();
         }
 
         public ICommand RunOperationsCommand
@@ -57,7 +61,8 @@ namespace Frontend.Core.ViewModels
                     this.Options, 
                     new OperationProcessor(this.EventAggregator), 
                     this.operationProvider,
-                    percent => this.UpdateProgress(percent)
+                    percent => this.UpdateProgress(percent),
+                    this.cancellationTokenSource.Token
                     ));
             }
         }
@@ -66,7 +71,7 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                return this.cancelCommand ?? (this.cancelCommand = new CancelConvertingCommand(this.EventAggregator));
+                return this.cancelCommand ?? (this.cancelCommand = new CancelConvertingCommand(this.EventAggregator, this.cancellationTokenSource));
             }
         }
 

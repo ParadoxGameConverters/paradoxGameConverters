@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Frontend.Core.Converting
@@ -18,19 +19,22 @@ namespace Frontend.Core.Converting
         private IOperationProcessor processor;
         private IOperationProvider provider;
         private Action<int> reportProgress;
+        private CancellationToken token;
 
         public RunOperationsCommand(
             IEventAggregator eventAggregator, 
             IConverterOptions options, 
             IOperationProcessor processor, 
             IOperationProvider provider,
-            Action<int> reportProgress)
+            Action<int> reportProgress,
+            CancellationToken token)
             : base(eventAggregator)
         {
             this.options = options;
             this.processor = processor;
             this.provider = provider;
             this.reportProgress = reportProgress;
+            this.token = token;
         }
 
         protected override bool OnCanExecute(object parameter)
@@ -42,7 +46,7 @@ namespace Frontend.Core.Converting
         {
             var progressIndicator = new Progress<int>(this.reportProgress);
             this.provider.Operations.ForEach(o => o.State = OperationState.NotStarted);
-            this.processor.ProcessQueue(this.provider.Operations, progressIndicator);
+            this.processor.ProcessQueue(this.provider.Operations, progressIndicator, this.token);
         }
     }
 }

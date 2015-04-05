@@ -26,47 +26,66 @@ namespace Frontend.Core.Converting.Operations
             };
         }
 
-        public async Task<int> ProcessQueue(IEnumerable<IOperationViewModel> operations, IProgress<int> progress)
+        public async Task<int> ProcessQueue(IEnumerable<IOperationViewModel> operations, IProgress<int> progress, CancellationToken token)
         {
             int totalCount = operations.Count();
             int processCount = await Task.Run<int>(() =>
                 {
-                    int tempCount = 0;
+                    int currentCount = 0;
 
                     foreach (var operation in operations)
                     {
-                        tempCount++;
+                        currentCount++;
 
                         operation.State = OperationState.InProgress;
                         this.eventAggregator.PublishOnUIThread(new LogEntry(operation.Description, LogEntrySeverity.Info, LogEntrySource.UI));
 
-                        Task<OperationResult> task;
+                        var dummyResult = new OperationResult();
+                        Task<OperationResult> task = Task.FromResult(dummyResult);
 
                         try
                         {
                             task = operation.Process();
+                            token.ThrowIfCancellationRequested();
 
                             this.LogResultMessages(task.Result);
                             this.resultHandlershandle[task.Result.State](task.Result, operation);
+
+                            this.ReportProgress(progress, currentCount, totalCount);
+                        }
+                        catch (OperationCanceledException oce)
+                        {
+                            this.HandleCancellation(task.Result, operation, operations, progress);
+                            break;
                         }
                         catch (Exception e)
                         {
-                            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Unhandled exception occurred: {0}" + e.Message), LogEntrySeverity.Error, LogEntrySource.UI));
-                        }
-                        finally
-                        {
-                            if (progress != null)
-                            {
-                                int progressValue = tempCount * 100 / totalCount;
-                                progress.Report(progressValue);
-                            }
+                            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Unhandled exception occurred: {0}", e.Message), LogEntrySeverity.Error, LogEntrySource.UI));
                         }
                     }
 
-                    return tempCount;
-                });
+                    return currentCount;
+                }, token);
 
             return processCount;
+        }
+
+        private void ReportProgress(IProgress<int> progress, int currentCount, int totalCount)
+        {
+            if (progress != null)
+            {
+                int progressValue = currentCount * 100 / totalCount;
+                progress.Report(progressValue);
+            }
+        }
+
+        private void HandleCancellation(OperationResult result, IOperationViewModel operation, IEnumerable<IOperationViewModel> operations, IProgress<int> progressIndicator)
+        {
+            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Operation {0} cancelled", operation.Description), LogEntrySeverity.Warning, LogEntrySource.UI));
+
+            operations.Where(o => o.State == OperationState.InProgress || o.State == OperationState.NotStarted)
+                                .ForEach(o => o.State = OperationState.Cancelled);
+            progressIndicator.Report(100);
         }
 
         private void HandleSuccess(OperationResult result, IOperationViewModel operation)
