@@ -1,4 +1,6 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Converting.Operations;
+using Frontend.Core.Converting.Tasks;
 using Frontend.Core.Events.EventArgs;
 using Frontend.Core.Factories;
 using Frontend.Core.Model;
@@ -68,7 +70,7 @@ namespace Frontend.Core.ViewModels
                     steps.Add(new PreferencesViewModel(this.EventAggregator, this.Options, category));
                 }
 
-                steps.Add(new ConvertViewModel(this.EventAggregator, this.Options));
+                steps.Add(new ConvertViewModel(this.EventAggregator, this.Options, new OperationProvider(this.EventAggregator)));
 
                 this.EventAggregator.PublishOnUIThread(new PreferenceStepOperationArgs(PreferenceOperation.Clear, null));
                 this.EventAggregator.PublishOnUIThread(new PreferenceStepOperationArgs(PreferenceOperation.AddSteps, steps));

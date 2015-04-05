@@ -10,16 +10,35 @@
             <Setter Property="Width" Value="300"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
         </Style>
+
+        <DataTemplate x:Key="OperationTemplate">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="{Binding Description}"/>
+                <TextBlock Text=" - "/>
+                <TextBlock Text="{Binding State}"/>
+            </StackPanel>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="Save configuration and convert!" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding ConvertCommand}" HorizontalAlignment="Center" Height="25"/>
-        <TextBlock Grid.Row="1" Text="{Binding Options.CurrentConverter.AdditionalInformation}" HorizontalAlignment="Center" Margin="10, 20, 10, 0"/>
+        <Button Content="Save configuration and convert!" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding RunOperationsCommand}" 
+                HorizontalAlignment="Center" Height="25"/>
+        <Button Content="Cancel" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding CancelCommand}" 
+                HorizontalAlignment="Center" Height="25" Grid.Row="1"/>
+        <TextBlock Grid.Row="2" Text="{Binding Options.CurrentConverter.AdditionalInformation}" HorizontalAlignment="Center" Margin="10, 20, 10, 0"/>
+        <ProgressBar Grid.Row="3" Minimum="0" Maximum="5" Value="{Binding ProgressInPercent, Mode=OneWay}" Height="30" Width="100"/>
+
+        <Border Grid.Row="4" Background="White">
+            <ItemsControl ItemsSource="{Binding Operations}" ItemTemplate="{StaticResource OperationTemplate}"/>
+        </Border>
     </Grid>
 </UserControl>

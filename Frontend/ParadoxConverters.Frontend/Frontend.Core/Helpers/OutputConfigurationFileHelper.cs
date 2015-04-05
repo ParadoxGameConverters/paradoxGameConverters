@@ -1,18 +1,26 @@
 ﻿using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
+using Frontend.Core.Proxies;
 using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace Frontend.Core.Helpers
 {
-    public static class OutputConfigurationFileHelper
+    public class OutputConfigurationFileHelper : IOutputConfigurationFileHelper
     {
+        IFileProxy fileProxy;
+
+        public OutputConfigurationFileHelper(IFileProxy fileProxy)
+        {
+            this.fileProxy = fileProxy;
+        }
+
         /// <summary>
         /// Constructs the string that will be saved to disk as the config file.
         /// </summary>
         /// <returns></returns>
-        public static string BuiltOutputString(IConverterSettings converterSettings, IDirectoryHelper directoryHelper)
+        public string BuiltOutputString(IConverterSettings converterSettings, IDirectoryHelper directoryHelper)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -47,14 +55,14 @@ namespace Frontend.Core.Helpers
             return sb.ToString();
         }
 
-        public static string ReadTextFile(string path)
+        public string ReadTextFile(string path)
         {
-            if (!File.Exists(path))
+            if (!this.fileProxy.Exists(path))
             {
                 return string.Empty;
             }
 
-            var text = File.ReadAllText(path);
+            var text = this.fileProxy.ReadAllText(path);
 
             return text;
         }

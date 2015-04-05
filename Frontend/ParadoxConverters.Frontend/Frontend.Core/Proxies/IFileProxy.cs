@@ -6,5 +6,9 @@ namespace Frontend.Core.Proxies
         bool Exists(string path);
 
         void Copy(string sourceFileName, string destFileName, bool overwrite);
+
+        void WriteAllText(string path, string contents);
+
+        string ReadAllText(string path);
     }
 }
