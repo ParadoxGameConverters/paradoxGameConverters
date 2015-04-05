@@ -12,22 +12,22 @@ namespace Frontend.Core.Converting
 {
     public class CancelConvertingCommand : CommandBase
     {
-        private CancellationTokenSource tokenSource;
+        private Func<CancellationTokenSource> tokenSourceFunc;
 
-        public CancelConvertingCommand(IEventAggregator eventAggregator, CancellationTokenSource tokenSource)
+        public CancelConvertingCommand(IEventAggregator eventAggregator, Func<CancellationTokenSource> tokenSourceFunc)
             : base(eventAggregator)
         {
-            this.tokenSource = tokenSource;
+            this.tokenSourceFunc = tokenSourceFunc;
         }
 
         protected override bool OnCanExecute(object parameter)
         {
-            return !tokenSource.IsCancellationRequested;
+            return !tokenSourceFunc().IsCancellationRequested;
         }
 
         protected override void OnExecute(object parameter)
         {
-            this.tokenSource.Cancel();
+            this.tokenSourceFunc().Cancel();
         }
     }
 }

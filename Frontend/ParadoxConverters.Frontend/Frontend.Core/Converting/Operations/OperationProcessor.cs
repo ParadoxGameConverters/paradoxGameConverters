@@ -22,7 +22,8 @@ namespace Frontend.Core.Converting.Operations
             {
                 { OperationResultState.Success, this.HandleSuccess },
                 { OperationResultState.Warning, this.HandleWarning },
-                { OperationResultState.Error, this.HandleErrors }
+                { OperationResultState.Error, this.HandleErrors },
+                { OperationResultState.Cancelled, this.HandleCancellation }
             };
         }
 
@@ -55,7 +56,7 @@ namespace Frontend.Core.Converting.Operations
                         }
                         catch (OperationCanceledException oce)
                         {
-                            this.HandleCancellation(task.Result, operation, operations, progress);
+                            this.resultHandlershandle[OperationResultState.Cancelled](task.Result, operation);
                             break;
                         }
                         catch (Exception e)
@@ -79,13 +80,9 @@ namespace Frontend.Core.Converting.Operations
             }
         }
 
-        private void HandleCancellation(OperationResult result, IOperationViewModel operation, IEnumerable<IOperationViewModel> operations, IProgress<int> progressIndicator)
+        private void HandleCancellation(OperationResult result, IOperationViewModel operation)
         {
             this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Operation {0} cancelled", operation.Description), LogEntrySeverity.Warning, LogEntrySource.UI));
-
-            operations.Where(o => o.State == OperationState.InProgress || o.State == OperationState.NotStarted)
-                                .ForEach(o => o.State = OperationState.Cancelled);
-            progressIndicator.Report(100);
         }
 
         private void HandleSuccess(OperationResult result, IOperationViewModel operation)

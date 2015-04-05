@@ -19,7 +19,7 @@ namespace Frontend.Core.Converting
         private IOperationProcessor processor;
         private IOperationProvider provider;
         private Action<int> reportProgress;
-        private CancellationToken token;
+        private Func<CancellationTokenSource> tokenSourceFunc;
 
         public RunOperationsCommand(
             IEventAggregator eventAggregator, 
@@ -27,14 +27,14 @@ namespace Frontend.Core.Converting
             IOperationProcessor processor, 
             IOperationProvider provider,
             Action<int> reportProgress,
-            CancellationToken token)
+            Func<CancellationTokenSource> tokenSourceFunc)
             : base(eventAggregator)
         {
             this.options = options;
             this.processor = processor;
             this.provider = provider;
             this.reportProgress = reportProgress;
-            this.token = token;
+            this.tokenSourceFunc = tokenSourceFunc;
         }
 
         protected override bool OnCanExecute(object parameter)
@@ -46,7 +46,7 @@ namespace Frontend.Core.Converting
         {
             var progressIndicator = new Progress<int>(this.reportProgress);
             this.provider.Operations.ForEach(o => o.State = OperationState.NotStarted);
-            this.processor.ProcessQueue(this.provider.Operations, progressIndicator, this.token);
+            this.processor.ProcessQueue(this.provider.Operations, progressIndicator, this.tokenSourceFunc().Token);
         }
     }
 }

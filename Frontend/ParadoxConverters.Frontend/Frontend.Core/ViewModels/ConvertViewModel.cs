@@ -8,6 +8,7 @@ using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Proxies;
 using Frontend.Core.ViewModels.Interfaces;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading;
 using System.Windows.Input;
@@ -25,6 +26,8 @@ namespace Frontend.Core.ViewModels
         private int progressInPercent;
         private bool isBusy;
         private CancellationTokenSource cancellationTokenSource;
+        private CancellationTokenRegistration tokenRegistration;
+        private Func<CancellationTokenSource> getOrCreateCancellationTokenSource;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertViewModel"/> class.
@@ -49,7 +52,10 @@ namespace Frontend.Core.ViewModels
 
             this.operationProvider.AddOperation(new CopyModOperation());
 
-            this.cancellationTokenSource = new CancellationTokenSource();
+            this.getOrCreateCancellationTokenSource = new Func<CancellationTokenSource>(() =>
+            {
+                return this.CancellationTokenSource;
+            });
         }
 
         public ICommand RunOperationsCommand
@@ -62,7 +68,7 @@ namespace Frontend.Core.ViewModels
                     new OperationProcessor(this.EventAggregator), 
                     this.operationProvider,
                     percent => this.UpdateProgress(percent),
-                    this.cancellationTokenSource.Token
+                    getOrCreateCancellationTokenSource
                     ));
             }
         }
@@ -71,7 +77,7 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                return this.cancelCommand ?? (this.cancelCommand = new CancelConvertingCommand(this.EventAggregator, this.cancellationTokenSource));
+                return this.cancelCommand ?? (this.cancelCommand = new CancelConvertingCommand(this.EventAggregator, this.getOrCreateCancellationTokenSource));
             }
         }
 
@@ -133,6 +139,20 @@ namespace Frontend.Core.ViewModels
             }
         }
 
+        private CancellationTokenSource CancellationTokenSource
+        {
+            get
+            {
+                if (this.cancellationTokenSource == null)
+                {
+                    this.cancellationTokenSource = new CancellationTokenSource();
+                    this.tokenRegistration = this.cancellationTokenSource.Token.Register(this.OperationCancelledCallback);
+                }
+
+                return this.cancellationTokenSource;
+            }
+        }
+
         private void UpdateProgress(int percent)
         {
             if (!this.IsBusy)
@@ -156,6 +176,16 @@ namespace Frontend.Core.ViewModels
         private void StopProgress()
         {
             this.IsBusy = false;
+            this.tokenRegistration.Dispose();
+            this.cancellationTokenSource.Dispose();
+            this.cancellationTokenSource = null;
+        }
+
+        private void OperationCancelledCallback()
+        {
+            this.Operations.Where(o => o.State == OperationState.InProgress || o.State == OperationState.NotStarted)
+                                .ForEach(o => o.State = OperationState.Cancelled);
+            this.StopProgress();
         }
     }
 }
