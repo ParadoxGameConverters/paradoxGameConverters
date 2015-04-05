@@ -7,6 +7,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
+        
+        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
+        <converters:OperationStateToStringValueConverter x:Key="operationStateToStringConverter"/>
+        
         <Style x:Key="SummaryButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Width" Value="300"/>
             <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -16,35 +20,41 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="{Binding Description}"/>
                 <TextBlock Text=" - "/>
-                <TextBlock Text="{Binding State}"/>
+                <TextBlock Text="{Binding State, Converter={StaticResource operationStateToStringConverter}}"/>
             </StackPanel>
         </DataTemplate>
 
-        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="0"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="Save configuration and convert!" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding RunOperationsCommand}" 
+        <StackPanel Orientation="Vertical">
+            <Button Content="Save configuration and convert!" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding RunOperationsCommand}" 
                 HorizontalAlignment="Center" Height="25" 
                 Visibility="{Binding IsBusy, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter={x:Static converters:VisibleWhen.False}}"/>
-        <Button Content="Cancel" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding CancelCommand}" 
-                HorizontalAlignment="Center" Height="25" Grid.Row="1"
+            <Button Content="Cancel" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding CancelCommand}" 
+                HorizontalAlignment="Center" Height="25"
                 Visibility="{Binding IsBusy, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter={x:Static converters:VisibleWhen.True}}"/>
-        <TextBlock Grid.Row="2" Text="{Binding Options.CurrentConverter.AdditionalInformation}" HorizontalAlignment="Center" Margin="10, 20, 10, 0"/>
-        <ProgressBar Grid.Row="3" Minimum="0" Maximum="100" Value="{Binding ProgressInPercent, Mode=OneWay}" Height="30" Width="100"
-                     Visibility="{Binding IsBusy, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter={x:Static converters:VisibleWhen.True}}"/>
+        </StackPanel>
+        
+        <TextBlock Grid.Row="1" Text="{Binding Options.CurrentConverter.AdditionalInformation}" HorizontalAlignment="Center" Margin="10, 20, 10, 0" FontWeight="Bold"/>
 
-        <Border Grid.Row="4" Background="White">
-            <ItemsControl ItemsSource="{Binding Operations}" ItemTemplate="{StaticResource OperationTemplate}"/>
-        </Border>
+        <ProgressBar Grid.Row="3" Minimum="0" Maximum="100" Value="{Binding ProgressInPercent, Mode=OneWay}" Height="30" Width="100"
+                     Visibility="Collapsed"/>
+
+        <StackPanel Orientation="Vertical" Grid.Row="2" Visibility="Collapsed">
+            <Border>
+                <StackPanel Orientation="Vertical">
+                    <TextBlock Text="Required steps:" Margin="0, 10, 10, 10" FontWeight="Bold"/>
+                    <ItemsControl ItemsSource="{Binding Operations}" ItemTemplate="{StaticResource OperationTemplate}"/>
+                </StackPanel>
+            </Border>
+        </StackPanel>
     </Grid>
 </UserControl>

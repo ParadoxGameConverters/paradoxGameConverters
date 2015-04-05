@@ -191,6 +191,7 @@
     <Compile Include="Views\TemplateSelectors\PreferenceTemplateSelector.cs" />
     <Compile Include="Views\TemplateSelectors\RequiredItemTemplateSelector.cs" />
     <Compile Include="Views\ValueConverters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Views\ValueConverters\OperationStateToStringValueConverter.cs" />
     <Compile Include="Views\ValueConverters\VisibleWhen.cs" />
   </ItemGroup>
   <ItemGroup>

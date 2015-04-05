@@ -72,6 +72,7 @@
     <Compile Include="UnitTestBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ValueConverters\BooleanToVisibilityConverterTest.cs" />
+    <Compile Include="Views\ValueConverters\OperationStateToStringValueConverterTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

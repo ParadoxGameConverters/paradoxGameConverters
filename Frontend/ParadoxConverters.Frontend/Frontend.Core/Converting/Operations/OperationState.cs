@@ -18,6 +18,8 @@ namespace Frontend.Core.Converting.Operations
 
         CompleteWithErrors,
 
-        Cancelled
+        Cancelled,
+
+        Invalid
     }
 }
