@@ -1,6 +1,5 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Converting.Operations;
-using Frontend.Core.Converting.Tasks;
 using Frontend.Core.Events.EventArgs;
 using Frontend.Core.Factories;
 using Frontend.Core.Model;
