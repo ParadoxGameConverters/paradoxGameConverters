@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:converters="clr-namespace:Frontend.Core.Views.ValueConverters"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.Resources>
@@ -18,24 +19,29 @@
                 <TextBlock Text="{Binding State}"/>
             </StackPanel>
         </DataTemplate>
+
+        <converters:BooleanToVisibilityConverter x:Key="booleanToVisibilityConverter"/>
     </UserControl.Resources>
     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="0"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button Content="Save configuration and convert!" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding RunOperationsCommand}" 
-                HorizontalAlignment="Center" Height="25"/>
+                HorizontalAlignment="Center" Height="25" 
+                Visibility="{Binding IsBusy, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter={x:Static converters:VisibleWhen.False}}"/>
         <Button Content="Cancel" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding CancelCommand}" 
-                HorizontalAlignment="Center" Height="25" Grid.Row="1"/>
+                HorizontalAlignment="Center" Height="25" Grid.Row="1"
+                Visibility="{Binding IsBusy, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter={x:Static converters:VisibleWhen.True}}"/>
         <TextBlock Grid.Row="2" Text="{Binding Options.CurrentConverter.AdditionalInformation}" HorizontalAlignment="Center" Margin="10, 20, 10, 0"/>
-        <ProgressBar Grid.Row="3" Minimum="0" Maximum="5" Value="{Binding ProgressInPercent, Mode=OneWay}" Height="30" Width="100"/>
+        <ProgressBar Grid.Row="3" Minimum="0" Maximum="100" Value="{Binding ProgressInPercent, Mode=OneWay}" Height="30" Width="100"
+                     Visibility="{Binding IsBusy, Converter={StaticResource booleanToVisibilityConverter}, ConverterParameter={x:Static converters:VisibleWhen.True}}"/>
 
         <Border Grid.Row="4" Background="White">
             <ItemsControl ItemsSource="{Binding Operations}" ItemTemplate="{StaticResource OperationTemplate}"/>

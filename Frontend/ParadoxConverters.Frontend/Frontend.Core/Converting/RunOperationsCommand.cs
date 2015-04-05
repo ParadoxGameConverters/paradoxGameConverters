@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Commands;
+using Frontend.Core.Common;
 using Frontend.Core.Converting.Operations;
 using Frontend.Core.Model;
 using Frontend.Core.Model.Interfaces;
@@ -16,7 +17,6 @@ namespace Frontend.Core.Converting
         private IConverterOptions options;
         private IOperationProcessor processor;
         private IOperationProvider provider;
-        private bool busy;
         private Action<int> reportProgress;
 
         public RunOperationsCommand(
@@ -35,15 +35,14 @@ namespace Frontend.Core.Converting
 
         protected override bool OnCanExecute(object parameter)
         {
-            return !this.busy || this.provider.Operations.All(operation => operation.CanRun());
+            return this.provider.Operations.All(operation => operation.CanRun());
         }
 
         protected override void OnExecute(object parameter)
         {
-            this.busy = true;
             var progressIndicator = new Progress<int>(this.reportProgress);
+            this.provider.Operations.ForEach(o => o.State = OperationState.NotStarted);
             this.processor.ProcessQueue(this.provider.Operations, progressIndicator);
-            this.busy = false;
         }
     }
 }

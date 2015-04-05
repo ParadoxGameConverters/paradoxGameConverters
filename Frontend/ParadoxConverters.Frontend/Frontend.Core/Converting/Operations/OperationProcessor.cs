@@ -28,13 +28,15 @@ namespace Frontend.Core.Converting.Operations
 
         public async Task<int> ProcessQueue(IEnumerable<IOperationViewModel> operations, IProgress<int> progress)
         {
-            int totalCount = 1; // TODO: SHOULD BE 0 according to http://blogs.msdn.com/b/dotnet/archive/2012/06/06/async-in-4-5-enabling-progress-and-cancellation-in-async-apis.aspx
+            int totalCount = operations.Count();
             int processCount = await Task.Run<int>(() =>
                 {
                     int tempCount = 0;
 
                     foreach (var operation in operations)
                     {
+                        tempCount++;
+
                         operation.State = OperationState.InProgress;
                         this.eventAggregator.PublishOnUIThread(new LogEntry(operation.Description, LogEntrySeverity.Info, LogEntrySource.UI));
 
@@ -43,20 +45,22 @@ namespace Frontend.Core.Converting.Operations
                         try
                         {
                             task = operation.Process();
+
                             this.LogResultMessages(task.Result);
                             this.resultHandlershandle[task.Result.State](task.Result, operation);
-
-                            if (progress != null)
-                            {
-                                progress.Report(tempCount * 100 / totalCount);
-                            }
                         }
                         catch (Exception e)
                         {
                             this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Unhandled exception occurred: {0}" + e.Message), LogEntrySeverity.Error, LogEntrySource.UI));
                         }
-
-                        tempCount++;
+                        finally
+                        {
+                            if (progress != null)
+                            {
+                                int progressValue = tempCount * 100 / totalCount;
+                                progress.Report(progressValue);
+                            }
+                        }
                     }
 
                     return tempCount;

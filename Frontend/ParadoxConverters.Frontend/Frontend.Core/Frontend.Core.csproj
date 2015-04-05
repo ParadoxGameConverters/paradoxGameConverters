@@ -63,6 +63,7 @@
     <Compile Include="Commands\OpenFolderCommand.cs" />
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
+    <Compile Include="Converting\CancelConvertingCommand.cs" />
     <Compile Include="Converting\ConvertCommand.cs" />
     <Compile Include="Converting\OldConvertCommand.cs" />
     <Compile Include="Converting\IModCopier.cs" />
@@ -189,6 +190,8 @@
     <Compile Include="Views\Behaviours\ScrollIntoViewBehaviour.cs" />
     <Compile Include="Views\TemplateSelectors\PreferenceTemplateSelector.cs" />
     <Compile Include="Views\TemplateSelectors\RequiredItemTemplateSelector.cs" />
+    <Compile Include="Views\ValueConverters\BooleanToVisibilityConverter.cs" />
+    <Compile Include="Views\ValueConverters\VisibleWhen.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Configuration\Eu4ToVic2DefaultConfiguration.xml">

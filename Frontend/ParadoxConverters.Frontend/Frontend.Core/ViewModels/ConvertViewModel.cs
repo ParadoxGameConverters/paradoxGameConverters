@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Commands;
+using Frontend.Core.Common;
 using Frontend.Core.Converting;
 using Frontend.Core.Converting.Operations;
 using Frontend.Core.Helpers;
@@ -18,9 +19,10 @@ namespace Frontend.Core.ViewModels
     public class ConvertViewModel : StepViewModelBase, IConvertViewModel
     {
         private ICommand runOperationsCommand;
+        private ICommand cancelCommand;
         private IOperationProvider operationProvider;
         private int progressInPercent;
-        private Action<int> updateUIAction;
+        private bool isBusy;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="ConvertViewModel"/> class.
@@ -55,8 +57,16 @@ namespace Frontend.Core.ViewModels
                     this.Options, 
                     new OperationProcessor(this.EventAggregator), 
                     this.operationProvider,
-                    this.UpdateUIAction
+                    percent => this.UpdateProgress(percent)
                     ));
+            }
+        }
+
+        public ICommand CancelCommand
+        {
+            get
+            {
+                return this.cancelCommand ?? (this.cancelCommand = new CancelConvertingCommand(this.EventAggregator));
             }
         }
 
@@ -71,12 +81,32 @@ namespace Frontend.Core.ViewModels
             {
                 if (this.progressInPercent == value)
                 {
-                    this.progressInPercent = value;
-                    this.NotifyOfPropertyChange(() => this.ProgressInPercent);
+                    return;
                 }
+
+                this.progressInPercent = value;
+                this.NotifyOfPropertyChange(() => this.ProgressInPercent);
             }
         }
         
+        public bool IsBusy
+        {
+            get
+            {
+                return this.isBusy;
+            }
+
+            set
+            {
+                if (this.isBusy == value)
+                {
+                    return;
+                }
+
+                this.isBusy = value;
+                this.NotifyOfPropertyChange(() => this.IsBusy);
+            }
+        }
 
         public IEnumerable<IOperationViewModel> Operations
         {
@@ -98,17 +128,29 @@ namespace Frontend.Core.ViewModels
             }
         }
 
-        private Action<int> UpdateUIAction
+        private void UpdateProgress(int percent)
         {
-            get
+            if (!this.IsBusy)
             {
-                if (this.updateUIAction == null)
-                {
-                    this.updateUIAction = percent => this.ProgressInPercent = percent;
-                }
-
-                return this.updateUIAction;
+                this.StartProgress();
             }
+
+            this.ProgressInPercent = percent;
+
+            if (percent == 100)
+            {
+                this.StopProgress();
+            }
+        }
+
+        private void StartProgress()
+        {
+            this.IsBusy = true;
+        }
+
+        private void StopProgress()
+        {
+            this.IsBusy = false;
         }
     }
 }
