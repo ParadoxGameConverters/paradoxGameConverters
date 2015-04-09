@@ -535,6 +535,7 @@ void V2World::output() const
 
 	if (isRandomWorld)
 	{
+		LOG(LogLevel::Debug) << "It's a random world";
 		// we need to strip out the existing country names from the localisation file
 		ifstream sourceFile(source);
 		ofstream targetFile(dest);
@@ -564,6 +565,7 @@ void V2World::output() const
 	}
 	else
 	{
+		LOG(LogLevel::Debug) << "It's not a random world";
 		WinUtils::TryCopyFile(source, dest);
 	}
 
@@ -682,12 +684,13 @@ bool scoresSorter(pair<V2Country*, int> first, pair<V2Country*, int> second)
 
 void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping& countryMap, const cultureMapping& cultureMap, const unionCulturesMap& unionCultures, const religionMapping& religionMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, const vector<techSchool>& techSchools, map<int, int>& leaderMap, const V2LeaderTraits& lt, const CK2TitleMapping& ck2titlemap, colonyFlagset& colonyFlags, const map<string, double>& UHLiberalIdeas, const map<string, double>& UHReactionaryIdeas, const vector< pair<string, int> >& literacyIdeas, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas, const EU4RegionsMapping& regionsMap)
 {
+	isRandomWorld = true;
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	for (map<string, EU4Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
 	{
 		EU4Country* sourceCountry = i->second;
-		if (!sourceCountry->getRandomName().empty())
-			isRandomWorld = true;
+		if (sourceCountry->getRandomName().empty())
+			isRandomWorld = false;
 
 		std::string EU4Tag = sourceCountry->getTag();
 		V2Country* destCountry = NULL;
