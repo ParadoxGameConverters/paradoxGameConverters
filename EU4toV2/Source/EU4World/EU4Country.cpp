@@ -25,6 +25,7 @@ THE SOFTWARE. */
 #include "EU4Province.h"
 #include "EU4Relations.h"
 #include "EU4Leader.h"
+#include "../V2World/V2Localisation.h"
 #include <algorithm>
 
 
@@ -39,7 +40,7 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
 
 	vector<Object*> customNameObj = obj->getValue("custom_name");	// the object holding the name
-	(!customNameObj.empty()) ? randomName = customNameObj[0]->getLeaf() : randomName = "";
+	(!customNameObj.empty()) ? randomName = V2Localisation::Convert(customNameObj[0]->getLeaf()) : randomName = "";
 
 	vector<Object*> adjectiveObj = obj->getValue("adjective");	// the object holding the adjective
 	(!adjectiveObj.empty()) ? adjective = adjectiveObj[0]->getLeaf() : adjective = "";

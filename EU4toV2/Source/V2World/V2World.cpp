@@ -689,8 +689,10 @@ void V2World::convertCountries(const EU4World& sourceWorld, const CountryMapping
 	for (map<string, EU4Country*>::iterator i = sourceCountries.begin(); i != sourceCountries.end(); i++)
 	{
 		EU4Country* sourceCountry = i->second;
-		if (sourceCountry->getRandomName().empty())
+		if (i->first[0] != 'D' && sourceCountry->getRandomName().empty())
+		{
 			isRandomWorld = false;
+		}
 
 		std::string EU4Tag = sourceCountry->getTag();
 		V2Country* destCountry = NULL;
