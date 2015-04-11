@@ -141,11 +141,14 @@ V2World::V2World(Object* obj)
 	}
 
 	// get country colours and parties
-	readCountryFiles(Configuration::getV2Path() + "\\common\\countries.txt", "");
 	vector<string> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
 		readCountryFiles(Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\countries.txt", itr);
+	}
+	if (vic2Mods.size() == 0)
+	{
+		readCountryFiles(Configuration::getV2Path() + "\\common\\countries.txt", "");
 	}
 }
 
@@ -299,28 +302,36 @@ void V2World::readCountryFiles(string countryListFile, string mod)
 		int size = line.find_last_of('\"') - start;
 		countryFileName = line.substr(start, size);
 
-		Object* countryData;
+		Object* countryData = NULL;
 		string file;
-		if (mod == "")
-		{
-			file = Configuration::getV2Path() + "\\common\\countries\\" + countryFileName;
-		}
-		else
+		if (mod != "")
 		{
 			file = Configuration::getV2Path() + "\\mod\\" + mod + "\\common\\countries\\" + countryFileName;
-		}
-		if (_stat(file.c_str(), &st) == 0)
-		{
-			countryData = doParseFile(file.c_str());
-			if (countryData == NULL)
+			if (_stat(file.c_str(), &st) == 0)
 			{
-				LOG(LogLevel::Warning) << "Could not parse file " << file;
+				countryData = doParseFile(file.c_str());
+				if (countryData == NULL)
+				{
+					LOG(LogLevel::Warning) << "Could not parse file " << file;
+				}
 			}
 		}
-		else
+		if (countryData == NULL)
 		{
-			LOG(LogLevel::Debug) << "Could not find file V2 " << file << " - skipping";
-			continue;
+			file = Configuration::getV2Path() +  "\\common\\countries\\" + countryFileName;
+			if (_stat(file.c_str(), &st) == 0)
+			{
+				countryData = doParseFile(file.c_str());
+				if (countryData == NULL)
+				{
+					LOG(LogLevel::Warning) << "Could not parse file " << file;
+				}
+			}
+			else
+			{
+				LOG(LogLevel::Debug) << "Could not find file V2 " << file << " - skipping";
+				continue;
+			}
 		}
 
 		vector<Object*> colorObj = countryData->getValue("color");
