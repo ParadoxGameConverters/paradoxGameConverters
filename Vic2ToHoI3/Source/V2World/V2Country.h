@@ -74,7 +74,8 @@ class V2Country
 		string							getFlagFile()													const { return flagFile; }
 		double							getEducationSpending()										const { return educationSpending; }
 		double							getMilitarySpending()										const { return militarySpending; }
-		unsigned							getRulingPartyId()											const { return rulingPartyId; }
+		unsigned	int					getRulingPartyId()											const { return rulingPartyId; }
+		vector<unsigned int>			getActiveParties()											const { return activeParties; };
 		vector<V2Army*>				getArmies()														const { return armies; }
 
 		string							getReform(string reform) const;
@@ -125,7 +126,8 @@ class V2Country
 		double							militarySpending;
 		map<string, string>			reformsArray;
 		string							flagFile;
-		unsigned							rulingPartyId;
+		unsigned	int					rulingPartyId;
+		vector<unsigned int>			activeParties;
 		int								greatNationRanking;
 
 		// Localisation attributes

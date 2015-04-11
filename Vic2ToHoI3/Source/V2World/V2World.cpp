@@ -140,79 +140,13 @@ V2World::V2World(Object* obj)
 		diplomacy = V2Diplomacy();
 	}
 
-	// BE: Get country colours and parties
-	struct _stat st;
-	ifstream V2CountriesInput;
-	V2CountriesInput.open((Configuration::getV2Path() + "\\common\\countries.txt").c_str());
-	if (!V2CountriesInput.is_open())
+	// get country colours and parties
+	readCountryFiles(Configuration::getV2Path() + "\\common\\countries.txt", "");
+	vector<string> vic2Mods = Configuration::getVic2Mods();
+	for (auto itr: vic2Mods)
 	{
-		LOG(LogLevel::Error) << "Could not open V2 countries.txt";
-		exit(1);
+		readCountryFiles(Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\countries.txt", itr);
 	}
-	while (!V2CountriesInput.eof())
-	{
-		string line;
-		getline(V2CountriesInput, line);
-
-		if ((line[0] == '#') || (line.size() < 3))
-		{
-			continue;
-		}
-		else if (line.substr(0, 12) == "dynamic_tags")
-		{
-			continue;
-		}
-
-		string tag;
-		tag = line.substr(0, 3);
-
-		string countryFileName;
-		int start = line.find_first_of('/');
-		int size = line.find_last_of('\"') - start;
-		countryFileName = line.substr(start, size);
-
-		Object* countryData;
-		if (_stat((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str(), &st) == 0)
-		{
-			countryData = doParseFile((Configuration::getV2Path() + "\\common\\countries\\" + countryFileName).c_str());
-			if (countryData == NULL)
-			{
-				LOG(LogLevel::Warning) << "Could not parse file " << Configuration::getV2Path() << "\\common\\countries\\" << countryFileName;
-			}
-		}
-		else
-		{
-			LOG(LogLevel::Debug) << "Could not find file V2 common\\countries\\" << countryFileName << " - skipping";
-			continue;
-		}
-
-		vector<Object*> colorObj = countryData->getValue("color");
-		if (colorObj.size() > 0)
-		{
-			vector<string> rgb = colorObj[0]->getTokens();
-			if (rgb.size() == 3)
-			{
-				if (countries.find(tag) != countries.end())
-				{
-					countries[tag]->setColor(Color(atoi(rgb[0].c_str()), atoi(rgb[1].c_str()), atoi(rgb[2].c_str())));
-				}
-			}
-		}
-
-		// Get party information
-		// Reuse old variable
-		leaves = countryData->getLeaves();
-
-		for (unsigned int i = 0; i < leaves.size(); i++)
-		{
-			key = leaves[i]->getKey();
-			if (key == "party")
-			{
-				parties.push_back(new V2Party(leaves[i]));
-			}
-		}
-	}
-	V2CountriesInput.close();
 }
 
 
@@ -289,6 +223,27 @@ V2Party* V2World::getRulingParty(const V2Country* country) const
 }
 
 
+vector<V2Party*> V2World::getActiveParties(const V2Country* country) const
+{
+	vector<V2Party*> activeParties;
+
+	vector<unsigned int> partyIDs = country->getActiveParties();
+	for (auto i: partyIDs)
+	{
+		if (i < parties.size())
+		{
+			activeParties.push_back(parties[i - 1]);  // Subtract 1, because party ID starts from index of 1
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Party ID mismatch! Did some Vic2 country files not get read?";
+		}
+	}
+
+	return activeParties;
+}
+
+
 void V2World::removeEmptyNations()
 {
 	for (map<string, V2Country*>::iterator i = countries.begin(); i != countries.end();)
@@ -302,4 +257,96 @@ void V2World::removeEmptyNations()
 			++i;
 		}
 	}
+}
+
+
+void V2World::readCountryFiles(string countryListFile, string mod)
+{
+	struct _stat st;
+	ifstream V2CountriesInput;
+	V2CountriesInput.open(countryListFile.c_str());
+	if (!V2CountriesInput.is_open())
+	{
+		if (mod == "")
+		{
+			LOG(LogLevel::Error) << "Could not open " << countryListFile;
+			exit(1);
+		}
+		else
+		{
+			return;
+		}
+	}
+	while (!V2CountriesInput.eof())
+	{
+		string line;
+		getline(V2CountriesInput, line);
+
+		if ((line[0] == '#') || (line.size() < 3))
+		{
+			continue;
+		}
+		else if (line.substr(0, 12) == "dynamic_tags")
+		{
+			continue;
+		}
+
+		string tag;
+		tag = line.substr(0, 3);
+
+		string countryFileName;
+		int start = line.find_first_of('/');
+		int size = line.find_last_of('\"') - start;
+		countryFileName = line.substr(start, size);
+
+		Object* countryData;
+		string file;
+		if (mod == "")
+		{
+			file = Configuration::getV2Path() + "\\common\\countries\\" + countryFileName;
+		}
+		else
+		{
+			file = Configuration::getV2Path() + "\\mod\\" + mod + "\\common\\countries\\" + countryFileName;
+		}
+		if (_stat(file.c_str(), &st) == 0)
+		{
+			countryData = doParseFile(file.c_str());
+			if (countryData == NULL)
+			{
+				LOG(LogLevel::Warning) << "Could not parse file " << file;
+			}
+		}
+		else
+		{
+			LOG(LogLevel::Debug) << "Could not find file V2 " << file << " - skipping";
+			continue;
+		}
+
+		vector<Object*> colorObj = countryData->getValue("color");
+		if (colorObj.size() > 0)
+		{
+			vector<string> rgb = colorObj[0]->getTokens();
+			if (rgb.size() == 3)
+			{
+				if (countries.find(tag) != countries.end())
+				{
+					countries[tag]->setColor(Color(atoi(rgb[0].c_str()), atoi(rgb[1].c_str()), atoi(rgb[2].c_str())));
+				}
+			}
+		}
+
+		// Get party information
+		vector<Object*> leaves = countryData->getLeaves();
+
+		for (unsigned int i = 0; i < leaves.size(); i++)
+		{
+			string key = leaves[i]->getKey();
+			if (key == "party")
+			{
+				parties.push_back(new V2Party(leaves[i]));
+			}
+		}
+	}
+	V2CountriesInput.close();
 }

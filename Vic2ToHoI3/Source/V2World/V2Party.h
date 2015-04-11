@@ -34,7 +34,7 @@ struct V2Party
 {
 	V2Party(Object* party_obj);
 
-	//string name;
+	string name;
 	string ideology;
 	string economic_policy;
 	string trade_policy;

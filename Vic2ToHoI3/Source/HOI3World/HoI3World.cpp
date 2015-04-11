@@ -481,8 +481,7 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new HoI3Country(HoI3Tag, countryFileName, this, true);
 			}
-			destCountry->initFromV2Country(sourceCountry, this->convertIdeology(sourceWorld.getRulingParty(sourceCountry)),
-				outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap);
+			destCountry->initFromV2Country(sourceWorld, sourceCountry, convertIdeology(sourceWorld.getRulingParty(sourceCountry)), outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
 
 		// OLD CODE

@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -51,11 +51,13 @@ class V2World
 		void							checkAllProvincesMapped(const inverseProvinceMapping& inverseProvinceMap) const;
 		void							setLocalisations(V2Localisation& localisation);
 		V2Party*						getRulingParty(const V2Country* country) const;
+		vector<V2Party*>			getActiveParties(const V2Country* country) const;
 		
 		map<string, V2Country*>	getCountries()	const			{ return countries; }
 		V2Diplomacy*				getDiplomacy()					{ return &diplomacy; }
 		const vector<string>&	getGreatCountries() const	{ return greatCountries; }
 	private:
+		void							readCountryFiles(string countryListFile, string mod);
 		void							removeEmptyNations();
 
 		map<int, V2Province*>	provinces;

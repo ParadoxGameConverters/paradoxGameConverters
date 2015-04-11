@@ -28,7 +28,7 @@
 
 V2Party::V2Party(Object *party_obj)
 {
-	//name						= party_obj->getLeaf("name");
+	name						= party_obj->getLeaf("name");
 	ideology					= party_obj->getLeaf("ideology");
 	economic_policy		= party_obj->getLeaf("economic_policy");
 	trade_policy			= party_obj->getLeaf("trade_policy");

@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -104,6 +104,13 @@ V2Country::V2Country(Object* obj)
 		rulingPartyId = 0; // Bad value. For Rebel faction.
 	}
 
+	activeParties.clear();
+	partyObj = obj->getValue("active_party");
+	for (auto party: partyObj)
+	{
+		activeParties.push_back(atoi(party->getLeaf().c_str()));
+	}
+
 	// Read spending
 	vector<Object*> spendingObj = obj->getValue("education_spending");
 	if (spendingObj.size() > 0)
@@ -137,6 +144,13 @@ V2Country::V2Country(Object* obj)
 
 	vector<Object*> governmentObj = obj->getValue("government");	// the object holding the government
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
+
+	auto upperHouseObj = obj->getValue("upper_house");
+	auto idealogiesObj = upperHouseObj[0]->getLeaves();
+	for (auto idealogyObj: idealogiesObj)
+	{
+		upperHouseComposition.insert(make_pair(idealogyObj[0].getKey(), atof(idealogyObj[0].getLeaf().c_str())));
+	}
 
 	flagFile = tag;
 	if (government == "proletarian_dictatorship")
