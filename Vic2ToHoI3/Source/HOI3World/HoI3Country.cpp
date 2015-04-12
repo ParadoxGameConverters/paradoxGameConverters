@@ -735,16 +735,16 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 
 	// prep unmapped HoI3 parties
 	map<string, string> unmappedParties;
-	unmappedParties.insert(make_pair("national_socialist", "national_socialist"));
-	unmappedParties.insert(make_pair("fascistic", "fascistic"));
-	unmappedParties.insert(make_pair("paternal_autocrat", "paternal_autocrat"));
-	unmappedParties.insert(make_pair("social_conservative", "social_conservative"));
-	unmappedParties.insert(make_pair("market_liberal", "market_liberal"));
-	unmappedParties.insert(make_pair("social_liberal", "social_liberal"));
-	unmappedParties.insert(make_pair("social_democrat", "social_democrat"));
-	unmappedParties.insert(make_pair("left_wing_radical", "left_wing_radical"));
-	unmappedParties.insert(make_pair("leninist", "leninist"));
-	unmappedParties.insert(make_pair("stalinist", "stalinist"));
+	unmappedParties.insert(make_pair("national_socialist", "fascist_group"));
+	unmappedParties.insert(make_pair("fascistic", "fascist_group"));
+	unmappedParties.insert(make_pair("paternal_autocrat", "fascist_group"));
+	unmappedParties.insert(make_pair("social_conservative", "democratic_group"));
+	unmappedParties.insert(make_pair("market_liberal", "democratic_group"));
+	unmappedParties.insert(make_pair("social_liberal", "democratic_group"));
+	unmappedParties.insert(make_pair("social_democrat", "democratic_group"));
+	unmappedParties.insert(make_pair("left_wing_radical", "communist_group"));
+	unmappedParties.insert(make_pair("leninist", "communist_group"));
+	unmappedParties.insert(make_pair("stalinist", "communist_group"));
 
 	// map all the simplistic cases
 	auto idealogyItr = V2Idealogies.find("fascist");
@@ -753,7 +753,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		HoI3Party newParty;
 		newParty.name				= idealogyItr->second[0]->name;
 		newParty.idealogy			= "fascistic";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100);
+		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
@@ -767,7 +767,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		HoI3Party newParty;
 		newParty.name				= idealogyItr->second[0]->name;
 		newParty.idealogy			= "paternal_autocrat";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100);
+		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
@@ -781,7 +781,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		HoI3Party newParty;
 		newParty.name				= idealogyItr->second[0]->name;
 		newParty.idealogy			= "social_conservative";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100);
+		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
@@ -795,7 +795,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		HoI3Party newParty;
 		newParty.name				= idealogyItr->second[0]->name;
 		newParty.idealogy			= "left_wing_radical";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100);
+		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
@@ -809,7 +809,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		HoI3Party newParty;
 		newParty.name				= idealogyItr->second[0]->name;
 		newParty.idealogy			= "stalinist";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100);
+		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
@@ -823,7 +823,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		HoI3Party newParty;
 		newParty.name				= idealogyItr->second[0]->name;
 		newParty.idealogy			= "social_liberal";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("liberal") * 100);
+		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("liberal") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
@@ -837,7 +837,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		HoI3Party newParty;
 		newParty.name				= idealogyItr->second[0]->name;
 		newParty.idealogy			= "market_liberal";
-		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_liberal") * 100);
+		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_liberal") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
@@ -845,14 +845,371 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		auto itr = unmappedParties.find("market_liberal");
 		unmappedParties.erase(itr);
 	}
+	if (V2Idealogies.size() == 0)
+	{
+		return;
+	}
+
+	// map the simple excess cases
+	map<string, vector<V2Party*>> V2IdealogyGroups;
+	idealogyItr = V2Idealogies.find("fascist");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("fascist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("reactionary");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("fascist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("conservative");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("democratic_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("socialist");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("communist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("communist");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("communist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("liberal");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("democratic_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("anarcho_liberal");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("democratic_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+			}
+		}
+	}
+
+	map<string, vector<string>> HoI3IdealogyGroups;
+	for (auto HoI3PartyItr: unmappedParties)
+	{
+		auto groupItr = HoI3IdealogyGroups.find(HoI3PartyItr.second);
+		if (groupItr != HoI3IdealogyGroups.end())
+		{
+			groupItr->second.push_back(HoI3PartyItr.first);
+		}
+		else
+		{
+			vector<string> parties;
+			parties.push_back(HoI3PartyItr.first);
+			HoI3IdealogyGroups.insert(make_pair(HoI3PartyItr.second, parties));
+		}
+	}
+
+	for (auto V2GroupItr: V2IdealogyGroups)
+	{
+		auto HoI3GroupItr = HoI3IdealogyGroups.find(V2GroupItr.first);
+		if ((HoI3GroupItr != HoI3IdealogyGroups.end()) && (V2GroupItr.second.size() <= HoI3GroupItr->second.size()))
+		{
+			for (auto V2PartyItr: V2GroupItr.second)
+			{
+				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
+
+				HoI3Party newParty;
+				newParty.name				= V2PartyItr->name;
+				newParty.idealogy			= HoI3GroupItr->second[0];
+				newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage(idealogyItr->first) * 100 / idealogyItr->second.size() + 0.5);
+				newParty.organization	= newParty.popularity;
+				parties.push_back(newParty);
+
+				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
+
+				auto itr = unmappedParties.find(newParty.idealogy);
+				unmappedParties.erase(itr);
+			}
+			for (auto V2PartyItr: V2GroupItr.second)
+			{
+				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
+				if (idealogyItr != V2Idealogies.end())
+				{
+					V2Idealogies.erase(idealogyItr);
+				}
+			}
+			V2GroupItr.second.clear();
+		}
+		if (HoI3GroupItr->second.size() == 0)
+		{
+			HoI3IdealogyGroups.erase(HoI3GroupItr);
+		}
+	}
+
+	// merge Vic2 parties by idealogy, then map those cases
+	for (map<string, vector<V2Party*>>::iterator idealogyItr = V2Idealogies.begin(); idealogyItr != V2Idealogies.end(); idealogyItr++)
+	{
+		while (idealogyItr->second.size() > 1)
+		{
+			idealogyItr->second.pop_back();
+		}
+	}
+
+	V2IdealogyGroups.clear();
+	idealogyItr = V2Idealogies.find("fascist");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("fascist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("reactionary");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("fascist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("conservative");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("democratic_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("socialist");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("communist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("communist");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("communist_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("liberal");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("democratic_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+			}
+		}
+	}
+	idealogyItr = V2Idealogies.find("anarcho_liberal");
+	if (idealogyItr != V2Idealogies.end())
+	{
+		for (auto partyItr: idealogyItr->second)
+		{
+			auto groupItr = V2IdealogyGroups.find("democratic_group");
+			if (groupItr != V2IdealogyGroups.end())
+			{
+				groupItr->second.push_back(partyItr);
+			}
+			else
+			{
+				vector<V2Party*> parties;
+				parties.push_back(partyItr);
+				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+			}
+		}
+	}
+
+	for (auto V2GroupItr: V2IdealogyGroups)
+	{
+		auto HoI3GroupItr = HoI3IdealogyGroups.find(V2GroupItr.first);
+		if ((HoI3GroupItr != HoI3IdealogyGroups.end()) && (V2GroupItr.second.size() <= HoI3GroupItr->second.size()))
+		{
+			for (auto V2PartyItr: V2GroupItr.second)
+			{
+				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
+
+				HoI3Party newParty;
+				newParty.name				= V2PartyItr->name;
+				newParty.idealogy			= HoI3GroupItr->second[0];
+				newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage(idealogyItr->first) * 100 / idealogyItr->second.size() + 0.5);
+				newParty.organization	= newParty.popularity;
+				parties.push_back(newParty);
+
+				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
+
+				auto itr = unmappedParties.find(newParty.idealogy);
+				unmappedParties.erase(itr);
+			}
+			for (auto V2PartyItr: V2GroupItr.second)
+			{
+				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
+				if (idealogyItr != V2Idealogies.end())
+				{
+					V2Idealogies.erase(idealogyItr);
+				}
+			}
+			V2GroupItr.second.clear();
+		}
+		if (HoI3GroupItr->second.size() == 0)
+		{
+			HoI3IdealogyGroups.erase(HoI3GroupItr);
+		}
+	}
 
 	if (V2Idealogies.size() > 0)
 	{
-		LOG(LogLevel::Warning) << "Unmapped Vic2 parties!";
+		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << tag;
 	}
-	// map the simple excess cases
-
-	// merge Vic2 parties as needed, then map those cases
 }
 #pragma optimize("", on)
 
