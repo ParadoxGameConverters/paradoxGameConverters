@@ -427,6 +427,14 @@ void HoI3Country::outputParties(FILE* output) const
 	}
 	fprintf(output, "}\n");
 	fprintf(output, "\n");
+
+	FILE* partyLocalisations;
+	fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a");
+	for (auto party: parties)
+	{
+		fprintf(partyLocalisations, "%s\n", party.localisationString.c_str());
+	}
+	fclose(partyLocalisations);
 }
 
 
@@ -455,7 +463,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations)
 {
 	srcCountry = _srcCountry;
 	ideology = _ideology;
@@ -506,6 +514,17 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// Political parties
 	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry));
+	for (auto partyItr = parties.begin(); partyItr != parties.end(); partyItr++)
+	{
+		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr->name);
+		partyItr->localisationString = partyItr->idealogy + "_" + tag;
+		auto localisationItr = oldLocalisation.begin();
+		localisationItr++;
+		for (; localisationItr != oldLocalisation.end(); localisationItr++)
+		{
+			partyItr->localisationString += ";" + localisationItr->second;
+		}
+	}
 
 	// Faction is handled in HoI3World::configureFactions
 
@@ -712,7 +731,7 @@ vector<int> HoI3Country::getPortProvinces(vector<int> locationCandidates, map<in
 	return locationCandidates;
 }
 
-#pragma optimize("", off)
+
 void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties)
 {
 	// sort Vic2 parties by idealogy
@@ -845,6 +864,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		auto itr = unmappedParties.find("market_liberal");
 		unmappedParties.erase(itr);
 	}
+
 	if (V2Idealogies.size() == 0)
 	{
 		return;
@@ -1032,6 +1052,11 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		}
 	}
 
+	if (V2Idealogies.size() == 0)
+	{
+		return;
+	}
+
 	// merge Vic2 parties by idealogy, then map those cases
 	for (map<string, vector<V2Party*>>::iterator idealogyItr = V2Idealogies.begin(); idealogyItr != V2Idealogies.end(); idealogyItr++)
 	{
@@ -1211,7 +1236,7 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		LOG(LogLevel::Warning) << "Unmapped Vic2 parties for " << tag;
 	}
 }
-#pragma optimize("", on)
+
 
 void HoI3Country::outputLocalisation(FILE* output) const
 {

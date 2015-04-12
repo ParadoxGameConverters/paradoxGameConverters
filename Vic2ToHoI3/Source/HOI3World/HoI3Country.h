@@ -48,6 +48,7 @@ class HoI3Relations;
 typedef struct
 {
 	string			name;
+	string			localisationString;
 	string			idealogy;
 	unsigned int	popularity;
 	unsigned int	organization;
@@ -61,7 +62,7 @@ class HoI3Country
 		void								output() const;
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputOOB() const;
-		void								initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap);
+		void								initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations);
 		void								initFromHistory();
 		void								convertArmies(const map<int,int>& leaderIDMap, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
 		void								addRelation(HoI3Relations* newRelation);
@@ -72,7 +73,7 @@ class HoI3Country
 		void								addProvince(HoI3Province* _province)		{ provinces.push_back(_province); };
 		void								isANewCountry(void)							{ newCountry = true; };
 
-		vector<HoI3Province*>			getProvinces() const { return provinces; };
+		vector<HoI3Province*>		getProvinces() const { return provinces; };
 		string							getTag() const { return tag; };
 		const V2Country*				getSourceCountry() const { return srcCountry; };
 		string							getGovernment() const { return government; };

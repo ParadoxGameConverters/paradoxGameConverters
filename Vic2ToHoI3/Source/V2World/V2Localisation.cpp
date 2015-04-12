@@ -131,14 +131,12 @@ std::string V2Localisation::Convert(const std::string& text)
 	return std::string(latin1Text.begin(), latin1Text.end());
 }
 
-// BE: Copied from EU4Localisation for V2toHoI3
+
 void V2Localisation::ReadFromFile(const std::string& fileName)
 {
 	std::ifstream in(fileName);
 
 	std::string line;			// the line being processed
-
-	//std::string language = "english";
 
 	// Subsequent lines are 'KEY: "Text"'
 	while (!in.eof())
@@ -163,6 +161,7 @@ void V2Localisation::ReadFromFile(const std::string& fileName)
 		}
 	}
 }
+
 
 void V2Localisation::ReadFromAllFilesInFolder(const std::string& folderPath)
 {
