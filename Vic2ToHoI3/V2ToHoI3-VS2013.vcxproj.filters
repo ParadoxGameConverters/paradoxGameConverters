@@ -71,6 +71,9 @@
       <Filter>Parser</Filter>
     </ClCompile>
     <ClCompile Include="Source\V2toHOI3Converter.cpp" />
+    <ClCompile Include="Source\HOI3World\HoI3Minister.cpp">
+      <Filter>HOI3World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -143,6 +146,9 @@
     </ClInclude>
     <ClInclude Include="Source\Parsers\Parser.h">
       <Filter>Parser</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI3World\HoI3Minister.h">
+      <Filter>HOI3World</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -32,6 +32,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Configuration.h"
 #include "../Parsers/Parser.h"
 //#include "HoI3Army.h"
+#include "HoI3Minister.h"
 #include "HoI3Relations.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
@@ -39,6 +40,28 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 const int MONEYFACTOR = 30;	// ducat to pound conversion rate
+
+#define HOI3_IDEOLOGY_UNION(DO) \
+	DO(national_socialist) \
+	DO(fascistic) \
+	DO(paternal_autocrat) \
+	DO(social_conservative) \
+	DO(market_liberal) \
+	DO(social_liberal) \
+	DO(social_democrat) \
+	DO(left_wing_radical) \
+	DO(leninist) \
+	DO(stalinist)
+
+#define MAKE_IDEOLOGY_UNION(VAR) VAR,
+enum ideaologyType {
+	HOI3_IDEOLOGY_UNION(MAKE_IDEOLOGY_UNION)
+};
+
+#define MAKE_IDEOLOGY_STRINGS(VAR) #VAR,
+const char* const ideologyNames[stalinist + 1] = {
+	HOI3_IDEOLOGY_UNION(MAKE_IDEOLOGY_STRINGS)
+};
 
 
 HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _theWorld, bool _newCountry /* = false */)
@@ -253,112 +276,121 @@ void HoI3Country::output() const
 	if (newCountry)
 	{
 		// Output common country file. 
-		std::ofstream commonCountryOutput("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile);
-		commonCountryOutput << "graphical_culture = Generic\n";	// default to "Generic"
-		commonCountryOutput << "color = { " << color << " }\n";
-		commonCountryOutput << "\n";
-		commonCountryOutput << "default_templates = {\n";
-		commonCountryOutput << "	generic_infantry = {\n";
-		commonCountryOutput << "		infantry_brigade\n";
-		commonCountryOutput << "		infantry_brigade\n";
-		commonCountryOutput << "		infantry_brigade\n";
-		commonCountryOutput << "	}\n";
-		commonCountryOutput << "	generic_milita = {\n";
-		commonCountryOutput << "		militia_brigade\n";
-		commonCountryOutput << "		militia_brigade\n";
-		commonCountryOutput << "		militia_brigade\n";
-		commonCountryOutput << "	}\n";
-		commonCountryOutput << "	generic_armoured = {\n";
-		commonCountryOutput << "		armor_brigade\n";
-		commonCountryOutput << "		motorized_brigade\n";
-		commonCountryOutput << "		motorized_brigade\n";
-		commonCountryOutput << "	}\n";
-		commonCountryOutput << "	generic_cavalry = {\n";
-		commonCountryOutput << "		cavalry_brigade\n";
-		commonCountryOutput << "		cavalry_brigade\n";
-		commonCountryOutput << "	}\n";
-		commonCountryOutput << "}\n";
-		commonCountryOutput << "\n";
-		commonCountryOutput << "unit_names = {\n";
-		//commonCountryOutput << "	infantry_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Division\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	cavalry_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Cavalry\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	motorized_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Motor Div.\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	mechanized_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Half Track Div.\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	light_armor_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Armoured Div.\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	armor_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Armoured Div.\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	paratrooper_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Para Division\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	marine_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Marine Division\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	bergsjaeger_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Mountain Division\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	garrison_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Division\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	hq_brigade = {\n";
-		//commonCountryOutput << "		\"1st Afghanestani Army\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	militia_brigade = {\n";
-		//commonCountryOutput << "		\"Faizabad Militia\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	multi_role = {\n";
-		//commonCountryOutput << "		\"I.Fighter Group\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	interceptor = {\n";
-		//commonCountryOutput << "		\"I.Fighter Group\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	strategic_bomber = {\n";
-		//commonCountryOutput << "		\"I.Strategic Group\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	tactical_bomber = {\n";
-		//commonCountryOutput << "		\"I.Tactical Group\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	naval_bomber = {\n";
-		//commonCountryOutput << "		\"I.Naval Bomber Group\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	cas = {\n";
-		//commonCountryOutput << "		\"I.Dive Bomber Group\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	transport_plane = {\n";
-		//commonCountryOutput << "		\"I.Air Transport Group\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	battleship = {\n";
-		//commonCountryOutput << "		\"RAS Afghanistan\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	heavy_cruiser = {\n";
-		//commonCountryOutput << "		\"RAS Faizabad\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	destroyer = {\n";
-		//commonCountryOutput << "		\"D1 / D2 / D3\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	carrier = {\n";
-		//commonCountryOutput << "		\"RAS Zahir Shah\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	submarine = {\n";
-		//commonCountryOutput << "		\"1. Submarine Flotilla\"\n";
-		//commonCountryOutput << "	}\n";
-		//commonCountryOutput << "	transport_ship = {\n";
-		//commonCountryOutput << "		\"1. Troop Transport Flotilla\"\n";
-		//commonCountryOutput << "	}\n";
-		commonCountryOutput << "}\n";
-		commonCountryOutput << "\n";
-		commonCountryOutput << "ministers = {\n";
-		commonCountryOutput << "}\n";
+		fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile).c_str(), "w");
+		fprintf(output, "graphical_culture = Generic\n");	// default to "Generic"
+		int red;
+		int green;
+		int blue;
+		color.GetRGB(red, green, blue);
+		fprintf(output, "color = { %d %d %d }\n", red, green, blue);
+		fprintf(output, "\n");
+		fprintf(output, "default_templates = {\n");
+		fprintf(output, "	generic_infantry = {\n");
+		fprintf(output, "		infantry_brigade\n");
+		fprintf(output, "		infantry_brigade\n");
+		fprintf(output, "		infantry_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "	generic_milita = {\n");
+		fprintf(output, "		militia_brigade\n");
+		fprintf(output, "		militia_brigade\n");
+		fprintf(output, "		militia_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "	generic_armoured = {\n");
+		fprintf(output, "		armor_brigade\n");
+		fprintf(output, "		motorized_brigade\n");
+		fprintf(output, "		motorized_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "	generic_cavalry = {\n");
+		fprintf(output, "		cavalry_brigade\n");
+		fprintf(output, "		cavalry_brigade\n");
+		fprintf(output, "	}\n");
+		fprintf(output, "}\n");
+		fprintf(output, "\n");
+		fprintf(output, "unit_names = {\n");
+		//fprintf(output, "	infantry_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	cavalry_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Cavalry\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	motorized_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Motor Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	mechanized_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Half Track Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	light_armor_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	armor_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Armoured Div.\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	paratrooper_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Para Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	marine_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Marine Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	bergsjaeger_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Mountain Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	garrison_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Division\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	hq_brigade = {\n");
+		//fprintf(output, "		\"1st Afghanestani Army\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	militia_brigade = {\n");
+		//fprintf(output, "		\"Faizabad Militia\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	multi_role = {\n");
+		//fprintf(output, "		\"I.Fighter Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	interceptor = {\n");
+		//fprintf(output, "		\"I.Fighter Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	strategic_bomber = {\n");
+		//fprintf(output, "		\"I.Strategic Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	tactical_bomber = {\n");
+		//fprintf(output, "		\"I.Tactical Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	naval_bomber = {\n");
+		//fprintf(output, "		\"I.Naval Bomber Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	cas = {\n");
+		//fprintf(output, "		\"I.Dive Bomber Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	transport_plane = {\n");
+		//fprintf(output, "		\"I.Air Transport Group\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	battleship = {\n");
+		//fprintf(output, "		\"RAS Afghanistan\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	heavy_cruiser = {\n");
+		//fprintf(output, "		\"RAS Faizabad\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	destroyer = {\n");
+		//fprintf(output, "		\"D1 / D2 / D3\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	carrier = {\n");
+		//fprintf(output, "		\"RAS Zahir Shah\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	submarine = {\n");
+		//fprintf(output, "		\"1. Submarine Flotilla\"\n");
+		//fprintf(output, "	}\n");
+		//fprintf(output, "	transport_ship = {\n");
+		//fprintf(output, "		\"1. Troop Transport Flotilla\"\n");
+		//fprintf(output, "	}\n");
+		fprintf(output, "}\n");
+		fprintf(output, "\n");
+		fprintf(output, "ministers = {\n");
+		for (auto ministerItr: ministers)
+		{
+			ministerItr.output(output);
+		}
+		fprintf(output, "}\n");
+		fclose(output);
 	}
 }
 
@@ -415,7 +447,7 @@ void HoI3Country::outputParties(FILE* output) const
 	fprintf(output, "popularity = {\n");
 	for (auto party: parties)
 	{
-		fprintf(output, "\t%s = %d\n", party.idealogy.c_str(), party.popularity);
+		fprintf(output, "\t%s = %d\n", party.ideology.c_str(), party.popularity);
 	}
 	fprintf(output, "}\n");
 	fprintf(output, "\n");
@@ -423,7 +455,7 @@ void HoI3Country::outputParties(FILE* output) const
 	fprintf(output, "organization = {\n");
 	for (auto party: parties)
 	{
-		fprintf(output, "\t%s = %d\n", party.idealogy.c_str(), party.organization);
+		fprintf(output, "\t%s = %d\n", party.ideology.c_str(), party.organization);
 	}
 	fprintf(output, "}\n");
 	fprintf(output, "\n");
@@ -463,7 +495,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs)
 {
 	srcCountry = _srcCountry;
 	ideology = _ideology;
@@ -517,12 +549,28 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	for (auto partyItr = parties.begin(); partyItr != parties.end(); partyItr++)
 	{
 		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr->name);
-		partyItr->localisationString = partyItr->idealogy + "_" + tag;
+		partyItr->localisationString = partyItr->ideology + "_" + tag;
 		auto localisationItr = oldLocalisation.begin();
 		localisationItr++;
 		for (; localisationItr != oldLocalisation.end(); localisationItr++)
 		{
 			partyItr->localisationString += ";" + localisationItr->second;
+		}
+	}
+
+	// Ministers
+	for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
+	{
+		for (auto job: governmentJobs)
+		{
+			vector<string> firstNames;
+			firstNames.push_back("Bobby");
+			firstNames.push_back("Jimmy");
+			vector<string> lastNames;
+			lastNames.push_back("Bob");
+			lastNames.push_back("John");
+			HoI3Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs);
+			ministers.push_back(newMinister);
 		}
 	}
 
@@ -734,21 +782,21 @@ vector<int> HoI3Country::getPortProvinces(vector<int> locationCandidates, map<in
 
 void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties)
 {
-	// sort Vic2 parties by idealogy
+	// sort Vic2 parties by ideology
 	map<string, vector<V2Party*>> V2Idealogies;
 	for (auto partyItr: V2Parties)
 	{
-		string idealogy = partyItr->ideology;
-		auto idealogyItr = V2Idealogies.find(idealogy);
-		if (idealogyItr == V2Idealogies.end())
+		string ideology = partyItr->ideology;
+		auto ideologyItr = V2Idealogies.find(ideology);
+		if (ideologyItr == V2Idealogies.end())
 		{
 			vector<V2Party*> newPartyVector;
 			newPartyVector.push_back(partyItr);
-			V2Idealogies.insert(make_pair(idealogy, newPartyVector));
+			V2Idealogies.insert(make_pair(ideology, newPartyVector));
 		}
 		else
 		{
-			idealogyItr->second.push_back(partyItr);
+			ideologyItr->second.push_back(partyItr);
 		}
 	}
 
@@ -766,101 +814,101 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	unmappedParties.insert(make_pair("stalinist", "communist_group"));
 
 	// map all the simplistic cases
-	auto idealogyItr = V2Idealogies.find("fascist");
-	if ((idealogyItr != V2Idealogies.end()) && (idealogyItr->second.size() == 1))
+	auto ideologyItr = V2Idealogies.find("fascist");
+	if ((ideologyItr != V2Idealogies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI3Party newParty;
-		newParty.name				= idealogyItr->second[0]->name;
-		newParty.idealogy			= "fascistic";
+		newParty.name				= ideologyItr->second[0]->name;
+		newParty.ideology			= "fascistic";
 		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("fascist") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Idealogies.erase(idealogyItr);
+		V2Idealogies.erase(ideologyItr);
 		auto itr = unmappedParties.find("fascistic");
 		unmappedParties.erase(itr);
 	}
-	idealogyItr = V2Idealogies.find("reactionary");
-	if ((idealogyItr != V2Idealogies.end()) && (idealogyItr->second.size() == 1))
+	ideologyItr = V2Idealogies.find("reactionary");
+	if ((ideologyItr != V2Idealogies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI3Party newParty;
-		newParty.name				= idealogyItr->second[0]->name;
-		newParty.idealogy			= "paternal_autocrat";
+		newParty.name				= ideologyItr->second[0]->name;
+		newParty.ideology			= "paternal_autocrat";
 		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("reactionary") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Idealogies.erase(idealogyItr);
+		V2Idealogies.erase(ideologyItr);
 		auto itr = unmappedParties.find("paternal_autocrat");
 		unmappedParties.erase(itr);
 	}
-	idealogyItr = V2Idealogies.find("conservative");
-	if ((idealogyItr != V2Idealogies.end()) && (idealogyItr->second.size() == 1))
+	ideologyItr = V2Idealogies.find("conservative");
+	if ((ideologyItr != V2Idealogies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI3Party newParty;
-		newParty.name				= idealogyItr->second[0]->name;
-		newParty.idealogy			= "social_conservative";
+		newParty.name				= ideologyItr->second[0]->name;
+		newParty.ideology			= "social_conservative";
 		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("conservative") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Idealogies.erase(idealogyItr);
+		V2Idealogies.erase(ideologyItr);
 		auto itr = unmappedParties.find("social_conservative");
 		unmappedParties.erase(itr);
 	}
-	idealogyItr = V2Idealogies.find("socialist");
-	if ((idealogyItr != V2Idealogies.end()) && (idealogyItr->second.size() == 1))
+	ideologyItr = V2Idealogies.find("socialist");
+	if ((ideologyItr != V2Idealogies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI3Party newParty;
-		newParty.name				= idealogyItr->second[0]->name;
-		newParty.idealogy			= "left_wing_radical";
+		newParty.name				= ideologyItr->second[0]->name;
+		newParty.ideology			= "left_wing_radical";
 		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("socialist") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Idealogies.erase(idealogyItr);
+		V2Idealogies.erase(ideologyItr);
 		auto itr = unmappedParties.find("left_wing_radical");
 		unmappedParties.erase(itr);
 	}
-	idealogyItr = V2Idealogies.find("communist");
-	if ((idealogyItr != V2Idealogies.end()) && (idealogyItr->second.size() == 1))
+	ideologyItr = V2Idealogies.find("communist");
+	if ((ideologyItr != V2Idealogies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI3Party newParty;
-		newParty.name				= idealogyItr->second[0]->name;
-		newParty.idealogy			= "stalinist";
+		newParty.name				= ideologyItr->second[0]->name;
+		newParty.ideology			= "stalinist";
 		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("communist") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Idealogies.erase(idealogyItr);
+		V2Idealogies.erase(ideologyItr);
 		auto itr = unmappedParties.find("stalinist");
 		unmappedParties.erase(itr);
 	}
-	idealogyItr = V2Idealogies.find("liberal");
-	if ((idealogyItr != V2Idealogies.end()) && (idealogyItr->second.size() == 1))
+	ideologyItr = V2Idealogies.find("liberal");
+	if ((ideologyItr != V2Idealogies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI3Party newParty;
-		newParty.name				= idealogyItr->second[0]->name;
-		newParty.idealogy			= "social_liberal";
+		newParty.name				= ideologyItr->second[0]->name;
+		newParty.ideology			= "social_liberal";
 		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("liberal") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Idealogies.erase(idealogyItr);
+		V2Idealogies.erase(ideologyItr);
 		auto itr = unmappedParties.find("social_liberal");
 		unmappedParties.erase(itr);
 	}
-	idealogyItr = V2Idealogies.find("anarcho_liberal");
-	if ((idealogyItr != V2Idealogies.end()) && (idealogyItr->second.size() == 1))
+	ideologyItr = V2Idealogies.find("anarcho_liberal");
+	if ((ideologyItr != V2Idealogies.end()) && (ideologyItr->second.size() == 1))
 	{
 		HoI3Party newParty;
-		newParty.name				= idealogyItr->second[0]->name;
-		newParty.idealogy			= "market_liberal";
+		newParty.name				= ideologyItr->second[0]->name;
+		newParty.ideology			= "market_liberal";
 		newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage("anarcho_liberal") * 100 + 0.5);
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Idealogies.erase(idealogyItr);
+		V2Idealogies.erase(ideologyItr);
 		auto itr = unmappedParties.find("market_liberal");
 		unmappedParties.erase(itr);
 	}
@@ -871,14 +919,14 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 	}
 
 	// map the simple excess cases
-	map<string, vector<V2Party*>> V2IdealogyGroups;
-	idealogyItr = V2Idealogies.find("fascist");
-	if (idealogyItr != V2Idealogies.end())
+	map<string, vector<V2Party*>> V2ideologyGroups;
+	ideologyItr = V2Idealogies.find("fascist");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("fascist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("fascist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -886,17 +934,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+				V2ideologyGroups.insert(make_pair("fascist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("reactionary");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("reactionary");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("fascist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("fascist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -904,17 +952,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+				V2ideologyGroups.insert(make_pair("fascist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("conservative");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("conservative");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("democratic_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("democratic_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -922,17 +970,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+				V2ideologyGroups.insert(make_pair("democratic_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("socialist");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("socialist");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("communist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("communist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -940,17 +988,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+				V2ideologyGroups.insert(make_pair("communist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("communist");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("communist");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("communist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("communist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -958,17 +1006,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+				V2ideologyGroups.insert(make_pair("communist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("liberal");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("liberal");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("democratic_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("democratic_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -976,17 +1024,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+				V2ideologyGroups.insert(make_pair("democratic_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("anarcho_liberal");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("anarcho_liberal");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("democratic_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("democratic_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -994,16 +1042,16 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+				V2ideologyGroups.insert(make_pair("democratic_group", parties));
 			}
 		}
 	}
 
-	map<string, vector<string>> HoI3IdealogyGroups;
+	map<string, vector<string>> HoI3ideologyGroups;
 	for (auto HoI3PartyItr: unmappedParties)
 	{
-		auto groupItr = HoI3IdealogyGroups.find(HoI3PartyItr.second);
-		if (groupItr != HoI3IdealogyGroups.end())
+		auto groupItr = HoI3ideologyGroups.find(HoI3PartyItr.second);
+		if (groupItr != HoI3ideologyGroups.end())
 		{
 			groupItr->second.push_back(HoI3PartyItr.first);
 		}
@@ -1011,44 +1059,44 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		{
 			vector<string> parties;
 			parties.push_back(HoI3PartyItr.first);
-			HoI3IdealogyGroups.insert(make_pair(HoI3PartyItr.second, parties));
+			HoI3ideologyGroups.insert(make_pair(HoI3PartyItr.second, parties));
 		}
 	}
 
-	for (auto V2GroupItr: V2IdealogyGroups)
+	for (auto V2GroupItr: V2ideologyGroups)
 	{
-		auto HoI3GroupItr = HoI3IdealogyGroups.find(V2GroupItr.first);
-		if ((HoI3GroupItr != HoI3IdealogyGroups.end()) && (V2GroupItr.second.size() <= HoI3GroupItr->second.size()))
+		auto HoI3GroupItr = HoI3ideologyGroups.find(V2GroupItr.first);
+		if ((HoI3GroupItr != HoI3ideologyGroups.end()) && (V2GroupItr.second.size() <= HoI3GroupItr->second.size()))
 		{
 			for (auto V2PartyItr: V2GroupItr.second)
 			{
-				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
+				ideologyItr = V2Idealogies.find(V2PartyItr->ideology);
 
 				HoI3Party newParty;
 				newParty.name				= V2PartyItr->name;
-				newParty.idealogy			= HoI3GroupItr->second[0];
-				newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage(idealogyItr->first) * 100 / idealogyItr->second.size() + 0.5);
+				newParty.ideology			= HoI3GroupItr->second[0];
+				newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage(ideologyItr->first) * 100 / ideologyItr->second.size() + 0.5);
 				newParty.organization	= newParty.popularity;
 				parties.push_back(newParty);
 
 				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
 
-				auto itr = unmappedParties.find(newParty.idealogy);
+				auto itr = unmappedParties.find(newParty.ideology);
 				unmappedParties.erase(itr);
 			}
 			for (auto V2PartyItr: V2GroupItr.second)
 			{
-				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
-				if (idealogyItr != V2Idealogies.end())
+				ideologyItr = V2Idealogies.find(V2PartyItr->ideology);
+				if (ideologyItr != V2Idealogies.end())
 				{
-					V2Idealogies.erase(idealogyItr);
+					V2Idealogies.erase(ideologyItr);
 				}
 			}
 			V2GroupItr.second.clear();
 		}
 		if (HoI3GroupItr->second.size() == 0)
 		{
-			HoI3IdealogyGroups.erase(HoI3GroupItr);
+			HoI3ideologyGroups.erase(HoI3GroupItr);
 		}
 	}
 
@@ -1057,23 +1105,23 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		return;
 	}
 
-	// merge Vic2 parties by idealogy, then map those cases
-	for (map<string, vector<V2Party*>>::iterator idealogyItr = V2Idealogies.begin(); idealogyItr != V2Idealogies.end(); idealogyItr++)
+	// merge Vic2 parties by ideology, then map those cases
+	for (map<string, vector<V2Party*>>::iterator ideologyItr = V2Idealogies.begin(); ideologyItr != V2Idealogies.end(); ideologyItr++)
 	{
-		while (idealogyItr->second.size() > 1)
+		while (ideologyItr->second.size() > 1)
 		{
-			idealogyItr->second.pop_back();
+			ideologyItr->second.pop_back();
 		}
 	}
 
-	V2IdealogyGroups.clear();
-	idealogyItr = V2Idealogies.find("fascist");
-	if (idealogyItr != V2Idealogies.end())
+	V2ideologyGroups.clear();
+	ideologyItr = V2Idealogies.find("fascist");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("fascist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("fascist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -1081,17 +1129,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+				V2ideologyGroups.insert(make_pair("fascist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("reactionary");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("reactionary");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("fascist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("fascist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -1099,17 +1147,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("fascist_group", parties));
+				V2ideologyGroups.insert(make_pair("fascist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("conservative");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("conservative");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("democratic_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("democratic_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -1117,17 +1165,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+				V2ideologyGroups.insert(make_pair("democratic_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("socialist");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("socialist");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("communist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("communist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -1135,17 +1183,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+				V2ideologyGroups.insert(make_pair("communist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("communist");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("communist");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("communist_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("communist_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -1153,17 +1201,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("communist_group", parties));
+				V2ideologyGroups.insert(make_pair("communist_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("liberal");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("liberal");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("democratic_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("democratic_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -1171,17 +1219,17 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+				V2ideologyGroups.insert(make_pair("democratic_group", parties));
 			}
 		}
 	}
-	idealogyItr = V2Idealogies.find("anarcho_liberal");
-	if (idealogyItr != V2Idealogies.end())
+	ideologyItr = V2Idealogies.find("anarcho_liberal");
+	if (ideologyItr != V2Idealogies.end())
 	{
-		for (auto partyItr: idealogyItr->second)
+		for (auto partyItr: ideologyItr->second)
 		{
-			auto groupItr = V2IdealogyGroups.find("democratic_group");
-			if (groupItr != V2IdealogyGroups.end())
+			auto groupItr = V2ideologyGroups.find("democratic_group");
+			if (groupItr != V2ideologyGroups.end())
 			{
 				groupItr->second.push_back(partyItr);
 			}
@@ -1189,45 +1237,45 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 			{
 				vector<V2Party*> parties;
 				parties.push_back(partyItr);
-				V2IdealogyGroups.insert(make_pair("democratic_group", parties));
+				V2ideologyGroups.insert(make_pair("democratic_group", parties));
 			}
 		}
 	}
 
-	for (auto V2GroupItr: V2IdealogyGroups)
+	for (auto V2GroupItr: V2ideologyGroups)
 	{
-		auto HoI3GroupItr = HoI3IdealogyGroups.find(V2GroupItr.first);
-		if ((HoI3GroupItr != HoI3IdealogyGroups.end()) && (V2GroupItr.second.size() <= HoI3GroupItr->second.size()))
+		auto HoI3GroupItr = HoI3ideologyGroups.find(V2GroupItr.first);
+		if ((HoI3GroupItr != HoI3ideologyGroups.end()) && (V2GroupItr.second.size() <= HoI3GroupItr->second.size()))
 		{
 			for (auto V2PartyItr: V2GroupItr.second)
 			{
-				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
+				ideologyItr = V2Idealogies.find(V2PartyItr->ideology);
 
 				HoI3Party newParty;
 				newParty.name				= V2PartyItr->name;
-				newParty.idealogy			= HoI3GroupItr->second[0];
-				newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage(idealogyItr->first) * 100 / idealogyItr->second.size() + 0.5);
+				newParty.ideology			= HoI3GroupItr->second[0];
+				newParty.popularity		= static_cast<unsigned int>(srcCountry->getUpperHousePercentage(ideologyItr->first) * 100 / ideologyItr->second.size() + 0.5);
 				newParty.organization	= newParty.popularity;
 				parties.push_back(newParty);
 
 				HoI3GroupItr->second.erase(HoI3GroupItr->second.begin());
 
-				auto itr = unmappedParties.find(newParty.idealogy);
+				auto itr = unmappedParties.find(newParty.ideology);
 				unmappedParties.erase(itr);
 			}
 			for (auto V2PartyItr: V2GroupItr.second)
 			{
-				idealogyItr = V2Idealogies.find(V2PartyItr->ideology);
-				if (idealogyItr != V2Idealogies.end())
+				ideologyItr = V2Idealogies.find(V2PartyItr->ideology);
+				if (ideologyItr != V2Idealogies.end())
 				{
-					V2Idealogies.erase(idealogyItr);
+					V2Idealogies.erase(ideologyItr);
 				}
 			}
 			V2GroupItr.second.clear();
 		}
 		if (HoI3GroupItr->second.size() == 0)
 		{
-			HoI3IdealogyGroups.erase(HoI3GroupItr);
+			HoI3ideologyGroups.erase(HoI3GroupItr);
 		}
 	}
 

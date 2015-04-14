@@ -108,6 +108,7 @@
     <ClCompile Include="Source\HOI3World\HoI3Country.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Diplomacy.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Localisation.cpp" />
+    <ClCompile Include="Source\HOI3World\HoI3Minister.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Province.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3Relations.cpp" />
     <ClCompile Include="Source\HOI3World\HoI3World.cpp" />
@@ -140,6 +141,7 @@
     <ClInclude Include="Source\HOI3World\HoI3Country.h" />
     <ClInclude Include="Source\HOI3World\HoI3Diplomacy.h" />
     <ClInclude Include="Source\HOI3World\HoI3Localisation.h" />
+    <ClInclude Include="Source\HOI3World\HoI3Minister.h" />
     <ClInclude Include="Source\HOI3World\HoI3Province.h" />
     <ClInclude Include="Source\HOI3World\HoI3Relations.h" />
     <ClInclude Include="Source\HOI3World\HoI3World.h" />

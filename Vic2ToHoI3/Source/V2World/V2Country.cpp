@@ -147,9 +147,9 @@ V2Country::V2Country(Object* obj)
 
 	auto upperHouseObj = obj->getValue("upper_house");
 	auto idealogiesObj = upperHouseObj[0]->getLeaves();
-	for (auto idealogyObj: idealogiesObj)
+	for (auto ideologyObj: idealogiesObj)
 	{
-		upperHouseComposition.insert(make_pair(idealogyObj[0].getKey(), atof(idealogyObj[0].getLeaf().c_str())));
+		upperHouseComposition.insert(make_pair(ideologyObj[0].getKey(), atof(ideologyObj[0].getLeaf().c_str())));
 	}
 
 	flagFile = tag;

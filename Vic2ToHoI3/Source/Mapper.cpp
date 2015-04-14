@@ -438,3 +438,20 @@ void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, in
 		}
 	}
 }
+
+
+void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs)
+{
+	vector<Object*> jobsObj = obj->getLeaves();
+	for (auto jobsItr: jobsObj)
+	{
+		string job = jobsItr->getKey();
+		vector<string> traits;
+		auto traitsObj = jobsItr->getLeaves();
+		for (auto trait: traitsObj)
+		{
+			traits.push_back(trait->getLeaf());
+		}
+		governmentJobs.insert(make_pair(job, traits));
+	}
+}

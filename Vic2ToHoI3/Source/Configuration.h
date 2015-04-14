@@ -141,6 +141,11 @@ class Configuration // Singleton
 			return getInstance()->practicalsScale;
 		}
 
+		static int getNextLeaderID()
+		{
+			return getInstance()->leaderID++;
+		}
+
 		static Configuration* getInstance()
 		{
 			if (instance == NULL)
@@ -174,6 +179,8 @@ class Configuration // Singleton
 		double			leadershipFactor;
 		double			literacyWeight;
 		double			practicalsScale;
+
+		unsigned int	leaderID;
 };
 
 #endif // CONFIGURATION_H_

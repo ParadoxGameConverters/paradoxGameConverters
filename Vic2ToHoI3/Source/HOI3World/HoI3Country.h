@@ -42,6 +42,7 @@ using namespace std;
 class HoI3World;
 class V2Country;
 class HoI3Relations;
+class HoI3Minister;
 
 
 
@@ -49,7 +50,7 @@ typedef struct
 {
 	string			name;
 	string			localisationString;
-	string			idealogy;
+	string			ideology;
 	unsigned int	popularity;
 	unsigned int	organization;
 } HoI3Party;
@@ -62,7 +63,7 @@ class HoI3Country
 		void								output() const;
 		void								outputToCommonCountriesFile(FILE*) const;
 		void								outputOOB() const;
-		void								initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations);
+		void								initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs);
 		void								initFromHistory();
 		void								convertArmies(const map<int,int>& leaderIDMap, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
 		void								addRelation(HoI3Relations* newRelation);
@@ -130,6 +131,7 @@ class HoI3Country
 		set<string>							allies;
 		map<string, double>				practicals;
 		vector<HoI3Party>					parties;
+		vector<HoI3Minister>				ministers;
 
 		// laws
 		string				civil_law;

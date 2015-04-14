@@ -99,4 +99,10 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
 
 
+// government jobs
+typedef pair<string, vector<string>> governmentJob; // <job name, possible traits>
+typedef map<string, vector<string>> governmentJobsMap;
+void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
+
+
 #endif // MAPPER_H

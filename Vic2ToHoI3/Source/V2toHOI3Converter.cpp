@@ -252,10 +252,21 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	// Leaders
 	map<int, int> leaderIDMap; // <V2, HoI3>
 
+	// Parse government jobs
+	LOG(LogLevel::Info) << "Parsing government jobs";
+	initParser();
+	obj = doParseFile("governmentJobs.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file governmentJobs.txt";
+		exit(-1);
+	}
+	governmentJobsMap governmentJobs;
+	initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation);
+	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

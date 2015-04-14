@@ -5,6 +5,7 @@ copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
 copy "Data_Files\province_mappings.txt" "release\province_mappings.txt
 copy "Data_Files\country_mappings.txt" "release\country_mappings.txt
 copy "Data_Files\governmentMapping.txt" "release\governmentMapping.txt
+copy "Data_Files\governmentJobs.txt" "release\governmentJobs.txt
 copy "Data_Files\leader_traits.txt" "release\leader_traits.txt
 copy "Data_Files\license.txt" "release\license.txt"
 copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
