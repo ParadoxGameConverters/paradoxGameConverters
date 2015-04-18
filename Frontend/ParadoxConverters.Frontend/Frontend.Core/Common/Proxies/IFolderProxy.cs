@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Frontend.Core.Proxies
+namespace Frontend.Core.Common.Proxies
 {
     public interface IFolderProxy
     {

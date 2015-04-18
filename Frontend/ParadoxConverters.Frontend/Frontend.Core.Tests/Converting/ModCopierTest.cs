@@ -1,18 +1,13 @@
 ﻿using Caliburn.Micro;
-using Frontend.Core.Converting;
+using Frontend.Core.Common.Proxies;
+using Frontend.Core.Converting.Operations.CopyMod;
 using Frontend.Core.Helpers;
-using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
-using Frontend.Core.Proxies;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Frontend.Core.Tests.Converting
 {

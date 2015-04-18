@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace Frontend.Core.Proxies
+namespace Frontend.Core.Common.Proxies
 {
     public class MessageBoxProxy : IMessageBoxProxy
     {

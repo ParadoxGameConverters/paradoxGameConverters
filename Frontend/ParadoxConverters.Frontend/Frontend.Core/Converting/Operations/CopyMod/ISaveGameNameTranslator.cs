@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Frontend.Core.Converting
+namespace Frontend.Core.Converting.Operations.CopyMod
 {
     public interface ISaveGameNameTranslator
     {

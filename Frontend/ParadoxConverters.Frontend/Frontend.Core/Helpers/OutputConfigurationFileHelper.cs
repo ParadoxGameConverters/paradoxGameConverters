@@ -1,7 +1,6 @@
-﻿using Frontend.Core.Model.Interfaces;
+﻿using Frontend.Core.Common.Proxies;
+using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
-using Frontend.Core.Proxies;
-using System.IO;
 using System.Linq;
 using System.Text;
 

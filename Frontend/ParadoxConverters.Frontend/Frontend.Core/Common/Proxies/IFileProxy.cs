@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Frontend.Core.Proxies
+namespace Frontend.Core.Common.Proxies
 {
     public interface IFileProxy
     {
@@ -10,5 +10,7 @@ namespace Frontend.Core.Proxies
         void WriteAllText(string path, string contents);
 
         string ReadAllText(string path);
+
+        void DeleteFile(string path);
     }
 }

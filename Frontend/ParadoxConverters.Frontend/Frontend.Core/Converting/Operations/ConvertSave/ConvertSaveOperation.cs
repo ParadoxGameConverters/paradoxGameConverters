@@ -1,16 +1,12 @@
-﻿using Frontend.Core.Helpers;
-using Frontend.Core.Logging;
+﻿using Frontend.Core.Common.Proxies;
+using Frontend.Core.Helpers;
 using Frontend.Core.Model.Interfaces;
-using Frontend.Core.Proxies;
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Frontend.Core.Converting.Operations
+namespace Frontend.Core.Converting.Operations.ConvertSave
 {
     public class ConvertSaveOperation : IOperation
     {
@@ -29,7 +25,7 @@ namespace Frontend.Core.Converting.Operations
         {
             get
             {
-                return "Converting save";
+                return "Converting save...";
             }
         }
 

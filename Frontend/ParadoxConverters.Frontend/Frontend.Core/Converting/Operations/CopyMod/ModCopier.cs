@@ -1,13 +1,14 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Common.Proxies;
+using Frontend.Core.Converting.Operations;
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
-using Frontend.Core.Proxies;
 using System;
 using System.Linq;
 using System.Windows;
 
-namespace Frontend.Core.Converting
+namespace Frontend.Core.Converting.Operations.CopyMod
 {
     public class ModCopier : IModCopier
     {
@@ -40,8 +41,10 @@ namespace Frontend.Core.Converting
             this.nameTranslator = nameTranslator;
         }
 
-        public void MoveModFileAndFolder()
+        public OperationResult MoveModFileAndFolder()
         {
+            var operationResult = new OperationResult();
+
             // NOTE: This method may be V2 specific. I'll have to talk to Idhrendur about the rules for how this is/will be handled in other converters. 
             // I'll figure out some generic way of handling any problems related to that when and if it occurs. 
 
@@ -69,7 +72,8 @@ namespace Frontend.Core.Converting
 
                 if (result == MessageBoxResult.No)
                 {
-                    return;
+                    operationResult.State = OperationResultState.Warning;
+                    return operationResult;
                 }
             }
 
@@ -77,13 +81,17 @@ namespace Frontend.Core.Converting
             {
                 this.fileProxy.Copy(outputModFileSourcePath, expectedAbsoluteOutputModFileTargetPath, true);
                 this.directoryCopyHelper.DirectoryCopy(outputModFolderSourcePath, expectedAbsoluteOutputModFolderTargetPath, true, true);
-                this.eventAggregator.PublishOnUIThread(new LogEntry("Mod copied to: ", LogEntrySeverity.Info, LogEntrySource.UI, expectedAbsoluteOutputModFolderTargetPath));
-                this.eventAggregator.PublishOnUIThread(new LogEntry("Copy complete. Ready to play - have fun!", LogEntrySeverity.Info, LogEntrySource.UI));
+
+                operationResult.LogEntries.Add(new LogEntry("Mod copied to: ", LogEntrySeverity.Info, LogEntrySource.UI, expectedAbsoluteOutputModFolderTargetPath));
+                operationResult.LogEntries.Add(new LogEntry("Copy complete. Ready to play - have fun!", LogEntrySeverity.Info, LogEntrySource.UI));
             }
             catch (Exception e)
             {
-                this.eventAggregator.BeginPublishOnUIThread(new LogEntry(e.Message, LogEntrySeverity.Error, LogEntrySource.UI));
+                operationResult.LogEntries.Add(new LogEntry(e.Message, LogEntrySeverity.Error, LogEntrySource.UI));
+                operationResult.State = OperationResultState.Error;
             }
+
+            return operationResult;
         }
 
     }

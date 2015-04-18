@@ -42,6 +42,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Caliburn.Micro.2.0.1\lib\net45\System.Windows.Interactivity.dll</HintPath>
@@ -65,12 +66,14 @@
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Converting\CancelConvertingCommand.cs" />
     <Compile Include="Converting\OldConvertCommand.cs" />
-    <Compile Include="Converting\IModCopier.cs" />
-    <Compile Include="Converting\ISaveGameNameTranslator.cs" />
-    <Compile Include="Converting\ModCopier.cs" />
-    <Compile Include="Converting\Operations\ConvertSaveOperation.cs" />
-    <Compile Include="Converting\Operations\CopyModOperation.cs" />
-    <Compile Include="Converting\Operations\ExtractSaveOperation.cs" />
+    <Compile Include="Converting\Operations\CopyMod\IModCopier.cs" />
+    <Compile Include="Converting\Operations\CopyMod\ISaveGameNameTranslator.cs" />
+    <Compile Include="Converting\Operations\CopyMod\ModCopier.cs" />
+    <Compile Include="Converting\Operations\ConvertSave\ConvertSaveOperation.cs" />
+    <Compile Include="Converting\Operations\CopyMod\CopyModOperation.cs" />
+    <Compile Include="Converting\Operations\ExtractSave\CompressedSaveChecker.cs" />
+    <Compile Include="Converting\Operations\ExtractSave\ExtractSaveOperation.cs" />
+    <Compile Include="Converting\Operations\ExtractSave\ICompressedSaveChecker.cs" />
     <Compile Include="Converting\Operations\IOperation.cs" />
     <Compile Include="Converting\Operations\IOperationProcessor.cs" />
     <Compile Include="Converting\Operations\IOperationProvider.cs" />
@@ -80,9 +83,9 @@
     <Compile Include="Converting\Operations\OperationResultState.cs" />
     <Compile Include="Converting\Operations\OperationState.cs" />
     <Compile Include="Converting\Operations\OperationViewModel.cs" />
-    <Compile Include="Converting\Operations\SaveConfigurationOperation.cs" />
+    <Compile Include="Converting\Operations\SaveConfiguration\SaveConfigurationOperation.cs" />
     <Compile Include="Converting\RunOperationsCommand.cs" />
-    <Compile Include="Converting\SaveGameNameTranslator.cs" />
+    <Compile Include="Converting\Operations\CopyMod\SaveGameNameTranslator.cs" />
     <Compile Include="Converting\Operations\OperationResult.cs" />
     <Compile Include="Events\EventArgs\PreferenceOperation.cs" />
     <Compile Include="Events\EventArgs\PreferenceStepOperationArgs.cs" />
@@ -153,12 +156,12 @@
     <Compile Include="Model\Preferences\StringPreference.cs" />
     <Compile Include="Model\RelativeFolderLocationRoot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Proxies\FileProxy.cs" />
-    <Compile Include="Proxies\FolderProxy.cs" />
-    <Compile Include="Proxies\IFileProxy.cs" />
-    <Compile Include="Proxies\IFolderProxy.cs" />
-    <Compile Include="Proxies\IMessageBoxProxy.cs" />
-    <Compile Include="Proxies\MessageBoxProxy.cs" />
+    <Compile Include="Common\Proxies\FileProxy.cs" />
+    <Compile Include="Common\Proxies\FolderProxy.cs" />
+    <Compile Include="Common\Proxies\IFileProxy.cs" />
+    <Compile Include="Common\Proxies\IFolderProxy.cs" />
+    <Compile Include="Common\Proxies\IMessageBoxProxy.cs" />
+    <Compile Include="Common\Proxies\MessageBoxProxy.cs" />
     <Compile Include="ViewModels\ConvertViewModel.cs" />
     <Compile Include="ViewModels\FrameViewModel.cs" />
     <Compile Include="ViewModels\Interfaces\IConvertViewModel.cs" />

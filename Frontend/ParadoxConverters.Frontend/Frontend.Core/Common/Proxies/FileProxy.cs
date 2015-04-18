@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace Frontend.Core.Proxies
+namespace Frontend.Core.Common.Proxies
 {
     public class FileProxy : IFileProxy
     {
@@ -23,6 +23,11 @@ namespace Frontend.Core.Proxies
         public string ReadAllText(string path)
         {
             return File.ReadAllText(path);
+        }
+
+        public void DeleteFile(string path)
+        {
+            File.Delete(path);
         }
     }
 }

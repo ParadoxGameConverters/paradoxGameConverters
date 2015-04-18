@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.Core.Converting
+namespace Frontend.Core.Converting.Operations.CopyMod
 {
     /// <summary>
     /// The converter tool normally creates an output mod named the same as the save game it was created from.

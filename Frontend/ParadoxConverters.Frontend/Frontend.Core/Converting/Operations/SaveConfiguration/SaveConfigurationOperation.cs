@@ -1,14 +1,11 @@
-﻿using Frontend.Core.Helpers;
+﻿using Frontend.Core.Common.Proxies;
+using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
-using Frontend.Core.Proxies;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
-namespace Frontend.Core.Converting.Operations
+namespace Frontend.Core.Converting.Operations.SaveConfiguration
 {
     public class SaveConfigurationOperation : IOperation
     {
@@ -37,7 +34,7 @@ namespace Frontend.Core.Converting.Operations
         { 
             get
             {
-                return "Saving configuration";
+                return "Saving configuration...";
             }
         }
 

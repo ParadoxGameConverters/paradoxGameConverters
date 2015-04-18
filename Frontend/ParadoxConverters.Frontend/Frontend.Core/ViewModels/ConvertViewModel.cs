@@ -1,15 +1,17 @@
 ﻿using Caliburn.Micro;
-using Frontend.Core.Commands;
-using Frontend.Core.Common;
+using Frontend.Core.Common.Proxies;
 using Frontend.Core.Converting;
 using Frontend.Core.Converting.Operations;
+using Frontend.Core.Converting.Operations.ConvertSave;
+using Frontend.Core.Converting.Operations.CopyMod;
+using Frontend.Core.Converting.Operations.ExtractSave;
+using Frontend.Core.Converting.Operations.SaveConfiguration;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model.Interfaces;
-using Frontend.Core.Proxies;
 using Frontend.Core.ViewModels.Interfaces;
 using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using System.Windows.Input;
 
@@ -46,11 +48,16 @@ namespace Frontend.Core.ViewModels
                 new FolderProxy(), 
                 new OutputConfigurationFileHelper(new FileProxy())));
 
-            this.operationProvider.AddOperation(new ExtractSaveOperation());
+            this.operationProvider.AddOperation(new ExtractSaveOperation(
+                this.Options, 
+                new CompressedSaveChecker(), 
+                new DirectoryHelper(), 
+                new MessageBoxProxy(),
+                new FileProxy()));
 
             this.operationProvider.AddOperation(new ConvertSaveOperation(this.Options, new FileProxy(), new DirectoryHelper()));
 
-            this.operationProvider.AddOperation(new CopyModOperation());
+            this.operationProvider.AddOperation(new CopyModOperation(this.EventAggregator, this.Options));
 
             this.getOrCreateCancellationTokenSource = new Func<CancellationTokenSource>(() =>
             {

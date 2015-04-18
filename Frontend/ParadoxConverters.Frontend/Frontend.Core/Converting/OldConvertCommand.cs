@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Commands;
+using Frontend.Core.Converting.Operations.CopyMod;
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;

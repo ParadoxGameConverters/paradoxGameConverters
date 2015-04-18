@@ -1,10 +1,5 @@
-﻿using Frontend.Core.Converting;
+﻿using Frontend.Core.Converting.Operations.CopyMod;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Frontend.Core.Tests.Converting
 {
