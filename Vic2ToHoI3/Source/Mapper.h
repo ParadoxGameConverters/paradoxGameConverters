@@ -105,4 +105,9 @@ typedef map<string, vector<string>> governmentJobsMap;
 void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
 
 
+// names
+typedef map<string, pair<vector<string>, vector<string>>> namesMapping;
+void initNamesMapping(Object* obj, namesMapping& namesMap);
+
+
 #endif // MAPPER_H

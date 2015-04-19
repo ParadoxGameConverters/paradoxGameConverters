@@ -264,9 +264,28 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	governmentJobsMap governmentJobs;
 	initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
 
+	// parse names
+	LOG(LogLevel::Info) << "Parsing names";
+	namesMapping namesMap;
+	vic2Mods = Configuration::getVic2Mods();
+	for (auto itr: vic2Mods)
+	{
+		LOG(LogLevel::Debug) << "Reading mod cultures";
+		obj = doParseFile((Configuration::getV2Path() + "\\mod\\" + itr + "\\common\\cultures.txt").c_str());
+		if (obj != NULL)
+		{
+			initNamesMapping(obj, namesMap);
+		}
+	}
+	obj = doParseFile((Configuration::getV2Path() + "\\common\\cultures.txt").c_str());
+	if (obj != NULL)
+	{
+		initNamesMapping(obj, namesMap);
+	}
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs);
+	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

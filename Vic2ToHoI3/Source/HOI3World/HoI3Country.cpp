@@ -495,7 +495,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap)
 {
 	srcCountry = _srcCountry;
 	ideology = _ideology;
@@ -559,16 +559,23 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	// Ministers
+	vector<string> firstNames;
+	vector<string> lastNames;
+	auto namesItr = namesMap.find(srcCountry->getPrimaryCulture());
+	if (namesItr != namesMap.end())
+	{
+		firstNames	= namesItr->second.first;
+		lastNames	= namesItr->second.second;
+	}
+	else
+	{
+		firstNames.push_back("null");
+		lastNames.push_back("null");
+	}
 	for (unsigned int ideologyIdx = 0; ideologyIdx <= stalinist; ideologyIdx++)
 	{
 		for (auto job: governmentJobs)
 		{
-			vector<string> firstNames;
-			firstNames.push_back("Bobby");
-			firstNames.push_back("Jimmy");
-			vector<string> lastNames;
-			lastNames.push_back("Bob");
-			lastNames.push_back("John");
 			HoI3Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs);
 			ministers.push_back(newMinister);
 		}

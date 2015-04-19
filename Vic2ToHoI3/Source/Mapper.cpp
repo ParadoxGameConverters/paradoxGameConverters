@@ -455,3 +455,33 @@ void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs)
 		governmentJobs.insert(make_pair(job, traits));
 	}
 }
+
+
+void initNamesMapping(Object* obj, namesMapping& namesMap)
+{
+	vector<Object*> groupsObj = obj->getLeaves();
+	for (auto groupsItr: groupsObj)
+	{
+		vector<Object*> culturesObj = groupsItr->getLeaves();
+		for (auto culturesItr: culturesObj)
+		{
+			string key = culturesItr->getKey();
+			if ((key == "union") || (key == "leader") || (key == "unit") || (key == "is_overseas"))
+			{
+				continue;
+			}
+			vector<Object*>	firstNamesObj	= culturesItr->getValue("first_names");
+			vector<Object*>	lastNamesObj	= culturesItr->getValue("last_names");
+			if ((firstNamesObj.size() > 0) && (lastNamesObj.size() > 0))
+			{
+				vector<string>		firstNames		= firstNamesObj[0]->getTokens();
+				vector<string>		lastNames		= lastNamesObj[0]->getTokens();
+				namesMap.insert(make_pair(key, make_pair(firstNames, lastNames)));
+			}
+			else
+			{
+				LOG(LogLevel::Error) << "No names for " << key;
+			}	
+		}
+	}
+}
