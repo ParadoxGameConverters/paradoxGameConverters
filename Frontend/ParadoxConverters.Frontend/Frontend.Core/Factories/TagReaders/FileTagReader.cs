@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Common.Proxies;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model.Paths;
 using Frontend.Core.Model.Paths.Interfaces;
@@ -11,7 +12,7 @@ namespace Frontend.Core.Factories.TagReaders
     public class FileTagReader : TagReaderBase
     {
         public FileTagReader(IEventAggregator eventAggregator)
-            : base(eventAggregator, new DirectoryHelper())
+            : base(eventAggregator, new DirectoryHelper(), new EnvironmentProxy())
         {
         }
 

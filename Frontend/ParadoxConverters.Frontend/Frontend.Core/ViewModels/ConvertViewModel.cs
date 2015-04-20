@@ -46,14 +46,16 @@ namespace Frontend.Core.ViewModels
                 new DirectoryHelper(), 
                 new FileProxy(), 
                 new FolderProxy(), 
-                new OutputConfigurationFileHelper(new FileProxy())));
+                new OutputConfigurationFileHelper(new FileProxy(), new EnvironmentProxy())));
 
             this.operationProvider.AddOperation(new ExtractSaveOperation(
                 this.Options, 
                 new CompressedSaveChecker(), 
-                new DirectoryHelper(), 
-                new MessageBoxProxy(),
-                new FileProxy()));
+                new ZipFileHelper(
+                    new ZipFileProxy(),
+                    new FileProxy(), 
+                    new MessageBoxProxy()), 
+                    new EnvironmentProxy()));
 
             this.operationProvider.AddOperation(new ConvertSaveOperation(this.Options, new FileProxy(), new DirectoryHelper()));
 
@@ -71,7 +73,6 @@ namespace Frontend.Core.ViewModels
             {
                 return this.runOperationsCommand ?? (this.runOperationsCommand = new RunOperationsCommand(
                     this.EventAggregator, 
-                    this.Options, 
                     new OperationProcessor(this.EventAggregator), 
                     this.operationProvider,
                     percent => this.UpdateProgress(percent),

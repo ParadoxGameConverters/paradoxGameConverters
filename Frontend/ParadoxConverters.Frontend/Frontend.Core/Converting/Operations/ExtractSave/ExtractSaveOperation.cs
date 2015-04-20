@@ -1,73 +1,45 @@
-﻿using Frontend.Core.Common.Proxies;
-using Frontend.Core.Helpers;
-using Frontend.Core.Logging;
-using Frontend.Core.Model;
-using Frontend.Core.Model.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
-using System.IO.Compression;
-using System.Linq;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
+using Frontend.Core.Common.Proxies;
+using Frontend.Core.Logging;
+using Frontend.Core.Model.Interfaces;
 
 namespace Frontend.Core.Converting.Operations.ExtractSave
 {
     public class ExtractSaveOperation : IOperation
     {
-        private IConverterOptions options;
-        private ICompressedSaveChecker saveChecker;
-        private IDirectoryHelper directoryHelper;
-        private IMessageBoxProxy messageBoxProxy;
-        private IFileProxy fileProxy;
+        private readonly IEnvironmentProxy environmentProxy;
+        private readonly IConverterOptions options;
+        private readonly ICompressedSaveChecker saveChecker;
+        private readonly IZipFileHelper zipFileHelper;
 
         public ExtractSaveOperation(
             IConverterOptions options,
             ICompressedSaveChecker saveChecker,
-            IDirectoryHelper directoryHelper,
-            IMessageBoxProxy messageBoxProxy,
-            IFileProxy fileProxy)
+            IZipFileHelper zipFileHelper,
+            IEnvironmentProxy environmentProxy)
         {
             this.options = options;
             this.saveChecker = saveChecker;
-            this.directoryHelper = directoryHelper;
-            this.messageBoxProxy = messageBoxProxy;
-            this.fileProxy = fileProxy;
+            this.zipFileHelper = zipFileHelper;
+            this.environmentProxy = environmentProxy;
         }
 
         public string Description
         {
-            get
-            {
-                return "Extracting save...";
-            }
+            get { return "Extracting save..."; }
         }
 
         public async Task<OperationResult> Process()
         {
-            var savePath = this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue;
-            var extractPath = this.directoryHelper.GetFrontendWorkingDirectory();
-            var saveFilePathAfterExtraction = Path.Combine(extractPath, Path.GetFileName(this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue));
-            bool extractedSaveExists = this.fileProxy.Exists(saveFilePathAfterExtraction);
-
+            var savePath = options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue;
+            var extractPath = environmentProxy.GetFrontendWorkingDirectory();
             var result = new OperationResult();
-
-            if (extractedSaveExists)
-            {
-                var messageBoxText = String.Format("Save game {0} exists already. Delete before extracting?", saveFilePathAfterExtraction);
-                var messageBoxResult = this.messageBoxProxy.Show(messageBoxText, "Save exists already", System.Windows.MessageBoxButton.YesNo);
-
-                if (messageBoxResult == MessageBoxResult.Yes)
-                {
-                    this.fileProxy.DeleteFile(saveFilePathAfterExtraction);
-                }
-            }
 
             try
             {
-                ZipFile.ExtractToDirectory(savePath, extractPath);
+                this.zipFileHelper.ExtractFile(savePath, Path.GetFileName(savePath), extractPath);
                 result.State = OperationResultState.Success;
             }
             catch (Exception e)
@@ -81,10 +53,11 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
 
         public bool CanRun()
         {
-            var hasSaveSet = !string.IsNullOrEmpty(this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
-            //var isCompressedSave = this.saveChecker.CheckIfCompressedSave(this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
+            var hasSaveSet = !string.IsNullOrEmpty(options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
+            var isCompressed =
+                saveChecker.IsCompressedSave(options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
 
-            return hasSaveSet; // && isCompressedSave;
+            return hasSaveSet && isCompressed;
         }
     }
 }

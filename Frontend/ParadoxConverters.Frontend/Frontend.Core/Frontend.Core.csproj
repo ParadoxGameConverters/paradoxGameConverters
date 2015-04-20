@@ -42,6 +42,7 @@
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -62,6 +63,11 @@
     <Compile Include="Commands\MoveCommand.cs" />
     <Compile Include="Commands\OpenFileCommand.cs" />
     <Compile Include="Commands\OpenFolderCommand.cs" />
+    <Compile Include="Common\Proxies\EnvironmentProxy.cs" />
+    <Compile Include="Common\Proxies\Exceptions\FileNotFoundInArchiveException.cs" />
+    <Compile Include="Common\Proxies\IEnvironmentProxy.cs" />
+    <Compile Include="Common\Proxies\IZipFileProxy.cs" />
+    <Compile Include="Common\Proxies\ZipFileProxy.cs" />
     <Compile Include="Conductors\Interfaces\IStepConductorBase.cs" />
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Converting\CancelConvertingCommand.cs" />
@@ -74,6 +80,8 @@
     <Compile Include="Converting\Operations\ExtractSave\CompressedSaveChecker.cs" />
     <Compile Include="Converting\Operations\ExtractSave\ExtractSaveOperation.cs" />
     <Compile Include="Converting\Operations\ExtractSave\ICompressedSaveChecker.cs" />
+    <Compile Include="Converting\Operations\ExtractSave\IZipFileHelper.cs" />
+    <Compile Include="Converting\Operations\ExtractSave\ZipFileHelper.cs" />
     <Compile Include="Converting\Operations\IOperation.cs" />
     <Compile Include="Converting\Operations\IOperationProcessor.cs" />
     <Compile Include="Converting\Operations\IOperationProvider.cs" />

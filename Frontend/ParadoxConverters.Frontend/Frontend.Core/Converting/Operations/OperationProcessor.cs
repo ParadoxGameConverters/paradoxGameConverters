@@ -12,7 +12,7 @@ namespace Frontend.Core.Converting.Operations
 {
     public class OperationProcessor : DispatcherObject, IOperationProcessor
     {
-        private IEventAggregator eventAggregator;
+        private readonly IEventAggregator eventAggregator;
         private Dictionary<OperationResultState, Action<OperationResult, IOperationViewModel>> resultHandlershandle;
 
         public OperationProcessor(IEventAggregator eventAggregator)
@@ -23,7 +23,7 @@ namespace Frontend.Core.Converting.Operations
                 { OperationResultState.Success, this.HandleSuccess },
                 { OperationResultState.Warning, this.HandleWarning },
                 { OperationResultState.Error, this.HandleErrors },
-                { OperationResultState.Cancelled, this.HandleCancellation }
+                { OperationResultState.Canceled, this.HandleCancellation }
             };
         }
 
@@ -33,9 +33,15 @@ namespace Frontend.Core.Converting.Operations
             int processCount = await Task.Run<int>(() =>
                 {
                     int currentCount = 0;
-
+                    OperationResultState previousTaskState = OperationResultState.Success;
+                    
                     foreach (var operation in operations)
                     {
+                        if (previousTaskState != OperationResultState.Success)
+                        {
+                            break;
+                        }
+
                         currentCount++;
 
                         operation.State = OperationState.InProgress;
@@ -46,8 +52,8 @@ namespace Frontend.Core.Converting.Operations
 
                         try
                         {
-                            task = operation.Process();
                             token.ThrowIfCancellationRequested();
+                            task = operation.Process();
 
                             this.LogResultMessages(task.Result);
                             this.resultHandlershandle[task.Result.State](task.Result, operation);
@@ -56,12 +62,17 @@ namespace Frontend.Core.Converting.Operations
                         }
                         catch (OperationCanceledException oce)
                         {
-                            this.resultHandlershandle[OperationResultState.Cancelled](task.Result, operation);
-                            break;
+                            this.resultHandlershandle[OperationResultState.Canceled](task.Result, operation);
                         }
                         catch (Exception e)
                         {
-                            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Unhandled exception occurred: {0}", e.Message), LogEntrySeverity.Error, LogEntrySource.UI));
+                            this.eventAggregator.PublishOnUIThread(
+                                new LogEntry(string.Format("Unhandled exception occurred: {0}", e.Message),
+                                    LogEntrySeverity.Error, LogEntrySource.UI));
+                        }
+                        finally
+                        {
+                            previousTaskState = task.Result.State;
                         }
                     }
 
@@ -82,7 +93,7 @@ namespace Frontend.Core.Converting.Operations
 
         private void HandleCancellation(OperationResult result, IOperationViewModel operation)
         {
-            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Operation {0} cancelled", operation.Description), LogEntrySeverity.Warning, LogEntrySource.UI));
+            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Operation {0} canceled.", operation.Description), LogEntrySeverity.Warning, LogEntrySource.UI));
         }
 
         private void HandleSuccess(OperationResult result, IOperationViewModel operation)

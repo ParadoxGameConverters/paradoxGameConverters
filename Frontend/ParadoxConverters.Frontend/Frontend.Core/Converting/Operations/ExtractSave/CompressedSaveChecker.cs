@@ -4,7 +4,7 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
 {
     public class CompressedSaveChecker : ICompressedSaveChecker
     {
-        public bool CheckIfCompressedSave(string path)
+        public bool IsCompressedSave(string path)
         {
             try
             {

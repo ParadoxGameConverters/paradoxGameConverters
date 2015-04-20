@@ -24,6 +24,8 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
         private Mock<IConverterSettings> mockCurrentConverter;
         private Mock<IRequiredFile> mockSavegame;
         private Mock<IFileProxy> fileProxy;
+        private Mock<IZipFileHelper> zipFileHelper;
+        private Mock<IEnvironmentProxy> mockEnvironment;
 
         protected override void OnCleanup()
         {
@@ -35,6 +37,8 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
             this.mockConverterOptions = null;
             this.mockCompressedSaveChecker = null;
             this.fileProxy = null;
+            this.zipFileHelper = null;
+            this.mockEnvironment = null;
             base.OnCleanup();
         }
 
@@ -46,6 +50,8 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
             this.mockDirectoryHelper = new Mock<IDirectoryHelper>();
             this.mockMessageBoxProxy = new Mock<IMessageBoxProxy>();
             this.fileProxy = new Mock<IFileProxy>();
+            this.zipFileHelper = new Mock<IZipFileHelper>();
+            this.mockEnvironment = new Mock<IEnvironmentProxy>();
 
             this.mockCurrentConverter = new Mock<IConverterSettings>();
             this.mockConverterOptions.Setup(o => o.CurrentConverter).Returns(mockCurrentConverter.Object);
@@ -53,7 +59,11 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
             this.mockSavegame = new Mock<IRequiredFile>();
             this.mockCurrentConverter.Setup(c => c.AbsoluteSourceSaveGame).Returns(mockSavegame.Object);
 
-            this.testTarget = new ExtractSaveOperation(this.mockConverterOptions.Object, this.mockCompressedSaveChecker.Object, this.mockDirectoryHelper.Object, this.mockMessageBoxProxy.Object, this.fileProxy.Object);
+            this.testTarget = new ExtractSaveOperation(
+                this.mockConverterOptions.Object, 
+                this.mockCompressedSaveChecker.Object, 
+                this.zipFileHelper.Object,
+                this.mockEnvironment.Object);
         }
         
         [TestMethod]

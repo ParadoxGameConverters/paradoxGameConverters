@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using Frontend.Core.Common.Proxies;
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model;
@@ -16,11 +17,13 @@ namespace Frontend.Core.Factories.TagReaders
     {
         private IEventAggregator eventAggregator;
         private IDirectoryHelper directoryHelper;
+        private IEnvironmentProxy environmentProxy;
 
-        protected TagReaderBase(IEventAggregator eventAggregator, IDirectoryHelper directoryHelper)
+        protected TagReaderBase(IEventAggregator eventAggregator, IDirectoryHelper directoryHelper, IEnvironmentProxy environmentProxy)
         {
             this.eventAggregator = eventAggregator;
             this.directoryHelper = directoryHelper;
+            this.environmentProxy = environmentProxy;
         }
 
         protected IEventAggregator EventAggregator
@@ -69,7 +72,7 @@ namespace Frontend.Core.Factories.TagReaders
         private IAlternativePath ReadConverterPath(XElement xmlElement, string tagName, string friendlyName)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
-            var absolutePath = Path.Combine(this.directoryHelper.GetFrontendWorkingDirectory(), subFolderLocation);
+            var absolutePath = Path.Combine(this.environmentProxy.GetFrontendWorkingDirectory(), subFolderLocation);
 
             return this.BuildAlternativePathObject(absolutePath, tagName, friendlyName);
         }
@@ -77,7 +80,7 @@ namespace Frontend.Core.Factories.TagReaders
         private IAlternativePath ReadWindowsUserFolderPath(XElement xmlElement, string tagName, string friendlyName)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
-            var userFolder = this.directoryHelper.GetUsersFolder();
+            var userFolder = this.environmentProxy.GetUsersFolder();
             var absolutePath = Path.Combine(userFolder, subFolderLocation);
 
             return this.BuildAlternativePathObject(absolutePath, tagName, friendlyName);

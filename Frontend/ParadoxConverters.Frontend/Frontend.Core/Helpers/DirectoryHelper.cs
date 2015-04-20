@@ -9,19 +9,9 @@ namespace Frontend.Core.Helpers
     /// </summary>
     public class DirectoryHelper : IDirectoryHelper
     {
-        public string GetFrontendWorkingDirectory()
-        {
-            return Environment.CurrentDirectory;
-        }
-
         public string GetConverterWorkingDirectory(IConverterSettings currentConverter)
         {
             return Path.GetDirectoryName(currentConverter.AbsoluteConverter.SelectedValue);
-        }
-
-        public string GetUsersFolder()
-        {
-            return Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
         }
     }
 }

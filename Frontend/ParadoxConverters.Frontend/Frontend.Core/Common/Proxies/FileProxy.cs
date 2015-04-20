@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace Frontend.Core.Common.Proxies
 {
@@ -28,6 +29,22 @@ namespace Frontend.Core.Common.Proxies
         public void DeleteFile(string path)
         {
             File.Delete(path);
+        }
+
+
+        public IEnumerable<string> ExistsMany(IEnumerable<string> paths)
+        {
+            var result = new List<string>();
+
+            foreach(var path in paths)
+            {
+                if (this.Exists(path))
+                {
+                    result.Add(path);
+                }
+            }
+
+            return result;
         }
     }
 }

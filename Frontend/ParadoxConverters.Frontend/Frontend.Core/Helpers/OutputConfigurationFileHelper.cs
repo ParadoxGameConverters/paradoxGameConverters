@@ -9,10 +9,12 @@ namespace Frontend.Core.Helpers
     public class OutputConfigurationFileHelper : IOutputConfigurationFileHelper
     {
         IFileProxy fileProxy;
+        IEnvironmentProxy environmentProxy;
 
-        public OutputConfigurationFileHelper(IFileProxy fileProxy)
+        public OutputConfigurationFileHelper(IFileProxy fileProxy, IEnvironmentProxy environmentProxy)
         {
             this.fileProxy = fileProxy;
+            this.environmentProxy = environmentProxy;
         }
 
         /// <summary>
@@ -23,7 +25,7 @@ namespace Frontend.Core.Helpers
         {
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine(ReadTextFile(directoryHelper.GetFrontendWorkingDirectory() + "\\Docs\\license.txt"));
+            sb.AppendLine(ReadTextFile(this.environmentProxy.GetFrontendWorkingDirectory() + "\\Docs\\license.txt"));
 
             sb.AppendLine("configuration =");
             sb.AppendLine("{");

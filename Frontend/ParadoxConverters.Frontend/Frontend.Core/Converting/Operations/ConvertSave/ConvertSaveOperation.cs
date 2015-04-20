@@ -2,9 +2,11 @@
 using Frontend.Core.Helpers;
 using Frontend.Core.Model.Interfaces;
 using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Frontend.Core.Logging;
 
 namespace Frontend.Core.Converting.Operations.ConvertSave
 {
@@ -53,57 +55,57 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
             var task = Task.FromResult<OperationResult>(result);
 
             // Reading process output syncronously. The async part is already handled by the command
-            ////using (var process = new Process())
-            ////{
-            ////    var argument = "\"" + this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue + "\"";
+            using (var process = new Process())
+            {
+                var argument = "\"" + this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue + "\"";
 
-            ////    process.StartInfo = new ProcessStartInfo
-            ////    {
-            ////        FileName = this.options.CurrentConverter.AbsoluteConverter.SelectedValue,
-            ////        Arguments = argument,
-            ////        CreateNoWindow = true,
-            ////        RedirectStandardError = true,
-            ////        RedirectStandardInput = true,
-            ////        UseShellExecute = false,
-            ////        RedirectStandardOutput = true,
-            ////        WorkingDirectory = this.directoryHelper.GetConverterWorkingDirectory(this.options.CurrentConverter)
-            ////    };
+                process.StartInfo = new ProcessStartInfo
+                {
+                    FileName = this.options.CurrentConverter.AbsoluteConverter.SelectedValue,
+                    Arguments = argument,
+                    CreateNoWindow = true,
+                    RedirectStandardError = true,
+                    RedirectStandardInput = true,
+                    UseShellExecute = false,
+                    RedirectStandardOutput = true,
+                    WorkingDirectory = this.directoryHelper.GetConverterWorkingDirectory(this.options.CurrentConverter)
+                };
 
-            ////    result.LogEntries.Add(new LogEntry("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI, null));
-            ////    //Thread.Sleep(100); // Sleeping may let the UI actually display the above message before starting the conversion process
+                //result.LogEntries.Add(new LogEntry("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI, null));
+                //Thread.Sleep(100); // Sleeping may let the UI actually display the above message before starting the conversion process
 
-            ////    Stopwatch stopwatch = new Stopwatch();
-            ////    stopwatch.Start();
+                Stopwatch stopwatch = new Stopwatch();
+                stopwatch.Start();
 
-            ////    process.Start();
+                process.Start();
 
-            ////    // A non-working attempt to actually log the converter output while converting. 
-            ////    // As of this writing, I don't know if this fails due to the converter or something on the frontend side - it could be both.
-            ////    while (!process.StandardOutput.EndOfStream)
-            ////    {
-            ////        result.LogEntries.Add(new LogEntry(process.StandardOutput.ReadLine(), LogEntrySeverity.Info, LogEntrySource.Converter, null));
-            ////    }
+                // A non-working attempt to actually log the converter output while converting. 
+                // As of this writing, I don't know if this fails due to the converter or something on the frontend side - it could be both.
+                while (!process.StandardOutput.EndOfStream)
+                {
+                    result.LogEntries.Add(new LogEntry(process.StandardOutput.ReadLine(), LogEntrySeverity.Info, LogEntrySource.Converter, null));
+                }
 
-            ////    process.WaitForExit();
+                process.WaitForExit();
 
-            ////    stopwatch.Stop();
+                stopwatch.Stop();
 
-            ////    if (process.ExitCode == 0)
-            ////    {
-            ////        // TODO:REMOVE
-            ////        this.options.WasConversionSuccessful = true;
-            ////        result.LogEntries.Add(new LogEntry("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI, null));
-            ////    }
-            ////    else
-            ////    {
-            ////        // TODO:REMOVE
-            ////        this.options.WasConversionSuccessful = false;
-            ////        result.State = OperationResultState.Error;
-            ////        result.LogEntries.Add(new LogEntry("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
-            ////    }
-            ////}
+                if (process.ExitCode == 0)
+                {
+                    // TODO:REMOVE
+                    this.options.WasConversionSuccessful = true;
+                    //result.LogEntries.Add(new LogEntry("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI, null));
+                }
+                else
+                {
+                    // TODO:REMOVE
+                    this.options.WasConversionSuccessful = false;
+                    result.State = OperationResultState.Error;
+                    //result.LogEntries.Add(new LogEntry("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
+                }
+            }
 
-            Thread.Sleep(3000);
+            //Thread.Sleep(3000);
 
             return task.Result;
         }
@@ -113,9 +115,9 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
         /// </summary>
         /// <param name="timespan">The timespan.</param>
         /// <returns></returns>
-        private string BuildTimeSpanString(TimeSpan timespan)
-        {
-            return TimeStringFormatter.BuildTimeString(timespan);
-        }
+        ////private string BuildTimeSpanString(TimeSpan timespan)
+        ////{
+        ////    return TimeStringFormatter.BuildTimeString(timespan);
+        ////}
     }
 }
