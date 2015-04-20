@@ -93,5 +93,6 @@ Configuration::Configuration()
 	literacyWeight			= atof(obj[0]->getLeaf("literacy_weight").c_str());
 	practicalsScale		= atof(obj[0]->getLeaf("practicals_scale").c_str());
 
-	leaderID = 1000;
+	leaderID					= 1000;
+	leaderIDCountryIdx	= 1;
 }

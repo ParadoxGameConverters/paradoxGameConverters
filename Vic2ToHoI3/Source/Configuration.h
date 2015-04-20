@@ -146,6 +146,12 @@ class Configuration // Singleton
 			return getInstance()->leaderID++;
 		}
 
+		static void setLeaderIDForNextCountry()
+		{
+			getInstance()->leaderIDCountryIdx++;
+			getInstance()->leaderID = 1000 * getInstance()->leaderIDCountryIdx;	
+		}
+
 		static Configuration* getInstance()
 		{
 			if (instance == NULL)
@@ -181,6 +187,7 @@ class Configuration // Singleton
 		double			practicalsScale;
 
 		unsigned int	leaderID;
+		unsigned int	leaderIDCountryIdx;
 };
 
 #endif // CONFIGURATION_H_
