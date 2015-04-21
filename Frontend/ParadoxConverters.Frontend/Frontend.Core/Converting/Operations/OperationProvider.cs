@@ -1,32 +1,29 @@
-﻿using Caliburn.Micro;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Caliburn.Micro;
 
 namespace Frontend.Core.Converting.Operations
 {
     public class OperationProvider : IOperationProvider
     {
-        private IList<IOperationViewModel> operations;
-        private IEventAggregator eventAggregator;
+        private readonly IEventAggregator eventAggregator;
+        private readonly IList<IOperationViewModel> operations;
 
         public OperationProvider(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
-            this.operations = new List<IOperationViewModel>();
+            operations = new List<IOperationViewModel>();
         }
 
         public IEnumerable<IOperationViewModel> Operations
         {
-            get
-            {
-                return this.operations;
-            }
+            get { return operations; }
         }
 
         public void AddOperation(IOperation operation)
         {
-            var operationViewModel = new OperationViewModel(this.eventAggregator);
+            var operationViewModel = new OperationViewModel(eventAggregator);
             operationViewModel.Load(operation);
-            this.operations.Add(operationViewModel);
+            operations.Add(operationViewModel);
         }
     }
 }

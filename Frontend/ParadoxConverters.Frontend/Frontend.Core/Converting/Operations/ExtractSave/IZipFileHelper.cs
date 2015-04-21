@@ -1,5 +1,4 @@
-﻿using System;
-namespace Frontend.Core.Converting.Operations.ExtractSave
+﻿namespace Frontend.Core.Converting.Operations.ExtractSave
 {
     public interface IZipFileHelper
     {

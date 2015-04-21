@@ -1,6 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <gameConfigurations>
-  
+
   <!-- Crusader Kings 2 -->
   <gameConfiguration>
     <!--Misc-->
@@ -13,7 +14,7 @@
     <!--Save game-->
     <defaultSaveGameLocationType>WindowsUsersFolder</defaultSaveGameLocationType>
     <defaultSaveGameSubLocation>\Paradox Interactive\Crusader Kings II\save games</defaultSaveGameSubLocation>
-    
+
     <!--Mod related-->
     <defaultModFolderLocationType>WindowsUsersFolder</defaultModFolderLocationType>
     <defaultModFolderLocation>\Paradox Interactive\Crusader Kings II\mod</defaultModFolderLocation>

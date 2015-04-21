@@ -1,6 +1,6 @@
-﻿using Frontend.Core.Model.Paths.Interfaces;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
+using Frontend.Core.Model.Paths.Interfaces;
 
 namespace Frontend.Core.Views.TemplateSelectors
 {
@@ -8,21 +8,21 @@ namespace Frontend.Core.Views.TemplateSelectors
     {
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
-            FrameworkElement element = container as FrameworkElement;
-            
+            var element = container as FrameworkElement;
+
             if (element == null)
             {
                 return null;
             }
 
-            IRequiredFolder requiredFolder = item as IRequiredFolder;
+            var requiredFolder = item as IRequiredFolder;
 
             if (requiredFolder != null)
             {
                 return element.FindResource("FolderSelectionTemplate") as DataTemplate;
             }
 
-            IRequiredFile requiredFile = item as IRequiredFile;
+            var requiredFile = item as IRequiredFile;
 
             if (requiredFile != null)
             {

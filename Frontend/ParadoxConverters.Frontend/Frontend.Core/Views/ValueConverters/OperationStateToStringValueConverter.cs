@@ -1,39 +1,37 @@
-﻿using Frontend.Core.Converting.Operations;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Globalization;
 using System.Windows.Data;
+using Frontend.Core.Converting.Operations;
 
 namespace Frontend.Core.Views.ValueConverters
 {
     public class OperationStateToStringValueConverter : IValueConverter
     {
-        private Dictionary<OperationState, string> mapper;
         private const OperationState deafultOperationState = OperationState.Invalid;
+        private readonly Dictionary<OperationState, string> mapper;
 
         public OperationStateToStringValueConverter()
         {
-            this.mapper = new Dictionary<OperationState, string>();
+            mapper = new Dictionary<OperationState, string>();
 
-            this.mapper.Add(OperationState.Cancelled, "Canceled");
-            this.mapper.Add(OperationState.CompleteWithErrors, "Completed, but with errors");
-            this.mapper.Add(OperationState.CompleteWithWarnings, "Completed, but with warnings");
-            this.mapper.Add(OperationState.InProgress, "In progress");
-            this.mapper.Add(OperationState.NotStarted, "Not started");
-            this.mapper.Add(OperationState.Success, "Completed");
-            this.mapper.Add(OperationState.Invalid, string.Empty);
+            mapper.Add(OperationState.Cancelled, "Canceled");
+            mapper.Add(OperationState.CompleteWithErrors, "Completed, but with errors");
+            mapper.Add(OperationState.CompleteWithWarnings, "Completed, but with warnings");
+            mapper.Add(OperationState.InProgress, "In progress");
+            mapper.Add(OperationState.NotStarted, "Not started");
+            mapper.Add(OperationState.Success, "Completed");
+            mapper.Add(OperationState.Invalid, string.Empty);
         }
 
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var enumValue = this.ParseEnum(value);
+            var enumValue = ParseEnum(value);
 
-            return this.mapper[enumValue];
+            return mapper[enumValue];
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }
@@ -46,7 +44,7 @@ namespace Frontend.Core.Views.ValueConverters
             }
 
             OperationState state;
-            bool success = Enum.TryParse<OperationState>(value.ToString(), out state);
+            var success = Enum.TryParse(value.ToString(), out state);
 
             if (success)
             {

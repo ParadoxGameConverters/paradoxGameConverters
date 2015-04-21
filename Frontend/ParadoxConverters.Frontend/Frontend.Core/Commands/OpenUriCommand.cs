@@ -1,8 +1,7 @@
-﻿using Caliburn.Micro;
-using Frontend.Core.Logging;
-using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.IO;
+using Caliburn.Micro;
+using Frontend.Core.Logging;
 
 namespace Frontend.Core.Commands
 {
@@ -15,15 +14,15 @@ namespace Frontend.Core.Commands
 
         protected override void OnExecute(object parameter)
         {
-            var path = (string)parameter;
+            var path = (string) parameter;
 
-            if (String.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path))
             {
                 return;
             }
 
-            bool isFile = File.Exists(path);
-            bool isDirectory = Directory.Exists(path);
+            var isFile = File.Exists(path);
+            var isDirectory = Directory.Exists(path);
 
             try
             {
@@ -33,15 +32,18 @@ namespace Frontend.Core.Commands
                 }
                 else if (isFile && !isDirectory)
                 {
-                    string args = string.Format("/Select, {0}", path);
+                    var args = string.Format("/Select, {0}", path);
 
-                    ProcessStartInfo pfi = new ProcessStartInfo("Explorer.exe", args);
-                    System.Diagnostics.Process.Start(pfi);
+                    var pfi = new ProcessStartInfo("Explorer.exe", args);
+                    Process.Start(pfi);
                 }
             }
             catch
             {
-                this.EventAggregator.PublishOnUIThread(new LogEntry("Opening the directory (and/or selecting the file failed miserably. Please try manually instead.", LogEntrySeverity.Error, LogEntrySource.UI));
+                EventAggregator.PublishOnUIThread(
+                    new LogEntry(
+                        "Opening the directory (and/or selecting the file failed miserably. Please try manually instead.",
+                        LogEntrySeverity.Error, LogEntrySource.UI));
             }
         }
     }

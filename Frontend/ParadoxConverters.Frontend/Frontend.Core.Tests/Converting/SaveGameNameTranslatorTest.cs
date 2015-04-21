@@ -7,16 +7,17 @@ namespace Frontend.Core.Tests.Converting
     public class SaveGameNameTranslatorTest : UnitTestBase
     {
         private SaveGameNameTranslator translator;
+
         protected override void OnCleanup()
         {
             base.OnCleanup();
-            this.translator = null;
+            translator = null;
         }
 
         protected override void OnInitialize()
         {
             base.OnInitialize();
-            this.translator = new SaveGameNameTranslator();
+            translator = new SaveGameNameTranslator();
         }
 
         [TestMethod]
@@ -24,10 +25,10 @@ namespace Frontend.Core.Tests.Converting
         {
             // Arrange
             var saveName = "testname";
-            string expectedResult = "testname";
+            var expectedResult = "testname";
 
             // Act
-            var result = this.translator.TranslateName(saveName);
+            var result = translator.TranslateName(saveName);
 
             // Assert
             Assert.AreEqual(expectedResult, result);
@@ -38,10 +39,10 @@ namespace Frontend.Core.Tests.Converting
         {
             // Arrange
             var saveName = "test name";
-            string expectedResult = "test_name";
+            var expectedResult = "test_name";
 
             // Act
-            var result = this.translator.TranslateName(saveName);
+            var result = translator.TranslateName(saveName);
 
             // Assert
             Assert.AreEqual(expectedResult, result);
@@ -52,10 +53,10 @@ namespace Frontend.Core.Tests.Converting
         {
             // Arrange
             var saveName = "test-name";
-            string expectedResult = "test_name";
+            var expectedResult = "test_name";
 
             // Act
-            var result = this.translator.TranslateName(saveName);
+            var result = translator.TranslateName(saveName);
 
             // Assert
             Assert.AreEqual(expectedResult, result);
@@ -66,10 +67,10 @@ namespace Frontend.Core.Tests.Converting
         {
             // Arrange
             var saveName = "test -name";
-            string expectedResult = "test__name";
+            var expectedResult = "test__name";
 
             // Act
-            var result = this.translator.TranslateName(saveName);
+            var result = translator.TranslateName(saveName);
 
             // Assert
             Assert.AreEqual(expectedResult, result);

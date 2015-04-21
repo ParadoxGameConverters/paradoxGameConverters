@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Frontend.Core.Converting.Operations;
-using Action = System.Action;
 
 namespace Frontend.Core.Converting
 {

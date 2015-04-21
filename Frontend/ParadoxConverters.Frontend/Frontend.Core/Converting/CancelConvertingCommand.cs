@@ -1,19 +1,14 @@
-﻿using Caliburn.Micro;
-using Frontend.Core.Commands;
-using Frontend.Core.Converting.Operations;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System;
 using System.Threading;
-using System.Threading.Tasks;
+using Caliburn.Micro;
+using Frontend.Core.Commands;
 using Frontend.Core.Logging;
 
 namespace Frontend.Core.Converting
 {
     public class CancelConvertingCommand : CommandBase
     {
-        private Func<CancellationTokenSource> tokenSourceFunc;
+        private readonly Func<CancellationTokenSource> tokenSourceFunc;
 
         public CancelConvertingCommand(IEventAggregator eventAggregator, Func<CancellationTokenSource> tokenSourceFunc)
             : base(eventAggregator)
@@ -28,8 +23,10 @@ namespace Frontend.Core.Converting
 
         protected override void OnExecute(object parameter)
         {
-            this.EventAggregator.PublishOnUIThread(new LogEntry("Process canceled - will stop working once the current step is complete.", LogEntrySeverity.Warning, LogEntrySource.UI));
-            this.tokenSourceFunc().Cancel();
+            EventAggregator.PublishOnUIThread(
+                new LogEntry("Process canceled - will stop working once the current step is complete.",
+                    LogEntrySeverity.Warning, LogEntrySource.UI));
+            tokenSourceFunc().Cancel();
         }
     }
 }

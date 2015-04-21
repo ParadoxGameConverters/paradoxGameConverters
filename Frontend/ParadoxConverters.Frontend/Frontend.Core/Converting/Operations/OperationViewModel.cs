@@ -1,17 +1,11 @@
 ﻿using Caliburn.Micro;
 using Frontend.Core.Common;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Frontend.Core.Converting.Operations
 {
     public class OperationViewModel : ViewModelBase, IOperationViewModel
     {
         private IOperation operation;
-        private string description;
         private OperationState state;
 
         public OperationViewModel(IEventAggregator eventAggregator)
@@ -21,44 +15,35 @@ namespace Frontend.Core.Converting.Operations
 
         public void Load(IOperation operation)
         {
-            this.description = operation.Description;
+            Description = operation.Description;
             this.operation = operation;
         }
 
         public OperationResult Process()
         {
-            return this.operation.Process();
+            return operation.Process();
         }
 
         public bool CanRun()
         {
-            return this.operation.CanRun();
+            return operation.CanRun();
         }
 
-        public string Description
-        {
-            get
-            {
-                return this.description;
-            }
-        }
+        public string Description { get; private set; }
 
         public OperationState State
         {
-            get
-            {
-                return this.state;
-            }
+            get { return state; }
 
             set
             {
-                if (this.state == value)
+                if (state == value)
                 {
                     return;
                 }
 
-                this.state = value;
-                this.NotifyOfPropertyChange(() => this.State);
+                state = value;
+                NotifyOfPropertyChange(() => State);
             }
         }
     }

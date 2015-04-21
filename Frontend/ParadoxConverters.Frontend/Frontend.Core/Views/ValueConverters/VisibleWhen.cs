@@ -1,5 +1,4 @@
-﻿
-namespace Frontend.Core.Views.ValueConverters
+﻿namespace Frontend.Core.Views.ValueConverters
 {
     public enum VisibleWhen
     {

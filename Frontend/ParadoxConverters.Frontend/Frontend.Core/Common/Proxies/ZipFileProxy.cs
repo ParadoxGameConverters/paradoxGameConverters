@@ -16,7 +16,7 @@ namespace Frontend.Core.Common.Proxies
 
         public void ExtractToFile(ZipArchiveEntry source, string destinationFileName, bool overwrite)
         {
-            ZipFileExtensions.ExtractToFile(source, destinationFileName, overwrite);
+            source.ExtractToFile(destinationFileName, overwrite);
         }
     }
 }

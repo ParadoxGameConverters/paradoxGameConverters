@@ -1,22 +1,19 @@
-﻿
+﻿using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using Caliburn.Micro;
+using Frontend.Core.Common;
+using Frontend.Core.Navigation;
+using Frontend.Core.ViewModels.Interfaces;
 
 namespace Frontend.Core.ViewModels
 {
-    using Caliburn.Micro;
-    using Frontend.Core.Common;
-    using Frontend.Core.Navigation;
-    using Frontend.Core.ViewModels.Interfaces;
-    using System.Collections.ObjectModel;
-    using System.ComponentModel;
-    using System.Linq;
-
     /// <summary>
-    /// Base class for the viewmodel conductor. 
+    ///     Base class for the viewmodel conductor.
     /// </summary>
     public abstract class StepConductorBase : ViewModelBase, IStepConductorBase
     {
         private ObservableCollection<IStep> steps;
-        private IStep currentStep;
 
         protected StepConductorBase(IEventAggregator eventAggregator)
             : base(eventAggregator)
@@ -25,25 +22,16 @@ namespace Frontend.Core.ViewModels
 
         public ObservableCollection<IStep> Steps
         {
-            get
-            {
-                return this.steps ?? (this.steps = new ObservableCollection<IStep>());
-            }
+            get { return steps ?? (steps = new ObservableCollection<IStep>()); }
         }
 
-        public IStep CurrentStep
-        {
-            get
-            {
-                return this.currentStep;
-            }
-        }
+        public IStep CurrentStep { get; private set; }
 
         public virtual bool CanMoveForward
         {
             get
             {
-                if (!this.CurrentStep.IsValid || this.Steps.Last() == this.CurrentStep)
+                if (!CurrentStep.IsValid || Steps.Last() == CurrentStep)
                 {
                     return false;
                 }
@@ -56,7 +44,7 @@ namespace Frontend.Core.ViewModels
         {
             get
             {
-                if (this.Steps.First() == this.CurrentStep)
+                if (Steps.First() == CurrentStep)
                 {
                     return false;
                 }
@@ -70,13 +58,13 @@ namespace Frontend.Core.ViewModels
             switch (direction)
             {
                 case Direction.Backward:
-                    if (this.CanMoveBackward)
+                    if (CanMoveBackward)
                     {
-                        this.MoveToStep(this.Steps[this.Steps.IndexOf(this.CurrentStep) - 1]);
+                        MoveToStep(Steps[Steps.IndexOf(CurrentStep) - 1]);
                     }
                     break;
                 case Direction.Forward:
-                    this.MoveToStep(this.Steps[this.Steps.IndexOf(this.CurrentStep) + 1]);
+                    MoveToStep(Steps[Steps.IndexOf(CurrentStep) + 1]);
                     break;
             }
         }
@@ -85,38 +73,38 @@ namespace Frontend.Core.ViewModels
         {
             if (e.PropertyName == "IsValid")
             {
-                this.RefreshButtonStates();
+                RefreshButtonStates();
             }
         }
 
         /// <summary>
-        /// Triggers a manual refresh (OnPropertyChange) on the Next and Previous buttons.
+        ///     Triggers a manual refresh (OnPropertyChange) on the Next and Previous buttons.
         /// </summary>
         private void RefreshButtonStates()
         {
-            this.NotifyOfPropertyChange(() => this.CanMoveBackward);
-            this.NotifyOfPropertyChange(() => this.CanMoveForward);
+            NotifyOfPropertyChange(() => CanMoveBackward);
+            NotifyOfPropertyChange(() => CanMoveForward);
         }
 
         private void MoveToStep(IStep step)
         {
-            if (this.currentStep == step)
+            if (CurrentStep == step)
             {
                 return;
             }
 
-            if (this.CurrentStep != null)
+            if (CurrentStep != null)
             {
-                this.CurrentStep.PropertyChanged -= this.CurrentStep_PropertyChanged;
-                this.CurrentStep.Unload();
+                CurrentStep.PropertyChanged -= CurrentStep_PropertyChanged;
+                CurrentStep.Unload();
             }
 
             step.Load(null);
 
-            this.currentStep = step;
-            this.CurrentStep.PropertyChanged += this.CurrentStep_PropertyChanged;
-            this.NotifyOfPropertyChange(() => this.CurrentStep);
-            this.RefreshButtonStates();
+            CurrentStep = step;
+            CurrentStep.PropertyChanged += CurrentStep_PropertyChanged;
+            NotifyOfPropertyChange(() => CurrentStep);
+            RefreshButtonStates();
         }
     }
 }

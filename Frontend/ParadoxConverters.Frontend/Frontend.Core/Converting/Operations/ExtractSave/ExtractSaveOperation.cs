@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Threading.Tasks;
 using Frontend.Core.Common.Proxies;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
@@ -40,8 +39,8 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
 
             try
             {
-                this.zipFileHelper.ExtractFile(savePath, saveFileName, extractPath);
-                this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue = Path.Combine(extractPath,
+                zipFileHelper.ExtractFile(savePath, saveFileName, extractPath);
+                options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue = Path.Combine(extractPath,
                     saveFileName);
                 result.State = OperationResultState.Success;
             }

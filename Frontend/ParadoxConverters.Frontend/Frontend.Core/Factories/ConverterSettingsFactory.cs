@@ -1,53 +1,53 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Xml.Linq;
+using Caliburn.Micro;
 using Frontend.Core.Helpers;
 using Frontend.Core.Logging;
 using Frontend.Core.Model;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Xml.Linq;
 
 namespace Frontend.Core.Factories
 {
     public class ConverterSettingsFactory : FactoryBase
     {
+        private XDocument config;
+
         /// <summary>
-        /// The Game configuration factory
+        ///     The Game configuration factory
         /// </summary>
         private GameConfigurationFactory gameConfigurationFactory;
 
         /// <summary>
-        /// The preference category factory
-        /// </summary>
-        private PreferenceCategoryFactory preferenceCategoryFactory;
-        
-        /// <summary>
-        /// The list of game configurations
+        ///     The list of game configurations
         /// </summary>
         private ObservableCollection<IGameConfiguration> gameConfigurations;
 
         /// <summary>
-        /// The relative path to the game configuration config file
+        ///     The preference category factory
+        /// </summary>
+        private PreferenceCategoryFactory preferenceCategoryFactory;
+
+        /// <summary>
+        ///     The relative path to the game configuration config file
         /// </summary>
         private string relativeGameConfigurationPath;
 
         /// <summary>
-        /// The required item (folder, file) factory
+        ///     The required item file factory
+        /// </summary>
+        private RequiredFileFactory requiredFileFactory;
+
+        /// <summary>
+        ///     The required item (folder, file) factory
         /// </summary>
         private RequiredFolderFactory requiredFolderFactory;
 
         /// <summary>
-        /// The required item file factory
-        /// </summary>
-        private RequiredFileFactory requiredFileFactory;
-
-        private XDocument config;
-
-        /// <summary>
-        /// Initializes a new instance of the ConverterSettingsFactory
+        ///     Initializes a new instance of the ConverterSettingsFactory
         /// </summary>
         /// <param name="eventAggregator">The event aggregator</param>
         public ConverterSettingsFactory(IEventAggregator eventAggregator)
@@ -56,104 +56,101 @@ namespace Frontend.Core.Factories
         }
 
         /// <summary>
-        /// The game configuration factory self-resolving property
+        ///     The game configuration factory self-resolving property
         /// </summary>
         protected GameConfigurationFactory GameConfigurationFactory
         {
             get
             {
-                return this.gameConfigurationFactory ?? (this.gameConfigurationFactory = new GameConfigurationFactory(this.EventAggregator));
+                return gameConfigurationFactory ??
+                       (gameConfigurationFactory = new GameConfigurationFactory(EventAggregator));
             }
         }
 
         /// <summary>
-        /// The game configuration factory self-resolving property
+        ///     The game configuration factory self-resolving property
         /// </summary>
         protected PreferenceCategoryFactory PreferenceCategoryFactory
         {
             get
             {
-                return this.preferenceCategoryFactory ?? (this.preferenceCategoryFactory = new PreferenceCategoryFactory(this.EventAggregator));
+                return preferenceCategoryFactory ??
+                       (preferenceCategoryFactory = new PreferenceCategoryFactory(EventAggregator));
             }
         }
 
         /// <summary>
-        /// Helper property for turning the relative game configuration path into an absolute path.
-        /// 
-        /// What was I thinking?
+        ///     Helper property for turning the relative game configuration path into an absolute path.
+        ///     What was I thinking?
         /// </summary>
         protected string AbsoluteGameConfigurationPath
         {
-            get
-            {
-                return Path.Combine(Environment.CurrentDirectory, this.relativeGameConfigurationPath);
-            }
+            get { return Path.Combine(Environment.CurrentDirectory, relativeGameConfigurationPath); }
         }
 
         /// <summary>
-        /// Self-building list of gameconfiguration objects.
-        /// 
-        /// Requires the AbsoluteGameConfiguration path property to make sense.
-        /// If not, returns an empty collection and complains to the logger.
-        /// 
-        /// If the configuration file exists on the AbsoluteGameConfigurationPath, 
-        /// this collection gets built usind the GameConfigurationFactory.
+        ///     Self-building list of gameconfiguration objects.
+        ///     Requires the AbsoluteGameConfiguration path property to make sense.
+        ///     If not, returns an empty collection and complains to the logger.
+        ///     If the configuration file exists on the AbsoluteGameConfigurationPath,
+        ///     this collection gets built usind the GameConfigurationFactory.
         /// </summary>
         protected ObservableCollection<IGameConfiguration> GameConfigurations
         {
             get
             {
-                if (this.gameConfigurations == null)
+                if (gameConfigurations == null)
                 {
-                    if (!File.Exists(this.AbsoluteGameConfigurationPath))
+                    if (!File.Exists(AbsoluteGameConfigurationPath))
                     {
-                        this.gameConfigurations = new ObservableCollection<IGameConfiguration>();
-                        this.EventAggregator.PublishOnUIThread(new LogEntry("Could not find game configuration file at: " + this.AbsoluteGameConfigurationPath, LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
+                        gameConfigurations = new ObservableCollection<IGameConfiguration>();
+                        EventAggregator.PublishOnUIThread(
+                            new LogEntry("Could not find game configuration file at: " + AbsoluteGameConfigurationPath,
+                                LogEntrySeverity.Error, LogEntrySource.UI, AbsoluteGameConfigurationPath));
                     }
                     else
                     {
-                        this.gameConfigurations = this.GameConfigurationFactory.BuildModels<IGameConfiguration>(this.AbsoluteGameConfigurationPath);
+                        gameConfigurations =
+                            GameConfigurationFactory.BuildModels<IGameConfiguration>(AbsoluteGameConfigurationPath);
                     }
                 }
 
-                return this.gameConfigurations;
+                return gameConfigurations;
             }
         }
 
         /// <summary>
-        /// The required item factory self-resolving property
+        ///     The required item factory self-resolving property
         /// </summary>
         protected RequiredFolderFactory RequiredFolderFactory
         {
             get
             {
-                return this.requiredFolderFactory ?? (this.requiredFolderFactory = new RequiredFolderFactory(this.EventAggregator));
+                return requiredFolderFactory ?? (requiredFolderFactory = new RequiredFolderFactory(EventAggregator));
             }
         }
 
         /// <summary>
-        /// The required file factory self-resolving property
+        ///     The required file factory self-resolving property
         /// </summary>
         protected RequiredFileFactory RequiredFileFactory
         {
-            get
-            {
-                return this.requiredFileFactory ?? (this.requiredFileFactory = new RequiredFileFactory(this.EventAggregator));
-            }
+            get { return requiredFileFactory ?? (requiredFileFactory = new RequiredFileFactory(EventAggregator)); }
         }
 
         /// <summary>
-        /// TODO:
+        ///     TODO:
         /// </summary>
         /// <param name="config"></param>
         protected override void OnConfigLoaded(XDocument config)
         {
             this.config = config;
-            this.relativeGameConfigurationPath = XElementHelper.ReadStringValue(config.Descendants("configuration").First(), "gameConfigurationFile");
+            relativeGameConfigurationPath = XElementHelper.ReadStringValue(config.Descendants("configuration").First(),
+                "gameConfigurationFile");
         }
 
         /// <summary>
-        /// Builds the ConverterSettings object given by the xml element (XElement)
+        ///     Builds the ConverterSettings object given by the xml element (XElement)
         /// </summary>
         /// <typeparam name="T">The type of object to create. In this case, it'll be ConverterSettings</typeparam>
         /// <param name="element">The xml node to generate the ConverterSettings object from</param>
@@ -170,12 +167,12 @@ namespace Frontend.Core.Factories
             // Build game configuration models
             var sourceGameName = XElementHelper.ReadStringValue(element, "sourceGame");
             var targetGameName = XElementHelper.ReadStringValue(element, "targetGame");
-            var sourceGame = this.GameConfigurations.FirstOrDefault(g => g.Name.Equals(sourceGameName));
-            var targetGame = this.GameConfigurations.FirstOrDefault(g => g.Name.Equals(targetGameName));
+            var sourceGame = GameConfigurations.FirstOrDefault(g => g.Name.Equals(sourceGameName));
+            var targetGame = GameConfigurations.FirstOrDefault(g => g.Name.Equals(targetGameName));
 
-            var requiredFolders = this.RequiredFolderFactory.BuildConfiguration<IRequiredFolder>(this.config); 
-            var requiredFiles = this.RequiredFileFactory.BuildConfiguration<IRequiredFile>(this.config);
-            
+            var requiredFolders = RequiredFolderFactory.BuildConfiguration<IRequiredFolder>(config);
+            var requiredFiles = RequiredFileFactory.BuildConfiguration<IRequiredFile>(config);
+
             // Native export directory.
             //var nativeExportDirectory = XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectory", false);
             //var nativeParadoxExportDirectoryLocationTypeAsString = XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectoryLocationType", false);
@@ -193,24 +190,29 @@ namespace Frontend.Core.Factories
             //    throw new NotSupportedException("The native export directory cannot be a steam subfolder.");
             //}
 
-            string errorMessage = "Could not find game configuration for {0}. Could not find game in " + this.AbsoluteGameConfigurationPath + " with name {1}. ";
+            var errorMessage = "Could not find game configuration for {0}. Could not find game in " +
+                               AbsoluteGameConfigurationPath + " with name {1}. ";
 
             // Build preference categories
-            var categories = this.PreferenceCategoryFactory.BuildModels<IPreferenceCategory>(defaultConfigurationFile);
+            var categories = PreferenceCategoryFactory.BuildModels<IPreferenceCategory>(defaultConfigurationFile);
 
             if (sourceGame == null)
             {
-                this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "source game", sourceGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
+                EventAggregator.PublishOnUIThread(
+                    new LogEntry(string.Format(errorMessage, "source game", sourceGameName), LogEntrySeverity.Error,
+                        LogEntrySource.UI, AbsoluteGameConfigurationPath));
             }
 
             if (targetGame == null)
             {
-                this.EventAggregator.PublishOnUIThread(new LogEntry(String.Format(errorMessage, "target game", targetGameName), LogEntrySeverity.Error, LogEntrySource.UI, this.AbsoluteGameConfigurationPath));
+                EventAggregator.PublishOnUIThread(
+                    new LogEntry(string.Format(errorMessage, "target game", targetGameName), LogEntrySeverity.Error,
+                        LogEntrySource.UI, AbsoluteGameConfigurationPath));
             }
 
             //var relativeConverterPath = XElementHelper.ReadStringValue(element, "subfolderName");
 
-            ConverterSettings settings = new ConverterSettings(this.EventAggregator)
+            var settings = new ConverterSettings(EventAggregator)
             {
                 Name = name,
                 FriendlyName = friendlyName,
@@ -226,8 +228,8 @@ namespace Frontend.Core.Factories
                 AdditionalInformation = additionalInformation
             };
 
-            requiredFolders.ForEach<IRequiredFolder>(f => settings.RequiredItems.Add(f));
-            requiredFiles.ForEach<IRequiredFile>(f => settings.RequiredItems.Add(f));
+            requiredFolders.ForEach(f => settings.RequiredItems.Add(f));
+            requiredFiles.ForEach(f => settings.RequiredItems.Add(f));
 
             return settings as T;
         }

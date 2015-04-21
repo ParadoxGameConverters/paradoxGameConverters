@@ -9,17 +9,16 @@ namespace Frontend.Core.Views.ValueConverters
     public class BooleanToVisibilityConverter : IValueConverter
     {
         private const Visibility defaultState = Visibility.Collapsed;
-
-        private Dictionary<KeyValuePair<bool, VisibleWhen>, Visibility> lookup;
+        private readonly Dictionary<KeyValuePair<bool, VisibleWhen>, Visibility> lookup;
 
         public BooleanToVisibilityConverter()
         {
-            this.lookup = new Dictionary<KeyValuePair<bool, VisibleWhen>, Visibility>();
+            lookup = new Dictionary<KeyValuePair<bool, VisibleWhen>, Visibility>();
 
-            this.lookup.Add(new KeyValuePair<bool, VisibleWhen>(true, VisibleWhen.True), Visibility.Visible);
-            this.lookup.Add(new KeyValuePair<bool, VisibleWhen>(true, VisibleWhen.False), Visibility.Collapsed);
-            this.lookup.Add(new KeyValuePair<bool, VisibleWhen>(false, VisibleWhen.True), Visibility.Collapsed);
-            this.lookup.Add(new KeyValuePair<bool, VisibleWhen>(false, VisibleWhen.False), Visibility.Visible);
+            lookup.Add(new KeyValuePair<bool, VisibleWhen>(true, VisibleWhen.True), Visibility.Visible);
+            lookup.Add(new KeyValuePair<bool, VisibleWhen>(true, VisibleWhen.False), Visibility.Collapsed);
+            lookup.Add(new KeyValuePair<bool, VisibleWhen>(false, VisibleWhen.True), Visibility.Collapsed);
+            lookup.Add(new KeyValuePair<bool, VisibleWhen>(false, VisibleWhen.False), Visibility.Visible);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -29,10 +28,10 @@ namespace Frontend.Core.Views.ValueConverters
                 return defaultState;
             }
 
-            bool inputValue = this.ParseBool(value);
-            VisibleWhen rule = this.ParseEnum(parameter);
+            var inputValue = ParseBool(value);
+            var rule = ParseEnum(parameter);
 
-            return this.lookup[new KeyValuePair<bool, VisibleWhen>(inputValue, rule)];
+            return lookup[new KeyValuePair<bool, VisibleWhen>(inputValue, rule)];
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -43,7 +42,7 @@ namespace Frontend.Core.Views.ValueConverters
         private VisibleWhen ParseEnum(object value)
         {
             VisibleWhen visibleWhen;
-            bool success = Enum.TryParse<VisibleWhen>(value.ToString(), out visibleWhen);
+            var success = Enum.TryParse(value.ToString(), out visibleWhen);
 
             if (success)
             {
@@ -56,8 +55,8 @@ namespace Frontend.Core.Views.ValueConverters
         private bool ParseBool(object value)
         {
             bool result;
-            bool success = bool.TryParse(value.ToString(), out result);
-            
+            var success = bool.TryParse(value.ToString(), out result);
+
             if (success)
             {
                 return result;

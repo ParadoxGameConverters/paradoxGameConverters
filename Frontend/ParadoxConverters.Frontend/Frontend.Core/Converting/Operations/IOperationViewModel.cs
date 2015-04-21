@@ -1,13 +1,11 @@
-﻿using System;
-using System.Threading.Tasks;
-namespace Frontend.Core.Converting.Operations
+﻿namespace Frontend.Core.Converting.Operations
 {
     public interface IOperationViewModel
     {
         string Description { get; }
+        OperationState State { get; set; }
         void Load(IOperation operation);
         OperationResult Process();
         bool CanRun();
-        OperationState State { get; set; }
     }
 }

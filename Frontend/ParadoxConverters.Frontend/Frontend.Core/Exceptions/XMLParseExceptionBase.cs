@@ -1,48 +1,47 @@
-﻿
+﻿using System;
+using System.Xml.Linq;
+
 namespace Frontend.Core.Exceptions
 {
-    using System;
-    using System.Xml.Linq;
-
     /// <summary>
-    /// Base class for the various XML parse exceptions
+    ///     Base class for the various XML parse exceptions
     /// </summary>
     public abstract class XMLParseExceptionBase : Exception
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="XMLParseExceptionBase"/> class.
+        ///     Initializes a new instance of the <see cref="XMLParseExceptionBase" /> class.
         /// </summary>
         /// <param name="parentElement">The parent element.</param>
         /// <param name="propertyName">Name of the property.</param>
         /// <param name="isPropertyRequired">if set to <c>true</c> [is property required].</param>
         protected XMLParseExceptionBase(XElement parentElement, string propertyName, bool isPropertyRequired)
         {
-            this.ParentElement = parentElement;
-            this.PropertyName = propertyName;
-            this.IsPropertyRequired = isPropertyRequired;
+            ParentElement = parentElement;
+            PropertyName = propertyName;
+            IsPropertyRequired = isPropertyRequired;
         }
 
         /// <summary>
-        /// Gets the parent element.
+        ///     Gets the parent element.
         /// </summary>
         /// <value>
-        /// The parent element.
+        ///     The parent element.
         /// </value>
         public XElement ParentElement { get; private set; }
 
         /// <summary>
-        /// Gets the name of the property.
+        ///     Gets the name of the property.
         /// </summary>
         /// <value>
-        /// The name of the property.
+        ///     The name of the property.
         /// </value>
         public string PropertyName { get; private set; }
 
         /// <summary>
-        /// Gets a value indicating whether [is property required].
+        ///     Gets a value indicating whether [is property required].
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [is property required]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [is property required]; otherwise, <c>false</c>.
         /// </value>
         public bool IsPropertyRequired { get; private set; }
     }

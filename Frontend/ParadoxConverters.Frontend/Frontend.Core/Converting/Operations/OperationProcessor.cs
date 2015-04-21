@@ -1,35 +1,37 @@
-﻿using Caliburn.Micro;
-using Frontend.Core.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Threading;
+using Caliburn.Micro;
+using Frontend.Core.Logging;
 
 namespace Frontend.Core.Converting.Operations
 {
     public class OperationProcessor : DispatcherObject, IOperationProcessor
     {
         private readonly IEventAggregator eventAggregator;
-        private readonly Dictionary<OperationResultState, Action<OperationResult, IOperationViewModel>> resultHandlershandle;
+
+        private readonly Dictionary<OperationResultState, Action<OperationResult, IOperationViewModel>>
+            resultHandlershandle;
 
         public OperationProcessor(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
-            this.resultHandlershandle = new Dictionary<OperationResultState, Action<OperationResult, IOperationViewModel>>
+            resultHandlershandle = new Dictionary<OperationResultState, Action<OperationResult, IOperationViewModel>>
             {
-                { OperationResultState.Success, this.HandleSuccess },
-                { OperationResultState.Warning, this.HandleWarning },
-                { OperationResultState.Error, this.HandleErrors },
-                { OperationResultState.Canceled, this.HandleCancellation }
+                {OperationResultState.Success, HandleSuccess},
+                {OperationResultState.Warning, HandleWarning},
+                {OperationResultState.Error, HandleErrors},
+                {OperationResultState.Canceled, HandleCancellation}
             };
         }
 
-        public Task<AggregateOperationsResult> ProcessQueue(IEnumerable<IOperationViewModel> operations, CancellationToken token)
+        public Task<AggregateOperationsResult> ProcessQueue(IEnumerable<IOperationViewModel> operations,
+            CancellationToken token)
         {
-            int currentCount = 0;
+            var currentCount = 0;
 
             foreach (var operation in operations)
             {
@@ -41,7 +43,8 @@ namespace Frontend.Core.Converting.Operations
                 currentCount++;
 
                 operation.State = OperationState.InProgress;
-                this.eventAggregator.PublishOnUIThread(new LogEntry(operation.Description, LogEntrySeverity.Info, LogEntrySource.UI));
+                eventAggregator.PublishOnUIThread(new LogEntry(operation.Description, LogEntrySeverity.Info,
+                    LogEntrySource.UI));
 
                 var result = new OperationResult();
 
@@ -50,22 +53,22 @@ namespace Frontend.Core.Converting.Operations
                     token.ThrowIfCancellationRequested();
                     result = operation.Process();
 
-                    this.LogResultMessages(result);
-                    this.resultHandlershandle[result.State](result, operation);
+                    LogResultMessages(result);
+                    resultHandlershandle[result.State](result, operation);
                 }
-                catch (OperationCanceledException oce)
+                catch (OperationCanceledException)
                 {
-                    this.resultHandlershandle[OperationResultState.Canceled](result, operation);
+                    resultHandlershandle[OperationResultState.Canceled](result, operation);
                 }
                 catch (Exception e)
                 {
-                    this.eventAggregator.PublishOnUIThread(
+                    eventAggregator.PublishOnUIThread(
                         new LogEntry(string.Format("Unhandled exception occurred: {0}", e.Message),
                             LogEntrySeverity.Error, LogEntrySource.UI));
                 }
             }
 
-            return Task.FromResult(this.CalculateResult(operations));
+            return Task.FromResult(CalculateResult(operations));
         }
 
         private AggregateOperationsResult CalculateResult(IEnumerable<IOperationViewModel> operations)
@@ -86,32 +89,39 @@ namespace Frontend.Core.Converting.Operations
 
         private void HandleCancellation(OperationResult result, IOperationViewModel operation)
         {
-            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("Operation {0} canceled.", operation.Description), LogEntrySeverity.Warning, LogEntrySource.UI));
+            eventAggregator.PublishOnUIThread(
+                new LogEntry(string.Format("Operation {0} canceled.", operation.Description), LogEntrySeverity.Warning,
+                    LogEntrySource.UI));
         }
 
         private void HandleSuccess(OperationResult result, IOperationViewModel operation)
         {
             operation.State = OperationState.Success;
-            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("{0} completed successfully.", operation.Description), LogEntrySeverity.Info, LogEntrySource.UI));
+            eventAggregator.PublishOnUIThread(
+                new LogEntry(string.Format("{0} completed successfully.", operation.Description), LogEntrySeverity.Info,
+                    LogEntrySource.UI));
         }
 
         private void HandleWarning(OperationResult result, IOperationViewModel operation)
         {
             operation.State = OperationState.CompleteWithWarnings;
-            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("{0} completed with warnings!", operation.Description), LogEntrySeverity.Warning, LogEntrySource.UI));
+            eventAggregator.PublishOnUIThread(
+                new LogEntry(string.Format("{0} completed with warnings!", operation.Description),
+                    LogEntrySeverity.Warning, LogEntrySource.UI));
         }
 
         private void HandleErrors(OperationResult result, IOperationViewModel operation)
         {
             operation.State = OperationState.CompleteWithErrors;
-            this.eventAggregator.PublishOnUIThread(new LogEntry(string.Format("{0} failed!", operation.Description), LogEntrySeverity.Error, LogEntrySource.UI));
+            eventAggregator.PublishOnUIThread(new LogEntry(string.Format("{0} failed!", operation.Description),
+                LogEntrySeverity.Error, LogEntrySource.UI));
         }
 
         private void LogResultMessages(OperationResult result)
         {
             foreach (var logEntry in result.LogEntries)
             {
-                this.eventAggregator.PublishOnUIThread(logEntry);
+                eventAggregator.PublishOnUIThread(logEntry);
             }
         }
     }

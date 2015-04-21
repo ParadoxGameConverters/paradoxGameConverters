@@ -1,24 +1,25 @@
-﻿using Caliburn.Micro;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Caliburn.Micro;
 using Frontend.Core.Logging;
 using Frontend.Core.Model.Interfaces;
 using Frontend.Core.Model.Paths.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Frontend.Core.Model
 {
     public class ConverterSettings : PropertyChangedBase, IConverterSettings
     {
+        private readonly IEventAggregator eventAggregator;
         private bool isSelected;
-        private bool useConverterMod;
-        private IEventAggregator eventAggregator;
         private IList<IRequiredItemBase> requiredItems;
+        private bool useConverterMod;
 
         public ConverterSettings(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
         }
 
+        public string AdditionalInformation { get; set; }
         public string Name { get; set; }
         public string FriendlyName { get; set; }
         public string DefaultConfigurationFile { get; set; }
@@ -26,105 +27,98 @@ namespace Frontend.Core.Model
         public IGameConfiguration SourceGame { get; set; }
         public IGameConfiguration TargetGame { get; set; }
         public IList<IPreferenceCategory> Categories { get; set; }
-        
-        public string AdditionalInformation { get; set; }
 
         public IList<IRequiredItemBase> RequiredItems
         {
             get
             {
-                if (this.requiredItems == null)
+                if (requiredItems == null)
                 {
-                    this.requiredItems = new List<IRequiredItemBase>();
+                    requiredItems = new List<IRequiredItemBase>();
                 }
 
-                return this.requiredItems;
+                return requiredItems;
             }
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether [is selected].
+        ///     Gets or sets a value indicating whether [is selected].
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [is selected]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [is selected]; otherwise, <c>false</c>.
         /// </value>
         public bool IsSelected
         {
-            get
-            {
-                return this.isSelected;
-            }
+            get { return isSelected; }
 
             set
             {
-                if (this.isSelected == value)
+                if (isSelected == value)
                 {
                     return;
                 }
 
-                this.isSelected = value;
-                this.NotifyOfPropertyChange(() => this.IsSelected);
+                isSelected = value;
+                NotifyOfPropertyChange(() => IsSelected);
 
                 if (value)
                 {
-                    this.eventAggregator.PublishOnUIThread(new LogEntry("Using configuration file", LogEntrySeverity.Info, LogEntrySource.UI, this.DefaultConfigurationFile));
-                    this.eventAggregator.PublishOnUIThread((IConverterSettings)this);
+                    eventAggregator.PublishOnUIThread(new LogEntry("Using configuration file", LogEntrySeverity.Info,
+                        LogEntrySource.UI, DefaultConfigurationFile));
+                    eventAggregator.PublishOnUIThread(this);
                 }
             }
         }
 
         /// <summary>
-        /// Gets or sets the source save game.
+        ///     Gets or sets the source save game.
         /// </summary>
         /// <value>
-        /// The source save game.
+        ///     The source save game.
         /// </value>
         public IRequiredFile AbsoluteSourceSaveGame
         {
             get
             {
                 //TODO: This is bad and I should feel bad
-                return (IRequiredFile)this.RequiredItems.First(f => f.FriendlyName.Equals("Savegame"));
+                return (IRequiredFile) RequiredItems.First(f => f.FriendlyName.Equals("Savegame"));
             }
         }
 
         /// <summary>
-        /// Gets or sets the converter path.
+        ///     Gets or sets the converter path.
         /// </summary>
         /// <value>
-        /// The converter.
+        ///     The converter.
         /// </value>
         public IRequiredFile AbsoluteConverter
         {
             get
             {
                 //TODO: This is bad and I should feel bad
-                return (IRequiredFile)this.RequiredItems.First(f => f.FriendlyName.Equals("Converter .exe"));
+                return (IRequiredFile) RequiredItems.First(f => f.FriendlyName.Equals("Converter .exe"));
             }
         }
 
         /// <summary>
-        /// Gets or sets a value indicating whether to use the converter mod.
+        ///     Gets or sets a value indicating whether to use the converter mod.
         /// </summary>
         /// <value>
-        ///   <c>true</c> if [use converter mod]; otherwise, <c>false</c>.
+        ///     <c>true</c> if [use converter mod]; otherwise, <c>false</c>.
         /// </value>
         public bool UseConverterMod
         {
-            get
-            {
-                return this.useConverterMod;
-            }
+            get { return useConverterMod; }
 
             set
             {
-                if (this.useConverterMod == value)
+                if (useConverterMod == value)
                 {
                     return;
                 }
 
-                this.useConverterMod = value;
-                this.NotifyOfPropertyChange(() => this.UseConverterMod);
+                useConverterMod = value;
+                NotifyOfPropertyChange(() => UseConverterMod);
             }
         }
     }

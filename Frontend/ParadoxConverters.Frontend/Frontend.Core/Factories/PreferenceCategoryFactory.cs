@@ -1,12 +1,12 @@
-﻿using Caliburn.Micro;
+﻿using System;
+using System.Xml.Linq;
+using Caliburn.Micro;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model;
 using Frontend.Core.Model.PreferenceEntries;
 using Frontend.Core.Model.PreferenceEntries.Interfaces;
 using Frontend.Core.Model.Preferences;
 using Frontend.Core.Model.Preferences.Interfaces;
-using System;
-using System.Xml.Linq;
 
 namespace Frontend.Core.Factories
 {
@@ -29,16 +29,16 @@ namespace Frontend.Core.Factories
             foreach (var foundPreference in foundPreferences)
             {
                 // Ugly way of reading shared properties without duplicating code. 
-                Action<IPreference> readSharedProperties = (preference) =>
+                Action<IPreference> readSharedProperties = preference =>
                 {
                     preference.Name = XElementHelper.ReadStringValue(foundPreference, "name");
                     preference.FriendlyName = XElementHelper.ReadStringValue(foundPreference, "friendlyName");
                     preference.Description = XElementHelper.ReadStringValue(foundPreference, "description", false);
 
-                    preference.HasDirectlyEditableValue = XElementHelper.ReadBoolValue(foundPreference, "hasDirectlyEditableValue", false);
+                    preference.HasDirectlyEditableValue = XElementHelper.ReadBoolValue(foundPreference,
+                        "hasDirectlyEditableValue", false);
 
                     category.Preferences.Add(preference);
-
                 };
 
                 // Determine preference type
@@ -50,9 +50,12 @@ namespace Frontend.Core.Factories
                     var preference = new DatePreference();
 
                     preference.DateFormat = XElementHelper.ReadStringValue(foundPreference, "dateFormat");
-                    preference.MinValue = XElementHelper.ReadDateValue(foundPreference, "minDateValue", preference.DateFormat, false);
-                    preference.MaxValue = XElementHelper.ReadDateValue(foundPreference, "maxDateValue", preference.DateFormat, false);
-                    preference.Value = XElementHelper.ReadDateValue(foundPreference, "value", preference.DateFormat, true);
+                    preference.MinValue = XElementHelper.ReadDateValue(foundPreference, "minDateValue",
+                        preference.DateFormat, false);
+                    preference.MaxValue = XElementHelper.ReadDateValue(foundPreference, "maxDateValue",
+                        preference.DateFormat, false);
+                    preference.Value = XElementHelper.ReadDateValue(foundPreference, "value", preference.DateFormat,
+                        true);
 
                     // Read the list of entryOption tags
                     var foundEntries = XElementHelper.ReadEnumerable(foundPreference, "entryOption", false);
@@ -60,7 +63,7 @@ namespace Frontend.Core.Factories
                     // For each tag, read the values into a new PreferenceEntry object
                     foreach (var entry in foundEntries)
                     {
-                        preference.Entries.Add(this.BuildPreferenceEntry<IDatePreferenceEntry>(preference, entry));
+                        preference.Entries.Add(BuildPreferenceEntry<IDatePreferenceEntry>(preference, entry));
                     }
 
                     readSharedProperties(preference);
@@ -79,7 +82,7 @@ namespace Frontend.Core.Factories
                     // For each tag, read the values into a new PreferenceEntry object
                     foreach (var entry in foundEntries)
                     {
-                        preference.Entries.Add(this.BuildPreferenceEntry<INumericPreferenceEntry>(preference, entry));
+                        preference.Entries.Add(BuildPreferenceEntry<INumericPreferenceEntry>(preference, entry));
                     }
 
                     readSharedProperties(preference);
@@ -98,7 +101,7 @@ namespace Frontend.Core.Factories
                     // For each tag, read the values into a new PreferenceEntry object
                     foreach (var entry in foundEntries)
                     {
-                        preference.Entries.Add(this.BuildPreferenceEntry<IStringPreferenceEntry>(preference, entry));
+                        preference.Entries.Add(BuildPreferenceEntry<IStringPreferenceEntry>(preference, entry));
                     }
 
                     readSharedProperties(preference);
@@ -109,7 +112,7 @@ namespace Frontend.Core.Factories
         }
 
         /// <summary>
-        /// Builds a preference entry for the provided parent based on the provided XElement node
+        ///     Builds a preference entry for the provided parent based on the provided XElement node
         /// </summary>
         /// <param name="parent">The parent.</param>
         /// <param name="foundEntry">The found entry.</param>
@@ -119,7 +122,7 @@ namespace Frontend.Core.Factories
         {
             // Rather ugly way of reading shared properties + returning the newly created entry
             // Several unplesant compromises here
-            Func<IPreferenceEntry, TPreferenceEntry> readSharedProperties = (entry) =>
+            Func<IPreferenceEntry, TPreferenceEntry> readSharedProperties = entry =>
             {
                 entry.FriendlyName = XElementHelper.ReadStringValue(foundEntry, "friendlyName");
                 entry.Description = XElementHelper.ReadStringValue(foundEntry, "description", false);
@@ -150,10 +153,10 @@ namespace Frontend.Core.Factories
 
                 return readSharedProperties(entry);
             }
-            else if (parent is IDatePreference)
+            if (parent is IDatePreference)
             {
-                string dateFormat = ((IDatePreference)parent).DateFormat;
-                
+                var dateFormat = ((IDatePreference) parent).DateFormat;
+
                 var entry = new DatePreferenceEntry
                 {
                     Parent = (IDatePreference) parent,
@@ -162,7 +165,7 @@ namespace Frontend.Core.Factories
 
                 return readSharedProperties(entry);
             }
-            else if (parent is IStringPreference)
+            if (parent is IStringPreference)
             {
                 var entry = new StringPreferenceEntry
                 {
@@ -172,10 +175,7 @@ namespace Frontend.Core.Factories
 
                 return readSharedProperties(entry);
             }
-            else
-            {
-                throw new NotSupportedException("Invalid parent object");
-            }
+            throw new NotSupportedException("Invalid parent object");
         }
     }
 }

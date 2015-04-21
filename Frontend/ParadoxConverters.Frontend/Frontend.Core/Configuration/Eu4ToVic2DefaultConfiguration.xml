@@ -1,5 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<configuration Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<configuration
+  Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
   <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
   <converterOptions>
     <categories>
@@ -82,7 +84,7 @@
                 <friendlyName>No</friendlyName>
                 <description>Don't reset provinces</description>
                 <isDefault>true</isDefault>
-              </entryOption>              
+              </entryOption>
             </entryOptions>
           </preference>
           <preference>
@@ -128,7 +130,7 @@
             <minValue>1</minValue>
             <maxValue>100</maxValue>
           </preference>
-		  <preference>
+          <preference>
             <name>convertPopTotals</name>
             <friendlyName>Convert pop totals?</friendlyName>
             <description>Whether or not the population totals should be converted.</description>
@@ -150,5 +152,6 @@
         </preferences>
       </category>
     </categories>
-  </converterOptions>>
+  </converterOptions>
+  >
 </configuration>

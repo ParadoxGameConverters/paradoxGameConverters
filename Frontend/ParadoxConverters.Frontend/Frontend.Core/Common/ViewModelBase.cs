@@ -1,56 +1,49 @@
-﻿using Caliburn.Micro;
-using System;
+﻿using System;
+using Caliburn.Micro;
 
 namespace Frontend.Core.Common
 {
     public abstract class ViewModelBase : PropertyChangedBase, IDisposable
     {
-        private IEventAggregator eventAggregator;
         private bool isDisposed;
 
         protected ViewModelBase(IEventAggregator eventAggregator)
         {
-            this.eventAggregator = eventAggregator;
+            EventAggregator = eventAggregator;
 
             //HACK: This needs rethinking, but when vms gets resolved from a view (Say, a contentcontrol binding to a vm), 
             //the Load method obviously won't get called.
             //this.Load(null);
         }
 
-        protected IEventAggregator EventAggregator
+        protected IEventAggregator EventAggregator { get; private set; }
+
+        public void Dispose()
         {
-            get
-            {
-                return this.eventAggregator;
-            }
+            Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         public void Load(object parameter)
         {
-            this.OnLoading(parameter);
-            this.OnLoad(parameter);
-            this.OnLoaded(parameter);
+            OnLoading(parameter);
+            OnLoad(parameter);
+            OnLoaded(parameter);
         }
 
         public void Unload()
         {
-            this.OnUnloading();
-            this.OnUnload();
-            this.OnUnloaded();
-        }
-
-        public void Dispose()
-        {
-            this.Dispose(true);
-            GC.SuppressFinalize(this);
+            OnUnloading();
+            OnUnload();
+            OnUnloaded();
         }
 
         protected virtual void Dispose(bool isDisposing)
         {
-            if (isDisposing && !this.isDisposed)
+            if (isDisposing && !isDisposed)
             {
-                this.Unload();
-                this.isDisposed = true;
+                Unload();
+                isDisposed = true;
             }
         }
 

@@ -8,7 +8,7 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
         {
             try
             {
-                using (StreamReader reader = new StreamReader(path))
+                using (var reader = new StreamReader(path))
                 {
                     var firstLine = reader.ReadLine();
 

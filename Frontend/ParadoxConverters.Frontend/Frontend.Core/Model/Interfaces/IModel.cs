@@ -1,5 +1,4 @@
-﻿
-namespace Frontend.Core.Model.Interfaces
+﻿namespace Frontend.Core.Model.Interfaces
 {
     public interface IModel
     {

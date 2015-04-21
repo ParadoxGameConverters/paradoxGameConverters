@@ -20,7 +20,6 @@ namespace Frontend.Core.Common.Proxies
             File.WriteAllText(path, contents);
         }
 
-
         public string ReadAllText(string path)
         {
             return File.ReadAllText(path);
@@ -31,14 +30,13 @@ namespace Frontend.Core.Common.Proxies
             File.Delete(path);
         }
 
-
         public IEnumerable<string> ExistsMany(IEnumerable<string> paths)
         {
             var result = new List<string>();
 
-            foreach(var path in paths)
+            foreach (var path in paths)
             {
-                if (this.Exists(path))
+                if (Exists(path))
                 {
                     result.Add(path);
                 }

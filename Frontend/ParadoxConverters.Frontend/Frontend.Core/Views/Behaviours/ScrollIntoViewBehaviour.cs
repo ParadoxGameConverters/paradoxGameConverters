@@ -5,7 +5,8 @@ using System.Windows.Media;
 namespace Frontend.Core.Views.Behaviours
 {
     /// <summary>
-    /// The ScrollIntoViewBehavior. This behavior makes the datagrid scroll all the way down every time a new row is added to its item source.
+    ///     The ScrollIntoViewBehavior. This behavior makes the datagrid scroll all the way down every time a new row is added
+    ///     to its item source.
     /// </summary>
     public class ScrollIntoViewBehaviour : Behavior<DataGrid>
     {
@@ -14,14 +15,14 @@ namespace Frontend.Core.Views.Behaviours
             base.OnAttached();
 
             // There are perhaps better events to listen to, but for the small amount of data we're dealing with here, this is sufficient
-            this.AssociatedObject.LoadingRow += AssociatedObject_LoadingRow;
+            AssociatedObject.LoadingRow += AssociatedObject_LoadingRow;
         }
 
-        void AssociatedObject_LoadingRow(object sender, DataGridRowEventArgs e)
+        private void AssociatedObject_LoadingRow(object sender, DataGridRowEventArgs e)
         {
             if (sender is DataGrid)
             {
-                DataGrid grid = (sender as DataGrid);
+                var grid = (sender as DataGrid);
 
                 // The trick is to get to the scrollviewer inside the datagrid, and scroll that all the way down:
                 var border = VisualTreeHelper.GetChild(grid, 0) as Decorator;
@@ -41,8 +42,7 @@ namespace Frontend.Core.Views.Behaviours
         protected override void OnDetaching()
         {
             base.OnDetaching();
-            this.AssociatedObject.LoadingRow -= AssociatedObject_LoadingRow;
+            AssociatedObject.LoadingRow -= AssociatedObject_LoadingRow;
         }
     }
-
 }

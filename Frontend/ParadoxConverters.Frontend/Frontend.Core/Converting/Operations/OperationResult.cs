@@ -1,30 +1,18 @@
-﻿using Frontend.Core.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using Frontend.Core.Logging;
 
 namespace Frontend.Core.Converting.Operations
 {
     public class OperationResult
     {
-        private IList<LogEntry> logEntries;
+        public OperationResultState State;
 
         public OperationResult()
         {
-            this.State = OperationResultState.Success;
-            this.logEntries = new List<LogEntry>();
+            State = OperationResultState.Success;
+            LogEntries = new List<LogEntry>();
         }
 
-        public OperationResultState State;
-
-        public IList<LogEntry> LogEntries
-        {
-            get
-            {
-                return this.logEntries;
-            }
-        }
+        public IList<LogEntry> LogEntries { get; private set; }
     }
 }

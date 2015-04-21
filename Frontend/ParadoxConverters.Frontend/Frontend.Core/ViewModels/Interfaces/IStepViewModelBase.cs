@@ -1,5 +1,4 @@
-﻿
-namespace Frontend.Core.ViewModels.Interfaces
+﻿namespace Frontend.Core.ViewModels.Interfaces
 {
     public interface IStepViewModelBase
     {

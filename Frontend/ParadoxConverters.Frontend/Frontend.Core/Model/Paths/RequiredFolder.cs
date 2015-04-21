@@ -1,21 +1,22 @@
-﻿using Frontend.Core.Model.Paths.Interfaces;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
+using Frontend.Core.Model.Paths.Interfaces;
 
 namespace Frontend.Core.Model.Paths
 {
     public class RequiredFolder : RequiredItemBase, IRequiredFolder
     {
-        public RequiredFolder(string tagName, string friendlyName, string description, IList<IAlternativePath> alternatives, string internalTagName, bool isMandatory)
+        public RequiredFolder(string tagName, string friendlyName, string description,
+            IList<IAlternativePath> alternatives, string internalTagName, bool isMandatory)
             : base(tagName, friendlyName, description, alternatives, internalTagName, isMandatory)
         {
         }
 
         public override string ValidateSelectedValue()
         {
-            if (this.IsMandatory)
+            if (IsMandatory)
             {
-                var exists = Directory.Exists(this.SelectedValue);
+                var exists = Directory.Exists(SelectedValue);
 
                 if (!exists)
                 {
