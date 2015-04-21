@@ -31,9 +31,6 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
         <StackPanel Orientation="Vertical">
             <Button Content="Save configuration and convert!" Style="{StaticResource SummaryButtonStyle}" Margin="5" Command="{Binding RunOperationsCommand}" 
                 HorizontalAlignment="Center" Height="25" 

@@ -24,7 +24,7 @@ namespace Frontend.Core.ViewModels
     {
         private ICommand runOperationsCommand;
         private ICommand cancelCommand;
-        private IOperationProvider operationProvider;
+        private readonly IOperationProvider operationProvider;
         private int progressInPercent;
         private bool isBusy;
         private CancellationTokenSource cancellationTokenSource;
