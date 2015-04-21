@@ -83,7 +83,6 @@ namespace Frontend.Core.Converting.Operations.CopyMod
                 this.directoryCopyHelper.DirectoryCopy(outputModFolderSourcePath, expectedAbsoluteOutputModFolderTargetPath, true, true);
 
                 operationResult.LogEntries.Add(new LogEntry("Mod copied to: ", LogEntrySeverity.Info, LogEntrySource.UI, expectedAbsoluteOutputModFolderTargetPath));
-                operationResult.LogEntries.Add(new LogEntry("Copy complete. Ready to play - have fun!", LogEntrySeverity.Info, LogEntrySource.UI));
             }
             catch (Exception e)
             {
