@@ -1,49 +1,50 @@
-﻿using Caliburn.Micro;
-using Frontend.Core.Commands;
-using Frontend.Core.Common;
-using Frontend.Core.Converting.Operations;
-using Frontend.Core.Model;
-using Frontend.Core.Model.Interfaces;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Frontend.Core.Converting.Operations;
+using Action = System.Action;
 
 namespace Frontend.Core.Converting
 {
-    public class RunOperationsCommand : CommandBase
+    public class RunOperationsCommand : AsyncCommandBase
     {
-        private IOperationProcessor processor;
-        private IOperationProvider provider;
-        private Action<int> reportProgress;
-        private Func<CancellationTokenSource> tokenSourceFunc;
+        private readonly Action _afterCompletion;
+        private readonly Action _beforeStart;
+        private readonly IOperationProcessor processor;
+        private readonly IOperationProvider provider;
+        private readonly Func<CancellationTokenSource> tokenSourceFunc;
 
         public RunOperationsCommand(
-            IEventAggregator eventAggregator, 
-            IOperationProcessor processor, 
+            IOperationProcessor processor,
             IOperationProvider provider,
-            Action<int> reportProgress,
+            Action beforeStart,
+            Action afterCompletion,
             Func<CancellationTokenSource> tokenSourceFunc)
-            : base(eventAggregator)
         {
             this.processor = processor;
             this.provider = provider;
-            this.reportProgress = reportProgress;
+            _beforeStart = beforeStart;
+            _afterCompletion = afterCompletion;
             this.tokenSourceFunc = tokenSourceFunc;
         }
 
-        protected override bool OnCanExecute(object parameter)
+        public override bool CanExecute(object parameter)
         {
-            return true;
+            return provider.Operations.All(operation => operation.State != OperationState.InProgress);
         }
 
-        protected override void OnExecute(object parameter)
+        public override async Task ExecuteAsync(object parameter)
         {
-            var progressIndicator = new Progress<int>(this.reportProgress);
-            this.provider.Operations.ForEach(o => o.State = OperationState.NotStarted);
-            this.processor.ProcessQueue(this.provider.Operations.Where(operation => operation.CanRun()), progressIndicator, this.tokenSourceFunc().Token);
+            _beforeStart();
+            provider.Operations.ForEach(o => o.State = OperationState.NotStarted);
+            var result =
+                await
+                    Task.Run(
+                        () =>
+                            processor.ProcessQueue(provider.Operations.Where(operation => operation.CanRun()),
+                                tokenSourceFunc().Token));
+            _afterCompletion();
         }
     }
 }

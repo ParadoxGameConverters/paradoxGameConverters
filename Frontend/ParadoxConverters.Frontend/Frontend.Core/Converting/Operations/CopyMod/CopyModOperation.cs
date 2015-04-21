@@ -36,10 +36,10 @@ namespace Frontend.Core.Converting.Operations.CopyMod
             }
         }
 
-        public Task<OperationResult> Process()
+        public OperationResult Process()
         {
             var result = this.modCopier.MoveModFileAndFolder();
-            return Task.FromResult<OperationResult>(result);
+            return result;
         }
 
         public bool CanRun()

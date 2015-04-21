@@ -42,19 +42,19 @@ namespace Frontend.Core.ViewModels
             this.operationProvider = operationProvider;
 
             this.operationProvider.AddOperation(new SaveConfigurationOperation(
-                options, 
-                new DirectoryHelper(), 
-                new FileProxy(), 
-                new FolderProxy(), 
+                options,
+                new DirectoryHelper(),
+                new FileProxy(),
+                new FolderProxy(),
                 new OutputConfigurationFileHelper(new FileProxy(), new EnvironmentProxy())));
 
             this.operationProvider.AddOperation(new ExtractSaveOperation(
-                this.Options, 
-                new CompressedSaveChecker(), 
+                this.Options,
+                new CompressedSaveChecker(),
                 new ZipFileHelper(
                     new ZipFileProxy(),
-                    new FileProxy(), 
-                    new MessageBoxProxy()), 
+                    new FileProxy(),
+                    new MessageBoxProxy()),
                     new EnvironmentProxy()));
 
             this.operationProvider.AddOperation(new ConvertSaveOperation(this.Options, new FileProxy(), new DirectoryHelper()));
@@ -72,10 +72,10 @@ namespace Frontend.Core.ViewModels
             get
             {
                 return this.runOperationsCommand ?? (this.runOperationsCommand = new RunOperationsCommand(
-                    this.EventAggregator, 
-                    new OperationProcessor(this.EventAggregator), 
-                    this.operationProvider,
-                    percent => this.UpdateProgress(percent),
+                    new OperationProcessor(this.EventAggregator),
+                    this.operationProvider, 
+                    this.StartProgress, 
+                    this.StopProgress,
                     getOrCreateCancellationTokenSource
                     ));
             }
@@ -89,25 +89,6 @@ namespace Frontend.Core.ViewModels
             }
         }
 
-        public int ProgressInPercent
-        {
-            get
-            {
-                return this.progressInPercent;
-            }
-
-            set
-            {
-                if (this.progressInPercent == value)
-                {
-                    return;
-                }
-
-                this.progressInPercent = value;
-                this.NotifyOfPropertyChange(() => this.ProgressInPercent);
-            }
-        }
-        
         public bool IsBusy
         {
             get
@@ -158,21 +139,6 @@ namespace Frontend.Core.ViewModels
                 }
 
                 return this.cancellationTokenSource;
-            }
-        }
-
-        private void UpdateProgress(int percent)
-        {
-            if (!this.IsBusy)
-            {
-                this.StartProgress();
-            }
-
-            this.ProgressInPercent = percent;
-
-            if (percent == 100)
-            {
-                this.StopProgress();
             }
         }
 

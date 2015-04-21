@@ -38,7 +38,7 @@ namespace Frontend.Core.Converting.Operations.SaveConfiguration
             }
         }
 
-        public Task<OperationResult> Process()
+        public OperationResult Process()
         {
             return this.SaveConfiguration();;
         }
@@ -48,10 +48,9 @@ namespace Frontend.Core.Converting.Operations.SaveConfiguration
             return fileProxy.Exists(this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
         }
 
-        private async Task<OperationResult> SaveConfiguration()
+        private OperationResult SaveConfiguration()
         {
             var result = new OperationResult();
-            var task = Task.FromResult<OperationResult>(result);
 
             var converterPathMinusFileName = this.directoryHelper.GetConverterWorkingDirectory(this.options.CurrentConverter);
             var absoluteConfigurationFilePath = this.folderProxy.Combine(converterPathMinusFileName, configurationFileName);
@@ -60,18 +59,18 @@ namespace Frontend.Core.Converting.Operations.SaveConfiguration
             {
                 this.fileProxy.WriteAllText(absoluteConfigurationFilePath, this.outputConfigurationHelper.BuiltOutputString(this.options.CurrentConverter, new DirectoryHelper())); //TODO: Consider encoding problems
 
-                task.Result.LogEntries.Add(new LogEntry("Configuration file saved successfully as ", LogEntrySeverity.Info, LogEntrySource.UI, absoluteConfigurationFilePath));
+                result.LogEntries.Add(new LogEntry("Configuration file saved successfully as ", LogEntrySeverity.Info, LogEntrySource.UI, absoluteConfigurationFilePath));
             }
             catch (Exception e)
             {
-                task.Result.State = OperationResultState.Error;
+                result.State = OperationResultState.Error;
                 // No permitted to write to folder, ask user for elevated permission
-                task.Result.LogEntries.Add(new LogEntry("Failed to save configuration file", LogEntrySeverity.Error, LogEntrySource.UI));
-                task.Result.LogEntries.Add(new LogEntry("It may help running this application with administrator permissions", LogEntrySeverity.Error, LogEntrySource.UI));
-                task.Result.LogEntries.Add(new LogEntry("Internal save error was: " + e.Message, LogEntrySeverity.Error, LogEntrySource.UI));
+                result.LogEntries.Add(new LogEntry("Failed to save configuration file", LogEntrySeverity.Error, LogEntrySource.UI));
+                result.LogEntries.Add(new LogEntry("It may help running this application with administrator permissions", LogEntrySeverity.Error, LogEntrySource.UI));
+                result.LogEntries.Add(new LogEntry("Internal save error was: " + e.Message, LogEntrySeverity.Error, LogEntrySource.UI));
             }
 
-            return task.Result;
+            return result;
         }
     }
 }

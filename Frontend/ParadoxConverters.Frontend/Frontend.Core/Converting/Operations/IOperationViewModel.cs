@@ -6,7 +6,7 @@ namespace Frontend.Core.Converting.Operations
     {
         string Description { get; }
         void Load(IOperation operation);
-        Task<OperationResult> Process();
+        OperationResult Process();
         bool CanRun();
         OperationState State { get; set; }
     }

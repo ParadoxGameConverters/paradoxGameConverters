@@ -49,7 +49,7 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
             return false;
         }
 
-        public async Task<OperationResult> Process()
+        public OperationResult Process()
         {
             var result = new OperationResult();
             var task = Task.FromResult<OperationResult>(result);

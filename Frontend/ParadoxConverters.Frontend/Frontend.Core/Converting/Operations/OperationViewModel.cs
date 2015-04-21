@@ -25,9 +25,9 @@ namespace Frontend.Core.Converting.Operations
             this.operation = operation;
         }
 
-        public async Task<OperationResult> Process()
+        public OperationResult Process()
         {
-            return await this.operation.Process();
+            return this.operation.Process();
         }
 
         public bool CanRun()

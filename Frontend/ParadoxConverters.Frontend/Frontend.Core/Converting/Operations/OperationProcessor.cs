@@ -13,7 +13,7 @@ namespace Frontend.Core.Converting.Operations
     public class OperationProcessor : DispatcherObject, IOperationProcessor
     {
         private readonly IEventAggregator eventAggregator;
-        private Dictionary<OperationResultState, Action<OperationResult, IOperationViewModel>> resultHandlershandle;
+        private readonly Dictionary<OperationResultState, Action<OperationResult, IOperationViewModel>> resultHandlershandle;
 
         public OperationProcessor(IEventAggregator eventAggregator)
         {
@@ -27,63 +27,61 @@ namespace Frontend.Core.Converting.Operations
             };
         }
 
-        public async Task<int> ProcessQueue(IEnumerable<IOperationViewModel> operations, IProgress<int> progress, CancellationToken token)
+        public Task<AggregateOperationsResult> ProcessQueue(IEnumerable<IOperationViewModel> operations, CancellationToken token)
         {
-            int totalCount = operations.Count();
-            int processCount = await Task.Run<int>(() =>
+            int currentCount = 0;
+
+            foreach (var operation in operations)
+            {
+                if (token.IsCancellationRequested)
                 {
-                    int currentCount = 0;
-                    
-                    foreach (var operation in operations)
-                    {
-                        if (token.IsCancellationRequested)
-                        {
-                            break;
-                        }
+                    break;
+                }
 
-                        currentCount++;
+                currentCount++;
 
-                        operation.State = OperationState.InProgress;
-                        this.eventAggregator.PublishOnUIThread(new LogEntry(operation.Description, LogEntrySeverity.Info, LogEntrySource.UI));
+                operation.State = OperationState.InProgress;
+                this.eventAggregator.PublishOnUIThread(new LogEntry(operation.Description, LogEntrySeverity.Info, LogEntrySource.UI));
 
-                        var dummyResult = new OperationResult();
-                        Task<OperationResult> task = Task.FromResult(dummyResult);
+                var result = new OperationResult();
 
-                        try
-                        {
-                            token.ThrowIfCancellationRequested();
-                            task = operation.Process();
+                try
+                {
+                    token.ThrowIfCancellationRequested();
+                    result = operation.Process();
 
-                            this.LogResultMessages(task.Result);
-                            this.resultHandlershandle[task.Result.State](task.Result, operation);
+                    this.LogResultMessages(result);
+                    this.resultHandlershandle[result.State](result, operation);
+                }
+                catch (OperationCanceledException oce)
+                {
+                    this.resultHandlershandle[OperationResultState.Canceled](result, operation);
+                }
+                catch (Exception e)
+                {
+                    this.eventAggregator.PublishOnUIThread(
+                        new LogEntry(string.Format("Unhandled exception occurred: {0}", e.Message),
+                            LogEntrySeverity.Error, LogEntrySource.UI));
+                }
+            }
 
-                            this.ReportProgress(progress, currentCount, totalCount);
-                        }
-                        catch (OperationCanceledException oce)
-                        {
-                            this.resultHandlershandle[OperationResultState.Canceled](task.Result, operation);
-                        }
-                        catch (Exception e)
-                        {
-                            this.eventAggregator.PublishOnUIThread(
-                                new LogEntry(string.Format("Unhandled exception occurred: {0}", e.Message),
-                                    LogEntrySeverity.Error, LogEntrySource.UI));
-                        }
-                    }
-
-                    return currentCount;
-                }, token);
-
-            return processCount;
+            return Task.FromResult(this.CalculateResult(operations));
         }
 
-        private void ReportProgress(IProgress<int> progress, int currentCount, int totalCount)
+        private AggregateOperationsResult CalculateResult(IEnumerable<IOperationViewModel> operations)
         {
-            if (progress != null)
+            var operationStates = from operation in operations select operation.State;
+
+            if (operationStates.Contains(OperationState.CompleteWithErrors))
             {
-                int progressValue = currentCount * 100 / totalCount;
-                progress.Report(progressValue);
+                return AggregateOperationsResult.CompletedWithErrors;
             }
+            if (operationStates.Contains(OperationState.Cancelled))
+            {
+                return AggregateOperationsResult.Canceled;
+            }
+
+            return AggregateOperationsResult.CompletedSuccessfully;
         }
 
         private void HandleCancellation(OperationResult result, IOperationViewModel operation)
@@ -115,22 +113,6 @@ namespace Frontend.Core.Converting.Operations
             {
                 this.eventAggregator.PublishOnUIThread(logEntry);
             }
-        }
-
-        /// <summary>
-        /// Marshalls the method.
-        /// </summary>
-        /// <param name="action">The action.</param>
-        /// <param name="priority">The priority.</param>
-        private void MarshallMethod(System.Action action, DispatcherPriority priority)
-        {
-            if (!this.Dispatcher.CheckAccess())
-            {
-                this.Dispatcher.Invoke(action, priority);
-                return;
-            }
-
-            action();
         }
     }
 }

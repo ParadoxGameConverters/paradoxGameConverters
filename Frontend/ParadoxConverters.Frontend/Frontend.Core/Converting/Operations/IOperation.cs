@@ -6,7 +6,7 @@ namespace Frontend.Core.Converting.Operations
     {
         string Description { get; }
 
-        Task<OperationResult> Process();
+        OperationResult Process();
 
         bool CanRun();
     }

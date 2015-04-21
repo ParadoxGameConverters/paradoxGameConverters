@@ -31,15 +31,18 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
             get { return "Extracting save..."; }
         }
 
-        public async Task<OperationResult> Process()
+        public OperationResult Process()
         {
             var savePath = options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue;
             var extractPath = environmentProxy.GetFrontendWorkingDirectory();
             var result = new OperationResult();
+            var saveFileName = Path.GetFileName(savePath);
 
             try
             {
-                this.zipFileHelper.ExtractFile(savePath, Path.GetFileName(savePath), extractPath);
+                this.zipFileHelper.ExtractFile(savePath, saveFileName, extractPath);
+                this.options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue = Path.Combine(extractPath,
+                    saveFileName);
                 result.State = OperationResultState.Success;
             }
             catch (Exception e)
