@@ -1,24 +1,16 @@
-﻿using Caliburn.Micro;
-using Frontend.Core.Common.Proxies;
+﻿using Frontend.Core.Common.Proxies;
 using Frontend.Core.Helpers;
 using Frontend.Core.Model.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Frontend.Core.Converting.Operations.CopyMod
 {
     public class CopyModOperation : IOperation
     {
-        private IModCopier modCopier;
+        private readonly IModCopier modCopier;
 
-        public CopyModOperation(IEventAggregator eventAggregator, IConverterOptions options)
+        public CopyModOperation(IConverterOptions options)
         {
-            this.modCopier = new ModCopier(
-                eventAggregator,
+            modCopier = new ModCopier(
                 options,
                 new FileProxy(),
                 new FolderProxy(),
@@ -30,15 +22,12 @@ namespace Frontend.Core.Converting.Operations.CopyMod
 
         public string Description
         {
-            get
-            {
-                return "Copying mod...";
-            }
+            get { return "Copying mod..."; }
         }
 
         public OperationResult Process()
         {
-            var result = this.modCopier.MoveModFileAndFolder();
+            var result = modCopier.MoveModFileAndFolder();
             return result;
         }
 

@@ -71,6 +71,7 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
         {
             string testPath = "x:\\savegame.eu4";
             this.mockSavegame.Setup(s => s.SelectedValue).Returns(testPath);
+            this.mockCompressedSaveChecker.Setup(sc => sc.IsCompressedSave(It.Is<string>(path => path.Equals(testPath)))).Returns(true);
             Assert.IsTrue(this.testTarget.CanRun());
         }
 

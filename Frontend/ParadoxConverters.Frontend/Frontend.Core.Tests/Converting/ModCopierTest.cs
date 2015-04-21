@@ -64,7 +64,6 @@ namespace Frontend.Core.Tests.Converting
             this.mockFolderProxy.Setup(p => p.Exists(It.IsAny<string>())).Returns(false);
 
             this.modCopier = new ModCopier(
-                this.mockEventAggregator.Object,
                 this.mockConverterOptions.Object,
                 this.mockFileProxy.Object,
                 this.mockFolderProxy.Object, 

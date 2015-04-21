@@ -1,7 +1,4 @@
-﻿using Frontend.Core.Converting.Operations;
-using Frontend.Core.Model.Interfaces;
-
-namespace Frontend.Core.Converting.Operations.CopyMod
+﻿namespace Frontend.Core.Converting.Operations.CopyMod
 {
     public interface IModCopier
     {
