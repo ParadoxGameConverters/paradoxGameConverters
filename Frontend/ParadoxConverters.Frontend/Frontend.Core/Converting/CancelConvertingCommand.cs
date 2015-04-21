@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using Frontend.Core.Logging;
 
 namespace Frontend.Core.Converting
 {
@@ -27,6 +28,7 @@ namespace Frontend.Core.Converting
 
         protected override void OnExecute(object parameter)
         {
+            this.EventAggregator.PublishOnUIThread(new LogEntry("Process canceled - will stop working once the current step is complete.", LogEntrySeverity.Warning, LogEntrySource.UI));
             this.tokenSourceFunc().Cancel();
         }
     }

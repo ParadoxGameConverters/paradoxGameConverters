@@ -33,11 +33,10 @@ namespace Frontend.Core.Converting.Operations
             int processCount = await Task.Run<int>(() =>
                 {
                     int currentCount = 0;
-                    OperationResultState previousTaskState = OperationResultState.Success;
                     
                     foreach (var operation in operations)
                     {
-                        if (previousTaskState != OperationResultState.Success)
+                        if (token.IsCancellationRequested)
                         {
                             break;
                         }
@@ -69,10 +68,6 @@ namespace Frontend.Core.Converting.Operations
                             this.eventAggregator.PublishOnUIThread(
                                 new LogEntry(string.Format("Unhandled exception occurred: {0}", e.Message),
                                     LogEntrySeverity.Error, LogEntrySource.UI));
-                        }
-                        finally
-                        {
-                            previousTaskState = task.Result.State;
                         }
                     }
 
