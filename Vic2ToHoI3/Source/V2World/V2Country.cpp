@@ -146,8 +146,8 @@ V2Country::V2Country(Object* obj)
 	(governmentObj.size() > 0) ? government = governmentObj[0]->getLeaf() : government = "";
 
 	auto upperHouseObj = obj->getValue("upper_house");
-	auto idealogiesObj = upperHouseObj[0]->getLeaves();
-	for (auto ideologyObj: idealogiesObj)
+	auto ideologiesObj = upperHouseObj[0]->getLeaves();
+	for (auto ideologyObj: ideologiesObj)
 	{
 		upperHouseComposition.insert(make_pair(ideologyObj[0].getKey(), atof(ideologyObj[0].getLeaf().c_str())));
 	}

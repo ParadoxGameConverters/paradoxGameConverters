@@ -103,7 +103,7 @@ class HoI3Country
 		void			outputElection(FILE*)	const;
 		void			outputParties(FILE*)		const;
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI3Province*> allProvinces);
-		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties);
+		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
 
 		HoI3World*							theWorld;
 		const V2Country*					srcCountry;
@@ -132,6 +132,7 @@ class HoI3Country
 		map<string, double>				practicals;
 		vector<HoI3Party>					parties;
 		vector<HoI3Minister>				ministers;
+		vector<HoI3Minister>				rulingMinisters;
 
 		// laws
 		string				civil_law;

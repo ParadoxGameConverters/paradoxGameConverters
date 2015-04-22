@@ -38,6 +38,9 @@ class HoI3Minister
 		HoI3Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits);
 		void output(FILE* output);
 
+		string			getFirstJob()	const { return roles[0].first; }
+		unsigned int	getID()			const { return ID; }
+
 	private:
 		unsigned int	ID;
 		string			name;
