@@ -41,7 +41,7 @@ namespace Frontend.Core.Converting
                 await
                     Task.Run(
                         () =>
-                            processor.ProcessQueue(provider.Operations.Where(operation => operation.CanRun()),
+                            processor.ProcessQueue(provider.Operations,
                                 tokenSourceFunc().Token));
             _afterCompletion();
         }

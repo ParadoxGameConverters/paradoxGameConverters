@@ -41,14 +41,14 @@ namespace Frontend.Core.ViewModels
         {
             this.operationProvider = operationProvider;
 
-            this.operationProvider.AddOperation(new SaveConfigurationOperation(
+            this.operationProvider.RegisterOperation(new SaveConfigurationOperation(
                 options,
                 new DirectoryHelper(),
                 new FileProxy(),
                 new FolderProxy(),
                 new OutputConfigurationFileHelper(new FileProxy(), new EnvironmentProxy())));
 
-            this.operationProvider.AddOperation(new ExtractSaveOperation(
+            this.operationProvider.RegisterOperation(new ExtractSaveOperation(
                 Options,
                 new CompressedSaveChecker(),
                 new ZipFileHelper(
@@ -57,9 +57,9 @@ namespace Frontend.Core.ViewModels
                     new MessageBoxProxy()),
                 new EnvironmentProxy()));
 
-            this.operationProvider.AddOperation(new ConvertSaveOperation(Options, new FileProxy(), new DirectoryHelper()));
+            this.operationProvider.RegisterOperation(new ConvertSaveOperation(Options, new FileProxy(), new DirectoryHelper()));
 
-            this.operationProvider.AddOperation(new CopyModOperation(Options));
+            this.operationProvider.RegisterOperation(new CopyModOperation(Options));
 
             getOrCreateCancellationTokenSource = () => { return CancellationTokenSource; };
         }

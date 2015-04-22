@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Caliburn.Micro;
 
 namespace Frontend.Core.Converting.Operations
@@ -6,24 +7,24 @@ namespace Frontend.Core.Converting.Operations
     public class OperationProvider : IOperationProvider
     {
         private readonly IEventAggregator eventAggregator;
-        private readonly IList<IOperationViewModel> operations;
+        private readonly IList<IOperationViewModel> registeredOperations;
 
         public OperationProvider(IEventAggregator eventAggregator)
         {
             this.eventAggregator = eventAggregator;
-            operations = new List<IOperationViewModel>();
+            registeredOperations = new List<IOperationViewModel>();
         }
 
         public IEnumerable<IOperationViewModel> Operations
         {
-            get { return operations; }
+            get { return registeredOperations.Where(operation => operation.CanRun()); }
         }
 
-        public void AddOperation(IOperation operation)
+        public void RegisterOperation(IOperation operation)
         {
             var operationViewModel = new OperationViewModel(eventAggregator);
             operationViewModel.Load(operation);
-            operations.Add(operationViewModel);
+            registeredOperations.Add(operationViewModel);
         }
     }
 }
