@@ -485,3 +485,14 @@ void initNamesMapping(Object* obj, namesMapping& namesMap)
 		}
 	}
 }
+
+
+void initPortraitMapping(Object* obj, portraitMapping& portraitMap)
+{
+	vector<Object*> groupsObj = obj->getLeaves();
+	for (auto groupsItr: groupsObj)
+	{
+		vector<string> portraits = groupsItr->getTokens();
+		portraitMap.insert(make_pair(groupsItr->getKey(), portraits));
+	}
+}

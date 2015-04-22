@@ -23,20 +23,24 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "HoI3Minister.h"
 #include "..\Configuration.h"
 
-HoI3Minister::HoI3Minister(vector<string> firstNames, vector<string> lastNames, string _ideology, governmentJob job, governmentJobsMap jobMap)
+
+
+HoI3Minister::HoI3Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits)
 {
 	ID			= Configuration::getNextLeaderID();
-	name		= firstNames[firstNames.size() * rand() / RAND_MAX] + " " + lastNames[lastNames.size() * rand() / RAND_MAX];
+	name		= firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()];
 	ideology	= _ideology;
 	loyalty	= 1.0f;
 
+	picture	= portraits[rand() % portraits.size()];
+
 	vector<string> traits = jobMap.find(job.first)->second;
-	roles.push_back(make_pair(job.first, traits[traits.size() * rand() / RAND_MAX]));
+	roles.push_back(make_pair(job.first, traits[rand() % traits.size()]));
 
 	governmentJobsMap::iterator secondJob = jobMap.begin();
-	std::advance(secondJob, jobMap.size() * rand() / RAND_MAX);
+	std::advance(secondJob, rand() % jobMap.size());
 	traits = secondJob->second;
-	roles.push_back(make_pair(secondJob->first, traits[traits.size() * rand() / RAND_MAX]));
+	roles.push_back(make_pair(secondJob->first, traits[rand() % traits.size()]));
 }
 
 
@@ -46,7 +50,7 @@ void HoI3Minister::output(FILE * output)
 	fprintf(output, "\t\tname = \"%s\"\n", name.c_str());
 	fprintf(output, "\t\tideology = %s\n", ideology.c_str());
 	fprintf(output, "\t\tloyalty = %f\n", loyalty);
-	//fprintf(output, "\t\tpicture = %s\n", picture.c_str());
+	fprintf(output, "\t\tpicture = %s\n", picture.c_str());
 	for (auto role: roles)
 	{
 		fprintf(output, "\t\t%s = %s\n", role.first.c_str(), role.second.c_str());

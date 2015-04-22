@@ -443,7 +443,7 @@ void HoI3World::getProvinceLocalizations(string file)
 }
 
 
-void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap)
+void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -481,7 +481,7 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new HoI3Country(HoI3Tag, countryFileName, this, true);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceCountry, convertIdeology(sourceWorld.getRulingParty(sourceCountry)), outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap);
+			destCountry->initFromV2Country(sourceWorld, sourceCountry, convertIdeology(sourceWorld.getRulingParty(sourceCountry)), outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
 
 		// OLD CODE
@@ -1151,7 +1151,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			HoI3Province* locationProvince;
 			if (locationCandidates.size() > 0) // BE TODO: Handle invalid location units in production queue
 			{
-				selectedLocation = locationCandidates[int(locationCandidates.size() * ((double)rand() / RAND_MAX))];
+				selectedLocation = locationCandidates[rand() % locationCandidates.size()];
 				if (oldArmy->getNavy() && usePort)
 				{
 					vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);

@@ -35,7 +35,7 @@ using namespace std;
 class HoI3Minister
 {
 	public:
-		HoI3Minister(vector<string> firstNames, vector<string> lastNames, string _ideology, governmentJob job, governmentJobsMap jobMap);
+		HoI3Minister(vector<string>& firstNames, vector<string>& lastNames, string _ideology, governmentJob job, governmentJobsMap& jobMap, vector<string>& portraits);
 		void output(FILE* output);
 
 	private:
@@ -43,7 +43,7 @@ class HoI3Minister
 		string			name;
 		string			ideology;
 		double			loyalty;
-		//picture
+		string			picture;
 		vector<pair<string, string>>	roles;	
 };
 

@@ -283,9 +283,18 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		initNamesMapping(obj, namesMap);
 	}
 
+	// parse portraits list
+	LOG(LogLevel::Info) << "Parsing portraits list";
+	portraitMapping portraitMap;
+	obj = doParseFile("portraits.txt");
+	if (obj != NULL)
+	{
+		initPortraitMapping(obj, portraitMap);
+	}
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap);
+	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap, portraitMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

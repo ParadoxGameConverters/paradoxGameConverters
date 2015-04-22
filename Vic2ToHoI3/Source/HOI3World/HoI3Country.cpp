@@ -492,7 +492,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
 	srcCountry = _srcCountry;
 	ideology = _ideology;
@@ -573,7 +573,7 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	{
 		for (auto job: governmentJobs)
 		{
-			HoI3Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs);
+			HoI3Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap["Generic"]);
 			ministers.push_back(newMinister);
 		}
 	}

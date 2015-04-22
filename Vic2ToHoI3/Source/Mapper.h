@@ -109,5 +109,9 @@ void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
 typedef map<string, pair<vector<string>, vector<string>>> namesMapping;
 void initNamesMapping(Object* obj, namesMapping& namesMap);
 
+// portraits
+typedef map<string, vector<string>> portraitMapping; // <graphical culture, valid portraits>
+void initPortraitMapping(Object* obj, portraitMapping& portraitMap);
+
 
 #endif // MAPPER_H
