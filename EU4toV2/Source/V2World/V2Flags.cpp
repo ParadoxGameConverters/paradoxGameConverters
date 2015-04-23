@@ -368,6 +368,9 @@ bool V2Flags::Output() const
 		
 		for (int i = 0; i<5; i++)
 		{
+			if (baseFlag == "-1")
+				continue;
+
 			if (baseFlag == "tricolor" && i != 0 && i != 4)
 				continue;
 
