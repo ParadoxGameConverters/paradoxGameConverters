@@ -306,10 +306,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(sourceWorld, countryMap);
 
-	//Delete output if it already exists
-	LOG(LogLevel::Info) << "Clearing output directory";
-	system("rmdir /S /Q output");
-
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";
 	system("%systemroot%\\System32\\xcopy blankMod output /E /Q /Y /I");
