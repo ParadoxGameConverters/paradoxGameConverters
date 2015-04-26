@@ -108,13 +108,13 @@ string getGovernmentForCountry(const V2Country* country, const string _ideology,
 	// these should probably be read from file; oh well.
 	map<string, double> social_positions;
 	map<string, double> market_positions;
-	social_positions["reactionary"] = 2;		market_positions["reactionary"] = 1;
-	social_positions["conservative"] = 1;		market_positions["conservative"] = 0;
-	social_positions["fascist"] = 2;			market_positions["fascist"] = 1;
-	social_positions["liberal"] = -1;			market_positions["liberal"] = 0;
-	social_positions["anarcho_liberal"] = -2;	market_positions["anarcho_liberal"] = -2;
-	social_positions["socialist"] = 0;			market_positions["socialist"] = 1;
-	social_positions["communist"] = 1;			market_positions["communist"] = 2;
+	social_positions["reactionary"]		=  2;	market_positions["reactionary"]		=  1;
+	social_positions["conservative"]		=  1;	market_positions["conservative"]		=  0;
+	social_positions["fascist"]			=  2;	market_positions["fascist"]			=  1;
+	social_positions["liberal"]			= -1;	market_positions["liberal"]			=  0;
+	social_positions["anarcho_liberal"]	= -2;	market_positions["anarcho_liberal"]	= -2;
+	social_positions["socialist"]			=  0;	market_positions["socialist"]			=  1;
+	social_positions["communist"]			=  1;	market_positions["communist"]			=  2;
 
 	// find the average political composition of the upper house
 	double avgMarket = 0.0;

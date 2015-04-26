@@ -496,10 +496,9 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap)
 {
 	srcCountry = _srcCountry;
-	ideology = _ideology;
 
 	struct _finddata_t	fileData;
 	intptr_t					fileListing;
@@ -537,7 +536,7 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	string srcGovernment = srcCountry->getGovernment();
 	if (srcGovernment.size() > 0)
 	{
-		government = getGovernmentForCountry(srcCountry, _ideology, governmentMap);
+		government = getGovernmentForCountry(srcCountry, _vic2ideology, governmentMap);
 		if (government.empty())
 		{
 			government = "";
@@ -546,8 +545,7 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	// Political parties
-	string rulingIdeology;
-	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), rulingIdeology);
+	convertParties(_srcCountry, _srcWorld.getActiveParties(_srcCountry), _srcWorld.getRulingParty(_srcCountry), ideology);
 	for (auto partyItr = parties.begin(); partyItr != parties.end(); partyItr++)
 	{
 		auto oldLocalisation = V2Localisations.GetTextInEachLanguage(partyItr->name);
@@ -561,11 +559,6 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 
 	// Ministers
-	int foo;
-	if (tag=="X52")
-	{
-		foo = 1;
-	}
 	vector<string> firstNames;
 	vector<string> lastNames;
 	auto namesItr = namesMap.find(srcCountry->getPrimaryCulture());
@@ -586,7 +579,7 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 			HoI3Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap["Generic"]);
 			ministers.push_back(newMinister);
 
-			if (ideologyNames[ideologyIdx] == rulingIdeology)
+			if (ideologyNames[ideologyIdx] == ideology)
 			{
 				rulingMinisters.push_back(newMinister);
 			}
