@@ -279,12 +279,12 @@ void HoI3Country::output() const
 
 	// Output common country file. 
 	fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile).c_str(), "w");
-	fprintf(output, "graphical_culture = Generic\n");	// default to "Generic"
 	int red;
 	int green;
 	int blue;
 	color.GetRGB(red, green, blue);
 	fprintf(output, "color = { %d %d %d }\n", red, green, blue);
+	fprintf(output, "graphical_culture = Generic\n");	// default to "Generic"
 	fprintf(output, "\n");
 	fprintf(output, "default_templates = {\n");
 	fprintf(output, "	generic_infantry = {\n");
