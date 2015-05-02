@@ -70,7 +70,6 @@ HoI3Province::HoI3Province(string _filename)
 	struct _stat st;
 	if (_stat((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str(), &st) == 0)
 	{
-		LOG(LogLevel::Debug) << "Parsing " << (string(".\\blankMod\\output\\history\\provinces") + _filename);
 		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
 		if (obj == NULL)
 		{
@@ -80,7 +79,6 @@ HoI3Province::HoI3Province(string _filename)
 	}
 	else
 	{
-		LOG(LogLevel::Debug) << "Parsing " << (Configuration::getHoI3Path() + "\\history\\provinces" + _filename);
 		obj = doParseFile((Configuration::getHoI3Path() + "\\history\\provinces" + _filename).c_str());
 		if (obj == NULL)
 		{

@@ -965,13 +965,13 @@ static string CardinalToOrdinal(int cardinal)
 }
 
 
-vector<int> HoI3World::getCoastalProvinces(vector<int> locationCandidates)
+vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 {
 	vector<int> newLocationCandidates;
 	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
 	{
 		map<int, HoI3Province*>::const_iterator provinceItr = provinces.find(*litr);
-		if (provinceItr != provinces.end() && provinceItr->second->isCoastal()) // BE: Add? && provinceItr->second->isNotBlacklistedPort()
+		if (provinceItr != provinces.end() && provinceItr->second->hasNavalBase()) // BE: Add? && provinceItr->second->isNotBlacklistedPort()
 		{
 			newLocationCandidates.push_back(*litr);
 		}
@@ -1138,7 +1138,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				if (pitr != provinces.end() && pitr->second->isLand())
 				{
 					usePort = true;
-					locationCandidates = getCoastalProvinces(locationCandidates);
+					locationCandidates = getPortProvinces(locationCandidates);
 					if (locationCandidates.size() == 0)
 					{
 						LOG(LogLevel::Warning) << "Navy " << oldArmy->getName() << " assigned to V2 province " << oldArmy->getLocation() << " which has no corresponding HoI3 port provinces; placing units in the production queue.";

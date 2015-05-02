@@ -817,7 +817,7 @@ vector<int> HoI3Country::getPortProvinces(vector<int> locationCandidates, map<in
 		map<int, HoI3Province*>::iterator pitr = allProvinces.find(*litr);
 		if (pitr != allProvinces.end())
 		{
-			if (!pitr->second->isCoastal())
+			if (!pitr->second->hasNavalBase())
 			{
 				locationCandidates.erase(litr);
 				--pitr;

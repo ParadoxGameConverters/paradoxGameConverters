@@ -52,7 +52,7 @@ private:
 		void					getProvinceLocalizations(string file);
 		void					checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, vector<string>& destination, string logName);
 		void					factionSatellites(vector<string>& faction);
-		vector<int>				getCoastalProvinces(vector<int> locationCandidates);
+		vector<int>				getPortProvinces(vector<int> locationCandidates);
 		HoI3RegGroup			createTheatre(HoI3Province*);
 
 		map<int, HoI3Province*>	provinces;
