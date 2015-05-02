@@ -67,11 +67,11 @@ class HoI3Country
 		void								initFromHistory();
 		void								convertArmies(const map<int,int>& leaderIDMap, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist);
 		void								addRelation(HoI3Relations* newRelation);
+		void								addProvince(HoI3Province* _province);
 
 		HoI3Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
-		void								addProvince(HoI3Province* _province)		{ provinces.push_back(_province); };
 		void								isANewCountry(void)							{ newCountry = true; };
 
 		vector<HoI3Province*>		getProvinces() const { return provinces; };

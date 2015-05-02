@@ -39,6 +39,11 @@ HoI3Minister::HoI3Minister(vector<string>& firstNames, vector<string>& lastNames
 
 	governmentJobsMap::iterator secondJob = jobMap.begin();
 	std::advance(secondJob, rand() % jobMap.size());
+	while (job.first == secondJob->first)
+	{
+		secondJob = jobMap.begin();
+		std::advance(secondJob, rand() % jobMap.size());
+	}
 	traits = secondJob->second;
 	roles.push_back(make_pair(secondJob->first, traits[rand() % traits.size()]));
 }

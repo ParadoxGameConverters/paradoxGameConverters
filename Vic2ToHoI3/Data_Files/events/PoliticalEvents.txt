@@ -677,17 +677,15 @@ country_event = {
 
 	trigger = {
 		
-		and = {
-			or = {
-				government = social_conservatism
-				government = market_liberalism
-				government = social_democracy
-				government = social_liberalism
-				government = constitutional_monarchy
-			}
-			ideology = national_socialist
-			organisation = 50
+		or = {
+			government = social_conservatism
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = constitutional_monarchy
 		}
+		ideology = national_socialist
+		organisation = 50
 		not = { has_country_flag = anti_terrorist_measures }
 	}
 
@@ -1654,17 +1652,15 @@ country_event = {
 
 	trigger = {
 		
-		and = {
-			or = {
-				government = social_conservatism
-				government = market_liberalism
-				government = social_democracy
-				government = social_liberalism
-				government = constitutional_monarchy
-			}
-			ideology = fascistic
-			organisation = 50
+		or = {
+			government = social_conservatism
+			government = market_liberalism
+			government = social_democracy
+			government = social_liberalism
+			government = constitutional_monarchy
 		}
+		ideology = fascistic
+		organisation = 50
 		not = { has_country_flag = anti_terrorist_measures }
 	}
 

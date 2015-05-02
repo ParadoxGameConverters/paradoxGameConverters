@@ -465,7 +465,7 @@ void HoI3Country::outputParties(FILE* output) const
 	fopen_s(&partyLocalisations, ("Output\\" + Configuration::getOutputName() + "\\localisation\\Parties.csv").c_str(), "a");
 	for (auto party: parties)
 	{
-		fprintf(partyLocalisations, "%s\n", party.localisationString.c_str());
+		fprintf(partyLocalisations, "%s;\n", party.localisationString.c_str());
 	}
 	fclose(partyLocalisations);
 }
@@ -592,11 +592,17 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
 	if (srcGovernment == "democracy" || srcGovernment == "hms_government")
+	{
 		civil_law = "open_society";
+	}
 	else if (srcGovernment == "proletarian_dictatorship")
+	{
 		civil_law = "totalitarian_system";
+	}
 	else
+	{
 		civil_law = "limited_restrictions";
+	}
 
 	// conscription law - everyone starts with volunteer armies
 	conscription_law = "volunteer_army";
@@ -619,9 +625,13 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// press laws - set from press reforms
 	if (srcCountry->getReform("press_rights") == "free_press")
+	{
 		press_laws = "free_press";
+	}
 	else if (srcCountry->getReform("press_rights") == "censored_press")
+	{
 		press_laws = "censored_press";
+	}
 	else // press_rights == state_press
 	{
 		if ((srcGovernment == "proletarian_dictatorship") ||
@@ -637,13 +647,21 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// training laws - from military spending
 	if (srcCountry->getMilitarySpending() > 0.90)
+	{
 		training_laws = "specialist_training";
+	}
 	else if (srcCountry->getMilitarySpending() > 0.70)
+	{
 		training_laws = "advanced_training";
+	}
 	else if (srcCountry->getMilitarySpending() > 0.40)
+	{
 		training_laws = "basic_training";
+	}
 	else
+	{
 		training_laws = "minimal_training";
+	}
 
 	// Relations
 	map<string, V2Relations*> srcRelations = srcCountry->getRelations();
@@ -715,6 +733,12 @@ void HoI3Country::initFromHistory()
 		government = results[0]->getLeaf();
 	}
 
+	results = obj->getValue("ideology");
+	if (results.size() > 0)
+	{
+		ideology = results[0]->getLeaf();
+	}
+
 	results = obj->getValue("capital");
 	if (results.size() > 0)
 	{
@@ -731,6 +755,18 @@ void HoI3Country::addRelation(HoI3Relations* newRelation)
 {
 	relations.insert(make_pair(newRelation->getTag(), newRelation));
 }
+
+
+void HoI3Country::addProvince(HoI3Province* _province)
+{
+	provinces.push_back(_province);
+	if (capital == 0)
+	{
+		capital = _province->getNum();
+	}
+}
+
+
 
 const std::map<string, HoI3Relations*> &HoI3Country::getRelations() const
 {
