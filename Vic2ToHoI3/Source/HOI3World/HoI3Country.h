@@ -124,7 +124,7 @@ class HoI3Country
 		double								diploPoints;
 		double								badboy;
 		Color									color;
-		unsigned int						neutrality;
+		double								neutrality;
 		unsigned int						national_unity;
 		HoI3Localisation					localisation;
 		string								faction;

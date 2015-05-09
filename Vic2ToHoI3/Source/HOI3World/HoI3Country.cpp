@@ -257,7 +257,7 @@ void HoI3Country::output() const
 		fprintf(output, "join_faction = %s\n", faction.c_str());
 	}
 	fprintf(output, "alignment = { x = %f y = %f }\n", alignment.get2DX(), alignment.get2DY());
-	fprintf(output, "neutrality = %i\n", neutrality);
+	fprintf(output, "neutrality = %f\n", neutrality);
 	fprintf(output, "national_unity = %i\n", national_unity);
 
 	fprintf(output, "civil_law = %s\n", civil_law.c_str());
@@ -589,6 +589,29 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	Configuration::setLeaderIDForNextCountry();
 
 	// Faction is handled in HoI3World::configureFactions
+
+	string warPolicy = _srcWorld.getRulingParty(_srcCountry)->war_policy;
+	if (warPolicy == "jingoism")
+	{
+		neutrality = 60;
+	}
+	else if (warPolicy == "pro_military")
+	{
+		neutrality = 73.3;
+	}
+	else if (warPolicy == "anti_military")
+	{
+		neutrality = 86.6;
+	}
+	else if (warPolicy == "pacifism")
+	{
+		neutrality = 90;
+	}
+	else
+	{
+		LOG(LogLevel::Warning) << "Could not find war policy for Vic2 country " << _srcCountry->getTag() << ". Settting neutrality to 100%";
+		neutrality = 100;
+	}
 
 	// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
 	if (srcGovernment == "democracy" || srcGovernment == "hms_government")
