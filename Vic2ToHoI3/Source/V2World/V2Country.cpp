@@ -126,6 +126,18 @@ V2Country::V2Country(Object* obj)
 		(settingsObj.size() > 0) ? militarySpending = atof(settingsObj[0]->getLeaf().c_str()) : 0.0;
 	}
 
+	vector<Object*> revanchismObj = obj->getValue("revanchism");
+	if (revanchismObj.size() > 0)
+	{
+		revanchism = atof(revanchismObj[0]->getLeaf().c_str());
+	}
+
+	vector<Object*> warExhaustionObj = obj->getValue("war_exhaustion");
+	if (warExhaustionObj.size() > 0)
+	{
+		warExhaustion = atof(warExhaustionObj[0]->getLeaf().c_str());
+	}
+
 	// Read reforms
 	vector<Object*> leaves = obj->getLeaves();
 	for (unsigned int i = 0; i < leaves.size(); ++i)

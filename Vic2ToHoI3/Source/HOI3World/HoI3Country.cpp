@@ -83,7 +83,7 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 	faction = "";
 
 	neutrality = 50;
-	national_unity = 70;
+	nationalUnity = 70;
 
 	training_laws = "minimal_training";
 	press_laws = "censored_press";
@@ -258,7 +258,7 @@ void HoI3Country::output() const
 	}
 	fprintf(output, "alignment = { x = %f y = %f }\n", alignment.get2DX(), alignment.get2DY());
 	fprintf(output, "neutrality = %f\n", neutrality);
-	fprintf(output, "national_unity = %i\n", national_unity);
+	fprintf(output, "national_unity = %f\n", nationalUnity);
 
 	fprintf(output, "civil_law = %s\n", civil_law.c_str());
 	fprintf(output, "conscription_law = %s\n", conscription_law.c_str());
@@ -613,6 +613,8 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 		neutrality = 100;
 	}
 
+	nationalUnity = 70.0 + (_srcCountry->getRevanchism()/0.05) - (_srcCountry->getWarExhaustion()/2.5);
+	
 	// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
 	if (srcGovernment == "democracy" || srcGovernment == "hms_government")
 	{

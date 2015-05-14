@@ -125,7 +125,7 @@ class HoI3Country
 		double								badboy;
 		Color									color;
 		double								neutrality;
-		unsigned int						national_unity;
+		double								nationalUnity;
 		HoI3Localisation					localisation;
 		string								faction;
 		set<string>							allies;

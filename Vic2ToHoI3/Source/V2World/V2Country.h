@@ -77,6 +77,8 @@ class V2Country
 		unsigned	int					getRulingPartyId()											const { return rulingPartyId; }
 		vector<unsigned int>			getActiveParties()											const { return activeParties; };
 		vector<V2Army*>				getArmies()														const { return armies; }
+		double							getRevanchism()												const { return revanchism; }
+		double							getWarExhaustion()											const { return warExhaustion; }
 
 		string							getReform(string reform) const;
 		string							getName(const string& language) const;
@@ -124,6 +126,8 @@ class V2Country
 		map<string, double>			upperHouseComposition;
 		double							educationSpending;
 		double							militarySpending;
+		double							revanchism;
+		double							warExhaustion;
 		map<string, string>			reformsArray;
 		string							flagFile;
 		unsigned	int					rulingPartyId;
