@@ -37,7 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World\V2Localisation.h"
 #include "WinUtils.h"
 
-
+#pragma optimize("", off)
 // Converts the given V2 save into a HOI3 mod.
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertV2ToHoI3(const std::string& V2SaveFileName)
@@ -104,6 +104,29 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		LOG(LogLevel::Debug) << "Victoria 2 Documents directory is " << V2DocumentsLoc;
 	}
 
+	// Sanity check Vic2 mods
+	LOG(LogLevel::Debug) << "Double-check Vic2 mods";
+	vector<string> vic2Mods = Configuration::getVic2Mods();
+	for (auto itr: vic2Mods)
+	{
+		LOG(LogLevel::Debug) << "\tExpecting a mod with name " << itr;
+	}
+
+	set<string> fileNames;
+	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\mod", fileNames);
+	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
+	{
+		const int pos = itr->find_last_of('.');	// the position of the last period in the filename
+		if (itr->substr(pos, itr->length()) == ".mod")
+		{
+			string folderName = itr->substr(0, pos);
+			if (WinUtils::doesFolderExist(Configuration::getV2Path() + "\\mod\\" + folderName))
+			{
+				LOG(LogLevel::Debug) << "\tFound mod with name " << folderName;
+			}
+		}
+	}
+
 	//get output name
 	const int slash	= V2SaveFileName.find_last_of("\\");				// the last slash in the save's filename
 	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
@@ -143,7 +166,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Reading localisation";
 	V2Localisation localisation;
 	localisation.ReadFromAllFilesInFolder(Configuration::getV2Path() + "\\localisation");
-	vector<string> vic2Mods = Configuration::getVic2Mods();
 	for (auto itr: vic2Mods)
 	{
 		LOG(LogLevel::Debug) << "Reading mod localisation";
@@ -338,7 +360,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
-
+#pragma optimize("", on)
 
 int main(const int argc, const char * argv[])
 {
