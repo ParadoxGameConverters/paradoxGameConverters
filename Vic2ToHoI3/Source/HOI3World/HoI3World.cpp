@@ -381,46 +381,6 @@ void HoI3World::output() const
 	}
 	LOG(LogLevel::Debug) << "Writing diplomacy";
 	diplomacy.output();
-	//fprintf(output, "date=\"%s\"\n", Configuration::getStartDate().toString().c_str());
-	//fprintf(output, "automate_trade=no\n");
-	//fprintf(output, "automate_sliders=0\n");
-	//fprintf(output, "automate_tech_sliders=0\n");
-	//fprintf(output, "rebel=1\n");
-	//fprintf(output, "convoy=1\n");
-	//fprintf(output, "theatre=1\n");
-	//fprintf(output, "unit=%d\n", HoI3ArmyID().id);
-	//for (unsigned int i = 0; i < provinces.size(); i++)
-	//{
-	//	provinces[i].output(output);
-	//}
-	//for (unsigned int i = 0; i < countries.size(); i++)
-	//{
-	//	countries[i].output(output);
-	//}
-	//fprintf(output, "faction=\n");
-	//fprintf(output, "{\n");
-	//fprintf(output, "axis=\n");
-	//fprintf(output, "{\n");
-	//for (vector<string>::iterator cty = axisFaction.begin(); cty != axisFaction.end(); ++cty)
-	//{
-	//	fprintf(output, "\tcountry=\"%s\"\n", cty->c_str());
-	//}
-	//fprintf(output, "}\n");
-	//fprintf(output, "allies=\n");
-	//fprintf(output, "{\n");
-	//for (vector<string>::iterator cty = alliesFaction.begin(); cty != alliesFaction.end(); ++cty)
-	//{
-	//	fprintf(output, "\tcountry=\"%s\"\n", cty->c_str());
-	//}
-	//fprintf(output, "}\n");
-	//fprintf(output, "comintern=\n");
-	//fprintf(output, "{\n");
-	//for (vector<string>::iterator cty = cominternFaction.begin(); cty != cominternFaction.end(); ++cty)
-	//{
-	//	fprintf(output, "\tcountry=\"%s\"\n", cty->c_str());
-	//}
-	//fprintf(output, "}\n");
-	//fprintf(output, "}\n");
 }
 
 void HoI3World::getProvinceLocalizations(string file)
@@ -1373,7 +1333,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 }
 
 
-void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, vector<string>& destination, string logName)
+void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName)
 {
 	for (vector<string>::const_iterator itr = candidateTags.begin(); itr != candidateTags.end(); ++itr)
 	{
@@ -1381,49 +1341,49 @@ void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vecto
 		string hoiTag = countryMap[*itr];
 		if (hoiTag.empty())
 		{
-			LOG(LogLevel::Info) << "Tag " << *itr << " requested for " << logName << " faction, but is unmapped!";
+			LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << factionName << " faction, but is unmapped!";
 			continue;
 		}
 
 		// find HoI3 nation and ensure that it has land
-		map<string, HoI3Country*>::iterator citr = countries.find(hoiTag);
+		auto citr = countries.find(hoiTag);
 		if (citr != countries.end())
 		{
 			if (citr->second->getProvinces().size() == 0)
 			{
-				LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << logName << " faction, but is landless!";
+				LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << factionName << " faction, but is landless!";
 			}
 			else
 			{
-				LOG(LogLevel::Info) << *itr << " added to" << logName  << " faction";
-				destination.push_back(hoiTag);
+				LOG(LogLevel::Debug) << *itr << " added to " << factionName  << " faction";
+				citr->second->setFaction(factionName);
+				if (leader != "")
+				{
+					leader = citr->first;
+				}
 			}
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << logName << " faction, but does not exist!";
+			LOG(LogLevel::Warning) << "Tag " << *itr << " requested for " << factionName << " faction, but does not exist!";
 		}
 	}
 }
 
 
-void HoI3World::factionSatellites(vector<string>& faction)
+void HoI3World::factionSatellites()
 {
 	// make sure that any vassals are in their master's faction
 	const vector<HoI3Agreement> &agr = diplomacy.getAgreements();
-	for (vector<HoI3Agreement>::const_iterator itr = agr.begin(); itr != agr.end(); ++itr)
+	for (auto itr = agr.begin(); itr != agr.end(); ++itr)
 	{
 		if (itr->type == "vassal")
 		{
-			vector<string>::iterator masterTag = std::find(faction.begin(), faction.end(), itr->country1);
-			if (masterTag != faction.end())
+			auto masterCountry		= countries.find(itr->country1);
+			auto satelliteCountry	= countries.find(itr->country2);
+			if ((masterCountry != countries.end()) && (masterCountry->second->getFaction() != "") && (satelliteCountry != countries.end()))
 			{
-				vector<string>::iterator slaveTag = std::find(faction.begin(), faction.end(), itr->country2);
-				if (slaveTag == faction.end())
-				{
-					LOG(LogLevel::Info) << itr->country2 << " added to same faction as " << itr->country1  << " due to satellite status.";
-					faction.push_back(itr->country2);
-				}
+				satelliteCountry->second->setFaction(masterCountry->second->getFaction());
 			}
 		}
 	}
@@ -1432,20 +1392,23 @@ void HoI3World::factionSatellites(vector<string>& faction)
 
 void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
+	string axisLeader;
+	string alliesLeader;
+	string cominternLeader;
+
 	// find faction memebers
 	if (Configuration::getFactionLeaderAlgo() == "manual")
 	{
 		LOG(LogLevel::Info) << "Manual faction allocation requested.";
-		checkManualFaction(countryMap, Configuration::getManualAxisFaction(), axisFaction, "Axis");
-		checkManualFaction(countryMap, Configuration::getManualAlliesFaction(), alliesFaction, "Allies");
-		checkManualFaction(countryMap, Configuration::getManualCominternFaction(), cominternFaction, "Comintern");
+		checkManualFaction(countryMap, Configuration::getManualAxisFaction(), axisLeader, "axis");
+		checkManualFaction(countryMap, Configuration::getManualAlliesFaction(), alliesLeader, "allies");
+		checkManualFaction(countryMap, Configuration::getManualCominternFaction(), cominternLeader, "comintern");
 	}
 	else if (Configuration::getFactionLeaderAlgo() == "auto")
 	{
 		LOG(LogLevel::Info) << "Auto faction allocation requested.";
 
-		const vector<string> &greatCountries = sourceWorld.getGreatCountries();
-
+		const vector<string>& greatCountries = sourceWorld.getGreatCountries();
 		for (vector<string>::const_iterator countryItr = greatCountries.begin(); countryItr != greatCountries.end(); ++countryItr)
 		{
 			map<string, HoI3Country*>::iterator itr = countries.find(countryMap[*countryItr]);
@@ -1454,56 +1417,73 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 				HoI3Country* country = itr->second;
 				const string government = country->getGovernment();
 				const string ideology = country->getIdeology();
-				if ((government == "national_socialism" || government == "fascist_republic" || government == "germanic_fascist_republic"
-					|| government == "right_wing_republic" || government == "hungarian_right_wing_republic" || government == "right_wing_autocrat"
-					|| government == "absolute_monarchy" || government == "imperial")
-					&& (ideology == "national_socialist" || ideology == "fascistic" || ideology == "paternal_autocrat"))
+				if (
+						(	government == "national_socialism" || government == "fascist_republic" || government == "germanic_fascist_republic" ||
+							government == "right_wing_republic" || government == "hungarian_right_wing_republic" || government == "right_wing_autocrat" ||
+							government == "absolute_monarchy" || government == "imperial"
+						) &&
+						(ideology == "national_socialist" || ideology == "fascistic" || ideology == "paternal_autocrat")
+					)
 				{
-					if (axisFaction.empty())
+					if (axisLeader == "")
 					{
-						axisFaction.push_back(itr->first); // Faction leader
+						axisLeader = itr->first;
 						country->setFaction("axis");
 					}
 					else
 					{
 						// Check if ally of leader
-						const set<string> &allies = country->getAllies();
-						if (allies.find(axisFaction[0]) != allies.end())
+						const set<string>& allies = country->getAllies();
+						if (allies.find(axisLeader) != allies.end())
 						{
-							axisFaction.push_back(itr->first);
 							country->setFaction("axis");
 						}
 					}
 				}
-				else if ((government == "social_conservatism" || government == "constitutional_monarchy" || government == "spanish_social_conservatism"
-					|| government == "market_liberalism" || government == "social_democracy" || government == "social_liberalism")
-					&& (ideology == "social_conservative" || ideology == "market_liberal" || ideology == "social_liberal" || ideology == "social_democrat"))
+				else if	(
+								(	government == "social_conservatism" || government == "constitutional_monarchy" || government == "spanish_social_conservatism" ||
+									government == "market_liberalism" || government == "social_democracy" || government == "social_liberalism"
+								) &&
+								(ideology == "social_conservative" || ideology == "market_liberal" || ideology == "social_liberal" || ideology == "social_democrat")
+							)
 				{
-					if (alliesFaction.empty())
+					if (alliesLeader == "")
 					{
-						alliesFaction.push_back(itr->first); // Faction leader
+						alliesLeader = itr->first;
 						country->setFaction("allies");
 					}
 					else
 					{
 						// Check if ally of leader
 						const set<string> &allies = country->getAllies();
-						if (allies.find(alliesFaction[0]) != allies.end())
+						if (allies.find(alliesLeader) != allies.end())
 						{
-							alliesFaction.push_back(itr->first);
 							country->setFaction("allies");
 						}
 					}
 				}
 				// Allow left_wing_radicals, absolute monarchy and imperial. Being more tolerant for great powers, because we want comintern to be powerful
-				else if ((government == "left_wing_radicals" || government == "socialist_republic" || government == "federal_socialist_republic"
-					|| government == "absolute_monarchy" || government == "imperial")
-					&& (ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist"))
+				else if	(
+								(	
+									government == "left_wing_radicals" || government == "socialist_republic" || government == "federal_socialist_republic" ||
+									government == "absolute_monarchy" || government == "imperial"
+								) &&
+								(ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist")
+							)
 				{
-					if (cominternFaction.empty())
+					if (cominternLeader == "")
 					{
-						cominternFaction.push_back(itr->first); // Faction leader
+						cominternLeader = itr->first; // Faction leader
 						country->setFaction("comintern");
+					}
+					else
+					{
+						// Check if ally of leader
+						const set<string> &allies = country->getAllies();
+						if (allies.find(alliesLeader) != allies.end())
+						{
+							country->setFaction("comintern");
+						}
 					}
 				}
 			}
@@ -1520,14 +1500,16 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 		{
 			const string government = itr->second->getGovernment();
 			const string ideology = itr->second->getIdeology();
-			if ((government == "socialist_republic" || government == "federal_socialist_republic")
-				&& (ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist"))
+			if (
+					(government == "socialist_republic" || government == "federal_socialist_republic") &&
+					(ideology == "left_wing_radical" || ideology == "leninist" || ideology == "stalinist")
+				)
 			{
-				if (itr->second->getFaction().empty()) // Skip if already a faction member
+				if (itr->second->getFaction() == "") // Skip if already a faction member
 				{
-					if (cominternFaction.empty())
+					if (cominternLeader == "")
 					{
-						cominternFaction.push_back(itr->first); // Faction leader
+						cominternLeader = itr->first; // Faction leader
 						itr->second->setFaction("comintern");
 					}
 					else
@@ -1535,7 +1517,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 						// Check if enemy of leader
 						bool enemy = false;
 						const map<string, HoI3Relations*> &relations = itr->second->getRelations();
-						map<string, HoI3Relations*>::const_iterator relationItr = relations.find(cominternFaction[0]);
+						map<string, HoI3Relations*>::const_iterator relationItr = relations.find(cominternLeader);
 						if (relationItr != relations.end() && relationItr->second->atWar())
 						{
 							enemy = true;
@@ -1543,7 +1525,6 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 
 						if (!enemy)
 						{
-							cominternFaction.push_back(itr->first);
 							itr->second->setFaction("comintern");
 						}
 					}
@@ -1558,9 +1539,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 	}
 
 	// push satellites into the same faction as their parents
-	factionSatellites(axisFaction);
-	factionSatellites(alliesFaction);
-	factionSatellites(cominternFaction);
+	factionSatellites();
 
 	// set alignments
 	for (map<string, HoI3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
@@ -1569,11 +1548,17 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 
 		// force alignment for faction members
 		if (countryFaction == "axis")
+		{
 			itr->second->getAlignment()->alignToAxis();
+		}
 		else if (countryFaction == "allies")
+		{
 			itr->second->getAlignment()->alignToAllied();
+		}
 		else if (countryFaction == "comintern")
+		{
 			itr->second->getAlignment()->alignToComintern();
+		}
 		else
 		{
 			// scale for positive relations - 230 = distance from corner to circumcenter, 200 = max relations
@@ -1585,40 +1570,52 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 			HoI3Alignment axisStart;
 			HoI3Alignment alliesStart;
 			HoI3Alignment cominternStart;
-			if (axisFaction.size() > 0)
+			if (axisLeader != "")
 			{
-				HoI3Relations* relObj = itr->second->getRelations(axisFaction[0]);
+				HoI3Relations* relObj = itr->second->getRelations(axisLeader);
 				if (relObj != NULL)
 				{
 					double axisRelations = relObj->getRelations();
 					if (axisRelations >= 0.0)
+					{
 						axisStart.moveTowardsAxis(axisRelations * positiveScale);
+					}
 					else // axisRelations < 0.0
+					{
 						axisStart.moveTowardsAxis(axisRelations * negativeScale);
+					}
 				}
 			}
-			if (alliesFaction.size() > 0)
+			if (alliesLeader != "")
 			{
-				HoI3Relations* relObj = itr->second->getRelations(alliesFaction[0]);
+				HoI3Relations* relObj = itr->second->getRelations(alliesLeader);
 				if (relObj != NULL)
 				{
 					double alliesRelations = relObj->getRelations();
 					if (alliesRelations >= 0.0)
+					{
 						alliesStart.moveTowardsAllied(alliesRelations * positiveScale);
+					}
 					else // alliesRelations < 0.0
+					{
 						alliesStart.moveTowardsAllied(alliesRelations * negativeScale);
+					}
 				}
 			}
-			if (cominternFaction.size() > 0)
+			if (cominternLeader != "")
 			{
-				HoI3Relations* relObj = itr->second->getRelations(cominternFaction[0]);
+				HoI3Relations* relObj = itr->second->getRelations(cominternLeader);
 				if (relObj != NULL)
 				{
 					double cominternRelations = relObj->getRelations();
 					if (cominternRelations >= 0.0)
+					{
 						cominternStart.moveTowardsComintern(cominternRelations * positiveScale);
+					}
 					else // cominternRelations < 0.0
+					{
 						cominternStart.moveTowardsComintern(cominternRelations * negativeScale);
+					}
 				}
 			}
 			(*(itr->second->getAlignment())) = HoI3Alignment::getCentroid(axisStart, alliesStart, cominternStart);

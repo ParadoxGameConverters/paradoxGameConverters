@@ -98,7 +98,7 @@ V2World::V2World(Object* obj)
 			map<int, int>::iterator rankingItr = greatNationIndices.find(countriesIndex++);
 			if (rankingItr != greatNationIndices.end())
 			{
-				LOG(LogLevel::Debug) << "Set " << key << " as Great Power #" << rankingItr->second;
+				LOG(LogLevel::Debug) << "Set " << key << " as Great Power #" << rankingItr->second + 1;
 				countries[key]->setGreatNationRanking(rankingItr->second);
 				greatCountries[rankingItr->second] = key;
 			}

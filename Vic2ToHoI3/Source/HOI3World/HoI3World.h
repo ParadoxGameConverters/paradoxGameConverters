@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2015 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -50,8 +50,8 @@ class HoI3World {
 		string convertIdeology(V2Party* v2Party) const;
 private:
 		void					getProvinceLocalizations(string file);
-		void					checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, vector<string>& destination, string logName);
-		void					factionSatellites(vector<string>& faction);
+		void					checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName);
+		void					factionSatellites();
 		vector<int>				getPortProvinces(vector<int> locationCandidates);
 		HoI3RegGroup			createTheatre(HoI3Province*);
 
@@ -59,9 +59,6 @@ private:
 		map<string, HoI3Country*>		countries;
 		vector<HoI3Country*>		potentialCountries;
 		HoI3Diplomacy			diplomacy;
-		vector<string>			axisFaction;
-		vector<string>			alliesFaction;
-		vector<string>			cominternFaction;
 		map<int, string>		continents;  // < province, continent >
 
 		vector<string> countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
