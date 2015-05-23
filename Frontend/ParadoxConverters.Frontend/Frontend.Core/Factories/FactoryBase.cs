@@ -107,6 +107,18 @@ namespace Frontend.Core.Factories
             return elements;
         }
 
+        public ObservableCollection<T> BuildConfiguration<T>(XElement rootElement) where T : class
+        {
+            var builtModels = new ObservableCollection<T>();
+
+            foreach (var element in rootElement.Descendants(xmlElementIdentifier))
+            {
+                builtModels.Add(this.OnBuildElement<T>(element));
+            }
+
+            return builtModels;
+        }
+
         /// <summary>
         ///     Abstract method responsible for building the model object.
         /// </summary>

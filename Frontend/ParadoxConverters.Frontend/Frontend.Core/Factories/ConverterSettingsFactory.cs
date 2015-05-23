@@ -170,8 +170,8 @@ namespace Frontend.Core.Factories
             var sourceGame = GameConfigurations.FirstOrDefault(g => g.Name.Equals(sourceGameName));
             var targetGame = GameConfigurations.FirstOrDefault(g => g.Name.Equals(targetGameName));
 
-            var requiredFolders = RequiredFolderFactory.BuildConfiguration<IRequiredFolder>(config);
-            var requiredFiles = RequiredFileFactory.BuildConfiguration<IRequiredFile>(config);
+            var requiredFolders = RequiredFolderFactory.BuildConfiguration<IRequiredFolder>(element);
+            var requiredFiles = RequiredFileFactory.BuildConfiguration<IRequiredFile>(element);
 
             // Native export directory.
             //var nativeExportDirectory = XElementHelper.ReadStringValue(element, "nativeParadoxExportDirectory", false);

@@ -263,7 +263,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Configuration\Vic2toHoI3DefaultConfiguration.xml" />
+    <Content Include="Configuration\Vic2toHoI3DefaultConfiguration.xml">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
