@@ -277,11 +277,11 @@ tag vs internalTag:
               <defaultLocationType>WindowsUsersFolder</defaultLocationType>
               <subFolderLocation>Paradox Interactive\Hearts of Iron III\mod</subFolderLocation>
             </alternative>
-            <!--<alternative>
+            <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
               <autoDetectFromSteamId>25890</autoDetectFromSteamId>
               <subFolderLocation>mod</subFolderLocation>
-            </alternative>-->
+            </alternative>
           </alternatives>
         </requiredFolder>
 

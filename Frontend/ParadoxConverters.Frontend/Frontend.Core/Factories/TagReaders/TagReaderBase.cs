@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Xml.Linq;
 using Caliburn.Micro;
 using Frontend.Core.Common.Proxies;
@@ -60,6 +61,11 @@ namespace Frontend.Core.Factories.TagReaders
                             LogEntrySeverity.Error,
                             LogEntrySource.UI));
                 }
+            }
+
+            if (alternatives.All(a => !a.Exists))
+            {
+                alternatives.ForEach(a => this.LogExistenceError(a, tagName, friendlyName));
             }
 
             return alternatives;
@@ -130,11 +136,6 @@ namespace Frontend.Core.Factories.TagReaders
         private IAlternativePath BuildAlternativePathObject(string path, string tagName, string friendlyName)
         {
             var alternativePath = new AlternativePath(path, Exists(path));
-
-            if (!alternativePath.Exists)
-            {
-                LogExistenceError(alternativePath, tagName, friendlyName);
-            }
 
             return alternativePath;
         }
