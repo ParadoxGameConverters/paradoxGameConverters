@@ -1,4 +1,5 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Frontend.Core.Common.Proxies;
@@ -90,20 +91,30 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
                 {
                     // TODO:REMOVE
                     options.WasConversionSuccessful = true;
-                    //result.LogEntries.Add(new LogEntry("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI, null));
+                    result.LogEntries.Add(new LogEntry("Conversion complete after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Info, LogEntrySource.UI, null));
                 }
                 else
                 {
                     // TODO:REMOVE
                     options.WasConversionSuccessful = false;
                     result.State = OperationResultState.Error;
-                    //result.LogEntries.Add(new LogEntry("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
+                    result.LogEntries.Add(new LogEntry("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
                 }
             }
 
             //Thread.Sleep(3000);
 
             return task.Result;
+        }
+
+        /// <summary>
+        ///     Builds the time span string.
+        /// </summary>
+        /// <param name="timespan">The timespan.</param>
+        /// <returns></returns>
+        private string BuildTimeSpanString(TimeSpan timespan)
+        {
+            return TimeStringFormatter.BuildTimeString(timespan);
         }
     }
 }

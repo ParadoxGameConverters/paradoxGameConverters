@@ -31,16 +31,14 @@ namespace Frontend.Core.Converting.Operations
         public Task<AggregateOperationsResult> ProcessQueue(IEnumerable<IOperationViewModel> operations,
             CancellationToken token)
         {
-            var currentCount = 0;
-
             foreach (var operation in operations)
             {
-                if (token.IsCancellationRequested)
+                // Check if previous previousOperation failed. 
+                var previousOperation = GetPreviousItem(operations, operation);
+                if (token.IsCancellationRequested || !this.CanContinue(previousOperation))
                 {
                     break;
                 }
-
-                currentCount++;
 
                 operation.State = OperationState.InProgress;
                 eventAggregator.PublishOnUIThread(new LogEntry(operation.Description, LogEntrySeverity.Info,
@@ -69,6 +67,26 @@ namespace Frontend.Core.Converting.Operations
             }
 
             return Task.FromResult(CalculateResult(operations));
+        }
+
+        private static IOperationViewModel GetPreviousItem(IEnumerable<IOperationViewModel> operations, IOperationViewModel currentOperation)
+        {
+            // Todo: Redo this as extension method?
+            var currentIndex = operations.ToList().IndexOf(currentOperation);
+            var previousOperation = operations.ElementAt(currentIndex == 0 ? currentIndex : currentIndex - 1);
+            return previousOperation;
+        }
+
+        private bool CanContinue(IOperationViewModel previousOperation)
+        {
+            var statesToContinueFrom = new List<OperationState>()
+            {
+                OperationState.CompleteWithWarnings,
+                OperationState.Success,
+                OperationState.NotStarted
+            };
+
+            return statesToContinueFrom.Contains(previousOperation.State);
         }
 
         private AggregateOperationsResult CalculateResult(IEnumerable<IOperationViewModel> operations)
