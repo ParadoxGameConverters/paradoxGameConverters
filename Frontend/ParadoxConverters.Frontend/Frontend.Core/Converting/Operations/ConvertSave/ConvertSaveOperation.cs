@@ -67,9 +67,6 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
                     WorkingDirectory = directoryHelper.GetConverterWorkingDirectory(options.CurrentConverter)
                 };
 
-                //result.LogEntries.Add(new LogEntry("Converting - this may take a few minutes...", LogEntrySeverity.Info, LogEntrySource.UI, null));
-                //Thread.Sleep(100); // Sleeping may let the UI actually display the above message before starting the conversion process
-
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
@@ -101,8 +98,6 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
                     result.LogEntries.Add(new LogEntry("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
                 }
             }
-
-            //Thread.Sleep(3000);
 
             return task.Result;
         }

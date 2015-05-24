@@ -12,6 +12,7 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
     public class ExtractSaveOperationTest : UnitTestBase
     {
         private Mock<IFileProxy> fileProxy;
+        private Mock<IFolderProxy> folderProxy;
         private Mock<ICompressedSaveChecker> mockCompressedSaveChecker;
         private Mock<IConverterOptions> mockConverterOptions;
         private Mock<IConverterSettings> mockCurrentConverter;
@@ -45,6 +46,7 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
             mockDirectoryHelper = new Mock<IDirectoryHelper>();
             mockMessageBoxProxy = new Mock<IMessageBoxProxy>();
             fileProxy = new Mock<IFileProxy>();
+            folderProxy = new Mock<IFolderProxy>();
             zipFileHelper = new Mock<IZipFileHelper>();
             mockEnvironment = new Mock<IEnvironmentProxy>();
 
@@ -58,7 +60,9 @@ namespace Frontend.Core.Tests.Converter.Operations.ExtractSave
                 mockConverterOptions.Object,
                 mockCompressedSaveChecker.Object,
                 zipFileHelper.Object,
-                mockEnvironment.Object);
+                mockEnvironment.Object,
+                fileProxy.Object,
+                folderProxy.Object);
         }
 
         [TestMethod]

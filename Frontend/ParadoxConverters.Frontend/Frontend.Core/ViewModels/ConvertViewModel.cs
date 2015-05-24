@@ -55,7 +55,9 @@ namespace Frontend.Core.ViewModels
                     new ZipFileProxy(),
                     new FileProxy(),
                     new MessageBoxProxy()),
-                new EnvironmentProxy()));
+                new EnvironmentProxy(),
+                new FileProxy(),
+                new FolderProxy()));
 
             this.operationProvider.RegisterOperation(new ConvertSaveOperation(Options, new FileProxy(), new DirectoryHelper()));
 

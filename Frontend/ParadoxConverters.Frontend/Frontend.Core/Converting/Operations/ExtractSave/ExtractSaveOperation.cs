@@ -9,6 +9,8 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
     public class ExtractSaveOperation : IOperation
     {
         private readonly IEnvironmentProxy environmentProxy;
+        private readonly IFileProxy _fileProxy;
+        private readonly IFolderProxy _folderProxy;
         private readonly IConverterOptions options;
         private readonly ICompressedSaveChecker saveChecker;
         private readonly IZipFileHelper zipFileHelper;
@@ -17,12 +19,16 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
             IConverterOptions options,
             ICompressedSaveChecker saveChecker,
             IZipFileHelper zipFileHelper,
-            IEnvironmentProxy environmentProxy)
+            IEnvironmentProxy environmentProxy,
+            IFileProxy fileProxy,
+            IFolderProxy folderProxy)
         {
             this.options = options;
             this.saveChecker = saveChecker;
             this.zipFileHelper = zipFileHelper;
             this.environmentProxy = environmentProxy;
+            _fileProxy = fileProxy;
+            _folderProxy = folderProxy;
         }
 
         public string Description
@@ -56,10 +62,26 @@ namespace Frontend.Core.Converting.Operations.ExtractSave
         public bool CanRun()
         {
             var hasSaveSet = !string.IsNullOrEmpty(options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
+            var isFolderAndNotFile =
+                this.IsFolderAndNotFile(options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
+
+            if (isFolderAndNotFile)
+            {
+                return false;
+            }
+            
             var isCompressed =
                 saveChecker.IsCompressedSave(options.CurrentConverter.AbsoluteSourceSaveGame.SelectedValue);
 
             return hasSaveSet && isCompressed;
+        }
+
+        private bool IsFolderAndNotFile(string path)
+        {
+            var isFile = this._fileProxy.Exists(path);
+            var isFolder = this._folderProxy.Exists(path);
+
+            return !isFile && isFolder;
         }
     }
 }
