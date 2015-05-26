@@ -314,9 +314,25 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		initPortraitMapping(obj, portraitMap);
 	}
 
+	// parse culture mapping
+	LOG(LogLevel::Info) << "Parsing culture mappings";
+	obj = doParseFile("culture_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file culture_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse culture_map.txt";
+		return 1;
+	}
+	cultureMapping cultureMap;
+	cultureMap = initCultureMap(obj->getLeaves()[0]);
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap, portraitMap);
+	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap, portraitMap, cultureMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";

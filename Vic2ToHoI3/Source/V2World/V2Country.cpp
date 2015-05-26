@@ -131,11 +131,19 @@ V2Country::V2Country(Object* obj)
 	{
 		revanchism = atof(revanchismObj[0]->getLeaf().c_str());
 	}
+	else
+	{
+		revanchism = 0.0;
+	}
 
 	vector<Object*> warExhaustionObj = obj->getValue("war_exhaustion");
 	if (warExhaustionObj.size() > 0)
 	{
 		warExhaustion = atof(warExhaustionObj[0]->getLeaf().c_str());
+	}
+	else
+	{
+		warExhaustion = 0.0;
 	}
 
 	// Read reforms

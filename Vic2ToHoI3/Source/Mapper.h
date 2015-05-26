@@ -95,6 +95,10 @@ governmentMapping initGovernmentMap(Object* obj);
 typedef map< string, vector<string> > unionCulturesMap; // <culture group, cultures>
 void initUnionCultures(Object* obj, unionCulturesMap& unionCultures);
 
+// Culture Mappings
+typedef map<string, string> cultureMapping; // <srcCulture, dstCulture>
+cultureMapping initCultureMap(Object* obj);
+
 // idea effects
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas);
 

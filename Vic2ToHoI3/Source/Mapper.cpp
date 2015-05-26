@@ -377,6 +377,39 @@ void initUnionCultures(Object* obj, unionCulturesMap& unionCultures)
 }
 
 
+cultureMapping initCultureMap(Object* obj)
+{
+	cultureMapping cultureMap;						// the culture mapping
+	vector<Object*> links = obj->getLeaves();	// the culture mapping rules
+
+	for (vector<Object*>::iterator i = links.begin(); i != links.end(); i++)
+	{
+		vector<Object*>	cultures	= (*i)->getLeaves();	// the items in this rule
+		string				dstCulture;							// the HoI3 culture
+		vector<string>		srcCulture;							// the Vic2 cultures
+
+		for (vector<Object*>::iterator j = cultures.begin(); j != cultures.end(); j++)
+		{
+			if ( (*j)->getKey() == "hoi3" )
+			{
+				dstCulture = (*j)->getLeaf();
+			}
+			if ( (*j)->getKey() == "v2" )
+			{
+				srcCulture.push_back( (*j)->getLeaf() );
+			}
+		}
+
+		for (vector<string>::iterator j = srcCulture.begin(); j != srcCulture.end(); j++)
+		{
+			cultureMap.insert(make_pair((*j), dstCulture));
+		}
+	}
+
+	return cultureMap;
+}
+
+
 void initIdeaEffects(Object* obj, map<string, int>& armyInvIdeas, map<string, int>& commerceInvIdeas, map<string, int>& cultureInvIdeas, map<string, int>& industryInvIdeas, map<string, int>& navyInvIdeas, map<string, double>& UHLiberalIdeas, map<string, double>& UHReactionaryIdeas, vector< pair<string, int> >& literacyIdeas, map<string, int>& orderIdeas, map<string, int>& libertyIdeas, map<string, int>& equalityIdeas)
 {
 	vector<Object*> ideasObj = obj->getLeaves();

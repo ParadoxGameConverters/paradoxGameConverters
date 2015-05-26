@@ -11,6 +11,7 @@ copy "Data_Files\license.txt" "release\license.txt"
 copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
 copy "Data_Files\unit_mapping.txt" "release\unit_mapping.txt"
 copy "Data_Files\portraits.txt" "release\portraits.txt"
+copy "Data_Files\culture_map.txt" "release\culture_map.txt"
 
 rem hg log > Release/log.txt
 hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt

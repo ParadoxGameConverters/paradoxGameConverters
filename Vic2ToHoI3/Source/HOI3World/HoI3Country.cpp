@@ -74,27 +74,37 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 	tag					= _tag;
 
 	provinces.clear();
+	technologies.clear();
 
 	capital			= 0;
+	ideology			= "";
 	diploPoints		= 0.0;
 	badboy			= 0.0;
 	money				= 0.0;
 	government		= "";
-	faction = "";
+	faction			= "";
 
-	neutrality = 50;
-	nationalUnity = 70;
+	neutrality		= 50;
+	nationalUnity	= 70;
 
-	training_laws = "minimal_training";
-	press_laws = "censored_press";
-	industrial_policy_laws = "consumer_product_orientation";
+	training_laws					= "minimal_training";
+	press_laws						= "censored_press";
+	industrial_policy_laws		= "consumer_product_orientation";
 	educational_investment_law = "minimal_education_investment";
-	economic_law = "full_civilian_economy";
-	conscription_law = "volunteer_army";
-	civil_law = "limited_restrictions";
+	economic_law					= "full_civilian_economy";
+	conscription_law				= "volunteer_army";
+	civil_law						= "limited_restrictions";
 
 	relations.clear();
 	armies.clear();
+	allies.clear();
+	practicals.clear();
+	parties.clear();
+	ministers.clear();
+	rulingMinisters.clear();
+
+
+	graphicalCulture = "Generic";
 
 	srcCountry	= NULL;
 }
@@ -284,7 +294,7 @@ void HoI3Country::output() const
 	int blue;
 	color.GetRGB(red, green, blue);
 	fprintf(output, "color = { %d %d %d }\n", red, green, blue);
-	fprintf(output, "graphical_culture = Generic\n");	// default to "Generic"
+	fprintf(output, "graphical_culture = %s\n", graphicalCulture.c_str());
 	fprintf(output, "\n");
 	fprintf(output, "default_templates = {\n");
 	fprintf(output, "	generic_infantry = {\n");
@@ -496,7 +506,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap)
 {
 	srcCountry = _srcCountry;
 
@@ -531,6 +541,17 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	// Localisation
 	localisation.SetTag(tag);
 	localisation.ReadFromCountry(*srcCountry);
+
+	// graphical culture type
+	auto cultureItr = cultureMap.find(srcCountry->getPrimaryCulture());
+	if (cultureItr != cultureMap.end())
+	{
+		graphicalCulture = cultureItr->second;
+	}
+	else
+	{
+		graphicalCulture = "Generic";
+	}
 
 	// Government
 	string srcGovernment = srcCountry->getGovernment();
@@ -576,7 +597,7 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	{
 		for (auto job: governmentJobs)
 		{
-			HoI3Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap["Generic"]);
+			HoI3Minister newMinister(firstNames, lastNames, ideologyNames[ideologyIdx], job, governmentJobs, portraitMap[graphicalCulture]);
 			ministers.push_back(newMinister);
 
 			if (ideologyNames[ideologyIdx] == ideology)

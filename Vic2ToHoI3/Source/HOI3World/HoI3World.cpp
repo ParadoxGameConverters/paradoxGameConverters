@@ -403,7 +403,7 @@ void HoI3World::getProvinceLocalizations(string file)
 }
 
 
-void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap)
+void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -441,7 +441,7 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new HoI3Country(HoI3Tag, countryFileName, this, true);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceCountry, sourceWorld.getRulingParty(sourceCountry)->ideology, outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap);
+			destCountry->initFromV2Country(sourceWorld, sourceCountry, sourceWorld.getRulingParty(sourceCountry)->ideology, outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
 
 		// OLD CODE
