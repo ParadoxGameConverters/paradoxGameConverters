@@ -12,6 +12,6 @@
 
         CompletedWithWarnings,
 
-        CompletedWithErrors
+        Failed
     }
 }

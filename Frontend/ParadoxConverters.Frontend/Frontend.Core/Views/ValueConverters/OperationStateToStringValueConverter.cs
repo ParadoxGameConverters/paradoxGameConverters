@@ -16,7 +16,7 @@ namespace Frontend.Core.Views.ValueConverters
             mapper = new Dictionary<OperationState, string>();
 
             mapper.Add(OperationState.Cancelled, "Canceled");
-            mapper.Add(OperationState.CompleteWithErrors, "Completed, but with errors");
+            mapper.Add(OperationState.Failed, "Failed");
             mapper.Add(OperationState.CompleteWithWarnings, "Completed, but with warnings");
             mapper.Add(OperationState.InProgress, "In progress");
             mapper.Add(OperationState.NotStarted, "Not started");

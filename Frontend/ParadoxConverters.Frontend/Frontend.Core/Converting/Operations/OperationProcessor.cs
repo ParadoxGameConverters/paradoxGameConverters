@@ -93,9 +93,9 @@ namespace Frontend.Core.Converting.Operations
         {
             var operationStates = from operation in operations select operation.State;
 
-            if (operationStates.Contains(OperationState.CompleteWithErrors))
+            if (operationStates.Contains(OperationState.Failed))
             {
-                return AggregateOperationsResult.CompletedWithErrors;
+                return AggregateOperationsResult.Failed;
             }
             if (operationStates.Contains(OperationState.Cancelled))
             {
@@ -130,7 +130,7 @@ namespace Frontend.Core.Converting.Operations
 
         private void HandleErrors(OperationResult result, IOperationViewModel operation)
         {
-            operation.State = OperationState.CompleteWithErrors;
+            operation.State = OperationState.Failed;
             eventAggregator.PublishOnUIThread(new LogEntry(string.Format("{0} failed!", operation.Description),
                 LogEntrySeverity.Error, LogEntrySource.UI));
         }

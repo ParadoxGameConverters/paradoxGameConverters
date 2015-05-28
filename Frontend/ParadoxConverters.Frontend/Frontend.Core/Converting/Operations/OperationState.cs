@@ -10,7 +10,7 @@
 
         CompleteWithWarnings,
 
-        CompleteWithErrors,
+        Failed,
 
         Cancelled,
 
