@@ -72,7 +72,6 @@
     <Compile Include="Conductors\StepConductorBase.cs" />
     <Compile Include="Converting\AsyncCommandBase.cs" />
     <Compile Include="Converting\CancelConvertingCommand.cs" />
-    <Compile Include="Converting\OldConvertCommand.cs" />
     <Compile Include="Converting\Operations\AggregateOperationsResult.cs" />
     <Compile Include="Converting\Operations\CopyMod\IModCopier.cs" />
     <Compile Include="Converting\Operations\CopyMod\ISaveGameNameTranslator.cs" />

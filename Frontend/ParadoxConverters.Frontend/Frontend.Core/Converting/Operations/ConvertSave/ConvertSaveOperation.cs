@@ -71,13 +71,10 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
                 stopwatch.Start();
 
                 process.Start();
-
-                // A non-working attempt to actually log the converter output while converting. 
-                // As of this writing, I don't know if this fails due to the converter or something on the frontend side - it could be both.
+                
                 while (!process.StandardOutput.EndOfStream)
                 {
-                    result.LogEntries.Add(new LogEntry(process.StandardOutput.ReadLine(), LogEntrySeverity.Info,
-                        LogEntrySource.Converter, null));
+                    result.LogEntries.Add(new LogEntry(process.StandardOutput.ReadLine(), LogEntrySeverity.Info, LogEntrySource.Converter, null));
                 }
 
                 process.WaitForExit();
@@ -95,7 +92,7 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
                     // TODO:REMOVE
                     options.WasConversionSuccessful = false;
                     result.State = OperationResultState.Error;
-                    result.LogEntries.Add(new LogEntry("Conversion failed after" + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
+                    result.LogEntries.Add(new LogEntry("Conversion failed after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
                 }
             }
 

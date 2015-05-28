@@ -137,7 +137,27 @@ namespace Frontend.Core.Converting.Operations
 
         private void LogResultMessages(OperationResult result)
         {
-            foreach (var logEntry in result.LogEntries)
+            const int maxEntriesToShow = 1000;
+
+            if (result.LogEntries.Count <= maxEntriesToShow)
+            {
+                this.PublishLogEntries(result.LogEntries);
+            }
+            else
+            {
+                var lastEntries =
+                    result.LogEntries.AsEnumerable<LogEntry>().Skip(Math.Max(0, result.LogEntries.Count - maxEntriesToShow));
+
+                this.PublishLogEntries(lastEntries);
+
+                eventAggregator.PublishOnUIThread(new LogEntry("The converter returned " + result.LogEntries.Count + " lines.", LogEntrySeverity.Warning, LogEntrySource.UI));
+                eventAggregator.PublishOnUIThread(new LogEntry("Only showing the last " + maxEntriesToShow, LogEntrySeverity.Warning, LogEntrySource.UI));
+            }
+        }
+
+        private void PublishLogEntries(IEnumerable<LogEntry> logEntries)
+        {
+            foreach (var logEntry in logEntries)
             {
                 eventAggregator.PublishOnUIThread(logEntry);
             }
