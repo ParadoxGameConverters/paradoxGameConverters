@@ -121,7 +121,6 @@
 
                     <StackPanel Grid.Row="1" Grid.Column="1">
                         <DatePicker
-                            Text="{Binding FriendlyName}"
                             SelectedDate="{Binding Value, ValidatesOnDataErrors=True}"
                             SelectedDateFormat="Short"
                             DisplayDateStart="{Binding MinValue, Mode=OneWay}"
