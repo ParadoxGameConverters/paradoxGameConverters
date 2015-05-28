@@ -137,7 +137,7 @@ namespace Frontend.Core.Converting.Operations
 
         private void LogResultMessages(OperationResult result)
         {
-            const int maxEntriesToShow = 1000;
+            const int maxEntriesToShow = 1500;
 
             if (result.LogEntries.Count <= maxEntriesToShow)
             {
