@@ -1618,147 +1618,107 @@ void V2World::convertTechs(const EU4World& sourceWorld, map<string, double>& arm
 {
 	map<string, EU4Country*> sourceCountries = sourceWorld.getCountries();
 	
-	double oldArmyMean;
-	double armyMean;
-	double highestArmy;
+	// Helper functions
+	auto getCountryIdeasModifier = [](EU4Country* country, map<string, double>& ideas)
+	{
+		double modifier = 0;
+		for (auto j : ideas)
+			modifier += (country->hasNationalIdea(j.first) + 1) * j.second;
+		return modifier;
+	};
 
-	double oldNavyMean;
-	double navyMean;
-	double highestNavy;
+	auto getCountryArmyTech = [&](EU4Country* country)
+	{
+		return country->getMilTech() + country->getAdmTech() + getCountryIdeasModifier(country, armyTechIdeas);
+	};
 
-	double oldCommerceMean;
-	double commerceMean;
-	double highestCommerce;
+	auto getCountryNavyTech = [&](EU4Country* country)
+	{
+		return country->getMilTech() + country->getDipTech() + getCountryIdeasModifier(country, navyTechIdeas);
+	};
 
-	double oldCultureMean;
-	double cultureMean;
-	double highestCulture;
+	auto getCountryCommerceTech = [&](EU4Country* country)
+	{
+		return country->getAdmTech() + country->getDipTech() + getCountryIdeasModifier(country, commerceTechIdeas);
+	};
 
-	double oldIndustryMean;
-	double industryMean;
-	double highestIndustry;
+	auto getCountryCultureTech = [&](EU4Country* country)
+	{
+		return country->getDipTech() + getCountryIdeasModifier(country, cultureTechIdeas);
+	};
 
-	int num = 2;
+	auto getCountryIndustryTech = [&](EU4Country* country)
+	{
+		return country->getAdmTech() + country->getDipTech() + country->getMilTech() + getCountryIdeasModifier(country, industryTechIdeas);
+	};
+
+	double armyMax,		armyMean;
+	double navyMax,		navyMean;
+	double commerceMax, commerceMean;
+	double cultureMax,	cultureMean;
+	double industryMax,	industryMean;
+
 	map<string, EU4Country*>::iterator i = sourceCountries.begin();
 	while (i->second->getProvinces().size() == 0)
-	{
 		i++;
-	}
 
-	armyMean		= i->second->getAdmTech() + i->second->getMilTech();
-	for (auto j: armyTechIdeas)
+	// Take mean and max from the first country
+	EU4Country* currCountry = i->second;
+	armyMax = armyMean = getCountryArmyTech(currCountry);
+	navyMax = navyMean = getCountryNavyTech(currCountry);
+	commerceMax = commerceMean = getCountryCommerceTech(currCountry);
+	cultureMax = cultureMean = getCountryCultureTech(currCountry);
+	industryMax = industryMean = getCountryIndustryTech(currCountry);
+
+	int num = 2;
+
+	// Helper for updating max and mean
+	auto updateMeanMax = [&](double& max, double& mean, double techLevel)
 	{
-		armyMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-	}
-	highestArmy			= oldArmyMean		= armyMean;
+		if (techLevel > max)
+			max = techLevel;
+		mean = mean + (techLevel - mean) / num;
+	};
 
-	navyMean		= i->second->getMilTech() + i->second->getDipTech();
-	for (auto j: navyTechIdeas)
-	{
-		navyMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-	}
-	highestNavy			= oldNavyMean		= navyMean;
-
-	commerceMean	= i->second->getAdmTech() + i->second->getDipTech();
-	for (auto j: commerceTechIdeas)
-	{
-		commerceMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-	}
-	highestCommerce	= oldCommerceMean	= commerceMean;
-
-	cultureMean	= i->second->getDipTech();
-	for (auto j: cultureTechIdeas)
-	{
-		cultureMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-	}
-	highestCulture		= oldCultureMean	= cultureMean;
-
-	industryMean	= i->second->getMilTech() + i->second->getAdmTech() + i->second->getDipTech();
-	for (auto j: industryTechIdeas)
-	{
-		industryMean += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-	}
-	highestIndustry	= oldIndustryMean	= industryMean;
-
+	// Calculate max and mean
 	for (i++; i != sourceCountries.end(); i++)
 	{
-		if (i->second->getProvinces().size() == 0)
-		{
+		currCountry = i->second;
+		if (currCountry->getProvinces().size() == 0)
 			continue;
-		}
-		double newTech	= i->second->getAdmTech() + i->second->getMilTech();
-		for (auto j: armyTechIdeas)
-		{
-			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-		}
-		armyMean			= oldArmyMean + ((newTech - oldArmyMean) / num);
-		oldArmyMean		= armyMean; 
-		if (newTech > highestArmy)
-		{
-			highestArmy = newTech;
-		}
 
-		newTech		= i->second->getMilTech() + i->second->getDipTech();
-		for (auto j: navyTechIdeas)
-		{
-			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-		}
-		navyMean		= oldNavyMean + ((newTech - oldNavyMean) / num);
-		oldNavyMean	= navyMean;
-		if (newTech > highestNavy)
-		{
-			highestNavy = newTech;
-		}
-
-		newTech				= i->second->getAdmTech() + i->second->getDipTech();
-		for (auto j: commerceTechIdeas)
-		{
-			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-		}
-		commerceMean		= oldCommerceMean + ((newTech - oldCommerceMean) / num);
-		oldCommerceMean	= commerceMean;
-		if (newTech > highestCommerce)
-		{
-			highestCommerce = newTech;
-		}
-
-		newTech			= i->second->getDipTech();
-		for (auto j: cultureTechIdeas)
-		{
-			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-		}
-		cultureMean		= oldCultureMean + ((newTech - oldCultureMean) / num);
-		oldCultureMean	= cultureMean;
-		if (newTech > highestCulture)
-		{
-			highestCulture = newTech;
-		}
-
-		newTech				= i->second->getMilTech() + i->second->getAdmTech() + i->second->getDipTech();
-		for (auto j: industryTechIdeas)
-		{
-			newTech += (i->second->hasNationalIdea(j.first) + 1) * j.second;
-		}
-		industryMean		= oldIndustryMean + ((newTech - oldIndustryMean) / num);
-		oldIndustryMean	= industryMean;
-		if (newTech > highestIndustry)
-		{
-			highestIndustry = newTech;
-		}
-
+		updateMeanMax(armyMax, armyMean, getCountryArmyTech(currCountry));
+		updateMeanMax(navyMax, navyMean, getCountryNavyTech(currCountry));
+		updateMeanMax(commerceMax, commerceMean, getCountryCommerceTech(currCountry));
+		updateMeanMax(cultureMax, cultureMean, getCountryCultureTech(currCountry));
+		updateMeanMax(industryMax, industryMean, getCountryIndustryTech(currCountry));
 		num++;
 	}
 
+	// Helper to normalize the score
+	auto getNormalizedScore = [](double score, double max, double mean)
+	{
+		if (mean == max)
+			return max;
+		return (score - mean) / (max - mean);
+	};
+
+	// Set tech levels from normalized scores
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); itr++)
 	{
-		if ((Configuration::getV2Gametype() == "vanilla") || itr->second->isCivilized())
-		{
-			itr->second->setArmyTech(armyMean, highestArmy);
-			itr->second->setNavyTech(navyMean, highestNavy);
-			itr->second->setCommerceTech(commerceMean, highestCommerce);
-			itr->second->setIndustryTech(industryMean, highestIndustry);
-			itr->second->setCultureTech(cultureMean, highestCulture);
-		}
+		V2Country* country = itr->second;
+		if ((Configuration::getV2Gametype() != "vanilla") && !country->isCivilized())
+			continue;
+
+		EU4Country* srcCountry = country->getSourceCountry();
+		if (!srcCountry)
+			continue;
+
+		country->setArmyTech(getNormalizedScore(getCountryArmyTech(srcCountry), armyMax, armyMean));
+		country->setNavyTech(getNormalizedScore(getCountryNavyTech(srcCountry), navyMax, navyMean));
+		country->setCommerceTech(getNormalizedScore(getCountryCommerceTech(srcCountry), commerceMax, commerceMean));
+		country->setCultureTech(getNormalizedScore(getCountryCultureTech(srcCountry), cultureMax, cultureMean));
+		country->setIndustryTech(getNormalizedScore(getCountryIndustryTech(srcCountry), industryMax, industryMean));
 	}
 }
 

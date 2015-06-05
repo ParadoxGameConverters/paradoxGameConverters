@@ -71,19 +71,19 @@ class V2Country
 		void								addRailroadtoCapitalState();
 		void								convertUncivReforms();
 		void								setupPops(double popWeightRatio);
-		void								setArmyTech(double mean, double highest);
-		void								setNavyTech(double mean, double highest);
-		void								setCommerceTech(double mean, double highest);
-		void								setIndustryTech(double mean, double highest);
-		void								setCultureTech(double mean, double highest);
+		void								setArmyTech(double normalizedScore);
+		void								setNavyTech(double normalizedScore);
+		void								setCommerceTech(double normalizedScore);
+		void								setIndustryTech(double normalizedScore);
+		void								setCultureTech(double normalizedScore);
 		void								addRelation(V2Relations* newRelation);
 		void								absorbVassal(V2Country* vassal);
 		void								setColonyOverlord(V2Country* colony);
-		V2Country*						getColonyOverlord();
-		string							getColonialRegion();
+		V2Country*							getColonyOverlord();
+		string								getColonialRegion();
 
-		string							getLocalName();
-		V2Relations*					getRelations(string withWhom) const;
+		string								getLocalName();
+		V2Relations*						getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
 		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; }
