@@ -95,6 +95,7 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	techSchool		= "traditional_academic";
 	researchPoints	= 0.0;
 	civilized		= false;
+	isReleasableVassal = true;
 	primaryCulture	= "";
 	religion			= "";
 	government		= "";
@@ -189,6 +190,10 @@ void V2Country::output() const
 		if (civilized)
 		{
 			fprintf(output, "civilized=yes\n");
+		}
+		if (!isReleasableVassal)
+		{
+			fprintf(output, "is_releasable_vassal=no\n");
 		}
 		fprintf(output, "\n");
 		fprintf(output, "ruling_party=%s\n", rulingParty.c_str());
@@ -878,6 +883,12 @@ void V2Country::initFromHistory()
 	if (results.size() > 0)
 	{
 		civilized = (results[0]->getLeaf() == "yes");
+	}
+
+	results = obj->getValue("is_releasable_vassal");
+	if (results.size() > 0)
+	{
+		isReleasableVassal = (results[0]->getLeaf() == "yes");
 	}
 
 	results = obj->getValue("nationalvalue");

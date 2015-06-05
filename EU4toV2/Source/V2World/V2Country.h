@@ -138,6 +138,7 @@ class V2Country
 		map<int, V2Province*>		provinces;
 		int								capital;
 		bool								civilized;
+		bool							isReleasableVassal;
 		string							primaryCulture;
 		set<string>						acceptedCultures;
 		string							religion;
