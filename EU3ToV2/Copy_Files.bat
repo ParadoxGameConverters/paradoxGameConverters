@@ -16,7 +16,8 @@ copy "data files\leader_traits.txt" "release\leader_traits.txt
 copy "data files\regiment_costs.txt" "release\regiment_costs.txt
 copy "data files\license.txt" "release\license.txt"
 
-hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt
+del release\changelog.txt
+git log --oneline --decorate >> release/log.txt
 (for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
 del release\log.txt
 
