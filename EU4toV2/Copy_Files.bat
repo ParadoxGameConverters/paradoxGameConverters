@@ -21,8 +21,8 @@ copy "Data_Files\port_blacklist.txt" "release\port_blacklist.txt"
 copy "Data_Files\port_whitelist.txt" "release\port_whitelist.txt"
 copy "Data_Files\minorityPops.txt" "release\minorityPops.txt"
 
-rem hg log > Release/log.txt
-hg log --template "Change:\t\t{rev}: {node}\nAuthor:\t\t{author}\nDescription:\t{desc}\nDate:\t\t{date|isodate}\nBranch:\t\t{branch}\n***\n" > Release/log.txt
+del release\changelog.txt
+git log --oneline --decorate >> release/log.txt
 (for /f "delims=" %%i in (release/log.txt) do @echo %%i)>release/changelog.txt
 del release\log.txt
 
