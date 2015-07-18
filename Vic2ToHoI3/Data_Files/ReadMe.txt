@@ -17,24 +17,22 @@ V2 - HoD required
 ----
 INSTRUCTIONS
 ----
+1. Run Frontend.exe
+2. Set all the options, making sure the directories are correct.
+3. Click Convert
+4. Start Hearts of Iron 3 and select the mod.
 
-1. Download the converter and unzip it wherever.
-2. Copy your V2 save into the converter directory.
-3. Edit configuration.txt to point at your game installs, and to set any options you care about.
-4. Drag and drop your save onto V2toHoI3Converter.exe
-5. Go into the output folder, then the subfolder named after your save.
-6. Copy the folder named after your save and the corresponding mod file into your HoI3 mod folder.
-7. Start that copy of Hearts of Iron 3, and select the mod.
 
 ----
-FAQ
+MANUAL INSTRUCTIONS
 ----
-Q: I got an error that mentions MSVCP120.dll. What do I do?
-A :
-Go to the Visual Studio Redistributable page: http://www.microsoft.com/en-us/download/details.aspx?id=40784
-	then click Download and select vcredist_x86.exe.
-	Once it has downloaded, install it and run the converter again.
 
+1. Copy your V2 save into the converter directory.
+2. Edit configuration.txt to point at your game installs, and to set any options you care about.
+3. Drag and drop your save onto V2toHoI3Converter.exe
+4. Go into the output folder, then the subfolder named after your save.
+5. Copy the folder named after your save and the corresponding mod file into your HoI3 mod folder.
+6. Start Hearts of Iron 3, and select the mod.
 
 
 ----
