@@ -921,14 +921,14 @@ void HoI3Country::convertParties(const V2Country* srcCountry, vector<V2Party*> V
 		newParty.organization	= newParty.popularity;
 		parties.push_back(newParty);
 
-		V2Ideologies.erase(ideologyItr);
-		auto itr = unmappedParties.find("fascistic");
-		unmappedParties.erase(itr);
-
 		if (rulingParty->ideology == ideologyItr->first)
 		{
 			rulingIdeology = "fascistic";
 		}
+
+		V2Ideologies.erase(ideologyItr);
+		auto itr = unmappedParties.find("fascistic");
+		unmappedParties.erase(itr);
 	}
 	ideologyItr = V2Ideologies.find("reactionary");
 	if ((ideologyItr != V2Ideologies.end()) && (ideologyItr->second.size() == 1))
