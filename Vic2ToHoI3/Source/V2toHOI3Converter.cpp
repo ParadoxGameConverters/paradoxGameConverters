@@ -37,7 +37,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "V2World\V2Localisation.h"
 #include "WinUtils.h"
 
-#pragma optimize("", off)
+
 // Converts the given V2 save into a HOI3 mod.
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertV2ToHoI3(const std::string& V2SaveFileName)
@@ -51,7 +51,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Debug) << "Current directory is " << curDir;
 
 	// Get HoI3 install location
-	LOG(LogLevel::Info) << "Get HoI3 Install Path";
+	LOG(LogLevel::Debug) << "Get HoI3 Install Path";
 	string HoI3Loc = Configuration::getHoI3Path();	// the HOI3 install location as stated in the configuration file
 	struct _stat st;										// the file info
 	if (HoI3Loc.empty() || (_stat(HoI3Loc.c_str(), &st) != 0))
@@ -61,7 +61,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	}
 	else
 	{
-		LOG(LogLevel::Debug) << "No HoI3 path install path is " << HoI3Loc;
+		LOG(LogLevel::Debug) << "HoI3 path install path is " << HoI3Loc;
 	}
 
 	// Get HOI3 Documents Directory
@@ -376,7 +376,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "* Conversion complete *";
 	return 0;
 }
-#pragma optimize("", on)
+
 
 int main(const int argc, const char * argv[])
 {
