@@ -61,7 +61,7 @@ namespace Frontend.Core.Factories
             {
                 EventAggregator.PublishOnUIThread(
                     new LogEntry(
-                        "Configuration file " + configurationFilePath + "not found",
+                        "Configuration file " + configurationFilePath + " not found",
                         LogEntrySeverity.Error,
                         LogEntrySource.UI,
                         Path.GetDirectoryName(configurationFilePath)));
