@@ -24,21 +24,12 @@ namespace Frontend.Core.Factories.TagReaders
             var description = XElementHelper.ReadStringValue(xmlElement, "description");
             var extension = XElementHelper.ReadStringValue(xmlElement, "extension", false);
             var predefinedFileName = XElementHelper.ReadStringValue(xmlElement, "predefinedFileName", false);
-            var alternativePaths = ReadDefaultLocationPaths(xmlElement, tagName, friendlyName);
+            var alternativePaths = ReadDefaultLocationPaths(xmlElement, tagName, friendlyName, predefinedFileName);
             var isMandatory = XElementHelper.ReadBoolValue(xmlElement, "isMandatory", false);
-
-            // If a filename is set, add it to all the alternative paths.
-            // This basically turns a folder path into a file path.
-            if (!string.IsNullOrEmpty(predefinedFileName))
-            {
-                foreach (var alternative in alternativePaths)
-                {
-                    alternative.Path = Path.Combine(alternative.Path, predefinedFileName);
-                }
-            }
-
+            var hidden = XElementHelper.ReadBoolValue(xmlElement, "hidden", false);
+           
             return BuildRequiredFolderObject(tagName, alternativePaths, friendlyName, description, extension,
-                predefinedFileName, internalTagName, isMandatory);
+                predefinedFileName, internalTagName, isMandatory, hidden);
         }
 
         /// <summary>
@@ -49,10 +40,10 @@ namespace Frontend.Core.Factories.TagReaders
         /// <returns></returns>
         private IRequiredFile BuildRequiredFolderObject(string tagName, IList<IAlternativePath> alternatives,
             string friendlyName, string description, string extension, string predefinedFileName, string internalTagName,
-            bool isMandatory)
+            bool isMandatory, bool hidden)
         {
             return new RequiredFile(tagName, friendlyName, description, alternatives, extension, predefinedFileName,
-                internalTagName, isMandatory);
+                internalTagName, isMandatory, hidden);
         }
     }
 }

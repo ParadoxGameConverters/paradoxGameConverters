@@ -184,6 +184,22 @@ tag vs internalTag:
       <isEnabled>true</isEnabled>
 
       <requiredItems>
+        
+        <requiredFile>
+          <tag>faq</tag>
+          <internalTag>faq</internalTag>
+          <friendlyName>faq</friendlyName>
+          <description>The faq .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI3</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>FAQ.txt</predefinedFileName>
+        </requiredFile>
 
         <requiredFolder>
           <tag>V2directory</tag>

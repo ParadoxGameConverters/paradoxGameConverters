@@ -8,8 +8,8 @@ namespace Frontend.Core.Model.Paths
     {
         public RequiredFile(string tagName, string friendlyName, string description,
             IList<IAlternativePath> alternatives, string extension, string predefinedFileName, string internalTagName,
-            bool isMandatory)
-            : base(tagName, friendlyName, description, alternatives, internalTagName, isMandatory)
+            bool isMandatory, bool hidden)
+            : base(tagName, friendlyName, description, alternatives, internalTagName, isMandatory, hidden)
         {
             Extension = extension;
             PredefinedFileName = predefinedFileName;

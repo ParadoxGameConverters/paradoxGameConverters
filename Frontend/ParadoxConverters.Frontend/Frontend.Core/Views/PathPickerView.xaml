@@ -78,6 +78,9 @@
             </Grid>
         </DataTemplate>
 
+        <DataTemplate x:Key="HiddenFileSelectionTemplate">
+        </DataTemplate>
+
     </UserControl.Resources>
 
     <Grid>

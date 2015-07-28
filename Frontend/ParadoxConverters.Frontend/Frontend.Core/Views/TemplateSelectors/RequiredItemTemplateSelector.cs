@@ -26,7 +26,14 @@ namespace Frontend.Core.Views.TemplateSelectors
 
             if (requiredFile != null)
             {
-                return element.FindResource("FileSelectionTemplate") as DataTemplate;
+                if (!requiredFile.IsHidden)
+                {
+                    return element.FindResource("FileSelectionTemplate") as DataTemplate;
+                }
+                else
+                {
+                    return element.FindResource("HiddenFileSelectionTemplate") as DataTemplate;
+                }
             }
 
             return null;

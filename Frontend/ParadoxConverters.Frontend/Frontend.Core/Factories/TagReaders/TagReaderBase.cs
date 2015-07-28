@@ -29,7 +29,7 @@ namespace Frontend.Core.Factories.TagReaders
         protected IEventAggregator EventAggregator { get; private set; }
 
         protected IList<IAlternativePath> ReadDefaultLocationPaths(XElement xmlElement, string tagName,
-            string friendlyName)
+            string friendlyName, string predefinedFileName = null)
         {
             var alternatives = new List<IAlternativePath>();
 
@@ -41,7 +41,7 @@ namespace Frontend.Core.Factories.TagReaders
 
                 if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.ConverterFolder.ToString()))
                 {
-                    alternatives.Add(ReadConverterPath(tag, tagName, friendlyName));
+                    alternatives.Add(ReadConverterPath(tag, tagName, friendlyName, predefinedFileName));
                 }
                 else if (defaultLocationTypeAsString.Equals(RelativeFolderLocationRoot.WindowsUsersFolder.ToString()))
                 {
@@ -63,7 +63,9 @@ namespace Frontend.Core.Factories.TagReaders
                 }
             }
 
-            if (alternatives.All(a => !a.Exists))
+            // Hack: need some way to make alternative paths aware that their required file/folder is hidden/not mandatory, in which case
+            // this check/logging isn't needed
+            if (alternatives.All(a => !a.Exists) && !tagName.Equals("faq"))
             {
                 alternatives.ForEach(a => this.LogExistenceError(a, tagName, friendlyName));
             }
@@ -71,10 +73,14 @@ namespace Frontend.Core.Factories.TagReaders
             return alternatives;
         }
 
-        private IAlternativePath ReadConverterPath(XElement xmlElement, string tagName, string friendlyName)
+        private IAlternativePath ReadConverterPath(XElement xmlElement, string tagName, string friendlyName, string predefinedFileName)
         {
             var subFolderLocation = XElementHelper.ReadStringValue(xmlElement, "subFolderLocation");
-            var absolutePath = Path.Combine(environmentProxy.GetFrontendWorkingDirectory(), subFolderLocation);
+
+            // If a predefined file name is set, include it in the absolute path (and hence the alternativepath.exists check)
+            var absolutePath = string.IsNullOrEmpty(predefinedFileName) ? 
+                Path.Combine(environmentProxy.GetFrontendWorkingDirectory(), subFolderLocation) :
+                Path.Combine(environmentProxy.GetFrontendWorkingDirectory(), subFolderLocation, predefinedFileName);
 
             return BuildAlternativePathObject(absolutePath, tagName, friendlyName);
         }

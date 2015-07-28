@@ -24,6 +24,8 @@ namespace Frontend.Core.Model.Interfaces
         /// </value>
         IRequiredFile AbsoluteConverter { get; }
 
+        IRequiredFile Faq { get; }
+
         /// <summary>
         ///     Gets or sets a value indicating whether to use the converter mod.
         /// </summary>

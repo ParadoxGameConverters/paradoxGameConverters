@@ -11,10 +11,10 @@ namespace Frontend.Core.Model.Paths
     /// </summary>
     public abstract class RequiredItemBase : PropertyChangedBase, IRequiredItemBase, IDataErrorInfo
     {
-        private string selectedValue;
+        private string _selectedValue;
 
         protected RequiredItemBase(string tagName, string friendlyName, string description,
-            IList<IAlternativePath> alternatives, string internalTagName, bool isMandatory)
+            IList<IAlternativePath> alternatives, string internalTagName, bool isMandatory, bool isHidden)
         {
             TagName = tagName;
             InternalTagName = internalTagName;
@@ -22,18 +22,20 @@ namespace Frontend.Core.Model.Paths
             Description = description;
             AlternativePaths = alternatives;
             IsMandatory = isMandatory;
+            IsHidden = isHidden;
 
             // Basically, take the first alternative path that actually exists, and set that as the default value.
             var defaultPath = alternatives.FirstOrDefault(a => a.Exists);
             if (defaultPath != null)
             {
                 DefaultValue = defaultPath.Path;
-                selectedValue = DefaultValue;
+                _selectedValue = DefaultValue;
             }
         }
 
         public IList<IAlternativePath> AlternativePaths { get; private set; }
         public bool IsMandatory { get; private set; }
+        public bool IsHidden { get; }
         public string FriendlyName { get; private set; }
         public string Description { get; private set; }
         public string TagName { get; private set; }
@@ -51,16 +53,16 @@ namespace Frontend.Core.Model.Paths
 
         public string SelectedValue
         {
-            get { return selectedValue; }
+            get { return _selectedValue; }
 
             set
             {
-                if (selectedValue == value)
+                if (_selectedValue == value)
                 {
                     return;
                 }
 
-                selectedValue = value;
+                _selectedValue = value;
                 NotifyOfPropertyChange(() => SelectedValue);
             }
         }

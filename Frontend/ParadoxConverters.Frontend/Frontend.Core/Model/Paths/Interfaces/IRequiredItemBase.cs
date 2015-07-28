@@ -14,5 +14,6 @@ namespace Frontend.Core.Model.Paths.Interfaces
         string DefaultValue { get; }
         bool IsMandatory { get; }
         bool IsValid { get; }
+        bool IsHidden { get; }
     }
 }

@@ -100,6 +100,11 @@ namespace Frontend.Core.Model
             }
         }
 
+        public IRequiredFile Faq
+        {
+            get { return (IRequiredFile) RequiredItems.First(f => f.InternalTagName.Equals("faq")); }
+        }
+
         /// <summary>
         ///     Gets or sets a value indicating whether to use the converter mod.
         /// </summary>

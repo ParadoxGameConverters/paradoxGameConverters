@@ -37,6 +37,14 @@ namespace Frontend.Core.Commands
                     var pfi = new ProcessStartInfo("Explorer.exe", args);
                     Process.Start(pfi);
                 }
+                else
+                {
+                    var folderWhereFileWasExpectedToExist = Path.GetDirectoryName(path);
+                    if (!string.IsNullOrEmpty(folderWhereFileWasExpectedToExist))
+                    {
+                        Process.Start(folderWhereFileWasExpectedToExist);
+                    }
+                }
             }
             catch
             {

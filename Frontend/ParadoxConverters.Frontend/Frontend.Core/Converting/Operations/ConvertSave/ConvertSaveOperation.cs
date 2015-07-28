@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Frontend.Core.Common.Proxies;
@@ -93,6 +94,11 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
                     options.WasConversionSuccessful = false;
                     result.State = OperationResultState.Error;
                     result.LogEntries.Add(new LogEntry("Conversion failed after " + this.BuildTimeSpanString(stopwatch.Elapsed), LogEntrySeverity.Error, LogEntrySource.UI, null));
+
+                    if (this.options.CurrentConverter.Faq != null && this.options.CurrentConverter.Faq.AlternativePaths.Any(p => p.Exists))
+                    {
+                        result.LogEntries.Add(new LogEntry("Please see the FAQ for suggestions: ", LogEntrySeverity.Error, LogEntrySource.UI, this.options.CurrentConverter.Faq.SelectedValue));
+                    }
                 }
             }
 
