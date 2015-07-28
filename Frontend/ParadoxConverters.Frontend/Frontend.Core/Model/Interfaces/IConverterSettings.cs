@@ -26,6 +26,8 @@ namespace Frontend.Core.Model.Interfaces
 
         IRequiredFile Faq { get; }
 
+        IRequiredFile Log { get; }
+
         /// <summary>
         ///     Gets or sets a value indicating whether to use the converter mod.
         /// </summary>

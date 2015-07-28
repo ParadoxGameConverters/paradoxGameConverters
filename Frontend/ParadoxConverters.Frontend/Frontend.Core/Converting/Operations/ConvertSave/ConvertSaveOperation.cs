@@ -98,6 +98,16 @@ namespace Frontend.Core.Converting.Operations.ConvertSave
                     if (this.options.CurrentConverter.Faq != null && this.options.CurrentConverter.Faq.AlternativePaths.Any(p => p.Exists))
                     {
                         result.LogEntries.Add(new LogEntry("Please see the FAQ for suggestions: ", LogEntrySeverity.Error, LogEntrySource.UI, this.options.CurrentConverter.Faq.SelectedValue));
+
+                        if (this.options.CurrentConverter.Log != null)
+                        {
+                            result.LogEntries.Add(new LogEntry(
+                                "If that fails, please take a look at the log generated during the conversion process:",
+                                LogEntrySeverity.Error,
+                                LogEntrySource.UI,
+                                this.options.CurrentConverter.Log.SelectedValue
+                                ));
+                        }
                     }
                 }
             }

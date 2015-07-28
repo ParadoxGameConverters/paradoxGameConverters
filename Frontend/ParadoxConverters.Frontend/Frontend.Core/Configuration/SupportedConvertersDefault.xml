@@ -200,6 +200,22 @@ tag vs internalTag:
           </alternatives>
           <predefinedFileName>FAQ.txt</predefinedFileName>
         </requiredFile>
+        
+        <requiredFile>
+          <tag>log</tag>
+          <internalTag>log</internalTag>
+          <friendlyName>log</friendlyName>
+          <description>The log .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>Vic2ToHoI3</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>log.txt</predefinedFileName>
+        </requiredFile>
 
         <requiredFolder>
           <tag>V2directory</tag>
