@@ -35,7 +35,7 @@ namespace Frontend.Core.Model.Paths
 
         public IList<IAlternativePath> AlternativePaths { get; private set; }
         public bool IsMandatory { get; private set; }
-        public bool IsHidden { get; }
+        public bool IsHidden { get; private set; }
         public string FriendlyName { get; private set; }
         public string Description { get; private set; }
         public string TagName { get; private set; }
