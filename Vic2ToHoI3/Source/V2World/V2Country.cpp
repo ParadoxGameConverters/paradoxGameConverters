@@ -43,9 +43,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 V2Country::V2Country(Object* obj)
 {
 	tag = obj->getKey();
-
 	provinces.clear();
-
+	cores.clear();
 	adjective = tag;
 
 	greatNationRanking = -1; // BE: Default to not great nation. This is set later in V2World.
@@ -90,7 +89,14 @@ V2Country::V2Country(Object* obj)
 		for (vector<string>::iterator itr = active_inventions.begin(); itr != active_inventions.end(); ++itr)
 		{
 			int i = atoi(itr->c_str());
-			HODInventions[i] = active; // BE: TODO: Generalize for non-HOD
+			if (i > HOD_naval_exercises)
+			{
+				LOG(LogLevel::Warning) << tag << " has an invalid invention. Is this using a mod that changed inventions?";
+			}
+			else
+			{
+				HODInventions[i] = active; // BE: TODO: Generalize for non-HOD
+			}
 		}
 	}
 
