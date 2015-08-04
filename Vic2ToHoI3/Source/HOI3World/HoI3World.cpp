@@ -441,7 +441,13 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 				std::string countryFileName = '/' + sourceCountry->getName() + ".txt";
 				destCountry = new HoI3Country(HoI3Tag, countryFileName, this, true);
 			}
-			destCountry->initFromV2Country(sourceWorld, sourceCountry, sourceWorld.getRulingParty(sourceCountry)->ideology, outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap);
+			V2Party* rulingParty = sourceWorld.getRulingParty(sourceCountry);
+			if (rulingParty == NULL)
+			{
+				LOG(LogLevel::Error) << "Could not find the ruling party for " <<  sourceCountry->getTag() << ". Were all mods correctly included?";
+				exit(-1);
+			}
+			destCountry->initFromV2Country(sourceWorld, sourceCountry, rulingParty->ideology, outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
 
 		// OLD CODE
