@@ -2,4 +2,7 @@ Release/
 ReleaseIntermediate/
 Debug/
 DebugIntermediate/
+testResults
+*.zip
+*.opensdf
 *.sdf
