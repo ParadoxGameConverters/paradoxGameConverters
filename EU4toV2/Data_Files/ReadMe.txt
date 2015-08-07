@@ -54,6 +54,8 @@ niallmcfc		- Data Files
 plnp123			- Data Files
 Goldmattress		- Data Files
 Torakka			- Data Files
+Fliptoy			- Data Files
+LowTartare		- Data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics
