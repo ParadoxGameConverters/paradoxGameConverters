@@ -9,41 +9,10 @@
         <friendlyName>Configuration</friendlyName>
         <preferences>
           <preference>
-            <name>CK2Converted</name>
-            <friendlyName>Converted from CK2?</friendlyName>
-            <description>Whether or not the mod was converted from CK2</description>
-            <entryOptions>
-              <entryOption>
-                <name>yes</name>
-                <friendlyName>Yes</friendlyName>
-                <description>This savegame was converted from Crusader Kings 2</description>
-                <isDefault>false</isDefault>
-              </entryOption>
-              <entryOption>
-                <name>no</name>
-                <friendlyName>No</friendlyName>
-                <description>This savegame was NOT converted from Crusader Kings 2</description>
-                <isDefault>true</isDefault>
-              </entryOption>
-            </entryOptions>
-          </preference>
-          <preference>
             <name>V2gametype</name>
             <friendlyName>V2 Game Version</friendlyName>
             <description>V2 Game Version: what version of V2 to convert to</description>
             <entryOptions>
-              <entryOption>
-                <name>vanilla</name>
-                <friendlyName>Vanilla V2 (1.x)</friendlyName>
-                <description>Vanilla V2 (1.x)</description>
-                <isDefault>false</isDefault>
-              </entryOption>
-              <entryOption>
-                <name>AHD</name>
-                <friendlyName>A House Divided (2.x)</friendlyName>
-                <description>A House Divided (2.x)</description>
-                <isDefault>false</isDefault>
-              </entryOption>
               <entryOption>
                 <name>HOD</name>
                 <friendlyName>Heart of Darkness (3.x)</friendlyName>
