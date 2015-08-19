@@ -1363,7 +1363,7 @@ void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vecto
 			{
 				LOG(LogLevel::Debug) << *itr << " added to " << factionName  << " faction";
 				citr->second->setFaction(factionName);
-				if (leader != "")
+				if (leader == "")
 				{
 					leader = citr->first;
 				}
@@ -1542,6 +1542,64 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 	{
 		LOG(LogLevel::Error) << "Error: unrecognized faction algorithm \"" << Configuration::getFactionLeaderAlgo() << "\"!";
 		return;
+	}
+
+	//set faction leaders to be earlier in the country ordering
+	vector<string>::iterator i = countryOrder.begin();
+	while (i != countryOrder.end())
+	{
+		if (*i == axisLeader)
+		{
+			countryOrder.erase(i);
+			countryOrder.insert(countryOrder.begin(), axisLeader);
+			break;
+		}
+		i++;
+		if (i == countryOrder.end())
+		{
+			countryOrder.insert(countryOrder.begin(), axisLeader);
+			break;
+		}
+	}
+	i = countryOrder.begin();
+	while (i != countryOrder.end())
+	{
+		if (*i == alliesLeader)
+		{
+			countryOrder.erase(i);
+			countryOrder.insert(countryOrder.begin(), alliesLeader);
+			break;
+		}
+		i++;
+		if (i == countryOrder.end())
+		{
+			countryOrder.insert(countryOrder.begin(), axisLeader);
+			break;
+		}
+	}
+	i = countryOrder.begin();
+	while (i != countryOrder.end())
+	{
+		if (*i == cominternLeader)
+		{
+			countryOrder.erase(i);
+			countryOrder.insert(countryOrder.begin(), cominternLeader);
+			break;
+		}
+		i++;
+		if (i == countryOrder.end())
+		{
+			countryOrder.insert(countryOrder.begin(), axisLeader);
+			break;
+		}
+	}
+	for (vector<string>::iterator i = countryOrder.begin(); i != countryOrder.end(); i++)
+	{
+		if (*i == "REB")
+		{
+			countryOrder.erase(i);
+			countryOrder.insert(countryOrder.begin(), "REB");
+		}
 	}
 
 	// push satellites into the same faction as their parents
