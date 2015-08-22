@@ -1834,12 +1834,29 @@ void HoI3World::copyFlags(const V2World &sourceWorld, CountryMapping countryMap)
 		std::string V2FlagFile = sourceCountry->getFlagFile();
 		const std::string& HoI3Tag = countryMap[V2Tag];
 
-		std::string sourceFlagPath = folderPath + '\\' + V2FlagFile;
-
-		if (WinUtils::DoesFileExist(sourceFlagPath))
+		bool flagCopied = false;
+		vector<string> mods = Configuration::getVic2Mods();
+		for (auto mod: mods)
 		{
-			std::string destFlagPath = outputFlagFolder + '\\' + HoI3Tag + ".tga";
-			WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+			string sourceFlagPath = Configuration::getV2Path() + "\\mod\\" + mod + "\\gfx\\flags\\"+ V2FlagFile;
+			if (WinUtils::DoesFileExist(sourceFlagPath))
+			{
+				std::string destFlagPath = outputFlagFolder + '\\' + HoI3Tag + ".tga";
+				flagCopied = WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+				if (flagCopied)
+				{
+					break;
+				}
+			}
+		}
+		if (!flagCopied)
+		{
+			std::string sourceFlagPath = folderPath + '\\' + V2FlagFile;
+			if (WinUtils::DoesFileExist(sourceFlagPath))
+			{
+				std::string destFlagPath = outputFlagFolder + '\\' + HoI3Tag + ".tga";
+				WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
+			}
 		}
 	}
 }
