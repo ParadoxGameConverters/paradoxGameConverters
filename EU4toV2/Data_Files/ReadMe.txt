@@ -56,6 +56,7 @@ Goldmattress		- Data Files
 Torakka			- Data Files
 Fliptoy			- Data Files
 LowTartare		- Data Files
+Kasemacher		- Data File
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics
