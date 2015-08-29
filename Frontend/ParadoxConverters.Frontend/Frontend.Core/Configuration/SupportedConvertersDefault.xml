@@ -27,8 +27,110 @@ tag vs internalTag:
       <sourceGame>EuropaUniversalis3</sourceGame>
       <targetGame>Victoria2</targetGame>
       <subfolderName>eu3tovic2</subfolderName>
-      <isEnabled>false</isEnabled>
-      <informationText>The frontend is currently unable to automatically install the converter mod. Please see readme.txt, under the heading "THE CONVERTER MOD for VICTORIA 2", for instructions.</informationText>
+      <isEnabled>true</isEnabled>
+      
+	  <requiredItems>
+
+        <requiredFolder>
+          <tag>EU3directory</tag>
+          <friendlyName>Europa Universalis 3 directory</friendlyName>
+          <description>A path on your computer where Europa Universalis 3 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>25800</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>v2directory</tag>
+          <friendlyName>Victoria 2 directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <!--<subFolderLocation>\Europa Universalis IV</subFolderLocation>-->
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFolder>
+          <tag>V2Documentsdirectory</tag>
+          <friendlyName>Victoria 2 Documents directory</friendlyName>
+          <description>A path on your computer where Victoria 2 keeps temporary files</description>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II</subFolderLocation>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>map\cache</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <subFolderLocation>map\cache</subFolderLocation>
+        </requiredFolder>
+
+        <requiredFolder>
+          <internalTag>targetGameModPath</internalTag>
+          <friendlyName>Victoria 2 mod directory</friendlyName>
+          <description>A path on your computer where Victoria 2 is installed</description>
+          <alternatives>
+            <!--<alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Victoria II\save games</subFolderLocation>
+            </alternative>-->
+            <alternative>
+              <defaultLocationType>SteamFolder</defaultLocationType>
+              <autoDetectFromSteamId>42960</autoDetectFromSteamId>
+              <subFolderLocation>mod</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFolder>
+
+        <requiredFile>
+          <tag>ConverterExe</tag>
+          <friendlyName>Converter .exe</friendlyName>
+          <description>The converter command line tool</description>
+          <isMandatory>true</isMandatory>
+          <extension>.exe</extension>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>eu3tovic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <extension>*.exe</extension>
+          <predefinedFileName>EU3toV2Converter.exe</predefinedFileName>
+        </requiredFile>
+
+        <requiredFile>
+          <tag>SaveGame</tag>
+          <friendlyName>Savegame</friendlyName>
+          <description>The savegame to convert</description>
+          <extension>.eu3</extension>
+          <isMandatory>true</isMandatory>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+              <subFolderLocation>Paradox Interactive\Europa Universalis III\save games</subFolderLocation>
+            </alternative>
+          </alternatives>
+        </requiredFile>
+
+        <!--<requiredFolder>
+        <tag>EU4ModDirectory</tag>
+        <defaultLocationType>WindowsUsersFolder</defaultLocationType>
+        <subFolderLocation>\Paradox Interactive\Europa Universalis IV\mod</subFolderLocation>
+      </requiredFolder>-->
+      </requiredItems>
     </converter>
 
 	<converter>
