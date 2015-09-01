@@ -593,7 +593,7 @@ link = { eu4 = MCA V2 = MCA }
 link = { eu4 = MED V2 = MED } 
 link = { eu4 = MGD V2 = MGD } 
 link = { eu4 = MHX V2 = MHX } 
-link = { eu4 = MIN V2 = MIN } 
+link = { eu4 = MIN V2 = MIN } # Min (new)
 link = { eu4 = MIX V2 = MIX } 
 link = { eu4 = MJE V2 = MJE } 
 link = { eu4 = MJZ V2 = MJZ } 

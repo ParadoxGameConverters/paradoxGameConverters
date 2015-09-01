@@ -505,7 +505,6 @@ TIM		="countries/Timurid.txt"
 KZH		="countries/Kazakh.txt"
 
 # Japan
-MIN		="countries/Minamoto.txt"
 TAC		="countries/Tachibana.txt"
 FUJ 		="countries/Fujiwara.txt"
 TAI 		="countries/Taira.txt"
