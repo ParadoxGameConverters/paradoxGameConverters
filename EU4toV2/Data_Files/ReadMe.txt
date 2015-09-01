@@ -5,7 +5,7 @@ IMPORTANT LINKS
 ----
 
 Forum thread: http://forum.paradoxplaza.com/forum/showthread.php?707362-The-EU4-to-V2-Converter-Project
-Sourceforge project: https://sourceforge.net/projects/eu4tov2/
+Github project: https://github.com/Idhrendur/paradoxGameConverters
 
 ----
 REQUIREMENTS
