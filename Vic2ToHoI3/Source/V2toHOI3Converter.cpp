@@ -355,8 +355,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		exit(-1);
 	}
 	fprintf(modFile, "name = \"Converted - %s\"\n", Configuration::getOutputName().c_str());
-	// BE: Use full path for people whose mod directory is in different drive from HoI3 installation directory. i.e., me.
-	fprintf(modFile, "path = \"%s/mod/%s\"\n", Configuration::getHoI3DocumentsPath().c_str(), Configuration::getOutputName().c_str());
+	fprintf(modFile, "path = mod/%s\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "user_dir = \"%s_user_dir\"\n", Configuration::getOutputName().c_str());
 	fprintf(modFile, "replace = \"history/countries\"\n");
 	fprintf(modFile, "replace = \"history/diplomacy\"\n");
