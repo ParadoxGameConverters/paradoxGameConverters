@@ -91,7 +91,7 @@ link = { v2 = mayan eu4 = mesoamerican_religion }
 link = { v2 = nahuatl eu4 = nahuatl }
 
 #Zoroastrian
-link = { v2 = zoroastrian eu4 = zoroastrian eu4 = zoroastrian_heresy }
+link = { v2 = zoroastrian eu4 = zoroastrian }
 link = { v2 = manichean eu4 = manichean }
 link = { v2 = mazdaki eu4 = mazdaki }
 link = { v2 = zoroastrian_heresy eu4 = zoroastrian_heresy }
