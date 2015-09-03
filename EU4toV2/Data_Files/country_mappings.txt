@@ -456,6 +456,7 @@ link = { eu4 = PUN v2 = PAN }  # Punjab => Panjab
 link = { eu4 = SND v2 = SIN }  # Sind
 link = { eu4 = VIJ v2 = VIJ }  # Vijaynagara
 link = { eu4 = HIN v2 = HND }  # Hindustan => India
+link = { eu4 = BHA v2 = HND }  # Bharat => India
 link = { eu4 = AHM v2 = AMD }  # Ahmadnagar *
 link = { eu4 = BDA v2 = BER }  # Baroda => Beroda
 link = { eu4 = BST v2 = BAS }  # Bastar
