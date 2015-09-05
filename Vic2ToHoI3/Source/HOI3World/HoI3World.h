@@ -53,7 +53,6 @@ private:
 		void					checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName);
 		void					factionSatellites();
 		vector<int>				getPortProvinces(vector<int> locationCandidates);
-		HoI3RegGroup			createTheatre(HoI3Province*);
 
 		map<int, HoI3Province*>	provinces;
 		map<string, HoI3Country*>		countries;

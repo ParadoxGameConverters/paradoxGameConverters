@@ -22,24 +22,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "HoI3Country.h"
-#include <algorithm>
-#include <math.h>
-#include <float.h>
-#include <io.h>
 #include <fstream>
-#include <sstream>
 #include "../Log.h"
-#include "../Configuration.h"
 #include "../Parsers/Parser.h"
-//#include "HoI3Army.h"
 #include "HoI3Minister.h"
-#include "HoI3Relations.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
 
 
 
-const int MONEYFACTOR = 30;	// ducat to pound conversion rate
 
 #define HOI3_IDEOLOGY_UNION(DO) \
 	DO(national_socialist) \
@@ -64,6 +55,23 @@ const char* const ideologyNames[stalinist + 1] = {
 };
 
 
+string removeAccented(string str)
+ {
+	for (unsigned i = 0; i < str.length(); ++i)
+	{
+		const char*
+			//   "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ"
+			tr = "AAAAAAECEEEEIIIIDNOOOOOx0UUUUYPsaaaaaaeceeeeiiiiOnooooo/0uuuuypy";
+		unsigned char ch = (str[i]);
+		if (ch >= 192) {
+			str[i] = tr[ch - 192];
+		}
+		// http://stackoverflow.com/questions/14094621/
+	}
+	return str;
+}
+
+
 HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _theWorld, bool _newCountry /* = false */)
 {
 	theWorld = _theWorld;
@@ -78,9 +86,6 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 
 	capital			= 0;
 	ideology			= "";
-	diploPoints		= 0.0;
-	badboy			= 0.0;
-	money				= 0.0;
 	government		= "";
 	faction			= "";
 
@@ -112,133 +117,7 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 
 void HoI3Country::output() const
 {
-	// Afghanistan example
-	//capital = 9191
-	//government = absolute_monarchy
-	//ideology = paternal_autocrat
-	//head_of_state = 54001
-	//head_of_government = 54002
-	//foreign_minister = 54003
-	//armament_minister = 54004
-	//minister_of_security = 54002
-	//minister_of_intelligence = 54006
-	//chief_of_staff = 54007
-	//chief_of_army = 54007
-	//chief_of_navy = 54001
-	//chief_of_air = 54007
-	//alignment = { x = 60 y = 78.9 }
-	//neutrality = 90
-	//national_unity = 50
-
-	//infantry_theory = 0
-	//infantry_practical = 0
-	//militia_theory = 2.5
-	//militia_practical = 2.5
-	//mobile_theory = 1
-	//mobile_practical = 1
-	//artillery_theory = 0
-	//artillery_practical = 0
-	//rocket_science = 0
-	//rocket_practical = 0
-	//naval_engineering = 0
-	//destroyer_practical = 0
-	//cruiser_practical = 0
-	//capitalship_practical = 0
-	//carrier_practical = 0
-	//submarine_engineering = 0
-	//submarine_practical = 0
-	//electornicegineering_theory = 0
-	//electornicegineering_practical = 0
-	//automotive_theory = 0
-	//armour_practical = 0
-	//aeronautic_engineering = 0
-	//single_engine_aircraft_practical = 0
-	//twin_engine_aircraft_practical = 0
-	//four_engine_aircraft_practical = 0
-	//spearhead_theory = 0
-	//superior_firepower_theory = 0
-	//grand_battleplan_theory = 1
-	//human_wave_theory = 0
-	//land_doctrine_practical = 0
-	//naval_doctrine_practical = 0
-	//base_strike_doctrine = 0
-	//fleet_in_being_doctrine = 0
-	//sealane_interdiction_doctrine = 0
-	//air_doctrine_practical = 0
-	//fighter_focus = 0
-	//cas_focus = 0
-	//tac_focus = 0
-	//nav_focus = 0
-	//strategic_air_focus = 0
-	//mechanicalengineering_theory = 0
-	//chemical_engineering = 0
-	//jetengine_theory = 0
-	//jetengine_practical = 0
-	//nuclear_physics = 0
-	//nuclear_bomb = 0
-	//transport_practical = 0
-	//officers_ratio = 0.60
-
-	//militia_smallarms = 1
-	//militia_support = 1
-	//militia_guns = 1
-	//militia_at = 1
-	//infantry_activation = 1
-	//schwerpunkt = 0
-	//blitzkrieg = 0
-	//mobile_warfare = 0
-	//elastic_defence = 0
-	//operational_level_command_structure = 0
-	//tactical_command_structure = 0
-	//mechanized_offensive = 0
-	//delay_doctrine = 0
-	//integrated_support_doctrine = 0
-	//infantry_warfare = 0
-	//special_forces = 0
-	//assault_concentration = 0
-	//central_planning = 0
-	//mass_assault = 0
-	//peoples_army = 1
-	//large_front = 0
-	//guerilla_warfare = 1
-	//operational_level_organisation = 0
-
-	//oob = "AFG_1936.txt"
-
-	//popularity = {
-	//	national_socialist = 0
-	//	fascistic = 0
-	//	paternal_autocrat = 60
-	//	social_conservative = 20
-	//	market_liberal = 0
-	//	social_liberal = 0
-	//	social_democrat = 5
-	//	left_wing_radical = 10
-	//	leninist = 5
-	//	stalinist = 0
-	//}
-
-	//organization = {
-	//	national_socialist = 0
-	//	fascistic = 0
-	//	paternal_autocrat = 70
-	//	social_conservative = 30
-	//	market_liberal = 0
-	//	social_liberal = 10
-	//	social_democrat = 20
-	//	left_wing_radical = 10
-	//	leninist = 0
-	//	stalinist = 0
-	//}
-
-	//training_laws = minimal_training
-	//press_laws = censored_press
-	//industrial_policy_laws = consumer_product_orientation
-	//education_investment_law = minimal_education_investment
-	//economic_law = full_civilian_economy
-	//conscription_law = volunteer_army
-	//civil_law = limited_restrictions
-
+	// output history file
 	FILE* output;
 	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\countries\\" + filename).c_str(), "w") != 0)
 	{
@@ -282,9 +161,9 @@ void HoI3Country::output() const
 	outputParties(output);
 
 	fprintf(output, "oob = \"%s\"\n", (tag + "_OOB.txt").c_str());
-
 	fclose(output);
 
+	// output OOB file
 	outputOOB();
 
 	// Output common country file. 
@@ -432,24 +311,6 @@ void HoI3Country::outputTech(FILE* output) const
 	{
 		fprintf(output, "%s = %d\n", itr->first.c_str(), itr->second);
 	}
-}
-
-
-void HoI3Country::outputElection(FILE* output) const
-{
-	date electionDate = date("1936.1.1");
-
-	if (electionDate.month == 12)
-	{
-		electionDate.month = 1;
-		electionDate.year++;
-	}
-	else
-	{
-		electionDate.month++;
-	}
-	electionDate.year -= 4;
-	fprintf(output, "	last_election=%s\n", electionDate.toString().c_str());
 }
 
 
@@ -793,16 +654,6 @@ void HoI3Country::initFromHistory()
 }
 
 
-void HoI3Country::convertArmies(const map<int,int>& leaderIDMap, const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist)
-{
-}
-
-void HoI3Country::addRelation(HoI3Relations* newRelation)
-{
-	relations.insert(make_pair(newRelation->getTag(), newRelation));
-}
-
-
 void HoI3Country::addProvince(HoI3Province* _province)
 {
 	provinces.push_back(_province);
@@ -812,12 +663,6 @@ void HoI3Country::addProvince(HoI3Province* _province)
 	}
 }
 
-
-
-const std::map<string, HoI3Relations*> &HoI3Country::getRelations() const
-{
-	return relations;
-}
 
 HoI3Relations* HoI3Country::getRelations(string withWhom) const
 {
@@ -1436,20 +1281,6 @@ void HoI3Country::outputLocalisation(FILE* output) const
 	fwrite(localisationString.c_str(), sizeof(std::string::value_type), localisationString.size(), output);
 }
 
-string HoI3Country::removeAccented(string str) {
-	for (unsigned i = 0; i < str.length(); ++i)
-	{
-		const char*
-			//   "ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõö÷øùúûüýþÿ"
-			tr = "AAAAAAECEEEEIIIIDNOOOOOx0UUUUYPsaaaaaaeceeeeiiiiOnooooo/0uuuuypy";
-		unsigned char ch = (str[i]);
-		if (ch >= 192) {
-			str[i] = tr[ch - 192];
-		}
-		// http://stackoverflow.com/questions/14094621/
-	}
-	return str;
-}
 
 void HoI3Country::setTechnology(string tech, int level)
 {
@@ -1458,6 +1289,7 @@ void HoI3Country::setTechnology(string tech, int level)
 	if (techEntry == technologies.end() || technologies[tech] < level)
 		technologies[tech] = level;
 }
+
 
 void HoI3Country::addArmy(HoI3RegGroup _army)
 {

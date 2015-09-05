@@ -449,127 +449,6 @@ void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping coun
 			}
 			destCountry->initFromV2Country(sourceWorld, sourceCountry, rulingParty->ideology, outputOrder, countryMap, governmentMap, inverseProvinceMap, leaderMap, V2Localisations, governmentJobs, namesMap, portraitMap, cultureMap);
 			countries.insert(make_pair(HoI3Tag, destCountry));
-
-		// OLD CODE
-		//	for(unsigned int j = 0; j < potentialCountries.size(); j++)
-		//	{
-		//		if (potentialCountries[j].getTag() == iter->second.c_str())
-		//		{
-		//			newCountry = potentialCountries[j];
-		//			newCountry.setSourceCountryIndex(i);
-
-		//			//XXX: Map prestige(?)
-
-		//			// Map government types
-		//			newCountry.setGovernment(getGovernmentForCountry(*sourceCountries[i], sourceWorld));
-		//			newCountry.setLastElection(sourceCountries[i]->getLastElection());
-
-		//			//XXX: set up ministers(?)
-
-		//			// civil law - democracies get open society, communist dicatorships get totalitarian, everyone else gets limited restrictions
-		//			if (sourceCountries[i]->getGovernmentType() == "democracy" || sourceCountries[i]->getGovernmentType() == "hms_government")
-		//				newCountry.setCivilLaw("open_society");
-		//			else if (sourceCountries[i]->getGovernmentType() == "proletarian_dictatorship")
-		//				newCountry.setCivilLaw("totalitarian_system");
-		//			else
-		//				newCountry.setCivilLaw("limited_restrictions");
-
-		//			// conscription law - everyone starts with volunteer armies
-		//			newCountry.setConscriptionLaw("volunteer_army");
-
-		//			// economic law - everyone starts with full civilian economy
-		//			newCountry.setEconomicLaw("full_civilian_economy");
-
-		//			// educational investment law - from educational spending
-		//			if (sourceCountries[i]->getEducationSpending() > 0.90)
-		//				newCountry.setEducationalLaw("big_education_investment");
-		//			else if (sourceCountries[i]->getEducationSpending() > 0.70)
-		//				newCountry.setEducationalLaw("medium_large_education_investment");
-		//			else if (sourceCountries[i]->getEducationSpending() > 0.40)
-		//				newCountry.setEducationalLaw("average_education_investment");
-		//			else
-		//				newCountry.setEducationalLaw("minimal_education_investment");
-
-		//			// industrial policy laws - everyone starts with consumer product orientation
-		//			newCountry.setIndustrialLaw("consumer_product_orientation");
-
-		//			// press laws - set from press reforms
-		//			if (sourceCountries[i]->getReform("press_rights") == "free_press")
-		//				newCountry.setPressLaw("free_press");
-		//			else if (sourceCountries[i]->getReform("press_rights") == "censored_press")
-		//				newCountry.setPressLaw("censored_press");
-		//			else // press_rights == state_press
-		//			{
-		//				if ((sourceCountries[i]->getGovernmentType() == "proletarian_dicatorship") ||
-		//					(sourceCountries[i]->getGovernmentType() == "fascist_dictatorship"))
-		//				{
-		//					newCountry.setPressLaw("propaganda_press");
-		//				}
-		//				else
-		//				{
-		//					newCountry.setPressLaw("state_press");
-		//				}
-		//			}
-
-		//			// training laws - from military spending
-		//			if (sourceCountries[i]->getMilitarySpending() > 0.90)
-		//				newCountry.setTrainingLaw("specialist_training");
-		//			else if (sourceCountries[i]->getMilitarySpending() > 0.70)
-		//				newCountry.setTrainingLaw("advanced_training");
-		//			else if (sourceCountries[i]->getMilitarySpending() > 0.40)
-		//				newCountry.setTrainingLaw("basic_training");
-		//			else
-		//				newCountry.setTrainingLaw("minimal_training");
-
-		//			vector<V2Relations*> srcRelations = sourceCountries[i]->getRelations();
-		//			if (srcRelations.size() > 0)
-		//			{
-		//				for (vector<V2Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
-		//				{
-		//					V2Relations* relations = *itr;
-		//					// XXX: dunno what to do with influence level/sphere data
-		//					countryMapping::iterator newTag = countryMap.find(relations->getCountry());
-		//					if (newTag != countryMap.end())
-		//					{
-		//						HoI3Relations HoI3r;
-		//						HoI3r.init(newTag->second);
-		//						HoI3r.setRelations(relations->getRelations());
-		//						HoI3r.setMilitaryAccess(relations->hasMilitaryAccess());
-		//						HoI3r.setDiplomatLastSent(relations->getDiplomatLastSent());
-		//						HoI3r.setLastWar(relations->getLastWar());
-		//						newCountry.addRelations(HoI3r);
-		//					}
-		//				}
-		//			}
-		//			newCountry.sortRelations(outputOrder);
-
-		//			//XXX: newCountry.setMoney(Configuration::getMoneyFactor() * sourceCountries[i].getMoney());
-
-		//			/*XXX:
-		//			vector<V2Loan> srcLoans = sourceCountries[i].getLoans();
-		//			for (vector<V2Loan>::iterator itr = srcLoans.begin(); itr != srcLoans.end(); ++itr)
-		//			{
-		//				string lender = newCountry.getTag();
-		//				if (itr->getLender() != "---")
-		//				{
-		//					countryMapping::iterator newTag = countryMap.find(itr->getLender());
-		//					if (newTag != countryMap.end())
-		//					{
-		//						lender = newTag->second;
-		//					}
-		//					else
-		//					{
-		//						log("Error: lender %s could not be found for %s's loan!\n", itr->getLender().c_str(), newCountry.getTag().c_str());
-		//					}
-		//				}
-		//				double size = Configuration::getMoneyFactor() * sourceCountries[i].inflationAdjust(itr->getAmount());
-		//				newCountry.addLoan(lender, size, itr->getInterest() / 100.0f);
-		//			}
-		//			*/
-
-		//			newCountry.setDiploPoints(2.5 * sourceCountries[i]->getDiploPoints()); // 2-to-5 ratio based on alliance cost
-		//		}
-		//	}
 		}
 		else
 		{
@@ -946,19 +825,6 @@ vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 }
 
 
-//HoI3RegGroup HoI3World::createTheatre(HoI3Province* province)
-//{
-//	HoI3RegGroup newTheatre;
-//	newTheatre.setCommandLevel(theatre);
-//	newTheatre.setForceType(land);
-//	newTheatre.setFuelSupplies(100.0);
-//	newTheatre.setLocation(province->getNum());
-//	newTheatre.setLocationContinent(continents[province->getNum()]);
-//	newTheatre.setName(province->getName() + " HQ");
-//	return newTheatre;
-//}
-
-
 void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const map<int, int>& leaderIDMap)
 {
 	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
@@ -1284,57 +1150,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				armyItr->undoPracticalAddition(itr->second->getPracticals());
 			}
 		}
-
-		//// Create a theatre in the capital
-		//HoI3Province* capProv = NULL;
-		//for (vector<HoI3Province>::iterator pitr = provinces.begin(); pitr != provinces.end(); ++pitr)
-		//{
-		//	if (pitr->getNum() == itr->getCapital())
-		//	{
-		//		capProv = &(*pitr);
-		//		break;
-		//	}
-		//}
-		//if (!capProv)
-		//	log("Error: no capital for country %s, can't generate theatres!\n", itr->getTag().c_str());
-		//else
-		//{
-		//	HoI3RegGroup theatre = createTheatre(capProv);
-		//	itr->addTheatre(theatre);
-		//	vector<int> provs = itr->getProvinces();
-		//	if (provs.size() > 100)
-		//	{
-		//		// need more theatres - find the least-militant province on each continent
-		//		string capCont = continents[capProv->getNum()];
-		//		map<string, pair<HoI3Province*, double> > theatres;
-		//		theatres[capCont] = pair<HoI3Province*, double>(capProv, 0.0);
-		//		for (vector<int>::iterator pitr = provs.begin(); pitr != provs.end(); ++pitr)
-		//		{
-		//			string pCont = continents[provinces[*pitr].getNum()];
-		//			if (pCont == capCont)
-		//				continue;
-		//			else
-		//			{
-		//				map<string, pair<HoI3Province*, double> >::iterator titr = theatres.find(pCont);
-		//				if (titr == theatres.end() || provinces[*pitr].getAvgMil() < titr->second.second)
-		//				{
-		//					theatres[pCont] = pair<HoI3Province*, double>(&(provinces[*pitr]), provinces[*pitr].getAvgMil());
-		//				}
-		//			}
-		//		}
-		//		for (map<string, pair<HoI3Province*, double> >::iterator titr = theatres.begin(); titr != theatres.end(); ++titr)
-		//		{
-		//			if (titr->first != capCont)
-		//			{
-		//				HoI3RegGroup theatre = createTheatre(titr->second.first);
-		//				itr->addTheatre(theatre);
-		//			}
-		//		}
-		//	}
-		//}
-
-		// Generate HQ units
-		//itr->second->createArmyHQs(hqBrigade);
 	}
 }
 
