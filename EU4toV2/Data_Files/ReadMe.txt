@@ -58,6 +58,7 @@ Fliptoy			- Data Files
 LowTartare		- Data Files
 Kasemacher		- Data Files
 larjak			- Data Files
+Tehfailure		- data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics
