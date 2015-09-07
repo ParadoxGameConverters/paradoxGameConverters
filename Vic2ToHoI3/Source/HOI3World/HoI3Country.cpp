@@ -508,7 +508,14 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	}
 	else
 	{
-		civil_law = "limited_restrictions";
+		if (nationalUnity > 50.0)
+		{
+			civil_law = "limited_restrictions";
+		}
+		else
+		{
+			civil_law = "open_society";
+		}
 	}
 
 	// conscription law - everyone starts with volunteer armies
@@ -519,13 +526,21 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 
 	// educational investment law - from educational spending
 	if (srcCountry->getEducationSpending() > 0.90)
+	{
 		educational_investment_law = "big_education_investment";
+	}
 	else if (srcCountry->getEducationSpending() > 0.70)
+	{
 		educational_investment_law = "medium_large_education_investment";
+	}
 	else if (srcCountry->getEducationSpending() > 0.40)
+	{
 		educational_investment_law = "average_education_investment";
+	}
 	else
+	{
 		educational_investment_law = "minimal_education_investment";
+	}
 
 	// industrial policy laws - everyone starts with consumer product orientation
 	industrial_policy_laws = "consumer_product_orientation";
