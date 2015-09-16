@@ -100,21 +100,25 @@ V2Country::V2Country(Object* obj)
 		}
 	}
 
-	vector<Object*> partyObj = obj->getValue("ruling_party");
+	activeParties.clear();
+	vector<Object*> partyObj = obj->getValue("active_party");
+	for (auto party: partyObj)
+	{
+		activeParties.push_back(atoi(party->getLeaf().c_str()));
+	}
+
+	partyObj = obj->getValue("ruling_party");
 	if (partyObj.size() > 0)
 	{
 		rulingPartyId = atoi(partyObj[0]->getLeaf().c_str()); // Numerical ID
 	}
+	else if (activeParties.size() > 0)
+	{
+		rulingPartyId = activeParties[0];
+	}
 	else
 	{
 		rulingPartyId = 0; // Bad value. For Rebel faction.
-	}
-
-	activeParties.clear();
-	partyObj = obj->getValue("active_party");
-	for (auto party: partyObj)
-	{
-		activeParties.push_back(atoi(party->getLeaf().c_str()));
 	}
 
 	// Read spending
