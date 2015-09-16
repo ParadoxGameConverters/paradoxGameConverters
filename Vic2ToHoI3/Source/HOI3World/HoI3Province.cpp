@@ -35,7 +35,6 @@ using namespace std;
 
 HoI3Province::HoI3Province(string _filename)
 {
-	srcProvince			= NULL;
 	filename				= _filename;
 	coastal				= false;
 	num					= 0;
@@ -57,9 +56,6 @@ HoI3Province::HoI3Province(string _filename)
 	manpower = 0.0;
 	leadership = 0.0;
 	cores.clear();
-	landConnection		= false;
-	sameContinent		= false;
-	terrain				= "";
 
 	int slash		= filename.find_last_of("\\");
 	int numDigits	= filename.find_first_of("-") - slash - 2;
@@ -133,10 +129,6 @@ HoI3Province::HoI3Province(string _filename)
 		else if ((*itr)->getKey() == "add_core")
 		{
 			cores.push_back((*itr)->getLeaf());
-		}
-		else if ((*itr)->getKey() == "terrain")
-		{
-			terrain = (*itr)->getLeaf();
 		}
 		else
 		{
@@ -227,10 +219,6 @@ void HoI3Province::output() const
 	fclose(output);
 }
 
-void HoI3Province::outputUnits(FILE* output) const
-{
-}
-
 
 void HoI3Province::convertFromOldProvince(const V2Province* oldProvince)
 {
@@ -303,7 +291,7 @@ static string CardinalToOrdinal(int cardinal)
 
 void HoI3Province::requireNavalBase(int _min)
 {
-	if (coastal && !is_blacklisted_port)
+	if (coastal)
 	{
 		naval_base = max(naval_base, _min);
 	}
