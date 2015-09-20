@@ -671,10 +671,11 @@ void HoI3Country::initFromHistory()
 
 void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap)
 {
+	double leftoverManpower = 0.0;
 	vector<V2State> states = srcCountry->getStates();
 	for (auto stateItr: states)
 	{
-		double manpower = 0.0;
+		double stateManpower = 0.0;
 		for (auto srcProvinceItr: stateItr.provinces)
 		{
 			auto itr = inverseProvinceMap.find(srcProvinceItr);
@@ -683,7 +684,7 @@ void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap
 				auto provinceItr = provinces.find(dstProvinceNum);
 				if (provinceItr != provinces.end())
 				{
-					manpower += provinceItr->second->getManpower();
+					stateManpower += provinceItr->second->getManpower();
 					provinceItr->second->setManpower(0.0);
 				}
 			}
@@ -696,10 +697,24 @@ void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap
 				auto provinceItr = provinces.find(itr->second[0]);
 				if (provinceItr != provinces.end())
 				{
-					provinceItr->second->setManpower(manpower);
+					int intValue = static_cast<int>(stateManpower * 4);
+					double discreteManpower = intValue / 4.0;
+					provinceItr->second->setManpower(discreteManpower);
+					leftoverManpower += (stateManpower - discreteManpower);
 				}
 			}
 		}
+	}
+
+	if (provinces.size() > 0)
+	{
+		auto provinceItr = provinces.find(capital);
+		if (provinceItr == provinces.end())
+		{
+			provinceItr = provinces.begin();
+		}
+		leftoverManpower += provinceItr->second->getManpower();
+		provinceItr->second->setManpower(leftoverManpower);
 	}
 }
 
