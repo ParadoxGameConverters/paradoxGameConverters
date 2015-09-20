@@ -132,13 +132,13 @@
                 <name>squareroot</name>
                 <friendlyName>Square Root</friendlyName>
                 <description>sqrt(soldiers + farmers/4 + labourers/4 + craftsmen/4) * factor</description>
-                <isDefault>false</isDefault>
+                <isDefault>true</isDefault>
               </entryOption>
               <entryOption>
                 <name>linear</name>
                 <friendlyName>Linear</friendlyName>
                 <description>(soldiers + farmers/4 + labourers/4 + craftsmen/4) * factor</description>
-                <isDefault>true</isDefault>
+                <isDefault>false</isDefault>
               </entryOption>
 			  <entryOption>
                 <name>no</name>
@@ -151,11 +151,11 @@
 		  <preference>
             <name>manpower_factor</name>
             <friendlyName>Manpower Factor</friendlyName>
-            <description>used for manpower conversion</description>
+            <description>used for adjusting manpower conversion</description>
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
-            <value>0.000008</value>
-            <minValue>0.000001</minValue>
-            <maxValue>1</maxValue>
+            <value>1.0</value>
+            <minValue>0.01</minValue>
+            <maxValue>10.0</maxValue>
           </preference>
 		  <preference>
             <name>leadership_conversion</name>
