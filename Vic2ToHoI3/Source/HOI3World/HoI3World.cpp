@@ -626,14 +626,14 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 						+ (*vitr)->getPopulation("farmers") * 0.25; // Conscripts
 					if (Configuration::getManpowerConversion() == "linear")
 					{
-						newManpower *= Configuration::getManpowerFactor() / mitr->second.provinces.size();
+						newManpower *= 0.0000037 * Configuration::getManpowerFactor() / mitr->second.provinces.size();
 						newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 						provinces[destNum]->setManpower(newManpower);
 					}
 					else if (Configuration::getManpowerConversion() == "squareroot")
 					{
 						newManpower = sqrt(newManpower);
-						newManpower *= Configuration::getManpowerFactor() / mitr->second.provinces.size();
+						newManpower *= 0.0009 * Configuration::getManpowerFactor() / mitr->second.provinces.size();
 						newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
 						provinces[destNum]->setManpower(newManpower);
 					}

@@ -46,7 +46,7 @@ configuration =
 	#	"no"
 	#	Default: "linear"
 	manpower_conversion = "linear"
-	manpower_factor = 0.000008
+	manpower_factor = 1.0
 
 	# Leadership Conversion: Set to "no" if you want to use the original HoI3 leadership values. Options are:
 	#	"squareroot": sqrt(officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor
