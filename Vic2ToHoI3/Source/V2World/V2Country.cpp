@@ -247,6 +247,52 @@ V2Country::V2Country(Object* obj)
 		V2Army* navy = new V2Army(*itr);
 		armies.push_back(navy);
 	}
+
+	// read in states
+	int count = 0;
+	vector<Object*> statesObj = obj->getValue("state"); // each state in the country
+	for (auto statesItr : statesObj)
+	{
+		V2State newState;
+		// get the provinces in the state
+		vector<Object*> provinceObj = statesItr[0].getValue("provinces");
+		if (provinceObj.size() > 0)
+		{
+			vector<string> provinceIDs = provinceObj[0]->getTokens();
+			for (auto provinceItr: provinceIDs)
+			{
+				newState.provinces.push_back(atoi(provinceItr.c_str()));
+			}
+		}
+
+		// count the employees in the state (for factory conversion)
+		//vector<Object*> buildingsObj = statesItr[0].getValue("state_buildings"); // each factory in the state
+		//for (auto buildingsItr : buildingsObj)
+		//{
+		//	vector<Object*> employmentObj = buildingsItr[0].getValue("employment"); // each employment entry in the factory.
+		//	for (auto employmentItr : employmentObj)
+		//	{
+		//		vector<Object*> employeesObj = employmentItr[0].getValue("employees"); // each employee entry in employment
+		//		for (auto employeesItr : employeesObj)
+		//		{
+		//			vector<Object*> employeeObj = employeesItr[0].getLeaves(); // each employee object in employees
+		//			for (auto employeeItr : employeeObj)
+		//			{
+		//				// this should work, except that the employee object is blank. I suspect more parser updates are in our future
+		//				vector<Object*> countObj = employeeItr[0].getValue("count");
+		//				if (countObj.size() > 0)
+		//				{
+		//					count += atoi(countObj[0]->getLeaf().c_str());
+		//				}
+
+		//				//something where you get the pop type and count total clerks and total craftsmen differently
+		//			}
+		//		}
+		//	}
+		//}
+
+		states.push_back(newState);
+	}
 }
 
 
@@ -284,10 +330,10 @@ void V2Country::eatCountry(V2Country* target)
 	if (target->provinces.size() > 0)
 	{
 		// acquire target's provinces
-		for (unsigned int j = 0; j < target->provinces.size(); j++)
+		for (auto provinceItr: target->provinces)
 		{
-			addProvince(target->provinces[j]);
-			target->provinces[j]->setOwner(this);
+			addProvince(provinceItr.first, provinceItr.second);
+			provinceItr.second->setOwner(this);
 		}
 
 		// acquire target's armies, navies, admirals, and generals

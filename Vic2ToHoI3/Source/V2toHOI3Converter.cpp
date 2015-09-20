@@ -42,6 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 {
+	LOG(LogLevel::Info) << "Converter version 0.8C";
 	Object*	obj;					// generic object
 
 	Configuration::getInstance();
@@ -335,6 +336,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap, portraitMap, cultureMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
+	destWorld.consolidateManpower(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Converting techs";

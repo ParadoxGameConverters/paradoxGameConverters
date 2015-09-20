@@ -54,6 +54,7 @@ class HoI3Province
 		bool		isLand()			const { return is_land; }
 		int		getAirBase()	const { return air_base; }
 		int		getNavalBase()	const { return naval_base; }
+		double	getManpower()	const { return manpower; }
 
 
 		void		requireNavalBase(int min);

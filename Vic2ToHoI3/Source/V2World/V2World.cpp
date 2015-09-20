@@ -111,7 +111,7 @@ V2World::V2World(Object* obj)
 		map<string, V2Country*>::iterator j = countries.find(i->second->getOwnerString());
 		if (j != countries.end())
 		{
-			j->second->addProvince(i->second);
+			j->second->addProvince(i->first, i->second);
 			i->second->setOwner(j->second);
 		}
 	}

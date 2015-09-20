@@ -1502,6 +1502,14 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 	}
 }
 
+void HoI3World::consolidateManpower(inverseProvinceMapping& inverseProvinceMap)
+{
+	for (auto countryItr: countries)
+	{
+		countryItr.second->consolidateManpower(inverseProvinceMap);
+	}
+}
+
 
 void HoI3World::convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap)
 {

@@ -31,6 +31,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Date.h"
 #include "V2Inventions.h"
 #include "V2Localisation.h"
+#include "V2Province.h"
 #include <vector>
 #include <set>
 using namespace std;
@@ -44,13 +45,19 @@ class V2Factory;
 struct V2Party;
 
 
+typedef struct V2State
+{
+	vector<int> provinces;
+} V2State;
+
+
 
 class V2Country
 {
 	public:
 		V2Country(Object* obj);
 
-		void								addProvince(V2Province* _province)		{ provinces.push_back(_province); }
+		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
 		void								setColor(Color newColor)					{ color = newColor; }
 		void								setGreatNationRanking(int newRanking)	{ greatNationRanking = newRanking; }
 
@@ -60,7 +67,8 @@ class V2Country
 		void								clearCores();
 
 		map<string, V2Relations*>	getRelations()													const { return relations; }
-		vector<V2Province*>			getProvinces()													const { return provinces; }
+		vector<V2State>				getStates()														const { return states; }
+		map<int, V2Province*>		getProvinces()													const { return provinces; }
 		vector<V2Province*>			getCores()														const { return cores; }
 		string							getTag()															const { return tag; }
 		string							getPrimaryCulture()											const { return primaryCulture; }
@@ -112,7 +120,8 @@ class V2Country
 
 	private:
 		string							tag;
-		vector<V2Province*>			provinces;
+		vector<V2State>				states;
+		map<int, V2Province*>		provinces;	// ID, province
 		vector<V2Province*>			cores;
 		int								capital;
 		string							primaryCulture;

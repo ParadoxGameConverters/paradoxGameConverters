@@ -65,6 +65,7 @@ class HoI3Country
 		void	outputLocalisation(FILE*) const;
 		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitsMap, const cultureMapping& cultureMap);
 		void	initFromHistory();
+		void	consolidateManpower(inverseProvinceMapping& inverseProvinceMap);
 		
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI3Province* _province);
@@ -75,7 +76,7 @@ class HoI3Country
 		HoI3Relations*								getRelations(string withWhom) const;
 		
 		const map<string, HoI3Relations*>&	getRelations() const			{ return relations; }
-		vector<HoI3Province*>					getProvinces() const			{ return provinces; }
+		map<int, HoI3Province*>					getProvinces() const			{ return provinces; }
 		string										getTag() const					{ return tag; }
 		const V2Country*							getSourceCountry() const	{ return srcCountry; }
 		string										getGovernment() const		{ return government; }
@@ -102,7 +103,7 @@ class HoI3Country
 		bool									newCountry;	// true if this country is being added by the converter, i.e. doesn't already exist in HoI3
 
 		string								tag;
-		vector<HoI3Province*>			provinces;
+		map<int, HoI3Province*>			provinces;
 		int									capital;
 		string								commonCountryFile;
 		map<string, int>					technologies;

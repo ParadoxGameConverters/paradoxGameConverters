@@ -235,7 +235,7 @@ void removeEmptyNations(V2World& world)
 	map<string, V2Country*> countries = world.getCountries();	// all V2 countries
 	for (map<string, V2Country*>::iterator i = countries.begin(); i != countries.end(); i++)
 	{
-		vector<V2Province*> provinces	= i->second->getProvinces();	// the provinces for the nation
+		map<int, V2Province*> provinces	= i->second->getProvinces();	// the provinces for the nation
 		vector<V2Province*> cores			= i->second->getCores();		// the cores for the nation
 		if ( (provinces.size()) == 0 && (cores.size() == 0) )
 		{
