@@ -32,6 +32,7 @@ using namespace std;
 
 
 #define VANILLA_INVENTION_UNION(DO) \
+	DO(VANILLA_, null_invention) \
 	/*ARMY_INVENTIONS*/ \
  \
 	/*post_napoleonic_thought*/ \
@@ -696,6 +697,7 @@ enum inventionStatus
 
 
 #define HOD_INVENTION_UNION(DO) \
+	DO(HOD_, null_invention) \
 	/*ARMY_INVENTIONS*/ \
 	\
 	/*post_napoleonic_thought*/ \
