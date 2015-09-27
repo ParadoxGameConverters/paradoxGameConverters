@@ -679,13 +679,16 @@ void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap
 		for (auto srcProvinceItr: stateItr.provinces)
 		{
 			auto itr = inverseProvinceMap.find(srcProvinceItr);
-			for (auto dstProvinceNum: itr->second)
+			if (itr != inverseProvinceMap.end())
 			{
-				auto provinceItr = provinces.find(dstProvinceNum);
-				if (provinceItr != provinces.end())
+				for (auto dstProvinceNum: itr->second)
 				{
-					stateManpower += provinceItr->second->getManpower();
-					provinceItr->second->setManpower(0.0);
+					auto provinceItr = provinces.find(dstProvinceNum);
+					if (provinceItr != provinces.end())
+					{
+						stateManpower += provinceItr->second->getManpower();
+						provinceItr->second->setManpower(0.0);
+					}
 				}
 			}
 		}
