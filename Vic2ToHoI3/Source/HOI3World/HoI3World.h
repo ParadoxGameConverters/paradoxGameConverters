@@ -32,8 +32,8 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 class HoI3World {
 	public:
-		HoI3World();
-		void createProvinceFiles(const V2World& sourceWorld, const provinceMapping& provinceMap);
+		HoI3World(const provinceMapping& provinceMap);
+		void				createProvinceFiles(const V2World& sourceWorld, const provinceMapping& provinceMap);
 		void				convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap);
 		void				convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap);
 		void				convertCapitals(const V2World &sourceWorld, provinceMapping provinceMap);
@@ -53,7 +53,8 @@ private:
 		void					getProvinceLocalizations(string file);
 		void					checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName);
 		void					factionSatellites();
-		vector<int>				getPortProvinces(vector<int> locationCandidates);
+		vector<int>			getPortProvinces(vector<int> locationCandidates);
+		void					checkAllProvincesMapped(const provinceMapping& provinceMap);
 
 		map<int, HoI3Province*>	provinces;
 		map<string, HoI3Country*>		countries;

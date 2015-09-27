@@ -50,7 +50,7 @@ typedef struct fileWithCreateTime
 } fileWithCreateTime;
 
 
-HoI3World::HoI3World()
+HoI3World::HoI3World(const provinceMapping& provinceMap)
 {
 	LOG(LogLevel::Info) << "Importing provinces";
 
@@ -123,6 +123,7 @@ HoI3World::HoI3World()
 			directories.pop_front();
 		}
 	}
+	checkAllProvincesMapped(provinceMap);
 
 	// determine whether each province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise HoI3 crashes)
@@ -1680,6 +1681,19 @@ void HoI3World::copyFlags(const V2World &sourceWorld, CountryMapping countryMap)
 				std::string destFlagPath = outputFlagFolder + '\\' + HoI3Tag + ".tga";
 				WinUtils::TryCopyFile(sourceFlagPath, destFlagPath);
 			}
+		}
+	}
+}
+
+
+void HoI3World::checkAllProvincesMapped(const provinceMapping& provinceMap)
+{
+	for (map<int, HoI3Province*>::const_iterator i = provinces.begin(); i != provinces.end(); i++)
+	{
+		provinceMapping::const_iterator j = provinceMap.find(i->first);
+		if (j == provinceMap.end())
+		{
+			LOG(LogLevel::Warning) << "No mapping for HoI3 province " << i->first;
 		}
 	}
 }

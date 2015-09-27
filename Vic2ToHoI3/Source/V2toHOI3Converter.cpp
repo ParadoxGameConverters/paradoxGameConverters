@@ -232,10 +232,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		exit(-1);
 	}
 	mergeNations(sourceWorld, obj);
-	
-	// Parse HoI3 data files
-	LOG(LogLevel::Info) << "Parsing HoI3 data";
-	HoI3World destWorld;
 
 	// Parse province mappings
 	LOG(LogLevel::Info) << "Parsing province mappings";
@@ -250,6 +246,10 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	resettableMap				resettableProvinces;
 	initProvinceMap(obj, provinceMap, inverseProvinceMap, resettableProvinces);
 	sourceWorld.checkAllProvincesMapped(inverseProvinceMap);
+
+	// Parse HoI3 data files
+	LOG(LogLevel::Info) << "Parsing HoI3 data";
+	HoI3World destWorld(provinceMap);
 
 	// Get country mappings
 	CountryMapping countryMap;

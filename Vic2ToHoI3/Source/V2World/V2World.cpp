@@ -187,7 +187,7 @@ void V2World::checkAllProvincesMapped(const inverseProvinceMapping& inverseProvi
 		inverseProvinceMapping::const_iterator j = inverseProvinceMap.find(i->first);
 		if (j == inverseProvinceMap.end())
 		{
-			LOG(LogLevel::Warning) << "No mapping for province " << i->first;
+			LOG(LogLevel::Warning) << "No mapping for Vic2 province " << i->first;
 		}
 	}
 }
