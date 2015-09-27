@@ -166,19 +166,19 @@ void HoI3Province::output() const
 	}
 	if (metal > 0.0)
 	{
-		fprintf_s(output, "metal = %f\n", metal);
+		fprintf_s(output, "metal = %.2f\n", metal);
 	}
 	if (energy > 0.0)
 	{
-		fprintf_s(output, "energy = %f\n", energy);
+		fprintf_s(output, "energy = %.2f\n", energy);
 	}
 	if (rare_materials > 0.0)
 	{
-		fprintf_s(output, "rare_materials = %f\n", rare_materials);
+		fprintf_s(output, "rare_materials = %.2f\n", rare_materials);
 	}
 	if (oil > 0.0)
 	{
-		fprintf_s(output, "crude_oil = %f\n", oil);
+		fprintf_s(output, "crude_oil = %.2f\n", oil);
 	}
 	if (industry > 0)
 	{
@@ -210,11 +210,11 @@ void HoI3Province::output() const
 	}
 	if (manpower > 0.0)
 	{
-		fprintf_s(output, "manpower = %f\n", manpower);
+		fprintf_s(output, "manpower = %.2f\n", manpower);
 	}
 	if (leadership > 0.0)
 	{
-		fprintf_s(output, "leadership = %f\n", leadership);
+		fprintf_s(output, "leadership = %.2f\n", leadership);
 	}
 	fclose(output);
 }

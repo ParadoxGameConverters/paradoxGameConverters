@@ -54,7 +54,7 @@ void HoI3Minister::output(FILE * output)
 	fprintf(output, "\t%d = {\n", ID);
 	fprintf(output, "\t\tname = \"%s\"\n", name.c_str());
 	fprintf(output, "\t\tideology = %s\n", ideology.c_str());
-	fprintf(output, "\t\tloyalty = %f\n", loyalty);
+	fprintf(output, "\t\tloyalty = %.2f\n", loyalty);
 	fprintf(output, "\t\tpicture = %s\n", picture.c_str());
 	for (auto role: roles)
 	{

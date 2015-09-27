@@ -39,8 +39,8 @@ void HoI3Alignment::output(FILE* out)
 	fprintf(out, "\t{\n");
 	fprintf(out, "\t\tposition=\n");
 	fprintf(out, "\t\t{\n");
-	fprintf(out, "\t\t\tx=%f\n", X);
-	fprintf(out, "\t\t\ty=%f\n", Y);
+	fprintf(out, "\t\t\tx=%.2f\n", X);
+	fprintf(out, "\t\t\ty=%.2f\n", Y);
 	fprintf(out, "\t\t}\n");
 	fprintf(out, "\t}\n");
 }

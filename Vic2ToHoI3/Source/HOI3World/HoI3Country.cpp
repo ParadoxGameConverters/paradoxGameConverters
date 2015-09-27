@@ -145,9 +145,9 @@ void HoI3Country::output() const
 	{
 		fprintf(output, "join_faction = %s\n", faction.c_str());
 	}
-	fprintf(output, "alignment = { x = %f y = %f }\n", alignment.get2DX(), alignment.get2DY());
-	fprintf(output, "neutrality = %f\n", neutrality);
-	fprintf(output, "national_unity = %f\n", nationalUnity);
+	fprintf(output, "alignment = { x = %.2f y = %.2f }\n", alignment.get2DX(), alignment.get2DY());
+	fprintf(output, "neutrality = %.2f\n", neutrality);
+	fprintf(output, "national_unity = %.2f\n", nationalUnity);
 
 	fprintf(output, "civil_law = %s\n", civil_law.c_str());
 	fprintf(output, "conscription_law = %s\n", conscription_law.c_str());
@@ -298,7 +298,7 @@ void HoI3Country::outputPracticals(FILE* output) const
 	{
 		if (itr->second > 0.0)
 		{
-			fprintf(output, "%s = %f\n", itr->first.c_str(), min(20.0, itr->second));
+			fprintf(output, "%s = %.2f\n", itr->first.c_str(), min(20.0, itr->second));
 		}
 	}
 }
