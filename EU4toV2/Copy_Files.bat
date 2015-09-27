@@ -1,4 +1,3 @@
-copy "Data_Files\changelog.txt" "release\changelog.txt"
 copy "Data_Files\configuration.txt" "release\configuration.txt"
 copy "Data_Files\readme.txt" "release\readme.txt"
 copy "Data_Files\merge_nations.txt" "release\merge_nations.txt"
@@ -20,6 +19,7 @@ copy "Data_Files\ck2titlemap.txt" "release\ck2titlemap.txt"
 copy "Data_Files\port_blacklist.txt" "release\port_blacklist.txt"
 copy "Data_Files\port_whitelist.txt" "release\port_whitelist.txt"
 copy "Data_Files\minorityPops.txt" "release\minorityPops.txt"
+copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 
 del release\changelog.txt
 git log --oneline --decorate >> release/log.txt
