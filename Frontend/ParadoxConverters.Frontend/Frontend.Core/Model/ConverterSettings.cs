@@ -102,7 +102,7 @@ namespace Frontend.Core.Model
 
         public IRequiredFile Faq
         {
-            get { return (IRequiredFile) RequiredItems.First(f => f.InternalTagName.Equals("faq")); }
+            get { return (IRequiredFile) RequiredItems.FirstOrDefault(f => f.InternalTagName.Equals("faq")); }
         }
 
         public IRequiredFile Log
