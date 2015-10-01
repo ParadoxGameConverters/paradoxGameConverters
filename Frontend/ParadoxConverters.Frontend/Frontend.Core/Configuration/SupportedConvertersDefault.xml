@@ -160,6 +160,22 @@ tag vs internalTag:
             </alternative>
           </alternatives>
         </requiredFile>
+        
+        <requiredFile>
+          <tag>faq</tag>
+          <internalTag>faq</internalTag>
+          <friendlyName>faq</friendlyName>
+          <description>The faq .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>EU4ToVic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>FAQ.txt</predefinedFileName>
+        </requiredFile>
 
         <!--<requiredFolder>
         <tag>EU4ModDirectory</tag>
