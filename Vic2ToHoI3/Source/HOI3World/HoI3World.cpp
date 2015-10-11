@@ -647,14 +647,14 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 						+ (*vitr)->getLiteracyWeightedPopulation("aristocrats") * 0.25;
 					if (Configuration::getLeadershipConversion() == "linear")
 					{
-						newLeadership *= Configuration::getLeadershipFactor() / mitr->second.provinces.size();
+						newLeadership *= 0.0000035 * Configuration::getLeadershipFactor() / mitr->second.provinces.size();
 						newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
 						provinces[destNum]->setLeadership(newLeadership);
 					}
 					else if (Configuration::getLeadershipConversion() == "squareroot")
 					{
 						newLeadership = sqrt(newLeadership);
-						newLeadership *= Configuration::getLeadershipFactor() / mitr->second.provinces.size();
+						newLeadership *= 0.00034 * Configuration::getLeadershipFactor() / mitr->second.provinces.size();
 						newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
 						provinces[destNum]->setLeadership(newLeadership);
 					}
@@ -1503,12 +1503,20 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 	}
 }
 
-void HoI3World::consolidateManpower(inverseProvinceMapping& inverseProvinceMap)
+void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap)
 {
+	double totalManpower		= 0.0;
+	double totalLeadership	= 0.0;
 	for (auto countryItr: countries)
 	{
-		countryItr.second->consolidateManpower(inverseProvinceMap);
+		countryItr.second->consolidateProvinceItems(inverseProvinceMap, totalManpower, totalLeadership);
 	}
+
+	double suggestedManpowerConst		= 1651.4 * Configuration::getManpowerFactor()	/ totalManpower;
+	LOG(LogLevel::Debug) << "Total manpower was " << totalManpower << ". Changing the manpower factor to " << suggestedManpowerConst << " would match vanilla HoI3.";
+
+	double suggestedLeadershipConst	=  212.0 * Configuration::getLeadershipFactor() / totalLeadership;
+	LOG(LogLevel::Debug) << "Total leadership was " << totalLeadership << ". Changing the leadership factor to " << suggestedLeadershipConst << " would match vanilla HoI3.";
 }
 
 

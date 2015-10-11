@@ -669,13 +669,15 @@ void HoI3Country::initFromHistory()
 }
 
 
-void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap)
+void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership)
 {
-	double leftoverManpower = 0.0;
+	double leftoverManpower		= 0.0;
+	double leftoverLeadership	= 0.0;
 	vector<V2State> states = srcCountry->getStates();
 	for (auto stateItr: states)
 	{
-		double stateManpower = 0.0;
+		double stateManpower		= 0.0;
+		double stateLeadership	= 0.0;
 		for (auto srcProvinceItr: stateItr.provinces)
 		{
 			auto itr = inverseProvinceMap.find(srcProvinceItr);
@@ -688,10 +690,16 @@ void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap
 					{
 						stateManpower += provinceItr->second->getManpower();
 						provinceItr->second->setManpower(0.0);
+
+						stateLeadership += provinceItr->second->getLeadership();
+						provinceItr->second->setLeadership(0.0);
 					}
 				}
 			}
 		}
+		totalManpower		+= stateManpower;
+		totalLeadership	+= stateLeadership;
+
 		if (stateItr.provinces.size() > 0)
 		{
 			auto itr = inverseProvinceMap.find(stateItr.provinces[0]);
@@ -700,10 +708,15 @@ void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap
 				auto provinceItr = provinces.find(itr->second[0]);
 				if (provinceItr != provinces.end())
 				{
-					int intValue = static_cast<int>(stateManpower * 4);
-					double discreteManpower = intValue / 4.0;
+					int intManpower = static_cast<int>(stateManpower * 4);
+					double discreteManpower = intManpower / 4.0;
 					provinceItr->second->setManpower(discreteManpower);
 					leftoverManpower += (stateManpower - discreteManpower);
+
+					int intLeadership = static_cast<int>(stateLeadership * 20);
+					double discreteLeadership = intLeadership / 20.0;
+					provinceItr->second->setLeadership(discreteLeadership);
+					leftoverLeadership += (stateLeadership - discreteLeadership);
 				}
 			}
 		}
@@ -718,6 +731,9 @@ void HoI3Country::consolidateManpower(inverseProvinceMapping& inverseProvinceMap
 		}
 		leftoverManpower += provinceItr->second->getManpower();
 		provinceItr->second->setManpower(leftoverManpower);
+
+		leftoverLeadership += provinceItr->second->getLeadership();
+		provinceItr->second->setLeadership(leftoverLeadership);
 	}
 }
 

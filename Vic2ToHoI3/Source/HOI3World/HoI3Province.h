@@ -47,14 +47,15 @@ class HoI3Province
 		void setManpower(double newManpower)		{ manpower = newManpower; }
 		void setLeadership(double newLeadership)	{ leadership = newLeadership; }
 
-		string	getOwner()		const { return owner; }
-		int		getNum()			const { return num; }
-		string	getName()		const { return name; }
-		bool		hasNavalBase()	const { return (naval_base > 0); }
-		bool		isLand()			const { return is_land; }
-		int		getAirBase()	const { return air_base; }
-		int		getNavalBase()	const { return naval_base; }
-		double	getManpower()	const { return manpower; }
+		string	getOwner()			const { return owner; }
+		int		getNum()				const { return num; }
+		string	getName()			const { return name; }
+		bool		hasNavalBase()		const { return (naval_base > 0); }
+		bool		isLand()				const { return is_land; }
+		int		getAirBase()		const { return air_base; }
+		int		getNavalBase()		const { return naval_base; }
+		double	getManpower()		const { return manpower; }
+		double	getLeadership()	const { return leadership; }
 
 
 		void		requireNavalBase(int min);

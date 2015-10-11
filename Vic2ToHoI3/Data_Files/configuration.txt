@@ -53,8 +53,8 @@ configuration =
 	#	"linear": (officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor
 	#	"no"
 	#	Default: "no"
-	leadership_conversion = "no"
-	leadership_factor = 0.00001
+	leadership_conversion = "linear"
+	leadership_factor = 1.0
 
 	# This value affects how much the POP's literacy affects the weighting of the educated classes in leadership and IC
 	#  conversion calculations

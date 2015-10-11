@@ -43,7 +43,7 @@ class HoI3World {
 		//XXX: void				convertLeaders(V2World sourceWorld, map<int,int>& leaderIDMap);
 		void				convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const map<int, int>& leaderIDMap);
 		void				configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap);
-		void				consolidateManpower(inverseProvinceMapping& inverseProvinceMap);
+		void				consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap);
 
 		map<string, HoI3Country*>	getPotentialCountries()	const;
 
