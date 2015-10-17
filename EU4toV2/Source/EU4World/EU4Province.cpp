@@ -538,10 +538,6 @@ void EU4Province::determineProvinceWeight()
 		goods_produced_perc_mod += 0.05;
 	}
 
-	/*
-	double goods_produced = (baseTax * 0.2) + manu_gp_mod + goods_produced_perc_mod + 0.03;
-	*/
-	
 	double goods_produced = (baseProd * 0.2) + manu_gp_mod + goods_produced_perc_mod + 0.03;
 
 	// idea effects
@@ -586,11 +582,7 @@ void EU4Province::determineProvinceWeight()
 	provMPWeight			= manpower_weight;
 	provTradeGoodWeight	= trade_goods_weight;
 
-<<<<<<< .merge_file_a11072
-	totalWeight = building_weight + ((2 * baseTax) + manpower_weight + trade_goods_weight + production_income + total_tx);
-=======
 	totalWeight = building_weight  + ((2 * baseTax) + (2 * baseProd) + (2 * manpower) + manpower_weight + trade_goods_weight + production_income + total_tx);
->>>>>>> .merge_file_a00868
 
 	if (owner == NULL)
 	{
@@ -647,89 +639,6 @@ double EU4Province::getTradeGoodPrice() const
 
 	if (tradeGoods == "chinaware")
 	{
-<<<<<<< .merge_file_a11072
-		tradeGoodsPrice = 9.66;
-	}
-	else if (tradeGoods == "grain")
-	{
-		tradeGoodsPrice = 5.0;
-	}
-	else if (tradeGoods == "fish")
-	{
-		tradeGoodsPrice = 5.00;
-	}
-	else if (tradeGoods == "tabacco")
-	{
-		tradeGoodsPrice = 7.82;
-	}
-	else if (tradeGoods == "iron")
-	{
-		tradeGoodsPrice = 5.94;
-	}
-	else if (tradeGoods == "copper")
-	{
-		tradeGoodsPrice = 5.0;
-	}
-	else if (tradeGoods == "cloth")
-	{
-		tradeGoodsPrice = 5.00;
-	}
-	else if (tradeGoods == "slaves")
-	{
-		tradeGoodsPrice = 2.91;
-	}
-	else if (tradeGoods == "salt")
-	{
-		tradeGoodsPrice = 3.30;
-	}
-	else if (tradeGoods == "gold")
-	{
-		tradeGoodsPrice = 4.0;
-	}
-	else if (tradeGoods == "fur")
-	{
-		tradeGoodsPrice = 7.03;
-	}
-	else if (tradeGoods == "sugar")
-	{
-		tradeGoodsPrice = 3.40;
-	}
-	else if (tradeGoods == "naval_supplies")
-	{
-		tradeGoodsPrice = 5.0;
-	}
-	else if (tradeGoods == "tea")
-	{
-		tradeGoodsPrice = 6.88;
-	}
-	else if (tradeGoods == "coffee")
-	{
-		tradeGoodsPrice = 9.58;
-	}
-	else if (tradeGoods == "spices")
-	{
-		tradeGoodsPrice = 7.91;
-	}
-	else if (tradeGoods == "wine")
-	{
-		tradeGoodsPrice = 5.18;
-	}
-	else if (tradeGoods == "cocoa")
-	{
-		tradeGoodsPrice = 7.50;
-	}
-	else if (tradeGoods == "ivory")
-	{
-		tradeGoodsPrice = 4.32;
-	}
-	else if (tradeGoods == "wool")
-	{
-		tradeGoodsPrice = 2.26;
-	}
-	else if (tradeGoods == "cotton")
-	{
-		tradeGoodsPrice = 3.96;
-=======
 		tradeGoodsPrice = 3;
 	}
 	else if (tradeGoods == "grain")
@@ -823,7 +732,6 @@ double EU4Province::getTradeGoodPrice() const
 	else if (tradeGoods == "silk")
 	{
 		tradeGoodsPrice = 4;
->>>>>>> .merge_file_a00868
 	}
 	else
 	{
@@ -1279,11 +1187,7 @@ vector<double> EU4Province::getProvBuildingWeight() const
 		trade_power_eff += 0.5;
 	}*/
 
-<<<<<<< .merge_file_a11072
-	if (hasBuilding("march"))
-=======
 	/*if (hasBuilding("march"))
->>>>>>> .merge_file_a00868
 	{
 		building_weight += 2;
 		manpower_modifier += 75;
@@ -1777,8 +1681,4 @@ vector<double> EU4Province::getProvBuildingWeight() const
 	// 5 building_tx_income, 6 manpower_eff, 7 goods_produced_perc_mod, 8 trade_power 9 trade_value
 	// 10 trade_value_eff, 11 trade_power_eff;
 	return provBuildingWeightVec;
-<<<<<<< .merge_file_a11072
 }
-=======
-}
->>>>>>> .merge_file_a00868
