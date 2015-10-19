@@ -29,6 +29,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include <sstream>
 #include <queue>
+#include <boost/algorithm/string.hpp>
 #include "../Log.h"
 #include "../Configuration.h"
 #include "../Parsers/Parser.h"
@@ -60,12 +61,9 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 
 	tag					= _tag;
 	commonCountryFile	= localisation.convertCountryFileName(_commonCountryFile);
-	int pos = commonCountryFile.find_first_of(":");
-	while (pos != string::npos)
-	{
-		commonCountryFile.replace(pos, 1, ";");
-		pos = commonCountryFile.find_first_of(":");
-	}
+	boost::replace_all(commonCountryFile, ":", ";");
+	boost::trim_left_if(commonCountryFile, boost::is_any_of("/ "));
+	commonCountryFile = "/" + commonCountryFile;
 	parties				= _parties;
 	rulingParty			= "";
 
@@ -1913,7 +1911,7 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 		sort(sortedHomeCandidates.begin(), sortedHomeCandidates.end(), ProvinceRegimentCapacityPredicate);
 		if (sortedHomeCandidates.size() == 0)
 		{
-			LOG(LogLevel::Warning) << "No valid home for a " << tag << RegimentCategoryNames[rc] << " regiment - dissolving regiment to pool";
+			LOG(LogLevel::Warning) << "No valid home for a " << tag << " " << RegimentCategoryNames[rc] << " regiment - dissolving regiment to pool";
 			// all provinces in a given province map have the same owner, so the source home was bad
 			army->getSourceArmy()->blockHomeProvince(eu4Home);
 			return -1;
