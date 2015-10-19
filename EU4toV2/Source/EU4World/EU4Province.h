@@ -89,6 +89,8 @@ class EU4Province {
 
 		int									num;						// the province number
 		double								baseTax;					// the base tax of the province
+		double								baseProd;					// the base production of the province
+		double								manpower;					// the base manpower of the province
 		double								totalWeight;
 		string								ownerString;			// a string with the owner's tag
 		string								provName;
@@ -102,7 +104,6 @@ class EU4Province {
 		vector<EU4PopRatio>				popRatios;				// the population ratios of this province
 		map<string, bool>					buildings;				// the buildings in this province
 
-		double								manpower;
 		string								tradeGoods;
 		int									numV2Provs;
 

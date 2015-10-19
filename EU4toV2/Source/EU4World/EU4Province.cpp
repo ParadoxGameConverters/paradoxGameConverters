@@ -46,6 +46,20 @@ EU4Province::EU4Province(Object* obj) {
 	baseTaxObjs = obj->getValue("base_tax");
 	baseTax = (baseTaxObjs.size() > 0) ? atof(baseTaxObjs[0]->getLeaf().c_str()) : 0.0f;
 
+	vector<Object*> baseProdObjs;			// the object holding the base production
+	baseProdObjs = obj->getValue("base_production");
+	baseProd = (baseProdObjs.size() > 0) ? atof(baseProdObjs[0]->getLeaf().c_str()) : 0.0f;
+
+	vector<Object*> baseManpowerObjs;		// the object holding the base manpower
+	baseManpowerObjs = obj->getValue("base_manpower");
+	manpower = (baseManpowerObjs.size() > 0) ? atof(baseManpowerObjs[0]->getLeaf().c_str()) : 0.0f;
+
+	// for old versions of EU4 (< 1.12), copy tax to production if necessary
+	if (baseProd == 0.0f && baseTax > 0.0f)
+	{
+		baseProd = baseTax;
+	}
+
 	vector<Object*> ownerObjs;				// the object holding the owner
 	ownerObjs = obj->getValue("owner");
 	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();
@@ -171,15 +185,15 @@ EU4Province::EU4Province(Object* obj) {
 		provName = "";
 	}
 
-	vector<Object*> manpowerObj = obj->getValue("manpower");
-	if (manpowerObj.size() > 0)
+	// if we didn't have base manpower (EU4 < 1.12), check for manpower instead
+	if (manpower == 0.0f)
 	{
-		string manpowerStr = manpowerObj[0]->getLeaf();
-		manpower = stod(manpowerStr);
-	}
-	else
-	{
-		manpower = 0.0;
+		vector<Object*> manpowerObj = obj->getValue("manpower");
+		if (manpowerObj.size() > 0)
+		{
+			string manpowerStr = manpowerObj[0]->getLeaf();
+			manpower = stod(manpowerStr);
+		}
 	}
 
 	//LOG(LogLevel::Info) << "Check unique Buildings...";
