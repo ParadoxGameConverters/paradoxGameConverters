@@ -1394,9 +1394,21 @@ void V2World::setupPops(EU4World& sourceWorld)
 
 	//ofstream output_file("Data.csv");
 
+	int popAlgorithm = 0;
+	if (*(sourceWorld.getVersion()) >= EU4Version("1.12.0"))
+	{
+		LOG(LogLevel::Info) << "Using pop conversion algorithm for EU4 versions after 1.12.";
+		popAlgorithm = 2;
+	}
+	else
+	{
+		LOG(LogLevel::Info) << "Using pop conversion algorithm for EU4 versions prior to 1.12.";
+		popAlgorithm = 1;
+	}
+
 	for (map<string, V2Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
-		itr->second->setupPops(popWeightRatio);
+		itr->second->setupPops(popWeightRatio, popAlgorithm);
 	}
 
 	if (Configuration::getConvertPopTotals())

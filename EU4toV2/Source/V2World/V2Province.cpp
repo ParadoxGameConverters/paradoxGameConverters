@@ -367,12 +367,12 @@ void V2Province::addMinorityPop(V2Pop* minorityPop)
 }
 
 
-void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner)
+void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner, int popConversionAlgorithm)
 {
 	// convert pops
 	for (vector<V2Demographic>::const_iterator itr = demographics.begin(); itr != demographics.end(); ++itr)
 	{
-		createPops(*itr, popWeightRatio, _owner);
+		createPops(*itr, popWeightRatio, _owner, popConversionAlgorithm);
 	}
 	combinePops();
 
@@ -453,24 +453,28 @@ void V2Province::doCreatePops(double popWeightRatio, V2Country* _owner)
 	combinePops();
 }
 
-
-void V2Province::createPops(const V2Demographic& demographic, double popWeightRatio, V2Country* _owner)
+// each "point" here represents 0.01% (1 / 10 000) population of this culture-religion pair
+struct V2Province::pop_points
 {
-	const EU4Province*	oldProvince		= demographic.oldProvince;
-	const EU4Country*		oldCountry		= demographic.oldCountry;
+	double craftsmen = 0;
+	double slaves = 0;
+	double soldiers = 0;
+	double artisans = 0;
+	double clergymen = 0;
+	double clerks = 0;
+	double bureaucrats = 0;
+	double officers = 0;
+	double capitalists = 0;
+	double aristocrats = 0;
+};
 
-	// each "point" here represents 0.01% (1 / 10 000) population of this culture-religion pair
-	double craftsmen		= 0;
-	double slaves			= 0;
-	double soldiers		= 0;
-	double artisans		= 0;
-	double clergymen		= 0;
-	double clerks			= 0;
-	double bureaucrats	= 0;
-	double officers		= 0;
-	double capitalists	= 0;
-	double aristocrats	= 0;
-	
+V2Province::pop_points V2Province::getPopPoints_1(const V2Demographic& demographic, double newPopulation, const V2Country* _owner)
+{
+	const EU4Province*	oldProvince = demographic.oldProvince;
+	const EU4Country*		oldCountry = demographic.oldCountry;
+
+	pop_points pts;
+
 	int govBuilding = 0;
 	if (oldProvince->hasBuilding("temple"))
 	{
@@ -575,6 +579,214 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		tradeBuilding = 8;
 	}
 
+	pts.artisans += 400;
+	pts.artisans += productionBuilding * 125;
+
+	pts.soldiers += 100;
+	pts.soldiers += armyBuilding * 45;
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("quantity_ideas") != -1))
+	{
+		pts.soldiers *= 2;
+	}
+
+	pts.officers += 2 * (armyBuilding + 2);
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("quality_ideas") != -1))
+	{
+		pts.officers += (oldCountry->hasNationalIdea("quality_ideas") / 2);
+	}
+
+	pts.clergymen += 95;
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("religious_ideas") != -1))
+	{
+		pts.clergymen += oldCountry->hasNationalIdea("religious_ideas");
+	}
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("innovative_ideas") != -1))
+	{
+		pts.clergymen += oldCountry->hasNationalIdea("innovative_ideas");
+	}
+
+	pts.bureaucrats += 10;
+	pts.bureaucrats += govBuilding * 2;
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("administrative_ideas") != -1))
+	{
+		pts.bureaucrats += oldCountry->hasNationalIdea("administrative_ideas");
+	}
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("expansion_ideas") != -1) && oldProvince->wasColonised())
+	{
+		pts.bureaucrats += oldCountry->hasNationalIdea("expansion_ideas");
+	}
+
+	pts.aristocrats += 7 * (tradeBuilding + 11);
+	if (oldProvince->hasBuilding("farm_estate") ||
+		oldProvince->hasBuilding("plantations")
+		)
+	{
+		pts.aristocrats *= 2;
+	}
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("aristocracy_ideas") != -1))
+	{
+		pts.aristocrats *= 2;
+	}
+
+	if (factories.size() > 0)
+	{
+		double capsPerFactory = 40 + _owner->getNumFactories() * 2;
+		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.ratio;
+		pts.capitalists += (10000 * actualCapitalists) / (demographic.ratio * newPopulation);
+
+		double actualClerks = 181 * factories.size() * demographic.ratio;
+		pts.clerks += (10000 * actualClerks) / (demographic.ratio * newPopulation);
+
+		double actualCraftsmen = 2639 * factories.size() * demographic.ratio;
+		pts.craftsmen += (10000 * actualCraftsmen) / (demographic.ratio * newPopulation);
+	}
+
+	return pts;
+}
+
+V2Province::pop_points V2Province::getPopPoints_2(const V2Demographic& demographic, double newPopulation, const V2Country* _owner)
+{
+	const EU4Province*	oldProvince = demographic.oldProvince;
+	const EU4Country*		oldCountry = demographic.oldCountry;
+
+	pop_points pts;
+
+	int adminBuilding = 0;
+	if (oldProvince->hasBuilding("courthouse"))
+	{
+		adminBuilding = 1;
+	}
+	else if (oldProvince->hasBuilding("town_hall"))
+	{
+		adminBuilding = 2;
+	}
+
+	int taxBuilding = 0;
+	if (oldProvince->hasBuilding("temple"))
+	{
+		taxBuilding = 1;
+	}
+	else if (oldProvince->hasBuilding("cathedral"))
+	{
+		taxBuilding = 2;
+	}
+
+	int manpowerBuilding = 0;
+	if (oldProvince->hasBuilding("barracks"))
+	{
+		manpowerBuilding = 1;
+	}
+	else if (oldProvince->hasBuilding("training_fields"))
+	{
+		manpowerBuilding = 2;
+	}
+
+	int armyBuilding = 0;
+	if (oldProvince->hasBuilding("regimental_camp"))
+	{
+		armyBuilding = 1;
+	}
+	else if (oldProvince->hasBuilding("conscription_center"))
+	{
+		armyBuilding = 2;
+	}
+
+	int productionBuilding = 0;
+	if (oldProvince->hasBuilding("workshop"))
+	{
+		productionBuilding = 1;
+	}
+	else if (oldProvince->hasBuilding("counting_house"))
+	{
+		productionBuilding = 2;
+	}
+
+	int tradeBuilding = 0;
+	if (oldProvince->hasBuilding("marketplace"))
+	{
+		tradeBuilding = 1;
+	}
+	else if (oldProvince->hasBuilding("trade_depot"))
+	{
+		tradeBuilding = 2;
+	}
+	else if (oldProvince->hasBuilding("stock_exchange"))
+	{
+		tradeBuilding = 3;
+	}
+
+	pts.artisans += 400;
+	pts.artisans += productionBuilding * 500;
+
+	pts.soldiers += 100;
+	pts.soldiers += (manpowerBuilding + armyBuilding) * 90;
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("quantity_ideas") != -1))
+	{
+		pts.soldiers *= 2;
+	}
+
+	pts.officers += 4 * (manpowerBuilding + armyBuilding + 2);
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("quality_ideas") != -1))
+	{
+		pts.officers += (oldCountry->hasNationalIdea("quality_ideas") / 2);
+	}
+
+	pts.clergymen += 65;
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("religious_ideas") != -1))
+	{
+		pts.clergymen += oldCountry->hasNationalIdea("religious_ideas");
+	}
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("innovative_ideas") != -1))
+	{
+		pts.clergymen += oldCountry->hasNationalIdea("innovative_ideas");
+	}
+	if (oldProvince->hasBuilding("university"))
+	{
+		pts.clergymen *= 2;
+	}
+
+	pts.bureaucrats += 10;
+	pts.bureaucrats += (adminBuilding + taxBuilding) * 4;
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("administrative_ideas") != -1))
+	{
+		pts.bureaucrats += oldCountry->hasNationalIdea("administrative_ideas");
+	}
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("expansion_ideas") != -1) && oldProvince->wasColonised())
+	{
+		pts.bureaucrats += oldCountry->hasNationalIdea("expansion_ideas");
+	}
+
+	pts.aristocrats += 14 * (tradeBuilding + 6);
+	if (oldProvince->hasBuilding("farm_estate") || oldProvince->hasBuilding("plantations"))
+	{
+		pts.aristocrats *= 2;
+	}
+	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("aristocracy_ideas") != -1))
+	{
+		pts.aristocrats *= 2;
+	}
+
+	if (factories.size() > 0)
+	{
+		double capsPerFactory = 40 + _owner->getNumFactories() * 2;
+		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.ratio;
+		pts.capitalists += (10000 * actualCapitalists) / (demographic.ratio * newPopulation);
+
+		double actualClerks = 181 * factories.size() * demographic.ratio;
+		pts.clerks += (10000 * actualClerks) / (demographic.ratio * newPopulation);
+
+		double actualCraftsmen = 2639 * factories.size() * demographic.ratio;
+		pts.craftsmen += (10000 * actualCraftsmen) / (demographic.ratio * newPopulation);
+	}
+
+	return pts;
+}
+
+void V2Province::createPops(const V2Demographic& demographic, double popWeightRatio, const V2Country* _owner, int popConversionAlgorithm)
+{
+	const EU4Province*	oldProvince		= demographic.oldProvince;
+	const EU4Country*		oldCountry		= demographic.oldCountry;
+
 	long newPopulation = 0;
 	if (Configuration::getConvertPopTotals())
 	{
@@ -600,60 +812,27 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		newPopulation = oldPopulation;
 	}
 
-	artisans += 400;
-	artisans	+= productionBuilding * 125;
-
-	soldiers += 100;
-	soldiers += armyBuilding * 45;
-	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("quantity_ideas") != -1))
+	pop_points pts;
+	switch (popConversionAlgorithm)
 	{
-		soldiers *= 2;
-	}
-
-	officers += 2 * (armyBuilding + 2);
-
-	clergymen += 100;
-
-	bureaucrats += 10;
-	bureaucrats += govBuilding * 2;
-	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("administrative_ideas") != -1))
-	{
-		bureaucrats += oldCountry->hasNationalIdea("administrative_ideas");
-	}
-
-	aristocrats	+= 7 * (tradeBuilding + 11);
-	if (	oldProvince->hasBuilding("farm_estate") ||
-			oldProvince->hasBuilding("plantations")
-		)
-	{
-		aristocrats *= 2;
-	}
-	if ((oldCountry != NULL) && (oldCountry->hasNationalIdea("aristocracy_ideas") != -1))
-	{
-		aristocrats *= 2;
-	}
-	
-	if (factories.size() > 0)
-	{
-		double capsPerFactory = 40 + _owner->getNumFactories() * 2;
-		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.ratio;
-		capitalists +=  (10000 * actualCapitalists) / (demographic.ratio * newPopulation);
-
-		double actualClerks = 181 * factories.size() * demographic.ratio;
-		clerks += (10000 * actualClerks) / (demographic.ratio * newPopulation);
-
-		double actualCraftsmen = 2639 * factories.size() * demographic.ratio;
-		craftsmen += (10000 * actualCraftsmen) / (demographic.ratio * newPopulation);
+	case 1:
+		pts = getPopPoints_1(demographic, newPopulation, _owner);
+		break;
+	case 2:
+		pts = getPopPoints_2(demographic, newPopulation, _owner);
+		break;
+	default:
+		LOG(LogLevel::Error) << "Invalid pop conversion algorithm specified; not generating pops.";
 	}
 
 	// Uncivs cannot have capitalists, clerks, or craftsmen, and get fewer bureaucrats
 	if (!_owner->isCivilized())
 	{
-		capitalists	= 0;
-		clerks		= 0;
-		craftsmen	= 0;
+		pts.capitalists = 0;
+		pts.clerks = 0;
+		pts.craftsmen = 0;
 
-		bureaucrats -= 5;
+		pts.bureaucrats -= 5;
 	}
 
 	int farmers = static_cast<int>(demographic.ratio * newPopulation + 0.5);
@@ -664,65 +843,65 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		V2Pop* slavesPop = new V2Pop("slaves", size,	demographic.slaveCulture, demographic.religion);
 		pops.push_back(slavesPop);
 	}
-	if (soldiers > 0)
+	if (pts.soldiers > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (soldiers / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.soldiers / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* soldiersPop = new V2Pop("soldiers", size, demographic.culture, demographic.religion);
 		pops.push_back(soldiersPop);
 	}
-	if (craftsmen > 0)
+	if (pts.craftsmen > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (craftsmen / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.craftsmen / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* craftsmenPop = new V2Pop("craftsmen", size,	demographic.culture, demographic.religion);
 		pops.push_back(craftsmenPop);
 	}
-	if (artisans > 0)
+	if (pts.artisans > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (artisans / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.artisans / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* artisansPop = new V2Pop("artisans", size, demographic.culture, demographic.religion);
 		pops.push_back(artisansPop);
 	}
-	if (clergymen > 0)
+	if (pts.clergymen > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (clergymen / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.clergymen / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* clergymenPop = new V2Pop("clergymen", size,	demographic.culture, demographic.religion);
 		pops.push_back(clergymenPop);
 	}
-	if (clerks > 0)
+	if (pts.clerks > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (clerks / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.clerks / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* clerksPop = new V2Pop("clerks", size,	demographic.culture, demographic.religion);
 		pops.push_back(clerksPop);
 	}
-	if (bureaucrats > 0)
+	if (pts.bureaucrats > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (bureaucrats / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.bureaucrats / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* bureaucratsPop = new V2Pop("bureaucrats", size, demographic.culture, demographic.religion);
 		pops.push_back(bureaucratsPop);
 	}
-	if (officers > 0)
+	if (pts.officers > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (officers / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.officers / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* officersPop = new V2Pop("officers", size, demographic.culture, demographic.religion);
 		pops.push_back(officersPop);
 	}
-	if (capitalists > 0)
+	if (pts.capitalists > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (capitalists / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.capitalists / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* capitalistsPop = new V2Pop("capitalists", size, demographic.culture, demographic.religion);
 		pops.push_back(capitalistsPop);
 	}
-	if (aristocrats > 0)
+	if (pts.aristocrats > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (aristocrats / 10000) + 0.5);
+		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.aristocrats / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* aristocratsPop = new V2Pop("aristocrats", size, demographic.culture, demographic.religion);
 		pops.push_back(aristocratsPop);

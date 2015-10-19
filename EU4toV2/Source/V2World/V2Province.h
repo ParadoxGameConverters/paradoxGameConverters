@@ -58,7 +58,7 @@ class V2Province
 		void addCore(string);
 		void addOldPop(const V2Pop*);
 		void addMinorityPop(V2Pop*);
-		void doCreatePops(double popWeightRatio, V2Country* _owner);
+		void doCreatePops(double popWeightRatio, V2Country* _owner, int popConversionAlgorithm);
 		void addFactory(V2Factory* factory);
 		void addPopDemographic(V2Demographic d);
 
@@ -97,7 +97,11 @@ class V2Province
 
 	private:
 		void outputUnits(FILE*) const;
-		void createPops(const V2Demographic& demographic, double popWeightRatio, V2Country* _owner);
+
+		struct pop_points;
+		pop_points getPopPoints_1(const V2Demographic& demographic, double newPopulation, const V2Country* _owner); // EU4 1.0-1.11
+		pop_points getPopPoints_2(const V2Demographic& demographic, double newPopulation, const V2Country* _owner); // EU4 1.12 and newer
+		void createPops(const V2Demographic& demographic, double popWeightRatio, const V2Country* _owner, int popConversionAlgorithm);
 		void combinePops();
 		bool growSoldierPop(V2Pop* pop);
 
