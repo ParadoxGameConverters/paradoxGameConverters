@@ -669,15 +669,24 @@ void HoI3Country::initFromHistory()
 }
 
 
-void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership)
+void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry)
 {
+	bool convertManpower		= (Configuration::getManpowerConversion() != "no");
+	bool convertLeadership	= (Configuration::getLeadershipConversion() != "no");
+	bool convertIndustry		= (Configuration::getIcConversion() != "no");
+
 	double leftoverManpower		= 0.0;
 	double leftoverLeadership	= 0.0;
+	double leftoverIndustry		= 0.0;
+
+	V2State capitalState;
+
 	vector<V2State> states = srcCountry->getStates();
 	for (auto stateItr: states)
 	{
 		double stateManpower		= 0.0;
 		double stateLeadership	= 0.0;
+		double stateIndustry		= 0.0;
 		for (auto srcProvinceItr: stateItr.provinces)
 		{
 			auto itr = inverseProvinceMap.find(srcProvinceItr);
@@ -688,17 +697,36 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 					auto provinceItr = provinces.find(dstProvinceNum);
 					if (provinceItr != provinces.end())
 					{
-						stateManpower += provinceItr->second->getManpower();
-						provinceItr->second->setManpower(0.0);
+						if (provinceItr->first == capital)
+						{
+							capitalState = stateItr;
+						}
 
-						stateLeadership += provinceItr->second->getLeadership();
-						provinceItr->second->setLeadership(0.0);
+						if (convertManpower)
+						{
+							stateManpower += provinceItr->second->getManpower();
+							provinceItr->second->setManpower(0.0);
+						}
+
+						if (convertLeadership)
+						{
+							stateLeadership += provinceItr->second->getLeadership();
+							provinceItr->second->setLeadership(0.0);
+						}
+
+						if (convertIndustry)
+						{
+							stateIndustry += provinceItr->second->getRawIndustry();
+							provinceItr->second->setRawIndustry(0.0);
+							provinceItr->second->setActualIndustry(0);
+						}
 					}
 				}
 			}
 		}
 		totalManpower		+= stateManpower;
 		totalLeadership	+= stateLeadership;
+		totalIndustry		+= stateIndustry;
 
 		if (stateItr.provinces.size() > 0)
 		{
@@ -708,16 +736,47 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 				auto provinceItr = provinces.find(itr->second[0]);
 				if (provinceItr != provinces.end())
 				{
-					int intManpower = static_cast<int>(stateManpower * 4);
-					double discreteManpower = intManpower / 4.0;
-					provinceItr->second->setManpower(discreteManpower);
-					leftoverManpower += (stateManpower - discreteManpower);
+					if (convertManpower)
+					{
+						int intManpower = static_cast<int>(stateManpower * 4);
+						double discreteManpower = intManpower / 4.0;
+						provinceItr->second->setManpower(discreteManpower);
+						leftoverManpower += (stateManpower - discreteManpower);
+					}
 
-					int intLeadership = static_cast<int>(stateLeadership * 20);
-					double discreteLeadership = intLeadership / 20.0;
-					provinceItr->second->setLeadership(discreteLeadership);
-					leftoverLeadership += (stateLeadership - discreteLeadership);
+					if (convertLeadership)
+					{
+						int intLeadership = static_cast<int>(stateLeadership * 20);
+						double discreteLeadership = intLeadership / 20.0;
+						provinceItr->second->setLeadership(discreteLeadership);
+						leftoverLeadership += (stateLeadership - discreteLeadership);
+					}
 				}
+			}
+			if (convertIndustry)
+			{
+				for (auto jtr: stateItr.provinces)
+				{
+					auto itr = inverseProvinceMap.find(jtr);
+					if (itr != inverseProvinceMap.end())
+					{
+						for (auto ktr: itr->second)
+						{
+							auto provinceItr = provinces.find(ktr);
+							if (provinceItr != provinces.end())
+							{
+								int intIndustry = static_cast<int>(stateIndustry + 0.5);
+								if (intIndustry > 10)
+								{
+									intIndustry = 10;
+								}
+								provinceItr->second->setActualIndustry(intIndustry);
+								stateIndustry -= intIndustry;
+							}
+						}
+					}
+				}
+				leftoverIndustry += stateIndustry;
 			}
 		}
 	}
@@ -729,11 +788,55 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 		{
 			provinceItr = provinces.begin();
 		}
-		leftoverManpower += provinceItr->second->getManpower();
-		provinceItr->second->setManpower(leftoverManpower);
 
-		leftoverLeadership += provinceItr->second->getLeadership();
-		provinceItr->second->setLeadership(leftoverLeadership);
+		if (convertManpower)
+		{
+			leftoverManpower += provinceItr->second->getManpower();
+			provinceItr->second->setManpower(leftoverManpower);
+		}
+
+		if (convertLeadership)
+		{
+			leftoverLeadership += provinceItr->second->getLeadership();
+			provinceItr->second->setLeadership(leftoverLeadership);
+		}
+
+		if (convertIndustry)
+		{
+			leftoverIndustry += provinceItr->second->getActualIndustry();
+			int intIndustry = static_cast<int>(leftoverIndustry + 0.5);
+			if (intIndustry > 10)
+			{
+				intIndustry = 10;
+			}
+			provinceItr->second->setActualIndustry(intIndustry);
+			leftoverIndustry -= intIndustry;
+			for (auto jtr: capitalState.provinces)
+			{
+				auto itr = inverseProvinceMap.find(jtr);
+				if (itr != inverseProvinceMap.end())
+				{
+					for (auto ktr: itr->second)
+					{
+						auto provinceItr = provinces.find(ktr);
+						if (provinceItr != provinces.end())
+						{
+							int intIndustry = static_cast<int>(leftoverIndustry + 0.5);
+							if (intIndustry > 10)
+							{
+								intIndustry = 10;
+							}
+							provinceItr->second->setActualIndustry(intIndustry);
+							leftoverIndustry -= intIndustry;
+						}
+					}
+				}
+			}
+			if (leftoverIndustry > 0.5)
+			{
+				LOG(LogLevel::Warning) << "Leftover IC is " << leftoverIndustry;
+			}
+		}
 	}
 }
 

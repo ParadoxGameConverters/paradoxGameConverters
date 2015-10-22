@@ -40,22 +40,26 @@ class HoI3Province
 		void convertFromOldProvince(const V2Province* oldProvince);
 		void addCore(string);
 
-		void clearCores()									{ cores.clear(); }
-		void setCoastal(bool _coastal)				{ coastal = _coastal; }
-		void setName(string _name)						{ name = _name; }
-		void setOwner(string _owner)					{ owner = _owner; }
-		void setManpower(double newManpower)		{ manpower = newManpower; }
-		void setLeadership(double newLeadership)	{ leadership = newLeadership; }
+		void clearCores()										{ cores.clear(); }
+		void setCoastal(bool _coastal)					{ coastal = _coastal; }
+		void setName(string _name)							{ name = _name; }
+		void setOwner(string _owner)						{ owner = _owner; }
+		void setManpower(double newManpower)			{ manpower = newManpower; }
+		void setLeadership(double newLeadership)		{ leadership = newLeadership; }
+		void setRawIndustry(double newRawIndustry)	{ rawIndustry = newRawIndustry; }
+		void setActualIndustry(int newIndustry)		{ industry = newIndustry; }
 
-		string	getOwner()			const { return owner; }
-		int		getNum()				const { return num; }
-		string	getName()			const { return name; }
-		bool		hasNavalBase()		const { return (naval_base > 0); }
-		bool		isLand()				const { return is_land; }
-		int		getAirBase()		const { return air_base; }
-		int		getNavalBase()		const { return naval_base; }
-		double	getManpower()		const { return manpower; }
-		double	getLeadership()	const { return leadership; }
+		string	getOwner()				const { return owner; }
+		int		getNum()					const { return num; }
+		string	getName()				const { return name; }
+		bool		hasNavalBase()			const { return (naval_base > 0); }
+		bool		isLand()					const { return is_land; }
+		int		getAirBase()			const { return air_base; }
+		int		getNavalBase()			const { return naval_base; }
+		double	getManpower()			const { return manpower; }
+		double	getLeadership()		const { return leadership; }
+		double	getRawIndustry()		const { return rawIndustry; }
+		int		getActualIndustry()	const { return industry; }
 
 
 		void		requireNavalBase(int min);
@@ -65,7 +69,6 @@ class HoI3Province
 		void		requireCoastalFort(int min);
 		void		requireAntiAir(int min);
 		void		requireInfrastructure(int min);
-		void		setNCrafts(int nc);
 
 	private:
 		string			filename;
@@ -85,6 +88,7 @@ class HoI3Province
 		double			rare_materials;
 		double			manpower;
 		double			leadership;
+		double			rawIndustry;
 
 		int				naval_base;
 		int				air_base;

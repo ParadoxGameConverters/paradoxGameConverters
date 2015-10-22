@@ -605,22 +605,28 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 						provinces[destNum]->requireInfrastructure((*vitr)->getInfra() + 4); // BE: 6 is max V2 level. We want that to correspond with 100% infra.
 					}
 
-					//provinces[destNum]->setAvgMil((*vitr)->getAvgMil());
-					// XXX: how shall we set industry?
-					if (Configuration::getIcConversion() != "no")
+					// convert industry
+					double industry = (*vitr)->getPopulation("craftsmen")
+						+ int((*vitr)->getPopulation("artisans") * 0.5)
+						+ (*vitr)->getLiteracyWeightedPopulation("capitalists") * 2
+						+ (*vitr)->getLiteracyWeightedPopulation("clerks") * 2;
+					if (Configuration::getIcConversion() == "squareroot")
 					{
-						if (Configuration::getIcConversion() == "gunther"){
-							
-						}
-						else {
-							provinces[destNum]->setNCrafts(((*vitr)->getPopulation("craftsmen")
-							+ int((*vitr)->getPopulation("artisans") * 0.5)
-							+ (*vitr)->getLiteracyWeightedPopulation("capitalists") * 2
-							+ (*vitr)->getLiteracyWeightedPopulation("clerks") * 2) / mitr->second.provinces.size());
-						}
-						
+						industry = sqrt(double(industry)) * 0.00127;
+						provinces[destNum]->setRawIndustry(industry * Configuration::getIcFactor());
 					}
-
+					else if (Configuration::getIcConversion() == "linear")
+					{
+						industry = double(industry) * 0.00000564;
+						provinces[destNum]->setRawIndustry(industry * Configuration::getIcFactor());
+					}
+					else if (Configuration::getIcConversion() == "logarithmic")
+					{
+						industry = log(max(1, industry / 70000)) / log(2) * 1.75;
+						provinces[destNum]->setRawIndustry(industry * Configuration::getIcFactor());
+					}
+					
+					// convert manpower
 					double newManpower = (*vitr)->getPopulation("soldiers")
 						+ (*vitr)->getPopulation("craftsmen") * 0.25 // Conscripts
 						+ (*vitr)->getPopulation("labourers") * 0.25 // Conscripts
@@ -639,6 +645,7 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 						provinces[destNum]->setManpower(newManpower);
 					}
 
+					// convert leadership
 					double newLeadership = (*vitr)->getLiteracyWeightedPopulation("clergymen") * 0.5
 						+ (*vitr)->getPopulation("officers")
 						+ (*vitr)->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
@@ -1507,9 +1514,10 @@ void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvince
 {
 	double totalManpower		= 0.0;
 	double totalLeadership	= 0.0;
+	double totalIndustry		= 0.0;
 	for (auto countryItr: countries)
 	{
-		countryItr.second->consolidateProvinceItems(inverseProvinceMap, totalManpower, totalLeadership);
+		countryItr.second->consolidateProvinceItems(inverseProvinceMap, totalManpower, totalLeadership, totalIndustry);
 	}
 
 	double suggestedManpowerConst		= 1651.4 * Configuration::getManpowerFactor()	/ totalManpower;
@@ -1517,6 +1525,9 @@ void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvince
 
 	double suggestedLeadershipConst	=  212.0 * Configuration::getLeadershipFactor() / totalLeadership;
 	LOG(LogLevel::Debug) << "Total leadership was " << totalLeadership << ". Changing the leadership factor to " << suggestedLeadershipConst << " would match vanilla HoI3.";
+
+	double suggestedIndustryConst		= 1746.0 * Configuration::getIcFactor() / totalIndustry;
+	LOG(LogLevel::Debug) << "Total IC was " << totalIndustry << ". Changing the IC factor to " << suggestedIndustryConst << " would match vanilla HoI3.";
 }
 
 

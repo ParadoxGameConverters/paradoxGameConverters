@@ -65,7 +65,7 @@ class HoI3Country
 		void	outputLocalisation(FILE*) const;
 		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitsMap, const cultureMapping& cultureMap);
 		void	initFromHistory();
-		void	consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership);
+		void	consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
 		
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI3Province* _province);

@@ -234,37 +234,6 @@ void HoI3Province::addCore(string newCore)
 	}
 }
 
-void HoI3Province::setNCrafts(int nc)
-{
-	int realnc = max(0, nc - 70000);
-	ncrafts = (int)log(double(realnc / 8000) * realnc);
-	ncrafts = max(0, ncrafts - 10);
-#ifdef IND_DIAG
-	map<int, int>::iterator itr = ncraftsDistribution.find(ncrafts);
-	if (itr == ncraftsDistribution.end())
-		ncraftsDistribution[ncrafts] = 1;
-	else
-		++itr->second;
-#endif
-	//industry = ncrafts; BE: This gives astronomical values
-
-	double unfactoredIndustry = 0;
-	// Take the square root to normalize
-	if (Configuration::getIcConversion() == "squareroot")
-	{
-		unfactoredIndustry = sqrt(double(nc)) * 0.002;
-	}
-	else if (Configuration::getIcConversion() == "linear")
-	{
-		unfactoredIndustry = double(nc) * 0.000008;
-	}
-	else if (Configuration::getIcConversion() == "logarithmic")
-	{
-		unfactoredIndustry = log(double(max(0, nc - 70000)) / 8000.0);
-	}
-
-	industry = min(10, int(unfactoredIndustry * Configuration::getIcFactor() + 0.5)); // Add 0.5 to simulate rounding to the nearest integer
-};
 
 static string CardinalToOrdinal(int cardinal)
 {

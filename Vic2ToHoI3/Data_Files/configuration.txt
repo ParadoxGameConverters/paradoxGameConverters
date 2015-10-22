@@ -34,10 +34,10 @@ configuration =
 	# IC Conversion: Set to "no" if you want to use the original HoI3 IC values. Options are:
 	#	"squareroot": sqrt(artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.002 * factor
 	#	"linear": (artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.000008 * factor
-	#	"logarithmic": log((nc - 70000) / 8000.0) * factor
+	#	"logarithmic": log((artisan/2 + craftsman + capitalists*2 + clerks*2) / 70000) * 1.75 * factor
 	#	"no"
 	#	Default: "squareroot"
-	ic_conversion = "squareroot"
+	ic_conversion = "linear"
 	ic_factor = 1.0
 
 	# Manpower Conversion: Set to "no" if you want to use the original HoI3 manpower values. Options are:
