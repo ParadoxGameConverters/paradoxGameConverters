@@ -219,6 +219,19 @@ void V2Country::output() const
 			}
 		}
 		fprintf(output, "prestige=%f\n", prestige);
+
+		if (!decisions.empty())
+		{
+			fprintf(output, "\n");
+			fprintf(output, "# Decisions\n");
+			fprintf(output, "1835.1.1 = {\n");
+			for (const auto& decision : decisions)
+			{
+				fprintf(output, "\tdecision = %s\n", decision.c_str());
+			}
+			fprintf(output, "}\n");
+		}
+
 		fprintf(output, "\n");
 		fprintf(output, "# Social Reforms\n");
 		fprintf(output, "wage_reform = no_minimum_wage\n");
@@ -811,6 +824,23 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 	//	leaders.push_back(leader);
 	//	leaderMap[ (*itr)->getID() ] = leader->getID();
 	//}
+
+	// canals
+	for (const auto& prov : _srcCountry->getProvinces())
+	{
+		if (prov->hasBuilding("suez_canal"))
+		{
+			decisions.push_back("build_suez_canal");
+		}
+		if (prov->hasBuilding("kiel_canal"))
+		{
+			decisions.push_back("build_kiel_canal");
+		}
+		if (prov->hasBuilding("panama_canal"))
+		{
+			decisions.push_back("build_panama_canal");
+		}
+	}
 }
 
 

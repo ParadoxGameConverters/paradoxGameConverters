@@ -196,6 +196,16 @@ EU4Province::EU4Province(Object* obj) {
 		}
 	}
 
+	// great projects
+	vector<Object*> projectsObj = obj->getValue("great_projects");
+	if (projectsObj.size() > 0)
+	{
+		for (const auto& proj : projectsObj[0]->getTokens())
+		{
+			buildings[proj] = true;
+		}
+	}
+
 	//LOG(LogLevel::Info) << "Check unique Buildings...";
 	// unique buildings
 	checkBuilding(obj, "march");
