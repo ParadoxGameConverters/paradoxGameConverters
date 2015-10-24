@@ -49,7 +49,7 @@ void V2ArmyID::output(FILE* out, int indentlevel) const
 
 V2Regiment::V2Regiment(RegimentCategory rc) : category(rc)
 {
-	name		= "\"\"";
+	name		= "";
 	switch (rc)
 	{
 		case infantry:
