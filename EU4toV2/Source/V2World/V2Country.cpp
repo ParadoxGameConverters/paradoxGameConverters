@@ -1193,7 +1193,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 			}
 		}
 	}
-	LOG(LogLevel::Debug) << "Output " << n_tests << " test ships.\n";
+	LOG(LogLevel::Debug) << "Output " << n_tests << " test ships.";
 #endif
 }
 
