@@ -722,10 +722,18 @@
 	link = { eu4 = 1796 v2 = 1959 v2 = 1962 v2 = 1966 v2 = 1965 v2 = 1970 v2 = 1998 v2 = 1969 v2 = 1845 v2 = 1846 v2 = 1844 v2 = 1843 v2 = 1971 v2 = 1968 v2 = 1967 v2 = 1963 v2 = 1960 }	# Central Africa -> Yaounde, Bertoua, Nola, Bangui, Bangassou, Baramo, Zemio, Yambio, Lado, Bor, Waw, Ndele, Bossangoa, Bouar, Ngaoundere, Bafoussam
 	link = { eu4 = 1793 v2 = 1696 v2 = 1773 v2 = 1775 v2 = 1779 v2 = 1782 v2 = 1780 v2 = 1781 }	# El Djouf -> Tarfaya, Aaiun, Nouakchott, Shingit, Bir Murghayn, Tichit, Walata
 	link = { eu4 = 2251 v2 = 1895 v2 = 1896 v2 = 1891 v2 = 1889 v2 = 1890 v2 = 1886 v2 = 1885 v2 = 1883 v2 = 1900 }	# Bagoe -> Bouake, Man, Zwedru, Bopolu, Gbarnga, Bo, Falaba, Beyla, Odienne
-	link = { eu4 = 1795 v2 = 1740 v2 = 1738 v2 = 1739 v2 = 1758 v2 = 2585 v2 = 2564 v2 = 1825 v2 = 1826 v2 = 1821 v2 = 1823 v2 = 1822 v2 = 1842 v2 = 1841 v2 = 1813 v2 = 1812 v2 = 1814 v2 = 1817 }	# East Sahara -> Waddan, Jaghbub, Kufra, Farafra, Matan as Sarah, Salima, Zouar, Faya, Abeche, Mongo, Am Timan, Junaynah, Fasher, Arlit, Agades, Madama, Bilma
-	link = { eu4 = 1794 v2 = 1719 v2 = 1720 v2 = 1717 v2 = 1718 v2 = 1722 v2 = 1724 v2 = 1721 v2 = 1714 v2 = 1716 }	# Central Sahara -> Ilizi, Timimoun, Chenachene, In Salah, Tin Zawatene, Tamanrasset, In Guezzam, Bechar, Tindouf
-	# Dead African Land
-	link = { eu4 = 1127 eu4 = 2272 eu4 = 2274 eu4 = 2275 eu4 = 2475 eu4 = 2277 eu4 = 2288 eu4 = 2932 eu4 = 774 eu4 = 1219 }	# Tuat, Azbin, Agades, Tenere, Djado, Kawar, Yao, Waddai, Al Junaynah, Kordofan -> DROPPED
+	link = { eu4 = 1795 v2 = 1740 v2 = 1738 v2 = 1739 v2 = 1758 v2 = 2585 v2 = 2564 v2 = 1825 v2 = 1826 }	# East Sahara -> Waddan, Jaghbub, Kufra, Farafra, Matan as Sarah, Salima, Zouar, Faya
+	link = { eu4 = 1794 v2 = 1719 v2 = 1720 v2 = 1718 v2 = 1722 v2 = 1724 v2 = 1721 v2 = 1714 }	# Central Sahara -> Ilizi, Timimoun, In Salah, Tin Zawatene, Tamanrasset, In Guezzam, Bechar
+	# Africa land bridges
+	link = { eu4 = 1127 v2 = 1716 v2 = 1717 }    # Tuat -> Tindouf, Chenachene
+    link = { eu4 = 2272 eu4 = 2274 eu4 = 2275 v2 = 1813 v2 = 1812 }    # Azbin, Air, Tenere -> Arlit, Agades
+    link = { eu4 = 2277 v2 = 1817 } # Kawar -> Bilma
+    link = { eu4 = 2475 v2 = 1814 } # Djado -> Madama
+    link = { eu4 = 2288 v2 = 1821 }    # Yao -> Abeche
+    link = { eu4 = 1159 v2 = 1823 }    # Bagirmi -> Mongo
+    link = { eu4 = 2932 v2 = 1822 }    # Waddai -> Am Timan
+    link = { eu4 = 774 eu4 = 2801 v2 = 1842 }    # Al-Junaynah, Medwa -> Junayah
+    link = { eu4 = 1219 eu4 = 2802 v2 = 1841 }    # Darfur, Kobbe -> Fasher
 	# Lakes
 	link = { eu4 = 2471 eu4 = 1648 }	# Chott el-Jerid, Lake Tchad -> DROPPED
 	link = { eu4 = 1649 v2 = 3102 }	# Lake Victoria -> Lake Victoria
