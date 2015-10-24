@@ -1030,7 +1030,7 @@ void V2Country::addState(V2State* newState)
 }
 
 
-#define TEST_V2_PROVINCES
+//#define TEST_V2_PROVINCES
 void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap)
 {
 #ifndef TEST_V2_PROVINCES
