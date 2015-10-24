@@ -922,6 +922,14 @@ void V2Country::addState(V2State* newState)
 
 	states.push_back(newState);
 	vector<V2Province*> newProvinces = newState->getProvinces();
+
+	vector<int> newProvinceNums;
+	for (const auto& province : newProvinces)
+	{
+		newProvinceNums.push_back(province->getNum());
+	}
+	vector<int> portProvinces = getPortProvinces(newProvinceNums, provinces);
+
 	for (unsigned int i = 0; i < newProvinces.size(); i++)
 	{
 		auto itr = provinces.find(newProvinces[i]->getNum());
@@ -954,7 +962,8 @@ void V2Country::addState(V2State* newState)
 					navalLevel += 1;
 				}
 			}
-			if (navalLevel > highestNavalLevel)
+			bool isPortProvince = std::find(portProvinces.begin(), portProvinces.end(), newProvinces[i]->getNum()) != portProvinces.end();
+			if (navalLevel > highestNavalLevel && isPortProvince)
 			{
 				highestNavalLevel	= navalLevel;
 				hasHighestLevel	= i;
