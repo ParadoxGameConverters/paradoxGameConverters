@@ -914,6 +914,58 @@ void V2Country::addProvince(V2Province* _province)
 }
 
 
+static set<int> getPortBlacklist()
+{
+	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
+	// a non-port province, Vicky crashes....
+	static set<int> port_blacklist;
+	if (port_blacklist.size() == 0)
+	{
+		int temp = 0;
+		ifstream s("port_blacklist.txt");
+		while (s.good() && !s.eof())
+		{
+			s >> temp;
+			port_blacklist.insert(temp);
+		}
+		s.close();
+	}
+	return port_blacklist;
+}
+
+
+vector<int> V2Country::getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces)
+{
+	set<int> port_blacklist = getPortBlacklist();
+
+	vector<int> unblockedCandidates;
+	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	{
+		auto black = port_blacklist.find(*litr);
+		if (black == port_blacklist.end())
+		{
+			unblockedCandidates.push_back(*litr);
+		}
+	}
+	locationCandidates.swap(unblockedCandidates);
+
+	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	{
+		map<int, V2Province*>::iterator pitr = allProvinces.find(*litr);
+		if (pitr != allProvinces.end())
+		{
+			if (!pitr->second->isCoastal())
+			{
+				locationCandidates.erase(litr);
+				--pitr;
+				break;
+			}
+		}
+	}
+	return locationCandidates;
+}
+
+
 void V2Country::addState(V2State* newState)
 {
 	int				highestNavalLevel	= 0;
@@ -978,7 +1030,7 @@ void V2Country::addState(V2State* newState)
 }
 
 
-//#define TEST_V2_PROVINCES
+#define TEST_V2_PROVINCES
 void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_regiment[num_reg_categories], const inverseProvinceMapping& inverseProvinceMap, map<int, V2Province*> allProvinces, vector<int> port_whitelist, adjacencyMapping adjacencyMap)
 {
 #ifndef TEST_V2_PROVINCES
@@ -1117,24 +1169,19 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 #else // ifdef TEST_V2_PROVINCES
 	// output one big ship to each V2 province that's neither whitelisted nor blacklisted, but only 10 at a time per nation
 	// output from this mode is used to build whitelist and blacklist files
+	set<int> port_blacklist = getPortBlacklist();
 	int n_tests = 0;
-	for (vector<V2Province>::iterator pitr = provinces.begin(); (pitr != provinces.end()) && (n_tests < 50); ++pitr)
+	for (auto itr = provinces.begin(); (itr != provinces.end()) && (n_tests < 50); ++itr)
 	{
-		if ((pitr->getOwner() == itr->getTag()) && pitr->isCoastal())
+		V2Province* pitr = itr->second;
+		if (pitr->isCoastal())
 		{
-			vector<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), pitr->getNum());
+			set<int>::iterator black = std::find(port_blacklist.begin(), port_blacklist.end(), pitr->getNum());
 			if (black != port_blacklist.end())
 				continue;
 
-			V2Army army;
-			army.setName("V2 Test Navy");
-			army.setAtSea(0);
-			army.setNavy(true);
-			army.setLocation(pitr->getNum());
-			V2Regiment reg(heavy_ship);
-			reg.setStrength(100);
-			army.addRegiment(reg);
-			itr->addArmy(army);
+			V2Army* army = V2Army::makeTestNavy(itr->first);
+			armies.push_back(army);
 
 			vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), pitr->getNum());
 			if (white == port_whitelist.end())
@@ -1146,7 +1193,7 @@ void V2Country::convertArmies(const map<int,int>& leaderIDMap, double cost_per_r
 			}
 		}
 	}
-	log("Output %d test ships.\n", n_tests);
+	LOG(LogLevel::Debug) << "Output " << n_tests << " test ships.\n";
 #endif
 }
 
@@ -2009,51 +2056,6 @@ int V2Country::addRegimentToArmy(V2Army* army, RegimentCategory rc, const invers
 	}
 	army->addRegiment(reg);
 	return 0;
-}
-
-
-vector<int> V2Country::getPortProvinces(vector<int> locationCandidates, map<int, V2Province*> allProvinces)
-{
-	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
-	// a non-port province, Vicky crashes....
-	static set<int> port_blacklist;
-	if (port_blacklist.size() == 0)
-	{
-		int temp = 0;
-		ifstream s("port_blacklist.txt");
-		while (s.good() && !s.eof())
-		{
-			s >> temp;
-			port_blacklist.insert(temp);
-		}
-		s.close();
-	}
-
-	vector<int> unblockedCandidates;
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		auto black = port_blacklist.find(*litr);
-		if (black == port_blacklist.end())
-		{
-			unblockedCandidates.push_back(*litr);
-		}
-	}
-	locationCandidates.swap(unblockedCandidates);
-
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
-	{
-		map<int, V2Province*>::iterator pitr = allProvinces.find(*litr);
-		if (pitr != allProvinces.end())
-		{
-			if ( !pitr->second->isCoastal() )
-			{
-				locationCandidates.erase(litr);
-				--pitr;
-				break;
-			}
-		}
-	}
-	return locationCandidates;
 }
 
 
