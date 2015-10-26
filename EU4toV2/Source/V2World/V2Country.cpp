@@ -1282,6 +1282,7 @@ void V2Country::absorbVassal(V2Country* vassal)
 		provItr->second->setOwner(tag);
 		provItr->second->addCore(tag);
 	}
+	vassal->provinces.clear();
 
 	// accept cultures from the vassal
 	acceptedCultures.insert(vassal->getPrimaryCulture());
@@ -1291,8 +1292,12 @@ void V2Country::absorbVassal(V2Country* vassal)
 	// take vassal's armies
 	srcCountry->takeArmies(vassal->getSourceCountry());
 
-	// keep number of factories correct
-	numFactories += vassal->getNumFactories();
+	// assume the vassal's decisions (just canals, at the moment)
+	for (const auto& decision : vassal->decisions)
+	{
+		decisions.push_back(decision);
+	}
+	vassal->decisions.clear();
 }
 
 
