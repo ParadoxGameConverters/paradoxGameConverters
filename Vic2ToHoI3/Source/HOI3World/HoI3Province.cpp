@@ -49,7 +49,6 @@ HoI3Province::HoI3Province(string _filename)
 	industry = 0;
 	land_fort = 0;
 	coastal_fort = 0;
-	anti_air = 0;
 	infrastructure = 0;
 	naval_base = 0;
 	air_base = 0;
@@ -192,10 +191,6 @@ void HoI3Province::output() const
 	{
 		fprintf_s(output, "coastal_fort = %i\n", coastal_fort);
 	}
-	if (anti_air > 0)
-	{
-		fprintf_s(output, "anti_air = %i\n", anti_air);
-	}
 	if (infrastructure > 0)
 	{
 		fprintf_s(output, "infra = %i\n", infrastructure);
@@ -289,10 +284,6 @@ void HoI3Province::requireLandFort(int _min)
 	land_fort = max(land_fort, _min);
 }
 
-void HoI3Province::requireAntiAir(int _min)
-{
-	anti_air = max(anti_air, _min);
-}
 
 void HoI3Province::requireInfrastructure(int _min)
 {

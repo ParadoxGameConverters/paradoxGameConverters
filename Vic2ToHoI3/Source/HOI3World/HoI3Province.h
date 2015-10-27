@@ -67,7 +67,6 @@ class HoI3Province
 		void		requireIndustry(int min);
 		void		requireLandFort(int min);
 		void		requireCoastalFort(int min);
-		void		requireAntiAir(int min);
 		void		requireInfrastructure(int min);
 
 	private:
@@ -95,7 +94,6 @@ class HoI3Province
 		int				industry;
 		int				coastal_fort;
 		int				land_fort;
-		int				anti_air;
 		int				infrastructure;
 };
 
