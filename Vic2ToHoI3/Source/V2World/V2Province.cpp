@@ -29,7 +29,10 @@ using namespace std;
 
 
 
-V2Province::V2Province(Object* obj) {
+V2Province::V2Province(Object* obj)
+{
+	num = atoi(obj->getKey().c_str());
+
 	vector<Object*> ownerObjs;				// the object holding the owner
 	ownerObjs = obj->getValue("owner");
 	(ownerObjs.size() == 0) ? ownerString = "" : ownerString = ownerObjs[0]->getLeaf();

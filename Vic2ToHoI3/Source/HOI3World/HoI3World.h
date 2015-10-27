@@ -35,7 +35,7 @@ class HoI3World {
 		HoI3World(const provinceMapping& provinceMap);
 		void				createProvinceFiles(const V2World& sourceWorld, const provinceMapping& provinceMap);
 		void				convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap);
-		void				convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap);
+		void				convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const adjacencyMapping &adjacencyMap);
 		void				convertCapitals(const V2World &sourceWorld, provinceMapping provinceMap);
 		void				convertTechs(V2World& sourceWorld);
 		void				output() const;

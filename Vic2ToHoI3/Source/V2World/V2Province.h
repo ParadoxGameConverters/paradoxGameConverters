@@ -50,15 +50,18 @@ class V2Province
 		int						getPopulation(string type = "") const;
 		int						getLiteracyWeightedPopulation(string type = "") const;
 
-		void						setOwner(V2Country* _owner)	{ owner = _owner; };
+		void						setOwner(V2Country* _owner)	{ owner = _owner; }
 
-		string					getOwnerString()	const { return ownerString; };
-		V2Country*				getOwner()			const { return owner; };
-		int						getInfra()			const { return railLevel; };
-		int						getFort()			const { return fortLevel; };
-		int						getNavalBase()		const { return navalBaseLevel; };
+		string					getOwnerString()	const { return ownerString; }
+		V2Country*				getOwner()			const { return owner; }
+		int						getInfra()			const { return railLevel; }
+		int						getFort()			const { return fortLevel; }
+		int						getNavalBase()		const { return navalBaseLevel; }
+		int						getNum()				const { return num; }
+
 
 	private:
+		int				num;
 		string			ownerString;			// a string with the owner's tag
 		V2Country*		owner;
 		vector<string>	cores;

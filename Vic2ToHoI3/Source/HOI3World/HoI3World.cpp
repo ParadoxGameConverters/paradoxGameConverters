@@ -486,7 +486,7 @@ struct MTo1ProvinceComp
 };
 
 
-void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap)
+void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const adjacencyMapping &adjacencyMap)
 {
 	for (map<int, HoI3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
 	{
@@ -591,18 +591,38 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 						}
 					}
 
-					// TODO: preliminary improvement conversion
+					bool borderProvince = false;
+					if (adjacencyMap.size() > static_cast<unsigned int>((*vitr)->getNum()))
+					{
+						const vector<adjacency> adjacencies = adjacencyMap[(*vitr)->getNum()];
+						for (auto adj: adjacencies)
+						{
+							V2Province* province = sourceWorld.getProvince(adj.to);
+							if ((province->getOwner() != NULL) && (province->getOwner() != (*vitr)->getOwner()))
+							{
+								borderProvince = true;
+								break;
+							}
+						}
+					}
+
 					int fortLevel = (*vitr)->getFort();
 					fortLevel = max(0, (fortLevel - 5) * 2 + 1); // Only use 5 or 6 to reduce fort spam
 					int navalBaseLevel = (*vitr)->getNavalBase();
-					navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1); // Reduce spam
-					provinces[destNum]->requireCoastalFort(fortLevel);
-					provinces[destNum]->requireLandFort(fortLevel);
+					navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
+					if (navalBaseLevel > 0)
+					{
+						provinces[destNum]->requireCoastalFort(fortLevel);
+					}
+					if (borderProvince)
+					{
+						provinces[destNum]->requireLandFort(fortLevel);
+					}
 					provinces[destNum]->requireNavalBase(navalBaseLevel);
 					provinces[destNum]->requireInfrastructure((int)Configuration::getMinInfra());
 					if ((*vitr)->getInfra() > 0) // No infra stays at minInfra
 					{
-						provinces[destNum]->requireInfrastructure((*vitr)->getInfra() + 4); // BE: 6 is max V2 level. We want that to correspond with 100% infra.
+						provinces[destNum]->requireInfrastructure((*vitr)->getInfra() + 4);
 					}
 
 					// convert industry

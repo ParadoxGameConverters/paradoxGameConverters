@@ -256,9 +256,9 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	countryMap.ReadRules("country_mappings.txt");
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
-	//// Get adjacencies
-	//LOG(LogLevel::Info) << "Importing adjacencies";
-	//adjacencyMapping adjacencyMap = initAdjacencyMap();
+	// Get adjacencies
+	LOG(LogLevel::Info) << "Importing adjacencies";
+	adjacencyMapping adjacencyMap = initAdjacencyMap();
 
 	// Parse government mapping
 	LOG(LogLevel::Info) << "Parsing governments mappings";
@@ -335,7 +335,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap, portraitMap, cultureMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, adjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);
