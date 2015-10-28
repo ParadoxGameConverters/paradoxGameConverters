@@ -40,7 +40,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2Country::V2Country(Object* obj)
+V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName)
 {
 	tag = obj->getKey();
 	provinces.clear();
@@ -73,15 +73,7 @@ V2Country::V2Country(Object* obj)
 		techs = techsObj[0]->getKeys();
 	}
 
-	for (int i = 0; i <= HOD_naval_exercises; ++i)
-	{
-		HODInventions[i] = illegal; // we don't care if they're possible or not
-	}
-	//for (int i = 0; i <= VANILLA_naval_exercises; ++i)
-	//{
-	//	vanillaInventions[i] = illegal; // we don't care if they're possible or not
-	//}
-
+	inventions.clear();
 	techsObj = obj->getValue("active_inventions");
 	if (techsObj.size() > 0)
 	{
@@ -89,13 +81,14 @@ V2Country::V2Country(Object* obj)
 		for (vector<string>::iterator itr = active_inventions.begin(); itr != active_inventions.end(); ++itr)
 		{
 			int i = atoi(itr->c_str());
-			if (i > HOD_naval_exercises)
+			auto jtr = iNumToName.find(i);
+			if (jtr == iNumToName.end())
 			{
 				LOG(LogLevel::Warning) << tag << " has an invalid invention. Is this using a mod that changed inventions?";
 			}
 			else
 			{
-				HODInventions[i] = active; // BE: TODO: Generalize for non-HOD
+				inventions.push_back(jtr->second);
 			}
 		}
 	}
@@ -349,9 +342,10 @@ void V2Country::eatCountry(V2Country* target)
 		}
 
 		// and do the same with inventions
-		for (int i = HODInventionType::HOD_post_napoleonic_army_doctrine; i < HODInventionType::HOD_naval_exercises; ++i)
+		auto targetInventions = target->getInventions();
+		for (auto itr: targetInventions)
 		{
-			HODInventions[i] = std::max(HODInventions[i], target->getInventionState(HODInventionType(i)));
+			inventions.push_back(itr);
 		}
 	}
 

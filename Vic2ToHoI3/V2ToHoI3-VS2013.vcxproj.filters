@@ -74,6 +74,9 @@
     <ClCompile Include="Source\HOI3World\HoI3Minister.cpp">
       <Filter>HOI3World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\V2World\V2Inventions.cpp">
+      <Filter>Vic2World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />

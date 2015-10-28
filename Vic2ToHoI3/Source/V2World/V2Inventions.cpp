@@ -21,22 +21,48 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-#ifndef V2INVENTIONS_H_
-#define V2INVENTIONS_H_
+
+#include "V2Inventions.h"
+#include "../Configuration.h"
+#include "../WinUtils.h"
+#include "../Parsers/Object.h"
+#include "../Parsers/Parser.h"
 
 
 
-#include <map>
-#include <string>
-using namespace std;
+void getInventionNums(inventionNumToName& numToName)
+{
+	// find the relevant inventions files
+	string path;
+	vector<string> vic2Mods = Configuration::getVic2Mods();
+	for (auto itr: vic2Mods)
+	{
+		string possiblePath = Configuration::getV2Path() + "\\mod\\" + itr + "\\inventions\\";
+		if (WinUtils::doesFolderExist(possiblePath))
+		{
+			path = possiblePath;
+		}
+	}
+	if (path == "")
+	{
+		path = Configuration::getV2Path() + "\\inventions\\";
+	}
 
+	//get the inventions
+	numToName.clear();
+	int num = 1;
 
-
-typedef map<int, string> inventionNumToName;
-
-
-void getInventionNums(inventionNumToName& numToName);
-
-
-
-#endif	// V2INVENTIONS_H_
+	set<string> techFiles;
+	WinUtils::GetAllFilesInFolder(path, techFiles);
+	for (auto fileItr: techFiles)
+	{
+		Object* obj = doParseFile((path + "\\" + fileItr).c_str());
+		vector<Object*> techObjs = obj->getLeaves();
+		for (auto techItr: techObjs)
+		{
+			string name = techItr->getKey();
+			numToName.insert(make_pair(num, name));
+			num++;
+		}
+	}
+}

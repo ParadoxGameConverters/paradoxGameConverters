@@ -55,7 +55,7 @@ typedef struct V2State
 class V2Country
 {
 	public:
-		V2Country(Object* obj);
+		V2Country(Object* obj, const inventionNumToName& iNumToName);
 
 		void								addProvince(int num, V2Province* _province)		{ provinces.insert(make_pair(num, _province)); }
 		void								setColor(Color newColor)					{ color = newColor; }
@@ -72,8 +72,7 @@ class V2Country
 		vector<V2Province*>			getCores()														const { return cores; }
 		string							getTag()															const { return tag; }
 		string							getPrimaryCulture()											const { return primaryCulture; }
-		inventionStatus				getInventionState(vanillaInventionType invention)	const { return vanillaInventions[invention]; }
-		inventionStatus				getInventionState(HODInventionType invention)		const { return HODInventions[invention]; }
+		vector<string>					getInventions()												const { return inventions; }
 		string							getGovernment()												const { return government; }
 		int								getCapital()													const { return capital; }
 		vector<string>					getTechs()														const { return techs; }
@@ -126,8 +125,7 @@ class V2Country
 		int								capital;
 		string							primaryCulture;
 		vector<string>					techs;
-		inventionStatus				vanillaInventions[VANILLA_naval_exercises];
-		inventionStatus				HODInventions[HOD_naval_exercises];
+		vector<string>					inventions;
 		string							government;
 		map<string,V2Relations*>	relations;
 		vector<V2Army*>				armies;

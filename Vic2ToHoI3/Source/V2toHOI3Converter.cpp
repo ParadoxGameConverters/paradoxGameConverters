@@ -128,6 +128,10 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		}
 	}
 
+	// get inventions
+	inventionNumToName iNumToname;
+	getInventionNums(iNumToname);
+
 	//get output name
 	const int slash	= V2SaveFileName.find_last_of("\\");				// the last slash in the save's filename
 	string outputName = V2SaveFileName.substr(slash + 1, V2SaveFileName.length());
@@ -161,7 +165,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// Construct world from V2 save.
 	LOG(LogLevel::Info) << "Building world";
-	V2World sourceWorld(obj);
+	V2World sourceWorld(obj, iNumToname);
 
 	// Read all localisations.
 	LOG(LogLevel::Info) << "Reading localisation";

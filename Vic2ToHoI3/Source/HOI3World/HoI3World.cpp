@@ -717,7 +717,7 @@ void HoI3World::convertCapitals(const V2World &sourceWorld, provinceMapping prov
 void HoI3World::convertTechs(V2World& sourceWorld)
 {
 	map<string, vector<pair<string, int> > > techTechMap;
-	map<int, vector<pair<string, int> > > invTechMap;
+	map<string, vector<pair<string, int> > > invTechMap;
 
 	// build tech maps - the code is ugly so the file can be pretty
 	Object* obj = doParseFile("tech_mapping.txt");
@@ -761,14 +761,7 @@ void HoI3World::convertTechs(V2World& sourceWorld)
 			techTechMap[tech] = targetTechs;
 			break;
 		case 2:
-			for (int i = 0; i <= HODInventionType::HOD_naval_exercises; ++i)
-			{
-				if (tech == HODInventionNames[i])
-				{
-					invTechMap[i] = targetTechs;
-					break;
-				}
-			}
+			invTechMap[tech] = targetTechs;
 			break;
 		}
 	}
@@ -794,21 +787,19 @@ void HoI3World::convertTechs(V2World& sourceWorld)
 			}
 		}
 
-		for (int inv = 0; inv <= HODInventionType::HOD_naval_exercises; ++inv)
+		vector<string> srcInventions = sourceCountry->getInventions();
+		for (auto invItr: srcInventions)
 		{
-			if (sourceCountry->getInventionState(static_cast<HODInventionType>(inv)) == active)
+			map<string, vector<pair<string, int> > >::iterator mapItr = invTechMap.find(invItr);
+			if (mapItr == invTechMap.end())
 			{
-				map<int, vector<pair<string, int> > >::iterator mapItr = invTechMap.find(inv);
-				if (mapItr == invTechMap.end())
+				continue;
+			}
+			else
+			{
+				for (vector<pair<string, int> >::iterator jtr = mapItr->second.begin(); jtr != mapItr->second.end(); ++jtr)
 				{
-					continue;
-				}
-				else
-				{
-					for (vector<pair<string, int> >::iterator jtr = mapItr->second.begin(); jtr != mapItr->second.end(); ++jtr)
-					{
-						destCountry->setTechnology(jtr->first, jtr->second);
-					}
+					destCountry->setTechnology(jtr->first, jtr->second);
 				}
 			}
 		}

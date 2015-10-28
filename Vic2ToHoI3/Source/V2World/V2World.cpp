@@ -38,7 +38,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-V2World::V2World(Object* obj)
+V2World::V2World(Object* obj, const inventionNumToName& iNumToName)
 {
 	provinces.clear();
 	countries.clear();
@@ -93,7 +93,7 @@ V2World::V2World(Object* obj)
 			)
 		)
 		{
-			countries[key] = new V2Country(leaves[i]);
+			countries[key] = new V2Country(leaves[i], iNumToName);
 
 			map<int, int>::iterator rankingItr = greatNationIndices.find(countriesIndex++);
 			if (rankingItr != greatNationIndices.end())
