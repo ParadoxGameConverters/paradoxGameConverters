@@ -152,25 +152,6 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 		}
 	}
 
-	//obj2 = doParseFile((HoI3Loc + "\\map\\continent.txt").c_str());
-	//vector<Object*> objCont = obj2->getLeaves();
-	//if (objCont.size() == 0)
-	//{
-	//	log("Error: map\\continent.txt failed to parse.");
-	//	printf("Error: map\\continent.txt failed to parse.");
-	//	exit(1);
-	//}
-	//for (vector<Object*>::iterator itr = objCont.begin(); itr != objCont.end(); ++itr)
-	//{
-	//	string cont = (*itr)->getKey();
-	//	vector<string> provs = (*itr)->getTokens();
-	//	for (vector<string>::iterator pitr = provs.begin(); pitr != provs.end(); ++pitr)
-	//	{
-	//		continents[atoi(pitr->c_str())] = cont;
-	//	}
-	//}
-
-
 	countries.clear();
 
 	LOG(LogLevel::Info) << "Getting potential countries";
@@ -208,30 +189,6 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 		int start = line.find_first_of('/');
 		int size = line.find_last_of('\"') - start;
 		countryFileName = line.substr(start, size);
-
-		// BE: Unnecessary. Let vanilla HoI3 countries keep their common files. They will be overridden[sic] as necessary
-		//Object* countryData;
-		//if (_stat((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str(), &st) == 0)
-		//{
-		//	countryData = doParseFile((string(".\\blankMod\\output\\common\\countries\\") + countryFileName).c_str());
-		//	if (countryData == NULL)
-		//	{
-		//		LOG(LogLevel::Warning) << "Could not parse file .\\blankMod\\output\\common\\countries\\" << countryFileName;
-		//	}
-		//}
-		//else if (_stat((Configuration::getHoI3Path() + "\\common\\countries\\" + countryFileName).c_str(), &st) == 0)
-		//{
-		//	countryData = doParseFile((Configuration::getHoI3Path() + "\\common\\countries\\" + countryFileName).c_str());
-		//	if (countryData == NULL)
-		//	{
-		//		LOG(LogLevel::Warning) << "Could not parse file " << Configuration::getHoI3Path() << "\\common\\countries\\" << countryFileName;
-		//	}
-		//}
-		//else
-		//{
-		//	LOG(LogLevel::Debug) << "Could not find file common\\countries\\" << countryFileName << " - skipping";
-		//	continue;
-		//}
 
 		HoI3Country* newCountry = new HoI3Country(tag, countryFileName, this);
 		potentialCountries.push_back(newCountry);
@@ -1232,10 +1189,6 @@ void HoI3World::factionSatellites()
 
 void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap)
 {
-	string axisLeader;
-	string alliesLeader;
-	string cominternLeader;
-
 	// find faction memebers
 	if (Configuration::getFactionLeaderAlgo() == "manual")
 	{
@@ -1539,6 +1492,65 @@ void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvince
 
 	double suggestedIndustryConst		= 1746.0 * Configuration::getIcFactor() / totalIndustry;
 	LOG(LogLevel::Debug) << "Total IC was " << totalIndustry << ". Changing the IC factor to " << suggestedIndustryConst << " would match vanilla HoI3.";
+}
+
+
+void HoI3World::convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap)
+{
+	// all country capitals get five VP
+	for (auto countryItr: countries)
+	{
+		auto capitalItr = countryItr.second->getCapital();
+		if (capitalItr != NULL)
+		{
+			capitalItr->addPoints(5);
+		}
+	}
+
+	// Great Power capitals get another five
+	const std::vector<string> &greatCountries = sourceWorld.getGreatCountries();
+	for (unsigned i = 0; i < greatCountries.size(); i++)
+	{
+		const std::string& HoI3Tag = countryMap[greatCountries[i]];
+		auto countryItr = countries.find(HoI3Tag);
+		if (countryItr != countries.end())
+		{
+			auto capitalItr = countryItr->second->getCapital();
+			if (capitalItr != NULL)
+			{
+				capitalItr->addPoints(5);
+			}
+		}
+	}
+
+	// alliance leaders get another ten
+	auto countryItr = countries.find(axisLeader);
+	if (countryItr != countries.end())
+	{
+		auto capitalItr = countryItr->second->getCapital();
+		if (capitalItr != NULL)
+		{
+			capitalItr->addPoints(10);
+		}
+	}
+	countryItr = countries.find(alliesLeader);
+	if (countryItr != countries.end())
+	{
+		auto capitalItr = countryItr->second->getCapital();
+		if (capitalItr != NULL)
+		{
+			capitalItr->addPoints(10);
+		}
+	}
+	countryItr = countries.find(cominternLeader);
+	if (countryItr != countries.end())
+	{
+		auto capitalItr = countryItr->second->getCapital();
+		if (capitalItr != NULL)
+		{
+			capitalItr->addPoints(10);
+		}
+	}
 }
 
 

@@ -74,6 +74,7 @@ class HoI3Country
 		void	setFaction(string newFaction)	{ faction = newFaction; }
 
 		HoI3Relations*								getRelations(string withWhom) const;
+		HoI3Province*								getCapital();
 		
 		const map<string, HoI3Relations*>&	getRelations() const			{ return relations; }
 		map<int, HoI3Province*>					getProvinces() const			{ return provinces; }

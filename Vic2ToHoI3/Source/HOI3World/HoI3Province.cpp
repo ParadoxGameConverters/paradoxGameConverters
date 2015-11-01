@@ -89,10 +89,6 @@ HoI3Province::HoI3Province(string _filename)
 			owner = (*itr)->getLeaf();
 			is_land = true;
 		}
-		else if ((*itr)->getKey() == "points")
-		{
-			points = atoi((*itr)->getLeaf().c_str());
-		}
 		else if ((*itr)->getKey() == "metal")
 		{
 			metal = atof((*itr)->getLeaf().c_str());
@@ -159,9 +155,9 @@ void HoI3Province::output() const
 	{
 		fprintf_s(output, "add_core = %s\n", cores[i].c_str());
 	}
-	if (points > 0)
+	if ((points > 0) || industry > 0)
 	{
-		fprintf_s(output, "points = %i\n", points);
+		fprintf_s(output, "points = %i\n", points + industry);
 	}
 	if (metal > 0.0)
 	{

@@ -349,6 +349,8 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(sourceWorld, countryMap);
+	LOG(LogLevel::Info) << "Converting victory points";
+	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 
 	// Output results
 	LOG(LogLevel::Info) << "Outputting mod";

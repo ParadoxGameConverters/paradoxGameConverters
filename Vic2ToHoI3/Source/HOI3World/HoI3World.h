@@ -44,6 +44,7 @@ class HoI3World {
 		void				convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const map<int, int>& leaderIDMap);
 		void				configureFactions(const V2World &sourceWorld, const CountryMapping& countryMap);
 		void				consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap);
+		void				convertVictoryPoints(const V2World& sourceWorld, CountryMapping countryMap);
 
 		map<string, HoI3Country*>	getPotentialCountries()	const;
 
@@ -63,6 +64,10 @@ private:
 		map<int, string>		continents;  // < province, continent >
 
 		vector<string> countryOrder; // Order of countries in common\countries.txt. Used for determining faction leader. Also, REB should be first.
+
+		string axisLeader;
+		string alliesLeader;
+		string cominternLeader;
 };
 
 

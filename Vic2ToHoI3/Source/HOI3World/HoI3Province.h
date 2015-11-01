@@ -48,6 +48,8 @@ class HoI3Province
 		void setLeadership(double newLeadership)		{ leadership = newLeadership; }
 		void setRawIndustry(double newRawIndustry)	{ rawIndustry = newRawIndustry; }
 		void setActualIndustry(int newIndustry)		{ industry = newIndustry; }
+		void setPoints(int newPoints)						{ points = newPoints; }
+		void addPoints(int newPoints)						{ points += newPoints; }
 
 		string	getOwner()				const { return owner; }
 		int		getNum()					const { return num; }

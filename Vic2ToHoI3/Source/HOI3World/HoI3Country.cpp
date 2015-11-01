@@ -1482,3 +1482,22 @@ void HoI3Country::addArmy(HoI3RegGroup _army)
 {
 	armies.push_back(_army);
 }
+
+
+HoI3Province* HoI3Country::getCapital(void)
+{
+	auto capitalItr = provinces.find(capital);
+	if (capitalItr == provinces.end())
+	{
+		if (provinces.size() > 0)
+		{
+			
+		}
+		else
+		{
+			return NULL;
+		}
+	}
+
+	return capitalItr->second;
+}
