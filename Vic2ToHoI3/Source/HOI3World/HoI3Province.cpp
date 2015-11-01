@@ -157,7 +157,7 @@ void HoI3Province::output() const
 	}
 	if ((points > 0) || industry > 0)
 	{
-		fprintf_s(output, "points = %i\n", points + industry);
+		fprintf_s(output, "points = %i\n", points + (industry / 2));
 	}
 	if (metal > 0.0)
 	{
