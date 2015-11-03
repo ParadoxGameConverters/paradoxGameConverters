@@ -1491,7 +1491,7 @@ HoI3Province* HoI3Country::getCapital(void)
 	{
 		if (provinces.size() > 0)
 		{
-			
+			capitalItr = provinces.begin();
 		}
 		else
 		{
