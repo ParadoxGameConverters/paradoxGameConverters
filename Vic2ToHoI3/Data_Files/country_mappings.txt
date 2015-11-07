@@ -84,7 +84,7 @@ link = { vic = NEP hoi = NEP }	# Nepal
 
 link = { vic = BHU hoi = BHU }	# Bhutan
 link = { vic = CHI hoi = CHI }	# China
-link = { vic = JAV hoi = IND }	# Java		=> Indonesia
+link = { vic = JAV hoi = INO }	# Java		=> Indonesia
 link = { vic = KOR hoi = KOR }	# Korea
 link = { vic = SIA hoi = SIA }	# Siam
 link = { vic = TIB hoi = TIB }	# Tibet
