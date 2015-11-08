@@ -346,7 +346,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting techs";
 	destWorld.convertTechs(sourceWorld);
 	LOG(LogLevel::Info) << "Converting armies and navies";
-	destWorld.convertArmies(sourceWorld, inverseProvinceMap, leaderIDMap);
+	destWorld.convertArmies(sourceWorld, inverseProvinceMap);
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(sourceWorld, countryMap);
 	LOG(LogLevel::Info) << "Converting victory points";

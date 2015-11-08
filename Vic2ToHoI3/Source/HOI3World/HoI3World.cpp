@@ -789,22 +789,22 @@ static string CardinalToOrdinal(int cardinal)
 vector<int> HoI3World::getPortProvinces(vector<int> locationCandidates)
 {
 	vector<int> newLocationCandidates;
-	for (vector<int>::iterator litr = locationCandidates.begin(); litr != locationCandidates.end(); ++litr)
+	for (auto litr: locationCandidates)
 	{
-		map<int, HoI3Province*>::const_iterator provinceItr = provinces.find(*litr);
+		map<int, HoI3Province*>::const_iterator provinceItr = provinces.find(litr);
 		if (provinceItr != provinces.end() && provinceItr->second->hasNavalBase()) // BE: Add? && provinceItr->second->isNotBlacklistedPort()
 		{
-			newLocationCandidates.push_back(*litr);
+			newLocationCandidates.push_back(litr);
 		}
 	}
+
 	return newLocationCandidates;
 }
 
 
-void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap, const map<int, int>& leaderIDMap)
+void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inverseProvinceMap)
 {
-	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in
-	// a non-port province, HoI3 can crash....
+	// hack for naval bases.  not ALL naval bases are in port provinces, and if you spawn a navy at a naval base in a non-port province, HoI3 can crash....
 	vector<int> port_whitelist;
 	{
 		int temp = 0;
@@ -817,6 +817,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 		s.close();
 	}
 
+	// get the unit mappings
 	map<string, multimap<HoI3RegimentType, unsigned> > unitTypeMap; // <vic, hoi>
 	Object* obj = doParseFile("unit_mapping.txt");
 	vector<Object*> leaves = obj->getLeaves();
@@ -830,7 +831,9 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 	{
 		vector<Object*> vicKeys = (*itr)->getValue("vic");
 		if (vicKeys.size() < 1)
+		{
 			LOG(LogLevel::Error) << "invalid unit mapping(no source).";
+		}
 		else
 		{
 			// multimap allows multiple mapping and ratio mapping (e.g. 4 irregulars converted to 3 militia brigades and 1 infantry brigade)
@@ -867,21 +870,13 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 			for (vector<Object*>::iterator vicKey = vicKeys.begin(); vicKey != vicKeys.end(); ++vicKey)
 			{
-				if (hoiList.empty())
-				{
-					LOG(LogLevel::Debug) << "V2 unit type " << (*vicKey)->getLeaf() << " has no HoI3 mapping. "
-						<< "If another mapping for this type is not found, units of this type will not be converted.";
-					// Don't prevent it from going into the unitTypeMap, because we want to record that we have at least seen it
-				}
-
 				if (unitTypeMap.find((*vicKey)->getLeaf()) == unitTypeMap.end())
 				{
 					unitTypeMap[(*vicKey)->getLeaf()] = hoiList;
 				}
 				else
 				{
-					for (multimap<HoI3RegimentType, unsigned>::const_iterator listItr = hoiList.begin();
-						listItr != hoiList.end(); ++listItr)
+					for (multimap<HoI3RegimentType, unsigned>::const_iterator listItr = hoiList.begin(); listItr != hoiList.end(); ++listItr)
 					{
 						unitTypeMap[(*vicKey)->getLeaf()].insert(*listItr);
 					}
@@ -890,18 +885,20 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 		}
 	}
 
+	// define the headquarters brigade type
 	HoI3RegimentType hqBrigade("hq_brigade");
 
+	// convert each country's armies
 	for (map<string, HoI3Country*>::iterator itr = countries.begin(); itr != countries.end(); ++itr)
 	{
 		const V2Country* oldCountry = itr->second->getSourceCountry();
-
 		if (oldCountry == NULL)
+		{
 			continue;
+		}
 
 		int airForceIndex = 0;
-
-		HoI3RegGroup::resetRegGroupNameCounts();
+		HoI3RegGroup::resetHQCounts();
 
 		// A V2 unit type counter to keep track of how many V2 units of this type were converted.
 		// Used to distribute HoI3 unit types in case of multiple mapping
@@ -914,7 +911,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 			V2Army* oldArmy = *aitr;
 			HoI3RegGroup destArmy;
 			destArmy.setName(oldArmy->getName());
-			destArmy.setFuelSupplies(oldArmy->getSupplies());
 			if (oldArmy->getNavy())
 			{
 				destArmy.setForceType(navy);
@@ -925,12 +921,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				destArmy.setForceType(land);
 			}
 
-		//	map<int, int>::const_iterator lmapitr = leaderIDMap.find(aitr->getLeaderID());
-		//	if (lmapitr != leaderIDMap.end())
-		//	{
-		//		destArmy.setLeaderID(lmapitr->second);
-		//	}
-
 			vector<int> locationCandidates = getHoI3ProvinceNums(inverseProvinceMap, oldArmy->getLocation());
 			if (locationCandidates.size() == 0)
 			{
@@ -938,8 +928,8 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				destArmy.setProductionQueue(true);
 			}
 
-			bool usePort = false;
 			// guarantee that navies are assigned to sea provinces, or land provinces with naval bases
+			bool usePort = false;
 			if ((locationCandidates.size() > 0) && (oldArmy->getNavy()))
 			{
 				map<int, HoI3Province*>::const_iterator pitr = provinces.find(locationCandidates[0]);
@@ -957,7 +947,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 			int selectedLocation;
 			HoI3Province* locationProvince;
-			if (locationCandidates.size() > 0) // BE TODO: Handle invalid location units in production queue
+			if (locationCandidates.size() > 0)
 			{
 				selectedLocation = locationCandidates[rand() % locationCandidates.size()];
 				if (oldArmy->getNavy() && usePort)
@@ -965,16 +955,16 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					vector<int>::iterator white = std::find(port_whitelist.begin(), port_whitelist.end(), selectedLocation);
 					if (white == port_whitelist.end())
 					{
-						LOG(LogLevel::Debug) << "assigning navy to non - whitelisted port province " << selectedLocation << ".If you encounter crashes, try blacklisting this province.";
+						LOG(LogLevel::Debug) << "Assigning navy to non - whitelisted port province " << selectedLocation << ". If you encounter crashes, try blacklisting this province.";
 					}
 				}
 				destArmy.setLocation(selectedLocation);
-				if (!oldArmy->getAtSea())
-					destArmy.setLocationContinent(continents[selectedLocation]);
 				map<int, HoI3Province*>::iterator pitr = provinces.find(selectedLocation);
 
 				if (pitr != provinces.end())
+				{
 					locationProvince = pitr->second;
+				}
 				else
 				{
 					LOG(LogLevel::Warning) << "HoI3 Province for ID: " << selectedLocation << " not found. Placing units in the production queue";
@@ -982,18 +972,16 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				}
 			}
 
-			// air units need to be split into air forces
+			// air units need to be split into air forces, so create a top-level air force regiment to hold any air units
 			HoI3RegGroup destAirForce;
-			destAirForce.setFuelSupplies(oldArmy->getSupplies());
 			destAirForce.setForceType(air);
 
 			if (!destArmy.getProductionQueue())
 			{
 				destAirForce.setLocation(selectedLocation);
-				if (!oldArmy->getAtSea())
-					destAirForce.setLocationContinent(continents[selectedLocation]);
 			}
 
+			// convert the regiments
 			vector<V2Regiment> sourceRegiments = oldArmy->getRegiments();
 			for (vector<V2Regiment>::iterator ritr = sourceRegiments.begin(); ritr != sourceRegiments.end(); ++ritr)
 			{
@@ -1006,12 +994,12 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					LOG(LogLevel::Debug) << "Regiment " << ritr->getName() << " has unmapped unit type " << ritr->getType() << ", dropping.";
 					continue;
 				}
-				else if (typeMap->second.empty()) // Silently skip the ones that have no mapping, because it was logged earlier
+				else if (typeMap->second.empty()) // Silently skip the ones that have no mapping
 				{
 					continue;
 				}
 
-				const multimap<HoI3RegimentType, unsigned> &hoiMapList = typeMap->second;
+				const multimap<HoI3RegimentType, unsigned>& hoiMapList = typeMap->second;
 				unsigned destMapIndex = typeCount[ritr->getType()]++ % hoiMapList.size();
 				multimap<HoI3RegimentType, unsigned>::const_iterator destTypeItr = hoiMapList.begin();
 
@@ -1044,8 +1032,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 					if (skippedCount == hoiMapList.size())
 					{
-						LOG(LogLevel::Warning) << "Regiment " << ritr->getName() << " has unit type " << ritr->getType()
-							<< ", but it is mapped only to units exclusive to other countries. Dropping.";
+						LOG(LogLevel::Warning) << "Regiment " << ritr->getName() << " has unit type " << ritr->getType() << ", but it is mapped only to units exclusive to other countries. Dropping.";
 						continue;
 					}
 				}
@@ -1059,23 +1046,21 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				destReg.setType(destTypeItr->first);
 				destReg.setHistoricalModel(destTypeItr->second);
 
-				double strengthFactor = 1.0;
-				if (destReg.getForceType() != navy) // V2 and HoI naval units are already scaled correctly
-					strengthFactor = ((double)destTypeItr->first.getMaxStrength()) / 3.0;
-				destReg.setStrength(ritr->getStrength() * strengthFactor);
-				destReg.setOrganization(ritr->getOrganization()); // XXX: needs scaling!
-				destReg.setExperience(ritr->getExperience()); // XXX: needs scaling?
-
 				// Add to army/navy or newly created air force as appropriate
 				if (destReg.getForceType() != air)
+				{
 					destArmy.addRegiment(destReg, true);
+				}
 				else
+				{
 					destAirForce.addRegiment(destReg, true);
+				}
 
 				// Contribute to country's practicals
 				itr->second->getPracticals()[destTypeItr->first.getPracticalBonus()] += Configuration::getPracticalsScale() * destTypeItr->first.getPracticalBonusFactor();
 			}
 
+			// add the converted units to the country
 			if (!destArmy.isEmpty() && !destArmy.getProductionQueue())
 			{
 				if (oldArmy->getNavy() && locationProvince->isLand())
@@ -1091,6 +1076,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 				itr->second->addArmy(destArmy);
 			}
 
+			// add converted air units to the country
 			if (!destAirForce.isEmpty() && !destArmy.getProductionQueue())
 			{
 				// we need to put an airbase here, so make sure we're in our own territory
@@ -1110,7 +1096,6 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 					destArmy.setProductionQueue(true);
 				}
 			}
-
 			if (!destAirForce.isEmpty() && destArmy.getProductionQueue())
 			{
 				destAirForce.setProductionQueue(true);
