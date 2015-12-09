@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <fstream>
 #include "../Log.h"
 #include "../Parsers/Parser.h"
+#include "HoI3Leader.h"
 #include "HoI3Minister.h"
 #include "../V2World/V2Relations.h"
 #include "../V2World/V2Party.h"
@@ -88,6 +89,7 @@ HoI3Country::HoI3Country(string _tag, string _commonCountryFile, HoI3World* _the
 	ideology			= "";
 	government		= "";
 	faction			= "";
+	factionLeader	= false;
 
 	neutrality		= 50;
 	nationalUnity	= 70;
@@ -165,6 +167,9 @@ void HoI3Country::output() const
 
 	// output OOB file
 	outputOOB();
+
+	// output leaders file
+	outputLeaders();
 
 	// Output common country file. 
 	fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\common\\countries\\" + commonCountryFile).c_str(), "w");
@@ -339,6 +344,18 @@ void HoI3Country::outputParties(FILE* output) const
 		fprintf(partyLocalisations, "%s;\n", party.localisationString.c_str());
 	}
 	fclose(partyLocalisations);
+}
+
+
+void HoI3Country::outputLeaders() const
+{
+	FILE* leadersFile;
+	fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w");
+	for (auto leader: leaders)
+	{
+		leader.output(leadersFile);
+	}
+	fclose(leadersFile);
 }
 
 
@@ -837,6 +854,106 @@ void HoI3Country::consolidateProvinceItems(inverseProvinceMapping& inverseProvin
 				LOG(LogLevel::Warning) << "Leftover IC is " << leftoverIndustry;
 			}
 		}
+	}
+}
+
+
+void HoI3Country::generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
+{
+	vector<string> firstNames;
+	vector<string> lastNames;
+	auto namesItr = namesMap.find(srcCountry->getPrimaryCulture());
+	if (namesItr != namesMap.end())
+	{
+		firstNames	= namesItr->second.first;
+		lastNames	= namesItr->second.second;
+	}
+	else
+	{
+		firstNames.push_back("null");
+		lastNames.push_back("null");
+	}
+
+	// generated leaders
+	int totalOfficers = 0;
+	vector<V2Province*> srcProvinces = srcCountry->getCores();
+	for (auto province: srcProvinces)
+	{
+		totalOfficers += province->getPopulation("officers");
+	}
+
+	unsigned int totalLand = 0;
+	totalLand = totalOfficers / 300;
+	if (totalLand > 350)
+	{
+		totalLand = 350;
+	}
+	if (totalLand < 10)
+	{
+		totalLand = 10;
+	}
+	if (factionLeader)
+	{
+		totalLand += 300;
+	}
+	for (unsigned int i = 0; i <= totalLand; i++)
+	{
+		HoI3Leader newLeader(firstNames, lastNames, tag, "land", leaderTraits, portraitMap[graphicalCulture]);
+		leaders.push_back(newLeader);
+	}
+
+	unsigned int totalSea = 0;
+	if (totalOfficers <= 1000)
+	{
+		totalSea = totalOfficers / 100;
+	}
+	else
+	{
+		totalSea = static_cast<int>(totalOfficers / 822.0 + 8.78);
+	}
+	if (totalSea > 100)
+	{
+		totalSea = 100;
+	}
+	if (totalSea < 1)
+	{
+		totalSea = 1;
+	}
+	if (factionLeader)
+	{
+		totalSea += 20;
+	}
+	for (unsigned int i = 0; i <= totalSea; i++)
+	{
+		HoI3Leader newLeader(firstNames, lastNames, tag, "sea", leaderTraits, portraitMap[graphicalCulture]);
+		leaders.push_back(newLeader);
+	}
+
+	unsigned int totalAir = 0;
+	if (totalOfficers <= 1000)
+	{
+		totalAir = totalOfficers / 100;
+	}
+	else
+	{
+		totalAir = static_cast<int>(totalOfficers / 925.0 + 12.62);
+	}
+	if (totalAir > 90)
+	{
+		totalAir = 90;
+	}
+	if (totalAir < 3)
+	{
+		totalAir = 3;
+	}
+	if (factionLeader)
+	{
+		totalAir += 20;
+	}
+	for (unsigned int i = 0; i <= totalAir; i++)
+	{
+		HoI3Leader newLeader(firstNames, lastNames, tag, "air", leaderTraits, portraitMap[graphicalCulture]);
+		leaders.push_back(newLeader);
 	}
 }
 

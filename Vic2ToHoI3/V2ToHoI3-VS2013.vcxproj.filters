@@ -77,6 +77,9 @@
     <ClCompile Include="Source\V2World\V2Inventions.cpp">
       <Filter>Vic2World</Filter>
     </ClCompile>
+    <ClCompile Include="Source\HOI3World\HoI3Leader.cpp">
+      <Filter>HOI3World</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
@@ -151,6 +154,9 @@
       <Filter>Parser</Filter>
     </ClInclude>
     <ClInclude Include="Source\HOI3World\HoI3Minister.h">
+      <Filter>HOI3World</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\HOI3World\HoI3Leader.h">
       <Filter>HOI3World</Filter>
     </ClInclude>
   </ItemGroup>

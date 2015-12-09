@@ -361,7 +361,7 @@ void HoI3World::getProvinceLocalizations(string file)
 }
 
 
-void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap)
+void HoI3World::convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap)
 {
 	vector<string> outputOrder;
 	outputOrder.clear();
@@ -1117,6 +1117,7 @@ void HoI3World::convertArmies(V2World& sourceWorld, inverseProvinceMapping inver
 
 void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vector<string>& candidateTags, string& leader, string factionName)
 {
+	bool leaderSet = false;
 	for (vector<string>::const_iterator itr = candidateTags.begin(); itr != candidateTags.end(); ++itr)
 	{
 		// get HoI3 tag from V2 tag
@@ -1142,6 +1143,11 @@ void HoI3World::checkManualFaction(const CountryMapping& countryMap, const vecto
 				if (leader == "")
 				{
 					leader = citr->first;
+				}
+				if (!leaderSet)
+				{
+					citr->second->setFactionLeader();
+					leaderSet = true;
 				}
 			}
 		}
@@ -1207,6 +1213,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 					{
 						axisLeader = itr->first;
 						country->setFaction("axis");
+						country->setFactionLeader();
 					}
 					else
 					{
@@ -1229,6 +1236,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 					{
 						alliesLeader = itr->first;
 						country->setFaction("allies");
+						country->setFactionLeader();
 					}
 					else
 					{
@@ -1253,6 +1261,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 					{
 						cominternLeader = itr->first; // Faction leader
 						country->setFaction("comintern");
+						country->setFactionLeader();
 					}
 					else
 					{
@@ -1289,6 +1298,7 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 					{
 						cominternLeader = itr->first; // Faction leader
 						itr->second->setFaction("comintern");
+						itr->second->setFactionLeader();
 					}
 					else
 					{
@@ -1458,6 +1468,16 @@ void HoI3World::configureFactions(const V2World &sourceWorld, const CountryMappi
 		}
 	}
 }
+
+
+void HoI3World::generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap)
+{
+	for (auto country: countries)
+	{
+		country.second->generateLeaders(leaderTraits, namesMap, portraitMap);
+	}
+}
+
 
 void HoI3World::consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap)
 {

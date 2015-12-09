@@ -109,6 +109,11 @@ typedef map<string, vector<string>> governmentJobsMap;
 void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
 
 
+// leaderTraits
+typedef map<string, vector<string>> leaderTraitsMap; // <leader type, possible traits>
+void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits);
+
+
 // names
 typedef map<string, pair<vector<string>, vector<string>>> namesMapping;
 void initNamesMapping(Object* obj, namesMapping& namesMap);

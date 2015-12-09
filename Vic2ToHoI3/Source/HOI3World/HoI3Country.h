@@ -43,6 +43,7 @@ using namespace std;
 class HoI3World;
 class V2Country;
 class HoI3Minister;
+class HoI3Leader;
 
 
 
@@ -63,15 +64,17 @@ class HoI3Country
 		void	output() const;
 		void	outputToCommonCountriesFile(FILE*) const;
 		void	outputLocalisation(FILE*) const;
-		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitsMap, const cultureMapping& cultureMap);
+		void	initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap);
 		void	initFromHistory();
 		void	consolidateProvinceItems(inverseProvinceMapping& inverseProvinceMap, double& totalManpower, double& totalLeadership, double& totalIndustry);
+		void	generateLeaders(leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap);
 		
 		void	setTechnology(string tech, int level);
 		void	addProvince(HoI3Province* _province);
 		void	addArmy(HoI3RegGroup army);
 
 		void	setFaction(string newFaction)	{ faction = newFaction; }
+		void	setFactionLeader()				{ factionLeader = true; }
 
 		HoI3Relations*								getRelations(string withWhom) const;
 		HoI3Province*								getCapital();
@@ -95,6 +98,7 @@ class HoI3Country
 		void			outputPracticals(FILE*)		const;
 		void			outputTech(FILE*)				const;
 		void			outputParties(FILE*)			const;
+		void			outputLeaders()				const;
 		vector<int>	getPortProvinces(vector<int> locationCandidates, map<int, HoI3Province*> allProvinces);
 		void			convertParties(const V2Country* srcCountry, vector<V2Party*> V2Parties, V2Party* rulingParty, string& rulingIdeology);
 
@@ -118,11 +122,13 @@ class HoI3Country
 		double								nationalUnity;
 		HoI3Localisation					localisation;
 		string								faction;
+		bool									factionLeader;
 		set<string>							allies;
 		map<string, double>				practicals;
 		vector<HoI3Party>					parties;
 		vector<HoI3Minister>				ministers;
 		vector<HoI3Minister>				rulingMinisters;
+		vector<HoI3Leader>				leaders;
 		string								graphicalCulture;
 
 		// laws

@@ -490,6 +490,23 @@ void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs)
 }
 
 
+void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits)
+{
+	vector<Object*> typesObj = obj->getLeaves();
+	for (auto typeItr: typesObj)
+	{
+		string type = typeItr->getKey();
+		vector<string> traits;
+		auto traitsObj = typeItr->getLeaves();
+		for (auto trait: traitsObj)
+		{
+			traits.push_back(trait->getLeaf());
+		}
+		leaderTraits.insert(make_pair(type, traits));
+	}
+}
+
+
 void initNamesMapping(Object* obj, namesMapping& namesMap)
 {
 	vector<Object*> groupsObj = obj->getLeaves();

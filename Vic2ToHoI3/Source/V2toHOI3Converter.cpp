@@ -291,6 +291,18 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	governmentJobsMap governmentJobs;
 	initGovernmentJobTypes(obj->getLeaves()[0], governmentJobs);
 
+	// Parse leader traits
+	LOG(LogLevel::Info) << "Parsing government jobs";
+	initParser();
+	obj = doParseFile("leader_traits.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file leader_traits.txt";
+		exit(-1);
+	}
+	leaderTraitsMap leaderTraits;
+	initLeaderTraitsMap(obj->getLeaves()[0], leaderTraits);
+
 	// parse names
 	LOG(LogLevel::Info) << "Parsing names";
 	namesMapping namesMap;
@@ -337,7 +349,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, namesMap, portraitMap, cultureMap);
+	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, adjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
@@ -349,6 +361,8 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	destWorld.convertArmies(sourceWorld, inverseProvinceMap);
 	LOG(LogLevel::Info) << "Setting up factions";
 	destWorld.configureFactions(sourceWorld, countryMap);
+	LOG(LogLevel::Info) << "Generating Leaders";
+	destWorld.generateLeaders(leaderTraits, namesMap, portraitMap);
 	LOG(LogLevel::Info) << "Converting victory points";
 	destWorld.convertVictoryPoints(sourceWorld, countryMap);
 
