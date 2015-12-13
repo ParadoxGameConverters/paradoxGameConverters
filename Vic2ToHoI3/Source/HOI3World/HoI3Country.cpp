@@ -384,7 +384,7 @@ void HoI3Country::outputOOB() const
 }
 
 
-void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap)
+void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _srcCountry, const string _vic2ideology, vector<string> outputOrder, const CountryMapping& countryMap, governmentMapping governmentMap, inverseProvinceMapping inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& _personalityMap, backgroundMap& _backgroundMap)
 {
 	srcCountry = _srcCountry;
 
@@ -484,8 +484,6 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 			}
 		}
 	}
-
-	Configuration::setLeaderIDForNextCountry();
 
 	// Faction is handled in HoI3World::configureFactions
 
@@ -601,6 +599,16 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	{
 		training_laws = "minimal_training";
 	}
+
+	// leaders
+	vector<V2Leader*> srcLeaders = srcCountry->getLeaders();
+	for (auto srcLeader: srcLeaders)
+	{
+		HoI3Leader newLeader(srcLeader, tag, _personalityMap, _backgroundMap, portraitMap[graphicalCulture]);
+		leaders.push_back(newLeader);
+	}
+
+	Configuration::setLeaderIDForNextCountry();
 
 	// Relations
 	map<string, V2Relations*> srcRelations = srcCountry->getRelations();

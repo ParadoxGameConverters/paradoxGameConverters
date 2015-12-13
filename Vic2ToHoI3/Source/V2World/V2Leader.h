@@ -20,37 +20,35 @@ TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
 SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
+#ifndef V2_LEADER_H_
+#define V2_LEADER_H_
 
-#ifndef HOI3LEADER_H_
-#define HOI3LEADER_H_
 
 
-#include <stdio.h>
 #include <string>
-#include <vector>
-#include "../Mapper.h"
-#include "../V2World/V2Leader.h"
+#include "../Parsers/Object.h"
 using namespace std;
 
 
-class HoI3Leader
+class V2Leader
 {
 	public:
-		HoI3Leader(vector<string>& firstNames, vector<string>& lastNames, string _country, string _type, leaderTraitsMap& _traitsMap, vector<string>& portraits);
-		HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& _personalityMap, backgroundMap& _backgroundMap, vector<string>& portraits);
-		void output(FILE* output);
+		V2Leader(Object* obk);
+
+		string	getName()			const	{ return name; }
+		string	getType()			const { return type; }
+		double	getPrestige()		const { return prestige; }
+		string	getPersonality()	const { return personality; }
+		string	getBackground()	const { return background; }
 
 	private:
-		unsigned int	ID;
-		string			name;
-		string			country;
-		string			type;
-		int				skill;
-		int				rank;
-		string			picture;
-		vector<string>	traits;
+		string	name;
+		string	type;
+		string	personality;
+		string	background;
+		double	prestige;
 };
 
 
 
-#endif	// HOI3LEADER_H_
+#endif V2LEADER_H_

@@ -507,6 +507,16 @@ void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits)
 }
 
 
+void initLeaderPersonalityMap(Object* obj, personalityMap)
+{
+}
+
+
+void initLeaderBackgroundMap(Object* obj, backgroundMap)
+{
+}
+
+
 void initNamesMapping(Object* obj, namesMapping& namesMap)
 {
 	vector<Object*> groupsObj = obj->getLeaves();

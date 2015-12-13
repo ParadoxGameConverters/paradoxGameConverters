@@ -36,13 +36,15 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include <set>
 using namespace std;
 
-class V2World;
-class V2Province;
-class V2Relations;
-class V2Army;
-class V2Reforms;
-class V2Factory;
-struct V2Party;
+
+class		V2Army;
+class		V2Factory;
+class		V2Leader;
+struct	V2Party;
+class		V2Province;
+class		V2Reforms;
+class		V2Relations;
+class		V2World;
 
 
 typedef struct V2State
@@ -84,6 +86,7 @@ class V2Country
 		unsigned	int					getRulingPartyId()											const { return rulingPartyId; }
 		vector<unsigned int>			getActiveParties()											const { return activeParties; };
 		vector<V2Army*>				getArmies()														const { return armies; }
+		vector<V2Leader*>				getLeaders()													const { return leaders; }
 		double							getRevanchism()												const { return revanchism; }
 		double							getWarExhaustion()											const { return warExhaustion; }
 
@@ -129,6 +132,7 @@ class V2Country
 		string							government;
 		map<string,V2Relations*>	relations;
 		vector<V2Army*>				armies;
+		vector<V2Leader*>				leaders;
 		Color								color;	
 		map<string, double>			upperHouseComposition;
 		double							educationSpending;

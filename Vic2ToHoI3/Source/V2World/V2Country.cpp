@@ -31,12 +31,13 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #include "../Log.h"
 #include "../Configuration.h"
 #include "../Parsers/Parser.h"
-#include "V2World.h"
-#include "V2Province.h"
-#include "V2Factory.h"
-#include "V2Relations.h"
 #include "V2Army.h"
+#include "V2Factory.h"
+#include "V2Leader.h"
 #include "V2Party.h"
+#include "V2Province.h"
+#include "V2Relations.h"
+#include "V2World.h"
 
 
 
@@ -239,6 +240,14 @@ V2Country::V2Country(Object* obj, const inventionNumToName& iNumToName)
 	{
 		V2Army* navy = new V2Army(*itr);
 		armies.push_back(navy);
+	}
+
+	leaders.clear();
+	vector<Object*> leaderObj = obj->getValue("leader");	// the object sholding the leaders
+	for (auto itr: leaderObj)
+	{
+		V2Leader* leader = new V2Leader(itr);
+		leaders.push_back(leader);
 	}
 
 	// read in states

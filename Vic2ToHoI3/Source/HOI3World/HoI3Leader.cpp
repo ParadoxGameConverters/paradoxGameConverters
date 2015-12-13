@@ -31,8 +31,8 @@ HoI3Leader::HoI3Leader(vector<string>& firstNames, vector<string>& lastNames, st
 	name		= firstNames[rand() % firstNames.size()] + " " + lastNames[rand() % lastNames.size()];
 	country	= _country;
 	type		= _type;
-	loyalty	= 1.0f;
-
+	skill		= 0;
+	rank		= 1;
 	picture	= portraits[rand() % portraits.size()];
 
 	if (rand() % 4 > 0)
@@ -53,22 +53,56 @@ HoI3Leader::HoI3Leader(vector<string>& firstNames, vector<string>& lastNames, st
 }
 
 
+HoI3Leader::HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& _personalityMap, backgroundMap& _backgroundMap, vector<string>& portraits)
+{
+	ID			= Configuration::getNextLeaderID();
+	name		= srcLeader->getName();
+	country	= _country;
+	if (srcLeader->getType() == "land")
+	{
+		type = "land";
+	}
+	else if (srcLeader->getType() == "sea")
+	{
+		type = "sea";
+	}
+	skill		= static_cast<int>(srcLeader->getPrestige() * 22.5f);
+	if (skill > 9)
+	{
+		skill = 9;
+	}
+	rank		= 4;
+	picture	= portraits[rand() % portraits.size()];
+
+	auto possiblePersonalities = _personalityMap.find(srcLeader->getPersonality());
+	if (possiblePersonalities != _personalityMap.end())
+	{
+		traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
+	}
+	auto possibleBackgrounds = _backgroundMap.find(srcLeader->getBackground());
+	if (possibleBackgrounds != _backgroundMap.end())
+	{
+		traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
+	}
+}
+
+
 void HoI3Leader::output(FILE * output)
 {
 	fprintf(output, "%d = {\n", ID);
 	fprintf(output, "\tname = \"%s\"\n", name.c_str());
 	fprintf(output, "\tcountry = %s\n", country.c_str());
 	fprintf(output, "\ttype = %s\n", type.c_str());
-	fprintf(output, "\tskill = 0\n");
+	fprintf(output, "\tskill = %d", skill);
 	fprintf(output, "\tmax_skill = 9\n");
-	fprintf(output, "\tloyalty = %.2f\n", loyalty);
+	fprintf(output, "\tloyalty = 1.00\n");
 	fprintf(output, "\tpicture = %s\n", picture.c_str());
 	for (auto trait: traits)
 	{
 		fprintf(output, "\tadd_trait = %s\n", trait.c_str());
 	}
 	fprintf(output, "\thistory = {\n");
-	fprintf(output, "\t\t1936.1.1 = { rank = 1 }\n");
+	fprintf(output, "\t\t1936.1.1 = { rank = %d }\n", rank);
 	fprintf(output, "\t\t1970.1.1 = { rank = 0 }\n");
 	fprintf(output, "\t}\n");
 	fprintf(output, "}\n");

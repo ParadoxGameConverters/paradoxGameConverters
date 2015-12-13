@@ -347,9 +347,41 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	cultureMapping cultureMap;
 	cultureMap = initCultureMap(obj->getLeaves()[0]);
 
+	// parse personality mapping
+	LOG(LogLevel::Info) << "Parsing personality mappings";
+	obj = doParseFile("culture_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
+		return 1;
+	}
+	personalityMap _personalityMap;
+	initLeaderPersonalityMap(obj->getLeaves()[0], _personalityMap);
+
+	// parse background mapping
+	LOG(LogLevel::Info) << "Parsing background mappings";
+	obj = doParseFile("culture_map.txt");
+	if (obj == NULL)
+	{
+		LOG(LogLevel::Error) << "Could not parse file background_map.txt";
+		exit(-1);
+	}
+	if (obj->getLeaves().size() < 1)
+	{
+		LOG(LogLevel::Error) << "Failed to parse background_map.txt";
+		return 1;
+	}
+	backgroundMap _backgroundMap;
+	initLeaderBackgroundMap(obj->getLeaves()[0], _backgroundMap);
+
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap);
+	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, _personalityMap, _backgroundMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, adjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
