@@ -37,7 +37,7 @@ class HoI3Leader
 {
 	public:
 		HoI3Leader(vector<string>& firstNames, vector<string>& lastNames, string _country, string _type, leaderTraitsMap& _traitsMap, vector<string>& portraits);
-		HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& _personalityMap, backgroundMap& _backgroundMap, vector<string>& portraits);
+		HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits);
 		void output(FILE* output);
 
 	private:

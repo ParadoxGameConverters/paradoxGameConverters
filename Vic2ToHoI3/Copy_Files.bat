@@ -12,6 +12,8 @@ copy "Data_Files\tech_mapping.txt" "release\tech_mapping.txt"
 copy "Data_Files\unit_mapping.txt" "release\unit_mapping.txt"
 copy "Data_Files\portraits.txt" "release\portraits.txt"
 copy "Data_Files\culture_map.txt" "release\culture_map.txt"
+copy "Data_Files\personality_map.txt" "release\personality_map.txt"
+copy "Data_Files\background_map.txt" "release\background_map.txt"
 copy "Data_Files\FAQ.txt" "release\FAQ.txt"
 
 del release\changelog.txt

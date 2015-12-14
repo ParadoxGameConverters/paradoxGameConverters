@@ -53,7 +53,7 @@ HoI3Leader::HoI3Leader(vector<string>& firstNames, vector<string>& lastNames, st
 }
 
 
-HoI3Leader::HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& _personalityMap, backgroundMap& _backgroundMap, vector<string>& portraits)
+HoI3Leader::HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits)
 {
 	ID			= Configuration::getNextLeaderID();
 	name		= srcLeader->getName();
@@ -74,15 +74,31 @@ HoI3Leader::HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& _pe
 	rank		= 4;
 	picture	= portraits[rand() % portraits.size()];
 
-	auto possiblePersonalities = _personalityMap.find(srcLeader->getPersonality());
-	if (possiblePersonalities != _personalityMap.end())
+	if (type == "land")
 	{
-		traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
+		auto possiblePersonalities = landPersonalityMap.find(srcLeader->getPersonality());
+		if ((possiblePersonalities != landPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
+		{
+			traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
+		}
+		auto possibleBackgrounds = landBackgroundMap.find(srcLeader->getBackground());
+		if ((possibleBackgrounds != landBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
+		{
+			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
+		}
 	}
-	auto possibleBackgrounds = _backgroundMap.find(srcLeader->getBackground());
-	if (possibleBackgrounds != _backgroundMap.end())
+	else if (type == "sea")
 	{
-		traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
+		auto possiblePersonalities = seaPersonalityMap.find(srcLeader->getPersonality());
+		if ((possiblePersonalities != seaPersonalityMap.end()) && (possiblePersonalities->second.size() > 0))
+		{
+			traits.push_back(possiblePersonalities->second[rand() % possiblePersonalities->second.size()]);
+		}
+		auto possibleBackgrounds = seaBackgroundMap.find(srcLeader->getBackground());
+		if ((possibleBackgrounds != seaBackgroundMap.end()) && (possibleBackgrounds->second.size() > 0))
+		{
+			traits.push_back(possibleBackgrounds->second[rand() % possibleBackgrounds->second.size()]);
+		}
 	}
 }
 

@@ -349,7 +349,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	// parse personality mapping
 	LOG(LogLevel::Info) << "Parsing personality mappings";
-	obj = doParseFile("culture_map.txt");
+	obj = doParseFile("personality_map.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file personality_map.txt";
@@ -360,12 +360,13 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		LOG(LogLevel::Error) << "Failed to parse personality_map.txt";
 		return 1;
 	}
-	personalityMap _personalityMap;
-	initLeaderPersonalityMap(obj->getLeaves()[0], _personalityMap);
+	personalityMap landPersonalityMap;
+	personalityMap seaPersonalityMap;
+	initLeaderPersonalityMap(obj->getLeaves()[0], landPersonalityMap, seaPersonalityMap);
 
 	// parse background mapping
 	LOG(LogLevel::Info) << "Parsing background mappings";
-	obj = doParseFile("culture_map.txt");
+	obj = doParseFile("background_map.txt");
 	if (obj == NULL)
 	{
 		LOG(LogLevel::Error) << "Could not parse file background_map.txt";
@@ -376,12 +377,13 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 		LOG(LogLevel::Error) << "Failed to parse background_map.txt";
 		return 1;
 	}
-	backgroundMap _backgroundMap;
-	initLeaderBackgroundMap(obj->getLeaves()[0], _backgroundMap);
+	backgroundMap landBackgroundMap;
+	backgroundMap seaBackgroundMap;
+	initLeaderBackgroundMap(obj->getLeaves()[0], landBackgroundMap, seaBackgroundMap);
 
 	// Convert
 	LOG(LogLevel::Info) << "Converting countries";
-	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, _personalityMap, _backgroundMap);
+	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting provinces";
 	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, adjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);

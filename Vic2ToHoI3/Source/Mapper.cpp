@@ -507,13 +507,55 @@ void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits)
 }
 
 
-void initLeaderPersonalityMap(Object* obj, personalityMap)
+void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap)
 {
+	vector<Object*> personalitiesObj = obj->getLeaves();
+	for (auto personalityItr: personalitiesObj)
+	{
+		string personality = personalityItr->getKey();
+		vector<string> landTraits;
+		vector<string> seaTraits;
+		auto traitsObj = personalityItr->getLeaves();
+		for (auto trait: traitsObj)
+		{
+			if (trait->getKey() == "land")
+			{
+				landTraits.push_back(trait->getLeaf());
+			}
+			else if (trait->getKey() == "sea")
+			{
+				seaTraits.push_back(trait->getLeaf());
+			}
+		}
+		landPersonalityMap.insert(make_pair(personality, landTraits));
+		seaPersonalityMap.insert(make_pair(personality, seaTraits));
+	}
 }
 
 
-void initLeaderBackgroundMap(Object* obj, backgroundMap)
+void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap)
 {
+	vector<Object*> backgroundObj = obj->getLeaves();
+	for (auto backgroundItr: backgroundObj)
+	{
+		string background = backgroundItr->getKey();
+		vector<string> landTraits;
+		vector<string> seaTraits;
+		auto traitsObj = backgroundItr->getLeaves();
+		for (auto trait: traitsObj)
+		{
+			if (trait->getKey() == "land")
+			{
+				landTraits.push_back(trait->getLeaf());
+			}
+			else if (trait->getKey() == "sea")
+			{
+				seaTraits.push_back(trait->getLeaf());
+			}
+		}
+		landBackgroundMap.insert(make_pair(background, landTraits));
+		seaBackgroundMap.insert(make_pair(background, seaTraits));
+	}
 }
 
 

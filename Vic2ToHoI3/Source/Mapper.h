@@ -113,9 +113,9 @@ void initGovernmentJobTypes(Object* obj, governmentJobsMap& governmentJobs);
 typedef map<string, vector<string>> leaderTraitsMap; // <leader type, possible traits>
 void initLeaderTraitsMap(Object* obj, leaderTraitsMap& leaderTraits);
 typedef map<string, vector<string>> personalityMap;	// <V2 personality, possible HoI3 traits>
-void initLeaderPersonalityMap(Object* obj, personalityMap);
+void initLeaderPersonalityMap(Object* obj, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap);
 typedef map<string, vector<string>> backgroundMap;		// <V2 background, possible HoI3 traits>
-void initLeaderBackgroundMap(Object* obj, backgroundMap);
+void initLeaderBackgroundMap(Object* obj, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
 
 
 // names
