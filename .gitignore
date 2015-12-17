@@ -3,6 +3,7 @@ ReleaseIntermediate/
 Debug/
 DebugIntermediate/
 testResults
-*.zip
+*testResults*
+V2ToHoI3.zip
 *.opensdf
 *.sdf
