@@ -408,10 +408,6 @@ tag vs internalTag:
           <description>A path on your computer where HoI3 ttemp files are kept</description>
           <alternatives>
             <alternative>
-              <defaultLocationType>WindowsUsersFolder</defaultLocationType>
-              <subFolderLocation>Paradox Interactive\Hearts of Iron III\mod</subFolderLocation>
-            </alternative>
-            <alternative>
               <defaultLocationType>SteamFolder</defaultLocationType>
               <autoDetectFromSteamId>25890</autoDetectFromSteamId>
               <subFolderLocation>mod</subFolderLocation>
