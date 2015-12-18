@@ -42,7 +42,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 // Returns 0 on success or a non-zero failure code on error.
 int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 {
-	LOG(LogLevel::Info) << "Converter version 0.8C";
+	LOG(LogLevel::Info) << "Converter version 0.9";
 	Object*	obj;					// generic object
 
 	Configuration::getInstance();
@@ -151,13 +151,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	}
 	Configuration::setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
-
-	string outputFolder = string(curDir) + "\\output\\" + Configuration::getOutputName();
-	if (WinUtils::doesFolderExist(outputFolder.c_str()))
-	{
-		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
-		exit(0);
-	}
 
 	string outputFolder = string(curDir) + "\\output\\" + Configuration::getOutputName();
 	if (WinUtils::doesFolderExist(outputFolder.c_str()))
