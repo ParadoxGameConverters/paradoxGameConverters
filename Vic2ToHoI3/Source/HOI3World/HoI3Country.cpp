@@ -351,11 +351,33 @@ void HoI3Country::outputLeaders() const
 {
 	FILE* leadersFile;
 	fopen_s(&leadersFile, ("Output\\" + Configuration::getOutputName() + "\\history\\leaders\\" + tag.c_str() + ".txt").c_str(), "w");
+	int landLeaders	= 0;
+	int seaLeaders		= 0;
+	int airLeaders		= 0;
 	for (auto leader: leaders)
 	{
 		leader.output(leadersFile);
+
+		if (leader.getType() == "land")
+		{
+			landLeaders++;
+		}
+		else if (leader.getType() == "sea")
+		{
+			seaLeaders++;
+		}
+		else if (leader.getType() == "air")
+		{
+			airLeaders++;
+		}
+		else
+		{
+			LOG(LogLevel::Warning) << "Leader of unknown type in " << tag;
+		}
 	}
 	fclose(leadersFile);
+
+	LOG(LogLevel::Info) << tag << " has " << landLeaders << " land leaders, " << seaLeaders << " sea leaders, and " << airLeaders << " air leaders.";
 }
 
 

@@ -40,6 +40,8 @@ class HoI3Leader
 		HoI3Leader(V2Leader* srcLeader, string _country, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap, vector<string>& portraits);
 		void output(FILE* output);
 
+		string getType()	const { return type; }
+
 	private:
 		unsigned int	ID;
 		string			name;
