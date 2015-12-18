@@ -103,13 +103,16 @@ void CountryMapping::readEU4Regions(Object* obj)
 	for (vector<Object*>::iterator regionsItr = regionsObj.begin(); regionsItr != regionsObj.end(); regionsItr++)
 	{
 		vector<Object*> provincesObj = (*regionsItr)->getValue("provinces");	// the section containing the provinces in the regions
-		vector<string> provinceStrings = provincesObj[0]->getTokens();				// the province numbers
-		std::set<int> provinces;
-		for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+		if (provincesObj.size() > 0)
 		{
-			provinces.insert(atoi(provinceItr->c_str()));
+			vector<string> provinceStrings = provincesObj[0]->getTokens();				// the province numbers
+			std::set<int> provinces;
+			for (vector<string>::iterator provinceItr = provinceStrings.begin(); provinceItr != provinceStrings.end(); provinceItr++)
+			{
+				provinces.insert(atoi(provinceItr->c_str()));
+			}
+			EU4ColonialRegions.insert(make_pair((*regionsItr)->getKey(), provinces));
 		}
-		EU4ColonialRegions.insert(make_pair((*regionsItr)->getKey(), provinces));
 	}
 }
 
