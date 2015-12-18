@@ -193,53 +193,6 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 
 	sourceWorld.setLocalisations(localisation);
 
-	//// Resolve unit types
-	///*log("Resolving unit types.\n");
-	//printf("Resolving unit types.\n");
-	//RegimentTypeMap rtm;
-	//read.open("unit_strength.txt");
-	//if (read.is_open())
-	//{
-	//	read.close();
-	//	read.clear();
-	//	log("\tReading unit strengths from unit_strength.txt\n");
-	//	obj = doParseFile("unit_strength.txt");
-	//	if (obj == NULL)
-	//	{
-	//		log("Could not parse file unit_strength.txt\n");
-	//		exit(-1);
-	//	}
-	//	for (int i = 0; i < num_reg_categories; ++i)
-	//	{
-	//		AddCategoryToRegimentTypeMap(obj, (RegimentCategory)i, RegimentCategoryNames[i], rtm);
-	//	}
-	//}
-	//else
-	//{
-	//	log("	Reading unit strengths from EU4 installation folder\n");
-	//	struct _finddata_t unitFileData;
-	//	intptr_t fileListing;
-	//	if ( (fileListing = _findfirst( (EU4Loc + "\\common\\units\\*.txt").c_str(), &unitFileData)) == -1L)
-	//	{
-	//		log("	Could not open units directory.\n");
-	//		return -1;
-	//	}
-	//	do
-	//	{
-	//		if (strcmp(unitFileData.name, ".") == 0 || strcmp(unitFileData.name, "..") == 0 )
-	//		{
-	//			continue;
-	//		}
-	//		string unitFilename = unitFileData.name;
-	//		string unitName = unitFilename.substr(0, unitFilename.find_first_of('.'));
-	//		AddUnitFileToRegimentTypeMap((EU4Loc + "\\common\\units"), unitName, rtm);
-	//	} while(_findnext(fileListing, &unitFileData) == 0);
-	//	_findclose(fileListing);
-	//}
-	//read.close();
-	//read.clear();
-	//sourceWorld.resolveRegimentTypes(rtm);*/
-
 
 	// Merge nations
 	LOG(LogLevel::Info) << "Merging nations";
