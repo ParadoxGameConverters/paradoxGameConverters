@@ -3,6 +3,7 @@ set /p version=Version Number?:
 call "%VS120COMNTOOLS%\vsvars32.bat"
 msbuild.exe "..\paradoxGameConverters - Frontend\Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend.sln" /p:Configuration=Release /m
 xcopy "..\paradoxGameConverters - Frontend\Frontend\ParadoxConverters.Frontend\ParadoxConverters.Frontend\bin\Release" "..\Vic2ToHoI3-%version%"  /Y /E /I
+copy "Vic2ToHoI3\Data_Files\Vic2toHoI3DefaultConfiguration.xml" "..\Vic2ToHoI3-%version%\Configuration\"
 
 cd Vic2ToHoI3
 call "build-VS2013.bat"

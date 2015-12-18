@@ -1,0 +1,217 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<configuration
+  Comment="This file is used to build the configuration parth of the frontend. This is done at run-time, so errors here might prevent the frontend from running.">
+  <!--This part contains the various options that will be displayed as preferences in the converter ui, and outputted as configuration.txt as input for the converter tool itself-->
+  <converterOptions>
+    <categories>
+      <category>
+        <friendlyName>Configuration</friendlyName>
+        <preferences>
+		  <preference>
+            <name>Vic2Mods</name>
+            <friendlyName>Vic2 Mods</friendlyName>
+            <description>Vic2 mods to use for conversion (mods require manual conversion)</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>{ }</value>
+          </preference>
+          <preference>
+            <name>resetProvinces</name>
+            <friendlyName>Reset Provinces?</friendlyName>
+            <description>Whether or not to reset resettable HoI3 provinces</description>
+            <entryOptions>
+              <entryOption>
+                <name>yes</name>
+                <friendlyName>Yes</friendlyName>
+                <description>Reset provinces</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>no</name>
+                <friendlyName>No</friendlyName>
+                <description>Don't reset provinces</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+		  <preference>
+            <name>faction_leader</name>
+            <friendlyName>Faction Leader</friendlyName>
+            <description>how the converter determines who the faction leaders are</description>
+            <entryOptions>
+              <entryOption>
+                <name>auto</name>
+                <friendlyName>Auto</friendlyName>
+                <description>Automatic conversion</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>manual</name>
+                <friendlyName>Manual conversion</friendlyName>
+                <description>Will need to set the other faction options (requires manual conversion of save)</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+		  <preference>
+            <name>axis_faction</name>
+            <friendlyName>Axis faction</friendlyName>
+            <description>The axis faction when manually converting factions</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>{ }</value>
+          </preference>
+		  <preference>
+            <name>allies_faction</name>
+            <friendlyName>Allies faction</friendlyName>
+            <description>The allies faction when manually converting factions</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>{ }</value>
+          </preference>
+		  <preference>
+            <name>comintern_faction</name>
+            <friendlyName>Comintern faction</friendlyName>
+            <description>The comintern faction when manually converting factions</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>{ }</value>
+          </preference>
+          <preference>
+            <name>min_infrastructure</name>
+            <friendlyName>Minimum Infrastructure</friendlyName>
+            <description>every land province will have at least this much infrastructure. Default: 3.0 (minimum required to move armies)</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>3</value>
+            <minValue>0.1</minValue>
+            <maxValue>10</maxValue>
+          </preference>
+		  <preference>
+            <name>ic_conversion</name>
+            <friendlyName>IC Conversion</friendlyName>
+            <description>Set to "no" if you want to use the original HoI3 IC values</description>
+            <entryOptions>
+              <entryOption>
+                <name>squareroot</name>
+                <friendlyName>Square Root</friendlyName>
+                <description>sqrt(artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.002 * factor</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>linear</name>
+                <friendlyName>Linear</friendlyName>
+                <description>(artisan/2 + craftsman + capitalists*2 + clerks*2) * 0.000008 * factor</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+			  <entryOption>
+                <name>logarithmic</name>
+                <friendlyName>Logarithmic</friendlyName>
+                <description>log((nc - 70000) / 8000.0) * factor</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+			  <entryOption>
+                <name>no</name>
+                <friendlyName>No conversion</friendlyName>
+                <description>uses the original HoI3 values</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+		  <preference>
+            <name>ic_factor</name>
+            <friendlyName>IC Factor</friendlyName>
+            <description>used for IC conversion</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>1.0</value>
+            <minValue>0.1</minValue>
+            <maxValue>10</maxValue>
+          </preference>
+		  <preference>
+            <name>manpower_conversion</name>
+            <friendlyName>Manpower Conversion</friendlyName>
+            <description>Set to "no" if you want to use the original HoI3 manpower values</description>
+            <entryOptions>
+              <entryOption>
+                <name>squareroot</name>
+                <friendlyName>Square Root</friendlyName>
+                <description>sqrt(soldiers + farmers/4 + labourers/4 + craftsmen/4) * factor</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>linear</name>
+                <friendlyName>Linear</friendlyName>
+                <description>(soldiers + farmers/4 + labourers/4 + craftsmen/4) * factor</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+			  <entryOption>
+                <name>no</name>
+                <friendlyName>No conversion</friendlyName>
+                <description>uses the original HoI3 values</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+		  <preference>
+            <name>manpower_factor</name>
+            <friendlyName>Manpower Factor</friendlyName>
+            <description>used for adjusting manpower conversion</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>1.0</value>
+            <minValue>0.01</minValue>
+            <maxValue>10.0</maxValue>
+          </preference>
+		  <preference>
+            <name>leadership_conversion</name>
+            <friendlyName>Leadership Conversion</friendlyName>
+            <description>Set to "no" if you want to use the original HoI3 leadership values</description>
+            <entryOptions>
+              <entryOption>
+                <name>squareroot</name>
+                <friendlyName>Square Root</friendlyName>
+                <description>sqrt(officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+              <entryOption>
+                <name>linear</name>
+                <friendlyName>Linear</friendlyName>
+                <description>(officers + clerks + capitalists/2 + clergymen/2 + bureaucrats/4 + aristocrats/4) * factor</description>
+                <isDefault>true</isDefault>
+              </entryOption>
+			  <entryOption>
+                <name>no</name>
+                <friendlyName>No conversion</friendlyName>
+                <description>uses the original HoI3 values</description>
+                <isDefault>false</isDefault>
+              </entryOption>
+            </entryOptions>
+          </preference>
+		  <preference>
+            <name>leadership_factor</name>
+            <friendlyName>Leadership Factor</friendlyName>
+            <description>used for leadership conversion</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>1.0</value>
+            <minValue>0.01</minValue>
+            <maxValue>10.0</maxValue>
+          </preference>
+		  <preference>
+            <name>literacy_weight</name>
+            <friendlyName>Literacy Weight</friendlyName>
+            <description>This value affects how much the POP's literacy affects the weighting of the educated classes in leadership and IC</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.1</value>
+            <minValue>0.01</minValue>
+            <maxValue>1</maxValue>
+          </preference>
+		  <preference>
+            <name>practicals_scale</name>
+            <friendlyName>Practicals Scale</friendlyName>
+            <description>Starting production practicals: practicals_scale * Sum of all units' practical bonus when they are constructed</description>
+            <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
+            <value>0.05</value>
+            <minValue>0.01</minValue>
+            <maxValue>1</maxValue>
+          </preference>
+        </preferences>
+      </category>
+    </categories>
+  </converterOptions>
+  >
+</configuration>
