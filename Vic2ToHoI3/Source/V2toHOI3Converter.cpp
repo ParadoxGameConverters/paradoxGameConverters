@@ -152,6 +152,20 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	Configuration::setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
 
+	string outputFolder = string(curDir) + "\\output\\" + Configuration::getOutputName();
+	if (WinUtils::doesFolderExist(outputFolder.c_str()))
+	{
+		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
+		exit(0);
+	}
+
+	string outputFolder = string(curDir) + "\\output\\" + Configuration::getOutputName();
+	if (WinUtils::doesFolderExist(outputFolder.c_str()))
+	{
+		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
+		exit(0);
+	}
+
 	LOG(LogLevel::Info) << "* Importing V2 save *";
 
 	//	Parse V2 Save
