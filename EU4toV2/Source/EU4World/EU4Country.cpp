@@ -204,6 +204,13 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		colony = true;
 	}
 
+	customNation = false;
+	vector<Object*> customNationObj = obj->getValue("custom_name");	// the object handling the custom name (if there is one)
+	if (customNationObj.size() > 0)
+	{
+		customNation = true;
+	}
+
 	libertyDesire = 0.0;
 	vector<Object*> libertyObj = obj->getValue("liberty_desire"); // the object holding the liberty desire
 	if (libertyObj.size() > 0)

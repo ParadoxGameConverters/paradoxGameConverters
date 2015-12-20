@@ -58,48 +58,49 @@ class EU4Country
 		void						resolveRegimentTypes(const RegimentTypeMap& map);
 		int						getManufactoryCount() const;
 		void						eatCountry(EU4Country* target);
-		void						setColonialRegion(const string& region)		 { colonialRegion = region; };
+		void						setColonialRegion(const string& region)		{ colonialRegion = region; }
 		void						takeArmies(EU4Country*);
 		void						clearArmies();
-		const void					viveLaRevolution(bool revolting) { revolutionary = revolting; };
+		const void				viveLaRevolution(bool revolting)					{ revolutionary = revolting; }
 
-		string						getTag()										const { return tag; };
-		vector<EU4Province*>		getProvinces()								const { return provinces; };
-		vector<EU4Province*>		getCores()									const { return cores; };
-		int							getCapital()								const { return capital; };
-		int							getNationalFocus()						const { return nationalFocus; };
-		string						getTechGroup()								const { return techGroup; };
-		string						getPrimaryCulture()						const { return primaryCulture; };
-		vector<string>				getAcceptedCultures()					const { return acceptedCultures; };
-		string						getCulturalUnion()						const { return culturalUnion; };
-		string						getReligion()								const { return religion; };
-		double						getScore()									const { return score; };
-		double						getStability()								const { return stability; };
-		double						getAdmTech()								const { return admTech; };
-		double						getDipTech()								const { return dipTech; };
-		double						getMilTech()								const { return milTech; };
-		double						getArmyInvestment()						const { return armyInvestment; };
-		double						getNavyInvestment()						const { return navyInvestment; };
-		double						getCommerceInvestment()					const { return commerceInvestment; };
-		double						getIndustryInvestment()					const { return industryInvestment; };
-		double						getCultureInvestment()					const { return cultureInvestment; };
-		bool							getPossibleDaimyo()						const { return possibleDaimyo; };
-		string						getGovernment()							const { return government; };
-		vector<EU4Relations*>	getRelations()								const { return relations; };
-		vector<EU4Army*>			getArmies()									const { return armies; };
-		vector<EU4Leader*>		getLeaders()								const { return leaders; };
-		bool							isColony()									const { return colony; };
-		string						getColonialRegion()						const { return colonialRegion; };
-		double						getLibertyDesire()						const { return libertyDesire; };
-		CustomFlag					getCustomFlag()						const { return customFlag; };
-		bool							isRevolutionary()						const { return revolutionary; };
-		tuple<int, int, int>		getRevolutionaryTricolour()			const { return revolutionaryTricolour; };
-		string						getRandomName()						const { return randomName; };
+		string						getTag()										const { return tag; }
+		vector<EU4Province*>		getProvinces()								const { return provinces; }
+		vector<EU4Province*>		getCores()									const { return cores; }
+		int							getCapital()								const { return capital; }
+		int							getNationalFocus()						const { return nationalFocus; }
+		string						getTechGroup()								const { return techGroup; }
+		string						getPrimaryCulture()						const { return primaryCulture; }
+		vector<string>				getAcceptedCultures()					const { return acceptedCultures; }
+		string						getCulturalUnion()						const { return culturalUnion; }
+		string						getReligion()								const { return religion; }
+		double						getScore()									const { return score; }
+		double						getStability()								const { return stability; }
+		double						getAdmTech()								const { return admTech; }
+		double						getDipTech()								const { return dipTech; }
+		double						getMilTech()								const { return milTech; }
+		double						getArmyInvestment()						const { return armyInvestment; }
+		double						getNavyInvestment()						const { return navyInvestment; }
+		double						getCommerceInvestment()					const { return commerceInvestment; }
+		double						getIndustryInvestment()					const { return industryInvestment; }
+		double						getCultureInvestment()					const { return cultureInvestment; }
+		bool							getPossibleDaimyo()						const { return possibleDaimyo; }
+		string						getGovernment()							const { return government; }
+		vector<EU4Relations*>	getRelations()								const { return relations; }
+		vector<EU4Army*>			getArmies()									const { return armies; }
+		vector<EU4Leader*>		getLeaders()								const { return leaders; }
+		bool							isCustom()									const { return customNation; }
+		bool							isColony()									const { return colony; }
+		string						getColonialRegion()						const { return colonialRegion; }
+		double						getLibertyDesire()						const { return libertyDesire; }
+		CustomFlag					getCustomFlag()							const { return customFlag; }
+		bool							isRevolutionary()							const { return revolutionary; }
+		tuple<int, int, int>		getRevolutionaryTricolour()			const { return revolutionaryTricolour; }
+		string						getRandomName()							const { return randomName; }
 
-		string getName() const { return name; }
-		string getName(const string& language) const;
-		string getAdjective(const string& language) const;
-		Color getColor() const { return color; }
+		string	getName() const { return name; }
+		string	getName(const string& language) const;
+		string	getAdjective(const string& language) const;
+		Color		getColor() const { return color; }
 
 	private:
 		void							determineInvestments(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
@@ -136,19 +137,20 @@ class EU4Country
 		vector<EU4Army*>			armies;					// this nation's armies and navies
 		map<string, int>			nationalIdeas;			// the national ideas for this country
 		double						legitimacy;				// the legitimacy of this nation
+		bool							customNation;			// whether or not this is a custom or random nation
 		bool							colony;					// whether or not this country is a colony
-		string						colonialRegion;			// the colonial region, if this country is a colony
+		string						colonialRegion;		// the colonial region, if this country is a colony
 		double						libertyDesire;			// the amount of liberty desire
 		string						randomName;				// the new name of this nation in Random World
 		CustomFlag					customFlag;				// the custom flag
-		bool						revolutionary;			// does this country wave the glorious tricoloured banner of the revolution
+		bool							revolutionary;			// does this country wave the glorious tricoloured banner of the revolution
 		tuple<int, int, int>		revolutionaryTricolour; // the glorious tricoloured banner of the revolution
 		
 
 		// Localisation attributes
-		string name;			// the name of this country
-		string adjective;		// the adjective for this country
-		Color color;			// the color of this country
+		string	name;			// the name of this country
+		string	adjective;	// the adjective for this country
+		Color		color;		// the color of this country
 
 		map<string, string> namesByLanguage;		// the names of this country in different localisations
 		map<string, string> adjectivesByLanguage;	// the adjectives for this country in different localisations
