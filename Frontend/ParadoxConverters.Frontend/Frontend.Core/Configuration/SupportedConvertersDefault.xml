@@ -143,9 +143,41 @@ tag vs internalTag:
       <sourceGame>EuropaUniversalis4</sourceGame>
       <targetGame>Victoria2</targetGame>
       <!--<subfolderName>eu4tovic2</subfolderName>-->
-      <isEnabled>false</isEnabled>
+      <isEnabled>true</isEnabled>
 
       <requiredItems>
+	  
+		<requiredFile>
+          <tag>faq</tag>
+          <internalTag>faq</internalTag>
+          <friendlyName>faq</friendlyName>
+          <description>The faq .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>EU4ToVic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>FAQ.txt</predefinedFileName>
+        </requiredFile>
+        
+        <requiredFile>
+          <tag>log</tag>
+          <internalTag>log</internalTag>
+          <friendlyName>log</friendlyName>
+          <description>The log .txt</description>
+          <isMandatory>false</isMandatory>
+          <hidden>true</hidden>
+          <alternatives>
+            <alternative>
+              <defaultLocationType>ConverterFolder</defaultLocationType>
+              <subFolderLocation>EU4ToVic2</subFolderLocation>
+            </alternative>
+          </alternatives>
+          <predefinedFileName>log.txt</predefinedFileName>
+        </requiredFile>
 
         <requiredFolder>
           <tag>EU4directory</tag>
@@ -283,7 +315,7 @@ tag vs internalTag:
       <sourceGame>Victoria2</sourceGame>
       <targetGame>HeartsOfIron3</targetGame>
       <!--<subfolderName>Vic2ToHoI3</subfolderName>-->
-      <isEnabled>true</isEnabled>
+      <isEnabled>false</isEnabled>
 
       <requiredItems>
         
