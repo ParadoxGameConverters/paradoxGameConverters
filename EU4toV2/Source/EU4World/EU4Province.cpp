@@ -298,12 +298,15 @@ void EU4Province::removeCore(string tag)
 bool EU4Province::wasColonised() const
 {
 	// returns true if the first owner did not own the province at the beginning of the game,
-	// but acquired it later through colonization
+	// but acquired it later through colonization, and if the current culture does not match the original culture
 	if (ownershipHistory.size() > 0)
 	{
 		if ((ownershipHistory[0].first != date()) && (ownershipHistory[0].first != Configuration::getFirstEU4Date()))
 		{
-			return true;
+			if	(cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second)
+			{
+				return true;
+			}
 		}
 	}
 	return false;
@@ -325,7 +328,10 @@ bool EU4Province::wasInfidelConquest() const
 		}
 		else
 		{
-			return firstReligion->isInfidelTo(ownerReligion);
+			if	(cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second)
+			{
+				return firstReligion->isInfidelTo(ownerReligion);
+			}
 		}
 	}
 	return false;
