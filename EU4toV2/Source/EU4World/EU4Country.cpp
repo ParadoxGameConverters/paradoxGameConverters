@@ -162,9 +162,9 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	vector<Object*> relationsLeaves = relationLeaves[0]->getLeaves();		// the objects holding the relationships themselves
 	for (unsigned int i = 0; i < relationsLeaves.size(); ++i)
 	{
-		//string key = relationsLeaves[i]->getKey();
+		string key = relationsLeaves[i]->getKey();
 		EU4Relations* rel = new EU4Relations(relationsLeaves[i]);
-		relations.push_back(rel);
+		relations.insert(make_pair(key, rel));
 	}
 
 	armies.clear();
@@ -212,10 +212,82 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 	}
 
 	libertyDesire = 0.0;
-	vector<Object*> libertyObj = obj->getValue("liberty_desire"); // the object holding the liberty desire
-	if (libertyObj.size() > 0)
+	vector<Object*> colonialSubjectObj = obj->getValue("is_colonial_subject");
+	if (colonialSubjectObj.size() > 0)
 	{
-		libertyDesire = atof(libertyObj[0]->getLeaf().c_str());
+		string overlord;
+		vector<Object*> overlordObj = obj->getValue("overlord");
+		if (overlordObj.size() > 0)
+		{
+			overlord = overlordObj[0]->getLeaf();
+		}
+
+		auto relationship = relations.find(overlord);
+		if (relationship != relations.end())
+		{
+			string attitude = relationship->second->getAttitude();
+			if (attitude == "attitude_rebellious")
+			{
+				libertyDesire = 95.0;
+			}
+			else if (attitude == "attitude_disloyal")
+			{
+				libertyDesire = 90.0;
+			}
+			else if (attitude == "attitude_outraged")
+			{
+				libertyDesire = 85.0;
+			}
+			else if (attitude == "atittude_rivalry")
+			{
+				libertyDesire = 80.0;
+			}
+			else if (attitude == "attitude_hostile")
+			{
+				libertyDesire = 75.0;
+			}
+			else if (attitude == "attitude_threatened")
+			{
+				libertyDesire = 65.0;
+			}
+			else if (attitude == "attitude_neutral")
+			{
+				libertyDesire = 50.0;
+			}
+			else if (attitude == "attitude_defensive")
+			{
+				libertyDesire = 35.0;
+			}
+			else if (attitude == "attitude_domineering")
+			{
+				libertyDesire = 20.0;
+			}
+			else if (attitude == "attitude_protective")
+			{
+				libertyDesire = 15.0;
+			}
+			else if (attitude == "attitude_allied")
+			{
+				libertyDesire = 10.0;
+			}
+			else if (attitude == "attitude_friendly")
+			{
+				libertyDesire = 10.0;
+			}
+			else if (attitude == "attitude_loyal")
+			{
+				libertyDesire = 5.0;
+			}
+			else if (attitude == "attitude_overlord")
+			{
+				libertyDesire = 5.0;
+			}
+			else
+			{
+				LOG(LogLevel::Warning) << "Unknown attitude type " << attitude << " while setting liberty desire for " << tag;
+				libertyDesire = 95.0;
+			}
+		}
 	}
 
 	customFlag.flag = "-1";

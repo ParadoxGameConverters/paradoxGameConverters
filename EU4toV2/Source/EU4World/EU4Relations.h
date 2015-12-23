@@ -35,17 +35,19 @@ class EU4Relations
 {
 	public:
 		EU4Relations(Object* obj);
-		string	getCountry() const { return tag; };
-		int		getRelations() const { return value; };
-		bool		hasMilitaryAccess() const { return military_access; };
-		date		getDiplomatLastSent() const { return last_send_diplomat; };
-		date		getLastWar() const { return last_war; };
+		string	getCountry()				const { return tag; }
+		int		getRelations()				const { return value; }
+		bool		hasMilitaryAccess()		const { return military_access; }
+		date		getDiplomatLastSent()	const { return last_send_diplomat; }
+		date		getLastWar()				const { return last_war; }
+		string	getAttitude()				const { return attitude; }
 	private:
 		string	tag;						// the country related to
 		int		value;					// the relationship value
 		bool		military_access;		// if military access has been granted
 		date		last_send_diplomat;	// the last diplomat sent between the countries
 		date		last_war;				// the last war between the countries
+		string	attitude;				// the attitude, if there is one
 };
 
 #endif
