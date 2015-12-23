@@ -4,16 +4,8 @@ A : Go to the Visual Studio Redistributable page: http://www.microsoft.com/en-us
 	Once it has downloaded, install it and run the converter again.
 
 Q: I have an ironman save. Can it be converted?
-A: Well in fact you can transform an ironman save into a normal save.
-	1. Locate your ironman save on your computer. If it's on the cloud, there is a copy there : ..\Steam\userdata\<your account>\236850\remote\save games
-	2. Copy it on the "local" save game directory and edit the copy with a software (notepad++ may be very useful)
-	3. On the first line you will found the three letters of the tag of your nation (BYZ for example)
-	4. Replace it with another : (FRA is a good one because the BBB is always around)
-	5. Load the save. You will play as France
-	6. Save it, change again the nation on the new save
-	7. Load the save again and then save. This time you will notice that it's asking which name giving to this save, which implies it is no more ironman.
-	8. TADAM ! It's no more ironman but a regular save
-	Thanks to Helkoi for the technique!
+A: Yes! But you need to convert it to a non-ironman save. The easiest way to do so is to use this tool on your save:
+https://forum.paradoxplaza.com/forum/index.php?threads/utility-java-save-game-replayer.722493/
 
 Q: I loaded my mod, but nothing changed. What's wrong?
 A: You probably placed the mod in the My Documents mod folder. It needs to go in the Vic2 install location's mod folder.
