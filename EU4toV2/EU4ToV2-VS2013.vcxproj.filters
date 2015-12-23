@@ -35,9 +35,6 @@
     <ClCompile Include="Source\EU4World\EU4Religion.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
-    <ClCompile Include="Source\EU4toV2Converter.cpp">
-      <Filter>EU4 World</Filter>
-    </ClCompile>
     <ClCompile Include="Source\EU4World\EU4Version.cpp">
       <Filter>EU4 World</Filter>
     </ClCompile>
@@ -101,6 +98,7 @@
     <ClCompile Include="Source\Parsers\Parser.cpp">
       <Filter>Parser</Filter>
     </ClCompile>
+    <ClCompile Include="Source\EU4toV2Converter.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Color.h" />
