@@ -239,6 +239,14 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	Configuration::setOutputName(outputName);
 	LOG(LogLevel::Info) << "Using output name " << outputName;
 
+	string outputFolder = string(curDir) + "\\output\\" + Configuration::getOutputName();
+	if (WinUtils::doesFolderExist(outputFolder.c_str()))
+	{
+		LOG(LogLevel::Error) << "Output folder " << Configuration::getOutputName() << " already exists! Clear the output folder before running again!";
+		exit(0);
+	}
+
+
 	LOG(LogLevel::Info) << "* Importing EU4 save *";
 
 	//	Parse EU4 Save

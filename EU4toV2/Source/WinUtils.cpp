@@ -81,6 +81,14 @@ bool DoesFileExist(const std::string& path)
 	return (attributes != INVALID_FILE_ATTRIBUTES && !(attributes & FILE_ATTRIBUTE_DIRECTORY));
 }
 
+
+bool doesFolderExist(const std::string& path)
+{
+	DWORD attributes = GetFileAttributes(path.c_str());	// the file attributes
+	return (attributes != INVALID_FILE_ATTRIBUTES && (attributes & FILE_ATTRIBUTE_DIRECTORY));
+}
+
+
 std::string GetLastWindowsError()
 {
 	DWORD errorCode = ::GetLastError();	// the code for the latest error
