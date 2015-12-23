@@ -107,16 +107,6 @@ NOL = {
     color3= { 193 26 14  }
 }
 
-
-# **Great Britain**
-GBR = {
-    color1= { 193 26 14  }
-    color2= { 99 137 153  }
-    color3= { 83 149 105  }
-}
-
-# Scandinavia
-
 # Sweden
 SWE = {
     color1= { 62 122 189  }

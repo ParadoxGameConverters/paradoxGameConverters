@@ -566,11 +566,10 @@ void V2World::output() const
 	else
 	{
 		LOG(LogLevel::Debug) << "It's not a random world";
-		WinUtils::TryCopyFile(source, dest);
 	}
 
 	FILE* localisationFile;
-	if (fopen_s(&localisationFile, dest.c_str(), "a") != 0)
+	if (fopen_s(&localisationFile, (localisationPath + "\\0_Names.csv").c_str(), "a") != 0)
 	{
 		LOG(LogLevel::Error) << "Could not update localisation text file";
 		exit(-1);

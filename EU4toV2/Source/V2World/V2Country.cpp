@@ -94,10 +94,10 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 	researchPoints	= 0.0;
 	civilized		= false;
 	isReleasableVassal = true;
-	primaryCulture	= "";
-	religion			= "";
-	government		= "";
-	nationalValue	= "";
+	primaryCulture	= "british";
+	religion			= "protestant";
+	government		= "hms_government";
+	nationalValue	= "nv_order";
 	lastBankrupt	= date();
 	bankReserves	= 0.0;
 	literacy			= 0.0;
@@ -137,6 +137,16 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 		}
 	}
 
+	// set a default ruling party
+	for (vector<V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
+	{
+		if ((*i)->isActiveOn(date("1836.1.1")))
+		{
+			rulingParty = (*i)->name;
+			break;
+		}
+	}
+
 	colonyOverlord = NULL;
 
 	for (int i = 0; i < num_reg_categories; ++i)
@@ -163,26 +173,14 @@ void V2Country::output() const
 		{
 			fprintf(output, "capital=%d\n", capital);
 		}
-		if (primaryCulture.size() > 0)
-		{
-			fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
-		}
+		fprintf(output, "primary_culture = %s\n", primaryCulture.c_str());
 		for (set<string>::iterator i = acceptedCultures.begin(); i != acceptedCultures.end(); i++)
 		{
 			fprintf(output, "culture = %s\n", i->c_str());
 		}
-		if (religion != "")
-		{
-			fprintf(output, "religion = %s\n", religion.c_str());
-		}
-		if (government != "")
-		{
-			fprintf(output, "government = %s\n", government.c_str());
-		}
-		if (plurality > 0.0)
-		{
-			fprintf(output, "plurality=%f\n", plurality);
-		}
+		fprintf(output, "religion = %s\n", religion.c_str());
+		fprintf(output, "government = %s\n", government.c_str());
+		fprintf(output, "plurality=%f\n", plurality);
 		fprintf(output, "nationalvalue=%s\n", nationalValue.c_str());
 		fprintf(output, "literacy=%f\n", literacy);
 		if (civilized)
@@ -245,6 +243,18 @@ void V2Country::output() const
 		if (reforms != NULL)
 		{
 			reforms->output(output);
+		}
+		else
+		{
+			fprintf(output, "# Political Reforms\n");
+			fprintf(output, "slavery=yes_slavery\n");
+			fprintf(output, "vote_franschise=none_voting\n");
+			fprintf(output, "upper_house_composition=appointed\n");
+			fprintf(output, "voting_system=jefferson_method\n");
+			fprintf(output, "public_meetings=yes_meeting\n");
+			fprintf(output, "press_rights=censored_press\n");
+			fprintf(output, "trade_unions=no_trade_unions\n");
+			fprintf(output, "political_parties=underground_parties\n");
 		}
 	
 		//fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
@@ -550,7 +560,10 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 				}
 				if (match)
 				{
-					acceptedCultures.insert(j->dstCulture);
+					if (primaryCulture != j->dstCulture)
+					{
+						acceptedCultures.insert(j->dstCulture);
+					}
 					matched = true;
 				}
 			}
@@ -615,32 +628,21 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 			break;
 		}
 	}
-	if (rulingParty == "")
-	{
-		for (vector<V2Party*>::iterator i = parties.begin(); i != parties.end(); i++)
-		{
-			if ((*i)->isActiveOn(date("1836.1.1")))
-			{
-				rulingParty = (*i)->name;
-				break;
-			}
-		}
-	}
 	LOG(LogLevel::Debug) << tag << " ruling party is " << rulingParty;
 
 	// Reforms
 	reforms		=  new V2Reforms(this, srcCountry);
 
 	// Relations
-	vector<EU4Relations*> srcRelations = srcCountry->getRelations();
+	map<string, EU4Relations*> srcRelations = srcCountry->getRelations();
 	if (srcRelations.size() > 0)
 	{
-		for (vector<EU4Relations*>::iterator itr = srcRelations.begin(); itr != srcRelations.end(); ++itr)
+		for (auto itr: srcRelations)
 		{
-			const std::string& V2Tag = countryMap[(*itr)->getCountry()];
+			const std::string& V2Tag = countryMap[itr.second->getCountry()];
 			if (!V2Tag.empty())
 			{
-				V2Relations* v2r = new V2Relations(V2Tag, *itr);
+				V2Relations* v2r = new V2Relations(V2Tag, itr.second);
 				relations.insert(make_pair(V2Tag, v2r));
 			}
 		}
@@ -921,9 +923,13 @@ void V2Country::initFromHistory()
 
 	results = obj->getValue("nationalvalue");
 	if (results.size() > 0)
+	{
 		nationalValue = results[0]->getLeaf();
+	}
 	else
+	{
 		nationalValue = "nv_order";
+	}
 
 	results = obj->getValue("capital");
 	if (results.size() > 0)
@@ -1285,9 +1291,18 @@ void V2Country::absorbVassal(V2Country* vassal)
 	vassal->provinces.clear();
 
 	// accept cultures from the vassal
-	acceptedCultures.insert(vassal->getPrimaryCulture());
+	if (primaryCulture != vassal->getPrimaryCulture())
+	{
+		acceptedCultures.insert(vassal->getPrimaryCulture());
+	}
 	set<string> cultures = vassal->getAcceptedCultures();
-	acceptedCultures.insert(cultures.begin(), cultures.end());
+	for (auto itr: cultures)
+	{
+		if (primaryCulture != itr)
+		{
+			acceptedCultures.insert(itr);
+		}
+	}
 
 	// take vassal's armies
 	srcCountry->takeArmies(vassal->getSourceCountry());
