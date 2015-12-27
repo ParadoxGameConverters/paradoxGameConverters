@@ -303,7 +303,7 @@ bool EU4Province::wasColonised() const
 	{
 		if ((ownershipHistory[0].first != date()) && (ownershipHistory[0].first != Configuration::getFirstEU4Date()))
 		{
-			if	(cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second)
+			if	((cultureHistory.size() > 1) && (cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second))
 			{
 				return true;
 			}
@@ -328,7 +328,7 @@ bool EU4Province::wasInfidelConquest() const
 		}
 		else
 		{
-			if	(cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second)
+			if	((cultureHistory.size() > 1) && (cultureHistory[0].second != cultureHistory[cultureHistory.size() - 1].second))
 			{
 				return firstReligion->isInfidelTo(ownerReligion);
 			}
