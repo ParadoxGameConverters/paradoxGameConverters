@@ -298,6 +298,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 					if (newModPath.empty() || (_stat(newModPath.c_str(), &st) != 0))
 					{
 						LOG(LogLevel::Error) << newMod << " could not be found in the specified mod directory - a valid mod directory must be specified. Tried " << newModPath;
+						exit(-1);
 					}
 					else
 					{
@@ -308,6 +309,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				else
 				{
 					LOG(LogLevel::Error) << "No path could be found for " << newMod;
+					exit(-1);
 				}
 			}
 		}
