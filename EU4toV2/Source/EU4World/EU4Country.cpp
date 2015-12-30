@@ -234,6 +234,10 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 			{
 				libertyDesire = 90.0;
 			}
+			else if (attitude == "attitude_disloyal_vassal")	// for pre-1.14 games
+			{
+				libertyDesire = 90.0;
+			}
 			else if (attitude == "attitude_outraged")
 			{
 				libertyDesire = 85.0;
@@ -279,6 +283,10 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 				libertyDesire = 5.0;
 			}
 			else if (attitude == "attitude_overlord")
+			{
+				libertyDesire = 5.0;
+			}
+			else if (attitude == "attitude_vassal")	// for pre-1.14 games
 			{
 				libertyDesire = 5.0;
 			}
