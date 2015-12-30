@@ -35,9 +35,11 @@ class EU4Country;
 
 
 struct EU4PopRatio {
-	string culture;		// the culture
-	string religion;		// the religion
-	double popRatio;		// the percent of the total population this represents
+	string culture;			// the culture
+	string religion;			// the religion
+	double upperPopRatio;	// the percent of the total upper-class population this represents
+	double middlePopRatio;	// the percent of the total middle-class population this represents
+	double lowerPopRatio;	// the percent of the total lower-class population this represents
 };
 
 
@@ -81,7 +83,7 @@ class EU4Province {
 	private:
 		void	checkBuilding(const Object* provinceObj, string building);
 		void	buildPopRatios();
-		void	decayPopRatios(date olddate, date newdate, EU4PopRatio& currentPop);
+		void	decayPopRatios(date oldDate, date newDate, EU4PopRatio& currentPop);
 
 		vector<double>	getProvBuildingWeight()	const;
 		double			getTradeGoodWeight()		const;
@@ -114,7 +116,7 @@ class EU4Province {
 		double								provBuildingWeight;
 		double								provTradeGoodWeight;
 
-		std::vector<double>					provProductionVec;
+		std::vector<double>				provProductionVec;
 
 };
 

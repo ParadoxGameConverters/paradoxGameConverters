@@ -27,17 +27,18 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 #include "V2Country.h"
-#include "../EU4World/EU4Army.h"
 #include "V2Diplomacy.h"
 #include "V2Factory.h"
 #include "V2TechSchools.h"
 #include "V2Party.h"
+#include "V2Province.h"
+#include "../EU4World/EU4Army.h"
+#include "../EU4World/EU4Province.h"
 #include "../CountryMapping.h"
 #include "../Mapper.h"
 #include <set>
 
 class V2Country;
-class V2Province;
 class V2Army;
 class V2LeaderTraits;
 
@@ -66,6 +67,8 @@ class V2World {
 		map<string, V2Country*>	getDynamicCountries()	const;
 
 	private:
+		vector<V2Demographic>	determineDemographics(vector<EU4PopRatio>& popRatios, EU4Province* eProv, V2Province* vProv, EU4Country* oldOwner, const cultureMapping& cultureMap, const cultureMapping& slaveCultureMap, const religionMapping& religionMap, const EU4RegionsMapping& regionsMap, int destNum, double provPopRatio);
+
 		void				outputPops() const;
 		void				getProvinceLocalizations(string file);
 		V2Country*		getCountry(string tag);
@@ -84,7 +87,7 @@ class V2World {
 		long								totalWorldPopulation;
 
 		FlagColourMapping		flagColourMapping;
-		bool					isRandomWorld;
+		bool						isRandomWorld;
 };
 
 

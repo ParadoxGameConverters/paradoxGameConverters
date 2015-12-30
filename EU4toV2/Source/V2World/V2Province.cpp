@@ -631,14 +631,14 @@ V2Province::pop_points V2Province::getPopPoints_1(const V2Demographic& demograph
 	if (factories.size() > 0)
 	{
 		double capsPerFactory = 40 + _owner->getNumFactories() * 2;
-		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.ratio;
-		pts.capitalists += (10000 * actualCapitalists) / (demographic.ratio * newPopulation);
+		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.upperRatio;
+		pts.capitalists += (10000 * actualCapitalists) / (demographic.upperRatio * newPopulation);
 
-		double actualClerks = 181 * factories.size() * demographic.ratio;
-		pts.clerks += (10000 * actualClerks) / (demographic.ratio * newPopulation);
+		double actualClerks = 181 * factories.size() * demographic.middleRatio;
+		pts.clerks += (10000 * actualClerks) / (demographic.middleRatio * newPopulation);
 
-		double actualCraftsmen = 2639 * factories.size() * demographic.ratio;
-		pts.craftsmen += (10000 * actualCraftsmen) / (demographic.ratio * newPopulation);
+		double actualCraftsmen = 2639 * factories.size() * demographic.lowerRatio;
+		pts.craftsmen += (10000 * actualCraftsmen) / (demographic.lowerRatio * newPopulation);
 	}
 
 	return pts;
@@ -769,18 +769,19 @@ V2Province::pop_points V2Province::getPopPoints_2(const V2Demographic& demograph
 	if (factories.size() > 0)
 	{
 		double capsPerFactory = 40 + _owner->getNumFactories() * 2;
-		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.ratio;
-		pts.capitalists += (10000 * actualCapitalists) / (demographic.ratio * newPopulation);
+		double actualCapitalists = factories.size() * _owner->getNumFactories() * capsPerFactory * demographic.upperRatio;
+		pts.capitalists += (10000 * actualCapitalists) / (demographic.upperRatio * newPopulation);
 
-		double actualClerks = 181 * factories.size() * demographic.ratio;
-		pts.clerks += (10000 * actualClerks) / (demographic.ratio * newPopulation);
+		double actualClerks = 181 * factories.size() * demographic.middleRatio;
+		pts.clerks += (10000 * actualClerks) / (demographic.middleRatio * newPopulation);
 
-		double actualCraftsmen = 2639 * factories.size() * demographic.ratio;
-		pts.craftsmen += (10000 * actualCraftsmen) / (demographic.ratio * newPopulation);
+		double actualCraftsmen = 2639 * factories.size() * demographic.lowerRatio;
+		pts.craftsmen += (10000 * actualCraftsmen) / (demographic.lowerRatio * newPopulation);
 	}
 
 	return pts;
 }
+
 
 void V2Province::createPops(const V2Demographic& demographic, double popWeightRatio, const V2Country* _owner, int popConversionAlgorithm)
 {
@@ -815,14 +816,14 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	pop_points pts;
 	switch (popConversionAlgorithm)
 	{
-	case 1:
-		pts = getPopPoints_1(demographic, newPopulation, _owner);
-		break;
-	case 2:
-		pts = getPopPoints_2(demographic, newPopulation, _owner);
-		break;
-	default:
-		LOG(LogLevel::Error) << "Invalid pop conversion algorithm specified; not generating pops.";
+		case 1:
+			pts = getPopPoints_1(demographic, newPopulation, _owner);
+			break;
+		case 2:
+			pts = getPopPoints_2(demographic, newPopulation, _owner);
+			break;
+		default:
+			LOG(LogLevel::Error) << "Invalid pop conversion algorithm specified; not generating pops.";
 	}
 
 	// Uncivs cannot have capitalists, clerks, or craftsmen, and get fewer bureaucrats
@@ -835,73 +836,73 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 		pts.bureaucrats -= 5;
 	}
 
-	int farmers = static_cast<int>(demographic.ratio * newPopulation + 0.5);
+	int farmers = static_cast<int>(demographic.lowerRatio * newPopulation + 0.5);
 	if (slaveProportion > 0.0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * slaveProportion);
+		int size = static_cast<int>(demographic.lowerRatio * newPopulation * slaveProportion);
 		farmers -= size;
 		V2Pop* slavesPop = new V2Pop("slaves", size,	demographic.slaveCulture, demographic.religion);
 		pops.push_back(slavesPop);
 	}
 	if (pts.soldiers > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.soldiers / 10000) + 0.5);
+		int size = static_cast<int>(demographic.lowerRatio * newPopulation * (pts.soldiers / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* soldiersPop = new V2Pop("soldiers", size, demographic.culture, demographic.religion);
 		pops.push_back(soldiersPop);
 	}
 	if (pts.craftsmen > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.craftsmen / 10000) + 0.5);
+		int size = static_cast<int>(demographic.lowerRatio * newPopulation * (pts.craftsmen / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* craftsmenPop = new V2Pop("craftsmen", size,	demographic.culture, demographic.religion);
 		pops.push_back(craftsmenPop);
 	}
 	if (pts.artisans > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.artisans / 10000) + 0.5);
+		int size = static_cast<int>(demographic.middleRatio * newPopulation * (pts.artisans / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* artisansPop = new V2Pop("artisans", size, demographic.culture, demographic.religion);
 		pops.push_back(artisansPop);
 	}
 	if (pts.clergymen > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.clergymen / 10000) + 0.5);
+		int size = static_cast<int>(demographic.middleRatio * newPopulation * (pts.clergymen / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* clergymenPop = new V2Pop("clergymen", size,	demographic.culture, demographic.religion);
 		pops.push_back(clergymenPop);
 	}
 	if (pts.clerks > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.clerks / 10000) + 0.5);
+		int size = static_cast<int>(demographic.middleRatio * newPopulation * (pts.clerks / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* clerksPop = new V2Pop("clerks", size,	demographic.culture, demographic.religion);
 		pops.push_back(clerksPop);
 	}
 	if (pts.bureaucrats > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.bureaucrats / 10000) + 0.5);
+		int size = static_cast<int>(demographic.middleRatio * newPopulation * (pts.bureaucrats / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* bureaucratsPop = new V2Pop("bureaucrats", size, demographic.culture, demographic.religion);
 		pops.push_back(bureaucratsPop);
 	}
 	if (pts.officers > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.officers / 10000) + 0.5);
+		int size = static_cast<int>(demographic.middleRatio * newPopulation * (pts.officers / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* officersPop = new V2Pop("officers", size, demographic.culture, demographic.religion);
 		pops.push_back(officersPop);
 	}
 	if (pts.capitalists > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.capitalists / 10000) + 0.5);
+		int size = static_cast<int>(demographic.upperRatio * newPopulation * (pts.capitalists / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* capitalistsPop = new V2Pop("capitalists", size, demographic.culture, demographic.religion);
 		pops.push_back(capitalistsPop);
 	}
 	if (pts.aristocrats > 0)
 	{
-		int size = static_cast<int>(demographic.ratio * newPopulation * (pts.aristocrats / 10000) + 0.5);
+		int size = static_cast<int>(demographic.upperRatio * newPopulation * (pts.aristocrats / 10000) + 0.5);
 		farmers -= size;
 		V2Pop* aristocratsPop = new V2Pop("aristocrats", size, demographic.culture, demographic.religion);
 		pops.push_back(aristocratsPop);
@@ -910,9 +911,9 @@ void V2Province::createPops(const V2Demographic& demographic, double popWeightRa
 	V2Pop* farmersPop = new V2Pop("farmers", farmers, demographic.culture, demographic.religion);
 	pops.push_back(farmersPop);
 
-	//LOG(LogLevel::Info) << "Name: " << this->getSrcProvince()->getProvName() << " demographics.ratio: " << demographic.ratio << " newPopulation: " << newPopulation 
-	//	<< " farmer: " << farmers
-	//	<< " total: " << total;
+	/*LOG(LogLevel::Info) << "Name: " << this->getSrcProvince()->getProvName() << " demographics.upperRatio: " << demographic.upperRatio 
+		<< " demographics.middleRatio: " << demographic.middleRatio << " demographics.lowerRatio: " << demographic.lowerRatio 
+		<< " newPopulation: " << newPopulation << " farmer: " << farmers	<< " total: " << newPopulation;*/
 }
 
 
@@ -976,8 +977,10 @@ void V2Province::addPopDemographic(V2Demographic d)
 	{
 		if ((itr->culture == d.culture) && (itr->religion == d.religion))
 		{
-			combined		 = true;
-			itr->ratio	+= d.ratio;
+			combined				 = true;
+			itr->upperRatio	+= d.upperRatio;
+			itr->middleRatio	+= d.middleRatio;
+			itr->lowerRatio	+= d.lowerRatio;
 		}
 	}
 	if (!combined)

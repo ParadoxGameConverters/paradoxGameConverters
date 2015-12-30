@@ -368,7 +368,7 @@ void removeDeadLandlessNations(EU4World& world)
 			{
 				if (popItr->culture == primaryCulture)
 				{
-					culturePercent += popItr->popRatio;
+					culturePercent += popItr->lowerPopRatio;
 				}
 			}
 			if ( culturePercent >= 0.5 )

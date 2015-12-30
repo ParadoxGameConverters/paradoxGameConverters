@@ -41,7 +41,9 @@ struct V2Demographic
 	string								culture;
 	string								slaveCulture;
 	string								religion;
-	double								ratio;
+	double								upperRatio;
+	double								middleRatio;
+	double								lowerRatio;
 	EU4Province*						oldProvince;
 	EU4Country*							oldCountry;
 };
