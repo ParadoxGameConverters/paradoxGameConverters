@@ -835,14 +835,12 @@ void V2World::convertDiplomacy(const EU4World& sourceWorld, const CountryMapping
 		const std::string& V2Tag1 = countryMap[EU4Tag1];
 		if (V2Tag1.empty())
 		{
-			LOG(LogLevel::Warning) << "EU4 Country " << EU4Tag1 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 		const std::string& EU4Tag2 = itr->country2;
 		const std::string& V2Tag2 = countryMap[EU4Tag2];
 		if (V2Tag2.empty())
 		{
-			LOG(LogLevel::Warning) << "EU4 Country " << EU4Tag2 << " used in diplomatic agreement doesn't exist";
 			continue;
 		}
 
@@ -1789,7 +1787,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 			continue;
 		}
 
-		if (sourceCountry->getProvinces().size() == 0)
+		if (itr->second->getProvinces().size() == 0)
 		{
 			continue;
 		}
@@ -1844,7 +1842,7 @@ void V2World::allocateFactories(const EU4World& sourceWorld, const V2FactoryFact
 	}
 
 	// allocate the factories
-	vector<pair<int, V2Country*>>::iterator lastReceptiveCountry = factoryCounts.begin();
+	vector<pair<int, V2Country*>>::iterator lastReceptiveCountry = factoryCounts.end()--;
 	vector<pair<int, V2Country*>>::iterator citr = factoryCounts.begin();
 	while (factoryList.size() > 0)
 	{
