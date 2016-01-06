@@ -419,3 +419,13 @@ FUJ;Fujiwara;Fujiwara;Fujiwara;Fujiwara;;;;;;;;;;;;x;;;;
 TAI_ADJ;Tairan;Tairan;Tairan;Tairan;;;;;;;;;;;;x;;;;
 FUJ_ADJ;Fuijiwaran;Fuijiwaran;Fuijiwaran;Fuijiwaran;;;;;;;;;;;;x;;;;
 TAC_ADJ;Tachibanan;Tachibanan;Tachibanan;Tachibanan;;;;;;;;;;;;x;;;;
+RME;The Roman Empire;;;;;;;;;;;;;x
+RME_ADJ;Imperial;;;;;;;;;;;;;x
+RME_foederati;Foederati;Foederati;Foederati;;;;;;;;;;;;x;;;;;;;;;;;;;;
+RME_XKM;XKM;XKM;XKM;;;;;;;;;;;;x;;;;;;;;;;;;;;
+RME_Kyriarchia;Kyriarchia;Kyriarchia;Kyriarchia;;;;;;;;;;;;x;;;;;;;;;;;;;;
+RME_reactionary;Patrikioi;Patrikioi;Patrikioi;;;;;;;;;;;;x;;;;;;;;;;;;;;
+RME_radical_party;Radical Party;Radical Party;Radical Party;;;;;;;;;;;;x;;;;;;;;;;;;;;
+RME_socialist;Koinonikistai;Koinonikistai;Koinonikistai;;;;;;;;;;;;x;;;;;;;;;;;;;;
+RME_communist;I Koinotita;I Koinotita;I Koinotita;;;;;;;;;;;;x;;;;;;;;;;;;;;
+RME_varangian_guard;Varangian Guard;Varangian Guard;Varangian Guard;;;;;;;;;;;;x;;;;;;;;;;;;;;
