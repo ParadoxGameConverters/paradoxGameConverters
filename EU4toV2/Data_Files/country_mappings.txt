@@ -308,6 +308,7 @@ link = { eu4 = DUL v2 = DUL }  # Dulkadir
 link = { eu4 = IRQ v2 = IRQ }  # Iraq
 link = { eu4 = KAR v2 = KAR }  # Karaman
 link = { eu4 = SYR v2 = SYR }  # Syria
+link = { eu4 = ISR v2 = ISR }  # Israel
 link = { eu4 = TRE v2 = TBZ }  # Trebizond
 link = { eu4 = SRU v2 = SRU }  # Saruhan
 link = { eu4 = MEN v2 = MEN }  # Mentese
