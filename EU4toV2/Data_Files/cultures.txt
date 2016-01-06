@@ -1437,6 +1437,16 @@ southeast_asian = {
                
 		}
 	}
+	bornean = {
+		color = {75 68 79}
+		first_names = { "Muhammad" "Ahmad" "Sulaymân" "Bulkiah" "'Abd al-Qahhar" "Sayf ar-Rijal" "Hasan" "'Abd al-Jalîl" "Muhammad 'Alî" "'Abd al-Mubin" "Muhyî ad-Dîn" "Nasr ad-Dîn" "Kamâl ad-Dîn" "Alâ' ad-Dîn" "Sayf ad-Dîn" "Muhammad Jamâl ad-Dîn" "Muhammad Tâj ad-Dîn"
+			
+		}
+		
+		last_names = { Burnei Kutai Sibu Kuching
+               
+		}
+	}
 	filipino = {
 		color = {200 220 30}
 		first_names = { Emilio Apolinario Andrés José Hermano Jacinto Mariano Deodato Ladislao Teodoro Valentíne Antonio León Simeón Arcadio Artemio Manuel
@@ -1816,46 +1826,404 @@ native_american = {
 		last_names = { Riel Bruce Lépine Dumont Clarence Martin
 		}
 	}
-	dakota = {
+	siouan = {
 		color = {66 78 134}
-		first_names = { Sinté Thaóyate Thathanka Thasunke Mahpiya Istahba Hehaka Thahca Ohiyes Wanbdi Tamaha Inkpaduta
+		first_names = { Sinté Thaóyate Thathanka Thasunke Mahpiya Istahba Hehaka Thahca Ohiyes Wanbdi Tamaha Inkpaduta 
+			Teshuhimga Gradamnsa Caygaywachepeche Couchestawasta Mahsa Wanougpacha Hurate Wasabatougga Nekaghre 
+			Mekewatanega Nangawahaegea Kemanha Papuisea Harachabe Pahelagren Tawangahuh Honencache Nichumali 
+			Voithevoihe Voithechinga Tavoingare Osogahe Voichinodhe Voinache Voinonpache Qhihiramaki 
+			Caygache Pahuroguesie Miaasa Manjaguida Mantsa Nicagaris Dogachinga Tavaingare Tavainthere Naguemani 
+			Nicanauthe Chonmelase Nenonbas Pograngue Cayque Nonpevoite Vesasche Tonchenanque Lihibi Grinache 
+			Nicouilbran Chonnonsogue Lisansandhe Mequaque Megahe Manhegare Meyhe Nudhetavoi Thecayque Voitasean 
+			Cahapiche Manhevoi Talechiga Pedhechiga Cheganonsas Nesaque Lolechinga Panenvoiguanda Tavoinhihi 
+			Mithechinga Manquesi Chingavoisa Talevoile Voiengran Scamani Nurahague Mechinga Pachigue Roudanique 
+			Voibisandhe Nehizanga Nehudhe Pagranque Chahetonga Manguepeemani Voibalune Poneavoitaniga Taslondhe 
+			Nendogualui voibahe Onhehomani Nuranin Noguinilayque Nanlatoho Bashemindhe Savoi Chouquemonnon 
+			Manilourana Nequevoile Chonguehanga Ponlachinga Aguigueda Voidoguega Sindhe Ninchagari Voidhadani 
+			Quinihonigue Nognithechinga Natanhi Ousabe Voichinouthe Amanpasse Cutsagabe Channahon Nonbasocri 
+			Pedhechinga Bassechinga Ponlavoitasuga Manyvoile Mandarihi Nepaste
+			"Keokuk Wapello" "Pierremaskin Muckkatwagout Namasosanamet" "Mackkatananamakee Pashchenene Wapasai" 
+			"Malasenokama Kechaswa" Catchacommu Waapaca Mataqua Paquampa Aquoqua Nemarqua Machenamau Pesotaka 
+			Mishecaqua Capontwa Mowhinin Omquo Wonakasa Nautakawa Makataimeshekia Wathohuck Choukeka Keesheswa 
+			Kenekuk Papiquan Pashepaho Lalyurva Hanshequarhiqua Outchequaka Quashquame Shamaga Weesaka 
+			Chekaqua Kataka Mecaitch Neshota Chagasort Pecama Namachewana Nanochaatasa Taimah Catchemackeseo
+			Keokuk Wapello Pierremaskin Muckkatwagout Namasosanamet Mackkatananamakee Pashchenene Wapasai
+			Malasenokama Kechaswa
+			Tepeeoska Wichawostaka Masgwahasid Chenka Kichipwot Stamixosok Emitahapiskinne Matapikomotziw 
+			Ayestipissimat Kissoum Pitahotocan Apawstamix Onistahpokah Netahkiteipimew Akakotos Stokimatis 
+			Pitahotiskin Stamixotakapiw Mastepitah Moyanymen Ekaskine Kayookosis Ponokahstamix Omaksisapop 
+			Pitahsiksinum Apawonistaw Attistahhawes Pitah Pitahonistah Kayetapo Mahtowewitko Toetahkiehnan 
+			Nochkpitshitoepish Sheohmantho Waywasecapow Otamakooewin Shapousetung Sukeman Misketo Etamepeton 
+			Kawasaskotrepahik Makoyekin Nesoauases Onistah Pitahannes
+			Wabasha Petette Tartunkanasiah Keejee Tarsega Wamadetunka Wannata Kokomako Shacope Penision Etaseepa 
+			Wakauhee Poehapa Takewapa Tenchzepart Mascpulochastosh Tetekarmunch Wasaota Oeyakoca Maktowahkeark 
+			Matowayouwe Makatozaza Belotonkatanga Nakapagigi Maktosabichis Mewatanihanska Thathanka Iyotake 
+			Iyapato Thasunke Witko Maphiya Luta Hehaka Sapa Sinte Gleska Ite Omagazu Ogle Luta Mahpiya
 		}
-		last_names = { Gleská Duta Iyotake Witko Luta Kohkophapi Sapa Huste Thankja
+		last_names = { Gleská Duta Iyotake Witko Luta Kohkophapi Sapa Huste Thankja Sichangu Oglala Itazipcho Hunkpapha Mnikhowozu Sihasapa Oohenunpa
+			Ihantkhunwan Ihankthunwanna Isanyathi Thithunwan Wichiyena Wahpéthunwan Mdewakanthunwan Wahpéhute Sisithunwan Aegitina Bizibina Cephubi 
+			Canhdada Canhewincasta Canknuhabi Hudesabina Hebina Huhumasmibi Huhuganebabi Sturgeon Eagle "Blues Son" Plumbed "the Sioux" "Brave by Hazard"
+			"Hen Atonwaabina" Inwantonwanbina Innianonbi Insaombi Indogahwincasta "Minisoee Swnkeebi" Minisatonwanbi
+			Osnibi Ptegabina Sunkcebi Sahiyaiyeskabi Snugabi Sihabi Tanidabi Tokanbi Tanzinapebina Unskaha Wadopabina 
+			Wadopahtonwan Wiciyabina Waziyamwincasta Wasinazinyabi Wokpanbi Mesquakie Wagosh Asakiwakie Kickapoo Blackhawk Saukenuk Thakiwakie
+			Tama Osakis Etnataek Kickapougwoi Kithlipecanuk "Jumping Fish" "Sun Fish" Bear Giger Lance Devil "Big Eagle"
+			Wazhaze Tsishu Pasueli Wahakolin Sansueli Wyota Picayune Koholo Neodesha Owasso Pawhuska Niukonska Doppike Neosho Chetopa Hominy Pahusan 
+			Mesquakie Wagosh Asakiwakie Kickapoo Blackhawk Saukenuk Thakiwakie
+			
 		}
 	}
-	cherokee = {
+	iroquoian = {
 		color = {136 114 173}
-		first_names = { John Tahlonteeskee Takatoka Charles William Lweis Dennis Joel Thomas Frank Andrew Edward
+		first_names = { Dahadaghesa Waskanecqua Kagoregago Saraqundett Uwhanhierelera Waddon Hago Andra Sonque Wastahanda 
+			Gosweinquecrakqua Wanahedana Auroghteregh Scarhuhadigh Rutchogah Nathheldaneh Sawahegeh 
+			Ahatsistari Adario Dunquat Tarhe Teyandatontec Cheyawe Doueyenteat Terhataw Datasay Maudoronk 
+			Teyyaghtwa Haroenyou Tehaawtorens Awmeyeeray Stayetah Shateyyaronyah Daughshuttayah Shaawrunthe 
+			Thateyyanayoh Tahunehawttee Shawrunthie Tschauendah Rontondu Tuayaurontoyou Dauatout Horonu 
+			Hawdoro Skotous Quouqua Skahomat Teoudetosso Miere
+			Sequoyah Attakullaculla Guwisguwi Moytoy Yonaguska Tsiyu Gansini Agi It Boudinot Lach'n Koatohee 
+			Scholauetta Tuskegatahu Ooskwha Kolakusta Newota Konatota Tuckasee Toostaka Untoola Unsuokanail 
+			Chonosta Chescoonwho Chesetoa Chesecotetona Sketaloska Chokasatahe Onanoota Ookoseta Umatooetha 
+			Necatee Amokontakona Kowetatahee Keukuck Tulatiska Wooaluka Tatliusta Skeleak Akonoluchta Cheanoka 
+			Ostaiah Oortlokecteh Chockonnistaller Noothoietah Kunnateelah Utturah Weelee Oolassoteh Tlorene 
+			Jonnurteekee Oonatakoteekee Kanowsurhee Yonah Oolah Tunksalenee Oorkullaukee Kumamah Chattakuteehee 
+			Kettegiskie Tauuotihee Chuquilataque Salleekookoolah Tallotuskee Chellokee Tuskeegatee Neekaanneah 
+			Kulsateehee Keetakeuskah Akooh Sawanooekee Yonahequah Keenahkunnah Kaweesoolaskee Teekalohenah 
+			Chochuchee Kostayeak Ookouseteeh Kanitta Nemetuah Wyuka Tulco
+			Theyanoguin Teiorhenhsere Thayendanega Oronhyatekha Onogwendahonji Touighnatogon Oheadanghton 
+			Tayagonendagighti Tehonwaenghrigagi Otyadonenghti Dagaheari Oraghoaenendagen Onnonghsawenghti 
+			Kayenthoghke Cageaga Sawedowa Kiondushowa Oncahye Soaheas Otachsaka Tekahias Onecnsetee Kiatulaho 
+			Kiandogewa Owenewa Gyantwaia Gyasota Kannasseee Achiout Anachout Chishekoa Sessewa Sicahowa Tewanias 
+			Snoachshowa Hickonquash Ononyeahnee Konneatorteeooh Tokenhyouau Oneshauee Aupaumut Neeshonshuk 
+			Sohhonteoquent Ooduhtsait Konoohqung Tossonggaulolus Skenendoa Oneatorleeooh Kussauwatau 
+			Kohnyeaugaong Shaguiesa Teeroos Sooshaoowau Sonhyoowauna Onaahhah Hotoshahen Kaukondanaiya 
+			Kosshishtowau Oojaugenta Toheonggo Ootaguasso Joonondauwanonch Kiyauhaonh Ootaujeaugenth Tauhoondos 
+			Twaukewasha Sequidonguquee Kodjeote Kenjauaugus Soononhquaukau Twenniyana Jishkaaga Tuggehshotta 
+			Tehongyagauna Tehongyoowush Konneyoowesot Tioohquaottakauna Taoundaudeesh Honayawus Soggooyawauthau 
+			Konyootiayoo Sauhtakaongyees Ounnashattakau Kaungyanehquee Sooayoowau Kaujeagaonh Soonoohshoowau 
+			Thaoowaunias Soonongjoowau Kiantwhauka Kaunehshonggoo Kenneronkwa Telenemut Katarioniecha
+			Kendarindgon Nondiyauka Kanatsoyh Eootenyootauook Aqueia Tarondawagon
 		}
-		last_names = { Ross Downing Potter Thompson Wolf Mayes Buffington Harris Rogers Boudinot
+		last_names = { Ross Downing Potter Thompson Wolf Mayes Buffington Harris Rogers Boudinot Awegen Ahaouet
+			Canajoharie Canastigaone Canienga Caughnawaga Cahunghage Canowaroghere
+			Deseroken Dayoitgao Deonundagae Deyodeshot Deyohnegano Deyonongdadagana
+			Gweugwehono Gandasetaigon Ganogeh Gayagaanhe Gewauga Goiogouen Gadoquat Gannentaha
+			Hostayuntwa
+			Kawauka Kente Kanagaro Kowogoconnughariegugharie Kanadaseagea Kanatakowa
+			Neodakheat Nowadaga Nundawaono
+			Onekagoncka Onoalagona Oquaga Osquake Onayotekaono Oriska Ossewingo 
+			Skannayutenate Saratoga Schaunactada Schoharie
+			Teatontaloga Tewanondadon Tionnontoguen Tegasoke Teseroken Tetosweken 
+			Yoroonwago Mohe Diwali Waya Tsiyi Onacona Atagulkalu Degataga Cheasequah Adahy Atagulkalu
+			Andiata Angoutenc Anonatea Arendaonatia Arente Arontaen Anioton Ahiragenrega Ahondihronon Andachkhrob Antouaronon 
+			Aondironon Atiaonrek Atirhagenrat Atiraguenrek Attiragenrega Attiuoaisgon
+			Cahiague Carhagouha Carmaron Contarea Conchake Chequamegon
+			Ekiodatsaan Endarahy Iahenhouton
+			Junqueindundeh Junundat
+			Karenhassa Kakouagoga Kandouche Kehesetoa Khioetoa
+			Oeniro Onentisati Ossossane Oukhahitoua
+			Scanonaerat Sunyendeand Skenchioe
+			Teanaustayae Teandewiata Tonache Teadeouita Teanhatenaron Tondakhra Tiedonderoga Touaguainchain Tarhetown Teotoguiaton
+			Akhrakouaeronon Akwinoshioni Atquanachuke Carentouan Cepowig Junita Kaiuariegehaga
+			Ohongeoguena Oscalui Quadroque Sconondihago Seosquacke Takoulguehronon Tehaque
+			Tesinigh Unquehiett Usququhaga Utochwig Wyoming Wysox Kanastoge "Onojutta-Haga"
+			Scahentoarrhonon Tehotitachsae
 		}
 	}
-	pueblo = {
+	sonoran = {
 		color = {222 238 156}
-		first_names = { Cochise Mangas Loco Taza Nana chihuahua Geronimo Alchesay Naiche Victorio
+		first_names = { Comcomly Tumulth Napesa Injice Tasyah Nessick Etnama Cheenlenten Nasyah Absaquil Quintioosan Talsapeer 
+			Myneletta Quiaquatty Yalkus Kawkama Kiles Kowahtough Anta Quilala Mequah Yackatee Tophor Hallale Pulktah 
+			Tumwalth Obanahah Watchano Teapinick Wallahpicate Lalbick Cuckamanna Towyecolla Laham Senegertta Pulican 
+			Tena Pulkuptima Sallaf Hoipkenek Yeptah Satinvose 
+			Sequoyah Attakullaculla "Johan Ross" Moytoy Yonaguska Dragging Canoe Agi It Boudinot 
+			Oacpicagiguya Kaviu Papago Panhop Cajemé
+			Popé Ku-htihth Galisteo Xenome Ollito Tagu Bolsas Naranjo Catiti
 		}
-		last_names = { Arivaipa Cibecue Coyotero Jicarilla Llanero Mescalero Nateges Tonto
+		last_names = { Acoma Cochiti Isleta Jemez Laguna Nambe "Ohkay Owingeh" Picuris Pojoaque Sandia 
+			Taos Tesuque Zia Zuni Hopi Piru Akimel Tohono "Hia Ced" Sobaipuri Otama Kina Equituni Uturituc Sacaton "Onk Akimal"
+			Yoreme Hiakim Potam Vicam Torim Bacum Cocorit Huirivis Benem Rahum Akimel Tohono "Hia Ced" Sobaipuri Otama Kina Equituni Uturituc Sacaton "Onk Akimal"
+			Yoreme Hiakim Potam Vicam Torim Bacum Cocorit Huirivis Benem Rahum Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw 
+			Wishram Wasco Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
 		}
 	}
-	inuit = {
+	eskaleut = {
 		color = {210 243 242}
-		first_names = { Peter Ipeelee Jose Steve David Jack Goo Germaine James Pitseolak Kenojuak Ernie Caubvick
+		first_names = { Aariak Aassanaaq Aippaq Aklaq Amaqjuaq Ammagaruqnik Anik Apaata Aput Aputi Aqakuktuq Aqillutaq Aqpalibaaqtuq 
+			Aquyittuq Arnauyq Asuilaak Atanarjuat Atiqtalaaq Atuqtuaq Aujaq Aviqming Ila Ilannaq Innugati Iñuksuk Irniq 
+			Itigaituk Kanguq Kataktuaq  Keedtapeck Kissarviarsuk Kumaglak Kunik Kunikpaa Malik Nanouk Nasak Natsiq 
+			Nauja Nirliq Nuniq Nuvuk Oki Pamiuq Patuktuq Pauloosie Petuwaq Pimniq Piqqaluyungmik Pittiulak Pukajaak Qajak 
+			Qammutiq Qamut Qannik Qaumaniq Qausiqtuk Qimmiabruk Qimmiq Qulitalik Sauri Sighna  Siluk Sivoy Sivuugun 
+			Taktuq Taliriktug Tikaani Tiqriganiannig Tukkuyummavungga Tulimak Tulimaq Tulugaq Tungajuaq Tupiq Tuuq Ugalik 
+			Ujurak Ukiuk Unnuk Usuiituk
 		}
 		last_names = { Alakannuark Arreak Ashoona Enuaraq Evaloarjuk Ipeelee Irgittuq Keenainak Kunuk Kusugak Maksagak Nutarak Paniloo Piugattuk Pudluk Tiktaalaaq Ungallaq
+			Amaruq Pakak Silaluk Kayuqtuq
 		}
 	}
-	cree = {
+	central_algonquian = {
 		color = {127 244 100}
-		first_names = { Louis Maskipitonew Alexis Samson Joe James Baptiste Felix Jacob
+		first_names = { Nîshwi Nethwi Nyêwi Nyânanwi Neniwa Ihkwêwa Anemôha Kîshethwa Tepehkî-Kîshethwa   
+			Kapapamahchakwew Abishabis Mistahi-maskwa Kamiokisihkwew Payipwat Pitikwahanapiwiyin Tepastenam 
+			Wahwaashkung Kiwash Nahookeesic Oombash Panacheese Yesno Wenangasie Katchang Moonias Ostamas 
+			Kwakigigckewang Keneswabe Matawagan Odagamea Missabay Pootoosh
+			Nemekas Puckanese Macquettequet Shimnanaquette Pakenosega Kekenutchega Chimokemow Kekenutchegun 
+			Muskobenense Waubonoosa Wausaquanai Minequet Otauson Tussegua Mixabee Kitchewawashen Neebeenaquin 
+			Anueemaycounbeeme Onewequa Nayokeeman Peshquescum Muckcumcinau Kitcheenoting Waubeekeenew 
+			Sheemaugua Kauguest Kitsheematush Aneuwayba Walkcaykeejugo Autowaynabee Nawgonisee owenisham 
+			Mooksonga Noukonwabe Shingwalk Wawaubequak Meewayson Wepecumgegut Markkenwuwbe Fonegawne Nemetetowwa 
+			Kishkaukou Peenaysee Ogemaunkeketo Reaume Nowkeshuc Mixmunitou Wassau Keneobe Moksauba Mutchwetau 
+			Okumanpinase Meckseonne Paupemiskobe Kogkakeshik Wauwassack Misheneanonquet Okemans Nimeke 
+			Puckwash Waseneso Montons Kennewobe Shawshauwenaubais Okooyousinse Ondottowaugane Amickoneena 
+			Kitcheonundeeyo Saugassauway Okeemanpeenaysee Minggeeseetay Waubishcan Peaypaymanshee Ocanauck 
+			Paymeenoting Naynooautienishkoan Kaujagonaygee Mayneeseno Kakagouryan Kitchmokooman Singgok 
+			Saguhosh Saybo Obwole Aguagonabe Sigonak Kokoosh Pemaw Kawotoktame Sabo Kewageone Metewa Kawgeshequm 
+			Keyacum Atowagesek Mawmawkens Mamawsecuta Penaysewaykesek Kewaytinam Sepewan Shashebak Shaconk 
+			Paymusawtom Endus Aushetayawnekusa Wawapenishik Omikou Pashkobwis Pashkeekou Mayto Wauweeyatam 
+			Nuwagon Mesnakrea Maytwayaushing Ogeebouinse Maneleugobwawaa
+			Wahpeshakana Kenmahreneah Pakeeshama Allenepeshensha Wassacanga Naynawitwa Wissineeaw Ramisswnoa 
+			Whkahpesewah Kemonsah Wapesae Pemekawai Koongeepata Batticy Keemaranea Wecomakana Keeshammy 
+			Aramapingea Keemawassa Wackshingga Kitakimawa Manggonssa Mooyakacke Pemmikawatta Papenegisawa 
+			Meshiwiratta Mahkattamaweya Queckaawpeeta Chessagouasse Mamentouensa Chicagou Ninkanape Maressa
+			Shopinna Wapamahwhawa
+			Hokoleskwa Cottawamago Paxinos Wynepuechisika Weyapersenwah Tecumseh Aweecony Kakawipilathy Malunthy 
+			Musquaconocah Meanymsecahh Waupaucowela Nihipeewa Nihinessicoe Wawelainni Kishkalwa Maywathekeha 
+			Pathecoussa Nelawachika Waquiwais Napawita Papamousse Pemitacamchika Wyawimon Quamapea Pelmetachemo 
+			Neahmemsieeh Makatewekasha Koitawaypie Misquacoonacaw Cutthewekasaw Kayseaesekah Weythapamattha 
+			Waytheah Weyapiersenwaw Nequetaughaw Hahgooseekaw Weyapuseawaw Cutheaweasaw Auonashechla Cutewecusaw 
+			Tamenetha Piaseka Pomtha Shammothetho Pemthata Wethawakasika Quetawah Sokutchemah Wynepuehsika 
+			Quitawepeh Teawascoota Tacomtequah Nianymseka Chiachska
 		}
-		last_names = { Piche Kiskiyew Crane Saddleback Buffalo Rain
+		last_names = { Auglaize Alawaymotakah Akepee Aqueloma Chillicothe Calaka Chalaakaatha Conedogwinit Hathawekela Hisoskok 
+			Hawkawepitathy Kispoko Kiscopocoke Kispokotha Koshachkink Kagoughsage Kickapougowi Kithlipecanuk Mequachake Maykujay 
+			Mekoce Maguck Oawikila Ochipway Okowellos Opeatako Oshawahnah Piqua Pekowi Paxtang Peixtan Paheto Paytokothe 
+			Spitotha Sawanugi Sawauwone Saweeto Sawcunk Sewickley Shamokin Sonnioto Thaawikila Thawegila Tippecanoe Sylacauga 
+			Wakatomica Wakatawicks Wapakoneta Wabapusito Wagunetee
+			Kaskaskia Cahokia Peoria Tamaroa Moingwena Michigamea Albiui Amonokoa Chepoussa Chinkoa Coiracoentanon Espeminkia 
+			Maroa Matchinkoa Michibousa Negawichi Tapouara
+			Missisage Saulteaux Bungee Saginaw Achiligouan Amicoures Amikwa Auwause Bawating Chequamegon Keweenaw Kitchigami 
+			Macomille Malanas Marameg Mackinac Mundua Nikikouek Noquet Mouusagai Ouasouarini Aousanik Outchibou Outchougai 
+			Ouxeiacomingo
+			Iyiyiw Chisasibi Wemindji Whapmagoostui Mistissini Nemaska "Ouje-Bougoumou" Waskaganish Waswanipi Mosoni Maskekowak 
+			Nehinawak Attawapiskat Chemawawin Kashechewan Misipawistik Missanabie Mosakahiken Neskntaga Opaskwayak Sapotaweyak 
+			Shamattawa  Tatskweyak Taykwa Weenusk Wuskwi Bunibonibee "Manto Sipi" Nisichawayashik "O-pipon-na-piwin" Pimicikamak 
+			Sakawithiniwak Kapawe'no Mikisew Wabasca Mamihkiyiniwak Nekaneet Ochapowace Peepeekisis
+			Winewak Karakuntie Moyese Plante Wanyandie Aseniwuche
 		}
 	}
-	navajo = {
+	na_dene = {
 		color = {83 111 191}
-		first_names = { Narbona Mariano Zarcillos Manuelito Herrero Barboncito Ganado "Henry Chee" "Digul Chee"
+		first_names = { "Nanni Chaddi" "Na tio tish" Sitahle Oahtekah Ahzaah Kootzzah Moketaveto Ohtoahnesotowheo Harkkahome 
+			Munamenek Otoahnisto Mahvipah Choseta Nahtan Konzhontaco Bazheech Tillaka Chacon Dasoda-hae Cochise Juh 
+			Delshay Goyaale
+			"Nanni Chaddi" "Na tio tish" Sitahle Oahtekah Ahzaah Kootzzah Moketaveto Ohtoahnesotowheo Harkkahome 
+			Munamenek Otoahnisto Mahvipah Choseta Nahtan Konzhontaco Bazheech Tillaka Chacon Dasoda-hae Cochise Juh 
+			Delshay Goyaale
+			"Chapitone" "Ashkii Diyin" "Dahaana Baadaane" "Hastiin Ch'ilhaajin" "Nabaah Jilt'aa" "Bislahalani" 
+			"Hozhooji Naat'a" "Hastiin Daghaa" "Hastiin Daagi" "Haske Yahne Yah" "Toh Yah" "Hastiin Klah" "Ahway Eskay" 
+			"Hoksay Nolyae" "Atsidi Sani" "Beshiltheeni"
+			"Chapitone" "Ashkii Diyin" "Dahaana Baadaane" "Hastiin Ch'ilhaajin" "Nabaah Jilt'aa" "Bislahalani" 
+			"Hozhooji Naat'a" "Hastiin Daghaa" "Hastiin Daagi" "Haske Yahne Yah" "Toh Yah" "Hastiin Klah" "Ahway Eskay" 
+			"Hoksay Nolyae" "Atsidi Sani" "Beshiltheeni"
+			"Nanni Chaddi" "Na tio tish" Sitahle Oahtekah Ahzaah Kootzzah Moketaveto Ohtoahnesotowheo Harkkahome 
+			Munamenek Otoahnisto Mahvipah Choseta Nahtan Konzhontaco Bazheech Tillaka Chacon Dasoda-hae Cochise 
+			Delshay Goyaale Juh
 		}
-		last_names = { Naat'aa Martinez Ch'ilhanjini Largos Delagado Grande Da'ghaaii To'tso'nii Dodge
+		last_names = { Jicarilla Mescalero Chiricahua Lipan Yavapai Tonto Navajo Ramah Mojave
+			Toboso Cholome Jocome Sibolo Pelone Manso Kiva
+			Arivaipa Carlanas Chiricahua Ch'uuk'anen Cibecue Coyotero
+			Faraones Gileno KIowa Llanero Lipiyanes
+			Mimbrenos Mogollon Na'iisha Natages Pinal 
+			Querechos
+			"Bit'anhi" "Naaste'ezheh" "Kiyaa'aanii" "Dzilt'aadi" Honaghaahnii "To'ahani" 
+			"Ta'neeszahnii" "Hashk'aa Hadzohi" Nihoobaanii "Ts'ah Yisk'idnii" "Todich'ii'nii" "To Baazhni'azhi" Tseikeehee
+			"Naaket L'ahi" "Tsin Sikaadnii" "Biih Bitoodnii" "Tl'ogi" "Todik'ozhi" "K'aahanaanii" "Todich'ii'nii" "Totshnii"
+			"Hooghan Lani" "Dzaaneez Lani" "Tse Deeshgizhnii" "Hasht L'ishnii" Tabaaha Haltsooi "To Baazhni'azhi" "Tachii'nii"
+			"Kin Ichii'nii" Tsenjikini Dibelzhini "Ma'ii Deeshgiizhinii" "Ashinuii" "Keha'atiinii" "To'aheedliinii"
+			"Tsi'naajinii" "Deeshchii'nii" "Tl'izi Lani" "Tl'aaschi'I" Tsenabahituii Nashashi "T'üschebaanii" "Jaa'yaaloolii"
+			"Keha'atiintii" "Naashaashi"
+			Kiusta Kung Yan Hiellan Skidegate "Cha'atl" Haina Kaisun Cumshewa Skedans Tanu Ninstints
+			Masset Atewaas Jaahguhl Kayung "Hlk'yah GaawGa" Klinkwan Sukkwan Howkan Kasaan
+			Kiusta Kung Yan Hiellan Skidegate "Cha'atl" Haina Kaisun Cumshewa Skedans Tanu Ninstints
+			Masset Atewaas Jaahguhl Kayung "Hlk'yah GaawGa" Klinkwan Sukkwan Howkan Kasaan
+		}
+	}
+	penutian = {
+		color = { 5 128 128 }
+		first_names = {
+			Comcomly Tumulth Napesa Injice Tasyah Nessick Etnama Cheenlenten Nasyah Absaquil Quintioosan Talsapeer 
+			Myneletta Quiaquatty Yalkus Kawkama Kiles Kowahtough Anta Quilala Mequah Yackatee Tophor Hallale Pulktah 
+			Tumwalth Obanahah Watchano Teapinick Wallahpicate Lalbick Cuckamanna Towyecolla Laham Senegertta Pulican 
+			Tena Pulkuptima Sallaf Hoipkenek Yeptah Satinvose 
+			Seattle Patkanam Chowitshoot Goliah Kwallatum S'hootst-hoot Snah-talc Squush-um Seeallapahan Heuhkanam 
+			Tsenahtalc Nsskioos Watskalahtchie Smehmaihu Slateahkanam Sthauai Lugsken Shehtsoolt Doqueoosatl 
+			Klemshkanam Tshuahntl Kwusskanam Helmits Skwaikwi Sehlekqu Shchehoos Whailanhu Sheahdelthu Kwultseh 
+			Kwullethu Klehkentsoot Sohnhehovs S'dehapkan Chulwhiltan Skeehtum Patchkanam Satskanam Sdzomathl Dahtldemin 
+			Sdzekdunum Nowachais Mislotche Sloonokshtan Moowhahladhu Toolehplan Hasehdooan Hooviltmehtum Weaipah 
+			S'ahanhu Shehope Hwnlahlakq Chtsimpt Tsesumten Klthahlten Kuttakanam Chlahben Noohehoos Hwehuk Pehnus 
+			Yimkadam Twooiaskut Luchalkanam S'hootkanam Smeakanam Sadziskeh Hehmahl Hatch Kwentum Yoikum Tkwamahan 
+			Stodumkan Belole D'zololegwamhu Stehshail Kelkahltsoot Patsen Pattehus Shoolkkanam Chloksuts
+		}
+		last_names = {
+			Samish Sawehamish Semiahmoo Shishalh Siletz Skagits Skokomish Snohomish Snoqualmie Songhees Squamish Squaxin 
+			Stillaguamish Stolo Aitchelitz Chawathil Cheam
+			Kwantlen Katzie Leqamel Matsqui Popkum Shxwowhamel Skway Skowkale Skwah Soowalhie Chehalis Sumas Tzeatchen 
+			Yakweakwioose Suiaxbixw Suquamish Swinomish 
+			Tsawassen "Tsleil-Waututh" Tulalip Xacuabs
+			Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw 
+			Wishram Wasco Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
+			Wishram Wasco Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
+		}
+	}
+	plains_algonquian = {
+		color = { 50 128 128 }
+		first_names = {
+			Comcomly Tumulth Napesa Injice Tasyah Nessick Etnama Cheenlenten Nasyah Absaquil Quintioosan 
+			Myneletta Quiaquatty Yalkus Kawkama Kiles Kowahtough Anta Quilala Mequah Yackatee Tophor Hallale 
+			Tumwalth Obanahah Watchano Teapinick Wallahpicate Lalbick Cuckamanna Towyecolla Laham Senegertta 
+			Tena Pulkuptima Sallaf Hoipkenek Yeptah Satinvose Talsapeer Pulktah Pulican Hache-hi Hosa Nakos
+			Bipin Bodaway Brijesh Brijmohan Cochise Dahana Eknath Elan Gopal Gopan Gosheven Govind Gulab Gunaratna 
+			Gurbachan Gurcharan Hridayesh Ikshu Ilesh Illanipi Jimuta Jinendra Jishnu Jitendra Jivin Kuruk Kusagra Kush 
+			Leyati Leyti Lise Mohan Mohin Narsimha Nartan Nartana Niteesh Nitis Pravar PraveenHalf Prayag Preetish Pritam 
+			Tarak
+			Aisikstukiks Apikaiyikis Emitahpahksaiyiks Motahtosiks Puhksinahmahyiks Saiyiks Siksinokaks Tsiniktsistsoyiks 
+			Ahkaisumiks Ahkaipokaks Ahkotahshiks Anepo Apikaiyiks Aputosikainah Inuhksoyistamiks Isissokasimiks Istsikaihan 
+			Mameoya Nitikskiks Saksinahmahyiks Sikahpuniks Sikinokaks Ahahpitape Ahkaiyikokakiniks Apikaiyiks Esksinaitupiks 
+			Inuksikahpowaiks Inuksiks Ipoksimaiks Kahmitaiks Kiyis Kutaiimiks Kutaisotsiman Miahwahpitsiks Miawkinaiyiks 
+			Mokumiks Motahtosiks Motwainaiks Nitakoskitsipupiks Niwayiks Nitikskiks Nitotsiksistaniks Sikokitsimiks 
+			Sikopoksimaiks Sikutsipumaiks Susksoyiks Tsiniksistsoyiks
+			Wechegalla Tatoncapa Japu Takchesca Chahpacpahha Tatoncahooohcalehpaha Matewashena Shonggemoneto 
+			Shongemonetoeahca Nahpatonca Ohkeecheta Tahhiota Wahhanissatta Voisttitoevetz Nahkkomeien 
+			Motavato Vokivokamast Avonaco Oneahaket Nakohaistah Aamanaco Kohkahywhcumest
+		}
+		last_names = {
+			Mohe Diwali Waya Tsiyi Onacona Atagulkalu Degataga Cheasequah Adahy Atagulkalu
+			Aisikstukiks Apikaiyikis Emitahpahksaiyiks Motahtosiks Puhksinahmahyiks Saiyiks Siksinokaks Tsiniktsistsoyiks 
+			Ahkaisumiks Ahkaipokaks Ahkotahshiks Anepo Apikaiyiks Aputosikainah Inuhksoyistamiks Isissokasimiks Istsikaihan 
+			Mameoya Nitikskiks Saksinahmahyiks Sikahpuniks Sikinokaks Ahahpitape Ahkaiyikokakiniks Apikaiyiks Esksinaitupiks 
+			Inuksikahpowaiks Inuksiks Ipoksimaiks Kahmitaiks Kiyis Kutaiimiks Kutaisotsiman Miahwahpitsiks Miawkinaiyiks 
+			Mokumiks Motahtosiks Motwainaiks Nitakoskitsipupiks Niwayiks Nitikskiks Nitotsiksistaniks Sikokitsimiks 
+			Sikopoksimaiks Sikutsipumaiks Susksoyiks Tsiniksistsoyiks
+			Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw Wishram Wasco 
+			Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
+		}
+	}
+	eastern_algonquian = {
+		color = { 255 260 122 }
+		first_names = {
+			Tatobem Uncas Sassacus Sassious Wequash Tisquantum Miantonomo Nynigrett Pessicus Sassamon Canonchet 
+			Massasoit Wamsutta Metacom Mahomet Weyonomon Occom
+			Wahunsenacawh Debedeavon Okiawampe Kiptopeke Opechancanough Nectowance Totopotomoi Nemattanew 
+			Parahunt Pochins Opitchapan Catataugh Ashaquid Chauco Tomocomo
+			Maumauntissekun Shabash Wassamapah Uncas Chingachgook Etowohkoam Aupamut Konkapot Quinney Skicket Chemaucum Thebeant 
+			Kithteeleland Lapahnihe Apacahund Netahopuna Tunis Caghkoo Petchenanalas Quenaghtoothmait Pooshies Nanotetauxien 
+			Sarcoxey Neconhecond Kockkatowha
+			Membectou Ounaginitish Eargamet Chickanicto Armquannott Attanas Rechibouctou Chichabenady Miductuk 
+			Spugonoit Nughquit Begamonit Chigaquisht Nelanoit
+			Qualebeenewes Madockawando Wanagemeshaw Bungawarrawit Warrankansit Bomoseen Edaranaquin Eneas 
+			Jackoit Pequaret Weebenoose Caterramoggus Nuctungus Quinnawus Quirebooset Neguscawit Abinnaway 
+			Addeawando Segucewick Kissuragunnit Pittarisquanne Moxusson Erixis Estien Wenemoet Whonumbamet 
+			Chocorua Iteansis Sanboddies Scaweeease Atoan Sozap Pelnal Lol Tanial Missal Tabid Nikpla Edoal Pial Plasoa 
+			Lobal Klegual Simo Az Atian
+			Tetabuxike Bukongehelas Hockingpomskenn Kechkawhanund Alimee Tomaguee Missenewand Petchekekapon 
+			Kithteeleland Lapahnihe Apacahund Netahopuna Tunis Caghkoo Petchenanalas Quenaghtoothmait Pooshies 
+			Nanotetauxien Sarcoxey Neconhecond Kockkatowha Quacornowha Neshapanacumin Queshatowha Pondoxy 
+			Ahlaachick Neconhecon Rockatowah Buckongahelas Gelelemend Oratam Neolin Hopocan Tamanend Tamaqua 
+			Teedyuscung Kkoquethagechton Kockkockquas
+		}
+		last_names = {
+			Sapokanikan Nechtanc Aquehonga Manacknong Shawkopoke Nayack Sowanus Sassian Monsey
+			Absecon Assupink Communipaw Hakensack Hoboken Hohokus Hopatcong Mahwah Manahawkin
+			Manalapan Mantoloking Mantua Matawan Metuchen Minisin Musconetcong Passaic Peapack
+			Naraticong Scheyichbi Secaucus Weehawken
+			Conshohocken Manayunk Passyunk Shackamaxon Wissahickon
+			Amoskeay Cocheco Cowasuck Koasek Masipskwoik Nashua Ossipee Pemigewasset Pennacook Pequaket	Piscataqua Souhegan 
+			Winnibisauga Amaseconti Alessikantekw Kinipekw Odanak Ossipee Panawahpskek Apikwahki Rocameca Wawinak Wôlinak
+			Epekwik Epeggoitg Eskikewakik Esgigiag Kespek Gespegiag Kespukwitk Gespogoitg Siknikt Sigenitog sipeknekatik 
+			Segepenegatig Taqmkuk Tagamgoog Wunamakik Onamagig Aboushagan Antigonishe Bhicuctouche Chignecto Ekoupahag Jedaick 
+			Kigicapigiak Miramichi Nalkithoniash Nipigiguit Pohomoosh Shediac Tabogimkik Tabusintack Waycobah
+			Muhhcanneuw Mehckentowoon Wawyachtonoc Westenhuck Wiekagjoc Shecomeco Wechquadnach Pamperaug Bantam Weataug 
+			Scaticook Mahaiwe Wikwajek Chaghnet Horikan Kaunaumeek Kenuckpacook Maringoman Monemius Nepaug Paanpaack Peantam 
+			Potick Potie Shodac Shakehook Unawat Wechquadnach Wequadnack Wiatiae Winooskeek Wyeck
+			Powhatan Arrohateck Appamattuck Pamunkey Mattaponi Chiskiack Kecoughtan Youghtanund Rappahannock Moraughtacund 
+			Weyanoak Paspahegh Quiyoughcohannock Warraskoyack Nansemond
+			Metoac Manchaug Massomuck Menunkantuck Monashackotoog Pequannock
+			Quinebaug Quinnipiac Siwanoy Niantic Asupsuck Aukumbumsk Aushpook
+			Cosattuck Cuppunauginnit Mangunckakuck Mashantucket Mohungannuck
+			Nameauag Natchaug Noank Oneco Paupttokshick Pawcatuck Pequotauk
+			Poquonock Sauquonckackock Shenecosset Tatuppequauog Weinshauks
+			Weqhetequock Wunnashowatookoog Quahog Mashpee Patuxet Pokanoket
+			Pocasset Assonet
+		}
+	}
+	muskogean = {
+		color = { 124 136 100 }
+		first_name = {
+			Itawamba Tootemastubbe Piomingo Tishomingo Mingatuska Taskietoka Latopoia Ashalatubbi Ishtehotopa Topulkah 
+			Emubby Pistahlahtubee Ishtimolutka Immahhoolotubbe Ishtahachah Lahfinhubbe Shoppowme Ninuckahumba 
+			Illuppahhumba Conmushkaishkah Bahhakahtubbe Bahmahahtubbe Iyahhoutubbe Tokholthlachah Okelahnahnubbe 
+			Immetubbe Inkahyea Ahshacubbe Immohhobah Fitchahpla Untemiahtubbe Okelahhinlubbe Bahmehubbe Hushtahtahubbe 
+			Untihakahtubbe Yummotubbe Ohhacubbe Ahfahmah Ahtakintubbe Ahtokowah Tahhacubbe Kinhoicha Ishteahtubbe 
+			Chickahshananubbe Chewutaha Foluttachah Wininapa Okelahshahcubbe Ishtakiyukatabbe Mahtekoshubbe Tomchickah 
+			Eiochetubbe Nuckshopubbe Cochubbe Okelahshapia
+			Ayaestangui Mingotabasa Ochinohahuma Nackitona Cachuni Mastape Puchihuma Tamaobe Mingotalaya Panshimantla 
+			Imaabe Pushihumachito Oclactahuma Chickashioclacta Cachumaabi Nahollomastubbe Canelechabe Pushimastabew 
+			Oechanyimastabe Tuscaloosa Franchimastabe Taboca Apuckshunubbee Pushmataha Mosholatubbee Tobocoh 
+			Pooshemastuby Pooshahooma Tuscoonoohoopoie Shishemastubby Yoopahooma Stoonokoohoopoie Tehakuhbay 
+			Tushkahoomoih Tushkahoomock Yoostenochla Tootehooma Toobenohoomoch Cshecoopoohoomoch Stonakoohoopoie 
+			Tushkoheegohta Teshuhenochloch Pooshonaltla Okanconnooa Autoonachuba Pangehooloch Steabee Tanetchenna 
+			Tushkementahock Tushtallay Cshnaangchabba Cunnopoie Tuskonahopoia Tootahomo Mingohom Massatubby Ocshumme 
+			Mingopooscoos Bucshunubbe Shappahomo Hiupahoo Illatallahomo Hochehomo Tuspehachaabe Muclushahopoia 
+			Capputannethlucco Pooshahomo Bakalubbe Ayaistanaksi Mestico Ulbalent Chicachahuma Tiupoye Asetahuma 
+			Pushahuma Tootehoma Puchihuacaya Eyahchihumo Cachunimastabe Hatonahopaii Utacctahuma Tishomastubbe 
+			Nahumastabbe Pushimataha Tootepana Cayabe Mingohomoastabee Puchihumachita Okshakihoma Choccoolacta 
+			Chulomastubee Stonahuma Pushistonahuma Cachuaanchabe Alpatakhuma Pushihuma Asitahuma Iteleskana Tuscaabi 
+			Chucaastabe Olactahuma Chalitahuma
+			"Hoboi-Hili-Miko" "Mico Malatchi" Opothleyaholo Emistesigo Fife Lamochattee Yahatatastenake Taskanugi Hatke 
+			Fuskatchemico Neathlock Hallethemalthle Opaymico Totkeshajou Hopothemico Opototaache Soholoesee Ocheehajou 
+			Tuskenaah Homatah Chinnabie Juleetaulematah Chawooklymico Coosadeshopoy Muthtee Stimafutchkee Stilnaleeje 
+			Mumagechee
+		}
+		last_names = {
+			Chitto "Hasse Ola" Hopoethe "Talof Harjo" Yaholo Menewa Chebona Osceola Hothlepoya "Lumhe Chati"
+			Usquelagana Saktitamaha Itchechana Shumotakali Tinshinkla Chucafalaya Bissacha Otakchitotamaha Yackniachuchuma 
+			Octuechanacbe Ocatalaya Ouiacha Puscustakali Kunshabolukta Yowani Chiskilikbacha Neshobawenya Tamaha Seniasha 
+			Talepokta Iyanabe Nusiconchito Ibetapoklachitto Tombigbee Imoklashaiskitini Holithaasha Abeca Achohchuba Hankhaula 
+			Itokchako Lukfakta Bokfalaya Yazoo Kunshak Okalusa Pante Chemifalaya Shumotakali Osapachito Haluwahiasha Okacoopoly 
+			Shinukkaha Kafitalaia Imoklashi Cabeahoola Kashtasha Osaktalaya Abissa Chanke Onitalemon	
+			Ackia Alaoute Amalahta Apeony Apilefaplimengo Ashukhuma Ayebisto Chatelaw
+			Chesafaliah Chinica Chopoussa Chucalissa Chukafalaya Chula Coppertown
+			Couiloussa Etoukouma Falatchao Gouytola Hummalala Hussinkoma Hykehah
+			"Latcha Hoa Run" "Ogoula-Tchetoka" "Onthaba-atchosa" Ooeasa Oucahata
+			Oucthambolo Outanquatle Phalachehs Pontotoc Shatara Shiokaya Tanyachilca
+			Taposa Thanbolo Teshatulla Tokshish Tuckahaw Tuskawillao Tuskaroilloe Yaneka
+		}
+	}
+	caddoan = {
+		color = { 102 153 51 }
+		first_names = {
+			Tarahutacaw Tearilari Kakaletahaw Larapa Tahorou Letereeshar Tearacheticktickspaw Teakahore 
+			Tarara Teripakoo Irarikau Taretuushta Charuvaru Skalavalacharo Panukuhike Ishtataveeirou 
+			Lecoutsaroushtu Tacatahekou Kewatookoush Teratuewit Taheerish Petaperishta Talawehouree 
+			Shinggacahega Aiuwechooneeweeka Islacapee Settulushaa Shakororishshara Tarraecarwaa Tarrarevetiishta 
+			Arorishhara Telawahecarookot Kagakereeouk Latatorishhara Lahehozrashea Taarakarukaishta 
+			Tarraricarrawaa
+			Tashar Tsauninot Sationwnhown Tinnehinan Tinnowin Chowabah Kianhoon Tiatesun Tehowawinow Tewinnun 
+			Tiohtow Tehawahinno Toackooch Tchowainin Sanninow Sauninot Hiahidock Mattan Towahinnek Aach 
+			Sohone Ossinse Soakiantow Kardy
+			Comcomly Tumulth Napesa Injice Tasyah Nessick Etnama Cheenlenten Nasyah Absaquil Quintioosan 
+			Myneletta Quiaquatty Yalkus Kawkama Kiles Kowahtough Anta Quilala Mequah Yackatee Tophor Hallale 
+			Tumwalth Obanahah Watchano Teapinick Wallahpicate Lalbick Cuckamanna Towyecolla Laham Senegertta 
+			Tena Pulkuptima Sallaf Hoipkenek Yeptah Satinvose Pulican Pulktah Talsapeer
+		}
+		last_names = {
+			Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw 
+			Wishram Wasco Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
+			Adai Cahinnio Doustioni Eyeish Hainai Hasinai Kadohadacho
+			Kichai Nabedache Nabiti Nacogdoche Nacono Nadaco Nanatsoho
+			Nasoni Natchitoches Nechaui Neche Ouachia Tula Yatasi
+			Marhar Skidi Turikaku Kitkehaxpakuxtu Tuhitspiat Tukistkita Tuhawukasa Arikararikutsu
+			Arikarariki Thutsaku Tuwarakaku Akapaxtsawa Tskisarikus Tsiskaatit Turawiu Pahuksatu
+			Tskirirara Chuai Kitkehaki Pitahaureat Kawaraki
 		}
 	}
 	native_american_minor = {

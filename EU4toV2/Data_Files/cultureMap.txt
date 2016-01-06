@@ -188,15 +188,20 @@ link = { v2 = native_american_minor eu4 = teremembe eu4 = mataco eu4 = goitaca e
 # Carribean - arawak, carib
 link = { v2 = native_american_minor eu4 = arawak eu4 = carib eu4 = guajiro eu4 = maipurean }
 
-# North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek
-link = { v2 = dakota eu4 = dakota }
-link = { v2 = cherokee eu4 = cherokee }
-link = { v2 = pueblo eu4 = pueblo }
-link = { v2 = inuit eu4 = inuit eu4 = aleutian eu4 = kamchatkan }
-link = { v2 = cree eu4 = cree }
-link = { v2 = metis eu4 = iroquois eu4 = iroquis eu4 = huron eu4 = shawnee }
-link = { v2 = navajo eu4 = navajo }
-link = { v2 = native_american_minor eu4 = catawba eu4 = apache eu4 = kiowa eu4 = chinook eu4 = salish eu4 = arapaho eu4 = yokuts eu4 = chacoan eu4 = haida eu4 = delaware eu4 = piman eu4 = shoshone eu4 = chipewyan eu4 = athabascan eu4 = susquehannock eu4 = creek eu4 = choctaw eu4 = chickasaw eu4 = pawnee eu4 = anishinabe eu4 = cheyenne eu4 = abenaki eu4 = mikmaq eu4 = mahican eu4 = mesquakie eu4 = wichita eu4 = powhatan eu4 = pequot eu4 = nakota eu4 = chiwere eu4 = osage eu4 = caddo eu4 = illini eu4 = blackfoot eu4 = tlingit eu4 = miwok }
+# North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek, etc
+link = { v2 = siouan eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = catawba }
+link = { v2 = iroquoian eu4 = cherokee eu4 = iroquois eu4 = iroquis eu4 = huron eu4 = susquehannock }
+link = { v2 = sonoran eu4 = pueblo eu4 = piman eu4 = shoshone eu4 = kiowa }
+link = { v2 = eskaleut eu4 = inuit eu4 = aleutian }
+link = { v2 = central_algonquian eu4 = cree eu4 = shawnee eu4 = anishinabe eu4 = illini eu4 = mesquakie }
+link = { v2 = na_dene eu4 = navajo eu4 = chipewyan eu4 = athabascan eu4 = apache eu4 = haida }
+link = { v2 = penutian eu4 = chinook eu4 = salish eu4 = yokuts }
+link = { v2 = plains_algonquian eu4 = arapaho eu4 = cheyenne eu4 = blackfoot }
+link = { v2 = eastern_algonquian eu4 = delaware eu4 = abenaki eu4 = mikmaq eu4 = mahican eu4 = powhatan eu4 = pequot }
+link = { v2 = muskogean eu4 = creek eu4 = choctaw eu4 = chickasaw }
+link = { v2 = caddoan eu4 = pawnee eu4 = wichita eu4 = caddo }
+#link = { v2 = metis eu4 = ? }
+link = { v2 = native_american_minor eu4 = chacoan eu4 = tlingit eu4 = miwok }
 
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese }
@@ -204,7 +209,7 @@ link = { v2 = manchu eu4 = manchu }
 link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = chimin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture}
 link = { v2 = nanfaren eu4 = cantonese eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei}
 link = { v2 = korean eu4 = korean }
-link = { v2 = ainu eu4 = ainu }
+link = { v2 = ainu eu4 = ainu eu4 = kamchatkan }
 link = { v2 = hakka eu4 = hakka }
 link = { v2 = miao eu4 = miao }
 #link = { v2 = min eu4 = ? }
@@ -213,12 +218,12 @@ link = { v2 = yi eu4 = yi }
 #link = { v2 = yue eu4 = ? }
 
 # Mon Khmer - khmer, mon, vietnamese
-link = { v2 = vietnamese eu4 = vietnamese }
+link = { v2 = vietnamese eu4 = vietnamese eu4 = cham }
 link = { v2 = khmer eu4 = khmer }
 
 # Malay - polynesian, cham, malayan, filipino, madagascan, sulawesi
 link = { v2 = polynesian eu4 = polynesian }
-link = { v2 = asian_minor eu4 = cham eu4 = bornean }
+link = { v2 = bornean eu4 = bornean }
 link = { v2 = malay eu4 = malayan eu4 = sumatran }
 link = { v2 = filipino eu4 = filipino }
 link = { v2 = javan eu4 = javanese }
