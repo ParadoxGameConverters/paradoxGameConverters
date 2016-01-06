@@ -245,6 +245,10 @@ V2World::V2World(const minorityPopMapping& minorities)
 		}
 	}
 	WinUtils::GetAllFilesInFolder(Configuration::getV2Path() + "\\history\\pops\\1836.1.1\\", fileNames);
+	if (totalWorldPopulation > 0)
+	{
+		fileNames.clear();
+	}
 	for (set<string>::iterator itr = fileNames.begin(); itr != fileNames.end(); itr++)
 	{
 		auto duplicateCheck = popRegions.find(*itr);
