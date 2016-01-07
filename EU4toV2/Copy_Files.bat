@@ -70,6 +70,7 @@ xcopy "Data_Files\gfx" "release\blankmod\output\gfx" /Y /E /I
 xcopy "Data_Files\localisation" "release\blankmod\output\localisation" /Y /E /I
 xcopy "Data_Files\interface" "release\blankmod\output\interface" /Y /E /I
 xcopy "Data_Files\wars" "release\blankmod\output\history\wars" /Y /E /I
+xcopy "Data_Files\pops" "release\blankmod\output\history\pops\1836.1.1" /Y /E /I
 copy "Data_Files\countries.txt" "release\blankMod\output\common\countries.txt"
 copy "Data_Files\country_colors.txt" "release\blankMod\output\common\country_colors.txt"
 copy "Data_Files\religion.txt" "release\blankMod\output\common\religion.txt"

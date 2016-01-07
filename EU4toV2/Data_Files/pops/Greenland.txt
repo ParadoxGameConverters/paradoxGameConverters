@@ -1,0 +1,88 @@
+#Greenland (7500)
+#Ruled by Denmark 1836
+#Godthab (4220/1055 POPS)
+251 = {
+	bureaucrats = {
+		culture = danish
+		religion = protestant
+		size = 25
+	}
+
+	clergymen = {
+		culture = danish
+		religion = protestant
+		size = 15
+	}
+
+	artisans = {
+		culture = danish
+		religion = protestant
+		size = 15
+	}
+
+	farmers = {
+		culture = inuit
+		religion = protestant
+		size = 1100
+	}
+}
+#Holsteinborg (1232/308 POPS)
+2591 = {
+	clergymen = {
+		culture = danish
+		religion = protestant
+		size = 4
+	}
+
+	artisans = {
+		culture = danish
+		religion = protestant
+		size = 4
+	}
+
+	farmers = {
+		culture = inuit
+		religion = protestant
+		size = 300
+	}
+}
+#Augmagsalik (1232/308 POPS)
+2632 = {
+	clergymen = {
+		culture = danish
+		religion = protestant
+		size = 4
+	}
+
+	artisans = {
+		culture = danish
+		religion = protestant
+		size = 4
+	}
+
+	farmers = {
+		culture = inuit
+		religion = protestant
+		size = 300
+	}
+}
+#Egedesminde (816/204 POPS)
+2636 = {
+	clergymen = {
+		culture = danish
+		religion = protestant
+		size = 2
+	}
+
+	artisans = {
+		culture = danish
+		religion = protestant
+		size = 2
+	}
+
+	farmers = {
+		culture = inuit
+		religion = protestant
+		size = 200
+	}
+}
