@@ -174,19 +174,18 @@ link = { v2 = mayan eu4 = mayan eu4 = yucatec eu4 = putun eu4 = highland_mayan }
 link = { v2 = nahua eu4 = aztek eu4 = totonac }
 link = { v2 = native_american_minor eu4 = chichimecan }
 
-# South American - inca, guarani, aimara, amazonian, patagonian, guajiro, teremembe, tupinamba, mataco
-#link = { v2 = tarascan eu4 = ? }
-link = { v2 = quechua eu4 = inca eu4 = chimuan eu4 = jivaro eu4 = chachapoyan }
-link = { v2 = guarani eu4 = guarani }
-link = { v2 = aimara eu4 = aimara eu4 = diaguita }
-link = { v2 = amazonian eu4 = amazonian eu4 = ge }
-link = { v2 = patagonian eu4 = patagonian eu4 = het eu4 = huarpe eu4 = mapuche }
-link = { v2 = guajiro eu4 = guajiro }
-link = { v2 = tupinamba eu4 = tupinamba eu4 = tupi }
-link = { v2 = native_american_minor eu4 = teremembe eu4 = mataco eu4 = goitaca eu4 = cara eu4 = muisca eu4 = miskito eu4 = charruan }
+# South American - chibchan, maranon, andean, amazonian, tupi, je, araucanian, amazonian
+link = { v2 = chibchan eu4 = muisca eu4 = cara eu4 = miskito }
+link = { v2 = maranon eu4 = jivaro eu4 = chachapoyan }
+link = { v2 = andean eu4 = inca eu4 = aimara eu4 = diaguita eu4 = chimuan }
+link = { v2 = amazonian eu4 = amazonian eu4 = maipurean }
+link = { v2 = tupi eu4 = tupinamba eu4 = tupi eu4 = guarani }
+link = { v2 = je eu4 = ge eu4 = charruan }
+link = { v2 = araucanian eu4 = patagonian eu4 = het eu4 = huarpe eu4 = mapuche }
+link = { v2 = native_american_minor eu4 = matacoembe eu4 = mataco eu4 = goitaca}
 
 # Carribean - arawak, carib
-link = { v2 = native_american_minor eu4 = arawak eu4 = carib eu4 = guajiro eu4 = maipurean }
+link = { v2 = carribean eu4 = arawak eu4 = carib eu4 = guajiro }
 
 # North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek, etc
 link = { v2 = siouan eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = catawba }
