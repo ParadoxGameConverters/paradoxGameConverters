@@ -144,7 +144,7 @@ link = { v2 = berber eu4 = berber eu4 = moroccan eu4 = tunisian eu4 = algerian e
 link = { v2 = turkish eu4 = turkish eu4 = pecheneg }
 
 # Iranian - persian, east_persian, baluchi
-link = { v2 = tajik eu4 = persian region = central_asia }
+link = { v2 = tajik eu4 = sogdian eu4 = tocharian }
 link = { v2 = persian eu4 = persian eu4 = khorasani eu4 = mazandarani }
 link = { v2 = pashtun eu4 = east_persian eu4 = afghani eu4 = afghan }
 link = { v2 = baluchi eu4 = baluchi }
@@ -157,7 +157,7 @@ link = { v2 = sephardic eu4 = sephardi }
 link = { v2 = azerbaijani eu4 = azerbadjani eu4 = azerbaijani }
 link = { v2 = hazara eu4 = mongol religion = shiite }
 link = { v2 = turkmen eu4 = turkmeni }
-link = { v2 = mongol eu4 = mongol eu4 = chahar eu4 = khalkha eu4 = oirats }
+link = { v2 = mongol eu4 = mongol eu4 = chahar eu4 = khalkha eu4 = oirats eu4 = khitan }
 link = { v2 = uzbek eu4 = uzbek eu4 = uzbehk eu4 = karluk }
 link = { v2 = kazak eu4 = khazak }
 link = { v2 = kirgiz eu4 = kirgiz eu4 = kirghiz }
