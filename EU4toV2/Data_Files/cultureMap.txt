@@ -177,7 +177,7 @@ link = { v2 = native_american_minor eu4 = chichimecan }
 # South American - chibchan, maranon, andean, amazonian, tupi, je, araucanian, amazonian
 link = { v2 = chibchan eu4 = muisca eu4 = cara eu4 = miskito }
 link = { v2 = maranon eu4 = jivaro eu4 = chachapoyan }
-link = { v2 = andean eu4 = inca eu4 = aimara eu4 = diaguita eu4 = chimuan }
+link = { v2 = andean eu4 = inca eu4 = aimara eu4 = diaguita eu4 = chimuan eu4 = chacoan}
 link = { v2 = amazonian eu4 = amazonian eu4 = maipurean }
 link = { v2 = tupi eu4 = tupinamba eu4 = tupi eu4 = guarani }
 link = { v2 = je eu4 = ge eu4 = charruan }
@@ -200,7 +200,7 @@ link = { v2 = eastern_algonquian eu4 = delaware eu4 = abenaki eu4 = mikmaq eu4 =
 link = { v2 = muskogean eu4 = creek eu4 = choctaw eu4 = chickasaw }
 link = { v2 = caddoan eu4 = pawnee eu4 = wichita eu4 = caddo }
 #link = { v2 = metis eu4 = ? }
-link = { v2 = native_american_minor eu4 = chacoan eu4 = tlingit eu4 = miwok }
+link = { v2 = native_american_minor eu4 = tlingit eu4 = miwok }
 
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese }
