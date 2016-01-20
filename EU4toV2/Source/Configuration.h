@@ -25,6 +25,7 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 #define CONFIGURATION_H_
 
 
+#include <vector>
 #include <string>
 #include "Date.h"
 using namespace std;
@@ -121,6 +122,23 @@ public:
 		return getInstance()->outputName;
 	}
 
+	static void setActiveDLCs(vector<string> _activeDLCs)
+	{
+		getInstance()->activeDLCs = _activeDLCs;
+	}
+
+	static bool wasDLCActive(string DLC)
+	{
+		for (auto activeDLC: getInstance()->activeDLCs)
+		{
+			if (DLC == activeDLC)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	static Configuration* getInstance()
 	{
 		if (instance == NULL)
@@ -145,9 +163,10 @@ private:
 	bool		convertPopTotals;		// whether or not to convert pop totals
 	
 	// items set during conversion
-	date		firstEU4Date;			// the date EU4 began
-	date		lastEU4Date;			// the date EU4 ended
-	string	outputName;				// the name the outputted mod should have
+	date				firstEU4Date;			// the date EU4 began
+	date				lastEU4Date;			// the date EU4 ended
+	string			outputName;				// the name the outputted mod should have
+	vector<string>	activeDLCs;				// the active DLCs in the EU4 game
 };
 
 #endif // CONFIGURATION_H_

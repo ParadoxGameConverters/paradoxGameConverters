@@ -38,10 +38,23 @@ SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 
 
-EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
+EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, inverseUnionCulturesMap& inverseUnionCultures)
 {
 	vector<Object*> versionObj = obj->getValue("savegame_version");	// the version of the save
 	(versionObj.size() > 0) ? version = new EU4Version(versionObj[0]) : version = new EU4Version();
+
+	vector<Object*> enabledDLCsObj = obj->getValue("dlc_enabled");
+	if (enabledDLCsObj.size() > 0)
+	{
+		vector<string>	activeDLCs;
+		vector<string> DLCsObj = enabledDLCsObj[0]->getTokens();
+		for (auto DLCsItr: DLCsObj)
+		{
+			activeDLCs.push_back(DLCsItr);
+		}
+
+		Configuration::setActiveDLCs(activeDLCs);
+	}
 
 	vector<Object*> dateObj = obj->getValue("date");
 	if (dateObj.size() > 0)
@@ -82,7 +95,7 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			}
 			else
 			{
-				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas);	// the country in our format
+				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, version, inverseUnionCultures);	// the country in our format
 				countries.insert(make_pair(country->getTag(), country));
 			}
 		}

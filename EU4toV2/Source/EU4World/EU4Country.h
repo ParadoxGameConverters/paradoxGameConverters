@@ -27,11 +27,15 @@ THE SOFTWARE. */
 #include "EU4Army.h"
 #include "..\Color.h"
 #include "..\Date.h"
+#include "..\Mapper.h"
 
-class EU4Province;
-class EU4Relations;
+
 class EU4Loan;
 class EU4Leader;
+class EU4Province;
+class EU4Relations;
+class EU4Version;
+
 
 struct CustomFlag {
 	string flag;
@@ -42,7 +46,7 @@ struct CustomFlag {
 class EU4Country
 {
 	public:
-		EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
+		EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version, inverseUnionCulturesMap& inverseUnionCultures);
 
 		// Add any additional information available from the specified country file.
 		void readFromCommonCountry(const string& fileName, Object*);
