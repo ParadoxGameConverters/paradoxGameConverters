@@ -79,11 +79,11 @@ class V2Country
 		void								addRelation(V2Relations* newRelation);
 		void								absorbVassal(V2Country* vassal);
 		void								setColonyOverlord(V2Country* colony);
-		V2Country*							getColonyOverlord();
-		string								getColonialRegion();
+		V2Country*						getColonyOverlord();
+		string							getColonialRegion();
 
-		string								getLocalName();
-		V2Relations*						getRelations(string withWhom) const;
+		string							getLocalName();
+		V2Relations*					getRelations(string withWhom) const;
 		void								getNationalValueScores(int& liberty, int& equality, int& order, const map<string, int>& orderIdeas, const map<string, int>& libertyIdeas, const map<string, int>& equalityIdeas);
 		
 		void								addPrestige(double additionalPrestige) { prestige += additionalPrestige; }
@@ -113,7 +113,7 @@ class V2Country
 		bool								isNewCountry() const { return newCountry; }
 		int								getNumFactories() const { return numFactories; }
 
-		string								getReligion() const { return religion; }
+		string							getReligion() const { return religion; }
 
 	private:
 		void			outputTech(FILE*) const ;
@@ -138,7 +138,7 @@ class V2Country
 		map<int, V2Province*>		provinces;
 		int								capital;
 		bool								civilized;
-		bool							isReleasableVassal;
+		bool								isReleasableVassal;
 		string							primaryCulture;
 		set<string>						acceptedCultures;
 		string							religion;
