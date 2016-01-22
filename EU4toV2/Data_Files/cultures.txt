@@ -1849,12 +1849,12 @@ native_south_american = {
 		Sénaqué Sira Gununusa Puyucahua Mataojo Igualdad Yaró Guenoa Bohané Minuan}
 	}
 	matacoan = {
-		color= {}
+		color= {232 232 232}
 		first_names = {Sopa Cayo Topa Coyllas Cusichaca Huachuri Huaypalcon Luyes Marcavilca}
 		
 		last_names = {Atlatl
-		Caca Capayan Hualfin Paccioca Pular Quilme Aconquijas Anguinahao Tocpo Omaguaca
-		
+		Caca Capayan Hualfin Paccioca Pular Quilme Aconquijas Anguinahao Tocpo Omaguaca}
+	}
 
 	araucanian = {
 		color = {88 99 133}
