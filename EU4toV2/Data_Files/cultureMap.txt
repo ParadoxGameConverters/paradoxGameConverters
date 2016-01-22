@@ -177,10 +177,11 @@ link = { v2 = native_american_minor eu4 = chichimecan }
 # South American - chibchan, maranon, andean, amazonian, tupi, je, araucanian, amazonian
 link = { v2 = chibchan eu4 = muisca eu4 = cara eu4 = miskito }
 link = { v2 = maranon eu4 = jivaro eu4 = chachapoyan }
-link = { v2 = andean eu4 = inca eu4 = aimara eu4 = diaguita eu4 = chimuan eu4 = chacoan}
+link = { v2 = andean eu4 = inca eu4 = aimara eu4 = diaguita eu4 = chimuan}
 link = { v2 = amazonian eu4 = amazonian eu4 = maipurean }
 link = { v2 = tupi eu4 = tupinamba eu4 = tupi eu4 = guarani }
 link = { v2 = je eu4 = ge eu4 = charruan }
+link = { v2 = matacoan eu4 = chacoan}
 link = { v2 = araucanian eu4 = patagonian eu4 = het eu4 = huarpe eu4 = mapuche }
 link = { v2 = native_american_minor eu4 = matacoembe eu4 = mataco eu4 = goitaca}
 
