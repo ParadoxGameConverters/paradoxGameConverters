@@ -1848,6 +1848,14 @@ native_south_american = {
 		last_names = {Aimoré Prajé Takrukrak Krekmún Ituêto Futikrak Gueren Gutucrac Mekmek Minhagiran Nakrehê Naknyanúk
 		Sénaqué Sira Gununusa Puyucahua Mataojo Igualdad Yaró Guenoa Bohané Minuan}
 	}
+	matacoan = {
+		color= {}
+		first_names = {Sopa Cayo Topa Coyllas Cusichaca Huachuri Huaypalcon Luyes Marcavilca}
+		
+		last_names = {Atlatl
+		Caca Capayan Hualfin Paccioca Pular Quilme Aconquijas Anguinahao Tocpo Omaguaca
+		
+
 	araucanian = {
 		color = {88 99 133}
 		first_names = {Ancamilla Nampai Coñoepán Nahueltripai Millarapue Millalelmo Lautaro Paillamachu Huenecura 
