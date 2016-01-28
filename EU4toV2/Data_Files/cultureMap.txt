@@ -205,16 +205,16 @@ link = { v2 = native_american_minor eu4 = chacoan eu4 = tlingit eu4 = miwok }
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese }
 link = { v2 = manchu eu4 = manchu }
-link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = chimin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture}
-link = { v2 = nanfaren eu4 = cantonese eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei}
+link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture }
+link = { v2 = nanfaren eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei }
 link = { v2 = korean eu4 = korean }
 link = { v2 = ainu eu4 = ainu eu4 = kamchatkan }
 link = { v2 = hakka eu4 = hakka }
 link = { v2 = miao eu4 = miao }
-#link = { v2 = min eu4 = ? }
+link = { v2 = min eu4 = eu4 = chimin }
 link = { v2 = zhuang eu4 = zhuang }
 link = { v2 = yi eu4 = yi }
-#link = { v2 = yue eu4 = ? }
+link = { v2 = yue eu4 = cantonese }
 
 # Mon Khmer - khmer, mon, vietnamese
 link = { v2 = vietnamese eu4 = vietnamese eu4 = cham }
