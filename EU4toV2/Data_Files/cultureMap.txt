@@ -221,8 +221,7 @@ link = { v2 = yue eu4 = cantonese }
 link = { v2 = vietnamese eu4 = vietnamese eu4 = cham }
 link = { v2 = khmer eu4 = khmer }
 
-# Malay - polynesian, cham, malayan, filipino, madagascan, sulawesi
-link = { v2 = polynesian eu4 = polynesian }
+# Malay - cham, malayan, filipino, madagascan, sulawesi
 link = { v2 = bornean eu4 = bornean }
 link = { v2 = malay eu4 = malayan eu4 = sumatran }
 link = { v2 = filipino eu4 = filipino }
@@ -243,12 +242,13 @@ link = { v2 = kachin eu4 = kachin }
 link = { v2 = karen eu4 = karen }
 
 # Pacific - papuan, aboriginal, melanesian, moluccan
-#link = { v2 = hawaiian eu4 = ? }
-#link = { v2 = maori eu4 = ? }
+link = { v2 = hawaiian eu4 = polynesian provinceid =  1240 provinceid = 1997 }
+link = { v2 = maori eu4 = polynesian region = new_zealand_region }
 link = { v2 = aborigine eu4 = aboriginal }
 link = { v2 = melanesian eu4 = melanesian eu4 = papuan }
-#link = { v2 = micronesian eu4 = ? }
-link = { v2 = moluccan eu4 = moluccan }
+link = { v2 = melanesian eu4 = polynesian area = melanesia }
+link = { v2 = micronesian eu4 = polynesian area = micronesia }
+link = { v2 = polynesian eu4 = polynesian }
 
 # Eastern Aryan - assamese, bengali, bihari, nepali, oriya, sinhala
 link = { v2 = assamese eu4 = assamese }
