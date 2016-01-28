@@ -29,12 +29,12 @@ link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 =
 link = { v2 = north_german eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = hessian eu4 = old_saxon }
 link = { v2 = swiss eu4 = swiss }
 link = { v2 = south_german eu4 = franconian eu4 = swabian eu4 = rheinlaender eu4 = bavarian eu4 = austrian }
+link = { v2 = german eu4 = german }
 
 # Benelux - Dutch, Flemish, Wallonian
 link = { v2 = boer eu4 = dutch region = south_africa }
 link = { v2 = dutch eu4 = dutch eu4 = frisian }
 link = { v2 = flemish eu4 = flemish }
-link = { v2 = german eu4 = german }
 
 # Scandinavian - Swedish, Danish, Norwegian, Icelandic, Sami
 link = { v2 = swedish eu4 = swedish }
@@ -58,7 +58,7 @@ link = { v2 = pictish eu4 = pictish }
 link = { v2 = yankee eu4 = american }
 
 # Celtic - welsh, irish
-link = { v2 = welsh eu4 = welsh }
+link = { v2 = welsh eu4 = welsh eu4 = cornish }
 link = { v2 = irish eu4 = irish }
 
 # Latin - lombard, umbrian, sicilian, ligurian, piedmontese, romagnan, sardinian, tuscan, venetian
@@ -145,6 +145,7 @@ link = { v2 = turkish eu4 = turkish eu4 = pecheneg }
 
 # Iranian - persian, east_persian, baluchi
 link = { v2 = tajik eu4 = sogdian eu4 = tocharian }
+link = { v2 = tajik eu4 = persian region = central_asia }
 link = { v2 = persian eu4 = persian eu4 = khorasani eu4 = mazandarani }
 link = { v2 = pashtun eu4 = east_persian eu4 = afghani eu4 = afghan }
 link = { v2 = baluchi eu4 = baluchi }
@@ -305,6 +306,7 @@ link = { v2 = kanuri eu4 = kanuri }
 #link = { v2 = sara eu4 = ? }
 #link = { v2 = teda eu4 = ? }
 link = { v2 = amhara eu4 = amhara }
+link = { v2 = amhara eu4 = coptic } # for CKII+
 #link = { v2 = afar eu4 = ? }
 #link = { v2 = azande eu4 = ? }
 #link = { v2 = baganda eu4 = ? }
