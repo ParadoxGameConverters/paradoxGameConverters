@@ -23,6 +23,10 @@
 
 cultureMap = {
 
+# Slovene
+link = { v2 = slovene eu4 = croatian region = germania }
+link = { v2 = slovene eu4 = austrian region = carniola }
+
 # Germanic - North German, South German, Ashkenazi
 # Swiss - Swiss
 link = { v2 = ashkenazi eu4 = pommeranian eu4 = prussian eu4 = hannoverian eu4 = saxon eu4 = old_saxon eu4 = rheinlaender eu4 = hessian eu4 = bavarian eu4 = austrian eu4 = swabian eu4 = franconian religion = jewish }
@@ -32,7 +36,7 @@ link = { v2 = south_german eu4 = franconian eu4 = swabian eu4 = rheinlaender eu4
 link = { v2 = german eu4 = german }
 
 # Benelux - Dutch, Flemish, Wallonian
-link = { v2 = boer eu4 = dutch region = south_africa }
+link = { v2 = boer eu4 = dutch eu4 = flemish region = south_africa }
 link = { v2 = dutch eu4 = dutch eu4 = frisian }
 link = { v2 = flemish eu4 = flemish }
 
@@ -75,6 +79,8 @@ link = { v2 = all_italian eu4 = roman }
 link = { v2 = mexican eu4 = castillian eu4 = galician eu4 = andalucian region = central_america }
 link = { v2 = caribeno eu4 = castillian eu4 = galician eu4 = andalucian region = the_carribean }
 link = { v2 = platinean eu4 = castillian eu4 = galician eu4 = andalucian region = la_plata_region }
+link = { v2 = north_andean eu4 = castillian eu4 = galician eu4 = andalucian region = colombia }
+link = { v2 = south_andean eu4 = castillian eu4 = galician eu4 = andalucian region = peru }
 link = { v2 = visigothic eu4 = visigothic }
 link = { v2 = spanish eu4 = castillian eu4 = leonese }
 link = { v2 = galician eu4 = galician }
@@ -86,8 +92,6 @@ link = { v2 = basque eu4 = basque }
 link = { v2 = suebi eu4 = suebi }
 link = { v2 = andalucian eu4 = andalucian }
 #link = { v2 = central_american eu4 = ? }
-#link = { v2 = north_andean eu4 = ? }
-#link = { v2 = south_andean eu4 = ? }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
 link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
@@ -109,7 +113,6 @@ link = { v2 = serb eu4 = serbian }
 link = { v2 = bulgarian eu4 = bulgarian }
 link = { v2 = romanian eu4 = romanian }
 link = { v2 = albanian eu4 = albanian }
-#link = { v2 = slovene eu4 = ? }
 
 # West Slav - polish, schlesian, czech, hungarian, slovak
 link = { v2 = polish eu4 = polish eu4 = schlesian }
@@ -136,11 +139,11 @@ link = { v2 = north_caucasian eu4 = circassian eu4 = dagestani }
 link = { v2 = alan eu4 = alan }
 
 # Turko Semitic - maghreb_arabic, al_misr_arabic, al_suryah_arabic, al_iraqiya_arabic, bedouin_arabic, berber, turkish, omani_culture, yemeni_culture
-link = { v2 = maghrebi eu4 = maghreb_arabic }
+link = { v2 = maghrebi eu4 = maghreb_arabic eu4 = moroccan }
 link = { v2 = misri eu4 = al_misr_arabic eu4 = egyptian_arabic }
 link = { v2 = mashriqi eu4 = al_iraqiya_arabic eu4 = al_suryah_arabic eu4 = levantine_arabic }
 link = { v2 = bedouin eu4 = bedouin_arabic eu4 = omani_culture eu4 = yemeni_culture }
-link = { v2 = berber eu4 = berber eu4 = moroccan eu4 = tunisian eu4 = algerian eu4 = berber }
+link = { v2 = berber eu4 = berber eu4 = tunisian eu4 = algerian eu4 = berber }
 link = { v2 = turkish eu4 = turkish eu4 = pecheneg }
 
 # Iranian - persian, east_persian, baluchi
