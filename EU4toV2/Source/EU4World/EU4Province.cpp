@@ -30,7 +30,8 @@ THE SOFTWARE. */
 
 
 
-EU4Province::EU4Province(Object* obj) {
+EU4Province::EU4Province(Object* obj)
+{
 	provTaxIncome = 0;
 	provProdIncome = 0;
 	provMPWeight = 0;
@@ -71,6 +72,16 @@ EU4Province::EU4Province(Object* obj) {
 	for (unsigned int i = 0; i < coreObjs.size(); i++)
 	{
 		cores.push_back(coreObjs[i]->getLeaf());
+	}
+
+	vector<Object*> hreObj = obj->getValue("hre");
+	if ((hreObj.size() > 0) && (hreObj[0]->getLeaf() == "yes"))
+	{
+		inHRE = true;
+	}
+	else
+	{
+		inHRE = false;
 	}
 
 	colony = false;

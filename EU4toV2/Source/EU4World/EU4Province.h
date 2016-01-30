@@ -61,6 +61,7 @@ class EU4Province {
 		double					getBaseTax()			const { return baseTax; }
 		string					getOwnerString()		const { return ownerString; }
 		EU4Country*				getOwner()				const { return owner; }
+		bool						getInHRE()				const { return inHRE; }
 		bool						isColony()				const { return colony; }
 		vector<EU4PopRatio>	getPopRatios()			const { return popRatios; }
 		double					getTotalWeight()		const { return totalWeight; }
@@ -98,6 +99,7 @@ class EU4Province {
 		string								provName;
 		EU4Country*							owner;					// the owner
 		vector<string>						cores;					// strings of the tags of all cores
+		bool									inHRE;					// whether or not this province is in the HRE
 		bool									colony;					// whether or not this is a colony
 		vector< pair<date, string> >	ownershipHistory;		// the history of who has owned this province
 		map<string, date>					lastPossessedDate;	// the last date the province was owned by different tags

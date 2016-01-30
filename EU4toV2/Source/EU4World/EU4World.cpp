@@ -62,6 +62,13 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 		date endDate(dateObj[0]->getLeaf());
 	}
 
+	string emperor;
+	vector<Object*> emperorObj = obj->getValue("emperor");
+	if (emperorObj.size() > 0)
+	{
+		emperor = emperorObj[0]->getLeaf();
+	}
+
 	// Get Provinces and then get Countries
 	provinces.clear();
 	vector<Object*> provincesObj = obj->getValue("provinces");					// the object holding the provinces
@@ -97,6 +104,17 @@ EU4World::EU4World(Object* obj, map<string, int> armyInvIdeas, map<string, int> 
 			{
 				EU4Country* country = new EU4Country(countriesLeaves[j], armyInvIdeas, commerceInvIdeas, cultureInvIdeas, industryInvIdeas, navyInvIdeas, version, inverseUnionCultures);	// the country in our format
 				countries.insert(make_pair(country->getTag(), country));
+
+				// set HRE stuff
+				auto capitalItr = provinces.find(country->getCapital());
+				if ((capitalItr != provinces.end()) && (capitalItr->second->getInHRE()))
+				{
+					country->setInHRE(true);
+				}
+				if (country->getTag() == emperor)
+				{
+					country->setEmperor(true);
+				}
 			}
 		}
 	}

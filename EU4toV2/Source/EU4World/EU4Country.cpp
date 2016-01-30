@@ -38,6 +38,8 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 
 	provinces.clear();
 	cores.clear();
+	inHRE					= false;
+	holyRomanEmperor	= false;
 
 	vector<Object*> nameObj = obj->getValue("name");	// the object holding the name
 	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";

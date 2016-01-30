@@ -139,6 +139,8 @@ class V2Country
 		int								capital;
 		bool								civilized;
 		bool								isReleasableVassal;
+		bool								holyRomanEmperor;
+		bool								inHRE;
 		string							primaryCulture;
 		set<string>						acceptedCultures;
 		string							religion;
