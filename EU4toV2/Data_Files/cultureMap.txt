@@ -217,15 +217,17 @@ link = { v2 = mayan eu4 = mayan eu4 = yucatec eu4 = putun eu4 = highland_mayan }
 link = { v2 = nahua eu4 = aztek eu4 = totonac }
 link = { v2 = native_american_minor eu4 = chichimecan }
 
-# South American - chibchan, maranon, andean, amazonian, tupi, je, araucanian, amazonian
+# South American - chibchan, maranon, quechua, aimara, amazonian, tupi, je, guarani, araucanian, amazonian
 link = { v2 = chibchan eu4 = muisca eu4 = cara eu4 = miskito }
 link = { v2 = maranon eu4 = jivaro eu4 = chachapoyan }
-link = { v2 = andean eu4 = inca eu4 = aimara eu4 = diaguita eu4 = chimuan }
+link = { v2 = quechua eu4 = inca eu4 = chimuan }
+link = { v2 = aimara eu4 = aimara }
 link = { v2 = amazonian eu4 = amazonian eu4 = maipurean }
-link = { v2 = tupi eu4 = tupinamba eu4 = tupi eu4 = guarani }
-link = { v2 = je eu4 = ge eu4 = charruan }
-link = { v2 = araucanian eu4 = patagonian eu4 = het eu4 = huarpe eu4 = mapuche }
-link = { v2 = native_american_minor eu4 = matacoembe eu4 = mataco eu4 = goitaca}
+link = { v2 = tupi eu4 = tupinamba eu4 = tupi }
+link = { v2 = je eu4 = ge }
+link = { v2 = guarani eu4 = guarani eu4 = charruan }
+link = { v2 = patagonian eu4 = patagonian eu4 = het }
+link = { v2 = araucanian eu4 = huarpe eu4 = mapuche eu4 = diaguita }
 
 # Carribean - arawak, carib
 link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
@@ -270,7 +272,7 @@ link = { v2 = bornean eu4 = bornean }
 link = { v2 = malay eu4 = malayan eu4 = sumatran }
 link = { v2 = filipino eu4 = filipino }
 link = { v2 = javan eu4 = javanese }
-link = { v2 = african_minor eu4 = madagascan }
+link = { v2 = malagasy eu4 = madagascan }
 link = { v2 = moluccan eu4 = sulawesi eu4 = moluccan }
 
 # Thai - central_thai, lao, northern_thai, shan
@@ -374,7 +376,6 @@ link = { v2 = tigray eu4 = tigray }
 #link = { v2 = khoisan eu4 = ? }
 #link = { v2 = lomwe eu4 = ? }
 #link = { v2 = makua eu4 = ? }
-#link = { v2 = malagasy eu4 = ? }
 #link = { v2 = nguni eu4 = ? }
 #link = { v2 = ovimbundu eu4 = ? }
 #link = { v2 = sena eu4 = ? }

@@ -3,70 +3,40 @@
 #Hawaii (100000/25000 POPS)
 658 = {
 	aristocrats = {
-		culture = polynesian
-		religion = protestant
+		culture = hawaiian
+		religion = animist
 		size = 450
 	}
 
-	bureaucrats = {
-		culture = polynesian
-		religion = protestant
-		size = 75
-	}
-
-	officers = {
-		culture = polynesian
-		religion = protestant
-		size = 25
-	}
-
 	clergymen = {
-		culture = polynesian
-		religion = protestant
-		size = 250
+		culture = hawaiian
+		religion = animist
+		size = 275
 	}
 
 	artisans = {
-		culture = polynesian
-		religion = protestant
-		size = 1150
+		culture = hawaiian
+		religion = animist
+		size = 1250
 	}
 
 	soldiers = {
-		culture = polynesian
-		religion = protestant
+		culture = hawaiian
+		religion = animist
 		size = 1100
 	}
 
 	farmers = {
-		culture = polynesian
-		religion = protestant
-		size = 20025
-	}
-
-	clergymen = {
-		culture = polynesian
-		religion = catholic
-		size = 25
-	}
-
-	artisans = {
-		culture = polynesian
-		religion = catholic
-		size = 100
-	}
-
-	farmers = {
-		culture = polynesian
-		religion = catholic
-		size = 2000
+		culture = hawaiian
+		religion = animist
+		size = 22125
 	}
 }
 #uncolonized in 1836
 #Midway (60/15 POPS)
 2623 = {
 	farmers = {
-		culture = polynesian
+		culture = hawaiian
 		religion = animist
 		size = 15
 	}
@@ -509,19 +479,19 @@
 2552 = {
 	clergymen = {
 		culture = polynesian
-		religion = protestant
+		religion = animist
 		size = 1
 	}
 
 	artisans = {
 		culture = polynesian
-		religion = protestant
+		religion = animist
 		size = 4
 	}
 
 	farmers = {
 		culture = polynesian
-		religion = protestant
+		religion = animist
 		size = 35
 	}
 }

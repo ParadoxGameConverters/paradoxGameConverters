@@ -2,90 +2,76 @@
 #Ruled by The Netherlands 1836
 #Paramaribo (48640/12160 POPS)
 2240 = {
-	aristocrats = {
-		culture = dutch
-		religion = protestant
-		size = 25
-	}
-
-	bureaucrats = {
-		culture = dutch
-		religion = protestant
-		size = 10
-	}
-
-	artisans = {
-		culture = dutch
-		religion = protestant
-		size = 50
-	}
-
-	soldiers = {
-		culture = dutch
-		religion = protestant
-		size = 75
-	}
-
-	clergymen = {
-		culture = afro_caribbean
-		religion = protestant
-		size = 25
-	}
-
-	artisans = {
-		culture = afro_caribbean
-		religion = protestant
-		size = 1750
-	}
-
-	farmers = {
-		culture = afro_caribbean
-		religion = protestant
-		size = 1200
-	}
-
-	soldiers = {
-		culture = afro_caribbean
-		religion = protestant
-		size = 25
-	}
-
-	slaves = {
-		culture = afro_caribbean
+	aristocrats=
+	{
+		culture = carribean
 		religion = animist
-		size = 9000
+		size=25
+	}
+
+	soldiers=
+	{
+		culture = carribean
+		religion = animist
+		size=100
+	}
+
+	clergymen=
+	{
+		culture = carribean
+		religion = animist
+		size=35
+	}
+
+	artisans=
+	{
+		culture = carribean
+		religion = animist
+		size=1800
+	}
+
+	farmers=
+	{
+		culture = carribean
+		religion = animist
+		size=10200
 	}
 }
 #Aperina (8000/2000 POPS)
 2245 = {
-	aristocrats = {
+	aristocrats=
+	{
 		culture = amazonian
 		religion = animist
-		size = 25
+		size=25
 	}
 
-	clergymen = {
+	clergymen=
+	{
 		culture = amazonian
 		religion = animist
-		size = 50
+		size=50
 	}
 
-	artisans = {
+	artisans=
+	{
 		culture = amazonian
 		religion = animist
-		size = 100
+		size=100
 	}
 
-	soldiers = {
+	soldiers=
+	{
 		culture = amazonian
 		religion = animist
-		size = 25
+		size=25
 	}
 
-	farmers = {
+	farmers=
+	{
 		culture = amazonian
 		religion = animist
-		size = 1750
+		size=1750
 	}
 
 }

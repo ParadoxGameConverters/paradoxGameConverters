@@ -2,70 +2,16 @@
 #Ruled by France 1836
 #Reunion (98000/24500 POPS)
 2126 = {
-	aristocrats = {
-		culture = french
-		religion = catholic
-		size = 750
-	}
-
-	bureaucrats = {
-		culture = french
-		religion = catholic
-		size = 50
-	}
-
-	clergymen = {
-		culture = french
-		religion = catholic
-		size = 75
-	}
-
-	artisans = {
-		culture = french
-		religion = catholic
-		size = 500
-	}
-
-	soldiers = {
-		culture = french
-		religion = catholic
-		size = 300
-	}
-
 	farmers = {
-		culture = french
-		religion = catholic
-		size = 5825
+		culture = african_minor
+		religion = animist
+		size = 20000
 	}
-
-	clergymen = {
-		culture = afro_antillean
-		religion = catholic
-		size = 125
-	}
-
-	artisans = {
-		culture = afro_antillean
-		religion = catholic
-		size = 850
-	}
-
-	soldiers = {
-		culture = afro_antillean
-		religion = catholic
-		size = 200
-	}
-
+	
 	farmers = {
-		culture = afro_antillean
-		religion = catholic
-		size = 1825
-	}
-
-	slaves = {
-		culture = afro_antillean
-		religion = catholic
-		size = 14000
+		culture = african_minor
+		religion = sunni
+		size = 4500
 	}
 
 }
