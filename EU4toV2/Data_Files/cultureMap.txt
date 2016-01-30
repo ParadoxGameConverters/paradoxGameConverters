@@ -95,7 +95,8 @@ link = { v2 = andalucian eu4 = andalucian }
 
 # French - cosmopolitan_french, gascon, normand, aquitaine, burgundian, occitain, wallonian
 link = { v2 = french_canadian eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton region = northern_america }
-link = { v2 = french eu4 = cosmopolitan_french eu4 = normand eu4 = burgundian eu4 = breton }
+link = { v2 = french eu4 = cosmopolitan_french eu4 = normand eu4 = burgundian }
+link = { v2 = breton eu4 = breton }
 link = { v2 = occitain eu4 = occitain eu4 = aquitaine eu4 = gascon }
 link = { v2 = wallonian eu4 = wallonian }
 link = { v2 = frankish eu4 = old_frankish eu4 = frankish }
@@ -189,7 +190,9 @@ link = { v2 = araucanian eu4 = patagonian eu4 = het eu4 = huarpe eu4 = mapuche }
 link = { v2 = native_american_minor eu4 = matacoembe eu4 = mataco eu4 = goitaca}
 
 # Carribean - arawak, carib
-link = { v2 = carribean eu4 = arawak eu4 = carib eu4 = guajiro }
+link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
+link = { v2 = guajiro eu4 = guajiro } # is this even an eu4 culture?
+link = { v2 = carribean eu4 = arawak eu4 = carib }
 
 # North American - dakota, cherokee, pueblo, aleutian, inuit, cree, iroquis, huron, navajo, shawnee, delaware, creek, etc
 link = { v2 = siouan eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = catawba }
@@ -215,7 +218,7 @@ link = { v2 = korean eu4 = korean }
 link = { v2 = ainu eu4 = ainu eu4 = kamchatkan }
 link = { v2 = hakka eu4 = hakka }
 link = { v2 = miao eu4 = miao }
-link = { v2 = min eu4 = eu4 = chimin }
+link = { v2 = min eu4 = chimin }
 link = { v2 = zhuang eu4 = zhuang }
 link = { v2 = yi eu4 = yi }
 link = { v2 = yue eu4 = cantonese }
@@ -361,8 +364,20 @@ link = { v2 = akan eu4 = aka eu4 = ashanti }
 #link = { v2 = afro_brazilian eu4 = ? }
 #link = { v2 = afro_antillean eu4 = ? }
 
+# Lost Cultures
+link = { v2 = north_italian eu4 = etrurian }
+link = { v2 = greek eu4 = atlantean eu4 = spartan eu4 = athenian }
+link = { v2 = anglo_saxon eu4 = anglosaxon }
+link = { v2 = misri eu4 = old_egyptian }
+link = { v2 = danish eu4 = scanian }
+link = { v2 = latvian eu4 = pruthenian }
+link = { v2 = mashriqi eu4 = phoenician eu4 = babylonian eu4 = aramaic }
+link = { v2 = sephardic eu4 = hebrew }
+link = { v2 = alan eu4 = scythian}
+link = { v2 = persian eu4 = parthian }
+
 # Bears
-#link = { v2 = bears eu4 = ? }
+link = { v2 = bears eu4 = jan_mayenese }
 
 # noculture
 link = { v2 = noculture eu4 = noculture }

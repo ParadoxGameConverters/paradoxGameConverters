@@ -499,6 +499,13 @@ french = {
 		last_names = {
 "d'Alfar" "de Carro" "de Caus" "de Cumenge" "de Gordo" "de la Mota" "de Montagut" "de Recaut" "de Vezis" Alamant Azalbertz Caldairo Cardenals Catz Caudaro Claris Espaza Jordas Lomanhes Martis Palomer Pan Peire Rabastens Romeus Rossilhon Soler Tezis Topina Unaut }
 	}
+	
+	breton = {
+        color = {100 110 100}
+        first_names = { Yann Yannic Pierre Jakez Elouan Fraсsez Jaoua Paol Segal Alain Henri Hoлl Michel Thйodore }
+      
+        last_names = { "de Cornouaille" Karter Gallo Kergoulay Bellec "le Goff" Treguier Riou Morvan Peron Jezeguel Salaun "le Bihan" }
+    }
 	union = FRA
 	
 }
