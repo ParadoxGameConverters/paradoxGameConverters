@@ -85,31 +85,31 @@
 #Azul (12000/3000 POPS)
 2350 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -117,31 +117,31 @@
 #La Plata (4000/1000 POPS)
 2351 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 15
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 10
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
@@ -149,31 +149,31 @@
 #Mar del Plata (12000/3000 POPS)
 2352 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -182,55 +182,55 @@
 #Trenque Lanquen (12000/9000 POPS)
 2353 = {
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
 
 	aristocrats = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 1800
 	}
@@ -238,55 +238,55 @@
 #Bahia Blanca (24000/6000 POPS)
 2354 = {
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2725
 	}
 
 	aristocrats = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -294,55 +294,55 @@
 #Carmen (20000/5000 POPS)
 2355 = {
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 1875
 	}
 
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -1365,43 +1365,43 @@
 #Cordoba de Argentina (84000/21000 POPS)
 2379 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 425
 	}
 
 	bureaucrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 40
 	}
 
 	officers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 35
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 200
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 3000
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 7000
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 10300
 	}
@@ -1409,31 +1409,31 @@
 #Villa Nueva (8000/2000 POPS)
 2380 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 1800
 	}
@@ -1441,31 +1441,31 @@
 #Rio Cuarto (8000/2000 POPS)
 2381 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 1800
 	}
@@ -1473,31 +1473,31 @@
 #San Luis (8000/2000 POPS)
 2383 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 1800
 	}
@@ -1506,55 +1506,55 @@
 #Renanco (20000/5000 POPS)
 2382 = {
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 1825
 	}
 
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -1562,55 +1562,55 @@
 #Mercedes (8000/2000 POPS)
 2384 = {
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 900
 	}
 
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 15
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 900
 	}
@@ -1620,43 +1620,43 @@
 #La Rioja (16000/4000 POPS)
 2385 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 75
 	}
 
 	bureaucrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 15
 	}
 
 	officers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 200
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 3700
 	}
@@ -1664,31 +1664,31 @@
 #Santa Rita (8000/2000 POPS)
 2386 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 1800
 	}
@@ -1696,31 +1696,31 @@
 #San Juan de la Frontera (12000/3000 POPS)
 2387 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 2700
 	}
@@ -1728,31 +1728,31 @@
 #Calingasta (4000/1000 POPS)
 2388 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 15
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 10
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 900
 	}
@@ -1762,43 +1762,43 @@
 #Mendoza (12000/3000 POPS)
 2389 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 5
 	}
 
 	officers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 2660
 	}
@@ -1806,31 +1806,31 @@
 #San Rafael (8000/2000 POPS)
 2390 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 1800
 	}
@@ -1839,55 +1839,55 @@
 #Neuquen (12000/3000 POPS)
 2391 = {
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 900
 	}
 
 	aristocrats = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = araucanian
 		religion = animist
 		size = 1800
 	}
@@ -1897,31 +1897,31 @@
 #Viedma (12000/3000 POPS)
 2392 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -1929,31 +1929,31 @@
 #Telen (12000/3000 POPS)
 2393 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -1961,55 +1961,55 @@
 #Bariloche (16000/4000 POPS)
 2394 = {
 	clergymen = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
 
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 200
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 3675
 	}
@@ -2017,31 +2017,31 @@
 #Curaco (12000/3000 POPS)
 2395 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 2700
 	}
@@ -2051,31 +2051,31 @@
 #Rawson (4000/1000 POPS)
 2396 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 15
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
@@ -2083,31 +2083,31 @@
 #Esquel (4000/1000 POPS)
 2397 = {
 	aristocrats = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 15
 	}
 
 	farmers = {
-		culture = aruacanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
@@ -2115,31 +2115,31 @@
 #Puerto Deseado (4000/1000 POPS)
 2398 = {
 	aristocrats = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 15
 	}
 
 	farmers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
@@ -2147,31 +2147,31 @@
 #Rio Gallegos (4000/1000 POPS)
 2399 = {
 	aristocrats = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 15
 	}
 
 	farmers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
@@ -2179,31 +2179,31 @@
 #Rio Grande (4000/1000 POPS)
 2400 = {
 	aristocrats = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 15
 	}
 
 	farmers = {
-		culture = araucanian
+		culture = patagonian
 		religion = animist
 		size = 900
 	}
