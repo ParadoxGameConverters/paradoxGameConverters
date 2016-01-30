@@ -3,89 +3,64 @@
 #San Salvador (260000/65000 POPS)
 2191 = {
 	aristocrats = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 1425
-		militancy = 9
-	}
-
-	bureaucrats = {
-		culture = central_american
-		religion = catholic
-		size = 150
-		militancy = 9
-	}
-
-	officers = {
-		culture = central_american
-		religion = catholic
-		size = 125
-		militancy = 9
 	}
 
 	clergymen = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 650
-		militancy = 9
 	}
 
 	artisans = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 3250
-		militancy = 9
 	}
 
 	soldiers = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 1100
-		militancy = 9
 	}
 
 	farmers = {
-		culture = central_american
-		religion = catholic
-		size = 58350
-		militancy = 9
+		culture = nahua
+		religion = nahuatl
+		size = 58625
 	}
 }
 #San Miguel (156000/44000 POPS)
 2192 = {
 	aristocrats = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 950
-		militancy = 9
 	}
 
 	clergymen = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 450
-		militancy = 9
 	}
 
 	artisans = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 2200
-		militancy = 9
 	}
 
 	soldiers = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 450
-		militancy = 9
 	}
 
 	farmers = {
-		culture = central_american
-		religion = catholic
+		culture = nahua
+		religion = nahuatl
 		size = 39950
-		militancy = 9
 	}
-
 }

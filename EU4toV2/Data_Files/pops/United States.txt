@@ -2952,64 +2952,39 @@
 }
 #Laredo (6000/1500 POPS)
 138 = {
-	aristocrats = {
+	aristocrats=
+	{
 		culture = native_american_minor
 		religion = totemist
-		size = 10
+		size=15
 	}
 
-	clergymen = {
+	clergymen=
+	{
 		culture = native_american_minor
 		religion = totemist
-		size = 25
+		size=35
 	}
 
-	artisans = {
+	artisans=
+	{
 		culture = native_american_minor
 		religion = totemist
-		size = 50
+		size=75
 	}
 
-	soldiers = {
+	soldiers=
+	{
 		culture = native_american_minor
 		religion = totemist
-		size = 15
+		size=25
 	}
 
-	farmers = {
+	farmers=
+	{
 		culture = native_american_minor
 		religion = totemist
-		size = 900
-	}
-
-	aristocrats = {
-		culture = mexican
-		religion = totemist
-		size = 5
-	}
-
-	clergymen = {
-		culture = mexican
-		religion = totemist
-		size = 10
-	}
-
-	artisans = {
-		culture = mexican
-		religion = totemist
-		size = 25
-	}
-
-	soldiers = {
-		culture = mexican
-		religion = totemist
-		size = 10
-	}
-
-	farmers = {
-		culture = mexican
-		religion = totemist
-		size = 450
+		size=1350
 	}
 }
 #"ruled" by Texas/de facto under Native Control
