@@ -3,91 +3,91 @@
 #La Paz (392000/98000 POPS)
 2310 = {
 	aristocrats = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 2000
 	}
 
 	bureaucrats = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 300
 	}
 
 	officers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 225
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 650
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 5825
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 1100
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 18000
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 300
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 2525
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 1075
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 63100
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 25
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 150
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 50
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 2775
 	}
@@ -95,55 +95,55 @@
 #Cochabamba (352000/88000 POPS)
 2311 = {
 	aristocrats = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 1700
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 550
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 1150
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 1100
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 18600
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 300
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 3250
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 1100
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 60400
 	}
@@ -151,55 +151,55 @@
 #Oruro (40000/10000 POPS)
 2312 = {
 	aristocrats = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 225
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 50
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 150
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 50
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 2525
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 75
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 350
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 75
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 6500
 	}
@@ -209,67 +209,67 @@
 #Chuquisaca (116000/29000 POPS)
 2313 = {
 	aristocrats = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 600
 	}
 
 	bureaucrats = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 75
 	}
 
 	officers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 75
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 175
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 250
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 50
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 3825
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 125
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 1200
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 1050
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 23325
 	}
@@ -277,55 +277,55 @@
 #Potosi (120000/30000 POPS)
 2314 = {
 	aristocrats = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 625
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 150
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 150
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 25
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 2050
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 125
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 1350
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 275
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 25250
 	}
@@ -333,55 +333,55 @@
 #Tarija (52000/13000 POPS)
 2315 = {
 	aristocrats = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 275
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 75
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 50
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 25
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 575
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 50
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 600
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 125
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = inti
 		size = 11225
 	}
@@ -391,67 +391,67 @@
 #Santa Cruz (16000/4000 POPS)
 2316 = {
 	aristocrats = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 100
 	}
 
 	bureaucrats = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 5
 	}
 
 	officers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 735
 	}
 
 	clergymen = {
-		culture = matacoan
+		culture = chacoan
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 2775
 	}
@@ -459,25 +459,25 @@
 #San Ignacio (20000/5000 POPS)
 2317 = {
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 900
 	}
@@ -513,31 +513,31 @@
 	}
 
 	aristocrats = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 1800
 	}
@@ -545,31 +545,31 @@
 #Robore (12000/3000 POPS)
 2318 = {
 	aristocrats = {
-		culture = matacoan
+		culture = chacoan
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = matacoan
+		culture = chacoan
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = matacoan
+		culture = chacoan
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = matacoan
+		culture = chacoan
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = matacoan
+		culture = chacoan
 		religion = animist
 		size = 2700
 	}
@@ -579,67 +579,67 @@
 #Santa Ana (76000/19000 POPS)
 2319 = {
 	aristocrats = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 275
 	}
 
 	bureaucrats = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	officers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 2400
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 500
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 100
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 9350
 	}
@@ -739,25 +739,25 @@
 	}
 
 	clergymen = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = andean
+		culture = aimara
 		religion = animist
 		size = 2775
 	}
