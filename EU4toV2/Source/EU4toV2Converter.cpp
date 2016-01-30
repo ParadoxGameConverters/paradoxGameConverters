@@ -841,7 +841,7 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 		return 1;
 	}
 	EU4RegionsMapping EU4RegionsMap;
-	initEU4RegionMap(regionsObj, EU4RegionsMap);
+	initEU4RegionMapOldVersion(regionsObj, EU4RegionsMap);
 	for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
 	{
 		string modRegionFile(*itr + "\\map\\region.txt");
@@ -853,7 +853,36 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 				LOG(LogLevel::Error) << "Could not parse file " << modRegionFile;
 				exit(-1);
 			}
-			initEU4RegionMap(regionsObj, EU4RegionsMap);
+			initEU4RegionMapOldVersion(regionsObj, EU4RegionsMap);
+		}
+	}
+	if (EU4RegionsMap.size() == 0) // if it failed, we're using the new regions format
+	{
+		Object* areaObj = doParseFile((EU4Loc + "\\map\\area.txt").c_str());
+		if (areaObj == NULL)
+		{
+			LOG(LogLevel::Error) << "Could not parse file " << EU4Loc << "\\map\\area.txt";
+			exit(-1);
+		}
+		if (areaObj->getLeaves().size() < 1)
+		{
+			LOG(LogLevel::Error) << "Failed to parse area.txt";
+			return 1;
+		}
+		initEU4RegionMap(regionsObj, areaObj, EU4RegionsMap);
+		for (vector<string>::iterator itr = fullModPaths.begin(); itr != fullModPaths.end(); itr++)
+		{
+			string modAreaFile(*itr + "\\map\\area.txt");
+			if ((_stat(modAreaFile.c_str(), &st) == 0))
+			{
+				areaObj = doParseFile(modAreaFile.c_str());
+				if (areaObj == NULL)
+				{
+					LOG(LogLevel::Error) << "Could not parse file " << modAreaFile;
+					exit(-1);
+				}
+				initEU4RegionMap(regionsObj, areaObj, EU4RegionsMap);
+			}
 		}
 	}
 
@@ -914,6 +943,8 @@ int ConvertEU4ToV2(const std::string& EU4SaveFileName)
 	fprintf(modFile, "replace = \"history/pops/1836.1.1\"\n");
 	fprintf(modFile, "replace = \"common/religion.txt\"\n");
 	fprintf(modFile, "replace = \"common/cultures.txt\"\n");
+	fprintf(modFile, "replace = \"common/countries.txt\"\n");
+	fprintf(modFile, "replace = \"common/countries/\"\n");
 	fprintf(modFile, "replace = \"gfx/interface/icon_religion.dds\"\n");
 	fprintf(modFile, "replace = \"localisation/0_Names.csv\"\n");
 	fprintf(modFile, "replace = \"localisation/0_Cultures.csv\"\n");

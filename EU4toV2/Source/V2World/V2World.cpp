@@ -1024,53 +1024,11 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 	vector<V2Demographic> demographics;
 	for (auto prItr: popRatios)
 	{
-		bool matched = false;
-		string culture = "";
-		for (cultureMapping::const_iterator cultureItr = cultureMap.begin(); (cultureItr != cultureMap.end()) && (!matched); cultureItr++)
-		{
-			if (cultureItr->srcCulture == prItr.culture)
-			{
-				bool match = true;
-				for (vector<distinguisher>::const_iterator distinguisherItr = cultureItr->distinguishers.begin(); distinguisherItr != cultureItr->distinguishers.end(); distinguisherItr++)
-				{
-					if (distinguisherItr->first == DTOwner)
-					{
-						if (eProv->getOwner()->getTag() != distinguisherItr->second)
-						{
-							match = false;
-						}
-					}
-					else if (distinguisherItr->first == DTReligion)
-					{
-						if (prItr.religion != distinguisherItr->second)
-						{
-							match = false;
-						}
-					}
-					else if (distinguisherItr->first == DTRegion)
-					{
-						auto regions = regionsMap.find(vProv->getSrcProvince()->getNum());
-						if ((regions == regionsMap.end()) || (regions->second.find(distinguisherItr->second) == regions->second.end()))
-						{
-							match = false;
-						}
-					}
-					else
-					{
-						LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
-					}
-
-				}
-				if (match)
-				{
-					culture = cultureItr->dstCulture;
-					matched = true;
-				}
-			}
-		}
+		string dstCulture = "";
+		bool matched = cultureMatch(cultureMap, regionsMap, prItr.culture, dstCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());
 		if (!matched)
 		{
-			LOG(LogLevel::Warning) << "Could not set culture for pops in province " << destNum;
+			LOG(LogLevel::Warning) << "Could not set culture for pops in Vic2 province " << destNum;
 		}
 
 		string religion = "";
@@ -1081,61 +1039,19 @@ vector<V2Demographic> V2World::determineDemographics(vector<EU4PopRatio>& popRat
 		}
 		else
 		{
-			LOG(LogLevel::Warning) << "Could not set religion for pops in province " << destNum;
+			LOG(LogLevel::Warning) << "Could not set religion for pops in Vic2 province " << destNum;
 		}
 
-		matched = false;
 		string slaveCulture = "";
-		for (cultureMapping::const_iterator slaveCultureItr = slaveCultureMap.begin(); (slaveCultureItr != slaveCultureMap.end()) && (!matched); slaveCultureItr++)
-		{
-			if (slaveCultureItr->srcCulture == prItr.culture)
-			{
-				bool match = true;
-				for (vector<distinguisher>::const_iterator distinguisherItr = slaveCultureItr->distinguishers.begin(); distinguisherItr != slaveCultureItr->distinguishers.end(); distinguisherItr++)
-				{
-					if (distinguisherItr->first == DTOwner)
-					{
-						if (eProv->getOwner()->getTag() != distinguisherItr->second)
-						{
-							match = false;
-						}
-					}
-					else if (distinguisherItr->first == DTReligion)
-					{
-						if (prItr.religion != distinguisherItr->second)
-						{
-							match = false;
-						}
-					}
-					else if (distinguisherItr->first == DTRegion)
-					{
-						auto regions = regionsMap.find(vProv->getSrcProvince()->getNum());
-						if ((regions == regionsMap.end()) || (regions->second.find(distinguisherItr->second) == regions->second.end()))
-						{
-							match = false;
-						}
-					}
-					else
-					{
-						LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
-					}
-
-				}
-				if (match)
-				{
-					slaveCulture = slaveCultureItr->dstCulture;
-					matched = true;
-				}
-			}
-		}
+		matched = cultureMatch(slaveCultureMap, regionsMap, prItr.culture, slaveCulture, prItr.religion, eProv->getNum(), oldOwner->getTag());;
 		if (!matched)
 		{
-			//LOG(LogLevel::Warning) << "Could not set slave culture for pops in province " << destNum;
+			//LOG(LogLevel::Warning) << "Could not set slave culture for pops in Vic2 province " << destNum;
 			slaveCulture = "african_minor";
 		}
 
 		V2Demographic demographic;
-		demographic.culture			= culture;
+		demographic.culture			= dstCulture;
 		demographic.slaveCulture	= slaveCulture;
 		demographic.religion			= religion;
 		demographic.upperRatio		= prItr.upperPopRatio	* provPopRatio;

@@ -465,54 +465,10 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 
 	// primary culture
 	string srcCulture = srcCountry->getPrimaryCulture();
+
 	if (srcCulture.size() > 0)
 	{
-		bool matched = false;
-		for (cultureMapping::iterator i = cultureMap.begin(); (i != cultureMap.end()) && (!matched); i++)
-		{
-			if (i->srcCulture == srcCulture)
-			{
-				bool match = true;
-				for (vector<distinguisher>::iterator j = i->distinguishers.begin(); j != i->distinguishers.end(); j++)
-				{
-					if (j->first == DTOwner)
-					{
-						if (tag != j->second)
-						{
-								match = false;
-						}
-					}
-					else if (j->first == DTReligion)
-					{
-						if (religion != j->second)
-						{
-							match = false;
-						}
-					}
-					else if (j->first == DTRegion)
-					{
-						auto regions = regionsMap.find(oldCapital);
-						if ((regions == regionsMap.end()) || (regions->second.find(j->second) == regions->second.end()))
-						{
-							match = false;
-						}
-						else
-						{
-							match = true;
-						}
-					}
-					else
-					{
-						LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
-					}
-				}
-				if (match)
-				{
-					primaryCulture = i->dstCulture;
-					matched = true;
-				}
-			}
-		}
+		bool matched = cultureMatch(cultureMap, regionsMap, srcCulture, primaryCulture, religion, oldCapital, srcCountry->getTag());
 		if (!matched)
 		{
 			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
@@ -532,60 +488,20 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 			}
 		}
 	}
-	for (vector<string>::iterator i = srcAceptedCultures.begin(); i != srcAceptedCultures.end(); i++)
+	for (auto srcCulture: srcAceptedCultures)
 	{
-		bool matched = false;
-		for (cultureMapping::iterator j = cultureMap.begin(); (j != cultureMap.end()) && (!matched); j++)
+		string dstCulture;
+		bool matched = cultureMatch(cultureMap, regionsMap, srcCulture, dstCulture, religion, oldCapital, srcCountry->getTag());
+		if (matched)
 		{
-			if (j->srcCulture == *i)
+			if (primaryCulture != dstCulture)
 			{
-				bool match = true;
-				for (vector<distinguisher>::iterator k = j->distinguishers.begin(); k != j->distinguishers.end(); k++)
-				{
-					if (k->first == DTOwner)
-					{
-						if (tag != k->second)
-						{
-							match = false;
-						}
-					}
-					else if (k->first == DTReligion)
-					{
-						if (religion != k->second)
-						{
-							match = false;
-						}
-					}
-					else if (k->first == DTRegion)
-					{
-						auto regions = regionsMap.find(oldCapital);
-						if ((regions == regionsMap.end()) || (regions->second.find(k->second) == regions->second.end()))
-						{
-							match = false;
-						}
-						else
-						{
-							match = true;
-						}
-					}
-					else
-					{
-						LOG(LogLevel::Warning) << "Unhandled distinguisher type in culture rules";
-					}
-				}
-				if (match)
-				{
-					if (primaryCulture != j->dstCulture)
-					{
-						acceptedCultures.insert(j->dstCulture);
-					}
-					matched = true;
-				}
+				acceptedCultures.insert(dstCulture);
 			}
 		}
 		if (!matched)
 		{
-			LOG(LogLevel::Warning) << "No culture mapping defined for " << *i << " (" << srcCountry->getTag() << " -> " << tag << ')';
+			LOG(LogLevel::Warning) << "No culture mapping defined for " << srcCulture << " (" << srcCountry->getTag() << " -> " << tag << ')';
 		}
 	}
 
