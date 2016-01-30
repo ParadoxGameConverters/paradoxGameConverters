@@ -115,6 +115,7 @@ class V2Province
 		string						name;
 		string						owner;
 		vector<string>				cores;
+		bool							inHRE;
 		int							colonyLevel;
 		int							colonial;
 		bool							wasColonised;

@@ -48,6 +48,7 @@ V2Province::V2Province(string _filename)
 	owner					= "";
 	//controler			= "";
 	cores.clear();
+	inHRE					= false;
 	colonyLevel			= 0;
 	colonial				= 0;
 	wasColonised		= false;
@@ -183,12 +184,16 @@ void V2Province::output() const
 	}
 	if (owner != "")
 	{
-		fprintf_s(output, "owner= %s\n", owner.c_str());
-		fprintf_s(output, "controller= %s\n", owner.c_str());
+		fprintf_s(output, "owner=%s\n", owner.c_str());
+		fprintf_s(output, "controller=%s\n", owner.c_str());
 	}
 	for (unsigned int i = 0; i < cores.size(); i++)
 	{
-		fprintf_s(output, "add_core= %s\n", cores[i].c_str());
+		fprintf_s(output, "add_core=%s\n", cores[i].c_str());
+	}
+	if (inHRE)
+	{
+		fprintf_s(output, "add_core=HRE\n");
 	}
 	if(rgoType != "")
 	{
@@ -325,6 +330,7 @@ void V2Province::outputUnits(FILE* output) const
 void V2Province::convertFromOldProvince(const EU4Province* oldProvince)
 {
 	srcProvince = oldProvince;
+	inHRE			= oldProvince->getInHRE();
 	if (oldProvince->isColony())
 	{
 		colonyLevel = 2;

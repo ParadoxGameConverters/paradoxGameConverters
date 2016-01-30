@@ -83,24 +83,26 @@ V2Country::V2Country(string _tag, string _commonCountryFile, vector<V2Party*> _p
 		HODNNMInventions[i] = illegal;
 	}
 
-	leadership		= 0.0;
-	plurality		= 0.0;
-	capital			= 0;
-	diploPoints		= 0.0;
-	badboy			= 0.0;
-	prestige			= 0.0;
-	money				= 0.0;
-	techSchool		= "traditional_academic";
-	researchPoints	= 0.0;
-	civilized		= false;
-	isReleasableVassal = true;
-	primaryCulture	= "british";
-	religion			= "protestant";
-	government		= "hms_government";
-	nationalValue	= "nv_order";
-	lastBankrupt	= date();
-	bankReserves	= 0.0;
-	literacy			= 0.0;
+	leadership				= 0.0;
+	plurality				= 0.0;
+	capital					= 0;
+	diploPoints				= 0.0;
+	badboy					= 0.0;
+	prestige					= 0.0;
+	money						= 0.0;
+	techSchool				= "traditional_academic";
+	researchPoints			= 0.0;
+	civilized				= false;
+	isReleasableVassal	= true;
+	inHRE						= false;
+	holyRomanEmperor		= false;
+	primaryCulture			= "british";
+	religion					= "protestant";
+	government				= "hms_government";
+	nationalValue			= "nv_order";
+	lastBankrupt			= date();
+	bankReserves			= 0.0;
+	literacy					= 0.0;
 
 	acceptedCultures.clear();
 	techs.clear();
@@ -260,6 +262,15 @@ void V2Country::output() const
 		//fprintf(output, "	schools=\"%s\"\n", techSchool.c_str());
 
 		fprintf(output, "oob = \"%s\"\n", (tag + "_OOB.txt").c_str());
+
+		if (holyRomanEmperor)
+		{
+			fprintf(output, "set_country_flag = emperor_hre\n");
+		}
+		else if (inHRE)
+		{
+			fprintf(output, "set_country_flag = member_hre\n");
+		}
 
 		fclose(output);
 
@@ -422,6 +433,10 @@ void V2Country::initFromEU4Country(EU4Country* _srcCountry, const CountryMapping
 	{
 		capital = itr->second[0];
 	}
+
+	// in HRE
+	inHRE					= srcCountry->getInHRE();
+	holyRomanEmperor	= srcCountry->getHolyRomanEmperor();
 
 	// tech group
 	if ((srcCountry->getTechGroup() == "western") || (srcCountry->getTechGroup() == "high_american") || (srcCountry->getTechGroup() == "eastern") || (srcCountry->getTechGroup() == "ottoman"))

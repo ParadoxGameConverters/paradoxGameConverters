@@ -58,7 +58,11 @@ Fliptoy			- Data Files
 LowTartare		- Data Files
 Kasemacher		- Data Files
 larjak			- Data Files
-Tehfailure		- data Files
+Tehfailure		- Data Files
+kratostatic		- Data Files
+Kansai-kun		- Data Files
+SaintPetersbour		- Data Files
+Teutonizer		- Data Files
 LowTartare		- Graphics
 ChortlingGnome		- Graphics
 Magc8Ball		- Graphics

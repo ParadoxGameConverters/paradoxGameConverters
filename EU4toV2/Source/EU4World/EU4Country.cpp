@@ -20,21 +20,26 @@ THE SOFTWARE. */
 
 
 #include "EU4Country.h"
+#include "../Configuration.h"
 #include "../Log.h"
 #include "../Parsers/Object.h"
 #include "EU4Province.h"
 #include "EU4Relations.h"
 #include "EU4Leader.h"
+#include "EU4Version.h"
 #include "../V2World/V2Localisation.h"
 #include <algorithm>
 
 
-EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas)
+
+EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version, inverseUnionCulturesMap& inverseUnionCultures)
 {
 	tag = obj->getKey();
 
 	provinces.clear();
 	cores.clear();
+	inHRE					= false;
+	holyRomanEmperor	= false;
 
 	vector<Object*> nameObj = obj->getValue("name");	// the object holding the name
 	(!nameObj.empty()) ? name = nameObj[0]->getLeaf() : name = "";
@@ -74,8 +79,39 @@ EU4Country::EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, i
 		acceptedCultures.push_back(acceptedCultureObj[i]->getLeaf().c_str());
 	}
 
-	vector<Object*> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
-	(unionCultureObj.size() > 0) ? culturalUnion = unionCultureObj[0]->getLeaf() : culturalUnion = "";
+	if (*version >= EU4Version("1.14.0.0"))
+	{
+		bool wasUnion = false;
+		if (Configuration::wasDLCActive("The Cossacks"))
+		{
+			vector <Object*> govRankObjs = obj->getValue("government_rank");
+			if (atoi(govRankObjs[0]->getLeaf().c_str()) > 2)
+			{
+				wasUnion = true;
+			}
+		}
+		else
+		{
+			vector <Object*> developmentObj = obj->getValue("development");
+			if (atof(developmentObj[0]->getLeaf().c_str()) >= 1000)
+			{
+				wasUnion = true;
+			}
+		}
+		if (wasUnion)
+		{
+			auto unionCultureItr = inverseUnionCultures.find(primaryCulture);
+			if (unionCultureItr != inverseUnionCultures.end())
+			{
+				culturalUnion = unionCultureItr->second;
+			}
+		}
+	}
+	else
+	{
+		vector<Object*> unionCultureObj = obj->getValue("culture_group_union");	// the object holding the cultural union group
+		(unionCultureObj.size() > 0) ? culturalUnion = unionCultureObj[0]->getLeaf() : culturalUnion = "";
+	}
 
 	vector<Object*> religionObj = obj->getValue("religion");	// the object holding the religion
 	(religionObj.size() > 0) ? religion = religionObj[0]->getLeaf().c_str() : religion = "";

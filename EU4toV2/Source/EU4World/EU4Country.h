@@ -27,11 +27,15 @@ THE SOFTWARE. */
 #include "EU4Army.h"
 #include "..\Color.h"
 #include "..\Date.h"
+#include "..\Mapper.h"
 
-class EU4Province;
-class EU4Relations;
+
 class EU4Loan;
 class EU4Leader;
+class EU4Province;
+class EU4Relations;
+class EU4Version;
+
 
 struct CustomFlag {
 	string flag;
@@ -42,7 +46,7 @@ struct CustomFlag {
 class EU4Country
 {
 	public:
-		EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas);
+		EU4Country(Object* obj, map<string, int> armyInvIdeas, map<string, int> commerceInvIdeas, map<string, int> cultureInvIdeas, map<string, int> industryInvIdeas, map<string, int> navyInvIdeas, EU4Version* version, inverseUnionCulturesMap& inverseUnionCultures);
 
 		// Add any additional information available from the specified country file.
 		void readFromCommonCountry(const string& fileName, Object*);
@@ -52,6 +56,8 @@ class EU4Country
 
 		void						addProvince(EU4Province*);
 		void						addCore(EU4Province*);
+		void						setInHRE(bool _inHRE)								{ inHRE = _inHRE; }
+		void						setEmperor(bool _emperor)							{ holyRomanEmperor = _emperor; }
 		bool						hasModifier(string) const;
 		int						hasNationalIdea(string) const;
 		bool						hasFlag(string) const ;
@@ -67,6 +73,8 @@ class EU4Country
 		vector<EU4Province*>			getProvinces()								const { return provinces; }
 		vector<EU4Province*>			getCores()									const { return cores; }
 		int								getCapital()								const { return capital; }
+		bool								getInHRE()									const { return inHRE; }
+		bool								getHolyRomanEmperor()					const { return holyRomanEmperor; }
 		int								getNationalFocus()						const { return nationalFocus; }
 		string							getTechGroup()								const { return techGroup; }
 		string							getPrimaryCulture()						const { return primaryCulture; }
@@ -111,6 +119,8 @@ class EU4Country
 		string							tag;						// the tag for the EU4 nation
 		vector<EU4Province*>			provinces;				// the EU4 provinces this nations holds
 		vector<EU4Province*>			cores;					// the EU4 provinces this nation has cores on
+		bool								inHRE;					// if this country is an HRE member
+		bool								holyRomanEmperor;		// if this country is the emperor of the HRE
 		int								capital;					// the EU4 province that is this nation's capital
 		int								nationalFocus;			// the location of this country's national focus
 		string							techGroup;				// the tech group for this nation
