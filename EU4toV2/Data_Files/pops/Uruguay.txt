@@ -3,73 +3,73 @@
 #Montevideo (112000/28000 POPS)
 2344 = {
 	aristocrats = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 575
 	}
 
 	bureaucrats = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	officers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	clergymen = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 250
 	}
 
 	artisans = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 980
 	}
 
 	soldiers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 1100
 	}
 
 	farmers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 20095
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 3150
 	}
 
 	slaves = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 1500
 	}
@@ -77,31 +77,31 @@
 #Paysandu (36000/9000 POPS)
 2345 = {
 	aristocrats = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 200
 	}
 
 	clergymen = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 450
 	}
 
 	soldiers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 1100
 	}
 
 	farmers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 7275
 	}
@@ -109,55 +109,55 @@
 #Tacumba (12000/3000 POPS)
 2346 = {
 	aristocrats = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 100
 	}
 
 	soldiers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 1800
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 15
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 10
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 925
 	}
@@ -165,55 +165,55 @@
 #Melo (40000/10000 POPS)
 2347 = {
 	aristocrats = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 150
 	}
 
 	clergymen = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 350
 	}
 
 	soldiers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 1100
 	}
 
 	farmers = {
-		culture = je
+		culture = guarani
 		religion = animist
 		size = 5450
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = tupi
+		culture = guarani
 		religion = animist
 		size = 2775
 	}
