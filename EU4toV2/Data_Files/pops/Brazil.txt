@@ -57,50 +57,27 @@
 	clergymen = {
 		culture = amazonian
 		religion = animist
-		size = 75
+		size = 125
 	}
 
 	artisans = {
 		culture = amazonian
 		religion = animist
-		size = 200
+		size = 500
 	}
 
 	soldiers = {
 		culture = amazonian
 		religion = animist
-		size = 50
+		size = 125
 	}
 
 	farmers = {
 		culture = amazonian
 		religion = animist
-		size = 3455
+		size = 8980
 	}
 
-	clergymen = {
-		culture = amazonian
-		religion = animist
-		size = 50
-	}
-
-	artisans = {
-		culture = amazonian
-		religion = animist
-		size = 300
-	}
-
-	soldiers = {
-		culture = amazonian
-		religion = animist
-		size = 75
-	}
-
-	farmers = {
-		culture = amazonian
-		religion = animist
-		size = 5525
-	}
 }
 #Under loose authority of Brazil 1836
 #Cachoeira (8000/2000 POPS)
@@ -342,31 +319,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1150
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2500
 	}
@@ -412,80 +389,57 @@
 	clergymen = {
 		culture = amazonian
 		religion = animist
-		size = 50
+		size = 75
 	}
 
 	artisans = {
 		culture = amazonian
 		religion = animist
-		size = 100
+		size = 200
 	}
 
 	soldiers = {
 		culture = amazonian
 		religion = animist
-		size = 25
+		size = 50
 	}
 
 	farmers = {
 		culture = amazonian
 		religion = animist
-		size = 1750
+		size = 3600
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 10
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 315
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 600
 	}
 
-	clergymen = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	artisans = {
-		culture = amazonian
-		religion = animist
-		size = 100
-	}
-
-	soldiers = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	farmers = {
-		culture = amazonian
-		religion = animist
-		size = 1850
-	}
 }
 #Under loose authority of Brazil 1836
 #Obidos (8000/2000 POPS)
@@ -493,92 +447,6 @@
 	clergymen = {
 		culture = amazonian
 		religion = animist
-		size = 25
-	}
-
-	artisans = {
-		culture = amazonian
-		religion = animist
-		size = 50
-	}
-
-	soldiers = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	farmers = {
-		culture = amazonian
-		religion = animist
-		size = 900
-	}
-
-	aristocrats = {
-		culture = amazonian
-		religion = animist
-		size = 10
-	}
-
-	clergymen = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	artisans = {
-		culture = amazonian
-		religion = animist
-		size = 50
-	}
-
-	soldiers = {
-		culture = amazonian
-		religion = animist
-		size = 15
-	}
-
-	farmers = {
-		culture = amazonian
-		religion = animist
-		size = 900
-	}
-}
-#Cachimbo (12000/3000 POPS)
-2413 = {
-	clergymen = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	artisans = {
-		culture = amazonian
-		religion = animist
-		size = 50
-	}
-
-	soldiers = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	farmers = {
-		culture = amazonian
-		religion = animist
-		size = 900
-	}
-
-	aristocrats = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	clergymen = {
-		culture = amazonian
-		religion = animist
 		size = 50
 	}
 
@@ -591,7 +459,7 @@
 	soldiers = {
 		culture = amazonian
 		religion = animist
-		size = 25
+		size = 40
 	}
 
 	farmers = {
@@ -599,6 +467,46 @@
 		religion = animist
 		size = 1800
 	}
+
+	aristocrats = {
+		culture = amazonian
+		religion = animist
+		size = 10
+	}
+
+}
+#Cachimbo (12000/3000 POPS)
+2413 = {
+	clergymen = {
+		culture = amazonian
+		religion = animist
+		size = 75
+	}
+
+	artisans = {
+		culture = amazonian
+		religion = animist
+		size = 100
+	}
+
+	soldiers = {
+		culture = amazonian
+		religion = animist
+		size = 50
+	}
+
+	farmers = {
+		culture = amazonian
+		religion = animist
+		size = 2700
+	}
+
+	aristocrats = {
+		culture = amazonian
+		religion = animist
+		size = 25
+	}
+
 }
 #Amapa (8000/2000 POPS)
 2414 = {
@@ -627,31 +535,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 10
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 680
 	}
@@ -741,25 +649,25 @@
 	clergymen = {
 		culture = amazonian
 		religion = animist
-		size = 25
+		size = 75
 	}
 
 	artisans = {
 		culture = amazonian
 		religion = animist
-		size = 50
+		size = 150
 	}
 
 	soldiers = {
 		culture = amazonian
 		religion = animist
-		size = 25
+		size = 50
 	}
 
 	farmers = {
 		culture = amazonian
 		religion = animist
-		size = 900
+		size = 2700
 	}
 
 	aristocrats = {
@@ -768,29 +676,6 @@
 		size = 25
 	}
 
-	clergymen = {
-		culture = amazonian
-		religion = animist
-		size = 50
-	}
-
-	artisans = {
-		culture = amazonian
-		religion = animist
-		size = 100
-	}
-
-	soldiers = {
-		culture = amazonian
-		religion = animist
-		size = 25
-	}
-
-	farmers = {
-		culture = amazonian
-		religion = animist
-		size = 1800
-	}
 }
 #Mato Grosso Region (108000)
 #Under the rule of Brazil 1836
@@ -817,50 +702,27 @@
 	clergymen = {
 		culture = guarani
 		religion = animist
+		size = 175
+	}
+
+	artisans = {
+		culture = guarani
+		religion = animist
+		size = 500
+	}
+
+	soldiers = {
+		culture = guarani
+		religion = animist
 		size = 125
 	}
 
-	artisans = {
-		culture = guarani
-		religion = animist
-		size = 250
-	}
-
-	soldiers = {
-		culture = guarani
-		religion = animist
-		size = 75
-	}
-
 	farmers = {
 		culture = guarani
 		religion = animist
-		size = 5400
+		size = 10050
 	}
 
-	clergymen = {
-		culture = guarani
-		religion = animist
-		size = 50
-	}
-
-	artisans = {
-		culture = guarani
-		religion = animist
-		size = 250
-	}
-
-	soldiers = {
-		culture = guarani
-		religion = animist
-		size = 50
-	}
-
-	farmers = {
-		culture = guarani
-		religion = animist
-		size = 4650
-	}
 }
 #Under loose authority of Brazil 1836
 #Vila Bela (28000/7000 POPS)
@@ -1068,25 +930,25 @@
 	clergymen = {
 		culture = guarani
 		religion = animist
-		size = 50
+		size = 125
 	}
 
 	artisans = {
 		culture = guarani
 		religion = animist
-		size = 100
+		size = 250
 	}
 
 	soldiers = {
 		culture = guarani
 		religion = animist
-		size = 25
+		size = 50
 	}
 
 	farmers = {
 		culture = guarani
 		religion = animist
-		size = 1825
+		size = 4525
 	}
 
 	aristocrats = {
@@ -1095,29 +957,6 @@
 		size = 50
 	}
 
-	clergymen = {
-		culture = guarani
-		religion = animist
-		size = 75
-	}
-
-	artisans = {
-		culture = guarani
-		religion = animist
-		size = 150
-	}
-
-	soldiers = {
-		culture = guarani
-		religion = animist
-		size = 25
-	}
-
-	farmers = {
-		culture = guarani
-		religion = animist
-		size = 2700
-	}
 }
 #Goias Region (64000)
 #Under the rule of Brazil 1836
@@ -1166,31 +1005,31 @@
 	}
 
 	clergymen = {
-		culture = guarani
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = guarani
+		culture = afro_brazilian
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = guarani
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = guarani
+		culture = afro_brazilian
 		religion = animist
 		size = 1650
 	}
 
 	slaves = {
-		culture = guarani
+		culture = afro_brazilian
 		religion = animist
 		size = 3000
 	}
@@ -1355,31 +1194,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 750
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 5025
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 9000
 	}
@@ -1473,31 +1312,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 900
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 175
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 5850
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 11000
 	}
@@ -1593,31 +1432,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1650
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3000
 	}
@@ -1667,31 +1506,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 850
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 175
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 5900
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 10000
 	}
@@ -1729,31 +1568,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 1650
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 3000
 	}
@@ -1791,31 +1630,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 750
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 5025
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 9000
 	}
@@ -1867,31 +1706,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3000
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 175
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3750
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 10000
 	}
@@ -1929,31 +1768,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 600
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 125
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 4225
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 7000
 	}
@@ -1991,31 +1830,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 800
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 175
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 4950
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 10000
 	}
@@ -2053,31 +1892,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 650
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 125
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 4175
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 8000
 	}
@@ -2141,31 +1980,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 5500
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 300
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 6050
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 18000
 	}
@@ -2203,31 +2042,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 125
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 1300
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 275
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 8300
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 16000
 	}
@@ -2265,31 +2104,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 750
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 5025
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 9000
 	}
@@ -2327,31 +2166,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 650
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 125
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 4175
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 8000
 	}
@@ -2389,31 +2228,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 700
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 5575
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 8500
 	}
@@ -2465,31 +2304,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 100
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 1100
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 225
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 9125
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 13000
 	}
@@ -2527,31 +2366,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 650
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 125
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 4175
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 8000
 	}
@@ -2589,31 +2428,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 750
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 5025
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 9000
 	}
@@ -2651,31 +2490,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 450
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 100
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 2900
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 5500
 	}
@@ -2713,31 +2552,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 500
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 100
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 3350
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 6000
 	}
@@ -2775,31 +2614,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 100
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1100
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 200
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 6700
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 12000
 	}
@@ -2869,31 +2708,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2350
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 300
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 9200
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 18000
 	}
@@ -2931,31 +2770,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 100
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1100
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 200
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 8100
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 12000
 	}
@@ -2993,31 +2832,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 600
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 125
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 4225
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 7000
 	}
@@ -3029,25 +2868,25 @@
 	clergymen = {
 		culture = tupi
 		religion = animist
-		size = 25
+		size = 50
 	}
 
 	artisans = {
 		culture = tupi
 		religion = animist
-		size = 50
+		size = 100
 	}
 
 	soldiers = {
 		culture = tupi
 		religion = animist
-		size = 25
+		size = 40
 	}
 
 	farmers = {
 		culture = tupi
 		religion = animist
-		size = 900
+		size = 1800
 	}
 
 	aristocrats = {
@@ -3056,29 +2895,6 @@
 		size = 10
 	}
 
-	clergymen = {
-		culture = tupi
-		religion = animist
-		size = 25
-	}
-
-	artisans = {
-		culture = tupi
-		religion = animist
-		size = 50
-	}
-
-	soldiers = {
-		culture = tupi
-		religion = animist
-		size = 15
-	}
-
-	farmers = {
-		culture = tupi
-		religion = animist
-		size = 900
-	}
 }
 #Sao Paulo (252000/63000 POPS)
 2450 = {
@@ -3125,31 +2941,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 750
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 5025
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 9000
 	}
@@ -3187,31 +3003,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 500
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 100
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3350
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 6000
 	}
@@ -3249,31 +3065,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 300
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2075
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3500
 	}
@@ -3311,31 +3127,31 @@
 	}
 
 	clergymen = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 200
 	}
 
 	soldiers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 1200
 	}
 
 	slaves = {
-		culture = tupi
+		culture = afro_brazilian
 		religion = animist
 		size = 2500
 	}
@@ -3373,31 +3189,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1700
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3000
 	}
@@ -3505,31 +3321,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1700
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3000
 	}
@@ -3567,31 +3383,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 150
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 25
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1250
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1750
 	}
@@ -3653,31 +3469,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 200
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1200
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2500
 	}
@@ -3745,31 +3561,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 200
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1200
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2500
 	}
@@ -3831,31 +3647,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 300
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2075
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3500
 	}
@@ -3893,31 +3709,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 350
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2500
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 4000
 	}
@@ -3969,31 +3785,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 650
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 125
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 4175
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 8000
 	}
@@ -4031,31 +3847,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 200
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1200
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2500
 	}
@@ -4093,31 +3909,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 1700
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3000
 	}
@@ -4179,31 +3995,31 @@
 	}
 
 	clergymen = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 300
 	}
 
 	soldiers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 75
 	}
 
 	farmers = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 2075
 	}
 
 	slaves = {
-		culture = je
+		culture = afro_brazilian
 		religion = animist
 		size = 3500
 	}
