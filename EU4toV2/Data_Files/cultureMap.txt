@@ -168,8 +168,7 @@ link = { v2 = byelorussian eu4 = byelorussian }
 link = { v2 = lithuanian eu4 = lithuanian }
 link = { v2 = latvian eu4 = latvian eu4 = old_prussian }
 
-# Byzantine - greek, georgian, armenian, pontic_greek
-link = { v2 = sephardic eu4 = greek eu4 = georgian eu4 = armenian religion = jewish eu4 = goths }
+# Byzantine - greek, georgian, armenian, pontic_greeklink = { v2 = sephardic eu4 = greek eu4 = georgian eu4 = armenian eu4 = goths eu4 = spartan eu4 = athenian eu4 = atlantean religion = jewish }
 link = { v2 = greek eu4 = greek eu4 = gothic eu4 = goths eu4 = pontic_greek }
 link = { v2 = georgian eu4 = georgian }
 link = { v2 = armenian eu4 = armenian }
@@ -190,7 +189,7 @@ link = { v2 = tajik eu4 = persian region = central_asia }
 link = { v2 = tajik eu4 = persian region = central_asia_region }
 link = { v2 = persian eu4 = persian eu4 = khorasani eu4 = mazandarani }
 link = { v2 = pashtun eu4 = east_persian eu4 = afghani eu4 = afghan }
-link = { v2 = baluchi eu4 = baluchi }
+link = { v2 = baluchi eu4 = baluchi eu4 = baloch }
 
 # Jewish
 link = { v2 = ashkenazi eu4 = ashkenazi }
@@ -221,13 +220,13 @@ link = { v2 = native_american_minor eu4 = chichimecan }
 link = { v2 = chibchan eu4 = muisca eu4 = cara eu4 = miskito }
 link = { v2 = maranon eu4 = jivaro eu4 = chachapoyan }
 link = { v2 = quechua eu4 = inca eu4 = chimuan }
-link = { v2 = aimara eu4 = aimara }
+link = { v2 = aimara eu4 = aimara  eu4 = diaguita }
 link = { v2 = amazonian eu4 = amazonian eu4 = maipurean }
 link = { v2 = tupi eu4 = tupinamba eu4 = tupi }
 link = { v2 = je eu4 = ge }
 link = { v2 = guarani eu4 = guarani eu4 = charruan }
 link = { v2 = patagonian eu4 = patagonian eu4 = het }
-link = { v2 = araucanian eu4 = huarpe eu4 = mapuche eu4 = diaguita }
+link = { v2 = araucanian eu4 = huarpe eu4 = mapuche }
 
 # Carribean - arawak, carib
 link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
@@ -313,7 +312,7 @@ link = { v2 = panjabi eu4 = panjabi }
 link = { v2 = kashmiri eu4 = kashmiri }
 
 # Western Aryan - gujarati, marathi, sindhi, rajput
-link = { v2 = gujarati eu4 = gujarati eu4 = baloch}
+link = { v2 = gujarati eu4 = gujarati }
 link = { v2 = marathi eu4 = marathi }
 link = { v2 = sindi eu4 = sindhi }
 link = { v2 = rajput eu4 = rajput eu4 = malvi }

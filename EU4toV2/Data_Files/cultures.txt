@@ -1802,42 +1802,61 @@ native_south_american = {
 
 		last_names = {Marano Jivaro Chachapoya}
 	}
-	andean = {
+	quechua = {
 		color = {178 141 85}
 		first_names = {"Túpac Amaru" "Atahualpa" "Huáscar" "Huayna Cápac" "Manco Cápac" "Pachacútec" "Sayri Tupac" 
-		"Titu Cusi Yupanqui" "Túpac Hualpa" "Túpac Yupanqui" "Viracocha" "Yahuar Hacuac" "Inca Roca" 
-		"Anquimarca" "Marcavilca" "Sahuaraura" "Zambiza" 
-		"Atoc Sopa" "Cayo Topa" "Coyllas" "Cusichaca" "Guaritopa" "Huachuri" "Huaypalcon" "Luyes" 
-		"Ninan Cuyuchi" "Orco Varanca" "Pascac" "Pomaguala" "Pumi Sopa" "Quispe Titu" "Ruminavi" 
-		"Surandaman" "Taraque" "Tucuycuyche" "Usca Curiatao" "Villac Umu" "Yamqui Mayta"
-		"Zopahua"
-		"Cacari" "Colla Capac" "Chuqui Capac" "Tomás Katari" "Inti" "Amaru" "Katari" "Tunupa" "Tupac" "Illapa" 
-		"Huanchicay" "Ficpam" "Viltipoco" "Tucuma" "Payo" "Anto" "Tino" "Aman" "Hualpa" "Fama" "Cafa" 
-		"Huilla" "Ismi" "Anco" "Chamijo" "Tancol" 
-		"Anco Coyuch" "Caja Cimcim" "Chumun Caur" "Guaman Chumu" "Michan Caman" "Guari Cur" "Nancen Pico" 
-		"Tacaynamo" "Aiyotechapun" "Buvaovamu" "Caja Cápac" "Cama Bergu" "Chumtiku" "Cuyuchi" "Docoshamu" 
-		"Draytonamu" "Ehenymacu" "Felan Tamuc" "Gusmango" "Ilsayunamu" "Jotiantikaka" "Katitika" "Litun" 
-		"Melantonan" "Michan Chimor" "Muhton Belan" "Nartamamu" "Nehuametepun" "Opolcynamun" "Pacatmamu" 
-		"Puznaymun" "Relyen Padnu" "Seton Apac" "Seran Tugun" "Taracun" "Troynuremo" "Urtyantemu" 
-		"Yetuniamu" "Zergoetanu" "Orco" "Vetsalynun"}
+			"Titu Cusi Yupanqui" "Túpac Hualpa" "Túpac Yupanqui" "Viracocha" "Yahuar Hacuac" "Inca Roca" 
+			"Anquimarca" "Marcavilca" "Sahuaraura" "Zambiza" 
+			"Atoc Sopa" "Cayo Topa" "Coyllas" "Cusichaca" "Guaritopa" "Huachuri" "Huaypalcon" "Luyes" 
+			"Ninan Cuyuchi" "Orco Varanca" "Pascac" "Pomaguala" "Pumi Sopa" "Quispe Titu" "Ruminavi" 
+			"Surandaman" "Taraque" "Tucuycuyche" "Usca Curiatao" "Villac Umu" "Yamqui Mayta" "Yupanqui" 
+			"Zopahua"
+			"Anco Coyuch" "Caja Cimcim" "Chumun Caur" "Guaman Chumu" "Michan Caman" "Guari Cur" "Nancen Pico" 
+			"Tacaynamo" "Aiyotechapun" "Buvaovamu" "Caja Cápac" "Cama Bergu" "Chumtiku" "Cuyuchi" "Docoshamu" 
+			"Draytonamu" "Ehenymacu" "Felan Tamuc" "Gusmango" "Ilsayunamu" "Jotiantikaka" "Katitika" "Litun" 
+			"Melantonan" "Michan Chimor" "Muhton Belan" "Nartamamu" "Nehuametepun" "Opolcynamun" "Pacatmamu" 
+			"Puznaymun" "Relyen Padnu" "Seton Apac" "Seran Tugun" "Taracun" "Troynuremo" "Urtyantemu" 
+			"Yetuniamu" "Zergoetanu" "Orco" "Vetsalynun"}
 
 		last_names = {Anquimarca Apo Atahualpa Atoc Atoc-Suqui Auqui-Huaman Canchari Chalcuchima Challco Chiaquitinta Chilche
 		Colla-Topa Curiatao Cusi  Guacra Guaritito Guaritopa Huachuri Huaman Huascar Huaypalcon Illaquita Inquill Llicllic
 		Maila Maras Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco 
 		Quingallumbo Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
-		Caca Capayan Hualfin Paccioca Pular Quilme Aconquijas Anguinahao Tocpo Omaguaca
 		Guacricaur Tacaynamo Tiso Nancempinco Chilche Maras Luyes Maila Illa Rimac}
+	}
+	aimara = {
+		color = {221 101 101}
+		first_names = {"Cari" "Colla Capac" "Chuqui Capac" "Tomás Katari" "Inti" "Amaru" "Katari" "Tunupa" "Tupac" "Illapa" 
+			"Anquimarca" "Atoc Sopa" "Cayo Topa" "Coyllas" "Cusichaca" "Guaritopa" "Huachuri" "Huaypalcon" 
+			"Marcavilca" "Ninan Cuyuchi" "Orco Varanca" "Pascac" "Pomaguala" "Pumi Sopa" "Quispe Titu" 
+			"Sahuaraura" "Surandaman" "Taraque" "Tucuycuyche" "Usca Curiatao" "Villac Umu" "Yamqui Mayta" 
+			"Zambiza" "Zopahua" "Luyes" "Yupanqui" "Ruminavi" 
+			"Huanchicay" "Ficpam" "Viltipoco" "Tucuma" "Payo" "Anto" "Tino" "Aman" "Hualpa" "Fama" "Cafa" 
+			"Huilla" "Ismi" "Anco" "Chamijo" "Tancol" }
+		
+		last_names = {Anquimarca Apo Atahualpa Atoc Atoc-Suqui Auqui-Huaman Canchari Chalcuchima Challco Chiaquitinta Chilche Colla-Topa 
+		Curiatao Cusi  Guacra Guaritito Guaritopa Huachuri Huaman Huascar Huaypalcon Illaquita Inquill Llicllic Maila Maras 
+		Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco Quingallumbo 
+		Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
+		Caca Capayan Hualfin Paccioca Pular Quilme Aconquijas Anguinahao Tocpo Omaguaca
+}
 	}
 	tupi = {
 		color = {89 80 175}
+		first_names = {Tibiriçá Piquerobi Caiubi Ramalho Italo Arah Pirijá Arata Toruí Mbicy}
+
+		last_names = {Piratininga Tabajara Temiminó Tamoio Tabajara Caeté Tupinaé Temiminó Tupina Aricobé
+		}
+	}
+	guarani = {
+		color = { 91 61 61 }
 		first_names = {Angatupyry Apytere Arandu Araresa Amaru Amapytu Amangy Aravera Arasunu Aratiri Chavuku Jakaira Karai 
 		Katupyry Kuarahy Kuarahyrese Maitei Mba'ehory Mbarakapu Namandu Tajy Tatarendy Tatajyva Tatapytu 
 		Tuvicha Ygary Tekokatu
-		Tibiriçá Piquerobi Caiubi Ramalho Italo Arah Pirijá Arata Toruí Mbicy}
+		Zapicán Abayubá Vaimaca Perú Senacua Tabaré Itanú, Yrupé, Jasymimbí, Tacuabé Vaimaca-Pirú}
 
-		last_names = {Piratininga Tabajara Temiminó Tamoio Tabajara Caeté Tupinaé Temiminó Tupina Aricobé
-		Mbigua Caracara Timbu Tucague Calchagui Quiloazaz Cario Itatine Tarci Bomboi Curupaiti Curumai Caaigua Tape Ciriguana
-		}
+		last_names = {Mbigua Caracara Timbu Tucague Calchagui Quiloazaz Cario Itatine Tarci Bomboi Curupaiti Curumai Caaigua Tape Ciriguana
+		Sénaqué Sira Gununusa Puyucahua Mataojo Igualdad Yaró Guenoa Bohané Minuan}
 	}
 	amazonian = {
 		color = {4 255 84}
@@ -1849,11 +1868,10 @@ native_south_american = {
 	}
 	je = {
 		color = {43 212 67}
-		first_names = {Zapicán Abayubá Vaimaca Perú Senacua Tabaré Itanú, Yrupé, Jasymimbí, Tacuabé Vaimaca-Pirú
-		Jandui Raoni Janduwy Caracara Kerioukeiou Karupoto}
+		first_names = {Jandui Raoni Janduwy Caracara Kerioukeiou Karupoto}
 
 		last_names = {Aimoré Prajé Takrukrak Krekmún Ituêto Futikrak Gueren Gutucrac Mekmek Minhagiran Nakrehê Naknyanúk
-		Sénaqué Sira Gununusa Puyucahua Mataojo Igualdad Yaró Guenoa Bohané Minuan}
+		}
 	}
 	araucanian = {
 		color = {88 99 133}
@@ -1864,6 +1882,14 @@ native_south_american = {
 		last_names = {Pichiñán Colipí Abajino Araucanía Choll-Choll  Lonko Picunche Promaucae Toqui Nguluche Huilliche
 		Lafquenche}
 	}
+	patagonian = {
+		color = {21 21 101}
+		first_names = {Ancamilla Nampai Coñoepán Nahueltripai Millarapue Millalelmo Lautaro Paillamachu Huenecura 
+		Aillavilu Catrileo Ñanco Melín Caupolicán Illangulién Pinolevi Purrán Mañil Quilapán 
+		Pelantaro}
+
+		last_names = {Pichiñán Colipí Abajino Araucanía Choll-Choll  Lonko Picunche Promaucae Toqui Nguluche Huilliche
+		Lafquenche}
 }
 native_north_american = {
 	leader = nativeamerican
