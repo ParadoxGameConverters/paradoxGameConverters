@@ -3,3 +3,11 @@ Frontend/ParadoxConverters.Frontend/ParadoxConverters.Frontend/bin/
 Frontend/ParadoxConverters.Frontend/Frontend.Core.Tests/obj/
 Frontend/ParadoxConverters.Frontend/Frontend.Core/obj/
 bin/
+Source/Frontend.Wizard/obj/
+Source/Frontend.Domain/obj/
+Source/Frontend.Logging/obj/
+Source/Frontend.Configuration/obj/
+Source/Frontend.Common/obj/
+Source/Frontend/obj/
+Source/Solutions/packages/
+Source/Frontend/packages/
