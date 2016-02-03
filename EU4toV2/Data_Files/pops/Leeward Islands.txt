@@ -3,38 +3,38 @@
 #Antigua (25000/6250 POPS) #now independent
 2224 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 30
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 200
 	}
 
 	soldiers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 200
 	}
 
@@ -62,29 +62,29 @@
 		size = 5470
 	}
 }
-#Montserrat (5300/1325 POPS) #still British Colony
+#Montserrat (5300/1325 POPS) #still carribean Colony
 2225 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 5
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 30
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 30
 	}
 
@@ -112,29 +112,29 @@
 		size = 1380
 	}
 }
-#Tortola (4800/1200 POPS) #still British Colony
+#Tortola (4800/1200 POPS) #still carribean Colony
 2226 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 40
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 40
 	}
 
@@ -165,32 +165,32 @@
 #Saint Kitts (26500/6625 POPS) #now independent
 2227 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 75
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 15
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 225
 	}
 
 	soldiers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 260
 	}
 

@@ -296,32 +296,32 @@
 #Sena (176000/43000 POPS)
 2053 = {
 	aristocrats = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 200
 	}
 
 	clergymen = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 60
 	}
 
 	bureaucrats = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 90
 	}
 
 	artisans = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 1100
 	}
 
 	soldiers = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 150
 	}
 
@@ -412,26 +412,26 @@
 #Quelimane (84000/21000 POPS)
 2059 = {
 	aristocrats = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 100
 	}
 
 	clergymen = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 325
 	}
 
 	soldiers = {
-		culture = portuguese
-		religion = catholic
+		culture = sena
+		religion = animist
 		size = 50
 	}
 
@@ -926,32 +926,32 @@
 #Mocambique (88000/22000 POPS)
 2060 = {
 	aristocrats = {
-		culture = portuguese
-		religion = catholic
+		culture = makua
+		religion = animist
 		size = 275
 	}
 
 	clergymen = {
-		culture = portuguese
-		religion = catholic
+		culture = makua
+		religion = animist
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = portuguese
-		religion = catholic
+		culture = makua
+		religion = animist
 		size = 25
 	}
 
 	artisans = {
-		culture = portuguese
-		religion = catholic
+		culture = makua
+		religion = animist
 		size = 600
 	}
 
 	soldiers = {
-		culture = portuguese
-		religion = catholic
+		culture = makua
+		religion = animist
 		size = 50
 	}
 

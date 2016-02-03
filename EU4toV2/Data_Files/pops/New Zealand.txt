@@ -34,8 +34,8 @@
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = maori
+		religion = animist
 		size = 250
 	}
 }

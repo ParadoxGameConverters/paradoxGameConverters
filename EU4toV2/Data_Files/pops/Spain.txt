@@ -2127,45 +2127,75 @@
 #Canary Islands (208000/52000 POPS)
 2136 = {
 	aristocrats = {
-		culture = spanish
-		religion = catholic
-		size = 825
+		culture = berber
+		religion = sunni
+		size = 800
+	}
+
+	aristocrats = {
+		culture = berber
+		religion = animist
+		size = 25
 	}
 
 	officers = {
-		culture = spanish
-		religion = catholic
+		culture = berber
+		religion = sunni
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = spanish
-		religion = catholic
+		culture = berber
+		religion = sunni
 		size = 75
 	}
 
 	clergymen = {
-		culture = spanish
-		religion = catholic
-		size = 525
+		culture = berber
+		religion = sunni
+		size = 400
+	}
+
+	clergymen = {
+		culture = berber
+		religion = animist
+		size = 125
 	}
 
 	artisans = {
-		culture = spanish
-		religion = catholic
-		size = 3000
+		culture = berber
+		religion = sunni
+		size = 2000
+	}
+
+	artisans = {
+		culture = berber
+		religion = animist
+		size = 1000
 	}
 
 	soldiers = {
-		culture = spanish
-		religion = catholic
-		size = 500
+		culture = berber
+		religion = sunni
+		size = 350
+	}
+
+	soldiers = {
+		culture = berber
+		religion = animist
+		size = 150
 	}
 
 	farmers = {
-		culture = spanish
-		religion = catholic
-		size = 47025
+		culture = berber
+		religion = sunni
+		size = 27025
+	}
+
+	farmers = {
+		culture = berber
+		religion = animist
+		size = 20000
 	}
 
 }

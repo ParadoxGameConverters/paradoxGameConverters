@@ -7907,99 +7907,99 @@
 		size = 230
 	}
 }
-#Novo Mariinsk (2000/500 POPS) #inuit = chukchi   }
+#Novo Mariinsk (2000/500 POPS) #eskaleut = chukchi   }
 2637 = {
 	aristocrats = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 7
 	}
 
 	clergymen = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 25
 	}
 
 	soldiers = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 8
 	}
 
 	farmers = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 450
 	}
 }
-#Ugolniye (1000/250 POPS) #inuit = chukchi  }
+#Ugolniye (1000/250 POPS) #eskaleut = chukchi  }
 2590 = {
 	aristocrats = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 5
 	}
 
 	artisans = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 10
 	}
 
 	soldiers = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 3
 	}
 
 	farmers = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 230
 	}
 }
-#Pevek (600/150 POPS) #inuit = chukchi  }
+#Pevek (600/150 POPS) #eskaleut = chukchi  }
 2666 = {
 	aristocrats = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 3
 	}
 
 	artisans = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 4
 	}
 
 	soldiers = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 2
 	}
 
 	farmers = {
-		culture = inuit
-		religion = animist
+		culture = eskaleut
+		religion = shamanist
 		size = 135
 	}
 }
@@ -8621,26 +8621,26 @@
 	}
 
 	clergymen = {
-		culture = russian
-		religion = orthodox
+		culture = siberian
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = russian
-		religion = orthodox
+		culture = siberian
+		religion = animist
 		size = 25
 	}
 
 	soldiers = {
-		culture = russian
-		religion = orthodox
+		culture = siberian
+		religion = animist
 		size = 5
 	}
 
 	farmers = {
-		culture = russian
-		religion = orthodox
+		culture = siberian
+		religion = animist
 		size = 460
 	}
 
@@ -9120,14 +9120,14 @@
 	}
 
 	clergymen = {
-		culture = russian
-		religion = orthodox
+		culture = siberian
+		religion = animist
 		size = 2
 	}
 
 	farmers = {
-		culture = russian
-		religion = orthodox
+		culture = siberian
+		religion = animist
 		size = 23
 	}
 }

@@ -326,64 +326,64 @@
 #Baker Lake (2000/500 POPS)
 44 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 450
 	}
 }
 #Baffin Island (4000/1000 POPS)
 45 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 50
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 15
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 900
 	}
 
@@ -391,32 +391,32 @@
 #Whale Cove (2800/700 POPS)
 2595 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 15
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 35
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 630
 	}
 
@@ -426,7 +426,7 @@
 #Vancouver (12000/3000 POPS)
 13 = {
 	aristocrats = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 25
 	}
@@ -437,7 +437,7 @@
 	}
 
 	clergymen = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 38
 	}
@@ -449,7 +449,7 @@
 	
 
 	artisans = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 75
 	}
@@ -460,7 +460,7 @@
 	}
 
 	soldiers = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 13
 	}
@@ -471,7 +471,7 @@
 	}
 
 	farmers = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 1350
 	}
@@ -485,31 +485,31 @@
 #Vancouver Island (8000/2000 POPS)
 14 = {
 	aristocrats = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 25
 	}
 
 	clergymen = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 50
 	}
 
 	artisans = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 100
 	}
 
 	soldiers = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 25
 	}
 
 	farmers = {
-		culture = eskaleut
+		culture = penutian
 		religion = totemist
 		size = 1750
 	}
@@ -2421,62 +2421,62 @@
 #Erik Cove (2400/600 POPS)
 2592 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 20
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 360
 	}
 
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 3
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 180
 	}
 
@@ -2484,124 +2484,124 @@
 #Port Harrison (2400/600 POPS)
 2626 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 3
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 180
 	}
 
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 20
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 360
 	}
 }
 #Fort Chimo (2400/600 POPS)
 2627 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 20
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 360
 	}
 
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 3
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 180
 	}
 }
@@ -3370,32 +3370,32 @@
 #Hopedale (2000/500 POPS)
 76 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 450
 	}
 
@@ -3403,32 +3403,32 @@
 #Cartwright (6000/1500 POPS)
 2625 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 75
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 1350
 	}
 

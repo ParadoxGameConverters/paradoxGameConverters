@@ -3,62 +3,62 @@
 #Luanda (164000/41000 POPS)
 1999 = {
 	aristocrats = {
-		culture = portuguese
-		religion = catholic
+		culture = bakongo
+		religion = animist
 		size = 150
 	}
 
 	clergymen = {
-		culture = portuguese
-		religion = catholic
+		culture = bakongo
+		religion = animist
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = portuguese
-		religion = catholic
+		culture = bakongo
+		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = portuguese
-		religion = catholic
+		culture = bakongo
+		religion = animist
 		size = 500
 	}
 
 	soldiers = {
-		culture = portuguese
-		religion = catholic
+		culture = bakongo
+		religion = animist
 		size = 50
 	}
 
 	aristocrats = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 50
 	}
 
 	clergymen = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 150
 	}
 
 	artisans = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 3000
 	}
 
 	soldiers = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 250
 	}
 
 	farmers = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 11550
 	}
 
@@ -139,31 +139,31 @@
 2001 = {
 	aristocrats = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 100
 	}
 
 	clergymen = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 50
 	}
 
 	artisans = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 400
 	}
 
 	soldiers = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 100
 	}
 
 	farmers = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 7350
 	}
 
@@ -320,31 +320,31 @@
 
 	aristocrats = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 425
 	}
 
 	clergymen = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 225
 	}
 
 	artisans = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 900
 	}
 
 	soldiers = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 225
 	}
 
 	farmers = {
 		culture = bakongo
-		religion = catholic
+		religion = animist
 		size = 15225
 	}
 

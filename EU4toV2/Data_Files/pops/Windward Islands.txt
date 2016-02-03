@@ -2,38 +2,38 @@
 #Barbados (100000/25000 POPS) #now independent
 2229 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 100
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 1750
 	}
 
 	soldiers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 1100
 	}
 
@@ -64,26 +64,26 @@
 #Saint Lucia (18000/4500 POPS) #now independent
 2231 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 130
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 100
 	}
 
@@ -114,26 +114,26 @@
 #Dominica (19000/4750 POPS) #now independent
 2232 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 130
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 100
 	}
 
@@ -164,32 +164,32 @@
 #Grenada (30000/7500 POPS) #now independent
 2233 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 25
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 20
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 250
 	}
 
 	soldiers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 5
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 200
 	}
 
@@ -220,26 +220,26 @@
 #Saint Vincent (21000/5250 POPS) #now independent
 2409 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 130
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 100
 	}
 

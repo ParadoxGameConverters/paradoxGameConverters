@@ -3,38 +3,38 @@
 #Martinique (190800/27450 POPS)
 2228 = {
 	aristocrats = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 750
 	}
 
 	bureaucrats = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 100
 	}
 
 	clergymen = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 900
 	}
 
 	soldiers = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 250
 	}
 
 	farmers = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 400
 	}
 
@@ -71,32 +71,32 @@
 #Guadeloupe (128400/32100 POPS)
 2230 = {
 	aristocrats = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 850
 	}
 
 	clergymen = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	artisans = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 1300
 	}
 
 	soldiers = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 300
 	}
 
 	farmers = {
-		culture = french
-		religion = catholic
+		culture = carribean
+		religion = animist
 		size = 600
 	}
 

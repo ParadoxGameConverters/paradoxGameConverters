@@ -3,86 +3,86 @@
 #Mauritius (98000/24500 POPS)
 2125 = {
 	bureaucrats = {
-		culture = british
-		religion = protestant
+		culture = african_minor
+		religion = sunni
 		size = 20
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = african_minor
+		religion = sunni
 		size = 25
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = african_minor
+		religion = sunni
 		size = 130
 	}
 
 	soldiers = {
-		culture = british
-		religion = protestant
+		culture = african_minor
+		religion = sunni
 		size = 25
 	}
 
 	aristocrats = {
-		culture = french
-		religion = catholic
+		culture = african_minor
+		religion = sunni
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = french
-		religion = catholic
+		culture = african_minor
+		religion = sunni
 		size = 30
 	}
 
 	artisans = {
-		culture = french
-		religion = catholic
+		culture = african_minor
+		religion = sunni
 		size = 180
 	}
 
 	clergymen = {
-		culture = french
-		religion = catholic
+		culture = african_minor
+		religion = sunni
 		size = 20
 	}
 
 	soldiers = {
-		culture = french
-		religion = catholic
+		culture = african_minor
+		religion = sunni
 		size = 20
 	}
 
 	farmers = {
-		culture = french
-		religion = catholic
+		culture = african_minor
+		religion = sunni
 		size = 200
 	}
 
 	clergymen = {
 		culture = african_minor
-		religion = protestant
+		religion = animist
 		size = 125
 	}
 
 	artisans = {
 		culture = african_minor
-		religion = protestant
+		religion = animist
 		size = 1100
 	}
 
 	soldiers = {
 		culture = african_minor
-		religion = protestant
+		religion = animist
 		size = 250
 	}
 
 	farmers = {
 		culture = african_minor
-		religion = catholic
+		religion = animist
 		size = 22375
 	}
 }
@@ -90,7 +90,7 @@
 2128 = {
 	farmers = {
 		culture = african_minor
-		religion = catholic
+		religion = animist
 		size = 175
 	}
 

@@ -168,7 +168,8 @@ link = { v2 = byelorussian eu4 = byelorussian }
 link = { v2 = lithuanian eu4 = lithuanian }
 link = { v2 = latvian eu4 = latvian eu4 = old_prussian }
 
-# Byzantine - greek, georgian, armenian, pontic_greeklink = { v2 = sephardic eu4 = greek eu4 = georgian eu4 = armenian eu4 = goths eu4 = spartan eu4 = athenian eu4 = atlantean religion = jewish }
+# Byzantine - greek, georgian, armenian, pontic_greek
+link = { v2 = sephardic eu4 = greek eu4 = georgian eu4 = armenian eu4 = goths eu4 = spartan eu4 = athenian eu4 = atlantean religion = jewish }
 link = { v2 = greek eu4 = greek eu4 = gothic eu4 = goths eu4 = pontic_greek }
 link = { v2 = georgian eu4 = georgian }
 link = { v2 = armenian eu4 = armenian }
@@ -237,7 +238,8 @@ link = { v2 = carribean eu4 = arawak eu4 = carib }
 link = { v2 = siouan eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = catawba }
 link = { v2 = iroquoian eu4 = cherokee eu4 = iroquois eu4 = iroquis eu4 = huron eu4 = susquehannock }
 link = { v2 = sonoran eu4 = pueblo eu4 = piman eu4 = shoshone eu4 = kiowa }
-link = { v2 = eskaleut eu4 = inuit eu4 = aleutian }
+link = { v2 = eskaleut eu4 = kamchatkan eu4 = aleutian } # remove Kamchatkan from Ainu
+link = { v2 = inuit eu4 = inuit }
 link = { v2 = central_algonquian eu4 = cree eu4 = shawnee eu4 = anishinabe eu4 = illini eu4 = mesquakie }
 link = { v2 = na_dene eu4 = navajo eu4 = chipewyan eu4 = athabascan eu4 = apache eu4 = haida }
 link = { v2 = penutian eu4 = chinook eu4 = salish eu4 = yokuts }
@@ -254,7 +256,7 @@ link = { v2 = manchu eu4 = manchu }
 link = { v2 = beifaren eu4 = chihan eu4 = wu eu4 = jin eu4 = jianghuai eu4 = xibei eu4 = zhongyuan eu4 = shandong_culture }
 link = { v2 = nanfaren eu4 = gan eu4 = xiang eu4 = sichuanese eu4 = hubei }
 link = { v2 = korean eu4 = korean }
-link = { v2 = ainu eu4 = ainu eu4 = kamchatkan }
+link = { v2 = ainu eu4 = ainu }
 link = { v2 = hakka eu4 = hakka }
 link = { v2 = miao eu4 = miao }
 link = { v2 = min eu4 = chimin }
@@ -326,77 +328,92 @@ link = { v2 = telegu eu4 = telegu }
 # Central Indic - garjati, gondi, jharkhandi
 link = { v2 = asian_minor eu4 = garjati eu4 = gondi eu4 = jharkhandi }
 
-# African - madagasque, tuareg, senegambian, dyola, nubian, somali, bantu, swahili, ethiopian, kongolese, shona, mali, yorumba, aka, ashanti
-#link = { v2 = edo eu4 = ? }
-#link = { v2 = ewe eu4 = ? }
-link = { v2 = fon eu4 = fon }
+# Sahelian - wolof, fulbe, hausa, kanuri, tuareg, baguirmi
+link = { v2 = wolof eu4 = senegambian eu4 = jolof }
 link = { v2 = fulbe eu4 = fulani }
 link = { v2 = hausa eu4 = hausa }
-#link = { v2 = ibibio eu4 = ? }
-#link = { v2 = ibo eu4 = ? }
-#link = { v2 = kru eu4 = ? }
-link = { v2 = mande eu4 = bozo eu4 = soninke }
-#link = { v2 = maures eu4 = ? }
-link = { v2 = mossi eu4 = mossi eu4 = dagomba }
-#link = { v2 = senufo eu4 = ? }
-link = { v2 = songhai eu4 = songhai }
-#link = { v2 = tiv eu4 = ? }
-#link = { v2 = wolof eu4 = ? }
-#link = { v2 = bakongo eu4 = ? }
-#link = { v2 = baguirmi eu4 = ? }
-#link = { v2 = fang eu4 = ? }
 link = { v2 = kanuri eu4 = kanuri }
-#link = { v2 = luba eu4 = ? }
-#link = { v2 = lunda eu4 = ? }
-#link = { v2 = mongo eu4 = ? }
-#link = { v2 = sara eu4 = ? }
-#link = { v2 = teda eu4 = ? }
-link = { v2 = amhara eu4 = amhara }
-link = { v2 = amhara eu4 = coptic } # for CKII+
-#link = { v2 = afar eu4 = ? }
-#link = { v2 = azande eu4 = ? }
-#link = { v2 = baganda eu4 = ? }
-#link = { v2 = beja eu4 = ? }
-#link = { v2 = dinka eu4 = ? }
-#link = { v2 = fur eu4 = ? }
-#link = { v2 = kikuyu eu4 = ? }
-#link = { v2 = luo eu4 = ? }
-#link = { v2 = maasai eu4 = ? }
-#link = { v2 = nuer eu4 = ? }
-#link = { v2 = nuba eu4 = ? }
-#link = { v2 = ruanda eu4 = ? }
-#link = { v2 = rundi eu4 = ? }
-link = { v2 = sidama eu4 = sidamo }
-#link = { v2 = sukuma eu4 = ? }
-link = { v2 = tigray eu4 = tigray }
-#link = { v2 = unyamwezi eu4 = ? }
-#link = { v2 = chewa eu4 = ? }
-#link = { v2 = herero eu4 = ? }
-#link = { v2 = khoisan eu4 = ? }
-#link = { v2 = lomwe eu4 = ? }
-#link = { v2 = makua eu4 = ? }
-#link = { v2 = nguni eu4 = ? }
-#link = { v2 = ovimbundu eu4 = ? }
-#link = { v2 = sena eu4 = ? }
-#link = { v2 = sotho eu4 = ? }
-#link = { v2 = tonga eu4 = ? }
-#link = { v2 = tswana eu4 = ? }
-#link = { v2 = xhosa eu4 = ? }
-#link = { v2 = yao eu4 = ? }
-#link = { v2 = zulu eu4 = ? }
-link = { v2 = malagasy eu4 = madagasque }
 link = { v2 = tuareg eu4 = tuareg }
-link = { v2 = african_minor eu4 = senegambian eu4 = bantu eu4 = bilala eu4 = aka eu4 = nupe }
+link = { v2 = baguirmi eu4 = bilala }
+#link = { v2 = maures eu4 = ? } # Mauritania
+
+# Malian - songhai, mande, bambara, dyula
+link = { v2 = songhai eu4 = songhai }
+link = { v2 = mande eu4 = mali eu4 = soninke }
+link = { v2 = bambara eu4 = bozo eu4 = bambara }
 link = { v2 = dyula eu4 = dyola }
-link = { v2 = sudanese eu4 = nubian }
-link = { v2 = somali eu4 = somali }
-link = { v2 = swahili eu4 = swahili }
-link = { v2 = oromo eu4 = ethiopian }
-link = { v2 = bakongo eu4 = kongolese }
-link = { v2 = shona eu4 = shona }
-link = { v2 = bambara eu4 = mali eu4 = bambara }
-link = { v2 = yoruba eu4 = yorumba }
+
+# Southwest Coast - akan, fon, yoruba, ibo, mossi
 link = { v2 = akan eu4 = aka eu4 = ashanti }
+link = { v2 = fon eu4 = fon }
+link = { v2 = yoruba eu4 = yorumba }
+link = { v2 = ibo eu4 = nupe }
+link = { v2 = mossi eu4 = mossi eu4 = dagomba }
+#link = { v2 = kru eu4 = ? } # Guinea
+#link = { v2 = senufo eu4 = ? } # Cote d'Ivoire
+#link = { v2 = ewe eu4 = ? } # Togo
+#link = { v2 = edo eu4 = ? } # Nigeria
+#link = { v2 = ibibio eu4 = ? } # Nigeria
+#link = { v2 = tiv eu4 = ? } # Nigeria
+
+# North Central Africa - fur, beja, sudanese
+#link = { v2 = teda eu4 = ? } # Chad
+#link = { v2 = sara eu4 = ? } # Cameroon, Chad
+#link = { v2 = fang eu4 = ? } # Cameroon, Gabon, EG
+link = { v2 = fur eu4 = nubian area = darfur_central_sahara_area }
+link = { v2 = beja eu4 = nubian area = red_sea_coast_area }
+link = { v2 = sudanese eu4 = nubian }
+#link = { v2 = dinka eu4 = ? } # Sudan
+#link = { v2 = azande eu4 = ? } # South Sudan
+#link = { v2 = luo eu4 = ? } # South Sudan
+#link = { v2 = nuba eu4 = ? } # South Sudan
+#link = { v2 = nuer eu4 = ? } # South Sudan
+
+# Horn of Africa - amhara, sidama, tigray, oromo, somali
+link = { v2 = amhara eu4 = amhara eu4 = coptic }
+link = { v2 = sidama eu4 = sidamo }
+link = { v2 = tigray eu4 = tigray }
+link = { v2 = somali eu4 = somali 
+link = { v2 = oromo eu4 = ethiopian } # does this actually exist?
+#link = { v2 = afar eu4 = ? } #Djibouti
+
+# The Congo - bakongo
+#link = { v2 = mongo eu4 = ? } # DRC
+link = { v2 = bakongo eu4 = kongolese }
+#link = { v2 = luba eu4 = ? } # DRC
+#link = { v2 = lunda eu4 = ? } # DRC, Angola, Zambia
+#link = { v2 = ovimbundu eu4 = ? } # Angola
+
+# East Africa - swahili, malagasy
+link = { v2 = swahili eu4 = swahili }
+#link = { v2 = kikuyu eu4 = ? } # Kenya
+#link = { v2 = maasai eu4 = ? } # Tanzania
+#link = { v2 = sukuma eu4 = ? } # Tanzania
+#link = { v2 = unyamwezi eu4 = ? } # Tanzania
+#link = { v2 = ruanda eu4 = ? } # Rwanda
+#link = { v2 = rundi eu4 = ? } # Burundi
+#link = { v2 = baganda eu4 = ? } # Uganda
+link = { v2 = malagasy eu4 = madagasque }
+
+# South Africa - khoisan, shona, sena, makua
+link = { v2 = khoisan eu4 = bantu area = south_african_plateau_area }
+link = { v2 = khoisan eu4 = bantu area = cape_of_good_hope_area }
+#link = { v2 = nguni eu4 = ? } # South Africa
+#link = { v2 = sotho eu4 = ? } # South Africa
+#link = { v2 = xhosa eu4 = ? } # South Africa
+#link = { v2 = zulu eu4 = ? } # South Africa
+#link = { v2 = tswana eu4 = ? } # Botswana
+#link = { v2 = chewa eu4 = ? } # Malawi
+link = { v2 = shona eu4 = shona }
+link = { v2 = sena eu4 = bantu area = zambezi_area }
+link = { v2 = makua eu4 = bantu area = mozambique_area }
+#link = { v2 = lomwe eu4 = ? } # Mozambique
+#link = { v2 = tonga eu4 = ? } # Mozambique
+#link = { v2 = yao eu4 = ? } # Mozambique
+#link = { v2 = herero eu4 = ? } # Namibia
+link = { v2 = african_minor eu4 = bantu }
+
+# African Diaspora
 #link = { v2 = afro_american eu4 = ? }
 #link = { v2 = afro_caribbean eu4 = ? }
 #link = { v2 = afro_caribeno eu4 = ? }

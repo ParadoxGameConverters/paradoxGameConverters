@@ -400,76 +400,76 @@
 #Azores (204000/51000 POPS)
 2134 = {
 	aristocrats = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 500
 	}
 
 	officers = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 50
 	}
 
 	bureaucrats = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 100
 	}
 
 	clergymen = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 375
 	}
 
 	artisans = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 3000
 	}
 
 	soldiers = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 1100
 	}
 
 	farmers = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 45975
 	}
 }
 #Madeira (104000/26000 POPS)
 2135 = {
 	aristocrats = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 250
 	}
 
 	clergymen = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 175
 	}
 
 	artisans = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 1500
 	}
 
 	soldiers = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 250
 	}
 
 	farmers = {
-		culture = portuguese
-		religion = catholic
+		culture = african_minor
+		religion = animist
 		size = 23825
 	}
 

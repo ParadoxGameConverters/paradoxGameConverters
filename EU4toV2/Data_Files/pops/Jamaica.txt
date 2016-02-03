@@ -3,38 +3,38 @@
 #Jamaica (372000/93000 POPS)
 2217 = {
 	aristocrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 100
 	}
 
 	bureaucrats = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 85
 	}
 
 	clergymen = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 2500
 	}
 
 	soldiers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 50
 	}
 
 	farmers = {
-		culture = british
-		religion = protestant
+		culture = carribean
+		religion = animist
 		size = 2190
 	}
 

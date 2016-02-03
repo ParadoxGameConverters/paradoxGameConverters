@@ -91,32 +91,32 @@
 #Kenai (2400/600 POPS)
 3 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 550
 	}
 }
@@ -124,219 +124,219 @@
 4 = {
 	aristocrats = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 25
 	}
 
 	soldiers = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 450
 	}
 }
 #Bethel (2000/500 POPS)
 5 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 3
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 15
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 225
 	}
 
 	aristocrats = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 3
 	}
 
 	artisans = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 15
 	}
 
 	soldiers = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 225
 	}
 }
 #Fairbanks (2000/500 POPS)
 2599 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 450
 	}
 }
 #Cordova (1600/360 POPS)
 2630 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 20
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 360
 	}
 }
 #Unalakeet (3000/750 POPS)
 2631 = {
 	aristocrats = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	clergymen = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 10
 	}
 
 	artisans = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 25
 	}
 
 	soldiers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
-		culture = eskaleut
-		religion = totemist
+		culture = inuit
+		religion = shamanist
 		size = 450
 	}
 
 	aristocrats = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 2
 	}
 
 	clergymen = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 3
 	}
 
 	artisans = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 15
 	}
 
 	soldiers = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 5
 	}
 
 	farmers = {
 		culture = eskaleut
-		religion = totemist
+		religion = shamanist
 		size = 225
 	}
 }
