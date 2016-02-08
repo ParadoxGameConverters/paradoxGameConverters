@@ -1121,7 +1121,12 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		map<int, V2Province*>::iterator capital = provinces.find(countryItr->second->getCapital());
 		if (capital != provinces.end())
 		{
-			continentMapping::const_iterator itr = continentMap.find(capital->first);
+			const EU4Province* capitalSrcProv = capital->second->getSrcProvince();
+			if (!capitalSrcProv)
+				continue;
+
+			int capitalSrc = capitalSrcProv->getNum();
+			continentMapping::const_iterator itr = continentMap.find(capitalSrc);
 			if (itr != continentMap.end())
 			{
 				capitalContinent = itr->second;
@@ -1139,7 +1144,12 @@ void V2World::setupColonies(const adjacencyMapping& adjacencyMap, const continen
 		auto ownedProvinces = countryItr->second->getProvinces();
 		for (auto provItr = ownedProvinces.begin(); provItr != ownedProvinces.end(); provItr++)
 		{
-			continentMapping::const_iterator itr = continentMap.find(provItr->first);
+			const EU4Province* provSrcProv = provItr->second->getSrcProvince();
+			if (!provSrcProv)
+				continue;
+
+			int provSrc = provSrcProv->getNum();
+			continentMapping::const_iterator itr = continentMap.find(provSrc);
 			if ((itr != continentMap.end()) && (itr->second == capitalContinent))
 			{
 				provItr->second->setSameContinent(true);

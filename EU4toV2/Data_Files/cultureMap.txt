@@ -373,7 +373,7 @@ link = { v2 = sudanese eu4 = nubian }
 link = { v2 = amhara eu4 = amhara eu4 = coptic }
 link = { v2 = sidama eu4 = sidamo }
 link = { v2 = tigray eu4 = tigray }
-link = { v2 = somali eu4 = somali 
+link = { v2 = somali eu4 = somali }
 link = { v2 = oromo eu4 = ethiopian } # does this actually exist?
 #link = { v2 = afar eu4 = ? } #Djibouti
 

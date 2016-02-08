@@ -1,7 +1,10 @@
 Release/
 ReleaseIntermediate/
+Debug/
+DebugIntermediate/
 EU3ToV2
 *.sdf
+*.suo
 *.opensdf
 Frontend/ParadoxConverters.Frontend/Frontend.Core.Tests/bin/
 Frontend/ParadoxConverters.Frontend/ParadoxConverters.Frontend/bin/
