@@ -228,6 +228,7 @@ link = { v2 = je eu4 = ge }
 link = { v2 = guarani eu4 = guarani eu4 = charruan }
 link = { v2 = patagonian eu4 = patagonian eu4 = het }
 link = { v2 = araucanian eu4 = huarpe eu4 = mapuche }
+link = { v2 = chacoan eu4 = chacoan}
 
 # Carribean - arawak, carib
 link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
@@ -238,8 +239,7 @@ link = { v2 = carribean eu4 = arawak eu4 = carib }
 link = { v2 = siouan eu4 = dakota eu4 = nakota eu4 = chiwere eu4 = osage eu4 = catawba }
 link = { v2 = iroquoian eu4 = cherokee eu4 = iroquois eu4 = iroquis eu4 = huron eu4 = susquehannock }
 link = { v2 = sonoran eu4 = pueblo eu4 = piman eu4 = shoshone eu4 = kiowa }
-link = { v2 = eskaleut eu4 = kamchatkan eu4 = aleutian } # remove Kamchatkan from Ainu
-link = { v2 = inuit eu4 = inuit }
+link = { v2 = eskaleut eu4 = kamchatkan eu4 = aleutian eu4 = inuit } # remove Kamchatkan from Ainu
 link = { v2 = central_algonquian eu4 = cree eu4 = shawnee eu4 = anishinabe eu4 = illini eu4 = mesquakie }
 link = { v2 = na_dene eu4 = navajo eu4 = chipewyan eu4 = athabascan eu4 = apache eu4 = haida }
 link = { v2 = penutian eu4 = chinook eu4 = salish eu4 = yokuts }
@@ -248,7 +248,7 @@ link = { v2 = eastern_algonquian eu4 = delaware eu4 = abenaki eu4 = mikmaq eu4 =
 link = { v2 = muskogean eu4 = creek eu4 = choctaw eu4 = chickasaw }
 link = { v2 = caddoan eu4 = pawnee eu4 = wichita eu4 = caddo }
 #link = { v2 = metis eu4 = ? }
-link = { v2 = native_american_minor eu4 = chacoan eu4 = tlingit eu4 = miwok }
+link = { v2 = native_american_minor eu4 = tlingit eu4 = miwok }
 
 # East Asian - japanese, manchu, chihan, cantonese, korean
 link = { v2 = japanese eu4 = japanese }

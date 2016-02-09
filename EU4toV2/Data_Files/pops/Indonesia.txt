@@ -99,26 +99,26 @@
 	}
 
 	bureaucrats = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 10
 	}
 
 	clergymen = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 20
 	}
 
 	artisans = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 20
 	}
 
 	soldiers = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 50
 	}
 }
@@ -1160,26 +1160,26 @@
 	}
 
 	bureaucrats = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 10
 	}
 
 	clergymen = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 20
 	}
 
 	artisans = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 20
 	}
 
 	soldiers = {
-		culture = dutch
-		religion = protestant
+		culture = malay
+		religion = sunni
 		size = 50
 	}
 }
@@ -1292,32 +1292,32 @@
 	}
 
 	aristocrats = {
-		culture = dutch
-		religion = protestant
+		culture = javan
+		religion = animist
 		size = 750
 	}
 
 	bureaucrats = {
-		culture = dutch
-		religion = protestant
+		culture = javan
+		religion = animist
 		size = 1750
 	}
 
 	clergymen = {
-		culture = dutch
-		religion = protestant
+		culture = javan
+		religion = animist
 		size = 75
 	}
 
 	artisans = {
-		culture = dutch
-		religion = protestant
+		culture = javan
+		religion = animist
 		size = 1075
 	}
 
 	soldiers = {
-		culture = dutch
-		religion = protestant
+		culture = javan
+		religion = animist
 		size = 2250
 	}
 
@@ -3252,26 +3252,26 @@
 	}
 
 	bureaucrats = {
-		culture = dutch
-		religion = protestant
+		culture = melanesian
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = dutch
-		religion = protestant
+		culture = melanesian
+		religion = animist
 		size = 15
 	}
 
 	clergymen = {
-		culture = dutch
-		religion = protestant
+		culture = melanesian
+		religion = animist
 		size = 25
 	}
 
 	soldiers = {
-		culture = dutch
-		religion = protestant
+		culture = melanesian
+		religion = animist
 		size = 50
 	}
 }
@@ -3280,25 +3280,25 @@
 1446 = {
 	clergymen = {
 		culture = moluccan
-		religion = catholic
+		religion = animist
 		size = 25
 	}
 
 	artisans = {
 		culture = moluccan
-		religion = catholic
+		religion = animist
 		size = 250
 	}
 
 	soldiers = {
 		culture = moluccan
-		religion = catholic
+		religion = animist
 		size = 15
 	}
 
 	farmers = {
 		culture = moluccan
-		religion = catholic
+		religion = animist
 		size = 710
 	}
 
@@ -3334,25 +3334,25 @@
 
 	clergymen = {
 		culture = melanesian
-		religion = catholic
+		religion = animist
 		size = 50
 	}
 
 	artisans = {
 		culture = melanesian
-		religion = catholic
+		religion = animist
 		size = 750
 	}
 
 	soldiers = {
 		culture = melanesian
-		religion = catholic
+		religion = animist
 		size = 25
 	}
 
 	farmers = {
 		culture = melanesian
-		religion = catholic
+		religion = animist
 		size = 1175
 	}
 
@@ -3387,26 +3387,26 @@
 	}
 
 	bureaucrats = {
-		culture = portuguese
-		religion = catholic
+		culture = melanesian
+		religion = animist
 		size = 5
 	}
 
 	artisans = {
-		culture = portuguese
-		religion = catholic
+		culture = melanesian
+		religion = animist
 		size = 10
 	}
 
 	clergymen = {
-		culture = portuguese
-		religion = catholic
+		culture = melanesian
+		religion = animist
 		size = 10
 	}
 
 	soldiers = {
-		culture = portuguese
-		religion = catholic
+		culture = melanesian
+		religion = animist
 		size = 25
 	}
 
@@ -3417,61 +3417,61 @@
 1449 = {
 	aristocrats = {
 		culture = moluccan
-		religion = protestant
+		religion = animist
 		size = 115
 	}
 
 	bureaucrats = {
 		culture = moluccan
-		religion = protestant
+		religion = animist
 		size = 10
 	}
 
 	clergymen = {
 		culture = moluccan
-		religion = protestant
+		religion = animist
 		size = 125
 	}
 
 	artisans = {
 		culture = moluccan
-		religion = protestant
+		religion = animist
 		size = 600
 	}
 
 	soldiers = {
 		culture = moluccan
-		religion = protestant
+		religion = animist
 		size = 150
 	}
 
 	farmers = {
 		culture = moluccan
-		religion = protestant
+		religion = animist
 		size = 1100
 	}
 
 	bureaucrats = {
-		culture = dutch
-		religion = protestant
+		culture = moluccan
+		religion = animist
 		size = 10
 	}
 
 	artisans = {
-		culture = dutch
-		religion = protestant
+		culture = moluccan
+		religion = animist
 		size = 15
 	}
 
 	clergymen = {
-		culture = dutch
-		religion = protestant
+		culture = moluccan
+		religion = animist
 		size = 25
 	}
 
 	soldiers = {
-		culture = dutch
-		religion = protestant
+		culture = moluccan
+		religion = animist
 		size = 50
 	}
 }
@@ -3510,25 +3510,25 @@
 
 	clergymen = {
 		culture = moluccan
-		religion = protestant
+		religion = sunni
 		size = 50
 	}
 
 	artisans = {
 		culture = moluccan
-		religion = protestant
+		religion = sunni
 		size = 400
 	}
 
 	soldiers = {
 		culture = moluccan
-		religion = protestant
+		religion = sunni
 		size = 50
 	}
 
 	farmers = {
 		culture = moluccan
-		religion = protestant
+		religion = sunni
 		size = 1500
 	}
 

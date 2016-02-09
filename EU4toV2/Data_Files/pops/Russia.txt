@@ -7911,31 +7911,31 @@
 2637 = {
 	aristocrats = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 7
 	}
 
 	clergymen = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 10
 	}
 
 	artisans = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 25
 	}
 
 	soldiers = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 8
 	}
 
 	farmers = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 450
 	}
 }
@@ -7943,31 +7943,31 @@
 2590 = {
 	aristocrats = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 2
 	}
 
 	clergymen = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 5
 	}
 
 	artisans = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 10
 	}
 
 	soldiers = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 3
 	}
 
 	farmers = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 230
 	}
 }
@@ -7975,31 +7975,31 @@
 2666 = {
 	aristocrats = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 2
 	}
 
 	clergymen = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 3
 	}
 
 	artisans = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 4
 	}
 
 	soldiers = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 2
 	}
 
 	farmers = {
 		culture = eskaleut
-		religion = shamanist
+		religion = shamanism
 		size = 135
 	}
 }

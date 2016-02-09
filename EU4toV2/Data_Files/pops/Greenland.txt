@@ -3,86 +3,86 @@
 #Godthab (4220/1055 POPS)
 251 = {
 	bureaucrats = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 25
 	}
 
 	clergymen = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 15
 	}
 
 	artisans = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 15
 	}
 
 	farmers = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 1100
 	}
 }
 #Holsteinborg (1232/308 POPS)
 2591 = {
 	clergymen = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 4
 	}
 
 	artisans = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 4
 	}
 
 	farmers = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 300
 	}
 }
 #Augmagsalik (1232/308 POPS)
 2632 = {
 	clergymen = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 4
 	}
 
 	artisans = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 4
 	}
 
 	farmers = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 300
 	}
 }
 #Egedesminde (816/204 POPS)
 2636 = {
 	clergymen = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 2
 	}
 
 	artisans = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 2
 	}
 
 	farmers = {
-		culture = inuit
-		religion = shamanist
+		culture = eskaleut
+		religion = shamanism
 		size = 200
 	}
 }

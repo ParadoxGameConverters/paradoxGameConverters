@@ -1722,10 +1722,10 @@ native_central_american = {
 	is_overseas = no
 	zapotec = {
 		color = {87 199 81}
-		first_names = {Cocijoeza Cocijopi Xolo Nucano Cocijocza Cocijopi Zaachilla Cocijouza Cocijopi Jzió Pwuix Dao 
+		first_names = {Cocijoeza Cocijopi Xolo Nucano Cocijocza Zaachilla Cocijouza Jzió Pwuix Dao 
 		Binech Bzojj Chsáaxcejj Cháalaxa Chonna Bicu Coqui Djoraxa Gwèibóoné Gyazob Gyejj Ipalnemoani Ji 
-		Jzió Láxdaóxo Lyebe Mbalaz Na Yel Naquichinisa Naxiñanguiiu Ngolbex An Nguiiu Rire Nisa Ro Pijje 
-		Rusiguunda Véeni Veziá Zne Yel Zniá Zyrx Beljjw Bibejw Jzió Jituh Jzió Tobi}
+		Láxdaóxo Lyebe Mbalaz Na Yel Naquichinisa Naxiñanguiiu Ngolbex An Nguiiu Rire Nisa Ro Pijje 
+		Rusiguunda Véeni Veziá Zne Zniá Zyrx Beljjw Bibejw Jituh Tobi}
 
 		last_names = { Beljjw Bibejw Binech "Bzojj Chsáaxcejj" Cháalaxa Coqui Djoraxa Gwpeibóoné Gyazob Gyejj "Ji Jzió" Jituh
 		Jzió Láxdaóxo Lyebe Mbalaz "Na Yel" "Ngolbex An" "Pijje Jzió" "Pwuix Dao" Véeni Vziá "Zne Yel" Zniá Zyrx 
@@ -1762,8 +1762,8 @@ native_central_american = {
 		color = {87 188 192}
 		first_names = {Tariacuri Hiquingaje Hiripan Tangaxuan Tzitzipandaquare Zuangua Huitzimengari Tangaxoan Tzimtzincha 
 		Cuinierangari Bibejw Binech Bzojj Chsáaxcejj Cháalaxa Chonna Bicu Coqui Djoraxa Gwèibóoné Gyazob Ipalnemoani Ji Jzió
-		Jituh Jzió Láxdaóxo Lyebe Mbalaz Na Yel Naquichinisa Naxiñanguiiu Ngolbex An 
-		Rire Nisa Ro Pijje Jzió Tobi Rusiguunda Véeni Veziá Zne Yel Zniá Zyrx Gyejj Nguiiu
+		Jituh Láxdaóxo Lyebe Mbalaz Na Yel Naquichinisa Naxiñanguiiu Ngolbex An 
+		Rire Nisa Ro Pijje Tobi Rusiguunda Véeni Veziá Zne Zniá Zyrx Gyejj Nguiiu
 		Acalan Acacitli Acamapichtli Acolmiztli Aculnahuacatl Ahuiliztli Ahuitzotl Atl Axayacatl Cacamatzin 
 		Chimalli Chimalpilli Chimalpopoca Cipac Coanacoch Coatl Cozahtli Cuauhtemoc Cuauhtl Cuetlachtli 
 		Cuetzpalli Cuixtli Cuitlahuac Huitzilin Huitzilihuitl Huitzitl Huitztecol Iquehuacatzin Itzcoatl Itzli Itzcuintli 
@@ -1783,22 +1783,22 @@ native_south_american = {
 	chibchan = {
 		color = {190 45 23}
 		first_names = {Anquimarca Atoc Sopa Cayo Topa Coyllas Cusichaca Guaritopa Huachuri Huaypalcon Luyes Marcavilca 
-		Cuyuchi Orco Varanca Pascac Pomaguala Pumi Sopa Quispe Titu Ruminavi Sahuaraura Surandaman Taraque Tucuycuyche Usca 
+		Cuyuchi Orco Varanca Pascac Pomaguala Pumi Quispe Titu Ruminavi Sahuaraura Surandaman Taraque Tucuycuyche Usca 
 		Curiatao Villac Umu Yamqui Mayta Yupanqui Zambiza Zopahua Ninan}
 
 		last_names = {Aguazuque Soacha Zipacon Kankuamo Iraca Onzaga Huachuri Huaman Huascar Huaypalcon Tunduma Chipatá 
-		Busbanzá Saboyá Tenza Tibirita Duitama Paipa Cerinza Tibana Charalá Toca
-		Anquimarca Apo Atahualpa Atoc Atoc-Suqui Auqui-Huaman Canchari Chalcuchima Challco Chiaquitinta Chilche Colla-Topa 
-		Curiatao Cusi  Guacra Guaritito Guaritopa Huachuri Huaman Huascar Huaypalcon Illaquita Inquill Llicllic Maila Maras 
-		Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco Quingallumbo 
-		Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
-		Miskito Chibchan}
+			Busbanzá Saboyá Tenza Tibirita Duitama Paipa Cerinza Tibana Charalá Toca
+			Anquimarca Apo Atahualpa Atoc Atoc-Suqui Auqui-Huaman Canchari Chalcuchima Challco Chiaquitinta Chilche Colla-Topa 
+			Curiatao Cusi  Guacra Guaritito Guaritopa Illaquita Inquill Llicllic Maila Maras 
+			Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco Quingallumbo 
+			Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
+			Miskito Chibchan }
 	}
 	maranon = {
 		color = {221 248 75}
 		first_names = {Anquimarca Atoc Sopa Cayo Topa Coyllas Cusichaca Guaritopa Huachuri Huaypalcon Luyes Marcavilca 
-			Cuyuchi Orco Varanca Pascac Pomaguala Pumi Sopa Quispe Titu Ruminavi Sahuaraura Surandaman Taraque 
-			Tucuycuyche Usca Curiatao Villac Umu Yamqui Mayta Yupanqui Zambiza Zopahua Ninan}
+			Cuyuchi Orco Varanca Pascac Pomaguala Pumi Quispe Titu Ruminavi Sahuaraura Surandaman Taraque 
+			Tucuycuyche Usca Curiatao Villac Umu Yamqui Mayta Yupanqui Zambiza Zopahua Ninan }
 
 		last_names = {Marano Jivaro Chachapoya}
 	}
@@ -1819,10 +1819,10 @@ native_south_american = {
 			"Yetuniamu" "Zergoetanu" "Orco" "Vetsalynun"}
 
 		last_names = {Anquimarca Apo Atahualpa Atoc Atoc-Suqui Auqui-Huaman Canchari Chalcuchima Challco Chiaquitinta Chilche
-		Colla-Topa Curiatao Cusi  Guacra Guaritito Guaritopa Huachuri Huaman Huascar Huaypalcon Illaquita Inquill Llicllic
-		Maila Maras Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco 
-		Quingallumbo Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
-		Guacricaur Tacaynamo Tiso Nancempinco Chilche Maras Luyes Maila Illa Rimac}
+			Colla-Topa Curiatao Cusi  Guacra Guaritito Guaritopa Huachuri Huaman Huascar Huaypalcon Illaquita Inquill Llicllic
+			Maila Maras Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco 
+			Quingallumbo Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
+			Guacricaur Tacaynamo Tiso Nancempinco Luyes Illa }
 	}
 	aimara = {
 		color = {221 101 101}
@@ -1835,17 +1835,16 @@ native_south_american = {
 			"Huilla" "Ismi" "Anco" "Chamijo" "Tancol" }
 		
 		last_names = {Anquimarca Apo Atahualpa Atoc Atoc-Suqui Auqui-Huaman Canchari Chalcuchima Challco Chiaquitinta Chilche Colla-Topa 
-		Curiatao Cusi  Guacra Guaritito Guaritopa Huachuri Huaman Huascar Huaypalcon Illaquita Inquill Llicllic Maila Maras 
-		Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco Quingallumbo 
-		Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
-		Caca Capayan Hualfin Paccioca Pular Quilme Aconquijas Anguinahao Tocpo Omaguaca
-}
+			Curiatao Cusi  Guacra Guaritito Guaritopa Huachuri Huaman Huascar Huaypalcon Illaquita Inquill Llicllic Maila Maras 
+			Marcavilca Mayta  Ninancoro Ozcoc Parinango Paucar Paullu Pomacapi Puma Pusca Puyu-Vilca Quilaco Quingallumbo 
+			Quintiraura Quisquis Quizo Rimac Ronpa Sahuaraura Sotaurco Tanqui Tucuycuyche Tupac-Amaru Yupanqui
+			Caca Capayan Hualfin Paccioca Pular Quilme Aconquijas Anguinahao Tocpo Omaguaca }
 	}
 	tupi = {
 		color = {89 80 175}
 		first_names = {Tibiriçá Piquerobi Caiubi Ramalho Italo Arah Pirijá Arata Toruí Mbicy}
 
-		last_names = {Piratininga Tabajara Temiminó Tamoio Tabajara Caeté Tupinaé Temiminó Tupina Aricobé
+		last_names = {Piratininga Tabajara Temiminó Tamoio Caeté Tupinaé Tupina Aricobé
 		}
 	}
 	guarani = {
@@ -1861,7 +1860,7 @@ native_south_american = {
 	amazonian = {
 		color = {4 255 84}
 		first_names = { Áhari Ebedimu Gunfuli Kaigouchi Ilumani Pirijá Semén
-		Wiwakaleme Haubariria Toratora Amorotahe Haubariria Kaigouchi Shoko Laliwa Arah Pirijá Arata Toruí Mbicy }
+		Wiwakaleme Haubariria Toratora Amorotahe Shoko Laliwa Arah Arata Toruí Mbicy }
 
 		last_names = {Eregu Heliya Nenege Waricha Kapongong Makushi Korobahado Panapi Muritaro Fararinno Kafotay Mudaukaho
 		Waia Madinina}
@@ -1890,6 +1889,20 @@ native_south_american = {
 
 		last_names = {Pichiñán Colipí Abajino Araucanía Choll-Choll  Lonko Picunche Promaucae Toqui Nguluche Huilliche
 		Lafquenche}
+	}
+	guajiro = {
+        color = {221 248 75}
+        first_names = { Maleiwa Wuinpejee Wotkasainruu Amuluinjaa Murutkaluirua Ousiajatu Kataulu Nupijainjachi Kejeetshikai Wayuu Sukujala Alaulaa Nukuyamajuin Shikiikalu Chajaruuta Suttaanaka Jouukai Anaitpataa Supulan Jooluu Eesu Wayuukoluirua Neee Naapuin Nnojoishi }
+
+        last_names = { Uliana Jayaliyuu Uraliyuu Iipuana Juusayuu Epieyuu Sapuana Jitnuu Aapushana }
+    }
+	chacoan = {
+		color = { 91 211 130 }
+		first_names = {Sopa Cayo Topa Coyllas Cusichaca Huachuri Huaypalcon Luyes Marcavilca
+			Kantuta Nina Ana Maiara}
+
+		last_names = {Atlatl}
+	}
 }
 native_north_american = {
 	leader = nativeamerican
@@ -1932,8 +1945,8 @@ native_north_american = {
 			Kawasaskotrepahik Makoyekin Nesoauases Onistah Pitahannes
 			Wabasha Petette Tartunkanasiah Keejee Tarsega Wamadetunka Wannata Kokomako Shacope Penision Etaseepa 
 			Wakauhee Poehapa Takewapa Tenchzepart Mascpulochastosh Tetekarmunch Wasaota Oeyakoca Maktowahkeark 
-			Matowayouwe Makatozaza Belotonkatanga Nakapagigi Maktosabichis Mewatanihanska Thathanka Iyotake 
-			Iyapato Thasunke Witko Maphiya Luta Hehaka Sapa Sinte Gleska Ite Omagazu Ogle Luta Mahpiya
+			Matowayouwe Makatozaza Belotonkatanga Nakapagigi Maktosabichis Mewatanihanska Iyotake 
+			Iyapato Witko Maphiya Luta Sapa Sinte Gleska Ite Omagazu Ogle
 		}
 		last_names = { Gleská Duta Iyotake Witko Luta Kohkophapi Sapa Huste Thankja Sichangu Oglala Itazipcho Hunkpapha Mnikhowozu Sihasapa Oohenunpa
 			Ihantkhunwan Ihankthunwanna Isanyathi Thithunwan Wichiyena Wahpéthunwan Mdewakanthunwan Wahpéhute Sisithunwan Aegitina Bizibina Cephubi 
@@ -1942,9 +1955,7 @@ native_north_american = {
 			Osnibi Ptegabina Sunkcebi Sahiyaiyeskabi Snugabi Sihabi Tanidabi Tokanbi Tanzinapebina Unskaha Wadopabina 
 			Wadopahtonwan Wiciyabina Waziyamwincasta Wasinazinyabi Wokpanbi Mesquakie Wagosh Asakiwakie Kickapoo Blackhawk Saukenuk Thakiwakie
 			Tama Osakis Etnataek Kickapougwoi Kithlipecanuk "Jumping Fish" "Sun Fish" Bear Giger Lance Devil "Big Eagle"
-			Wazhaze Tsishu Pasueli Wahakolin Sansueli Wyota Picayune Koholo Neodesha Owasso Pawhuska Niukonska Doppike Neosho Chetopa Hominy Pahusan 
-			Mesquakie Wagosh Asakiwakie Kickapoo Blackhawk Saukenuk Thakiwakie
-			
+			Wazhaze Tsishu Pasueli Wahakolin Sansueli Wyota Picayune Koholo Neodesha Owasso Pawhuska Niukonska Doppike Neosho Chetopa Hominy Pahusan 			
 		}
 	}
 	iroquoian = {
@@ -1988,7 +1999,7 @@ native_north_american = {
 			Onekagoncka Onoalagona Oquaga Osquake Onayotekaono Oriska Ossewingo 
 			Skannayutenate Saratoga Schaunactada Schoharie
 			Teatontaloga Tewanondadon Tionnontoguen Tegasoke Teseroken Tetosweken 
-			Yoroonwago Mohe Diwali Waya Tsiyi Onacona Atagulkalu Degataga Cheasequah Adahy Atagulkalu
+			Yoroonwago Mohe Diwali Waya Tsiyi Onacona Atagulkalu Degataga Cheasequah Adahy
 			Andiata Angoutenc Anonatea Arendaonatia Arente Arontaen Anioton Ahiragenrega Ahondihronon Andachkhrob Antouaronon 
 			Aondironon Atiaonrek Atirhagenrat Atiraguenrek Attiragenrega Attiuoaisgon
 			Cahiague Carhagouha Carmaron Contarea Conchake Chequamegon
@@ -2016,8 +2027,8 @@ native_north_american = {
 		}
 		last_names = { Acoma Cochiti Isleta Jemez Laguna Nambe "Ohkay Owingeh" Picuris Pojoaque Sandia 
 			Taos Tesuque Zia Zuni Hopi Piru Akimel Tohono "Hia Ced" Sobaipuri Otama Kina Equituni Uturituc Sacaton "Onk Akimal"
-			Yoreme Hiakim Potam Vicam Torim Bacum Cocorit Huirivis Benem Rahum Akimel Tohono "Hia Ced" Sobaipuri Otama Kina Equituni Uturituc Sacaton "Onk Akimal"
-			Yoreme Hiakim Potam Vicam Torim Bacum Cocorit Huirivis Benem Rahum Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw 
+			Yoreme Hiakim Potam Vicam Torim Bacum Cocorit Huirivis Benem Rahum
+			Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw 
 			Wishram Wasco Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
 		}
 	}
@@ -2090,34 +2101,22 @@ native_north_american = {
 		first_names = { "Nanni Chaddi" "Na tio tish" Sitahle Oahtekah Ahzaah Kootzzah Moketaveto Ohtoahnesotowheo Harkkahome 
 			Munamenek Otoahnisto Mahvipah Choseta Nahtan Konzhontaco Bazheech Tillaka Chacon Dasoda-hae Cochise Juh 
 			Delshay Goyaale
-			"Nanni Chaddi" "Na tio tish" Sitahle Oahtekah Ahzaah Kootzzah Moketaveto Ohtoahnesotowheo Harkkahome 
-			Munamenek Otoahnisto Mahvipah Choseta Nahtan Konzhontaco Bazheech Tillaka Chacon Dasoda-hae Cochise Juh 
-			Delshay Goyaale
 			"Chapitone" "Ashkii Diyin" "Dahaana Baadaane" "Hastiin Ch'ilhaajin" "Nabaah Jilt'aa" "Bislahalani" 
 			"Hozhooji Naat'a" "Hastiin Daghaa" "Hastiin Daagi" "Haske Yahne Yah" "Toh Yah" "Hastiin Klah" "Ahway Eskay" 
-			"Hoksay Nolyae" "Atsidi Sani" "Beshiltheeni"
-			"Chapitone" "Ashkii Diyin" "Dahaana Baadaane" "Hastiin Ch'ilhaajin" "Nabaah Jilt'aa" "Bislahalani" 
-			"Hozhooji Naat'a" "Hastiin Daghaa" "Hastiin Daagi" "Haske Yahne Yah" "Toh Yah" "Hastiin Klah" "Ahway Eskay" 
-			"Hoksay Nolyae" "Atsidi Sani" "Beshiltheeni"
-			"Nanni Chaddi" "Na tio tish" Sitahle Oahtekah Ahzaah Kootzzah Moketaveto Ohtoahnesotowheo Harkkahome 
-			Munamenek Otoahnisto Mahvipah Choseta Nahtan Konzhontaco Bazheech Tillaka Chacon Dasoda-hae Cochise 
-			Delshay Goyaale Juh
-		}
+			"Hoksay Nolyae" "Atsidi Sani" "Beshiltheeni" }
 		last_names = { Jicarilla Mescalero Chiricahua Lipan Yavapai Tonto Navajo Ramah Mojave
 			Toboso Cholome Jocome Sibolo Pelone Manso Kiva
-			Arivaipa Carlanas Chiricahua Ch'uuk'anen Cibecue Coyotero
+			Arivaipa Carlanas Ch'uuk'anen Cibecue Coyotero
 			Faraones Gileno KIowa Llanero Lipiyanes
 			Mimbrenos Mogollon Na'iisha Natages Pinal 
 			Querechos
 			"Bit'anhi" "Naaste'ezheh" "Kiyaa'aanii" "Dzilt'aadi" Honaghaahnii "To'ahani" 
 			"Ta'neeszahnii" "Hashk'aa Hadzohi" Nihoobaanii "Ts'ah Yisk'idnii" "Todich'ii'nii" "To Baazhni'azhi" Tseikeehee
-			"Naaket L'ahi" "Tsin Sikaadnii" "Biih Bitoodnii" "Tl'ogi" "Todik'ozhi" "K'aahanaanii" "Todich'ii'nii" "Totshnii"
-			"Hooghan Lani" "Dzaaneez Lani" "Tse Deeshgizhnii" "Hasht L'ishnii" Tabaaha Haltsooi "To Baazhni'azhi" "Tachii'nii"
+			"Naaket L'ahi" "Tsin Sikaadnii" "Biih Bitoodnii" "Tl'ogi" "Todik'ozhi" "K'aahanaanii" "Totshnii"
+			"Hooghan Lani" "Dzaaneez Lani" "Tse Deeshgizhnii" "Hasht L'ishnii" Tabaaha Haltsooi "Tachii'nii"
 			"Kin Ichii'nii" Tsenjikini Dibelzhini "Ma'ii Deeshgiizhinii" "Ashinuii" "Keha'atiinii" "To'aheedliinii"
 			"Tsi'naajinii" "Deeshchii'nii" "Tl'izi Lani" "Tl'aaschi'I" Tsenabahituii Nashashi "T'üschebaanii" "Jaa'yaaloolii"
 			"Keha'atiintii" "Naashaashi"
-			Kiusta Kung Yan Hiellan Skidegate "Cha'atl" Haina Kaisun Cumshewa Skedans Tanu Ninstints
-			Masset Atewaas Jaahguhl Kayung "Hlk'yah GaawGa" Klinkwan Sukkwan Howkan Kasaan
 			Kiusta Kung Yan Hiellan Skidegate "Cha'atl" Haina Kaisun Cumshewa Skedans Tanu Ninstints
 			Masset Atewaas Jaahguhl Kayung "Hlk'yah GaawGa" Klinkwan Sukkwan Howkan Kasaan
 		}
@@ -2146,7 +2145,6 @@ native_north_american = {
 			Tsawassen "Tsleil-Waututh" Tulalip Xacuabs
 			Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw 
 			Wishram Wasco Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
-			Wishram Wasco Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
 		}
 	}
 	plains_algonquian = {
@@ -2162,34 +2160,34 @@ native_north_american = {
 			Tarak
 			Aisikstukiks Apikaiyikis Emitahpahksaiyiks Motahtosiks Puhksinahmahyiks Saiyiks Siksinokaks Tsiniktsistsoyiks 
 			Ahkaisumiks Ahkaipokaks Ahkotahshiks Anepo Apikaiyiks Aputosikainah Inuhksoyistamiks Isissokasimiks Istsikaihan 
-			Mameoya Nitikskiks Saksinahmahyiks Sikahpuniks Sikinokaks Ahahpitape Ahkaiyikokakiniks Apikaiyiks Esksinaitupiks 
+			Mameoya Nitikskiks Saksinahmahyiks Sikahpuniks Sikinokaks Ahahpitape Ahkaiyikokakiniks Esksinaitupiks 
 			Inuksikahpowaiks Inuksiks Ipoksimaiks Kahmitaiks Kiyis Kutaiimiks Kutaisotsiman Miahwahpitsiks Miawkinaiyiks 
-			Mokumiks Motahtosiks Motwainaiks Nitakoskitsipupiks Niwayiks Nitikskiks Nitotsiksistaniks Sikokitsimiks 
+			Mokumiks Motwainaiks Nitakoskitsipupiks Niwayiks Nitotsiksistaniks Sikokitsimiks 
 			Sikopoksimaiks Sikutsipumaiks Susksoyiks Tsiniksistsoyiks
 			Wechegalla Tatoncapa Japu Takchesca Chahpacpahha Tatoncahooohcalehpaha Matewashena Shonggemoneto 
 			Shongemonetoeahca Nahpatonca Ohkeecheta Tahhiota Wahhanissatta Voisttitoevetz Nahkkomeien 
 			Motavato Vokivokamast Avonaco Oneahaket Nakohaistah Aamanaco Kohkahywhcumest
 		}
 		last_names = {
-			Mohe Diwali Waya Tsiyi Onacona Atagulkalu Degataga Cheasequah Adahy Atagulkalu
+			Mohe Diwali Waya Tsiyi Onacona Atagulkalu Degataga Cheasequah Adahy
 			Aisikstukiks Apikaiyikis Emitahpahksaiyiks Motahtosiks Puhksinahmahyiks Saiyiks Siksinokaks Tsiniktsistsoyiks 
 			Ahkaisumiks Ahkaipokaks Ahkotahshiks Anepo Apikaiyiks Aputosikainah Inuhksoyistamiks Isissokasimiks Istsikaihan 
-			Mameoya Nitikskiks Saksinahmahyiks Sikahpuniks Sikinokaks Ahahpitape Ahkaiyikokakiniks Apikaiyiks Esksinaitupiks 
+			Mameoya Nitikskiks Saksinahmahyiks Sikahpuniks Sikinokaks Ahahpitape Ahkaiyikokakiniks Esksinaitupiks 
 			Inuksikahpowaiks Inuksiks Ipoksimaiks Kahmitaiks Kiyis Kutaiimiks Kutaisotsiman Miahwahpitsiks Miawkinaiyiks 
-			Mokumiks Motahtosiks Motwainaiks Nitakoskitsipupiks Niwayiks Nitikskiks Nitotsiksistaniks Sikokitsimiks 
+			Mokumiks Motwainaiks Nitakoskitsipupiks Niwayiks Nitotsiksistaniks Sikokitsimiks 
 			Sikopoksimaiks Sikutsipumaiks Susksoyiks Tsiniksistsoyiks
 			Clatsop Cathlamet Skilloot Cathlapotle Multnomah Watlala Clowwewalla Clackamas Chiluckittequaw Wishram Wasco 
 			Atfalati Yamel Lakmiut Chepenafa Santiam Chelamela Calapooya Yoncalla
 		}
 	}
 	eastern_algonquian = {
-		color = { 255 260 122 }
+		color = { 255 250 122 }
 		first_names = {
 			Tatobem Uncas Sassacus Sassious Wequash Tisquantum Miantonomo Nynigrett Pessicus Sassamon Canonchet 
 			Massasoit Wamsutta Metacom Mahomet Weyonomon Occom
 			Wahunsenacawh Debedeavon Okiawampe Kiptopeke Opechancanough Nectowance Totopotomoi Nemattanew 
 			Parahunt Pochins Opitchapan Catataugh Ashaquid Chauco Tomocomo
-			Maumauntissekun Shabash Wassamapah Uncas Chingachgook Etowohkoam Aupamut Konkapot Quinney Skicket Chemaucum Thebeant 
+			Maumauntissekun Shabash Wassamapah Chingachgook Etowohkoam Aupamut Konkapot Quinney Skicket Chemaucum Thebeant 
 			Kithteeleland Lapahnihe Apacahund Netahopuna Tunis Caghkoo Petchenanalas Quenaghtoothmait Pooshies Nanotetauxien 
 			Sarcoxey Neconhecond Kockkatowha
 			Membectou Ounaginitish Eargamet Chickanicto Armquannott Attanas Rechibouctou Chichabenady Miductuk 
@@ -2199,9 +2197,8 @@ native_north_american = {
 			Addeawando Segucewick Kissuragunnit Pittarisquanne Moxusson Erixis Estien Wenemoet Whonumbamet 
 			Chocorua Iteansis Sanboddies Scaweeease Atoan Sozap Pelnal Lol Tanial Missal Tabid Nikpla Edoal Pial Plasoa 
 			Lobal Klegual Simo Az Atian
-			Tetabuxike Bukongehelas Hockingpomskenn Kechkawhanund Alimee Tomaguee Missenewand Petchekekapon 
-			Kithteeleland Lapahnihe Apacahund Netahopuna Tunis Caghkoo Petchenanalas Quenaghtoothmait Pooshies 
-			Nanotetauxien Sarcoxey Neconhecond Kockkatowha Quacornowha Neshapanacumin Queshatowha Pondoxy 
+			Tetabuxike Bukongehelas Hockingpomskenn Kechkawhanund Alimee Tomaguee Missenewand Petchekekapon  
+			Quacornowha Neshapanacumin Queshatowha Pondoxy 
 			Ahlaachick Neconhecon Rockatowah Buckongahelas Gelelemend Oratam Neolin Hopocan Tamanend Tamaqua 
 			Teedyuscung Kkoquethagechton Kockkockquas
 		}
@@ -2212,13 +2209,13 @@ native_north_american = {
 			Naraticong Scheyichbi Secaucus Weehawken
 			Conshohocken Manayunk Passyunk Shackamaxon Wissahickon
 			Amoskeay Cocheco Cowasuck Koasek Masipskwoik Nashua Ossipee Pemigewasset Pennacook Pequaket	Piscataqua Souhegan 
-			Winnibisauga Amaseconti Alessikantekw Kinipekw Odanak Ossipee Panawahpskek Apikwahki Rocameca Wawinak Wôlinak
+			Winnibisauga Amaseconti Alessikantekw Kinipekw Odanak Panawahpskek Apikwahki Rocameca Wawinak Wôlinak
 			Epekwik Epeggoitg Eskikewakik Esgigiag Kespek Gespegiag Kespukwitk Gespogoitg Siknikt Sigenitog sipeknekatik 
 			Segepenegatig Taqmkuk Tagamgoog Wunamakik Onamagig Aboushagan Antigonishe Bhicuctouche Chignecto Ekoupahag Jedaick 
 			Kigicapigiak Miramichi Nalkithoniash Nipigiguit Pohomoosh Shediac Tabogimkik Tabusintack Waycobah
 			Muhhcanneuw Mehckentowoon Wawyachtonoc Westenhuck Wiekagjoc Shecomeco Wechquadnach Pamperaug Bantam Weataug 
 			Scaticook Mahaiwe Wikwajek Chaghnet Horikan Kaunaumeek Kenuckpacook Maringoman Monemius Nepaug Paanpaack Peantam 
-			Potick Potie Shodac Shakehook Unawat Wechquadnach Wequadnack Wiatiae Winooskeek Wyeck
+			Potick Potie Shodac Shakehook Unawat Wequadnack Wiatiae Winooskeek Wyeck
 			Powhatan Arrohateck Appamattuck Pamunkey Mattaponi Chiskiack Kecoughtan Youghtanund Rappahannock Moraughtacund 
 			Weyanoak Paspahegh Quiyoughcohannock Warraskoyack Nansemond
 			Metoac Manchaug Massomuck Menunkantuck Monashackotoog Pequannock
@@ -2232,7 +2229,7 @@ native_north_american = {
 	}
 	muskogean = {
 		color = { 124 136 100 }
-		first_name = {
+		first_names = {
 			Itawamba Tootemastubbe Piomingo Tishomingo Mingatuska Taskietoka Latopoia Ashalatubbi Ishtehotopa Topulkah 
 			Emubby Pistahlahtubee Ishtimolutka Immahhoolotubbe Ishtahachah Lahfinhubbe Shoppowme Ninuckahumba 
 			Illuppahhumba Conmushkaishkah Bahhakahtubbe Bahmahahtubbe Iyahhoutubbe Tokholthlachah Okelahnahnubbe 
@@ -2263,7 +2260,7 @@ native_north_american = {
 			Usquelagana Saktitamaha Itchechana Shumotakali Tinshinkla Chucafalaya Bissacha Otakchitotamaha Yackniachuchuma 
 			Octuechanacbe Ocatalaya Ouiacha Puscustakali Kunshabolukta Yowani Chiskilikbacha Neshobawenya Tamaha Seniasha 
 			Talepokta Iyanabe Nusiconchito Ibetapoklachitto Tombigbee Imoklashaiskitini Holithaasha Abeca Achohchuba Hankhaula 
-			Itokchako Lukfakta Bokfalaya Yazoo Kunshak Okalusa Pante Chemifalaya Shumotakali Osapachito Haluwahiasha Okacoopoly 
+			Itokchako Lukfakta Bokfalaya Yazoo Kunshak Okalusa Pante Chemifalaya Osapachito Haluwahiasha Okacoopoly 
 			Shinukkaha Kafitalaia Imoklashi Cabeahoola Kashtasha Osaktalaya Abissa Chanke Onitalemon	
 			Ackia Alaoute Amalahta Apeony Apilefaplimengo Ashukhuma Ayebisto Chatelaw
 			Chesafaliah Chinica Chopoussa Chucalissa Chukafalaya Chula Coppertown
@@ -2315,8 +2312,8 @@ native_carribean = {
 	carribean = {
 		color = {68 55 89}
 		first_names = {	
-		Wiwakaleme Haubariria Toratora Amorotahe Haubariria Kaigouchi Shoko Laliwa Arah Pirijá Arata Toruí Mbicy 
-		Áhari Ebedimu Gunfuli Kaigouchi Ilumani Pirijá Semén }
+		Wiwakaleme Haubariria Toratora Amorotahe Kaigouchi Shoko Laliwa Arah Pirijá Arata Toruí Mbicy 
+		Áhari Ebedimu Gunfuli Ilumani Semén }
 		last_names = {Eregu Heliya Nenege Waricha Kapongong Makushi Korobahado Panapi Muritaro Fararinno Kafotay Mudaukaho
 		Waia Madinina}
 	}
