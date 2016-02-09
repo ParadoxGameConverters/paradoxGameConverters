@@ -494,6 +494,7 @@
 	link = { eu4 = 1098 v2 = 2130 v2 = 2129 v2 = 2132 }	# St. Helena -> Ascension, Saint Helena, Tristan da Cunha
 	link = { eu4 = 1096 v2 = 1876 }	# Cape Verde -> Cape Verde
 	link = { eu4 = 1097 v2 = 1955 }	# Fernando Po -> Fernando Pó
+	link = { eu4 = 1306 v2 = 1954 }	# Sao Tome -> São Tomé
 	link = { eu4 = 366 v2 = 2136 }	# The Canarias -> Canary Islands
 	link = { eu4 = 368 v2 = 2135 }	# Madeira -> Madeira
 	link = { eu4 = 367 v2 = 2134 }	# The Azores -> Azores
@@ -503,110 +504,162 @@
 	# ##############
 	# Africa
 	# ##############
-	# Africa
-	link = { eu4 = 1177 v2 = 2090 v2 = 2089 v2 = 2087 }	# Cape -> Swettenham, Worcester, Cape Town
-	link = { eu4 = 1175 eu4 = 2864 v2 = 2088 }	# Lesser Namaqualand, Senqu -> Springbok
-	link = { eu4 = 1176 v2 = 2093 }	# Roggeveld -> Calvinia
-	link = { eu4 = 1179 v2 = 2091 }	# Swellendam -> Mossel Bay
-	link = { eu4 = 833 v2 = 2096 v2 = 2097 }	# Graaff-Reinet -> Port Elizabeth, Graaf Reinet
-	link = { eu4 = 1180 v2 = 2098 v2 = 2099 v2 = 2100 }	# Transkei -> Bisho, Mathele, Umtata
-	link = { eu4 = 1178 v2 = 2558 v2 = 2092 }	# Great Karoo -> De Aar, Beaufort
-	link = { eu4 = 2880 v2 = 2094 }	# Griqualand -> Kimberley
-	link = { eu4 = 2856 v2 = 2101 v2 = 2103 v2 = 2102 v2 = 2104 v2 = 2112 }	# Highveld -> Bloemfontein, Philippolis, Winburg, Thaba Bosiu, Ladysmith
-	link = { eu4 = 1181 v2 = 2111 }	# Natal -> Durban
-	link = { eu4 = 789 v2 = 2113 }	# Mtetwa -> Ulundi
-	link = { eu4 = 1174 v2 = 2083 }	# Angra Pequena -> Walvis Bay
-	link = { eu4 = 1193 v2 = 2122 v2 = 2117 v2 = 2116 }	# Menabe -> Toliara, Ampanihy, Fianarantsoa
-	link = { eu4 = 1792 v2 = 2118 v2 = 2119 v2 = 2115 }	# Antananarivo -> Tolanaro, Toamasina, Tananarive
-	link = { eu4 = 1194 v2 = 2120 v2 = 2121 v2 = 2124 v2 = 2123 }	# Boina -> Antsiranana, Mahajanga, Mayotte, Comoros
-	link = { eu4 = 1182 v2 = 2049 v2 = 2050 }	# Delagoa Bay -> Lourenzo Marques, Chaimate
-	link = { eu4 = 1183 v2 = 2051 }	# Inhambane -> Inhambane
-	link = { eu4 = 1186 v2 = 2057 }	# Sofala -> Sofala
-	link = { eu4 = 1192 v2 = 2059 }	# Quelimane -> Quelimane
-	link = { eu4 = 2952 v2 = 2052 }	# Madanda -> Massekisse
-	link = { eu4 = 1187 v2 = 2058 }	# Urungwe -> Mossurize
-	link = { eu4 = 1191 eu4 = 2951 v2 = 2070 }	# Sena, Manikya -> Mutare
-	link = { eu4 = 1184 v2 = 2073 v2 = 2071 }	# Zimbabwe -> Masvingo, Bulawayo
-	link = { eu4 = 1189 eu4 = 1185 v2 = 2072 }	# Barwe, Uteve -> Hwange
-	link = { eu4 = 2950 v2 = 2069 }	# Buhera -> Gweru
-	link = { eu4 = 1190 v2 = 2635 }	# Zumbo -> Kariba
-	link = { eu4 = 1188 v2 = 2068 }	# Tete -> Harare
-	link = { eu4 = 1168 eu4 = 1170 v2 = 2001 }	# Nsoyo, Kongo -> Mbanza
-	link = { eu4 = 1167 v2 = 1999 }	# Luanda -> Luanda
-	link = { eu4 = 1172 v2 = 2003 }	# Benguela -> Benguela
-	link = { eu4 = 1171 eu4 = 798 v2 = 2002 v2 = 2009 }	# MANY-TO-MANY: Ndongo, Mbwila -> Quibala, Malanje
-	link = { eu4 = 2948 v2 = 2010 }	# Matamba -> Saurimo
-	link = { eu4 = 2949 eu4 = 1901 v2 = 1985 }	# Mbata, Mpangu -> Kumbana
-	link = { eu4 = 1166 v2 = 1974 v2 = 2624 v2 = 2000 v2 = 1983 }	# Loango -> Mayumbe, Loango, Cabinda, Boma
-	link = { eu4 = 1169 v2 = 1978 v2 = 1977 v2 = 1982 }	# Mayombe -> Madingou, Nkuna, Kinshasa
-	link = { eu4 = 1165 v2 = 1972 v2 = 1954 }	# Gabon -> Libreville, São Tomé
-	link = { eu4 = 1164 v2 = 1956 v2 = 1958 v2 = 1973 }	# Cameroon -> Douala, Kribi, Bata
-	link = { eu4 = 1163 v2 = 1957 v2 = 1934 }	# Calabar -> Buea, Calabar
-	link = { eu4 = 1151 v2 = 1932 }	# Bonny -> Bonny
-	link = { eu4 = 2294 v2 = 1931 }	# Warri -> Warri
-	link = { eu4 = 1147 v2 = 1928 }	# Benin -> Benin
-	link = { eu4 = 2290 v2 = 1923 }	# Ijebu -> Lagos
-	link = { eu4 = 1141 v2 = 1919 v2 = 1914 }	# Whydah -> Cotonou, Lome
-	link = { eu4 = 1139 v2 = 1907 v2 = 1908 }	# Gold Coast -> Accra, Cape Coast
-	link = { eu4 = 2258 v2 = 1909 v2 = 1894 }	# Cape Coast -> Sekondi, Grand Bassam
-	link = { eu4 = 1126 v2 = 1892 v2 = 1893 }	# Ivory Coast -> Grand Lahou, Sassandra
-	link = { eu4 = 1119 v2 = 1888 }	# Grain Coast -> Harper
-	link = { eu4 = 2242 v2 = 1887 }	# Karou -> Monrovia
-	link = { eu4 = 1118 v2 = 1884 }	# Sierra Leone -> Freetown
-	link = { eu4 = 2241 v2 = 1879 }	# Beafada -> Boffa
-	link = { eu4 = 1114 v2 = 1878 v2 = 1877 }	# Gabu -> Gabu, Bissau
-	link = { eu4 = 2239 v2 = 1792 v2 = 1785 v2 = 1793 }	# Siine -> Ziguinchor, Banjul, Velingara
-	link = { eu4 = 1113 v2 = 1783 v2 = 2573 v2 = 1787 v2 = 1788 }	# Cayor -> Dakar, Mboul, Diourbel, Kaolack
-	link = { eu4 = 1112 v2 = 1776 v2 = 1784 }	# Trarza -> Rosso, Saint-Louis
-	link = { eu4 = 1111 v2 = 1774 }	# Arguin -> Dakhla
-	link = { eu4 = 788 v2 = 2061 }	# Angoche -> Angoche
-	link = { eu4 = 1195 v2 = 2060 v2 = 2063 }	# Mozambique -> Moçambique, Ibo
-	link = { eu4 = 1198 v2 = 2039 }	# Tabora -> Lindi
-	link = { eu4 = 1196 v2 = 2038 }	# Kilwa -> Kilwa
-	link = { eu4 = 1197 eu4 = 1199 v2 = 2036 }	# Ujiji, Bagamoyo -> Dar Es Salaam
-	link = { eu4 = 1201 v2 = 2048 }	# Zanzibar -> Zanzibar
-	link = { eu4 = 1200 v2 = 2037 }	# Tanga -> Tanga
-	link = { eu4 = 1202 v2 = 2029 v2 = 2033 }	# Mombasa -> Mombasa, Voi
-	link = { eu4 = 1204 eu4 = 1203 eu4 = 2796 v2 = 2030 }	# Chisimayo, Malindi, Pate -> Lamu
-	link = { eu4 = 2781 eu4 = 2777 eu4 = 2774 eu4 = 2794 v2 = 1870 }	# Gedo, Bardera, Kismayo, Barawa -> Kismayo
-	link = { eu4 = 2775 eu4 = 1205 v2 = 1868 }	# Merca, Mogadishu -> Mogadishu
-	link = { eu4 = 2776 eu4 = 2780 v2 = 1869 }	# Afgooye, Beledweyne -> Baidoa
-	link = { eu4 = 2784 eu4 = 2783 eu4 = 2785 eu4 = 2795 eu4 = 2782 v2 = 1871 }	# Galkayo, Hobyo, El Buur, Meregh, Warsheikh -> Hobyo
-	link = { eu4 = 1206 eu4 = 2788 eu4 = 2786 eu4 = 2024 v2 = 1872 }	# Mayertern, Hafun, Bosaso, Ajiraan -> Bosaso
-	link = { eu4 = 2792 eu4 = 2789 eu4 = 2790 eu4 = 1209 eu4 = 2793 v2 = 1873 }	# Togdheer, Las Khorey, Sanaag, Berbera, Hargeisa -> Berbera
-	link = { eu4 = 1212 eu4 = 1215 v2 = 1875 v2 = 1874 }	# MANY-TO-MANY: Zeila, Tajura -> Djibuti, Zeyla
-	link = { eu4 = 2765 v2 = 1851 }	# Assab -> Assab
-	link = { eu4 = 2779 eu4 = 1210 v2 = 1866 }	# Afder, Ifat -> Goba
-	link = { eu4 = 1208 eu4 = 1207 eu4 = 2778 v2 = 1867 }	# Haud, Ogaden, Warder -> Werder
-	link = { eu4 = 1218 eu4 = 2756 eu4 = 2757 v2 = 1864 }	# Kefa, Welayta, Kaffa -> Negele
-	link = { eu4 = 2773 eu4 = 1211 v2 = 1865 }	# Mora, Harer -> Harer
-	link = { eu4 = 2761 eu4 = 2760 v2 = 1861 }	# Arsi, Hadiya -> Aselia
-	link = { eu4 = 2759 eu4 = 2758 v2 = 1860 v2 = 1862 }	# MANY-TO-MANY: Gambela, Illubabor -> Awasa, Bonga
-	link = { eu4 = 2764 eu4 = 2768 v2 = 1858 }	# Ausa, Angot -> Awsa
-	link = { eu4 = 2791 eu4 = 1213 eu4 = 2762 v2 = 1859 }	# Ankober, Shoa, Damot -> Ankober
-	link = { eu4 = 2763 eu4 = 1217 v2 = 1863 }	# Asosa, Fazughli -> Asosa
-	link = { eu4 = 1223 eu4 = 2770 v2 = 1855 }	# Gojjam, Agew -> Debre Markos
-	link = { eu4 = 1214 eu4 = 1224 v2 = 1853 }	# Awsa, Gonder -> Debre Tabor
-	link = { eu4 = 1230 v2 = 1849 }	# Massawa -> Massawa
-	link = { eu4 = 2767 eu4 = 2769 v2 = 1848 v2 = 1856 v2 = 1857 }	# MANY-TO-MANY: Enderta, Lasta -> Asmara, Aksum, Antalo
-	link = { eu4 = 2787 eu4 = 2766 eu4 = 1227 v2 = 1850 }	# Hamasien, Mendefera, Tigre -> Akordat
-	link = { eu4 = 2771 v2 = 1852 }	# Semien -> Gonder
-	link = { eu4 = 2772 v2 = 1854 }	# Dembiya -> Matamma
-	link = { eu4 = 2474 v2 = 1741 }	# Tajarhi -> Murzuk
+	# Resettable Region west_africa_interior
+	link = { eu4 = 2294 v2 = 1931 resettable = west_africa_interior }	# Warri -> Warri
+	link = { eu4 = 1147 v2 = 1928 resettable = west_africa_interior }	# Benin -> Benin
+	link = { eu4 = 2290 v2 = 1923 resettable = west_africa_interior }	# Ijebu -> Lagos
+	link = { eu4 = 1114 v2 = 1878 v2 = 1877 resettable = west_africa_interior }	# Gabu -> Gabu, Bissau
+	link = { eu4 = 2239 v2 = 1792 v2 = 1785 v2 = 1793 resettable = west_africa_interior }	# Siine -> Ziguinchor, Banjul, Velingara
+	link = { eu4 = 1113 v2 = 1783 v2 = 2573 v2 = 1787 v2 = 1788 resettable = west_africa_interior }	# Cayor -> Dakar, Mboul, Diourbel, Kaolack
+	link = { eu4 = 1112 v2 = 1776 v2 = 1784 resettable = west_africa_interior }	# Trarza -> Rosso, Saint-Louis
+	link = { eu4 = 2474 v2 = 1741 resettable = west_africa_interior }	# Tajhari -> Murzuk
+	link = { eu4 = 1158 v2 = 1824 resettable = west_africa_interior }	# Kanem -> Mao
+	link = { eu4 = 1159 v2 = 1818 v2 = 1820 resettable = west_africa_interior }	# Bagirmi -> Massenya, Bongor
+	link = { eu4 = 2287 eu4 = 2286 eu4 = 1160 v2 = 1819 v2 = 1964 resettable = west_africa_interior }	# MANY-TO-MANY: Kotoko, Logone, Bornu -> Moundou, Maroua
+	link = { eu4 = 1157 v2 = 1953 v2 = 1951 resettable = west_africa_interior }	# Borno -> Dikoa, Kuka
+	link = { eu4 = 2284 v2 = 1816 resettable = west_africa_interior }	# Manga -> Kufe
+	link = { eu4 = 2271 eu4 = 1130 eu4 = 1133 v2 = 1807 resettable = west_africa_interior }	# Azawagh, Tadmekka, Gao -> Tessalit
+	link = { eu4 = 2262 v2 = 1805 resettable = west_africa_interior }	# Karabara -> Gao
+	link = { eu4 = 1128 v2 = 1806 resettable = west_africa_interior }	# Taudeni -> Taoudenni
+	link = { eu4 = 1129 eu4 = 1132 eu4 = 2247 eu4 = 2260 v2 = 2609 v2 = 1803 resettable = west_africa_interior }	# MANY-TO-MANY: Azawad, Timbuktu, Hodh, Mema -> Araouane, Timbuktu
+	link = { eu4 = 1156 v2 = 1815 resettable = west_africa_interior }	# Damagaram -> Zinder
+	link = { eu4 = 2276 v2 = 1811 resettable = west_africa_interior }	# Itesan -> Maradi
+	link = { eu4 = 2273 eu4 = 2270 v2 = 1810 resettable = west_africa_interior }	# Ader, Dallol -> Dosso
+	link = { eu4 = 1115 v2 = 1777 v2 = 1789 resettable = west_africa_interior }	# Brakna -> Aleg, Podor
+	link = { eu4 = 2244 v2 = 1778 resettable = west_africa_interior }	# Tagant -> Maghama
+	link = { eu4 = 1117 v2 = 1880 resettable = west_africa_interior }	# Futa Jallon -> Timbo
+	link = { eu4 = 1121 v2 = 1881 v2 = 1882 resettable = west_africa_interior }	# Bure -> Dinguiraye, Kankan
+	link = { eu4 = 1116 v2 = 1786 resettable = west_africa_interior }	# Wolof -> Linguere
+	link = { eu4 = 2237 v2 = 1790 resettable = west_africa_interior }	# Tekrur -> Matam
+	link = { eu4 = 2238 eu4 = 2240 eu4 = 1120 v2 = 1791 v2 = 1795 resettable = west_africa_interior }	# MANY-TO-MANY: Kantor, Galam, Bambuk -> Bakel, Kayes
+	link = { eu4 = 2255 v2 = 1897 resettable = west_africa_interior }	# Gyaaman -> Akoupe	
+	link = { eu4 = 2269 v2 = 1808 resettable = west_africa_interior }	# Zarmaganda -> Niamey
+	link = { eu4 = 2268 eu4 = 1142 v2 = 1809 resettable = west_africa_interior }	# Aribanda, Dendi -> Say
+	link = { eu4 = 1136 eu4 = 2266 v2 = 1904 resettable = west_africa_interior }	# Gurma, Bilanga -> Fada Ngourma
+	link = { eu4 = 2264 eu4 = 2265 eu4 = 2263 eu4 = 2261 eu4 = 1134 v2 = 1903 v2 = 1902 resettable = west_africa_interior }	# MANY-TO-MANY: Hombori, Liptako, Haayre, Kala, Jenne -> Dori, Wahiguya
+	link = { eu4 = 2259 v2 = 1804 resettable = west_africa_interior }	# Bara -> Bandiagara
+	link = { eu4 = 1131 v2 = 1802 resettable = west_africa_interior }	# Massina -> Jenne
+	link = { eu4 = 2246 v2 = 1801 resettable = west_africa_interior }	# Baghena -> Mourdiah
+	link = { eu4 = 2248 v2 = 1800 resettable = west_africa_interior }	# Do -> Segu
+	link = { eu4 = 2243 v2 = 1796 resettable = west_africa_interior }	# Termes -> Nioro
+	link = { eu4 = 2245 v2 = 1797 resettable = west_africa_interior }	# Wagadu -> Kita
+	link = { eu4 = 1123 v2 = 1794 resettable = west_africa_interior }	# Segu -> Bamako
+	link = { eu4 = 1135 eu4 = 1137 v2 = 1901 resettable = west_africa_interior }	# Yatenga, Wagadugi -> Wagadugu
+	link = { eu4 = 1124 v2 = 1798 resettable = west_africa_interior }	# Joma -> Bougouni
+	link = { eu4 = 2249 eu4 = 2250 v2 = 1799 resettable = west_africa_interior }	# Sibiridugu, Bendugu -> Sikasso
+	link = { eu4 = 2253 eu4 = 2252 v2 = 1906 v2 = 1905 resettable = west_africa_interior }	# MANY-TO-MANY: Gwiriko, Lobi -> Orodaro, Bobo Dioulasso
+	link = { eu4 = 1122 v2 = 1898 resettable = west_africa_interior }	# Bagoe -> Kong
+	link = { eu4 = 1125 v2 = 1899 resettable = west_africa_interior }	# Kong -> Bondouku
+	link = { eu4 = 2289 v2 = 1933 resettable = west_africa_interior }	# Ondo -> Awka
+	link = { eu4 = 1152 v2 = 1935 v2 = 1930 resettable = west_africa_interior }	# Idah -> Aruchukwu, Lokoja
+	link = { eu4 = 1162 v2 = 1961 resettable = west_africa_interior }	# Wukari -> Bamenda
+	link = { eu4 = 2285 eu4 = 1249 v2 = 1950 v2 = 1937 resettable = west_africa_interior }	# MANY-TO-MANY: Marghi, Yola -> Yola, Tukari
+	link = { eu4 = 2282 eu4 = 2283 v2 = 1952 v2 = 1949 resettable = west_africa_interior }	# MANY-TO-MANY: Muniyo, Bedde -> Nguru, Hadejia
+	link = { eu4 = 1161 v2 = 1944 resettable = west_africa_interior }	# Bauchi -> Gombe
+	link = { eu4 = 1153 v2 = 1936 resettable = west_africa_interior }	# Pindinga -> Makurdi
+	link = { eu4 = 2281 v2 = 1943 resettable = west_africa_interior }	# Rano -> Jos
+	link = { eu4 = 2280 v2 = 1942 resettable = west_africa_interior }	# Biram -> Bauchi
+	link = { eu4 = 2267 eu4 = 2254 eu4 = 2256 eu4 = 1138 v2 = 1912 v2 = 1913 v2 = 1916 v2 = 1911 resettable = west_africa_interior }	# MANY-TO-MANY: Tenkodogo, Bonoman, Dagbon, Kumasi -> Wa, Tamale, Yendi, Kintampo
+	link = { eu4 = 2295 eu4 = 1140 v2 = 1915 v2 = 1918 v2 = 1917 resettable = west_africa_interior }	# MANY-TO-MANY: Atakora, Abomey -> Ho, Sokode, Atakpame
+	link = { eu4 = 1143 eu4 = 2292 eu4 = 2291 eu4 = 1144 v2 = 1922 v2 = 1921 v2 = 1920 v2 = 1938 v2 = 1924 v2 = 1925 resettable = west_africa_interior }	# MANY-TO-MANY: Borgu, Moshi, Ketu, Oyo -> Jugu, Nikki, Abomey, Bussa, Abeokuta, Ibadan
+	link = { eu4 = 1146 v2 = 1926 v2 = 1929 v2 = 1927 resettable = west_africa_interior }	# Ife -> Ife, Akure, Ilorin
+	link = { eu4 = 1145 eu4 = 2293 v2 = 1941 v2 = 1940 resettable = west_africa_interior }	# MANY-TO-MANY: Nupe, Yawuri -> Abuja, Bida
+	link = { eu4 = 2278 v2 = 1946 resettable = west_africa_interior }	# Kebbi -> Kebbi
+	link = { eu4 = 1154 eu4 = 1150 eu4 = 1148 v2 = 1939 v2 = 1948 resettable = west_africa_interior }	# MANY-TO-MANY: Zazzau, Zamfara, Gobir -> Zaria, Sokoto
+	link = { eu4 = 1149 eu4 = 2279 eu4 = 1155 v2 = 1945 v2 = 1947 resettable = west_africa_interior }	# MANY-TO-MANY: Katsina, Daura, Kano -> Kano, Katsina
+	link = { eu4 = 1127 v2 = 1716 v2 = 1717 resettable = west_africa_interior }    # Tuat -> Tindouf, Chenachene
+    link = { eu4 = 2272 eu4 = 2274 eu4 = 2275 v2 = 1813 v2 = 1812 resettable = west_africa_interior }    # Azbin, Air, Tenere -> Arlit, Agades
+    link = { eu4 = 2277 v2 = 1817 resettable = west_africa_interior } # Kawar -> Bilma
+    link = { eu4 = 2475 v2 = 1814 resettable = west_africa_interior } # Djado -> Madama
+    link = { eu4 = 2288 v2 = 1821 resettable = west_africa_interior }    # Yao -> Abeche
+    link = { eu4 = 2932 v2 = 1822 v2 = 1823 resettable = west_africa_interior }    # Waddai -> Am Timan, Mongo
+    link = { eu4 = 774 eu4 = 2801 v2 = 1842 resettable = west_africa_interior }    # Al-Junaynah, Medwa -> Junayah
+	# Resettable Region west_africa_coast
+	link = { eu4 = 1111 v2 = 1774 resettable = west_africa_coast }	# Arguin -> Dakhla
+	link = { eu4 = 1141 v2 = 1919 v2 = 1914 resettable = west_africa_coast }	# Whydah -> Cotonou, Lome
+	link = { eu4 = 1139 v2 = 1907 v2 = 1908 resettable = west_africa_coast }	# Gold Coast -> Accra, Cape Coast
+	link = { eu4 = 2258 v2 = 1909 v2 = 1894 resettable = west_africa_coast }	# Cape Coast -> Sekondi, Grand Bassam
+	link = { eu4 = 1126 v2 = 1892 v2 = 1893 resettable = west_africa_coast }	# Ivory Coast -> Grand Lahou, Sassandra
+	link = { eu4 = 1119 v2 = 1888 resettable = west_africa_coast }	# Grain Coast -> Harper
+	link = { eu4 = 2242 v2 = 1887 resettable = west_africa_coast }	# Karou -> Monrovia
+	link = { eu4 = 1118 v2 = 1884 resettable = west_africa_coast }	# Sierra Leone -> Freetown
+	link = { eu4 = 2241 v2 = 1879 resettable = west_africa_coast }	# Beafada -> Boffa
+	link = { eu4 = 2257 v2 = 1910 resettable = west_africa_coast }	# Denkyira -> Kumasi
+	# Resettable Region southwest_africa_coast
+	link = { eu4 = 1174 v2 = 2083 resettable = southwest_africa_coast }	# Angra Pequena -> Walvis Bay
+	link = { eu4 = 1167 v2 = 1999 resettable = southwest_africa_coast }	# Luanda -> Luanda
+	link = { eu4 = 1172 v2 = 2003 resettable = southwest_africa_coast }	# Benguela -> Benguela
+	link = { eu4 = 1168 eu4 = 1170 v2 = 2001 resettable = southwest_africa_coast }	# Mbamba, Mpemba -> Mbanza
+	link = { eu4 = 1171 eu4 = 798 v2 = 2002 v2 = 2009 resettable = southwest_africa_coast }	# MANY-TO-MANY: Ndongo, Mbwila -> Quibala, Malanje
+	link = { eu4 = 2948 v2 = 2010 resettable = southwest_africa_coast }	# Matamba -> Saurimo
+	link = { eu4 = 2949 eu4 = 1901 v2 = 1985 resettable = southwest_africa_coast }	# Mbata, Mpangu -> Kumbana
+	link = { eu4 = 1166 v2 = 1974 v2 = 2624 v2 = 2000 v2 = 1983 resettable = southwest_africa_coast }	# Loango -> Mayumbe, Loango, Cabinda, Boma
+	link = { eu4 = 1169 v2 = 1978 v2 = 1977 v2 = 1982 resettable = southwest_africa_coast }	# Anziku -> Madingou, Nkuna, Kinshasa
+	link = { eu4 = 1165 v2 = 1972 resettable = southwest_africa_coast }	# Gabon -> Libreville
+	link = { eu4 = 1164 v2 = 1956 v2 = 1958 v2 = 1973 resettable = southwest_africa_coast }	# Cameroon -> Douala, Kribi, Bata
+	link = { eu4 = 1163 v2 = 1957 v2 = 1934 resettable = southwest_africa_coast }	# Calabar -> Buea, Calabar
+	link = { eu4 = 1151 v2 = 1932 resettable = southwest_africa_coast }	# Bonny -> Bonny
+	# Resettable Region south_africa
+	link = { eu4 = 1175 eu4 = 2864 v2 = 2088 resettable = south_africa }	# Lesser Namaqualand, Senqu -> Springbok
+	link = { eu4 = 1177 v2 = 2090 v2 = 2089 v2 = 2087 resettable = south_africa }	# Cape -> Swettenham, Worcester, Cape Town
+	link = { eu4 = 1176 v2 = 2093 resettable = south_africa }	# Roggeveld -> Calvinia
+	link = { eu4 = 1179 v2 = 2091 resettable = south_africa }	# Swellendam -> Mossel Bay
+	link = { eu4 = 833 v2 = 2096 v2 = 2097 resettable = south_africa }	# Graaff-Reinet -> Port Elizabeth, Graaf Reinet
+	link = { eu4 = 1180 v2 = 2098 v2 = 2099 v2 = 2100 resettable = south_africa }	# Xhosa -> Bisho, Mathele, Umtata
+	link = { eu4 = 1178 v2 = 2558 v2 = 2092 resettable = south_africa }	# Great Karoo -> De Aar, Beaufort
+	link = { eu4 = 2880 v2 = 2094 resettable = south_africa }	# Griqualand -> Kimberley
+	link = { eu4 = 2856 v2 = 2101 v2 = 2103 v2 = 2102 v2 = 2104 v2 = 2112 resettable = south_africa }	# Highveld -> Bloemfontein, Philippolis, Winburg, Thaba Bosiu, Ladysmith
+	link = { eu4 = 1181 v2 = 2111 resettable = south_africa }	# Natal -> Durban
+	link = { eu4 = 789 v2 = 2113 resettable = south_africa }	# Mtetwa -> Ulundi
+	link = { eu4 = 1182 v2 = 2049 v2 = 2050 resettable = south_africa }	# Matsolo -> Lourenzo Marques, Chaimate
+	link = { eu4 = 1183 v2 = 2051 resettable = south_africa }	# Inhambane -> Inhambane
+	# Resettable Region east_africa_coast
+	link = { eu4 = 1186 v2 = 2057 resettable = east_africa_coast }	# Sofala -> Sofala
+	link = { eu4 = 1192 v2 = 2059 resettable = east_africa_coast }	# Quelimane -> Quelimane
+	link = { eu4 = 2952 v2 = 2052 resettable = east_africa_coast }	# Madanda -> Massekisse
+	link = { eu4 = 1187 v2 = 2058 resettable = east_africa_coast }	# Sena -> Mossurize
+	link = { eu4 = 1191 eu4 = 2951 v2 = 2070 resettable = east_africa_coast }	# Tete, Manikya -> Mutare
+	link = { eu4 = 1184 v2 = 2073 v2 = 2071 resettable = east_africa_coast }	# Zimbabwe -> Masvingo, Bulawayo
+	link = { eu4 = 1189 eu4 = 1185 v2 = 2072 resettable = east_africa_coast }	# Shangwe, Butua -> Hwange
+	link = { eu4 = 2950 v2 = 2069 resettable = east_africa_coast }	# Buhera -> Gweru
+	link = { eu4 = 1190 v2 = 2635 resettable = east_africa_coast }	# Zumbo -> Kariba
+	link = { eu4 = 1188 v2 = 2068 resettable = east_africa_coast }	# Massapa -> Harare
+	link = { eu4 = 788 v2 = 2061 resettable = east_africa_coast }	# Angoche -> Angoche
+	link = { eu4 = 1195 v2 = 2060 v2 = 2063 resettable = east_africa_coast }	# Mozambique -> Moçambique, Ibo
+	link = { eu4 = 1198 v2 = 2039 resettable = east_africa_coast }	# Tabora -> Lindi
+	link = { eu4 = 1196 v2 = 2038 resettable = east_africa_coast }	# Kilwa -> Kilwa
+	link = { eu4 = 1197 eu4 = 1199 v2 = 2036 resettable = east_africa_coast }	# Mzizima, Bagamoyo -> Dar Es Salaam
+	link = { eu4 = 1201 v2 = 2048 resettable = east_africa_coast }	# Zanzibar -> Zanzibar
+	link = { eu4 = 1200 v2 = 2037 resettable = east_africa_coast }	# Tanga -> Tanga
+	link = { eu4 = 1202 v2 = 2029 v2 = 2033 resettable = east_africa_coast }	# Mombasa -> Mombasa, Voi
+	link = { eu4 = 1204 eu4 = 1203 eu4 = 2796 v2 = 2030 resettable = east_africa_coast }	# Lamu, Malindi, Pate -> Lamu
+	# Resettable Region madagascar
+	link = { eu4 = 1193 v2 = 2122 v2 = 2117 v2 = 2116 resettable = madagascar }	# Menabe -> Toliara, Ampanihy, Fianarantsoa
+	link = { eu4 = 1792 v2 = 2118 v2 = 2119 v2 = 2115 resettable = madagascar }	# Antananarivo -> Tolanaro, Toamasina, Tananarive
+	link = { eu4 = 1194 v2 = 2120 v2 = 2121 v2 = 2124 v2 = 2123 resettable = madagascar }	# Boina -> Antsiranana, Mahajanga, Mayotte, Comoros
+	# Resettable Region horn_of_africa
+	link = { eu4 = 2781 eu4 = 2777 eu4 = 2774 eu4 = 2794 v2 = 1870 resettable = horn_of_africa }	# Gedo, Bardera, Kismayo, Barawa -> Kismayo
+	link = { eu4 = 2775 eu4 = 1205 v2 = 1868 resettable = horn_of_africa }	# Merca, Mogadishu -> Mogadishu
+	link = { eu4 = 2776 eu4 = 2780 v2 = 1869 resettable = horn_of_africa }	# Afgooye, Beledweyne -> Baidoa
+	link = { eu4 = 2784 eu4 = 2783 eu4 = 2785 eu4 = 2795 eu4 = 2782 v2 = 1871 resettable = horn_of_africa }	# Galkayo, Hobyo, El Buur, Meregh, Warsheikh -> Hobyo
+	link = { eu4 = 1206 eu4 = 2788 eu4 = 2786 eu4 = 2024 v2 = 1872 resettable = horn_of_africa }	# Qardho, Hafun, Bosaso, Garoowe -> Bosaso
+	link = { eu4 = 2792 eu4 = 2789 eu4 = 2790 eu4 = 1209 eu4 = 2793 v2 = 1873 resettable = horn_of_africa }	# Togdheer, Las Khorey, Sanaag, Berbera, Hargeisa -> Berbera
+	link = { eu4 = 1208 eu4 = 1207 eu4 = 2778 v2 = 1867 resettable = horn_of_africa }	# Haud, Ogaden, Warder -> Werder
+	# North Africa
 	link = { eu4 = 2448 v2 = 1743 v2 = 1742 }	# Fezzan -> Ghat, Sabha
 	link = { eu4 = 2449 v2 = 1744 v2 = 1732 }	# Jufra -> Ghadamis, Gharyan
 	link = { eu4 = 2451 v2 = 1733 }	# Thubaqt -> Misratah
-	link = { eu4 = 354 eu4 = 2452 v2 = 1731 }	# Tripolitania, Zuwarah -> Tripoli
+	link = { eu4 = 354 eu4 = 2452 v2 = 1731 }	# Tripoli, Zuwarah -> Tripoli
 	link = { eu4 = 353 eu4 = 2453 eu4 = 2954 v2 = 1730 }	# Gabes, Sfax, Djerba -> Gabes
 	link = { eu4 = 2450 eu4 = 352 v2 = 1729 }	# Ghadames, Gafsa -> Tozeur
-	link = { eu4 = 2473 v2 = 1728 }	# Souss -> Kairouan
+	link = { eu4 = 2473 v2 = 1728 }	# Sousse -> Kairouan
 	link = { eu4 = 341 v2 = 1725 }	# Tunis -> Tunis
 	link = { eu4 = 2455 v2 = 1726 }	# Bizerte -> Bizerte
-	link = { eu4 = 2454 v2 = 1727 }	# Kairouan -> Gafsa
+	link = { eu4 = 2454 v2 = 1727 }	# Kef -> Gafsa
 	link = { eu4 = 355 v2 = 1734 }	# Sirt -> Sirt
-	link = { eu4 = 356 v2 = 1735 }	# Cyrenaica -> Benghazi
+	link = { eu4 = 356 v2 = 1735 }	# Bangazi -> Benghazi
 	link = { eu4 = 357 v2 = 1736 }	# Darnah -> Darna
-	link = { eu4 = 2326 v2 = 1737 }	# Bardiyah -> Tobruk
+	link = { eu4 = 2326 v2 = 1737 }	# Bardiya -> Tobruk
 	link = { eu4 = 2325 v2 = 1752 v2 = 1753 v2 = 1754 }	# Tarrana -> Matruh, Sidi Barrani, Siwa
 	link = { eu4 = 358 v2 = 1751 }	# Alexandria -> Alexandria
 	link = { eu4 = 2318 v2 = 1759 }	# Al Wahat -> Bawiti
@@ -624,95 +677,59 @@
 	link = { eu4 = 2323 v2 = 1768 v2 = 1766 }	# Sahra an Nubyah -> Idfu, Aswan
 	link = { eu4 = 1234 eu4 = 2322 v2 = 1761 }	# Qasr Ibrim, Wadi Halfa -> Baris
 	link = { eu4 = 1229 eu4 = 2797 v2 = 1836 v2 = 1837 }	# MANY-TO-MANY: Berber, Shendy -> Hayya, Atbara
-	link = { eu4 = 1228 eu4 = 1220 v2 = 1835 }	# Dongola, Dar Ja'al -> Dongola
-	link = { eu4 = 1226 eu4 = 1225 v2 = 1829 v2 = 1830 v2 = 1832 }	# MANY-TO-MANY: Taka, Butana -> Kassala, Sennar, Fashoda
-	link = { eu4 = 2798 v2 = 1828 v2 = 1827 }	# Soba -> Wad Madani, Khartoum
-	link = { eu4 = 1222 eu4 = 2799 v2 = 1831 }	# Gezira, Sennar -> Rabak
-	link = { eu4 = 2801 eu4 = 1221 eu4 = 2800 v2 = 1838 }	# Medwa, Taqali, Kosti -> Obeid
-	link = { eu4 = 1216 v2 = 1840 }	# Dar Nuba -> Kaduqli
-	link = { eu4 = 2802 v2 = 1839 }	# Kobbe -> Nuhud
-	link = { eu4 = 1158 v2 = 1824 }	# Kanem -> Mao
-	link = { eu4 = 1159 v2 = 1818 v2 = 1820 }	# Bagirmi -> Massenya, Bongor
-	link = { eu4 = 2287 eu4 = 2286 eu4 = 1160 v2 = 1819 v2 = 1964 }	# MANY-TO-MANY: Kotoko, Logone, Bornu -> Moundou, Maroua
-	link = { eu4 = 1157 v2 = 1953 v2 = 1951 }	# Damasak -> Dikoa, Kuka
+	link = { eu4 = 1228 eu4 = 1220 v2 = 1835 }	# Dongola, Bayuda -> Dongola
 	link = { eu4 = 348 eu4 = 2464 eu4 = 2466 v2 = 1699 }	# Sus, Ouarzazate, Draa -> Warzazat
-	link = { eu4 = 2460 eu4 = 346 v2 = 1698 }	# Saoura, Figuig -> Rashidia
-	link = { eu4 = 1110 eu4 = 347 v2 = 1694 v2 = 1695 }	# MANY-TO-MANY: Rio de Oro, Ifni -> Agadir, Ifni
-	link = { eu4 = 2456 eu4 = 2472 eu4 = 351 v2 = 1712 v2 = 1710 }	# MANY-TO-MANY: Touggourt, Ouargla, Biskra -> Tuggurt, Biskra
-	link = { eu4 = 350 eu4 = 2457 v2 = 1711 }	# Aures, Mzab -> Ouargla
+	link = { eu4 = 2460 eu4 = 346 v2 = 1698 }	# Saoura, Tafilalt -> Rashidia
+	link = { eu4 = 1110 eu4 = 347 v2 = 1694 v2 = 1695 }	# MANY-TO-MANY: Agadir, Ifni -> Agadir, Ifni
+	link = { eu4 = 2456 eu4 = 2472 eu4 = 351 v2 = 1712 v2 = 1710 }	# MANY-TO-MANY: Touggourt, Ouargla, Aures -> Tuggurt, Biskra
+	link = { eu4 = 350 eu4 = 2457 v2 = 1711 }	# Laghouat, Mzab -> Ouargla
 	link = { eu4 = 340 v2 = 1708 }	# Constantine -> Constantine
-	link = { eu4 = 1882 v2 = 1709 }	# Bône -> Bone
-	link = { eu4 = 349 v2 = 1697 }	# Atlas -> Figuig
+	link = { eu4 = 1882 v2 = 1709 }	# Annaba -> Bone
+	link = { eu4 = 349 v2 = 1697 }	# Figuig -> Figuig
 	link = { eu4 = 2463 v2 = 1715 }	# Kasdir -> Naama
 	link = { eu4 = 336 eu4 = 2462 v2 = 1705 v2 = 1707 }	# MANY-TO-MANY: Tlemcen, Ouarsenis -> Tlemcen, Mascara
 	link = { eu4 = 2459 eu4 = 2458 v2 = 1713 }	# Titteri, Hodna -> Laghwat
 	link = { eu4 = 339 v2 = 1701 v2 = 1702 }	# Kabylia -> Bougie, Setif
-	link = { eu4 = 338 eu4 = 2461 v2 = 1700 v2 = 1703 v2 = 1706 }	# MANY-TO-MANY: Al-Djazair, Dahra -> Algiers, Medea, Mustaghanim
+	link = { eu4 = 338 eu4 = 2461 v2 = 1700 v2 = 1703 v2 = 1706 }	# MANY-TO-MANY: Mitidja, Dahra -> Algiers, Medea, Mustaghanim
 	link = { eu4 = 337 v2 = 1704 }	# Oran -> Oran
 	link = { eu4 = 2465 v2 = 1684 }	# Oujda -> Wujda
 	link = { eu4 = 335 v2 = 1689 v2 = 1688 }	# Mellila -> Melilla, Ajdir
 	link = { eu4 = 343 v2 = 1683 }	# Fez -> Taza
 	link = { eu4 = 1751 v2 = 1687 }	# Ceuta -> Tetouan
 	link = { eu4 = 334 v2 = 1686 }	# Tangiers -> Tangier
-	link = { eu4 = 342 eu4 = 2469 v2 = 1685 v2 = 1681 }	# MANY-TO-MANY: Toubkhal, Dukkala -> Rabat, Wazzan
+	link = { eu4 = 342 eu4 = 2469 v2 = 1685 v2 = 1681 }	# MANY-TO-MANY: Gharb, Dukkala -> Rabat, Wazzan
 	link = { eu4 = 2467 v2 = 1680 v2 = 1682 }	# Meknes -> Fez, Meknes
-	link = { eu4 = 345 v2 = 1691 v2 = 2563 }	# Safi -> Casablanca, Safi
+	link = { eu4 = 345 v2 = 1691 v2 = 2563 }	# Abda -> Casablanca, Safi
 	link = { eu4 = 2470 v2 = 1693 }	# Haha -> Sawira
 	link = { eu4 = 344 v2 = 1690 }	# Marrakech -> Marrakesh
 	link = { eu4 = 2468 v2 = 1692 }	# Tadla -> Huribka
-	link = { eu4 = 363 eu4 = 2315 eu4 = 365 eu4 = 364 v2 = 1749 v2 = 1755 v2 = 1756 v2 = 1757 v2 = 920 }	# MANY-TO-MANY: Damietta, Suez, Sinai, Gaza -> Ziqaziq, Suez, Al Arish, Sharm al-Shaykh, Gaza
-	link = { eu4 = 2284 v2 = 1816 }	# Manga -> Kufe
-	link = { eu4 = 2271 eu4 = 1130 eu4 = 1133 v2 = 1807 }	# Azawagh, Tadimekket, Gao -> Tessalit
-	link = { eu4 = 2262 v2 = 1805 }	# Karabara -> Gao
-	link = { eu4 = 1128 v2 = 1806 }	# Taodeni -> Taoudenni
-	link = { eu4 = 1129 eu4 = 1132 eu4 = 2247 eu4 = 2260 v2 = 2609 v2 = 1803 }	# MANY-TO-MANY: Azawadd, Timbuktu, Walata, Mema -> Araouane, Timbuktu
-	link = { eu4 = 1156 v2 = 1815 }	# Damagaram -> Zinder
-	link = { eu4 = 2276 v2 = 1811 }	# Itesan -> Maradi
-	link = { eu4 = 2273 eu4 = 2270 v2 = 1810 }	# Ader, Dallol -> Dosso
-	link = { eu4 = 1115 v2 = 1777 v2 = 1789 }	# Brakna -> Aleg, Podor
-	link = { eu4 = 2244 v2 = 1778 }	# Tagant -> Maghama
-	link = { eu4 = 1117 v2 = 1880 }	# Futa Jallon -> Timbo
-	link = { eu4 = 1121 v2 = 1881 v2 = 1882 }	# Bure -> Dinguiraye, Kankan
-	link = { eu4 = 1116 v2 = 1786 }	# Wolof -> Linguere
-	link = { eu4 = 2237 v2 = 1790 }	# Tekrur -> Matam
-	link = { eu4 = 2238 eu4 = 2240 eu4 = 1120 v2 = 1791 v2 = 1795 }	# MANY-TO-MANY: Kantor, Galam, Bambuk -> Bakel, Kayes
-	link = { eu4 = 2255 v2 = 1897 }	# Gyaaman -> Akoupe
-	link = { eu4 = 2257 v2 = 1910 }	# Denkyira -> Kumasi
-	link = { eu4 = 2269 v2 = 1808 }	# Zarmaganda -> Niamey
-	link = { eu4 = 2268 eu4 = 1142 v2 = 1809 }	# Aribanda, Dendi -> Say
-	link = { eu4 = 1136 eu4 = 2266 v2 = 1904 }	# Gurma, Bilanga -> Fada Ngourma
-	link = { eu4 = 2264 eu4 = 2265 eu4 = 2263 eu4 = 2261 eu4 = 1134 v2 = 1903 v2 = 1902 }	# MANY-TO-MANY: Hombori, Liptako, Haayre, Kala, Jenne -> Dori, Wahiguya
-	link = { eu4 = 2259 v2 = 1804 }	# Bara -> Bandiagara
-	link = { eu4 = 1131 v2 = 1802 }	# Massina -> Jenne
-	link = { eu4 = 2246 v2 = 1801 }	# Baghena -> Mourdiah
-	link = { eu4 = 2248 v2 = 1800 }	# Do -> Segu
-	link = { eu4 = 2243 v2 = 1796 }	# Termes -> Nioro
-	link = { eu4 = 2245 v2 = 1797 }	# Wagadu -> Kita
-	link = { eu4 = 1123 v2 = 1794 }	# Segu -> Bamako
-	link = { eu4 = 1135 eu4 = 1137 v2 = 1901 }	# Yatenga, Wagadugi -> Wagadugu
-	link = { eu4 = 1124 v2 = 1798 }	# Wasuju -> Bougouni
-	link = { eu4 = 2249 eu4 = 2250 v2 = 1799 }	# Sibiridugu, Bendugu -> Sikasso
-	link = { eu4 = 2253 eu4 = 2252 v2 = 1906 v2 = 1905 }	# MANY-TO-MANY: Gwiriko, Lobi -> Orodaro, Bobo Dioulasso
-	link = { eu4 = 1122 v2 = 1898 }	# Konian -> Kong
-	link = { eu4 = 1125 v2 = 1899 }	# Worodugu -> Bondouku
-	link = { eu4 = 2289 v2 = 1933 }	# Ondo -> Awka
-	link = { eu4 = 1152 v2 = 1935 v2 = 1930 }	# Idah -> Aruchukwu, Lokoja
-	link = { eu4 = 1162 v2 = 1961 }	# Wukari -> Bamenda
-	link = { eu4 = 2285 eu4 = 1249 v2 = 1950 v2 = 1937 }	# MANY-TO-MANY: Marghi, Yola -> Yola, Tukari
-	link = { eu4 = 2282 eu4 = 2283 v2 = 1952 v2 = 1949 }	# MANY-TO-MANY: Muniyo, Bedde -> Nguru, Hadejia
-	link = { eu4 = 1161 v2 = 1944 }	# Bauchi -> Gombe
-	link = { eu4 = 1153 v2 = 1936 }	# Pindinga -> Makurdi
-	link = { eu4 = 2281 v2 = 1943 }	# Rano -> Jos
-	link = { eu4 = 2280 v2 = 1942 }	# Biram -> Bauchi
-	link = { eu4 = 2267 eu4 = 2254 eu4 = 2256 eu4 = 1138 v2 = 1912 v2 = 1913 v2 = 1916 v2 = 1911 }	# MANY-TO-MANY: Tenkodogo, Bonoman, Dagbon, Kumasi -> Wa, Tamale, Yendi, Kintampo
-	link = { eu4 = 2295 eu4 = 1140 v2 = 1915 v2 = 1918 v2 = 1917 }	# MANY-TO-MANY: Atakora, Abomey -> Ho, Sokode, Atakpame
-	link = { eu4 = 1143 eu4 = 2292 eu4 = 2291 eu4 = 1144 v2 = 1922 v2 = 1921 v2 = 1920 v2 = 1938 v2 = 1924 v2 = 1925 }	# MANY-TO-MANY: Borgu, Moshi, Ketu, Oyo -> Jugu, Nikki, Abomey, Bussa, Abeokuta, Ibadan
-	link = { eu4 = 1146 v2 = 1926 v2 = 1929 v2 = 1927 }	# Ife -> Ife, Akure, Ilorin
-	link = { eu4 = 1145 eu4 = 2293 v2 = 1941 v2 = 1940 }	# MANY-TO-MANY: Nupe, Yawuri -> Abuja, Bida
-	link = { eu4 = 2278 v2 = 1946 }	# Kebbi -> Kebbi
-	link = { eu4 = 1154 eu4 = 1150 eu4 = 1148 v2 = 1939 v2 = 1948 }	# MANY-TO-MANY: Zazzau, Zamfara, Gobir -> Zaria, Sokoto
-	link = { eu4 = 1149 eu4 = 2279 eu4 = 1155 v2 = 1945 v2 = 1947 }	# MANY-TO-MANY: Katsina, Daura, Kano -> Kano, Katsina
-	# African Wasteland
+	link = { eu4 = 363 eu4 = 2315 eu4 = 365 eu4 = 364 v2 = 1749 v2 = 1755 v2 = 1756 v2 = 1757 v2 = 920 }	# MANY-TO-MANY: Damietta, Suez, Sinai, Gaza -> Ziqaziq, Suez, Al Arish, Sharm al-Shaykh, Gaza	
+	# Greater Ethiopia
+	link = { eu4 = 1212 eu4 = 1215 v2 = 1875 v2 = 1874 }	# MANY-TO-MANY: Zeila, Tajura -> Djibuti, Zeyla
+	link = { eu4 = 2765 v2 = 1851 }	# Assab -> Assab
+	link = { eu4 = 2779 eu4 = 1210 v2 = 1866 }	# Afder, Dawaro -> Goba
+	link = { eu4 = 1218 eu4 = 2756 eu4 = 2757 v2 = 1864 }	# Sidamo, Welayta, Kaffa -> Negele
+	link = { eu4 = 2773 eu4 = 1211 v2 = 1865 }	# Mora, Harer -> Harer
+	link = { eu4 = 2761 eu4 = 2760 v2 = 1861 }	# Arsi, Hadiya -> Aselia
+	link = { eu4 = 2759 eu4 = 2758 v2 = 1860 v2 = 1862 }	# MANY-TO-MANY: Gambela, Illubabor -> Awasa, Bonga
+	link = { eu4 = 2764 eu4 = 2768 v2 = 1858 }	# Ausa, Angot -> Awsa
+	link = { eu4 = 2791 eu4 = 1213 eu4 = 2762 v2 = 1859 }	# Ankober, Shewa, Damot -> Ankober
+	link = { eu4 = 2763 eu4 = 1217 v2 = 1863 }	# Asosa, Fazughli -> Asosa
+	link = { eu4 = 1223 eu4 = 2770 v2 = 1855 }	# Gojjam, Agew -> Debre Markos
+	link = { eu4 = 1214 eu4 = 1224 v2 = 1853 }	# Wollo, Gonder -> Debre Tabor
+	link = { eu4 = 1230 v2 = 1849 }	# Massawa -> Massawa
+	link = { eu4 = 2767 eu4 = 2769 v2 = 1848 v2 = 1856 v2 = 1857 }	# MANY-TO-MANY: Enderta, Lasta -> Asmara, Aksum, Antalo
+	link = { eu4 = 2787 eu4 = 2766 eu4 = 1227 v2 = 1850 }	# Hamasien, Mendefera, Aksum -> Akordat
+	link = { eu4 = 2771 v2 = 1852 }	# Semien -> Gonder
+	link = { eu4 = 2772 v2 = 1854 }	# Dembiya -> Matamma
+	link = { eu4 = 1226 eu4 = 1225 v2 = 1829 v2 = 1830 v2 = 1832 }	# MANY-TO-MANY: Taka, Butana -> Kassala, Sennar, Fashoda
+	link = { eu4 = 2798 v2 = 1828 v2 = 1827 }	# Soba -> Wad Madani, Khartoum
+	link = { eu4 = 1222 eu4 = 2799 v2 = 1831 }	# Gezira, Sennar -> Rabak
+	link = { eu4 = 2801 eu4 = 1221 eu4 = 2800 v2 = 1838 }	# Medwa, El Obeid, Kosti -> Obeid
+	link = { eu4 = 1216 v2 = 1840 }	# Tegali -> Kaduqli
+	link = { eu4 = 2802 v2 = 1839 }	# Kobbe -> Nuhud
+    link = { eu4 = 1219 v2 = 1841 }    # Darfur -> Fasher
+	# African Wastelands
 	link = { eu4 = 1173 v2 = 2004 v2 = 2079 v2 = 2084 }	# Namibia -> Moçâmedes, Swakopmund, Angra Pequena
 	link = { eu4 = 1801 v2 = 2080 v2 = 2081 v2 = 2082 v2 = 2076 v2 = 2075 v2 = 2077 v2 = 2085 v2 = 2078 v2 = 2086 v2 = 2095 v2 = 2074 v2 = 2574 v2 = 2108 v2 = 2107 v2 = 2105 v2 = 2106 v2 = 2109 v2 = 2114 v2 = 2110 }	# Kalahari -> Tsumeb, Linyati, Otjinene, Nokaneng, Serowe, Tsabong, Nu-gouses, Windhoek, Karasburg, Dikathong, Gaborone, Mochudi, Mosega, Klerksdorp, Pretoria, Witwatersrand, Lydenburg, Mbabane, Thohoyandu
 	link = { eu4 = 1799 v2 = 2067 v2 = 2581 v2 = 2040 v2 = 2041 v2 = 2042 v2 = 2018 v2 = 2056 v2 = 2055 v2 = 2054 v2 = 2066 v2 = 2053 v2 = 2065 v2 = 2064 }	# Malawi -> Lilongwe, Mataka, Songea, Masasi, Iringa, Chipata, Zumbo, Songo, Tete, Zomba, Sena, Milange, Nampula
@@ -724,18 +741,9 @@
 	link = { eu4 = 2251 v2 = 1895 v2 = 1896 v2 = 1891 v2 = 1889 v2 = 1890 v2 = 1886 v2 = 1885 v2 = 1883 v2 = 1900 }	# Bagoe -> Bouake, Man, Zwedru, Bopolu, Gbarnga, Bo, Falaba, Beyla, Odienne
 	link = { eu4 = 1795 v2 = 1740 v2 = 1738 v2 = 1739 v2 = 1758 v2 = 2585 v2 = 2564 v2 = 1825 v2 = 1826 }	# East Sahara -> Waddan, Jaghbub, Kufra, Farafra, Matan as Sarah, Salima, Zouar, Faya
 	link = { eu4 = 1794 v2 = 1719 v2 = 1720 v2 = 1718 v2 = 1722 v2 = 1724 v2 = 1721 v2 = 1714 }	# Central Sahara -> Ilizi, Timimoun, In Salah, Tin Zawatene, Tamanrasset, In Guezzam, Bechar
-	# Africa land bridges
-	link = { eu4 = 1127 v2 = 1716 v2 = 1717 }    # Tuat -> Tindouf, Chenachene
-    link = { eu4 = 2272 eu4 = 2274 eu4 = 2275 v2 = 1813 v2 = 1812 }    # Azbin, Air, Tenere -> Arlit, Agades
-    link = { eu4 = 2277 v2 = 1817 } # Kawar -> Bilma
-    link = { eu4 = 2475 v2 = 1814 } # Djado -> Madama
-    link = { eu4 = 2288 v2 = 1821 }    # Yao -> Abeche
-    link = { eu4 = 1159 v2 = 1823 }    # Bagirmi -> Mongo
-    link = { eu4 = 2932 v2 = 1822 }    # Waddai -> Am Timan
-    link = { eu4 = 774 eu4 = 2801 v2 = 1842 }    # Al-Junaynah, Medwa -> Junayah
-    link = { eu4 = 1219 eu4 = 2802 v2 = 1841 }    # Darfur, Kobbe -> Fasher
 	# Lakes
-	link = { eu4 = 2471 eu4 = 1648 }	# Chott el-Jerid, Lake Tchad -> DROPPED
+	link = { eu4 = 2471 }	# Chott el-Jerid -> DROPPED
+	link = { eu4 = 1648 }	# Lake Tchad -> DROPPED
 	link = { eu4 = 1649 v2 = 3102 }	# Lake Victoria -> Lake Victoria
 	link = { eu4 = 1900 v2 = 3236 }	# Lake Turkana -> Lake Rudolf
 	link = { eu4 = 1650 v2 = 3103 v2 = 3238 }	# Lake Tangayika -> Lake Tanganyika, Lake Mweru
@@ -798,8 +806,8 @@
 	link = { eu4 = 1999 v2 = 2406 }	# Cocos Island -> Cocos Islands
 	link = { eu4 = 1998 v2 = 2244 }	# Christmas Island -> Christmas Island
 	# Indo Wasteland
-	link = { eu4 = 1789 v2 = 1454 }	# Maoke -> Merah
-	link = { eu4 = 2740 v2 = 1422 v2 = 1428 }	# Borneo -> Muraleve, Sintang
+	link = { eu4 = 1789 v2 = 1454 resettable = new_guinea }	# Maoke -> Merah # Papua New Guinea
+	link = { eu4 = 2740 v2 = 1422 v2 = 1428 resettable = indonesia }	# Borneo -> Muraleve, Sintang
 	# Japan
 	link = { eu4 = 1852 v2 = 1644 }	# Tokachi -> Nemuru
 	link = { eu4 = 1847 v2 = 1642 }	# Shiribeshi -> Hakodate
@@ -1111,7 +1119,7 @@
 	link = { eu4 = 739 eu4 = 2124 v2 = 1594 }	# Kashgar, Yarkand -> Kashgar
 	link = { eu4 = 2121 eu4 = 712 v2 = 1597 }	# Kuqa, Uighuristan -> Aksu
 	link = { eu4 = 711 eu4 = 710 v2 = 1598 }	# Qarqan, Hotan -> Khotan
-	# Core China
+	# Core China resettable region = taiwan
 	link = { eu4 = 708 eu4 = 707 v2 = 1488 }	# Gansu, Yumen -> Jiayuguan
 	link = { eu4 = 1816 eu4 = 2136 eu4 = 703 eu4 = 2115 v2 = 1613 v2 = 1616 }	# MANY-TO-MANY: Hejian, Xuanhua, Chengde, Chahar -> Chengde, Tangshan
 	link = { eu4 = 2166 eu4 = 661 eu4 = 2167 v2 = 1602 }	# Dehong, Dali, Lijiang -> Dali
@@ -1119,7 +1127,7 @@
 	link = { eu4 = 2182 eu4 = 2184 v2 = 1490 }	# Liangzhou, Xining -> Lanzhou
 	link = { eu4 = 2135 eu4 = 2170 v2 = 1582 }	# Garze, Songqu -> Longan
 	link = { eu4 = 2139 v2 = 1569 v2 = 1565 v2 = 1566 }	# Laizhou -> Weihaiwei, Laizhou, Qingdao
-	link = { eu4 = 2155 eu4 = 2154 eu4 = 738 v2 = 1485 v2 = 2562 }	# MANY-TO-MANY: Middag, Kelang, Taiwan -> Taibei, Tainan
+	link = { eu4 = 2155 eu4 = 2154 eu4 = 738 v2 = 1485 v2 = 2562 resettable = taiwan }	# MANY-TO-MANY: Middag, Kelang, Sakam -> Taibei, Tainan
 	link = { eu4 = 666 eu4 = 2160 v2 = 1499 }	# Hainan, Ngaichow -> Hainan
 	link = { eu4 = 668 v2 = 1498 }	# Macau -> Macao
 	link = { eu4 = 667 v2 = 1496 v2 = 1493 }	# Guangzhou -> Hong Kong, Canton
@@ -1188,7 +1196,7 @@
 	link = { eu4 = 2175 v2 = 1514 }	# Runing -> Runing
 	link = { eu4 = 2144 v2 = 1478 }	# Fuyang -> Yingzhou
 	link = { eu4 = 2176 v2 = 1509 v2 = 1512 }	# Shangqiu -> Guide, Chenzhou
-	# Stanistan
+	# Turkistan
 	link = { eu4 = 2370 eu4 = 2362 v2 = 1192 }	# Kungirot, Gurganj -> Nukus
 	link = { eu4 = 2349 v2 = 1205 }	# Kizil-Su -> Kyzyl Arvat
 	link = { eu4 = 440 eu4 = 1973 v2 = 1191 }	# Qaraqalpak, Urgench -> Khiva
@@ -1236,126 +1244,128 @@
 	# ##############
 	# Oceania
 	# ##############
-	# Australia & New Zealand
-	link = { eu4 = 2731 eu4 = 2730 v2 = 2488 }	# Guugu Yimithirr, Awngthim -> Cooktown
-	link = { eu4 = 2729 eu4 = 2728 v2 = 2505 }	# Yolngu, Tiwi -> Palmerston
-	link = { eu4 = 2732 v2 = 2487 }	# Wulgurukaba -> Townsville
-	link = { eu4 = 2733 v2 = 2484 }	# Baiali -> Gladstone
-	link = { eu4 = 1094 v2 = 2483 }	# Gubbi Gubbi -> Brisbane
-	link = { eu4 = 1092 v2 = 2470 }	# Bundjalung -> Port Macquarie
-	link = { eu4 = 1090 v2 = 2469 v2 = 2468 }	# Eora -> Newcastle, Sydney
-	link = { eu4 = 2734 v2 = 2472 v2 = 2479 }	# Yuin -> Eden, Sale
-	link = { eu4 = 1087 v2 = 2476 }	# Woiworung -> Melbourne
-	link = { eu4 = 2735 v2 = 2477 v2 = 2493 }	# Gunditjmara -> Warmambool, Robe
-	link = { eu4 = 1086 v2 = 2491 }	# Kaurna -> Adelaide
-	link = { eu4 = 2736 v2 = 2492 v2 = 2494 }	# Nukunu -> Port Lincoln, Port Augusta
-	link = { eu4 = 2727 v2 = 2498 }	# Minang -> Kojonup
-	link = { eu4 = 1084 v2 = 2497 }	# Wadjuk -> Perth
-	link = { eu4 = 2726 v2 = 2499 v2 = 2502 }	# Malgana -> Geraldton, Dampier
-	link = { eu4 = 1093 v2 = 2485 v2 = 2486 }	# Barunggam -> Clermont, Toowoomba
-	link = { eu4 = 1091 v2 = 2474 }	# Kamilaroi -> Moree
-	link = { eu4 = 1089 v2 = 2480 v2 = 2473 v2 = 2471 }	# Wiradjuri -> Beechworth, Wagga Wagga, Ophir
-	link = { eu4 = 1088 v2 = 2478 v2 = 2481 }	# Wergaia -> Ballarat, Swan Hill
-	link = { eu4 = 1085 v2 = 2482 }	# Paredarerme -> Tasmania
-	link = { eu4 = 1106 v2 = 2509 v2 = 2508 }	# Whangarei -> Auckland, Norfolk Island
-	link = { eu4 = 2739 eu4 = 1107 v2 = 2571 v2 = 2510 }	# MANY-TO-MANY: Kirikiriroa, Taranaki -> Tauranga, New Plymouth
-	link = { eu4 = 2737 v2 = 2512 }	# Ahuriri -> Wellington
-	link = { eu4 = 1108 v2 = 2511 }	# Wairoa -> Napier
-	link = { eu4 = 2738 v2 = 2516 }	# Waitaha -> Nelson
-	link = { eu4 = 1109 v2 = 2515 v2 = 2514 }	# Timaru -> Christchurch, Hokitika
-	link = { eu4 = 1246 v2 = 2513 }	# Aorangi -> Dunedin
+	# Australia & New Zealand resettable region australia_zealand
+	link = { eu4 = 2731 eu4 = 2730 v2 = 2488 resettable = australia_zealand }	# Guugu Yimithirr, Awngthim -> Cooktown
+	link = { eu4 = 2729 eu4 = 2728 v2 = 2505 resettable = australia_zealand }	# Yolngu, Tiwi -> Palmerston
+	link = { eu4 = 2732 v2 = 2487 resettable = australia_zealand }	# Wulgurukaba -> Townsville
+	link = { eu4 = 2733 v2 = 2484 resettable = australia_zealand }	# Baiali -> Gladstone
+	link = { eu4 = 1094 v2 = 2483 resettable = australia_zealand }	# Gubbi Gubbi -> Brisbane
+	link = { eu4 = 1092 v2 = 2470 resettable = australia_zealand }	# Bundjalung -> Port Macquarie
+	link = { eu4 = 1090 v2 = 2469 v2 = 2468 resettable = australia_zealand }	# Eora -> Newcastle, Sydney
+	link = { eu4 = 2734 v2 = 2472 v2 = 2479 resettable = australia_zealand }	# Yuin -> Eden, Sale
+	link = { eu4 = 1087 v2 = 2476 resettable = australia_zealand }	# Woiworung -> Melbourne
+	link = { eu4 = 2735 v2 = 2477 v2 = 2493 resettable = australia_zealand }	# Gunditjmara -> Warmambool, Robe
+	link = { eu4 = 1086 v2 = 2491 resettable = australia_zealand }	# Kaurna -> Adelaide
+	link = { eu4 = 2736 v2 = 2492 v2 = 2494 resettable = australia_zealand }	# Nukunu -> Port Lincoln, Port Augusta
+	link = { eu4 = 2727 v2 = 2498 resettable = australia_zealand }	# Minang -> Kojonup
+	link = { eu4 = 1084 v2 = 2497 resettable = australia_zealand }	# Wadjuk -> Perth
+	link = { eu4 = 2726 v2 = 2499 v2 = 2502 resettable = australia_zealand }	# Malgana -> Geraldton, Dampier
+	link = { eu4 = 1093 v2 = 2485 v2 = 2486 resettable = australia_zealand }	# Barunggam -> Clermont, Toowoomba
+	link = { eu4 = 1091 v2 = 2474 resettable = australia_zealand }	# Kamilaroi -> Moree
+	link = { eu4 = 1089 v2 = 2480 v2 = 2473 v2 = 2471 resettable = australia_zealand }	# Wiradjuri -> Beechworth, Wagga Wagga, Ophir
+	link = { eu4 = 1088 v2 = 2478 v2 = 2481 resettable = australia_zealand }	# Wergaia -> Ballarat, Swan Hill
+	link = { eu4 = 1085 v2 = 2482 resettable = australia_zealand }	# Paredarerme -> Tasmania
+	link = { eu4 = 1106 v2 = 2509 v2 = 2508 resettable = australia_zealand }	# Whangarei -> Auckland, Norfolk Island
+	link = { eu4 = 2739 eu4 = 1107 v2 = 2571 v2 = 2510 resettable = australia_zealand }	# MANY-TO-MANY: Kirikiriroa, Taranaki -> Tauranga, New Plymouth
+	link = { eu4 = 2737 v2 = 2512 resettable = australia_zealand }	# Ahuriri -> Wellington
+	link = { eu4 = 1108 v2 = 2511 resettable = australia_zealand }	# Wairoa -> Napier
+	link = { eu4 = 2738 v2 = 2516 resettable = australia_zealand }	# Waitaha -> Nelson
+	link = { eu4 = 1109 v2 = 2515 v2 = 2514 resettable = australia_zealand }	# Timaru -> Christchurch, Hokitika
+	link = { eu4 = 1246 v2 = 2513 resettable = australia_zealand }	# Aorangi -> Dunedin
 	# Australian Desert
 	link = { eu4 = 1790 v2 = 2506 v2 = 2603 v2 = 2507 v2 = 2504 v2 = 2503 v2 = 2500 v2 = 2605 v2 = 2602 v2 = 2601 v2 = 2501 }	# Western Australia -> Tennant Creek, Tanami, Alice Springs, Esperance, Wiluna, Kalgoorlie, Gibson's Desert, Roebourne, Sandy Desert, Broome
 	link = { eu4 = 1791 v2 = 2604 v2 = 2489 v2 = 2490 v2 = 2475 v2 = 2495 v2 = 2496 }	# Central Australia -> Normanton, Longreach, Charleville, Broken Hill, Oodnadatta, Tarcoola
-	# Pacific East
-	link = { eu4 = 1240 eu4 = 1997 v2 = 658 v2 = 2526 v2 = 686 v2 = 2623 }	# MANY-TO-MANY: Hawaii, Midway -> Hawaii, Palmyra, Line Islands, Midway Island
+	# Pacific East resettable region = pacific
+	link = { eu4 = 1240 eu4 = 1997 v2 = 658 v2 = 2526 v2 = 686 v2 = 2623 resettable = pacific }	# MANY-TO-MANY: Hawaii, Midway -> Hawaii, Palmyra, Line Islands, Midway Island
 	link = { eu4 = 2002 v2 = 2285 }	# Galápagos Islands -> Galápagos
-	link = { eu4 = 1988 v2 = 2336 }	# Rapa Nui -> Easter Island
-	link = { eu4 = 1244 v2 = 2551 v2 = 2553 v2 = 2552 }	# Tahiti -> Marquesas, Tuamotus, Pitcairn
-	link = { eu4 = 1987 v2 = 801 v2 = 2545 }	# Society Islands -> Tahiti, Rarotonga
-	link = { eu4 = 1989 v2 = 2540 v2 = 2548 }	# Tonga -> Tonga, Niue
-	link = { eu4 = 1243 eu4 = 1241 v2 = 2543 v2 = 2544 v2 = 2547 v2 = 2546 }	# MANY-TO-MANY: Samoa, Kiribati -> Apia, Pago Pago, Tokelau, Tongareva
-	# Pacific West
-	link = { eu4 = 1986 v2 = 1097 }	# New Caledonia -> New Caledonia
-	link = { eu4 = 1239 v2 = 2535 v2 = 2536 }	# Vanuatu -> New Hebrides, Santa Cruz Islands
-	link = { eu4 = 1242 v2 = 2454 v2 = 2520 v2 = 2542 }	# Fiji -> Fiji, Taveuni, Wallis and Futuna
-	link = { eu4 = 1990 v2 = 2541 }	# Tuvalu -> Ellice Islands
-	link = { eu4 = 1238 v2 = 2534 v2 = 2539 }	# Solomon Islands -> Solomon Islands, Bougainville
-	link = { eu4 = 1992 v2 = 2523 }	# Nauru -> Nauru
-	link = { eu4 = 1991 v2 = 2527 }	# Gilbert Islands -> Gilbert Islands
-	link = { eu4 = 1993 v2 = 2522 }	# Marshall Islands -> Marshall Islands
-	link = { eu4 = 1994 v2 = 2524 }	# Wake -> Wake
-	link = { eu4 = 1235 v2 = 1654 v2 = 2521 v2 = 2517 }	# Guam -> Bonin, Saipan, Guam
-	link = { eu4 = 1995 v2 = 610 v2 = 2579 }	# Micronesia -> Ponape, Truk
-	link = { eu4 = 1996 v2 = 2519 v2 = 2518 }	# Palau -> Yap, Palau
-	link = { eu4 = 1236 v2 = 2537 v2 = 1531 }	# Rabaul -> New Britain, New Ireland
-	# Indonesia
-	link = { eu4 = 2719 v2 = 2531 }	# Madang -> Madang
-	link = { eu4 = 2720 v2 = 2530 }	# Lae -> Lae
-	link = { eu4 = 1237 v2 = 2528 }	# Papua -> Port Moresby
-	link = { eu4 = 2722 eu4 = 2721 v2 = 2529 }	# Daru, Kerema -> Kerema
-	link = { eu4 = 2723 eu4 = 2724 v2 = 1560 }	# Yos Sudarso, Asmat -> Merauke
-	link = { eu4 = 2718 eu4 = 1245 v2 = 1453 v2 = 1452 }	# MANY-TO-MANY: Fak-Fak, Irian -> Sorong, Biak
-	link = { eu4 = 2725 eu4 = 2696 v2 = 1451 }	# Aru, Yamdena -> Aru
-	link = { eu4 = 647 v2 = 1450 }	# Ceram -> Ceram
-	link = { eu4 = 645 eu4 = 646 v2 = 1449 }	# Buru, Ambom -> Ambon
-	link = { eu4 = 648 eu4 = 649 v2 = 1448 }	# Halmahera, Ternate -> Jilolo
-	link = { eu4 = 650 eu4 = 2717 v2 = 1447 }	# Tidore, Sula -> Ternate
-	link = { eu4 = 2695 v2 = 1446 }	# East Timor -> Dili
-	link = { eu4 = 635 v2 = 1445 v2 = 1443 }	# Timor -> Kaupeng, Roti
-	link = { eu4 = 634 v2 = 1441 }	# Sumba -> Sumba
-	link = { eu4 = 633 v2 = 1439 v2 = 1444 }	# Flores -> Flores, Alor
-	link = { eu4 = 632 v2 = 1440 }	# Sumbawa -> Sumbawa
-	link = { eu4 = 2693 v2 = 1442 }	# Lombok -> Lombok
-	link = { eu4 = 2715 v2 = 1432 }	# Palopo -> Mamuju
-	link = { eu4 = 641 v2 = 1431 v2 = 1430 }	# Makassar -> Bone, Makassar
-	link = { eu4 = 2716 v2 = 1437 }	# Buton -> Bulon
-	link = { eu4 = 642 v2 = 1436 }	# Bone -> Kendari
-	link = { eu4 = 643 v2 = 1434 }	# Pose -> Luwuk
-	link = { eu4 = 2714 v2 = 1435 }	# Palu -> Palu
-	link = { eu4 = 2713 eu4 = 644 v2 = 1433 }	# Gorontalo, Menade -> Menado
-	link = { eu4 = 631 v2 = 1438 }	# Bali-Lombok -> Bali
-	link = { eu4 = 627 v2 = 1420 }	# Blambangan -> Probolinggo
-	link = { eu4 = 2691 eu4 = 2690 v2 = 1419 }	# Kediri, Pajang -> Surakarta
-	link = { eu4 = 629 eu4 = 2689 v2 = 1417 }	# Demak, Kendal -> Semarang
-	link = { eu4 = 628 v2 = 1418 }	# Surabaya -> Surabaya
-	link = { eu4 = 2692 v2 = 1421 }	# Madura -> Madura
-	link = { eu4 = 626 v2 = 1416 }	# Mataram -> Yogyakarta
-	link = { eu4 = 625 eu4 = 2687 eu4 = 624 v2 = 1414 }	# Priangan, Pakuan, Banten -> Bogor
-	link = { eu4 = 630 v2 = 1413 }	# Sunda -> Batavia
-	link = { eu4 = 2688 v2 = 1415 }	# Cirebon -> Cirebon
-	link = { eu4 = 2679 eu4 = 2678 v2 = 1404 }	# Belitung, Bangka -> Palak Pinang
-	link = { eu4 = 623 v2 = 1403 }	# Lampung -> Lampung
-	link = { eu4 = 621 v2 = 1410 }	# Benkulen -> Bencoolen
-	link = { eu4 = 622 v2 = 1399 }	# Palembang -> Palembang
-	link = { eu4 = 2680 eu4 = 2681 eu4 = 2682 v2 = 1408 }	# Muko-Muko, Pagarruyung, Pariaman -> Padang
-	link = { eu4 = 2677 v2 = 1398 }	# Jambi -> Jambi
-	link = { eu4 = 2676 v2 = 1400 }	# Indragiri -> Inderagiri
-	link = { eu4 = 620 eu4 = 2675 v2 = 1401 }	# Siak, Rokan -> Siak
-	link = { eu4 = 619 v2 = 1409 }	# Minangkabau -> Sibolga
-	link = { eu4 = 2685 v2 = 1407 }	# Gayo -> Tapaktuan
-	link = { eu4 = 618 eu4 = 2674 v2 = 1406 }	# Aru, Peureulak -> Medan
-	link = { eu4 = 2673 eu4 = 617 v2 = 1405 }	# Pasai, Aceh -> Banda Aceh
-	link = { eu4 = 2683 eu4 = 2684 v2 = 1411 }	# Mentawai, Nias -> Gunungsitoli
-	link = { eu4 = 2686 eu4 = 659 v2 = 1402 }	# Bintan, Riau -> Tanjungpinang
-	link = { eu4 = 637 v2 = 1396 }	# Sabah -> Api
-	link = { eu4 = 2703 v2 = 1397 }	# Lehad Datu -> Sandakan
-	link = { eu4 = 2709 eu4 = 2711 eu4 = 2710 v2 = 1425 }	# Tarakan, Bulungan, Berau -> Tarakan
-	link = { eu4 = 638 eu4 = 2712 v2 = 1429 }	# Kutei, Samarinda -> Samarinda
-	link = { eu4 = 639 eu4 = 2707 v2 = 1424 v2 = 1423 }	# MANY-TO-MANY: Banjarmasin, Barito -> Pasir, Banjarmasin
-	link = { eu4 = 2708 eu4 = 2706 v2 = 1427 }	# Sampit, Katapang -> Kota Waringin
-	link = { eu4 = 640 v2 = 1426 v2 = 2576 }	# Sukadane -> Pontianak, Natuna
-	link = { eu4 = 2705 v2 = 1394 }	# Kuching -> Kuching
-	link = { eu4 = 2704 eu4 = 636 v2 = 1395 v2 = 1393 }	# MANY-TO-MANY: Sibu, Brunei -> Bintulu, Brunei
-	link = { eu4 = 651 v2 = 1464 }	# Sulu -> Sulu
-	link = { eu4 = 658 eu4 = 657 v2 = 1456 }	# Cagayan, Samtoy -> Vigan
-	link = { eu4 = 656 eu4 = 2697 eu4 = 2698 v2 = 1455 v2 = 1458 }	# MANY-TO-MANY: Manila, Tondo, Pangasinan -> Manila, Mindoro
-	link = { eu4 = 655 v2 = 1459 }	# Palawan -> Palawan
-	link = { eu4 = 2699 v2 = 1457 }	# Bikol -> Legazpi
-	link = { eu4 = 654 v2 = 1461 v2 = 2565 }	# Visayas -> Tacloban, Cebu
-	link = { eu4 = 2700 v2 = 1460 }	# Panay -> Iloilo
-	link = { eu4 = 653 v2 = 1462 }	# Tagoloan -> Zamboanga
-	link = { eu4 = 2702 eu4 = 2701 eu4 = 652 v2 = 1463 }	# Butuan, Tagloc, Maguindanae -> Davao
+	link = { eu4 = 1988 v2 = 2336 resettable = pacific }	# Rapa Nui -> Easter Island
+	link = { eu4 = 1244 v2 = 2551 v2 = 2553 v2 = 2552 resettable = pacific }	# Tahiti -> Marquesas, Tuamotus, Pitcairn
+	link = { eu4 = 1987 v2 = 801 v2 = 2545 resettable = pacific }	# Society Islands -> Tahiti, Rarotonga
+	link = { eu4 = 1989 v2 = 2540 v2 = 2548 resettable = pacific }	# Tonga -> Tonga, Niue
+	link = { eu4 = 1243 eu4 = 1241 v2 = 2543 v2 = 2544 v2 = 2547 v2 = 2546 resettable = pacific }	# MANY-TO-MANY: Samoa, Kiribati -> Apia, Pago Pago, Tokelau, Tongareva
+	# Pacific West resettable region = pacific
+	link = { eu4 = 1986 v2 = 1097 resettable = pacific }	# New Caledonia -> New Caledonia
+	link = { eu4 = 1239 v2 = 2535 v2 = 2536 resettable = pacific }	# Vanuatu -> New Hebrides, Santa Cruz Islands
+	link = { eu4 = 1242 v2 = 2454 v2 = 2520 v2 = 2542 resettable = pacific }	# Fiji -> Fiji, Taveuni, Wallis and Futuna
+	link = { eu4 = 1990 v2 = 2541 resettable = pacific }	# Tuvalu -> Ellice Islands
+	link = { eu4 = 1238 v2 = 2534 v2 = 2539 resettable = pacific }	# Solomon Islands -> Solomon Islands, Bougainville
+	link = { eu4 = 1992 v2 = 2523 resettable = pacific }	# Nauru -> Nauru
+	link = { eu4 = 1991 v2 = 2527 resettable = pacific }	# Gilbert Islands -> Gilbert Islands
+	link = { eu4 = 1993 v2 = 2522 resettable = pacific }	# Marshall Islands -> Marshall Islands
+	link = { eu4 = 1994 v2 = 2524 resettable = pacific }	# Wake -> Wake
+	link = { eu4 = 1235 v2 = 1654 v2 = 2521 v2 = 2517 resettable = pacific }	# Guam -> Bonin, Saipan, Guam
+	link = { eu4 = 1995 v2 = 610 v2 = 2579 resettable = pacific }	# Micronesia -> Ponape, Truk
+	link = { eu4 = 1996 v2 = 2519 v2 = 2518 resettable = pacific }	# Palau -> Yap, Palau
+	# New Guinea resettable region = new_guinea
+	link = { eu4 = 1236 v2 = 2537 v2 = 1531 resettable = new_guinea }	# Rabaul -> New Britain, New Ireland
+	link = { eu4 = 2719 v2 = 2531 resettable = new_guinea }	# Madang -> Madang
+	link = { eu4 = 2720 v2 = 2530 resettable = new_guinea }	# Lae -> Lae
+	link = { eu4 = 1237 v2 = 2528 resettable = new_guinea }	# Papua -> Port Moresby
+	link = { eu4 = 2722 eu4 = 2721 v2 = 2529 resettable = new_guinea }	# Daru, Kerema -> Kerema
+	link = { eu4 = 2723 eu4 = 2724 v2 = 1560 resettable = new_guinea }	# Yos Sudarso, Asmat -> Merauke
+	link = { eu4 = 2718 eu4 = 1245 v2 = 1453 v2 = 1452 resettable = new_guinea }	# MANY-TO-MANY: Fak-Fak, Manokwari -> Sorong, Biak
+	# Indonesia resettable region = indonesia
+	link = { eu4 = 2725 eu4 = 2696 v2 = 1451 resettable = indonesia }	# Aru, Yamdena -> Aru
+	link = { eu4 = 647 v2 = 1450 resettable = indonesia }	# Ceram -> Ceram
+	link = { eu4 = 645 eu4 = 646 v2 = 1449 resettable = indonesia }	# Buru, Ambom -> Ambon
+	link = { eu4 = 648 eu4 = 649 v2 = 1448 resettable = indonesia }	# Halmahera, Ternate -> Jilolo
+	link = { eu4 = 650 eu4 = 2717 v2 = 1447 resettable = indonesia }	# Tidore, Sula -> Ternate
+	link = { eu4 = 2695 v2 = 1446 resettable = indonesia }	# East Timor -> Dili
+	link = { eu4 = 635 v2 = 1445 v2 = 1443 resettable = indonesia }	# Timor -> Kaupeng, Roti
+	link = { eu4 = 634 v2 = 1441 resettable = indonesia }	# Sumba -> Sumba
+	link = { eu4 = 633 v2 = 1439 v2 = 1444 resettable = indonesia }	# Flores -> Flores, Alor
+	link = { eu4 = 632 v2 = 1440 resettable = indonesia }	# Sumbawa -> Sumbawa
+	link = { eu4 = 2693 v2 = 1442 resettable = indonesia }	# Lombok -> Lombok
+	link = { eu4 = 2715 v2 = 1432 resettable = indonesia }	# Palopo -> Mamuju
+	link = { eu4 = 641 v2 = 1431 v2 = 1430 resettable = indonesia }	# Makassar -> Bone, Makassar
+	link = { eu4 = 2716 v2 = 1437 resettable = indonesia }	# Buton -> Bulon
+	link = { eu4 = 642 v2 = 1436 resettable = indonesia }	# Bone -> Kendari
+	link = { eu4 = 643 v2 = 1434 resettable = indonesia }	# Pose -> Luwuk
+	link = { eu4 = 2714 v2 = 1435 resettable = indonesia }	# Palu -> Palu
+	link = { eu4 = 2713 eu4 = 644 v2 = 1433 resettable = indonesia }	# Gorontalo, Menade -> Menado
+	link = { eu4 = 631 v2 = 1438 resettable = indonesia }	# Bali-Lombok -> Bali
+	link = { eu4 = 627 v2 = 1420 resettable = indonesia }	# Blambangan -> Probolinggo
+	link = { eu4 = 2691 eu4 = 2690 v2 = 1419 resettable = indonesia }	# Kediri, Pajang -> Surakarta
+	link = { eu4 = 629 eu4 = 2689 v2 = 1417 resettable = indonesia }	# Demak, Kendal -> Semarang
+	link = { eu4 = 628 v2 = 1418 resettable = indonesia }	# Surabaya -> Surabaya
+	link = { eu4 = 2692 v2 = 1421 resettable = indonesia }	# Madura -> Madura
+	link = { eu4 = 626 v2 = 1416 resettable = indonesia }	# Mataram -> Yogyakarta
+	link = { eu4 = 625 eu4 = 2687 eu4 = 624 v2 = 1414 resettable = indonesia }	# Priangan, Pakuan, Banten -> Bogor
+	link = { eu4 = 630 v2 = 1413 resettable = indonesia }	# Sunda -> Batavia
+	link = { eu4 = 2688 v2 = 1415 resettable = indonesia }	# Cirebon -> Cirebon
+	link = { eu4 = 2679 eu4 = 2678 v2 = 1404 resettable = indonesia }	# Belitung, Bangka -> Palak Pinang
+	link = { eu4 = 623 v2 = 1403 resettable = indonesia }	# Lampung -> Lampung
+	link = { eu4 = 621 v2 = 1410 resettable = indonesia }	# Benkulen -> Bencoolen
+	link = { eu4 = 622 v2 = 1399 resettable = indonesia }	# Palembang -> Palembang
+	link = { eu4 = 2680 eu4 = 2681 eu4 = 2682 v2 = 1408 resettable = indonesia }	# Muko-Muko, Pagarruyung, Pariaman -> Padang
+	link = { eu4 = 2677 v2 = 1398 resettable = indonesia }	# Jambi -> Jambi
+	link = { eu4 = 2676 v2 = 1400 resettable = indonesia }	# Indragiri -> Inderagiri
+	link = { eu4 = 620 eu4 = 2675 v2 = 1401 resettable = indonesia }	# Siak, Rokan -> Siak
+	link = { eu4 = 619 v2 = 1409 resettable = indonesia }	# Minangkabau -> Sibolga
+	link = { eu4 = 2685 v2 = 1407 resettable = indonesia }	# Gayo -> Tapaktuan
+	link = { eu4 = 618 eu4 = 2674 v2 = 1406 resettable = indonesia }	# Aru, Peureulak -> Medan
+	link = { eu4 = 2673 eu4 = 617 v2 = 1405 resettable = indonesia }	# Pasai, Aceh -> Banda Aceh
+	link = { eu4 = 2683 eu4 = 2684 v2 = 1411 resettable = indonesia }	# Mentawai, Nias -> Gunungsitoli
+	link = { eu4 = 2686 eu4 = 659 v2 = 1402 resettable = indonesia }	# Bintan, Lingga -> Tanjungpinang
+	link = { eu4 = 637 v2 = 1396 resettable = indonesia }	# Sabah -> Api
+	link = { eu4 = 2703 v2 = 1397 resettable = indonesia }	# Lehad Datu -> Sandakan
+	link = { eu4 = 2709 eu4 = 2711 eu4 = 2710 v2 = 1425 resettable = indonesia }	# Tarakan, Bulungan, Berau -> Tarakan
+	link = { eu4 = 638 eu4 = 2712 v2 = 1429 resettable = indonesia }	# Kutei, Samarinda -> Samarinda
+	link = { eu4 = 639 eu4 = 2707 v2 = 1424 v2 = 1423 resettable = indonesia }	# MANY-TO-MANY: Banjarmasin, Barito -> Pasir, Banjarmasin
+	link = { eu4 = 2708 eu4 = 2706 v2 = 1427 resettable = indonesia }	# Sampit, Katapang -> Kota Waringin
+	link = { eu4 = 640 v2 = 1426 v2 = 2576 resettable = indonesia }	# Pontianak -> Pontianak, Natuna
+	link = { eu4 = 2705 v2 = 1394 resettable = indonesia }	# Kuching -> Kuching
+	link = { eu4 = 2704 eu4 = 636 v2 = 1395 v2 = 1393 resettable = indonesia }	# MANY-TO-MANY: Sibu, Brunei -> Bintulu, Brunei
+	# Philippines resettable region = philippines
+	link = { eu4 = 651 v2 = 1464 resettable = philippines }	# Sulu -> Sulu
+	link = { eu4 = 658 eu4 = 657 v2 = 1456 resettable = philippines }	# Cagayan, Samtoy -> Vigan
+	link = { eu4 = 656 eu4 = 2697 eu4 = 2698 v2 = 1455 v2 = 1458 resettable = philippines }	# MANY-TO-MANY: Manila, Tondo, Pangasinan -> Manila, Mindoro
+	link = { eu4 = 655 v2 = 1459 resettable = philippines }	# Palawan -> Palawan
+	link = { eu4 = 2699 v2 = 1457 resettable = philippines }	# Bikol -> Legazpi
+	link = { eu4 = 654 v2 = 1461 v2 = 2565 resettable = philippines }	# Visayas -> Tacloban, Cebu
+	link = { eu4 = 2700 v2 = 1460 resettable = philippines }	# Panay -> Iloilo
+	link = { eu4 = 653 v2 = 1462 resettable = philippines }	# Tagoloan -> Zamboanga
+	link = { eu4 = 2702 eu4 = 2701 eu4 = 652 v2 = 1463 resettable = philippines }	# Butuan, Tagloc, Maguindanao -> Davao
 	# ##############
 	# Europe
 	# ##############
@@ -1426,7 +1436,6 @@
 	link = { eu4 = 2983 v2 = 755 }	# Salerno -> Salerno
 	link = { eu4 = 120 v2 = 753 }	# Abbruzzi -> Aquila
 	link = { eu4 = 118 v2 = 750 v2 = 749 }	# Roma -> Viterbo, Rome
-
 	link = { eu4 = 2976 v2 = 751 }	# Umbria -> Perugia
 	link = { eu4 = 119 eu4 = 2977 v2 = 752 }	# Ancona, Urbino -> Ancona
 	link = { eu4 = 101 v2 = 724 }	# Liguria -> Genoa
