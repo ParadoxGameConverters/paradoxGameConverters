@@ -1,20 +1,19 @@
 country_event = { 
 	id = 250001 
-	title = "Centralization of HRE "
-	desc = "We will join the Thousand Years Reich!"
-
+	title = EVTNAME250001
+	desc = EVTDESC250001
 	is_triggered_only = yes 
 
 	option = { 
-		name = "Gott erhalte unser Kaiser !"
+		name = EVTOPTA250001
 		FROM = { inherit = THIS }
     }
 }
 
 country_event = { 
 	id = 250002
-	title = "Death of the HRE"
-	desc = "The Empire was already a relic but the liberal revolutions made it meet its end!"
+	title = EVTNAME250002
+	desc = EVTDESC250002
 
 	trigger = { 
 		has_country_flag = emperor_hre 
@@ -24,7 +23,7 @@ country_event = {
 	mean_time_to_happen = { months = 1 }
 
 	option = { 
-		name = "A dream go to waste ...."
+		name = EVTOPTA250002
 		clr_country_flag = emperor_hre 
 		any_province = { remove_core = HRE }
 	}
@@ -32,18 +31,18 @@ country_event = {
 
 country_event = {
     id = 250003
-    title = "Centralization of HRE "
-    desc = "Shall we join the Thousand Years Reich?"
+    title = EVTNAME250003
+    desc = EVTDESC250003
 
     is_triggered_only = yes
 
     option = {
-        name = "Gott erhalte unser Kaiser !"
+		name = EVTOPTA250003
         FROM = { inherit = THIS }
    
         ai_chance = {
             factor = 50
-            modifier {
+            modifier = {
                 factor = 0
                 OR = {
                     war = yes
@@ -67,19 +66,14 @@ country_event = {
                     }
                 }
             }
-            modifier {
+            modifier = {
                 factor = 0.5
-                OR = {
-                    AND = {
-                        relation = { who = FROM value = 25 }
-                        NOT = {
-                            relation = { who = FROM value = 50 }
-                        }
-                    }
-               
-                }
+				relation = { who = FROM value = 25 }
+				NOT = {
+					relation = { who = FROM value = 50 }
+				}
             }
-            modifier {
+            modifier = {
                 factor = 2
                 OR = {
                     average_militancy = 4
@@ -94,7 +88,7 @@ country_event = {
         }
     }
     option = {
-        name = "We cast away this ancient notion! We have our own glory."
+		name = EVTOPTB250003
         THIS = { prestige = 25 }
         FROM = { prestige = -25 }
         any_owned = {

@@ -18,7 +18,7 @@ celtic;Celtic;celtique;Keltisch;celtycka;Celta;Celtica;Kelta;Keltský;;;;;;x;
 central_thai;Central Thai;centre-thaïe;Zentralthailändisch;œrodkowo-tajska;Tailandesa central;Centro-tailandese;Közép-thai-i;Støedothajský;;;;;;x;
 cham;Cham;cham;Cham;czamska;Cham;Cham;Cham;Èamský;;;;;;x;
 chin;Chin;chin;Chin;czin;Chin;Chin;Chin;Èinský;;;;;;x;
-cosmopolitan_french;Cosmopolitaine;française;Cosmopolitaine;kosmopolityczna;Cosmopolitaine;Cosmopolita;Világpolgár;Kosmopolitní;;;;;;x;
+cosmopolitan_french;Cosmopolitaine;francaise;Cosmopolitaine;kosmopolityczna;Cosmopolitaine;Cosmopolita;Világpolgár;Kosmopolitní;;;;;;x;
 creek;Creek;creek;Creek;creek;Creek;Creek;Creek;Kríkský;;;;;;x;
 cuman;Cuman;Couman;Kumanisch;;Cumana;;;;;;;;;x
 delaware;Delaware;delaware;Delaware;delaware;Delaware;Delaware;Delavár;Delawarský;;;;;;x;
@@ -87,5 +87,12 @@ chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan;Chibchan
 maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;Maranon;;;;;;x;
 andean;Andean;Andean;Andean;Andean;Andean;Andean;Andean;Andean;;;;;;x;
 tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;Tupi;;;;;;x;
+je;Je;Je;Je;Je;Je;Je;Je;Je;;;;;;x;
 araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;Araucanian;;;;;;x;
-carribean;Carribean;Carribean;Carribean;Carribean;Carribean;Carribean;Carribean;Carribean;;;;;;x;
+carribean;Caribbean;Carribean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;;;;;;x;
+bornean;Bornean;Bornean;Bornean;Bornean;Bornean;Bornean;Bornean;Bornean;;;;;;x;
+chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;Chacoan;;;;;;x;
+native_carribean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;Caribbean;;;;;;x;
+native_north_american;Native North American;Native North American;Native North American;Native North American;Native North American;Native North American;Native North American;Native North American;;;;;;x;
+native_south_american;Native South American;Native South American;Native South American;Native South American;Native South American;Native South American;Native South American;Native South American;;;;;;x;
+native_central_american;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;Native Central American;;;;;;x;
