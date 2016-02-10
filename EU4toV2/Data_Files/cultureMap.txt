@@ -228,7 +228,7 @@ link = { v2 = je eu4 = ge }
 link = { v2 = guarani eu4 = guarani eu4 = charruan }
 link = { v2 = patagonian eu4 = patagonian eu4 = het }
 link = { v2 = araucanian eu4 = huarpe eu4 = mapuche }
-link = { v2 = chacoan eu4 = chacoan}
+link = { v2 = chacoan eu4 = chacoan eu4 = mataco }
 
 # Carribean - arawak, carib
 link = { v2 = guajiro eu4 = arawak area = bogota area = coquivacoa area = popayan area = venezuela }
