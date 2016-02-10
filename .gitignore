@@ -1,4 +1,6 @@
 Release/
 ReleaseIntermediate/
+bin/
+obj/
 EU3ToV2
 *.sdf
