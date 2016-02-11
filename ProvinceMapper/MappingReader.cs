@@ -8,7 +8,7 @@ namespace ProvinceMapper
 {
     class MappingReader
     {
-        public List<Mapping> mappings = new List<Mapping>();
+        public Dictionary<string, List<Mapping>> mappings = new Dictionary<string, List<Mapping>>();
 
         public string srcTag;
         public string destTag;
@@ -24,9 +24,13 @@ namespace ProvinceMapper
 
         public MappingReader(string _path, string _srcTag, string _destTag, List<Province> srcProvs, List<Province> destProvs, StatusUpdate su)
         {
-            srcTag = _srcTag;
+            srcTag  = _srcTag;
             destTag = _destTag;
-            path = _path;
+            path    = _path;
+
+            List<Mapping>   currentMappings = new List<Mapping>();
+            string          mappingName     = "";
+            int             level           = 0;
 
             StreamReader sr = new StreamReader(path, Encoding.GetEncoding(1252));
             while (!sr.EndOfStream)
@@ -34,11 +38,25 @@ namespace ProvinceMapper
                 string line = sr.ReadLine().Trim();
                 if (line.Length > 0)
                 {
+                    if ((level == 0) && (!line.StartsWith("#")))
+                    {
+                        if (mappingName != "")
+                        {
+                            mappings.Add(mappingName, currentMappings);
+                            currentMappings = new List<Mapping>();
+                        }
+                        string[] strings = line.Split('=');
+                        mappingName      = strings[0];
+                        mappingName.Trim();
+
+                        level += line.Count(x => x == '{') - line.Count(x => x == '}');
+                        continue;
+                    }
                     if (line.StartsWith("link"))
                     {
                         try
                         {
-                            mappings.Add(new ProvinceMapping(line, srcTag, destTag, srcProvs, destProvs));
+                            currentMappings.Add(new ProvinceMapping(line, srcTag, destTag, srcProvs, destProvs, mappingName));
                         }
                         catch (Exception e)
                         {
@@ -49,7 +67,7 @@ namespace ProvinceMapper
                     {
                         try
                         {
-                            mappings.Add(new CommentMapping(line));
+                            currentMappings.Add(new CommentMapping(line));
                         }
                         catch (Exception e)
                         {
@@ -64,9 +82,12 @@ namespace ProvinceMapper
                     {
                         System.Windows.Forms.MessageBox.Show(String.Format("Error parsing province mapping file: line beginning '{0}' appears to be invalid.", line.Split(' ')[0]));
                     }
+
+                    level += line.Count(x => x == '{') - line.Count(x => x == '}');
                 }
                 su(100.0 * sr.BaseStream.Position / sr.BaseStream.Length);
             }
+            mappings.Add(mappingName, currentMappings);
             sr.Close();
         }
 
@@ -78,12 +99,15 @@ namespace ProvinceMapper
         public void Write(string path)
         {
             StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding(1252));
-            sw.WriteLine("mappings = {");
-            foreach (Mapping m in mappings)
+            foreach (KeyValuePair<string, List<Mapping>> oneMapping in mappings)
             {
-                sw.WriteLine(m.ToOutputString(srcTag, destTag));
+                sw.WriteLine("%s = {", oneMapping.Key);
+                foreach (Mapping m in oneMapping.Value)
+                {
+                    sw.WriteLine(m.ToOutputString(srcTag, destTag));
+                }
+                sw.WriteLine("}");
             }
-            sw.WriteLine("}");
             sw.Close();
         }
     }
