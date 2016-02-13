@@ -101,7 +101,8 @@ namespace ProvinceMapper
             StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding(1252));
             foreach (KeyValuePair<string, List<Mapping>> oneMapping in mappings)
             {
-                sw.WriteLine("%s = {", oneMapping.Key);
+                sw.Write(oneMapping.Key);
+                sw.WriteLine(" = {");
                 foreach (Mapping m in oneMapping.Value)
                 {
                     sw.WriteLine(m.ToOutputString(srcTag, destTag));

@@ -24,6 +24,8 @@ namespace ProvinceMapper
 
         private float scaleFactor = 1.0f;
 
+        private Dictionary<string, System.Windows.Forms.ListBox> lbMappingsDict;
+
         private void Form1_Load(object sender, EventArgs e)
         {
             srcChroma = new SortedList<int, Province>();
@@ -41,9 +43,23 @@ namespace ProvinceMapper
             // force rescale/redraw
             cbZoom.SelectedIndex = 0;
 
-            lbMappings.Items.AddRange(Program.mappings.mappings.ToArray());
-            lbMappings.Items.Add(newMappingItem);
-            lbMappings.Items.Add(newCommentItem);
+            // get the different mapping listings
+            lbMappingsDict = new Dictionary<string, System.Windows.Forms.ListBox>();
+            foreach (KeyValuePair<string, List<Mapping>> oneMapping in Program.mappings.mappings)
+            {
+                mappingsTabs.TabPages.Add(oneMapping.Key);
+                System.Windows.Forms.ListBox newListBox = new System.Windows.Forms.ListBox();
+                newListBox.Dock = DockStyle.Fill;
+                newListBox.SelectedIndexChanged += new System.EventHandler(this.lbMappings_SelectedIndexChanged);
+
+
+                newListBox.Items.AddRange(oneMapping.Value.ToArray());
+                newListBox.Items.Add(newMappingItem);
+                newListBox.Items.Add(newCommentItem);
+
+                mappingsTabs.TabPages[mappingsTabs.TabPages.Count - 1].Controls.Add(newListBox);
+                lbMappingsDict.Add(oneMapping.Key, newListBox);
+            }
         }
 
         private Point srcPt;
@@ -86,13 +102,13 @@ namespace ProvinceMapper
             Province p = null;
             if (srcChroma.TryGetValue(c.ToArgb(), out p))
             {
-                ProvinceMapping m = lbMappings.SelectedItem as ProvinceMapping;
-                if (p.mapping != null && p.mapping != m)
+                ProvinceMapping m = lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem as ProvinceMapping;
+                if ((p.mappings.ContainsKey(mappingsTabs.SelectedTab.Text)) && (p.mappings[mappingsTabs.SelectedTab.Text] != m))
                 {
                     // the province is mapped, but not to the current mapping;
                     // switch to this province's mapping
                     skipSelPBRedraw = true;
-                    lbMappings.SelectedItem = p.mapping;
+                    lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem = p.mappings[mappingsTabs.SelectedTab.Text];
                     skipSelPBRedraw = false;
                     createSelPBs(false);
                 }
@@ -105,15 +121,15 @@ namespace ProvinceMapper
                         if (m.srcProvs.Contains(p))
                         {
                             m.srcProvs.Remove(p);
-                            p.mapping = null;
+                            p.mappings.Remove(mappingsTabs.SelectedTab.Text);
                         }
                         else
                         {
                             m.srcProvs.Add(p);
-                            p.mapping = m;
+                            p.mappings.Add(mappingsTabs.SelectedTab.Text, m);
                         }
                         skipSelPBRedraw = true;
-                        lbMappings.Items[lbMappings.SelectedIndex] = m;
+                        lbMappingsDict[mappingsTabs.SelectedTab.Text].Items[lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedIndex] = m;
                         skipSelPBRedraw = false;
                         createSelPBs(false);
                     }
@@ -129,13 +145,13 @@ namespace ProvinceMapper
             Province p = null;
             if (destChroma.TryGetValue(c.ToArgb(), out p))
             {
-                ProvinceMapping m = lbMappings.SelectedItem as ProvinceMapping;
-                if (p.mapping != null && p.mapping != m)
+                ProvinceMapping m = lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem as ProvinceMapping;
+                if ((p.mappings.ContainsKey(mappingsTabs.SelectedTab.Text)) && (p.mappings[mappingsTabs.SelectedTab.Text] != m))
                 {
                     // the province is mapped, but not to the current mapping;
                     // switch to this province's mapping
                     skipSelPBRedraw = true;
-                    lbMappings.SelectedItem = p.mapping;
+                    lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem = p.mappings[mappingsTabs.SelectedTab.Text];
                     skipSelPBRedraw = false;
                     createSelPBs(false);
                 }
@@ -148,15 +164,15 @@ namespace ProvinceMapper
                         if (m.destProvs.Contains(p))
                         {
                             m.destProvs.Remove(p);
-                            p.mapping = null;
+                            p.mappings.Remove(mappingsTabs.SelectedTab.Text);
                         }
                         else
                         {
                             m.destProvs.Add(p);
-                            p.mapping = m;
+                            p.mappings.Add(mappingsTabs.SelectedTab.Text, m);
                         }
                         skipSelPBRedraw = true;
-                        lbMappings.Items[lbMappings.SelectedIndex] = m;
+                        lbMappingsDict[mappingsTabs.SelectedTab.Text].Items[lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedIndex] = m;
                         skipSelPBRedraw = false;
                         createSelPBs(false);
                     }
@@ -219,8 +235,10 @@ namespace ProvinceMapper
                     foreach (Province p in provinces)
                     {
                         Rectangle scaledRect = Program.ScaleRect(p.Rect, scaleFactor);
-                        if (p.mapping != null && Rectangle.Intersect(scaledRect, invalidRect) != Rectangle.Empty)
+                        if ((p.mappings.ContainsKey(mappingsTabs.SelectedTab.Text)) && (Rectangle.Intersect(scaledRect, invalidRect) != Rectangle.Empty))
+                        {
                             g.DrawImage(p.BlackMask, scaledRect);
+                        }
                     }
                 }
 
@@ -245,17 +263,17 @@ namespace ProvinceMapper
             srcSelection.Clear();
             destSelection.Clear();
 
-            if (lbMappings.SelectedItem == (Object)newMappingItem) // reference test!
+            if (lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem == (Object)newMappingItem) // reference test!
             {
-                CreateNewMapping(false, lbMappings.Items.Count - 2);
+                CreateNewMapping(false, lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Count - 2);
             }
-            else if (lbMappings.SelectedItem == (Object)newCommentItem) // reference test!
+            else if (lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem == (Object)newCommentItem) // reference test!
             {
-                CreateNewMapping(true, lbMappings.Items.Count - 2);
+                CreateNewMapping(true, lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Count - 2);
             }
             else
             {
-                ProvinceMapping m = lbMappings.SelectedItem as ProvinceMapping;
+                ProvinceMapping m = lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem as ProvinceMapping;
                 if (m != null)
                 {
                     srcSelection.AddRange(m.srcProvs);
@@ -282,9 +300,9 @@ namespace ProvinceMapper
             {
                 m = new ProvinceMapping();
             }
-            Program.mappings.mappings.Insert(location, m);
-            lbMappings.Items.Insert(location, m);
-            lbMappings.SelectedItem = m;
+            Program.mappings.mappings[mappingsTabs.SelectedTab.Text].Insert(location, m);
+            lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Insert(location, m);
+            lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem = m;
         }
 
         private void tbFitSelection_Click(object sender, EventArgs e)
@@ -323,29 +341,29 @@ namespace ProvinceMapper
 
         private void tbMoveUp_Click(object sender, EventArgs e)
         {
-            Mapping m = lbMappings.SelectedItem as Mapping;
-            int idx = Program.mappings.mappings.IndexOf(m);
+            Mapping m = lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem as Mapping;
+            int idx = Program.mappings.mappings[mappingsTabs.SelectedTab.Text].IndexOf(m);
             if (idx > 0)
             {
-                Program.mappings.mappings[idx] = Program.mappings.mappings[idx - 1];
-                Program.mappings.mappings[idx - 1] = m;
-                lbMappings.Items[idx] = Program.mappings.mappings[idx];
-                lbMappings.Items[idx - 1] = Program.mappings.mappings[idx - 1];
-                lbMappings.SelectedItem = m;
+                Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx] = Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx - 1];
+                Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx - 1] = m;
+                lbMappingsDict[mappingsTabs.SelectedTab.Text].Items[idx] = Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx];
+                lbMappingsDict[mappingsTabs.SelectedTab.Text].Items[idx - 1] = Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx - 1];
+                lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem = m;
             }
         }
 
         private void tbMoveDown_Click(object sender, EventArgs e)
         {
-            Mapping m = lbMappings.SelectedItem as Mapping;
-            int idx = Program.mappings.mappings.IndexOf(m);
-            if (idx < Program.mappings.mappings.Count - 1)
+            Mapping m = lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem as Mapping;
+            int idx = Program.mappings.mappings[mappingsTabs.SelectedTab.Text].IndexOf(m);
+            if (idx < Program.mappings.mappings[mappingsTabs.SelectedTab.Text].Count - 1)
             {
-                Program.mappings.mappings[idx] = Program.mappings.mappings[idx + 1];
-                Program.mappings.mappings[idx + 1] = m;
-                lbMappings.Items[idx] = Program.mappings.mappings[idx];
-                lbMappings.Items[idx + 1] = Program.mappings.mappings[idx + 1];
-                lbMappings.SelectedItem = m;
+                Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx] = Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx + 1];
+                Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx + 1] = m;
+                lbMappingsDict[mappingsTabs.SelectedTab.Text].Items[idx] = Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx];
+                lbMappingsDict[mappingsTabs.SelectedTab.Text].Items[idx + 1] = Program.mappings.mappings[mappingsTabs.SelectedTab.Text][idx + 1];
+                lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem = m;
             }
         }
 
@@ -405,30 +423,30 @@ namespace ProvinceMapper
             if (e.KeyCode == Keys.F2)
             {
                 // change comment text
-                CommentMapping cm = lbMappings.SelectedItem as CommentMapping;
+                CommentMapping cm = lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem as CommentMapping;
                 if (cm != null)
                 {
                     CommentForm cf = new CommentForm();
                     cf.SetComment(cm);
                     cf.ShowDialog();
                 }
-                lbMappings.Items[lbMappings.SelectedIndex] = cm;
+                lbMappingsDict[mappingsTabs.SelectedTab.Text].Items[lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedIndex] = cm;
             }
             else if (e.KeyCode == Keys.F3)
             {
                 // create new comment
-                if (lbMappings.SelectedIndex >= 0)
-                    CreateNewMapping(true, lbMappings.SelectedIndex);
+                if (lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedIndex >= 0)
+                    CreateNewMapping(true, lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedIndex);
                 else
-                    CreateNewMapping(true, lbMappings.Items.Count - 2);
+                    CreateNewMapping(true, lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Count - 2);
             }
             else if (e.KeyCode == Keys.F4)
             {
                 // create new mapping
-                if (lbMappings.SelectedIndex >= 0)
-                    CreateNewMapping(false, lbMappings.SelectedIndex);
+                if (lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedIndex >= 0)
+                    CreateNewMapping(false, lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedIndex);
                 else
-                    CreateNewMapping(false, lbMappings.Items.Count - 2);
+                    CreateNewMapping(false, lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Count - 2);
             }
             else if (e.Control)
             {

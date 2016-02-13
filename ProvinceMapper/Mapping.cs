@@ -129,7 +129,7 @@ namespace ProvinceMapper
             if (srcProvs.Count == 0 && destProvs.Count == 0)
                 return "";
             string retval = String.Empty;
-            retval += "link = { ";
+            retval += "\tlink = { ";
             foreach (Province p in srcProvs)
             {
                 retval += srcTag + " = " + p.ID.ToString() + " ";
@@ -195,7 +195,7 @@ namespace ProvinceMapper
 
         public string ToOutputString(string srcTag, string destTag)
         {
-            return "# " + commentLine;
+            return "\t# " + commentLine;
         }
     }
 }

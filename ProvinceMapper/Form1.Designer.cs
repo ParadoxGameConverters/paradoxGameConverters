@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.VerticalSplit = new System.Windows.Forms.SplitContainer();
+            this.mappingsTabs = new System.Windows.Forms.TabControl();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.tbSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -42,15 +43,16 @@
             this.tbFitSelection = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.cbZoom = new System.Windows.Forms.ToolStripComboBox();
-            this.lbMappings = new System.Windows.Forms.ListBox();
             this.HorizontalSplit = new System.Windows.Forms.SplitContainer();
             this.pbSource = new System.Windows.Forms.PictureBox();
             this.pbTarget = new System.Windows.Forms.PictureBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.VerticalSplit)).BeginInit();
             this.VerticalSplit.Panel1.SuspendLayout();
             this.VerticalSplit.Panel2.SuspendLayout();
             this.VerticalSplit.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSplit)).BeginInit();
             this.HorizontalSplit.Panel1.SuspendLayout();
             this.HorizontalSplit.Panel2.SuspendLayout();
             this.HorizontalSplit.SuspendLayout();
@@ -66,8 +68,8 @@
             // 
             // VerticalSplit.Panel1
             // 
+            this.VerticalSplit.Panel1.Controls.Add(this.mappingsTabs);
             this.VerticalSplit.Panel1.Controls.Add(this.toolStrip1);
-            this.VerticalSplit.Panel1.Controls.Add(this.lbMappings);
             // 
             // VerticalSplit.Panel2
             // 
@@ -75,6 +77,15 @@
             this.VerticalSplit.Size = new System.Drawing.Size(705, 467);
             this.VerticalSplit.SplitterDistance = 235;
             this.VerticalSplit.TabIndex = 0;
+            // 
+            // mappingsTabs
+            // 
+            this.mappingsTabs.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mappingsTabs.Location = new System.Drawing.Point(0, 25);
+            this.mappingsTabs.Name = "mappingsTabs";
+            this.mappingsTabs.SelectedIndex = 0;
+            this.mappingsTabs.Size = new System.Drawing.Size(235, 442);
+            this.mappingsTabs.TabIndex = 2;
             // 
             // toolStrip1
             // 
@@ -185,18 +196,6 @@
             this.cbZoom.ToolTipText = "Zoom Factor";
             this.cbZoom.SelectedIndexChanged += new System.EventHandler(this.cbZoom_SelectedIndexChanged);
             // 
-            // lbMappings
-            // 
-            this.lbMappings.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbMappings.FormattingEnabled = true;
-            this.lbMappings.Location = new System.Drawing.Point(0, 32);
-            this.lbMappings.Name = "lbMappings";
-            this.lbMappings.Size = new System.Drawing.Size(232, 433);
-            this.lbMappings.TabIndex = 0;
-            this.lbMappings.SelectedIndexChanged += new System.EventHandler(this.lbMappings_SelectedIndexChanged);
-            // 
             // HorizontalSplit
             // 
             this.HorizontalSplit.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -264,11 +263,13 @@
             this.VerticalSplit.Panel1.ResumeLayout(false);
             this.VerticalSplit.Panel1.PerformLayout();
             this.VerticalSplit.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.VerticalSplit)).EndInit();
             this.VerticalSplit.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.HorizontalSplit.Panel1.ResumeLayout(false);
             this.HorizontalSplit.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.HorizontalSplit)).EndInit();
             this.HorizontalSplit.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbTarget)).EndInit();
@@ -283,7 +284,6 @@
         private System.Windows.Forms.PictureBox pbSource;
         private System.Windows.Forms.PictureBox pbTarget;
         private System.Windows.Forms.ToolStrip toolStrip1;
-        private System.Windows.Forms.ListBox lbMappings;
         private System.Windows.Forms.ToolStripButton tbSelection;
         private System.Windows.Forms.ToolStripButton tbUnmapped;
         private System.Windows.Forms.ToolTip toolTip1;
@@ -295,6 +295,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripComboBox cbZoom;
+        private System.Windows.Forms.TabControl mappingsTabs;
     }
 }
 
