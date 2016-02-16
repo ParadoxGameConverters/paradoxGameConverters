@@ -1,5 +1,11 @@
 ProvinceMapper Change Log
 
+0.9G
+- Skip over unused and RNW provinces in the definition file instead of throwing out errors.
+- Handle reading mapping files with multiple sections.
+- Display and interact with mapping files with multiple sections.
+- Keep 'resettable' information in the file.
+
 0.9F
 - Add keyboard shortcuts:
 	- F2: Change comment text
