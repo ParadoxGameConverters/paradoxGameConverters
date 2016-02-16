@@ -14,8 +14,9 @@ namespace ProvinceMapper
 
     class ProvinceMapping : Mapping
     {
-        public List<Province> srcProvs = new List<Province>();
-        public List<Province> destProvs = new List<Province>();
+        public List<Province>   srcProvs            = new List<Province>();
+        public List<Province>   destProvs           = new List<Province>();
+        public List<string>     resettableRegions   = new List<string>();
 
         public ProvinceMapping()
         {
@@ -91,7 +92,8 @@ namespace ProvinceMapper
                             }
                         case 3:
                             {
-                                // province is resettable
+                                string region = s.Trim('}');
+                                resettableRegions.Add(region);
                                 break;
                             }
                         default:
@@ -137,6 +139,10 @@ namespace ProvinceMapper
             foreach (Province p in destProvs)
             {
                 retval += destTag + " = " + p.ID.ToString() + " ";
+            }
+            foreach (string r in resettableRegions)
+            {
+                retval += "resettable = " + r + " ";
             }
             retval += "}\t# ";
             if (isManyToMany())
