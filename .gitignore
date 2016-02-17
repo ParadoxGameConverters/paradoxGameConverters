@@ -2,7 +2,9 @@ Release/
 ReleaseIntermediate/
 Debug/
 DebugIntermediate/
+TestResults/
 EU3ToV2
+*.zip
 *.sdf
 *.suo
 *.opensdf
