@@ -29,12 +29,12 @@ link = { v2 = afro_brazilian eu4 = portuguese eu4 = galician eu4 = suebi }
 link = { v2 = afro_antillean eu4 = cosmopolitan_french eu4 = gascon eu4 = normand eu4 = aquitaine eu4 = burgundian eu4 = occitain eu4 = breton eu4 = wallonian eu4 = old_frankish eu4 = frankish }
 
 # British
-link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish region = mississippi_region }
-link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish region = southeast_america_region }
-link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish region = northeast_america_region }
-link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish region = mexico_region }
-link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish eu4 = american region = central_america_region }
-link = { v2 = afro_caribbean eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = pictish }
+link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish region = mississippi_region }
+link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish region = southeast_america_region }
+link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish region = northeast_america_region }
+link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish region = mexico_region }
+link = { v2 = afro_american eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish eu4 = american region = central_america_region }
+link = { v2 = afro_caribbean eu4 = english eu4 = scottish eu4 = anglo_saxon eu4 = anglosaxon eu4 = pictish }
 
 # Natives (match native culture)
 link = { v2 = zapotec eu4 = zapotek eu4 = mixtec eu4 = tlapanec }
