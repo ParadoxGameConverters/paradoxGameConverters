@@ -725,7 +725,7 @@
 	link = { eu4 = 1226 eu4 = 1225 v2 = 1829 v2 = 1830 v2 = 1832 }	# MANY-TO-MANY: Taka, Butana -> Kassala, Sennar, Fashoda
 	link = { eu4 = 2798 v2 = 1828 v2 = 1827 }	# Soba -> Wad Madani, Khartoum
 	link = { eu4 = 1222 eu4 = 2799 v2 = 1831 }	# Gezira, Sennar -> Rabak
-	link = { eu4 = 2801 eu4 = 1221 eu4 = 2800 v2 = 1838 }	# Medwa, El Obeid, Kosti -> Obeid
+	link = { eu4 = 1221 eu4 = 2800 v2 = 1838 }	# Medwa, El Obeid, Kosti -> Obeid
 	link = { eu4 = 1216 v2 = 1840 }	# Tegali -> Kaduqli
 	link = { eu4 = 2802 v2 = 1839 }	# Kobbe -> Nuhud
     link = { eu4 = 1219 v2 = 1841 }    # Darfur -> Fasher
@@ -1953,7 +1953,7 @@
 	link = { eu4 = 1302 v2 = 2755 }	# Cape Bon -> Cape Bon
 	link = { eu4 = 1303 v2 = 2756 }	# Tyrrenean Sea -> Tyrrhenian Sea
 	link = { eu4 = 1304 v2 = 2757 }	# Bay of Naples -> Bay of Naples
-	link = { eu4 = 1305 eu4 = 1306 v2 = 2758 v2 = 2759 }	# MANY-TO-MANY: Gulf of Gabes, Malta Channel -> Gulf of Gabes, Malta Channel
+	link = { eu4 = 1305 v2 = 2758 v2 = 2759 }	# MANY-TO-MANY: Gulf of Gabes -> Gulf of Gabes, Malta Channel
 	link = { eu4 = 1308 v2 = 2761 }	# Gulf of Venice -> Gulf of Venice
 	link = { eu4 = 1309 v2 = 2762 }	# Adriatic Sea -> Adriatic Sea
 	link = { eu4 = 1310 v2 = 2763 }	# Straits of Otranto -> Straits of Otranto
@@ -2973,11 +2973,10 @@
 	link = { eu4 = 1226 eu4 = 1225 v2 = 1829 v2 = 1830 v2 = 1832 }	# MANY-TO-MANY: Taka, Butana -> Kassala, Sennar, Fashoda
 	link = { eu4 = 2798 v2 = 1828 v2 = 1827 }	# Soba -> Wad Madani, Khartoum
 	link = { eu4 = 1222 eu4 = 2799 v2 = 1831 }	# Gezira, Sennar -> Rabak
-	link = { eu4 = 2801 eu4 = 1221 eu4 = 2800 v2 = 1838 }	# Medwa, Taqali, Kosti -> Obeid
+	link = { eu4 = 1221 eu4 = 2800 v2 = 1838 }	# Taqali, Kosti -> Obeid
 	link = { eu4 = 1216 v2 = 1840 }	# Dar Nuba -> Kaduqli
 	link = { eu4 = 2802 v2 = 1839 }	# Kobbe -> Nuhud
 	link = { eu4 = 1158 v2 = 1824 }	# Kanem -> Mao
-	link = { eu4 = 1159 v2 = 1818 v2 = 1820 }	# Bagirmi -> Massenya, Bongor
 	link = { eu4 = 2287 eu4 = 2286 eu4 = 1160 v2 = 1819 v2 = 1964 }	# MANY-TO-MANY: Kotoko, Logone, Bornu -> Moundou, Maroua
 	link = { eu4 = 1157 v2 = 1953 v2 = 1951 }	# Damasak -> Dikoa, Kuka
 	link = { eu4 = 348 eu4 = 2464 eu4 = 2466 v2 = 1699 }	# Sus, Ouarzazate, Draa -> Warzazat
@@ -3075,10 +3074,10 @@
     link = { eu4 = 2277 v2 = 1817 } # Kawar -> Bilma
     link = { eu4 = 2475 v2 = 1814 } # Djado -> Madama
     link = { eu4 = 2288 v2 = 1821 }    # Yao -> Abeche
-    link = { eu4 = 1159 v2 = 1823 }    # Bagirmi -> Mongo
+    link = { eu4 = 1159 v2 = 1823 v2 = 1818 v2 = 1820 }    # Bagirmi -> Mongo, Massenya, Bongor
     link = { eu4 = 2932 v2 = 1822 }    # Waddai -> Am Timan
     link = { eu4 = 774 eu4 = 2801 v2 = 1842 }    # Al-Junaynah, Medwa -> Junayah
-    link = { eu4 = 1219 eu4 = 2802 v2 = 1841 }    # Darfur, Kobbe -> Fasher
+    link = { eu4 = 1219 v2 = 1841 }    # Darfur -> Fasher
 	# Lakes
 	link = { eu4 = 2471 eu4 = 1648 }	# Chott el-Jerid, Lake Tchad -> DROPPED
 	link = { eu4 = 1649 v2 = 3102 }	# Lake Victoria -> Lake Victoria
@@ -6543,7 +6542,7 @@
 	link = { eu4 = 1262 v2 = 2715 }	# Onega -> Onega
 	link = { eu4 = 1888 v2 = 3230 }	# Kara Sea -> Gulf of Ob
 	link = { eu4 = 1654 v2 = 3107 }	# Lake Bajkal -> Lake Bajkal
-	link = { eu4 = 1889 eu4 = 1890 }# Lake geneva, Bodensee -> DROPPED
+	link = { eu4 = 1889 eu4 = 1890 } # Lake geneva, Bodensee -> DROPPED
 	# ##############
 	# The High Seas
 	# ##############
@@ -9276,7 +9275,7 @@
 	link = { eu4 = 1173 v2 = 2079 v2 = 2083 }	# Damaraland -> Swakopmund, Walvis Bay
 	link = { eu4 = 1172 v2 = 2004 }	# Benguela -> Moçâmedes
 	link = { eu4 = 1168 v2 = 2003 }	# Kisarna -> Benguela
-	link = { eu4 = 1167 eu4 = 1170 v2 = 1999 v2 = 2001 }	# Luanda -> Luanda
+	link = { eu4 = 1167 v2 = 1999 v2 = 2001 }	# Luanda -> Luanda
 	link = { eu4 = 1170 v2 = 2001 v2 = 1983 }	# Kongo -> Mbanza, Boma
 	link = { eu4 = 1166 v2 = 2000 v2 = 2624 }	# Loango -> Cabinda, Loango
 	link = { eu4 = 1165 v2 = 1974 v2 = 1972 v2 = 1954 }	# Gabon -> Mayumbe, Libreville, São Tomé
