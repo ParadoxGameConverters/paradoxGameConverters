@@ -35,7 +35,7 @@ using namespace std;
 
 HoI3Province::HoI3Province(string _filename)
 {
-	filename				= _filename;
+	filenames.push_back(_filename);
 	coastal				= false;
 	num					= 0;
 	name					= "";
@@ -56,9 +56,9 @@ HoI3Province::HoI3Province(string _filename)
 	leadership = 0.0;
 	cores.clear();
 
-	int slash		= filename.find_last_of("\\");
-	int numDigits	= filename.find_first_of("-") - slash - 2;
-	string temp		= filename.substr(slash + 1, numDigits);
+	int slash		= _filename.find_last_of("\\");
+	int numDigits	= _filename.find_first_of("-") - slash - 2;
+	string temp		= _filename.substr(slash + 1, numDigits);
 	num				= atoi(temp.c_str());
 
 	Object* obj;
@@ -136,78 +136,81 @@ HoI3Province::HoI3Province(string _filename)
 
 void HoI3Province::output() const
 {
-	FILE* output;
-	if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename).c_str(), "w") != 0)
+	for (string filename: filenames)
 	{
-		int errNum;
-		_get_errno(&errNum);
-		char errStr[256];
-		strerror_s(errStr, sizeof(errStr), errNum);
-		LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename << " - " << errStr;
-		exit(-1);
+		FILE* output;
+		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename).c_str(), "w") != 0)
+		{
+			int errNum;
+			_get_errno(&errNum);
+			char errStr[256];
+			strerror_s(errStr, sizeof(errStr), errNum);
+			LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename << " - " << errStr;
+			exit(-1);
+		}
+		if (owner != "")
+		{
+			fprintf_s(output, "owner = %s\n", owner.c_str());
+			fprintf_s(output, "controller = %s\n", owner.c_str());
+		}
+		for (unsigned int i = 0; i < cores.size(); i++)
+		{
+			fprintf_s(output, "add_core = %s\n", cores[i].c_str());
+		}
+		if ((points > 0) || industry > 0)
+		{
+			fprintf_s(output, "points = %i\n", points + (industry / 2));
+		}
+		if (metal > 0.0)
+		{
+			fprintf_s(output, "metal = %.2f\n", metal);
+		}
+		if (energy > 0.0)
+		{
+			fprintf_s(output, "energy = %.2f\n", energy);
+		}
+		if (rare_materials > 0.0)
+		{
+			fprintf_s(output, "rare_materials = %.2f\n", rare_materials);
+		}
+		if (oil > 0.0)
+		{
+			fprintf_s(output, "crude_oil = %.2f\n", oil);
+		}
+		if (industry > 0)
+		{
+			fprintf_s(output, "industry = %i\n", industry);
+		}
+		if (land_fort > 0)
+		{
+			fprintf_s(output, "land_fort = %i\n", land_fort);
+		}
+		if (coastal_fort > 0)
+		{
+			fprintf_s(output, "coastal_fort = %i\n", coastal_fort);
+		}
+		if (infrastructure > 0)
+		{
+			fprintf_s(output, "infra = %i\n", infrastructure);
+		}
+		if (naval_base > 0)
+		{
+			fprintf_s(output, "naval_base = %i\n", naval_base);
+		}
+		if (air_base > 0)
+		{
+			fprintf_s(output, "air_base = %i\n", air_base);
+		}
+		if (manpower > 0.0)
+		{
+			fprintf_s(output, "manpower = %.2f\n", manpower);
+		}
+		if (leadership > 0.0)
+		{
+			fprintf_s(output, "leadership = %.2f\n", leadership);
+		}
+		fclose(output);
 	}
-	if (owner != "")
-	{
-		fprintf_s(output, "owner = %s\n", owner.c_str());
-		fprintf_s(output, "controller = %s\n", owner.c_str());
-	}
-	for (unsigned int i = 0; i < cores.size(); i++)
-	{
-		fprintf_s(output, "add_core = %s\n", cores[i].c_str());
-	}
-	if ((points > 0) || industry > 0)
-	{
-		fprintf_s(output, "points = %i\n", points + (industry / 2));
-	}
-	if (metal > 0.0)
-	{
-		fprintf_s(output, "metal = %.2f\n", metal);
-	}
-	if (energy > 0.0)
-	{
-		fprintf_s(output, "energy = %.2f\n", energy);
-	}
-	if (rare_materials > 0.0)
-	{
-		fprintf_s(output, "rare_materials = %.2f\n", rare_materials);
-	}
-	if (oil > 0.0)
-	{
-		fprintf_s(output, "crude_oil = %.2f\n", oil);
-	}
-	if (industry > 0)
-	{
-		fprintf_s(output, "industry = %i\n", industry);
-	}
-	if (land_fort > 0)
-	{
-		fprintf_s(output, "land_fort = %i\n", land_fort);
-	}
-	if (coastal_fort > 0)
-	{
-		fprintf_s(output, "coastal_fort = %i\n", coastal_fort);
-	}
-	if (infrastructure > 0)
-	{
-		fprintf_s(output, "infra = %i\n", infrastructure);
-	}
-	if (naval_base > 0)
-	{
-		fprintf_s(output, "naval_base = %i\n", naval_base);
-	}
-	if (air_base > 0)
-	{
-		fprintf_s(output, "air_base = %i\n", air_base);
-	}
-	if (manpower > 0.0)
-	{
-		fprintf_s(output, "manpower = %.2f\n", manpower);
-	}
-	if (leadership > 0.0)
-	{
-		fprintf_s(output, "leadership = %.2f\n", leadership);
-	}
-	fclose(output);
 }
 
 

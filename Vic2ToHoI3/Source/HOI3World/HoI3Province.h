@@ -40,6 +40,7 @@ class HoI3Province
 		void convertFromOldProvince(const V2Province* oldProvince);
 		void addCore(string);
 
+		void addFilename(string _filename)				{ filenames.push_back(_filename); }
 		void clearCores()										{ cores.clear(); }
 		void setCoastal(bool _coastal)					{ coastal = _coastal; }
 		void setName(string _name)							{ name = _name; }
@@ -72,7 +73,7 @@ class HoI3Province
 		void		requireInfrastructure(int min);
 
 	private:
-		string			filename;
+		vector<string>	filenames;
 		bool				coastal;
 		int				num;
 		string			name;

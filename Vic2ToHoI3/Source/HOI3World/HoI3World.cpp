@@ -85,7 +85,17 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 				else
 				{
 					HoI3Province* newProvince = new HoI3Province(directories.front() + "\\" + provinceFileData.name);
-					provinces.insert(make_pair(newProvince->getNum(), newProvince));
+
+					int provinceNum = newProvince->getNum();
+					auto provinceItr = provinces.find(provinceNum);
+					if (provinceItr == provinces.end())
+					{
+						provinces.insert(make_pair(provinceNum, newProvince));
+					}
+					else
+					{
+						provinceItr->second->addFilename(directories.front() + "\\" + provinceFileData.name);
+					}
 				}
 			} while (_findnext(fileListing, &provinceFileData) == 0);
 			_findclose(fileListing);
@@ -116,7 +126,17 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 				else
 				{
 					HoI3Province* newProvince = new HoI3Province(directories.front() + "\\" + provinceFileData.name);
-					provinces.insert(make_pair(newProvince->getNum(), newProvince));
+
+					int provinceNum = newProvince->getNum();
+					auto provinceItr = provinces.find(provinceNum);
+					if (provinceItr == provinces.end())
+					{
+						provinces.insert(make_pair(provinceNum, newProvince));
+					}
+					else
+					{
+						provinceItr->second->addFilename(directories.front() + "\\" + provinceFileData.name);
+					}
 				}
 			} while (_findnext(fileListing, &provinceFileData) == 0);
 			_findclose(fileListing);
@@ -197,6 +217,7 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 
 	countryOrder.push_back("REB");
 }
+
 
 void HoI3World::output() const
 {
