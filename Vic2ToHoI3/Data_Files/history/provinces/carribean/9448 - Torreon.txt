@@ -1,0 +1,11 @@
+owner = MEX
+controller = MEX
+add_core = MEX
+
+energy = 1.00
+crude_oil = 10.00
+industry = 1
+manpower = 1.00
+leadership = 0.10
+
+infra = 6

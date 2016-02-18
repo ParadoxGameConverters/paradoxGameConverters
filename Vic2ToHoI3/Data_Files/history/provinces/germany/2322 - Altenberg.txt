@@ -1,0 +1,10 @@
+owner = GER
+controller = GER
+add_core = GER
+
+metal = 1.00
+energy = 2.00
+industry = 2
+infra = 9
+manpower = 1.00
+leadership = 0.10

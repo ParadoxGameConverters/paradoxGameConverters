@@ -1,0 +1,5 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+metal = 3.00
+infra = 2

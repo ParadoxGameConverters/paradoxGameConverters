@@ -1,0 +1,5 @@
+owner = CHL
+controller = CHL
+add_core = CHL
+points = 1
+infra = 4

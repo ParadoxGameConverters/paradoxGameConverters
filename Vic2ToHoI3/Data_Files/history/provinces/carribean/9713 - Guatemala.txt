@@ -1,0 +1,11 @@
+owner = GUA
+controller = GUA
+add_core = GUA
+points = 1
+anti_air = 1
+infra = 6
+energy = 8
+air_base = 4
+naval_base = 4
+manpower = 4.00
+leadership = 0.40

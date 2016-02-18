@@ -1,0 +1,14 @@
+owner = SCH
+controller = SCH
+add_core = SCH
+
+points = 1
+metal = 6.00
+energy = 15.00
+rare_materials = 5.00
+industry = 7
+anti_air = 5
+infra = 8
+air_base = 4
+manpower = 3.00
+leadership = 0.30

@@ -1,0 +1,13 @@
+owner = SAF
+controller = SAF
+add_core = SAF
+points = 2
+metal = 1.00
+energy = 17.00
+industry = 1
+anti_air = 3
+infra = 6
+air_base = 1
+naval_base = 3
+manpower = 1.00
+leadership = 0.10

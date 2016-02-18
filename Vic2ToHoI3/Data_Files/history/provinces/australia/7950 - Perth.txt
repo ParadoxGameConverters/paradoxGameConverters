@@ -1,0 +1,12 @@
+owner = AST
+controller = AST
+add_core = AST
+points = 1
+energy = 1.00
+industry = 1
+coastal_fort = 1
+land_fort = 0
+anti_air = 2
+infra = 6
+air_base = 5
+naval_base = 6

@@ -1,0 +1,12 @@
+owner = JAP
+controller = JAP
+add_core = JAP
+add_core = KOR
+points = 1
+energy = 7.00
+metal = 2.00
+
+industry = 4
+manpower = 4.00
+leadership = 0.80
+infra = 6

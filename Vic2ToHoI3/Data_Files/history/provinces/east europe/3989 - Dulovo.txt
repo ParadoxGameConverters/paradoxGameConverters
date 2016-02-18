@@ -1,0 +1,10 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+add_core = BUL
+
+infra = 8
+1940.9.7 = {
+	owner = BUL
+	controller = BUL
+}

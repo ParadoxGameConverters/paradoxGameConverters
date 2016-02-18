@@ -1,0 +1,35 @@
+owner = NOR
+controller = NOR
+add_core = NOR
+
+infra = 2
+naval_base = 1
+terrain = arctic
+
+
+1939.9.1 = {
+	naval_base = 1
+	air_base = 1
+}
+
+1941.6.22 = {
+	controller = GER
+	naval_base = 1
+	air_base = 1
+}
+
+1943.2.1 = {
+	controller = GER
+	infra = 3
+	naval_base = 2
+	air_base = 1
+}
+
+1944.6.20 = {
+	controller = GER
+	infra = 3
+	naval_base = 1
+	air_base = 1
+	anti_air = 1
+}
+

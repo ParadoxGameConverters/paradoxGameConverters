@@ -1,0 +1,26 @@
+owner = EST
+controller = EST
+add_core = EST
+
+infra = 6
+1940.5.10 = {
+	owner = SOV
+	controller = SOV
+
+	add_core = SOV
+}
+1940.6.21 = {
+	owner = SOV
+	controller = SOV
+
+	add_core = SOV
+}
+
+1941.6.22 = {
+	owner = SOV
+	controller = SOV
+	add_core = SOV
+}
+1941.12.7 = {
+	controller = GER
+}

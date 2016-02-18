@@ -57,97 +57,52 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 	struct _finddata_t	provinceFileData;
 	intptr_t					fileListing = NULL;
 	list<string>			directories;
+
 	directories.push_back("");
-
-
-	struct _stat st;
-	if (_stat(".\\blankMod\\output\\history\\provinces\\", &st) == 0)
+	while (directories.size() > 0)
 	{
-		while (directories.size() > 0)
+		if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
 		{
-			if ((fileListing = _findfirst((string(".\\blankMod\\output\\history\\provinces") + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
-			{
-				LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces" << directories.front() << "\\*.*";
-				exit(-1);
-			}
+			LOG(LogLevel::Error) << "Could not open directory .\\blankMod\\output\\history\\provinces" << directories.front() << "\\*.*";
+			exit(-1);
+		}
 
-			do
+		do
+		{
+			if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
 			{
-				if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
+				continue;
+			}
+			if (provinceFileData.attrib & _A_SUBDIR)
+			{
+				string newDirectory = directories.front() + "\\" + provinceFileData.name;
+				directories.push_back(newDirectory);
+			}
+			else
+			{
+				HoI3Province* newProvince = new HoI3Province(directories.front() + "\\" + provinceFileData.name);
+
+				int provinceNum = newProvince->getNum();
+				auto provinceItr = provinces.find(provinceNum);
+				if (provinceItr == provinces.end())
 				{
-					continue;
-				}
-				if (provinceFileData.attrib & _A_SUBDIR)
-				{
-					string newDirectory = directories.front() + "\\" + provinceFileData.name;
-					directories.push_back(newDirectory);
+					provinces.insert(make_pair(provinceNum, newProvince));
 				}
 				else
 				{
-					HoI3Province* newProvince = new HoI3Province(directories.front() + "\\" + provinceFileData.name);
-
-					int provinceNum = newProvince->getNum();
-					auto provinceItr = provinces.find(provinceNum);
-					if (provinceItr == provinces.end())
-					{
-						provinces.insert(make_pair(provinceNum, newProvince));
-					}
-					else
-					{
-						provinceItr->second->addFilename(directories.front() + "\\" + provinceFileData.name);
-					}
+					provinceItr->second->addFilename(directories.front() + "\\" + provinceFileData.name);
+					provinceNum++;
 				}
-			} while (_findnext(fileListing, &provinceFileData) == 0);
-			_findclose(fileListing);
-			directories.pop_front();
-		}
-	}
-	else
-	{
-		while (directories.size() > 0)
-		{
-			if ((fileListing = _findfirst((Configuration::getHoI3Path() + "\\history\\provinces" + directories.front() + "\\*.*").c_str(), &provinceFileData)) == -1L)
-			{
-				LOG(LogLevel::Error) << "Could not open directory " << Configuration::getHoI3Path() << "\\history\\provinces" << directories.front() << "\\*.*";
-				exit(-1);
 			}
-
-			do
-			{
-				if (strcmp(provinceFileData.name, ".") == 0 || strcmp(provinceFileData.name, "..") == 0)
-				{
-					continue;
-				}
-				if (provinceFileData.attrib & _A_SUBDIR)
-				{
-					string newDirectory = directories.front() + "\\" + provinceFileData.name;
-					directories.push_back(newDirectory);
-				}
-				else
-				{
-					HoI3Province* newProvince = new HoI3Province(directories.front() + "\\" + provinceFileData.name);
-
-					int provinceNum = newProvince->getNum();
-					auto provinceItr = provinces.find(provinceNum);
-					if (provinceItr == provinces.end())
-					{
-						provinces.insert(make_pair(provinceNum, newProvince));
-					}
-					else
-					{
-						provinceItr->second->addFilename(directories.front() + "\\" + provinceFileData.name);
-					}
-				}
-			} while (_findnext(fileListing, &provinceFileData) == 0);
-			_findclose(fileListing);
-			directories.pop_front();
-		}
+		} while (_findnext(fileListing, &provinceFileData) == 0);
+		_findclose(fileListing);
+		directories.pop_front();
 	}
 	checkAllProvincesMapped(provinceMap);
 
 	// determine whether each province is coastal or not by checking if it has a naval base
 	// if it's not coastal, we won't try to put any navies in it (otherwise HoI3 crashes)
-	Object*	obj2 = doParseFile((Configuration::getHoI3Path() + "\\map\\positions.txt").c_str());
+	Object*	obj2 = doParseFile((Configuration::getHoI3Path() + "\\tfh\\map\\positions.txt").c_str());
 	vector<Object*> objProv = obj2->getLeaves();
 	if (objProv.size() == 0)
 	{
@@ -178,6 +133,7 @@ HoI3World::HoI3World(const provinceMapping& provinceMap)
 	potentialCountries.clear();
 	const date FirstStartDate("1936.1.1");
 	ifstream HoI3CountriesInput;
+	struct _stat st;
 	if (_stat(".\\blankMod\\output\\common\\countries.txt", &st) == 0)
 	{
 		HoI3CountriesInput.open(".\\blankMod\\output\\common\\countries.txt");

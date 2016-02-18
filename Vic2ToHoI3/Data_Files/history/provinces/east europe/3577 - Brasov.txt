@@ -1,0 +1,7 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+energy = 3.00
+industry = 1
+infra = 6

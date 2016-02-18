@@ -1,0 +1,10 @@
+owner = SIA
+
+controller = SIA
+
+add_core = SIA
+
+points = 1
+metal = 9.00
+rare_materials = 6.00
+infra = 4

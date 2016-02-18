@@ -1,0 +1,14 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+points = 3
+anti_air = 1
+air_base = 4
+naval_base = 6
+infra = 4
+1943.1.23 = {
+	controller = ENG
+}
+1943.9.3 = {
+	owner = ENG
+}

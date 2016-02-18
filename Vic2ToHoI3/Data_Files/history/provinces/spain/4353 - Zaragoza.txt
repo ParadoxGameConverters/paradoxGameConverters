@@ -1,0 +1,21 @@
+owner = SPR
+controller = SPR
+add_core = SPR
+
+industry = 2
+infra = 8
+manpower = 1.00
+leadership = 0.10
+
+1938.9.1 = {
+	owner = SPA
+
+	controller = SPA
+
+	add_core = SPA
+
+}
+
+1944.6.20 = {
+	air_base = 2
+}

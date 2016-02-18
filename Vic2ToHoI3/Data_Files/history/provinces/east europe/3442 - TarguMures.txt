@@ -1,0 +1,10 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+add_core = HUN
+
+infra = 6
+1940.8.30 = {
+	owner = HUN
+	controller = HUN
+}

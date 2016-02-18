@@ -1,0 +1,13 @@
+owner = USA
+controller = USA
+add_core = USA
+
+points = 1
+metal = 30.00
+energy = 45.00
+crude_oil = 8.00
+rare_materials = 2.00
+industry = 7
+infra = 8
+manpower = 3.00
+leadership = 0.40

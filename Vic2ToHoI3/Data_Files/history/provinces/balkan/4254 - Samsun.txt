@@ -1,0 +1,6 @@
+owner = TUR
+controller = TUR
+add_core = TUR
+naval_base = 1
+
+infra = 6

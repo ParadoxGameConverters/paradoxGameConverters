@@ -1,0 +1,11 @@
+owner = PER
+controller = PER
+add_core = PER
+
+infra = 2
+
+infra = 2
+
+infra = 2
+
+infra = 2

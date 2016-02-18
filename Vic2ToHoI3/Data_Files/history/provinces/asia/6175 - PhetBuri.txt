@@ -1,0 +1,8 @@
+owner = SIA
+controller = SIA
+add_core = SIA
+points = 1
+anti_air = 2
+infra = 6
+air_base = 4
+naval_base = 10

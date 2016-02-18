@@ -1,0 +1,10 @@
+owner = MEX
+controller = MEX
+add_core = MEX
+anti_air = 2
+air_base = 2
+naval_base = 4
+
+infra = 5
+
+terrain = hills

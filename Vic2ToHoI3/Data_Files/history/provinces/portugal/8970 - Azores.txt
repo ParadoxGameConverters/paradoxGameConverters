@@ -1,0 +1,20 @@
+owner = POR
+controller = POR
+add_core = POR
+points = 1
+anti_air = 2
+infra = 4
+air_base = 3
+naval_base = 3
+
+#1943.8.18 Portugal signs agreement giving England the use of bases in the Azores
+#1943.10.1 G.R. Bromet sails to Azores
+1943.10.1 = { 
+	owner = ENG
+	controller = ENG
+	add_core = ENG
+}
+
+1944.3.1 = { air_base = 4 } #air base on the island of Santa Maria, Lajes Field
+
+1946.1.1 = { controller = POR } #The United States and the United Kingdom transferred control to Portugal in 1946

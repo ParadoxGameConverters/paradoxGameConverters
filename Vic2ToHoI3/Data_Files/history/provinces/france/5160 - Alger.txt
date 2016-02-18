@@ -1,0 +1,24 @@
+owner = FRA
+controller = FRA
+add_core = FRA
+points = 4
+industry = 1
+anti_air = 4
+infra = 6
+air_base = 4
+naval_base = 5
+manpower = 1.00
+leadership = 0.15
+1940.6.22 = {
+	owner = VIC
+	controller = VIC
+	add_core = VIC
+}
+1943.2.1 = {
+	owner = FRA
+	controller = FRA
+	add_core = FRA
+}
+1944.12.01 = {
+	controller = USA
+}

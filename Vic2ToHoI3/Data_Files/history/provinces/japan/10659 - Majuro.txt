@@ -1,0 +1,4 @@
+owner = JAPcontroller = JAPadd_core = JAP
+infra = 2
+1944.2.18 = {
+	owner = USA	controller = USA}

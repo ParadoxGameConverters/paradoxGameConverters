@@ -1,0 +1,18 @@
+owner = AUS
+controller = AUS
+add_core = AUS
+
+points = 2
+metal = 9.00
+energy = 11.00
+industry = 1
+anti_air = 2
+infra = 8
+air_base = 4
+manpower = 1.00
+leadership = 0.10
+1938.3.12 = {
+	owner = GER
+	controller = GER
+	add_core = GER
+}

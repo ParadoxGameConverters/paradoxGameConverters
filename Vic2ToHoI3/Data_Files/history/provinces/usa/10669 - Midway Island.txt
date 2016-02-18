@@ -1,0 +1,10 @@
+owner = USA
+controller = USA
+add_core = USA
+points = 1
+infra = 8
+naval_base = 5
+
+1941.1.1 = {
+	radar_station = 1
+}

@@ -35,7 +35,7 @@ using namespace std;
 
 HoI3Province::HoI3Province(string _filename)
 {
-	filenames.push_back(_filename);
+	filenames.insert(make_pair(_filename, _filename));
 	coastal				= false;
 	num					= 0;
 	name					= "";
@@ -63,24 +63,13 @@ HoI3Province::HoI3Province(string _filename)
 
 	Object* obj;
 	struct _stat st;
-	if (_stat((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str(), &st) == 0)
+	obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
+	if (obj == NULL)
 	{
-		obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
-		if (obj == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces" << _filename;
-			exit(-1);
-		}
+		LOG(LogLevel::Error) << "Could not parse .\\blankMod\\output\\history\\provinces" << _filename;
+		exit(-1);
 	}
-	else
-	{
-		obj = doParseFile((Configuration::getHoI3Path() + "\\history\\provinces" + _filename).c_str());
-		if (obj == NULL)
-		{
-			LOG(LogLevel::Error) << "Could not parse " << Configuration::getHoI3Path() << "\\history\\provinces" << _filename;
-			exit(-1);
-		}
-	}
+
 	vector<Object*> leaves = obj->getLeaves();
 	for (vector<Object*>::iterator itr = leaves.begin(); itr != leaves.end(); itr++)
 	{
@@ -130,22 +119,21 @@ HoI3Province::HoI3Province(string _filename)
 			//log("Unknown key - %s\n", (*itr)->getKey().c_str());
 		}
 	}
-
 }
 
 
 void HoI3Province::output() const
 {
-	for (string filename: filenames)
+	for (auto filename: filenames)
 	{
 		FILE* output;
-		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename).c_str(), "w") != 0)
+		if (fopen_s(&output, ("Output\\" + Configuration::getOutputName() + "\\history\\provinces\\" + filename.first).c_str(), "w") != 0)
 		{
 			int errNum;
 			_get_errno(&errNum);
 			char errStr[256];
 			strerror_s(errStr, sizeof(errStr), errNum);
-			LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename << " - " << errStr;
+			LOG(LogLevel::Error) << "Could not create province history file Output\\" << Configuration::getOutputName() << "\\history\\provinces\\" << filename.first << " - " << errStr;
 			exit(-1);
 		}
 		if (owner != "")
@@ -225,6 +213,16 @@ void HoI3Province::addCore(string newCore)
 	if ( find(cores.begin(), cores.end(), newCore) == cores.end() )
 	{
 		cores.push_back(newCore);
+	}
+}
+
+
+void HoI3Province::addFilename(string _filename)
+{
+	// only add if unique
+	if (filenames.find(_filename) == filenames.end())
+	{
+		filenames.insert(make_pair(_filename, _filename));
 	}
 }
 

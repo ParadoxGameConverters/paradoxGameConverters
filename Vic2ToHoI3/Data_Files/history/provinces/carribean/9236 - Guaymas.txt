@@ -1,0 +1,6 @@
+owner = MEX
+controller = MEX
+add_core = MEX
+
+infra = 6
+naval_base = 3

@@ -1,0 +1,9 @@
+owner = VEN
+controller = VEN
+add_core = VEN
+metal = 1.00
+energy = 1.00
+industry = 1
+infra = 6
+manpower = 1.00
+leadership = 0.10

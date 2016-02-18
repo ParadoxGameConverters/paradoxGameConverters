@@ -1,0 +1,11 @@
+owner = SIA
+controller = SIA
+add_core = SIA
+points = 1
+metal = 1.00
+energy = 1.00
+rare_materials = 1.00
+industry = 1
+infra = 4
+manpower = 2.00
+leadership = 0.20

@@ -1,0 +1,15 @@
+owner = DEN
+controller = DEN
+add_core = DEN
+
+points = 1
+industry = 2
+infra = 10
+manpower = 2.00
+leadership = 0.20
+naval_base = 1
+
+1940.4.10 = {
+	controller = GER
+
+}

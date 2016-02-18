@@ -1,0 +1,6 @@
+owner = GER
+controller = GER
+add_core = GER
+strategic_resource = aluminium
+
+infra = 9

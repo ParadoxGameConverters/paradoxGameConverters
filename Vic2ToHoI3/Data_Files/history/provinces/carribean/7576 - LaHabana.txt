@@ -1,0 +1,9 @@
+owner = CUB
+controller = CUB
+add_core = CUB
+points = 2
+anti_air = 1
+infra = 6
+naval_base = 4
+manpower = 3.00
+leadership = 0.30

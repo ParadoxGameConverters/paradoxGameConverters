@@ -1,0 +1,14 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+points = 5
+energy = 3.00
+industry = 1
+coastal_fort = 1
+anti_air = 2
+infra = 7
+air_base = 10
+naval_base = 5
+manpower = 1.00
+leadership = 0.10

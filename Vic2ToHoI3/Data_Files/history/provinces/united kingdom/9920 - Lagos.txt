@@ -1,0 +1,10 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+rare_materials = 1.00
+anti_air = 1
+infra = 4
+air_base = 4
+manpower = 1.00
+leadership = 0.25
+naval_base = 3

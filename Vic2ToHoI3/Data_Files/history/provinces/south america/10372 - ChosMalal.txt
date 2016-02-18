@@ -1,0 +1,6 @@
+owner = ARG
+controller = ARG
+add_core = ARG
+energy = 1.00
+industry = 1
+infra = 2

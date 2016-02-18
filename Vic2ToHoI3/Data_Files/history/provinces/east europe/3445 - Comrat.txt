@@ -1,0 +1,6 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+anti_air = 1
+infra = 8

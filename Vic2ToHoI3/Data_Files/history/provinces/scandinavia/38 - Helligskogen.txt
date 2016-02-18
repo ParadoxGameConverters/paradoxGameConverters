@@ -1,0 +1,19 @@
+owner = NOR
+controller = NOR
+add_core = NOR
+
+infra = 2
+
+1941.6.22 = {
+	controller = GER
+}
+
+1943.2.1 = {
+	controller = GER
+	infra = 3
+}
+
+1944.6.20 = {
+	controller = GER
+	infra = 2
+}

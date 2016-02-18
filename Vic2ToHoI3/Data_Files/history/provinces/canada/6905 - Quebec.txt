@@ -1,0 +1,13 @@
+owner = CAN
+controller = CAN
+add_core = CAN
+metal = 3.00
+energy = 3.00
+rare_materials = 6.00
+industry = 3
+anti_air = 4
+infra = 8
+air_base = 6
+naval_base = 10
+manpower = 2.00
+leadership = 0.20

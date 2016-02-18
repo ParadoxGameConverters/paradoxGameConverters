@@ -1,0 +1,10 @@
+owner = ENG
+controller = ENG
+add_core = ENG
+leadership = 2
+
+infra = 9
+
+infra = 9
+
+infra = 9

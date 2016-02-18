@@ -1,0 +1,12 @@
+owner = MEX
+controller = MEX
+add_core = MEX
+metal = 1.00
+energy = 4.00
+rare_materials = 1.00
+industry = 2
+anti_air = 1
+manpower = 2.00
+leadership = 0.20
+infra = 4
+naval_base = 3

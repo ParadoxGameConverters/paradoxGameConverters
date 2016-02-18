@@ -1,0 +1,25 @@
+owner = DEN
+controller = DEN
+add_core = DEN
+
+infra = 2
+naval_base = 1
+
+1940.4.10 = {
+	owner = ENG
+	controller = ENG
+	add_core = ENG
+}
+
+1941.7.7 = {
+	owner = USA
+	controller = USA
+	add_core = USA
+	remove_core = ENG
+}
+
+1945.5.8 = {
+	owner = DEN
+	controller = DEN
+	remove_core = USA
+}

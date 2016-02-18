@@ -1,0 +1,12 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+leadership = 0.25
+air_base = 2
+
+infra = 10
+1943.9.23 = {
+	owner = RSI
+	controller = RSI
+	add_core = RSI
+}

@@ -1,0 +1,8 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+terrain = arctic
+
+infra = 2
+

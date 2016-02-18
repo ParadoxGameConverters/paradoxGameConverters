@@ -1,0 +1,7 @@
+owner = POR
+controller = POR
+add_core = POR
+add_core = IND
+
+naval_base = 1
+infra = 8

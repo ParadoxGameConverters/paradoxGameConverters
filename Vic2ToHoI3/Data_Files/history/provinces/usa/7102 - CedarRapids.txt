@@ -1,0 +1,7 @@
+owner = USA
+controller = USA
+add_core = USA
+industry = 3
+infra = 8
+manpower = 1.00
+leadership = 0.20

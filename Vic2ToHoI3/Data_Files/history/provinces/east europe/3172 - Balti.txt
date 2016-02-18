@@ -1,0 +1,17 @@
+owner = ROM
+controller = ROM
+add_core = ROM
+
+industry = 2
+infra = 8
+manpower = 1.00
+leadership = 0.10
+1941.6.22 = {
+	controller = SOV
+}
+1941.12.7 = {
+	controller = ROM
+}
+1944.4.30 = {
+	controller = SOV
+}

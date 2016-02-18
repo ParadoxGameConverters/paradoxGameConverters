@@ -1,0 +1,9 @@
+owner = FIN
+controller = FIN
+add_core = FIN
+
+infra = 2
+
+1940.3.12 = {
+	land_fort = 2
+}

@@ -1,0 +1,11 @@
+owner = PER
+controller = PER
+add_core = PER
+metal = 1.00
+energy = 7.00
+industry = 2
+infra = 6
+manpower = 2.00
+leadership = 0.20
+1941.12.7 = {
+	owner = SOV	controller = SOV	add_core = SOV}

@@ -1,0 +1,22 @@
+owner = ALB
+controller = ALB
+add_core = ALB
+
+points = 2
+crude_oil = 3.00
+rare_materials = 1.00
+anti_air = 1
+infra = 6
+air_base = 2
+naval_base = 6
+manpower = 2.00
+leadership = 0.20
+1939.4.7 = {
+	controller = ITA
+	owner = ITA
+}
+1943.9.8 = {
+	owner = ALB
+	controller = GER
+
+}

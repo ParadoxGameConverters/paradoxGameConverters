@@ -1,0 +1,10 @@
+owner = NIC
+controller = NIC
+add_core = NIC
+points = 1
+infra = 6
+energy = 8
+air_base = 1
+naval_base = 1
+manpower = 3.00
+leadership = 0.30

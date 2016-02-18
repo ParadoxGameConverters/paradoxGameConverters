@@ -1,0 +1,14 @@
+owner = VEN
+controller = VEN
+add_core = VEN
+points = 2
+energy = 1.00
+crude_oil = 110.00
+energy = 20.00
+industry = 1
+anti_air = 2
+infra = 6
+air_base = 1
+naval_base = 6
+manpower = 1.00
+leadership = 0.10

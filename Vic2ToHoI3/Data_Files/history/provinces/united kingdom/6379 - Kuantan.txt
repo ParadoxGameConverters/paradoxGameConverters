@@ -1,0 +1,10 @@
+owner = ENG
+controller = ENG
+
+strategic_resource = rubber
+add_core = ENG
+rare_materials = 20.00
+infra = 4
+1942.6.4 = {
+	controller = JAP
+}

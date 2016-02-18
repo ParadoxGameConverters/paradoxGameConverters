@@ -1,0 +1,23 @@
+owner = CHI
+
+controller = CHI
+
+ 
+add_core = CHI
+add_core = CHC
+infra = 3
+
+infra = 3
+
+infra = 3
+
+infra = 3
+1936.5.12 = {
+	owner = MEN
+
+	controller = MEN
+
+	add_core = MEN
+
+}
+

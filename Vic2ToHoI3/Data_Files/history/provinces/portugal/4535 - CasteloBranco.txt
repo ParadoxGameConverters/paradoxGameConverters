@@ -1,0 +1,10 @@
+owner = POR
+controller = POR
+add_core = POR
+
+strategic_resource = tungsten
+
+infra = 8
+
+
+infra = 6

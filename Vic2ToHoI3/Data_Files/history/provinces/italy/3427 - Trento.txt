@@ -1,0 +1,16 @@
+owner = ITA
+controller = ITA
+add_core = ITA
+add_core = AUS
+
+energy = 1.00
+industry = 1
+infra = 8
+1943.9.23 = {
+	owner = GER
+
+	controller = GER
+
+	add_core = GER
+
+}

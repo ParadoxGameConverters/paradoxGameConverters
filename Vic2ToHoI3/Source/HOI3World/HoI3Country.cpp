@@ -420,10 +420,19 @@ void HoI3Country::initFromV2Country(const V2World& _srcWorld, const V2Country* _
 	_findclose(fileListing);
 	if (filename == "")
 	{
-		string filesearch = Configuration::getHoI3Path() + "\\history\\countries\\" + tag + "*.txt";
+		string filesearch = Configuration::getHoI3Path() + "\\tfh\\history\\countries\\" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename = fileData.name;
+		}
+		else
+		{
+			_findclose(fileListing);
+			filesearch = Configuration::getHoI3Path() + "\\history\\countries\\" + tag + "*.txt";
+			if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+			{
+				filename = fileData.name;
+			}
 		}
 		_findclose(fileListing);
 	}
@@ -672,11 +681,21 @@ void HoI3Country::initFromHistory()
 	_findclose(fileListing);
 	if (fullFilename == "")
 	{
-		string filesearch = Configuration::getHoI3Path() + "\\history\\countries\\" + tag + "*.txt";
+		string filesearch = Configuration::getHoI3Path() + "\\tfh\\history\\countries\\" + tag + "*.txt";
 		if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
 		{
 			filename			= fileData.name;
-			fullFilename = Configuration::getHoI3Path() + "\\history\\countries\\" + fileData.name;
+			fullFilename = Configuration::getHoI3Path() + "\\tfh\\history\\countries\\" + fileData.name;
+		}
+		else
+		{
+			_findclose(fileListing);
+			filesearch = Configuration::getHoI3Path() + "\\history\\countries\\" + tag + "*.txt";
+			if ((fileListing = _findfirst(filesearch.c_str(), &fileData)) != -1L)
+			{
+				filename			= fileData.name;
+				fullFilename = Configuration::getHoI3Path() + "\\history\\countries\\" + fileData.name;
+			}
 		}
 		_findclose(fileListing);
 	}
