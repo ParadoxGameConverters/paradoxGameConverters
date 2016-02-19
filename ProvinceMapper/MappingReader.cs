@@ -13,7 +13,8 @@ namespace ProvinceMapper
         public string srcTag;
         public string destTag;
 
-        private string path;
+        private string       path;
+        private List<string> initialLines;
 
         public MappingReader(string _path, string _srcTag, string _destTag)
         {
@@ -28,6 +29,7 @@ namespace ProvinceMapper
             destTag = _destTag;
             path    = _path;
 
+            initialLines = new List<string>();
             List<Mapping>   currentMappings = new List<Mapping>();
             string          mappingName     = "";
             int             level           = 0;
@@ -38,21 +40,25 @@ namespace ProvinceMapper
                 string line = sr.ReadLine().Trim();
                 if (line.Length > 0)
                 {
-                    if ((level == 0) && (!line.StartsWith("#")))
+                    if (level == 0)
                     {
-                        if (mappingName != "")
+                        if (line.Count(x => x == '{') > 0)
                         {
-                            mappings.Add(mappingName, currentMappings);
-                            currentMappings = new List<Mapping>();
+                            if (mappingName != "")
+                            {
+                                mappings.Add(mappingName, currentMappings);
+                                currentMappings = new List<Mapping>();
+                            }
+                            string[] strings = line.Split('=');
+                            mappingName = strings[0];
+                            mappingName = mappingName.Trim();
                         }
-                        string[] strings = line.Split('=');
-                        mappingName      = strings[0];
-                        mappingName.Trim();
-
-                        level += line.Count(x => x == '{') - line.Count(x => x == '}');
-                        continue;
+                        else
+                        {
+                            initialLines.Add(line);
+                        }
                     }
-                    if (line.StartsWith("link"))
+                    else if (line.StartsWith("link"))
                     {
                         try
                         {
@@ -62,6 +68,7 @@ namespace ProvinceMapper
                         {
                             System.Windows.Forms.MessageBox.Show(e.Message, "Error in mapping file");
                         }
+                        level += line.Count(x => x == '{') - line.Count(x => x == '}');
                     }
                     else if (line.StartsWith("#"))
                     {
@@ -99,6 +106,12 @@ namespace ProvinceMapper
         public void Write(string path)
         {
             StreamWriter sw = new StreamWriter(path, false, Encoding.GetEncoding(1252));
+
+            foreach (string line in initialLines)
+            {
+                sw.WriteLine(line);
+            }
+            
             foreach (KeyValuePair<string, List<Mapping>> oneMapping in mappings)
             {
                 sw.Write(oneMapping.Key);
