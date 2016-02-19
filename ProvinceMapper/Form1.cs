@@ -52,13 +52,27 @@ namespace ProvinceMapper
                 newListBox.Dock = DockStyle.Fill;
                 newListBox.SelectedIndexChanged += new System.EventHandler(this.lbMappings_SelectedIndexChanged);
 
-
                 newListBox.Items.AddRange(oneMapping.Value.ToArray());
                 newListBox.Items.Add(newMappingItem);
                 newListBox.Items.Add(newCommentItem);
 
                 mappingsTabs.TabPages[mappingsTabs.TabPages.Count - 1].Controls.Add(newListBox);
                 lbMappingsDict.Add(oneMapping.Key, newListBox);
+            }
+            if (mappingsTabs.TabCount == 0)
+            {
+                mappingsTabs.TabPages.Add("mappings");
+                System.Windows.Forms.ListBox newListBox = new System.Windows.Forms.ListBox();
+                newListBox.Dock = DockStyle.Fill;
+                newListBox.SelectedIndexChanged += new System.EventHandler(this.lbMappings_SelectedIndexChanged);
+
+                newListBox.Items.Add(newMappingItem);
+                newListBox.Items.Add(newCommentItem);
+
+                List<Mapping> oneMapping = new List<Mapping>();
+                Program.mappings.mappings.Add("mappings", oneMapping);
+                mappingsTabs.TabPages[mappingsTabs.TabPages.Count - 1].Controls.Add(newListBox);
+                lbMappingsDict.Add("mappings", newListBox);
             }
         }
 
