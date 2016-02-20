@@ -1,113 +1,126 @@
-	# Copyright (c) 2015 The Paradox Game Converters Project
-	# 
-	# Permission is hereby granted, free of charge, to any person obtaining a copy
-	# of this software and associated documentation files (the "Software"), to deal
-	# in the Software without restriction, including without limitation the rights
-	# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-	# copies of the Software, and to permit persons to whom the Software is
-	# furnished to do so, subject to the following conditions:
-	# 
-	# The above copyright notice and this permission notice shall be included in
-	# all copies or substantial portions of the Software.
-	# 
-	# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-	# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-	# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-	# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-	# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-	# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-	# THE SOFTWARE.
-	
+# Copyright (c) 2015 The Paradox Game Converters Project
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+# THE SOFTWARE.
+
 3.0.3.0 = {
 	# #######
 	# North America & Greenland
 	# #######
-	# Greenland
-	link = { vic = 2636 vic = 2591 hoi = 6643 }	# Egedesminde, Holsteinsborg -> Sisimiut
-	link = { vic = 2632 hoi = 8418 hoi = 10675 }	# Ammassalik -> Ammassalik, Thule
-	link = { vic = 251 hoi = 8524 hoi = 10683 }	# Godthab -> Godthab, Timmiarmiut
-	# Canada
-	link = { vic = 75 hoi = 8589 hoi = 8622 }	# Millertown -> Cook's Harbour, Morts
-	link = { vic = 74 hoi = 8654 hoi = 8623 hoi = 8682 hoi = 8734 }	# Saint Johns -> Windsor, Gander, Rencontre East, St. John's
-	link = { vic = 62 hoi = 8522 hoi = 8523 hoi = 8487 hoi = 8486 hoi = 8484 hoi = 8485 }	# Sept-Îles -> Havre St Pierre, Kegaska, St. Augustin, Olomane, Sept Iles, Pitaga
-	link = { vic = 2625 hoi = 8449 hoi = 8391 }	# Port Hope Simpson -> Happy Valley Goose Bay, Charlottetown
-	link = { vic = 76 hoi = 6885 }	# Hopedale -> Nain
-	link = { vic = 2627 hoi = 11365 }	# Fort Chimo -> Kangiqsualujjuaq
-	link = { vic = 2626 hoi = 6974 }	# Port Harrison -> Puvurnituq
-	link = { vic = 59 hoi = 8521 hoi = 8520 }	# Nitchequon -> Labrador City, Woollett
-	link = { vic = 2593 hoi = 2935 hoi = 6903 }	# Fort George -> Eastmain, Rivière aux Feuilles
-	link = { vic = 2592 hoi = 6927 }	# Ungava -> Kangiqsualujjuaq
-	link = { vic = 61 hoi = 8588 hoi = 8621 hoi = 8587 hoi = 8557 }	# Chicoutimi -> Baie Comeau, Chicoutimi, Saguenay, Outardes
-	link = { vic = 60 hoi = 3737 hoi = 3669 }	# Fort Rupert -> Mistissini, La Sarre
-	link = { vic = 48 hoi = 3543 hoi = 8519 hoi = 8483 hoi = 8556 }	# Fort Albany -> Moosonee, Kapuskasing, Cochrane, Timmins
-	link = { vic = 2628 hoi = 3540 }	# Attawapiskat -> Fort Albany
-	link = { vic = 47 hoi = 8616 }	# Fort Severn -> Fort Severn
-	link = { vic = 37 hoi = 5027 hoi = 11375 }	# Churchill -> Churchill, Brochet
-	link = { vic = 43 hoi = 8258 }	# Arviat -> Thaolintao Lake
-	link = { vic = 2595 hoi = 11372 hoi = 8257 }	# Nunavut -> Baker Lake, Chesterfield
-	link = { vic = 44 hoi = 8448 hoi = 8390 hoi = 11374 }	# Coral Harbour -> Repulse Bay, Coral Harbour, Brooks
+	# ## Greenland
+	link = { vic = 2591 hoi = 6643 }	# Holsteinsborg -> Sisimiut
+	link = { vic = 2632 hoi = 8418 hoi = 10683 }	# Ammassalik -> Ammassalik, Timmiarmiut
+	link = { vic = 251 hoi = 8524 }	# Godthab -> Godthab
+	link = { vic = 2636 hoi = 10675 }	# Egedesminde -> Thule
+	# ## Canada
+	# British Columbia
+	link = { vic = 13 hoi = 6648 hoi = 6652 hoi = 6649 hoi = 6671 hoi = 6665 hoi = 6656 hoi = 6645 }	# Vancouver -> Allison Harbour, Kingdome Inlet, Williams Lake, Vancouver, Powell River, Knight Inlet, Mount Waddington
+	link = { vic = 14 hoi = 6659 hoi = 6664 hoi = 6675 hoi = 6670 hoi = 6682 }	# Vancouver Island -> Port Hardy, Campbell River, Bamfield, Nanaimo, Victoria
+	link = { vic = 15 hoi = 8147 hoi = 8160 hoi = 8173 hoi = 6638 hoi = 6635 hoi = 6641 hoi = 8135 }	# Prince Rupert -> Port Simpson, Kitimat, Smithers, Ocean Falls, Swanson Bay, Rivers Inlet, Alice Arm
+	link = { vic = 16 hoi = 8091 hoi = 8112 hoi = 8309 }	# Glenora -> Echo Lake, Stewart, Hazelton
+	link = { vic = 17 hoi = 8085 hoi = 8090 }	# Atlin -> Bennett, Atlin
+	link = { vic = 18 hoi = 8189 }	# Fort Saint John -> Prince George
+	link = { vic = 19 hoi = 8208 hoi = 8231 hoi = 8207 }	# Prince George -> Williams Lake, Alexis Creek, Tatla Lake
+	link = { vic = 20 hoi = 6666 hoi = 6676 hoi = 6660 hoi = 6653 }	# Kelowna -> Lytton, Penticton, Alta Lake, Lillooet
+	link = { vic = 21 hoi = 8307 hoi = 8255 hoi = 8334 }	# Vernon -> Castlegar, Kamloops, Revelstoke
+	link = { vic = 2629 hoi = 8311 }	# Beatton River -> Fort Nelson
+	# Yukon
+	link = { vic = 6 hoi = 8082 }	# Whitehorse -> Whitehorse
+	link = { vic = 7 vic = 8 hoi = 8232 }	# Dawson, Ross River -> Dawson
+	# Alberta
+	link = { vic = 22 hoi = 11364 hoi = 8472 }	# Edmonton -> Red Deer, Edmonton
+	link = { vic = 23 hoi = 8389 }	# Athabaska Landing -> Fort McMurray
+	link = { vic = 24 hoi = 8335 }	# Jasper -> Grande Prairie
+	link = { vic = 25 vic = 26 vic = 28 hoi = 8336 }	# Banff, Calgary, Fort MacLeod -> Calgary
+	link = { vic = 27 hoi = 8337 hoi = 11374 }	# Denwood -> Vermilion, Brooks
+	link = { vic = 29 hoi = 8387 }	# Medicine Hat -> Lethbridge
+	link = { vic = 2597 hoi = 8362 hoi = 8282 }	# Fort Vermilion -> Fort Vermilion, Peace River
+	# Saskatchewan
+	link = { vic = 30 hoi = 8364 hoi = 8415 }	# Regina -> Regina, Virden
+	link = { vic = 31 hoi = 8386 hoi = 8705 }	# Stanley -> Stony Rapids, Fond du Lac
+	link = { vic = 32 hoi = 8584 hoi = 8283 hoi = 8339 }	# Prince Albert -> Prince Albert, Kinistino, Preeceville
+	link = { vic = 33 hoi = 8310 hoi = 8363 hoi = 8256 }	# Asquith -> North Battleford, Moose Jaw, Saskatoon
+	link = { vic = 34 hoi = 8338 }	# Saskatoon -> Fort Qu'Appelle
+	link = { vic = 35 hoi = 8388 hoi = 8414 }	# Maple Creek -> Central Butte, Westhope
+	# Northwest Territories
+	link = { vic = 9 hoi = 8583 }	# Fort Simpson -> Fort Providence
+	link = { vic = 10 hoi = 11367 }	# Inuvik -> Fort Norman
+	link = { vic = 11 hoi = 11392 hoi = 8312 hoi = 8308 }	# Echo Bay -> Taltson River, Yellowknife, Reliance
+	link = { vic = 12 hoi = 10686 hoi = 11372 hoi = 11368 }	# Reliance -> Yathkyed Lake, Baker Lake, Dubawnt Lake
+	link = { vic = 2596 hoi = 8732 hoi = 11362 }	# Fort Resolution -> Kasba Lake, Ennadei Lake
+	link = { vic = 2598 hoi = 11377 }	# Fort Liard -> Hay River
+	# Manitoba
+	link = { vic = 37 hoi = 5027 hoi = 8478 }	# Churchill -> Churchill, Norway House
+	link = { vic = 38 hoi = 11375 }	# Indian Lakes -> Brochet
+	link = { vic = 39 hoi = 8477 hoi = 8516 }	# Norway House -> The Pas, Riverton
+	link = { vic = 40 hoi = 8284 hoi = 8444 }	# Dauphin -> Swan River, Portage la Prairie
+	link = { vic = 41 hoi = 8416 hoi = 8365 }	# Brandon -> Morden, Brandon
+	link = { vic = 42 vic = 36 hoi = 8445 }	# Pembina, Winnipeg -> Winnipeg
+	# Nunavut
+	link = { vic = 43 hoi = 8258 hoi = 8257 }	# Arviat -> Thaolintao Lake, Chesterfield
+	link = { vic = 44 hoi = 8448 hoi = 8390 }	# Coral Harbour -> Repulse Bay, Coral Harbour
 	link = { vic = 45 hoi = 8417 hoi = 14126 hoi = 3796 }	# Baffin Island -> Pangnirtung, Frobisher Bay, Lake Harbour
-	link = { vic = 38 hoi = 11362 }	# Indian Lakes -> Ennadei Lake
-	link = { vic = 39 hoi = 8477 hoi = 8478 }	# Norway House -> The Pas, Norway House
-	link = { vic = 2594 hoi = 3470 hoi = 3601 }	# Pickle -> Red Lake, Fort Hope
-	link = { vic = 49 hoi = 8446 }	# Dryden -> Vermilon Bay
-	link = { vic = 50 vic = 3117 hoi = 8480 hoi = 11373 hoi = 8481 hoi = 8447 hoi = 8518 hoi = 8482 }	# MANY-TO-MANY: Thunder Bay, Lake Nipigon -> Sioux Lookout, Nakina, Nipigon, Fort William, White River, Hearst
-	link = { vic = 51 hoi = 8555 hoi = 8619 hoi = 8586 }	# Sault Ste Marie -> Franz, Sault Sainte Marie, Chapleau
-	link = { vic = 52 hoi = 6879 hoi = 3136 hoi = 3202 hoi = 3203 hoi = 3137 hoi = 2934 hoi = 3001 hoi = 3002 hoi = 3069 hoi = 3068 hoi = 3000 hoi = 2933 hoi = 6857 hoi = 2867 hoi = 2868 hoi = 3003 hoi = 3070 hoi = 3071 hoi = 3138 }	# Sudbury -> Sudbury, Huntsville, Midland, Gravenhurst, Kawagama Lake, Opeongo Lake, South River, Mattawa, Whitney, Byng Inlet, Rutter, North Bay, Sturgeon, Cobalt, Temiscaming, Dumoine, Madawaska Lake, Deep River, Killaloe Station
-	link = { vic = 63 hoi = 4399 hoi = 8652 hoi = 6924 hoi = 8620 hoi = 4586 hoi = 4400 hoi = 8653 hoi = 6880 hoi = 6902 hoi = 6881 hoi = 6858 hoi = 6840 }	# Temiscaming -> Amos, Malartic, Lac Simàrd, Val d'Or, Beattyville, Dolbeau, Parent, Dozois, Gracefield, Mt. Laurier, Royun, Kirkland Lake
-	link = { vic = 65 hoi = 6859 hoi = 6883 hoi = 6860 hoi = 6905 }	# Quebec City -> La Tuque, Rivière á Pierre, Baie St Paul, Québec
-	link = { vic = 64 hoi = 6951 hoi = 6926 hoi = 6904 hoi = 6882 }	# Trois-Rivières -> Trois Rivières, St. Gabriel, Rivière Matawin, St. Alexis des Monts
-	link = { vic = 58 hoi = 6992 hoi = 6950 hoi = 6972 hoi = 6925 }	# Montreal -> Montréal, Napierville, Tracy, St. Jérome
-	link = { vic = 57 hoi = 6949 hoi = 3206 hoi = 3342 hoi = 3272 hoi = 6971 }	# Ottawa -> Gatineau, Fort Coulonge, Ottawa, Perth, Alexandria
-	link = { vic = 56 hoi = 3271 hoi = 3341 hoi = 3409 hoi = 3340 hoi = 3205 hoi = 3204 hoi = 3270 }	# Kingston -> Lanark, Brockville, Kingston, Harrowsmith, Pembroke, Bancroft, Madoc
+	link = { vic = 2595 hoi = 4800 }	# Nunavut -> Wager Bay
+	# Ontario
 	link = { vic = 46 hoi = 3408 hoi = 3407 hoi = 3476 hoi = 3541 hoi = 3339 hoi = 3338 hoi = 3269 }	# Toronto -> Trenton, Cobourg, Oshawa, Toronto, Havelock, Petersborough, Lakefield
-	link = { vic = 53 hoi = 3267 hoi = 3405 hoi = 3475 hoi = 3336 hoi = 3337 hoi = 3268 hoi = 3404 hoi = 3335 hoi = 3406 }	# Barrie -> Owen Sound, Orangeville, Brampton, Collingwood, Barrie, Orillia, Wingham, Kincardine, Newmarket
-	link = { vic = 55 hoi = 3605 hoi = 3668 hoi = 3474 hoi = 3604 hoi = 3667 }	# Hamilton -> Hamilton, Simcoe, Arthur, Kitchener, Stratford
-	link = { vic = 54 vic = 77 hoi = 3665 hoi = 3798 hoi = 3731 hoi = 3732 hoi = 3666 hoi = 3603 hoi = 3539 hoi = 3473 hoi = 14161 }	# MANY-TO-MANY: Windsor, St Pierre & Miquelon -> Sarnia, Leamington, Chatham, London, Forest, Grand Bend, Seaforth, Goderich, St. Pierre et Miquelon
-	link = { vic = 66 hoi = 6993 hoi = 6973 hoi = 6952 }	# Sherbrooke -> Sherbrooke, Asbestos, Thetford Mines
+	link = { vic = 47 hoi = 8616 }	# Fort Severn -> Fort Severn
+	link = { vic = 48 hoi = 3543 hoi = 8519 hoi = 8483 hoi = 8556 }	# Fort Albany -> Moosonee, Kapuskasing, Cochrane, Timmins
+	link = { vic = 49 hoi = 8446 hoi = 8480 }	# Dryden -> Vermilon Bay, Sioux Lookout
+	link = { vic = 50 vic = 3117 hoi = 8481 hoi = 8447 hoi = 8518 hoi = 8482 }	# MANY-TO-MANY: Thunder Bay, Lake Nipigon -> Nipigon, Fort William, White River, Hearst
+	link = { vic = 51 hoi = 8555 hoi = 8619 hoi = 8586 hoi = 6840 }	# Sault Ste Marie -> Franz, Sault Sainte Marie, Chapleau, Kirkland Lake
+	link = { vic = 52 hoi = 3136 hoi = 3202 hoi = 3203 hoi = 3137 hoi = 2934 hoi = 3001 hoi = 3002 hoi = 3069 hoi = 3068 hoi = 3000 hoi = 2933 hoi = 2867 hoi = 2868 hoi = 3003 hoi = 3070 hoi = 3071 hoi = 3138 hoi = 6879 hoi = 6857 hoi = 6858 hoi = 8652 hoi = 6924 hoi = 6880 hoi = 3204 hoi = 3270 hoi = 3268 }	# Sudbury -> Huntsville, Midland, Gravenhurst, Kawagama Lake, Opeongo Lake, South River, Mattawa, Whitney, Byng Inlet, Rutter, North Bay, Cobalt, Temiscaming, Dumoine, Madawaska Lake, Deep River, Killaloe Station, Sudbury, Sturgeon, Royun, Malartic, Lac Simàrd, Dozois, Bancroft, Madoc, Orillia
+	link = { vic = 53 hoi = 3267 hoi = 3405 hoi = 3475 hoi = 3336 hoi = 3337 hoi = 3404 hoi = 3335 hoi = 3406 hoi = 3474 }	# Barrie -> Owen Sound, Orangeville, Brampton, Collingwood, Barrie, Wingham, Kincardine, Newmarket, Arthur
+	link = { vic = 54 hoi = 3665 hoi = 3798 hoi = 3731 hoi = 3732 hoi = 3666 hoi = 3603 hoi = 3539 hoi = 3473 hoi = 14161 hoi = 3667 }	# Windsor -> Sarnia, Leamington, Chatham, London, Forest, Grand Bend, Seaforth, Goderich, St. Pierre et Miquelon, Stratford
+	link = { vic = 55 hoi = 3605 hoi = 3668 hoi = 3604 }	# Hamilton -> Hamilton, Simcoe, Kitchener
+	link = { vic = 56 hoi = 3409 hoi = 3340 hoi = 3341 }	# Kingston -> Kingston, Harrowsmith, Brockville
+	link = { vic = 57 hoi = 3206 hoi = 3342 hoi = 3272 hoi = 3271 hoi = 3205 }	# Ottawa -> Fort Coulonge, Ottawa, Perth, Lanark, Pembroke
+	link = { vic = 2594 hoi = 3470 hoi = 11373 }	# Pickle -> Red Lake, Nakina
+	link = { vic = 2628 hoi = 3540 hoi = 3601 }	# Attawapiskat -> Fort Albany, Fort Hope
+	# Quebec
+	link = { vic = 58 hoi = 6992 hoi = 6950 hoi = 6972 hoi = 6925 hoi = 6949 hoi = 6971 }	# Montreal -> Montréal, Napierville, Tracy, St. Jérome, Gatineau, Alexandria
+	link = { vic = 59 hoi = 8521 hoi = 8520 }	# Nitchequon -> Labrador City, Woollett
+	link = { vic = 60 hoi = 3737 hoi = 3669 hoi = 2935 }	# Fort Rupert -> Mistissini, La Sarre, Eastmain
+	link = { vic = 61 hoi = 8588 hoi = 8621 hoi = 8587 hoi = 8557 }	# Chicoutimi -> Baie Comeau, Chicoutimi, Saguenay, Outardes
+	link = { vic = 62 hoi = 8522 hoi = 8523 hoi = 8487 hoi = 8486 hoi = 8484 hoi = 8485 }	# Sept-Îles -> Havre St Pierre, Kegaska, St. Augustin, Olomane, Sept Iles, Pitaga
+	link = { vic = 63 hoi = 4399 hoi = 8620 hoi = 4586 hoi = 4400 hoi = 8653 hoi = 6902 hoi = 6881 }	# Temiscaming -> Amos, Val d'Or, Beattyville, Dolbeau, Parent, Gracefield, Mt. Laurier
+	link = { vic = 64 hoi = 6926 hoi = 6904 hoi = 6882 }	# Trois-Rivières -> St. Gabriel, Rivière Matawin, St. Alexis des Monts
+	link = { vic = 65 hoi = 6859 hoi = 6883 hoi = 6860 }	# Quebec City -> La Tuque, Rivière á Pierre, Baie St Paul
+	link = { vic = 66 hoi = 6993 hoi = 6973 hoi = 6952 hoi = 6951 }	# Sherbrooke -> Sherbrooke, Asbestos, Thetford Mines, Trois Rivières
+	link = { vic = 67 hoi = 6798 hoi = 6811 hoi = 6841 hoi = 6824 hoi = 6861 hoi = 6884 hoi = 6905 }	# Rimouski -> Gaspé, La Martre, Matane, New Richmond, Rivière du Loup, Montmagny, Québec
+	link = { vic = 2592 hoi = 6927 }	# Ungava -> Kangiqsualujjuaq
+	link = { vic = 2593 hoi = 6903 }	# Fort George -> Rivière aux Feuilles
+	link = { vic = 2626 hoi = 6974 }	# Port Harrison -> Puvurnituq
+	link = { vic = 2627 hoi = 11365 }	# Fort Chimo -> Kangiqsualujjuaq
+	# New Brunswick
+	link = { vic = 68 hoi = 6930 hoi = 6955 hoi = 6976 hoi = 6954 hoi = 6996 }	# Fredericton -> St. Louis de Kent, Dieppe, Moncton, Fredericton, Saint John
+	link = { vic = 69 hoi = 6862 hoi = 6886 hoi = 6907 hoi = 6906 }	# Bathurst -> Matapédia, Caraquet, Plaster Rock, Edmundston
+	# Nova Scotia
 	link = { vic = 71 hoi = 7016 hoi = 6997 }	# Halifax -> Yarmouth, Halifax
 	link = { vic = 72 hoi = 7017 hoi = 6977 hoi = 6998 }	# Truro -> Sheet Harbour, New Glasgow, Port Hawksbury
-	link = { vic = 70 hoi = 6931 }	# Prince Edward Island -> Charlottetown
 	link = { vic = 73 hoi = 6956 }	# Cape Breton Island -> Glace Bay
-	link = { vic = 67 hoi = 6798 hoi = 6811 hoi = 6841 hoi = 6824 hoi = 6861 hoi = 6884 }	# Rimouski -> Gaspé, La Martre, Matane, New Richmond, Rivière du Loup, Montmagny
-	link = { vic = 69 hoi = 6862 hoi = 6886 hoi = 6907 hoi = 6906 }	# Bathurst -> Matapédia, Caraquet, Plaster Rock, Edmundston
-	link = { vic = 68 hoi = 6930 hoi = 6955 hoi = 6976 hoi = 6954 hoi = 6996 }	# Fredericton -> St. Louis de Kent, Dieppe, Moncton, Fredericton, Saint John
-	link = { vic = 12 hoi = 8732 hoi = 11368 hoi = 8308 hoi = 10686 hoi = 4800 hoi = 11364 }	# Reliance -> Kasba Lake, Dubawnt Lake, Reliance, Yathkyed Lake, Wager Bay, Red Deer
-	link = { vic = 40 hoi = 8284 hoi = 8365 }	# Dauphin -> Swan River, Brandon
-	link = { vic = 36 hoi = 8445 }	# Winnipeg -> Winnipeg
-	link = { vic = 42 hoi = 8516 }	# Pembina -> Riverton
-	link = { vic = 26 hoi = 8336 }	# Calgary -> Calgary
-	link = { vic = 41 hoi = 8444 hoi = 8416 }	# Brandon -> Portage la Prairie, Morden
-	link = { vic = 30 hoi = 8364 hoi = 8415 hoi = 8339 hoi = 8338 }	# Regina -> Regina, Virden, Preeceville, Fort Qu'Appelle
-	link = { vic = 32 hoi = 8584 }	# Prince Albert -> Prince Albert
-	link = { vic = 35 hoi = 8388 hoi = 8414 hoi = 8363 }	# Maple Creek -> Central Butte, Westhope, Moose Jaw
-	link = { vic = 33 hoi = 8310 }	# Asquith -> North Battleford
-	link = { vic = 34 hoi = 8256 hoi = 8283 }	# Saskatoon -> Saskatoon, Kinistino
-	link = { vic = 31 hoi = 8386 }	# Stanley -> Stony Rapids
-	link = { vic = 2596 hoi = 8705 }	# Fort Resolution -> Fond du Lac
-	link = { vic = 27 hoi = 8337 }	# Denwood -> Vermilion
-	link = { vic = 29 hoi = 8387 }	# Medicine Hat -> Lethbridge
-	link = { vic = 6 hoi = 8082 hoi = 8085 hoi = 8090 }	# Whitehorse -> Whitehorse, Bennett, Atlin
-	link = { vic = 7 hoi = 8232 }	# Dawson -> Dawson
-	link = { vic = 8 vic = 2598 vic = 10 hoi = 11367 }	# Ross River, Fort Liard, Inuvik -> Fort Norman
-	link = { vic = 9 hoi = 8583 hoi = 11377 }	# Fort Simpson -> Fort Providence, Hay River
-	link = { vic = 11 vic = 3227 hoi = 11392 }	# Echo Bay, Great Slave Lake -> Taltson River
-	link = { vic = 23 hoi = 8312 }	# Athabaska Landing -> Yellowknife
-	link = { vic = 22 hoi = 8389 }	# Edmonton -> Fort McMurray
-	link = { vic = 2597 hoi = 8362 }	# Fort Vermilion -> Fort Vermilion
-	link = { vic = 2629 hoi = 8311 hoi = 8189 }	# Beatton River -> Fort Nelson, Prince George
-	link = { vic = 17 hoi = 8309 hoi = 8091 }	# Atlin -> Hazelton, Echo Lake
-	link = { vic = 18 vic = 24 hoi = 8472 }	# Fort Saint John, Jasper -> Edmonton
-	link = { vic = 28 hoi = 8335 }	# Fort MacLeod -> Grande Prairie
-	link = { vic = 25 hoi = 8334 }	# Banff -> Revelstoke
-	link = { vic = 19 hoi = 8208 hoi = 8282 hoi = 8231 hoi = 8207 }	# Prince George -> Williams Lake, Peace River, Alexis Creek, Tatla Lake
-	link = { vic = 15 hoi = 8147 hoi = 8160 hoi = 8173 hoi = 6638 hoi = 6635 hoi = 6641 }	# Prince Rupert -> Port Simpson, Kitimat, Smithers, Ocean Falls, Swanson Bay, Rivers Inlet
-	link = { vic = 16 hoi = 8135 }	# Glenora -> Alice Arm
-	link = { vic = 20 hoi = 6666 hoi = 6676 hoi = 6660 }	# Kelowna -> Lytton, Penticton, Alta Lake
-	link = { vic = 14 hoi = 6659 hoi = 6664 hoi = 6675 hoi = 6670 hoi = 6682 }	# Vancouver Island -> Port Hardy, Campbell River, Bamfield, Nanaimo, Victoria
-	link = { vic = 13 hoi = 6648 hoi = 6652 hoi = 6649 hoi = 6671 hoi = 6665 hoi = 6656 hoi = 6645 }	# Vancouver -> Allison Harbour, Kingdome Inlet, Williams Lake, Vancouver, Powell River, Knight Inlet, Mount Waddington
-	link = { vic = 21 hoi = 8307 hoi = 6653 hoi = 8255 }	# Vernon -> Castlegar, Lillooet, Kamloops
-	# # USA
+	# Prince Edward Island
+	link = { vic = 70 hoi = 6931 }	# Prince Edward Island -> Charlottetown
+	# Newfoundland and Labrador
+	link = { vic = 74 hoi = 8654 hoi = 8623 hoi = 8682 hoi = 8734 }	# Saint Johns -> Windsor, Gander, Rencontre East, St. John's
+	link = { vic = 75 vic = 77 hoi = 8589 hoi = 8622 }	# MANY-TO-MANY: Millertown, St Pierre & Miquelon -> Cook's Harbour, Morts
+	link = { vic = 76 hoi = 6885 }	# Hopedale -> Nain
+	link = { vic = 2625 hoi = 8449 hoi = 8391 }	# Port Hope Simpson -> Happy Valley Goose Bay, Charlottetown
+	# ## USA
 	# Alaska
 	link = { vic = 1 vic = 2 hoi = 8088 }	# Sitka, Yakutat -> Juneau
 	link = { vic = 3 hoi = 8076 hoi = 8087 hoi = 8078 }	# Kenai -> Seward, Kodiak, Anchorage
@@ -338,7 +351,148 @@
 	link = { vic = 248 hoi = 3872 hoi = 3741 hoi = 7032 hoi = 6994 }	# Lewiston -> Rangeley, Portland, Rumford, Jackman
 	link = { vic = 249 hoi = 7015 hoi = 6995 hoi = 7014 hoi = 6953 }	# Bangor -> Machias, Old Town, Bangor, Greenville
 	link = { vic = 250 hoi = 6928 hoi = 6929 hoi = 6975 }	# Caribou -> Fort Kent, Millinocket, Danforth
-	# Hawaii
+	# ## Mexico
+	# Baja California
+	link = { vic = 2139 hoi = 9235 hoi = 9172 hoi = 9144 hoi = 9090 hoi = 7369 }	# Rosarito -> Santa Rosalia, San Fernando, San Felipe, Mexicali, Tijuana
+	# Baja California Sur
+	link = { vic = 2138 hoi = 9384 hoi = 9297 }	# Loreto -> La Paz, Loreto
+	# Sonora
+	link = { vic = 2137 hoi = 9145 hoi = 9203 hoi = 9173 }	# Hermosillo -> Caborca, Hermosillo, Huépac
+	link = { vic = 2140 hoi = 9064 hoi = 9091 hoi = 9117 }	# Nogales -> San Luis Rio Colorado, Puerto Peñasco, Nogales
+	link = { vic = 2141 hoi = 9236 hoi = 9326 }	# Guaymas -> Guaymas, Los Mochis
+	# Chihuahua
+	link = { vic = 2142 hoi = 9204 hoi = 9237 hoi = 9268 }	# Chihuahua -> San Pedro de la Cueva, Yécora, Chihuahua
+	link = { vic = 2143 hoi = 9146 hoi = 9118 hoi = 9147 hoi = 9174 }	# Paso del Norte -> Cananea, AguaPrieta, Ciudad Juárez, Nátora
+	link = { vic = 2144 hoi = 9205 hoi = 9238 }	# Delicias -> Ignacio Zaragosa, Ojinaga
+	link = { vic = 2145 hoi = 9298 hoi = 9299 hoi = 9267 }	# Parral -> Uruáchic, Valerio, Alamos
+	# Coahuila
+	link = { vic = 2147 hoi = 9269 hoi = 9300 hoi = 9355 }	# Morelos -> Ciudad Acuña, Piedras Negras, Nuevo Laredo
+	link = { vic = 2152 hoi = 9328 }	# Monclova -> Ejido El Guaje
+	# Nuevo Leon & Tamaulipas
+	link = { vic = 2146 hoi = 9419 hoi = 9449 }	# Monterrey -> Monterrey, Méndez
+	link = { vic = 2148 hoi = 9388 }	# Reynosa -> Reynosa
+	link = { vic = 2149 hoi = 9481 }	# Matamoros -> Matamoros
+	link = { vic = 2151 hoi = 9480 }	# Saltillo -> Galeana
+	link = { vic = 2150 hoi = 9531 hoi = 9505 }	# Ciudad Victoria -> Nueva Villa de Padilla, San Nicolás
+	# Sinaloa
+	link = { vic = 2156 hoi = 9417 }	# Mazatlán -> Mazatlán
+	link = { vic = 2157 hoi = 9385 }	# Culiacán -> Culiacán
+	# Durango
+	link = { vic = 2153 hoi = 9447 hoi = 9418 hoi = 9479 }	# Durango -> El Salto, El Palmito, Durango
+	link = { vic = 2154 hoi = 9353 hoi = 9386 hoi = 9354 hoi = 9327 }	# Santa María del Oro -> Buenavista de Atascaderos, Tepehuanes, Hidalgo del Parral, San Juanito
+	# Zacatecas
+	link = { vic = 2155 hoi = 9387 hoi = 9448 }	# Torreón -> Monclova, Torreón
+	link = { vic = 2158 hoi = 9504 }	# Zacatecas -> Zacatecas
+	# San Luis Potosi
+	link = { vic = 2159 hoi = 9530 }	# San Luis Potosí -> Ciudad Victoria
+	# Nayarit
+	link = { vic = 2161 hoi = 9503 }	# Tepic -> Escuinapa
+	# Aguascalientes
+	link = { vic = 2160 hoi = 9549 }	# Aguascalientes -> Guadalajara
+	# Jalisco
+	link = { vic = 2166 hoi = 9586 }	# Guadalajara -> Ciudad Guzmán
+	link = { vic = 2168 hoi = 9565 hoi = 9529 }	# Puerto Vallarta -> Puerto Vallarta, Tepic
+	# Colima
+	link = { vic = 2169 hoi = 9622 }	# Colima -> Colima
+	# Guanajuato
+	link = { vic = 2167 hoi = 9566 }	# Guanajuato -> Pachuca
+	# Michoacán
+	link = { vic = 2171 vic = 2170 hoi = 9641 }	# Los Albañiles, Morelia -> Petatlán
+	# Querétaro & Hidalgo
+	link = { vic = 2173 hoi = 9587 }	# Querétaro -> Texcoco
+	# México
+	link = { vic = 2172 vic = 2174 hoi = 9604 }	# Mexico City, Toluca -> Ciudad de México
+	# Morelos
+	link = { vic = 2180 hoi = 9623 }	# Chilpancingo -> Cuernavaca
+	# Tlaxcala
+	link = { vic = 2175 hoi = 9605 }	# Tulancingo -> Tlaxcala
+	# Puebla
+	link = { vic = 2176 hoi = 9642 }	# Puebla -> Puebla
+	# Veracruz
+	link = { vic = 2162 hoi = 9624 hoi = 9588 }	# Veracruz -> Veracruz, Poza Rica
+	link = { vic = 2163 hoi = 9567 hoi = 9550 }	# Tampico -> Tampico, Ciudad Mante
+	link = { vic = 2164 hoi = 9643 }	# Minatitlán -> Coatzacoalcos
+	# Guerrero
+	link = { vic = 2179 hoi = 9658 }	# Acapulco -> Acapulco
+	# Oaxaca
+	link = { vic = 2177 hoi = 9659 }	# Oaxaca -> Oaxaca
+	link = { vic = 2178 hoi = 9673 }	# Collataro -> Jamiltepec
+	# Tabasco
+	link = { vic = 2165 hoi = 9625 }	# Villahermosa -> Comalcalco
+	# Chiapas
+	link = { vic = 2181 hoi = 9674 }	# Tuxtla -> Tapachula
+	link = { vic = 2182 hoi = 9660 hoi = 14151 }	# Tapachula -> Tuxtla Gutiérrez, Salina Cruz
+	# Campeche
+	link = { vic = 2184 hoi = 9626 hoi = 9644 hoi = 9661 }	# Campeche -> Campeche, Ciudad del Carmen, Xpujil
+	# Yucatán
+	link = { vic = 2183 hoi = 9589 }	# Mérida -> Mérida
+	# Quintana Roo
+	link = { vic = 2185 hoi = 9606 }	# Bacalar -> Quintana Roo
+	# #######
+	# Central America and Caribbean
+	# #######
+	# # Central America
+	# Guatemala
+	link = { vic = 2186 hoi = 9713 }	# Guatemala -> Guatemala
+	link = { vic = 2187 hoi = 9698 }	# Quetzaltenango -> Mazatenango
+	link = { vic = 2189 vic = 2188 hoi = 9686 }	# Sayaxché, Puerto Barrios -> La Libertad
+	# Belize
+	link = { vic = 2190 hoi = 9645 }	# Belize -> Belize
+	# El Salvador
+	link = { vic = 2191 vic = 2192 hoi = 9699 }	# San Salvador, San Miguel -> El Salvador
+	# Honduras
+	link = { vic = 2193 hoi = 9714 }	# Comayagua -> Tegucigalpa
+	link = { vic = 2194 hoi = 9687 }	# San Pedro Sula -> San Pedro Sula
+	link = { vic = 2195 vic = 2196 hoi = 9700 }	# La Ceiba, Puerto Lempira -> Wangkibila
+	# Nicaragua
+	link = { vic = 2197 vic = 2199 hoi = 9739 }	# Managua, León -> Managua
+	link = { vic = 2198 vic = 3110 hoi = 9789 }	# Rivas, Lake Nicaragua -> Granada
+	link = { vic = 2200 hoi = 9755 hoi = 9728 hoi = 9715 }	# Bluefields -> Bluefields, Prinzapolca, Puerto Cabezas
+	# Costa Rica
+	link = { vic = 2201 vic = 2202 hoi = 7721 }	# San José, Liberia -> San José
+	link = { vic = 2203 hoi = 14152 }	# Limón -> Limón
+	# Panama
+	link = { vic = 1723 hoi = 7717 }	# Balboa -> Colón
+	link = { vic = 2204 hoi = 7723 }	# Panama City -> Mulatupo
+	link = { vic = 2205 hoi = 7726 }	# David -> David
+	link = { vic = 2206 hoi = 7722 hoi = 7730 }	# Penonomé -> Panamá, Chitré
+	link = { vic = 2208 hoi = 7728 }	# Yaviza -> La Palma
+	# ## Caribbean
+	# Cuba
+	link = { vic = 2209 hoi = 7576 }	# Havana -> La Habana
+	link = { vic = 2210 hoi = 7588 hoi = 7577 }	# Jagua -> Santa Clara, Cienfuegos
+	link = { vic = 2211 hoi = 7613 hoi = 7606 hoi = 7597 hoi = 7622 }	# Camagüey -> Ciego de Avila, Camagüey, Morón, Bayamo
+	link = { vic = 2212 hoi = 7637 hoi = 7630 hoi = 7614 }	# Santiago de Cuba -> Guantánamo, Santiago de Cuba, Holguín
+	# Jamaica
+	link = { vic = 2217 vic = 2218 hoi = 7669 hoi = 7659 }	# MANY-TO-MANY: Jamaica, Cayman Islands -> Kingston, Montego Bay
+	# Haiti
+	link = { vic = 2213 hoi = 7661 hoi = 7660 }	# Port Au Prince -> Port au Prince, Jérémie
+	link = { vic = 2215 hoi = 7645 }	# Cap Haitien -> Gonaïves
+	# Domincan Republic
+	link = { vic = 2214 hoi = 7653 }	# Santo Domingo -> La Romana
+	link = { vic = 2216 hoi = 7646 hoi = 7662 hoi = 7652 }	# La Vega -> San Fransisico de Macorís, Santo Domingo, Santiago
+	# Bahamas & Turks and Caicos Islands
+	link = { vic = 2219 hoi = 7521 hoi = 6433 hoi = 6537 hoi = 7545 }	# Bahamas -> Grand Bahama, Andros, The Abacos, George Town
+	link = { vic = 2220 hoi = 7638 }	# Turks And Caicos -> Matthew Town
+	# Puerto Rico
+	link = { vic = 2222 hoi = 7670 }	# Puerto Rico -> Puerto Rico
+	# Virgin Islands
+	link = { vic = 2223 vic = 2226 hoi = 5021 }	# Saint Thomas, Tortola -> Virgin Islands
+	# Lesser Antilles
+	link = { vic = 2224 vic = 2225 hoi = 1903 }	# Antigua, Montserrat -> Antigua
+	link = { vic = 2227 hoi = 7671 }	# Saint Kitts -> St. Kitts and Nevis
+	link = { vic = 2228 hoi = 10627 }	# Martinique -> Martinique
+	link = { vic = 2229 hoi = 1474 }	# Barbados -> Barbados
+	link = { vic = 2230 vic = 2232 hoi = 485 }	# Guadeloupe, Dominica -> Guadeloupe
+	link = { vic = 2231 vic = 2409 hoi = 1480 }	# Saint Lucia, Saint Vincent -> St. Lucia
+	link = { vic = 2233 hoi = 314 }	# Grenada -> St. George
+	link = { vic = 2236 hoi = 5502 }	# Saint Martin -> Anguilla
+	link = { vic = 2237 hoi = 1091 }	# Trinidad -> Trinidad
+	link = { vic = 2238 hoi = 10629 }	# Tobago -> Tobago
+	# Aruba & Curacao
+	link = { vic = 2235 vic = 2234 hoi = 50 }	# Aruba, Curacao -> Curaçao
+	# Bermuda
+	link = { vic = 203 hoi = 10628 }	# Bermuda -> Bermuda
 	# #######
 	# Europe
 	# #######
@@ -1441,16 +1595,13 @@
 	link = { vic = 2270 hoi = 9740 hoi = 9830 }	# Maracaibo -> Maracaibo, San Carlos del Zulia
 	link = { vic = 2271 hoi = 9831 hoi = 9850 }	# Valera -> Valera, Mérida
 	link = { vic = 2254 hoi = 9829 hoi = 9810 }	# Cartagena de Indias -> Montería, Sincelejo
-	link = { vic = 2253 hoi = 7728 hoi = 9848 hoi = 9891 }	# Quibdó -> La Palma, Jaqué, Nuquí
+	link = { vic = 2253 hoi = 9848 hoi = 9891 }	# Quibdó -> Jaqué, Nuquí
 	link = { vic = 2258 hoi = 9929 hoi = 9947 }	# Buenaventura -> Cali, Tumaco
 	link = { vic = 2281 hoi = 9962 hoi = 9982 }	# Esmereldas -> Ibarra, Manta
 	link = { vic = 2280 vic = 2282 hoi = 10007 }	# Guayaquil, Loja -> Guayaquil
-	link = { vic = 2208 vic = 2204 hoi = 7723 }	# Yaviza, Panama City -> Mulatupo
-	link = { vic = 1723 hoi = 7717 }	# Balboa -> Colón
 	link = { vic = 2436 hoi = 10098 }	# Salvador de Bahia -> Salvador
 	link = { vic = 2439 hoi = 10112 hoi = 10138 }	# Porto Seguro -> Ilhéus, Caravelas
 	link = { vic = 2449 hoi = 10159 }	# Vitória -> Vitória
-	link = { vic = 2237 hoi = 1091 }	# Trinidad -> Trinidad
 	link = { vic = 2245 hoi = 9950 }	# Apetina -> Pontoetoe
 	link = { vic = 2408 hoi = 9976 }	# Oriximina -> Yaripo
 	link = { vic = 1979 hoi = 9932 }	# Biloka -> Maipuri Landing
@@ -1544,30 +1695,6 @@
 	link = { vic = 2456 vic = 2453 hoi = 10178 }	# Araraquara, Assis -> Maracaju
 	link = { vic = 2306 hoi = 10190 }	# Sorocaba -> Presidente Prudente
 	link = { vic = 2460 hoi = 10202 }	# Castro -> Naviraí
-	# Caribbean
-	link = { vic = 2212 hoi = 7637 hoi = 7630 hoi = 7614 }	# Santiago de Cuba -> Guantánamo, Santiago de Cuba, Holguín
-	link = { vic = 2211 hoi = 7622 hoi = 7613 hoi = 7606 hoi = 7597 }	# Camagüey -> Bayamo, Ciego de Avila, Camagüey, Morón
-	link = { vic = 2210 hoi = 7588 hoi = 7577 }	# Jagua -> Santa Clara, Cienfuegos
-	link = { vic = 2209 hoi = 7576 }	# Havana -> La Habana
-	link = { vic = 2215 hoi = 7645 }	# Cap Haitien -> Gonaïves
-	link = { vic = 2213 hoi = 7661 hoi = 7660 }	# Port Au Prince -> Port au Prince, Jérémie
-	link = { vic = 2216 hoi = 7646 hoi = 7662 hoi = 7652 }	# La Vega -> San Fransisico de Macorís, Santo Domingo, Santiago
-	link = { vic = 2214 hoi = 7653 }	# Santo Domingo -> La Romana
-	link = { vic = 2222 hoi = 7670 }	# Puerto Rico -> Puerto Rico
-	link = { vic = 2217 vic = 2218 hoi = 7669 hoi = 7659 }	# MANY-TO-MANY: Jamaica, Cayman Islands -> Kingston, Montego Bay
-	link = { vic = 2235 vic = 2234 hoi = 50 }	# Aruba, Curacao -> Curaçao
-	link = { vic = 2229 hoi = 1474 }	# Barbados -> Barbados
-	link = { vic = 2238 hoi = 10629 }	# Tobago -> Tobago
-	link = { vic = 2233 hoi = 314 }	# Grenada -> St. George
-	link = { vic = 2231 vic = 2409 hoi = 1480 }	# Saint Lucia, Saint Vincent -> St. Lucia
-	link = { vic = 2228 hoi = 10627 }	# Martinique -> Martinique
-	link = { vic = 2224 vic = 2225 hoi = 1903 }	# Antigua, Montserrat -> Antigua
-	link = { vic = 2227 hoi = 7671 }	# Saint Kitts -> St. Kitts and Nevis
-	link = { vic = 2230 vic = 2232 hoi = 485 }	# Guadeloupe, Dominica -> Guadeloupe
-	link = { vic = 2236 hoi = 5502 }	# Saint Martin -> Anguilla
-	link = { vic = 2223 vic = 2226 hoi = 5021 }	# Saint Thomas, Tortola -> Virgin Islands
-	link = { vic = 2220 hoi = 7638 }	# Turks And Caicos -> Matthew Town
-	link = { vic = 2219 hoi = 7521 hoi = 6433 hoi = 6537 hoi = 7545 }	# Bahamas -> Grand Bahama, Andros, The Abacos, George Town
 	# Pacific islands
 	link = { vic = 2285 vic = 2336 hoi = 9981 }	# Galápagos, Easter Island -> Galapagos Islands
 	link = { vic = 2543 vic = 2544 vic = 2548 vic = 2540 hoi = 6617 hoi = 14166 }	# MANY-TO-MANY: Apia, Pago Pago, Niue, Tonga -> Samoa, American Samoa
@@ -2013,7 +2140,6 @@
 	link = { vic = 1443 hoi = 6575 }	# Roti -> Kupang
 	link = { vic = 1445 hoi = 6576 hoi = 6569 hoi = 6570 }	# Kaupeng -> Kefamenanu, Vila Taveiro, Betun
 	link = { vic = 1446 hoi = 6559 hoi = 6565 hoi = 6558 hoi = 6564 hoi = 6563 }	# Dili -> Lospalos, Ainaro, Dili, Maliana, Atambua
-	link = { vic = 203 hoi = 10628 }	# Bermuda -> Bermuda
 	# 
 	# OCEANS
 	# Baltic
@@ -2876,68 +3002,6 @@
 	link = { vic = 1554 hoi = 7062 hoi = 7079 hoi = 7061 hoi = 7098 hoi = 7140 hoi = 7099 hoi = 3994 hoi = 3927 hoi = 3993 hoi = 4062 hoi = 4128 hoi = 4194 hoi = 4261 hoi = 4193 hoi = 4127 hoi = 4061 hoi = 4126 hoi = 4192 hoi = 4326 hoi = 4260 hoi = 4325 hoi = 4388 }	# Ninguta -> Qianjin, Huachuan, Hegang, Jiamusi, Yilan, Fujin, Raohe, Youyi, Shuangyashan, Dongfanghong, Hulin, Anuchino, Spassk, Grodekovo, Mikhailovka, Qitaihe, Diaoling, Linkou, Voroshilov, Mudanjiang, Dongjingcheng, Dunhua
 	link = { vic = 1555 hoi = 4793 hoi = 4740 hoi = 4688 hoi = 4632 hoi = 4741 hoi = 4689 hoi = 4633 hoi = 4634 hoi = 4577 hoi = 4518 hoi = 4452 hoi = 4578 hoi = 4519 hoi = 4453 hoi = 4386 hoi = 4324 hoi = 4259 hoi = 4387 hoi = 4455 hoi = 4521 hoi = 4454 hoi = 4579 hoi = 4520 hoi = 4385 hoi = 4384 hoi = 7237 hoi = 7212 hoi = 7187 hoi = 7163 hoi = 4191 hoi = 4258 hoi = 4323 hoi = 4690 }	# Jilin -> Erpengdianzi, Erhulai, Wangqingmen, Qingyuan, Qinghe, Ji'an, Tonghua, Shiren, Panshi, Yitong, Xinjing, Jingyu, Yantongshan, Shuangyang, Jilin, Huangnihe, Hailin, Huadian, Yanji, Baihe, Quanyang, Manjiang, Huinan, Changchun, Nong'an, Halahai, Fuyu, Songyuan, Zhaodong, Shangzhi, Jushu, Dehui, Dalizi
 	# USA
-	link = { vic = 2138 hoi = 9384 hoi = 9297 }	# Loreto -> La Paz, Loreto
-	link = { vic = 2139 hoi = 9235 hoi = 9172 hoi = 9144 hoi = 9090 hoi = 7369 }	# Rosarito -> Santa Rosalia, San Fernando, San Felipe, Mexicali, Tijuana
-	link = { vic = 2140 hoi = 9064 hoi = 9091 hoi = 9117 }	# Nogales -> San Luis Rio Colorado, Puerto Peñasco, Nogales
-	link = { vic = 2143 hoi = 9146 hoi = 9118 hoi = 9147 hoi = 9174 }	# Paso del Norte -> Cananea, AguaPrieta, Ciudad Juárez, Nátora
-	link = { vic = 2137 hoi = 9145 hoi = 9203 hoi = 9173 }	# Hermosillo -> Caborca, Hermosillo, Huépac
-	link = { vic = 2141 hoi = 9236 hoi = 9267 }	# Guaymas -> Guaymas, Alamos
-	link = { vic = 2157 hoi = 9326 hoi = 9385 }	# Culiacán -> Los Mochis, Culiacán
-	link = { vic = 2142 hoi = 9204 hoi = 9237 hoi = 9268 }	# Chihuahua -> San Pedro de la Cueva, Yécora, Chihuahua
-	link = { vic = 2144 hoi = 9205 }	# Delicias -> Ignacio Zaragosa
-	link = { vic = 2152 hoi = 9238 hoi = 9328 }	# Monclova -> Ojinaga, Ejido El Guaje
-	link = { vic = 2145 hoi = 9298 hoi = 9299 hoi = 9327 }	# Parral -> Uruáchic, Valerio, San Juanito
-	link = { vic = 2147 hoi = 9269 hoi = 9300 hoi = 9355 }	# Morelos -> Ciudad Acuña, Piedras Negras, Nuevo Laredo
-	link = { vic = 2148 hoi = 9388 }	# Reynosa -> Reynosa
-	link = { vic = 2149 hoi = 9481 }	# Matamoros -> Matamoros
-	link = { vic = 2156 hoi = 9417 }	# Mazatlán -> Mazatlán
-	link = { vic = 2161 hoi = 9503 hoi = 9529 }	# Tepic -> Escuinapa, Tepic
-	link = { vic = 2150 hoi = 9531 hoi = 9505 }	# Ciudad Victoria -> Nueva Villa de Padilla, San Nicolás
-	link = { vic = 2163 hoi = 9567 hoi = 9550 hoi = 9588 }	# Tampico -> Tampico, Ciudad Mante, Poza Rica
-	link = { vic = 2146 hoi = 9419 }	# Monterrey -> Monterrey
-	link = { vic = 2151 hoi = 9449 hoi = 9480 }	# Saltillo -> Méndez, Galeana
-	link = { vic = 2155 hoi = 9387 hoi = 9448 }	# Torreón -> Monclova, Torreón
-	link = { vic = 2153 hoi = 9447 hoi = 9418 hoi = 9479 }	# Durango -> El Salto, El Palmito, Durango
-	link = { vic = 2154 hoi = 9353 hoi = 9386 hoi = 9354 }	# Santa María del Oro -> Buenavista de Atascaderos, Tepehuanes, Hidalgo del Parral
-	link = { vic = 2158 hoi = 9504 }	# Zacatecas -> Zacatecas
-	link = { vic = 2159 hoi = 9530 }	# San Luis Potosí -> Ciudad Victoria
-	link = { vic = 2172 hoi = 9604 }	# Mexico City -> Ciudad de México
-	link = { vic = 2183 hoi = 9589 }	# Mérida -> Mérida
-	link = { vic = 2185 hoi = 9606 }	# Bacalar -> Quintana Roo
-	link = { vic = 2184 hoi = 9626 hoi = 9644 hoi = 9661 }	# Campeche -> Campeche, Ciudad del Carmen, Xpujil
-	link = { vic = 2165 hoi = 9625 }	# Villahermosa -> Comalcalco
-	link = { vic = 2181 hoi = 9674 }	# Tuxtla -> Tapachula
-	link = { vic = 2182 hoi = 9660 hoi = 14151 }	# Tapachula -> Tuxtla Gutiérrez, Salina Cruz
-	link = { vic = 2162 hoi = 9624 }	# Veracruz -> Veracruz
-	link = { vic = 2168 hoi = 9565 }	# Puerto Vallarta -> Puerto Vallarta
-	link = { vic = 2169 hoi = 9622 }	# Colima -> Colima
-	link = { vic = 2166 hoi = 9586 }	# Guadalajara -> Ciudad Guzmán
-	link = { vic = 2179 hoi = 9658 }	# Acapulco -> Acapulco
-	link = { vic = 2171 vic = 2170 hoi = 9641 }	# Los Albañiles, Morelia -> Petatlán
-	link = { vic = 2160 hoi = 9549 }	# Aguascalientes -> Guadalajara
-	link = { vic = 2167 hoi = 9566 }	# Guanajuato -> Pachuca
-	link = { vic = 2173 hoi = 9587 }	# Querétaro -> Texcoco
-	link = { vic = 2174 hoi = 9623 }	# Toluca -> Cuernavaca
-	link = { vic = 2175 hoi = 9605 }	# Tulancingo -> Tlaxcala
-	link = { vic = 2180 vic = 2176 hoi = 9642 }	# Chilpancingo, Puebla -> Puebla
-	link = { vic = 2164 hoi = 9643 }	# Minatitlán -> Coatzacoalcos
-	link = { vic = 2177 hoi = 9659 }	# Oaxaca -> Oaxaca
-	link = { vic = 2178 hoi = 9673 }	# Collataro -> Jamiltepec
-	link = { vic = 2203 vic = 2201 hoi = 7721 hoi = 14152 }	# MANY-TO-MANY: Limón, San José -> San José, Limón
-	link = { vic = 2205 hoi = 7726 }	# David -> David
-	link = { vic = 2206 hoi = 7722 hoi = 7730 }	# Penonomé -> Panamá, Chitré
-	link = { vic = 2200 hoi = 9755 hoi = 9728 }	# Bluefields -> Bluefields, Prinzapolca
-	link = { vic = 2196 hoi = 9715 }	# Puerto Lempira -> Puerto Cabezas
-	link = { vic = 2190 hoi = 9645 }	# Belize -> Belize
-	link = { vic = 2189 hoi = 9686 }	# Sayaxché -> La Libertad
-	link = { vic = 2195 hoi = 9700 }	# La Ceiba -> Wangkibila
-	link = { vic = 2202 vic = 2198 vic = 3110 hoi = 9789 }	# Liberia, Rivas, Lake Nicaragua -> Granada
-	link = { vic = 2197 vic = 2199 hoi = 9739 }	# Managua, León -> Managua
-	link = { vic = 2187 hoi = 9698 }	# Quetzaltenango -> Mazatenango
-	link = { vic = 2186 hoi = 9713 }	# Guatemala -> Guatemala
-	link = { vic = 2191 vic = 2192 hoi = 9699 }	# San Salvador, San Miguel -> El Salvador
-	link = { vic = 2188 vic = 2194 hoi = 9687 }	# Puerto Barrios, San Pedro Sula -> San Pedro Sula
-	link = { vic = 2193 hoi = 9714 }	# Comayagua -> Tegucigalpa
 	# USA USA
 	link = { vic = 3116 hoi = 14132 }	# Lake Superior -> Lake Superior
 	link = { vic = 3115 hoi = 14130 }	# Lake Michigan -> Lake Michigan
