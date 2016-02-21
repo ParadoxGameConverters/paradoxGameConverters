@@ -1,5 +1,10 @@
 ProvinceMapper Change Log
 
+0.9H
+- Read YML province names from EU4 localization.
+- Handle being given a fresh province mappings file.
+- Preserve initial lines as initial lines.
+
 0.9G
 - Skip over unused and RNW provinces in the definition file instead of throwing out errors.
 - Handle reading mapping files with multiple sections.
