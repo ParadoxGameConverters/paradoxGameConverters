@@ -1,4 +1,4 @@
-# Copyright (c) 2015 The Paradox Game Converters Project
+# Copyright (c) 2016 The Paradox Game Converters Project
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -17,7 +17,6 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
-
 3.0.3.0 = {
 	# #######
 	# North America & Greenland
@@ -494,6 +493,204 @@
 	# Bermuda
 	link = { vic = 203 hoi = 10628 }	# Bermuda -> Bermuda
 	# #######
+	# South America
+	# #######
+	# ## Colombia
+	# Antioquia
+	link = { vic = 2251 hoi = 9849 }	# Cúcuta -> Cúcuta
+	link = { vic = 2252 hoi = 9869 }	# Medellín -> Medellin
+	link = { vic = 2253 hoi = 9848 hoi = 9891 }	# Quibdó -> Jaqué, Nuquí
+	link = { vic = 2254 hoi = 9829 hoi = 9810 }	# Cartagena de Indias -> Montería, Sincelejo
+	link = { vic = 2255 hoi = 9790 hoi = 9772 }	# Barranquilla -> Barranquilla, Cartagena
+	# Cundinamarca
+	link = { vic = 2247 hoi = 9930 }	# Bogotá -> Bogotá
+	link = { vic = 2248 vic = 2250 hoi = 9910 }	# Ibagué, Manizales -> Manizales Pereira
+	link = { vic = 2249 hoi = 9870 hoi = 9892 }	# Tunja -> Bucaramanga, Barrancabermeja
+	# Cauca
+	link = { vic = 2256 vic = 2259 hoi = 9929 }	# Cali, Pasto -> Cali
+	link = { vic = 2258 hoi = 9947 }	# Buenaventura -> Tumaco
+	link = { vic = 2257 hoi = 9948 }	# Popayán -> Neiva
+	# Guaviare
+	link = { vic = 2262 hoi = 9911 }	# Casanare -> Tunja
+	link = { vic = 2261 hoi = 9949 hoi = 9893 }	# Obando -> San José del Guaviare, Mitú
+	link = { vic = 2260 hoi = 9964 }	# San José del Guaviare -> Florencia
+	link = { vic = 2263 hoi = 9975 hoi = 9984 }	# El Encanto -> Cabo Pantoja, La Chorrera
+	# ## Venezuela
+	# Zulia
+	link = { vic = 2268 hoi = 9773 }	# San Felipe -> Valencia
+	link = { vic = 2270 hoi = 9740 hoi = 9830 }	# Maracaibo -> Maracaibo, San Carlos del Zulia
+	link = { vic = 2271 hoi = 9831 hoi = 9850 }	# Valera -> Valera, Mérida
+	link = { vic = 2272 hoi = 7691 hoi = 9791 }	# Coro -> Coro, Cabimas
+	link = { vic = 2273 hoi = 9811 }	# Barquisimeto -> Barquisimeto
+	# Miranda
+	link = { vic = 2264 hoi = 9792 }	# Caracas -> Caracas
+	link = { vic = 2265 hoi = 9832 }	# Guanare -> Calabozo
+	link = { vic = 2266 hoi = 9852 hoi = 9833 }	# Calabozo -> Al Tigre, Maturin
+	link = { vic = 2267 hoi = 9793 hoi = 9812 }	# Cumaná -> Cumana, Barcelona
+	link = { vic = 2274 hoi = 9871 hoi = 9851 }	# Barinas -> Yopal, Barinas
+	# Bolivar
+	link = { vic = 2276 vic = 2269 hoi = 9813 hoi = 9853 }	# MANY-TO-MANY: Curiapo, Güiria -> Carúpano, Ciudad Guayana
+	link = { vic = 2275 hoi = 9873 hoi = 9895 hoi = 9913 }	# Angostura -> Ciudad Bolívar, El Dorado, Santa Elena
+	link = { vic = 2277 hoi = 9872 hoi = 11378 hoi = 9894 }	# El Jobal -> San Fernando de Apure, Puerto Ayacucho, San Juan
+	link = { vic = 2278 hoi = 9912 }	# San Fernando de Atabapo -> Guaina
+	# ## Guyana
+	link = { vic = 1979 hoi = 9932 }	# Biloka -> Maipuri Landing
+	link = { vic = 2239 hoi = 9896 }	# Georgetown -> Georgetown
+	link = { vic = 2243 vic = 2242 hoi = 9874 }	# Essequibo, Mahdia -> Mabaruma
+	# ## Suriname
+	link = { vic = 2240 hoi = 9933 hoi = 9914 }	# Paramaribo -> Albina, Paramaribo
+	link = { vic = 2245 hoi = 9950 }	# Apetina -> Pontoetoe
+	# ## French Guiana
+	link = { vic = 2241 hoi = 9934 }	# Cayenne -> Cayenne
+	link = { vic = 2246 hoi = 9951 }	# Maripasoula -> Oscar
+	# ## Ecuador
+	link = { vic = 2279 hoi = 9974 hoi = 9963 }	# Quito -> Quito, Puerto Fransisco de Orellana
+	link = { vic = 2280 hoi = 10007 }	# Guayaquil -> Guayaquil
+	link = { vic = 2281 hoi = 9962 hoi = 9982 }	# Esmereldas -> Ibarra, Manta
+	link = { vic = 2282 hoi = 9991 }	# Loja -> Ambato
+	link = { vic = 2283 hoi = 9998 }	# Zamora -> Macas
+	link = { vic = 2284 hoi = 9983 }	# Tena -> Conambo
+	link = { vic = 2287 hoi = 10017 }	# Yurimaguas -> Borja
+	link = { vic = 2288 hoi = 10008 }	# Yuncos -> Puerto Pardo
+	# ## Peru
+	# Pastaza
+	link = { vic = 2289 hoi = 9992 hoi = 9999 }	# Puca Urco -> Soldado Bartra, Iquitos
+	link = { vic = 2286 hoi = 10024 hoi = 10043 }	# Iquitos -> Requena, Tarapoto
+	# Cajamarca
+	link = { vic = 2290 hoi = 10059 }	# Cajamarca -> Uchiza
+	link = { vic = 2291 hoi = 10016 hoi = 10030 }	# Piura -> Tumbes, Piura
+	link = { vic = 2292 hoi = 10042 hoi = 10051 }	# Trujillo -> Chiclayo, Trujillo
+	link = { vic = 2294 hoi = 10023 hoi = 10031 }	# Moyobamba -> Jaén, Cahuapanas
+	# Lima
+	link = { vic = 2293 hoi = 10070 }	# Huánuco -> Huancayo
+	link = { vic = 2295 hoi = 10079 }	# Lima -> Lima
+	link = { vic = 2296 hoi = 10092 }	# Huancavelica -> Avacucho
+	link = { vic = 2298 hoi = 10069 }	# Huaraz -> Huaráz
+	link = { vic = 2300 hoi = 10052 hoi = 10080 }	# Pucallpa -> Pucallpa, Camisea
+	# Ica
+	link = { vic = 2297 hoi = 10105 }	# Ica -> Ica
+	link = { vic = 2299 hoi = 10119 }	# Ayacucho -> Nazca
+	link = { vic = 2301 hoi = 10093 }	# Puerto Maldonado -> Quince Mil
+	link = { vic = 2302 hoi = 10106 }	# Cusco -> Cuzco
+	# Arequipa
+	link = { vic = 2303 hoi = 10140 hoi = 10120 }	# Puno -> Juliaca, Putina
+	link = { vic = 2304 hoi = 10131 }	# Arequipa -> Cabanaconde
+	link = { vic = 2578 hoi = 10150 }	# Tacna -> Arequipa
+	# ## Bolivia
+	# La Paz
+	link = { vic = 2310 hoi = 10151 hoi = 10132 }	# La Paz -> La Paz, Achacachi
+	link = { vic = 2311 hoi = 10163 hoi = 10152 hoi = 10142 }	# Cochabamba -> Cochabamba, Cocapata, Trinidad
+	link = { vic = 2319 hoi = 10121 hoi = 10133 }	# Santa Ana -> Santa Ana, San Miguel de Huachi
+	link = { vic = 2320 hoi = 10122 }	# Riberalta -> San Joaquín
+	link = { vic = 2321 hoi = 10094 hoi = 10107 }	# Cobija -> Puerto Heath, Puerto Maldonado
+	# Santa Cruz
+	link = { vic = 2313 hoi = 10186 hoi = 10174 }	# Chuquisaca -> Potosí, Sucre
+	link = { vic = 2316 hoi = 10175 }	# Santa Cruz -> Santa Cruz
+	link = { vic = 2317 hoi = 10134 hoi = 10153 }	# San Ignacio -> Pensamiento, San Javier
+	link = { vic = 2318 hoi = 10164 }	# Roboré -> Robore
+	# Potosi
+	link = { vic = 2312 hoi = 10173 hoi = 10162 }	# Oruro -> Turco, Luribay
+	link = { vic = 2314 hoi = 10185 hoi = 10198 hoi = 10207 }	# Potosí -> Llíca, Río Mulatos, Pena Barrosa
+	# Jujuy
+	link = { vic = 2315 hoi = 10221 }	# Tarija -> San Pedro
+	# ## Paraguay
+	# Alto Paraguay
+	link = { vic = 2337 hoi = 10238 hoi = 10254 }	# Fortin Falcon -> Fortín General Diaz, Asunción
+	link = { vic = 2338 hoi = 10209 hoi = 10187 hoi = 10200 }	# Puerto Guaraní -> Fortín Linares, Filadelfia, Pozo Colorado
+	# Bajo Paraguay
+	link = { vic = 2340 vic = 2339 hoi = 10269 }	# Pilar, Asuncion -> Laureles
+	link = { vic = 2341 hoi = 10255 }	# Encarnación -> Villarrica
+	link = { vic = 2343 vic = 2342 hoi = 10239 }	# Concepción, San Pedro -> San Estanislao
+	# ## Chile
+	# Atacama
+	link = { vic = 2305 hoi = 10251 }	# Antofagasta -> Antofagasta
+	link = { vic = 2307 hoi = 10197 }	# Iquique -> Iquique
+	link = { vic = 2308 hoi = 10161 }	# Arica -> Arica
+	link = { vic = 2309 hoi = 10219 }	# Calama -> Calama
+	# Santiago
+	link = { vic = 2322 hoi = 10278 hoi = 10291 }	# Copiapó -> Copiapo, Huasco
+	link = { vic = 2323 hoi = 10304 }	# La Serena -> La Serena
+	link = { vic = 2326 hoi = 10322 }	# Viña del Mar -> Illapel
+	link = { vic = 2325 vic = 2324 hoi = 10336 }	# Valparaíso, Santiago -> Santiago
+	# Los Rios
+	link = { vic = 2328 hoi = 10371 }	# Valdivia -> Valdivia
+	link = { vic = 2329 hoi = 10354 hoi = 10362 }	# Temuco -> Concepción, Chillán
+	link = { vic = 2330 vic = 2327 hoi = 10342 }	# Cauquenes, Talca -> Talca
+	link = { vic = 2331 hoi = 10347 }	# Chillán -> San Clemente
+	# Araucania
+	link = { vic = 2332 hoi = 10391 hoi = 10423 hoi = 10404 hoi = 10441 }	# Osorno -> Osorno, Cochamó, Puerto Montt, Chaitén
+	link = { vic = 2333 hoi = 10451 hoi = 10456 hoi = 10460 hoi = 10463 hoi = 10467 hoi = 10473 hoi = 10482 hoi = 10486 }	# Puerto Aisén -> Corcovado, Puerto Cisnes, Coihaique, Cochrane, Cerro O'Higgins, Cerro Bertrand, Cerro Stokes, Puerto San Carlos
+	link = { vic = 2334 hoi = 10491 hoi = 10496 }	# Punta Arenas -> Puerto Natales, Punta Arenas
+	link = { vic = 2335 hoi = 10493 }	# Porvenir -> Caleta Josefina
+	# ## Argentina
+	# Alto Paraguay
+	link = { vic = 2367 hoi = 10253 }	# Xolotas -> Monte Quemado
+	link = { vic = 2366 hoi = 10281 hoi = 10268 }	# Formosa -> Resistencia, Presidencia Roca
+	# Jujuy
+	link = { vic = 2368 hoi = 10236 }	# Salta -> Caipe
+	link = { vic = 2369 vic = 2370 hoi = 10220 }	# Jujuy, Cochinoca -> Jujuy
+	link = { vic = 2372 vic = 2371 hoi = 10208 }	# Rivadavia, Equia -> Salta
+	# Tucuman
+	link = { vic = 2373 hoi = 10267 }	# Tucumán -> San Miguel de Tucumán
+	link = { vic = 2375 hoi = 10266 }	# Vinchina -> Palo Blanco
+	link = { vic = 2374 hoi = 10252 hoi = 10293 hoi = 10279 }	# Catamarca -> Cerro Mojones, La Rioja, Antofagasta de la Sierra
+	link = { vic = 2388 hoi = 10314 }	# Calingasta -> San Juan
+	link = { vic = 2385 hoi = 10292 }	# La Rioja -> Guandacol
+	link = { vic = 2387 hoi = 10323 }	# San Juan -> Cantantal
+	link = { vic = 2386 hoi = 10305 }	# Santa Rita -> Astica
+	# Chaco
+	link = { vic = 2364 }	# Resistencia -> DROPPED
+	link = { vic = 2378 hoi = 10306 }	# Mailín -> Córdoba
+	link = { vic = 2376 hoi = 10280 }	# Santiago del Estero -> Santiago del Estero
+	link = { vic = 2365 hoi = 10307 }	# Villa Ángela -> Santa Fe
+	link = { vic = 2377 hoi = 10294 }	# Añatuya -> Las Varillas
+	# Corrientes
+	link = { vic = 2357 hoi = 10317 hoi = 10325 }	# Curuzú Cuatiá -> Salto, San Nicolás
+	link = { vic = 2356 hoi = 10295 }	# Corrientes -> Monte Caseros
+	link = { vic = 2358 hoi = 10308 }	# Santo Tomás -> Artigas
+	link = { vic = 2554 hoi = 10282 }	# Posadas -> Posadas
+	# La Pampa
+	link = { vic = 2379 hoi = 10315 }	# Córdoba de Argentina -> Río Tercero
+	link = { vic = 2380 hoi = 10324 }	# Villa Nueva -> Villa María
+	link = { vic = 2384 hoi = 10337 hoi = 10348 }	# Mercedes -> San Luis, Santa Isabel
+	link = { vic = 2382 hoi = 10344 }	# Renancó -> Mercedes
+	link = { vic = 2381 hoi = 10338 }	# Río Cuarto -> Río Cuarto
+	link = { vic = 2383 hoi = 10331 }	# San Luis -> La Toma
+	# Santa Fe
+	link = { vic = 2360 hoi = 7885 }	# Paraná -> Campana
+	link = { vic = 2359 hoi = 7878 }	# Colón -> Carmelo
+	link = { vic = 2363 hoi = 7898 }	# Rosario -> Junín
+	link = { vic = 2361 hoi = 10332 }	# Sancti Spiritu -> Pergamino
+	link = { vic = 2362 hoi = 10316 }	# Reconquista -> Rosario
+	# Rio Negro
+	link = { vic = 2393 hoi = 7955 hoi = 7948 hoi = 7944 hoi = 7937 hoi = 10373 hoi = 10356 hoi = 10364 hoi = 7929 }	# Telén -> Lago del Abra, Benjamín Zorrillo, Choele Choel, Chelforó, Puelches, General Pico, Santa Rosa, General Acha
+	link = { vic = 2395 hoi = 10363 }	# Curacó -> Puelén
+	link = { vic = 2390 hoi = 10343 }	# San Rafael -> Vargas
+	link = { vic = 2389 hoi = 10330 }	# Mendoza -> Mendoza
+	# Buenos Aires
+	link = { vic = 2354 hoi = 7949 hoi = 7945 hoi = 7939 }	# Bahía Blanca -> Río Colorado, Bahía Blanca, Trey Arroyos
+	link = { vic = 2352 hoi = 7946 hoi = 7940 hoi = 7932 }	# Mar del Plata -> Necochea, Miramar, Mar del Plata
+	link = { vic = 2351 hoi = 7916 hoi = 7909 hoi = 7921 hoi = 7904 }	# La Plata -> General Lavalle, Verónica, General Juan Madariaga, La Plata
+	link = { vic = 2348 hoi = 7899 }	# Buenos Aires -> Buenos Aires
+	link = { vic = 2350 hoi = 7926 hoi = 7915 hoi = 7920 hoi = 7931 hoi = 7914 hoi = 7908 hoi = 7925 hoi = 7919 }	# Azul -> Tandil, Dolores, Azul, Juárez, Olavarría, General Belgrano, Santa Elena, Carhué
+	link = { vic = 2349 hoi = 7907 hoi = 7903 hoi = 7892 }	# Junín -> Carlos Casares, Chivilcoy, Chacabuco
+	link = { vic = 2353 hoi = 7930 hoi = 7913 hoi = 7924 hoi = 10349 }	# Trenque Lauquen -> Pigüé, San Carlos de Bolívar, Salinqueló, Laboulaye Rufino
+	link = { vic = 2355 hoi = 7959 }	# Carmen -> Viedma
+	# Patagonia Septentrional
+	link = { vic = 2396 hoi = 10461 hoi = 10458 hoi = 10453 hoi = 7992 hoi = 10435 hoi = 10443 hoi = 7991 hoi = 10442 hoi = 10448 }	# Rawson -> Comodoro Rivadavia, Puerto Visser, Camarones, Trelew, Puerto Pirámides, Chasico, Cona Niyeo, Gangán, Las Plumas
+	link = { vic = 2397 hoi = 10447 hoi = 10452 hoi = 10457 hoi = 10462 }	# Esquel -> Esquel, Sarmiento, Buen Pasto, Paso Río Mayo
+	link = { vic = 2392 hoi = 7964 hoi = 7969 hoi = 7982 hoi = 7975 }	# Viedma -> San Antonio Oeste, Cinco Chañares, Sierra Grande, Aguado Cecilio
+	link = { vic = 2391 hoi = 10415 hoi = 10392 hoi = 10379 hoi = 10372 hoi = 10355 hoi = 10380 }	# Neuquén -> San Carlos de Bariloche, Piedra de Águila, Temuco, Chos Malal, Cerro Payún, Neuquén
+	link = { vic = 2394 hoi = 10434 hoi = 10424 hoi = 10405 hoi = 7963 hoi = 7954 hoi = 7958 }	# Bariloche -> El Maitén, El Caín, Los Menucos, Valcheta, Sierra Colorada, General Conesa
+	# Patagonia Meridional
+	link = { vic = 2131 hoi = 10479 }	# Falkland Islands -> Falkland Islands
+	link = { vic = 2400 hoi = 10498 }	# Río Grande -> Ushuaia
+	link = { vic = 2399 hoi = 10487 hoi = 10483 hoi = 10478 hoi = 10469 hoi = 10474 }	# Río Gallegos -> Río Gallegos, Coy Aike, Tapi Aike, Lago Viedma, Monte León
+	link = { vic = 2398 hoi = 10470 hoi = 10468 hoi = 10465 hoi = 10466 hoi = 10464 }	# Puerto Deseado -> Rio Chico, Pampa Chica, El Pluma, Cabo Blanco, Pico Truncado
+	# ## Uruguay
+	# ## Brazil
+	link = { vic = 506 hoi = 5103 hoi = 5104 }	# Cartagena -> Mazarrón, Cartagena
+	# #######
 	# Europe
 	# #######
 	link = { vic = 252 vic = 3246 hoi = 8086 hoi = 8084 hoi = 8089 }	# MANY-TO-MANY: Iceland, Jan Mayen -> Reykjavik, Egilsstadir, Höfn
@@ -791,56 +988,10 @@
 	link = { vic = 2500 hoi = 10397 hoi = 10409 hoi = 10418 hoi = 10408 hoi = 10384 hoi = 10398 }	# Kalgoorlie -> Coonana, Fraser Range, Widgiemooltha, Yellowdine, Laverton, Zanthus
 	link = { vic = 2503 hoi = 10385 hoi = 10375 hoi = 10367 hoi = 10374 }	# Wiluna -> Plumridge, Rawlinna, Haig, Bandya
 	link = { vic = 2605 vic = 2601 hoi = 10335 hoi = 10439 }	# MANY-TO-MANY: Gibson's Desert, Sandy Desert -> Earaheedy, Paterson Range
-	# South America
 	link = { vic = 2133 hoi = 10488 }	# South Georgia -> South Georgia
-	link = { vic = 2131 hoi = 10479 }	# Falkland Islands -> Falkland Islands
-	link = { vic = 2400 hoi = 10498 }	# Río Grande -> Ushuaia
-	link = { vic = 2335 hoi = 10493 }	# Porvenir -> Caleta Josefina
-	link = { vic = 2334 hoi = 10491 hoi = 10496 }	# Punta Arenas -> Puerto Natales, Punta Arenas
-	link = { vic = 2333 hoi = 10451 hoi = 10456 hoi = 10460 hoi = 10463 hoi = 10467 hoi = 10473 hoi = 10482 hoi = 10486 }	# Puerto Aisén -> Corcovado, Puerto Cisnes, Coihaique, Cochrane, Cerro O'Higgins, Cerro Bertrand, Cerro Stokes, Puerto San Carlos
-	link = { vic = 2332 hoi = 10391 hoi = 10423 hoi = 10404 hoi = 10441 }	# Osorno -> Osorno, Cochamó, Puerto Montt, Chaitén
-	link = { vic = 2399 hoi = 10487 hoi = 10483 hoi = 10478 hoi = 10469 hoi = 10474 }	# Río Gallegos -> Río Gallegos, Coy Aike, Tapi Aike, Lago Viedma, Monte León
-	link = { vic = 2398 hoi = 10470 hoi = 10468 hoi = 10465 hoi = 10466 hoi = 10464 }	# Puerto Deseado -> Rio Chico, Pampa Chica, El Pluma, Cabo Blanco, Pico Truncado
-	link = { vic = 2396 hoi = 10461 hoi = 10458 hoi = 10453 hoi = 7992 hoi = 10435 hoi = 10443 hoi = 7991 hoi = 10442 hoi = 10448 }	# Rawson -> Comodoro Rivadavia, Puerto Visser, Camarones, Trelew, Puerto Pirámides, Chasico, Cona Niyeo, Gangán, Las Plumas
-	link = { vic = 2397 hoi = 10447 hoi = 10452 hoi = 10457 hoi = 10462 }	# Esquel -> Esquel, Sarmiento, Buen Pasto, Paso Río Mayo
-	link = { vic = 2392 hoi = 7964 hoi = 7969 hoi = 7982 hoi = 7975 }	# Viedma -> San Antonio Oeste, Cinco Chañares, Sierra Grande, Aguado Cecilio
-	link = { vic = 2355 hoi = 7959 }	# Carmen -> Viedma
-	link = { vic = 2328 hoi = 10371 }	# Valdivia -> Valdivia
-	link = { vic = 2394 hoi = 10434 hoi = 10424 hoi = 10405 hoi = 7963 hoi = 7954 hoi = 7958 }	# Bariloche -> El Maitén, El Caín, Los Menucos, Valcheta, Sierra Colorada, General Conesa
-	link = { vic = 2391 hoi = 10415 hoi = 10392 hoi = 10379 hoi = 10372 hoi = 10355 hoi = 10380 }	# Neuquén -> San Carlos de Bariloche, Piedra de Águila, Temuco, Chos Malal, Cerro Payún, Neuquén
-	link = { vic = 2329 hoi = 10354 hoi = 10362 }	# Temuco -> Concepción, Chillán
-	link = { vic = 2330 vic = 2327 hoi = 10342 }	# Cauquenes, Talca -> Talca
-	link = { vic = 2331 hoi = 10347 }	# Chillán -> San Clemente
-	link = { vic = 2578 vic = 2308 hoi = 10161 }	# Tacna, Arica -> Arica
-	link = { vic = 2307 hoi = 10197 }	# Iquique -> Iquique
-	link = { vic = 2309 hoi = 10219 }	# Calama -> Calama
-	link = { vic = 2305 hoi = 10251 }	# Antofagasta -> Antofagasta
-	link = { vic = 2322 hoi = 10278 hoi = 10291 }	# Copiapó -> Copiapo, Huasco
-	link = { vic = 2323 hoi = 10304 }	# La Serena -> La Serena
-	link = { vic = 2326 hoi = 10322 }	# Viña del Mar -> Illapel
-	link = { vic = 2325 vic = 2324 hoi = 10336 }	# Valparaíso, Santiago -> Santiago
-	link = { vic = 2354 hoi = 7949 hoi = 7945 hoi = 7939 }	# Bahía Blanca -> Río Colorado, Bahía Blanca, Trey Arroyos
-	link = { vic = 2352 hoi = 7946 hoi = 7940 hoi = 7932 }	# Mar del Plata -> Necochea, Miramar, Mar del Plata
-	link = { vic = 2351 hoi = 7916 hoi = 7909 hoi = 7921 hoi = 7904 }	# La Plata -> General Lavalle, Verónica, General Juan Madariaga, La Plata
-	link = { vic = 2348 hoi = 7899 }	# Buenos Aires -> Buenos Aires
-	link = { vic = 2360 hoi = 7885 hoi = 10325 }	# Paraná -> Campana, San Nicolás
-	link = { vic = 2359 hoi = 7878 hoi = 10317 hoi = 10295 hoi = 10308 }	# Colón -> Carmelo, Salto, Monte Caseros, Artigas
 	link = { vic = 2345 hoi = 7886 hoi = 7879 hoi = 7873 hoi = 7864 hoi = 7869 }	# Paysandú -> San José de Mayo, La Cruz Florida, Mercedes, Concepción del Uruguay, Carmen
 	link = { vic = 2344 hoi = 7893 }	# Montevideo -> Montevideo
 	link = { vic = 2347 hoi = 7887 hoi = 7874 hoi = 7880 hoi = 7894 hoi = 7888 }	# Melo -> Maldonado, Sarandi del Yí, Treinta y Tres, Rocha, Santa Vitória do Palmar
-	link = { vic = 2350 hoi = 7926 hoi = 7915 hoi = 7920 hoi = 7931 hoi = 7914 hoi = 7908 hoi = 7925 hoi = 7919 }	# Azul -> Tandil, Dolores, Azul, Juárez, Olavarría, General Belgrano, Santa Elena, Carhué
-	link = { vic = 2353 hoi = 7930 hoi = 7913 hoi = 7924 }	# Trenque Lauquen -> Pigüé, San Carlos de Bolívar, Salinqueló
-	link = { vic = 2393 hoi = 7955 hoi = 7948 hoi = 7944 hoi = 7937 hoi = 10373 hoi = 10356 hoi = 10364 hoi = 7929 }	# Telén -> Lago del Abra, Benjamín Zorrillo, Choele Choel, Chelforó, Puelches, General Pico, Santa Rosa, General Acha
-	link = { vic = 2395 hoi = 10363 }	# Curacó -> Puelén
-	link = { vic = 2390 hoi = 10343 }	# San Rafael -> Vargas
-	link = { vic = 2389 hoi = 10330 }	# Mendoza -> Mendoza
-	link = { vic = 2384 hoi = 10337 hoi = 10348 }	# Mercedes -> San Luis, Santa Isabel
-	link = { vic = 2382 hoi = 10344 }	# Renancó -> Mercedes
-	link = { vic = 2349 hoi = 7907 hoi = 7903 hoi = 7892 }	# Junín -> Carlos Casares, Chivilcoy, Chacabuco
-	link = { vic = 2363 hoi = 10349 hoi = 7898 }	# Rosario -> Laboulaye Rufino, Junín
-	link = { vic = 2361 hoi = 10316 hoi = 10332 hoi = 10307 }	# Sancti Spiritu -> Rosario, Pergamino, Santa Fe
-	link = { vic = 2381 hoi = 10338 }	# Río Cuarto -> Río Cuarto
-	link = { vic = 2383 hoi = 10331 }	# San Luis -> La Toma
 	link = { vic = 2464 hoi = 7875 hoi = 7861 }	# Pelotas -> Erval, Camaqua
 	link = { vic = 2346 hoi = 7860 hoi = 7865 hoi = 7859 }	# Tacuarembó -> Minas de Corrales, Ansina, Tacuarembó
 	link = { vic = 2467 hoi = 7870 hoi = 7855 }	# Alegrete -> Coxilha, Quarai
@@ -852,29 +1003,9 @@
 	link = { vic = 2455 vic = 2450 hoi = 10226 }	# Iguape, São Paulo -> São Paulo
 	link = { vic = 2447 hoi = 10181 hoi = 10193 }	# Rio de Janeiro -> Volta Redonda, Rio de Janeiro
 	link = { vic = 2448 hoi = 10182 }	# Campos -> Campos dos Goitacazes
-	link = { vic = 2388 hoi = 10314 hoi = 10292 }	# Calingasta -> San Juan, Guandacol
-	link = { vic = 2385 hoi = 10266 }	# La Rioja -> Palo Blanco
-	link = { vic = 2387 hoi = 10323 }	# San Juan -> Cantantal
-	link = { vic = 2386 hoi = 10305 }	# Santa Rita -> Astica
-	link = { vic = 2379 hoi = 10315 hoi = 10306 }	# Córdoba de Argentina -> Río Tercero, Córdoba
-	link = { vic = 2380 hoi = 10324 hoi = 10294 }	# Villa Nueva -> Villa María, Las Varillas
-	link = { vic = 2375 hoi = 10236 }	# Vinchina -> Caipe
-	link = { vic = 2374 hoi = 10252 hoi = 10293 hoi = 10279 }	# Catamarca -> Cerro Mojones, La Rioja, Antofagasta de la Sierra
 	link = { vic = 2465 hoi = 10283 hoi = 7837 hoi = 7843 hoi = 7847 hoi = 7840 hoi = 7835 }	# Passo Fundo -> Santo Angelo, Chapecó, Tapera, Cruz Alta, Passo Fundo, Concórdia
 	# 
 	link = { vic = 2459 hoi = 7838 hoi = 7833 }	# Lajes -> Lajes, Cacador
-	link = { vic = 2362 hoi = 10281 hoi = 10268 }	# Reconquista -> Resistencia, Presidencia Roca
-	link = { vic = 2373 hoi = 10267 }	# Tucumán -> San Miguel de Tucumán
-	link = { vic = 2378 hoi = 10280 }	# Mailín -> Santiago del Estero
-	link = { vic = 2376 hoi = 10253 }	# Santiago del Estero -> Monte Quemado
-	link = { vic = 2377 hoi = 10238 }	# Añatuya -> Fortín General Diaz
-	link = { vic = 2365 hoi = 10254 hoi = 10200 hoi = 10209 }	# Villa Ángela -> Asunción, Pozo Colorado, Fortín Linares
-	link = { vic = 2368 hoi = 10207 hoi = 10220 hoi = 10208 }	# Salta -> Pena Barrosa, Jujuy, Salta
-	link = { vic = 2314 hoi = 10185 }	# Potosí -> Llíca
-	link = { vic = 2312 vic = 3240 hoi = 10173 }	# Oruro, Lake Poopo -> Turco
-	link = { vic = 2310 vic = 3109 hoi = 10151 hoi = 10132 }	# MANY-TO-MANY: La Paz, Lake Titicaca -> La Paz, Achacachi
-	link = { vic = 2370 vic = 2369 vic = 2371 hoi = 10198 }	# Cochinoca, Jujuy, Equia -> Río Mulatos
-	link = { vic = 2372 hoi = 10221 hoi = 10186 }	# Rivadavia -> San Pedro, Potosí
 	link = { vic = 420 hoi = 2605 hoi = 2541 hoi = 2671 }	# Brest -> Brest, Morlaix, Quimper
 	link = { vic = 421 hoi = 2542 hoi = 2607 hoi = 2606 hoi = 2672 }	# St Brieuc -> Lannion, St. Brieuc, Carhaix Ploguer, Rostrenen
 	link = { vic = 422 hoi = 2737 hoi = 2869 }	# Vannes -> Lorient, Vannes
@@ -972,7 +1103,6 @@
 	link = { vic = 514 hoi = 5127 hoi = 5098 hoi = 5157 hoi = 5128 hoi = 5099 hoi = 5068 }	# Málaga -> Motril, Lebrija, Marbella, Málaga, Vélez-Málaga, Antequera
 	link = { vic = 515 hoi = 5131 hoi = 5159 hoi = 5130 hoi = 5102 hoi = 5101 hoi = 5071 }	# Almería -> Carboneras, Almería, Níjar, Vélez-Rubio, Guadix, Baza
 	link = { vic = 513 hoi = 5129 hoi = 5158 hoi = 5070 hoi = 5100 }	# Granada -> Granada, Vícar, Iznalloz, Loja
-	link = { vic = 506 hoi = 5103 hoi = 5104 }	# Cartagena -> Mazarrón, Cartagena
 	link = { vic = 505 hoi = 4960 hoi = 5001 hoi = 5037 hoi = 4912 }	# Alicante -> Denia, Alicante, Elche, Ayora
 	link = { vic = 498 hoi = 4548 hoi = 4485 hoi = 4419 hoi = 4484 hoi = 4356 hoi = 4418 }	# Barcelona -> Barcelona, Mataró, Berga, Manresa, Seo de Urgel, Tarrasa
 	link = { vic = 503 hoi = 4862 hoi = 4812 hoi = 4761 hoi = 4813 hoi = 4709 hoi = 4760 }	# Valencia -> Valencia, Alcira, Villar del Arzobispo, Sagunto, Teruel, Mora de Rubielos
@@ -1563,15 +1693,6 @@
 	link = { vic = 2681 hoi = 8123 hoi = 8101 hoi = 8111 hoi = 8134 hoi = 8146 hoi = 8171 hoi = 8158 hoi = 8145 hoi = 8133 }	# Kikkiakki -> Noril'sk, Nadym, Nojabr'sk, Igarka, Sneznogorsk, Aleksandrovskoe, Niznevartovsk, Megion, Ul't Yagun
 	link = { vic = 2646 hoi = 8122 hoi = 8132 hoi = 8121 hoi = 8143 hoi = 8144 hoi = 8157 hoi = 8169 hoi = 8156 hoi = 8155 hoi = 8131 hoi = 8142 hoi = 8154 hoi = 8120 hoi = 8130 }	# Ases Igan -> Fedorovskiy, Numto, Mankova, Pyt Yakh, Surgut, Langepas, Neftejugansk, Gornyj, Tavinsk, Kondinskoye, Sentyabr'skiy, Rymovy, Nefteyugansk, Novyy Urengoy
 	link = { vic = 1065 hoi = 8109 hoi = 8098 hoi = 8099 hoi = 8110 }	# Nizhnevartovsk -> Kutop'jugan, Jamalo Nenetskij, Noviy Urengoy, Zapadno Sibirskaja Ravnina
-	link = { vic = 2357 hoi = 10269 }	# Curuzú Cuatiá -> Laureles
-	link = { vic = 2356 hoi = 10255 }	# Corrientes -> Villarrica
-	link = { vic = 2358 hoi = 10282 hoi = 10270 }	# Santo Tomás -> Posadas, Eldorado
-	link = { vic = 2304 hoi = 10150 hoi = 10131 }	# Arequipa -> Arequipa, Cabanaconde
-	link = { vic = 2297 hoi = 10105 hoi = 10119 }	# Ica -> Ica, Nazca
-	link = { vic = 2291 hoi = 10016 hoi = 10030 }	# Piura -> Tumbes, Piura
-	link = { vic = 2292 hoi = 10042 }	# Trujillo -> Chiclayo
-	link = { vic = 2298 hoi = 10051 hoi = 10069 }	# Huaraz -> Trujillo, Huaráz
-	link = { vic = 2295 hoi = 10079 }	# Lima -> Lima
 	link = { vic = 2431 hoi = 10036 hoi = 10046 hoi = 10027 }	# Natal -> Natal, Campina Grande, Mossoró
 	link = { vic = 2428 vic = 2432 vic = 2434 hoi = 10063 }	# Paraíba, Recife, Maceió -> Recife
 	link = { vic = 2435 hoi = 10084 }	# Aracaju -> Maceió
@@ -1581,72 +1702,16 @@
 	link = { vic = 2410 vic = 2411 hoi = 9994 hoi = 10000 hoi = 9993 }	# MANY-TO-MANY: Belém, Santarém -> Braganca, Belém, Breves
 	link = { vic = 2415 vic = 2414 hoi = 9966 }	# Macapá, Amapá -> Calcoene
 	link = { vic = 2412 hoi = 9985 }	# Óbidos -> Macapá
-	link = { vic = 2241 hoi = 9934 }	# Cayenne -> Cayenne
-	link = { vic = 2246 hoi = 9951 }	# Maripasoula -> Oscar
-	link = { vic = 2240 hoi = 9933 hoi = 9914 }	# Paramaribo -> Albina, Paramaribo
-	link = { vic = 2239 hoi = 9896 }	# Georgetown -> Georgetown
-	link = { vic = 2243 hoi = 9874 }	# Essequibo -> Mabaruma
-	link = { vic = 2276 vic = 2269 hoi = 9813 hoi = 9853 }	# MANY-TO-MANY: Curiapo, Güiria -> Carúpano, Ciudad Guayana
-	link = { vic = 2267 hoi = 9793 hoi = 9812 }	# Cumaná -> Cumana, Barcelona
-	link = { vic = 2264 hoi = 9792 }	# Caracas -> Caracas
-	link = { vic = 2268 hoi = 9773 }	# San Felipe -> Valencia
-	link = { vic = 2272 hoi = 7691 hoi = 9791 }	# Coro -> Coro, Cabimas
-	link = { vic = 2255 hoi = 9790 hoi = 9772 }	# Barranquilla -> Barranquilla, Cartagena
-	link = { vic = 2270 hoi = 9740 hoi = 9830 }	# Maracaibo -> Maracaibo, San Carlos del Zulia
-	link = { vic = 2271 hoi = 9831 hoi = 9850 }	# Valera -> Valera, Mérida
-	link = { vic = 2254 hoi = 9829 hoi = 9810 }	# Cartagena de Indias -> Montería, Sincelejo
-	link = { vic = 2253 hoi = 9848 hoi = 9891 }	# Quibdó -> Jaqué, Nuquí
-	link = { vic = 2258 hoi = 9929 hoi = 9947 }	# Buenaventura -> Cali, Tumaco
-	link = { vic = 2281 hoi = 9962 hoi = 9982 }	# Esmereldas -> Ibarra, Manta
-	link = { vic = 2280 vic = 2282 hoi = 10007 }	# Guayaquil, Loja -> Guayaquil
 	link = { vic = 2436 hoi = 10098 }	# Salvador de Bahia -> Salvador
 	link = { vic = 2439 hoi = 10112 hoi = 10138 }	# Porto Seguro -> Ilhéus, Caravelas
 	link = { vic = 2449 hoi = 10159 }	# Vitória -> Vitória
-	link = { vic = 2245 hoi = 9950 }	# Apetina -> Pontoetoe
 	link = { vic = 2408 hoi = 9976 }	# Oriximina -> Yaripo
-	link = { vic = 1979 hoi = 9932 }	# Biloka -> Maipuri Landing
-	link = { vic = 2273 hoi = 9811 }	# Barquisimeto -> Barquisimeto
-	link = { vic = 2265 hoi = 9832 }	# Guanare -> Calabozo
-	link = { vic = 2266 hoi = 9852 hoi = 9833 }	# Calabozo -> Al Tigre, Maturin
-	link = { vic = 2275 hoi = 9873 hoi = 9895 hoi = 9894 }	# Angostura -> Ciudad Bolívar, El Dorado, San Juan
-	link = { vic = 2242 hoi = 9913 }	# Mahdia -> Santa Elena
-	link = { vic = 2274 hoi = 9871 hoi = 9851 }	# Barinas -> Yopal, Barinas
-	link = { vic = 2277 hoi = 9872 hoi = 11378 }	# El Jobal -> San Fernando de Apure, Puerto Ayacucho
 	link = { vic = 2532 hoi = 10211 }	# Forte São Joaquim -> Nova Paraiso
-	link = { vic = 2252 hoi = 9869 }	# Medellín -> Medellin
-	link = { vic = 2251 hoi = 9849 hoi = 9892 }	# Cúcuta -> Cúcuta, Barrancabermeja
-	link = { vic = 2262 hoi = 9911 hoi = 9893 }	# Casanare -> Tunja, Mitú
-	link = { vic = 2249 hoi = 9870 }	# Tunja -> Bucaramanga
-	link = { vic = 2248 vic = 2256 vic = 2250 hoi = 9910 }	# Ibagué, Cali, Manizales -> Manizales Pereira
-	link = { vic = 2247 hoi = 9930 }	# Bogotá -> Bogotá
-	link = { vic = 2279 hoi = 9974 }	# Quito -> Quito
-	link = { vic = 2259 hoi = 9963 }	# Pasto -> Puerto Fransisco de Orellana
-	link = { vic = 2257 hoi = 9948 }	# Popayán -> Neiva
-	link = { vic = 2263 hoi = 9975 hoi = 9984 }	# El Encanto -> Cabo Pantoja, La Chorrera
 	link = { vic = 2401 hoi = 10018 }	# Marabitanas -> Benjamin Constant
-	link = { vic = 2261 hoi = 9949 }	# Obando -> San José del Guaviare
-	link = { vic = 2260 hoi = 9964 }	# San José del Guaviare -> Florencia
-	link = { vic = 2278 hoi = 9912 }	# San Fernando de Atabapo -> Guaina
 	link = { vic = 2403 hoi = 9931 hoi = 10222 hoi = 10199 }	# Cachoeira -> Boa Vista, Porto Velho, Manaus
 	link = { vic = 2402 hoi = 9965 }	# Manaus -> Santarém
-	link = { vic = 2284 hoi = 9983 hoi = 9991 }	# Tena -> Conambo, Ambato
-	link = { vic = 2294 hoi = 10023 hoi = 10031 }	# Moyobamba -> Jaén, Cahuapanas
-	link = { vic = 2283 hoi = 9998 }	# Zamora -> Macas
-	link = { vic = 2287 hoi = 10017 }	# Yurimaguas -> Borja
-	link = { vic = 2288 hoi = 10008 }	# Yuncos -> Puerto Pardo
-	link = { vic = 2289 hoi = 9992 hoi = 9999 }	# Puca Urco -> Soldado Bartra, Iquitos
-	link = { vic = 2286 hoi = 10024 hoi = 10043 }	# Iquitos -> Requena, Tarapoto
-	link = { vic = 2290 hoi = 10059 }	# Cajamarca -> Uchiza
-	link = { vic = 2293 hoi = 10070 }	# Huánuco -> Huancayo
-	link = { vic = 2296 hoi = 10092 hoi = 10106 }	# Huancavelica -> Avacucho, Cuzco
-	link = { vic = 2299 hoi = 10140 hoi = 10120 }	# Ayacucho -> Juliaca, Putina
-	link = { vic = 2300 hoi = 10052 hoi = 10060 hoi = 10080 }	# Pucallpa -> Pucallpa, Foz do Breu, Camisea
 	link = { vic = 2407 hoi = 10032 }	# Tabatinga -> Cruzeiro do Sul
 	link = { vic = 2549 hoi = 10141 }	# Tarauacá -> Rio Branco
-	link = { vic = 2302 hoi = 10093 hoi = 10107 }	# Cusco -> Quince Mil, Puerto Maldonado
-	link = { vic = 2303 hoi = 10174 hoi = 10162 }	# Puno -> Sucre, Luribay
-	link = { vic = 2301 hoi = 10094 hoi = 10121 }	# Puerto Maldonado -> Puerto Heath, Santa Ana
-	link = { vic = 2321 hoi = 10133 hoi = 10152 hoi = 10122 }	# Cobija -> San Miguel de Huachi, Cocapata, San Joaquín
 	link = { vic = 2404 hoi = 10108 hoi = 10109 hoi = 10081 }	# Tefe -> Ariquemes, Ji Paranà, Curuá
 	link = { vic = 2405 hoi = 10237 }	# Borba -> Itaituba
 	link = { vic = 2425 hoi = 10009 hoi = 10019 hoi = 10044 hoi = 10025 }	# Chapada -> Paragominas, Santa Inés, Grajaú, Codó
@@ -1668,29 +1733,12 @@
 	link = { vic = 2418 hoi = 10135 }	# Cuiabá -> Jacaré
 	link = { vic = 2417 hoi = 10167 }	# Vila Bela -> Cuiabá
 	link = { vic = 2550 hoi = 10095 }	# Forte do Príncipe -> Iriri
-	link = { vic = 2320 hoi = 10123 }	# Riberalta -> Pontes e Lacerda
-	link = { vic = 2319 hoi = 10134 hoi = 10142 }	# Santa Ana -> Pensamiento, Trinidad
-	link = { vic = 2311 hoi = 10163 }	# Cochabamba -> Cochabamba
-	link = { vic = 2313 hoi = 10175 }	# Chuquisaca -> Santa Cruz
-	link = { vic = 2316 hoi = 10153 }	# Santa Cruz -> San Javier
-	link = { vic = 2315 hoi = 10187 }	# Tarija -> Filadelfia
-	link = { vic = 2317 hoi = 10143 }	# San Ignacio -> Càceres
-	link = { vic = 2318 hoi = 10164 hoi = 10154 hoi = 10176 hoi = 10165 hoi = 10155 }	# Roboré -> Robore, Corumbá, Porto Murtinho, Bodoquena, Porto Jofre
 	link = { vic = 2421 hoi = 10156 }	# Vila Boa -> Campo Grande
 	link = { vic = 2445 hoi = 10179 }	# Uberaba -> Aracatuba
 	link = { vic = 2452 hoi = 10203 hoi = 10213 }	# Campinas -> Apucarana, Sorocaba
-	link = { vic = 2338 hoi = 10188 }	# Puerto Guaraní -> Porto Murtinho
-	link = { vic = 2337 hoi = 10201 }	# Fortin Falcon -> Bela Vista
-	link = { vic = 2367 hoi = 10210 }	# Xolotas -> Caracol
-	link = { vic = 2364 hoi = 10239 }	# Resistencia -> San Estanislao
-	link = { vic = 2366 hoi = 10223 }	# Formosa -> Amambaí
-	link = { vic = 2340 vic = 2339 hoi = 10240 }	# Pilar, Asuncion -> Foz do Iguacu
-	link = { vic = 2341 hoi = 10224 }	# Encarnación -> Salto del Guaira
-	link = { vic = 2554 hoi = 10256 }	# Posadas -> Cascavel
 	link = { vic = 2462 hoi = 10241 }	# São Miguel -> Pitanga
 	link = { vic = 2458 hoi = 10212 hoi = 10225 }	# Guarapuava -> Goio Erê, Guarapuava
 	link = { vic = 2419 hoi = 10166 }	# Corumbá -> Caxim
-	link = { vic = 2343 vic = 2342 hoi = 10177 }	# Concepción, San Pedro -> Aquidauana
 	link = { vic = 2416 vic = 2420 hoi = 10189 }	# Dourados, Iguatemi -> Dourados
 	link = { vic = 2456 vic = 2453 hoi = 10178 }	# Araraquara, Assis -> Maracaju
 	link = { vic = 2306 hoi = 10190 }	# Sorocaba -> Presidente Prudente
