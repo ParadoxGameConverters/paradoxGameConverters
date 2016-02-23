@@ -462,6 +462,14 @@ namespace ProvinceMapper
                 else
                     CreateNewMapping(false, lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Count - 2);
             }
+            else if ((e.KeyCode == Keys.F5) || (e.KeyCode == Keys.Delete))
+            {
+                if (lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Count >= 0)
+                {
+                    Program.mappings.mappings[mappingsTabs.SelectedTab.Text].Remove(lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem as Mapping);
+                    lbMappingsDict[mappingsTabs.SelectedTab.Text].Items.Remove(lbMappingsDict[mappingsTabs.SelectedTab.Text].SelectedItem);
+                }
+            }
             else if (e.Control)
             {
                 if (e.KeyCode == Keys.Oemplus)
