@@ -422,40 +422,37 @@ struct MTo1ProvinceComp
 
 void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const adjacencyMapping &adjacencyMap)
 {
-	for (map<int, HoI3Province*>::iterator i = provinces.begin(); i != provinces.end(); i++)
+	for (auto provItr: provinces)
 	{
-		int destNum = i->first;
-		provinceMapping::const_iterator provinceLink = provinceMap.find(destNum);
+		// get the appropriate mapping
+		provinceMapping::const_iterator provinceLink = provinceMap.find(provItr.first);
 		if ((provinceLink == provinceMap.end()) || (provinceLink->second.size() == 0))
 		{
-			LOG(LogLevel::Warning) << "No source for " << i->second->getName() << " (province " << destNum << ')';
+			LOG(LogLevel::Warning) << "No source for " << provItr.second->getName() << " (province " << provItr.first << ')';
 			continue;
 		}
 		else if (provinceLink->second[0] == 0)
 		{
 			continue;
 		}
-		else if (Configuration::getResetProvinces() == "yes")
-		{
-			continue;
-		}
 
-		i->second->clearCores();
+		provItr.second->clearCores();
 
-		V2Province* oldProvince = NULL;
-		V2Country* oldOwner = NULL;
+		V2Province*	oldProvince	= NULL;
+		V2Country*	oldOwner		= NULL;
+
 		// determine ownership by province count, or total population (if province count is tied)
 		map<string, MTo1ProvinceComp> provinceBins;
 		double newProvinceTotalPop = 0;
-		for (vector<int>::const_iterator itr = provinceLink->second.begin(); itr != provinceLink->second.end(); ++itr)
+		for (auto srcProvItr: provinceLink->second)
 		{
-			V2Province* province = sourceWorld.getProvince(*itr);
-			if (!province)
+			V2Province* srcProvince = sourceWorld.getProvince(srcProvItr);
+			if (!srcProvince)
 			{
 				LOG(LogLevel::Warning) << "Old province " << provinceLink->second[0] << " does not exist (bad mapping?)";
 				continue;
 			}
-			V2Country* owner = province->getOwner();
+			V2Country* owner = srcProvince->getOwner();
 			string tag;
 			if (owner != NULL)
 			{
@@ -470,69 +467,74 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 			{
 				provinceBins[tag] = MTo1ProvinceComp();
 			}
-			provinceBins[tag].provinces.push_back(province);
-			provinceBins[tag].totalPopulation += province->getTotalPopulation();
-			newProvinceTotalPop += province->getTotalPopulation();
+			provinceBins[tag].provinces.push_back(srcProvince);
+			provinceBins[tag].totalPopulation += srcProvince->getTotalPopulation();
+			newProvinceTotalPop += srcProvince->getTotalPopulation();
 			// I am the new owner if there is no current owner, or I have more provinces than the current owner,
 			// or I have the same number of provinces, but more population, than the current owner
-			if (   (oldOwner == NULL)
+			if (  (oldOwner == NULL)
 				|| (provinceBins[tag].provinces.size() > provinceBins[oldOwner->getTag()].provinces.size())
-				|| ((provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
-				&& (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
+				|| ( (provinceBins[tag].provinces.size() == provinceBins[oldOwner->getTag()].provinces.size())
+				  && (provinceBins[tag].totalPopulation > provinceBins[oldOwner->getTag()].totalPopulation)))
 			{
-				oldOwner = owner;
-				oldProvince = province;
+				oldOwner		= owner;
+				oldProvince	= srcProvince;
 			}
 		}
 		if (oldOwner == NULL)
 		{
-			i->second->setOwner("");
+			provItr.second->setOwner("");
 			continue;
 		}
 
-		const std::string& HoI3Tag = countryMap[oldOwner->getTag()];
+		// convert from the source provinces
+		const string HoI3Tag = countryMap[oldOwner->getTag()];
 		if (HoI3Tag.empty())
 		{
 			LOG(LogLevel::Warning) << "Could not map provinces owned by " << oldOwner->getTag();
 		}
 		else
 		{
-			i->second->setOwner(HoI3Tag);
+			provItr.second->setOwner(HoI3Tag);
 			map<string, HoI3Country*>::iterator ownerItr = countries.find(HoI3Tag);
 			if (ownerItr != countries.end())
 			{
-				ownerItr->second->addProvince(i->second);
+				ownerItr->second->addProvince(provItr.second);
 			}
-			i->second->convertFromOldProvince(oldProvince);
+			provItr.second->convertFromOldProvince(oldProvince);
 
-			for (map<string, MTo1ProvinceComp>::iterator mitr = provinceBins.begin(); mitr != provinceBins.end(); ++mitr)
+			for (auto srcOwnerItr: provinceBins)
 			{
-				for (vector<V2Province*>::iterator vitr = mitr->second.provinces.begin(); vitr != mitr->second.provinces.end(); ++vitr)
+				for (auto srcProvItr: srcOwnerItr.second.provinces)
 				{
-					vector<V2Country*> oldCores = (*vitr)->getCores(sourceWorld.getCountries());
-					for(unsigned int j = 0; j < oldCores.size(); j++)
+					// convert cores
+					vector<V2Country*> oldCores = srcProvItr->getCores(sourceWorld.getCountries());
+					for (auto oldCoreItr: oldCores)
 					{
 						// skip this core if the country is the owner of the V2 province but not the HoI3 province
 						// (i.e. "avoid boundary conflicts that didn't exist in V2").
 						// this country may still get core via a province that DID belong to the current HoI3 owner
-						if ((oldCores[j]->getTag() == mitr->first) && (oldCores[j] != oldOwner))
+						if ((oldCoreItr->getTag() == srcOwnerItr.first) && (oldCoreItr != oldOwner))
+						{
 							continue;
+						}
 
-						const std::string& coreOwner = countryMap[oldCores[j]->getTag()];
+						const string coreOwner = countryMap[oldCoreItr->getTag()];
 						if (coreOwner != "")
 						{
-							i->second->addCore(coreOwner);
+							provItr.second->addCore(coreOwner);
 						}
 					}
 
+					// determine if this is a border province or not
 					bool borderProvince = false;
-					if (adjacencyMap.size() > static_cast<unsigned int>((*vitr)->getNum()))
+					if (adjacencyMap.size() > static_cast<unsigned int>(srcProvItr->getNum()))
 					{
-						const vector<adjacency> adjacencies = adjacencyMap[(*vitr)->getNum()];
+						const vector<adjacency> adjacencies = adjacencyMap[srcProvItr->getNum()];
 						for (auto adj: adjacencies)
 						{
 							V2Province* province = sourceWorld.getProvince(adj.to);
-							if ((province->getOwner() != NULL) && (province->getOwner() != (*vitr)->getOwner()))
+							if ((province->getOwner() != NULL) && (province->getOwner() != srcProvItr->getOwner()))
 							{
 								borderProvince = true;
 								break;
@@ -540,84 +542,85 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 						}
 					}
 
-					int fortLevel = (*vitr)->getFort();
+					// convert forts, naval bases, and infrastructure
+					int fortLevel = srcProvItr->getFort();
 					fortLevel = max(0, (fortLevel - 5) * 2 + 1); // Only use 5 or 6 to reduce fort spam
-					int navalBaseLevel = (*vitr)->getNavalBase();
+					int navalBaseLevel = srcProvItr->getNavalBase();
 					navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
 					if (navalBaseLevel > 0)
 					{
-						provinces[destNum]->requireCoastalFort(fortLevel);
+						provItr.second->requireCoastalFort(fortLevel);
 					}
 					if (borderProvince)
 					{
-						provinces[destNum]->requireLandFort(fortLevel);
+						provItr.second->requireLandFort(fortLevel);
 					}
-					provinces[destNum]->requireNavalBase(navalBaseLevel);
-					provinces[destNum]->requireInfrastructure((int)Configuration::getMinInfra());
-					if ((*vitr)->getInfra() > 0) // No infra stays at minInfra
+					provItr.second->requireNavalBase(navalBaseLevel);
+					provItr.second->requireInfrastructure((int)Configuration::getMinInfra());
+					if (srcProvItr->getInfra() > 0) // No infra stays at minInfra
 					{
-						provinces[destNum]->requireInfrastructure((*vitr)->getInfra() + 4);
+						provItr.second->requireInfrastructure(srcProvItr->getInfra() + 4);
 					}
 
 					// convert industry
-					double industry = (*vitr)->getPopulation("craftsmen")
-						+ int((*vitr)->getPopulation("artisans") * 0.5)
-						+ (*vitr)->getLiteracyWeightedPopulation("capitalists") * 2
-						+ (*vitr)->getLiteracyWeightedPopulation("clerks") * 2;
+					double industry = srcProvItr->getPopulation("craftsmen")
+						+ int(srcProvItr->getPopulation("artisans") * 0.5)
+						+ srcProvItr->getLiteracyWeightedPopulation("capitalists") * 2
+						+ srcProvItr->getLiteracyWeightedPopulation("clerks") * 2;
 					if (Configuration::getIcConversion() == "squareroot")
 					{
 						industry = sqrt(double(industry)) * 0.00127;
-						provinces[destNum]->setRawIndustry(industry * Configuration::getIcFactor());
+						provItr.second->setRawIndustry(industry * Configuration::getIcFactor());
 					}
 					else if (Configuration::getIcConversion() == "linear")
 					{
 						industry = double(industry) * 0.00000564;
-						provinces[destNum]->setRawIndustry(industry * Configuration::getIcFactor());
+						provItr.second->setRawIndustry(industry * Configuration::getIcFactor());
 					}
 					else if (Configuration::getIcConversion() == "logarithmic")
 					{
 						industry = log(max(1, industry / 70000)) / log(2) * 1.75;
-						provinces[destNum]->setRawIndustry(industry * Configuration::getIcFactor());
+						provItr.second->setRawIndustry(industry * Configuration::getIcFactor());
 					}
 					
 					// convert manpower
-					double newManpower = (*vitr)->getPopulation("soldiers")
-						+ (*vitr)->getPopulation("craftsmen") * 0.25 // Conscripts
-						+ (*vitr)->getPopulation("labourers") * 0.25 // Conscripts
-						+ (*vitr)->getPopulation("farmers") * 0.25; // Conscripts
+					double newManpower = srcProvItr->getPopulation("soldiers")
+						+ srcProvItr->getPopulation("craftsmen") * 0.25 // Conscripts
+						+ srcProvItr->getPopulation("labourers") * 0.25 // Conscripts
+						+ srcProvItr->getPopulation("farmers") * 0.25; // Conscripts
 					if (Configuration::getManpowerConversion() == "linear")
 					{
-						newManpower *= 0.0000037 * Configuration::getManpowerFactor() / mitr->second.provinces.size();
+						newManpower *= 0.0000037 * Configuration::getManpowerFactor() / srcOwnerItr.second.provinces.size();
 						newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-						provinces[destNum]->setManpower(newManpower);
+						provItr.second->setManpower(newManpower);
 					}
 					else if (Configuration::getManpowerConversion() == "squareroot")
 					{
 						newManpower = sqrt(newManpower);
-						newManpower *= 0.0009 * Configuration::getManpowerFactor() / mitr->second.provinces.size();
+						newManpower *= 0.0009 * Configuration::getManpowerFactor() / srcOwnerItr.second.provinces.size();
 						newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-						provinces[destNum]->setManpower(newManpower);
+						provItr.second->setManpower(newManpower);
 					}
 
 					// convert leadership
-					double newLeadership = (*vitr)->getLiteracyWeightedPopulation("clergymen") * 0.5
-						+ (*vitr)->getPopulation("officers")
-						+ (*vitr)->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
-						+ (*vitr)->getLiteracyWeightedPopulation("capitalists") * 0.5
-						+ (*vitr)->getLiteracyWeightedPopulation("bureaucrats") * 0.25
-						+ (*vitr)->getLiteracyWeightedPopulation("aristocrats") * 0.25;
+					double newLeadership = srcProvItr->getLiteracyWeightedPopulation("clergymen") * 0.5
+						+ srcProvItr->getPopulation("officers")
+						+ srcProvItr->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
+						+ srcProvItr->getLiteracyWeightedPopulation("capitalists") * 0.5
+						+ srcProvItr->getLiteracyWeightedPopulation("bureaucrats") * 0.25
+						+ srcProvItr->getLiteracyWeightedPopulation("aristocrats") * 0.25;
 					if (Configuration::getLeadershipConversion() == "linear")
 					{
-						newLeadership *= 0.0000035 * Configuration::getLeadershipFactor() / mitr->second.provinces.size();
+						newLeadership *= 0.0000035 * Configuration::getLeadershipFactor() / srcOwnerItr.second.provinces.size();
 						newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-						provinces[destNum]->setLeadership(newLeadership);
+						provItr.second->setLeadership(newLeadership);
 					}
 					else if (Configuration::getLeadershipConversion() == "squareroot")
 					{
 						newLeadership = sqrt(newLeadership);
-						newLeadership *= 0.00034 * Configuration::getLeadershipFactor() / mitr->second.provinces.size();
+						newLeadership *= 0.00034 * Configuration::getLeadershipFactor() / srcOwnerItr.second.provinces.size();
 						newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-						provinces[destNum]->setLeadership(newLeadership);
+						provItr.second->setLeadership(newLeadership);
 					}
 				}
 			}
@@ -625,28 +628,6 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 	}
 }
 
-
-void HoI3World::convertCapitals(const V2World &sourceWorld, provinceMapping provinceMap)
-{
-	//inverseProvinceMapping inverseProvinceMap = invertProvinceMap(provinceMap);
-	//map<string, V2Country*> oldCountries = sourceWorld.getCountries();
-	//for (unsigned int i = 0; i < countries.size(); i++)
-	//{
-	//	int sourceCountryIndex = countries[i].getSourceCountryIndex();
-	//	if (sourceCountryIndex >= 0)
-	//	{
-	//		//int oldCapital = oldCountries[sourceCountryIndex]->getCapital();
-	//		//log("\n	V2tag: %s	old capital: %4d", oldCountries[sourceCountryIndex]->getTag().c_str(), oldCapital);
-	//		//inverseProvinceMapping::iterator itr = inverseProvinceMap.find(oldCapital);
-	//		//if (itr != inverseProvinceMap.end())
-	//		//{
-	//		//	int newCapital = itr->second[0];
-	//		//	countries[i].setCapital(newCapital);
-	//		//	log("	new capital: %d", newCapital);
-	//		//}
-	//	}
-	//}
-}
 
 void HoI3World::convertTechs(V2World& sourceWorld)
 {
