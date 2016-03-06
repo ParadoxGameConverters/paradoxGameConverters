@@ -54,7 +54,6 @@ Configuration::Configuration()
 	V2DocumentsPath	= obj[0]->getLeaf("V2Documentsdirectory");
 	HoI3Path				= obj[0]->getLeaf("HoI3directory");
 	HoI3DocumentsPath = obj[0]->getLeaf("HoI3Documentsdirectory");
-	resetProvinces		= obj[0]->getLeaf("resetProvinces");
 	outputName			= "";
 
 	vector<Object*> modsObj = obj[0]->getValue("Vic2Mods");

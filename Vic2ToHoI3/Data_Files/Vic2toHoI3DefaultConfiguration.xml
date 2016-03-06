@@ -15,25 +15,6 @@
             <hasDirectlyEditableValue>true</hasDirectlyEditableValue>
             <value>{ }</value>
           </preference>
-          <preference>
-            <name>resetProvinces</name>
-            <friendlyName>Reset Provinces?</friendlyName>
-            <description>Whether or not to reset resettable HoI3 provinces</description>
-            <entryOptions>
-              <entryOption>
-                <name>yes</name>
-                <friendlyName>Yes</friendlyName>
-                <description>Reset provinces</description>
-                <isDefault>false</isDefault>
-              </entryOption>
-              <entryOption>
-                <name>no</name>
-                <friendlyName>No</friendlyName>
-                <description>Don't reset provinces</description>
-                <isDefault>true</isDefault>
-              </entryOption>
-            </entryOptions>
-          </preference>
 		  <preference>
             <name>faction_leader</name>
             <friendlyName>Faction Leader</friendlyName>

@@ -61,11 +61,6 @@ class Configuration // Singleton
 			return getInstance()->Vic2Mods;
 		}
 
-		static string getResetProvinces()
-		{
-			return getInstance()->resetProvinces;
-		}
-
 		static void setOutputName(string name)
 		{
 			getInstance()->outputName = name;
@@ -169,7 +164,6 @@ class Configuration // Singleton
 		string			V2Path;					// the install directory for V2
 		string			V2DocumentsPath;		// V2's directory under My Documents
 		vector<string>	Vic2Mods;
-		string			resetProvinces;		// whether or not to reset allowed provinces back to V2 defaults
 		string			outputName;				// the name the outputted mod should have
 
 		string			factionLeaderAlgorithm;

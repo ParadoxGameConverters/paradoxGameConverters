@@ -16,9 +16,6 @@ configuration =
 	# Example: Vic2Mods = { modname1 modname2 }
 	Vic2Mods = { TheEmpireStrikesBack }
 
-	# Reset Provinces: Whether or not to reset resettable HoI3 provinces
-	resetProvinces = "no"
-
 	# Faction Leader: how the converter determines who the faction leaders are
 	#	auto
 	#	manual		Fill the factions with the proper Vicky tags.  First tag in each list is leader, others are members.
