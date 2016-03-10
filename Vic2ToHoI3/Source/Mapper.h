@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -52,13 +52,9 @@ typedef struct {
 	int via;				// the straight (if any) this crosses
 	int unknown1;		// still unknown
 	int unknown2;		// still unknown
-	int pathX;			// the midpoint on the path srawn between provinces
-	int pathY;			// the midpoint on the path srawn between provinces
-	int unknown3;		// still unknown
-	int unknown4;		// still unknown
 } adjacency;			// an entry in the adjacencies.bin format
-typedef vector< vector<adjacency> > adjacencyMapping;
-adjacencyMapping initAdjacencyMap();
+typedef vector< vector<adjacency> > HoI3AdjacencyMapping;
+HoI3AdjacencyMapping initHoI3AdjacencyMap();
 
 
 typedef map<int, string>	continentMapping;	// <province, continent>

@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -182,23 +182,9 @@ const std::string& CountryMapping::GetHoI3Tag(const std::string& V2Tag) const
 	}
 }
 
-const std::string& CountryMapping::GetEU4Tag(const std::string& V2Tag) const
+const std::string& CountryMapping::GetVic2Tag(const std::string& HoI3Tag) const
 {
-	boost::bimap<std::string, std::string>::right_const_iterator findIter = EU4TagToV2TagMap.right.find(V2Tag);	// the mapping with this V2 tag
-	if (findIter != EU4TagToV2TagMap.right.end())
-	{
-		return findIter->second;
-	}
-	else
-	{
-		static const std::string V2TagNotFound = "";	// an empty string for unfound tags
-		return V2TagNotFound;
-	}
-}
-
-const std::string& CountryMapping::GetV2Tag(const std::string& HoI3Tag) const
-{
-	boost::bimap<std::string, std::string>::right_const_iterator findIter = V2TagToHoI3TagMap.right.find(HoI3Tag);	// the mapping with this V2 tag
+	boost::bimap<std::string, std::string>::right_const_iterator findIter = V2TagToHoI3TagMap.right.find(HoI3Tag);	// the mapping with this HoI3 tag
 	if (findIter != V2TagToHoI3TagMap.right.end())
 	{
 		return findIter->second;

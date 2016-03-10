@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -62,7 +62,6 @@ HoI3Province::HoI3Province(string _filename)
 	num				= atoi(temp.c_str());
 
 	Object* obj;
-	struct _stat st;
 	obj = doParseFile((string(".\\blankMod\\output\\history\\provinces") + _filename).c_str());
 	if (obj == NULL)
 	{

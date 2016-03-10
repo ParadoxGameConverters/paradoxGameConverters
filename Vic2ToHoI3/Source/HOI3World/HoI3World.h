@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -35,7 +35,7 @@ class HoI3World {
 		HoI3World(const provinceMapping& provinceMap);
 		void				createProvinceFiles(const V2World& sourceWorld, const provinceMapping& provinceMap);
 		void				convertCountries(const V2World &sourceWorld, CountryMapping countryMap, const governmentMapping& governmentMap, const inverseProvinceMapping& inverseProvinceMap, map<int, int>& leaderMap, const V2Localisation& V2Localisations, governmentJobsMap governmentJobs, leaderTraitsMap leaderTraits, const namesMapping& namesMap, portraitMapping& portraitMap, const cultureMapping& cultureMap, personalityMap& landPersonalityMap, personalityMap& seaPersonalityMap, backgroundMap& landBackgroundMap, backgroundMap& seaBackgroundMap);
-		void				convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const adjacencyMapping &adjacencyMap);
+		void				convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap);
 		void				convertTechs(V2World& sourceWorld);
 		void				output() const;
 		void				convertDiplomacy(V2World& sourceWorld, CountryMapping countryMap);

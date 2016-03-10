@@ -1,4 +1,4 @@
-/*Copyright (c) 2014 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -117,16 +117,10 @@ vector<int> getHoI3ProvinceNums(inverseProvinceMapping invProvMap, const int v2P
 }
 
 
-adjacencyMapping initAdjacencyMap()
+HoI3AdjacencyMapping initHoI3AdjacencyMap()
 {
 	FILE* adjacenciesBin = NULL;	// the adjacencies.bin file
-	string filename = Configuration::getV2DocumentsPath() + "\\map\\cache\\adjacencies.bin";	// the path and filename for adjacencies.bin
-	struct _stat st;	// the data structure telling us if the file exists
-	if ((_stat(filename.c_str(), &st) != 0))
-	{
-		LOG(LogLevel::Warning) << "Could not find " << filename << " - looking in install folder";
-		filename = Configuration::getV2Path() + "\\map\\cache\\adjacencies.bin";
-	}
+	string filename = Configuration::getHoI3Path() + "\\tfh\\map\\cache\\adjacencies.bin";
 	fopen_s(&adjacenciesBin, filename.c_str(), "rb");
 	if (adjacenciesBin == NULL)
 	{
@@ -134,7 +128,7 @@ adjacencyMapping initAdjacencyMap()
 		exit(1);
 	}
 
-	adjacencyMapping adjacencyMap;	// the adjacency mapping
+	HoI3AdjacencyMapping adjacencyMap;	// the adjacency mapping
 	while (!feof(adjacenciesBin))
 	{
 		int numAdjacencies;	// the total number of adjacencies
@@ -156,13 +150,13 @@ adjacencyMapping initAdjacencyMap()
 	// optional code to output data from the adjacencies map
 	/*FILE* adjacenciesData;
 	fopen_s(&adjacenciesData, "adjacenciesData.csv", "w");
-	fprintf(adjacenciesData, "From,Type,To,Via,Unknown1,Unknown2,PathX,PathY\n");
+	fprintf(adjacenciesData, "From,Type,To,Via,Unknown1,Unknown2\n");
 	for (unsigned int from = 0; from < adjacencyMap.size(); from++)
 	{
 		vector<adjacency> adjacencies = adjacencyMap[from];
 		for (unsigned int i = 0; i < adjacencies.size(); i++)
 		{
-			fprintf(adjacenciesData, "%d,%d,%d,%d,%d,%d,%d,%d,%d,%d\n", from, adjacencies[i].type, adjacencies[i].to, adjacencies[i].via, adjacencies[i].unknown1, adjacencies[i].unknown2, adjacencies[i].pathX, adjacencies[i].pathY, adjacencies[i].unknown3, adjacencies[i].unknown4);
+			fprintf(adjacenciesData, "%d,%d,%d,%d,%d,%d\n", from, adjacencies[i].type, adjacencies[i].to, adjacencies[i].via, adjacencies[i].unknown1, adjacencies[i].unknown2);
 		}
 	}
 	fclose(adjacenciesData);*/

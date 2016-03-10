@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -221,8 +221,8 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	countryMap.CreateMapping(sourceWorld, destWorld);
 
 	// Get adjacencies
-	LOG(LogLevel::Info) << "Importing adjacencies";
-	adjacencyMapping Vic2AdjacencyMap = initAdjacencyMap();
+	LOG(LogLevel::Info) << "Importing HoI3 adjacencies";
+	HoI3AdjacencyMapping HoI3AdjacencyMap = initHoI3AdjacencyMap();
 
 	// Parse government mapping
 	LOG(LogLevel::Info) << "Parsing governments mappings";
@@ -345,7 +345,7 @@ int ConvertV2ToHoI3(const std::string& V2SaveFileName)
 	LOG(LogLevel::Info) << "Converting countries";
 	destWorld.convertCountries(sourceWorld, countryMap, governmentMap, inverseProvinceMap, leaderIDMap, localisation, governmentJobs, leaderTraits, namesMap, portraitMap, cultureMap, landPersonalityMap, seaPersonalityMap, landBackgroundMap, seaBackgroundMap);
 	LOG(LogLevel::Info) << "Converting provinces";
-	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, Vic2AdjacencyMap);
+	destWorld.convertProvinces(sourceWorld, provinceMap, countryMap, HoI3AdjacencyMap);
 	destWorld.consolidateProvinceItems(inverseProvinceMap);
 	LOG(LogLevel::Info) << "Converting diplomacy";
 	destWorld.convertDiplomacy(sourceWorld, countryMap);

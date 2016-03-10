@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -45,8 +45,11 @@ class HoI3Province
 		void setCoastal(bool _coastal)					{ coastal = _coastal; }
 		void setName(string _name)							{ name = _name; }
 		void setOwner(string _owner)						{ owner = _owner; }
+		void addManpower(double newManpower)			{ manpower += newManpower; }
 		void setManpower(double newManpower)			{ manpower = newManpower; }
+		void addLeadership(double newLeadership)		{ leadership += newLeadership; }
 		void setLeadership(double newLeadership)		{ leadership = newLeadership; }
+		void addRawIndustry(double newRawIndustry)	{ rawIndustry += newRawIndustry; }
 		void setRawIndustry(double newRawIndustry)	{ rawIndustry = newRawIndustry; }
 		void setActualIndustry(int newIndustry)		{ industry = newIndustry; }
 		void setPoints(int newPoints)						{ points = newPoints; }

@@ -1,4 +1,4 @@
-/*Copyright (c) 2015 The Paradox Game Converters Project
+/*Copyright (c) 2016 The Paradox Game Converters Project
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
@@ -420,7 +420,7 @@ struct MTo1ProvinceComp
 };
 
 
-void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const adjacencyMapping &adjacencyMap)
+void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping provinceMap, CountryMapping countryMap, const HoI3AdjacencyMapping &HoI3AdjacencyMap)
 {
 	for (auto provItr: provinces)
 	{
@@ -525,104 +525,126 @@ void HoI3World::convertProvinces(const V2World &sourceWorld, provinceMapping pro
 							provItr.second->addCore(coreOwner);
 						}
 					}
-
-					// determine if this is a border province or not
-					bool borderProvince = false;
-					if (adjacencyMap.size() > static_cast<unsigned int>(srcProvItr->getNum()))
-					{
-						const vector<adjacency> adjacencies = adjacencyMap[srcProvItr->getNum()];
-						for (auto adj: adjacencies)
-						{
-							V2Province* province = sourceWorld.getProvince(adj.to);
-							if ((province->getOwner() != NULL) && (province->getOwner() != srcProvItr->getOwner()))
-							{
-								borderProvince = true;
-								break;
-							}
-						}
-					}
-
-					// convert forts, naval bases, and infrastructure
-					int fortLevel = srcProvItr->getFort();
-					fortLevel = max(0, (fortLevel - 5) * 2 + 1); // Only use 5 or 6 to reduce fort spam
-					int navalBaseLevel = srcProvItr->getNavalBase();
-					navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
-					if (navalBaseLevel > 0)
-					{
-						provItr.second->requireCoastalFort(fortLevel);
-					}
-					if (borderProvince)
-					{
-						provItr.second->requireLandFort(fortLevel);
-					}
-					provItr.second->requireNavalBase(navalBaseLevel);
-					provItr.second->requireInfrastructure((int)Configuration::getMinInfra());
-					if (srcProvItr->getInfra() > 0) // No infra stays at minInfra
-					{
-						provItr.second->requireInfrastructure(srcProvItr->getInfra() + 4);
-					}
-
-					// convert industry
-					double industry = srcProvItr->getPopulation("craftsmen")
-						+ int(srcProvItr->getPopulation("artisans") * 0.5)
-						+ srcProvItr->getLiteracyWeightedPopulation("capitalists") * 2
-						+ srcProvItr->getLiteracyWeightedPopulation("clerks") * 2;
-					if (Configuration::getIcConversion() == "squareroot")
-					{
-						industry = sqrt(double(industry)) * 0.00127;
-						provItr.second->setRawIndustry(industry * Configuration::getIcFactor());
-					}
-					else if (Configuration::getIcConversion() == "linear")
-					{
-						industry = double(industry) * 0.00000564;
-						provItr.second->setRawIndustry(industry * Configuration::getIcFactor());
-					}
-					else if (Configuration::getIcConversion() == "logarithmic")
-					{
-						industry = log(max(1, industry / 70000)) / log(2) * 1.75;
-						provItr.second->setRawIndustry(industry * Configuration::getIcFactor());
-					}
-					
-					// convert manpower
-					double newManpower = srcProvItr->getPopulation("soldiers")
-						+ srcProvItr->getPopulation("craftsmen") * 0.25 // Conscripts
-						+ srcProvItr->getPopulation("labourers") * 0.25 // Conscripts
-						+ srcProvItr->getPopulation("farmers") * 0.25; // Conscripts
-					if (Configuration::getManpowerConversion() == "linear")
-					{
-						newManpower *= 0.0000037 * Configuration::getManpowerFactor() / srcOwnerItr.second.provinces.size();
-						newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-						provItr.second->setManpower(newManpower);
-					}
-					else if (Configuration::getManpowerConversion() == "squareroot")
-					{
-						newManpower = sqrt(newManpower);
-						newManpower *= 0.0009 * Configuration::getManpowerFactor() / srcOwnerItr.second.provinces.size();
-						newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
-						provItr.second->setManpower(newManpower);
-					}
-
-					// convert leadership
-					double newLeadership = srcProvItr->getLiteracyWeightedPopulation("clergymen") * 0.5
-						+ srcProvItr->getPopulation("officers")
-						+ srcProvItr->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
-						+ srcProvItr->getLiteracyWeightedPopulation("capitalists") * 0.5
-						+ srcProvItr->getLiteracyWeightedPopulation("bureaucrats") * 0.25
-						+ srcProvItr->getLiteracyWeightedPopulation("aristocrats") * 0.25;
-					if (Configuration::getLeadershipConversion() == "linear")
-					{
-						newLeadership *= 0.0000035 * Configuration::getLeadershipFactor() / srcOwnerItr.second.provinces.size();
-						newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-						provItr.second->setLeadership(newLeadership);
-					}
-					else if (Configuration::getLeadershipConversion() == "squareroot")
-					{
-						newLeadership = sqrt(newLeadership);
-						newLeadership *= 0.00034 * Configuration::getLeadershipFactor() / srcOwnerItr.second.provinces.size();
-						newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
-						provItr.second->setLeadership(newLeadership);
-					}
 				}
+			}
+		}
+	}
+
+	// now that all provinces have had owners and cores set, convert their other items
+	for (auto mapping: provinceMap)
+	{
+		auto provItr = provinces.find(mapping.first);
+		if (provItr == provinces.end())
+		{
+			continue;
+		}
+
+		// determine if this is a border province or not
+		bool borderProvince = false;
+		if (HoI3AdjacencyMap.size() > static_cast<unsigned int>(mapping.first))
+		{
+			const vector<adjacency> adjacencies = HoI3AdjacencyMap[mapping.first];
+			for (auto adj: adjacencies)
+			{
+				V2Province*	province				= sourceWorld.getProvince(mapping.first);
+				V2Province* adjacentProvince	= sourceWorld.getProvince(adj.to);
+				if ((province != NULL) && (province->getOwner() != NULL) && (adjacentProvince != NULL) && (adjacentProvince->getOwner() != NULL) && (province->getOwner() != adjacentProvince->getOwner()))
+				{
+					borderProvince = true;
+					break;
+				}
+			}
+		}
+
+		for (auto srcProvinceNum: mapping.second)
+		{
+			V2Province* sourceProvince	= sourceWorld.getProvince(srcProvinceNum);
+
+			// source provinces from other owners should not contribute to the destination province
+			if (countryMap[sourceProvince->getOwnerString()] != provItr->second->getOwner())
+			{
+				continue;
+			}
+
+			// convert forts, naval bases, and infrastructure
+			int fortLevel = sourceProvince->getFort();
+			fortLevel = max(0, (fortLevel - 5) * 2 + 1);
+			int navalBaseLevel = sourceProvince->getNavalBase();
+			navalBaseLevel = max(0, (navalBaseLevel - 3) * 2 + 1);
+			if (navalBaseLevel > 0)
+			{
+				provItr->second->requireCoastalFort(fortLevel);
+			}
+			if (borderProvince)
+			{
+				provItr->second->requireLandFort(fortLevel);
+			}
+			provItr->second->requireNavalBase(navalBaseLevel);
+			provItr->second->requireInfrastructure((int)Configuration::getMinInfra());
+			if (sourceProvince->getInfra() > 0) // No infra stays at minInfra
+			{
+				provItr->second->requireInfrastructure(sourceProvince->getInfra() + 4);
+			}
+
+			// convert industry
+			double industry = sourceProvince->getPopulation("craftsmen")
+				+ int(sourceProvince->getPopulation("artisans") * 0.5)
+				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 2
+				+ sourceProvince->getLiteracyWeightedPopulation("clerks") * 2;
+			if (Configuration::getIcConversion() == "squareroot")
+			{
+				industry = sqrt(double(industry)) * 0.00127;
+				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+			}
+			else if (Configuration::getIcConversion() == "linear")
+			{
+				industry = double(industry) * 0.00000564;
+				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+			}
+			else if (Configuration::getIcConversion() == "logarithmic")
+			{
+				industry = log(max(1, industry / 70000)) / log(2) * 1.75;
+				provItr->second->addRawIndustry(industry * Configuration::getIcFactor());
+			}
+					
+			// convert manpower
+			double newManpower = sourceProvince->getPopulation("soldiers")
+				+ sourceProvince->getPopulation("craftsmen") * 0.25 // Conscripts
+				+ sourceProvince->getPopulation("labourers") * 0.25 // Conscripts
+				+ sourceProvince->getPopulation("farmers") * 0.25; // Conscripts
+			if (Configuration::getManpowerConversion() == "linear")
+			{
+				newManpower *= 0.0000037 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
+				provItr->second->addManpower(newManpower);
+			}
+			else if (Configuration::getManpowerConversion() == "squareroot")
+			{
+				newManpower = sqrt(newManpower);
+				newManpower *= 0.0009 * Configuration::getManpowerFactor() / mapping.second.size();
+				newManpower = newManpower + 0.005 < 0.01 ? 0 : newManpower;	// Discard trivial amounts
+				provItr->second->addManpower(newManpower);
+			}
+
+			// convert leadership
+			double newLeadership = sourceProvince->getLiteracyWeightedPopulation("clergymen") * 0.5
+				+ sourceProvince->getPopulation("officers")
+				+ sourceProvince->getLiteracyWeightedPopulation("clerks") // Clerks representing researchers
+				+ sourceProvince->getLiteracyWeightedPopulation("capitalists") * 0.5
+				+ sourceProvince->getLiteracyWeightedPopulation("bureaucrats") * 0.25
+				+ sourceProvince->getLiteracyWeightedPopulation("aristocrats") * 0.25;
+			if (Configuration::getLeadershipConversion() == "linear")
+			{
+				newLeadership *= 0.0000035 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
+				provItr->second->addLeadership(newLeadership);
+			}
+			else if (Configuration::getLeadershipConversion() == "squareroot")
+			{
+				newLeadership = sqrt(newLeadership);
+				newLeadership *= 0.00034 * Configuration::getLeadershipFactor() / mapping.second.size();
+				newLeadership = newLeadership + 0.005 < 0.01 ? 0 : newLeadership;	// Discard trivial amounts
+				provItr->second->addLeadership(newLeadership);
 			}
 		}
 	}
